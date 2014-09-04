@@ -125,9 +125,9 @@ public class adk extends adj {
 
 	public void b(NBTCompoundTag var1) {
 		if (this.o() != null) {
-			var1.a("Item", (NBTTag) this.o().b(new NBTCompoundTag()));
-			var1.a("ItemRotation", (byte) this.p());
-			var1.a("ItemDropChance", this.c);
+			var1.put("Item", (NBTTag) this.o().b(new NBTCompoundTag()));
+			var1.put("ItemRotation", (byte) this.p());
+			var1.put("ItemDropChance", this.c);
 		}
 
 		super.b(var1);
@@ -142,7 +142,7 @@ public class adk extends adj {
 				this.c = var1.h("ItemDropChance");
 			}
 
-			if (var1.c("Direction")) {
+			if (var1.hasKey("Direction")) {
 				this.a(this.p() * 2, false);
 			}
 		}

@@ -125,6 +125,6 @@ public class aej extends adx {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("TNTFuse", this.a);
+		var1.put("TNTFuse", this.a);
 	}
 }

@@ -612,28 +612,28 @@ public abstract class ahd extends EntityLiving {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("Inventory", (NBTTag) this.bg.a(new NBTListTag()));
-		var1.a("SelectedItemSlot", this.bg.c);
-		var1.a("Sleeping", this.bu);
-		var1.a("SleepTimer", (short) this.b);
-		var1.a("XpP", this.bB);
-		var1.a("XpLevel", this.bz);
-		var1.a("XpTotal", this.bA);
-		var1.a("XpSeed", this.f);
-		var1.a("Score", this.bW());
+		var1.put("Inventory", (NBTTag) this.bg.a(new NBTListTag()));
+		var1.put("SelectedItemSlot", this.bg.c);
+		var1.put("Sleeping", this.bu);
+		var1.put("SleepTimer", (short) this.b);
+		var1.put("XpP", this.bB);
+		var1.put("XpLevel", this.bz);
+		var1.put("XpTotal", this.bA);
+		var1.put("XpSeed", this.f);
+		var1.put("Score", this.bW());
 		if (this.c != null) {
-			var1.a("SpawnX", this.c.n());
-			var1.a("SpawnY", this.c.o());
-			var1.a("SpawnZ", this.c.p());
-			var1.a("SpawnForced", this.d);
+			var1.put("SpawnX", this.c.n());
+			var1.put("SpawnY", this.c.o());
+			var1.put("SpawnZ", this.c.p());
+			var1.put("SpawnForced", this.d);
 		}
 
 		this.bj.b(var1);
 		this.by.write(var1);
-		var1.a("EnderItems", (NBTTag) this.a.h());
+		var1.put("EnderItems", (NBTTag) this.a.h());
 		amj var2 = this.bg.h();
 		if (var2 != null && var2.b() != null) {
-			var1.a("SelectedItem", (NBTTag) var2.b(new NBTCompoundTag()));
+			var1.put("SelectedItem", (NBTTag) var2.b(new NBTCompoundTag()));
 		}
 
 	}

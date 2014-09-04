@@ -14,10 +14,10 @@ public class bjg extends bms {
 	}
 
 	protected void a(NBTCompoundTag var1) {
-		var1.a("hr", this.a);
-		var1.a("sc", this.b);
-		var1.a("hps", this.c);
-		var1.a("Num", this.d);
+		var1.put("hr", this.a);
+		var1.put("sc", this.b);
+		var1.put("hps", this.c);
+		var1.put("Num", this.d);
 	}
 
 	protected void b(NBTCompoundTag var1) {

@@ -106,7 +106,7 @@ public class anh extends alq {
 		if (var1.b("SkullOwner", 8) && var1.j("SkullOwner").length() > 0) {
 			GameProfile var2 = new GameProfile((UUID) null, var1.j("SkullOwner"));
 			var2 = bdm.b(var2);
-			var1.a("SkullOwner", (NBTTag) ga.a(new NBTCompoundTag(), var2));
+			var1.put("SkullOwner", (NBTTag) ga.a(new NBTCompoundTag(), var2));
 			return true;
 		} else {
 			return false;

@@ -22,7 +22,7 @@ public class blz extends bmk {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.a("Tall", this.b);
+		var1.put("Tall", this.b);
 	}
 
 	protected void b(NBTCompoundTag var1) {

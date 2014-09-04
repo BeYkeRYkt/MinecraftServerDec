@@ -16,7 +16,7 @@ public class bdj extends bcm {
 
 		for (int var2 = 0; var2 < 4; ++var2) {
 			String var3 = hp.a(this.a[var2]);
-			var1.a("Text" + (var2 + 1), var3);
+			var1.put("Text" + (var2 + 1), var3);
 		}
 
 		this.i.b(var1);

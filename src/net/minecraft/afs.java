@@ -30,8 +30,8 @@ public class afs {
 	private static NBTCompoundTag a(xz var0) {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		xy var2 = var0.a();
-		var1.a("Name", var2.a());
-		var1.a("Base", var0.b());
+		var1.put("Name", var2.a());
+		var1.put("Base", var0.b());
 		Collection var3 = var0.c();
 		if (var3 != null && !var3.isEmpty()) {
 			NBTListTag var4 = new NBTListTag();
@@ -44,7 +44,7 @@ public class afs {
 				}
 			}
 
-			var1.a("Modifiers", (NBTTag) var4);
+			var1.put("Modifiers", (NBTTag) var4);
 		}
 
 		return var1;
@@ -52,11 +52,11 @@ public class afs {
 
 	private static NBTCompoundTag a(ya var0) {
 		NBTCompoundTag var1 = new NBTCompoundTag();
-		var1.a("Name", var0.b());
-		var1.a("Amount", var0.d());
-		var1.a("Operation", var0.c());
-		var1.a("UUIDMost", var0.a().getMostSignificantBits());
-		var1.a("UUIDLeast", var0.a().getLeastSignificantBits());
+		var1.put("Name", var0.b());
+		var1.put("Amount", var0.d());
+		var1.put("Operation", var0.c());
+		var1.put("UUIDMost", var0.a().getMostSignificantBits());
+		var1.put("UUIDLeast", var0.a().getLeastSignificantBits());
 		return var1;
 	}
 

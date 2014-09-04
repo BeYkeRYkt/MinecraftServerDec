@@ -12,14 +12,14 @@ public class PlayerProperties {
 
 	public void write(NBTCompoundTag tag) {
 		NBTCompoundTag var2 = new NBTCompoundTag();
-		tag.a("invulnerable", this.invulnerable);
-		tag.a("flying", this.flying);
-		tag.a("mayfly", this.mayfly);
-		tag.a("instabuild", this.instabuild);
-		tag.a("mayBuild", this.maybuild);
-		tag.a("flySpeed", this.flyspeed);
-		tag.a("walkSpeed", this.walkspeed);
-		tag.a("abilities", (NBTTag) var2);
+		tag.put("invulnerable", this.invulnerable);
+		tag.put("flying", this.flying);
+		tag.put("mayfly", this.mayfly);
+		tag.put("instabuild", this.instabuild);
+		tag.put("mayBuild", this.maybuild);
+		tag.put("flySpeed", this.flyspeed);
+		tag.put("walkSpeed", this.walkspeed);
+		tag.put("abilities", (NBTTag) var2);
 	}
 
 	public void read(NBTCompoundTag var1) {

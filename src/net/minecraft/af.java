@@ -66,13 +66,13 @@ public class af {
 			String var7 = this.c[var6.a()];
 			String var8 = this.d[var6.a()];
 			if (var7 != null && var8 != null) {
-				var2.a(var6.b() + "Name", var7);
-				var2.a(var6.b() + "Objective", var8);
+				var2.put(var6.b() + "Name", var7);
+				var2.put(var6.b() + "Objective", var8);
 			}
 		}
 
 		if (!var2.c_()) {
-			var1.a("CommandStats", (NBTTag) var2);
+			var1.put("CommandStats", (NBTTag) var2);
 		}
 
 	}

@@ -52,10 +52,10 @@ public abstract class bmv {
 
 	public NBTCompoundTag a(int var1, int var2) {
 		NBTCompoundTag var3 = new NBTCompoundTag();
-		var3.a("id", bmq.a(this));
-		var3.a("ChunkX", var1);
-		var3.a("ChunkZ", var2);
-		var3.a("BB", (NBTTag) this.b.g());
+		var3.put("id", bmq.a(this));
+		var3.put("ChunkX", var1);
+		var3.put("ChunkZ", var2);
+		var3.put("BB", (NBTTag) this.b.g());
 		NBTListTag var4 = new NBTListTag();
 		Iterator var5 = this.a.iterator();
 
@@ -64,7 +64,7 @@ public abstract class bmv {
 			var4.addTag((NBTTag) var6.b());
 		}
 
-		var3.a("Children", (NBTTag) var4);
+		var3.put("Children", (NBTTag) var4);
 		this.a(var3);
 		return var3;
 	}
@@ -75,7 +75,7 @@ public abstract class bmv {
 	public void a(World var1, NBTCompoundTag var2) {
 		this.c = var2.f("ChunkX");
 		this.d = var2.f("ChunkZ");
-		if (var2.c("BB")) {
+		if (var2.hasKey("BB")) {
 			this.b = new bjb(var2.l("BB"));
 		}
 

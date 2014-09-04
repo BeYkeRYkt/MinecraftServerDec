@@ -32,9 +32,9 @@ public class aqj extends vk {
 
 	public NBTCompoundTag a() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
-		var1.a("Properties", (NBTTag) this.c);
-		var1.a("Type", this.d);
-		var1.a("Weight", this.a);
+		var1.put("Properties", (NBTTag) this.c);
+		var1.put("Type", this.d);
+		var1.put("Weight", this.a);
 		return var1;
 	}
 

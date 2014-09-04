@@ -21,9 +21,9 @@ abstract class bnn extends bms {
 	}
 
 	protected void a(NBTCompoundTag var1) {
-		var1.a("HPos", this.h);
-		var1.a("VCount", this.a);
-		var1.a("Desert", this.b);
+		var1.put("HPos", this.h);
+		var1.put("VCount", this.a);
+		var1.put("Desert", this.b);
 	}
 
 	protected void b(NBTCompoundTag var1) {

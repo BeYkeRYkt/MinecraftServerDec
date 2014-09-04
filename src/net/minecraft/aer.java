@@ -45,8 +45,8 @@ public class aer extends afm {
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
 		bec var2 = this.ck();
-		var1.a("carried", (short) atr.a(var2.c()));
-		var1.a("carriedData", (short) var2.c().c(var2));
+		var1.put("carried", (short) atr.a(var2.c()));
+		var1.put("carriedData", (short) var2.c().c(var2));
 	}
 
 	public void a(NBTCompoundTag var1) {

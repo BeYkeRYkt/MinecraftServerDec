@@ -31,17 +31,17 @@ public class NBTCompoundTag extends NBTTag {
 			this.compound.clear();
 
 			byte tagId;
-			while ((tagId = a(input, limit)) != 0) {
-				String var5 = b(input, limit);
-				limit.onBytesRead((long) (16 * var5.length()));
-				NBTTag var6 = a(tagId, var5, input, currentDepth + 1, limit);
-				this.compound.put(var5, var6);
+			while ((tagId = readTagId(input, limit)) != 0) {
+				String key = readKey(input, limit);
+				limit.onBytesRead((long) (16 * key.length()));
+				NBTTag tag = readTag(tagId, key, input, currentDepth + 1, limit);
+				this.compound.put(key, tag);
 			}
 
 		}
 	}
 
-	public Set<String> c() {
+	public Set<String> getKeys() {
 		return this.compound.keySet();
 	}
 
@@ -49,75 +49,71 @@ public class NBTCompoundTag extends NBTTag {
 		return (byte) 10;
 	}
 
-	public void a(String var1, NBTTag var2) {
-		this.compound.put(var1, var2);
+	public void put(String key, NBTTag tag) {
+		this.compound.put(key, tag);
 	}
 
-	public void a(String var1, byte var2) {
-		this.compound.put(var1, new NBTByteTag(var2));
+	public void put(String key, byte b) {
+		this.compound.put(key, new NBTByteTag(b));
 	}
 
-	public void a(String var1, short var2) {
-		this.compound.put(var1, new NBTShortTag(var2));
+	public void put(String key, short s) {
+		this.compound.put(key, new NBTShortTag(s));
 	}
 
-	public void a(String var1, int var2) {
-		this.compound.put(var1, new NBTIntTag(var2));
+	public void put(String key, int i) {
+		this.compound.put(key, new NBTIntTag(i));
 	}
 
-	public void a(String var1, long var2) {
-		this.compound.put(var1, new NBTLongTag(var2));
+	public void put(String key, long l) {
+		this.compound.put(key, new NBTLongTag(l));
 	}
 
-	public void a(String var1, float var2) {
-		this.compound.put(var1, new NBTFloatTag(var2));
+	public void put(String key, float f) {
+		this.compound.put(key, new NBTFloatTag(f));
 	}
 
-	public void a(String var1, double var2) {
-		this.compound.put(var1, new NBTDoubleTag(var2));
+	public void put(String key, double d) {
+		this.compound.put(key, new NBTDoubleTag(d));
 	}
 
-	public void a(String var1, String var2) {
-		this.compound.put(var1, new NBTStringTag(var2));
+	public void put(String key, String string) {
+		this.compound.put(key, new NBTStringTag(string));
 	}
 
-	public void a(String var1, byte[] var2) {
-		this.compound.put(var1, new NBTByteArrayTag(var2));
+	public void put(String key, byte[] barray) {
+		this.compound.put(key, new NBTByteArrayTag(barray));
 	}
 
-	public void a(String var1, int[] var2) {
-		this.compound.put(var1, new NBTIntArrayTag(var2));
+	public void put(String key, int[] iarray) {
+		this.compound.put(key, new NBTIntArrayTag(iarray));
 	}
 
-	public void a(String var1, boolean var2) {
-		this.a(var1, (byte) (var2 ? 1 : 0));
+	public void put(String key, boolean bool) {
+		this.put(key, (byte) (bool ? 1 : 0));
 	}
 
-	public NBTTag a(String var1) {
-		return (NBTTag) this.compound.get(var1);
+	public NBTTag getTag(String key) {
+		return this.compound.get(key);
 	}
 
-	public byte b(String var1) {
-		NBTTag var2 = (NBTTag) this.compound.get(var1);
+	public byte getTagId(String key) {
+		NBTTag var2 = (NBTTag) this.compound.get(key);
 		return var2 != null ? var2.getId() : 0;
 	}
 
-	public boolean c(String var1) {
-		return this.compound.containsKey(var1);
+	public boolean hasKey(String key) {
+		return this.compound.containsKey(key);
 	}
 
-	public boolean b(String var1, int var2) {
-		byte var3 = this.b(var1);
-		if (var3 == var2) {
+	public boolean b(String key, int tagId) {
+		byte id = this.getTagId(key);
+		if (id == tagId) {
 			return true;
-		} else if (var2 != 99) {
-			if (var3 > 0) {
-				;
-			}
-
+		} else if (tagId != 99) {
 			return false;
 		} else {
-			return var3 == 1 || var3 == 2 || var3 == 3 || var3 == 4 || var3 == 5 || var3 == 6;
+			return id == 1 || id == 2 || id == 3 || id == 4 || id == 5 || id == 6;
 		}
 	}
 
@@ -203,7 +199,7 @@ public class NBTCompoundTag extends NBTTag {
 
 	public NBTListTag c(String var1, int var2) {
 		try {
-			if (this.b(var1) != 9) {
+			if (this.getTagId(var1) != 9) {
 				return new NBTListTag();
 			} else {
 				NBTListTag var3 = (NBTListTag) this.compound.get(var1);
@@ -252,7 +248,7 @@ public class NBTCompoundTag extends NBTTag {
 
 		while (var2.hasNext()) {
 			String var3 = (String) var2.next();
-			var1.a(var3, ((NBTTag) this.compound.get(var3)).getCopy());
+			var1.put(var3, ((NBTTag) this.compound.get(var3)).getCopy());
 		}
 
 		return var1;
@@ -279,26 +275,26 @@ public class NBTCompoundTag extends NBTTag {
 		}
 	}
 
-	private static byte a(DataInput var0, NBTReadLimiter var1) throws IOException {
-		return var0.readByte();
+	private static byte readTagId(DataInput input, NBTReadLimiter limiter) throws IOException {
+		return input.readByte();
 	}
 
-	private static String b(DataInput var0, NBTReadLimiter var1) throws IOException {
-		return var0.readUTF();
+	private static String readKey(DataInput input, NBTReadLimiter limiter) throws IOException {
+		return input.readUTF();
 	}
 
-	static NBTTag a(byte var0, String var1, DataInput var2, int var3, NBTReadLimiter var4) {
-		NBTTag var5 = NBTTag.byId(var0);
+	static NBTTag readTag(byte tagId, String key, DataInput input, int currentDepth, NBTReadLimiter limit) {
+		NBTTag tag = NBTTag.byId(tagId);
 
 		try {
-			var5.read(var2, var3, var4);
-			return var5;
+			tag.read(input, currentDepth, limit);
+			return tag;
 		} catch (IOException var9) {
-			CrashReport var7 = CrashReport.a(var9, "Loading NBT data");
-			j var8 = var7.a("NBT Tag");
-			var8.a("Tag name", (Object) var1);
-			var8.a("Tag type", (Object) Byte.valueOf(var0));
-			throw new u(var7);
+			CrashReport crashReport = CrashReport.a(var9, "Loading NBT data");
+			j var8 = crashReport.a("NBT Tag");
+			var8.a("Tag name", (Object) key);
+			var8.a("Tag type", (Object) Byte.valueOf(tagId));
+			throw new u(crashReport);
 		}
 	}
 
@@ -313,10 +309,10 @@ public class NBTCompoundTag extends NBTTag {
 					NBTCompoundTag var5 = this.m(var3);
 					var5.a((NBTCompoundTag) var4);
 				} else {
-					this.a(var3, var4.getCopy());
+					this.put(var3, var4.getCopy());
 				}
 			} else {
-				this.a(var3, var4.getCopy());
+				this.put(var3, var4.getCopy());
 			}
 		}
 

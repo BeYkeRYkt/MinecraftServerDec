@@ -18,7 +18,7 @@ class gi extends gh {
 
 		while (var2.hasNext()) {
 			gh var3 = (gh) var2.next();
-			var1.a(var3.a, var3.a());
+			var1.put(var3.a, var3.a());
 		}
 
 		return var1;

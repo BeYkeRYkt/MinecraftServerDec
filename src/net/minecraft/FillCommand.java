@@ -118,9 +118,9 @@ public class FillCommand extends AbstractCommand {
 								if (var23) {
 									bcm var20 = var10.s(var17);
 									if (var20 != null) {
-										var22.a("x", var17.n());
-										var22.a("y", var17.o());
-										var22.a("z", var17.p());
+										var22.put("x", var17.n());
+										var22.put("y", var17.o());
+										var22.put("z", var17.p());
 										var20.a(var22);
 									}
 								}

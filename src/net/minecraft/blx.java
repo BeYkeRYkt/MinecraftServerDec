@@ -26,10 +26,10 @@ public class blx extends bmk {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.a("leftLow", this.a);
-		var1.a("leftHigh", this.b);
-		var1.a("rightLow", this.c);
-		var1.a("rightHigh", this.e);
+		var1.put("leftLow", this.a);
+		var1.put("leftHigh", this.b);
+		var1.put("rightLow", this.c);
+		var1.put("rightHigh", this.e);
 	}
 
 	protected void b(NBTCompoundTag var1) {

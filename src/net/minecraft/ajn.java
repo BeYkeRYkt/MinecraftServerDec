@@ -54,7 +54,7 @@ public class ajn extends alq {
 			NBTCompoundTag var2 = var1.o();
 			if (var2 != null) {
 				NBTCompoundTag var3 = var2.m("display");
-				if (var3.c("color")) {
+				if (var3.hasKey("color")) {
 					var3.o("color");
 				}
 
@@ -74,10 +74,10 @@ public class ajn extends alq {
 
 			NBTCompoundTag var4 = var3.m("display");
 			if (!var3.b("display", 10)) {
-				var3.a("display", (NBTTag) var4);
+				var3.put("display", (NBTTag) var4);
 			}
 
-			var4.a("color", var2);
+			var4.put("color", var2);
 		}
 	}
 

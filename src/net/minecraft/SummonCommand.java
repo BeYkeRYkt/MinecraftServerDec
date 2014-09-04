@@ -53,7 +53,7 @@ public class SummonCommand extends AbstractCommand {
 					}
 				}
 
-				var13.a("id", var3);
+				var13.put("id", var3);
 
 				Entity var21;
 				try {

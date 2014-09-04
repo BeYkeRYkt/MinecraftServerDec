@@ -50,12 +50,12 @@ public class aep extends afm {
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
 		if (this.ac.a(17) == 1) {
-			var1.a("powered", true);
+			var1.put("powered", true);
 		}
 
-		var1.a("Fuse", (short) this.bk);
-		var1.a("ExplosionRadius", (byte) this.bl);
-		var1.a("ignited", this.cl());
+		var1.put("Fuse", (short) this.bk);
+		var1.put("ExplosionRadius", (byte) this.bl);
+		var1.put("ignited", this.cl());
 	}
 
 	public void a(NBTCompoundTag var1) {

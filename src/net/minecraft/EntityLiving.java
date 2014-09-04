@@ -301,12 +301,12 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("HealF", this.bm());
-		var1.a("Health", (short) ((int) Math.ceil((double) this.bm())));
-		var1.a("HurtTime", (short) this.as);
-		var1.a("HurtByTimestamp", this.bh);
-		var1.a("DeathTime", (short) this.av);
-		var1.a("AbsorptionAmount", this.bM());
+		var1.put("HealF", this.bm());
+		var1.put("Health", (short) ((int) Math.ceil((double) this.bm())));
+		var1.put("HurtTime", (short) this.as);
+		var1.put("HurtByTimestamp", this.bh);
+		var1.put("DeathTime", (short) this.av);
+		var1.put("AbsorptionAmount", this.bM());
 		amj[] var2 = this.at();
 		int var3 = var2.length;
 
@@ -319,7 +319,7 @@ public abstract class EntityLiving extends Entity {
 			}
 		}
 
-		var1.a("Attributes", (NBTTag) afs.a(this.bx()));
+		var1.put("Attributes", (NBTTag) afs.a(this.bx()));
 		var2 = this.at();
 		var3 = var2.length;
 
@@ -339,7 +339,7 @@ public abstract class EntityLiving extends Entity {
 				var6.addTag((NBTTag) var8.a(new NBTCompoundTag()));
 			}
 
-			var1.a("ActiveEffects", (NBTTag) var6);
+			var1.put("ActiveEffects", (NBTTag) var6);
 		}
 
 	}
@@ -365,7 +365,7 @@ public abstract class EntityLiving extends Entity {
 		if (var1.b("HealF", 99)) {
 			this.h(var1.h("HealF"));
 		} else {
-			NBTTag var6 = var1.a("Health");
+			NBTTag var6 = var1.getTag("Health");
 			if (var6 == null) {
 				this.h(this.bt());
 			} else if (var6.getId() == 5) {

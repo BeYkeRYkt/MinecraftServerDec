@@ -82,13 +82,13 @@ public class ahm extends Entity {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("Life", this.a);
-		var1.a("LifeTime", this.b);
+		var1.put("Life", this.a);
+		var1.put("LifeTime", this.b);
 		amj var2 = this.ac.f(8);
 		if (var2 != null) {
 			NBTCompoundTag var3 = new NBTCompoundTag();
 			var2.b(var3);
-			var1.a("FireworksItem", (NBTTag) var3);
+			var1.put("FireworksItem", (NBTTag) var3);
 		}
 
 	}

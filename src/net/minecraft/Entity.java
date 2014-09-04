@@ -946,7 +946,7 @@ public abstract class Entity implements CommandSenderInterface {
 	public boolean c(NBTCompoundTag var1) {
 		String var2 = this.ag();
 		if (!this.I && var2 != null) {
-			var1.a("id", var2);
+			var1.put("id", var2);
 			this.e(var1);
 			return true;
 		} else {
@@ -957,7 +957,7 @@ public abstract class Entity implements CommandSenderInterface {
 	public boolean d(NBTCompoundTag var1) {
 		String var2 = this.ag();
 		if (!this.I && var2 != null && this.l == null) {
-			var1.a("id", var2);
+			var1.put("id", var2);
 			this.e(var1);
 			return true;
 		} else {
@@ -967,33 +967,33 @@ public abstract class Entity implements CommandSenderInterface {
 
 	public void e(NBTCompoundTag var1) {
 		try {
-			var1.a("Pos", (NBTTag) this.a(new double[] { this.s, this.t, this.u }));
-			var1.a("Motion", (NBTTag) this.a(new double[] { this.v, this.w, this.x }));
-			var1.a("Rotation", (NBTTag) this.a(new float[] { this.y, this.z }));
-			var1.a("FallDistance", this.O);
-			var1.a("Fire", (short) this.i);
-			var1.a("Air", (short) this.aA());
-			var1.a("OnGround", this.C);
-			var1.a("Dimension", this.am);
-			var1.a("Invulnerable", this.ar);
-			var1.a("PortalCooldown", this.aj);
-			var1.a("UUIDMost", this.aJ().getMostSignificantBits());
-			var1.a("UUIDLeast", this.aJ().getLeastSignificantBits());
+			var1.put("Pos", (NBTTag) this.a(new double[] { this.s, this.t, this.u }));
+			var1.put("Motion", (NBTTag) this.a(new double[] { this.v, this.w, this.x }));
+			var1.put("Rotation", (NBTTag) this.a(new float[] { this.y, this.z }));
+			var1.put("FallDistance", this.O);
+			var1.put("Fire", (short) this.i);
+			var1.put("Air", (short) this.aA());
+			var1.put("OnGround", this.C);
+			var1.put("Dimension", this.am);
+			var1.put("Invulnerable", this.ar);
+			var1.put("PortalCooldown", this.aj);
+			var1.put("UUIDMost", this.aJ().getMostSignificantBits());
+			var1.put("UUIDLeast", this.aJ().getLeastSignificantBits());
 			if (this.aL() != null && this.aL().length() > 0) {
-				var1.a("CustomName", this.aL());
-				var1.a("CustomNameVisible", this.aM());
+				var1.put("CustomName", this.aL());
+				var1.put("CustomNameVisible", this.aM());
 			}
 
 			this.as.b(var1);
 			if (this.R()) {
-				var1.a("Silent", this.R());
+				var1.put("Silent", this.R());
 			}
 
 			this.b(var1);
 			if (this.m != null) {
 				NBTCompoundTag var2 = new NBTCompoundTag();
 				if (this.m.c(var2)) {
-					var1.a("Riding", (NBTTag) var2);
+					var1.put("Riding", (NBTTag) var2);
 				}
 			}
 
@@ -1599,12 +1599,12 @@ public abstract class Entity implements CommandSenderInterface {
 	protected hr aP() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		String var2 = xb.b(this);
-		var1.a("id", this.aJ().toString());
+		var1.put("id", this.aJ().toString());
 		if (var2 != null) {
-			var1.a("type", var2);
+			var1.put("type", var2);
 		}
 
-		var1.a("name", this.d_());
+		var1.put("name", this.d_());
 		return new hr(hs.d, new hy(var1.toString()));
 	}
 

@@ -190,19 +190,19 @@ public class adw extends Entity {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("Health", (short) ((byte) this.e));
-		var1.a("Age", (short) this.c);
-		var1.a("PickupDelay", (short) this.d);
+		var1.put("Health", (short) ((byte) this.e));
+		var1.put("Age", (short) this.c);
+		var1.put("PickupDelay", (short) this.d);
 		if (this.n() != null) {
-			var1.a("Thrower", this.f);
+			var1.put("Thrower", this.f);
 		}
 
 		if (this.m() != null) {
-			var1.a("Owner", this.g);
+			var1.put("Owner", this.g);
 		}
 
 		if (this.l() != null) {
-			var1.a("Item", (NBTTag) this.l().b(new NBTCompoundTag()));
+			var1.put("Item", (NBTTag) this.l().b(new NBTCompoundTag()));
 		}
 
 	}
@@ -210,15 +210,15 @@ public class adw extends Entity {
 	public void a(NBTCompoundTag var1) {
 		this.e = var1.e("Health") & 255;
 		this.c = var1.e("Age");
-		if (var1.c("PickupDelay")) {
+		if (var1.hasKey("PickupDelay")) {
 			this.d = var1.e("PickupDelay");
 		}
 
-		if (var1.c("Owner")) {
+		if (var1.hasKey("Owner")) {
 			this.g = var1.j("Owner");
 		}
 
-		if (var1.c("Thrower")) {
+		if (var1.hasKey("Thrower")) {
 			this.f = var1.j("Thrower");
 		}
 

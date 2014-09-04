@@ -7,7 +7,7 @@ public class bdi extends bcm {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("note", this.a);
+		var1.put("note", this.a);
 	}
 
 	public void a(NBTCompoundTag var1) {

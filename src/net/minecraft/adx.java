@@ -552,16 +552,16 @@ public abstract class adx extends Entity implements vz {
 
 	protected void b(NBTCompoundTag var1) {
 		if (this.x()) {
-			var1.a("CustomDisplayTile", true);
+			var1.put("CustomDisplayTile", true);
 			bec var2 = this.t();
 			oa var3 = (oa) atr.c.c(var2.c());
-			var1.a("DisplayTile", var3 == null ? "" : var3.toString());
-			var1.a("DisplayData", var2.c().c(var2));
-			var1.a("DisplayOffset", this.v());
+			var1.put("DisplayTile", var3 == null ? "" : var3.toString());
+			var1.put("DisplayData", var2.c().c(var2));
+			var1.put("DisplayOffset", this.v());
 		}
 
 		if (this.b != null && this.b.length() > 0) {
-			var1.a("CustomName", this.b);
+			var1.put("CustomName", this.b);
 		}
 
 	}

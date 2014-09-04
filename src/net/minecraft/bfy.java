@@ -65,8 +65,8 @@ public class bfy implements bfq, brq {
 			bfh var5 = this.a(var1, var4.m("Level"));
 			if (!var5.a(var2, var3)) {
 				a.error("Chunk file at " + var2 + "," + var3 + " is in the wrong location; relocating. (Expected " + var2 + ", " + var3 + ", got " + var5.a + ", " + var5.b + ")");
-				var4.a("xPos", var2);
-				var4.a("zPos", var3);
+				var4.put("xPos", var2);
+				var4.put("zPos", var3);
 				var5 = this.a(var1, var4.m("Level"));
 			}
 
@@ -80,7 +80,7 @@ public class bfy implements bfq, brq {
 		try {
 			NBTCompoundTag var3 = new NBTCompoundTag();
 			NBTCompoundTag var4 = new NBTCompoundTag();
-			var3.a("Level", (NBTTag) var4);
+			var3.put("Level", (NBTTag) var4);
 			this.a(var2, var1, var4);
 			this.a(var2.j(), var3);
 		} catch (Exception var5) {
@@ -150,14 +150,14 @@ public class bfy implements bfq, brq {
 	}
 
 	private void a(bfh var1, World var2, NBTCompoundTag var3) {
-		var3.a("V", (byte) 1);
-		var3.a("xPos", var1.a);
-		var3.a("zPos", var1.b);
-		var3.a("LastUpdate", var2.K());
-		var3.a("HeightMap", var1.q());
-		var3.a("TerrainPopulated", var1.t());
-		var3.a("LightPopulated", var1.u());
-		var3.a("InhabitedTime", var1.w());
+		var3.put("V", (byte) 1);
+		var3.put("xPos", var1.a);
+		var3.put("zPos", var1.b);
+		var3.put("LastUpdate", var2.K());
+		var3.put("HeightMap", var1.q());
+		var3.put("TerrainPopulated", var1.t());
+		var3.put("LightPopulated", var1.u());
+		var3.put("InhabitedTime", var1.w());
 		bfm[] var4 = var1.h();
 		NBTListTag var5 = new NBTListTag();
 		boolean var6 = !var2.t.o();
@@ -169,7 +169,7 @@ public class bfy implements bfq, brq {
 			bfm var10 = var7[var9];
 			if (var10 != null) {
 				var11 = new NBTCompoundTag();
-				var11.a("Y", (byte) (var10.d() >> 4 & 255));
+				var11.put("Y", (byte) (var10.d() >> 4 & 255));
 				byte[] var12 = new byte[var10.g().length];
 				bff var13 = new bff();
 				bff var14 = null;
@@ -191,25 +191,25 @@ public class bfy implements bfq, brq {
 					var13.a(var17, var18, var19, var16 & 15);
 				}
 
-				var11.a("Blocks", var12);
-				var11.a("Data", var13.a());
+				var11.put("Blocks", var12);
+				var11.put("Data", var13.a());
 				if (var14 != null) {
-					var11.a("Add", var14.a());
+					var11.put("Add", var14.a());
 				}
 
-				var11.a("BlockLight", var10.h().a());
+				var11.put("BlockLight", var10.h().a());
 				if (var6) {
-					var11.a("SkyLight", var10.i().a());
+					var11.put("SkyLight", var10.i().a());
 				} else {
-					var11.a("SkyLight", new byte[var10.h().a().length]);
+					var11.put("SkyLight", new byte[var10.h().a().length]);
 				}
 
 				var5.addTag((NBTTag) var11);
 			}
 		}
 
-		var3.a("Sections", (NBTTag) var5);
-		var3.a("Biomes", var1.k());
+		var3.put("Sections", (NBTTag) var5);
+		var3.put("Biomes", var1.k());
 		var1.g(false);
 		NBTListTag var20 = new NBTListTag();
 
@@ -227,7 +227,7 @@ public class bfy implements bfq, brq {
 			}
 		}
 
-		var3.a("Entities", (NBTTag) var20);
+		var3.put("Entities", (NBTTag) var20);
 		NBTListTag var21 = new NBTListTag();
 		var22 = var1.r().values().iterator();
 
@@ -238,7 +238,7 @@ public class bfy implements bfq, brq {
 			var21.addTag((NBTTag) var11);
 		}
 
-		var3.a("TileEntities", (NBTTag) var21);
+		var3.put("TileEntities", (NBTTag) var21);
 		List var23 = var2.a(var1, false);
 		if (var23 != null) {
 			long var26 = var2.K();
@@ -249,16 +249,16 @@ public class bfy implements bfq, brq {
 				ark var29 = (ark) var28.next();
 				NBTCompoundTag var30 = new NBTCompoundTag();
 				oa var31 = (oa) atr.c.c(var29.a());
-				var30.a("i", var31 == null ? "" : var31.toString());
-				var30.a("x", var29.a.n());
-				var30.a("y", var29.a.o());
-				var30.a("z", var29.a.p());
-				var30.a("t", (int) (var29.b - var26));
-				var30.a("p", var29.c);
+				var30.put("i", var31 == null ? "" : var31.toString());
+				var30.put("x", var29.a.n());
+				var30.put("y", var29.a.o());
+				var30.put("z", var29.a.p());
+				var30.put("t", (int) (var29.b - var26));
+				var30.put("p", var29.c);
 				var27.addTag((NBTTag) var30);
 			}
 
-			var3.a("TileTicks", (NBTTag) var27);
+			var3.put("TileTicks", (NBTTag) var27);
 		}
 
 	}

@@ -64,7 +64,7 @@ public class aby extends xx {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("CatType", this.cr());
+		var1.put("CatType", this.cr());
 	}
 
 	public void a(NBTCompoundTag var1) {

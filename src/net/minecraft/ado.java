@@ -326,13 +326,13 @@ public class ado extends Entity {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("xTile", (short) this.g);
-		var1.a("yTile", (short) this.h);
-		var1.a("zTile", (short) this.i);
+		var1.put("xTile", (short) this.g);
+		var1.put("yTile", (short) this.h);
+		var1.put("zTile", (short) this.i);
 		oa var2 = (oa) atr.c.c(this.ap);
-		var1.a("inTile", var2 == null ? "" : var2.toString());
-		var1.a("shake", (byte) this.a);
-		var1.a("inGround", (byte) (this.aq ? 1 : 0));
+		var1.put("inTile", var2 == null ? "" : var2.toString());
+		var1.put("shake", (byte) this.a);
+		var1.put("inGround", (byte) (this.aq ? 1 : 0));
 	}
 
 	public void a(NBTCompoundTag var1) {

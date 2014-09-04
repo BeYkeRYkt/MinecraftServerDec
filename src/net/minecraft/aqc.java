@@ -103,15 +103,15 @@ public class aqc {
 
 	public NBTCompoundTag k() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
-		var1.a("buy", (NBTTag) this.a.b(new NBTCompoundTag()));
-		var1.a("sell", (NBTTag) this.c.b(new NBTCompoundTag()));
+		var1.put("buy", (NBTTag) this.a.b(new NBTCompoundTag()));
+		var1.put("sell", (NBTTag) this.c.b(new NBTCompoundTag()));
 		if (this.b != null) {
-			var1.a("buyB", (NBTTag) this.b.b(new NBTCompoundTag()));
+			var1.put("buyB", (NBTTag) this.b.b(new NBTCompoundTag()));
 		}
 
-		var1.a("uses", this.d);
-		var1.a("maxUses", this.e);
-		var1.a("rewardExp", this.f);
+		var1.put("uses", this.d);
+		var1.put("maxUses", this.e);
+		var1.put("rewardExp", this.f);
 		return var1;
 	}
 }

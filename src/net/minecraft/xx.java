@@ -20,12 +20,12 @@ public abstract class xx extends abq implements xt {
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
 		if (this.b() == null) {
-			var1.a("OwnerUUID", "");
+			var1.put("OwnerUUID", "");
 		} else {
-			var1.a("OwnerUUID", this.b());
+			var1.put("OwnerUUID", this.b());
 		}
 
-		var1.a("Sitting", this.cl());
+		var1.put("Sitting", this.cl());
 	}
 
 	public void a(NBTCompoundTag var1) {

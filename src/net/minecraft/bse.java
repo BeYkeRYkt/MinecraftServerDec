@@ -120,7 +120,7 @@ public class bse extends bqc {
 			bry var4 = this.c.b(var3.j("Objective"));
 			bsa var5 = this.c.c(var3.j("Name"), var4);
 			var5.c(var3.f("Score"));
-			if (var3.c("Locked")) {
+			if (var3.hasKey("Locked")) {
 				var5.a(var3.n("Locked"));
 			}
 		}
@@ -131,9 +131,9 @@ public class bse extends bqc {
 		if (this.c == null) {
 			b.warn("Tried to save scoreboard without having a scoreboard...");
 		} else {
-			var1.a("Objectives", (NBTTag) this.b());
-			var1.a("PlayerScores", (NBTTag) this.e());
-			var1.a("Teams", (NBTTag) this.a());
+			var1.put("Objectives", (NBTTag) this.b());
+			var1.put("PlayerScores", (NBTTag) this.e());
+			var1.put("Teams", (NBTTag) this.a());
 			this.d(var1);
 		}
 	}
@@ -146,18 +146,18 @@ public class bse extends bqc {
 		while (var3.hasNext()) {
 			brz var4 = (brz) var3.next();
 			NBTCompoundTag var5 = new NBTCompoundTag();
-			var5.a("Name", var4.b());
-			var5.a("DisplayName", var4.c());
+			var5.put("Name", var4.b());
+			var5.put("DisplayName", var4.c());
 			if (var4.l().b() >= 0) {
-				var5.a("TeamColor", var4.l().e());
+				var5.put("TeamColor", var4.l().e());
 			}
 
-			var5.a("Prefix", var4.e());
-			var5.a("Suffix", var4.f());
-			var5.a("AllowFriendlyFire", var4.g());
-			var5.a("SeeFriendlyInvisibles", var4.h());
-			var5.a("NameTagVisibility", var4.i().e);
-			var5.a("DeathMessageVisibility", var4.j().e);
+			var5.put("Prefix", var4.e());
+			var5.put("Suffix", var4.f());
+			var5.put("AllowFriendlyFire", var4.g());
+			var5.put("SeeFriendlyInvisibles", var4.h());
+			var5.put("NameTagVisibility", var4.i().e);
+			var5.put("DeathMessageVisibility", var4.j().e);
 			NBTListTag var6 = new NBTListTag();
 			Iterator var7 = var4.d().iterator();
 
@@ -166,7 +166,7 @@ public class bse extends bqc {
 				var6.addTag((NBTTag) (new NBTStringTag(var8)));
 			}
 
-			var5.a("Players", (NBTTag) var6);
+			var5.put("Players", (NBTTag) var6);
 			var1.addTag((NBTTag) var5);
 		}
 
@@ -180,13 +180,13 @@ public class bse extends bqc {
 		for (int var4 = 0; var4 < 19; ++var4) {
 			bry var5 = this.c.a(var4);
 			if (var5 != null) {
-				var2.a("slot_" + var4, var5.b());
+				var2.put("slot_" + var4, var5.b());
 				var3 = true;
 			}
 		}
 
 		if (var3) {
-			var1.a("DisplaySlots", (NBTTag) var2);
+			var1.put("DisplaySlots", (NBTTag) var2);
 		}
 
 	}
@@ -200,10 +200,10 @@ public class bse extends bqc {
 			bry var4 = (bry) var3.next();
 			if (var4.c() != null) {
 				NBTCompoundTag var5 = new NBTCompoundTag();
-				var5.a("Name", var4.b());
-				var5.a("CriteriaName", var4.c().a());
-				var5.a("DisplayName", var4.d());
-				var5.a("RenderType", var4.e().a());
+				var5.put("Name", var4.b());
+				var5.put("CriteriaName", var4.c().a());
+				var5.put("DisplayName", var4.d());
+				var5.put("RenderType", var4.e().a());
 				var1.addTag((NBTTag) var5);
 			}
 		}
@@ -220,10 +220,10 @@ public class bse extends bqc {
 			bsa var4 = (bsa) var3.next();
 			if (var4.d() != null) {
 				NBTCompoundTag var5 = new NBTCompoundTag();
-				var5.a("Name", var4.e());
-				var5.a("Objective", var4.d().b());
-				var5.a("Score", var4.c());
-				var5.a("Locked", var4.g());
+				var5.put("Name", var4.e());
+				var5.put("Objective", var4.d().b());
+				var5.put("Score", var4.c());
+				var5.put("Locked", var4.g());
 				var1.addTag((NBTTag) var5);
 			}
 		}

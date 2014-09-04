@@ -365,46 +365,46 @@ public class abi {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("PopSize", this.h);
-		var1.a("Radius", this.e);
-		var1.a("Golems", this.l);
-		var1.a("Stable", this.f);
-		var1.a("Tick", this.g);
-		var1.a("MTick", this.i);
-		var1.a("CX", this.d.n());
-		var1.a("CY", this.d.o());
-		var1.a("CZ", this.d.p());
-		var1.a("ACX", this.c.n());
-		var1.a("ACY", this.c.o());
-		var1.a("ACZ", this.c.p());
+		var1.put("PopSize", this.h);
+		var1.put("Radius", this.e);
+		var1.put("Golems", this.l);
+		var1.put("Stable", this.f);
+		var1.put("Tick", this.g);
+		var1.put("MTick", this.i);
+		var1.put("CX", this.d.n());
+		var1.put("CY", this.d.o());
+		var1.put("CZ", this.d.p());
+		var1.put("ACX", this.c.n());
+		var1.put("ACY", this.c.o());
+		var1.put("ACZ", this.c.p());
 		NBTListTag var2 = new NBTListTag();
 		Iterator var3 = this.b.iterator();
 
 		while (var3.hasNext()) {
 			abh var4 = (abh) var3.next();
 			NBTCompoundTag var5 = new NBTCompoundTag();
-			var5.a("X", var4.d().n());
-			var5.a("Y", var4.d().o());
-			var5.a("Z", var4.d().p());
-			var5.a("IDX", var4.f());
-			var5.a("IDZ", var4.g());
-			var5.a("TS", var4.h());
+			var5.put("X", var4.d().n());
+			var5.put("Y", var4.d().o());
+			var5.put("Z", var4.d().p());
+			var5.put("IDX", var4.f());
+			var5.put("IDZ", var4.g());
+			var5.put("TS", var4.h());
 			var2.addTag((NBTTag) var5);
 		}
 
-		var1.a("Doors", (NBTTag) var2);
+		var1.put("Doors", (NBTTag) var2);
 		NBTListTag var7 = new NBTListTag();
 		Iterator var8 = this.j.keySet().iterator();
 
 		while (var8.hasNext()) {
 			String var9 = (String) var8.next();
 			NBTCompoundTag var6 = new NBTCompoundTag();
-			var6.a("Name", var9);
-			var6.a("S", ((Integer) this.j.get(var9)).intValue());
+			var6.put("Name", var9);
+			var6.put("S", ((Integer) this.j.get(var9)).intValue());
 			var7.addTag((NBTTag) var6);
 		}
 
-		var1.a("Players", (NBTTag) var7);
+		var1.put("Players", (NBTTag) var7);
 	}
 
 	public void h() {

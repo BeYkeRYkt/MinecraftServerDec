@@ -109,12 +109,12 @@ public abstract class aqi {
 		if (this.i() != null) {
 			NBTCompoundTag var3 = new NBTCompoundTag();
 			var1.d(var3);
-			Iterator var4 = aqj.b(this.i()).c().iterator();
+			Iterator var4 = aqj.b(this.i()).getKeys().iterator();
 
 			while (var4.hasNext()) {
 				String var5 = (String) var4.next();
-				NBTTag var6 = aqj.b(this.i()).a(var5);
-				var3.a(var5, var6.getCopy());
+				NBTTag var6 = aqj.b(this.i()).getTag(var5);
+				var3.put(var5, var6.getCopy());
 			}
 
 			var1.f(var3);
@@ -129,12 +129,12 @@ public abstract class aqi {
 				if (var13 != null) {
 					NBTCompoundTag var7 = new NBTCompoundTag();
 					var13.d(var7);
-					Iterator var8 = var12.c().iterator();
+					Iterator var8 = var12.getKeys().iterator();
 
 					while (var8.hasNext()) {
 						String var9 = (String) var8.next();
-						NBTTag var10 = var12.a(var9);
-						var7.a(var9, var10.getCopy());
+						NBTTag var10 = var12.getTag(var9);
+						var7.put(var9, var10.getCopy());
 					}
 
 					var13.f(var7);
@@ -211,16 +211,16 @@ public abstract class aqi {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("EntityId", this.f());
-		var1.a("Delay", (short) this.a);
-		var1.a("MinSpawnDelay", (short) this.g);
-		var1.a("MaxSpawnDelay", (short) this.h);
-		var1.a("SpawnCount", (short) this.i);
-		var1.a("MaxNearbyEntities", (short) this.k);
-		var1.a("RequiredPlayerRange", (short) this.l);
-		var1.a("SpawnRange", (short) this.m);
+		var1.put("EntityId", this.f());
+		var1.put("Delay", (short) this.a);
+		var1.put("MinSpawnDelay", (short) this.g);
+		var1.put("MaxSpawnDelay", (short) this.h);
+		var1.put("SpawnCount", (short) this.i);
+		var1.put("MaxNearbyEntities", (short) this.k);
+		var1.put("RequiredPlayerRange", (short) this.l);
+		var1.put("SpawnRange", (short) this.m);
 		if (this.i() != null) {
-			var1.a("SpawnData", aqj.b(this.i()).getCopy());
+			var1.put("SpawnData", aqj.b(this.i()).getCopy());
 		}
 
 		if (this.i() != null || this.c.size() > 0) {
@@ -236,7 +236,7 @@ public abstract class aqi {
 				var2.addTag((NBTTag) this.i().a());
 			}
 
-			var1.a("SpawnPotentials", (NBTTag) var2);
+			var1.put("SpawnPotentials", (NBTTag) var2);
 		}
 
 	}

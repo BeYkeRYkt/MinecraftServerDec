@@ -104,15 +104,15 @@ public class bcr extends bdf implements pm, vq {
 		for (int var3 = 0; var3 < this.m.length; ++var3) {
 			if (this.m[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
-				var4.a("Slot", (byte) var3);
+				var4.put("Slot", (byte) var3);
 				this.m[var3].b(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
 
-		var1.a("Items", (NBTTag) var2);
+		var1.put("Items", (NBTTag) var2);
 		if (this.k_()) {
-			var1.a("CustomName", this.p);
+			var1.put("CustomName", this.p);
 		}
 
 	}

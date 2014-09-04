@@ -101,8 +101,8 @@ public class acl extends abq {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("Sheared", this.ck());
-		var1.a("Color", (byte) this.cj().a());
+		var1.put("Sheared", this.ck());
+		var1.put("Color", (byte) this.cj().a());
 	}
 
 	public void a(NBTCompoundTag var1) {

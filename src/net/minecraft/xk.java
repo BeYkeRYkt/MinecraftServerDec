@@ -122,9 +122,9 @@ public class xk extends Entity {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("Health", (short) ((byte) this.d));
-		var1.a("Age", (short) this.b);
-		var1.a("Value", (short) this.e);
+		var1.put("Health", (short) ((byte) this.d));
+		var1.put("Age", (short) this.b);
+		var1.put("Value", (short) this.e);
 	}
 
 	public void a(NBTCompoundTag var1) {

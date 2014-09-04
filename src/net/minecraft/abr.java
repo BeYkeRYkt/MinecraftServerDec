@@ -107,7 +107,7 @@ public class abr extends abq {
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
 		this.br = var1.n("IsChickenJockey");
-		if (var1.c("EggLayTime")) {
+		if (var1.hasKey("EggLayTime")) {
 			this.bq = var1.f("EggLayTime");
 		}
 
@@ -119,8 +119,8 @@ public class abr extends abq {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("IsChickenJockey", this.br);
-		var1.a("EggLayTime", this.bq);
+		var1.put("IsChickenJockey", this.br);
+		var1.put("EggLayTime", this.bq);
 	}
 
 	protected boolean C() {

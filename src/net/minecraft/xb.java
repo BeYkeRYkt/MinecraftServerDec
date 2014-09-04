@@ -61,7 +61,7 @@ public class xb {
 	public static Entity a(NBTCompoundTag var0, World var1) {
 		Entity var2 = null;
 		if ("Minecart".equals(var0.j("id"))) {
-			var0.a("id", adz.a(var0.f("Type")).b());
+			var0.put("id", adz.a(var0.f("Type")).b());
 			var0.o("Type");
 		}
 

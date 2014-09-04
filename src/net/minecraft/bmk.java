@@ -17,7 +17,7 @@ abstract class bmk extends bms {
 	}
 
 	protected void a(NBTCompoundTag var1) {
-		var1.a("EntryDoor", this.d.name());
+		var1.put("EntryDoor", this.d.name());
 	}
 
 	protected void b(NBTCompoundTag var1) {

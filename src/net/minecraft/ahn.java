@@ -28,7 +28,7 @@ public class ahn extends ahl {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("ExplosionPower", this.e);
+		var1.put("ExplosionPower", this.e);
 	}
 
 	public void a(NBTCompoundTag var1) {

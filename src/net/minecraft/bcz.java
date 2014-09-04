@@ -20,7 +20,7 @@ public class bcz extends bcm implements pm, vv {
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
 		if (this.k_()) {
-			var1.a("CustomName", this.p);
+			var1.put("CustomName", this.p);
 		}
 
 	}

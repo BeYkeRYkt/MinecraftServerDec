@@ -259,15 +259,15 @@ public class agj extends afm {
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
 		if (this.i_()) {
-			var1.a("IsBaby", true);
+			var1.put("IsBaby", true);
 		}
 
 		if (this.cm()) {
-			var1.a("IsVillager", true);
+			var1.put("IsVillager", true);
 		}
 
-		var1.a("ConversionTime", this.cn() ? this.bm : -1);
-		var1.a("CanBreakDoors", this.cl());
+		var1.put("ConversionTime", this.cn() ? this.bm : -1);
+		var1.put("CanBreakDoors", this.cl());
 	}
 
 	public void a(NBTCompoundTag var1) {

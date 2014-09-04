@@ -138,11 +138,11 @@ public class wq {
 	}
 
 	public NBTCompoundTag a(NBTCompoundTag var1) {
-		var1.a("Id", (byte) this.a());
-		var1.a("Amplifier", (byte) this.c());
-		var1.a("Duration", this.b());
-		var1.a("Ambient", this.e());
-		var1.a("ShowParticles", this.f());
+		var1.put("Id", (byte) this.a());
+		var1.put("Amplifier", (byte) this.c());
+		var1.put("Duration", this.b());
+		var1.put("Ambient", this.e());
+		var1.put("ShowParticles", this.f());
 		return var1;
 	}
 

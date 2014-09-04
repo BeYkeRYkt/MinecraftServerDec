@@ -300,7 +300,7 @@ public class ahb implements vq {
 		for (var2 = 0; var2 < this.a.length; ++var2) {
 			if (this.a[var2] != null) {
 				var3 = new NBTCompoundTag();
-				var3.a("Slot", (byte) var2);
+				var3.put("Slot", (byte) var2);
 				this.a[var2].b(var3);
 				var1.addTag((NBTTag) var3);
 			}
@@ -309,7 +309,7 @@ public class ahb implements vq {
 		for (var2 = 0; var2 < this.b.length; ++var2) {
 			if (this.b[var2] != null) {
 				var3 = new NBTCompoundTag();
-				var3.a("Slot", (byte) (var2 + 100));
+				var3.put("Slot", (byte) (var2 + 100));
 				this.b[var2].b(var3);
 				var1.addTag((NBTTag) var3);
 			}

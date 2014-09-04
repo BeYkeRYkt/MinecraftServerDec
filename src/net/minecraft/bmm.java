@@ -164,14 +164,14 @@ public abstract class bmm extends bgt {
 				var1.a(this.a(), (bqc) this.d);
 			} else {
 				NBTCompoundTag var2 = this.d.a();
-				Iterator var3 = var2.c().iterator();
+				Iterator var3 = var2.getKeys().iterator();
 
 				while (var3.hasNext()) {
 					String var4 = (String) var3.next();
-					NBTTag var5 = var2.a(var4);
+					NBTTag var5 = var2.getTag(var4);
 					if (var5.getId() == 10) {
 						NBTCompoundTag var6 = (NBTCompoundTag) var5;
-						if (var6.c("ChunkX") && var6.c("ChunkZ")) {
+						if (var6.hasKey("ChunkX") && var6.hasKey("ChunkZ")) {
 							int var7 = var6.f("ChunkX");
 							int var8 = var6.f("ChunkZ");
 							bmv var9 = bmq.a(var6, var1);

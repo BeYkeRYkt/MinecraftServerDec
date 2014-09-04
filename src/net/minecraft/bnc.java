@@ -21,8 +21,8 @@ public class bnc extends bnn {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.a("CA", atr.c.b(this.a));
-		var1.a("CB", atr.c.b(this.b));
+		var1.put("CA", atr.c.b(this.a));
+		var1.put("CB", atr.c.b(this.b));
 	}
 
 	protected void b(NBTCompoundTag var1) {

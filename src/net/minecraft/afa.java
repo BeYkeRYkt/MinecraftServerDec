@@ -101,7 +101,7 @@ public class afa extends xl implements aex {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("ExplosionPower", this.a);
+		var1.put("ExplosionPower", this.a);
 	}
 
 	public void a(NBTCompoundTag var1) {

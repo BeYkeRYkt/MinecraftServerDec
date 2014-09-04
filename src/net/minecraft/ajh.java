@@ -35,7 +35,7 @@ public class ajh extends wa {
 			amj var3 = this.a(var2);
 			if (var3 != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
-				var4.a("Slot", (byte) var2);
+				var4.put("Slot", (byte) var2);
 				var3.b(var4);
 				var1.addTag((NBTTag) var4);
 			}

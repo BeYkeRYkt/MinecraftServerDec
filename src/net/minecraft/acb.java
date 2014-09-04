@@ -177,8 +177,8 @@ public class acb extends abq {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("RabbitType", this.cl());
-		var1.a("MoreCarrotTicks", this.bs);
+		var1.put("RabbitType", this.cl());
+		var1.put("MoreCarrotTicks", this.bs);
 	}
 
 	public void a(NBTCompoundTag var1) {

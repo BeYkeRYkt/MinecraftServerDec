@@ -59,12 +59,12 @@ public class bkh extends bmv {
 		while (var3.hasNext()) {
 			aqm var4 = (aqm) var3.next();
 			NBTCompoundTag var5 = new NBTCompoundTag();
-			var5.a("X", var4.a);
-			var5.a("Z", var4.b);
+			var5.put("X", var4.a);
+			var5.put("Z", var4.b);
 			var2.addTag((NBTTag) var5);
 		}
 
-		var1.a("Processed", (NBTTag) var2);
+		var1.put("Processed", (NBTTag) var2);
 	}
 
 	public void b(NBTCompoundTag var1) {

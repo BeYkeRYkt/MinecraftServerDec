@@ -91,7 +91,7 @@ public class acq extends abw {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("PlayerCreated", this.cl());
+		var1.put("PlayerCreated", this.cl());
 	}
 
 	public void a(NBTCompoundTag var1) {

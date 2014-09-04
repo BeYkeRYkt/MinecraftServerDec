@@ -184,8 +184,8 @@ public abstract class xn extends EntityLiving {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("CanPickUpLoot", this.bX());
-		var1.a("PersistenceRequired", this.bl);
+		var1.put("CanPickUpLoot", this.bX());
+		var1.put("PersistenceRequired", this.bl);
 		NBTListTag var2 = new NBTListTag();
 
 		NBTCompoundTag var4;
@@ -198,32 +198,32 @@ public abstract class xn extends EntityLiving {
 			var2.addTag((NBTTag) var4);
 		}
 
-		var1.a("Equipment", (NBTTag) var2);
+		var1.put("Equipment", (NBTTag) var2);
 		NBTListTag var6 = new NBTListTag();
 
 		for (int var7 = 0; var7 < this.bh.length; ++var7) {
 			var6.addTag((NBTTag) (new NBTFloatTag(this.bh[var7])));
 		}
 
-		var1.a("DropChances", (NBTTag) var6);
-		var1.a("Leashed", this.bm);
+		var1.put("DropChances", (NBTTag) var6);
+		var1.put("Leashed", this.bm);
 		if (this.bn != null) {
 			var4 = new NBTCompoundTag();
 			if (this.bn instanceof EntityLiving) {
-				var4.a("UUIDMost", this.bn.aJ().getMostSignificantBits());
-				var4.a("UUIDLeast", this.bn.aJ().getLeastSignificantBits());
+				var4.put("UUIDMost", this.bn.aJ().getMostSignificantBits());
+				var4.put("UUIDLeast", this.bn.aJ().getLeastSignificantBits());
 			} else if (this.bn instanceof adj) {
 				dt var5 = ((adj) this.bn).n();
-				var4.a("X", var5.n());
-				var4.a("Y", var5.o());
-				var4.a("Z", var5.p());
+				var4.put("X", var5.n());
+				var4.put("Y", var5.o());
+				var4.put("Z", var5.p());
 			}
 
-			var1.a("Leash", (NBTTag) var4);
+			var1.put("Leash", (NBTTag) var4);
 		}
 
 		if (this.cd()) {
-			var1.a("NoAI", this.cd());
+			var1.put("NoAI", this.cd());
 		}
 
 	}

@@ -16,8 +16,8 @@ public class bdb extends bcm {
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
 		oa var2 = (oa) alq.e.c(this.a);
-		var1.a("Item", var2 == null ? "" : var2.toString());
-		var1.a("Data", this.f);
+		var1.put("Item", var2 == null ? "" : var2.toString());
+		var1.put("Data", this.f);
 	}
 
 	public void a(NBTCompoundTag var1) {
@@ -35,7 +35,7 @@ public class bdb extends bcm {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		this.b(var1);
 		var1.o("Item");
-		var1.a("Item", alq.b(this.a));
+		var1.put("Item", alq.b(this.a));
 		return new iu(this.c, 5, var1);
 	}
 

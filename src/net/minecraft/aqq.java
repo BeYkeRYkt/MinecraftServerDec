@@ -61,14 +61,14 @@ public class aqq {
 		while (var2.hasNext()) {
 			String var3 = (String) var2.next();
 			aqr var4 = (aqr) this.a.get(var3);
-			var1.a(var3, var4.a());
+			var1.put(var3, var4.a());
 		}
 
 		return var1;
 	}
 
 	public void a(NBTCompoundTag var1) {
-		Set var2 = var1.c();
+		Set var2 = var1.getKeys();
 		Iterator var3 = var2.iterator();
 
 		while (var3.hasNext()) {

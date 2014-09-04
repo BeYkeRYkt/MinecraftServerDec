@@ -62,10 +62,10 @@ public class ahz {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("foodLevel", this.a);
-		var1.a("foodTickTimer", this.d);
-		var1.a("foodSaturationLevel", this.b);
-		var1.a("foodExhaustionLevel", this.c);
+		var1.put("foodLevel", this.a);
+		var1.put("foodTickTimer", this.d);
+		var1.put("foodSaturationLevel", this.b);
+		var1.put("foodExhaustionLevel", this.c);
 	}
 
 	public int a() {

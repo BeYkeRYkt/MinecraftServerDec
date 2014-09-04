@@ -17,7 +17,7 @@ public class axd extends bcm {
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
 		if (this.a() != null) {
-			var1.a("RecordItem", (NBTTag) this.a().b(new NBTCompoundTag()));
+			var1.put("RecordItem", (NBTTag) this.a().b(new NBTCompoundTag()));
 		}
 
 	}

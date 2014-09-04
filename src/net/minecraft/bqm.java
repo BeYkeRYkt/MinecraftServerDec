@@ -109,7 +109,7 @@ public class bqm implements bqy, brl {
 	public void a(bqo var1, NBTCompoundTag var2) {
 		NBTCompoundTag var3 = var1.a(var2);
 		NBTCompoundTag var4 = new NBTCompoundTag();
-		var4.a("Data", (NBTTag) var3);
+		var4.put("Data", (NBTTag) var3);
 
 		try {
 			File var5 = new File(this.b, "level.dat_new");
@@ -138,7 +138,7 @@ public class bqm implements bqy, brl {
 	public void a(bqo var1) {
 		NBTCompoundTag var2 = var1.a();
 		NBTCompoundTag var3 = new NBTCompoundTag();
-		var3.a("Data", (NBTTag) var2);
+		var3.put("Data", (NBTTag) var2);
 
 		try {
 			File var4 = new File(this.b, "level.dat_new");

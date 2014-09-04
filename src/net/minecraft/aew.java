@@ -61,8 +61,8 @@ public class aew extends afm {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("Lifetime", this.b);
-		var1.a("PlayerSpawned", this.c);
+		var1.put("Lifetime", this.b);
+		var1.put("PlayerSpawned", this.c);
 	}
 
 	public void s_() {

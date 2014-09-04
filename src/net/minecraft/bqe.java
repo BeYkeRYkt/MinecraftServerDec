@@ -61,13 +61,13 @@ public class bqe extends bqc {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("dimension", this.d);
-		var1.a("xCenter", this.b);
-		var1.a("zCenter", this.c);
-		var1.a("scale", this.e);
-		var1.a("width", (short) 128);
-		var1.a("height", (short) 128);
-		var1.a("colors", this.f);
+		var1.put("dimension", this.d);
+		var1.put("xCenter", this.b);
+		var1.put("zCenter", this.c);
+		var1.put("scale", this.e);
+		var1.put("width", (short) 128);
+		var1.put("height", (short) 128);
+		var1.put("colors", this.f);
 	}
 
 	public void a(ahd var1, amj var2) {

@@ -14,7 +14,7 @@ public class ala extends alq {
 
 	public NBTListTag h(amj var1) {
 		NBTCompoundTag var2 = var1.o();
-		return var2 != null && var2.b("StoredEnchantments", 9) ? (NBTListTag) var2.a("StoredEnchantments") : new NBTListTag();
+		return var2 != null && var2.b("StoredEnchantments", 9) ? (NBTListTag) var2.getTag("StoredEnchantments") : new NBTListTag();
 	}
 
 	public void a(amj var1, apo var2) {
@@ -25,7 +25,7 @@ public class ala extends alq {
 			NBTCompoundTag var6 = var3.getCompound(var5);
 			if (var6.e("id") == var2.b.B) {
 				if (var6.e("lvl") < var2.c) {
-					var6.a("lvl", (short) var2.c);
+					var6.put("lvl", (short) var2.c);
 				}
 
 				var4 = false;
@@ -35,8 +35,8 @@ public class ala extends alq {
 
 		if (var4) {
 			NBTCompoundTag var7 = new NBTCompoundTag();
-			var7.a("id", (short) var2.b.B);
-			var7.a("lvl", (short) var2.c);
+			var7.put("id", (short) var2.b.B);
+			var7.put("lvl", (short) var2.c);
 			var3.addTag((NBTTag) var7);
 		}
 
@@ -44,7 +44,7 @@ public class ala extends alq {
 			var1.d(new NBTCompoundTag());
 		}
 
-		var1.o().a("StoredEnchantments", (NBTTag) var3);
+		var1.o().put("StoredEnchantments", (NBTTag) var3);
 	}
 
 	public amj a(apo var1) {

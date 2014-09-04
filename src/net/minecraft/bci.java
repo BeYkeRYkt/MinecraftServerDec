@@ -15,7 +15,7 @@ public class bci extends bcm {
 		this.f = null;
 		if (var1.n() && var1.o().b("BlockEntityTag", 10)) {
 			NBTCompoundTag var2 = var1.o().m("BlockEntityTag");
-			if (var2.c("Patterns")) {
+			if (var2.hasKey("Patterns")) {
 				this.f = (NBTListTag) var2.c("Patterns", 10).getCopy();
 			}
 
@@ -36,9 +36,9 @@ public class bci extends bcm {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("Base", this.a);
+		var1.put("Base", this.a);
 		if (this.f != null) {
-			var1.a("Patterns", (NBTTag) this.f);
+			var1.put("Patterns", (NBTTag) this.f);
 		}
 
 	}
@@ -65,12 +65,12 @@ public class bci extends bcm {
 
 	public static int b(amj var0) {
 		NBTCompoundTag var1 = var0.a("BlockEntityTag", false);
-		return var1 != null && var1.c("Base") ? var1.f("Base") : var0.i();
+		return var1 != null && var1.hasKey("Base") ? var1.f("Base") : var0.i();
 	}
 
 	public static int c(amj var0) {
 		NBTCompoundTag var1 = var0.a("BlockEntityTag", false);
-		return var1 != null && var1.c("Patterns") ? var1.c("Patterns", 10).getSize() : 0;
+		return var1 != null && var1.hasKey("Patterns") ? var1.c("Patterns", 10).getSize() : 0;
 	}
 
 	public static void e(amj var0) {

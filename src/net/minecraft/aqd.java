@@ -66,7 +66,7 @@ public class aqd extends ArrayList {
 			var2.addTag((NBTTag) var4.k());
 		}
 
-		var1.a("Recipes", (NBTTag) var2);
+		var1.put("Recipes", (NBTTag) var2);
 		return var1;
 	}
 }

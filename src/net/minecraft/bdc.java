@@ -102,23 +102,23 @@ public class bdc extends bdf implements pm, we {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("BurnTime", (short) this.i);
-		var1.a("CookTime", (short) this.k);
-		var1.a("CookTimeTotal", (short) this.l);
+		var1.put("BurnTime", (short) this.i);
+		var1.put("CookTime", (short) this.k);
+		var1.put("CookTimeTotal", (short) this.l);
 		NBTListTag var2 = new NBTListTag();
 
 		for (int var3 = 0; var3 < this.h.length; ++var3) {
 			if (this.h[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
-				var4.a("Slot", (byte) var3);
+				var4.put("Slot", (byte) var3);
 				this.h[var3].b(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
 
-		var1.a("Items", (NBTTag) var2);
+		var1.put("Items", (NBTTag) var2);
 		if (this.k_()) {
-			var1.a("CustomName", this.m);
+			var1.put("CustomName", this.m);
 		}
 
 	}

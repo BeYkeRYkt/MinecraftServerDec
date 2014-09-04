@@ -14,12 +14,12 @@ public class bdm extends bcm {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("SkullType", (byte) (this.a & 255));
-		var1.a("Rot", (byte) (this.f & 255));
+		var1.put("SkullType", (byte) (this.a & 255));
+		var1.put("Rot", (byte) (this.f & 255));
 		if (this.g != null) {
 			NBTCompoundTag var2 = new NBTCompoundTag();
 			ga.a(var2, this.g);
-			var1.a("Owner", (NBTTag) var2);
+			var1.put("Owner", (NBTTag) var2);
 		}
 
 	}

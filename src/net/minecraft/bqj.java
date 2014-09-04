@@ -131,7 +131,7 @@ public class bqj extends bqn {
 							bfu var15 = bft.a(var14);
 							NBTCompoundTag var16 = new NBTCompoundTag();
 							NBTCompoundTag var17 = new NBTCompoundTag();
-							var16.a("Level", (NBTTag) var17);
+							var16.put("Level", (NBTTag) var17);
 							bft.a(var15, var17, var3);
 							DataOutputStream var18 = var9.b(var10, var11);
 							fz.a(var16, (DataOutput) var18);

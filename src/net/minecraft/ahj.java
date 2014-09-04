@@ -320,17 +320,17 @@ public class ahj extends Entity implements aho {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("xTile", (short) this.d);
-		var1.a("yTile", (short) this.e);
-		var1.a("zTile", (short) this.f);
-		var1.a("life", (short) this.ap);
+		var1.put("xTile", (short) this.d);
+		var1.put("yTile", (short) this.e);
+		var1.put("zTile", (short) this.f);
+		var1.put("life", (short) this.ap);
 		oa var2 = (oa) atr.c.c(this.g);
-		var1.a("inTile", var2 == null ? "" : var2.toString());
-		var1.a("inData", (byte) this.h);
-		var1.a("shake", (byte) this.b);
-		var1.a("inGround", (byte) (this.i ? 1 : 0));
-		var1.a("pickup", (byte) this.a);
-		var1.a("damage", this.ar);
+		var1.put("inTile", var2 == null ? "" : var2.toString());
+		var1.put("inData", (byte) this.h);
+		var1.put("shake", (byte) this.b);
+		var1.put("inGround", (byte) (this.i ? 1 : 0));
+		var1.put("pickup", (byte) this.a);
+		var1.put("damage", this.ar);
 	}
 
 	public void a(NBTCompoundTag var1) {

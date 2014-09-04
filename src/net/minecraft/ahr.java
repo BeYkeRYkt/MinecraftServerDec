@@ -196,18 +196,18 @@ public abstract class ahr extends Entity implements aho {
 	protected abstract void a(bru var1);
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("xTile", (short) this.c);
-		var1.a("yTile", (short) this.d);
-		var1.a("zTile", (short) this.e);
+		var1.put("xTile", (short) this.c);
+		var1.put("yTile", (short) this.d);
+		var1.put("zTile", (short) this.e);
 		oa var2 = (oa) atr.c.c(this.f);
-		var1.a("inTile", var2 == null ? "" : var2.toString());
-		var1.a("shake", (byte) this.b);
-		var1.a("inGround", (byte) (this.a ? 1 : 0));
+		var1.put("inTile", var2 == null ? "" : var2.toString());
+		var1.put("shake", (byte) this.b);
+		var1.put("inGround", (byte) (this.a ? 1 : 0));
 		if ((this.h == null || this.h.length() == 0) && this.g instanceof ahd) {
 			this.h = this.g.d_();
 		}
 
-		var1.a("ownerName", this.h == null ? "" : this.h);
+		var1.put("ownerName", this.h == null ? "" : this.h);
 	}
 
 	public void a(NBTCompoundTag var1) {

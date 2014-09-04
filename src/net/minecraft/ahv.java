@@ -113,7 +113,7 @@ public class ahv extends ahr {
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
 		if (this.c != null) {
-			var1.a("Potion", (NBTTag) this.c.b(new NBTCompoundTag()));
+			var1.put("Potion", (NBTTag) this.c.b(new NBTCompoundTag()));
 		}
 
 	}

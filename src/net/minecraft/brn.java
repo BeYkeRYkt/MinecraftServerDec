@@ -88,7 +88,7 @@ public class brn {
 					NBTCompoundTag var3 = new NBTCompoundTag();
 					var1.b(var3);
 					NBTCompoundTag var4 = new NBTCompoundTag();
-					var4.a("data", (NBTTag) var3);
+					var4.put("data", (NBTTag) var3);
 					FileOutputStream var5 = new FileOutputStream(var2);
 					fz.a(var4, (OutputStream) var5);
 					var5.close();
@@ -112,11 +112,11 @@ public class brn {
 				DataInputStream var2 = new DataInputStream(new FileInputStream(var1));
 				NBTCompoundTag var3 = fz.a(var2);
 				var2.close();
-				Iterator var4 = var3.c().iterator();
+				Iterator var4 = var3.getKeys().iterator();
 
 				while (var4.hasNext()) {
 					String var5 = (String) var4.next();
-					NBTTag var6 = var3.a(var5);
+					NBTTag var6 = var3.getTag(var5);
 					if (var6 instanceof NBTShortTag) {
 						NBTShortTag var7 = (NBTShortTag) var6;
 						short var9 = var7.toShort();
@@ -151,7 +151,7 @@ public class brn {
 					while (var5.hasNext()) {
 						String var6 = (String) var5.next();
 						short var7 = ((Short) this.d.get(var6)).shortValue();
-						var4.a(var6, var7);
+						var4.put(var6, var7);
 					}
 
 					DataOutputStream var9 = new DataOutputStream(new FileOutputStream(var3));

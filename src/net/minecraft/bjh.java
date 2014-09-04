@@ -12,8 +12,8 @@ public class bjh extends bms {
 	}
 
 	protected void a(NBTCompoundTag var1) {
-		var1.a("tf", this.b);
-		var1.a("D", this.a.b());
+		var1.put("tf", this.b);
+		var1.put("D", this.a.b());
 	}
 
 	protected void b(NBTCompoundTag var1) {

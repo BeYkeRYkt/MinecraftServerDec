@@ -24,12 +24,12 @@ public abstract class aqf implements CommandSenderInterface {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		var1.a("Command", this.e);
-		var1.a("SuccessCount", this.b);
-		var1.a("CustomName", this.f);
-		var1.a("TrackOutput", this.c);
+		var1.put("Command", this.e);
+		var1.put("SuccessCount", this.b);
+		var1.put("CustomName", this.f);
+		var1.put("TrackOutput", this.c);
 		if (this.d != null && this.c) {
-			var1.a("LastOutput", hp.a(this.d));
+			var1.put("LastOutput", hp.a(this.d));
 		}
 
 		this.g.b(var1);

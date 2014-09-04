@@ -103,11 +103,11 @@ public final class amj {
 
 	public NBTCompoundTag b(NBTCompoundTag var1) {
 		oa var2 = (oa) alq.e.c(this.d);
-		var1.a("id", var2 == null ? "minecraft:air" : var2.toString());
-		var1.a("Count", (byte) this.b);
-		var1.a("Damage", (short) this.f);
+		var1.put("id", var2 == null ? "minecraft:air" : var2.toString());
+		var1.put("Count", (byte) this.b);
+		var1.put("Damage", (short) this.f);
 		if (this.e != null) {
-			var1.a("tag", (NBTTag) this.e);
+			var1.put("tag", (NBTTag) this.e);
 		}
 
 		return var1;
@@ -361,10 +361,10 @@ public final class amj {
 		}
 
 		if (!this.e.b("display", 10)) {
-			this.e.a("display", (NBTTag) (new NBTCompoundTag()));
+			this.e.put("display", (NBTTag) (new NBTCompoundTag()));
 		}
 
-		this.e.m("display").a("Name", var1);
+		this.e.m("display").put("Name", var1);
 		return this;
 	}
 
@@ -402,13 +402,13 @@ public final class amj {
 		}
 
 		if (!this.e.b("ench", 9)) {
-			this.e.a("ench", (NBTTag) (new NBTListTag()));
+			this.e.put("ench", (NBTTag) (new NBTListTag()));
 		}
 
 		NBTListTag var3 = this.e.c("ench", 10);
 		NBTCompoundTag var4 = new NBTCompoundTag();
-		var4.a("id", (short) var1.B);
-		var4.a("lvl", (short) ((byte) var2));
+		var4.put("id", (short) var1.B);
+		var4.put("lvl", (short) ((byte) var2));
 		var3.addTag((NBTTag) var4);
 	}
 
@@ -421,7 +421,7 @@ public final class amj {
 			this.d(new NBTCompoundTag());
 		}
 
-		this.e.a(var1, var2);
+		this.e.put(var1, var2);
 	}
 
 	public boolean x() {
@@ -449,7 +449,7 @@ public final class amj {
 			this.e = new NBTCompoundTag();
 		}
 
-		this.e.a("RepairCost", var1);
+		this.e.put("RepairCost", var1);
 	}
 
 	public Multimap B() {

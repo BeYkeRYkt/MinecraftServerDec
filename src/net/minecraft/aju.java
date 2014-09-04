@@ -55,11 +55,11 @@ public class aju extends alq {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				NBTCompoundTag var5 = (NBTCompoundTag) var4.getCopy();
 				var3.b(var4);
-				NBTCompoundTag var6 = (NBTCompoundTag) var2.o().a("BlockEntityTag");
+				NBTCompoundTag var6 = (NBTCompoundTag) var2.o().getTag("BlockEntityTag");
 				var4.a(var6);
-				var4.a("x", var1.n());
-				var4.a("y", var1.o());
-				var4.a("z", var1.p());
+				var4.put("x", var1.n());
+				var4.put("y", var1.o());
+				var4.put("z", var1.p());
 				if (!var4.equals(var5)) {
 					var3.a(var4);
 					var3.o_();

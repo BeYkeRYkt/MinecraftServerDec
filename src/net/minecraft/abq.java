@@ -52,7 +52,7 @@ public abstract class abq extends ws implements wt {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("InLove", this.bk);
+		var1.put("InLove", this.bk);
 	}
 
 	public void a(NBTCompoundTag var1) {

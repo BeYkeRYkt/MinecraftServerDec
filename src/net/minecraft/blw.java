@@ -19,7 +19,7 @@ public class blw extends bmk {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.a("Steps", this.a);
+		var1.put("Steps", this.a);
 	}
 
 	protected void b(NBTCompoundTag var1) {

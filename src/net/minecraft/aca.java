@@ -38,7 +38,7 @@ public class aca extends abq {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("Saddle", this.cj());
+		var1.put("Saddle", this.cj());
 	}
 
 	public void a(NBTCompoundTag var1) {

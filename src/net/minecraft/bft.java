@@ -26,17 +26,17 @@ public class bft {
 	}
 
 	public static void a(bfu var0, NBTCompoundTag var1, arz var2) {
-		var1.a("xPos", var0.k);
-		var1.a("zPos", var0.l);
-		var1.a("LastUpdate", var0.a);
+		var1.put("xPos", var0.k);
+		var1.put("zPos", var0.l);
+		var1.put("LastUpdate", var0.a);
 		int[] var3 = new int[var0.c.length];
 
 		for (int var4 = 0; var4 < var0.c.length; ++var4) {
 			var3[var4] = var0.c[var4];
 		}
 
-		var1.a("HeightMap", var3);
-		var1.a("TerrainPopulated", var0.b);
+		var1.put("HeightMap", var3);
+		var1.put("TerrainPopulated", var0.b);
 		NBTListTag var16 = new NBTListTag();
 
 		int var7;
@@ -87,16 +87,16 @@ public class bft {
 				}
 
 				NBTCompoundTag var24 = new NBTCompoundTag();
-				var24.a("Y", (byte) (var5 & 255));
-				var24.a("Blocks", var19);
-				var24.a("Data", var20.a());
-				var24.a("SkyLight", var21.a());
-				var24.a("BlockLight", var22.a());
+				var24.put("Y", (byte) (var5 & 255));
+				var24.put("Blocks", var19);
+				var24.put("Data", var20.a());
+				var24.put("SkyLight", var21.a());
+				var24.put("BlockLight", var22.a());
 				var16.addTag((NBTTag) var24);
 			}
 		}
 
-		var1.a("Sections", (NBTTag) var16);
+		var1.put("Sections", (NBTTag) var16);
 		byte[] var17 = new byte[256];
 
 		for (int var18 = 0; var18 < 16; ++var18) {
@@ -105,11 +105,11 @@ public class bft {
 			}
 		}
 
-		var1.a("Biomes", var17);
-		var1.a("Entities", (NBTTag) var0.h);
-		var1.a("TileEntities", (NBTTag) var0.i);
+		var1.put("Biomes", var17);
+		var1.put("Entities", (NBTTag) var0.h);
+		var1.put("TileEntities", (NBTTag) var0.i);
 		if (var0.j != null) {
-			var1.a("TileTicks", (NBTTag) var0.j);
+			var1.put("TileTicks", (NBTTag) var0.j);
 		}
 
 	}

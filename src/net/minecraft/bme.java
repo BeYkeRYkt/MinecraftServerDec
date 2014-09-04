@@ -22,7 +22,7 @@ public class bme extends bmk {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.a("Type", this.a);
+		var1.put("Type", this.a);
 	}
 
 	protected void b(NBTCompoundTag var1) {

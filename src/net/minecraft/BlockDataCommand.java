@@ -42,9 +42,9 @@ public class BlockDataCommand extends AbstractCommand {
 					}
 
 					var6.a(var8);
-					var6.a("x", var3.n());
-					var6.a("y", var3.o());
-					var6.a("z", var3.p());
+					var6.put("x", var3.n());
+					var6.put("y", var3.o());
+					var6.put("z", var3.p());
 					if (var6.equals(var7)) {
 						throw new di("commands.blockdata.failed", new Object[] { var6.toString() });
 					} else {

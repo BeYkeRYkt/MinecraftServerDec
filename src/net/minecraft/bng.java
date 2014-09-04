@@ -19,7 +19,7 @@ public class bng extends bnn {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.a("Terrace", this.a);
+		var1.put("Terrace", this.a);
 	}
 
 	protected void b(NBTCompoundTag var1) {

@@ -89,7 +89,7 @@ public class EntityPlayer extends ahd implements ail {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("playerGameType", this.c.b().getId());
+		var1.put("playerGameType", this.c.b().getId());
 	}
 
 	public void a(int var1) {

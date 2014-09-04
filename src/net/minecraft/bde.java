@@ -35,16 +35,16 @@ public class bde extends bdf implements bdd, pm {
 		for (int var3 = 0; var3 < this.a.length; ++var3) {
 			if (this.a[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
-				var4.a("Slot", (byte) var3);
+				var4.put("Slot", (byte) var3);
 				this.a[var3].b(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
 
-		var1.a("Items", (NBTTag) var2);
-		var1.a("TransferCooldown", this.g);
+		var1.put("Items", (NBTTag) var2);
+		var1.put("TransferCooldown", this.g);
 		if (this.k_()) {
-			var1.a("CustomName", this.f);
+			var1.put("CustomName", this.f);
 		}
 
 	}

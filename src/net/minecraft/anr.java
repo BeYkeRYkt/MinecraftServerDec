@@ -47,7 +47,7 @@ public class anr extends alq {
 		if (var1 != null && var1.o() != null) {
 			NBTCompoundTag var3 = var1.o();
 			if (!var3.n("resolved")) {
-				var3.a("resolved", true);
+				var3.put("resolved", true);
 				if (b(var3)) {
 					NBTListTag var4 = var3.c("pages", 8);
 
@@ -65,7 +65,7 @@ public class anr extends alq {
 						var4.setTag(var5, new NBTStringTag(hp.a((ho) var7)));
 					}
 
-					var3.a("pages", (NBTTag) var4);
+					var3.put("pages", (NBTTag) var4);
 					if (var2 instanceof EntityPlayer && var2.bY() == var1) {
 						ajk var10 = var2.bi.a((vq) var2.bg, var2.bg.c);
 						((EntityPlayer) var2).a.a((id) (new jh(0, var10.e, var1)));

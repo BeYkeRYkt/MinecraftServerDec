@@ -108,7 +108,7 @@ public class bji extends bms {
 			var2.addTag((NBTTag) var4.g());
 		}
 
-		var1.a("Entrances", (NBTTag) var2);
+		var1.put("Entrances", (NBTTag) var2);
 	}
 
 	protected void b(NBTCompoundTag var1) {

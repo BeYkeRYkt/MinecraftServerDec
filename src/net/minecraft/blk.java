@@ -19,10 +19,10 @@ public class blk extends bln {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.a("hasPlacedChest0", this.e[0]);
-		var1.a("hasPlacedChest1", this.e[1]);
-		var1.a("hasPlacedChest2", this.e[2]);
-		var1.a("hasPlacedChest3", this.e[3]);
+		var1.put("hasPlacedChest0", this.e[0]);
+		var1.put("hasPlacedChest1", this.e[1]);
+		var1.put("hasPlacedChest2", this.e[2]);
+		var1.put("hasPlacedChest3", this.e[3]);
 	}
 
 	protected void b(NBTCompoundTag var1) {

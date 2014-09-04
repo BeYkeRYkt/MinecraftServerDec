@@ -710,7 +710,7 @@ public class rj implements ls, pm {
 			amj var3 = var1.b();
 			if (var3 != null && var3.n() && var3.o().b("BlockEntityTag", 10)) {
 				NBTCompoundTag var4 = var3.o().m("BlockEntityTag");
-				if (var4.c("x") && var4.c("y") && var4.c("z")) {
+				if (var4.hasKey("x") && var4.hasKey("y") && var4.hasKey("z")) {
 					dt var5 = new dt(var4.f("x"), var4.f("y"), var4.f("z"));
 					bcm var6 = this.b.o.s(var5);
 					if (var6 != null) {

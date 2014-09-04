@@ -154,7 +154,7 @@ public class abo extends abn {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("BatFlags", this.ac.a(16));
+		var1.put("BatFlags", this.ac.a(16));
 	}
 
 	public boolean bQ() {

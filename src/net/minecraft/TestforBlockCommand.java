@@ -94,7 +94,7 @@ public class TestforBlockCommand extends AbstractCommand {
 		} else if (var0 instanceof NBTCompoundTag) {
 			NBTCompoundTag var9 = (NBTCompoundTag) var0;
 			NBTCompoundTag var10 = (NBTCompoundTag) var1;
-			Iterator var11 = var9.c().iterator();
+			Iterator var11 = var9.getKeys().iterator();
 
 			String var12;
 			NBTTag var13;
@@ -104,8 +104,8 @@ public class TestforBlockCommand extends AbstractCommand {
 				}
 
 				var12 = (String) var11.next();
-				var13 = var9.a(var12);
-			} while (a(var13, var10.a(var12), var2));
+				var13 = var9.getTag(var12);
+			} while (a(var13, var10.getTag(var12), var2));
 
 			return false;
 		} else if (var0 instanceof NBTListTag && var2) {

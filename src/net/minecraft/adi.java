@@ -103,18 +103,18 @@ public class adi extends EntityLiving {
 			var2.addTag((NBTTag) var4);
 		}
 
-		var1.a("Equipment", (NBTTag) var2);
+		var1.put("Equipment", (NBTTag) var2);
 		if (this.aM() && (this.aL() == null || this.aL().length() == 0)) {
-			var1.a("CustomNameVisible", this.aM());
+			var1.put("CustomNameVisible", this.aM());
 		}
 
-		var1.a("Invisible", this.ay());
-		var1.a("Small", this.n());
-		var1.a("ShowArms", this.q());
-		var1.a("DisabledSlots", this.bg);
-		var1.a("NoGravity", this.p());
-		var1.a("NoBasePlate", this.r());
-		var1.a("Pose", (NBTTag) this.y());
+		var1.put("Invisible", this.ay());
+		var1.put("Small", this.n());
+		var1.put("ShowArms", this.q());
+		var1.put("DisabledSlots", this.bg);
+		var1.put("NoGravity", this.p());
+		var1.put("NoBasePlate", this.r());
+		var1.put("Pose", (NBTTag) this.y());
 	}
 
 	public void a(NBTCompoundTag var1) {
@@ -186,27 +186,27 @@ public class adi extends EntityLiving {
 	private NBTCompoundTag y() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		if (!a.equals(this.bh)) {
-			var1.a("Head", (NBTTag) this.bh.a());
+			var1.put("Head", (NBTTag) this.bh.a());
 		}
 
 		if (!b.equals(this.bi)) {
-			var1.a("Body", (NBTTag) this.bi.a());
+			var1.put("Body", (NBTTag) this.bi.a());
 		}
 
 		if (!c.equals(this.bj)) {
-			var1.a("LeftArm", (NBTTag) this.bj.a());
+			var1.put("LeftArm", (NBTTag) this.bj.a());
 		}
 
 		if (!d.equals(this.bk)) {
-			var1.a("RightArm", (NBTTag) this.bk.a());
+			var1.put("RightArm", (NBTTag) this.bk.a());
 		}
 
 		if (!e.equals(this.bl)) {
-			var1.a("LeftLeg", (NBTTag) this.bl.a());
+			var1.put("LeftLeg", (NBTTag) this.bl.a());
 		}
 
 		if (!f.equals(this.bm)) {
-			var1.a("RightLeg", (NBTTag) this.bm.a());
+			var1.put("RightLeg", (NBTTag) this.bm.a());
 		}
 
 		return var1;

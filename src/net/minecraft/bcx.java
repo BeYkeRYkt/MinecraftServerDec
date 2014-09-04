@@ -119,15 +119,15 @@ public class bcx extends bdf implements vq {
 		for (int var3 = 0; var3 < this.g.length; ++var3) {
 			if (this.g[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
-				var4.a("Slot", (byte) var3);
+				var4.put("Slot", (byte) var3);
 				this.g[var3].b(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
 
-		var1.a("Items", (NBTTag) var2);
+		var1.put("Items", (NBTTag) var2);
 		if (this.k_()) {
-			var1.a("CustomName", this.a);
+			var1.put("CustomName", this.a);
 		}
 
 	}

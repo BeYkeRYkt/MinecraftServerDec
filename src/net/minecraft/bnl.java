@@ -19,7 +19,7 @@ public class bnl extends bno {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.a("Length", this.a);
+		var1.put("Length", this.a);
 	}
 
 	protected void b(NBTCompoundTag var1) {

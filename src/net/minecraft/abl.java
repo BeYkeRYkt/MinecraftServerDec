@@ -229,7 +229,7 @@ public class abl extends bqc {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("Tick", this.f);
+		var1.put("Tick", this.f);
 		NBTListTag var2 = new NBTListTag();
 		Iterator var3 = this.e.iterator();
 
@@ -240,7 +240,7 @@ public class abl extends bqc {
 			var2.addTag((NBTTag) var5);
 		}
 
-		var1.a("Villages", (NBTTag) var2);
+		var1.put("Villages", (NBTTag) var2);
 	}
 
 	public static String a(bgd var0) {

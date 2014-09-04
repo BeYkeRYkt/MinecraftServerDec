@@ -73,9 +73,9 @@ public class SetBlockCommand extends AbstractCommand {
 					if (var8) {
 						bcm var11 = var6.s(var3);
 						if (var11 != null) {
-							var7.a("x", var3.n());
-							var7.a("y", var3.o());
-							var7.a("z", var3.p());
+							var7.put("x", var3.n());
+							var7.put("y", var3.o());
+							var7.put("z", var3.p());
 							var11.a(var7);
 						}
 					}

@@ -88,7 +88,7 @@ public class baj extends atg {
 						var6.d(new NBTCompoundTag());
 						NBTCompoundTag var7 = new NBTCompoundTag();
 						ga.a(var7, var5.b());
-						var6.o().a("SkullOwner", (NBTTag) var7);
+						var6.o().put("SkullOwner", (NBTTag) var7);
 					}
 
 					a(var1, var2, var6);

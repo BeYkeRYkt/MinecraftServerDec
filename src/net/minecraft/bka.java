@@ -23,7 +23,7 @@ public class bka extends bkb {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.a("Mob", this.b);
+		var1.put("Mob", this.b);
 	}
 
 	public static bka a(List var0, Random var1, int var2, int var3, int var4, int var5, ej var6) {

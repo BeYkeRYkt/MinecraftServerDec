@@ -23,10 +23,10 @@ public class bll extends bln {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.a("placedMainChest", this.e);
-		var1.a("placedHiddenChest", this.f);
-		var1.a("placedTrap1", this.g);
-		var1.a("placedTrap2", this.h);
+		var1.put("placedMainChest", this.e);
+		var1.put("placedHiddenChest", this.f);
+		var1.put("placedTrap1", this.g);
+		var1.put("placedTrap2", this.h);
 	}
 
 	protected void b(NBTCompoundTag var1) {

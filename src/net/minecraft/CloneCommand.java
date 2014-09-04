@@ -144,9 +144,9 @@ public class CloneCommand extends AbstractCommand {
 								var34 = (bb) var32.next();
 								var36 = var12.s(var34.a);
 								if (var34.c != null && var36 != null) {
-									var34.c.a("x", var34.a.n());
-									var34.c.a("y", var34.a.o());
-									var34.c.a("z", var34.a.p());
+									var34.c.put("x", var34.a.n());
+									var34.c.put("y", var34.a.o());
+									var34.c.put("z", var34.a.p());
 									var36.a(var34.c);
 									var36.o_();
 								}

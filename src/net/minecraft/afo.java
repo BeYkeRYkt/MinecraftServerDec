@@ -75,11 +75,11 @@ public class afo extends agj {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("Anger", (short) this.bl);
+		var1.put("Anger", (short) this.bl);
 		if (this.bn != null) {
-			var1.a("HurtBy", this.bn.toString());
+			var1.put("HurtBy", this.bn.toString());
 		} else {
-			var1.a("HurtBy", "");
+			var1.put("HurtBy", "");
 		}
 
 	}

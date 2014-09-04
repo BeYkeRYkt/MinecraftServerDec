@@ -29,7 +29,7 @@ public class bjq extends bkb {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.a("Seed", this.b);
+		var1.put("Seed", this.b);
 	}
 
 	public boolean a(World var1, Random var2, bjb var3) {

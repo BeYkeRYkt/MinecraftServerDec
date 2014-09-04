@@ -22,8 +22,8 @@ public class bmi extends bmk {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.a("Left", this.a);
-		var1.a("Right", this.b);
+		var1.put("Left", this.a);
+		var1.put("Right", this.b);
 	}
 
 	protected void b(NBTCompoundTag var1) {

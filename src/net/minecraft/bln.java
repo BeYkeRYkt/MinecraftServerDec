@@ -30,10 +30,10 @@ abstract class bln extends bms {
 	}
 
 	protected void a(NBTCompoundTag var1) {
-		var1.a("Width", this.a);
-		var1.a("Height", this.b);
-		var1.a("Depth", this.c);
-		var1.a("HPos", this.d);
+		var1.put("Width", this.a);
+		var1.put("Height", this.b);
+		var1.put("Depth", this.c);
+		var1.put("HPos", this.d);
 	}
 
 	protected void b(NBTCompoundTag var1) {

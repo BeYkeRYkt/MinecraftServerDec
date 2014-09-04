@@ -44,7 +44,7 @@ public class aom extends aos {
 			var2.d(new NBTCompoundTag());
 		}
 
-		var2.o().a("map_is_scaling", true);
+		var2.o().put("map_is_scaling", true);
 		return var2;
 	}
 }

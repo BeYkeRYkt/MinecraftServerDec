@@ -42,7 +42,7 @@ public class adf extends afm implements afr {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("Invul", this.cj());
+		var1.put("Invul", this.cj());
 	}
 
 	public void a(NBTCompoundTag var1) {

@@ -36,7 +36,7 @@ public class bmg extends bmk {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.a("Source", this.a);
+		var1.put("Source", this.a);
 	}
 
 	protected void b(NBTCompoundTag var1) {

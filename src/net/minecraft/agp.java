@@ -157,13 +157,13 @@ public class agp extends ws implements ago, aqb {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("Profession", this.cj());
-		var1.a("Riches", this.bt);
-		var1.a("Career", this.bv);
-		var1.a("CareerLevel", this.bw);
-		var1.a("Willing", this.bs);
+		var1.put("Profession", this.cj());
+		var1.put("Riches", this.bt);
+		var1.put("Career", this.bv);
+		var1.put("CareerLevel", this.bw);
+		var1.put("Willing", this.bs);
 		if (this.bp != null) {
-			var1.a("Offers", (NBTTag) this.bp.a());
+			var1.put("Offers", (NBTTag) this.bp.a());
 		}
 
 		NBTListTag var2 = new NBTListTag();
@@ -175,7 +175,7 @@ public class agp extends ws implements ago, aqb {
 			}
 		}
 
-		var1.a("Inventory", (NBTTag) var2);
+		var1.put("Inventory", (NBTTag) var2);
 	}
 
 	public void a(NBTCompoundTag var1) {

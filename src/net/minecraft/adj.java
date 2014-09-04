@@ -160,10 +160,10 @@ public abstract class adj extends Entity {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("Facing", (byte) this.b.b());
-		var1.a("TileX", this.n().n());
-		var1.a("TileY", this.n().o());
-		var1.a("TileZ", this.n().p());
+		var1.put("Facing", (byte) this.b.b());
+		var1.put("TileX", this.n().n());
+		var1.put("TileY", this.n().o());
+		var1.put("TileZ", this.n().p());
 	}
 
 	public void a(NBTCompoundTag var1) {

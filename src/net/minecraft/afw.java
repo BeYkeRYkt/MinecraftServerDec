@@ -251,7 +251,7 @@ public class afw extends afm implements afr {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("SkeletonType", (byte) this.ck());
+		var1.put("SkeletonType", (byte) this.ck());
 	}
 
 	public void c(int var1, amj var2) {

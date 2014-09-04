@@ -62,8 +62,8 @@ public class aph {
 			apf var5 = apf.c(var4);
 			if (var5 != null) {
 				NBTCompoundTag var6 = new NBTCompoundTag();
-				var6.a("id", (short) var4);
-				var6.a("lvl", (short) ((Integer) var0.get(Integer.valueOf(var4))).intValue());
+				var6.put("id", (short) var4);
+				var6.put("lvl", (short) ((Integer) var0.get(Integer.valueOf(var4))).intValue());
 				var2.addTag((NBTTag) var6);
 				if (var1.b() == amk.cd) {
 					amk.cd.a(var1, new apo(var5, ((Integer) var0.get(Integer.valueOf(var4))).intValue()));

@@ -6,7 +6,7 @@ public class bcv extends bcm {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("OutputSignal", this.a);
+		var1.put("OutputSignal", this.a);
 	}
 
 	public void a(NBTCompoundTag var1) {

@@ -39,8 +39,8 @@ public class afy extends xn implements aex {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("Size", this.ck() - 1);
-		var1.a("wasOnGround", this.bi);
+		var1.put("Size", this.ck() - 1);
+		var1.put("wasOnGround", this.bi);
 	}
 
 	public void a(NBTCompoundTag var1) {

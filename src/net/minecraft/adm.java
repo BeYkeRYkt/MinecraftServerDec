@@ -34,7 +34,7 @@ public class adm extends adj {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("Motive", this.c.B);
+		var1.put("Motive", this.c.B);
 		super.b(var1);
 	}
 

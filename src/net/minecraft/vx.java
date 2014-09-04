@@ -18,7 +18,7 @@ public class vx {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		var1.a("Lock", this.b);
+		var1.put("Lock", this.b);
 	}
 
 	public static vx b(NBTCompoundTag var0) {

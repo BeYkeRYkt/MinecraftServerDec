@@ -52,10 +52,10 @@ public abstract class bcm {
 		if (var2 == null) {
 			throw new RuntimeException(this.getClass() + " is missing a mapping! This is a bug!");
 		} else {
-			var1.a("id", var2);
-			var1.a("x", this.c.n());
-			var1.a("y", this.c.o());
-			var1.a("z", this.c.p());
+			var1.put("id", var2);
+			var1.put("x", this.c.n());
+			var1.put("y", this.c.o());
+			var1.put("z", this.c.p());
 		}
 	}
 

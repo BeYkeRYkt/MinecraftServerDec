@@ -903,15 +903,15 @@ public class abt extends abq implements vr {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("EatingHaystack", this.cw());
-		var1.a("ChestedHorse", this.cu());
-		var1.a("HasReproduced", this.cz());
-		var1.a("Bred", this.cy());
-		var1.a("Type", this.cj());
-		var1.a("Variant", this.ck());
-		var1.a("Temper", this.cA());
-		var1.a("Tame", this.cm());
-		var1.a("OwnerUUID", this.cr());
+		var1.put("EatingHaystack", this.cw());
+		var1.put("ChestedHorse", this.cu());
+		var1.put("HasReproduced", this.cz());
+		var1.put("Bred", this.cy());
+		var1.put("Type", this.cj());
+		var1.put("Variant", this.ck());
+		var1.put("Temper", this.cA());
+		var1.put("Tame", this.cm());
+		var1.put("OwnerUUID", this.cr());
 		if (this.cu()) {
 			NBTListTag var2 = new NBTListTag();
 
@@ -919,21 +919,21 @@ public class abt extends abq implements vr {
 				amj var4 = this.bC.a(var3);
 				if (var4 != null) {
 					NBTCompoundTag var5 = new NBTCompoundTag();
-					var5.a("Slot", (byte) var3);
+					var5.put("Slot", (byte) var3);
 					var4.b(var5);
 					var2.addTag((NBTTag) var5);
 				}
 			}
 
-			var1.a("Items", (NBTTag) var2);
+			var1.put("Items", (NBTTag) var2);
 		}
 
 		if (this.bC.a(1) != null) {
-			var1.a("ArmorItem", (NBTTag) this.bC.a(1).b(new NBTCompoundTag()));
+			var1.put("ArmorItem", (NBTTag) this.bC.a(1).b(new NBTCompoundTag()));
 		}
 
 		if (this.bC.a(0) != null) {
-			var1.a("SaddleItem", (NBTTag) this.bC.a(0).b(new NBTCompoundTag()));
+			var1.put("SaddleItem", (NBTTag) this.bC.a(0).b(new NBTCompoundTag()));
 		}
 
 	}

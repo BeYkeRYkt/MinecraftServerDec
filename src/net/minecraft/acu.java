@@ -71,8 +71,8 @@ public class acu extends xx {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("Angry", this.ct());
-		var1.a("CollarColor", (byte) this.cu().b());
+		var1.put("Angry", this.ct());
+		var1.put("CollarColor", (byte) this.cu().b());
 	}
 
 	public void a(NBTCompoundTag var1) {

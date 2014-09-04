@@ -65,9 +65,9 @@ public class aoi implements aoo {
 						}
 					}
 
-					var19.a("Explosions", (NBTTag) var23);
-					var19.a("Flight", (byte) var4);
-					var16.a("Fireworks", (NBTTag) var19);
+					var19.put("Explosions", (NBTTag) var23);
+					var19.put("Flight", (byte) var4);
+					var16.put("Fireworks", (NBTTag) var19);
 					this.a.d(var16);
 				}
 
@@ -85,9 +85,9 @@ public class aoi implements aoo {
 						if (var14.b() == amk.aW) {
 							var12.add(Integer.valueOf(akw.a[var14.i() & 15]));
 						} else if (var14.b() == amk.aT) {
-							var19.a("Flicker", true);
+							var19.put("Flicker", true);
 						} else if (var14.b() == amk.i) {
-							var19.a("Trail", true);
+							var19.put("Trail", true);
 						} else if (var14.b() == amk.bL) {
 							var22 = 1;
 						} else if (var14.b() == amk.G) {
@@ -106,9 +106,9 @@ public class aoi implements aoo {
 					var25[var27] = ((Integer) var12.get(var27)).intValue();
 				}
 
-				var19.a("Colors", var25);
-				var19.a("Type", var22);
-				var16.a("Explosion", (NBTTag) var19);
+				var19.put("Colors", var25);
+				var19.put("Type", var22);
+				var16.put("Explosion", (NBTTag) var19);
 				this.a.d(var16);
 				return true;
 			} else if (var4 == 0 && var3 == 0 && var6 == 1 && var5 > 0 && var5 == var7) {
@@ -137,7 +137,7 @@ public class aoi implements aoo {
 					if (var21 == null) {
 						return false;
 					} else {
-						var21.a("FadeColors", var18);
+						var21.put("FadeColors", var18);
 						return true;
 					}
 				} else {

@@ -277,46 +277,46 @@ public class bqo {
 	}
 
 	private void a(NBTCompoundTag var1, NBTCompoundTag var2) {
-		var1.a("RandomSeed", this.b);
-		var1.a("generatorName", this.c.a());
-		var1.a("generatorVersion", this.c.d());
-		var1.a("generatorOptions", this.d);
-		var1.a("GameType", this.u.getId());
-		var1.a("MapFeatures", this.v);
-		var1.a("SpawnX", this.e);
-		var1.a("SpawnY", this.f);
-		var1.a("SpawnZ", this.g);
-		var1.a("Time", this.h);
-		var1.a("DayTime", this.i);
-		var1.a("SizeOnDisk", this.k);
-		var1.a("LastPlayed", MinecraftServer.getCurrentMillis());
-		var1.a("LevelName", this.n);
-		var1.a("version", this.o);
-		var1.a("clearWeatherTime", this.p);
-		var1.a("rainTime", this.r);
-		var1.a("raining", this.q);
-		var1.a("thunderTime", this.t);
-		var1.a("thundering", this.s);
-		var1.a("hardcore", this.w);
-		var1.a("allowCommands", this.x);
-		var1.a("initialized", this.y);
-		var1.a("BorderCenterX", this.B);
-		var1.a("BorderCenterZ", this.C);
-		var1.a("BorderSize", this.D);
-		var1.a("BorderSizeLerpTime", this.E);
-		var1.a("BorderSafeZone", this.G);
-		var1.a("BorderDamagePerBlock", this.H);
-		var1.a("BorderSizeLerpTarget", this.F);
-		var1.a("BorderWarningBlocks", (double) this.I);
-		var1.a("BorderWarningTime", (double) this.J);
+		var1.put("RandomSeed", this.b);
+		var1.put("generatorName", this.c.a());
+		var1.put("generatorVersion", this.c.d());
+		var1.put("generatorOptions", this.d);
+		var1.put("GameType", this.u.getId());
+		var1.put("MapFeatures", this.v);
+		var1.put("SpawnX", this.e);
+		var1.put("SpawnY", this.f);
+		var1.put("SpawnZ", this.g);
+		var1.put("Time", this.h);
+		var1.put("DayTime", this.i);
+		var1.put("SizeOnDisk", this.k);
+		var1.put("LastPlayed", MinecraftServer.getCurrentMillis());
+		var1.put("LevelName", this.n);
+		var1.put("version", this.o);
+		var1.put("clearWeatherTime", this.p);
+		var1.put("rainTime", this.r);
+		var1.put("raining", this.q);
+		var1.put("thunderTime", this.t);
+		var1.put("thundering", this.s);
+		var1.put("hardcore", this.w);
+		var1.put("allowCommands", this.x);
+		var1.put("initialized", this.y);
+		var1.put("BorderCenterX", this.B);
+		var1.put("BorderCenterZ", this.C);
+		var1.put("BorderSize", this.D);
+		var1.put("BorderSizeLerpTime", this.E);
+		var1.put("BorderSafeZone", this.G);
+		var1.put("BorderDamagePerBlock", this.H);
+		var1.put("BorderSizeLerpTarget", this.F);
+		var1.put("BorderWarningBlocks", (double) this.I);
+		var1.put("BorderWarningTime", (double) this.J);
 		if (this.z != null) {
-			var1.a("Difficulty", (byte) this.z.getId());
+			var1.put("Difficulty", (byte) this.z.getId());
 		}
 
-		var1.a("DifficultyLocked", this.A);
-		var1.a("GameRules", (NBTTag) this.K.a());
+		var1.put("DifficultyLocked", this.A);
+		var1.put("GameRules", (NBTTag) this.K.a());
 		if (var2 != null) {
-			var1.a("Player", (NBTTag) var2);
+			var1.put("Player", (NBTTag) var2);
 		}
 
 	}

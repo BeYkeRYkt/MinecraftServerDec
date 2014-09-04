@@ -86,13 +86,13 @@ public class adv extends Entity {
 								if (var3 != null) {
 									NBTCompoundTag var4 = new NBTCompoundTag();
 									var3.b(var4);
-									Iterator var5 = this.c.c().iterator();
+									Iterator var5 = this.c.getKeys().iterator();
 
 									while (var5.hasNext()) {
 										String var6 = (String) var5.next();
-										NBTTag var7 = this.c.a(var6);
+										NBTTag var7 = this.c.getTag(var6);
 										if (!var6.equals("x") && !var6.equals("y") && !var6.equals("z")) {
-											var4.a(var6, var7.getCopy());
+											var4.put(var6, var7.getCopy());
 										}
 									}
 
@@ -148,15 +148,15 @@ public class adv extends Entity {
 	protected void b(NBTCompoundTag var1) {
 		atr var2 = this.d != null ? this.d.c() : aty.a;
 		oa var3 = (oa) atr.c.c(var2);
-		var1.a("Block", var3 == null ? "" : var3.toString());
-		var1.a("Data", (byte) var2.c(this.d));
-		var1.a("Time", (byte) this.a);
-		var1.a("DropItem", this.b);
-		var1.a("HurtEntities", this.f);
-		var1.a("FallHurtAmount", this.h);
-		var1.a("FallHurtMax", this.g);
+		var1.put("Block", var3 == null ? "" : var3.toString());
+		var1.put("Data", (byte) var2.c(this.d));
+		var1.put("Time", (byte) this.a);
+		var1.put("DropItem", this.b);
+		var1.put("HurtEntities", this.f);
+		var1.put("FallHurtAmount", this.h);
+		var1.put("FallHurtMax", this.g);
 		if (this.c != null) {
-			var1.a("TileEntityData", (NBTTag) this.c);
+			var1.put("TileEntityData", (NBTTag) this.c);
 		}
 
 	}

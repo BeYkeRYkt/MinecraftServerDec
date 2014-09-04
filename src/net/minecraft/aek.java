@@ -69,7 +69,7 @@ public class aek extends Entity {
 	}
 
 	protected void b(NBTCompoundTag var1) {
-		var1.a("Fuse", (byte) this.a);
+		var1.put("Fuse", (byte) this.a);
 	}
 
 	protected void a(NBTCompoundTag var1) {

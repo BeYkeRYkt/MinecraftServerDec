@@ -115,7 +115,7 @@ public class aef extends aed implements bdd {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("TransferCooldown", this.b);
+		var1.put("TransferCooldown", this.b);
 	}
 
 	protected void a(NBTCompoundTag var1) {

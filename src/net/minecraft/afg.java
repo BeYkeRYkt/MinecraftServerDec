@@ -49,7 +49,7 @@ public class afg extends afm {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("Elder", this.cl());
+		var1.put("Elder", this.cl());
 	}
 
 	protected aaz b(World var1) {

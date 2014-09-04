@@ -13,11 +13,11 @@ public class bmr extends bqc {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("Features", (NBTTag) this.b);
+		var1.put("Features", (NBTTag) this.b);
 	}
 
 	public void a(NBTCompoundTag var1, int var2, int var3) {
-		this.b.a(b(var2, var3), (NBTTag) var1);
+		this.b.put(b(var2, var3), (NBTTag) var1);
 	}
 
 	public static String b(int var0, int var1) {

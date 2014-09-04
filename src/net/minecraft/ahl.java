@@ -166,13 +166,13 @@ public abstract class ahl extends Entity {
 	protected abstract void a(bru var1);
 
 	public void b(NBTCompoundTag var1) {
-		var1.a("xTile", (short) this.e);
-		var1.a("yTile", (short) this.f);
-		var1.a("zTile", (short) this.g);
+		var1.put("xTile", (short) this.e);
+		var1.put("yTile", (short) this.f);
+		var1.put("zTile", (short) this.g);
 		oa var2 = (oa) atr.c.c(this.h);
-		var1.a("inTile", var2 == null ? "" : var2.toString());
-		var1.a("inGround", (byte) (this.i ? 1 : 0));
-		var1.a("direction", (NBTTag) this.a(new double[] { this.v, this.w, this.x }));
+		var1.put("inTile", var2 == null ? "" : var2.toString());
+		var1.put("inGround", (byte) (this.i ? 1 : 0));
+		var1.put("direction", (NBTTag) this.a(new double[] { this.v, this.w, this.x }));
 	}
 
 	public void a(NBTCompoundTag var1) {

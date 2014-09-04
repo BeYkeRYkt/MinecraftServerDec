@@ -19,10 +19,10 @@ public abstract class bms {
 
 	public NBTCompoundTag b() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
-		var1.a("id", bmq.a(this));
-		var1.a("BB", (NBTTag) this.l.g());
-		var1.a("O", this.m == null ? -1 : this.m.b());
-		var1.a("GD", this.n);
+		var1.put("id", bmq.a(this));
+		var1.put("BB", (NBTTag) this.l.g());
+		var1.put("O", this.m == null ? -1 : this.m.b());
+		var1.put("GD", this.n);
 		this.a(var1);
 		return var1;
 	}
@@ -30,7 +30,7 @@ public abstract class bms {
 	protected abstract void a(NBTCompoundTag var1);
 
 	public void a(World var1, NBTCompoundTag var2) {
-		if (var2.c("BB")) {
+		if (var2.hasKey("BB")) {
 			this.l = new bjb(var2.l("BB"));
 		}
 
