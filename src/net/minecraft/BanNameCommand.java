@@ -20,7 +20,7 @@ public class BanNameCommand extends AbstractCommand {
 	}
 
 	public boolean a(CommandSenderInterface var1) {
-		return MinecraftServer.getInstance().an().i().b() && super.a(var1);
+		return MinecraftServer.getInstance().getPlayerList().i().b() && super.a(var1);
 	}
 
 	public void a(CommandSenderInterface var1, String[] var2) throws di {
@@ -36,8 +36,8 @@ public class BanNameCommand extends AbstractCommand {
 				}
 
 				sw var6 = new sw(var4, (Date) null, var1.d_(), (Date) null, var5);
-				var3.an().i().a((sr) var6);
-				EntityPlayer var7 = var3.an().a(var2[0]);
+				var3.getPlayerList().i().a((sr) var6);
+				EntityPlayer var7 = var3.getPlayerList().a(var2[0]);
 				if (var7 != null) {
 					var7.a.c("You are banned from this server.");
 				}

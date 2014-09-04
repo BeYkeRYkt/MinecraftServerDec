@@ -143,8 +143,8 @@ public class ah {
 
 	private static List c(Map var0) {
 		ArrayList var1 = Lists.newArrayList();
-		int var2 = a(var0, "m", arc.a.a());
-		if (var2 != arc.a.a()) {
+		int var2 = a(var0, "m", GameMode.NOT_SET.getId());
+		if (var2 != GameMode.NOT_SET.getId()) {
 			var1.add(new ao(var2));
 		}
 

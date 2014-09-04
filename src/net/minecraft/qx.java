@@ -4,7 +4,7 @@ public class qx {
 
 	public World a;
 	public EntityPlayer b;
-	private arc c;
+	private GameMode c;
 	private boolean d;
 	private int e;
 	private dt f;
@@ -15,34 +15,34 @@ public class qx {
 	private int k;
 
 	public qx(World var1) {
-		this.c = arc.a;
+		this.c = GameMode.NOT_SET;
 		this.f = dt.a;
 		this.i = dt.a;
 		this.k = -1;
 		this.a = var1;
 	}
 
-	public void a(arc var1) {
+	public void a(GameMode var1) {
 		this.c = var1;
-		var1.a(this.b.by);
+		var1.setGameModeProperties(this.b.by);
 		this.b.t();
-		this.b.b.an().a((id) (new kh(kj.b, new EntityPlayer[] { this.b })));
+		this.b.b.getPlayerList().a((id) (new kh(kj.b, new EntityPlayer[] { this.b })));
 	}
 
-	public arc b() {
+	public GameMode b() {
 		return this.c;
 	}
 
 	public boolean c() {
-		return this.c.e();
+		return this.c.isSurvivalOrAdventure();
 	}
 
 	public boolean d() {
-		return this.c.d();
+		return this.c.isCreative();
 	}
 
-	public void b(arc var1) {
-		if (this.c == arc.a) {
+	public void b(GameMode var1) {
+		if (this.c == GameMode.NOT_SET) {
 			this.c = var1;
 		}
 
@@ -98,8 +98,8 @@ public class qx {
 
 		} else {
 			atr var3 = this.a.p(var1).c();
-			if (this.c.c()) {
-				if (this.c == arc.e) {
+			if (this.c.buildDisallowed()) {
+				if (this.c == GameMode.SPECTATOR) {
 					return;
 				}
 
@@ -174,13 +174,13 @@ public class qx {
 	}
 
 	public boolean b(dt var1) {
-		if (this.c.d() && this.b.bz() != null && this.b.bz().b() instanceof anm) {
+		if (this.c.isCreative() && this.b.bz() != null && this.b.bz().b() instanceof anm) {
 			return false;
 		} else {
 			bec var2 = this.a.p(var1);
 			bcm var3 = this.a.s(var1);
-			if (this.c.c()) {
-				if (this.c == arc.e) {
+			if (this.c.buildDisallowed()) {
+				if (this.c == GameMode.SPECTATOR) {
 					return false;
 				}
 
@@ -220,7 +220,7 @@ public class qx {
 	}
 
 	public boolean a(ahd var1, World var2, amj var3) {
-		if (this.c == arc.e) {
+		if (this.c == GameMode.SPECTATOR) {
 			return false;
 		} else {
 			int var4 = var3.b;
@@ -251,7 +251,7 @@ public class qx {
 	}
 
 	public boolean a(ahd var1, World var2, amj var3, dt var4, ej var5, float var6, float var7, float var8) {
-		if (this.c == arc.e) {
+		if (this.c == GameMode.SPECTATOR) {
 			bcm var13 = var2.s(var4);
 			if (var13 instanceof vy) {
 				atr var14 = var2.p(var4).c();

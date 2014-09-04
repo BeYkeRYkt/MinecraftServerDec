@@ -72,7 +72,7 @@ public abstract class aqf implements CommandSenderInterface {
 		}
 
 		MinecraftServer var2 = MinecraftServer.getInstance();
-		if (var2 != null && var2.hasUniverse() && var2.aj()) {
+		if (var2 != null && var2.hasUniverse() && var2.isCommandBlockEnabled()) {
 			CommandHandlerInterface var3 = var2.getCommandHandler();
 
 			try {
@@ -135,7 +135,7 @@ public abstract class aqf implements CommandSenderInterface {
 	}
 
 	public boolean a(ahd var1) {
-		if (!var1.by.d) {
+		if (!var1.by.instabuild) {
 			return false;
 		} else {
 			if (var1.e().D) {

@@ -95,7 +95,7 @@ public class aee extends adx {
 	public boolean e(ahd var1) {
 		amj var2 = var1.bg.h();
 		if (var2 != null && var2.b() == amk.h) {
-			if (!var1.by.d && --var2.b == 0) {
+			if (!var1.by.instabuild && --var2.b == 0) {
 				var1.bg.a(var1.bg.c, (amj) null);
 			}
 

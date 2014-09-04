@@ -15,7 +15,7 @@ public class UnbanIPCommand extends AbstractCommand {
 	}
 
 	public boolean a(CommandSenderInterface var1) {
-		return MinecraftServer.getInstance().an().j().b() && super.a(var1);
+		return MinecraftServer.getInstance().getPlayerList().j().b() && super.a(var1);
 	}
 
 	public String getUsage(CommandSenderInterface var1) {
@@ -26,7 +26,7 @@ public class UnbanIPCommand extends AbstractCommand {
 		if (var2.length == 1 && var2[0].length() > 1) {
 			Matcher var3 = BanIPCommand.a.matcher(var2[0]);
 			if (var3.matches()) {
-				MinecraftServer.getInstance().an().j().c(var2[0]);
+				MinecraftServer.getInstance().getPlayerList().j().c(var2[0]);
 				a(var1, this, "commands.unbanip.success", new Object[] { var2[0] });
 			} else {
 				throw new dl("commands.unbanip.invalid", new Object[0]);
@@ -37,6 +37,6 @@ public class UnbanIPCommand extends AbstractCommand {
 	}
 
 	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
-		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().an().j().a()) : null;
+		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().getPlayerList().j().a()) : null;
 	}
 }

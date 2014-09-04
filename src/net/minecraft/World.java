@@ -2396,7 +2396,7 @@ public abstract class World implements ard {
 		return new vu(this.aa(), this.L(), var2, var4);
 	}
 
-	public vt aa() {
+	public Difficulty aa() {
 		return this.P().y();
 	}
 

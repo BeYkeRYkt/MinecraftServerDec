@@ -5,7 +5,7 @@ import net.minecraft.server.MinecraftServer;
 
 public class bqo {
 
-	public static final vt a = vt.c;
+	public static final Difficulty a = Difficulty.NORMAL;
 	private long b;
 	private are c;
 	private String d;
@@ -25,12 +25,12 @@ public class bqo {
 	private int r;
 	private boolean s;
 	private int t;
-	private arc u;
+	private GameMode u;
 	private boolean v;
 	private boolean w;
 	private boolean x;
 	private boolean y;
-	private vt z;
+	private Difficulty z;
 	private boolean A;
 	private double B;
 	private double C;
@@ -91,7 +91,7 @@ public class bqo {
 			}
 		}
 
-		this.u = arc.a(var1.f("GameType"));
+		this.u = GameMode.byId(var1.f("GameType"));
 		if (var1.b("MapFeatures", 99)) {
 			this.v = var1.n("MapFeatures");
 		} else {
@@ -127,7 +127,7 @@ public class bqo {
 		if (var1.b("allowCommands", 99)) {
 			this.x = var1.n("allowCommands");
 		} else {
-			this.x = this.u == arc.c;
+			this.x = this.u == GameMode.CREATIVE;
 		}
 
 		if (var1.b("Player", 10)) {
@@ -140,7 +140,7 @@ public class bqo {
 		}
 
 		if (var1.b("Difficulty", 99)) {
-			this.z = vt.a(var1.d("Difficulty"));
+			this.z = Difficulty.clampAndGetById(var1.d("Difficulty"));
 		}
 
 		if (var1.b("DifficultyLocked", 1)) {
@@ -281,7 +281,7 @@ public class bqo {
 		var1.a("generatorName", this.c.a());
 		var1.a("generatorVersion", this.c.d());
 		var1.a("generatorOptions", this.d);
-		var1.a("GameType", this.u.a());
+		var1.a("GameType", this.u.getId());
 		var1.a("MapFeatures", this.v);
 		var1.a("SpawnX", this.e);
 		var1.a("SpawnY", this.f);
@@ -310,7 +310,7 @@ public class bqo {
 		var1.a("BorderWarningBlocks", (double) this.I);
 		var1.a("BorderWarningTime", (double) this.J);
 		if (this.z != null) {
-			var1.a("Difficulty", (byte) this.z.a());
+			var1.a("Difficulty", (byte) this.z.getId());
 		}
 
 		var1.a("DifficultyLocked", this.A);
@@ -419,7 +419,7 @@ public class bqo {
 		this.r = var1;
 	}
 
-	public arc r() {
+	public GameMode r() {
 		return this.u;
 	}
 
@@ -431,7 +431,7 @@ public class bqo {
 		this.v = var1;
 	}
 
-	public void a(arc var1) {
+	public void a(GameMode var1) {
 		this.u = var1;
 	}
 
@@ -547,11 +547,11 @@ public class bqo {
 		this.J = var1;
 	}
 
-	public vt y() {
+	public Difficulty y() {
 		return this.z;
 	}
 
-	public void a(vt var1) {
+	public void a(Difficulty var1) {
 		this.z = var1;
 	}
 
@@ -646,7 +646,7 @@ public class bqo {
 	}
 
 	// $FF: synthetic method
-	static arc o(bqo var0) {
+	static GameMode o(bqo var0) {
 		return var0.u;
 	}
 

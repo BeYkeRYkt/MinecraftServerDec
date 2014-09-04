@@ -64,7 +64,7 @@ public class ajw extends alq {
 						var2.d((Entity) var34);
 					}
 
-					if (!var3.by.d) {
+					if (!var3.by.instabuild) {
 						--var1.b;
 					}
 

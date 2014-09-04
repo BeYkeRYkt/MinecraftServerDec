@@ -69,7 +69,7 @@ public class adm extends adj {
 		if (this.o.Q().b("doTileDrops")) {
 			if (var1 instanceof ahd) {
 				ahd var2 = (ahd) var1;
-				if (var2.by.d) {
+				if (var2.by.instabuild) {
 					return;
 				}
 			}

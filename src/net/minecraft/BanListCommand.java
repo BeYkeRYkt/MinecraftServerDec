@@ -14,7 +14,7 @@ public class BanListCommand extends AbstractCommand {
 	}
 
 	public boolean a(CommandSenderInterface var1) {
-		return (MinecraftServer.getInstance().an().j().b() || MinecraftServer.getInstance().an().i().b()) && super.a(var1);
+		return (MinecraftServer.getInstance().getPlayerList().j().b() || MinecraftServer.getInstance().getPlayerList().i().b()) && super.a(var1);
 	}
 
 	public String getUsage(CommandSenderInterface var1) {
@@ -23,11 +23,11 @@ public class BanListCommand extends AbstractCommand {
 
 	public void a(CommandSenderInterface var1, String[] var2) {
 		if (var2.length >= 1 && var2[0].equalsIgnoreCase("ips")) {
-			var1.a(new hz("commands.banlist.ips", new Object[] { Integer.valueOf(MinecraftServer.getInstance().an().j().a().length) }));
-			var1.a(new hy(a(MinecraftServer.getInstance().an().j().a())));
+			var1.a(new hz("commands.banlist.ips", new Object[] { Integer.valueOf(MinecraftServer.getInstance().getPlayerList().j().a().length) }));
+			var1.a(new hy(a(MinecraftServer.getInstance().getPlayerList().j().a())));
 		} else {
-			var1.a(new hz("commands.banlist.players", new Object[] { Integer.valueOf(MinecraftServer.getInstance().an().i().a().length) }));
-			var1.a(new hy(a(MinecraftServer.getInstance().an().i().a())));
+			var1.a(new hz("commands.banlist.players", new Object[] { Integer.valueOf(MinecraftServer.getInstance().getPlayerList().i().a().length) }));
+			var1.a(new hy(a(MinecraftServer.getInstance().getPlayerList().i().a())));
 		}
 
 	}

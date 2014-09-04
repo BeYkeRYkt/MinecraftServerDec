@@ -111,7 +111,7 @@ public class age extends afm {
 
 		if (var4 == null) {
 			var4 = new agg();
-			if (this.o.aa() == vt.d && this.o.s.nextFloat() < 0.1F * var1.c()) {
+			if (this.o.aa() == Difficulty.HARD && this.o.s.nextFloat() < 0.1F * var1.c()) {
 				((agg) var4).a(this.o.s);
 			}
 		}

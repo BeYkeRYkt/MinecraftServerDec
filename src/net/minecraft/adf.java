@@ -167,7 +167,7 @@ public class adf extends afm implements afr {
 			for (var1 = 1; var1 < 3; ++var1) {
 				if (this.W >= this.bm[var1 - 1]) {
 					this.bm[var1 - 1] = this.W + 10 + this.V.nextInt(10);
-					if (this.o.aa() == vt.c || this.o.aa() == vt.d) {
+					if (this.o.aa() == Difficulty.NORMAL || this.o.aa() == Difficulty.HARD) {
 						int var10001 = var1 - 1;
 						int var10003 = this.bn[var1 - 1];
 						this.bn[var10001] = this.bn[var1 - 1] + 1;
@@ -199,7 +199,7 @@ public class adf extends afm implements afr {
 							EntityLiving var5 = (EntityLiving) var13.get(this.V.nextInt(var13.size()));
 							if (var5 != this && var5.ai() && this.t(var5)) {
 								if (var5 instanceof ahd) {
-									if (!((ahd) var5).by.a) {
+									if (!((ahd) var5).by.invulnerable) {
 										this.b(var1, var5.F());
 									}
 								} else {

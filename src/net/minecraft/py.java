@@ -10,9 +10,9 @@ class py implements ActionListener {
 	// $FF: synthetic field
 	final JTextField a;
 	// $FF: synthetic field
-	final pw b;
+	final ServerGUI b;
 
-	py(pw var1, JTextField var2) {
+	py(ServerGUI var1, JTextField var2) {
 		this.b = var1;
 		this.a = var2;
 	}
@@ -20,7 +20,7 @@ class py implements ActionListener {
 	public void actionPerformed(ActionEvent var1) {
 		String var2 = this.a.getText().trim();
 		if (var2.length() > 0) {
-			pw.a(this.b).a(var2, (CommandSenderInterface) MinecraftServer.getInstance());
+			ServerGUI.a(this.b).addPendingCommand(var2, (CommandSenderInterface) MinecraftServer.getInstance());
 		}
 
 		this.a.setText("");

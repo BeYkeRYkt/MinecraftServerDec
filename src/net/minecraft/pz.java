@@ -6,9 +6,9 @@ import java.awt.event.FocusEvent;
 class pz extends FocusAdapter {
 
 	// $FF: synthetic field
-	final pw a;
+	final ServerGUI a;
 
-	pz(pw var1) {
+	pz(ServerGUI var1) {
 		this.a = var1;
 	}
 

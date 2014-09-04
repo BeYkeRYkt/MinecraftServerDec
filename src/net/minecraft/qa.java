@@ -11,9 +11,9 @@ class qa implements Runnable {
 	// $FF: synthetic field
 	final JScrollPane b;
 	// $FF: synthetic field
-	final pw c;
+	final ServerGUI c;
 
-	qa(pw var1, JTextArea var2, JScrollPane var3) {
+	qa(ServerGUI var1, JTextArea var2, JScrollPane var3) {
 		this.c = var1;
 		this.a = var2;
 		this.b = var3;

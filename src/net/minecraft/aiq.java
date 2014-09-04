@@ -137,9 +137,9 @@ public class aiq extends aib {
 		amj var3 = this.a.a(0);
 		amj var4 = this.a.a(1);
 		int var5 = var2 + 1;
-		if ((var4 == null || var4.b < var5) && !var1.by.d) {
+		if ((var4 == null || var4.b < var5) && !var1.by.instabuild) {
 			return false;
-		} else if (this.g[var2] > 0 && var3 != null && (var1.bz >= var5 && var1.bz >= this.g[var2] || var1.by.d)) {
+		} else if (this.g[var2] > 0 && var3 != null && (var1.bz >= var5 && var1.bz >= this.g[var2] || var1.by.instabuild)) {
 			if (!this.i.D) {
 				List var6 = this.a(var3, var2, this.g[var2]);
 				boolean var7 = var3.b() == amk.aL;
@@ -158,7 +158,7 @@ public class aiq extends aib {
 						}
 					}
 
-					if (!var1.by.d) {
+					if (!var1.by.instabuild) {
 						var4.b -= var5;
 						if (var4.b <= 0) {
 							this.a.a(1, (amj) null);

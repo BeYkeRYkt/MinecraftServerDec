@@ -73,7 +73,7 @@ public class adl extends adj {
 
 		if (!this.o.D && !var3) {
 			this.J();
-			if (var1.by.d) {
+			if (var1.by.instabuild) {
 				var4 = 7.0D;
 				var6 = this.o.a(xn.class, new brt(this.s - var4, this.t - var4, this.u - var4, this.s + var4, this.t + var4, this.u + var4));
 				var7 = var6.iterator();

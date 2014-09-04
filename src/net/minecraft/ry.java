@@ -54,7 +54,7 @@ public class ry {
 	private static GameProfile a(MinecraftServer var0, String var1) {
 		GameProfile[] var2 = new GameProfile[1];
 		rz var3 = new rz(var2);
-		var0.aC().findProfilesByNames(new String[] { var1 }, Agent.MINECRAFT, var3);
+		var0.getGameProfileRepository().findProfilesByNames(new String[] { var1 }, Agent.MINECRAFT, var3);
 		if (!var0.isOnlineMode() && var2[0] == null) {
 			UUID var4 = ahd.a(new GameProfile((UUID) null, var1));
 			GameProfile var5 = new GameProfile(var4, var1);

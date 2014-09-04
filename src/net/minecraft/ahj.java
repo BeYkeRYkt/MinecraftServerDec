@@ -177,7 +177,7 @@ public class ahj extends Entity implements aho {
 
 			if (var6 != null && var6.d != null && var6.d instanceof ahd) {
 				ahd var21 = (ahd) var6.d;
-				if (var21.by.a || this.c instanceof ahd && !((ahd) this.c).a(var21)) {
+				if (var21.by.invulnerable || this.c instanceof ahd && !((ahd) this.c).a(var21)) {
 					var6 = null;
 				}
 			}
@@ -361,7 +361,7 @@ public class ahj extends Entity implements aho {
 
 	public void d(ahd var1) {
 		if (!this.o.D && this.i && this.b <= 0) {
-			boolean var2 = this.a == 1 || this.a == 2 && var1.by.d;
+			boolean var2 = this.a == 1 || this.a == 2 && var1.by.instabuild;
 			if (this.a == 1 && !var1.bg.a(new amj(amk.g, 1))) {
 				var2 = false;
 			}

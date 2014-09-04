@@ -63,7 +63,7 @@ public class afy extends xn implements aex {
 	}
 
 	public void s_() {
-		if (!this.o.D && this.o.aa() == vt.a && this.ck() > 0) {
+		if (!this.o.D && this.o.aa() == Difficulty.PEACEFUL && this.ck() > 0) {
 			this.I = true;
 		}
 
@@ -203,7 +203,7 @@ public class afy extends xn implements aex {
 		if (this.o.P().u() == are.c && this.V.nextInt(4) != 1) {
 			return false;
 		} else {
-			if (this.o.aa() != vt.a) {
+			if (this.o.aa() != Difficulty.PEACEFUL) {
 				arm var2 = this.o.b(new dt(uv.c(this.s), 0, uv.c(this.u)));
 				if (var2 == arm.v && this.t > 50.0D && this.t < 70.0D && this.V.nextFloat() < 0.5F && this.V.nextFloat() < this.o.y() && this.o.l(new dt(this)) <= this.V.nextInt(8)) {
 					return super.bQ();

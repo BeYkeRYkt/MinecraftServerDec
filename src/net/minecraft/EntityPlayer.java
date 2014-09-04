@@ -50,8 +50,8 @@ public class EntityPlayer extends ahd implements ail {
 		var4.b = this;
 		this.c = var4;
 		dt var5 = var2.M();
-		if (!var2.t.o() && var2.P().r() != arc.d) {
-			int var6 = Math.max(5, var1.au() - 6);
+		if (!var2.t.o() && var2.P().r() != GameMode.ADVENTURE) {
+			int var6 = Math.max(5, var1.isSpawnProtectionEnabled() - 6);
 			int var7 = uv.c(var2.af().b((double) var5.n(), (double) var5.p()));
 			if (var7 < var6) {
 				var6 = var7;
@@ -65,7 +65,7 @@ public class EntityPlayer extends ahd implements ail {
 		}
 
 		this.b = var1;
-		this.bI = var1.an().getPLayerStatistic((ahd) this);
+		this.bI = var1.getPlayerList().getPLayerStatistic((ahd) this);
 		this.S = 0.0F;
 		this.a(var5, 0.0F, 0.0F);
 
@@ -79,9 +79,9 @@ public class EntityPlayer extends ahd implements ail {
 		super.a(var1);
 		if (var1.b("playerGameType", 99)) {
 			if (MinecraftServer.getInstance().av()) {
-				this.c.a(MinecraftServer.getInstance().m());
+				this.c.a(MinecraftServer.getInstance().getServerGameMode());
 			} else {
-				this.c.a(arc.a(var1.f("playerGameType")));
+				this.c.a(GameMode.byId(var1.f("playerGameType")));
 			}
 		}
 
@@ -89,7 +89,7 @@ public class EntityPlayer extends ahd implements ail {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.a("playerGameType", this.c.b().a());
+		var1.a("playerGameType", this.c.b().getId());
 	}
 
 	public void a(int var1) {
@@ -194,7 +194,7 @@ public class EntityPlayer extends ahd implements ail {
 				this.e(this);
 			} else {
 				this.a(var7.s, var7.t, var7.u, var7.y, var7.z);
-				this.b.an().d(this);
+				this.b.getPlayerList().d(this);
 				if (this.aw()) {
 					this.e(this);
 				}
@@ -293,12 +293,12 @@ public class EntityPlayer extends ahd implements ail {
 			bsf var2 = this.bN();
 			if (var2 != null && var2.j() != bsg.a) {
 				if (var2.j() == bsg.c) {
-					this.b.an().a((ahd) this, this.br().b());
+					this.b.getPlayerList().a((ahd) this, this.br().b());
 				} else if (var2.j() == bsg.d) {
-					this.b.an().b((ahd) this, this.br().b());
+					this.b.getPlayerList().b((ahd) this, this.br().b());
 				}
 			} else {
-				this.b.an().a(this.br().b());
+				this.b.getPlayerList().a(this.br().b());
 			}
 		}
 
@@ -334,7 +334,7 @@ public class EntityPlayer extends ahd implements ail {
 		if (this.b(var1)) {
 			return false;
 		} else {
-			boolean var3 = this.b.ad() && this.cq() && "fall".equals(var1.p);
+			boolean var3 = this.b.isDedicated() && this.cq() && "fall".equals(var1.p);
 			if (!var3 && this.bO > 0 && var1 != wh.j) {
 				return false;
 			} else {
@@ -384,7 +384,7 @@ public class EntityPlayer extends ahd implements ail {
 				this.b((PlayerStatistic) tl.y);
 			}
 
-			this.b.an().a(this, var1);
+			this.b.getPlayerList().a(this, var1);
 			this.bN = -1;
 			this.bK = -1.0F;
 			this.bL = -1;
@@ -719,10 +719,10 @@ public class EntityPlayer extends ahd implements ail {
 		return (WorldServer) this.o;
 	}
 
-	public void a(arc var1) {
+	public void a(GameMode var1) {
 		this.c.a(var1);
-		this.a.a((id) (new jo(3, (float) var1.a())));
-		if (var1 == arc.e) {
+		this.a.a((id) (new jo(3, (float) var1.getId())));
+		if (var1 == GameMode.SPECTATOR) {
 			this.a((Entity) null);
 		} else {
 			this.e(this);
@@ -733,7 +733,7 @@ public class EntityPlayer extends ahd implements ail {
 	}
 
 	public boolean v() {
-		return this.c.b() == arc.e;
+		return this.c.b() == GameMode.SPECTATOR;
 	}
 
 	public void a(ho var1) {
@@ -741,12 +741,12 @@ public class EntityPlayer extends ahd implements ail {
 	}
 
 	public boolean a(int var1, String var2) {
-		if ("seed".equals(var2) && !this.b.ad()) {
+		if ("seed".equals(var2) && !this.b.isDedicated()) {
 			return true;
 		} else if (!"tell".equals(var2) && !"help".equals(var2) && !"me".equals(var2) && !"trigger".equals(var2)) {
-			if (this.b.an().g(this.cc())) {
-				sq var3 = (sq) this.b.an().n().b((Object) this.cc());
-				return var3 != null ? var3.a() >= var1 : this.b.p() >= var1;
+			if (this.b.getPlayerList().g(this.cc())) {
+				sq var3 = (sq) this.b.getPlayerList().n().b((Object) this.cc());
+				return var3 != null ? var3.a() >= var1 : this.b.getOpPermissionLevel() >= var1;
 			} else {
 				return false;
 			}
@@ -824,7 +824,7 @@ public class EntityPlayer extends ahd implements ail {
 	}
 
 	public void f(Entity var1) {
-		if (this.c.b() == arc.e) {
+		if (this.c.b() == GameMode.SPECTATOR) {
 			this.e(var1);
 		} else {
 			super.f(var1);

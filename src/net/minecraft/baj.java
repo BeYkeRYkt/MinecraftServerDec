@@ -69,7 +69,7 @@ public class baj extends atg {
 	}
 
 	public void a(World var1, dt var2, bec var3, ahd var4) {
-		if (var4.by.d) {
+		if (var4.by.instabuild) {
 			var3 = var3.a(b, Boolean.valueOf(true));
 			var1.a(var2, var3, 4);
 		}
@@ -104,11 +104,11 @@ public class baj extends atg {
 	}
 
 	public boolean b(World var1, dt var2, amj var3) {
-		return var3.i() == 1 && var2.o() >= 2 && var1.aa() != vt.a && !var1.D ? this.j().a(var1, var2) != null : false;
+		return var3.i() == 1 && var2.o() >= 2 && var1.aa() != Difficulty.PEACEFUL && !var1.D ? this.j().a(var1, var2) != null : false;
 	}
 
 	public void a(World var1, dt var2, bdm var3) {
-		if (var3.c() == 1 && var2.o() >= 2 && var1.aa() != vt.a && !var1.D) {
+		if (var3.c() == 1 && var2.o() >= 2 && var1.aa() != Difficulty.PEACEFUL && !var1.D) {
 			bek var4 = this.l();
 			bem var5 = var4.a(var1, var2);
 			if (var5 != null) {

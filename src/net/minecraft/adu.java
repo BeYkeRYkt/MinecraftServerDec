@@ -69,7 +69,7 @@ public class adu extends Entity {
 				this.a(10);
 				this.a(this.j() + var2 * 10.0F);
 				this.ac();
-				boolean var3 = var1.j() instanceof ahd && ((ahd) var1.j()).by.d;
+				boolean var3 = var1.j() instanceof ahd && ((ahd) var1.j()).by.instabuild;
 				if (var3 || this.j() > 40.0F) {
 					if (this.l != null) {
 						this.l.a((Entity) this);

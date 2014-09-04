@@ -34,7 +34,7 @@ public abstract class ahd extends EntityLiving {
 	private dt c;
 	private boolean d;
 	private dt e;
-	public aha by = new aha();
+	public PlayerProperties by = new PlayerProperties();
 	public int bz;
 	public int bA;
 	public float bB;
@@ -150,7 +150,7 @@ public abstract class ahd extends EntityLiving {
 			this.bi = this.bh;
 		}
 
-		if (this.au() && this.by.a) {
+		if (this.au() && this.by.invulnerable) {
 			this.N();
 		}
 
@@ -210,7 +210,7 @@ public abstract class ahd extends EntityLiving {
 	}
 
 	public int L() {
-		return this.by.a ? 0 : 80;
+		return this.by.invulnerable ? 0 : 80;
 	}
 
 	protected String P() {
@@ -315,7 +315,7 @@ public abstract class ahd extends EntityLiving {
 			--this.bk;
 		}
 
-		if (this.o.aa() == vt.a && this.o.Q().b("naturalRegeneration")) {
+		if (this.o.aa() == Difficulty.PEACEFUL && this.o.Q().b("naturalRegeneration")) {
 			if (this.bm() < this.bt() && this.W % 20 == 0) {
 				this.g(1.0F);
 			}
@@ -330,7 +330,7 @@ public abstract class ahd extends EntityLiving {
 		super.m();
 		xz var1 = this.a(afs.d);
 		if (!this.o.D) {
-			var1.a((double) this.by.b());
+			var1.a((double) this.by.getWalkSpeed());
 		}
 
 		this.aK = this.bD;
@@ -602,7 +602,7 @@ public abstract class ahd extends EntityLiving {
 		}
 
 		this.bj.a(var1);
-		this.by.b(var1);
+		this.by.read(var1);
 		if (var1.b("EnderItems", 9)) {
 			NBTListTag var3 = var1.c("EnderItems", 10);
 			this.a.a(var3);
@@ -629,7 +629,7 @@ public abstract class ahd extends EntityLiving {
 		}
 
 		this.bj.b(var1);
-		this.by.a(var1);
+		this.by.write(var1);
 		var1.a("EnderItems", (NBTTag) this.a.h());
 		amj var2 = this.bg.h();
 		if (var2 != null && var2.b() != null) {
@@ -641,7 +641,7 @@ public abstract class ahd extends EntityLiving {
 	public boolean a(wh var1, float var2) {
 		if (this.b(var1)) {
 			return false;
-		} else if (this.by.a && !var1.g()) {
+		} else if (this.by.invulnerable && !var1.g()) {
 			return false;
 		} else {
 			this.aO = 0;
@@ -653,15 +653,15 @@ public abstract class ahd extends EntityLiving {
 				}
 
 				if (var1.r()) {
-					if (this.o.aa() == vt.a) {
+					if (this.o.aa() == Difficulty.PEACEFUL) {
 						var2 = 0.0F;
 					}
 
-					if (this.o.aa() == vt.b) {
+					if (this.o.aa() == Difficulty.EASY) {
 						var2 = var2 / 2.0F + 1.0F;
 					}
 
-					if (this.o.aa() == vt.d) {
+					if (this.o.aa() == Difficulty.HARD) {
 						var2 = var2 * 3.0F / 2.0F;
 					}
 				}
@@ -766,12 +766,12 @@ public abstract class ahd extends EntityLiving {
 			amj var3 = var2 != null ? var2.k() : null;
 			if (!var1.e(this)) {
 				if (var2 != null && var1 instanceof EntityLiving) {
-					if (this.by.d) {
+					if (this.by.instabuild) {
 						var2 = var3;
 					}
 
 					if (var2.a(this, (EntityLiving) var1)) {
-						if (var2.b <= 0 && !this.by.d) {
+						if (var2.b <= 0 && !this.by.instabuild) {
 							this.bZ();
 						}
 
@@ -782,9 +782,9 @@ public abstract class ahd extends EntityLiving {
 				return false;
 			} else {
 				if (var2 != null && var2 == this.bY()) {
-					if (var2.b <= 0 && !this.by.d) {
+					if (var2.b <= 0 && !this.by.instabuild) {
 						this.bZ();
-					} else if (var2.b < var3.b && this.by.d) {
+					} else if (var2.b < var3.b && this.by.instabuild) {
 						var2.b = var3.b;
 					}
 				}
@@ -1116,10 +1116,10 @@ public abstract class ahd extends EntityLiving {
 		double var3 = this.s;
 		double var5 = this.t;
 		double var7 = this.u;
-		if (this.by.b && this.m == null) {
+		if (this.by.flying && this.m == null) {
 			double var9 = this.w;
 			float var11 = this.aK;
-			this.aK = this.by.a() * (float) (this.ax() ? 2 : 1);
+			this.aK = this.by.getFlySpeed() * (float) (this.ax() ? 2 : 1);
 			super.g(var1, var2);
 			this.w = var9 * 0.6D;
 			this.aK = var11;
@@ -1202,7 +1202,7 @@ public abstract class ahd extends EntityLiving {
 	}
 
 	public void e(float var1, float var2) {
-		if (!this.by.c) {
+		if (!this.by.mayfly) {
 			if (var1 >= 2.0F) {
 				this.a(ty.m, (int) Math.round((double) var1 * 100.0D));
 			}
@@ -1235,7 +1235,7 @@ public abstract class ahd extends EntityLiving {
 	}
 
 	public void aB() {
-		if (!this.by.b) {
+		if (!this.by.flying) {
 			super.aB();
 		}
 
@@ -1297,7 +1297,7 @@ public abstract class ahd extends EntityLiving {
 	}
 
 	public void a(float var1) {
-		if (!this.by.a) {
+		if (!this.by.invulnerable) {
 			if (!this.o.D) {
 				this.bj.a(var1);
 			}
@@ -1310,7 +1310,7 @@ public abstract class ahd extends EntityLiving {
 	}
 
 	public boolean j(boolean var1) {
-		return (var1 || this.bj.c()) && !this.by.a;
+		return (var1 || this.bj.c()) && !this.by.invulnerable;
 	}
 
 	public boolean cl() {
@@ -1329,11 +1329,11 @@ public abstract class ahd extends EntityLiving {
 	}
 
 	public boolean cm() {
-		return this.by.e;
+		return this.by.maybuild;
 	}
 
 	public boolean a(dt var1, ej var2, amj var3) {
-		if (this.by.e) {
+		if (this.by.maybuild) {
 			return true;
 		} else if (var3 == null) {
 			return false;
@@ -1380,13 +1380,13 @@ public abstract class ahd extends EntityLiving {
 	}
 
 	protected boolean r_() {
-		return !this.by.b;
+		return !this.by.flying;
 	}
 
 	public void t() {
 	}
 
-	public void a(arc var1) {
+	public void a(GameMode var1) {
 	}
 
 	public String d_() {
@@ -1416,7 +1416,7 @@ public abstract class ahd extends EntityLiving {
 	}
 
 	public boolean aK() {
-		return !this.by.b;
+		return !this.by.flying;
 	}
 
 	public bsd co() {

@@ -132,14 +132,14 @@ public abstract class AbstractCommand implements CommandInterface {
 		EntityPlayer var2 = ah.a(var0, var1);
 		if (var2 == null) {
 			try {
-				var2 = MinecraftServer.getInstance().an().getPlayer(UUID.fromString(var1));
+				var2 = MinecraftServer.getInstance().getPlayerList().getPlayer(UUID.fromString(var1));
 			} catch (IllegalArgumentException var4) {
 				;
 			}
 		}
 
 		if (var2 == null) {
-			var2 = MinecraftServer.getInstance().an().a(var1);
+			var2 = MinecraftServer.getInstance().getPlayerList().a(var1);
 		}
 
 		if (var2 == null) {
@@ -157,7 +157,7 @@ public abstract class AbstractCommand implements CommandInterface {
 		Object var3 = ah.a(var0, var1, var2);
 		MinecraftServer var4 = MinecraftServer.getInstance();
 		if (var3 == null) {
-			var3 = var4.an().a(var1);
+			var3 = var4.getPlayerList().a(var1);
 		}
 
 		if (var3 == null) {
@@ -165,7 +165,7 @@ public abstract class AbstractCommand implements CommandInterface {
 				UUID var5 = UUID.fromString(var1);
 				var3 = var4.a(var5);
 				if (var3 == null) {
-					var3 = var4.an().getPlayer(var5);
+					var3 = var4.getPlayerList().getPlayer(var5);
 				}
 			} catch (IllegalArgumentException var6) {
 				throw new dj("commands.generic.entity.invalidUuid", new Object[0]);

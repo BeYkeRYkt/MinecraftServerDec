@@ -58,7 +58,7 @@ public class bbk extends atr {
 				var1.g(var2);
 				if (var9 == amk.d) {
 					var4.bY().a(1, (EntityLiving) var4);
-				} else if (!var4.by.d) {
+				} else if (!var4.by.instabuild) {
 					--var4.bY().b;
 				}
 

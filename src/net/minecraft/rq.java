@@ -64,7 +64,7 @@ public class rq implements nh, pm {
 			this.i = this.a(this.i);
 		}
 
-		String var1 = this.f.an().a(this.a.b(), this.i);
+		String var1 = this.f.getPlayerList().a(this.a.b(), this.i);
 		if (var1 != null) {
 			this.a(var1);
 		} else {
@@ -74,7 +74,7 @@ public class rq implements nh, pm {
 			}
 
 			this.a.a((id) (new nd(this.i)));
-			this.f.an().a(this.a, this.f.an().f(this.i));
+			this.f.getPlayerList().a(this.a, this.f.getPlayerList().f(this.i));
 		}
 
 	}

@@ -196,7 +196,7 @@ public class avf extends atr {
 
 	public void a(World var1, dt var2, bec var3, ahd var4) {
 		dt var5 = var2.b();
-		if (var4.by.d && var3.b(O) == avg.a && var1.p(var5).c() == this) {
+		if (var4.by.instabuild && var3.b(O) == avg.a && var1.p(var5).c() == this) {
 			var1.g(var5);
 		}
 

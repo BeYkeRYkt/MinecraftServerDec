@@ -15,8 +15,8 @@ public class ServerSaveCommand extends AbstractCommand {
 	public void a(CommandSenderInterface var1, String[] var2) {
 		MinecraftServer var3 = MinecraftServer.getInstance();
 		var1.a(new hz("commands.save.start", new Object[0]));
-		if (var3.an() != null) {
-			var3.an().k();
+		if (var3.getPlayerList() != null) {
+			var3.getPlayerList().k();
 		}
 
 		int var4;

@@ -201,7 +201,7 @@ public final class amj {
 	}
 
 	public void a(int var1, EntityLiving var2) {
-		if (!(var2 instanceof ahd) || !((ahd) var2).by.d) {
+		if (!(var2 instanceof ahd) || !((ahd) var2).by.instabuild) {
 			if (this.e()) {
 				if (this.a(var1, var2.bb())) {
 					var2.b(this);

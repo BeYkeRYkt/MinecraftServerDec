@@ -115,7 +115,7 @@ public class aby extends xx {
 				this.bk.a(!this.cl());
 			}
 		} else if (this.bn.f() && var2 != null && var2.b() == amk.aU && var1.h(this) < 9.0D) {
-			if (!var1.by.d) {
+			if (!var1.by.instabuild) {
 				--var2.b;
 			}
 

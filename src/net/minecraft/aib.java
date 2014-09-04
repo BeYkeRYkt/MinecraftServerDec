@@ -291,7 +291,7 @@ public abstract class aib {
 						var16.d(var17);
 					}
 				}
-			} else if (var3 == 3 && var4.by.d && var6.p() == null && var1 >= 0) {
+			} else if (var3 == 3 && var4.by.instabuild && var6.p() == null && var1 >= 0) {
 				var16 = (ajk) this.c.get(var1);
 				if (var16 != null && var16.e()) {
 					var17 = var16.d().k();
@@ -450,7 +450,7 @@ public abstract class aib {
 	}
 
 	public static boolean a(int var0, ahd var1) {
-		return var0 == 0 ? true : (var0 == 1 ? true : var0 == 2 && var1.by.d);
+		return var0 == 0 ? true : (var0 == 1 ? true : var0 == 2 && var1.by.instabuild);
 	}
 
 	protected void d() {

@@ -306,7 +306,7 @@ public class adi extends EntityLiving {
 				int var4 = var1.bg.c;
 				amj var5 = var1.bg.a(var4);
 				amj var6;
-				if (var1.by.d && (var3 == null || var3.b() == alq.a(aty.a)) && var5 != null) {
+				if (var1.by.instabuild && (var3 == null || var3.b() == alq.a(aty.a)) && var5 != null) {
 					var6 = var5.k();
 					var6.b = 1;
 					this.c(var2, var6);
@@ -357,7 +357,7 @@ public class adi extends EntityLiving {
 						var1.i().J();
 					}
 
-					if (var1.j() instanceof ahd && !((ahd) var1.j()).by.e) {
+					if (var1.j() instanceof ahd && !((ahd) var1.j()).by.maybuild) {
 						return false;
 					} else if (var1.u()) {
 						this.z();

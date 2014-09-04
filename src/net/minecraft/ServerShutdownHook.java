@@ -10,6 +10,8 @@ public final class ServerShutdownHook extends Thread {
 	}
 
 	public void run() {
-		this.mcserver.stop();
+		if (!mcserver.isStopped()) {
+			this.mcserver.stop();
+		}
 	}
 }

@@ -17,7 +17,7 @@ public class bds extends atr {
 	}
 
 	public void a(World var1, dt var2, bec var3, ahd var4) {
-		if (var4.by.d) {
+		if (var4.by.instabuild) {
 			ej var5 = (ej) var3.b(a);
 			if (var5 != null) {
 				dt var6 = var2.a(var5.d());

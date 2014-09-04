@@ -87,8 +87,8 @@ public class WorldServer extends World implements vn {
 
 	public void c() {
 		super.c();
-		if (this.P().t() && this.aa() != vt.d) {
-			this.P().a(vt.d);
+		if (this.P().t() && this.aa() != Difficulty.HARD) {
+			this.P().a(Difficulty.HARD);
 		}
 
 		this.t.m().b();
@@ -548,9 +548,9 @@ public class WorldServer extends World implements vn {
 		this.x.a(false);
 		this.x.i(1000000000);
 		this.x.c(6000L);
-		this.x.a(arc.e);
+		this.x.a(GameMode.SPECTATOR);
 		this.x.g(false);
-		this.x.a(vt.a);
+		this.x.a(Difficulty.PEACEFUL);
 		this.x.e(true);
 		this.Q().a("doDaylightCycle", "false");
 	}
@@ -656,7 +656,7 @@ public class WorldServer extends World implements vn {
 		this.x.k(this.af().p());
 		this.x.b(this.af().j());
 		this.x.e(this.af().i());
-		this.w.a(this.x, this.I.an().u());
+		this.w.a(this.x, this.I.getPlayerList().u());
 		this.z.a();
 	}
 
@@ -688,7 +688,7 @@ public class WorldServer extends World implements vn {
 
 	public boolean c(Entity var1) {
 		if (super.c(var1)) {
-			this.I.an().a(var1.s, var1.t, var1.u, 512.0D, this.t.q(), new in(var1));
+			this.I.getPlayerList().a(var1.s, var1.t, var1.u, 512.0D, this.t.q(), new in(var1));
 			return true;
 		} else {
 			return false;
@@ -744,7 +744,7 @@ public class WorldServer extends World implements vn {
 			while (var2.hasNext()) {
 				aqk var3 = (aqk) var2.next();
 				if (this.a(var3)) {
-					this.I.an().a((double) var3.a().n(), (double) var3.a().o(), (double) var3.a().p(), 64.0D, this.t.q(), new iv(var3.a(), var3.d(), var3.b(), var3.c()));
+					this.I.getPlayerList().a((double) var3.a().n(), (double) var3.a().o(), (double) var3.a().p(), 64.0D, this.t.q(), new iv(var3.a(), var3.d(), var3.b(), var3.c()));
 				}
 			}
 
@@ -766,28 +766,28 @@ public class WorldServer extends World implements vn {
 		boolean var1 = this.S();
 		super.p();
 		if (this.o != this.p) {
-			this.I.an().a((id) (new jo(7, this.p)), this.t.q());
+			this.I.getPlayerList().a((id) (new jo(7, this.p)), this.t.q());
 		}
 
 		if (this.q != this.r) {
-			this.I.an().a((id) (new jo(8, this.r)), this.t.q());
+			this.I.getPlayerList().a((id) (new jo(8, this.r)), this.t.q());
 		}
 
 		if (var1 != this.S()) {
 			if (var1) {
-				this.I.an().a((id) (new jo(2, 0.0F)));
+				this.I.getPlayerList().a((id) (new jo(2, 0.0F)));
 			} else {
-				this.I.an().a((id) (new jo(1, 0.0F)));
+				this.I.getPlayerList().a((id) (new jo(1, 0.0F)));
 			}
 
-			this.I.an().a((id) (new jo(7, this.p)));
-			this.I.an().a((id) (new jo(8, this.r)));
+			this.I.getPlayerList().a((id) (new jo(7, this.p)));
+			this.I.getPlayerList().a((id) (new jo(8, this.r)));
 		}
 
 	}
 
 	protected int q() {
-		return this.I.an().t();
+		return this.I.getPlayerList().t();
 	}
 
 	public MinecraftServer r() {

@@ -53,7 +53,7 @@ public class sf {
 	private static void a(MinecraftServer var0, Collection var1, ProfileLookupCallback var2) {
 		String[] var3 = (String[]) Iterators.toArray(Iterators.filter(var1.iterator(), (Predicate) (new sg())), String.class);
 		if (var0.isOnlineMode()) {
-			var0.aC().findProfilesByNames(var3, Agent.MINECRAFT, var2);
+			var0.getGameProfileRepository().findProfilesByNames(var3, Agent.MINECRAFT, var2);
 		} else {
 			String[] var4 = var3;
 			int var5 = var3.length;
@@ -203,7 +203,7 @@ public class sf {
 			GameProfile var2 = var1.aD().a(var0);
 			if (var2 != null && var2.getId() != null) {
 				return var2.getId().toString();
-			} else if (!var1.S() && var1.isOnlineMode()) {
+			} else if (!var1.isSinglePlayer() && var1.isOnlineMode()) {
 				ArrayList var3 = Lists.newArrayList();
 				sk var4 = new sk(var1, var3);
 				a(var1, Lists.newArrayList((Object[]) (new String[] { var0 })), var4);
@@ -216,7 +216,7 @@ public class sf {
 		}
 	}
 
-	public static boolean a(DedicatedMinecraftServer var0, pl var1) {
+	public static boolean a(DedicatedMinecraftServer var0, ServerProperties var1) {
 		File var2 = d(var1);
 		File var3 = new File(var2.getParentFile(), "playerdata");
 		File var4 = new File(var2.getParentFile(), "unknownplayers");
@@ -261,13 +261,13 @@ public class sf {
 		}
 	}
 
-	public static boolean a(pl var0) {
+	public static boolean a(ServerProperties var0) {
 		boolean var1 = b(var0);
 		var1 = var1 && c(var0);
 		return var1;
 	}
 
-	private static boolean b(pl var0) {
+	private static boolean b(ServerProperties var0) {
 		boolean var1 = false;
 		if (b.exists() && b.isFile()) {
 			var1 = true;
@@ -313,7 +313,7 @@ public class sf {
 		}
 	}
 
-	private static boolean c(pl var0) {
+	private static boolean c(ServerProperties var0) {
 		File var1 = d(var0);
 		if (var1.exists() && var1.isDirectory() && (var1.list().length > 0 || !var1.delete())) {
 			e.warn("**** DETECTED OLD PLAYER DIRECTORY IN THE WORLD SAVE");
@@ -325,8 +325,8 @@ public class sf {
 		}
 	}
 
-	private static File d(pl var0) {
-		String var1 = var0.a("level-name", "world");
+	private static File d(ServerProperties var0) {
+		String var1 = var0.getString("level-name", "world");
 		File var2 = new File(var1);
 		return new File(var2, "players");
 	}

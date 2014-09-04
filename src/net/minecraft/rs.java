@@ -20,11 +20,11 @@ class rs extends Thread {
 
 		try {
 			String var2 = (new BigInteger(ug.a(rq.c(this.a), rq.a(this.a).P().getPublic(), rq.d(this.a)))).toString(16);
-			rq.a(this.a, rq.a(this.a).aB().hasJoinedServer(new GameProfile((UUID) null, var1.getName()), var2));
+			rq.a(this.a, rq.a(this.a).getMinecraftSessionService().hasJoinedServer(new GameProfile((UUID) null, var1.getName()), var2));
 			if (rq.b(this.a) != null) {
 				rq.e().info("UUID of player " + rq.b(this.a).getName() + " is " + rq.b(this.a).getId());
 				rq.a(this.a, rt.d);
-			} else if (rq.a(this.a).S()) {
+			} else if (rq.a(this.a).isSinglePlayer()) {
 				rq.e().warn("Failed to verify username but will let them in anyway!");
 				rq.a(this.a, this.a.a(var1));
 				rq.a(this.a, rt.d);
@@ -33,7 +33,7 @@ class rs extends Thread {
 				rq.e().error("Username \'" + rq.b(this.a).getName() + "\' tried to join with an invalid session");
 			}
 		} catch (AuthenticationUnavailableException var3) {
-			if (rq.a(this.a).S()) {
+			if (rq.a(this.a).isSinglePlayer()) {
 				rq.e().warn("Authentication servers are down but will let them in anyway!");
 				rq.a(this.a, this.a.a(var1));
 				rq.a(this.a, rt.d);

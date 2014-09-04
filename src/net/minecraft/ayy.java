@@ -14,7 +14,7 @@ public class ayy extends awt {
 
 	public void b(World var1, dt var2, bec var3, Random var4) {
 		super.b(var1, var2, var3, var4);
-		if (var1.t.d() && var1.Q().b("doMobSpawning") && var4.nextInt(2000) < var1.aa().a()) {
+		if (var1.t.d() && var1.Q().b("doMobSpawning") && var4.nextInt(2000) < var1.aa().getId()) {
 			int var5 = var2.o();
 
 			dt var6;

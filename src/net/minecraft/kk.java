@@ -5,13 +5,13 @@ import com.mojang.authlib.GameProfile;
 public class kk {
 
 	private final int b;
-	private final arc c;
+	private final GameMode c;
 	private final GameProfile d;
 	private final ho e;
 	// $FF: synthetic field
 	final kh a;
 
-	public kk(kh var1, GameProfile var2, int var3, arc var4, ho var5) {
+	public kk(kh var1, GameProfile var2, int var3, GameMode var4, ho var5) {
 		this.a = var1;
 		this.d = var2;
 		this.b = var3;
@@ -27,7 +27,7 @@ public class kk {
 		return this.b;
 	}
 
-	public arc c() {
+	public GameMode c() {
 		return this.c;
 	}
 

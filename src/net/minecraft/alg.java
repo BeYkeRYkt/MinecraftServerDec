@@ -6,7 +6,7 @@ public class alg extends alq {
 		if (!var3.D) {
 			ahm var9 = new ahm(var3, (double) ((float) var4.n() + var6), (double) ((float) var4.o() + var7), (double) ((float) var4.p() + var8), var1);
 			var3.d((Entity) var9);
-			if (!var2.by.d) {
+			if (!var2.by.instabuild) {
 				--var1.b;
 			}
 

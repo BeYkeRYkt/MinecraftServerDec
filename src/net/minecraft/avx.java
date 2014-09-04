@@ -166,7 +166,7 @@ public class avx extends atr {
 								dt var14 = var2.a(var10, var12, var11);
 								int var15 = this.m(var1, var14);
 								if (var15 > 0) {
-									int var16 = (var15 + 40 + var1.aa().a() * 7) / (var7 + 30);
+									int var16 = (var15 + 40 + var1.aa().getId() * 7) / (var7 + 30);
 									if (var8) {
 										var16 /= 2;
 									}

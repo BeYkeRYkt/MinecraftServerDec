@@ -6,16 +6,16 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class pn extends PlayerList {
+public class DedicatedPlayerList extends PlayerList {
 
 	private static final Logger h = LogManager.getLogger();
 
-	public pn(DedicatedMinecraftServer var1) {
+	public DedicatedPlayerList(DedicatedMinecraftServer var1) {
 		super(var1);
 		this.a(var1.a("view-distance", 10));
 		this.g = var1.a("max-players", 20);
 		this.a(var1.a("white-list", false));
-		if (!var1.S()) {
+		if (!var1.isSinglePlayer()) {
 			this.i().a(true);
 			this.j().a(true);
 		}
@@ -36,7 +36,7 @@ public class pn extends PlayerList {
 	public void a(boolean var1) {
 		super.a(var1);
 		this.b().a("white-list", (Object) Boolean.valueOf(var1));
-		this.b().a();
+		this.b().saveProperties();
 	}
 
 	public void a(GameProfile var1) {

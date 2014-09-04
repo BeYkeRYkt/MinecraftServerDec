@@ -39,7 +39,7 @@ public abstract class PlayerList {
 	private boolean q;
 	protected int g;
 	private int r;
-	private arc s;
+	private GameMode s;
 	private boolean t;
 	private int u;
 
@@ -511,7 +511,7 @@ public abstract class PlayerList {
 	}
 
 	public void a(GameProfile var1) {
-		this.m.a((sr) (new sq(var1, this.minecraftserver.p())));
+		this.m.a((sr) (new sq(var1, this.minecraftserver.getOpPermissionLevel())));
 	}
 
 	public void b(GameProfile var1) {
@@ -523,7 +523,7 @@ public abstract class PlayerList {
 	}
 
 	public boolean g(GameProfile var1) {
-		return this.m.d(var1) || this.minecraftserver.S() && this.minecraftserver.worlds[0].P().v() && this.minecraftserver.R().equalsIgnoreCase(var1.getName()) || this.t;
+		return this.m.d(var1) || this.minecraftserver.isSinglePlayer() && this.minecraftserver.worlds[0].P().v() && this.minecraftserver.R().equalsIgnoreCase(var1.getName()) || this.t;
 	}
 
 	public EntityPlayer a(String var1) {

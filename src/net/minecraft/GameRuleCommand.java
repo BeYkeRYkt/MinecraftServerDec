@@ -50,7 +50,7 @@ public class GameRuleCommand extends AbstractCommand {
 	public static void a(aqq var0, String var1) {
 		if ("reducedDebugInfo".equals(var1)) {
 			int var2 = var0.b(var1) ? 22 : 23;
-			Iterator var3 = MinecraftServer.getInstance().an().players.iterator();
+			Iterator var3 = MinecraftServer.getInstance().getPlayerList().players.iterator();
 
 			while (var3.hasNext()) {
 				EntityPlayer var4 = (EntityPlayer) var3.next();

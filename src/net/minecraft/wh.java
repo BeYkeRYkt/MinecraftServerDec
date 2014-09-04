@@ -163,7 +163,7 @@ public class wh {
 
 	public boolean u() {
 		Entity var1 = this.j();
-		return var1 instanceof ahd && ((ahd) var1).by.d;
+		return var1 instanceof ahd && ((ahd) var1).by.instabuild;
 	}
 
 }

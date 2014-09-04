@@ -11,7 +11,7 @@ public class ajz extends alq {
 	}
 
 	public void a(amj var1, World var2, ahd var3, int var4) {
-		boolean var5 = var3.by.d || aph.a(apf.y.B, var1) > 0;
+		boolean var5 = var3.by.instabuild || aph.a(apf.y.B, var1) > 0;
 		if (var5 || var3.bg.b(amk.g)) {
 			int var6 = this.d(var1) - var4;
 			float var7 = (float) var6 / 20.0F;
@@ -72,7 +72,7 @@ public class ajz extends alq {
 	}
 
 	public amj a(amj var1, World var2, ahd var3) {
-		if (var3.by.d || var3.bg.b(amk.g)) {
+		if (var3.by.instabuild || var3.bg.b(amk.g)) {
 			var3.a(var1, this.d(var1));
 		}
 

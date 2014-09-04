@@ -47,7 +47,7 @@ public class awd extends atg {
 					var10.a(var9.b(), var9.i());
 					var10.o_();
 					var1.h(var2);
-					if (!var4.by.d && --var9.b <= 0) {
+					if (!var4.by.instabuild && --var9.b <= 0) {
 						var4.bg.a(var4.bg.c, (amj) null);
 					}
 
@@ -91,7 +91,7 @@ public class awd extends atg {
 
 	public void a(World var1, dt var2, bec var3, ahd var4) {
 		super.a(var1, var2, var3, var4);
-		if (var4.by.d) {
+		if (var4.by.instabuild) {
 			bdb var5 = this.d(var1, var2);
 			if (var5 != null) {
 				var5.a((alq) null, 0);

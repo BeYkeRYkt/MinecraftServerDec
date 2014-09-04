@@ -22,7 +22,7 @@ public class pk extends bsd {
 	public void a(bsa var1) {
 		super.a(var1);
 		if (this.b.contains(var1.d())) {
-			this.a.an().a((id) (new lf(var1)));
+			this.a.getPlayerList().a((id) (new lf(var1)));
 		}
 
 		this.b();
@@ -30,13 +30,13 @@ public class pk extends bsd {
 
 	public void a(String var1) {
 		super.a(var1);
-		this.a.an().a((id) (new lf(var1)));
+		this.a.getPlayerList().a((id) (new lf(var1)));
 		this.b();
 	}
 
 	public void a(String var1, bry var2) {
 		super.a(var1, var2);
-		this.a.an().a((id) (new lf(var1, var2)));
+		this.a.getPlayerList().a((id) (new lf(var1, var2)));
 		this.b();
 	}
 
@@ -45,7 +45,7 @@ public class pk extends bsd {
 		super.a(var1, var2);
 		if (var3 != var2 && var3 != null) {
 			if (this.h(var3) > 0) {
-				this.a.an().a((id) (new kw(var1, var2)));
+				this.a.getPlayerList().a((id) (new kw(var1, var2)));
 			} else {
 				this.g(var3);
 			}
@@ -53,7 +53,7 @@ public class pk extends bsd {
 
 		if (var2 != null) {
 			if (this.b.contains(var2)) {
-				this.a.an().a((id) (new kw(var1, var2)));
+				this.a.getPlayerList().a((id) (new kw(var1, var2)));
 			} else {
 				this.e(var2);
 			}
@@ -65,7 +65,7 @@ public class pk extends bsd {
 	public boolean a(String var1, String var2) {
 		if (super.a(var1, var2)) {
 			brz var3 = this.d(var2);
-			this.a.an().a((id) (new le(var3, Arrays.asList(new String[] { var1 }), 3)));
+			this.a.getPlayerList().a((id) (new le(var3, Arrays.asList(new String[] { var1 }), 3)));
 			this.b();
 			return true;
 		} else {
@@ -75,7 +75,7 @@ public class pk extends bsd {
 
 	public void a(String var1, brz var2) {
 		super.a(var1, var2);
-		this.a.an().a((id) (new le(var2, Arrays.asList(new String[] { var1 }), 4)));
+		this.a.getPlayerList().a((id) (new le(var2, Arrays.asList(new String[] { var1 }), 4)));
 		this.b();
 	}
 
@@ -87,7 +87,7 @@ public class pk extends bsd {
 	public void b(bry var1) {
 		super.b(var1);
 		if (this.b.contains(var1)) {
-			this.a.an().a((id) (new ld(var1, 2)));
+			this.a.getPlayerList().a((id) (new ld(var1, 2)));
 		}
 
 		this.b();
@@ -104,19 +104,19 @@ public class pk extends bsd {
 
 	public void a(brz var1) {
 		super.a(var1);
-		this.a.an().a((id) (new le(var1, 0)));
+		this.a.getPlayerList().a((id) (new le(var1, 0)));
 		this.b();
 	}
 
 	public void b(brz var1) {
 		super.b(var1);
-		this.a.an().a((id) (new le(var1, 2)));
+		this.a.getPlayerList().a((id) (new le(var1, 2)));
 		this.b();
 	}
 
 	public void c(brz var1) {
 		super.c(var1);
-		this.a.an().a((id) (new le(var1, 1)));
+		this.a.getPlayerList().a((id) (new le(var1, 1)));
 		this.b();
 	}
 
@@ -153,7 +153,7 @@ public class pk extends bsd {
 
 	public void e(bry var1) {
 		List var2 = this.d(var1);
-		Iterator var3 = this.a.an().players.iterator();
+		Iterator var3 = this.a.getPlayerList().players.iterator();
 
 		while (var3.hasNext()) {
 			EntityPlayer var4 = (EntityPlayer) var3.next();
@@ -183,7 +183,7 @@ public class pk extends bsd {
 
 	public void g(bry var1) {
 		List var2 = this.f(var1);
-		Iterator var3 = this.a.an().players.iterator();
+		Iterator var3 = this.a.getPlayerList().players.iterator();
 
 		while (var3.hasNext()) {
 			EntityPlayer var4 = (EntityPlayer) var3.next();

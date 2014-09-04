@@ -45,7 +45,7 @@ public abstract class aaw extends zb {
 						}
 					}
 
-					return !(var1 instanceof ahd) || !((ahd) var1).by.a;
+					return !(var1 instanceof ahd) || !((ahd) var1).by.invulnerable;
 				}
 			}
 		}
@@ -89,7 +89,7 @@ public abstract class aaw extends zb {
 					if (var1 == ((xt) var0).l_()) {
 						return false;
 					}
-				} else if (var1 instanceof ahd && !var2 && ((ahd) var1).by.a) {
+				} else if (var1 instanceof ahd && !var2 && ((ahd) var1).by.invulnerable) {
 					return false;
 				}
 

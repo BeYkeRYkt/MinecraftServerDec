@@ -25,11 +25,11 @@ public class qp implements ara {
 	}
 
 	public void a(String var1, double var2, double var4, double var6, float var8, float var9) {
-		this.a.an().a(var2, var4, var6, var8 > 1.0F ? (double) (16.0F * var8) : 16.0D, this.b.t.q(), new jv(var1, var2, var4, var6, var8, var9));
+		this.a.getPlayerList().a(var2, var4, var6, var8 > 1.0F ? (double) (16.0F * var8) : 16.0D, this.b.t.q(), new jv(var1, var2, var4, var6, var8, var9));
 	}
 
 	public void a(ahd var1, String var2, double var3, double var5, double var7, float var9, float var10) {
-		this.a.an().a(var1, var3, var5, var7, var9 > 1.0F ? (double) (16.0F * var9) : 16.0D, this.b.t.q(), new jv(var2, var3, var5, var7, var9, var10));
+		this.a.getPlayerList().a(var1, var3, var5, var7, var9 > 1.0F ? (double) (16.0F * var9) : 16.0D, this.b.t.q(), new jv(var2, var3, var5, var7, var9, var10));
 	}
 
 	public void a(int var1, int var2, int var3, int var4, int var5, int var6) {
@@ -46,15 +46,15 @@ public class qp implements ara {
 	}
 
 	public void a(ahd var1, int var2, dt var3, int var4) {
-		this.a.an().a(var1, (double) var3.n(), (double) var3.o(), (double) var3.p(), 64.0D, this.b.t.q(), new jt(var2, var3, var4, false));
+		this.a.getPlayerList().a(var1, (double) var3.n(), (double) var3.o(), (double) var3.p(), 64.0D, this.b.t.q(), new jt(var2, var3, var4, false));
 	}
 
 	public void a(int var1, dt var2, int var3) {
-		this.a.an().a((id) (new jt(var1, var2, var3, true)));
+		this.a.getPlayerList().a((id) (new jt(var1, var2, var3, true)));
 	}
 
 	public void b(int var1, dt var2, int var3) {
-		Iterator var4 = this.a.an().players.iterator();
+		Iterator var4 = this.a.getPlayerList().players.iterator();
 
 		while (var4.hasNext()) {
 			EntityPlayer var5 = (EntityPlayer) var4.next();

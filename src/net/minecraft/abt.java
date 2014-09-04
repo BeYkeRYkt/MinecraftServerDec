@@ -596,7 +596,7 @@ public class abt extends abq implements vr {
 				}
 
 				if (var3) {
-					if (!var1.by.d && --var2.b == 0) {
+					if (!var1.by.instabuild && --var2.b == 0) {
 						var1.bg.a(var1.bg.c, (amj) null);
 					}
 

@@ -160,7 +160,7 @@ public class atp extends avb {
 	}
 
 	public void a(World var1, dt var2, bec var3, ahd var4) {
-		if (var4.by.d && var3.b(a) == atq.a) {
+		if (var4.by.instabuild && var3.b(a) == atq.a) {
 			dt var5 = var2.a(((ej) var3.b(N)).d());
 			if (var1.p(var5).c() == this) {
 				var1.g(var5);

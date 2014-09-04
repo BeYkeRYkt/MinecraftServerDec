@@ -15,7 +15,7 @@ class wc extends TimerTask {
 	}
 
 	public void run() {
-		if (Snooper.a(this.a).ac()) {
+		if (Snooper.a(this.a).isSnooperEnabled()) {
 			HashMap var1;
 			synchronized (Snooper.b(this.a)) {
 				var1 = Maps.newHashMap(Snooper.c(this.a));

@@ -18,8 +18,8 @@ public class qc extends JList implements pm {
 		if (this.b++ % 20 == 0) {
 			Vector var1 = new Vector();
 
-			for (int var2 = 0; var2 < this.a.an().players.size(); ++var2) {
-				var1.add(((EntityPlayer) this.a.an().players.get(var2)).d_());
+			for (int var2 = 0; var2 < this.a.getPlayerList().players.size(); ++var2) {
+				var1.add(((EntityPlayer) this.a.getPlayerList().players.get(var2)).d_());
 			}
 
 			this.setListData(var1);

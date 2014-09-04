@@ -36,7 +36,7 @@ public class ClearCommand extends AbstractCommand {
 		} else {
 			int var8 = var3.bg.a(var4, var5, var6, var7);
 			var3.bh.b();
-			if (!var3.by.d) {
+			if (!var3.by.instabuild) {
 				var3.o();
 			}
 

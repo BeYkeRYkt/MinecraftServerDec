@@ -19,7 +19,7 @@ public class ale extends alq {
 					var3.a(var4, aty.ab.P());
 				}
 
-				if (!var2.by.d) {
+				if (!var2.by.instabuild) {
 					--var1.b;
 				}
 

@@ -1,12 +1,10 @@
 package net.minecraft;
 
-import com.google.common.collect.Lists;
-
 import java.io.File;
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Proxy;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -20,108 +18,108 @@ import org.apache.logging.log4j.Logger;
 
 public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 
-	private static final Logger j = LogManager.getLogger();
-	private final List k = Collections.synchronizedList(Lists.newArrayList());
-	private tf l;
-	private ti m;
-	private pl n;
-	private pb o;
-	private boolean p;
-	private arc q;
-	private boolean r;
+	private static final Logger logger = LogManager.getLogger();
+	private final List<PendingServerCommand> pendingCommands = Collections.synchronizedList(new ArrayList<PendingServerCommand>());
+	private QueryListener query;
+	private RconListener rcon;
+	private ServerProperties serverProperties;
+	private EulaAgreementChecker tehDramaDocument;
+	private GameMode serverGameMode;
+	private boolean generateStructures;
+	private boolean guiEnabled;
 
 	public DedicatedMinecraftServer(File var1) {
 		super(var1, Proxy.NO_PROXY, usercache);
-		new pp(this, "Server Infinisleeper");
+		new ServerInfiSleeper(this, "Server Infinisleeper");
 	}
 
-	protected boolean i() throws UnknownHostException {
-		pq var1 = new pq(this, "Server console handler");
-		var1.setDaemon(true);
-		var1.start();
-		j.info("Starting minecraft server version 1.8");
+	protected boolean startServer() throws UnknownHostException {
+		ServerConsoleReader reader = new ServerConsoleReader(this, "Server console handler");
+		reader.setDaemon(true);
+		reader.start();
+		logger.info("Starting minecraft server version 1.8");
 		if (Runtime.getRuntime().maxMemory() / 1024L / 1024L < 512L) {
-			j.warn("To start the server with more ram, launch it as \"java -Xmx1024M -Xms1024M -jar minecraft_server.jar\"");
+			logger.warn("To start the server with more ram, launch it as \"java -Xmx1024M -Xms1024M -jar minecraft_server.jar\"");
 		}
 
-		j.info("Loading properties");
-		this.n = new pl(new File("server.properties"));
-		this.o = new pb(new File("eula.txt"));
-		if (!this.o.a()) {
-			j.info("You need to agree to the EULA in order to run the server. Go to eula.txt for more info.");
-			this.o.b();
+		logger.info("Loading properties");
+		this.serverProperties = new ServerProperties(new File("server.properties"));
+		this.tehDramaDocument = new EulaAgreementChecker(new File("eula.txt"));
+		if (!this.tehDramaDocument.isAgreed()) {
+			logger.info("You need to agree to the EULA in order to run the server. Go to eula.txt for more info.");
+			this.tehDramaDocument.write();
 			return false;
 		} else {
-			if (this.S()) {
+			if (this.isSinglePlayer()) {
 				this.setIp("127.0.0.1");
 			} else {
-				this.setOnlineMode(this.n.a("online-mode", true));
-				this.setIp(this.n.a("server-ip", ""));
+				this.setOnlineMode(this.serverProperties.getBoolean("online-mode", true));
+				this.setIp(this.serverProperties.getString("server-ip", ""));
 			}
 
-			this.setAnimalSpawnEnabled(this.n.a("spawn-animals", true));
-			this.setNPCSpawnEnabled(this.n.a("spawn-npcs", true));
-			this.setPVP(this.n.a("pvp", true));
-			this.setAllowFlight(this.n.a("allow-flight", false));
-			this.a_(this.n.a("resource-pack", ""), this.n.a("resource-pack-hash", ""));
-			this.m(this.n.a("motd", "A Minecraft Server"));
-			this.i(this.n.a("force-gamemode", false));
-			this.d(this.n.a("player-idle-timeout", 0));
-			if (this.n.a("difficulty", 1) < 0) {
-				this.n.a("difficulty", (Object) Integer.valueOf(0));
-			} else if (this.n.a("difficulty", 1) > 3) {
-				this.n.a("difficulty", (Object) Integer.valueOf(3));
+			this.setAnimalSpawnEnabled(this.serverProperties.getBoolean("spawn-animals", true));
+			this.setNPCSpawnEnabled(this.serverProperties.getBoolean("spawn-npcs", true));
+			this.setPVP(this.serverProperties.getBoolean("pvp", true));
+			this.setAllowFlight(this.serverProperties.getBoolean("allow-flight", false));
+			this.setResourcePack(this.serverProperties.getString("resource-pack", ""), this.serverProperties.getString("resource-pack-hash", ""));
+			this.setMotd(this.serverProperties.getString("motd", "A Minecraft Server"));
+			this.setForceGameModeEnabled(this.serverProperties.getBoolean("force-gamemode", false));
+			this.setIdleTimeout(this.serverProperties.getInt("player-idle-timeout", 0));
+			if (this.serverProperties.getInt("difficulty", 1) < 0) {
+				this.serverProperties.setProperty("difficulty", Integer.valueOf(0));
+			} else if (this.serverProperties.getInt("difficulty", 1) > 3) {
+				this.serverProperties.setProperty("difficulty", Integer.valueOf(3));
 			}
 
-			this.p = this.n.a("generate-structures", true);
-			int var2 = this.n.a("gamemode", arc.b.a());
-			this.q = arb.a(var2);
-			j.info("Default game type: " + this.q);
-			InetAddress var3 = null;
+			this.generateStructures = this.serverProperties.getBoolean("generate-structures", true);
+			int var2 = this.serverProperties.getInt("gamemode", GameMode.SURVIVAL.getId());
+			this.serverGameMode = arb.a(var2);
+			logger.info("Default game type: " + this.serverGameMode);
+			InetAddress address = null;
 			if (this.getIp().length() > 0) {
-				var3 = InetAddress.getByName(this.getIp());
+				address = InetAddress.getByName(this.getIp());
 			}
 
-			if (this.Q() < 0) {
-				this.b(this.n.a("server-port", 25565));
+			if (this.getPort() < 0) {
+				this.setPort(this.serverProperties.getInt("server-port", 25565));
 			}
 
-			j.info("Generating keypair");
+			logger.info("Generating keypair");
 			this.a(ug.b());
-			j.info("Starting Minecraft server on " + (this.getIp().length() == 0 ? "*" : this.getIp()) + ":" + this.Q());
+			logger.info("Starting Minecraft server on " + (this.getIp().length() == 0 ? "*" : this.getIp()) + ":" + this.getPort());
 
 			try {
-				this.ao().a(var3, this.Q());
+				this.ao().a(address, this.getPort());
 			} catch (Exception var17) {
-				j.warn("**** FAILED TO BIND TO PORT!");
-				j.warn("The exception was: {}", new Object[] { var17.toString() });
-				j.warn("Perhaps a server is already running on that port?");
+				logger.warn("**** FAILED TO BIND TO PORT!");
+				logger.warn("The exception was: {}", new Object[] { var17.toString() });
+				logger.warn("Perhaps a server is already running on that port?");
 				return false;
 			}
 
 			if (!this.isOnlineMode()) {
-				j.warn("**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!");
-				j.warn("The server will make no attempt to authenticate usernames. Beware.");
-				j.warn("While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.");
-				j.warn("To change this, set \"online-mode\" to \"true\" in the server.properties file.");
+				logger.warn("**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!");
+				logger.warn("The server will make no attempt to authenticate usernames. Beware.");
+				logger.warn("While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.");
+				logger.warn("To change this, set \"online-mode\" to \"true\" in the server.properties file.");
 			}
 
 			if (this.aP()) {
 				this.aD().c();
 			}
 
-			if (!sf.a(this.n)) {
+			if (!sf.a(this.serverProperties)) {
 				return false;
 			} else {
-				this.a((PlayerList) (new pn(this)));
+				this.a((PlayerList) (new DedicatedPlayerList(this)));
 				long var4 = System.nanoTime();
 				if (this.T() == null) {
-					this.k(this.n.a("level-name", "world"));
+					this.k(this.serverProperties.getString("level-name", "world"));
 				}
 
-				String var6 = this.n.a("level-seed", "");
-				String var7 = this.n.a("level-type", "DEFAULT");
-				String var8 = this.n.a("generator-settings", "");
+				String var6 = this.serverProperties.getString("level-seed", "");
+				String var7 = this.serverProperties.getString("level-type", "DEFAULT");
+				String var8 = this.serverProperties.getString("generator-settings", "");
 				long var9 = (new Random()).nextLong();
 				if (var6.length() > 0) {
 					try {
@@ -140,29 +138,29 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 				}
 
 				this.az();
-				this.aj();
-				this.p();
-				this.ac();
+				this.isCommandBlockEnabled();
+				this.getOpPermissionLevel();
+				this.isSnooperEnabled();
 				this.aI();
-				this.c(this.n.a("max-build-height", 256));
+				this.c(this.serverProperties.getInt("max-build-height", 256));
 				this.c((this.al() + 8) / 16 * 16);
 				this.c(uv.a(this.al(), 64, 256));
-				this.n.a("max-build-height", (Object) Integer.valueOf(this.al()));
-				j.info("Preparing level \"" + this.T() + "\"");
+				this.serverProperties.setProperty("max-build-height", (Object) Integer.valueOf(this.al()));
+				logger.info("Preparing level \"" + this.T() + "\"");
 				this.a(this.T(), this.T(), var9, var18, var8);
 				long var12 = System.nanoTime() - var4;
 				String var14 = String.format("%.3fs", new Object[] { Double.valueOf((double) var12 / 1.0E9D) });
-				j.info("Done (" + var14 + ")! For help, type \"help\" or \"?\"");
-				if (this.n.a("enable-query", false)) {
-					j.info("Starting GS4 status listener");
-					this.l = new tf(this);
-					this.l.a();
+				logger.info("Done (" + var14 + ")! For help, type \"help\" or \"?\"");
+				if (this.serverProperties.getBoolean("enable-query", false)) {
+					logger.info("Starting GS4 status listener");
+					this.query = new QueryListener(this);
+					this.query.a();
 				}
 
-				if (this.n.a("enable-rcon", false)) {
-					j.info("Starting remote control listener");
-					this.m = new ti(this);
-					this.m.a();
+				if (this.serverProperties.getBoolean("enable-rcon", false)) {
+					logger.info("Starting remote control listener");
+					this.rcon = new RconListener(this);
+					this.rcon.a();
 				}
 
 				if (this.aQ() > 0L) {
@@ -177,30 +175,30 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		}
 	}
 
-	public void a(arc var1) {
-		super.a(var1);
-		this.q = var1;
+	public void setServerGameMode(GameMode mode) {
+		super.setServerGameMode(mode);
+		this.serverGameMode = mode;
 	}
 
-	public boolean l() {
-		return this.p;
+	public boolean isStructureGenerationEnabled() {
+		return this.generateStructures;
 	}
 
-	public arc m() {
-		return this.q;
+	public GameMode getServerGameMode() {
+		return this.serverGameMode;
 	}
 
-	public vt n() {
-		return vt.a(this.n.a("difficulty", 1));
+	public Difficulty getDifficulty() {
+		return Difficulty.clampAndGetById(this.serverProperties.getInt("difficulty", 1));
 	}
 
-	public boolean o() {
-		return this.n.a("hardcore", false);
+	public boolean isHardcore() {
+		return this.serverProperties.getBoolean("hardcore", false);
 	}
 
-	protected void a(CrashReport var1) {
+	protected void handleCommandsBecausePortBindingFailed(CrashReport var1) {
 		while (this.isTicking()) {
-			this.aM();
+			this.handlePendingCommands();
 
 			try {
 				Thread.sleep(10L);
@@ -213,26 +211,26 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 
 	public CrashReport b(CrashReport var1) {
 		var1 = super.b(var1);
-		var1.g().a("Is Modded", (Callable) (new pr(this)));
-		var1.g().a("Type", (Callable) (new ps(this)));
+		var1.g().a("Is Modded", (Callable<?>) (new pr(this)));
+		var1.g().a("Type", (Callable<?>) (new ps(this)));
 		return var1;
 	}
 
-	protected void x() {
+	protected void exit() {
 		System.exit(0);
 	}
 
 	public void z() {
 		super.z();
-		this.aM();
+		this.handlePendingCommands();
 	}
 
-	public boolean A() {
-		return this.n.a("allow-nether", true);
+	public boolean isNetherAllowed() {
+		return this.serverProperties.getBoolean("allow-nether", true);
 	}
 
-	public boolean V() {
-		return this.n.a("spawn-monsters", true);
+	public boolean isMonsterSpawnEnabled() {
+		return this.serverProperties.getBoolean("spawn-monsters", true);
 	}
 
 	public void a(Snooper var1) {
@@ -241,74 +239,74 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		super.a(var1);
 	}
 
-	public boolean ac() {
-		return this.n.a("snooper-enabled", true);
+	public boolean isSnooperEnabled() {
+		return this.serverProperties.getBoolean("snooper-enabled", true);
 	}
 
-	public void a(String var1, CommandSenderInterface var2) {
-		this.k.add(new oz(var1, var2));
+	public void addPendingCommand(String var1, CommandSenderInterface var2) {
+		this.pendingCommands.add(new PendingServerCommand(var1, var2));
 	}
 
-	public void aM() {
-		while (!this.k.isEmpty()) {
-			oz var1 = (oz) this.k.remove(0);
-			this.getCommandHandler().a(var1.b, var1.a);
+	public void handlePendingCommands() {
+		while (!this.pendingCommands.isEmpty()) {
+			PendingServerCommand var1 = (PendingServerCommand) this.pendingCommands.remove(0);
+			this.getCommandHandler().a(var1.sender, var1.command);
 		}
 
 	}
 
-	public boolean ad() {
+	public boolean isDedicated() {
 		return true;
 	}
 
-	public pn aN() {
-		return (pn) super.an();
+	public DedicatedPlayerList aN() {
+		return (DedicatedPlayerList) super.getPlayerList();
 	}
 
 	public int a(String var1, int var2) {
-		return this.n.a(var1, var2);
+		return this.serverProperties.getInt(var1, var2);
 	}
 
 	public String a(String var1, String var2) {
-		return this.n.a(var1, var2);
+		return this.serverProperties.getString(var1, var2);
 	}
 
 	public boolean a(String var1, boolean var2) {
-		return this.n.a(var1, var2);
+		return this.serverProperties.getBoolean(var1, var2);
 	}
 
 	public void a(String var1, Object var2) {
-		this.n.a(var1, var2);
+		this.serverProperties.setProperty(var1, var2);
 	}
 
-	public void a() {
-		this.n.b();
+	public void saveProperties() {
+		this.serverProperties.write();
 	}
 
 	public String b() {
-		File var1 = this.n.c();
+		File var1 = this.serverProperties.getFile();
 		return var1 != null ? var1.getAbsolutePath() : "No settings file";
 	}
 
-	public void aO() {
-		pw.a(this);
-		this.r = true;
+	public void enableGui() {
+		ServerGUI.oper(this);
+		this.guiEnabled = true;
 	}
 
-	public boolean aq() {
-		return this.r;
+	public boolean isGuiEnabled() {
+		return this.guiEnabled;
 	}
 
-	public String a(arc var1, boolean var2) {
+	public String a(GameMode var1, boolean var2) {
 		return "";
 	}
 
-	public boolean aj() {
-		return this.n.a("enable-command-block", false);
+	public boolean isCommandBlockEnabled() {
+		return this.serverProperties.getBoolean("enable-command-block", false);
 	}
 
-	public int au() {
-		return this.n.a("spawn-protection", super.au());
+	public int isSpawnProtectionEnabled() {
+		return this.serverProperties.getInt("spawn-protection", super.isSpawnProtectionEnabled());
 	}
 
 	public boolean a(World var1, dt var2, ahd var3) {
@@ -318,33 +316,33 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 			return false;
 		} else if (this.aN().g(var3.cc())) {
 			return false;
-		} else if (this.au() <= 0) {
+		} else if (this.isSpawnProtectionEnabled() <= 0) {
 			return false;
 		} else {
 			dt var4 = var1.M();
 			int var5 = uv.a(var2.n() - var4.n());
 			int var6 = uv.a(var2.p() - var4.p());
 			int var7 = Math.max(var5, var6);
-			return var7 <= this.au();
+			return var7 <= this.isSpawnProtectionEnabled();
 		}
 	}
 
-	public int p() {
-		return this.n.a("op-permission-level", 4);
+	public int getOpPermissionLevel() {
+		return this.serverProperties.getInt("op-permission-level", 4);
 	}
 
-	public void d(int var1) {
-		super.d(var1);
-		this.n.a("player-idle-timeout", (Object) Integer.valueOf(var1));
-		this.a();
+	public void setIdleTimeout(int var1) {
+		super.setIdleTimeout(var1);
+		this.serverProperties.setProperty("player-idle-timeout", (Object) Integer.valueOf(var1));
+		this.saveProperties();
 	}
 
 	public boolean az() {
-		return this.n.a("announce-player-achievements", true);
+		return this.serverProperties.getBoolean("announce-player-achievements", true);
 	}
 
 	public int aG() {
-		int var1 = this.n.a("max-world-size", super.aG());
+		int var1 = this.serverProperties.getInt("max-world-size", super.aG());
 		if (var1 < 1) {
 			var1 = 1;
 		} else if (var1 > super.aG()) {
@@ -355,7 +353,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 	}
 
 	public int aI() {
-		return this.n.a("network-compression-threshold", super.aI());
+		return this.serverProperties.getInt("network-compression-threshold", super.aI());
 	}
 
 	protected boolean aP() {
@@ -364,7 +362,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		int var1;
 		for (var1 = 0; !var2 && var1 <= 2; ++var1) {
 			if (var1 > 0) {
-				j.warn("Encountered a problem while converting the user banlist, retrying in a few seconds");
+				logger.warn("Encountered a problem while converting the user banlist, retrying in a few seconds");
 				this.aS();
 			}
 
@@ -375,7 +373,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 
 		for (var1 = 0; !var3 && var1 <= 2; ++var1) {
 			if (var1 > 0) {
-				j.warn("Encountered a problem while converting the ip banlist, retrying in a few seconds");
+				logger.warn("Encountered a problem while converting the ip banlist, retrying in a few seconds");
 				this.aS();
 			}
 
@@ -386,7 +384,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 
 		for (var1 = 0; !var4 && var1 <= 2; ++var1) {
 			if (var1 > 0) {
-				j.warn("Encountered a problem while converting the op list, retrying in a few seconds");
+				logger.warn("Encountered a problem while converting the op list, retrying in a few seconds");
 				this.aS();
 			}
 
@@ -397,7 +395,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 
 		for (var1 = 0; !var5 && var1 <= 2; ++var1) {
 			if (var1 > 0) {
-				j.warn("Encountered a problem while converting the whitelist, retrying in a few seconds");
+				logger.warn("Encountered a problem while converting the whitelist, retrying in a few seconds");
 				this.aS();
 			}
 
@@ -408,11 +406,11 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 
 		for (var1 = 0; !var6 && var1 <= 2; ++var1) {
 			if (var1 > 0) {
-				j.warn("Encountered a problem while converting the player save files, retrying in a few seconds");
+				logger.warn("Encountered a problem while converting the player save files, retrying in a few seconds");
 				this.aS();
 			}
 
-			var6 = sf.a(this, this.n);
+			var6 = sf.a(this, this.serverProperties);
 		}
 
 		return var2 || var3 || var4 || var5 || var6;
@@ -427,17 +425,17 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 	}
 
 	public long aQ() {
-		return this.n.a("max-tick-time", TimeUnit.MINUTES.toMillis(1L));
+		return this.serverProperties.getLong("max-tick-time", TimeUnit.MINUTES.toMillis(1L));
 	}
 
 	// $FF: synthetic method
-	public PlayerList an() {
+	public PlayerList getPlayerList() {
 		return this.aN();
 	}
 
 	// $FF: synthetic method
 	static Logger aR() {
-		return j;
+		return logger;
 	}
 
 }

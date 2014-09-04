@@ -2,13 +2,13 @@ package net.minecraft;
 
 public class ix implements id<ik> {
 
-	private vt a;
+	private Difficulty a;
 	private boolean b;
 
 	public ix() {
 	}
 
-	public ix(vt var1, boolean var2) {
+	public ix(Difficulty var1, boolean var2) {
 		this.a = var1;
 		this.b = var2;
 	}
@@ -18,10 +18,10 @@ public class ix implements id<ik> {
 	}
 
 	public void a(hd var1) {
-		this.a = vt.a(var1.readUnsignedByte());
+		this.a = Difficulty.clampAndGetById(var1.readUnsignedByte());
 	}
 
 	public void b(hd var1) {
-		var1.writeByte(this.a.a());
+		var1.writeByte(this.a.getId());
 	}
 }

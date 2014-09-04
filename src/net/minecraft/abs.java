@@ -68,7 +68,7 @@ public class abs extends abq {
 
 	public boolean a(ahd var1) {
 		amj var2 = var1.bg.h();
-		if (var2 != null && var2.b() == amk.aw && !var1.by.d) {
+		if (var2 != null && var2.b() == amk.aw && !var1.by.instabuild) {
 			if (var2.b-- == 1) {
 				var1.bg.a(var1.bg.c, new amj(amk.aG));
 			} else if (!var1.bg.a(new amj(amk.aG))) {

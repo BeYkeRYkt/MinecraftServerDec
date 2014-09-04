@@ -26,7 +26,7 @@ public class afa extends xl implements aex {
 
 	public void s_() {
 		super.s_();
-		if (!this.o.D && this.o.aa() == vt.a) {
+		if (!this.o.D && this.o.aa() == Difficulty.PEACEFUL) {
 			this.J();
 		}
 
@@ -92,7 +92,7 @@ public class afa extends xl implements aex {
 	}
 
 	public boolean bQ() {
-		return this.V.nextInt(20) == 0 && super.bQ() && this.o.aa() != vt.a;
+		return this.V.nextInt(20) == 0 && super.bQ() && this.o.aa() != Difficulty.PEACEFUL;
 	}
 
 	public int bU() {

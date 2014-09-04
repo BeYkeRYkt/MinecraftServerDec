@@ -50,7 +50,7 @@ public class akb extends alq {
 						return var1;
 					}
 
-					if (this.a(var2, var9) && !var3.by.d) {
+					if (this.a(var2, var9) && !var3.by.instabuild) {
 						var3.b(ty.J[alq.b((alq) this)]);
 						return new amj(amk.aw);
 					}
@@ -62,7 +62,7 @@ public class akb extends alq {
 	}
 
 	private amj a(amj var1, ahd var2, alq var3) {
-		if (var2.by.d) {
+		if (var2.by.instabuild) {
 			return var1;
 		} else if (--var1.b <= 0) {
 			return new amj(var3);

@@ -21,7 +21,7 @@ public class SetIdleCommand extends AbstractCommand {
 			throw new dp("commands.setidletimeout.usage", new Object[0]);
 		} else {
 			int var3 = a(var2[0], 0);
-			MinecraftServer.getInstance().d(var3);
+			MinecraftServer.getInstance().setIdleTimeout(var3);
 			a(var1, this, "commands.setidletimeout.success", new Object[] { Integer.valueOf(var3) });
 		}
 	}

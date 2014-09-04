@@ -89,7 +89,7 @@ public abstract class adx extends Entity implements vz {
 				this.j(10);
 				this.ac();
 				this.a(this.p() + var2 * 10.0F);
-				boolean var3 = var1.j() instanceof ahd && ((ahd) var1.j()).by.d;
+				boolean var3 = var1.j() instanceof ahd && ((ahd) var1.j()).by.instabuild;
 				if (var3 || this.p() > 40.0F) {
 					if (this.l != null) {
 						this.l.a((Entity) null);
@@ -146,7 +146,7 @@ public abstract class adx extends Entity implements vz {
 			MinecraftServer var1 = ((WorldServer) this.o).r();
 			var2 = this.L();
 			if (this.ak) {
-				if (var1.A()) {
+				if (var1.isNetherAllowed()) {
 					if (this.m == null && this.al++ >= var2) {
 						this.al = var2;
 						this.aj = this.ar();

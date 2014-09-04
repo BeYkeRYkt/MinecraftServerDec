@@ -21,7 +21,7 @@ public class qq {
 
 	public qq(WorldServer var1) {
 		this.b = var1;
-		this.a(var1.r().an().t());
+		this.a(var1.r().getPlayerList().t());
 	}
 
 	public WorldServer a() {

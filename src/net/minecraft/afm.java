@@ -21,7 +21,7 @@ public abstract class afm extends EntityCreature implements aex {
 
 	public void s_() {
 		super.s_();
-		if (!this.o.D && this.o.aa() == vt.a) {
+		if (!this.o.D && this.o.aa() == Difficulty.PEACEFUL) {
 			this.J();
 		}
 
@@ -107,7 +107,7 @@ public abstract class afm extends EntityCreature implements aex {
 	}
 
 	public boolean bQ() {
-		return this.o.aa() != vt.a && this.m_() && super.bQ();
+		return this.o.aa() != Difficulty.PEACEFUL && this.m_() && super.bQ();
 	}
 
 	protected void aW() {

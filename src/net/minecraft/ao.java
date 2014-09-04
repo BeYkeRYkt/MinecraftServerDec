@@ -16,7 +16,7 @@ final class ao implements Predicate {
 			return false;
 		} else {
 			EntityPlayer var2 = (EntityPlayer) var1;
-			return var2.c.b().a() == this.a;
+			return var2.c.b().getId() == this.a;
 		}
 	}
 

@@ -110,7 +110,7 @@ public class alb extends alq {
 					var2.d((Entity) var6);
 					var2.a((Entity) var3, "random.bow", 0.5F, 0.4F / (g.nextFloat() * 0.4F + 0.8F));
 					var2.a((ahd) null, 1002, new dt(var3), 0);
-					if (!var3.by.d) {
+					if (!var3.by.instabuild) {
 						--var1.b;
 					}
 

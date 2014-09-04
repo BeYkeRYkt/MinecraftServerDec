@@ -17,18 +17,18 @@ public class DefaultGameModeCommand extends GameModeCommand {
 		if (var2.length <= 0) {
 			throw new dp("commands.defaultgamemode.usage", new Object[0]);
 		} else {
-			arc var3 = this.h(var1, var2[0]);
+			GameMode var3 = this.h(var1, var2[0]);
 			this.a(var3);
-			a(var1, this, "commands.defaultgamemode.success", new Object[] { new hz("gameMode." + var3.b(), new Object[0]) });
+			a(var1, this, "commands.defaultgamemode.success", new Object[] { new hz("gameMode." + var3.getName(), new Object[0]) });
 		}
 	}
 
-	protected void a(arc var1) {
+	protected void a(GameMode var1) {
 		MinecraftServer var2 = MinecraftServer.getInstance();
-		var2.a(var1);
+		var2.setServerGameMode(var1);
 		EntityPlayer var4;
 		if (var2.av()) {
-			for (Iterator var3 = MinecraftServer.getInstance().an().players.iterator(); var3.hasNext(); var4.O = 0.0F) {
+			for (Iterator var3 = MinecraftServer.getInstance().getPlayerList().players.iterator(); var3.hasNext(); var4.O = 0.0F) {
 				var4 = (EntityPlayer) var3.next();
 				var4.a(var1);
 			}

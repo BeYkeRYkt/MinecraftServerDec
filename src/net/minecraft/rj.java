@@ -132,7 +132,7 @@ public class rj implements ls, pm {
 						this.b.m.al();
 					}
 
-					this.d.an().d(this.b);
+					this.d.getPlayerList().d(this.b);
 					if (this.b.m != null) {
 						if (var9 > 4.0D) {
 							Entity var48 = this.b.m;
@@ -201,7 +201,7 @@ public class rj implements ls, pm {
 				double var35 = Math.min(Math.abs(var29), Math.abs(this.b.w));
 				double var37 = Math.min(Math.abs(var31), Math.abs(this.b.x));
 				double var39 = var33 * var33 + var35 * var35 + var37 * var37;
-				if (var39 > 100.0D && (!this.d.S() || !this.d.R().equals(this.b.d_()))) {
+				if (var39 > 100.0D && (!this.d.isSinglePlayer() || !this.d.R().equals(this.b.d_()))) {
 					c.warn(this.b.d_() + " moved too quickly! " + var27 + "," + var29 + "," + var31 + " (" + var33 + ", " + var35 + ", " + var37 + ")");
 					this.a(this.o, this.p, this.q, this.b.y, this.b.z);
 					return;
@@ -241,7 +241,7 @@ public class rj implements ls, pm {
 				}
 
 				brt var49 = this.b.aQ().b((double) var41, (double) var41, (double) var41).a(0.0D, -0.55D, 0.0D);
-				if (!this.d.isFlightAllowed() && !this.b.by.c && !var2.c(var49)) {
+				if (!this.d.isFlightAllowed() && !this.b.by.mayfly && !var2.c(var49)) {
 					if (var43 >= -0.03125D) {
 						++this.g;
 						if (this.g > 80) {
@@ -255,7 +255,7 @@ public class rj implements ls, pm {
 				}
 
 				this.b.C = var1.f();
-				this.d.an().d(this.b);
+				this.d.getPlayerList().d(this.b);
 				this.b.a(this.b.t - var17, var1.f());
 			} else if (this.e - this.f > 20) {
 				this.a(this.o, this.p, this.q, this.b.y, this.b.z);
@@ -443,11 +443,11 @@ public class rj implements ls, pm {
 					}
 
 					this.b.a((World) var8);
-					this.d.an().a(this.b, var7);
+					this.d.getPlayerList().a(this.b, var7);
 					this.b.a(var2.s, var2.t, var2.u);
 					this.b.c.a(var8);
-					this.d.an().b(this.b, var8);
-					this.d.an().f(this.b);
+					this.d.getPlayerList().b(this.b, var8);
+					this.d.getPlayerList().f(this.b);
 				} else {
 					this.b.a(var2.s, var2.t, var2.u);
 				}
@@ -464,10 +464,10 @@ public class rj implements ls, pm {
 		this.d.aF();
 		hz var2 = new hz("multiplayer.player.left", new Object[] { this.b.e_() });
 		var2.b().a(FormattingCode.o);
-		this.d.an().a((ho) var2);
+		this.d.getPlayerList().a((ho) var2);
 		this.b.q();
-		this.d.an().e(this.b);
-		if (this.d.S() && this.b.d_().equals(this.d.R())) {
+		this.d.getPlayerList().e(this.b);
+		if (this.d.isSinglePlayer() && this.b.d_().equals(this.d.R())) {
 			c.info("Stopping singleplayer server as player logged out");
 			this.d.stopTicking();
 		}
@@ -529,11 +529,11 @@ public class rj implements ls, pm {
 				this.d(var2);
 			} else {
 				hz var5 = new hz("chat.type.text", new Object[] { this.b.e_(), var2 });
-				this.d.an().a(var5, false);
+				this.d.getPlayerList().a(var5, false);
 			}
 
 			this.l += 20;
-			if (this.l > 200 && !this.d.an().g(this.b.cc())) {
+			if (this.l > 200 && !this.d.getPlayerList().g(this.b.cc())) {
 				this.c("disconnect.spam");
 			}
 
@@ -624,14 +624,14 @@ public class rj implements ls, pm {
 		switch (rn.c[var2.ordinal()]) {
 			case 1:
 				if (this.b.i) {
-					this.b = this.d.an().a(this.b, 0, true);
+					this.b = this.d.getPlayerList().a(this.b, 0, true);
 				} else if (this.b.u().P().t()) {
-					if (this.d.S() && this.b.d_().equals(this.d.R())) {
+					if (this.d.isSinglePlayer() && this.b.d_().equals(this.d.R())) {
 						this.b.a.c("You have died. Game over, man, it\'s game over!");
 						this.d.Z();
 					} else {
 						sw var3 = new sw(this.b.cc(), (Date) null, "(You just lost the game)", (Date) null, "Death in Hardcore");
-						this.d.an().i().a((sr) var3);
+						this.d.getPlayerList().i().a((sr) var3);
 						this.b.a.c("You have died. Game over, man, it\'s game over!");
 					}
 				} else {
@@ -639,7 +639,7 @@ public class rj implements ls, pm {
 						return;
 					}
 
-					this.b = this.d.an().a(this.b, 0, false);
+					this.b = this.d.getPlayerList().a(this.b, 0, false);
 				}
 				break;
 			case 2:
@@ -793,7 +793,7 @@ public class rj implements ls, pm {
 
 	public void a(mk var1) {
 		ig.a(var1, this, this.b.u());
-		this.b.by.b = var1.b() && this.b.by.c;
+		this.b.by.flying = var1.b() && this.b.by.mayfly;
 	}
 
 	public void a(lt var1) {
@@ -891,9 +891,9 @@ public class rj implements ls, pm {
 				c.error("Couldn\'t select trade", (Throwable) var35);
 			}
 		} else if ("MC|AdvCdm".equals(var1.a())) {
-			if (!this.d.aj()) {
+			if (!this.d.isCommandBlockEnabled()) {
 				this.b.a((ho) (new hz("advMode.notEnabled", new Object[0])));
-			} else if (this.b.a(2, "") && this.b.by.d) {
+			} else if (this.b.a(2, "") && this.b.by.instabuild) {
 				var2 = var1.b();
 
 				try {

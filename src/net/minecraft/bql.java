@@ -68,7 +68,7 @@ public class bql extends bqo {
 		return this.b.q();
 	}
 
-	public arc r() {
+	public GameMode r() {
 		return this.b.r();
 	}
 
@@ -132,11 +132,11 @@ public class bql extends bqo {
 		return this.b.x();
 	}
 
-	public vt y() {
+	public Difficulty y() {
 		return this.b.y();
 	}
 
-	public void a(vt var1) {
+	public void a(Difficulty var1) {
 	}
 
 	public boolean z() {

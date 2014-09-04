@@ -46,9 +46,9 @@ public class ahw extends ahl {
 
 				if (var1.d instanceof EntityLiving) {
 					byte var2 = 0;
-					if (this.o.aa() == vt.c) {
+					if (this.o.aa() == Difficulty.NORMAL) {
 						var2 = 10;
-					} else if (this.o.aa() == vt.d) {
+					} else if (this.o.aa() == Difficulty.HARD) {
 						var2 = 40;
 					}
 

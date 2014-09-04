@@ -16,7 +16,7 @@ public class abx extends abs {
 				return true;
 			}
 
-			if (var1.bg.a(new amj(amk.A)) && !var1.by.d) {
+			if (var1.bg.a(new amj(amk.A)) && !var1.by.instabuild) {
 				var1.bg.a(var1.bg.c, 1);
 				return true;
 			}

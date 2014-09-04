@@ -145,7 +145,7 @@ public abstract class EntityLiving extends Entity {
 			this.N();
 		}
 
-		boolean var7 = var1 && ((ahd) this).by.a;
+		boolean var7 = var1 && ((ahd) this).by.invulnerable;
 		if (this.ai() && this.a(bof.h)) {
 			if (!this.aX() && !this.k(wp.o.H) && !var7) {
 				this.h(this.j(this.aA()));
@@ -1012,7 +1012,7 @@ public abstract class EntityLiving extends Entity {
 		if (this.bL()) {
 			float var5;
 			float var6;
-			if (this.V() && (!(this instanceof ahd) || !((ahd) this).by.b)) {
+			if (this.V() && (!(this instanceof ahd) || !((ahd) this).by.flying)) {
 				var8 = this.t;
 				var5 = 0.8F;
 				var6 = 0.02F;
@@ -1039,7 +1039,7 @@ public abstract class EntityLiving extends Entity {
 				if (this.D && this.c(this.v, this.w + 0.6000000238418579D - this.t + var8, this.x)) {
 					this.w = 0.30000001192092896D;
 				}
-			} else if (this.ab() && (!(this instanceof ahd) || !((ahd) this).by.b)) {
+			} else if (this.ab() && (!(this instanceof ahd) || !((ahd) this).by.flying)) {
 				var8 = this.t;
 				this.a(var1, var2, 0.02F);
 				this.d(this.v, this.w, this.x);

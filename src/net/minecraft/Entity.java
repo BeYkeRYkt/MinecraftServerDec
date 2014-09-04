@@ -184,7 +184,7 @@ public abstract class Entity implements CommandSenderInterface {
 			MinecraftServer var1 = ((WorldServer) this.o).r();
 			int var2 = this.L();
 			if (this.ak) {
-				if (var1.A()) {
+				if (var1.isNetherAllowed()) {
 					if (this.m == null && this.al++ >= var2) {
 						this.al = var2;
 						this.aj = this.ar();
@@ -1498,7 +1498,7 @@ public abstract class Entity implements CommandSenderInterface {
 			this.o.e(this);
 			this.I = false;
 			this.o.B.a("reposition");
-			var2.an().a(this, var3, var4, var5);
+			var2.getPlayerList().a(this, var3, var4, var5);
 			this.o.B.c("reloading");
 			Entity var6 = xb.a(xb.b(this), (World) var5);
 			if (var6 != null) {

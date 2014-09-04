@@ -3,7 +3,7 @@ package net.minecraft;
 public final class arb {
 
 	private final long a;
-	private final arc b;
+	private final GameMode b;
 	private final boolean c;
 	private final boolean d;
 	private final are e;
@@ -11,7 +11,7 @@ public final class arb {
 	private boolean g;
 	private String h;
 
-	public arb(long var1, arc var3, boolean var4, boolean var5, are var6) {
+	public arb(long var1, GameMode var3, boolean var4, boolean var5, are var6) {
 		this.h = "";
 		this.a = var1;
 		this.b = var3;
@@ -42,7 +42,7 @@ public final class arb {
 		return this.a;
 	}
 
-	public arc e() {
+	public GameMode e() {
 		return this.b;
 	}
 
@@ -62,8 +62,8 @@ public final class arb {
 		return this.f;
 	}
 
-	public static arc a(int var0) {
-		return arc.a(var0);
+	public static GameMode a(int var0) {
+		return GameMode.byId(var0);
 	}
 
 	public String j() {

@@ -31,7 +31,7 @@ public class anl extends alq {
 					var11.a(xb.b(var1.i()));
 					var10.o_();
 					var3.h(var4);
-					if (!var2.by.d) {
+					if (!var2.by.instabuild) {
 						--var1.b;
 					}
 
@@ -51,7 +51,7 @@ public class anl extends alq {
 					var12.a(var1.q());
 				}
 
-				if (!var2.by.d) {
+				if (!var2.by.instabuild) {
 					--var1.b;
 				}
 			}
@@ -85,7 +85,7 @@ public class anl extends alq {
 								((xn) var6).a(var1.q());
 							}
 
-							if (!var3.by.d) {
+							if (!var3.by.instabuild) {
 								--var1.b;
 							}
 

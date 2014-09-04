@@ -151,7 +151,7 @@ public class agj extends afm {
 				var3 = (EntityLiving) var1.j();
 			}
 
-			if (var3 != null && this.o.aa() == vt.d && (double) this.V.nextFloat() < this.a(b).e()) {
+			if (var3 != null && this.o.aa() == Difficulty.HARD && (double) this.V.nextFloat() < this.a(b).e()) {
 				int var4 = uv.c(this.s);
 				int var5 = uv.c(this.t);
 				int var6 = uv.c(this.u);
@@ -196,7 +196,7 @@ public class agj extends afm {
 	public boolean r(Entity var1) {
 		boolean var2 = super.r(var1);
 		if (var2) {
-			int var3 = this.o.aa().a();
+			int var3 = this.o.aa().getId();
 			if (this.bz() == null && this.au() && this.V.nextFloat() < (float) var3 * 0.3F) {
 				var1.e(2 * var3);
 			}
@@ -245,7 +245,7 @@ public class agj extends afm {
 
 	protected void a(vu var1) {
 		super.a(var1);
-		if (this.V.nextFloat() < (this.o.aa() == vt.d ? 0.05F : 0.01F)) {
+		if (this.V.nextFloat() < (this.o.aa() == Difficulty.HARD ? 0.05F : 0.01F)) {
 			int var2 = this.V.nextInt(3);
 			if (var2 == 0) {
 				this.c(0, new amj(amk.l));
@@ -289,8 +289,8 @@ public class agj extends afm {
 
 	public void a(EntityLiving var1) {
 		super.a(var1);
-		if ((this.o.aa() == vt.c || this.o.aa() == vt.d) && var1 instanceof agp) {
-			if (this.o.aa() != vt.d && this.V.nextBoolean()) {
+		if ((this.o.aa() == Difficulty.NORMAL || this.o.aa() == Difficulty.HARD) && var1 instanceof agp) {
+			if (this.o.aa() != Difficulty.HARD && this.V.nextBoolean()) {
 				return;
 			}
 
@@ -385,7 +385,7 @@ public class agj extends afm {
 	public boolean a(ahd var1) {
 		amj var2 = var1.bY();
 		if (var2 != null && var2.b() == amk.ao && var2.i() == 0 && this.cm() && this.a(wp.t)) {
-			if (!var1.by.d) {
+			if (!var1.by.instabuild) {
 				--var2.b;
 			}
 
@@ -407,7 +407,7 @@ public class agj extends afm {
 		this.bm = var1;
 		this.H().b(14, Byte.valueOf((byte) 1));
 		this.m(wp.t.H);
-		this.c(new wq(wp.g.H, var1, Math.min(this.o.aa().a() - 1, 0)));
+		this.c(new wq(wp.g.H, var1, Math.min(this.o.aa().getId() - 1, 0)));
 		this.o.a((Entity) this, (byte) 16);
 	}
 

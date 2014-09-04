@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import net.minecraft.server.MinecraftServer;
 
-public class tf extends te {
+public class QueryListener extends te {
 
 	private long h;
 	private int i;
@@ -35,7 +35,7 @@ public class tf extends te {
 	private ta v;
 	private long w;
 
-	public tf(pj var1) {
+	public QueryListener(pj var1) {
 		super(var1, "Query Listener");
 		this.i = var1.a("query.port", 0);
 		this.s = var1.C();
@@ -63,7 +63,7 @@ public class tf extends te {
 			this.b("Setting default query port to " + this.i);
 			var1.a("query.port", (Object) Integer.valueOf(this.i));
 			var1.a("debug", (Object) Boolean.valueOf(false));
-			var1.a();
+			var1.saveProperties();
 		}
 
 		this.q = Maps.newHashMap();

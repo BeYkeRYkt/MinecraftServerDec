@@ -8,7 +8,7 @@ public class alc extends alq {
 	}
 
 	public amj a(amj var1, World var2, ahd var3) {
-		if (var3.by.d) {
+		if (var3.by.instabuild) {
 			return var1;
 		} else {
 			--var1.b;

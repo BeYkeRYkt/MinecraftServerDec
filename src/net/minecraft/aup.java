@@ -92,7 +92,7 @@ public class aup extends ava implements avs {
 	}
 
 	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
-		if (!var4.by.e) {
+		if (!var4.by.maybuild) {
 			return false;
 		} else {
 			var3 = var3.a(b);

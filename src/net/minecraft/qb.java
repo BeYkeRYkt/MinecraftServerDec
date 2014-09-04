@@ -12,9 +12,9 @@ class qb implements Runnable {
 	// $FF: synthetic field
 	final String c;
 	// $FF: synthetic field
-	final pw d;
+	final ServerGUI d;
 
-	qb(pw var1, JTextArea var2, JScrollPane var3, String var4) {
+	qb(ServerGUI var1, JTextArea var2, JScrollPane var3, String var4) {
 		this.d = var1;
 		this.a = var2;
 		this.b = var3;

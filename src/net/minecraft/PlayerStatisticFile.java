@@ -67,14 +67,14 @@ public class PlayerStatisticFile extends tz {
 		if (var2.d() && var4 == 0 && var3 > 0) {
 			this.g = true;
 			if (this.minecraftserver.az()) {
-				this.minecraftserver.an().a((ho) (new hz("chat.type.achievement", new Object[] { var1.e_(), var2.j() })));
+				this.minecraftserver.getPlayerList().a((ho) (new hz("chat.type.achievement", new Object[] { var1.e_(), var2.j() })));
 			}
 		}
 
 		if (var2.d() && var4 > 0 && var3 == 0) {
 			this.g = true;
 			if (this.minecraftserver.az()) {
-				this.minecraftserver.an().a((ho) (new hz("chat.type.achievement.taken", new Object[] { var1.e_(), var2.j() })));
+				this.minecraftserver.getPlayerList().a((ho) (new hz("chat.type.achievement.taken", new Object[] { var1.e_(), var2.j() })));
 			}
 		}
 

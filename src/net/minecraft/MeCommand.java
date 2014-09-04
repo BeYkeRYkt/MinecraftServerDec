@@ -22,7 +22,7 @@ public class MeCommand extends AbstractCommand {
 			throw new dp("commands.me.usage", new Object[0]);
 		} else {
 			ho var3 = b(var1, var2, 0, !(var1 instanceof ahd));
-			MinecraftServer.getInstance().an().a((ho) (new hz("chat.type.emote", new Object[] { var1.e_(), var3 })));
+			MinecraftServer.getInstance().getPlayerList().a((ho) (new hz("chat.type.emote", new Object[] { var1.e_(), var3 })));
 		}
 	}
 

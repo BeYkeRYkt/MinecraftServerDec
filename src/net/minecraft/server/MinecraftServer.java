@@ -90,9 +90,9 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private boolean T;
 	private boolean U;
 	private final YggdrasilAuthenticationService V;
-	private final MinecraftSessionService W;
+	private final MinecraftSessionService minecraftSessionService;
 	private long X = 0L;
-	private final GameProfileRepository Y;
+	private final GameProfileRepository gameProflieRepository;
 	private final ry Z;
 	protected final Queue<ListenableFutureTask> i = Queues.newArrayDeque();
 	private Thread aa;
@@ -107,15 +107,15 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.commandHandler = this.h();
 		this.convertable = new bqj(var1);
 		this.V = new YggdrasilAuthenticationService(var2, UUID.randomUUID().toString());
-		this.W = this.V.createMinecraftSessionService();
-		this.Y = this.V.createProfileRepository();
+		this.minecraftSessionService = this.V.createMinecraftSessionService();
+		this.gameProflieRepository = this.V.createProfileRepository();
 	}
 
 	protected cl h() {
 		return new cl();
 	}
 
-	protected abstract boolean i() throws UnknownHostException;
+	protected abstract boolean startServer() throws UnknownHostException;
 
 	protected void a(String var1) {
 		if (this.X().b(var1)) {
@@ -143,7 +143,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			if (this.W()) {
 				var8 = qj.a;
 			} else {
-				var8 = new arb(var3, this.m(), this.l(), this.o(), var5);
+				var8 = new arb(var3, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), var5);
 				var8.a(var6);
 				if (this.M) {
 					var8.a();
@@ -179,13 +179,13 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			}
 
 			this.worlds[var10].a((ara) (new qp(this, this.worlds[var10])));
-			if (!this.S()) {
-				this.worlds[var10].P().a(this.m());
+			if (!this.isSinglePlayer()) {
+				this.worlds[var10].P().a(this.getServerGameMode());
 			}
 		}
 
 		this.playerList.a(this.worlds);
-		this.a(this.n());
+		this.a(this.getDifficulty());
 		this.k();
 	}
 
@@ -215,20 +215,20 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	protected void a(String var1, bqy var2) {
 		File var3 = new File(var2.b(), "resources.zip");
 		if (var3.isFile()) {
-			this.a_("level://" + var1 + "/" + var3.getName(), "");
+			this.setResourcePack("level://" + var1 + "/" + var3.getName(), "");
 		}
 
 	}
 
-	public abstract boolean l();
+	public abstract boolean isStructureGenerationEnabled();
 
-	public abstract arc m();
+	public abstract GameMode getServerGameMode();
 
-	public abstract vt n();
+	public abstract Difficulty getDifficulty();
 
-	public abstract boolean o();
+	public abstract boolean isHardcore();
 
-	public abstract int p();
+	public abstract int getOpPermissionLevel();
 
 	protected void a_(String var1, int var2) {
 		logger.info(var1 + ": " + var2 + "%");
@@ -299,8 +299,12 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public void run() {
+		tick();
+	}
+
+	private void tick() {
 		try {
-			if (this.i()) {
+			if (this.startServer()) {
 				this.ab = getCurrentMillis();
 				long var1 = 0L;
 				this.serverPing.a((ho) (new hy(this.E)));
@@ -337,7 +341,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 					this.Q = true;
 				}
 			} else {
-				this.a((CrashReport) null);
+				this.handleCommandsBecausePortBindingFailed(null);
 			}
 		} catch (Throwable var46) {
 			logger.error("Encountered an unexpected exception", var46);
@@ -355,7 +359,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				logger.error("We were unable to save this crash report to disk.");
 			}
 
-			this.a(var2);
+			this.handleCommandsBecausePortBindingFailed(var2);
 		} finally {
 			try {
 				this.stop();
@@ -363,11 +367,10 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			} catch (Throwable var44) {
 				logger.error("Exception stopping the server", var44);
 			} finally {
-				this.x();
+				this.exit();
 			}
 
 		}
-
 	}
 
 	private void a(ServerPing var1) {
@@ -395,10 +398,10 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return new File(".");
 	}
 
-	protected void a(CrashReport var1) {
+	protected void handleCommandsBecausePortBindingFailed(CrashReport var1) {
 	}
 
-	protected void x() {
+	protected void exit() {
 	}
 
 	protected void y() {
@@ -467,7 +470,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		int var11;
 		for (var11 = 0; var11 < this.worlds.length; ++var11) {
 			long var2 = System.nanoTime();
-			if (var11 == 0 || this.A()) {
+			if (var11 == 0 || this.isNetherAllowed()) {
 				WorldServer var4 = this.worlds[var11];
 				this.profiler.a(var4.P().k());
 				if (this.ticks % 20 == 0) {
@@ -518,7 +521,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.profiler.b();
 	}
 
-	public boolean A() {
+	public boolean isNetherAllowed() {
 		return true;
 	}
 
@@ -584,7 +587,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			}
 
 			if (var7 >= 0) {
-				var15.b(var7);
+				var15.setPort(var7);
 			}
 
 			if (var5) {
@@ -596,7 +599,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			}
 
 			if (var1 && !GraphicsEnvironment.isHeadless()) {
-				var15.aO();
+				var15.enableGui();
 			}
 
 			var15.B();
@@ -763,11 +766,11 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return this.H;
 	}
 
-	public int Q() {
+	public int getPort() {
 		return this.u;
 	}
 
-	public void b(int var1) {
+	public void setPort(int var1) {
 		this.u = var1;
 	}
 
@@ -779,7 +782,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.I = var1;
 	}
 
-	public boolean S() {
+	public boolean isSinglePlayer() {
 		return this.I != null;
 	}
 
@@ -795,26 +798,26 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.H = var1;
 	}
 
-	public void a(vt var1) {
+	public void a(Difficulty var1) {
 		for (int var2 = 0; var2 < this.worlds.length; ++var2) {
 			WorldServer var3 = this.worlds[var2];
 			if (var3 != null) {
 				if (var3.P().t()) {
-					var3.P().a(vt.d);
+					var3.P().a(Difficulty.HARD);
 					var3.a(true, true);
-				} else if (this.S()) {
+				} else if (this.isSinglePlayer()) {
 					var3.P().a(var1);
-					var3.a(var3.aa() != vt.a, true);
+					var3.a(var3.aa() != Difficulty.PEACEFUL, true);
 				} else {
 					var3.P().a(var1);
-					var3.a(this.V(), this.spawnAnimals);
+					var3.a(this.isMonsterSpawnEnabled(), this.spawnAnimals);
 				}
 			}
 		}
 
 	}
 
-	protected boolean V() {
+	protected boolean isMonsterSpawnEnabled() {
 		return true;
 	}
 
@@ -857,7 +860,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return this.P;
 	}
 
-	public void a_(String var1, String var2) {
+	public void setResourcePack(String var1, String var2) {
 		this.O = var1;
 		this.P = var2;
 	}
@@ -872,7 +875,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		}
 
 		var1.a("uses_auth", Boolean.valueOf(this.onlineMode));
-		var1.a("gui_state", this.aq() ? "enabled" : "disabled");
+		var1.a("gui_state", this.isGuiEnabled() ? "enabled" : "disabled");
 		var1.a("run_time", Long.valueOf((getCurrentMillis() - var1.g()) / 60L * 1000L));
 		var1.a("avg_tick_ms", Integer.valueOf((int) (uv.a(this.g) * 1.0E-6D)));
 		int var2 = 0;
@@ -898,17 +901,17 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public void b(Snooper var1) {
-		var1.b("singleplayer", Boolean.valueOf(this.S()));
+		var1.b("singleplayer", Boolean.valueOf(this.isSinglePlayer()));
 		var1.b("server_brand", this.getServerModName());
 		var1.b("gui_supported", GraphicsEnvironment.isHeadless() ? "headless" : "supported");
-		var1.b("dedicated", Boolean.valueOf(this.ad()));
+		var1.b("dedicated", Boolean.valueOf(this.isDedicated()));
 	}
 
-	public boolean ac() {
+	public boolean isSnooperEnabled() {
 		return true;
 	}
 
-	public abstract boolean ad();
+	public abstract boolean isDedicated();
 
 	public boolean isOnlineMode() {
 		return this.onlineMode;
@@ -950,13 +953,13 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.flightAllowed = flightAllowed;
 	}
 
-	public abstract boolean aj();
+	public abstract boolean isCommandBlockEnabled();
 
 	public String ak() {
 		return this.E;
 	}
 
-	public void m(String var1) {
+	public void setMotd(String var1) {
 		this.E = var1;
 	}
 
@@ -972,7 +975,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return this.stopped;
 	}
 
-	public PlayerList an() {
+	public PlayerList getPlayerList() {
 		return this.playerList;
 	}
 
@@ -980,7 +983,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.playerList = var1;
 	}
 
-	public void a(arc var1) {
+	public void setServerGameMode(GameMode var1) {
 		for (int var2 = 0; var2 < this.worlds.length; ++var2) {
 			getInstance().worlds[var2].P().a(var1);
 		}
@@ -991,11 +994,11 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return this.serverConnection;
 	}
 
-	public boolean aq() {
+	public boolean isGuiEnabled() {
 		return false;
 	}
 
-	public abstract String a(arc var1, boolean var2);
+	public abstract String a(GameMode var1, boolean var2);
 
 	public int ar() {
 		return this.ticks;
@@ -1021,7 +1024,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return null;
 	}
 
-	public int au() {
+	public int isSpawnProtectionEnabled() {
 		return 16;
 	}
 
@@ -1029,7 +1032,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return false;
 	}
 
-	public void i(boolean var1) {
+	public void setForceGameModeEnabled(boolean var1) {
 		this.U = var1;
 	}
 
@@ -1049,7 +1052,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return this.G;
 	}
 
-	public void d(int var1) {
+	public void setIdleTimeout(int var1) {
 		this.G = var1;
 	}
 
@@ -1061,12 +1064,12 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return true;
 	}
 
-	public MinecraftSessionService aB() {
-		return this.W;
+	public MinecraftSessionService getMinecraftSessionService() {
+		return this.minecraftSessionService;
 	}
 
-	public GameProfileRepository aC() {
-		return this.Y;
+	public GameProfileRepository getGameProfileRepository() {
+		return this.gameProflieRepository;
 	}
 
 	public ry aD() {

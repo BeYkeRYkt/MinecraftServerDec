@@ -21,11 +21,11 @@ public class DeopCommand extends AbstractCommand {
 	public void a(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length == 1 && var2[0].length() > 0) {
 			MinecraftServer var3 = MinecraftServer.getInstance();
-			GameProfile var4 = var3.an().n().a(var2[0]);
+			GameProfile var4 = var3.getPlayerList().n().a(var2[0]);
 			if (var4 == null) {
 				throw new di("commands.deop.failed", new Object[] { var2[0] });
 			} else {
-				var3.an().b(var4);
+				var3.getPlayerList().b(var4);
 				a(var1, this, "commands.deop.success", new Object[] { var2[0] });
 			}
 		} else {
@@ -34,6 +34,6 @@ public class DeopCommand extends AbstractCommand {
 	}
 
 	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
-		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().an().o()) : null;
+		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().getPlayerList().o()) : null;
 	}
 }

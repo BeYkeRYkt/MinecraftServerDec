@@ -134,7 +134,7 @@ public class aid extends aib {
 
 							var21 = var10000;
 							boolean var22 = var28.a(var8);
-							if (this.m.by.d || var8.b() == amk.cd) {
+							if (this.m.by.instabuild || var8.b() == amk.cd) {
 								var22 = true;
 							}
 
@@ -208,7 +208,7 @@ public class aid extends aib {
 				this.a = 39;
 			}
 
-			if (this.a >= 40 && !this.m.by.d) {
+			if (this.a >= 40 && !this.m.by.instabuild) {
 				var12 = null;
 			}
 

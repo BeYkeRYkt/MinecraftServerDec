@@ -24,14 +24,14 @@ public class WhitelistCommand extends AbstractCommand {
 		} else {
 			MinecraftServer var3 = MinecraftServer.getInstance();
 			if (var2[0].equals("on")) {
-				var3.an().a(true);
+				var3.getPlayerList().a(true);
 				a(var1, this, "commands.whitelist.enabled", new Object[0]);
 			} else if (var2[0].equals("off")) {
-				var3.an().a(false);
+				var3.getPlayerList().a(false);
 				a(var1, this, "commands.whitelist.disabled", new Object[0]);
 			} else if (var2[0].equals("list")) {
-				var1.a(new hz("commands.whitelist.list", new Object[] { Integer.valueOf(var3.an().m().length), Integer.valueOf(var3.an().r().length) }));
-				String[] var4 = var3.an().m();
+				var1.a(new hz("commands.whitelist.list", new Object[] { Integer.valueOf(var3.getPlayerList().m().length), Integer.valueOf(var3.getPlayerList().r().length) }));
+				String[] var4 = var3.getPlayerList().m();
 				var1.a(new hy(a(var4)));
 			} else {
 				GameProfile var5;
@@ -45,22 +45,22 @@ public class WhitelistCommand extends AbstractCommand {
 						throw new di("commands.whitelist.add.failed", new Object[] { var2[1] });
 					}
 
-					var3.an().d(var5);
+					var3.getPlayerList().d(var5);
 					a(var1, this, "commands.whitelist.add.success", new Object[] { var2[1] });
 				} else if (var2[0].equals("remove")) {
 					if (var2.length < 2) {
 						throw new dp("commands.whitelist.remove.usage", new Object[0]);
 					}
 
-					var5 = var3.an().l().a(var2[1]);
+					var5 = var3.getPlayerList().l().a(var2[1]);
 					if (var5 == null) {
 						throw new di("commands.whitelist.remove.failed", new Object[] { var2[1] });
 					}
 
-					var3.an().c(var5);
+					var3.getPlayerList().c(var5);
 					a(var1, this, "commands.whitelist.remove.success", new Object[] { var2[1] });
 				} else if (var2[0].equals("reload")) {
-					var3.an().a();
+					var3.getPlayerList().a();
 					a(var1, this, "commands.whitelist.reloaded", new Object[0]);
 				}
 			}
@@ -74,7 +74,7 @@ public class WhitelistCommand extends AbstractCommand {
 		} else {
 			if (var2.length == 2) {
 				if (var2[0].equals("remove")) {
-					return a(var2, MinecraftServer.getInstance().an().m());
+					return a(var2, MinecraftServer.getInstance().getPlayerList().m());
 				}
 
 				if (var2[0].equals("add")) {

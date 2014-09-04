@@ -109,7 +109,7 @@ public class yu extends zb {
 			}
 		}
 
-		if (!var1.by.d && this.c >= this.b * 0.5F && this.a.bb().nextFloat() < 0.006F && !this.d) {
+		if (!var1.by.instabuild && this.c >= this.b * 0.5F && this.a.bb().nextFloat() < 0.006F && !this.d) {
 			amj var24 = var1.bz();
 			if (var24 != null && var24.b() == amk.bY) {
 				var24.a(1, (EntityLiving) var1);

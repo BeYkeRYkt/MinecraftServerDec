@@ -81,7 +81,7 @@ public class bdm extends bcm {
 				} else {
 					Property var2 = (Property) Iterables.getFirst(var1.getProperties().get("textures"), (Object) null);
 					if (var2 == null) {
-						var1 = MinecraftServer.getInstance().aB().fillProfileProperties(var1, true);
+						var1 = MinecraftServer.getInstance().getMinecraftSessionService().fillProfileProperties(var1, true);
 					}
 
 					return var1;

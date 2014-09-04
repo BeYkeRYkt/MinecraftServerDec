@@ -104,7 +104,7 @@ public class avi extends auc implements atz {
 	public void a(World var1, dt var2, bec var3, ahd var4) {
 		if (var3.b(b) == avj.a) {
 			if (var1.p(var2.b()).c() == this) {
-				if (!var4.by.d) {
+				if (!var4.by.instabuild) {
 					bec var5 = var1.p(var2.b());
 					avk var6 = (avk) var5.b(a);
 					if (var6 != avk.d && var6 != avk.c) {
@@ -123,7 +123,7 @@ public class avi extends auc implements atz {
 					var1.g(var2.b());
 				}
 			}
-		} else if (var4.by.d && var1.p(var2.a()).c() == this) {
+		} else if (var4.by.instabuild && var1.p(var2.a()).c() == this) {
 			var1.a(var2.a(), aty.a.P(), 2);
 		}
 

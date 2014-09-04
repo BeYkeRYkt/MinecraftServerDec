@@ -21,11 +21,11 @@ class aif extends ajk {
 	}
 
 	public boolean a(ahd var1) {
-		return (var1.by.d || var1.bz >= this.c.a) && this.c.a > 0 && this.e();
+		return (var1.by.instabuild || var1.bz >= this.c.a) && this.c.a > 0 && this.e();
 	}
 
 	public void a(ahd var1, amj var2) {
-		if (!var1.by.d) {
+		if (!var1.by.instabuild) {
 			var1.a(-this.c.a);
 		}
 
@@ -44,7 +44,7 @@ class aif extends ajk {
 
 		this.c.a = 0;
 		bec var5 = this.a.p(this.b);
-		if (!var1.by.d && !this.a.D && var5.c() == aty.cf && var1.bb().nextFloat() < 0.12F) {
+		if (!var1.by.instabuild && !this.a.D && var5.c() == aty.cf && var1.bb().nextFloat() < 0.12F) {
 			int var4 = ((Integer) var5.b(asz.b)).intValue();
 			++var4;
 			if (var4 > 2) {

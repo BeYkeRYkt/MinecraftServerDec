@@ -19,7 +19,7 @@ final class si implements ProfileLookupCallback {
 
 	public void onProfileLookupSucceeded(GameProfile var1) {
 		this.a.aD().a(var1);
-		this.b.a((sr) (new sq(var1, this.a.p())));
+		this.b.a((sr) (new sq(var1, this.a.getOpPermissionLevel())));
 	}
 
 	public void onProfileLookupFailed(GameProfile var1, Exception var2) {

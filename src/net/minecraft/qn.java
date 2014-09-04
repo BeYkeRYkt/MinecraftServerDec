@@ -19,7 +19,7 @@ public class qn {
 
 	public qn(WorldServer var1) {
 		this.b = var1;
-		this.e = var1.r().an().d();
+		this.e = var1.r().getPlayerList().d();
 	}
 
 	public void a(Entity var1) {

@@ -55,7 +55,7 @@ public class amw extends alq {
 	}
 
 	public amj b(amj var1, World var2, ahd var3) {
-		if (!var3.by.d) {
+		if (!var3.by.instabuild) {
 			--var1.b;
 		}
 
@@ -72,7 +72,7 @@ public class amw extends alq {
 		}
 
 		var3.b(ty.J[alq.b((alq) this)]);
-		if (!var3.by.d) {
+		if (!var3.by.instabuild) {
 			if (var1.b <= 0) {
 				return new amj(amk.bA);
 			}
@@ -93,7 +93,7 @@ public class amw extends alq {
 
 	public amj a(amj var1, World var2, ahd var3) {
 		if (f(var1.i())) {
-			if (!var3.by.d) {
+			if (!var3.by.instabuild) {
 				--var1.b;
 			}
 

@@ -12,13 +12,13 @@ public class mk implements id<ls> {
 	public mk() {
 	}
 
-	public mk(aha var1) {
-		this.a(var1.a);
-		this.b(var1.b);
-		this.c(var1.c);
-		this.d(var1.d);
-		this.a(var1.a());
-		this.b(var1.b());
+	public mk(PlayerProperties var1) {
+		this.a(var1.invulnerable);
+		this.b(var1.flying);
+		this.c(var1.mayfly);
+		this.d(var1.instabuild);
+		this.a(var1.getFlySpeed());
+		this.b(var1.getWalkSpeed());
 	}
 
 	public void a(hd var1) {

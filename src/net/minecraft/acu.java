@@ -210,7 +210,7 @@ public class acu extends xx {
 				if (var2.b() instanceof all) {
 					all var3 = (all) var2.b();
 					if (var3.g() && this.ac.d(18) < 20.0F) {
-						if (!var1.by.d) {
+						if (!var1.by.instabuild) {
 							--var2.b;
 						}
 
@@ -225,7 +225,7 @@ public class acu extends xx {
 					akv var4 = akv.a(var2.i());
 					if (var4 != this.cu()) {
 						this.a(var4);
-						if (!var1.by.d && --var2.b <= 0) {
+						if (!var1.by.instabuild && --var2.b <= 0) {
 							var1.bg.a(var1.bg.c, (amj) null);
 						}
 
@@ -241,7 +241,7 @@ public class acu extends xx {
 				this.d((EntityLiving) null);
 			}
 		} else if (var2 != null && var2.b() == amk.aX && !this.ct()) {
-			if (!var1.by.d) {
+			if (!var1.by.instabuild) {
 				--var2.b;
 			}
 

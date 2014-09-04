@@ -104,7 +104,7 @@ public abstract class abq extends ws implements wt {
 	}
 
 	protected void a(ahd var1, amj var2) {
-		if (!var1.by.d) {
+		if (!var1.by.instabuild) {
 			--var2.b;
 			if (var2.b <= 0) {
 				var1.bg.a(var1.bg.c, (amj) null);

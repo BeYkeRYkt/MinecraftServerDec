@@ -201,7 +201,7 @@ public class ahb implements vq {
 						this.a[var2].c = 5;
 						var1.b = 0;
 						return true;
-					} else if (this.d.by.d) {
+					} else if (this.d.by.instabuild) {
 						var1.b = 0;
 						return true;
 					} else {
@@ -213,7 +213,7 @@ public class ahb implements vq {
 						var1.b = this.e(var1);
 					} while (var1.b > 0 && var1.b < var2);
 
-					if (var1.b == var2 && this.d.by.d) {
+					if (var1.b == var2 && this.d.by.instabuild) {
 						var1.b = 0;
 						return true;
 					} else {

@@ -56,7 +56,7 @@ public class ys extends yv {
 			this.h = var1;
 		}
 
-		if (this.g == 240 && this.a.o.aa() == vt.d) {
+		if (this.g == 240 && this.a.o.aa() == Difficulty.HARD) {
 			this.a.o.g(this.b);
 			this.a.o.b(1012, this.b, 0);
 			this.a.o.b(2001, this.b, atr.a((atr) this.c));

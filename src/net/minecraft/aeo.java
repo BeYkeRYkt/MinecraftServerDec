@@ -16,9 +16,9 @@ public class aeo extends age {
 		if (super.r(var1)) {
 			if (var1 instanceof EntityLiving) {
 				byte var2 = 0;
-				if (this.o.aa() == vt.c) {
+				if (this.o.aa() == Difficulty.NORMAL) {
 					var2 = 7;
-				} else if (this.o.aa() == vt.d) {
+				} else if (this.o.aa() == Difficulty.HARD) {
 					var2 = 15;
 				}
 

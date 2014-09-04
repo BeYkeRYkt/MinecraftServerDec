@@ -54,7 +54,7 @@ public class adk extends adj {
 			amj var3 = this.o();
 			if (var1 instanceof ahd) {
 				ahd var4 = (ahd) var1;
-				if (var4.by.d) {
+				if (var4.by.instabuild) {
 					this.b(var3);
 					return;
 				}
@@ -155,7 +155,7 @@ public class adk extends adj {
 			amj var2 = var1.bz();
 			if (var2 != null && !this.o.D) {
 				this.a(var2);
-				if (!var1.by.d && --var2.b <= 0) {
+				if (!var1.by.instabuild && --var2.b <= 0) {
 					var1.bg.a(var1.bg.c, (amj) null);
 				}
 			}

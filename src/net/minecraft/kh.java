@@ -44,7 +44,7 @@ public class kh implements id<ik> {
 		for (int var3 = 0; var3 < var2; ++var3) {
 			GameProfile var4 = null;
 			int var5 = 0;
-			arc var6 = null;
+			GameMode var6 = null;
 			ho var7 = null;
 			switch (ki.a[this.a.ordinal()]) {
 				case 1:
@@ -61,7 +61,7 @@ public class kh implements id<ik> {
 						}
 					}
 
-					var6 = arc.a(var1.e());
+					var6 = GameMode.byId(var1.e());
 					var5 = var1.e();
 					if (var1.readBoolean()) {
 						var7 = var1.d();
@@ -69,7 +69,7 @@ public class kh implements id<ik> {
 					break;
 				case 2:
 					var4 = new GameProfile(var1.g(), (String) null);
-					var6 = arc.a(var1.e());
+					var6 = GameMode.byId(var1.e());
 					break;
 				case 3:
 					var4 = new GameProfile(var1.g(), (String) null);
@@ -116,7 +116,7 @@ public class kh implements id<ik> {
 						}
 					}
 
-					var1.b(var3.c().a());
+					var1.b(var3.c().getId());
 					var1.b(var3.b());
 					if (var3.d() == null) {
 						var1.writeBoolean(false);
@@ -127,7 +127,7 @@ public class kh implements id<ik> {
 					break;
 				case 2:
 					var1.a(var3.a().getId());
-					var1.b(var3.c().a());
+					var1.b(var3.c().getId());
 					break;
 				case 3:
 					var1.a(var3.a().getId());

@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class ti extends te {
+public class RconListener extends te {
 
 	private int h;
 	private int i;
@@ -19,7 +19,7 @@ public class ti extends te {
 	private String l;
 	private Map m;
 
-	public ti(pj var1) {
+	public RconListener(pj var1) {
 		super(var1, "RCON Listener");
 		this.h = var1.a("rcon.port", 0);
 		this.l = var1.a("rcon.password", "");
@@ -33,7 +33,7 @@ public class ti extends te {
 				var1.a("rcon.password", (Object) "");
 			}
 
-			var1.a();
+			var1.saveProperties();
 		}
 
 		if (0 == this.j.length()) {

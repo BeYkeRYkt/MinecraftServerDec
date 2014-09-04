@@ -25,7 +25,7 @@ public class anp extends ann {
 				bec var7 = var2.p(var5);
 				if (var7.c().r() == bof.h && ((Integer) var7.b(axl.b)).intValue() == 0 && var2.d(var6)) {
 					var2.a(var6, aty.bx.P());
-					if (!var3.by.d) {
+					if (!var3.by.instabuild) {
 						--var1.b;
 					}
 

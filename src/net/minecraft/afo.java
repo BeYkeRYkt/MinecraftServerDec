@@ -66,7 +66,7 @@ public class afo extends agj {
 	}
 
 	public boolean bQ() {
-		return this.o.aa() != vt.a;
+		return this.o.aa() != Difficulty.PEACEFUL;
 	}
 
 	public boolean bR() {

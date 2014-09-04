@@ -49,7 +49,7 @@ public class cl extends ab implements y {
 		this.a(new WorldBorderCommand());
 		this.a(new TitleCommand());
 		this.a(new EntityDataCommand());
-		if (MinecraftServer.getInstance().ad()) {
+		if (MinecraftServer.getInstance().isDedicated()) {
 			this.a(new OpCommand());
 			this.a(new DeopCommand());
 			this.a(new ServerStopCommand());
@@ -83,11 +83,11 @@ public class cl extends ab implements y {
 		var8.b().a(FormattingCode.h);
 		var8.b().b(Boolean.valueOf(true));
 		if (var6) {
-			Iterator var9 = var7.an().players.iterator();
+			Iterator var9 = var7.getPlayerList().players.iterator();
 
 			while (var9.hasNext()) {
 				ahd var10 = (ahd) var9.next();
-				if (var10 != var1 && var7.an().g(var10.cc()) && var2.a(var1)) {
+				if (var10 != var1 && var7.getPlayerList().g(var10.cc()) && var2.a(var1)) {
 					var10.a((ho) var8);
 				}
 			}

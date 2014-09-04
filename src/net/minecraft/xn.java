@@ -466,7 +466,7 @@ public abstract class xn extends EntityLiving {
 			return 3;
 		} else {
 			int var1 = (int) (this.bm() - this.bt() * 0.33F);
-			var1 -= (3 - this.o.aa().a()) * 4;
+			var1 -= (3 - this.o.aa().getId()) * 4;
 			if (var1 < 0) {
 				var1 = 0;
 			}
@@ -523,7 +523,7 @@ public abstract class xn extends EntityLiving {
 	protected void a(vu var1) {
 		if (this.V.nextFloat() < 0.15F * var1.c()) {
 			int var2 = this.V.nextInt(2);
-			float var3 = this.o.aa() == vt.d ? 0.1F : 0.25F;
+			float var3 = this.o.aa() == Difficulty.HARD ? 0.1F : 0.25F;
 			if (this.V.nextFloat() < 0.095F) {
 				++var2;
 			}
@@ -675,7 +675,7 @@ public abstract class xn extends EntityLiving {
 
 	public final boolean e(ahd var1) {
 		if (this.cb() && this.cc() == var1) {
-			this.a(true, !var1.by.d);
+			this.a(true, !var1.by.instabuild);
 			return true;
 		} else {
 			amj var2 = var1.bg.h();

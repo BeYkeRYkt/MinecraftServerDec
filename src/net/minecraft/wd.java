@@ -6,5 +6,5 @@ public interface wd {
 
 	void b(Snooper var1);
 
-	boolean ac();
+	boolean isSnooperEnabled();
 }

@@ -8,7 +8,7 @@ public interface pj {
 
 	void a(String var1, Object var2);
 
-	void a();
+	void saveProperties();
 
 	String b();
 

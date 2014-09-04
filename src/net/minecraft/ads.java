@@ -14,7 +14,7 @@ public class ads extends adr {
 		this.b = 2;
 		this.a = this.V.nextLong();
 		this.c = this.V.nextInt(3) + 1;
-		if (!var1.D && var1.Q().b("doFireTick") && (var1.aa() == vt.c || var1.aa() == vt.d) && var1.a(new dt(this), (int) 10)) {
+		if (!var1.D && var1.Q().b("doFireTick") && (var1.aa() == Difficulty.NORMAL || var1.aa() == Difficulty.HARD) && var1.a(new dt(this), (int) 10)) {
 			dt var8 = new dt(this);
 			if (var1.p(var8).c().r() == bof.a && aty.ab.c(var1, var8)) {
 				var1.a(var8, aty.ab.P());
