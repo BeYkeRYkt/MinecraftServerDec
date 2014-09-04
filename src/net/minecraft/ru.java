@@ -16,7 +16,7 @@ public class ru implements nv {
 	}
 
 	public void a(nx var1) {
-		this.b.a((id) (new no(this.a.aE())));
+		this.b.a((id) (new no(this.a.getServerPing())));
 	}
 
 	public void a(nw var1) {

@@ -23,18 +23,18 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ug {
+public class ServerCryptoUtils {
 
-	private static final Logger a = LogManager.getLogger();
+	private static final Logger logger = LogManager.getLogger();
 
-	public static KeyPair b() {
+	public static KeyPair generateKeyPair() {
 		try {
 			KeyPairGenerator var0 = KeyPairGenerator.getInstance("RSA");
 			var0.initialize(1024);
 			return var0.generateKeyPair();
 		} catch (NoSuchAlgorithmException var1) {
 			var1.printStackTrace();
-			a.error("Key pair generation failed!");
+			logger.error("Key pair generation failed!");
 			return null;
 		}
 	}
@@ -77,7 +77,7 @@ public class ug {
 			;
 		}
 
-		a.error("Public key reconstitute failed!");
+		logger.error("Public key reconstitute failed!");
 		return null;
 	}
 
@@ -98,7 +98,7 @@ public class ug {
 			var5.printStackTrace();
 		}
 
-		a.error("Cipher data failed!");
+		logger.error("Cipher data failed!");
 		return null;
 	}
 
@@ -115,7 +115,7 @@ public class ug {
 			var6.printStackTrace();
 		}
 
-		a.error("Cipher creation failed!");
+		logger.error("Cipher creation failed!");
 		return null;
 	}
 

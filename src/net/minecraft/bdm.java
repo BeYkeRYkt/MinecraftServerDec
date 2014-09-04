@@ -75,7 +75,7 @@ public class bdm extends bcm {
 			} else if (MinecraftServer.getInstance() == null) {
 				return var0;
 			} else {
-				GameProfile var1 = MinecraftServer.getInstance().aD().a(var0.getName());
+				GameProfile var1 = MinecraftServer.getInstance().getUserCache().a(var0.getName());
 				if (var1 == null) {
 					return var0;
 				} else {

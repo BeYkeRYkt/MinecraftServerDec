@@ -85,14 +85,14 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 			}
 
 			logger.info("Generating keypair");
-			this.a(ug.b());
+			this.setKeyPair(ServerCryptoUtils.generateKeyPair());
 			logger.info("Starting Minecraft server on " + (this.getIp().length() == 0 ? "*" : this.getIp()) + ":" + this.getPort());
 
 			try {
-				this.ao().a(address, this.getPort());
-			} catch (Exception var17) {
+				this.getServerConnection().bindToPort(address, this.getPort());
+			} catch (Exception ex) {
 				logger.warn("**** FAILED TO BIND TO PORT!");
-				logger.warn("The exception was: {}", new Object[] { var17.toString() });
+				logger.warn("The exception was: {}", new Object[] { ex.toString() });
 				logger.warn("Perhaps a server is already running on that port?");
 				return false;
 			}
@@ -104,8 +104,8 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 				logger.warn("To change this, set \"online-mode\" to \"true\" in the server.properties file.");
 			}
 
-			if (this.aP()) {
-				this.aD().c();
+			if (this.convertDataLists()) {
+				this.getUserCache().c();
 			}
 
 			if (!sf.a(this.serverProperties)) {
@@ -356,7 +356,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		return this.serverProperties.getInt("network-compression-threshold", super.aI());
 	}
 
-	protected boolean aP() {
+	protected boolean convertDataLists() {
 		boolean var2 = false;
 
 		int var1;

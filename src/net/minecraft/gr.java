@@ -172,8 +172,8 @@ public class gr extends SimpleChannelInboundHandler {
 
 	public void a(SecretKey var1) {
 		this.m = true;
-		this.i.pipeline().addBefore("splitter", "decrypt", new gn(ug.a(2, var1)));
-		this.i.pipeline().addBefore("prepender", "encrypt", new go(ug.a(1, var1)));
+		this.i.pipeline().addBefore("splitter", "decrypt", new gn(ServerCryptoUtils.a(2, var1)));
+		this.i.pipeline().addBefore("prepender", "encrypt", new go(ServerCryptoUtils.a(1, var1)));
 	}
 
 	public boolean g() {

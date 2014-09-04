@@ -18,7 +18,7 @@ final class sk implements ProfileLookupCallback {
 	}
 
 	public void onProfileLookupSucceeded(GameProfile var1) {
-		this.a.aD().a(var1);
+		this.a.getUserCache().a(var1);
 		this.b.add(var1);
 	}
 

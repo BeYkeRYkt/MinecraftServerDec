@@ -56,7 +56,7 @@ public abstract class PlayerList {
 
 	public void a(gr var1, EntityPlayer var2) {
 		GameProfile var3 = var2.cc();
-		ry var4 = this.minecraftserver.aD();
+		UserCache var4 = this.minecraftserver.getUserCache();
 		GameProfile var5 = var4.a(var3.getId());
 		String var6 = var5 == null ? var3.getName() : var5.getName();
 		var4.a(var3);

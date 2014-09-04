@@ -31,7 +31,7 @@ import java.util.UUID;
 import net.minecraft.server.MinecraftServer;
 import org.apache.commons.io.IOUtils;
 
-public class ry {
+public class UserCache {
 
 	public static final SimpleDateFormat a = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
 	private final Map c = Maps.newHashMap();
@@ -42,7 +42,7 @@ public class ry {
 	private final File g;
 	private static final ParameterizedType h = new sa();
 
-	public ry(MinecraftServer var1, File var2) {
+	public UserCache(MinecraftServer var1, File var2) {
 		this.f = var1;
 		this.g = var2;
 		GsonBuilder var3 = new GsonBuilder();

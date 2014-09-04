@@ -8,9 +8,9 @@ class sb {
 	private final GameProfile b;
 	private final Date c;
 	// $FF: synthetic field
-	final ry a;
+	final UserCache a;
 
-	private sb(ry var1, GameProfile var2, Date var3) {
+	private sb(UserCache var1, GameProfile var2, Date var3) {
 		this.a = var1;
 		this.b = var2;
 		this.c = var3;
@@ -25,7 +25,7 @@ class sb {
 	}
 
 	// $FF: synthetic method
-	sb(ry var1, GameProfile var2, Date var3, rz var4) {
+	sb(UserCache var1, GameProfile var2, Date var3, rz var4) {
 		this(var1, var2, var3);
 	}
 

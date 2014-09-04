@@ -23,10 +23,10 @@ public class nj implements id<nh> {
 	}
 
 	public SecretKey a(PrivateKey var1) {
-		return ug.a(var1, this.a);
+		return ServerCryptoUtils.a(var1, this.a);
 	}
 
 	public byte[] b(PrivateKey var1) {
-		return var1 == null ? this.b : ug.b(var1, this.b);
+		return var1 == null ? this.b : ServerCryptoUtils.b(var1, this.b);
 	}
 }

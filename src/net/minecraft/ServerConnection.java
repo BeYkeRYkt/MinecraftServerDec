@@ -1,17 +1,22 @@
 package net.minecraft;
 
 import com.google.common.collect.Lists;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.concurrent.GenericFutureListener;
+
 import java.net.InetAddress;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
+
 import net.minecraft.server.MinecraftServer;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,7 +27,7 @@ public class ServerConnection {
 	public static final up b = new re();
 	private final MinecraftServer e;
 	public volatile boolean c;
-	private final List f = Collections.synchronizedList(Lists.newArrayList());
+	private final List<ChannelFuture> f = Collections.synchronizedList(new ArrayList<ChannelFuture>());
 	private final List g = Collections.synchronizedList(Lists.newArrayList());
 
 	public ServerConnection(MinecraftServer var1) {
@@ -30,11 +35,8 @@ public class ServerConnection {
 		this.c = true;
 	}
 
-	public void a(InetAddress var1, int var2) {
-		List var3 = this.f;
-		synchronized (this.f) {
-			this.f.add((((new ServerBootstrap()).channel(NioServerSocketChannel.class)).childHandler(new rf(this)).group((EventLoopGroup) a.c()).localAddress(var1, var2)).bind().syncUninterruptibly());
-		}
+	public void bindToPort(InetAddress var1, int var2) {
+		this.f.add((((new ServerBootstrap()).channel(NioServerSocketChannel.class)).childHandler(new rf(this)).group((EventLoopGroup) a.c()).localAddress(var1, var2)).bind().syncUninterruptibly());
 	}
 
 	public void b() {
@@ -54,7 +56,6 @@ public class ServerConnection {
 	}
 
 	public void c() {
-		List var1 = this.g;
 		synchronized (this.g) {
 			Iterator var2 = this.g.iterator();
 

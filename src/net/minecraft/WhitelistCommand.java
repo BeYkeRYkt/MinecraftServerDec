@@ -40,7 +40,7 @@ public class WhitelistCommand extends AbstractCommand {
 						throw new dp("commands.whitelist.add.usage", new Object[0]);
 					}
 
-					var5 = var3.aD().a(var2[1]);
+					var5 = var3.getUserCache().a(var2[1]);
 					if (var5 == null) {
 						throw new di("commands.whitelist.add.failed", new Object[] { var2[1] });
 					}
@@ -78,7 +78,7 @@ public class WhitelistCommand extends AbstractCommand {
 				}
 
 				if (var2[0].equals("add")) {
-					return a(var2, MinecraftServer.getInstance().aD().a());
+					return a(var2, MinecraftServer.getInstance().getUserCache().a());
 				}
 			}
 

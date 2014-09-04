@@ -19,7 +19,7 @@ public class ne implements id<nc> {
 
 	public void a(hd var1) {
 		this.a = var1.c(20);
-		this.b = ug.a(var1.a());
+		this.b = ServerCryptoUtils.a(var1.a());
 		this.c = var1.a();
 	}
 

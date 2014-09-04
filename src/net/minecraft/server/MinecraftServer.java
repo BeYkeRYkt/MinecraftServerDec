@@ -76,7 +76,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private int G = 0;
 	public final long[] g = new long[100];
 	public long[][] h;
-	private KeyPair H;
+	private KeyPair keyPair;
 	private String I;
 	private String J;
 	private boolean L;
@@ -89,26 +89,26 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private String S;
 	private boolean T;
 	private boolean U;
-	private final YggdrasilAuthenticationService V;
+	private final YggdrasilAuthenticationService authService;
 	private final MinecraftSessionService minecraftSessionService;
 	private long X = 0L;
 	private final GameProfileRepository gameProflieRepository;
-	private final ry Z;
+	private final UserCache userCache;
 	protected final Queue<ListenableFutureTask> i = Queues.newArrayDeque();
 	private Thread aa;
 	private long ab = getCurrentMillis();
 
-	public MinecraftServer(File var1, Proxy var2, File var3) {
+	public MinecraftServer(File universe, Proxy var2, File usercache) {
 		this.proxy = var2;
 		instance = this;
-		this.universe = var1;
+		this.universe = universe;
 		this.serverConnection = new ServerConnection(this);
-		this.Z = new ry(this, var3);
+		this.userCache = new UserCache(this, usercache);
 		this.commandHandler = this.h();
-		this.convertable = new bqj(var1);
-		this.V = new YggdrasilAuthenticationService(var2, UUID.randomUUID().toString());
-		this.minecraftSessionService = this.V.createMinecraftSessionService();
-		this.gameProflieRepository = this.V.createProfileRepository();
+		this.convertable = new bqj(universe);
+		this.authService = new YggdrasilAuthenticationService(var2, UUID.randomUUID().toString());
+		this.minecraftSessionService = this.authService.createMinecraftSessionService();
+		this.gameProflieRepository = this.authService.createProfileRepository();
 	}
 
 	protected cl h() {
@@ -256,8 +256,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	public void stop() {
 		if (!this.N) {
 			logger.info("Stopping server");
-			if (this.ao() != null) {
-				this.ao().b();
+			if (this.getServerConnection() != null) {
+				this.getServerConnection().b();
 			}
 
 			if (this.playerList != null) {
@@ -509,7 +509,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		}
 
 		this.profiler.c("connection");
-		this.ao().c();
+		this.getServerConnection().c();
 		this.profiler.c("players");
 		this.playerList.e();
 		this.profiler.c("tickables");
@@ -763,7 +763,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public KeyPair P() {
-		return this.H;
+		return this.keyPair;
 	}
 
 	public int getPort() {
@@ -794,8 +794,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.J = var1;
 	}
 
-	public void a(KeyPair var1) {
-		this.H = var1;
+	public void setKeyPair(KeyPair var1) {
+		this.keyPair = var1;
 	}
 
 	public void a(Difficulty var1) {
@@ -990,7 +990,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 	}
 
-	public ServerConnection ao() {
+	public ServerConnection getServerConnection() {
 		return this.serverConnection;
 	}
 
@@ -1072,11 +1072,11 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return this.gameProflieRepository;
 	}
 
-	public ry aD() {
-		return this.Z;
+	public UserCache getUserCache() {
+		return this.userCache;
 	}
 
-	public ServerPing aE() {
+	public ServerPing getServerPing() {
 		return this.serverPing;
 	}
 

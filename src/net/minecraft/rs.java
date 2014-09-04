@@ -19,7 +19,7 @@ class rs extends Thread {
 		GameProfile var1 = rq.b(this.a);
 
 		try {
-			String var2 = (new BigInteger(ug.a(rq.c(this.a), rq.a(this.a).P().getPublic(), rq.d(this.a)))).toString(16);
+			String var2 = (new BigInteger(ServerCryptoUtils.a(rq.c(this.a), rq.a(this.a).P().getPublic(), rq.d(this.a)))).toString(16);
 			rq.a(this.a, rq.a(this.a).getMinecraftSessionService().hasJoinedServer(new GameProfile((UUID) null, var1.getName()), var2));
 			if (rq.b(this.a) != null) {
 				rq.e().info("UUID of player " + rq.b(this.a).getName() + " is " + rq.b(this.a).getId());

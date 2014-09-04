@@ -15,9 +15,9 @@ import java.util.UUID;
 class sc implements JsonDeserializer, JsonSerializer {
 
 	// $FF: synthetic field
-	final ry a;
+	final UserCache a;
 
-	private sc(ry var1) {
+	private sc(UserCache var1) {
 		this.a = var1;
 	}
 
@@ -26,7 +26,7 @@ class sc implements JsonDeserializer, JsonSerializer {
 		var4.addProperty("name", var1.a().getName());
 		UUID var5 = var1.a().getId();
 		var4.addProperty("uuid", var5 == null ? "" : var5.toString());
-		var4.addProperty("expiresOn", ry.a.format(var1.b()));
+		var4.addProperty("expiresOn", UserCache.a.format(var1.b()));
 		return var4;
 	}
 
@@ -42,7 +42,7 @@ class sc implements JsonDeserializer, JsonSerializer {
 				Date var10 = null;
 				if (var7 != null) {
 					try {
-						var10 = ry.a.parse(var7.getAsString());
+						var10 = UserCache.a.parse(var7.getAsString());
 					} catch (ParseException var14) {
 						var10 = null;
 					}
@@ -80,7 +80,7 @@ class sc implements JsonDeserializer, JsonSerializer {
 	}
 
 	// $FF: synthetic method
-	sc(ry var1, rz var2) {
+	sc(UserCache var1, rz var2) {
 		this(var1);
 	}
 }
