@@ -98,7 +98,7 @@ public class bhd extends bhc {
 		} else {
 			float var2 = (float) this.a / 2.0F;
 			float var3 = var2 - (float) var1;
-			float var4 = uv.c(var2 * var2 - var3 * var3);
+			float var4 = NumberConverter.c(var2 * var2 - var3 * var3);
 			if (var3 == 0.0F) {
 				var4 = var2;
 			} else if (Math.abs(var3) >= var2) {
@@ -136,9 +136,9 @@ public class bhd extends bhc {
 	}
 
 	private int b(dt var1) {
-		int var2 = uv.a(var1.n());
-		int var3 = uv.a(var1.o());
-		int var4 = uv.a(var1.p());
+		int var2 = NumberConverter.a(var1.n());
+		int var3 = NumberConverter.a(var1.o());
+		int var4 = NumberConverter.a(var1.p());
 		return var4 > var2 && var4 > var3 ? var4 : (var3 > var2 ? var3 : var2);
 	}
 

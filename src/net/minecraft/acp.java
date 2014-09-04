@@ -18,9 +18,9 @@ class acp extends zb {
 			this.a.b(0.0F, 0.0F, 0.0F);
 		} else if (this.a.bb().nextInt(50) == 0 || !aco.a(this.a) || !this.a.n()) {
 			float var2 = this.a.bb().nextFloat() * 3.1415927F * 2.0F;
-			float var3 = uv.b(var2) * 0.2F;
+			float var3 = NumberConverter.b(var2) * 0.2F;
 			float var4 = -0.1F + this.a.bb().nextFloat() * 0.2F;
-			float var5 = uv.a(var2) * 0.2F;
+			float var5 = NumberConverter.a(var2) * 0.2F;
 			this.a.b(var3, var4, var5);
 		}
 

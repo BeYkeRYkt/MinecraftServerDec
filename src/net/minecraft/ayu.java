@@ -35,15 +35,15 @@ public class ayu extends atr {
 		if (this.a(var3, var1.s, var5) != alq.a((atr) this)) {
 			int var6 = 0;
 			if (this == aty.q) {
-				var6 = uv.a(var1.s, 0, 2);
+				var6 = NumberConverter.a(var1.s, 0, 2);
 			} else if (this == aty.ag) {
-				var6 = uv.a(var1.s, 3, 7);
+				var6 = NumberConverter.a(var1.s, 3, 7);
 			} else if (this == aty.bP) {
-				var6 = uv.a(var1.s, 3, 7);
+				var6 = NumberConverter.a(var1.s, 3, 7);
 			} else if (this == aty.x) {
-				var6 = uv.a(var1.s, 2, 5);
+				var6 = NumberConverter.a(var1.s, 2, 5);
 			} else if (this == aty.co) {
-				var6 = uv.a(var1.s, 2, 5);
+				var6 = NumberConverter.a(var1.s, 2, 5);
 			}
 
 			this.b(var1, var2, var6);

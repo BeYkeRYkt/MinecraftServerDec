@@ -146,7 +146,7 @@ public class agi extends afm implements afr {
 			double var6 = var1.s + var1.v - this.s;
 			double var8 = var4 - this.t;
 			double var10 = var1.u + var1.x - this.u;
-			float var12 = uv.a(var6 * var6 + var10 * var10);
+			float var12 = NumberConverter.a(var6 * var6 + var10 * var10);
 			if (var12 >= 8.0F && !var1.a(wp.d)) {
 				var3.a(32698);
 			} else if (var1.bm() >= 8.0F && !var1.a(wp.u)) {

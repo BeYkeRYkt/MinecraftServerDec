@@ -20,10 +20,10 @@ public class OpCommand extends AbstractCommand {
 		return "commands.op.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length == 1 && var2[0].length() > 0) {
 			MinecraftServer var3 = MinecraftServer.getInstance();
-			GameProfile var4 = var3.getUserCache().a(var2[0]);
+			GameProfile var4 = var3.getUserCache().getProfile(var2[0]);
 			if (var4 == null) {
 				throw new di("commands.op.failed", new Object[] { var2[0] });
 			} else {

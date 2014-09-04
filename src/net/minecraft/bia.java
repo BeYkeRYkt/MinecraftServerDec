@@ -17,13 +17,13 @@ public class bia extends bic {
 
 			for (int var5 = var3.o() + var4 - 2 - var2.nextInt(4); var5 > var3.o() + var4 / 2; var5 -= 2 + var2.nextInt(4)) {
 				float var6 = var2.nextFloat() * 3.1415927F * 2.0F;
-				int var7 = var3.n() + (int) (0.5F + uv.b(var6) * 4.0F);
-				int var8 = var3.p() + (int) (0.5F + uv.a(var6) * 4.0F);
+				int var7 = var3.n() + (int) (0.5F + NumberConverter.b(var6) * 4.0F);
+				int var8 = var3.p() + (int) (0.5F + NumberConverter.a(var6) * 4.0F);
 
 				int var9;
 				for (var9 = 0; var9 < 5; ++var9) {
-					var7 = var3.n() + (int) (1.5F + uv.b(var6) * (float) var9);
-					var8 = var3.p() + (int) (1.5F + uv.a(var6) * (float) var9);
+					var7 = var3.n() + (int) (1.5F + NumberConverter.b(var6) * (float) var9);
+					var8 = var3.p() + (int) (1.5F + NumberConverter.a(var6) * (float) var9);
 					this.a(var1, new dt(var7, var5 - 3 + var9 / 2, var8), aty.r, this.b);
 				}
 

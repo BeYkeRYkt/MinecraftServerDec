@@ -11,11 +11,11 @@ public class bpx extends bpu {
 	}
 
 	public bpt a(Entity var1) {
-		return this.a(uv.c(var1.aQ().a), uv.c(var1.aQ().b + 0.5D), uv.c(var1.aQ().c));
+		return this.a(NumberConverter.c(var1.aQ().a), NumberConverter.c(var1.aQ().b + 0.5D), NumberConverter.c(var1.aQ().c));
 	}
 
 	public bpt a(Entity var1, double var2, double var4, double var6) {
-		return this.a(uv.c(var2 - (double) (var1.J / 2.0F)), uv.c(var4 + 0.5D), uv.c(var6 - (double) (var1.J / 2.0F)));
+		return this.a(NumberConverter.c(var2 - (double) (var1.J / 2.0F)), NumberConverter.c(var4 + 0.5D), NumberConverter.c(var6 - (double) (var1.J / 2.0F)));
 	}
 
 	public int a(bpt[] var1, Entity var2, bpt var3, bpt var4, float var5) {

@@ -46,14 +46,14 @@ public class ado extends Entity {
 		this.b.bE = this;
 		this.a(0.25F, 0.25F);
 		this.b(var2.s, var2.t + (double) var2.aR(), var2.u, var2.y, var2.z);
-		this.s -= (double) (uv.b(this.y / 180.0F * 3.1415927F) * 0.16F);
+		this.s -= (double) (NumberConverter.b(this.y / 180.0F * 3.1415927F) * 0.16F);
 		this.t -= 0.10000000149011612D;
-		this.u -= (double) (uv.a(this.y / 180.0F * 3.1415927F) * 0.16F);
+		this.u -= (double) (NumberConverter.a(this.y / 180.0F * 3.1415927F) * 0.16F);
 		this.b(this.s, this.t, this.u);
 		float var3 = 0.4F;
-		this.v = (double) (-uv.a(this.y / 180.0F * 3.1415927F) * uv.b(this.z / 180.0F * 3.1415927F) * var3);
-		this.x = (double) (uv.b(this.y / 180.0F * 3.1415927F) * uv.b(this.z / 180.0F * 3.1415927F) * var3);
-		this.w = (double) (-uv.a(this.z / 180.0F * 3.1415927F) * var3);
+		this.v = (double) (-NumberConverter.a(this.y / 180.0F * 3.1415927F) * NumberConverter.b(this.z / 180.0F * 3.1415927F) * var3);
+		this.x = (double) (NumberConverter.b(this.y / 180.0F * 3.1415927F) * NumberConverter.b(this.z / 180.0F * 3.1415927F) * var3);
+		this.w = (double) (-NumberConverter.a(this.z / 180.0F * 3.1415927F) * var3);
 		this.c(this.v, this.w, this.x, 1.5F, 1.0F);
 	}
 
@@ -61,7 +61,7 @@ public class ado extends Entity {
 	}
 
 	public void c(double var1, double var3, double var5, float var7, float var8) {
-		float var9 = uv.a(var1 * var1 + var3 * var3 + var5 * var5);
+		float var9 = NumberConverter.a(var1 * var1 + var3 * var3 + var5 * var5);
 		var1 /= (double) var9;
 		var3 /= (double) var9;
 		var5 /= (double) var9;
@@ -74,7 +74,7 @@ public class ado extends Entity {
 		this.v = var1;
 		this.w = var3;
 		this.x = var5;
-		float var10 = uv.a(var1 * var1 + var5 * var5);
+		float var10 = NumberConverter.a(var1 * var1 + var5 * var5);
 		this.A = this.y = (float) (Math.atan2(var1, var5) * 180.0D / 3.1415927410125732D);
 		this.B = this.z = (float) (Math.atan2(var3, (double) var10) * 180.0D / 3.1415927410125732D);
 		this.ar = 0;
@@ -86,7 +86,7 @@ public class ado extends Entity {
 			double var28 = this.s + (this.ay - this.s) / (double) this.ax;
 			double var29 = this.t + (this.az - this.t) / (double) this.ax;
 			double var30 = this.u + (this.aA - this.u) / (double) this.ax;
-			double var7 = uv.g(this.aB - (double) this.y);
+			double var7 = NumberConverter.g(this.aB - (double) this.y);
 			this.y = (float) ((double) this.y + var7 / (double) this.ax);
 			this.z = (float) ((double) this.z + (this.aC - (double) this.z) / (double) this.ax);
 			--this.ax;
@@ -184,7 +184,7 @@ public class ado extends Entity {
 
 			if (!this.aq) {
 				this.d(this.v, this.w, this.x);
-				float var31 = uv.a(this.v * this.v + this.x * this.x);
+				float var31 = NumberConverter.a(this.v * this.v + this.x * this.x);
 				this.y = (float) (Math.atan2(this.v, this.x) * 180.0D / 3.1415927410125732D);
 
 				for (this.z = (float) (Math.atan2(this.w, (double) var31) * 180.0D / 3.1415927410125732D); this.z - this.B < -180.0F; this.B -= 360.0F) {
@@ -254,17 +254,17 @@ public class ado extends Entity {
 							if (this.av <= 0) {
 								this.w -= 0.20000000298023224D;
 								this.a("random.splash", 0.25F, 1.0F + (this.V.nextFloat() - this.V.nextFloat()) * 0.4F);
-								var16 = (float) uv.c(this.aQ().b);
+								var16 = (float) NumberConverter.c(this.aQ().b);
 								var36.a(ew.e, this.s, (double) (var16 + 1.0F), this.u, (int) (1.0F + this.J * 20.0F), (double) this.J, 0.0D, (double) this.J, 0.20000000298023224D, new int[0]);
 								var36.a(ew.g, this.s, (double) (var16 + 1.0F), this.u, (int) (1.0F + this.J * 20.0F), (double) this.J, 0.0D, (double) this.J, 0.20000000298023224D, new int[0]);
-								this.at = uv.a(this.V, 10, 30);
+								this.at = NumberConverter.a(this.V, 10, 30);
 							} else {
 								this.aw = (float) ((double) this.aw + this.V.nextGaussian() * 4.0D);
 								var16 = this.aw * 0.017453292F;
-								var39 = uv.a(var16);
-								var18 = uv.b(var16);
+								var39 = NumberConverter.a(var16);
+								var18 = NumberConverter.b(var16);
 								var19 = this.s + (double) (var39 * (float) this.av * 0.1F);
-								var40 = (double) ((float) uv.c(this.aQ().b) + 1.0F);
+								var40 = (double) ((float) NumberConverter.c(this.aQ().b) + 1.0F);
 								var23 = this.u + (double) (var18 * (float) this.av * 0.1F);
 								if (this.V.nextFloat() < 0.15F) {
 									var36.a(ew.e, var19, var40 - 0.10000000149011612D, var23, 1, (double) var39, 0.1D, (double) var18, 0.0D, new int[0]);
@@ -287,20 +287,20 @@ public class ado extends Entity {
 							}
 
 							if (this.V.nextFloat() < var16) {
-								var39 = uv.a(this.V, 0.0F, 360.0F) * 0.017453292F;
-								var18 = uv.a(this.V, 25.0F, 60.0F);
-								var19 = this.s + (double) (uv.a(var39) * var18 * 0.1F);
-								var40 = (double) ((float) uv.c(this.aQ().b) + 1.0F);
-								var23 = this.u + (double) (uv.b(var39) * var18 * 0.1F);
+								var39 = NumberConverter.a(this.V, 0.0F, 360.0F) * 0.017453292F;
+								var18 = NumberConverter.a(this.V, 25.0F, 60.0F);
+								var19 = this.s + (double) (NumberConverter.a(var39) * var18 * 0.1F);
+								var40 = (double) ((float) NumberConverter.c(this.aQ().b) + 1.0F);
+								var23 = this.u + (double) (NumberConverter.b(var39) * var18 * 0.1F);
 								var36.a(ew.f, var19, var40, var23, 2 + this.V.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D, new int[0]);
 							}
 
 							if (this.au <= 0) {
-								this.aw = uv.a(this.V, 0.0F, 360.0F);
-								this.av = uv.a(this.V, 20, 80);
+								this.aw = NumberConverter.a(this.V, 0.0F, 360.0F);
+								this.av = NumberConverter.a(this.V, 20, 80);
 							}
 						} else {
-							this.au = uv.a(this.V, 100, 900);
+							this.au = NumberConverter.a(this.V, 100, 900);
 							this.au -= aph.h(this.b) * 20 * 5;
 						}
 					}
@@ -358,10 +358,10 @@ public class ado extends Entity {
 				double var2 = this.b.s - this.s;
 				double var4 = this.b.t - this.t;
 				double var6 = this.b.u - this.u;
-				double var8 = (double) uv.a(var2 * var2 + var4 * var4 + var6 * var6);
+				double var8 = (double) NumberConverter.a(var2 * var2 + var4 * var4 + var6 * var6);
 				double var10 = 0.1D;
 				this.c.v += var2 * var10;
-				this.c.w += var4 * var10 + (double) uv.a(var8) * 0.08D;
+				this.c.w += var4 * var10 + (double) NumberConverter.a(var8) * 0.08D;
 				this.c.x += var6 * var10;
 				var1 = 3;
 			} else if (this.at > 0) {
@@ -369,10 +369,10 @@ public class ado extends Entity {
 				double var3 = this.b.s - this.s;
 				double var5 = this.b.t - this.t;
 				double var7 = this.b.u - this.u;
-				double var9 = (double) uv.a(var3 * var3 + var5 * var5 + var7 * var7);
+				double var9 = (double) NumberConverter.a(var3 * var3 + var5 * var5 + var7 * var7);
 				double var11 = 0.1D;
 				var13.v = var3 * var11;
-				var13.w = var5 * var11 + (double) uv.a(var9) * 0.08D;
+				var13.w = var5 * var11 + (double) NumberConverter.a(var9) * 0.08D;
 				var13.x = var7 * var11;
 				this.o.d((Entity) var13);
 				this.b.o.d((Entity) (new xk(this.b.o, this.b.s, this.b.t + 0.5D, this.b.u + 0.5D, this.V.nextInt(6) + 1)));
@@ -395,8 +395,8 @@ public class ado extends Entity {
 		int var3 = aph.h(this.b);
 		float var4 = 0.1F - (float) var2 * 0.025F - (float) var3 * 0.01F;
 		float var5 = 0.05F + (float) var2 * 0.01F - (float) var3 * 0.01F;
-		var4 = uv.a(var4, 0.0F, 1.0F);
-		var5 = uv.a(var5, 0.0F, 1.0F);
+		var4 = NumberConverter.a(var4, 0.0F, 1.0F);
+		var5 = NumberConverter.a(var5, 0.0F, 1.0F);
 		if (var1 < var4) {
 			this.b.b(ty.D);
 			return ((adp) vj.a(this.V, d)).a(this.V);

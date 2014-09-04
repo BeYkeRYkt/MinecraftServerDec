@@ -204,7 +204,7 @@ public class bdq extends atr {
 	}
 
 	public static ej a(World var0, dt var1, EntityLiving var2) {
-		if (uv.e((float) var2.s - (float) var1.n()) < 2.0F && uv.e((float) var2.u - (float) var1.p()) < 2.0F) {
+		if (NumberConverter.e((float) var2.s - (float) var1.n()) < 2.0F && NumberConverter.e((float) var2.u - (float) var1.p()) < 2.0F) {
 			double var3 = var2.t + (double) var2.aR();
 			if (var3 - (double) var1.o() > 2.0D) {
 				return ej.b;

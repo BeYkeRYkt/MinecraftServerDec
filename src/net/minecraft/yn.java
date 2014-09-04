@@ -36,7 +36,7 @@ public class yn {
 		this.a.m(0.0F);
 		if (this.f) {
 			this.f = false;
-			int var1 = uv.c(this.a.aQ().b + 0.5D);
+			int var1 = NumberConverter.c(this.a.aQ().b + 0.5D);
 			double var2 = this.b - this.a.s;
 			double var4 = this.d - this.a.u;
 			double var6 = this.c - (double) var1;
@@ -54,7 +54,7 @@ public class yn {
 	}
 
 	protected float a(float var1, float var2, float var3) {
-		float var4 = uv.g(var2 - var1);
+		float var4 = NumberConverter.g(var2 - var1);
 		if (var4 > var3) {
 			var4 = var3;
 		}

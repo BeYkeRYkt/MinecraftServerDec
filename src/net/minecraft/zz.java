@@ -75,13 +75,13 @@ public class zz extends zb {
 				return;
 			}
 
-			var4 = uv.a(var1) / this.i;
-			float var5 = uv.a(var4, 0.1F, 1.0F);
+			var4 = NumberConverter.a(var1) / this.i;
+			float var5 = NumberConverter.a(var4, 0.1F, 1.0F);
 			this.b.a(this.c, var5);
-			this.d = uv.d(var4 * (float) (this.h - this.g) + (float) this.g);
+			this.d = NumberConverter.d(var4 * (float) (this.h - this.g) + (float) this.g);
 		} else if (this.d < 0) {
-			var4 = uv.a(var1) / this.i;
-			this.d = uv.d(var4 * (float) (this.h - this.g) + (float) this.g);
+			var4 = NumberConverter.a(var1) / this.i;
+			this.d = NumberConverter.d(var4 * (float) (this.h - this.g) + (float) this.g);
 		}
 
 	}

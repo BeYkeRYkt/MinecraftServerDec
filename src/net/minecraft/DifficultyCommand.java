@@ -17,7 +17,7 @@ public class DifficultyCommand extends AbstractCommand {
 		return "commands.difficulty.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dp, dk {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dp, dk {
 		if (var2.length <= 0) {
 			throw new dp("commands.difficulty.usage", new Object[0]);
 		} else {

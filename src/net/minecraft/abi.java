@@ -329,7 +329,7 @@ public class abi {
 
 	public int a(String var1, int var2) {
 		int var3 = this.a(var1);
-		int var4 = uv.a(var3 + var2, -30, 10);
+		int var4 = NumberConverter.a(var3 + var2, -30, 10);
 		this.j.put(var1, Integer.valueOf(var4));
 		return var4;
 	}
@@ -349,16 +349,16 @@ public class abi {
 		this.c = new dt(var1.f("ACX"), var1.f("ACY"), var1.f("ACZ"));
 		NBTListTag var2 = var1.c("Doors", 10);
 
-		for (int var3 = 0; var3 < var2.c(); ++var3) {
-			NBTCompoundTag var4 = var2.b(var3);
+		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+			NBTCompoundTag var4 = var2.getCompound(var3);
 			abh var5 = new abh(new dt(var4.f("X"), var4.f("Y"), var4.f("Z")), var4.f("IDX"), var4.f("IDZ"), var4.f("TS"));
 			this.b.add(var5);
 		}
 
 		NBTListTag var6 = var1.c("Players", 10);
 
-		for (int var7 = 0; var7 < var6.c(); ++var7) {
-			NBTCompoundTag var8 = var6.b(var7);
+		for (int var7 = 0; var7 < var6.getSize(); ++var7) {
+			NBTCompoundTag var8 = var6.getCompound(var7);
 			this.j.put(var8.j("Name"), Integer.valueOf(var8.f("S")));
 		}
 
@@ -389,7 +389,7 @@ public class abi {
 			var5.a("IDX", var4.f());
 			var5.a("IDZ", var4.g());
 			var5.a("TS", var4.h());
-			var2.a((NBTTag) var5);
+			var2.addTag((NBTTag) var5);
 		}
 
 		var1.a("Doors", (NBTTag) var2);
@@ -401,7 +401,7 @@ public class abi {
 			NBTCompoundTag var6 = new NBTCompoundTag();
 			var6.a("Name", var9);
 			var6.a("S", ((Integer) this.j.get(var9)).intValue());
-			var7.a((NBTTag) var6);
+			var7.addTag((NBTTag) var6);
 		}
 
 		var1.a("Players", (NBTTag) var7);

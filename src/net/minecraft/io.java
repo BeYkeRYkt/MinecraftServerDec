@@ -25,9 +25,9 @@ public class io implements id<ik> {
 	public io(EntityLiving var1) {
 		this.a = var1.F();
 		this.b = (byte) xb.a(var1);
-		this.c = uv.c(var1.s * 32.0D);
-		this.d = uv.c(var1.t * 32.0D);
-		this.e = uv.c(var1.u * 32.0D);
+		this.c = NumberConverter.c(var1.s * 32.0D);
+		this.d = NumberConverter.c(var1.t * 32.0D);
+		this.e = NumberConverter.c(var1.u * 32.0D);
 		this.i = (byte) ((int) (var1.y * 256.0F / 360.0F));
 		this.j = (byte) ((int) (var1.z * 256.0F / 360.0F));
 		this.k = (byte) ((int) (var1.aI * 256.0F / 360.0F));

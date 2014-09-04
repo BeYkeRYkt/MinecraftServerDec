@@ -12,7 +12,7 @@ public class ServerSaveCommand extends AbstractCommand {
 		return "commands.save.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) {
 		MinecraftServer var3 = MinecraftServer.getInstance();
 		var1.a(new hz("commands.save.start", new Object[0]));
 		if (var3.getPlayerList() != null) {

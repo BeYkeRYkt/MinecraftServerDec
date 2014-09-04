@@ -190,7 +190,7 @@ public class biv {
 			return e();
 		} else {
 			String[] var1 = var0.split(";", -1);
-			int var2 = var1.length == 1 ? 0 : uv.a(var1[0], 0);
+			int var2 = var1.length == 1 ? 0 : NumberConverter.a(var1[0], 0);
 			if (var2 >= 0 && var2 <= 3) {
 				biv var3 = new biv();
 				int var4 = var1.length == 1 ? 0 : 1;
@@ -200,7 +200,7 @@ public class biv {
 					var3.d();
 					int var6 = arm.q.az;
 					if (var2 > 0 && var1.length > var4) {
-						var6 = uv.a(var1[var4++], var6);
+						var6 = NumberConverter.a(var1[var4++], var6);
 					}
 
 					var3.a(var6);

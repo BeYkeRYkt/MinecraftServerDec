@@ -22,7 +22,7 @@ public class UnbanNameCommand extends AbstractCommand {
 		return MinecraftServer.getInstance().getPlayerList().i().b() && super.a(var1);
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length == 1 && var2[0].length() > 0) {
 			MinecraftServer var3 = MinecraftServer.getInstance();
 			GameProfile var4 = var3.getPlayerList().i().a(var2[0]);

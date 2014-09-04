@@ -20,7 +20,7 @@ public class TriggerCommand extends AbstractCommand {
 		return "commands.trigger.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 3) {
 			throw new dp("commands.trigger.usage", new Object[0]);
 		} else {

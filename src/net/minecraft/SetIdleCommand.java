@@ -16,7 +16,7 @@ public class SetIdleCommand extends AbstractCommand {
 		return "commands.setidletimeout.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dp, dk {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dp, dk {
 		if (var2.length != 1) {
 			throw new dp("commands.setidletimeout.usage", new Object[0]);
 		} else {

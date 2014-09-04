@@ -50,8 +50,8 @@ public class aqd extends ArrayList {
 	public void a(NBTCompoundTag var1) {
 		NBTListTag var2 = var1.c("Recipes", 10);
 
-		for (int var3 = 0; var3 < var2.c(); ++var3) {
-			NBTCompoundTag var4 = var2.b(var3);
+		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+			NBTCompoundTag var4 = var2.getCompound(var3);
 			this.add(new aqc(var4));
 		}
 
@@ -63,7 +63,7 @@ public class aqd extends ArrayList {
 
 		for (int var3 = 0; var3 < this.size(); ++var3) {
 			aqc var4 = (aqc) this.get(var3);
-			var2.a((NBTTag) var4.k());
+			var2.addTag((NBTTag) var4.k());
 		}
 
 		var1.a("Recipes", (NBTTag) var2);

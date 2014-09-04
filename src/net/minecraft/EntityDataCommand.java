@@ -17,7 +17,7 @@ public class EntityDataCommand extends AbstractCommand {
 		return "commands.entitydata.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 2) {
 			throw new dp("commands.entitydata.usage", new Object[0]);
 		} else {

@@ -409,7 +409,7 @@ public final class amj {
 		NBTCompoundTag var4 = new NBTCompoundTag();
 		var4.a("id", (short) var1.B);
 		var4.a("lvl", (short) ((byte) var2));
-		var3.a((NBTTag) var4);
+		var3.addTag((NBTTag) var4);
 	}
 
 	public boolean w() {
@@ -458,8 +458,8 @@ public final class amj {
 			var1 = HashMultimap.create();
 			NBTListTag var2 = this.e.c("AttributeModifiers", 10);
 
-			for (int var3 = 0; var3 < var2.c(); ++var3) {
-				NBTCompoundTag var4 = var2.b(var3);
+			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+				NBTCompoundTag var4 = var2.getCompound(var3);
 				ya var5 = afs.a(var4);
 				if (var5 != null && var5.a().getLeastSignificantBits() != 0L && var5.a().getMostSignificantBits() != 0L) {
 					((Multimap) var1).put(var4.j("AttributeName"), var5);
@@ -501,8 +501,8 @@ public final class amj {
 			if (this.n() && this.e.b("CanDestroy", 9)) {
 				NBTListTag var2 = this.e.c("CanDestroy", 8);
 
-				for (int var3 = 0; var3 < var2.c(); ++var3) {
-					atr var4 = atr.b(var2.f(var3));
+				for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+					atr var4 = atr.b(var2.getString(var3));
 					if (var4 == var1) {
 						this.i = true;
 						return true;
@@ -523,8 +523,8 @@ public final class amj {
 			if (this.n() && this.e.b("CanPlaceOn", 9)) {
 				NBTListTag var2 = this.e.c("CanPlaceOn", 8);
 
-				for (int var3 = 0; var3 < var2.c(); ++var3) {
-					atr var4 = atr.b(var2.f(var3));
+				for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+					atr var4 = atr.b(var2.getString(var3));
 					if (var4 == var1) {
 						this.k = true;
 						return true;

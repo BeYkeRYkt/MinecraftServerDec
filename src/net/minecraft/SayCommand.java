@@ -17,7 +17,7 @@ public class SayCommand extends AbstractCommand {
 		return "commands.say.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dp, dm {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dp, dm {
 		if (var2.length > 0 && var2[0].length() > 0) {
 			ho var3 = b(var1, var2, 0, true);
 			MinecraftServer.getInstance().getPlayerList().a((ho) (new hz("chat.type.announcement", new Object[] { var1.e_(), var3 })));

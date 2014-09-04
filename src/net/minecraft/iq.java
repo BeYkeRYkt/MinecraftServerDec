@@ -23,9 +23,9 @@ public class iq implements id<ik> {
 	public iq(ahd var1) {
 		this.a = var1.F();
 		this.b = var1.cc().getId();
-		this.c = uv.c(var1.s * 32.0D);
-		this.d = uv.c(var1.t * 32.0D);
-		this.e = uv.c(var1.u * 32.0D);
+		this.c = NumberConverter.c(var1.s * 32.0D);
+		this.d = NumberConverter.c(var1.t * 32.0D);
+		this.e = NumberConverter.c(var1.u * 32.0D);
 		this.f = (byte) ((int) (var1.y * 256.0F / 360.0F));
 		this.g = (byte) ((int) (var1.z * 256.0F / 360.0F));
 		amj var2 = var1.bg.h();

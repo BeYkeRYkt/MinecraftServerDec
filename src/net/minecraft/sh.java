@@ -24,7 +24,7 @@ final class sh implements ProfileLookupCallback {
 	}
 
 	public void onProfileLookupSucceeded(GameProfile var1) {
-		this.a.getUserCache().a(var1);
+		this.a.getUserCache().saveProfile(var1);
 		String[] var2 = (String[]) this.b.get(var1.getName().toLowerCase(Locale.ROOT));
 		if (var2 == null) {
 			sf.a().warn("Could not convert user banlist entry for " + var1.getName());

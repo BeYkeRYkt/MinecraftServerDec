@@ -21,7 +21,7 @@ public class bsj extends bsi {
 			var2 /= (float) var1.size();
 		}
 
-		return uv.f(var2);
+		return NumberConverter.f(var2);
 	}
 
 	public boolean b() {

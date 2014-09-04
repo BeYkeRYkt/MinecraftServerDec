@@ -10,7 +10,7 @@ public class awm extends atr {
 	}
 
 	public int a(int var1, Random var2) {
-		return uv.a(this.a(var2) + var2.nextInt(var1 + 1), 1, 4);
+		return NumberConverter.a(this.a(var2) + var2.nextInt(var1 + 1), 1, 4);
 	}
 
 	public int a(Random var1) {

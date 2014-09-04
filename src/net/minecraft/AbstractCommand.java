@@ -29,7 +29,7 @@ public abstract class AbstractCommand implements CommandInterface {
 		return var1.a(this.a(), this.getName());
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List<String> getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return null;
 	}
 

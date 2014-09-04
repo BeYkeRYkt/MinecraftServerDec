@@ -58,7 +58,7 @@ public class asd extends arm {
 
 	public awa a(Random var1, dt var2) {
 		if (this.aG == 1) {
-			double var3 = uv.a((1.0D + af.a((double) var2.n() / 48.0D, (double) var2.p() / 48.0D)) / 2.0D, 0.0D, 0.9999D);
+			double var3 = NumberConverter.a((1.0D + af.a((double) var2.n() / 48.0D, (double) var2.p() / 48.0D)) / 2.0D, 0.0D, 0.9999D);
 			awa var5 = awa.values()[(int) (var3 * (double) awa.values().length)];
 			return var5 == awa.c ? awa.b : var5;
 		} else {

@@ -70,16 +70,16 @@ public class bci extends bcm {
 
 	public static int c(amj var0) {
 		NBTCompoundTag var1 = var0.a("BlockEntityTag", false);
-		return var1 != null && var1.c("Patterns") ? var1.c("Patterns", 10).c() : 0;
+		return var1 != null && var1.c("Patterns") ? var1.c("Patterns", 10).getSize() : 0;
 	}
 
 	public static void e(amj var0) {
 		NBTCompoundTag var1 = var0.a("BlockEntityTag", false);
 		if (var1 != null && var1.b("Patterns", 9)) {
 			NBTListTag var2 = var1.c("Patterns", 10);
-			if (var2.c() > 0) {
-				var2.a(var2.c() - 1);
-				if (var2.c_()) {
+			if (var2.getSize() > 0) {
+				var2.removeTag(var2.getSize() - 1);
+				if (var2.isEmpty()) {
 					var0.o().o("BlockEntityTag");
 					if (var0.o().c_()) {
 						var0.d((NBTCompoundTag) null);

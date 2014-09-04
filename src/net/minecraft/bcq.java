@@ -140,8 +140,8 @@ public class bcq extends bdf implements pm, we {
 		NBTListTag var2 = var1.c("Items", 10);
 		this.g = new amj[this.n_()];
 
-		for (int var3 = 0; var3 < var2.c(); ++var3) {
-			NBTCompoundTag var4 = var2.b(var3);
+		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+			NBTCompoundTag var4 = var2.getCompound(var3);
 			byte var5 = var4.d("Slot");
 			if (var5 >= 0 && var5 < this.g.length) {
 				this.g[var5] = amj.a(var4);
@@ -165,7 +165,7 @@ public class bcq extends bdf implements pm, we {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.a("Slot", (byte) var3);
 				this.g[var3].b(var4);
-				var2.a((NBTTag) var4);
+				var2.addTag((NBTTag) var4);
 			}
 		}
 

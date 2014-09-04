@@ -16,7 +16,7 @@ public class ToggleDownfallCommand extends AbstractCommand {
 		return "commands.downfall.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) {
 		this.d();
 		a(var1, this, "commands.downfall.success", new Object[0]);
 	}

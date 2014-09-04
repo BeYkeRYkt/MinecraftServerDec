@@ -22,7 +22,7 @@ public class TellCommand extends AbstractCommand {
 		return "commands.message.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dp, dm {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dp, dm {
 		if (var2.length < 2) {
 			throw new dp("commands.message.usage", new Object[0]);
 		} else {

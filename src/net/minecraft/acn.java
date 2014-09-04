@@ -22,9 +22,9 @@ public class acn extends abw implements afr {
 	public void m() {
 		super.m();
 		if (!this.o.D) {
-			int var1 = uv.c(this.s);
-			int var2 = uv.c(this.t);
-			int var3 = uv.c(this.u);
+			int var1 = NumberConverter.c(this.s);
+			int var2 = NumberConverter.c(this.t);
+			int var3 = NumberConverter.c(this.u);
 			if (this.U()) {
 				this.a(wh.f, 1.0F);
 			}
@@ -34,9 +34,9 @@ public class acn extends abw implements afr {
 			}
 
 			for (int var4 = 0; var4 < 4; ++var4) {
-				var1 = uv.c(this.s + (double) ((float) (var4 % 2 * 2 - 1) * 0.25F));
-				var2 = uv.c(this.t);
-				var3 = uv.c(this.u + (double) ((float) (var4 / 2 % 2 * 2 - 1) * 0.25F));
+				var1 = NumberConverter.c(this.s + (double) ((float) (var4 % 2 * 2 - 1) * 0.25F));
+				var2 = NumberConverter.c(this.t);
+				var3 = NumberConverter.c(this.u + (double) ((float) (var4 / 2 % 2 * 2 - 1) * 0.25F));
 				if (this.o.p(new dt(var1, var2, var3)).c().r() == bof.a && this.o.b(new dt(var1, 0, var3)).a(new dt(var1, var2, var3)) < 0.8F && aty.aH.c(this.o, new dt(var1, var2, var3))) {
 					this.o.a(new dt(var1, var2, var3), aty.aH.P());
 				}
@@ -64,7 +64,7 @@ public class acn extends abw implements afr {
 		double var6 = var1.s - this.s;
 		double var8 = var4 - var3.t;
 		double var10 = var1.u - this.u;
-		float var12 = uv.a(var6 * var6 + var10 * var10) * 0.2F;
+		float var12 = NumberConverter.a(var6 * var6 + var10 * var10) * 0.2F;
 		var3.c(var6, var8 + (double) var12, var10, 1.6F, 12.0F);
 		this.a("random.bow", 1.0F, 1.0F / (this.bb().nextFloat() * 0.4F + 0.8F));
 		this.o.d((Entity) var3);

@@ -95,7 +95,7 @@ public class aco extends act {
 			float var1;
 			if (this.bj < 3.1415927F) {
 				var1 = this.bj / 3.1415927F;
-				this.bl = uv.a(var1 * var1 * 3.1415927F) * 3.1415927F * 0.25F;
+				this.bl = NumberConverter.a(var1 * var1 * 3.1415927F) * 3.1415927F * 0.25F;
 				if ((double) var1 > 0.75D) {
 					this.bn = 1.0F;
 					this.bp = 1.0F;
@@ -114,13 +114,13 @@ public class aco extends act {
 				this.x = (double) (this.bs * this.bn);
 			}
 
-			var1 = uv.a(this.v * this.v + this.x * this.x);
+			var1 = NumberConverter.a(this.v * this.v + this.x * this.x);
 			this.aG += (-((float) Math.atan2(this.v, this.x)) * 180.0F / 3.1415927F - this.aG) * 0.1F;
 			this.y = this.aG;
 			this.c = (float) ((double) this.c + 3.141592653589793D * (double) this.bp * 1.5D);
 			this.a += (-((float) Math.atan2((double) var1, this.w)) * 180.0F / 3.1415927F - this.a) * 0.1F;
 		} else {
-			this.bl = uv.e(uv.a(this.bj)) * 3.1415927F * 0.25F;
+			this.bl = NumberConverter.e(NumberConverter.a(this.bj)) * 3.1415927F * 0.25F;
 			if (!this.o.D) {
 				this.v = 0.0D;
 				this.w -= 0.08D;

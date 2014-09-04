@@ -17,7 +17,7 @@ public class XPCommand extends AbstractCommand {
 		return "commands.xp.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length <= 0) {
 			throw new dp("commands.xp.usage", new Object[0]);
 		} else {

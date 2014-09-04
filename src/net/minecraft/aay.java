@@ -28,7 +28,7 @@ public class aay extends aaz {
 	private int p() {
 		if (this.b.V() && this.h()) {
 			int var1 = (int) this.b.aQ().b;
-			atr var2 = this.c.p(new dt(uv.c(this.b.s), var1, uv.c(this.b.u))).c();
+			atr var2 = this.c.p(new dt(NumberConverter.c(this.b.s), var1, NumberConverter.c(this.b.u))).c();
 			int var3 = 0;
 
 			do {
@@ -37,7 +37,7 @@ public class aay extends aaz {
 				}
 
 				++var1;
-				var2 = this.c.p(new dt(uv.c(this.b.s), var1, uv.c(this.b.u))).c();
+				var2 = this.c.p(new dt(NumberConverter.c(this.b.s), var1, NumberConverter.c(this.b.u))).c();
 				++var3;
 			} while (var3 <= 16);
 
@@ -50,7 +50,7 @@ public class aay extends aaz {
 	protected void d() {
 		super.d();
 		if (this.f) {
-			if (this.c.i(new dt(uv.c(this.b.s), (int) (this.b.aQ().b + 0.5D), uv.c(this.b.u)))) {
+			if (this.c.i(new dt(NumberConverter.c(this.b.s), (int) (this.b.aQ().b + 0.5D), NumberConverter.c(this.b.u)))) {
 				return;
 			}
 
@@ -66,8 +66,8 @@ public class aay extends aaz {
 	}
 
 	protected boolean a(brw var1, brw var2, int var3, int var4, int var5) {
-		int var6 = uv.c(var1.a);
-		int var7 = uv.c(var1.c);
+		int var6 = NumberConverter.c(var1.a);
+		int var7 = NumberConverter.c(var1.c);
 		double var8 = var2.a - var1.a;
 		double var10 = var2.c - var1.c;
 		double var12 = var8 * var8 + var10 * var10;
@@ -100,8 +100,8 @@ public class aay extends aaz {
 				var22 /= var10;
 				int var24 = var8 < 0.0D ? -1 : 1;
 				int var25 = var10 < 0.0D ? -1 : 1;
-				int var26 = uv.c(var2.a);
-				int var27 = uv.c(var2.c);
+				int var26 = NumberConverter.c(var2.a);
+				int var27 = NumberConverter.c(var2.c);
 				int var28 = var26 - var6;
 				int var29 = var27 - var7;
 

@@ -18,7 +18,7 @@ public class TeleportCommand extends AbstractCommand {
 		return "commands.tp.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 1) {
 			throw new dp("commands.tp.usage", new Object[0]);
 		} else {
@@ -66,28 +66,28 @@ public class TeleportCommand extends AbstractCommand {
 
 						var12 = (float) var9.b();
 						if (!var9.c()) {
-							var12 = uv.g(var12);
+							var12 = NumberConverter.g(var12);
 						}
 
 						float var13 = (float) var10.b();
 						if (!var10.c()) {
-							var13 = uv.g(var13);
+							var13 = NumberConverter.g(var13);
 						}
 
 						if (var13 > 90.0F || var13 < -90.0F) {
-							var13 = uv.g(180.0F - var13);
-							var12 = uv.g(var12 + 180.0F);
+							var13 = NumberConverter.g(180.0F - var13);
+							var12 = NumberConverter.g(var12 + 180.0F);
 						}
 
 						((Entity) var4).a((Entity) null);
 						((EntityPlayer) var4).a.a(var6.b(), var7.b(), var8.b(), var12, var13, var11);
 						((Entity) var4).f(var12);
 					} else {
-						float var15 = (float) uv.g(var9.a());
-						var12 = (float) uv.g(var10.a());
+						float var15 = (float) NumberConverter.g(var9.a());
+						var12 = (float) NumberConverter.g(var10.a());
 						if (var12 > 90.0F || var12 < -90.0F) {
-							var12 = uv.g(180.0F - var12);
-							var15 = uv.g(var15 + 180.0F);
+							var12 = NumberConverter.g(180.0F - var12);
+							var15 = NumberConverter.g(var15 + 180.0F);
 						}
 
 						((Entity) var4).b(var6.a(), var7.a(), var8.a(), var15, var12);

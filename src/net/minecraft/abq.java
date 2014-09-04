@@ -61,9 +61,9 @@ public abstract class abq extends ws implements wt {
 	}
 
 	public boolean bQ() {
-		int var1 = uv.c(this.s);
-		int var2 = uv.c(this.aQ().b);
-		int var3 = uv.c(this.u);
+		int var1 = NumberConverter.c(this.s);
+		int var2 = NumberConverter.c(this.aQ().b);
+		int var3 = NumberConverter.c(this.u);
 		dt var4 = new dt(var1, var2, var3);
 		return this.o.p(var4.b()).c() == this.bl && this.o.k(var4) > 8 && super.bQ();
 	}

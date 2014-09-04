@@ -549,14 +549,14 @@ public class bfh {
 
 	public void a(Entity var1) {
 		this.r = true;
-		int var2 = uv.c(var1.s / 16.0D);
-		int var3 = uv.c(var1.u / 16.0D);
+		int var2 = NumberConverter.c(var1.s / 16.0D);
+		int var3 = NumberConverter.c(var1.u / 16.0D);
 		if (var2 != this.a || var3 != this.b) {
 			c.warn("Wrong location! (" + var2 + ", " + var3 + ") should be (" + this.a + ", " + this.b + "), " + var1, new Object[] { var1 });
 			var1.J();
 		}
 
-		int var4 = uv.c(var1.t / 16.0D);
+		int var4 = NumberConverter.c(var1.t / 16.0D);
 		if (var4 < 0) {
 			var4 = 0;
 		}
@@ -685,10 +685,10 @@ public class bfh {
 	}
 
 	public void a(Entity var1, brt var2, List var3, Predicate var4) {
-		int var5 = uv.c((var2.b - 2.0D) / 16.0D);
-		int var6 = uv.c((var2.e + 2.0D) / 16.0D);
-		var5 = uv.a(var5, 0, this.m.length - 1);
-		var6 = uv.a(var6, 0, this.m.length - 1);
+		int var5 = NumberConverter.c((var2.b - 2.0D) / 16.0D);
+		int var6 = NumberConverter.c((var2.e + 2.0D) / 16.0D);
+		var5 = NumberConverter.a(var5, 0, this.m.length - 1);
+		var6 = NumberConverter.a(var6, 0, this.m.length - 1);
 
 		for (int var7 = var5; var7 <= var6; ++var7) {
 			Iterator var8 = this.m[var7].iterator();
@@ -713,10 +713,10 @@ public class bfh {
 	}
 
 	public void a(Class var1, brt var2, List var3, Predicate var4) {
-		int var5 = uv.c((var2.b - 2.0D) / 16.0D);
-		int var6 = uv.c((var2.e + 2.0D) / 16.0D);
-		var5 = uv.a(var5, 0, this.m.length - 1);
-		var6 = uv.a(var6, 0, this.m.length - 1);
+		int var5 = NumberConverter.c((var2.b - 2.0D) / 16.0D);
+		int var6 = NumberConverter.c((var2.e + 2.0D) / 16.0D);
+		var5 = NumberConverter.a(var5, 0, this.m.length - 1);
+		var6 = NumberConverter.a(var6, 0, this.m.length - 1);
 
 		for (int var7 = var5; var7 <= var6; ++var7) {
 			Iterator var8 = this.m[var7].b(var1).iterator();

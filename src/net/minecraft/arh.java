@@ -24,9 +24,9 @@ public class arh {
 				this.b(var1, var2);
 			}
 		} else {
-			int var3 = uv.c(var1.s);
-			int var4 = uv.c(var1.t) - 1;
-			int var5 = uv.c(var1.u);
+			int var3 = NumberConverter.c(var1.s);
+			int var4 = NumberConverter.c(var1.t) - 1;
+			int var5 = NumberConverter.c(var1.u);
 			byte var6 = 1;
 			byte var7 = 0;
 
@@ -50,8 +50,8 @@ public class arh {
 	public boolean b(Entity var1, float var2) {
 		boolean var3 = true;
 		double var4 = -1.0D;
-		int var6 = uv.c(var1.s);
-		int var7 = uv.c(var1.u);
+		int var6 = NumberConverter.c(var1.s);
+		int var7 = NumberConverter.c(var1.u);
 		boolean var8 = true;
 		Object var9 = dt.a;
 		long var10 = aqm.a(var6, var7);
@@ -182,9 +182,9 @@ public class arh {
 	public boolean a(Entity var1) {
 		byte var2 = 16;
 		double var3 = -1.0D;
-		int var5 = uv.c(var1.s);
-		int var6 = uv.c(var1.t);
-		int var7 = uv.c(var1.u);
+		int var5 = NumberConverter.c(var1.s);
+		int var6 = NumberConverter.c(var1.t);
+		int var7 = NumberConverter.c(var1.u);
 		int var8 = var5;
 		int var9 = var6;
 		int var10 = var7;
@@ -309,7 +309,7 @@ public class arh {
 		}
 
 		if (var3 < 0.0D) {
-			var9 = uv.a(var9, 70, this.a.V() - 10);
+			var9 = NumberConverter.a(var9, 70, this.a.V() - 10);
 			var15 = var9;
 
 			for (var19 = -1; var19 <= 1; ++var19) {

@@ -47,7 +47,7 @@ public class WorldServer extends World implements vn {
 		this.Q = new arh(this);
 		this.B();
 		this.C();
-		this.af().a(var1.aG());
+		this.af().a(var1.getMaxWorldSize());
 	}
 
 	public World b() {
@@ -832,8 +832,8 @@ public class WorldServer extends World implements vn {
 		return this.I.a(var1);
 	}
 
-	public boolean aH() {
-		return this.I.aH();
+	public boolean isMainThread() {
+		return this.I.isMainThread();
 	}
 
 }

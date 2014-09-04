@@ -471,7 +471,7 @@ public abstract class aib {
 	public static void a(Set var0, int var1, amj var2, int var3) {
 		switch (var1) {
 			case 0:
-				var2.b = uv.d((float) var2.b / (float) var0.size());
+				var2.b = NumberConverter.d((float) var2.b / (float) var0.size());
 				break;
 			case 1:
 				var2.b = 1;
@@ -507,7 +507,7 @@ public abstract class aib {
 			}
 
 			var2 /= (float) var0.n_();
-			return uv.d(var2 * 14.0F) + (var1 > 0 ? 1 : 0);
+			return NumberConverter.d(var2 * 14.0F) + (var1 > 0 ? 1 : 0);
 		}
 	}
 }

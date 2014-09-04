@@ -61,7 +61,7 @@ public abstract class bmv {
 
 		while (var5.hasNext()) {
 			bms var6 = (bms) var5.next();
-			var4.a((NBTTag) var6.b());
+			var4.addTag((NBTTag) var6.b());
 		}
 
 		var3.a("Children", (NBTTag) var4);
@@ -81,8 +81,8 @@ public abstract class bmv {
 
 		NBTListTag var3 = var2.c("Children", 10);
 
-		for (int var4 = 0; var4 < var3.c(); ++var4) {
-			this.a.add(bmq.b(var3.b(var4), var1));
+		for (int var4 = 0; var4 < var3.getSize(); ++var4) {
+			this.a.add(bmq.b(var3.getCompound(var4), var1));
 		}
 
 		this.b(var2);

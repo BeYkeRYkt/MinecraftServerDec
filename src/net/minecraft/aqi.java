@@ -178,8 +178,8 @@ public abstract class aqi {
 		if (var1.b("SpawnPotentials", 9)) {
 			NBTListTag var2 = var1.c("SpawnPotentials", 10);
 
-			for (int var3 = 0; var3 < var2.c(); ++var3) {
-				this.c.add(new aqj(this, var2.b(var3)));
+			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+				this.c.add(new aqj(this, var2.getCompound(var3)));
 			}
 		}
 
@@ -230,10 +230,10 @@ public abstract class aqi {
 
 				while (var3.hasNext()) {
 					aqj var4 = (aqj) var3.next();
-					var2.a((NBTTag) var4.a());
+					var2.addTag((NBTTag) var4.a());
 				}
 			} else {
-				var2.a((NBTTag) this.i().a());
+				var2.addTag((NBTTag) this.i().a());
 			}
 
 			var1.a("SpawnPotentials", (NBTTag) var2);

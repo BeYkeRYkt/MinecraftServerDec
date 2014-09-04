@@ -60,7 +60,7 @@ public class bgv implements bfe {
 
 		for (int var6 = -2; var6 <= 2; ++var6) {
 			for (int var7 = -2; var7 <= 2; ++var7) {
-				float var8 = 10.0F / uv.c((float) (var6 * var6 + var7 * var7) + 0.2F);
+				float var8 = 10.0F / NumberConverter.c((float) (var6 * var6 + var7 * var7) + 0.2F);
 				this.q[var6 + 2 + (var7 + 2) * 5] = var8;
 			}
 		}
@@ -273,7 +273,7 @@ public class bgv implements bfe {
 					double var26 = this.e[var6] / (double) this.r.d;
 					double var28 = this.f[var6] / (double) this.r.c;
 					double var30 = (this.d[var6] / 10.0D + 1.0D) / 2.0D;
-					double var32 = uv.b(var26, var28, var30) - var24;
+					double var32 = NumberConverter.b(var26, var28, var30) - var24;
 					if (var23 > 29) {
 						double var34 = (double) ((float) (var23 - 29) / 3.0F);
 						var32 = var32 * (1.0D - var34) + -10.0D * var34;

@@ -134,7 +134,7 @@ public class aui extends atr {
 	}
 
 	public void a(World var1, dt var2, bec var3, int var4) {
-		var1.a(var2, var3.a(a, Integer.valueOf(uv.a(var4, 0, 3))), 2);
+		var1.a(var2, var3.a(a, Integer.valueOf(NumberConverter.a(var4, 0, 3))), 2);
 		var1.e(var2, this);
 	}
 

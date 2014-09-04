@@ -69,7 +69,7 @@ public abstract class afm extends EntityCreature implements aex {
 		boolean var4 = var1.a(wh.a((EntityLiving) this), var2);
 		if (var4) {
 			if (var3 > 0) {
-				var1.g((double) (-uv.a(this.y * 3.1415927F / 180.0F) * (float) var3 * 0.5F), 0.1D, (double) (uv.b(this.y * 3.1415927F / 180.0F) * (float) var3 * 0.5F));
+				var1.g((double) (-NumberConverter.a(this.y * 3.1415927F / 180.0F) * (float) var3 * 0.5F), 0.1D, (double) (NumberConverter.b(this.y * 3.1415927F / 180.0F) * (float) var3 * 0.5F));
 				this.v *= 0.6D;
 				this.x *= 0.6D;
 			}

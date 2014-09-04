@@ -137,7 +137,7 @@ public class CrashReport {
 		return var1.toString();
 	}
 
-	public boolean a(File var1) {
+	public boolean write(File var1) {
 		if (this.f != null) {
 			return false;
 		} else {

@@ -37,8 +37,8 @@ public final class ga {
 					String var7 = (String) var6.next();
 					NBTListTag var8 = var5.c(var7, 10);
 
-					for (int var9 = 0; var9 < var8.c(); ++var9) {
-						NBTCompoundTag var10 = var8.b(var9);
+					for (int var9 = 0; var9 < var8.getSize(); ++var9) {
+						NBTCompoundTag var10 = var8.getCompound(var9);
 						String var11 = var10.j("Value");
 						if (var10.b("Signature", 8)) {
 							var4.getProperties().put(var7, new Property(var7, var11, var10.j("Signature")));
@@ -71,7 +71,7 @@ public final class ga {
 				NBTListTag var5 = new NBTListTag();
 
 				NBTCompoundTag var8;
-				for (Iterator var6 = var1.getProperties().get(var4).iterator(); var6.hasNext(); var5.a((NBTTag) var8)) {
+				for (Iterator var6 = var1.getProperties().get(var4).iterator(); var6.hasNext(); var5.addTag((NBTTag) var8)) {
 					Property var7 = (Property) var6.next();
 					var8 = new NBTCompoundTag();
 					var8.a("Value", var7.getValue());

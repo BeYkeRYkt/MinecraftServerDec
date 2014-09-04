@@ -211,10 +211,10 @@ public class alq {
 		double var8 = var2.q + (var2.t - var2.q) + (double) var2.aR();
 		double var10 = var2.r + (var2.u - var2.r);
 		brw var12 = new brw(var6, var8, var10);
-		float var13 = uv.b(-var5 * 0.017453292F - 3.1415927F);
-		float var14 = uv.a(-var5 * 0.017453292F - 3.1415927F);
-		float var15 = -uv.b(-var4 * 0.017453292F);
-		float var16 = uv.a(-var4 * 0.017453292F);
+		float var13 = NumberConverter.b(-var5 * 0.017453292F - 3.1415927F);
+		float var14 = NumberConverter.a(-var5 * 0.017453292F - 3.1415927F);
+		float var15 = -NumberConverter.b(-var4 * 0.017453292F);
+		float var16 = NumberConverter.a(-var4 * 0.017453292F);
 		float var17 = var14 * var15;
 		float var19 = var13 * var15;
 		double var20 = 5.0D;

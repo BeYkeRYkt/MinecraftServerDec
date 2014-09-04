@@ -23,8 +23,8 @@ public class bqe extends bqc {
 
 	public void a(double var1, double var3, int var5) {
 		int var6 = 128 * (1 << var5);
-		int var7 = uv.c((var1 + 64.0D) / (double) var6);
-		int var8 = uv.c((var3 + 64.0D) / (double) var6);
+		int var7 = NumberConverter.c((var1 + 64.0D) / (double) var6);
+		int var8 = NumberConverter.c((var3 + 64.0D) / (double) var6);
 		this.b = var7 * var6 + var6 / 2 - 64;
 		this.c = var8 * var6 + var6 / 2 - 64;
 	}
@@ -34,7 +34,7 @@ public class bqe extends bqc {
 		this.b = var1.f("xCenter");
 		this.c = var1.f("zCenter");
 		this.e = var1.d("scale");
-		this.e = (byte) uv.a(this.e, 0, 4);
+		this.e = (byte) NumberConverter.a(this.e, 0, 4);
 		short var2 = var1.e("width");
 		short var3 = var1.e("height");
 		if (var2 == 128 && var3 == 128) {
@@ -102,8 +102,8 @@ public class bqe extends bqc {
 		if (var2.n() && var2.o().b("Decorations", 9)) {
 			NBTListTag var8 = var2.o().c("Decorations", 10);
 
-			for (int var10 = 0; var10 < var8.c(); ++var10) {
-				NBTCompoundTag var5 = var8.b(var10);
+			for (int var10 = 0; var10 < var8.getSize(); ++var10) {
+				NBTCompoundTag var5 = var8.getCompound(var10);
 				if (!this.h.containsKey(var5.j("id"))) {
 					this.a(var5.d("type"), var1.o, var5.j("id"), var5.i("x"), var5.i("z"), var5.i("rot"));
 				}

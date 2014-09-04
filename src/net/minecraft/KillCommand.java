@@ -14,7 +14,7 @@ public class KillCommand extends AbstractCommand {
 		return "commands.kill.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dj, dm {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dj, dm {
 		if (var2.length == 0) {
 			EntityPlayer var4 = b(var1);
 			var4.G();

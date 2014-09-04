@@ -29,7 +29,7 @@ public class blg extends bmm {
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
 			if (((String) var3.getKey()).equals("distance")) {
-				this.g = uv.a((String) var3.getValue(), this.g, this.h + 1);
+				this.g = NumberConverter.a((String) var3.getValue(), this.g, this.h + 1);
 			}
 		}
 

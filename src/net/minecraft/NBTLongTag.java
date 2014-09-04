@@ -4,24 +4,24 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public class NBTLongTag extends ge {
+public class NBTLongTag extends NBTNumberTag {
 
-	private long b;
+	private long l;
 
 	NBTLongTag() {
 	}
 
-	public NBTLongTag(long var1) {
-		this.b = var1;
+	public NBTLongTag(long l) {
+		this.l = l;
 	}
 
-	void write(DataOutput var1) throws IOException {
-		var1.writeLong(this.b);
+	void write(DataOutput output) throws IOException {
+		output.writeLong(this.l);
 	}
 
-	void read(DataInput var1, int var2, NBTReadLimiter var3) throws IOException {
-		var3.a(64L);
-		this.b = var1.readLong();
+	void read(DataInput input, int currentDepth, NBTReadLimiter limiter) throws IOException {
+		limiter.onBytesRead(64L);
+		this.l = input.readLong();
 	}
 
 	public byte getId() {
@@ -29,47 +29,47 @@ public class NBTLongTag extends ge {
 	}
 
 	public String toString() {
-		return "" + this.b + "L";
+		return "" + this.l + "L";
 	}
 
 	public NBTTag getCopy() {
-		return new NBTLongTag(this.b);
+		return new NBTLongTag(this.l);
 	}
 
 	public boolean equals(Object var1) {
 		if (super.equals(var1)) {
 			NBTLongTag var2 = (NBTLongTag) var1;
-			return this.b == var2.b;
+			return this.l == var2.l;
 		} else {
 			return false;
 		}
 	}
 
 	public int hashCode() {
-		return super.hashCode() ^ (int) (this.b ^ this.b >>> 32);
+		return super.hashCode() ^ (int) (this.l ^ this.l >>> 32);
 	}
 
-	public long c() {
-		return this.b;
+	public long toLong() {
+		return this.l;
 	}
 
-	public int d() {
-		return (int) (this.b & -1L);
+	public int toInt() {
+		return (int) (this.l & -1L);
 	}
 
-	public short e() {
-		return (short) ((int) (this.b & 65535L));
+	public short toShort() {
+		return (short) ((int) (this.l & 65535L));
 	}
 
-	public byte f() {
-		return (byte) ((int) (this.b & 255L));
+	public byte toByte() {
+		return (byte) ((int) (this.l & 255L));
 	}
 
-	public double g() {
-		return (double) this.b;
+	public double toDouble() {
+		return (double) this.l;
 	}
 
-	public float h() {
-		return (float) this.b;
+	public float toFloat() {
+		return (float) this.l;
 	}
 }

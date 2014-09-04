@@ -26,9 +26,9 @@ public class aph {
 			if (var2 == null) {
 				return 0;
 			} else {
-				for (int var3 = 0; var3 < var2.c(); ++var3) {
-					short var4 = var2.b(var3).e("id");
-					short var5 = var2.b(var3).e("lvl");
+				for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+					short var4 = var2.getCompound(var3).e("id");
+					short var5 = var2.getCompound(var3).e("lvl");
 					if (var4 == var0) {
 						return var5;
 					}
@@ -43,9 +43,9 @@ public class aph {
 		LinkedHashMap var1 = Maps.newLinkedHashMap();
 		NBTListTag var2 = var0.b() == amk.cd ? amk.cd.h(var0) : var0.p();
 		if (var2 != null) {
-			for (int var3 = 0; var3 < var2.c(); ++var3) {
-				short var4 = var2.b(var3).e("id");
-				short var5 = var2.b(var3).e("lvl");
+			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+				short var4 = var2.getCompound(var3).e("id");
+				short var5 = var2.getCompound(var3).e("lvl");
 				var1.put(Integer.valueOf(var4), Integer.valueOf(var5));
 			}
 		}
@@ -64,14 +64,14 @@ public class aph {
 				NBTCompoundTag var6 = new NBTCompoundTag();
 				var6.a("id", (short) var4);
 				var6.a("lvl", (short) ((Integer) var0.get(Integer.valueOf(var4))).intValue());
-				var2.a((NBTTag) var6);
+				var2.addTag((NBTTag) var6);
 				if (var1.b() == amk.cd) {
 					amk.cd.a(var1, new apo(var5, ((Integer) var0.get(Integer.valueOf(var4))).intValue()));
 				}
 			}
 		}
 
-		if (var2.c() > 0) {
+		if (var2.getSize() > 0) {
 			if (var1.b() != amk.cd) {
 				var1.a("ench", (NBTTag) var2);
 			}
@@ -105,9 +105,9 @@ public class aph {
 		if (var1 != null) {
 			NBTListTag var2 = var1.p();
 			if (var2 != null) {
-				for (int var3 = 0; var3 < var2.c(); ++var3) {
-					short var4 = var2.b(var3).e("id");
-					short var5 = var2.b(var3).e("lvl");
+				for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+					short var4 = var2.getCompound(var3).e("id");
+					short var5 = var2.getCompound(var3).e("lvl");
 					if (apf.c(var4) != null) {
 						var0.a(apf.c(var4), var5);
 					}

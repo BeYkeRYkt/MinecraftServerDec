@@ -23,13 +23,13 @@ public class bhx extends bhp {
 			int var8;
 			for (var6 = 0; var6 < var4; ++var6) {
 				float var7 = (1.0F - (float) var6 / (float) var4) * (float) var5;
-				var8 = uv.f(var7);
+				var8 = NumberConverter.f(var7);
 
 				for (int var9 = -var8; var9 <= var8; ++var9) {
-					float var10 = (float) uv.a(var9) - 0.25F;
+					float var10 = (float) NumberConverter.a(var9) - 0.25F;
 
 					for (int var11 = -var8; var11 <= var8; ++var11) {
-						float var12 = (float) uv.a(var11) - 0.25F;
+						float var12 = (float) NumberConverter.a(var11) - 0.25F;
 						if ((var9 == 0 && var11 == 0 || var10 * var10 + var12 * var12 <= var7 * var7) && (var9 != -var8 && var9 != var8 && var11 != -var8 && var11 != var8 || var2.nextFloat() <= 0.75F)) {
 							atr var13 = var1.p(var3.a(var9, var6, var11)).c();
 							if (var13.r() == bof.a || var13 == aty.d || var13 == aty.aJ || var13 == aty.aI) {

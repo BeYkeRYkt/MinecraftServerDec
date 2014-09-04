@@ -4,24 +4,24 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public class NBTShortTag extends ge {
+public class NBTShortTag extends NBTNumberTag {
 
-	private short b;
+	private short s;
 
 	public NBTShortTag() {
 	}
 
-	public NBTShortTag(short var1) {
-		this.b = var1;
+	public NBTShortTag(short s) {
+		this.s = s;
 	}
 
-	void write(DataOutput var1) throws IOException {
-		var1.writeShort(this.b);
+	void write(DataOutput output) throws IOException {
+		output.writeShort(this.s);
 	}
 
-	void read(DataInput var1, int var2, NBTReadLimiter var3) throws IOException {
-		var3.a(16L);
-		this.b = var1.readShort();
+	void read(DataInput input, int currentDepth, NBTReadLimiter limiter) throws IOException {
+		limiter.onBytesRead(16L);
+		this.s = input.readShort();
 	}
 
 	public byte getId() {
@@ -29,47 +29,47 @@ public class NBTShortTag extends ge {
 	}
 
 	public String toString() {
-		return "" + this.b + "s";
+		return "" + this.s + "s";
 	}
 
 	public NBTTag getCopy() {
-		return new NBTShortTag(this.b);
+		return new NBTShortTag(this.s);
 	}
 
 	public boolean equals(Object var1) {
 		if (super.equals(var1)) {
 			NBTShortTag var2 = (NBTShortTag) var1;
-			return this.b == var2.b;
+			return this.s == var2.s;
 		} else {
 			return false;
 		}
 	}
 
 	public int hashCode() {
-		return super.hashCode() ^ this.b;
+		return super.hashCode() ^ this.s;
 	}
 
-	public long c() {
-		return (long) this.b;
+	public long toLong() {
+		return (long) this.s;
 	}
 
-	public int d() {
-		return this.b;
+	public int toInt() {
+		return this.s;
 	}
 
-	public short e() {
-		return this.b;
+	public short toShort() {
+		return this.s;
 	}
 
-	public byte f() {
-		return (byte) (this.b & 255);
+	public byte toByte() {
+		return (byte) (this.s & 255);
 	}
 
-	public double g() {
-		return (double) this.b;
+	public double toDouble() {
+		return (double) this.s;
 	}
 
-	public float h() {
-		return (float) this.b;
+	public float toFloat() {
+		return (float) this.s;
 	}
 }

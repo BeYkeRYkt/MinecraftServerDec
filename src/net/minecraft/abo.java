@@ -70,7 +70,7 @@ public class abo extends abn {
 		super.s_();
 		if (this.n()) {
 			this.v = this.w = this.x = 0.0D;
-			this.t = (double) uv.c(this.t) + 1.0D - (double) this.K;
+			this.t = (double) NumberConverter.c(this.t) + 1.0D - (double) this.K;
 		} else {
 			this.w *= 0.6000000238418579D;
 		}
@@ -111,7 +111,7 @@ public class abo extends abn {
 			this.w += (Math.signum(var5) * 0.699999988079071D - this.w) * 0.10000000149011612D;
 			this.x += (Math.signum(var7) * 0.5D - this.x) * 0.10000000149011612D;
 			float var9 = (float) (Math.atan2(this.x, this.v) * 180.0D / 3.1415927410125732D) - 90.0F;
-			float var10 = uv.g(var9 - this.y);
+			float var10 = NumberConverter.g(var9 - this.y);
 			this.aY = 0.5F;
 			this.y += var10;
 			if (this.V.nextInt(100) == 0 && this.o.p(var2).c().t()) {

@@ -16,7 +16,7 @@ public class TestforBlocksCommand extends AbstractCommand {
 		return "commands.compare.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 9) {
 			throw new dp("commands.compare.usage", new Object[0]);
 		} else {

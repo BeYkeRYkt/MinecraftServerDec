@@ -201,8 +201,8 @@ public abstract class ahd extends EntityLiving {
 		}
 
 		int var9 = 29999999;
-		double var10 = uv.a(this.s, -2.9999999E7D, 2.9999999E7D);
-		double var12 = uv.a(this.u, -2.9999999E7D, 2.9999999E7D);
+		double var10 = NumberConverter.a(this.s, -2.9999999E7D, 2.9999999E7D);
+		double var12 = NumberConverter.a(this.u, -2.9999999E7D, 2.9999999E7D);
 		if (var10 != this.s || var12 != this.u) {
 			this.b(var10, this.t, var12);
 		}
@@ -339,7 +339,7 @@ public abstract class ahd extends EntityLiving {
 		}
 
 		this.j((float) var1.e());
-		float var2 = uv.a(this.v * this.v + this.x * this.x);
+		float var2 = NumberConverter.a(this.v * this.v + this.x * this.x);
 		float var3 = (float) (Math.atan(-this.w * 0.20000000298023224D) * 15.0D);
 		if (var2 > 0.1F) {
 			var2 = 0.1F;
@@ -406,8 +406,8 @@ public abstract class ahd extends EntityLiving {
 		}
 
 		if (var1 != null) {
-			this.v = (double) (-uv.b((this.au + this.y) * 3.1415927F / 180.0F) * 0.1F);
-			this.x = (double) (-uv.a((this.au + this.y) * 3.1415927F / 180.0F) * 0.1F);
+			this.v = (double) (-NumberConverter.b((this.au + this.y) * 3.1415927F / 180.0F) * 0.1F);
+			this.x = (double) (-NumberConverter.a((this.au + this.y) * 3.1415927F / 180.0F) * 0.1F);
 		} else {
 			this.v = this.x = 0.0D;
 		}
@@ -497,14 +497,14 @@ public abstract class ahd extends EntityLiving {
 			if (var2) {
 				var7 = this.V.nextFloat() * 0.5F;
 				var8 = this.V.nextFloat() * 3.1415927F * 2.0F;
-				var6.v = (double) (-uv.a(var8) * var7);
-				var6.x = (double) (uv.b(var8) * var7);
+				var6.v = (double) (-NumberConverter.a(var8) * var7);
+				var6.x = (double) (NumberConverter.b(var8) * var7);
 				var6.w = 0.20000000298023224D;
 			} else {
 				var7 = 0.3F;
-				var6.v = (double) (-uv.a(this.y / 180.0F * 3.1415927F) * uv.b(this.z / 180.0F * 3.1415927F) * var7);
-				var6.x = (double) (uv.b(this.y / 180.0F * 3.1415927F) * uv.b(this.z / 180.0F * 3.1415927F) * var7);
-				var6.w = (double) (-uv.a(this.z / 180.0F * 3.1415927F) * var7 + 0.1F);
+				var6.v = (double) (-NumberConverter.a(this.y / 180.0F * 3.1415927F) * NumberConverter.b(this.z / 180.0F * 3.1415927F) * var7);
+				var6.x = (double) (NumberConverter.b(this.y / 180.0F * 3.1415927F) * NumberConverter.b(this.z / 180.0F * 3.1415927F) * var7);
+				var6.w = (double) (-NumberConverter.a(this.z / 180.0F * 3.1415927F) * var7 + 0.1F);
 				var8 = this.V.nextFloat() * 3.1415927F * 2.0F;
 				var7 = 0.02F * this.V.nextFloat();
 				var6.v += Math.cos((double) var8) * (double) var7;
@@ -843,7 +843,7 @@ public abstract class ahd extends EntityLiving {
 					boolean var14 = var1.a(wh.a(this), var2);
 					if (var14) {
 						if (var18 > 0) {
-							var1.g((double) (-uv.a(this.y * 3.1415927F / 180.0F) * (float) var18 * 0.5F), 0.1D, (double) (uv.b(this.y * 3.1415927F / 180.0F) * (float) var18 * 0.5F));
+							var1.g((double) (-NumberConverter.a(this.y * 3.1415927F / 180.0F) * (float) var18 * 0.5F), 0.1D, (double) (NumberConverter.b(this.y * 3.1415927F / 180.0F) * (float) var18 * 0.5F));
 							this.v *= 0.6D;
 							this.x *= 0.6D;
 							this.d(false);
@@ -1138,13 +1138,13 @@ public abstract class ahd extends EntityLiving {
 		if (this.m == null) {
 			int var7;
 			if (this.a(bof.h)) {
-				var7 = Math.round(uv.a(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
+				var7 = Math.round(NumberConverter.a(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
 				if (var7 > 0) {
 					this.a(ty.p, var7);
 					this.a(0.015F * (float) var7 * 0.01F);
 				}
 			} else if (this.V()) {
-				var7 = Math.round(uv.a(var1 * var1 + var5 * var5) * 100.0F);
+				var7 = Math.round(NumberConverter.a(var1 * var1 + var5 * var5) * 100.0F);
 				if (var7 > 0) {
 					this.a(ty.l, var7);
 					this.a(0.015F * (float) var7 * 0.01F);
@@ -1154,7 +1154,7 @@ public abstract class ahd extends EntityLiving {
 					this.a(ty.n, (int) Math.round(var3 * 100.0D));
 				}
 			} else if (this.C) {
-				var7 = Math.round(uv.a(var1 * var1 + var5 * var5) * 100.0F);
+				var7 = Math.round(NumberConverter.a(var1 * var1 + var5 * var5) * 100.0F);
 				if (var7 > 0) {
 					this.a(ty.i, var7);
 					if (this.ax()) {
@@ -1169,7 +1169,7 @@ public abstract class ahd extends EntityLiving {
 					}
 				}
 			} else {
-				var7 = Math.round(uv.a(var1 * var1 + var5 * var5) * 100.0F);
+				var7 = Math.round(NumberConverter.a(var1 * var1 + var5 * var5) * 100.0F);
 				if (var7 > 25) {
 					this.a(ty.o, var7);
 				}
@@ -1180,13 +1180,13 @@ public abstract class ahd extends EntityLiving {
 
 	private void l(double var1, double var3, double var5) {
 		if (this.m != null) {
-			int var7 = Math.round(uv.a(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
+			int var7 = Math.round(NumberConverter.a(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
 			if (var7 > 0) {
 				if (this.m instanceof adx) {
 					this.a(ty.q, var7);
 					if (this.e == null) {
 						this.e = new dt(this);
-					} else if (this.e.c((double) uv.c(this.s), (double) uv.c(this.t), (double) uv.c(this.u)) >= 1000000.0D) {
+					} else if (this.e.c((double) NumberConverter.c(this.s), (double) NumberConverter.c(this.t), (double) NumberConverter.c(this.u)) >= 1000000.0D) {
 						this.b((PlayerStatistic) tl.q);
 					}
 				} else if (this.m instanceof adu) {

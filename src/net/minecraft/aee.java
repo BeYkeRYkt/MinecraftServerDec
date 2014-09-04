@@ -56,7 +56,7 @@ public class aee extends adx {
 		super.a(var1, var2);
 		double var3 = this.a * this.a + this.b * this.b;
 		if (var3 > 1.0E-4D && this.v * this.v + this.x * this.x > 0.001D) {
-			var3 = (double) uv.a(var3);
+			var3 = (double) NumberConverter.a(var3);
 			this.a /= var3;
 			this.b /= var3;
 			if (this.a * this.v + this.b * this.x < 0.0D) {
@@ -74,7 +74,7 @@ public class aee extends adx {
 	protected void o() {
 		double var1 = this.a * this.a + this.b * this.b;
 		if (var1 > 1.0E-4D) {
-			var1 = (double) uv.a(var1);
+			var1 = (double) NumberConverter.a(var1);
 			this.a /= var1;
 			this.b /= var1;
 			double var3 = 1.0D;

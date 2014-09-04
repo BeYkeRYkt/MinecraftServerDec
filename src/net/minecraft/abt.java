@@ -236,7 +236,7 @@ public class abt extends abq implements vr {
 	}
 
 	public int u(int var1) {
-		int var2 = uv.a(this.cA() + var1, 0, this.cG());
+		int var2 = NumberConverter.a(this.cA() + var1, 0, this.cG());
 		this.t(var2);
 		return var2;
 	}
@@ -255,8 +255,8 @@ public class abt extends abq implements vr {
 	}
 
 	public boolean cB() {
-		int var1 = uv.c(this.s);
-		int var2 = uv.c(this.u);
+		int var1 = NumberConverter.c(this.s);
+		int var2 = NumberConverter.c(this.u);
 		this.o.b(new dt(var1, 0, var2));
 		return true;
 	}
@@ -281,7 +281,7 @@ public class abt extends abq implements vr {
 			this.a("mob.horse.land", 0.4F, 1.0F);
 		}
 
-		int var3 = uv.f((var1 * 0.5F - 3.0F) * var2);
+		int var3 = NumberConverter.f((var1 * 0.5F - 3.0F) * var2);
 		if (var3 > 0) {
 			this.a(wh.i, (float) var3);
 			if (this.l != null) {
@@ -677,7 +677,7 @@ public class abt extends abq implements vr {
 				this.g(1.0F);
 			}
 
-			if (!this.cw() && this.l == null && this.V.nextInt(300) == 0 && this.o.p(new dt(uv.c(this.s), uv.c(this.t) - 1, uv.c(this.u))).c() == aty.c) {
+			if (!this.cw() && this.l == null && this.V.nextInt(300) == 0 && this.o.p(new dt(NumberConverter.c(this.s), NumberConverter.c(this.t) - 1, NumberConverter.c(this.u))).c() == aty.c) {
 				this.r(true);
 			}
 
@@ -862,8 +862,8 @@ public class abt extends abq implements vr {
 				this.m(true);
 				this.ai = true;
 				if (var2 > 0.0F) {
-					float var3 = uv.a(this.y * 3.1415927F / 180.0F);
-					float var4 = uv.b(this.y * 3.1415927F / 180.0F);
+					float var3 = NumberConverter.a(this.y * 3.1415927F / 180.0F);
+					float var4 = NumberConverter.b(this.y * 3.1415927F / 180.0F);
 					this.v += (double) (-0.4F * var3 * this.bp);
 					this.x += (double) (0.4F * var4 * this.bp);
 					this.a("mob.horse.jump", 0.4F, 1.0F);
@@ -887,7 +887,7 @@ public class abt extends abq implements vr {
 			this.ay = this.az;
 			double var8 = this.s - this.p;
 			double var5 = this.u - this.r;
-			float var7 = uv.a(var8 * var8 + var5 * var5) * 4.0F;
+			float var7 = NumberConverter.a(var8 * var8 + var5 * var5) * 4.0F;
 			if (var7 > 1.0F) {
 				var7 = 1.0F;
 			}
@@ -921,7 +921,7 @@ public class abt extends abq implements vr {
 					NBTCompoundTag var5 = new NBTCompoundTag();
 					var5.a("Slot", (byte) var3);
 					var4.b(var5);
-					var2.a((NBTTag) var5);
+					var2.addTag((NBTTag) var5);
 				}
 			}
 
@@ -969,8 +969,8 @@ public class abt extends abq implements vr {
 			NBTListTag var4 = var1.c("Items", 10);
 			this.cY();
 
-			for (int var5 = 0; var5 < var4.c(); ++var5) {
-				NBTCompoundTag var6 = var4.b(var5);
+			for (int var5 = 0; var5 < var4.getSize(); ++var5) {
+				NBTCompoundTag var6 = var4.getCompound(var5);
 				int var7 = var6.d("Slot") & 255;
 				if (var7 >= 2 && var7 < this.bC.n_()) {
 					this.bC.a(var7, amj.a(var6));
@@ -1130,8 +1130,8 @@ public class abt extends abq implements vr {
 	public void al() {
 		super.al();
 		if (this.bI > 0.0F) {
-			float var1 = uv.a(this.aG * 3.1415927F / 180.0F);
-			float var2 = uv.b(this.aG * 3.1415927F / 180.0F);
+			float var1 = NumberConverter.a(this.aG * 3.1415927F / 180.0F);
+			float var2 = NumberConverter.b(this.aG * 3.1415927F / 180.0F);
 			float var3 = 0.7F * this.bI;
 			float var4 = 0.15F * this.bI;
 			this.l.b(this.s + (double) (var3 * var1), this.t + this.an() + this.l.am() + (double) var4, this.u - (double) (var3 * var2));

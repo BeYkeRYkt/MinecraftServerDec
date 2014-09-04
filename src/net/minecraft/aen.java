@@ -53,7 +53,7 @@ class aen extends zb {
 				}
 
 				if (this.b > 1) {
-					float var10 = uv.c(uv.a(var2)) * 0.5F;
+					float var10 = NumberConverter.c(NumberConverter.a(var2)) * 0.5F;
 					this.a.o.a((ahd) null, 1009, new dt((int) this.a.s, (int) this.a.t, (int) this.a.u), 0);
 
 					for (int var11 = 0; var11 < 1; ++var11) {

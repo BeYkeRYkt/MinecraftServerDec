@@ -39,7 +39,7 @@ public class abr extends abq {
 		this.bo = this.bk;
 		this.bn = this.bm;
 		this.bm = (float) ((double) this.bm + (double) (this.C ? -1 : 4) * 0.3D);
-		this.bm = uv.a(this.bm, 0.0F, 1.0F);
+		this.bm = NumberConverter.a(this.bm, 0.0F, 1.0F);
 		if (!this.C && this.bp < 1.0F) {
 			this.bp = 1.0F;
 		}
@@ -129,8 +129,8 @@ public class abr extends abq {
 
 	public void al() {
 		super.al();
-		float var1 = uv.a(this.aG * 3.1415927F / 180.0F);
-		float var2 = uv.b(this.aG * 3.1415927F / 180.0F);
+		float var1 = NumberConverter.a(this.aG * 3.1415927F / 180.0F);
+		float var2 = NumberConverter.b(this.aG * 3.1415927F / 180.0F);
 		float var3 = 0.1F;
 		float var4 = 0.0F;
 		this.l.b(this.s + (double) (var3 * var1), this.t + (double) (this.K * 0.5F) + this.l.am() + (double) var4, this.u - (double) (var3 * var2));

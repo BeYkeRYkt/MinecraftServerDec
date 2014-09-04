@@ -18,8 +18,8 @@ public class bde extends bdf implements bdd, pm {
 
 		this.g = var1.f("TransferCooldown");
 
-		for (int var3 = 0; var3 < var2.c(); ++var3) {
-			NBTCompoundTag var4 = var2.b(var3);
+		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+			NBTCompoundTag var4 = var2.getCompound(var3);
 			byte var5 = var4.d("Slot");
 			if (var5 >= 0 && var5 < this.a.length) {
 				this.a[var5] = amj.a(var4);
@@ -37,7 +37,7 @@ public class bde extends bdf implements bdd, pm {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.a("Slot", (byte) var3);
 				this.a[var3].b(var4);
-				var2.a((NBTTag) var4);
+				var2.addTag((NBTTag) var4);
 			}
 		}
 
@@ -418,9 +418,9 @@ public class bde extends bdf implements bdd, pm {
 
 	public static vq b(World var0, double var1, double var3, double var5) {
 		Object var7 = null;
-		int var8 = uv.c(var1);
-		int var9 = uv.c(var3);
-		int var10 = uv.c(var5);
+		int var8 = NumberConverter.c(var1);
+		int var9 = NumberConverter.c(var3);
+		int var10 = NumberConverter.c(var5);
 		dt var11 = new dt(var8, var9, var10);
 		bcm var12 = var0.s(new dt(var8, var9, var10));
 		if (var12 instanceof vq) {

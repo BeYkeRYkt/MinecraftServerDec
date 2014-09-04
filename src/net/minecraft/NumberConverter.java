@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.Random;
 import java.util.UUID;
 
-public class uv {
+public class NumberConverter {
 
 	public static final float a = c(2.0F);
 	private static final float[] b = new float[65536];

@@ -17,7 +17,7 @@ public class PlaySoundCommand extends AbstractCommand {
 		return "commands.playsound.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 2) {
 			throw new dp(this.getUsage(var1), new Object[0]);
 		} else {

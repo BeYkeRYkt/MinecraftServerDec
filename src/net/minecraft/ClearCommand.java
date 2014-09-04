@@ -17,7 +17,7 @@ public class ClearCommand extends AbstractCommand {
 		return 2;
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		EntityPlayer var3 = var2.length == 0 ? b(var1) : a(var1, var2[0]);
 		alq var4 = var2.length >= 2 ? f(var1, var2[1]) : null;
 		int var5 = var2.length >= 3 ? a(var2[2], -1) : -1;

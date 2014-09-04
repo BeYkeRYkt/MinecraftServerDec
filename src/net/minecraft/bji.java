@@ -105,7 +105,7 @@ public class bji extends bms {
 
 		while (var3.hasNext()) {
 			bjb var4 = (bjb) var3.next();
-			var2.a((NBTTag) var4.g());
+			var2.addTag((NBTTag) var4.g());
 		}
 
 		var1.a("Entrances", (NBTTag) var2);
@@ -114,8 +114,8 @@ public class bji extends bms {
 	protected void b(NBTCompoundTag var1) {
 		NBTListTag var2 = var1.c("Entrances", 11);
 
-		for (int var3 = 0; var3 < var2.c(); ++var3) {
-			this.a.add(new bjb(var2.c(var3)));
+		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+			this.a.add(new bjb(var2.getIntArray(var3)));
 		}
 
 	}

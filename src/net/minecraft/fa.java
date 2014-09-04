@@ -13,16 +13,16 @@ public class fa {
 	}
 
 	public fa(NBTListTag var1) {
-		this.a = var1.e(0);
-		this.b = var1.e(1);
-		this.c = var1.e(2);
+		this.a = var1.getFloat(0);
+		this.b = var1.getFloat(1);
+		this.c = var1.getFloat(2);
 	}
 
 	public NBTListTag a() {
 		NBTListTag var1 = new NBTListTag();
-		var1.a((NBTTag) (new NBTFloatTag(this.a)));
-		var1.a((NBTTag) (new NBTFloatTag(this.b)));
-		var1.a((NBTTag) (new NBTFloatTag(this.c)));
+		var1.addTag((NBTTag) (new NBTFloatTag(this.a)));
+		var1.addTag((NBTTag) (new NBTFloatTag(this.b)));
+		var1.addTag((NBTTag) (new NBTFloatTag(this.c)));
 		return var1;
 	}
 

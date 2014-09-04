@@ -13,9 +13,9 @@ public class in implements id<ik> {
 
 	public in(Entity var1) {
 		this.a = var1.F();
-		this.b = uv.c(var1.s * 32.0D);
-		this.c = uv.c(var1.t * 32.0D);
-		this.d = uv.c(var1.u * 32.0D);
+		this.b = NumberConverter.c(var1.s * 32.0D);
+		this.c = NumberConverter.c(var1.t * 32.0D);
+		this.d = NumberConverter.c(var1.u * 32.0D);
 		if (var1 instanceof ads) {
 			this.e = 1;
 		}

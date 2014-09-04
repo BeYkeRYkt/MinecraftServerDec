@@ -58,7 +58,7 @@ public class adb extends xn implements acy, aex {
 		int var4 = this.bj - var1 * 1 - 1 & 63;
 		double[] var5 = new double[3];
 		double var6 = this.bi[var3][0];
-		double var8 = uv.g(this.bi[var4][0] - var6);
+		double var8 = NumberConverter.g(this.bi[var4][0] - var6);
 		var5[0] = var6 + var8 * (double) var2;
 		var6 = this.bi[var3][1];
 		var8 = this.bi[var4][1] - var6;
@@ -71,8 +71,8 @@ public class adb extends xn implements acy, aex {
 		float var1;
 		float var2;
 		if (this.o.D) {
-			var1 = uv.b(this.bt * 3.1415927F * 2.0F);
-			var2 = uv.b(this.bs * 3.1415927F * 2.0F);
+			var1 = NumberConverter.b(this.bt * 3.1415927F * 2.0F);
+			var2 = NumberConverter.b(this.bs * 3.1415927F * 2.0F);
 			if (var2 <= -0.3F && var1 >= -0.3F && !this.R()) {
 				this.o.a(this.s, this.t, this.u, "mob.enderdragon.wings", 5.0F, 0.8F + this.V.nextFloat() * 0.3F, false);
 			}
@@ -87,7 +87,7 @@ public class adb extends xn implements acy, aex {
 			this.o.a(ew.b, this.s + (double) var1, this.t + 2.0D + (double) var2, this.u + (double) var3, 0.0D, 0.0D, 0.0D, new int[0]);
 		} else {
 			this.n();
-			var1 = 0.2F / (uv.a(this.v * this.v + this.x * this.x) * 10.0F + 1.0F);
+			var1 = 0.2F / (NumberConverter.a(this.v * this.v + this.x * this.x) * 10.0F + 1.0F);
 			var1 *= (float) Math.pow(2.0D, this.w);
 			if (this.bv) {
 				this.bt += var1 * 0.5F;
@@ -95,7 +95,7 @@ public class adb extends xn implements acy, aex {
 				this.bt += var1;
 			}
 
-			this.y = uv.g(this.y);
+			this.y = NumberConverter.g(this.y);
 			if (this.bj < 0) {
 				for (int var27 = 0; var27 < this.bi.length; ++var27) {
 					this.bi[var27][0] = (double) this.y;
@@ -119,7 +119,7 @@ public class adb extends xn implements acy, aex {
 					var28 = this.s + (this.bb - this.s) / (double) this.ba;
 					var4 = this.t + (this.bc - this.t) / (double) this.ba;
 					var6 = this.u + (this.bd - this.u) / (double) this.ba;
-					var8 = uv.g(this.be - (double) this.y);
+					var8 = NumberConverter.g(this.be - (double) this.y);
 					this.y = (float) ((double) this.y + var8 / (double) this.ba);
 					this.z = (float) ((double) this.z + (this.bf - (double) this.z) / (double) this.ba);
 					--this.ba;
@@ -153,13 +153,13 @@ public class adb extends xn implements acy, aex {
 					this.cd();
 				}
 
-				var4 /= (double) uv.a(var28 * var28 + var6 * var6);
+				var4 /= (double) NumberConverter.a(var28 * var28 + var6 * var6);
 				var33 = 0.6F;
-				var4 = uv.a(var4, (double) (-var33), (double) var33);
+				var4 = NumberConverter.a(var4, (double) (-var33), (double) var33);
 				this.w += var4 * 0.10000000149011612D;
-				this.y = uv.g(this.y);
+				this.y = NumberConverter.g(this.y);
 				double var11 = 180.0D - Math.atan2(var28, var6) * 180.0D / 3.1415927410125732D;
-				double var13 = uv.g(var11 - (double) this.y);
+				double var13 = NumberConverter.g(var11 - (double) this.y);
 				if (var13 > 50.0D) {
 					var13 = 50.0D;
 				}
@@ -169,15 +169,15 @@ public class adb extends xn implements acy, aex {
 				}
 
 				brw var15 = (new brw(this.a - this.s, this.b - this.t, this.c - this.u)).a();
-				var16 = (double) (-uv.b(this.y * 3.1415927F / 180.0F));
-				brw var18 = (new brw((double) uv.a(this.y * 3.1415927F / 180.0F), this.w, var16)).a();
+				var16 = (double) (-NumberConverter.b(this.y * 3.1415927F / 180.0F));
+				brw var18 = (new brw((double) NumberConverter.a(this.y * 3.1415927F / 180.0F), this.w, var16)).a();
 				float var19 = ((float) var18.b(var15) + 0.5F) / 1.5F;
 				if (var19 < 0.0F) {
 					var19 = 0.0F;
 				}
 
 				this.aZ *= 0.8F;
-				float var20 = uv.a(this.v * this.v + this.x * this.x) * 1.0F + 1.0F;
+				float var20 = NumberConverter.a(this.v * this.v + this.x * this.x) * 1.0F + 1.0F;
 				double var21 = Math.sqrt(this.v * this.v + this.x * this.x) * 1.0D + 1.0D;
 				if (var21 > 40.0D) {
 					var21 = 40.0D;
@@ -214,11 +214,11 @@ public class adb extends xn implements acy, aex {
 			this.br.K = 3.0F;
 			this.br.J = 4.0F;
 			var2 = (float) (this.b(5, 1.0F)[1] - this.b(10, 1.0F)[1]) * 10.0F / 180.0F * 3.1415927F;
-			var3 = uv.b(var2);
-			float var29 = -uv.a(var2);
+			var3 = NumberConverter.b(var2);
+			float var29 = -NumberConverter.a(var2);
 			float var5 = this.y * 3.1415927F / 180.0F;
-			float var30 = uv.a(var5);
-			float var7 = uv.b(var5);
+			float var30 = NumberConverter.a(var5);
+			float var7 = NumberConverter.b(var5);
 			this.bm.s_();
 			this.bm.b(this.s + (double) (var30 * 0.5F), this.t, this.u - (double) (var7 * 0.5F), 0.0F, 0.0F);
 			this.bq.s_();
@@ -233,8 +233,8 @@ public class adb extends xn implements acy, aex {
 
 			double[] var31 = this.b(5, 1.0F);
 			double[] var9 = this.b(0, 1.0F);
-			var33 = uv.a(this.y * 3.1415927F / 180.0F - this.aZ * 0.01F);
-			float var35 = uv.b(this.y * 3.1415927F / 180.0F - this.aZ * 0.01F);
+			var33 = NumberConverter.a(this.y * 3.1415927F / 180.0F - this.aZ * 0.01F);
+			float var35 = NumberConverter.b(this.y * 3.1415927F / 180.0F - this.aZ * 0.01F);
 			this.bl.s_();
 			this.bl.b(this.s + (double) (var33 * 5.5F * var3), this.t + (var9[1] - var31[1]) * 1.0D + (double) (var29 * 5.5F), this.u - (double) (var35 * 5.5F * var3), 0.0F, 0.0F);
 
@@ -254,8 +254,8 @@ public class adb extends xn implements acy, aex {
 
 				double[] var36 = this.b(12 + var32 * 2, 1.0F);
 				float var37 = this.y * 3.1415927F / 180.0F + this.b(var36[0] - var31[0]) * 3.1415927F / 180.0F * 1.0F;
-				float var38 = uv.a(var37);
-				float var39 = uv.b(var37);
+				float var38 = NumberConverter.a(var37);
+				float var39 = NumberConverter.b(var37);
 				float var40 = 1.5F;
 				float var41 = (float) (var32 + 1) * 2.0F;
 				var34.s_();
@@ -364,16 +364,16 @@ public class adb extends xn implements acy, aex {
 	}
 
 	private float b(double var1) {
-		return (float) uv.g(var1);
+		return (float) NumberConverter.g(var1);
 	}
 
 	private boolean b(brt var1) {
-		int var2 = uv.c(var1.a);
-		int var3 = uv.c(var1.b);
-		int var4 = uv.c(var1.c);
-		int var5 = uv.c(var1.d);
-		int var6 = uv.c(var1.e);
-		int var7 = uv.c(var1.f);
+		int var2 = NumberConverter.c(var1.a);
+		int var3 = NumberConverter.c(var1.b);
+		int var4 = NumberConverter.c(var1.c);
+		int var5 = NumberConverter.c(var1.d);
+		int var6 = NumberConverter.c(var1.e);
+		int var7 = NumberConverter.c(var1.f);
 		boolean var8 = false;
 		boolean var9 = false;
 
@@ -408,8 +408,8 @@ public class adb extends xn implements acy, aex {
 		}
 
 		float var4 = this.y * 3.1415927F / 180.0F;
-		float var5 = uv.a(var4);
-		float var6 = uv.b(var4);
+		float var5 = NumberConverter.a(var4);
+		float var6 = NumberConverter.b(var4);
 		this.a = this.s + (double) (var5 * 5.0F) + (double) ((this.V.nextFloat() - 0.5F) * 2.0F);
 		this.b = this.t + (double) (this.V.nextFloat() * 3.0F) + 1.0D;
 		this.c = this.u - (double) (var6 * 5.0F) + (double) ((this.V.nextFloat() - 0.5F) * 2.0F);

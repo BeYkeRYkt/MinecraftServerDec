@@ -152,15 +152,15 @@ public class agj extends afm {
 			}
 
 			if (var3 != null && this.o.aa() == Difficulty.HARD && (double) this.V.nextFloat() < this.a(b).e()) {
-				int var4 = uv.c(this.s);
-				int var5 = uv.c(this.t);
-				int var6 = uv.c(this.u);
+				int var4 = NumberConverter.c(this.s);
+				int var5 = NumberConverter.c(this.t);
+				int var6 = NumberConverter.c(this.u);
 				agj var7 = new agj(this.o);
 
 				for (int var8 = 0; var8 < 50; ++var8) {
-					int var9 = var4 + uv.a(this.V, 7, 40) * uv.a(this.V, -1, 1);
-					int var10 = var5 + uv.a(this.V, 7, 40) * uv.a(this.V, -1, 1);
-					int var11 = var6 + uv.a(this.V, 7, 40) * uv.a(this.V, -1, 1);
+					int var9 = var4 + NumberConverter.a(this.V, 7, 40) * NumberConverter.a(this.V, -1, 1);
+					int var10 = var5 + NumberConverter.a(this.V, 7, 40) * NumberConverter.a(this.V, -1, 1);
+					int var11 = var6 + NumberConverter.a(this.V, 7, 40) * NumberConverter.a(this.V, -1, 1);
 					if (World.a((ard) this.o, new dt(var9, var10 - 1, var11)) && this.o.l(new dt(var9, var10, var11)) < 10) {
 						var7.b((double) var9, (double) var10, (double) var11);
 						if (!this.o.b((double) var9, (double) var10, (double) var11, 7.0D) && this.o.a(var7.aQ(), (Entity) var7) && this.o.a((Entity) var7, var7.aQ()).isEmpty() && !this.o.d(var7.aQ())) {

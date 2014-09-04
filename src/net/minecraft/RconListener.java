@@ -21,16 +21,16 @@ public class RconListener extends te {
 
 	public RconListener(pj var1) {
 		super(var1, "RCON Listener");
-		this.h = var1.a("rcon.port", 0);
-		this.l = var1.a("rcon.password", "");
+		this.h = var1.getIntProperty("rcon.port", 0);
+		this.l = var1.getStringProperty("rcon.password", "");
 		this.j = var1.C();
 		this.i = var1.D();
 		if (0 == this.h) {
 			this.h = this.i + 10;
 			this.b("Setting default rcon port to " + this.h);
-			var1.a("rcon.port", (Object) Integer.valueOf(this.h));
+			var1.setProperty("rcon.port", (Object) Integer.valueOf(this.h));
 			if (0 == this.l.length()) {
-				var1.a("rcon.password", (Object) "");
+				var1.setProperty("rcon.password", (Object) "");
 			}
 
 			var1.saveProperties();

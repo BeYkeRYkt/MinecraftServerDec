@@ -29,7 +29,7 @@ public class yg extends yb {
 	}
 
 	public double a(double var1) {
-		var1 = uv.a(var1, this.a, this.b);
+		var1 = NumberConverter.a(var1, this.a, this.b);
 		return var1;
 	}
 }

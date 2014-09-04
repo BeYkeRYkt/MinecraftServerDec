@@ -25,7 +25,7 @@ public class HelpCommand extends AbstractCommand {
 		return Arrays.asList(new String[] { "?" });
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dp, dk, dn {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dp, dk, dn {
 		List var3 = this.d(var1);
 		boolean var4 = true;
 		int var5 = (var3.size() - 1) / 7;
@@ -41,7 +41,7 @@ public class HelpCommand extends AbstractCommand {
 				throw new dp(var9.getUsage(var1), new Object[0]);
 			}
 
-			if (uv.a(var2[0], -1) != -1) {
+			if (NumberConverter.a(var2[0], -1) != -1) {
 				throw var12;
 			}
 

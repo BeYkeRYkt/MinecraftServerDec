@@ -17,7 +17,7 @@ public class EnchantCommand extends AbstractCommand {
 		return "commands.enchant.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 2) {
 			throw new dp("commands.enchant.usage", new Object[0]);
 		} else {
@@ -54,12 +54,12 @@ public class EnchantCommand extends AbstractCommand {
 					if (var13.n()) {
 						NBTListTag var8 = var13.p();
 						if (var8 != null) {
-							for (int var9 = 0; var9 < var8.c(); ++var9) {
-								short var10 = var8.b(var9).e("id");
+							for (int var9 = 0; var9 < var8.getSize(); ++var9) {
+								short var10 = var8.getCompound(var9).e("id");
 								if (apf.c(var10) != null) {
 									apf var11 = apf.c(var10);
 									if (!var11.a(var7)) {
-										throw new di("commands.enchant.cantCombine", new Object[] { var7.d(var5), var11.d(var8.b(var9).e("lvl")) });
+										throw new di("commands.enchant.cantCombine", new Object[] { var7.d(var5), var11.d(var8.getCompound(var9).e("lvl")) });
 									}
 								}
 							}

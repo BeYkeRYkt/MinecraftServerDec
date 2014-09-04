@@ -25,7 +25,7 @@ public class brw {
 	}
 
 	public brw a() {
-		double var1 = (double) uv.a(this.a * this.a + this.b * this.b + this.c * this.c);
+		double var1 = (double) NumberConverter.a(this.a * this.a + this.b * this.b + this.c * this.c);
 		return var1 < 1.0E-4D ? new brw(0.0D, 0.0D, 0.0D) : new brw(this.a / var1, this.b / var1, this.c / var1);
 	}
 
@@ -53,7 +53,7 @@ public class brw {
 		double var2 = var1.a - this.a;
 		double var4 = var1.b - this.b;
 		double var6 = var1.c - this.c;
-		return (double) uv.a(var2 * var2 + var4 * var4 + var6 * var6);
+		return (double) NumberConverter.a(var2 * var2 + var4 * var4 + var6 * var6);
 	}
 
 	public double g(brw var1) {
@@ -64,7 +64,7 @@ public class brw {
 	}
 
 	public double b() {
-		return (double) uv.a(this.a * this.a + this.b * this.b + this.c * this.c);
+		return (double) NumberConverter.a(this.a * this.a + this.b * this.b + this.c * this.c);
 	}
 
 	public brw a(brw var1, double var2) {
@@ -108,8 +108,8 @@ public class brw {
 	}
 
 	public brw a(float var1) {
-		float var2 = uv.b(var1);
-		float var3 = uv.a(var1);
+		float var2 = NumberConverter.b(var1);
+		float var3 = NumberConverter.a(var1);
 		double var4 = this.a;
 		double var6 = this.b * (double) var2 + this.c * (double) var3;
 		double var8 = this.c * (double) var2 - this.b * (double) var3;
@@ -117,8 +117,8 @@ public class brw {
 	}
 
 	public brw b(float var1) {
-		float var2 = uv.b(var1);
-		float var3 = uv.a(var1);
+		float var2 = NumberConverter.b(var1);
+		float var3 = NumberConverter.a(var1);
 		double var4 = this.a * (double) var2 + this.c * (double) var3;
 		double var6 = this.b;
 		double var8 = this.c * (double) var2 - this.a * (double) var3;

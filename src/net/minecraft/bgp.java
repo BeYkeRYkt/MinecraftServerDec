@@ -49,7 +49,7 @@ public class bgp implements bfe {
 			var0 /= 2;
 			var1 /= 2;
 			if (var0 <= b && var1 <= b) {
-				int var3 = uv.a(var0 * b + var1);
+				int var3 = NumberConverter.a(var0 * b + var1);
 				if (var3 < a.size()) {
 					var2 = (bec) a.get(var3);
 				}
@@ -117,6 +117,6 @@ public class bgp implements bfe {
 			a.addAll(var1.O().a());
 		}
 
-		b = uv.f(uv.c((float) a.size()));
+		b = NumberConverter.f(NumberConverter.c((float) a.size()));
 	}
 }

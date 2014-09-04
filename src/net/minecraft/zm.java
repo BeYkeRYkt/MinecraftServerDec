@@ -87,7 +87,7 @@ public class zm extends zb {
 
 		while (var5.hasNext()) {
 			abh var6 = (abh) var5.next();
-			int var7 = var6.b(uv.c(this.a.s), uv.c(this.a.t), uv.c(this.a.u));
+			int var7 = var6.b(NumberConverter.c(this.a.s), NumberConverter.c(this.a.t), NumberConverter.c(this.a.u));
 			if (var7 < var3 && !this.a(var6)) {
 				var2 = var6;
 				var3 = var7;

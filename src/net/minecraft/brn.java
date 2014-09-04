@@ -119,7 +119,7 @@ public class brn {
 					NBTTag var6 = var3.a(var5);
 					if (var6 instanceof NBTShortTag) {
 						NBTShortTag var7 = (NBTShortTag) var6;
-						short var9 = var7.e();
+						short var9 = var7.toShort();
 						this.d.put(var5, Short.valueOf(var9));
 					}
 				}

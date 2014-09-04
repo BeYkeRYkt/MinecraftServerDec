@@ -41,8 +41,8 @@ public class aiw extends ajk {
 			if (var3 == 0.0F) {
 				var2 = 0;
 			} else if (var3 < 1.0F) {
-				var4 = uv.d((float) var2 * var3);
-				if (var4 < uv.f((float) var2 * var3) && Math.random() < (double) ((float) var2 * var3 - (float) var4)) {
+				var4 = NumberConverter.d((float) var2 * var3);
+				if (var4 < NumberConverter.f((float) var2 * var3) && Math.random() < (double) ((float) var2 * var3 - (float) var4)) {
 					++var4;
 				}
 

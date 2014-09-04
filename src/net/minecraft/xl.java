@@ -28,14 +28,14 @@ public abstract class xl extends xn {
 		} else {
 			float var3 = 0.91F;
 			if (this.C) {
-				var3 = this.o.p(new dt(uv.c(this.s), uv.c(this.aQ().b) - 1, uv.c(this.u))).c().K * 0.91F;
+				var3 = this.o.p(new dt(NumberConverter.c(this.s), NumberConverter.c(this.aQ().b) - 1, NumberConverter.c(this.u))).c().K * 0.91F;
 			}
 
 			float var4 = 0.16277136F / (var3 * var3 * var3);
 			this.a(var1, var2, this.C ? 0.1F * var4 : 0.02F);
 			var3 = 0.91F;
 			if (this.C) {
-				var3 = this.o.p(new dt(uv.c(this.s), uv.c(this.aQ().b) - 1, uv.c(this.u))).c().K * 0.91F;
+				var3 = this.o.p(new dt(NumberConverter.c(this.s), NumberConverter.c(this.aQ().b) - 1, NumberConverter.c(this.u))).c().K * 0.91F;
 			}
 
 			this.d(this.v, this.w, this.x);
@@ -47,7 +47,7 @@ public abstract class xl extends xn {
 		this.ay = this.az;
 		double var8 = this.s - this.p;
 		double var5 = this.u - this.r;
-		float var7 = uv.a(var8 * var8 + var5 * var5) * 4.0F;
+		float var7 = NumberConverter.a(var8 * var8 + var5 * var5) * 4.0F;
 		if (var7 > 1.0F) {
 			var7 = 1.0F;
 		}

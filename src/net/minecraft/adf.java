@@ -82,7 +82,7 @@ public class adf extends afm implements afr {
 				var4 = var1.u - this.u;
 				var6 = var2 * var2 + var4 * var4;
 				if (var6 > 9.0D) {
-					var8 = (double) uv.a(var6);
+					var8 = (double) NumberConverter.a(var6);
 					this.v += (var2 / var8 * 0.5D - this.v) * 0.6000000238418579D;
 					this.x += (var4 / var8 * 0.5D - this.x) * 0.6000000238418579D;
 				}
@@ -116,7 +116,7 @@ public class adf extends afm implements afr {
 				double var10 = var3.s - var4;
 				double var12 = var3.t + (double) var3.aR() - var6;
 				double var14 = var3.u - var8;
-				double var16 = (double) uv.a(var10 * var10 + var14 * var14);
+				double var16 = (double) NumberConverter.a(var10 * var10 + var14 * var14);
 				float var18 = (float) (Math.atan2(var14, var10) * 180.0D / 3.1415927410125732D) - 90.0F;
 				float var19 = (float) (-(Math.atan2(var12, var16) * 180.0D / 3.1415927410125732D));
 				this.b[var20] = this.b(this.b[var20], var19, 40.0F);
@@ -174,9 +174,9 @@ public class adf extends afm implements afr {
 						if (var10003 > 15) {
 							float var2 = 10.0F;
 							float var3 = 5.0F;
-							double var4 = uv.a(this.V, this.s - (double) var2, this.s + (double) var2);
-							double var6 = uv.a(this.V, this.t - (double) var3, this.t + (double) var3);
-							double var8 = uv.a(this.V, this.u - (double) var2, this.u + (double) var2);
+							double var4 = NumberConverter.a(this.V, this.s - (double) var2, this.s + (double) var2);
+							double var6 = NumberConverter.a(this.V, this.t - (double) var3, this.t + (double) var3);
+							double var8 = NumberConverter.a(this.V, this.u - (double) var2, this.u + (double) var2);
 							this.a(var1 + 1, var4, var6, var8, true);
 							this.bn[var1 - 1] = 0;
 						}
@@ -223,9 +223,9 @@ public class adf extends afm implements afr {
 			if (this.bo > 0) {
 				--this.bo;
 				if (this.bo == 0 && this.o.Q().b("mobGriefing")) {
-					var1 = uv.c(this.t);
-					var12 = uv.c(this.s);
-					int var15 = uv.c(this.u);
+					var1 = NumberConverter.c(this.t);
+					var12 = NumberConverter.c(this.s);
+					int var15 = NumberConverter.c(this.u);
 					boolean var17 = false;
 
 					for (int var18 = -1; var18 <= 1; ++var18) {
@@ -272,7 +272,7 @@ public class adf extends afm implements afr {
 			return this.s;
 		} else {
 			float var2 = (this.aG + (float) (180 * (var1 - 1))) / 180.0F * 3.1415927F;
-			float var3 = uv.b(var2);
+			float var3 = NumberConverter.b(var2);
 			return this.s + (double) var3 * 1.3D;
 		}
 	}
@@ -286,13 +286,13 @@ public class adf extends afm implements afr {
 			return this.u;
 		} else {
 			float var2 = (this.aG + (float) (180 * (var1 - 1))) / 180.0F * 3.1415927F;
-			float var3 = uv.a(var2);
+			float var3 = NumberConverter.a(var2);
 			return this.u + (double) var3 * 1.3D;
 		}
 	}
 
 	private float b(float var1, float var2, float var3) {
-		float var4 = uv.g(var2 - var1);
+		float var4 = NumberConverter.g(var2 - var1);
 		if (var4 > var3) {
 			var4 = var3;
 		}

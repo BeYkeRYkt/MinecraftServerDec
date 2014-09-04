@@ -264,7 +264,7 @@ public class bgr implements bfe {
 
 					if ((double) var18 < var16) {
 						var29 = (var16 - (double) var18) / 4.0D;
-						var29 = uv.a(var29, 0.0D, 1.0D);
+						var29 = NumberConverter.a(var29, 0.0D, 1.0D);
 						var19 = var19 * (1.0D - var29) + -10.0D * var29;
 					}
 

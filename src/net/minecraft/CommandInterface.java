@@ -10,7 +10,7 @@ public interface CommandInterface extends Comparable<CommandInterface> {
 
 	List<String> getAliases();
 
-	void a(CommandSenderInterface var1, String[] var2) throws dp, dm, dj, di;
+	void executeCommand(CommandSenderInterface var1, String[] var2) throws dp, dm, dj, di;
 
 	boolean a(CommandSenderInterface var1);
 

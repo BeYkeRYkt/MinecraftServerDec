@@ -21,7 +21,7 @@ public class ReplaceItemCommand extends AbstractCommand {
 		return "commands.replaceitem.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 1) {
 			throw new dp("commands.replaceitem.usage", new Object[0]);
 		} else {

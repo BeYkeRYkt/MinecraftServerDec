@@ -27,9 +27,9 @@ public class ada extends Entity {
 		this.r = this.u;
 		++this.a;
 		this.ac.b(8, Integer.valueOf(this.b));
-		int var1 = uv.c(this.s);
-		int var2 = uv.c(this.t);
-		int var3 = uv.c(this.u);
+		int var1 = NumberConverter.c(this.s);
+		int var2 = NumberConverter.c(this.t);
+		int var3 = NumberConverter.c(this.u);
 		if (this.o.t instanceof bgh && this.o.p(new dt(var1, var2, var3)).c() != aty.ab) {
 			this.o.a(new dt(var1, var2, var3), aty.ab.P());
 		}

@@ -35,7 +35,7 @@ public class aba extends aay {
 		} else {
 			if (this.f != null) {
 				double var1 = (double) (this.b.J * this.b.J);
-				if (this.b.c(this.f) >= var1 && (this.b.t <= (double) this.f.o() || this.b.c(new dt(this.f.n(), uv.c(this.b.t), this.f.p())) >= var1)) {
+				if (this.b.c(this.f) >= var1 && (this.b.t <= (double) this.f.o() || this.b.c(new dt(this.f.n(), NumberConverter.c(this.b.t), this.f.p())) >= var1)) {
 					this.b.q().a((double) this.f.n(), (double) this.f.o(), (double) this.f.p(), this.e);
 				} else {
 					this.f = null;

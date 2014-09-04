@@ -11,9 +11,9 @@ public abstract class bpu {
 	public void a(ard var1, Entity var2) {
 		this.a = var1;
 		this.b.c();
-		this.c = uv.d(var2.J + 1.0F);
-		this.d = uv.d(var2.K + 1.0F);
-		this.e = uv.d(var2.J + 1.0F);
+		this.c = NumberConverter.d(var2.J + 1.0F);
+		this.d = NumberConverter.d(var2.K + 1.0F);
+		this.e = NumberConverter.d(var2.J + 1.0F);
 	}
 
 	public void a() {

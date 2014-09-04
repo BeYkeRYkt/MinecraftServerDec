@@ -184,7 +184,7 @@ public abstract class adx extends Entity implements vz {
 				double var15 = this.s + (this.e - this.s) / (double) this.d;
 				double var17 = this.t + (this.f - this.t) / (double) this.d;
 				double var18 = this.u + (this.g - this.u) / (double) this.d;
-				double var7 = uv.g(this.h - (double) this.y);
+				double var7 = NumberConverter.g(this.h - (double) this.y);
 				this.y = (float) ((double) this.y + var7 / (double) this.d);
 				this.z = (float) ((double) this.z + (this.i - (double) this.z) / (double) this.d);
 				--this.d;
@@ -200,9 +200,9 @@ public abstract class adx extends Entity implements vz {
 			this.q = this.t;
 			this.r = this.u;
 			this.w -= 0.03999999910593033D;
-			int var14 = uv.c(this.s);
-			var2 = uv.c(this.t);
-			int var16 = uv.c(this.u);
+			int var14 = NumberConverter.c(this.s);
+			var2 = NumberConverter.c(this.t);
+			int var16 = NumberConverter.c(this.u);
 			if (ati.d(this.o, new dt(var14, var2 - 1, var16))) {
 				--var2;
 			}
@@ -229,7 +229,7 @@ public abstract class adx extends Entity implements vz {
 				}
 			}
 
-			double var10 = (double) uv.g(this.y - this.A);
+			double var10 = (double) NumberConverter.g(this.y - this.A);
 			if (var10 < -170.0D || var10 >= 170.0D) {
 				this.y += 180.0F;
 				this.a = !this.a;
@@ -266,8 +266,8 @@ public abstract class adx extends Entity implements vz {
 
 	protected void n() {
 		double var1 = this.m();
-		this.v = uv.a(this.v, -var1, var1);
-		this.x = uv.a(this.x, -var1, var1);
+		this.v = NumberConverter.a(this.v, -var1, var1);
+		this.x = NumberConverter.a(this.x, -var1, var1);
 		if (this.C) {
 			this.v *= 0.5D;
 			this.w *= 0.5D;
@@ -395,12 +395,12 @@ public abstract class adx extends Entity implements vz {
 		}
 
 		double var35 = this.m();
-		var31 = uv.a(var31, -var35, var35);
-		var33 = uv.a(var33, -var35, var35);
+		var31 = NumberConverter.a(var31, -var35, var35);
+		var33 = NumberConverter.a(var33, -var35, var35);
 		this.d(var31, 0.0D, var33);
-		if (var10[0][1] != 0 && uv.c(this.s) - var1.n() == var10[0][0] && uv.c(this.u) - var1.p() == var10[0][2]) {
+		if (var10[0][1] != 0 && NumberConverter.c(this.s) - var1.n() == var10[0][0] && NumberConverter.c(this.u) - var1.p() == var10[0][2]) {
 			this.b(this.s, this.t + (double) var10[0][1], this.u);
-		} else if (var10[1][1] != 0 && uv.c(this.s) - var1.n() == var10[1][0] && uv.c(this.u) - var1.p() == var10[1][2]) {
+		} else if (var10[1][1] != 0 && NumberConverter.c(this.s) - var1.n() == var10[1][0] && NumberConverter.c(this.u) - var1.p() == var10[1][2]) {
 			this.b(this.s, this.t + (double) var10[1][1], this.u);
 		}
 
@@ -417,8 +417,8 @@ public abstract class adx extends Entity implements vz {
 			this.b(this.s, var37.b, this.u);
 		}
 
-		int var44 = uv.c(this.s);
-		int var39 = uv.c(this.u);
+		int var44 = NumberConverter.c(this.s);
+		int var39 = NumberConverter.c(this.u);
 		if (var44 != var1.n() || var39 != var1.p()) {
 			var19 = Math.sqrt(this.v * this.v + this.x * this.x);
 			this.v = var19 * (double) (var44 - var1.n());
@@ -471,9 +471,9 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public brw k(double var1, double var3, double var5) {
-		int var7 = uv.c(var1);
-		int var8 = uv.c(var3);
-		int var9 = uv.c(var5);
+		int var7 = NumberConverter.c(var1);
+		int var8 = NumberConverter.c(var3);
+		int var9 = NumberConverter.c(var5);
 		if (ati.d(this.o, new dt(var7, var8 - 1, var9))) {
 			--var8;
 		}
@@ -578,7 +578,7 @@ public abstract class adx extends Entity implements vz {
 					double var4 = var1.u - this.u;
 					double var6 = var2 * var2 + var4 * var4;
 					if (var6 >= 9.999999747378752E-5D) {
-						var6 = (double) uv.a(var6);
+						var6 = (double) NumberConverter.a(var6);
 						var2 /= var6;
 						var4 /= var6;
 						double var8 = 1.0D / var6;
@@ -598,7 +598,7 @@ public abstract class adx extends Entity implements vz {
 							double var10 = var1.s - this.s;
 							double var12 = var1.u - this.u;
 							brw var14 = (new brw(var10, 0.0D, var12)).a();
-							brw var15 = (new brw((double) uv.b(this.y * 3.1415927F / 180.0F), 0.0D, (double) uv.a(this.y * 3.1415927F / 180.0F))).a();
+							brw var15 = (new brw((double) NumberConverter.b(this.y * 3.1415927F / 180.0F), 0.0D, (double) NumberConverter.a(this.y * 3.1415927F / 180.0F))).a();
 							double var16 = Math.abs(var14.b(var15));
 							if (var16 < 0.800000011920929D) {
 								return;

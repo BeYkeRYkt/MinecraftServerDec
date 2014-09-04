@@ -25,7 +25,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 		return "commands.spreadplayers.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 6) {
 			throw new dp("commands.spreadplayers.usage", new Object[0]);
 		} else {
@@ -189,7 +189,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 				var11 = var3[var7++];
 			}
 
-			var10.a((double) ((float) uv.c(var11.a) + 0.5F), (double) var11.a(var2), (double) uv.c(var11.b) + 0.5D);
+			var10.a((double) ((float) NumberConverter.c(var11.a) + 0.5F), (double) var11.a(var2), (double) NumberConverter.c(var11.b) + 0.5D);
 			double var17 = Double.MAX_VALUE;
 
 			for (int var14 = 0; var14 < var3.length; ++var14) {

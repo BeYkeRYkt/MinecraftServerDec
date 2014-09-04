@@ -28,14 +28,14 @@ public abstract class ahr extends Entity implements aho {
 		this.g = var2;
 		this.a(0.25F, 0.25F);
 		this.b(var2.s, var2.t + (double) var2.aR(), var2.u, var2.y, var2.z);
-		this.s -= (double) (uv.b(this.y / 180.0F * 3.1415927F) * 0.16F);
+		this.s -= (double) (NumberConverter.b(this.y / 180.0F * 3.1415927F) * 0.16F);
 		this.t -= 0.10000000149011612D;
-		this.u -= (double) (uv.a(this.y / 180.0F * 3.1415927F) * 0.16F);
+		this.u -= (double) (NumberConverter.a(this.y / 180.0F * 3.1415927F) * 0.16F);
 		this.b(this.s, this.t, this.u);
 		float var3 = 0.4F;
-		this.v = (double) (-uv.a(this.y / 180.0F * 3.1415927F) * uv.b(this.z / 180.0F * 3.1415927F) * var3);
-		this.x = (double) (uv.b(this.y / 180.0F * 3.1415927F) * uv.b(this.z / 180.0F * 3.1415927F) * var3);
-		this.w = (double) (-uv.a((this.z + this.l()) / 180.0F * 3.1415927F) * var3);
+		this.v = (double) (-NumberConverter.a(this.y / 180.0F * 3.1415927F) * NumberConverter.b(this.z / 180.0F * 3.1415927F) * var3);
+		this.x = (double) (NumberConverter.b(this.y / 180.0F * 3.1415927F) * NumberConverter.b(this.z / 180.0F * 3.1415927F) * var3);
+		this.w = (double) (-NumberConverter.a((this.z + this.l()) / 180.0F * 3.1415927F) * var3);
 		this.c(this.v, this.w, this.x, this.j(), 1.0F);
 	}
 
@@ -55,7 +55,7 @@ public abstract class ahr extends Entity implements aho {
 	}
 
 	public void c(double var1, double var3, double var5, float var7, float var8) {
-		float var9 = uv.a(var1 * var1 + var3 * var3 + var5 * var5);
+		float var9 = NumberConverter.a(var1 * var1 + var3 * var3 + var5 * var5);
 		var1 /= (double) var9;
 		var3 /= (double) var9;
 		var5 /= (double) var9;
@@ -68,7 +68,7 @@ public abstract class ahr extends Entity implements aho {
 		this.v = var1;
 		this.w = var3;
 		this.x = var5;
-		float var10 = uv.a(var1 * var1 + var5 * var5);
+		float var10 = NumberConverter.a(var1 * var1 + var5 * var5);
 		this.A = this.y = (float) (Math.atan2(var1, var5) * 180.0D / 3.1415927410125732D);
 		this.B = this.z = (float) (Math.atan2(var3, (double) var10) * 180.0D / 3.1415927410125732D);
 		this.i = 0;
@@ -150,7 +150,7 @@ public abstract class ahr extends Entity implements aho {
 		this.s += this.v;
 		this.t += this.w;
 		this.u += this.x;
-		float var16 = uv.a(this.v * this.v + this.x * this.x);
+		float var16 = NumberConverter.a(this.v * this.v + this.x * this.x);
 		this.y = (float) (Math.atan2(this.v, this.x) * 180.0D / 3.1415927410125732D);
 
 		for (this.z = (float) (Math.atan2(this.w, (double) var16) * 180.0D / 3.1415927410125732D); this.z - this.B < -180.0F; this.B -= 360.0F) {

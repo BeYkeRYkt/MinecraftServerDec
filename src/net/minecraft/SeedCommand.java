@@ -20,7 +20,7 @@ public class SeedCommand extends AbstractCommand {
 		return "commands.seed.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) {
 		Object var3 = var1 instanceof ahd ? ((ahd) var1).o : MinecraftServer.getInstance().a(0);
 		var1.a(new hz("commands.seed.success", new Object[] { Long.valueOf(((World) var3).J()) }));
 	}

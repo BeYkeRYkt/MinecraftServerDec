@@ -132,8 +132,8 @@ public abstract class aaw extends zb {
 			if (var3 == null) {
 				return false;
 			} else {
-				int var4 = var3.a - uv.c(var1.s);
-				int var5 = var3.c - uv.c(var1.u);
+				int var4 = var3.a - NumberConverter.c(var1.s);
+				int var5 = var3.c - NumberConverter.c(var1.u);
 				return (double) (var4 * var4 + var5 * var5) <= 2.25D;
 			}
 		}

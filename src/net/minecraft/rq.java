@@ -69,8 +69,8 @@ public class rq implements nh, pm {
 			this.a(var1);
 		} else {
 			this.g = rt.e;
-			if (this.f.aI() >= 0 && !this.a.c()) {
-				this.a.a(new nf(this.f.aI()), new rr(this), new GenericFutureListener[0]);
+			if (this.f.getCompressionThreshold() >= 0 && !this.a.c()) {
+				this.a.a(new nf(this.f.getCompressionThreshold()), new rr(this), new GenericFutureListener[0]);
 			}
 
 			this.a.a((id) (new nd(this.i)));

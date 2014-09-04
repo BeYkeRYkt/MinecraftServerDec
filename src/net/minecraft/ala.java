@@ -9,7 +9,7 @@ public class ala extends alq {
 	}
 
 	public amx g(amj var1) {
-		return this.h(var1).c() > 0 ? amx.b : super.g(var1);
+		return this.h(var1).getSize() > 0 ? amx.b : super.g(var1);
 	}
 
 	public NBTListTag h(amj var1) {
@@ -21,8 +21,8 @@ public class ala extends alq {
 		NBTListTag var3 = this.h(var1);
 		boolean var4 = true;
 
-		for (int var5 = 0; var5 < var3.c(); ++var5) {
-			NBTCompoundTag var6 = var3.b(var5);
+		for (int var5 = 0; var5 < var3.getSize(); ++var5) {
+			NBTCompoundTag var6 = var3.getCompound(var5);
 			if (var6.e("id") == var2.b.B) {
 				if (var6.e("lvl") < var2.c) {
 					var6.a("lvl", (short) var2.c);
@@ -37,7 +37,7 @@ public class ala extends alq {
 			NBTCompoundTag var7 = new NBTCompoundTag();
 			var7.a("id", (short) var2.b.B);
 			var7.a("lvl", (short) var2.c);
-			var3.a((NBTTag) var7);
+			var3.addTag((NBTTag) var7);
 		}
 
 		if (!var1.n()) {

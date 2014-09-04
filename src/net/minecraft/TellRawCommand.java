@@ -19,7 +19,7 @@ public class TellRawCommand extends AbstractCommand {
 		return "commands.tellraw.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dl, dm, dj {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dl, dm, dj {
 		if (var2.length < 2) {
 			throw new dp("commands.tellraw.usage", new Object[0]);
 		} else {

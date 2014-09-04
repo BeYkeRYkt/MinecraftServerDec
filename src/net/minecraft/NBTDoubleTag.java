@@ -4,24 +4,24 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public class NBTDoubleTag extends ge {
+public class NBTDoubleTag extends NBTNumberTag {
 
-	private double b;
+	private double d;
 
 	NBTDoubleTag() {
 	}
 
-	public NBTDoubleTag(double var1) {
-		this.b = var1;
+	public NBTDoubleTag(double d) {
+		this.d = d;
 	}
 
-	void write(DataOutput var1) throws IOException {
-		var1.writeDouble(this.b);
+	void write(DataOutput output) throws IOException {
+		output.writeDouble(this.d);
 	}
 
-	void read(DataInput var1, int var2, NBTReadLimiter var3) throws IOException {
-		var3.a(64L);
-		this.b = var1.readDouble();
+	void read(DataInput input, int currentDepth, NBTReadLimiter limit) throws IOException {
+		limit.onBytesRead(64L);
+		this.d = input.readDouble();
 	}
 
 	public byte getId() {
@@ -29,48 +29,48 @@ public class NBTDoubleTag extends ge {
 	}
 
 	public String toString() {
-		return "" + this.b + "d";
+		return "" + this.d + "d";
 	}
 
 	public NBTTag getCopy() {
-		return new NBTDoubleTag(this.b);
+		return new NBTDoubleTag(this.d);
 	}
 
 	public boolean equals(Object var1) {
 		if (super.equals(var1)) {
 			NBTDoubleTag var2 = (NBTDoubleTag) var1;
-			return this.b == var2.b;
+			return this.d == var2.d;
 		} else {
 			return false;
 		}
 	}
 
 	public int hashCode() {
-		long var1 = Double.doubleToLongBits(this.b);
+		long var1 = Double.doubleToLongBits(this.d);
 		return super.hashCode() ^ (int) (var1 ^ var1 >>> 32);
 	}
 
-	public long c() {
-		return (long) Math.floor(this.b);
+	public long toLong() {
+		return (long) Math.floor(this.d);
 	}
 
-	public int d() {
-		return uv.c(this.b);
+	public int toInt() {
+		return NumberConverter.c(this.d);
 	}
 
-	public short e() {
-		return (short) (uv.c(this.b) & '\uffff');
+	public short toShort() {
+		return (short) (NumberConverter.c(this.d) & '\uffff');
 	}
 
-	public byte f() {
-		return (byte) (uv.c(this.b) & 255);
+	public byte toByte() {
+		return (byte) (NumberConverter.c(this.d) & 255);
 	}
 
-	public double g() {
-		return this.b;
+	public double toDouble() {
+		return this.d;
 	}
 
-	public float h() {
-		return (float) this.b;
+	public float toFloat() {
+		return (float) this.d;
 	}
 }

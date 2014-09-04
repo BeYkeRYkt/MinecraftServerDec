@@ -21,7 +21,7 @@ public class BanListCommand extends AbstractCommand {
 		return "commands.banlist.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) {
 		if (var2.length >= 1 && var2[0].equalsIgnoreCase("ips")) {
 			var1.a(new hz("commands.banlist.ips", new Object[] { Integer.valueOf(MinecraftServer.getInstance().getPlayerList().j().a().length) }));
 			var1.a(new hy(a(MinecraftServer.getInstance().getPlayerList().j().a())));

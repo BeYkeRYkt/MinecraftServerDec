@@ -506,12 +506,12 @@ public abstract class World implements ard {
 	public bru a(brw var1, brw var2, boolean var3, boolean var4, boolean var5) {
 		if (!Double.isNaN(var1.a) && !Double.isNaN(var1.b) && !Double.isNaN(var1.c)) {
 			if (!Double.isNaN(var2.a) && !Double.isNaN(var2.b) && !Double.isNaN(var2.c)) {
-				int var6 = uv.c(var2.a);
-				int var7 = uv.c(var2.b);
-				int var8 = uv.c(var2.c);
-				int var9 = uv.c(var1.a);
-				int var10 = uv.c(var1.b);
-				int var11 = uv.c(var1.c);
+				int var6 = NumberConverter.c(var2.a);
+				int var7 = NumberConverter.c(var2.b);
+				int var8 = NumberConverter.c(var2.c);
+				int var9 = NumberConverter.c(var1.a);
+				int var10 = NumberConverter.c(var1.b);
+				int var11 = NumberConverter.c(var1.c);
 				dt var12 = new dt(var9, var10, var11);
 				new dt(var6, var7, var8);
 				bec var14 = this.p(var12);
@@ -607,9 +607,9 @@ public abstract class World implements ard {
 						var1 = new brw(var1.a + var31 * var29, var1.b + var33 * var29, var23);
 					}
 
-					var9 = uv.c(var1.a) - (var37 == ej.f ? 1 : 0);
-					var10 = uv.c(var1.b) - (var37 == ej.b ? 1 : 0);
-					var11 = uv.c(var1.c) - (var37 == ej.d ? 1 : 0);
+					var9 = NumberConverter.c(var1.a) - (var37 == ej.f ? 1 : 0);
+					var10 = NumberConverter.c(var1.b) - (var37 == ej.b ? 1 : 0);
+					var11 = NumberConverter.c(var1.c) - (var37 == ej.d ? 1 : 0);
 					var12 = new dt(var9, var10, var11);
 					bec var38 = this.p(var12);
 					atr var39 = var38.c();
@@ -682,8 +682,8 @@ public abstract class World implements ard {
 	}
 
 	public boolean d(Entity var1) {
-		int var2 = uv.c(var1.s / 16.0D);
-		int var3 = uv.c(var1.u / 16.0D);
+		int var2 = NumberConverter.c(var1.s / 16.0D);
+		int var3 = NumberConverter.c(var1.u / 16.0D);
 		boolean var4 = var1.n;
 		if (var1 instanceof ahd) {
 			var4 = true;
@@ -760,12 +760,12 @@ public abstract class World implements ard {
 
 	public List a(Entity var1, brt var2) {
 		ArrayList var3 = Lists.newArrayList();
-		int var4 = uv.c(var2.a);
-		int var5 = uv.c(var2.d + 1.0D);
-		int var6 = uv.c(var2.b);
-		int var7 = uv.c(var2.e + 1.0D);
-		int var8 = uv.c(var2.c);
-		int var9 = uv.c(var2.f + 1.0D);
+		int var4 = NumberConverter.c(var2.a);
+		int var5 = NumberConverter.c(var2.d + 1.0D);
+		int var6 = NumberConverter.c(var2.b);
+		int var7 = NumberConverter.c(var2.e + 1.0D);
+		int var8 = NumberConverter.c(var2.c);
+		int var9 = NumberConverter.c(var2.f + 1.0D);
 
 		for (int var10 = var4; var10 < var5; ++var10) {
 			for (int var11 = var8; var11 < var9; ++var11) {
@@ -835,12 +835,12 @@ public abstract class World implements ard {
 
 	public List a(brt var1) {
 		ArrayList var2 = Lists.newArrayList();
-		int var3 = uv.c(var1.a);
-		int var4 = uv.c(var1.d + 1.0D);
-		int var5 = uv.c(var1.b);
-		int var6 = uv.c(var1.e + 1.0D);
-		int var7 = uv.c(var1.c);
-		int var8 = uv.c(var1.f + 1.0D);
+		int var3 = NumberConverter.c(var1.a);
+		int var4 = NumberConverter.c(var1.d + 1.0D);
+		int var5 = NumberConverter.c(var1.b);
+		int var6 = NumberConverter.c(var1.e + 1.0D);
+		int var7 = NumberConverter.c(var1.c);
+		int var8 = NumberConverter.c(var1.f + 1.0D);
 
 		for (int var9 = var3; var9 < var4; ++var9) {
 			for (int var10 = var7; var10 < var8; ++var10) {
@@ -865,8 +865,8 @@ public abstract class World implements ard {
 
 	public int a(float var1) {
 		float var2 = this.c(var1);
-		float var3 = 1.0F - (uv.b(var2 * 3.1415927F * 2.0F) * 2.0F + 0.5F);
-		var3 = uv.a(var3, 0.0F, 1.0F);
+		float var3 = 1.0F - (NumberConverter.b(var2 * 3.1415927F * 2.0F) * 2.0F + 0.5F);
+		var3 = NumberConverter.a(var3, 0.0F, 1.0F);
 		var3 = 1.0F - var3;
 		var3 = (float) ((double) var3 * (1.0D - (double) (this.j(var1) * 5.0F) / 16.0D));
 		var3 = (float) ((double) var3 * (1.0D - (double) (this.h(var1) * 5.0F) / 16.0D));
@@ -1098,8 +1098,8 @@ public abstract class World implements ard {
 	}
 
 	public void a(Entity var1, boolean var2) {
-		int var3 = uv.c(var1.s);
-		int var4 = uv.c(var1.u);
+		int var3 = NumberConverter.c(var1.s);
+		int var4 = NumberConverter.c(var1.u);
 		byte var5 = 32;
 		if (!var2 || this.a(var3 - var5, 0, var4 - var5, var3 + var5, 0, var4 + var5, true)) {
 			var1.P = var1.s;
@@ -1137,9 +1137,9 @@ public abstract class World implements ard {
 				var1.y = var1.A;
 			}
 
-			int var6 = uv.c(var1.s / 16.0D);
-			int var7 = uv.c(var1.t / 16.0D);
-			int var8 = uv.c(var1.u / 16.0D);
+			int var6 = NumberConverter.c(var1.s / 16.0D);
+			int var7 = NumberConverter.c(var1.t / 16.0D);
+			int var8 = NumberConverter.c(var1.u / 16.0D);
 			if (!var1.ad || var1.ae != var6 || var1.af != var7 || var1.ag != var8) {
 				if (var1.ad && this.a(var1.ae, var1.ag, true)) {
 					this.a(var1.ae, var1.ag).a(var1, var1.af);
@@ -1184,12 +1184,12 @@ public abstract class World implements ard {
 	}
 
 	public boolean c(brt var1) {
-		int var2 = uv.c(var1.a);
-		int var3 = uv.c(var1.d);
-		int var4 = uv.c(var1.b);
-		int var5 = uv.c(var1.e);
-		int var6 = uv.c(var1.c);
-		int var7 = uv.c(var1.f);
+		int var2 = NumberConverter.c(var1.a);
+		int var3 = NumberConverter.c(var1.d);
+		int var4 = NumberConverter.c(var1.b);
+		int var5 = NumberConverter.c(var1.e);
+		int var6 = NumberConverter.c(var1.c);
+		int var7 = NumberConverter.c(var1.f);
 
 		for (int var8 = var2; var8 <= var3; ++var8) {
 			for (int var9 = var4; var9 <= var5; ++var9) {
@@ -1206,12 +1206,12 @@ public abstract class World implements ard {
 	}
 
 	public boolean d(brt var1) {
-		int var2 = uv.c(var1.a);
-		int var3 = uv.c(var1.d);
-		int var4 = uv.c(var1.b);
-		int var5 = uv.c(var1.e);
-		int var6 = uv.c(var1.c);
-		int var7 = uv.c(var1.f);
+		int var2 = NumberConverter.c(var1.a);
+		int var3 = NumberConverter.c(var1.d);
+		int var4 = NumberConverter.c(var1.b);
+		int var5 = NumberConverter.c(var1.e);
+		int var6 = NumberConverter.c(var1.c);
+		int var7 = NumberConverter.c(var1.f);
 
 		for (int var8 = var2; var8 <= var3; ++var8) {
 			for (int var9 = var4; var9 <= var5; ++var9) {
@@ -1228,12 +1228,12 @@ public abstract class World implements ard {
 	}
 
 	public boolean e(brt var1) {
-		int var2 = uv.c(var1.a);
-		int var3 = uv.c(var1.d + 1.0D);
-		int var4 = uv.c(var1.b);
-		int var5 = uv.c(var1.e + 1.0D);
-		int var6 = uv.c(var1.c);
-		int var7 = uv.c(var1.f + 1.0D);
+		int var2 = NumberConverter.c(var1.a);
+		int var3 = NumberConverter.c(var1.d + 1.0D);
+		int var4 = NumberConverter.c(var1.b);
+		int var5 = NumberConverter.c(var1.e + 1.0D);
+		int var6 = NumberConverter.c(var1.c);
+		int var7 = NumberConverter.c(var1.f + 1.0D);
 		if (this.a(var2, var4, var6, var3, var5, var7, true)) {
 			for (int var8 = var2; var8 < var3; ++var8) {
 				for (int var9 = var4; var9 < var5; ++var9) {
@@ -1251,12 +1251,12 @@ public abstract class World implements ard {
 	}
 
 	public boolean a(brt var1, bof var2, Entity var3) {
-		int var4 = uv.c(var1.a);
-		int var5 = uv.c(var1.d + 1.0D);
-		int var6 = uv.c(var1.b);
-		int var7 = uv.c(var1.e + 1.0D);
-		int var8 = uv.c(var1.c);
-		int var9 = uv.c(var1.f + 1.0D);
+		int var4 = NumberConverter.c(var1.a);
+		int var5 = NumberConverter.c(var1.d + 1.0D);
+		int var6 = NumberConverter.c(var1.b);
+		int var7 = NumberConverter.c(var1.e + 1.0D);
+		int var8 = NumberConverter.c(var1.c);
+		int var9 = NumberConverter.c(var1.f + 1.0D);
 		if (!this.a(var4, var6, var8, var5, var7, var9, true)) {
 			return false;
 		} else {
@@ -1293,12 +1293,12 @@ public abstract class World implements ard {
 	}
 
 	public boolean a(brt var1, bof var2) {
-		int var3 = uv.c(var1.a);
-		int var4 = uv.c(var1.d + 1.0D);
-		int var5 = uv.c(var1.b);
-		int var6 = uv.c(var1.e + 1.0D);
-		int var7 = uv.c(var1.c);
-		int var8 = uv.c(var1.f + 1.0D);
+		int var3 = NumberConverter.c(var1.a);
+		int var4 = NumberConverter.c(var1.d + 1.0D);
+		int var5 = NumberConverter.c(var1.b);
+		int var6 = NumberConverter.c(var1.e + 1.0D);
+		int var7 = NumberConverter.c(var1.c);
+		int var8 = NumberConverter.c(var1.f + 1.0D);
 
 		for (int var9 = var3; var9 < var4; ++var9) {
 			for (int var10 = var5; var10 < var6; ++var10) {
@@ -1314,12 +1314,12 @@ public abstract class World implements ard {
 	}
 
 	public boolean b(brt var1, bof var2) {
-		int var3 = uv.c(var1.a);
-		int var4 = uv.c(var1.d + 1.0D);
-		int var5 = uv.c(var1.b);
-		int var6 = uv.c(var1.e + 1.0D);
-		int var7 = uv.c(var1.c);
-		int var8 = uv.c(var1.f + 1.0D);
+		int var3 = NumberConverter.c(var1.a);
+		int var4 = NumberConverter.c(var1.d + 1.0D);
+		int var5 = NumberConverter.c(var1.b);
+		int var6 = NumberConverter.c(var1.e + 1.0D);
+		int var7 = NumberConverter.c(var1.c);
+		int var8 = NumberConverter.c(var1.f + 1.0D);
 
 		for (int var9 = var3; var9 < var4; ++var9) {
 			for (int var10 = var5; var10 < var6; ++var10) {
@@ -1561,7 +1561,7 @@ public abstract class World implements ard {
 					this.r = (float) ((double) this.r - 0.01D);
 				}
 
-				this.r = uv.a(this.r, 0.0F, 1.0F);
+				this.r = NumberConverter.a(this.r, 0.0F, 1.0F);
 				int var3 = this.x.q();
 				if (var3 <= 0) {
 					if (this.x.p()) {
@@ -1584,7 +1584,7 @@ public abstract class World implements ard {
 					this.p = (float) ((double) this.p - 0.01D);
 				}
 
-				this.p = uv.a(this.p, 0.0F, 1.0F);
+				this.p = NumberConverter.a(this.p, 0.0F, 1.0F);
 			}
 		}
 	}
@@ -1600,8 +1600,8 @@ public abstract class World implements ard {
 		int var5;
 		for (var1 = 0; var1 < this.j.size(); ++var1) {
 			var2 = (ahd) this.j.get(var1);
-			var3 = uv.c(var2.s / 16.0D);
-			var4 = uv.c(var2.u / 16.0D);
+			var3 = NumberConverter.c(var2.s / 16.0D);
+			var4 = NumberConverter.c(var2.u / 16.0D);
 			var5 = this.q();
 
 			for (int var6 = -var5; var6 <= var5; ++var6) {
@@ -1620,9 +1620,9 @@ public abstract class World implements ard {
 		if (!this.j.isEmpty()) {
 			var1 = this.s.nextInt(this.j.size());
 			var2 = (ahd) this.j.get(var1);
-			var3 = uv.c(var2.s) + this.s.nextInt(11) - 5;
-			var4 = uv.c(var2.t) + this.s.nextInt(11) - 5;
-			var5 = uv.c(var2.u) + this.s.nextInt(11) - 5;
+			var3 = NumberConverter.c(var2.s) + this.s.nextInt(11) - 5;
+			var4 = NumberConverter.c(var2.t) + this.s.nextInt(11) - 5;
+			var5 = NumberConverter.c(var2.u) + this.s.nextInt(11) - 5;
 			this.x(new dt(var3, var4, var5));
 		}
 
@@ -1809,9 +1809,9 @@ public abstract class World implements ard {
 					if (var16 == var14) {
 						this.a(var1, var15, 0);
 						if (var14 > 0) {
-							var17 = uv.a(var11 - var7);
-							var18 = uv.a(var12 - var8);
-							var19 = uv.a(var13 - var9);
+							var17 = NumberConverter.a(var11 - var7);
+							var18 = NumberConverter.a(var12 - var8);
+							var19 = NumberConverter.a(var13 - var9);
 							if (var17 + var18 + var19 < 17) {
 								ej[] var20 = ej.values();
 								int var21 = var20.length;
@@ -1906,10 +1906,10 @@ public abstract class World implements ard {
 
 	public List a(Entity var1, brt var2, Predicate var3) {
 		ArrayList var4 = Lists.newArrayList();
-		int var5 = uv.c((var2.a - 2.0D) / 16.0D);
-		int var6 = uv.c((var2.d + 2.0D) / 16.0D);
-		int var7 = uv.c((var2.c - 2.0D) / 16.0D);
-		int var8 = uv.c((var2.f + 2.0D) / 16.0D);
+		int var5 = NumberConverter.c((var2.a - 2.0D) / 16.0D);
+		int var6 = NumberConverter.c((var2.d + 2.0D) / 16.0D);
+		int var7 = NumberConverter.c((var2.c - 2.0D) / 16.0D);
+		int var8 = NumberConverter.c((var2.f + 2.0D) / 16.0D);
 
 		for (int var9 = var5; var9 <= var6; ++var9) {
 			for (int var10 = var7; var10 <= var8; ++var10) {
@@ -1955,10 +1955,10 @@ public abstract class World implements ard {
 	}
 
 	public <T> List<T> a(Class<T> var1, brt var2, Predicate<?> var3) {
-		int var4 = uv.c((var2.a - 2.0D) / 16.0D);
-		int var5 = uv.c((var2.d + 2.0D) / 16.0D);
-		int var6 = uv.c((var2.c - 2.0D) / 16.0D);
-		int var7 = uv.c((var2.f + 2.0D) / 16.0D);
+		int var4 = NumberConverter.c((var2.a - 2.0D) / 16.0D);
+		int var5 = NumberConverter.c((var2.d + 2.0D) / 16.0D);
+		int var6 = NumberConverter.c((var2.c - 2.0D) / 16.0D);
+		int var7 = NumberConverter.c((var2.f + 2.0D) / 16.0D);
 		ArrayList<T> var8 = Lists.newArrayList();
 
 		for (int var9 = var4; var9 <= var5; ++var9) {

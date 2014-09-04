@@ -171,7 +171,7 @@ public class agp extends ws implements ago, aqb {
 		for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
 			amj var4 = this.bz.a(var3);
 			if (var4 != null) {
-				var2.a((NBTTag) var4.b(new NBTCompoundTag()));
+				var2.addTag((NBTTag) var4.b(new NBTCompoundTag()));
 			}
 		}
 
@@ -192,8 +192,8 @@ public class agp extends ws implements ago, aqb {
 
 		NBTListTag var5 = var1.c("Inventory", 10);
 
-		for (int var3 = 0; var3 < var5.c(); ++var3) {
-			amj var4 = amj.a(var5.b(var3));
+		for (int var3 = 0; var3 < var5.getSize(); ++var3) {
+			amj var4 = amj.a(var5.getCompound(var3));
 			if (var4 != null) {
 				this.bz.a(var4);
 			}

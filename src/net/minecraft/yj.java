@@ -36,7 +36,7 @@ public class yj {
 	}
 
 	private float a(float var1, float var2, float var3) {
-		float var4 = uv.g(var1 - var2);
+		float var4 = NumberConverter.g(var1 - var2);
 		if (var4 < -var3) {
 			var4 = -var3;
 		}

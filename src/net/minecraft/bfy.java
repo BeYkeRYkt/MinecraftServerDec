@@ -204,7 +204,7 @@ public class bfy implements bfq, brq {
 					var11.a("SkyLight", new byte[var10.h().a().length]);
 				}
 
-				var5.a((NBTTag) var11);
+				var5.addTag((NBTTag) var11);
 			}
 		}
 
@@ -222,7 +222,7 @@ public class bfy implements bfq, brq {
 				var11 = new NBTCompoundTag();
 				if (var24.d(var11)) {
 					var1.g(true);
-					var20.a((NBTTag) var11);
+					var20.addTag((NBTTag) var11);
 				}
 			}
 		}
@@ -235,7 +235,7 @@ public class bfy implements bfq, brq {
 			bcm var25 = (bcm) var22.next();
 			var11 = new NBTCompoundTag();
 			var25.b(var11);
-			var21.a((NBTTag) var11);
+			var21.addTag((NBTTag) var11);
 		}
 
 		var3.a("TileEntities", (NBTTag) var21);
@@ -255,7 +255,7 @@ public class bfy implements bfq, brq {
 				var30.a("z", var29.a.p());
 				var30.a("t", (int) (var29.b - var26));
 				var30.a("p", var29.c);
-				var27.a((NBTTag) var30);
+				var27.addTag((NBTTag) var30);
 			}
 
 			var3.a("TileTicks", (NBTTag) var27);
@@ -276,8 +276,8 @@ public class bfy implements bfq, brq {
 		bfm[] var8 = new bfm[var7];
 		boolean var9 = !var1.t.o();
 
-		for (int var10 = 0; var10 < var6.c(); ++var10) {
-			NBTCompoundTag var11 = var6.b(var10);
+		for (int var10 = 0; var10 < var6.getSize(); ++var10) {
+			NBTCompoundTag var11 = var6.getCompound(var10);
 			byte var12 = var11.d("Y");
 			bfm var13 = new bfm(var12 << 4, var9);
 			byte[] var14 = var11.k("Blocks");
@@ -310,8 +310,8 @@ public class bfy implements bfq, brq {
 
 		NBTListTag var23 = var2.c("Entities", 10);
 		if (var23 != null) {
-			for (int var24 = 0; var24 < var23.c(); ++var24) {
-				NBTCompoundTag var26 = var23.b(var24);
+			for (int var24 = 0; var24 < var23.getSize(); ++var24) {
+				NBTCompoundTag var26 = var23.getCompound(var24);
 				Entity var29 = xb.a(var26, var1);
 				var5.g(true);
 				if (var29 != null) {
@@ -333,8 +333,8 @@ public class bfy implements bfq, brq {
 
 		NBTListTag var25 = var2.c("TileEntities", 10);
 		if (var25 != null) {
-			for (int var27 = 0; var27 < var25.c(); ++var27) {
-				NBTCompoundTag var30 = var25.b(var27);
+			for (int var27 = 0; var27 < var25.getSize(); ++var27) {
+				NBTCompoundTag var30 = var25.getCompound(var27);
 				bcm var33 = bcm.c(var30);
 				if (var33 != null) {
 					var5.a(var33);
@@ -345,8 +345,8 @@ public class bfy implements bfq, brq {
 		if (var2.b("TileTicks", 9)) {
 			NBTListTag var28 = var2.c("TileTicks", 10);
 			if (var28 != null) {
-				for (int var31 = 0; var31 < var28.c(); ++var31) {
-					NBTCompoundTag var34 = var28.b(var31);
+				for (int var31 = 0; var31 < var28.getSize(); ++var31) {
+					NBTCompoundTag var34 = var28.getCompound(var31);
 					atr var36;
 					if (var34.b("i", 8)) {
 						var36 = atr.b(var34.j("i"));

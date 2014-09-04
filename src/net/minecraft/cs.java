@@ -28,7 +28,7 @@ class cs {
 	}
 
 	float b() {
-		return uv.a(this.a * this.a + this.b * this.b);
+		return NumberConverter.a(this.a * this.a + this.b * this.b);
 	}
 
 	public void b(cs var1) {
@@ -88,7 +88,7 @@ class cs {
 	}
 
 	public void a(Random var1, double var2, double var4, double var6, double var8) {
-		this.a = uv.a(var1, var2, var6);
-		this.b = uv.a(var1, var4, var8);
+		this.a = NumberConverter.a(var1, var2, var6);
+		this.b = NumberConverter.a(var1, var4, var8);
 	}
 }

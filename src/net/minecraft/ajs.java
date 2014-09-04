@@ -25,7 +25,7 @@ public class ajs extends aju {
 				return true;
 			} else {
 				if (var5 == ej.b) {
-					int var9 = uv.c((double) ((var2.y + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
+					int var9 = NumberConverter.c((double) ((var2.y + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
 					var3.a(var4, aty.cK.P().a(baw.a, Integer.valueOf(var9)), 3);
 				} else {
 					var3.a(var4, aty.cL.P().a(bbz.a, var5), 3);

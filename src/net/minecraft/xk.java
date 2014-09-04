@@ -81,7 +81,7 @@ public class xk extends Entity {
 		this.d(this.v, this.w, this.x);
 		float var13 = 0.98F;
 		if (this.C) {
-			var13 = this.o.p(new dt(uv.c(this.s), uv.c(this.aQ().b) - 1, uv.c(this.u))).c().K * 0.98F;
+			var13 = this.o.p(new dt(NumberConverter.c(this.s), NumberConverter.c(this.aQ().b) - 1, NumberConverter.c(this.u))).c().K * 0.98F;
 		}
 
 		this.v *= (double) var13;

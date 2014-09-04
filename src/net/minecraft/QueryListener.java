@@ -37,12 +37,12 @@ public class QueryListener extends te {
 
 	public QueryListener(pj var1) {
 		super(var1, "Query Listener");
-		this.i = var1.a("query.port", 0);
+		this.i = var1.getIntProperty("query.port", 0);
 		this.s = var1.C();
 		this.j = var1.D();
 		this.l = var1.E();
 		this.k = var1.H();
-		this.m = var1.T();
+		this.m = var1.getLevelName();
 		this.w = 0L;
 		this.r = "0.0.0.0";
 		if (0 != this.s.length() && !this.r.equals(this.s)) {
@@ -61,8 +61,8 @@ public class QueryListener extends te {
 		if (0 == this.i) {
 			this.i = this.j;
 			this.b("Setting default query port to " + this.i);
-			var1.a("query.port", (Object) Integer.valueOf(this.i));
-			var1.a("debug", (Object) Boolean.valueOf(false));
+			var1.setProperty("query.port", (Object) Integer.valueOf(this.i));
+			var1.setProperty("debug", (Object) Boolean.valueOf(false));
 			var1.saveProperties();
 		}
 

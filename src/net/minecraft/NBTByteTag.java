@@ -4,24 +4,24 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public class NBTByteTag extends ge {
+public class NBTByteTag extends NBTNumberTag {
 
 	private byte b;
 
 	NBTByteTag() {
 	}
 
-	public NBTByteTag(byte var1) {
-		this.b = var1;
+	public NBTByteTag(byte b) {
+		this.b = b;
 	}
 
-	void write(DataOutput var1) throws IOException {
-		var1.writeByte(this.b);
+	void write(DataOutput output) throws IOException {
+		output.writeByte(this.b);
 	}
 
-	void read(DataInput var1, int var2, NBTReadLimiter var3) throws IOException {
-		var3.a(8L);
-		this.b = var1.readByte();
+	void read(DataInput input, int currentDepth, NBTReadLimiter limiter) throws IOException {
+		limiter.onBytesRead(8L);
+		this.b = input.readByte();
 	}
 
 	public byte getId() {
@@ -49,27 +49,28 @@ public class NBTByteTag extends ge {
 		return super.hashCode() ^ this.b;
 	}
 
-	public long c() {
+	public long toLong() {
 		return (long) this.b;
 	}
 
-	public int d() {
+	public int toInt() {
 		return this.b;
 	}
 
-	public short e() {
+	public short toShort() {
 		return (short) this.b;
 	}
 
-	public byte f() {
+	public byte toByte() {
 		return this.b;
 	}
 
-	public double g() {
+	public double toDouble() {
 		return (double) this.b;
 	}
 
-	public float h() {
+	public float toFloat() {
 		return (float) this.b;
 	}
+
 }

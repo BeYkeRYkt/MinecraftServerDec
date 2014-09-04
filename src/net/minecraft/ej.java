@@ -97,15 +97,15 @@ public enum ej implements va {
 	}
 
 	public static ej a(int var0) {
-		return n[uv.a(var0 % n.length)];
+		return n[NumberConverter.a(var0 % n.length)];
 	}
 
 	public static ej b(int var0) {
-		return o[uv.a(var0 % o.length)];
+		return o[NumberConverter.a(var0 % o.length)];
 	}
 
 	public static ej a(double var0) {
-		return b(uv.c(var0 / 90.0D + 0.5D) & 3);
+		return b(NumberConverter.c(var0 / 90.0D + 0.5D) & 3);
 	}
 
 	public static ej a(Random var0) {

@@ -109,7 +109,7 @@ public class anl extends alq {
 				var8 = xb.a(var1, var0);
 				if (var8 instanceof EntityLiving) {
 					xn var10 = (xn) var8;
-					var8.b(var2, var4, var6, uv.g(var0.s.nextFloat() * 360.0F), 0.0F);
+					var8.b(var2, var4, var6, NumberConverter.g(var0.s.nextFloat() * 360.0F), 0.0F);
 					var10.aI = var10.y;
 					var10.aG = var10.y;
 					var10.a(var0.E(new dt(var10)), (xq) null);

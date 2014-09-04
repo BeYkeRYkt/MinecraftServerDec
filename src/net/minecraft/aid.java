@@ -72,7 +72,7 @@ public class aid extends aib {
 			this.k = 0;
 			int var16;
 			if (var13 != null) {
-				var15 = var13.b() == amk.cd && amk.cd.h(var13).c() > 0;
+				var15 = var13.b() == amk.cd && amk.cd.h(var13).getSize() > 0;
 				int var17;
 				int var18;
 				if (var12.e() && var12.b().a(var8, var13)) {

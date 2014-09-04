@@ -17,7 +17,7 @@ public class GiveCommand extends AbstractCommand {
 		return "commands.give.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 2) {
 			throw new dp("commands.give.usage", new Object[0]);
 		} else {

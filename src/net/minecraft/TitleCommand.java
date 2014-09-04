@@ -23,7 +23,7 @@ public class TitleCommand extends AbstractCommand {
 		return "commands.title.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dk, dl, dm, dj {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dk, dl, dm, dj {
 		if (var2.length < 2) {
 			throw new dp("commands.title.usage", new Object[0]);
 		} else {

@@ -72,8 +72,8 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 			}
 
 			this.generateStructures = this.serverProperties.getBoolean("generate-structures", true);
-			int var2 = this.serverProperties.getInt("gamemode", GameMode.SURVIVAL.getId());
-			this.serverGameMode = arb.a(var2);
+			int gameMode = this.serverProperties.getInt("gamemode", GameMode.SURVIVAL.getId());
+			this.serverGameMode = arb.a(gameMode);
 			logger.info("Default game type: " + this.serverGameMode);
 			InetAddress address = null;
 			if (this.getIp().length() > 0) {
@@ -105,50 +105,50 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 			}
 
 			if (this.convertDataLists()) {
-				this.getUserCache().c();
+				this.getUserCache().dumpCache();
 			}
 
 			if (!sf.a(this.serverProperties)) {
 				return false;
 			} else {
-				this.a((PlayerList) (new DedicatedPlayerList(this)));
-				long var4 = System.nanoTime();
-				if (this.T() == null) {
-					this.k(this.serverProperties.getString("level-name", "world"));
+				this.setPlayerList(new DedicatedPlayerList(this));
+				long nanoTime = System.nanoTime();
+				if (this.getLevelName() == null) {
+					this.setLevelName(this.serverProperties.getString("level-name", "world"));
 				}
 
-				String var6 = this.serverProperties.getString("level-seed", "");
-				String var7 = this.serverProperties.getString("level-type", "DEFAULT");
-				String var8 = this.serverProperties.getString("generator-settings", "");
-				long var9 = (new Random()).nextLong();
-				if (var6.length() > 0) {
+				String seed = this.serverProperties.getString("level-seed", "");
+				String type = this.serverProperties.getString("level-type", "DEFAULT");
+				String gensettings = this.serverProperties.getString("generator-settings", "");
+				long randomLong = (new Random()).nextLong();
+				if (seed.length() > 0) {
 					try {
-						long var11 = Long.parseLong(var6);
-						if (var11 != 0L) {
-							var9 = var11;
+						long longSeed = Long.parseLong(seed);
+						if (longSeed != 0L) {
+							randomLong = longSeed;
 						}
 					} catch (NumberFormatException var16) {
-						var9 = (long) var6.hashCode();
+						randomLong = seed.hashCode();
 					}
 				}
 
-				are var18 = are.a(var7);
+				are var18 = are.a(type);
 				if (var18 == null) {
 					var18 = are.b;
 				}
 
-				this.az();
+				this.isAnnouncePlayerAchievmentsEnabled();
 				this.isCommandBlockEnabled();
 				this.getOpPermissionLevel();
 				this.isSnooperEnabled();
-				this.aI();
+				this.getCompressionThreshold();
 				this.c(this.serverProperties.getInt("max-build-height", 256));
 				this.c((this.al() + 8) / 16 * 16);
-				this.c(uv.a(this.al(), 64, 256));
+				this.c(NumberConverter.a(this.al(), 64, 256));
 				this.serverProperties.setProperty("max-build-height", (Object) Integer.valueOf(this.al()));
-				logger.info("Preparing level \"" + this.T() + "\"");
-				this.a(this.T(), this.T(), var9, var18, var8);
-				long var12 = System.nanoTime() - var4;
+				logger.info("Preparing level \"" + this.getLevelName() + "\"");
+				this.a(this.getLevelName(), this.getLevelName(), randomLong, var18, gensettings);
+				long var12 = System.nanoTime() - nanoTime;
 				String var14 = String.format("%.3fs", new Object[] { Double.valueOf((double) var12 / 1.0E9D) });
 				logger.info("Done (" + var14 + ")! For help, type \"help\" or \"?\"");
 				if (this.serverProperties.getBoolean("enable-query", false)) {
@@ -163,11 +163,11 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 					this.rcon.a();
 				}
 
-				if (this.aQ() > 0L) {
-					Thread var15 = new Thread(new ServerWatchdog(this));
-					var15.setName("Server Watchdog");
-					var15.setDaemon(true);
-					var15.start();
+				if (this.getMaxTickTime() > 0L) {
+					Thread watchdog = new Thread(new ServerWatchdog(this));
+					watchdog.setName("Server Watchdog");
+					watchdog.setDaemon(true);
+					watchdog.start();
 				}
 
 				return true;
@@ -203,7 +203,6 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 			try {
 				Thread.sleep(10L);
 			} catch (InterruptedException var3) {
-				;
 			}
 		}
 
@@ -234,8 +233,8 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 	}
 
 	public void a(Snooper var1) {
-		var1.a("whitelist_enabled", Boolean.valueOf(this.aN().s()));
-		var1.a("whitelist_count", Integer.valueOf(this.aN().m().length));
+		var1.a("whitelist_enabled", Boolean.valueOf(this.getDedicatedPlayerList().s()));
+		var1.a("whitelist_count", Integer.valueOf(this.getDedicatedPlayerList().m().length));
 		super.a(var1);
 	}
 
@@ -259,24 +258,24 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		return true;
 	}
 
-	public DedicatedPlayerList aN() {
+	public DedicatedPlayerList getDedicatedPlayerList() {
 		return (DedicatedPlayerList) super.getPlayerList();
 	}
 
-	public int a(String var1, int var2) {
-		return this.serverProperties.getInt(var1, var2);
+	public int getIntProperty(String path, int defaultValue) {
+		return this.serverProperties.getInt(path, defaultValue);
 	}
 
-	public String a(String var1, String var2) {
-		return this.serverProperties.getString(var1, var2);
+	public String getStringProperty(String path, String defaultValue) {
+		return this.serverProperties.getString(path, defaultValue);
 	}
 
-	public boolean a(String var1, boolean var2) {
-		return this.serverProperties.getBoolean(var1, var2);
+	public boolean getBooleanProperty(String path, boolean defaultValue) {
+		return this.serverProperties.getBoolean(path, defaultValue);
 	}
 
-	public void a(String var1, Object var2) {
-		this.serverProperties.setProperty(var1, var2);
+	public void setProperty(String path, Object obj) {
+		this.serverProperties.setProperty(path, obj);
 	}
 
 	public void saveProperties() {
@@ -312,16 +311,16 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 	public boolean a(World var1, dt var2, ahd var3) {
 		if (var1.t.q() != 0) {
 			return false;
-		} else if (this.aN().n().d()) {
+		} else if (this.getDedicatedPlayerList().n().d()) {
 			return false;
-		} else if (this.aN().g(var3.cc())) {
+		} else if (this.getDedicatedPlayerList().g(var3.cc())) {
 			return false;
 		} else if (this.isSpawnProtectionEnabled() <= 0) {
 			return false;
 		} else {
 			dt var4 = var1.M();
-			int var5 = uv.a(var2.n() - var4.n());
-			int var6 = uv.a(var2.p() - var4.p());
+			int var5 = NumberConverter.a(var2.n() - var4.n());
+			int var6 = NumberConverter.a(var2.p() - var4.p());
 			int var7 = Math.max(var5, var6);
 			return var7 <= this.isSpawnProtectionEnabled();
 		}
@@ -337,100 +336,99 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		this.saveProperties();
 	}
 
-	public boolean az() {
+	public boolean isAnnouncePlayerAchievmentsEnabled() {
 		return this.serverProperties.getBoolean("announce-player-achievements", true);
 	}
 
-	public int aG() {
-		int var1 = this.serverProperties.getInt("max-world-size", super.aG());
-		if (var1 < 1) {
-			var1 = 1;
-		} else if (var1 > super.aG()) {
-			var1 = super.aG();
+	public int getMaxWorldSize() {
+		int maxsize = this.serverProperties.getInt("max-world-size", super.getMaxWorldSize());
+		if (maxsize < 1) {
+			maxsize = 1;
+		} else if (maxsize > super.getMaxWorldSize()) {
+			maxsize = super.getMaxWorldSize();
 		}
 
-		return var1;
+		return maxsize;
 	}
 
-	public int aI() {
-		return this.serverProperties.getInt("network-compression-threshold", super.aI());
+	public int getCompressionThreshold() {
+		return this.serverProperties.getInt("network-compression-threshold", super.getCompressionThreshold());
 	}
 
 	protected boolean convertDataLists() {
-		boolean var2 = false;
+		boolean succNameBans = false;
 
-		int var1;
-		for (var1 = 0; !var2 && var1 <= 2; ++var1) {
-			if (var1 > 0) {
+		int i;
+		for (i = 0; !succNameBans && i <= 2; ++i) {
+			if (i > 0) {
 				logger.warn("Encountered a problem while converting the user banlist, retrying in a few seconds");
-				this.aS();
+				this.sleep5Seconds();
 			}
 
-			var2 = sf.a((MinecraftServer) this);
+			succNameBans = sf.a((MinecraftServer) this);
 		}
 
-		boolean var3 = false;
+		boolean succIPBans = false;
 
-		for (var1 = 0; !var3 && var1 <= 2; ++var1) {
-			if (var1 > 0) {
+		for (i = 0; !succIPBans && i <= 2; ++i) {
+			if (i > 0) {
 				logger.warn("Encountered a problem while converting the ip banlist, retrying in a few seconds");
-				this.aS();
+				this.sleep5Seconds();
 			}
 
-			var3 = sf.b((MinecraftServer) this);
+			succIPBans = sf.b((MinecraftServer) this);
 		}
 
-		boolean var4 = false;
+		boolean succOP = false;
 
-		for (var1 = 0; !var4 && var1 <= 2; ++var1) {
-			if (var1 > 0) {
+		for (i = 0; !succOP && i <= 2; ++i) {
+			if (i > 0) {
 				logger.warn("Encountered a problem while converting the op list, retrying in a few seconds");
-				this.aS();
+				this.sleep5Seconds();
 			}
 
-			var4 = sf.c((MinecraftServer) this);
+			succOP = sf.c((MinecraftServer) this);
 		}
 
-		boolean var5 = false;
+		boolean succWhitelist = false;
 
-		for (var1 = 0; !var5 && var1 <= 2; ++var1) {
-			if (var1 > 0) {
+		for (i = 0; !succWhitelist && i <= 2; ++i) {
+			if (i > 0) {
 				logger.warn("Encountered a problem while converting the whitelist, retrying in a few seconds");
-				this.aS();
+				this.sleep5Seconds();
 			}
 
-			var5 = sf.d((MinecraftServer) this);
+			succWhitelist = sf.d((MinecraftServer) this);
 		}
 
-		boolean var6 = false;
+		boolean succSave = false;
 
-		for (var1 = 0; !var6 && var1 <= 2; ++var1) {
-			if (var1 > 0) {
+		for (i = 0; !succSave && i <= 2; ++i) {
+			if (i > 0) {
 				logger.warn("Encountered a problem while converting the player save files, retrying in a few seconds");
-				this.aS();
+				this.sleep5Seconds();
 			}
 
-			var6 = sf.a(this, this.serverProperties);
+			succSave = sf.a(this, this.serverProperties);
 		}
 
-		return var2 || var3 || var4 || var5 || var6;
+		return succNameBans || succIPBans || succOP || succWhitelist || succSave;
 	}
 
-	private void aS() {
+	private void sleep5Seconds() {
 		try {
 			Thread.sleep(5000L);
-		} catch (InterruptedException var2) {
-			;
+		} catch (InterruptedException ex) {
 		}
 	}
 
-	public long aQ() {
+	public long getMaxTickTime() {
 		return this.serverProperties.getLong("max-tick-time", TimeUnit.MINUTES.toMillis(1L));
 	}
 
 	// $FF: synthetic method
 	public PlayerList getPlayerList() {
-		return this.aN();
+		return this.getDedicatedPlayerList();
 	}
 
 	// $FF: synthetic method

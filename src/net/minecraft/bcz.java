@@ -80,12 +80,12 @@ public class bcz extends bcm implements pm, vv {
 		}
 
 		this.l += var7 * 0.4F;
-		this.j = uv.a(this.j, 0.0F, 1.0F);
+		this.j = NumberConverter.a(this.j, 0.0F, 1.0F);
 		++this.a;
 		this.g = this.f;
 		float var3 = (this.h - this.f) * 0.4F;
 		float var8 = 0.2F;
-		var3 = uv.a(var3, -var8, var8);
+		var3 = NumberConverter.a(var3, -var8, var8);
 		this.i += (var3 - this.i) * 0.9F;
 		this.f += this.i;
 	}

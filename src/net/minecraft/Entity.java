@@ -101,7 +101,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.V = new Random();
 		this.X = 1;
 		this.aa = true;
-		this.ao = uv.a(this.V);
+		this.ao = NumberConverter.a(this.V);
 		this.as = new af();
 		this.o = var1;
 		this.b(0.0D, 0.0D, 0.0D);
@@ -473,9 +473,9 @@ public abstract class Entity implements CommandSenderInterface {
 			this.E = var15 != var3;
 			this.C = this.E && var15 < 0.0D;
 			this.F = this.D || this.E;
-			int var57 = uv.c(this.s);
-			int var58 = uv.c(this.t - 0.20000000298023224D);
-			int var59 = uv.c(this.u);
+			int var57 = NumberConverter.c(this.s);
+			int var58 = NumberConverter.c(this.t - 0.20000000298023224D);
+			int var59 = NumberConverter.c(this.u);
 			dt var26 = new dt(var57, var58, var59);
 			atr var60 = this.o.p(var26).c();
 			if (var60.r() == bof.a) {
@@ -511,12 +511,12 @@ public abstract class Entity implements CommandSenderInterface {
 					var60.a(this.o, var26, this);
 				}
 
-				this.M = (float) ((double) this.M + (double) uv.a(var61 * var61 + var66 * var66) * 0.6D);
-				this.N = (float) ((double) this.N + (double) uv.a(var61 * var61 + var64 * var64 + var66 * var66) * 0.6D);
+				this.M = (float) ((double) this.M + (double) NumberConverter.a(var61 * var61 + var66 * var66) * 0.6D);
+				this.N = (float) ((double) this.N + (double) NumberConverter.a(var61 * var61 + var64 * var64 + var66 * var66) * 0.6D);
 				if (this.N > (float) this.h && var60.r() != bof.a) {
 					this.h = (int) this.N + 1;
 					if (this.V()) {
-						float var34 = uv.a(this.v * this.v * 0.20000000298023224D + this.w * this.w + this.x * this.x * 0.20000000298023224D) * 0.35F;
+						float var34 = NumberConverter.a(this.v * this.v * 0.20000000298023224D + this.w * this.w + this.x * this.x * 0.20000000298023224D) * 0.35F;
 						if (var34 > 1.0F) {
 							var34 = 1.0F;
 						}
@@ -688,13 +688,13 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected void X() {
-		float var1 = uv.a(this.v * this.v * 0.20000000298023224D + this.w * this.w + this.x * this.x * 0.20000000298023224D) * 0.2F;
+		float var1 = NumberConverter.a(this.v * this.v * 0.20000000298023224D + this.w * this.w + this.x * this.x * 0.20000000298023224D) * 0.2F;
 		if (var1 > 1.0F) {
 			var1 = 1.0F;
 		}
 
 		this.a(this.aa(), var1, 1.0F + (this.V.nextFloat() - this.V.nextFloat()) * 0.4F);
-		float var2 = (float) uv.c(this.aQ().b);
+		float var2 = (float) NumberConverter.c(this.aQ().b);
 
 		int var3;
 		float var4;
@@ -721,9 +721,9 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected void Z() {
-		int var1 = uv.c(this.s);
-		int var2 = uv.c(this.t - 0.20000000298023224D);
-		int var3 = uv.c(this.u);
+		int var1 = NumberConverter.c(this.s);
+		int var2 = NumberConverter.c(this.t - 0.20000000298023224D);
+		int var3 = NumberConverter.c(this.u);
 		dt var4 = new dt(var1, var2, var3);
 		bec var5 = this.o.p(var4);
 		atr var6 = var5.c();
@@ -759,7 +759,7 @@ public abstract class Entity implements CommandSenderInterface {
 	public void a(float var1, float var2, float var3) {
 		float var4 = var1 * var1 + var2 * var2;
 		if (var4 >= 1.0E-4F) {
-			var4 = uv.c(var4);
+			var4 = NumberConverter.c(var4);
 			if (var4 < 1.0F) {
 				var4 = 1.0F;
 			}
@@ -767,8 +767,8 @@ public abstract class Entity implements CommandSenderInterface {
 			var4 = var3 / var4;
 			var1 *= var4;
 			var2 *= var4;
-			float var5 = uv.a(this.y * 3.1415927F / 180.0F);
-			float var6 = uv.b(this.y * 3.1415927F / 180.0F);
+			float var5 = NumberConverter.a(this.y * 3.1415927F / 180.0F);
+			float var6 = NumberConverter.b(this.y * 3.1415927F / 180.0F);
 			this.v += (double) (var1 * var6 - var2 * var5);
 			this.x += (double) (var2 * var6 + var1 * var5);
 		}
@@ -778,7 +778,7 @@ public abstract class Entity implements CommandSenderInterface {
 		dt var2 = new dt(this.s, 0.0D, this.u);
 		if (this.o.e(var2)) {
 			double var3 = (this.aQ().e - this.aQ().b) * 0.66D;
-			int var5 = uv.c(this.t + var3);
+			int var5 = NumberConverter.c(this.t + var3);
 			return this.o.o(var2.b(var5));
 		} else {
 			return 0.0F;
@@ -825,7 +825,7 @@ public abstract class Entity implements CommandSenderInterface {
 		float var2 = (float) (this.s - var1.s);
 		float var3 = (float) (this.t - var1.t);
 		float var4 = (float) (this.u - var1.u);
-		return uv.c(var2 * var2 + var3 * var3 + var4 * var4);
+		return NumberConverter.c(var2 * var2 + var3 * var3 + var4 * var4);
 	}
 
 	public double e(double var1, double var3, double var5) {
@@ -847,7 +847,7 @@ public abstract class Entity implements CommandSenderInterface {
 		double var7 = this.s - var1;
 		double var9 = this.t - var3;
 		double var11 = this.u - var5;
-		return (double) uv.a(var7 * var7 + var9 * var9 + var11 * var11);
+		return (double) NumberConverter.a(var7 * var7 + var9 * var9 + var11 * var11);
 	}
 
 	public double h(Entity var1) {
@@ -865,9 +865,9 @@ public abstract class Entity implements CommandSenderInterface {
 			if (!var1.T && !this.T) {
 				double var2 = var1.s - this.s;
 				double var4 = var1.u - this.u;
-				double var6 = uv.a(var2, var4);
+				double var6 = NumberConverter.a(var2, var4);
 				if (var6 >= 0.009999999776482582D) {
-					var6 = (double) uv.a(var6);
+					var6 = (double) NumberConverter.a(var6);
 					var2 /= var6;
 					var4 /= var6;
 					double var8 = 1.0D / var6;
@@ -925,10 +925,10 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected final brw f(float var1, float var2) {
-		float var3 = uv.b(-var2 * 0.017453292F - 3.1415927F);
-		float var4 = uv.a(-var2 * 0.017453292F - 3.1415927F);
-		float var5 = -uv.b(-var1 * 0.017453292F);
-		float var6 = uv.a(-var1 * 0.017453292F);
+		float var3 = NumberConverter.b(-var2 * 0.017453292F - 3.1415927F);
+		float var4 = NumberConverter.a(-var2 * 0.017453292F - 3.1415927F);
+		float var5 = -NumberConverter.b(-var1 * 0.017453292F);
+		float var6 = NumberConverter.a(-var1 * 0.017453292F);
 		return new brw((double) (var4 * var5), (double) var6, (double) (var3 * var5));
 	}
 
@@ -1010,9 +1010,9 @@ public abstract class Entity implements CommandSenderInterface {
 			NBTListTag var2 = var1.c("Pos", 6);
 			NBTListTag var6 = var1.c("Motion", 6);
 			NBTListTag var7 = var1.c("Rotation", 5);
-			this.v = var6.d(0);
-			this.w = var6.d(1);
-			this.x = var6.d(2);
+			this.v = var6.getDouble(0);
+			this.w = var6.getDouble(1);
+			this.x = var6.getDouble(2);
 			if (Math.abs(this.v) > 10.0D) {
 				this.v = 0.0D;
 			}
@@ -1025,11 +1025,11 @@ public abstract class Entity implements CommandSenderInterface {
 				this.x = 0.0D;
 			}
 
-			this.p = this.P = this.s = var2.d(0);
-			this.q = this.Q = this.t = var2.d(1);
-			this.r = this.R = this.u = var2.d(2);
-			this.A = this.y = var7.e(0);
-			this.B = this.z = var7.e(1);
+			this.p = this.P = this.s = var2.getDouble(0);
+			this.q = this.Q = this.t = var2.getDouble(1);
+			this.r = this.R = this.u = var2.getDouble(2);
+			this.A = this.y = var7.getFloat(0);
+			this.B = this.z = var7.getFloat(1);
 			this.O = var1.h("FallDistance");
 			this.i = var1.e("Fire");
 			this.h(var1.e("Air"));
@@ -1087,7 +1087,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 		for (int var5 = 0; var5 < var4; ++var5) {
 			double var6 = var3[var5];
-			var2.a((NBTTag) (new NBTDoubleTag(var6)));
+			var2.addTag((NBTTag) (new NBTDoubleTag(var6)));
 		}
 
 		return var2;
@@ -1100,7 +1100,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 		for (int var5 = 0; var5 < var4; ++var5) {
 			float var6 = var3[var5];
-			var2.a((NBTTag) (new NBTFloatTag(var6)));
+			var2.addTag((NBTTag) (new NBTFloatTag(var6)));
 		}
 
 		return var2;
@@ -1265,7 +1265,7 @@ public abstract class Entity implements CommandSenderInterface {
 			double var3 = this.r - this.u;
 			if (!this.o.D && !this.ak) {
 				int var5;
-				if (uv.e((float) var1) > uv.e((float) var3)) {
+				if (NumberConverter.e((float) var1) > NumberConverter.e((float) var3)) {
 					var5 = var1 > 0.0D ? ej.e.b() : ej.f.b();
 				} else {
 					var5 = var3 > 0.0D ? ej.c.b() : ej.d.b();
@@ -1544,7 +1544,7 @@ public abstract class Entity implements CommandSenderInterface {
 		var1.a("Entity ID", (Object) Integer.valueOf(this.c));
 		var1.a("Entity Name", (Callable) (new wx(this)));
 		var1.a("Entity\'s Exact location", (Object) String.format("%.2f, %.2f, %.2f", new Object[] { Double.valueOf(this.s), Double.valueOf(this.t), Double.valueOf(this.u) }));
-		var1.a("Entity\'s Block location", (Object) net.minecraft.j.a((double) uv.c(this.s), (double) uv.c(this.t), (double) uv.c(this.u)));
+		var1.a("Entity\'s Block location", (Object) net.minecraft.j.a((double) NumberConverter.c(this.s), (double) NumberConverter.c(this.t), (double) NumberConverter.c(this.u)));
 		var1.a("Entity\'s Momentum", (Object) String.format("%.2f, %.2f, %.2f", new Object[] { Double.valueOf(this.v), Double.valueOf(this.w), Double.valueOf(this.x) }));
 		var1.a("Entity\'s Rider", (Callable) (new wy(this)));
 		var1.a("Entity\'s Vehicle", (Callable) (new wz(this)));
@@ -1593,7 +1593,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public ej aO() {
-		return ej.b(uv.c((double) (this.y * 4.0F / 360.0F) + 0.5D) & 3);
+		return ej.b(NumberConverter.c((double) (this.y * 4.0F / 360.0F) + 0.5D) & 3);
 	}
 
 	protected hr aP() {

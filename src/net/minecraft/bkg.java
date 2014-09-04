@@ -27,9 +27,9 @@ public class bkg extends bmm {
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
 			if (((String) var3.getKey()).equals("spacing")) {
-				this.f = uv.a((String) var3.getValue(), this.f, 1);
+				this.f = NumberConverter.a((String) var3.getValue(), this.f, 1);
 			} else if (((String) var3.getKey()).equals("separation")) {
-				this.g = uv.a((String) var3.getValue(), this.g, 1);
+				this.g = NumberConverter.a((String) var3.getValue(), this.g, 1);
 			}
 		}
 

@@ -85,7 +85,7 @@ public abstract class ws extends EntityCreature {
 	}
 
 	public void b(int var1) {
-		this.ac.b(12, Byte.valueOf((byte) uv.a(var1, -1, 1)));
+		this.ac.b(12, Byte.valueOf((byte) NumberConverter.a(var1, -1, 1)));
 		this.a = var1;
 		this.a(this.i_());
 	}

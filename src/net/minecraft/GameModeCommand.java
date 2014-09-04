@@ -17,7 +17,7 @@ public class GameModeCommand extends AbstractCommand {
 		return "commands.gamemode.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dp, dm, dk {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dp, dm, dk {
 		if (var2.length <= 0) {
 			throw new dp("commands.gamemode.usage", new Object[0]);
 		} else {

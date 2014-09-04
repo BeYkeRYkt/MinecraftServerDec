@@ -43,7 +43,7 @@ public class ahj extends Entity implements aho {
 		double var6 = var3.s - var2.s;
 		double var8 = var3.aQ().b + (double) (var3.K / 3.0F) - this.t;
 		double var10 = var3.u - var2.u;
-		double var12 = (double) uv.a(var6 * var6 + var10 * var10);
+		double var12 = (double) NumberConverter.a(var6 * var6 + var10 * var10);
 		if (var12 >= 1.0E-7D) {
 			float var14 = (float) (Math.atan2(var10, var6) * 180.0D / 3.1415927410125732D) - 90.0F;
 			float var15 = (float) (-(Math.atan2(var8, var12) * 180.0D / 3.1415927410125732D));
@@ -65,13 +65,13 @@ public class ahj extends Entity implements aho {
 
 		this.a(0.5F, 0.5F);
 		this.b(var2.s, var2.t + (double) var2.aR(), var2.u, var2.y, var2.z);
-		this.s -= (double) (uv.b(this.y / 180.0F * 3.1415927F) * 0.16F);
+		this.s -= (double) (NumberConverter.b(this.y / 180.0F * 3.1415927F) * 0.16F);
 		this.t -= 0.10000000149011612D;
-		this.u -= (double) (uv.a(this.y / 180.0F * 3.1415927F) * 0.16F);
+		this.u -= (double) (NumberConverter.a(this.y / 180.0F * 3.1415927F) * 0.16F);
 		this.b(this.s, this.t, this.u);
-		this.v = (double) (-uv.a(this.y / 180.0F * 3.1415927F) * uv.b(this.z / 180.0F * 3.1415927F));
-		this.x = (double) (uv.b(this.y / 180.0F * 3.1415927F) * uv.b(this.z / 180.0F * 3.1415927F));
-		this.w = (double) (-uv.a(this.z / 180.0F * 3.1415927F));
+		this.v = (double) (-NumberConverter.a(this.y / 180.0F * 3.1415927F) * NumberConverter.b(this.z / 180.0F * 3.1415927F));
+		this.x = (double) (NumberConverter.b(this.y / 180.0F * 3.1415927F) * NumberConverter.b(this.z / 180.0F * 3.1415927F));
+		this.w = (double) (-NumberConverter.a(this.z / 180.0F * 3.1415927F));
 		this.c(this.v, this.w, this.x, var3 * 1.5F, 1.0F);
 	}
 
@@ -80,7 +80,7 @@ public class ahj extends Entity implements aho {
 	}
 
 	public void c(double var1, double var3, double var5, float var7, float var8) {
-		float var9 = uv.a(var1 * var1 + var3 * var3 + var5 * var5);
+		float var9 = NumberConverter.a(var1 * var1 + var3 * var3 + var5 * var5);
 		var1 /= (double) var9;
 		var3 /= (double) var9;
 		var5 /= (double) var9;
@@ -93,7 +93,7 @@ public class ahj extends Entity implements aho {
 		this.v = var1;
 		this.w = var3;
 		this.x = var5;
-		float var10 = uv.a(var1 * var1 + var5 * var5);
+		float var10 = NumberConverter.a(var1 * var1 + var5 * var5);
 		this.A = this.y = (float) (Math.atan2(var1, var5) * 180.0D / 3.1415927410125732D);
 		this.B = this.z = (float) (Math.atan2(var3, (double) var10) * 180.0D / 3.1415927410125732D);
 		this.ap = 0;
@@ -102,7 +102,7 @@ public class ahj extends Entity implements aho {
 	public void s_() {
 		super.s_();
 		if (this.B == 0.0F && this.A == 0.0F) {
-			float var1 = uv.a(this.v * this.v + this.x * this.x);
+			float var1 = NumberConverter.a(this.v * this.v + this.x * this.x);
 			this.A = this.y = (float) (Math.atan2(this.v, this.x) * 180.0D / 3.1415927410125732D);
 			this.B = this.z = (float) (Math.atan2(this.w, (double) var1) * 180.0D / 3.1415927410125732D);
 		}
@@ -187,8 +187,8 @@ public class ahj extends Entity implements aho {
 			float var29;
 			if (var6 != null) {
 				if (var6.d != null) {
-					var22 = uv.a(this.v * this.v + this.w * this.w + this.x * this.x);
-					int var24 = uv.f((double) var22 * this.ar);
+					var22 = NumberConverter.a(this.v * this.v + this.w * this.w + this.x * this.x);
+					int var24 = NumberConverter.f((double) var22 * this.ar);
 					if (this.l()) {
 						var24 += this.V.nextInt(var24 / 2 + 2);
 					}
@@ -212,7 +212,7 @@ public class ahj extends Entity implements aho {
 							}
 
 							if (this.as > 0) {
-								var29 = uv.a(this.v * this.v + this.x * this.x);
+								var29 = NumberConverter.a(this.v * this.v + this.x * this.x);
 								if (var29 > 0.0F) {
 									var6.d.g(this.v * (double) this.as * 0.6000000238418579D / (double) var29, 0.1D, this.x * (double) this.as * 0.6000000238418579D / (double) var29);
 								}
@@ -251,7 +251,7 @@ public class ahj extends Entity implements aho {
 					this.v = (double) ((float) (var6.c.a - this.s));
 					this.w = (double) ((float) (var6.c.b - this.t));
 					this.x = (double) ((float) (var6.c.c - this.u));
-					var25 = uv.a(this.v * this.v + this.w * this.w + this.x * this.x);
+					var25 = NumberConverter.a(this.v * this.v + this.w * this.w + this.x * this.x);
 					this.s -= this.v / (double) var25 * 0.05000000074505806D;
 					this.t -= this.w / (double) var25 * 0.05000000074505806D;
 					this.u -= this.x / (double) var25 * 0.05000000074505806D;
@@ -274,7 +274,7 @@ public class ahj extends Entity implements aho {
 			this.s += this.v;
 			this.t += this.w;
 			this.u += this.x;
-			var22 = uv.a(this.v * this.v + this.x * this.x);
+			var22 = NumberConverter.a(this.v * this.v + this.x * this.x);
 			this.y = (float) (Math.atan2(this.v, this.x) * 180.0D / 3.1415927410125732D);
 
 			for (this.z = (float) (Math.atan2(this.w, (double) var22) * 180.0D / 3.1415927410125732D); this.z - this.B < -180.0F; this.B -= 360.0F) {

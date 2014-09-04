@@ -22,7 +22,7 @@ public class jv implements id<ik> {
 		this.d = (int) (var6 * 8.0D);
 		this.e = var8;
 		this.f = (int) (var9 * 63.0F);
-		var9 = uv.a(var9, 0.0F, 255.0F);
+		var9 = NumberConverter.a(var9, 0.0F, 255.0F);
 	}
 
 	public void a(hd var1) {

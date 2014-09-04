@@ -106,7 +106,7 @@ public abstract class EntityLiving extends Entity {
 		if (!this.o.D && this.O > 3.0F && var3) {
 			bec var6 = this.o.p(var5);
 			atr var7 = var6.c();
-			float var8 = (float) uv.f(this.O - 3.0F);
+			float var8 = (float) NumberConverter.f(this.O - 3.0F);
 			if (var7.r() != bof.a) {
 				double var9 = (double) Math.min(0.2F + var8 / 15.0F, 10.0F);
 				if (var9 > 2.5D) {
@@ -136,7 +136,7 @@ public abstract class EntityLiving extends Entity {
 			} else if (var1 && !this.o.af().a(this.aQ())) {
 				double var2 = this.o.af().a((Entity) this) + this.o.af().m();
 				if (var2 < 0.0D) {
-					this.a(wh.e, (float) Math.max(1, uv.c(-var2 * this.o.af().n())));
+					this.a(wh.e, (float) Math.max(1, NumberConverter.c(-var2 * this.o.af().n())));
 				}
 			}
 		}
@@ -336,7 +336,7 @@ public abstract class EntityLiving extends Entity {
 
 			while (var7.hasNext()) {
 				wq var8 = (wq) var7.next();
-				var6.a((NBTTag) var8.a(new NBTCompoundTag()));
+				var6.addTag((NBTTag) var8.a(new NBTCompoundTag()));
 			}
 
 			var1.a("ActiveEffects", (NBTTag) var6);
@@ -353,8 +353,8 @@ public abstract class EntityLiving extends Entity {
 		if (var1.b("ActiveEffects", 9)) {
 			NBTListTag var2 = var1.c("ActiveEffects", 10);
 
-			for (int var3 = 0; var3 < var2.c(); ++var3) {
-				NBTCompoundTag var4 = var2.b(var3);
+			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+				NBTCompoundTag var4 = var2.getCompound(var3);
 				wq var5 = wq.b(var4);
 				if (var5 != null) {
 					this.g.put(Integer.valueOf(var5.a()), var5);
@@ -369,9 +369,9 @@ public abstract class EntityLiving extends Entity {
 			if (var6 == null) {
 				this.h(this.bt());
 			} else if (var6.getId() == 5) {
-				this.h(((NBTFloatTag) var6).h());
+				this.h(((NBTFloatTag) var6).toFloat());
 			} else if (var6.getId() == 2) {
-				this.h((float) ((NBTShortTag) var6).e());
+				this.h((float) ((NBTShortTag) var6).toShort());
 			}
 		}
 
@@ -550,7 +550,7 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public void h(float var1) {
-		this.ac.b(6, Float.valueOf(uv.a(var1, 0.0F, this.bt())));
+		this.ac.b(6, Float.valueOf(NumberConverter.a(var1, 0.0F, this.bt())));
 	}
 
 	public boolean a(wh var1, float var2) {
@@ -701,7 +701,7 @@ public abstract class EntityLiving extends Entity {
 	public void a(Entity var1, float var2, double var3, double var5) {
 		if (this.V.nextDouble() >= this.a(afs.c).e()) {
 			this.ai = true;
-			float var7 = uv.a(var3 * var3 + var5 * var5);
+			float var7 = NumberConverter.a(var3 * var3 + var5 * var5);
 			float var8 = 0.4F;
 			this.v /= 2.0D;
 			this.w /= 2.0D;
@@ -731,9 +731,9 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public boolean j_() {
-		int var1 = uv.c(this.s);
-		int var2 = uv.c(this.aQ().b);
-		int var3 = uv.c(this.u);
+		int var1 = NumberConverter.c(this.s);
+		int var2 = NumberConverter.c(this.aQ().b);
+		int var3 = NumberConverter.c(this.u);
 		atr var4 = this.o.p(new dt(var1, var2, var3)).c();
 		return (var4 == aty.au || var4 == aty.bn) && (!(this instanceof ahd) || !((ahd) this).v());
 	}
@@ -746,13 +746,13 @@ public abstract class EntityLiving extends Entity {
 		super.e(var1, var2);
 		wq var3 = this.b(wp.j);
 		float var4 = var3 != null ? (float) (var3.c() + 1) : 0.0F;
-		int var5 = uv.f((var1 - 3.0F - var4) * var2);
+		int var5 = NumberConverter.f((var1 - 3.0F - var4) * var2);
 		if (var5 > 0) {
 			this.a(this.n(var5), 1.0F, 1.0F);
 			this.a(wh.i, (float) var5);
-			int var6 = uv.c(this.s);
-			int var7 = uv.c(this.t - 0.20000000298023224D);
-			int var8 = uv.c(this.u);
+			int var6 = NumberConverter.c(this.s);
+			int var7 = NumberConverter.c(this.t - 0.20000000298023224D);
+			int var8 = NumberConverter.c(this.u);
 			atr var9 = this.o.p(new dt(var6, var7, var8)).c();
 			if (var9.r() != bof.a) {
 				atx var10 = var9.H;
@@ -991,8 +991,8 @@ public abstract class EntityLiving extends Entity {
 
 		if (this.ax()) {
 			float var1 = this.y * 0.017453292F;
-			this.v -= (double) (uv.a(var1) * 0.2F);
-			this.x += (double) (uv.b(var1) * 0.2F);
+			this.v -= (double) (NumberConverter.a(var1) * 0.2F);
+			this.x += (double) (NumberConverter.b(var1) * 0.2F);
 		}
 
 		this.ai = true;
@@ -1053,7 +1053,7 @@ public abstract class EntityLiving extends Entity {
 			} else {
 				float var3 = 0.91F;
 				if (this.C) {
-					var3 = this.o.p(new dt(uv.c(this.s), uv.c(this.aQ().b) - 1, uv.c(this.u))).c().K * 0.91F;
+					var3 = this.o.p(new dt(NumberConverter.c(this.s), NumberConverter.c(this.aQ().b) - 1, NumberConverter.c(this.u))).c().K * 0.91F;
 				}
 
 				float var4 = 0.16277136F / (var3 * var3 * var3);
@@ -1066,13 +1066,13 @@ public abstract class EntityLiving extends Entity {
 				this.a(var1, var2, var5);
 				var3 = 0.91F;
 				if (this.C) {
-					var3 = this.o.p(new dt(uv.c(this.s), uv.c(this.aQ().b) - 1, uv.c(this.u))).c().K * 0.91F;
+					var3 = this.o.p(new dt(NumberConverter.c(this.s), NumberConverter.c(this.aQ().b) - 1, NumberConverter.c(this.u))).c().K * 0.91F;
 				}
 
 				if (this.j_()) {
 					var6 = 0.15F;
-					this.v = uv.a(this.v, (double) (-var6), (double) var6);
-					this.x = uv.a(this.x, (double) (-var6), (double) var6);
+					this.v = NumberConverter.a(this.v, (double) (-var6), (double) var6);
+					this.x = NumberConverter.a(this.x, (double) (-var6), (double) var6);
 					this.O = 0.0F;
 					if (this.w < -0.15D) {
 						this.w = -0.15D;
@@ -1108,7 +1108,7 @@ public abstract class EntityLiving extends Entity {
 		this.ay = this.az;
 		var8 = this.s - this.p;
 		double var9 = this.u - this.r;
-		var10 = uv.a(var8 * var8 + var9 * var9) * 4.0F;
+		var10 = NumberConverter.a(var8 * var8 + var9 * var9) * 4.0F;
 		if (var10 > 1.0F) {
 			var10 = 1.0F;
 		}
@@ -1236,9 +1236,9 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	protected float h(float var1, float var2) {
-		float var3 = uv.g(var1 - this.aG);
+		float var3 = NumberConverter.g(var1 - this.aG);
 		this.aG += var3 * 0.3F;
-		float var4 = uv.g(this.y - this.aG);
+		float var4 = NumberConverter.g(this.y - this.aG);
 		boolean var5 = var4 < -90.0F || var4 >= 90.0F;
 		if (var4 < -75.0F) {
 			var4 = -75.0F;
@@ -1269,7 +1269,7 @@ public abstract class EntityLiving extends Entity {
 			double var1 = this.s + (this.bb - this.s) / (double) this.ba;
 			double var3 = this.t + (this.bc - this.t) / (double) this.ba;
 			double var5 = this.u + (this.bd - this.u) / (double) this.ba;
-			double var7 = uv.g(this.be - (double) this.y);
+			double var7 = NumberConverter.g(this.be - (double) this.y);
 			this.y = (float) ((double) this.y + var7 / (double) this.ba);
 			this.z = (float) ((double) this.z + (this.bf - (double) this.z) / (double) this.ba);
 			--this.ba;

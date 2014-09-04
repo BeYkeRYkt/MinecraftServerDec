@@ -91,12 +91,12 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private boolean U;
 	private final YggdrasilAuthenticationService authService;
 	private final MinecraftSessionService minecraftSessionService;
-	private long X = 0L;
+	private long lastServerPingUpdate = 0L;
 	private final GameProfileRepository gameProflieRepository;
 	private final UserCache userCache;
 	protected final Queue<ListenableFutureTask> i = Queues.newArrayDeque();
-	private Thread aa;
-	private long ab = getCurrentMillis();
+	private Thread mainThread;
+	private long lastTickTime = getCurrentMillis();
 
 	public MinecraftServer(File universe, Proxy var2, File usercache) {
 		this.proxy = var2;
@@ -136,7 +136,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.worlds = new WorldServer[3];
 		this.h = new long[this.worlds.length][100];
 		bqy var7 = this.convertable.a(var1, true);
-		this.a(this.T(), var7);
+		this.a(this.getLevelName(), var7);
 		bqo var9 = var7.d();
 		arb var8;
 		if (var9 == null) {
@@ -305,7 +305,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private void tick() {
 		try {
 			if (this.startServer()) {
-				this.ab = getCurrentMillis();
+				this.lastTickTime = getCurrentMillis();
 				long var1 = 0L;
 				this.serverPing.a((ho) (new hy(this.E)));
 				this.serverPing.a(new nt("1.8", 47));
@@ -313,11 +313,11 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 				while (this.running) {
 					long var48 = getCurrentMillis();
-					long var5 = var48 - this.ab;
-					if (var5 > 2000L && this.ab - this.R >= 15000L) {
+					long var5 = var48 - this.lastTickTime;
+					if (var5 > 2000L && this.lastTickTime - this.R >= 15000L) {
 						logger.warn("Can\'t keep up! Did the system time change, or is the server overloaded? Running {}ms behind, skipping {} tick(s)", new Object[] { Long.valueOf(var5), Long.valueOf(var5 / 50L) });
 						var5 = 2000L;
-						this.R = this.ab;
+						this.R = this.lastTickTime;
 					}
 
 					if (var5 < 0L) {
@@ -326,7 +326,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 					}
 
 					var1 += var5;
-					this.ab = var48;
+					this.lastTickTime = var48;
 					if (this.worlds[0].f()) {
 						this.y();
 						var1 = 0L;
@@ -353,7 +353,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			}
 
 			File var3 = new File(new File(this.w(), "crash-reports"), "crash-" + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-server.txt");
-			if (var2.a(var3)) {
+			if (var2.write(var3)) {
 				logger.error("This crash report has been saved to: " + var3.getAbsolutePath());
 			} else {
 				logger.error("We were unable to save this crash report to disk.");
@@ -415,11 +415,11 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 		this.profiler.a("root");
 		this.z();
-		if (var1 - this.X >= 5000000000L) {
-			this.X = var1;
+		if (var1 - this.lastServerPingUpdate >= 5000000000L) {
+			this.lastServerPingUpdate = var1;
 			this.serverPing.a(new nq(this.H(), this.G()));
 			GameProfile[] var3 = new GameProfile[Math.min(this.G(), 12)];
-			int var4 = uv.a(this.rnd, 0, this.G() - var3.length);
+			int var4 = NumberConverter.a(this.rnd, 0, this.G() - var3.length);
 
 			for (int var5 = 0; var5 < var3.length; ++var5) {
 				var3[var5] = ((EntityPlayer) this.playerList.players.get(var4 + var5)).cc();
@@ -583,7 +583,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			}
 
 			if (var4 != null) {
-				var15.k(var4);
+				var15.setLevelName(var4);
 			}
 
 			if (var7 >= 0) {
@@ -611,8 +611,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public void B() {
-		this.aa = new Thread(this, "Server thread");
-		this.aa.start();
+		this.mainThread = new Thread(this, "Server thread");
+		this.mainThread.start();
 	}
 
 	public File d(String var1) {
@@ -695,7 +695,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	public CrashReport b(CrashReport var1) {
 		var1.g().a("Profiler Position", (Callable) (new pf(this)));
 		if (this.playerList != null) {
-			var1.g().a("Player Count", (Callable) (new pg(this)));
+			var1.g().a("Player Count", new OnlinePlayersInfoCallable());
 		}
 
 		return var1;
@@ -786,11 +786,11 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return this.I != null;
 	}
 
-	public String T() {
+	public String getLevelName() {
 		return this.J;
 	}
 
-	public void k(String var1) {
+	public void setLevelName(String var1) {
 		this.J = var1;
 	}
 
@@ -877,7 +877,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		var1.a("uses_auth", Boolean.valueOf(this.onlineMode));
 		var1.a("gui_state", this.isGuiEnabled() ? "enabled" : "disabled");
 		var1.a("run_time", Long.valueOf((getCurrentMillis() - var1.g()) / 60L * 1000L));
-		var1.a("avg_tick_ms", Integer.valueOf((int) (uv.a(this.g) * 1.0E-6D)));
+		var1.a("avg_tick_ms", Integer.valueOf((int) (NumberConverter.a(this.g) * 1.0E-6D)));
 		int var2 = 0;
 		if (this.worlds != null) {
 			for (int var3 = 0; var3 < this.worlds.length; ++var3) {
@@ -979,13 +979,13 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return this.playerList;
 	}
 
-	public void a(PlayerList var1) {
-		this.playerList = var1;
+	public void setPlayerList(PlayerList playerList) {
+		this.playerList = playerList;
 	}
 
 	public void setServerGameMode(GameMode var1) {
-		for (int var2 = 0; var2 < this.worlds.length; ++var2) {
-			getInstance().worlds[var2].P().a(var1);
+		for (int i = 0; i < this.worlds.length; ++i) {
+			getInstance().worlds[i].P().a(var1);
 		}
 
 	}
@@ -1060,7 +1060,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return new hy(this.d_());
 	}
 
-	public boolean az() {
+	public boolean isAnnouncePlayerAchievmentsEnabled() {
 		return true;
 	}
 
@@ -1081,7 +1081,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public void aF() {
-		this.X = 0L;
+		this.lastServerPingUpdate = 0L;
 	}
 
 	public Entity a(UUID var1) {
@@ -1108,13 +1108,13 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	public void a(ag var1, int var2) {
 	}
 
-	public int aG() {
+	public int getMaxWorldSize() {
 		return 29999984;
 	}
 
 	public ListenableFuture a(Callable var1) {
 		Validate.notNull(var1);
-		if (!this.aH()) {
+		if (!this.isMainThread()) {
 			ListenableFutureTask var2 = ListenableFutureTask.create(var1);
 			Queue var3 = this.i;
 			synchronized (this.i) {
@@ -1135,30 +1135,24 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return this.a(Executors.callable(var1));
 	}
 
-	public boolean aH() {
-		return Thread.currentThread() == this.aa;
+	public boolean isMainThread() {
+		return Thread.currentThread() == this.mainThread;
 	}
 
-	public int aI() {
+	public int getCompressionThreshold() {
 		return 256;
 	}
 
-	public long aJ() {
-		return this.ab;
+	public long getLastTickTime() {
+		return this.lastTickTime;
 	}
 
-	public Thread aK() {
-		return this.aa;
+	public Thread getMainServerThread() {
+		return this.mainThread;
 	}
 
-	// $FF: synthetic method
 	public static Logger getLogger() {
 		return logger;
-	}
-
-	// $FF: synthetic method
-	public static PlayerList a(MinecraftServer var0) {
-		return var0.playerList;
 	}
 
 }

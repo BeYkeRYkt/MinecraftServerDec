@@ -61,7 +61,7 @@ public class aoi implements aoo {
 					for (int var24 = 0; var24 < var1.n_(); ++var24) {
 						amj var26 = var1.a(var24);
 						if (var26 != null && var26.b() == amk.cc && var26.n() && var26.o().b("Explosion", 10)) {
-							var23.a((NBTTag) var26.o().m("Explosion"));
+							var23.addTag((NBTTag) var26.o().m("Explosion"));
 						}
 					}
 

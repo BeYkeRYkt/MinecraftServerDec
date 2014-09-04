@@ -55,9 +55,9 @@ public class aai extends zf {
 						float var8 = 0.3F;
 						float var9 = this.f.aI;
 						float var10 = this.f.z;
-						var12.v = (double) (-uv.a(var9 / 180.0F * 3.1415927F) * uv.b(var10 / 180.0F * 3.1415927F) * var8);
-						var12.x = (double) (uv.b(var9 / 180.0F * 3.1415927F) * uv.b(var10 / 180.0F * 3.1415927F) * var8);
-						var12.w = (double) (-uv.a(var10 / 180.0F * 3.1415927F) * var8 + 0.1F);
+						var12.v = (double) (-NumberConverter.a(var9 / 180.0F * 3.1415927F) * NumberConverter.b(var10 / 180.0F * 3.1415927F) * var8);
+						var12.x = (double) (NumberConverter.b(var9 / 180.0F * 3.1415927F) * NumberConverter.b(var10 / 180.0F * 3.1415927F) * var8);
+						var12.w = (double) (-NumberConverter.a(var10 / 180.0F * 3.1415927F) * var8 + 0.1F);
 						var12.p();
 						this.f.o.d((Entity) var12);
 						break;

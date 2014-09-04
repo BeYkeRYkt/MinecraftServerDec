@@ -1,7 +1,6 @@
 package net.minecraft;
 
 import com.google.common.base.Charsets;
-import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.io.Files;
@@ -9,204 +8,169 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mojang.authlib.Agent;
 import com.mojang.authlib.GameProfile;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
-import java.io.Writer;
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.UUID;
+
 import net.minecraft.server.MinecraftServer;
+
 import org.apache.commons.io.IOUtils;
 
 public class UserCache {
 
-	public static final SimpleDateFormat a = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
-	private final Map c = Maps.newHashMap();
-	private final Map d = Maps.newHashMap();
-	private final LinkedList e = Lists.newLinkedList();
-	private final MinecraftServer f;
-	protected final Gson b;
-	private final File g;
-	private static final ParameterizedType h = new sa();
+	private final MinecraftServer minecraftserver;
+	public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
+	private final Map<String, UserData> nameCache = Maps.newHashMap();
+	private final Map<UUID, UserData> uuidCache = new LinkedHashMap<UUID, UserData>(16, 0.75F, true);
+	protected final Gson gson;
+	private final File file;
+	private static final ParameterizedType type = new sa();
 
-	public UserCache(MinecraftServer var1, File var2) {
-		this.f = var1;
-		this.g = var2;
-		GsonBuilder var3 = new GsonBuilder();
-		var3.registerTypeHierarchyAdapter(sb.class, new sc(this, (rz) null));
-		this.b = var3.create();
-		this.b();
+	public UserCache(MinecraftServer minecraftserver, File file) {
+		this.minecraftserver = minecraftserver;
+		this.file = file;
+		GsonBuilder lgson = new GsonBuilder();
+		lgson.registerTypeHierarchyAdapter(UserData.class, new UserCacheParser());
+		this.gson = lgson.create();
+		this.loadCache();
 	}
 
-	private static GameProfile a(MinecraftServer var0, String var1) {
-		GameProfile[] var2 = new GameProfile[1];
-		rz var3 = new rz(var2);
-		var0.getGameProfileRepository().findProfilesByNames(new String[] { var1 }, Agent.MINECRAFT, var3);
-		if (!var0.isOnlineMode() && var2[0] == null) {
-			UUID var4 = ahd.a(new GameProfile((UUID) null, var1));
-			GameProfile var5 = new GameProfile(var4, var1);
-			var3.onProfileLookupSucceeded(var5);
+	private static GameProfile lookupName(MinecraftServer minecraftserver, String name) {
+		GameProfile[] profileArray = new GameProfile[1];
+		UserProfileLookupCallback callback = new UserProfileLookupCallback(profileArray);
+		minecraftserver.getGameProfileRepository().findProfilesByNames(new String[] { name }, Agent.MINECRAFT, callback);
+		if (!minecraftserver.isOnlineMode() && profileArray[0] == null) {
+			UUID var4 = ahd.a(new GameProfile((UUID) null, name));
+			GameProfile var5 = new GameProfile(var4, name);
+			callback.onProfileLookupSucceeded(var5);
 		}
 
-		return var2[0];
+		return profileArray[0];
 	}
 
-	public void a(GameProfile var1) {
-		this.a(var1, (Date) null);
+	public void saveProfile(GameProfile profile) {
+		this.saveProfile(profile, null);
 	}
 
-	private void a(GameProfile var1, Date var2) {
-		UUID var3 = var1.getId();
-		if (var2 == null) {
-			Calendar var4 = Calendar.getInstance();
-			var4.setTime(new Date());
-			var4.add(2, 1);
-			var2 = var4.getTime();
+	private void saveProfile(GameProfile profile, Date date) {
+		UUID uuid = profile.getId();
+		if (date == null) {
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(new Date());
+			calendar.add(2, 1);
+			date = calendar.getTime();
 		}
 
-		String var7 = var1.getName().toLowerCase(Locale.ROOT);
-		sb var5 = new sb(this, var1, var2, (rz) null);
-		if (this.d.containsKey(var3)) {
-			sb var6 = (sb) this.d.get(var3);
-			this.c.remove(var6.a().getName().toLowerCase(Locale.ROOT));
-			this.c.put(var1.getName().toLowerCase(Locale.ROOT), var5);
-			this.e.remove(var1);
+		String name = profile.getName().toLowerCase(Locale.ROOT);
+		UserData newuserdata = new UserData(profile, date);
+		if (this.uuidCache.containsKey(uuid)) {
+			this.nameCache.remove(uuidCache.get(uuid).getProfile().getName().toLowerCase(Locale.ROOT));
+			this.nameCache.put(profile.getName().toLowerCase(Locale.ROOT), newuserdata);
 		} else {
-			this.d.put(var3, var5);
-			this.c.put(var7, var5);
+			this.uuidCache.put(uuid, newuserdata);
+			this.nameCache.put(name, newuserdata);
 		}
-
-		this.e.addFirst(var1);
 	}
 
-	public GameProfile a(String var1) {
-		String var2 = var1.toLowerCase(Locale.ROOT);
-		sb var3 = (sb) this.c.get(var2);
-		if (var3 != null && (new Date()).getTime() >= sb.a(var3).getTime()) {
-			this.d.remove(var3.a().getId());
-			this.c.remove(var3.a().getName().toLowerCase(Locale.ROOT));
-			this.e.remove(var3.a());
-			var3 = null;
+	public GameProfile getProfile(String name) {
+		name = name.toLowerCase(Locale.ROOT);
+		UserData userdata = this.nameCache.get(name);
+		if (userdata != null && (new Date()).getTime() >= userdata.getDate().getTime()) {
+			this.uuidCache.remove(userdata.getProfile().getId());
+			this.nameCache.remove(userdata.getProfile().getName().toLowerCase(Locale.ROOT));
+			userdata = null;
 		}
 
-		GameProfile var4;
-		if (var3 != null) {
-			var4 = var3.a();
-			this.e.remove(var4);
-			this.e.addFirst(var4);
+		GameProfile profile;
+		if (userdata != null) {
+			profile = userdata.getProfile();
 		} else {
-			var4 = a(this.f, var2);
-			if (var4 != null) {
-				this.a(var4);
-				var3 = (sb) this.c.get(var2);
+			profile = lookupName(this.minecraftserver, name);
+			if (profile != null) {
+				this.saveProfile(profile);
+				userdata = this.nameCache.get(name);
 			}
 		}
 
-		this.c();
-		return var3 == null ? null : var3.a();
+		this.dumpCache();
+		return userdata == null ? null : userdata.getProfile();
 	}
 
-	public String[] a() {
-		ArrayList var1 = Lists.newArrayList((Iterable) this.c.keySet());
+	public String[] getNames() {
+		ArrayList<String> var1 = Lists.newArrayList((Iterable<String>) this.nameCache.keySet());
 		return (String[]) var1.toArray(new String[var1.size()]);
 	}
 
-	public GameProfile a(UUID var1) {
-		sb var2 = (sb) this.d.get(var1);
-		return var2 == null ? null : var2.a();
+	public GameProfile getProfile(UUID uuid) {
+		UserData userdata = this.uuidCache.get(uuid);
+		return userdata == null ? null : userdata.getProfile();
 	}
 
-	private sb b(UUID var1) {
-		sb var2 = (sb) this.d.get(var1);
-		if (var2 != null) {
-			GameProfile var3 = var2.a();
-			this.e.remove(var3);
-			this.e.addFirst(var3);
-		}
-
-		return var2;
-	}
-
-	public void b() {
-		List var1 = null;
-		BufferedReader var2 = null;
-
-		label64: {
-			try {
-				var2 = Files.newReader(this.g, Charsets.UTF_8);
-				var1 = (List) this.b.fromJson((Reader) var2, (Type) h);
-				break label64;
-			} catch (FileNotFoundException var7) {
-				;
-			} finally {
-				IOUtils.closeQuietly((Reader) var2);
-			}
-
-			return;
-		}
-
-		if (var1 != null) {
-			this.c.clear();
-			this.d.clear();
-			this.e.clear();
-			var1 = Lists.reverse(var1);
-			Iterator var3 = var1.iterator();
-
-			while (var3.hasNext()) {
-				sb var4 = (sb) var3.next();
-				if (var4 != null) {
-					this.a(var4.a(), var4.b());
-				}
-			}
-		}
-
-	}
-
-	public void c() {
-		String var1 = this.b.toJson((Object) this.a(1000));
-		BufferedWriter var2 = null;
+	public void loadCache() {
+		List<UserData> datalist = null;
+		BufferedReader reader = null;
 
 		try {
-			var2 = Files.newWriter(this.g, Charsets.UTF_8);
-			var2.write(var1);
-			return;
-		} catch (FileNotFoundException var8) {
-			return;
-		} catch (IOException var9) {
-			;
+			reader = Files.newReader(this.file, Charsets.UTF_8);
+			datalist = this.gson.fromJson(reader, type);
+		} catch (FileNotFoundException var7) {
 		} finally {
-			IOUtils.closeQuietly((Writer) var2);
+			IOUtils.closeQuietly((Reader) reader);
+		}
+
+		if (datalist != null) {
+			this.nameCache.clear();
+			this.uuidCache.clear();
+			datalist = Lists.reverse(datalist);
+			for (UserData userdata : datalist) {
+				this.saveProfile(userdata.getProfile(), userdata.getDate());
+			}
 		}
 
 	}
 
-	private List a(int var1) {
-		ArrayList var2 = Lists.newArrayList();
-		ArrayList var3 = Lists.newArrayList(Iterators.limit(this.e.iterator(), var1));
-		Iterator var4 = var3.iterator();
-
-		while (var4.hasNext()) {
-			GameProfile var5 = (GameProfile) var4.next();
-			sb var6 = this.b(var5.getId());
-			if (var6 != null) {
-				var2.add(var6);
-			}
+	public void dumpCache() {
+		String data = gson.toJson(getUserDataList(1000));
+		BufferedWriter writer = null;
+		try {
+			writer = Files.newWriter(file, Charsets.UTF_8);
+			writer.write(data);
+		} catch (FileNotFoundException ex) {
+		} catch (IOException ex) {
+		} finally {
+			IOUtils.closeQuietly(writer);
 		}
 
-		return var2;
+	}
+
+	private List<UserData> getUserDataList(int limit) {
+		ArrayList<UserData> list = Lists.newArrayList();
+
+		int count = 0;
+		for (Entry<UUID, UserData> profile : uuidCache.entrySet()) {
+			if (count >= limit) {
+				break;
+			}
+			list.add(profile.getValue());
+			count++;
+		}
+
+		return list;
 	}
 
 }

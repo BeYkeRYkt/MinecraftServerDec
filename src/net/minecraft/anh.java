@@ -37,7 +37,7 @@ public class anh extends alq {
 					var3.a(var4, aty.ce.P().a(baj.a, var5), 3);
 					int var12 = 0;
 					if (var5 == ej.b) {
-						var12 = uv.c((double) (var2.y * 16.0F / 360.0F) + 0.5D) & 15;
+						var12 = NumberConverter.c((double) (var2.y * 16.0F / 360.0F) + 0.5D) & 15;
 					}
 
 					bcm var13 = var3.s(var4);

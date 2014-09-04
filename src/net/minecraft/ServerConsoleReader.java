@@ -8,18 +8,18 @@ class ServerConsoleReader extends Thread {
 
 	final DedicatedMinecraftServer minecraftserver;
 
-	ServerConsoleReader(DedicatedMinecraftServer var1, String var2) {
-		super(var2);
-		this.minecraftserver = var1;
+	ServerConsoleReader(DedicatedMinecraftServer minecraftserver, String name) {
+		super(name);
+		this.minecraftserver = minecraftserver;
 	}
 
 	public void run() {
-		BufferedReader var1 = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-		String var2;
+		String line;
 		try {
-			while (!this.minecraftserver.isStopped() && this.minecraftserver.isTicking() && (var2 = var1.readLine()) != null) {
-				this.minecraftserver.addPendingCommand(var2, (CommandSenderInterface) this.minecraftserver);
+			while (!this.minecraftserver.isStopped() && this.minecraftserver.isTicking() && (line = reader.readLine()) != null) {
+				this.minecraftserver.addPendingCommand(line, (CommandSenderInterface) this.minecraftserver);
 			}
 		} catch (IOException var4) {
 			DedicatedMinecraftServer.aR().error("Exception handling console input", (Throwable) var4);

@@ -73,9 +73,9 @@ public class acq extends abw {
 		}
 
 		if (this.v * this.v + this.x * this.x > 2.500000277905201E-7D && this.V.nextInt(5) == 0) {
-			int var1 = uv.c(this.s);
-			int var2 = uv.c(this.t - 0.20000000298023224D);
-			int var3 = uv.c(this.u);
+			int var1 = NumberConverter.c(this.s);
+			int var2 = NumberConverter.c(this.t - 0.20000000298023224D);
+			int var3 = NumberConverter.c(this.u);
 			bec var4 = this.o.p(new dt(var1, var2, var3));
 			atr var5 = var4.c();
 			if (var5.r() != bof.a) {

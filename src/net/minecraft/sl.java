@@ -28,7 +28,7 @@ final class sl implements ProfileLookupCallback {
 	}
 
 	public void onProfileLookupSucceeded(GameProfile var1) {
-		this.a.getUserCache().a(var1);
+		this.a.getUserCache().saveProfile(var1);
 		UUID var2 = var1.getId();
 		if (var2 == null) {
 			throw new sm("Missing UUID for user profile " + var1.getName(), (sg) null);

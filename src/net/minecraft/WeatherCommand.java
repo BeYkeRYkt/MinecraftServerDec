@@ -18,7 +18,7 @@ public class WeatherCommand extends AbstractCommand {
 		return "commands.weather.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dk, dp {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dk, dp {
 		if (var2.length >= 1 && var2.length <= 2) {
 			int var3 = (300 + (new Random()).nextInt(600)) * 20;
 			if (var2.length >= 2) {

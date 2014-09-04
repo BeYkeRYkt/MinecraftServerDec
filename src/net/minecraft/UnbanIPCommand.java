@@ -22,7 +22,7 @@ public class UnbanIPCommand extends AbstractCommand {
 		return "commands.unbanip.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dl {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dl {
 		if (var2.length == 1 && var2[0].length() > 1) {
 			Matcher var3 = BanIPCommand.a.matcher(var2[0]);
 			if (var3.matches()) {

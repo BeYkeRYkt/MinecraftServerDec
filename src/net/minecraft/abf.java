@@ -29,7 +29,7 @@ public class abf {
 		float var9 = -99999.0F;
 		boolean var10;
 		if (var0.ci()) {
-			double var11 = var0.cf().c((double) uv.c(var0.s), (double) uv.c(var0.t), (double) uv.c(var0.u)) + 4.0D;
+			double var11 = var0.cf().c((double) NumberConverter.c(var0.s), (double) NumberConverter.c(var0.t), (double) NumberConverter.c(var0.u)) + 4.0D;
 			double var13 = (double) (var0.cg() + (float) var1);
 			var10 = var11 < var13 * var13;
 		} else {
@@ -57,9 +57,9 @@ public class abf {
 					}
 				}
 
-				var12 += uv.c(var0.s);
-				var18 += uv.c(var0.t);
-				var14 += uv.c(var0.u);
+				var12 += NumberConverter.c(var0.s);
+				var18 += NumberConverter.c(var0.t);
+				var14 += NumberConverter.c(var0.u);
 				var15 = new dt(var12, var18, var14);
 				if (!var10 || var0.d(var15)) {
 					float var16 = var0.a(var15);

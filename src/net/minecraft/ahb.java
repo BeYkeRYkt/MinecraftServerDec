@@ -302,7 +302,7 @@ public class ahb implements vq {
 				var3 = new NBTCompoundTag();
 				var3.a("Slot", (byte) var2);
 				this.a[var2].b(var3);
-				var1.a((NBTTag) var3);
+				var1.addTag((NBTTag) var3);
 			}
 		}
 
@@ -311,7 +311,7 @@ public class ahb implements vq {
 				var3 = new NBTCompoundTag();
 				var3.a("Slot", (byte) (var2 + 100));
 				this.b[var2].b(var3);
-				var1.a((NBTTag) var3);
+				var1.addTag((NBTTag) var3);
 			}
 		}
 
@@ -322,8 +322,8 @@ public class ahb implements vq {
 		this.a = new amj[36];
 		this.b = new amj[4];
 
-		for (int var2 = 0; var2 < var1.c(); ++var2) {
-			NBTCompoundTag var3 = var1.b(var2);
+		for (int var2 = 0; var2 < var1.getSize(); ++var2) {
+			NBTCompoundTag var3 = var1.getCompound(var2);
 			int var4 = var3.d("Slot") & 255;
 			amj var5 = amj.a(var3);
 			if (var5 != null) {

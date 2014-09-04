@@ -76,8 +76,8 @@ public class afy extends xn implements aex {
 			for (int var2 = 0; var2 < var1 * 8; ++var2) {
 				float var3 = this.V.nextFloat() * 3.1415927F * 2.0F;
 				float var4 = this.V.nextFloat() * 0.5F + 0.5F;
-				float var5 = uv.a(var3) * (float) var1 * 0.5F * var4;
-				float var6 = uv.b(var3) * (float) var1 * 0.5F * var4;
+				float var5 = NumberConverter.a(var3) * (float) var1 * 0.5F * var4;
+				float var6 = NumberConverter.b(var3) * (float) var1 * 0.5F * var4;
 				World var10000 = this.o;
 				ew var10001 = this.n();
 				double var10002 = this.s + (double) var5;
@@ -199,12 +199,12 @@ public class afy extends xn implements aex {
 	}
 
 	public boolean bQ() {
-		bfh var1 = this.o.f(new dt(uv.c(this.s), 0, uv.c(this.u)));
+		bfh var1 = this.o.f(new dt(NumberConverter.c(this.s), 0, NumberConverter.c(this.u)));
 		if (this.o.P().u() == are.c && this.V.nextInt(4) != 1) {
 			return false;
 		} else {
 			if (this.o.aa() != Difficulty.PEACEFUL) {
-				arm var2 = this.o.b(new dt(uv.c(this.s), 0, uv.c(this.u)));
+				arm var2 = this.o.b(new dt(NumberConverter.c(this.s), 0, NumberConverter.c(this.u)));
 				if (var2 == arm.v && this.t > 50.0D && this.t < 70.0D && this.V.nextFloat() < 0.5F && this.V.nextFloat() < this.o.y() && this.o.l(new dt(this)) <= this.V.nextInt(8)) {
 					return super.bQ();
 				}

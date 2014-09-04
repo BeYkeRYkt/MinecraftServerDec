@@ -49,16 +49,12 @@ public abstract class NBTTag {
 
 	public abstract NBTTag getCopy();
 
-	public boolean c_() {
-		return false;
-	}
-
-	public boolean equals(Object var1) {
-		if (!(var1 instanceof NBTTag)) {
+	public boolean equals(Object obj) {
+		if (!(obj instanceof NBTTag)) {
 			return false;
 		} else {
-			NBTTag var2 = (NBTTag) var1;
-			return this.getId() == var2.getId();
+			NBTTag tag = (NBTTag) obj;
+			return this.getId() == tag.getId();
 		}
 	}
 
@@ -66,8 +62,12 @@ public abstract class NBTTag {
 		return this.getId();
 	}
 
-	protected String a_() {
+	protected String getAsString() {
 		return this.toString();
+	}
+
+	public boolean isEmpty() {
+		return false;
 	}
 
 }

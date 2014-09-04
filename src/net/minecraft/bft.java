@@ -92,7 +92,7 @@ public class bft {
 				var24.a("Data", var20.a());
 				var24.a("SkyLight", var21.a());
 				var24.a("BlockLight", var22.a());
-				var16.a((NBTTag) var24);
+				var16.addTag((NBTTag) var24);
 			}
 		}
 

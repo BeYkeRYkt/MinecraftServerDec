@@ -7,7 +7,7 @@ import java.util.List;
 final class sa implements ParameterizedType {
 
 	public Type[] getActualTypeArguments() {
-		return new Type[] { sb.class };
+		return new Type[] { UserData.class };
 	}
 
 	public Type getRawType() {

@@ -13,69 +13,64 @@ import org.apache.logging.log4j.Logger;
 
 public class ServerWatchdog implements Runnable {
 
-	private static final Logger a = LogManager.getLogger();
-	private final DedicatedMinecraftServer b;
-	private final long c;
+	private static final Logger logger = LogManager.getLogger();
+	private final DedicatedMinecraftServer minecraftserver;
+	private final long timeout;
 
-	public ServerWatchdog(DedicatedMinecraftServer var1) {
-		this.b = var1;
-		this.c = var1.aQ();
+	public ServerWatchdog(DedicatedMinecraftServer minecraftserver) {
+		this.minecraftserver = minecraftserver;
+		this.timeout = minecraftserver.getMaxTickTime();
 	}
 
 	public void run() {
-		while (this.b.isTicking()) {
-			long var1 = this.b.aJ();
-			long var3 = MinecraftServer.getCurrentMillis();
-			long var5 = var3 - var1;
-			if (var5 > this.c) {
-				a.fatal("A single server tick took " + String.format("%.2f", new Object[] { Float.valueOf((float) var5 / 1000.0F) }) + " seconds (should be max " + String.format("%.2f", new Object[] { Float.valueOf(0.05F) }) + ")");
-				a.fatal("Considering it to be crashed, server will forcibly shutdown.");
-				ThreadMXBean var7 = ManagementFactory.getThreadMXBean();
-				ThreadInfo[] var8 = var7.dumpAllThreads(true, true);
-				StringBuilder var9 = new StringBuilder();
-				Error var10 = new Error();
-				ThreadInfo[] var11 = var8;
-				int var12 = var8.length;
+		while (this.minecraftserver.isTicking()) {
+			long lastTick = this.minecraftserver.getLastTickTime();
+			long currentTime = MinecraftServer.getCurrentMillis();
+			long diff = currentTime - lastTick;
+			if (diff > this.timeout) {
+				logger.fatal("A single server tick took " + String.format("%.2f", new Object[] { Float.valueOf((float) diff / 1000.0F) }) + " seconds (should be max " + String.format("%.2f", new Object[] { Float.valueOf(0.05F) }) + ")");
+				logger.fatal("Considering it to be crashed, server will forcibly shutdown.");
+				ThreadMXBean mxbean = ManagementFactory.getThreadMXBean();
+				ThreadInfo[] threadinfo = mxbean.dumpAllThreads(true, true);
+				StringBuilder builder = new StringBuilder();
+				Error error = new Error();
 
-				for (int var13 = 0; var13 < var12; ++var13) {
-					ThreadInfo var14 = var11[var13];
-					if (var14.getThreadId() == this.b.aK().getId()) {
-						var10.setStackTrace(var14.getStackTrace());
+				for (ThreadInfo threadInfo : threadinfo) {
+					if (threadInfo.getThreadId() == this.minecraftserver.getMainServerThread().getId()) {
+						error.setStackTrace(threadInfo.getStackTrace());
 					}
-
-					var9.append(var14);
-					var9.append("\n");
+					builder.append(threadInfo);
+					builder.append("\n");
 				}
 
-				CrashReport var16 = new CrashReport("Watching Server", var10);
-				this.b.b(var16);
-				j var17 = var16.a("Thread Dump");
-				var17.a("Threads", (Object) var9);
-				File var18 = new File(new File(this.b.w(), "crash-reports"), "crash-" + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-server.txt");
-				if (var16.a(var18)) {
-					a.error("This crash report has been saved to: " + var18.getAbsolutePath());
+				CrashReport crashreport = new CrashReport("Watching Server", error);
+				this.minecraftserver.b(crashreport);
+				j var17 = crashreport.a("Thread Dump");
+				var17.a("Threads", builder);
+				File file = new File(new File(this.minecraftserver.w(), "crash-reports"), "crash-" + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-server.txt");
+				if (crashreport.write(file)) {
+					logger.error("This crash report has been saved to: " + file.getAbsolutePath());
 				} else {
-					a.error("We were unable to save this crash report to disk.");
+					logger.error("We were unable to save this crash report to disk.");
 				}
 
-				this.a();
+				this.halt();
 			}
 
 			try {
-				Thread.sleep(var1 + this.c - var3);
+				Thread.sleep(lastTick + this.timeout - currentTime);
 			} catch (InterruptedException var15) {
-				;
 			}
 		}
 
 	}
 
-	private void a() {
+	private void halt() {
 		try {
-			Timer var1 = new Timer();
-			var1.schedule(new pu(this), 10000L);
+			Timer timer = new Timer();
+			timer.schedule(new TerminateServerTask(), 10000L);
 			System.exit(1);
-		} catch (Throwable var2) {
+		} catch (Throwable t) {
 			Runtime.getRuntime().halt(1);
 		}
 

@@ -52,7 +52,7 @@ public class EntityPlayer extends ahd implements ail {
 		dt var5 = var2.M();
 		if (!var2.t.o() && var2.P().r() != GameMode.ADVENTURE) {
 			int var6 = Math.max(5, var1.isSpawnProtectionEnabled() - 6);
-			int var7 = uv.c(var2.af().b((double) var5.n(), (double) var5.p()));
+			int var7 = NumberConverter.c(var2.af().b((double) var5.n(), (double) var5.p()));
 			if (var7 < var6) {
 				var6 = var7;
 			}
@@ -253,7 +253,7 @@ public class EntityPlayer extends ahd implements ail {
 	}
 
 	protected void h_() {
-		arm var1 = this.o.b(new dt(uv.c(this.s), 0, uv.c(this.u)));
+		arm var1 = this.o.b(new dt(NumberConverter.c(this.s), 0, NumberConverter.c(this.u)));
 		String var2 = var1.ah;
 		ua var3 = (ua) this.A().b((PlayerStatistic) tl.L);
 		if (var3 == null) {
@@ -449,9 +449,9 @@ public class EntityPlayer extends ahd implements ail {
 	}
 
 	public void a(double var1, boolean var3) {
-		int var4 = uv.c(this.s);
-		int var5 = uv.c(this.t - 0.20000000298023224D);
-		int var6 = uv.c(this.u);
+		int var4 = NumberConverter.c(this.s);
+		int var5 = NumberConverter.c(this.t - 0.20000000298023224D);
+		int var6 = NumberConverter.c(this.u);
 		dt var7 = new dt(var4, var5, var6);
 		atr var8 = this.o.p(var7).c();
 		if (var8.r() == bof.a) {

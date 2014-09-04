@@ -4,24 +4,24 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public class NBTFloatTag extends ge {
+public class NBTFloatTag extends NBTNumberTag {
 
-	private float b;
+	private float f;
 
 	NBTFloatTag() {
 	}
 
-	public NBTFloatTag(float var1) {
-		this.b = var1;
+	public NBTFloatTag(float f) {
+		this.f = f;
 	}
 
-	void write(DataOutput var1) throws IOException {
-		var1.writeFloat(this.b);
+	void write(DataOutput output) throws IOException {
+		output.writeFloat(this.f);
 	}
 
-	void read(DataInput var1, int var2, NBTReadLimiter var3) throws IOException {
-		var3.a(32L);
-		this.b = var1.readFloat();
+	void read(DataInput input, int currentDepth, NBTReadLimiter limit) throws IOException {
+		limit.onBytesRead(32L);
+		this.f = input.readFloat();
 	}
 
 	public byte getId() {
@@ -29,47 +29,47 @@ public class NBTFloatTag extends ge {
 	}
 
 	public String toString() {
-		return "" + this.b + "f";
+		return "" + this.f + "f";
 	}
 
 	public NBTTag getCopy() {
-		return new NBTFloatTag(this.b);
+		return new NBTFloatTag(this.f);
 	}
 
 	public boolean equals(Object var1) {
 		if (super.equals(var1)) {
 			NBTFloatTag var2 = (NBTFloatTag) var1;
-			return this.b == var2.b;
+			return this.f == var2.f;
 		} else {
 			return false;
 		}
 	}
 
 	public int hashCode() {
-		return super.hashCode() ^ Float.floatToIntBits(this.b);
+		return super.hashCode() ^ Float.floatToIntBits(this.f);
 	}
 
-	public long c() {
-		return (long) this.b;
+	public long toLong() {
+		return (long) this.f;
 	}
 
-	public int d() {
-		return uv.d(this.b);
+	public int toInt() {
+		return NumberConverter.d(this.f);
 	}
 
-	public short e() {
-		return (short) (uv.d(this.b) & '\uffff');
+	public short toShort() {
+		return (short) (NumberConverter.d(this.f) & '\uffff');
 	}
 
-	public byte f() {
-		return (byte) (uv.d(this.b) & 255);
+	public byte toByte() {
+		return (byte) (NumberConverter.d(this.f) & 255);
 	}
 
-	public double g() {
-		return (double) this.b;
+	public double toDouble() {
+		return (double) this.f;
 	}
 
-	public float h() {
-		return this.b;
+	public float toFloat() {
+		return this.f;
 	}
 }

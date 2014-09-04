@@ -219,8 +219,8 @@ public class abl extends bqc {
 		this.f = var1.f("Tick");
 		NBTListTag var2 = var1.c("Villages", 10);
 
-		for (int var3 = 0; var3 < var2.c(); ++var3) {
-			NBTCompoundTag var4 = var2.b(var3);
+		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+			NBTCompoundTag var4 = var2.getCompound(var3);
 			abi var5 = new abi();
 			var5.a(var4);
 			this.e.add(var5);
@@ -237,7 +237,7 @@ public class abl extends bqc {
 			abi var4 = (abi) var3.next();
 			NBTCompoundTag var5 = new NBTCompoundTag();
 			var4.b(var5);
-			var2.a((NBTTag) var5);
+			var2.addTag((NBTTag) var5);
 		}
 
 		var1.a("Villages", (NBTTag) var2);

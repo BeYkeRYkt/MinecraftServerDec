@@ -17,7 +17,7 @@ public class KickCommand extends AbstractCommand {
 		return "commands.kick.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dm, dp {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dm, dp {
 		if (var2.length > 0 && var2[0].length() > 1) {
 			EntityPlayer var3 = MinecraftServer.getInstance().getPlayerList().a(var2[0]);
 			String var4 = "Kicked by an operator.";

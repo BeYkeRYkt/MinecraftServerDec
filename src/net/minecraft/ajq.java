@@ -35,7 +35,7 @@ public class ajq extends alq {
 							var3.g(var10);
 							var3.g(var11);
 							adi var20 = new adi(var3, var13 + 0.5D, var15, var17 + 0.5D);
-							float var21 = (float) uv.d((uv.g(var2.y - 180.0F) + 22.5F) / 45.0F) * 45.0F;
+							float var21 = (float) NumberConverter.d((NumberConverter.g(var2.y - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 							var20.b(var13 + 0.5D, var15, var17 + 0.5D, var21, 0.0F);
 							this.a(var20, var3.s);
 							NBTCompoundTag var22 = var1.o();

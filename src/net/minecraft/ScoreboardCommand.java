@@ -26,7 +26,7 @@ public class ScoreboardCommand extends AbstractCommand {
 		return "commands.scoreboard.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (!this.b(var1, var2)) {
 			if (var2.length < 1) {
 				throw new dp("commands.scoreboard.usage", new Object[0]);
@@ -203,7 +203,7 @@ public class ScoreboardCommand extends AbstractCommand {
 				var2[var3] = var8;
 
 				try {
-					this.a(var1, var2);
+					this.executeCommand(var1, var2);
 					var6.add(var8);
 				} catch (di var11) {
 					hz var10 = new hz(var11.getMessage(), var11.a());

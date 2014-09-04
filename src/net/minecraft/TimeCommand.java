@@ -17,7 +17,7 @@ public class TimeCommand extends AbstractCommand {
 		return "commands.time.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dk, dp {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dk, dp {
 		if (var2.length > 1) {
 			int var3;
 			if (var2[0].equals("set")) {

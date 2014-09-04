@@ -12,7 +12,7 @@ public class DisableAutoSaveCommand extends AbstractCommand {
 		return "commands.save-off.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		MinecraftServer var3 = MinecraftServer.getInstance();
 		boolean var4 = false;
 

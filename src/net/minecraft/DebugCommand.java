@@ -27,7 +27,7 @@ public class DebugCommand extends AbstractCommand {
 		return "commands.debug.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 1) {
 			throw new dp("commands.debug.usage", new Object[0]);
 		} else {

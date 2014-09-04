@@ -7,25 +7,25 @@ import java.util.Arrays;
 
 public class NBTByteArrayTag extends NBTTag {
 
-	private byte[] b;
+	private byte[] barray;
 
 	NBTByteArrayTag() {
 	}
 
-	public NBTByteArrayTag(byte[] var1) {
-		this.b = var1;
+	public NBTByteArrayTag(byte[] barray) {
+		this.barray = barray;
 	}
 
-	void write(DataOutput var1) throws IOException {
-		var1.writeInt(this.b.length);
-		var1.write(this.b);
+	void write(DataOutput output) throws IOException {
+		output.writeInt(this.barray.length);
+		output.write(this.barray);
 	}
 
-	void read(DataInput var1, int var2, NBTReadLimiter var3) throws IOException {
-		int var4 = var1.readInt();
-		var3.a((long) (8 * var4));
-		this.b = new byte[var4];
-		var1.readFully(this.b);
+	void read(DataInput input, int currentDepth, NBTReadLimiter limit) throws IOException {
+		int length = input.readInt();
+		limit.onBytesRead((long) (8 * length));
+		this.barray = new byte[length];
+		input.readFully(this.barray);
 	}
 
 	public byte getId() {
@@ -33,24 +33,24 @@ public class NBTByteArrayTag extends NBTTag {
 	}
 
 	public String toString() {
-		return "[" + this.b.length + " bytes]";
+		return "[" + this.barray.length + " bytes]";
 	}
 
 	public NBTTag getCopy() {
-		byte[] var1 = new byte[this.b.length];
-		System.arraycopy(this.b, 0, var1, 0, this.b.length);
-		return new NBTByteArrayTag(var1);
+		byte[] copy = new byte[this.barray.length];
+		System.arraycopy(this.barray, 0, copy, 0, this.barray.length);
+		return new NBTByteArrayTag(copy);
 	}
 
 	public boolean equals(Object var1) {
-		return super.equals(var1) ? Arrays.equals(this.b, ((NBTByteArrayTag) var1).b) : false;
+		return super.equals(var1) ? Arrays.equals(this.barray, ((NBTByteArrayTag) var1).barray) : false;
 	}
 
 	public int hashCode() {
-		return super.hashCode() ^ Arrays.hashCode(this.b);
+		return super.hashCode() ^ Arrays.hashCode(this.barray);
 	}
 
-	public byte[] c() {
-		return this.b;
+	public byte[] getContent() {
+		return this.barray;
 	}
 }

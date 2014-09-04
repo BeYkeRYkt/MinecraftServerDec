@@ -24,8 +24,8 @@ public class amw extends alq {
 			ArrayList var7 = Lists.newArrayList();
 			NBTListTag var3 = var1.o().c("CustomPotionEffects", 10);
 
-			for (int var4 = 0; var4 < var3.c(); ++var4) {
-				NBTCompoundTag var5 = var3.b(var4);
+			for (int var4 = 0; var4 < var3.getSize(); ++var4) {
+				NBTCompoundTag var5 = var3.getCompound(var4);
 				wq var6 = wq.b(var5);
 				if (var6 != null) {
 					var7.add(var6);

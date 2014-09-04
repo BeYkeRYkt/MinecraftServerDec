@@ -17,7 +17,7 @@ public class ExecuteCommand extends AbstractCommand {
 		return "commands.execute.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 5) {
 			throw new dp("commands.execute.usage", new Object[0]);
 		} else {

@@ -19,7 +19,7 @@ public class FillCommand extends AbstractCommand {
 		return "commands.fill.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 7) {
 			throw new dp("commands.fill.usage", new Object[0]);
 		} else {

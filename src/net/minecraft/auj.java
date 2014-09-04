@@ -65,7 +65,7 @@ public class auj extends atg {
 	}
 
 	public void a(World var1, dt var2, bec var3, EntityLiving var4, amj var5) {
-		ej var6 = ej.b(uv.c((double) (var4.y * 4.0F / 360.0F) + 0.5D) & 3).d();
+		ej var6 = ej.b(NumberConverter.c((double) (var4.y * 4.0F / 360.0F) + 0.5D) & 3).d();
 		var3 = var3.a(a, var6);
 		dt var7 = var2.c();
 		dt var8 = var2.d();
@@ -366,7 +366,7 @@ public class auj extends atg {
 				var5 = ((bcr) var6).l;
 			}
 
-			return uv.a(var5, 0, 15);
+			return NumberConverter.a(var5, 0, 15);
 		}
 	}
 

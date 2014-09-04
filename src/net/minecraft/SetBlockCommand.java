@@ -16,7 +16,7 @@ public class SetBlockCommand extends AbstractCommand {
 		return "commands.setblock.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 4) {
 			throw new dp("commands.setblock.usage", new Object[0]);
 		} else {

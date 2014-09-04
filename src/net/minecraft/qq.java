@@ -206,7 +206,7 @@ public class qq {
 	}
 
 	public void a(int var1) {
-		var1 = uv.a(var1, 3, 32);
+		var1 = NumberConverter.a(var1, 3, 32);
 		if (var1 != this.g) {
 			int var2 = var1 - this.g;
 			ArrayList var3 = Lists.newArrayList((Iterable) this.c);

@@ -17,7 +17,7 @@ public class MeCommand extends AbstractCommand {
 		return "commands.me.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dp, dm {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dp, dm {
 		if (var2.length <= 0) {
 			throw new dp("commands.me.usage", new Object[0]);
 		} else {

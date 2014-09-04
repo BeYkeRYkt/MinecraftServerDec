@@ -23,20 +23,20 @@ public class bpy extends bpu {
 		if (this.i && var1.V()) {
 			var2 = (int) var1.aQ().b;
 
-			for (atr var3 = this.a.p(new dt(uv.c(var1.s), var2, uv.c(var1.u))).c(); var3 == aty.i || var3 == aty.j; var3 = this.a.p(new dt(uv.c(var1.s), var2, uv.c(var1.u))).c()) {
+			for (atr var3 = this.a.p(new dt(NumberConverter.c(var1.s), var2, NumberConverter.c(var1.u))).c(); var3 == aty.i || var3 == aty.j; var3 = this.a.p(new dt(NumberConverter.c(var1.s), var2, NumberConverter.c(var1.u))).c()) {
 				++var2;
 			}
 
 			this.h = false;
 		} else {
-			var2 = uv.c(var1.aQ().b + 0.5D);
+			var2 = NumberConverter.c(var1.aQ().b + 0.5D);
 		}
 
-		return this.a(uv.c(var1.aQ().a), var2, uv.c(var1.aQ().c));
+		return this.a(NumberConverter.c(var1.aQ().a), var2, NumberConverter.c(var1.aQ().c));
 	}
 
 	public bpt a(Entity var1, double var2, double var4, double var6) {
-		return this.a(uv.c(var2 - (double) (var1.J / 2.0F)), uv.c(var4), uv.c(var6 - (double) (var1.J / 2.0F)));
+		return this.a(NumberConverter.c(var2 - (double) (var1.J / 2.0F)), NumberConverter.c(var4), NumberConverter.c(var6 - (double) (var1.J / 2.0F)));
 	}
 
 	public int a(bpt[] var1, Entity var2, bpt var3, bpt var4, float var5) {

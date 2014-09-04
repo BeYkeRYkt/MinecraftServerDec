@@ -6,7 +6,7 @@ final class NotLimitedNBTReadLimiter extends NBTReadLimiter {
 		super(limit);
 	}
 
-	public void a(long bitsRead) {
+	public void onBytesRead(long bitsRead) {
 	}
 
 }

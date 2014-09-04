@@ -32,8 +32,8 @@ public class amn extends ake {
 			int var4 = 1 << var3.e;
 			int var5 = var3.b;
 			int var6 = var3.c;
-			int var7 = uv.c(var2.s - (double) var5) / var4 + 64;
-			int var8 = uv.c(var2.u - (double) var6) / var4 + 64;
+			int var7 = NumberConverter.c(var2.s - (double) var5) / var4 + 64;
+			int var8 = NumberConverter.c(var2.u - (double) var6) / var4 + 64;
 			int var9 = 128 / var4;
 			if (var1.t.o()) {
 				var9 /= 2;

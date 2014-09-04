@@ -27,7 +27,7 @@ public class th extends te {
 			this.a = false;
 		}
 
-		this.l = var1.a("rcon.password", "");
+		this.l = var1.getStringProperty("rcon.password", "");
 		this.b("Rcon connection from: " + var2.getInetAddress());
 	}
 

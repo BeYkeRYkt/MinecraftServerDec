@@ -2,11 +2,11 @@ package net.minecraft;
 
 public interface pj {
 
-	int a(String var1, int var2);
+	int getIntProperty(String var1, int var2);
 
-	String a(String var1, String var2);
+	String getStringProperty(String var1, String var2);
 
-	void a(String var1, Object var2);
+	void setProperty(String var1, Object var2);
 
 	void saveProperties();
 
@@ -26,7 +26,7 @@ public interface pj {
 
 	String[] I();
 
-	String T();
+	String getLevelName();
 
 	String K();
 

@@ -31,7 +31,7 @@ public abstract class aaz {
 	}
 
 	public final bpv a(double var1, double var3, double var5) {
-		return this.a(new dt(uv.c(var1), (int) var3, uv.c(var5)));
+		return this.a(new dt(NumberConverter.c(var1), (int) var3, NumberConverter.c(var5)));
 	}
 
 	public bpv a(dt var1) {
@@ -50,7 +50,7 @@ public abstract class aaz {
 	}
 
 	public boolean a(double var1, double var3, double var5, double var7) {
-		bpv var9 = this.a((double) uv.c(var1), (double) ((int) var3), (double) uv.c(var5));
+		bpv var9 = this.a((double) NumberConverter.c(var1), (double) ((int) var3), (double) NumberConverter.c(var5));
 		return this.a(var9, var7);
 	}
 
@@ -113,7 +113,7 @@ public abstract class aaz {
 			} else if (this.d != null && this.d.e() < this.d.d()) {
 				var1 = this.c();
 				brw var2 = this.d.a(this.b, this.d.e());
-				if (var1.b > var2.b && !this.b.C && uv.c(var1.a) == uv.c(var2.a) && uv.c(var1.c) == uv.c(var2.c)) {
+				if (var1.b > var2.b && !this.b.C && NumberConverter.c(var1.a) == NumberConverter.c(var2.a) && NumberConverter.c(var1.c) == NumberConverter.c(var2.c)) {
 					this.d.c(this.d.e() + 1);
 				}
 			}
@@ -148,7 +148,7 @@ public abstract class aaz {
 			}
 		}
 
-		var4 = uv.f(this.b.J);
+		var4 = NumberConverter.f(this.b.J);
 		int var9 = (int) this.b.K + 1;
 		int var6 = var4;
 

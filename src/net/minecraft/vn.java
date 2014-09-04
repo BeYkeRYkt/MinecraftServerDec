@@ -6,5 +6,5 @@ public interface vn {
 
 	ListenableFuture a(Runnable var1);
 
-	boolean aH();
+	boolean isMainThread();
 }

@@ -150,7 +150,7 @@ public class adu extends Entity {
 				var6 = this.s + (this.d - this.s) / (double) this.c;
 				var8 = this.t + (this.e - this.t) / (double) this.c;
 				var24 = this.u + (this.f - this.u) / (double) this.c;
-				var26 = uv.g(this.g - (double) this.y);
+				var26 = NumberConverter.g(this.g - (double) this.y);
 				this.y = (float) ((double) this.y + var26 / (double) this.c);
 				this.z = (float) ((double) this.z + (this.h - (double) this.z) / (double) this.c);
 				--this.c;
@@ -213,11 +213,11 @@ public class adu extends Entity {
 
 			int var22;
 			for (var22 = 0; var22 < 4; ++var22) {
-				int var23 = uv.c(this.s + ((double) (var22 % 2) - 0.5D) * 0.8D);
-				var10 = uv.c(this.u + ((double) (var22 / 2) - 0.5D) * 0.8D);
+				int var23 = NumberConverter.c(this.s + ((double) (var22 % 2) - 0.5D) * 0.8D);
+				var10 = NumberConverter.c(this.u + ((double) (var22 / 2) - 0.5D) * 0.8D);
 
 				for (int var25 = 0; var25 < 2; ++var25) {
-					int var12 = uv.c(this.t) + var25;
+					int var12 = NumberConverter.c(this.t) + var25;
 					dt var27 = new dt(var23, var12, var10);
 					atr var14 = this.o.p(var27).c();
 					if (var14 == aty.aH) {
@@ -263,7 +263,7 @@ public class adu extends Entity {
 				var8 = (double) ((float) (Math.atan2(var26, var24) * 180.0D / 3.141592653589793D));
 			}
 
-			double var28 = uv.g(var8 - (double) this.y);
+			double var28 = NumberConverter.g(var8 - (double) this.y);
 			if (var28 > 20.0D) {
 				var28 = 20.0D;
 			}

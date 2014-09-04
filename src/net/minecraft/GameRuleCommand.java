@@ -18,7 +18,7 @@ public class GameRuleCommand extends AbstractCommand {
 		return "commands.gamerule.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		aqq var3 = this.d();
 		String var4 = var2.length > 0 ? var2[0] : "";
 		String var5 = var2.length > 1 ? a(var2, 1) : "";

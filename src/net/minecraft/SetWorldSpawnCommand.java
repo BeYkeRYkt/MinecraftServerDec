@@ -17,7 +17,7 @@ public class SetWorldSpawnCommand extends AbstractCommand {
 		return "commands.setworldspawn.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws dp, dk, dm {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dp, dk, dm {
 		dt var3;
 		if (var2.length == 0) {
 			var3 = b(var1).c();

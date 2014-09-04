@@ -16,7 +16,7 @@ public class ParticleCommand extends AbstractCommand {
 		return "commands.particle.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 8) {
 			throw new dp("commands.particle.usage", new Object[0]);
 		} else {

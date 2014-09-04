@@ -24,8 +24,8 @@ public final class arg {
 			while (var6.hasNext()) {
 				ahd var7 = (ahd) var6.next();
 				if (!var7.v()) {
-					int var8 = uv.c(var7.s / 16.0D);
-					var9 = uv.c(var7.u / 16.0D);
+					int var8 = NumberConverter.c(var7.s / 16.0D);
+					var9 = NumberConverter.c(var7.u / 16.0D);
 					byte var10 = 8;
 
 					for (int var11 = -var10; var11 <= var10; ++var11) {
@@ -142,7 +142,7 @@ public final class arg {
 		bfh var3 = var0.a(var1, var2);
 		int var4 = var1 * 16 + var0.s.nextInt(16);
 		int var5 = var2 * 16 + var0.s.nextInt(16);
-		int var6 = uv.c(var3.f(new dt(var4, 0, var5)) + 1, 16);
+		int var6 = NumberConverter.c(var3.f(new dt(var4, 0, var5)) + 1, 16);
 		int var7 = var0.s.nextInt(var6 > 0 ? var6 : var3.g() + 16 - 1);
 		return new dt(var4, var7, var5);
 	}

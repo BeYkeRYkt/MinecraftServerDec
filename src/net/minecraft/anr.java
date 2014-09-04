@@ -51,8 +51,8 @@ public class anr extends alq {
 				if (b(var3)) {
 					NBTListTag var4 = var3.c("pages", 8);
 
-					for (int var5 = 0; var5 < var4.c(); ++var5) {
-						String var6 = var4.f(var5);
+					for (int var5 = 0; var5 < var4.getSize(); ++var5) {
+						String var6 = var4.getString(var5);
 
 						Object var7;
 						try {
@@ -62,7 +62,7 @@ public class anr extends alq {
 							var7 = new hy(var6);
 						}
 
-						var4.a(var5, new NBTStringTag(hp.a((ho) var7)));
+						var4.setTag(var5, new NBTStringTag(hp.a((ho) var7)));
 					}
 
 					var3.a("pages", (NBTTag) var4);

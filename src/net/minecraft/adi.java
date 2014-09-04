@@ -100,7 +100,7 @@ public class adi extends EntityLiving {
 				this.g[var3].b(var4);
 			}
 
-			var2.a((NBTTag) var4);
+			var2.addTag((NBTTag) var4);
 		}
 
 		var1.a("Equipment", (NBTTag) var2);
@@ -123,7 +123,7 @@ public class adi extends EntityLiving {
 			NBTListTag var2 = var1.c("Equipment", 10);
 
 			for (int var3 = 0; var3 < this.g.length; ++var3) {
-				this.g[var3] = amj.a(var2.b(var3));
+				this.g[var3] = amj.a(var2.getCompound(var3));
 			}
 		}
 
@@ -140,42 +140,42 @@ public class adi extends EntityLiving {
 
 	private void h(NBTCompoundTag var1) {
 		NBTListTag var2 = var1.c("Head", 5);
-		if (var2.c() > 0) {
+		if (var2.getSize() > 0) {
 			this.a(new fa(var2));
 		} else {
 			this.a(a);
 		}
 
 		NBTListTag var3 = var1.c("Body", 5);
-		if (var3.c() > 0) {
+		if (var3.getSize() > 0) {
 			this.b(new fa(var3));
 		} else {
 			this.b(b);
 		}
 
 		NBTListTag var4 = var1.c("LeftArm", 5);
-		if (var4.c() > 0) {
+		if (var4.getSize() > 0) {
 			this.c(new fa(var4));
 		} else {
 			this.c(c);
 		}
 
 		NBTListTag var5 = var1.c("RightArm", 5);
-		if (var5.c() > 0) {
+		if (var5.getSize() > 0) {
 			this.d(new fa(var5));
 		} else {
 			this.d(d);
 		}
 
 		NBTListTag var6 = var1.c("LeftLeg", 5);
-		if (var6.c() > 0) {
+		if (var6.getSize() > 0) {
 			this.e(new fa(var6));
 		} else {
 			this.e(e);
 		}
 
 		NBTListTag var7 = var1.c("RightLeg", 5);
-		if (var7.c() > 0) {
+		if (var7.getSize() > 0) {
 			this.f(new fa(var7));
 		} else {
 			this.f(f);

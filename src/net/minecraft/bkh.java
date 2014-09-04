@@ -61,7 +61,7 @@ public class bkh extends bmv {
 			NBTCompoundTag var5 = new NBTCompoundTag();
 			var5.a("X", var4.a);
 			var5.a("Z", var4.b);
-			var2.a((NBTTag) var5);
+			var2.addTag((NBTTag) var5);
 		}
 
 		var1.a("Processed", (NBTTag) var2);
@@ -72,8 +72,8 @@ public class bkh extends bmv {
 		if (var1.b("Processed", 9)) {
 			NBTListTag var2 = var1.c("Processed", 10);
 
-			for (int var3 = 0; var3 < var2.c(); ++var3) {
-				NBTCompoundTag var4 = var2.b(var3);
+			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+				NBTCompoundTag var4 = var2.getCompound(var3);
 				this.c.add(new aqm(var4.f("X"), var4.f("Z")));
 			}
 		}

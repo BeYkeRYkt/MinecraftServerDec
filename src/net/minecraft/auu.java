@@ -36,7 +36,7 @@ public class auu extends auc implements atz {
 	}
 
 	public void g(World var1, dt var2, bec var3) {
-		int var4 = ((Integer) var3.b(a)).intValue() + uv.a(var1.s, 2, 5);
+		int var4 = ((Integer) var3.b(a)).intValue() + NumberConverter.a(var1.s, 2, 5);
 		if (var4 > 7) {
 			var4 = 7;
 		}

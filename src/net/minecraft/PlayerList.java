@@ -57,9 +57,9 @@ public abstract class PlayerList {
 	public void a(gr var1, EntityPlayer var2) {
 		GameProfile var3 = var2.cc();
 		UserCache var4 = this.minecraftserver.getUserCache();
-		GameProfile var5 = var4.a(var3.getId());
+		GameProfile var5 = var4.getProfile(var3.getId());
 		String var6 = var5 == null ? var3.getName() : var5.getName();
-		var4.a(var3);
+		var4.saveProfile(var3);
 		NBTCompoundTag var7 = this.a(var2);
 		var2.a((World) this.minecraftserver.a(var2.am));
 		var2.c.a((WorldServer) var2.o);
@@ -363,15 +363,15 @@ public abstract class PlayerList {
 		float var11 = var1.y;
 		var3.B.a("moving");
 		if (var1.am == -1) {
-			var5 = uv.a(var5 / var9, var4.af().b() + 16.0D, var4.af().d() - 16.0D);
-			var7 = uv.a(var7 / var9, var4.af().c() + 16.0D, var4.af().e() - 16.0D);
+			var5 = NumberConverter.a(var5 / var9, var4.af().b() + 16.0D, var4.af().d() - 16.0D);
+			var7 = NumberConverter.a(var7 / var9, var4.af().c() + 16.0D, var4.af().e() - 16.0D);
 			var1.b(var5, var1.t, var7, var1.y, var1.z);
 			if (var1.ai()) {
 				var3.a(var1, false);
 			}
 		} else if (var1.am == 0) {
-			var5 = uv.a(var5 * var9, var4.af().b() + 16.0D, var4.af().d() - 16.0D);
-			var7 = uv.a(var7 * var9, var4.af().c() + 16.0D, var4.af().e() - 16.0D);
+			var5 = NumberConverter.a(var5 * var9, var4.af().b() + 16.0D, var4.af().d() - 16.0D);
+			var7 = NumberConverter.a(var7 * var9, var4.af().c() + 16.0D, var4.af().e() - 16.0D);
 			var1.b(var5, var1.t, var7, var1.y, var1.z);
 			if (var1.ai()) {
 				var3.a(var1, false);
@@ -396,8 +396,8 @@ public abstract class PlayerList {
 		var3.B.b();
 		if (var2 != 1) {
 			var3.B.a("placing");
-			var5 = (double) uv.a((int) var5, -29999872, 29999872);
-			var7 = (double) uv.a((int) var7, -29999872, 29999872);
+			var5 = (double) NumberConverter.a((int) var5, -29999872, 29999872);
+			var7 = (double) NumberConverter.a((int) var7, -29999872, 29999872);
 			if (var1.ai()) {
 				var1.b(var5, var1.t, var7, var1.y, var1.z);
 				var4.u().a(var1, var11);

@@ -195,14 +195,14 @@ public abstract class xn extends EntityLiving {
 				this.bj[var3].b(var4);
 			}
 
-			var2.a((NBTTag) var4);
+			var2.addTag((NBTTag) var4);
 		}
 
 		var1.a("Equipment", (NBTTag) var2);
 		NBTListTag var6 = new NBTListTag();
 
 		for (int var7 = 0; var7 < this.bh.length; ++var7) {
-			var6.a((NBTTag) (new NBTFloatTag(this.bh[var7])));
+			var6.addTag((NBTTag) (new NBTFloatTag(this.bh[var7])));
 		}
 
 		var1.a("DropChances", (NBTTag) var6);
@@ -241,15 +241,15 @@ public abstract class xn extends EntityLiving {
 			var2 = var1.c("Equipment", 10);
 
 			for (var3 = 0; var3 < this.bj.length; ++var3) {
-				this.bj[var3] = amj.a(var2.b(var3));
+				this.bj[var3] = amj.a(var2.getCompound(var3));
 			}
 		}
 
 		if (var1.b("DropChances", 9)) {
 			var2 = var1.c("DropChances", 5);
 
-			for (var3 = 0; var3 < var2.c(); ++var3) {
-				this.bh[var3] = var2.e(var3);
+			for (var3 = 0; var3 < var2.getSize(); ++var3) {
+				this.bh[var3] = var2.getFloat(var3);
 			}
 		}
 
@@ -429,7 +429,7 @@ public abstract class xn extends EntityLiving {
 			var6 = (var1.aQ().b + var1.aQ().e) / 2.0D - (this.t + (double) this.aR());
 		}
 
-		double var14 = (double) uv.a(var4 * var4 + var8 * var8);
+		double var14 = (double) NumberConverter.a(var4 * var4 + var8 * var8);
 		float var12 = (float) (Math.atan2(var8, var4) * 180.0D / 3.1415927410125732D) - 90.0F;
 		float var13 = (float) (-(Math.atan2(var6, var14) * 180.0D / 3.1415927410125732D));
 		this.z = this.b(this.z, var13, var3);
@@ -437,7 +437,7 @@ public abstract class xn extends EntityLiving {
 	}
 
 	private float b(float var1, float var2, float var3) {
-		float var4 = uv.g(var2 - var1);
+		float var4 = NumberConverter.g(var2 - var1);
 		if (var4 > var3) {
 			var4 = var3;
 		}

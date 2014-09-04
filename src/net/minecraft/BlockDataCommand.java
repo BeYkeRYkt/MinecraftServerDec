@@ -16,7 +16,7 @@ public class BlockDataCommand extends AbstractCommand {
 		return "commands.blockdata.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 4) {
 			throw new dp("commands.blockdata.usage", new Object[0]);
 		} else {

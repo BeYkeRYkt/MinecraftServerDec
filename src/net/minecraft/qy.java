@@ -41,12 +41,12 @@ public class qy {
 		this.b = var2;
 		this.c = var3;
 		this.u = var4;
-		this.d = uv.c(var1.s * 32.0D);
-		this.e = uv.c(var1.t * 32.0D);
-		this.f = uv.c(var1.u * 32.0D);
-		this.g = uv.d(var1.y * 256.0F / 360.0F);
-		this.h = uv.d(var1.z * 256.0F / 360.0F);
-		this.i = uv.d(var1.aD() * 256.0F / 360.0F);
+		this.d = NumberConverter.c(var1.s * 32.0D);
+		this.e = NumberConverter.c(var1.t * 32.0D);
+		this.f = NumberConverter.c(var1.u * 32.0D);
+		this.g = NumberConverter.d(var1.y * 256.0F / 360.0F);
+		this.h = NumberConverter.d(var1.z * 256.0F / 360.0F);
+		this.i = NumberConverter.d(var1.aD() * 256.0F / 360.0F);
 		this.y = var1.C;
 	}
 
@@ -100,11 +100,11 @@ public class qy {
 			int var24;
 			if (this.a.m == null) {
 				++this.v;
-				var23 = uv.c(this.a.s * 32.0D);
-				var24 = uv.c(this.a.t * 32.0D);
-				int var25 = uv.c(this.a.u * 32.0D);
-				int var27 = uv.d(this.a.y * 256.0F / 360.0F);
-				int var28 = uv.d(this.a.z * 256.0F / 360.0F);
+				var23 = NumberConverter.c(this.a.s * 32.0D);
+				var24 = NumberConverter.c(this.a.t * 32.0D);
+				int var25 = NumberConverter.c(this.a.u * 32.0D);
+				int var27 = NumberConverter.d(this.a.y * 256.0F / 360.0F);
+				int var28 = NumberConverter.d(this.a.z * 256.0F / 360.0F);
 				int var29 = var23 - this.d;
 				int var30 = var24 - this.e;
 				int var9 = var25 - this.f;
@@ -159,8 +159,8 @@ public class qy {
 
 				this.x = false;
 			} else {
-				var23 = uv.d(this.a.y * 256.0F / 360.0F);
-				var24 = uv.d(this.a.z * 256.0F / 360.0F);
+				var23 = NumberConverter.d(this.a.y * 256.0F / 360.0F);
+				var24 = NumberConverter.d(this.a.z * 256.0F / 360.0F);
 				boolean var26 = Math.abs(var23 - this.g) >= 4 || Math.abs(var24 - this.h) >= 4;
 				if (var26) {
 					this.a((id) (new kb(this.a.F(), (byte) var23, (byte) var24, this.a.C)));
@@ -168,14 +168,14 @@ public class qy {
 					this.h = var24;
 				}
 
-				this.d = uv.c(this.a.s * 32.0D);
-				this.e = uv.c(this.a.t * 32.0D);
-				this.f = uv.c(this.a.u * 32.0D);
+				this.d = NumberConverter.c(this.a.s * 32.0D);
+				this.e = NumberConverter.c(this.a.t * 32.0D);
+				this.f = NumberConverter.c(this.a.u * 32.0D);
 				this.b();
 				this.x = true;
 			}
 
-			var23 = uv.d(this.a.aD() * 256.0F / 360.0F);
+			var23 = NumberConverter.d(this.a.aD() * 256.0F / 360.0F);
 			if (Math.abs(var23 - this.i) >= 4) {
 				this.a((id) (new kq(this.a, (byte) var23)));
 				this.i = var23;
@@ -351,7 +351,7 @@ public class qy {
 		} else if (this.a instanceof adu) {
 			return new il(this.a, 1);
 		} else if (this.a instanceof wt) {
-			this.i = uv.d(this.a.aD() * 256.0F / 360.0F);
+			this.i = NumberConverter.d(this.a.aD() * 256.0F / 360.0F);
 			return new io((EntityLiving) this.a);
 		} else if (this.a instanceof ado) {
 			ahd var8 = ((ado) this.a).b;
@@ -412,17 +412,17 @@ public class qy {
 					adk var4 = (adk) this.a;
 					var2 = new il(this.a, 71, var4.b.b());
 					var3 = var4.n();
-					var2.a(uv.d((float) (var3.n() * 32)));
-					var2.b(uv.d((float) (var3.o() * 32)));
-					var2.c(uv.d((float) (var3.p() * 32)));
+					var2.a(NumberConverter.d((float) (var3.n() * 32)));
+					var2.b(NumberConverter.d((float) (var3.o() * 32)));
+					var2.c(NumberConverter.d((float) (var3.p() * 32)));
 					return var2;
 				} else if (this.a instanceof adl) {
 					adl var1 = (adl) this.a;
 					var2 = new il(this.a, 77);
 					var3 = var1.n();
-					var2.a(uv.d((float) (var3.n() * 32)));
-					var2.b(uv.d((float) (var3.o() * 32)));
-					var2.c(uv.d((float) (var3.p() * 32)));
+					var2.a(NumberConverter.d((float) (var3.n() * 32)));
+					var2.b(NumberConverter.d((float) (var3.o() * 32)));
+					var2.c(NumberConverter.d((float) (var3.p() * 32)));
 					return var2;
 				} else if (this.a instanceof xk) {
 					return new im((xk) this.a);

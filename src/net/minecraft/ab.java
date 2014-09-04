@@ -70,7 +70,7 @@ public class ab implements CommandHandlerInterface {
 	protected boolean a(CommandSenderInterface var1, String[] var2, CommandInterface var3, String var4) {
 		hz var6;
 		try {
-			var3.a(var1, var2);
+			var3.executeCommand(var1, var2);
 			return true;
 		} catch (dp var7) {
 			var6 = new hz("commands.generic.usage", new Object[] { new hz(var7.getMessage(), var7.a()) });

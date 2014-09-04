@@ -21,7 +21,7 @@ public class afs {
 
 		while (var2.hasNext()) {
 			xz var3 = (xz) var2.next();
-			var1.a((NBTTag) a(var3));
+			var1.addTag((NBTTag) a(var3));
 		}
 
 		return var1;
@@ -40,7 +40,7 @@ public class afs {
 			while (var5.hasNext()) {
 				ya var6 = (ya) var5.next();
 				if (var6.e()) {
-					var4.a((NBTTag) a(var6));
+					var4.addTag((NBTTag) a(var6));
 				}
 			}
 
@@ -61,8 +61,8 @@ public class afs {
 	}
 
 	public static void a(yc var0, NBTListTag var1) {
-		for (int var2 = 0; var2 < var1.c(); ++var2) {
-			NBTCompoundTag var3 = var1.b(var2);
+		for (int var2 = 0; var2 < var1.getSize(); ++var2) {
+			NBTCompoundTag var3 = var1.getCompound(var2);
 			xz var4 = var0.a(var3.j("Name"));
 			if (var4 != null) {
 				a(var4, var3);
@@ -78,8 +78,8 @@ public class afs {
 		if (var1.b("Modifiers", 9)) {
 			NBTListTag var2 = var1.c("Modifiers", 10);
 
-			for (int var3 = 0; var3 < var2.c(); ++var3) {
-				ya var4 = a(var2.b(var3));
+			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+				ya var4 = a(var2.getCompound(var3));
 				if (var4 != null) {
 					ya var5 = var0.a(var4.a());
 					if (var5 != null) {

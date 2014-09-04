@@ -17,10 +17,10 @@ public class ajw extends alq {
 		double var9 = var3.q + (var3.t - var3.q) * (double) var4 + (double) var3.aR();
 		double var11 = var3.r + (var3.u - var3.r) * (double) var4;
 		brw var13 = new brw(var7, var9, var11);
-		float var14 = uv.b(-var6 * 0.017453292F - 3.1415927F);
-		float var15 = uv.a(-var6 * 0.017453292F - 3.1415927F);
-		float var16 = -uv.b(-var5 * 0.017453292F);
-		float var17 = uv.a(-var5 * 0.017453292F);
+		float var14 = NumberConverter.b(-var6 * 0.017453292F - 3.1415927F);
+		float var15 = NumberConverter.a(-var6 * 0.017453292F - 3.1415927F);
+		float var16 = -NumberConverter.b(-var5 * 0.017453292F);
+		float var17 = NumberConverter.a(-var5 * 0.017453292F);
 		float var18 = var15 * var16;
 		float var20 = var14 * var16;
 		double var21 = 5.0D;
@@ -55,7 +55,7 @@ public class ajw extends alq {
 					}
 
 					adu var34 = new adu(var2, (double) ((float) var33.n() + 0.5F), (double) ((float) var33.o() + 1.0F), (double) ((float) var33.p() + 0.5F));
-					var34.y = (float) (((uv.c((double) (var3.y * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
+					var34.y = (float) (((NumberConverter.c((double) (var3.y * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
 					if (!var2.a((Entity) var34, var34.aQ().b(-0.1D, -0.1D, -0.1D)).isEmpty()) {
 						return var1;
 					}

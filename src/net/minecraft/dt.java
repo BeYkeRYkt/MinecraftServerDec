@@ -3,7 +3,7 @@ package net.minecraft;
 public class dt extends fd {
 
 	public static final dt a = new dt(0, 0, 0);
-	private static final int b = 1 + uv.c(uv.b(30000000));
+	private static final int b = 1 + NumberConverter.c(NumberConverter.b(30000000));
 	private static final int c = b;
 	private static final int d = 64 - b - c;
 	private static final int f = 0 + c;

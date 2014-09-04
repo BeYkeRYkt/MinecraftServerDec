@@ -82,8 +82,8 @@ public class bdc extends bdf implements pm, we {
 		NBTListTag var2 = var1.c("Items", 10);
 		this.h = new amj[this.n_()];
 
-		for (int var3 = 0; var3 < var2.c(); ++var3) {
-			NBTCompoundTag var4 = var2.b(var3);
+		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+			NBTCompoundTag var4 = var2.getCompound(var3);
 			byte var5 = var4.d("Slot");
 			if (var5 >= 0 && var5 < this.h.length) {
 				this.h[var5] = amj.a(var4);
@@ -112,7 +112,7 @@ public class bdc extends bdf implements pm, we {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.a("Slot", (byte) var3);
 				this.h[var3].b(var4);
-				var2.a((NBTTag) var4);
+				var2.addTag((NBTTag) var4);
 			}
 		}
 
@@ -141,7 +141,7 @@ public class bdc extends bdf implements pm, we {
 		if (!this.b.D) {
 			if (!this.m() && (this.h[1] == null || this.h[0] == null)) {
 				if (!this.m() && this.k > 0) {
-					this.k = uv.a(this.k - 2, 0, this.l);
+					this.k = NumberConverter.a(this.k - 2, 0, this.l);
 				}
 			} else {
 				if (!this.m() && this.o()) {

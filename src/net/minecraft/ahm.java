@@ -44,7 +44,7 @@ public class ahm extends Entity {
 		this.x *= 1.15D;
 		this.w += 0.04D;
 		this.d(this.v, this.w, this.x);
-		float var1 = uv.a(this.v * this.v + this.x * this.x);
+		float var1 = NumberConverter.a(this.v * this.v + this.x * this.x);
 		this.y = (float) (Math.atan2(this.v, this.x) * 180.0D / 3.1415927410125732D);
 
 		for (this.z = (float) (Math.atan2(this.w, (double) var1) * 180.0D / 3.1415927410125732D); this.z - this.B < -180.0F; this.B -= 360.0F) {

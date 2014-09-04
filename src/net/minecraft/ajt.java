@@ -19,7 +19,7 @@ public class ajt extends alq {
 				var4 = var4.a();
 			}
 
-			int var12 = uv.c((double) (var2.y * 4.0F / 360.0F) + 0.5D) & 3;
+			int var12 = NumberConverter.c((double) (var2.y * 4.0F / 360.0F) + 0.5D) & 3;
 			ej var13 = ej.b(var12);
 			dt var14 = var4.a(var13);
 			boolean var15 = var10.f(var3, var14);

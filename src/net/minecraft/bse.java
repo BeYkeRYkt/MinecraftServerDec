@@ -45,8 +45,8 @@ public class bse extends bqc {
 	}
 
 	protected void a(NBTListTag var1) {
-		for (int var2 = 0; var2 < var1.c(); ++var2) {
-			NBTCompoundTag var3 = var1.b(var2);
+		for (int var2 = 0; var2 < var1.getSize(); ++var2) {
+			NBTCompoundTag var3 = var1.getCompound(var2);
 			brz var4 = this.c.e(var3.j("Name"));
 			var4.a(var3.j("DisplayName"));
 			if (var3.b("TeamColor", 8)) {
@@ -84,8 +84,8 @@ public class bse extends bqc {
 	}
 
 	protected void a(brz var1, NBTListTag var2) {
-		for (int var3 = 0; var3 < var2.c(); ++var3) {
-			this.c.a(var2.f(var3), var1.b());
+		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+			this.c.a(var2.getString(var3), var1.b());
 		}
 
 	}
@@ -102,8 +102,8 @@ public class bse extends bqc {
 	}
 
 	protected void b(NBTListTag var1) {
-		for (int var2 = 0; var2 < var1.c(); ++var2) {
-			NBTCompoundTag var3 = var1.b(var2);
+		for (int var2 = 0; var2 < var1.getSize(); ++var2) {
+			NBTCompoundTag var3 = var1.getCompound(var2);
 			bsk var4 = (bsk) bsk.a.get(var3.j("CriteriaName"));
 			if (var4 != null) {
 				bry var5 = this.c.a(var3.j("Name"), var4);
@@ -115,8 +115,8 @@ public class bse extends bqc {
 	}
 
 	protected void c(NBTListTag var1) {
-		for (int var2 = 0; var2 < var1.c(); ++var2) {
-			NBTCompoundTag var3 = var1.b(var2);
+		for (int var2 = 0; var2 < var1.getSize(); ++var2) {
+			NBTCompoundTag var3 = var1.getCompound(var2);
 			bry var4 = this.c.b(var3.j("Objective"));
 			bsa var5 = this.c.c(var3.j("Name"), var4);
 			var5.c(var3.f("Score"));
@@ -163,11 +163,11 @@ public class bse extends bqc {
 
 			while (var7.hasNext()) {
 				String var8 = (String) var7.next();
-				var6.a((NBTTag) (new NBTStringTag(var8)));
+				var6.addTag((NBTTag) (new NBTStringTag(var8)));
 			}
 
 			var5.a("Players", (NBTTag) var6);
-			var1.a((NBTTag) var5);
+			var1.addTag((NBTTag) var5);
 		}
 
 		return var1;
@@ -204,7 +204,7 @@ public class bse extends bqc {
 				var5.a("CriteriaName", var4.c().a());
 				var5.a("DisplayName", var4.d());
 				var5.a("RenderType", var4.e().a());
-				var1.a((NBTTag) var5);
+				var1.addTag((NBTTag) var5);
 			}
 		}
 
@@ -224,7 +224,7 @@ public class bse extends bqc {
 				var5.a("Objective", var4.d().b());
 				var5.a("Score", var4.c());
 				var5.a("Locked", var4.g());
-				var1.a((NBTTag) var5);
+				var1.addTag((NBTTag) var5);
 			}
 		}
 

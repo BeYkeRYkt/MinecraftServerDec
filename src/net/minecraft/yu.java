@@ -31,7 +31,7 @@ public class yu extends zb {
 	public void e() {
 		ahd var1 = (ahd) this.a.l;
 		EntityCreature var2 = (EntityCreature) this.a;
-		float var3 = uv.g(var1.y - this.a.y) * 0.5F;
+		float var3 = NumberConverter.g(var1.y - this.a.y) * 0.5F;
 		if (var3 > 5.0F) {
 			var3 = 5.0F;
 		}
@@ -40,7 +40,7 @@ public class yu extends zb {
 			var3 = -5.0F;
 		}
 
-		this.a.y = uv.g(this.a.y + var3);
+		this.a.y = NumberConverter.g(this.a.y + var3);
 		if (this.c < this.b) {
 			this.c += (this.b - this.c) * 0.01F;
 		}
@@ -49,33 +49,33 @@ public class yu extends zb {
 			this.c = this.b;
 		}
 
-		int var4 = uv.c(this.a.s);
-		int var5 = uv.c(this.a.t);
-		int var6 = uv.c(this.a.u);
+		int var4 = NumberConverter.c(this.a.s);
+		int var5 = NumberConverter.c(this.a.t);
+		int var6 = NumberConverter.c(this.a.u);
 		float var7 = this.c;
 		if (this.d) {
 			if (this.e++ > this.f) {
 				this.d = false;
 			}
 
-			var7 += var7 * 1.15F * uv.a((float) this.e / (float) this.f * 3.1415927F);
+			var7 += var7 * 1.15F * NumberConverter.a((float) this.e / (float) this.f * 3.1415927F);
 		}
 
 		float var8 = 0.91F;
 		if (this.a.C) {
-			var8 = this.a.o.p(new dt(uv.d((float) var4), uv.d((float) var5) - 1, uv.d((float) var6))).c().K * 0.91F;
+			var8 = this.a.o.p(new dt(NumberConverter.d((float) var4), NumberConverter.d((float) var5) - 1, NumberConverter.d((float) var6))).c().K * 0.91F;
 		}
 
 		float var9 = 0.16277136F / (var8 * var8 * var8);
-		float var10 = uv.a(var2.y * 3.1415927F / 180.0F);
-		float var11 = uv.b(var2.y * 3.1415927F / 180.0F);
+		float var10 = NumberConverter.a(var2.y * 3.1415927F / 180.0F);
+		float var11 = NumberConverter.b(var2.y * 3.1415927F / 180.0F);
 		float var12 = var2.bH() * var9;
 		float var13 = Math.max(var7, 1.0F);
 		var13 = var12 / var13;
 		float var14 = var7 * var13;
 		float var15 = -(var14 * var10);
 		float var16 = var14 * var11;
-		if (uv.e(var15) > uv.e(var16)) {
+		if (NumberConverter.e(var15) > NumberConverter.e(var16)) {
 			if (var15 < 0.0F) {
 				var15 -= this.a.J / 2.0F;
 			}
@@ -96,11 +96,11 @@ public class yu extends zb {
 			}
 		}
 
-		int var17 = uv.c(this.a.s + (double) var15);
-		int var18 = uv.c(this.a.u + (double) var16);
-		int var19 = uv.d(this.a.J + 1.0F);
-		int var20 = uv.d(this.a.K + var1.K + 1.0F);
-		int var21 = uv.d(this.a.J + 1.0F);
+		int var17 = NumberConverter.c(this.a.s + (double) var15);
+		int var18 = NumberConverter.c(this.a.u + (double) var16);
+		int var19 = NumberConverter.d(this.a.J + 1.0F);
+		int var20 = NumberConverter.d(this.a.K + var1.K + 1.0F);
+		int var21 = NumberConverter.d(this.a.J + 1.0F);
 		if (var4 != var17 || var6 != var18) {
 			atr var22 = this.a.o.p(new dt(var4, var5, var6)).c();
 			boolean var23 = !this.a(var22) && (var22.r() != bof.a || !this.a(this.a.o.p(new dt(var4, var5 - 1, var6)).c()));

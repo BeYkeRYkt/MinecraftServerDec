@@ -29,7 +29,7 @@ public abstract class ahl extends Entity {
 		this.a(1.0F, 1.0F);
 		this.b(var2, var4, var6, this.y, this.z);
 		this.b(var2, var4, var6);
-		double var14 = (double) uv.a(var8 * var8 + var10 * var10 + var12 * var12);
+		double var14 = (double) NumberConverter.a(var8 * var8 + var10 * var10 + var12 * var12);
 		this.b = var8 / var14 * 0.1D;
 		this.c = var10 / var14 * 0.1D;
 		this.d = var12 / var14 * 0.1D;
@@ -45,7 +45,7 @@ public abstract class ahl extends Entity {
 		var3 += this.V.nextGaussian() * 0.4D;
 		var5 += this.V.nextGaussian() * 0.4D;
 		var7 += this.V.nextGaussian() * 0.4D;
-		double var9 = (double) uv.a(var3 * var3 + var5 * var5 + var7 * var7);
+		double var9 = (double) NumberConverter.a(var3 * var3 + var5 * var5 + var7 * var7);
 		this.b = var3 / var9 * 0.1D;
 		this.c = var5 / var9 * 0.1D;
 		this.d = var7 / var9 * 0.1D;
@@ -117,7 +117,7 @@ public abstract class ahl extends Entity {
 			this.s += this.v;
 			this.t += this.w;
 			this.u += this.x;
-			float var15 = uv.a(this.v * this.v + this.x * this.x);
+			float var15 = NumberConverter.a(this.v * this.v + this.x * this.x);
 			this.y = (float) (Math.atan2(this.x, this.v) * 180.0D / 3.1415927410125732D) + 90.0F;
 
 			for (this.z = (float) (Math.atan2((double) var15, this.w) * 180.0D / 3.1415927410125732D) - 90.0F; this.z - this.B < -180.0F; this.B -= 360.0F) {
@@ -188,9 +188,9 @@ public abstract class ahl extends Entity {
 		this.i = var1.d("inGround") == 1;
 		if (var1.b("direction", 9)) {
 			NBTListTag var2 = var1.c("direction", 6);
-			this.v = var2.d(0);
-			this.w = var2.d(1);
-			this.x = var2.d(2);
+			this.v = var2.getDouble(0);
+			this.w = var2.getDouble(1);
+			this.x = var2.getDouble(2);
 		} else {
 			this.J();
 		}

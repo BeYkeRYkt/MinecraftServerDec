@@ -16,7 +16,7 @@ public class SummonCommand extends AbstractCommand {
 		return "commands.summon.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 1) {
 			throw new dp("commands.summon.usage", new Object[0]);
 		} else {

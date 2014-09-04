@@ -347,7 +347,7 @@ public class ah {
 	}
 
 	private static int a(Map var0, String var1, int var2) {
-		return var0.containsKey(var1) ? uv.a((String) var0.get(var1), var2) : var2;
+		return var0.containsKey(var1) ? NumberConverter.a((String) var0.get(var1), var2) : var2;
 	}
 
 	private static String b(Map var0, String var1) {
@@ -361,7 +361,7 @@ public class ah {
 		while (var2.hasNext()) {
 			String var3 = (String) var2.next();
 			if (var3.startsWith("score_") && var3.length() > "score_".length()) {
-				var1.put(var3.substring("score_".length()), Integer.valueOf(uv.a((String) var0.get(var3), 1)));
+				var1.put(var3.substring("score_".length()), Integer.valueOf(NumberConverter.a((String) var0.get(var3), 1)));
 			}
 		}
 

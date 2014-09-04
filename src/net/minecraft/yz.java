@@ -63,9 +63,9 @@ public class yz extends zb {
 				if (!this.g.a((Entity) this.e, this.f)) {
 					if (!this.d.cb()) {
 						if (this.d.h(this.e) >= 144.0D) {
-							int var1 = uv.c(this.e.s) - 2;
-							int var2 = uv.c(this.e.u) - 2;
-							int var3 = uv.c(this.e.aQ().b);
+							int var1 = NumberConverter.c(this.e.s) - 2;
+							int var2 = NumberConverter.c(this.e.u) - 2;
+							int var3 = NumberConverter.c(this.e.aQ().b);
 
 							for (int var4 = 0; var4 <= 4; ++var4) {
 								for (int var5 = 0; var5 <= 4; ++var5) {

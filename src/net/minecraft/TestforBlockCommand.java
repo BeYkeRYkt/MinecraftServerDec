@@ -17,7 +17,7 @@ public class TestforBlockCommand extends AbstractCommand {
 		return "commands.testforblock.usage";
 	}
 
-	public void a(CommandSenderInterface var1, String[] var2) throws di {
+	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length < 4) {
 			throw new dp("commands.testforblock.usage", new Object[0]);
 		} else {
@@ -111,19 +111,19 @@ public class TestforBlockCommand extends AbstractCommand {
 		} else if (var0 instanceof NBTListTag && var2) {
 			NBTListTag var3 = (NBTListTag) var0;
 			NBTListTag var4 = (NBTListTag) var1;
-			if (var3.c() == 0) {
-				return var4.c() == 0;
+			if (var3.getSize() == 0) {
+				return var4.getSize() == 0;
 			} else {
 				int var5 = 0;
 
-				while (var5 < var3.c()) {
-					NBTTag var6 = var3.g(var5);
+				while (var5 < var3.getSize()) {
+					NBTTag var6 = var3.getTag(var5);
 					boolean var7 = false;
 					int var8 = 0;
 
 					while (true) {
-						if (var8 < var4.c()) {
-							if (!a(var6, var4.g(var8), var2)) {
+						if (var8 < var4.getSize()) {
+							if (!a(var6, var4.getTag(var8), var2)) {
 								++var8;
 								continue;
 							}

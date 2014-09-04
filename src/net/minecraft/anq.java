@@ -20,8 +20,8 @@ public class anq extends alq {
 		} else {
 			NBTListTag var1 = var0.c("pages", 8);
 
-			for (int var2 = 0; var2 < var1.c(); ++var2) {
-				String var3 = var1.f(var2);
+			for (int var2 = 0; var2 < var1.getSize(); ++var2) {
+				String var3 = var1.getString(var2);
 				if (var3 == null) {
 					return false;
 				}
