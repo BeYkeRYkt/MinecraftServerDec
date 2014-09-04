@@ -24,7 +24,7 @@ public class PlaySoundCommand extends AbstractCommand {
 			byte var3 = 0;
 			int var31 = var3 + 1;
 			String var4 = var2[var3];
-			qw var5 = a(var1, var2[var31++]);
+			EntityPlayer var5 = a(var1, var2[var31++]);
 			brw var6 = var1.d();
 			double var7 = var6.a;
 			if (var2.length > var31) {
@@ -81,7 +81,7 @@ public class PlaySoundCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 2 ? a(var2, MinecraftServer.getInstance().I()) : (var2.length > 2 && var2.length <= 5 ? a(var2, 2, var3) : null);
 	}
 

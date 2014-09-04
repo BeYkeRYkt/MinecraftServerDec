@@ -9,7 +9,7 @@ public class aal extends aaw {
 	private int b;
 	private final Class[] c;
 
-	public aal(xu var1, boolean var2, Class... var3) {
+	public aal(EntityCreature var1, boolean var2, Class... var3) {
 		super(var1, false);
 		this.a = var2;
 		this.c = var3;
@@ -30,7 +30,7 @@ public class aal extends aaw {
 			Iterator var4 = var3.iterator();
 
 			while (var4.hasNext()) {
-				xu var5 = (xu) var4.next();
+				EntityCreature var5 = (EntityCreature) var4.next();
 				if (this.e != var5 && var5.u() == null && !var5.c(this.e.bc())) {
 					boolean var6 = false;
 					Class[] var7 = this.c;
@@ -54,7 +54,7 @@ public class aal extends aaw {
 		super.c();
 	}
 
-	protected void a(xu var1, EntityLiving var2) {
+	protected void a(EntityCreature var1, EntityLiving var2) {
 		var1.d(var2);
 	}
 }

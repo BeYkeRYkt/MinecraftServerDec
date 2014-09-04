@@ -35,7 +35,7 @@ public class OpCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		if (var2.length == 1) {
 			String var4 = var2[var2.length - 1];
 			ArrayList var5 = Lists.newArrayList();
@@ -44,7 +44,7 @@ public class OpCommand extends AbstractCommand {
 
 			for (int var8 = 0; var8 < var7; ++var8) {
 				GameProfile var9 = var6[var8];
-				if (!MinecraftServer.getInstance().an().g(var9) && a(var4, var9.getName())) {
+				if (!MinecraftServer.getInstance().an().g(var9) && startWith(var4, var9.getName())) {
 					var5.add(var9.getName());
 				}
 			}

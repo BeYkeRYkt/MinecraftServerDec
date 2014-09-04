@@ -236,29 +236,29 @@ public class adw extends Entity {
 			int var3 = var2.b;
 			if (this.d == 0 && (this.g == null || 6000 - this.c <= 200 || this.g.equals(var1.d_())) && var1.bg.a(var2)) {
 				if (var2.b() == alq.a(aty.r)) {
-					var1.b((tq) tl.g);
+					var1.b((PlayerStatistic) tl.g);
 				}
 
 				if (var2.b() == alq.a(aty.s)) {
-					var1.b((tq) tl.g);
+					var1.b((PlayerStatistic) tl.g);
 				}
 
 				if (var2.b() == amk.aF) {
-					var1.b((tq) tl.t);
+					var1.b((PlayerStatistic) tl.t);
 				}
 
 				if (var2.b() == amk.i) {
-					var1.b((tq) tl.w);
+					var1.b((PlayerStatistic) tl.w);
 				}
 
 				if (var2.b() == amk.bv) {
-					var1.b((tq) tl.A);
+					var1.b((PlayerStatistic) tl.A);
 				}
 
 				if (var2.b() == amk.i && this.n() != null) {
 					ahd var4 = this.o.a(this.n());
 					if (var4 != null && var4 != var1) {
-						var4.b((tq) tl.x);
+						var4.b((PlayerStatistic) tl.x);
 					}
 				}
 

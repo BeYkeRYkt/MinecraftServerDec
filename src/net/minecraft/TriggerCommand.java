@@ -24,16 +24,16 @@ public class TriggerCommand extends AbstractCommand {
 		if (var2.length < 3) {
 			throw new dp("commands.trigger.usage", new Object[0]);
 		} else {
-			qw var3;
-			if (var1 instanceof qw) {
-				var3 = (qw) var1;
+			EntityPlayer var3;
+			if (var1 instanceof EntityPlayer) {
+				var3 = (EntityPlayer) var1;
 			} else {
 				Entity var4 = var1.f();
-				if (!(var4 instanceof qw)) {
+				if (!(var4 instanceof EntityPlayer)) {
 					throw new di("commands.trigger.invalidPlayer", new Object[0]);
 				}
 
-				var3 = (qw) var4;
+				var3 = (EntityPlayer) var4;
 			}
 
 			bsd var8 = MinecraftServer.getInstance().a(0).Z();
@@ -70,7 +70,7 @@ public class TriggerCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		if (var2.length == 1) {
 			bsd var4 = MinecraftServer.getInstance().a(0).Z();
 			ArrayList var5 = Lists.newArrayList();

@@ -125,7 +125,7 @@ public class ReplaceItemCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, new String[] { "entity", "block" }) : (var2.length == 2 && var2[0].equals("entity") ? a(var2, this.d()) : ((var2.length != 3 || !var2[0].equals("entity")) && (var2.length != 5 || !var2[0].equals("block")) ? ((var2.length != 4 || !var2[0].equals("entity")) && (var2.length != 6 || !var2[0].equals("block")) ? null : a(var2, alq.e.c())) : a(var2, a.keySet())));
 	}
 

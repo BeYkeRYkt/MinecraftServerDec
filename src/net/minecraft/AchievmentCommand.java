@@ -25,11 +25,11 @@ public class AchievmentCommand extends AbstractCommand {
 		if (var2.length < 2) {
 			throw new dp("commands.achievement.usage", new Object[0]);
 		} else {
-			tq var3 = ty.a(var2[1]);
+			PlayerStatistic var3 = ty.a(var2[1]);
 			if (var3 == null && !var2[1].equals("*")) {
 				throw new di("commands.achievement.unknownAchievement", new Object[] { var2[1] });
 			} else {
-				qw var4 = var2.length >= 3 ? a(var1, var2[2]) : b(var1);
+				EntityPlayer var4 = var2.length >= 3 ? a(var1, var2[2]) : b(var1);
 				boolean var5 = var2[0].equalsIgnoreCase("give");
 				boolean var6 = var2[0].equalsIgnoreCase("take");
 				if (var5 || var6) {
@@ -41,7 +41,7 @@ public class AchievmentCommand extends AbstractCommand {
 
 							while (var11.hasNext()) {
 								var12 = (tk) var11.next();
-								var4.b((tq) var12);
+								var4.b((PlayerStatistic) var12);
 							}
 
 							a(var1, this, "commands.achievement.give.success.all", new Object[] { var4.d_() });
@@ -50,7 +50,7 @@ public class AchievmentCommand extends AbstractCommand {
 
 							while (var11.hasNext()) {
 								var12 = (tk) var11.next();
-								var4.a((tq) var12);
+								var4.a((PlayerStatistic) var12);
 							}
 
 							a(var1, this, "commands.achievement.take.success.all", new Object[] { var4.d_() });
@@ -75,7 +75,7 @@ public class AchievmentCommand extends AbstractCommand {
 
 								while (var9.hasNext()) {
 									var10 = (tk) var9.next();
-									var4.b((tq) var10);
+									var4.b((PlayerStatistic) var10);
 								}
 							} else if (var6) {
 								if (!var4.A().a(var7)) {
@@ -90,7 +90,7 @@ public class AchievmentCommand extends AbstractCommand {
 
 								while (var9.hasNext()) {
 									var10 = (tk) var9.next();
-									var4.a((tq) var10);
+									var4.a((PlayerStatistic) var10);
 								}
 							}
 						}
@@ -109,7 +109,7 @@ public class AchievmentCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		if (var2.length == 1) {
 			return a(var2, new String[] { "give", "take" });
 		} else if (var2.length != 2) {
@@ -119,7 +119,7 @@ public class AchievmentCommand extends AbstractCommand {
 			Iterator var5 = ty.b.iterator();
 
 			while (var5.hasNext()) {
-				tq var6 = (tq) var5.next();
+				PlayerStatistic var6 = (PlayerStatistic) var5.next();
 				var4.add(var6.e);
 			}
 

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class to extends tq {
+public class to extends PlayerStatistic {
 
 	private final alq a;
 

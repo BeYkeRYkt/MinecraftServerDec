@@ -26,10 +26,10 @@ public class DefaultGameModeCommand extends GameModeCommand {
 	protected void a(arc var1) {
 		MinecraftServer var2 = MinecraftServer.getInstance();
 		var2.a(var1);
-		qw var4;
+		EntityPlayer var4;
 		if (var2.av()) {
-			for (Iterator var3 = MinecraftServer.getInstance().an().e.iterator(); var3.hasNext(); var4.O = 0.0F) {
-				var4 = (qw) var3.next();
+			for (Iterator var3 = MinecraftServer.getInstance().an().players.iterator(); var3.hasNext(); var4.O = 0.0F) {
+				var4 = (EntityPlayer) var3.next();
 				var4.a(var1);
 			}
 		}

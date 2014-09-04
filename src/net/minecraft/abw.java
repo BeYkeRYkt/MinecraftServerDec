@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public abstract class abw extends xu implements wt {
+public abstract class abw extends EntityCreature implements wt {
 
 	public abw(World var1) {
 		super(var1);

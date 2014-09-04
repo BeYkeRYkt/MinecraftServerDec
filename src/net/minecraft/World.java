@@ -1901,7 +1901,7 @@ public abstract class World implements ard {
 	}
 
 	public List b(Entity var1, brt var2) {
-		return this.a(var1, var2, xe.d);
+		return this.a(var1, var2, EntityPredicates.d);
 	}
 
 	public List a(Entity var1, brt var2, Predicate var3) {
@@ -1950,16 +1950,16 @@ public abstract class World implements ard {
 		return var3;
 	}
 
-	public List a(Class var1, brt var2) {
-		return this.a(var1, var2, xe.d);
+	public <T> List<T> a(Class<T> var1, brt var2) {
+		return this.a(var1, var2, EntityPredicates.d);
 	}
 
-	public List a(Class var1, brt var2, Predicate var3) {
+	public <T> List<T> a(Class<T> var1, brt var2, Predicate<?> var3) {
 		int var4 = uv.c((var2.a - 2.0D) / 16.0D);
 		int var5 = uv.c((var2.d + 2.0D) / 16.0D);
 		int var6 = uv.c((var2.c - 2.0D) / 16.0D);
 		int var7 = uv.c((var2.f + 2.0D) / 16.0D);
-		ArrayList var8 = Lists.newArrayList();
+		ArrayList<T> var8 = Lists.newArrayList();
 
 		for (int var9 = var4; var9 <= var5; ++var9) {
 			for (int var10 = var6; var10 <= var7; ++var10) {
@@ -1972,14 +1972,14 @@ public abstract class World implements ard {
 		return var8;
 	}
 
-	public Entity a(Class var1, brt var2, Entity var3) {
-		List var4 = this.a(var1, var2);
+	public <T> Entity a(Class<T> var1, brt var2, Entity var3) {
+		List<T> var4 = this.a(var1, var2);
 		Entity var5 = null;
 		double var6 = Double.MAX_VALUE;
 
 		for (int var8 = 0; var8 < var4.size(); ++var8) {
 			Entity var9 = (Entity) var4.get(var8);
-			if (var9 != var3 && xe.d.apply(var9)) {
+			if (var9 != var3 && EntityPredicates.d.apply(var9)) {
 				double var10 = var3.h(var9);
 				if (var10 <= var6) {
 					var5 = var9;
@@ -2121,7 +2121,7 @@ public abstract class World implements ard {
 
 		for (int var12 = 0; var12 < this.j.size(); ++var12) {
 			ahd var13 = (ahd) this.j.get(var12);
-			if (xe.d.apply(var13)) {
+			if (EntityPredicates.d.apply(var13)) {
 				double var14 = var13.e(var1, var3, var5);
 				if ((var7 < 0.0D || var14 < var7 * var7) && (var9 == -1.0D || var14 < var9)) {
 					var9 = var14;
@@ -2136,7 +2136,7 @@ public abstract class World implements ard {
 	public boolean b(double var1, double var3, double var5, double var7) {
 		for (int var9 = 0; var9 < this.j.size(); ++var9) {
 			ahd var10 = (ahd) this.j.get(var9);
-			if (xe.d.apply(var10)) {
+			if (EntityPredicates.d.apply(var10)) {
 				double var11 = var10.e(var1, var3, var5);
 				if (var7 < 0.0D || var11 < var7 * var7) {
 					return true;

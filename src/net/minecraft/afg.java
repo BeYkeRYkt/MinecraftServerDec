@@ -270,11 +270,11 @@ public class afg extends afm {
 			boolean var4 = true;
 			if ((this.W + this.F()) % 1200 == 0) {
 				wp var5 = wp.f;
-				List var6 = this.o.b(qw.class, (Predicate) (new afh(this)));
+				List var6 = this.o.b(EntityPlayer.class, (Predicate) (new afh(this)));
 				Iterator var7 = var6.iterator();
 
 				while (var7.hasNext()) {
-					qw var8 = (qw) var7.next();
+					EntityPlayer var8 = (EntityPlayer) var7.next();
 					if (!var8.a(var5) || var8.b(var5).c() < 2 || var8.b(var5).b() < 1200) {
 						var8.a.a((id) (new jo(10, 0.0F)));
 						var8.c(new wq(var5.H, 6000, 2));

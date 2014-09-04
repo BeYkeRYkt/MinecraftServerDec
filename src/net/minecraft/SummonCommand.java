@@ -90,7 +90,7 @@ public class SummonCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, xb.b()) : (var2.length > 1 && var2.length <= 4 ? a(var2, 1, var3) : null);
 	}
 }

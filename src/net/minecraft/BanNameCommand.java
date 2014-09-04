@@ -37,7 +37,7 @@ public class BanNameCommand extends AbstractCommand {
 
 				sw var6 = new sw(var4, (Date) null, var1.d_(), (Date) null, var5);
 				var3.an().i().a((sr) var6);
-				qw var7 = var3.an().a(var2[0]);
+				EntityPlayer var7 = var3.an().a(var2[0]);
 				if (var7 != null) {
 					var7.a.c("You are banned from this server.");
 				}
@@ -49,7 +49,7 @@ public class BanNameCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length >= 1 ? a(var2, MinecraftServer.getInstance().I()) : null;
 	}
 }

@@ -97,7 +97,7 @@ public class auy extends ati {
 				return ((aeb) var3.get(0)).j().j();
 			}
 
-			List var4 = this.a(var1, var2, adx.class, new Predicate[] { xe.c });
+			List var4 = this.a(var1, var2, adx.class, new Predicate[] { EntityPredicates.c });
 			if (!var4.isEmpty()) {
 				return aib.b((vq) var4.get(0));
 			}

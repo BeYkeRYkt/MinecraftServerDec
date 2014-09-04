@@ -7,11 +7,11 @@ class acs implements Predicate {
 	// $FF: synthetic field
 	final Predicate a;
 	// $FF: synthetic field
-	final xu b;
+	final EntityCreature b;
 	// $FF: synthetic field
 	final acr c;
 
-	acs(acr var1, Predicate var2, xu var3) {
+	acs(acr var1, Predicate var2, EntityCreature var3) {
 		this.c = var1;
 		this.a = var2;
 		this.b = var3;

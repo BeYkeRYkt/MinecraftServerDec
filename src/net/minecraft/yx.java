@@ -4,14 +4,14 @@ import java.util.Random;
 
 public class yx extends zb {
 
-	private xu a;
+	private EntityCreature a;
 	private double b;
 	private double c;
 	private double d;
 	private double e;
 	private World f;
 
-	public yx(xu var1, double var2) {
+	public yx(EntityCreature var1, double var2) {
 		this.a = var1;
 		this.e = var2;
 		this.f = var1.o;

@@ -121,7 +121,7 @@ public class ab implements CommandHandlerInterface {
 
 			while (var7.hasNext()) {
 				Entry var8 = (Entry) var7.next();
-				if (AbstractCommand.a(var5, (String) var8.getKey()) && ((CommandInterface) var8.getValue()).a(var1)) {
+				if (AbstractCommand.startWith(var5, (String) var8.getKey()) && ((CommandInterface) var8.getValue()).a(var1)) {
 					var9.add(var8.getKey());
 				}
 			}
@@ -131,7 +131,7 @@ public class ab implements CommandHandlerInterface {
 			if (var4.length > 1) {
 				CommandInterface var6 = (CommandInterface) this.b.get(var5);
 				if (var6 != null && var6.a(var1)) {
-					return var6.a(var1, a(var4), var3);
+					return var6.getTabCompleteList(var1, a(var4), var3);
 				}
 			}
 

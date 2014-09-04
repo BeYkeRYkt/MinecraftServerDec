@@ -31,7 +31,7 @@ public class DifficultyCommand extends AbstractCommand {
 		return !var1.equalsIgnoreCase("peaceful") && !var1.equalsIgnoreCase("p") ? (!var1.equalsIgnoreCase("easy") && !var1.equalsIgnoreCase("e") ? (!var1.equalsIgnoreCase("normal") && !var1.equalsIgnoreCase("n") ? (!var1.equalsIgnoreCase("hard") && !var1.equalsIgnoreCase("h") ? vt.a(a(var1, 0, 3)) : vt.d) : vt.c) : vt.b) : vt.a;
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, new String[] { "peaceful", "easy", "normal", "hard" }) : null;
 	}
 }

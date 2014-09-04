@@ -36,7 +36,7 @@ public class UnbanIPCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().an().j().a()) : null;
 	}
 }

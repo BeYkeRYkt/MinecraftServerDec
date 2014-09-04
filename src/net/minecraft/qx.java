@@ -3,7 +3,7 @@ package net.minecraft;
 public class qx {
 
 	public World a;
-	public qw b;
+	public EntityPlayer b;
 	private arc c;
 	private boolean d;
 	private int e;
@@ -26,7 +26,7 @@ public class qx {
 		this.c = var1;
 		var1.a(this.b.by);
 		this.b.t();
-		this.b.b.an().a((id) (new kh(kj.b, new qw[] { this.b })));
+		this.b.b.an().a((id) (new kh(kj.b, new EntityPlayer[] { this.b })));
 	}
 
 	public arc b() {
@@ -242,7 +242,7 @@ public class qx {
 				}
 
 				if (!var1.bR()) {
-					((qw) var1).a(var1.bh);
+					((EntityPlayer) var1).a(var1.bh);
 				}
 
 				return true;

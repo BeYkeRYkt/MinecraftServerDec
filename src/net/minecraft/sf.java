@@ -69,7 +69,7 @@ public class sf {
 	}
 
 	public static boolean a(MinecraftServer var0) {
-		sv var1 = new sv(PlayerList.a);
+		sv var1 = new sv(PlayerList.bannedPlayersFile);
 		if (b.exists() && b.isFile()) {
 			if (var1.c().exists()) {
 				try {
@@ -100,7 +100,7 @@ public class sf {
 	}
 
 	public static boolean b(MinecraftServer var0) {
-		sd var1 = new sd(PlayerList.b);
+		sd var1 = new sd(PlayerList.bannedIPsFile);
 		if (a.exists() && a.isFile()) {
 			if (var1.c().exists()) {
 				try {
@@ -138,7 +138,7 @@ public class sf {
 	}
 
 	public static boolean c(MinecraftServer var0) {
-		sp var1 = new sp(PlayerList.c);
+		sp var1 = new sp(PlayerList.opsFile);
 		if (c.exists() && c.isFile()) {
 			if (var1.c().exists()) {
 				try {
@@ -168,7 +168,7 @@ public class sf {
 	}
 
 	public static boolean d(MinecraftServer var0) {
-		sx var1 = new sx(PlayerList.d);
+		sx var1 = new sx(PlayerList.whitelistFile);
 		if (d.exists() && d.isFile()) {
 			if (var1.c().exists()) {
 				try {

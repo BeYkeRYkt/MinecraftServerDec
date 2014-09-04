@@ -33,7 +33,7 @@ public class XPCommand extends AbstractCommand {
 				var5 *= -1;
 			}
 
-			qw var7 = var2.length > 1 ? a(var1, var2[1]) : b(var1);
+			EntityPlayer var7 = var2.length > 1 ? a(var1, var2[1]) : b(var1);
 			if (var4) {
 				var1.a(ag.e, var7.bz);
 				if (var6) {
@@ -56,7 +56,7 @@ public class XPCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 2 ? a(var2, this.d()) : null;
 	}
 

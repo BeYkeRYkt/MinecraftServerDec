@@ -135,7 +135,7 @@ public class baj extends atg {
 
 				while (var9.hasNext()) {
 					ahd var10 = (ahd) var9.next();
-					var10.b((tq) tl.I);
+					var10.b((PlayerStatistic) tl.I);
 				}
 
 				var1.d((Entity) var14);

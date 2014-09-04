@@ -84,7 +84,7 @@ public class EffectCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, this.d()) : (var2.length == 2 ? a(var2, wp.c()) : (var2.length == 5 ? a(var2, new String[] { "true", "false" }) : null));
 	}
 

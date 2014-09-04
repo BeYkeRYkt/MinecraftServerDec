@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class tq {
+public class PlayerStatistic {
 
 	public final String e;
 	private final ho a;
@@ -19,7 +19,7 @@ public class tq {
 	public static tv i = new tt();
 	public static tv j = new tu();
 
-	public tq(String var1, ho var2, tv var3) {
+	public PlayerStatistic(String var1, ho var2, tv var3) {
 		this.e = var1;
 		this.a = var2;
 		this.b = var3;
@@ -27,18 +27,18 @@ public class tq {
 		bsk.a.put(this.c.a(), this.c);
 	}
 
-	public tq(String var1, ho var2) {
+	public PlayerStatistic(String var1, ho var2) {
 		this(var1, var2, g);
 	}
 
-	public tq i() {
+	public PlayerStatistic i() {
 		this.f = true;
 		return this;
 	}
 
-	public tq h() {
+	public PlayerStatistic h() {
 		if (ty.a.containsKey(this.e)) {
-			throw new RuntimeException("Duplicate stat id: \"" + ((tq) ty.a.get(this.e)).a + "\" and \"" + this.a + "\" at id " + this.e);
+			throw new RuntimeException("Duplicate stat id: \"" + ((PlayerStatistic) ty.a.get(this.e)).a + "\" and \"" + this.a + "\" at id " + this.e);
 		} else {
 			ty.b.add(this);
 			ty.a.put(this.e, this);
@@ -68,7 +68,7 @@ public class tq {
 		if (this == var1) {
 			return true;
 		} else if (var1 != null && this.getClass() == var1.getClass()) {
-			tq var2 = (tq) var1;
+			PlayerStatistic var2 = (PlayerStatistic) var1;
 			return this.e.equals(var2.e);
 		} else {
 			return false;
@@ -91,7 +91,7 @@ public class tq {
 		return this.d;
 	}
 
-	public tq b(Class var1) {
+	public PlayerStatistic b(Class var1) {
 		this.d = var1;
 		return this;
 	}

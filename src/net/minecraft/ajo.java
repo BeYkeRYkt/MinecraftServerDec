@@ -11,7 +11,7 @@ final class ajo extends eg {
 		int var5 = var3.o();
 		int var6 = var3.p();
 		brt var7 = new brt((double) var4, (double) var5, (double) var6, (double) (var4 + 1), (double) (var5 + 1), (double) (var6 + 1));
-		List var8 = var1.i().a(EntityLiving.class, var7, Predicates.and(xe.d, new xj(var2)));
+		List var8 = var1.i().a(EntityLiving.class, var7, Predicates.and(EntityPredicates.d, new xj(var2)));
 		if (var8.size() > 0) {
 			EntityLiving var9 = (EntityLiving) var8.get(0);
 			int var10 = var9 instanceof ahd ? 1 : 0;

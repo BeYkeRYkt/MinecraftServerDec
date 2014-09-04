@@ -334,7 +334,7 @@ public abstract class xn extends EntityLiving {
 				if (var2.b() == amk.i && var1.n() != null) {
 					ahd var9 = this.o.a(var1.n());
 					if (var9 != null) {
-						var9.b((tq) tl.x);
+						var9.b((PlayerStatistic) tl.x);
 					}
 				}
 

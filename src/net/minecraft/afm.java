@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public abstract class afm extends xu implements aex {
+public abstract class afm extends EntityCreature implements aex {
 
 	protected final zb a = new yp(this, new afn(this), 4.0F, 1.0D, 2.0D);
 

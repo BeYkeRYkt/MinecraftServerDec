@@ -77,8 +77,8 @@ public class aui extends atr {
 								var13 = new amj(amk.bz, 1, 0);
 								if (!var4.bg.a(var13)) {
 									var1.d((Entity) (new adw(var1, (double) var2.n() + 0.5D, (double) var2.o() + 1.5D, (double) var2.p() + 0.5D, var13)));
-								} else if (var4 instanceof qw) {
-									((qw) var4).a(var4.bh);
+								} else if (var4 instanceof EntityPlayer) {
+									((EntityPlayer) var4).a(var4.bh);
 								}
 
 								--var9.b;
@@ -110,8 +110,8 @@ public class aui extends atr {
 							} else {
 								if (!var4.bg.a(var13)) {
 									var1.d((Entity) (new adw(var1, (double) var2.n() + 0.5D, (double) var2.o() + 1.5D, (double) var2.p() + 0.5D, var13)));
-								} else if (var4 instanceof qw) {
-									((qw) var4).a(var4.bh);
+								} else if (var4 instanceof EntityPlayer) {
+									((EntityPlayer) var4).a(var4.bh);
 								}
 
 								if (!var4.by.d) {

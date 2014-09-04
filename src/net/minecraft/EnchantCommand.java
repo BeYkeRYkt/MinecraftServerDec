@@ -21,7 +21,7 @@ public class EnchantCommand extends AbstractCommand {
 		if (var2.length < 2) {
 			throw new dp("commands.enchant.usage", new Object[0]);
 		} else {
-			qw var3 = a(var1, var2[0]);
+			EntityPlayer var3 = a(var1, var2[0]);
 			var1.a(ag.d, 0);
 
 			int var4;
@@ -74,7 +74,7 @@ public class EnchantCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, this.d()) : (var2.length == 2 ? a(var2, apf.c()) : null);
 	}
 

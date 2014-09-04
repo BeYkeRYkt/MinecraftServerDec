@@ -42,7 +42,7 @@ public class TeleportCommand extends AbstractCommand {
 					aa var9 = a((double) ((Entity) var4).y, var2.length > var14 ? var2[var14++] : "~", false);
 					aa var10 = a((double) ((Entity) var4).z, var2.length > var14 ? var2[var14] : "~", false);
 					float var12;
-					if (var4 instanceof qw) {
+					if (var4 instanceof EntityPlayer) {
 						EnumSet var11 = EnumSet.noneOf(ij.class);
 						if (var6.c()) {
 							var11.add(ij.a);
@@ -80,7 +80,7 @@ public class TeleportCommand extends AbstractCommand {
 						}
 
 						((Entity) var4).a((Entity) null);
-						((qw) var4).a.a(var6.b(), var7.b(), var8.b(), var12, var13, var11);
+						((EntityPlayer) var4).a.a(var6.b(), var7.b(), var8.b(), var12, var13, var11);
 						((Entity) var4).f(var12);
 					} else {
 						float var15 = (float) uv.g(var9.a());
@@ -102,8 +102,8 @@ public class TeleportCommand extends AbstractCommand {
 					throw new di("commands.tp.notSameDimension", new Object[0]);
 				} else {
 					((Entity) var4).a((Entity) null);
-					if (var4 instanceof qw) {
-						((qw) var4).a.a(var5.s, var5.t, var5.u, var5.y, var5.z);
+					if (var4 instanceof EntityPlayer) {
+						((EntityPlayer) var4).a.a(var5.s, var5.t, var5.u, var5.y, var5.z);
 					} else {
 						((Entity) var4).b(var5.s, var5.t, var5.u, var5.y, var5.z);
 					}
@@ -114,7 +114,7 @@ public class TeleportCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length != 1 && var2.length != 2 ? null : a(var2, MinecraftServer.getInstance().I());
 	}
 

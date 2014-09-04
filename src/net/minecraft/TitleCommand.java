@@ -37,7 +37,7 @@ public class TitleCommand extends AbstractCommand {
 				}
 			}
 
-			qw var3 = a(var1, var2[0]);
+			EntityPlayer var3 = a(var1, var2[0]);
 			lk var4 = lk.a(var2[1]);
 			if (var4 != lk.d && var4 != lk.e) {
 				if (var4 == lk.c) {
@@ -78,7 +78,7 @@ public class TitleCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().I()) : (var2.length == 2 ? a(var2, lk.a()) : null);
 	}
 

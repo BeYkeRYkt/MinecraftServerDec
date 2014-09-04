@@ -1608,7 +1608,7 @@ public abstract class Entity implements CommandSenderInterface {
 		return new hr(hs.d, new hy(var1.toString()));
 	}
 
-	public boolean a(qw var1) {
+	public boolean a(EntityPlayer var1) {
 		return true;
 	}
 

@@ -193,7 +193,7 @@ public class adf extends afm implements afr {
 							this.b(var1, 0);
 						}
 					} else {
-						List var13 = this.o.a(EntityLiving.class, this.aQ().b(20.0D, 8.0D, 20.0D), Predicates.and(bp, xe.d));
+						List var13 = this.o.a(EntityLiving.class, this.aQ().b(20.0D, 8.0D, 20.0D), Predicates.and(bp, EntityPredicates.d));
 
 						for (int var16 = 0; var16 < 10 && !var13.isEmpty(); ++var16) {
 							EntityLiving var5 = (EntityLiving) var13.get(this.V.nextInt(var13.size()));
@@ -377,7 +377,7 @@ public class adf extends afm implements afr {
 
 			while (var4.hasNext()) {
 				ahd var5 = (ahd) var4.next();
-				var5.b((tq) tl.J);
+				var5.b((PlayerStatistic) tl.J);
 			}
 		}
 

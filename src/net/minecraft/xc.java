@@ -5,8 +5,8 @@ public class xc {
 	public final int a;
 	public final int b;
 	public final int c;
-	public final tq d;
-	public final tq e;
+	public final PlayerStatistic d;
+	public final PlayerStatistic e;
 
 	public xc(int var1, int var2, int var3) {
 		this.a = var1;

@@ -2,10 +2,10 @@ package net.minecraft;
 
 public class aaa extends zb {
 
-	private xu a;
+	private EntityCreature a;
 	private abh b;
 
-	public aaa(xu var1) {
+	public aaa(EntityCreature var1) {
 		this.a = var1;
 		if (!(var1.s() instanceof aay)) {
 			throw new IllegalArgumentException("Unsupported mob type for RestrictOpenDoorGoal");

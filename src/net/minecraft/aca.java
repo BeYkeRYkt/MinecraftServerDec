@@ -120,7 +120,7 @@ public class aca extends abq {
 	public void e(float var1, float var2) {
 		super.e(var1, var2);
 		if (var1 > 5.0F && this.l instanceof ahd) {
-			((ahd) this.l).b((tq) tl.u);
+			((ahd) this.l).b((PlayerStatistic) tl.u);
 		}
 
 	}

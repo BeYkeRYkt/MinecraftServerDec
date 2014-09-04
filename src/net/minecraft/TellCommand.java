@@ -26,7 +26,7 @@ public class TellCommand extends AbstractCommand {
 		if (var2.length < 2) {
 			throw new dp("commands.message.usage", new Object[0]);
 		} else {
-			qw var3 = a(var1, var2[0]);
+			EntityPlayer var3 = a(var1, var2[0]);
 			if (var3 == var1) {
 				throw new dm("commands.message.sameTarget", new Object[0]);
 			} else {
@@ -41,7 +41,7 @@ public class TellCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return a(var2, MinecraftServer.getInstance().I());
 	}
 

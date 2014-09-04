@@ -22,7 +22,7 @@ public class GameModeCommand extends AbstractCommand {
 			throw new dp("commands.gamemode.usage", new Object[0]);
 		} else {
 			arc var3 = this.h(var1, var2[0]);
-			qw var4 = var2.length >= 2 ? a(var1, var2[1]) : b(var1);
+			EntityPlayer var4 = var2.length >= 2 ? a(var1, var2[1]) : b(var1);
 			var4.a(var3);
 			var4.O = 0.0F;
 			if (var1.e().Q().b("sendCommandFeedback")) {
@@ -43,7 +43,7 @@ public class GameModeCommand extends AbstractCommand {
 		return !var2.equalsIgnoreCase(arc.b.b()) && !var2.equalsIgnoreCase("s") ? (!var2.equalsIgnoreCase(arc.c.b()) && !var2.equalsIgnoreCase("c") ? (!var2.equalsIgnoreCase(arc.d.b()) && !var2.equalsIgnoreCase("a") ? (!var2.equalsIgnoreCase(arc.e.b()) && !var2.equalsIgnoreCase("sp") ? arb.a(a(var2, 0, arc.values().length - 2)) : arc.e) : arc.d) : arc.c) : arc.b;
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, new String[] { "survival", "creative", "adventure", "spectator" }) : (var2.length == 2 ? a(var2, this.d()) : null);
 	}
 

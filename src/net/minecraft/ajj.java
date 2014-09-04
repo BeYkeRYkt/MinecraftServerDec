@@ -36,47 +36,47 @@ public class ajj extends ajk {
 
 		this.c = 0;
 		if (var1.b() == alq.a(aty.ai)) {
-			this.b.b((tq) tl.h);
+			this.b.b((PlayerStatistic) tl.h);
 		}
 
 		if (var1.b() instanceof amu) {
-			this.b.b((tq) tl.i);
+			this.b.b((PlayerStatistic) tl.i);
 		}
 
 		if (var1.b() == alq.a(aty.al)) {
-			this.b.b((tq) tl.j);
+			this.b.b((PlayerStatistic) tl.j);
 		}
 
 		if (var1.b() instanceof alo) {
-			this.b.b((tq) tl.l);
+			this.b.b((PlayerStatistic) tl.l);
 		}
 
 		if (var1.b() == amk.P) {
-			this.b.b((tq) tl.m);
+			this.b.b((PlayerStatistic) tl.m);
 		}
 
 		if (var1.b() == amk.aZ) {
-			this.b.b((tq) tl.n);
+			this.b.b((PlayerStatistic) tl.n);
 		}
 
 		if (var1.b() instanceof amu && ((amu) var1.b()).g() != ami.a) {
-			this.b.b((tq) tl.o);
+			this.b.b((PlayerStatistic) tl.o);
 		}
 
 		if (var1.b() instanceof anm) {
-			this.b.b((tq) tl.r);
+			this.b.b((PlayerStatistic) tl.r);
 		}
 
 		if (var1.b() == alq.a(aty.bC)) {
-			this.b.b((tq) tl.E);
+			this.b.b((PlayerStatistic) tl.E);
 		}
 
 		if (var1.b() == alq.a(aty.X)) {
-			this.b.b((tq) tl.G);
+			this.b.b((PlayerStatistic) tl.G);
 		}
 
 		if (var1.b() == amk.ao && var1.i() == 1) {
-			this.b.b((tq) tl.M);
+			this.b.b((PlayerStatistic) tl.M);
 		}
 
 	}

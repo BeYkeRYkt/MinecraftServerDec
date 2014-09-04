@@ -153,10 +153,10 @@ public class pk extends bsd {
 
 	public void e(bry var1) {
 		List var2 = this.d(var1);
-		Iterator var3 = this.a.an().e.iterator();
+		Iterator var3 = this.a.an().players.iterator();
 
 		while (var3.hasNext()) {
-			qw var4 = (qw) var3.next();
+			EntityPlayer var4 = (EntityPlayer) var3.next();
 			Iterator var5 = var2.iterator();
 
 			while (var5.hasNext()) {
@@ -183,10 +183,10 @@ public class pk extends bsd {
 
 	public void g(bry var1) {
 		List var2 = this.f(var1);
-		Iterator var3 = this.a.an().e.iterator();
+		Iterator var3 = this.a.an().players.iterator();
 
 		while (var3.hasNext()) {
-			qw var4 = (qw) var3.next();
+			EntityPlayer var4 = (EntityPlayer) var3.next();
 			Iterator var5 = var2.iterator();
 
 			while (var5.hasNext()) {

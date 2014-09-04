@@ -419,7 +419,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			int var4 = uv.a(this.rnd, 0, this.G() - var3.length);
 
 			for (int var5 = 0; var5 < var3.length; ++var5) {
-				var3[var5] = ((qw) this.playerList.e.get(var4 + var5)).cc();
+				var3[var5] = ((EntityPlayer) this.playerList.players.get(var4 + var5)).cc();
 			}
 
 			Collections.shuffle(Arrays.asList(var3));
@@ -698,7 +698,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return var1;
 	}
 
-	public List<String> a(CommandSenderInterface var1, String var2, dt var3) {
+	public List<String> getTabCompleteList(CommandSenderInterface var1, String var2, dt var3) {
 		ArrayList<String> var4 = Lists.newArrayList();
 		if (var2.startsWith("/")) {
 			var2 = var2.substring(1);
@@ -726,7 +726,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 			for (int var9 = 0; var9 < var8; ++var9) {
 				String var10 = var7[var9];
-				if (AbstractCommand.a(var6, var10)) {
+				if (AbstractCommand.startWith(var6, var10)) {
 					var4.add(var10);
 				}
 			}

@@ -58,11 +58,11 @@ public class aiw extends ajk {
 
 		this.b = 0;
 		if (var1.b() == amk.j) {
-			this.a.b((tq) tl.k);
+			this.a.b((PlayerStatistic) tl.k);
 		}
 
 		if (var1.b() == amk.aV) {
-			this.a.b((tq) tl.p);
+			this.a.b((PlayerStatistic) tl.p);
 		}
 
 	}

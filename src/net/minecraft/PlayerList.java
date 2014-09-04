@@ -21,20 +21,20 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class PlayerList {
 
-	public static final File a = new File("banned-players.json");
-	public static final File b = new File("banned-ips.json");
-	public static final File c = new File("ops.json");
-	public static final File d = new File("whitelist.json");
-	private static final Logger h = LogManager.getLogger();
-	private static final SimpleDateFormat i = new SimpleDateFormat("yyyy-MM-dd \'at\' HH:mm:ss z");
-	private final MinecraftServer j;
-	public final List e = Lists.newArrayList();
-	public final Map f = Maps.newHashMap();
+	public static final File bannedPlayersFile = new File("banned-players.json");
+	public static final File bannedIPsFile = new File("banned-ips.json");
+	public static final File opsFile = new File("ops.json");
+	public static final File whitelistFile = new File("whitelist.json");
 	private final sv k;
 	private final sd l;
 	private final sp m;
 	private final sx n;
-	private final Map o;
+	private static final Logger logger = LogManager.getLogger();
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd \'at\' HH:mm:ss z");
+	private final MinecraftServer minecraftserver;
+	public final List<EntityPlayer> players = Lists.newArrayList();
+	public final Map<UUID, EntityPlayer> uuidToPlayerMap = Maps.newHashMap();
+	private final Map<UUID, PlayerStatisticFile> playersStatistic = Maps.newHashMap();
 	private brl p;
 	private boolean q;
 	protected int g;
@@ -43,38 +43,37 @@ public abstract class PlayerList {
 	private boolean t;
 	private int u;
 
-	public PlayerList(MinecraftServer var1) {
-		this.k = new sv(a);
-		this.l = new sd(b);
-		this.m = new sp(c);
-		this.n = new sx(d);
-		this.o = Maps.newHashMap();
-		this.j = var1;
+	public PlayerList(MinecraftServer minecraftserver) {
+		this.minecraftserver = minecraftserver;
+		this.k = new sv(bannedPlayersFile);
+		this.l = new sd(bannedIPsFile);
+		this.m = new sp(opsFile);
+		this.n = new sx(whitelistFile);
 		this.k.a(false);
 		this.l.a(false);
 		this.g = 8;
 	}
 
-	public void a(gr var1, qw var2) {
+	public void a(gr var1, EntityPlayer var2) {
 		GameProfile var3 = var2.cc();
-		ry var4 = this.j.aD();
+		ry var4 = this.minecraftserver.aD();
 		GameProfile var5 = var4.a(var3.getId());
 		String var6 = var5 == null ? var3.getName() : var5.getName();
 		var4.a(var3);
 		NBTCompoundTag var7 = this.a(var2);
-		var2.a((World) this.j.a(var2.am));
+		var2.a((World) this.minecraftserver.a(var2.am));
 		var2.c.a((WorldServer) var2.o);
 		String var8 = "local";
 		if (var1.b() != null) {
 			var8 = var1.b().toString();
 		}
 
-		h.info(var2.d_() + "[" + var8 + "] logged in with entity id " + var2.F() + " at (" + var2.s + ", " + var2.t + ", " + var2.u + ")");
-		WorldServer var9 = this.j.a(var2.am);
+		logger.info(var2.d_() + "[" + var8 + "] logged in with entity id " + var2.F() + " at (" + var2.s + ", " + var2.t + ", " + var2.u + ")");
+		WorldServer var9 = this.minecraftserver.a(var2.am);
 		bqo var10 = var9.P();
 		dt var11 = var9.M();
-		this.a(var2, (qw) null, var9);
-		rj var12 = new rj(this.j, var1, var2);
+		this.a(var2, (EntityPlayer) null, var9);
+		rj var12 = new rj(this.minecraftserver, var1, var2);
 		var12.a((id) (new jw(var2.F(), var2.c.b(), var10.t(), var9.t.q(), var9.aa(), this.q(), var10.u(), var9.Q().b("reducedDebugInfo"))));
 		var12.a((id) (new ji("MC|Brand", (new hd(Unpooled.buffer())).a(this.c().getServerModName()))));
 		var12.a((id) (new ix(var10.y(), var10.z())));
@@ -84,7 +83,7 @@ public abstract class PlayerList {
 		var2.A().d();
 		var2.A().b(var2);
 		this.a((pk) var9.Z(), var2);
-		this.j.aF();
+		this.minecraftserver.aF();
 		hz var13;
 		if (!var2.d_().equalsIgnoreCase(var6)) {
 			var13 = new hz("multiplayer.player.joined.renamed", new Object[] { var2.e_(), var6 });
@@ -97,8 +96,8 @@ public abstract class PlayerList {
 		this.c(var2);
 		var12.a(var2.s, var2.t, var2.u, var2.y, var2.z);
 		this.b(var2, var9);
-		if (this.j.aa().length() > 0) {
-			var2.a(this.j.aa(), this.j.ab());
+		if (this.minecraftserver.aa().length() > 0) {
+			var2.a(this.minecraftserver.aa(), this.minecraftserver.ab());
 		}
 
 		Iterator var14 = var2.bk().iterator();
@@ -121,7 +120,7 @@ public abstract class PlayerList {
 
 	}
 
-	protected void a(pk var1, qw var2) {
+	protected void a(pk var1, EntityPlayer var2) {
 		HashSet var3 = Sets.newHashSet();
 		Iterator var4 = var1.g().iterator();
 
@@ -152,7 +151,7 @@ public abstract class PlayerList {
 		var1[0].af().a((bez) (new so(this)));
 	}
 
-	public void a(qw var1, WorldServer var2) {
+	public void a(EntityPlayer var1, WorldServer var2) {
 		WorldServer var3 = var1.u();
 		if (var2 != null) {
 			var2.t().c(var1);
@@ -166,13 +165,13 @@ public abstract class PlayerList {
 		return qq.b(this.t());
 	}
 
-	public NBTCompoundTag a(qw var1) {
-		NBTCompoundTag var2 = this.j.worlds[0].P().i();
+	public NBTCompoundTag a(EntityPlayer var1) {
+		NBTCompoundTag var2 = this.minecraftserver.worlds[0].P().i();
 		NBTCompoundTag var3;
-		if (var1.d_().equals(this.j.R()) && var2 != null) {
+		if (var1.d_().equals(this.minecraftserver.R()) && var2 != null) {
 			var1.f(var2);
 			var3 = var2;
-			h.debug("loading single player");
+			logger.debug("loading single player");
 		} else {
 			var3 = this.p.b(var1);
 		}
@@ -180,49 +179,49 @@ public abstract class PlayerList {
 		return var3;
 	}
 
-	protected void b(qw var1) {
+	protected void b(EntityPlayer var1) {
 		this.p.a(var1);
-		tp var2 = (tp) this.o.get(var1.aJ());
+		PlayerStatisticFile var2 = (PlayerStatisticFile) this.playersStatistic.get(var1.aJ());
 		if (var2 != null) {
-			var2.b();
+			var2.write();
 		}
 
 	}
 
-	public void c(qw var1) {
-		this.e.add(var1);
-		this.f.put(var1.aJ(), var1);
-		this.a((id) (new kh(kj.a, new qw[] { var1 })));
-		WorldServer var2 = this.j.a(var1.am);
+	public void c(EntityPlayer var1) {
+		this.players.add(var1);
+		this.uuidToPlayerMap.put(var1.aJ(), var1);
+		this.a((id) (new kh(kj.a, new EntityPlayer[] { var1 })));
+		WorldServer var2 = this.minecraftserver.a(var1.am);
 		var2.d(var1);
 		this.a(var1, (WorldServer) null);
 
-		for (int var3 = 0; var3 < this.e.size(); ++var3) {
-			qw var4 = (qw) this.e.get(var3);
-			var1.a.a((id) (new kh(kj.a, new qw[] { var4 })));
+		for (int var3 = 0; var3 < this.players.size(); ++var3) {
+			EntityPlayer var4 = (EntityPlayer) this.players.get(var3);
+			var1.a.a((id) (new kh(kj.a, new EntityPlayer[] { var4 })));
 		}
 
 	}
 
-	public void d(qw var1) {
+	public void d(EntityPlayer var1) {
 		var1.u().t().d(var1);
 	}
 
-	public void e(qw var1) {
+	public void e(EntityPlayer var1) {
 		var1.b(ty.f);
 		this.b(var1);
 		WorldServer var2 = var1.u();
 		if (var1.m != null) {
 			var2.f(var1.m);
-			h.debug("removing player mount");
+			logger.debug("removing player mount");
 		}
 
 		var2.e(var1);
 		var2.t().c(var1);
-		this.e.remove(var1);
-		this.f.remove(var1.aJ());
-		this.o.remove(var1.aJ());
-		this.a((id) (new kh(kj.e, new qw[] { var1 })));
+		this.players.remove(var1);
+		this.uuidToPlayerMap.remove(var1.aJ());
+		this.playersStatistic.remove(var1.aJ());
+		this.a((id) (new kh(kj.e, new EntityPlayer[] { var1 })));
 	}
 
 	public String a(SocketAddress var1, GameProfile var2) {
@@ -231,7 +230,7 @@ public abstract class PlayerList {
 			sw var5 = (sw) this.k.b((Object) var2);
 			var4 = "You are banned from this server!\nReason: " + var5.d();
 			if (var5.c() != null) {
-				var4 = var4 + "\nYour ban will be removed on " + i.format(var5.c());
+				var4 = var4 + "\nYour ban will be removed on " + dateFormat.format(var5.c());
 			}
 
 			return var4;
@@ -241,22 +240,22 @@ public abstract class PlayerList {
 			se var3 = this.l.b(var1);
 			var4 = "Your IP address is banned from this server!\nReason: " + var3.d();
 			if (var3.c() != null) {
-				var4 = var4 + "\nYour ban will be removed on " + i.format(var3.c());
+				var4 = var4 + "\nYour ban will be removed on " + dateFormat.format(var3.c());
 			}
 
 			return var4;
 		} else {
-			return this.e.size() >= this.g ? "The server is full!" : null;
+			return this.players.size() >= this.g ? "The server is full!" : null;
 		}
 	}
 
-	public qw f(GameProfile var1) {
+	public EntityPlayer f(GameProfile var1) {
 		UUID var2 = ahd.a(var1);
 		ArrayList var3 = Lists.newArrayList();
 
-		qw var5;
-		for (int var4 = 0; var4 < this.e.size(); ++var4) {
-			var5 = (qw) this.e.get(var4);
+		EntityPlayer var5;
+		for (int var4 = 0; var4 < this.players.size(); ++var4) {
+			var5 = (EntityPlayer) this.players.get(var4);
 			if (var5.aJ().equals(var2)) {
 				var3.add(var5);
 			}
@@ -265,46 +264,46 @@ public abstract class PlayerList {
 		Iterator var6 = var3.iterator();
 
 		while (var6.hasNext()) {
-			var5 = (qw) var6.next();
+			var5 = (EntityPlayer) var6.next();
 			var5.a.c("You logged in from another location");
 		}
 
 		Object var7;
-		if (this.j.W()) {
-			var7 = new qk(this.j.a(0));
+		if (this.minecraftserver.W()) {
+			var7 = new qk(this.minecraftserver.a(0));
 		} else {
-			var7 = new qx(this.j.a(0));
+			var7 = new qx(this.minecraftserver.a(0));
 		}
 
-		return new qw(this.j, this.j.a(0), var1, (qx) var7);
+		return new EntityPlayer(this.minecraftserver, this.minecraftserver.a(0), var1, (qx) var7);
 	}
 
-	public qw a(qw var1, int var2, boolean var3) {
+	public EntityPlayer a(EntityPlayer var1, int var2, boolean var3) {
 		var1.u().s().b(var1);
 		var1.u().s().b((Entity) var1);
 		var1.u().t().c(var1);
-		this.e.remove(var1);
-		this.j.a(var1.am).f(var1);
+		this.players.remove(var1);
+		this.minecraftserver.a(var1.am).f(var1);
 		dt var4 = var1.cg();
 		boolean var5 = var1.ch();
 		var1.am = var2;
 		Object var6;
-		if (this.j.W()) {
-			var6 = new qk(this.j.a(var1.am));
+		if (this.minecraftserver.W()) {
+			var6 = new qk(this.minecraftserver.a(var1.am));
 		} else {
-			var6 = new qx(this.j.a(var1.am));
+			var6 = new qx(this.minecraftserver.a(var1.am));
 		}
 
-		qw var7 = new qw(this.j, this.j.a(var1.am), var1.cc(), (qx) var6);
+		EntityPlayer var7 = new EntityPlayer(this.minecraftserver, this.minecraftserver.a(var1.am), var1.cc(), (qx) var6);
 		var7.a = var1.a;
 		var7.a((ahd) var1, var3);
 		var7.d(var1.F());
 		var7.o(var1);
-		WorldServer var8 = this.j.a(var1.am);
+		WorldServer var8 = this.minecraftserver.a(var1.am);
 		this.a(var7, var1, var8);
 		dt var9;
 		if (var4 != null) {
-			var9 = ahd.a(this.j.a(var1.am), var4, var5);
+			var9 = ahd.a(this.minecraftserver.a(var1.am), var4, var5);
 			if (var9 != null) {
 				var7.b((double) ((float) var9.n() + 0.5F), (double) ((float) var9.o() + 0.1F), (double) ((float) var9.p() + 0.5F), 0.0F, 0.0F);
 				var7.a(var4, var5);
@@ -327,18 +326,18 @@ public abstract class PlayerList {
 		this.b(var7, var8);
 		var8.t().a(var7);
 		var8.d(var7);
-		this.e.add(var7);
-		this.f.put(var7.aJ(), var7);
+		this.players.add(var7);
+		this.uuidToPlayerMap.put(var7.aJ(), var7);
 		var7.f_();
 		var7.h(var7.bm());
 		return var7;
 	}
 
-	public void a(qw var1, int var2) {
+	public void a(EntityPlayer var1, int var2) {
 		int var3 = var1.am;
-		WorldServer var4 = this.j.a(var1.am);
+		WorldServer var4 = this.minecraftserver.a(var1.am);
 		var1.am = var2;
-		WorldServer var5 = this.j.a(var1.am);
+		WorldServer var5 = this.minecraftserver.a(var1.am);
 		var1.a.a((id) (new kp(var1.am, var1.o.aa(), var1.o.P().u(), var1.c.b())));
 		var4.f(var1);
 		var1.I = false;
@@ -414,22 +413,22 @@ public abstract class PlayerList {
 
 	public void e() {
 		if (++this.u > 600) {
-			this.a((id) (new kh(kj.c, this.e)));
+			this.a((id) (new kh(kj.c, this.players)));
 			this.u = 0;
 		}
 
 	}
 
 	public void a(id var1) {
-		for (int var2 = 0; var2 < this.e.size(); ++var2) {
-			((qw) this.e.get(var2)).a.a(var1);
+		for (int var2 = 0; var2 < this.players.size(); ++var2) {
+			((EntityPlayer) this.players.get(var2)).a.a(var1);
 		}
 
 	}
 
 	public void a(id var1, int var2) {
-		for (int var3 = 0; var3 < this.e.size(); ++var3) {
-			qw var4 = (qw) this.e.get(var3);
+		for (int var3 = 0; var3 < this.players.size(); ++var3) {
+			EntityPlayer var4 = (EntityPlayer) this.players.get(var3);
 			if (var4.am == var2) {
 				var4.a.a(var1);
 			}
@@ -445,7 +444,7 @@ public abstract class PlayerList {
 
 			while (var5.hasNext()) {
 				String var6 = (String) var5.next();
-				qw var7 = this.a(var6);
+				EntityPlayer var7 = this.a(var6);
 				if (var7 != null && var7 != var1) {
 					var7.a(var2);
 				}
@@ -459,8 +458,8 @@ public abstract class PlayerList {
 		if (var3 == null) {
 			this.a(var2);
 		} else {
-			for (int var4 = 0; var4 < this.e.size(); ++var4) {
-				qw var5 = (qw) this.e.get(var4);
+			for (int var4 = 0; var4 < this.players.size(); ++var4) {
+				EntityPlayer var5 = (EntityPlayer) this.players.get(var4);
 				if (var5.bN() != var3) {
 					var5.a(var2);
 				}
@@ -472,32 +471,32 @@ public abstract class PlayerList {
 	public String f() {
 		String var1 = "";
 
-		for (int var2 = 0; var2 < this.e.size(); ++var2) {
+		for (int var2 = 0; var2 < this.players.size(); ++var2) {
 			if (var2 > 0) {
 				var1 = var1 + ", ";
 			}
 
-			var1 = var1 + ((qw) this.e.get(var2)).d_();
+			var1 = var1 + ((EntityPlayer) this.players.get(var2)).d_();
 		}
 
 		return var1;
 	}
 
 	public String[] g() {
-		String[] var1 = new String[this.e.size()];
+		String[] var1 = new String[this.players.size()];
 
-		for (int var2 = 0; var2 < this.e.size(); ++var2) {
-			var1[var2] = ((qw) this.e.get(var2)).d_();
+		for (int var2 = 0; var2 < this.players.size(); ++var2) {
+			var1[var2] = ((EntityPlayer) this.players.get(var2)).d_();
 		}
 
 		return var1;
 	}
 
 	public GameProfile[] h() {
-		GameProfile[] var1 = new GameProfile[this.e.size()];
+		GameProfile[] var1 = new GameProfile[this.players.size()];
 
-		for (int var2 = 0; var2 < this.e.size(); ++var2) {
-			var1[var2] = ((qw) this.e.get(var2)).cc();
+		for (int var2 = 0; var2 < this.players.size(); ++var2) {
+			var1[var2] = ((EntityPlayer) this.players.get(var2)).cc();
 		}
 
 		return var1;
@@ -512,7 +511,7 @@ public abstract class PlayerList {
 	}
 
 	public void a(GameProfile var1) {
-		this.m.a((sr) (new sq(var1, this.j.p())));
+		this.m.a((sr) (new sq(var1, this.minecraftserver.p())));
 	}
 
 	public void b(GameProfile var1) {
@@ -524,19 +523,19 @@ public abstract class PlayerList {
 	}
 
 	public boolean g(GameProfile var1) {
-		return this.m.d(var1) || this.j.S() && this.j.worlds[0].P().v() && this.j.R().equalsIgnoreCase(var1.getName()) || this.t;
+		return this.m.d(var1) || this.minecraftserver.S() && this.minecraftserver.worlds[0].P().v() && this.minecraftserver.R().equalsIgnoreCase(var1.getName()) || this.t;
 	}
 
-	public qw a(String var1) {
-		Iterator var2 = this.e.iterator();
+	public EntityPlayer a(String var1) {
+		Iterator var2 = this.players.iterator();
 
-		qw var3;
+		EntityPlayer var3;
 		do {
 			if (!var2.hasNext()) {
 				return null;
 			}
 
-			var3 = (qw) var2.next();
+			var3 = (EntityPlayer) var2.next();
 		} while (!var3.d_().equalsIgnoreCase(var1));
 
 		return var3;
@@ -547,8 +546,8 @@ public abstract class PlayerList {
 	}
 
 	public void a(ahd var1, double var2, double var4, double var6, double var8, int var10, id var11) {
-		for (int var12 = 0; var12 < this.e.size(); ++var12) {
-			qw var13 = (qw) this.e.get(var12);
+		for (int var12 = 0; var12 < this.players.size(); ++var12) {
+			EntityPlayer var13 = (EntityPlayer) this.players.get(var12);
 			if (var13 != var1 && var13.am == var10) {
 				double var14 = var2 - var13.s;
 				double var16 = var4 - var13.t;
@@ -562,8 +561,8 @@ public abstract class PlayerList {
 	}
 
 	public void k() {
-		for (int var1 = 0; var1 < this.e.size(); ++var1) {
-			this.b((qw) this.e.get(var1));
+		for (int var1 = 0; var1 < this.players.size(); ++var1) {
+			this.b((EntityPlayer) this.players.get(var1));
 		}
 
 	}
@@ -595,8 +594,8 @@ public abstract class PlayerList {
 	public void a() {
 	}
 
-	public void b(qw var1, WorldServer var2) {
-		bfb var3 = this.j.worlds[0].af();
+	public void b(EntityPlayer var1, WorldServer var2) {
+		bfb var3 = this.minecraftserver.worlds[0].af();
 		var1.a.a((id) (new kr(var3, kt.d)));
 		var1.a.a((id) (new li(var2.K(), var2.L(), var2.Q().b("doDaylightCycle"))));
 		if (var2.S()) {
@@ -607,14 +606,14 @@ public abstract class PlayerList {
 
 	}
 
-	public void f(qw var1) {
+	public void f(EntityPlayer var1) {
 		var1.a(var1.bh);
 		var1.r();
 		var1.a.a((id) (new kv(var1.bg.c)));
 	}
 
 	public int p() {
-		return this.e.size();
+		return this.players.size();
 	}
 
 	public int q() {
@@ -622,7 +621,7 @@ public abstract class PlayerList {
 	}
 
 	public String[] r() {
-		return this.j.worlds[0].O().e().f();
+		return this.minecraftserver.worlds[0].O().e().f();
 	}
 
 	public boolean s() {
@@ -635,10 +634,10 @@ public abstract class PlayerList {
 
 	public List b(String var1) {
 		ArrayList var2 = Lists.newArrayList();
-		Iterator var3 = this.e.iterator();
+		Iterator var3 = this.players.iterator();
 
 		while (var3.hasNext()) {
-			qw var4 = (qw) var3.next();
+			EntityPlayer var4 = (EntityPlayer) var3.next();
 			if (var4.w().equals(var1)) {
 				var2.add(var4);
 			}
@@ -652,14 +651,14 @@ public abstract class PlayerList {
 	}
 
 	public MinecraftServer c() {
-		return this.j;
+		return this.minecraftserver;
 	}
 
 	public NBTCompoundTag u() {
 		return null;
 	}
 
-	private void a(qw var1, qw var2, World var3) {
+	private void a(EntityPlayer var1, EntityPlayer var2, World var3) {
 		if (var2 != null) {
 			var1.c.a(var2.c.b());
 		} else if (this.s != null) {
@@ -670,14 +669,14 @@ public abstract class PlayerList {
 	}
 
 	public void v() {
-		for (int var1 = 0; var1 < this.e.size(); ++var1) {
-			((qw) this.e.get(var1)).a.c("Server closed");
+		for (int var1 = 0; var1 < this.players.size(); ++var1) {
+			((EntityPlayer) this.players.get(var1)).a.c("Server closed");
 		}
 
 	}
 
 	public void a(ho var1, boolean var2) {
-		this.j.a(var1);
+		this.minecraftserver.a(var1);
 		int var3 = var2 ? 1 : 0;
 		this.a((id) (new iz(var1, (byte) var3)));
 	}
@@ -686,11 +685,11 @@ public abstract class PlayerList {
 		this.a(var1, true);
 	}
 
-	public tp a(ahd var1) {
+	public PlayerStatisticFile getPLayerStatistic(ahd var1) {
 		UUID var2 = var1.aJ();
-		tp var3 = var2 == null ? null : (tp) this.o.get(var2);
+		PlayerStatisticFile var3 = var2 == null ? null : (PlayerStatisticFile) this.playersStatistic.get(var2);
 		if (var3 == null) {
-			File var4 = new File(this.j.a(0).O().b(), "stats");
+			File var4 = new File(this.minecraftserver.a(0).O().b(), "stats");
 			File var5 = new File(var4, var2.toString() + ".json");
 			if (!var5.exists()) {
 				File var6 = new File(var4, var1.d_() + ".json");
@@ -699,9 +698,9 @@ public abstract class PlayerList {
 				}
 			}
 
-			var3 = new tp(this.j, var5);
-			var3.a();
-			this.o.put(var2, var3);
+			var3 = new PlayerStatisticFile(this.minecraftserver, var5);
+			var3.read();
+			this.playersStatistic.put(var2, var3);
 		}
 
 		return var3;
@@ -709,8 +708,8 @@ public abstract class PlayerList {
 
 	public void a(int var1) {
 		this.r = var1;
-		if (this.j.worlds != null) {
-			WorldServer[] var2 = this.j.worlds;
+		if (this.minecraftserver.worlds != null) {
+			WorldServer[] var2 = this.minecraftserver.worlds;
 			int var3 = var2.length;
 
 			for (int var4 = 0; var4 < var3; ++var4) {
@@ -723,8 +722,8 @@ public abstract class PlayerList {
 		}
 	}
 
-	public qw a(UUID var1) {
-		return (qw) this.f.get(var1);
+	public EntityPlayer getPlayer(UUID uuid) {
+		return uuidToPlayerMap.get(uuid);
 	}
 
 }

@@ -76,7 +76,7 @@ public class yt extends zb {
 			if (var2 != null) {
 				var2.b(ty.A);
 				if (this.d instanceof abs) {
-					var2.b((tq) tl.H);
+					var2.b((PlayerStatistic) tl.H);
 				}
 			}
 

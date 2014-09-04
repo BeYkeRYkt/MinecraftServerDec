@@ -849,8 +849,8 @@ public abstract class ahd extends EntityLiving {
 							this.d(false);
 						}
 
-						if (var1 instanceof qw && var1.G) {
-							((qw) var1).a.a((id) (new kz(var1)));
+						if (var1 instanceof EntityPlayer && var1.G) {
+							((EntityPlayer) var1).a.a((id) (new kz(var1)));
 							var1.G = false;
 							var1.v = var8;
 							var1.w = var10;
@@ -866,7 +866,7 @@ public abstract class ahd extends EntityLiving {
 						}
 
 						if (var2 >= 18.0F) {
-							this.b((tq) tl.F);
+							this.b((PlayerStatistic) tl.F);
 						}
 
 						this.p(var1);
@@ -1091,14 +1091,14 @@ public abstract class ahd extends EntityLiving {
 
 	}
 
-	public void b(tq var1) {
+	public void b(PlayerStatistic var1) {
 		this.a(var1, 1);
 	}
 
-	public void a(tq var1, int var2) {
+	public void a(PlayerStatistic var1, int var2) {
 	}
 
-	public void a(tq var1) {
+	public void a(PlayerStatistic var1) {
 	}
 
 	public void bE() {
@@ -1187,7 +1187,7 @@ public abstract class ahd extends EntityLiving {
 					if (this.e == null) {
 						this.e = new dt(this);
 					} else if (this.e.c((double) uv.c(this.s), (double) uv.c(this.t), (double) uv.c(this.u)) >= 1000000.0D) {
-						this.b((tq) tl.q);
+						this.b((PlayerStatistic) tl.q);
 					}
 				} else if (this.m instanceof adu) {
 					this.a(ty.r, var7);
@@ -1224,7 +1224,7 @@ public abstract class ahd extends EntityLiving {
 
 	public void a(EntityLiving var1) {
 		if (var1 instanceof aex) {
-			this.b((tq) tl.s);
+			this.b((PlayerStatistic) tl.s);
 		}
 
 		xc var2 = (xc) xb.a.get(Integer.valueOf(xb.a(var1)));

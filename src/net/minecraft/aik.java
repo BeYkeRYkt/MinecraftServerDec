@@ -19,7 +19,7 @@ class aik extends ajk {
 
 	public void a(ahd var1, amj var2) {
 		if (var2.b() == amk.bz && var2.i() > 0) {
-			this.a.b((tq) tl.B);
+			this.a.b((PlayerStatistic) tl.B);
 		}
 
 		super.a(var1, var2);

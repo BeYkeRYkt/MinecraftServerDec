@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public abstract class ws extends xu {
+public abstract class ws extends EntityCreature {
 
 	protected int a;
 	protected int b;

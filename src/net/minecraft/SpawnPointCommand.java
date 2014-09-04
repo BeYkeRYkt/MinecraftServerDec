@@ -21,7 +21,7 @@ public class SpawnPointCommand extends AbstractCommand {
 		if (var2.length > 0 && var2.length < 4) {
 			throw new dp("commands.spawnpoint.usage", new Object[0]);
 		} else {
-			qw var3 = var2.length > 0 ? a(var1, var2[0]) : b(var1);
+			EntityPlayer var3 = var2.length > 0 ? a(var1, var2[0]) : b(var1);
 			dt var4 = var2.length > 3 ? a(var1, var2, 1, true) : var3.c();
 			if (var3.o != null) {
 				var3.a(var4, true);
@@ -31,7 +31,7 @@ public class SpawnPointCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().I()) : (var2.length > 1 && var2.length <= 4 ? a(var2, 1, var3) : null);
 	}
 

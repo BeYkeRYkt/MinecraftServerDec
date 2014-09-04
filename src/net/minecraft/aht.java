@@ -17,8 +17,8 @@ public class aht extends ahr {
 		}
 
 		if (!this.o.D) {
-			if (var2 instanceof qw) {
-				qw var5 = (qw) var2;
+			if (var2 instanceof EntityPlayer) {
+				EntityPlayer var5 = (EntityPlayer) var2;
 				if (var5.a.a().g() && var5.o == this.o && !var5.bI()) {
 					if (this.V.nextFloat() < 0.05F && this.o.Q().b("doMobSpawning")) {
 						aew var4 = new aew(this.o);

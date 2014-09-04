@@ -78,7 +78,7 @@ public class HelpCommand extends AbstractCommand {
 		return MinecraftServer.getInstance().getCommandHandler().a();
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		if (var2.length == 1) {
 			Set var4 = this.d().keySet();
 			return a(var2, (String[]) var4.toArray(new String[var4.size()]));

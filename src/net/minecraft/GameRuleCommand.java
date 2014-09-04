@@ -50,17 +50,17 @@ public class GameRuleCommand extends AbstractCommand {
 	public static void a(aqq var0, String var1) {
 		if ("reducedDebugInfo".equals(var1)) {
 			int var2 = var0.b(var1) ? 22 : 23;
-			Iterator var3 = MinecraftServer.getInstance().an().e.iterator();
+			Iterator var3 = MinecraftServer.getInstance().an().players.iterator();
 
 			while (var3.hasNext()) {
-				qw var4 = (qw) var3.next();
+				EntityPlayer var4 = (EntityPlayer) var3.next();
 				var4.a.a((id) (new jk(var4, (byte) var2)));
 			}
 		}
 
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		if (var2.length == 1) {
 			return a(var2, this.d().b());
 		} else {

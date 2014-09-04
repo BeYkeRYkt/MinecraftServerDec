@@ -29,7 +29,7 @@ public abstract class AbstractCommand implements CommandInterface {
 		return var1.a(this.a(), this.getName());
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return null;
 	}
 
@@ -120,19 +120,19 @@ public abstract class AbstractCommand implements CommandInterface {
 		}
 	}
 
-	public static qw b(CommandSenderInterface var0) throws dm {
-		if (var0 instanceof qw) {
-			return (qw) var0;
+	public static EntityPlayer b(CommandSenderInterface var0) throws dm {
+		if (var0 instanceof EntityPlayer) {
+			return (EntityPlayer) var0;
 		} else {
 			throw new dm("You must specify which player you wish to perform this action on.", new Object[0]);
 		}
 	}
 
-	public static qw a(CommandSenderInterface var0, String var1) throws dm {
-		qw var2 = ah.a(var0, var1);
+	public static EntityPlayer a(CommandSenderInterface var0, String var1) throws dm {
+		EntityPlayer var2 = ah.a(var0, var1);
 		if (var2 == null) {
 			try {
-				var2 = MinecraftServer.getInstance().an().a(UUID.fromString(var1));
+				var2 = MinecraftServer.getInstance().an().getPlayer(UUID.fromString(var1));
 			} catch (IllegalArgumentException var4) {
 				;
 			}
@@ -165,7 +165,7 @@ public abstract class AbstractCommand implements CommandInterface {
 				UUID var5 = UUID.fromString(var1);
 				var3 = var4.a(var5);
 				if (var3 == null) {
-					var3 = var4.an().a(var5);
+					var3 = var4.an().getPlayer(var5);
 				}
 			} catch (IllegalArgumentException var6) {
 				throw new dj("commands.generic.entity.invalidUuid", new Object[0]);
@@ -414,8 +414,8 @@ public abstract class AbstractCommand implements CommandInterface {
 		}
 	}
 
-	public static boolean a(String var0, String var1) {
-		return var1.regionMatches(true, 0, var0, 0, var0.length());
+	public static boolean startWith(String part, String full) {
+		return full.regionMatches(true, 0, part, 0, part.length());
 	}
 
 	public static List a(String[] var0, String... var1) {
@@ -430,7 +430,7 @@ public abstract class AbstractCommand implements CommandInterface {
 
 			while (var4.hasNext()) {
 				String var5 = (String) var4.next();
-				if (a(var2, var5)) {
+				if (startWith(var2, var5)) {
 					var3.add(var5);
 				}
 			}
@@ -440,7 +440,7 @@ public abstract class AbstractCommand implements CommandInterface {
 
 				while (var4.hasNext()) {
 					Object var6 = var4.next();
-					if (var6 instanceof oa && a(var2, ((oa) var6).a())) {
+					if (var6 instanceof oa && startWith(var2, ((oa) var6).a())) {
 						var3.add(String.valueOf(var6));
 					}
 				}

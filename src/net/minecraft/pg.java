@@ -13,7 +13,7 @@ public class pg implements Callable {
 	}
 
 	public String a() {
-		return MinecraftServer.a(this.a).p() + " / " + MinecraftServer.a(this.a).q() + "; " + MinecraftServer.a(this.a).e;
+		return MinecraftServer.a(this.a).p() + " / " + MinecraftServer.a(this.a).q() + "; " + MinecraftServer.a(this.a).players;
 	}
 
 	// $FF: synthetic method

@@ -22,7 +22,7 @@ class qr {
 		var1.a().b.c(var2, var3);
 	}
 
-	public void a(qw var1) {
+	public void a(EntityPlayer var1) {
 		if (this.b.contains(var1)) {
 			qq.c().debug("Failed to add player. {} already is in chunk {}, {}", new Object[] { var1, Integer.valueOf(this.c.a), Integer.valueOf(this.c.b) });
 		} else {
@@ -35,7 +35,7 @@ class qr {
 		}
 	}
 
-	public void b(qw var1) {
+	public void b(EntityPlayer var1) {
 		if (this.b.contains(var1)) {
 			bfh var2 = qq.a(this.a).a(this.c.a, this.c.b);
 			if (var2.i()) {
@@ -90,7 +90,7 @@ class qr {
 
 	public void a(id var1) {
 		for (int var2 = 0; var2 < this.b.size(); ++var2) {
-			qw var3 = (qw) this.b.get(var2);
+			EntityPlayer var3 = (EntityPlayer) this.b.get(var2);
 			if (!var3.f.contains(this.c)) {
 				var3.a.a(var1);
 			}

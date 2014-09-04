@@ -34,7 +34,7 @@ public class BanIPCommand extends AbstractCommand {
 			if (var4.matches()) {
 				this.a(var1, var2[0], var3 == null ? null : var3.c());
 			} else {
-				qw var5 = MinecraftServer.getInstance().an().a(var2[0]);
+				EntityPlayer var5 = MinecraftServer.getInstance().an().a(var2[0]);
 				if (var5 == null) {
 					throw new dm("commands.banip.invalid", new Object[0]);
 				}
@@ -47,7 +47,7 @@ public class BanIPCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().I()) : null;
 	}
 
@@ -58,9 +58,9 @@ public class BanIPCommand extends AbstractCommand {
 		String[] var6 = new String[var5.size()];
 		int var7 = 0;
 
-		qw var9;
+		EntityPlayer var9;
 		for (Iterator var8 = var5.iterator(); var8.hasNext(); var6[var7++] = var9.d_()) {
-			var9 = (qw) var8.next();
+			var9 = (EntityPlayer) var8.next();
 			var9.a.c("You have been IP banned.");
 		}
 

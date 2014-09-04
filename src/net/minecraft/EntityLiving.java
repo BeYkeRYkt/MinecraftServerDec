@@ -179,7 +179,7 @@ public abstract class EntityLiving extends Entity {
 			--this.as;
 		}
 
-		if (this.Z > 0 && !(this instanceof qw)) {
+		if (this.Z > 0 && !(this instanceof EntityPlayer)) {
 			--this.Z;
 		}
 

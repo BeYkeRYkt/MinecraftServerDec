@@ -3,7 +3,7 @@ package net.minecraft;
 public class zk extends zb {
 
 	World a;
-	protected xu b;
+	protected EntityCreature b;
 	int c;
 	double d;
 	boolean e;
@@ -14,12 +14,12 @@ public class zk extends zb {
 	private double j;
 	private double k;
 
-	public zk(xu var1, Class var2, double var3, boolean var5) {
+	public zk(EntityCreature var1, Class var2, double var3, boolean var5) {
 		this(var1, var3, var5);
 		this.g = var2;
 	}
 
-	public zk(xu var1, double var2, boolean var4) {
+	public zk(EntityCreature var1, double var2, boolean var4) {
 		this.b = var1;
 		this.a = var1.o;
 		this.d = var2;

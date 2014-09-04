@@ -23,7 +23,7 @@ public class TellRawCommand extends AbstractCommand {
 		if (var2.length < 2) {
 			throw new dp("commands.tellraw.usage", new Object[0]);
 		} else {
-			qw var3 = a(var1, var2[0]);
+			EntityPlayer var3 = a(var1, var2[0]);
 			String var4 = a(var2, 1);
 
 			try {
@@ -36,7 +36,7 @@ public class TellRawCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().I()) : null;
 	}
 

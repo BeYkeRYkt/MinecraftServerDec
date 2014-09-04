@@ -102,8 +102,8 @@ public class afw extends afm implements afr {
 
 	public void ak() {
 		super.ak();
-		if (this.m instanceof xu) {
-			xu var1 = (xu) this.m;
+		if (this.m instanceof EntityCreature) {
+			EntityCreature var1 = (EntityCreature) this.m;
 			this.aG = var1.aG;
 		}
 
@@ -116,7 +116,7 @@ public class afw extends afm implements afr {
 			double var3 = var2.s - this.s;
 			double var5 = var2.u - this.u;
 			if (var3 * var3 + var5 * var5 >= 2500.0D) {
-				var2.b((tq) tl.v);
+				var2.b((PlayerStatistic) tl.v);
 			}
 		} else if (var1.j() instanceof aep && ((aep) var1.j()).n() && ((aep) var1.j()).cn()) {
 			((aep) var1.j()).co();

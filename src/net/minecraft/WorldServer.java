@@ -712,7 +712,7 @@ public class WorldServer extends World implements vn {
 		while (var12.hasNext()) {
 			ahd var13 = (ahd) var12.next();
 			if (var13.e(var2, var4, var6) < 4096.0D) {
-				((qw) var13).a.a((id) (new jm(var2, var4, var6, var8, var11.e(), (brw) var11.b().get(var13))));
+				((EntityPlayer) var13).a.a((id) (new jm(var2, var4, var6, var8, var11.e(), (brw) var11.b().get(var13))));
 			}
 		}
 
@@ -814,7 +814,7 @@ public class WorldServer extends World implements vn {
 		ju var19 = new ju(var1, var2, (float) var3, (float) var5, (float) var7, (float) var10, (float) var12, (float) var14, (float) var16, var9, var18);
 
 		for (int var20 = 0; var20 < this.j.size(); ++var20) {
-			qw var21 = (qw) this.j.get(var20);
+			EntityPlayer var21 = (EntityPlayer) this.j.get(var20);
 			dt var22 = var21.c();
 			double var23 = var22.c(var3, var5, var7);
 			if (var23 <= 256.0D || var2 && var23 <= 65536.0D) {

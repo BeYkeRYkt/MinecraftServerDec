@@ -18,7 +18,7 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class qw extends ahd implements ail {
+public class EntityPlayer extends ahd implements ail {
 
 	private static final Logger bF = LogManager.getLogger();
 	private String bG = "en_US";
@@ -29,7 +29,7 @@ public class qw extends ahd implements ail {
 	public double e;
 	public final List f = Lists.newLinkedList();
 	private final List bH = Lists.newLinkedList();
-	private final tp bI;
+	private final PlayerStatisticFile bI;
 	private float bJ = Float.MIN_VALUE;
 	private float bK = -1.0E8F;
 	private int bL = -99999999;
@@ -45,7 +45,7 @@ public class qw extends ahd implements ail {
 	public int h;
 	public boolean i;
 
-	public qw(MinecraftServer var1, WorldServer var2, GameProfile var3, qx var4) {
+	public EntityPlayer(MinecraftServer var1, WorldServer var2, GameProfile var3, qx var4) {
 		super(var2, var3);
 		var4.b = this;
 		this.c = var4;
@@ -65,7 +65,7 @@ public class qw extends ahd implements ail {
 		}
 
 		this.b = var1;
-		this.bI = var1.an().a((ahd) this);
+		this.bI = var1.an().getPLayerStatistic((ahd) this);
 		this.S = 0.0F;
 		this.a(var5, 0.0F, 0.0F);
 
@@ -255,7 +255,7 @@ public class qw extends ahd implements ail {
 	protected void h_() {
 		arm var1 = this.o.b(new dt(uv.c(this.s), 0, uv.c(this.u)));
 		String var2 = var1.ah;
-		ua var3 = (ua) this.A().b((tq) tl.L);
+		ua var3 = (ua) this.A().b((PlayerStatistic) tl.L);
 		if (var3 == null) {
 			var3 = (ua) this.A().a(tl.L, new ua());
 		}
@@ -282,7 +282,7 @@ public class qw extends ahd implements ail {
 			}
 
 			if (var4.isEmpty()) {
-				this.b((tq) tl.L);
+				this.b((PlayerStatistic) tl.L);
 			}
 		}
 
@@ -367,13 +367,13 @@ public class qw extends ahd implements ail {
 
 	public void c(int var1) {
 		if (this.am == 1 && var1 == 1) {
-			this.b((tq) tl.D);
+			this.b((PlayerStatistic) tl.D);
 			this.o.e((Entity) this);
 			this.i = true;
 			this.a.a((id) (new jo(4, 0.0F)));
 		} else {
 			if (this.am == 0 && var1 == 1) {
-				this.b((tq) tl.C);
+				this.b((PlayerStatistic) tl.C);
 				dt var2 = this.b.a(var1).m();
 				if (var2 != null) {
 					this.a.a((double) var2.n(), (double) var2.o(), (double) var2.p(), 0.0F, 0.0F);
@@ -381,7 +381,7 @@ public class qw extends ahd implements ail {
 
 				var1 = 1;
 			} else {
-				this.b((tq) tl.y);
+				this.b((PlayerStatistic) tl.y);
 			}
 
 			this.b.an().a(this, var1);
@@ -392,7 +392,7 @@ public class qw extends ahd implements ail {
 
 	}
 
-	public boolean a(qw var1) {
+	public boolean a(EntityPlayer var1) {
 		return var1.v() ? this.C() == this : (this.v() ? false : super.a(var1));
 	}
 
@@ -607,7 +607,7 @@ public class qw extends ahd implements ail {
 
 	}
 
-	public void a(tq var1, int var2) {
+	public void a(PlayerStatistic var1, int var2) {
 		if (var1 != null) {
 			this.bI.b(this, var1, var2);
 			Iterator var3 = this.co().a(var1.k()).iterator();
@@ -624,7 +624,7 @@ public class qw extends ahd implements ail {
 		}
 	}
 
-	public void a(tq var1) {
+	public void a(PlayerStatistic var1) {
 		if (var1 != null) {
 			this.bI.a(this, var1, 0);
 			Iterator var2 = this.co().a(var1.k()).iterator();
@@ -678,7 +678,7 @@ public class qw extends ahd implements ail {
 		this.bN = -1;
 		this.bK = -1.0F;
 		this.bL = -1;
-		this.bH.addAll(((qw) var1).bH);
+		this.bH.addAll(((EntityPlayer) var1).bH);
 	}
 
 	protected void a(wq var1) {
@@ -785,7 +785,7 @@ public class qw extends ahd implements ail {
 		this.bR = MinecraftServer.getCurrentMillis();
 	}
 
-	public tp A() {
+	public PlayerStatisticFile A() {
 		return this.bI;
 	}
 

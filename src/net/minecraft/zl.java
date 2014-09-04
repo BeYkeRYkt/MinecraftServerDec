@@ -2,12 +2,12 @@ package net.minecraft;
 
 public class zl extends zb {
 
-	private xu a;
+	private EntityCreature a;
 	private abh b;
 	private int c = -1;
 	private int d = -1;
 
-	public zl(xu var1) {
+	public zl(EntityCreature var1) {
 		this.a = var1;
 		this.a(1);
 	}

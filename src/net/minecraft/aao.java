@@ -1,8 +1,11 @@
 package net.minecraft;
 
 import com.google.common.base.Predicate;
+
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,17 +14,24 @@ public class aao extends zb {
 	private static final Logger a = LogManager.getLogger();
 	private xn b;
 	private final Predicate c;
-	private final aas d;
+	private final Comparator<Entity> d;
 	private EntityLiving e;
 
 	public aao(xn var1) {
 		this.b = var1;
-		if (var1 instanceof xu) {
+		if (var1 instanceof EntityCreature) {
 			a.warn("Use NearestAttackableTargetGoal.class for PathfinerMob mobs!");
 		}
 
 		this.c = new aap(this);
-		this.d = new aas(var1);
+		this.d = new Comparator<Entity>() {
+			@Override
+			public int compare(Entity entity1, Entity entity2) {
+				double var3 = b.h(entity1);
+				double var5 = b.h(entity2);
+				return var3 < var5 ? -1 : (var3 > var5 ? 1 : 0);
+			}
+		};
 	}
 
 	public boolean a() {
@@ -49,7 +59,7 @@ public class aao extends zb {
 				return false;
 			} else {
 				double var4 = this.f();
-				return this.b.h(var1) > var4 * var4 ? false : !(var1 instanceof qw) || !((qw) var1).c.d();
+				return this.b.h(var1) > var4 * var4 ? false : !(var1 instanceof EntityPlayer) || !((EntityPlayer) var1).c.d();
 			}
 		}
 	}

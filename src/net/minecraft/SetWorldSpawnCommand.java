@@ -34,7 +34,7 @@ public class SetWorldSpawnCommand extends AbstractCommand {
 		a(var1, this, "commands.setworldspawn.success", new Object[] { Integer.valueOf(var3.n()), Integer.valueOf(var3.o()), Integer.valueOf(var3.p()) });
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length > 0 && var2.length <= 3 ? a(var2, 0, var3) : null;
 	}
 }

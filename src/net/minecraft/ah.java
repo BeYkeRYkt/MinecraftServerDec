@@ -23,8 +23,8 @@ public class ah {
 	private static final Pattern c = Pattern.compile("\\G(\\w+)=([-!]?[\\w-]*)(?:$|,)");
 	private static final Set d = Sets.newHashSet((Object[]) (new String[] { "x", "y", "z", "dx", "dy", "dz", "rm", "r" }));
 
-	public static qw a(CommandSenderInterface var0, String var1) {
-		return (qw) a(var0, var1, qw.class);
+	public static EntityPlayer a(CommandSenderInterface var0, String var1) {
+		return (EntityPlayer) a(var0, var1, EntityPlayer.class);
 	}
 
 	public static Entity a(CommandSenderInterface var0, String var1, Class var2) {
@@ -234,7 +234,7 @@ public class ah {
 		int var12 = a(var0, "dz", 0);
 		int var13 = a(var0, "r", -1);
 		Predicate var14 = Predicates.and((Iterable) var2);
-		Predicate var15 = Predicates.and(xe.a, var14);
+		Predicate var15 = Predicates.and(EntityPredicates.a, var14);
 		if (var5 != null) {
 			int var16 = var4.j.size();
 			int var17 = var4.f.size();

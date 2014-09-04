@@ -5,13 +5,13 @@ import com.google.common.base.Predicate;
 class av implements Predicate {
 
 	// $FF: synthetic field
-	final qw a;
+	final EntityPlayer a;
 	// $FF: synthetic field
-	final tq b;
+	final PlayerStatistic b;
 	// $FF: synthetic field
 	final AchievmentCommand c;
 
-	av(AchievmentCommand var1, qw var2, tq var3) {
+	av(AchievmentCommand var1, EntityPlayer var2, PlayerStatistic var3) {
 		this.c = var1;
 		this.a = var2;
 		this.b = var3;

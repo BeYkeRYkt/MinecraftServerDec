@@ -23,7 +23,7 @@ public class rj implements ls, pm {
 	private static final Logger c = LogManager.getLogger();
 	public final gr a;
 	private final MinecraftServer d;
-	public qw b;
+	public EntityPlayer b;
 	private int e;
 	private int f;
 	private int g;
@@ -39,7 +39,7 @@ public class rj implements ls, pm {
 	private double q;
 	private boolean r = true;
 
-	public rj(MinecraftServer var1, gr var2, qw var3) {
+	public rj(MinecraftServer var1, gr var2, EntityPlayer var3) {
 		this.d = var1;
 		this.a = var2;
 		var2.a((hg) this);
@@ -646,7 +646,7 @@ public class rj implements ls, pm {
 				this.b.A().a(this.b);
 				break;
 			case 3:
-				this.b.b((tq) tl.f);
+				this.b.b((PlayerStatistic) tl.f);
 		}
 
 	}
@@ -799,7 +799,7 @@ public class rj implements ls, pm {
 	public void a(lt var1) {
 		ig.a(var1, this, this.b.u());
 		ArrayList var2 = Lists.newArrayList();
-		Iterator var3 = this.d.a((CommandSenderInterface) this.b, var1.a(), var1.b()).iterator();
+		Iterator var3 = this.d.getTabCompleteList((CommandSenderInterface) this.b, var1.a(), var1.b()).iterator();
 
 		while (var3.hasNext()) {
 			String var4 = (String) var3.next();

@@ -84,7 +84,7 @@ public class qq {
 
 	}
 
-	public void a(qw var1) {
+	public void a(EntityPlayer var1) {
 		int var2 = (int) var1.s >> 4;
 		int var3 = (int) var1.u >> 4;
 		var1.d = var1.s;
@@ -100,7 +100,7 @@ public class qq {
 		this.b(var1);
 	}
 
-	public void b(qw var1) {
+	public void b(EntityPlayer var1) {
 		ArrayList var2 = Lists.newArrayList((Iterable) var1.f);
 		int var3 = 0;
 		int var4 = this.g;
@@ -143,7 +143,7 @@ public class qq {
 
 	}
 
-	public void c(qw var1) {
+	public void c(EntityPlayer var1) {
 		int var2 = (int) var1.d >> 4;
 		int var3 = (int) var1.e >> 4;
 
@@ -165,7 +165,7 @@ public class qq {
 		return var6 >= -var5 && var6 <= var5 ? var7 >= -var5 && var7 <= var5 : false;
 	}
 
-	public void d(qw var1) {
+	public void d(EntityPlayer var1) {
 		int var2 = (int) var1.s >> 4;
 		int var3 = (int) var1.u >> 4;
 		double var4 = var1.d - var1.s;
@@ -200,7 +200,7 @@ public class qq {
 		}
 	}
 
-	public boolean a(qw var1, int var2, int var3) {
+	public boolean a(EntityPlayer var1, int var2, int var3) {
 		qr var4 = this.a(var2, var3, false);
 		return var4 != null && qr.b(var4).contains(var1) && !var1.f.contains(qr.a(var4));
 	}
@@ -213,7 +213,7 @@ public class qq {
 			Iterator var4 = var3.iterator();
 
 			while (var4.hasNext()) {
-				qw var5 = (qw) var4.next();
+				EntityPlayer var5 = (EntityPlayer) var4.next();
 				int var6 = (int) var5.s >> 4;
 				int var7 = (int) var5.u >> 4;
 				int var8;

@@ -19,7 +19,7 @@ public class KickCommand extends AbstractCommand {
 
 	public void a(CommandSenderInterface var1, String[] var2) throws dm, dp {
 		if (var2.length > 0 && var2[0].length() > 1) {
-			qw var3 = MinecraftServer.getInstance().an().a(var2[0]);
+			EntityPlayer var3 = MinecraftServer.getInstance().an().a(var2[0]);
 			String var4 = "Kicked by an operator.";
 			boolean var5 = false;
 			if (var3 == null) {
@@ -43,7 +43,7 @@ public class KickCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length >= 1 ? a(var2, MinecraftServer.getInstance().I()) : null;
 	}
 }

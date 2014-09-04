@@ -18,7 +18,7 @@ public class ClearCommand extends AbstractCommand {
 	}
 
 	public void a(CommandSenderInterface var1, String[] var2) throws di {
-		qw var3 = var2.length == 0 ? b(var1) : a(var1, var2[0]);
+		EntityPlayer var3 = var2.length == 0 ? b(var1) : a(var1, var2[0]);
 		alq var4 = var2.length >= 2 ? f(var1, var2[1]) : null;
 		int var5 = var2.length >= 3 ? a(var2[2], -1) : -1;
 		int var6 = var2.length >= 4 ? a(var2[3], -1) : -1;
@@ -54,7 +54,7 @@ public class ClearCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, this.d()) : (var2.length == 2 ? a(var2, alq.e.c()) : null);
 	}
 

@@ -223,8 +223,8 @@ public class ahj extends Entity implements aho {
 								aph.b((EntityLiving) this.c, var27);
 							}
 
-							if (this.c != null && var6.d != this.c && var6.d instanceof ahd && this.c instanceof qw) {
-								((qw) this.c).a.a((id) (new jo(6, 0.0F)));
+							if (this.c != null && var6.d != this.c && var6.d instanceof ahd && this.c instanceof EntityPlayer) {
+								((EntityPlayer) this.c).a.a((id) (new jo(6, 0.0F)));
 							}
 						}
 

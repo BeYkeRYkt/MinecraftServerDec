@@ -83,7 +83,7 @@ public class cl extends ab implements y {
 		var8.b().a(FormattingCode.h);
 		var8.b().b(Boolean.valueOf(true));
 		if (var6) {
-			Iterator var9 = var7.an().e.iterator();
+			Iterator var9 = var7.an().players.iterator();
 
 			while (var9.hasNext()) {
 				ahd var10 = (ahd) var9.next();

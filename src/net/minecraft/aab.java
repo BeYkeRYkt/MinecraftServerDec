@@ -2,9 +2,9 @@ package net.minecraft;
 
 public class aab extends zb {
 
-	private xu a;
+	private EntityCreature a;
 
-	public aab(xu var1) {
+	public aab(EntityCreature var1) {
 		this.a = var1;
 	}
 

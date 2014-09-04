@@ -143,7 +143,7 @@ public class bck extends bdf implements pm, vq {
 
 			while (var13.hasNext()) {
 				ahd var15 = (ahd) var13.next();
-				var15.b((tq) tl.K);
+				var15.b((PlayerStatistic) tl.K);
 			}
 		}
 

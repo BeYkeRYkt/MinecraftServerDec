@@ -2,13 +2,13 @@ package net.minecraft;
 
 public class zu extends zb {
 
-	private xu b;
+	private EntityCreature b;
 	protected double a;
 	private double c;
 	private double d;
 	private double e;
 
-	public zu(xu var1, double var2) {
+	public zu(EntityCreature var1, double var2) {
 		this.b = var1;
 		this.a = var2;
 		this.a(1);

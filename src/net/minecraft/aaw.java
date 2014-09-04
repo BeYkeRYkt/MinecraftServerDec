@@ -4,18 +4,18 @@ import org.apache.commons.lang3.StringUtils;
 
 public abstract class aaw extends zb {
 
-	protected final xu e;
+	protected final EntityCreature e;
 	protected boolean f;
 	private boolean a;
 	private int b;
 	private int c;
 	private int d;
 
-	public aaw(xu var1, boolean var2) {
+	public aaw(EntityCreature var1, boolean var2) {
 		this(var1, var2, false);
 	}
 
-	public aaw(xu var1, boolean var2, boolean var3) {
+	public aaw(EntityCreature var1, boolean var2, boolean var3) {
 		this.e = var1;
 		this.f = var2;
 		this.a = var3;

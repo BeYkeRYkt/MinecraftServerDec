@@ -88,7 +88,7 @@ public class SetBlockCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length > 0 && var2.length <= 3 ? a(var2, 0, var3) : (var2.length == 4 ? a(var2, atr.c.c()) : (var2.length == 6 ? a(var2, new String[] { "replace", "destroy", "keep" }) : null));
 	}
 }

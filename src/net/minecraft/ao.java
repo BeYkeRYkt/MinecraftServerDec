@@ -12,10 +12,10 @@ final class ao implements Predicate {
 	}
 
 	public boolean a(Entity var1) {
-		if (!(var1 instanceof qw)) {
+		if (!(var1 instanceof EntityPlayer)) {
 			return false;
 		} else {
-			qw var2 = (qw) var1;
+			EntityPlayer var2 = (EntityPlayer) var1;
 			return var2.c.b().a() == this.a;
 		}
 	}

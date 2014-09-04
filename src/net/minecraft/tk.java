@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class tk extends tq {
+public class tk extends PlayerStatistic {
 
 	public int a;
 	public int b;
@@ -77,17 +77,17 @@ public class tk extends tq {
 	}
 
 	// $FF: synthetic method
-	public tq b(Class var1) {
+	public PlayerStatistic b(Class var1) {
 		return this.a(var1);
 	}
 
 	// $FF: synthetic method
-	public tq h() {
+	public PlayerStatistic h() {
 		return this.c();
 	}
 
 	// $FF: synthetic method
-	public tq i() {
+	public PlayerStatistic i() {
 		return this.a();
 	}
 }

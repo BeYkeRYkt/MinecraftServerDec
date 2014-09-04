@@ -339,7 +339,7 @@ public class agj extends afm {
 			if (var4.a) {
 				this.l(true);
 				if ((double) this.o.s.nextFloat() < 0.05D) {
-					List var5 = this.o.a(abr.class, this.aQ().b(5.0D, 3.0D, 5.0D), xe.b);
+					List var5 = this.o.a(abr.class, this.aQ().b(5.0D, 3.0D, 5.0D), EntityPredicates.b);
 					if (!var5.isEmpty()) {
 						abr var6 = (abr) var5.get(0);
 						var6.l(true);

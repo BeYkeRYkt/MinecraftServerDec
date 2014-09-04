@@ -37,7 +37,7 @@ public class afa extends xl implements aex {
 			return false;
 		} else if ("fireball".equals(var1.p()) && var1.j() instanceof ahd) {
 			super.a(var1, 1000.0F);
-			((ahd) var1.j()).b((tq) tl.z);
+			((ahd) var1.j()).b((PlayerStatistic) tl.z);
 			return true;
 		} else {
 			return super.a(var1, var2);

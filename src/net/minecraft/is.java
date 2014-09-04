@@ -25,7 +25,7 @@ public class is implements id<ik> {
 		this.a = Maps.newHashMap();
 
 		for (int var3 = 0; var3 < var2; ++var3) {
-			tq var4 = ty.a(var1.c(32767));
+			PlayerStatistic var4 = ty.a(var1.c(32767));
 			int var5 = var1.e();
 			if (var4 != null) {
 				this.a.put(var4, Integer.valueOf(var5));
@@ -40,7 +40,7 @@ public class is implements id<ik> {
 
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
-			var1.a(((tq) var3.getKey()).e);
+			var1.a(((PlayerStatistic) var3.getKey()).e);
 			var1.b(((Integer) var3.getValue()).intValue());
 		}
 

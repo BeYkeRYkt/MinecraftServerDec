@@ -134,7 +134,7 @@ public class WorldBorderCommand extends AbstractCommand {
 		return MinecraftServer.getInstance().worlds[0].af();
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, new String[] { "set", "center", "damage", "warning", "add", "get" }) : (var2.length == 2 && var2[0].equals("damage") ? a(var2, new String[] { "buffer", "amount" }) : (var2.length == 2 && var2[0].equals("warning") ? a(var2, new String[] { "time", "distance" }) : null));
 	}
 }

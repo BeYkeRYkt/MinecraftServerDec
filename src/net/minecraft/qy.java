@@ -83,7 +83,7 @@ public class qy {
 
 				while (var5.hasNext()) {
 					ahd var6 = (ahd) var5.next();
-					qw var7 = (qw) var6;
+					EntityPlayer var7 = (EntityPlayer) var6;
 					var4.a(var7, var3);
 					id var8 = amk.bd.c(var3, this.a.o, var7);
 					if (var8 != null) {
@@ -214,7 +214,7 @@ public class qy {
 		Iterator var2 = this.o.iterator();
 
 		while (var2.hasNext()) {
-			qw var3 = (qw) var2.next();
+			EntityPlayer var3 = (EntityPlayer) var2.next();
 			var3.a.a(var1);
 		}
 
@@ -222,8 +222,8 @@ public class qy {
 
 	public void b(id var1) {
 		this.a(var1);
-		if (this.a instanceof qw) {
-			((qw) this.a).a.a(var1);
+		if (this.a instanceof EntityPlayer) {
+			((EntityPlayer) this.a).a.a(var1);
 		}
 
 	}
@@ -232,13 +232,13 @@ public class qy {
 		Iterator var1 = this.o.iterator();
 
 		while (var1.hasNext()) {
-			qw var2 = (qw) var1.next();
+			EntityPlayer var2 = (EntityPlayer) var1.next();
 			var2.d(this.a);
 		}
 
 	}
 
-	public void a(qw var1) {
+	public void a(EntityPlayer var1) {
 		if (this.o.contains(var1)) {
 			var1.d(this.a);
 			this.o.remove(var1);
@@ -246,7 +246,7 @@ public class qy {
 
 	}
 
-	public void b(qw var1) {
+	public void b(EntityPlayer var1) {
 		if (var1 != this.a) {
 			if (this.c(var1)) {
 				if (!this.o.contains(var1) && (this.e(var1) || this.a.n)) {
@@ -319,19 +319,19 @@ public class qy {
 		}
 	}
 
-	public boolean c(qw var1) {
+	public boolean c(EntityPlayer var1) {
 		double var2 = var1.s - (double) (this.d / 32);
 		double var4 = var1.u - (double) (this.f / 32);
 		return var2 >= (double) (-this.b) && var2 <= (double) this.b && var4 >= (double) (-this.b) && var4 <= (double) this.b && this.a.a(var1);
 	}
 
-	private boolean e(qw var1) {
+	private boolean e(EntityPlayer var1) {
 		return var1.u().t().a(var1, this.a.ae, this.a.ag);
 	}
 
 	public void b(List var1) {
 		for (int var2 = 0; var2 < var1.size(); ++var2) {
-			this.b((qw) var1.get(var2));
+			this.b((EntityPlayer) var1.get(var2));
 		}
 
 	}
@@ -343,7 +343,7 @@ public class qy {
 
 		if (this.a instanceof adw) {
 			return new il(this.a, 2, 1);
-		} else if (this.a instanceof qw) {
+		} else if (this.a instanceof EntityPlayer) {
 			return new iq((ahd) this.a);
 		} else if (this.a instanceof adx) {
 			adx var9 = (adx) this.a;
@@ -433,7 +433,7 @@ public class qy {
 		}
 	}
 
-	public void d(qw var1) {
+	public void d(EntityPlayer var1) {
 		if (this.o.contains(var1)) {
 			this.o.remove(var1);
 			var1.d(this.a);

@@ -23,9 +23,9 @@ public class qn {
 	}
 
 	public void a(Entity var1) {
-		if (var1 instanceof qw) {
+		if (var1 instanceof EntityPlayer) {
 			this.a(var1, 512, 2);
-			qw var2 = (qw) var1;
+			EntityPlayer var2 = (EntityPlayer) var1;
 			Iterator var3 = this.c.iterator();
 
 			while (var3.hasNext()) {
@@ -125,8 +125,8 @@ public class qn {
 	}
 
 	public void b(Entity var1) {
-		if (var1 instanceof qw) {
-			qw var2 = (qw) var1;
+		if (var1 instanceof EntityPlayer) {
+			EntityPlayer var2 = (EntityPlayer) var1;
 			Iterator var3 = this.c.iterator();
 
 			while (var3.hasNext()) {
@@ -150,13 +150,13 @@ public class qn {
 		while (var2.hasNext()) {
 			qy var3 = (qy) var2.next();
 			var3.a(this.b.j);
-			if (var3.n && var3.a instanceof qw) {
-				var1.add((qw) var3.a);
+			if (var3.n && var3.a instanceof EntityPlayer) {
+				var1.add((EntityPlayer) var3.a);
 			}
 		}
 
 		for (int var6 = 0; var6 < var1.size(); ++var6) {
-			qw var7 = (qw) var1.get(var6);
+			EntityPlayer var7 = (EntityPlayer) var1.get(var6);
 			Iterator var4 = this.c.iterator();
 
 			while (var4.hasNext()) {
@@ -169,7 +169,7 @@ public class qn {
 
 	}
 
-	public void a(qw var1) {
+	public void a(EntityPlayer var1) {
 		Iterator var2 = this.c.iterator();
 
 		while (var2.hasNext()) {
@@ -199,7 +199,7 @@ public class qn {
 
 	}
 
-	public void b(qw var1) {
+	public void b(EntityPlayer var1) {
 		Iterator var2 = this.c.iterator();
 
 		while (var2.hasNext()) {
@@ -209,7 +209,7 @@ public class qn {
 
 	}
 
-	public void a(qw var1, bfh var2) {
+	public void a(EntityPlayer var1, bfh var2) {
 		Iterator var3 = this.c.iterator();
 
 		while (var3.hasNext()) {

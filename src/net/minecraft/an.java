@@ -15,10 +15,10 @@ final class an implements Predicate {
 	}
 
 	public boolean a(Entity var1) {
-		if (!(var1 instanceof qw)) {
+		if (!(var1 instanceof EntityPlayer)) {
 			return false;
 		} else {
-			qw var2 = (qw) var1;
+			EntityPlayer var2 = (EntityPlayer) var1;
 			return (this.a <= -1 || var2.bz >= this.a) && (this.b <= -1 || var2.bz <= this.b);
 		}
 	}

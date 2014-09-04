@@ -99,7 +99,7 @@ public class aef extends aed implements bdd {
 		if (bde.a((bdd) this)) {
 			return true;
 		} else {
-			List var1 = this.o.a(adw.class, this.aQ().b(0.25D, 0.0D, 0.25D), xe.a);
+			List var1 = this.o.a(adw.class, this.aQ().b(0.25D, 0.0D, 0.25D), EntityPredicates.a);
 			if (var1.size() > 0) {
 				bde.a((vq) this, (adw) var1.get(0));
 			}

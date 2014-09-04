@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.UUID;
 
-public abstract class xu extends xn {
+public abstract class EntityCreature extends xn {
 
 	public static final UUID bi = UUID.fromString("E199AD21-BA8A-4C53-8D13-6182D5C69D3A");
 	public static final ya bj = (new ya(bi, "Fleeing speed bonus", 2.0D, 2)).a(false);
@@ -11,7 +11,7 @@ public abstract class xu extends xn {
 	private zb c;
 	private boolean bk;
 
-	public xu(World var1) {
+	public EntityCreature(World var1) {
 		super(var1);
 		this.a = dt.a;
 		this.b = -1.0F;

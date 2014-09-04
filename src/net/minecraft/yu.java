@@ -30,7 +30,7 @@ public class yu extends zb {
 
 	public void e() {
 		ahd var1 = (ahd) this.a.l;
-		xu var2 = (xu) this.a;
+		EntityCreature var2 = (EntityCreature) this.a;
 		float var3 = uv.g(var1.y - this.a.y) * 0.5F;
 		if (var3 > 5.0F) {
 			var3 = 5.0F;

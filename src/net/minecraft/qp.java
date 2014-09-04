@@ -54,10 +54,10 @@ public class qp implements ara {
 	}
 
 	public void b(int var1, dt var2, int var3) {
-		Iterator var4 = this.a.an().e.iterator();
+		Iterator var4 = this.a.an().players.iterator();
 
 		while (var4.hasNext()) {
-			qw var5 = (qw) var4.next();
+			EntityPlayer var5 = (EntityPlayer) var4.next();
 			if (var5 != null && var5.o == this.b && var5.F() != var1) {
 				double var6 = (double) var2.n() - var5.s;
 				double var8 = (double) var2.o() - var5.t;

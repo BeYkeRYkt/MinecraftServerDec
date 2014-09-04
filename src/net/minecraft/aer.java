@@ -229,7 +229,7 @@ public class aer extends afm {
 				}
 
 				if (var1 instanceof wi && var1.j() instanceof ahd) {
-					if (var1.j() instanceof qw && ((qw) var1.j()).c.d()) {
+					if (var1.j() instanceof EntityPlayer && ((EntityPlayer) var1.j()).c.d()) {
 						this.a(false);
 					} else {
 						this.bl = true;

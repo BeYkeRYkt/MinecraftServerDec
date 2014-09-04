@@ -21,7 +21,7 @@ public class GiveCommand extends AbstractCommand {
 		if (var2.length < 2) {
 			throw new dp("commands.give.usage", new Object[0]);
 		} else {
-			qw var3 = a(var1, var2[0]);
+			EntityPlayer var3 = a(var1, var2[0]);
 			alq var4 = f(var1, var2[1]);
 			int var5 = var2.length >= 3 ? a(var2[2], 1, 64) : 1;
 			int var6 = var2.length >= 4 ? a(var2[3]) : 0;
@@ -63,7 +63,7 @@ public class GiveCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, this.d()) : (var2.length == 2 ? a(var2, alq.e.c()) : null);
 	}
 

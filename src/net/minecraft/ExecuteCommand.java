@@ -58,7 +58,7 @@ public class ExecuteCommand extends AbstractCommand {
 		}
 	}
 
-	public List a(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
 		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().I()) : (var2.length > 1 && var2.length <= 4 ? a(var2, 1, var3) : (var2.length > 5 && var2.length <= 8 && "detect".equals(var2[4]) ? a(var2, 5, var3) : (var2.length == 9 && "detect".equals(var2[4]) ? a(var2, atr.c.c()) : null)));
 	}
 
