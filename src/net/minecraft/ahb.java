@@ -221,12 +221,12 @@ public class ahb implements vq {
 					}
 				}
 			} catch (Throwable var5) {
-				CrashReport var3 = CrashReport.a(var5, "Adding item to inventory");
-				j var4 = var3.a("Item being added");
-				var4.a("Item ID", (Object) Integer.valueOf(alq.b(var1.b())));
-				var4.a("Item data", (Object) Integer.valueOf(var1.i()));
-				var4.a("Item name", (Callable) (new ahc(this, var1)));
-				throw new u(var3);
+				CrashReport var3 = CrashReport.generateCrashReport(var5, "Adding item to inventory");
+				CrashReportSystemDetails var4 = var3.generateSystemDetails("Item being added");
+				var4.addDetails("Item ID", (Object) Integer.valueOf(alq.b(var1.b())));
+				var4.addDetails("Item data", (Object) Integer.valueOf(var1.i()));
+				var4.addDetails("Item name", (Callable) (new ahc(this, var1)));
+				throw new ReportedException(var3);
 			}
 		} else {
 			return false;
@@ -324,7 +324,7 @@ public class ahb implements vq {
 
 		for (int var2 = 0; var2 < var1.getSize(); ++var2) {
 			NBTCompoundTag var3 = var1.getCompound(var2);
-			int var4 = var3.d("Slot") & 255;
+			int var4 = var3.getByte("Slot") & 255;
 			amj var5 = amj.a(var3);
 			if (var5 != null) {
 				if (var4 >= 0 && var4 < this.a.length) {

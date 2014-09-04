@@ -60,13 +60,13 @@ public class xb {
 
 	public static Entity a(NBTCompoundTag var0, World var1) {
 		Entity var2 = null;
-		if ("Minecart".equals(var0.j("id"))) {
-			var0.put("id", adz.a(var0.f("Type")).b());
-			var0.o("Type");
+		if ("Minecart".equals(var0.getString("id"))) {
+			var0.put("id", adz.a(var0.getInt("Type")).b());
+			var0.remove("Type");
 		}
 
 		try {
-			Class var3 = (Class) c.get(var0.j("id"));
+			Class var3 = (Class) c.get(var0.getString("id"));
 			if (var3 != null) {
 				var2 = (Entity) var3.getConstructor(new Class[] { World.class }).newInstance(new Object[] { var1 });
 			}
@@ -77,7 +77,7 @@ public class xb {
 		if (var2 != null) {
 			var2.f(var0);
 		} else {
-			b.warn("Skipping Entity with id " + var0.j("id"));
+			b.warn("Skipping Entity with id " + var0.getString("id"));
 		}
 
 		return var2;

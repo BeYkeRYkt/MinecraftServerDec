@@ -10,12 +10,12 @@ public final class ga {
 	public static GameProfile a(NBTCompoundTag var0) {
 		String var1 = null;
 		String var2 = null;
-		if (var0.b("Name", 8)) {
-			var1 = var0.j("Name");
+		if (var0.isTagAssignableFrom("Name", 8)) {
+			var1 = var0.getString("Name");
 		}
 
-		if (var0.b("Id", 8)) {
-			var2 = var0.j("Id");
+		if (var0.isTagAssignableFrom("Id", 8)) {
+			var2 = var0.getString("Id");
 		}
 
 		if (vb.b(var1) && vb.b(var2)) {
@@ -29,19 +29,19 @@ public final class ga {
 			}
 
 			GameProfile var4 = new GameProfile(var3, var1);
-			if (var0.b("Properties", 10)) {
-				NBTCompoundTag var5 = var0.m("Properties");
+			if (var0.isTagAssignableFrom("Properties", 10)) {
+				NBTCompoundTag var5 = var0.getCompound("Properties");
 				Iterator var6 = var5.getKeys().iterator();
 
 				while (var6.hasNext()) {
 					String var7 = (String) var6.next();
-					NBTListTag var8 = var5.c(var7, 10);
+					NBTListTag var8 = var5.getList(var7, 10);
 
 					for (int var9 = 0; var9 < var8.getSize(); ++var9) {
 						NBTCompoundTag var10 = var8.getCompound(var9);
-						String var11 = var10.j("Value");
-						if (var10.b("Signature", 8)) {
-							var4.getProperties().put(var7, new Property(var7, var11, var10.j("Signature")));
+						String var11 = var10.getString("Value");
+						if (var10.isTagAssignableFrom("Signature", 8)) {
+							var4.getProperties().put(var7, new Property(var7, var11, var10.getString("Signature")));
 						} else {
 							var4.getProperties().put(var7, new Property(var7, var11));
 						}

@@ -123,9 +123,9 @@ public abstract class aqi {
 			}
 
 			NBTCompoundTag var12;
-			for (Entity var11 = var1; var3.b("Riding", 10); var3 = var12) {
-				var12 = var3.m("Riding");
-				Entity var13 = xb.a(var12.j("id"), var1.o);
+			for (Entity var11 = var1; var3.isTagAssignableFrom("Riding", 10); var3 = var12) {
+				var12 = var3.getCompound("Riding");
+				Entity var13 = xb.a(var12.getString("id"), var1.o);
 				if (var13 != null) {
 					NBTCompoundTag var7 = new NBTCompoundTag();
 					var13.d(var7);
@@ -172,36 +172,36 @@ public abstract class aqi {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.b = var1.j("EntityId");
-		this.a = var1.e("Delay");
+		this.b = var1.getString("EntityId");
+		this.a = var1.getShort("Delay");
 		this.c.clear();
-		if (var1.b("SpawnPotentials", 9)) {
-			NBTListTag var2 = var1.c("SpawnPotentials", 10);
+		if (var1.isTagAssignableFrom("SpawnPotentials", 9)) {
+			NBTListTag var2 = var1.getList("SpawnPotentials", 10);
 
 			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 				this.c.add(new aqj(this, var2.getCompound(var3)));
 			}
 		}
 
-		if (var1.b("SpawnData", 10)) {
-			this.a(new aqj(this, var1.m("SpawnData"), this.b));
+		if (var1.isTagAssignableFrom("SpawnData", 10)) {
+			this.a(new aqj(this, var1.getCompound("SpawnData"), this.b));
 		} else {
 			this.a((aqj) null);
 		}
 
-		if (var1.b("MinSpawnDelay", 99)) {
-			this.g = var1.e("MinSpawnDelay");
-			this.h = var1.e("MaxSpawnDelay");
-			this.i = var1.e("SpawnCount");
+		if (var1.isTagAssignableFrom("MinSpawnDelay", 99)) {
+			this.g = var1.getShort("MinSpawnDelay");
+			this.h = var1.getShort("MaxSpawnDelay");
+			this.i = var1.getShort("SpawnCount");
 		}
 
-		if (var1.b("MaxNearbyEntities", 99)) {
-			this.k = var1.e("MaxNearbyEntities");
-			this.l = var1.e("RequiredPlayerRange");
+		if (var1.isTagAssignableFrom("MaxNearbyEntities", 99)) {
+			this.k = var1.getShort("MaxNearbyEntities");
+			this.l = var1.getShort("RequiredPlayerRange");
 		}
 
-		if (var1.b("SpawnRange", 99)) {
-			this.m = var1.e("SpawnRange");
+		if (var1.isTagAssignableFrom("SpawnRange", 99)) {
+			this.m = var1.getShort("SpawnRange");
 		}
 
 		if (this.a() != null) {

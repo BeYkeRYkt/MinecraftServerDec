@@ -71,116 +71,116 @@ public class bqo {
 		this.I = 5;
 		this.J = 15;
 		this.K = new aqq();
-		this.b = var1.g("RandomSeed");
-		if (var1.b("generatorName", 8)) {
-			String var2 = var1.j("generatorName");
+		this.b = var1.getLong("RandomSeed");
+		if (var1.isTagAssignableFrom("generatorName", 8)) {
+			String var2 = var1.getString("generatorName");
 			this.c = are.a(var2);
 			if (this.c == null) {
 				this.c = are.b;
 			} else if (this.c.f()) {
 				int var3 = 0;
-				if (var1.b("generatorVersion", 99)) {
-					var3 = var1.f("generatorVersion");
+				if (var1.isTagAssignableFrom("generatorVersion", 99)) {
+					var3 = var1.getInt("generatorVersion");
 				}
 
 				this.c = this.c.a(var3);
 			}
 
-			if (var1.b("generatorOptions", 8)) {
-				this.d = var1.j("generatorOptions");
+			if (var1.isTagAssignableFrom("generatorOptions", 8)) {
+				this.d = var1.getString("generatorOptions");
 			}
 		}
 
-		this.u = GameMode.byId(var1.f("GameType"));
-		if (var1.b("MapFeatures", 99)) {
-			this.v = var1.n("MapFeatures");
+		this.u = GameMode.byId(var1.getInt("GameType"));
+		if (var1.isTagAssignableFrom("MapFeatures", 99)) {
+			this.v = var1.getBoolean("MapFeatures");
 		} else {
 			this.v = true;
 		}
 
-		this.e = var1.f("SpawnX");
-		this.f = var1.f("SpawnY");
-		this.g = var1.f("SpawnZ");
-		this.h = var1.g("Time");
-		if (var1.b("DayTime", 99)) {
-			this.i = var1.g("DayTime");
+		this.e = var1.getInt("SpawnX");
+		this.f = var1.getInt("SpawnY");
+		this.g = var1.getInt("SpawnZ");
+		this.h = var1.getLong("Time");
+		if (var1.isTagAssignableFrom("DayTime", 99)) {
+			this.i = var1.getLong("DayTime");
 		} else {
 			this.i = this.h;
 		}
 
-		this.j = var1.g("LastPlayed");
-		this.k = var1.g("SizeOnDisk");
-		this.n = var1.j("LevelName");
-		this.o = var1.f("version");
-		this.p = var1.f("clearWeatherTime");
-		this.r = var1.f("rainTime");
-		this.q = var1.n("raining");
-		this.t = var1.f("thunderTime");
-		this.s = var1.n("thundering");
-		this.w = var1.n("hardcore");
-		if (var1.b("initialized", 99)) {
-			this.y = var1.n("initialized");
+		this.j = var1.getLong("LastPlayed");
+		this.k = var1.getLong("SizeOnDisk");
+		this.n = var1.getString("LevelName");
+		this.o = var1.getInt("version");
+		this.p = var1.getInt("clearWeatherTime");
+		this.r = var1.getInt("rainTime");
+		this.q = var1.getBoolean("raining");
+		this.t = var1.getInt("thunderTime");
+		this.s = var1.getBoolean("thundering");
+		this.w = var1.getBoolean("hardcore");
+		if (var1.isTagAssignableFrom("initialized", 99)) {
+			this.y = var1.getBoolean("initialized");
 		} else {
 			this.y = true;
 		}
 
-		if (var1.b("allowCommands", 99)) {
-			this.x = var1.n("allowCommands");
+		if (var1.isTagAssignableFrom("allowCommands", 99)) {
+			this.x = var1.getBoolean("allowCommands");
 		} else {
 			this.x = this.u == GameMode.CREATIVE;
 		}
 
-		if (var1.b("Player", 10)) {
-			this.l = var1.m("Player");
-			this.m = this.l.f("Dimension");
+		if (var1.isTagAssignableFrom("Player", 10)) {
+			this.l = var1.getCompound("Player");
+			this.m = this.l.getInt("Dimension");
 		}
 
-		if (var1.b("GameRules", 10)) {
-			this.K.a(var1.m("GameRules"));
+		if (var1.isTagAssignableFrom("GameRules", 10)) {
+			this.K.a(var1.getCompound("GameRules"));
 		}
 
-		if (var1.b("Difficulty", 99)) {
-			this.z = Difficulty.clampAndGetById(var1.d("Difficulty"));
+		if (var1.isTagAssignableFrom("Difficulty", 99)) {
+			this.z = Difficulty.clampAndGetById(var1.getByte("Difficulty"));
 		}
 
-		if (var1.b("DifficultyLocked", 1)) {
-			this.A = var1.n("DifficultyLocked");
+		if (var1.isTagAssignableFrom("DifficultyLocked", 1)) {
+			this.A = var1.getBoolean("DifficultyLocked");
 		}
 
-		if (var1.b("BorderCenterX", 99)) {
-			this.B = var1.i("BorderCenterX");
+		if (var1.isTagAssignableFrom("BorderCenterX", 99)) {
+			this.B = var1.getDouble("BorderCenterX");
 		}
 
-		if (var1.b("BorderCenterZ", 99)) {
-			this.C = var1.i("BorderCenterZ");
+		if (var1.isTagAssignableFrom("BorderCenterZ", 99)) {
+			this.C = var1.getDouble("BorderCenterZ");
 		}
 
-		if (var1.b("BorderSize", 99)) {
-			this.D = var1.i("BorderSize");
+		if (var1.isTagAssignableFrom("BorderSize", 99)) {
+			this.D = var1.getDouble("BorderSize");
 		}
 
-		if (var1.b("BorderSizeLerpTime", 99)) {
-			this.E = var1.g("BorderSizeLerpTime");
+		if (var1.isTagAssignableFrom("BorderSizeLerpTime", 99)) {
+			this.E = var1.getLong("BorderSizeLerpTime");
 		}
 
-		if (var1.b("BorderSizeLerpTarget", 99)) {
-			this.F = var1.i("BorderSizeLerpTarget");
+		if (var1.isTagAssignableFrom("BorderSizeLerpTarget", 99)) {
+			this.F = var1.getDouble("BorderSizeLerpTarget");
 		}
 
-		if (var1.b("BorderSafeZone", 99)) {
-			this.G = var1.i("BorderSafeZone");
+		if (var1.isTagAssignableFrom("BorderSafeZone", 99)) {
+			this.G = var1.getDouble("BorderSafeZone");
 		}
 
-		if (var1.b("BorderDamagePerBlock", 99)) {
-			this.H = var1.i("BorderDamagePerBlock");
+		if (var1.isTagAssignableFrom("BorderDamagePerBlock", 99)) {
+			this.H = var1.getDouble("BorderDamagePerBlock");
 		}
 
-		if (var1.b("BorderWarningBlocks", 99)) {
-			this.I = var1.f("BorderWarningBlocks");
+		if (var1.isTagAssignableFrom("BorderWarningBlocks", 99)) {
+			this.I = var1.getInt("BorderWarningBlocks");
 		}
 
-		if (var1.b("BorderWarningTime", 99)) {
-			this.J = var1.f("BorderWarningTime");
+		if (var1.isTagAssignableFrom("BorderWarningTime", 99)) {
+			this.J = var1.getInt("BorderWarningTime");
 		}
 
 	}
@@ -563,16 +563,16 @@ public class bqo {
 		this.A = var1;
 	}
 
-	public void a(j var1) {
-		var1.a("Level seed", (Callable) (new bqp(this)));
-		var1.a("Level generator", (Callable) (new bqq(this)));
-		var1.a("Level generator options", (Callable) (new bqr(this)));
-		var1.a("Level spawn location", (Callable) (new bqs(this)));
-		var1.a("Level time", (Callable) (new bqt(this)));
-		var1.a("Level dimension", (Callable) (new bqu(this)));
-		var1.a("Level storage version", (Callable) (new bqv(this)));
-		var1.a("Level weather", (Callable) (new bqw(this)));
-		var1.a("Level game mode", (Callable) (new bqx(this)));
+	public void a(CrashReportSystemDetails var1) {
+		var1.addDetails("Level seed", (Callable) (new bqp(this)));
+		var1.addDetails("Level generator", (Callable) (new bqq(this)));
+		var1.addDetails("Level generator options", (Callable) (new bqr(this)));
+		var1.addDetails("Level spawn location", (Callable) (new bqs(this)));
+		var1.addDetails("Level time", (Callable) (new bqt(this)));
+		var1.addDetails("Level dimension", (Callable) (new bqu(this)));
+		var1.addDetails("Level storage version", (Callable) (new bqv(this)));
+		var1.addDetails("Level weather", (Callable) (new bqw(this)));
+		var1.addDetails("Level game mode", (Callable) (new bqx(this)));
 	}
 
 	// $FF: synthetic method

@@ -71,12 +71,12 @@ public class qs implements bfe {
 					try {
 						var5 = this.e.d(var1, var2);
 					} catch (Throwable var9) {
-						CrashReport var7 = CrashReport.a(var9, "Exception generating new chunk");
-						j var8 = var7.a("Chunk to be generated");
-						var8.a("Location", (Object) String.format("%d,%d", new Object[] { Integer.valueOf(var1), Integer.valueOf(var2) }));
-						var8.a("Position hash", (Object) Long.valueOf(var3));
-						var8.a("Generator", (Object) this.e.f());
-						throw new u(var7);
+						CrashReport var7 = CrashReport.generateCrashReport(var9, "Exception generating new chunk");
+						CrashReportSystemDetails var8 = var7.generateSystemDetails("Chunk to be generated");
+						var8.addDetails("Location", (Object) String.format("%d,%d", new Object[] { Integer.valueOf(var1), Integer.valueOf(var2) }));
+						var8.addDetails("Position hash", (Object) Long.valueOf(var3));
+						var8.addDetails("Generator", (Object) this.e.f());
+						throw new ReportedException(var7);
 					}
 				}
 			}

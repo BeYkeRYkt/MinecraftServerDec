@@ -157,9 +157,9 @@ public class bck extends bdf implements pm, vq {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.k = var1.f("Primary");
-		this.l = var1.f("Secondary");
-		this.j = var1.f("Levels");
+		this.k = var1.getInt("Primary");
+		this.l = var1.getInt("Secondary");
+		this.j = var1.getInt("Levels");
 	}
 
 	public void b(NBTCompoundTag var1) {

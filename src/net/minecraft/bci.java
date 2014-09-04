@@ -13,14 +13,14 @@ public class bci extends bcm {
 
 	public void a(amj var1) {
 		this.f = null;
-		if (var1.n() && var1.o().b("BlockEntityTag", 10)) {
-			NBTCompoundTag var2 = var1.o().m("BlockEntityTag");
+		if (var1.n() && var1.o().isTagAssignableFrom("BlockEntityTag", 10)) {
+			NBTCompoundTag var2 = var1.o().getCompound("BlockEntityTag");
 			if (var2.hasKey("Patterns")) {
-				this.f = (NBTListTag) var2.c("Patterns", 10).getCopy();
+				this.f = (NBTListTag) var2.getList("Patterns", 10).getCopy();
 			}
 
-			if (var2.b("Base", 99)) {
-				this.a = var2.f("Base");
+			if (var2.isTagAssignableFrom("Base", 99)) {
+				this.a = var2.getInt("Base");
 			} else {
 				this.a = var1.i() & 15;
 			}
@@ -45,8 +45,8 @@ public class bci extends bcm {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.a = var1.f("Base");
-		this.f = var1.c("Patterns", 10);
+		this.a = var1.getInt("Base");
+		this.f = var1.getList("Patterns", 10);
 		this.h = null;
 		this.i = null;
 		this.j = null;
@@ -65,23 +65,23 @@ public class bci extends bcm {
 
 	public static int b(amj var0) {
 		NBTCompoundTag var1 = var0.a("BlockEntityTag", false);
-		return var1 != null && var1.hasKey("Base") ? var1.f("Base") : var0.i();
+		return var1 != null && var1.hasKey("Base") ? var1.getInt("Base") : var0.i();
 	}
 
 	public static int c(amj var0) {
 		NBTCompoundTag var1 = var0.a("BlockEntityTag", false);
-		return var1 != null && var1.hasKey("Patterns") ? var1.c("Patterns", 10).getSize() : 0;
+		return var1 != null && var1.hasKey("Patterns") ? var1.getList("Patterns", 10).getSize() : 0;
 	}
 
 	public static void e(amj var0) {
 		NBTCompoundTag var1 = var0.a("BlockEntityTag", false);
-		if (var1 != null && var1.b("Patterns", 9)) {
-			NBTListTag var2 = var1.c("Patterns", 10);
+		if (var1 != null && var1.isTagAssignableFrom("Patterns", 9)) {
+			NBTListTag var2 = var1.getList("Patterns", 10);
 			if (var2.getSize() > 0) {
 				var2.removeTag(var2.getSize() - 1);
 				if (var2.isEmpty()) {
-					var0.o().o("BlockEntityTag");
-					if (var0.o().c_()) {
+					var0.o().remove("BlockEntityTag");
+					if (var0.o().isEmpty()) {
 						var0.d((NBTCompoundTag) null);
 					}
 				}

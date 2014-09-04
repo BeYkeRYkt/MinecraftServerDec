@@ -73,7 +73,7 @@ public class aek extends Entity {
 	}
 
 	protected void a(NBTCompoundTag var1) {
-		this.a = var1.d("Fuse");
+		this.a = var1.getByte("Fuse");
 	}
 
 	public EntityLiving j() {

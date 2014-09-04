@@ -43,7 +43,7 @@ public class aca extends abq {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.l(var1.n("Saddle"));
+		this.l(var1.getBoolean("Saddle"));
 	}
 
 	protected String z() {

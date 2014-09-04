@@ -125,10 +125,10 @@ public class bdv extends bcm implements pm {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.a = atr.c(var1.f("blockId")).a(var1.f("blockData"));
-		this.f = ej.a(var1.f("facing"));
-		this.j = this.i = var1.h("progress");
-		this.g = var1.n("extending");
+		this.a = atr.c(var1.getInt("blockId")).a(var1.getInt("blockData"));
+		this.f = ej.a(var1.getInt("facing"));
+		this.j = this.i = var1.getFloat("progress");
+		this.g = var1.getBoolean("extending");
 	}
 
 	public void b(NBTCompoundTag var1) {

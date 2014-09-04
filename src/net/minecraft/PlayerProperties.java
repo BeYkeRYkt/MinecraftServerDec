@@ -23,19 +23,19 @@ public class PlayerProperties {
 	}
 
 	public void read(NBTCompoundTag var1) {
-		if (var1.b("abilities", 10)) {
-			NBTCompoundTag var2 = var1.m("abilities");
-			this.invulnerable = var2.n("invulnerable");
-			this.flying = var2.n("flying");
-			this.mayfly = var2.n("mayfly");
-			this.instabuild = var2.n("instabuild");
-			if (var2.b("flySpeed", 99)) {
-				this.flyspeed = var2.h("flySpeed");
-				this.walkspeed = var2.h("walkSpeed");
+		if (var1.isTagAssignableFrom("abilities", 10)) {
+			NBTCompoundTag var2 = var1.getCompound("abilities");
+			this.invulnerable = var2.getBoolean("invulnerable");
+			this.flying = var2.getBoolean("flying");
+			this.mayfly = var2.getBoolean("mayfly");
+			this.instabuild = var2.getBoolean("instabuild");
+			if (var2.isTagAssignableFrom("flySpeed", 99)) {
+				this.flyspeed = var2.getFloat("flySpeed");
+				this.walkspeed = var2.getFloat("walkSpeed");
 			}
 
-			if (var2.b("mayBuild", 1)) {
-				this.maybuild = var2.n("mayBuild");
+			if (var2.isTagAssignableFrom("mayBuild", 1)) {
+				this.maybuild = var2.getBoolean("mayBuild");
 			}
 		}
 

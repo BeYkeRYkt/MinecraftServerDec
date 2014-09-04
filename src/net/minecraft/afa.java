@@ -106,8 +106,8 @@ public class afa extends xl implements aex {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		if (var1.b("ExplosionPower", 99)) {
-			this.a = var1.f("ExplosionPower");
+		if (var1.isTagAssignableFrom("ExplosionPower", 99)) {
+			this.a = var1.getInt("ExplosionPower");
 		}
 
 	}

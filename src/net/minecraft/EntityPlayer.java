@@ -77,11 +77,11 @@ public class EntityPlayer extends ahd implements ail {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		if (var1.b("playerGameType", 99)) {
+		if (var1.isTagAssignableFrom("playerGameType", 99)) {
 			if (MinecraftServer.getInstance().av()) {
 				this.c.a(MinecraftServer.getInstance().getServerGameMode());
 			} else {
-				this.c.a(GameMode.byId(var1.f("playerGameType")));
+				this.c.a(GameMode.byId(var1.getInt("playerGameType")));
 			}
 		}
 
@@ -245,10 +245,10 @@ public class EntityPlayer extends ahd implements ail {
 			}
 
 		} catch (Throwable var4) {
-			CrashReport var2 = CrashReport.a(var4, "Ticking player");
-			j var3 = var2.a("Player being ticked");
+			CrashReport var2 = CrashReport.generateCrashReport(var4, "Ticking player");
+			CrashReportSystemDetails var3 = var2.generateSystemDetails("Player being ticked");
 			this.a(var3);
-			throw new u(var2);
+			throw new ReportedException(var2);
 		}
 	}
 

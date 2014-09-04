@@ -119,62 +119,62 @@ public class adi extends EntityLiving {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		if (var1.b("Equipment", 9)) {
-			NBTListTag var2 = var1.c("Equipment", 10);
+		if (var1.isTagAssignableFrom("Equipment", 9)) {
+			NBTListTag var2 = var1.getList("Equipment", 10);
 
 			for (int var3 = 0; var3 < this.g.length; ++var3) {
 				this.g[var3] = amj.a(var2.getCompound(var3));
 			}
 		}
 
-		this.e(var1.n("Invisible"));
-		this.a(var1.n("Small"));
-		this.k(var1.n("ShowArms"));
-		this.bg = var1.f("DisabledSlots");
-		this.j(var1.n("NoGravity"));
-		this.l(var1.n("NoBasePlate"));
+		this.e(var1.getBoolean("Invisible"));
+		this.a(var1.getBoolean("Small"));
+		this.k(var1.getBoolean("ShowArms"));
+		this.bg = var1.getInt("DisabledSlots");
+		this.j(var1.getBoolean("NoGravity"));
+		this.l(var1.getBoolean("NoBasePlate"));
 		this.T = this.p();
-		NBTCompoundTag var4 = var1.m("Pose");
+		NBTCompoundTag var4 = var1.getCompound("Pose");
 		this.h(var4);
 	}
 
 	private void h(NBTCompoundTag var1) {
-		NBTListTag var2 = var1.c("Head", 5);
+		NBTListTag var2 = var1.getList("Head", 5);
 		if (var2.getSize() > 0) {
 			this.a(new fa(var2));
 		} else {
 			this.a(a);
 		}
 
-		NBTListTag var3 = var1.c("Body", 5);
+		NBTListTag var3 = var1.getList("Body", 5);
 		if (var3.getSize() > 0) {
 			this.b(new fa(var3));
 		} else {
 			this.b(b);
 		}
 
-		NBTListTag var4 = var1.c("LeftArm", 5);
+		NBTListTag var4 = var1.getList("LeftArm", 5);
 		if (var4.getSize() > 0) {
 			this.c(new fa(var4));
 		} else {
 			this.c(c);
 		}
 
-		NBTListTag var5 = var1.c("RightArm", 5);
+		NBTListTag var5 = var1.getList("RightArm", 5);
 		if (var5.getSize() > 0) {
 			this.d(new fa(var5));
 		} else {
 			this.d(d);
 		}
 
-		NBTListTag var6 = var1.c("LeftLeg", 5);
+		NBTListTag var6 = var1.getList("LeftLeg", 5);
 		if (var6.getSize() > 0) {
 			this.e(new fa(var6));
 		} else {
 			this.e(e);
 		}
 
-		NBTListTag var7 = var1.c("RightLeg", 5);
+		NBTListTag var7 = var1.getList("RightLeg", 5);
 		if (var7.getSize() > 0) {
 			this.f(new fa(var7));
 		} else {

@@ -241,8 +241,8 @@ public class afw extends afm implements afr {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		if (var1.b("SkeletonType", 99)) {
-			byte var2 = var1.d("SkeletonType");
+		if (var1.isTagAssignableFrom("SkeletonType", 99)) {
+			byte var2 = var1.getByte("SkeletonType");
 			this.a(var2);
 		}
 

@@ -116,9 +116,9 @@ public class aee extends adx {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.a = var1.i("PushX");
-		this.b = var1.i("PushZ");
-		this.c = var1.e("Fuel");
+		this.a = var1.getDouble("PushX");
+		this.b = var1.getDouble("PushZ");
+		this.c = var1.getShort("Fuel");
 	}
 
 	protected boolean j() {

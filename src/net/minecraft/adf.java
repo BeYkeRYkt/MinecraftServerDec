@@ -47,7 +47,7 @@ public class adf extends afm implements afr {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.r(var1.f("Invul"));
+		this.r(var1.getInt("Invul"));
 	}
 
 	protected String z() {

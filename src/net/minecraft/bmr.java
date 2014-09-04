@@ -9,7 +9,7 @@ public class bmr extends bqc {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.b = var1.m("Features");
+		this.b = var1.getCompound("Features");
 	}
 
 	public void b(NBTCompoundTag var1) {

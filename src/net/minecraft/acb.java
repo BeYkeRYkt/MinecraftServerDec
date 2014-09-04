@@ -183,8 +183,8 @@ public class acb extends abq {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.r(var1.f("RabbitType"));
-		this.bs = var1.f("MoreCarrotTicks");
+		this.r(var1.getInt("RabbitType"));
+		this.bs = var1.getInt("MoreCarrotTicks");
 	}
 
 	protected String ck() {

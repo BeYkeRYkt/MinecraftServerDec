@@ -86,8 +86,8 @@ public class afo extends agj {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.bl = var1.e("Anger");
-		String var2 = var1.j("HurtBy");
+		this.bl = var1.getShort("Anger");
+		String var2 = var1.getString("HurtBy");
 		if (var2.length() > 0) {
 			this.bn = UUID.fromString(var2);
 			ahd var3 = this.o.b(this.bn);

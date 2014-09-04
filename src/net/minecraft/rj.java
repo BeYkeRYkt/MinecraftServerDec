@@ -490,10 +490,10 @@ public class rj implements ls, pm {
 		try {
 			this.a.a(var1);
 		} catch (Throwable var5) {
-			CrashReport var6 = CrashReport.a(var5, "Sending packet");
-			j var4 = var6.a("Packet being sent");
-			var4.a("Packet class", (Callable) (new rm(this, var1)));
-			throw new u(var6);
+			CrashReport var6 = CrashReport.generateCrashReport(var5, "Sending packet");
+			CrashReportSystemDetails var4 = var6.generateSystemDetails("Packet being sent");
+			var4.addDetails("Packet class", (Callable) (new rm(this, var1)));
+			throw new ReportedException(var6);
 		}
 	}
 
@@ -708,17 +708,17 @@ public class rj implements ls, pm {
 		if (this.b.c.d()) {
 			boolean var2 = var1.a() < 0;
 			amj var3 = var1.b();
-			if (var3 != null && var3.n() && var3.o().b("BlockEntityTag", 10)) {
-				NBTCompoundTag var4 = var3.o().m("BlockEntityTag");
+			if (var3 != null && var3.n() && var3.o().isTagAssignableFrom("BlockEntityTag", 10)) {
+				NBTCompoundTag var4 = var3.o().getCompound("BlockEntityTag");
 				if (var4.hasKey("x") && var4.hasKey("y") && var4.hasKey("z")) {
-					dt var5 = new dt(var4.f("x"), var4.f("y"), var4.f("z"));
+					dt var5 = new dt(var4.getInt("x"), var4.getInt("y"), var4.getInt("z"));
 					bcm var6 = this.b.o.s(var5);
 					if (var6 != null) {
 						NBTCompoundTag var7 = new NBTCompoundTag();
 						var6.b(var7);
-						var7.o("x");
-						var7.o("y");
-						var7.o("z");
+						var7.remove("x");
+						var7.remove("y");
+						var7.remove("z");
 						var3.a("BlockEntityTag", (NBTTag) var7);
 					}
 				}
@@ -835,7 +835,7 @@ public class rj implements ls, pm {
 					}
 
 					if (var3.b() == amk.bM && var3.b() == var4.b()) {
-						var4.a("pages", (NBTTag) var3.o().c("pages", 8));
+						var4.a("pages", (NBTTag) var3.o().getList("pages", 8));
 					}
 
 					return;
@@ -865,8 +865,8 @@ public class rj implements ls, pm {
 
 					if (var3.b() == amk.bN && var4.b() == amk.bM) {
 						var4.a("author", (NBTTag) (new NBTStringTag(this.b.d_())));
-						var4.a("title", (NBTTag) (new NBTStringTag(var3.o().j("title"))));
-						var4.a("pages", (NBTTag) var3.o().c("pages", 8));
+						var4.a("title", (NBTTag) (new NBTStringTag(var3.o().getString("title"))));
+						var4.a("pages", (NBTTag) var3.o().getList("pages", 8));
 						var4.a(amk.bN);
 					}
 

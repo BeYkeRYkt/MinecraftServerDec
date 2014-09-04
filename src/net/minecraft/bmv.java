@@ -73,13 +73,13 @@ public abstract class bmv {
 	}
 
 	public void a(World var1, NBTCompoundTag var2) {
-		this.c = var2.f("ChunkX");
-		this.d = var2.f("ChunkZ");
+		this.c = var2.getInt("ChunkX");
+		this.d = var2.getInt("ChunkZ");
 		if (var2.hasKey("BB")) {
-			this.b = new bjb(var2.l("BB"));
+			this.b = new bjb(var2.getIntArray("BB"));
 		}
 
-		NBTListTag var3 = var2.c("Children", 10);
+		NBTListTag var3 = var2.getList("Children", 10);
 
 		for (int var4 = 0; var4 < var3.getSize(); ++var4) {
 			this.a.add(bmq.b(var3.getCompound(var4), var1));

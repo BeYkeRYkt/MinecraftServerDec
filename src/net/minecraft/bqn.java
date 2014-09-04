@@ -33,7 +33,7 @@ public class bqn implements Convertable {
 			if (var3.exists()) {
 				try {
 					var4 = fz.a((InputStream) (new FileInputStream(var3)));
-					var5 = var4.m("Data");
+					var5 = var4.getCompound("Data");
 					return new bqo(var5);
 				} catch (Exception var7) {
 					b.error("Exception reading " + var3, (Throwable) var7);
@@ -44,7 +44,7 @@ public class bqn implements Convertable {
 			if (var3.exists()) {
 				try {
 					var4 = fz.a((InputStream) (new FileInputStream(var3)));
-					var5 = var4.m("Data");
+					var5 = var4.getCompound("Data");
 					return new bqo(var5);
 				} catch (Exception var6) {
 					b.error("Exception reading " + var3, (Throwable) var6);

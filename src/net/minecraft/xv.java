@@ -82,10 +82,10 @@ public class xv {
 		try {
 			var2 = (xw) this.d.get(Integer.valueOf(var1));
 		} catch (Throwable var6) {
-			CrashReport var4 = CrashReport.a(var6, "Getting synched entity data");
-			j var5 = var4.a("Synched entity data");
-			var5.a("Data ID", (Object) Integer.valueOf(var1));
-			throw new u(var4);
+			CrashReport var4 = CrashReport.generateCrashReport(var6, "Getting synched entity data");
+			CrashReportSystemDetails var5 = var4.generateSystemDetails("Synched entity data");
+			var5.addDetails("Data ID", (Object) Integer.valueOf(var1));
+			throw new ReportedException(var4);
 		}
 
 		this.f.readLock().unlock();

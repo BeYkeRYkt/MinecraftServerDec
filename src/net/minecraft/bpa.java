@@ -133,13 +133,13 @@ public abstract class bpa {
 			try {
 				return var2 != null && var3 != null ? var2.a(var3) : false;
 			} catch (Throwable var7) {
-				CrashReport var5 = CrashReport.a(var7, "Comparing biomes");
-				j var6 = var5.a("Biomes being compared");
-				var6.a("Biome A ID", (Object) Integer.valueOf(var0));
-				var6.a("Biome B ID", (Object) Integer.valueOf(var1));
-				var6.a("Biome A", (Callable) (new bpb(var2)));
-				var6.a("Biome B", (Callable) (new bpc(var3)));
-				throw new u(var5);
+				CrashReport var5 = CrashReport.generateCrashReport(var7, "Comparing biomes");
+				CrashReportSystemDetails var6 = var5.generateSystemDetails("Biomes being compared");
+				var6.addDetails("Biome A ID", (Object) Integer.valueOf(var0));
+				var6.addDetails("Biome B ID", (Object) Integer.valueOf(var1));
+				var6.addDetails("Biome A", (Callable) (new bpb(var2)));
+				var6.addDetails("Biome B", (Callable) (new bpc(var3)));
+				throw new ReportedException(var5);
 			}
 		} else {
 			return var1 == arm.ab.az || var1 == arm.ac.az;

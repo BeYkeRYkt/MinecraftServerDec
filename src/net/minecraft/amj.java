@@ -114,20 +114,20 @@ public final class amj {
 	}
 
 	public void c(NBTCompoundTag var1) {
-		if (var1.b("id", 8)) {
-			this.d = alq.d(var1.j("id"));
+		if (var1.isTagAssignableFrom("id", 8)) {
+			this.d = alq.d(var1.getString("id"));
 		} else {
-			this.d = alq.b(var1.e("id"));
+			this.d = alq.b(var1.getShort("id"));
 		}
 
-		this.b = var1.d("Count");
-		this.f = var1.e("Damage");
+		this.b = var1.getByte("Count");
+		this.f = var1.getShort("Damage");
 		if (this.f < 0) {
 			this.f = 0;
 		}
 
-		if (var1.b("tag", 10)) {
-			this.e = var1.m("tag");
+		if (var1.isTagAssignableFrom("tag", 10)) {
+			this.e = var1.getCompound("tag");
 			if (this.d != null) {
 				this.d.a(this.e);
 			}
@@ -144,7 +144,7 @@ public final class amj {
 	}
 
 	public boolean e() {
-		return this.d == null ? false : (this.d.l() <= 0 ? false : !this.n() || !this.o().n("Unbreakable"));
+		return this.d == null ? false : (this.d.l() <= 0 ? false : !this.n() || !this.o().getBoolean("Unbreakable"));
 	}
 
 	public boolean f() {
@@ -324,8 +324,8 @@ public final class amj {
 	}
 
 	public NBTCompoundTag a(String var1, boolean var2) {
-		if (this.e != null && this.e.b(var1, 10)) {
-			return this.e.m(var1);
+		if (this.e != null && this.e.isTagAssignableFrom(var1, 10)) {
+			return this.e.getCompound(var1);
 		} else if (var2) {
 			NBTCompoundTag var3 = new NBTCompoundTag();
 			this.a(var1, (NBTTag) var3);
@@ -336,7 +336,7 @@ public final class amj {
 	}
 
 	public NBTListTag p() {
-		return this.e == null ? null : this.e.c("ench", 10);
+		return this.e == null ? null : this.e.getList("ench", 10);
 	}
 
 	public void d(NBTCompoundTag var1) {
@@ -345,10 +345,10 @@ public final class amj {
 
 	public String q() {
 		String var1 = this.b().a(this);
-		if (this.e != null && this.e.b("display", 10)) {
-			NBTCompoundTag var2 = this.e.m("display");
-			if (var2.b("Name", 8)) {
-				var1 = var2.j("Name");
+		if (this.e != null && this.e.isTagAssignableFrom("display", 10)) {
+			NBTCompoundTag var2 = this.e.getCompound("display");
+			if (var2.isTagAssignableFrom("Name", 8)) {
+				var1 = var2.getString("Name");
 			}
 		}
 
@@ -360,22 +360,22 @@ public final class amj {
 			this.e = new NBTCompoundTag();
 		}
 
-		if (!this.e.b("display", 10)) {
+		if (!this.e.isTagAssignableFrom("display", 10)) {
 			this.e.put("display", (NBTTag) (new NBTCompoundTag()));
 		}
 
-		this.e.m("display").put("Name", var1);
+		this.e.getCompound("display").put("Name", var1);
 		return this;
 	}
 
 	public void r() {
 		if (this.e != null) {
-			if (this.e.b("display", 10)) {
-				NBTCompoundTag var1 = this.e.m("display");
-				var1.o("Name");
-				if (var1.c_()) {
-					this.e.o("display");
-					if (this.e.c_()) {
+			if (this.e.isTagAssignableFrom("display", 10)) {
+				NBTCompoundTag var1 = this.e.getCompound("display");
+				var1.remove("Name");
+				if (var1.isEmpty()) {
+					this.e.remove("display");
+					if (this.e.isEmpty()) {
 						this.d((NBTCompoundTag) null);
 					}
 				}
@@ -385,7 +385,7 @@ public final class amj {
 	}
 
 	public boolean s() {
-		return this.e == null ? false : (!this.e.b("display", 10) ? false : this.e.m("display").b("Name", 8));
+		return this.e == null ? false : (!this.e.isTagAssignableFrom("display", 10) ? false : this.e.getCompound("display").isTagAssignableFrom("Name", 8));
 	}
 
 	public amx u() {
@@ -401,11 +401,11 @@ public final class amj {
 			this.d(new NBTCompoundTag());
 		}
 
-		if (!this.e.b("ench", 9)) {
+		if (!this.e.isTagAssignableFrom("ench", 9)) {
 			this.e.put("ench", (NBTTag) (new NBTListTag()));
 		}
 
-		NBTListTag var3 = this.e.c("ench", 10);
+		NBTListTag var3 = this.e.getList("ench", 10);
 		NBTCompoundTag var4 = new NBTCompoundTag();
 		var4.put("id", (short) var1.B);
 		var4.put("lvl", (short) ((byte) var2));
@@ -413,7 +413,7 @@ public final class amj {
 	}
 
 	public boolean w() {
-		return this.e != null && this.e.b("ench", 9);
+		return this.e != null && this.e.isTagAssignableFrom("ench", 9);
 	}
 
 	public void a(String var1, NBTTag var2) {
@@ -441,7 +441,7 @@ public final class amj {
 	}
 
 	public int A() {
-		return this.n() && this.e.b("RepairCost", 3) ? this.e.f("RepairCost") : 0;
+		return this.n() && this.e.isTagAssignableFrom("RepairCost", 3) ? this.e.getInt("RepairCost") : 0;
 	}
 
 	public void c(int var1) {
@@ -454,15 +454,15 @@ public final class amj {
 
 	public Multimap B() {
 		Object var1;
-		if (this.n() && this.e.b("AttributeModifiers", 9)) {
+		if (this.n() && this.e.isTagAssignableFrom("AttributeModifiers", 9)) {
 			var1 = HashMultimap.create();
-			NBTListTag var2 = this.e.c("AttributeModifiers", 10);
+			NBTListTag var2 = this.e.getList("AttributeModifiers", 10);
 
 			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 				NBTCompoundTag var4 = var2.getCompound(var3);
 				ya var5 = afs.a(var4);
 				if (var5 != null && var5.a().getLeastSignificantBits() != 0L && var5.a().getMostSignificantBits() != 0L) {
-					((Multimap) var1).put(var4.j("AttributeName"), var5);
+					((Multimap) var1).put(var4.getString("AttributeName"), var5);
 				}
 			}
 		} else {
@@ -498,8 +498,8 @@ public final class amj {
 			return this.i;
 		} else {
 			this.h = var1;
-			if (this.n() && this.e.b("CanDestroy", 9)) {
-				NBTListTag var2 = this.e.c("CanDestroy", 8);
+			if (this.n() && this.e.isTagAssignableFrom("CanDestroy", 9)) {
+				NBTListTag var2 = this.e.getList("CanDestroy", 8);
 
 				for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 					atr var4 = atr.b(var2.getString(var3));
@@ -520,8 +520,8 @@ public final class amj {
 			return this.k;
 		} else {
 			this.j = var1;
-			if (this.n() && this.e.b("CanPlaceOn", 9)) {
-				NBTListTag var2 = this.e.c("CanPlaceOn", 8);
+			if (this.n() && this.e.isTagAssignableFrom("CanPlaceOn", 9)) {
+				NBTListTag var2 = this.e.getList("CanPlaceOn", 8);
 
 				for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 					atr var4 = atr.b(var2.getString(var3));

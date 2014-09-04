@@ -60,8 +60,8 @@ public class aoi implements aoo {
 
 					for (int var24 = 0; var24 < var1.n_(); ++var24) {
 						amj var26 = var1.a(var24);
-						if (var26 != null && var26.b() == amk.cc && var26.n() && var26.o().b("Explosion", 10)) {
-							var23.addTag((NBTTag) var26.o().m("Explosion"));
+						if (var26 != null && var26.b() == amk.cc && var26.n() && var26.o().isTagAssignableFrom("Explosion", 10)) {
+							var23.addTag((NBTTag) var26.o().getCompound("Explosion"));
 						}
 					}
 
@@ -133,7 +133,7 @@ public class aoi implements aoo {
 				}
 
 				if (this.a != null && this.a.n()) {
-					NBTCompoundTag var21 = this.a.o().m("Explosion");
+					NBTCompoundTag var21 = this.a.o().getCompound("Explosion");
 					if (var21 == null) {
 						return false;
 					} else {

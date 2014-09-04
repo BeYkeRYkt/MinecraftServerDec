@@ -31,7 +31,7 @@ public class bnj extends bnn {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.b = var1.n("Chest");
+		this.b = var1.getBoolean("Chest");
 	}
 
 	public boolean a(World var1, Random var2, bjb var3) {

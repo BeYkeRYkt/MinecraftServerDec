@@ -5,16 +5,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-public class j {
+public class CrashReportSystemDetails {
 
-	private final CrashReport a;
-	private final String b;
-	private final List c = Lists.newArrayList();
-	private StackTraceElement[] d = new StackTraceElement[0];
+	private final String reason;
+	private final List<r> c = Lists.newArrayList();
+	private StackTraceElement[] stackTraceElements = new StackTraceElement[0];
 
-	public j(CrashReport var1, String var2) {
-		this.a = var1;
-		this.b = var2;
+	public CrashReportSystemDetails(CrashReport var1, String var2) {
+		this.reason = var2;
 	}
 
 	public static String a(double var0, double var2, double var4) {
@@ -80,44 +78,44 @@ public class j {
 		return var4.toString();
 	}
 
-	public void a(String var1, Callable var2) {
+	public void addDetails(String var1, Callable var2) {
 		try {
-			this.a(var1, var2.call());
+			this.addDetails(var1, var2.call());
 		} catch (Throwable var4) {
 			this.a(var1, var4);
 		}
 
 	}
 
-	public void a(String var1, Object var2) {
+	public void addDetails(String var1, Object var2) {
 		this.c.add(new r(var1, var2));
 	}
 
 	public void a(String var1, Throwable var2) {
-		this.a(var1, (Object) var2);
+		this.addDetails(var1, (Object) var2);
 	}
 
-	public int a(int var1) {
-		StackTraceElement[] var2 = Thread.currentThread().getStackTrace();
-		if (var2.length <= 0) {
+	public int getStackTraceLength(int startIndex) {
+		StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+		if (elements.length <= 0) {
 			return 0;
 		} else {
-			this.d = new StackTraceElement[var2.length - 3 - var1];
-			System.arraycopy(var2, 3 + var1, this.d, 0, this.d.length);
-			return this.d.length;
+			this.stackTraceElements = new StackTraceElement[elements.length - 3 - startIndex];
+			System.arraycopy(elements, 3 + startIndex, this.stackTraceElements, 0, this.stackTraceElements.length);
+			return this.stackTraceElements.length;
 		}
 	}
 
 	public boolean a(StackTraceElement var1, StackTraceElement var2) {
-		if (this.d.length != 0 && var1 != null) {
-			StackTraceElement var3 = this.d[0];
+		if (this.stackTraceElements.length != 0 && var1 != null) {
+			StackTraceElement var3 = this.stackTraceElements[0];
 			if (var3.isNativeMethod() == var1.isNativeMethod() && var3.getClassName().equals(var1.getClassName()) && var3.getFileName().equals(var1.getFileName()) && var3.getMethodName().equals(var1.getMethodName())) {
-				if (var2 != null != this.d.length > 1) {
+				if (var2 != null != this.stackTraceElements.length > 1) {
 					return false;
-				} else if (var2 != null && !this.d[1].equals(var2)) {
+				} else if (var2 != null && !this.stackTraceElements[1].equals(var2)) {
 					return false;
 				} else {
-					this.d[0] = var1;
+					this.stackTraceElements[0] = var1;
 					return true;
 				}
 			} else {
@@ -129,13 +127,13 @@ public class j {
 	}
 
 	public void b(int var1) {
-		StackTraceElement[] var2 = new StackTraceElement[this.d.length - var1];
-		System.arraycopy(this.d, 0, var2, 0, var2.length);
-		this.d = var2;
+		StackTraceElement[] var2 = new StackTraceElement[this.stackTraceElements.length - var1];
+		System.arraycopy(this.stackTraceElements, 0, var2, 0, var2.length);
+		this.stackTraceElements = var2;
 	}
 
 	public void a(StringBuilder var1) {
-		var1.append("-- ").append(this.b).append(" --\n");
+		var1.append("-- ").append(this.reason).append(" --\n");
 		var1.append("Details:");
 		Iterator var2 = this.c.iterator();
 
@@ -147,9 +145,9 @@ public class j {
 			var1.append(var3.b());
 		}
 
-		if (this.d != null && this.d.length > 0) {
+		if (this.stackTraceElements != null && this.stackTraceElements.length > 0) {
 			var1.append("\nStacktrace:");
-			StackTraceElement[] var6 = this.d;
+			StackTraceElement[] var6 = this.stackTraceElements;
 			int var7 = var6.length;
 
 			for (int var4 = 0; var4 < var7; ++var4) {
@@ -162,18 +160,18 @@ public class j {
 	}
 
 	public StackTraceElement[] a() {
-		return this.d;
+		return this.stackTraceElements;
 	}
 
-	public static void a(j var0, dt var1, atr var2, int var3) {
+	public static void a(CrashReportSystemDetails var0, dt var1, atr var2, int var3) {
 		int var4 = atr.a(var2);
-		var0.a("Block type", (Callable) (new k(var4, var2)));
-		var0.a("Block data value", (Callable) (new l(var3)));
-		var0.a("Block location", (Callable) (new m(var1)));
+		var0.addDetails("Block type", (Callable) (new k(var4, var2)));
+		var0.addDetails("Block data value", (Callable) (new l(var3)));
+		var0.addDetails("Block location", (Callable) (new m(var1)));
 	}
 
-	public static void a(j var0, dt var1, bec var2) {
-		var0.a("Block", (Callable) (new p(var2)));
-		var0.a("Block location", (Callable) (new q(var1)));
+	public static void a(CrashReportSystemDetails var0, dt var1, bec var2) {
+		var0.addDetails("Block", (Callable) (new p(var2)));
+		var0.addDetails("Block location", (Callable) (new q(var1)));
 	}
 }

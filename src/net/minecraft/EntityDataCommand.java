@@ -36,9 +36,9 @@ public class EntityDataCommand extends AbstractCommand {
 					throw new di("commands.entitydata.tagError", new Object[] { var8.getMessage() });
 				}
 
-				var6.o("UUIDMost");
-				var6.o("UUIDLeast");
-				var4.a(var6);
+				var6.remove("UUIDMost");
+				var6.remove("UUIDLeast");
+				var4.copyFrom(var6);
 				if (var4.equals(var5)) {
 					throw new di("commands.entitydata.failed", new Object[] { var4.toString() });
 				} else {

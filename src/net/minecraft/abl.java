@@ -216,8 +216,8 @@ public class abl extends bqc {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.f = var1.f("Tick");
-		NBTListTag var2 = var1.c("Villages", 10);
+		this.f = var1.getInt("Tick");
+		NBTListTag var2 = var1.getList("Villages", 10);
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);

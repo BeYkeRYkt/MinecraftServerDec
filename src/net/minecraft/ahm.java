@@ -23,9 +23,9 @@ public class ahm extends Entity {
 		if (var8 != null && var8.n()) {
 			this.ac.b(8, var8);
 			NBTCompoundTag var10 = var8.o();
-			NBTCompoundTag var11 = var10.m("Fireworks");
+			NBTCompoundTag var11 = var10.getCompound("Fireworks");
 			if (var11 != null) {
-				var9 += var11.d("Flight");
+				var9 += var11.getByte("Flight");
 			}
 		}
 
@@ -94,9 +94,9 @@ public class ahm extends Entity {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.a = var1.f("Life");
-		this.b = var1.f("LifeTime");
-		NBTCompoundTag var2 = var1.m("FireworksItem");
+		this.a = var1.getInt("Life");
+		this.b = var1.getInt("LifeTime");
+		NBTCompoundTag var2 = var1.getCompound("FireworksItem");
 		if (var2 != null) {
 			amj var3 = amj.a(var2);
 			if (var3 != null) {

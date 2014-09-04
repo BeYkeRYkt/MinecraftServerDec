@@ -39,10 +39,10 @@ public class ajq extends alq {
 							var20.b(var13 + 0.5D, var15, var17 + 0.5D, var21, 0.0F);
 							this.a(var20, var3.s);
 							NBTCompoundTag var22 = var1.o();
-							if (var22 != null && var22.b("EntityTag", 10)) {
+							if (var22 != null && var22.isTagAssignableFrom("EntityTag", 10)) {
 								NBTCompoundTag var23 = new NBTCompoundTag();
 								var20.d(var23);
-								var23.a(var22.m("EntityTag"));
+								var23.copyFrom(var22.getCompound("EntityTag"));
 								var20.f(var23);
 							}
 

@@ -106,9 +106,9 @@ public class abr extends abq {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.br = var1.n("IsChickenJockey");
+		this.br = var1.getBoolean("IsChickenJockey");
 		if (var1.hasKey("EggLayTime")) {
-			this.bq = var1.f("EggLayTime");
+			this.bq = var1.getInt("EggLayTime");
 		}
 
 	}

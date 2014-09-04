@@ -28,8 +28,8 @@ public class bmi extends bmk {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.a = var1.n("Left");
-		this.b = var1.n("Right");
+		this.a = var1.getBoolean("Left");
+		this.b = var1.getBoolean("Right");
 	}
 
 	public void a(bms var1, List var2, Random var3) {

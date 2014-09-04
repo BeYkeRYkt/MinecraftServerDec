@@ -940,19 +940,19 @@ public class abt extends abq implements vr {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.r(var1.n("EatingHaystack"));
-		this.n(var1.n("Bred"));
-		this.o(var1.n("ChestedHorse"));
-		this.p(var1.n("HasReproduced"));
-		this.r(var1.f("Type"));
-		this.s(var1.f("Variant"));
-		this.t(var1.f("Temper"));
-		this.l(var1.n("Tame"));
+		this.r(var1.getBoolean("EatingHaystack"));
+		this.n(var1.getBoolean("Bred"));
+		this.o(var1.getBoolean("ChestedHorse"));
+		this.p(var1.getBoolean("HasReproduced"));
+		this.r(var1.getInt("Type"));
+		this.s(var1.getInt("Variant"));
+		this.t(var1.getInt("Temper"));
+		this.l(var1.getBoolean("Tame"));
 		String var2 = "";
-		if (var1.b("OwnerUUID", 8)) {
-			var2 = var1.j("OwnerUUID");
+		if (var1.isTagAssignableFrom("OwnerUUID", 8)) {
+			var2 = var1.getString("OwnerUUID");
 		} else {
-			String var3 = var1.j("Owner");
+			String var3 = var1.getString("Owner");
 			var2 = sf.a(var3);
 		}
 
@@ -966,12 +966,12 @@ public class abt extends abq implements vr {
 		}
 
 		if (this.cu()) {
-			NBTListTag var4 = var1.c("Items", 10);
+			NBTListTag var4 = var1.getList("Items", 10);
 			this.cY();
 
 			for (int var5 = 0; var5 < var4.getSize(); ++var5) {
 				NBTCompoundTag var6 = var4.getCompound(var5);
-				int var7 = var6.d("Slot") & 255;
+				int var7 = var6.getByte("Slot") & 255;
 				if (var7 >= 2 && var7 < this.bC.n_()) {
 					this.bC.a(var7, amj.a(var6));
 				}
@@ -979,19 +979,19 @@ public class abt extends abq implements vr {
 		}
 
 		amj var9;
-		if (var1.b("ArmorItem", 10)) {
-			var9 = amj.a(var1.m("ArmorItem"));
+		if (var1.isTagAssignableFrom("ArmorItem", 10)) {
+			var9 = amj.a(var1.getCompound("ArmorItem"));
 			if (var9 != null && a(var9.b())) {
 				this.bC.a(1, var9);
 			}
 		}
 
-		if (var1.b("SaddleItem", 10)) {
-			var9 = amj.a(var1.m("SaddleItem"));
+		if (var1.isTagAssignableFrom("SaddleItem", 10)) {
+			var9 = amj.a(var1.getCompound("SaddleItem"));
 			if (var9 != null && var9.b() == amk.aA) {
 				this.bC.a(0, var9);
 			}
-		} else if (var1.n("Saddle")) {
+		} else if (var1.getBoolean("Saddle")) {
 			this.bC.a(0, new amj(amk.aA));
 		}
 

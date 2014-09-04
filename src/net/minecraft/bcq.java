@@ -137,20 +137,20 @@ public class bcq extends bdf implements pm, we {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		NBTListTag var2 = var1.c("Items", 10);
+		NBTListTag var2 = var1.getList("Items", 10);
 		this.g = new amj[this.n_()];
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
-			byte var5 = var4.d("Slot");
+			byte var5 = var4.getByte("Slot");
 			if (var5 >= 0 && var5 < this.g.length) {
 				this.g[var5] = amj.a(var4);
 			}
 		}
 
-		this.h = var1.e("BrewTime");
-		if (var1.b("CustomName", 8)) {
-			this.k = var1.j("CustomName");
+		this.h = var1.getShort("BrewTime");
+		if (var1.isTagAssignableFrom("CustomName", 8)) {
+			this.k = var1.getString("CustomName");
 		}
 
 	}

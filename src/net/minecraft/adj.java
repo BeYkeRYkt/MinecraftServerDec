@@ -167,15 +167,15 @@ public abstract class adj extends Entity {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.a = new dt(var1.f("TileX"), var1.f("TileY"), var1.f("TileZ"));
+		this.a = new dt(var1.getInt("TileX"), var1.getInt("TileY"), var1.getInt("TileZ"));
 		ej var2;
-		if (var1.b("Direction", 99)) {
-			var2 = ej.b(var1.d("Direction"));
+		if (var1.isTagAssignableFrom("Direction", 99)) {
+			var2 = ej.b(var1.getByte("Direction"));
 			this.a = this.a.a(var2);
-		} else if (var1.b("Facing", 99)) {
-			var2 = ej.b(var1.d("Facing"));
+		} else if (var1.isTagAssignableFrom("Facing", 99)) {
+			var2 = ej.b(var1.getByte("Facing"));
 		} else {
-			var2 = ej.b(var1.d("Dir"));
+			var2 = ej.b(var1.getByte("Dir"));
 		}
 
 		this.a(var2);

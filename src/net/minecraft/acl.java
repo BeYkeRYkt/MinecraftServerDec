@@ -107,8 +107,8 @@ public class acl extends abq {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.l(var1.n("Sheared"));
-		this.b(akv.b(var1.d("Color")));
+		this.l(var1.getBoolean("Sheared"));
+		this.b(akv.b(var1.getByte("Color")));
 	}
 
 	protected String z() {

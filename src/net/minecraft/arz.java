@@ -66,15 +66,15 @@ public class arz {
 
 				var1[var7] = var8;
 			} catch (Throwable var11) {
-				CrashReport var9 = CrashReport.a(var11, "Invalid Biome id");
-				j var10 = var9.a("DownfallBlock");
-				var10.a("biome id", (Object) Integer.valueOf(var7));
-				var10.a("downfalls[] size", (Object) Integer.valueOf(var1.length));
-				var10.a("x", (Object) Integer.valueOf(var2));
-				var10.a("z", (Object) Integer.valueOf(var3));
-				var10.a("w", (Object) Integer.valueOf(var4));
-				var10.a("h", (Object) Integer.valueOf(var5));
-				throw new u(var9);
+				CrashReport var9 = CrashReport.generateCrashReport(var11, "Invalid Biome id");
+				CrashReportSystemDetails var10 = var9.generateSystemDetails("DownfallBlock");
+				var10.addDetails("biome id", (Object) Integer.valueOf(var7));
+				var10.addDetails("downfalls[] size", (Object) Integer.valueOf(var1.length));
+				var10.addDetails("x", (Object) Integer.valueOf(var2));
+				var10.addDetails("z", (Object) Integer.valueOf(var3));
+				var10.addDetails("w", (Object) Integer.valueOf(var4));
+				var10.addDetails("h", (Object) Integer.valueOf(var5));
+				throw new ReportedException(var9);
 			}
 		}
 
@@ -96,14 +96,14 @@ public class arz {
 
 			return var1;
 		} catch (Throwable var10) {
-			CrashReport var8 = CrashReport.a(var10, "Invalid Biome id");
-			j var9 = var8.a("RawBiomeBlock");
-			var9.a("biomes[] size", (Object) Integer.valueOf(var1.length));
-			var9.a("x", (Object) Integer.valueOf(var2));
-			var9.a("z", (Object) Integer.valueOf(var3));
-			var9.a("w", (Object) Integer.valueOf(var4));
-			var9.a("h", (Object) Integer.valueOf(var5));
-			throw new u(var8);
+			CrashReport var8 = CrashReport.generateCrashReport(var10, "Invalid Biome id");
+			CrashReportSystemDetails var9 = var8.generateSystemDetails("RawBiomeBlock");
+			var9.addDetails("biomes[] size", (Object) Integer.valueOf(var1.length));
+			var9.addDetails("x", (Object) Integer.valueOf(var2));
+			var9.addDetails("z", (Object) Integer.valueOf(var3));
+			var9.addDetails("w", (Object) Integer.valueOf(var4));
+			var9.addDetails("h", (Object) Integer.valueOf(var5));
+			throw new ReportedException(var8);
 		}
 	}
 
@@ -152,14 +152,14 @@ public class arz {
 
 			return true;
 		} catch (Throwable var15) {
-			CrashReport var13 = CrashReport.a(var15, "Invalid Biome id");
-			j var14 = var13.a("Layer");
-			var14.a("Layer", (Object) this.b.toString());
-			var14.a("x", (Object) Integer.valueOf(var1));
-			var14.a("z", (Object) Integer.valueOf(var2));
-			var14.a("radius", (Object) Integer.valueOf(var3));
-			var14.a("allowed", (Object) var4);
-			throw new u(var13);
+			CrashReport var13 = CrashReport.generateCrashReport(var15, "Invalid Biome id");
+			CrashReportSystemDetails var14 = var13.generateSystemDetails("Layer");
+			var14.addDetails("Layer", (Object) this.b.toString());
+			var14.addDetails("x", (Object) Integer.valueOf(var1));
+			var14.addDetails("z", (Object) Integer.valueOf(var2));
+			var14.addDetails("radius", (Object) Integer.valueOf(var3));
+			var14.addDetails("allowed", (Object) var4);
+			throw new ReportedException(var13);
 		}
 	}
 

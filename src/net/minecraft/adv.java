@@ -162,31 +162,31 @@ public class adv extends Entity {
 	}
 
 	protected void a(NBTCompoundTag var1) {
-		int var2 = var1.d("Data") & 255;
-		if (var1.b("Block", 8)) {
-			this.d = atr.b(var1.j("Block")).a(var2);
-		} else if (var1.b("TileID", 99)) {
-			this.d = atr.c(var1.f("TileID")).a(var2);
+		int var2 = var1.getByte("Data") & 255;
+		if (var1.isTagAssignableFrom("Block", 8)) {
+			this.d = atr.b(var1.getString("Block")).a(var2);
+		} else if (var1.isTagAssignableFrom("TileID", 99)) {
+			this.d = atr.c(var1.getInt("TileID")).a(var2);
 		} else {
-			this.d = atr.c(var1.d("Tile") & 255).a(var2);
+			this.d = atr.c(var1.getByte("Tile") & 255).a(var2);
 		}
 
-		this.a = var1.d("Time") & 255;
+		this.a = var1.getByte("Time") & 255;
 		atr var3 = this.d.c();
-		if (var1.b("HurtEntities", 99)) {
-			this.f = var1.n("HurtEntities");
-			this.h = var1.h("FallHurtAmount");
-			this.g = var1.f("FallHurtMax");
+		if (var1.isTagAssignableFrom("HurtEntities", 99)) {
+			this.f = var1.getBoolean("HurtEntities");
+			this.h = var1.getFloat("FallHurtAmount");
+			this.g = var1.getInt("FallHurtMax");
 		} else if (var3 == aty.cf) {
 			this.f = true;
 		}
 
-		if (var1.b("DropItem", 99)) {
-			this.b = var1.n("DropItem");
+		if (var1.isTagAssignableFrom("DropItem", 99)) {
+			this.b = var1.getBoolean("DropItem");
 		}
 
-		if (var1.b("TileEntityData", 10)) {
-			this.c = var1.m("TileEntityData");
+		if (var1.isTagAssignableFrom("TileEntityData", 10)) {
+			this.c = var1.getCompound("TileEntityData");
 		}
 
 		if (var3 == null || var3.r() == bof.a) {
@@ -199,12 +199,12 @@ public class adv extends Entity {
 		this.f = var1;
 	}
 
-	public void a(j var1) {
+	public void a(CrashReportSystemDetails var1) {
 		super.a(var1);
 		if (this.d != null) {
 			atr var2 = this.d.c();
-			var1.a("Immitating block ID", (Object) Integer.valueOf(atr.a(var2)));
-			var1.a("Immitating block data", (Object) Integer.valueOf(var2.c(this.d)));
+			var1.addDetails("Immitating block ID", (Object) Integer.valueOf(atr.a(var2)));
+			var1.addDetails("Immitating block data", (Object) Integer.valueOf(var2.c(this.d)));
 		}
 
 	}

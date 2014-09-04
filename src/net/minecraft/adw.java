@@ -208,21 +208,21 @@ public class adw extends Entity {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.e = var1.e("Health") & 255;
-		this.c = var1.e("Age");
+		this.e = var1.getShort("Health") & 255;
+		this.c = var1.getShort("Age");
 		if (var1.hasKey("PickupDelay")) {
-			this.d = var1.e("PickupDelay");
+			this.d = var1.getShort("PickupDelay");
 		}
 
 		if (var1.hasKey("Owner")) {
-			this.g = var1.j("Owner");
+			this.g = var1.getString("Owner");
 		}
 
 		if (var1.hasKey("Thrower")) {
-			this.f = var1.j("Thrower");
+			this.f = var1.getString("Thrower");
 		}
 
-		NBTCompoundTag var2 = var1.m("Item");
+		NBTCompoundTag var2 = var1.getCompound("Item");
 		this.a(amj.a(var2));
 		if (this.l() == null) {
 			this.J();

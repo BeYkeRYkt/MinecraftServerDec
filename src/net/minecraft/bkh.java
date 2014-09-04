@@ -69,12 +69,12 @@ public class bkh extends bmv {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		if (var1.b("Processed", 9)) {
-			NBTListTag var2 = var1.c("Processed", 10);
+		if (var1.isTagAssignableFrom("Processed", 9)) {
+			NBTListTag var2 = var1.getList("Processed", 10);
 
 			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 				NBTCompoundTag var4 = var2.getCompound(var3);
-				this.c.add(new aqm(var4.f("X"), var4.f("Z")));
+				this.c.add(new aqm(var4.getInt("X"), var4.getInt("Z")));
 			}
 		}
 

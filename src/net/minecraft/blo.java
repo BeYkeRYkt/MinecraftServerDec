@@ -20,7 +20,7 @@ public class blo extends bln {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.e = var1.n("Witch");
+		this.e = var1.getBoolean("Witch");
 	}
 
 	public boolean a(World var1, Random var2, bjb var3) {

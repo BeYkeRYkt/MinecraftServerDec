@@ -34,10 +34,10 @@ public class blx extends bmk {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.a = var1.n("leftLow");
-		this.b = var1.n("leftHigh");
-		this.c = var1.n("rightLow");
-		this.e = var1.n("rightHigh");
+		this.a = var1.getBoolean("leftLow");
+		this.b = var1.getBoolean("leftHigh");
+		this.c = var1.getBoolean("rightLow");
+		this.e = var1.getBoolean("rightHigh");
 	}
 
 	public void a(bms var1, List var2, Random var3) {

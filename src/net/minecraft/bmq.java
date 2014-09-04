@@ -35,19 +35,19 @@ public class bmq {
 		bmv var2 = null;
 
 		try {
-			Class var3 = (Class) b.get(var0.j("id"));
+			Class var3 = (Class) b.get(var0.getString("id"));
 			if (var3 != null) {
 				var2 = (bmv) var3.newInstance();
 			}
 		} catch (Exception var4) {
-			a.warn("Failed Start with id " + var0.j("id"));
+			a.warn("Failed Start with id " + var0.getString("id"));
 			var4.printStackTrace();
 		}
 
 		if (var2 != null) {
 			var2.a(var1, var0);
 		} else {
-			a.warn("Skipping Structure with id " + var0.j("id"));
+			a.warn("Skipping Structure with id " + var0.getString("id"));
 		}
 
 		return var2;
@@ -57,19 +57,19 @@ public class bmq {
 		bms var2 = null;
 
 		try {
-			Class var3 = (Class) d.get(var0.j("id"));
+			Class var3 = (Class) d.get(var0.getString("id"));
 			if (var3 != null) {
 				var2 = (bms) var3.newInstance();
 			}
 		} catch (Exception var4) {
-			a.warn("Failed Piece with id " + var0.j("id"));
+			a.warn("Failed Piece with id " + var0.getString("id"));
 			var4.printStackTrace();
 		}
 
 		if (var2 != null) {
 			var2.a(var1, var0);
 		} else {
-			a.warn("Skipping Piece with id " + var0.j("id"));
+			a.warn("Skipping Piece with id " + var0.getString("id"));
 		}
 
 		return var2;

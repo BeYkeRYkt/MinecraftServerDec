@@ -52,10 +52,10 @@ public class aer extends afm {
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
 		bec var2;
-		if (var1.b("carried", 8)) {
-			var2 = atr.b(var1.j("carried")).a(var1.e("carriedData") & '\uffff');
+		if (var1.isTagAssignableFrom("carried", 8)) {
+			var2 = atr.b(var1.getString("carried")).a(var1.getShort("carriedData") & '\uffff');
 		} else {
-			var2 = atr.c(var1.e("carried")).a(var1.e("carriedData") & '\uffff');
+			var2 = atr.c(var1.getShort("carried")).a(var1.getShort("carriedData") & '\uffff');
 		}
 
 		this.a(var2);

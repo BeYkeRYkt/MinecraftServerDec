@@ -336,17 +336,17 @@ public class ado extends Entity {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.g = var1.e("xTile");
-		this.h = var1.e("yTile");
-		this.i = var1.e("zTile");
-		if (var1.b("inTile", 8)) {
-			this.ap = atr.b(var1.j("inTile"));
+		this.g = var1.getShort("xTile");
+		this.h = var1.getShort("yTile");
+		this.i = var1.getShort("zTile");
+		if (var1.isTagAssignableFrom("inTile", 8)) {
+			this.ap = atr.b(var1.getString("inTile"));
 		} else {
-			this.ap = atr.c(var1.d("inTile") & 255);
+			this.ap = atr.c(var1.getByte("inTile") & 255);
 		}
 
-		this.a = var1.d("shake") & 255;
-		this.aq = var1.d("inGround") == 1;
+		this.a = var1.getByte("shake") & 255;
+		this.aq = var1.getByte("inGround") == 1;
 	}
 
 	public int l() {

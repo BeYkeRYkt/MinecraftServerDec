@@ -44,7 +44,7 @@ public class brn {
 						FileInputStream var5 = new FileInputStream(var4);
 						NBTCompoundTag var6 = fz.a((InputStream) var5);
 						var5.close();
-						var3.a(var6.m("data"));
+						var3.a(var6.getCompound("data"));
 					}
 				} catch (Exception var8) {
 					var8.printStackTrace();

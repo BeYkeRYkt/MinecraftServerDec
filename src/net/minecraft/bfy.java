@@ -55,19 +55,19 @@ public class bfy implements bfq, brq {
 	}
 
 	protected bfh a(World var1, int var2, int var3, NBTCompoundTag var4) {
-		if (!var4.b("Level", 10)) {
+		if (!var4.isTagAssignableFrom("Level", 10)) {
 			a.error("Chunk file at " + var2 + "," + var3 + " is missing level data, skipping");
 			return null;
-		} else if (!var4.m("Level").b("Sections", 9)) {
+		} else if (!var4.getCompound("Level").isTagAssignableFrom("Sections", 9)) {
 			a.error("Chunk file at " + var2 + "," + var3 + " is missing block data, skipping");
 			return null;
 		} else {
-			bfh var5 = this.a(var1, var4.m("Level"));
+			bfh var5 = this.a(var1, var4.getCompound("Level"));
 			if (!var5.a(var2, var3)) {
 				a.error("Chunk file at " + var2 + "," + var3 + " is in the wrong location; relocating. (Expected " + var2 + ", " + var3 + ", got " + var5.a + ", " + var5.b + ")");
 				var4.put("xPos", var2);
 				var4.put("zPos", var3);
-				var5 = this.a(var1, var4.m("Level"));
+				var5 = this.a(var1, var4.getCompound("Level"));
 			}
 
 			return var5;
@@ -264,25 +264,25 @@ public class bfy implements bfq, brq {
 	}
 
 	private bfh a(World var1, NBTCompoundTag var2) {
-		int var3 = var2.f("xPos");
-		int var4 = var2.f("zPos");
+		int var3 = var2.getInt("xPos");
+		int var4 = var2.getInt("zPos");
 		bfh var5 = new bfh(var1, var3, var4);
-		var5.a(var2.l("HeightMap"));
-		var5.d(var2.n("TerrainPopulated"));
-		var5.e(var2.n("LightPopulated"));
-		var5.c(var2.g("InhabitedTime"));
-		NBTListTag var6 = var2.c("Sections", 10);
+		var5.a(var2.getIntArray("HeightMap"));
+		var5.d(var2.getBoolean("TerrainPopulated"));
+		var5.e(var2.getBoolean("LightPopulated"));
+		var5.c(var2.getLong("InhabitedTime"));
+		NBTListTag var6 = var2.getList("Sections", 10);
 		byte var7 = 16;
 		bfm[] var8 = new bfm[var7];
 		boolean var9 = !var1.t.o();
 
 		for (int var10 = 0; var10 < var6.getSize(); ++var10) {
 			NBTCompoundTag var11 = var6.getCompound(var10);
-			byte var12 = var11.d("Y");
+			byte var12 = var11.getByte("Y");
 			bfm var13 = new bfm(var12 << 4, var9);
-			byte[] var14 = var11.k("Blocks");
-			bff var15 = new bff(var11.k("Data"));
-			bff var16 = var11.b("Add", 7) ? new bff(var11.k("Add")) : null;
+			byte[] var14 = var11.getByteArray("Blocks");
+			bff var15 = new bff(var11.getByteArray("Data"));
+			bff var16 = var11.isTagAssignableFrom("Add", 7) ? new bff(var11.getByteArray("Add")) : null;
 			char[] var17 = new char[var14.length];
 
 			for (int var18 = 0; var18 < var17.length; ++var18) {
@@ -294,9 +294,9 @@ public class bfy implements bfq, brq {
 			}
 
 			var13.a(var17);
-			var13.a(new bff(var11.k("BlockLight")));
+			var13.a(new bff(var11.getByteArray("BlockLight")));
 			if (var9) {
-				var13.b(new bff(var11.k("SkyLight")));
+				var13.b(new bff(var11.getByteArray("SkyLight")));
 			}
 
 			var13.e();
@@ -304,11 +304,11 @@ public class bfy implements bfq, brq {
 		}
 
 		var5.a(var8);
-		if (var2.b("Biomes", 7)) {
-			var5.a(var2.k("Biomes"));
+		if (var2.isTagAssignableFrom("Biomes", 7)) {
+			var5.a(var2.getByteArray("Biomes"));
 		}
 
-		NBTListTag var23 = var2.c("Entities", 10);
+		NBTListTag var23 = var2.getList("Entities", 10);
 		if (var23 != null) {
 			for (int var24 = 0; var24 < var23.getSize(); ++var24) {
 				NBTCompoundTag var26 = var23.getCompound(var24);
@@ -318,8 +318,8 @@ public class bfy implements bfq, brq {
 					var5.a(var29);
 					Entity var32 = var29;
 
-					for (NBTCompoundTag var35 = var26; var35.b("Riding", 10); var35 = var35.m("Riding")) {
-						Entity var37 = xb.a(var35.m("Riding"), var1);
+					for (NBTCompoundTag var35 = var26; var35.isTagAssignableFrom("Riding", 10); var35 = var35.getCompound("Riding")) {
+						Entity var37 = xb.a(var35.getCompound("Riding"), var1);
 						if (var37 != null) {
 							var5.a(var37);
 							var32.a(var37);
@@ -331,7 +331,7 @@ public class bfy implements bfq, brq {
 			}
 		}
 
-		NBTListTag var25 = var2.c("TileEntities", 10);
+		NBTListTag var25 = var2.getList("TileEntities", 10);
 		if (var25 != null) {
 			for (int var27 = 0; var27 < var25.getSize(); ++var27) {
 				NBTCompoundTag var30 = var25.getCompound(var27);
@@ -342,19 +342,19 @@ public class bfy implements bfq, brq {
 			}
 		}
 
-		if (var2.b("TileTicks", 9)) {
-			NBTListTag var28 = var2.c("TileTicks", 10);
+		if (var2.isTagAssignableFrom("TileTicks", 9)) {
+			NBTListTag var28 = var2.getList("TileTicks", 10);
 			if (var28 != null) {
 				for (int var31 = 0; var31 < var28.getSize(); ++var31) {
 					NBTCompoundTag var34 = var28.getCompound(var31);
 					atr var36;
-					if (var34.b("i", 8)) {
-						var36 = atr.b(var34.j("i"));
+					if (var34.isTagAssignableFrom("i", 8)) {
+						var36 = atr.b(var34.getString("i"));
 					} else {
-						var36 = atr.c(var34.f("i"));
+						var36 = atr.c(var34.getInt("i"));
 					}
 
-					var1.b(new dt(var34.f("x"), var34.f("y"), var34.f("z")), var36, var34.f("t"), var34.f("p"));
+					var1.b(new dt(var34.getInt("x"), var34.getInt("y"), var34.getInt("z")), var36, var34.getInt("t"), var34.getInt("p"));
 				}
 			}
 		}

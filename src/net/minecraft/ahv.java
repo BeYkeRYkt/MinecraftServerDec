@@ -98,10 +98,10 @@ public class ahv extends ahr {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		if (var1.b("Potion", 10)) {
-			this.c = amj.a(var1.m("Potion"));
+		if (var1.isTagAssignableFrom("Potion", 10)) {
+			this.c = amj.a(var1.getCompound("Potion"));
 		} else {
-			this.a(var1.f("potionValue"));
+			this.a(var1.getInt("potionValue"));
 		}
 
 		if (this.c == null) {

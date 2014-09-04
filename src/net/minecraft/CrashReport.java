@@ -19,41 +19,41 @@ import org.apache.logging.log4j.Logger;
 public class CrashReport {
 
 	private static final Logger a = LogManager.getLogger();
-	private final String b;
-	private final Throwable c;
-	private final j d = new j(this, "System Details");
+	private final String message;
+	private final Throwable throwable;
+	private final CrashReportSystemDetails d = new CrashReportSystemDetails(this, "System Details");
 	private final List e = Lists.newArrayList();
 	private File f;
 	private boolean g = true;
 	private StackTraceElement[] h = new StackTraceElement[0];
 
 	public CrashReport(String var1, Throwable var2) {
-		this.b = var1;
-		this.c = var2;
+		this.message = var1;
+		this.throwable = var2;
 		this.h();
 	}
 
 	private void h() {
-		this.d.a("Minecraft Version", (Callable) (new c(this)));
-		this.d.a("Operating System", (Callable) (new d(this)));
-		this.d.a("Java Version", (Callable) (new e(this)));
-		this.d.a("Java VM Version", (Callable) (new f(this)));
-		this.d.a("Memory", (Callable) (new g(this)));
-		this.d.a("JVM Flags", (Callable) (new h(this)));
-		this.d.a("IntCache", (Callable) (new i(this)));
+		this.d.addDetails("Minecraft Version", (Callable) (new c(this)));
+		this.d.addDetails("Operating System", (Callable) (new d(this)));
+		this.d.addDetails("Java Version", (Callable) (new e(this)));
+		this.d.addDetails("Java VM Version", (Callable) (new f(this)));
+		this.d.addDetails("Memory", (Callable) (new g(this)));
+		this.d.addDetails("JVM Flags", (Callable) (new h(this)));
+		this.d.addDetails("IntCache", (Callable) (new i(this)));
 	}
 
-	public String a() {
-		return this.b;
+	public String getMessage() {
+		return this.message;
 	}
 
-	public Throwable b() {
-		return this.c;
+	public Throwable getThrowable() {
+		return this.throwable;
 	}
 
 	public void a(StringBuilder var1) {
 		if ((this.h == null || this.h.length <= 0) && this.e.size() > 0) {
-			this.h = (StackTraceElement[]) ArrayUtils.subarray((Object[]) ((j) this.e.get(0)).a(), 0, 1);
+			this.h = (StackTraceElement[]) ArrayUtils.subarray((Object[]) ((CrashReportSystemDetails) this.e.get(0)).a(), 0, 1);
 		}
 
 		if (this.h != null && this.h.length > 0) {
@@ -74,7 +74,7 @@ public class CrashReport {
 		Iterator var6 = this.e.iterator();
 
 		while (var6.hasNext()) {
-			j var7 = (j) var6.next();
+			CrashReportSystemDetails var7 = (CrashReportSystemDetails) var6.next();
 			var7.a(var1);
 			var1.append("\n\n");
 		}
@@ -85,17 +85,17 @@ public class CrashReport {
 	public String d() {
 		StringWriter var1 = null;
 		PrintWriter var2 = null;
-		Object var3 = this.c;
+		Object var3 = this.throwable;
 		if (((Throwable) var3).getMessage() == null) {
 			if (var3 instanceof NullPointerException) {
-				var3 = new NullPointerException(this.b);
+				var3 = new NullPointerException(this.message);
 			} else if (var3 instanceof StackOverflowError) {
-				var3 = new StackOverflowError(this.b);
+				var3 = new StackOverflowError(this.message);
 			} else if (var3 instanceof OutOfMemoryError) {
-				var3 = new OutOfMemoryError(this.b);
+				var3 = new OutOfMemoryError(this.message);
 			}
 
-			((Throwable) var3).setStackTrace(this.c.getStackTrace());
+			((Throwable) var3).setStackTrace(this.throwable.getStackTrace());
 		}
 
 		String var4 = ((Throwable) var3).toString();
@@ -117,13 +117,13 @@ public class CrashReport {
 		StringBuilder var1 = new StringBuilder();
 		var1.append("---- Minecraft Crash Report ----\n");
 		var1.append("// ");
-		var1.append(i());
+		var1.append(getCommentThatNobodyWillReadAnyway());
 		var1.append("\n\n");
 		var1.append("Time: ");
 		var1.append((new SimpleDateFormat()).format(new Date()));
 		var1.append("\n");
 		var1.append("Description: ");
-		var1.append(this.b);
+		var1.append(this.message);
 		var1.append("\n\n");
 		var1.append(this.d());
 		var1.append("\n\nA detailed walkthrough of the error, its code path and all known details is as follows:\n");
@@ -158,19 +158,19 @@ public class CrashReport {
 		}
 	}
 
-	public j g() {
+	public CrashReportSystemDetails g() {
 		return this.d;
 	}
 
-	public j a(String var1) {
-		return this.a(var1, 1);
+	public CrashReportSystemDetails generateSystemDetails(String moreinfo) {
+		return this.generateSystemDetails(moreinfo, 1);
 	}
 
-	public j a(String var1, int var2) {
-		j var3 = new j(this, var1);
+	public CrashReportSystemDetails generateSystemDetails(String moreinfo, int startIndex) {
+		CrashReportSystemDetails details = new CrashReportSystemDetails(this, moreinfo);
 		if (this.g) {
-			int var4 = var3.a(var2);
-			StackTraceElement[] var5 = this.c.getStackTrace();
+			int var4 = details.getStackTraceLength(startIndex);
+			StackTraceElement[] var5 = this.throwable.getStackTrace();
 			StackTraceElement var6 = null;
 			StackTraceElement var7 = null;
 			int var8 = var5.length - var4;
@@ -185,9 +185,9 @@ public class CrashReport {
 				}
 			}
 
-			this.g = var3.a(var6, var7);
+			this.g = details.a(var6, var7);
 			if (var4 > 0 && !this.e.isEmpty()) {
-				j var9 = (j) this.e.get(this.e.size() - 1);
+				CrashReportSystemDetails var9 = (CrashReportSystemDetails) this.e.get(this.e.size() - 1);
 				var9.b(var4);
 			} else if (var5 != null && var5.length >= var4 && 0 <= var8 && var8 < var5.length) {
 				this.h = new StackTraceElement[var8];
@@ -197,31 +197,31 @@ public class CrashReport {
 			}
 		}
 
-		this.e.add(var3);
-		return var3;
+		this.e.add(details);
+		return details;
 	}
 
-	private static String i() {
-		String[] var0 = new String[] { "Who set us up the TNT?", "Everything\'s going to plan. No, really, that was supposed to happen.", "Uh... Did I do that?", "Oops.", "Why did you do that?", "I feel sad now :(", "My bad.", "I\'m sorry, Dave.", "I let you down. Sorry :(", "On the bright side, I bought you a teddy bear!", "Daisy, daisy...", "Oh - I know what I did wrong!", "Hey, that tickles! Hehehe!", "I blame Dinnerbone.", "You should try our sister game, Minceraft!",
+	private static String getCommentThatNobodyWillReadAnyway() {
+		String[] comments = new String[] { "Who set us up the TNT?", "Everything\'s going to plan. No, really, that was supposed to happen.", "Uh... Did I do that?", "Oops.", "Why did you do that?", "I feel sad now :(", "My bad.", "I\'m sorry, Dave.", "I let you down. Sorry :(", "On the bright side, I bought you a teddy bear!", "Daisy, daisy...", "Oh - I know what I did wrong!", "Hey, that tickles! Hehehe!", "I blame Dinnerbone.", "You should try our sister game, Minceraft!",
 				"Don\'t be sad. I\'ll do better next time, I promise!", "Don\'t be sad, have a hug! <3", "I just don\'t know what went wrong :(", "Shall we play a game?", "Quite honestly, I wouldn\'t worry myself about that.", "I bet Cylons wouldn\'t have this problem.", "Sorry :(", "Surprise! Haha. Well, this is awkward.", "Would you like a cupcake?", "Hi. I\'m Minecraft, and I\'m a crashaholic.", "Ooh. Shiny.", "This doesn\'t make any sense!", "Why is it breaking :(", "Don\'t do that.",
 				"Ouch. That hurt :(", "You\'re mean.", "This is a token for 1 free hug. Redeem at your nearest Mojangsta: [~~HUG~~]", "There are four lights!", "But it works on my machine." };
 
 		try {
-			return var0[(int) (System.nanoTime() % (long) var0.length)];
-		} catch (Throwable var2) {
+			return comments[(int) (System.nanoTime() % (long) comments.length)];
+		} catch (Throwable t) {
 			return "Witty comment unavailable :(";
 		}
 	}
 
-	public static CrashReport a(Throwable var0, String var1) {
-		CrashReport var2;
-		if (var0 instanceof u) {
-			var2 = ((u) var0).a();
+	public static CrashReport generateCrashReport(Throwable t, String message) {
+		CrashReport report;
+		if (t instanceof ReportedException) {
+			report = ((ReportedException) t).getCrashReport();
 		} else {
-			var2 = new CrashReport(var1, var0);
+			report = new CrashReport(message, t);
 		}
 
-		return var2;
+		return report;
 	}
 
 }

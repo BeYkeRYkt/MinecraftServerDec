@@ -3,23 +3,23 @@ package net.minecraft;
 public class bft {
 
 	public static bfu a(NBTCompoundTag var0) {
-		int var1 = var0.f("xPos");
-		int var2 = var0.f("zPos");
+		int var1 = var0.getInt("xPos");
+		int var2 = var0.getInt("zPos");
 		bfu var3 = new bfu(var1, var2);
-		var3.g = var0.k("Blocks");
-		var3.f = new bfn(var0.k("Data"), 7);
-		var3.e = new bfn(var0.k("SkyLight"), 7);
-		var3.d = new bfn(var0.k("BlockLight"), 7);
-		var3.c = var0.k("HeightMap");
-		var3.b = var0.n("TerrainPopulated");
-		var3.h = var0.c("Entities", 10);
-		var3.i = var0.c("TileEntities", 10);
-		var3.j = var0.c("TileTicks", 10);
+		var3.g = var0.getByteArray("Blocks");
+		var3.f = new bfn(var0.getByteArray("Data"), 7);
+		var3.e = new bfn(var0.getByteArray("SkyLight"), 7);
+		var3.d = new bfn(var0.getByteArray("BlockLight"), 7);
+		var3.c = var0.getByteArray("HeightMap");
+		var3.b = var0.getBoolean("TerrainPopulated");
+		var3.h = var0.getList("Entities", 10);
+		var3.i = var0.getList("TileEntities", 10);
+		var3.j = var0.getList("TileTicks", 10);
 
 		try {
-			var3.a = var0.g("LastUpdate");
+			var3.a = var0.getLong("LastUpdate");
 		} catch (ClassCastException var5) {
-			var3.a = (long) var0.f("LastUpdate");
+			var3.a = (long) var0.getInt("LastUpdate");
 		}
 
 		return var3;

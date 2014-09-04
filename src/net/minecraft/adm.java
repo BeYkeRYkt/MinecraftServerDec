@@ -39,7 +39,7 @@ public class adm extends adj {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		String var2 = var1.j("Motive");
+		String var2 = var1.getString("Motive");
 		adn[] var3 = adn.values();
 		int var4 = var3.length;
 

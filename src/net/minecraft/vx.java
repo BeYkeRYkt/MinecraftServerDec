@@ -22,8 +22,8 @@ public class vx {
 	}
 
 	public static vx b(NBTCompoundTag var0) {
-		if (var0.b("Lock", 8)) {
-			String var1 = var0.j("Lock");
+		if (var0.isTagAssignableFrom("Lock", 8)) {
+			String var1 = var0.getString("Lock");
 			return new vx(var1);
 		} else {
 			return a;

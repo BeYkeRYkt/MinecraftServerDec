@@ -73,7 +73,7 @@ public class aqq {
 
 		while (var3.hasNext()) {
 			String var4 = (String) var3.next();
-			String var6 = var1.j(var4);
+			String var6 = var1.getString(var4);
 			this.a(var4, var6);
 		}
 

@@ -15,7 +15,7 @@ class bfj implements Callable {
 	}
 
 	public String a() {
-		return j.a(this.a);
+		return CrashReportSystemDetails.a(this.a);
 	}
 
 	// $FF: synthetic method

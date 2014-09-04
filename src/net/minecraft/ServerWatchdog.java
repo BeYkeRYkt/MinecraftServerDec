@@ -45,8 +45,8 @@ public class ServerWatchdog implements Runnable {
 
 				CrashReport crashreport = new CrashReport("Watching Server", error);
 				this.minecraftserver.b(crashreport);
-				j var17 = crashreport.a("Thread Dump");
-				var17.a("Threads", builder);
+				CrashReportSystemDetails var17 = crashreport.generateSystemDetails("Thread Dump");
+				var17.addDetails("Threads", builder);
 				File file = new File(new File(this.minecraftserver.w(), "crash-reports"), "crash-" + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-server.txt");
 				if (crashreport.write(file)) {
 					logger.error("This crash report has been saved to: " + file.getAbsolutePath());

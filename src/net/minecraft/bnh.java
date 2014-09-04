@@ -27,8 +27,8 @@ public class bnh extends bnn {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.b = var1.f("T");
-		this.a = var1.n("C");
+		this.b = var1.getInt("T");
+		this.a = var1.getBoolean("C");
 	}
 
 	public static bnh a(bnk var0, List var1, Random var2, int var3, int var4, int var5, ej var6, int var7) {

@@ -98,8 +98,8 @@ public abstract class ws extends EntityCreature {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.b(var1.f("Age"));
-		this.b = var1.f("ForcedAge");
+		this.b(var1.getInt("Age"));
+		this.b = var1.getInt("ForcedAge");
 	}
 
 	public void m() {

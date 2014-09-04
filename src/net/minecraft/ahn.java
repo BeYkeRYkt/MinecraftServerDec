@@ -33,8 +33,8 @@ public class ahn extends ahl {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		if (var1.b("ExplosionPower", 99)) {
-			this.e = var1.f("ExplosionPower");
+		if (var1.isTagAssignableFrom("ExplosionPower", 99)) {
+			this.e = var1.getInt("ExplosionPower");
 		}
 
 	}

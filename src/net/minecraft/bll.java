@@ -31,10 +31,10 @@ public class bll extends bln {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.e = var1.n("placedMainChest");
-		this.f = var1.n("placedHiddenChest");
-		this.g = var1.n("placedTrap1");
-		this.h = var1.n("placedTrap2");
+		this.e = var1.getBoolean("placedMainChest");
+		this.f = var1.getBoolean("placedHiddenChest");
+		this.g = var1.getBoolean("placedTrap1");
+		this.h = var1.getBoolean("placedTrap2");
 	}
 
 	public boolean a(World var1, Random var2, bjb var3) {

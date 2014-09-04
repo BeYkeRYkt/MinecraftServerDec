@@ -531,10 +531,10 @@ public abstract class Entity implements CommandSenderInterface {
 			try {
 				this.Q();
 			} catch (Throwable var52) {
-				CrashReport var63 = CrashReport.a(var52, "Checking entity block collision");
-				j var65 = var63.a("Entity being checked for collision");
+				CrashReport var63 = CrashReport.generateCrashReport(var52, "Checking entity block collision");
+				CrashReportSystemDetails var65 = var63.generateSystemDetails("Entity being checked for collision");
 				this.a(var65);
-				throw new u(var63);
+				throw new ReportedException(var63);
 			}
 
 			boolean var62 = this.U();
@@ -582,10 +582,10 @@ public abstract class Entity implements CommandSenderInterface {
 						try {
 							var7.c().a(this.o, var6, var7, this);
 						} catch (Throwable var11) {
-							CrashReport var9 = CrashReport.a(var11, "Colliding entity with block");
-							j var10 = var9.a("Block being collided with");
-							net.minecraft.j.a(var10, var6, var7);
-							throw new u(var9);
+							CrashReport var9 = CrashReport.generateCrashReport(var11, "Colliding entity with block");
+							CrashReportSystemDetails var10 = var9.generateSystemDetails("Block being collided with");
+							net.minecraft.CrashReportSystemDetails.a(var10, var6, var7);
+							throw new ReportedException(var9);
 						}
 					}
 				}
@@ -998,18 +998,18 @@ public abstract class Entity implements CommandSenderInterface {
 			}
 
 		} catch (Throwable var5) {
-			CrashReport var3 = CrashReport.a(var5, "Saving entity NBT");
-			j var4 = var3.a("Entity being saved");
+			CrashReport var3 = CrashReport.generateCrashReport(var5, "Saving entity NBT");
+			CrashReportSystemDetails var4 = var3.generateSystemDetails("Entity being saved");
 			this.a(var4);
-			throw new u(var3);
+			throw new ReportedException(var3);
 		}
 	}
 
 	public void f(NBTCompoundTag var1) {
 		try {
-			NBTListTag var2 = var1.c("Pos", 6);
-			NBTListTag var6 = var1.c("Motion", 6);
-			NBTListTag var7 = var1.c("Rotation", 5);
+			NBTListTag var2 = var1.getList("Pos", 6);
+			NBTListTag var6 = var1.getList("Motion", 6);
+			NBTListTag var7 = var1.getList("Rotation", 5);
 			this.v = var6.getDouble(0);
 			this.w = var6.getDouble(1);
 			this.x = var6.getDouble(2);
@@ -1030,38 +1030,38 @@ public abstract class Entity implements CommandSenderInterface {
 			this.r = this.R = this.u = var2.getDouble(2);
 			this.A = this.y = var7.getFloat(0);
 			this.B = this.z = var7.getFloat(1);
-			this.O = var1.h("FallDistance");
-			this.i = var1.e("Fire");
-			this.h(var1.e("Air"));
-			this.C = var1.n("OnGround");
-			this.am = var1.f("Dimension");
-			this.ar = var1.n("Invulnerable");
-			this.aj = var1.f("PortalCooldown");
-			if (var1.b("UUIDMost", 4) && var1.b("UUIDLeast", 4)) {
-				this.ao = new UUID(var1.g("UUIDMost"), var1.g("UUIDLeast"));
-			} else if (var1.b("UUID", 8)) {
-				this.ao = UUID.fromString(var1.j("UUID"));
+			this.O = var1.getFloat("FallDistance");
+			this.i = var1.getShort("Fire");
+			this.h(var1.getShort("Air"));
+			this.C = var1.getBoolean("OnGround");
+			this.am = var1.getInt("Dimension");
+			this.ar = var1.getBoolean("Invulnerable");
+			this.aj = var1.getInt("PortalCooldown");
+			if (var1.isTagAssignableFrom("UUIDMost", 4) && var1.isTagAssignableFrom("UUIDLeast", 4)) {
+				this.ao = new UUID(var1.getLong("UUIDMost"), var1.getLong("UUIDLeast"));
+			} else if (var1.isTagAssignableFrom("UUID", 8)) {
+				this.ao = UUID.fromString(var1.getString("UUID"));
 			}
 
 			this.b(this.s, this.t, this.u);
 			this.b(this.y, this.z);
-			if (var1.b("CustomName", 8) && var1.j("CustomName").length() > 0) {
-				this.a(var1.j("CustomName"));
+			if (var1.isTagAssignableFrom("CustomName", 8) && var1.getString("CustomName").length() > 0) {
+				this.a(var1.getString("CustomName"));
 			}
 
-			this.g(var1.n("CustomNameVisible"));
+			this.g(var1.getBoolean("CustomNameVisible"));
 			this.as.a(var1);
-			this.b(var1.n("Silent"));
+			this.b(var1.getBoolean("Silent"));
 			this.a(var1);
 			if (this.af()) {
 				this.b(this.s, this.t, this.u);
 			}
 
 		} catch (Throwable var5) {
-			CrashReport var3 = CrashReport.a(var5, "Loading entity NBT");
-			j var4 = var3.a("Entity being loaded");
+			CrashReport var3 = CrashReport.generateCrashReport(var5, "Loading entity NBT");
+			CrashReportSystemDetails var4 = var3.generateSystemDetails("Entity being loaded");
 			this.a(var4);
-			throw new u(var3);
+			throw new ReportedException(var3);
 		}
 	}
 
@@ -1539,15 +1539,15 @@ public abstract class Entity implements CommandSenderInterface {
 		return false;
 	}
 
-	public void a(j var1) {
-		var1.a("Entity Type", (Callable) (new ww(this)));
-		var1.a("Entity ID", (Object) Integer.valueOf(this.c));
-		var1.a("Entity Name", (Callable) (new wx(this)));
-		var1.a("Entity\'s Exact location", (Object) String.format("%.2f, %.2f, %.2f", new Object[] { Double.valueOf(this.s), Double.valueOf(this.t), Double.valueOf(this.u) }));
-		var1.a("Entity\'s Block location", (Object) net.minecraft.j.a((double) NumberConverter.c(this.s), (double) NumberConverter.c(this.t), (double) NumberConverter.c(this.u)));
-		var1.a("Entity\'s Momentum", (Object) String.format("%.2f, %.2f, %.2f", new Object[] { Double.valueOf(this.v), Double.valueOf(this.w), Double.valueOf(this.x) }));
-		var1.a("Entity\'s Rider", (Callable) (new wy(this)));
-		var1.a("Entity\'s Vehicle", (Callable) (new wz(this)));
+	public void a(CrashReportSystemDetails var1) {
+		var1.addDetails("Entity Type", (Callable) (new ww(this)));
+		var1.addDetails("Entity ID", (Object) Integer.valueOf(this.c));
+		var1.addDetails("Entity Name", (Callable) (new wx(this)));
+		var1.addDetails("Entity\'s Exact location", (Object) String.format("%.2f, %.2f, %.2f", new Object[] { Double.valueOf(this.s), Double.valueOf(this.t), Double.valueOf(this.u) }));
+		var1.addDetails("Entity\'s Block location", (Object) net.minecraft.CrashReportSystemDetails.a((double) NumberConverter.c(this.s), (double) NumberConverter.c(this.t), (double) NumberConverter.c(this.u)));
+		var1.addDetails("Entity\'s Momentum", (Object) String.format("%.2f, %.2f, %.2f", new Object[] { Double.valueOf(this.v), Double.valueOf(this.w), Double.valueOf(this.x) }));
+		var1.addDetails("Entity\'s Rider", (Callable) (new wy(this)));
+		var1.addDetails("Entity\'s Vehicle", (Callable) (new wz(this)));
 	}
 
 	public UUID aJ() {

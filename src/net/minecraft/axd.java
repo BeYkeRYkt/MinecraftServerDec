@@ -6,10 +6,10 @@ public class axd extends bcm {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		if (var1.b("RecordItem", 10)) {
-			this.a(amj.a(var1.m("RecordItem")));
-		} else if (var1.f("Record") > 0) {
-			this.a(new amj(alq.b(var1.f("Record")), 1, 0));
+		if (var1.isTagAssignableFrom("RecordItem", 10)) {
+			this.a(amj.a(var1.getCompound("RecordItem")));
+		} else if (var1.getInt("Record") > 0) {
+			this.a(new amj(alq.b(var1.getInt("Record")), 1, 0));
 		}
 
 	}

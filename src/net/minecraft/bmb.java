@@ -23,7 +23,7 @@ public class bmb extends bmk {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.a = var1.n("Mob");
+		this.a = var1.getBoolean("Mob");
 	}
 
 	public void a(bms var1, List var2, Random var3) {

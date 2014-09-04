@@ -63,20 +63,20 @@ public class afs {
 	public static void a(yc var0, NBTListTag var1) {
 		for (int var2 = 0; var2 < var1.getSize(); ++var2) {
 			NBTCompoundTag var3 = var1.getCompound(var2);
-			xz var4 = var0.a(var3.j("Name"));
+			xz var4 = var0.a(var3.getString("Name"));
 			if (var4 != null) {
 				a(var4, var3);
 			} else {
-				f.warn("Ignoring unknown attribute \'" + var3.j("Name") + "\'");
+				f.warn("Ignoring unknown attribute \'" + var3.getString("Name") + "\'");
 			}
 		}
 
 	}
 
 	private static void a(xz var0, NBTCompoundTag var1) {
-		var0.a(var1.i("Base"));
-		if (var1.b("Modifiers", 9)) {
-			NBTListTag var2 = var1.c("Modifiers", 10);
+		var0.a(var1.getDouble("Base"));
+		if (var1.isTagAssignableFrom("Modifiers", 9)) {
+			NBTListTag var2 = var1.getList("Modifiers", 10);
 
 			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 				ya var4 = a(var2.getCompound(var3));
@@ -94,10 +94,10 @@ public class afs {
 	}
 
 	public static ya a(NBTCompoundTag var0) {
-		UUID var1 = new UUID(var0.g("UUIDMost"), var0.g("UUIDLeast"));
+		UUID var1 = new UUID(var0.getLong("UUIDMost"), var0.getLong("UUIDLeast"));
 
 		try {
-			return new ya(var1, var0.j("Name"), var0.i("Amount"), var0.f("Operation"));
+			return new ya(var1, var0.getString("Name"), var0.getDouble("Amount"), var0.getInt("Operation"));
 		} catch (Exception var3) {
 			f.warn("Unable to create attribute: " + var3.getMessage());
 			return null;

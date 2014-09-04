@@ -44,7 +44,7 @@ public abstract class bcm {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.c = new dt(var1.f("x"), var1.f("y"), var1.f("z"));
+		this.c = new dt(var1.getInt("x"), var1.getInt("y"), var1.getInt("z"));
 	}
 
 	public void b(NBTCompoundTag var1) {
@@ -63,7 +63,7 @@ public abstract class bcm {
 		bcm var1 = null;
 
 		try {
-			Class var2 = (Class) f.get(var0.j("id"));
+			Class var2 = (Class) f.get(var0.getString("id"));
 			if (var2 != null) {
 				var1 = (bcm) var2.newInstance();
 			}
@@ -74,7 +74,7 @@ public abstract class bcm {
 		if (var1 != null) {
 			var1.a(var0);
 		} else {
-			a.warn("Skipping BlockEntity with id " + var0.j("id"));
+			a.warn("Skipping BlockEntity with id " + var0.getString("id"));
 		}
 
 		return var1;
@@ -138,12 +138,12 @@ public abstract class bcm {
 		this.h = -1;
 	}
 
-	public void a(j var1) {
-		var1.a("Name", (Callable) (new bcn(this)));
+	public void a(CrashReportSystemDetails var1) {
+		var1.addDetails("Name", (Callable) (new bcn(this)));
 		if (this.b != null) {
-			j.a(var1, this.c, this.w(), this.u());
-			var1.a("Actual block type", (Callable) (new bco(this)));
-			var1.a("Actual block data value", (Callable) (new bcp(this)));
+			CrashReportSystemDetails.a(var1, this.c, this.w(), this.u());
+			var1.addDetails("Actual block type", (Callable) (new bco(this)));
+			var1.addDetails("Actual block data value", (Callable) (new bcp(this)));
 		}
 	}
 

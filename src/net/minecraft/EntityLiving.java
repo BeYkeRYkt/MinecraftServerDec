@@ -345,13 +345,13 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.l(var1.h("AbsorptionAmount"));
-		if (var1.b("Attributes", 9) && this.o != null && !this.o.D) {
-			afs.a(this.bx(), var1.c("Attributes", 10));
+		this.l(var1.getFloat("AbsorptionAmount"));
+		if (var1.isTagAssignableFrom("Attributes", 9) && this.o != null && !this.o.D) {
+			afs.a(this.bx(), var1.getList("Attributes", 10));
 		}
 
-		if (var1.b("ActiveEffects", 9)) {
-			NBTListTag var2 = var1.c("ActiveEffects", 10);
+		if (var1.isTagAssignableFrom("ActiveEffects", 9)) {
+			NBTListTag var2 = var1.getList("ActiveEffects", 10);
 
 			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 				NBTCompoundTag var4 = var2.getCompound(var3);
@@ -362,8 +362,8 @@ public abstract class EntityLiving extends Entity {
 			}
 		}
 
-		if (var1.b("HealF", 99)) {
-			this.h(var1.h("HealF"));
+		if (var1.isTagAssignableFrom("HealF", 99)) {
+			this.h(var1.getFloat("HealF"));
 		} else {
 			NBTTag var6 = var1.getTag("Health");
 			if (var6 == null) {
@@ -375,9 +375,9 @@ public abstract class EntityLiving extends Entity {
 			}
 		}
 
-		this.as = var1.e("HurtTime");
-		this.av = var1.e("DeathTime");
-		this.bh = var1.f("HurtByTimestamp");
+		this.as = var1.getShort("HurtTime");
+		this.av = var1.getShort("DeathTime");
+		this.bh = var1.getInt("HurtByTimestamp");
 	}
 
 	protected void bh() {

@@ -77,9 +77,9 @@ public class acu extends xx {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.o(var1.n("Angry"));
-		if (var1.b("CollarColor", 99)) {
-			this.a(akv.a(var1.d("CollarColor")));
+		this.o(var1.getBoolean("Angry"));
+		if (var1.isTagAssignableFrom("CollarColor", 99)) {
+			this.a(akv.a(var1.getByte("CollarColor")));
 		}
 
 	}

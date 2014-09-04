@@ -27,9 +27,9 @@ abstract class bnn extends bms {
 	}
 
 	protected void b(NBTCompoundTag var1) {
-		this.h = var1.f("HPos");
-		this.a = var1.f("VCount");
-		this.b = var1.n("Desert");
+		this.h = var1.getInt("HPos");
+		this.a = var1.getInt("VCount");
+		this.b = var1.getBoolean("Desert");
 	}
 
 	protected bms a(bnk var1, List var2, Random var3, int var4, int var5) {

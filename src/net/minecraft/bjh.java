@@ -17,8 +17,8 @@ public class bjh extends bms {
 	}
 
 	protected void b(NBTCompoundTag var1) {
-		this.b = var1.n("tf");
-		this.a = ej.b(var1.f("D"));
+		this.b = var1.getBoolean("tf");
+		this.a = ej.b(var1.getInt("D"));
 	}
 
 	public bjh(int var1, Random var2, bjb var3, ej var4) {

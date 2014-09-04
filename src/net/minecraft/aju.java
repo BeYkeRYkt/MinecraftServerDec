@@ -49,14 +49,14 @@ public class aju extends alq {
 	}
 
 	public static boolean a(World var0, dt var1, amj var2) {
-		if (var2.n() && var2.o().b("BlockEntityTag", 10)) {
+		if (var2.n() && var2.o().isTagAssignableFrom("BlockEntityTag", 10)) {
 			bcm var3 = var0.s(var1);
 			if (var3 != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				NBTCompoundTag var5 = (NBTCompoundTag) var4.getCopy();
 				var3.b(var4);
 				NBTCompoundTag var6 = (NBTCompoundTag) var2.o().getTag("BlockEntityTag");
-				var4.a(var6);
+				var4.copyFrom(var6);
 				var4.put("x", var1.n());
 				var4.put("y", var1.o());
 				var4.put("z", var1.p());

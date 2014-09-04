@@ -127,7 +127,7 @@ public class bqj extends bqn {
 						} else {
 							NBTCompoundTag var13 = fz.a(var12);
 							var12.close();
-							NBTCompoundTag var14 = var13.m("Level");
+							NBTCompoundTag var14 = var13.getCompound("Level");
 							bfu var15 = bft.a(var14);
 							NBTCompoundTag var16 = new NBTCompoundTag();
 							NBTCompoundTag var17 = new NBTCompoundTag();

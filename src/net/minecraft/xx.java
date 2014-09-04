@@ -31,10 +31,10 @@ public abstract class xx extends abq implements xt {
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
 		String var2 = "";
-		if (var1.b("OwnerUUID", 8)) {
-			var2 = var1.j("OwnerUUID");
+		if (var1.isTagAssignableFrom("OwnerUUID", 8)) {
+			var2 = var1.getString("OwnerUUID");
 		} else {
-			String var3 = var1.j("Owner");
+			String var3 = var1.getString("Owner");
 			var2 = sf.a(var3);
 		}
 
@@ -43,8 +43,8 @@ public abstract class xx extends abq implements xt {
 			this.m(true);
 		}
 
-		this.bk.a(var1.n("Sitting"));
-		this.n(var1.n("Sitting"));
+		this.bk.a(var1.getBoolean("Sitting"));
+		this.n(var1.getBoolean("Sitting"));
 	}
 
 	protected void l(boolean var1) {

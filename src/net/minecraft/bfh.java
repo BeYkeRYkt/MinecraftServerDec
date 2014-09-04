@@ -336,8 +336,8 @@ public class bfh {
 				try {
 					var4 = var5.b(var1, var2 & 15, var3);
 				} catch (Throwable var8) {
-					CrashReport var7 = CrashReport.a(var8, "Getting block");
-					throw new u(var7);
+					CrashReport var7 = CrashReport.generateCrashReport(var8, "Getting block");
+					throw new ReportedException(var7);
 				}
 			}
 		}
@@ -348,9 +348,9 @@ public class bfh {
 	public atr a(int var1, int var2, int var3) {
 		try {
 			return this.f(var1 & 15, var2, var3 & 15);
-		} catch (u var6) {
-			j var5 = var6.a().a("Block being got");
-			var5.a("Location", (Callable) (new bfi(this, var1, var2, var3)));
+		} catch (ReportedException var6) {
+			CrashReportSystemDetails var5 = var6.getCrashReport().generateSystemDetails("Block being got");
+			var5.addDetails("Location", (Callable) (new bfi(this, var1, var2, var3)));
 			throw var6;
 		}
 	}
@@ -358,9 +358,9 @@ public class bfh {
 	public atr a(dt var1) {
 		try {
 			return this.f(var1.n() & 15, var1.o(), var1.p() & 15);
-		} catch (u var4) {
-			j var3 = var4.a().a("Block being got");
-			var3.a("Location", (Callable) (new bfj(this, var1)));
+		} catch (ReportedException var4) {
+			CrashReportSystemDetails var3 = var4.getCrashReport().generateSystemDetails("Block being got");
+			var3.addDetails("Location", (Callable) (new bfj(this, var1)));
 			throw var4;
 		}
 	}
@@ -391,10 +391,10 @@ public class bfh {
 
 				return aty.a.P();
 			} catch (Throwable var6) {
-				CrashReport var3 = CrashReport.a(var6, "Getting block state");
-				j var4 = var3.a("Block being got");
-				var4.a("Location", (Callable) (new bfk(this, var1)));
-				throw new u(var3);
+				CrashReport var3 = CrashReport.generateCrashReport(var6, "Getting block state");
+				CrashReportSystemDetails var4 = var3.generateSystemDetails("Block being got");
+				var4.addDetails("Location", (Callable) (new bfk(this, var1)));
+				throw new ReportedException(var3);
 			}
 		}
 	}

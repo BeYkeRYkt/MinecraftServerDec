@@ -24,7 +24,7 @@ public class bng extends bnn {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.a = var1.n("Terrace");
+		this.a = var1.getBoolean("Terrace");
 	}
 
 	public static bng a(bnk var0, List var1, Random var2, int var3, int var4, int var5, ej var6, int var7) {

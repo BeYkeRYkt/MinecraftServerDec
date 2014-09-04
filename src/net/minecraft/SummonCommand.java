@@ -73,8 +73,8 @@ public class SummonCommand extends AbstractCommand {
 					var12.d(var21);
 					Entity var16 = var21;
 
-					for (NBTCompoundTag var17 = var13; var16 != null && var17.b("Riding", 10); var17 = var17.m("Riding")) {
-						Entity var18 = xb.a(var17.m("Riding"), var12);
+					for (NBTCompoundTag var17 = var13; var16 != null && var17.isTagAssignableFrom("Riding", 10); var17 = var17.getCompound("Riding")) {
+						Entity var18 = xb.a(var17.getCompound("Riding"), var12);
 						if (var18 != null) {
 							var18.b(var6, var8, var10, var18.y, var18.z);
 							var12.d(var18);

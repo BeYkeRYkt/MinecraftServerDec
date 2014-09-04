@@ -27,7 +27,7 @@ public class blz extends bmk {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.b = var1.n("Tall");
+		this.b = var1.getBoolean("Tall");
 	}
 
 	public static blz a(List var0, Random var1, int var2, int var3, int var4, ej var5, int var6) {

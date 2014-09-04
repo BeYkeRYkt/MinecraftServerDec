@@ -30,7 +30,7 @@ public class ajn extends alq {
 	}
 
 	public boolean d_(amj var1) {
-		return this.m != ajp.a ? false : (!var1.n() ? false : (!var1.o().b("display", 10) ? false : var1.o().m("display").b("color", 3)));
+		return this.m != ajp.a ? false : (!var1.n() ? false : (!var1.o().isTagAssignableFrom("display", 10) ? false : var1.o().getCompound("display").isTagAssignableFrom("color", 3)));
 	}
 
 	public int b(amj var1) {
@@ -39,9 +39,9 @@ public class ajn extends alq {
 		} else {
 			NBTCompoundTag var2 = var1.o();
 			if (var2 != null) {
-				NBTCompoundTag var3 = var2.m("display");
-				if (var3 != null && var3.b("color", 3)) {
-					return var3.f("color");
+				NBTCompoundTag var3 = var2.getCompound("display");
+				if (var3 != null && var3.isTagAssignableFrom("color", 3)) {
+					return var3.getInt("color");
 				}
 			}
 
@@ -53,9 +53,9 @@ public class ajn extends alq {
 		if (this.m == ajp.a) {
 			NBTCompoundTag var2 = var1.o();
 			if (var2 != null) {
-				NBTCompoundTag var3 = var2.m("display");
+				NBTCompoundTag var3 = var2.getCompound("display");
 				if (var3.hasKey("color")) {
-					var3.o("color");
+					var3.remove("color");
 				}
 
 			}
@@ -72,8 +72,8 @@ public class ajn extends alq {
 				var1.d(var3);
 			}
 
-			NBTCompoundTag var4 = var3.m("display");
-			if (!var3.b("display", 10)) {
+			NBTCompoundTag var4 = var3.getCompound("display");
+			if (!var3.isTagAssignableFrom("display", 10)) {
 				var3.put("display", (NBTTag) var4);
 			}
 

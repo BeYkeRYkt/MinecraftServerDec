@@ -346,8 +346,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		} catch (Throwable var46) {
 			logger.error("Encountered an unexpected exception", var46);
 			CrashReport var2 = null;
-			if (var46 instanceof u) {
-				var2 = this.b(((u) var46).a());
+			if (var46 instanceof ReportedException) {
+				var2 = this.b(((ReportedException) var46).getCrashReport());
 			} else {
 				var2 = this.b(new CrashReport("Exception in server tick loop", var46));
 			}
@@ -485,17 +485,17 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				try {
 					var4.c();
 				} catch (Throwable var8) {
-					var6 = CrashReport.a(var8, "Exception ticking world");
+					var6 = CrashReport.generateCrashReport(var8, "Exception ticking world");
 					var4.a(var6);
-					throw new u(var6);
+					throw new ReportedException(var6);
 				}
 
 				try {
 					var4.i();
 				} catch (Throwable var7) {
-					var6 = CrashReport.a(var7, "Exception ticking world entities");
+					var6 = CrashReport.generateCrashReport(var7, "Exception ticking world entities");
 					var4.a(var6);
-					throw new u(var6);
+					throw new ReportedException(var6);
 				}
 
 				this.profiler.b();
@@ -693,9 +693,9 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public CrashReport b(CrashReport var1) {
-		var1.g().a("Profiler Position", (Callable) (new pf(this)));
+		var1.g().addDetails("Profiler Position", (Callable) (new pf(this)));
 		if (this.playerList != null) {
-			var1.g().a("Player Count", new OnlinePlayersInfoCallable());
+			var1.g().addDetails("Player Count", new OnlinePlayersInfoCallable());
 		}
 
 		return var1;

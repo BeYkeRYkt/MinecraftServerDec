@@ -230,35 +230,35 @@ public abstract class xn extends EntityLiving {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		if (var1.b("CanPickUpLoot", 1)) {
-			this.j(var1.n("CanPickUpLoot"));
+		if (var1.isTagAssignableFrom("CanPickUpLoot", 1)) {
+			this.j(var1.getBoolean("CanPickUpLoot"));
 		}
 
-		this.bl = var1.n("PersistenceRequired");
+		this.bl = var1.getBoolean("PersistenceRequired");
 		NBTListTag var2;
 		int var3;
-		if (var1.b("Equipment", 9)) {
-			var2 = var1.c("Equipment", 10);
+		if (var1.isTagAssignableFrom("Equipment", 9)) {
+			var2 = var1.getList("Equipment", 10);
 
 			for (var3 = 0; var3 < this.bj.length; ++var3) {
 				this.bj[var3] = amj.a(var2.getCompound(var3));
 			}
 		}
 
-		if (var1.b("DropChances", 9)) {
-			var2 = var1.c("DropChances", 5);
+		if (var1.isTagAssignableFrom("DropChances", 9)) {
+			var2 = var1.getList("DropChances", 5);
 
 			for (var3 = 0; var3 < var2.getSize(); ++var3) {
 				this.bh[var3] = var2.getFloat(var3);
 			}
 		}
 
-		this.bm = var1.n("Leashed");
-		if (this.bm && var1.b("Leash", 10)) {
-			this.bo = var1.m("Leash");
+		this.bm = var1.getBoolean("Leashed");
+		if (this.bm && var1.isTagAssignableFrom("Leash", 10)) {
+			this.bo = var1.getCompound("Leash");
 		}
 
-		this.k(var1.n("NoAI"));
+		this.k(var1.getBoolean("NoAI"));
 	}
 
 	public void m(float var1) {
@@ -755,8 +755,8 @@ public abstract class xn extends EntityLiving {
 
 	private void n() {
 		if (this.bm && this.bo != null) {
-			if (this.bo.b("UUIDMost", 4) && this.bo.b("UUIDLeast", 4)) {
-				UUID var5 = new UUID(this.bo.g("UUIDMost"), this.bo.g("UUIDLeast"));
+			if (this.bo.isTagAssignableFrom("UUIDMost", 4) && this.bo.isTagAssignableFrom("UUIDLeast", 4)) {
+				UUID var5 = new UUID(this.bo.getLong("UUIDMost"), this.bo.getLong("UUIDLeast"));
 				List var6 = this.o.a(EntityLiving.class, this.aQ().b(10.0D, 10.0D, 10.0D));
 				Iterator var3 = var6.iterator();
 
@@ -767,8 +767,8 @@ public abstract class xn extends EntityLiving {
 						break;
 					}
 				}
-			} else if (this.bo.b("X", 99) && this.bo.b("Y", 99) && this.bo.b("Z", 99)) {
-				dt var1 = new dt(this.bo.f("X"), this.bo.f("Y"), this.bo.f("Z"));
+			} else if (this.bo.isTagAssignableFrom("X", 99) && this.bo.isTagAssignableFrom("Y", 99) && this.bo.isTagAssignableFrom("Z", 99)) {
+				dt var1 = new dt(this.bo.getInt("X"), this.bo.getInt("Y"), this.bo.getInt("Z"));
 				adl var2 = adl.b(this.o, var1);
 				if (var2 == null) {
 					var2 = adl.a(this.o, var1);

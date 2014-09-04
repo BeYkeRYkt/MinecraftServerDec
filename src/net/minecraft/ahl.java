@@ -176,18 +176,18 @@ public abstract class ahl extends Entity {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.e = var1.e("xTile");
-		this.f = var1.e("yTile");
-		this.g = var1.e("zTile");
-		if (var1.b("inTile", 8)) {
-			this.h = atr.b(var1.j("inTile"));
+		this.e = var1.getShort("xTile");
+		this.f = var1.getShort("yTile");
+		this.g = var1.getShort("zTile");
+		if (var1.isTagAssignableFrom("inTile", 8)) {
+			this.h = atr.b(var1.getString("inTile"));
 		} else {
-			this.h = atr.c(var1.d("inTile") & 255);
+			this.h = atr.c(var1.getByte("inTile") & 255);
 		}
 
-		this.i = var1.d("inGround") == 1;
-		if (var1.b("direction", 9)) {
-			NBTListTag var2 = var1.c("direction", 6);
+		this.i = var1.getByte("inGround") == 1;
+		if (var1.isTagAssignableFrom("direction", 9)) {
+			NBTListTag var2 = var1.getList("direction", 6);
 			this.v = var2.getDouble(0);
 			this.w = var2.getDouble(1);
 			this.x = var2.getDouble(2);

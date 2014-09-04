@@ -20,7 +20,7 @@ public class ajh extends wa {
 
 		for (var2 = 0; var2 < var1.getSize(); ++var2) {
 			NBTCompoundTag var3 = var1.getCompound(var2);
-			int var4 = var3.d("Slot") & 255;
+			int var4 = var3.getByte("Slot") & 255;
 			if (var4 >= 0 && var4 < this.n_()) {
 				this.a(var4, amj.a(var3));
 			}

@@ -75,11 +75,11 @@ public class fz {
 				var4.read(var0, var1, var2);
 				return var4;
 			} catch (IOException var8) {
-				CrashReport var6 = CrashReport.a(var8, "Loading NBT data");
-				j var7 = var6.a("NBT Tag");
-				var7.a("Tag name", (Object) "[UNNAMED TAG]");
-				var7.a("Tag type", (Object) Byte.valueOf(var3));
-				throw new u(var6);
+				CrashReport var6 = CrashReport.generateCrashReport(var8, "Loading NBT data");
+				CrashReportSystemDetails var7 = var6.generateSystemDetails("NBT Tag");
+				var7.addDetails("Tag name", (Object) "[UNNAMED TAG]");
+				var7.addDetails("Tag type", (Object) Byte.valueOf(var3));
+				throw new ReportedException(var6);
 			}
 		}
 	}

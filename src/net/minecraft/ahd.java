@@ -577,34 +577,34 @@ public abstract class ahd extends EntityLiving {
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
 		this.ao = a(this.bF);
-		NBTListTag var2 = var1.c("Inventory", 10);
+		NBTListTag var2 = var1.getList("Inventory", 10);
 		this.bg.b(var2);
-		this.bg.c = var1.f("SelectedItemSlot");
-		this.bu = var1.n("Sleeping");
-		this.b = var1.e("SleepTimer");
-		this.bB = var1.h("XpP");
-		this.bz = var1.f("XpLevel");
-		this.bA = var1.f("XpTotal");
-		this.f = var1.f("XpSeed");
+		this.bg.c = var1.getInt("SelectedItemSlot");
+		this.bu = var1.getBoolean("Sleeping");
+		this.b = var1.getShort("SleepTimer");
+		this.bB = var1.getFloat("XpP");
+		this.bz = var1.getInt("XpLevel");
+		this.bA = var1.getInt("XpTotal");
+		this.f = var1.getInt("XpSeed");
 		if (this.f == 0) {
 			this.f = this.V.nextInt();
 		}
 
-		this.r(var1.f("Score"));
+		this.r(var1.getInt("Score"));
 		if (this.bu) {
 			this.bv = new dt(this);
 			this.a(true, true, false);
 		}
 
-		if (var1.b("SpawnX", 99) && var1.b("SpawnY", 99) && var1.b("SpawnZ", 99)) {
-			this.c = new dt(var1.f("SpawnX"), var1.f("SpawnY"), var1.f("SpawnZ"));
-			this.d = var1.n("SpawnForced");
+		if (var1.isTagAssignableFrom("SpawnX", 99) && var1.isTagAssignableFrom("SpawnY", 99) && var1.isTagAssignableFrom("SpawnZ", 99)) {
+			this.c = new dt(var1.getInt("SpawnX"), var1.getInt("SpawnY"), var1.getInt("SpawnZ"));
+			this.d = var1.getBoolean("SpawnForced");
 		}
 
 		this.bj.a(var1);
 		this.by.read(var1);
-		if (var1.b("EnderItems", 9)) {
-			NBTListTag var3 = var1.c("EnderItems", 10);
+		if (var1.isTagAssignableFrom("EnderItems", 9)) {
+			NBTListTag var3 = var1.getList("EnderItems", 10);
 			this.a.a(var3);
 		}
 

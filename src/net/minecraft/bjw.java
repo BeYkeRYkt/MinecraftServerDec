@@ -19,7 +19,7 @@ public class bjw extends bkb {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.b = var1.n("Chest");
+		this.b = var1.getBoolean("Chest");
 	}
 
 	protected void a(NBTCompoundTag var1) {

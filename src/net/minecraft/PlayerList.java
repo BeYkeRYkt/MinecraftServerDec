@@ -108,8 +108,8 @@ public abstract class PlayerList {
 		}
 
 		var2.f_();
-		if (var7 != null && var7.b("Riding", 10)) {
-			Entity var16 = xb.a(var7.m("Riding"), (World) var9);
+		if (var7 != null && var7.isTagAssignableFrom("Riding", 10)) {
+			Entity var16 = xb.a(var7.getCompound("Riding"), (World) var9);
 			if (var16 != null) {
 				var16.n = true;
 				var9.d(var16);

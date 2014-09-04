@@ -37,8 +37,8 @@ public class af {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		if (var1.b("CommandStats", 10)) {
-			NBTCompoundTag var2 = var1.m("CommandStats");
+		if (var1.isTagAssignableFrom("CommandStats", 10)) {
+			NBTCompoundTag var2 = var1.getCompound("CommandStats");
 			ag[] var3 = ag.values();
 			int var4 = var3.length;
 
@@ -46,9 +46,9 @@ public class af {
 				ag var6 = var3[var5];
 				String var7 = var6.b() + "Name";
 				String var8 = var6.b() + "Objective";
-				if (var2.b(var7, 8) && var2.b(var8, 8)) {
-					String var9 = var2.j(var7);
-					String var10 = var2.j(var8);
+				if (var2.isTagAssignableFrom(var7, 8) && var2.isTagAssignableFrom(var8, 8)) {
+					String var9 = var2.getString(var7);
+					String var10 = var2.getString(var8);
 					a(this, var6, var9, var10);
 				}
 			}
@@ -71,7 +71,7 @@ public class af {
 			}
 		}
 
-		if (!var2.c_()) {
+		if (!var2.isEmpty()) {
 			var1.put("CommandStats", (NBTTag) var2);
 		}
 

@@ -37,10 +37,10 @@ abstract class bln extends bms {
 	}
 
 	protected void b(NBTCompoundTag var1) {
-		this.a = var1.f("Width");
-		this.b = var1.f("Height");
-		this.c = var1.f("Depth");
-		this.d = var1.f("HPos");
+		this.a = var1.getInt("Width");
+		this.b = var1.getInt("Height");
+		this.c = var1.getInt("Depth");
+		this.d = var1.getInt("HPos");
 	}
 
 	protected boolean a(World var1, bjb var2, int var3) {

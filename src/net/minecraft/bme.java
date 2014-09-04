@@ -27,7 +27,7 @@ public class bme extends bmk {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.a = var1.f("Type");
+		this.a = var1.getInt("Type");
 	}
 
 	public void a(bms var1, List var2, Random var3) {

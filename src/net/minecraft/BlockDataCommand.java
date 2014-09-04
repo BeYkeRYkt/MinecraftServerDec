@@ -41,7 +41,7 @@ public class BlockDataCommand extends AbstractCommand {
 						throw new di("commands.blockdata.tagError", new Object[] { var10.getMessage() });
 					}
 
-					var6.a(var8);
+					var6.copyFrom(var8);
 					var6.put("x", var3.n());
 					var6.put("y", var3.o());
 					var6.put("z", var3.p());

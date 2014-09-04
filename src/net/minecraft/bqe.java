@@ -30,17 +30,17 @@ public class bqe extends bqc {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.d = var1.d("dimension");
-		this.b = var1.f("xCenter");
-		this.c = var1.f("zCenter");
-		this.e = var1.d("scale");
+		this.d = var1.getByte("dimension");
+		this.b = var1.getInt("xCenter");
+		this.c = var1.getInt("zCenter");
+		this.e = var1.getByte("scale");
 		this.e = (byte) NumberConverter.a(this.e, 0, 4);
-		short var2 = var1.e("width");
-		short var3 = var1.e("height");
+		short var2 = var1.getShort("width");
+		short var3 = var1.getShort("height");
 		if (var2 == 128 && var3 == 128) {
-			this.f = var1.k("colors");
+			this.f = var1.getByteArray("colors");
 		} else {
-			byte[] var4 = var1.k("colors");
+			byte[] var4 = var1.getByteArray("colors");
 			this.f = new byte[16384];
 			int var5 = (128 - var2) / 2;
 			int var6 = (128 - var3) / 2;
@@ -99,13 +99,13 @@ public class bqe extends bqc {
 			this.a(1, var1.o, "frame-" + var7.F(), (double) var9.n(), (double) var9.p(), (double) (var7.b.b() * 90));
 		}
 
-		if (var2.n() && var2.o().b("Decorations", 9)) {
-			NBTListTag var8 = var2.o().c("Decorations", 10);
+		if (var2.n() && var2.o().isTagAssignableFrom("Decorations", 9)) {
+			NBTListTag var8 = var2.o().getList("Decorations", 10);
 
 			for (int var10 = 0; var10 < var8.getSize(); ++var10) {
 				NBTCompoundTag var5 = var8.getCompound(var10);
-				if (!this.h.containsKey(var5.j("id"))) {
-					this.a(var5.d("type"), var1.o, var5.j("id"), var5.i("x"), var5.i("z"), var5.i("rot"));
+				if (!this.h.containsKey(var5.getString("id"))) {
+					this.a(var5.getByte("type"), var1.o, var5.getString("id"), var5.getDouble("x"), var5.getDouble("z"), var5.getDouble("rot"));
 				}
 			}
 		}

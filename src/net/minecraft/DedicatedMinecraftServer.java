@@ -210,8 +210,8 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 
 	public CrashReport b(CrashReport var1) {
 		var1 = super.b(var1);
-		var1.g().a("Is Modded", (Callable<?>) (new pr(this)));
-		var1.g().a("Type", (Callable<?>) (new ps(this)));
+		var1.g().addDetails("Is Modded", (Callable<?>) (new pr(this)));
+		var1.g().addDetails("Type", (Callable<?>) (new ps(this)));
 		return var1;
 	}
 

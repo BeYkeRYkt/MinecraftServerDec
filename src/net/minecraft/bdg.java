@@ -21,7 +21,7 @@ public class bdg extends bcm implements pm {
 	public id x_() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		this.b(var1);
-		var1.o("SpawnPotentials");
+		var1.remove("SpawnPotentials");
 		return new iu(this.c, 1, var1);
 	}
 

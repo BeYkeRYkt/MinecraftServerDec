@@ -45,13 +45,13 @@ public class afy extends xn implements aex {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		int var2 = var1.f("Size");
+		int var2 = var1.getInt("Size");
 		if (var2 < 0) {
 			var2 = 0;
 		}
 
 		this.a(var2 + 1);
-		this.bi = var1.n("wasOnGround");
+		this.bi = var1.getBoolean("wasOnGround");
 	}
 
 	protected ew n() {

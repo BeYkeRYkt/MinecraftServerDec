@@ -21,7 +21,7 @@ abstract class bmk extends bms {
 	}
 
 	protected void b(NBTCompoundTag var1) {
-		this.d = bml.valueOf(var1.j("EntryDoor"));
+		this.d = bml.valueOf(var1.getString("EntryDoor"));
 	}
 
 	protected void a(World var1, Random var2, bjb var3, bml var4, int var5, int var6, int var7) {

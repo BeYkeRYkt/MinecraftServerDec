@@ -409,10 +409,10 @@ public class WorldServer extends World implements vn {
 							try {
 								var6.c().b((World) this, var4.a, var6, this.s);
 							} catch (Throwable var10) {
-								CrashReport var8 = CrashReport.a(var10, "Exception while ticking a block");
-								j var9 = var8.a("Block being ticked");
-								net.minecraft.j.a(var9, var4.a, var6);
-								throw new u(var8);
+								CrashReport var8 = CrashReport.generateCrashReport(var10, "Exception while ticking a block");
+								CrashReportSystemDetails var9 = var8.generateSystemDetails("Block being ticked");
+								net.minecraft.CrashReportSystemDetails.a(var9, var4.a, var6);
+								throw new ReportedException(var8);
 							}
 						}
 					} else {
@@ -525,7 +525,7 @@ public class WorldServer extends World implements vn {
 
 				super.a(var1);
 			} catch (Throwable var6) {
-				CrashReport var3 = CrashReport.a(var6, "Exception initializing level");
+				CrashReport var3 = CrashReport.generateCrashReport(var6, "Exception initializing level");
 
 				try {
 					this.a(var3);
@@ -533,7 +533,7 @@ public class WorldServer extends World implements vn {
 					;
 				}
 
-				throw new u(var3);
+				throw new ReportedException(var3);
 			}
 
 			this.x.d(true);

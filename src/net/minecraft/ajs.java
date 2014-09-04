@@ -53,7 +53,7 @@ public class ajs extends aju {
 		NBTCompoundTag var2 = var1.a("BlockEntityTag", false);
 		akv var3 = null;
 		if (var2 != null && var2.hasKey("Base")) {
-			var3 = akv.a(var2.f("Base"));
+			var3 = akv.a(var2.getInt("Base"));
 		} else {
 			var3 = akv.a(var1.i());
 		}

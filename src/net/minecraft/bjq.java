@@ -24,7 +24,7 @@ public class bjq extends bkb {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.b = var1.f("Seed");
+		this.b = var1.getInt("Seed");
 	}
 
 	protected void a(NBTCompoundTag var1) {

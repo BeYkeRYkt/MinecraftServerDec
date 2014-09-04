@@ -27,13 +27,13 @@ public abstract class bmm extends bgt {
 				}
 
 			} catch (Throwable var10) {
-				CrashReport var8 = CrashReport.a(var10, "Exception preparing structure feature");
-				j var9 = var8.a("Feature being prepared");
-				var9.a("Is feature chunk", (Callable) (new bmn(this, var2, var3)));
-				var9.a("Chunk location", (Object) String.format("%d,%d", new Object[] { Integer.valueOf(var2), Integer.valueOf(var3) }));
-				var9.a("Chunk pos hash", (Callable) (new bmo(this, var2, var3)));
-				var9.a("Structure type", (Callable) (new bmp(this)));
-				throw new u(var8);
+				CrashReport var8 = CrashReport.generateCrashReport(var10, "Exception preparing structure feature");
+				CrashReportSystemDetails var9 = var8.generateSystemDetails("Feature being prepared");
+				var9.addDetails("Is feature chunk", (Callable) (new bmn(this, var2, var3)));
+				var9.addDetails("Chunk location", (Object) String.format("%d,%d", new Object[] { Integer.valueOf(var2), Integer.valueOf(var3) }));
+				var9.addDetails("Chunk pos hash", (Callable) (new bmo(this, var2, var3)));
+				var9.addDetails("Structure type", (Callable) (new bmp(this)));
+				throw new ReportedException(var8);
 			}
 		}
 	}
@@ -172,8 +172,8 @@ public abstract class bmm extends bgt {
 					if (var5.getId() == 10) {
 						NBTCompoundTag var6 = (NBTCompoundTag) var5;
 						if (var6.hasKey("ChunkX") && var6.hasKey("ChunkZ")) {
-							int var7 = var6.f("ChunkX");
-							int var8 = var6.f("ChunkZ");
+							int var7 = var6.getInt("ChunkX");
+							int var8 = var6.getInt("ChunkZ");
 							bmv var9 = bmq.a(var6, var1);
 							if (var9 != null) {
 								this.e.put(Long.valueOf(aqm.a(var7, var8)), var9);

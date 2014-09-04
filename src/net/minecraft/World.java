@@ -80,10 +80,10 @@ public abstract class World implements ard {
 			try {
 				return var2.a(var1, this.t.m());
 			} catch (Throwable var6) {
-				CrashReport var4 = CrashReport.a(var6, "Getting biome");
-				j var5 = var4.a("Coordinates of biome request");
-				var5.a("Location", (Callable) (new aqv(this, var1)));
-				throw new u(var4);
+				CrashReport var4 = CrashReport.generateCrashReport(var6, "Getting biome");
+				CrashReportSystemDetails var5 = var4.generateSystemDetails("Coordinates of biome request");
+				var5.addDetails("Location", (Callable) (new aqv(this, var1)));
+				throw new ReportedException(var4);
 			}
 		} else {
 			return this.t.m().a(var1, arm.q);
@@ -325,11 +325,11 @@ public abstract class World implements ard {
 			try {
 				var3.c().a(this, var1, var3, var2);
 			} catch (Throwable var7) {
-				CrashReport var5 = CrashReport.a(var7, "Exception while updating neighbours");
-				j var6 = var5.a("Block being updated");
-				var6.a("Source block type", (Callable) (new aqw(this, var2)));
-				net.minecraft.j.a(var6, var1, var3);
-				throw new u(var5);
+				CrashReport var5 = CrashReport.generateCrashReport(var7, "Exception while updating neighbours");
+				CrashReportSystemDetails var6 = var5.generateSystemDetails("Block being updated");
+				var6.addDetails("Source block type", (Callable) (new aqw(this, var2)));
+				net.minecraft.CrashReportSystemDetails.a(var6, var1, var3);
+				throw new ReportedException(var5);
 			}
 		}
 	}
@@ -923,7 +923,7 @@ public abstract class World implements ard {
 		int var1;
 		Entity var2;
 		CrashReport var4;
-		j var5;
+		CrashReportSystemDetails var5;
 		for (var1 = 0; var1 < this.k.size(); ++var1) {
 			var2 = (Entity) this.k.get(var1);
 
@@ -931,15 +931,15 @@ public abstract class World implements ard {
 				++var2.W;
 				var2.s_();
 			} catch (Throwable var9) {
-				var4 = CrashReport.a(var9, "Ticking entity");
-				var5 = var4.a("Entity being ticked");
+				var4 = CrashReport.generateCrashReport(var9, "Ticking entity");
+				var5 = var4.generateSystemDetails("Entity being ticked");
 				if (var2 == null) {
-					var5.a("Entity", (Object) "~~NULL~~");
+					var5.addDetails("Entity", (Object) "~~NULL~~");
 				} else {
 					var2.a(var5);
 				}
 
-				throw new u(var4);
+				throw new ReportedException(var4);
 			}
 
 			if (var2.I) {
@@ -984,10 +984,10 @@ public abstract class World implements ard {
 				try {
 					this.g(var2);
 				} catch (Throwable var8) {
-					var4 = CrashReport.a(var8, "Ticking entity");
-					var5 = var4.a("Entity being ticked");
+					var4 = CrashReport.generateCrashReport(var8, "Ticking entity");
+					var5 = var4.generateSystemDetails("Entity being ticked");
 					var2.a(var5);
-					throw new u(var4);
+					throw new ReportedException(var4);
 				}
 			}
 
@@ -1019,10 +1019,10 @@ public abstract class World implements ard {
 					try {
 						((pm) var11).c();
 					} catch (Throwable var7) {
-						CrashReport var16 = CrashReport.a(var7, "Ticking block entity");
-						j var6 = var16.a("Block entity being ticked");
+						CrashReport var16 = CrashReport.generateCrashReport(var7, "Ticking block entity");
+						CrashReportSystemDetails var6 = var16.generateSystemDetails("Block entity being ticked");
 						var11.a(var6);
-						throw new u(var16);
+						throw new ReportedException(var16);
 					}
 				}
 			}
@@ -2300,13 +2300,13 @@ public abstract class World implements ard {
 			}
 
 		} catch (Throwable var8) {
-			CrashReport var6 = CrashReport.a(var8, "Playing level event");
-			j var7 = var6.a("Level event being played");
-			var7.a("Block coordinates", (Object) net.minecraft.j.a(var3));
-			var7.a("Event source", (Object) var1);
-			var7.a("Event type", (Object) Integer.valueOf(var2));
-			var7.a("Event data", (Object) Integer.valueOf(var4));
-			throw new u(var6);
+			CrashReport var6 = CrashReport.generateCrashReport(var8, "Playing level event");
+			CrashReportSystemDetails var7 = var6.generateSystemDetails("Level event being played");
+			var7.addDetails("Block coordinates", (Object) net.minecraft.CrashReportSystemDetails.a(var3));
+			var7.addDetails("Event source", (Object) var1);
+			var7.addDetails("Event type", (Object) Integer.valueOf(var2));
+			var7.addDetails("Event data", (Object) Integer.valueOf(var4));
+			throw new ReportedException(var6);
 		}
 	}
 
@@ -2328,11 +2328,11 @@ public abstract class World implements ard {
 		return this.N().a(this, var1, var2);
 	}
 
-	public j a(CrashReport var1) {
-		j var2 = var1.a("Affected level", 1);
-		var2.a("Level name", (Object) (this.x == null ? "????" : this.x.k()));
-		var2.a("All players", (Callable) (new aqx(this)));
-		var2.a("Chunk stats", (Callable) (new aqy(this)));
+	public CrashReportSystemDetails a(CrashReport var1) {
+		CrashReportSystemDetails var2 = var1.generateSystemDetails("Affected level", 1);
+		var2.addDetails("Level name", (Object) (this.x == null ? "????" : this.x.k()));
+		var2.addDetails("All players", (Callable) (new aqx(this)));
+		var2.addDetails("Chunk stats", (Callable) (new aqy(this)));
 
 		try {
 			this.x.a(var2);

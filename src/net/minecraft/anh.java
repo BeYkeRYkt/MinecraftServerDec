@@ -47,10 +47,10 @@ public class anh extends alq {
 							GameProfile var15 = null;
 							if (var1.n()) {
 								NBTCompoundTag var16 = var1.o();
-								if (var16.b("SkullOwner", 10)) {
-									var15 = ga.a(var16.m("SkullOwner"));
-								} else if (var16.b("SkullOwner", 8) && var16.j("SkullOwner").length() > 0) {
-									var15 = new GameProfile((UUID) null, var16.j("SkullOwner"));
+								if (var16.isTagAssignableFrom("SkullOwner", 10)) {
+									var15 = ga.a(var16.getCompound("SkullOwner"));
+								} else if (var16.isTagAssignableFrom("SkullOwner", 8) && var16.getString("SkullOwner").length() > 0) {
+									var15 = new GameProfile((UUID) null, var16.getString("SkullOwner"));
 								}
 							}
 
@@ -86,14 +86,14 @@ public class anh extends alq {
 
 	public String a(amj var1) {
 		if (var1.i() == 3 && var1.n()) {
-			if (var1.o().b("SkullOwner", 8)) {
-				return fi.a("item.skull.player.name", new Object[] { var1.o().j("SkullOwner") });
+			if (var1.o().isTagAssignableFrom("SkullOwner", 8)) {
+				return fi.a("item.skull.player.name", new Object[] { var1.o().getString("SkullOwner") });
 			}
 
-			if (var1.o().b("SkullOwner", 10)) {
-				NBTCompoundTag var2 = var1.o().m("SkullOwner");
-				if (var2.b("Name", 8)) {
-					return fi.a("item.skull.player.name", new Object[] { var2.j("Name") });
+			if (var1.o().isTagAssignableFrom("SkullOwner", 10)) {
+				NBTCompoundTag var2 = var1.o().getCompound("SkullOwner");
+				if (var2.isTagAssignableFrom("Name", 8)) {
+					return fi.a("item.skull.player.name", new Object[] { var2.getString("Name") });
 				}
 			}
 		}
@@ -103,8 +103,8 @@ public class anh extends alq {
 
 	public boolean a(NBTCompoundTag var1) {
 		super.a(var1);
-		if (var1.b("SkullOwner", 8) && var1.j("SkullOwner").length() > 0) {
-			GameProfile var2 = new GameProfile((UUID) null, var1.j("SkullOwner"));
+		if (var1.isTagAssignableFrom("SkullOwner", 8) && var1.getString("SkullOwner").length() > 0) {
+			GameProfile var2 = new GameProfile((UUID) null, var1.getString("SkullOwner"));
 			var2 = bdm.b(var2);
 			var1.put("SkullOwner", (NBTTag) ga.a(new NBTCompoundTag(), var2));
 			return true;

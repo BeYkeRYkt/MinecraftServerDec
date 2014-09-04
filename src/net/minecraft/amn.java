@@ -164,7 +164,7 @@ public class amn extends ake {
 	}
 
 	public void d(amj var1, World var2, ahd var3) {
-		if (var1.n() && var1.o().n("map_is_scaling")) {
+		if (var1.n() && var1.o().getBoolean("map_is_scaling")) {
 			bqe var4 = amk.bd.a(var1, var2);
 			var1.b(var2.b("map"));
 			bqe var5 = new bqe("map_" + var1.i());

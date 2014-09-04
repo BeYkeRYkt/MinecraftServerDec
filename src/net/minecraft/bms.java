@@ -31,12 +31,12 @@ public abstract class bms {
 
 	public void a(World var1, NBTCompoundTag var2) {
 		if (var2.hasKey("BB")) {
-			this.l = new bjb(var2.l("BB"));
+			this.l = new bjb(var2.getIntArray("BB"));
 		}
 
-		int var3 = var2.f("O");
+		int var3 = var2.getInt("O");
 		this.m = var3 == -1 ? null : ej.b(var3);
-		this.n = var2.f("GD");
+		this.n = var2.getInt("GD");
 		this.b(var2);
 	}
 

@@ -27,10 +27,10 @@ public class blk extends bln {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.e[0] = var1.n("hasPlacedChest0");
-		this.e[1] = var1.n("hasPlacedChest1");
-		this.e[2] = var1.n("hasPlacedChest2");
-		this.e[3] = var1.n("hasPlacedChest3");
+		this.e[0] = var1.getBoolean("hasPlacedChest0");
+		this.e[1] = var1.getBoolean("hasPlacedChest1");
+		this.e[2] = var1.getBoolean("hasPlacedChest2");
+		this.e[3] = var1.getBoolean("hasPlacedChest3");
 	}
 
 	public boolean a(World var1, Random var2, bjb var3) {

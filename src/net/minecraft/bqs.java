@@ -12,7 +12,7 @@ class bqs implements Callable {
 	}
 
 	public String a() {
-		return j.a((double) bqo.d(this.a), (double) bqo.e(this.a), (double) bqo.f(this.a));
+		return CrashReportSystemDetails.a((double) bqo.d(this.a), (double) bqo.e(this.a), (double) bqo.f(this.a));
 	}
 
 	// $FF: synthetic method

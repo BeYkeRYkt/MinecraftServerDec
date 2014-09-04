@@ -75,26 +75,26 @@ public class aqc {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		NBTCompoundTag var2 = var1.m("buy");
+		NBTCompoundTag var2 = var1.getCompound("buy");
 		this.a = amj.a(var2);
-		NBTCompoundTag var3 = var1.m("sell");
+		NBTCompoundTag var3 = var1.getCompound("sell");
 		this.c = amj.a(var3);
-		if (var1.b("buyB", 10)) {
-			this.b = amj.a(var1.m("buyB"));
+		if (var1.isTagAssignableFrom("buyB", 10)) {
+			this.b = amj.a(var1.getCompound("buyB"));
 		}
 
-		if (var1.b("uses", 99)) {
-			this.d = var1.f("uses");
+		if (var1.isTagAssignableFrom("uses", 99)) {
+			this.d = var1.getInt("uses");
 		}
 
-		if (var1.b("maxUses", 99)) {
-			this.e = var1.f("maxUses");
+		if (var1.isTagAssignableFrom("maxUses", 99)) {
+			this.e = var1.getInt("maxUses");
 		} else {
 			this.e = 7;
 		}
 
-		if (var1.b("rewardExp", 1)) {
-			this.f = var1.n("rewardExp");
+		if (var1.isTagAssignableFrom("rewardExp", 1)) {
+			this.f = var1.getBoolean("rewardExp");
 		} else {
 			this.f = true;
 		}

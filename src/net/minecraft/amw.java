@@ -20,9 +20,9 @@ public class amw extends alq {
 	}
 
 	public List h(amj var1) {
-		if (var1.n() && var1.o().b("CustomPotionEffects", 9)) {
+		if (var1.n() && var1.o().isTagAssignableFrom("CustomPotionEffects", 9)) {
 			ArrayList var7 = Lists.newArrayList();
-			NBTListTag var3 = var1.o().c("CustomPotionEffects", 10);
+			NBTListTag var3 = var1.o().getList("CustomPotionEffects", 10);
 
 			for (int var4 = 0; var4 < var3.getSize(); ++var4) {
 				NBTCompoundTag var5 = var3.getCompound(var4);

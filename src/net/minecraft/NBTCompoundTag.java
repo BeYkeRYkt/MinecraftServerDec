@@ -18,7 +18,7 @@ public class NBTCompoundTag extends NBTTag {
 	void write(DataOutput output) throws IOException {
 
 		for (Entry<String, NBTTag> entry : compound.entrySet()) {
-			a(entry.getKey(), entry.getValue(), output);
+			writeTag(entry.getKey(), entry.getValue(), output);
 		}
 
 		output.writeByte(0);
@@ -106,158 +106,168 @@ public class NBTCompoundTag extends NBTTag {
 		return this.compound.containsKey(key);
 	}
 
-	public boolean b(String key, int tagId) {
-		byte id = this.getTagId(key);
-		if (id == tagId) {
+	public boolean isTagAssignableFrom(String key, int tagId) {
+		byte keyTagId = this.getTagId(key);
+		if (keyTagId == tagId) {
 			return true;
 		} else if (tagId != 99) {
 			return false;
 		} else {
-			return id == 1 || id == 2 || id == 3 || id == 4 || id == 5 || id == 6;
+			return keyTagId > 0 && keyTagId < 7;
 		}
 	}
 
-	public byte d(String var1) {
+	public byte getByte(String key) {
 		try {
-			return !this.b(var1, 99) ? 0 : ((NBTNumberTag) this.compound.get(var1)).toByte();
-		} catch (ClassCastException var3) {
+			return !this.isTagAssignableFrom(key, 99) ? 0 : ((NBTNumberTag) this.compound.get(key)).toByte();
+		} catch (ClassCastException ex) {
 			return (byte) 0;
 		}
 	}
 
-	public short e(String var1) {
+	public short getShort(String key) {
 		try {
-			return !this.b(var1, 99) ? 0 : ((NBTNumberTag) this.compound.get(var1)).toShort();
-		} catch (ClassCastException var3) {
+			return !this.isTagAssignableFrom(key, 99) ? 0 : ((NBTNumberTag) this.compound.get(key)).toShort();
+		} catch (ClassCastException ex) {
 			return (short) 0;
 		}
 	}
 
-	public int f(String var1) {
+	public int getInt(String key) {
 		try {
-			return !this.b(var1, 99) ? 0 : ((NBTNumberTag) this.compound.get(var1)).toInt();
-		} catch (ClassCastException var3) {
+			return !this.isTagAssignableFrom(key, 99) ? 0 : ((NBTNumberTag) this.compound.get(key)).toInt();
+		} catch (ClassCastException ex) {
 			return 0;
 		}
 	}
 
-	public long g(String var1) {
+	public long getLong(String key) {
 		try {
-			return !this.b(var1, 99) ? 0L : ((NBTNumberTag) this.compound.get(var1)).toLong();
+			return !this.isTagAssignableFrom(key, 99) ? 0L : ((NBTNumberTag) this.compound.get(key)).toLong();
 		} catch (ClassCastException var3) {
 			return 0L;
 		}
 	}
 
-	public float h(String var1) {
+	public float getFloat(String key) {
 		try {
-			return !this.b(var1, 99) ? 0.0F : ((NBTNumberTag) this.compound.get(var1)).toFloat();
-		} catch (ClassCastException var3) {
+			return !this.isTagAssignableFrom(key, 99) ? 0.0F : ((NBTNumberTag) this.compound.get(key)).toFloat();
+		} catch (ClassCastException ex) {
 			return 0.0F;
 		}
 	}
 
-	public double i(String var1) {
+	public double getDouble(String key) {
 		try {
-			return !this.b(var1, 99) ? 0.0D : ((NBTNumberTag) this.compound.get(var1)).toDouble();
-		} catch (ClassCastException var3) {
+			return !this.isTagAssignableFrom(key, 99) ? 0.0D : ((NBTNumberTag) this.compound.get(key)).toDouble();
+		} catch (ClassCastException ex) {
 			return 0.0D;
 		}
 	}
 
-	public String j(String var1) {
+	public String getString(String key) {
 		try {
-			return !this.b(var1, 8) ? "" : ((NBTTag) this.compound.get(var1)).getAsString();
-		} catch (ClassCastException var3) {
+			return !this.isTagAssignableFrom(key, 8) ? "" : (this.compound.get(key)).getAsString();
+		} catch (ClassCastException ex) {
 			return "";
 		}
 	}
 
-	public byte[] k(String var1) {
+	public byte[] getByteArray(String key) {
 		try {
-			return !this.b(var1, 7) ? new byte[0] : ((NBTByteArrayTag) this.compound.get(var1)).getContent();
-		} catch (ClassCastException var3) {
-			throw new u(this.a(var1, 7, var3));
+			return !this.isTagAssignableFrom(key, 7) ? new byte[0] : ((NBTByteArrayTag) this.compound.get(key)).getContent();
+		} catch (ClassCastException ex) {
+			throw new ReportedException(this.generateCrashReport(key, 7, ex));
 		}
 	}
 
-	public int[] l(String var1) {
+	public int[] getIntArray(String key) {
 		try {
-			return !this.b(var1, 11) ? new int[0] : ((NBTIntArrayTag) this.compound.get(var1)).getContent();
+			return !this.isTagAssignableFrom(key, 11) ? new int[0] : ((NBTIntArrayTag) this.compound.get(key)).getContent();
 		} catch (ClassCastException var3) {
-			throw new u(this.a(var1, 11, var3));
+			throw new ReportedException(this.generateCrashReport(key, 11, var3));
 		}
 	}
 
-	public NBTCompoundTag m(String var1) {
+	public NBTCompoundTag getCompound(String key) {
 		try {
-			return !this.b(var1, 10) ? new NBTCompoundTag() : (NBTCompoundTag) this.compound.get(var1);
-		} catch (ClassCastException var3) {
-			throw new u(this.a(var1, 10, var3));
+			return !this.isTagAssignableFrom(key, 10) ? new NBTCompoundTag() : (NBTCompoundTag) this.compound.get(key);
+		} catch (ClassCastException ex) {
+			throw new ReportedException(this.generateCrashReport(key, 10, ex));
 		}
 	}
 
-	public NBTListTag c(String var1, int var2) {
+	public NBTListTag getList(String key, int contentTagId) {
 		try {
-			if (this.getTagId(var1) != 9) {
+			if (this.getTagId(key) != 9) {
 				return new NBTListTag();
 			} else {
-				NBTListTag var3 = (NBTListTag) this.compound.get(var1);
-				return var3.getSize() > 0 && var3.getContentTagId() != var2 ? new NBTListTag() : var3;
+				NBTListTag list = (NBTListTag) this.compound.get(key);
+				return list.getSize() > 0 && list.getContentTagId() != contentTagId ? new NBTListTag() : list;
 			}
-		} catch (ClassCastException var4) {
-			throw new u(this.a(var1, 9, var4));
+		} catch (ClassCastException ex) {
+			throw new ReportedException(this.generateCrashReport(key, 9, ex));
 		}
 	}
 
-	public boolean n(String var1) {
-		return this.d(var1) != 0;
+	public boolean getBoolean(String key) {
+		return this.getByte(key) != 0;
 	}
 
-	public void o(String var1) {
-		this.compound.remove(var1);
+	public void remove(String key) {
+		this.compound.remove(key);
 	}
 
 	public String toString() {
-		String var1 = "{";
+		String string = "{";
 
 		String var3;
-		for (Iterator<String> var2 = this.compound.keySet().iterator(); var2.hasNext(); var1 = var1 + var3 + ':' + this.compound.get(var3) + ',') {
-			var3 = (String) var2.next();
+		for (Iterator<String> it = this.compound.keySet().iterator(); it.hasNext(); string = string + var3 + ':' + this.compound.get(var3) + ',') {
+			var3 = it.next();
 		}
 
-		return var1 + "}";
+		return string + "}";
 	}
 
-	public boolean c_() {
+	public boolean isEmpty() {
 		return this.compound.isEmpty();
 	}
 
-	private CrashReport a(String var1, int var2, ClassCastException var3) {
-		CrashReport var4 = CrashReport.a(var3, "Reading NBT data");
-		j var5 = var4.a("Corrupt NBT tag", 1);
-		var5.a("Tag type found", (Callable<?>) (new fo(this, var1)));
-		var5.a("Tag type expected", (Callable<?>) (new fp(this, var2)));
-		var5.a("Tag name", (Object) var1);
-		return var4;
+	private CrashReport generateCrashReport(final String key, final int tagId, ClassCastException ex) {
+		CrashReport crashReport = CrashReport.generateCrashReport(ex, "Reading NBT data");
+		CrashReportSystemDetails crashReportDetails = crashReport.generateSystemDetails("Corrupt NBT tag", 1);
+		crashReportDetails.addDetails("Tag type found", new Callable<String>() {
+			@Override
+			public String call() throws Exception {
+				return names[compound.get(key).getId()];
+			}
+		});
+		crashReportDetails.addDetails("Tag type expected", new Callable<String>() {
+			@Override
+			public String call() throws Exception {
+				return names[tagId];
+			}
+		});
+		crashReportDetails.addDetails("Tag name", (Object) key);
+		return crashReport;
 	}
 
 	public NBTTag getCopy() {
-		NBTCompoundTag var1 = new NBTCompoundTag();
-		Iterator<String> var2 = this.compound.keySet().iterator();
+		NBTCompoundTag tag = new NBTCompoundTag();
+		Iterator<String> it = this.compound.keySet().iterator();
 
-		while (var2.hasNext()) {
-			String var3 = (String) var2.next();
-			var1.put(var3, ((NBTTag) this.compound.get(var3)).getCopy());
+		while (it.hasNext()) {
+			String var3 = (String) it.next();
+			tag.put(var3, ((NBTTag) this.compound.get(var3)).getCopy());
 		}
 
-		return var1;
+		return tag;
 	}
 
-	public boolean equals(Object var1) {
-		if (super.equals(var1)) {
-			NBTCompoundTag var2 = (NBTCompoundTag) var1;
-			return this.compound.entrySet().equals(var2.compound.entrySet());
+	public boolean equals(Object obj) {
+		if (super.equals(obj)) {
+			NBTCompoundTag tag = (NBTCompoundTag) obj;
+			return this.compound.entrySet().equals(tag.compound.entrySet());
 		} else {
 			return false;
 		}
@@ -267,11 +277,11 @@ public class NBTCompoundTag extends NBTTag {
 		return super.hashCode() ^ this.compound.hashCode();
 	}
 
-	private static void a(String var0, NBTTag var1, DataOutput var2) throws IOException {
-		var2.writeByte(var1.getId());
-		if (var1.getId() != 0) {
-			var2.writeUTF(var0);
-			var1.write(var2);
+	private static void writeTag(String key, NBTTag tag, DataOutput output) throws IOException {
+		output.writeByte(tag.getId());
+		if (tag.getId() != 0) {
+			output.writeUTF(key);
+			tag.write(output);
 		}
 	}
 
@@ -289,38 +299,29 @@ public class NBTCompoundTag extends NBTTag {
 		try {
 			tag.read(input, currentDepth, limit);
 			return tag;
-		} catch (IOException var9) {
-			CrashReport crashReport = CrashReport.a(var9, "Loading NBT data");
-			j var8 = crashReport.a("NBT Tag");
-			var8.a("Tag name", (Object) key);
-			var8.a("Tag type", (Object) Byte.valueOf(tagId));
-			throw new u(crashReport);
+		} catch (IOException ex) {
+			CrashReport crashReport = CrashReport.generateCrashReport(ex, "Loading NBT data");
+			CrashReportSystemDetails crashReportDetails = crashReport.generateSystemDetails("NBT Tag");
+			crashReportDetails.addDetails("Tag name", (Object) key);
+			crashReportDetails.addDetails("Tag type", (Object) Byte.valueOf(tagId));
+			throw new ReportedException(crashReport);
 		}
 	}
 
-	public void a(NBTCompoundTag var1) {
-		Iterator<String> var2 = var1.compound.keySet().iterator();
-
-		while (var2.hasNext()) {
-			String var3 = (String) var2.next();
-			NBTTag var4 = (NBTTag) var1.compound.get(var3);
-			if (var4.getId() == 10) {
-				if (this.b(var3, 10)) {
-					NBTCompoundTag var5 = this.m(var3);
-					var5.a((NBTCompoundTag) var4);
+	public void copyFrom(NBTCompoundTag inputCompundTag) {
+		for (Entry<String, NBTTag> entry : inputCompundTag.compound.entrySet()) {
+			String inputKey = entry.getKey();
+			NBTTag inputTag = entry.getValue();
+			if (inputTag.getId() == 10) {
+				if (isTagAssignableFrom(inputKey, 10)) {
+					getCompound(inputKey).copyFrom((NBTCompoundTag) inputTag);
 				} else {
-					this.put(var3, var4.getCopy());
+					put(inputKey, inputTag.getCopy());
 				}
 			} else {
-				this.put(var3, var4.getCopy());
+				put(inputKey, inputTag.getCopy());
 			}
 		}
-
-	}
-
-	// $FF: synthetic method
-	static Map<String, NBTTag> b(NBTCompoundTag var0) {
-		return var0.compound;
 	}
 
 }

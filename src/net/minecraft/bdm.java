@@ -26,13 +26,13 @@ public class bdm extends bcm {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.a = var1.d("SkullType");
-		this.f = var1.d("Rot");
+		this.a = var1.getByte("SkullType");
+		this.f = var1.getByte("Rot");
 		if (this.a == 3) {
-			if (var1.b("Owner", 10)) {
-				this.g = ga.a(var1.m("Owner"));
-			} else if (var1.b("ExtraType", 8)) {
-				String var2 = var1.j("ExtraType");
+			if (var1.isTagAssignableFrom("Owner", 10)) {
+				this.g = ga.a(var1.getCompound("Owner"));
+			} else if (var1.isTagAssignableFrom("ExtraType", 8)) {
+				String var2 = var1.getString("ExtraType");
 				if (!vb.b(var2)) {
 					this.g = new GameProfile((UUID) null, var2);
 					this.e();

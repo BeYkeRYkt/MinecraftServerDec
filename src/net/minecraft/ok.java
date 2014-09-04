@@ -21,10 +21,10 @@ final class ok extends eg {
 						GameProfile var8 = null;
 						if (var2.n()) {
 							NBTCompoundTag var9 = var2.o();
-							if (var9.b("SkullOwner", 10)) {
-								var8 = ga.a(var9.m("SkullOwner"));
-							} else if (var9.b("SkullOwner", 8)) {
-								var8 = new GameProfile((UUID) null, var9.j("SkullOwner"));
+							if (var9.isTagAssignableFrom("SkullOwner", 10)) {
+								var8 = ga.a(var9.getCompound("SkullOwner"));
+							} else if (var9.isTagAssignableFrom("SkullOwner", 8)) {
+								var8 = new GameProfile((UUID) null, var9.getString("SkullOwner"));
 							}
 						}
 

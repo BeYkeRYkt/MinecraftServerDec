@@ -27,8 +27,8 @@ public class bcz extends bcm implements pm, vv {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		if (var1.b("CustomName", 8)) {
-			this.p = var1.j("CustomName");
+		if (var1.isTagAssignableFrom("CustomName", 8)) {
+			this.p = var1.getString("CustomName");
 		}
 
 	}

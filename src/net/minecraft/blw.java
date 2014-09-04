@@ -24,7 +24,7 @@ public class blw extends bmk {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.a = var1.f("Steps");
+		this.a = var1.getInt("Steps");
 	}
 
 	public static bjb a(List var0, Random var1, int var2, int var3, int var4, ej var5) {

@@ -12,7 +12,7 @@ public class bdi extends bcm {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.a = var1.d("note");
+		this.a = var1.getByte("note");
 		this.a = (byte) NumberConverter.a(this.a, 0, 24);
 	}
 

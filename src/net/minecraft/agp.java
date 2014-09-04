@@ -180,17 +180,17 @@ public class agp extends ws implements ago, aqb {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.r(var1.f("Profession"));
-		this.bt = var1.f("Riches");
-		this.bv = var1.f("Career");
-		this.bw = var1.f("CareerLevel");
-		this.bs = var1.n("Willing");
-		if (var1.b("Offers", 10)) {
-			NBTCompoundTag var2 = var1.m("Offers");
+		this.r(var1.getInt("Profession"));
+		this.bt = var1.getInt("Riches");
+		this.bv = var1.getInt("Career");
+		this.bw = var1.getInt("CareerLevel");
+		this.bs = var1.getBoolean("Willing");
+		if (var1.isTagAssignableFrom("Offers", 10)) {
+			NBTCompoundTag var2 = var1.getCompound("Offers");
 			this.bp = new aqd(var2);
 		}
 
-		NBTListTag var5 = var1.c("Inventory", 10);
+		NBTListTag var5 = var1.getList("Inventory", 10);
 
 		for (int var3 = 0; var3 < var5.getSize(); ++var3) {
 			amj var4 = amj.a(var5.getCompound(var3));

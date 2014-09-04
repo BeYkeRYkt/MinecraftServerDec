@@ -272,19 +272,19 @@ public class agj extends afm {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		if (var1.n("IsBaby")) {
+		if (var1.getBoolean("IsBaby")) {
 			this.l(true);
 		}
 
-		if (var1.n("IsVillager")) {
+		if (var1.getBoolean("IsVillager")) {
 			this.m(true);
 		}
 
-		if (var1.b("ConversionTime", 99) && var1.f("ConversionTime") > -1) {
-			this.a(var1.f("ConversionTime"));
+		if (var1.isTagAssignableFrom("ConversionTime", 99) && var1.getInt("ConversionTime") > -1) {
+			this.a(var1.getInt("ConversionTime"));
 		}
 
-		this.a(var1.n("CanBreakDoors"));
+		this.a(var1.getBoolean("CanBreakDoors"));
 	}
 
 	public void a(EntityLiving var1) {

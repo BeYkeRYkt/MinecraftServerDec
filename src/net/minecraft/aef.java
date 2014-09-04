@@ -120,7 +120,7 @@ public class aef extends aed implements bdd {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.b = var1.f("TransferCooldown");
+		this.b = var1.getInt("TransferCooldown");
 	}
 
 	public void m(int var1) {

@@ -95,19 +95,19 @@ public class bcx extends bdf implements vq {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		NBTListTag var2 = var1.c("Items", 10);
+		NBTListTag var2 = var1.getList("Items", 10);
 		this.g = new amj[this.n_()];
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
-			int var5 = var4.d("Slot") & 255;
+			int var5 = var4.getByte("Slot") & 255;
 			if (var5 >= 0 && var5 < this.g.length) {
 				this.g[var5] = amj.a(var4);
 			}
 		}
 
-		if (var1.b("CustomName", 8)) {
-			this.a = var1.j("CustomName");
+		if (var1.isTagAssignableFrom("CustomName", 8)) {
+			this.a = var1.getString("CustomName");
 		}
 
 	}

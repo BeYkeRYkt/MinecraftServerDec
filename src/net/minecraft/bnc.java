@@ -27,8 +27,8 @@ public class bnc extends bnn {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.a = atr.c(var1.f("CA"));
-		this.b = atr.c(var1.f("CB"));
+		this.a = atr.c(var1.getInt("CA"));
+		this.b = atr.c(var1.getInt("CB"));
 	}
 
 	private atr a(Random var1) {

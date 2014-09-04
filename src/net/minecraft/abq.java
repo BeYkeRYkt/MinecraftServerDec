@@ -57,7 +57,7 @@ public abstract class abq extends ws implements wt {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.bk = var1.f("InLove");
+		this.bk = var1.getInt("InLove");
 	}
 
 	public boolean bQ() {

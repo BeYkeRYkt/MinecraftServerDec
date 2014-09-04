@@ -334,27 +334,27 @@ public class ahj extends Entity implements aho {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.d = var1.e("xTile");
-		this.e = var1.e("yTile");
-		this.f = var1.e("zTile");
-		this.ap = var1.e("life");
-		if (var1.b("inTile", 8)) {
-			this.g = atr.b(var1.j("inTile"));
+		this.d = var1.getShort("xTile");
+		this.e = var1.getShort("yTile");
+		this.f = var1.getShort("zTile");
+		this.ap = var1.getShort("life");
+		if (var1.isTagAssignableFrom("inTile", 8)) {
+			this.g = atr.b(var1.getString("inTile"));
 		} else {
-			this.g = atr.c(var1.d("inTile") & 255);
+			this.g = atr.c(var1.getByte("inTile") & 255);
 		}
 
-		this.h = var1.d("inData") & 255;
-		this.b = var1.d("shake") & 255;
-		this.i = var1.d("inGround") == 1;
-		if (var1.b("damage", 99)) {
-			this.ar = var1.i("damage");
+		this.h = var1.getByte("inData") & 255;
+		this.b = var1.getByte("shake") & 255;
+		this.i = var1.getByte("inGround") == 1;
+		if (var1.isTagAssignableFrom("damage", 99)) {
+			this.ar = var1.getDouble("damage");
 		}
 
-		if (var1.b("pickup", 99)) {
-			this.a = var1.d("pickup");
-		} else if (var1.b("player", 99)) {
-			this.a = var1.n("player") ? 1 : 0;
+		if (var1.isTagAssignableFrom("pickup", 99)) {
+			this.a = var1.getByte("pickup");
+		} else if (var1.isTagAssignableFrom("player", 99)) {
+			this.a = var1.getBoolean("player") ? 1 : 0;
 		}
 
 	}

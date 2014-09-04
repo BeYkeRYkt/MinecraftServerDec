@@ -44,7 +44,7 @@ public class afg extends afm {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.a(var1.n("Elder"));
+		this.a(var1.getBoolean("Elder"));
 	}
 
 	public void b(NBTCompoundTag var1) {

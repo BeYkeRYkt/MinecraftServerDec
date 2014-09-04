@@ -117,8 +117,8 @@ public class aej extends adx {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		if (var1.b("TNTFuse", 99)) {
-			this.a = var1.f("TNTFuse");
+		if (var1.isTagAssignableFrom("TNTFuse", 99)) {
+			this.a = var1.getInt("TNTFuse");
 		}
 
 	}

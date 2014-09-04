@@ -147,14 +147,14 @@ public class wq {
 	}
 
 	public static wq b(NBTCompoundTag var0) {
-		byte var1 = var0.d("Id");
+		byte var1 = var0.getByte("Id");
 		if (var1 >= 0 && var1 < wp.a.length && wp.a[var1] != null) {
-			byte var2 = var0.d("Amplifier");
-			int var3 = var0.f("Duration");
-			boolean var4 = var0.n("Ambient");
+			byte var2 = var0.getByte("Amplifier");
+			int var3 = var0.getInt("Duration");
+			boolean var4 = var0.getBoolean("Ambient");
 			boolean var5 = true;
-			if (var0.b("ShowParticles", 1)) {
-				var5 = var0.n("ShowParticles");
+			if (var0.isTagAssignableFrom("ShowParticles", 1)) {
+				var5 = var0.getBoolean("ShowParticles");
 			}
 
 			return new wq(var1, var3, var2, var4, var5);

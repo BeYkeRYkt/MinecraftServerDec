@@ -31,14 +31,14 @@ public class bse extends bqc {
 		if (this.c == null) {
 			this.d = var1;
 		} else {
-			this.b(var1.c("Objectives", 10));
-			this.c(var1.c("PlayerScores", 10));
-			if (var1.b("DisplaySlots", 10)) {
-				this.c(var1.m("DisplaySlots"));
+			this.b(var1.getList("Objectives", 10));
+			this.c(var1.getList("PlayerScores", 10));
+			if (var1.isTagAssignableFrom("DisplaySlots", 10)) {
+				this.c(var1.getCompound("DisplaySlots"));
 			}
 
-			if (var1.b("Teams", 9)) {
-				this.a(var1.c("Teams", 10));
+			if (var1.isTagAssignableFrom("Teams", 9)) {
+				this.a(var1.getList("Teams", 10));
 			}
 
 		}
@@ -47,38 +47,38 @@ public class bse extends bqc {
 	protected void a(NBTListTag var1) {
 		for (int var2 = 0; var2 < var1.getSize(); ++var2) {
 			NBTCompoundTag var3 = var1.getCompound(var2);
-			brz var4 = this.c.e(var3.j("Name"));
-			var4.a(var3.j("DisplayName"));
-			if (var3.b("TeamColor", 8)) {
-				var4.a(FormattingCode.b(var3.j("TeamColor")));
+			brz var4 = this.c.e(var3.getString("Name"));
+			var4.a(var3.getString("DisplayName"));
+			if (var3.isTagAssignableFrom("TeamColor", 8)) {
+				var4.a(FormattingCode.b(var3.getString("TeamColor")));
 			}
 
-			var4.b(var3.j("Prefix"));
-			var4.c(var3.j("Suffix"));
-			if (var3.b("AllowFriendlyFire", 99)) {
-				var4.a(var3.n("AllowFriendlyFire"));
+			var4.b(var3.getString("Prefix"));
+			var4.c(var3.getString("Suffix"));
+			if (var3.isTagAssignableFrom("AllowFriendlyFire", 99)) {
+				var4.a(var3.getBoolean("AllowFriendlyFire"));
 			}
 
-			if (var3.b("SeeFriendlyInvisibles", 99)) {
-				var4.b(var3.n("SeeFriendlyInvisibles"));
+			if (var3.isTagAssignableFrom("SeeFriendlyInvisibles", 99)) {
+				var4.b(var3.getBoolean("SeeFriendlyInvisibles"));
 			}
 
 			bsg var5;
-			if (var3.b("NameTagVisibility", 8)) {
-				var5 = bsg.a(var3.j("NameTagVisibility"));
+			if (var3.isTagAssignableFrom("NameTagVisibility", 8)) {
+				var5 = bsg.a(var3.getString("NameTagVisibility"));
 				if (var5 != null) {
 					var4.a(var5);
 				}
 			}
 
-			if (var3.b("DeathMessageVisibility", 8)) {
-				var5 = bsg.a(var3.j("DeathMessageVisibility"));
+			if (var3.isTagAssignableFrom("DeathMessageVisibility", 8)) {
+				var5 = bsg.a(var3.getString("DeathMessageVisibility"));
 				if (var5 != null) {
 					var4.b(var5);
 				}
 			}
 
-			this.a(var4, var3.c("Players", 8));
+			this.a(var4, var3.getList("Players", 8));
 		}
 
 	}
@@ -92,8 +92,8 @@ public class bse extends bqc {
 
 	protected void c(NBTCompoundTag var1) {
 		for (int var2 = 0; var2 < 19; ++var2) {
-			if (var1.b("slot_" + var2, 8)) {
-				String var3 = var1.j("slot_" + var2);
+			if (var1.isTagAssignableFrom("slot_" + var2, 8)) {
+				String var3 = var1.getString("slot_" + var2);
 				bry var4 = this.c.b(var3);
 				this.c.a(var2, var4);
 			}
@@ -104,11 +104,11 @@ public class bse extends bqc {
 	protected void b(NBTListTag var1) {
 		for (int var2 = 0; var2 < var1.getSize(); ++var2) {
 			NBTCompoundTag var3 = var1.getCompound(var2);
-			bsk var4 = (bsk) bsk.a.get(var3.j("CriteriaName"));
+			bsk var4 = (bsk) bsk.a.get(var3.getString("CriteriaName"));
 			if (var4 != null) {
-				bry var5 = this.c.a(var3.j("Name"), var4);
-				var5.a(var3.j("DisplayName"));
-				var5.a(bsl.a(var3.j("RenderType")));
+				bry var5 = this.c.a(var3.getString("Name"), var4);
+				var5.a(var3.getString("DisplayName"));
+				var5.a(bsl.a(var3.getString("RenderType")));
 			}
 		}
 
@@ -117,11 +117,11 @@ public class bse extends bqc {
 	protected void c(NBTListTag var1) {
 		for (int var2 = 0; var2 < var1.getSize(); ++var2) {
 			NBTCompoundTag var3 = var1.getCompound(var2);
-			bry var4 = this.c.b(var3.j("Objective"));
-			bsa var5 = this.c.c(var3.j("Name"), var4);
-			var5.c(var3.f("Score"));
+			bry var4 = this.c.b(var3.getString("Objective"));
+			bsa var5 = this.c.c(var3.getString("Name"), var4);
+			var5.c(var3.getInt("Score"));
 			if (var3.hasKey("Locked")) {
-				var5.a(var3.n("Locked"));
+				var5.a(var3.getBoolean("Locked"));
 			}
 		}
 

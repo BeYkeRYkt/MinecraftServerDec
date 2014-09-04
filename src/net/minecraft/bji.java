@@ -112,7 +112,7 @@ public class bji extends bms {
 	}
 
 	protected void b(NBTCompoundTag var1) {
-		NBTListTag var2 = var1.c("Entrances", 11);
+		NBTListTag var2 = var1.getList("Entrances", 11);
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			this.a.add(new bjb(var2.getIntArray(var3)));

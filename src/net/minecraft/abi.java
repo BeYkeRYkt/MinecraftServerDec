@@ -339,27 +339,27 @@ public class abi {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.h = var1.f("PopSize");
-		this.e = var1.f("Radius");
-		this.l = var1.f("Golems");
-		this.f = var1.f("Stable");
-		this.g = var1.f("Tick");
-		this.i = var1.f("MTick");
-		this.d = new dt(var1.f("CX"), var1.f("CY"), var1.f("CZ"));
-		this.c = new dt(var1.f("ACX"), var1.f("ACY"), var1.f("ACZ"));
-		NBTListTag var2 = var1.c("Doors", 10);
+		this.h = var1.getInt("PopSize");
+		this.e = var1.getInt("Radius");
+		this.l = var1.getInt("Golems");
+		this.f = var1.getInt("Stable");
+		this.g = var1.getInt("Tick");
+		this.i = var1.getInt("MTick");
+		this.d = new dt(var1.getInt("CX"), var1.getInt("CY"), var1.getInt("CZ"));
+		this.c = new dt(var1.getInt("ACX"), var1.getInt("ACY"), var1.getInt("ACZ"));
+		NBTListTag var2 = var1.getList("Doors", 10);
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
-			abh var5 = new abh(new dt(var4.f("X"), var4.f("Y"), var4.f("Z")), var4.f("IDX"), var4.f("IDZ"), var4.f("TS"));
+			abh var5 = new abh(new dt(var4.getInt("X"), var4.getInt("Y"), var4.getInt("Z")), var4.getInt("IDX"), var4.getInt("IDZ"), var4.getInt("TS"));
 			this.b.add(var5);
 		}
 
-		NBTListTag var6 = var1.c("Players", 10);
+		NBTListTag var6 = var1.getList("Players", 10);
 
 		for (int var7 = 0; var7 < var6.getSize(); ++var7) {
 			NBTCompoundTag var8 = var6.getCompound(var7);
-			this.j.put(var8.j("Name"), Integer.valueOf(var8.f("S")));
+			this.j.put(var8.getString("Name"), Integer.valueOf(var8.getInt("S")));
 		}
 
 	}

@@ -36,18 +36,18 @@ public abstract class aqf implements CommandSenderInterface {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		this.e = var1.j("Command");
-		this.b = var1.f("SuccessCount");
-		if (var1.b("CustomName", 8)) {
-			this.f = var1.j("CustomName");
+		this.e = var1.getString("Command");
+		this.b = var1.getInt("SuccessCount");
+		if (var1.isTagAssignableFrom("CustomName", 8)) {
+			this.f = var1.getString("CustomName");
 		}
 
-		if (var1.b("TrackOutput", 1)) {
-			this.c = var1.n("TrackOutput");
+		if (var1.isTagAssignableFrom("TrackOutput", 1)) {
+			this.c = var1.getBoolean("TrackOutput");
 		}
 
-		if (var1.b("LastOutput", 8) && this.c) {
-			this.d = hp.a(var1.j("LastOutput"));
+		if (var1.isTagAssignableFrom("LastOutput", 8) && this.c) {
+			this.d = hp.a(var1.getString("LastOutput"));
 		}
 
 		this.g.a(var1);
@@ -79,11 +79,11 @@ public abstract class aqf implements CommandSenderInterface {
 				this.d = null;
 				this.b = var3.a(this, this.e);
 			} catch (Throwable var7) {
-				CrashReport var5 = CrashReport.a(var7, "Executing command block");
-				j var6 = var5.a("Command to be executed");
-				var6.a("Command", (Callable) (new aqg(this)));
-				var6.a("Name", (Callable) (new aqh(this)));
-				throw new u(var5);
+				CrashReport var5 = CrashReport.generateCrashReport(var7, "Executing command block");
+				CrashReportSystemDetails var6 = var5.generateSystemDetails("Command to be executed");
+				var6.addDetails("Command", (Callable) (new aqg(this)));
+				var6.addDetails("Name", (Callable) (new aqh(this)));
+				throw new ReportedException(var5);
 			}
 		} else {
 			this.b = 0;

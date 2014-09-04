@@ -211,18 +211,18 @@ public abstract class ahr extends Entity implements aho {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.c = var1.e("xTile");
-		this.d = var1.e("yTile");
-		this.e = var1.e("zTile");
-		if (var1.b("inTile", 8)) {
-			this.f = atr.b(var1.j("inTile"));
+		this.c = var1.getShort("xTile");
+		this.d = var1.getShort("yTile");
+		this.e = var1.getShort("zTile");
+		if (var1.isTagAssignableFrom("inTile", 8)) {
+			this.f = atr.b(var1.getString("inTile"));
 		} else {
-			this.f = atr.c(var1.d("inTile") & 255);
+			this.f = atr.c(var1.getByte("inTile") & 255);
 		}
 
-		this.b = var1.d("shake") & 255;
-		this.a = var1.d("inGround") == 1;
-		this.h = var1.j("ownerName");
+		this.b = var1.getByte("shake") & 255;
+		this.a = var1.getByte("inGround") == 1;
+		this.h = var1.getString("ownerName");
 		if (this.h != null && this.h.length() == 0) {
 			this.h = null;
 		}

@@ -69,7 +69,7 @@ public class aby extends xx {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.r(var1.f("CatType"));
+		this.r(var1.getInt("CatType"));
 	}
 
 	protected String z() {

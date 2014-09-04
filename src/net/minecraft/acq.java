@@ -96,7 +96,7 @@ public class acq extends abw {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.l(var1.n("PlayerCreated"));
+		this.l(var1.getBoolean("PlayerCreated"));
 	}
 
 	public boolean r(Entity var1) {

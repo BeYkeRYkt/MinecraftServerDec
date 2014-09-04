@@ -85,7 +85,7 @@ public class bqm implements bqy, brl {
 		if (var1.exists()) {
 			try {
 				var2 = fz.a((InputStream) (new FileInputStream(var1)));
-				var3 = var2.m("Data");
+				var3 = var2.getCompound("Data");
 				return new bqo(var3);
 			} catch (Exception var5) {
 				var5.printStackTrace();
@@ -96,7 +96,7 @@ public class bqm implements bqy, brl {
 		if (var1.exists()) {
 			try {
 				var2 = fz.a((InputStream) (new FileInputStream(var1)));
-				var3 = var2.m("Data");
+				var3 = var2.getCompound("Data");
 				return new bqo(var3);
 			} catch (Exception var4) {
 				var4.printStackTrace();

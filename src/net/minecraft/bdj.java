@@ -28,7 +28,7 @@ public class bdj extends bcm {
 		bdk var2 = new bdk(this);
 
 		for (int var3 = 0; var3 < 4; ++var3) {
-			String var4 = var1.j("Text" + (var3 + 1));
+			String var4 = var1.getString("Text" + (var3 + 1));
 
 			try {
 				ho var5 = hp.a(var4);

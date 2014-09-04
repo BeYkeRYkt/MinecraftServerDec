@@ -27,8 +27,8 @@ public class aph {
 				return 0;
 			} else {
 				for (int var3 = 0; var3 < var2.getSize(); ++var3) {
-					short var4 = var2.getCompound(var3).e("id");
-					short var5 = var2.getCompound(var3).e("lvl");
+					short var4 = var2.getCompound(var3).getShort("id");
+					short var5 = var2.getCompound(var3).getShort("lvl");
 					if (var4 == var0) {
 						return var5;
 					}
@@ -44,8 +44,8 @@ public class aph {
 		NBTListTag var2 = var0.b() == amk.cd ? amk.cd.h(var0) : var0.p();
 		if (var2 != null) {
 			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
-				short var4 = var2.getCompound(var3).e("id");
-				short var5 = var2.getCompound(var3).e("lvl");
+				short var4 = var2.getCompound(var3).getShort("id");
+				short var5 = var2.getCompound(var3).getShort("lvl");
 				var1.put(Integer.valueOf(var4), Integer.valueOf(var5));
 			}
 		}
@@ -76,7 +76,7 @@ public class aph {
 				var1.a("ench", (NBTTag) var2);
 			}
 		} else if (var1.n()) {
-			var1.o().o("ench");
+			var1.o().remove("ench");
 		}
 
 	}
@@ -106,8 +106,8 @@ public class aph {
 			NBTListTag var2 = var1.p();
 			if (var2 != null) {
 				for (int var3 = 0; var3 < var2.getSize(); ++var3) {
-					short var4 = var2.getCompound(var3).e("id");
-					short var5 = var2.getCompound(var3).e("lvl");
+					short var4 = var2.getCompound(var3).getShort("id");
+					short var5 = var2.getCompound(var3).getShort("lvl");
 					if (apf.c(var4) != null) {
 						var0.a(apf.c(var4), var5);
 					}

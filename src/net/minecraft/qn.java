@@ -107,17 +107,17 @@ public class qn {
 			this.d.a(var1.F(), var5);
 			var5.b(this.b.j);
 		} catch (Throwable var11) {
-			CrashReport var6 = CrashReport.a(var11, "Adding entity to track");
-			j var7 = var6.a("Entity To Track");
-			var7.a("Tracking range", (Object) (var2 + " blocks"));
-			var7.a("Update interval", (Callable) (new qo(this, var3)));
+			CrashReport var6 = CrashReport.generateCrashReport(var11, "Adding entity to track");
+			CrashReportSystemDetails var7 = var6.generateSystemDetails("Entity To Track");
+			var7.addDetails("Tracking range", (Object) (var2 + " blocks"));
+			var7.addDetails("Update interval", (Callable) (new qo(this, var3)));
 			var1.a(var7);
-			j var8 = var6.a("Entity That Is Already Tracked");
+			CrashReportSystemDetails var8 = var6.generateSystemDetails("Entity That Is Already Tracked");
 			((qy) this.d.a(var1.F())).a.a(var8);
 
 			try {
-				throw new u(var6);
-			} catch (u var10) {
+				throw new ReportedException(var6);
+			} catch (ReportedException var10) {
 				a.error("\"Silently\" catching entity tracking error.", (Throwable) var10);
 			}
 		}

@@ -9,22 +9,22 @@ public class anr extends alq {
 	public static boolean b(NBTCompoundTag var0) {
 		if (!anq.b(var0)) {
 			return false;
-		} else if (!var0.b("title", 8)) {
+		} else if (!var0.isTagAssignableFrom("title", 8)) {
 			return false;
 		} else {
-			String var1 = var0.j("title");
-			return var1 != null && var1.length() <= 32 ? var0.b("author", 8) : false;
+			String var1 = var0.getString("title");
+			return var1 != null && var1.length() <= 32 ? var0.isTagAssignableFrom("author", 8) : false;
 		}
 	}
 
 	public static int h(amj var0) {
-		return var0.o().f("generation");
+		return var0.o().getInt("generation");
 	}
 
 	public String a(amj var1) {
 		if (var1.n()) {
 			NBTCompoundTag var2 = var1.o();
-			String var3 = var2.j("title");
+			String var3 = var2.getString("title");
 			if (!vb.b(var3)) {
 				return var3;
 			}
@@ -46,10 +46,10 @@ public class anr extends alq {
 	private void a(amj var1, ahd var2) {
 		if (var1 != null && var1.o() != null) {
 			NBTCompoundTag var3 = var1.o();
-			if (!var3.n("resolved")) {
+			if (!var3.getBoolean("resolved")) {
 				var3.put("resolved", true);
 				if (b(var3)) {
-					NBTListTag var4 = var3.c("pages", 8);
+					NBTListTag var4 = var3.getList("pages", 8);
 
 					for (int var5 = 0; var5 < var4.getSize(); ++var5) {
 						String var6 = var4.getString(var5);

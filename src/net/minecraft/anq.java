@@ -15,10 +15,10 @@ public class anq extends alq {
 	public static boolean b(NBTCompoundTag var0) {
 		if (var0 == null) {
 			return false;
-		} else if (!var0.b("pages", 9)) {
+		} else if (!var0.isTagAssignableFrom("pages", 9)) {
 			return false;
 		} else {
-			NBTListTag var1 = var0.c("pages", 8);
+			NBTListTag var1 = var0.getList("pages", 8);
 
 			for (int var2 = 0; var2 < var1.getSize(); ++var2) {
 				String var3 = var1.getString(var2);

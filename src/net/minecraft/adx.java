@@ -522,18 +522,18 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	protected void a(NBTCompoundTag var1) {
-		if (var1.n("CustomDisplayTile")) {
-			int var2 = var1.f("DisplayData");
+		if (var1.getBoolean("CustomDisplayTile")) {
+			int var2 = var1.getInt("DisplayData");
 			atr var3;
-			if (var1.b("DisplayTile", 8)) {
-				var3 = atr.b(var1.j("DisplayTile"));
+			if (var1.isTagAssignableFrom("DisplayTile", 8)) {
+				var3 = atr.b(var1.getString("DisplayTile"));
 				if (var3 == null) {
 					this.a(aty.a.P());
 				} else {
 					this.a(var3.a(var2));
 				}
 			} else {
-				var3 = atr.c(var1.f("DisplayTile"));
+				var3 = atr.c(var1.getInt("DisplayTile"));
 				if (var3 == null) {
 					this.a(aty.a.P());
 				} else {
@@ -541,11 +541,11 @@ public abstract class adx extends Entity implements vz {
 				}
 			}
 
-			this.l(var1.f("DisplayOffset"));
+			this.l(var1.getInt("DisplayOffset"));
 		}
 
-		if (var1.b("CustomName", 8) && var1.j("CustomName").length() > 0) {
-			this.b = var1.j("CustomName");
+		if (var1.isTagAssignableFrom("CustomName", 8) && var1.getString("CustomName").length() > 0) {
+			this.b = var1.getString("CustomName");
 		}
 
 	}

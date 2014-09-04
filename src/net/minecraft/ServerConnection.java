@@ -70,10 +70,10 @@ public class ServerConnection {
 							var3.a();
 						} catch (Exception var8) {
 							if (var3.c()) {
-								CrashReport var10 = CrashReport.a(var8, "Ticking memory connection");
-								j var6 = var10.a("Ticking connection");
-								var6.a("Connection", (Callable) (new rh(this, var3)));
-								throw new u(var10);
+								CrashReport var10 = CrashReport.generateCrashReport(var8, "Ticking memory connection");
+								CrashReportSystemDetails var6 = var10.generateSystemDetails("Ticking connection");
+								var6.addDetails("Connection", (Callable) (new rh(this, var3)));
+								throw new ReportedException(var10);
 							}
 
 							d.warn("Failed to handle packet for " + var3.b(), (Throwable) var8);

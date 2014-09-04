@@ -21,10 +21,10 @@ public class bjg extends bms {
 	}
 
 	protected void b(NBTCompoundTag var1) {
-		this.a = var1.n("hr");
-		this.b = var1.n("sc");
-		this.c = var1.n("hps");
-		this.d = var1.f("Num");
+		this.a = var1.getBoolean("hr");
+		this.b = var1.getBoolean("sc");
+		this.c = var1.getBoolean("hps");
+		this.d = var1.getInt("Num");
 	}
 
 	public bjg(int var1, Random var2, bjb var3, ej var4) {
