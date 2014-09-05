@@ -12,12 +12,12 @@ import org.apache.logging.log4j.Logger;
 public class aao extends zb {
 
 	private static final Logger a = LogManager.getLogger();
-	private xn b;
+	private EntityInsentient b;
 	private final Predicate c;
 	private final Comparator<Entity> d;
 	private EntityLiving e;
 
-	public aao(xn var1) {
+	public aao(EntityInsentient var1) {
 		this.b = var1;
 		if (var1 instanceof EntityCreature) {
 			a.warn("Use NearestAttackableTargetGoal.class for PathfinerMob mobs!");
@@ -80,7 +80,7 @@ public class aao extends zb {
 	}
 
 	// $FF: synthetic method
-	static xn a(aao var0) {
+	static EntityInsentient a(aao var0) {
 		return var0.b;
 	}
 

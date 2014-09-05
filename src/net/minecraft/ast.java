@@ -17,7 +17,7 @@ public class ast extends arm {
 		this.as.H = 0;
 		this.as.C = 5;
 		this.ar = 14745518;
-		this.at.add(new arq(afy.class, 1, 1, 1));
+		this.at.add(new arq(EntitySlime.class, 1, 1, 1));
 	}
 
 	public bhc a(Random var1) {

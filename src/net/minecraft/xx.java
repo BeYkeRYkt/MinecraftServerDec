@@ -151,7 +151,7 @@ public abstract class xx extends abq implements xt {
 
 	public void a(wh var1) {
 		if (!this.o.D && this.o.Q().b("showDeathMessages") && this.k_() && this.cm() instanceof EntityPlayer) {
-			((EntityPlayer) this.cm()).a(this.br().b());
+			((EntityPlayer) this.cm()).sendChatMessage(this.br().b());
 		}
 
 		super.a(var1);

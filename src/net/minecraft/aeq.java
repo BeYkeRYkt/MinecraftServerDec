@@ -5,14 +5,14 @@ import com.google.common.base.Predicate;
 class aeq implements Predicate {
 
 	// $FF: synthetic field
-	final aep a;
+	final EntityCreeper a;
 
-	aeq(aep var1) {
+	aeq(EntityCreeper var1) {
 		this.a = var1;
 	}
 
 	public boolean a(Entity var1) {
-		return var1 instanceof aby;
+		return var1 instanceof EntityOcelot;
 	}
 
 	// $FF: synthetic method

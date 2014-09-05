@@ -26,7 +26,7 @@ public class qx {
 		this.gameMode = var1;
 		var1.setGameModeProperties(this.b.by);
 		this.b.t();
-		this.b.b.getPlayerList().a((Packet) (new kh(kj.b, new EntityPlayer[] { this.b })));
+		this.b.b.getPlayerList().sendPacket((Packet) (new kh(kj.b, new EntityPlayer[] { this.b })));
 	}
 
 	public GameMode getGameMode() {
@@ -199,7 +199,7 @@ public class qx {
 			this.a.a(this.b, 2001, var1, Block.f(var2));
 			boolean var7 = this.c(var1);
 			if (this.d()) {
-				this.b.a.a((Packet) (new iw(this.a, var1)));
+				this.b.playerConncetion.sendPacket((Packet) (new iw(this.a, var1)));
 			} else {
 				ItemStack var5 = this.b.bY();
 				boolean var6 = this.b.b(var2.c());

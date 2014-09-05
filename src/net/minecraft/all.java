@@ -29,7 +29,7 @@ public class all extends Item {
 		var3.ck().a(this, var1);
 		var2.a((Entity) var3, "random.burp", 0.5F, var2.s.nextFloat() * 0.1F + 0.9F);
 		this.c(var1, var2, var3);
-		var3.b(ty.J[Item.getId((Item) this)]);
+		var3.b(StatisticList.J[Item.getId((Item) this)]);
 		return var1;
 	}
 

@@ -15,7 +15,7 @@ final class ai implements Predicate {
 	}
 
 	public boolean a(Entity var1) {
-		return EntityTypes.a(var1, this.a) != this.b;
+		return EntityTypes.isEntityOfThatType(var1, this.a) != this.b;
 	}
 
 	// $FF: synthetic method

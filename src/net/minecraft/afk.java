@@ -2,9 +2,9 @@ package net.minecraft;
 
 class afk extends yn {
 
-	private afg g;
+	private EntityGuardian g;
 
-	public afk(afg var1) {
+	public afk(EntityGuardian var1) {
 		super(var1);
 		this.g = var1;
 	}
@@ -44,10 +44,10 @@ class afk extends yn {
 			}
 
 			this.g.p().a(var24 + (var18 - var24) * 0.125D, var26 + (var20 - var26) * 0.125D, var28 + (var22 - var28) * 0.125D, 10.0F, 40.0F);
-			afg.a(this.g, true);
+			EntityGuardian.a(this.g, true);
 		} else {
 			this.g.j(0.0F);
-			afg.a(this.g, false);
+			EntityGuardian.a(this.g, false);
 		}
 	}
 }

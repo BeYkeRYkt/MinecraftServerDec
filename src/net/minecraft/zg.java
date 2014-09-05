@@ -2,11 +2,11 @@ package net.minecraft;
 
 public class zg extends zb {
 
-	xn a;
+	EntityInsentient a;
 	EntityLiving b;
 	float c;
 
-	public zg(xn var1, float var2) {
+	public zg(EntityInsentient var1, float var2) {
 		this.a = var1;
 		this.c = var2;
 		this.a(5);

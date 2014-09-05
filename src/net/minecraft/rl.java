@@ -3,9 +3,9 @@ package net.minecraft;
 class rl implements Runnable {
 
 	// $FF: synthetic field
-	final rj a;
+	final PlayerConnection a;
 
-	rl(rj var1) {
+	rl(PlayerConnection var1) {
 		this.a = var1;
 	}
 

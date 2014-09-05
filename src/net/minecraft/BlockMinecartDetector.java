@@ -92,9 +92,9 @@ public class BlockMinecartDetector extends ati {
 
 	public int l(World var1, Position var2) {
 		if (((Boolean) var1.p(var2).b(M)).booleanValue()) {
-			List var3 = this.a(var1, var2, aeb.class, new Predicate[0]);
+			List var3 = this.a(var1, var2, EntityMinecartCommandBlock.class, new Predicate[0]);
 			if (!var3.isEmpty()) {
-				return ((aeb) var3.get(0)).j().j();
+				return ((EntityMinecartCommandBlock) var3.get(0)).j().j();
 			}
 
 			List var4 = this.a(var1, var2, adx.class, new Predicate[] { EntityPredicates.c });

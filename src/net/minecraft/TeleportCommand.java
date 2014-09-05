@@ -80,7 +80,7 @@ public class TeleportCommand extends AbstractCommand {
 						}
 
 						((Entity) var4).a((Entity) null);
-						((EntityPlayer) var4).a.a(var6.b(), var7.b(), var8.b(), var12, var13, var11);
+						((EntityPlayer) var4).playerConncetion.a(var6.b(), var7.b(), var8.b(), var12, var13, var11);
 						((Entity) var4).f(var12);
 					} else {
 						float var15 = (float) DataTypesConverter.g(var9.a());
@@ -103,7 +103,7 @@ public class TeleportCommand extends AbstractCommand {
 				} else {
 					((Entity) var4).a((Entity) null);
 					if (var4 instanceof EntityPlayer) {
-						((EntityPlayer) var4).a.a(var5.locationX, var5.locationY, var5.locationZ, var5.yaw, var5.pitch);
+						((EntityPlayer) var4).playerConncetion.a(var5.locationX, var5.locationY, var5.locationZ, var5.yaw, var5.pitch);
 					} else {
 						((Entity) var4).b(var5.locationX, var5.locationY, var5.locationZ, var5.yaw, var5.pitch);
 					}

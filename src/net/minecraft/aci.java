@@ -2,9 +2,9 @@ package net.minecraft;
 
 class aci extends yn {
 
-	private acb g;
+	private EntityRabbit g;
 
-	public aci(acb var1) {
+	public aci(EntityRabbit var1) {
 		super(var1);
 		this.g = var1;
 	}

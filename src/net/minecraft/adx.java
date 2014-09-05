@@ -21,22 +21,22 @@ public abstract class adx extends Entity implements vz {
 		this.a(0.98F, 0.7F);
 	}
 
-	public static adx a(World var0, double var1, double var3, double var5, adz var7) {
+	public static adx a(World var0, double var1, double var3, double var5, MinecartType var7) {
 		switch (ady.a[var7.ordinal()]) {
 			case 1:
-				return new aea(var0, var1, var3, var5);
+				return new EntityMinecartChest(var0, var1, var3, var5);
 			case 2:
-				return new aee(var0, var1, var3, var5);
+				return new EntityMinecartFurnace(var0, var1, var3, var5);
 			case 3:
-				return new aej(var0, var1, var3, var5);
+				return new EntityMinecartTNT(var0, var1, var3, var5);
 			case 4:
-				return new aeh(var0, var1, var3, var5);
+				return new EntityMinecartMobSpawner(var0, var1, var3, var5);
 			case 5:
-				return new aef(var0, var1, var3, var5);
+				return new EntityMinecartHopper(var0, var1, var3, var5);
 			case 6:
-				return new aeb(var0, var1, var3, var5);
+				return new EntityMinecartCommandBlock(var0, var1, var3, var5);
 			default:
-				return new aeg(var0, var1, var3, var5);
+				return new EntityMinecartRideable(var0, var1, var3, var5);
 		}
 	}
 
@@ -570,7 +570,7 @@ public abstract class adx extends Entity implements vz {
 		if (!this.o.D) {
 			if (!var1.T && !this.T) {
 				if (var1 != this.l) {
-					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof acq) && this.s() == adz.a && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.l == null && var1.m == null) {
+					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof EntityIronGolem) && this.s() == MinecartType.RIDEABLE && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.l == null && var1.m == null) {
 						var1.a((Entity) this);
 					}
 
@@ -606,13 +606,13 @@ public abstract class adx extends Entity implements vz {
 
 							double var18 = var1.motionX + this.motionX;
 							double var20 = var1.motionZ + this.motionZ;
-							if (((adx) var1).s() == adz.c && this.s() != adz.c) {
+							if (((adx) var1).s() == MinecartType.FURNACE && this.s() != MinecartType.FURNACE) {
 								this.motionX *= 0.20000000298023224D;
 								this.motionZ *= 0.20000000298023224D;
 								this.g(var1.motionX - var2, 0.0D, var1.motionZ - var4);
 								var1.motionX *= 0.949999988079071D;
 								var1.motionZ *= 0.949999988079071D;
-							} else if (((adx) var1).s() != adz.c && this.s() == adz.c) {
+							} else if (((adx) var1).s() != MinecartType.FURNACE && this.s() == MinecartType.FURNACE) {
 								var1.motionX *= 0.20000000298023224D;
 								var1.motionZ *= 0.20000000298023224D;
 								var1.g(this.motionX + var2, 0.0D, this.motionZ + var4);
@@ -663,7 +663,7 @@ public abstract class adx extends Entity implements vz {
 		return this.dataWatcher.c(18);
 	}
 
-	public abstract adz s();
+	public abstract MinecartType s();
 
 	public bec t() {
 		return !this.x() ? this.u() : Block.d(this.getDataWatcher().c(20));

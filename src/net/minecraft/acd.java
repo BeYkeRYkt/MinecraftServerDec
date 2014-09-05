@@ -2,7 +2,7 @@ package net.minecraft;
 
 class acd extends zk {
 
-	public acd(acb var1) {
+	public acd(EntityRabbit var1) {
 		super(var1, EntityLiving.class, 1.4D, true);
 	}
 

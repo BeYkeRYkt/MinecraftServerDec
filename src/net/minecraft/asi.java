@@ -18,10 +18,10 @@ public class asi extends arm {
 		this.as.C = 25;
 		this.as.B = 4;
 		if (!var2) {
-			this.at.add(new arq(aby.class, 2, 1, 1));
+			this.at.add(new arq(EntityOcelot.class, 2, 1, 1));
 		}
 
-		this.au.add(new arq(abr.class, 10, 4, 4));
+		this.au.add(new arq(EntityChicken.class, 10, 4, 4));
 	}
 
 	public bhc a(Random var1) {

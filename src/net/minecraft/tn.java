@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class tn extends PlayerStatistic {
+public class tn extends Statistic {
 
 	public tn(String var1, IJSONComponent var2, tv var3) {
 		super(var1, var2, var3);
@@ -10,9 +10,9 @@ public class tn extends PlayerStatistic {
 		super(var1, var2);
 	}
 
-	public PlayerStatistic h() {
+	public Statistic h() {
 		super.h();
-		ty.c.add(this);
+		StatisticList.c.add(this);
 		return this;
 	}
 }

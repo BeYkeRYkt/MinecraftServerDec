@@ -12,7 +12,7 @@ public class BlockWaterLily extends auc {
 	}
 
 	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
-		if (var6 == null || !(var6 instanceof adu)) {
+		if (var6 == null || !(var6 instanceof EntityBoat)) {
 			super.a(var1, var2, var3, var4, var5, var6);
 		}
 

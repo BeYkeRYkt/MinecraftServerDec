@@ -29,7 +29,7 @@ public class anp extends ann {
 						--var1.b;
 					}
 
-					var3.b(ty.J[Item.getId((Item) this)]);
+					var3.b(StatisticList.J[Item.getId((Item) this)]);
 				}
 			}
 

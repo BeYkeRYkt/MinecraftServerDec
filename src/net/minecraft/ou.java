@@ -15,7 +15,7 @@ final class ou extends eg {
 		double var13 = var12.nextGaussian() * 0.05D + (double) var3.g();
 		double var15 = var12.nextGaussian() * 0.05D + (double) var3.h();
 		double var17 = var12.nextGaussian() * 0.05D + (double) var3.i();
-		var11.d((Entity) (new ahp(var11, var5, var7, var9, var13, var15, var17)));
+		var11.d((Entity) (new EntitySmallFireball(var11, var5, var7, var9, var13, var15, var17)));
 		var2.a(1);
 		return var2;
 	}

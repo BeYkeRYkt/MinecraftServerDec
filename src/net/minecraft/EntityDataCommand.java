@@ -42,7 +42,7 @@ public class EntityDataCommand extends AbstractCommand {
 				if (var4.equals(var5)) {
 					throw new di("commands.entitydata.failed", new Object[] { var4.toString() });
 				} else {
-					var3.f(var4);
+					var3.load(var4);
 					a(var1, this, "commands.entitydata.success", new Object[] { var4.toString() });
 				}
 			}

@@ -194,9 +194,9 @@ public abstract class EntityHuman extends EntityLiving {
 
 		if (!this.o.D) {
 			this.fooddata.a(this);
-			this.b(ty.g);
+			this.b(StatisticList.g);
 			if (this.ai()) {
-				this.b(ty.h);
+				this.b(StatisticList.h);
 			}
 		}
 
@@ -295,10 +295,10 @@ public abstract class EntityHuman extends EntityLiving {
 			this.bl = this.bm;
 			this.bm = 0.0F;
 			this.l(this.locationX - var1, this.locationY - var3, this.locationZ - var5);
-			if (this.m instanceof aca) {
+			if (this.m instanceof EntityPig) {
 				this.pitch = var8;
 				this.yaw = var7;
-				this.aG = ((aca) this.m).aG;
+				this.aG = ((EntityPig) this.m).aG;
 			}
 
 		}
@@ -412,8 +412,8 @@ public abstract class EntityHuman extends EntityLiving {
 			this.motionX = this.motionZ = 0.0D;
 		}
 
-		this.b(ty.y);
-		this.a(ty.h);
+		this.b(StatisticList.y);
+		this.a(StatisticList.h);
 	}
 
 	protected String bn() {
@@ -428,11 +428,11 @@ public abstract class EntityHuman extends EntityLiving {
 		this.s(var2);
 		Collection var3 = this.co().a(bsk.f);
 		if (var1 instanceof EntityHuman) {
-			this.b(ty.B);
+			this.b(StatisticList.B);
 			var3.addAll(this.co().a(bsk.e));
 			var3.addAll(this.e(var1));
 		} else {
-			this.b(ty.z);
+			this.b(StatisticList.z);
 		}
 
 		Iterator var4 = var3.iterator();
@@ -471,22 +471,22 @@ public abstract class EntityHuman extends EntityLiving {
 		return Lists.newArrayList();
 	}
 
-	public adw a(boolean var1) {
+	public EntityItem a(boolean var1) {
 		return this.a(this.playerInventory.a(this.playerInventory.c, var1 && this.playerInventory.getItemInHand() != null ? this.playerInventory.getItemInHand().b : 1), false, true);
 	}
 
-	public adw a(ItemStack var1, boolean var2) {
+	public EntityItem a(ItemStack var1, boolean var2) {
 		return this.a(var1, false, false);
 	}
 
-	public adw a(ItemStack var1, boolean var2, boolean var3) {
+	public EntityItem a(ItemStack var1, boolean var2, boolean var3) {
 		if (var1 == null) {
 			return null;
 		} else if (var1.b == 0) {
 			return null;
 		} else {
 			double var4 = this.locationY - 0.30000001192092896D + (double) this.aR();
-			adw var6 = new adw(this.o, this.locationX, var4, this.locationZ, var1);
+			EntityItem var6 = new EntityItem(this.o, this.locationX, var4, this.locationZ, var1);
 			var6.a(40);
 			if (var3) {
 				var6.c(this.d_());
@@ -514,14 +514,14 @@ public abstract class EntityHuman extends EntityLiving {
 
 			this.a(var6);
 			if (var3) {
-				this.b(ty.v);
+				this.b(StatisticList.v);
 			}
 
 			return var6;
 		}
 	}
 
-	protected void a(adw var1) {
+	protected void a(EntityItem var1) {
 		this.o.d((Entity) var1);
 	}
 
@@ -670,8 +670,8 @@ public abstract class EntityHuman extends EntityLiving {
 					return false;
 				} else {
 					Entity var3 = var1.j();
-					if (var3 instanceof ahj && ((ahj) var3).c != null) {
-						var3 = ((ahj) var3).c;
+					if (var3 instanceof EntityArrow && ((EntityArrow) var3).c != null) {
+						var3 = ((EntityArrow) var3).c;
 					}
 
 					return super.a(var1, var2);
@@ -726,7 +726,7 @@ public abstract class EntityHuman extends EntityLiving {
 				this.h(this.bm() - var2);
 				this.br().a(var1, var4, var2);
 				if (var2 < 3.4028235E37F) {
-					this.a(ty.x, Math.round(var2 * 10.0F));
+					this.a(StatisticList.x, Math.round(var2 * 10.0F));
 				}
 
 			}
@@ -745,7 +745,7 @@ public abstract class EntityHuman extends EntityLiving {
 	public void a(IInventory var1) {
 	}
 
-	public void a(abt var1, IInventory var2) {
+	public void a(EntityHorse var1, IInventory var2) {
 	}
 
 	public void a(vv var1) {
@@ -850,7 +850,7 @@ public abstract class EntityHuman extends EntityLiving {
 						}
 
 						if (var1 instanceof EntityPlayer && var1.G) {
-							((EntityPlayer) var1).a.a((Packet) (new PacketEntityVelocity(var1)));
+							((EntityPlayer) var1).playerConncetion.sendPacket((Packet) (new PacketEntityVelocity(var1)));
 							var1.G = false;
 							var1.motionX = var8;
 							var1.motionY = var10;
@@ -866,7 +866,7 @@ public abstract class EntityHuman extends EntityLiving {
 						}
 
 						if (var2 >= 18.0F) {
-							this.b((PlayerStatistic) tl.F);
+							this.b((Statistic) tl.F);
 						}
 
 						this.p(var1);
@@ -892,7 +892,7 @@ public abstract class EntityHuman extends EntityLiving {
 						}
 
 						if (var1 instanceof EntityLiving) {
-							this.a(ty.w, Math.round(var2 * 10.0F));
+							this.a(StatisticList.w, Math.round(var2 * 10.0F));
 							if (var7 > 0) {
 								var1.e(var7 * 4);
 							}
@@ -951,7 +951,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 			double var2 = 8.0D;
 			double var4 = 5.0D;
-			List var6 = this.o.a(afm.class, new brt((double) var1.n() - var2, (double) var1.o() - var4, (double) var1.p() - var2, (double) var1.n() + var2, (double) var1.o() + var4, (double) var1.p() + var2));
+			List var6 = this.o.a(EntityMonster.class, new brt((double) var1.n() - var2, (double) var1.o() - var4, (double) var1.p() - var2, (double) var1.n() + var2, (double) var1.o() + var4, (double) var1.p() + var2));
 			if (!var6.isEmpty()) {
 				return ahf.f;
 			}
@@ -1091,19 +1091,19 @@ public abstract class EntityHuman extends EntityLiving {
 
 	}
 
-	public void b(PlayerStatistic var1) {
+	public void b(Statistic var1) {
 		this.a(var1, 1);
 	}
 
-	public void a(PlayerStatistic var1, int var2) {
+	public void a(Statistic var1, int var2) {
 	}
 
-	public void a(PlayerStatistic var1) {
+	public void a(Statistic var1) {
 	}
 
 	public void bE() {
 		super.bE();
-		this.b(ty.u);
+		this.b(StatisticList.u);
 		if (this.ax()) {
 			this.a(0.8F);
 		} else {
@@ -1140,29 +1140,29 @@ public abstract class EntityHuman extends EntityLiving {
 			if (this.a(Material.WATER)) {
 				var7 = Math.round(DataTypesConverter.a(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
 				if (var7 > 0) {
-					this.a(ty.p, var7);
+					this.a(StatisticList.p, var7);
 					this.a(0.015F * (float) var7 * 0.01F);
 				}
 			} else if (this.V()) {
 				var7 = Math.round(DataTypesConverter.a(var1 * var1 + var5 * var5) * 100.0F);
 				if (var7 > 0) {
-					this.a(ty.l, var7);
+					this.a(StatisticList.l, var7);
 					this.a(0.015F * (float) var7 * 0.01F);
 				}
 			} else if (this.j_()) {
 				if (var3 > 0.0D) {
-					this.a(ty.n, (int) Math.round(var3 * 100.0D));
+					this.a(StatisticList.n, (int) Math.round(var3 * 100.0D));
 				}
 			} else if (this.onGround) {
 				var7 = Math.round(DataTypesConverter.a(var1 * var1 + var5 * var5) * 100.0F);
 				if (var7 > 0) {
-					this.a(ty.i, var7);
+					this.a(StatisticList.i, var7);
 					if (this.ax()) {
-						this.a(ty.k, var7);
+						this.a(StatisticList.k, var7);
 						this.a(0.099999994F * (float) var7 * 0.01F);
 					} else {
 						if (this.aw()) {
-							this.a(ty.j, var7);
+							this.a(StatisticList.j, var7);
 						}
 
 						this.a(0.01F * (float) var7 * 0.01F);
@@ -1171,7 +1171,7 @@ public abstract class EntityHuman extends EntityLiving {
 			} else {
 				var7 = Math.round(DataTypesConverter.a(var1 * var1 + var5 * var5) * 100.0F);
 				if (var7 > 25) {
-					this.a(ty.o, var7);
+					this.a(StatisticList.o, var7);
 				}
 			}
 
@@ -1183,18 +1183,18 @@ public abstract class EntityHuman extends EntityLiving {
 			int var7 = Math.round(DataTypesConverter.a(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
 			if (var7 > 0) {
 				if (this.m instanceof adx) {
-					this.a(ty.q, var7);
+					this.a(StatisticList.q, var7);
 					if (this.e == null) {
 						this.e = new Position(this);
 					} else if (this.e.c((double) DataTypesConverter.toFixedPointInt(this.locationX), (double) DataTypesConverter.toFixedPointInt(this.locationY), (double) DataTypesConverter.toFixedPointInt(this.locationZ)) >= 1000000.0D) {
-						this.b((PlayerStatistic) tl.q);
+						this.b((Statistic) tl.q);
 					}
-				} else if (this.m instanceof adu) {
-					this.a(ty.r, var7);
-				} else if (this.m instanceof aca) {
-					this.a(ty.s, var7);
-				} else if (this.m instanceof abt) {
-					this.a(ty.t, var7);
+				} else if (this.m instanceof EntityBoat) {
+					this.a(StatisticList.r, var7);
+				} else if (this.m instanceof EntityPig) {
+					this.a(StatisticList.s, var7);
+				} else if (this.m instanceof EntityHorse) {
+					this.a(StatisticList.t, var7);
 				}
 			}
 		}
@@ -1204,7 +1204,7 @@ public abstract class EntityHuman extends EntityLiving {
 	public void e(float var1, float var2) {
 		if (!this.by.mayfly) {
 			if (var1 >= 2.0F) {
-				this.a(ty.m, (int) Math.round((double) var1 * 100.0D));
+				this.a(StatisticList.m, (int) Math.round((double) var1 * 100.0D));
 			}
 
 			super.e(var1, var2);
@@ -1224,12 +1224,12 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public void a(EntityLiving var1) {
 		if (var1 instanceof aex) {
-			this.b((PlayerStatistic) tl.s);
+			this.b((Statistic) tl.s);
 		}
 
-		xc var2 = (xc) EntityTypes.a.get(Integer.valueOf(EntityTypes.getFixedId(var1)));
+		MonsterEggInfo var2 = (MonsterEggInfo) EntityTypes.eggInfo.get(Integer.valueOf(EntityTypes.getFixedId(var1)));
 		if (var2 != null) {
-			this.b(var2.d);
+			this.b(var2.killEntityStatistic);
 		}
 
 	}
@@ -1497,7 +1497,7 @@ public abstract class EntityHuman extends EntityLiving {
 				var4 = var3 + 1;
 				if (var2 != null && var2.getItem() != null) {
 					if (var2.getItem() instanceof ajn) {
-						if (xn.c(var2) != var4) {
+						if (EntityInsentient.c(var2) != var4) {
 							return false;
 						}
 					} else if (var4 != 4 || var2.getItem() != amk.bX && !(var2.getItem() instanceof aju)) {

@@ -54,7 +54,7 @@ public class ajw extends Item {
 						var33 = var33.b();
 					}
 
-					adu var34 = new adu(var2, (double) ((float) var33.n() + 0.5F), (double) ((float) var33.o() + 1.0F), (double) ((float) var33.p() + 0.5F));
+					EntityBoat var34 = new EntityBoat(var2, (double) ((float) var33.n() + 0.5F), (double) ((float) var33.o() + 1.0F), (double) ((float) var33.p() + 0.5F));
 					var34.yaw = (float) (((DataTypesConverter.toFixedPointInt((double) (var3.yaw * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
 					if (!var2.a((Entity) var34, var34.aQ().b(-0.1D, -0.1D, -0.1D)).isEmpty()) {
 						return var1;
@@ -68,7 +68,7 @@ public class ajw extends Item {
 						--var1.b;
 					}
 
-					var3.b(ty.J[Item.getId((Item) this)]);
+					var3.b(StatisticList.J[Item.getId((Item) this)]);
 				}
 
 				return var1;

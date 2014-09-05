@@ -2,9 +2,9 @@ package net.minecraft;
 
 class afb extends zb {
 
-	private afa a;
+	private EntityGhast a;
 
-	public afb(afa var1) {
+	public afb(EntityGhast var1) {
 		this.a = var1;
 		this.a(2);
 	}

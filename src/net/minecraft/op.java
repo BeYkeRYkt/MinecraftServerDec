@@ -3,7 +3,7 @@ package net.minecraft;
 final class op extends oc {
 
 	protected aho a(World var1, ex var2) {
-		return new ahu(var1, var2.a(), var2.b(), var2.c());
+		return new EntityThrownExpBottle(var1, var2.a(), var2.b(), var2.c());
 	}
 
 	protected float a() {

@@ -3,9 +3,9 @@ package net.minecraft;
 public class aiy extends Container {
 
 	private IInventory a;
-	private abt f;
+	private EntityHorse f;
 
-	public aiy(IInventory var1, IInventory var2, abt var3, EntityHuman var4) {
+	public aiy(IInventory var1, IInventory var2, EntityHorse var3, EntityHuman var4) {
 		this.a = var2;
 		this.f = var3;
 		byte var5 = 3;

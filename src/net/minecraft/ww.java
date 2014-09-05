@@ -12,7 +12,7 @@ class ww implements Callable {
 	}
 
 	public String a() {
-		return EntityTypes.b(this.a) + " (" + this.a.getClass().getCanonicalName() + ")";
+		return EntityTypes.getNameByClass(this.a) + " (" + this.a.getClass().getCanonicalName() + ")";
 	}
 
 	// $FF: synthetic method

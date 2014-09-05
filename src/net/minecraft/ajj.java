@@ -36,47 +36,47 @@ public class ajj extends ajk {
 
 		this.c = 0;
 		if (var1.getItem() == Item.getItemOf(aty.ai)) {
-			this.b.b((PlayerStatistic) tl.h);
+			this.b.b((Statistic) tl.h);
 		}
 
 		if (var1.getItem() instanceof amu) {
-			this.b.b((PlayerStatistic) tl.i);
+			this.b.b((Statistic) tl.i);
 		}
 
 		if (var1.getItem() == Item.getItemOf(aty.al)) {
-			this.b.b((PlayerStatistic) tl.j);
+			this.b.b((Statistic) tl.j);
 		}
 
 		if (var1.getItem() instanceof alo) {
-			this.b.b((PlayerStatistic) tl.l);
+			this.b.b((Statistic) tl.l);
 		}
 
 		if (var1.getItem() == amk.P) {
-			this.b.b((PlayerStatistic) tl.m);
+			this.b.b((Statistic) tl.m);
 		}
 
 		if (var1.getItem() == amk.aZ) {
-			this.b.b((PlayerStatistic) tl.n);
+			this.b.b((Statistic) tl.n);
 		}
 
 		if (var1.getItem() instanceof amu && ((amu) var1.getItem()).g() != ami.a) {
-			this.b.b((PlayerStatistic) tl.o);
+			this.b.b((Statistic) tl.o);
 		}
 
 		if (var1.getItem() instanceof anm) {
-			this.b.b((PlayerStatistic) tl.r);
+			this.b.b((Statistic) tl.r);
 		}
 
 		if (var1.getItem() == Item.getItemOf(aty.bC)) {
-			this.b.b((PlayerStatistic) tl.E);
+			this.b.b((Statistic) tl.E);
 		}
 
 		if (var1.getItem() == Item.getItemOf(aty.X)) {
-			this.b.b((PlayerStatistic) tl.G);
+			this.b.b((Statistic) tl.G);
 		}
 
 		if (var1.getItem() == amk.ao && var1.i() == 1) {
-			this.b.b((PlayerStatistic) tl.M);
+			this.b.b((Statistic) tl.M);
 		}
 
 	}

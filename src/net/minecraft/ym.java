@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class ym {
 
-	private xn a;
+	private EntityInsentient a;
 	private float b;
 	private float c;
 	private boolean d;
@@ -10,7 +10,7 @@ public class ym {
 	private double f;
 	private double g;
 
-	public ym(xn var1) {
+	public ym(EntityInsentient var1) {
 		this.a = var1;
 	}
 

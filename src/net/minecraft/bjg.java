@@ -147,7 +147,7 @@ public class bjg extends bms {
 		if (var2.b((fd) var9) && var1.p(var9).c().r() == Material.AIR) {
 			int var10 = var3.nextBoolean() ? 1 : 0;
 			var1.a(var9, aty.av.a(this.a(aty.av, var10)), 2);
-			aea var11 = new aea(var1, (double) ((float) var9.n() + 0.5F), (double) ((float) var9.o() + 0.5F), (double) ((float) var9.p() + 0.5F));
+			EntityMinecartChest var11 = new EntityMinecartChest(var1, (double) ((float) var9.n() + 0.5F), (double) ((float) var9.o() + 0.5F), (double) ((float) var9.p() + 0.5F));
 			vl.a(var3, var7, (IInventory) var11, var8);
 			var1.d((Entity) var11);
 			return true;

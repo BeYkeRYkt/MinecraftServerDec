@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class zz extends zb {
 
-	private final xn a;
+	private final EntityInsentient a;
 	private final afr b;
 	private EntityLiving c;
 	private int d;
@@ -23,7 +23,7 @@ public class zz extends zb {
 			throw new IllegalArgumentException("ArrowAttackGoal requires Mob implements RangedAttackMob");
 		} else {
 			this.b = var1;
-			this.a = (xn) var1;
+			this.a = (EntityInsentient) var1;
 			this.e = var2;
 			this.g = var4;
 			this.h = var5;

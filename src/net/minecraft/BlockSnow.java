@@ -69,7 +69,7 @@ public class BlockSnow extends Block {
 	public void a(World var1, EntityHuman var2, Position var3, bec var4, bcm var5) {
 		a(var1, var3, new ItemStack(amk.aD, ((Integer) var4.b(a)).intValue() + 1, 0));
 		var1.g(var3);
-		var2.b(ty.H[Block.a((Block) this)]);
+		var2.b(StatisticList.H[Block.a((Block) this)]);
 	}
 
 	public Item a(bec var1, Random var2, int var3) {

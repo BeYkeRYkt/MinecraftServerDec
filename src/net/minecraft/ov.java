@@ -23,7 +23,7 @@ final class ov extends eg {
 			var13 = 0.0D;
 		}
 
-		adu var15 = new adu(var4, var5, var7 + var13, var9);
+		EntityBoat var15 = new EntityBoat(var4, var5, var7 + var13, var9);
 		var4.d((Entity) var15);
 		var2.a(1);
 		return var2;

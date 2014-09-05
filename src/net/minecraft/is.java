@@ -25,7 +25,7 @@ public class is implements Packet<PlayPacketListener> {
 		this.a = Maps.newHashMap();
 
 		for (int var3 = 0; var3 < var2; ++var3) {
-			PlayerStatistic var4 = ty.a(var1.readString(32767));
+			Statistic var4 = StatisticList.a(var1.readString(32767));
 			int var5 = var1.readVarInt();
 			if (var4 != null) {
 				this.a.put(var4, Integer.valueOf(var5));
@@ -40,7 +40,7 @@ public class is implements Packet<PlayPacketListener> {
 
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
-			var1.writeString(((PlayerStatistic) var3.getKey()).e);
+			var1.writeString(((Statistic) var3.getKey()).e);
 			var1.writeVarInt(((Integer) var3.getValue()).intValue());
 		}
 

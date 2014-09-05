@@ -8,8 +8,8 @@ public class asg extends arm {
 		this.au.clear();
 		this.av.clear();
 		this.aw.clear();
-		this.at.add(new arq(afa.class, 50, 4, 4));
-		this.at.add(new arq(afo.class, 100, 4, 4));
-		this.at.add(new arq(afl.class, 1, 4, 4));
+		this.at.add(new arq(EntityGhast.class, 50, 4, 4));
+		this.at.add(new arq(EntityPigZombie.class, 100, 4, 4));
+		this.at.add(new arq(EntityMagmaCube.class, 1, 4, 4));
 	}
 }

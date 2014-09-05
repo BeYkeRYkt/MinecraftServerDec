@@ -235,7 +235,7 @@ public class WorldServer extends World implements vn {
 					var8 = this.m >> 2;
 					var9 = this.a(new Position(var5 + (var8 & 15), 0, var6 + (var8 >> 8 & 15)));
 					if (this.C(var9)) {
-						this.c(new ads(this, (double) var9.n(), (double) var9.o(), (double) var9.p()));
+						this.c(new EntityLightning(this, (double) var9.n(), (double) var9.o(), (double) var9.p()));
 					}
 				}
 
@@ -712,7 +712,7 @@ public class WorldServer extends World implements vn {
 		while (var12.hasNext()) {
 			EntityHuman var13 = (EntityHuman) var12.next();
 			if (var13.e(var2, var4, var6) < 4096.0D) {
-				((EntityPlayer) var13).a.a((Packet) (new jm(var2, var4, var6, var8, var11.e(), (brw) var11.b().get(var13))));
+				((EntityPlayer) var13).playerConncetion.sendPacket((Packet) (new jm(var2, var4, var6, var8, var11.e(), (brw) var11.b().get(var13))));
 			}
 		}
 
@@ -766,22 +766,22 @@ public class WorldServer extends World implements vn {
 		boolean var1 = this.S();
 		super.p();
 		if (this.o != this.p) {
-			this.I.getPlayerList().a((Packet) (new jo(7, this.p)), this.worldProvider.getDimensionId());
+			this.I.getPlayerList().sendPacket((Packet) (new jo(7, this.p)), this.worldProvider.getDimensionId());
 		}
 
 		if (this.q != this.r) {
-			this.I.getPlayerList().a((Packet) (new jo(8, this.r)), this.worldProvider.getDimensionId());
+			this.I.getPlayerList().sendPacket((Packet) (new jo(8, this.r)), this.worldProvider.getDimensionId());
 		}
 
 		if (var1 != this.S()) {
 			if (var1) {
-				this.I.getPlayerList().a((Packet) (new jo(2, 0.0F)));
+				this.I.getPlayerList().sendPacket((Packet) (new jo(2, 0.0F)));
 			} else {
-				this.I.getPlayerList().a((Packet) (new jo(1, 0.0F)));
+				this.I.getPlayerList().sendPacket((Packet) (new jo(1, 0.0F)));
 			}
 
-			this.I.getPlayerList().a((Packet) (new jo(7, this.p)));
-			this.I.getPlayerList().a((Packet) (new jo(8, this.r)));
+			this.I.getPlayerList().sendPacket((Packet) (new jo(7, this.p)));
+			this.I.getPlayerList().sendPacket((Packet) (new jo(8, this.r)));
 		}
 
 	}
@@ -818,7 +818,7 @@ public class WorldServer extends World implements vn {
 			Position var22 = var21.c();
 			double var23 = var22.c(var3, var5, var7);
 			if (var23 <= 256.0D || var2 && var23 <= 65536.0D) {
-				var21.a.a((Packet) var19);
+				var21.playerConncetion.sendPacket((Packet) var19);
 			}
 		}
 

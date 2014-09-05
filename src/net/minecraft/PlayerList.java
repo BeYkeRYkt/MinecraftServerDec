@@ -61,7 +61,7 @@ public abstract class PlayerList {
 		String var6 = var5 == null ? var3.getName() : var5.getName();
 		var4.saveProfile(var3);
 		NBTCompoundTag var7 = this.a(player);
-		player.a((World) this.minecraftserver.a(player.am));
+		player.a((World) this.minecraftserver.a(player.dimensionId));
 		player.c.a((WorldServer) player.o);
 		String var8 = "local";
 		if (var1.b() != null) {
@@ -69,17 +69,17 @@ public abstract class PlayerList {
 		}
 
 		logger.info(player.d_() + "[" + var8 + "] logged in with entity id " + player.getId() + " at (" + player.locationX + ", " + player.locationY + ", " + player.locationZ + ")");
-		WorldServer worldServer = this.minecraftserver.a(player.am);
+		WorldServer worldServer = this.minecraftserver.a(player.dimensionId);
 		WorldData worldData = worldServer.P();
 		Position var11 = worldServer.M();
 		this.a(player, (EntityPlayer) null, worldServer);
-		rj var12 = new rj(this.minecraftserver, var1, player);
-		var12.a((Packet) (new PacketJoinGame(player.getId(), player.c.getGameMode(), worldData.isHardcore(), worldServer.worldProvider.getDimensionId(), worldServer.getDifficulty(), this.getMaxPlayers(), worldData.getLevelType(), worldServer.Q().b("reducedDebugInfo"))));
-		var12.a((Packet) (new ji("MC|Brand", (new PacketDataSerializer(Unpooled.buffer())).writeString(this.c().getServerModName()))));
-		var12.a((Packet) (new ix(worldData.getDifficulty(), worldData.z())));
-		var12.a((Packet) (new PacketSpawnPosition(var11)));
-		var12.a((Packet) (new kd(player.by)));
-		var12.a((Packet) (new PacketHeldItemChange(player.playerInventory.c)));
+		PlayerConnection var12 = new PlayerConnection(this.minecraftserver, var1, player);
+		var12.sendPacket((Packet) (new PacketJoinGame(player.getId(), player.c.getGameMode(), worldData.isHardcore(), worldServer.worldProvider.getDimensionId(), worldServer.getDifficulty(), this.getMaxPlayers(), worldData.getLevelType(), worldServer.Q().b("reducedDebugInfo"))));
+		var12.sendPacket((Packet) (new ji("MC|Brand", (new PacketDataSerializer(Unpooled.buffer())).writeString(this.c().getServerModName()))));
+		var12.sendPacket((Packet) (new ix(worldData.getDifficulty(), worldData.z())));
+		var12.sendPacket((Packet) (new PacketSpawnPosition(var11)));
+		var12.sendPacket((Packet) (new kd(player.by)));
+		var12.sendPacket((Packet) (new PacketHeldItemChange(player.playerInventory.c)));
 		player.A().d();
 		player.A().b(player);
 		this.a((pk) worldServer.Z(), player);
@@ -104,12 +104,12 @@ public abstract class PlayerList {
 
 		while (var14.hasNext()) {
 			MobEffect var15 = (MobEffect) var14.next();
-			var12.a((Packet) (new PacketEntityEffect(player.getId(), var15)));
+			var12.sendPacket((Packet) (new PacketEntityEffect(player.getId(), var15)));
 		}
 
 		player.f_();
 		if (var7 != null && var7.isTagAssignableFrom("Riding", 10)) {
-			Entity var16 = EntityTypes.a(var7.getCompound("Riding"), (World) worldServer);
+			Entity var16 = EntityTypes.loadEntity(var7.getCompound("Riding"), (World) worldServer);
 			if (var16 != null) {
 				var16.n = true;
 				worldServer.d(var16);
@@ -126,7 +126,7 @@ public abstract class PlayerList {
 
 		while (var4.hasNext()) {
 			brz var5 = (brz) var4.next();
-			var2.a.a((Packet) (new le(var5, 0)));
+			var2.playerConncetion.sendPacket((Packet) (new le(var5, 0)));
 		}
 
 		for (int var9 = 0; var9 < 19; ++var9) {
@@ -137,7 +137,7 @@ public abstract class PlayerList {
 
 				while (var7.hasNext()) {
 					Packet var8 = (Packet) var7.next();
-					var2.a.a(var8);
+					var2.playerConncetion.sendPacket(var8);
 				}
 
 				var3.add(var10);
@@ -169,7 +169,7 @@ public abstract class PlayerList {
 		NBTCompoundTag var2 = this.minecraftserver.worlds[0].P().i();
 		NBTCompoundTag var3;
 		if (var1.d_().equals(this.minecraftserver.R()) && var2 != null) {
-			var1.f(var2);
+			var1.load(var2);
 			var3 = var2;
 			logger.debug("loading single player");
 		} else {
@@ -191,14 +191,14 @@ public abstract class PlayerList {
 	public void c(EntityPlayer var1) {
 		this.players.add(var1);
 		this.uuidToPlayerMap.put(var1.aJ(), var1);
-		this.a((Packet) (new kh(kj.a, new EntityPlayer[] { var1 })));
-		WorldServer var2 = this.minecraftserver.a(var1.am);
+		this.sendPacket((Packet) (new kh(kj.a, new EntityPlayer[] { var1 })));
+		WorldServer var2 = this.minecraftserver.a(var1.dimensionId);
 		var2.d(var1);
 		this.a(var1, (WorldServer) null);
 
 		for (int var3 = 0; var3 < this.players.size(); ++var3) {
 			EntityPlayer var4 = (EntityPlayer) this.players.get(var3);
-			var1.a.a((Packet) (new kh(kj.a, new EntityPlayer[] { var4 })));
+			var1.playerConncetion.sendPacket((Packet) (new kh(kj.a, new EntityPlayer[] { var4 })));
 		}
 
 	}
@@ -208,7 +208,7 @@ public abstract class PlayerList {
 	}
 
 	public void e(EntityPlayer var1) {
-		var1.b(ty.f);
+		var1.b(StatisticList.f);
 		this.b(var1);
 		WorldServer var2 = var1.u();
 		if (var1.m != null) {
@@ -221,7 +221,7 @@ public abstract class PlayerList {
 		this.players.remove(var1);
 		this.uuidToPlayerMap.remove(var1.aJ());
 		this.playersStatistic.remove(var1.aJ());
-		this.a((Packet) (new kh(kj.e, new EntityPlayer[] { var1 })));
+		this.sendPacket((Packet) (new kh(kj.e, new EntityPlayer[] { var1 })));
 	}
 
 	public String a(SocketAddress var1, GameProfile var2) {
@@ -265,7 +265,7 @@ public abstract class PlayerList {
 
 		while (var6.hasNext()) {
 			var5 = (EntityPlayer) var6.next();
-			var5.a.c("You logged in from another location");
+			var5.playerConncetion.c("You logged in from another location");
 		}
 
 		Object var7;
@@ -283,32 +283,32 @@ public abstract class PlayerList {
 		var1.u().s().b((Entity) var1);
 		var1.u().t().c(var1);
 		this.players.remove(var1);
-		this.minecraftserver.a(var1.am).f(var1);
+		this.minecraftserver.a(var1.dimensionId).f(var1);
 		Position var4 = var1.cg();
 		boolean var5 = var1.ch();
-		var1.am = var2;
+		var1.dimensionId = var2;
 		Object var6;
 		if (this.minecraftserver.W()) {
-			var6 = new qk(this.minecraftserver.a(var1.am));
+			var6 = new qk(this.minecraftserver.a(var1.dimensionId));
 		} else {
-			var6 = new qx(this.minecraftserver.a(var1.am));
+			var6 = new qx(this.minecraftserver.a(var1.dimensionId));
 		}
 
-		EntityPlayer var7 = new EntityPlayer(this.minecraftserver, this.minecraftserver.a(var1.am), var1.getGameProfile(), (qx) var6);
-		var7.a = var1.a;
+		EntityPlayer var7 = new EntityPlayer(this.minecraftserver, this.minecraftserver.a(var1.dimensionId), var1.getGameProfile(), (qx) var6);
+		var7.playerConncetion = var1.playerConncetion;
 		var7.a((EntityHuman) var1, var3);
 		var7.d(var1.getId());
 		var7.o(var1);
-		WorldServer var8 = this.minecraftserver.a(var1.am);
+		WorldServer var8 = this.minecraftserver.a(var1.dimensionId);
 		this.a(var7, var1, var8);
 		Position var9;
 		if (var4 != null) {
-			var9 = EntityHuman.a(this.minecraftserver.a(var1.am), var4, var5);
+			var9 = EntityHuman.a(this.minecraftserver.a(var1.dimensionId), var4, var5);
 			if (var9 != null) {
 				var7.b((double) ((float) var9.n() + 0.5F), (double) ((float) var9.o() + 0.1F), (double) ((float) var9.p() + 0.5F), 0.0F, 0.0F);
 				var7.a(var4, var5);
 			} else {
-				var7.a.a((Packet) (new jo(0, 0.0F)));
+				var7.playerConncetion.sendPacket((Packet) (new jo(0, 0.0F)));
 			}
 		}
 
@@ -318,11 +318,11 @@ public abstract class PlayerList {
 			var7.b(var7.locationX, var7.locationY + 1.0D, var7.locationZ);
 		}
 
-		var7.a.a((Packet) (new PacketRespawn(var7.am, var7.o.getDifficulty(), var7.o.P().getLevelType(), var7.c.getGameMode())));
+		var7.playerConncetion.sendPacket((Packet) (new PacketRespawn(var7.dimensionId, var7.o.getDifficulty(), var7.o.P().getLevelType(), var7.c.getGameMode())));
 		var9 = var8.M();
-		var7.a.a(var7.locationX, var7.locationY, var7.locationZ, var7.yaw, var7.pitch);
-		var7.a.a((Packet) (new PacketSpawnPosition(var9)));
-		var7.a.a((Packet) (new PacketSetExpirience(var7.bB, var7.bA, var7.bz)));
+		var7.playerConncetion.a(var7.locationX, var7.locationY, var7.locationZ, var7.yaw, var7.pitch);
+		var7.playerConncetion.sendPacket((Packet) (new PacketSpawnPosition(var9)));
+		var7.playerConncetion.sendPacket((Packet) (new PacketSetExpirience(var7.bB, var7.bA, var7.bz)));
 		this.b(var7, var8);
 		var8.t().a(var7);
 		var8.d(var7);
@@ -334,16 +334,16 @@ public abstract class PlayerList {
 	}
 
 	public void a(EntityPlayer var1, int var2) {
-		int var3 = var1.am;
-		WorldServer var4 = this.minecraftserver.a(var1.am);
-		var1.am = var2;
-		WorldServer var5 = this.minecraftserver.a(var1.am);
-		var1.a.a((Packet) (new PacketRespawn(var1.am, var1.o.getDifficulty(), var1.o.P().getLevelType(), var1.c.getGameMode())));
+		int var3 = var1.dimensionId;
+		WorldServer var4 = this.minecraftserver.a(var1.dimensionId);
+		var1.dimensionId = var2;
+		WorldServer var5 = this.minecraftserver.a(var1.dimensionId);
+		var1.playerConncetion.sendPacket((Packet) (new PacketRespawn(var1.dimensionId, var1.o.getDifficulty(), var1.o.P().getLevelType(), var1.c.getGameMode())));
 		var4.f(var1);
 		var1.I = false;
 		this.a(var1, var3, var4, var5);
 		this.a(var1, var4);
-		var1.a.a(var1.locationX, var1.locationY, var1.locationZ, var1.yaw, var1.pitch);
+		var1.playerConncetion.a(var1.locationX, var1.locationY, var1.locationZ, var1.yaw, var1.pitch);
 		var1.c.a(var5);
 		this.b(var1, var5);
 		this.f(var1);
@@ -351,7 +351,7 @@ public abstract class PlayerList {
 
 		while (var6.hasNext()) {
 			MobEffect var7 = (MobEffect) var6.next();
-			var1.a.a((Packet) (new PacketEntityEffect(var1.getId(), var7)));
+			var1.playerConncetion.sendPacket((Packet) (new PacketEntityEffect(var1.getId(), var7)));
 		}
 
 	}
@@ -362,14 +362,14 @@ public abstract class PlayerList {
 		double var9 = 8.0D;
 		float var11 = var1.yaw;
 		var3.B.a("moving");
-		if (var1.am == -1) {
+		if (var1.dimensionId == -1) {
 			var5 = DataTypesConverter.a(var5 / var9, var4.af().b() + 16.0D, var4.af().d() - 16.0D);
 			var7 = DataTypesConverter.a(var7 / var9, var4.af().c() + 16.0D, var4.af().e() - 16.0D);
 			var1.b(var5, var1.locationY, var7, var1.yaw, var1.pitch);
 			if (var1.ai()) {
 				var3.a(var1, false);
 			}
-		} else if (var1.am == 0) {
+		} else if (var1.dimensionId == 0) {
 			var5 = DataTypesConverter.a(var5 * var9, var4.af().b() + 16.0D, var4.af().d() - 16.0D);
 			var7 = DataTypesConverter.a(var7 * var9, var4.af().c() + 16.0D, var4.af().e() - 16.0D);
 			var1.b(var5, var1.locationY, var7, var1.yaw, var1.pitch);
@@ -413,27 +413,25 @@ public abstract class PlayerList {
 
 	public void e() {
 		if (++this.u > 600) {
-			this.a((Packet) (new kh(kj.c, this.players)));
+			this.sendPacket((Packet) (new kh(kj.c, this.players)));
 			this.u = 0;
 		}
 
 	}
 
-	public void a(Packet var1) {
-		for (int var2 = 0; var2 < this.players.size(); ++var2) {
-			((EntityPlayer) this.players.get(var2)).a.a(var1);
+	public void sendPacket(Packet var1) {
+		for (EntityPlayer entity : this.players) {
+			entity.playerConncetion.sendPacket(var1);
 		}
 
 	}
 
-	public void a(Packet var1, int var2) {
-		for (int var3 = 0; var3 < this.players.size(); ++var3) {
-			EntityPlayer var4 = (EntityPlayer) this.players.get(var3);
-			if (var4.am == var2) {
-				var4.a.a(var1);
+	public void sendPacket(Packet<?> var1, int dimensionId) {
+		for (EntityPlayer entity : this.players) {
+			if (entity.dimensionId == dimensionId) {
+				entity.playerConncetion.sendPacket(var1);
 			}
 		}
-
 	}
 
 	public void a(EntityHuman var1, IJSONComponent var2) {
@@ -446,7 +444,7 @@ public abstract class PlayerList {
 				String var6 = (String) var5.next();
 				EntityPlayer var7 = this.a(var6);
 				if (var7 != null && var7 != var1) {
-					var7.a(var2);
+					var7.sendChatMessage(var2);
 				}
 			}
 
@@ -461,7 +459,7 @@ public abstract class PlayerList {
 			for (int var4 = 0; var4 < this.players.size(); ++var4) {
 				EntityPlayer var5 = (EntityPlayer) this.players.get(var4);
 				if (var5.bN() != var3) {
-					var5.a(var2);
+					var5.sendChatMessage(var2);
 				}
 			}
 
@@ -548,12 +546,12 @@ public abstract class PlayerList {
 	public void a(EntityHuman var1, double var2, double var4, double var6, double var8, int var10, Packet var11) {
 		for (int var12 = 0; var12 < this.players.size(); ++var12) {
 			EntityPlayer var13 = (EntityPlayer) this.players.get(var12);
-			if (var13 != var1 && var13.am == var10) {
+			if (var13 != var1 && var13.dimensionId == var10) {
 				double var14 = var2 - var13.locationX;
 				double var16 = var4 - var13.locationY;
 				double var18 = var6 - var13.locationZ;
 				if (var14 * var14 + var16 * var16 + var18 * var18 < var8 * var8) {
-					var13.a.a(var11);
+					var13.playerConncetion.sendPacket(var11);
 				}
 			}
 		}
@@ -596,12 +594,12 @@ public abstract class PlayerList {
 
 	public void b(EntityPlayer var1, WorldServer var2) {
 		bfb var3 = this.minecraftserver.worlds[0].af();
-		var1.a.a((Packet) (new kr(var3, kt.d)));
-		var1.a.a((Packet) (new PacketTimeUpdate(var2.K(), var2.L(), var2.Q().b("doDaylightCycle"))));
+		var1.playerConncetion.sendPacket((Packet) (new kr(var3, kt.d)));
+		var1.playerConncetion.sendPacket((Packet) (new PacketTimeUpdate(var2.K(), var2.L(), var2.Q().b("doDaylightCycle"))));
 		if (var2.S()) {
-			var1.a.a((Packet) (new jo(1, 0.0F)));
-			var1.a.a((Packet) (new jo(7, var2.j(1.0F))));
-			var1.a.a((Packet) (new jo(8, var2.h(1.0F))));
+			var1.playerConncetion.sendPacket((Packet) (new jo(1, 0.0F)));
+			var1.playerConncetion.sendPacket((Packet) (new jo(7, var2.j(1.0F))));
+			var1.playerConncetion.sendPacket((Packet) (new jo(8, var2.h(1.0F))));
 		}
 
 	}
@@ -609,7 +607,7 @@ public abstract class PlayerList {
 	public void f(EntityPlayer var1) {
 		var1.a(var1.defaultContainer);
 		var1.r();
-		var1.a.a((Packet) (new PacketHeldItemChange(var1.playerInventory.c)));
+		var1.playerConncetion.sendPacket((Packet) (new PacketHeldItemChange(var1.playerInventory.c)));
 	}
 
 	public int p() {
@@ -670,15 +668,15 @@ public abstract class PlayerList {
 
 	public void v() {
 		for (int var1 = 0; var1 < this.players.size(); ++var1) {
-			((EntityPlayer) this.players.get(var1)).a.c("Server closed");
+			((EntityPlayer) this.players.get(var1)).playerConncetion.c("Server closed");
 		}
 
 	}
 
 	public void a(IJSONComponent var1, boolean var2) {
-		this.minecraftserver.a(var1);
+		this.minecraftserver.sendChatMessage(var1);
 		int var3 = var2 ? 1 : 0;
-		this.a((Packet) (new PacketChatMessage(var1, (byte) var3)));
+		this.sendPacket((Packet) (new PacketChatMessage(var1, (byte) var3)));
 	}
 
 	public void a(IJSONComponent var1) {

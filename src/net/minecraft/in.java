@@ -16,7 +16,7 @@ public class in implements Packet<PlayPacketListener> {
 		this.b = DataTypesConverter.toFixedPointInt(var1.locationX * 32.0D);
 		this.c = DataTypesConverter.toFixedPointInt(var1.locationY * 32.0D);
 		this.d = DataTypesConverter.toFixedPointInt(var1.locationZ * 32.0D);
-		if (var1 instanceof ads) {
+		if (var1 instanceof EntityLightning) {
 			this.e = 1;
 		}
 

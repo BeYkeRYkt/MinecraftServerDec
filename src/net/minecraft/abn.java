@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public abstract class abn extends xn implements wt {
+public abstract class abn extends EntityInsentient implements wt {
 
 	public abn(World var1) {
 		super(var1);

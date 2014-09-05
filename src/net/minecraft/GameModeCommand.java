@@ -26,7 +26,7 @@ public class GameModeCommand extends AbstractCommand {
 			var4.a(var3);
 			var4.O = 0.0F;
 			if (var1.e().Q().b("sendCommandFeedback")) {
-				var4.a((IJSONComponent) (new hz("gameMode.changed", new Object[0])));
+				var4.sendChatMessage((IJSONComponent) (new hz("gameMode.changed", new Object[0])));
 			}
 
 			hz var5 = new hz("gameMode." + var3.getName(), new Object[0]);

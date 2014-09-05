@@ -33,7 +33,7 @@ public class BlockPumpkin extends avb {
 				var1.a(var5.d(), aty.a.P(), 2);
 			}
 
-			acn var9 = new acn(var1);
+			EntitySnowman var9 = new EntitySnowman(var1);
 			Position var11 = var3.a(0, 2, 0).d();
 			var9.b((double) var11.n() + 0.5D, (double) var11.o() + 0.05D, (double) var11.p() + 0.5D, 0.0F, 0.0F);
 			var1.d((Entity) var9);
@@ -54,7 +54,7 @@ public class BlockPumpkin extends avb {
 			}
 
 			Position var10 = var3.a(1, 2, 0).d();
-			acq var13 = new acq(var1);
+			EntityIronGolem var13 = new EntityIronGolem(var1);
 			var13.l(true);
 			var13.b((double) var10.n() + 0.5D, (double) var10.o() + 0.05D, (double) var10.p() + 0.5D, 0.0F, 0.0F);
 			var1.d((Entity) var13);

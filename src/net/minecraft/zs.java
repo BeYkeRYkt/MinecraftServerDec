@@ -2,11 +2,11 @@ package net.minecraft;
 
 public class zs extends zb {
 
-	private acq a;
-	private agp b;
+	private EntityIronGolem a;
+	private EntityVillager b;
 	private int c;
 
-	public zs(acq var1) {
+	public zs(EntityIronGolem var1) {
 		this.a = var1;
 		this.a(3);
 	}
@@ -17,7 +17,7 @@ public class zs extends zb {
 		} else if (this.a.bb().nextInt(8000) != 0) {
 			return false;
 		} else {
-			this.b = (agp) this.a.o.a(agp.class, this.a.aQ().b(6.0D, 2.0D, 6.0D), (Entity) this.a);
+			this.b = (EntityVillager) this.a.o.a(EntityVillager.class, this.a.aQ().b(6.0D, 2.0D, 6.0D), (Entity) this.a);
 			return this.b != null;
 		}
 	}

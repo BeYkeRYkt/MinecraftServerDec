@@ -23,7 +23,7 @@ public class ajy extends Item {
 
 				if (var2.p(var5).c().r() == Material.WATER) {
 					--var1.b;
-					var3.b(ty.J[Item.getId((Item) this)]);
+					var3.b(StatisticList.J[Item.getId((Item) this)]);
 					if (var1.b <= 0) {
 						return new ItemStack(amk.bz);
 					}

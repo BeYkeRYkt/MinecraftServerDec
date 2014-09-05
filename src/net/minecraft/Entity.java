@@ -73,7 +73,7 @@ public abstract class Entity implements CommandSenderInterface {
 	public int aj;
 	protected boolean ak;
 	protected int al;
-	public int am;
+	public int dimensionId;
 	protected int an;
 	private boolean ar;
 	protected UUID ao;
@@ -106,7 +106,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.o = var1;
 		this.b(0.0D, 0.0D, 0.0D);
 		if (var1 != null) {
-			this.am = var1.worldProvider.getDimensionId();
+			this.dimensionId = var1.worldProvider.getDimensionId();
 		}
 
 		this.dataWatcher = new DataWatcher(this);
@@ -974,7 +974,7 @@ public abstract class Entity implements CommandSenderInterface {
 			var1.put("Fire", (short) this.i);
 			var1.put("Air", (short) this.aA());
 			var1.put("OnGround", this.onGround);
-			var1.put("Dimension", this.am);
+			var1.put("Dimension", this.dimensionId);
 			var1.put("Invulnerable", this.ar);
 			var1.put("PortalCooldown", this.aj);
 			var1.put("UUIDMost", this.aJ().getMostSignificantBits());
@@ -1005,7 +1005,7 @@ public abstract class Entity implements CommandSenderInterface {
 		}
 	}
 
-	public void f(NBTCompoundTag var1) {
+	public void load(NBTCompoundTag var1) {
 		try {
 			NBTListTag var2 = var1.getList("Pos", 6);
 			NBTListTag var6 = var1.getList("Motion", 6);
@@ -1034,7 +1034,7 @@ public abstract class Entity implements CommandSenderInterface {
 			this.i = var1.getShort("Fire");
 			this.h(var1.getShort("Air"));
 			this.onGround = var1.getBoolean("OnGround");
-			this.am = var1.getInt("Dimension");
+			this.dimensionId = var1.getInt("Dimension");
 			this.ar = var1.getBoolean("Invulnerable");
 			this.aj = var1.getInt("PortalCooldown");
 			if (var1.isTagAssignableFrom("UUIDMost", 4) && var1.isTagAssignableFrom("UUIDLeast", 4)) {
@@ -1070,7 +1070,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected final String ag() {
-		return EntityTypes.b(this);
+		return EntityTypes.getNameByClass(this);
 	}
 
 	protected abstract void a(NBTCompoundTag var1);
@@ -1106,17 +1106,17 @@ public abstract class Entity implements CommandSenderInterface {
 		return var2;
 	}
 
-	public adw a(Item var1, int var2) {
+	public EntityItem a(Item var1, int var2) {
 		return this.a(var1, var2, 0.0F);
 	}
 
-	public adw a(Item var1, int var2, float var3) {
+	public EntityItem a(Item var1, int var2, float var3) {
 		return this.a(new ItemStack(var1, var2, 0), var3);
 	}
 
-	public adw a(ItemStack var1, float var2) {
+	public EntityItem a(ItemStack var1, float var2) {
 		if (var1.b != 0 && var1.getItem() != null) {
-			adw var3 = new adw(this.o, this.locationX, this.locationY + (double) var2, this.locationZ, var1);
+			EntityItem var3 = new EntityItem(this.o, this.locationX, this.locationY + (double) var2, this.locationZ, var1);
 			var3.p();
 			this.o.d((Entity) var3);
 			return var3;
@@ -1348,7 +1348,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.dataWatcher.b(1, Short.valueOf((short) var1));
 	}
 
-	public void a(ads var1) {
+	public void a(EntityLightning var1) {
 		this.a(wh.b, 5.0F);
 		++this.i;
 		if (this.i == 0) {
@@ -1430,7 +1430,7 @@ public abstract class Entity implements CommandSenderInterface {
 		if (this.k_()) {
 			return this.aL();
 		} else {
-			String var1 = EntityTypes.b(this);
+			String var1 = EntityTypes.getNameByClass(this);
 			if (var1 == null) {
 				var1 = "generic";
 			}
@@ -1477,7 +1477,7 @@ public abstract class Entity implements CommandSenderInterface {
 	public void n(Entity var1) {
 		NBTCompoundTag var2 = new NBTCompoundTag();
 		var1.e(var2);
-		this.f(var2);
+		this.load(var2);
 		this.aj = var1.aj;
 		this.an = var1.an;
 	}
@@ -1486,13 +1486,13 @@ public abstract class Entity implements CommandSenderInterface {
 		if (!this.o.D && !this.I) {
 			this.o.B.a("changeDimension");
 			MinecraftServer var2 = MinecraftServer.getInstance();
-			int var3 = this.am;
+			int var3 = this.dimensionId;
 			WorldServer var4 = var2.a(var3);
 			WorldServer var5 = var2.a(var1);
-			this.am = var1;
+			this.dimensionId = var1;
 			if (var3 == 1 && var1 == 1) {
 				var5 = var2.a(0);
-				this.am = 0;
+				this.dimensionId = 0;
 			}
 
 			this.o.e(this);
@@ -1500,7 +1500,7 @@ public abstract class Entity implements CommandSenderInterface {
 			this.o.B.a("reposition");
 			var2.getPlayerList().a(this, var3, var4, var5);
 			this.o.B.c("reloading");
-			Entity var6 = EntityTypes.a(EntityTypes.b(this), (World) var5);
+			Entity var6 = EntityTypes.createEntity(EntityTypes.getNameByClass(this), (World) var5);
 			if (var6 != null) {
 				var6.n(this);
 				if (var3 == 1 && var1 == 1) {
@@ -1598,7 +1598,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 	protected hr aP() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
-		String var2 = EntityTypes.b(this);
+		String var2 = EntityTypes.getNameByClass(this);
 		var1.put("id", this.aJ().toString());
 		if (var2 != null) {
 			var1.put("type", var2);
@@ -1636,7 +1636,7 @@ public abstract class Entity implements CommandSenderInterface {
 		return false;
 	}
 
-	public void a(IJSONComponent var1) {
+	public void sendChatMessage(IJSONComponent var1) {
 	}
 
 	public boolean a(int var1, String var2) {

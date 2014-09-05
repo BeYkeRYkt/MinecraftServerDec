@@ -34,7 +34,7 @@ public class ab implements CommandHandlerInterface {
 		if (var5 == null) {
 			var8 = new hz("commands.generic.notFound", new Object[0]);
 			var8.b().a(FormattingCode.m);
-			var1.a(var8);
+			var1.sendChatMessage(var8);
 		} else if (var5.a(var1)) {
 			if (var6 > -1) {
 				List var12 = ah.b(var1, var3[var6], Entity.class);
@@ -60,7 +60,7 @@ public class ab implements CommandHandlerInterface {
 		} else {
 			var8 = new hz("commands.generic.permission", new Object[0]);
 			var8.b().a(FormattingCode.m);
-			var1.a(var8);
+			var1.sendChatMessage(var8);
 		}
 
 		var1.a(ag.a, var7);
@@ -75,15 +75,15 @@ public class ab implements CommandHandlerInterface {
 		} catch (dp var7) {
 			var6 = new hz("commands.generic.usage", new Object[] { new hz(var7.getMessage(), var7.a()) });
 			var6.b().a(FormattingCode.m);
-			var1.a(var6);
+			var1.sendChatMessage(var6);
 		} catch (di var8) {
 			var6 = new hz(var8.getMessage(), var8.a());
 			var6.b().a(FormattingCode.m);
-			var1.a(var6);
+			var1.sendChatMessage(var6);
 		} catch (Throwable var9) {
 			var6 = new hz("commands.generic.exception", new Object[0]);
 			var6.b().a(FormattingCode.m);
-			var1.a(var6);
+			var1.sendChatMessage(var6);
 			a.error("Couldn\'t process command: \'" + var4 + "\'", var9);
 		}
 

@@ -9,8 +9,8 @@ public class akc extends Item {
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
-		if (var3.av() && var3.m instanceof aca) {
-			aca var4 = (aca) var3.m;
+		if (var3.av() && var3.m instanceof EntityPig) {
+			EntityPig var4 = (EntityPig) var3.m;
 			if (var4.ck().h() && var1.j() - var1.i() >= 7) {
 				var4.ck().g();
 				var1.a(7, (EntityLiving) var3);
@@ -22,7 +22,7 @@ public class akc extends Item {
 			}
 		}
 
-		var3.b(ty.J[Item.getId((Item) this)]);
+		var3.b(StatisticList.J[Item.getId((Item) this)]);
 		return var1;
 	}
 }

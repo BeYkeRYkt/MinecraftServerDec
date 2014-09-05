@@ -219,8 +219,8 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		System.exit(0);
 	}
 
-	public void z() {
-		super.z();
+	public void doTick() {
+		super.doTick();
 		this.handlePendingCommands();
 	}
 

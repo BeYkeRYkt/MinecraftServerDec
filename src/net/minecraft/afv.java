@@ -4,10 +4,10 @@ import java.util.Random;
 
 class afv extends zb {
 
-	private aft a;
+	private EntitySilverfish a;
 	private int b;
 
-	public afv(aft var1) {
+	public afv(EntitySilverfish var1) {
 		this.a = var1;
 	}
 

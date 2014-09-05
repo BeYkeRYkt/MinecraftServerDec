@@ -8,9 +8,9 @@ class aeu extends aaq {
 	private EntityHuman g;
 	private int h;
 	private int i;
-	private aer j;
+	private EntityEnderman j;
 
-	public aeu(aer var1) {
+	public aeu(EntityEnderman var1) {
 		super(var1, EntityHuman.class, true);
 		this.j = var1;
 	}
@@ -36,16 +36,16 @@ class aeu extends aaq {
 		this.g = null;
 		this.j.a(false);
 		AttributeInstance var1 = this.j.a(afs.d);
-		var1.c(aer.cn());
+		var1.c(EntityEnderman.cn());
 		super.d();
 	}
 
 	public boolean b() {
 		if (this.g != null) {
-			if (!aer.a(this.j, this.g)) {
+			if (!EntityEnderman.a(this.j, this.g)) {
 				return false;
 			} else {
-				aer.a(this.j, true);
+				EntityEnderman.a(this.j, true);
 				this.j.a(this.g, 10.0F, 10.0F);
 				return true;
 			}
@@ -63,11 +63,11 @@ class aeu extends aaq {
 				this.j.a("mob.endermen.stare", 1.0F, 1.0F);
 				this.j.a(true);
 				AttributeInstance var1 = this.j.a(afs.d);
-				var1.b(aer.cn());
+				var1.b(EntityEnderman.cn());
 			}
 		} else {
 			if (this.d != null) {
-				if (this.d instanceof EntityHuman && aer.a(this.j, (EntityHuman) this.d)) {
+				if (this.d instanceof EntityHuman && EntityEnderman.a(this.j, (EntityHuman) this.d)) {
 					if (this.d.h(this.j) < 16.0D) {
 						this.j.n();
 					}

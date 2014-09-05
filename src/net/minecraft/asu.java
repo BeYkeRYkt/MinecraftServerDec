@@ -14,7 +14,7 @@ public class asu extends arm {
 	public asu(int var1, int var2) {
 		super(var1);
 		this.aI = var2;
-		this.au.add(new arq(acu.class, 8, 4, 4));
+		this.au.add(new arq(EntityWolf.class, 8, 4, 4));
 		this.as.A = 10;
 		if (var2 != 1 && var2 != 2) {
 			this.as.C = 1;

@@ -71,7 +71,7 @@ public class amw extends Item {
 			}
 		}
 
-		var3.b(ty.J[Item.getId((Item) this)]);
+		var3.b(StatisticList.J[Item.getId((Item) this)]);
 		if (!var3.by.instabuild) {
 			if (var1.b <= 0) {
 				return new ItemStack(amk.bA);
@@ -99,10 +99,10 @@ public class amw extends Item {
 
 			var2.a((Entity) var3, "random.bow", 0.5F, 0.4F / (rnd.nextFloat() * 0.4F + 0.8F));
 			if (!var2.D) {
-				var2.d((Entity) (new ahv(var2, var3, var1)));
+				var2.d((Entity) (new EntityPotion(var2, var3, var1)));
 			}
 
-			var3.b(ty.J[Item.getId((Item) this)]);
+			var3.b(StatisticList.J[Item.getId((Item) this)]);
 			return var1;
 		} else {
 			var3.a(var1, this.d(var1));

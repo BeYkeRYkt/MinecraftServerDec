@@ -226,9 +226,9 @@ public abstract class EntityLiving extends Entity {
 				var1 = this.b(this.aL);
 
 				while (var1 > 0) {
-					int var2 = ExpirienceOrb.a(var1);
+					int var2 = EntityExpirienceOrb.a(var1);
 					var1 -= var2;
-					this.o.d((Entity) (new ExpirienceOrb(this.o, this.locationX, this.locationY, this.locationZ, var2)));
+					this.o.d((Entity) (new EntityExpirienceOrb(this.o, this.locationX, this.locationY, this.locationZ, var2)));
 				}
 			}
 
@@ -597,8 +597,8 @@ public abstract class EntityLiving extends Entity {
 					if (var4 instanceof EntityHuman) {
 						this.aM = 100;
 						this.aL = (EntityHuman) var4;
-					} else if (var4 instanceof acu) {
-						acu var5 = (acu) var4;
+					} else if (var4 instanceof EntityWolf) {
+						EntityWolf var5 = (EntityWolf) var4;
 						if (var5.cj()) {
 							this.aM = 100;
 							this.aL = null;
@@ -1385,15 +1385,15 @@ public abstract class EntityLiving extends Entity {
 	public void a(Entity var1, int var2) {
 		if (!var1.I && !this.o.D) {
 			qn var3 = ((WorldServer) this.o).s();
-			if (var1 instanceof adw) {
+			if (var1 instanceof EntityItem) {
 				var3.a(var1, (Packet) (new PacketCollectItem(var1.getId(), this.getId())));
 			}
 
-			if (var1 instanceof ahj) {
+			if (var1 instanceof EntityArrow) {
 				var3.a(var1, (Packet) (new PacketCollectItem(var1.getId(), this.getId())));
 			}
 
-			if (var1 instanceof ExpirienceOrb) {
+			if (var1 instanceof EntityExpirienceOrb) {
 				var3.a(var1, (Packet) (new PacketCollectItem(var1.getId(), this.getId())));
 			}
 		}

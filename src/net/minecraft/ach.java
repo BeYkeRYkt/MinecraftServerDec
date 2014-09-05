@@ -2,12 +2,12 @@ package net.minecraft;
 
 public class ach extends yl {
 
-	private acb c;
+	private EntityRabbit c;
 	private boolean d;
 	// $FF: synthetic field
-	final acb b;
+	final EntityRabbit b;
 
-	public ach(acb var1, acb var2) {
+	public ach(EntityRabbit var1, EntityRabbit var2) {
 		super(var2);
 		this.b = var1;
 		this.d = false;

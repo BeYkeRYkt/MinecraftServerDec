@@ -2,13 +2,13 @@ package net.minecraft;
 
 public class yr extends zb {
 
-	private acu a;
+	private EntityWolf a;
 	private EntityHuman b;
 	private World c;
 	private float d;
 	private int e;
 
-	public yr(acu var1, float var2) {
+	public yr(EntityWolf var1, float var2) {
 		this.a = var1;
 		this.c = var1.o;
 		this.d = var2;

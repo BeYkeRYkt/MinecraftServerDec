@@ -7,9 +7,9 @@ class rm implements Callable {
 	// $FF: synthetic field
 	final Packet a;
 	// $FF: synthetic field
-	final rj b;
+	final PlayerConnection b;
 
-	rm(rj var1, Packet var2) {
+	rm(PlayerConnection var1, Packet var2) {
 		this.b = var1;
 		this.a = var2;
 	}

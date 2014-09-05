@@ -2,14 +2,14 @@ package net.minecraft;
 
 public abstract class yv extends zb {
 
-	protected xn a;
+	protected EntityInsentient a;
 	protected Position b;
 	protected BlockDoor c;
 	boolean d;
 	float e;
 	float f;
 
-	public yv(xn var1) {
+	public yv(EntityInsentient var1) {
 		this.b = Position.a;
 		this.a = var1;
 		if (!(var1.s() instanceof aay)) {

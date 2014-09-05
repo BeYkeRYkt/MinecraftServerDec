@@ -2,7 +2,7 @@ package net.minecraft;
 
 public abstract class aaz {
 
-	protected xn b;
+	protected EntityInsentient b;
 	protected World c;
 	protected bpv d;
 	protected double e;
@@ -13,7 +13,7 @@ public abstract class aaz {
 	private float i = 1.0F;
 	private final bpw j;
 
-	public aaz(xn var1, World var2) {
+	public aaz(EntityInsentient var1, World var2) {
 		this.b = var1;
 		this.c = var2;
 		this.a = var1.a(afs.b);

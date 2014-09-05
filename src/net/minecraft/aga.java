@@ -2,9 +2,9 @@ package net.minecraft;
 
 class aga extends zb {
 
-	private afy a;
+	private EntitySlime a;
 
-	public aga(afy var1) {
+	public aga(EntitySlime var1) {
 		this.a = var1;
 		this.a(5);
 		((aay) var1.s()).d(true);

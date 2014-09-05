@@ -295,7 +295,7 @@ public class bde extends bdf implements bdd, pm {
 				}
 			}
 		} else {
-			adw var6 = a(var0.z(), var0.A(), var0.B() + 1.0D, var0.C());
+			EntityItem var6 = a(var0.z(), var0.A(), var0.B() + 1.0D, var0.C());
 			if (var6 != null) {
 				return a((IInventory) var0, var6);
 			}
@@ -320,7 +320,7 @@ public class bde extends bdf implements bdd, pm {
 		return false;
 	}
 
-	public static boolean a(IInventory var0, adw var1) {
+	public static boolean a(IInventory var0, EntityItem var1) {
 		boolean var2 = false;
 		if (var1 == null) {
 			return false;
@@ -411,9 +411,9 @@ public class bde extends bdf implements bdd, pm {
 		return b(var0.z(), var0.A(), var0.B() + 1.0D, var0.C());
 	}
 
-	public static adw a(World var0, double var1, double var3, double var5) {
-		List var7 = var0.a(adw.class, new brt(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.a);
-		return var7.size() > 0 ? (adw) var7.get(0) : null;
+	public static EntityItem a(World var0, double var1, double var3, double var5) {
+		List var7 = var0.a(EntityItem.class, new brt(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.a);
+		return var7.size() > 0 ? (EntityItem) var7.get(0) : null;
 	}
 
 	public static IInventory b(World var0, double var1, double var3, double var5) {

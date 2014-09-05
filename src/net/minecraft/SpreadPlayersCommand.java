@@ -63,7 +63,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 			if (var14.isEmpty()) {
 				throw new dj();
 			} else {
-				var1.a(new hz("commands.spreadplayers.spreading." + (var13 ? "teams" : "players"), new Object[] { Integer.valueOf(var14.size()), Double.valueOf(var11), Double.valueOf(var5), Double.valueOf(var7), Double.valueOf(var9) }));
+				var1.sendChatMessage(new hz("commands.spreadplayers.spreading." + (var13 ? "teams" : "players"), new Object[] { Integer.valueOf(var14.size()), Double.valueOf(var11), Double.valueOf(var5), Double.valueOf(var7), Double.valueOf(var9) }));
 				this.a(var1, var14, new cs(var5, var7), var9, var11, ((Entity) var14.get(0)).o, var13);
 			}
 		}
@@ -80,7 +80,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 		double var21 = this.a(var2, var8, var19, var9);
 		a(var1, this, "commands.spreadplayers.success." + (var9 ? "teams" : "players"), new Object[] { Integer.valueOf(var19.length), Double.valueOf(var3.a), Double.valueOf(var3.b) });
 		if (var19.length > 1) {
-			var1.a(new hz("commands.spreadplayers.info." + (var9 ? "teams" : "players"), new Object[] { String.format("%.2f", new Object[] { Double.valueOf(var21) }), Integer.valueOf(var20) }));
+			var1.sendChatMessage(new hz("commands.spreadplayers.info." + (var9 ? "teams" : "players"), new Object[] { String.format("%.2f", new Object[] { Double.valueOf(var21) }), Integer.valueOf(var20) }));
 		}
 
 	}

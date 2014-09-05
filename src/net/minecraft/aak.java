@@ -2,10 +2,10 @@ package net.minecraft;
 
 public class aak extends aaw {
 
-	acq a;
+	EntityIronGolem a;
 	EntityLiving b;
 
-	public aak(acq var1) {
+	public aak(EntityIronGolem var1) {
 		super(var1, false, true);
 		this.a = var1;
 		this.a(1);

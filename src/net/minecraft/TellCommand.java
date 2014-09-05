@@ -35,8 +35,8 @@ public class TellCommand extends AbstractCommand {
 				hz var6 = new hz("commands.message.display.outgoing", new Object[] { var3.e_(), var4.f() });
 				var5.b().a(FormattingCode.h).b(Boolean.valueOf(true));
 				var6.b().a(FormattingCode.h).b(Boolean.valueOf(true));
-				var3.a((IJSONComponent) var5);
-				var1.a(var6);
+				var3.sendChatMessage((IJSONComponent) var5);
+				var1.sendChatMessage(var6);
 			}
 		}
 	}

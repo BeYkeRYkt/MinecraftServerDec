@@ -13,6 +13,6 @@ public class ask extends arm {
 		this.at.clear();
 		this.au.clear();
 		this.av.clear();
-		this.au.add(new arq(abx.class, 8, 4, 8));
+		this.au.add(new arq(EntityMushroomCow.class, 8, 4, 8));
 	}
 }

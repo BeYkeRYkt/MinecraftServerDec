@@ -5,14 +5,14 @@ import com.google.common.base.Predicate;
 class afx implements Predicate {
 
 	// $FF: synthetic field
-	final afw a;
+	final EntitySkeleton a;
 
-	afx(afw var1) {
+	afx(EntitySkeleton var1) {
 		this.a = var1;
 	}
 
 	public boolean a(Entity var1) {
-		return var1 instanceof acu;
+		return var1 instanceof EntityWolf;
 	}
 
 	// $FF: synthetic method

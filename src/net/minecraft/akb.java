@@ -31,13 +31,13 @@ public class akb extends Item {
 					Material var8 = var7.c().r();
 					if (var8 == Material.WATER && ((Integer) var7.b(axl.b)).intValue() == 0) {
 						var2.g(var6);
-						var3.b(ty.J[Item.getId((Item) this)]);
+						var3.b(StatisticList.J[Item.getId((Item) this)]);
 						return this.a(var1, var3, amk.ax);
 					}
 
 					if (var8 == Material.LAVA && ((Integer) var7.b(axl.b)).intValue() == 0) {
 						var2.g(var6);
-						var3.b(ty.J[Item.getId((Item) this)]);
+						var3.b(StatisticList.J[Item.getId((Item) this)]);
 						return this.a(var1, var3, amk.ay);
 					}
 				} else {
@@ -51,7 +51,7 @@ public class akb extends Item {
 					}
 
 					if (this.a(var2, var9) && !var3.by.instabuild) {
-						var3.b(ty.J[Item.getId((Item) this)]);
+						var3.b(StatisticList.J[Item.getId((Item) this)]);
 						return new ItemStack(amk.aw);
 					}
 				}

@@ -105,7 +105,7 @@ public class alb extends Item {
 			if (!var2.D) {
 				Position var5 = var2.a("Stronghold", new Position(var3));
 				if (var5 != null) {
-					ahk var6 = new ahk(var2, var3.locationX, var3.locationY, var3.locationZ);
+					EntityEnderSignal var6 = new EntityEnderSignal(var2, var3.locationX, var3.locationY, var3.locationZ);
 					var6.a(var5);
 					var2.d((Entity) var6);
 					var2.a((Entity) var3, "random.bow", 0.5F, 0.4F / (rnd.nextFloat() * 0.4F + 0.8F));
@@ -114,7 +114,7 @@ public class alb extends Item {
 						--var1.b;
 					}
 
-					var3.b(ty.J[Item.getId((Item) this)]);
+					var3.b(StatisticList.J[Item.getId((Item) this)]);
 				}
 			}
 

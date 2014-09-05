@@ -3,9 +3,9 @@ package net.minecraft;
 public class amp extends Item {
 
 	private static final eo a = new amq();
-	private final adz b;
+	private final MinecartType b;
 
-	public amp(adz var1) {
+	public amp(MinecartType var1) {
 		this.maxStackSize = 1;
 		this.b = var1;
 		this.a(CreativeModeTab.e);
@@ -38,7 +38,7 @@ public class amp extends Item {
 	}
 
 	// $FF: synthetic method
-	static adz a(amp var0) {
+	static MinecartType a(amp var0) {
 		return var0.b;
 	}
 

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class to extends PlayerStatistic {
+public class to extends Statistic {
 
 	private final Item a;
 

@@ -2,13 +2,13 @@ package net.minecraft;
 
 public class zj extends zb {
 
-	private agp b;
-	private agp c;
+	private EntityVillager b;
+	private EntityVillager c;
 	private World d;
 	private int e;
 	abi a;
 
-	public zj(agp var1) {
+	public zj(EntityVillager var1) {
 		this.b = var1;
 		this.d = var1.o;
 		this.a(3);
@@ -24,11 +24,11 @@ public class zj extends zb {
 			if (this.a == null) {
 				return false;
 			} else if (this.f() && this.b.n(true)) {
-				Entity var1 = this.d.a(agp.class, this.b.aQ().b(8.0D, 3.0D, 8.0D), (Entity) this.b);
+				Entity var1 = this.d.a(EntityVillager.class, this.b.aQ().b(8.0D, 3.0D, 8.0D), (Entity) this.b);
 				if (var1 == null) {
 					return false;
 				} else {
-					this.c = (agp) var1;
+					this.c = (EntityVillager) var1;
 					return this.c.l() == 0 && this.c.n(true);
 				}
 			} else {
@@ -77,7 +77,7 @@ public class zj extends zb {
 	}
 
 	private void g() {
-		agp var1 = this.b.b((ws) this.c);
+		EntityVillager var1 = this.b.b((ws) this.c);
 		this.c.b(6000);
 		this.b.b(6000);
 		this.c.o(false);

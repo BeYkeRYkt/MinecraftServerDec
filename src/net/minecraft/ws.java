@@ -18,7 +18,7 @@ public abstract class ws extends EntityCreature {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (var2 != null && var2.getItem() == amk.bJ) {
 			if (!this.o.D) {
-				Class var3 = EntityTypes.a(var2.i());
+				Class var3 = EntityTypes.getClassById(var2.i());
 				if (var3 != null && this.getClass() == var3) {
 					ws var4 = this.a(this);
 					if (var4 != null) {

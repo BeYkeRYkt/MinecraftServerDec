@@ -20,7 +20,7 @@ public class aqj extends vk {
 		this.b = var1;
 		if (var3.equals("Minecart")) {
 			if (var2 != null) {
-				var3 = adz.a(var2.getInt("Type")).b();
+				var3 = MinecartType.byId(var2.getInt("Type")).getName();
 			} else {
 				var3 = "MinecartRideable";
 			}

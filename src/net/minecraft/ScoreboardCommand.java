@@ -208,7 +208,7 @@ public class ScoreboardCommand extends AbstractCommand {
 				} catch (di var11) {
 					hz var10 = new hz(var11.getMessage(), var11.a());
 					var10.b().a(FormattingCode.m);
-					var1.a(var10);
+					var1.sendChatMessage(var10);
 				}
 			}
 
@@ -400,8 +400,8 @@ public class ScoreboardCommand extends AbstractCommand {
 
 			hz var7 = new hz("commands.scoreboard.teams.list.player.count", new Object[] { Integer.valueOf(var6.size()), var5.b() });
 			var7.b().a(FormattingCode.c);
-			var1.a(var7);
-			var1.a(new hy(a(var6.toArray())));
+			var1.sendChatMessage(var7);
+			var1.sendChatMessage(new hy(a(var6.toArray())));
 		} else {
 			Collection var9 = var4.g();
 			var1.a(ag.e, var9.size());
@@ -411,12 +411,12 @@ public class ScoreboardCommand extends AbstractCommand {
 
 			hz var10 = new hz("commands.scoreboard.teams.list.count", new Object[] { Integer.valueOf(var9.size()) });
 			var10.b().a(FormattingCode.c);
-			var1.a(var10);
+			var1.sendChatMessage(var10);
 			Iterator var11 = var9.iterator();
 
 			while (var11.hasNext()) {
 				brz var8 = (brz) var11.next();
-				var1.a(new hz("commands.scoreboard.teams.list.entry", new Object[] { var8.b(), var8.c(), Integer.valueOf(var8.d().size()) }));
+				var1.sendChatMessage(new hz("commands.scoreboard.teams.list.entry", new Object[] { var8.b(), var8.c(), Integer.valueOf(var8.d().size()) }));
 			}
 		}
 
@@ -557,12 +557,12 @@ public class ScoreboardCommand extends AbstractCommand {
 		} else {
 			hz var4 = new hz("commands.scoreboard.objectives.list.count", new Object[] { Integer.valueOf(var3.size()) });
 			var4.b().a(FormattingCode.c);
-			var1.a(var4);
+			var1.sendChatMessage(var4);
 			Iterator var5 = var3.iterator();
 
 			while (var5.hasNext()) {
 				bry var6 = (bry) var5.next();
-				var1.a(new hz("commands.scoreboard.objectives.list.entry", new Object[] { var6.b(), var6.d(), var6.c().a() }));
+				var1.sendChatMessage(new hz("commands.scoreboard.objectives.list.entry", new Object[] { var6.b(), var6.d(), var6.c().a() }));
 			}
 
 		}
@@ -602,12 +602,12 @@ public class ScoreboardCommand extends AbstractCommand {
 
 			hz var7 = new hz("commands.scoreboard.players.list.player.count", new Object[] { Integer.valueOf(var6.size()), var5 });
 			var7.b().a(FormattingCode.c);
-			var1.a(var7);
+			var1.sendChatMessage(var7);
 			Iterator var8 = var6.values().iterator();
 
 			while (var8.hasNext()) {
 				bsa var9 = (bsa) var8.next();
-				var1.a(new hz("commands.scoreboard.players.list.player.entry", new Object[] { Integer.valueOf(var9.c()), var9.d().d(), var9.d().b() }));
+				var1.sendChatMessage(new hz("commands.scoreboard.players.list.player.entry", new Object[] { Integer.valueOf(var9.c()), var9.d().d(), var9.d().b() }));
 			}
 		} else {
 			Collection var10 = var4.d();
@@ -618,8 +618,8 @@ public class ScoreboardCommand extends AbstractCommand {
 
 			hz var11 = new hz("commands.scoreboard.players.list.count", new Object[] { Integer.valueOf(var10.size()) });
 			var11.b().a(FormattingCode.c);
-			var1.a(var11);
-			var1.a(new hy(a(var10.toArray())));
+			var1.sendChatMessage(var11);
+			var1.sendChatMessage(new hy(a(var10.toArray())));
 		}
 
 	}

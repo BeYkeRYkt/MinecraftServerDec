@@ -8,7 +8,7 @@ public class asq extends arm {
 
 	protected asq(int var1) {
 		super(var1);
-		this.au.add(new arq(abt.class, 1, 2, 6));
+		this.au.add(new arq(EntityHorse.class, 1, 2, 6));
 		this.as.A = 1;
 		this.as.B = 4;
 		this.as.C = 20;

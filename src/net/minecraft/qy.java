@@ -74,8 +74,8 @@ public class qy {
 			this.a((Packet) (new PacketAttachEntity(0, this.a, this.a.m)));
 		}
 
-		if (this.a instanceof adk && this.m % 10 == 0) {
-			adk var2 = (adk) this.a;
+		if (this.a instanceof EntityItemFrame && this.m % 10 == 0) {
+			EntityItemFrame var2 = (EntityItemFrame) this.a;
 			ItemStack var3 = var2.o();
 			if (var3 != null && var3.getItem() instanceof amn) {
 				bqe var4 = amk.bd.a(var3, this.a.o);
@@ -87,7 +87,7 @@ public class qy {
 					var4.a(var7, var3);
 					Packet var8 = amk.bd.c(var3, this.a.o, var7);
 					if (var8 != null) {
-						var7.a.a(var8);
+						var7.playerConncetion.sendPacket(var8);
 					}
 				}
 			}
@@ -111,7 +111,7 @@ public class qy {
 				Object var10 = null;
 				boolean var11 = Math.abs(var29) >= 4 || Math.abs(var30) >= 4 || Math.abs(var9) >= 4 || this.m % 60 == 0;
 				boolean var12 = Math.abs(var27 - this.g) >= 4 || Math.abs(var28 - this.h) >= 4;
-				if (this.m > 0 || this.a instanceof ahj) {
+				if (this.m > 0 || this.a instanceof EntityArrow) {
 					if (var29 >= -128 && var29 < 128 && var30 >= -128 && var30 < 128 && var9 >= -128 && var9 < 128 && this.v <= 400 && !this.x && this.y == this.a.onGround) {
 						if (var11 && var12) {
 							var10 = new PacketEntityRelativeLookMove(this.a.getId(), (byte) var29, (byte) var30, (byte) var9, (byte) var27, (byte) var28, this.a.onGround);
@@ -215,7 +215,7 @@ public class qy {
 
 		while (var2.hasNext()) {
 			EntityPlayer var3 = (EntityPlayer) var2.next();
-			var3.a.a(var1);
+			var3.playerConncetion.sendPacket(var1);
 		}
 
 	}
@@ -223,7 +223,7 @@ public class qy {
 	public void b(Packet var1) {
 		this.a(var1);
 		if (this.a instanceof EntityPlayer) {
-			((EntityPlayer) this.a).a.a(var1);
+			((EntityPlayer) this.a).playerConncetion.sendPacket(var1);
 		}
 
 	}
@@ -252,21 +252,21 @@ public class qy {
 				if (!this.o.contains(var1) && (this.e(var1) || this.a.n)) {
 					this.o.add(var1);
 					Packet var2 = this.c();
-					var1.a.a(var2);
+					var1.playerConncetion.sendPacket(var2);
 					if (!this.a.getDataWatcher().d()) {
-						var1.a.a((Packet) (new PacketEntityMetadata(this.a.getId(), this.a.getDataWatcher(), true)));
+						var1.playerConncetion.sendPacket((Packet) (new PacketEntityMetadata(this.a.getId(), this.a.getDataWatcher(), true)));
 					}
 
 					NBTCompoundTag var3 = this.a.aU();
 					if (var3 != null) {
-						var1.a.a((Packet) (new jl(this.a.getId(), var3)));
+						var1.playerConncetion.sendPacket((Packet) (new jl(this.a.getId(), var3)));
 					}
 
 					if (this.a instanceof EntityLiving) {
 						yf var4 = (yf) ((EntityLiving) this.a).bx();
 						Collection var5 = var4.c();
 						if (!var5.isEmpty()) {
-							var1.a.a((Packet) (new PacketEntityProperties(this.a.getId(), var5)));
+							var1.playerConncetion.sendPacket((Packet) (new PacketEntityProperties(this.a.getId(), var5)));
 						}
 					}
 
@@ -274,22 +274,22 @@ public class qy {
 					this.k = this.a.motionY;
 					this.l = this.a.motionZ;
 					if (this.u && !(var2 instanceof PacketSpawnMob)) {
-						var1.a.a((Packet) (new PacketEntityVelocity(this.a.getId(), this.a.motionX, this.a.motionY, this.a.motionZ)));
+						var1.playerConncetion.sendPacket((Packet) (new PacketEntityVelocity(this.a.getId(), this.a.motionX, this.a.motionY, this.a.motionZ)));
 					}
 
 					if (this.a.m != null) {
-						var1.a.a((Packet) (new PacketAttachEntity(0, this.a, this.a.m)));
+						var1.playerConncetion.sendPacket((Packet) (new PacketAttachEntity(0, this.a, this.a.m)));
 					}
 
-					if (this.a instanceof xn && ((xn) this.a).cc() != null) {
-						var1.a.a((Packet) (new PacketAttachEntity(1, this.a, ((xn) this.a).cc())));
+					if (this.a instanceof EntityInsentient && ((EntityInsentient) this.a).cc() != null) {
+						var1.playerConncetion.sendPacket((Packet) (new PacketAttachEntity(1, this.a, ((EntityInsentient) this.a).cc())));
 					}
 
 					if (this.a instanceof EntityLiving) {
 						for (int var7 = 0; var7 < 5; ++var7) {
 							ItemStack var10 = ((EntityLiving) this.a).p(var7);
 							if (var10 != null) {
-								var1.a.a((Packet) (new PacketEntityEquipment(this.a.getId(), var7, var10)));
+								var1.playerConncetion.sendPacket((Packet) (new PacketEntityEquipment(this.a.getId(), var7, var10)));
 							}
 						}
 					}
@@ -297,7 +297,7 @@ public class qy {
 					if (this.a instanceof EntityHuman) {
 						EntityHuman var8 = (EntityHuman) this.a;
 						if (var8.bI()) {
-							var1.a.a((Packet) (new PacketUseBed(var8, new Position(this.a))));
+							var1.playerConncetion.sendPacket((Packet) (new PacketUseBed(var8, new Position(this.a))));
 						}
 					}
 
@@ -307,7 +307,7 @@ public class qy {
 
 						while (var11.hasNext()) {
 							MobEffect var6 = (MobEffect) var11.next();
-							var1.a.a((Packet) (new PacketEntityEffect(this.a.getId(), var6)));
+							var1.playerConncetion.sendPacket((Packet) (new PacketEntityEffect(this.a.getId(), var6)));
 						}
 					}
 				}
@@ -341,14 +341,14 @@ public class qy {
 			p.warn("Fetching addPacket for removed entity");
 		}
 
-		if (this.a instanceof adw) {
+		if (this.a instanceof EntityItem) {
 			return new PacketSpawnObject(this.a, 2, 1);
 		} else if (this.a instanceof EntityPlayer) {
 			return new PacketSpawnPlayer((EntityHuman) this.a);
 		} else if (this.a instanceof adx) {
 			adx var9 = (adx) this.a;
-			return new PacketSpawnObject(this.a, 10, var9.s().a());
-		} else if (this.a instanceof adu) {
+			return new PacketSpawnObject(this.a, 10, var9.s().getId());
+		} else if (this.a instanceof EntityBoat) {
 			return new PacketSpawnObject(this.a, 1);
 		} else if (this.a instanceof wt) {
 			this.i = DataTypesConverter.d(this.a.aD() * 256.0F / 360.0F);
@@ -356,20 +356,20 @@ public class qy {
 		} else if (this.a instanceof ado) {
 			EntityHuman var8 = ((ado) this.a).b;
 			return new PacketSpawnObject(this.a, 90, var8 != null ? var8.getId() : this.a.getId());
-		} else if (this.a instanceof ahj) {
-			Entity var7 = ((ahj) this.a).c;
+		} else if (this.a instanceof EntityArrow) {
+			Entity var7 = ((EntityArrow) this.a).c;
 			return new PacketSpawnObject(this.a, 60, var7 != null ? var7.getId() : this.a.getId());
-		} else if (this.a instanceof ahq) {
+		} else if (this.a instanceof EntitySnowball) {
 			return new PacketSpawnObject(this.a, 61);
-		} else if (this.a instanceof ahv) {
-			return new PacketSpawnObject(this.a, 73, ((ahv) this.a).o());
-		} else if (this.a instanceof ahu) {
+		} else if (this.a instanceof EntityPotion) {
+			return new PacketSpawnObject(this.a, 73, ((EntityPotion) this.a).o());
+		} else if (this.a instanceof EntityThrownExpBottle) {
 			return new PacketSpawnObject(this.a, 75);
-		} else if (this.a instanceof aht) {
+		} else if (this.a instanceof EntityEnderPearl) {
 			return new PacketSpawnObject(this.a, 65);
-		} else if (this.a instanceof ahk) {
+		} else if (this.a instanceof EntityEnderSignal) {
 			return new PacketSpawnObject(this.a, 72);
-		} else if (this.a instanceof ahm) {
+		} else if (this.a instanceof EntityFireworks) {
 			return new PacketSpawnObject(this.a, 76);
 		} else {
 			PacketSpawnObject var2;
@@ -377,9 +377,9 @@ public class qy {
 				ahl var6 = (ahl) this.a;
 				var2 = null;
 				byte var10 = 63;
-				if (this.a instanceof ahp) {
+				if (this.a instanceof EntitySmallFireball) {
 					var10 = 64;
-				} else if (this.a instanceof ahw) {
+				} else if (this.a instanceof EntityWitherSkull) {
 					var10 = 66;
 				}
 
@@ -395,37 +395,37 @@ public class qy {
 				return var2;
 			} else if (this.a instanceof ahs) {
 				return new PacketSpawnObject(this.a, 62);
-			} else if (this.a instanceof aek) {
+			} else if (this.a instanceof EntityTNTPrimed) {
 				return new PacketSpawnObject(this.a, 50);
-			} else if (this.a instanceof ada) {
+			} else if (this.a instanceof EntityEnderCrystal) {
 				return new PacketSpawnObject(this.a, 51);
-			} else if (this.a instanceof adv) {
-				adv var5 = (adv) this.a;
+			} else if (this.a instanceof EntityFallingBlock) {
+				EntityFallingBlock var5 = (EntityFallingBlock) this.a;
 				return new PacketSpawnObject(this.a, 70, Block.f(var5.l()));
-			} else if (this.a instanceof adi) {
+			} else if (this.a instanceof EntityArmorStand) {
 				return new PacketSpawnObject(this.a, 78);
 			} else if (this.a instanceof EntityPainting) {
 				return new PacketSpawnPainting((EntityPainting) this.a);
 			} else {
 				Position var3;
-				if (this.a instanceof adk) {
-					adk var4 = (adk) this.a;
+				if (this.a instanceof EntityItemFrame) {
+					EntityItemFrame var4 = (EntityItemFrame) this.a;
 					var2 = new PacketSpawnObject(this.a, 71, var4.direction.toByte());
 					var3 = var4.getPosition();
 					var2.setX(DataTypesConverter.d((float) (var3.n() * 32)));
 					var2.setY(DataTypesConverter.d((float) (var3.o() * 32)));
 					var2.setZ(DataTypesConverter.d((float) (var3.p() * 32)));
 					return var2;
-				} else if (this.a instanceof adl) {
-					adl var1 = (adl) this.a;
+				} else if (this.a instanceof EntityLeash) {
+					EntityLeash var1 = (EntityLeash) this.a;
 					var2 = new PacketSpawnObject(this.a, 77);
 					var3 = var1.getPosition();
 					var2.setX(DataTypesConverter.d((float) (var3.n() * 32)));
 					var2.setY(DataTypesConverter.d((float) (var3.o() * 32)));
 					var2.setZ(DataTypesConverter.d((float) (var3.p() * 32)));
 					return var2;
-				} else if (this.a instanceof ExpirienceOrb) {
-					return new PacketSpawnExpirienceOrb((ExpirienceOrb) this.a);
+				} else if (this.a instanceof EntityExpirienceOrb) {
+					return new PacketSpawnExpirienceOrb((EntityExpirienceOrb) this.a);
 				} else {
 					throw new IllegalArgumentException("Don\'t know how to add " + this.a.getClass() + "!");
 				}

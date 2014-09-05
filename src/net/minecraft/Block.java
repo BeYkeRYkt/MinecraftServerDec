@@ -565,7 +565,7 @@ public class Block {
 			double var4 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
 			double var6 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
 			double var8 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
-			adw var10 = new adw(var0, (double) var1.n() + var4, (double) var1.o() + var6, (double) var1.p() + var8, var2);
+			EntityItem var10 = new EntityItem(var0, (double) var1.n() + var4, (double) var1.o() + var6, (double) var1.p() + var8, var2);
 			var10.p();
 			var0.d((Entity) var10);
 		}
@@ -574,9 +574,9 @@ public class Block {
 	protected void b(World var1, Position var2, int var3) {
 		if (!var1.D) {
 			while (var3 > 0) {
-				int var4 = ExpirienceOrb.a(var3);
+				int var4 = EntityExpirienceOrb.a(var3);
 				var3 -= var4;
-				var1.d((Entity) (new ExpirienceOrb(var1, (double) var2.n() + 0.5D, (double) var2.o() + 0.5D, (double) var2.p() + 0.5D, var4)));
+				var1.d((Entity) (new EntityExpirienceOrb(var1, (double) var2.n() + 0.5D, (double) var2.o() + 0.5D, (double) var2.p() + 0.5D, var4)));
 			}
 		}
 
@@ -772,7 +772,7 @@ public class Block {
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, bec var4, bcm var5) {
-		var2.b(ty.H[a(this)]);
+		var2.b(StatisticList.H[a(this)]);
 		var2.a(0.025F);
 		if (this.G() && aph.e(var2)) {
 			ItemStack var7 = this.i(var4);

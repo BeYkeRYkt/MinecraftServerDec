@@ -2,10 +2,10 @@ package net.minecraft;
 
 class afi extends zb {
 
-	private afg a;
+	private EntityGuardian a;
 	private int b;
 
-	public afi(afg var1) {
+	public afi(EntityGuardian var1) {
 		this.a = var1;
 		this.a(3);
 	}
@@ -27,9 +27,9 @@ class afi extends zb {
 	}
 
 	public void d() {
-		afg.a(this.a, 0);
+		EntityGuardian.a(this.a, 0);
 		this.a.d((EntityLiving) null);
-		afg.a(this.a).f();
+		EntityGuardian.a(this.a).f();
 	}
 
 	public void e() {
@@ -41,7 +41,7 @@ class afi extends zb {
 		} else {
 			++this.b;
 			if (this.b == 0) {
-				afg.a(this.a, this.a.u().getId());
+				EntityGuardian.a(this.a, this.a.u().getId());
 				this.a.o.a((Entity) this.a, (byte) 21);
 			} else if (this.b >= this.a.ck()) {
 				float var2 = 1.0F;

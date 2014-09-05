@@ -5,7 +5,7 @@ public class zt extends yv {
 	boolean g;
 	int h;
 
-	public zt(xn var1, boolean var2) {
+	public zt(EntityInsentient var1, boolean var2) {
 		super(var1);
 		this.a = var1;
 		this.g = var2;

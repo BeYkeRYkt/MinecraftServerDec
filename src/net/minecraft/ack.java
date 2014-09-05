@@ -2,11 +2,11 @@ package net.minecraft;
 
 class ack extends zn {
 
-	private final acb c;
+	private final EntityRabbit c;
 	private boolean d;
 	private boolean e = false;
 
-	public ack(acb var1) {
+	public ack(EntityRabbit var1) {
 		super(var1, 0.699999988079071D, 16);
 		this.c = var1;
 	}
@@ -18,7 +18,7 @@ class ack extends zn {
 			}
 
 			this.e = false;
-			this.d = acb.a(this.c);
+			this.d = EntityRabbit.a(this.c);
 		}
 
 		return super.a();

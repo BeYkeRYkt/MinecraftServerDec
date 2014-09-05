@@ -2,13 +2,13 @@ package net.minecraft;
 
 public class aac extends zb {
 
-	private abt a;
+	private EntityHorse a;
 	private double b;
 	private double c;
 	private double d;
 	private double e;
 
-	public aac(abt var1, double var2) {
+	public aac(EntityHorse var1, double var2) {
 		this.a = var1;
 		this.b = var2;
 		this.a(1);

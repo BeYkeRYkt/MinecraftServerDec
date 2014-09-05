@@ -2,9 +2,9 @@ package net.minecraft;
 
 public class aah extends zb {
 
-	private agp a;
+	private EntityVillager a;
 
-	public aah(agp var1) {
+	public aah(EntityVillager var1) {
 		this.a = var1;
 		this.a(5);
 	}

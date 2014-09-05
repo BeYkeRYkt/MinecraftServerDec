@@ -86,7 +86,7 @@ public class ajn extends Item {
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
-		int var4 = xn.c(var1) - 1;
+		int var4 = EntityInsentient.c(var1) - 1;
 		ItemStack var5 = var3.q(var4);
 		if (var5 == null) {
 			var3.c(var4, var1.getCopy());

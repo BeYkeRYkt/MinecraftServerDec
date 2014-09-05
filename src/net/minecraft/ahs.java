@@ -26,7 +26,7 @@ public class ahs extends ahr {
 			}
 
 			for (int var3 = 0; var3 < var2; ++var3) {
-				abr var4 = new abr(this.o);
+				EntityChicken var4 = new EntityChicken(this.o);
 				var4.b(-24000);
 				var4.b(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
 				this.o.d((Entity) var4);

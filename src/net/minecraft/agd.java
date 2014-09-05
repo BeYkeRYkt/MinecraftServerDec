@@ -2,11 +2,11 @@ package net.minecraft;
 
 class agd extends zb {
 
-	private afy a;
+	private EntitySlime a;
 	private float b;
 	private int c;
 
-	public agd(afy var1) {
+	public agd(EntitySlime var1) {
 		this.a = var1;
 		this.a(2);
 	}

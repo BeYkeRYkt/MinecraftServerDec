@@ -5,9 +5,9 @@ class agl implements xq {
 	public boolean a;
 	public boolean b;
 	// $FF: synthetic field
-	final agj c;
+	final EntityZombie c;
 
-	private agl(agj var1, boolean var2, boolean var3) {
+	private agl(EntityZombie var1, boolean var2, boolean var3) {
 		this.c = var1;
 		this.a = false;
 		this.b = false;
@@ -16,7 +16,7 @@ class agl implements xq {
 	}
 
 	// $FF: synthetic method
-	agl(agj var1, boolean var2, boolean var3, agk var4) {
+	agl(EntityZombie var1, boolean var2, boolean var3, agk var4) {
 		this(var1, var2, var3);
 	}
 }

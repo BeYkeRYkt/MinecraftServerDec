@@ -34,7 +34,7 @@ public class ajq extends Item {
 						if (!var3.D) {
 							var3.g(var10);
 							var3.g(var11);
-							adi var20 = new adi(var3, var13 + 0.5D, var15, var17 + 0.5D);
+							EntityArmorStand var20 = new EntityArmorStand(var3, var13 + 0.5D, var15, var17 + 0.5D);
 							float var21 = (float) DataTypesConverter.d((DataTypesConverter.g(var2.yaw - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 							var20.b(var13 + 0.5D, var15, var17 + 0.5D, var21, 0.0F);
 							this.a(var20, var3.s);
@@ -43,7 +43,7 @@ public class ajq extends Item {
 								NBTCompoundTag var23 = new NBTCompoundTag();
 								var20.d(var23);
 								var23.copyFrom(var22.getCompound("EntityTag"));
-								var20.f(var23);
+								var20.load(var23);
 							}
 
 							var3.d((Entity) var20);
@@ -57,7 +57,7 @@ public class ajq extends Item {
 		}
 	}
 
-	private void a(adi var1, Random var2) {
+	private void a(EntityArmorStand var1, Random var2) {
 		fa var3 = var1.s();
 		float var5 = var2.nextFloat() * 5.0F;
 		float var6 = var2.nextFloat() * 20.0F - 10.0F;

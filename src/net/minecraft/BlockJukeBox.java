@@ -46,7 +46,7 @@ public class BlockJukeBox extends atg {
 					double var10 = (double) (var1.s.nextFloat() * var7) + (double) (1.0F - var7) * 0.2D + 0.6D;
 					double var12 = (double) (var1.s.nextFloat() * var7) + (double) (1.0F - var7) * 0.5D;
 					ItemStack var14 = var6.getCopy();
-					adw var15 = new adw(var1, (double) var2.n() + var8, (double) var2.o() + var10, (double) var2.p() + var12, var14);
+					EntityItem var15 = new EntityItem(var1, (double) var2.n() + var8, (double) var2.o() + var10, (double) var2.p() + var12, var14);
 					var15.p();
 					var1.d((Entity) var15);
 				}

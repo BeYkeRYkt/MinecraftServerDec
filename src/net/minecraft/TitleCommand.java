@@ -48,7 +48,7 @@ public class TitleCommand extends AbstractCommand {
 						int var12 = a(var2[3]);
 						int var13 = a(var2[4]);
 						lj var14 = new lj(var11, var12, var13);
-						var3.a.a((Packet) var14);
+						var3.playerConncetion.sendPacket((Packet) var14);
 						a(var1, this, "commands.title.success", new Object[0]);
 					}
 				} else if (var2.length < 3) {
@@ -65,14 +65,14 @@ public class TitleCommand extends AbstractCommand {
 					}
 
 					lj var7 = new lj(var4, hq.a(var1, var6, var3));
-					var3.a.a((Packet) var7);
+					var3.playerConncetion.sendPacket((Packet) var7);
 					a(var1, this, "commands.title.success", new Object[0]);
 				}
 			} else if (var2.length != 2) {
 				throw new dp("commands.title.usage", new Object[0]);
 			} else {
 				lj var5 = new lj(var4, (IJSONComponent) null);
-				var3.a.a((Packet) var5);
+				var3.playerConncetion.sendPacket((Packet) var5);
 				a(var1, this, "commands.title.success", new Object[0]);
 			}
 		}

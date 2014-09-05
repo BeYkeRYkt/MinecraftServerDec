@@ -3,9 +3,9 @@ package net.minecraft;
 class acm extends Container {
 
 	// $FF: synthetic field
-	final acl a;
+	final EntitySheep a;
 
-	acm(acl var1) {
+	acm(EntitySheep var1) {
 		this.a = var1;
 	}
 

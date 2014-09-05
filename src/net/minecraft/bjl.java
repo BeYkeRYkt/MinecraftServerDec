@@ -8,10 +8,10 @@ public class bjl extends bmm {
 	private List d = Lists.newArrayList();
 
 	public bjl() {
-		this.d.add(new arq(aem.class, 10, 2, 3));
-		this.d.add(new arq(afo.class, 5, 4, 4));
-		this.d.add(new arq(afw.class, 10, 4, 4));
-		this.d.add(new arq(afl.class, 3, 4, 4));
+		this.d.add(new arq(EntityBlaze.class, 10, 2, 3));
+		this.d.add(new arq(EntityPigZombie.class, 5, 4, 4));
+		this.d.add(new arq(EntitySkeleton.class, 10, 4, 4));
+		this.d.add(new arq(EntityMagmaCube.class, 3, 4, 4));
 	}
 
 	public String a() {

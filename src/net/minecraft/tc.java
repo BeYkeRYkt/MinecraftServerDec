@@ -27,7 +27,7 @@ public class tc implements CommandSenderInterface {
 		return new hy(this.d_());
 	}
 
-	public void a(IJSONComponent var1) {
+	public void sendChatMessage(IJSONComponent var1) {
 		this.b.append(var1.c());
 	}
 

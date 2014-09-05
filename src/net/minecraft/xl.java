@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public abstract class xl extends xn {
+public abstract class xl extends EntityInsentient {
 
 	public xl(World var1) {
 		super(var1);

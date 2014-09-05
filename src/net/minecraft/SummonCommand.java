@@ -37,7 +37,7 @@ public class SummonCommand extends AbstractCommand {
 			if (!var12.e(var4)) {
 				throw new di("commands.summon.outOfWorld", new Object[0]);
 			} else if ("LightningBolt".equals(var3)) {
-				var12.c((Entity) (new ads(var12, var6, var8, var10)));
+				var12.c((Entity) (new EntityLightning(var12, var6, var8, var10)));
 				a(var1, this, "commands.summon.success", new Object[0]);
 			} else {
 				NBTCompoundTag var13 = new NBTCompoundTag();
@@ -57,7 +57,7 @@ public class SummonCommand extends AbstractCommand {
 
 				Entity var21;
 				try {
-					var21 = EntityTypes.a(var13, var12);
+					var21 = EntityTypes.loadEntity(var13, var12);
 				} catch (RuntimeException var19) {
 					throw new di("commands.summon.failed", new Object[0]);
 				}
@@ -66,15 +66,15 @@ public class SummonCommand extends AbstractCommand {
 					throw new di("commands.summon.failed", new Object[0]);
 				} else {
 					var21.b(var6, var8, var10, var21.yaw, var21.pitch);
-					if (!var14 && var21 instanceof xn) {
-						((xn) var21).a(var12.E(new Position(var21)), (xq) null);
+					if (!var14 && var21 instanceof EntityInsentient) {
+						((EntityInsentient) var21).a(var12.E(new Position(var21)), (xq) null);
 					}
 
 					var12.d(var21);
 					Entity var16 = var21;
 
 					for (NBTCompoundTag var17 = var13; var16 != null && var17.isTagAssignableFrom("Riding", 10); var17 = var17.getCompound("Riding")) {
-						Entity var18 = EntityTypes.a(var17.getCompound("Riding"), var12);
+						Entity var18 = EntityTypes.loadEntity(var17.getCompound("Riding"), var12);
 						if (var18 != null) {
 							var18.b(var6, var8, var10, var18.yaw, var18.pitch);
 							var12.d(var18);
@@ -91,6 +91,6 @@ public class SummonCommand extends AbstractCommand {
 	}
 
 	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
-		return var2.length == 1 ? a(var2, EntityTypes.b()) : (var2.length > 1 && var2.length <= 4 ? a(var2, 1, var3) : null);
+		return var2.length == 1 ? a(var2, EntityTypes.getNonAbstractEntityNames()) : (var2.length > 1 && var2.length <= 4 ? a(var2, 1, var3) : null);
 	}
 }

@@ -50,7 +50,7 @@ public class qp implements ara {
 	}
 
 	public void a(int var1, Position var2, int var3) {
-		this.a.getPlayerList().a((Packet) (new jt(var1, var2, var3, true)));
+		this.a.getPlayerList().sendPacket((Packet) (new jt(var1, var2, var3, true)));
 	}
 
 	public void b(int var1, Position var2, int var3) {
@@ -63,7 +63,7 @@ public class qp implements ara {
 				double var8 = (double) var2.o() - var5.locationY;
 				double var10 = (double) var2.p() - var5.locationZ;
 				if (var6 * var6 + var8 * var8 + var10 * var10 < 1024.0D) {
-					var5.a.a((Packet) (new it(var1, var2, var3)));
+					var5.playerConncetion.sendPacket((Packet) (new it(var1, var2, var3)));
 				}
 			}
 		}

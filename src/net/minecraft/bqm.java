@@ -195,7 +195,7 @@ public class bqm implements IDataManager, brl {
 		}
 
 		if (var2 != null) {
-			var1.f(var2);
+			var1.load(var2);
 		}
 
 		return var2;

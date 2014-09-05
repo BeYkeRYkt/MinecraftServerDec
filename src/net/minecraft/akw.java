@@ -78,8 +78,8 @@ public class akw extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, EntityLiving var3) {
-		if (var3 instanceof acl) {
-			acl var4 = (acl) var3;
+		if (var3 instanceof EntitySheep) {
+			EntitySheep var4 = (EntitySheep) var3;
 			akv var5 = akv.a(var1.i());
 			if (!var4.ck() && var4.cj() != var5) {
 				var4.b(var5);

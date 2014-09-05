@@ -103,7 +103,7 @@ public abstract class aqf implements CommandSenderInterface {
 		this.f = var1;
 	}
 
-	public void a(IJSONComponent var1) {
+	public void sendChatMessage(IJSONComponent var1) {
 		if (this.c && this.e() != null && !this.e().D) {
 			this.d = (new hy("[" + a.format(new Date()) + "] ")).a(var1);
 			this.h();

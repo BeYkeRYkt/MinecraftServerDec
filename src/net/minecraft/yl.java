@@ -2,10 +2,10 @@ package net.minecraft;
 
 public class yl {
 
-	private xn b;
+	private EntityInsentient b;
 	protected boolean a;
 
-	public yl(xn var1) {
+	public yl(EntityInsentient var1) {
 		this.b = var1;
 	}
 

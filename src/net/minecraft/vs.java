@@ -36,7 +36,7 @@ public class vs {
 			}
 
 			var7.b -= var11;
-			adw var12 = new adw(var0, var1 + (double) var8, var3 + (double) var9, var5 + (double) var10, new ItemStack(var7.getItem(), var11, var7.i()));
+			EntityItem var12 = new EntityItem(var0, var1 + (double) var8, var3 + (double) var9, var5 + (double) var10, new ItemStack(var7.getItem(), var11, var7.i()));
 			if (var7.hasTag()) {
 				var12.l().d((NBTCompoundTag) var7.getTag().getCopy());
 			}

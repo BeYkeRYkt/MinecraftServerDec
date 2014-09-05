@@ -49,7 +49,7 @@ public class BlockAnvil extends avt {
 
 	}
 
-	protected void a(adv var1) {
+	protected void a(EntityFallingBlock var1) {
 		var1.a(true);
 	}
 

@@ -31,7 +31,7 @@ public class BlockLongGrass extends auc implements atz {
 
 	public void a(World var1, EntityHuman var2, Position var3, bec var4, bcm var5) {
 		if (!var1.D && var2.bY() != null && var2.bY().getItem() == amk.be) {
-			var2.b(ty.H[Block.a((Block) this)]);
+			var2.b(StatisticList.H[Block.a((Block) this)]);
 			a(var1, var3, new ItemStack(aty.H, 1, ((bbi) var4.b(a)).a()));
 		} else {
 			super.a(var1, var2, var3, var4, var5);

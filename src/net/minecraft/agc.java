@@ -4,10 +4,10 @@ class agc extends yn {
 
 	private float g;
 	private int h;
-	private afy i;
+	private EntitySlime i;
 	private boolean j;
 
-	public agc(afy var1) {
+	public agc(EntitySlime var1) {
 		super(var1);
 		this.i = var1;
 	}

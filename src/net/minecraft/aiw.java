@@ -50,19 +50,19 @@ public class aiw extends ajk {
 			}
 
 			while (var2 > 0) {
-				var4 = ExpirienceOrb.a(var2);
+				var4 = EntityExpirienceOrb.a(var2);
 				var2 -= var4;
-				this.a.o.d((Entity) (new ExpirienceOrb(this.a.o, this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ + 0.5D, var4)));
+				this.a.o.d((Entity) (new EntityExpirienceOrb(this.a.o, this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ + 0.5D, var4)));
 			}
 		}
 
 		this.b = 0;
 		if (var1.getItem() == amk.j) {
-			this.a.b((PlayerStatistic) tl.k);
+			this.a.b((Statistic) tl.k);
 		}
 
 		if (var1.getItem() == amk.aV) {
-			this.a.b((PlayerStatistic) tl.p);
+			this.a.b((Statistic) tl.p);
 		}
 
 	}

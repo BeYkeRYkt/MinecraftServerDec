@@ -13,7 +13,7 @@ public final class ItemStack {
 	private Item item;
 	private NBTCompoundTag tag;
 	private int f;
-	private adk g;
+	private EntityItemFrame g;
 	private Block h;
 	private boolean i;
 	private Block j;
@@ -83,7 +83,7 @@ public final class ItemStack {
 	public boolean a(EntityHuman var1, World var2, Position var3, PaintingDirection var4, float var5, float var6, float var7) {
 		boolean var8 = this.getItem().a(this, var1, var2, var3, var4, var5, var6, var7);
 		if (var8) {
-			var1.b(ty.J[Item.getId(this.item)]);
+			var1.b(StatisticList.J[Item.getId(this.item)]);
 		}
 
 		return var8;
@@ -208,7 +208,7 @@ public final class ItemStack {
 					--this.b;
 					if (var2 instanceof EntityHuman) {
 						EntityHuman var3 = (EntityHuman) var2;
-						var3.b(ty.K[Item.getId(this.item)]);
+						var3.b(StatisticList.K[Item.getId(this.item)]);
 						if (this.b == 0 && this.getItem() instanceof ajz) {
 							var3.bZ();
 						}
@@ -228,7 +228,7 @@ public final class ItemStack {
 	public void a(EntityLiving var1, EntityHuman var2) {
 		boolean var3 = this.item.a(this, var1, (EntityLiving) var2);
 		if (var3) {
-			var2.b(ty.J[Item.getId(this.item)]);
+			var2.b(StatisticList.J[Item.getId(this.item)]);
 		}
 
 	}
@@ -236,7 +236,7 @@ public final class ItemStack {
 	public void a(World var1, Block var2, Position var3, EntityHuman var4) {
 		boolean var5 = this.item.a(this, var1, var2, var3, var4);
 		if (var5) {
-			var4.b(ty.J[Item.getId(this.item)]);
+			var4.b(StatisticList.J[Item.getId(this.item)]);
 		}
 
 	}
@@ -299,7 +299,7 @@ public final class ItemStack {
 	}
 
 	public void a(World var1, EntityHuman var2, int var3) {
-		var2.a(ty.I[Item.getId(this.item)], var3);
+		var2.a(StatisticList.I[Item.getId(this.item)], var3);
 		this.item.d(this, var1, var2);
 	}
 
@@ -432,11 +432,11 @@ public final class ItemStack {
 		return this.g != null;
 	}
 
-	public void a(adk var1) {
+	public void a(EntityItemFrame var1) {
 		this.g = var1;
 	}
 
-	public adk z() {
+	public EntityItemFrame z() {
 		return this.g;
 	}
 

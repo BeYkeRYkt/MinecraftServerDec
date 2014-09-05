@@ -383,16 +383,16 @@ public class BlockChest extends atg {
 	}
 
 	private boolean o(World var1, Position var2) {
-		Iterator var3 = var1.a(aby.class, new brt((double) var2.n(), (double) (var2.o() + 1), (double) var2.p(), (double) (var2.n() + 1), (double) (var2.o() + 2), (double) (var2.p() + 1))).iterator();
+		Iterator var3 = var1.a(EntityOcelot.class, new brt((double) var2.n(), (double) (var2.o() + 1), (double) var2.p(), (double) (var2.n() + 1), (double) (var2.o() + 2), (double) (var2.p() + 1))).iterator();
 
-		aby var5;
+		EntityOcelot var5;
 		do {
 			if (!var3.hasNext()) {
 				return false;
 			}
 
 			Entity var4 = (Entity) var3.next();
-			var5 = (aby) var4;
+			var5 = (EntityOcelot) var4;
 		} while (!var5.cl());
 
 		return true;

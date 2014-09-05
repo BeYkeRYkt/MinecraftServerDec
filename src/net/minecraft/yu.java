@@ -2,14 +2,14 @@ package net.minecraft;
 
 public class yu extends zb {
 
-	private final xn a;
+	private final EntityInsentient a;
 	private final float b;
 	private float c;
 	private boolean d;
 	private int e;
 	private int f;
 
-	public yu(xn var1, float var2) {
+	public yu(EntityInsentient var1, float var2) {
 		this.a = var1;
 		this.b = var2;
 		this.a(7);

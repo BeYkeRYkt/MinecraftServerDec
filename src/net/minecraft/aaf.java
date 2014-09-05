@@ -5,12 +5,12 @@ import java.util.List;
 
 public class aaf extends zb {
 
-	private agp a;
-	private acq b;
+	private EntityVillager a;
+	private EntityIronGolem b;
 	private int c;
 	private boolean d;
 
-	public aaf(agp var1) {
+	public aaf(EntityVillager var1) {
 		this.a = var1;
 		this.a(3);
 	}
@@ -21,14 +21,14 @@ public class aaf extends zb {
 		} else if (!this.a.o.w()) {
 			return false;
 		} else {
-			List var1 = this.a.o.a(acq.class, this.a.aQ().b(6.0D, 2.0D, 6.0D));
+			List var1 = this.a.o.a(EntityIronGolem.class, this.a.aQ().b(6.0D, 2.0D, 6.0D));
 			if (var1.isEmpty()) {
 				return false;
 			} else {
 				Iterator var2 = var1.iterator();
 
 				while (var2.hasNext()) {
-					acq var3 = (acq) var2.next();
+					EntityIronGolem var3 = (EntityIronGolem) var2.next();
 					if (var3.ck() > 0) {
 						this.b = var3;
 						break;

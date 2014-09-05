@@ -5,12 +5,12 @@ import java.util.List;
 
 public class zv extends zb {
 
-	private agp a;
+	private EntityVillager a;
 	private EntityLiving b;
 	private double c;
 	private int d;
 
-	public zv(agp var1, double var2) {
+	public zv(EntityVillager var1, double var2) {
 		this.a = var1;
 		this.c = var2;
 		this.a(1);
@@ -22,12 +22,12 @@ public class zv extends zb {
 		} else if (this.a.bb().nextInt(400) != 0) {
 			return false;
 		} else {
-			List var1 = this.a.o.a(agp.class, this.a.aQ().b(6.0D, 3.0D, 6.0D));
+			List var1 = this.a.o.a(EntityVillager.class, this.a.aQ().b(6.0D, 3.0D, 6.0D));
 			double var2 = Double.MAX_VALUE;
 			Iterator var4 = var1.iterator();
 
 			while (var4.hasNext()) {
-				agp var5 = (agp) var4.next();
+				EntityVillager var5 = (EntityVillager) var4.next();
 				if (var5 != this.a && !var5.cl() && var5.l() < 0) {
 					double var6 = var5.h(this.a);
 					if (var6 <= var2) {

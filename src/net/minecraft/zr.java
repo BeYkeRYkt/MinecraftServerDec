@@ -2,9 +2,9 @@ package net.minecraft;
 
 public class zr extends zn {
 
-	private final aby c;
+	private final EntityOcelot c;
 
-	public zr(aby var1, double var2) {
+	public zr(EntityOcelot var1, double var2) {
 		super(var1, var2, 8);
 		this.c = var1;
 	}

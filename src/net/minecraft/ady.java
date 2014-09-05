@@ -33,40 +33,40 @@ class ady {
 			;
 		}
 
-		a = new int[adz.values().length];
+		a = new int[MinecartType.values().length];
 
 		try {
-			a[adz.b.ordinal()] = 1;
+			a[MinecartType.CHEST.ordinal()] = 1;
 		} catch (NoSuchFieldError var6) {
 			;
 		}
 
 		try {
-			a[adz.c.ordinal()] = 2;
+			a[MinecartType.FURNACE.ordinal()] = 2;
 		} catch (NoSuchFieldError var5) {
 			;
 		}
 
 		try {
-			a[adz.d.ordinal()] = 3;
+			a[MinecartType.TNT.ordinal()] = 3;
 		} catch (NoSuchFieldError var4) {
 			;
 		}
 
 		try {
-			a[adz.e.ordinal()] = 4;
+			a[MinecartType.SPAWNER.ordinal()] = 4;
 		} catch (NoSuchFieldError var3) {
 			;
 		}
 
 		try {
-			a[adz.f.ordinal()] = 5;
+			a[MinecartType.HOPPER.ordinal()] = 5;
 		} catch (NoSuchFieldError var2) {
 			;
 		}
 
 		try {
-			a[adz.g.ordinal()] = 6;
+			a[MinecartType.COMMAND_BLOCK.ordinal()] = 6;
 		} catch (NoSuchFieldError var1) {
 			;
 		}

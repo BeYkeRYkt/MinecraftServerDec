@@ -71,7 +71,7 @@ public class aoa implements aoo {
 						return null;
 					}
 
-					float[] var14 = acl.a(akv.a(var8.i()));
+					float[] var14 = EntitySheep.a(akv.a(var8.i()));
 					int var15 = (int) (var14[0] * 255.0F);
 					int var16 = (int) (var14[1] * 255.0F);
 					var17 = (int) (var14[2] * 255.0F);

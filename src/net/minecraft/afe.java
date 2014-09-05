@@ -4,9 +4,9 @@ import java.util.Random;
 
 class afe extends zb {
 
-	private afa a;
+	private EntityGhast a;
 
-	public afe(afa var1) {
+	public afe(EntityGhast var1) {
 		this.a = var1;
 		this.a(1);
 	}

@@ -10,7 +10,7 @@ public class asn extends arm {
 		super(var1);
 		this.a(0.8F, 0.4F);
 		this.a(e);
-		this.au.add(new arq(abt.class, 5, 2, 6));
+		this.au.add(new arq(EntityHorse.class, 5, 2, 6));
 		this.as.A = -999;
 		this.as.B = 4;
 		this.as.C = 10;

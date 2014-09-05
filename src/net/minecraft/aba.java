@@ -4,7 +4,7 @@ public class aba extends aay {
 
 	private Position f;
 
-	public aba(xn var1, World var2) {
+	public aba(EntityInsentient var1, World var2) {
 		super(var1, var2);
 	}
 

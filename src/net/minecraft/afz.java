@@ -2,10 +2,10 @@ package net.minecraft;
 
 class afz extends zb {
 
-	private afy a;
+	private EntitySlime a;
 	private int b;
 
-	public afz(afy var1) {
+	public afz(EntitySlime var1) {
 		this.a = var1;
 		this.a(2);
 	}

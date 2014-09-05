@@ -2,7 +2,7 @@ package net.minecraft;
 
 class agh extends aaq {
 
-	public agh(age var1, Class var2) {
+	public agh(EntitySpider var1, Class var2) {
 		super(var1, var2, true);
 	}
 

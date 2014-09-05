@@ -84,7 +84,7 @@ public class bqe extends bqc {
 		for (int var6 = 0; var6 < this.g.size(); ++var6) {
 			bqf var4 = (bqf) this.g.get(var6);
 			if (!var4.a.I && (var4.a.playerInventory.c(var2) || var2.y())) {
-				if (!var2.y() && var4.a.am == this.d) {
+				if (!var2.y() && var4.a.dimensionId == this.d) {
 					this.a(0, var4.a.o, var4.a.d_(), var4.a.locationX, var4.a.locationZ, (double) var4.a.yaw);
 				}
 			} else {
@@ -94,7 +94,7 @@ public class bqe extends bqc {
 		}
 
 		if (var2.y()) {
-			adk var7 = var2.z();
+			EntityItemFrame var7 = var2.z();
 			Position var9 = var7.getPosition();
 			this.a(1, var1.o, "frame-" + var7.getId(), (double) var9.n(), (double) var9.p(), (double) (var7.direction.toByte() * 90));
 		}

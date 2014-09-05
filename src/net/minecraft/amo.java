@@ -16,7 +16,7 @@ public class amo extends Item {
 			var3.bj();
 		}
 
-		var3.b(ty.J[Item.getId((Item) this)]);
+		var3.b(StatisticList.J[Item.getId((Item) this)]);
 		return var1.b <= 0 ? new ItemStack(amk.aw) : var1;
 	}
 

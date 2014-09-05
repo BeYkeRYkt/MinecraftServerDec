@@ -9,7 +9,7 @@ public class anl extends Item {
 
 	public String a(ItemStack var1) {
 		String var2 = ("" + fi.a(this.a() + ".name")).trim();
-		String var3 = EntityTypes.b(var1.i());
+		String var3 = EntityTypes.getNameById(var1.i());
 		if (var3 != null) {
 			var2 = var2 + " " + fi.a("entity." + var3 + ".name");
 		}
@@ -28,7 +28,7 @@ public class anl extends Item {
 				bcm var10 = var3.s(var4);
 				if (var10 instanceof bdg) {
 					aqi var11 = ((bdg) var10).b();
-					var11.a(EntityTypes.b(var1.i()));
+					var11.a(EntityTypes.getNameById(var1.i()));
 					var10.o_();
 					var3.h(var4);
 					if (!var2.by.instabuild) {
@@ -82,14 +82,14 @@ public class anl extends Item {
 						Entity var6 = a(var2, var1.i(), (double) var5.n() + 0.5D, (double) var5.o() + 0.5D, (double) var5.p() + 0.5D);
 						if (var6 != null) {
 							if (var6 instanceof EntityLiving && var1.s()) {
-								((xn) var6).a(var1.q());
+								((EntityInsentient) var6).a(var1.q());
 							}
 
 							if (!var3.by.instabuild) {
 								--var1.b;
 							}
 
-							var3.b(ty.J[Item.getId((Item) this)]);
+							var3.b(StatisticList.J[Item.getId((Item) this)]);
 						}
 					}
 				}
@@ -100,15 +100,15 @@ public class anl extends Item {
 	}
 
 	public static Entity a(World var0, int var1, double var2, double var4, double var6) {
-		if (!EntityTypes.a.containsKey(Integer.valueOf(var1))) {
+		if (!EntityTypes.eggInfo.containsKey(Integer.valueOf(var1))) {
 			return null;
 		} else {
 			Entity var8 = null;
 
 			for (int var9 = 0; var9 < 1; ++var9) {
-				var8 = EntityTypes.a(var1, var0);
+				var8 = EntityTypes.createEntity(var1, var0);
 				if (var8 instanceof EntityLiving) {
-					xn var10 = (xn) var8;
+					EntityInsentient var10 = (EntityInsentient) var8;
 					var8.b(var2, var4, var6, DataTypesConverter.g(var0.s.nextFloat() * 360.0F), 0.0F);
 					var10.headPitch = var10.yaw;
 					var10.aG = var10.yaw;

@@ -76,7 +76,7 @@ public class BlockRedstoneComparator extends ava implements avs {
 			if (var7.N()) {
 				var4 = var7.l(var1, var6);
 			} else if (var7.r() == Material.AIR) {
-				adk var8 = this.a(var1, var5, var6);
+				EntityItemFrame var8 = this.a(var1, var5, var6);
 				if (var8 != null) {
 					var4 = var8.q();
 				}
@@ -86,9 +86,9 @@ public class BlockRedstoneComparator extends ava implements avs {
 		return var4;
 	}
 
-	private adk a(World var1, PaintingDirection var2, Position var3) {
-		List var4 = var1.a(adk.class, new brt((double) var3.n(), (double) var3.o(), (double) var3.p(), (double) (var3.n() + 1), (double) (var3.o() + 1), (double) (var3.p() + 1)), (Predicate) (new auq(this, var2)));
-		return var4.size() == 1 ? (adk) var4.get(0) : null;
+	private EntityItemFrame a(World var1, PaintingDirection var2, Position var3) {
+		List var4 = var1.a(EntityItemFrame.class, new brt((double) var3.n(), (double) var3.o(), (double) var3.p(), (double) (var3.n() + 1), (double) (var3.o() + 1), (double) (var3.p() + 1)), (Predicate) (new auq(this, var2)));
+		return var4.size() == 1 ? (EntityItemFrame) var4.get(0) : null;
 	}
 
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {

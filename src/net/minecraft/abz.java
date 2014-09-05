@@ -5,9 +5,9 @@ import com.google.common.base.Predicate;
 class abz implements Predicate {
 
 	// $FF: synthetic field
-	final aby a;
+	final EntityOcelot a;
 
-	abz(aby var1) {
+	abz(EntityOcelot var1) {
 		this.a = var1;
 	}
 

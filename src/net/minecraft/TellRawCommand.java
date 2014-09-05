@@ -28,7 +28,7 @@ public class TellRawCommand extends AbstractCommand {
 
 			try {
 				IJSONComponent var5 = JSONComponentFormat.a(var4);
-				var3.a(hq.a(var1, var5, var3));
+				var3.sendChatMessage(hq.a(var1, var5, var3));
 			} catch (JsonParseException var7) {
 				Throwable var6 = ExceptionUtils.getRootCause(var7);
 				throw new dl("commands.tellraw.jsonException", new Object[] { var6 == null ? "" : var6.getMessage() });

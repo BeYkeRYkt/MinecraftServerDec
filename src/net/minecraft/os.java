@@ -9,7 +9,7 @@ final class os extends eg {
 		double var8 = var1.c() + (double) var3.i();
 		Entity var10 = anl.a(var1.i(), var2.i(), var4, var6, var8);
 		if (var10 instanceof EntityLiving && var2.s()) {
-			((xn) var10).a(var2.q());
+			((EntityInsentient) var10).a(var2.q());
 		}
 
 		var2.a(1);

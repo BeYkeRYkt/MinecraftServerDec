@@ -3,16 +3,16 @@ package net.minecraft;
 public class aai extends zf {
 
 	private int e;
-	private agp f;
+	private EntityVillager f;
 
-	public aai(agp var1) {
-		super(var1, agp.class, 3.0F, 0.02F);
+	public aai(EntityVillager var1) {
+		super(var1, EntityVillager.class, 3.0F, 0.02F);
 		this.f = var1;
 	}
 
 	public void c() {
 		super.c();
-		if (this.f.cq() && this.b instanceof agp && ((agp) this.b).cr()) {
+		if (this.f.cq() && this.b instanceof EntityVillager && ((EntityVillager) this.b).cr()) {
 			this.e = 10;
 		} else {
 			this.e = 0;
@@ -51,7 +51,7 @@ public class aai extends zf {
 
 					if (var4 != null) {
 						double var11 = this.f.locationY - 0.30000001192092896D + (double) this.f.aR();
-						adw var12 = new adw(this.f.o, this.f.locationX, var11, this.f.locationZ, var4);
+						EntityItem var12 = new EntityItem(this.f.o, this.f.locationX, var11, this.f.locationZ, var4);
 						float var8 = 0.3F;
 						float var9 = this.f.headPitch;
 						float var10 = this.f.pitch;

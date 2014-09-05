@@ -2,12 +2,12 @@ package net.minecraft;
 
 public class zx extends zb {
 
-	private xn a;
+	private EntityInsentient a;
 	private double b;
 	private double c;
 	private int d;
 
-	public zx(xn var1) {
+	public zx(EntityInsentient var1) {
 		this.a = var1;
 		this.a(3);
 	}

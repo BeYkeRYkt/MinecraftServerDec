@@ -2,14 +2,14 @@ package net.minecraft;
 
 public class yn {
 
-	protected xn a;
+	protected EntityInsentient a;
 	protected double b;
 	protected double c;
 	protected double d;
 	protected double e;
 	protected boolean f;
 
-	public yn(xn var1) {
+	public yn(EntityInsentient var1) {
 		this.a = var1;
 		this.b = var1.locationX;
 		this.c = var1.locationY;

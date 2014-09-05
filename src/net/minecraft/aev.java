@@ -4,9 +4,9 @@ import java.util.Random;
 
 class aev extends zb {
 
-	private aer a;
+	private EntityEnderman a;
 
-	public aev(aer var1) {
+	public aev(EntityEnderman var1) {
 		this.a = var1;
 	}
 
@@ -23,7 +23,7 @@ class aev extends zb {
 		Position var6 = new Position(var3, var4, var5);
 		bec var7 = var2.p(var6);
 		Block var8 = var7.c();
-		if (aer.co().contains(var8)) {
+		if (EntityEnderman.co().contains(var8)) {
 			this.a.a(var7);
 			var2.a(var6, aty.a.P());
 		}

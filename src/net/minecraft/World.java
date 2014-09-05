@@ -2008,7 +2008,7 @@ public abstract class World implements ard {
 
 		while (var3.hasNext()) {
 			Entity var4 = (Entity) var3.next();
-			if ((!(var4 instanceof xn) || !((xn) var4).bY()) && var1.isAssignableFrom(var4.getClass())) {
+			if ((!(var4 instanceof EntityInsentient) || !((EntityInsentient) var4).bY()) && var1.isAssignableFrom(var4.getClass())) {
 				++var2;
 			}
 		}

@@ -10,23 +10,23 @@ class so implements bez {
 	}
 
 	public void a(bfb var1, double var2) {
-		this.a.a((Packet) (new kr(var1, kt.a)));
+		this.a.sendPacket((Packet) (new kr(var1, kt.a)));
 	}
 
 	public void a(bfb var1, double var2, double var4, long var6) {
-		this.a.a((Packet) (new kr(var1, kt.b)));
+		this.a.sendPacket((Packet) (new kr(var1, kt.b)));
 	}
 
 	public void a(bfb var1, double var2, double var4) {
-		this.a.a((Packet) (new kr(var1, kt.c)));
+		this.a.sendPacket((Packet) (new kr(var1, kt.c)));
 	}
 
 	public void a(bfb var1, int var2) {
-		this.a.a((Packet) (new kr(var1, kt.e)));
+		this.a.sendPacket((Packet) (new kr(var1, kt.e)));
 	}
 
 	public void b(bfb var1, int var2) {
-		this.a.a((Packet) (new kr(var1, kt.f)));
+		this.a.sendPacket((Packet) (new kr(var1, kt.f)));
 	}
 
 	public void b(bfb var1, double var2) {

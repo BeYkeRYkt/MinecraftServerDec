@@ -2,11 +2,11 @@ package net.minecraft;
 
 class aen extends zb {
 
-	private aem a;
+	private EntityBlaze a;
 	private int b;
 	private int c;
 
-	public aen(aem var1) {
+	public aen(EntityBlaze var1) {
 		this.a = var1;
 		this.a(3);
 	}
@@ -57,7 +57,7 @@ class aen extends zb {
 					this.a.o.a((EntityHuman) null, 1009, new Position((int) this.a.locationX, (int) this.a.locationY, (int) this.a.locationZ), 0);
 
 					for (int var11 = 0; var11 < 1; ++var11) {
-						ahp var12 = new ahp(this.a.o, this.a, var4 + this.a.bb().nextGaussian() * (double) var10, var6, var8 + this.a.bb().nextGaussian() * (double) var10);
+						EntitySmallFireball var12 = new EntitySmallFireball(this.a.o, this.a, var4 + this.a.bb().nextGaussian() * (double) var10, var6, var8 + this.a.bb().nextGaussian() * (double) var10);
 						var12.locationY = this.a.locationY + (double) (this.a.K / 2.0F) + 0.5D;
 						this.a.o.d((Entity) var12);
 					}

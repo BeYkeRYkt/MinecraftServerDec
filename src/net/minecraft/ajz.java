@@ -24,7 +24,7 @@ public class ajz extends Item {
 				var7 = 1.0F;
 			}
 
-			ahj var8 = new ahj(var2, var3, var7 * 2.0F);
+			EntityArrow var8 = new EntityArrow(var2, var3, var7 * 2.0F);
 			if (var7 == 1.0F) {
 				var8.a(true);
 			}
@@ -51,7 +51,7 @@ public class ajz extends Item {
 				var3.playerInventory.a(amk.g);
 			}
 
-			var3.b(ty.J[Item.getId((Item) this)]);
+			var3.b(StatisticList.J[Item.getId((Item) this)]);
 			if (!var2.D) {
 				var2.d((Entity) var8);
 			}

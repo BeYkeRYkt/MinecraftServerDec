@@ -20,7 +20,7 @@ public class alj extends Item {
 			}
 
 			var3.bv();
-			var3.b(ty.J[Item.getId((Item) this)]);
+			var3.b(StatisticList.J[Item.getId((Item) this)]);
 		}
 
 		return var1;

@@ -8,8 +8,8 @@ public class ana extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, EntityLiving var3) {
-		if (var3 instanceof aca) {
-			aca var4 = (aca) var3;
+		if (var3 instanceof EntityPig) {
+			EntityPig var4 = (EntityPig) var3;
 			if (!var4.cj() && !var4.i_()) {
 				var4.l(true);
 				var4.o.a((Entity) var4, "mob.horse.leather", 0.5F, 1.0F);

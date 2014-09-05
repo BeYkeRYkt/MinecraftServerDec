@@ -7,7 +7,7 @@ public class aay extends aaz {
 	protected bpy a;
 	private boolean f;
 
-	public aay(xn var1, World var2) {
+	public aay(EntityInsentient var1, World var2) {
 		super(var1, var2);
 	}
 
@@ -18,7 +18,7 @@ public class aay extends aaz {
 	}
 
 	protected boolean b() {
-		return this.b.onGround || this.h() && this.o() || this.b.av() && this.b instanceof agj && this.b.m instanceof abr;
+		return this.b.onGround || this.h() && this.o() || this.b.av() && this.b instanceof EntityZombie && this.b.m instanceof EntityChicken;
 	}
 
 	protected brw c() {

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public abstract class act extends xn implements wt {
+public abstract class act extends EntityInsentient implements wt {
 
 	public act(World var1) {
 		super(var1);

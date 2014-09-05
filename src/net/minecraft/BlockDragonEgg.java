@@ -25,7 +25,7 @@ public class BlockDragonEgg extends Block {
 		if (avt.d(var1, var2.b()) && var2.o() >= 0) {
 			byte var3 = 32;
 			if (!avt.M && var1.a(var2.a(-var3, -var3, -var3), var2.a(var3, var3, var3))) {
-				var1.d((Entity) (new adv(var1, (double) ((float) var2.n() + 0.5F), (double) var2.o(), (double) ((float) var2.p() + 0.5F), this.P())));
+				var1.d((Entity) (new EntityFallingBlock(var1, (double) ((float) var2.n() + 0.5F), (double) var2.o(), (double) ((float) var2.p() + 0.5F), this.P())));
 			} else {
 				var1.g(var2);
 

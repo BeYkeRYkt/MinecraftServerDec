@@ -35,7 +35,7 @@ public class avt extends Block {
 			byte var3 = 32;
 			if (!M && var1.a(var2.a(-var3, -var3, -var3), var2.a(var3, var3, var3))) {
 				if (!var1.D) {
-					adv var5 = new adv(var1, (double) var2.n() + 0.5D, (double) var2.o(), (double) var2.p() + 0.5D, var1.p(var2));
+					EntityFallingBlock var5 = new EntityFallingBlock(var1, (double) var2.n() + 0.5D, (double) var2.o(), (double) var2.p() + 0.5D, var1.p(var2));
 					this.a(var5);
 					var1.d((Entity) var5);
 				}
@@ -55,7 +55,7 @@ public class avt extends Block {
 		}
 	}
 
-	protected void a(adv var1) {
+	protected void a(EntityFallingBlock var1) {
 	}
 
 	public int a(World var1) {

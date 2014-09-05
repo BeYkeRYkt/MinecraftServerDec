@@ -29,7 +29,7 @@ public class asd extends arm {
 		}
 
 		if (this.aG == 0) {
-			this.au.add(new arq(acu.class, 5, 4, 4));
+			this.au.add(new arq(EntityWolf.class, 5, 4, 4));
 		}
 
 		if (this.aG == 3) {

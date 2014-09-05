@@ -126,7 +126,7 @@ public class BlockSkull extends atg {
 				}
 
 				Position var12 = var5.a(1, 0, 0).d();
-				adf var14 = new adf(var1);
+				EntityWither var14 = new EntityWither(var1);
 				Position var15 = var5.a(1, 2, 0).d();
 				var14.b((double) var15.n() + 0.5D, (double) var15.o() + 0.55D, (double) var15.p() + 0.5D, var5.b().k() == el.a ? 0.0F : 90.0F, 0.0F);
 				var14.aG = var5.b().k() == el.a ? 0.0F : 90.0F;
@@ -135,7 +135,7 @@ public class BlockSkull extends atg {
 
 				while (var9.hasNext()) {
 					EntityHuman var10 = (EntityHuman) var9.next();
-					var10.b((PlayerStatistic) tl.I);
+					var10.b((Statistic) tl.I);
 				}
 
 				var1.d((Entity) var14);

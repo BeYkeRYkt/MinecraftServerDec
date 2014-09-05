@@ -36,7 +36,7 @@ public class wh {
 		return new wi("player", var0);
 	}
 
-	public static wh a(ahj var0, Entity var1) {
+	public static wh a(EntityArrow var0, Entity var1) {
 		return (new wj("arrow", var0, var1)).b();
 	}
 

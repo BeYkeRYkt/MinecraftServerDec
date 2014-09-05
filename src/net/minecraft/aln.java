@@ -34,6 +34,6 @@ public class aln extends Item {
 	}
 
 	private adj a(World var1, Position var2, PaintingDirection var3) {
-		return (adj) (this.a == EntityPainting.class ? new EntityPainting(var1, var2, var3) : (this.a == adk.class ? new adk(var1, var2, var3) : null));
+		return (adj) (this.a == EntityPainting.class ? new EntityPainting(var1, var2, var3) : (this.a == EntityItemFrame.class ? new EntityItemFrame(var1, var2, var3) : null));
 	}
 }

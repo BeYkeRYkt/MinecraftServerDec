@@ -117,20 +117,20 @@ public abstract class arm {
 		this.az = var1;
 		aE[var1] = this;
 		this.as = this.a();
-		this.au.add(new arq(acl.class, 12, 4, 4));
-		this.au.add(new arq(acb.class, 10, 3, 3));
-		this.au.add(new arq(aca.class, 10, 4, 4));
-		this.au.add(new arq(abr.class, 10, 4, 4));
-		this.au.add(new arq(abs.class, 8, 4, 4));
-		this.at.add(new arq(age.class, 100, 4, 4));
-		this.at.add(new arq(agj.class, 100, 4, 4));
-		this.at.add(new arq(afw.class, 100, 4, 4));
-		this.at.add(new arq(aep.class, 100, 4, 4));
-		this.at.add(new arq(afy.class, 100, 4, 4));
-		this.at.add(new arq(aer.class, 10, 1, 4));
-		this.at.add(new arq(agi.class, 5, 1, 1));
-		this.av.add(new arq(aco.class, 10, 4, 4));
-		this.aw.add(new arq(abo.class, 10, 8, 8));
+		this.au.add(new arq(EntitySheep.class, 12, 4, 4));
+		this.au.add(new arq(EntityRabbit.class, 10, 3, 3));
+		this.au.add(new arq(EntityPig.class, 10, 4, 4));
+		this.au.add(new arq(EntityChicken.class, 10, 4, 4));
+		this.au.add(new arq(EntityCow.class, 8, 4, 4));
+		this.at.add(new arq(EntitySpider.class, 100, 4, 4));
+		this.at.add(new arq(EntityZombie.class, 100, 4, 4));
+		this.at.add(new arq(EntitySkeleton.class, 100, 4, 4));
+		this.at.add(new arq(EntityCreeper.class, 100, 4, 4));
+		this.at.add(new arq(EntitySlime.class, 100, 4, 4));
+		this.at.add(new arq(EntityEnderman.class, 10, 1, 4));
+		this.at.add(new arq(EntityWitch.class, 5, 1, 1));
+		this.av.add(new arq(EntitySquid.class, 10, 4, 4));
+		this.aw.add(new arq(EntityBat.class, 10, 8, 8));
 	}
 
 	protected ary a() {

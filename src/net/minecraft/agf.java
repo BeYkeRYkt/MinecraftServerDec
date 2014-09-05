@@ -2,7 +2,7 @@ package net.minecraft;
 
 class agf extends zk {
 
-	public agf(age var1, Class var2) {
+	public agf(EntitySpider var1, Class var2) {
 		super(var1, var2, 1.0D, true);
 	}
 

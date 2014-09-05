@@ -17,7 +17,7 @@ public class xj implements Predicate {
 			return false;
 		} else {
 			EntityLiving var2 = (EntityLiving) var1;
-			return var2.p(xn.c(this.a)) != null ? false : (var2 instanceof xn ? ((xn) var2).bX() : (var2 instanceof adi ? true : var2 instanceof EntityHuman));
+			return var2.p(EntityInsentient.c(this.a)) != null ? false : (var2 instanceof EntityInsentient ? ((EntityInsentient) var2).bX() : (var2 instanceof EntityArmorStand ? true : var2 instanceof EntityHuman));
 		}
 	}
 

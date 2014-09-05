@@ -5,7 +5,7 @@ import com.google.common.base.Predicate;
 final class abu implements Predicate {
 
 	public boolean a(Entity var1) {
-		return var1 instanceof abt && ((abt) var1).cy();
+		return var1 instanceof EntityHorse && ((EntityHorse) var1).cy();
 	}
 
 	// $FF: synthetic method

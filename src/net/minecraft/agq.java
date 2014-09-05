@@ -5,14 +5,14 @@ import com.google.common.base.Predicate;
 class agq implements Predicate {
 
 	// $FF: synthetic field
-	final agp a;
+	final EntityVillager a;
 
-	agq(agp var1) {
+	agq(EntityVillager var1) {
 		this.a = var1;
 	}
 
 	public boolean a(Entity var1) {
-		return var1 instanceof agj;
+		return var1 instanceof EntityZombie;
 	}
 
 	// $FF: synthetic method

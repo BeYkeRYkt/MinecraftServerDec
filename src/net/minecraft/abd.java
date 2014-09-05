@@ -5,11 +5,11 @@ import java.util.List;
 
 public class abd {
 
-	xn a;
+	EntityInsentient a;
 	List b = Lists.newArrayList();
 	List c = Lists.newArrayList();
 
-	public abd(xn var1) {
+	public abd(EntityInsentient var1) {
 		this.a = var1;
 	}
 

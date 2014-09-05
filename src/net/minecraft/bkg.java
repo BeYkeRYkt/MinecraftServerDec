@@ -80,6 +80,6 @@ public class bkg extends bmm {
 	}
 
 	static {
-		h.add(new arq(afg.class, 1, 2, 4));
+		h.add(new arq(EntityGuardian.class, 1, 2, 4));
 	}
 }

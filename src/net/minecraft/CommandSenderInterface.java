@@ -6,7 +6,7 @@ public interface CommandSenderInterface {
 
 	IJSONComponent e_();
 
-	void a(IJSONComponent var1);
+	void sendChatMessage(IJSONComponent var1);
 
 	boolean a(int var1, String var2);
 

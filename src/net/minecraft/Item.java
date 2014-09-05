@@ -464,7 +464,7 @@ public class Item {
 		a(325, "bucket", var0);
 		a(326, "water_bucket", (new akb(aty.i)).c("bucketWater").c(var0));
 		a(327, "lava_bucket", (new akb(aty.k)).c("bucketLava").c(var0));
-		a(328, "minecart", (new amp(adz.a)).c("minecart"));
+		a(328, "minecart", (new amp(MinecartType.RIDEABLE)).c("minecart"));
 		a(329, "saddle", (new ana()).c("saddle"));
 		a(330, "iron_door", (new akt(aty.aA)).c("doorIron"));
 		a(331, "redstone", (new amz()).c("redstone").e(ans.i));
@@ -478,8 +478,8 @@ public class Item {
 		a(339, "paper", (new Item()).c("paper").a(CreativeModeTab.f));
 		a(340, "book", (new ajx()).c("book").a(CreativeModeTab.f));
 		a(341, "slime_ball", (new Item()).c("slimeball").a(CreativeModeTab.f));
-		a(342, "chest_minecart", (new amp(adz.b)).c("minecartChest"));
-		a(343, "furnace_minecart", (new amp(adz.c)).c("minecartFurnace"));
+		a(342, "chest_minecart", (new amp(MinecartType.CHEST)).c("minecartChest"));
+		a(343, "furnace_minecart", (new amp(MinecartType.FURNACE)).c("minecartFurnace"));
 		a(344, "egg", (new aky()).c("egg"));
 		a(345, "compass", (new Item()).c("compass").a(CreativeModeTab.i));
 		a(346, "fishing_rod", (new alj()).c("fishingRod"));
@@ -525,7 +525,7 @@ public class Item {
 		a(386, "writable_book", (new anq()).c("writingBook").a(CreativeModeTab.f));
 		a(387, "written_book", (new anr()).c("writtenBook").c(16));
 		a(388, "emerald", (new Item()).c("emerald").a(CreativeModeTab.l));
-		a(389, "item_frame", (new aln(adk.class)).c("frame"));
+		a(389, "item_frame", (new aln(EntityItemFrame.class)).c("frame"));
 		a(390, "flower_pot", (new ajv(aty.ca)).c("flowerPot").a(CreativeModeTab.c));
 		a(391, "carrot", (new anb(3, 0.6F, aty.cb, aty.ak)).c("carrots"));
 		a(392, "potato", (new anb(1, 0.3F, aty.cc, aty.ak)).c("potato"));
@@ -543,8 +543,8 @@ public class Item {
 		a(404, "comparator", (new ajv(aty.cj)).c("comparator").a(CreativeModeTab.d));
 		a(405, "netherbrick", (new Item()).c("netherbrick").a(CreativeModeTab.l));
 		a(406, "quartz", (new Item()).c("netherquartz").a(CreativeModeTab.l));
-		a(407, "tnt_minecart", (new amp(adz.d)).c("minecartTnt"));
-		a(408, "hopper_minecart", (new amp(adz.f)).c("minecartHopper"));
+		a(407, "tnt_minecart", (new amp(MinecartType.TNT)).c("minecartTnt"));
+		a(408, "hopper_minecart", (new amp(MinecartType.HOPPER)).c("minecartHopper"));
 		a(409, "prismarine_shard", (new Item()).c("prismarineShard").a(CreativeModeTab.l));
 		a(410, "prismarine_crystals", (new Item()).c("prismarineCrystals").a(CreativeModeTab.l));
 		a(411, "rabbit", (new all(3, 0.3F, true)).c("rabbitRaw"));
@@ -558,7 +558,7 @@ public class Item {
 		a(419, "diamond_horse_armor", (new Item()).c("horsearmordiamond").c(1).a(CreativeModeTab.f));
 		a(420, "lead", (new aml()).c("leash"));
 		a(421, "name_tag", (new amt()).c("nameTag"));
-		a(422, "command_block_minecart", (new amp(adz.g)).c("minecartCommandBlock").a((CreativeModeTab) null));
+		a(422, "command_block_minecart", (new amp(MinecartType.COMMAND_BLOCK)).c("minecartCommandBlock").a((CreativeModeTab) null));
 		a(423, "mutton", (new all(2, 0.3F, true)).c("muttonRaw"));
 		a(424, "cooked_mutton", (new all(6, 0.8F, true)).c("muttonCooked"));
 		a(425, "banner", (new ajs()).b("banner"));

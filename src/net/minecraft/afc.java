@@ -2,10 +2,10 @@ package net.minecraft;
 
 class afc extends yn {
 
-	private afa g;
+	private EntityGhast g;
 	private int h;
 
-	public afc(afa var1) {
+	public afc(EntityGhast var1) {
 		super(var1);
 		this.g = var1;
 	}

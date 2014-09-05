@@ -122,9 +122,9 @@ public class abk {
 		if (var1 == null) {
 			return false;
 		} else {
-			agj var2;
+			EntityZombie var2;
 			try {
-				var2 = new agj(this.a);
+				var2 = new EntityZombie(this.a);
 				var2.a(this.a.E(new Position(var2)), (xq) null);
 				var2.m(false);
 			} catch (Exception var4) {

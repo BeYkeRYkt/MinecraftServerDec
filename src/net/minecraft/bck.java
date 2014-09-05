@@ -69,7 +69,7 @@ public class bck extends bdf implements pm, IInventory {
 		this.j = 0;
 		this.f.clear();
 		this.i = true;
-		bcl var5 = new bcl(acl.a(akv.a));
+		bcl var5 = new bcl(EntitySheep.a(akv.a));
 		this.f.add(var5);
 		boolean var6 = true;
 
@@ -79,7 +79,7 @@ public class bck extends bdf implements pm, IInventory {
 			bec var9 = this.b.p(var8);
 			float[] var10;
 			if (var9.c() == aty.cG) {
-				var10 = acl.a((akv) var9.b(BlockStainedGlass.a));
+				var10 = EntitySheep.a((akv) var9.b(BlockStainedGlass.a));
 			} else {
 				if (var9.c() != aty.cH) {
 					if (var9.c().n() >= 15) {
@@ -92,7 +92,7 @@ public class bck extends bdf implements pm, IInventory {
 					continue;
 				}
 
-				var10 = acl.a((akv) var9.b(BlockStainedGlassPane.a));
+				var10 = EntitySheep.a((akv) var9.b(BlockStainedGlassPane.a));
 			}
 
 			if (!var6) {
@@ -143,7 +143,7 @@ public class bck extends bdf implements pm, IInventory {
 
 			while (var13.hasNext()) {
 				EntityHuman var15 = (EntityHuman) var13.next();
-				var15.b((PlayerStatistic) tl.K);
+				var15.b((Statistic) tl.K);
 			}
 		}
 

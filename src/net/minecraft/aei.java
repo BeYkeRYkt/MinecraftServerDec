@@ -3,9 +3,9 @@ package net.minecraft;
 class aei extends aqi {
 
 	// $FF: synthetic field
-	final aeh a;
+	final EntityMinecartMobSpawner a;
 
-	aei(aeh var1) {
+	aei(EntityMinecartMobSpawner var1) {
 		this.a = var1;
 	}
 

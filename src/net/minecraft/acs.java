@@ -20,7 +20,7 @@ class acs implements Predicate {
 	public boolean a(EntityLiving var1) {
 		if (this.a != null && !this.a.apply(var1)) {
 			return false;
-		} else if (var1 instanceof aep) {
+		} else if (var1 instanceof EntityCreeper) {
 			return false;
 		} else {
 			if (var1 instanceof EntityHuman) {

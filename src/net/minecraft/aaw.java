@@ -66,7 +66,7 @@ public abstract class aaw extends zb {
 		this.e.d((EntityLiving) null);
 	}
 
-	public static boolean a(xn var0, EntityLiving var1, boolean var2, boolean var3) {
+	public static boolean a(EntityInsentient var0, EntityLiving var1, boolean var2, boolean var3) {
 		if (var1 == null) {
 			return false;
 		} else if (var1 == var0) {

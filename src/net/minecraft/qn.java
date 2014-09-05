@@ -36,53 +36,53 @@ public class qn {
 			}
 		} else if (var1 instanceof ado) {
 			this.a(var1, 64, 5, true);
-		} else if (var1 instanceof ahj) {
+		} else if (var1 instanceof EntityArrow) {
 			this.a(var1, 64, 20, false);
-		} else if (var1 instanceof ahp) {
+		} else if (var1 instanceof EntitySmallFireball) {
 			this.a(var1, 64, 10, false);
 		} else if (var1 instanceof ahl) {
 			this.a(var1, 64, 10, false);
-		} else if (var1 instanceof ahq) {
+		} else if (var1 instanceof EntitySnowball) {
 			this.a(var1, 64, 10, true);
-		} else if (var1 instanceof aht) {
+		} else if (var1 instanceof EntityEnderPearl) {
 			this.a(var1, 64, 10, true);
-		} else if (var1 instanceof ahk) {
+		} else if (var1 instanceof EntityEnderSignal) {
 			this.a(var1, 64, 4, true);
 		} else if (var1 instanceof ahs) {
 			this.a(var1, 64, 10, true);
-		} else if (var1 instanceof ahv) {
+		} else if (var1 instanceof EntityPotion) {
 			this.a(var1, 64, 10, true);
-		} else if (var1 instanceof ahu) {
+		} else if (var1 instanceof EntityThrownExpBottle) {
 			this.a(var1, 64, 10, true);
-		} else if (var1 instanceof ahm) {
+		} else if (var1 instanceof EntityFireworks) {
 			this.a(var1, 64, 10, true);
-		} else if (var1 instanceof adw) {
+		} else if (var1 instanceof EntityItem) {
 			this.a(var1, 64, 20, true);
 		} else if (var1 instanceof adx) {
 			this.a(var1, 80, 3, true);
-		} else if (var1 instanceof adu) {
+		} else if (var1 instanceof EntityBoat) {
 			this.a(var1, 80, 3, true);
-		} else if (var1 instanceof aco) {
+		} else if (var1 instanceof EntitySquid) {
 			this.a(var1, 64, 3, true);
-		} else if (var1 instanceof adf) {
+		} else if (var1 instanceof EntityWither) {
 			this.a(var1, 80, 3, false);
-		} else if (var1 instanceof abo) {
+		} else if (var1 instanceof EntityBat) {
 			this.a(var1, 80, 3, false);
-		} else if (var1 instanceof adb) {
+		} else if (var1 instanceof EntityEnderDragon) {
 			this.a(var1, 160, 3, true);
 		} else if (var1 instanceof wt) {
 			this.a(var1, 80, 3, true);
-		} else if (var1 instanceof aek) {
+		} else if (var1 instanceof EntityTNTPrimed) {
 			this.a(var1, 160, 10, true);
-		} else if (var1 instanceof adv) {
+		} else if (var1 instanceof EntityFallingBlock) {
 			this.a(var1, 160, 20, true);
 		} else if (var1 instanceof adj) {
 			this.a(var1, 160, Integer.MAX_VALUE, false);
-		} else if (var1 instanceof adi) {
+		} else if (var1 instanceof EntityArmorStand) {
 			this.a(var1, 160, 3, true);
-		} else if (var1 instanceof ExpirienceOrb) {
+		} else if (var1 instanceof EntityExpirienceOrb) {
 			this.a(var1, 160, 20, true);
-		} else if (var1 instanceof ada) {
+		} else if (var1 instanceof EntityEnderCrystal) {
 			this.a(var1, 256, Integer.MAX_VALUE, false);
 		}
 

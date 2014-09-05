@@ -74,9 +74,9 @@ public class yt extends zb {
 			}
 
 			if (var2 != null) {
-				var2.b(ty.A);
-				if (this.d instanceof abs) {
-					var2.b((PlayerStatistic) tl.H);
+				var2.b(StatisticList.A);
+				if (this.d instanceof EntityCow) {
+					var2.b((Statistic) tl.H);
 				}
 			}
 
@@ -97,7 +97,7 @@ public class yt extends zb {
 			}
 
 			if (this.a.Q().b("doMobLoot")) {
-				this.a.d((Entity) (new ExpirienceOrb(this.a, this.d.locationX, this.d.locationY, this.d.locationZ, var3.nextInt(7) + 1)));
+				this.a.d((Entity) (new EntityExpirienceOrb(this.a, this.d.locationX, this.d.locationY, this.d.locationZ, var3.nextInt(7) + 1)));
 			}
 
 		}

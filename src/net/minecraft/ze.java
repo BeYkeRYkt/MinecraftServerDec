@@ -2,12 +2,12 @@ package net.minecraft;
 
 public class ze extends zn {
 
-	private final agp c;
+	private final EntityVillager c;
 	private boolean d;
 	private boolean e;
 	private int f;
 
-	public ze(agp var1, double var2) {
+	public ze(EntityVillager var1, double var2) {
 		super(var1, var2, 16);
 		this.c = var1;
 	}

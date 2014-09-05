@@ -44,7 +44,7 @@ public class ajg extends ajk {
 			ItemStack var5 = this.a.a(1);
 			if (this.a(var3, var4, var5) || this.a(var3, var5, var4)) {
 				this.h.a(var3);
-				var1.b(ty.G);
+				var1.b(StatisticList.G);
 				if (var4 != null && var4.b <= 0) {
 					var4 = null;
 				}

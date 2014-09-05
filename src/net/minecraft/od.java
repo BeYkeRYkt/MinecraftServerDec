@@ -46,7 +46,7 @@ public class od {
 			Block.registerBlocks();
 			BlockFire.j();
 			Item.t();
-			ty.a();
+			StatisticList.a();
 			b();
 		}
 	}

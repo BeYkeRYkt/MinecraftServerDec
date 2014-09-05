@@ -11,7 +11,7 @@ public class PacketSpawnExpirienceOrb implements Packet<PlayPacketListener> {
 	public PacketSpawnExpirienceOrb() {
 	}
 
-	public PacketSpawnExpirienceOrb(ExpirienceOrb orb) {
+	public PacketSpawnExpirienceOrb(EntityExpirienceOrb orb) {
 		this.entityId = orb.getId();
 		this.x = DataTypesConverter.toFixedPointInt(orb.locationX * 32.0D);
 		this.y = DataTypesConverter.toFixedPointInt(orb.locationY * 32.0D);

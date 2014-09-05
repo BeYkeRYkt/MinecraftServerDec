@@ -55,7 +55,7 @@ public class abi {
 		if (this.l < var2 && this.b.size() > 20 && this.a.s.nextInt(7000) == 0) {
 			brw var3 = this.a(this.d, 2, 4, 2);
 			if (var3 != null) {
-				acq var4 = new acq(this.a);
+				EntityIronGolem var4 = new EntityIronGolem(this.a);
 				var4.b(var3.a, var3.b, var3.c);
 				this.a.d((Entity) var4);
 				++this.l;
@@ -97,12 +97,12 @@ public class abi {
 	}
 
 	private void j() {
-		List var1 = this.a.a(acq.class, new brt((double) (this.d.n() - this.e), (double) (this.d.o() - 4), (double) (this.d.p() - this.e), (double) (this.d.n() + this.e), (double) (this.d.o() + 4), (double) (this.d.p() + this.e)));
+		List var1 = this.a.a(EntityIronGolem.class, new brt((double) (this.d.n() - this.e), (double) (this.d.o() - 4), (double) (this.d.p() - this.e), (double) (this.d.n() + this.e), (double) (this.d.o() + 4), (double) (this.d.p() + this.e)));
 		this.l = var1.size();
 	}
 
 	private void k() {
-		List var1 = this.a.a(agp.class, new brt((double) (this.d.n() - this.e), (double) (this.d.o() - 4), (double) (this.d.p() - this.e), (double) (this.d.n() + this.e), (double) (this.d.o() + 4), (double) (this.d.p() + this.e)));
+		List var1 = this.a.a(EntityVillager.class, new brt((double) (this.d.n() - this.e), (double) (this.d.o() - 4), (double) (this.d.p() - this.e), (double) (this.d.n() + this.e), (double) (this.d.o() + 4), (double) (this.d.p() + this.e)));
 		this.h = var1.size();
 		if (this.h == 0) {
 			this.j.clear();

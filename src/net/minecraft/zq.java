@@ -3,11 +3,11 @@ package net.minecraft;
 public class zq extends zb {
 
 	World a;
-	xn b;
+	EntityInsentient b;
 	EntityLiving c;
 	int d;
 
-	public zq(xn var1) {
+	public zq(EntityInsentient var1) {
 		this.b = var1;
 		this.a = var1.o;
 		this.a(3);

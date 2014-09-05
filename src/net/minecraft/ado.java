@@ -365,7 +365,7 @@ public class ado extends Entity {
 				this.c.motionZ += var6 * var10;
 				var1 = 3;
 			} else if (this.at > 0) {
-				adw var13 = new adw(this.o, this.locationX, this.locationY, this.locationZ, this.m());
+				EntityItem var13 = new EntityItem(this.o, this.locationX, this.locationY, this.locationZ, this.m());
 				double var3 = this.b.locationX - this.locationX;
 				double var5 = this.b.locationY - this.locationY;
 				double var7 = this.b.locationZ - this.locationZ;
@@ -375,7 +375,7 @@ public class ado extends Entity {
 				var13.motionY = var5 * var11 + (double) DataTypesConverter.a(var9) * 0.08D;
 				var13.motionZ = var7 * var11;
 				this.o.d((Entity) var13);
-				this.b.o.d((Entity) (new ExpirienceOrb(this.b.o, this.b.locationX, this.b.locationY + 0.5D, this.b.locationZ + 0.5D, this.V.nextInt(6) + 1)));
+				this.b.o.d((Entity) (new EntityExpirienceOrb(this.b.o, this.b.locationX, this.b.locationY + 0.5D, this.b.locationZ + 0.5D, this.V.nextInt(6) + 1)));
 				var1 = 1;
 			}
 
@@ -398,16 +398,16 @@ public class ado extends Entity {
 		var4 = DataTypesConverter.a(var4, 0.0F, 1.0F);
 		var5 = DataTypesConverter.a(var5, 0.0F, 1.0F);
 		if (var1 < var4) {
-			this.b.b(ty.D);
+			this.b.b(StatisticList.D);
 			return ((adp) vj.a(this.V, d)).a(this.V);
 		} else {
 			var1 -= var4;
 			if (var1 < var5) {
-				this.b.b(ty.E);
+				this.b.b(StatisticList.E);
 				return ((adp) vj.a(this.V, e)).a(this.V);
 			} else {
 				float var10000 = var1 - var5;
-				this.b.b(ty.C);
+				this.b.b(StatisticList.C);
 				return ((adp) vj.a(this.V, f)).a(this.V);
 			}
 		}

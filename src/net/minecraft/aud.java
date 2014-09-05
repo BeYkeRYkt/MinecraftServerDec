@@ -181,7 +181,7 @@ public abstract class aud extends Block {
 
 	private void f(World var1, Position var2, bec var3) {
 		this.d(var3);
-		List var4 = var1.a(ahj.class, new brt((double) var2.n() + this.B, (double) var2.o() + this.C, (double) var2.p() + this.D, (double) var2.n() + this.E, (double) var2.o() + this.F, (double) var2.p() + this.G));
+		List var4 = var1.a(EntityArrow.class, new brt((double) var2.n() + this.B, (double) var2.o() + this.C, (double) var2.p() + this.D, (double) var2.n() + this.E, (double) var2.o() + this.F, (double) var2.p() + this.G));
 		boolean var5 = !var4.isEmpty();
 		boolean var6 = ((Boolean) var3.b(b)).booleanValue();
 		if (var5 && !var6) {

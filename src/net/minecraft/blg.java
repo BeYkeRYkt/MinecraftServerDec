@@ -19,7 +19,7 @@ public class blg extends bmm {
 		this.f = Lists.newArrayList();
 		this.g = 32;
 		this.h = 8;
-		this.f.add(new arq(agi.class, 1, 1, 1));
+		this.f.add(new arq(EntityWitch.class, 1, 1, 1));
 	}
 
 	public blg(Map var1) {

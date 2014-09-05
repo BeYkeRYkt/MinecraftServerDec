@@ -3,9 +3,9 @@ package net.minecraft;
 class aec extends aqf {
 
 	// $FF: synthetic field
-	final aeb a;
+	final EntityMinecartCommandBlock a;
 
-	aec(aeb var1) {
+	aec(EntityMinecartCommandBlock var1) {
 		this.a = var1;
 	}
 

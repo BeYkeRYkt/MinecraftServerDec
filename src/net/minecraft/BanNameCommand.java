@@ -39,7 +39,7 @@ public class BanNameCommand extends AbstractCommand {
 				var3.getPlayerList().i().a((sr) var6);
 				EntityPlayer var7 = var3.getPlayerList().a(var2[0]);
 				if (var7 != null) {
-					var7.a.c("You are banned from this server.");
+					var7.playerConncetion.c("You are banned from this server.");
 				}
 
 				a(var1, this, "commands.ban.success", new Object[] { var2[0] });

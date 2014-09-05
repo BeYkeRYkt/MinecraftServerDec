@@ -36,8 +36,6 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
-import java.util.concurrent.FutureTask;
-
 import javax.imageio.ImageIO;
 
 import org.apache.commons.lang3.Validate;
@@ -84,9 +82,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private boolean N;
 	private String O = "";
 	private String P = "";
-	private boolean Q;
 	private long R;
-	private String S;
 	private boolean T;
 	private boolean U;
 	private final YggdrasilAuthenticationService authService;
@@ -94,7 +90,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private long lastServerPingUpdate = 0L;
 	private final GameProfileRepository gameProflieRepository;
 	private final UserCache userCache;
-	protected final Queue<ListenableFutureTask> i = Queues.newArrayDeque();
+	protected final Queue<ListenableFutureTask<?>> tasks = Queues.newArrayDeque();
 	private Thread mainThread;
 	private long lastTickTime = getCurrentMillis();
 
@@ -127,7 +123,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	protected synchronized void b(String var1) {
-		this.S = var1;
 	}
 
 	protected void a(String var1, String var2, long var3, LevelType var5, String var6) {
@@ -338,7 +333,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 					}
 
 					Thread.sleep(Math.max(1L, 50L - var1));
-					this.Q = true;
 				}
 			} else {
 				this.handleCommandsBecausePortBindingFailed(null);
@@ -414,7 +408,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		}
 
 		this.profiler.a("root");
-		this.z();
+		this.doTick();
 		if (var1 - this.lastServerPingUpdate >= 5000000000L) {
 			this.lastServerPingUpdate = var1;
 			this.serverPing.a(new nq(this.H(), this.G()));
@@ -452,30 +446,31 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.profiler.b();
 	}
 
-	public void z() {
+	public void doTick() {
 		this.profiler.a("jobs");
-		Queue<ListenableFutureTask> var1 = this.i;
-		synchronized (this.i) {
-			while (!this.i.isEmpty()) {
+
+		synchronized (this.tasks) {
+			while (!this.tasks.isEmpty()) {
 				try {
-					((FutureTask) this.i.poll()).run();
-				} catch (Throwable var9) {
-					logger.fatal((Object) var9);
+					this.tasks.poll().run();
+				} catch (Throwable t) {
+					logger.fatal((Object) t);
 				}
 			}
 		}
 
 		this.profiler.c("levels");
 
-		int var11;
-		for (var11 = 0; var11 < this.worlds.length; ++var11) {
+		int i;
+		for (i = 0; i < this.worlds.length; ++i) {
 			long var2 = System.nanoTime();
-			if (var11 == 0 || this.isNetherAllowed()) {
-				WorldServer var4 = this.worlds[var11];
-				this.profiler.a(var4.P().k());
+			if (i == 0 || this.isNetherAllowed()) {
+				WorldServer world = this.worlds[i];
+				this.profiler.a(world.P().k());
+
 				if (this.ticks % 20 == 0) {
 					this.profiler.a("timeSync");
-					this.playerList.a((Packet) (new PacketTimeUpdate(var4.K(), var4.L(), var4.Q().b("doDaylightCycle"))), var4.worldProvider.getDimensionId());
+					this.playerList.sendPacket((Packet<?>) (new PacketTimeUpdate(world.K(), world.L(), world.Q().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
 					this.profiler.b();
 				}
 
@@ -483,29 +478,29 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 				CrashReport var6;
 				try {
-					var4.c();
+					world.c();
 				} catch (Throwable var8) {
 					var6 = CrashReport.generateCrashReport(var8, "Exception ticking world");
-					var4.a(var6);
+					world.a(var6);
 					throw new ReportedException(var6);
 				}
 
 				try {
-					var4.i();
+					world.i();
 				} catch (Throwable var7) {
 					var6 = CrashReport.generateCrashReport(var7, "Exception ticking world entities");
-					var4.a(var6);
+					world.a(var6);
 					throw new ReportedException(var6);
 				}
 
 				this.profiler.b();
 				this.profiler.a("tracker");
-				var4.s().a();
+				world.s().a();
 				this.profiler.b();
 				this.profiler.b();
 			}
 
-			this.h[var11][this.ticks % 100] = System.nanoTime() - var2;
+			this.h[i][this.ticks % 100] = System.nanoTime() - var2;
 		}
 
 		this.profiler.c("connection");
@@ -514,8 +509,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.playerList.e();
 		this.profiler.c("tickables");
 
-		for (var11 = 0; var11 < this.o.size(); ++var11) {
-			((pm) this.o.get(var11)).c();
+		for (i = 0; i < this.o.size(); ++i) {
+			((pm) this.o.get(i)).c();
 		}
 
 		this.profiler.b();
@@ -693,7 +688,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public CrashReport b(CrashReport var1) {
-		var1.g().addDetails("Profiler Position", (Callable) (new pf(this)));
+		var1.g().addDetails("Profiler Position", (Callable<?>) (new pf(this)));
 		if (this.playerList != null) {
 			var1.g().addDetails("Player Count", new OnlinePlayersInfoCallable());
 		}
@@ -706,9 +701,9 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		if (var2.startsWith("/")) {
 			var2 = var2.substring(1);
 			boolean var11 = !var2.contains(" ");
-			List var12 = this.commandHandler.a(var1, var2, var3);
+			List<?> var12 = this.commandHandler.a(var1, var2, var3);
 			if (var12 != null) {
-				Iterator var13 = var12.iterator();
+				Iterator<?> var13 = var12.iterator();
 
 				while (var13.hasNext()) {
 					String var14 = (String) var13.next();
@@ -750,7 +745,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return "Server";
 	}
 
-	public void a(IJSONComponent var1) {
+	public void sendChatMessage(IJSONComponent var1) {
 		logger.info(var1.c());
 	}
 
@@ -1112,13 +1107,12 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return 29999984;
 	}
 
-	public ListenableFuture a(Callable var1) {
+	public ListenableFuture<?> a(Callable<?> var1) {
 		Validate.notNull(var1);
 		if (!this.isMainThread()) {
-			ListenableFutureTask var2 = ListenableFutureTask.create(var1);
-			Queue var3 = this.i;
-			synchronized (this.i) {
-				this.i.add(var2);
+			ListenableFutureTask<?> var2 = ListenableFutureTask.create(var1);
+			synchronized (this.tasks) {
+				this.tasks.add(var2);
 				return var2;
 			}
 		} else {
@@ -1130,7 +1124,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		}
 	}
 
-	public ListenableFuture a(Runnable var1) {
+	public ListenableFuture<?> a(Runnable var1) {
 		Validate.notNull(var1);
 		return this.a(Executors.callable(var1));
 	}

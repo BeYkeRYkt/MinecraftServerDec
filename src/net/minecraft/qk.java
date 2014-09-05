@@ -18,7 +18,7 @@ public class qk extends qx {
 		long var3 = var1 / 24000L + 1L;
 		if (!this.c && this.f > 20) {
 			this.c = true;
-			this.b.a.a((Packet) (new jo(5, 0.0F)));
+			this.b.playerConncetion.sendPacket((Packet) (new jo(5, 0.0F)));
 		}
 
 		this.d = var1 > 120500L;
@@ -28,25 +28,25 @@ public class qk extends qx {
 
 		if (var1 % 24000L == 500L) {
 			if (var3 <= 6L) {
-				this.b.a((IJSONComponent) (new hz("demo.day." + var3, new Object[0])));
+				this.b.sendChatMessage((IJSONComponent) (new hz("demo.day." + var3, new Object[0])));
 			}
 		} else if (var3 == 1L) {
 			if (var1 == 100L) {
-				this.b.a.a((Packet) (new jo(5, 101.0F)));
+				this.b.playerConncetion.sendPacket((Packet) (new jo(5, 101.0F)));
 			} else if (var1 == 175L) {
-				this.b.a.a((Packet) (new jo(5, 102.0F)));
+				this.b.playerConncetion.sendPacket((Packet) (new jo(5, 102.0F)));
 			} else if (var1 == 250L) {
-				this.b.a.a((Packet) (new jo(5, 103.0F)));
+				this.b.playerConncetion.sendPacket((Packet) (new jo(5, 103.0F)));
 			}
 		} else if (var3 == 5L && var1 % 24000L == 22000L) {
-			this.b.a((IJSONComponent) (new hz("demo.day.warning", new Object[0])));
+			this.b.sendChatMessage((IJSONComponent) (new hz("demo.day.warning", new Object[0])));
 		}
 
 	}
 
 	private void f() {
 		if (this.e > 100) {
-			this.b.a((IJSONComponent) (new hz("demo.reminder", new Object[0])));
+			this.b.sendChatMessage((IJSONComponent) (new hz("demo.reminder", new Object[0])));
 			this.e = 0;
 		}
 

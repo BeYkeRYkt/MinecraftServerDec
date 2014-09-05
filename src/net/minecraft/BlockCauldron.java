@@ -76,7 +76,7 @@ public class BlockCauldron extends Block {
 							if (!var4.by.instabuild) {
 								var13 = new ItemStack(amk.bz, 1, 0);
 								if (!var4.playerInventory.a(var13)) {
-									var1.d((Entity) (new adw(var1, (double) var2.n() + 0.5D, (double) var2.o() + 1.5D, (double) var2.p() + 0.5D, var13)));
+									var1.d((Entity) (new EntityItem(var1, (double) var2.n() + 0.5D, (double) var2.o() + 1.5D, (double) var2.p() + 0.5D, var13)));
 								} else if (var4 instanceof EntityPlayer) {
 									((EntityPlayer) var4).a(var4.defaultContainer);
 								}
@@ -109,7 +109,7 @@ public class BlockCauldron extends Block {
 								var4.playerInventory.a(var4.playerInventory.c, var13);
 							} else {
 								if (!var4.playerInventory.a(var13)) {
-									var1.d((Entity) (new adw(var1, (double) var2.n() + 0.5D, (double) var2.o() + 1.5D, (double) var2.p() + 0.5D, var13)));
+									var1.d((Entity) (new EntityItem(var1, (double) var2.n() + 0.5D, (double) var2.o() + 1.5D, (double) var2.p() + 0.5D, var13)));
 								} else if (var4 instanceof EntityPlayer) {
 									((EntityPlayer) var4).a(var4.defaultContainer);
 								}

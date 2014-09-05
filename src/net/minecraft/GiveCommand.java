@@ -42,7 +42,7 @@ public class GiveCommand extends AbstractCommand {
 				var3.defaultContainer.b();
 			}
 
-			adw var9;
+			EntityItem var9;
 			if (var11 && var7.b <= 0) {
 				var7.b = 1;
 				var1.a(ag.d, var5);

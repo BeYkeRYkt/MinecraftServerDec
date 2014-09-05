@@ -2,10 +2,10 @@ package net.minecraft;
 
 public class aae extends zb {
 
-	aep a;
+	EntityCreeper a;
 	EntityLiving b;
 
-	public aae(aep var1) {
+	public aae(EntityCreeper var1) {
 		this.a = var1;
 		this.a(1);
 	}

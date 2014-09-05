@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class tk extends PlayerStatistic {
+public class tk extends Statistic {
 
 	public int a;
 	public int b;
@@ -77,17 +77,17 @@ public class tk extends PlayerStatistic {
 	}
 
 	// $FF: synthetic method
-	public PlayerStatistic b(Class var1) {
+	public Statistic b(Class var1) {
 		return this.a(var1);
 	}
 
 	// $FF: synthetic method
-	public PlayerStatistic h() {
+	public Statistic h() {
 		return this.c();
 	}
 
 	// $FF: synthetic method
-	public PlayerStatistic i() {
+	public Statistic i() {
 		return this.a();
 	}
 }

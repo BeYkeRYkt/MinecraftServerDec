@@ -12,14 +12,14 @@ import org.apache.logging.log4j.Logger;
 public class aam extends zb {
 
 	private static final Logger logger = LogManager.getLogger();
-	private xn b;
+	private EntityInsentient b;
 	private final Predicate<EntityLiving> predicate;
 	private final Comparator<Entity> comparator;
 	private EntityLiving e;
 	private Class<EntityLiving> f;
 
 	@SuppressWarnings("unchecked")
-	public aam(xn var1, Class<?> var2) {
+	public aam(EntityInsentient var1, Class<?> var2) {
 		this.b = var1;
 		this.f = (Class<EntityLiving>) var2;
 		if (var1 instanceof EntityCreature) {

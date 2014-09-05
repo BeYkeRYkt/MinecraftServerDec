@@ -17,7 +17,7 @@ class bdk implements CommandSenderInterface {
 		return new hy(this.d_());
 	}
 
-	public void a(IJSONComponent var1) {
+	public void sendChatMessage(IJSONComponent var1) {
 	}
 
 	public boolean a(int var1, String var2) {

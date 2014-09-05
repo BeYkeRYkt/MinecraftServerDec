@@ -25,7 +25,7 @@ public class AchievmentCommand extends AbstractCommand {
 		if (var2.length < 2) {
 			throw new dp("commands.achievement.usage", new Object[0]);
 		} else {
-			PlayerStatistic var3 = ty.a(var2[1]);
+			Statistic var3 = StatisticList.a(var2[1]);
 			if (var3 == null && !var2[1].equals("*")) {
 				throw new di("commands.achievement.unknownAchievement", new Object[] { var2[1] });
 			} else {
@@ -41,7 +41,7 @@ public class AchievmentCommand extends AbstractCommand {
 
 							while (var11.hasNext()) {
 								var12 = (tk) var11.next();
-								var4.b((PlayerStatistic) var12);
+								var4.b((Statistic) var12);
 							}
 
 							a(var1, this, "commands.achievement.give.success.all", new Object[] { var4.d_() });
@@ -50,7 +50,7 @@ public class AchievmentCommand extends AbstractCommand {
 
 							while (var11.hasNext()) {
 								var12 = (tk) var11.next();
-								var4.a((PlayerStatistic) var12);
+								var4.a((Statistic) var12);
 							}
 
 							a(var1, this, "commands.achievement.take.success.all", new Object[] { var4.d_() });
@@ -75,7 +75,7 @@ public class AchievmentCommand extends AbstractCommand {
 
 								while (var9.hasNext()) {
 									var10 = (tk) var9.next();
-									var4.b((PlayerStatistic) var10);
+									var4.b((Statistic) var10);
 								}
 							} else if (var6) {
 								if (!var4.A().a(var7)) {
@@ -90,7 +90,7 @@ public class AchievmentCommand extends AbstractCommand {
 
 								while (var9.hasNext()) {
 									var10 = (tk) var9.next();
-									var4.a((PlayerStatistic) var10);
+									var4.a((Statistic) var10);
 								}
 							}
 						}
@@ -116,10 +116,10 @@ public class AchievmentCommand extends AbstractCommand {
 			return var2.length == 3 ? a(var2, MinecraftServer.getInstance().I()) : null;
 		} else {
 			ArrayList var4 = Lists.newArrayList();
-			Iterator var5 = ty.b.iterator();
+			Iterator var5 = StatisticList.b.iterator();
 
 			while (var5.hasNext()) {
-				PlayerStatistic var6 = (PlayerStatistic) var5.next();
+				Statistic var6 = (Statistic) var5.next();
 				var4.add(var6.e);
 			}
 

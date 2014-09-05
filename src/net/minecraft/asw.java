@@ -17,7 +17,7 @@ public class asw extends ary {
 		}
 
 		if (this.c.n() == 0 && this.c.p() == 0) {
-			adb var4 = new adb(this.a);
+			EntityEnderDragon var4 = new EntityEnderDragon(this.a);
 			var4.b(0.0D, 128.0D, 0.0D, this.b.nextFloat() * 360.0F, 0.0F);
 			this.a.d((Entity) var4);
 		}

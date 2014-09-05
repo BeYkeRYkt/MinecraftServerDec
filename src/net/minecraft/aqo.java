@@ -183,7 +183,7 @@ public class aqo {
 	}
 
 	public EntityLiving c() {
-		return this.h == null ? null : (this.h instanceof aek ? ((aek) this.h).j() : (this.h instanceof EntityLiving ? (EntityLiving) this.h : null));
+		return this.h == null ? null : (this.h instanceof EntityTNTPrimed ? ((EntityTNTPrimed) this.h).j() : (this.h instanceof EntityLiving ? (EntityLiving) this.h : null));
 	}
 
 	public void d() {

@@ -5,7 +5,7 @@ public class ys extends yv {
 	private int g;
 	private int h = -1;
 
-	public ys(xn var1) {
+	public ys(EntityInsentient var1) {
 		super(var1);
 	}
 

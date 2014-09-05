@@ -70,7 +70,7 @@ public abstract class aqi {
 				boolean var13 = false;
 
 				for (int var3 = 0; var3 < this.i; ++var3) {
-					Entity var14 = EntityTypes.a(this.f(), this.a());
+					Entity var14 = EntityTypes.createEntity(this.f(), this.a());
 					if (var14 == null) {
 						return;
 					}
@@ -84,7 +84,7 @@ public abstract class aqi {
 					var6 = (double) var1.n() + (this.a().s.nextDouble() - this.a().s.nextDouble()) * (double) this.m + 0.5D;
 					double var8 = (double) (var1.o() + this.a().s.nextInt(3) - 1);
 					double var10 = (double) var1.p() + (this.a().s.nextDouble() - this.a().s.nextDouble()) * (double) this.m + 0.5D;
-					xn var12 = var14 instanceof xn ? (xn) var14 : null;
+					EntityInsentient var12 = var14 instanceof EntityInsentient ? (EntityInsentient) var14 : null;
 					var14.b(var6, var8, var10, this.a().s.nextFloat() * 360.0F, 0.0F);
 					if (var12 == null || var12.bQ() && var12.bR()) {
 						this.a(var14, true);
@@ -117,7 +117,7 @@ public abstract class aqi {
 				var3.put(var5, var6.getCopy());
 			}
 
-			var1.f(var3);
+			var1.load(var3);
 			if (var1.o != null && var2) {
 				var1.o.d(var1);
 			}
@@ -125,7 +125,7 @@ public abstract class aqi {
 			NBTCompoundTag var12;
 			for (Entity var11 = var1; var3.isTagAssignableFrom("Riding", 10); var3 = var12) {
 				var12 = var3.getCompound("Riding");
-				Entity var13 = EntityTypes.a(var12.getString("id"), var1.o);
+				Entity var13 = EntityTypes.createEntity(var12.getString("id"), var1.o);
 				if (var13 != null) {
 					NBTCompoundTag var7 = new NBTCompoundTag();
 					var13.d(var7);
@@ -137,7 +137,7 @@ public abstract class aqi {
 						var7.put(var9, var10.getCopy());
 					}
 
-					var13.f(var7);
+					var13.load(var7);
 					var13.b(var11.locationX, var11.locationY, var11.locationZ, var11.yaw, var11.pitch);
 					if (var1.o != null && var2) {
 						var1.o.d(var13);
@@ -149,7 +149,7 @@ public abstract class aqi {
 				var11 = var13;
 			}
 		} else if (var1 instanceof EntityLiving && var1.o != null && var2) {
-			((xn) var1).a(var1.o.E(new Position(var1)), (xq) null);
+			((EntityInsentient) var1).a(var1.o.E(new Position(var1)), (xq) null);
 			var1.o.d(var1);
 		}
 
