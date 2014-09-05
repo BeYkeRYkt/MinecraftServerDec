@@ -145,7 +145,7 @@ public class bgv implements IChunkProvider {
 
 	}
 
-	public bfh d(int var1, int var2) {
+	public Chunk d(int var1, int var2) {
 		this.h.setSeed((long) var1 * 341873128712L + (long) var2 * 132897987541L);
 		bgk var3 = new bgk();
 		this.a(var1, var2, var3);
@@ -179,8 +179,8 @@ public class bgv implements IChunkProvider {
 			this.A.a(this, this.m, var1, var2, var3);
 		}
 
-		bfh var4 = new bfh(this.m, var3, var1, var2);
-		byte[] var5 = var4.k();
+		Chunk var4 = new Chunk(this.m, var3, var1, var2);
+		byte[] var5 = var4.getBiomes();
 
 		for (int var6 = 0; var6 < var5.length; ++var6) {
 			var5[var6] = (byte) this.B[var6].az;
@@ -302,7 +302,7 @@ public class bgv implements IChunkProvider {
 		long var10 = this.h.nextLong() / 2L * 2L + 1L;
 		this.h.setSeed((long) var2 * var8 + (long) var3 * var10 ^ this.m.J());
 		boolean var12 = false;
-		aqm var13 = new aqm(var2, var3);
+		ChunkCoordIntPair var13 = new ChunkCoordIntPair(var2, var3);
 		if (this.r.w && this.n) {
 			this.x.a(this.m, this.h, var13);
 		}
@@ -372,10 +372,10 @@ public class bgv implements IChunkProvider {
 		avt.M = false;
 	}
 
-	public boolean a(IChunkProvider var1, bfh var2, int var3, int var4) {
+	public boolean a(IChunkProvider var1, Chunk var2, int var3, int var4) {
 		boolean var5 = false;
 		if (this.r.y && this.n && var2.w() < 3600L) {
-			var5 |= this.A.a(this.m, this.h, new aqm(var3, var4));
+			var5 |= this.A.a(this.m, this.h, new ChunkCoordIntPair(var3, var4));
 		}
 
 		return var5;
@@ -423,7 +423,7 @@ public class bgv implements IChunkProvider {
 		return 0;
 	}
 
-	public void a(bfh var1, int var2, int var3) {
+	public void a(Chunk var1, int var2, int var3) {
 		if (this.r.w && this.n) {
 			this.x.a(this, this.m, var2, var3, (bgk) null);
 		}
@@ -446,7 +446,7 @@ public class bgv implements IChunkProvider {
 
 	}
 
-	public bfh a(Position var1) {
+	public Chunk a(Position var1) {
 		return this.d(var1.n() >> 4, var1.p() >> 4);
 	}
 }

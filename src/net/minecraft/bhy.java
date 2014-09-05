@@ -54,12 +54,12 @@ public class bhy extends bhp {
 					for (var8 = 0; var8 < 8; ++var8) {
 						var32 = !var4[(var6 * 16 + var30) * 8 + var8] && (var6 < 15 && var4[((var6 + 1) * 16 + var30) * 8 + var8] || var6 > 0 && var4[((var6 - 1) * 16 + var30) * 8 + var8] || var30 < 15 && var4[(var6 * 16 + var30 + 1) * 8 + var8] || var30 > 0 && var4[(var6 * 16 + (var30 - 1)) * 8 + var8] || var8 < 7 && var4[(var6 * 16 + var30) * 8 + var8 + 1] || var8 > 0 && var4[(var6 * 16 + var30) * 8 + (var8 - 1)]);
 						if (var32) {
-							bof var10 = var1.p(var3.a(var6, var8, var30)).c().r();
-							if (var8 >= 4 && var10.d()) {
+							Material var10 = var1.p(var3.a(var6, var8, var30)).c().r();
+							if (var8 >= 4 && var10.isLiquid()) {
 								return false;
 							}
 
-							if (var8 < 4 && !var10.a() && var1.p(var3.a(var6, var8, var30)).c() != this.a) {
+							if (var8 < 4 && !var10.isBuildable() && var1.p(var3.a(var6, var8, var30)).c() != this.a) {
 								return false;
 							}
 						}
@@ -95,12 +95,12 @@ public class bhy extends bhp {
 				}
 			}
 
-			if (this.a.r() == bof.i) {
+			if (this.a.r() == Material.LAVA) {
 				for (var6 = 0; var6 < 16; ++var6) {
 					for (var30 = 0; var30 < 16; ++var30) {
 						for (var8 = 0; var8 < 8; ++var8) {
 							var32 = !var4[(var6 * 16 + var30) * 8 + var8] && (var6 < 15 && var4[((var6 + 1) * 16 + var30) * 8 + var8] || var6 > 0 && var4[((var6 - 1) * 16 + var30) * 8 + var8] || var30 < 15 && var4[(var6 * 16 + var30 + 1) * 8 + var8] || var30 > 0 && var4[(var6 * 16 + (var30 - 1)) * 8 + var8] || var8 < 7 && var4[(var6 * 16 + var30) * 8 + var8 + 1] || var8 > 0 && var4[(var6 * 16 + var30) * 8 + (var8 - 1)]);
-							if (var32 && (var8 < 4 || var2.nextInt(2) != 0) && var1.p(var3.a(var6, var8, var30)).c().r().a()) {
+							if (var32 && (var8 < 4 || var2.nextInt(2) != 0) && var1.p(var3.a(var6, var8, var30)).c().r().isBuildable()) {
 								var1.a(var3.a(var6, var8, var30), aty.b.P(), 2);
 							}
 						}
@@ -108,7 +108,7 @@ public class bhy extends bhp {
 				}
 			}
 
-			if (this.a.r() == bof.h) {
+			if (this.a.r() == Material.WATER) {
 				for (var6 = 0; var6 < 16; ++var6) {
 					for (var30 = 0; var30 < 16; ++var30) {
 						byte var31 = 4;

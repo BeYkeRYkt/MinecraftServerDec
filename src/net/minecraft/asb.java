@@ -13,7 +13,7 @@ public class asb extends arm {
 
 	protected asb(int var1, boolean var2) {
 		super(var1);
-		this.aD = new bif(aty.be.P().a(axs.a, axu.a), 9);
+		this.aD = new bif(aty.be.P().a(BlockMonsterEggs.a, axu.a), 9);
 		this.aE = new bio(false);
 		this.aF = 0;
 		this.aG = 1;

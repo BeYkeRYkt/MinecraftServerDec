@@ -14,7 +14,7 @@ public abstract class ati extends Block {
 	}
 
 	protected ati(boolean var1) {
-		super(bof.q);
+		super(Material.ORIENTABLE);
 		this.a = var1;
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
 		this.a(CreativeModeTab.e);

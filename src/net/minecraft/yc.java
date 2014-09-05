@@ -14,19 +14,19 @@ public abstract class yc {
 	protected final Map b = new ul();
 	protected final Multimap c = HashMultimap.create();
 
-	public xz a(xy var1) {
-		return (xz) this.a.get(var1);
+	public AttributeInstance a(xy var1) {
+		return (AttributeInstance) this.a.get(var1);
 	}
 
-	public xz a(String var1) {
-		return (xz) this.b.get(var1);
+	public AttributeInstance a(String var1) {
+		return (AttributeInstance) this.b.get(var1);
 	}
 
-	public xz b(xy var1) {
+	public AttributeInstance b(xy var1) {
 		if (this.b.containsKey(var1.a())) {
 			throw new IllegalArgumentException("Attribute is already registered!");
 		} else {
-			xz var2 = this.c(var1);
+			AttributeInstance var2 = this.c(var1);
 			this.b.put(var1.a(), var2);
 			this.a.put(var1, var2);
 
@@ -38,13 +38,13 @@ public abstract class yc {
 		}
 	}
 
-	protected abstract xz c(xy var1);
+	protected abstract AttributeInstance c(xy var1);
 
 	public Collection a() {
 		return this.b.values();
 	}
 
-	public void a(xz var1) {
+	public void a(AttributeInstance var1) {
 	}
 
 	public void a(Multimap var1) {
@@ -52,9 +52,9 @@ public abstract class yc {
 
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
-			xz var4 = this.a((String) var3.getKey());
+			AttributeInstance var4 = this.a((String) var3.getKey());
 			if (var4 != null) {
-				var4.c((ya) var3.getValue());
+				var4.c((AttributeModifier) var3.getValue());
 			}
 		}
 
@@ -65,10 +65,10 @@ public abstract class yc {
 
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
-			xz var4 = this.a((String) var3.getKey());
+			AttributeInstance var4 = this.a((String) var3.getKey());
 			if (var4 != null) {
-				var4.c((ya) var3.getValue());
-				var4.b((ya) var3.getValue());
+				var4.c((AttributeModifier) var3.getValue());
+				var4.b((AttributeModifier) var3.getValue());
 			}
 		}
 

@@ -5,7 +5,7 @@ import java.util.UUID;
 public class afo extends agj {
 
 	private static final UUID c = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
-	private static final ya bk = (new ya(c, "Attacking speed boost", 0.05D, 0)).a(false);
+	private static final AttributeModifier bk = (new AttributeModifier(c, "Attacking speed boost", 0.05D, 0)).setSerializable(false);
 	private int bl;
 	private int bm;
 	private UUID bn;
@@ -40,7 +40,7 @@ public class afo extends agj {
 	}
 
 	protected void E() {
-		xz var1 = this.a(afs.d);
+		AttributeInstance var1 = this.a(afs.d);
 		if (this.ck()) {
 			if (!this.i_() && !var1.a(bk)) {
 				var1.b(bk);

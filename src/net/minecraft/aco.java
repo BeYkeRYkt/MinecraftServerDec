@@ -68,7 +68,7 @@ public class aco extends act {
 	}
 
 	public boolean V() {
-		return this.o.a(this.aQ().b(0.0D, -0.6000000238418579D, 0.0D), bof.h, (Entity) this);
+		return this.o.a(this.aQ().b(0.0D, -0.6000000238418579D, 0.0D), Material.WATER, (Entity) this);
 	}
 
 	public void m() {

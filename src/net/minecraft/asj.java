@@ -20,7 +20,7 @@ public class asj extends arm {
 		this.b();
 		this.a(2.0F, 0.0F);
 		this.au.clear();
-		this.ak = aty.m.P().a(bab.a, bac.b);
+		this.ak = aty.m.P().a(BlockSand.a, bac.b);
 		this.al = aty.cu.P();
 		this.as.A = -999;
 		this.as.D = 20;
@@ -85,7 +85,7 @@ public class asj extends arm {
 		boolean var26 = false;
 
 		for (int var19 = 255; var19 >= 0; --var19) {
-			if (var3.a(var11, var19, var10).c().r() == bof.a && var19 < (int) var22) {
+			if (var3.a(var11, var19, var10).c().r() == Material.AIR && var19 < (int) var22) {
 				var3.a(var11, var19, var10, aty.b.P());
 			}
 
@@ -93,7 +93,7 @@ public class asj extends arm {
 				var3.a(var11, var19, var10, aty.h.P());
 			} else {
 				bec var20 = var3.a(var11, var19, var10);
-				if (var20.c().r() == bof.a) {
+				if (var20.c().r() == Material.AIR) {
 					var17 = -1;
 				} else if (var20.c() == aty.b) {
 					bec var21;
@@ -107,7 +107,7 @@ public class asj extends arm {
 							var24 = this.al;
 						}
 
-						if (var19 < 63 && (var13 == null || var13.c().r() == bof.a)) {
+						if (var19 < 63 && (var13 == null || var13.c().r() == Material.AIR)) {
 							var13 = aty.j.P();
 						}
 
@@ -115,7 +115,7 @@ public class asj extends arm {
 						if (var19 >= 62) {
 							if (this.aJ && var19 > 86 + var15 * 2) {
 								if (var25) {
-									var3.a(var11, var19, var10, aty.d.P().a(avc.a, avd.b));
+									var3.a(var11, var19, var10, aty.d.P().a(BlockDirt.a, avd.b));
 								} else {
 									var3.a(var11, var19, var10, aty.c.P());
 								}
@@ -127,7 +127,7 @@ public class asj extends arm {
 										var21 = this.a(var4, var19, var5);
 									}
 								} else {
-									var21 = aty.cu.P().a(aun.a, akv.b);
+									var21 = aty.cu.P().a(BlockCloth.a, akv.b);
 								}
 
 								var3.a(var11, var19, var10, var21);
@@ -138,13 +138,13 @@ public class asj extends arm {
 						} else {
 							var3.a(var11, var19, var10, var24);
 							if (var24.c() == aty.cu) {
-								var3.a(var11, var19, var10, var24.c().P().a(aun.a, akv.b));
+								var3.a(var11, var19, var10, var24.c().P().a(BlockCloth.a, akv.b));
 							}
 						}
 					} else if (var17 > 0) {
 						--var17;
 						if (var26) {
-							var3.a(var11, var19, var10, aty.cu.P().a(aun.a, akv.b));
+							var3.a(var11, var19, var10, aty.cu.P().a(BlockCloth.a, akv.b));
 						} else {
 							var21 = this.a(var4, var19, var5);
 							var3.a(var11, var19, var10, var21);
@@ -166,7 +166,7 @@ public class asj extends arm {
 		for (var4 = 0; var4 < 64; ++var4) {
 			var4 += var3.nextInt(5) + 1;
 			if (var4 < 64) {
-				this.aD[var4] = aty.cu.P().a(aun.a, akv.b);
+				this.aD[var4] = aty.cu.P().a(BlockCloth.a, akv.b);
 			}
 		}
 
@@ -181,7 +181,7 @@ public class asj extends arm {
 			var7 = var3.nextInt(64);
 
 			for (var8 = 0; var7 + var8 < 64 && var8 < var6; ++var8) {
-				this.aD[var7 + var8] = aty.cu.P().a(aun.a, akv.e);
+				this.aD[var7 + var8] = aty.cu.P().a(BlockCloth.a, akv.e);
 			}
 		}
 
@@ -193,7 +193,7 @@ public class asj extends arm {
 			var8 = var3.nextInt(64);
 
 			for (var9 = 0; var8 + var9 < 64 && var9 < var7; ++var9) {
-				this.aD[var8 + var9] = aty.cu.P().a(aun.a, akv.m);
+				this.aD[var8 + var9] = aty.cu.P().a(BlockCloth.a, akv.m);
 			}
 		}
 
@@ -204,7 +204,7 @@ public class asj extends arm {
 			var9 = var3.nextInt(64);
 
 			for (int var10 = 0; var9 + var10 < 64 && var10 < var8; ++var10) {
-				this.aD[var9 + var10] = aty.cu.P().a(aun.a, akv.o);
+				this.aD[var9 + var10] = aty.cu.P().a(BlockCloth.a, akv.o);
 			}
 		}
 
@@ -216,13 +216,13 @@ public class asj extends arm {
 			var8 += var3.nextInt(16) + 4;
 
 			for (int var11 = 0; var8 + var11 < 64 && var11 < var12; ++var11) {
-				this.aD[var8 + var11] = aty.cu.P().a(aun.a, akv.a);
+				this.aD[var8 + var11] = aty.cu.P().a(BlockCloth.a, akv.a);
 				if (var8 + var11 > 1 && var3.nextBoolean()) {
-					this.aD[var8 + var11 - 1] = aty.cu.P().a(aun.a, akv.i);
+					this.aD[var8 + var11 - 1] = aty.cu.P().a(BlockCloth.a, akv.i);
 				}
 
 				if (var8 + var11 < 63 && var3.nextBoolean()) {
-					this.aD[var8 + var11 + 1] = aty.cu.P().a(aun.a, akv.i);
+					this.aD[var8 + var11 + 1] = aty.cu.P().a(BlockCloth.a, akv.i);
 				}
 			}
 		}

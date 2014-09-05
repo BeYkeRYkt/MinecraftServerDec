@@ -92,7 +92,7 @@ public class ty {
 	}
 
 	private static void c() {
-		Iterator var0 = Block.c.iterator();
+		Iterator var0 = Block.BLOCKREGISTRY.iterator();
 
 		while (var0.hasNext()) {
 			Block var1 = (Block) var0.next();
@@ -148,7 +148,7 @@ public class ty {
 	}
 
 	private static String a(Item var0) {
-		oa var1 = (oa) Item.REGISTRY.c(var0);
+		BlockNameInfo var1 = (BlockNameInfo) Item.REGISTRY.c(var0);
 		return var1 != null ? var1.toString().replace(':', '.') : null;
 	}
 

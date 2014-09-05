@@ -43,7 +43,7 @@ public class ExpirienceOrb extends Entity {
 		this.q = this.locationY;
 		this.r = this.locationZ;
 		this.motionY -= 0.029999999329447746D;
-		if (this.o.p(new Position(this)).c().r() == bof.i) {
+		if (this.o.p(new Position(this)).c().r() == Material.LAVA) {
 			this.motionY = 0.20000000298023224D;
 			this.motionX = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
 			this.motionZ = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
@@ -100,7 +100,7 @@ public class ExpirienceOrb extends Entity {
 	}
 
 	public boolean W() {
-		return this.o.a(this.aQ(), bof.h, (Entity) this);
+		return this.o.a(this.aQ(), Material.WATER, (Entity) this);
 	}
 
 	protected void f(int var1) {

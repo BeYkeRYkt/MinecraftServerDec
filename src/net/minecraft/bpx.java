@@ -45,7 +45,7 @@ public class bpx extends bpu {
 				for (int var7 = var4; var7 < var4 + this.e; ++var7) {
 					Position var8 = new Position(var5, var6, var7);
 					Block var9 = this.a.p(var8).c();
-					if (var9.r() != bof.h) {
+					if (var9.r() != Material.WATER) {
 						return 0;
 					}
 				}

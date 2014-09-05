@@ -34,8 +34,8 @@ public class bie extends bhp {
 			for (var15 = -1; var15 <= 4; ++var15) {
 				for (var16 = var11; var16 <= var12; ++var16) {
 					var17 = var3.a(var14, var15, var16);
-					bof var18 = var1.p(var17).c().r();
-					boolean var19 = var18.a();
+					Material var18 = var1.p(var17).c().r();
+					boolean var19 = var18.isBuildable();
 					if (var15 == -1 && !var19) {
 						return false;
 					}
@@ -60,9 +60,9 @@ public class bie extends bhp {
 							if (var1.p(var17).c() != aty.ae) {
 								var1.g(var17);
 							}
-						} else if (var17.o() >= 0 && !var1.p(var17.b()).c().r().a()) {
+						} else if (var17.o() >= 0 && !var1.p(var17.b()).c().r().isBuildable()) {
 							var1.g(var17);
-						} else if (var1.p(var17).c().r().a() && var1.p(var17).c() != aty.ae) {
+						} else if (var1.p(var17).c().r().isBuildable() && var1.p(var17).c() != aty.ae) {
 							if (var15 == -1 && var2.nextInt(4) != 0) {
 								var1.a(var17, aty.Y.P(), 2);
 							} else {
@@ -91,7 +91,7 @@ public class bie extends bhp {
 
 								while (var21.hasNext()) {
 									PaintingDirection var22 = (PaintingDirection) var21.next();
-									if (var1.p(var26.a(var22)).c().r().a()) {
+									if (var1.p(var26.a(var22)).c().r().isBuildable()) {
 										++var20;
 									}
 								}

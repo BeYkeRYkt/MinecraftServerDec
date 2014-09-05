@@ -16,13 +16,13 @@ public abstract class bmm extends bgt {
 
 	protected final void a(World var1, int var2, int var3, int var4, int var5, bgk var6) {
 		this.a(var1);
-		if (!this.e.containsKey(Long.valueOf(aqm.a(var2, var3)))) {
+		if (!this.e.containsKey(Long.valueOf(ChunkCoordIntPair.toLongHash(var2, var3)))) {
 			this.b.nextInt();
 
 			try {
 				if (this.a(var2, var3)) {
 					bmv var7 = this.b(var2, var3);
-					this.e.put(Long.valueOf(aqm.a(var2, var3)), var7);
+					this.e.put(Long.valueOf(ChunkCoordIntPair.toLongHash(var2, var3)), var7);
 					this.a(var2, var3, var7);
 				}
 
@@ -38,10 +38,10 @@ public abstract class bmm extends bgt {
 		}
 	}
 
-	public boolean a(World var1, Random var2, aqm var3) {
+	public boolean a(World var1, Random var2, ChunkCoordIntPair var3) {
 		this.a(var1);
-		int var4 = (var3.a << 4) + 8;
-		int var5 = (var3.b << 4) + 8;
+		int var4 = (var3.chunkX << 4) + 8;
+		int var5 = (var3.chunkZ << 4) + 8;
 		boolean var6 = false;
 		Iterator var7 = this.e.values().iterator();
 
@@ -176,7 +176,7 @@ public abstract class bmm extends bgt {
 							int var8 = var6.getInt("ChunkZ");
 							bmv var9 = bmq.a(var6, var1);
 							if (var9 != null) {
-								this.e.put(Long.valueOf(aqm.a(var7, var8)), var9);
+								this.e.put(Long.valueOf(ChunkCoordIntPair.toLongHash(var7, var8)), var9);
 							}
 						}
 					}

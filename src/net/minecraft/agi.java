@@ -7,7 +7,7 @@ import java.util.UUID;
 public class agi extends afm implements afr {
 
 	private static final UUID b = UUID.fromString("5CD17E52-A79A-43D3-A529-90FDE04B181E");
-	private static final ya c = (new ya(b, "Drinking speed penalty", -0.25D, 0)).a(false);
+	private static final AttributeModifier c = (new AttributeModifier(b, "Drinking speed penalty", -0.25D, 0)).setSerializable(false);
 	private static final Item[] bk = new Item[] { amk.aT, amk.aY, amk.aC, amk.bB, amk.bA, amk.H, amk.y, amk.y };
 	private int bl;
 
@@ -78,7 +78,7 @@ public class agi extends afm implements afr {
 				}
 			} else {
 				short var5 = -1;
-				if (this.V.nextFloat() < 0.15F && this.a(bof.h) && !this.a(MobEffectList.o)) {
+				if (this.V.nextFloat() < 0.15F && this.a(Material.WATER) && !this.a(MobEffectList.o)) {
 					var5 = 8237;
 				} else if (this.V.nextFloat() < 0.15F && this.au() && !this.a(MobEffectList.n)) {
 					var5 = 16307;
@@ -94,7 +94,7 @@ public class agi extends afm implements afr {
 					this.c(0, new ItemStack(amk.bz, 1, var5));
 					this.bl = this.bz().l();
 					this.a(true);
-					xz var6 = this.a(afs.d);
+					AttributeInstance var6 = this.a(afs.d);
 					var6.c(c);
 					var6.b(c);
 				}

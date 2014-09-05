@@ -64,8 +64,8 @@ public class bij extends bhc {
 						}
 
 						Position var15 = new Position(var10, var14, var11);
-						bof var16 = var1.p(var15).c().r();
-						if (var16 == bof.a || var16 == bof.j) {
+						Material var16 = var1.p(var15).c().r();
+						if (var16 == Material.AIR || var16 == Material.LEAVES) {
 							this.a(var1, var15, aty.s, ayx.f.a() - 4);
 							this.a(var1, var15.f(), aty.s, ayx.f.a() - 4);
 							this.a(var1, var15.d(), aty.s, ayx.f.a() - 4);
@@ -146,7 +146,7 @@ public class bij extends bhc {
 
 	private void a(World var1, int var2, int var3, int var4) {
 		Block var5 = var1.p(new Position(var2, var3, var4)).c();
-		if (var5.r() == bof.a) {
+		if (var5.r() == Material.AIR) {
 			this.a(var1, new Position(var2, var3, var4), aty.u, 1);
 		}
 

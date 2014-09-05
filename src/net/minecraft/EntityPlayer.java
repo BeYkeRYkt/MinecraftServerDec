@@ -50,7 +50,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		var4.b = this;
 		this.c = var4;
 		Position var5 = var2.M();
-		if (!var2.worldProvider.o() && var2.P().r() != GameMode.ADVENTURE) {
+		if (!var2.worldProvider.noSkyLight() && var2.P().r() != GameMode.ADVENTURE) {
 			int var6 = Math.max(5, var1.isSpawnProtectionEnabled() - 6);
 			int var7 = DataTypesConverter.toFixedPointInt(var2.af().b((double) var5.n(), (double) var5.p()));
 			if (var7 < var6) {
@@ -148,15 +148,15 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			Iterator var8 = this.f.iterator();
 			ArrayList var9 = Lists.newArrayList();
 
-			bfh var5;
+			Chunk var5;
 			while (var8.hasNext() && var6.size() < 10) {
-				aqm var10 = (aqm) var8.next();
+				ChunkCoordIntPair var10 = (ChunkCoordIntPair) var8.next();
 				if (var10 != null) {
-					if (this.o.e(new Position(var10.a << 4, 0, var10.b << 4))) {
-						var5 = this.o.a(var10.a, var10.b);
+					if (this.o.e(new Position(var10.chunkX << 4, 0, var10.chunkZ << 4))) {
+						var5 = this.o.a(var10.chunkX, var10.chunkZ);
 						if (var5.i()) {
 							var6.add(var5);
-							var9.addAll(((WorldServer) this.o).a(var10.a * 16, 0, var10.b * 16, var10.a * 16 + 16, 256, var10.b * 16 + 16));
+							var9.addAll(((WorldServer) this.o).a(var10.chunkX * 16, 0, var10.chunkZ * 16, var10.chunkX * 16 + 16, 256, var10.chunkZ * 16 + 16));
 							var8.remove();
 						}
 					}
@@ -167,7 +167,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 			if (!var6.isEmpty()) {
 				if (var6.size() == 1) {
-					this.a.a((Packet) (new jq((bfh) var6.get(0), true, '\uffff')));
+					this.a.a((Packet) (new PacketChunkData((Chunk) var6.get(0), true, '\uffff')));
 				} else {
 					this.a.a((Packet) (new js(var6)));
 				}
@@ -182,7 +182,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 				var11 = var6.iterator();
 
 				while (var11.hasNext()) {
-					var5 = (bfh) var11.next();
+					var5 = (Chunk) var11.next();
 					this.u().s().a(this, var5);
 				}
 			}
@@ -454,9 +454,9 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		int var6 = DataTypesConverter.toFixedPointInt(this.locationZ);
 		Position var7 = new Position(var4, var5, var6);
 		Block var8 = this.o.p(var7).c();
-		if (var8.r() == bof.a) {
+		if (var8.r() == Material.AIR) {
 			Block var9 = this.o.p(var7.b()).c();
-			if (var9 instanceof avv || var9 instanceof bbx || var9 instanceof avw) {
+			if (var9 instanceof BlockFence || var9 instanceof BlockCobbleWall || var9 instanceof BlockFenceGate) {
 				var7 = var7.b();
 				var8 = this.o.p(var7).c();
 			}

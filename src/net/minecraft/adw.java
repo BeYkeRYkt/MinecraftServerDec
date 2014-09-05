@@ -64,7 +64,7 @@ public class adw extends Entity {
 			this.d(this.motionX, this.motionY, this.motionZ);
 			boolean var1 = (int) this.p != (int) this.locationX || (int) this.q != (int) this.locationY || (int) this.r != (int) this.locationZ;
 			if (var1 || this.W % 25 == 0) {
-				if (this.o.p(new Position(this)).c().r() == bof.i) {
+				if (this.o.p(new Position(this)).c().r() == Material.LAVA) {
 					this.motionY = 0.20000000298023224D;
 					this.motionX = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
 					this.motionZ = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
@@ -156,7 +156,7 @@ public class adw extends Entity {
 	}
 
 	public boolean W() {
-		if (this.o.a(this.aQ(), bof.h, (Entity) this)) {
+		if (this.o.a(this.aQ(), Material.WATER, (Entity) this)) {
 			if (!this.Y && !this.aa) {
 				this.X();
 			}

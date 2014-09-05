@@ -28,9 +28,9 @@ public class ajt extends Item {
 			if (var2.a(var4, var5, var1) && var2.a(var14, var5, var1)) {
 				if (var16 && var17 && World.a((ard) var3, var4.b()) && World.a((ard) var3, var14.b())) {
 					int var18 = var13.toByte();
-					bec var19 = aty.C.P().a(atp.b, Boolean.valueOf(false)).a(atp.N, var13).a(atp.a, atq.b);
+					bec var19 = aty.C.P().a(BlockBed.b, Boolean.valueOf(false)).a(BlockBed.N, var13).a(BlockBed.a, atq.b);
 					if (var3.a(var4, var19, 3)) {
-						bec var20 = var19.a(atp.a, atq.a);
+						bec var20 = var19.a(BlockBed.a, atq.a);
 						var3.a(var14, var20, 3);
 					}
 

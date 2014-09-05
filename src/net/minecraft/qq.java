@@ -108,7 +108,7 @@ public class qq {
 		int var6 = (int) var1.locationZ >> 4;
 		int var7 = 0;
 		int var8 = 0;
-		aqm var9 = qr.a(this.a(var5, var6, true));
+		ChunkCoordIntPair var9 = qr.a(this.a(var5, var6, true));
 		var1.f.clear();
 		if (var2.contains(var9)) {
 			var1.f.add(var9);

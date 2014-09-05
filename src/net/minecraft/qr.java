@@ -6,7 +6,7 @@ import java.util.List;
 class qr {
 
 	private final List b;
-	private final aqm c;
+	private final ChunkCoordIntPair c;
 	private short[] d;
 	private int e;
 	private int f;
@@ -18,13 +18,13 @@ class qr {
 		this.a = var1;
 		this.b = Lists.newArrayList();
 		this.d = new short[64];
-		this.c = new aqm(var2, var3);
+		this.c = new ChunkCoordIntPair(var2, var3);
 		var1.a().b.c(var2, var3);
 	}
 
 	public void a(EntityPlayer var1) {
 		if (this.b.contains(var1)) {
-			qq.c().debug("Failed to add player. {} already is in chunk {}, {}", new Object[] { var1, Integer.valueOf(this.c.a), Integer.valueOf(this.c.b) });
+			qq.c().debug("Failed to add player. {} already is in chunk {}, {}", new Object[] { var1, Integer.valueOf(this.c.chunkX), Integer.valueOf(this.c.chunkZ) });
 		} else {
 			if (this.b.isEmpty()) {
 				this.g = qq.a(this.a).K();
@@ -37,15 +37,15 @@ class qr {
 
 	public void b(EntityPlayer var1) {
 		if (this.b.contains(var1)) {
-			bfh var2 = qq.a(this.a).a(this.c.a, this.c.b);
+			Chunk var2 = qq.a(this.a).a(this.c.chunkX, this.c.chunkZ);
 			if (var2.i()) {
-				var1.a.a((Packet) (new jq(var2, true, 0)));
+				var1.a.a((Packet) (new PacketChunkData(var2, true, 0)));
 			}
 
 			this.b.remove(var1);
 			var1.f.remove(this.c);
 			if (this.b.isEmpty()) {
-				long var3 = (long) this.c.a + 2147483647L | (long) this.c.b + 2147483647L << 32;
+				long var3 = (long) this.c.chunkX + 2147483647L | (long) this.c.chunkZ + 2147483647L << 32;
 				this.a(var2);
 				qq.b(this.a).d(var3);
 				qq.c(this.a).remove(this);
@@ -53,17 +53,17 @@ class qr {
 					qq.d(this.a).remove(this);
 				}
 
-				this.a.a().b.b(this.c.a, this.c.b);
+				this.a.a().b.b(this.c.chunkX, this.c.chunkZ);
 			}
 
 		}
 	}
 
 	public void a() {
-		this.a(qq.a(this.a).a(this.c.a, this.c.b));
+		this.a(qq.a(this.a).a(this.c.chunkX, this.c.chunkZ));
 	}
 
-	private void a(bfh var1) {
+	private void a(Chunk var1) {
 		var1.c(var1.w() + qq.a(this.a).K() - this.g);
 		this.g = qq.a(this.a).K();
 	}
@@ -104,9 +104,9 @@ class qr {
 			int var2;
 			int var3;
 			if (this.e == 1) {
-				var1 = (this.d[0] >> 12 & 15) + this.c.a * 16;
+				var1 = (this.d[0] >> 12 & 15) + this.c.chunkX * 16;
 				var2 = this.d[0] & 255;
-				var3 = (this.d[0] >> 8 & 15) + this.c.b * 16;
+				var3 = (this.d[0] >> 8 & 15) + this.c.chunkZ * 16;
 				Position var4 = new Position(var1, var2, var3);
 				this.a((Packet) (new iw(qq.a(this.a), var4)));
 				if (qq.a(this.a).p(var4).c().x()) {
@@ -115,9 +115,9 @@ class qr {
 			} else {
 				int var7;
 				if (this.e == 64) {
-					var1 = this.c.a * 16;
-					var2 = this.c.b * 16;
-					this.a((Packet) (new jq(qq.a(this.a).a(this.c.a, this.c.b), false, this.f)));
+					var1 = this.c.chunkX * 16;
+					var2 = this.c.chunkZ * 16;
+					this.a((Packet) (new PacketChunkData(qq.a(this.a).a(this.c.chunkX, this.c.chunkZ), false, this.f)));
 
 					for (var3 = 0; var3 < 16; ++var3) {
 						if ((this.f & 1 << var3) != 0) {
@@ -130,12 +130,12 @@ class qr {
 						}
 					}
 				} else {
-					this.a((Packet) (new ja(this.e, this.d, qq.a(this.a).a(this.c.a, this.c.b))));
+					this.a((Packet) (new PacketMultiBlockChange(this.e, this.d, qq.a(this.a).a(this.c.chunkX, this.c.chunkZ))));
 
 					for (var1 = 0; var1 < this.e; ++var1) {
-						var2 = (this.d[var1] >> 12 & 15) + this.c.a * 16;
+						var2 = (this.d[var1] >> 12 & 15) + this.c.chunkX * 16;
 						var3 = this.d[var1] & 255;
-						var7 = (this.d[var1] >> 8 & 15) + this.c.b * 16;
+						var7 = (this.d[var1] >> 8 & 15) + this.c.chunkZ * 16;
 						Position var8 = new Position(var2, var3, var7);
 						if (qq.a(this.a).p(var8).c().x()) {
 							this.a(qq.a(this.a).s(var8));
@@ -160,7 +160,7 @@ class qr {
 	}
 
 	// $FF: synthetic method
-	static aqm a(qr var0) {
+	static ChunkCoordIntPair a(qr var0) {
 		return var0.c;
 	}
 

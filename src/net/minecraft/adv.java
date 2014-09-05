@@ -46,7 +46,7 @@ public class adv extends Entity {
 
 	public void s_() {
 		Block var1 = this.d.c();
-		if (var1.r() == bof.a) {
+		if (var1.r() == Material.AIR) {
 			this.J();
 		} else {
 			this.p = this.locationX;
@@ -132,12 +132,12 @@ public class adv extends Entity {
 				}
 
 				if (var6 && (double) this.V.nextFloat() < 0.05000000074505806D + (double) var4 * 0.05D) {
-					int var10 = ((Integer) this.d.b(asz.b)).intValue();
+					int var10 = ((Integer) this.d.b(BlockAnvil.b)).intValue();
 					++var10;
 					if (var10 > 2) {
 						this.e = true;
 					} else {
-						this.d = this.d.a(asz.b, Integer.valueOf(var10));
+						this.d = this.d.a(BlockAnvil.b, Integer.valueOf(var10));
 					}
 				}
 			}
@@ -147,7 +147,7 @@ public class adv extends Entity {
 
 	protected void b(NBTCompoundTag var1) {
 		Block var2 = this.d != null ? this.d.c() : aty.a;
-		oa var3 = (oa) Block.c.c(var2);
+		BlockNameInfo var3 = (BlockNameInfo) Block.BLOCKREGISTRY.c(var2);
 		var1.put("Block", var3 == null ? "" : var3.toString());
 		var1.put("Data", (byte) var2.c(this.d));
 		var1.put("Time", (byte) this.a);
@@ -189,7 +189,7 @@ public class adv extends Entity {
 			this.c = var1.getCompound("TileEntityData");
 		}
 
-		if (var3 == null || var3.r() == bof.a) {
+		if (var3 == null || var3.r() == Material.AIR) {
 			this.d = aty.m.P();
 		}
 

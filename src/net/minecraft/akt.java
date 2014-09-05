@@ -44,9 +44,9 @@ public class akt extends Item {
 		}
 
 		Position var11 = var1.a();
-		bec var12 = var3.P().a(avf.a, var2).a(avf.M, var10 ? avh.b : avh.a);
-		var0.a(var1, var12.a(avf.O, avg.b), 2);
-		var0.a(var11, var12.a(avf.O, avg.a), 2);
+		bec var12 = var3.P().a(BlockDoor.a, var2).a(BlockDoor.M, var10 ? avh.b : avh.a);
+		var0.a(var1, var12.a(BlockDoor.O, avg.b), 2);
+		var0.a(var11, var12.a(BlockDoor.O, avg.a), 2);
 		var0.c(var1, var3);
 		var0.c(var11, var3);
 	}

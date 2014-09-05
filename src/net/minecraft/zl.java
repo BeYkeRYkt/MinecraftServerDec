@@ -14,7 +14,7 @@ public class zl extends zb {
 
 	public boolean a() {
 		Position var1 = new Position(this.a);
-		if ((!this.a.o.w() || this.a.o.S() && !this.a.o.b(var1).e()) && !this.a.o.worldProvider.o()) {
+		if ((!this.a.o.w() || this.a.o.S() && !this.a.o.b(var1).e()) && !this.a.o.worldProvider.noSkyLight()) {
 			if (this.a.bb().nextInt(50) != 0) {
 				return false;
 			} else if (this.c != -1 && this.a.e((double) this.c, this.a.locationY, (double) this.d) < 4.0D) {

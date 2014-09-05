@@ -17,17 +17,17 @@ public class alo extends Item {
 		} else {
 			bec var9 = var3.p(var4);
 			Block var10 = var9.c();
-			if (var5 != PaintingDirection.a && var3.p(var4.a()).c().r() == bof.a) {
+			if (var5 != PaintingDirection.a && var3.p(var4.a()).c().r() == Material.AIR) {
 				if (var10 == aty.c) {
 					return this.a(var1, var2, var3, var4, aty.ak.P());
 				}
 
 				if (var10 == aty.d) {
-					switch (alp.a[((avd) var9.b(avc.a)).ordinal()]) {
+					switch (alp.a[((avd) var9.b(BlockDirt.a)).ordinal()]) {
 						case 1:
 							return this.a(var1, var2, var3, var4, aty.ak.P());
 						case 2:
-							return this.a(var1, var2, var3, var4, aty.d.P().a(avc.a, avd.a));
+							return this.a(var1, var2, var3, var4, aty.d.P().a(BlockDirt.a, avd.a));
 					}
 				}
 			}

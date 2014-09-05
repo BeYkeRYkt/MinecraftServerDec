@@ -60,8 +60,8 @@ public class bil extends bhc {
 						}
 
 						Position var15 = new Position(var10, var14, var11);
-						bof var16 = var1.p(var15).c().r();
-						if (var16 == bof.a || var16 == bof.j) {
+						Material var16 = var1.p(var15).c().r();
+						if (var16 == Material.AIR || var16 == Material.LEAVES) {
 							this.a(var1, var15, aty.s, ayx.e.a() - 4);
 							var12 = var14;
 						}
@@ -105,8 +105,8 @@ public class bil extends bhc {
 								var10 += var23.g();
 								var11 += var23.i();
 								Position var18 = new Position(var10, var17, var11);
-								bof var19 = var1.p(var18).c().r();
-								if (var19 == bof.a || var19 == bof.j) {
+								Material var19 = var1.p(var18).c().r();
+								if (var19 == Material.AIR || var19 == Material.LEAVES) {
 									this.a(var1, var18, aty.s, ayx.e.a() - 4);
 									var12 = var17;
 								}
@@ -148,8 +148,8 @@ public class bil extends bhc {
 	}
 
 	private void b(World var1, Position var2) {
-		bof var3 = var1.p(var2).c().r();
-		if (var3 == bof.a || var3 == bof.j) {
+		Material var3 = var1.p(var2).c().r();
+		if (var3 == Material.AIR || var3 == Material.LEAVES) {
 			this.a(var1, var2, aty.u, 0);
 		}
 

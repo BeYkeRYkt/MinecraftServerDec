@@ -5,16 +5,16 @@ import com.google.common.collect.HashBiMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class RegistryMaterials extends fb implements eq {
+public class RegistryMaterials extends RegistrySimple implements Registry {
 
-	protected final er a = new er();
+	protected final RegistryID a = new RegistryID();
 	protected final Map b;
 
 	public RegistryMaterials() {
 		this.b = ((BiMap) this.c).inverse();
 	}
 
-	public void a(int var1, Object var2, Object var3) {
+	public void register(int var1, Object var2, Object var3) {
 		this.a.a(var3, var1);
 		this.a(var2, var3);
 	}
@@ -23,8 +23,8 @@ public class RegistryMaterials extends fb implements eq {
 		return HashBiMap.create();
 	}
 
-	public Object a(Object var1) {
-		return super.a(var1);
+	public Object getByName(Object var1) {
+		return super.getByName(var1);
 	}
 
 	public Object c(Object var1) {
@@ -39,11 +39,12 @@ public class RegistryMaterials extends fb implements eq {
 		return this.a.b(var1);
 	}
 
-	public Object a(int var1) {
+	public Object getById(int var1) {
 		return this.a.a(var1);
 	}
 
-	public Iterator iterator() {
+	public Iterator<Object> iterator() {
 		return this.a.iterator();
 	}
+
 }

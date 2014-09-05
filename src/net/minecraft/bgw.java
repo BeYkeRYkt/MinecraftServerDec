@@ -100,7 +100,7 @@ public class bgw implements IChunkProvider {
 
 				for (int var8 = 127; var8 >= 0; --var8) {
 					bec var9 = var1.a(var2, var8, var3);
-					if (var9.c().r() == bof.a) {
+					if (var9.c().r() == Material.AIR) {
 						var5 = -1;
 					} else if (var9.c() == aty.b) {
 						if (var5 == -1) {
@@ -126,14 +126,14 @@ public class bgw implements IChunkProvider {
 
 	}
 
-	public bfh d(int var1, int var2) {
+	public Chunk d(int var1, int var2) {
 		this.h.setSeed((long) var1 * 341873128712L + (long) var2 * 132897987541L);
 		bgk var3 = new bgk();
 		this.n = this.l.v().b(this.n, var1 * 16, var2 * 16, 16, 16);
 		this.a(var1, var2, var3);
 		this.a(var3);
-		bfh var4 = new bfh(this.l, var3, var1, var2);
-		byte[] var5 = var4.k();
+		Chunk var4 = new Chunk(this.l, var3, var1, var2);
+		byte[] var5 = var4.getBiomes();
 
 		for (int var6 = 0; var6 < var5.length; ++var6) {
 			var5[var6] = (byte) this.n[var6].az;
@@ -220,7 +220,7 @@ public class bgw implements IChunkProvider {
 		avt.M = false;
 	}
 
-	public boolean a(IChunkProvider var1, bfh var2, int var3, int var4) {
+	public boolean a(IChunkProvider var1, Chunk var2, int var3, int var4) {
 		return false;
 	}
 
@@ -255,10 +255,10 @@ public class bgw implements IChunkProvider {
 		return 0;
 	}
 
-	public void a(bfh var1, int var2, int var3) {
+	public void a(Chunk var1, int var2, int var3) {
 	}
 
-	public bfh a(Position var1) {
+	public Chunk a(Position var1) {
 		return this.d(var1.n() >> 4, var1.p() >> 4);
 	}
 }

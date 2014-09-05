@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class ei extends fb {
+public class ei extends RegistrySimple {
 
 	private final Object a;
 
@@ -8,8 +8,8 @@ public class ei extends fb {
 		this.a = var1;
 	}
 
-	public Object a(Object var1) {
-		Object var2 = super.a(var1);
+	public Object getByName(Object var1) {
+		Object var2 = super.getByName(var1);
 		return var2 == null ? this.a : var2;
 	}
 }

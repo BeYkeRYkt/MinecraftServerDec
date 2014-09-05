@@ -79,7 +79,7 @@ public class bck extends bdf implements pm, IInventory {
 			bec var9 = this.b.p(var8);
 			float[] var10;
 			if (var9.c() == aty.cG) {
-				var10 = acl.a((akv) var9.b(bar.a));
+				var10 = acl.a((akv) var9.b(BlockStainedGlass.a));
 			} else {
 				if (var9.c() != aty.cH) {
 					if (var9.c().n() >= 15) {
@@ -92,7 +92,7 @@ public class bck extends bdf implements pm, IInventory {
 					continue;
 				}
 
-				var10 = acl.a((akv) var9.b(bas.a));
+				var10 = acl.a((akv) var9.b(BlockStainedGlassPane.a));
 			}
 
 			if (!var6) {

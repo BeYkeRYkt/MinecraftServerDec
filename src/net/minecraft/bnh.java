@@ -83,7 +83,7 @@ public class bnh extends bnn {
 		this.a(var1, aty.a.P(), 1, 1, 0, var3);
 		this.a(var1, aty.a.P(), 1, 2, 0, var3);
 		this.a(var1, var3, var2, 1, 1, 0, PaintingDirection.fromByte(this.a(aty.ao, 1)));
-		if (this.a(var1, 1, 0, -1, var3).c().r() == bof.a && this.a(var1, 1, -1, -1, var3).c().r() != bof.a) {
+		if (this.a(var1, 1, 0, -1, var3).c().r() == Material.AIR && this.a(var1, 1, -1, -1, var3).c().r() != Material.AIR) {
 			this.a(var1, aty.aw.a(this.a(aty.aw, 3)), 1, 0, -1, var3);
 		}
 

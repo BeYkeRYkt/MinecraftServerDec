@@ -171,7 +171,7 @@ public class afg extends afm {
 	}
 
 	public float a(Position var1) {
-		return this.o.p(var1).c().r() == bof.h ? 10.0F + this.o.o(var1) - 0.5F : super.a(var1);
+		return this.o.p(var1).c().r() == Material.WATER ? 10.0F + this.o.o(var1) - 0.5F : super.a(var1);
 	}
 
 	public void m() {

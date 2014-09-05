@@ -12,12 +12,12 @@ public class blp extends bmm {
 
 	private List d;
 	private boolean f;
-	private aqm[] g;
+	private ChunkCoordIntPair[] g;
 	private double h;
 	private int i;
 
 	public blp() {
-		this.g = new aqm[3];
+		this.g = new ChunkCoordIntPair[3];
 		this.h = 32.0D;
 		this.i = 3;
 		this.d = Lists.newArrayList();
@@ -42,7 +42,7 @@ public class blp extends bmm {
 			if (((String) var3.getKey()).equals("distance")) {
 				this.h = DataTypesConverter.a((String) var3.getValue(), this.h, 1.0D);
 			} else if (((String) var3.getKey()).equals("count")) {
-				this.g = new aqm[DataTypesConverter.a((String) var3.getValue(), this.g.length, 1)];
+				this.g = new ChunkCoordIntPair[DataTypesConverter.a((String) var3.getValue(), this.g.length, 1)];
 			} else if (((String) var3.getKey()).equals("spread")) {
 				this.i = DataTypesConverter.a((String) var3.getValue(), this.i, 1);
 			}
@@ -71,7 +71,7 @@ public class blp extends bmm {
 					var11 = var12.p() >> 4;
 				}
 
-				this.g[var7] = new aqm(var10, var11);
+				this.g[var7] = new ChunkCoordIntPair(var10, var11);
 				var4 += 6.283185307179586D * (double) var6 / (double) this.i;
 				if (var7 == this.i) {
 					var6 += 2 + var3.nextInt(5);
@@ -82,12 +82,12 @@ public class blp extends bmm {
 			this.f = true;
 		}
 
-		aqm[] var13 = this.g;
+		ChunkCoordIntPair[] var13 = this.g;
 		int var14 = var13.length;
 
 		for (int var5 = 0; var5 < var14; ++var5) {
-			aqm var15 = var13[var5];
-			if (var1 == var15.a && var2 == var15.b) {
+			ChunkCoordIntPair var15 = var13[var5];
+			if (var1 == var15.chunkX && var2 == var15.chunkZ) {
 				return true;
 			}
 		}
@@ -97,13 +97,13 @@ public class blp extends bmm {
 
 	protected List y_() {
 		ArrayList var1 = Lists.newArrayList();
-		aqm[] var2 = this.g;
+		ChunkCoordIntPair[] var2 = this.g;
 		int var3 = var2.length;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			aqm var5 = var2[var4];
+			ChunkCoordIntPair var5 = var2[var4];
 			if (var5 != null) {
-				var1.add(var5.a(64));
+				var1.add(var5.getPositionAtCenter(64));
 			}
 		}
 

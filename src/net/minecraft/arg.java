@@ -31,7 +31,7 @@ public final class arg {
 					for (int var11 = -var10; var11 <= var10; ++var11) {
 						for (var12 = -var10; var12 <= var10; ++var12) {
 							boolean var13 = var11 == -var10 || var11 == var10 || var12 == -var10 || var12 == var10;
-							aqm var14 = new aqm(var11 + var8, var12 + var9);
+							ChunkCoordIntPair var14 = new ChunkCoordIntPair(var11 + var8, var12 + var9);
 							if (!this.b.contains(var14)) {
 								++var5;
 								if (!var13 && var1.af().a(var14)) {
@@ -57,8 +57,8 @@ public final class arg {
 						Iterator var42 = this.b.iterator();
 
 						label115: while (var42.hasNext()) {
-							aqm var15 = (aqm) var42.next();
-							Position var16 = a(var1, var15.a, var15.b);
+							ChunkCoordIntPair var15 = (ChunkCoordIntPair) var42.next();
+							Position var16 = a(var1, var15.chunkX, var15.chunkZ);
 							int var17 = var16.n();
 							int var18 = var16.o();
 							int var19 = var16.p();
@@ -139,7 +139,7 @@ public final class arg {
 	}
 
 	protected static Position a(World var0, int var1, int var2) {
-		bfh var3 = var0.a(var1, var2);
+		Chunk var3 = var0.a(var1, var2);
 		int var4 = var1 * 16 + var0.s.nextInt(16);
 		int var5 = var2 * 16 + var0.s.nextInt(16);
 		int var6 = DataTypesConverter.c(var3.f(new Position(var4, 0, var5)) + 1, 16);
@@ -153,7 +153,7 @@ public final class arg {
 		} else {
 			Block var3 = var1.p(var2).c();
 			if (var0 == xo.c) {
-				return var3.r().d() && var1.p(var2.b()).c().r().d() && !var1.p(var2.a()).c().t();
+				return var3.r().isLiquid() && var1.p(var2.b()).c().r().isLiquid() && !var1.p(var2.a()).c().t();
 			} else {
 				Position var4 = var2.b();
 				if (!World.a((ard) var1, var4)) {
@@ -161,7 +161,7 @@ public final class arg {
 				} else {
 					Block var5 = var1.p(var4).c();
 					boolean var6 = var5 != aty.h && var5 != aty.cv;
-					return var6 && !var3.t() && !var3.r().d() && !var1.p(var2.a()).c().t();
+					return var6 && !var3.t() && !var3.r().isLiquid() && !var1.p(var2.a()).c().t();
 				}
 			}
 		}

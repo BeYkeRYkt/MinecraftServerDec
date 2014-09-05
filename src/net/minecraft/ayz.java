@@ -101,7 +101,7 @@ public class ayz {
 	}
 
 	protected boolean a(Block var1) {
-		return var1.J == bof.a || var1 == aty.ab || var1 == aty.aY;
+		return var1.J == Material.AIR || var1 == aty.ab || var1 == aty.aY;
 	}
 
 	public boolean b() {
@@ -113,7 +113,7 @@ public class ayz {
 			Position var2 = this.f.a(this.c, var1);
 
 			for (int var3 = 0; var3 < this.g; ++var3) {
-				this.a.a(var2.b(var3), aty.aY.P().a(ayy.a, this.b), 2);
+				this.a.a(var2.b(var3), aty.aY.P().a(BlockPortal.a, this.b), 2);
 			}
 		}
 

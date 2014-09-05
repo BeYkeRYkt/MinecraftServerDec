@@ -54,7 +54,7 @@ public class arh {
 		int var7 = DataTypesConverter.toFixedPointInt(var1.locationZ);
 		boolean var8 = true;
 		Object var9 = Position.a;
-		long var10 = aqm.a(var6, var7);
+		long var10 = ChunkCoordIntPair.toLongHash(var6, var7);
 		if (this.c.b(var10)) {
 			ari var12 = (ari) this.c.a(var10);
 			var4 = 0.0D;
@@ -232,7 +232,7 @@ public class arh {
 										var26 = var13 + (var24 - 1) * var21 + var23 * var22;
 										var27 = var19 + var25;
 										int var28 = var16 + (var24 - 1) * var22 - var23 * var21;
-										if (var25 < 0 && !this.a.p(new Position(var26, var27, var28)).c().r().a() || var25 >= 0 && !this.a.d(new Position(var26, var27, var28))) {
+										if (var25 < 0 && !this.a.p(new Position(var26, var27, var28)).c().r().isBuildable() || var25 >= 0 && !this.a.d(new Position(var26, var27, var28))) {
 											continue label271;
 										}
 									}
@@ -276,7 +276,7 @@ public class arh {
 										var25 = var13 + (var23 - 1) * var21;
 										var26 = var19 + var24;
 										var27 = var16 + (var23 - 1) * var22;
-										if (var24 < 0 && !this.a.p(new Position(var25, var26, var27)).c().r().a() || var24 >= 0 && !this.a.d(new Position(var25, var26, var27))) {
+										if (var24 < 0 && !this.a.p(new Position(var25, var26, var27)).c().r().isBuildable() || var24 >= 0 && !this.a.d(new Position(var25, var26, var27))) {
 											continue label219;
 										}
 									}
@@ -325,7 +325,7 @@ public class arh {
 			}
 		}
 
-		bec var31 = aty.aY.P().a(ayy.a, var30 != 0 ? el.a : el.c);
+		bec var31 = aty.aY.P().a(BlockPortal.a, var30 != 0 ? el.a : el.c);
 
 		for (var20 = 0; var20 < 4; ++var20) {
 			for (var21 = 0; var21 < 4; ++var21) {

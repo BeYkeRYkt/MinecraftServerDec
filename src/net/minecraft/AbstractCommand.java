@@ -329,8 +329,8 @@ public abstract class AbstractCommand implements CommandInterface {
 	}
 
 	public static Item f(CommandSenderInterface var0, String var1) throws dk {
-		oa var2 = new oa(var1);
-		Item var3 = (Item) Item.REGISTRY.a(var2);
+		BlockNameInfo var2 = new BlockNameInfo(var1);
+		Item var3 = (Item) Item.REGISTRY.getByName(var2);
 		if (var3 == null) {
 			throw new dk("commands.give.notFound", new Object[] { var2 });
 		} else {
@@ -339,11 +339,11 @@ public abstract class AbstractCommand implements CommandInterface {
 	}
 
 	public static Block g(CommandSenderInterface var0, String var1) throws dk {
-		oa var2 = new oa(var1);
-		if (!Block.c.d(var2)) {
+		BlockNameInfo var2 = new BlockNameInfo(var1);
+		if (!Block.BLOCKREGISTRY.d(var2)) {
 			throw new dk("commands.give.notFound", new Object[] { var2 });
 		} else {
-			Block var3 = (Block) Block.c.a(var2);
+			Block var3 = (Block) Block.BLOCKREGISTRY.getByName(var2);
 			if (var3 == null) {
 				throw new dk("commands.give.notFound", new Object[] { var2 });
 			} else {
@@ -440,7 +440,7 @@ public abstract class AbstractCommand implements CommandInterface {
 
 				while (var4.hasNext()) {
 					Object var6 = var4.next();
-					if (var6 instanceof oa && startWith(var2, ((oa) var6).a())) {
+					if (var6 instanceof BlockNameInfo && startWith(var2, ((BlockNameInfo) var6).getBlockName())) {
 						var3.add(String.valueOf(var6));
 					}
 				}

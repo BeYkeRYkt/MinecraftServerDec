@@ -18,7 +18,7 @@ public class asr extends asl {
 			this.ak = aty.b.P();
 			this.al = aty.b.P();
 		} else if (var6 > -0.5D) {
-			this.ak = aty.d.P().a(avc.a, avd.b);
+			this.ak = aty.d.P().a(BlockDirt.a, avd.b);
 		}
 
 		this.b(var1, var2, var3, var4, var5, var6);

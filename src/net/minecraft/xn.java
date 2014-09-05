@@ -645,7 +645,7 @@ public abstract class xn extends EntityLiving {
 	}
 
 	public xq a(vu var1, xq var2) {
-		this.a(afs.b).b(new ya("Random spawn bonus", this.V.nextGaussian() * 0.05D, 1));
+		this.a(afs.b).b(new AttributeModifier("Random spawn bonus", this.V.nextGaussian() * 0.05D, 1));
 		return var2;
 	}
 

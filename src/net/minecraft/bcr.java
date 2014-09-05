@@ -188,7 +188,7 @@ public class bcr extends bdf implements pm, IInventory {
 			return false;
 		} else {
 			Block var2 = this.b.p(var1).c();
-			return var2 instanceof auj && ((auj) var2).b == this.n();
+			return var2 instanceof BlockChest && ((BlockChest) var2).b == this.n();
 		}
 	}
 
@@ -291,7 +291,7 @@ public class bcr extends bdf implements pm, IInventory {
 	}
 
 	public void c(EntityHuman var1) {
-		if (!var1.v() && this.w() instanceof auj) {
+		if (!var1.v() && this.w() instanceof BlockChest) {
 			--this.l;
 			this.b.c(this.c, this.w(), 1, this.l);
 			this.b.c(this.c, this.w());
@@ -312,11 +312,11 @@ public class bcr extends bdf implements pm, IInventory {
 
 	public int n() {
 		if (this.o == -1) {
-			if (this.b == null || !(this.w() instanceof auj)) {
+			if (this.b == null || !(this.w() instanceof BlockChest)) {
 				return 0;
 			}
 
-			this.o = ((auj) this.w()).b;
+			this.o = ((BlockChest) this.w()).b;
 		}
 
 		return this.o;

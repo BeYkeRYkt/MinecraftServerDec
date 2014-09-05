@@ -7,11 +7,11 @@ public class avt extends Block {
 	public static boolean M;
 
 	public avt() {
-		super(bof.p);
+		super(Material.SAND);
 		this.a(CreativeModeTab.b);
 	}
 
-	public avt(bof var1) {
+	public avt(Material var1) {
 		super(var1);
 	}
 
@@ -64,8 +64,8 @@ public class avt extends Block {
 
 	public static boolean d(World var0, Position var1) {
 		Block var2 = var0.p(var1).c();
-		bof var3 = var2.J;
-		return var2 == aty.ab || var3 == bof.a || var3 == bof.h || var3 == bof.i;
+		Material var3 = var2.J;
+		return var2 == aty.ab || var3 == Material.AIR || var3 == Material.WATER || var3 == Material.LAVA;
 	}
 
 	public void a_(World var1, Position var2) {

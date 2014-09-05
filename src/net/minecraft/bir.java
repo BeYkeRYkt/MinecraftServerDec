@@ -76,7 +76,7 @@ public class bir extends bhc {
 								if (Math.abs(var13) != var11 || Math.abs(var15) != var11 || var2.nextInt(2) != 0 && var10 != 0) {
 									var16 = new Position(var12, var9, var14);
 									Block var17 = var1.p(var16).c();
-									if (var17.r() == bof.a || var17.r() == bof.j || var17.r() == bof.l) {
+									if (var17.r() == Material.AIR || var17.r() == Material.LEAVES || var17.r() == Material.REPLACEABLE_PLANT) {
 										this.a(var1, var16, aty.t, this.d);
 									}
 								}
@@ -86,23 +86,23 @@ public class bir extends bhc {
 
 					for (var9 = 0; var9 < var4; ++var9) {
 						Block var21 = var1.p(var3.b(var9)).c();
-						if (var21.r() == bof.a || var21.r() == bof.j || var21.r() == bof.l) {
+						if (var21.r() == Material.AIR || var21.r() == Material.LEAVES || var21.r() == Material.REPLACEABLE_PLANT) {
 							this.a(var1, var3.b(var9), aty.r, this.c);
 							if (this.b && var9 > 0) {
 								if (var2.nextInt(3) > 0 && var1.d(var3.a(-1, var9, 0))) {
-									this.a(var1, var3.a(-1, var9, 0), aty.bn, bbv.S);
+									this.a(var1, var3.a(-1, var9, 0), aty.bn, BlockVine.S);
 								}
 
 								if (var2.nextInt(3) > 0 && var1.d(var3.a(1, var9, 0))) {
-									this.a(var1, var3.a(1, var9, 0), aty.bn, bbv.T);
+									this.a(var1, var3.a(1, var9, 0), aty.bn, BlockVine.T);
 								}
 
 								if (var2.nextInt(3) > 0 && var1.d(var3.a(0, var9, -1))) {
-									this.a(var1, var3.a(0, var9, -1), aty.bn, bbv.Q);
+									this.a(var1, var3.a(0, var9, -1), aty.bn, BlockVine.Q);
 								}
 
 								if (var2.nextInt(3) > 0 && var1.d(var3.a(0, var9, 1))) {
-									this.a(var1, var3.a(0, var9, 1), aty.bn, bbv.R);
+									this.a(var1, var3.a(0, var9, 1), aty.bn, BlockVine.R);
 								}
 							}
 						}
@@ -116,25 +116,25 @@ public class bir extends bhc {
 							for (var12 = var3.n() - var11; var12 <= var3.n() + var11; ++var12) {
 								for (var13 = var3.p() - var11; var13 <= var3.p() + var11; ++var13) {
 									Position var23 = new Position(var12, var9, var13);
-									if (var1.p(var23).c().r() == bof.j) {
+									if (var1.p(var23).c().r() == Material.LEAVES) {
 										Position var24 = var23.e();
 										var16 = var23.f();
 										Position var25 = var23.c();
 										Position var18 = var23.d();
-										if (var2.nextInt(4) == 0 && var1.p(var24).c().r() == bof.a) {
-											this.a(var1, var24, bbv.S);
+										if (var2.nextInt(4) == 0 && var1.p(var24).c().r() == Material.AIR) {
+											this.a(var1, var24, BlockVine.S);
 										}
 
-										if (var2.nextInt(4) == 0 && var1.p(var16).c().r() == bof.a) {
-											this.a(var1, var16, bbv.T);
+										if (var2.nextInt(4) == 0 && var1.p(var16).c().r() == Material.AIR) {
+											this.a(var1, var16, BlockVine.T);
 										}
 
-										if (var2.nextInt(4) == 0 && var1.p(var25).c().r() == bof.a) {
-											this.a(var1, var25, bbv.Q);
+										if (var2.nextInt(4) == 0 && var1.p(var25).c().r() == Material.AIR) {
+											this.a(var1, var25, BlockVine.Q);
 										}
 
-										if (var2.nextInt(4) == 0 && var1.p(var18).c().r() == bof.a) {
-											this.a(var1, var18, bbv.R);
+										if (var2.nextInt(4) == 0 && var1.p(var18).c().r() == Material.AIR) {
+											this.a(var1, var18, BlockVine.R);
 										}
 									}
 								}
@@ -168,7 +168,7 @@ public class bir extends bhc {
 		this.a(var1, var2, aty.bn, var3);
 		int var4 = 4;
 
-		for (var2 = var2.b(); var1.p(var2).c().r() == bof.a && var4 > 0; --var4) {
+		for (var2 = var2.b(); var1.p(var2).c().r() == Material.AIR && var4 > 0; --var4) {
 			this.a(var1, var2, aty.bn, var3);
 			var2 = var2.b();
 		}

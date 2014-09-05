@@ -276,7 +276,7 @@ public abstract class arm {
 				var3.a(var14, var15, var13, aty.h.P());
 			} else {
 				bec var16 = var3.a(var14, var15, var13);
-				if (var16.c().r() == bof.a) {
+				if (var16.c().r() == Material.AIR) {
 					var11 = -1;
 				} else if (var16.c() == aty.b) {
 					if (var11 == -1) {
@@ -288,7 +288,7 @@ public abstract class arm {
 							var10 = this.al;
 						}
 
-						if (var15 < 63 && (var9 == null || var9.c().r() == bof.a)) {
+						if (var15 < 63 && (var9 == null || var9.c().r() == Material.AIR)) {
 							if (this.a(new Position(var4, var15, var5)) < 0.15F) {
 								var9 = aty.aI.P();
 							} else {
@@ -311,7 +311,7 @@ public abstract class arm {
 						var3.a(var14, var15, var13, var10);
 						if (var11 == 0 && var10.c() == aty.m) {
 							var11 = var2.nextInt(4) + Math.max(0, var15 - 63);
-							var10 = var10.b(bab.a) == bac.b ? aty.cM.P() : aty.A.P();
+							var10 = var10.b(BlockSand.a) == bac.b ? aty.cM.P() : aty.A.P();
 						}
 					}
 				}

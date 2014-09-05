@@ -82,8 +82,8 @@ public class bhd extends bhc {
 			for (int var6 = -var4; var6 <= var4; ++var6) {
 				if (Math.pow((double) Math.abs(var5) + 0.5D, 2.0D) + Math.pow((double) Math.abs(var6) + 0.5D, 2.0D) <= (double) (var2 * var2)) {
 					Position var7 = var1.a(var5, 0, var6);
-					bof var8 = this.l.p(var7).c().r();
-					if (var8 == bof.a || var8 == bof.j) {
+					Material var8 = this.l.p(var7).c().r();
+					if (var8 == Material.AIR || var8 == Material.LEAVES) {
 						this.a(this.l, var7, var3, 0);
 					}
 				}

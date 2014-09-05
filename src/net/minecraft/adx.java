@@ -212,7 +212,7 @@ public abstract class adx extends Entity implements vz {
 			if (ati.d(var5)) {
 				this.a(var4, var5);
 				if (var5.c() == aty.cs) {
-					this.a(var14, var2, var16, ((Boolean) var5.b(azc.M)).booleanValue());
+					this.a(var14, var2, var16, ((Boolean) var5.b(BlockPoweredRail.M)).booleanValue());
 				}
 			} else {
 				this.n();
@@ -291,7 +291,7 @@ public abstract class adx extends Entity implements vz {
 		boolean var5 = false;
 		ati var6 = (ati) var2.c();
 		if (var6 == aty.D) {
-			var4 = ((Boolean) var2.b(azc.M)).booleanValue();
+			var4 = ((Boolean) var2.b(BlockPoweredRail.M)).booleanValue();
 			var5 = !var4;
 		}
 
@@ -554,7 +554,7 @@ public abstract class adx extends Entity implements vz {
 		if (this.x()) {
 			var1.put("CustomDisplayTile", true);
 			bec var2 = this.t();
-			oa var3 = (oa) Block.c.c(var2.c());
+			BlockNameInfo var3 = (BlockNameInfo) Block.BLOCKREGISTRY.c(var2.c());
 			var1.put("DisplayTile", var3 == null ? "" : var3.toString());
 			var1.put("DisplayData", var2.c().c(var2));
 			var1.put("DisplayOffset", this.v());

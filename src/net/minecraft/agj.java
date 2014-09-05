@@ -8,7 +8,7 @@ public class agj extends afm {
 
 	protected static final xy b = (new yg((xy) null, "zombie.spawnReinforcements", 0.0D, 0.0D, 1.0D)).a("Spawn Reinforcements Chance");
 	private static final UUID c = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
-	private static final ya bk = new ya(c, "Baby speed boost", 0.5D, 1);
+	private static final AttributeModifier bk = new AttributeModifier(c, "Baby speed boost", 0.5D, 1);
 	private final ys bl = new ys(this);
 	private int bm;
 	private boolean bn = false;
@@ -94,7 +94,7 @@ public class agj extends afm {
 	public void l(boolean var1) {
 		this.getDataWatcher().b(12, Byte.valueOf((byte) (var1 ? 1 : 0)));
 		if (this.o != null && !this.o.D) {
-			xz var2 = this.a(afs.d);
+			AttributeInstance var2 = this.a(afs.d);
 			var2.c(bk);
 			if (var1) {
 				var2.b(bk);
@@ -167,8 +167,8 @@ public class agj extends afm {
 							this.o.d((Entity) var7);
 							var7.d(var3);
 							var7.a(this.o.E(new Position(var7)), (xq) null);
-							this.a(b).b(new ya("Zombie reinforcement caller charge", -0.05000000074505806D, 0));
-							var7.a(b).b(new ya("Zombie reinforcement callee charge", -0.05000000074505806D, 0));
+							this.a(b).b(new AttributeModifier("Zombie reinforcement caller charge", -0.05000000074505806D, 0));
+							var7.a(b).b(new AttributeModifier("Zombie reinforcement callee charge", -0.05000000074505806D, 0));
 							break;
 						}
 					}
@@ -367,15 +367,15 @@ public class agj extends afm {
 			}
 		}
 
-		this.a(afs.c).b(new ya("Random spawn bonus", this.V.nextDouble() * 0.05000000074505806D, 0));
+		this.a(afs.c).b(new AttributeModifier("Random spawn bonus", this.V.nextDouble() * 0.05000000074505806D, 0));
 		double var9 = this.V.nextDouble() * 1.5D * (double) var3;
 		if (var9 > 1.0D) {
-			this.a(afs.b).b(new ya("Random zombie-spawn bonus", var9, 2));
+			this.a(afs.b).b(new AttributeModifier("Random zombie-spawn bonus", var9, 2));
 		}
 
 		if (this.V.nextFloat() < var3 * 0.05F) {
-			this.a(b).b(new ya("Leader zombie bonus", this.V.nextDouble() * 0.25D + 0.5D, 0));
-			this.a(afs.a).b(new ya("Leader zombie bonus", this.V.nextDouble() * 3.0D + 1.0D, 2));
+			this.a(b).b(new AttributeModifier("Leader zombie bonus", this.V.nextDouble() * 0.25D + 0.5D, 0));
+			this.a(afs.a).b(new AttributeModifier("Leader zombie bonus", this.V.nextDouble() * 3.0D + 1.0D, 2));
 			this.a(true);
 		}
 

@@ -78,7 +78,7 @@ public class bed {
 	}
 
 	public String toString() {
-		return Objects.toStringHelper((Object) this).add("block", Block.c.c(this.c)).add("properties", Iterables.transform(this.d, b)).toString();
+		return Objects.toStringHelper((Object) this).add("block", Block.BLOCKREGISTRY.c(this.c)).add("properties", Iterables.transform(this.d, b)).toString();
 	}
 
 }

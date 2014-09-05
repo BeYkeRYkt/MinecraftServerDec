@@ -68,9 +68,9 @@ public class asu extends arm {
 			this.ak = aty.c.P();
 			this.al = aty.d.P();
 			if (var6 > 1.75D) {
-				this.ak = aty.d.P().a(avc.a, avd.b);
+				this.ak = aty.d.P().a(BlockDirt.a, avd.b);
 			} else if (var6 > -0.95D) {
-				this.ak = aty.d.P().a(avc.a, avd.c);
+				this.ak = aty.d.P().a(BlockDirt.a, avd.c);
 			}
 		}
 

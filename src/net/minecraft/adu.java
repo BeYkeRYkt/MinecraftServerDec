@@ -113,7 +113,7 @@ public class adu extends Entity {
 			double var5 = this.aQ().b + (this.aQ().e - this.aQ().b) * (double) (var4 + 0) / (double) var1 - 0.125D;
 			double var7 = this.aQ().b + (this.aQ().e - this.aQ().b) * (double) (var4 + 1) / (double) var1 - 0.125D;
 			brt var9 = new brt(this.aQ().a, var5, this.aQ().c, this.aQ().d, var7, this.aQ().f);
-			if (this.o.b(var9, bof.h)) {
+			if (this.o.b(var9, Material.WATER)) {
 				var2 += 1.0D / (double) var1;
 			}
 		}
@@ -338,7 +338,7 @@ public class adu extends Entity {
 
 				this.O = 0.0F;
 			}
-		} else if (this.o.p((new Position(this)).b()).c().r() != bof.h && var1 < 0.0D) {
+		} else if (this.o.p((new Position(this)).b()).c().r() != Material.WATER && var1 < 0.0D) {
 			this.O = (float) ((double) this.O - var1);
 		}
 

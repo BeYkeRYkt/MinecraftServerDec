@@ -191,7 +191,7 @@ public class amk {
 	public static final Item cE;
 
 	private static Item a(String var0) {
-		return (Item) Item.REGISTRY.a(new oa(var0));
+		return (Item) Item.REGISTRY.getByName(new BlockNameInfo(var0));
 	}
 
 	static {

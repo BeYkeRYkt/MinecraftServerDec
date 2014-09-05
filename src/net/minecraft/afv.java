@@ -38,7 +38,7 @@ class afv extends zb {
 							if (var1.Q().b("mobGriefing")) {
 								var1.b(var7, true);
 							} else {
-								var1.a(var7, ((axu) var8.b(axs.a)).d(), 3);
+								var1.a(var7, ((axu) var8.b(BlockMonsterEggs.a)).d(), 3);
 							}
 
 							if (var2.nextBoolean()) {

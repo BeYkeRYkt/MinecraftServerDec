@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class apw extends apf {
 
-	protected apw(int var1, oa var2, int var3) {
+	protected apw(int var1, BlockNameInfo var2, int var3) {
 		super(var1, var2, var3, apg.h);
 		this.c("untouching");
 	}

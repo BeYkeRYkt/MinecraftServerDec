@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class aps extends apf {
 
-	protected aps(int var1, oa var2, int var3, apg var4) {
+	protected aps(int var1, BlockNameInfo var2, int var3, apg var4) {
 		super(var1, var2, var3, var4);
 		if (var4 == apg.h) {
 			this.c("lootBonusDigger");

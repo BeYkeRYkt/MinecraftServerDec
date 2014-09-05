@@ -15,25 +15,25 @@ public class od {
 	}
 
 	static void b() {
-		ave.M.a(amk.g, new oe());
-		ave.M.a(amk.aP, new on());
-		ave.M.a(amk.aD, new oo());
-		ave.M.a(amk.bK, new op());
-		ave.M.a(amk.bz, new oq());
-		ave.M.a(amk.bJ, new os());
-		ave.M.a(amk.cb, new ot());
-		ave.M.a(amk.bL, new ou());
-		ave.M.a(amk.aE, new ov());
+		BlockDispenser.M.a(amk.g, new oe());
+		BlockDispenser.M.a(amk.aP, new on());
+		BlockDispenser.M.a(amk.aD, new oo());
+		BlockDispenser.M.a(amk.bK, new op());
+		BlockDispenser.M.a(amk.bz, new oq());
+		BlockDispenser.M.a(amk.bJ, new os());
+		BlockDispenser.M.a(amk.cb, new ot());
+		BlockDispenser.M.a(amk.bL, new ou());
+		BlockDispenser.M.a(amk.aE, new ov());
 		of var0 = new of();
-		ave.M.a(amk.ay, var0);
-		ave.M.a(amk.ax, var0);
-		ave.M.a(amk.aw, new og());
-		ave.M.a(amk.d, new oh());
-		ave.M.a(amk.aW, new oi());
-		ave.M.a(Item.getItemOf(aty.W), new oj());
-		ave.M.a(amk.bX, new ok());
-		ave.M.a(Item.getItemOf(aty.aU), new ol());
-		ave.M.a(Item.getItemOf(aty.bX), new om());
+		BlockDispenser.M.a(amk.ay, var0);
+		BlockDispenser.M.a(amk.ax, var0);
+		BlockDispenser.M.a(amk.aw, new og());
+		BlockDispenser.M.a(amk.d, new oh());
+		BlockDispenser.M.a(amk.aW, new oi());
+		BlockDispenser.M.a(Item.getItemOf(aty.W), new oj());
+		BlockDispenser.M.a(amk.bX, new ok());
+		BlockDispenser.M.a(Item.getItemOf(aty.aU), new ol());
+		BlockDispenser.M.a(Item.getItemOf(aty.bX), new om());
 	}
 
 	public static void c() {
@@ -43,8 +43,8 @@ public class od {
 				d();
 			}
 
-			Block.R();
-			avx.j();
+			Block.registerBlocks();
+			BlockFire.j();
 			Item.t();
 			ty.a();
 			b();

@@ -11,7 +11,7 @@ class aet extends zb {
 	}
 
 	public boolean a() {
-		return !this.a.o.Q().b("mobGriefing") ? false : (this.a.ck().c().r() == bof.a ? false : this.a.bb().nextInt(2000) == 0);
+		return !this.a.o.Q().b("mobGriefing") ? false : (this.a.ck().c().r() == Material.AIR ? false : this.a.bb().nextInt(2000) == 0);
 	}
 
 	public void e() {
@@ -31,6 +31,6 @@ class aet extends zb {
 	}
 
 	private boolean a(World var1, Position var2, Block var3, Block var4, Block var5) {
-		return !var3.c(var1, var2) ? false : (var4.r() != bof.a ? false : (var5.r() == bof.a ? false : var5.d()));
+		return !var3.c(var1, var2) ? false : (var4.r() != Material.AIR ? false : (var5.r() == Material.AIR ? false : var5.d()));
 	}
 }

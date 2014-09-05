@@ -14,7 +14,7 @@ public class bgp implements IChunkProvider {
 		this.c = var1;
 	}
 
-	public bfh d(int var1, int var2) {
+	public Chunk d(int var1, int var2) {
 		bgk var3 = new bgk();
 
 		int var7;
@@ -30,10 +30,10 @@ public class bgp implements IChunkProvider {
 			}
 		}
 
-		bfh var9 = new bfh(this.c, var3, var1, var2);
+		Chunk var9 = new Chunk(this.c, var3, var1, var2);
 		var9.b();
 		arm[] var10 = this.c.v().b((arm[]) null, var1 * 16, var2 * 16, 16, 16);
-		byte[] var11 = var9.k();
+		byte[] var11 = var9.getBiomes();
 
 		for (var7 = 0; var7 < var11.length; ++var7) {
 			var11[var7] = (byte) var10[var7].az;
@@ -66,7 +66,7 @@ public class bgp implements IChunkProvider {
 	public void a(IChunkProvider var1, int var2, int var3) {
 	}
 
-	public boolean a(IChunkProvider var1, bfh var2, int var3, int var4) {
+	public boolean a(IChunkProvider var1, Chunk var2, int var3, int var4) {
 		return false;
 	}
 
@@ -102,15 +102,15 @@ public class bgp implements IChunkProvider {
 		return 0;
 	}
 
-	public void a(bfh var1, int var2, int var3) {
+	public void a(Chunk var1, int var2, int var3) {
 	}
 
-	public bfh a(Position var1) {
+	public Chunk a(Position var1) {
 		return this.d(var1.n() >> 4, var1.p() >> 4);
 	}
 
 	static {
-		Iterator var0 = Block.c.iterator();
+		Iterator var0 = Block.BLOCKREGISTRY.iterator();
 
 		while (var0.hasNext()) {
 			Block var1 = (Block) var0.next();

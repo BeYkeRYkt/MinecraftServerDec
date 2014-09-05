@@ -345,7 +345,7 @@ public class rj implements ls, pm {
 							this.b.c.e();
 						}
 
-						if (var2.p(var3).c().r() != bof.a) {
+						if (var2.p(var3).c().r() != Material.AIR) {
 							this.b.a.a((Packet) (new iw(var2, var3)));
 						}
 					}

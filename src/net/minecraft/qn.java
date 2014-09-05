@@ -209,12 +209,12 @@ public class qn {
 
 	}
 
-	public void a(EntityPlayer var1, bfh var2) {
+	public void a(EntityPlayer var1, Chunk var2) {
 		Iterator var3 = this.c.iterator();
 
 		while (var3.hasNext()) {
 			qy var4 = (qy) var3.next();
-			if (var4.a != var1 && var4.a.ae == var2.a && var4.a.ag == var2.b) {
+			if (var4.a != var1 && var4.a.ae == var2.x && var4.a.ag == var2.y) {
 				var4.b(var1);
 			}
 		}

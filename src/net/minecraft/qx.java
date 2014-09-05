@@ -56,7 +56,7 @@ public class qx {
 		if (this.h) {
 			int var1 = this.g - this.j;
 			Block var2 = this.a.p(this.i).c();
-			if (var2.r() == bof.a) {
+			if (var2.r() == Material.AIR) {
 				this.h = false;
 			} else {
 				var3 = var2.a((EntityHuman) this.b, this.b.o, this.i) * (float) (var1 + 1);
@@ -73,7 +73,7 @@ public class qx {
 			}
 		} else if (this.d) {
 			Block var5 = this.a.p(this.f).c();
-			if (var5.r() == bof.a) {
+			if (var5.r() == Material.AIR) {
 				this.a.c(this.b.getId(), this.f, -1);
 				this.k = -1;
 				this.d = false;
@@ -118,12 +118,12 @@ public class qx {
 			this.a.a((EntityHuman) null, var1, var2);
 			this.e = this.g;
 			float var6 = 1.0F;
-			if (var3.r() != bof.a) {
+			if (var3.r() != Material.AIR) {
 				var3.a(this.a, var1, (EntityHuman) this.b);
 				var6 = var3.a((EntityHuman) this.b, this.b.o, var1);
 			}
 
-			if (var3.r() != bof.a && var6 >= 1.0F) {
+			if (var3.r() != Material.AIR && var6 >= 1.0F) {
 				this.b(var1);
 			} else {
 				this.d = true;
@@ -140,7 +140,7 @@ public class qx {
 		if (var1.equals(this.f)) {
 			int var2 = this.g - this.e;
 			Block var3 = this.a.p(var1).c();
-			if (var3.r() != bof.a) {
+			if (var3.r() != Material.AIR) {
 				float var4 = var3.a((EntityHuman) this.b, this.b.o, var1) * (float) (var2 + 1);
 				if (var4 >= 0.7F) {
 					this.d = false;
@@ -256,8 +256,8 @@ public class qx {
 			if (var13 instanceof vy) {
 				Block var14 = var2.p(var4).c();
 				vy var15 = (vy) var13;
-				if (var15 instanceof bcr && var14 instanceof auj) {
-					var15 = ((auj) var14).d(var2, var4);
+				if (var15 instanceof bcr && var14 instanceof BlockChest) {
+					var15 = ((BlockChest) var14).d(var2, var4);
 				}
 
 				if (var15 != null) {

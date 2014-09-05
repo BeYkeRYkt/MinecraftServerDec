@@ -59,7 +59,7 @@ public class aqo {
 						for (float var21 = 0.3F; var14 > 0.0F; var14 -= 0.22500001F) {
 							Position var22 = new Position(var15, var17, var19);
 							bec var23 = this.d.p(var22);
-							if (var23.c().r() != bof.a) {
+							if (var23.c().r() != Material.AIR) {
 								float var24 = this.h != null ? this.h.a(this, this.d, var22, var23) : var23.c().a((Entity) null);
 								var14 -= (var24 + 0.3F) * 0.3F;
 							}
@@ -154,7 +154,7 @@ public class aqo {
 					this.d.a(ew.l, var5, var7, var9, var11, var13, var15, new int[0]);
 				}
 
-				if (var4.r() != bof.a) {
+				if (var4.r() != Material.AIR) {
 					if (var4.a(this)) {
 						var4.a(this.d, var3, this.d.p(var3), 1.0F / this.i, 0);
 					}
@@ -170,7 +170,7 @@ public class aqo {
 
 			while (var2.hasNext()) {
 				var3 = (Position) var2.next();
-				if (this.d.p(var3).c().r() == bof.a && this.d.p(var3.b()).c().m() && this.c.nextInt(3) == 0) {
+				if (this.d.p(var3).c().r() == Material.AIR && this.d.p(var3.b()).c().m() && this.c.nextInt(3) == 0) {
 					this.d.a(var3, aty.ab.P());
 				}
 			}

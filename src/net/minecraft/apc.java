@@ -8,7 +8,7 @@ public class apc extends apf {
 	private static final int[] H = new int[] { 20, 20, 20 };
 	public final int a;
 
-	public apc(int var1, oa var2, int var3, int var4) {
+	public apc(int var1, BlockNameInfo var2, int var3, int var4) {
 		super(var1, var2, var3, apg.g);
 		this.a = var4;
 	}

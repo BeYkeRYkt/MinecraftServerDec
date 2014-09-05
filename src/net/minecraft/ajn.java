@@ -18,7 +18,7 @@ public class ajn extends Item {
 		this.d(var1.a(var3));
 		this.maxStackSize = 1;
 		this.a(CreativeModeTab.j);
-		ave.M.a(this, l);
+		BlockDispenser.M.a(this, l);
 	}
 
 	public int b() {

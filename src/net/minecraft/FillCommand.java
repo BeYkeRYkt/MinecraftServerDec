@@ -150,6 +150,6 @@ public class FillCommand extends AbstractCommand {
 	}
 
 	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
-		return var2.length > 0 && var2.length <= 3 ? a(var2, 0, var3) : (var2.length > 3 && var2.length <= 6 ? a(var2, 3, var3) : (var2.length == 7 ? a(var2, Block.c.c()) : (var2.length == 9 ? a(var2, new String[] { "replace", "destroy", "keep", "hollow", "outline" }) : null)));
+		return var2.length > 0 && var2.length <= 3 ? a(var2, 0, var3) : (var2.length > 3 && var2.length <= 6 ? a(var2, 3, var3) : (var2.length == 7 ? a(var2, Block.BLOCKREGISTRY.c()) : (var2.length == 9 ? a(var2, new String[] { "replace", "destroy", "keep", "hollow", "outline" }) : null)));
 	}
 }

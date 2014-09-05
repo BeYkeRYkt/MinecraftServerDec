@@ -17,8 +17,8 @@ public class aou {
 		var1.a(new ItemStack(aty.cq, 1, azn.b.a()), new Object[] { "#", "#", Character.valueOf('#'), new ItemStack(aty.U, 1, bbg.h.a()) });
 		var1.a(new ItemStack(aty.cq, 2, azn.c.a()), new Object[] { "#", "#", Character.valueOf('#'), new ItemStack(aty.cq, 1, azn.a.a()) });
 		var1.a(new ItemStack(aty.bf, 4), new Object[] { "##", "##", Character.valueOf('#'), new ItemStack(aty.b, 1, bbb.a.a()) });
-		var1.a(new ItemStack(aty.bf, 1, bbc.O), new Object[] { "#", "#", Character.valueOf('#'), new ItemStack(aty.U, 1, bbg.f.a()) });
-		var1.b(new ItemStack(aty.bf, 1, bbc.M), new Object[] { aty.bf, aty.bn });
+		var1.a(new ItemStack(aty.bf, 1, BlockSmoothBrick.O), new Object[] { "#", "#", Character.valueOf('#'), new ItemStack(aty.U, 1, bbg.f.a()) });
+		var1.b(new ItemStack(aty.bf, 1, BlockSmoothBrick.M), new Object[] { aty.bf, aty.bn });
 		var1.b(new ItemStack(aty.Y, 1), new Object[] { aty.e, aty.bn });
 		var1.a(new ItemStack(aty.bi, 16), new Object[] { "###", "###", Character.valueOf('#'), amk.j });
 		var1.a(new ItemStack(aty.bj, 16), new Object[] { "###", "###", Character.valueOf('#'), aty.w });
@@ -32,9 +32,9 @@ public class aou {
 		var1.a(new ItemStack(aty.b, 4, bbb.e.a()), new Object[] { "SS", "SS", Character.valueOf('S'), new ItemStack(aty.b, 1, bbb.d.a()) });
 		var1.a(new ItemStack(aty.b, 4, bbb.c.a()), new Object[] { "SS", "SS", Character.valueOf('S'), new ItemStack(aty.b, 1, bbb.b.a()) });
 		var1.a(new ItemStack(aty.b, 4, bbb.g.a()), new Object[] { "SS", "SS", Character.valueOf('S'), new ItemStack(aty.b, 1, bbb.f.a()) });
-		var1.a(new ItemStack(aty.cI, 1, azi.b), new Object[] { "SS", "SS", Character.valueOf('S'), amk.cC });
-		var1.a(new ItemStack(aty.cI, 1, azi.M), new Object[] { "SSS", "SSS", "SSS", Character.valueOf('S'), amk.cC });
-		var1.a(new ItemStack(aty.cI, 1, azi.N), new Object[] { "SSS", "SIS", "SSS", Character.valueOf('S'), amk.cC, Character.valueOf('I'), new ItemStack(amk.aW, 1, akv.p.b()) });
+		var1.a(new ItemStack(aty.cI, 1, BlockPrismarine.b), new Object[] { "SS", "SS", Character.valueOf('S'), amk.cC });
+		var1.a(new ItemStack(aty.cI, 1, BlockPrismarine.M), new Object[] { "SSS", "SSS", "SSS", Character.valueOf('S'), amk.cC });
+		var1.a(new ItemStack(aty.cI, 1, BlockPrismarine.N), new Object[] { "SSS", "SIS", "SSS", Character.valueOf('S'), amk.cC, Character.valueOf('I'), new ItemStack(amk.aW, 1, akv.p.b()) });
 		var1.a(new ItemStack(aty.cJ, 1, 0), new Object[] { "SCS", "CCC", "SCS", Character.valueOf('S'), amk.cC, Character.valueOf('C'), amk.cD });
 	}
 }

@@ -4,7 +4,7 @@ import java.util.Random;
 
 public abstract class ath extends Block {
 
-	protected ath(bof var1) {
+	protected ath(Material var1) {
 		super(var1);
 		this.a(CreativeModeTab.d);
 		this.a(true);
@@ -58,7 +58,7 @@ public abstract class ath extends Block {
 	}
 
 	private boolean m(World var1, Position var2) {
-		return World.a((ard) var1, var2) || var1.p(var2).c() instanceof avv;
+		return World.a((ard) var1, var2) || var1.p(var2).c() instanceof BlockFence;
 	}
 
 	public void a(World var1, Position var2, bec var3, Random var4) {

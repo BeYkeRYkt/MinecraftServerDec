@@ -14,7 +14,7 @@ public class qs implements IChunkProvider {
 
 	private static final Logger b = LogManager.getLogger();
 	private Set c = Collections.newSetFromMap(new ConcurrentHashMap());
-	private bfh d;
+	private Chunk d;
 	private IChunkProvider e;
 	private bfq f;
 	public boolean a = true;
@@ -30,7 +30,7 @@ public class qs implements IChunkProvider {
 	}
 
 	public boolean a(int var1, int var2) {
-		return this.g.b(aqm.a(var1, var2));
+		return this.g.b(ChunkCoordIntPair.toLongHash(var1, var2));
 	}
 
 	public List a() {
@@ -40,10 +40,10 @@ public class qs implements IChunkProvider {
 	public void b(int var1, int var2) {
 		if (this.i.worldProvider.e()) {
 			if (!this.i.c(var1, var2)) {
-				this.c.add(Long.valueOf(aqm.a(var1, var2)));
+				this.c.add(Long.valueOf(ChunkCoordIntPair.toLongHash(var1, var2)));
 			}
 		} else {
-			this.c.add(Long.valueOf(aqm.a(var1, var2)));
+			this.c.add(Long.valueOf(ChunkCoordIntPair.toLongHash(var1, var2)));
 		}
 
 	}
@@ -52,16 +52,16 @@ public class qs implements IChunkProvider {
 		Iterator var1 = this.h.iterator();
 
 		while (var1.hasNext()) {
-			bfh var2 = (bfh) var1.next();
-			this.b(var2.a, var2.b);
+			Chunk var2 = (Chunk) var1.next();
+			this.b(var2.x, var2.y);
 		}
 
 	}
 
-	public bfh c(int var1, int var2) {
-		long var3 = aqm.a(var1, var2);
+	public Chunk c(int var1, int var2) {
+		long var3 = ChunkCoordIntPair.toLongHash(var1, var2);
 		this.c.remove(Long.valueOf(var3));
-		bfh var5 = (bfh) this.g.a(var3);
+		Chunk var5 = (Chunk) this.g.a(var3);
 		if (var5 == null) {
 			var5 = this.e(var1, var2);
 			if (var5 == null) {
@@ -90,17 +90,17 @@ public class qs implements IChunkProvider {
 		return var5;
 	}
 
-	public bfh d(int var1, int var2) {
-		bfh var3 = (bfh) this.g.a(aqm.a(var1, var2));
+	public Chunk d(int var1, int var2) {
+		Chunk var3 = (Chunk) this.g.a(ChunkCoordIntPair.toLongHash(var1, var2));
 		return var3 == null ? (!this.i.ad() && !this.a ? this.d : this.c(var1, var2)) : var3;
 	}
 
-	private bfh e(int var1, int var2) {
+	private Chunk e(int var1, int var2) {
 		if (this.f == null) {
 			return null;
 		} else {
 			try {
-				bfh var3 = this.f.a(this.i, var1, var2);
+				Chunk var3 = this.f.a(this.i, var1, var2);
 				if (var3 != null) {
 					var3.b(this.i.K());
 					if (this.e != null) {
@@ -116,7 +116,7 @@ public class qs implements IChunkProvider {
 		}
 	}
 
-	private void a(bfh var1) {
+	private void a(Chunk var1) {
 		if (this.f != null) {
 			try {
 				this.f.b(this.i, var1);
@@ -127,7 +127,7 @@ public class qs implements IChunkProvider {
 		}
 	}
 
-	private void b(bfh var1) {
+	private void b(Chunk var1) {
 		if (this.f != null) {
 			try {
 				var1.b(this.i.K());
@@ -140,7 +140,7 @@ public class qs implements IChunkProvider {
 	}
 
 	public void a(IChunkProvider var1, int var2, int var3) {
-		bfh var4 = this.d(var2, var3);
+		Chunk var4 = this.d(var2, var3);
 		if (!var4.t()) {
 			var4.n();
 			if (this.e != null) {
@@ -151,9 +151,9 @@ public class qs implements IChunkProvider {
 
 	}
 
-	public boolean a(IChunkProvider var1, bfh var2, int var3, int var4) {
+	public boolean a(IChunkProvider var1, Chunk var2, int var3, int var4) {
 		if (this.e != null && this.e.a(var1, var2, var3, var4)) {
-			bfh var5 = this.d(var3, var4);
+			Chunk var5 = this.d(var3, var4);
 			var5.e();
 			return true;
 		} else {
@@ -165,7 +165,7 @@ public class qs implements IChunkProvider {
 		int var3 = 0;
 
 		for (int var4 = 0; var4 < this.h.size(); ++var4) {
-			bfh var5 = (bfh) this.h.get(var4);
+			Chunk var5 = (Chunk) this.h.get(var4);
 			if (var1) {
 				this.a(var5);
 			}
@@ -195,7 +195,7 @@ public class qs implements IChunkProvider {
 			for (int var1 = 0; var1 < 100; ++var1) {
 				if (!this.c.isEmpty()) {
 					Long var2 = (Long) this.c.iterator().next();
-					bfh var3 = (bfh) this.g.a(var2.longValue());
+					Chunk var3 = (Chunk) this.g.a(var2.longValue());
 					if (var3 != null) {
 						var3.d();
 						this.b(var3);
@@ -236,10 +236,10 @@ public class qs implements IChunkProvider {
 		return this.g.a();
 	}
 
-	public void a(bfh var1, int var2, int var3) {
+	public void a(Chunk var1, int var2, int var3) {
 	}
 
-	public bfh a(Position var1) {
+	public Chunk a(Position var1) {
 		return this.d(var1.n() >> 4, var1.p() >> 4);
 	}
 

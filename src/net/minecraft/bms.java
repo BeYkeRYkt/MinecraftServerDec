@@ -86,11 +86,11 @@ public abstract class bms {
 		int var10;
 		for (var9 = var3; var9 <= var6; ++var9) {
 			for (var10 = var5; var10 <= var8; ++var10) {
-				if (var1.p(new Position(var9, var4, var10)).c().r().d()) {
+				if (var1.p(new Position(var9, var4, var10)).c().r().isLiquid()) {
 					return true;
 				}
 
-				if (var1.p(new Position(var9, var7, var10)).c().r().d()) {
+				if (var1.p(new Position(var9, var7, var10)).c().r().isLiquid()) {
 					return true;
 				}
 			}
@@ -98,11 +98,11 @@ public abstract class bms {
 
 		for (var9 = var3; var9 <= var6; ++var9) {
 			for (var10 = var4; var10 <= var7; ++var10) {
-				if (var1.p(new Position(var9, var10, var5)).c().r().d()) {
+				if (var1.p(new Position(var9, var10, var5)).c().r().isLiquid()) {
 					return true;
 				}
 
-				if (var1.p(new Position(var9, var10, var8)).c().r().d()) {
+				if (var1.p(new Position(var9, var10, var8)).c().r().isLiquid()) {
 					return true;
 				}
 			}
@@ -110,11 +110,11 @@ public abstract class bms {
 
 		for (var9 = var5; var9 <= var8; ++var9) {
 			for (var10 = var4; var10 <= var7; ++var10) {
-				if (var1.p(new Position(var3, var10, var9)).c().r().d()) {
+				if (var1.p(new Position(var3, var10, var9)).c().r().isLiquid()) {
 					return true;
 				}
 
-				if (var1.p(new Position(var6, var10, var9)).c().r().d()) {
+				if (var1.p(new Position(var6, var10, var9)).c().r().isLiquid()) {
 					return true;
 				}
 			}
@@ -172,7 +172,7 @@ public abstract class bms {
 
 				return 1;
 			}
-		} else if (var1 instanceof avf) {
+		} else if (var1 instanceof BlockDoor) {
 			if (this.m == PaintingDirection.d) {
 				if (var2 == 0) {
 					return 2;
@@ -429,7 +429,7 @@ public abstract class bms {
 		for (int var12 = var4; var12 <= var7; ++var12) {
 			for (int var13 = var3; var13 <= var6; ++var13) {
 				for (int var14 = var5; var14 <= var8; ++var14) {
-					if (!var11 || this.a(var1, var13, var12, var14, var2).c().r() != bof.a) {
+					if (!var11 || this.a(var1, var13, var12, var14, var2).c().r() != Material.AIR) {
 						if (var12 != var4 && var12 != var7 && var13 != var3 && var13 != var6 && var14 != var5 && var14 != var8) {
 							this.a(var1, var10, var13, var12, var14, var2);
 						} else {
@@ -446,7 +446,7 @@ public abstract class bms {
 		for (int var12 = var4; var12 <= var7; ++var12) {
 			for (int var13 = var3; var13 <= var6; ++var13) {
 				for (int var14 = var5; var14 <= var8; ++var14) {
-					if (!var9 || this.a(var1, var13, var12, var14, var2).c().r() != bof.a) {
+					if (!var9 || this.a(var1, var13, var12, var14, var2).c().r() != Material.AIR) {
 						var11.a(var10, var13, var12, var14, var12 == var4 || var12 == var7 || var13 == var3 || var13 == var6 || var14 == var5 || var14 == var8);
 						this.a(var1, var11.a(), var13, var12, var14, var2);
 					}
@@ -460,7 +460,7 @@ public abstract class bms {
 		for (int var14 = var6; var14 <= var9; ++var14) {
 			for (int var15 = var5; var15 <= var8; ++var15) {
 				for (int var16 = var7; var16 <= var10; ++var16) {
-					if (var3.nextFloat() <= var4 && (!var13 || this.a(var1, var15, var14, var16, var2).c().r() != bof.a)) {
+					if (var3.nextFloat() <= var4 && (!var13 || this.a(var1, var15, var14, var16, var2).c().r() != Material.AIR)) {
 						if (var14 != var6 && var14 != var9 && var15 != var5 && var15 != var8 && var16 != var7 && var16 != var10) {
 							this.a(var1, var12, var15, var14, var16, var2);
 						} else {
@@ -495,7 +495,7 @@ public abstract class bms {
 
 				for (int var20 = var5; var20 <= var8; ++var20) {
 					float var21 = ((float) var20 - var15) / (var13 * 0.5F);
-					if (!var10 || this.a(var1, var18, var16, var20, var2).c().r() != bof.a) {
+					if (!var10 || this.a(var1, var18, var16, var20, var2).c().r() != Material.AIR) {
 						float var22 = var19 * var19 + var17 * var17 + var21 * var21;
 						if (var22 <= 1.05F) {
 							this.a(var1, var9, var18, var16, var20, var2);
@@ -523,7 +523,7 @@ public abstract class bms {
 		int var8 = this.d(var4);
 		int var9 = this.b(var3, var5);
 		if (var6.b((fd) (new Position(var7, var8, var9)))) {
-			while ((var1.d(new Position(var7, var8, var9)) || var1.p(new Position(var7, var8, var9)).c().r().d()) && var8 > 1) {
+			while ((var1.d(new Position(var7, var8, var9)) || var1.p(new Position(var7, var8, var9)).c().r().isLiquid()) && var8 > 1) {
 				var1.a(new Position(var7, var8, var9), var2, 2);
 				--var8;
 			}

@@ -235,7 +235,7 @@ public class adf extends afm implements afr {
 								int var9 = var1 + var7;
 								int var10 = var15 + var19;
 								Block var11 = this.o.p(new Position(var20, var9, var10)).c();
-								if (var11.r() != bof.a && var11 != aty.h && var11 != aty.bF && var11 != aty.bG && var11 != aty.bX && var11 != aty.cv) {
+								if (var11.r() != Material.AIR && var11 != aty.h && var11 != aty.bF && var11 != aty.bG && var11 != aty.bX && var11 != aty.cv) {
 									var17 = this.o.b(new Position(var20, var9, var10), true) || var17;
 								}
 							}

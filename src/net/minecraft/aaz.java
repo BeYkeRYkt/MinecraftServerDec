@@ -6,7 +6,7 @@ public abstract class aaz {
 	protected World c;
 	protected bpv d;
 	protected double e;
-	private final xz a;
+	private final AttributeInstance a;
 	private int f;
 	private int g;
 	private brw h = new brw(0.0D, 0.0D, 0.0D);

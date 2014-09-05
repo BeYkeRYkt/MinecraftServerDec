@@ -4,8 +4,8 @@ public abstract class oc extends eg {
 
 	public ItemStack b(dz var1, ItemStack var2) {
 		World var3 = var1.i();
-		ex var4 = ave.a(var1);
-		PaintingDirection var5 = ave.b(var1.f());
+		ex var4 = BlockDispenser.a(var1);
+		PaintingDirection var5 = BlockDispenser.b(var1.f());
 		aho var6 = this.a(var3, var4);
 		var6.c((double) var5.g(), (double) ((float) var5.h() + 0.1F), (double) var5.i(), this.b(), this.a());
 		var3.d((Entity) var6);

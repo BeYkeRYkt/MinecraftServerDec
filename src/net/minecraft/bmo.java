@@ -18,7 +18,7 @@ class bmo implements Callable {
 	}
 
 	public String a() {
-		return String.valueOf(aqm.a(this.a, this.b));
+		return String.valueOf(ChunkCoordIntPair.toLongHash(this.a, this.b));
 	}
 
 	// $FF: synthetic method

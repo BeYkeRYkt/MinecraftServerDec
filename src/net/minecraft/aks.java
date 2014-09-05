@@ -55,7 +55,7 @@ public class aks extends Item {
 
 	public Multimap i() {
 		Multimap var1 = super.i();
-		var1.put(afs.e.a(), new ya(f, "Tool modifier", (double) this.d, 0));
+		var1.put(afs.e.a(), new AttributeModifier(f, "Tool modifier", (double) this.d, 0));
 		return var1;
 	}
 }

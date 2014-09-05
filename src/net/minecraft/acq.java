@@ -78,7 +78,7 @@ public class acq extends abw {
 			int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
 			bec var4 = this.o.p(new Position(var1, var2, var3));
 			Block var5 = var4.c();
-			if (var5.r() != bof.a) {
+			if (var5.r() != Material.AIR) {
 				this.o.a(ew.L, this.locationX + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, this.aQ().b + 0.1D, this.locationZ + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, 4.0D * ((double) this.V.nextFloat() - 0.5D), 0.5D, ((double) this.V.nextFloat() - 0.5D) * 4.0D, new int[] { Block.f(var4) });
 			}
 		}

@@ -14,7 +14,7 @@ public class bhz extends bhp {
 
 			for (int var4 = 0; var4 < 1500; ++var4) {
 				Position var5 = var3.a(var2.nextInt(8) - var2.nextInt(8), -var2.nextInt(12), var2.nextInt(8) - var2.nextInt(8));
-				if (var1.p(var5).c().r() == bof.a) {
+				if (var1.p(var5).c().r() == Material.AIR) {
 					int var6 = 0;
 					PaintingDirection[] var7 = PaintingDirection.values();
 					int var8 = var7.length;

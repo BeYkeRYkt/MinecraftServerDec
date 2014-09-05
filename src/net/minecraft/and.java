@@ -9,7 +9,7 @@ public class and extends Item {
 	}
 
 	public boolean a(ItemStack var1, World var2, Block var3, Position var4, EntityLiving var5) {
-		if (var3.r() != bof.j && var3 != aty.G && var3 != aty.H && var3 != aty.bn && var3 != aty.bS && var3 != aty.L) {
+		if (var3.r() != Material.LEAVES && var3 != aty.G && var3 != aty.H && var3 != aty.bn && var3 != aty.bS && var3 != aty.L) {
 			return super.a(var1, var2, var3, var4, var5);
 		} else {
 			var1.a(1, var5);
@@ -22,6 +22,6 @@ public class and extends Item {
 	}
 
 	public float a(ItemStack var1, Block var2) {
-		return var2 != aty.G && var2.r() != bof.j ? (var2 == aty.L ? 5.0F : super.a(var1, var2)) : 15.0F;
+		return var2 != aty.G && var2.r() != Material.LEAVES ? (var2 == aty.L ? 5.0F : super.a(var1, var2)) : 15.0F;
 	}
 }

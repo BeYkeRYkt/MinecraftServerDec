@@ -21,7 +21,7 @@ public class anh extends Item {
 			Block var10 = var9.c();
 			boolean var11 = var10.f(var3, var4);
 			if (!var11) {
-				if (!var3.p(var4).c().r().a()) {
+				if (!var3.p(var4).c().r().isBuildable()) {
 					return false;
 				}
 
@@ -34,7 +34,7 @@ public class anh extends Item {
 				return false;
 			} else {
 				if (!var3.D) {
-					var3.a(var4, aty.ce.P().a(baj.a, var5), 3);
+					var3.a(var4, aty.ce.P().a(BlockSkull.a, var5), 3);
 					int var12 = 0;
 					if (var5 == PaintingDirection.b) {
 						var12 = DataTypesConverter.toFixedPointInt((double) (var2.yaw * 16.0F / 360.0F) + 0.5D) & 15;

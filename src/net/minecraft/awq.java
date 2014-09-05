@@ -7,7 +7,7 @@ public abstract class awq extends Block {
 
 	public static final bev a = bev.a("half", awr.class);
 
-	public awq(bof var1) {
+	public awq(Material var1) {
 		super(var1);
 		if (this.j()) {
 			this.r = true;

@@ -15,12 +15,12 @@ public class iw implements Packet<PlayPacketListener> {
 
 	public void readData(PacketDataSerializer var1) {
 		this.a = var1.readPosition();
-		this.b = (bec) Block.d.a(var1.readVarInt());
+		this.b = (bec) Block.IDREGISTRY.a(var1.readVarInt());
 	}
 
 	public void writeData(PacketDataSerializer var1) {
 		var1.writePosition(this.a);
-		var1.writeVarInt(Block.d.b(this.b));
+		var1.writeVarInt(Block.IDREGISTRY.b(this.b));
 	}
 
 	public void handlePacket(PlayPacketListener var1) {

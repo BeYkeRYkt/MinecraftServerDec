@@ -32,13 +32,13 @@ public class bhx extends bhp {
 						float var12 = (float) DataTypesConverter.a(var11) - 0.25F;
 						if ((var9 == 0 && var11 == 0 || var10 * var10 + var12 * var12 <= var7 * var7) && (var9 != -var8 && var9 != var8 && var11 != -var8 && var11 != var8 || var2.nextFloat() <= 0.75F)) {
 							Block var13 = var1.p(var3.a(var9, var6, var11)).c();
-							if (var13.r() == bof.a || var13 == aty.d || var13 == aty.aJ || var13 == aty.aI) {
+							if (var13.r() == Material.AIR || var13 == aty.d || var13 == aty.aJ || var13 == aty.aI) {
 								this.a(var1, var3.a(var9, var6, var11), aty.cB);
 							}
 
 							if (var6 != 0 && var8 > 1) {
 								var13 = var1.p(var3.a(var9, -var6, var11)).c();
-								if (var13.r() == bof.a || var13 == aty.d || var13 == aty.aJ || var13 == aty.aI) {
+								if (var13.r() == Material.AIR || var13 == aty.d || var13 == aty.aJ || var13 == aty.aI) {
 									this.a(var1, var3.a(var9, -var6, var11), aty.cB);
 								}
 							}
@@ -67,7 +67,7 @@ public class bhx extends bhp {
 					while (true) {
 						if (var15.o() > 50) {
 							Block var17 = var1.p(var15).c();
-							if (var17.r() == bof.a || var17 == aty.d || var17 == aty.aJ || var17 == aty.aI || var17 == aty.cB) {
+							if (var17.r() == Material.AIR || var17 == aty.d || var17 == aty.aJ || var17 == aty.aI || var17 == aty.cB) {
 								this.a(var1, var15, aty.cB);
 								var15 = var15.b();
 								--var16;

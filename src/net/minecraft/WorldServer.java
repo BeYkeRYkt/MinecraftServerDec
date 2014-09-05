@@ -210,8 +210,8 @@ public class WorldServer extends World implements vn {
 			Iterator var21 = this.E.iterator();
 
 			while (var21.hasNext()) {
-				aqm var22 = (aqm) var21.next();
-				this.a(var22.a, var22.b).b(false);
+				ChunkCoordIntPair var22 = (ChunkCoordIntPair) var21.next();
+				this.a(var22.chunkX, var22.chunkZ).b(false);
 			}
 
 		} else {
@@ -219,11 +219,11 @@ public class WorldServer extends World implements vn {
 			int var2 = 0;
 
 			for (Iterator var3 = this.E.iterator(); var3.hasNext(); this.B.b()) {
-				aqm var4 = (aqm) var3.next();
-				int var5 = var4.a * 16;
-				int var6 = var4.b * 16;
+				ChunkCoordIntPair var4 = (ChunkCoordIntPair) var3.next();
+				int var5 = var4.chunkX * 16;
+				int var6 = var4.chunkZ * 16;
 				this.B.a("getChunk");
-				bfh var7 = this.a(var4.a, var4.b);
+				Chunk var7 = this.a(var4.chunkX, var4.chunkZ);
 				this.a(var5, var6, var7);
 				this.B.c("tickChunk");
 				var7.b(false);
@@ -261,11 +261,11 @@ public class WorldServer extends World implements vn {
 				this.B.c("tickBlocks");
 				var8 = this.Q().c("randomTickSpeed");
 				if (var8 > 0) {
-					bfm[] var23 = var7.h();
+					ChunkSection[] var23 = var7.getChunkSections();
 					int var24 = var23.length;
 
 					for (int var11 = 0; var11 < var24; ++var11) {
-						bfm var12 = var23[var11];
+						ChunkSection var12 = var23[var11];
 						if (var12 != null && var12.b()) {
 							for (int var13 = 0; var13 < var8; ++var13) {
 								this.m = this.m * 3 + 1013904223;
@@ -309,12 +309,12 @@ public class WorldServer extends World implements vn {
 	public void a(Position var1, Block var2, int var3, int var4) {
 		ark var5 = new ark(var1, var2);
 		byte var6 = 0;
-		if (this.e && var2.r() != bof.a) {
+		if (this.e && var2.r() != Material.AIR) {
 			if (var2.M()) {
 				var6 = 8;
 				if (this.a(var5.a.a(-var6, -var6, -var6), var5.a.a(var6, var6, var6))) {
 					bec var7 = this.p(var5.a);
-					if (var7.c().r() != bof.a && var7.c() == var5.a()) {
+					if (var7.c().r() != Material.AIR && var7.c() == var5.a()) {
 						var7.c().b((World) this, var5.a, var7, this.s);
 					}
 				}
@@ -326,7 +326,7 @@ public class WorldServer extends World implements vn {
 		}
 
 		if (this.a(var1.a(-var6, -var6, -var6), var1.a(var6, var6, var6))) {
-			if (var2.r() != bof.a) {
+			if (var2.r() != Material.AIR) {
 				var5.a((long) var3 + this.worldData.f());
 				var5.a(var4);
 			}
@@ -342,7 +342,7 @@ public class WorldServer extends World implements vn {
 	public void b(Position var1, Block var2, int var3, int var4) {
 		ark var5 = new ark(var1, var2);
 		var5.a(var4);
-		if (var2.r() != bof.a) {
+		if (var2.r() != Material.AIR) {
 			var5.a((long) var3 + this.worldData.f());
 		}
 
@@ -405,7 +405,7 @@ public class WorldServer extends World implements vn {
 					byte var5 = 0;
 					if (this.a(var4.a.a(-var5, -var5, -var5), var4.a.a(var5, var5, var5))) {
 						bec var6 = this.p(var4.a);
-						if (var6.c().r() != bof.a && Block.a(var6.c(), var4.a())) {
+						if (var6.c().r() != Material.AIR && Block.a(var6.c(), var4.a())) {
 							try {
 								var6.c().b((World) this, var4.a, var6, this.s);
 							} catch (Throwable var10) {
@@ -427,11 +427,11 @@ public class WorldServer extends World implements vn {
 		}
 	}
 
-	public List a(bfh var1, boolean var2) {
-		aqm var3 = var1.j();
-		int var4 = (var3.a << 4) - 2;
+	public List a(Chunk var1, boolean var2) {
+		ChunkCoordIntPair var3 = var1.j();
+		int var4 = (var3.chunkX << 4) - 2;
 		int var5 = var4 + 16 + 2;
-		int var6 = (var3.b << 4) - 2;
+		int var6 = (var3.chunkZ << 4) - 2;
 		int var7 = var6 + 16 + 2;
 		return this.a(new bjb(var4, 0, var6, var5, 256, var7), var2);
 	}
@@ -630,9 +630,9 @@ public class WorldServer extends World implements vn {
 			Iterator var4 = var3.iterator();
 
 			while (var4.hasNext()) {
-				bfh var5 = (bfh) var4.next();
-				if (!this.K.a(var5.a, var5.b)) {
-					this.b.b(var5.a, var5.b);
+				Chunk var5 = (Chunk) var4.next();
+				if (!this.K.a(var5.x, var5.y)) {
+					this.b.b(var5.x, var5.y);
 				}
 			}
 

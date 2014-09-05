@@ -11,9 +11,9 @@ class bfi implements Callable {
 	// $FF: synthetic field
 	final int c;
 	// $FF: synthetic field
-	final bfh d;
+	final Chunk d;
 
-	bfi(bfh var1, int var2, int var3, int var4) {
+	bfi(Chunk var1, int var2, int var3, int var4) {
 		this.d = var1;
 		this.a = var2;
 		this.b = var3;
@@ -21,7 +21,7 @@ class bfi implements Callable {
 	}
 
 	public String a() {
-		return CrashReportSystemDetails.a(new Position(this.d.a * 16 + this.a, this.b, this.d.b * 16 + this.c));
+		return CrashReportSystemDetails.a(new Position(this.d.x * 16 + this.a, this.b, this.d.y * 16 + this.c));
 	}
 
 	// $FF: synthetic method

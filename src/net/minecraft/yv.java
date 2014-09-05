@@ -4,7 +4,7 @@ public abstract class yv extends zb {
 
 	protected xn a;
 	protected Position b;
-	protected avf c;
+	protected BlockDoor c;
 	boolean d;
 	float e;
 	float f;
@@ -64,8 +64,8 @@ public abstract class yv extends zb {
 
 	}
 
-	private avf a(Position var1) {
+	private BlockDoor a(Position var1) {
 		Block var2 = this.a.o.p(var1).c();
-		return var2 instanceof avf && var2.r() == bof.d ? (avf) var2 : null;
+		return var2 instanceof BlockDoor && var2.r() == Material.WOOD ? (BlockDoor) var2 : null;
 	}
 }

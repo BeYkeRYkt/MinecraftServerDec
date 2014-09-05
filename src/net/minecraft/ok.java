@@ -9,12 +9,12 @@ final class ok extends eg {
 
 	protected ItemStack b(dz var1, ItemStack var2) {
 		World var3 = var1.i();
-		PaintingDirection var4 = ave.b(var1.f());
+		PaintingDirection var4 = BlockDispenser.b(var1.f());
 		Position var5 = var1.d().a(var4);
-		baj var6 = aty.ce;
+		BlockSkull var6 = aty.ce;
 		if (var3.d(var5) && var6.b(var3, var5, var2)) {
 			if (!var3.D) {
-				var3.a(var5, var6.P().a(baj.a, PaintingDirection.b), 3);
+				var3.a(var5, var6.P().a(BlockSkull.a, PaintingDirection.b), 3);
 				bcm var7 = var3.s(var5);
 				if (var7 instanceof bdm) {
 					if (var2.i() == 3) {

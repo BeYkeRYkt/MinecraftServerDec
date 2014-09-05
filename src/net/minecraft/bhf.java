@@ -64,7 +64,7 @@ public class bhf extends bhc {
 								if (Math.abs(var11) != var9 || Math.abs(var13) != var9 || var2.nextInt(2) != 0 && var8 != 0) {
 									Position var14 = new Position(var10, var17, var12);
 									Block var15 = var1.p(var14).c();
-									if (var15.r() == bof.a || var15.r() == bof.j) {
+									if (var15.r() == Material.AIR || var15.r() == Material.LEAVES) {
 										this.a(var1, var14, aty.t, ayx.c.a());
 									}
 								}
@@ -74,7 +74,7 @@ public class bhf extends bhc {
 
 					for (var17 = 0; var17 < var4; ++var17) {
 						Block var18 = var1.p(var3.b(var17)).c();
-						if (var18.r() == bof.a || var18.r() == bof.j) {
+						if (var18.r() == Material.AIR || var18.r() == Material.LEAVES) {
 							this.a(var1, var3.b(var17), aty.r, ayx.c.a());
 						}
 					}

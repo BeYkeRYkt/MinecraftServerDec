@@ -35,7 +35,7 @@ class aeu extends aaq {
 	public void d() {
 		this.g = null;
 		this.j.a(false);
-		xz var1 = this.j.a(afs.d);
+		AttributeInstance var1 = this.j.a(afs.d);
 		var1.c(aer.cn());
 		super.d();
 	}
@@ -62,7 +62,7 @@ class aeu extends aaq {
 				super.c();
 				this.j.a("mob.endermen.stare", 1.0F, 1.0F);
 				this.j.a(true);
-				xz var1 = this.j.a(afs.d);
+				AttributeInstance var1 = this.j.a(afs.d);
 				var1.b(aer.cn());
 			}
 		} else {

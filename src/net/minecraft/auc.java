@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class auc extends Block {
 
-	protected auc(bof var1) {
+	protected auc(Material var1) {
 		super(var1);
 		this.a(true);
 		float var2 = 0.2F;
@@ -13,7 +13,7 @@ public class auc extends Block {
 	}
 
 	protected auc() {
-		this(bof.k);
+		this(Material.PLANT);
 	}
 
 	public boolean c(World var1, Position var2) {

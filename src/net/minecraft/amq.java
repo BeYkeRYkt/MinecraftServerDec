@@ -5,7 +5,7 @@ final class amq extends eg {
 	private final eg b = new eg();
 
 	public ItemStack b(dz var1, ItemStack var2) {
-		PaintingDirection var3 = ave.b(var1.f());
+		PaintingDirection var3 = BlockDispenser.b(var1.f());
 		World var4 = var1.i();
 		double var5 = var1.a() + (double) var3.g() * 1.125D;
 		double var7 = Math.floor(var1.b()) + (double) var3.h();
@@ -21,7 +21,7 @@ final class amq extends eg {
 				var14 = 0.1D;
 			}
 		} else {
-			if (var12.c().r() != bof.a || !ati.d(var4.p(var11.b()))) {
+			if (var12.c().r() != Material.AIR || !ati.d(var4.p(var11.b()))) {
 				return this.b.a(var1, var2);
 			}
 

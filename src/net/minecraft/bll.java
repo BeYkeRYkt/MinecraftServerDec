@@ -143,10 +143,10 @@ public class bll extends bln {
 			this.a(var1, var3, 7, -2, 1, 9, -2, 1, false, var2, k);
 			this.a(var1, var3, 6, -3, 1, 6, -3, 1, false, var2, k);
 			this.a(var1, var3, 6, -1, 1, 6, -1, 1, false, var2, k);
-			this.a(var1, aty.bR.a(this.a(aty.bR, PaintingDirection.f.toByte())).a(bbt.M, Boolean.valueOf(true)), 1, -3, 8, var3);
-			this.a(var1, aty.bR.a(this.a(aty.bR, PaintingDirection.e.toByte())).a(bbt.M, Boolean.valueOf(true)), 4, -3, 8, var3);
-			this.a(var1, aty.bS.P().a(bbs.M, Boolean.valueOf(true)), 2, -3, 8, var3);
-			this.a(var1, aty.bS.P().a(bbs.M, Boolean.valueOf(true)), 3, -3, 8, var3);
+			this.a(var1, aty.bR.a(this.a(aty.bR, PaintingDirection.f.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 1, -3, 8, var3);
+			this.a(var1, aty.bR.a(this.a(aty.bR, PaintingDirection.e.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 4, -3, 8, var3);
+			this.a(var1, aty.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 2, -3, 8, var3);
+			this.a(var1, aty.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 3, -3, 8, var3);
 			this.a(var1, aty.af.P(), 5, -3, 7, var3);
 			this.a(var1, aty.af.P(), 5, -3, 6, var3);
 			this.a(var1, aty.af.P(), 5, -3, 5, var3);
@@ -161,11 +161,11 @@ public class bll extends bln {
 			}
 
 			this.a(var1, aty.bn.a(15), 3, -2, 2, var3);
-			this.a(var1, aty.bR.a(this.a(aty.bR, PaintingDirection.c.toByte())).a(bbt.M, Boolean.valueOf(true)), 7, -3, 1, var3);
-			this.a(var1, aty.bR.a(this.a(aty.bR, PaintingDirection.d.toByte())).a(bbt.M, Boolean.valueOf(true)), 7, -3, 5, var3);
-			this.a(var1, aty.bS.P().a(bbs.M, Boolean.valueOf(true)), 7, -3, 2, var3);
-			this.a(var1, aty.bS.P().a(bbs.M, Boolean.valueOf(true)), 7, -3, 3, var3);
-			this.a(var1, aty.bS.P().a(bbs.M, Boolean.valueOf(true)), 7, -3, 4, var3);
+			this.a(var1, aty.bR.a(this.a(aty.bR, PaintingDirection.c.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 7, -3, 1, var3);
+			this.a(var1, aty.bR.a(this.a(aty.bR, PaintingDirection.d.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 7, -3, 5, var3);
+			this.a(var1, aty.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 7, -3, 2, var3);
+			this.a(var1, aty.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 7, -3, 3, var3);
+			this.a(var1, aty.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 7, -3, 4, var3);
 			this.a(var1, aty.af.P(), 8, -3, 6, var3);
 			this.a(var1, aty.af.P(), 9, -3, 6, var3);
 			this.a(var1, aty.af.P(), 9, -3, 5, var3);
@@ -192,12 +192,12 @@ public class bll extends bln {
 			this.a(var1, aty.Y.P(), 8, -3, 5, var3);
 			this.a(var1, var3, 9, -1, 1, 9, -1, 5, false, var2, k);
 			this.a(var1, var3, 8, -3, 8, 10, -1, 10);
-			this.a(var1, aty.bf.a(bbc.O), 8, -2, 11, var3);
-			this.a(var1, aty.bf.a(bbc.O), 9, -2, 11, var3);
-			this.a(var1, aty.bf.a(bbc.O), 10, -2, 11, var3);
-			this.a(var1, aty.ay.a(axi.a(PaintingDirection.a(this.a(aty.ay, PaintingDirection.c.a())))), 8, -2, 12, var3);
-			this.a(var1, aty.ay.a(axi.a(PaintingDirection.a(this.a(aty.ay, PaintingDirection.c.a())))), 9, -2, 12, var3);
-			this.a(var1, aty.ay.a(axi.a(PaintingDirection.a(this.a(aty.ay, PaintingDirection.c.a())))), 10, -2, 12, var3);
+			this.a(var1, aty.bf.a(BlockSmoothBrick.O), 8, -2, 11, var3);
+			this.a(var1, aty.bf.a(BlockSmoothBrick.O), 9, -2, 11, var3);
+			this.a(var1, aty.bf.a(BlockSmoothBrick.O), 10, -2, 11, var3);
+			this.a(var1, aty.ay.a(BlockLever.a(PaintingDirection.a(this.a(aty.ay, PaintingDirection.c.a())))), 8, -2, 12, var3);
+			this.a(var1, aty.ay.a(BlockLever.a(PaintingDirection.a(this.a(aty.ay, PaintingDirection.c.a())))), 9, -2, 12, var3);
+			this.a(var1, aty.ay.a(BlockLever.a(PaintingDirection.a(this.a(aty.ay, PaintingDirection.c.a())))), 10, -2, 12, var3);
 			this.a(var1, var3, 8, -3, 8, 8, -3, 10, false, var2, k);
 			this.a(var1, var3, 10, -3, 8, 10, -3, 10, false, var2, k);
 			this.a(var1, aty.Y.P(), 10, -2, 9, var3);

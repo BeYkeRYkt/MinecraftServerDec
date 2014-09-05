@@ -20,14 +20,14 @@ public class afs {
 		Iterator var2 = var0.a().iterator();
 
 		while (var2.hasNext()) {
-			xz var3 = (xz) var2.next();
+			AttributeInstance var3 = (AttributeInstance) var2.next();
 			var1.addTag((NBTTag) a(var3));
 		}
 
 		return var1;
 	}
 
-	private static NBTCompoundTag a(xz var0) {
+	private static NBTCompoundTag a(AttributeInstance var0) {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		xy var2 = var0.a();
 		var1.put("Name", var2.a());
@@ -38,8 +38,8 @@ public class afs {
 			Iterator var5 = var3.iterator();
 
 			while (var5.hasNext()) {
-				ya var6 = (ya) var5.next();
-				if (var6.e()) {
+				AttributeModifier var6 = (AttributeModifier) var5.next();
+				if (var6.isSerializable()) {
 					var4.addTag((NBTTag) a(var6));
 				}
 			}
@@ -50,20 +50,20 @@ public class afs {
 		return var1;
 	}
 
-	private static NBTCompoundTag a(ya var0) {
+	private static NBTCompoundTag a(AttributeModifier var0) {
 		NBTCompoundTag var1 = new NBTCompoundTag();
-		var1.put("Name", var0.b());
-		var1.put("Amount", var0.d());
-		var1.put("Operation", var0.c());
-		var1.put("UUIDMost", var0.a().getMostSignificantBits());
-		var1.put("UUIDLeast", var0.a().getLeastSignificantBits());
+		var1.put("Name", var0.getName());
+		var1.put("Amount", var0.getAmount());
+		var1.put("Operation", var0.getOperation());
+		var1.put("UUIDMost", var0.getUUID().getMostSignificantBits());
+		var1.put("UUIDLeast", var0.getUUID().getLeastSignificantBits());
 		return var1;
 	}
 
 	public static void a(yc var0, NBTListTag var1) {
 		for (int var2 = 0; var2 < var1.getSize(); ++var2) {
 			NBTCompoundTag var3 = var1.getCompound(var2);
-			xz var4 = var0.a(var3.getString("Name"));
+			AttributeInstance var4 = var0.a(var3.getString("Name"));
 			if (var4 != null) {
 				a(var4, var3);
 			} else {
@@ -73,15 +73,15 @@ public class afs {
 
 	}
 
-	private static void a(xz var0, NBTCompoundTag var1) {
+	private static void a(AttributeInstance var0, NBTCompoundTag var1) {
 		var0.a(var1.getDouble("Base"));
 		if (var1.isTagAssignableFrom("Modifiers", 9)) {
 			NBTListTag var2 = var1.getList("Modifiers", 10);
 
 			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
-				ya var4 = a(var2.getCompound(var3));
+				AttributeModifier var4 = a(var2.getCompound(var3));
 				if (var4 != null) {
-					ya var5 = var0.a(var4.a());
+					AttributeModifier var5 = var0.a(var4.getUUID());
 					if (var5 != null) {
 						var0.c(var5);
 					}
@@ -93,11 +93,11 @@ public class afs {
 
 	}
 
-	public static ya a(NBTCompoundTag var0) {
+	public static AttributeModifier a(NBTCompoundTag var0) {
 		UUID var1 = new UUID(var0.getLong("UUIDMost"), var0.getLong("UUIDLeast"));
 
 		try {
-			return new ya(var1, var0.getString("Name"), var0.getDouble("Amount"), var0.getInt("Operation"));
+			return new AttributeModifier(var1, var0.getString("Name"), var0.getDouble("Amount"), var0.getInt("Operation"));
 		} catch (Exception var3) {
 			f.warn("Unable to create attribute: " + var3.getMessage());
 			return null;

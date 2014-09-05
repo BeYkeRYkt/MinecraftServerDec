@@ -27,9 +27,9 @@ public class bfy implements bfq, brq {
 		this.e = var1;
 	}
 
-	public bfh a(World var1, int var2, int var3) throws IOException {
+	public Chunk a(World var1, int var2, int var3) throws IOException {
 		NBTCompoundTag var4 = null;
-		aqm var5 = new aqm(var2, var3);
+		ChunkCoordIntPair var5 = new ChunkCoordIntPair(var2, var3);
 		Object var6 = this.d;
 		synchronized (this.d) {
 			if (this.c.contains(var5)) {
@@ -54,7 +54,7 @@ public class bfy implements bfq, brq {
 		return this.a(var1, var2, var3, var4);
 	}
 
-	protected bfh a(World var1, int var2, int var3, NBTCompoundTag var4) {
+	protected Chunk a(World var1, int var2, int var3, NBTCompoundTag var4) {
 		if (!var4.isTagAssignableFrom("Level", 10)) {
 			a.error("Chunk file at " + var2 + "," + var3 + " is missing level data, skipping");
 			return null;
@@ -62,9 +62,9 @@ public class bfy implements bfq, brq {
 			a.error("Chunk file at " + var2 + "," + var3 + " is missing block data, skipping");
 			return null;
 		} else {
-			bfh var5 = this.a(var1, var4.getCompound("Level"));
+			Chunk var5 = this.a(var1, var4.getCompound("Level"));
 			if (!var5.a(var2, var3)) {
-				a.error("Chunk file at " + var2 + "," + var3 + " is in the wrong location; relocating. (Expected " + var2 + ", " + var3 + ", got " + var5.a + ", " + var5.b + ")");
+				a.error("Chunk file at " + var2 + "," + var3 + " is in the wrong location; relocating. (Expected " + var2 + ", " + var3 + ", got " + var5.x + ", " + var5.y + ")");
 				var4.put("xPos", var2);
 				var4.put("zPos", var3);
 				var5 = this.a(var1, var4.getCompound("Level"));
@@ -74,7 +74,7 @@ public class bfy implements bfq, brq {
 		}
 	}
 
-	public void a(World var1, bfh var2) throws aqz {
+	public void a(World var1, Chunk var2) throws aqz {
 		var1.I();
 
 		try {
@@ -89,7 +89,7 @@ public class bfy implements bfq, brq {
 
 	}
 
-	protected void a(aqm var1, NBTCompoundTag var2) {
+	protected void a(ChunkCoordIntPair var1, NBTCompoundTag var2) {
 		Object var3 = this.d;
 		synchronized (this.d) {
 			if (this.c.contains(var1)) {
@@ -131,12 +131,12 @@ public class bfy implements bfq, brq {
 	}
 
 	private void a(bfz var1) throws IOException {
-		DataOutputStream var2 = RegionFileCache.getOutputStream(this.e, var1.a.a, var1.a.b);
+		DataOutputStream var2 = RegionFileCache.getOutputStream(this.e, var1.a.chunkX, var1.a.chunkZ);
 		NBTCompressedStreamTools.writeTag(var1.b, (DataOutput) var2);
 		var2.close();
 	}
 
-	public void b(World var1, bfh var2) {
+	public void b(World var1, Chunk var2) {
 	}
 
 	public void a() {
@@ -149,39 +149,39 @@ public class bfy implements bfq, brq {
 
 	}
 
-	private void a(bfh var1, World var2, NBTCompoundTag var3) {
+	private void a(Chunk var1, World var2, NBTCompoundTag var3) {
 		var3.put("V", (byte) 1);
-		var3.put("xPos", var1.a);
-		var3.put("zPos", var1.b);
+		var3.put("xPos", var1.x);
+		var3.put("zPos", var1.y);
 		var3.put("LastUpdate", var2.K());
 		var3.put("HeightMap", var1.q());
 		var3.put("TerrainPopulated", var1.t());
 		var3.put("LightPopulated", var1.u());
 		var3.put("InhabitedTime", var1.w());
-		bfm[] var4 = var1.h();
+		ChunkSection[] var4 = var1.getChunkSections();
 		NBTListTag var5 = new NBTListTag();
-		boolean var6 = !var2.worldProvider.o();
-		bfm[] var7 = var4;
+		boolean var6 = !var2.worldProvider.noSkyLight();
+		ChunkSection[] var7 = var4;
 		int var8 = var4.length;
 
 		NBTCompoundTag var11;
 		for (int var9 = 0; var9 < var8; ++var9) {
-			bfm var10 = var7[var9];
+			ChunkSection var10 = var7[var9];
 			if (var10 != null) {
 				var11 = new NBTCompoundTag();
 				var11.put("Y", (byte) (var10.d() >> 4 & 255));
-				byte[] var12 = new byte[var10.g().length];
-				bff var13 = new bff();
-				bff var14 = null;
+				byte[] var12 = new byte[var10.getBlockIds().length];
+				NibbleArray var13 = new NibbleArray();
+				NibbleArray var14 = null;
 
-				for (int var15 = 0; var15 < var10.g().length; ++var15) {
-					char var16 = var10.g()[var15];
+				for (int var15 = 0; var15 < var10.getBlockIds().length; ++var15) {
+					char var16 = var10.getBlockIds()[var15];
 					int var17 = var15 & 15;
 					int var18 = var15 >> 8 & 15;
 					int var19 = var15 >> 4 & 15;
 					if (var16 >> 12 != 0) {
 						if (var14 == null) {
-							var14 = new bff();
+							var14 = new NibbleArray();
 						}
 
 						var14.a(var17, var18, var19, var16 >> 12);
@@ -192,16 +192,16 @@ public class bfy implements bfq, brq {
 				}
 
 				var11.put("Blocks", var12);
-				var11.put("Data", var13.a());
+				var11.put("Data", var13.getArray());
 				if (var14 != null) {
-					var11.put("Add", var14.a());
+					var11.put("Add", var14.getArray());
 				}
 
-				var11.put("BlockLight", var10.h().a());
+				var11.put("BlockLight", var10.getEmittedLight().getArray());
 				if (var6) {
-					var11.put("SkyLight", var10.i().a());
+					var11.put("SkyLight", var10.getSkyLight().getArray());
 				} else {
-					var11.put("SkyLight", new byte[var10.h().a().length]);
+					var11.put("SkyLight", new byte[var10.getEmittedLight().getArray().length]);
 				}
 
 				var5.addTag((NBTTag) var11);
@@ -209,7 +209,7 @@ public class bfy implements bfq, brq {
 		}
 
 		var3.put("Sections", (NBTTag) var5);
-		var3.put("Biomes", var1.k());
+		var3.put("Biomes", var1.getBiomes());
 		var1.g(false);
 		NBTListTag var20 = new NBTListTag();
 
@@ -248,7 +248,7 @@ public class bfy implements bfq, brq {
 			while (var28.hasNext()) {
 				ark var29 = (ark) var28.next();
 				NBTCompoundTag var30 = new NBTCompoundTag();
-				oa var31 = (oa) Block.c.c(var29.a());
+				BlockNameInfo var31 = (BlockNameInfo) Block.BLOCKREGISTRY.c(var29.a());
 				var30.put("i", var31 == null ? "" : var31.toString());
 				var30.put("x", var29.a.n());
 				var30.put("y", var29.a.o());
@@ -263,26 +263,26 @@ public class bfy implements bfq, brq {
 
 	}
 
-	private bfh a(World var1, NBTCompoundTag var2) {
+	private Chunk a(World var1, NBTCompoundTag var2) {
 		int var3 = var2.getInt("xPos");
 		int var4 = var2.getInt("zPos");
-		bfh var5 = new bfh(var1, var3, var4);
+		Chunk var5 = new Chunk(var1, var3, var4);
 		var5.a(var2.getIntArray("HeightMap"));
 		var5.d(var2.getBoolean("TerrainPopulated"));
 		var5.e(var2.getBoolean("LightPopulated"));
 		var5.c(var2.getLong("InhabitedTime"));
 		NBTListTag var6 = var2.getList("Sections", 10);
 		byte var7 = 16;
-		bfm[] var8 = new bfm[var7];
-		boolean var9 = !var1.worldProvider.o();
+		ChunkSection[] var8 = new ChunkSection[var7];
+		boolean var9 = !var1.worldProvider.noSkyLight();
 
 		for (int var10 = 0; var10 < var6.getSize(); ++var10) {
 			NBTCompoundTag var11 = var6.getCompound(var10);
 			byte var12 = var11.getByte("Y");
-			bfm var13 = new bfm(var12 << 4, var9);
+			ChunkSection var13 = new ChunkSection(var12 << 4, var9);
 			byte[] var14 = var11.getByteArray("Blocks");
-			bff var15 = new bff(var11.getByteArray("Data"));
-			bff var16 = var11.isTagAssignableFrom("Add", 7) ? new bff(var11.getByteArray("Add")) : null;
+			NibbleArray var15 = new NibbleArray(var11.getByteArray("Data"));
+			NibbleArray var16 = var11.isTagAssignableFrom("Add", 7) ? new NibbleArray(var11.getByteArray("Add")) : null;
 			char[] var17 = new char[var14.length];
 
 			for (int var18 = 0; var18 < var17.length; ++var18) {
@@ -293,10 +293,10 @@ public class bfy implements bfq, brq {
 				var17[var18] = (char) (var22 << 12 | (var14[var18] & 255) << 4 | var15.a(var19, var20, var21));
 			}
 
-			var13.a(var17);
-			var13.a(new bff(var11.getByteArray("BlockLight")));
+			var13.setBlockIds(var17);
+			var13.setEmittedLight(new NibbleArray(var11.getByteArray("BlockLight")));
 			if (var9) {
-				var13.b(new bff(var11.getByteArray("SkyLight")));
+				var13.setSkyLight(new NibbleArray(var11.getByteArray("SkyLight")));
 			}
 
 			var13.e();

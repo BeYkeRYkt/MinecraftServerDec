@@ -79,8 +79,8 @@ public abstract class bic extends bhc {
 				int var8 = var6 - 1;
 				if (var5 * var5 + var6 * var6 <= var4 || var7 * var7 + var8 * var8 <= var4 || var5 * var5 + var8 * var8 <= var4 || var7 * var7 + var6 * var6 <= var4) {
 					Position var9 = var2.a(var5, 0, var6);
-					bof var10 = var1.p(var9).c().r();
-					if (var10 == bof.a || var10 == bof.j) {
+					Material var10 = var1.p(var9).c().r();
+					if (var10 == Material.AIR || var10 == Material.LEAVES) {
 						this.a(var1, var9, aty.t, this.c);
 					}
 				}
@@ -96,8 +96,8 @@ public abstract class bic extends bhc {
 			for (int var6 = -var3; var6 <= var3; ++var6) {
 				if (var5 * var5 + var6 * var6 <= var4) {
 					Position var7 = var2.a(var5, 0, var6);
-					bof var8 = var1.p(var7).c().r();
-					if (var8 == bof.a || var8 == bof.j) {
+					Material var8 = var1.p(var7).c().r();
+					if (var8 == Material.AIR || var8 == Material.LEAVES) {
 						this.a(var1, var7, aty.t, this.c);
 					}
 				}

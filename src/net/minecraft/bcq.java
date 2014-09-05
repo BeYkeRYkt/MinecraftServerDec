@@ -52,12 +52,12 @@ public class bcq extends bdf implements pm, we {
 			if (!Arrays.equals(var1, this.i)) {
 				this.i = var1;
 				bec var2 = this.b.p(this.v());
-				if (!(var2.c() instanceof aub)) {
+				if (!(var2.c() instanceof BlockBrewingStand)) {
 					return;
 				}
 
-				for (int var3 = 0; var3 < aub.a.length; ++var3) {
-					var2 = var2.a(aub.a[var3], Boolean.valueOf(var1[var3]));
+				for (int var3 = 0; var3 < BlockBrewingStand.a.length; ++var3) {
+					var2 = var2.a(BlockBrewingStand.a[var3], Boolean.valueOf(var1[var3]));
 				}
 
 				this.b.a(this.c, var2, 2);

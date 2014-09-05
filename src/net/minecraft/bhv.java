@@ -36,7 +36,7 @@ public class bhv extends bhp {
 					for (var10 = var3.p() - var8; var10 <= var3.p() + var8 && var6; ++var10) {
 						if (var7 >= 0 && var7 < 256) {
 							Block var11 = var1.p(new Position(var9, var7, var10)).c();
-							if (var11.r() != bof.a && var11.r() != bof.j) {
+							if (var11.r() != Material.AIR && var11.r() != Material.LEAVES) {
 								var6 = false;
 							}
 						} else {

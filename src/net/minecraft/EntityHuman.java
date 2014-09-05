@@ -328,7 +328,7 @@ public abstract class EntityHuman extends EntityLiving {
 		this.playerInventory.k();
 		this.bl = this.bm;
 		super.m();
-		xz var1 = this.a(afs.d);
+		AttributeInstance var1 = this.a(afs.d);
 		if (!this.o.D) {
 			var1.a((double) this.by.getWalkSpeed());
 		}
@@ -559,7 +559,7 @@ public abstract class EntityHuman extends EntityLiving {
 			var2 *= var5;
 		}
 
-		if (this.a(bof.h) && !aph.j(this)) {
+		if (this.a(Material.WATER) && !aph.j(this)) {
 			var2 /= 5.0F;
 		}
 
@@ -1020,8 +1020,8 @@ public abstract class EntityHuman extends EntityLiving {
 		this.a(0.6F, 1.8F);
 		bec var4 = this.o.p(this.bv);
 		if (this.bv != null && var4.c() == aty.C) {
-			this.o.a(this.bv, var4.a(atp.b, Boolean.valueOf(false)), 4);
-			Position var5 = atp.a(this.o, this.bv, 0);
+			this.o.a(this.bv, var4.a(BlockBed.b, Boolean.valueOf(false)), 4);
+			Position var5 = BlockBed.a(this.o, this.bv, 0);
 			if (var5 == null) {
 				var5 = this.bv.a();
 			}
@@ -1050,14 +1050,14 @@ public abstract class EntityHuman extends EntityLiving {
 			if (!var2) {
 				return null;
 			} else {
-				bof var3 = var0.p(var1).c().r();
-				bof var4 = var0.p(var1.a()).c().r();
-				boolean var5 = !var3.a() && !var3.d();
-				boolean var6 = !var4.a() && !var4.d();
+				Material var3 = var0.p(var1).c().r();
+				Material var4 = var0.p(var1.a()).c().r();
+				boolean var5 = !var3.isBuildable() && !var3.isLiquid();
+				boolean var6 = !var4.isBuildable() && !var4.isLiquid();
 				return var5 && var6 ? var1 : null;
 			}
 		} else {
-			return atp.a(var0, var1, 0);
+			return BlockBed.a(var0, var1, 0);
 		}
 	}
 
@@ -1137,7 +1137,7 @@ public abstract class EntityHuman extends EntityLiving {
 	public void k(double var1, double var3, double var5) {
 		if (this.m == null) {
 			int var7;
-			if (this.a(bof.h)) {
+			if (this.a(Material.WATER)) {
 				var7 = Math.round(DataTypesConverter.a(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
 				if (var7 > 0) {
 					this.a(ty.p, var7);

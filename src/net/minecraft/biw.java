@@ -50,7 +50,7 @@ public class biw {
 	public String toString() {
 		String var1;
 		if (this.a >= 3) {
-			oa var2 = (oa) Block.c.c(this.e());
+			BlockNameInfo var2 = (BlockNameInfo) Block.BLOCKREGISTRY.c(this.e());
 			var1 = var2 == null ? "null" : var2.toString();
 			if (this.c > 1) {
 				var1 = this.c + "*" + var1;

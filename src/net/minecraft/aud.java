@@ -10,7 +10,7 @@ public abstract class aud extends Block {
 	private final boolean M;
 
 	protected aud(boolean var1) {
-		super(bof.q);
+		super(Material.ORIENTABLE);
 		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Boolean.valueOf(false)));
 		this.a(true);
 		this.a(CreativeModeTab.d);

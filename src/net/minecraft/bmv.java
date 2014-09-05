@@ -134,11 +134,11 @@ public abstract class bmv {
 		return true;
 	}
 
-	public boolean a(aqm var1) {
+	public boolean a(ChunkCoordIntPair var1) {
 		return true;
 	}
 
-	public void b(aqm var1) {
+	public void b(ChunkCoordIntPair var1) {
 	}
 
 	public int e() {

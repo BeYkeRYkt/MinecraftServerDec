@@ -34,7 +34,7 @@ public interface PlayPacketListener extends PacketListener {
 
 	void a(iy var1);
 
-	void a(ja var1);
+	void handle(PacketMultiBlockChange var1);
 
 	void a(jx var1);
 
@@ -66,7 +66,7 @@ public interface PlayPacketListener extends PacketListener {
 
 	void handle(PacketKeepAlive var1);
 
-	void a(jq var1);
+	void handle(PacketChunkData var1);
 
 	void a(js var1);
 
@@ -122,7 +122,7 @@ public interface PlayPacketListener extends PacketListener {
 
 	void handle(PacketEntityTeleport var1);
 
-	void a(lp var1);
+	void handle(PacketEntityProperties var1);
 
 	void handle(PacketEntityEffect var1);
 

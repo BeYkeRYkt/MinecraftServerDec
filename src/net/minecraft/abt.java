@@ -289,7 +289,7 @@ public class abt extends abq implements vr {
 			}
 
 			Block var4 = this.o.p(new Position(this.locationX, this.locationY - 0.2D - (double) this.A, this.locationZ)).c();
-			if (var4.r() != bof.a && !this.R()) {
+			if (var4.r() != Material.AIR && !this.R()) {
 				BlockSound var5 = var4.H;
 				this.o.a((Entity) this, var5.c(), var5.d() * 0.5F, var5.e() * 0.75F);
 			}
@@ -426,7 +426,7 @@ public class abt extends abq implements vr {
 			var3 = aty.aH.H;
 		}
 
-		if (!var2.r().d()) {
+		if (!var2.r().isLiquid()) {
 			int var4 = this.cj();
 			if (this.l != null && var4 != 1 && var4 != 2) {
 				++this.bL;
@@ -960,7 +960,7 @@ public class abt extends abq implements vr {
 			this.b(var2);
 		}
 
-		xz var8 = this.bx().a("Speed");
+		AttributeInstance var8 = this.bx().a("Speed");
 		if (var8 != null) {
 			this.a(afs.d).a(var8.b() * 0.25D);
 		}

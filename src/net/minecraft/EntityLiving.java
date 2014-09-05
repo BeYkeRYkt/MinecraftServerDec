@@ -11,7 +11,7 @@ import java.util.UUID;
 public abstract class EntityLiving extends Entity {
 
 	private static final UUID a = UUID.fromString("662A6B8D-DA3E-4C1C-8813-96EA6097278D");
-	private static final ya b = (new ya(a, "Sprinting speed boost", 0.30000001192092896D, 2)).a(false);
+	private static final AttributeModifier b = (new AttributeModifier(a, "Sprinting speed boost", 0.30000001192092896D, 2)).setSerializable(false);
 	private yc c;
 	private final wg f = new wg(this);
 	private final Map g = Maps.newHashMap();
@@ -107,7 +107,7 @@ public abstract class EntityLiving extends Entity {
 			bec var6 = this.o.p(var5);
 			Block var7 = var6.c();
 			float var8 = (float) DataTypesConverter.f(this.O - 3.0F);
-			if (var7.r() != bof.a) {
+			if (var7.r() != Material.AIR) {
 				double var9 = (double) Math.min(0.2F + var8 / 15.0F, 10.0F);
 				if (var9 > 2.5D) {
 					var9 = 2.5D;
@@ -146,7 +146,7 @@ public abstract class EntityLiving extends Entity {
 		}
 
 		boolean var7 = var1 && ((EntityHuman) this).by.invulnerable;
-		if (this.ai() && this.a(bof.h)) {
+		if (this.ai() && this.a(Material.WATER)) {
 			if (!this.aX() && !this.k(MobEffectList.o.H) && !var7) {
 				this.h(this.j(this.aA()));
 				if (this.aA() == -20) {
@@ -754,7 +754,7 @@ public abstract class EntityLiving extends Entity {
 			int var7 = DataTypesConverter.toFixedPointInt(this.locationY - 0.20000000298023224D);
 			int var8 = DataTypesConverter.toFixedPointInt(this.locationZ);
 			Block var9 = this.o.p(new Position(var6, var7, var8)).c();
-			if (var9.r() != bof.a) {
+			if (var9.r() != Material.AIR) {
 				BlockSound var10 = var9.H;
 				this.a(var10.c(), var10.d() * 0.5F, var10.e() * 0.75F);
 			}
@@ -899,7 +899,7 @@ public abstract class EntityLiving extends Entity {
 		this.ax = (float) this.aq / (float) var1;
 	}
 
-	public xz a(xy var1) {
+	public AttributeInstance a(xy var1) {
 		return this.bx().a(var1);
 	}
 
@@ -923,7 +923,7 @@ public abstract class EntityLiving extends Entity {
 
 	public void d(boolean var1) {
 		super.d(var1);
-		xz var2 = this.a(afs.d);
+		AttributeInstance var2 = this.a(afs.d);
 		if (var2.a(a) != null) {
 			var2.c(b);
 		}
@@ -966,7 +966,7 @@ public abstract class EntityLiving extends Entity {
 							return;
 						}
 
-						if (World.a((ard) this.o, new Position(var12, (int) this.locationY - 1, var13)) || this.o.p(new Position(var12, (int) this.locationY - 1, var13)).c().r() == bof.h) {
+						if (World.a((ard) this.o, new Position(var12, (int) this.locationY - 1, var13)) || this.o.p(new Position(var12, (int) this.locationY - 1, var13)).c().r() == Material.WATER) {
 							var3 = this.locationX + (double) var10;
 							var5 = this.locationY + 1.0D;
 							var7 = this.locationZ + (double) var11;

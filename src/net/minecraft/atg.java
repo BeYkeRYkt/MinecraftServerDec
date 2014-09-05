@@ -2,7 +2,7 @@ package net.minecraft;
 
 public abstract class atg extends Block implements avs {
 
-	protected atg(bof var1) {
+	protected atg(Material var1) {
 		super(var1);
 		this.A = true;
 	}

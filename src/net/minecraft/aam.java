@@ -81,7 +81,7 @@ public class aam extends zb {
 	}
 
 	protected double f() {
-		xz var1 = this.b.a(afs.b);
+		AttributeInstance var1 = this.b.a(afs.b);
 		return var1 == null ? 16.0D : var1.e();
 	}
 

@@ -7,7 +7,7 @@ public abstract class bcf extends awq {
 	public static final bev b = bev.a("variant", ayx.class);
 
 	public bcf() {
-		super(bof.d);
+		super(Material.WOOD);
 		bec var1 = this.L.b();
 		if (!this.j()) {
 			var1 = var1.a(a, awr.b);

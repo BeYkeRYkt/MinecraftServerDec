@@ -170,7 +170,7 @@ public class PersistentVillage extends bqc {
 	}
 
 	private void d(Position var1) {
-		PaintingDirection var2 = avf.h(this.b, var1);
+		PaintingDirection var2 = BlockDoor.h(this.b, var1);
 		PaintingDirection var3 = var2.d();
 		int var4 = this.a(var1, var2, 5);
 		int var5 = this.a(var1, var3, var4 + 1);
@@ -212,7 +212,7 @@ public class PersistentVillage extends bqc {
 
 	private boolean f(Position var1) {
 		Block var2 = this.b.p(var1).c();
-		return var2 instanceof avf ? var2.r() == bof.d : false;
+		return var2 instanceof BlockDoor ? var2.r() == Material.WOOD : false;
 	}
 
 	public void a(NBTCompoundTag var1) {

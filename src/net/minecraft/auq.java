@@ -7,9 +7,9 @@ class auq implements Predicate {
 	// $FF: synthetic field
 	final PaintingDirection a;
 	// $FF: synthetic field
-	final aup b;
+	final BlockRedstoneComparator b;
 
-	auq(aup var1, PaintingDirection var2) {
+	auq(BlockRedstoneComparator var1, PaintingDirection var2) {
 		this.b = var1;
 		this.a = var2;
 	}

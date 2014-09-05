@@ -137,7 +137,7 @@ public class bgs extends bgt {
 												} else {
 													var5.a(var42, var49, var60, aty.a.P());
 													if (var53.c() == aty.m) {
-														var5.a(var42, var49 + 1, var60, var53.b(bab.a) == bac.b ? aty.cM.P() : aty.A.P());
+														var5.a(var42, var49 + 1, var60, var53.b(BlockSand.a) == bac.b ? aty.cM.P() : aty.A.P());
 													}
 
 													if (var48 && var5.a(var42, var49 - 1, var60).c() == aty.d) {
@@ -162,7 +162,7 @@ public class bgs extends bgt {
 	}
 
 	protected boolean a(bec var1, bec var2) {
-		return var1.c() == aty.b ? true : (var1.c() == aty.d ? true : (var1.c() == aty.c ? true : (var1.c() == aty.cz ? true : (var1.c() == aty.cu ? true : (var1.c() == aty.A ? true : (var1.c() == aty.cM ? true : (var1.c() == aty.bw ? true : (var1.c() == aty.aH ? true : (var1.c() == aty.m || var1.c() == aty.n) && var2.c().r() != bof.h))))))));
+		return var1.c() == aty.b ? true : (var1.c() == aty.d ? true : (var1.c() == aty.c ? true : (var1.c() == aty.cz ? true : (var1.c() == aty.cu ? true : (var1.c() == aty.A ? true : (var1.c() == aty.cM ? true : (var1.c() == aty.bw ? true : (var1.c() == aty.aH ? true : (var1.c() == aty.m || var1.c() == aty.n) && var2.c().r() != Material.WATER))))))));
 	}
 
 	protected void a(World var1, int var2, int var3, int var4, int var5, bgk var6) {

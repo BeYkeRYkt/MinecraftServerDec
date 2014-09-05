@@ -15,7 +15,7 @@ public class bin extends bhp {
 			return false;
 		} else if (var1.p(var3.b()).c() != aty.b) {
 			return false;
-		} else if (var1.p(var3).c().r() != bof.a && var1.p(var3).c() != aty.b) {
+		} else if (var1.p(var3).c().r() != Material.AIR && var1.p(var3).c() != aty.b) {
 			return false;
 		} else {
 			int var4 = 0;

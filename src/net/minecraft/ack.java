@@ -44,7 +44,7 @@ class ack extends zn {
 			Position var2 = this.b.a();
 			bec var3 = var1.p(var2);
 			Block var4 = var3.c();
-			if (this.e && var4 instanceof auh && ((Integer) var3.b(auh.a)).intValue() == 7) {
+			if (this.e && var4 instanceof BlockCarrots && ((Integer) var3.b(BlockCarrots.a)).intValue() == 7) {
 				var1.a(var2, aty.a.P(), 2);
 				var1.b(var2, true);
 				this.c.cn();
@@ -62,7 +62,7 @@ class ack extends zn {
 			var2 = var2.a();
 			bec var4 = var1.p(var2);
 			var3 = var4.c();
-			if (var3 instanceof auh && ((Integer) var4.b(auh.a)).intValue() == 7 && this.d && !this.e) {
+			if (var3 instanceof BlockCarrots && ((Integer) var4.b(BlockCarrots.a)).intValue() == 7 && this.d && !this.e) {
 				this.e = true;
 				return true;
 			}

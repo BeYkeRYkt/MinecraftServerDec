@@ -138,16 +138,16 @@ public class aay extends aaz {
 					double var18 = (double) var15 + 0.5D - var7.c;
 					if (var16 * var8 + var18 * var10 >= 0.0D) {
 						Block var20 = this.c.p(new Position(var14, var2 - 1, var15)).c();
-						bof var21 = var20.r();
-						if (var21 == bof.a) {
+						Material var21 = var20.r();
+						if (var21 == Material.AIR) {
 							return false;
 						}
 
-						if (var21 == bof.h && !this.b.V()) {
+						if (var21 == Material.WATER && !this.b.V()) {
 							return false;
 						}
 
-						if (var21 == bof.i) {
+						if (var21 == Material.LAVA) {
 							return false;
 						}
 					}

@@ -77,9 +77,9 @@ public class ary {
 			this.c = var4;
 			this.h = new bif(aty.d.P(), this.d.I);
 			this.i = new bif(aty.n.P(), this.d.M);
-			this.j = new bif(aty.b.P().a(bba.a, bbb.b), this.d.Q);
-			this.k = new bif(aty.b.P().a(bba.a, bbb.d), this.d.U);
-			this.l = new bif(aty.b.P().a(bba.a, bbb.f), this.d.Y);
+			this.j = new bif(aty.b.P().a(BlockStone.a, bbb.b), this.d.Q);
+			this.k = new bif(aty.b.P().a(BlockStone.a, bbb.d), this.d.U);
+			this.l = new bif(aty.b.P().a(BlockStone.a, bbb.f), this.d.Y);
 			this.m = new bif(aty.q.P(), this.d.ac);
 			this.n = new bif(aty.p.P(), this.d.ag);
 			this.o = new bif(aty.o.P(), this.d.ak);
@@ -148,7 +148,7 @@ public class ary {
 			var7 = this.c.a(var4, var11, var5);
 			awa var8 = var1.a(this.b, var7);
 			avy var9 = var8.a().a();
-			if (var9.r() != bof.a) {
+			if (var9.r() != Material.AIR) {
 				this.s.a(var9, var8);
 				this.s.b(this.a, this.b, var7);
 			}

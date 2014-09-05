@@ -35,7 +35,7 @@ public class amn extends ake {
 			int var7 = DataTypesConverter.toFixedPointInt(var2.locationX - (double) var5) / var4 + 64;
 			int var8 = DataTypesConverter.toFixedPointInt(var2.locationZ - (double) var6) / var4 + 64;
 			int var9 = 128 / var4;
-			if (var1.worldProvider.o()) {
+			if (var1.worldProvider.noSkyLight()) {
 				var9 /= 2;
 			}
 
@@ -56,20 +56,20 @@ public class amn extends ake {
 							int var19 = (var5 / var4 + var12 - 64) * var4;
 							int var20 = (var6 / var4 + var15 - 64) * var4;
 							HashMultiset var21 = HashMultiset.create();
-							bfh var22 = var1.f(new Position(var19, 0, var20));
+							Chunk var22 = var1.f(new Position(var19, 0, var20));
 							if (!var22.f()) {
 								int var23 = var19 & 15;
 								int var24 = var20 & 15;
 								int var25 = 0;
 								double var26 = 0.0D;
 								int var28;
-								if (var1.worldProvider.o()) {
+								if (var1.worldProvider.noSkyLight()) {
 									var28 = var19 + var20 * 231871;
 									var28 = var28 * var28 * 31287121 + var28 * 11;
 									if ((var28 >> 20 & 1) == 0) {
-										var21.add(aty.d.g(aty.d.P().a(avc.a, avd.a)), 10);
+										var21.add(aty.d.g(aty.d.P().a(BlockDirt.a, avd.a)), 10);
 									} else {
-										var21.add(aty.b.g(aty.b.P().a(bba.a, bbb.a)), 100);
+										var21.add(aty.b.g(aty.b.P().a(BlockStone.a, bbb.a)), 100);
 									}
 
 									var26 = 100.0D;
@@ -82,16 +82,16 @@ public class amn extends ake {
 												do {
 													--var30;
 													var31 = var22.g(new Position(var28 + var23, var30, var29 + var24));
-												} while (var31.c().g(var31) == boh.b && var30 > 0);
+												} while (var31.c().g(var31) == MaterialMapColor.b && var30 > 0);
 
-												if (var30 > 0 && var31.c().r().d()) {
+												if (var30 > 0 && var31.c().r().isLiquid()) {
 													int var32 = var30 - 1;
 
 													Block var33;
 													do {
 														var33 = var22.a(var28 + var23, var32--, var29 + var24);
 														++var25;
-													} while (var32 > 0 && var33.r().d());
+													} while (var32 > 0 && var33.r().isLiquid());
 												}
 											}
 
@@ -112,8 +112,8 @@ public class amn extends ake {
 									var35 = 0;
 								}
 
-								boh var36 = (boh) Iterables.getFirst(Multisets.copyHighestCountFirst(var21), boh.b);
-								if (var36 == boh.n) {
+								MaterialMapColor var36 = (MaterialMapColor) Iterables.getFirst(Multisets.copyHighestCountFirst(var21), MaterialMapColor.b);
+								if (var36 == MaterialMapColor.n) {
 									var34 = (double) var25 * 0.1D + (double) (var12 + var15 & 1) * 0.2D;
 									var35 = 1;
 									if (var34 < 0.5D) {

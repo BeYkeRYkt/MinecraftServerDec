@@ -130,10 +130,10 @@ public class bpy extends bpu {
 				for (int var15 = var4; var15 < var4 + var7; ++var15) {
 					Position var16 = new Position(var13, var14, var15);
 					Block var17 = var0.p(var16).c();
-					if (var17.r() != bof.a) {
+					if (var17.r() != Material.AIR) {
 						if (var17 != aty.bd && var17 != aty.cw) {
 							if (var17 != aty.i && var17 != aty.j) {
-								if (!var10 && var17 instanceof avf && var17.r() == bof.d) {
+								if (!var10 && var17 instanceof BlockDoor && var17.r() == Material.WOOD) {
 									return 0;
 								}
 							} else {
@@ -151,8 +151,8 @@ public class bpy extends bpu {
 							if (!(var1.o.p(var12).c() instanceof ati) && !(var1.o.p(var12.b()).c() instanceof ati)) {
 								return -3;
 							}
-						} else if (!var17.b(var0, var16) && (!var9 || !(var17 instanceof avf) || var17.r() != bof.d)) {
-							if (var17 instanceof avv || var17 instanceof avw || var17 instanceof bbx) {
+						} else if (!var17.b(var0, var16) && (!var9 || !(var17 instanceof BlockDoor) || var17.r() != Material.WOOD)) {
+							if (var17 instanceof BlockFence || var17 instanceof BlockFenceGate || var17 instanceof BlockCobbleWall) {
 								return -3;
 							}
 
@@ -160,8 +160,8 @@ public class bpy extends bpu {
 								return -4;
 							}
 
-							bof var18 = var17.r();
-							if (var18 != bof.i) {
+							Material var18 = var17.r();
+							if (var18 != Material.LAVA) {
 								return 0;
 							}
 

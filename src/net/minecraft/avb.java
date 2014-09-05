@@ -6,7 +6,7 @@ public abstract class avb extends Block {
 
 	public static final beu N = beu.a("facing", (Predicate) en.a);
 
-	protected avb(bof var1) {
+	protected avb(Material var1) {
 		super(var1);
 	}
 

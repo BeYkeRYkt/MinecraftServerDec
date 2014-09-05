@@ -4,14 +4,14 @@ import com.google.common.base.Predicate;
 import java.util.List;
 import java.util.Random;
 
-public class bfg extends bfh {
+public class bfg extends Chunk {
 
 	public bfg(World var1, int var2, int var3) {
 		super(var1, var2, var3);
 	}
 
 	public boolean a(int var1, int var2) {
-		return var1 == this.a && var2 == this.b;
+		return var1 == this.x && var2 == this.y;
 	}
 
 	public int b(int var1, int var2) {
@@ -90,7 +90,7 @@ public class bfg extends bfh {
 	}
 
 	public Random a(long var1) {
-		return new Random(this.p().J() + (long) (this.a * this.a * 4987142) + (long) (this.a * 5947611) + (long) (this.b * this.b) * 4392871L + (long) (this.b * 389711) ^ var1);
+		return new Random(this.getWorld().J() + (long) (this.x * this.x * 4987142) + (long) (this.x * 5947611) + (long) (this.y * this.y) * 4392871L + (long) (this.y * 389711) ^ var1);
 	}
 
 	public boolean f() {

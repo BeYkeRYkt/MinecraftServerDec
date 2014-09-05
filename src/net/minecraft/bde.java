@@ -142,7 +142,7 @@ public class bde extends bdf implements bdd, pm {
 
 	public boolean m() {
 		if (this.b != null && !this.b.D) {
-			if (!this.n() && awx.f(this.u())) {
+			if (!this.n() && BlockHopper.f(this.u())) {
 				boolean var1 = false;
 				if (!this.p()) {
 					var1 = this.r();
@@ -198,7 +198,7 @@ public class bde extends bdf implements bdd, pm {
 		if (var1 == null) {
 			return false;
 		} else {
-			PaintingDirection var2 = awx.b(this.u()).d();
+			PaintingDirection var2 = BlockHopper.b(this.u()).d();
 			if (this.a(var1, var2)) {
 				return false;
 			} else {
@@ -403,7 +403,7 @@ public class bde extends bdf implements bdd, pm {
 	}
 
 	private IInventory G() {
-		PaintingDirection var1 = awx.b(this.u());
+		PaintingDirection var1 = BlockHopper.b(this.u());
 		return b(this.z(), (double) (this.c.n() + var1.g()), (double) (this.c.o() + var1.h()), (double) (this.c.p() + var1.i()));
 	}
 
@@ -427,8 +427,8 @@ public class bde extends bdf implements bdd, pm {
 			var7 = (IInventory) var12;
 			if (var7 instanceof bcr) {
 				Block var13 = var0.p(new Position(var8, var9, var10)).c();
-				if (var13 instanceof auj) {
-					var7 = ((auj) var13).d(var0, var11);
+				if (var13 instanceof BlockChest) {
+					var7 = ((BlockChest) var13).d(var0, var11);
 				}
 			}
 		}

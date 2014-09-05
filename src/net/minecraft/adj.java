@@ -95,7 +95,7 @@ public abstract class adj extends Entity {
 				for (int var6 = 0; var6 < var2; ++var6) {
 					Position var7 = var3.a(var4, var5).b(var6);
 					Block var8 = this.o.p(var7).c();
-					if (!var8.r().a() && !ava.d(var8)) {
+					if (!var8.r().isBuildable() && !ava.d(var8)) {
 						return false;
 					}
 				}

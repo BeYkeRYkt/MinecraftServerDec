@@ -42,11 +42,11 @@ public class bkh extends bmv {
 		super.a(var1, var2, var3);
 	}
 
-	public boolean a(aqm var1) {
+	public boolean a(ChunkCoordIntPair var1) {
 		return this.c.contains(var1) ? false : super.a(var1);
 	}
 
-	public void b(aqm var1) {
+	public void b(ChunkCoordIntPair var1) {
 		super.b(var1);
 		this.c.add(var1);
 	}
@@ -57,10 +57,10 @@ public class bkh extends bmv {
 		Iterator var3 = this.c.iterator();
 
 		while (var3.hasNext()) {
-			aqm var4 = (aqm) var3.next();
+			ChunkCoordIntPair var4 = (ChunkCoordIntPair) var3.next();
 			NBTCompoundTag var5 = new NBTCompoundTag();
-			var5.put("X", var4.a);
-			var5.put("Z", var4.b);
+			var5.put("X", var4.chunkX);
+			var5.put("Z", var4.chunkZ);
 			var2.addTag((NBTTag) var5);
 		}
 
@@ -74,7 +74,7 @@ public class bkh extends bmv {
 
 			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 				NBTCompoundTag var4 = var2.getCompound(var3);
-				this.c.add(new aqm(var4.getInt("X"), var4.getInt("Z")));
+				this.c.add(new ChunkCoordIntPair(var4.getInt("X"), var4.getInt("Z")));
 			}
 		}
 

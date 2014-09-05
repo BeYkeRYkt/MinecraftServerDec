@@ -13,7 +13,7 @@ public class bis extends bhp {
 				for (int var6 = 0; var6 < var5; ++var6) {
 					PaintingDirection var7 = var4[var6];
 					if (aty.bn.a(var1, var3, var7)) {
-						bec var8 = aty.bn.P().a(bbv.b, Boolean.valueOf(var7 == PaintingDirection.c)).a(bbv.M, Boolean.valueOf(var7 == PaintingDirection.f)).a(bbv.N, Boolean.valueOf(var7 == PaintingDirection.d)).a(bbv.O, Boolean.valueOf(var7 == PaintingDirection.e));
+						bec var8 = aty.bn.P().a(BlockVine.b, Boolean.valueOf(var7 == PaintingDirection.c)).a(BlockVine.M, Boolean.valueOf(var7 == PaintingDirection.f)).a(BlockVine.N, Boolean.valueOf(var7 == PaintingDirection.d)).a(BlockVine.O, Boolean.valueOf(var7 == PaintingDirection.e));
 						var1.a(var3, var8, 2);
 						break;
 					}

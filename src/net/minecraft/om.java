@@ -4,10 +4,10 @@ final class om extends eg {
 
 	protected ItemStack b(dz var1, ItemStack var2) {
 		World var3 = var1.i();
-		Position var4 = var1.d().a(ave.b(var1.f()));
+		Position var4 = var1.d().a(BlockDispenser.b(var1.f()));
 		if (var3.d(var4)) {
 			if (!var3.D) {
-				bec var5 = aty.bX.P().a(auo.a, Boolean.valueOf(false));
+				bec var5 = aty.bX.P().a(BlockCommand.a, Boolean.valueOf(false));
 				var3.a(var4, var5, 3);
 				aju.a(var3, var4, var2);
 				var3.c(var1.d(), var1.e());

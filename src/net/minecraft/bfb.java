@@ -32,8 +32,8 @@ public class bfb {
 		return (double) (var1.n() + 1) > this.b() && (double) var1.n() < this.d() && (double) (var1.p() + 1) > this.c() && (double) var1.p() < this.e();
 	}
 
-	public boolean a(aqm var1) {
-		return (double) var1.e() > this.b() && (double) var1.c() < this.d() && (double) var1.f() > this.c() && (double) var1.d() < this.e();
+	public boolean a(ChunkCoordIntPair var1) {
+		return (double) var1.getBlockMaxX() > this.b() && (double) var1.getBlockMinX() < this.d() && (double) var1.getBlockMaxZ() > this.c() && (double) var1.getBlockMinZ() < this.e();
 	}
 
 	public boolean a(brt var1) {

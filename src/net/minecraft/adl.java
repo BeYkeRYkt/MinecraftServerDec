@@ -91,7 +91,7 @@ public class adl extends adj {
 	}
 
 	public boolean j() {
-		return this.o.p(this.a).c() instanceof avv;
+		return this.o.p(this.a).c() instanceof BlockFence;
 	}
 
 	public static adl a(World var0, Position var1) {

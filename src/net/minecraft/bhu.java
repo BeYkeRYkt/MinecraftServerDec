@@ -15,7 +15,7 @@ public class bhu extends bhp {
 	public boolean b(World var1, Random var2, Position var3) {
 		if (var1.p(var3.a()).c() != aty.aV) {
 			return false;
-		} else if (var1.p(var3).c().r() != bof.a && var1.p(var3).c() != aty.aV) {
+		} else if (var1.p(var3).c().r() != Material.AIR && var1.p(var3).c() != aty.aV) {
 			return false;
 		} else {
 			int var4 = 0;

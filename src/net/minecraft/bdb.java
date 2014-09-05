@@ -15,7 +15,7 @@ public class bdb extends bcm {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		oa var2 = (oa) Item.REGISTRY.c(this.a);
+		BlockNameInfo var2 = (BlockNameInfo) Item.REGISTRY.c(this.a);
 		var1.put("Item", var2 == null ? "" : var2.toString());
 		var1.put("Data", this.f);
 	}

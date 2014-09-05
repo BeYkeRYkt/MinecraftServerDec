@@ -220,7 +220,7 @@ public class ado extends Entity {
 					double var17 = var14.b + var15 * (double) var35 / (double) var33;
 					var19 = var14.b + var15 * (double) (var35 + 1) / (double) var33;
 					brt var21 = new brt(var14.a, var17, var14.c, var14.d, var19, var14.f);
-					if (this.o.b(var21, bof.h)) {
+					if (this.o.b(var21, Material.WATER)) {
 						var34 += 1.0D / (double) var33;
 					}
 				}
@@ -329,7 +329,7 @@ public class ado extends Entity {
 		var1.put("xTile", (short) this.g);
 		var1.put("yTile", (short) this.h);
 		var1.put("zTile", (short) this.i);
-		oa var2 = (oa) Block.c.c(this.ap);
+		BlockNameInfo var2 = (BlockNameInfo) Block.BLOCKREGISTRY.c(this.ap);
 		var1.put("inTile", var2 == null ? "" : var2.toString());
 		var1.put("shake", (byte) this.a);
 		var1.put("inGround", (byte) (this.aq ? 1 : 0));

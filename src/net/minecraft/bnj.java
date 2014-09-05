@@ -86,7 +86,7 @@ public class bnj extends bnn {
 
 		int var4;
 		for (var4 = 6; var4 <= 8; ++var4) {
-			if (this.a(var1, var4, 0, -1, var3).c().r() == bof.a && this.a(var1, var4, -1, -1, var3).c().r() != bof.a) {
+			if (this.a(var1, var4, 0, -1, var3).c().r() == Material.AIR && this.a(var1, var4, -1, -1, var3).c().r() != Material.AIR) {
 				this.a(var1, aty.aw.a(this.a(aty.aw, 3)), var4, 0, -1, var3);
 			}
 		}

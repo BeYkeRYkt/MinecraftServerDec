@@ -31,7 +31,7 @@ public class akw extends Item {
 			} else if (var9 == akv.m) {
 				bec var10 = var3.p(var4);
 				Block var11 = var10.c();
-				if (var11 == aty.r && var10.b(ayw.a) == ayx.d) {
+				if (var11 == aty.r && var10.b(BlockWood.a) == ayx.d) {
 					if (var5 == PaintingDirection.a) {
 						return false;
 					}

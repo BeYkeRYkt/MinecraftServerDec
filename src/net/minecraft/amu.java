@@ -12,11 +12,11 @@ public class amu extends aks {
 	}
 
 	public boolean b(Block var1) {
-		return var1 == aty.Z ? this.b.d() == 3 : (var1 != aty.ah && var1 != aty.ag ? (var1 != aty.bP && var1 != aty.bT ? (var1 != aty.R && var1 != aty.o ? (var1 != aty.S && var1 != aty.p ? (var1 != aty.y && var1 != aty.x ? (var1 != aty.aC && var1 != aty.aD ? (var1.r() == bof.e ? true : (var1.r() == bof.f ? true : var1.r() == bof.g)) : this.b.d() >= 2) : this.b.d() >= 1) : this.b.d() >= 1) : this.b.d() >= 2) : this.b.d() >= 2) : this.b.d() >= 2);
+		return var1 == aty.Z ? this.b.d() == 3 : (var1 != aty.ah && var1 != aty.ag ? (var1 != aty.bP && var1 != aty.bT ? (var1 != aty.R && var1 != aty.o ? (var1 != aty.S && var1 != aty.p ? (var1 != aty.y && var1 != aty.x ? (var1 != aty.aC && var1 != aty.aD ? (var1.r() == Material.STONE ? true : (var1.r() == Material.ORE ? true : var1.r() == Material.HEAVY)) : this.b.d() >= 2) : this.b.d() >= 1) : this.b.d() >= 1) : this.b.d() >= 2) : this.b.d() >= 2) : this.b.d() >= 2);
 	}
 
 	public float a(ItemStack var1, Block var2) {
-		return var2.r() != bof.f && var2.r() != bof.g && var2.r() != bof.e ? super.a(var1, var2) : this.a;
+		return var2.r() != Material.ORE && var2.r() != Material.HEAVY && var2.r() != Material.STONE ? super.a(var1, var2) : this.a;
 	}
 
 }

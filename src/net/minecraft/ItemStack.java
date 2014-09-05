@@ -102,7 +102,7 @@ public final class ItemStack {
 	}
 
 	public NBTCompoundTag b(NBTCompoundTag var1) {
-		oa var2 = (oa) Item.REGISTRY.c(this.item);
+		BlockNameInfo var2 = (BlockNameInfo) Item.REGISTRY.c(this.item);
 		var1.put("id", var2 == null ? "minecraft:air" : var2.toString());
 		var1.put("Count", (byte) this.b);
 		var1.put("Damage", (short) this.f);
@@ -460,8 +460,8 @@ public final class ItemStack {
 
 			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 				NBTCompoundTag var4 = var2.getCompound(var3);
-				ya var5 = afs.a(var4);
-				if (var5 != null && var5.a().getLeastSignificantBits() != 0L && var5.a().getMostSignificantBits() != 0L) {
+				AttributeModifier var5 = afs.a(var4);
+				if (var5 != null && var5.getUUID().getLeastSignificantBits() != 0L && var5.getUUID().getMostSignificantBits() != 0L) {
 					((Multimap) var1).put(var4.getString("AttributeName"), var5);
 				}
 			}

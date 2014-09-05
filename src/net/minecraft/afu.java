@@ -25,7 +25,7 @@ class afu extends zy {
 				this.b = PaintingDirection.a(var1);
 				Position var2 = (new Position(this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ)).a(this.b);
 				bec var3 = this.a.o.p(var2);
-				if (axs.d(var3)) {
+				if (BlockMonsterEggs.d(var3)) {
 					this.c = true;
 					return true;
 				}
@@ -47,8 +47,8 @@ class afu extends zy {
 			World var1 = this.a.o;
 			Position var2 = (new Position(this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ)).a(this.b);
 			bec var3 = var1.p(var2);
-			if (axs.d(var3)) {
-				var1.a(var2, aty.be.P().a(axs.a, axu.a(var3)), 3);
+			if (BlockMonsterEggs.d(var3)) {
+				var1.a(var2, aty.be.P().a(BlockMonsterEggs.a, axu.a(var3)), 3);
 				this.a.y();
 				this.a.J();
 			}

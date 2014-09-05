@@ -13,7 +13,7 @@ final class atn implements Runnable {
 	}
 
 	public void run() {
-		bfh var1 = this.a.f(this.b);
+		Chunk var1 = this.a.f(this.b);
 
 		for (int var2 = this.b.o() - 1; var2 >= 0; --var2) {
 			Position var3 = new Position(this.b.n(), var2, this.b.p());

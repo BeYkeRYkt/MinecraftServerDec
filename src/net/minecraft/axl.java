@@ -7,7 +7,7 @@ public abstract class axl extends Block {
 
 	public static final bew b = bew.a("level", 0, 15);
 
-	protected axl(bof var1) {
+	protected axl(Material var1) {
 		super(var1);
 		this.j(this.L.b().a(b, Integer.valueOf(0)));
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
@@ -15,7 +15,7 @@ public abstract class axl extends Block {
 	}
 
 	public boolean b(ard var1, Position var2) {
-		return this.J != bof.i;
+		return this.J != Material.LAVA;
 	}
 
 	public static float b(int var0) {
@@ -48,8 +48,8 @@ public abstract class axl extends Block {
 	}
 
 	public boolean b(ard var1, Position var2, PaintingDirection var3) {
-		bof var4 = var1.p(var2).c().r();
-		return var4 == this.J ? false : (var3 == PaintingDirection.b ? true : (var4 == bof.w ? false : super.b(var1, var2, var3)));
+		Material var4 = var1.p(var2).c().r();
+		return var4 == this.J ? false : (var3 == PaintingDirection.b ? true : (var4 == Material.ICE ? false : super.b(var1, var2, var3)));
 	}
 
 	public brt a(World var1, Position var2, bec var3) {
@@ -81,7 +81,7 @@ public abstract class axl extends Block {
 			int var8 = this.f(var1, var7);
 			int var9;
 			if (var8 < 0) {
-				if (!var1.p(var7).c().r().c()) {
+				if (!var1.p(var7).c().r().isSolid()) {
 					var8 = this.f(var1, var7.b());
 					if (var8 >= 0) {
 						var9 = var8 - (var4 - 8);
@@ -115,7 +115,7 @@ public abstract class axl extends Block {
 	}
 
 	public int a(World var1) {
-		return this.J == bof.h ? 5 : (this.J == bof.i ? (var1.worldProvider.o() ? 10 : 30) : 0);
+		return this.J == Material.WATER ? 5 : (this.J == Material.LAVA ? (var1.worldProvider.noSkyLight() ? 10 : 30) : 0);
 	}
 
 	public void c(World var1, Position var2, bec var3) {
@@ -127,14 +127,14 @@ public abstract class axl extends Block {
 	}
 
 	public boolean e(World var1, Position var2, bec var3) {
-		if (this.J == bof.i) {
+		if (this.J == Material.LAVA) {
 			boolean var4 = false;
 			PaintingDirection[] var5 = PaintingDirection.values();
 			int var6 = var5.length;
 
 			for (int var7 = 0; var7 < var6; ++var7) {
 				PaintingDirection var8 = var5[var7];
-				if (var8 != PaintingDirection.a && var1.p(var2.a(var8)).c().r() == bof.h) {
+				if (var8 != PaintingDirection.a && var1.p(var2.a(var8)).c().r() == Material.WATER) {
 					var4 = true;
 					break;
 				}
@@ -183,20 +183,20 @@ public abstract class axl extends Block {
 		return new bed(this, new bex[] { b });
 	}
 
-	public static avn a(bof var0) {
-		if (var0 == bof.h) {
+	public static BlockFlowing a(Material var0) {
+		if (var0 == Material.WATER) {
 			return aty.i;
-		} else if (var0 == bof.i) {
+		} else if (var0 == Material.LAVA) {
 			return aty.k;
 		} else {
 			throw new IllegalArgumentException("Invalid material");
 		}
 	}
 
-	public static bax b(bof var0) {
-		if (var0 == bof.h) {
+	public static BlockStationary b(Material var0) {
+		if (var0 == Material.WATER) {
 			return aty.j;
-		} else if (var0 == bof.i) {
+		} else if (var0 == Material.LAVA) {
 			return aty.l;
 		} else {
 			throw new IllegalArgumentException("Invalid material");

@@ -4,11 +4,11 @@ import java.io.IOException;
 
 public interface bfq {
 
-	bfh a(World var1, int var2, int var3) throws IOException;
+	Chunk a(World var1, int var2, int var3) throws IOException;
 
-	void a(World var1, bfh var2) throws aqz;
+	void a(World var1, Chunk var2) throws aqz;
 
-	void b(World var1, bfh var2);
+	void b(World var1, Chunk var2);
 
 	void a();
 

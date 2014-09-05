@@ -5,7 +5,7 @@ import java.util.UUID;
 public abstract class EntityCreature extends xn {
 
 	public static final UUID bi = UUID.fromString("E199AD21-BA8A-4C53-8D13-6182D5C69D3A");
-	public static final ya bj = (new ya(bi, "Fleeing speed bonus", 2.0D, 2)).a(false);
+	public static final AttributeModifier bj = (new AttributeModifier(bi, "Fleeing speed bonus", 2.0D, 2)).setSerializable(false);
 	private Position a;
 	private float b;
 	private zb c;

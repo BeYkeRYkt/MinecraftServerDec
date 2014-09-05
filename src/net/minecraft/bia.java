@@ -41,8 +41,8 @@ public class bia extends bic {
 				if (this.a(var1.p(var14).c().r())) {
 					this.a(var1, var14, aty.r, this.b);
 					if (var13 > 0) {
-						this.b(var1, var2, var14.e(), bbv.S);
-						this.b(var1, var2, var14.c(), bbv.Q);
+						this.b(var1, var2, var14.e(), BlockVine.S);
+						this.b(var1, var2, var14.c(), BlockVine.Q);
 					}
 				}
 
@@ -51,8 +51,8 @@ public class bia extends bic {
 					if (this.a(var1.p(var15).c().r())) {
 						this.a(var1, var15, aty.r, this.b);
 						if (var13 > 0) {
-							this.b(var1, var2, var15.f(), bbv.T);
-							this.b(var1, var2, var15.c(), bbv.Q);
+							this.b(var1, var2, var15.f(), BlockVine.T);
+							this.b(var1, var2, var15.c(), BlockVine.Q);
 						}
 					}
 
@@ -60,8 +60,8 @@ public class bia extends bic {
 					if (this.a(var1.p(var16).c().r())) {
 						this.a(var1, var16, aty.r, this.b);
 						if (var13 > 0) {
-							this.b(var1, var2, var16.f(), bbv.T);
-							this.b(var1, var2, var16.d(), bbv.R);
+							this.b(var1, var2, var16.f(), BlockVine.T);
+							this.b(var1, var2, var16.d(), BlockVine.R);
 						}
 					}
 
@@ -69,8 +69,8 @@ public class bia extends bic {
 					if (this.a(var1.p(var17).c().r())) {
 						this.a(var1, var17, aty.r, this.b);
 						if (var13 > 0) {
-							this.b(var1, var2, var17.e(), bbv.S);
-							this.b(var1, var2, var17.d(), bbv.R);
+							this.b(var1, var2, var17.e(), BlockVine.S);
+							this.b(var1, var2, var17.d(), BlockVine.R);
 						}
 					}
 				}
@@ -80,8 +80,8 @@ public class bia extends bic {
 		}
 	}
 
-	private boolean a(bof var1) {
-		return var1 == bof.a || var1 == bof.j;
+	private boolean a(Material var1) {
+		return var1 == Material.AIR || var1 == Material.LEAVES;
 	}
 
 	private void b(World var1, Random var2, Position var3, int var4) {

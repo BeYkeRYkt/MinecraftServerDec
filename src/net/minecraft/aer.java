@@ -7,7 +7,7 @@ import java.util.UUID;
 public class aer extends afm {
 
 	private static final UUID b = UUID.fromString("020E0DFB-87AE-4653-9556-831010E291A0");
-	private static final ya c = (new ya(b, "Attacking speed boost", 0.15000000596046448D, 0)).a(false);
+	private static final AttributeModifier c = (new AttributeModifier(b, "Attacking speed boost", 0.15000000596046448D, 0)).setSerializable(false);
 	private static final Set bk = Sets.newIdentityHashSet();
 	private boolean bl;
 
@@ -144,7 +144,7 @@ public class aer extends afm {
 			while (!var15 && var14.o() > 0) {
 				Position var16 = var14.b();
 				Block var17 = this.o.p(var16).c();
-				if (var17.r().c()) {
+				if (var17.r().isSolid()) {
 					var15 = true;
 				} else {
 					--this.locationY;
@@ -267,7 +267,7 @@ public class aer extends afm {
 	}
 
 	// $FF: synthetic method
-	static ya cn() {
+	static AttributeModifier cn() {
 		return c;
 	}
 

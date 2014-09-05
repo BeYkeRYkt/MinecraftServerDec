@@ -168,7 +168,7 @@ public class afw extends afm implements afr {
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		if (this.o.worldProvider instanceof bge && this.bb().nextInt(5) > 0) {
+		if (this.o.worldProvider instanceof NetherWorldProvider && this.bb().nextInt(5) > 0) {
 			this.i.a(4, this.c);
 			this.a(1);
 			this.c(0, new ItemStack(amk.q));

@@ -139,7 +139,7 @@ public class bgr implements IChunkProvider {
 				for (int var15 = 127; var15 >= 0; --var15) {
 					if (var15 < 127 - this.j.nextInt(5) && var15 > this.j.nextInt(5)) {
 						bec var16 = var3.a(var8, var15, var7);
-						if (var16.c() != null && var16.c().r() != bof.a) {
+						if (var16.c() != null && var16.c().r() != Material.AIR) {
 							if (var16.c() == aty.aV) {
 								if (var12 == -1) {
 									if (var11 <= 0) {
@@ -159,7 +159,7 @@ public class bgr implements IChunkProvider {
 										}
 									}
 
-									if (var15 < var4 && (var13 == null || var13.c().r() == bof.a)) {
+									if (var15 < var4 && (var13 == null || var13.c().r() == Material.AIR)) {
 										var13 = aty.l.P();
 									}
 
@@ -186,7 +186,7 @@ public class bgr implements IChunkProvider {
 
 	}
 
-	public bfh d(int var1, int var2) {
+	public Chunk d(int var1, int var2) {
 		this.j.setSeed((long) var1 * 341873128712L + (long) var2 * 132897987541L);
 		bgk var3 = new bgk();
 		this.a(var1, var2, var3);
@@ -196,9 +196,9 @@ public class bgr implements IChunkProvider {
 			this.B.a(this, this.h, var1, var2, var3);
 		}
 
-		bfh var4 = new bfh(this.h, var3, var1, var2);
+		Chunk var4 = new Chunk(this.h, var3, var1, var2);
 		arm[] var5 = this.h.v().b((arm[]) null, var1 * 16, var2 * 16, 16, 16);
-		byte[] var6 = var4.k();
+		byte[] var6 = var4.getBiomes();
 
 		for (int var7 = 0; var7 < var6.length; ++var7) {
 			var6[var7] = (byte) var5[var7].az;
@@ -284,7 +284,7 @@ public class bgr implements IChunkProvider {
 	public void a(IChunkProvider var1, int var2, int var3) {
 		avt.M = true;
 		Position var4 = new Position(var2 * 16, 0, var3 * 16);
-		aqm var5 = new aqm(var2, var3);
+		ChunkCoordIntPair var5 = new ChunkCoordIntPair(var2, var3);
 		this.B.a(this.h, this.j, var5);
 
 		int var6;
@@ -323,7 +323,7 @@ public class bgr implements IChunkProvider {
 		avt.M = false;
 	}
 
-	public boolean a(IChunkProvider var1, bfh var2, int var3, int var4) {
+	public boolean a(IChunkProvider var1, Chunk var2, int var3, int var4) {
 		return false;
 	}
 
@@ -369,11 +369,11 @@ public class bgr implements IChunkProvider {
 		return 0;
 	}
 
-	public void a(bfh var1, int var2, int var3) {
+	public void a(Chunk var1, int var2, int var3) {
 		this.B.a(this, this.h, var2, var3, (bgk) null);
 	}
 
-	public bfh a(Position var1) {
+	public Chunk a(Position var1) {
 		return this.d(var1.n() >> 4, var1.p() >> 4);
 	}
 }

@@ -10,7 +10,7 @@ public class bip extends bhc {
 
 	public boolean b(World var1, Random var2, Position var3) {
 		int var4;
-		for (var4 = var2.nextInt(4) + 5; var1.p(var3.b()).c().r() == bof.h; var3 = var3.b()) {
+		for (var4 = var2.nextInt(4) + 5; var1.p(var3.b()).c().r() == Material.WATER; var3 = var3.b()) {
 			;
 		}
 
@@ -32,7 +32,7 @@ public class bip extends bhc {
 					for (var9 = var3.p() - var7; var9 <= var3.p() + var7 && var5; ++var9) {
 						if (var6 >= 0 && var6 < 256) {
 							Block var10 = var1.p(new Position(var8, var6, var9)).c();
-							if (var10.r() != bof.a && var10.r() != bof.j) {
+							if (var10.r() != Material.AIR && var10.r() != Material.LEAVES) {
 								if (var10 != aty.j && var10 != aty.i) {
 									var5 = false;
 								} else if (var6 > var3.o()) {
@@ -78,7 +78,7 @@ public class bip extends bhc {
 
 					for (var18 = 0; var18 < var4; ++var18) {
 						Block var19 = var1.p(var3.b(var18)).c();
-						if (var19.r() == bof.a || var19.r() == bof.j || var19 == aty.i || var19 == aty.j) {
+						if (var19.r() == Material.AIR || var19.r() == Material.LEAVES || var19 == aty.i || var19 == aty.j) {
 							this.a(var1, var3.b(var18), aty.r);
 						}
 					}
@@ -90,25 +90,25 @@ public class bip extends bhc {
 						for (var20 = var3.n() - var9; var20 <= var3.n() + var9; ++var20) {
 							for (var11 = var3.p() - var9; var11 <= var3.p() + var9; ++var11) {
 								Position var21 = new Position(var20, var18, var11);
-								if (var1.p(var21).c().r() == bof.j) {
+								if (var1.p(var21).c().r() == Material.LEAVES) {
 									Position var22 = var21.e();
 									var14 = var21.f();
 									Position var15 = var21.c();
 									Position var16 = var21.d();
-									if (var2.nextInt(4) == 0 && var1.p(var22).c().r() == bof.a) {
-										this.a(var1, var22, bbv.S);
+									if (var2.nextInt(4) == 0 && var1.p(var22).c().r() == Material.AIR) {
+										this.a(var1, var22, BlockVine.S);
 									}
 
-									if (var2.nextInt(4) == 0 && var1.p(var14).c().r() == bof.a) {
-										this.a(var1, var14, bbv.T);
+									if (var2.nextInt(4) == 0 && var1.p(var14).c().r() == Material.AIR) {
+										this.a(var1, var14, BlockVine.T);
 									}
 
-									if (var2.nextInt(4) == 0 && var1.p(var15).c().r() == bof.a) {
-										this.a(var1, var15, bbv.Q);
+									if (var2.nextInt(4) == 0 && var1.p(var15).c().r() == Material.AIR) {
+										this.a(var1, var15, BlockVine.Q);
 									}
 
-									if (var2.nextInt(4) == 0 && var1.p(var16).c().r() == bof.a) {
-										this.a(var1, var16, bbv.R);
+									if (var2.nextInt(4) == 0 && var1.p(var16).c().r() == Material.AIR) {
+										this.a(var1, var16, BlockVine.R);
 									}
 								}
 							}
@@ -129,7 +129,7 @@ public class bip extends bhc {
 		this.a(var1, var2, aty.bn, var3);
 		int var4 = 4;
 
-		for (var2 = var2.b(); var1.p(var2).c().r() == bof.a && var4 > 0; --var4) {
+		for (var2 = var2.b(); var1.p(var2).c().r() == Material.AIR && var4 > 0; --var4) {
 			this.a(var1, var2, aty.bn, var3);
 			var2 = var2.b();
 		}

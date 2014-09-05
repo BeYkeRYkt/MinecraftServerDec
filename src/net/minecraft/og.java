@@ -6,15 +6,15 @@ final class og extends eg {
 
 	public ItemStack b(dz var1, ItemStack var2) {
 		World var3 = var1.i();
-		Position var4 = var1.d().a(ave.b(var1.f()));
+		Position var4 = var1.d().a(BlockDispenser.b(var1.f()));
 		bec var5 = var3.p(var4);
 		Block var6 = var5.c();
-		bof var7 = var6.r();
+		Material var7 = var6.r();
 		Item var8;
-		if (bof.h.equals(var7) && var6 instanceof axl && ((Integer) var5.b(axl.b)).intValue() == 0) {
+		if (Material.WATER.equals(var7) && var6 instanceof axl && ((Integer) var5.b(axl.b)).intValue() == 0) {
 			var8 = amk.ax;
 		} else {
-			if (!bof.i.equals(var7) || !(var6 instanceof axl) || ((Integer) var5.b(axl.b)).intValue() != 0) {
+			if (!Material.LAVA.equals(var7) || !(var6 instanceof axl) || ((Integer) var5.b(axl.b)).intValue() != 0) {
 				return super.b(var1, var2);
 			}
 

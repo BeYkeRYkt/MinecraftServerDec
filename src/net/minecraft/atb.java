@@ -9,7 +9,7 @@ public class atb extends atg {
 	public static final bew b = bew.a("rotation", 0, 15);
 
 	protected atb() {
-		super(bof.d);
+		super(Material.WOOD);
 		float var1 = 0.25F;
 		float var2 = 1.0F;
 		this.a(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, var2, 0.5F + var1);

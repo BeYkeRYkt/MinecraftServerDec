@@ -45,13 +45,13 @@ class aif extends ajk {
 		this.c.a = 0;
 		bec var5 = this.a.p(this.b);
 		if (!var1.by.instabuild && !this.a.D && var5.c() == aty.cf && var1.bb().nextFloat() < 0.12F) {
-			int var4 = ((Integer) var5.b(asz.b)).intValue();
+			int var4 = ((Integer) var5.b(BlockAnvil.b)).intValue();
 			++var4;
 			if (var4 > 2) {
 				this.a.g(this.b);
 				this.a.b(1020, this.b, 0);
 			} else {
-				this.a.a(this.b, var5.a(asz.b, Integer.valueOf(var4)), 2);
+				this.a.a(this.b, var5.a(BlockAnvil.b, Integer.valueOf(var4)), 2);
 				this.a.b(1021, this.b, 0);
 			}
 		} else if (!this.a.D) {

@@ -21,7 +21,7 @@ public class ajy extends Item {
 					return var1;
 				}
 
-				if (var2.p(var5).c().r() == bof.h) {
+				if (var2.p(var5).c().r() == Material.WATER) {
 					--var1.b;
 					var3.b(ty.J[Item.getId((Item) this)]);
 					if (var1.b <= 0) {

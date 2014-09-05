@@ -24,7 +24,7 @@ public class aea extends aed {
 	}
 
 	public bec u() {
-		return aty.ae.P().a(auj.a, PaintingDirection.c);
+		return aty.ae.P().a(BlockChest.a, PaintingDirection.c);
 	}
 
 	public int w() {

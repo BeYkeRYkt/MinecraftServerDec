@@ -9,7 +9,7 @@ public abstract class axg extends bbo {
 	int[] M;
 
 	public axg() {
-		super(bof.j, false);
+		super(Material.LEAVES, false);
 		this.a(true);
 		this.a(CreativeModeTab.c);
 		this.c(0.2F);
@@ -29,7 +29,7 @@ public abstract class axg extends bbo {
 					for (int var11 = -var4; var11 <= var4; ++var11) {
 						Position var12 = var2.a(var9, var10, var11);
 						bec var13 = var1.p(var12);
-						if (var13.c().r() == bof.j && !((Boolean) var13.b(b)).booleanValue()) {
+						if (var13.c().r() == Material.LEAVES && !((Boolean) var13.b(b)).booleanValue()) {
 							var1.a(var12, var13.a(b, Boolean.valueOf(true)), 4);
 						}
 					}
@@ -63,7 +63,7 @@ public abstract class axg extends bbo {
 							for (var15 = -var5; var15 <= var5; ++var15) {
 								Block var16 = var1.p(new Position(var7 + var13, var8 + var14, var9 + var15)).c();
 								if (var16 != aty.r && var16 != aty.s) {
-									if (var16.r() == bof.j) {
+									if (var16.r() == Material.LEAVES) {
 										this.M[(var13 + var12) * var11 + (var14 + var12) * var10 + var15 + var12] = -2;
 									} else {
 										this.M[(var13 + var12) * var11 + (var14 + var12) * var10 + var15 + var12] = -1;

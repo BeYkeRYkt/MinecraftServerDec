@@ -11,11 +11,11 @@ public class bqi extends bqm {
 	public bfq a(WorldProvider var1) {
 		File var2 = this.b();
 		File var3;
-		if (var1 instanceof bge) {
+		if (var1 instanceof NetherWorldProvider) {
 			var3 = new File(var2, "DIM-1");
 			var3.mkdirs();
 			return new bfy(var3);
-		} else if (var1 instanceof bgh) {
+		} else if (var1 instanceof TheEndWorldProvider) {
 			var3 = new File(var2, "DIM1");
 			var3.mkdirs();
 			return new bfy(var3);

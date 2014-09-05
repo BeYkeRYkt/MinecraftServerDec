@@ -41,7 +41,7 @@ public class anl extends Item {
 
 			var4 = var4.a(var5);
 			double var13 = 0.0D;
-			if (var5 == PaintingDirection.b && var9 instanceof avv) {
+			if (var5 == PaintingDirection.b && var9 instanceof BlockFence) {
 				var13 = 0.5D;
 			}
 

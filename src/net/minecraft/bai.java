@@ -5,7 +5,7 @@ import java.util.Random;
 public class bai extends atg {
 
 	protected bai() {
-		super(bof.d);
+		super(Material.WOOD);
 		float var1 = 0.25F;
 		float var2 = 1.0F;
 		this.a(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, var2, 0.5F + var1);

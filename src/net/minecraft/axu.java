@@ -5,7 +5,7 @@ public enum axu implements va {
 	a("STONE", 0, 0, "stone") {
 		@Override
 		public bec d() {
-			return aty.b.P().a(bba.a, bbb.a);
+			return aty.b.P().a(BlockStone.a, bbb.a);
 		}
 	},
 	b("COBBLESTONE", 1, 1, "cobblestone", "cobble") {
@@ -17,25 +17,25 @@ public enum axu implements va {
 	c("STONEBRICK", 2, 2, "stone_brick", "brick") {
 		@Override
 		public bec d() {
-			return aty.bf.P().a(bbc.a, bbd.a);
+			return aty.bf.P().a(BlockSmoothBrick.a, bbd.a);
 		}
 	},
 	d("MOSSY_STONEBRICK", 3, 3, "mossy_brick", "mossybrick") {
 		@Override
 		public bec d() {
-			return aty.bf.P().a(bbc.a, bbd.b);
+			return aty.bf.P().a(BlockSmoothBrick.a, bbd.b);
 		}
 	},
 	e("CRACKED_STONEBRICK", 4, 4, "cracked_brick", "crackedbrick") {
 		@Override
 		public bec d() {
-			return aty.bf.P().a(bbc.a, bbd.c);
+			return aty.bf.P().a(BlockSmoothBrick.a, bbd.c);
 		}
 	},
 	f("CHISELED_STONEBRICK", 5, 5, "chiseled_brick", "chiseledbrick") {
 		@Override
 		public bec d() {
-			return aty.bf.P().a(bbc.a, bbd.d);
+			return aty.bf.P().a(BlockSmoothBrick.a, bbd.d);
 		}
 	};
 

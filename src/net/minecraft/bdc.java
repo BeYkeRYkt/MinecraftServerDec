@@ -173,7 +173,7 @@ public class bdc extends bdf implements pm, we {
 
 			if (var1 != this.m()) {
 				var2 = true;
-				awj.a(this.m(), this.b, this.c);
+				BlockFurnace.a(this.m(), this.b, this.c);
 			}
 		}
 
@@ -228,7 +228,7 @@ public class bdc extends bdf implements pm, we {
 					return 150;
 				}
 
-				if (var2.r() == bof.d) {
+				if (var2.r() == Material.WOOD) {
 					return 300;
 				}
 

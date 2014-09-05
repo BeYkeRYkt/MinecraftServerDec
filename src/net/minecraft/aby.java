@@ -191,7 +191,7 @@ public class aby extends xx {
 			}
 
 			Block var2 = this.o.p(var1.b()).c();
-			if (var2 == aty.c || var2.r() == bof.j) {
+			if (var2 == aty.c || var2.r() == Material.LEAVES) {
 				return true;
 			}
 		}

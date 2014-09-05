@@ -26,7 +26,7 @@ public class aok {
 		this.a(amk.bo, new ItemStack(amk.bp), 0.35F);
 		this.a(amk.bm, new ItemStack(amk.bn), 0.35F);
 		this.a(aty.e, new ItemStack(aty.b), 0.1F);
-		this.a(new ItemStack(aty.bf, 1, bbc.b), new ItemStack(aty.bf, 1, bbc.N), 0.1F);
+		this.a(new ItemStack(aty.bf, 1, BlockSmoothBrick.b), new ItemStack(aty.bf, 1, BlockSmoothBrick.N), 0.1F);
 		this.a(amk.aI, new ItemStack(amk.aH), 0.3F);
 		this.a(aty.aL, new ItemStack(aty.cz), 0.35F);
 		this.a((Block) aty.aK, new ItemStack(amk.aW, 1, akv.n.b()), 0.2F);

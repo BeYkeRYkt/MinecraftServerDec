@@ -69,9 +69,9 @@ public class bft {
 
 			if (!var6) {
 				byte[] var19 = new byte[4096];
-				bff var20 = new bff();
-				bff var21 = new bff();
-				bff var22 = new bff();
+				NibbleArray var20 = new NibbleArray();
+				NibbleArray var21 = new NibbleArray();
+				NibbleArray var22 = new NibbleArray();
 
 				for (int var23 = 0; var23 < 16; ++var23) {
 					for (int var12 = 0; var12 < 16; ++var12) {
@@ -89,9 +89,9 @@ public class bft {
 				NBTCompoundTag var24 = new NBTCompoundTag();
 				var24.put("Y", (byte) (var5 & 255));
 				var24.put("Blocks", var19);
-				var24.put("Data", var20.a());
-				var24.put("SkyLight", var21.a());
-				var24.put("BlockLight", var22.a());
+				var24.put("Data", var20.getArray());
+				var24.put("SkyLight", var21.getArray());
+				var24.put("BlockLight", var22.getArray());
 				var16.addTag((NBTTag) var24);
 			}
 		}

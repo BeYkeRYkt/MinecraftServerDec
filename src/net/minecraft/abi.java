@@ -301,7 +301,7 @@ public class abi {
 
 	private boolean f(Position var1) {
 		Block var2 = this.a.p(var1).c();
-		return var2 instanceof avf ? var2.r() == bof.d : false;
+		return var2 instanceof BlockDoor ? var2.r() == Material.WOOD : false;
 	}
 
 	private void n() {

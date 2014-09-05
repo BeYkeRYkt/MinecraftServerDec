@@ -43,7 +43,7 @@ public class blo extends bln {
 			this.a(var1, aty.a.P(), 1, 3, 4, var3);
 			this.a(var1, aty.a.P(), 5, 3, 4, var3);
 			this.a(var1, aty.a.P(), 5, 3, 5, var3);
-			this.a(var1, aty.ca.P().a(awd.b, awf.r), 1, 3, 5, var3);
+			this.a(var1, aty.ca.P().a(BlockFlowerPot.b, awf.r), 1, 3, 5, var3);
 			this.a(var1, aty.ai.P(), 3, 2, 6, var3);
 			this.a(var1, aty.bE.P(), 4, 2, 6, var3);
 			this.a(var1, aty.aO.P(), 1, 2, 1, var3);

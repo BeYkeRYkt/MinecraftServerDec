@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class bah extends Block {
 
-	public bah(bof var1) {
+	public bah(Material var1) {
 		super(var1);
 		this.a(CreativeModeTab.b);
 	}
@@ -21,8 +21,8 @@ public class bah extends Block {
 		return amk.cD;
 	}
 
-	public boh g(bec var1) {
-		return boh.p;
+	public MaterialMapColor g(bec var1) {
+		return MaterialMapColor.p;
 	}
 
 	protected boolean G() {

@@ -52,7 +52,7 @@ public abstract class aaw extends zb {
 	}
 
 	protected double f() {
-		xz var1 = this.e.a(afs.b);
+		AttributeInstance var1 = this.e.a(afs.b);
 		return var1 == null ? 16.0D : var1.e();
 	}
 

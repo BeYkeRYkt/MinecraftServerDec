@@ -478,9 +478,9 @@ public abstract class Entity implements CommandSenderInterface {
 			int var59 = DataTypesConverter.toFixedPointInt(this.locationZ);
 			Position var26 = new Position(var57, var58, var59);
 			Block var60 = this.o.p(var26).c();
-			if (var60.r() == bof.a) {
+			if (var60.r() == Material.AIR) {
 				Block var28 = this.o.p(var26.b()).c();
-				if (var28 instanceof avv || var28 instanceof bbx || var28 instanceof avw) {
+				if (var28 instanceof BlockFence || var28 instanceof BlockCobbleWall || var28 instanceof BlockFenceGate) {
 					var60 = var28;
 					var26 = var26.b();
 				}
@@ -513,7 +513,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 				this.M = (float) ((double) this.M + (double) DataTypesConverter.a(var61 * var61 + var66 * var66) * 0.6D);
 				this.N = (float) ((double) this.N + (double) DataTypesConverter.a(var61 * var61 + var64 * var64 + var66 * var66) * 0.6D);
-				if (this.N > (float) this.h && var60.r() != bof.a) {
+				if (this.N > (float) this.h && var60.r() != Material.AIR) {
 					this.h = (int) this.N + 1;
 					if (this.V()) {
 						float var34 = DataTypesConverter.a(this.motionX * this.motionX * 0.20000000298023224D + this.motionY * this.motionY + this.motionZ * this.motionZ * 0.20000000298023224D) * 0.35F;
@@ -599,7 +599,7 @@ public abstract class Entity implements CommandSenderInterface {
 		if (this.o.p(var1.a()).c() == aty.aH) {
 			var3 = aty.aH.H;
 			this.a(var3.c(), var3.d() * 0.15F, var3.e());
-		} else if (!var2.r().d()) {
+		} else if (!var2.r().isLiquid()) {
 			this.a(var3.c(), var3.d() * 0.15F, var3.e());
 		}
 
@@ -672,7 +672,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public boolean W() {
-		if (this.o.a(this.aQ().b(0.0D, -0.4000000059604645D, 0.0D).d(0.001D, 0.001D, 0.001D), bof.h, this)) {
+		if (this.o.a(this.aQ().b(0.0D, -0.4000000059604645D, 0.0D).d(0.001D, 0.001D, 0.001D), Material.WATER, this)) {
 			if (!this.Y && !this.aa) {
 				this.X();
 			}
@@ -737,7 +737,7 @@ public abstract class Entity implements CommandSenderInterface {
 		return "game.neutral.swim.splash";
 	}
 
-	public boolean a(bof var1) {
+	public boolean a(Material var1) {
 		double var2 = this.locationY + (double) this.aR();
 		Position var4 = new Position(this.locationX, var2, this.locationZ);
 		bec var5 = this.o.p(var4);
@@ -753,7 +753,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public boolean ab() {
-		return this.o.a(this.aQ().b(-0.10000000149011612D, -0.4000000059604645D, -0.10000000149011612D), bof.i);
+		return this.o.a(this.aQ().b(-0.10000000149011612D, -0.4000000059604645D, -0.10000000149011612D), Material.LAVA);
 	}
 
 	public void a(float var1, float var2, float var3) {

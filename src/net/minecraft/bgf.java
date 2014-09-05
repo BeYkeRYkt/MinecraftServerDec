@@ -3,9 +3,9 @@ package net.minecraft;
 class bgf extends bfb {
 
 	// $FF: synthetic field
-	final bge a;
+	final NetherWorldProvider a;
 
-	bgf(bge var1) {
+	bgf(NetherWorldProvider var1) {
 		this.a = var1;
 	}
 

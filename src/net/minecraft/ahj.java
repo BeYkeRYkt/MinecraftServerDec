@@ -110,7 +110,7 @@ public class ahj extends Entity implements aho {
 		Position var18 = new Position(this.d, this.e, this.f);
 		bec var2 = this.o.p(var18);
 		Block var3 = var2.c();
-		if (var3.r() != bof.a) {
+		if (var3.r() != Material.AIR) {
 			var3.a((ard) this.o, var18);
 			brt var4 = var3.a(this.o, var18, var2);
 			if (var4 != null && var4.a(new brw(this.locationX, this.locationY, this.locationZ))) {
@@ -259,7 +259,7 @@ public class ahj extends Entity implements aho {
 					this.i = true;
 					this.b = 7;
 					this.a(false);
-					if (this.g.r() != bof.a) {
+					if (this.g.r() != Material.AIR) {
 						this.g.a(this.o, var23, var2, (Entity) this);
 					}
 				}
@@ -324,7 +324,7 @@ public class ahj extends Entity implements aho {
 		var1.put("yTile", (short) this.e);
 		var1.put("zTile", (short) this.f);
 		var1.put("life", (short) this.ap);
-		oa var2 = (oa) Block.c.c(this.g);
+		BlockNameInfo var2 = (BlockNameInfo) Block.BLOCKREGISTRY.c(this.g);
 		var1.put("inTile", var2 == null ? "" : var2.toString());
 		var1.put("inData", (byte) this.h);
 		var1.put("shake", (byte) this.b);

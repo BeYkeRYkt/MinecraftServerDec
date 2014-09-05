@@ -28,14 +28,14 @@ public class akb extends Item {
 					}
 
 					bec var7 = var2.p(var6);
-					bof var8 = var7.c().r();
-					if (var8 == bof.h && ((Integer) var7.b(axl.b)).intValue() == 0) {
+					Material var8 = var7.c().r();
+					if (var8 == Material.WATER && ((Integer) var7.b(axl.b)).intValue() == 0) {
 						var2.g(var6);
 						var3.b(ty.J[Item.getId((Item) this)]);
 						return this.a(var1, var3, amk.ax);
 					}
 
-					if (var8 == bof.i && ((Integer) var7.b(axl.b)).intValue() == 0) {
+					if (var8 == Material.LAVA && ((Integer) var7.b(axl.b)).intValue() == 0) {
 						var2.g(var6);
 						var3.b(ty.J[Item.getId((Item) this)]);
 						return this.a(var1, var3, amk.ay);
@@ -79,8 +79,8 @@ public class akb extends Item {
 		if (this.a == aty.a) {
 			return false;
 		} else {
-			bof var3 = var1.p(var2).c().r();
-			boolean var4 = !var3.a();
+			Material var3 = var1.p(var2).c().r();
+			boolean var4 = !var3.isBuildable();
 			if (!var1.d(var2) && !var4) {
 				return false;
 			} else {
@@ -94,7 +94,7 @@ public class akb extends Item {
 						var1.a(ew.m, (double) var5 + Math.random(), (double) var6 + Math.random(), (double) var7 + Math.random(), 0.0D, 0.0D, 0.0D, new int[0]);
 					}
 				} else {
-					if (!var1.D && var4 && !var3.d()) {
+					if (!var1.D && var4 && !var3.isLiquid()) {
 						var1.b(var2, true);
 					}
 

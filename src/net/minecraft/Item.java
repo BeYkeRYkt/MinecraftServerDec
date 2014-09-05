@@ -26,7 +26,7 @@ public class Item {
 	}
 
 	public static Item getById(int id) {
-		return (Item) REGISTRY.a(id);
+		return (Item) REGISTRY.getById(id);
 	}
 
 	public static Item getItemOf(Block block) {
@@ -34,7 +34,7 @@ public class Item {
 	}
 
 	public static Item d(String var0) {
-		Item var1 = (Item) REGISTRY.a(new oa(var0));
+		Item var1 = (Item) REGISTRY.getByName(new BlockNameInfo(var0));
 		if (var1 == null) {
 			try {
 				return getById(Integer.parseInt(var0));
@@ -586,16 +586,16 @@ public class Item {
 	}
 
 	protected static void a(Block var0, Item var1) {
-		a(Block.a(var0), (oa) Block.c.c(var0), var1);
+		a(Block.a(var0), (BlockNameInfo) Block.BLOCKREGISTRY.c(var0), var1);
 		a.put(var0, var1);
 	}
 
 	private static void a(int var0, String var1, Item var2) {
-		a(var0, new oa(var1), var2);
+		a(var0, new BlockNameInfo(var1), var2);
 	}
 
-	private static void a(int var0, oa var1, Item var2) {
-		REGISTRY.a(var0, var1, var2);
+	private static void a(int var0, BlockNameInfo var1, Item var2) {
+		REGISTRY.register(var0, var1, var2);
 	}
 
 }

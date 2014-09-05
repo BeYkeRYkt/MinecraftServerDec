@@ -9,7 +9,7 @@ public class amp extends Item {
 		this.maxStackSize = 1;
 		this.b = var1;
 		this.a(CreativeModeTab.e);
-		ave.M.a(this, a);
+		BlockDispenser.M.a(this, a);
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {

@@ -199,7 +199,7 @@ public class afy extends xn implements aex {
 	}
 
 	public boolean bQ() {
-		bfh var1 = this.o.f(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
+		Chunk var1 = this.o.f(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
 		if (this.o.P().getLevelType() == LevelType.FLAT && this.V.nextInt(4) != 1) {
 			return false;
 		} else {

@@ -54,7 +54,7 @@ public class zr extends zn {
 					return true;
 				}
 
-				if (var4 == aty.C && var3.b(atp.a) != atq.a) {
+				if (var4 == aty.C && var3.b(BlockBed.a) != atq.a) {
 					return true;
 				}
 			}

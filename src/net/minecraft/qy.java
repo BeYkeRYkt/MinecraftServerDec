@@ -202,7 +202,7 @@ public class qy {
 			yf var2 = (yf) ((EntityLiving) this.a).bx();
 			Set var3 = var2.b();
 			if (!var3.isEmpty()) {
-				this.b((Packet) (new lp(this.a.getId(), var3)));
+				this.b((Packet) (new PacketEntityProperties(this.a.getId(), var3)));
 			}
 
 			var3.clear();
@@ -266,7 +266,7 @@ public class qy {
 						yf var4 = (yf) ((EntityLiving) this.a).bx();
 						Collection var5 = var4.c();
 						if (!var5.isEmpty()) {
-							var1.a.a((Packet) (new lp(this.a.getId(), var5)));
+							var1.a.a((Packet) (new PacketEntityProperties(this.a.getId(), var5)));
 						}
 					}
 

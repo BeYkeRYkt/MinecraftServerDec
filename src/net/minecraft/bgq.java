@@ -77,7 +77,7 @@ public class bgq implements IChunkProvider {
 		this.f = var11 ? false : this.d.b().containsKey("decoration");
 	}
 
-	public bfh d(int var1, int var2) {
+	public Chunk d(int var1, int var2) {
 		bgk var3 = new bgk();
 
 		int var7;
@@ -99,9 +99,9 @@ public class bgq implements IChunkProvider {
 			var10.a(this, this.a, var1, var2, var3);
 		}
 
-		bfh var9 = new bfh(this.a, var3, var1, var2);
+		Chunk var9 = new Chunk(this.a, var3, var1, var2);
 		arm[] var11 = this.a.v().b((arm[]) null, var1 * 16, var2 * 16, 16, 16);
-		byte[] var12 = var9.k();
+		byte[] var12 = var9.getBiomes();
 
 		for (var7 = 0; var7 < var12.length; ++var7) {
 			var12[var7] = (byte) var11[var7].az;
@@ -125,7 +125,7 @@ public class bgq implements IChunkProvider {
 		long var9 = this.b.nextLong() / 2L * 2L + 1L;
 		long var11 = this.b.nextLong() / 2L * 2L + 1L;
 		this.b.setSeed((long) var2 * var9 + (long) var3 * var11 ^ this.a.J());
-		aqm var13 = new aqm(var2, var3);
+		ChunkCoordIntPair var13 = new ChunkCoordIntPair(var2, var3);
 		Iterator var14 = this.e.iterator();
 
 		while (var14.hasNext()) {
@@ -159,7 +159,7 @@ public class bgq implements IChunkProvider {
 
 	}
 
-	public boolean a(IChunkProvider var1, bfh var2, int var3, int var4) {
+	public boolean a(IChunkProvider var1, Chunk var2, int var3, int var4) {
 		return false;
 	}
 
@@ -206,7 +206,7 @@ public class bgq implements IChunkProvider {
 		return 0;
 	}
 
-	public void a(bfh var1, int var2, int var3) {
+	public void a(Chunk var1, int var2, int var3) {
 		Iterator var4 = this.e.iterator();
 
 		while (var4.hasNext()) {
@@ -216,7 +216,7 @@ public class bgq implements IChunkProvider {
 
 	}
 
-	public bfh a(Position var1) {
+	public Chunk a(Position var1) {
 		return this.d(var1.n() >> 4, var1.p() >> 4);
 	}
 }

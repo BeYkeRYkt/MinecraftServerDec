@@ -53,9 +53,9 @@ public enum EnumProtocol {
 			registerPacket(PacketDirection.CLIENTBOUND, PacketEntityEffect.class);
 			registerPacket(PacketDirection.CLIENTBOUND, PacketRemoveEntityEffect.class);
 			registerPacket(PacketDirection.CLIENTBOUND, PacketSetExpirience.class);
-			registerPacket(PacketDirection.CLIENTBOUND, lp.class);
-			registerPacket(PacketDirection.CLIENTBOUND, jq.class);
-			registerPacket(PacketDirection.CLIENTBOUND, ja.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketEntityProperties.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketChunkData.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketMultiBlockChange.class);
 			registerPacket(PacketDirection.CLIENTBOUND, iw.class);
 			registerPacket(PacketDirection.CLIENTBOUND, iv.class);
 			registerPacket(PacketDirection.CLIENTBOUND, it.class);

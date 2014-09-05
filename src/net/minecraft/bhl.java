@@ -13,7 +13,7 @@ public class bhl extends bhp {
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
-		if (var1.p(var3).c().r() != bof.h) {
+		if (var1.p(var3).c().r() != Material.WATER) {
 			return false;
 		} else {
 			int var4 = var2.nextInt(this.b - 2) + 2;

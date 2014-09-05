@@ -23,8 +23,8 @@ public class anm extends Item {
 		if (var2 == aty.G) {
 			return 15.0F;
 		} else {
-			bof var3 = var2.r();
-			return var3 != bof.k && var3 != bof.l && var3 != bof.v && var3 != bof.j && var3 != bof.C ? 1.0F : 1.5F;
+			Material var3 = var2.r();
+			return var3 != Material.PLANT && var3 != Material.REPLACEABLE_PLANT && var3 != Material.CORAL && var3 != Material.LEAVES && var3 != Material.PUMPKIN ? 1.0F : 1.5F;
 		}
 	}
 
@@ -72,7 +72,7 @@ public class anm extends Item {
 
 	public Multimap i() {
 		Multimap var1 = super.i();
-		var1.put(afs.e.a(), new ya(f, "Weapon modifier", (double) this.a, 0));
+		var1.put(afs.e.a(), new AttributeModifier(f, "Weapon modifier", (double) this.a, 0));
 		return var1;
 	}
 }

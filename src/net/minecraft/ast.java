@@ -35,7 +35,7 @@ public class ast extends arm {
 			int var11 = var5 & 15;
 
 			for (int var12 = 255; var12 >= 0; --var12) {
-				if (var3.a(var11, var12, var10).c().r() != bof.a) {
+				if (var3.a(var11, var12, var10).c().r() != Material.AIR) {
 					if (var12 == 62 && var3.a(var11, var12, var10).c() != aty.j) {
 						var3.a(var11, var12, var10, aty.j.P());
 						if (var8 < 0.12D) {

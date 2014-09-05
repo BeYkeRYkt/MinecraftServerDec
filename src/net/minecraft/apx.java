@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class apx extends apf {
 
-	public apx(int var1, oa var2, int var3) {
+	public apx(int var1, BlockNameInfo var2, int var3) {
 		super(var1, var2, var3, apg.c);
 		this.c("waterWalker");
 	}

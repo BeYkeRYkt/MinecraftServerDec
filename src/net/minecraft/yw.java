@@ -5,7 +5,7 @@ import com.google.common.base.Predicates;
 
 public class yw extends zb {
 
-	private static final Predicate b = beq.a((Block) aty.H).a(bbh.a, Predicates.equalTo(bbi.b));
+	private static final Predicate b = beq.a((Block) aty.H).a(BlockLongGrass.a, Predicates.equalTo(bbi.b));
 	private xn c;
 	private World d;
 	int a;

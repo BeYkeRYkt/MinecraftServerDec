@@ -70,7 +70,7 @@ public class bng extends bnn {
 		this.a(var1, aty.f.P(), 3, 3, 0, var3);
 		this.a(var1, aty.f.P(), 3, 2, 0, var3);
 		this.a(var1, aty.f.P(), 3, 1, 0, var3);
-		if (this.a(var1, 2, 0, -1, var3).c().r() == bof.a && this.a(var1, 2, -1, -1, var3).c().r() != bof.a) {
+		if (this.a(var1, 2, 0, -1, var3).c().r() == Material.AIR && this.a(var1, 2, -1, -1, var3).c().r() != Material.AIR) {
 			this.a(var1, aty.aw.a(this.a(aty.aw, 3)), 2, 0, -1, var3);
 		}
 
@@ -103,7 +103,7 @@ public class bng extends bnn {
 			this.a(var1, aty.au.a(var4), 3, 4, 3, var3);
 		}
 
-		this.a(var1, aty.aa.P().a(bbl.a, this.m), 2, 3, 1, var3);
+		this.a(var1, aty.aa.P().a(BlockTorch.a, this.m), 2, 3, 1, var3);
 
 		for (var4 = 0; var4 < 5; ++var4) {
 			for (int var5 = 0; var5 < 5; ++var5) {

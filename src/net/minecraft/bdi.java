@@ -22,22 +22,22 @@ public class bdi extends bcm {
 	}
 
 	public void a(World var1, Position var2) {
-		if (var1.p(var2.a()).c().r() == bof.a) {
-			bof var3 = var1.p(var2.b()).c().r();
+		if (var1.p(var2.a()).c().r() == Material.AIR) {
+			Material var3 = var1.p(var2.b()).c().r();
 			byte var4 = 0;
-			if (var3 == bof.e) {
+			if (var3 == Material.STONE) {
 				var4 = 1;
 			}
 
-			if (var3 == bof.p) {
+			if (var3 == Material.SAND) {
 				var4 = 2;
 			}
 
-			if (var3 == bof.s) {
+			if (var3 == Material.SHATTERABLE) {
 				var4 = 3;
 			}
 
-			if (var3 == bof.d) {
+			if (var3 == Material.WOOD) {
 				var4 = 4;
 			}
 

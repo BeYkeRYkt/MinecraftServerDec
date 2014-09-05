@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-public class ye implements xz {
+public class ye implements AttributeInstance {
 
 	private final yc a;
 	private final xy b;
@@ -60,51 +60,51 @@ public class ye implements xz {
 		return var1;
 	}
 
-	public ya a(UUID var1) {
-		return (ya) this.e.get(var1);
+	public AttributeModifier a(UUID var1) {
+		return (AttributeModifier) this.e.get(var1);
 	}
 
-	public boolean a(ya var1) {
-		return this.e.get(var1.a()) != null;
+	public boolean a(AttributeModifier var1) {
+		return this.e.get(var1.getUUID()) != null;
 	}
 
-	public void b(ya var1) {
-		if (this.a(var1.a()) != null) {
+	public void b(AttributeModifier var1) {
+		if (this.a(var1.getUUID()) != null) {
 			throw new IllegalArgumentException("Modifier is already applied on this attribute!");
 		} else {
-			Object var2 = (Set) this.d.get(var1.b());
+			Object var2 = (Set) this.d.get(var1.getName());
 			if (var2 == null) {
 				var2 = Sets.newHashSet();
-				this.d.put(var1.b(), var2);
+				this.d.put(var1.getName(), var2);
 			}
 
-			((Set) this.c.get(Integer.valueOf(var1.c()))).add(var1);
+			((Set) this.c.get(Integer.valueOf(var1.getOperation()))).add(var1);
 			((Set) var2).add(var1);
-			this.e.put(var1.a(), var1);
+			this.e.put(var1.getUUID(), var1);
 			this.f();
 		}
 	}
 
 	protected void f() {
 		this.g = true;
-		this.a.a((xz) this);
+		this.a.a((AttributeInstance) this);
 	}
 
-	public void c(ya var1) {
+	public void c(AttributeModifier var1) {
 		for (int var2 = 0; var2 < 3; ++var2) {
 			Set var3 = (Set) this.c.get(Integer.valueOf(var2));
 			var3.remove(var1);
 		}
 
-		Set var4 = (Set) this.d.get(var1.b());
+		Set var4 = (Set) this.d.get(var1.getName());
 		if (var4 != null) {
 			var4.remove(var1);
 			if (var4.isEmpty()) {
-				this.d.remove(var1.b());
+				this.d.remove(var1.getName());
 			}
 		}
 
-		this.e.remove(var1.a());
+		this.e.remove(var1.getUUID());
 		this.f();
 	}
 
@@ -120,21 +120,21 @@ public class ye implements xz {
 	private double g() {
 		double var1 = this.b();
 
-		ya var4;
-		for (Iterator var3 = this.b(0).iterator(); var3.hasNext(); var1 += var4.d()) {
-			var4 = (ya) var3.next();
+		AttributeModifier var4;
+		for (Iterator var3 = this.b(0).iterator(); var3.hasNext(); var1 += var4.getAmount()) {
+			var4 = (AttributeModifier) var3.next();
 		}
 
 		double var7 = var1;
 
 		Iterator var5;
-		ya var6;
-		for (var5 = this.b(1).iterator(); var5.hasNext(); var7 += var1 * var6.d()) {
-			var6 = (ya) var5.next();
+		AttributeModifier var6;
+		for (var5 = this.b(1).iterator(); var5.hasNext(); var7 += var1 * var6.getAmount()) {
+			var6 = (AttributeModifier) var5.next();
 		}
 
-		for (var5 = this.b(2).iterator(); var5.hasNext(); var7 *= 1.0D + var6.d()) {
-			var6 = (ya) var5.next();
+		for (var5 = this.b(2).iterator(); var5.hasNext(); var7 *= 1.0D + var6.getAmount()) {
+			var6 = (AttributeModifier) var5.next();
 		}
 
 		return this.b.a(var7);
@@ -144,7 +144,7 @@ public class ye implements xz {
 		HashSet var2 = Sets.newHashSet((Iterable) this.a(var1));
 
 		for (xy var3 = this.b.d(); var3 != null; var3 = var3.d()) {
-			xz var4 = this.a.a(var3);
+			AttributeInstance var4 = this.a.a(var3);
 			if (var4 != null) {
 				var2.addAll(var4.a(var1));
 			}

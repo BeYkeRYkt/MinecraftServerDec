@@ -131,11 +131,11 @@ abstract class bnn extends bms {
 			}
 
 			if (var1.c() == aty.ad) {
-				return aty.bO.P().a(bat.a, var1.b(bat.a));
+				return aty.bO.P().a(BlockStairs.a, var1.b(BlockStairs.a));
 			}
 
 			if (var1.c() == aty.aw) {
-				return aty.bO.P().a(bat.a, var1.b(bat.a));
+				return aty.bO.P().a(BlockStairs.a, var1.b(BlockStairs.a));
 			}
 
 			if (var1.c() == aty.n) {

@@ -23,9 +23,9 @@ public class anj extends aju {
 			}
 
 			if (var10 == this.a) {
-				int var11 = ((Integer) var9.b(bao.a)).intValue();
+				int var11 = ((Integer) var9.b(BlockSnow.a)).intValue();
 				if (var11 <= 7) {
-					bec var12 = var9.a(bao.a, Integer.valueOf(var11 + 1));
+					bec var12 = var9.a(BlockSnow.a, Integer.valueOf(var11 + 1));
 					if (var3.b(this.a.a(var3, var4, var12)) && var3.a(var4, var12, 2)) {
 						var3.a((double) ((float) var4.n() + 0.5F), (double) ((float) var4.o() + 0.5F), (double) ((float) var4.p() + 0.5F), this.a.H.b(), (this.a.H.d() + 1.0F) / 2.0F, this.a.H.e() * 0.8F);
 						--var1.b;

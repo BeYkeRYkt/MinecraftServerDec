@@ -8,7 +8,7 @@ public abstract class ayl extends awq {
 	public static final bev M = bev.a("variant", aym.class);
 
 	public ayl() {
-		super(bof.e);
+		super(Material.STONE);
 		bec var1 = this.L.b();
 		if (this.j()) {
 			var1 = var1.a(b, Boolean.valueOf(false));

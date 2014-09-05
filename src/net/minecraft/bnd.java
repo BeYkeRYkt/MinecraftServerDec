@@ -35,10 +35,10 @@ public class bnd extends bnn {
 		this.a(var1, aty.aO.P(), 1, 2, 0, var3);
 		this.a(var1, aty.L.a(akv.a.b()), 1, 3, 0, var3);
 		boolean var4 = this.m == PaintingDirection.f || this.m == PaintingDirection.c;
-		this.a(var1, aty.aa.P().a(bbl.a, this.m.e()), var4 ? 2 : 0, 3, 0, var3);
-		this.a(var1, aty.aa.P().a(bbl.a, this.m), 1, 3, 1, var3);
-		this.a(var1, aty.aa.P().a(bbl.a, this.m.f()), var4 ? 0 : 2, 3, 0, var3);
-		this.a(var1, aty.aa.P().a(bbl.a, this.m.d()), 1, 3, -1, var3);
+		this.a(var1, aty.aa.P().a(BlockTorch.a, this.m.e()), var4 ? 2 : 0, 3, 0, var3);
+		this.a(var1, aty.aa.P().a(BlockTorch.a, this.m), 1, 3, 1, var3);
+		this.a(var1, aty.aa.P().a(BlockTorch.a, this.m.f()), var4 ? 0 : 2, 3, 0, var3);
+		this.a(var1, aty.aa.P().a(BlockTorch.a, this.m.d()), 1, 3, -1, var3);
 		return true;
 	}
 }

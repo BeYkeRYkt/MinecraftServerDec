@@ -71,7 +71,7 @@ public class big extends bhc {
 
 					for (var11 = 0; var11 < var4 - 1; ++var11) {
 						Block var19 = var1.p(var3.b(var11)).c();
-						if (var19.r() == bof.a || var19.r() == bof.j) {
+						if (var19.r() == Material.AIR || var19.r() == Material.LEAVES) {
 							this.a(var1, var3.b(var11), aty.r, ayx.b.a());
 						}
 					}

@@ -11,9 +11,9 @@ class bmf extends bmu {
 		if (var5) {
 			float var6 = var1.nextFloat();
 			if (var6 < 0.2F) {
-				this.a = aty.bf.a(bbc.N);
+				this.a = aty.bf.a(BlockSmoothBrick.N);
 			} else if (var6 < 0.5F) {
-				this.a = aty.bf.a(bbc.M);
+				this.a = aty.bf.a(BlockSmoothBrick.M);
 			} else if (var6 < 0.55F) {
 				this.a = aty.be.a(axu.c.a());
 			} else {

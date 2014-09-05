@@ -46,7 +46,7 @@ public class ze extends zn {
 			Position var2 = this.b.a();
 			bec var3 = var1.p(var2);
 			Block var4 = var3.c();
-			if (this.f == 0 && var4 instanceof auu && ((Integer) var3.b(auu.a)).intValue() == 7) {
+			if (this.f == 0 && var4 instanceof BlockCrops && ((Integer) var3.b(BlockCrops.a)).intValue() == 7) {
 				var1.b(var2, true);
 			} else if (this.f == 1 && var4 == aty.a) {
 				wa var5 = this.c.co();
@@ -89,7 +89,7 @@ public class ze extends zn {
 			var2 = var2.a();
 			bec var4 = var1.p(var2);
 			var3 = var4.c();
-			if (var3 instanceof auu && ((Integer) var4.b(auu.a)).intValue() == 7 && this.e && (this.f == 0 || this.f < 0)) {
+			if (var3 instanceof BlockCrops && ((Integer) var4.b(BlockCrops.a)).intValue() == 7 && this.e && (this.f == 0 || this.f < 0)) {
 				this.f = 0;
 				return true;
 			}

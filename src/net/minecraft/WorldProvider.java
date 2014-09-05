@@ -8,7 +8,7 @@ public abstract class WorldProvider {
 	private String i;
 	protected arz c;
 	protected boolean d;
-	protected boolean e;
+	protected boolean noSkyLight;
 	protected final float[] f = new float[16];
 	protected int dimensionId;
 	private final float[] j = new float[4];
@@ -82,7 +82,7 @@ public abstract class WorldProvider {
 	}
 
 	public static WorldProvider a(int var0) {
-		return (WorldProvider) (var0 == -1 ? new bge() : (var0 == 0 ? new bgg() : (var0 == 1 ? new bgh() : null)));
+		return (WorldProvider) (var0 == -1 ? new NetherWorldProvider() : (var0 == 0 ? new bgg() : (var0 == 1 ? new TheEndWorldProvider() : null)));
 	}
 
 	public Position h() {
@@ -105,8 +105,8 @@ public abstract class WorldProvider {
 		return this.d;
 	}
 
-	public boolean o() {
-		return this.e;
+	public boolean noSkyLight() {
+		return this.noSkyLight;
 	}
 
 	public float[] p() {
