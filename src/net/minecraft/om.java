@@ -2,9 +2,9 @@ package net.minecraft;
 
 final class om extends eg {
 
-	protected amj b(dz var1, amj var2) {
+	protected ItemStack b(dz var1, ItemStack var2) {
 		World var3 = var1.i();
-		dt var4 = var1.d().a(ave.b(var1.f()));
+		Position var4 = var1.d().a(ave.b(var1.f()));
 		if (var3.d(var4)) {
 			if (!var3.D) {
 				bec var5 = aty.bX.P().a(auo.a, Boolean.valueOf(false));

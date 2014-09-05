@@ -5,22 +5,22 @@ import java.util.List;
 
 public class ahv extends ahr {
 
-	private amj c;
+	private ItemStack c;
 
 	public ahv(World var1) {
 		super(var1);
 	}
 
 	public ahv(World var1, EntityLiving var2, int var3) {
-		this(var1, var2, new amj(amk.bz, 1, var3));
+		this(var1, var2, new ItemStack(amk.bz, 1, var3));
 	}
 
-	public ahv(World var1, EntityLiving var2, amj var3) {
+	public ahv(World var1, EntityLiving var2, ItemStack var3) {
 		super(var1, var2);
 		this.c = var3;
 	}
 
-	public ahv(World var1, double var2, double var4, double var6, amj var8) {
+	public ahv(World var1, double var2, double var4, double var6, ItemStack var8) {
 		super(var1, var2, var4, var6);
 		this.c = var8;
 	}
@@ -39,7 +39,7 @@ public class ahv extends ahr {
 
 	public void a(int var1) {
 		if (this.c == null) {
-			this.c = new amj(amk.bz, 1, 0);
+			this.c = new ItemStack(amk.bz, 1, 0);
 		}
 
 		this.c.b(var1);
@@ -47,7 +47,7 @@ public class ahv extends ahr {
 
 	public int o() {
 		if (this.c == null) {
-			this.c = new amj(amk.bz, 1, 0);
+			this.c = new ItemStack(amk.bz, 1, 0);
 		}
 
 		return this.c.i();
@@ -90,7 +90,7 @@ public class ahv extends ahr {
 				}
 			}
 
-			this.o.b(2002, new dt(this), this.o());
+			this.o.b(2002, new Position(this), this.o());
 			this.J();
 		}
 
@@ -99,7 +99,7 @@ public class ahv extends ahr {
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
 		if (var1.isTagAssignableFrom("Potion", 10)) {
-			this.c = amj.a(var1.getCompound("Potion"));
+			this.c = ItemStack.a(var1.getCompound("Potion"));
 		} else {
 			this.a(var1.getInt("potionValue"));
 		}

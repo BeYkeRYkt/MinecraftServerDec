@@ -22,7 +22,7 @@ public class azf extends ath {
 		return var1.a(a, Boolean.valueOf(var2 > 0));
 	}
 
-	protected int e(World var1, dt var2) {
+	protected int e(World var1, Position var2) {
 		brt var3 = this.a(var2);
 		List var4;
 		switch (azg.a[this.b.ordinal()]) {

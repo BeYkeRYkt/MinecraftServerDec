@@ -116,7 +116,7 @@ public class biv {
 			}
 		}
 
-		atr var6 = null;
+		Block var6 = null;
 
 		try {
 			String var7 = var3[var3.length - 1];
@@ -126,14 +126,14 @@ public class biv {
 					var5 = Integer.parseInt(var3[1]);
 				}
 
-				var6 = atr.c(Integer.parseInt(var3[0]));
+				var6 = Block.c(Integer.parseInt(var3[0]));
 			} else {
 				var3 = var7.split(":", 3);
-				var6 = var3.length > 1 ? atr.b(var3[0] + ":" + var3[1]) : null;
+				var6 = var3.length > 1 ? Block.b(var3[0] + ":" + var3[1]) : null;
 				if (var6 != null) {
 					var5 = var3.length > 2 ? Integer.parseInt(var3[2]) : 0;
 				} else {
-					var6 = atr.b(var3[0]);
+					var6 = Block.b(var3[0]);
 					if (var6 != null) {
 						var5 = var3.length > 1 ? Integer.parseInt(var3[1]) : 0;
 					}
@@ -190,7 +190,7 @@ public class biv {
 			return e();
 		} else {
 			String[] var1 = var0.split(";", -1);
-			int var2 = var1.length == 1 ? 0 : NumberConverter.a(var1[0], 0);
+			int var2 = var1.length == 1 ? 0 : DataTypesConverter.a(var1[0], 0);
 			if (var2 >= 0 && var2 <= 3) {
 				biv var3 = new biv();
 				int var4 = var1.length == 1 ? 0 : 1;
@@ -200,7 +200,7 @@ public class biv {
 					var3.d();
 					int var6 = arm.q.az;
 					if (var2 > 0 && var1.length > var4) {
-						var6 = NumberConverter.a(var1[var4++], var6);
+						var6 = DataTypesConverter.a(var1[var4++], var6);
 					}
 
 					var3.a(var6);

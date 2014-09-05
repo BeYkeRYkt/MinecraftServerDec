@@ -32,7 +32,7 @@ public class asi extends arm {
 		return var1.nextInt(4) == 0 ? new biq(bbi.c) : new biq(bbi.b);
 	}
 
-	public void a(World var1, Random var2, dt var3) {
+	public void a(World var1, Random var2, Position var3) {
 		super.a(var1, var2, var3);
 		int var4 = var2.nextInt(16) + 8;
 		int var5 = var2.nextInt(16) + 8;

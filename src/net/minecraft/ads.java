@@ -14,14 +14,14 @@ public class ads extends adr {
 		this.b = 2;
 		this.a = this.V.nextLong();
 		this.c = this.V.nextInt(3) + 1;
-		if (!var1.D && var1.Q().b("doFireTick") && (var1.aa() == Difficulty.NORMAL || var1.aa() == Difficulty.HARD) && var1.a(new dt(this), (int) 10)) {
-			dt var8 = new dt(this);
+		if (!var1.D && var1.Q().b("doFireTick") && (var1.getDifficulty() == Difficulty.NORMAL || var1.getDifficulty() == Difficulty.HARD) && var1.a(new Position(this), (int) 10)) {
+			Position var8 = new Position(this);
 			if (var1.p(var8).c().r() == bof.a && aty.ab.c(var1, var8)) {
 				var1.a(var8, aty.ab.P());
 			}
 
 			for (int var9 = 0; var9 < 4; ++var9) {
-				dt var10 = var8.a(this.V.nextInt(3) - 1, this.V.nextInt(3) - 1, this.V.nextInt(3) - 1);
+				Position var10 = var8.a(this.V.nextInt(3) - 1, this.V.nextInt(3) - 1, this.V.nextInt(3) - 1);
 				if (var1.p(var10).c().r() == bof.a && aty.ab.c(var1, var10)) {
 					var1.a(var10, aty.ab.P());
 				}
@@ -33,8 +33,8 @@ public class ads extends adr {
 	public void s_() {
 		super.s_();
 		if (this.b == 2) {
-			this.o.a(this.s, this.t, this.u, "ambient.weather.thunder", 10000.0F, 0.8F + this.V.nextFloat() * 0.2F);
-			this.o.a(this.s, this.t, this.u, "random.explode", 2.0F, 0.5F + this.V.nextFloat() * 0.2F);
+			this.o.a(this.locationX, this.locationY, this.locationZ, "ambient.weather.thunder", 10000.0F, 0.8F + this.V.nextFloat() * 0.2F);
+			this.o.a(this.locationX, this.locationY, this.locationZ, "random.explode", 2.0F, 0.5F + this.V.nextFloat() * 0.2F);
 		}
 
 		--this.b;
@@ -45,7 +45,7 @@ public class ads extends adr {
 				--this.c;
 				this.b = 1;
 				this.a = this.V.nextLong();
-				dt var1 = new dt(this);
+				Position var1 = new Position(this);
 				if (!this.o.D && this.o.Q().b("doFireTick") && this.o.a(var1, (int) 10) && this.o.p(var1).c().r() == bof.a && aty.ab.c(this.o, var1)) {
 					this.o.a(var1, aty.ab.P());
 				}
@@ -57,7 +57,7 @@ public class ads extends adr {
 				this.o.c(2);
 			} else {
 				double var6 = 3.0D;
-				List var3 = this.o.b((Entity) this, new brt(this.s - var6, this.t - var6, this.u - var6, this.s + var6, this.t + 6.0D + var6, this.u + var6));
+				List var3 = this.o.b((Entity) this, new brt(this.locationX - var6, this.locationY - var6, this.locationZ - var6, this.locationX + var6, this.locationY + 6.0D + var6, this.locationZ + var6));
 
 				for (int var4 = 0; var4 < var3.size(); ++var4) {
 					Entity var5 = (Entity) var3.get(var4);

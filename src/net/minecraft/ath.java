@@ -2,15 +2,15 @@ package net.minecraft;
 
 import java.util.Random;
 
-public abstract class ath extends atr {
+public abstract class ath extends Block {
 
 	protected ath(bof var1) {
 		super(var1);
-		this.a(akf.d);
+		this.a(CreativeModeTab.d);
 		this.a(true);
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		this.d(var1.p(var2));
 	}
 
@@ -29,7 +29,7 @@ public abstract class ath extends atr {
 		return 20;
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
@@ -41,15 +41,15 @@ public abstract class ath extends atr {
 		return false;
 	}
 
-	public boolean b(ard var1, dt var2) {
+	public boolean b(ard var1, Position var2) {
 		return true;
 	}
 
-	public boolean c(World var1, dt var2) {
+	public boolean c(World var1, Position var2) {
 		return this.m(var1, var2.b());
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (!this.m(var1, var2.b())) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -57,14 +57,14 @@ public abstract class ath extends atr {
 
 	}
 
-	private boolean m(World var1, dt var2) {
+	private boolean m(World var1, Position var2) {
 		return World.a((ard) var1, var2) || var1.p(var2).c() instanceof avv;
 	}
 
-	public void a(World var1, dt var2, bec var3, Random var4) {
+	public void a(World var1, Position var2, bec var3, Random var4) {
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (!var1.D) {
 			int var5 = this.e(var3);
 			if (var5 > 0) {
@@ -74,7 +74,7 @@ public abstract class ath extends atr {
 		}
 	}
 
-	public void a(World var1, dt var2, bec var3, Entity var4) {
+	public void a(World var1, Position var2, bec var3, Entity var4) {
 		if (!var1.D) {
 			int var5 = this.e(var3);
 			if (var5 == 0) {
@@ -84,7 +84,7 @@ public abstract class ath extends atr {
 		}
 	}
 
-	protected void a(World var1, dt var2, bec var3, int var4) {
+	protected void a(World var1, Position var2, bec var3, int var4) {
 		int var5 = this.e(var1, var2);
 		boolean var6 = var4 > 0;
 		boolean var7 = var5 > 0;
@@ -102,17 +102,17 @@ public abstract class ath extends atr {
 		}
 
 		if (var7) {
-			var1.a(var2, (atr) this, this.a(var1));
+			var1.a(var2, (Block) this, this.a(var1));
 		}
 
 	}
 
-	protected brt a(dt var1) {
+	protected brt a(Position var1) {
 		float var2 = 0.125F;
 		return new brt((double) ((float) var1.n() + 0.125F), (double) var1.o(), (double) ((float) var1.p() + 0.125F), (double) ((float) (var1.n() + 1) - 0.125F), (double) var1.o() + 0.25D, (double) ((float) (var1.p() + 1) - 0.125F));
 	}
 
-	public void b(World var1, dt var2, bec var3) {
+	public void b(World var1, Position var2, bec var3) {
 		if (this.e(var3) > 0) {
 			this.d(var1, var2);
 		}
@@ -120,16 +120,16 @@ public abstract class ath extends atr {
 		super.b(var1, var2, var3);
 	}
 
-	protected void d(World var1, dt var2) {
-		var1.c(var2, (atr) this);
-		var1.c(var2.b(), (atr) this);
+	protected void d(World var1, Position var2) {
+		var1.c(var2, (Block) this);
+		var1.c(var2.b(), (Block) this);
 	}
 
-	public int a(ard var1, dt var2, bec var3, ej var4) {
+	public int a(ard var1, Position var2, bec var3, ej var4) {
 		return this.e(var3);
 	}
 
-	public int b(ard var1, dt var2, bec var3, ej var4) {
+	public int b(ard var1, Position var2, bec var3, ej var4) {
 		return var4 == ej.b ? this.e(var3) : 0;
 	}
 
@@ -148,7 +148,7 @@ public abstract class ath extends atr {
 		return 1;
 	}
 
-	protected abstract int e(World var1, dt var2);
+	protected abstract int e(World var1, Position var2);
 
 	protected abstract int e(bec var1);
 

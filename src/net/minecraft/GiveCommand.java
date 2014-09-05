@@ -22,10 +22,10 @@ public class GiveCommand extends AbstractCommand {
 			throw new dp("commands.give.usage", new Object[0]);
 		} else {
 			EntityPlayer var3 = a(var1, var2[0]);
-			alq var4 = f(var1, var2[1]);
+			Item var4 = f(var1, var2[1]);
 			int var5 = var2.length >= 3 ? a(var2[2], 1, 64) : 1;
 			int var6 = var2.length >= 4 ? a(var2[3]) : 0;
-			amj var7 = new amj(var4, var5, var6);
+			ItemStack var7 = new ItemStack(var4, var5, var6);
 			if (var2.length >= 5) {
 				String var8 = a(var1, var2, 4).c();
 
@@ -36,10 +36,10 @@ public class GiveCommand extends AbstractCommand {
 				}
 			}
 
-			boolean var11 = var3.bg.a(var7);
+			boolean var11 = var3.playerInventory.a(var7);
 			if (var11) {
 				var3.o.a((Entity) var3, "random.pop", 0.2F, ((var3.bb().nextFloat() - var3.bb().nextFloat()) * 0.7F + 1.0F) * 2.0F);
-				var3.bh.b();
+				var3.defaultContainer.b();
 			}
 
 			adw var9;
@@ -63,8 +63,8 @@ public class GiveCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
-		return var2.length == 1 ? a(var2, this.d()) : (var2.length == 2 ? a(var2, alq.e.c()) : null);
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
+		return var2.length == 1 ? a(var2, this.d()) : (var2.length == 2 ? a(var2, Item.REGISTRY.c()) : null);
 	}
 
 	protected String[] d() {

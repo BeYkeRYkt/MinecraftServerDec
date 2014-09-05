@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public final class dy extends dt {
+public final class dy extends Position {
 
 	public int b;
 	public int c;

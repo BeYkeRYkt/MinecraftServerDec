@@ -23,14 +23,14 @@ public class wi extends wh {
 		return this.q;
 	}
 
-	public ho b(EntityLiving var1) {
-		amj var2 = this.q instanceof EntityLiving ? ((EntityLiving) this.q).bz() : null;
+	public IJSONComponent b(EntityLiving var1) {
+		ItemStack var2 = this.q instanceof EntityLiving ? ((EntityLiving) this.q).bz() : null;
 		String var3 = "death.attack." + this.p;
 		String var4 = var3 + ".item";
 		return var2 != null && var2.s() && fi.c(var4) ? new hz(var4, new Object[] { var1.e_(), this.q.e_(), var2.C() }) : new hz(var3, new Object[] { var1.e_(), this.q.e_() });
 	}
 
 	public boolean r() {
-		return this.q != null && this.q instanceof EntityLiving && !(this.q instanceof ahd);
+		return this.q != null && this.q instanceof EntityLiving && !(this.q instanceof EntityHuman);
 	}
 }

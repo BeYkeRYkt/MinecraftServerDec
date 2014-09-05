@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class bnj extends bnn {
 
-	private static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(amk.i, 0, 1, 3, 3), new vl(amk.j, 0, 1, 5, 10), new vl(amk.k, 0, 1, 3, 5), new vl(amk.P, 0, 1, 3, 15), new vl(amk.e, 0, 1, 3, 15), new vl(amk.b, 0, 1, 1, 5), new vl(amk.l, 0, 1, 1, 5), new vl(amk.Z, 0, 1, 1, 5), new vl(amk.Y, 0, 1, 1, 5), new vl(amk.aa, 0, 1, 1, 5), new vl(amk.ab, 0, 1, 1, 5), new vl(alq.a(aty.Z), 0, 3, 7, 5), new vl(alq.a(aty.g), 0, 3, 7, 5), new vl(amk.aA, 0, 1, 1, 3),
+	private static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(amk.i, 0, 1, 3, 3), new vl(amk.j, 0, 1, 5, 10), new vl(amk.k, 0, 1, 3, 5), new vl(amk.P, 0, 1, 3, 15), new vl(amk.e, 0, 1, 3, 15), new vl(amk.b, 0, 1, 1, 5), new vl(amk.l, 0, 1, 1, 5), new vl(amk.Z, 0, 1, 1, 5), new vl(amk.Y, 0, 1, 1, 5), new vl(amk.aa, 0, 1, 1, 5), new vl(amk.ab, 0, 1, 1, 5), new vl(Item.getItemOf(aty.Z), 0, 3, 7, 5), new vl(Item.getItemOf(aty.g), 0, 3, 7, 5), new vl(amk.aA, 0, 1, 1, 3),
 			new vl(amk.ck, 0, 1, 1, 1), new vl(amk.cl, 0, 1, 1, 1), new vl(amk.cm, 0, 1, 1, 1) }));
 	private boolean b;
 
@@ -79,7 +79,7 @@ public class bnj extends bnn {
 		this.a(var1, aty.f.P(), 1, 1, 5, var3);
 		this.a(var1, aty.ad.a(this.a(aty.ad, 3)), 2, 1, 5, var3);
 		this.a(var1, aty.ad.a(this.a(aty.ad, 1)), 1, 1, 4, var3);
-		if (!this.b && var3.b((fd) (new dt(this.a(5, 5), this.d(1), this.b(5, 5))))) {
+		if (!this.b && var3.b((fd) (new Position(this.a(5, 5), this.d(1), this.b(5, 5))))) {
 			this.b = true;
 			this.a(var1, var3, var2, 5, 1, 5, a, 3 + var2.nextInt(6));
 		}

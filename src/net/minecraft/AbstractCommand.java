@@ -29,7 +29,7 @@ public abstract class AbstractCommand implements CommandInterface {
 		return var1.a(this.a(), this.getName());
 	}
 
-	public List<String> getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List<String> getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return null;
 	}
 
@@ -75,9 +75,9 @@ public abstract class AbstractCommand implements CommandInterface {
 		}
 	}
 
-	public static dt a(CommandSenderInterface var0, String[] var1, int var2, boolean var3) throws dk {
-		dt var4 = var0.c();
-		return new dt(b((double) var4.n(), var1[var2], -30000000, 30000000, var3), b((double) var4.o(), var1[var2 + 1], 0, 256, false), b((double) var4.p(), var1[var2 + 2], -30000000, 30000000, var3));
+	public static Position a(CommandSenderInterface var0, String[] var1, int var2, boolean var3) throws dk {
+		Position var4 = var0.c();
+		return new Position(b((double) var4.n(), var1[var2], -30000000, 30000000, var3), b((double) var4.o(), var1[var2 + 1], 0, 256, false), b((double) var4.p(), var1[var2 + 2], -30000000, 30000000, var3));
 	}
 
 	public static double c(String var0) throws dk {
@@ -211,11 +211,11 @@ public abstract class AbstractCommand implements CommandInterface {
 		}
 	}
 
-	public static ho a(CommandSenderInterface var0, String[] var1, int var2) throws dm {
+	public static IJSONComponent a(CommandSenderInterface var0, String[] var1, int var2) throws dm {
 		return b(var0, var1, var2, false);
 	}
 
-	public static ho b(CommandSenderInterface var0, String[] var1, int var2, boolean var3) throws dm {
+	public static IJSONComponent b(CommandSenderInterface var0, String[] var1, int var2, boolean var3) throws dm {
 		hy var4 = new hy("");
 
 		for (int var5 = var2; var5 < var1.length; ++var5) {
@@ -225,7 +225,7 @@ public abstract class AbstractCommand implements CommandInterface {
 
 			Object var6 = new hy(var1[var5]);
 			if (var3) {
-				ho var7 = ah.b(var0, var1[var5]);
+				IJSONComponent var7 = ah.b(var0, var1[var5]);
 				if (var7 == null) {
 					if (ah.b(var1[var5])) {
 						throw new dm();
@@ -235,7 +235,7 @@ public abstract class AbstractCommand implements CommandInterface {
 				}
 			}
 
-			var4.a((ho) var6);
+			var4.a((IJSONComponent) var6);
 		}
 
 		return var4;
@@ -328,9 +328,9 @@ public abstract class AbstractCommand implements CommandInterface {
 		}
 	}
 
-	public static alq f(CommandSenderInterface var0, String var1) throws dk {
+	public static Item f(CommandSenderInterface var0, String var1) throws dk {
 		oa var2 = new oa(var1);
-		alq var3 = (alq) alq.e.a(var2);
+		Item var3 = (Item) Item.REGISTRY.a(var2);
 		if (var3 == null) {
 			throw new dk("commands.give.notFound", new Object[] { var2 });
 		} else {
@@ -338,12 +338,12 @@ public abstract class AbstractCommand implements CommandInterface {
 		}
 	}
 
-	public static atr g(CommandSenderInterface var0, String var1) throws dk {
+	public static Block g(CommandSenderInterface var0, String var1) throws dk {
 		oa var2 = new oa(var1);
-		if (!atr.c.d(var2)) {
+		if (!Block.c.d(var2)) {
 			throw new dk("commands.give.notFound", new Object[] { var2 });
 		} else {
-			atr var3 = (atr) atr.c.a(var2);
+			Block var3 = (Block) Block.c.a(var2);
 			if (var3 == null) {
 				throw new dk("commands.give.notFound", new Object[] { var2 });
 			} else {
@@ -371,7 +371,7 @@ public abstract class AbstractCommand implements CommandInterface {
 		return var1.toString();
 	}
 
-	public static ho a(List var0) {
+	public static IJSONComponent a(List var0) {
 		hy var1 = new hy("");
 
 		for (int var2 = 0; var2 < var0.size(); ++var2) {
@@ -383,7 +383,7 @@ public abstract class AbstractCommand implements CommandInterface {
 				}
 			}
 
-			var1.a((ho) var0.get(var2));
+			var1.a((IJSONComponent) var0.get(var2));
 		}
 
 		return var1;
@@ -393,7 +393,7 @@ public abstract class AbstractCommand implements CommandInterface {
 		return a(var0.toArray(new String[var0.size()]));
 	}
 
-	public static List a(String[] var0, int var1, dt var2) {
+	public static List a(String[] var0, int var1, Position var2) {
 		if (var2 == null) {
 			return null;
 		} else {

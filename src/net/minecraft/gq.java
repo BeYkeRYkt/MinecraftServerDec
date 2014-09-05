@@ -18,14 +18,14 @@ public class gq extends MessageToByteEncoder {
 
 	protected void a(ChannelHandlerContext var1, ByteBuf var2, ByteBuf var3) {
 		int var4 = var2.readableBytes();
-		hd var5 = new hd(var3);
+		PacketDataSerializer var5 = new PacketDataSerializer(var3);
 		if (var4 < this.c) {
-			var5.b(0);
+			var5.writeVarInt(0);
 			var5.writeBytes(var2);
 		} else {
 			byte[] var6 = new byte[var4];
 			var2.readBytes(var6);
-			var5.b(var6.length);
+			var5.writeVarInt(var6.length);
 			this.b.setInput(var6, 0, var4);
 			this.b.finish();
 

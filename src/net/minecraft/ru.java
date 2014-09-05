@@ -12,14 +12,14 @@ public class ru implements nv {
 		this.b = var2;
 	}
 
-	public void a(ho var1) {
+	public void handle(IJSONComponent var1) {
 	}
 
 	public void a(nx var1) {
-		this.b.a((id) (new no(this.a.getServerPing())));
+		this.b.a((Packet) (new no(this.a.getServerPing())));
 	}
 
 	public void a(nw var1) {
-		this.b.a((id) (new nn(var1.a())));
+		this.b.a((Packet) (new nn(var1.a())));
 	}
 }

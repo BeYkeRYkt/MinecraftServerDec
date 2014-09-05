@@ -67,13 +67,13 @@ public class bdv extends bcm implements pm {
 					if (this.a.c() == aty.cE && this.g) {
 						switch (bdw.a[this.f.k().ordinal()]) {
 							case 1:
-								var6.v = (double) this.f.g();
+								var6.motionX = (double) this.f.g();
 								break;
 							case 2:
-								var6.w = (double) this.f.h();
+								var6.motionY = (double) this.f.h();
 								break;
 							case 3:
-								var6.x = (double) this.f.i();
+								var6.motionZ = (double) this.f.i();
 						}
 					} else {
 						var6.d((double) (var2 * (float) this.f.g()), (double) (var2 * (float) this.f.h()), (double) (var2 * (float) this.f.i()));
@@ -125,7 +125,7 @@ public class bdv extends bcm implements pm {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.a = atr.c(var1.getInt("blockId")).a(var1.getInt("blockData"));
+		this.a = Block.c(var1.getInt("blockId")).a(var1.getInt("blockData"));
 		this.f = ej.a(var1.getInt("facing"));
 		this.j = this.i = var1.getFloat("progress");
 		this.g = var1.getBoolean("extending");
@@ -133,7 +133,7 @@ public class bdv extends bcm implements pm {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.put("blockId", atr.a(this.a.c()));
+		var1.put("blockId", Block.a(this.a.c()));
 		var1.put("blockData", this.a.c().c(this.a));
 		var1.put("facing", this.f.a());
 		var1.put("progress", this.j);

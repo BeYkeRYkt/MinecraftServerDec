@@ -25,7 +25,7 @@ public class arz {
 		this.e.add(arm.L);
 	}
 
-	public arz(long var1, are var3, String var4) {
+	public arz(long var1, LevelType var3, String var4) {
 		this();
 		this.f = var4;
 		bpa[] var5 = bpa.a(var1, var3, var4);
@@ -34,18 +34,18 @@ public class arz {
 	}
 
 	public arz(World var1) {
-		this(var1.J(), var1.P().u(), var1.P().B());
+		this(var1.J(), var1.P().getLevelType(), var1.P().B());
 	}
 
 	public List a() {
 		return this.e;
 	}
 
-	public arm a(dt var1) {
+	public arm a(Position var1) {
 		return this.a(var1, (arm) null);
 	}
 
-	public arm a(dt var1, arm var2) {
+	public arm a(Position var1, arm var2) {
 		return this.d.a(var1.n(), var1.p(), var2);
 	}
 
@@ -163,7 +163,7 @@ public class arz {
 		}
 	}
 
-	public dt a(int var1, int var2, int var3, List var4, Random var5) {
+	public Position a(int var1, int var2, int var3, List var4, Random var5) {
 		boy.a();
 		int var6 = var1 - var3 >> 2;
 		int var7 = var2 - var3 >> 2;
@@ -172,7 +172,7 @@ public class arz {
 		int var10 = var8 - var6 + 1;
 		int var11 = var9 - var7 + 1;
 		int[] var12 = this.b.a(var6, var7, var10, var11);
-		dt var13 = null;
+		Position var13 = null;
 		int var14 = 0;
 
 		for (int var15 = 0; var15 < var10 * var11; ++var15) {
@@ -180,7 +180,7 @@ public class arz {
 			int var17 = var7 + var15 / var10 << 2;
 			arm var18 = arm.e(var12[var15]);
 			if (var4.contains(var18) && (var13 == null || var5.nextInt(var14 + 1) == 0)) {
-				var13 = new dt(var16, 0, var17);
+				var13 = new Position(var16, 0, var17);
 				++var14;
 			}
 		}

@@ -13,16 +13,16 @@ public class jz extends jy {
 		this.g = var5;
 	}
 
-	public void a(hd var1) {
-		super.a(var1);
+	public void readData(PacketDataSerializer var1) {
+		super.readData(var1);
 		this.b = var1.readByte();
 		this.c = var1.readByte();
 		this.d = var1.readByte();
 		this.g = var1.readBoolean();
 	}
 
-	public void b(hd var1) {
-		super.b(var1);
+	public void writeData(PacketDataSerializer var1) {
+		super.writeData(var1);
 		var1.writeByte(this.b);
 		var1.writeByte(this.c);
 		var1.writeByte(this.d);

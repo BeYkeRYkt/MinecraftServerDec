@@ -6,19 +6,19 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class aid extends aib {
+public class aid extends Container {
 
 	private static final Logger f = LogManager.getLogger();
-	private vq g = new aji();
-	private vq h = new aie(this, "Repair", true, 2);
+	private IInventory g = new aji();
+	private IInventory h = new aie(this, "Repair", true, 2);
 	private World i;
-	private dt j;
+	private Position j;
 	public int a;
 	private int k;
 	private String l;
-	private final ahd m;
+	private final EntityHuman m;
 
-	public aid(ahb var1, World var2, dt var3, ahd var4) {
+	public aid(PlayerInventory var1, World var2, Position var3, EntityHuman var4) {
 		this.j = var3;
 		this.i = var2;
 		this.m = var4;
@@ -39,7 +39,7 @@ public class aid extends aib {
 
 	}
 
-	public void a(vq var1) {
+	public void a(IInventory var1) {
 		super.a(var1);
 		if (var1 == this.h) {
 			this.e();
@@ -55,30 +55,30 @@ public class aid extends aib {
 		boolean var5 = true;
 		boolean var6 = true;
 		boolean var7 = true;
-		amj var8 = this.h.a(0);
+		ItemStack var8 = this.h.a(0);
 		this.a = 1;
 		int var9 = 0;
 		byte var10 = 0;
 		byte var11 = 0;
 		if (var8 == null) {
-			this.g.a(0, (amj) null);
+			this.g.a(0, (ItemStack) null);
 			this.a = 0;
 		} else {
-			amj var12 = var8.k();
-			amj var13 = this.h.a(1);
+			ItemStack var12 = var8.getCopy();
+			ItemStack var13 = this.h.a(1);
 			Map var14 = aph.a(var12);
 			boolean var15 = false;
 			int var25 = var10 + var8.A() + (var13 == null ? 0 : var13.A());
 			this.k = 0;
 			int var16;
 			if (var13 != null) {
-				var15 = var13.b() == amk.cd && amk.cd.h(var13).getSize() > 0;
+				var15 = var13.getItem() == amk.cd && amk.cd.h(var13).getSize() > 0;
 				int var17;
 				int var18;
-				if (var12.e() && var12.b().a(var8, var13)) {
+				if (var12.e() && var12.getItem().a(var8, var13)) {
 					var16 = Math.min(var12.h(), var12.j() / 4);
 					if (var16 <= 0) {
-						this.g.a(0, (amj) null);
+						this.g.a(0, (ItemStack) null);
 						this.a = 0;
 						return;
 					}
@@ -92,8 +92,8 @@ public class aid extends aib {
 
 					this.k = var17;
 				} else {
-					if (!var15 && (var12.b() != var13.b() || !var12.e())) {
-						this.g.a(0, (amj) null);
+					if (!var15 && (var12.getItem() != var13.getItem() || !var12.e())) {
+						this.g.a(0, (ItemStack) null);
 						this.a = 0;
 						return;
 					}
@@ -134,7 +134,7 @@ public class aid extends aib {
 
 							var21 = var10000;
 							boolean var22 = var28.a(var8);
-							if (this.m.by.instabuild || var8.b() == amk.cd) {
+							if (this.m.by.instabuild || var8.getItem() == amk.cd) {
 								var22 = true;
 							}
 
@@ -228,16 +228,16 @@ public class aid extends aib {
 		}
 	}
 
-	public void a(ail var1) {
+	public void a(ICrafting var1) {
 		super.a(var1);
 		var1.a(this, 0, this.a);
 	}
 
-	public void b(ahd var1) {
+	public void b(EntityHuman var1) {
 		super.b(var1);
 		if (!this.i.D) {
 			for (int var2 = 0; var2 < this.h.n_(); ++var2) {
-				amj var3 = this.h.b(var2);
+				ItemStack var3 = this.h.b(var2);
 				if (var3 != null) {
 					var1.a(var3, false);
 				}
@@ -246,16 +246,16 @@ public class aid extends aib {
 		}
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return this.i.p(this.j).c() != aty.cf ? false : var1.e((double) this.j.n() + 0.5D, (double) this.j.o() + 0.5D, (double) this.j.p() + 0.5D) <= 64.0D;
 	}
 
-	public amj b(ahd var1, int var2) {
-		amj var3 = null;
+	public ItemStack b(EntityHuman var1, int var2) {
+		ItemStack var3 = null;
 		ajk var4 = (ajk) this.c.get(var2);
 		if (var4 != null && var4.e()) {
-			amj var5 = var4.d();
-			var3 = var5.k();
+			ItemStack var5 = var4.d();
+			var3 = var5.getCopy();
 			if (var2 == 2) {
 				if (!this.a(var5, 3, 39, true)) {
 					return null;
@@ -271,7 +271,7 @@ public class aid extends aib {
 			}
 
 			if (var5.b == 0) {
-				var4.d((amj) null);
+				var4.d((ItemStack) null);
 			} else {
 				var4.f();
 			}
@@ -289,7 +289,7 @@ public class aid extends aib {
 	public void a(String var1) {
 		this.l = var1;
 		if (this.a(2).e()) {
-			amj var2 = this.a(2).d();
+			ItemStack var2 = this.a(2).d();
 			if (StringUtils.isBlank(var1)) {
 				var2.r();
 			} else {
@@ -301,7 +301,7 @@ public class aid extends aib {
 	}
 
 	// $FF: synthetic method
-	static vq a(aid var0) {
+	static IInventory a(aid var0) {
 		return var0.h;
 	}
 

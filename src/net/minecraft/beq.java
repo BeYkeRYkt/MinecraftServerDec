@@ -15,7 +15,7 @@ public class beq implements Predicate {
 		this.a = var1;
 	}
 
-	public static beq a(atr var0) {
+	public static beq a(Block var0) {
 		return new beq(var0.O());
 	}
 

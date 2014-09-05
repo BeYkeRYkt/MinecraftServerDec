@@ -8,7 +8,7 @@ public class bil extends bhc {
 		super(var1);
 	}
 
-	public boolean b(World var1, Random var2, dt var3) {
+	public boolean b(World var1, Random var2, Position var3) {
 		int var4 = var2.nextInt(3) + var2.nextInt(3) + 5;
 		boolean var5 = true;
 		if (var3.o() >= 1 && var3.o() + var4 + 1 <= 256) {
@@ -27,7 +27,7 @@ public class bil extends bhc {
 				for (var8 = var3.n() - var7; var8 <= var3.n() + var7 && var5; ++var8) {
 					for (var9 = var3.p() - var7; var9 <= var3.p() + var7 && var5; ++var9) {
 						if (var6 >= 0 && var6 < 256) {
-							if (!this.a(var1.p(new dt(var8, var6, var9)).c())) {
+							if (!this.a(var1.p(new Position(var8, var6, var9)).c())) {
 								var5 = false;
 							}
 						} else {
@@ -40,7 +40,7 @@ public class bil extends bhc {
 			if (!var5) {
 				return false;
 			} else {
-				atr var20 = var1.p(var3.b()).c();
+				Block var20 = var1.p(var3.b()).c();
 				if ((var20 == aty.c || var20 == aty.d) && var3.o() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 					ej var21 = en.a.a(var2);
@@ -59,7 +59,7 @@ public class bil extends bhc {
 							--var9;
 						}
 
-						dt var15 = new dt(var10, var14, var11);
+						Position var15 = new Position(var10, var14, var11);
 						bof var16 = var1.p(var15).c().r();
 						if (var16 == bof.a || var16 == bof.j) {
 							this.a(var1, var15, aty.s, ayx.e.a() - 4);
@@ -67,7 +67,7 @@ public class bil extends bhc {
 						}
 					}
 
-					dt var22 = new dt(var10, var12, var11);
+					Position var22 = new Position(var10, var12, var11);
 
 					int var24;
 					for (var14 = -3; var14 <= 3; ++var14) {
@@ -104,7 +104,7 @@ public class bil extends bhc {
 								var17 = var3.o() + var25;
 								var10 += var23.g();
 								var11 += var23.i();
-								dt var18 = new dt(var10, var17, var11);
+								Position var18 = new Position(var10, var17, var11);
 								bof var19 = var1.p(var18).c().r();
 								if (var19 == bof.a || var19 == bof.j) {
 									this.a(var1, var18, aty.s, ayx.e.a() - 4);
@@ -116,7 +116,7 @@ public class bil extends bhc {
 						}
 
 						if (var12 > 0) {
-							dt var26 = new dt(var10, var12, var11);
+							Position var26 = new Position(var10, var12, var11);
 
 							int var27;
 							for (var17 = -2; var17 <= 2; ++var17) {
@@ -147,7 +147,7 @@ public class bil extends bhc {
 		}
 	}
 
-	private void b(World var1, dt var2) {
+	private void b(World var1, Position var2) {
 		bof var3 = var1.p(var2).c().r();
 		if (var3 == bof.a || var3 == bof.j) {
 			this.a(var1, var2, aty.u, 0);

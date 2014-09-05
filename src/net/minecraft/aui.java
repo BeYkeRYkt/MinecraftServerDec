@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.List;
 import java.util.Random;
 
-public class aui extends atr {
+public class aui extends Block {
 
 	public static final bew a = bew.a("level", 0, 3);
 
@@ -12,7 +12,7 @@ public class aui extends atr {
 		this.j(this.L.b().a(a, Integer.valueOf(0)));
 	}
 
-	public void a(World var1, dt var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.3125F, 1.0F);
 		super.a(var1, var2, var3, var4, var5, var6);
 		float var7 = 0.125F;
@@ -39,7 +39,7 @@ public class aui extends atr {
 		return false;
 	}
 
-	public void a(World var1, dt var2, bec var3, Entity var4) {
+	public void a(World var1, Position var2, bec var3, Entity var4) {
 		int var5 = ((Integer) var3.b(a)).intValue();
 		float var6 = (float) var2.o() + (6.0F + (float) (3 * var5)) / 16.0F;
 		if (!var1.D && var4.au() && var5 > 0 && var4.aQ().b <= (double) var6) {
@@ -49,20 +49,20 @@ public class aui extends atr {
 
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {
-			amj var9 = var4.bg.h();
+			ItemStack var9 = var4.playerInventory.getItemInHand();
 			if (var9 == null) {
 				return true;
 			} else {
 				int var10 = ((Integer) var3.b(a)).intValue();
-				alq var11 = var9.b();
+				Item var11 = var9.getItem();
 				if (var11 == amk.ax) {
 					if (var10 < 3) {
 						if (!var4.by.instabuild) {
-							var4.bg.a(var4.bg.c, new amj(amk.aw));
+							var4.playerInventory.a(var4.playerInventory.c, new ItemStack(amk.aw));
 						}
 
 						this.a(var1, var2, var3, 3);
@@ -70,20 +70,20 @@ public class aui extends atr {
 
 					return true;
 				} else {
-					amj var13;
+					ItemStack var13;
 					if (var11 == amk.bA) {
 						if (var10 > 0) {
 							if (!var4.by.instabuild) {
-								var13 = new amj(amk.bz, 1, 0);
-								if (!var4.bg.a(var13)) {
+								var13 = new ItemStack(amk.bz, 1, 0);
+								if (!var4.playerInventory.a(var13)) {
 									var1.d((Entity) (new adw(var1, (double) var2.n() + 0.5D, (double) var2.o() + 1.5D, (double) var2.p() + 0.5D, var13)));
 								} else if (var4 instanceof EntityPlayer) {
-									((EntityPlayer) var4).a(var4.bh);
+									((EntityPlayer) var4).a(var4.defaultContainer);
 								}
 
 								--var9.b;
 								if (var9.b <= 0) {
-									var4.bg.a(var4.bg.c, (amj) null);
+									var4.playerInventory.a(var4.playerInventory.c, (ItemStack) null);
 								}
 							}
 
@@ -102,16 +102,16 @@ public class aui extends atr {
 						}
 
 						if (var10 > 0 && var11 instanceof ajs && bci.c(var9) > 0) {
-							var13 = var9.k();
+							var13 = var9.getCopy();
 							var13.b = 1;
 							bci.e(var13);
 							if (var9.b <= 1 && !var4.by.instabuild) {
-								var4.bg.a(var4.bg.c, var13);
+								var4.playerInventory.a(var4.playerInventory.c, var13);
 							} else {
-								if (!var4.bg.a(var13)) {
+								if (!var4.playerInventory.a(var13)) {
 									var1.d((Entity) (new adw(var1, (double) var2.n() + 0.5D, (double) var2.o() + 1.5D, (double) var2.p() + 0.5D, var13)));
 								} else if (var4 instanceof EntityPlayer) {
-									((EntityPlayer) var4).a(var4.bh);
+									((EntityPlayer) var4).a(var4.defaultContainer);
 								}
 
 								if (!var4.by.instabuild) {
@@ -133,12 +133,12 @@ public class aui extends atr {
 		}
 	}
 
-	public void a(World var1, dt var2, bec var3, int var4) {
-		var1.a(var2, var3.a(a, Integer.valueOf(NumberConverter.a(var4, 0, 3))), 2);
+	public void a(World var1, Position var2, bec var3, int var4) {
+		var1.a(var2, var3.a(a, Integer.valueOf(DataTypesConverter.a(var4, 0, 3))), 2);
 		var1.e(var2, this);
 	}
 
-	public void k(World var1, dt var2) {
+	public void k(World var1, Position var2) {
 		if (var1.s.nextInt(20) == 1) {
 			bec var3 = var1.p(var2);
 			if (((Integer) var3.b(a)).intValue() < 3) {
@@ -148,7 +148,7 @@ public class aui extends atr {
 		}
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return amk.bG;
 	}
 
@@ -156,7 +156,7 @@ public class aui extends atr {
 		return true;
 	}
 
-	public int l(World var1, dt var2) {
+	public int l(World var1, Position var2) {
 		return ((Integer) var1.p(var2).b(a)).intValue();
 	}
 

@@ -26,7 +26,7 @@ public class WeatherCommand extends AbstractCommand {
 			}
 
 			WorldServer var4 = MinecraftServer.getInstance().worlds[0];
-			bqo var5 = var4.P();
+			WorldData var5 = var4.P();
 			if ("clear".equalsIgnoreCase(var2[0])) {
 				var5.i(var3);
 				var5.g(0);
@@ -59,7 +59,7 @@ public class WeatherCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return var2.length == 1 ? a(var2, new String[] { "clear", "rain", "thunder" }) : null;
 	}
 }

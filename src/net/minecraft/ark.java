@@ -3,13 +3,13 @@ package net.minecraft;
 public class ark implements Comparable {
 
 	private static long d;
-	private final atr e;
-	public final dt a;
+	private final Block e;
+	public final Position a;
 	public long b;
 	public int c;
 	private long f;
 
-	public ark(dt var1, atr var2) {
+	public ark(Position var1, Block var2) {
 		this.f = (long) (d++);
 		this.a = var1;
 		this.e = var2;
@@ -20,7 +20,7 @@ public class ark implements Comparable {
 			return false;
 		} else {
 			ark var2 = (ark) var1;
-			return this.a.equals(var2.a) && atr.a(this.e, var2.e);
+			return this.a.equals(var2.a) && Block.a(this.e, var2.e);
 		}
 	}
 
@@ -42,10 +42,10 @@ public class ark implements Comparable {
 	}
 
 	public String toString() {
-		return atr.a(this.e) + ": " + this.a + ", " + this.b + ", " + this.c + ", " + this.f;
+		return Block.a(this.e) + ": " + this.a + ", " + this.b + ", " + this.c + ", " + this.f;
 	}
 
-	public atr a() {
+	public Block a() {
 		return this.e;
 	}
 

@@ -1,12 +1,12 @@
 package net.minecraft;
 
-public class ajf extends aib {
+public class ajf extends Container {
 
 	private aqb a;
 	private aje f;
 	private final World g;
 
-	public ajf(ahb var1, aqb var2, World var3) {
+	public ajf(PlayerInventory var1, aqb var2, World var3) {
 		this.a = var2;
 		this.g = var3;
 		this.f = new aje(var1.d, var2);
@@ -31,7 +31,7 @@ public class ajf extends aib {
 		return this.f;
 	}
 
-	public void a(ail var1) {
+	public void a(ICrafting var1) {
 		super.a(var1);
 	}
 
@@ -39,7 +39,7 @@ public class ajf extends aib {
 		super.b();
 	}
 
-	public void a(vq var1) {
+	public void a(IInventory var1) {
 		this.f.h();
 		super.a(var1);
 	}
@@ -48,16 +48,16 @@ public class ajf extends aib {
 		this.f.d(var1);
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return this.a.u_() == var1;
 	}
 
-	public amj b(ahd var1, int var2) {
-		amj var3 = null;
+	public ItemStack b(EntityHuman var1, int var2) {
+		ItemStack var3 = null;
 		ajk var4 = (ajk) this.c.get(var2);
 		if (var4 != null && var4.e()) {
-			amj var5 = var4.d();
-			var3 = var5.k();
+			ItemStack var5 = var4.d();
+			var3 = var5.getCopy();
 			if (var2 == 2) {
 				if (!this.a(var5, 3, 39, true)) {
 					return null;
@@ -77,7 +77,7 @@ public class ajf extends aib {
 			}
 
 			if (var5.b == 0) {
-				var4.d((amj) null);
+				var4.d((ItemStack) null);
 			} else {
 				var4.f();
 			}
@@ -92,12 +92,12 @@ public class ajf extends aib {
 		return var3;
 	}
 
-	public void b(ahd var1) {
+	public void b(EntityHuman var1) {
 		super.b(var1);
-		this.a.a_((ahd) null);
+		this.a.a_((EntityHuman) null);
 		super.b(var1);
 		if (!this.g.D) {
-			amj var2 = this.f.b(0);
+			ItemStack var2 = this.f.b(0);
 			if (var2 != null) {
 				var1.a(var2, false);
 			}

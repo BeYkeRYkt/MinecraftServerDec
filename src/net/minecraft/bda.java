@@ -74,7 +74,7 @@ public class bda extends bcm implements pm {
 		this.b.c(this.c, aty.bQ, 1, this.g);
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return this.b.s(this.c) != this ? false : var1.e((double) this.c.n() + 0.5D, (double) this.c.o() + 0.5D, (double) this.c.p() + 0.5D) <= 64.0D;
 	}
 }

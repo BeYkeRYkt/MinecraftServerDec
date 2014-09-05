@@ -4,13 +4,13 @@ import java.util.Random;
 
 public class bim extends bhp {
 
-	private atr a;
+	private Block a;
 
-	public bim(atr var1) {
+	public bim(Block var1) {
 		this.a = var1;
 	}
 
-	public boolean b(World var1, Random var2, dt var3) {
+	public boolean b(World var1, Random var2, Position var3) {
 		if (var1.d(var3) && var1.p(var3.b()).c() == this.a) {
 			int var4 = var2.nextInt(32) + 6;
 			int var5 = var2.nextInt(4) + 1;
@@ -23,7 +23,7 @@ public class bim extends bhp {
 				for (var7 = var3.p() - var5; var7 <= var3.p() + var5; ++var7) {
 					var8 = var6 - var3.n();
 					var9 = var7 - var3.p();
-					if (var8 * var8 + var9 * var9 <= var5 * var5 + 1 && var1.p(new dt(var6, var3.o() - 1, var7)).c() != this.a) {
+					if (var8 * var8 + var9 * var9 <= var5 * var5 + 1 && var1.p(new Position(var6, var3.o() - 1, var7)).c() != this.a) {
 						return false;
 					}
 				}
@@ -35,7 +35,7 @@ public class bim extends bhp {
 						var9 = var7 - var3.n();
 						int var10 = var8 - var3.p();
 						if (var9 * var9 + var10 * var10 <= var5 * var5 + 1) {
-							var1.a(new dt(var7, var6, var8), aty.Z.P(), 2);
+							var1.a(new Position(var7, var6, var8), aty.Z.P(), 2);
 						}
 					}
 				}

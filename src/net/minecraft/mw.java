@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.UUID;
 
-public class mw implements id<ls> {
+public class mw implements Packet<ls> {
 
 	private UUID a;
 
@@ -13,15 +13,15 @@ public class mw implements id<ls> {
 		this.a = var1;
 	}
 
-	public void a(hd var1) {
-		this.a = var1.g();
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readUUID();
 	}
 
-	public void b(hd var1) {
-		var1.a(this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeUUID(this.a);
 	}
 
-	public void a(ls var1) {
+	public void handlePacket(ls var1) {
 		var1.a(this);
 	}
 

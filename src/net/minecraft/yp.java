@@ -32,7 +32,7 @@ public class yp extends zb {
 			return false;
 		} else {
 			this.c = (Entity) var1.get(0);
-			brw var2 = abf.b(this.b, 16, 7, new brw(this.c.s, this.c.t, this.c.u));
+			brw var2 = abf.b(this.b, 16, 7, new brw(this.c.locationX, this.c.locationY, this.c.locationZ));
 			if (var2 == null) {
 				return false;
 			} else if (this.c.e(var2.a, var2.b, var2.c) < this.c.h(this.b)) {

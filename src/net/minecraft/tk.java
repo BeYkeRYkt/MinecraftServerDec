@@ -6,18 +6,18 @@ public class tk extends PlayerStatistic {
 	public int b;
 	public final tk c;
 	private final String k;
-	public final amj d;
+	public final ItemStack d;
 	private boolean m;
 
-	public tk(String var1, String var2, int var3, int var4, alq var5, tk var6) {
-		this(var1, var2, var3, var4, new amj(var5), var6);
+	public tk(String var1, String var2, int var3, int var4, Item var5, tk var6) {
+		this(var1, var2, var3, var4, new ItemStack(var5), var6);
 	}
 
-	public tk(String var1, String var2, int var3, int var4, atr var5, tk var6) {
-		this(var1, var2, var3, var4, new amj(var5), var6);
+	public tk(String var1, String var2, int var3, int var4, Block var5, tk var6) {
+		this(var1, var2, var3, var4, new ItemStack(var5), var6);
 	}
 
-	public tk(String var1, String var2, int var3, int var4, amj var5, tk var6) {
+	public tk(String var1, String var2, int var3, int var4, ItemStack var5, tk var6) {
 		super(var1, new hz("achievement." + var2, new Object[0]));
 		this.d = var5;
 		this.k = "achievement." + var2 + ".desc";
@@ -62,8 +62,8 @@ public class tk extends PlayerStatistic {
 		return true;
 	}
 
-	public ho e() {
-		ho var1 = super.e();
+	public IJSONComponent e() {
+		IJSONComponent var1 = super.e();
 		var1.b().a(this.g() ? FormattingCode.f : FormattingCode.k);
 		return var1;
 	}

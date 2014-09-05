@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.Iterator;
 import java.util.Random;
 
-public class azy extends atr {
+public class azy extends Block {
 
 	public static final bew a = bew.a("age", 0, 15);
 
@@ -15,7 +15,7 @@ public class azy extends atr {
 		this.a(true);
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (var1.p(var2.b()).c() == aty.aM || this.e(var1, var2, var3)) {
 			if (var1.d(var2.a())) {
 				int var5;
@@ -37,8 +37,8 @@ public class azy extends atr {
 		}
 	}
 
-	public boolean c(World var1, dt var2) {
-		atr var3 = var1.p(var2.b()).c();
+	public boolean c(World var1, Position var2) {
+		Block var3 = var1.p(var2.b()).c();
 		if (var3 == this) {
 			return true;
 		} else if (var3 != aty.c && var3 != aty.d && var3 != aty.m) {
@@ -59,11 +59,11 @@ public class azy extends atr {
 		}
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		this.e(var1, var2, var3);
 	}
 
-	protected final boolean e(World var1, dt var2, bec var3) {
+	protected final boolean e(World var1, Position var2, bec var3) {
 		if (this.d(var1, var2)) {
 			return true;
 		} else {
@@ -73,15 +73,15 @@ public class azy extends atr {
 		}
 	}
 
-	public boolean d(World var1, dt var2) {
+	public boolean d(World var1, Position var2) {
 		return this.c(var1, var2);
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return amk.aJ;
 	}
 

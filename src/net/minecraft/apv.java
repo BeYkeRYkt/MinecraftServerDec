@@ -21,13 +21,13 @@ public class apv extends apf {
 		return 3;
 	}
 
-	public boolean a(amj var1) {
-		return var1.b() instanceof ajn ? true : super.a(var1);
+	public boolean a(ItemStack var1) {
+		return var1.getItem() instanceof ajn ? true : super.a(var1);
 	}
 
 	public void b(EntityLiving var1, Entity var2, int var3) {
 		Random var4 = var1.bb();
-		amj var5 = aph.a(apf.j, var1);
+		ItemStack var5 = aph.a(apf.j, var1);
 		if (a(var3, var4)) {
 			var2.a(wh.a((Entity) var1), (float) b(var3, var4));
 			var2.a("damage.thorns", 0.5F, 1.0F);

@@ -113,7 +113,7 @@ public class bmb extends bmk {
 		this.a(var1, aty.bG.a(var9).a(avq.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 7, 3, 11, var3);
 		if (!this.a) {
 			int var12 = this.d(3);
-			dt var10 = new dt(this.a(5, 6), var12, this.b(5, 6));
+			Position var10 = new Position(this.a(5, 6), var12, this.b(5, 6));
 			if (var3.b((fd) var10)) {
 				this.a = true;
 				var1.a(var10, aty.ac.P(), 2);

@@ -5,7 +5,7 @@ public class aww extends baa {
 	public aww() {
 		super(bof.b);
 		this.j(this.L.b().a(M, el.b));
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
 	public bec a(int var1) {
@@ -36,11 +36,11 @@ public class aww extends baa {
 		return new bed(this, new bex[] { M });
 	}
 
-	protected amj i(bec var1) {
-		return new amj(alq.a((atr) this), 1, 0);
+	protected ItemStack i(bec var1) {
+		return new ItemStack(Item.getItemOf((Block) this), 1, 0);
 	}
 
-	public bec a(World var1, dt var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return super.a(var1, var2, var3, var4, var5, var6, var7, var8).a(M, var3.k());
 	}
 }

@@ -3,22 +3,22 @@ package net.minecraft;
 import com.google.common.base.Predicate;
 import java.util.Iterator;
 
-public class axe extends atr {
+public class axe extends Block {
 
 	public static final beu a = beu.a("facing", (Predicate) en.a);
 
 	protected axe() {
 		super(bof.q);
 		this.j(this.L.b().a(a, ej.c));
-		this.a(akf.c);
+		this.a(CreativeModeTab.c);
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3);
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
 		if (var3.c() == this) {
 			float var4 = 0.125F;
@@ -48,11 +48,11 @@ public class axe extends atr {
 		return false;
 	}
 
-	public boolean c(World var1, dt var2) {
+	public boolean c(World var1, Position var2) {
 		return var1.p(var2.e()).c().t() ? true : (var1.p(var2.f()).c().t() ? true : (var1.p(var2.c()).c().t() ? true : var1.p(var2.d()).c().t()));
 	}
 
-	public bec a(World var1, dt var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		if (var3.k().c() && this.b(var1, var2, var3)) {
 			return this.P().a(a, var3);
 		} else {
@@ -71,7 +71,7 @@ public class axe extends atr {
 		}
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		ej var5 = (ej) var3.b(a);
 		if (!this.b(var1, var2, var5)) {
 			this.b(var1, var2, var3, 0);
@@ -81,7 +81,7 @@ public class axe extends atr {
 		super.a(var1, var2, var3, var4);
 	}
 
-	protected boolean b(World var1, dt var2, ej var3) {
+	protected boolean b(World var1, Position var2, ej var3) {
 		return var1.p(var2.a(var3.d())).c().t();
 	}
 

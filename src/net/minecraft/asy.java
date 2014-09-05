@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class asy extends atr {
+public class asy extends Block {
 
 	protected asy() {
 		super(bof.a);
@@ -10,7 +10,7 @@ public class asy extends atr {
 		return -1;
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
@@ -22,6 +22,6 @@ public class asy extends atr {
 		return false;
 	}
 
-	public void a(World var1, dt var2, bec var3, float var4, int var5) {
+	public void a(World var1, Position var2, bec var3, float var4, int var5) {
 	}
 }

@@ -12,12 +12,12 @@ public class ayy extends awt {
 		this.a(true);
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		super.b(var1, var2, var3, var4);
-		if (var1.t.d() && var1.Q().b("doMobSpawning") && var4.nextInt(2000) < var1.aa().getId()) {
+		if (var1.worldProvider.d() && var1.Q().b("doMobSpawning") && var4.nextInt(2000) < var1.getDifficulty().getId()) {
 			int var5 = var2.o();
 
-			dt var6;
+			Position var6;
 			for (var6 = var2; !World.a((ard) var1, var6) && var6.o() > 0; var6 = var6.b()) {
 				;
 			}
@@ -32,11 +32,11 @@ public class ayy extends awt {
 
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		el var3 = (el) var1.p(var2).b(a);
 		float var4 = 0.125F;
 		float var5 = 0.125F;
@@ -59,7 +59,7 @@ public class ayy extends awt {
 		return false;
 	}
 
-	public boolean d(World var1, dt var2) {
+	public boolean d(World var1, Position var2) {
 		ayz var3 = new ayz(var1, var2, el.a);
 		if (var3.b() && ayz.a(var3) == 0) {
 			var3.c();
@@ -75,7 +75,7 @@ public class ayy extends awt {
 		}
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		el var5 = (el) var3.b(a);
 		ayz var6;
 		if (var5 == el.a) {
@@ -96,7 +96,7 @@ public class ayy extends awt {
 		return 0;
 	}
 
-	public void a(World var1, dt var2, bec var3, Entity var4) {
+	public void a(World var1, Position var2, bec var3, Entity var4) {
 		if (var4.m == null && var4.l == null) {
 			var4.aq();
 		}

@@ -29,7 +29,7 @@ public enum ajp {
 		return this.i;
 	}
 
-	public alq b() {
+	public Item b() {
 		return this == a ? amk.aF : (this == b ? amk.j : (this == d ? amk.k : (this == c ? amk.j : (this == e ? amk.i : null))));
 	}
 

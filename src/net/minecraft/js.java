@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.List;
 
-public class js implements id<ik> {
+public class js implements Packet<PlayPacketListener> {
 
 	private int[] a;
 	private int[] b;
@@ -17,7 +17,7 @@ public class js implements id<ik> {
 		this.a = new int[var2];
 		this.b = new int[var2];
 		this.c = new jr[var2];
-		this.d = !((bfh) var1.get(0)).p().t.o();
+		this.d = !((bfh) var1.get(0)).p().worldProvider.o();
 
 		for (int var3 = 0; var3 < var2; ++var3) {
 			bfh var4 = (bfh) var1.get(var3);
@@ -29,9 +29,9 @@ public class js implements id<ik> {
 
 	}
 
-	public void a(hd var1) {
+	public void readData(PacketDataSerializer var1) {
 		this.d = var1.readBoolean();
-		int var2 = var1.e();
+		int var2 = var1.readVarInt();
 		this.a = new int[var2];
 		this.b = new int[var2];
 		this.c = new jr[var2];
@@ -51,9 +51,9 @@ public class js implements id<ik> {
 
 	}
 
-	public void b(hd var1) {
+	public void writeData(PacketDataSerializer var1) {
 		var1.writeBoolean(this.d);
-		var1.b(this.c.length);
+		var1.writeVarInt(this.c.length);
 
 		int var2;
 		for (var2 = 0; var2 < this.a.length; ++var2) {
@@ -68,7 +68,7 @@ public class js implements id<ik> {
 
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

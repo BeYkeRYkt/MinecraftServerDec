@@ -13,14 +13,14 @@ public class avn extends axl {
 		super(var1);
 	}
 
-	private void f(World var1, dt var2, bec var3) {
+	private void f(World var1, Position var2, bec var3) {
 		var1.a(var2, b(this.J).P().a(b, var3.b(b)), 2);
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		int var5 = ((Integer) var3.b(b)).intValue();
 		byte var6 = 1;
-		if (this.J == bof.i && !var1.t.n()) {
+		if (this.J == bof.i && !var1.worldProvider.n()) {
 			var6 = 2;
 		}
 
@@ -71,8 +71,8 @@ public class avn extends axl {
 				} else {
 					var3 = var3.a(b, Integer.valueOf(var14));
 					var1.a(var2, var3, 2);
-					var1.a(var2, (atr) this, var7);
-					var1.c(var2, (atr) this);
+					var1.a(var2, (Block) this, var7);
+					var1.c(var2, (Block) this);
 				}
 			}
 		} else {
@@ -113,7 +113,7 @@ public class avn extends axl {
 
 	}
 
-	private void a(World var1, dt var2, bec var3, int var4) {
+	private void a(World var1, Position var2, bec var3, int var4) {
 		if (this.h(var1, var2, var3)) {
 			if (var3.c() != aty.a) {
 				if (this.J == bof.i) {
@@ -128,14 +128,14 @@ public class avn extends axl {
 
 	}
 
-	private int a(World var1, dt var2, int var3, ej var4) {
+	private int a(World var1, Position var2, int var3, ej var4) {
 		int var5 = 1000;
 		Iterator var6 = en.a.iterator();
 
 		while (var6.hasNext()) {
 			ej var7 = (ej) var6.next();
 			if (var7 != var4) {
-				dt var8 = var2.a(var7);
+				Position var8 = var2.a(var7);
 				bec var9 = var1.p(var8);
 				if (!this.g(var1, var8, var9) && (var9.c().r() != this.J || ((Integer) var9.b(b)).intValue() > 0)) {
 					if (!this.g(var1, var8.b(), var9)) {
@@ -155,14 +155,14 @@ public class avn extends axl {
 		return var5;
 	}
 
-	private Set e(World var1, dt var2) {
+	private Set e(World var1, Position var2) {
 		int var3 = 1000;
 		EnumSet var4 = EnumSet.noneOf(ej.class);
 		Iterator var5 = en.a.iterator();
 
 		while (var5.hasNext()) {
 			ej var6 = (ej) var5.next();
-			dt var7 = var2.a(var6);
+			Position var7 = var2.a(var6);
 			bec var8 = var1.p(var7);
 			if (!this.g(var1, var7, var8) && (var8.c().r() != this.J || ((Integer) var8.b(b)).intValue() > 0)) {
 				int var9;
@@ -186,12 +186,12 @@ public class avn extends axl {
 		return var4;
 	}
 
-	private boolean g(World var1, dt var2, bec var3) {
-		atr var4 = var1.p(var2).c();
+	private boolean g(World var1, Position var2, bec var3) {
+		Block var4 = var1.p(var2).c();
 		return !(var4 instanceof avf) && var4 != aty.an && var4 != aty.au && var4 != aty.aM ? (var4.J == bof.E ? true : var4.J.c()) : true;
 	}
 
-	protected int a(World var1, dt var2, int var3) {
+	protected int a(World var1, Position var2, int var3) {
 		int var4 = this.e((ard) var1, var2);
 		if (var4 < 0) {
 			return var3;
@@ -208,14 +208,14 @@ public class avn extends axl {
 		}
 	}
 
-	private boolean h(World var1, dt var2, bec var3) {
+	private boolean h(World var1, Position var2, bec var3) {
 		bof var4 = var3.c().r();
 		return var4 != this.J && var4 != bof.i && !this.g(var1, var2, var3);
 	}
 
-	public void c(World var1, dt var2, bec var3) {
+	public void c(World var1, Position var2, bec var3) {
 		if (!this.e(var1, var2, var3)) {
-			var1.a(var2, (atr) this, this.a(var1));
+			var1.a(var2, (Block) this, this.a(var1));
 		}
 
 	}

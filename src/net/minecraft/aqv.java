@@ -5,11 +5,11 @@ import java.util.concurrent.Callable;
 class aqv implements Callable {
 
 	// $FF: synthetic field
-	final dt a;
+	final Position a;
 	// $FF: synthetic field
 	final World b;
 
-	aqv(World var1, dt var2) {
+	aqv(World var1, Position var2) {
 		this.b = var1;
 		this.a = var2;
 	}

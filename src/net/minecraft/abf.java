@@ -11,12 +11,12 @@ public class abf {
 	}
 
 	public static brw a(EntityCreature var0, int var1, int var2, brw var3) {
-		a = var3.a(var0.s, var0.t, var0.u);
+		a = var3.a(var0.locationX, var0.locationY, var0.locationZ);
 		return c(var0, var1, var2, a);
 	}
 
 	public static brw b(EntityCreature var0, int var1, int var2, brw var3) {
-		a = (new brw(var0.s, var0.t, var0.u)).d(var3);
+		a = (new brw(var0.locationX, var0.locationY, var0.locationZ)).d(var3);
 		return c(var0, var1, var2, a);
 	}
 
@@ -29,7 +29,7 @@ public class abf {
 		float var9 = -99999.0F;
 		boolean var10;
 		if (var0.ci()) {
-			double var11 = var0.cf().c((double) NumberConverter.c(var0.s), (double) NumberConverter.c(var0.t), (double) NumberConverter.c(var0.u)) + 4.0D;
+			double var11 = var0.cf().c((double) DataTypesConverter.toFixedPointInt(var0.locationX), (double) DataTypesConverter.toFixedPointInt(var0.locationY), (double) DataTypesConverter.toFixedPointInt(var0.locationZ)) + 4.0D;
 			double var13 = (double) (var0.cg() + (float) var1);
 			var10 = var11 < var13 * var13;
 		} else {
@@ -41,26 +41,26 @@ public class abf {
 			int var18 = var4.nextInt(2 * var2 + 1) - var2;
 			int var14 = var4.nextInt(2 * var1 + 1) - var1;
 			if (var3 == null || (double) var12 * var3.a + (double) var14 * var3.c >= 0.0D) {
-				dt var15;
+				Position var15;
 				if (var0.ci() && var1 > 1) {
 					var15 = var0.cf();
-					if (var0.s > (double) var15.n()) {
+					if (var0.locationX > (double) var15.n()) {
 						var12 -= var4.nextInt(var1 / 2);
 					} else {
 						var12 += var4.nextInt(var1 / 2);
 					}
 
-					if (var0.u > (double) var15.p()) {
+					if (var0.locationZ > (double) var15.p()) {
 						var14 -= var4.nextInt(var1 / 2);
 					} else {
 						var14 += var4.nextInt(var1 / 2);
 					}
 				}
 
-				var12 += NumberConverter.c(var0.s);
-				var18 += NumberConverter.c(var0.t);
-				var14 += NumberConverter.c(var0.u);
-				var15 = new dt(var12, var18, var14);
+				var12 += DataTypesConverter.toFixedPointInt(var0.locationX);
+				var18 += DataTypesConverter.toFixedPointInt(var0.locationY);
+				var14 += DataTypesConverter.toFixedPointInt(var0.locationZ);
+				var15 = new Position(var12, var18, var14);
 				if (!var10 || var0.d(var15)) {
 					float var16 = var0.a(var15);
 					if (var16 > var9) {

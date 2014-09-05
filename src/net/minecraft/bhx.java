@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class bhx extends bhp {
 
-	public boolean b(World var1, Random var2, dt var3) {
+	public boolean b(World var1, Random var2, Position var3) {
 		while (var1.d(var3) && var3.o() > 2) {
 			var3 = var3.b();
 		}
@@ -23,15 +23,15 @@ public class bhx extends bhp {
 			int var8;
 			for (var6 = 0; var6 < var4; ++var6) {
 				float var7 = (1.0F - (float) var6 / (float) var4) * (float) var5;
-				var8 = NumberConverter.f(var7);
+				var8 = DataTypesConverter.f(var7);
 
 				for (int var9 = -var8; var9 <= var8; ++var9) {
-					float var10 = (float) NumberConverter.a(var9) - 0.25F;
+					float var10 = (float) DataTypesConverter.a(var9) - 0.25F;
 
 					for (int var11 = -var8; var11 <= var8; ++var11) {
-						float var12 = (float) NumberConverter.a(var11) - 0.25F;
+						float var12 = (float) DataTypesConverter.a(var11) - 0.25F;
 						if ((var9 == 0 && var11 == 0 || var10 * var10 + var12 * var12 <= var7 * var7) && (var9 != -var8 && var9 != var8 && var11 != -var8 && var11 != var8 || var2.nextFloat() <= 0.75F)) {
-							atr var13 = var1.p(var3.a(var9, var6, var11)).c();
+							Block var13 = var1.p(var3.a(var9, var6, var11)).c();
 							if (var13.r() == bof.a || var13 == aty.d || var13 == aty.aJ || var13 == aty.aI) {
 								this.a(var1, var3.a(var9, var6, var11), aty.cB);
 							}
@@ -58,7 +58,7 @@ public class bhx extends bhp {
 				var8 = -var6;
 
 				while (var8 <= var6) {
-					dt var15 = var3.a(var14, -1, var8);
+					Position var15 = var3.a(var14, -1, var8);
 					int var16 = 50;
 					if (Math.abs(var14) == 1 && Math.abs(var8) == 1) {
 						var16 = var2.nextInt(5);
@@ -66,7 +66,7 @@ public class bhx extends bhp {
 
 					while (true) {
 						if (var15.o() > 50) {
-							atr var17 = var1.p(var15).c();
+							Block var17 = var1.p(var15).c();
 							if (var17.r() == bof.a || var17 == aty.d || var17 == aty.aJ || var17 == aty.aI || var17 == aty.cB) {
 								this.a(var1, var15, aty.cB);
 								var15 = var15.b();

@@ -149,13 +149,13 @@ public class ScoreboardCommand extends AbstractCommand {
 
 						this.i(var1, var2, 2);
 					} else if (var2[1].equalsIgnoreCase("join")) {
-						if (var2.length < 4 && (var2.length != 3 || !(var1 instanceof ahd))) {
+						if (var2.length < 4 && (var2.length != 3 || !(var1 instanceof EntityHuman))) {
 							throw new dp("commands.scoreboard.teams.join.usage", new Object[0]);
 						}
 
 						this.g(var1, var2, 2);
 					} else if (var2[1].equalsIgnoreCase("leave")) {
-						if (var2.length < 3 && !(var1 instanceof ahd)) {
+						if (var2.length < 3 && !(var1 instanceof EntityHuman)) {
 							throw new dp("commands.scoreboard.teams.leave.usage", new Object[0]);
 						}
 
@@ -428,7 +428,7 @@ public class ScoreboardCommand extends AbstractCommand {
 		HashSet var6 = Sets.newHashSet();
 		HashSet var7 = Sets.newHashSet();
 		String var8;
-		if (var1 instanceof ahd && var3 == var2.length) {
+		if (var1 instanceof EntityHuman && var3 == var2.length) {
 			var8 = b(var1).d_();
 			if (var4.a(var8, var5)) {
 				var6.add(var8);
@@ -477,7 +477,7 @@ public class ScoreboardCommand extends AbstractCommand {
 		HashSet var5 = Sets.newHashSet();
 		HashSet var6 = Sets.newHashSet();
 		String var7;
-		if (var1 instanceof ahd && var3 == var2.length) {
+		if (var1 instanceof EntityHuman && var3 == var2.length) {
 			var7 = b(var1).d_();
 			if (var4.f(var7)) {
 				var5.add(var7);
@@ -750,7 +750,7 @@ public class ScoreboardCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		if (var2.length == 1) {
 			return a(var2, new String[] { "objectives", "players", "teams" });
 		} else {

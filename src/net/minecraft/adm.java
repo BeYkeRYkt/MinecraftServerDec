@@ -11,7 +11,7 @@ public class adm extends adj {
 		super(var1);
 	}
 
-	public adm(World var1, dt var2, ej var3) {
+	public adm(World var1, Position var2, ej var3) {
 		super(var1, var2);
 		ArrayList var4 = Lists.newArrayList();
 		adn[] var5 = adn.values();
@@ -67,20 +67,20 @@ public class adm extends adj {
 
 	public void b(Entity var1) {
 		if (this.o.Q().b("doTileDrops")) {
-			if (var1 instanceof ahd) {
-				ahd var2 = (ahd) var1;
+			if (var1 instanceof EntityHuman) {
+				EntityHuman var2 = (EntityHuman) var1;
 				if (var2.by.instabuild) {
 					return;
 				}
 			}
 
-			this.a(new amj(amk.an), 0.0F);
+			this.a(new ItemStack(amk.an), 0.0F);
 		}
 	}
 
 	public void b(double var1, double var3, double var5, float var7, float var8) {
-		dt var9 = new dt(var1 - this.s, var3 - this.t, var5 - this.u);
-		dt var10 = this.a.a((fd) var9);
+		Position var9 = new Position(var1 - this.locationX, var3 - this.locationY, var5 - this.locationZ);
+		Position var10 = this.a.a((fd) var9);
 		this.b((double) var10.n(), (double) var10.o(), (double) var10.p());
 	}
 }

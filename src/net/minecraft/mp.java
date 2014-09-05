@@ -1,13 +1,13 @@
 package net.minecraft;
 
-public class mp implements id<ls> {
+public class mp implements Packet<ls> {
 
 	private float a;
 	private float b;
 	private boolean c;
 	private boolean d;
 
-	public void a(hd var1) {
+	public void readData(PacketDataSerializer var1) {
 		this.a = var1.readFloat();
 		this.b = var1.readFloat();
 		byte var2 = var1.readByte();
@@ -15,7 +15,7 @@ public class mp implements id<ls> {
 		this.d = (var2 & 2) > 0;
 	}
 
-	public void b(hd var1) {
+	public void writeData(PacketDataSerializer var1) {
 		var1.writeFloat(this.a);
 		var1.writeFloat(this.b);
 		byte var2 = 0;
@@ -30,7 +30,7 @@ public class mp implements id<ls> {
 		var1.writeByte(var2);
 	}
 
-	public void a(ls var1) {
+	public void handlePacket(ls var1) {
 		var1.a(this);
 	}
 

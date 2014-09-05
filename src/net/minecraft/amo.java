@@ -1,13 +1,13 @@
 package net.minecraft;
 
-public class amo extends alq {
+public class amo extends Item {
 
 	public amo() {
 		this.c(1);
-		this.a(akf.f);
+		this.a(CreativeModeTab.f);
 	}
 
-	public amj b(amj var1, World var2, ahd var3) {
+	public ItemStack b(ItemStack var1, World var2, EntityHuman var3) {
 		if (!var3.by.instabuild) {
 			--var1.b;
 		}
@@ -16,19 +16,19 @@ public class amo extends alq {
 			var3.bj();
 		}
 
-		var3.b(ty.J[alq.b((alq) this)]);
-		return var1.b <= 0 ? new amj(amk.aw) : var1;
+		var3.b(ty.J[Item.getId((Item) this)]);
+		return var1.b <= 0 ? new ItemStack(amk.aw) : var1;
 	}
 
-	public int d(amj var1) {
+	public int d(ItemStack var1) {
 		return 32;
 	}
 
-	public ano e(amj var1) {
+	public ano e(ItemStack var1) {
 		return ano.c;
 	}
 
-	public amj a(amj var1, World var2, ahd var3) {
+	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
 		var3.a(var1, this.d(var1));
 		return var1;
 	}

@@ -7,7 +7,7 @@ public abstract class ahl extends Entity {
 	private int e = -1;
 	private int f = -1;
 	private int g = -1;
-	private atr h;
+	private Block h;
 	private boolean i;
 	public EntityLiving a;
 	private int ap;
@@ -27,9 +27,9 @@ public abstract class ahl extends Entity {
 	public ahl(World var1, double var2, double var4, double var6, double var8, double var10, double var12) {
 		super(var1);
 		this.a(1.0F, 1.0F);
-		this.b(var2, var4, var6, this.y, this.z);
+		this.b(var2, var4, var6, this.yaw, this.pitch);
 		this.b(var2, var4, var6);
-		double var14 = (double) NumberConverter.a(var8 * var8 + var10 * var10 + var12 * var12);
+		double var14 = (double) DataTypesConverter.a(var8 * var8 + var10 * var10 + var12 * var12);
 		this.b = var8 / var14 * 0.1D;
 		this.c = var10 / var14 * 0.1D;
 		this.d = var12 / var14 * 0.1D;
@@ -39,26 +39,26 @@ public abstract class ahl extends Entity {
 		super(var1);
 		this.a = var2;
 		this.a(1.0F, 1.0F);
-		this.b(var2.s, var2.t, var2.u, var2.y, var2.z);
-		this.b(this.s, this.t, this.u);
-		this.v = this.w = this.x = 0.0D;
+		this.b(var2.locationX, var2.locationY, var2.locationZ, var2.yaw, var2.pitch);
+		this.b(this.locationX, this.locationY, this.locationZ);
+		this.motionX = this.motionY = this.motionZ = 0.0D;
 		var3 += this.V.nextGaussian() * 0.4D;
 		var5 += this.V.nextGaussian() * 0.4D;
 		var7 += this.V.nextGaussian() * 0.4D;
-		double var9 = (double) NumberConverter.a(var3 * var3 + var5 * var5 + var7 * var7);
+		double var9 = (double) DataTypesConverter.a(var3 * var3 + var5 * var5 + var7 * var7);
 		this.b = var3 / var9 * 0.1D;
 		this.c = var5 / var9 * 0.1D;
 		this.d = var7 / var9 * 0.1D;
 	}
 
 	public void s_() {
-		if (!this.o.D && (this.a != null && this.a.I || !this.o.e(new dt(this)))) {
+		if (!this.o.D && (this.a != null && this.a.I || !this.o.e(new Position(this)))) {
 			this.J();
 		} else {
 			super.s_();
 			this.e(1);
 			if (this.i) {
-				if (this.o.p(new dt(this.e, this.f, this.g)).c() == this.h) {
+				if (this.o.p(new Position(this.e, this.f, this.g)).c() == this.h) {
 					++this.ap;
 					if (this.ap == 600) {
 						this.J();
@@ -68,26 +68,26 @@ public abstract class ahl extends Entity {
 				}
 
 				this.i = false;
-				this.v *= (double) (this.V.nextFloat() * 0.2F);
-				this.w *= (double) (this.V.nextFloat() * 0.2F);
-				this.x *= (double) (this.V.nextFloat() * 0.2F);
+				this.motionX *= (double) (this.V.nextFloat() * 0.2F);
+				this.motionY *= (double) (this.V.nextFloat() * 0.2F);
+				this.motionZ *= (double) (this.V.nextFloat() * 0.2F);
 				this.ap = 0;
 				this.aq = 0;
 			} else {
 				++this.aq;
 			}
 
-			brw var1 = new brw(this.s, this.t, this.u);
-			brw var2 = new brw(this.s + this.v, this.t + this.w, this.u + this.x);
+			brw var1 = new brw(this.locationX, this.locationY, this.locationZ);
+			brw var2 = new brw(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 			bru var3 = this.o.a(var1, var2);
-			var1 = new brw(this.s, this.t, this.u);
-			var2 = new brw(this.s + this.v, this.t + this.w, this.u + this.x);
+			var1 = new brw(this.locationX, this.locationY, this.locationZ);
+			var2 = new brw(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 			if (var3 != null) {
 				var2 = new brw(var3.c.a, var3.c.b, var3.c.c);
 			}
 
 			Entity var4 = null;
-			List var5 = this.o.b((Entity) this, this.aQ().a(this.v, this.w, this.x).b(1.0D, 1.0D, 1.0D));
+			List var5 = this.o.b((Entity) this, this.aQ().a(this.motionX, this.motionY, this.motionZ).b(1.0D, 1.0D, 1.0D));
 			double var6 = 0.0D;
 
 			for (int var8 = 0; var8 < var5.size(); ++var8) {
@@ -114,48 +114,48 @@ public abstract class ahl extends Entity {
 				this.a(var3);
 			}
 
-			this.s += this.v;
-			this.t += this.w;
-			this.u += this.x;
-			float var15 = NumberConverter.a(this.v * this.v + this.x * this.x);
-			this.y = (float) (Math.atan2(this.x, this.v) * 180.0D / 3.1415927410125732D) + 90.0F;
+			this.locationX += this.motionX;
+			this.locationY += this.motionY;
+			this.locationZ += this.motionZ;
+			float var15 = DataTypesConverter.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			this.yaw = (float) (Math.atan2(this.motionZ, this.motionX) * 180.0D / 3.1415927410125732D) + 90.0F;
 
-			for (this.z = (float) (Math.atan2((double) var15, this.w) * 180.0D / 3.1415927410125732D) - 90.0F; this.z - this.B < -180.0F; this.B -= 360.0F) {
+			for (this.pitch = (float) (Math.atan2((double) var15, this.motionY) * 180.0D / 3.1415927410125732D) - 90.0F; this.pitch - this.B < -180.0F; this.B -= 360.0F) {
 				;
 			}
 
-			while (this.z - this.B >= 180.0F) {
+			while (this.pitch - this.B >= 180.0F) {
 				this.B += 360.0F;
 			}
 
-			while (this.y - this.A < -180.0F) {
+			while (this.yaw - this.A < -180.0F) {
 				this.A -= 360.0F;
 			}
 
-			while (this.y - this.A >= 180.0F) {
+			while (this.yaw - this.A >= 180.0F) {
 				this.A += 360.0F;
 			}
 
-			this.z = this.B + (this.z - this.B) * 0.2F;
-			this.y = this.A + (this.y - this.A) * 0.2F;
+			this.pitch = this.B + (this.pitch - this.B) * 0.2F;
+			this.yaw = this.A + (this.yaw - this.A) * 0.2F;
 			float var16 = this.j();
 			if (this.V()) {
 				for (int var17 = 0; var17 < 4; ++var17) {
 					float var18 = 0.25F;
-					this.o.a(ew.e, this.s - this.v * (double) var18, this.t - this.w * (double) var18, this.u - this.x * (double) var18, this.v, this.w, this.x, new int[0]);
+					this.o.a(ew.e, this.locationX - this.motionX * (double) var18, this.locationY - this.motionY * (double) var18, this.locationZ - this.motionZ * (double) var18, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 
 				var16 = 0.8F;
 			}
 
-			this.v += this.b;
-			this.w += this.c;
-			this.x += this.d;
-			this.v *= (double) var16;
-			this.w *= (double) var16;
-			this.x *= (double) var16;
-			this.o.a(ew.l, this.s, this.t + 0.5D, this.u, 0.0D, 0.0D, 0.0D, new int[0]);
-			this.b(this.s, this.t, this.u);
+			this.motionX += this.b;
+			this.motionY += this.c;
+			this.motionZ += this.d;
+			this.motionX *= (double) var16;
+			this.motionY *= (double) var16;
+			this.motionZ *= (double) var16;
+			this.o.a(ew.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.b(this.locationX, this.locationY, this.locationZ);
 		}
 	}
 
@@ -169,10 +169,10 @@ public abstract class ahl extends Entity {
 		var1.put("xTile", (short) this.e);
 		var1.put("yTile", (short) this.f);
 		var1.put("zTile", (short) this.g);
-		oa var2 = (oa) atr.c.c(this.h);
+		oa var2 = (oa) Block.c.c(this.h);
 		var1.put("inTile", var2 == null ? "" : var2.toString());
 		var1.put("inGround", (byte) (this.i ? 1 : 0));
-		var1.put("direction", (NBTTag) this.a(new double[] { this.v, this.w, this.x }));
+		var1.put("direction", (NBTTag) this.a(new double[] { this.motionX, this.motionY, this.motionZ }));
 	}
 
 	public void a(NBTCompoundTag var1) {
@@ -180,17 +180,17 @@ public abstract class ahl extends Entity {
 		this.f = var1.getShort("yTile");
 		this.g = var1.getShort("zTile");
 		if (var1.isTagAssignableFrom("inTile", 8)) {
-			this.h = atr.b(var1.getString("inTile"));
+			this.h = Block.b(var1.getString("inTile"));
 		} else {
-			this.h = atr.c(var1.getByte("inTile") & 255);
+			this.h = Block.c(var1.getByte("inTile") & 255);
 		}
 
 		this.i = var1.getByte("inGround") == 1;
 		if (var1.isTagAssignableFrom("direction", 9)) {
 			NBTListTag var2 = var1.getList("direction", 6);
-			this.v = var2.getDouble(0);
-			this.w = var2.getDouble(1);
-			this.x = var2.getDouble(2);
+			this.motionX = var2.getDouble(0);
+			this.motionY = var2.getDouble(1);
+			this.motionZ = var2.getDouble(2);
 		} else {
 			this.J();
 		}
@@ -213,12 +213,12 @@ public abstract class ahl extends Entity {
 			if (var1.j() != null) {
 				brw var3 = var1.j().ap();
 				if (var3 != null) {
-					this.v = var3.a;
-					this.w = var3.b;
-					this.x = var3.c;
-					this.b = this.v * 0.1D;
-					this.c = this.w * 0.1D;
-					this.d = this.x * 0.1D;
+					this.motionX = var3.a;
+					this.motionY = var3.b;
+					this.motionZ = var3.c;
+					this.b = this.motionX * 0.1D;
+					this.c = this.motionY * 0.1D;
+					this.d = this.motionZ * 0.1D;
 				}
 
 				if (var1.j() instanceof EntityLiving) {

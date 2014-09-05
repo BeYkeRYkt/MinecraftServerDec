@@ -9,14 +9,14 @@ public class aag extends zb {
 	private double e;
 	private double f;
 	private double g;
-	private ahd h;
+	private EntityHuman h;
 	private int i;
 	private boolean j;
-	private alq k;
+	private Item k;
 	private boolean l;
 	private boolean m;
 
-	public aag(EntityCreature var1, double var2, alq var4, boolean var5) {
+	public aag(EntityCreature var1, double var2, Item var4, boolean var5) {
 		this.a = var1;
 		this.b = var2;
 		this.k = var4;
@@ -36,8 +36,8 @@ public class aag extends zb {
 			if (this.h == null) {
 				return false;
 			} else {
-				amj var1 = this.h.bY();
-				return var1 == null ? false : var1.b() == this.k;
+				ItemStack var1 = this.h.bY();
+				return var1 == null ? false : var1.getItem() == this.k;
 			}
 		}
 	}
@@ -49,26 +49,26 @@ public class aag extends zb {
 					return false;
 				}
 
-				if (Math.abs((double) this.h.z - this.f) > 5.0D || Math.abs((double) this.h.y - this.g) > 5.0D) {
+				if (Math.abs((double) this.h.pitch - this.f) > 5.0D || Math.abs((double) this.h.yaw - this.g) > 5.0D) {
 					return false;
 				}
 			} else {
-				this.c = this.h.s;
-				this.d = this.h.t;
-				this.e = this.h.u;
+				this.c = this.h.locationX;
+				this.d = this.h.locationY;
+				this.e = this.h.locationZ;
 			}
 
-			this.f = (double) this.h.z;
-			this.g = (double) this.h.y;
+			this.f = (double) this.h.pitch;
+			this.g = (double) this.h.yaw;
 		}
 
 		return this.a();
 	}
 
 	public void c() {
-		this.c = this.h.s;
-		this.d = this.h.t;
-		this.e = this.h.u;
+		this.c = this.h.locationX;
+		this.d = this.h.locationY;
+		this.e = this.h.locationZ;
 		this.j = true;
 		this.m = ((aay) this.a.s()).e();
 		((aay) this.a.s()).a(false);

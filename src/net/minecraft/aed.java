@@ -2,7 +2,7 @@ package net.minecraft;
 
 public abstract class aed extends adx implements vy {
 
-	private amj[] a = new amj[36];
+	private ItemStack[] a = new ItemStack[36];
 	private boolean b = true;
 
 	public aed(World var1) {
@@ -18,13 +18,13 @@ public abstract class aed extends adx implements vy {
 		vs.a(this.o, (Entity) this, this);
 	}
 
-	public amj a(int var1) {
+	public ItemStack a(int var1) {
 		return this.a[var1];
 	}
 
-	public amj a(int var1, int var2) {
+	public ItemStack a(int var1, int var2) {
 		if (this.a[var1] != null) {
-			amj var3;
+			ItemStack var3;
 			if (this.a[var1].b <= var2) {
 				var3 = this.a[var1];
 				this.a[var1] = null;
@@ -42,9 +42,9 @@ public abstract class aed extends adx implements vy {
 		}
 	}
 
-	public amj b(int var1) {
+	public ItemStack b(int var1) {
 		if (this.a[var1] != null) {
-			amj var2 = this.a[var1];
+			ItemStack var2 = this.a[var1];
 			this.a[var1] = null;
 			return var2;
 		} else {
@@ -52,7 +52,7 @@ public abstract class aed extends adx implements vy {
 		}
 	}
 
-	public void a(int var1, amj var2) {
+	public void a(int var1, ItemStack var2) {
 		this.a[var1] = var2;
 		if (var2 != null && var2.b > this.p_()) {
 			var2.b = this.p_();
@@ -63,17 +63,17 @@ public abstract class aed extends adx implements vy {
 	public void o_() {
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return this.I ? false : var1.h(this) <= 64.0D;
 	}
 
-	public void b(ahd var1) {
+	public void b(EntityHuman var1) {
 	}
 
-	public void c(ahd var1) {
+	public void c(EntityHuman var1) {
 	}
 
-	public boolean b(int var1, amj var2) {
+	public boolean b(int var1, ItemStack var2) {
 		return true;
 	}
 
@@ -117,32 +117,32 @@ public abstract class aed extends adx implements vy {
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
-		this.a = new amj[this.n_()];
+		this.a = new ItemStack[this.n_()];
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			int var5 = var4.getByte("Slot") & 255;
 			if (var5 >= 0 && var5 < this.a.length) {
-				this.a[var5] = amj.a(var4);
+				this.a[var5] = ItemStack.a(var4);
 			}
 		}
 
 	}
 
-	public boolean e(ahd var1) {
+	public boolean e(EntityHuman var1) {
 		if (!this.o.D) {
-			var1.a((vq) this);
+			var1.a((IInventory) this);
 		}
 
 		return true;
 	}
 
 	protected void o() {
-		int var1 = 15 - aib.b((vq) this);
+		int var1 = 15 - Container.b((IInventory) this);
 		float var2 = 0.98F + (float) var1 * 0.001F;
-		this.v *= (double) var2;
-		this.w *= 0.0D;
-		this.x *= (double) var2;
+		this.motionX *= (double) var2;
+		this.motionY *= 0.0D;
+		this.motionZ *= (double) var2;
 	}
 
 	public int a_(int var1) {

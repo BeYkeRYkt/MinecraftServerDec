@@ -1,13 +1,13 @@
 package net.minecraft;
 
-public class anl extends alq {
+public class anl extends Item {
 
 	public anl() {
 		this.a(true);
-		this.a(akf.f);
+		this.a(CreativeModeTab.f);
 	}
 
-	public String a(amj var1) {
+	public String a(ItemStack var1) {
 		String var2 = ("" + fi.a(this.a() + ".name")).trim();
 		String var3 = xb.b(var1.i());
 		if (var3 != null) {
@@ -17,7 +17,7 @@ public class anl extends alq {
 		return var2;
 	}
 
-	public boolean a(amj var1, ahd var2, World var3, dt var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
 		if (var3.D) {
 			return true;
 		} else if (!var2.a(var4.a(var5), var5, var1)) {
@@ -60,7 +60,7 @@ public class anl extends alq {
 		}
 	}
 
-	public amj a(amj var1, World var2, ahd var3) {
+	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
 		if (var2.D) {
 			return var1;
 		} else {
@@ -69,7 +69,7 @@ public class anl extends alq {
 				return var1;
 			} else {
 				if (var4.a == brv.b) {
-					dt var5 = var4.a();
+					Position var5 = var4.a();
 					if (!var2.a(var3, var5)) {
 						return var1;
 					}
@@ -89,7 +89,7 @@ public class anl extends alq {
 								--var1.b;
 							}
 
-							var3.b(ty.J[alq.b((alq) this)]);
+							var3.b(ty.J[Item.getId((Item) this)]);
 						}
 					}
 				}
@@ -109,10 +109,10 @@ public class anl extends alq {
 				var8 = xb.a(var1, var0);
 				if (var8 instanceof EntityLiving) {
 					xn var10 = (xn) var8;
-					var8.b(var2, var4, var6, NumberConverter.g(var0.s.nextFloat() * 360.0F), 0.0F);
-					var10.aI = var10.y;
-					var10.aG = var10.y;
-					var10.a(var0.E(new dt(var10)), (xq) null);
+					var8.b(var2, var4, var6, DataTypesConverter.g(var0.s.nextFloat() * 360.0F), 0.0F);
+					var10.aI = var10.yaw;
+					var10.aG = var10.yaw;
+					var10.a(var0.E(new Position(var10)), (xq) null);
 					var0.d(var8);
 					var10.x();
 				}

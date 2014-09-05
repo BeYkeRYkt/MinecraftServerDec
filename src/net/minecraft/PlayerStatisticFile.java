@@ -60,21 +60,21 @@ public class PlayerStatisticFile extends tz {
 
 	}
 
-	public void a(ahd var1, PlayerStatistic var2, int var3) {
+	public void a(EntityHuman var1, PlayerStatistic var2, int var3) {
 		int var4 = var2.d() ? this.a(var2) : 0;
 		super.a(var1, var2, var3);
 		this.e.add(var2);
 		if (var2.d() && var4 == 0 && var3 > 0) {
 			this.g = true;
 			if (this.minecraftserver.isAnnouncePlayerAchievmentsEnabled()) {
-				this.minecraftserver.getPlayerList().a((ho) (new hz("chat.type.achievement", new Object[] { var1.e_(), var2.j() })));
+				this.minecraftserver.getPlayerList().a((IJSONComponent) (new hz("chat.type.achievement", new Object[] { var1.e_(), var2.j() })));
 			}
 		}
 
 		if (var2.d() && var4 > 0 && var3 == 0) {
 			this.g = true;
 			if (this.minecraftserver.isAnnouncePlayerAchievmentsEnabled()) {
-				this.minecraftserver.getPlayerList().a((ho) (new hz("chat.type.achievement.taken", new Object[] { var1.e_(), var2.j() })));
+				this.minecraftserver.getPlayerList().a((IJSONComponent) (new hz("chat.type.achievement.taken", new Object[] { var1.e_(), var2.j() })));
 			}
 		}
 
@@ -179,7 +179,7 @@ public class PlayerStatisticFile extends tz {
 			}
 		}
 
-		var1.a.a((id<?>) (new is(var3)));
+		var1.a.a((Packet<?>) (new is(var3)));
 	}
 
 	public void b(EntityPlayer var1) {
@@ -194,7 +194,7 @@ public class PlayerStatisticFile extends tz {
 			}
 		}
 
-		var1.a.a((id<?>) (new is(var2)));
+		var1.a.a((Packet<?>) (new is(var2)));
 	}
 
 	public boolean e() {

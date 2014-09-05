@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class lu implements id<ls> {
+public class lu implements Packet<ls> {
 
 	private String a;
 
@@ -15,15 +15,15 @@ public class lu implements id<ls> {
 		this.a = var1;
 	}
 
-	public void a(hd var1) {
-		this.a = var1.c(100);
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readString(100);
 	}
 
-	public void b(hd var1) {
-		var1.a(this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeString(this.a);
 	}
 
-	public void a(ls var1) {
+	public void handlePacket(ls var1) {
 		var1.a(this);
 	}
 

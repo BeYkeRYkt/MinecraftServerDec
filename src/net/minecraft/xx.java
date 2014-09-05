@@ -13,8 +13,8 @@ public abstract class xx extends abq implements xt {
 
 	protected void h() {
 		super.h();
-		this.ac.a(16, Byte.valueOf((byte) 0));
-		this.ac.a(17, "");
+		this.dataWatcher.a(16, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(17, "");
 	}
 
 	public void b(NBTCompoundTag var1) {
@@ -57,21 +57,21 @@ public abstract class xx extends abq implements xt {
 			double var4 = this.V.nextGaussian() * 0.02D;
 			double var6 = this.V.nextGaussian() * 0.02D;
 			double var8 = this.V.nextGaussian() * 0.02D;
-			this.o.a(var2, this.s + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.t + 0.5D + (double) (this.V.nextFloat() * this.K), this.u + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var4, var6, var8, new int[0]);
+			this.o.a(var2, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var4, var6, var8, new int[0]);
 		}
 
 	}
 
 	public boolean cj() {
-		return (this.ac.a(16) & 4) != 0;
+		return (this.dataWatcher.a(16) & 4) != 0;
 	}
 
 	public void m(boolean var1) {
-		byte var2 = this.ac.a(16);
+		byte var2 = this.dataWatcher.a(16);
 		if (var1) {
-			this.ac.b(16, Byte.valueOf((byte) (var2 | 4)));
+			this.dataWatcher.b(16, Byte.valueOf((byte) (var2 | 4)));
 		} else {
-			this.ac.b(16, Byte.valueOf((byte) (var2 & -5)));
+			this.dataWatcher.b(16, Byte.valueOf((byte) (var2 & -5)));
 		}
 
 		this.ck();
@@ -81,25 +81,25 @@ public abstract class xx extends abq implements xt {
 	}
 
 	public boolean cl() {
-		return (this.ac.a(16) & 1) != 0;
+		return (this.dataWatcher.a(16) & 1) != 0;
 	}
 
 	public void n(boolean var1) {
-		byte var2 = this.ac.a(16);
+		byte var2 = this.dataWatcher.a(16);
 		if (var1) {
-			this.ac.b(16, Byte.valueOf((byte) (var2 | 1)));
+			this.dataWatcher.b(16, Byte.valueOf((byte) (var2 | 1)));
 		} else {
-			this.ac.b(16, Byte.valueOf((byte) (var2 & -2)));
+			this.dataWatcher.b(16, Byte.valueOf((byte) (var2 & -2)));
 		}
 
 	}
 
 	public String b() {
-		return this.ac.e(17);
+		return this.dataWatcher.e(17);
 	}
 
 	public void b(String var1) {
-		this.ac.b(17, var1);
+		this.dataWatcher.b(17, var1);
 	}
 
 	public EntityLiving cm() {

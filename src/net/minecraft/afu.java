@@ -23,7 +23,7 @@ class afu extends zy {
 			Random var1 = this.a.bb();
 			if (var1.nextInt(10) == 0) {
 				this.b = ej.a(var1);
-				dt var2 = (new dt(this.a.s, this.a.t + 0.5D, this.a.u)).a(this.b);
+				Position var2 = (new Position(this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ)).a(this.b);
 				bec var3 = this.a.o.p(var2);
 				if (axs.d(var3)) {
 					this.c = true;
@@ -45,7 +45,7 @@ class afu extends zy {
 			super.c();
 		} else {
 			World var1 = this.a.o;
-			dt var2 = (new dt(this.a.s, this.a.t + 0.5D, this.a.u)).a(this.b);
+			Position var2 = (new Position(this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ)).a(this.b);
 			bec var3 = var1.p(var2);
 			if (axs.d(var3)) {
 				var1.a(var2, aty.be.P().a(axs.a, axu.a(var3)), 3);

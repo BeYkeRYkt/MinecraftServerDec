@@ -16,7 +16,7 @@ public class aaa extends zb {
 		if (this.a.o.w()) {
 			return false;
 		} else {
-			dt var1 = new dt(this.a);
+			Position var1 = new Position(this.a);
 			abi var2 = this.a.o.ae().a(var1, 16);
 			if (var2 == null) {
 				return false;
@@ -28,7 +28,7 @@ public class aaa extends zb {
 	}
 
 	public boolean b() {
-		return this.a.o.w() ? false : !this.b.i() && this.b.c(new dt(this.a));
+		return this.a.o.w() ? false : !this.b.i() && this.b.c(new Position(this.a));
 	}
 
 	public void c() {

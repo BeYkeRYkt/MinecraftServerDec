@@ -15,7 +15,7 @@ public class abb extends aaz {
 	}
 
 	protected brw c() {
-		return new brw(this.b.s, this.b.t + (double) this.b.K * 0.5D, this.b.u);
+		return new brw(this.b.locationX, this.b.locationY + (double) this.b.K * 0.5D, this.b.locationZ);
 	}
 
 	protected void l() {

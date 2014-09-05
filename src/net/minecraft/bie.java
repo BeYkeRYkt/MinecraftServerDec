@@ -14,7 +14,7 @@ public class bie extends bhp {
 	private static final List c = Lists
 			.newArrayList((Object[]) (new vl[] { new vl(amk.aA, 0, 1, 1, 10), new vl(amk.j, 0, 1, 4, 10), new vl(amk.P, 0, 1, 1, 10), new vl(amk.O, 0, 1, 4, 10), new vl(amk.H, 0, 1, 4, 10), new vl(amk.F, 0, 1, 4, 10), new vl(amk.aw, 0, 1, 1, 10), new vl(amk.ao, 0, 1, 1, 1), new vl(amk.aC, 0, 1, 4, 10), new vl(amk.cq, 0, 1, 1, 4), new vl(amk.cr, 0, 1, 1, 4), new vl(amk.co, 0, 1, 1, 10), new vl(amk.cl, 0, 1, 1, 2), new vl(amk.ck, 0, 1, 1, 5), new vl(amk.cm, 0, 1, 1, 1) }));
 
-	public boolean b(World var1, Random var2, dt var3) {
+	public boolean b(World var1, Random var2, Position var3) {
 		boolean var4 = true;
 		int var5 = var2.nextInt(2) + 2;
 		int var6 = -var5 - 1;
@@ -29,7 +29,7 @@ public class bie extends bhp {
 		int var14;
 		int var15;
 		int var16;
-		dt var17;
+		Position var17;
 		for (var14 = var6; var14 <= var7; ++var14) {
 			for (var15 = -1; var15 <= 4; ++var15) {
 				for (var16 = var11; var16 <= var12; ++var16) {
@@ -84,7 +84,7 @@ public class bie extends bhp {
 							var16 = var3.n() + var2.nextInt(var5 * 2 + 1) - var5;
 							int var24 = var3.o();
 							int var25 = var3.p() + var2.nextInt(var10 * 2 + 1) - var10;
-							dt var26 = new dt(var16, var24, var25);
+							Position var26 = new Position(var16, var24, var25);
 							if (var1.d(var26)) {
 								int var20 = 0;
 								Iterator var21 = en.a.iterator();
@@ -101,7 +101,7 @@ public class bie extends bhp {
 									List var27 = vl.a(c, new vl[] { amk.cd.b(var2) });
 									bcm var28 = var1.s(var26);
 									if (var28 instanceof bcr) {
-										vl.a(var2, var27, (vq) ((bcr) var28), 8);
+										vl.a(var2, var27, (IInventory) ((bcr) var28), 8);
 									}
 									break label197;
 								}

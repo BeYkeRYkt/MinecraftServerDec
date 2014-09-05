@@ -1,9 +1,9 @@
 package net.minecraft;
 
-public class lj implements id<ik> {
+public class lj implements Packet<PlayPacketListener> {
 
 	private lk a;
-	private ho b;
+	private IJSONComponent b;
 	private int c;
 	private int d;
 	private int e;
@@ -11,15 +11,15 @@ public class lj implements id<ik> {
 	public lj() {
 	}
 
-	public lj(lk var1, ho var2) {
+	public lj(lk var1, IJSONComponent var2) {
 		this(var1, var2, -1, -1, -1);
 	}
 
 	public lj(int var1, int var2, int var3) {
-		this(lk.c, (ho) null, var1, var2, var3);
+		this(lk.c, (IJSONComponent) null, var1, var2, var3);
 	}
 
-	public lj(lk var1, ho var2, int var3, int var4, int var5) {
+	public lj(lk var1, IJSONComponent var2, int var3, int var4, int var5) {
 		this.a = var1;
 		this.b = var2;
 		this.c = var3;
@@ -27,10 +27,10 @@ public class lj implements id<ik> {
 		this.e = var5;
 	}
 
-	public void a(hd var1) {
+	public void readData(PacketDataSerializer var1) {
 		this.a = (lk) var1.a(lk.class);
 		if (this.a == lk.a || this.a == lk.b) {
-			this.b = var1.d();
+			this.b = var1.readJSONComponent();
 		}
 
 		if (this.a == lk.c) {
@@ -41,10 +41,10 @@ public class lj implements id<ik> {
 
 	}
 
-	public void b(hd var1) {
-		var1.a((Enum) this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeEnum((Enum) this.a);
 		if (this.a == lk.a || this.a == lk.b) {
-			var1.a(this.b);
+			var1.writeJSONComponent(this.b);
 		}
 
 		if (this.a == lk.c) {
@@ -55,7 +55,7 @@ public class lj implements id<ik> {
 
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

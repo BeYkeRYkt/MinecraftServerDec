@@ -6,16 +6,16 @@ public class aef extends aed implements bdd {
 
 	private boolean a = true;
 	private int b = -1;
-	private dt c;
+	private Position c;
 
 	public aef(World var1) {
 		super(var1);
-		this.c = dt.a;
+		this.c = Position.a;
 	}
 
 	public aef(World var1, double var2, double var4, double var6) {
 		super(var1, var2, var4, var6);
-		this.c = dt.a;
+		this.c = Position.a;
 	}
 
 	public adz s() {
@@ -34,9 +34,9 @@ public class aef extends aed implements bdd {
 		return 5;
 	}
 
-	public boolean e(ahd var1) {
+	public boolean e(EntityHuman var1) {
 		if (!this.o.D) {
-			var1.a((vq) this);
+			var1.a((IInventory) this);
 		}
 
 		return true;
@@ -63,21 +63,21 @@ public class aef extends aed implements bdd {
 	}
 
 	public double A() {
-		return this.s;
+		return this.locationX;
 	}
 
 	public double B() {
-		return this.t;
+		return this.locationY;
 	}
 
 	public double C() {
-		return this.u;
+		return this.locationZ;
 	}
 
 	public void s_() {
 		super.s_();
 		if (!this.o.D && this.ai() && this.y()) {
-			dt var1 = new dt(this);
+			Position var1 = new Position(this);
 			if (var1.equals(this.c)) {
 				--this.b;
 			} else {
@@ -101,7 +101,7 @@ public class aef extends aed implements bdd {
 		} else {
 			List var1 = this.o.a(adw.class, this.aQ().b(0.25D, 0.0D, 0.25D), EntityPredicates.a);
 			if (var1.size() > 0) {
-				bde.a((vq) this, (adw) var1.get(0));
+				bde.a((IInventory) this, (adw) var1.get(0));
 			}
 
 			return false;
@@ -110,7 +110,7 @@ public class aef extends aed implements bdd {
 
 	public void a(wh var1) {
 		super.a(var1);
-		this.a(alq.a((atr) aty.cp), 1, 0.0F);
+		this.a(Item.getItemOf((Block) aty.cp), 1, 0.0F);
 	}
 
 	protected void b(NBTCompoundTag var1) {
@@ -135,7 +135,7 @@ public class aef extends aed implements bdd {
 		return "minecraft:hopper";
 	}
 
-	public aib a(ahb var1, ahd var2) {
+	public Container a(PlayerInventory var1, EntityHuman var2) {
 		return new aix(var1, this, var2);
 	}
 }

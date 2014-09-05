@@ -32,7 +32,7 @@ public class ah {
 		return var3.size() == 1 ? (Entity) var3.get(0) : null;
 	}
 
-	public static ho b(CommandSenderInterface var0, String var1) {
+	public static IJSONComponent b(CommandSenderInterface var0, String var1) {
 		List var2 = b(var0, var1, Entity.class);
 		if (var2.isEmpty()) {
 			return null;
@@ -57,7 +57,7 @@ public class ah {
 				return Collections.emptyList();
 			} else {
 				String var5 = var3.group(1);
-				dt var6 = b(var4, var0.c());
+				Position var6 = b(var4, var0.c());
 				List var7 = a(var0, var4);
 				ArrayList var8 = Lists.newArrayList();
 				Iterator var9 = var7.iterator();
@@ -191,7 +191,7 @@ public class ah {
 		return var1;
 	}
 
-	private static List a(Map var0, dt var1) {
+	private static List a(Map var0, Position var1) {
 		ArrayList var2 = Lists.newArrayList();
 		int var3 = a(var0, "rm", -1);
 		int var4 = a(var0, "r", -1);
@@ -223,7 +223,7 @@ public class ah {
 		return var1;
 	}
 
-	private static List a(Map var0, Class var1, List var2, String var3, World var4, dt var5) {
+	private static List a(Map var0, Class var1, List var2, String var3, World var4, Position var5) {
 		ArrayList var6 = Lists.newArrayList();
 		String var7 = b(var0, "type");
 		var7 = var7 != null && var7.startsWith("!") ? var7.substring(1) : var7;
@@ -275,7 +275,7 @@ public class ah {
 		return var6;
 	}
 
-	private static List a(List var0, Map var1, CommandSenderInterface var2, Class var3, String var4, dt var5) {
+	private static List a(List var0, Map var1, CommandSenderInterface var2, Class var3, String var4, Position var5) {
 		int var6 = a(var1, "c", !var4.equals("a") && !var4.equals("e") ? 1 : 0);
 		if (!var4.equals("p") && !var4.equals("a") && !var4.equals("e")) {
 			if (var4.equals("r")) {
@@ -301,7 +301,7 @@ public class ah {
 		return (List) var0;
 	}
 
-	private static brt a(dt var0, int var1, int var2, int var3) {
+	private static brt a(Position var0, int var1, int var2, int var3) {
 		boolean var4 = var1 < 0;
 		boolean var5 = var2 < 0;
 		boolean var6 = var3 < 0;
@@ -327,8 +327,8 @@ public class ah {
 		return var0;
 	}
 
-	private static dt b(Map var0, dt var1) {
-		return new dt(a(var0, "x", var1.n()), a(var0, "y", var1.o()), a(var0, "z", var1.p()));
+	private static Position b(Map var0, Position var1) {
+		return new Position(a(var0, "x", var1.n()), a(var0, "y", var1.o()), a(var0, "z", var1.p()));
 	}
 
 	private static boolean h(Map var0) {
@@ -347,7 +347,7 @@ public class ah {
 	}
 
 	private static int a(Map var0, String var1, int var2) {
-		return var0.containsKey(var1) ? NumberConverter.a((String) var0.get(var1), var2) : var2;
+		return var0.containsKey(var1) ? DataTypesConverter.a((String) var0.get(var1), var2) : var2;
 	}
 
 	private static String b(Map var0, String var1) {
@@ -361,7 +361,7 @@ public class ah {
 		while (var2.hasNext()) {
 			String var3 = (String) var2.next();
 			if (var3.startsWith("score_") && var3.length() > "score_".length()) {
-				var1.put(var3.substring("score_".length()), Integer.valueOf(NumberConverter.a((String) var0.get(var3), 1)));
+				var1.put(var3.substring("score_".length()), Integer.valueOf(DataTypesConverter.a((String) var0.get(var3), 1)));
 			}
 		}
 

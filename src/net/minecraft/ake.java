@@ -1,12 +1,12 @@
 package net.minecraft;
 
-public class ake extends alq {
+public class ake extends Item {
 
 	public boolean f() {
 		return true;
 	}
 
-	public id c(amj var1, World var2, ahd var3) {
+	public Packet c(ItemStack var1, World var2, EntityHuman var3) {
 		return null;
 	}
 }

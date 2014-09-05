@@ -11,13 +11,13 @@ class gu implements Runnable {
 	// $FF: synthetic field
 	final EnumProtocol b;
 	// $FF: synthetic field
-	final id c;
+	final Packet c;
 	// $FF: synthetic field
 	final GenericFutureListener[] d;
 	// $FF: synthetic field
 	final gr e;
 
-	gu(gr var1, EnumProtocol var2, EnumProtocol var3, id var4, GenericFutureListener[] var5) {
+	gu(gr var1, EnumProtocol var2, EnumProtocol var3, Packet var4, GenericFutureListener[] var5) {
 		this.e = var1;
 		this.a = var2;
 		this.b = var3;

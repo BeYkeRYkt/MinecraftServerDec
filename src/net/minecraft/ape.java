@@ -19,7 +19,7 @@ public class ape extends apf {
 		return 5;
 	}
 
-	public boolean a(amj var1) {
-		return var1.b() == amk.be ? true : super.a(var1);
+	public boolean a(ItemStack var1) {
+		return var1.getItem() == amk.be ? true : super.a(var1);
 	}
 }

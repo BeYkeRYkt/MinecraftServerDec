@@ -1,15 +1,15 @@
 package net.minecraft;
 
-public abstract class ati extends atr {
+public abstract class ati extends Block {
 
 	protected final boolean a;
 
-	public static boolean d(World var0, dt var1) {
+	public static boolean d(World var0, Position var1) {
 		return d(var0.p(var1));
 	}
 
 	public static boolean d(bec var0) {
-		atr var1 = var0.c();
+		Block var1 = var0.c();
 		return var1 == aty.av || var1 == aty.D || var1 == aty.E || var1 == aty.cs;
 	}
 
@@ -17,10 +17,10 @@ public abstract class ati extends atr {
 		super(bof.q);
 		this.a = var1;
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
-		this.a(akf.e);
+		this.a(CreativeModeTab.e);
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
@@ -28,12 +28,12 @@ public abstract class ati extends atr {
 		return false;
 	}
 
-	public bru a(World var1, dt var2, brw var3, brw var4) {
+	public bru a(World var1, Position var2, brw var3, brw var4) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3, var4);
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
 		atl var4 = var3.c() == this ? (atl) var3.b(this.l()) : null;
 		if (var4 != null && var4.c()) {
@@ -48,21 +48,21 @@ public abstract class ati extends atr {
 		return false;
 	}
 
-	public boolean c(World var1, dt var2) {
+	public boolean c(World var1, Position var2) {
 		return World.a((ard) var1, var2.b());
 	}
 
-	public void c(World var1, dt var2, bec var3) {
+	public void c(World var1, Position var2, bec var3) {
 		if (!var1.D) {
 			var3 = this.a(var1, var2, var3, true);
 			if (this.a) {
-				this.a(var1, var2, var3, (atr) this);
+				this.a(var1, var2, var3, (Block) this);
 			}
 		}
 
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (!var1.D) {
 			atl var5 = (atl) var3.b(this.l());
 			boolean var6 = false;
@@ -90,10 +90,10 @@ public abstract class ati extends atr {
 		}
 	}
 
-	protected void b(World var1, dt var2, bec var3, atr var4) {
+	protected void b(World var1, Position var2, bec var3, Block var4) {
 	}
 
-	protected bec a(World var1, dt var2, bec var3, boolean var4) {
+	protected bec a(World var1, Position var2, bec var3, boolean var4) {
 		return var1.D ? var3 : (new atk(this, var1, var2, var3)).a(var1.z(var2), var4).b();
 	}
 
@@ -101,15 +101,15 @@ public abstract class ati extends atr {
 		return 0;
 	}
 
-	public void b(World var1, dt var2, bec var3) {
+	public void b(World var1, Position var2, bec var3) {
 		super.b(var1, var2, var3);
 		if (((atl) var3.b(this.l())).c()) {
-			var1.c(var2.a(), (atr) this);
+			var1.c(var2.a(), (Block) this);
 		}
 
 		if (this.a) {
-			var1.c(var2, (atr) this);
-			var1.c(var2.b(), (atr) this);
+			var1.c(var2, (Block) this);
+			var1.c(var2.b(), (Block) this);
 		}
 
 	}

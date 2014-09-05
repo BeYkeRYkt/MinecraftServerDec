@@ -5,13 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class bat extends atr {
+public class bat extends Block {
 
 	public static final beu a = beu.a("facing", (Predicate) en.a);
 	public static final bev b = bev.a("half", bau.class);
 	public static final bev M = bev.a("shape", bav.class);
 	private static final int[][] N = new int[][] { { 4, 5 }, { 5, 7 }, { 6, 7 }, { 4, 6 }, { 0, 1 }, { 1, 3 }, { 2, 3 }, { 0, 2 } };
-	private final atr O;
+	private final Block O;
 	private final bec P;
 	private boolean Q;
 	private int R;
@@ -25,10 +25,10 @@ public class bat extends atr {
 		this.b(this.O.x / 3.0F);
 		this.a(this.O.H);
 		this.e(255);
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		if (this.Q) {
 			this.a(0.5F * (float) (this.R % 2), 0.5F * (float) (this.R / 4 % 2), 0.5F * (float) (this.R / 2 % 2), 0.5F + 0.5F * (float) (this.R % 2), 0.5F + 0.5F * (float) (this.R / 4 % 2), 0.5F + 0.5F * (float) (this.R / 2 % 2));
 		} else {
@@ -45,7 +45,7 @@ public class bat extends atr {
 		return false;
 	}
 
-	public void e(ard var1, dt var2) {
+	public void e(ard var1, Position var2) {
 		if (var1.p(var2).b(b) == bau.a) {
 			this.a(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
 		} else {
@@ -54,23 +54,23 @@ public class bat extends atr {
 
 	}
 
-	public static boolean c(atr var0) {
+	public static boolean c(Block var0) {
 		return var0 instanceof bat;
 	}
 
-	public static boolean a(ard var0, dt var1, bec var2) {
+	public static boolean a(ard var0, Position var1, bec var2) {
 		bec var3 = var0.p(var1);
-		atr var4 = var3.c();
+		Block var4 = var3.c();
 		return c(var4) && var3.b(b) == var2.b(b) && var3.b(a) == var2.b(a);
 	}
 
-	public int f(ard var1, dt var2) {
+	public int f(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
 		ej var4 = (ej) var3.b(a);
 		bau var5 = (bau) var3.b(b);
 		boolean var6 = var5 == bau.a;
 		bec var7;
-		atr var8;
+		Block var8;
 		ej var9;
 		if (var4 == ej.f) {
 			var7 = var1.p(var2.f());
@@ -129,13 +129,13 @@ public class bat extends atr {
 		return 0;
 	}
 
-	public int g(ard var1, dt var2) {
+	public int g(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
 		ej var4 = (ej) var3.b(a);
 		bau var5 = (bau) var3.b(b);
 		boolean var6 = var5 == bau.a;
 		bec var7;
-		atr var8;
+		Block var8;
 		ej var9;
 		if (var4 == ej.f) {
 			var7 = var1.p(var2.e());
@@ -194,7 +194,7 @@ public class bat extends atr {
 		return 0;
 	}
 
-	public boolean h(ard var1, dt var2) {
+	public boolean h(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
 		ej var4 = (ej) var3.b(a);
 		bau var5 = (bau) var3.b(b);
@@ -212,7 +212,7 @@ public class bat extends atr {
 		float var12 = 0.5F;
 		boolean var13 = true;
 		bec var14;
-		atr var15;
+		Block var15;
 		ej var16;
 		if (var4 == ej.f) {
 			var9 = 0.5F;
@@ -278,7 +278,7 @@ public class bat extends atr {
 		return var13;
 	}
 
-	public boolean i(ard var1, dt var2) {
+	public boolean i(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
 		ej var4 = (ej) var3.b(a);
 		bau var5 = (bau) var3.b(b);
@@ -296,7 +296,7 @@ public class bat extends atr {
 		float var12 = 1.0F;
 		boolean var13 = false;
 		bec var14;
-		atr var15;
+		Block var15;
 		ej var16;
 		if (var4 == ej.f) {
 			var14 = var1.p(var2.e());
@@ -367,7 +367,7 @@ public class bat extends atr {
 		return var13;
 	}
 
-	public void a(World var1, dt var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
 		this.e(var1, var2);
 		super.a(var1, var2, var3, var4, var5, var6);
 		boolean var7 = this.h(var1, var2);
@@ -379,11 +379,11 @@ public class bat extends atr {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
-	public void a(World var1, dt var2, ahd var3) {
+	public void a(World var1, Position var2, EntityHuman var3) {
 		this.O.a(var1, var2, var3);
 	}
 
-	public void d(World var1, dt var2, bec var3) {
+	public void d(World var1, Position var2, bec var3) {
 		this.O.d(var1, var2, var3);
 	}
 
@@ -395,7 +395,7 @@ public class bat extends atr {
 		return this.O.a(var1);
 	}
 
-	public brw a(World var1, dt var2, Entity var3, brw var4) {
+	public brw a(World var1, Position var2, Entity var3, brw var4) {
 		return this.O.a(var1, var2, var3, var4);
 	}
 
@@ -407,32 +407,32 @@ public class bat extends atr {
 		return this.O.a(var1, var2);
 	}
 
-	public boolean c(World var1, dt var2) {
+	public boolean c(World var1, Position var2) {
 		return this.O.c(var1, var2);
 	}
 
-	public void c(World var1, dt var2, bec var3) {
+	public void c(World var1, Position var2, bec var3) {
 		this.a(var1, var2, this.P, aty.a);
 		this.O.c(var1, var2, this.P);
 	}
 
-	public void b(World var1, dt var2, bec var3) {
+	public void b(World var1, Position var2, bec var3) {
 		this.O.b(var1, var2, this.P);
 	}
 
-	public void a(World var1, dt var2, Entity var3) {
+	public void a(World var1, Position var2, Entity var3) {
 		this.O.a(var1, var2, var3);
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		this.O.b(var1, var2, var3, var4);
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
 		return this.O.a(var1, var2, this.P, var4, ej.a, 0.0F, 0.0F, 0.0F);
 	}
 
-	public void a(World var1, dt var2, aqo var3) {
+	public void a(World var1, Position var2, aqo var3) {
 		this.O.a(var1, var2, var3);
 	}
 
@@ -440,13 +440,13 @@ public class bat extends atr {
 		return this.O.g(this.P);
 	}
 
-	public bec a(World var1, dt var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		bec var9 = super.a(var1, var2, var3, var4, var5, var6, var7, var8);
 		var9 = var9.a(a, var8.aO()).a(M, bav.a);
 		return var3 != ej.a && (var3 == ej.b || (double) var5 <= 0.5D) ? var9.a(b, bau.b) : var9.a(b, bau.a);
 	}
 
-	public bru a(World var1, dt var2, brw var3, brw var4) {
+	public bru a(World var1, Position var2, brw var3, brw var4) {
 		bru[] var5 = new bru[8];
 		bec var6 = var1.p(var2);
 		int var7 = ((ej) var6.b(a)).b();
@@ -504,7 +504,7 @@ public class bat extends atr {
 		return var2;
 	}
 
-	public bec a(bec var1, ard var2, dt var3) {
+	public bec a(bec var1, ard var2, Position var3) {
 		if (this.h(var2, var3)) {
 			switch (this.g(var2, var3)) {
 				case 0:

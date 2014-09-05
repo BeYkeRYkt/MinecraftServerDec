@@ -18,7 +18,7 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class EntityPlayer extends ahd implements ail {
+public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	private static final Logger bF = LogManager.getLogger();
 	private String bG = "en_US";
@@ -49,10 +49,10 @@ public class EntityPlayer extends ahd implements ail {
 		super(var2, var3);
 		var4.b = this;
 		this.c = var4;
-		dt var5 = var2.M();
-		if (!var2.t.o() && var2.P().r() != GameMode.ADVENTURE) {
+		Position var5 = var2.M();
+		if (!var2.worldProvider.o() && var2.P().r() != GameMode.ADVENTURE) {
 			int var6 = Math.max(5, var1.isSpawnProtectionEnabled() - 6);
-			int var7 = NumberConverter.c(var2.af().b((double) var5.n(), (double) var5.p()));
+			int var7 = DataTypesConverter.toFixedPointInt(var2.af().b((double) var5.n(), (double) var5.p()));
 			if (var7 < var6) {
 				var6 = var7;
 			}
@@ -65,12 +65,12 @@ public class EntityPlayer extends ahd implements ail {
 		}
 
 		this.b = var1;
-		this.bI = var1.getPlayerList().getPLayerStatistic((ahd) this);
+		this.bI = var1.getPlayerList().getPLayerStatistic((EntityHuman) this);
 		this.S = 0.0F;
 		this.a(var5, 0.0F, 0.0F);
 
-		while (!var2.a((Entity) this, this.aQ()).isEmpty() && this.t < 255.0D) {
-			this.b(this.s, this.t + 1.0D, this.u);
+		while (!var2.a((Entity) this, this.aQ()).isEmpty() && this.locationY < 255.0D) {
+			this.b(this.locationX, this.locationY + 1.0D, this.locationZ);
 		}
 
 	}
@@ -89,7 +89,7 @@ public class EntityPlayer extends ahd implements ail {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.put("playerGameType", this.c.b().getId());
+		var1.put("playerGameType", this.c.getGameMode().getId());
 	}
 
 	public void a(int var1) {
@@ -103,17 +103,17 @@ public class EntityPlayer extends ahd implements ail {
 	}
 
 	public void f_() {
-		this.bi.a((ail) this);
+		this.activeContainer.a((ICrafting) this);
 	}
 
 	public void g_() {
 		super.g_();
-		this.a.a((id) (new ke(this.br(), kg.a)));
+		this.a.a((Packet) (new ke(this.br(), kg.a)));
 	}
 
 	public void j() {
 		super.j();
-		this.a.a((id) (new ke(this.br(), kg.b)));
+		this.a.a((Packet) (new ke(this.br(), kg.b)));
 	}
 
 	public void s_() {
@@ -123,10 +123,10 @@ public class EntityPlayer extends ahd implements ail {
 			--this.Z;
 		}
 
-		this.bi.b();
-		if (!this.o.D && !this.bi.a((ahd) this)) {
+		this.activeContainer.b();
+		if (!this.o.D && !this.activeContainer.a((EntityHuman) this)) {
 			this.n();
-			this.bi = this.bh;
+			this.activeContainer = this.defaultContainer;
 		}
 
 		while (!this.bH.isEmpty()) {
@@ -140,7 +140,7 @@ public class EntityPlayer extends ahd implements ail {
 				var3.remove();
 			}
 
-			this.a.a((id) (new km(var2)));
+			this.a.a((Packet) (new km(var2)));
 		}
 
 		if (!this.f.isEmpty()) {
@@ -152,7 +152,7 @@ public class EntityPlayer extends ahd implements ail {
 			while (var8.hasNext() && var6.size() < 10) {
 				aqm var10 = (aqm) var8.next();
 				if (var10 != null) {
-					if (this.o.e(new dt(var10.a << 4, 0, var10.b << 4))) {
+					if (this.o.e(new Position(var10.a << 4, 0, var10.b << 4))) {
 						var5 = this.o.a(var10.a, var10.b);
 						if (var5.i()) {
 							var6.add(var5);
@@ -167,9 +167,9 @@ public class EntityPlayer extends ahd implements ail {
 
 			if (!var6.isEmpty()) {
 				if (var6.size() == 1) {
-					this.a.a((id) (new jq((bfh) var6.get(0), true, '\uffff')));
+					this.a.a((Packet) (new jq((bfh) var6.get(0), true, '\uffff')));
 				} else {
-					this.a.a((id) (new js(var6)));
+					this.a.a((Packet) (new js(var6)));
 				}
 
 				Iterator var11 = var9.iterator();
@@ -193,7 +193,7 @@ public class EntityPlayer extends ahd implements ail {
 			if (!var7.ai()) {
 				this.e(this);
 			} else {
-				this.a(var7.s, var7.t, var7.u, var7.y, var7.z);
+				this.a(var7.locationX, var7.locationY, var7.locationZ, var7.yaw, var7.pitch);
 				this.b.getPlayerList().d(this);
 				if (this.aw()) {
 					this.e(this);
@@ -207,21 +207,21 @@ public class EntityPlayer extends ahd implements ail {
 		try {
 			super.s_();
 
-			for (int var1 = 0; var1 < this.bg.n_(); ++var1) {
-				amj var6 = this.bg.a(var1);
-				if (var6 != null && var6.b().f()) {
-					id var8 = ((ake) var6.b()).c(var6, this.o, this);
+			for (int var1 = 0; var1 < this.playerInventory.n_(); ++var1) {
+				ItemStack var6 = this.playerInventory.a(var1);
+				if (var6 != null && var6.getItem().f()) {
+					Packet var8 = ((ake) var6.getItem()).c(var6, this.o, this);
 					if (var8 != null) {
 						this.a.a(var8);
 					}
 				}
 			}
 
-			if (this.bm() != this.bK || this.bL != this.bj.a() || this.bj.e() == 0.0F != this.bM) {
-				this.a.a((id) (new lc(this.bm(), this.bj.a(), this.bj.e())));
+			if (this.bm() != this.bK || this.bL != this.fooddata.a() || this.fooddata.e() == 0.0F != this.bM) {
+				this.a.a((Packet) (new PacketUpdateHealth(this.bm(), this.fooddata.a(), this.fooddata.e())));
 				this.bK = this.bm();
-				this.bL = this.bj.a();
-				this.bM = this.bj.e() == 0.0F;
+				this.bL = this.fooddata.a();
+				this.bM = this.fooddata.e() == 0.0F;
 			}
 
 			if (this.bm() + this.bM() != this.bJ) {
@@ -231,13 +231,13 @@ public class EntityPlayer extends ahd implements ail {
 
 				while (var7.hasNext()) {
 					bry var9 = (bry) var7.next();
-					this.co().c(this.d_(), var9).a(Arrays.asList(new ahd[] { this }));
+					this.co().c(this.d_(), var9).a(Arrays.asList(new EntityHuman[] { this }));
 				}
 			}
 
 			if (this.bA != this.bN) {
 				this.bN = this.bA;
-				this.a.a((id) (new lb(this.bB, this.bA, this.bz)));
+				this.a.a((Packet) (new lb(this.bB, this.bA, this.bz)));
 			}
 
 			if (this.W % 20 * 5 == 0 && !this.A().a(tl.L)) {
@@ -253,7 +253,7 @@ public class EntityPlayer extends ahd implements ail {
 	}
 
 	protected void h_() {
-		arm var1 = this.o.b(new dt(NumberConverter.c(this.s), 0, NumberConverter.c(this.u)));
+		arm var1 = this.o.b(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
 		String var2 = var1.ah;
 		ua var3 = (ua) this.A().b((PlayerStatistic) tl.L);
 		if (var3 == null) {
@@ -293,9 +293,9 @@ public class EntityPlayer extends ahd implements ail {
 			bsf var2 = this.bN();
 			if (var2 != null && var2.j() != bsg.a) {
 				if (var2.j() == bsg.c) {
-					this.b.getPlayerList().a((ahd) this, this.br().b());
+					this.b.getPlayerList().a((EntityHuman) this, this.br().b());
 				} else if (var2.j() == bsg.d) {
-					this.b.getPlayerList().b((ahd) this, this.br().b());
+					this.b.getPlayerList().b((EntityHuman) this, this.br().b());
 				}
 			} else {
 				this.b.getPlayerList().a(this.br().b());
@@ -303,7 +303,7 @@ public class EntityPlayer extends ahd implements ail {
 		}
 
 		if (!this.o.Q().b("keepInventory")) {
-			this.bg.n();
+			this.playerInventory.n();
 		}
 
 		Collection var6 = this.o.Z().a(bsk.d);
@@ -340,13 +340,13 @@ public class EntityPlayer extends ahd implements ail {
 			} else {
 				if (var1 instanceof wi) {
 					Entity var4 = var1.j();
-					if (var4 instanceof ahd && !this.a((ahd) var4)) {
+					if (var4 instanceof EntityHuman && !this.a((EntityHuman) var4)) {
 						return false;
 					}
 
 					if (var4 instanceof ahj) {
 						ahj var5 = (ahj) var4;
-						if (var5.c instanceof ahd && !this.a((ahd) var5.c)) {
+						if (var5.c instanceof EntityHuman && !this.a((EntityHuman) var5.c)) {
 							return false;
 						}
 					}
@@ -357,7 +357,7 @@ public class EntityPlayer extends ahd implements ail {
 		}
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return !this.cq() ? false : super.a(var1);
 	}
 
@@ -370,11 +370,11 @@ public class EntityPlayer extends ahd implements ail {
 			this.b((PlayerStatistic) tl.D);
 			this.o.e((Entity) this);
 			this.i = true;
-			this.a.a((id) (new jo(4, 0.0F)));
+			this.a.a((Packet) (new jo(4, 0.0F)));
 		} else {
 			if (this.am == 0 && var1 == 1) {
 				this.b((PlayerStatistic) tl.C);
-				dt var2 = this.b.a(var1).m();
+				Position var2 = this.b.a(var1).m();
 				if (var2 != null) {
 					this.a.a((double) var2.n(), (double) var2.o(), (double) var2.p(), 0.0F, 0.0F);
 				}
@@ -398,7 +398,7 @@ public class EntityPlayer extends ahd implements ail {
 
 	private void a(bcm var1) {
 		if (var1 != null) {
-			id var2 = var1.x_();
+			Packet var2 = var1.x_();
 			if (var2 != null) {
 				this.a.a(var2);
 			}
@@ -408,16 +408,16 @@ public class EntityPlayer extends ahd implements ail {
 
 	public void a(Entity var1, int var2) {
 		super.a(var1, var2);
-		this.bi.b();
+		this.activeContainer.b();
 	}
 
-	public ahf a(dt var1) {
+	public ahf a(Position var1) {
 		ahf var2 = super.a(var1);
 		if (var2 == ahf.a) {
-			kl var3 = new kl(this, var1);
-			this.u().s().a((Entity) this, (id) var3);
-			this.a.a(this.s, this.t, this.u, this.y, this.z);
-			this.a.a((id) var3);
+			PacketUseBed var3 = new PacketUseBed(this, var1);
+			this.u().s().a((Entity) this, (Packet) var3);
+			this.a.a(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
+			this.a.a((Packet) var3);
 		}
 
 		return var2;
@@ -425,12 +425,12 @@ public class EntityPlayer extends ahd implements ail {
 
 	public void a(boolean var1, boolean var2, boolean var3) {
 		if (this.bI()) {
-			this.u().s().b(this, new ir(this, 2));
+			this.u().s().b(this, new PacketAnimation(this, 2));
 		}
 
 		super.a(var1, var2, var3);
 		if (this.a != null) {
-			this.a.a(this.s, this.t, this.u, this.y, this.z);
+			this.a.a(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 		}
 
 	}
@@ -439,23 +439,23 @@ public class EntityPlayer extends ahd implements ail {
 		Entity var2 = this.m;
 		super.a(var1);
 		if (var1 != var2) {
-			this.a.a((id) (new ky(0, this, this.m)));
-			this.a.a(this.s, this.t, this.u, this.y, this.z);
+			this.a.a((Packet) (new ky(0, this, this.m)));
+			this.a.a(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 		}
 
 	}
 
-	protected void a(double var1, boolean var3, atr var4, dt var5) {
+	protected void a(double var1, boolean var3, Block var4, Position var5) {
 	}
 
 	public void a(double var1, boolean var3) {
-		int var4 = NumberConverter.c(this.s);
-		int var5 = NumberConverter.c(this.t - 0.20000000298023224D);
-		int var6 = NumberConverter.c(this.u);
-		dt var7 = new dt(var4, var5, var6);
-		atr var8 = this.o.p(var7).c();
+		int var4 = DataTypesConverter.toFixedPointInt(this.locationX);
+		int var5 = DataTypesConverter.toFixedPointInt(this.locationY - 0.20000000298023224D);
+		int var6 = DataTypesConverter.toFixedPointInt(this.locationZ);
+		Position var7 = new Position(var4, var5, var6);
+		Block var8 = this.o.p(var7).c();
 		if (var8.r() == bof.a) {
-			atr var9 = this.o.p(var7.b()).c();
+			Block var9 = this.o.p(var7.b()).c();
 			if (var9 instanceof avv || var9 instanceof bbx || var9 instanceof avw) {
 				var7 = var7.b();
 				var8 = this.o.p(var7).c();
@@ -466,8 +466,8 @@ public class EntityPlayer extends ahd implements ail {
 	}
 
 	public void a(bdj var1) {
-		var1.a((ahd) this);
-		this.a.a((id) (new kc(var1.v())));
+		var1.a((EntityHuman) this);
+		this.a.a((Packet) (new kc(var1.v())));
 	}
 
 	private void cr() {
@@ -476,119 +476,119 @@ public class EntityPlayer extends ahd implements ail {
 
 	public void a(vv var1) {
 		this.cr();
-		this.a.a((id) (new je(this.bT, var1.k(), var1.e_())));
-		this.bi = var1.a(this.bg, this);
-		this.bi.d = this.bT;
-		this.bi.a((ail) this);
+		this.a.a((Packet) (new je(this.bT, var1.k(), var1.e_())));
+		this.activeContainer = var1.a(this.playerInventory, this);
+		this.activeContainer.d = this.bT;
+		this.activeContainer.a((ICrafting) this);
 	}
 
-	public void a(vq var1) {
-		if (this.bi != this.bh) {
+	public void a(IInventory var1) {
+		if (this.activeContainer != this.defaultContainer) {
 			this.n();
 		}
 
 		if (var1 instanceof vy) {
 			vy var2 = (vy) var1;
 			if (var2.q_() && !this.a(var2.i()) && !this.v()) {
-				this.a.a((id) (new iz(new hz("container.isLocked", new Object[] { var1.e_() }), (byte) 2)));
-				this.a.a((id) (new jv("random.door_close", this.s, this.t, this.u, 1.0F, 1.0F)));
+				this.a.a((Packet) (new PacketChatMessage(new hz("container.isLocked", new Object[] { var1.e_() }), (byte) 2)));
+				this.a.a((Packet) (new jv("random.door_close", this.locationX, this.locationY, this.locationZ, 1.0F, 1.0F)));
 				return;
 			}
 		}
 
 		this.cr();
 		if (var1 instanceof vv) {
-			this.a.a((id) (new je(this.bT, ((vv) var1).k(), var1.e_(), var1.n_())));
-			this.bi = ((vv) var1).a(this.bg, this);
+			this.a.a((Packet) (new je(this.bT, ((vv) var1).k(), var1.e_(), var1.n_())));
+			this.activeContainer = ((vv) var1).a(this.playerInventory, this);
 		} else {
-			this.a.a((id) (new je(this.bT, "minecraft:container", var1.e_(), var1.n_())));
-			this.bi = new aim(this.bg, var1, this);
+			this.a.a((Packet) (new je(this.bT, "minecraft:container", var1.e_(), var1.n_())));
+			this.activeContainer = new aim(this.playerInventory, var1, this);
 		}
 
-		this.bi.d = this.bT;
-		this.bi.a((ail) this);
+		this.activeContainer.d = this.bT;
+		this.activeContainer.a((ICrafting) this);
 	}
 
 	public void a(aqb var1) {
 		this.cr();
-		this.bi = new ajf(this.bg, var1, this.o);
-		this.bi.d = this.bT;
-		this.bi.a((ail) this);
-		aje var2 = ((ajf) this.bi).e();
-		ho var3 = var1.e_();
-		this.a.a((id) (new je(this.bT, "minecraft:villager", var3, var2.n_())));
+		this.activeContainer = new ajf(this.playerInventory, var1, this.o);
+		this.activeContainer.d = this.bT;
+		this.activeContainer.a((ICrafting) this);
+		aje var2 = ((ajf) this.activeContainer).e();
+		IJSONComponent var3 = var1.e_();
+		this.a.a((Packet) (new je(this.bT, "minecraft:villager", var3, var2.n_())));
 		aqd var4 = var1.b_(this);
 		if (var4 != null) {
-			hd var5 = new hd(Unpooled.buffer());
+			PacketDataSerializer var5 = new PacketDataSerializer(Unpooled.buffer());
 			var5.writeInt(this.bT);
 			var4.a(var5);
-			this.a.a((id) (new ji("MC|TrList", var5)));
+			this.a.a((Packet) (new ji("MC|TrList", var5)));
 		}
 
 	}
 
-	public void a(abt var1, vq var2) {
-		if (this.bi != this.bh) {
+	public void a(abt var1, IInventory var2) {
+		if (this.activeContainer != this.defaultContainer) {
 			this.n();
 		}
 
 		this.cr();
-		this.a.a((id) (new je(this.bT, "EntityHorse", var2.e_(), var2.n_(), var1.F())));
-		this.bi = new aiy(this.bg, var2, var1, this);
-		this.bi.d = this.bT;
-		this.bi.a((ail) this);
+		this.a.a((Packet) (new je(this.bT, "EntityHorse", var2.e_(), var2.n_(), var1.getId())));
+		this.activeContainer = new aiy(this.playerInventory, var2, var1, this);
+		this.activeContainer.d = this.bT;
+		this.activeContainer.a((ICrafting) this);
 	}
 
-	public void a(amj var1) {
-		alq var2 = var1.b();
+	public void a(ItemStack var1) {
+		Item var2 = var1.getItem();
 		if (var2 == amk.bN) {
-			this.a.a((id) (new ji("MC|BOpen", new hd(Unpooled.buffer()))));
+			this.a.a((Packet) (new ji("MC|BOpen", new PacketDataSerializer(Unpooled.buffer()))));
 		}
 
 	}
 
-	public void a(aib var1, int var2, amj var3) {
+	public void a(Container var1, int var2, ItemStack var3) {
 		if (!(var1.a(var2) instanceof ajj)) {
 			if (!this.g) {
-				this.a.a((id) (new jh(var1.d, var2, var3)));
+				this.a.a((Packet) (new jh(var1.d, var2, var3)));
 			}
 		}
 	}
 
-	public void a(aib var1) {
+	public void a(Container var1) {
 		this.a(var1, var1.a());
 	}
 
-	public void a(aib var1, List var2) {
-		this.a.a((id) (new jf(var1.d, var2)));
-		this.a.a((id) (new jh(-1, -1, this.bg.p())));
+	public void a(Container var1, List var2) {
+		this.a.a((Packet) (new jf(var1.d, var2)));
+		this.a.a((Packet) (new jh(-1, -1, this.playerInventory.p())));
 	}
 
-	public void a(aib var1, int var2, int var3) {
-		this.a.a((id) (new jg(var1.d, var2, var3)));
+	public void a(Container var1, int var2, int var3) {
+		this.a.a((Packet) (new jg(var1.d, var2, var3)));
 	}
 
-	public void a(aib var1, vq var2) {
+	public void a(Container var1, IInventory var2) {
 		for (int var3 = 0; var3 < var2.g(); ++var3) {
-			this.a.a((id) (new jg(var1.d, var3, var2.a_(var3))));
+			this.a.a((Packet) (new jg(var1.d, var3, var2.a_(var3))));
 		}
 
 	}
 
 	public void n() {
-		this.a.a((id) (new jd(this.bi.d)));
+		this.a.a((Packet) (new jd(this.activeContainer.d)));
 		this.p();
 	}
 
 	public void o() {
 		if (!this.g) {
-			this.a.a((id) (new jh(-1, -1, this.bg.p())));
+			this.a.a((Packet) (new jh(-1, -1, this.playerInventory.p())));
 		}
 	}
 
 	public void p() {
-		this.bi.b((ahd) this);
-		this.bi = this.bh;
+		this.activeContainer.b((EntityHuman) this);
+		this.activeContainer = this.defaultContainer;
 	}
 
 	public void a(float var1, float var2, boolean var3, boolean var4) {
@@ -656,24 +656,24 @@ public class EntityPlayer extends ahd implements ail {
 		this.bK = -1.0E8F;
 	}
 
-	public void b(ho var1) {
-		this.a.a((id) (new iz(var1)));
+	public void b(IJSONComponent var1) {
+		this.a.a((Packet) (new PacketChatMessage(var1)));
 	}
 
 	protected void s() {
-		this.a.a((id) (new jk(this, (byte) 9)));
+		this.a.a((Packet) (new jk(this, (byte) 9)));
 		super.s();
 	}
 
-	public void a(amj var1, int var2) {
+	public void a(ItemStack var1, int var2) {
 		super.a(var1, var2);
-		if (var1 != null && var1.b() != null && var1.b().e(var1) == ano.b) {
-			this.u().s().b(this, new ir(this, 3));
+		if (var1 != null && var1.getItem() != null && var1.getItem().e(var1) == ano.b) {
+			this.u().s().b(this, new PacketAnimation(this, 3));
 		}
 
 	}
 
-	public void a(ahd var1, boolean var2) {
+	public void a(EntityHuman var1, boolean var2) {
 		super.a(var1, var2);
 		this.bN = -1;
 		this.bK = -1.0F;
@@ -683,34 +683,34 @@ public class EntityPlayer extends ahd implements ail {
 
 	protected void a(wq var1) {
 		super.a(var1);
-		this.a.a((id) (new lr(this.F(), var1)));
+		this.a.a((Packet) (new lr(this.getId(), var1)));
 	}
 
 	protected void a(wq var1, boolean var2) {
 		super.a(var1, var2);
-		this.a.a((id) (new lr(this.F(), var1)));
+		this.a.a((Packet) (new lr(this.getId(), var1)));
 	}
 
 	protected void b(wq var1) {
 		super.b(var1);
-		this.a.a((id) (new kn(this.F(), var1)));
+		this.a.a((Packet) (new kn(this.getId(), var1)));
 	}
 
 	public void a(double var1, double var3, double var5) {
-		this.a.a(var1, var3, var5, this.y, this.z);
+		this.a.a(var1, var3, var5, this.yaw, this.pitch);
 	}
 
 	public void b(Entity var1) {
-		this.u().s().b(this, new ir(var1, 4));
+		this.u().s().b(this, new PacketAnimation(var1, 4));
 	}
 
 	public void c(Entity var1) {
-		this.u().s().b(this, new ir(var1, 5));
+		this.u().s().b(this, new PacketAnimation(var1, 5));
 	}
 
 	public void t() {
 		if (this.a != null) {
-			this.a.a((id) (new kd(this.by)));
+			this.a.a((Packet) (new kd(this.by)));
 			this.B();
 		}
 	}
@@ -721,7 +721,7 @@ public class EntityPlayer extends ahd implements ail {
 
 	public void a(GameMode var1) {
 		this.c.a(var1);
-		this.a.a((id) (new jo(3, (float) var1.getId())));
+		this.a.a((Packet) (new jo(3, (float) var1.getId())));
 		if (var1 == GameMode.SPECTATOR) {
 			this.a((Entity) null);
 		} else {
@@ -733,19 +733,19 @@ public class EntityPlayer extends ahd implements ail {
 	}
 
 	public boolean v() {
-		return this.c.b() == GameMode.SPECTATOR;
+		return this.c.getGameMode() == GameMode.SPECTATOR;
 	}
 
-	public void a(ho var1) {
-		this.a.a((id) (new iz(var1)));
+	public void a(IJSONComponent var1) {
+		this.a.a((Packet) (new PacketChatMessage(var1)));
 	}
 
 	public boolean a(int var1, String var2) {
 		if ("seed".equals(var2) && !this.b.isDedicated()) {
 			return true;
 		} else if (!"tell".equals(var2) && !"help".equals(var2) && !"me".equals(var2) && !"trigger".equals(var2)) {
-			if (this.b.getPlayerList().g(this.cc())) {
-				sq var3 = (sq) this.b.getPlayerList().n().b((Object) this.cc());
+			if (this.b.getPlayerList().g(this.getGameProfile())) {
+				sq var3 = (sq) this.b.getPlayerList().n().b((Object) this.getGameProfile());
 				return var3 != null ? var3.a() >= var1 : this.b.getOpPermissionLevel() >= var1;
 			} else {
 				return false;
@@ -766,7 +766,7 @@ public class EntityPlayer extends ahd implements ail {
 		this.bG = var1.a();
 		this.bP = var1.c();
 		this.bQ = var1.d();
-		this.H().b(10, Byte.valueOf((byte) var1.e()));
+		this.getDataWatcher().b(10, Byte.valueOf((byte) var1.e()));
 	}
 
 	public ahg y() {
@@ -774,11 +774,11 @@ public class EntityPlayer extends ahd implements ail {
 	}
 
 	public void a(String var1, String var2) {
-		this.a.a((id) (new ko(var1, var2)));
+		this.a.a((Packet) (new ko(var1, var2)));
 	}
 
-	public dt c() {
-		return new dt(this.s, this.t + 0.5D, this.u);
+	public Position c() {
+		return new Position(this.locationX, this.locationY + 0.5D, this.locationZ);
 	}
 
 	public void z() {
@@ -790,10 +790,10 @@ public class EntityPlayer extends ahd implements ail {
 	}
 
 	public void d(Entity var1) {
-		if (var1 instanceof ahd) {
-			this.a.a((id) (new km(new int[] { var1.F() })));
+		if (var1 instanceof EntityHuman) {
+			this.a.a((Packet) (new km(new int[] { var1.getId() })));
 		} else {
-			this.bH.add(Integer.valueOf(var1.F()));
+			this.bH.add(Integer.valueOf(var1.getId()));
 		}
 
 	}
@@ -817,14 +817,14 @@ public class EntityPlayer extends ahd implements ail {
 		Entity var2 = this.C();
 		this.bS = (Entity) (var1 == null ? this : var1);
 		if (var2 != this.bS) {
-			this.a.a((id) (new ku(this.bS)));
-			this.a(this.bS.s, this.bS.t, this.bS.u);
+			this.a.a((Packet) (new ku(this.bS)));
+			this.a(this.bS.locationX, this.bS.locationY, this.bS.locationZ);
 		}
 
 	}
 
 	public void f(Entity var1) {
-		if (this.c.b() == GameMode.SPECTATOR) {
+		if (this.c.getGameMode() == GameMode.SPECTATOR) {
 			this.e(var1);
 		} else {
 			super.f(var1);
@@ -836,7 +836,7 @@ public class EntityPlayer extends ahd implements ail {
 		return this.bR;
 	}
 
-	public ho E() {
+	public IJSONComponent E() {
 		return null;
 	}
 

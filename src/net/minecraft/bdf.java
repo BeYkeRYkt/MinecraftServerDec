@@ -33,7 +33,7 @@ public abstract class bdf extends bcm implements vv, vy {
 		this.a = var1;
 	}
 
-	public ho e_() {
-		return (ho) (this.k_() ? new hy(this.d_()) : new hz(this.d_(), new Object[0]));
+	public IJSONComponent e_() {
+		return (IJSONComponent) (this.k_() ? new hy(this.d_()) : new hz(this.d_(), new Object[0]));
 	}
 }

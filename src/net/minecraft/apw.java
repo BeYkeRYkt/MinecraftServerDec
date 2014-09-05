@@ -23,7 +23,7 @@ public class apw extends apf {
 		return super.a(var1) && var1.B != u.B;
 	}
 
-	public boolean a(amj var1) {
-		return var1.b() == amk.be ? true : super.a(var1);
+	public boolean a(ItemStack var1) {
+		return var1.getItem() == amk.be ? true : super.a(var1);
 	}
 }

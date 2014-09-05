@@ -1,13 +1,13 @@
 package net.minecraft;
 
-public class ana extends alq {
+public class ana extends Item {
 
 	public ana() {
-		this.h = 1;
-		this.a(akf.e);
+		this.maxStackSize = 1;
+		this.a(CreativeModeTab.e);
 	}
 
-	public boolean a(amj var1, ahd var2, EntityLiving var3) {
+	public boolean a(ItemStack var1, EntityHuman var2, EntityLiving var3) {
 		if (var3 instanceof aca) {
 			aca var4 = (aca) var3;
 			if (!var4.cj() && !var4.i_()) {
@@ -22,8 +22,8 @@ public class ana extends alq {
 		}
 	}
 
-	public boolean a(amj var1, EntityLiving var2, EntityLiving var3) {
-		this.a(var1, (ahd) null, var2);
+	public boolean a(ItemStack var1, EntityLiving var2, EntityLiving var3) {
+		this.a(var1, (EntityHuman) null, var2);
 		return true;
 	}
 }

@@ -5,14 +5,14 @@ import java.util.concurrent.Callable;
 class bqr implements Callable {
 
 	// $FF: synthetic field
-	final bqo a;
+	final WorldData a;
 
-	bqr(bqo var1) {
+	bqr(WorldData var1) {
 		this.a = var1;
 	}
 
 	public String a() {
-		return bqo.c(this.a);
+		return WorldData.c(this.a);
 	}
 
 	// $FF: synthetic method

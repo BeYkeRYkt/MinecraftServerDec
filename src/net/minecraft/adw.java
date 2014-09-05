@@ -20,13 +20,13 @@ public class adw extends Entity {
 		this.a = (float) (Math.random() * 3.141592653589793D * 2.0D);
 		this.a(0.25F, 0.25F);
 		this.b(var2, var4, var6);
-		this.y = (float) (Math.random() * 360.0D);
-		this.v = (double) ((float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D));
-		this.w = 0.20000000298023224D;
-		this.x = (double) ((float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D));
+		this.yaw = (float) (Math.random() * 360.0D);
+		this.motionX = (double) ((float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D));
+		this.motionY = 0.20000000298023224D;
+		this.motionZ = (double) ((float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D));
 	}
 
-	public adw(World var1, double var2, double var4, double var6, amj var8) {
+	public adw(World var1, double var2, double var4, double var6, ItemStack var8) {
 		this(var1, var2, var4, var6);
 		this.a(var8);
 	}
@@ -40,11 +40,11 @@ public class adw extends Entity {
 		this.e = 5;
 		this.a = (float) (Math.random() * 3.141592653589793D * 2.0D);
 		this.a(0.25F, 0.25F);
-		this.a(new amj(aty.a, 0));
+		this.a(new ItemStack(aty.a, 0));
 	}
 
 	protected void h() {
-		this.H().a(10, 5);
+		this.getDataWatcher().a(10, 5);
 	}
 
 	public void s_() {
@@ -56,18 +56,18 @@ public class adw extends Entity {
 				--this.d;
 			}
 
-			this.p = this.s;
-			this.q = this.t;
-			this.r = this.u;
-			this.w -= 0.03999999910593033D;
-			this.T = this.j(this.s, (this.aQ().b + this.aQ().e) / 2.0D, this.u);
-			this.d(this.v, this.w, this.x);
-			boolean var1 = (int) this.p != (int) this.s || (int) this.q != (int) this.t || (int) this.r != (int) this.u;
+			this.p = this.locationX;
+			this.q = this.locationY;
+			this.r = this.locationZ;
+			this.motionY -= 0.03999999910593033D;
+			this.T = this.j(this.locationX, (this.aQ().b + this.aQ().e) / 2.0D, this.locationZ);
+			this.d(this.motionX, this.motionY, this.motionZ);
+			boolean var1 = (int) this.p != (int) this.locationX || (int) this.q != (int) this.locationY || (int) this.r != (int) this.locationZ;
 			if (var1 || this.W % 25 == 0) {
-				if (this.o.p(new dt(this)).c().r() == bof.i) {
-					this.w = 0.20000000298023224D;
-					this.v = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
-					this.x = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
+				if (this.o.p(new Position(this)).c().r() == bof.i) {
+					this.motionY = 0.20000000298023224D;
+					this.motionX = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
+					this.motionZ = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
 					this.a("random.fizz", 0.4F, 2.0F + this.V.nextFloat() * 0.4F);
 				}
 
@@ -78,14 +78,14 @@ public class adw extends Entity {
 
 			float var2 = 0.98F;
 			if (this.C) {
-				var2 = this.o.p(new dt(NumberConverter.c(this.s), NumberConverter.c(this.aQ().b) - 1, NumberConverter.c(this.u))).c().K * 0.98F;
+				var2 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).c().K * 0.98F;
 			}
 
-			this.v *= (double) var2;
-			this.w *= 0.9800000190734863D;
-			this.x *= (double) var2;
+			this.motionX *= (double) var2;
+			this.motionY *= 0.9800000190734863D;
+			this.motionZ *= (double) var2;
 			if (this.C) {
-				this.w *= -0.5D;
+				this.motionY *= -0.5D;
 			}
 
 			if (this.c != -32768) {
@@ -114,19 +114,19 @@ public class adw extends Entity {
 		if (var1 == this) {
 			return false;
 		} else if (var1.ai() && this.ai()) {
-			amj var2 = this.l();
-			amj var3 = var1.l();
+			ItemStack var2 = this.l();
+			ItemStack var3 = var1.l();
 			if (this.d != 32767 && var1.d != 32767) {
 				if (this.c != -32768 && var1.c != -32768) {
-					if (var3.b() != var2.b()) {
+					if (var3.getItem() != var2.getItem()) {
 						return false;
-					} else if (var3.n() ^ var2.n()) {
+					} else if (var3.hasTag() ^ var2.hasTag()) {
 						return false;
-					} else if (var3.n() && !var3.o().equals(var2.o())) {
+					} else if (var3.hasTag() && !var3.getTag().equals(var2.getTag())) {
 						return false;
-					} else if (var3.b() == null) {
+					} else if (var3.getItem() == null) {
 						return false;
-					} else if (var3.b().k() && var3.i() != var2.i()) {
+					} else if (var3.getItem().k() && var3.i() != var2.i()) {
 						return false;
 					} else if (var3.b < var2.b) {
 						return var1.a(this);
@@ -176,7 +176,7 @@ public class adw extends Entity {
 	public boolean a(wh var1, float var2) {
 		if (this.b(var1)) {
 			return false;
-		} else if (this.l() != null && this.l().b() == amk.bZ && var1.c()) {
+		} else if (this.l() != null && this.l().getItem() == amk.bZ && var1.c()) {
 			return false;
 		} else {
 			this.ac();
@@ -223,40 +223,40 @@ public class adw extends Entity {
 		}
 
 		NBTCompoundTag var2 = var1.getCompound("Item");
-		this.a(amj.a(var2));
+		this.a(ItemStack.a(var2));
 		if (this.l() == null) {
 			this.J();
 		}
 
 	}
 
-	public void d(ahd var1) {
+	public void d(EntityHuman var1) {
 		if (!this.o.D) {
-			amj var2 = this.l();
+			ItemStack var2 = this.l();
 			int var3 = var2.b;
-			if (this.d == 0 && (this.g == null || 6000 - this.c <= 200 || this.g.equals(var1.d_())) && var1.bg.a(var2)) {
-				if (var2.b() == alq.a(aty.r)) {
+			if (this.d == 0 && (this.g == null || 6000 - this.c <= 200 || this.g.equals(var1.d_())) && var1.playerInventory.a(var2)) {
+				if (var2.getItem() == Item.getItemOf(aty.r)) {
 					var1.b((PlayerStatistic) tl.g);
 				}
 
-				if (var2.b() == alq.a(aty.s)) {
+				if (var2.getItem() == Item.getItemOf(aty.s)) {
 					var1.b((PlayerStatistic) tl.g);
 				}
 
-				if (var2.b() == amk.aF) {
+				if (var2.getItem() == amk.aF) {
 					var1.b((PlayerStatistic) tl.t);
 				}
 
-				if (var2.b() == amk.i) {
+				if (var2.getItem() == amk.i) {
 					var1.b((PlayerStatistic) tl.w);
 				}
 
-				if (var2.b() == amk.bv) {
+				if (var2.getItem() == amk.bv) {
 					var1.b((PlayerStatistic) tl.A);
 				}
 
-				if (var2.b() == amk.i && this.n() != null) {
-					ahd var4 = this.o.a(this.n());
+				if (var2.getItem() == amk.i && this.n() != null) {
+					EntityHuman var4 = this.o.a(this.n());
 					if (var4 != null && var4 != var1) {
 						var4.b((PlayerStatistic) tl.x);
 					}
@@ -291,22 +291,22 @@ public class adw extends Entity {
 
 	}
 
-	public amj l() {
-		amj var1 = this.H().f(10);
+	public ItemStack l() {
+		ItemStack var1 = this.getDataWatcher().f(10);
 		if (var1 == null) {
 			if (this.o != null) {
-				b.error("Item entity " + this.F() + " has no item?!");
+				b.error("Item entity " + this.getId() + " has no item?!");
 			}
 
-			return new amj(aty.b);
+			return new ItemStack(aty.b);
 		} else {
 			return var1;
 		}
 	}
 
-	public void a(amj var1) {
-		this.H().b(10, var1);
-		this.H().i(10);
+	public void a(ItemStack var1) {
+		this.getDataWatcher().b(10, var1);
+		this.getDataWatcher().i(10);
 	}
 
 	public String m() {

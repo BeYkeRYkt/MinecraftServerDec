@@ -23,7 +23,7 @@ public class auy extends ati {
 		return true;
 	}
 
-	public void a(World var1, dt var2, bec var3, Entity var4) {
+	public void a(World var1, Position var2, bec var3, Entity var4) {
 		if (!var1.D) {
 			if (!((Boolean) var3.b(M)).booleanValue()) {
 				this.e(var1, var2, var3);
@@ -31,24 +31,24 @@ public class auy extends ati {
 		}
 	}
 
-	public void a(World var1, dt var2, bec var3, Random var4) {
+	public void a(World var1, Position var2, bec var3, Random var4) {
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (!var1.D && ((Boolean) var3.b(M)).booleanValue()) {
 			this.e(var1, var2, var3);
 		}
 	}
 
-	public int a(ard var1, dt var2, bec var3, ej var4) {
+	public int a(ard var1, Position var2, bec var3, ej var4) {
 		return ((Boolean) var3.b(M)).booleanValue() ? 15 : 0;
 	}
 
-	public int b(ard var1, dt var2, bec var3, ej var4) {
+	public int b(ard var1, Position var2, bec var3, ej var4) {
 		return !((Boolean) var3.b(M)).booleanValue() ? 0 : (var4 == ej.b ? 15 : 0);
 	}
 
-	private void e(World var1, dt var2, bec var3) {
+	private void e(World var1, Position var2, bec var3) {
 		boolean var4 = ((Boolean) var3.b(M)).booleanValue();
 		boolean var5 = false;
 		List var6 = this.a(var1, var2, adx.class, new Predicate[0]);
@@ -58,26 +58,26 @@ public class auy extends ati {
 
 		if (var5 && !var4) {
 			var1.a(var2, var3.a(M, Boolean.valueOf(true)), 3);
-			var1.c(var2, (atr) this);
-			var1.c(var2.b(), (atr) this);
+			var1.c(var2, (Block) this);
+			var1.c(var2.b(), (Block) this);
 			var1.b(var2, var2);
 		}
 
 		if (!var5 && var4) {
 			var1.a(var2, var3.a(M, Boolean.valueOf(false)), 3);
-			var1.c(var2, (atr) this);
-			var1.c(var2.b(), (atr) this);
+			var1.c(var2, (Block) this);
+			var1.c(var2.b(), (Block) this);
 			var1.b(var2, var2);
 		}
 
 		if (var5) {
-			var1.a(var2, (atr) this, this.a(var1));
+			var1.a(var2, (Block) this, this.a(var1));
 		}
 
 		var1.e(var2, this);
 	}
 
-	public void c(World var1, dt var2, bec var3) {
+	public void c(World var1, Position var2, bec var3) {
 		super.c(var1, var2, var3);
 		this.e(var1, var2, var3);
 	}
@@ -90,7 +90,7 @@ public class auy extends ati {
 		return true;
 	}
 
-	public int l(World var1, dt var2) {
+	public int l(World var1, Position var2) {
 		if (((Boolean) var1.p(var2).b(M)).booleanValue()) {
 			List var3 = this.a(var1, var2, aeb.class, new Predicate[0]);
 			if (!var3.isEmpty()) {
@@ -99,19 +99,19 @@ public class auy extends ati {
 
 			List var4 = this.a(var1, var2, adx.class, new Predicate[] { EntityPredicates.c });
 			if (!var4.isEmpty()) {
-				return aib.b((vq) var4.get(0));
+				return Container.b((IInventory) var4.get(0));
 			}
 		}
 
 		return 0;
 	}
 
-	protected List a(World var1, dt var2, Class var3, Predicate... var4) {
+	protected List a(World var1, Position var2, Class var3, Predicate... var4) {
 		brt var5 = this.a(var2);
 		return var4.length != 1 ? var1.a(var3, var5) : var1.a(var3, var5, var4[0]);
 	}
 
-	private brt a(dt var1) {
+	private brt a(Position var1) {
 		float var2 = 0.2F;
 		return new brt((double) ((float) var1.n() + 0.2F), (double) var1.o(), (double) ((float) var1.p() + 0.2F), (double) ((float) (var1.n() + 1) - 0.2F), (double) ((float) (var1.o() + 1) - 0.2F), (double) ((float) (var1.p() + 1) - 0.2F));
 	}

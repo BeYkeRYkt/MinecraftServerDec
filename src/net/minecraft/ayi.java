@@ -50,8 +50,8 @@ public class ayi extends axm {
 		return new bed(this, new bex[] { b, a });
 	}
 
-	protected amj i(bec var1) {
-		return new amj(alq.a((atr) this), 1, ((ayx) var1.b(b)).a() - 4);
+	protected ItemStack i(bec var1) {
+		return new ItemStack(Item.getItemOf((Block) this), 1, ((ayx) var1.b(b)).a() - 4);
 	}
 
 	public int a(bec var1) {

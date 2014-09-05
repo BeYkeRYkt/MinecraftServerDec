@@ -1,27 +1,27 @@
 package net.minecraft;
 
-public class ajt extends alq {
+public class ajt extends Item {
 
 	public ajt() {
-		this.a(akf.c);
+		this.a(CreativeModeTab.c);
 	}
 
-	public boolean a(amj var1, ahd var2, World var3, dt var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
 		if (var3.D) {
 			return true;
 		} else if (var5 != ej.b) {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
-			atr var10 = var9.c();
+			Block var10 = var9.c();
 			boolean var11 = var10.f(var3, var4);
 			if (!var11) {
 				var4 = var4.a();
 			}
 
-			int var12 = NumberConverter.c((double) (var2.y * 4.0F / 360.0F) + 0.5D) & 3;
+			int var12 = DataTypesConverter.toFixedPointInt((double) (var2.yaw * 4.0F / 360.0F) + 0.5D) & 3;
 			ej var13 = ej.b(var12);
-			dt var14 = var4.a(var13);
+			Position var14 = var4.a(var13);
 			boolean var15 = var10.f(var3, var14);
 			boolean var16 = var3.d(var4) || var11;
 			boolean var17 = var3.d(var14) || var15;

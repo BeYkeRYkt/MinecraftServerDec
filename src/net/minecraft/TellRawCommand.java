@@ -27,7 +27,7 @@ public class TellRawCommand extends AbstractCommand {
 			String var4 = a(var2, 1);
 
 			try {
-				ho var5 = hp.a(var4);
+				IJSONComponent var5 = JSONComponentFormat.a(var4);
 				var3.a(hq.a(var1, var5, var3));
 			} catch (JsonParseException var7) {
 				Throwable var6 = ExceptionUtils.getRootCause(var7);
@@ -36,7 +36,7 @@ public class TellRawCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().I()) : null;
 	}
 

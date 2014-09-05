@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class bhn extends bhp {
 
-	private static final beq a = beq.a((atr) aty.m).a(bab.a, Predicates.equalTo(bac.a));
+	private static final beq a = beq.a((Block) aty.m).a(bab.a, Predicates.equalTo(bac.a));
 	private final bec b;
 	private final bec c;
 	private final bec d;
@@ -17,7 +17,7 @@ public class bhn extends bhp {
 		this.d = aty.i.P();
 	}
 
-	public boolean b(World var1, Random var2, dt var3) {
+	public boolean b(World var1, Random var2, Position var3) {
 		while (var1.d(var3) && var3.o() > 2) {
 			var3 = var3.b();
 		}

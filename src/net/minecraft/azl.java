@@ -1,16 +1,16 @@
 package net.minecraft;
 
-public class azl extends atr {
+public class azl extends Block {
 
 	public static final bev a = bev.a("variant", azn.class);
 
 	public azl() {
 		super(bof.e);
 		this.j(this.L.b().a(a, azn.a));
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
-	public bec a(World var1, dt var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		if (var7 == azn.c.a()) {
 			switch (azm.a[var3.k().ordinal()]) {
 				case 1:
@@ -31,9 +31,9 @@ public class azl extends atr {
 		return var2 != azn.d && var2 != azn.e ? var2.a() : azn.c.a();
 	}
 
-	protected amj i(bec var1) {
+	protected ItemStack i(bec var1) {
 		azn var2 = (azn) var1.b(a);
-		return var2 != azn.d && var2 != azn.e ? super.i(var1) : new amj(alq.a((atr) this), 1, azn.c.a());
+		return var2 != azn.d && var2 != azn.e ? super.i(var1) : new ItemStack(Item.getItemOf((Block) this), 1, azn.c.a());
 	}
 
 	public boh g(bec var1) {

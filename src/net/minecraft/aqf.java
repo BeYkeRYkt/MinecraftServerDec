@@ -10,7 +10,7 @@ public abstract class aqf implements CommandSenderInterface {
 	private static final SimpleDateFormat a = new SimpleDateFormat("HH:mm:ss");
 	private int b;
 	private boolean c = true;
-	private ho d = null;
+	private IJSONComponent d = null;
 	private String e = "";
 	private String f = "@";
 	private final af g = new af();
@@ -19,7 +19,7 @@ public abstract class aqf implements CommandSenderInterface {
 		return this.b;
 	}
 
-	public ho k() {
+	public IJSONComponent k() {
 		return this.d;
 	}
 
@@ -29,7 +29,7 @@ public abstract class aqf implements CommandSenderInterface {
 		var1.put("CustomName", this.f);
 		var1.put("TrackOutput", this.c);
 		if (this.d != null && this.c) {
-			var1.put("LastOutput", hp.a(this.d));
+			var1.put("LastOutput", JSONComponentFormat.a(this.d));
 		}
 
 		this.g.b(var1);
@@ -47,7 +47,7 @@ public abstract class aqf implements CommandSenderInterface {
 		}
 
 		if (var1.isTagAssignableFrom("LastOutput", 8) && this.c) {
-			this.d = hp.a(var1.getString("LastOutput"));
+			this.d = JSONComponentFormat.a(var1.getString("LastOutput"));
 		}
 
 		this.g.a(var1);
@@ -95,7 +95,7 @@ public abstract class aqf implements CommandSenderInterface {
 		return this.f;
 	}
 
-	public ho e_() {
+	public IJSONComponent e_() {
 		return new hy(this.d_());
 	}
 
@@ -103,7 +103,7 @@ public abstract class aqf implements CommandSenderInterface {
 		this.f = var1;
 	}
 
-	public void a(ho var1) {
+	public void a(IJSONComponent var1) {
 		if (this.c && this.e() != null && !this.e().D) {
 			this.d = (new hy("[" + a.format(new Date()) + "] ")).a(var1);
 			this.h();
@@ -122,7 +122,7 @@ public abstract class aqf implements CommandSenderInterface {
 
 	public abstract void h();
 
-	public void b(ho var1) {
+	public void b(IJSONComponent var1) {
 		this.d = var1;
 	}
 
@@ -134,7 +134,7 @@ public abstract class aqf implements CommandSenderInterface {
 		return this.c;
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		if (!var1.by.instabuild) {
 			return false;
 		} else {

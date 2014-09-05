@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class jq implements id<ik> {
+public class jq implements Packet<PlayPacketListener> {
 
 	private int a;
 	private int b;
@@ -18,27 +18,27 @@ public class jq implements id<ik> {
 		this.a = var1.a;
 		this.b = var1.b;
 		this.d = var2;
-		this.c = a(var1, var2, !var1.p().t.o(), var3);
+		this.c = a(var1, var2, !var1.p().worldProvider.o(), var3);
 	}
 
-	public void a(hd var1) {
+	public void readData(PacketDataSerializer var1) {
 		this.a = var1.readInt();
 		this.b = var1.readInt();
 		this.d = var1.readBoolean();
 		this.c = new jr();
 		this.c.b = var1.readShort();
-		this.c.a = var1.a();
+		this.c.a = var1.readByteArray();
 	}
 
-	public void b(hd var1) {
+	public void writeData(PacketDataSerializer var1) {
 		var1.writeInt(this.a);
 		var1.writeInt(this.b);
 		var1.writeBoolean(this.d);
 		var1.writeShort((short) (this.c.b & '\uffff'));
-		var1.a(this.c.a);
+		var1.writeByteArray(this.c.a);
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 

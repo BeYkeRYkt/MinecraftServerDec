@@ -8,7 +8,7 @@ public class bio extends bhc {
 		super(var1);
 	}
 
-	public boolean b(World var1, Random var2, dt var3) {
+	public boolean b(World var1, Random var2, Position var3) {
 		int var4 = var2.nextInt(4) + 6;
 		int var5 = 1 + var2.nextInt(2);
 		int var6 = var4 - var5;
@@ -28,7 +28,7 @@ public class bio extends bhc {
 				for (var11 = var3.n() - var21; var11 <= var3.n() + var21 && var8; ++var11) {
 					for (int var12 = var3.p() - var21; var12 <= var3.p() + var21 && var8; ++var12) {
 						if (var9 >= 0 && var9 < 256) {
-							atr var13 = var1.p(new dt(var11, var9, var12)).c();
+							Block var13 = var1.p(new Position(var11, var9, var12)).c();
 							if (var13.r() != bof.a && var13.r() != bof.j) {
 								var8 = false;
 							}
@@ -42,7 +42,7 @@ public class bio extends bhc {
 			if (!var8) {
 				return false;
 			} else {
-				atr var20 = var1.p(var3.b()).c();
+				Block var20 = var1.p(var3.b()).c();
 				if ((var20 == aty.c || var20 == aty.d || var20 == aty.ak) && var3.o() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 					var21 = var2.nextInt(2);
@@ -60,7 +60,7 @@ public class bio extends bhc {
 							for (int var17 = var3.p() - var21; var17 <= var3.p() + var21; ++var17) {
 								int var18 = var17 - var3.p();
 								if (Math.abs(var16) != var21 || Math.abs(var18) != var21 || var21 <= 0) {
-									dt var19 = new dt(var15, var14, var17);
+									Position var19 = new Position(var15, var14, var17);
 									if (!var1.p(var19).c().m()) {
 										this.a(var1, var19, aty.t, ayx.b.a());
 									}
@@ -83,7 +83,7 @@ public class bio extends bhc {
 					var23 = var2.nextInt(3);
 
 					for (var14 = 0; var14 < var4 - var23; ++var14) {
-						atr var24 = var1.p(var3.b(var14)).c();
+						Block var24 = var1.p(var3.b(var14)).c();
 						if (var24.r() == bof.a || var24.r() == bof.j) {
 							this.a(var1, var3.b(var14), aty.r, ayx.b.a());
 						}

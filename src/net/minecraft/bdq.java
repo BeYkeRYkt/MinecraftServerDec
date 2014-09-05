@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.List;
 
-public class bdq extends atr {
+public class bdq extends Block {
 
 	public static final beu a = beu.a("facing");
 	public static final bet b = bet.a("extended");
@@ -14,14 +14,14 @@ public class bdq extends atr {
 		this.M = var1;
 		this.a(i);
 		this.c(0.5F);
-		this.a(akf.d);
+		this.a(CreativeModeTab.d);
 	}
 
 	public boolean c() {
 		return false;
 	}
 
-	public void a(World var1, dt var2, bec var3, EntityLiving var4, amj var5) {
+	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
 		var1.a(var2, var3.a(a, a(var1, var2, var4)), 2);
 		if (!var1.D) {
 			this.e(var1, var2, var3);
@@ -29,25 +29,25 @@ public class bdq extends atr {
 
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (!var1.D) {
 			this.e(var1, var2, var3);
 		}
 
 	}
 
-	public void c(World var1, dt var2, bec var3) {
+	public void c(World var1, Position var2, bec var3) {
 		if (!var1.D && var1.s(var2) == null) {
 			this.e(var1, var2, var3);
 		}
 
 	}
 
-	public bec a(World var1, dt var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(a, a(var1, var2, var8)).a(b, Boolean.valueOf(false));
 	}
 
-	private void e(World var1, dt var2, bec var3) {
+	private void e(World var1, Position var2, bec var3) {
 		ej var4 = (ej) var3.b(a);
 		boolean var5 = this.b(var1, var2, var4);
 		if (var5 && !((Boolean) var3.b(b)).booleanValue()) {
@@ -61,7 +61,7 @@ public class bdq extends atr {
 
 	}
 
-	private boolean b(World var1, dt var2, ej var3) {
+	private boolean b(World var1, Position var2, ej var3) {
 		ej[] var4 = ej.values();
 		int var5 = var4.length;
 
@@ -76,7 +76,7 @@ public class bdq extends atr {
 		if (var1.b(var2, ej.c)) {
 			return true;
 		} else {
-			dt var9 = var2.a();
+			Position var9 = var2.a();
 			ej[] var10 = ej.values();
 			var6 = var10.length;
 
@@ -91,7 +91,7 @@ public class bdq extends atr {
 		}
 	}
 
-	public boolean a(World var1, dt var2, bec var3, int var4, int var5) {
+	public boolean a(World var1, Position var2, bec var3, int var4, int var5) {
 		ej var6 = (ej) var3.b(a);
 		if (!var1.D) {
 			boolean var7 = this.b(var1, var2, var6);
@@ -121,8 +121,8 @@ public class bdq extends atr {
 			var1.a(var2, aty.M.P().a(bdx.a, var6).a(bdx.b, this.M ? bdu.b : bdu.a), 3);
 			var1.a(var2, bdx.a(this.a(var5), var6, false, true));
 			if (this.M) {
-				dt var8 = var2.a(var6.g() * 2, var6.h() * 2, var6.i() * 2);
-				atr var9 = var1.p(var8).c();
+				Position var8 = var2.a(var6.g() * 2, var6.h() * 2, var6.i() * 2);
+				Block var9 = var1.p(var8).c();
 				boolean var10 = false;
 				if (var9 == aty.M) {
 					bcm var11 = var1.s(var8);
@@ -148,7 +148,7 @@ public class bdq extends atr {
 		return true;
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
 		if (var3.c() == this && ((Boolean) var3.b(b)).booleanValue()) {
 			float var4 = 0.25F;
@@ -184,12 +184,12 @@ public class bdq extends atr {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
-	public void a(World var1, dt var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		super.a(var1, var2, var3, var4, var5, var6);
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3);
 	}
@@ -203,9 +203,9 @@ public class bdq extends atr {
 		return var1 > 5 ? null : ej.a(var1);
 	}
 
-	public static ej a(World var0, dt var1, EntityLiving var2) {
-		if (NumberConverter.e((float) var2.s - (float) var1.n()) < 2.0F && NumberConverter.e((float) var2.u - (float) var1.p()) < 2.0F) {
-			double var3 = var2.t + (double) var2.aR();
+	public static ej a(World var0, Position var1, EntityLiving var2) {
+		if (DataTypesConverter.e((float) var2.locationX - (float) var1.n()) < 2.0F && DataTypesConverter.e((float) var2.locationZ - (float) var1.p()) < 2.0F) {
+			double var3 = var2.locationY + (double) var2.aR();
 			if (var3 - (double) var1.o() > 2.0D) {
 				return ej.b;
 			}
@@ -218,7 +218,7 @@ public class bdq extends atr {
 		return var2.aO().d();
 	}
 
-	public static boolean a(atr var0, World var1, dt var2, ej var3, boolean var4) {
+	public static boolean a(Block var0, World var1, Position var2, ej var3, boolean var4) {
 		if (var0 == aty.Z) {
 			return false;
 		} else if (!var1.af().a(var2)) {
@@ -254,7 +254,7 @@ public class bdq extends atr {
 		}
 	}
 
-	private boolean a(World var1, dt var2, ej var3, boolean var4) {
+	private boolean a(World var1, Position var2, ej var3, boolean var4) {
 		if (!var4) {
 			var1.g(var2.a(var3));
 		}
@@ -266,14 +266,14 @@ public class bdq extends atr {
 			return false;
 		} else {
 			int var8 = var6.size() + var7.size();
-			atr[] var9 = new atr[var8];
+			Block[] var9 = new Block[var8];
 			ej var10 = var4 ? var3 : var3.d();
 
 			int var11;
-			dt var12;
+			Position var12;
 			for (var11 = var7.size() - 1; var11 >= 0; --var11) {
-				var12 = (dt) var7.get(var11);
-				atr var13 = var1.p(var12).c();
+				var12 = (Position) var7.get(var11);
+				Block var13 = var1.p(var12).c();
 				var13.b(var1, var12, var1.p(var12), 0);
 				var1.g(var12);
 				--var8;
@@ -282,9 +282,9 @@ public class bdq extends atr {
 
 			bec var19;
 			for (var11 = var6.size() - 1; var11 >= 0; --var11) {
-				var12 = (dt) var6.get(var11);
+				var12 = (Position) var6.get(var11);
 				var19 = var1.p(var12);
-				atr var14 = var19.c();
+				Block var14 = var19.c();
 				var14.c(var19);
 				var1.g(var12);
 				var12 = var12.a(var10);
@@ -294,7 +294,7 @@ public class bdq extends atr {
 				var9[var8] = var14;
 			}
 
-			dt var16 = var2.a(var3);
+			Position var16 = var2.a(var3);
 			if (var4) {
 				bdu var17 = this.M ? bdu.b : bdu.a;
 				var19 = aty.K.P().a(bds.a, var3).a(bds.b, var17);
@@ -305,16 +305,16 @@ public class bdq extends atr {
 
 			int var18;
 			for (var18 = var7.size() - 1; var18 >= 0; --var18) {
-				var1.c((dt) var7.get(var18), var9[var8++]);
+				var1.c((Position) var7.get(var18), var9[var8++]);
 			}
 
 			for (var18 = var6.size() - 1; var18 >= 0; --var18) {
-				var1.c((dt) var6.get(var18), var9[var8++]);
+				var1.c((Position) var6.get(var18), var9[var8++]);
 			}
 
 			if (var4) {
-				var1.c(var16, (atr) aty.K);
-				var1.c(var2, (atr) this);
+				var1.c(var16, (Block) aty.K);
+				var1.c(var2, (Block) this);
 			}
 
 			return true;

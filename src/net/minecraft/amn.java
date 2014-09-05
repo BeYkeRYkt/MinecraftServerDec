@@ -10,7 +10,7 @@ public class amn extends ake {
 		this.a(true);
 	}
 
-	public bqe a(amj var1, World var2) {
+	public bqe a(ItemStack var1, World var2) {
 		String var3 = "map_" + var1.i();
 		bqe var4 = (bqe) var2.a(bqe.class, var3);
 		if (var4 == null && !var2.D) {
@@ -19,7 +19,7 @@ public class amn extends ake {
 			var4 = new bqe(var3);
 			var4.e = 3;
 			var4.a((double) var2.P().c(), (double) var2.P().e(), var4.e);
-			var4.d = (byte) var2.t.q();
+			var4.d = (byte) var2.worldProvider.getDimensionId();
 			var4.c();
 			var2.a(var3, (bqc) var4);
 		}
@@ -28,18 +28,18 @@ public class amn extends ake {
 	}
 
 	public void a(World var1, Entity var2, bqe var3) {
-		if (var1.t.q() == var3.d && var2 instanceof ahd) {
+		if (var1.worldProvider.getDimensionId() == var3.d && var2 instanceof EntityHuman) {
 			int var4 = 1 << var3.e;
 			int var5 = var3.b;
 			int var6 = var3.c;
-			int var7 = NumberConverter.c(var2.s - (double) var5) / var4 + 64;
-			int var8 = NumberConverter.c(var2.u - (double) var6) / var4 + 64;
+			int var7 = DataTypesConverter.toFixedPointInt(var2.locationX - (double) var5) / var4 + 64;
+			int var8 = DataTypesConverter.toFixedPointInt(var2.locationZ - (double) var6) / var4 + 64;
 			int var9 = 128 / var4;
-			if (var1.t.o()) {
+			if (var1.worldProvider.o()) {
 				var9 /= 2;
 			}
 
-			bqf var10 = var3.a((ahd) var2);
+			bqf var10 = var3.a((EntityHuman) var2);
 			++var10.b;
 			boolean var11 = false;
 
@@ -56,14 +56,14 @@ public class amn extends ake {
 							int var19 = (var5 / var4 + var12 - 64) * var4;
 							int var20 = (var6 / var4 + var15 - 64) * var4;
 							HashMultiset var21 = HashMultiset.create();
-							bfh var22 = var1.f(new dt(var19, 0, var20));
+							bfh var22 = var1.f(new Position(var19, 0, var20));
 							if (!var22.f()) {
 								int var23 = var19 & 15;
 								int var24 = var20 & 15;
 								int var25 = 0;
 								double var26 = 0.0D;
 								int var28;
-								if (var1.t.o()) {
+								if (var1.worldProvider.o()) {
 									var28 = var19 + var20 * 231871;
 									var28 = var28 * var28 * 31287121 + var28 * 11;
 									if ((var28 >> 20 & 1) == 0) {
@@ -81,13 +81,13 @@ public class amn extends ake {
 											if (var30 > 1) {
 												do {
 													--var30;
-													var31 = var22.g(new dt(var28 + var23, var30, var29 + var24));
+													var31 = var22.g(new Position(var28 + var23, var30, var29 + var24));
 												} while (var31.c().g(var31) == boh.b && var30 > 0);
 
 												if (var30 > 0 && var31.c().r().d()) {
 													int var32 = var30 - 1;
 
-													atr var33;
+													Block var33;
 													do {
 														var33 = var22.a(var28 + var23, var32--, var29 + var24);
 														++var25;
@@ -144,11 +144,11 @@ public class amn extends ake {
 		}
 	}
 
-	public void a(amj var1, World var2, Entity var3, int var4, boolean var5) {
+	public void a(ItemStack var1, World var2, Entity var3, int var4, boolean var5) {
 		if (!var2.D) {
 			bqe var6 = this.a(var1, var2);
-			if (var3 instanceof ahd) {
-				ahd var7 = (ahd) var3;
+			if (var3 instanceof EntityHuman) {
+				EntityHuman var7 = (EntityHuman) var3;
 				var6.a(var7, var1);
 			}
 
@@ -159,12 +159,12 @@ public class amn extends ake {
 		}
 	}
 
-	public id c(amj var1, World var2, ahd var3) {
+	public Packet c(ItemStack var1, World var2, EntityHuman var3) {
 		return this.a(var1, var2).a(var1, var2, var3);
 	}
 
-	public void d(amj var1, World var2, ahd var3) {
-		if (var1.n() && var1.o().getBoolean("map_is_scaling")) {
+	public void d(ItemStack var1, World var2, EntityHuman var3) {
+		if (var1.hasTag() && var1.getTag().getBoolean("map_is_scaling")) {
 			bqe var4 = amk.bd.a(var1, var2);
 			var1.b(var2.b("map"));
 			bqe var5 = new bqe("map_" + var1.i());

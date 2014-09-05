@@ -2,7 +2,7 @@ package net.minecraft;
 
 public interface Convertable {
 
-	bqy a(String var1, boolean var2);
+	IDataManager a(String var1, boolean var2);
 
 	void d();
 

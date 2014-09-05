@@ -14,7 +14,7 @@ public class atp extends avb {
 		this.j();
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {
@@ -26,11 +26,11 @@ public class atp extends avb {
 				}
 			}
 
-			if (var1.t.e() && var1.b(var2) != arm.x) {
+			if (var1.worldProvider.e() && var1.b(var2) != arm.x) {
 				if (((Boolean) var3.b(b)).booleanValue()) {
-					ahd var10 = this.e(var1, var2);
+					EntityHuman var10 = this.e(var1, var2);
 					if (var10 != null) {
-						var4.b((ho) (new hz("tile.bed.occupied", new Object[0])));
+						var4.b((IJSONComponent) (new hz("tile.bed.occupied", new Object[0])));
 						return true;
 					}
 
@@ -45,16 +45,16 @@ public class atp extends avb {
 					return true;
 				} else {
 					if (var11 == ahf.c) {
-						var4.b((ho) (new hz("tile.bed.noSleep", new Object[0])));
+						var4.b((IJSONComponent) (new hz("tile.bed.noSleep", new Object[0])));
 					} else if (var11 == ahf.f) {
-						var4.b((ho) (new hz("tile.bed.notSafe", new Object[0])));
+						var4.b((IJSONComponent) (new hz("tile.bed.notSafe", new Object[0])));
 					}
 
 					return true;
 				}
 			} else {
 				var1.g(var2);
-				dt var9 = var2.a(((ej) var3.b(N)).d());
+				Position var9 = var2.a(((ej) var3.b(N)).d());
 				if (var1.p(var9).c() == this) {
 					var1.g(var9);
 				}
@@ -65,16 +65,16 @@ public class atp extends avb {
 		}
 	}
 
-	private ahd e(World var1, dt var2) {
+	private EntityHuman e(World var1, Position var2) {
 		Iterator var3 = var1.j.iterator();
 
-		ahd var4;
+		EntityHuman var4;
 		do {
 			if (!var3.hasNext()) {
 				return null;
 			}
 
-			var4 = (ahd) var3.next();
+			var4 = (EntityHuman) var3.next();
 		} while (!var4.bI() || !var4.bv.equals(var2));
 
 		return var4;
@@ -88,11 +88,11 @@ public class atp extends avb {
 		return false;
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		this.j();
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		ej var5 = (ej) var3.b(N);
 		if (var3.b(a) == atq.a) {
 			if (var1.p(var2.a(var5.d())).c() != this) {
@@ -107,7 +107,7 @@ public class atp extends avb {
 
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return var1.b(a) == atq.a ? null : amk.ba;
 	}
 
@@ -115,7 +115,7 @@ public class atp extends avb {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.5625F, 1.0F);
 	}
 
-	public static dt a(World var0, dt var1, int var2) {
+	public static Position a(World var0, Position var1, int var2) {
 		ej var3 = (ej) var0.p(var1).b(N);
 		int var4 = var1.n();
 		int var5 = var1.o();
@@ -129,7 +129,7 @@ public class atp extends avb {
 
 			for (int var12 = var8; var12 <= var10; ++var12) {
 				for (int var13 = var9; var13 <= var11; ++var13) {
-					dt var14 = new dt(var12, var5, var13);
+					Position var14 = new Position(var12, var5, var13);
 					if (d(var0, var14)) {
 						if (var2 <= 0) {
 							return var14;
@@ -144,11 +144,11 @@ public class atp extends avb {
 		return null;
 	}
 
-	protected static boolean d(World var0, dt var1) {
+	protected static boolean d(World var0, Position var1) {
 		return World.a((ard) var0, var1.b()) && !var0.p(var1).c().r().a() && !var0.p(var1.a()).c().r().a();
 	}
 
-	public void a(World var1, dt var2, bec var3, float var4, int var5) {
+	public void a(World var1, Position var2, bec var3, float var4, int var5) {
 		if (var3.b(a) == atq.b) {
 			super.a(var1, var2, var3, var4, 0);
 		}
@@ -159,9 +159,9 @@ public class atp extends avb {
 		return 1;
 	}
 
-	public void a(World var1, dt var2, bec var3, ahd var4) {
+	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
 		if (var4.by.instabuild && var3.b(a) == atq.a) {
-			dt var5 = var2.a(((ej) var3.b(N)).d());
+			Position var5 = var2.a(((ej) var3.b(N)).d());
 			if (var1.p(var5).c() == this) {
 				var1.g(var5);
 			}
@@ -174,7 +174,7 @@ public class atp extends avb {
 		return (var1 & 8) > 0 ? this.P().a(a, atq.a).a(N, var2).a(b, Boolean.valueOf((var1 & 4) > 0)) : this.P().a(a, atq.b).a(N, var2);
 	}
 
-	public bec a(bec var1, ard var2, dt var3) {
+	public bec a(bec var1, ard var2, Position var3) {
 		if (var1.b(a) == atq.b) {
 			bec var4 = var2.p(var3.a((ej) var1.b(N)));
 			if (var4.c() == this) {

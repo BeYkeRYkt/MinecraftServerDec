@@ -13,11 +13,11 @@ public class zl extends zb {
 	}
 
 	public boolean a() {
-		dt var1 = new dt(this.a);
-		if ((!this.a.o.w() || this.a.o.S() && !this.a.o.b(var1).e()) && !this.a.o.t.o()) {
+		Position var1 = new Position(this.a);
+		if ((!this.a.o.w() || this.a.o.S() && !this.a.o.b(var1).e()) && !this.a.o.worldProvider.o()) {
 			if (this.a.bb().nextInt(50) != 0) {
 				return false;
-			} else if (this.c != -1 && this.a.e((double) this.c, this.a.t, (double) this.d) < 4.0D) {
+			} else if (this.c != -1 && this.a.e((double) this.c, this.a.locationY, (double) this.d) < 4.0D) {
 				return false;
 			} else {
 				abi var2 = this.a.o.ae().a(var1, 14);
@@ -39,7 +39,7 @@ public class zl extends zb {
 
 	public void c() {
 		this.c = -1;
-		dt var1 = this.b.e();
+		Position var1 = this.b.e();
 		int var2 = var1.n();
 		int var3 = var1.o();
 		int var4 = var1.p();

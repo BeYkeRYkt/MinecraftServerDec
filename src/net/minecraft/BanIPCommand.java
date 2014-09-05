@@ -29,7 +29,7 @@ public class BanIPCommand extends AbstractCommand {
 
 	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dm, dp {
 		if (var2.length >= 1 && var2[0].length() > 1) {
-			ho var3 = var2.length >= 2 ? a(var1, var2, 1) : null;
+			IJSONComponent var3 = var2.length >= 2 ? a(var1, var2, 1) : null;
 			Matcher var4 = a.matcher(var2[0]);
 			if (var4.matches()) {
 				this.a(var1, var2[0], var3 == null ? null : var3.c());
@@ -47,7 +47,7 @@ public class BanIPCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().I()) : null;
 	}
 

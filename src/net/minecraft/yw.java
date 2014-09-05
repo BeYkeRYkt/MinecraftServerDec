@@ -5,7 +5,7 @@ import com.google.common.base.Predicates;
 
 public class yw extends zb {
 
-	private static final Predicate b = beq.a((atr) aty.H).a(bbh.a, Predicates.equalTo(bbi.b));
+	private static final Predicate b = beq.a((Block) aty.H).a(bbh.a, Predicates.equalTo(bbi.b));
 	private xn c;
 	private World d;
 	int a;
@@ -20,7 +20,7 @@ public class yw extends zb {
 		if (this.c.bb().nextInt(this.c.i_() ? 50 : 1000) != 0) {
 			return false;
 		} else {
-			dt var1 = new dt(this.c.s, this.c.t, this.c.u);
+			Position var1 = new Position(this.c.locationX, this.c.locationY, this.c.locationZ);
 			return b.apply(this.d.p(var1)) ? true : this.d.p(var1.b()).c() == aty.c;
 		}
 	}
@@ -46,7 +46,7 @@ public class yw extends zb {
 	public void e() {
 		this.a = Math.max(0, this.a - 1);
 		if (this.a == 4) {
-			dt var1 = new dt(this.c.s, this.c.t, this.c.u);
+			Position var1 = new Position(this.c.locationX, this.c.locationY, this.c.locationZ);
 			if (b.apply(this.d.p(var1))) {
 				if (this.d.Q().b("mobGriefing")) {
 					this.d.b(var1, false);
@@ -54,10 +54,10 @@ public class yw extends zb {
 
 				this.c.v();
 			} else {
-				dt var2 = var1.b();
+				Position var2 = var1.b();
 				if (this.d.p(var2).c() == aty.c) {
 					if (this.d.Q().b("mobGriefing")) {
-						this.d.b(2001, var2, atr.a((atr) aty.c));
+						this.d.b(2001, var2, Block.a((Block) aty.c));
 						this.d.a(var2, aty.d.P(), 2);
 					}
 

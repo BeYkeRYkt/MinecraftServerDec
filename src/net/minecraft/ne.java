@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.security.PublicKey;
 
-public class ne implements id<nc> {
+public class ne implements Packet<nc> {
 
 	private String a;
 	private PublicKey b;
@@ -17,19 +17,19 @@ public class ne implements id<nc> {
 		this.c = var3;
 	}
 
-	public void a(hd var1) {
-		this.a = var1.c(20);
-		this.b = ServerCryptoUtils.a(var1.a());
-		this.c = var1.a();
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readString(20);
+		this.b = ServerCryptoUtils.a(var1.readByteArray());
+		this.c = var1.readByteArray();
 	}
 
-	public void b(hd var1) {
-		var1.a(this.a);
-		var1.a(this.b.getEncoded());
-		var1.a(this.c);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeString(this.a);
+		var1.writeByteArray(this.b.getEncoded());
+		var1.writeByteArray(this.c);
 	}
 
-	public void a(nc var1) {
+	public void handlePacket(nc var1) {
 		var1.a(this);
 	}
 }

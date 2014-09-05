@@ -7,10 +7,10 @@ public class axc extends atg {
 	protected axc() {
 		super(bof.d);
 		this.j(this.L.b().a(a, Boolean.valueOf(false)));
-		this.a(akf.c);
+		this.a(CreativeModeTab.c);
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
 		if (((Boolean) var3.b(a)).booleanValue()) {
 			this.e(var1, var2, var3);
 			var3 = var3.a(a, Boolean.valueOf(false));
@@ -21,31 +21,31 @@ public class axc extends atg {
 		}
 	}
 
-	public void a(World var1, dt var2, bec var3, amj var4) {
+	public void a(World var1, Position var2, bec var3, ItemStack var4) {
 		if (!var1.D) {
 			bcm var5 = var1.s(var2);
 			if (var5 instanceof axd) {
-				((axd) var5).a(new amj(var4.b(), 1, var4.i()));
+				((axd) var5).a(new ItemStack(var4.getItem(), 1, var4.i()));
 				var1.a(var2, var3.a(a, Boolean.valueOf(true)), 2);
 			}
 		}
 	}
 
-	private void e(World var1, dt var2, bec var3) {
+	private void e(World var1, Position var2, bec var3) {
 		if (!var1.D) {
 			bcm var4 = var1.s(var2);
 			if (var4 instanceof axd) {
 				axd var5 = (axd) var4;
-				amj var6 = var5.a();
+				ItemStack var6 = var5.a();
 				if (var6 != null) {
 					var1.b(1005, var2, 0);
 					var1.a(var2, (String) null);
-					var5.a((amj) null);
+					var5.a((ItemStack) null);
 					float var7 = 0.7F;
 					double var8 = (double) (var1.s.nextFloat() * var7) + (double) (1.0F - var7) * 0.5D;
 					double var10 = (double) (var1.s.nextFloat() * var7) + (double) (1.0F - var7) * 0.2D + 0.6D;
 					double var12 = (double) (var1.s.nextFloat() * var7) + (double) (1.0F - var7) * 0.5D;
-					amj var14 = var6.k();
+					ItemStack var14 = var6.getCopy();
 					adw var15 = new adw(var1, (double) var2.n() + var8, (double) var2.o() + var10, (double) var2.p() + var12, var14);
 					var15.p();
 					var1.d((Entity) var15);
@@ -54,12 +54,12 @@ public class axc extends atg {
 		}
 	}
 
-	public void b(World var1, dt var2, bec var3) {
+	public void b(World var1, Position var2, bec var3) {
 		this.e(var1, var2, var3);
 		super.b(var1, var2, var3);
 	}
 
-	public void a(World var1, dt var2, bec var3, float var4, int var5) {
+	public void a(World var1, Position var2, bec var3, float var4, int var5) {
 		if (!var1.D) {
 			super.a(var1, var2, var3, var4, 0);
 		}
@@ -73,12 +73,12 @@ public class axc extends atg {
 		return true;
 	}
 
-	public int l(World var1, dt var2) {
+	public int l(World var1, Position var2) {
 		bcm var3 = var1.s(var2);
 		if (var3 instanceof axd) {
-			amj var4 = ((axd) var3).a();
+			ItemStack var4 = ((axd) var3).a();
 			if (var4 != null) {
-				return alq.b(var4.b()) + 1 - alq.b(amk.cq);
+				return Item.getId(var4.getItem()) + 1 - Item.getId(amk.cq);
 			}
 		}
 

@@ -4,17 +4,17 @@ import java.util.Random;
 
 public class adp extends vk {
 
-	private final amj b;
+	private final ItemStack b;
 	private float c;
 	private boolean d;
 
-	public adp(amj var1, int var2) {
+	public adp(ItemStack var1, int var2) {
 		super(var2);
 		this.b = var1;
 	}
 
-	public amj a(Random var1) {
-		amj var2 = this.b.k();
+	public ItemStack a(Random var1) {
+		ItemStack var2 = this.b.getCopy();
 		if (this.c > 0.0F) {
 			int var3 = (int) (this.c * (float) this.b.j());
 			int var4 = var2.j() - var1.nextInt(var1.nextInt(var3) + 1);

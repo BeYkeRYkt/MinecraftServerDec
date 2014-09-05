@@ -18,14 +18,14 @@ class aar implements Predicate {
 		if (this.a != null && !this.a.apply(var1)) {
 			return false;
 		} else {
-			if (var1 instanceof ahd) {
+			if (var1 instanceof EntityHuman) {
 				double var2 = this.b.f();
 				if (var1.aw()) {
 					var2 *= 0.800000011920929D;
 				}
 
 				if (var1.ay()) {
-					float var4 = ((ahd) var1).bX();
+					float var4 = ((EntityHuman) var1).bX();
 					if (var4 < 0.1F) {
 						var4 = 0.1F;
 					}

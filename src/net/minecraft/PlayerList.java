@@ -37,7 +37,7 @@ public abstract class PlayerList {
 	private final Map<UUID, PlayerStatisticFile> playersStatistic = Maps.newHashMap();
 	private brl p;
 	private boolean q;
-	protected int g;
+	protected int maxPlayers;
 	private int r;
 	private GameMode s;
 	private boolean t;
@@ -51,69 +51,69 @@ public abstract class PlayerList {
 		this.n = new sx(whitelistFile);
 		this.k.a(false);
 		this.l.a(false);
-		this.g = 8;
+		this.maxPlayers = 8;
 	}
 
-	public void a(gr var1, EntityPlayer var2) {
-		GameProfile var3 = var2.cc();
+	public void a(gr var1, EntityPlayer player) {
+		GameProfile var3 = player.getGameProfile();
 		UserCache var4 = this.minecraftserver.getUserCache();
 		GameProfile var5 = var4.getProfile(var3.getId());
 		String var6 = var5 == null ? var3.getName() : var5.getName();
 		var4.saveProfile(var3);
-		NBTCompoundTag var7 = this.a(var2);
-		var2.a((World) this.minecraftserver.a(var2.am));
-		var2.c.a((WorldServer) var2.o);
+		NBTCompoundTag var7 = this.a(player);
+		player.a((World) this.minecraftserver.a(player.am));
+		player.c.a((WorldServer) player.o);
 		String var8 = "local";
 		if (var1.b() != null) {
 			var8 = var1.b().toString();
 		}
 
-		logger.info(var2.d_() + "[" + var8 + "] logged in with entity id " + var2.F() + " at (" + var2.s + ", " + var2.t + ", " + var2.u + ")");
-		WorldServer var9 = this.minecraftserver.a(var2.am);
-		bqo var10 = var9.P();
-		dt var11 = var9.M();
-		this.a(var2, (EntityPlayer) null, var9);
-		rj var12 = new rj(this.minecraftserver, var1, var2);
-		var12.a((id) (new jw(var2.F(), var2.c.b(), var10.t(), var9.t.q(), var9.aa(), this.q(), var10.u(), var9.Q().b("reducedDebugInfo"))));
-		var12.a((id) (new ji("MC|Brand", (new hd(Unpooled.buffer())).a(this.c().getServerModName()))));
-		var12.a((id) (new ix(var10.y(), var10.z())));
-		var12.a((id) (new lh(var11)));
-		var12.a((id) (new kd(var2.by)));
-		var12.a((id) (new kv(var2.bg.c)));
-		var2.A().d();
-		var2.A().b(var2);
-		this.a((pk) var9.Z(), var2);
+		logger.info(player.d_() + "[" + var8 + "] logged in with entity id " + player.getId() + " at (" + player.locationX + ", " + player.locationY + ", " + player.locationZ + ")");
+		WorldServer worldServer = this.minecraftserver.a(player.am);
+		WorldData worldData = worldServer.P();
+		Position var11 = worldServer.M();
+		this.a(player, (EntityPlayer) null, worldServer);
+		rj var12 = new rj(this.minecraftserver, var1, player);
+		var12.a((Packet) (new PacketJoinGame(player.getId(), player.c.getGameMode(), worldData.isHardcore(), worldServer.worldProvider.getDimensionId(), worldServer.getDifficulty(), this.getMaxPlayers(), worldData.getLevelType(), worldServer.Q().b("reducedDebugInfo"))));
+		var12.a((Packet) (new ji("MC|Brand", (new PacketDataSerializer(Unpooled.buffer())).writeString(this.c().getServerModName()))));
+		var12.a((Packet) (new ix(worldData.getDifficulty(), worldData.z())));
+		var12.a((Packet) (new PacketSpawnPosition(var11)));
+		var12.a((Packet) (new kd(player.by)));
+		var12.a((Packet) (new PacketHeldItemChange(player.playerInventory.c)));
+		player.A().d();
+		player.A().b(player);
+		this.a((pk) worldServer.Z(), player);
 		this.minecraftserver.aF();
 		hz var13;
-		if (!var2.d_().equalsIgnoreCase(var6)) {
-			var13 = new hz("multiplayer.player.joined.renamed", new Object[] { var2.e_(), var6 });
+		if (!player.d_().equalsIgnoreCase(var6)) {
+			var13 = new hz("multiplayer.player.joined.renamed", new Object[] { player.e_(), var6 });
 		} else {
-			var13 = new hz("multiplayer.player.joined", new Object[] { var2.e_() });
+			var13 = new hz("multiplayer.player.joined", new Object[] { player.e_() });
 		}
 
 		var13.b().a(FormattingCode.o);
-		this.a((ho) var13);
-		this.c(var2);
-		var12.a(var2.s, var2.t, var2.u, var2.y, var2.z);
-		this.b(var2, var9);
+		this.a((IJSONComponent) var13);
+		this.c(player);
+		var12.a(player.locationX, player.locationY, player.locationZ, player.yaw, player.pitch);
+		this.b(player, worldServer);
 		if (this.minecraftserver.aa().length() > 0) {
-			var2.a(this.minecraftserver.aa(), this.minecraftserver.ab());
+			player.a(this.minecraftserver.aa(), this.minecraftserver.ab());
 		}
 
-		Iterator var14 = var2.bk().iterator();
+		Iterator var14 = player.bk().iterator();
 
 		while (var14.hasNext()) {
 			wq var15 = (wq) var14.next();
-			var12.a((id) (new lr(var2.F(), var15)));
+			var12.a((Packet) (new lr(player.getId(), var15)));
 		}
 
-		var2.f_();
+		player.f_();
 		if (var7 != null && var7.isTagAssignableFrom("Riding", 10)) {
-			Entity var16 = xb.a(var7.getCompound("Riding"), (World) var9);
+			Entity var16 = xb.a(var7.getCompound("Riding"), (World) worldServer);
 			if (var16 != null) {
 				var16.n = true;
-				var9.d(var16);
-				var2.a(var16);
+				worldServer.d(var16);
+				player.a(var16);
 				var16.n = false;
 			}
 		}
@@ -126,7 +126,7 @@ public abstract class PlayerList {
 
 		while (var4.hasNext()) {
 			brz var5 = (brz) var4.next();
-			var2.a.a((id) (new le(var5, 0)));
+			var2.a.a((Packet) (new le(var5, 0)));
 		}
 
 		for (int var9 = 0; var9 < 19; ++var9) {
@@ -136,7 +136,7 @@ public abstract class PlayerList {
 				Iterator var7 = var6.iterator();
 
 				while (var7.hasNext()) {
-					id var8 = (id) var7.next();
+					Packet var8 = (Packet) var7.next();
 					var2.a.a(var8);
 				}
 
@@ -158,7 +158,7 @@ public abstract class PlayerList {
 		}
 
 		var3.t().a(var1);
-		var3.b.c((int) var1.s >> 4, (int) var1.u >> 4);
+		var3.b.c((int) var1.locationX >> 4, (int) var1.locationZ >> 4);
 	}
 
 	public int d() {
@@ -191,14 +191,14 @@ public abstract class PlayerList {
 	public void c(EntityPlayer var1) {
 		this.players.add(var1);
 		this.uuidToPlayerMap.put(var1.aJ(), var1);
-		this.a((id) (new kh(kj.a, new EntityPlayer[] { var1 })));
+		this.a((Packet) (new kh(kj.a, new EntityPlayer[] { var1 })));
 		WorldServer var2 = this.minecraftserver.a(var1.am);
 		var2.d(var1);
 		this.a(var1, (WorldServer) null);
 
 		for (int var3 = 0; var3 < this.players.size(); ++var3) {
 			EntityPlayer var4 = (EntityPlayer) this.players.get(var3);
-			var1.a.a((id) (new kh(kj.a, new EntityPlayer[] { var4 })));
+			var1.a.a((Packet) (new kh(kj.a, new EntityPlayer[] { var4 })));
 		}
 
 	}
@@ -221,7 +221,7 @@ public abstract class PlayerList {
 		this.players.remove(var1);
 		this.uuidToPlayerMap.remove(var1.aJ());
 		this.playersStatistic.remove(var1.aJ());
-		this.a((id) (new kh(kj.e, new EntityPlayer[] { var1 })));
+		this.a((Packet) (new kh(kj.e, new EntityPlayer[] { var1 })));
 	}
 
 	public String a(SocketAddress var1, GameProfile var2) {
@@ -245,12 +245,12 @@ public abstract class PlayerList {
 
 			return var4;
 		} else {
-			return this.players.size() >= this.g ? "The server is full!" : null;
+			return this.players.size() >= this.maxPlayers ? "The server is full!" : null;
 		}
 	}
 
 	public EntityPlayer f(GameProfile var1) {
-		UUID var2 = ahd.a(var1);
+		UUID var2 = EntityHuman.a(var1);
 		ArrayList var3 = Lists.newArrayList();
 
 		EntityPlayer var5;
@@ -284,7 +284,7 @@ public abstract class PlayerList {
 		var1.u().t().c(var1);
 		this.players.remove(var1);
 		this.minecraftserver.a(var1.am).f(var1);
-		dt var4 = var1.cg();
+		Position var4 = var1.cg();
 		boolean var5 = var1.ch();
 		var1.am = var2;
 		Object var6;
@@ -294,35 +294,35 @@ public abstract class PlayerList {
 			var6 = new qx(this.minecraftserver.a(var1.am));
 		}
 
-		EntityPlayer var7 = new EntityPlayer(this.minecraftserver, this.minecraftserver.a(var1.am), var1.cc(), (qx) var6);
+		EntityPlayer var7 = new EntityPlayer(this.minecraftserver, this.minecraftserver.a(var1.am), var1.getGameProfile(), (qx) var6);
 		var7.a = var1.a;
-		var7.a((ahd) var1, var3);
-		var7.d(var1.F());
+		var7.a((EntityHuman) var1, var3);
+		var7.d(var1.getId());
 		var7.o(var1);
 		WorldServer var8 = this.minecraftserver.a(var1.am);
 		this.a(var7, var1, var8);
-		dt var9;
+		Position var9;
 		if (var4 != null) {
-			var9 = ahd.a(this.minecraftserver.a(var1.am), var4, var5);
+			var9 = EntityHuman.a(this.minecraftserver.a(var1.am), var4, var5);
 			if (var9 != null) {
 				var7.b((double) ((float) var9.n() + 0.5F), (double) ((float) var9.o() + 0.1F), (double) ((float) var9.p() + 0.5F), 0.0F, 0.0F);
 				var7.a(var4, var5);
 			} else {
-				var7.a.a((id) (new jo(0, 0.0F)));
+				var7.a.a((Packet) (new jo(0, 0.0F)));
 			}
 		}
 
-		var8.b.c((int) var7.s >> 4, (int) var7.u >> 4);
+		var8.b.c((int) var7.locationX >> 4, (int) var7.locationZ >> 4);
 
-		while (!var8.a((Entity) var7, var7.aQ()).isEmpty() && var7.t < 256.0D) {
-			var7.b(var7.s, var7.t + 1.0D, var7.u);
+		while (!var8.a((Entity) var7, var7.aQ()).isEmpty() && var7.locationY < 256.0D) {
+			var7.b(var7.locationX, var7.locationY + 1.0D, var7.locationZ);
 		}
 
-		var7.a.a((id) (new kp(var7.am, var7.o.aa(), var7.o.P().u(), var7.c.b())));
+		var7.a.a((Packet) (new PacketRespawn(var7.am, var7.o.getDifficulty(), var7.o.P().getLevelType(), var7.c.getGameMode())));
 		var9 = var8.M();
-		var7.a.a(var7.s, var7.t, var7.u, var7.y, var7.z);
-		var7.a.a((id) (new lh(var9)));
-		var7.a.a((id) (new lb(var7.bB, var7.bA, var7.bz)));
+		var7.a.a(var7.locationX, var7.locationY, var7.locationZ, var7.yaw, var7.pitch);
+		var7.a.a((Packet) (new PacketSpawnPosition(var9)));
+		var7.a.a((Packet) (new lb(var7.bB, var7.bA, var7.bz)));
 		this.b(var7, var8);
 		var8.t().a(var7);
 		var8.d(var7);
@@ -338,12 +338,12 @@ public abstract class PlayerList {
 		WorldServer var4 = this.minecraftserver.a(var1.am);
 		var1.am = var2;
 		WorldServer var5 = this.minecraftserver.a(var1.am);
-		var1.a.a((id) (new kp(var1.am, var1.o.aa(), var1.o.P().u(), var1.c.b())));
+		var1.a.a((Packet) (new PacketRespawn(var1.am, var1.o.getDifficulty(), var1.o.P().getLevelType(), var1.c.getGameMode())));
 		var4.f(var1);
 		var1.I = false;
 		this.a(var1, var3, var4, var5);
 		this.a(var1, var4);
-		var1.a.a(var1.s, var1.t, var1.u, var1.y, var1.z);
+		var1.a.a(var1.locationX, var1.locationY, var1.locationZ, var1.yaw, var1.pitch);
 		var1.c.a(var5);
 		this.b(var1, var5);
 		this.f(var1);
@@ -351,33 +351,33 @@ public abstract class PlayerList {
 
 		while (var6.hasNext()) {
 			wq var7 = (wq) var6.next();
-			var1.a.a((id) (new lr(var1.F(), var7)));
+			var1.a.a((Packet) (new lr(var1.getId(), var7)));
 		}
 
 	}
 
 	public void a(Entity var1, int var2, WorldServer var3, WorldServer var4) {
-		double var5 = var1.s;
-		double var7 = var1.u;
+		double var5 = var1.locationX;
+		double var7 = var1.locationZ;
 		double var9 = 8.0D;
-		float var11 = var1.y;
+		float var11 = var1.yaw;
 		var3.B.a("moving");
 		if (var1.am == -1) {
-			var5 = NumberConverter.a(var5 / var9, var4.af().b() + 16.0D, var4.af().d() - 16.0D);
-			var7 = NumberConverter.a(var7 / var9, var4.af().c() + 16.0D, var4.af().e() - 16.0D);
-			var1.b(var5, var1.t, var7, var1.y, var1.z);
+			var5 = DataTypesConverter.a(var5 / var9, var4.af().b() + 16.0D, var4.af().d() - 16.0D);
+			var7 = DataTypesConverter.a(var7 / var9, var4.af().c() + 16.0D, var4.af().e() - 16.0D);
+			var1.b(var5, var1.locationY, var7, var1.yaw, var1.pitch);
 			if (var1.ai()) {
 				var3.a(var1, false);
 			}
 		} else if (var1.am == 0) {
-			var5 = NumberConverter.a(var5 * var9, var4.af().b() + 16.0D, var4.af().d() - 16.0D);
-			var7 = NumberConverter.a(var7 * var9, var4.af().c() + 16.0D, var4.af().e() - 16.0D);
-			var1.b(var5, var1.t, var7, var1.y, var1.z);
+			var5 = DataTypesConverter.a(var5 * var9, var4.af().b() + 16.0D, var4.af().d() - 16.0D);
+			var7 = DataTypesConverter.a(var7 * var9, var4.af().c() + 16.0D, var4.af().e() - 16.0D);
+			var1.b(var5, var1.locationY, var7, var1.yaw, var1.pitch);
 			if (var1.ai()) {
 				var3.a(var1, false);
 			}
 		} else {
-			dt var12;
+			Position var12;
 			if (var2 == 1) {
 				var12 = var4.M();
 			} else {
@@ -385,9 +385,9 @@ public abstract class PlayerList {
 			}
 
 			var5 = (double) var12.n();
-			var1.t = (double) var12.o();
+			var1.locationY = (double) var12.o();
 			var7 = (double) var12.p();
-			var1.b(var5, var1.t, var7, 90.0F, 0.0F);
+			var1.b(var5, var1.locationY, var7, 90.0F, 0.0F);
 			if (var1.ai()) {
 				var3.a(var1, false);
 			}
@@ -396,10 +396,10 @@ public abstract class PlayerList {
 		var3.B.b();
 		if (var2 != 1) {
 			var3.B.a("placing");
-			var5 = (double) NumberConverter.a((int) var5, -29999872, 29999872);
-			var7 = (double) NumberConverter.a((int) var7, -29999872, 29999872);
+			var5 = (double) DataTypesConverter.a((int) var5, -29999872, 29999872);
+			var7 = (double) DataTypesConverter.a((int) var7, -29999872, 29999872);
 			if (var1.ai()) {
-				var1.b(var5, var1.t, var7, var1.y, var1.z);
+				var1.b(var5, var1.locationY, var7, var1.yaw, var1.pitch);
 				var4.u().a(var1, var11);
 				var4.d(var1);
 				var4.a(var1, false);
@@ -413,20 +413,20 @@ public abstract class PlayerList {
 
 	public void e() {
 		if (++this.u > 600) {
-			this.a((id) (new kh(kj.c, this.players)));
+			this.a((Packet) (new kh(kj.c, this.players)));
 			this.u = 0;
 		}
 
 	}
 
-	public void a(id var1) {
+	public void a(Packet var1) {
 		for (int var2 = 0; var2 < this.players.size(); ++var2) {
 			((EntityPlayer) this.players.get(var2)).a.a(var1);
 		}
 
 	}
 
-	public void a(id var1, int var2) {
+	public void a(Packet var1, int var2) {
 		for (int var3 = 0; var3 < this.players.size(); ++var3) {
 			EntityPlayer var4 = (EntityPlayer) this.players.get(var3);
 			if (var4.am == var2) {
@@ -436,7 +436,7 @@ public abstract class PlayerList {
 
 	}
 
-	public void a(ahd var1, ho var2) {
+	public void a(EntityHuman var1, IJSONComponent var2) {
 		bsf var3 = var1.bN();
 		if (var3 != null) {
 			Collection var4 = var3.d();
@@ -453,7 +453,7 @@ public abstract class PlayerList {
 		}
 	}
 
-	public void b(ahd var1, ho var2) {
+	public void b(EntityHuman var1, IJSONComponent var2) {
 		bsf var3 = var1.bN();
 		if (var3 == null) {
 			this.a(var2);
@@ -496,7 +496,7 @@ public abstract class PlayerList {
 		GameProfile[] var1 = new GameProfile[this.players.size()];
 
 		for (int var2 = 0; var2 < this.players.size(); ++var2) {
-			var1[var2] = ((EntityPlayer) this.players.get(var2)).cc();
+			var1[var2] = ((EntityPlayer) this.players.get(var2)).getGameProfile();
 		}
 
 		return var1;
@@ -541,17 +541,17 @@ public abstract class PlayerList {
 		return var3;
 	}
 
-	public void a(double var1, double var3, double var5, double var7, int var9, id var10) {
-		this.a((ahd) null, var1, var3, var5, var7, var9, var10);
+	public void a(double var1, double var3, double var5, double var7, int var9, Packet var10) {
+		this.a((EntityHuman) null, var1, var3, var5, var7, var9, var10);
 	}
 
-	public void a(ahd var1, double var2, double var4, double var6, double var8, int var10, id var11) {
+	public void a(EntityHuman var1, double var2, double var4, double var6, double var8, int var10, Packet var11) {
 		for (int var12 = 0; var12 < this.players.size(); ++var12) {
 			EntityPlayer var13 = (EntityPlayer) this.players.get(var12);
 			if (var13 != var1 && var13.am == var10) {
-				double var14 = var2 - var13.s;
-				double var16 = var4 - var13.t;
-				double var18 = var6 - var13.u;
+				double var14 = var2 - var13.locationX;
+				double var16 = var4 - var13.locationY;
+				double var18 = var6 - var13.locationZ;
 				if (var14 * var14 + var16 * var16 + var18 * var18 < var8 * var8) {
 					var13.a.a(var11);
 				}
@@ -596,28 +596,28 @@ public abstract class PlayerList {
 
 	public void b(EntityPlayer var1, WorldServer var2) {
 		bfb var3 = this.minecraftserver.worlds[0].af();
-		var1.a.a((id) (new kr(var3, kt.d)));
-		var1.a.a((id) (new li(var2.K(), var2.L(), var2.Q().b("doDaylightCycle"))));
+		var1.a.a((Packet) (new kr(var3, kt.d)));
+		var1.a.a((Packet) (new PacketTimeUpdate(var2.K(), var2.L(), var2.Q().b("doDaylightCycle"))));
 		if (var2.S()) {
-			var1.a.a((id) (new jo(1, 0.0F)));
-			var1.a.a((id) (new jo(7, var2.j(1.0F))));
-			var1.a.a((id) (new jo(8, var2.h(1.0F))));
+			var1.a.a((Packet) (new jo(1, 0.0F)));
+			var1.a.a((Packet) (new jo(7, var2.j(1.0F))));
+			var1.a.a((Packet) (new jo(8, var2.h(1.0F))));
 		}
 
 	}
 
 	public void f(EntityPlayer var1) {
-		var1.a(var1.bh);
+		var1.a(var1.defaultContainer);
 		var1.r();
-		var1.a.a((id) (new kv(var1.bg.c)));
+		var1.a.a((Packet) (new PacketHeldItemChange(var1.playerInventory.c)));
 	}
 
 	public int p() {
 		return this.players.size();
 	}
 
-	public int q() {
-		return this.g;
+	public int getMaxPlayers() {
+		return this.maxPlayers;
 	}
 
 	public String[] r() {
@@ -660,7 +660,7 @@ public abstract class PlayerList {
 
 	private void a(EntityPlayer var1, EntityPlayer var2, World var3) {
 		if (var2 != null) {
-			var1.c.a(var2.c.b());
+			var1.c.a(var2.c.getGameMode());
 		} else if (this.s != null) {
 			var1.c.a(this.s);
 		}
@@ -675,17 +675,17 @@ public abstract class PlayerList {
 
 	}
 
-	public void a(ho var1, boolean var2) {
+	public void a(IJSONComponent var1, boolean var2) {
 		this.minecraftserver.a(var1);
 		int var3 = var2 ? 1 : 0;
-		this.a((id) (new iz(var1, (byte) var3)));
+		this.a((Packet) (new PacketChatMessage(var1, (byte) var3)));
 	}
 
-	public void a(ho var1) {
+	public void a(IJSONComponent var1) {
 		this.a(var1, true);
 	}
 
-	public PlayerStatisticFile getPLayerStatistic(ahd var1) {
+	public PlayerStatisticFile getPLayerStatistic(EntityHuman var1) {
 		UUID var2 = var1.aJ();
 		PlayerStatisticFile var3 = var2 == null ? null : (PlayerStatisticFile) this.playersStatistic.get(var2);
 		if (var3 == null) {

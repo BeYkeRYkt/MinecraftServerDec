@@ -65,7 +65,7 @@ public class bfh {
 	public bfh(World var1, bgk var2, int var3, int var4) {
 		this(var1, var3, var4);
 		short var5 = 256;
-		boolean var6 = !var1.t.o();
+		boolean var6 = !var1.worldProvider.o();
 
 		for (int var7 = 0; var7 < 16; ++var7) {
 			for (int var8 = 0; var8 < 16; ++var8) {
@@ -90,7 +90,7 @@ public class bfh {
 		return var1 == this.a && var2 == this.b;
 	}
 
-	public int f(dt var1) {
+	public int f(Position var1) {
 		return this.b(var1.n() & 15, var1.p() & 15);
 	}
 
@@ -136,7 +136,7 @@ public class bfh {
 						}
 					}
 
-					if (!this.i.t.o()) {
+					if (!this.i.worldProvider.o()) {
 						var4 = 15;
 						int var5 = var1 + 16 - 1;
 
@@ -151,7 +151,7 @@ public class bfh {
 								bfm var7 = this.d[var5 >> 4];
 								if (var7 != null) {
 									var7.a(var2, var5 & 15, var3, var4);
-									this.i.n(new dt((this.a << 4) + var2, var5, (this.b << 4) + var3));
+									this.i.n(new Position((this.a << 4) + var2, var5, (this.b << 4) + var3));
 								}
 							}
 
@@ -175,7 +175,7 @@ public class bfh {
 
 	private void h(boolean var1) {
 		this.i.B.a("recheckGaps");
-		if (this.i.a(new dt(this.a * 16 + 8, 0, this.b * 16 + 8), (int) 16)) {
+		if (this.i.a(new Position(this.a * 16 + 8, 0, this.b * 16 + 8), (int) 16)) {
 			for (int var2 = 0; var2 < 16; ++var2) {
 				for (int var3 = 0; var3 < 16; ++var3) {
 					if (this.g[var2 + var3 * 16]) {
@@ -214,7 +214,7 @@ public class bfh {
 	}
 
 	private void c(int var1, int var2, int var3) {
-		int var4 = this.i.m(new dt(var1, 0, var2)).o();
+		int var4 = this.i.m(new Position(var1, 0, var2)).o();
 		if (var4 > var3) {
 			this.a(var1, var2, var3, var4 + 1);
 		} else if (var4 < var3) {
@@ -224,9 +224,9 @@ public class bfh {
 	}
 
 	private void a(int var1, int var2, int var3, int var4) {
-		if (var4 > var3 && this.i.a(new dt(var1, 0, var2), (int) 16)) {
+		if (var4 > var3 && this.i.a(new Position(var1, 0, var2), (int) 16)) {
 			for (int var5 = var3; var5 < var4; ++var5) {
-				this.i.c(arf.a, new dt(var1, var5, var2));
+				this.i.c(arf.a, new Position(var1, var5, var2));
 			}
 
 			this.q = true;
@@ -252,14 +252,14 @@ public class bfh {
 			int var7 = this.b * 16 + var3;
 			int var8;
 			int var13;
-			if (!this.i.t.o()) {
+			if (!this.i.worldProvider.o()) {
 				bfm var9;
 				if (var5 < var4) {
 					for (var8 = var5; var8 < var4; ++var8) {
 						var9 = this.d[var8 >> 4];
 						if (var9 != null) {
 							var9.a(var1, var8 & 15, var3, 15);
-							this.i.n(new dt((this.a << 4) + var1, var8, (this.b << 4) + var3));
+							this.i.n(new Position((this.a << 4) + var1, var8, (this.b << 4) + var3));
 						}
 					}
 				} else {
@@ -267,7 +267,7 @@ public class bfh {
 						var9 = this.d[var8 >> 4];
 						if (var9 != null) {
 							var9.a(var1, var8 & 15, var3, 0);
-							this.i.n(new dt((this.a << 4) + var1, var8, (this.b << 4) + var3));
+							this.i.n(new Position((this.a << 4) + var1, var8, (this.b << 4) + var3));
 						}
 					}
 				}
@@ -305,7 +305,7 @@ public class bfh {
 				this.t = var8;
 			}
 
-			if (!this.i.t.o()) {
+			if (!this.i.worldProvider.o()) {
 				Iterator var11 = en.a.iterator();
 
 				while (var11.hasNext()) {
@@ -320,7 +320,7 @@ public class bfh {
 		}
 	}
 
-	public int b(dt var1) {
+	public int b(Position var1) {
 		return this.a(var1).n();
 	}
 
@@ -328,8 +328,8 @@ public class bfh {
 		return this.f(var1, var2, var3).n();
 	}
 
-	private atr f(int var1, int var2, int var3) {
-		atr var4 = aty.a;
+	private Block f(int var1, int var2, int var3) {
+		Block var4 = aty.a;
 		if (var2 >= 0 && var2 >> 4 < this.d.length) {
 			bfm var5 = this.d[var2 >> 4];
 			if (var5 != null) {
@@ -345,7 +345,7 @@ public class bfh {
 		return var4;
 	}
 
-	public atr a(int var1, int var2, int var3) {
+	public Block a(int var1, int var2, int var3) {
 		try {
 			return this.f(var1 & 15, var2, var3 & 15);
 		} catch (ReportedException var6) {
@@ -355,7 +355,7 @@ public class bfh {
 		}
 	}
 
-	public atr a(dt var1) {
+	public Block a(Position var1) {
 		try {
 			return this.f(var1.n() & 15, var1.o(), var1.p() & 15);
 		} catch (ReportedException var4) {
@@ -365,8 +365,8 @@ public class bfh {
 		}
 	}
 
-	public bec g(dt var1) {
-		if (this.i.G() == are.g) {
+	public bec g(Position var1) {
+		if (this.i.G() == LevelType.DEBUG) {
 			bec var7 = null;
 			if (var1.o() == 60) {
 				var7 = aty.cv.P();
@@ -408,11 +408,11 @@ public class bfh {
 		}
 	}
 
-	public int c(dt var1) {
+	public int c(Position var1) {
 		return this.g(var1.n() & 15, var1.o(), var1.p() & 15);
 	}
 
-	public bec a(dt var1, bec var2) {
+	public bec a(Position var1, bec var2) {
 		int var3 = var1.n() & 15;
 		int var4 = var1.o();
 		int var5 = var1.p() & 15;
@@ -426,8 +426,8 @@ public class bfh {
 		if (var8 == var2) {
 			return null;
 		} else {
-			atr var9 = var2.c();
-			atr var10 = var8.c();
+			Block var9 = var2.c();
+			Block var10 = var8.c();
 			bfm var11 = this.d[var4 >> 4];
 			boolean var12 = false;
 			if (var11 == null) {
@@ -435,7 +435,7 @@ public class bfh {
 					return null;
 				}
 
-				var11 = this.d[var4 >> 4] = new bfm(var4 >> 4 << 4, !this.i.t.o());
+				var11 = this.d[var4 >> 4] = new bfm(var4 >> 4 << 4, !this.i.worldProvider.o());
 				var12 = var4 >= var7;
 			}
 
@@ -499,27 +499,27 @@ public class bfh {
 		}
 	}
 
-	public int a(arf var1, dt var2) {
+	public int a(arf var1, Position var2) {
 		int var3 = var2.n() & 15;
 		int var4 = var2.o();
 		int var5 = var2.p() & 15;
 		bfm var6 = this.d[var4 >> 4];
-		return var6 == null ? (this.d(var2) ? var1.c : 0) : (var1 == arf.a ? (this.i.t.o() ? 0 : var6.d(var3, var4 & 15, var5)) : (var1 == arf.b ? var6.e(var3, var4 & 15, var5) : var1.c));
+		return var6 == null ? (this.d(var2) ? var1.c : 0) : (var1 == arf.a ? (this.i.worldProvider.o() ? 0 : var6.d(var3, var4 & 15, var5)) : (var1 == arf.b ? var6.e(var3, var4 & 15, var5) : var1.c));
 	}
 
-	public void a(arf var1, dt var2, int var3) {
+	public void a(arf var1, Position var2, int var3) {
 		int var4 = var2.n() & 15;
 		int var5 = var2.o();
 		int var6 = var2.p() & 15;
 		bfm var7 = this.d[var5 >> 4];
 		if (var7 == null) {
-			var7 = this.d[var5 >> 4] = new bfm(var5 >> 4 << 4, !this.i.t.o());
+			var7 = this.d[var5 >> 4] = new bfm(var5 >> 4 << 4, !this.i.worldProvider.o());
 			this.b();
 		}
 
 		this.q = true;
 		if (var1 == arf.a) {
-			if (!this.i.t.o()) {
+			if (!this.i.worldProvider.o()) {
 				var7.a(var4, var5 & 15, var6, var3);
 			}
 		} else if (var1 == arf.b) {
@@ -528,15 +528,15 @@ public class bfh {
 
 	}
 
-	public int a(dt var1, int var2) {
+	public int a(Position var1, int var2) {
 		int var3 = var1.n() & 15;
 		int var4 = var1.o();
 		int var5 = var1.p() & 15;
 		bfm var6 = this.d[var4 >> 4];
 		if (var6 == null) {
-			return !this.i.t.o() && var2 < arf.a.c ? arf.a.c - var2 : 0;
+			return !this.i.worldProvider.o() && var2 < arf.a.c ? arf.a.c - var2 : 0;
 		} else {
-			int var7 = this.i.t.o() ? 0 : var6.d(var3, var4 & 15, var5);
+			int var7 = this.i.worldProvider.o() ? 0 : var6.d(var3, var4 & 15, var5);
 			var7 -= var2;
 			int var8 = var6.e(var3, var4 & 15, var5);
 			if (var8 > var7) {
@@ -549,14 +549,14 @@ public class bfh {
 
 	public void a(Entity var1) {
 		this.r = true;
-		int var2 = NumberConverter.c(var1.s / 16.0D);
-		int var3 = NumberConverter.c(var1.u / 16.0D);
+		int var2 = DataTypesConverter.toFixedPointInt(var1.locationX / 16.0D);
+		int var3 = DataTypesConverter.toFixedPointInt(var1.locationZ / 16.0D);
 		if (var2 != this.a || var3 != this.b) {
 			c.warn("Wrong location! (" + var2 + ", " + var3 + ") should be (" + this.a + ", " + this.b + "), " + var1, new Object[] { var1 });
 			var1.J();
 		}
 
-		int var4 = NumberConverter.c(var1.t / 16.0D);
+		int var4 = DataTypesConverter.toFixedPointInt(var1.locationY / 16.0D);
 		if (var4 < 0) {
 			var4 = 0;
 		}
@@ -588,19 +588,19 @@ public class bfh {
 		this.m[var2].remove(var1);
 	}
 
-	public boolean d(dt var1) {
+	public boolean d(Position var1) {
 		int var2 = var1.n() & 15;
 		int var3 = var1.o();
 		int var4 = var1.p() & 15;
 		return var3 >= this.j[var4 << 4 | var2];
 	}
 
-	private bcm i(dt var1) {
-		atr var2 = this.a(var1);
+	private bcm i(Position var1) {
+		Block var2 = this.a(var1);
 		return !var2.x() ? null : ((avs) var2).a(this.i, this.c(var1));
 	}
 
-	public bcm a(dt var1, bfl var2) {
+	public bcm a(Position var1, bfl var2) {
 		bcm var3 = (bcm) this.l.get(var1);
 		if (var3 == null) {
 			if (var2 == bfl.a) {
@@ -625,7 +625,7 @@ public class bfh {
 
 	}
 
-	public void a(dt var1, bcm var2) {
+	public void a(Position var1, bcm var2) {
 		var2.a(this.i);
 		var2.a(var1);
 		if (this.a(var1) instanceof avs) {
@@ -638,7 +638,7 @@ public class bfh {
 		}
 	}
 
-	public void e(dt var1) {
+	public void e(Position var1) {
 		if (this.h) {
 			bcm var2 = (bcm) this.l.remove(var1);
 			if (var2 != null) {
@@ -685,10 +685,10 @@ public class bfh {
 	}
 
 	public void a(Entity var1, brt var2, List var3, Predicate var4) {
-		int var5 = NumberConverter.c((var2.b - 2.0D) / 16.0D);
-		int var6 = NumberConverter.c((var2.e + 2.0D) / 16.0D);
-		var5 = NumberConverter.a(var5, 0, this.m.length - 1);
-		var6 = NumberConverter.a(var6, 0, this.m.length - 1);
+		int var5 = DataTypesConverter.toFixedPointInt((var2.b - 2.0D) / 16.0D);
+		int var6 = DataTypesConverter.toFixedPointInt((var2.e + 2.0D) / 16.0D);
+		var5 = DataTypesConverter.a(var5, 0, this.m.length - 1);
+		var6 = DataTypesConverter.a(var6, 0, this.m.length - 1);
 
 		for (int var7 = var5; var7 <= var6; ++var7) {
 			Iterator var8 = this.m[var7].iterator();
@@ -713,10 +713,10 @@ public class bfh {
 	}
 
 	public void a(Class var1, brt var2, List var3, Predicate var4) {
-		int var5 = NumberConverter.c((var2.b - 2.0D) / 16.0D);
-		int var6 = NumberConverter.c((var2.e + 2.0D) / 16.0D);
-		var5 = NumberConverter.a(var5, 0, this.m.length - 1);
-		var6 = NumberConverter.a(var6, 0, this.m.length - 1);
+		int var5 = DataTypesConverter.toFixedPointInt((var2.b - 2.0D) / 16.0D);
+		int var6 = DataTypesConverter.toFixedPointInt((var2.e + 2.0D) / 16.0D);
+		var5 = DataTypesConverter.a(var5, 0, this.m.length - 1);
+		var6 = DataTypesConverter.a(var6, 0, this.m.length - 1);
 
 		for (int var7 = var5; var7 <= var6; ++var7) {
 			Iterator var8 = this.m[var7].b(var1).iterator();
@@ -751,7 +751,7 @@ public class bfh {
 		return false;
 	}
 
-	public void a(bfe var1, bfe var2, int var3, int var4) {
+	public void a(IChunkProvider var1, IChunkProvider var2, int var3, int var4) {
 		boolean var5 = var1.a(var3, var4 - 1);
 		boolean var6 = var1.a(var3 + 1, var4);
 		boolean var7 = var1.a(var3, var4 + 1);
@@ -798,18 +798,18 @@ public class bfh {
 
 	}
 
-	public dt h(dt var1) {
+	public Position h(Position var1) {
 		int var2 = var1.n() & 15;
 		int var3 = var1.p() & 15;
 		int var4 = var2 | var3 << 4;
-		dt var5 = new dt(var1.n(), this.f[var4], var1.p());
+		Position var5 = new Position(var1.n(), this.f[var4], var1.p());
 		if (var5.o() == -999) {
 			int var6 = this.g() + 15;
-			var5 = new dt(var1.n(), var6, var1.p());
+			var5 = new Position(var1.n(), var6, var1.p());
 			int var7 = -1;
 
 			while (var5.o() > 0 && var7 == -1) {
-				atr var8 = this.a(var5);
+				Block var8 = this.a(var5);
 				bof var9 = var8.r();
 				if (!var9.c() && !var9.d()) {
 					var5 = var5.b();
@@ -821,11 +821,11 @@ public class bfh {
 			this.f[var4] = var7;
 		}
 
-		return new dt(var1.n(), this.f[var4], var1.p());
+		return new Position(var1.n(), this.f[var4], var1.p());
 	}
 
 	public void b(boolean var1) {
-		if (this.k && !this.i.t.o() && !var1) {
+		if (this.k && !this.i.worldProvider.o() && !var1) {
 			this.h(this.i.D);
 		}
 
@@ -835,7 +835,7 @@ public class bfh {
 		}
 
 		while (!this.w.isEmpty()) {
-			dt var2 = (dt) this.w.poll();
+			Position var2 = (Position) this.w.poll();
 			if (this.a(var2, bfl.c) == null && this.a(var2).x()) {
 				bcm var3 = this.i(var2);
 				this.i.a(var2, var3);
@@ -883,7 +883,7 @@ public class bfh {
 		}
 	}
 
-	public arm a(dt var1, arz var2) {
+	public arm a(Position var1, arz var2) {
 		int var3 = var1.n() & 15;
 		int var4 = var1.p() & 15;
 		int var5 = this.e[var4 << 4 | var3] & 255;
@@ -918,7 +918,7 @@ public class bfh {
 	}
 
 	public void m() {
-		dt var1 = new dt(this.a << 4, 0, this.b << 4);
+		Position var1 = new Position(this.a << 4, 0, this.b << 4);
 
 		for (int var2 = 0; var2 < 8; ++var2) {
 			if (this.v >= 4096) {
@@ -931,7 +931,7 @@ public class bfh {
 			++this.v;
 
 			for (int var6 = 0; var6 < 16; ++var6) {
-				dt var7 = var1.a(var4, (var3 << 4) + var6, var5);
+				Position var7 = var1.a(var4, (var3 << 4) + var6, var5);
 				boolean var8 = var6 == 0 || var6 == 15 || var4 == 0 || var4 == 15 || var5 == 0 || var5 == 15;
 				if (this.d[var3] == null && var8 || this.d[var3] != null && this.d[var3].b(var4, var6, var5).r() == bof.a) {
 					ej[] var9 = ej.values();
@@ -939,7 +939,7 @@ public class bfh {
 
 					for (int var11 = 0; var11 < var10; ++var11) {
 						ej var12 = var9[var11];
-						dt var13 = var7.a(var12);
+						Position var13 = var7.a(var12);
 						if (this.i.p(var13).c().p() > 0) {
 							this.i.x(var13);
 						}
@@ -955,8 +955,8 @@ public class bfh {
 	public void n() {
 		this.n = true;
 		this.o = true;
-		dt var1 = new dt(this.a << 4, 0, this.b << 4);
-		if (!this.i.t.o()) {
+		Position var1 = new Position(this.a << 4, 0, this.b << 4);
+		if (!this.i.worldProvider.o()) {
 			if (this.i.a(var1.a(-1, 0, -1), var1.a(16, 63, 16))) {
 				label42: for (int var2 = 0; var2 < 16; ++var2) {
 					for (int var3 = 0; var3 < 16; ++var3) {
@@ -1018,13 +1018,13 @@ public class bfh {
 	}
 
 	private boolean e(int var1, int var2) {
-		dt var3 = new dt(this.a << 4, 0, this.b << 4);
+		Position var3 = new Position(this.a << 4, 0, this.b << 4);
 		int var4 = this.g();
 		boolean var5 = false;
 		boolean var6 = false;
 
 		int var7;
-		dt var8;
+		Position var8;
 		for (var7 = var4 + 16 - 1; var7 > 63 || var7 > 0 && !var6; --var7) {
 			var8 = var3.a(var1, var7, var2);
 			int var9 = this.b(var8);

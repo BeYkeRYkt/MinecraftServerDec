@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.io.IOException;
 
-public class jl implements id<ik> {
+public class jl implements Packet<PlayPacketListener> {
 
 	private int a;
 	private NBTCompoundTag b;
@@ -15,17 +15,17 @@ public class jl implements id<ik> {
 		this.b = var2;
 	}
 
-	public void a(hd var1) throws IOException {
-		this.a = var1.e();
-		this.b = var1.h();
+	public void readData(PacketDataSerializer var1) throws IOException {
+		this.a = var1.readVarInt();
+		this.b = var1.readCompound();
 	}
 
-	public void b(hd var1) {
-		var1.b(this.a);
-		var1.a(this.b);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeVarInt(this.a);
+		var1.writeCompound(this.b);
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

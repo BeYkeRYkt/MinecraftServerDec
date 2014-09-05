@@ -98,13 +98,13 @@ public class qn {
 		}
 
 		try {
-			if (this.d.b(var1.F())) {
+			if (this.d.b(var1.getId())) {
 				throw new IllegalStateException("Entity is already tracked!");
 			}
 
 			qy var5 = new qy(var1, var2, var3, var4);
 			this.c.add(var5);
-			this.d.a(var1.F(), var5);
+			this.d.a(var1.getId(), var5);
 			var5.b(this.b.j);
 		} catch (Throwable var11) {
 			CrashReport var6 = CrashReport.generateCrashReport(var11, "Adding entity to track");
@@ -113,7 +113,7 @@ public class qn {
 			var7.addDetails("Update interval", (Callable) (new qo(this, var3)));
 			var1.a(var7);
 			CrashReportSystemDetails var8 = var6.generateSystemDetails("Entity That Is Already Tracked");
-			((qy) this.d.a(var1.F())).a.a(var8);
+			((qy) this.d.a(var1.getId())).a.a(var8);
 
 			try {
 				throw new ReportedException(var6);
@@ -135,7 +135,7 @@ public class qn {
 			}
 		}
 
-		qy var5 = (qy) this.d.d(var1.F());
+		qy var5 = (qy) this.d.d(var1.getId());
 		if (var5 != null) {
 			this.c.remove(var5);
 			var5.a();
@@ -183,16 +183,16 @@ public class qn {
 
 	}
 
-	public void a(Entity var1, id var2) {
-		qy var3 = (qy) this.d.a(var1.F());
+	public void a(Entity var1, Packet var2) {
+		qy var3 = (qy) this.d.a(var1.getId());
 		if (var3 != null) {
 			var3.a(var2);
 		}
 
 	}
 
-	public void b(Entity var1, id var2) {
-		qy var3 = (qy) this.d.a(var1.F());
+	public void b(Entity var1, Packet var2) {
+		qy var3 = (qy) this.d.a(var1.getId());
 		if (var3 != null) {
 			var3.b(var2);
 		}

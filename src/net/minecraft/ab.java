@@ -112,7 +112,7 @@ public class ab implements CommandHandlerInterface {
 		return var1;
 	}
 
-	public List a(CommandSenderInterface var1, String var2, dt var3) {
+	public List a(CommandSenderInterface var1, String var2, Position var3) {
 		String[] var4 = var2.split(" ", -1);
 		String var5 = var4[0];
 		if (var4.length == 1) {

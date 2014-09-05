@@ -2,7 +2,7 @@ package net.minecraft;
 
 import org.apache.commons.lang3.Validate;
 
-public class eh extends ev {
+public class eh extends RegistryMaterials {
 
 	private final Object d;
 	private Object e;

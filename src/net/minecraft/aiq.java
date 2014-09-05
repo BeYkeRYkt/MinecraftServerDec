@@ -3,17 +3,17 @@ package net.minecraft;
 import java.util.List;
 import java.util.Random;
 
-public class aiq extends aib {
+public class aiq extends Container {
 
-	public vq a = new air(this, "Enchant", true, 2);
+	public IInventory a = new air(this, "Enchant", true, 2);
 	private World i;
-	private dt j;
+	private Position j;
 	private Random k = new Random();
 	public int f;
 	public int[] g = new int[3];
 	public int[] h = new int[] { -1, -1, -1 };
 
-	public aiq(ahb var1, World var2, dt var3) {
+	public aiq(PlayerInventory var1, World var2, Position var3) {
 		this.i = var2;
 		this.j = var3;
 		this.f = var1.d.ci();
@@ -33,7 +33,7 @@ public class aiq extends aib {
 
 	}
 
-	public void a(ail var1) {
+	public void a(ICrafting var1) {
 		super.a(var1);
 		var1.a(this, 0, this.g[0]);
 		var1.a(this, 1, this.g[1]);
@@ -48,7 +48,7 @@ public class aiq extends aib {
 		super.b();
 
 		for (int var1 = 0; var1 < this.e.size(); ++var1) {
-			ail var2 = (ail) this.e.get(var1);
+			ICrafting var2 = (ICrafting) this.e.get(var1);
 			var2.a(this, 0, this.g[0]);
 			var2.a(this, 1, this.g[1]);
 			var2.a(this, 2, this.g[2]);
@@ -60,9 +60,9 @@ public class aiq extends aib {
 
 	}
 
-	public void a(vq var1) {
+	public void a(IInventory var1) {
 		if (var1 == this.a) {
-			amj var2 = var1.a(0);
+			ItemStack var2 = var1.a(0);
 			int var3;
 			if (var2 != null && var2.v()) {
 				if (!this.i.D) {
@@ -133,20 +133,20 @@ public class aiq extends aib {
 
 	}
 
-	public boolean a(ahd var1, int var2) {
-		amj var3 = this.a.a(0);
-		amj var4 = this.a.a(1);
+	public boolean a(EntityHuman var1, int var2) {
+		ItemStack var3 = this.a.a(0);
+		ItemStack var4 = this.a.a(1);
 		int var5 = var2 + 1;
 		if ((var4 == null || var4.b < var5) && !var1.by.instabuild) {
 			return false;
 		} else if (this.g[var2] > 0 && var3 != null && (var1.bz >= var5 && var1.bz >= this.g[var2] || var1.by.instabuild)) {
 			if (!this.i.D) {
 				List var6 = this.a(var3, var2, this.g[var2]);
-				boolean var7 = var3.b() == amk.aL;
+				boolean var7 = var3.getItem() == amk.aL;
 				if (var6 != null) {
 					var1.b(var5);
 					if (var7) {
-						var3.a((alq) amk.cd);
+						var3.a((Item) amk.cd);
 					}
 
 					for (int var8 = 0; var8 < var6.size(); ++var8) {
@@ -161,7 +161,7 @@ public class aiq extends aib {
 					if (!var1.by.instabuild) {
 						var4.b -= var5;
 						if (var4.b <= 0) {
-							this.a.a(1, (amj) null);
+							this.a.a(1, (ItemStack) null);
 						}
 					}
 
@@ -177,21 +177,21 @@ public class aiq extends aib {
 		}
 	}
 
-	private List a(amj var1, int var2, int var3) {
+	private List a(ItemStack var1, int var2, int var3) {
 		this.k.setSeed((long) (this.f + var2));
 		List var4 = aph.b(this.k, var1, var3);
-		if (var1.b() == amk.aL && var4 != null && var4.size() > 1) {
+		if (var1.getItem() == amk.aL && var4 != null && var4.size() > 1) {
 			var4.remove(this.k.nextInt(var4.size()));
 		}
 
 		return var4;
 	}
 
-	public void b(ahd var1) {
+	public void b(EntityHuman var1) {
 		super.b(var1);
 		if (!this.i.D) {
 			for (int var2 = 0; var2 < this.a.n_(); ++var2) {
-				amj var3 = this.a.b(var2);
+				ItemStack var3 = this.a.b(var2);
 				if (var3 != null) {
 					var1.a(var3, false);
 				}
@@ -200,16 +200,16 @@ public class aiq extends aib {
 		}
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return this.i.p(this.j).c() != aty.bC ? false : var1.e((double) this.j.n() + 0.5D, (double) this.j.o() + 0.5D, (double) this.j.p() + 0.5D) <= 64.0D;
 	}
 
-	public amj b(ahd var1, int var2) {
-		amj var3 = null;
+	public ItemStack b(EntityHuman var1, int var2) {
+		ItemStack var3 = null;
 		ajk var4 = (ajk) this.c.get(var2);
 		if (var4 != null && var4.e()) {
-			amj var5 = var4.d();
-			var3 = var5.k();
+			ItemStack var5 = var4.d();
+			var3 = var5.getCopy();
 			if (var2 == 0) {
 				if (!this.a(var5, 2, 38, true)) {
 					return null;
@@ -218,7 +218,7 @@ public class aiq extends aib {
 				if (!this.a(var5, 2, 38, true)) {
 					return null;
 				}
-			} else if (var5.b() == amk.aW && akv.a(var5.i()) == akv.l) {
+			} else if (var5.getItem() == amk.aW && akv.a(var5.i()) == akv.l) {
 				if (!this.a(var5, 1, 2, true)) {
 					return null;
 				}
@@ -227,17 +227,17 @@ public class aiq extends aib {
 					return null;
 				}
 
-				if (var5.n() && var5.b == 1) {
-					((ajk) this.c.get(0)).d(var5.k());
+				if (var5.hasTag() && var5.b == 1) {
+					((ajk) this.c.get(0)).d(var5.getCopy());
 					var5.b = 0;
 				} else if (var5.b >= 1) {
-					((ajk) this.c.get(0)).d(new amj(var5.b(), 1, var5.i()));
+					((ajk) this.c.get(0)).d(new ItemStack(var5.getItem(), 1, var5.i()));
 					--var5.b;
 				}
 			}
 
 			if (var5.b == 0) {
-				var4.d((amj) null);
+				var4.d((ItemStack) null);
 			} else {
 				var4.f();
 			}

@@ -37,13 +37,13 @@ public abstract class aqi {
 	}
 
 	private boolean g() {
-		dt var1 = this.b();
+		Position var1 = this.b();
 		return this.a().b((double) var1.n() + 0.5D, (double) var1.o() + 0.5D, (double) var1.p() + 0.5D, (double) this.l);
 	}
 
 	public void c() {
 		if (this.g()) {
-			dt var1 = this.b();
+			Position var1 = this.b();
 			double var6;
 			if (this.a().D) {
 				double var2 = (double) ((float) var1.n() + this.a().s.nextFloat());
@@ -138,7 +138,7 @@ public abstract class aqi {
 					}
 
 					var13.f(var7);
-					var13.b(var11.s, var11.t, var11.u, var11.y, var11.z);
+					var13.b(var11.locationX, var11.locationY, var11.locationZ, var11.yaw, var11.pitch);
 					if (var1.o != null && var2) {
 						var1.o.d(var13);
 					}
@@ -149,7 +149,7 @@ public abstract class aqi {
 				var11 = var13;
 			}
 		} else if (var1 instanceof EntityLiving && var1.o != null && var2) {
-			((xn) var1).a(var1.o.E(new dt(var1)), (xq) null);
+			((xn) var1).a(var1.o.E(new Position(var1)), (xq) null);
 			var1.o.d(var1);
 		}
 
@@ -262,5 +262,5 @@ public abstract class aqi {
 
 	public abstract World a();
 
-	public abstract dt b();
+	public abstract Position b();
 }

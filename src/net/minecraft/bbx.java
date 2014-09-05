@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class bbx extends atr {
+public class bbx extends Block {
 
 	public static final bet a = bet.a("up");
 	public static final bet b = bet.a("north");
@@ -9,20 +9,20 @@ public class bbx extends atr {
 	public static final bet O = bet.a("west");
 	public static final bev P = bev.a("variant", bby.class);
 
-	public bbx(atr var1) {
+	public bbx(Block var1) {
 		super(var1.J);
 		this.j(this.L.b().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false)).a(P, bby.a));
 		this.c(var1.w);
 		this.b(var1.x / 3.0F);
 		this.a(var1.H);
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
 	public boolean d() {
 		return false;
 	}
 
-	public boolean b(ard var1, dt var2) {
+	public boolean b(ard var1, Position var2) {
 		return false;
 	}
 
@@ -30,7 +30,7 @@ public class bbx extends atr {
 		return false;
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		boolean var3 = this.e(var1, var2.c());
 		boolean var4 = this.e(var1, var2.d());
 		boolean var5 = this.e(var1, var2.e());
@@ -69,14 +69,14 @@ public class bbx extends atr {
 		this.a(var7, 0.0F, var9, var8, var11, var10);
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		this.a(var1, var2);
 		this.F = 1.5D;
 		return super.a(var1, var2, var3);
 	}
 
-	public boolean e(ard var1, dt var2) {
-		atr var3 = var1.p(var2).c();
+	public boolean e(ard var1, Position var2) {
+		Block var3 = var1.p(var2).c();
 		return var3 == aty.cv ? false : (var3 != this && !(var3 instanceof avw) ? (var3.J.k() && var3.d() ? var3.J != bof.C : false) : true);
 	}
 
@@ -92,7 +92,7 @@ public class bbx extends atr {
 		return ((bby) var1.b(P)).a();
 	}
 
-	public bec a(bec var1, ard var2, dt var3) {
+	public bec a(bec var1, ard var2, Position var3) {
 		return var1.a(a, Boolean.valueOf(!var2.d(var3.a()))).a(b, Boolean.valueOf(this.e(var2, var3.c()))).a(M, Boolean.valueOf(this.e(var2, var3.f()))).a(N, Boolean.valueOf(this.e(var2, var3.d()))).a(O, Boolean.valueOf(this.e(var2, var3.e())));
 	}
 

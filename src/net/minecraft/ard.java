@@ -2,11 +2,11 @@ package net.minecraft;
 
 public interface ard {
 
-	bcm s(dt var1);
+	bcm s(Position var1);
 
-	bec p(dt var1);
+	bec p(Position var1);
 
-	boolean d(dt var1);
+	boolean d(Position var1);
 
-	int a(dt var1, ej var2);
+	int a(Position var1, ej var2);
 }

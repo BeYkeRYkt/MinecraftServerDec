@@ -41,7 +41,7 @@ public class HelpCommand extends AbstractCommand {
 				throw new dp(var9.getUsage(var1), new Object[0]);
 			}
 
-			if (NumberConverter.a(var2[0], -1) != -1) {
+			if (DataTypesConverter.a(var2[0], -1) != -1) {
 				throw var12;
 			}
 
@@ -60,7 +60,7 @@ public class HelpCommand extends AbstractCommand {
 			var1.a(var11);
 		}
 
-		if (var13 == 0 && var1 instanceof ahd) {
+		if (var13 == 0 && var1 instanceof EntityHuman) {
 			hz var16 = new hz("commands.help.footer", new Object[0]);
 			var16.b().a(FormattingCode.k);
 			var1.a(var16);
@@ -78,7 +78,7 @@ public class HelpCommand extends AbstractCommand {
 		return MinecraftServer.getInstance().getCommandHandler().a();
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		if (var2.length == 1) {
 			Set var4 = this.d().keySet();
 			return a(var2, (String[]) var4.toArray(new String[var4.size()]));

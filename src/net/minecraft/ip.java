@@ -1,9 +1,9 @@
 package net.minecraft;
 
-public class ip implements id<ik> {
+public class ip implements Packet<PlayPacketListener> {
 
 	private int a;
-	private dt b;
+	private Position b;
 	private ej c;
 	private String d;
 
@@ -11,27 +11,27 @@ public class ip implements id<ik> {
 	}
 
 	public ip(adm var1) {
-		this.a = var1.F();
+		this.a = var1.getId();
 		this.b = var1.n();
 		this.c = var1.b;
 		this.d = var1.c.B;
 	}
 
-	public void a(hd var1) {
-		this.a = var1.e();
-		this.d = var1.c(adn.A);
-		this.b = var1.c();
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readVarInt();
+		this.d = var1.readString(adn.A);
+		this.b = var1.readPosition();
 		this.c = ej.b(var1.readUnsignedByte());
 	}
 
-	public void b(hd var1) {
-		var1.b(this.a);
-		var1.a(this.d);
-		var1.a(this.b);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeVarInt(this.a);
+		var1.writeString(this.d);
+		var1.writePosition(this.b);
 		var1.writeByte(this.c.b());
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

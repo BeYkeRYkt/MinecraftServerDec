@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public interface nh extends hg {
+public interface nh extends PacketListener {
 
 	void a(ni var1);
 

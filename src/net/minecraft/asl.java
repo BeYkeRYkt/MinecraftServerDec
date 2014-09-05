@@ -32,7 +32,7 @@ public class asl extends arm {
 		this.ao = var2.ao + 0.2F;
 	}
 
-	public void a(World var1, Random var2, dt var3) {
+	public void a(World var1, Random var2, Position var3) {
 		this.aE.as.a(var1, var2, this, var3);
 	}
 

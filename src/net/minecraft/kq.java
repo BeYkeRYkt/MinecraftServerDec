@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class kq implements id<ik> {
+public class kq implements Packet<PlayPacketListener> {
 
 	private int a;
 	private byte b;
@@ -9,21 +9,21 @@ public class kq implements id<ik> {
 	}
 
 	public kq(Entity var1, byte var2) {
-		this.a = var1.F();
+		this.a = var1.getId();
 		this.b = var2;
 	}
 
-	public void a(hd var1) {
-		this.a = var1.e();
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readVarInt();
 		this.b = var1.readByte();
 	}
 
-	public void b(hd var1) {
-		var1.b(this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeVarInt(this.a);
 		var1.writeByte(this.b);
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

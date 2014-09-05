@@ -49,7 +49,7 @@ public class qq {
 
 		this.e.clear();
 		if (this.c.isEmpty()) {
-			bgd var5 = this.b.t;
+			WorldProvider var5 = this.b.worldProvider;
 			if (!var5.e()) {
 				this.b.b.b();
 			}
@@ -74,7 +74,7 @@ public class qq {
 		return var6;
 	}
 
-	public void a(dt var1) {
+	public void a(Position var1) {
 		int var2 = var1.n() >> 4;
 		int var3 = var1.p() >> 4;
 		qr var4 = this.a(var2, var3, false);
@@ -85,10 +85,10 @@ public class qq {
 	}
 
 	public void a(EntityPlayer var1) {
-		int var2 = (int) var1.s >> 4;
-		int var3 = (int) var1.u >> 4;
-		var1.d = var1.s;
-		var1.e = var1.u;
+		int var2 = (int) var1.locationX >> 4;
+		int var3 = (int) var1.locationZ >> 4;
+		var1.d = var1.locationX;
+		var1.e = var1.locationZ;
 
 		for (int var4 = var2 - this.g; var4 <= var2 + this.g; ++var4) {
 			for (int var5 = var3 - this.g; var5 <= var3 + this.g; ++var5) {
@@ -104,8 +104,8 @@ public class qq {
 		ArrayList var2 = Lists.newArrayList((Iterable) var1.f);
 		int var3 = 0;
 		int var4 = this.g;
-		int var5 = (int) var1.s >> 4;
-		int var6 = (int) var1.u >> 4;
+		int var5 = (int) var1.locationX >> 4;
+		int var6 = (int) var1.locationZ >> 4;
 		int var7 = 0;
 		int var8 = 0;
 		aqm var9 = qr.a(this.a(var5, var6, true));
@@ -166,10 +166,10 @@ public class qq {
 	}
 
 	public void d(EntityPlayer var1) {
-		int var2 = (int) var1.s >> 4;
-		int var3 = (int) var1.u >> 4;
-		double var4 = var1.d - var1.s;
-		double var6 = var1.e - var1.u;
+		int var2 = (int) var1.locationX >> 4;
+		int var3 = (int) var1.locationZ >> 4;
+		double var4 = var1.d - var1.locationX;
+		double var6 = var1.e - var1.locationZ;
 		double var8 = var4 * var4 + var6 * var6;
 		if (var8 >= 64.0D) {
 			int var10 = (int) var1.d >> 4;
@@ -194,8 +194,8 @@ public class qq {
 				}
 
 				this.b(var1);
-				var1.d = var1.s;
-				var1.e = var1.u;
+				var1.d = var1.locationX;
+				var1.e = var1.locationZ;
 			}
 		}
 	}
@@ -206,7 +206,7 @@ public class qq {
 	}
 
 	public void a(int var1) {
-		var1 = NumberConverter.a(var1, 3, 32);
+		var1 = DataTypesConverter.a(var1, 3, 32);
 		if (var1 != this.g) {
 			int var2 = var1 - this.g;
 			ArrayList var3 = Lists.newArrayList((Iterable) this.c);
@@ -214,8 +214,8 @@ public class qq {
 
 			while (var4.hasNext()) {
 				EntityPlayer var5 = (EntityPlayer) var4.next();
-				int var6 = (int) var5.s >> 4;
-				int var7 = (int) var5.u >> 4;
+				int var6 = (int) var5.locationX >> 4;
+				int var7 = (int) var5.locationZ >> 4;
 				int var8;
 				int var9;
 				if (var2 > 0) {

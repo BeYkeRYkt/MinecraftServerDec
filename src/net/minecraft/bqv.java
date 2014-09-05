@@ -5,9 +5,9 @@ import java.util.concurrent.Callable;
 class bqv implements Callable {
 
 	// $FF: synthetic field
-	final bqo a;
+	final WorldData a;
 
-	bqv(bqo var1) {
+	bqv(WorldData var1) {
 		this.a = var1;
 	}
 
@@ -15,7 +15,7 @@ class bqv implements Callable {
 		String var1 = "Unknown?";
 
 		try {
-			switch (bqo.j(this.a)) {
+			switch (WorldData.j(this.a)) {
 				case 19132:
 					var1 = "McRegion";
 					break;
@@ -26,7 +26,7 @@ class bqv implements Callable {
 			;
 		}
 
-		return String.format("0x%05X - %s", new Object[] { Integer.valueOf(bqo.j(this.a)), var1 });
+		return String.format("0x%05X - %s", new Object[] { Integer.valueOf(WorldData.j(this.a)), var1 });
 	}
 
 	// $FF: synthetic method

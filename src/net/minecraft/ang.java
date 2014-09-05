@@ -1,5 +1,5 @@
 package net.minecraft;
 
-public class ang extends alq {
+public class ang extends Item {
 
 }

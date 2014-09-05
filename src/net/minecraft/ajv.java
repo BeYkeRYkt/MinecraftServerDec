@@ -1,16 +1,16 @@
 package net.minecraft;
 
-public class ajv extends alq {
+public class ajv extends Item {
 
-	private atr a;
+	private Block a;
 
-	public ajv(atr var1) {
+	public ajv(Block var1) {
 		this.a = var1;
 	}
 
-	public boolean a(amj var1, ahd var2, World var3, dt var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
 		bec var9 = var3.p(var4);
-		atr var10 = var9.c();
+		Block var10 = var9.c();
 		if (var10 == aty.aH && ((Integer) var9.b(bao.a)).intValue() < 1) {
 			var5 = ej.b;
 		} else if (!var10.f(var3, var4)) {

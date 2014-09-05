@@ -3,7 +3,7 @@ package net.minecraft;
 public class yr extends zb {
 
 	private acu a;
-	private ahd b;
+	private EntityHuman b;
 	private World c;
 	private float d;
 	private int e;
@@ -35,12 +35,12 @@ public class yr extends zb {
 	}
 
 	public void e() {
-		this.a.p().a(this.b.s, this.b.t + (double) this.b.aR(), this.b.u, 10.0F, (float) this.a.bP());
+		this.a.p().a(this.b.locationX, this.b.locationY + (double) this.b.aR(), this.b.locationZ, 10.0F, (float) this.a.bP());
 		--this.e;
 	}
 
-	private boolean a(ahd var1) {
-		amj var2 = var1.bg.h();
-		return var2 == null ? false : (!this.a.cj() && var2.b() == amk.aX ? true : this.a.d(var2));
+	private boolean a(EntityHuman var1) {
+		ItemStack var2 = var1.playerInventory.getItemInHand();
+		return var2 == null ? false : (!this.a.cj() && var2.getItem() == amk.aX ? true : this.a.d(var2));
 	}
 }

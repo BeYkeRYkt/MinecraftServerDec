@@ -29,12 +29,12 @@ public class bqj extends bqn {
 		RegionFileCache.dumpCache();
 	}
 
-	public bqy a(String var1, boolean var2) {
+	public IDataManager a(String var1, boolean var2) {
 		return new bqi(this.a, var1, var2);
 	}
 
 	public boolean b(String var1) {
-		bqo var2 = this.c(var1);
+		WorldData var2 = this.c(var1);
 		return var2 != null && var2.l() != this.c();
 	}
 
@@ -58,24 +58,24 @@ public class bqj extends bqn {
 
 		int var9 = var3.size() + var4.size() + var5.size();
 		b.info("Total conversion count is " + var9);
-		bqo var10 = this.c(var1);
+		WorldData var10 = this.c(var1);
 		Object var11 = null;
-		if (var10.u() == are.c) {
+		if (var10.getLevelType() == LevelType.FLAT) {
 			var11 = new asc(arm.q, 0.5F);
 		} else {
-			var11 = new arz(var10.b(), var10.u(), var10.B());
+			var11 = new arz(var10.b(), var10.getLevelType(), var10.B());
 		}
 
 		this.a(new File(var6, "region"), (Iterable) var3, (arz) var11, 0, var9, var2);
 		this.a(new File(var7, "region"), (Iterable) var4, new asc(arm.x, 0.0F), var3.size(), var9, var2);
 		this.a(new File(var8, "region"), (Iterable) var5, new asc(arm.y, 0.0F), var3.size() + var4.size(), var9, var2);
 		var10.e(19133);
-		if (var10.u() == are.h) {
-			var10.a(are.b);
+		if (var10.getLevelType() == LevelType.DEFAULT_1_1) {
+			var10.a(LevelType.DEFAULT);
 		}
 
 		this.g(var1);
-		bqy var12 = this.a(var1, false);
+		IDataManager var12 = this.a(var1, false);
 		var12.a(var10);
 		return true;
 	}
@@ -125,7 +125,7 @@ public class bqj extends bqn {
 						if (var12 == null) {
 							b.warn("Failed to fetch input stream");
 						} else {
-							NBTCompoundTag var13 = fz.a(var12);
+							NBTCompoundTag var13 = NBTCompressedStreamTools.readTag(var12);
 							var12.close();
 							NBTCompoundTag var14 = var13.getCompound("Level");
 							bfu var15 = bft.a(var14);
@@ -134,7 +134,7 @@ public class bqj extends bqn {
 							var16.put("Level", (NBTTag) var17);
 							bft.a(var15, var17, var3);
 							DataOutputStream var18 = var9.b(var10, var11);
-							fz.a(var16, (DataOutput) var18);
+							NBTCompressedStreamTools.writeTag(var16, (DataOutput) var18);
 							var18.close();
 						}
 					}

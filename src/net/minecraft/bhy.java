@@ -4,13 +4,13 @@ import java.util.Random;
 
 public class bhy extends bhp {
 
-	private atr a;
+	private Block a;
 
-	public bhy(atr var1) {
+	public bhy(Block var1) {
 		this.a = var1;
 	}
 
-	public boolean b(World var1, Random var2, dt var3) {
+	public boolean b(World var1, Random var2, Position var3) {
 		for (var3 = var3.a(-8, 0, -8); var3.o() > 5 && var1.d(var3); var3 = var3.b()) {
 			;
 		}
@@ -81,7 +81,7 @@ public class bhy extends bhp {
 				for (var30 = 0; var30 < 16; ++var30) {
 					for (var8 = 4; var8 < 8; ++var8) {
 						if (var4[(var6 * 16 + var30) * 8 + var8]) {
-							dt var33 = var3.a(var6, var8 - 1, var30);
+							Position var33 = var3.a(var6, var8 - 1, var30);
 							if (var1.p(var33).c() == aty.d && var1.b(arf.a, var3.a(var6, var8, var30)) > 0) {
 								arm var34 = var1.b(var33);
 								if (var34.ak.c() == aty.bw) {

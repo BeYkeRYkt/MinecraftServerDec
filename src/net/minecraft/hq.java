@@ -5,7 +5,7 @@ import java.util.List;
 
 public class hq {
 
-	public static ho a(CommandSenderInterface var0, ho var1, Entity var2) throws dj {
+	public static IJSONComponent a(CommandSenderInterface var0, IJSONComponent var1, Entity var2) throws dj {
 		Object var3 = null;
 		if (var1 instanceof ht) {
 			ht var4 = (ht) var1;
@@ -38,8 +38,8 @@ public class hq {
 
 			for (int var10 = 0; var10 < var8.length; ++var10) {
 				Object var12 = var8[var10];
-				if (var12 instanceof ho) {
-					var8[var10] = a(var0, (ho) var12, var2);
+				if (var12 instanceof IJSONComponent) {
+					var8[var10] = a(var0, (IJSONComponent) var12, var2);
 				}
 			}
 
@@ -48,16 +48,16 @@ public class hq {
 
 		hv var9 = var1.b();
 		if (var9 != null) {
-			((ho) var3).a(var9.m());
+			((IJSONComponent) var3).a(var9.m());
 		}
 
 		Iterator var11 = var1.a().iterator();
 
 		while (var11.hasNext()) {
-			ho var13 = (ho) var11.next();
-			((ho) var3).a(a(var0, var13, var2));
+			IJSONComponent var13 = (IJSONComponent) var11.next();
+			((IJSONComponent) var3).a(a(var0, var13, var2));
 		}
 
-		return (ho) var3;
+		return (IJSONComponent) var3;
 	}
 }

@@ -9,7 +9,7 @@ public enum apg {
 	private apg(String var1, int var2) {
 	}
 
-	public boolean a(alq var1) {
+	public boolean a(Item var1) {
 		if (this == a) {
 			return true;
 		} else if (this == j && var1.m()) {

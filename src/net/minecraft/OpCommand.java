@@ -35,7 +35,7 @@ public class OpCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		if (var2.length == 1) {
 			String var4 = var2[var2.length - 1];
 			ArrayList var5 = Lists.newArrayList();

@@ -9,7 +9,7 @@ class bl implements CommandSenderInterface {
 	// $FF: synthetic field
 	final CommandSenderInterface b;
 	// $FF: synthetic field
-	final dt c;
+	final Position c;
 	// $FF: synthetic field
 	final double d;
 	// $FF: synthetic field
@@ -19,7 +19,7 @@ class bl implements CommandSenderInterface {
 	// $FF: synthetic field
 	final ExecuteCommand g;
 
-	bl(ExecuteCommand var1, Entity var2, CommandSenderInterface var3, dt var4, double var5, double var7, double var9) {
+	bl(ExecuteCommand var1, Entity var2, CommandSenderInterface var3, Position var4, double var5, double var7, double var9) {
 		this.g = var1;
 		this.a = var2;
 		this.b = var3;
@@ -33,11 +33,11 @@ class bl implements CommandSenderInterface {
 		return this.a.d_();
 	}
 
-	public ho e_() {
+	public IJSONComponent e_() {
 		return this.a.e_();
 	}
 
-	public void a(ho var1) {
+	public void a(IJSONComponent var1) {
 		this.b.a(var1);
 	}
 
@@ -45,7 +45,7 @@ class bl implements CommandSenderInterface {
 		return this.b.a(var1, var2);
 	}
 
-	public dt c() {
+	public Position c() {
 		return this.c;
 	}
 

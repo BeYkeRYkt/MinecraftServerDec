@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.List;
 
-public class avv extends atr {
+public class avv extends Block {
 
 	public static final bet a = bet.a("north");
 	public static final bet b = bet.a("east");
@@ -12,10 +12,10 @@ public class avv extends atr {
 	public avv(bof var1) {
 		super(var1);
 		this.j(this.L.b().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)));
-		this.a(akf.c);
+		this.a(CreativeModeTab.c);
 	}
 
-	public void a(World var1, dt var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
 		boolean var7 = this.e(var1, var2.c());
 		boolean var8 = this.e(var1, var2.d());
 		boolean var9 = this.e(var1, var2.e());
@@ -63,7 +63,7 @@ public class avv extends atr {
 		this.a(var11, 0.0F, var13, var12, 1.0F, var14);
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		boolean var3 = this.e(var1, var2.c());
 		boolean var4 = this.e(var1, var2.d());
 		boolean var5 = this.e(var1, var2.e());
@@ -99,16 +99,16 @@ public class avv extends atr {
 		return false;
 	}
 
-	public boolean b(ard var1, dt var2) {
+	public boolean b(ard var1, Position var2) {
 		return false;
 	}
 
-	public boolean e(ard var1, dt var2) {
-		atr var3 = var1.p(var2).c();
+	public boolean e(ard var1, Position var2) {
+		Block var3 = var1.p(var2).c();
 		return var3 == aty.cv ? false : ((!(var3 instanceof avv) || var3.J != this.J) && !(var3 instanceof avw) ? (var3.J.k() && var3.d() ? var3.J != bof.C : false) : true);
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
 		return var1.D ? true : aml.a(var4, var1, var2);
 	}
 
@@ -116,7 +116,7 @@ public class avv extends atr {
 		return 0;
 	}
 
-	public bec a(bec var1, ard var2, dt var3) {
+	public bec a(bec var1, ard var2, Position var3) {
 		return var1.a(a, Boolean.valueOf(this.e(var2, var3.c()))).a(b, Boolean.valueOf(this.e(var2, var3.f()))).a(M, Boolean.valueOf(this.e(var2, var3.d()))).a(N, Boolean.valueOf(this.e(var2, var3.e())));
 	}
 

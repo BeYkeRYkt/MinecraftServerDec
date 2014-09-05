@@ -36,58 +36,58 @@ public class TeleportCommand extends AbstractCommand {
 					throw new dp("commands.tp.usage", new Object[0]);
 				} else if (((Entity) var4).o != null) {
 					int var14 = var3 + 1;
-					aa var6 = a(((Entity) var4).s, var2[var3], true);
-					aa var7 = a(((Entity) var4).t, var2[var14++], 0, 0, false);
-					aa var8 = a(((Entity) var4).u, var2[var14++], true);
-					aa var9 = a((double) ((Entity) var4).y, var2.length > var14 ? var2[var14++] : "~", false);
-					aa var10 = a((double) ((Entity) var4).z, var2.length > var14 ? var2[var14] : "~", false);
+					aa var6 = a(((Entity) var4).locationX, var2[var3], true);
+					aa var7 = a(((Entity) var4).locationY, var2[var14++], 0, 0, false);
+					aa var8 = a(((Entity) var4).locationZ, var2[var14++], true);
+					aa var9 = a((double) ((Entity) var4).yaw, var2.length > var14 ? var2[var14++] : "~", false);
+					aa var10 = a((double) ((Entity) var4).pitch, var2.length > var14 ? var2[var14] : "~", false);
 					float var12;
 					if (var4 instanceof EntityPlayer) {
-						EnumSet var11 = EnumSet.noneOf(ij.class);
+						EnumSet var11 = EnumSet.noneOf(PositionFlag.class);
 						if (var6.c()) {
-							var11.add(ij.a);
+							var11.add(PositionFlag.X);
 						}
 
 						if (var7.c()) {
-							var11.add(ij.b);
+							var11.add(PositionFlag.Y);
 						}
 
 						if (var8.c()) {
-							var11.add(ij.c);
+							var11.add(PositionFlag.Z);
 						}
 
 						if (var10.c()) {
-							var11.add(ij.e);
+							var11.add(PositionFlag.YAW);
 						}
 
 						if (var9.c()) {
-							var11.add(ij.d);
+							var11.add(PositionFlag.PITCH);
 						}
 
 						var12 = (float) var9.b();
 						if (!var9.c()) {
-							var12 = NumberConverter.g(var12);
+							var12 = DataTypesConverter.g(var12);
 						}
 
 						float var13 = (float) var10.b();
 						if (!var10.c()) {
-							var13 = NumberConverter.g(var13);
+							var13 = DataTypesConverter.g(var13);
 						}
 
 						if (var13 > 90.0F || var13 < -90.0F) {
-							var13 = NumberConverter.g(180.0F - var13);
-							var12 = NumberConverter.g(var12 + 180.0F);
+							var13 = DataTypesConverter.g(180.0F - var13);
+							var12 = DataTypesConverter.g(var12 + 180.0F);
 						}
 
 						((Entity) var4).a((Entity) null);
 						((EntityPlayer) var4).a.a(var6.b(), var7.b(), var8.b(), var12, var13, var11);
 						((Entity) var4).f(var12);
 					} else {
-						float var15 = (float) NumberConverter.g(var9.a());
-						var12 = (float) NumberConverter.g(var10.a());
+						float var15 = (float) DataTypesConverter.g(var9.a());
+						var12 = (float) DataTypesConverter.g(var10.a());
 						if (var12 > 90.0F || var12 < -90.0F) {
-							var12 = NumberConverter.g(180.0F - var12);
-							var15 = NumberConverter.g(var15 + 180.0F);
+							var12 = DataTypesConverter.g(180.0F - var12);
+							var15 = DataTypesConverter.g(var15 + 180.0F);
 						}
 
 						((Entity) var4).b(var6.a(), var7.a(), var8.a(), var15, var12);
@@ -103,9 +103,9 @@ public class TeleportCommand extends AbstractCommand {
 				} else {
 					((Entity) var4).a((Entity) null);
 					if (var4 instanceof EntityPlayer) {
-						((EntityPlayer) var4).a.a(var5.s, var5.t, var5.u, var5.y, var5.z);
+						((EntityPlayer) var4).a.a(var5.locationX, var5.locationY, var5.locationZ, var5.yaw, var5.pitch);
 					} else {
-						((Entity) var4).b(var5.s, var5.t, var5.u, var5.y, var5.z);
+						((Entity) var4).b(var5.locationX, var5.locationY, var5.locationZ, var5.yaw, var5.pitch);
 					}
 
 					a(var1, this, "commands.tp.success", new Object[] { ((Entity) var4).d_(), var5.d_() });
@@ -114,7 +114,7 @@ public class TeleportCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return var2.length != 1 && var2.length != 2 ? null : a(var2, MinecraftServer.getInstance().I());
 	}
 

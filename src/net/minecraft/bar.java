@@ -9,7 +9,7 @@ public class bar extends awt {
 	public bar(bof var1) {
 		super(var1, false);
 		this.j(this.L.b().a(a, akv.a));
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
 	public int a(bec var1) {
@@ -36,14 +36,14 @@ public class bar extends awt {
 		return this.P().a(a, akv.b(var1));
 	}
 
-	public void c(World var1, dt var2, bec var3) {
+	public void c(World var1, Position var2, bec var3) {
 		if (!var1.D) {
 			atm.d(var1, var2);
 		}
 
 	}
 
-	public void b(World var1, dt var2, bec var3) {
+	public void b(World var1, Position var2, bec var3) {
 		if (!var1.D) {
 			atm.d(var1, var2);
 		}

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class bbc extends atr {
+public class bbc extends Block {
 
 	public static final bev a = bev.a("variant", bbd.class);
 	public static final int b = bbd.a.a();
@@ -11,7 +11,7 @@ public class bbc extends atr {
 	public bbc() {
 		super(bof.e);
 		this.j(this.L.b().a(a, bbd.a));
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
 	public int a(bec var1) {

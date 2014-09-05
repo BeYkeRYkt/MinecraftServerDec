@@ -12,7 +12,7 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class bqm implements bqy, brl {
+public class bqm implements IDataManager, brl {
 
 	private static final Logger a = LogManager.getLogger();
 	private final File b;
@@ -74,19 +74,19 @@ public class bqm implements bqy, brl {
 		}
 	}
 
-	public bfq a(bgd var1) {
+	public bfq a(WorldProvider var1) {
 		throw new RuntimeException("Old Chunk Storage is no longer supported.");
 	}
 
-	public bqo d() {
+	public WorldData d() {
 		File var1 = new File(this.b, "level.dat");
 		NBTCompoundTag var2;
 		NBTCompoundTag var3;
 		if (var1.exists()) {
 			try {
-				var2 = fz.a((InputStream) (new FileInputStream(var1)));
+				var2 = NBTCompressedStreamTools.readTag((InputStream) (new FileInputStream(var1)));
 				var3 = var2.getCompound("Data");
-				return new bqo(var3);
+				return new WorldData(var3);
 			} catch (Exception var5) {
 				var5.printStackTrace();
 			}
@@ -95,9 +95,9 @@ public class bqm implements bqy, brl {
 		var1 = new File(this.b, "level.dat_old");
 		if (var1.exists()) {
 			try {
-				var2 = fz.a((InputStream) (new FileInputStream(var1)));
+				var2 = NBTCompressedStreamTools.readTag((InputStream) (new FileInputStream(var1)));
 				var3 = var2.getCompound("Data");
-				return new bqo(var3);
+				return new WorldData(var3);
 			} catch (Exception var4) {
 				var4.printStackTrace();
 			}
@@ -106,7 +106,7 @@ public class bqm implements bqy, brl {
 		return null;
 	}
 
-	public void a(bqo var1, NBTCompoundTag var2) {
+	public void a(WorldData var1, NBTCompoundTag var2) {
 		NBTCompoundTag var3 = var1.a(var2);
 		NBTCompoundTag var4 = new NBTCompoundTag();
 		var4.put("Data", (NBTTag) var3);
@@ -115,7 +115,7 @@ public class bqm implements bqy, brl {
 			File var5 = new File(this.b, "level.dat_new");
 			File var6 = new File(this.b, "level.dat_old");
 			File var7 = new File(this.b, "level.dat");
-			fz.a(var4, (OutputStream) (new FileOutputStream(var5)));
+			NBTCompressedStreamTools.writeTag(var4, (OutputStream) (new FileOutputStream(var5)));
 			if (var6.exists()) {
 				var6.delete();
 			}
@@ -135,7 +135,7 @@ public class bqm implements bqy, brl {
 
 	}
 
-	public void a(bqo var1) {
+	public void a(WorldData var1) {
 		NBTCompoundTag var2 = var1.a();
 		NBTCompoundTag var3 = new NBTCompoundTag();
 		var3.put("Data", (NBTTag) var2);
@@ -144,7 +144,7 @@ public class bqm implements bqy, brl {
 			File var4 = new File(this.b, "level.dat_new");
 			File var5 = new File(this.b, "level.dat_old");
 			File var6 = new File(this.b, "level.dat");
-			fz.a(var3, (OutputStream) (new FileOutputStream(var4)));
+			NBTCompressedStreamTools.writeTag(var3, (OutputStream) (new FileOutputStream(var4)));
 			if (var5.exists()) {
 				var5.delete();
 			}
@@ -164,13 +164,13 @@ public class bqm implements bqy, brl {
 
 	}
 
-	public void a(ahd var1) {
+	public void a(EntityHuman var1) {
 		try {
 			NBTCompoundTag var2 = new NBTCompoundTag();
 			var1.e(var2);
 			File var3 = new File(this.c, var1.aJ().toString() + ".dat.tmp");
 			File var4 = new File(this.c, var1.aJ().toString() + ".dat");
-			fz.a(var2, (OutputStream) (new FileOutputStream(var3)));
+			NBTCompressedStreamTools.writeTag(var2, (OutputStream) (new FileOutputStream(var3)));
 			if (var4.exists()) {
 				var4.delete();
 			}
@@ -182,13 +182,13 @@ public class bqm implements bqy, brl {
 
 	}
 
-	public NBTCompoundTag b(ahd var1) {
+	public NBTCompoundTag b(EntityHuman var1) {
 		NBTCompoundTag var2 = null;
 
 		try {
 			File var3 = new File(this.c, var1.aJ().toString() + ".dat");
 			if (var3.exists() && var3.isFile()) {
-				var2 = fz.a((InputStream) (new FileInputStream(var3)));
+				var2 = NBTCompressedStreamTools.readTag((InputStream) (new FileInputStream(var3)));
 			}
 		} catch (Exception var4) {
 			a.warn("Failed to load player data for " + var1.d_());

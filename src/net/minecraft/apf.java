@@ -119,8 +119,8 @@ public abstract class apf {
 		return var2 + " " + fi.a("enchantment.level." + var1);
 	}
 
-	public boolean a(amj var1) {
-		return this.C.a(var1.b());
+	public boolean a(ItemStack var1) {
+		return this.C.a(var1.getItem());
 	}
 
 	public void a(EntityLiving var1, Entity var2, int var3) {

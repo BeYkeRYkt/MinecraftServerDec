@@ -13,7 +13,7 @@ public class aht extends ahr {
 		}
 
 		for (int var3 = 0; var3 < 32; ++var3) {
-			this.o.a(ew.y, this.s, this.t + this.V.nextDouble() * 2.0D, this.u, this.V.nextGaussian(), 0.0D, this.V.nextGaussian(), new int[0]);
+			this.o.a(ew.y, this.locationX, this.locationY + this.V.nextDouble() * 2.0D, this.locationZ, this.V.nextGaussian(), 0.0D, this.V.nextGaussian(), new int[0]);
 		}
 
 		if (!this.o.D) {
@@ -23,7 +23,7 @@ public class aht extends ahr {
 					if (this.V.nextFloat() < 0.05F && this.o.Q().b("doMobSpawning")) {
 						aew var4 = new aew(this.o);
 						var4.a(true);
-						var4.b(var2.s, var2.t, var2.u, var2.y, var2.z);
+						var4.b(var2.locationX, var2.locationY, var2.locationZ, var2.yaw, var2.pitch);
 						this.o.d((Entity) var4);
 					}
 
@@ -31,7 +31,7 @@ public class aht extends ahr {
 						var2.a((Entity) null);
 					}
 
-					var2.a(this.s, this.t, this.u);
+					var2.a(this.locationX, this.locationY, this.locationZ);
 					var2.O = 0.0F;
 					var2.a(wh.i, 5.0F);
 				}
@@ -44,7 +44,7 @@ public class aht extends ahr {
 
 	public void s_() {
 		EntityLiving var1 = this.n();
-		if (var1 != null && var1 instanceof ahd && !var1.ai()) {
+		if (var1 != null && var1 instanceof EntityHuman && !var1.ai()) {
 			this.J();
 		} else {
 			super.s_();

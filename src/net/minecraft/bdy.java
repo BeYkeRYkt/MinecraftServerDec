@@ -7,13 +7,13 @@ import java.util.List;
 public class bdy {
 
 	private final World a;
-	private final dt b;
-	private final dt c;
+	private final Position b;
+	private final Position c;
 	private final ej d;
 	private final List e = Lists.newArrayList();
 	private final List f = Lists.newArrayList();
 
-	public bdy(World var1, dt var2, ej var3, boolean var4) {
+	public bdy(World var1, Position var2, ej var3, boolean var4) {
 		this.a = var1;
 		this.b = var2;
 		if (var4) {
@@ -29,7 +29,7 @@ public class bdy {
 	public boolean a() {
 		this.e.clear();
 		this.f.clear();
-		atr var1 = this.a.p(this.c).c();
+		Block var1 = this.a.p(this.c).c();
 		if (!bdq.a(var1, this.a, this.c, this.d, false)) {
 			if (var1.i() != 1) {
 				return false;
@@ -41,7 +41,7 @@ public class bdy {
 			return false;
 		} else {
 			for (int var2 = 0; var2 < this.e.size(); ++var2) {
-				dt var3 = (dt) this.e.get(var2);
+				Position var3 = (Position) this.e.get(var2);
 				if (this.a.p(var3).c() == aty.cE && !this.b(var3)) {
 					return false;
 				}
@@ -51,8 +51,8 @@ public class bdy {
 		}
 	}
 
-	private boolean a(dt var1) {
-		atr var2 = this.a.p(var1).c();
+	private boolean a(Position var1) {
+		Block var2 = this.a.p(var1).c();
 		if (var2.r() == bof.a) {
 			return true;
 		} else if (!bdq.a(var2, this.a, var1, this.d, false)) {
@@ -67,7 +67,7 @@ public class bdy {
 				return false;
 			} else {
 				while (var2 == aty.cE) {
-					dt var4 = var1.a(this.d.d(), var3);
+					Position var4 = var1.a(this.d.d(), var3);
 					var2 = this.a.p(var4).c();
 					if (var2.r() == bof.a || !bdq.a(var2, this.a, var4, this.d, false) || var4.equals(this.b)) {
 						break;
@@ -90,13 +90,13 @@ public class bdy {
 				var5 = 1;
 
 				while (true) {
-					dt var6 = var1.a(this.d, var5);
+					Position var6 = var1.a(this.d, var5);
 					int var7 = this.e.indexOf(var6);
 					if (var7 > -1) {
 						this.a(var10, var7);
 
 						for (int var8 = 0; var8 <= var7 + var10; ++var8) {
-							dt var9 = (dt) this.e.get(var8);
+							Position var9 = (Position) this.e.get(var8);
 							if (this.a.p(var9).c() == aty.cE && !this.b(var9)) {
 								return false;
 							}
@@ -144,7 +144,7 @@ public class bdy {
 		this.e.addAll(var5);
 	}
 
-	private boolean b(dt var1) {
+	private boolean b(Position var1) {
 		ej[] var2 = ej.values();
 		int var3 = var2.length;
 

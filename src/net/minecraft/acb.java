@@ -10,7 +10,7 @@ public class acb extends abq {
 	private int bq = 0;
 	private ace br;
 	private int bs;
-	private ahd bt;
+	private EntityHuman bt;
 
 	public acb(World var1) {
 		super(var1);
@@ -28,14 +28,14 @@ public class acb extends abq {
 		this.i.a(3, new yt(this, 0.8D));
 		this.i.a(5, new ack(this));
 		this.i.a(5, new zy(this, 0.6D));
-		this.i.a(11, new zh(this, ahd.class, 10.0F));
+		this.i.a(11, new zh(this, EntityHuman.class, 10.0F));
 		this.bk = new acf(this, new acc(this), 16.0F, 1.33D, 1.33D);
 		this.i.a(4, this.bk);
 		this.b(0.0D);
 	}
 
 	protected float bD() {
-		return this.f.a() && this.f.e() > this.t + 0.5D ? 0.5F : this.br.b();
+		return this.f.a() && this.f.e() > this.locationY + 0.5D ? 0.5F : this.br.b();
 	}
 
 	public void a(ace var1) {
@@ -73,7 +73,7 @@ public class acb extends abq {
 
 	protected void h() {
 		super.h();
-		this.ac.a(18, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(18, Byte.valueOf((byte) 0));
 	}
 
 	public void E() {
@@ -103,8 +103,8 @@ public class acb extends abq {
 			if (this.cl() == 99 && this.bq == 0) {
 				EntityLiving var1 = this.u();
 				if (var1 != null && this.h(var1) < 16.0D) {
-					this.a(var1.s, var1.u);
-					this.f.a(var1.s, var1.t, var1.u, this.f.b());
+					this.a(var1.locationX, var1.locationZ);
+					this.f.a(var1.locationX, var1.locationY, var1.locationZ, this.f.b());
 					this.b(ace.e);
 					this.bp = true;
 				}
@@ -134,7 +134,7 @@ public class acb extends abq {
 	}
 
 	private void a(double var1, double var3) {
-		this.y = (float) (Math.atan2(var3 - this.u, var1 - this.s) * 180.0D / 3.1415927410125732D) - 90.0F;
+		this.yaw = (float) (Math.atan2(var3 - this.locationZ, var1 - this.locationX) * 180.0D / 3.1415927410125732D) - 90.0F;
 	}
 
 	private void cr() {
@@ -221,7 +221,7 @@ public class acb extends abq {
 	}
 
 	protected void bp() {
-		this.a(new amj(amk.br, 1), 0.0F);
+		this.a(new ItemStack(amk.br, 1), 0.0F);
 	}
 
 	protected void b(boolean var1, int var2) {
@@ -244,8 +244,8 @@ public class acb extends abq {
 
 	}
 
-	private boolean a(alq var1) {
-		return var1 == amk.bR || var1 == amk.bW || var1 == alq.a((atr) aty.N);
+	private boolean a(Item var1) {
+		return var1 == amk.bR || var1 == amk.bW || var1 == Item.getItemOf((Block) aty.N);
 	}
 
 	public acb b(ws var1) {
@@ -257,12 +257,12 @@ public class acb extends abq {
 		return var2;
 	}
 
-	public boolean d(amj var1) {
-		return var1 != null && this.a(var1.b());
+	public boolean d(ItemStack var1) {
+		return var1 != null && this.a(var1.getItem());
 	}
 
 	public int cl() {
-		return this.ac.a(18);
+		return this.dataWatcher.a(18);
 	}
 
 	public void r(int var1) {
@@ -270,14 +270,14 @@ public class acb extends abq {
 			this.i.a((zb) this.bk);
 			this.i.a(4, new acd(this));
 			this.bg.a(1, new aal(this, false, new Class[0]));
-			this.bg.a(2, new aaq(this, ahd.class, true));
+			this.bg.a(2, new aaq(this, EntityHuman.class, true));
 			this.bg.a(2, new aaq(this, acu.class, true));
 			if (!this.k_()) {
 				this.a(fi.a("entity.KillerBunny.name"));
 			}
 		}
 
-		this.ac.b(18, Byte.valueOf((byte) var1));
+		this.dataWatcher.b(18, Byte.valueOf((byte) var1));
 	}
 
 	public xq a(vu var1, xq var2) {
@@ -308,7 +308,7 @@ public class acb extends abq {
 	}
 
 	protected void cn() {
-		this.o.a(ew.M, this.s + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.t + 0.5D + (double) (this.V.nextFloat() * this.K), this.u + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[] { atr.f(aty.cb.a(7)) });
+		this.o.a(ew.M, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[] { Block.f(aty.cb.a(7)) });
 		this.bs = 100;
 	}
 

@@ -86,7 +86,7 @@ public class ParticleCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return var2.length == 1 ? a(var2, ew.a()) : (var2.length > 1 && var2.length <= 4 ? a(var2, 1, var3) : (var2.length == 9 ? a(var2, new String[] { "normal", "force" }) : null));
 	}
 }

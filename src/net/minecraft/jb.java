@@ -19,8 +19,8 @@ public class jb {
 		this.c = var3.g(this.a());
 	}
 
-	public dt a() {
-		return new dt(ja.a(this.a).a(this.b >> 12 & 15, this.b & 255, this.b >> 8 & 15));
+	public Position a() {
+		return new Position(ja.a(this.a).a(this.b >> 12 & 15, this.b & 255, this.b >> 8 & 15));
 	}
 
 	public short b() {

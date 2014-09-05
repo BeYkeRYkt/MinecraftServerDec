@@ -11,7 +11,7 @@ class afj implements Predicate {
 	}
 
 	public boolean a(EntityLiving var1) {
-		return (var1 instanceof ahd || var1 instanceof aco) && var1.h(this.a) > 9.0D;
+		return (var1 instanceof EntityHuman || var1 instanceof aco) && var1.h(this.a) > 9.0D;
 	}
 
 	// $FF: synthetic method

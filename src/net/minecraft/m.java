@@ -5,9 +5,9 @@ import java.util.concurrent.Callable;
 final class m implements Callable {
 
 	// $FF: synthetic field
-	final dt a;
+	final Position a;
 
-	m(dt var1) {
+	m(Position var1) {
 		this.a = var1;
 	}
 

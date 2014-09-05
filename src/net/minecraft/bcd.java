@@ -11,11 +11,11 @@ public class bcd extends ath {
 		this.b = var3;
 	}
 
-	protected int e(World var1, dt var2) {
+	protected int e(World var1, Position var2) {
 		int var3 = Math.min(var1.a(Entity.class, this.a(var2)).size(), this.b);
 		if (var3 > 0) {
 			float var4 = (float) Math.min(this.b, var3) / (float) this.b;
-			return NumberConverter.f(var4 * 15.0F);
+			return DataTypesConverter.f(var4 * 15.0F);
 		} else {
 			return 0;
 		}

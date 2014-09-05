@@ -20,7 +20,7 @@ public class ahw extends ahl {
 		return false;
 	}
 
-	public float a(aqo var1, World var2, dt var3, bec var4) {
+	public float a(aqo var1, World var2, Position var3, bec var4) {
 		float var5 = super.a(var1, var2, var3, var4);
 		if (this.l() && var4.c() != aty.h && var4.c() != aty.bF && var4.c() != aty.bG && var4.c() != aty.bX) {
 			var5 = Math.min(0.8F, var5);
@@ -46,9 +46,9 @@ public class ahw extends ahl {
 
 				if (var1.d instanceof EntityLiving) {
 					byte var2 = 0;
-					if (this.o.aa() == Difficulty.NORMAL) {
+					if (this.o.getDifficulty() == Difficulty.NORMAL) {
 						var2 = 10;
-					} else if (this.o.aa() == Difficulty.HARD) {
+					} else if (this.o.getDifficulty() == Difficulty.HARD) {
 						var2 = 40;
 					}
 
@@ -58,7 +58,7 @@ public class ahw extends ahl {
 				}
 			}
 
-			this.o.a(this, this.s, this.t, this.u, 1.0F, false, this.o.Q().b("mobGriefing"));
+			this.o.a(this, this.locationX, this.locationY, this.locationZ, 1.0F, false, this.o.Q().b("mobGriefing"));
 			this.J();
 		}
 
@@ -73,14 +73,14 @@ public class ahw extends ahl {
 	}
 
 	protected void h() {
-		this.ac.a(10, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(10, Byte.valueOf((byte) 0));
 	}
 
 	public boolean l() {
-		return this.ac.a(10) == 1;
+		return this.dataWatcher.a(10) == 1;
 	}
 
 	public void a(boolean var1) {
-		this.ac.b(10, Byte.valueOf((byte) (var1 ? 1 : 0)));
+		this.dataWatcher.b(10, Byte.valueOf((byte) (var1 ? 1 : 0)));
 	}
 }

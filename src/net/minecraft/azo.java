@@ -9,7 +9,7 @@ public class azo extends ati {
 		this.j(this.L.b().a(b, atl.a));
 	}
 
-	protected void b(World var1, dt var2, bec var3, atr var4) {
+	protected void b(World var1, Position var2, bec var3, Block var4) {
 		if (var4.g() && (new atk(this, var1, var2, var3)).a() == 3) {
 			this.a(var1, var2, var3, false);
 		}

@@ -15,15 +15,15 @@ public class aeb extends adx {
 
 	protected void h() {
 		super.h();
-		this.H().a(23, "");
-		this.H().a(24, "");
+		this.getDataWatcher().a(23, "");
+		this.getDataWatcher().a(24, "");
 	}
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
 		this.a.b(var1);
-		this.H().b(23, this.j().l());
-		this.H().b(24, hp.a(this.j().k()));
+		this.getDataWatcher().b(23, this.j().l());
+		this.getDataWatcher().b(24, JSONComponentFormat.a(this.j().k()));
 	}
 
 	protected void b(NBTCompoundTag var1) {
@@ -51,7 +51,7 @@ public class aeb extends adx {
 
 	}
 
-	public boolean e(ahd var1) {
+	public boolean e(EntityHuman var1) {
 		this.a.a(var1);
 		return false;
 	}
@@ -60,12 +60,12 @@ public class aeb extends adx {
 		super.i(var1);
 		if (var1 == 24) {
 			try {
-				this.a.b(hp.a(this.H().e(24)));
+				this.a.b(JSONComponentFormat.a(this.getDataWatcher().e(24)));
 			} catch (Throwable var3) {
 				;
 			}
 		} else if (var1 == 23) {
-			this.a.a(this.H().e(23));
+			this.a.a(this.getDataWatcher().e(23));
 		}
 
 	}

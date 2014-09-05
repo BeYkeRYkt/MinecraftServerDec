@@ -54,11 +54,11 @@ public class ReplaceItemCommand extends AbstractCommand {
 			int var16 = var4 + 1;
 			int var5 = this.e(var2[var4]);
 
-			alq var6;
+			Item var6;
 			try {
 				var6 = f(var1, var2[var16]);
 			} catch (dk var15) {
-				if (atr.b(var2[var16]) != aty.a) {
+				if (Block.b(var2[var16]) != aty.a) {
 					throw var15;
 				}
 
@@ -68,7 +68,7 @@ public class ReplaceItemCommand extends AbstractCommand {
 			++var16;
 			int var7 = var2.length > var16 ? a(var2[var16++], 1, 64) : 1;
 			int var8 = var2.length > var16 ? a(var2[var16++]) : 0;
-			amj var9 = new amj(var6, var7, var8);
+			ItemStack var9 = new ItemStack(var6, var7, var8);
 			if (var2.length > var16) {
 				String var10 = a(var1, var2, var16).c();
 
@@ -79,36 +79,36 @@ public class ReplaceItemCommand extends AbstractCommand {
 				}
 			}
 
-			if (var9.b() == null) {
+			if (var9.getItem() == null) {
 				var9 = null;
 			}
 
 			if (var3) {
 				var1.a(ag.d, 0);
-				dt var17 = a(var1, var2, 1, false);
+				Position var17 = a(var1, var2, 1, false);
 				World var11 = var1.e();
 				bcm var12 = var11.s(var17);
-				if (var12 == null || !(var12 instanceof vq)) {
+				if (var12 == null || !(var12 instanceof IInventory)) {
 					throw new di("commands.replaceitem.noContainer", new Object[] { Integer.valueOf(var17.n()), Integer.valueOf(var17.o()), Integer.valueOf(var17.p()) });
 				}
 
-				vq var13 = (vq) var12;
+				IInventory var13 = (IInventory) var12;
 				if (var5 >= 0 && var5 < var13.n_()) {
 					var13.a(var5, var9);
 				}
 			} else {
 				Entity var18 = b(var1, var2[1]);
 				var1.a(ag.d, 0);
-				if (var18 instanceof ahd) {
-					((ahd) var18).bh.b();
+				if (var18 instanceof EntityHuman) {
+					((EntityHuman) var18).defaultContainer.b();
 				}
 
 				if (!var18.d(var5, var9)) {
 					throw new di("commands.replaceitem.failed", new Object[] { Integer.valueOf(var5), Integer.valueOf(var7), var9 == null ? "Air" : var9.C() });
 				}
 
-				if (var18 instanceof ahd) {
-					((ahd) var18).bh.b();
+				if (var18 instanceof EntityHuman) {
+					((EntityHuman) var18).defaultContainer.b();
 				}
 			}
 
@@ -125,8 +125,8 @@ public class ReplaceItemCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
-		return var2.length == 1 ? a(var2, new String[] { "entity", "block" }) : (var2.length == 2 && var2[0].equals("entity") ? a(var2, this.d()) : ((var2.length != 3 || !var2[0].equals("entity")) && (var2.length != 5 || !var2[0].equals("block")) ? ((var2.length != 4 || !var2[0].equals("entity")) && (var2.length != 6 || !var2[0].equals("block")) ? null : a(var2, alq.e.c())) : a(var2, a.keySet())));
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
+		return var2.length == 1 ? a(var2, new String[] { "entity", "block" }) : (var2.length == 2 && var2[0].equals("entity") ? a(var2, this.d()) : ((var2.length != 3 || !var2[0].equals("entity")) && (var2.length != 5 || !var2[0].equals("block")) ? ((var2.length != 4 || !var2[0].equals("entity")) && (var2.length != 6 || !var2[0].equals("block")) ? null : a(var2, Item.REGISTRY.c())) : a(var2, a.keySet())));
 	}
 
 	protected String[] d() {

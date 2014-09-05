@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class awt extends atr {
+public class awt extends Block {
 
 	private boolean a;
 

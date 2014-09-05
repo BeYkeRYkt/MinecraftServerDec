@@ -26,9 +26,9 @@ public class bmw extends bmm {
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
 			if (((String) var3.getKey()).equals("size")) {
-				this.f = NumberConverter.a((String) var3.getValue(), this.f, 0);
+				this.f = DataTypesConverter.a((String) var3.getValue(), this.f, 0);
 			} else if (((String) var3.getKey()).equals("distance")) {
-				this.g = NumberConverter.a((String) var3.getValue(), this.g, this.h + 1);
+				this.g = DataTypesConverter.a((String) var3.getValue(), this.g, this.h + 1);
 			}
 		}
 

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class ajn extends alq {
+public class ajn extends Item {
 
 	private static final int[] k = new int[] { 11, 16, 15, 13 };
 	public static final String[] a = new String[] { "minecraft:items/empty_armor_slot_helmet", "minecraft:items/empty_armor_slot_chestplate", "minecraft:items/empty_armor_slot_leggings", "minecraft:items/empty_armor_slot_boots" };
@@ -16,8 +16,8 @@ public class ajn extends alq {
 		this.d = var2;
 		this.c = var1.b(var3);
 		this.d(var1.a(var3));
-		this.h = 1;
-		this.a(akf.j);
+		this.maxStackSize = 1;
+		this.a(CreativeModeTab.j);
 		ave.M.a(this, l);
 	}
 
@@ -29,15 +29,15 @@ public class ajn extends alq {
 		return this.m;
 	}
 
-	public boolean d_(amj var1) {
-		return this.m != ajp.a ? false : (!var1.n() ? false : (!var1.o().isTagAssignableFrom("display", 10) ? false : var1.o().getCompound("display").isTagAssignableFrom("color", 3)));
+	public boolean d_(ItemStack var1) {
+		return this.m != ajp.a ? false : (!var1.hasTag() ? false : (!var1.getTag().isTagAssignableFrom("display", 10) ? false : var1.getTag().getCompound("display").isTagAssignableFrom("color", 3)));
 	}
 
-	public int b(amj var1) {
+	public int b(ItemStack var1) {
 		if (this.m != ajp.a) {
 			return -1;
 		} else {
-			NBTCompoundTag var2 = var1.o();
+			NBTCompoundTag var2 = var1.getTag();
 			if (var2 != null) {
 				NBTCompoundTag var3 = var2.getCompound("display");
 				if (var3 != null && var3.isTagAssignableFrom("color", 3)) {
@@ -49,9 +49,9 @@ public class ajn extends alq {
 		}
 	}
 
-	public void c(amj var1) {
+	public void c(ItemStack var1) {
 		if (this.m == ajp.a) {
-			NBTCompoundTag var2 = var1.o();
+			NBTCompoundTag var2 = var1.getTag();
 			if (var2 != null) {
 				NBTCompoundTag var3 = var2.getCompound("display");
 				if (var3.hasKey("color")) {
@@ -62,11 +62,11 @@ public class ajn extends alq {
 		}
 	}
 
-	public void b(amj var1, int var2) {
+	public void b(ItemStack var1, int var2) {
 		if (this.m != ajp.a) {
 			throw new UnsupportedOperationException("Can\'t dye non-leather!");
 		} else {
-			NBTCompoundTag var3 = var1.o();
+			NBTCompoundTag var3 = var1.getTag();
 			if (var3 == null) {
 				var3 = new NBTCompoundTag();
 				var1.d(var3);
@@ -81,15 +81,15 @@ public class ajn extends alq {
 		}
 	}
 
-	public boolean a(amj var1, amj var2) {
-		return this.m.b() == var2.b() ? true : super.a(var1, var2);
+	public boolean a(ItemStack var1, ItemStack var2) {
+		return this.m.b() == var2.getItem() ? true : super.a(var1, var2);
 	}
 
-	public amj a(amj var1, World var2, ahd var3) {
+	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
 		int var4 = xn.c(var1) - 1;
-		amj var5 = var3.q(var4);
+		ItemStack var5 = var3.q(var4);
 		if (var5 == null) {
-			var3.c(var4, var1.k());
+			var3.c(var4, var1.getCopy());
 			var1.b = 0;
 		}
 

@@ -5,7 +5,7 @@ public class ani extends aju {
 	private final awq b;
 	private final awq c;
 
-	public ani(atr var1, awq var2, awq var3) {
+	public ani(Block var1, awq var2, awq var3) {
 		super(var1);
 		this.b = var2;
 		this.c = var3;
@@ -17,11 +17,11 @@ public class ani extends aju {
 		return var1;
 	}
 
-	public String e_(amj var1) {
+	public String e_(ItemStack var1) {
 		return this.b.b(var1.i());
 	}
 
-	public boolean a(amj var1, ahd var2, World var3, dt var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
 		if (var1.b == 0) {
 			return false;
 		} else if (!var2.a(var4.a(var5), var5, var1)) {
@@ -48,7 +48,7 @@ public class ani extends aju {
 		}
 	}
 
-	private boolean a(amj var1, World var2, dt var3, Object var4) {
+	private boolean a(ItemStack var1, World var2, Position var3, Object var4) {
 		bec var5 = var2.p(var3);
 		if (var5.c() == this.b) {
 			Comparable var6 = var5.b(this.b.l());

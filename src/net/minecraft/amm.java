@@ -15,7 +15,7 @@ public class amm extends aju {
 		return var1 | 4;
 	}
 
-	public String e_(amj var1) {
+	public String e_(ItemStack var1) {
 		return super.a() + "." + this.b.b(var1.i()).c();
 	}
 }

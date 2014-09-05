@@ -51,7 +51,7 @@ public class bka extends bkb {
 		this.a(var1, var3, 1, 6, 8, 5, 7, 8, aty.bz.P(), aty.bz.P(), false);
 		this.a(var1, var3, 2, 8, 8, 4, 8, 8, aty.bz.P(), aty.bz.P(), false);
 		if (!this.b) {
-			dt var4 = new dt(this.a(3, 5), this.d(5), this.b(3, 5));
+			Position var4 = new Position(this.a(3, 5), this.d(5), this.b(3, 5));
 			if (var3.b((fd) var4)) {
 				this.b = true;
 				var1.a(var4, aty.ac.P(), 2);

@@ -2,7 +2,7 @@ package net.minecraft;
 
 public abstract class oc extends eg {
 
-	public amj b(dz var1, amj var2) {
+	public ItemStack b(dz var1, ItemStack var2) {
 		World var3 = var1.i();
 		ex var4 = ave.a(var1);
 		ej var5 = ave.b(var1.f());

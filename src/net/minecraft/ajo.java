@@ -5,8 +5,8 @@ import java.util.List;
 
 final class ajo extends eg {
 
-	protected amj b(dz var1, amj var2) {
-		dt var3 = var1.d().a(ave.b(var1.f()));
+	protected ItemStack b(dz var1, ItemStack var2) {
+		Position var3 = var1.d().a(ave.b(var1.f()));
 		int var4 = var3.n();
 		int var5 = var3.o();
 		int var6 = var3.p();
@@ -14,9 +14,9 @@ final class ajo extends eg {
 		List var8 = var1.i().a(EntityLiving.class, var7, Predicates.and(EntityPredicates.d, new xj(var2)));
 		if (var8.size() > 0) {
 			EntityLiving var9 = (EntityLiving) var8.get(0);
-			int var10 = var9 instanceof ahd ? 1 : 0;
+			int var10 = var9 instanceof EntityHuman ? 1 : 0;
 			int var11 = xn.c(var2);
-			amj var12 = var2.k();
+			ItemStack var12 = var2.getCopy();
 			var12.b = 1;
 			var9.c(var11 - var10, var12);
 			if (var9 instanceof xn) {

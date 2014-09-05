@@ -23,14 +23,14 @@ class acs implements Predicate {
 		} else if (var1 instanceof aep) {
 			return false;
 		} else {
-			if (var1 instanceof ahd) {
+			if (var1 instanceof EntityHuman) {
 				double var2 = acr.a(this.c);
 				if (var1.aw()) {
 					var2 *= 0.800000011920929D;
 				}
 
 				if (var1.ay()) {
-					float var4 = ((ahd) var1).bX();
+					float var4 = ((EntityHuman) var1).bX();
 					if (var4 < 0.1F) {
 						var4 = 0.1F;
 					}

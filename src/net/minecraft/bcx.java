@@ -2,23 +2,23 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class bcx extends bdf implements vq {
+public class bcx extends bdf implements IInventory {
 
 	private static final Random f = new Random();
-	private amj[] g = new amj[9];
+	private ItemStack[] g = new ItemStack[9];
 	protected String a;
 
 	public int n_() {
 		return 9;
 	}
 
-	public amj a(int var1) {
+	public ItemStack a(int var1) {
 		return this.g[var1];
 	}
 
-	public amj a(int var1, int var2) {
+	public ItemStack a(int var1, int var2) {
 		if (this.g[var1] != null) {
-			amj var3;
+			ItemStack var3;
 			if (this.g[var1].b <= var2) {
 				var3 = this.g[var1];
 				this.g[var1] = null;
@@ -38,9 +38,9 @@ public class bcx extends bdf implements vq {
 		}
 	}
 
-	public amj b(int var1) {
+	public ItemStack b(int var1) {
 		if (this.g[var1] != null) {
-			amj var2 = this.g[var1];
+			ItemStack var2 = this.g[var1];
 			this.g[var1] = null;
 			return var2;
 		} else {
@@ -61,7 +61,7 @@ public class bcx extends bdf implements vq {
 		return var1;
 	}
 
-	public void a(int var1, amj var2) {
+	public void a(int var1, ItemStack var2) {
 		this.g[var1] = var2;
 		if (var2 != null && var2.b > this.p_()) {
 			var2.b = this.p_();
@@ -70,9 +70,9 @@ public class bcx extends bdf implements vq {
 		this.o_();
 	}
 
-	public int a(amj var1) {
+	public int a(ItemStack var1) {
 		for (int var2 = 0; var2 < this.g.length; ++var2) {
-			if (this.g[var2] == null || this.g[var2].b() == null) {
+			if (this.g[var2] == null || this.g[var2].getItem() == null) {
 				this.a(var2, var1);
 				return var2;
 			}
@@ -96,13 +96,13 @@ public class bcx extends bdf implements vq {
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
-		this.g = new amj[this.n_()];
+		this.g = new ItemStack[this.n_()];
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			int var5 = var4.getByte("Slot") & 255;
 			if (var5 >= 0 && var5 < this.g.length) {
-				this.g[var5] = amj.a(var4);
+				this.g[var5] = ItemStack.a(var4);
 			}
 		}
 
@@ -136,17 +136,17 @@ public class bcx extends bdf implements vq {
 		return 64;
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return this.b.s(this.c) != this ? false : var1.e((double) this.c.n() + 0.5D, (double) this.c.o() + 0.5D, (double) this.c.p() + 0.5D) <= 64.0D;
 	}
 
-	public void b(ahd var1) {
+	public void b(EntityHuman var1) {
 	}
 
-	public void c(ahd var1) {
+	public void c(EntityHuman var1) {
 	}
 
-	public boolean b(int var1, amj var2) {
+	public boolean b(int var1, ItemStack var2) {
 		return true;
 	}
 
@@ -154,7 +154,7 @@ public class bcx extends bdf implements vq {
 		return "minecraft:dispenser";
 	}
 
-	public aib a(ahb var1, ahd var2) {
+	public Container a(PlayerInventory var1, EntityHuman var2) {
 		return new aip(var1, this);
 	}
 

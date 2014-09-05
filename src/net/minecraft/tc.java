@@ -23,11 +23,11 @@ public class tc implements CommandSenderInterface {
 		return "Rcon";
 	}
 
-	public ho e_() {
+	public IJSONComponent e_() {
 		return new hy(this.d_());
 	}
 
-	public void a(ho var1) {
+	public void a(IJSONComponent var1) {
 		this.b.append(var1.c());
 	}
 
@@ -35,8 +35,8 @@ public class tc implements CommandSenderInterface {
 		return true;
 	}
 
-	public dt c() {
-		return new dt(0, 0, 0);
+	public Position c() {
+		return new Position(0, 0, 0);
 	}
 
 	public brw d() {

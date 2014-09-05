@@ -6,5 +6,5 @@ public interface vz {
 
 	boolean k_();
 
-	ho e_();
+	IJSONComponent e_();
 }

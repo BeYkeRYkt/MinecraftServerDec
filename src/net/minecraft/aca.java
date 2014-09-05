@@ -16,7 +16,7 @@ public class aca extends abq {
 		this.i.a(4, new aag(this, 1.2D, amk.bR, false));
 		this.i.a(5, new za(this, 1.1D));
 		this.i.a(6, new zy(this, 1.0D));
-		this.i.a(7, new zh(this, ahd.class, 6.0F));
+		this.i.a(7, new zh(this, EntityHuman.class, 6.0F));
 		this.i.a(8, new zx(this));
 	}
 
@@ -27,13 +27,13 @@ public class aca extends abq {
 	}
 
 	public boolean bV() {
-		amj var1 = ((ahd) this.l).bz();
-		return var1 != null && var1.b() == amk.bY;
+		ItemStack var1 = ((EntityHuman) this.l).bz();
+		return var1 != null && var1.getItem() == amk.bY;
 	}
 
 	protected void h() {
 		super.h();
-		this.ac.a(16, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(16, Byte.valueOf((byte) 0));
 	}
 
 	public void b(NBTCompoundTag var1) {
@@ -58,11 +58,11 @@ public class aca extends abq {
 		return "mob.pig.death";
 	}
 
-	protected void a(dt var1, atr var2) {
+	protected void a(Position var1, Block var2) {
 		this.a("mob.pig.step", 0.15F, 1.0F);
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		if (super.a(var1)) {
 			return true;
 		} else if (this.cj() && !this.o.D && (this.l == null || this.l == var1)) {
@@ -73,7 +73,7 @@ public class aca extends abq {
 		}
 	}
 
-	protected alq A() {
+	protected Item A() {
 		return this.au() ? amk.am : amk.al;
 	}
 
@@ -95,14 +95,14 @@ public class aca extends abq {
 	}
 
 	public boolean cj() {
-		return (this.ac.a(16) & 1) != 0;
+		return (this.dataWatcher.a(16) & 1) != 0;
 	}
 
 	public void l(boolean var1) {
 		if (var1) {
-			this.ac.b(16, Byte.valueOf((byte) 1));
+			this.dataWatcher.b(16, Byte.valueOf((byte) 1));
 		} else {
-			this.ac.b(16, Byte.valueOf((byte) 0));
+			this.dataWatcher.b(16, Byte.valueOf((byte) 0));
 		}
 
 	}
@@ -110,8 +110,8 @@ public class aca extends abq {
 	public void a(ads var1) {
 		if (!this.o.D) {
 			afo var2 = new afo(this.o);
-			var2.c(0, new amj(amk.B));
-			var2.b(this.s, this.t, this.u, this.y, this.z);
+			var2.c(0, new ItemStack(amk.B));
+			var2.b(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 			this.o.d((Entity) var2);
 			this.J();
 		}
@@ -119,8 +119,8 @@ public class aca extends abq {
 
 	public void e(float var1, float var2) {
 		super.e(var1, var2);
-		if (var1 > 5.0F && this.l instanceof ahd) {
-			((ahd) this.l).b((PlayerStatistic) tl.u);
+		if (var1 > 5.0F && this.l instanceof EntityHuman) {
+			((EntityHuman) this.l).b((PlayerStatistic) tl.u);
 		}
 
 	}
@@ -129,8 +129,8 @@ public class aca extends abq {
 		return new aca(this.o);
 	}
 
-	public boolean d(amj var1) {
-		return var1 != null && var1.b() == amk.bR;
+	public boolean d(ItemStack var1) {
+		return var1 != null && var1.getItem() == amk.bR;
 	}
 
 	public yu ck() {

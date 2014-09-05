@@ -16,7 +16,7 @@ public class asn extends arm {
 		this.as.C = 10;
 	}
 
-	public awa a(Random var1, dt var2) {
+	public awa a(Random var1, Position var2) {
 		double var3 = af.a((double) var2.n() / 200.0D, (double) var2.p() / 200.0D);
 		int var5;
 		if (var3 < -0.8D) {
@@ -40,7 +40,7 @@ public class asn extends arm {
 		}
 	}
 
-	public void a(World var1, Random var2, dt var3) {
+	public void a(World var1, Random var2, Position var3) {
 		double var4 = af.a((double) (var3.n() + 8) / 200.0D, (double) (var3.p() + 8) / 200.0D);
 		int var6;
 		int var7;

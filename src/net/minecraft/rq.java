@@ -51,8 +51,8 @@ public class rq implements nh, pm {
 		try {
 			c.info("Disconnecting " + this.d() + ": " + var1);
 			hy var2 = new hy(var1);
-			this.a.a((id) (new ng(var2)));
-			this.a.a((ho) var2);
+			this.a.a((Packet) (new ng(var2)));
+			this.a.a((IJSONComponent) var2);
 		} catch (Exception var3) {
 			c.error("Error whilst disconnecting player", (Throwable) var3);
 		}
@@ -73,13 +73,13 @@ public class rq implements nh, pm {
 				this.a.a(new nf(this.f.getCompressionThreshold()), new rr(this), new GenericFutureListener[0]);
 			}
 
-			this.a.a((id) (new nd(this.i)));
+			this.a.a((Packet) (new nd(this.i)));
 			this.f.getPlayerList().a(this.a, this.f.getPlayerList().f(this.i));
 		}
 
 	}
 
-	public void a(ho var1) {
+	public void handle(IJSONComponent var1) {
 		c.info(this.d() + " lost connection: " + var1.c());
 	}
 
@@ -92,7 +92,7 @@ public class rq implements nh, pm {
 		this.i = var1.a();
 		if (this.f.isOnlineMode() && !this.a.c()) {
 			this.g = rt.b;
-			this.a.a((id) (new ne(this.j, this.f.P().getPublic(), this.e)));
+			this.a.a((Packet) (new ne(this.j, this.f.P().getPublic(), this.e)));
 		} else {
 			this.g = rt.d;
 		}

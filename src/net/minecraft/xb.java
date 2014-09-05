@@ -141,7 +141,7 @@ public class xb {
 
 	public static boolean a(Entity var0, String var1) {
 		String var2 = b(var0);
-		if (var2 == null && var0 instanceof ahd) {
+		if (var2 == null && var0 instanceof EntityHuman) {
 			var2 = "Player";
 		} else if (var2 == null && var0 instanceof ads) {
 			var2 = "LightningBolt";

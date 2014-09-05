@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class anr extends alq {
+public class anr extends Item {
 
 	public anr() {
 		this.c(1);
@@ -17,13 +17,13 @@ public class anr extends alq {
 		}
 	}
 
-	public static int h(amj var0) {
-		return var0.o().getInt("generation");
+	public static int h(ItemStack var0) {
+		return var0.getTag().getInt("generation");
 	}
 
-	public String a(amj var1) {
-		if (var1.n()) {
-			NBTCompoundTag var2 = var1.o();
+	public String a(ItemStack var1) {
+		if (var1.hasTag()) {
+			NBTCompoundTag var2 = var1.getTag();
 			String var3 = var2.getString("title");
 			if (!vb.b(var3)) {
 				return var3;
@@ -33,19 +33,19 @@ public class anr extends alq {
 		return super.a(var1);
 	}
 
-	public amj a(amj var1, World var2, ahd var3) {
+	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
 		if (!var2.D) {
 			this.a(var1, var3);
 		}
 
 		var3.a(var1);
-		var3.b(ty.J[alq.b((alq) this)]);
+		var3.b(ty.J[Item.getId((Item) this)]);
 		return var1;
 	}
 
-	private void a(amj var1, ahd var2) {
-		if (var1 != null && var1.o() != null) {
-			NBTCompoundTag var3 = var1.o();
+	private void a(ItemStack var1, EntityHuman var2) {
+		if (var1 != null && var1.getTag() != null) {
+			NBTCompoundTag var3 = var1.getTag();
 			if (!var3.getBoolean("resolved")) {
 				var3.put("resolved", true);
 				if (b(var3)) {
@@ -56,19 +56,19 @@ public class anr extends alq {
 
 						Object var7;
 						try {
-							ho var11 = hp.a(var6);
+							IJSONComponent var11 = JSONComponentFormat.a(var6);
 							var7 = hq.a(var2, var11, var2);
 						} catch (Exception var9) {
 							var7 = new hy(var6);
 						}
 
-						var4.setTag(var5, new NBTStringTag(hp.a((ho) var7)));
+						var4.setTag(var5, new NBTStringTag(JSONComponentFormat.a((IJSONComponent) var7)));
 					}
 
 					var3.put("pages", (NBTTag) var4);
 					if (var2 instanceof EntityPlayer && var2.bY() == var1) {
-						ajk var10 = var2.bi.a((vq) var2.bg, var2.bg.c);
-						((EntityPlayer) var2).a.a((id) (new jh(0, var10.e, var1)));
+						ajk var10 = var2.activeContainer.a((IInventory) var2.playerInventory, var2.playerInventory.c);
+						((EntityPlayer) var2).a.a((Packet) (new jh(0, var10.e, var1)));
 					}
 
 				}

@@ -31,24 +31,24 @@ public class awd extends atg {
 		return false;
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
-		amj var9 = var4.bg.h();
-		if (var9 != null && var9.b() instanceof aju) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
+		ItemStack var9 = var4.playerInventory.getItemInHand();
+		if (var9 != null && var9.getItem() instanceof aju) {
 			bdb var10 = this.d(var1, var2);
 			if (var10 == null) {
 				return false;
 			} else if (var10.b() != null) {
 				return false;
 			} else {
-				atr var11 = atr.a(var9.b());
+				Block var11 = Block.a(var9.getItem());
 				if (!this.a(var11, var9.i())) {
 					return false;
 				} else {
-					var10.a(var9.b(), var9.i());
+					var10.a(var9.getItem(), var9.i());
 					var10.o_();
 					var1.h(var2);
 					if (!var4.by.instabuild && --var9.b <= 0) {
-						var4.bg.a(var4.bg.c, (amj) null);
+						var4.playerInventory.a(var4.playerInventory.c, (ItemStack) null);
 					}
 
 					return true;
@@ -59,20 +59,20 @@ public class awd extends atg {
 		}
 	}
 
-	private boolean a(atr var1, int var2) {
+	private boolean a(Block var1, int var2) {
 		return var1 != aty.N && var1 != aty.O && var1 != aty.aK && var1 != aty.P && var1 != aty.Q && var1 != aty.g && var1 != aty.I ? var1 == aty.H && var2 == bbi.c.a() : true;
 	}
 
-	public int j(World var1, dt var2) {
+	public int j(World var1, Position var2) {
 		bdb var3 = this.d(var1, var2);
 		return var3 != null && var3.b() != null ? var3.c() : 0;
 	}
 
-	public boolean c(World var1, dt var2) {
+	public boolean c(World var1, Position var2) {
 		return super.c(var1, var2) && World.a((ard) var1, var2.b());
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (!World.a((ard) var1, var2.b())) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -80,31 +80,31 @@ public class awd extends atg {
 
 	}
 
-	public void b(World var1, dt var2, bec var3) {
+	public void b(World var1, Position var2, bec var3) {
 		bdb var4 = this.d(var1, var2);
 		if (var4 != null && var4.b() != null) {
-			a(var1, var2, new amj(var4.b(), 1, var4.c()));
+			a(var1, var2, new ItemStack(var4.b(), 1, var4.c()));
 		}
 
 		super.b(var1, var2, var3);
 	}
 
-	public void a(World var1, dt var2, bec var3, ahd var4) {
+	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
 		super.a(var1, var2, var3, var4);
 		if (var4.by.instabuild) {
 			bdb var5 = this.d(var1, var2);
 			if (var5 != null) {
-				var5.a((alq) null, 0);
+				var5.a((Item) null, 0);
 			}
 		}
 
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return amk.bQ;
 	}
 
-	private bdb d(World var1, dt var2) {
+	private bdb d(World var1, Position var2) {
 		bcm var3 = var1.s(var2);
 		return var3 instanceof bdb ? (bdb) var3 : null;
 	}
@@ -161,7 +161,7 @@ public class awd extends atg {
 				var4 = ayx.f.a();
 		}
 
-		return new bdb(alq.a((atr) var3), var4);
+		return new bdb(Item.getItemOf((Block) var3), var4);
 	}
 
 	protected bed e() {
@@ -172,15 +172,15 @@ public class awd extends atg {
 		return ((Integer) var1.b(a)).intValue();
 	}
 
-	public bec a(bec var1, ard var2, dt var3) {
+	public bec a(bec var1, ard var2, Position var3) {
 		awf var4 = awf.a;
 		bcm var5 = var2.s(var3);
 		if (var5 instanceof bdb) {
 			bdb var6 = (bdb) var5;
-			alq var7 = var6.b();
+			Item var7 = var6.b();
 			if (var7 instanceof aju) {
 				int var8 = var6.c();
-				atr var9 = atr.a(var7);
+				Block var9 = Block.a(var7);
 				if (var9 == aty.g) {
 					switch (awe.a[ayx.a(var8).ordinal()]) {
 						case 1:

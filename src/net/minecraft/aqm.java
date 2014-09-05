@@ -55,12 +55,12 @@ public class aqm {
 		return (this.b << 4) + 15;
 	}
 
-	public dt a(int var1, int var2, int var3) {
-		return new dt((this.a << 4) + var1, var2, (this.b << 4) + var3);
+	public Position a(int var1, int var2, int var3) {
+		return new Position((this.a << 4) + var1, var2, (this.b << 4) + var3);
 	}
 
-	public dt a(int var1) {
-		return new dt(this.a(), var1, this.b());
+	public Position a(int var1) {
+		return new Position(this.a(), var1, this.b());
 	}
 
 	public String toString() {

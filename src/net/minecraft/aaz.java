@@ -31,16 +31,16 @@ public abstract class aaz {
 	}
 
 	public final bpv a(double var1, double var3, double var5) {
-		return this.a(new dt(NumberConverter.c(var1), (int) var3, NumberConverter.c(var5)));
+		return this.a(new Position(DataTypesConverter.toFixedPointInt(var1), (int) var3, DataTypesConverter.toFixedPointInt(var5)));
 	}
 
-	public bpv a(dt var1) {
+	public bpv a(Position var1) {
 		if (!this.b()) {
 			return null;
 		} else {
 			float var2 = this.i();
 			this.c.B.a("pathfind");
-			dt var3 = new dt(this.b);
+			Position var3 = new Position(this.b);
 			int var4 = (int) (var2 + 8.0F);
 			arj var5 = new arj(this.c, var3.a(-var4, -var4, -var4), var3.a(var4, var4, var4), 0);
 			bpv var6 = this.j.a((ard) var5, (Entity) this.b, var1, var2);
@@ -50,7 +50,7 @@ public abstract class aaz {
 	}
 
 	public boolean a(double var1, double var3, double var5, double var7) {
-		bpv var9 = this.a((double) NumberConverter.c(var1), (double) ((int) var3), (double) NumberConverter.c(var5));
+		bpv var9 = this.a((double) DataTypesConverter.toFixedPointInt(var1), (double) ((int) var3), (double) DataTypesConverter.toFixedPointInt(var5));
 		return this.a(var9, var7);
 	}
 
@@ -64,7 +64,7 @@ public abstract class aaz {
 		} else {
 			float var2 = this.i();
 			this.c.B.a("pathfind");
-			dt var3 = (new dt(this.b)).a();
+			Position var3 = (new Position(this.b)).a();
 			int var4 = (int) (var2 + 16.0F);
 			arj var5 = new arj(this.c, var3.a(-var4, -var4, -var4), var3.a(var4, var4, var4), 0);
 			bpv var6 = this.j.a((ard) var5, (Entity) this.b, var1, var2);
@@ -113,7 +113,7 @@ public abstract class aaz {
 			} else if (this.d != null && this.d.e() < this.d.d()) {
 				var1 = this.c();
 				brw var2 = this.d.a(this.b, this.d.e());
-				if (var1.b > var2.b && !this.b.C && NumberConverter.c(var1.a) == NumberConverter.c(var2.a) && NumberConverter.c(var1.c) == NumberConverter.c(var2.c)) {
+				if (var1.b > var2.b && !this.b.C && DataTypesConverter.toFixedPointInt(var1.a) == DataTypesConverter.toFixedPointInt(var2.a) && DataTypesConverter.toFixedPointInt(var1.c) == DataTypesConverter.toFixedPointInt(var2.c)) {
 					this.d.c(this.d.e() + 1);
 				}
 			}
@@ -148,7 +148,7 @@ public abstract class aaz {
 			}
 		}
 
-		var4 = NumberConverter.f(this.b.J);
+		var4 = DataTypesConverter.f(this.b.J);
 		int var9 = (int) this.b.K + 1;
 		int var6 = var4;
 

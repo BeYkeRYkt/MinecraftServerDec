@@ -1,10 +1,10 @@
 package net.minecraft;
 
-public class bql extends bqo {
+public class bql extends WorldData {
 
-	private final bqo b;
+	private final WorldData b;
 
-	public bql(bqo var1) {
+	public bql(WorldData var1) {
 		this.b = var1;
 	}
 
@@ -78,7 +78,7 @@ public class bql extends bqo {
 	public void c(long var1) {
 	}
 
-	public void a(dt var1) {
+	public void a(Position var1) {
 	}
 
 	public void a(String var1) {
@@ -103,15 +103,15 @@ public class bql extends bqo {
 		return this.b.s();
 	}
 
-	public boolean t() {
-		return this.b.t();
+	public boolean isHardcore() {
+		return this.b.isHardcore();
 	}
 
-	public are u() {
-		return this.b.u();
+	public LevelType getLevelType() {
+		return this.b.getLevelType();
 	}
 
-	public void a(are var1) {
+	public void a(LevelType var1) {
 	}
 
 	public boolean v() {
@@ -128,12 +128,12 @@ public class bql extends bqo {
 	public void d(boolean var1) {
 	}
 
-	public aqq x() {
+	public GameRuleRegistry x() {
 		return this.b.x();
 	}
 
-	public Difficulty y() {
-		return this.b.y();
+	public Difficulty getDifficulty() {
+		return this.b.getDifficulty();
 	}
 
 	public void a(Difficulty var1) {

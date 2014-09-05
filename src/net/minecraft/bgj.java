@@ -34,15 +34,15 @@ public class bgj extends bgt {
 		}
 
 		for (; var15 < var16; ++var15) {
-			double var53 = 1.5D + (double) (NumberConverter.a((float) var15 * 3.1415927F / (float) var16) * var12 * 1.0F);
+			double var53 = 1.5D + (double) (DataTypesConverter.a((float) var15 * 3.1415927F / (float) var16) * var12 * 1.0F);
 			double var30 = var53 * var17;
 			var53 *= (double) var19.nextFloat() * 0.25D + 0.75D;
 			var30 *= (double) var19.nextFloat() * 0.25D + 0.75D;
-			float var32 = NumberConverter.b(var14);
-			float var33 = NumberConverter.a(var14);
-			var6 += (double) (NumberConverter.b(var13) * var32);
+			float var32 = DataTypesConverter.b(var14);
+			float var33 = DataTypesConverter.a(var14);
+			var6 += (double) (DataTypesConverter.b(var13) * var32);
 			var8 += (double) var33;
-			var10 += (double) (NumberConverter.a(var13) * var32);
+			var10 += (double) (DataTypesConverter.a(var13) * var32);
 			var14 *= 0.7F;
 			var14 += var25 * 0.05F;
 			var13 += var24 * 0.05F;
@@ -60,12 +60,12 @@ public class bgj extends bgt {
 				}
 
 				if (var6 >= var20 - 16.0D - var53 * 2.0D && var10 >= var22 - 16.0D - var53 * 2.0D && var6 <= var20 + 16.0D + var53 * 2.0D && var10 <= var22 + 16.0D + var53 * 2.0D) {
-					int var54 = NumberConverter.c(var6 - var53) - var3 * 16 - 1;
-					int var35 = NumberConverter.c(var6 + var53) - var3 * 16 + 1;
-					int var55 = NumberConverter.c(var8 - var30) - 1;
-					int var37 = NumberConverter.c(var8 + var30) + 1;
-					int var56 = NumberConverter.c(var10 - var53) - var4 * 16 - 1;
-					int var39 = NumberConverter.c(var10 + var53) - var4 * 16 + 1;
+					int var54 = DataTypesConverter.toFixedPointInt(var6 - var53) - var3 * 16 - 1;
+					int var35 = DataTypesConverter.toFixedPointInt(var6 + var53) - var3 * 16 + 1;
+					int var55 = DataTypesConverter.toFixedPointInt(var8 - var30) - 1;
+					int var37 = DataTypesConverter.toFixedPointInt(var8 + var30) + 1;
+					int var56 = DataTypesConverter.toFixedPointInt(var10 - var53) - var4 * 16 - 1;
+					int var39 = DataTypesConverter.toFixedPointInt(var10 + var53) - var4 * 16 + 1;
 					if (var54 < 0) {
 						var54 = 0;
 					}
@@ -132,7 +132,7 @@ public class bgj extends bgt {
 												} else {
 													var5.a(var41, var48, var59, aty.a.P());
 													if (var47 && var5.a(var41, var48 - 1, var59).c() == aty.d) {
-														var5.a(var41, var48 - 1, var59, this.c.b(new dt(var41 + var3 * 16, 0, var59 + var4 * 16)).ak);
+														var5.a(var41, var48 - 1, var59, this.c.b(new Position(var41 + var3 * 16, 0, var59 + var4 * 16)).ak);
 													}
 												}
 											}

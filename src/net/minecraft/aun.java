@@ -1,13 +1,13 @@
 package net.minecraft;
 
-public class aun extends atr {
+public class aun extends Block {
 
 	public static final bev a = bev.a("color", akv.class);
 
 	public aun(bof var1) {
 		super(var1);
 		this.j(this.L.b().a(a, akv.a));
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
 	public int a(bec var1) {

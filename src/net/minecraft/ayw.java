@@ -1,13 +1,13 @@
 package net.minecraft;
 
-public class ayw extends atr {
+public class ayw extends Block {
 
 	public static final bev a = bev.a("variant", ayx.class);
 
 	public ayw() {
 		super(bof.d);
 		this.j(this.L.b().a(a, ayx.a));
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
 	public int a(bec var1) {

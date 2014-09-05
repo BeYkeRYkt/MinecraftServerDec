@@ -41,11 +41,11 @@ class afi extends zb {
 		} else {
 			++this.b;
 			if (this.b == 0) {
-				afg.a(this.a, this.a.u().F());
+				afg.a(this.a, this.a.u().getId());
 				this.a.o.a((Entity) this.a, (byte) 21);
 			} else if (this.b >= this.a.ck()) {
 				float var2 = 1.0F;
-				if (this.a.o.aa() == Difficulty.HARD) {
+				if (this.a.o.getDifficulty() == Difficulty.HARD) {
 					var2 += 2.0F;
 				}
 

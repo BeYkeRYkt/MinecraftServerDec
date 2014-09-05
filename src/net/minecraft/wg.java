@@ -22,7 +22,7 @@ public class wg {
 	public void a() {
 		this.j();
 		if (this.b.j_()) {
-			atr var1 = this.b.o.p(new dt(this.b.s, this.b.aQ().b, this.b.u)).c();
+			Block var1 = this.b.o.p(new Position(this.b.locationX, this.b.aQ().b, this.b.locationZ)).c();
 			if (var1 == aty.au) {
 				this.h = "ladder";
 			} else if (var1 == aty.bn) {
@@ -50,28 +50,28 @@ public class wg {
 
 	}
 
-	public ho b() {
+	public IJSONComponent b() {
 		if (this.a.size() == 0) {
 			return new hz("death.attack.generic", new Object[] { this.b.e_() });
 		} else {
 			wf var1 = this.i();
 			wf var2 = (wf) this.a.get(this.a.size() - 1);
-			ho var4 = var2.h();
+			IJSONComponent var4 = var2.h();
 			Entity var5 = var2.a().j();
 			Object var3;
 			if (var1 != null && var2.a() == wh.i) {
-				ho var6 = var1.h();
+				IJSONComponent var6 = var1.h();
 				if (var1.a() != wh.i && var1.a() != wh.j) {
 					if (var6 != null && (var4 == null || !var6.equals(var4))) {
 						Entity var9 = var1.a().j();
-						amj var8 = var9 instanceof EntityLiving ? ((EntityLiving) var9).bz() : null;
+						ItemStack var8 = var9 instanceof EntityLiving ? ((EntityLiving) var9).bz() : null;
 						if (var8 != null && var8.s()) {
 							var3 = new hz("death.fell.assist.item", new Object[] { this.b.e_(), var6, var8.C() });
 						} else {
 							var3 = new hz("death.fell.assist", new Object[] { this.b.e_(), var6 });
 						}
 					} else if (var4 != null) {
-						amj var7 = var5 instanceof EntityLiving ? ((EntityLiving) var5).bz() : null;
+						ItemStack var7 = var5 instanceof EntityLiving ? ((EntityLiving) var5).bz() : null;
 						if (var7 != null && var7.s()) {
 							var3 = new hz("death.fell.finish.item", new Object[] { this.b.e_(), var4, var7.C() });
 						} else {
@@ -87,22 +87,22 @@ public class wg {
 				var3 = var2.a().b(this.b);
 			}
 
-			return (ho) var3;
+			return (IJSONComponent) var3;
 		}
 	}
 
 	public EntityLiving c() {
 		EntityLiving var1 = null;
-		ahd var2 = null;
+		EntityHuman var2 = null;
 		float var3 = 0.0F;
 		float var4 = 0.0F;
 		Iterator var5 = this.a.iterator();
 
 		while (var5.hasNext()) {
 			wf var6 = (wf) var5.next();
-			if (var6.a().j() instanceof ahd && (var2 == null || var6.c() > var4)) {
+			if (var6.a().j() instanceof EntityHuman && (var2 == null || var6.c() > var4)) {
 				var4 = var6.c();
-				var2 = (ahd) var6.a().j();
+				var2 = (EntityHuman) var6.a().j();
 			}
 
 			if (var6.a().j() instanceof EntityLiving && (var1 == null || var6.c() > var3)) {

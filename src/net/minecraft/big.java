@@ -8,7 +8,7 @@ public class big extends bhc {
 		super(false);
 	}
 
-	public boolean b(World var1, Random var2, dt var3) {
+	public boolean b(World var1, Random var2, Position var3) {
 		int var4 = var2.nextInt(5) + 7;
 		int var5 = var4 - var2.nextInt(2) - 3;
 		int var6 = var4 - var5;
@@ -29,7 +29,7 @@ public class big extends bhc {
 				for (var11 = var3.n() - var18; var11 <= var3.n() + var18 && var8; ++var11) {
 					for (var12 = var3.p() - var18; var12 <= var3.p() + var18 && var8; ++var12) {
 						if (var9 >= 0 && var9 < 256) {
-							if (!this.a(var1.p(new dt(var11, var9, var12)).c())) {
+							if (!this.a(var1.p(new Position(var11, var9, var12)).c())) {
 								var8 = false;
 							}
 						} else {
@@ -42,7 +42,7 @@ public class big extends bhc {
 			if (!var8) {
 				return false;
 			} else {
-				atr var17 = var1.p(var3.b()).c();
+				Block var17 = var1.p(var3.b()).c();
 				if ((var17 == aty.c || var17 == aty.d) && var3.o() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 					var18 = 0;
@@ -54,7 +54,7 @@ public class big extends bhc {
 							for (int var14 = var3.p() - var18; var14 <= var3.p() + var18; ++var14) {
 								int var15 = var14 - var3.p();
 								if (Math.abs(var13) != var18 || Math.abs(var15) != var18 || var18 <= 0) {
-									dt var16 = new dt(var12, var11, var14);
+									Position var16 = new Position(var12, var11, var14);
 									if (!var1.p(var16).c().m()) {
 										this.a(var1, var16, aty.t, ayx.b.a());
 									}
@@ -70,7 +70,7 @@ public class big extends bhc {
 					}
 
 					for (var11 = 0; var11 < var4 - 1; ++var11) {
-						atr var19 = var1.p(var3.b(var11)).c();
+						Block var19 = var1.p(var3.b(var11)).c();
 						if (var19.r() == bof.a || var19.r() == bof.j) {
 							this.a(var1, var3.b(var11), aty.r, ayx.b.a());
 						}

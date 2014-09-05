@@ -11,10 +11,10 @@ public class yj {
 	}
 
 	public void a() {
-		double var1 = this.a.s - this.a.p;
-		double var3 = this.a.u - this.a.r;
+		double var1 = this.a.locationX - this.a.p;
+		double var3 = this.a.locationZ - this.a.r;
 		if (var1 * var1 + var3 * var3 > 2.500000277905201E-7D) {
-			this.a.aG = this.a.y;
+			this.a.aG = this.a.yaw;
 			this.a.aI = this.a(this.a.aG, this.a.aI, 75.0F);
 			this.c = this.a.aI;
 			this.b = 0;
@@ -36,7 +36,7 @@ public class yj {
 	}
 
 	private float a(float var1, float var2, float var3) {
-		float var4 = NumberConverter.g(var1 - var2);
+		float var4 = DataTypesConverter.g(var1 - var2);
 		if (var4 < -var3) {
 			var4 = -var3;
 		}

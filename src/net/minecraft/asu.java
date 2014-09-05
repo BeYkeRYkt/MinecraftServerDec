@@ -35,7 +35,7 @@ public class asu extends arm {
 		return var1.nextInt(5) > 0 ? new biq(bbi.c) : new biq(bbi.b);
 	}
 
-	public void a(World var1, Random var2, dt var3) {
+	public void a(World var1, Random var2, Position var3) {
 		int var4;
 		int var5;
 		int var6;
@@ -46,7 +46,7 @@ public class asu extends arm {
 			for (var5 = 0; var5 < var4; ++var5) {
 				var6 = var2.nextInt(16) + 8;
 				var7 = var2.nextInt(16) + 8;
-				dt var8 = var1.m(var3.a(var6, 0, var7));
+				Position var8 = var1.m(var3.a(var6, 0, var7));
 				aH.b(var1, var2, var8);
 			}
 		}

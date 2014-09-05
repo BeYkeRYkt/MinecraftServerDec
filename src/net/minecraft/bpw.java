@@ -11,10 +11,10 @@ public class bpw {
 	}
 
 	public bpv a(ard var1, Entity var2, Entity var3, float var4) {
-		return this.a(var1, var2, var3.s, var3.aQ().b, var3.u, var4);
+		return this.a(var1, var2, var3.locationX, var3.aQ().b, var3.locationZ, var4);
 	}
 
-	public bpv a(ard var1, Entity var2, dt var3, float var4) {
+	public bpv a(ard var1, Entity var2, Position var3, float var4) {
 		return this.a(var1, var2, (double) ((float) var3.n() + 0.5F), (double) ((float) var3.o() + 0.5F), (double) ((float) var3.p() + 0.5F), var4);
 	}
 

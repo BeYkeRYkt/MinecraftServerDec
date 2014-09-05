@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class bnc extends bnn {
 
-	private atr a;
-	private atr b;
+	private Block a;
+	private Block b;
 
 	public bnc() {
 	}
@@ -21,17 +21,17 @@ public class bnc extends bnn {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.put("CA", atr.c.b(this.a));
-		var1.put("CB", atr.c.b(this.b));
+		var1.put("CA", Block.c.b(this.a));
+		var1.put("CB", Block.c.b(this.b));
 	}
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.a = atr.c(var1.getInt("CA"));
-		this.b = atr.c(var1.getInt("CB"));
+		this.a = Block.c(var1.getInt("CA"));
+		this.b = Block.c(var1.getInt("CB"));
 	}
 
-	private atr a(Random var1) {
+	private Block a(Random var1) {
 		switch (var1.nextInt(5)) {
 			case 0:
 				return aty.cb;
@@ -68,10 +68,10 @@ public class bnc extends bnn {
 
 		int var4;
 		for (var4 = 1; var4 <= 7; ++var4) {
-			this.a(var1, this.a.a(NumberConverter.a(var2, 2, 7)), 1, 1, var4, var3);
-			this.a(var1, this.a.a(NumberConverter.a(var2, 2, 7)), 2, 1, var4, var3);
-			this.a(var1, this.b.a(NumberConverter.a(var2, 2, 7)), 4, 1, var4, var3);
-			this.a(var1, this.b.a(NumberConverter.a(var2, 2, 7)), 5, 1, var4, var3);
+			this.a(var1, this.a.a(DataTypesConverter.a(var2, 2, 7)), 1, 1, var4, var3);
+			this.a(var1, this.a.a(DataTypesConverter.a(var2, 2, 7)), 2, 1, var4, var3);
+			this.a(var1, this.b.a(DataTypesConverter.a(var2, 2, 7)), 4, 1, var4, var3);
+			this.a(var1, this.b.a(DataTypesConverter.a(var2, 2, 7)), 5, 1, var4, var3);
 		}
 
 		for (var4 = 0; var4 < 9; ++var4) {

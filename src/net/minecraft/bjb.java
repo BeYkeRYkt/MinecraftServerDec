@@ -132,7 +132,7 @@ public class bjb {
 	}
 
 	public fd f() {
-		return new dt(this.a + (this.d - this.a + 1) / 2, this.b + (this.e - this.b + 1) / 2, this.c + (this.f - this.c + 1) / 2);
+		return new Position(this.a + (this.d - this.a + 1) / 2, this.b + (this.e - this.b + 1) / 2, this.c + (this.f - this.c + 1) / 2);
 	}
 
 	public String toString() {

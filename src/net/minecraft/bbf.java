@@ -17,11 +17,11 @@ public abstract class bbf extends awq {
 		}
 
 		this.j(var1.a(M, bbg.a));
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
-		return alq.a((atr) aty.U);
+	public Item a(bec var1, Random var2, int var3) {
+		return Item.getItemOf((Block) aty.U);
 	}
 
 	public String b(int var1) {
@@ -32,7 +32,7 @@ public abstract class bbf extends awq {
 		return M;
 	}
 
-	public Object a(amj var1) {
+	public Object a(ItemStack var1) {
 		return bbg.a(var1.i() & 7);
 	}
 

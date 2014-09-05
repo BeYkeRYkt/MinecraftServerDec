@@ -38,7 +38,7 @@ public class asj extends arm {
 		return this.aA;
 	}
 
-	public void a(World var1, Random var2, dt var3) {
+	public void a(World var1, Random var2, Position var3) {
 		super.a(var1, var2, var3);
 	}
 

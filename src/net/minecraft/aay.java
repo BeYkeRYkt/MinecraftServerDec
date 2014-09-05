@@ -22,13 +22,13 @@ public class aay extends aaz {
 	}
 
 	protected brw c() {
-		return new brw(this.b.s, (double) this.p(), this.b.u);
+		return new brw(this.b.locationX, (double) this.p(), this.b.locationZ);
 	}
 
 	private int p() {
 		if (this.b.V() && this.h()) {
 			int var1 = (int) this.b.aQ().b;
-			atr var2 = this.c.p(new dt(NumberConverter.c(this.b.s), var1, NumberConverter.c(this.b.u))).c();
+			Block var2 = this.c.p(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).c();
 			int var3 = 0;
 
 			do {
@@ -37,7 +37,7 @@ public class aay extends aaz {
 				}
 
 				++var1;
-				var2 = this.c.p(new dt(NumberConverter.c(this.b.s), var1, NumberConverter.c(this.b.u))).c();
+				var2 = this.c.p(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).c();
 				++var3;
 			} while (var3 <= 16);
 
@@ -50,13 +50,13 @@ public class aay extends aaz {
 	protected void d() {
 		super.d();
 		if (this.f) {
-			if (this.c.i(new dt(NumberConverter.c(this.b.s), (int) (this.b.aQ().b + 0.5D), NumberConverter.c(this.b.u)))) {
+			if (this.c.i(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), (int) (this.b.aQ().b + 0.5D), DataTypesConverter.toFixedPointInt(this.b.locationZ)))) {
 				return;
 			}
 
 			for (int var1 = 0; var1 < this.d.d(); ++var1) {
 				bpt var2 = this.d.a(var1);
-				if (this.c.i(new dt(var2.a, var2.b, var2.c))) {
+				if (this.c.i(new Position(var2.a, var2.b, var2.c))) {
 					this.d.b(var1 - 1);
 					return;
 				}
@@ -66,8 +66,8 @@ public class aay extends aaz {
 	}
 
 	protected boolean a(brw var1, brw var2, int var3, int var4, int var5) {
-		int var6 = NumberConverter.c(var1.a);
-		int var7 = NumberConverter.c(var1.c);
+		int var6 = DataTypesConverter.toFixedPointInt(var1.a);
+		int var7 = DataTypesConverter.toFixedPointInt(var1.c);
 		double var8 = var2.a - var1.a;
 		double var10 = var2.c - var1.c;
 		double var12 = var8 * var8 + var10 * var10;
@@ -100,8 +100,8 @@ public class aay extends aaz {
 				var22 /= var10;
 				int var24 = var8 < 0.0D ? -1 : 1;
 				int var25 = var10 < 0.0D ? -1 : 1;
-				int var26 = NumberConverter.c(var2.a);
-				int var27 = NumberConverter.c(var2.c);
+				int var26 = DataTypesConverter.toFixedPointInt(var2.a);
+				int var27 = DataTypesConverter.toFixedPointInt(var2.c);
 				int var28 = var26 - var6;
 				int var29 = var27 - var7;
 
@@ -137,7 +137,7 @@ public class aay extends aaz {
 					double var16 = (double) var14 + 0.5D - var7.a;
 					double var18 = (double) var15 + 0.5D - var7.c;
 					if (var16 * var8 + var18 * var10 >= 0.0D) {
-						atr var20 = this.c.p(new dt(var14, var2 - 1, var15)).c();
+						Block var20 = this.c.p(new Position(var14, var2 - 1, var15)).c();
 						bof var21 = var20.r();
 						if (var21 == bof.a) {
 							return false;
@@ -159,14 +159,14 @@ public class aay extends aaz {
 	}
 
 	private boolean b(int var1, int var2, int var3, int var4, int var5, int var6, brw var7, double var8, double var10) {
-		Iterator var12 = dt.a(new dt(var1, var2, var3), new dt(var1 + var4 - 1, var2 + var5 - 1, var3 + var6 - 1)).iterator();
+		Iterator var12 = Position.a(new Position(var1, var2, var3), new Position(var1 + var4 - 1, var2 + var5 - 1, var3 + var6 - 1)).iterator();
 
 		while (var12.hasNext()) {
-			dt var13 = (dt) var12.next();
+			Position var13 = (Position) var12.next();
 			double var14 = (double) var13.n() + 0.5D - var7.a;
 			double var16 = (double) var13.p() + 0.5D - var7.c;
 			if (var14 * var8 + var16 * var10 >= 0.0D) {
-				atr var18 = this.c.p(var13).c();
+				Block var18 = this.c.p(var13).c();
 				if (!var18.b(this.c, var13)) {
 					return false;
 				}

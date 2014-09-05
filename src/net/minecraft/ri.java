@@ -19,6 +19,6 @@ class ri implements GenericFutureListener {
 	}
 
 	public void operationComplete(Future var1) {
-		this.a.a((ho) this.b);
+		this.a.a((IJSONComponent) this.b);
 	}
 }

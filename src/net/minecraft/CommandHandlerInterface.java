@@ -7,7 +7,7 @@ public interface CommandHandlerInterface {
 
 	int a(CommandSenderInterface var1, String var2);
 
-	List a(CommandSenderInterface var1, String var2, dt var3);
+	List a(CommandSenderInterface var1, String var2, Position var3);
 
 	List a(CommandSenderInterface var1);
 

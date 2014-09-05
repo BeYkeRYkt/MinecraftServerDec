@@ -72,9 +72,9 @@ abstract class bnn extends bms {
 
 		for (int var5 = this.l.c; var5 <= this.l.f; ++var5) {
 			for (int var6 = this.l.a; var6 <= this.l.d; ++var6) {
-				dt var7 = new dt(var6, 64, var5);
+				Position var7 = new Position(var6, 64, var5);
 				if (var2.b((fd) var7)) {
-					var3 += Math.max(var1.r(var7).o(), var1.t.i());
+					var3 += Math.max(var1.r(var7).o(), var1.worldProvider.i());
 					++var4;
 				}
 			}
@@ -97,14 +97,14 @@ abstract class bnn extends bms {
 				int var8 = this.a(var3 + var7, var5);
 				int var9 = this.d(var4);
 				int var10 = this.b(var3 + var7, var5);
-				if (!var2.b((fd) (new dt(var8, var9, var10)))) {
+				if (!var2.b((fd) (new Position(var8, var9, var10)))) {
 					break;
 				}
 
 				++this.a;
 				agp var11 = new agp(var1);
 				var11.b((double) var8 + 0.5D, (double) var9, (double) var10 + 0.5D, 0.0F, 0.0F);
-				var11.a(var1.E(new dt(var11)), (xq) null);
+				var11.a(var1.E(new Position(var11)), (xq) null);
 				var11.r(this.c(var7, var11.cj()));
 				var1.d((Entity) var11);
 			}

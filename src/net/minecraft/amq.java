@@ -4,13 +4,13 @@ final class amq extends eg {
 
 	private final eg b = new eg();
 
-	public amj b(dz var1, amj var2) {
+	public ItemStack b(dz var1, ItemStack var2) {
 		ej var3 = ave.b(var1.f());
 		World var4 = var1.i();
 		double var5 = var1.a() + (double) var3.g() * 1.125D;
 		double var7 = Math.floor(var1.b()) + (double) var3.h();
 		double var9 = var1.c() + (double) var3.i() * 1.125D;
-		dt var11 = var1.d().a(var3);
+		Position var11 = var1.d().a(var3);
 		bec var12 = var4.p(var11);
 		atl var13 = var12.c() instanceof ati ? (atl) var12.b(((ati) var12.c()).l()) : atl.a;
 		double var14;
@@ -34,7 +34,7 @@ final class amq extends eg {
 			}
 		}
 
-		adx var18 = adx.a(var4, var5, var7 + var14, var9, amp.a((amp) var2.b()));
+		adx var18 = adx.a(var4, var5, var7 + var14, var9, amp.a((amp) var2.getItem()));
 		if (var2.s()) {
 			var18.a(var2.q());
 		}

@@ -3,20 +3,20 @@ package net.minecraft;
 public class ajj extends ajk {
 
 	private final ain a;
-	private final ahd b;
+	private final EntityHuman b;
 	private int c;
 
-	public ajj(ahd var1, ain var2, vq var3, int var4, int var5, int var6) {
+	public ajj(EntityHuman var1, ain var2, IInventory var3, int var4, int var5, int var6) {
 		super(var3, var4, var5, var6);
 		this.b = var1;
 		this.a = var2;
 	}
 
-	public boolean a(amj var1) {
+	public boolean a(ItemStack var1) {
 		return false;
 	}
 
-	public amj a(int var1) {
+	public ItemStack a(int var1) {
 		if (this.e()) {
 			this.c += Math.min(var1, this.d().b);
 		}
@@ -24,70 +24,70 @@ public class ajj extends ajk {
 		return super.a(var1);
 	}
 
-	protected void a(amj var1, int var2) {
+	protected void a(ItemStack var1, int var2) {
 		this.c += var2;
 		this.c(var1);
 	}
 
-	protected void c(amj var1) {
+	protected void c(ItemStack var1) {
 		if (this.c > 0) {
 			var1.a(this.b.o, this.b, this.c);
 		}
 
 		this.c = 0;
-		if (var1.b() == alq.a(aty.ai)) {
+		if (var1.getItem() == Item.getItemOf(aty.ai)) {
 			this.b.b((PlayerStatistic) tl.h);
 		}
 
-		if (var1.b() instanceof amu) {
+		if (var1.getItem() instanceof amu) {
 			this.b.b((PlayerStatistic) tl.i);
 		}
 
-		if (var1.b() == alq.a(aty.al)) {
+		if (var1.getItem() == Item.getItemOf(aty.al)) {
 			this.b.b((PlayerStatistic) tl.j);
 		}
 
-		if (var1.b() instanceof alo) {
+		if (var1.getItem() instanceof alo) {
 			this.b.b((PlayerStatistic) tl.l);
 		}
 
-		if (var1.b() == amk.P) {
+		if (var1.getItem() == amk.P) {
 			this.b.b((PlayerStatistic) tl.m);
 		}
 
-		if (var1.b() == amk.aZ) {
+		if (var1.getItem() == amk.aZ) {
 			this.b.b((PlayerStatistic) tl.n);
 		}
 
-		if (var1.b() instanceof amu && ((amu) var1.b()).g() != ami.a) {
+		if (var1.getItem() instanceof amu && ((amu) var1.getItem()).g() != ami.a) {
 			this.b.b((PlayerStatistic) tl.o);
 		}
 
-		if (var1.b() instanceof anm) {
+		if (var1.getItem() instanceof anm) {
 			this.b.b((PlayerStatistic) tl.r);
 		}
 
-		if (var1.b() == alq.a(aty.bC)) {
+		if (var1.getItem() == Item.getItemOf(aty.bC)) {
 			this.b.b((PlayerStatistic) tl.E);
 		}
 
-		if (var1.b() == alq.a(aty.X)) {
+		if (var1.getItem() == Item.getItemOf(aty.X)) {
 			this.b.b((PlayerStatistic) tl.G);
 		}
 
-		if (var1.b() == amk.ao && var1.i() == 1) {
+		if (var1.getItem() == amk.ao && var1.i() == 1) {
 			this.b.b((PlayerStatistic) tl.M);
 		}
 
 	}
 
-	public void a(ahd var1, amj var2) {
+	public void a(EntityHuman var1, ItemStack var2) {
 		this.c(var2);
-		amj[] var3 = aop.a().b(this.a, var1.o);
+		ItemStack[] var3 = aop.a().b(this.a, var1.o);
 
 		for (int var4 = 0; var4 < var3.length; ++var4) {
-			amj var5 = this.a.a(var4);
-			amj var6 = var3[var4];
+			ItemStack var5 = this.a.a(var4);
+			ItemStack var6 = var3[var4];
 			if (var5 != null) {
 				this.a.a(var4, 1);
 			}
@@ -95,7 +95,7 @@ public class ajj extends ajk {
 			if (var6 != null) {
 				if (this.a.a(var4) == null) {
 					this.a.a(var4, var6);
-				} else if (!this.b.bg.a(var6)) {
+				} else if (!this.b.playerInventory.a(var6)) {
 					this.b.a(var6, false);
 				}
 			}

@@ -24,7 +24,7 @@ public class afg extends afm {
 		zo var2;
 		this.i.a(5, var2 = new zo(this, 1.0D));
 		this.i.a(7, this.bq = new zy(this, 1.0D, 80));
-		this.i.a(8, new zh(this, ahd.class, 8.0F));
+		this.i.a(8, new zh(this, EntityHuman.class, 8.0F));
 		this.i.a(8, new zh(this, afg.class, 12.0F, 0.01F));
 		this.i.a(9, new zx(this));
 		this.bq.a(3);
@@ -58,20 +58,20 @@ public class afg extends afm {
 
 	protected void h() {
 		super.h();
-		this.ac.a(16, Integer.valueOf(0));
-		this.ac.a(17, Integer.valueOf(0));
+		this.dataWatcher.a(16, Integer.valueOf(0));
+		this.dataWatcher.a(17, Integer.valueOf(0));
 	}
 
 	private boolean a(int var1) {
-		return (this.ac.c(16) & var1) != 0;
+		return (this.dataWatcher.c(16) & var1) != 0;
 	}
 
 	private void a(int var1, boolean var2) {
-		int var3 = this.ac.c(16);
+		int var3 = this.dataWatcher.c(16);
 		if (var2) {
-			this.ac.b(16, Integer.valueOf(var3 | var1));
+			this.dataWatcher.b(16, Integer.valueOf(var3 | var1));
 		} else {
-			this.ac.b(16, Integer.valueOf(var3 & ~var1));
+			this.dataWatcher.b(16, Integer.valueOf(var3 & ~var1));
 		}
 
 	}
@@ -106,11 +106,11 @@ public class afg extends afm {
 	}
 
 	private void b(int var1) {
-		this.ac.b(17, Integer.valueOf(var1));
+		this.dataWatcher.b(17, Integer.valueOf(var1));
 	}
 
 	public boolean cn() {
-		return this.ac.c(17) != 0;
+		return this.dataWatcher.c(17) != 0;
 	}
 
 	public EntityLiving co() {
@@ -120,7 +120,7 @@ public class afg extends afm {
 			if (this.bn != null) {
 				return this.bn;
 			} else {
-				Entity var1 = this.o.a(this.ac.c(17));
+				Entity var1 = this.o.a(this.dataWatcher.c(17));
 				if (var1 instanceof EntityLiving) {
 					this.bn = (EntityLiving) var1;
 					return this.bn;
@@ -170,7 +170,7 @@ public class afg extends afm {
 		return this.K * 0.5F;
 	}
 
-	public float a(dt var1) {
+	public float a(Position var1) {
 		return this.o.p(var1).c().r() == bof.h ? 10.0F + this.o.o(var1) - 0.5F : super.a(var1);
 	}
 
@@ -179,11 +179,11 @@ public class afg extends afm {
 			this.c = this.b;
 			if (!this.V()) {
 				this.bk = 2.0F;
-				if (this.w > 0.0D && this.bp && !this.R()) {
-					this.o.a(this.s, this.t, this.u, "mob.guardian.flop", 1.0F, 1.0F, false);
+				if (this.motionY > 0.0D && this.bp && !this.R()) {
+					this.o.a(this.locationX, this.locationY, this.locationZ, "mob.guardian.flop", 1.0F, 1.0F, false);
 				}
 
-				this.bp = this.w < 0.0D && this.o.d((new dt(this)).b(), false);
+				this.bp = this.motionY < 0.0D && this.o.d((new Position(this)).b(), false);
 			} else if (this.n()) {
 				if (this.bk < 0.5F) {
 					this.bk = 4.0F;
@@ -208,7 +208,7 @@ public class afg extends afm {
 				brw var1 = this.d(0.0F);
 
 				for (int var2 = 0; var2 < 2; ++var2) {
-					this.o.a(ew.e, this.s + (this.V.nextDouble() - 0.5D) * (double) this.J - var1.a * 1.5D, this.t + this.V.nextDouble() * (double) this.K - var1.b * 1.5D, this.u + (this.V.nextDouble() - 0.5D) * (double) this.J - var1.c * 1.5D, 0.0D, 0.0D, 0.0D, new int[0]);
+					this.o.a(ew.e, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J - var1.a * 1.5D, this.locationY + this.V.nextDouble() * (double) this.K - var1.b * 1.5D, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J - var1.c * 1.5D, 0.0D, 0.0D, 0.0D, new int[0]);
 				}
 			}
 
@@ -222,9 +222,9 @@ public class afg extends afm {
 					this.p().a(var14, 90.0F, 90.0F);
 					this.p().a();
 					double var15 = (double) this.p(0.0F);
-					double var4 = var14.s - this.s;
-					double var6 = var14.t + (double) (var14.K * 0.5F) - (this.t + (double) this.aR());
-					double var8 = var14.u - this.u;
+					double var4 = var14.locationX - this.locationX;
+					double var6 = var14.locationY + (double) (var14.K * 0.5F) - (this.locationY + (double) this.aR());
+					double var8 = var14.locationZ - this.locationZ;
 					double var10 = Math.sqrt(var4 * var4 + var6 * var6 + var8 * var8);
 					var4 /= var10;
 					var6 /= var10;
@@ -233,7 +233,7 @@ public class afg extends afm {
 
 					while (var12 < var10) {
 						var12 += 1.8D - var15 + this.V.nextDouble() * (1.7D - var15);
-						this.o.a(ew.e, this.s + var4 * var12, this.t + var6 * var12 + (double) this.aR(), this.u + var8 * var12, 0.0D, 0.0D, 0.0D, new int[0]);
+						this.o.a(ew.e, this.locationX + var4 * var12, this.locationY + var6 * var12 + (double) this.aR(), this.locationZ + var8 * var12, 0.0D, 0.0D, 0.0D, new int[0]);
 					}
 				}
 			}
@@ -242,16 +242,16 @@ public class afg extends afm {
 		if (this.Y) {
 			this.h(300);
 		} else if (this.C) {
-			this.w += 0.5D;
-			this.v += (double) ((this.V.nextFloat() * 2.0F - 1.0F) * 0.4F);
-			this.x += (double) ((this.V.nextFloat() * 2.0F - 1.0F) * 0.4F);
-			this.y = this.V.nextFloat() * 360.0F;
+			this.motionY += 0.5D;
+			this.motionX += (double) ((this.V.nextFloat() * 2.0F - 1.0F) * 0.4F);
+			this.motionZ += (double) ((this.V.nextFloat() * 2.0F - 1.0F) * 0.4F);
+			this.yaw = this.V.nextFloat() * 360.0F;
 			this.C = false;
 			this.ai = true;
 		}
 
 		if (this.cn()) {
-			this.y = this.aI;
+			this.yaw = this.aI;
 		}
 
 		super.m();
@@ -268,7 +268,7 @@ public class afg extends afm {
 			boolean var2 = true;
 			boolean var3 = true;
 			boolean var4 = true;
-			if ((this.W + this.F()) % 1200 == 0) {
+			if ((this.W + this.getId()) % 1200 == 0) {
 				wp var5 = wp.f;
 				List var6 = this.o.b(EntityPlayer.class, (Predicate) (new afh(this)));
 				Iterator var7 = var6.iterator();
@@ -276,14 +276,14 @@ public class afg extends afm {
 				while (var7.hasNext()) {
 					EntityPlayer var8 = (EntityPlayer) var7.next();
 					if (!var8.a(var5) || var8.b(var5).c() < 2 || var8.b(var5).b() < 1200) {
-						var8.a.a((id) (new jo(10, 0.0F)));
+						var8.a.a((Packet) (new jo(10, 0.0F)));
 						var8.c(new wq(var5.H, 6000, 2));
 					}
 				}
 			}
 
 			if (!this.ci()) {
-				this.a(new dt(this), 16);
+				this.a(new Position(this), 16);
 			}
 		}
 
@@ -292,23 +292,23 @@ public class afg extends afm {
 	protected void b(boolean var1, int var2) {
 		int var3 = this.V.nextInt(3) + this.V.nextInt(var2 + 1);
 		if (var3 > 0) {
-			this.a(new amj(amk.cC, var3, 0), 1.0F);
+			this.a(new ItemStack(amk.cC, var3, 0), 1.0F);
 		}
 
 		if (this.V.nextInt(3 + var2) > 1) {
-			this.a(new amj(amk.aU, 1, ali.a.a()), 1.0F);
+			this.a(new ItemStack(amk.aU, 1, ali.a.a()), 1.0F);
 		} else if (this.V.nextInt(3 + var2) > 1) {
-			this.a(new amj(amk.cD, 1, 0), 1.0F);
+			this.a(new ItemStack(amk.cD, 1, 0), 1.0F);
 		}
 
 		if (var1 && this.cl()) {
-			this.a(new amj(aty.v, 1, 1), 1.0F);
+			this.a(new ItemStack(aty.v, 1, 1), 1.0F);
 		}
 
 	}
 
 	protected void bp() {
-		amj var1 = ((adp) vj.a(this.V, ado.j())).a(this.V);
+		ItemStack var1 = ((adp) vj.a(this.V, ado.j())).a(this.V);
 		this.a(var1, 1.0F);
 	}
 
@@ -321,7 +321,7 @@ public class afg extends afm {
 	}
 
 	public boolean bQ() {
-		return (this.V.nextInt(20) == 0 || !this.o.j(new dt(this))) && super.bQ();
+		return (this.V.nextInt(20) == 0 || !this.o.j(new Position(this))) && super.bQ();
 	}
 
 	public boolean a(wh var1, float var2) {
@@ -345,12 +345,12 @@ public class afg extends afm {
 		if (this.bL()) {
 			if (this.V()) {
 				this.a(var1, var2, 0.1F);
-				this.d(this.v, this.w, this.x);
-				this.v *= 0.8999999761581421D;
-				this.w *= 0.8999999761581421D;
-				this.x *= 0.8999999761581421D;
+				this.d(this.motionX, this.motionY, this.motionZ);
+				this.motionX *= 0.8999999761581421D;
+				this.motionY *= 0.8999999761581421D;
+				this.motionZ *= 0.8999999761581421D;
 				if (!this.n() && this.u() == null) {
-					this.w -= 0.005D;
+					this.motionY -= 0.005D;
 				}
 			} else {
 				super.g(var1, var2);

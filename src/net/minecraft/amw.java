@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class amw extends alq {
+public class amw extends Item {
 
 	private Map a = Maps.newHashMap();
 	private static final Map b = Maps.newLinkedHashMap();
@@ -16,13 +16,13 @@ public class amw extends alq {
 		this.c(1);
 		this.a(true);
 		this.d(0);
-		this.a(akf.k);
+		this.a(CreativeModeTab.k);
 	}
 
-	public List h(amj var1) {
-		if (var1.n() && var1.o().isTagAssignableFrom("CustomPotionEffects", 9)) {
+	public List h(ItemStack var1) {
+		if (var1.hasTag() && var1.getTag().isTagAssignableFrom("CustomPotionEffects", 9)) {
 			ArrayList var7 = Lists.newArrayList();
-			NBTListTag var3 = var1.o().getList("CustomPotionEffects", 10);
+			NBTListTag var3 = var1.getTag().getList("CustomPotionEffects", 10);
 
 			for (int var4 = 0; var4 < var3.getSize(); ++var4) {
 				NBTCompoundTag var5 = var3.getCompound(var4);
@@ -54,7 +54,7 @@ public class amw extends alq {
 		return var2;
 	}
 
-	public amj b(amj var1, World var2, ahd var3) {
+	public ItemStack b(ItemStack var1, World var2, EntityHuman var3) {
 		if (!var3.by.instabuild) {
 			--var1.b;
 		}
@@ -71,38 +71,38 @@ public class amw extends alq {
 			}
 		}
 
-		var3.b(ty.J[alq.b((alq) this)]);
+		var3.b(ty.J[Item.getId((Item) this)]);
 		if (!var3.by.instabuild) {
 			if (var1.b <= 0) {
-				return new amj(amk.bA);
+				return new ItemStack(amk.bA);
 			}
 
-			var3.bg.a(new amj(amk.bA));
+			var3.playerInventory.a(new ItemStack(amk.bA));
 		}
 
 		return var1;
 	}
 
-	public int d(amj var1) {
+	public int d(ItemStack var1) {
 		return 32;
 	}
 
-	public ano e(amj var1) {
+	public ano e(ItemStack var1) {
 		return ano.c;
 	}
 
-	public amj a(amj var1, World var2, ahd var3) {
+	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
 		if (f(var1.i())) {
 			if (!var3.by.instabuild) {
 				--var1.b;
 			}
 
-			var2.a((Entity) var3, "random.bow", 0.5F, 0.4F / (g.nextFloat() * 0.4F + 0.8F));
+			var2.a((Entity) var3, "random.bow", 0.5F, 0.4F / (rnd.nextFloat() * 0.4F + 0.8F));
 			if (!var2.D) {
 				var2.d((Entity) (new ahv(var2, var3, var1)));
 			}
 
-			var3.b(ty.J[alq.b((alq) this)]);
+			var3.b(ty.J[Item.getId((Item) this)]);
 			return var1;
 		} else {
 			var3.a(var1, this.d(var1));
@@ -114,7 +114,7 @@ public class amw extends alq {
 		return (var0 & 16384) != 0;
 	}
 
-	public String a(amj var1) {
+	public String a(ItemStack var1) {
 		if (var1.i() == 0) {
 			return fi.a("item.emptyPotion.name").trim();
 		} else {

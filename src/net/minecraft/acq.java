@@ -17,7 +17,7 @@ public class acq extends abw {
 		this.i.a(4, new zo(this, 1.0D));
 		this.i.a(5, new zs(this));
 		this.i.a(6, new zy(this, 0.6D));
-		this.i.a(7, new zh(this, ahd.class, 6.0F));
+		this.i.a(7, new zh(this, EntityHuman.class, 6.0F));
 		this.i.a(8, new zx(this));
 		this.bg.a(1, new aak(this));
 		this.bg.a(2, new aal(this, false, new Class[0]));
@@ -26,17 +26,17 @@ public class acq extends abw {
 
 	protected void h() {
 		super.h();
-		this.ac.a(16, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(16, Byte.valueOf((byte) 0));
 	}
 
 	protected void E() {
 		if (--this.b <= 0) {
 			this.b = 70 + this.V.nextInt(50);
-			this.a = this.o.ae().a(new dt(this), 32);
+			this.a = this.o.ae().a(new Position(this), 32);
 			if (this.a == null) {
 				this.ch();
 			} else {
-				dt var1 = this.a.a();
+				Position var1 = this.a.a();
 				this.a(var1, (int) ((float) this.a.b() * 0.6F));
 			}
 		}
@@ -72,21 +72,21 @@ public class acq extends abw {
 			--this.bk;
 		}
 
-		if (this.v * this.v + this.x * this.x > 2.500000277905201E-7D && this.V.nextInt(5) == 0) {
-			int var1 = NumberConverter.c(this.s);
-			int var2 = NumberConverter.c(this.t - 0.20000000298023224D);
-			int var3 = NumberConverter.c(this.u);
-			bec var4 = this.o.p(new dt(var1, var2, var3));
-			atr var5 = var4.c();
+		if (this.motionX * this.motionX + this.motionZ * this.motionZ > 2.500000277905201E-7D && this.V.nextInt(5) == 0) {
+			int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
+			int var2 = DataTypesConverter.toFixedPointInt(this.locationY - 0.20000000298023224D);
+			int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
+			bec var4 = this.o.p(new Position(var1, var2, var3));
+			Block var5 = var4.c();
 			if (var5.r() != bof.a) {
-				this.o.a(ew.L, this.s + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, this.aQ().b + 0.1D, this.u + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, 4.0D * ((double) this.V.nextFloat() - 0.5D), 0.5D, ((double) this.V.nextFloat() - 0.5D) * 4.0D, new int[] { atr.f(var4) });
+				this.o.a(ew.L, this.locationX + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, this.aQ().b + 0.1D, this.locationZ + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, 4.0D * ((double) this.V.nextFloat() - 0.5D), 0.5D, ((double) this.V.nextFloat() - 0.5D) * 4.0D, new int[] { Block.f(var4) });
 			}
 		}
 
 	}
 
 	public boolean a(Class var1) {
-		return this.cl() && ahd.class.isAssignableFrom(var1) ? false : super.a(var1);
+		return this.cl() && EntityHuman.class.isAssignableFrom(var1) ? false : super.a(var1);
 	}
 
 	public void b(NBTCompoundTag var1) {
@@ -104,7 +104,7 @@ public class acq extends abw {
 		this.o.a((Entity) this, (byte) 4);
 		boolean var2 = var1.a(wh.a((EntityLiving) this), (float) (7 + this.V.nextInt(15)));
 		if (var2) {
-			var1.w += 0.4000000059604645D;
+			var1.motionY += 0.4000000059604645D;
 			this.a(this, var1);
 		}
 
@@ -129,7 +129,7 @@ public class acq extends abw {
 		return "mob.irongolem.death";
 	}
 
-	protected void a(dt var1, atr var2) {
+	protected void a(Position var1, Block var2) {
 		this.a("mob.irongolem.walk", 1.0F, 1.0F);
 	}
 
@@ -138,7 +138,7 @@ public class acq extends abw {
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(alq.a((atr) aty.O), 1, (float) awa.b.b());
+			this.a(Item.getItemOf((Block) aty.O), 1, (float) awa.b.b());
 		}
 
 		var4 = 3 + this.V.nextInt(3);
@@ -154,15 +154,15 @@ public class acq extends abw {
 	}
 
 	public boolean cl() {
-		return (this.ac.a(16) & 1) != 0;
+		return (this.dataWatcher.a(16) & 1) != 0;
 	}
 
 	public void l(boolean var1) {
-		byte var2 = this.ac.a(16);
+		byte var2 = this.dataWatcher.a(16);
 		if (var1) {
-			this.ac.b(16, Byte.valueOf((byte) (var2 | 1)));
+			this.dataWatcher.b(16, Byte.valueOf((byte) (var2 | 1)));
 		} else {
-			this.ac.b(16, Byte.valueOf((byte) (var2 & -2)));
+			this.dataWatcher.b(16, Byte.valueOf((byte) (var2 & -2)));
 		}
 
 	}

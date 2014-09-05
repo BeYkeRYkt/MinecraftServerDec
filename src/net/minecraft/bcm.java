@@ -12,13 +12,13 @@ public abstract class bcm {
 	private static Map f = Maps.newHashMap();
 	private static Map g = Maps.newHashMap();
 	protected World b;
-	protected dt c;
+	protected Position c;
 	protected boolean d;
 	private int h;
-	protected atr e;
+	protected Block e;
 
 	public bcm() {
-		this.c = dt.a;
+		this.c = Position.a;
 		this.h = -1;
 	}
 
@@ -44,7 +44,7 @@ public abstract class bcm {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.c = new dt(var1.getInt("x"), var1.getInt("y"), var1.getInt("z"));
+		this.c = new Position(var1.getInt("x"), var1.getInt("y"), var1.getInt("z"));
 	}
 
 	public void b(NBTCompoundTag var1) {
@@ -101,11 +101,11 @@ public abstract class bcm {
 
 	}
 
-	public dt v() {
+	public Position v() {
 		return this.c;
 	}
 
-	public atr w() {
+	public Block w() {
 		if (this.e == null) {
 			this.e = this.b.p(this.c).c();
 		}
@@ -113,7 +113,7 @@ public abstract class bcm {
 		return this.e;
 	}
 
-	public id x_() {
+	public Packet x_() {
 		return null;
 	}
 
@@ -147,7 +147,7 @@ public abstract class bcm {
 		}
 	}
 
-	public void a(dt var1) {
+	public void a(Position var1) {
 		this.c = var1;
 	}
 

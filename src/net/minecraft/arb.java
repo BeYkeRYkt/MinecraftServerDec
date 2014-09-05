@@ -6,12 +6,12 @@ public final class arb {
 	private final GameMode b;
 	private final boolean c;
 	private final boolean d;
-	private final are e;
+	private final LevelType e;
 	private boolean f;
 	private boolean g;
 	private String h;
 
-	public arb(long var1, GameMode var3, boolean var4, boolean var5, are var6) {
+	public arb(long var1, GameMode var3, boolean var4, boolean var5, LevelType var6) {
 		this.h = "";
 		this.a = var1;
 		this.b = var3;
@@ -20,8 +20,8 @@ public final class arb {
 		this.e = var6;
 	}
 
-	public arb(bqo var1) {
-		this(var1.b(), var1.r(), var1.s(), var1.t(), var1.u());
+	public arb(WorldData var1) {
+		this(var1.b(), var1.r(), var1.s(), var1.isHardcore(), var1.getLevelType());
 	}
 
 	public arb a() {
@@ -54,7 +54,7 @@ public final class arb {
 		return this.c;
 	}
 
-	public are h() {
+	public LevelType h() {
 		return this.e;
 	}
 

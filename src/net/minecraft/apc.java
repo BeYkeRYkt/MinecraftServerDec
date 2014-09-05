@@ -37,8 +37,8 @@ public class apc extends apf {
 		return !(var1 instanceof apc);
 	}
 
-	public boolean a(amj var1) {
-		return var1.b() instanceof ajr ? true : super.a(var1);
+	public boolean a(ItemStack var1) {
+		return var1.getItem() instanceof ajr ? true : super.a(var1);
 	}
 
 	public void a(EntityLiving var1, Entity var2, int var3) {

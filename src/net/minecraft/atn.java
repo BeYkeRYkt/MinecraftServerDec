@@ -5,9 +5,9 @@ final class atn implements Runnable {
 	// $FF: synthetic field
 	final World a;
 	// $FF: synthetic field
-	final dt b;
+	final Position b;
 
-	atn(World var1, dt var2) {
+	atn(World var1, Position var2) {
 		this.a = var1;
 		this.b = var2;
 	}
@@ -16,7 +16,7 @@ final class atn implements Runnable {
 		bfh var1 = this.a.f(this.b);
 
 		for (int var2 = this.b.o() - 1; var2 >= 0; --var2) {
-			dt var3 = new dt(this.b.n(), var2, this.b.p());
+			Position var3 = new Position(this.b.n(), var2, this.b.p());
 			if (!var1.d(var3)) {
 				break;
 			}

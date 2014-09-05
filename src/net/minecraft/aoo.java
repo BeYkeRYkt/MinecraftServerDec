@@ -4,11 +4,11 @@ public interface aoo {
 
 	boolean a(ain var1, World var2);
 
-	amj a(ain var1);
+	ItemStack a(ain var1);
 
 	int a();
 
-	amj b();
+	ItemStack b();
 
-	amj[] b(ain var1);
+	ItemStack[] b(ain var1);
 }

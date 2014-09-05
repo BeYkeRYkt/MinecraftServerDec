@@ -15,13 +15,13 @@ public class auo extends atg {
 		return new bct();
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (!var1.D) {
 			boolean var5 = var1.z(var2);
 			boolean var6 = ((Boolean) var3.b(a)).booleanValue();
 			if (var5 && !var6) {
 				var1.a(var2, var3.a(a, Boolean.valueOf(true)), 4);
-				var1.a(var2, (atr) this, this.a(var1));
+				var1.a(var2, (Block) this, this.a(var1));
 			} else if (!var5 && var6) {
 				var1.a(var2, var3.a(a, Boolean.valueOf(false)), 4);
 			}
@@ -29,7 +29,7 @@ public class auo extends atg {
 
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		bcm var5 = var1.s(var2);
 		if (var5 instanceof bct) {
 			((bct) var5).b().a(var1);
@@ -42,7 +42,7 @@ public class auo extends atg {
 		return 1;
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
 		bcm var9 = var1.s(var2);
 		return var9 instanceof bct ? ((bct) var9).b().a(var4) : false;
 	}
@@ -51,12 +51,12 @@ public class auo extends atg {
 		return true;
 	}
 
-	public int l(World var1, dt var2) {
+	public int l(World var1, Position var2) {
 		bcm var3 = var1.s(var2);
 		return var3 instanceof bct ? ((bct) var3).b().j() : 0;
 	}
 
-	public void a(World var1, dt var2, bec var3, EntityLiving var4, amj var5) {
+	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
 		bcm var6 = var1.s(var2);
 		if (var6 instanceof bct) {
 			aqf var7 = ((bct) var6).b();
@@ -96,7 +96,7 @@ public class auo extends atg {
 		return new bed(this, new bex[] { a });
 	}
 
-	public bec a(World var1, dt var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(a, Boolean.valueOf(false));
 	}
 

@@ -15,5 +15,5 @@ public interface bec {
 
 	ImmutableMap b();
 
-	atr c();
+	Block c();
 }

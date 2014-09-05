@@ -3,7 +3,7 @@ package net.minecraft;
 class afp extends aaq {
 
 	public afp(afo var1) {
-		super(var1, ahd.class, true);
+		super(var1, EntityHuman.class, true);
 	}
 
 	public boolean a() {

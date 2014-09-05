@@ -20,13 +20,13 @@ public class aby extends xx {
 		this.i.a(8, new zq(this));
 		this.i.a(9, new yt(this, 0.8D));
 		this.i.a(10, new zy(this, 0.8D));
-		this.i.a(11, new zh(this, ahd.class, 10.0F));
+		this.i.a(11, new zh(this, EntityHuman.class, 10.0F));
 		this.bg.a(1, new aat(this, abr.class, false, (Predicate) null));
 	}
 
 	protected void h() {
 		super.h();
-		this.ac.a(18, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(18, Byte.valueOf((byte) 0));
 	}
 
 	public void E() {
@@ -88,7 +88,7 @@ public class aby extends xx {
 		return 0.4F;
 	}
 
-	protected alq A() {
+	protected Item A() {
 		return amk.aF;
 	}
 
@@ -108,19 +108,19 @@ public class aby extends xx {
 	protected void b(boolean var1, int var2) {
 	}
 
-	public boolean a(ahd var1) {
-		amj var2 = var1.bg.h();
+	public boolean a(EntityHuman var1) {
+		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (this.cj()) {
 			if (this.e(var1) && !this.o.D && !this.d(var2)) {
 				this.bk.a(!this.cl());
 			}
-		} else if (this.bn.f() && var2 != null && var2.b() == amk.aU && var1.h(this) < 9.0D) {
+		} else if (this.bn.f() && var2 != null && var2.getItem() == amk.aU && var1.h(this) < 9.0D) {
 			if (!var1.by.instabuild) {
 				--var2.b;
 			}
 
 			if (var2.b <= 0) {
-				var1.bg.a(var1.bg.c, (amj) null);
+				var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
 			}
 
 			if (!this.o.D) {
@@ -154,8 +154,8 @@ public class aby extends xx {
 		return var2;
 	}
 
-	public boolean d(amj var1) {
-		return var1 != null && var1.b() == amk.aU;
+	public boolean d(ItemStack var1) {
+		return var1 != null && var1.getItem() == amk.aU;
 	}
 
 	public boolean a(abq var1) {
@@ -172,11 +172,11 @@ public class aby extends xx {
 	}
 
 	public int cr() {
-		return this.ac.a(18);
+		return this.dataWatcher.a(18);
 	}
 
 	public void r(int var1) {
-		this.ac.b(18, Byte.valueOf((byte) var1));
+		this.dataWatcher.b(18, Byte.valueOf((byte) var1));
 	}
 
 	public boolean bQ() {
@@ -185,12 +185,12 @@ public class aby extends xx {
 
 	public boolean bR() {
 		if (this.o.a(this.aQ(), (Entity) this) && this.o.a((Entity) this, this.aQ()).isEmpty() && !this.o.d(this.aQ())) {
-			dt var1 = new dt(this.s, this.aQ().b, this.u);
+			Position var1 = new Position(this.locationX, this.aQ().b, this.locationZ);
 			if (var1.o() < 63) {
 				return false;
 			}
 
-			atr var2 = this.o.p(var1.b()).c();
+			Block var2 = this.o.p(var1.b()).c();
 			if (var2 == aty.c || var2.r() == bof.j) {
 				return true;
 			}
@@ -224,7 +224,7 @@ public class aby extends xx {
 		if (this.o.s.nextInt(7) == 0) {
 			for (int var3 = 0; var3 < 2; ++var3) {
 				aby var4 = new aby(this.o);
-				var4.b(this.s, this.t, this.u, this.y, 0.0F);
+				var4.b(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
 				var4.b(-24000);
 				this.o.d((Entity) var4);
 			}

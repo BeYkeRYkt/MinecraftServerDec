@@ -3,9 +3,9 @@ package net.minecraft;
 public class ea implements dz {
 
 	private final World a;
-	private final dt b;
+	private final Position b;
 
-	public ea(World var1, dt var2) {
+	public ea(World var1, Position var2) {
 		this.a = var1;
 		this.b = var2;
 	}
@@ -26,11 +26,11 @@ public class ea implements dz {
 		return (double) this.b.p() + 0.5D;
 	}
 
-	public dt d() {
+	public Position d() {
 		return this.b;
 	}
 
-	public atr e() {
+	public Block e() {
 		return this.a.p(this.b).c();
 	}
 

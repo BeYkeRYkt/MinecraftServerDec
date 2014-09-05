@@ -8,7 +8,7 @@ public class agp extends ws implements ago, aqb {
 	private boolean bm;
 	private boolean bn;
 	abi bk;
-	private ahd bo;
+	private EntityHuman bo;
 	private aqd bp;
 	private int bq;
 	private boolean br;
@@ -22,15 +22,15 @@ public class agp extends ws implements ago, aqb {
 	private wa bz;
 	private static final agw[][][][] bA = new agw[][][][] {
 			{
-					{ { new agr(amk.O, new agx(18, 22)), new agr(amk.bS, new agx(15, 19)), new agr(amk.bR, new agx(15, 19)), new agv(amk.P, new agx(-4, -2)) }, { new agr(alq.a(aty.aU), new agx(8, 13)), new agv(amk.ca, new agx(-3, -2)) }, { new agr(alq.a(aty.bk), new agx(7, 12)), new agv(amk.e, new agx(-5, -7)) }, { new agv(amk.bc, new agx(-6, -10)), new agv(amk.aZ, new agx(1, 1)) } },
+					{ { new agr(amk.O, new agx(18, 22)), new agr(amk.bS, new agx(15, 19)), new agr(amk.bR, new agx(15, 19)), new agv(amk.P, new agx(-4, -2)) }, { new agr(Item.getItemOf(aty.aU), new agx(8, 13)), new agv(amk.ca, new agx(-3, -2)) }, { new agr(Item.getItemOf(aty.bk), new agx(7, 12)), new agv(amk.e, new agx(-5, -7)) }, { new agv(amk.bc, new agx(-6, -10)), new agv(amk.aZ, new agx(1, 1)) } },
 					{ { new agr(amk.F, new agx(15, 20)), new agr(amk.h, new agx(16, 24)), new agu(amk.aU, new agx(6, 6), amk.aV, new agx(6, 6)) }, { new agt(amk.aR, new agx(7, 8)) } },
 					{
-							{ new agr(alq.a(aty.L), new agx(16, 22)), new agv(amk.be, new agx(3, 4)) },
-							{ new agv(new amj(alq.a(aty.L), 1, 0), new agx(1, 2)), new agv(new amj(alq.a(aty.L), 1, 1), new agx(1, 2)), new agv(new amj(alq.a(aty.L), 1, 2), new agx(1, 2)), new agv(new amj(alq.a(aty.L), 1, 3), new agx(1, 2)), new agv(new amj(alq.a(aty.L), 1, 4), new agx(1, 2)), new agv(new amj(alq.a(aty.L), 1, 5), new agx(1, 2)), new agv(new amj(alq.a(aty.L), 1, 6), new agx(1, 2)), new agv(new amj(alq.a(aty.L), 1, 7), new agx(1, 2)),
-									new agv(new amj(alq.a(aty.L), 1, 8), new agx(1, 2)), new agv(new amj(alq.a(aty.L), 1, 9), new agx(1, 2)), new agv(new amj(alq.a(aty.L), 1, 10), new agx(1, 2)), new agv(new amj(alq.a(aty.L), 1, 11), new agx(1, 2)), new agv(new amj(alq.a(aty.L), 1, 12), new agx(1, 2)), new agv(new amj(alq.a(aty.L), 1, 13), new agx(1, 2)), new agv(new amj(alq.a(aty.L), 1, 14), new agx(1, 2)), new agv(new amj(alq.a(aty.L), 1, 15), new agx(1, 2)) } },
-					{ { new agr(amk.F, new agx(15, 20)), new agv(amk.g, new agx(-12, -8)) }, { new agv(amk.f, new agx(2, 3)), new agu(alq.a(aty.n), new agx(10, 10), amk.ak, new agx(6, 10)) } } },
-			{ { { new agr(amk.aK, new agx(24, 36)), new ags() }, { new agr(amk.aL, new agx(8, 10)), new agv(amk.aQ, new agx(10, 12)), new agv(alq.a(aty.X), new agx(3, 4)) }, { new agr(amk.bN, new agx(2, 2)), new agv(amk.aS, new agx(10, 12)), new agv(alq.a(aty.w), new agx(-5, -3)) }, { new ags() }, { new ags() }, { new agv(amk.co, new agx(20, 22)) } } },
-			{ { { new agr(amk.bt, new agx(36, 40)), new agr(amk.k, new agx(8, 10)) }, { new agv(amk.aC, new agx(-4, -1)), new agv(new amj(amk.aW, 1, akv.l.b()), new agx(-2, -1)) }, { new agv(amk.bH, new agx(7, 11)), new agv(alq.a(aty.aX), new agx(-3, -1)) }, { new agv(amk.bK, new agx(3, 11)) } } },
+							{ new agr(Item.getItemOf(aty.L), new agx(16, 22)), new agv(amk.be, new agx(3, 4)) },
+							{ new agv(new ItemStack(Item.getItemOf(aty.L), 1, 0), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 1), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 2), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 3), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 4), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 5), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 6), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 7), new agx(1, 2)),
+									new agv(new ItemStack(Item.getItemOf(aty.L), 1, 8), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 9), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 10), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 11), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 12), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 13), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 14), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 15), new agx(1, 2)) } },
+					{ { new agr(amk.F, new agx(15, 20)), new agv(amk.g, new agx(-12, -8)) }, { new agv(amk.f, new agx(2, 3)), new agu(Item.getItemOf(aty.n), new agx(10, 10), amk.ak, new agx(6, 10)) } } },
+			{ { { new agr(amk.aK, new agx(24, 36)), new ags() }, { new agr(amk.aL, new agx(8, 10)), new agv(amk.aQ, new agx(10, 12)), new agv(Item.getItemOf(aty.X), new agx(3, 4)) }, { new agr(amk.bN, new agx(2, 2)), new agv(amk.aS, new agx(10, 12)), new agv(Item.getItemOf(aty.w), new agx(-5, -3)) }, { new ags() }, { new ags() }, { new agv(amk.co, new agx(20, 22)) } } },
+			{ { { new agr(amk.bt, new agx(36, 40)), new agr(amk.k, new agx(8, 10)) }, { new agv(amk.aC, new agx(-4, -1)), new agv(new ItemStack(amk.aW, 1, akv.l.b()), new agx(-2, -1)) }, { new agv(amk.bH, new agx(7, 11)), new agv(Item.getItemOf(aty.aX), new agx(-3, -1)) }, { new agv(amk.bK, new agx(3, 11)) } } },
 			{ { { new agr(amk.h, new agx(16, 24)), new agv(amk.Y, new agx(4, 6)) }, { new agr(amk.j, new agx(7, 9)), new agv(amk.Z, new agx(10, 14)) }, { new agr(amk.i, new agx(3, 4)), new agt(amk.ad, new agx(16, 19)) }, { new agv(amk.X, new agx(5, 7)), new agv(amk.W, new agx(9, 11)), new agv(amk.U, new agx(5, 7)), new agv(amk.V, new agx(11, 15)) } },
 					{ { new agr(amk.h, new agx(16, 24)), new agv(amk.c, new agx(6, 8)) }, { new agr(amk.j, new agx(7, 9)), new agt(amk.l, new agx(9, 10)) }, { new agr(amk.i, new agx(3, 4)), new agt(amk.u, new agx(12, 15)), new agt(amk.x, new agx(9, 12)) } }, { { new agr(amk.h, new agx(16, 24)), new agt(amk.a, new agx(5, 7)) }, { new agr(amk.j, new agx(7, 9)), new agt(amk.b, new agx(9, 11)) }, { new agr(amk.i, new agx(3, 4)), new agt(amk.w, new agx(12, 15)) } } },
 			{ { { new agr(amk.al, new agx(14, 18)), new agr(amk.bk, new agx(14, 18)) }, { new agr(amk.h, new agx(16, 24)), new agv(amk.am, new agx(-7, -5)), new agv(amk.bl, new agx(-8, -6)) } }, { { new agr(amk.aF, new agx(9, 12)), new agv(amk.S, new agx(2, 4)) }, { new agt(amk.R, new agx(7, 12)) }, { new agv(amk.aA, new agx(8, 10)) } } } };
@@ -56,7 +56,7 @@ public class agp extends ws implements ago, aqb {
 		this.i.a(5, new zo(this, 0.6D));
 		this.i.a(6, new zj(this));
 		this.i.a(7, new aaf(this));
-		this.i.a(9, new zf(this, ahd.class, 3.0F, 1.0F));
+		this.i.a(9, new zf(this, EntityHuman.class, 3.0F, 1.0F));
 		this.i.a(9, new aai(this));
 		this.i.a(9, new zy(this, 0.6D));
 		this.i.a(10, new zh(this, xn.class, 8.0F));
@@ -90,14 +90,14 @@ public class agp extends ws implements ago, aqb {
 
 	protected void E() {
 		if (--this.bl <= 0) {
-			dt var1 = new dt(this);
+			Position var1 = new Position(this);
 			this.o.ae().a(var1);
 			this.bl = 70 + this.V.nextInt(50);
 			this.bk = this.o.ae().a(var1, 32);
 			if (this.bk == null) {
 				this.ch();
 			} else {
-				dt var2 = this.bk.a();
+				Position var2 = this.bk.a();
 				this.a(var2, (int) ((float) this.bk.b() * 1.0F));
 				if (this.bx) {
 					this.bx = false;
@@ -134,9 +134,9 @@ public class agp extends ws implements ago, aqb {
 		super.E();
 	}
 
-	public boolean a(ahd var1) {
-		amj var2 = var1.bg.h();
-		boolean var3 = var2 != null && var2.b() == amk.bJ;
+	public boolean a(EntityHuman var1) {
+		ItemStack var2 = var1.playerInventory.getItemInHand();
+		boolean var3 = var2 != null && var2.getItem() == amk.bJ;
 		if (!var3 && this.ai() && !this.cm() && !this.i_()) {
 			if (!this.o.D && (this.bp == null || this.bp.size() > 0)) {
 				this.a_(var1);
@@ -152,7 +152,7 @@ public class agp extends ws implements ago, aqb {
 
 	protected void h() {
 		super.h();
-		this.ac.a(16, Integer.valueOf(0));
+		this.dataWatcher.a(16, Integer.valueOf(0));
 	}
 
 	public void b(NBTCompoundTag var1) {
@@ -169,7 +169,7 @@ public class agp extends ws implements ago, aqb {
 		NBTListTag var2 = new NBTListTag();
 
 		for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
-			amj var4 = this.bz.a(var3);
+			ItemStack var4 = this.bz.a(var3);
 			if (var4 != null) {
 				var2.addTag((NBTTag) var4.b(new NBTCompoundTag()));
 			}
@@ -193,7 +193,7 @@ public class agp extends ws implements ago, aqb {
 		NBTListTag var5 = var1.getList("Inventory", 10);
 
 		for (int var3 = 0; var3 < var5.getSize(); ++var3) {
-			amj var4 = amj.a(var5.getCompound(var3));
+			ItemStack var4 = ItemStack.a(var5.getCompound(var3));
 			if (var4 != null) {
 				this.bz.a(var4);
 			}
@@ -220,11 +220,11 @@ public class agp extends ws implements ago, aqb {
 	}
 
 	public void r(int var1) {
-		this.ac.b(16, Integer.valueOf(var1));
+		this.dataWatcher.b(16, Integer.valueOf(var1));
 	}
 
 	public int cj() {
-		return Math.max(this.ac.c(16) % 5, 0);
+		return Math.max(this.dataWatcher.c(16) % 5, 0);
 	}
 
 	public boolean ck() {
@@ -247,7 +247,7 @@ public class agp extends ws implements ago, aqb {
 		super.b(var1);
 		if (this.bk != null && var1 != null) {
 			this.bk.a(var1);
-			if (var1 instanceof ahd) {
+			if (var1 instanceof EntityHuman) {
 				byte var2 = -1;
 				if (this.i_()) {
 					var2 = -3;
@@ -266,13 +266,13 @@ public class agp extends ws implements ago, aqb {
 		if (this.bk != null) {
 			Entity var2 = var1.j();
 			if (var2 != null) {
-				if (var2 instanceof ahd) {
+				if (var2 instanceof EntityHuman) {
 					this.bk.a(var2.d_(), -2);
 				} else if (var2 instanceof aex) {
 					this.bk.h();
 				}
 			} else {
-				ahd var3 = this.o.a(this, 16.0D);
+				EntityHuman var3 = this.o.a(this, 16.0D);
 				if (var3 != null) {
 					this.bk.h();
 				}
@@ -282,11 +282,11 @@ public class agp extends ws implements ago, aqb {
 		super.a(var1);
 	}
 
-	public void a_(ahd var1) {
+	public void a_(EntityHuman var1) {
 		this.bo = var1;
 	}
 
-	public ahd u_() {
+	public EntityHuman u_() {
 		return this.bo;
 	}
 
@@ -299,12 +299,12 @@ public class agp extends ws implements ago, aqb {
 			boolean var2 = false;
 
 			for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
-				amj var4 = this.bz.a(var3);
+				ItemStack var4 = this.bz.a(var3);
 				if (var4 != null) {
-					if (var4.b() == amk.P && var4.b >= 3) {
+					if (var4.getItem() == amk.P && var4.b >= 3) {
 						var2 = true;
 						this.bz.a(var3, 3);
-					} else if ((var4.b() == amk.bS || var4.b() == amk.bR) && var4.b >= 12) {
+					} else if ((var4.getItem() == amk.bS || var4.getItem() == amk.bR) && var4.b >= 12) {
 						var2 = true;
 						this.bz.a(var3, 12);
 					}
@@ -343,17 +343,17 @@ public class agp extends ws implements ago, aqb {
 			var2 += 5;
 		}
 
-		if (var1.a().b() == amk.bO) {
+		if (var1.a().getItem() == amk.bO) {
 			this.bt += var1.a().b;
 		}
 
 		if (var1.j()) {
-			this.o.d((Entity) (new xk(this.o, this.s, this.t + 0.5D, this.u, var2)));
+			this.o.d((Entity) (new xk(this.o, this.locationX, this.locationY + 0.5D, this.locationZ, var2)));
 		}
 
 	}
 
-	public void a_(amj var1) {
+	public void a_(ItemStack var1) {
 		if (!this.o.D && this.a_ > -this.w() + 20) {
 			this.a_ = -this.w();
 			if (var1 != null) {
@@ -365,7 +365,7 @@ public class agp extends ws implements ago, aqb {
 
 	}
 
-	public aqd b_(ahd var1) {
+	public aqd b_(EntityHuman var1) {
 		if (this.bp == null) {
 			this.cu();
 		}
@@ -402,7 +402,7 @@ public class agp extends ws implements ago, aqb {
 
 	}
 
-	public ho e_() {
+	public IJSONComponent e_() {
 		String var1 = this.aL();
 		if (var1 != null && var1.length() > 0) {
 			return new hy(var1);
@@ -480,7 +480,7 @@ public class agp extends ws implements ago, aqb {
 
 	public agp b(ws var1) {
 		agp var2 = new agp(this.o);
-		var2.a(this.o.E(new dt(var2)), (xq) null);
+		var2.a(this.o.E(new Position(var2)), (xq) null);
 		return var2;
 	}
 
@@ -491,8 +491,8 @@ public class agp extends ws implements ago, aqb {
 	public void a(ads var1) {
 		if (!this.o.D) {
 			agi var2 = new agi(this.o);
-			var2.b(this.s, this.t, this.u, this.y, this.z);
-			var2.a(this.o.E(new dt(var2)), (xq) null);
+			var2.b(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
+			var2.a(this.o.E(new Position(var2)), (xq) null);
 			this.o.d((Entity) var2);
 			this.J();
 		}
@@ -503,10 +503,10 @@ public class agp extends ws implements ago, aqb {
 	}
 
 	protected void a(adw var1) {
-		amj var2 = var1.l();
-		alq var3 = var2.b();
+		ItemStack var2 = var1.l();
+		Item var3 = var2.getItem();
 		if (this.a(var3)) {
-			amj var4 = this.bz.a(var2);
+			ItemStack var4 = this.bz.a(var2);
 			if (var4 == null) {
 				var1.J();
 			} else {
@@ -516,7 +516,7 @@ public class agp extends ws implements ago, aqb {
 
 	}
 
-	private boolean a(alq var1) {
+	private boolean a(Item var1) {
 		return var1 == amk.P || var1 == amk.bS || var1 == amk.bR || var1 == amk.O || var1 == amk.N;
 	}
 
@@ -537,13 +537,13 @@ public class agp extends ws implements ago, aqb {
 		boolean var2 = this.cj() == 0;
 
 		for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
-			amj var4 = this.bz.a(var3);
+			ItemStack var4 = this.bz.a(var3);
 			if (var4 != null) {
-				if (var4.b() == amk.P && var4.b >= 3 * var1 || var4.b() == amk.bS && var4.b >= 12 * var1 || var4.b() == amk.bR && var4.b >= 12 * var1) {
+				if (var4.getItem() == amk.P && var4.b >= 3 * var1 || var4.getItem() == amk.bS && var4.b >= 12 * var1 || var4.getItem() == amk.bR && var4.b >= 12 * var1) {
 					return true;
 				}
 
-				if (var2 && var4.b() == amk.O && var4.b >= 9 * var1) {
+				if (var2 && var4.getItem() == amk.O && var4.b >= 9 * var1) {
 					return true;
 				}
 			}
@@ -554,8 +554,8 @@ public class agp extends ws implements ago, aqb {
 
 	public boolean cs() {
 		for (int var1 = 0; var1 < this.bz.n_(); ++var1) {
-			amj var2 = this.bz.a(var1);
-			if (var2 != null && (var2.b() == amk.N || var2.b() == amk.bS || var2.b() == amk.bR)) {
+			ItemStack var2 = this.bz.a(var1);
+			if (var2 != null && (var2.getItem() == amk.N || var2.getItem() == amk.bS || var2.getItem() == amk.bR)) {
 				return true;
 			}
 		}
@@ -563,7 +563,7 @@ public class agp extends ws implements ago, aqb {
 		return false;
 	}
 
-	public boolean d(int var1, amj var2) {
+	public boolean d(int var1, ItemStack var2) {
 		if (super.d(var1, var2)) {
 			return true;
 		} else {

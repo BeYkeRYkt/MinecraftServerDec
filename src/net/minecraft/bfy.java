@@ -48,7 +48,7 @@ public class bfy implements bfq, brq {
 				return null;
 			}
 
-			var4 = fz.a(var10);
+			var4 = NBTCompressedStreamTools.readTag(var10);
 		}
 
 		return this.a(var1, var2, var3, var4);
@@ -132,7 +132,7 @@ public class bfy implements bfq, brq {
 
 	private void a(bfz var1) throws IOException {
 		DataOutputStream var2 = RegionFileCache.getOutputStream(this.e, var1.a.a, var1.a.b);
-		fz.a(var1.b, (DataOutput) var2);
+		NBTCompressedStreamTools.writeTag(var1.b, (DataOutput) var2);
 		var2.close();
 	}
 
@@ -160,7 +160,7 @@ public class bfy implements bfq, brq {
 		var3.put("InhabitedTime", var1.w());
 		bfm[] var4 = var1.h();
 		NBTListTag var5 = new NBTListTag();
-		boolean var6 = !var2.t.o();
+		boolean var6 = !var2.worldProvider.o();
 		bfm[] var7 = var4;
 		int var8 = var4.length;
 
@@ -248,7 +248,7 @@ public class bfy implements bfq, brq {
 			while (var28.hasNext()) {
 				ark var29 = (ark) var28.next();
 				NBTCompoundTag var30 = new NBTCompoundTag();
-				oa var31 = (oa) atr.c.c(var29.a());
+				oa var31 = (oa) Block.c.c(var29.a());
 				var30.put("i", var31 == null ? "" : var31.toString());
 				var30.put("x", var29.a.n());
 				var30.put("y", var29.a.o());
@@ -274,7 +274,7 @@ public class bfy implements bfq, brq {
 		NBTListTag var6 = var2.getList("Sections", 10);
 		byte var7 = 16;
 		bfm[] var8 = new bfm[var7];
-		boolean var9 = !var1.t.o();
+		boolean var9 = !var1.worldProvider.o();
 
 		for (int var10 = 0; var10 < var6.getSize(); ++var10) {
 			NBTCompoundTag var11 = var6.getCompound(var10);
@@ -347,14 +347,14 @@ public class bfy implements bfq, brq {
 			if (var28 != null) {
 				for (int var31 = 0; var31 < var28.getSize(); ++var31) {
 					NBTCompoundTag var34 = var28.getCompound(var31);
-					atr var36;
+					Block var36;
 					if (var34.isTagAssignableFrom("i", 8)) {
-						var36 = atr.b(var34.getString("i"));
+						var36 = Block.b(var34.getString("i"));
 					} else {
-						var36 = atr.c(var34.getInt("i"));
+						var36 = Block.c(var34.getInt("i"));
 					}
 
-					var1.b(new dt(var34.getInt("x"), var34.getInt("y"), var34.getInt("z")), var36, var34.getInt("t"), var34.getInt("p"));
+					var1.b(new Position(var34.getInt("x"), var34.getInt("y"), var34.getInt("z")), var36, var34.getInt("t"), var34.getInt("p"));
 				}
 			}
 		}

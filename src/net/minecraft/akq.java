@@ -1,6 +1,6 @@
 package net.minecraft;
 
-final class akq extends akf {
+final class akq extends CreativeModeTab {
 
 	akq(int var1, String var2) {
 		super(var1, var2);

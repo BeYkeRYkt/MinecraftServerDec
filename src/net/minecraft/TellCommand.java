@@ -30,18 +30,18 @@ public class TellCommand extends AbstractCommand {
 			if (var3 == var1) {
 				throw new dm("commands.message.sameTarget", new Object[0]);
 			} else {
-				ho var4 = b(var1, var2, 1, !(var1 instanceof ahd));
+				IJSONComponent var4 = b(var1, var2, 1, !(var1 instanceof EntityHuman));
 				hz var5 = new hz("commands.message.display.incoming", new Object[] { var1.e_(), var4.f() });
 				hz var6 = new hz("commands.message.display.outgoing", new Object[] { var3.e_(), var4.f() });
 				var5.b().a(FormattingCode.h).b(Boolean.valueOf(true));
 				var6.b().a(FormattingCode.h).b(Boolean.valueOf(true));
-				var3.a((ho) var5);
+				var3.a((IJSONComponent) var5);
 				var1.a(var6);
 			}
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return a(var2, MinecraftServer.getInstance().I());
 	}
 

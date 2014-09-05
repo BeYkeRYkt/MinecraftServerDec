@@ -15,7 +15,7 @@ final class at implements Predicate {
 	}
 
 	public boolean a(Entity var1) {
-		int var2 = ah.a((int) Math.floor((double) var1.y));
+		int var2 = ah.a((int) Math.floor((double) var1.yaw));
 		return this.a > this.b ? var2 >= this.a || var2 <= this.b : var2 >= this.a && var2 <= this.b;
 	}
 

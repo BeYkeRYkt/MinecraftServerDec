@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Collection;
 
-public class jx implements id<ik> {
+public class jx implements Packet<PlayPacketListener> {
 
 	private int a;
 	private byte b;
@@ -34,10 +34,10 @@ public class jx implements id<ik> {
 
 	}
 
-	public void a(hd var1) {
-		this.a = var1.e();
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readVarInt();
 		this.b = var1.readByte();
-		this.c = new bqd[var1.e()];
+		this.c = new bqd[var1.readVarInt()];
 
 		for (int var2 = 0; var2 < this.c.length; ++var2) {
 			short var3 = (short) var1.readByte();
@@ -49,15 +49,15 @@ public class jx implements id<ik> {
 			this.g = var1.readUnsignedByte();
 			this.d = var1.readUnsignedByte();
 			this.e = var1.readUnsignedByte();
-			this.h = var1.a();
+			this.h = var1.readByteArray();
 		}
 
 	}
 
-	public void b(hd var1) {
-		var1.b(this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeVarInt(this.a);
 		var1.writeByte(this.b);
-		var1.b(this.c.length);
+		var1.writeVarInt(this.c.length);
 		bqd[] var2 = this.c;
 		int var3 = var2.length;
 
@@ -73,12 +73,12 @@ public class jx implements id<ik> {
 			var1.writeByte(this.g);
 			var1.writeByte(this.d);
 			var1.writeByte(this.e);
-			var1.a(this.h);
+			var1.writeByteArray(this.h);
 		}
 
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

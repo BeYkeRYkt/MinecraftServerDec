@@ -11,14 +11,14 @@ public class ayb extends auc implements atz {
 		this.a(true);
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (var4.nextInt(25) == 0) {
 			int var5 = 5;
 			boolean var6 = true;
-			Iterator var7 = dt.b(var2.a(-4, -1, -4), var2.a(4, 1, 4)).iterator();
+			Iterator var7 = Position.b(var2.a(-4, -1, -4), var2.a(4, 1, 4)).iterator();
 
 			while (var7.hasNext()) {
-				dt var8 = (dt) var7.next();
+				Position var8 = (Position) var7.next();
 				if (var1.p(var8).c() == this) {
 					--var5;
 					if (var5 <= 0) {
@@ -27,7 +27,7 @@ public class ayb extends auc implements atz {
 				}
 			}
 
-			dt var9 = var2.a(var4.nextInt(3) - 1, var4.nextInt(2) - var4.nextInt(2), var4.nextInt(3) - 1);
+			Position var9 = var2.a(var4.nextInt(3) - 1, var4.nextInt(2) - var4.nextInt(2), var4.nextInt(3) - 1);
 
 			for (int var10 = 0; var10 < 4; ++var10) {
 				if (var1.d(var9) && this.f(var1, var9, this.P())) {
@@ -44,15 +44,15 @@ public class ayb extends auc implements atz {
 
 	}
 
-	public boolean c(World var1, dt var2) {
+	public boolean c(World var1, Position var2) {
 		return super.c(var1, var2) && this.f(var1, var2, this.P());
 	}
 
-	protected boolean c(atr var1) {
+	protected boolean c(Block var1) {
 		return var1.m();
 	}
 
-	public boolean f(World var1, dt var2, bec var3) {
+	public boolean f(World var1, Position var2, bec var3) {
 		if (var2.o() >= 0 && var2.o() < 256) {
 			bec var4 = var1.p(var2.b());
 			return var4.c() == aty.bw ? true : (var4.c() == aty.d && var4.b(avc.a) == avd.c ? true : var1.k(var2) < 13 && this.c(var4.c()));
@@ -61,7 +61,7 @@ public class ayb extends auc implements atz {
 		}
 	}
 
-	public boolean d(World var1, dt var2, bec var3, Random var4) {
+	public boolean d(World var1, Position var2, bec var3, Random var4) {
 		var1.g(var2);
 		bhv var5 = null;
 		if (this == aty.P) {
@@ -78,15 +78,15 @@ public class ayb extends auc implements atz {
 		}
 	}
 
-	public boolean a(World var1, dt var2, bec var3, boolean var4) {
+	public boolean a(World var1, Position var2, bec var3, boolean var4) {
 		return true;
 	}
 
-	public boolean a(World var1, Random var2, dt var3, bec var4) {
+	public boolean a(World var1, Random var2, Position var3, bec var4) {
 		return (double) var2.nextFloat() < 0.4D;
 	}
 
-	public void b(World var1, Random var2, dt var3, bec var4) {
+	public void b(World var1, Random var2, Position var3, bec var4) {
 		this.d(var1, var3, var4, var2);
 	}
 }

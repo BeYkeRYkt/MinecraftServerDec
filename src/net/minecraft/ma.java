@@ -2,35 +2,35 @@ package net.minecraft;
 
 import java.io.IOException;
 
-public class ma implements id<ls> {
+public class ma implements Packet<ls> {
 
 	private int a;
 	private int b;
 	private int c;
 	private short d;
-	private amj e;
+	private ItemStack e;
 	private int f;
 
-	public void a(ls var1) {
+	public void handlePacket(ls var1) {
 		var1.a(this);
 	}
 
-	public void a(hd var1) throws IOException {
+	public void readData(PacketDataSerializer var1) throws IOException {
 		this.a = var1.readByte();
 		this.b = var1.readShort();
 		this.c = var1.readByte();
 		this.d = var1.readShort();
 		this.f = var1.readByte();
-		this.e = var1.i();
+		this.e = var1.readItemStack();
 	}
 
-	public void b(hd var1) {
+	public void writeData(PacketDataSerializer var1) {
 		var1.writeByte(this.a);
 		var1.writeShort(this.b);
 		var1.writeByte(this.c);
 		var1.writeShort(this.d);
 		var1.writeByte(this.f);
-		var1.a(this.e);
+		var1.writeItemStack(this.e);
 	}
 
 	public int a() {
@@ -49,7 +49,7 @@ public class ma implements id<ls> {
 		return this.d;
 	}
 
-	public amj e() {
+	public ItemStack e() {
 		return this.e;
 	}
 

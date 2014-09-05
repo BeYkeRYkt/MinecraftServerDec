@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class bgq implements bfe {
+public class bgq implements IChunkProvider {
 
 	private World a;
 	private Random b;
@@ -115,11 +115,11 @@ public class bgq implements bfe {
 		return true;
 	}
 
-	public void a(bfe var1, int var2, int var3) {
+	public void a(IChunkProvider var1, int var2, int var3) {
 		int var4 = var2 * 16;
 		int var5 = var3 * 16;
-		dt var6 = new dt(var4, 0, var5);
-		arm var7 = this.a.b(new dt(var4 + 16, 0, var5 + 16));
+		Position var6 = new Position(var4, 0, var5);
+		arm var7 = this.a.b(new Position(var4 + 16, 0, var5 + 16));
 		boolean var8 = false;
 		this.b.setSeed(this.a.J());
 		long var9 = this.b.nextLong() / 2L * 2L + 1L;
@@ -141,7 +141,7 @@ public class bgq implements bfe {
 		}
 
 		if (this.i != null && !var8 && this.b.nextInt(8) == 0) {
-			dt var17 = var6.a(this.b.nextInt(16) + 8, this.b.nextInt(this.b.nextInt(248) + 8), this.b.nextInt(16) + 8);
+			Position var17 = var6.a(this.b.nextInt(16) + 8, this.b.nextInt(this.b.nextInt(248) + 8), this.b.nextInt(16) + 8);
 			if (var17.o() < 63 || this.b.nextInt(10) == 0) {
 				this.i.b(this.a, this.b, var17);
 			}
@@ -154,12 +154,12 @@ public class bgq implements bfe {
 		}
 
 		if (this.f) {
-			var7.a(this.a, this.b, new dt(var4, 0, var5));
+			var7.a(this.a, this.b, new Position(var4, 0, var5));
 		}
 
 	}
 
-	public boolean a(bfe var1, bfh var2, int var3, int var4) {
+	public boolean a(IChunkProvider var1, bfh var2, int var3, int var4) {
 		return false;
 	}
 
@@ -182,12 +182,12 @@ public class bgq implements bfe {
 		return "FlatLevelSource";
 	}
 
-	public List a(xp var1, dt var2) {
+	public List a(xp var1, Position var2) {
 		arm var3 = this.a.b(var2);
 		return var3.a(var1);
 	}
 
-	public dt a(World var1, String var2, dt var3) {
+	public Position a(World var1, String var2, Position var3) {
 		if ("Stronghold".equals(var2)) {
 			Iterator var4 = this.e.iterator();
 
@@ -216,7 +216,7 @@ public class bgq implements bfe {
 
 	}
 
-	public bfh a(dt var1) {
+	public bfh a(Position var1) {
 		return this.d(var1.n() >> 4, var1.p() >> 4);
 	}
 }

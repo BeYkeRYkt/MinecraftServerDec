@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class ajm extends amr {
 
-	public ajm(atr var1) {
+	public ajm(Block var1) {
 		super(var1, var1, new String[] { "intact", "slightlyDamaged", "veryDamaged" });
 	}
 

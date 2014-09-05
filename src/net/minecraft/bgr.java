@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.List;
 import java.util.Random;
 
-public class bgr implements bfe {
+public class bgr implements IChunkProvider {
 
 	private final World h;
 	private final boolean i;
@@ -264,7 +264,7 @@ public class bgr implements bfe {
 
 					if ((double) var18 < var16) {
 						var29 = (var16 - (double) var18) / 4.0D;
-						var29 = NumberConverter.a(var29, 0.0D, 1.0D);
+						var29 = DataTypesConverter.a(var29, 0.0D, 1.0D);
 						var19 = var19 * (1.0D - var29) + -10.0D * var29;
 					}
 
@@ -281,9 +281,9 @@ public class bgr implements bfe {
 		return true;
 	}
 
-	public void a(bfe var1, int var2, int var3) {
+	public void a(IChunkProvider var1, int var2, int var3) {
 		avt.M = true;
-		dt var4 = new dt(var2 * 16, 0, var3 * 16);
+		Position var4 = new Position(var2 * 16, 0, var3 * 16);
 		aqm var5 = new aqm(var2, var3);
 		this.B.a(this.h, this.j, var5);
 
@@ -323,7 +323,7 @@ public class bgr implements bfe {
 		avt.M = false;
 	}
 
-	public boolean a(bfe var1, bfh var2, int var3, int var4) {
+	public boolean a(IChunkProvider var1, bfh var2, int var3, int var4) {
 		return false;
 	}
 
@@ -346,7 +346,7 @@ public class bgr implements bfe {
 		return "HellRandomLevelSource";
 	}
 
-	public List a(xp var1, dt var2) {
+	public List a(xp var1, Position var2) {
 		if (var1 == xp.a) {
 			if (this.B.b(var2)) {
 				return this.B.b();
@@ -361,7 +361,7 @@ public class bgr implements bfe {
 		return var3.a(var1);
 	}
 
-	public dt a(World var1, String var2, dt var3) {
+	public Position a(World var1, String var2, Position var3) {
 		return null;
 	}
 
@@ -373,7 +373,7 @@ public class bgr implements bfe {
 		this.B.a(this, this.h, var2, var3, (bgk) null);
 	}
 
-	public bfh a(dt var1) {
+	public bfh a(Position var1) {
 		return this.d(var1.n() >> 4, var1.p() >> 4);
 	}
 }

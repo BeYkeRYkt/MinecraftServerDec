@@ -1,16 +1,16 @@
 package net.minecraft;
 
-public class bbk extends atr {
+public class bbk extends Block {
 
 	public static final bet a = bet.a("explode");
 
 	public bbk() {
 		super(bof.u);
 		this.j(this.L.b().a(a, Boolean.valueOf(false)));
-		this.a(akf.d);
+		this.a(CreativeModeTab.d);
 	}
 
-	public void c(World var1, dt var2, bec var3) {
+	public void c(World var1, Position var2, bec var3) {
 		super.c(var1, var2, var3);
 		if (var1.z(var2)) {
 			this.d(var1, var2, var3.a(a, Boolean.valueOf(true)));
@@ -19,7 +19,7 @@ public class bbk extends atr {
 
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (var1.z(var2)) {
 			this.d(var1, var2, var3.a(a, Boolean.valueOf(true)));
 			var1.g(var2);
@@ -27,7 +27,7 @@ public class bbk extends atr {
 
 	}
 
-	public void a(World var1, dt var2, aqo var3) {
+	public void a(World var1, Position var2, aqo var3) {
 		if (!var1.D) {
 			aek var4 = new aek(var1, (double) ((float) var2.n() + 0.5F), (double) ((float) var2.o() + 0.5F), (double) ((float) var2.p() + 0.5F), var3.c());
 			var4.a = var1.s.nextInt(var4.a / 4) + var4.a / 8;
@@ -35,11 +35,11 @@ public class bbk extends atr {
 		}
 	}
 
-	public void d(World var1, dt var2, bec var3) {
+	public void d(World var1, Position var2, bec var3) {
 		this.a(var1, var2, var3, (EntityLiving) null);
 	}
 
-	public void a(World var1, dt var2, bec var3, EntityLiving var4) {
+	public void a(World var1, Position var2, bec var3, EntityLiving var4) {
 		if (!var1.D) {
 			if (((Boolean) var3.b(a)).booleanValue()) {
 				aek var5 = new aek(var1, (double) ((float) var2.n() + 0.5F), (double) ((float) var2.o() + 0.5F), (double) ((float) var2.p() + 0.5F), var4);
@@ -50,9 +50,9 @@ public class bbk extends atr {
 		}
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
 		if (var4.bY() != null) {
-			alq var9 = var4.bY().b();
+			Item var9 = var4.bY().getItem();
 			if (var9 == amk.d || var9 == amk.bL) {
 				this.a(var1, var2, var3.a(a, Boolean.valueOf(true)), (EntityLiving) var4);
 				var1.g(var2);
@@ -69,7 +69,7 @@ public class bbk extends atr {
 		return super.a(var1, var2, var3, var4, var5, var6, var7, var8);
 	}
 
-	public void a(World var1, dt var2, bec var3, Entity var4) {
+	public void a(World var1, Position var2, bec var3, Entity var4) {
 		if (!var1.D && var4 instanceof ahj) {
 			ahj var5 = (ahj) var4;
 			if (var5.au()) {

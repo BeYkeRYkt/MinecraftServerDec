@@ -17,7 +17,7 @@ class aei extends aqi {
 		return this.a.o;
 	}
 
-	public dt b() {
-		return new dt(this.a);
+	public Position b() {
+		return new Position(this.a);
 	}
 }

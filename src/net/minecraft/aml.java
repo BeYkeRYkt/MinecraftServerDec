@@ -3,14 +3,14 @@ package net.minecraft;
 import java.util.Iterator;
 import java.util.List;
 
-public class aml extends alq {
+public class aml extends Item {
 
 	public aml() {
-		this.a(akf.i);
+		this.a(CreativeModeTab.i);
 	}
 
-	public boolean a(amj var1, ahd var2, World var3, dt var4, ej var5, float var6, float var7, float var8) {
-		atr var9 = var3.p(var4).c();
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
+		Block var9 = var3.p(var4).c();
 		if (var9 instanceof avv) {
 			if (var3.D) {
 				return true;
@@ -23,7 +23,7 @@ public class aml extends alq {
 		}
 	}
 
-	public static boolean a(ahd var0, World var1, dt var2) {
+	public static boolean a(EntityHuman var0, World var1, Position var2) {
 		adl var3 = adl.b(var1, var2);
 		boolean var4 = false;
 		double var5 = 7.0D;

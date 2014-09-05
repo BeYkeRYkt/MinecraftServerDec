@@ -19,7 +19,7 @@ public class ClearCommand extends AbstractCommand {
 
 	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		EntityPlayer var3 = var2.length == 0 ? b(var1) : a(var1, var2[0]);
-		alq var4 = var2.length >= 2 ? f(var1, var2[1]) : null;
+		Item var4 = var2.length >= 2 ? f(var1, var2[1]) : null;
 		int var5 = var2.length >= 3 ? a(var2[2], -1) : -1;
 		int var6 = var2.length >= 4 ? a(var2[3], -1) : -1;
 		NBTCompoundTag var7 = null;
@@ -34,8 +34,8 @@ public class ClearCommand extends AbstractCommand {
 		if (var2.length >= 2 && var4 == null) {
 			throw new di("commands.clear.failure", new Object[] { var3.d_() });
 		} else {
-			int var8 = var3.bg.a(var4, var5, var6, var7);
-			var3.bh.b();
+			int var8 = var3.playerInventory.a(var4, var5, var6, var7);
+			var3.defaultContainer.b();
 			if (!var3.by.instabuild) {
 				var3.o();
 			}
@@ -54,8 +54,8 @@ public class ClearCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
-		return var2.length == 1 ? a(var2, this.d()) : (var2.length == 2 ? a(var2, alq.e.c()) : null);
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
+		return var2.length == 1 ? a(var2, this.d()) : (var2.length == 2 ? a(var2, Item.REGISTRY.c()) : null);
 	}
 
 	protected String[] d() {

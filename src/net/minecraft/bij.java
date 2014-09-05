@@ -8,7 +8,7 @@ public class bij extends bhc {
 		super(var1);
 	}
 
-	public boolean b(World var1, Random var2, dt var3) {
+	public boolean b(World var1, Random var2, Position var3) {
 		int var4 = var2.nextInt(3) + var2.nextInt(2) + 6;
 		boolean var5 = true;
 		if (var3.o() >= 1 && var3.o() + var4 + 1 <= 256) {
@@ -27,7 +27,7 @@ public class bij extends bhc {
 				for (var8 = var3.n() - var7; var8 <= var3.n() + var7 && var5; ++var8) {
 					for (var9 = var3.p() - var7; var9 <= var3.p() + var7 && var5; ++var9) {
 						if (var6 >= 0 && var6 < 256) {
-							if (!this.a(var1.p(new dt(var8, var6, var9)).c())) {
+							if (!this.a(var1.p(new Position(var8, var6, var9)).c())) {
 								var5 = false;
 							}
 						} else {
@@ -40,7 +40,7 @@ public class bij extends bhc {
 			if (!var5) {
 				return false;
 			} else {
-				atr var18 = var1.p(var3.b()).c();
+				Block var18 = var1.p(var3.b()).c();
 				if ((var18 == aty.c || var18 == aty.d) && var3.o() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 					this.a(var1, var3.a(1, -1, 0));
@@ -63,7 +63,7 @@ public class bij extends bhc {
 							--var9;
 						}
 
-						dt var15 = new dt(var10, var14, var11);
+						Position var15 = new Position(var10, var14, var11);
 						bof var16 = var1.p(var15).c().r();
 						if (var16 == bof.a || var16 == bof.j) {
 							this.a(var1, var15, aty.s, ayx.f.a() - 4);
@@ -113,7 +113,7 @@ public class bij extends bhc {
 
 								int var23;
 								for (var23 = 0; var23 < var22; ++var23) {
-									this.a(var1, new dt(var3.n() + var13, var12 - var23 - 1, var3.p() + var14), aty.s, ayx.f.a() - 4);
+									this.a(var1, new Position(var3.n() + var13, var12 - var23 - 1, var3.p() + var14), aty.s, ayx.f.a() - 4);
 								}
 
 								int var17;
@@ -145,9 +145,9 @@ public class bij extends bhc {
 	}
 
 	private void a(World var1, int var2, int var3, int var4) {
-		atr var5 = var1.p(new dt(var2, var3, var4)).c();
+		Block var5 = var1.p(new Position(var2, var3, var4)).c();
 		if (var5.r() == bof.a) {
-			this.a(var1, new dt(var2, var3, var4), aty.u, 1);
+			this.a(var1, new Position(var2, var3, var4), aty.u, 1);
 		}
 
 	}

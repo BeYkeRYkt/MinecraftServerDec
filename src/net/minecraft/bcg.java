@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class bcg extends atr {
+public class bcg extends Block {
 
 	public static final bev a = bev.a("color", akv.class);
 
@@ -9,7 +9,7 @@ public class bcg extends atr {
 		this.j(this.L.b().a(a, akv.a));
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
 		this.a(true);
-		this.a(akf.c);
+		this.a(CreativeModeTab.c);
 		this.b(0);
 	}
 
@@ -25,7 +25,7 @@ public class bcg extends atr {
 		this.b(0);
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		this.b(0);
 	}
 
@@ -35,15 +35,15 @@ public class bcg extends atr {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, var3, 1.0F);
 	}
 
-	public boolean c(World var1, dt var2) {
+	public boolean c(World var1, Position var2) {
 		return super.c(var1, var2) && this.d(var1, var2);
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		this.e(var1, var2, var3);
 	}
 
-	private boolean e(World var1, dt var2, bec var3) {
+	private boolean e(World var1, Position var2, bec var3) {
 		if (!this.d(var1, var2)) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -53,7 +53,7 @@ public class bcg extends atr {
 		}
 	}
 
-	private boolean d(World var1, dt var2) {
+	private boolean d(World var1, Position var2) {
 		return !var1.d(var2.b());
 	}
 

@@ -12,7 +12,7 @@ final class ak implements Predicate {
 	}
 
 	public boolean a(Entity var1) {
-		return var1.s >= this.a.a && var1.t >= this.a.b && var1.u >= this.a.c ? var1.s < this.a.d && var1.t < this.a.e && var1.u < this.a.f : false;
+		return var1.locationX >= this.a.a && var1.locationY >= this.a.b && var1.locationZ >= this.a.c ? var1.locationX < this.a.d && var1.locationY < this.a.e && var1.locationZ < this.a.f : false;
 	}
 
 	// $FF: synthetic method

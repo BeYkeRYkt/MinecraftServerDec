@@ -63,14 +63,14 @@ public class yz extends zb {
 				if (!this.g.a((Entity) this.e, this.f)) {
 					if (!this.d.cb()) {
 						if (this.d.h(this.e) >= 144.0D) {
-							int var1 = NumberConverter.c(this.e.s) - 2;
-							int var2 = NumberConverter.c(this.e.u) - 2;
-							int var3 = NumberConverter.c(this.e.aQ().b);
+							int var1 = DataTypesConverter.toFixedPointInt(this.e.locationX) - 2;
+							int var2 = DataTypesConverter.toFixedPointInt(this.e.locationZ) - 2;
+							int var3 = DataTypesConverter.toFixedPointInt(this.e.aQ().b);
 
 							for (int var4 = 0; var4 <= 4; ++var4) {
 								for (int var5 = 0; var5 <= 4; ++var5) {
-									if ((var4 < 1 || var5 < 1 || var4 > 3 || var5 > 3) && World.a((ard) this.a, new dt(var1 + var4, var3 - 1, var2 + var5)) && !this.a.p(new dt(var1 + var4, var3, var2 + var5)).c().d() && !this.a.p(new dt(var1 + var4, var3 + 1, var2 + var5)).c().d()) {
-										this.d.b((double) ((float) (var1 + var4) + 0.5F), (double) var3, (double) ((float) (var2 + var5) + 0.5F), this.d.y, this.d.z);
+									if ((var4 < 1 || var5 < 1 || var4 > 3 || var5 > 3) && World.a((ard) this.a, new Position(var1 + var4, var3 - 1, var2 + var5)) && !this.a.p(new Position(var1 + var4, var3, var2 + var5)).c().d() && !this.a.p(new Position(var1 + var4, var3 + 1, var2 + var5)).c().d()) {
+										this.d.b((double) ((float) (var1 + var4) + 0.5F), (double) var3, (double) ((float) (var2 + var5) + 0.5F), this.d.yaw, this.d.pitch);
 										this.g.n();
 										return;
 									}

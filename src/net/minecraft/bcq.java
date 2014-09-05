@@ -7,10 +7,10 @@ public class bcq extends bdf implements pm, we {
 
 	private static final int[] a = new int[] { 3 };
 	private static final int[] f = new int[] { 0, 1, 2 };
-	private amj[] g = new amj[4];
+	private ItemStack[] g = new ItemStack[4];
 	private int h;
 	private boolean[] i;
-	private alq j;
+	private Item j;
 	private String k;
 
 	public String d_() {
@@ -38,13 +38,13 @@ public class bcq extends bdf implements pm, we {
 			} else if (!this.n()) {
 				this.h = 0;
 				this.o_();
-			} else if (this.j != this.g[3].b()) {
+			} else if (this.j != this.g[3].getItem()) {
 				this.h = 0;
 				this.o_();
 			}
 		} else if (this.n()) {
 			this.h = 400;
-			this.j = this.g[3].b();
+			this.j = this.g[3].getItem();
 		}
 
 		if (!this.b.D) {
@@ -68,14 +68,14 @@ public class bcq extends bdf implements pm, we {
 
 	private boolean n() {
 		if (this.g[3] != null && this.g[3].b > 0) {
-			amj var1 = this.g[3];
-			if (!var1.b().l(var1)) {
+			ItemStack var1 = this.g[3];
+			if (!var1.getItem().l(var1)) {
 				return false;
 			} else {
 				boolean var2 = false;
 
 				for (int var3 = 0; var3 < 3; ++var3) {
-					if (this.g[var3] != null && this.g[var3].b() == amk.bz) {
+					if (this.g[var3] != null && this.g[var3].getItem() == amk.bz) {
 						int var4 = this.g[var3].i();
 						int var5 = this.c(var4, var1);
 						if (!amw.f(var4) && amw.f(var5)) {
@@ -101,10 +101,10 @@ public class bcq extends bdf implements pm, we {
 
 	private void o() {
 		if (this.n()) {
-			amj var1 = this.g[3];
+			ItemStack var1 = this.g[3];
 
 			for (int var2 = 0; var2 < 3; ++var2) {
-				if (this.g[var2] != null && this.g[var2].b() == amk.bz) {
+				if (this.g[var2] != null && this.g[var2].getItem() == amk.bz) {
 					int var3 = this.g[var2].i();
 					int var4 = this.c(var3, var1);
 					List var5 = amk.bz.e(var3);
@@ -119,8 +119,8 @@ public class bcq extends bdf implements pm, we {
 				}
 			}
 
-			if (var1.b().r()) {
-				this.g[3] = new amj(var1.b().q());
+			if (var1.getItem().r()) {
+				this.g[3] = new ItemStack(var1.getItem().q());
 			} else {
 				--this.g[3].b;
 				if (this.g[3].b <= 0) {
@@ -131,20 +131,20 @@ public class bcq extends bdf implements pm, we {
 		}
 	}
 
-	private int c(int var1, amj var2) {
-		return var2 == null ? var1 : (var2.b().l(var2) ? ans.a(var1, var2.b().j(var2)) : var1);
+	private int c(int var1, ItemStack var2) {
+		return var2 == null ? var1 : (var2.getItem().l(var2) ? ans.a(var1, var2.getItem().j(var2)) : var1);
 	}
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
-		this.g = new amj[this.n_()];
+		this.g = new ItemStack[this.n_()];
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			byte var5 = var4.getByte("Slot");
 			if (var5 >= 0 && var5 < this.g.length) {
-				this.g[var5] = amj.a(var4);
+				this.g[var5] = ItemStack.a(var4);
 			}
 		}
 
@@ -176,13 +176,13 @@ public class bcq extends bdf implements pm, we {
 
 	}
 
-	public amj a(int var1) {
+	public ItemStack a(int var1) {
 		return var1 >= 0 && var1 < this.g.length ? this.g[var1] : null;
 	}
 
-	public amj a(int var1, int var2) {
+	public ItemStack a(int var1, int var2) {
 		if (var1 >= 0 && var1 < this.g.length) {
-			amj var3 = this.g[var1];
+			ItemStack var3 = this.g[var1];
 			this.g[var1] = null;
 			return var3;
 		} else {
@@ -190,9 +190,9 @@ public class bcq extends bdf implements pm, we {
 		}
 	}
 
-	public amj b(int var1) {
+	public ItemStack b(int var1) {
 		if (var1 >= 0 && var1 < this.g.length) {
-			amj var2 = this.g[var1];
+			ItemStack var2 = this.g[var1];
 			this.g[var1] = null;
 			return var2;
 		} else {
@@ -200,7 +200,7 @@ public class bcq extends bdf implements pm, we {
 		}
 	}
 
-	public void a(int var1, amj var2) {
+	public void a(int var1, ItemStack var2) {
 		if (var1 >= 0 && var1 < this.g.length) {
 			this.g[var1] = var2;
 		}
@@ -211,18 +211,18 @@ public class bcq extends bdf implements pm, we {
 		return 64;
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return this.b.s(this.c) != this ? false : var1.e((double) this.c.n() + 0.5D, (double) this.c.o() + 0.5D, (double) this.c.p() + 0.5D) <= 64.0D;
 	}
 
-	public void b(ahd var1) {
+	public void b(EntityHuman var1) {
 	}
 
-	public void c(ahd var1) {
+	public void c(EntityHuman var1) {
 	}
 
-	public boolean b(int var1, amj var2) {
-		return var1 == 3 ? var2.b().l(var2) : var2.b() == amk.bz || var2.b() == amk.bA;
+	public boolean b(int var1, ItemStack var2) {
+		return var1 == 3 ? var2.getItem().l(var2) : var2.getItem() == amk.bz || var2.getItem() == amk.bA;
 	}
 
 	public boolean[] m() {
@@ -241,11 +241,11 @@ public class bcq extends bdf implements pm, we {
 		return var1 == ej.b ? a : f;
 	}
 
-	public boolean a(int var1, amj var2, ej var3) {
+	public boolean a(int var1, ItemStack var2, ej var3) {
 		return this.b(var1, var2);
 	}
 
-	public boolean b(int var1, amj var2, ej var3) {
+	public boolean b(int var1, ItemStack var2, ej var3) {
 		return true;
 	}
 
@@ -253,7 +253,7 @@ public class bcq extends bdf implements pm, we {
 		return "minecraft:brewing_stand";
 	}
 
-	public aib a(ahb var1, ahd var2) {
+	public Container a(PlayerInventory var1, EntityHuman var2) {
 		return new aii(var1, this);
 	}
 

@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
 
-public class jm implements id<ik> {
+public class jm implements Packet<PlayPacketListener> {
 
 	private double a;
 	private double b;
@@ -32,7 +32,7 @@ public class jm implements id<ik> {
 
 	}
 
-	public void a(hd var1) {
+	public void readData(PacketDataSerializer var1) {
 		this.a = (double) var1.readFloat();
 		this.b = (double) var1.readFloat();
 		this.c = (double) var1.readFloat();
@@ -47,7 +47,7 @@ public class jm implements id<ik> {
 			int var7 = var1.readByte() + var3;
 			int var8 = var1.readByte() + var4;
 			int var9 = var1.readByte() + var5;
-			this.e.add(new dt(var7, var8, var9));
+			this.e.add(new Position(var7, var8, var9));
 		}
 
 		this.f = var1.readFloat();
@@ -55,7 +55,7 @@ public class jm implements id<ik> {
 		this.h = var1.readFloat();
 	}
 
-	public void b(hd var1) {
+	public void writeData(PacketDataSerializer var1) {
 		var1.writeFloat((float) this.a);
 		var1.writeFloat((float) this.b);
 		var1.writeFloat((float) this.c);
@@ -67,7 +67,7 @@ public class jm implements id<ik> {
 		Iterator var5 = this.e.iterator();
 
 		while (var5.hasNext()) {
-			dt var6 = (dt) var5.next();
+			Position var6 = (Position) var5.next();
 			int var7 = var6.n() - var2;
 			int var8 = var6.o() - var3;
 			int var9 = var6.p() - var4;
@@ -81,7 +81,7 @@ public class jm implements id<ik> {
 		var1.writeFloat(this.h);
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

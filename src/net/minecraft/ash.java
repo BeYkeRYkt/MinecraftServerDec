@@ -18,7 +18,7 @@ public class ash extends arm {
 		this.au.clear();
 	}
 
-	public void a(World var1, Random var2, dt var3) {
+	public void a(World var1, Random var2, Position var3) {
 		if (this.aD) {
 			int var4;
 			int var5;

@@ -8,13 +8,13 @@ class rp {
 
 	static {
 		try {
-			a[EnumProtocol.d.ordinal()] = 1;
+			a[EnumProtocol.LOGIN.ordinal()] = 1;
 		} catch (NoSuchFieldError var2) {
 			;
 		}
 
 		try {
-			a[EnumProtocol.c.ordinal()] = 2;
+			a[EnumProtocol.STATUS.ordinal()] = 2;
 		} catch (NoSuchFieldError var1) {
 			;
 		}

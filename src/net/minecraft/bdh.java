@@ -17,7 +17,7 @@ class bdh extends aqi {
 		return this.a.b;
 	}
 
-	public dt b() {
+	public Position b() {
 		return this.a.c;
 	}
 

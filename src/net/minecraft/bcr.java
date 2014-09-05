@@ -3,9 +3,9 @@ package net.minecraft;
 import java.util.Iterator;
 import java.util.List;
 
-public class bcr extends bdf implements pm, vq {
+public class bcr extends bdf implements pm, IInventory {
 
-	private amj[] m = new amj[27];
+	private ItemStack[] m = new ItemStack[27];
 	public boolean a;
 	public bcr f;
 	public bcr g;
@@ -22,13 +22,13 @@ public class bcr extends bdf implements pm, vq {
 		return 27;
 	}
 
-	public amj a(int var1) {
+	public ItemStack a(int var1) {
 		return this.m[var1];
 	}
 
-	public amj a(int var1, int var2) {
+	public ItemStack a(int var1, int var2) {
 		if (this.m[var1] != null) {
-			amj var3;
+			ItemStack var3;
 			if (this.m[var1].b <= var2) {
 				var3 = this.m[var1];
 				this.m[var1] = null;
@@ -48,9 +48,9 @@ public class bcr extends bdf implements pm, vq {
 		}
 	}
 
-	public amj b(int var1) {
+	public ItemStack b(int var1) {
 		if (this.m[var1] != null) {
-			amj var2 = this.m[var1];
+			ItemStack var2 = this.m[var1];
 			this.m[var1] = null;
 			return var2;
 		} else {
@@ -58,7 +58,7 @@ public class bcr extends bdf implements pm, vq {
 		}
 	}
 
-	public void a(int var1, amj var2) {
+	public void a(int var1, ItemStack var2) {
 		this.m[var1] = var2;
 		if (var2 != null && var2.b > this.p_()) {
 			var2.b = this.p_();
@@ -82,7 +82,7 @@ public class bcr extends bdf implements pm, vq {
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
-		this.m = new amj[this.n_()];
+		this.m = new ItemStack[this.n_()];
 		if (var1.isTagAssignableFrom("CustomName", 8)) {
 			this.p = var1.getString("CustomName");
 		}
@@ -91,7 +91,7 @@ public class bcr extends bdf implements pm, vq {
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			int var5 = var4.getByte("Slot") & 255;
 			if (var5 >= 0 && var5 < this.m.length) {
-				this.m[var5] = amj.a(var4);
+				this.m[var5] = ItemStack.a(var4);
 			}
 		}
 
@@ -121,7 +121,7 @@ public class bcr extends bdf implements pm, vq {
 		return 64;
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return this.b.s(this.c) != this ? false : var1.e((double) this.c.n() + 0.5D, (double) this.c.o() + 0.5D, (double) this.c.p() + 0.5D) <= 64.0D;
 	}
 
@@ -170,7 +170,7 @@ public class bcr extends bdf implements pm, vq {
 	}
 
 	protected bcr a(ej var1) {
-		dt var2 = this.c.a(var1);
+		Position var2 = this.c.a(var1);
 		if (this.b(var2)) {
 			bcm var3 = this.b.s(var2);
 			if (var3 instanceof bcr) {
@@ -183,11 +183,11 @@ public class bcr extends bdf implements pm, vq {
 		return null;
 	}
 
-	private boolean b(dt var1) {
+	private boolean b(Position var1) {
 		if (this.b == null) {
 			return false;
 		} else {
-			atr var2 = this.b.p(var1).c();
+			Block var2 = this.b.p(var1).c();
 			return var2 instanceof auj && ((auj) var2).b == this.n();
 		}
 	}
@@ -202,14 +202,14 @@ public class bcr extends bdf implements pm, vq {
 		if (!this.b.D && this.l != 0 && (this.n + var1 + var2 + var3) % 200 == 0) {
 			this.l = 0;
 			var4 = 5.0F;
-			List var5 = this.b.a(ahd.class, new brt((double) ((float) var1 - var4), (double) ((float) var2 - var4), (double) ((float) var3 - var4), (double) ((float) (var1 + 1) + var4), (double) ((float) (var2 + 1) + var4), (double) ((float) (var3 + 1) + var4)));
+			List var5 = this.b.a(EntityHuman.class, new brt((double) ((float) var1 - var4), (double) ((float) var2 - var4), (double) ((float) var3 - var4), (double) ((float) (var1 + 1) + var4), (double) ((float) (var2 + 1) + var4), (double) ((float) (var3 + 1) + var4)));
 			Iterator var6 = var5.iterator();
 
 			while (var6.hasNext()) {
-				ahd var7 = (ahd) var6.next();
-				if (var7.bi instanceof aim) {
-					vq var8 = ((aim) var7.bi).e();
-					if (var8 == this || var8 instanceof vp && ((vp) var8).a((vq) this)) {
+				EntityHuman var7 = (EntityHuman) var6.next();
+				if (var7.activeContainer instanceof aim) {
+					IInventory var8 = ((aim) var7.activeContainer).e();
+					if (var8 == this || var8 instanceof vp && ((vp) var8).a((IInventory) this)) {
 						++this.l;
 					}
 				}
@@ -276,7 +276,7 @@ public class bcr extends bdf implements pm, vq {
 		}
 	}
 
-	public void b(ahd var1) {
+	public void b(EntityHuman var1) {
 		if (!var1.v()) {
 			if (this.l < 0) {
 				this.l = 0;
@@ -290,7 +290,7 @@ public class bcr extends bdf implements pm, vq {
 
 	}
 
-	public void c(ahd var1) {
+	public void c(EntityHuman var1) {
 		if (!var1.v() && this.w() instanceof auj) {
 			--this.l;
 			this.b.c(this.c, this.w(), 1, this.l);
@@ -300,7 +300,7 @@ public class bcr extends bdf implements pm, vq {
 
 	}
 
-	public boolean b(int var1, amj var2) {
+	public boolean b(int var1, ItemStack var2) {
 		return true;
 	}
 
@@ -326,7 +326,7 @@ public class bcr extends bdf implements pm, vq {
 		return "minecraft:chest";
 	}
 
-	public aib a(ahb var1, ahd var2) {
+	public Container a(PlayerInventory var1, EntityHuman var2) {
 		return new aim(var1, this, var2);
 	}
 

@@ -13,7 +13,7 @@ public class afl extends afy {
 	}
 
 	public boolean bQ() {
-		return this.o.aa() != Difficulty.PEACEFUL;
+		return this.o.getDifficulty() != Difficulty.PEACEFUL;
 	}
 
 	public boolean bR() {
@@ -36,12 +36,12 @@ public class afl extends afy {
 		return new afl(this.o);
 	}
 
-	protected alq A() {
+	protected Item A() {
 		return amk.bE;
 	}
 
 	protected void b(boolean var1, int var2) {
-		alq var3 = this.A();
+		Item var3 = this.A();
 		if (var3 != null && this.ck() > 1) {
 			int var4 = this.V.nextInt(4) - 2;
 			if (var2 > 0) {
@@ -68,12 +68,12 @@ public class afl extends afy {
 	}
 
 	protected void bE() {
-		this.w = (double) (0.42F + (float) this.ck() * 0.1F);
+		this.motionY = (double) (0.42F + (float) this.ck() * 0.1F);
 		this.ai = true;
 	}
 
 	protected void bG() {
-		this.w = (double) (0.22F + (float) this.ck() * 0.05F);
+		this.motionY = (double) (0.22F + (float) this.ck() * 0.05F);
 		this.ai = true;
 	}
 

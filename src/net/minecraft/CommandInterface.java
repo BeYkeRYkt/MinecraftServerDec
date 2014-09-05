@@ -14,7 +14,7 @@ public interface CommandInterface extends Comparable<CommandInterface> {
 
 	boolean a(CommandSenderInterface var1);
 
-	List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3);
+	List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3);
 
 	boolean b(String[] var1, int var2);
 }

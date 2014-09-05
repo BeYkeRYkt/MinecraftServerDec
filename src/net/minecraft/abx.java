@@ -8,26 +8,26 @@ public class abx extends abs {
 		this.bl = aty.bw;
 	}
 
-	public boolean a(ahd var1) {
-		amj var2 = var1.bg.h();
-		if (var2 != null && var2.b() == amk.z && this.l() >= 0) {
+	public boolean a(EntityHuman var1) {
+		ItemStack var2 = var1.playerInventory.getItemInHand();
+		if (var2 != null && var2.getItem() == amk.z && this.l() >= 0) {
 			if (var2.b == 1) {
-				var1.bg.a(var1.bg.c, new amj(amk.A));
+				var1.playerInventory.a(var1.playerInventory.c, new ItemStack(amk.A));
 				return true;
 			}
 
-			if (var1.bg.a(new amj(amk.A)) && !var1.by.instabuild) {
-				var1.bg.a(var1.bg.c, 1);
+			if (var1.playerInventory.a(new ItemStack(amk.A)) && !var1.by.instabuild) {
+				var1.playerInventory.a(var1.playerInventory.c, 1);
 				return true;
 			}
 		}
 
-		if (var2 != null && var2.b() == amk.be && this.l() >= 0) {
+		if (var2 != null && var2.getItem() == amk.be && this.l() >= 0) {
 			this.J();
-			this.o.a(ew.b, this.s, this.t + (double) (this.K / 2.0F), this.u, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.o.a(ew.b, this.locationX, this.locationY + (double) (this.K / 2.0F), this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 			if (!this.o.D) {
 				abs var3 = new abs(this.o);
-				var3.b(this.s, this.t, this.u, this.y, this.z);
+				var3.b(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 				var3.h(this.bm());
 				var3.aG = this.aG;
 				if (this.k_()) {
@@ -37,7 +37,7 @@ public class abx extends abs {
 				this.o.d((Entity) var3);
 
 				for (int var4 = 0; var4 < 5; ++var4) {
-					this.o.d((Entity) (new adw(this.o, this.s, this.t + (double) this.K, this.u, new amj(aty.Q))));
+					this.o.d((Entity) (new adw(this.o, this.locationX, this.locationY + (double) this.K, this.locationZ, new ItemStack(aty.Q))));
 				}
 
 				var2.a(1, (EntityLiving) var1);

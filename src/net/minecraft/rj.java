@@ -42,7 +42,7 @@ public class rj implements ls, pm {
 	public rj(MinecraftServer var1, gr var2, EntityPlayer var3) {
 		this.d = var1;
 		this.a = var2;
-		var2.a((hg) this);
+		var2.a((PacketListener) this);
 		this.b = var3;
 		var3.a = this;
 	}
@@ -55,7 +55,7 @@ public class rj implements ls, pm {
 			this.k = (long) this.e;
 			this.j = this.d();
 			this.i = (int) this.j;
-			this.a((id) (new jp(this.i)));
+			this.a((Packet) (new PacketKeepAlive(this.i)));
 		}
 
 		this.d.profiler.b();
@@ -94,9 +94,9 @@ public class rj implements ls, pm {
 		WorldServer var2 = this.d.a(this.b.am);
 		this.h = true;
 		if (!this.b.i) {
-			double var3 = this.b.s;
-			double var5 = this.b.t;
-			double var7 = this.b.u;
+			double var3 = this.b.locationX;
+			double var5 = this.b.locationY;
+			double var7 = this.b.locationZ;
 			double var9 = 0.0D;
 			double var11 = var1.a() - this.o;
 			double var13 = var1.b() - this.p;
@@ -114,12 +114,12 @@ public class rj implements ls, pm {
 				double var21;
 				double var23;
 				if (this.b.m != null) {
-					float var47 = this.b.y;
-					float var18 = this.b.z;
+					float var47 = this.b.yaw;
+					float var18 = this.b.pitch;
 					this.b.m.al();
-					var19 = this.b.s;
-					var21 = this.b.t;
-					var23 = this.b.u;
+					var19 = this.b.locationX;
+					var21 = this.b.locationY;
+					var23 = this.b.locationZ;
 					if (var1.h()) {
 						var47 = var1.d();
 						var18 = var1.e();
@@ -136,17 +136,17 @@ public class rj implements ls, pm {
 					if (this.b.m != null) {
 						if (var9 > 4.0D) {
 							Entity var48 = this.b.m;
-							this.b.a.a((id) (new lo(var48)));
-							this.a(this.b.s, this.b.t, this.b.u, this.b.y, this.b.z);
+							this.b.a.a((Packet) (new lo(var48)));
+							this.a(this.b.locationX, this.b.locationY, this.b.locationZ, this.b.yaw, this.b.pitch);
 						}
 
 						this.b.m.ai = true;
 					}
 
 					if (this.r) {
-						this.o = this.b.s;
-						this.p = this.b.t;
-						this.q = this.b.u;
+						this.o = this.b.locationX;
+						this.p = this.b.locationY;
+						this.q = this.b.locationZ;
 					}
 
 					var2.g(this.b);
@@ -155,20 +155,20 @@ public class rj implements ls, pm {
 
 				if (this.b.bI()) {
 					this.b.l();
-					this.b.a(this.o, this.p, this.q, this.b.y, this.b.z);
+					this.b.a(this.o, this.p, this.q, this.b.yaw, this.b.pitch);
 					var2.g(this.b);
 					return;
 				}
 
-				double var17 = this.b.t;
-				this.o = this.b.s;
-				this.p = this.b.t;
-				this.q = this.b.u;
-				var19 = this.b.s;
-				var21 = this.b.t;
-				var23 = this.b.u;
-				float var25 = this.b.y;
-				float var26 = this.b.z;
+				double var17 = this.b.locationY;
+				this.o = this.b.locationX;
+				this.p = this.b.locationY;
+				this.q = this.b.locationZ;
+				var19 = this.b.locationX;
+				var21 = this.b.locationY;
+				var23 = this.b.locationZ;
+				float var25 = this.b.yaw;
+				float var26 = this.b.pitch;
 				if (var1.g() && var1.b() == -999.0D) {
 					var1.a(false);
 				}
@@ -194,16 +194,16 @@ public class rj implements ls, pm {
 					return;
 				}
 
-				double var27 = var19 - this.b.s;
-				double var29 = var21 - this.b.t;
-				double var31 = var23 - this.b.u;
-				double var33 = Math.min(Math.abs(var27), Math.abs(this.b.v));
-				double var35 = Math.min(Math.abs(var29), Math.abs(this.b.w));
-				double var37 = Math.min(Math.abs(var31), Math.abs(this.b.x));
+				double var27 = var19 - this.b.locationX;
+				double var29 = var21 - this.b.locationY;
+				double var31 = var23 - this.b.locationZ;
+				double var33 = Math.min(Math.abs(var27), Math.abs(this.b.motionX));
+				double var35 = Math.min(Math.abs(var29), Math.abs(this.b.motionY));
+				double var37 = Math.min(Math.abs(var31), Math.abs(this.b.motionZ));
 				double var39 = var33 * var33 + var35 * var35 + var37 * var37;
 				if (var39 > 100.0D && (!this.d.isSinglePlayer() || !this.d.R().equals(this.b.d_()))) {
 					c.warn(this.b.d_() + " moved too quickly! " + var27 + "," + var29 + "," + var31 + " (" + var33 + ", " + var35 + ", " + var37 + ")");
-					this.a(this.o, this.p, this.q, this.b.y, this.b.z);
+					this.a(this.o, this.p, this.q, this.b.yaw, this.b.pitch);
 					return;
 				}
 
@@ -216,13 +216,13 @@ public class rj implements ls, pm {
 				this.b.d(var27, var29, var31);
 				this.b.C = var1.f();
 				double var43 = var29;
-				var27 = var19 - this.b.s;
-				var29 = var21 - this.b.t;
+				var27 = var19 - this.b.locationX;
+				var29 = var21 - this.b.locationY;
 				if (var29 > -0.5D || var29 < 0.5D) {
 					var29 = 0.0D;
 				}
 
-				var31 = var23 - this.b.u;
+				var31 = var23 - this.b.locationZ;
 				var39 = var27 * var27 + var29 * var29 + var31 * var31;
 				boolean var45 = false;
 				if (var39 > 0.0625D && !this.b.bI() && !this.b.c.d()) {
@@ -231,7 +231,7 @@ public class rj implements ls, pm {
 				}
 
 				this.b.a(var19, var21, var23, var25, var26);
-				this.b.k(this.b.s - var3, this.b.t - var5, this.b.u - var7);
+				this.b.k(this.b.locationX - var3, this.b.locationY - var5, this.b.locationZ - var7);
 				if (!this.b.T) {
 					boolean var46 = var2.a((Entity) this.b, this.b.aQ().d((double) var41, (double) var41, (double) var41)).isEmpty();
 					if (var42 && (var45 || !var46) && !this.b.bI()) {
@@ -256,9 +256,9 @@ public class rj implements ls, pm {
 
 				this.b.C = var1.f();
 				this.d.getPlayerList().d(this.b);
-				this.b.a(this.b.t - var17, var1.f());
+				this.b.a(this.b.locationY - var17, var1.f());
 			} else if (this.e - this.f > 20) {
-				this.a(this.o, this.p, this.q, this.b.y, this.b.z);
+				this.a(this.o, this.p, this.q, this.b.yaw, this.b.pitch);
 			}
 
 		}
@@ -273,36 +273,36 @@ public class rj implements ls, pm {
 		this.o = var1;
 		this.p = var3;
 		this.q = var5;
-		if (var9.contains(ij.a)) {
-			this.o += this.b.s;
+		if (var9.contains(PositionFlag.X)) {
+			this.o += this.b.locationX;
 		}
 
-		if (var9.contains(ij.b)) {
-			this.p += this.b.t;
+		if (var9.contains(PositionFlag.Y)) {
+			this.p += this.b.locationY;
 		}
 
-		if (var9.contains(ij.c)) {
-			this.q += this.b.u;
+		if (var9.contains(PositionFlag.Z)) {
+			this.q += this.b.locationZ;
 		}
 
 		float var10 = var7;
 		float var11 = var8;
-		if (var9.contains(ij.d)) {
-			var10 = var7 + this.b.y;
+		if (var9.contains(PositionFlag.PITCH)) {
+			var10 = var7 + this.b.yaw;
 		}
 
-		if (var9.contains(ij.e)) {
-			var11 = var8 + this.b.z;
+		if (var9.contains(PositionFlag.YAW)) {
+			var11 = var8 + this.b.pitch;
 		}
 
 		this.b.a(this.o, this.p, this.q, var10, var11);
-		this.b.a.a((id) (new ii(var1, var3, var5, var7, var8, var9)));
+		this.b.a.a((Packet) (new PacketPlayerPositionAndLook(var1, var3, var5, var7, var8, var9)));
 	}
 
 	public void a(ml var1) {
 		ig.a(var1, this, this.b.u());
 		WorldServer var2 = this.d.a(this.b.am);
-		dt var3 = var1.a();
+		Position var3 = var1.a();
 		this.b.z();
 		switch (rn.a[var1.c().ordinal()]) {
 			case 1:
@@ -323,9 +323,9 @@ public class rj implements ls, pm {
 			case 4:
 			case 5:
 			case 6:
-				double var4 = this.b.s - ((double) var3.n() + 0.5D);
-				double var6 = this.b.t - ((double) var3.o() + 0.5D) + 1.5D;
-				double var8 = this.b.u - ((double) var3.p() + 0.5D);
+				double var4 = this.b.locationX - ((double) var3.n() + 0.5D);
+				double var6 = this.b.locationY - ((double) var3.o() + 0.5D) + 1.5D;
+				double var8 = this.b.locationZ - ((double) var3.p() + 0.5D);
 				double var10 = var4 * var4 + var6 * var6 + var8 * var8;
 				if (var10 > 36.0D) {
 					return;
@@ -333,10 +333,10 @@ public class rj implements ls, pm {
 					return;
 				} else {
 					if (var1.c() == mm.a) {
-						if (!this.d.a((World) var2, var3, (ahd) this.b) && var2.af().a(var3)) {
+						if (!this.d.a((World) var2, var3, (EntityHuman) this.b) && var2.af().a(var3)) {
 							this.b.c.a(var3, var1.b());
 						} else {
-							this.b.a.a((id) (new iw(var2, var3)));
+							this.b.a.a((Packet) (new iw(var2, var3)));
 						}
 					} else {
 						if (var1.c() == mm.c) {
@@ -346,7 +346,7 @@ public class rj implements ls, pm {
 						}
 
 						if (var2.p(var3).c().r() != bof.a) {
-							this.b.a.a((id) (new iw(var2, var3)));
+							this.b.a.a((Packet) (new iw(var2, var3)));
 						}
 					}
 
@@ -360,9 +360,9 @@ public class rj implements ls, pm {
 	public void a(mx var1) {
 		ig.a(var1, this, this.b.u());
 		WorldServer var2 = this.d.a(this.b.am);
-		amj var3 = this.b.bg.h();
+		ItemStack var3 = this.b.playerInventory.getItemInHand();
 		boolean var4 = false;
-		dt var5 = var1.a();
+		Position var5 = var1.a();
 		ej var6 = ej.a(var1.b());
 		this.b.z();
 		if (var1.b() == 255) {
@@ -374,10 +374,10 @@ public class rj implements ls, pm {
 		} else if (var5.o() >= this.d.al() - 1 && (var6 == ej.b || var5.o() >= this.d.al())) {
 			hz var7 = new hz("build.tooHigh", new Object[] { Integer.valueOf(this.d.al()) });
 			var7.b().a(FormattingCode.m);
-			this.b.a.a((id) (new iz(var7)));
+			this.b.a.a((Packet) (new PacketChatMessage(var7)));
 			var4 = true;
 		} else {
-			if (this.r && this.b.e((double) var5.n() + 0.5D, (double) var5.o() + 0.5D, (double) var5.p() + 0.5D) < 64.0D && !this.d.a((World) var2, var5, (ahd) this.b) && var2.af().a(var5)) {
+			if (this.r && this.b.e((double) var5.n() + 0.5D, (double) var5.o() + 0.5D, (double) var5.p() + 0.5D) < 64.0D && !this.d.a((World) var2, var5, (EntityHuman) this.b) && var2.af().a(var5)) {
 				this.b.c.a(this.b, var2, var3, var5, var6, var1.d(), var1.e(), var1.f());
 			}
 
@@ -385,24 +385,24 @@ public class rj implements ls, pm {
 		}
 
 		if (var4) {
-			this.b.a.a((id) (new iw(var2, var5)));
-			this.b.a.a((id) (new iw(var2, var5.a(var6))));
+			this.b.a.a((Packet) (new iw(var2, var5)));
+			this.b.a.a((Packet) (new iw(var2, var5.a(var6))));
 		}
 
-		var3 = this.b.bg.h();
+		var3 = this.b.playerInventory.getItemInHand();
 		if (var3 != null && var3.b == 0) {
-			this.b.bg.a[this.b.bg.c] = null;
+			this.b.playerInventory.contents[this.b.playerInventory.c] = null;
 			var3 = null;
 		}
 
 		if (var3 == null || var3.l() == 0) {
 			this.b.g = true;
-			this.b.bg.a[this.b.bg.c] = amj.b(this.b.bg.a[this.b.bg.c]);
-			ajk var8 = this.b.bi.a((vq) this.b.bg, this.b.bg.c);
-			this.b.bi.b();
+			this.b.playerInventory.contents[this.b.playerInventory.c] = ItemStack.b(this.b.playerInventory.contents[this.b.playerInventory.c]);
+			ajk var8 = this.b.activeContainer.a((IInventory) this.b.playerInventory, this.b.playerInventory.c);
+			this.b.activeContainer.b();
 			this.b.g = false;
-			if (!amj.b(this.b.bg.h(), var1.c())) {
-				this.a((id) (new jh(this.b.bi.d, var8.e, this.b.bg.h())));
+			if (!ItemStack.b(this.b.playerInventory.getItemInHand(), var1.c())) {
+				this.a((Packet) (new jh(this.b.activeContainer.d, var8.e, this.b.playerInventory.getItemInHand())));
 			}
 		}
 
@@ -432,10 +432,10 @@ public class rj implements ls, pm {
 					WorldServer var7 = this.b.u();
 					WorldServer var8 = (WorldServer) var2.o;
 					this.b.am = var2.am;
-					this.a((id) (new kp(this.b.am, var7.aa(), var7.P().u(), this.b.c.b())));
+					this.a((Packet) (new PacketRespawn(this.b.am, var7.getDifficulty(), var7.P().getLevelType(), this.b.c.getGameMode())));
 					var7.f(this.b);
 					this.b.I = false;
-					this.b.b(var2.s, var2.t, var2.u, var2.y, var2.z);
+					this.b.b(var2.locationX, var2.locationY, var2.locationZ, var2.yaw, var2.pitch);
 					if (this.b.ai()) {
 						var7.a((Entity) this.b, false);
 						var8.d(this.b);
@@ -444,12 +444,12 @@ public class rj implements ls, pm {
 
 					this.b.a((World) var8);
 					this.d.getPlayerList().a(this.b, var7);
-					this.b.a(var2.s, var2.t, var2.u);
+					this.b.a(var2.locationX, var2.locationY, var2.locationZ);
 					this.b.c.a(var8);
 					this.d.getPlayerList().b(this.b, var8);
 					this.d.getPlayerList().f(this.b);
 				} else {
-					this.b.a(var2.s, var2.t, var2.u);
+					this.b.a(var2.locationX, var2.locationY, var2.locationZ);
 				}
 			}
 		}
@@ -459,12 +459,12 @@ public class rj implements ls, pm {
 	public void a(mq var1) {
 	}
 
-	public void a(ho var1) {
+	public void handle(IJSONComponent var1) {
 		c.info(this.b.d_() + " lost connection: " + var1);
 		this.d.aF();
 		hz var2 = new hz("multiplayer.player.left", new Object[] { this.b.e_() });
 		var2.b().a(FormattingCode.o);
-		this.d.getPlayerList().a((ho) var2);
+		this.d.getPlayerList().a((IJSONComponent) var2);
 		this.b.q();
 		this.d.getPlayerList().e(this.b);
 		if (this.d.isSinglePlayer() && this.b.d_().equals(this.d.R())) {
@@ -474,15 +474,15 @@ public class rj implements ls, pm {
 
 	}
 
-	public void a(id var1) {
-		if (var1 instanceof iz) {
-			iz var2 = (iz) var1;
+	public void a(Packet var1) {
+		if (var1 instanceof PacketChatMessage) {
+			PacketChatMessage var2 = (PacketChatMessage) var1;
 			ahg var3 = this.b.y();
 			if (var3 == ahg.c) {
 				return;
 			}
 
-			if (var3 == ahg.b && !var2.b()) {
+			if (var3 == ahg.b && !var2.isChatMessage()) {
 				return;
 			}
 		}
@@ -499,8 +499,8 @@ public class rj implements ls, pm {
 
 	public void a(ms var1) {
 		ig.a(var1, this, this.b.u());
-		if (var1.a() >= 0 && var1.a() < ahb.i()) {
-			this.b.bg.c = var1.a();
+		if (var1.a() >= 0 && var1.a() < PlayerInventory.i()) {
+			this.b.playerInventory.c = var1.a();
 			this.b.z();
 		} else {
 			c.warn(this.b.d_() + " tried to set an invalid carried item");
@@ -512,7 +512,7 @@ public class rj implements ls, pm {
 		if (this.b.y() == ahg.c) {
 			hz var4 = new hz("chat.cannotSend", new Object[0]);
 			var4.b().a(FormattingCode.m);
-			this.a((id) (new iz(var4)));
+			this.a((Packet) (new PacketChatMessage(var4)));
 		} else {
 			this.b.z();
 			String var2 = var1.a();
@@ -533,7 +533,7 @@ public class rj implements ls, pm {
 			}
 
 			this.l += 20;
-			if (this.l > 200 && !this.d.getPlayerList().g(this.b.cc())) {
+			if (this.l > 200 && !this.d.getPlayerList().g(this.b.getGameProfile())) {
 				this.c("disconnect.spam");
 			}
 
@@ -602,7 +602,7 @@ public class rj implements ls, pm {
 				if (var1.a() == me.a) {
 					this.b.u(var3);
 				} else if (var1.a() == me.c) {
-					var3.a((ahd) this.b, var1.b());
+					var3.a((EntityHuman) this.b, var1.b());
 				} else if (var1.a() == me.b) {
 					if (var3 instanceof adw || var3 instanceof xk || var3 instanceof ahj || var3 == this.b) {
 						this.c("Attempting to attack an invalid entity");
@@ -625,12 +625,12 @@ public class rj implements ls, pm {
 			case 1:
 				if (this.b.i) {
 					this.b = this.d.getPlayerList().a(this.b, 0, true);
-				} else if (this.b.u().P().t()) {
+				} else if (this.b.u().P().isHardcore()) {
 					if (this.d.isSinglePlayer() && this.b.d_().equals(this.d.R())) {
 						this.b.a.c("You have died. Game over, man, it\'s game over!");
 						this.d.Z();
 					} else {
-						sw var3 = new sw(this.b.cc(), (Date) null, "(You just lost the game)", (Date) null, "Death in Hardcore");
+						sw var3 = new sw(this.b.getGameProfile(), (Date) null, "(You just lost the game)", (Date) null, "Death in Hardcore");
 						this.d.getPlayerList().i().a((sr) var3);
 						this.b.a.c("You have died. Game over, man, it\'s game over!");
 					}
@@ -659,34 +659,34 @@ public class rj implements ls, pm {
 	public void a(ma var1) {
 		ig.a(var1, this, this.b.u());
 		this.b.z();
-		if (this.b.bi.d == var1.a() && this.b.bi.c(this.b)) {
+		if (this.b.activeContainer.d == var1.a() && this.b.activeContainer.c(this.b)) {
 			if (this.b.v()) {
 				ArrayList var2 = Lists.newArrayList();
 
-				for (int var3 = 0; var3 < this.b.bi.c.size(); ++var3) {
-					var2.add(((ajk) this.b.bi.c.get(var3)).d());
+				for (int var3 = 0; var3 < this.b.activeContainer.c.size(); ++var3) {
+					var2.add(((ajk) this.b.activeContainer.c.get(var3)).d());
 				}
 
-				this.b.a(this.b.bi, (List) var2);
+				this.b.a(this.b.activeContainer, (List) var2);
 			} else {
-				amj var5 = this.b.bi.a(var1.b(), var1.c(), var1.f(), this.b);
-				if (amj.b(var1.e(), var5)) {
-					this.b.a.a((id) (new jc(var1.a(), var1.d(), true)));
+				ItemStack var5 = this.b.activeContainer.a(var1.b(), var1.c(), var1.f(), this.b);
+				if (ItemStack.b(var1.e(), var5)) {
+					this.b.a.a((Packet) (new jc(var1.a(), var1.d(), true)));
 					this.b.g = true;
-					this.b.bi.b();
+					this.b.activeContainer.b();
 					this.b.o();
 					this.b.g = false;
 				} else {
-					this.n.a(this.b.bi.d, Short.valueOf(var1.d()));
-					this.b.a.a((id) (new jc(var1.a(), var1.d(), false)));
-					this.b.bi.a(this.b, false);
+					this.n.a(this.b.activeContainer.d, Short.valueOf(var1.d()));
+					this.b.a.a((Packet) (new jc(var1.a(), var1.d(), false)));
+					this.b.activeContainer.a(this.b, false);
 					ArrayList var6 = Lists.newArrayList();
 
-					for (int var4 = 0; var4 < this.b.bi.c.size(); ++var4) {
-						var6.add(((ajk) this.b.bi.c.get(var4)).d());
+					for (int var4 = 0; var4 < this.b.activeContainer.c.size(); ++var4) {
+						var6.add(((ajk) this.b.activeContainer.c.get(var4)).d());
 					}
 
-					this.b.a(this.b.bi, (List) var6);
+					this.b.a(this.b.activeContainer, (List) var6);
 				}
 			}
 		}
@@ -696,9 +696,9 @@ public class rj implements ls, pm {
 	public void a(lz var1) {
 		ig.a(var1, this, this.b.u());
 		this.b.z();
-		if (this.b.bi.d == var1.a() && this.b.bi.c(this.b) && !this.b.v()) {
-			this.b.bi.a((ahd) this.b, var1.b());
-			this.b.bi.b();
+		if (this.b.activeContainer.d == var1.a() && this.b.activeContainer.c(this.b) && !this.b.v()) {
+			this.b.activeContainer.a((EntityHuman) this.b, var1.b());
+			this.b.activeContainer.b();
 		}
 
 	}
@@ -707,11 +707,11 @@ public class rj implements ls, pm {
 		ig.a(var1, this, this.b.u());
 		if (this.b.c.d()) {
 			boolean var2 = var1.a() < 0;
-			amj var3 = var1.b();
-			if (var3 != null && var3.n() && var3.o().isTagAssignableFrom("BlockEntityTag", 10)) {
-				NBTCompoundTag var4 = var3.o().getCompound("BlockEntityTag");
+			ItemStack var3 = var1.b();
+			if (var3 != null && var3.hasTag() && var3.getTag().isTagAssignableFrom("BlockEntityTag", 10)) {
+				NBTCompoundTag var4 = var3.getTag().getCompound("BlockEntityTag");
 				if (var4.hasKey("x") && var4.hasKey("y") && var4.hasKey("z")) {
-					dt var5 = new dt(var4.getInt("x"), var4.getInt("y"), var4.getInt("z"));
+					Position var5 = new Position(var4.getInt("x"), var4.getInt("y"), var4.getInt("z"));
 					bcm var6 = this.b.o.s(var5);
 					if (var6 != null) {
 						NBTCompoundTag var7 = new NBTCompoundTag();
@@ -724,17 +724,17 @@ public class rj implements ls, pm {
 				}
 			}
 
-			boolean var8 = var1.a() >= 1 && var1.a() < 36 + ahb.i();
-			boolean var9 = var3 == null || var3.b() != null;
+			boolean var8 = var1.a() >= 1 && var1.a() < 36 + PlayerInventory.i();
+			boolean var9 = var3 == null || var3.getItem() != null;
 			boolean var10 = var3 == null || var3.i() >= 0 && var3.b <= 64 && var3.b > 0;
 			if (var8 && var9 && var10) {
 				if (var3 == null) {
-					this.b.bh.a(var1.a(), (amj) null);
+					this.b.defaultContainer.a(var1.a(), (ItemStack) null);
 				} else {
-					this.b.bh.a(var1.a(), var3);
+					this.b.defaultContainer.a(var1.a(), var3);
 				}
 
-				this.b.bh.a(this.b, true);
+				this.b.defaultContainer.a(this.b, true);
 			} else if (var2 && var9 && var10 && this.m < 200) {
 				this.m += 20;
 				adw var11 = this.b.a(var3, true);
@@ -748,9 +748,9 @@ public class rj implements ls, pm {
 
 	public void a(ly var1) {
 		ig.a(var1, this, this.b.u());
-		Short var2 = (Short) this.n.a(this.b.bi.d);
-		if (var2 != null && var1.b() == var2.shortValue() && this.b.bi.d == var1.a() && !this.b.bi.c(this.b) && !this.b.v()) {
-			this.b.bi.a(this.b, true);
+		Short var2 = (Short) this.n.a(this.b.activeContainer.d);
+		if (var2 != null && var1.b() == var2.shortValue() && this.b.activeContainer.d == var1.a() && !this.b.activeContainer.c(this.b) && !this.b.v()) {
+			this.b.activeContainer.a(this.b, true);
 		}
 
 	}
@@ -759,7 +759,7 @@ public class rj implements ls, pm {
 		ig.a(var1, this, this.b.u());
 		this.b.z();
 		WorldServer var2 = this.d.a(this.b.am);
-		dt var3 = var1.a();
+		Position var3 = var1.a();
 		if (var2.e(var3)) {
 			bcm var4 = var2.s(var3);
 			if (!(var4 instanceof bdj)) {
@@ -806,7 +806,7 @@ public class rj implements ls, pm {
 			var2.add(var4);
 		}
 
-		this.b.a.a((id) (new iy((String[]) var2.toArray(new String[var2.size()]))));
+		this.b.a.a((Packet) (new iy((String[]) var2.toArray(new String[var2.size()]))));
 	}
 
 	public void a(lx var1) {
@@ -816,26 +816,26 @@ public class rj implements ls, pm {
 
 	public void a(mc var1) {
 		ig.a(var1, this, this.b.u());
-		hd var2;
-		amj var3;
-		amj var4;
+		PacketDataSerializer var2;
+		ItemStack var3;
+		ItemStack var4;
 		if ("MC|BEdit".equals(var1.a())) {
-			var2 = new hd(Unpooled.wrappedBuffer((ByteBuf) var1.b()));
+			var2 = new PacketDataSerializer(Unpooled.wrappedBuffer((ByteBuf) var1.b()));
 
 			try {
-				var3 = var2.i();
+				var3 = var2.readItemStack();
 				if (var3 != null) {
-					if (!anq.b(var3.o())) {
+					if (!anq.b(var3.getTag())) {
 						throw new IOException("Invalid book tag!");
 					}
 
-					var4 = this.b.bg.h();
+					var4 = this.b.playerInventory.getItemInHand();
 					if (var4 == null) {
 						return;
 					}
 
-					if (var3.b() == amk.bM && var3.b() == var4.b()) {
-						var4.a("pages", (NBTTag) var3.o().getList("pages", 8));
+					if (var3.getItem() == amk.bM && var3.getItem() == var4.getItem()) {
+						var4.a("pages", (NBTTag) var3.getTag().getList("pages", 8));
 					}
 
 					return;
@@ -849,24 +849,24 @@ public class rj implements ls, pm {
 
 			return;
 		} else if ("MC|BSign".equals(var1.a())) {
-			var2 = new hd(Unpooled.wrappedBuffer((ByteBuf) var1.b()));
+			var2 = new PacketDataSerializer(Unpooled.wrappedBuffer((ByteBuf) var1.b()));
 
 			try {
-				var3 = var2.i();
+				var3 = var2.readItemStack();
 				if (var3 != null) {
-					if (!anr.b(var3.o())) {
+					if (!anr.b(var3.getTag())) {
 						throw new IOException("Invalid book tag!");
 					}
 
-					var4 = this.b.bg.h();
+					var4 = this.b.playerInventory.getItemInHand();
 					if (var4 == null) {
 						return;
 					}
 
-					if (var3.b() == amk.bN && var4.b() == amk.bM) {
+					if (var3.getItem() == amk.bN && var4.getItem() == amk.bM) {
 						var4.a("author", (NBTTag) (new NBTStringTag(this.b.d_())));
-						var4.a("title", (NBTTag) (new NBTStringTag(var3.o().getString("title"))));
-						var4.a("pages", (NBTTag) var3.o().getList("pages", 8));
+						var4.a("title", (NBTTag) (new NBTStringTag(var3.getTag().getString("title"))));
+						var4.a("pages", (NBTTag) var3.getTag().getList("pages", 8));
 						var4.a(amk.bN);
 					}
 
@@ -883,7 +883,7 @@ public class rj implements ls, pm {
 		} else if ("MC|TrSel".equals(var1.a())) {
 			try {
 				int var40 = var1.b().readInt();
-				aib var42 = this.b.bi;
+				Container var42 = this.b.activeContainer;
 				if (var42 instanceof ajf) {
 					((ajf) var42).d(var40);
 				}
@@ -892,7 +892,7 @@ public class rj implements ls, pm {
 			}
 		} else if ("MC|AdvCdm".equals(var1.a())) {
 			if (!this.d.isCommandBlockEnabled()) {
-				this.b.a((ho) (new hz("advMode.notEnabled", new Object[0])));
+				this.b.a((IJSONComponent) (new hz("advMode.notEnabled", new Object[0])));
 			} else if (this.b.a(2, "") && this.b.by.instabuild) {
 				var2 = var1.b();
 
@@ -900,7 +900,7 @@ public class rj implements ls, pm {
 					byte var43 = var2.readByte();
 					aqf var46 = null;
 					if (var43 == 0) {
-						bcm var5 = this.b.o.s(new dt(var2.readInt(), var2.readInt(), var2.readInt()));
+						bcm var5 = this.b.o.s(new Position(var2.readInt(), var2.readInt(), var2.readInt()));
 						if (var5 instanceof bct) {
 							var46 = ((bct) var5).b();
 						}
@@ -911,17 +911,17 @@ public class rj implements ls, pm {
 						}
 					}
 
-					String var49 = var2.c(var2.readableBytes());
+					String var49 = var2.readString(var2.readableBytes());
 					boolean var6 = var2.readBoolean();
 					if (var46 != null) {
 						var46.a(var49);
 						var46.a(var6);
 						if (!var6) {
-							var46.b((ho) null);
+							var46.b((IJSONComponent) null);
 						}
 
 						var46.h();
-						this.b.a((ho) (new hz("advMode.setCommand.success", new Object[] { var49 })));
+						this.b.a((IJSONComponent) (new hz("advMode.setCommand.success", new Object[] { var49 })));
 					}
 				} catch (Exception var33) {
 					c.error("Couldn\'t set command block", (Throwable) var33);
@@ -929,19 +929,19 @@ public class rj implements ls, pm {
 					var2.release();
 				}
 			} else {
-				this.b.a((ho) (new hz("advMode.notAllowed", new Object[0])));
+				this.b.a((IJSONComponent) (new hz("advMode.notAllowed", new Object[0])));
 			}
 		} else if ("MC|Beacon".equals(var1.a())) {
-			if (this.b.bi instanceof aig) {
+			if (this.b.activeContainer instanceof aig) {
 				try {
 					var2 = var1.b();
 					int var44 = var2.readInt();
 					int var47 = var2.readInt();
-					aig var50 = (aig) this.b.bi;
+					aig var50 = (aig) this.b.activeContainer;
 					ajk var51 = var50.a(0);
 					if (var51.e()) {
 						var51.a(1);
-						vq var7 = var50.e();
+						IInventory var7 = var50.e();
 						var7.b(1, var44);
 						var7.b(2, var47);
 						var7.o_();
@@ -950,10 +950,10 @@ public class rj implements ls, pm {
 					c.error("Couldn\'t set beacon", (Throwable) var32);
 				}
 			}
-		} else if ("MC|ItemName".equals(var1.a()) && this.b.bi instanceof aid) {
-			aid var41 = (aid) this.b.bi;
+		} else if ("MC|ItemName".equals(var1.a()) && this.b.activeContainer instanceof aid) {
+			aid var41 = (aid) this.b.activeContainer;
 			if (var1.b() != null && var1.b().readableBytes() >= 1) {
-				String var45 = v.a(var1.b().c(32767));
+				String var45 = v.a(var1.b().readString(32767));
 				if (var45.length() <= 30) {
 					var41.a(var45);
 				}

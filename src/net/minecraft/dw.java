@@ -5,11 +5,11 @@ import java.util.Iterator;
 final class dw implements Iterable {
 
 	// $FF: synthetic field
-	final dt a;
+	final Position a;
 	// $FF: synthetic field
-	final dt b;
+	final Position b;
 
-	dw(dt var1, dt var2) {
+	dw(Position var1, Position var2) {
 		this.a = var1;
 		this.b = var2;
 	}

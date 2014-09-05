@@ -14,16 +14,16 @@ public abstract class ws extends EntityCreature {
 
 	public abstract ws a(ws var1);
 
-	public boolean a(ahd var1) {
-		amj var2 = var1.bg.h();
-		if (var2 != null && var2.b() == amk.bJ) {
+	public boolean a(EntityHuman var1) {
+		ItemStack var2 = var1.playerInventory.getItemInHand();
+		if (var2 != null && var2.getItem() == amk.bJ) {
 			if (!this.o.D) {
 				Class var3 = xb.a(var2.i());
 				if (var3 != null && this.getClass() == var3) {
 					ws var4 = this.a(this);
 					if (var4 != null) {
 						var4.b(-24000);
-						var4.b(this.s, this.t, this.u, 0.0F, 0.0F);
+						var4.b(this.locationX, this.locationY, this.locationZ, 0.0F, 0.0F);
 						this.o.d((Entity) var4);
 						if (var2.s()) {
 							var4.a(var2.q());
@@ -32,7 +32,7 @@ public abstract class ws extends EntityCreature {
 						if (!var1.by.instabuild) {
 							--var2.b;
 							if (var2.b <= 0) {
-								var1.bg.a(var1.bg.c, (amj) null);
+								var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
 							}
 						}
 					}
@@ -47,11 +47,11 @@ public abstract class ws extends EntityCreature {
 
 	protected void h() {
 		super.h();
-		this.ac.a(12, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(12, Byte.valueOf((byte) 0));
 	}
 
 	public int l() {
-		return this.o.D ? this.ac.a(12) : this.a;
+		return this.o.D ? this.dataWatcher.a(12) : this.a;
 	}
 
 	public void a(int var1, boolean var2) {
@@ -85,7 +85,7 @@ public abstract class ws extends EntityCreature {
 	}
 
 	public void b(int var1) {
-		this.ac.b(12, Byte.valueOf((byte) NumberConverter.a(var1, -1, 1)));
+		this.dataWatcher.b(12, Byte.valueOf((byte) DataTypesConverter.a(var1, -1, 1)));
 		this.a = var1;
 		this.a(this.i_());
 	}
@@ -107,7 +107,7 @@ public abstract class ws extends EntityCreature {
 		if (this.o.D) {
 			if (this.c > 0) {
 				if (this.c % 4 == 0) {
-					this.o.a(ew.v, this.s + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.t + 0.5D + (double) (this.V.nextFloat() * this.K), this.u + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[0]);
+					this.o.a(ew.v, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[0]);
 				}
 
 				--this.c;

@@ -41,9 +41,9 @@ class ack extends zn {
 		this.c.p().a((double) this.b.n() + 0.5D, (double) (this.b.o() + 1), (double) this.b.p() + 0.5D, 10.0F, (float) this.c.bP());
 		if (this.f()) {
 			World var1 = this.c.o;
-			dt var2 = this.b.a();
+			Position var2 = this.b.a();
 			bec var3 = var1.p(var2);
-			atr var4 = var3.c();
+			Block var4 = var3.c();
 			if (this.e && var4 instanceof auh && ((Integer) var3.b(auh.a)).intValue() == 7) {
 				var1.a(var2, aty.a.P(), 2);
 				var1.b(var2, true);
@@ -56,8 +56,8 @@ class ack extends zn {
 
 	}
 
-	protected boolean a(World var1, dt var2) {
-		atr var3 = var1.p(var2).c();
+	protected boolean a(World var1, Position var2) {
+		Block var3 = var1.p(var2).c();
 		if (var3 == aty.ak) {
 			var2 = var2.a();
 			bec var4 = var1.p(var2);

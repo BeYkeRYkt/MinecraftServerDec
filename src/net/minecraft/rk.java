@@ -16,6 +16,6 @@ class rk implements GenericFutureListener {
 	}
 
 	public void operationComplete(Future var1) {
-		this.b.a.a((ho) this.a);
+		this.b.a.a((IJSONComponent) this.a);
 	}
 }

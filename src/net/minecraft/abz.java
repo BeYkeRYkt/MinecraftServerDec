@@ -12,7 +12,7 @@ class abz implements Predicate {
 	}
 
 	public boolean a(Entity var1) {
-		return var1 instanceof ahd;
+		return var1 instanceof EntityHuman;
 	}
 
 	// $FF: synthetic method

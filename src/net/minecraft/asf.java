@@ -12,7 +12,7 @@ class asf extends asl {
 		this.aD = var1;
 	}
 
-	public void a(World var1, Random var2, dt var3) {
+	public void a(World var1, Random var2, Position var3) {
 		this.aE.a(var1, var2, var3);
 	}
 }

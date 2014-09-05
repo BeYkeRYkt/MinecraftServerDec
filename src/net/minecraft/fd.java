@@ -16,7 +16,7 @@ public class fd implements Comparable {
 	}
 
 	public fd(double var1, double var3, double var5) {
-		this(NumberConverter.c(var1), NumberConverter.c(var3), NumberConverter.c(var5));
+		this(DataTypesConverter.toFixedPointInt(var1), DataTypesConverter.toFixedPointInt(var3), DataTypesConverter.toFixedPointInt(var5));
 	}
 
 	public boolean equals(Object var1) {

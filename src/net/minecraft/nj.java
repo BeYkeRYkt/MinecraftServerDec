@@ -3,22 +3,22 @@ package net.minecraft;
 import java.security.PrivateKey;
 import javax.crypto.SecretKey;
 
-public class nj implements id<nh> {
+public class nj implements Packet<nh> {
 
 	private byte[] a = new byte[0];
 	private byte[] b = new byte[0];
 
-	public void a(hd var1) {
-		this.a = var1.a();
-		this.b = var1.a();
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readByteArray();
+		this.b = var1.readByteArray();
 	}
 
-	public void b(hd var1) {
-		var1.a(this.a);
-		var1.a(this.b);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeByteArray(this.a);
+		var1.writeByteArray(this.b);
 	}
 
-	public void a(nh var1) {
+	public void handlePacket(nh var1) {
 		var1.a(this);
 	}
 

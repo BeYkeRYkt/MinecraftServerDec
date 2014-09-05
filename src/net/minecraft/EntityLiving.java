@@ -15,7 +15,7 @@ public abstract class EntityLiving extends Entity {
 	private yc c;
 	private final wg f = new wg(this);
 	private final Map g = Maps.newHashMap();
-	private final amj[] h = new amj[5];
+	private final ItemStack[] h = new ItemStack[5];
 	public boolean ap;
 	public int aq;
 	public int ar;
@@ -38,7 +38,7 @@ public abstract class EntityLiving extends Entity {
 	public float aI;
 	public float aJ;
 	public float aK = 0.02F;
-	protected ahd aL;
+	protected EntityHuman aL;
 	protected int aM;
 	protected boolean aN;
 	protected int aO;
@@ -78,18 +78,18 @@ public abstract class EntityLiving extends Entity {
 		this.h(this.bt());
 		this.k = true;
 		this.aF = (float) ((Math.random() + 1.0D) * 0.009999999776482582D);
-		this.b(this.s, this.t, this.u);
+		this.b(this.locationX, this.locationY, this.locationZ);
 		this.aE = (float) Math.random() * 12398.0F;
-		this.y = (float) (Math.random() * 3.1415927410125732D * 2.0D);
-		this.aI = this.y;
+		this.yaw = (float) (Math.random() * 3.1415927410125732D * 2.0D);
+		this.aI = this.yaw;
 		this.S = 0.6F;
 	}
 
 	protected void h() {
-		this.ac.a(7, Integer.valueOf(0));
-		this.ac.a(8, Byte.valueOf((byte) 0));
-		this.ac.a(9, Byte.valueOf((byte) 0));
-		this.ac.a(6, Float.valueOf(1.0F));
+		this.dataWatcher.a(7, Integer.valueOf(0));
+		this.dataWatcher.a(8, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(9, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(6, Float.valueOf(1.0F));
 	}
 
 	protected void aW() {
@@ -98,15 +98,15 @@ public abstract class EntityLiving extends Entity {
 		this.bx().b(afs.d);
 	}
 
-	protected void a(double var1, boolean var3, atr var4, dt var5) {
+	protected void a(double var1, boolean var3, Block var4, Position var5) {
 		if (!this.V()) {
 			this.W();
 		}
 
 		if (!this.o.D && this.O > 3.0F && var3) {
 			bec var6 = this.o.p(var5);
-			atr var7 = var6.c();
-			float var8 = (float) NumberConverter.f(this.O - 3.0F);
+			Block var7 = var6.c();
+			float var8 = (float) DataTypesConverter.f(this.O - 3.0F);
 			if (var7.r() != bof.a) {
 				double var9 = (double) Math.min(0.2F + var8 / 15.0F, 10.0F);
 				if (var9 > 2.5D) {
@@ -114,7 +114,7 @@ public abstract class EntityLiving extends Entity {
 				}
 
 				int var11 = (int) (150.0D * var9);
-				((WorldServer) this.o).a(ew.M, this.s, this.t, this.u, var11, 0.0D, 0.0D, 0.0D, 0.15000000596046448D, new int[] { atr.f(var6) });
+				((WorldServer) this.o).a(ew.M, this.locationX, this.locationY, this.locationZ, var11, 0.0D, 0.0D, 0.0D, 0.15000000596046448D, new int[] { Block.f(var6) });
 			}
 		}
 
@@ -129,14 +129,14 @@ public abstract class EntityLiving extends Entity {
 		this.aw = this.ax;
 		super.K();
 		this.o.B.a("livingEntityBaseTick");
-		boolean var1 = this instanceof ahd;
+		boolean var1 = this instanceof EntityHuman;
 		if (this.ai()) {
 			if (this.aj()) {
 				this.a(wh.e, 1.0F);
 			} else if (var1 && !this.o.af().a(this.aQ())) {
 				double var2 = this.o.af().a((Entity) this) + this.o.af().m();
 				if (var2 < 0.0D) {
-					this.a(wh.e, (float) Math.max(1, NumberConverter.c(-var2 * this.o.af().n())));
+					this.a(wh.e, (float) Math.max(1, DataTypesConverter.toFixedPointInt(-var2 * this.o.af().n())));
 				}
 			}
 		}
@@ -145,7 +145,7 @@ public abstract class EntityLiving extends Entity {
 			this.N();
 		}
 
-		boolean var7 = var1 && ((ahd) this).by.invulnerable;
+		boolean var7 = var1 && ((EntityHuman) this).by.invulnerable;
 		if (this.ai() && this.a(bof.h)) {
 			if (!this.aX() && !this.k(wp.o.H) && !var7) {
 				this.h(this.j(this.aA()));
@@ -156,7 +156,7 @@ public abstract class EntityLiving extends Entity {
 						float var4 = this.V.nextFloat() - this.V.nextFloat();
 						float var5 = this.V.nextFloat() - this.V.nextFloat();
 						float var6 = this.V.nextFloat() - this.V.nextFloat();
-						this.o.a(ew.e, this.s + (double) var4, this.t + (double) var5, this.u + (double) var6, this.v, this.w, this.x, new int[0]);
+						this.o.a(ew.e, this.locationX + (double) var4, this.locationY + (double) var5, this.locationZ + (double) var6, this.motionX, this.motionY, this.motionZ, new int[0]);
 					}
 
 					this.a(wh.f, 2.0F);
@@ -209,8 +209,8 @@ public abstract class EntityLiving extends Entity {
 		this.aS = this.aR;
 		this.aH = this.aG;
 		this.aJ = this.aI;
-		this.A = this.y;
-		this.B = this.z;
+		this.A = this.yaw;
+		this.B = this.pitch;
 		this.o.B.b();
 	}
 
@@ -228,7 +228,7 @@ public abstract class EntityLiving extends Entity {
 				while (var1 > 0) {
 					int var2 = xk.a(var1);
 					var1 -= var2;
-					this.o.d((Entity) (new xk(this.o, this.s, this.t, this.u, var2)));
+					this.o.d((Entity) (new xk(this.o, this.locationX, this.locationY, this.locationZ, var2)));
 				}
 			}
 
@@ -238,7 +238,7 @@ public abstract class EntityLiving extends Entity {
 				double var8 = this.V.nextGaussian() * 0.02D;
 				double var4 = this.V.nextGaussian() * 0.02D;
 				double var6 = this.V.nextGaussian() * 0.02D;
-				this.o.a(ew.a, this.s + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.t + (double) (this.V.nextFloat() * this.K), this.u + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var8, var4, var6, new int[0]);
+				this.o.a(ew.a, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var8, var4, var6, new int[0]);
 			}
 		}
 
@@ -253,7 +253,7 @@ public abstract class EntityLiving extends Entity {
 		return var2 > 0 && this.V.nextInt(var2 + 1) > 0 ? var1 : var1 - 1;
 	}
 
-	protected int b(ahd var1) {
+	protected int b(EntityHuman var1) {
 		return 0;
 	}
 
@@ -307,11 +307,11 @@ public abstract class EntityLiving extends Entity {
 		var1.put("HurtByTimestamp", this.bh);
 		var1.put("DeathTime", (short) this.av);
 		var1.put("AbsorptionAmount", this.bM());
-		amj[] var2 = this.at();
+		ItemStack[] var2 = this.at();
 		int var3 = var2.length;
 
 		int var4;
-		amj var5;
+		ItemStack var5;
 		for (var4 = 0; var4 < var3; ++var4) {
 			var5 = var2[var4];
 			if (var5 != null) {
@@ -404,8 +404,8 @@ public abstract class EntityLiving extends Entity {
 			this.i = false;
 		}
 
-		int var11 = this.ac.c(7);
-		boolean var12 = this.ac.a(8) > 0;
+		int var11 = this.dataWatcher.c(7);
+		boolean var12 = this.dataWatcher.a(8) > 0;
 		if (var11 > 0) {
 			boolean var4 = false;
 			if (!this.ay()) {
@@ -422,7 +422,7 @@ public abstract class EntityLiving extends Entity {
 				double var5 = (double) (var11 >> 16 & 255) / 255.0D;
 				double var7 = (double) (var11 >> 8 & 255) / 255.0D;
 				double var9 = (double) (var11 >> 0 & 255) / 255.0D;
-				this.o.a(var12 ? ew.q : ew.p, this.s + (this.V.nextDouble() - 0.5D) * (double) this.J, this.t + this.V.nextDouble() * (double) this.K, this.u + (this.V.nextDouble() - 0.5D) * (double) this.J, var5, var7, var9, new int[0]);
+				this.o.a(var12 ? ew.q : ew.p, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, var5, var7, var9, new int[0]);
 			}
 		}
 
@@ -434,16 +434,16 @@ public abstract class EntityLiving extends Entity {
 			this.e(false);
 		} else {
 			int var1 = ans.a(this.g.values());
-			this.ac.b(8, Byte.valueOf((byte) (ans.b(this.g.values()) ? 1 : 0)));
-			this.ac.b(7, Integer.valueOf(var1));
+			this.dataWatcher.b(8, Byte.valueOf((byte) (ans.b(this.g.values()) ? 1 : 0)));
+			this.dataWatcher.b(7, Integer.valueOf(var1));
 			this.e(this.k(wp.p.H));
 		}
 
 	}
 
 	protected void bi() {
-		this.ac.b(8, Byte.valueOf((byte) 0));
-		this.ac.b(7, Integer.valueOf(0));
+		this.dataWatcher.b(8, Byte.valueOf((byte) 0));
+		this.dataWatcher.b(7, Integer.valueOf(0));
 	}
 
 	public void bj() {
@@ -546,11 +546,11 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public final float bm() {
-		return this.ac.d(6);
+		return this.dataWatcher.d(6);
 	}
 
 	public void h(float var1) {
-		this.ac.b(6, Float.valueOf(NumberConverter.a(var1, 0.0F, this.bt())));
+		this.dataWatcher.b(6, Float.valueOf(DataTypesConverter.a(var1, 0.0F, this.bt())));
 	}
 
 	public boolean a(wh var1, float var2) {
@@ -594,9 +594,9 @@ public abstract class EntityLiving extends Entity {
 						this.b((EntityLiving) var4);
 					}
 
-					if (var4 instanceof ahd) {
+					if (var4 instanceof EntityHuman) {
 						this.aM = 100;
-						this.aL = (ahd) var4;
+						this.aL = (EntityHuman) var4;
 					} else if (var4 instanceof acu) {
 						acu var5 = (acu) var4;
 						if (var5.cj()) {
@@ -613,14 +613,14 @@ public abstract class EntityLiving extends Entity {
 					}
 
 					if (var4 != null) {
-						double var9 = var4.s - this.s;
+						double var9 = var4.locationX - this.locationX;
 
 						double var7;
-						for (var7 = var4.u - this.u; var9 * var9 + var7 * var7 < 1.0E-4D; var7 = (Math.random() - Math.random()) * 0.01D) {
+						for (var7 = var4.locationZ - this.locationZ; var9 * var9 + var7 * var7 < 1.0E-4D; var7 = (Math.random() - Math.random()) * 0.01D) {
 							var9 = (Math.random() - Math.random()) * 0.01D;
 						}
 
-						this.au = (float) (Math.atan2(var7, var9) * 180.0D / 3.1415927410125732D - (double) this.y);
+						this.au = (float) (Math.atan2(var7, var9) * 180.0D / 3.1415927410125732D - (double) this.yaw);
 						this.a(var4, var2, var9, var7);
 					} else {
 						this.au = (float) ((int) (Math.random() * 2.0D) * 180);
@@ -647,19 +647,19 @@ public abstract class EntityLiving extends Entity {
 		}
 	}
 
-	public void b(amj var1) {
+	public void b(ItemStack var1) {
 		this.a("random.break", 0.8F, 0.8F + this.o.s.nextFloat() * 0.4F);
 
 		for (int var2 = 0; var2 < 5; ++var2) {
 			brw var3 = new brw(((double) this.V.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D);
-			var3 = var3.a(-this.z * 3.1415927F / 180.0F);
-			var3 = var3.b(-this.y * 3.1415927F / 180.0F);
+			var3 = var3.a(-this.pitch * 3.1415927F / 180.0F);
+			var3 = var3.b(-this.yaw * 3.1415927F / 180.0F);
 			double var4 = (double) (-this.V.nextFloat()) * 0.6D - 0.3D;
 			brw var6 = new brw(((double) this.V.nextFloat() - 0.5D) * 0.3D, var4, 0.6D);
-			var6 = var6.a(-this.z * 3.1415927F / 180.0F);
-			var6 = var6.b(-this.y * 3.1415927F / 180.0F);
-			var6 = var6.b(this.s, this.t + (double) this.aR(), this.u);
-			this.o.a(ew.K, var6.a, var6.b, var6.c, var3.a, var3.b + 0.05D, var3.c, new int[] { alq.b(var1.b()) });
+			var6 = var6.a(-this.pitch * 3.1415927F / 180.0F);
+			var6 = var6.b(-this.yaw * 3.1415927F / 180.0F);
+			var6 = var6.b(this.locationX, this.locationY + (double) this.aR(), this.locationZ);
+			this.o.a(ew.K, var6.a, var6.b, var6.c, var3.a, var3.b + 0.05D, var3.c, new int[] { Item.getId(var1.getItem()) });
 		}
 
 	}
@@ -679,7 +679,7 @@ public abstract class EntityLiving extends Entity {
 		this.br().g();
 		if (!this.o.D) {
 			int var4 = 0;
-			if (var2 instanceof ahd) {
+			if (var2 instanceof EntityHuman) {
 				var4 = aph.i((EntityLiving) var2);
 			}
 
@@ -701,16 +701,16 @@ public abstract class EntityLiving extends Entity {
 	public void a(Entity var1, float var2, double var3, double var5) {
 		if (this.V.nextDouble() >= this.a(afs.c).e()) {
 			this.ai = true;
-			float var7 = NumberConverter.a(var3 * var3 + var5 * var5);
+			float var7 = DataTypesConverter.a(var3 * var3 + var5 * var5);
 			float var8 = 0.4F;
-			this.v /= 2.0D;
-			this.w /= 2.0D;
-			this.x /= 2.0D;
-			this.v -= var3 / (double) var7 * (double) var8;
-			this.w += (double) var8;
-			this.x -= var5 / (double) var7 * (double) var8;
-			if (this.w > 0.4000000059604645D) {
-				this.w = 0.4000000059604645D;
+			this.motionX /= 2.0D;
+			this.motionY /= 2.0D;
+			this.motionZ /= 2.0D;
+			this.motionX -= var3 / (double) var7 * (double) var8;
+			this.motionY += (double) var8;
+			this.motionZ -= var5 / (double) var7 * (double) var8;
+			if (this.motionY > 0.4000000059604645D) {
+				this.motionY = 0.4000000059604645D;
 			}
 
 		}
@@ -731,11 +731,11 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public boolean j_() {
-		int var1 = NumberConverter.c(this.s);
-		int var2 = NumberConverter.c(this.aQ().b);
-		int var3 = NumberConverter.c(this.u);
-		atr var4 = this.o.p(new dt(var1, var2, var3)).c();
-		return (var4 == aty.au || var4 == aty.bn) && (!(this instanceof ahd) || !((ahd) this).v());
+		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
+		int var2 = DataTypesConverter.toFixedPointInt(this.aQ().b);
+		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
+		Block var4 = this.o.p(new Position(var1, var2, var3)).c();
+		return (var4 == aty.au || var4 == aty.bn) && (!(this instanceof EntityHuman) || !((EntityHuman) this).v());
 	}
 
 	public boolean ai() {
@@ -746,16 +746,16 @@ public abstract class EntityLiving extends Entity {
 		super.e(var1, var2);
 		wq var3 = this.b(wp.j);
 		float var4 = var3 != null ? (float) (var3.c() + 1) : 0.0F;
-		int var5 = NumberConverter.f((var1 - 3.0F - var4) * var2);
+		int var5 = DataTypesConverter.f((var1 - 3.0F - var4) * var2);
 		if (var5 > 0) {
 			this.a(this.n(var5), 1.0F, 1.0F);
 			this.a(wh.i, (float) var5);
-			int var6 = NumberConverter.c(this.s);
-			int var7 = NumberConverter.c(this.t - 0.20000000298023224D);
-			int var8 = NumberConverter.c(this.u);
-			atr var9 = this.o.p(new dt(var6, var7, var8)).c();
+			int var6 = DataTypesConverter.toFixedPointInt(this.locationX);
+			int var7 = DataTypesConverter.toFixedPointInt(this.locationY - 0.20000000298023224D);
+			int var8 = DataTypesConverter.toFixedPointInt(this.locationZ);
+			Block var9 = this.o.p(new Position(var6, var7, var8)).c();
 			if (var9.r() != bof.a) {
-				atx var10 = var9.H;
+				BlockSound var10 = var9.H;
 				this.a(var10.c(), var10.d() * 0.5F, var10.e() * 0.75F);
 			}
 		}
@@ -768,13 +768,13 @@ public abstract class EntityLiving extends Entity {
 
 	public int bq() {
 		int var1 = 0;
-		amj[] var2 = this.at();
+		ItemStack[] var2 = this.at();
 		int var3 = var2.length;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			amj var5 = var2[var4];
-			if (var5 != null && var5.b() instanceof ajn) {
-				int var6 = ((ajn) var5.b()).c;
+			ItemStack var5 = var2[var4];
+			if (var5 != null && var5.getItem() instanceof ajn) {
+				int var6 = ((ajn) var5.getItem()).c;
 				var1 += var6;
 			}
 		}
@@ -858,11 +858,11 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public final int bu() {
-		return this.ac.a(9);
+		return this.dataWatcher.a(9);
 	}
 
 	public final void o(int var1) {
-		this.ac.b(9, Byte.valueOf((byte) var1));
+		this.dataWatcher.b(9, Byte.valueOf((byte) var1));
 	}
 
 	private int n() {
@@ -874,7 +874,7 @@ public abstract class EntityLiving extends Entity {
 			this.aq = -1;
 			this.ap = true;
 			if (this.o instanceof WorldServer) {
-				((WorldServer) this.o).s().a((Entity) this, (id) (new ir(this, 0)));
+				((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketAnimation(this, 0)));
 			}
 		}
 
@@ -915,11 +915,11 @@ public abstract class EntityLiving extends Entity {
 		return xs.a;
 	}
 
-	public abstract amj bz();
+	public abstract ItemStack bz();
 
-	public abstract amj p(int var1);
+	public abstract ItemStack p(int var1);
 
-	public abstract void c(int var1, amj var2);
+	public abstract void c(int var1, ItemStack var2);
 
 	public void d(boolean var1) {
 		super.d(var1);
@@ -934,7 +934,7 @@ public abstract class EntityLiving extends Entity {
 
 	}
 
-	public abstract amj[] at();
+	public abstract ItemStack[] at();
 
 	protected float bA() {
 		return 1.0F;
@@ -949,27 +949,27 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public void q(Entity var1) {
-		double var3 = var1.s;
+		double var3 = var1.locationX;
 		double var5 = var1.aQ().b + (double) var1.K;
-		double var7 = var1.u;
+		double var7 = var1.locationZ;
 		byte var9 = 1;
 
 		for (int var10 = -var9; var10 <= var9; ++var10) {
 			for (int var11 = -var9; var11 < var9; ++var11) {
 				if (var10 != 0 || var11 != 0) {
-					int var12 = (int) (this.s + (double) var10);
-					int var13 = (int) (this.u + (double) var11);
+					int var12 = (int) (this.locationX + (double) var10);
+					int var13 = (int) (this.locationZ + (double) var11);
 					brt var2 = this.aQ().c((double) var10, 1.0D, (double) var11);
 					if (this.o.a(var2).isEmpty()) {
-						if (World.a((ard) this.o, new dt(var12, (int) this.t, var13))) {
-							this.a(this.s + (double) var10, this.t + 1.0D, this.u + (double) var11);
+						if (World.a((ard) this.o, new Position(var12, (int) this.locationY, var13))) {
+							this.a(this.locationX + (double) var10, this.locationY + 1.0D, this.locationZ + (double) var11);
 							return;
 						}
 
-						if (World.a((ard) this.o, new dt(var12, (int) this.t - 1, var13)) || this.o.p(new dt(var12, (int) this.t - 1, var13)).c().r() == bof.h) {
-							var3 = this.s + (double) var10;
-							var5 = this.t + 1.0D;
-							var7 = this.u + (double) var11;
+						if (World.a((ard) this.o, new Position(var12, (int) this.locationY - 1, var13)) || this.o.p(new Position(var12, (int) this.locationY - 1, var13)).c().r() == bof.h) {
+							var3 = this.locationX + (double) var10;
+							var5 = this.locationY + 1.0D;
+							var7 = this.locationZ + (double) var11;
 						}
 					}
 				}
@@ -984,26 +984,26 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	protected void bE() {
-		this.w = (double) this.bD();
+		this.motionY = (double) this.bD();
 		if (this.a(wp.j)) {
-			this.w += (double) ((float) (this.b(wp.j).c() + 1) * 0.1F);
+			this.motionY += (double) ((float) (this.b(wp.j).c() + 1) * 0.1F);
 		}
 
 		if (this.ax()) {
-			float var1 = this.y * 0.017453292F;
-			this.v -= (double) (NumberConverter.a(var1) * 0.2F);
-			this.x += (double) (NumberConverter.b(var1) * 0.2F);
+			float var1 = this.yaw * 0.017453292F;
+			this.motionX -= (double) (DataTypesConverter.a(var1) * 0.2F);
+			this.motionZ += (double) (DataTypesConverter.b(var1) * 0.2F);
 		}
 
 		this.ai = true;
 	}
 
 	protected void bF() {
-		this.w += 0.03999999910593033D;
+		this.motionY += 0.03999999910593033D;
 	}
 
 	protected void bG() {
-		this.w += 0.03999999910593033D;
+		this.motionY += 0.03999999910593033D;
 	}
 
 	public void g(float var1, float var2) {
@@ -1012,8 +1012,8 @@ public abstract class EntityLiving extends Entity {
 		if (this.bL()) {
 			float var5;
 			float var6;
-			if (this.V() && (!(this instanceof ahd) || !((ahd) this).by.flying)) {
-				var8 = this.t;
+			if (this.V() && (!(this instanceof EntityHuman) || !((EntityHuman) this).by.flying)) {
+				var8 = this.locationY;
 				var5 = 0.8F;
 				var6 = 0.02F;
 				var10 = (float) aph.b((Entity) this);
@@ -1031,29 +1031,29 @@ public abstract class EntityLiving extends Entity {
 				}
 
 				this.a(var1, var2, var6);
-				this.d(this.v, this.w, this.x);
-				this.v *= (double) var5;
-				this.w *= 0.800000011920929D;
-				this.x *= (double) var5;
-				this.w -= 0.02D;
-				if (this.D && this.c(this.v, this.w + 0.6000000238418579D - this.t + var8, this.x)) {
-					this.w = 0.30000001192092896D;
+				this.d(this.motionX, this.motionY, this.motionZ);
+				this.motionX *= (double) var5;
+				this.motionY *= 0.800000011920929D;
+				this.motionZ *= (double) var5;
+				this.motionY -= 0.02D;
+				if (this.D && this.c(this.motionX, this.motionY + 0.6000000238418579D - this.locationY + var8, this.motionZ)) {
+					this.motionY = 0.30000001192092896D;
 				}
-			} else if (this.ab() && (!(this instanceof ahd) || !((ahd) this).by.flying)) {
-				var8 = this.t;
+			} else if (this.ab() && (!(this instanceof EntityHuman) || !((EntityHuman) this).by.flying)) {
+				var8 = this.locationY;
 				this.a(var1, var2, 0.02F);
-				this.d(this.v, this.w, this.x);
-				this.v *= 0.5D;
-				this.w *= 0.5D;
-				this.x *= 0.5D;
-				this.w -= 0.02D;
-				if (this.D && this.c(this.v, this.w + 0.6000000238418579D - this.t + var8, this.x)) {
-					this.w = 0.30000001192092896D;
+				this.d(this.motionX, this.motionY, this.motionZ);
+				this.motionX *= 0.5D;
+				this.motionY *= 0.5D;
+				this.motionZ *= 0.5D;
+				this.motionY -= 0.02D;
+				if (this.D && this.c(this.motionX, this.motionY + 0.6000000238418579D - this.locationY + var8, this.motionZ)) {
+					this.motionY = 0.30000001192092896D;
 				}
 			} else {
 				float var3 = 0.91F;
 				if (this.C) {
-					var3 = this.o.p(new dt(NumberConverter.c(this.s), NumberConverter.c(this.aQ().b) - 1, NumberConverter.c(this.u))).c().K * 0.91F;
+					var3 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).c().K * 0.91F;
 				}
 
 				float var4 = 0.16277136F / (var3 * var3 * var3);
@@ -1066,49 +1066,49 @@ public abstract class EntityLiving extends Entity {
 				this.a(var1, var2, var5);
 				var3 = 0.91F;
 				if (this.C) {
-					var3 = this.o.p(new dt(NumberConverter.c(this.s), NumberConverter.c(this.aQ().b) - 1, NumberConverter.c(this.u))).c().K * 0.91F;
+					var3 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).c().K * 0.91F;
 				}
 
 				if (this.j_()) {
 					var6 = 0.15F;
-					this.v = NumberConverter.a(this.v, (double) (-var6), (double) var6);
-					this.x = NumberConverter.a(this.x, (double) (-var6), (double) var6);
+					this.motionX = DataTypesConverter.a(this.motionX, (double) (-var6), (double) var6);
+					this.motionZ = DataTypesConverter.a(this.motionZ, (double) (-var6), (double) var6);
 					this.O = 0.0F;
-					if (this.w < -0.15D) {
-						this.w = -0.15D;
+					if (this.motionY < -0.15D) {
+						this.motionY = -0.15D;
 					}
 
-					boolean var7 = this.aw() && this instanceof ahd;
-					if (var7 && this.w < 0.0D) {
-						this.w = 0.0D;
+					boolean var7 = this.aw() && this instanceof EntityHuman;
+					if (var7 && this.motionY < 0.0D) {
+						this.motionY = 0.0D;
 					}
 				}
 
-				this.d(this.v, this.w, this.x);
+				this.d(this.motionX, this.motionY, this.motionZ);
 				if (this.D && this.j_()) {
-					this.w = 0.2D;
+					this.motionY = 0.2D;
 				}
 
-				if (this.o.D && (!this.o.e(new dt((int) this.s, 0, (int) this.u)) || !this.o.f(new dt((int) this.s, 0, (int) this.u)).o())) {
-					if (this.t > 0.0D) {
-						this.w = -0.1D;
+				if (this.o.D && (!this.o.e(new Position((int) this.locationX, 0, (int) this.locationZ)) || !this.o.f(new Position((int) this.locationX, 0, (int) this.locationZ)).o())) {
+					if (this.locationY > 0.0D) {
+						this.motionY = -0.1D;
 					} else {
-						this.w = 0.0D;
+						this.motionY = 0.0D;
 					}
 				} else {
-					this.w -= 0.08D;
+					this.motionY -= 0.08D;
 				}
 
-				this.w *= 0.9800000190734863D;
-				this.v *= (double) var3;
-				this.x *= (double) var3;
+				this.motionY *= 0.9800000190734863D;
+				this.motionX *= (double) var3;
+				this.motionZ *= (double) var3;
 			}
 		}
 
 		this.ay = this.az;
-		var8 = this.s - this.p;
-		double var9 = this.u - this.r;
-		var10 = NumberConverter.a(var8 * var8 + var9 * var9) * 4.0F;
+		var8 = this.locationX - this.p;
+		double var9 = this.locationZ - this.r;
+		var10 = DataTypesConverter.a(var8 * var8 + var9 * var9) * 4.0F;
 		if (var10 > 1.0F) {
 			var10 = 1.0F;
 		}
@@ -1150,10 +1150,10 @@ public abstract class EntityLiving extends Entity {
 			}
 
 			for (int var2 = 0; var2 < 5; ++var2) {
-				amj var3 = this.h[var2];
-				amj var4 = this.p(var2);
-				if (!amj.b(var4, var3)) {
-					((WorldServer) this.o).s().a((Entity) this, (id) (new la(this.F(), var2, var4)));
+				ItemStack var3 = this.h[var2];
+				ItemStack var4 = this.p(var2);
+				if (!ItemStack.b(var4, var3)) {
+					((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketEntityEquipment(this.getId(), var2, var4)));
 					if (var3 != null) {
 						this.c.a(var3.B());
 					}
@@ -1162,7 +1162,7 @@ public abstract class EntityLiving extends Entity {
 						this.c.b(var4.B());
 					}
 
-					this.h[var2] = var4 == null ? null : var4.k();
+					this.h[var2] = var4 == null ? null : var4.getCopy();
 				}
 			}
 
@@ -1172,8 +1172,8 @@ public abstract class EntityLiving extends Entity {
 		}
 
 		this.m();
-		double var9 = this.s - this.p;
-		double var10 = this.u - this.r;
+		double var9 = this.locationX - this.p;
+		double var10 = this.locationZ - this.r;
 		float var5 = (float) (var9 * var9 + var10 * var10);
 		float var6 = this.aG;
 		float var7 = 0.0F;
@@ -1186,7 +1186,7 @@ public abstract class EntityLiving extends Entity {
 		}
 
 		if (this.ax > 0.0F) {
-			var6 = this.y;
+			var6 = this.yaw;
 		}
 
 		if (!this.C) {
@@ -1199,11 +1199,11 @@ public abstract class EntityLiving extends Entity {
 		this.o.B.b();
 		this.o.B.a("rangeChecks");
 
-		while (this.y - this.A < -180.0F) {
+		while (this.yaw - this.A < -180.0F) {
 			this.A -= 360.0F;
 		}
 
-		while (this.y - this.A >= 180.0F) {
+		while (this.yaw - this.A >= 180.0F) {
 			this.A += 360.0F;
 		}
 
@@ -1215,11 +1215,11 @@ public abstract class EntityLiving extends Entity {
 			this.aH += 360.0F;
 		}
 
-		while (this.z - this.B < -180.0F) {
+		while (this.pitch - this.B < -180.0F) {
 			this.B -= 360.0F;
 		}
 
-		while (this.z - this.B >= 180.0F) {
+		while (this.pitch - this.B >= 180.0F) {
 			this.B += 360.0F;
 		}
 
@@ -1236,9 +1236,9 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	protected float h(float var1, float var2) {
-		float var3 = NumberConverter.g(var1 - this.aG);
+		float var3 = DataTypesConverter.g(var1 - this.aG);
 		this.aG += var3 * 0.3F;
-		float var4 = NumberConverter.g(this.y - this.aG);
+		float var4 = DataTypesConverter.g(this.yaw - this.aG);
 		boolean var5 = var4 < -90.0F || var4 >= 90.0F;
 		if (var4 < -75.0F) {
 			var4 = -75.0F;
@@ -1248,7 +1248,7 @@ public abstract class EntityLiving extends Entity {
 			var4 = 75.0F;
 		}
 
-		this.aG = this.y - var4;
+		this.aG = this.yaw - var4;
 		if (var4 * var4 > 2500.0F) {
 			this.aG += var4 * 0.2F;
 		}
@@ -1266,31 +1266,31 @@ public abstract class EntityLiving extends Entity {
 		}
 
 		if (this.ba > 0) {
-			double var1 = this.s + (this.bb - this.s) / (double) this.ba;
-			double var3 = this.t + (this.bc - this.t) / (double) this.ba;
-			double var5 = this.u + (this.bd - this.u) / (double) this.ba;
-			double var7 = NumberConverter.g(this.be - (double) this.y);
-			this.y = (float) ((double) this.y + var7 / (double) this.ba);
-			this.z = (float) ((double) this.z + (this.bf - (double) this.z) / (double) this.ba);
+			double var1 = this.locationX + (this.bb - this.locationX) / (double) this.ba;
+			double var3 = this.locationY + (this.bc - this.locationY) / (double) this.ba;
+			double var5 = this.locationZ + (this.bd - this.locationZ) / (double) this.ba;
+			double var7 = DataTypesConverter.g(this.be - (double) this.yaw);
+			this.yaw = (float) ((double) this.yaw + var7 / (double) this.ba);
+			this.pitch = (float) ((double) this.pitch + (this.bf - (double) this.pitch) / (double) this.ba);
 			--this.ba;
 			this.b(var1, var3, var5);
-			this.b(this.y, this.z);
+			this.b(this.yaw, this.pitch);
 		} else if (!this.bL()) {
-			this.v *= 0.98D;
-			this.w *= 0.98D;
-			this.x *= 0.98D;
+			this.motionX *= 0.98D;
+			this.motionY *= 0.98D;
+			this.motionZ *= 0.98D;
 		}
 
-		if (Math.abs(this.v) < 0.005D) {
-			this.v = 0.0D;
+		if (Math.abs(this.motionX) < 0.005D) {
+			this.motionX = 0.0D;
 		}
 
-		if (Math.abs(this.w) < 0.005D) {
-			this.w = 0.0D;
+		if (Math.abs(this.motionY) < 0.005D) {
+			this.motionY = 0.0D;
 		}
 
-		if (Math.abs(this.x) < 0.005D) {
-			this.x = 0.0D;
+		if (Math.abs(this.motionZ) < 0.005D) {
+			this.motionZ = 0.0D;
 		}
 
 		this.o.B.a("ai");
@@ -1386,22 +1386,22 @@ public abstract class EntityLiving extends Entity {
 		if (!var1.I && !this.o.D) {
 			qn var3 = ((WorldServer) this.o).s();
 			if (var1 instanceof adw) {
-				var3.a(var1, (id) (new ln(var1.F(), this.F())));
+				var3.a(var1, (Packet) (new PacketCollectItem(var1.getId(), this.getId())));
 			}
 
 			if (var1 instanceof ahj) {
-				var3.a(var1, (id) (new ln(var1.F(), this.F())));
+				var3.a(var1, (Packet) (new PacketCollectItem(var1.getId(), this.getId())));
 			}
 
 			if (var1 instanceof xk) {
-				var3.a(var1, (id) (new ln(var1.F(), this.F())));
+				var3.a(var1, (Packet) (new PacketCollectItem(var1.getId(), this.getId())));
 			}
 		}
 
 	}
 
 	public boolean t(Entity var1) {
-		return this.o.a(new brw(this.s, this.t + (double) this.aR(), this.u), new brw(var1.s, var1.t + (double) var1.aR(), var1.u)) == null;
+		return this.o.a(new brw(this.locationX, this.locationY + (double) this.aR(), this.locationZ), new brw(var1.locationX, var1.locationY + (double) var1.aR(), var1.locationZ)) == null;
 	}
 
 	public brw ap() {
@@ -1410,9 +1410,9 @@ public abstract class EntityLiving extends Entity {
 
 	public brw d(float var1) {
 		if (var1 == 1.0F) {
-			return this.f(this.z, this.aI);
+			return this.f(this.pitch, this.aI);
 		} else {
-			float var2 = this.B + (this.z - this.B) * var1;
+			float var2 = this.B + (this.pitch - this.B) * var1;
 			float var3 = this.aJ + (this.aI - this.aJ) * var1;
 			return this.f(var2, var3);
 		}

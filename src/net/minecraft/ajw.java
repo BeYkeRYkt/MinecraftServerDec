@@ -2,25 +2,25 @@ package net.minecraft;
 
 import java.util.List;
 
-public class ajw extends alq {
+public class ajw extends Item {
 
 	public ajw() {
-		this.h = 1;
-		this.a(akf.e);
+		this.maxStackSize = 1;
+		this.a(CreativeModeTab.e);
 	}
 
-	public amj a(amj var1, World var2, ahd var3) {
+	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
 		float var4 = 1.0F;
-		float var5 = var3.B + (var3.z - var3.B) * var4;
-		float var6 = var3.A + (var3.y - var3.A) * var4;
-		double var7 = var3.p + (var3.s - var3.p) * (double) var4;
-		double var9 = var3.q + (var3.t - var3.q) * (double) var4 + (double) var3.aR();
-		double var11 = var3.r + (var3.u - var3.r) * (double) var4;
+		float var5 = var3.B + (var3.pitch - var3.B) * var4;
+		float var6 = var3.A + (var3.yaw - var3.A) * var4;
+		double var7 = var3.p + (var3.locationX - var3.p) * (double) var4;
+		double var9 = var3.q + (var3.locationY - var3.q) * (double) var4 + (double) var3.aR();
+		double var11 = var3.r + (var3.locationZ - var3.r) * (double) var4;
 		brw var13 = new brw(var7, var9, var11);
-		float var14 = NumberConverter.b(-var6 * 0.017453292F - 3.1415927F);
-		float var15 = NumberConverter.a(-var6 * 0.017453292F - 3.1415927F);
-		float var16 = -NumberConverter.b(-var5 * 0.017453292F);
-		float var17 = NumberConverter.a(-var5 * 0.017453292F);
+		float var14 = DataTypesConverter.b(-var6 * 0.017453292F - 3.1415927F);
+		float var15 = DataTypesConverter.a(-var6 * 0.017453292F - 3.1415927F);
+		float var16 = -DataTypesConverter.b(-var5 * 0.017453292F);
+		float var17 = DataTypesConverter.a(-var5 * 0.017453292F);
 		float var18 = var15 * var16;
 		float var20 = var14 * var16;
 		double var21 = 5.0D;
@@ -49,13 +49,13 @@ public class ajw extends alq {
 				return var1;
 			} else {
 				if (var24.a == brv.b) {
-					dt var33 = var24.a();
+					Position var33 = var24.a();
 					if (var2.p(var33).c() == aty.aH) {
 						var33 = var33.b();
 					}
 
 					adu var34 = new adu(var2, (double) ((float) var33.n() + 0.5F), (double) ((float) var33.o() + 1.0F), (double) ((float) var33.p() + 0.5F));
-					var34.y = (float) (((NumberConverter.c((double) (var3.y * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
+					var34.yaw = (float) (((DataTypesConverter.toFixedPointInt((double) (var3.yaw * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
 					if (!var2.a((Entity) var34, var34.aQ().b(-0.1D, -0.1D, -0.1D)).isEmpty()) {
 						return var1;
 					}
@@ -68,7 +68,7 @@ public class ajw extends alq {
 						--var1.b;
 					}
 
-					var3.b(ty.J[alq.b((alq) this)]);
+					var3.b(ty.J[Item.getId((Item) this)]);
 				}
 
 				return var1;

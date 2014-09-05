@@ -86,15 +86,15 @@ public class cl extends ab implements y {
 			Iterator var9 = var7.getPlayerList().players.iterator();
 
 			while (var9.hasNext()) {
-				ahd var10 = (ahd) var9.next();
-				if (var10 != var1 && var7.getPlayerList().g(var10.cc()) && var2.a(var1)) {
-					var10.a((ho) var8);
+				EntityHuman var10 = (EntityHuman) var9.next();
+				if (var10 != var1 && var7.getPlayerList().g(var10.getGameProfile()) && var2.a(var1)) {
+					var10.a((IJSONComponent) var8);
 				}
 			}
 		}
 
 		if (var1 != var7 && var7.worlds[0].Q().b("logAdminCommands")) {
-			var7.a((ho) var8);
+			var7.a((IJSONComponent) var8);
 		}
 
 		boolean var11 = var7.worlds[0].Q().b("sendCommandFeedback");

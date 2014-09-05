@@ -12,10 +12,10 @@ public class aem extends afm {
 		this.i.a(4, new aen(this));
 		this.i.a(5, new zo(this, 1.0D));
 		this.i.a(7, new zy(this, 1.0D));
-		this.i.a(8, new zh(this, ahd.class, 8.0F));
+		this.i.a(8, new zh(this, EntityHuman.class, 8.0F));
 		this.i.a(8, new zx(this));
 		this.bg.a(1, new aal(this, true, new Class[0]));
-		this.bg.a(2, new aaq(this, ahd.class, true));
+		this.bg.a(2, new aaq(this, EntityHuman.class, true));
 	}
 
 	protected void aW() {
@@ -27,7 +27,7 @@ public class aem extends afm {
 
 	protected void h() {
 		super.h();
-		this.ac.a(16, new Byte((byte) 0));
+		this.dataWatcher.a(16, new Byte((byte) 0));
 	}
 
 	protected String z() {
@@ -47,17 +47,17 @@ public class aem extends afm {
 	}
 
 	public void m() {
-		if (!this.C && this.w < 0.0D) {
-			this.w *= 0.6D;
+		if (!this.C && this.motionY < 0.0D) {
+			this.motionY *= 0.6D;
 		}
 
 		if (this.o.D) {
 			if (this.V.nextInt(24) == 0 && !this.R()) {
-				this.o.a(this.s + 0.5D, this.t + 0.5D, this.u + 0.5D, "fire.fire", 1.0F + this.V.nextFloat(), this.V.nextFloat() * 0.7F + 0.3F, false);
+				this.o.a(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.fire", 1.0F + this.V.nextFloat(), this.V.nextFloat() * 0.7F + 0.3F, false);
 			}
 
 			for (int var1 = 0; var1 < 2; ++var1) {
-				this.o.a(ew.m, this.s + (this.V.nextDouble() - 0.5D) * (double) this.J, this.t + this.V.nextDouble() * (double) this.K, this.u + (this.V.nextDouble() - 0.5D) * (double) this.J, 0.0D, 0.0D, 0.0D, new int[0]);
+				this.o.a(ew.m, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 		}
 
@@ -76,8 +76,8 @@ public class aem extends afm {
 		}
 
 		EntityLiving var1 = this.u();
-		if (var1 != null && var1.t + (double) var1.aR() > this.t + (double) this.aR() + (double) this.b) {
-			this.w += (0.30000001192092896D - this.w) * 0.30000001192092896D;
+		if (var1 != null && var1.locationY + (double) var1.aR() > this.locationY + (double) this.aR() + (double) this.b) {
+			this.motionY += (0.30000001192092896D - this.motionY) * 0.30000001192092896D;
 			this.ai = true;
 		}
 
@@ -87,7 +87,7 @@ public class aem extends afm {
 	public void e(float var1, float var2) {
 	}
 
-	protected alq A() {
+	protected Item A() {
 		return amk.bv;
 	}
 
@@ -107,18 +107,18 @@ public class aem extends afm {
 	}
 
 	public boolean n() {
-		return (this.ac.a(16) & 1) != 0;
+		return (this.dataWatcher.a(16) & 1) != 0;
 	}
 
 	public void a(boolean var1) {
-		byte var2 = this.ac.a(16);
+		byte var2 = this.dataWatcher.a(16);
 		if (var1) {
 			var2 = (byte) (var2 | 1);
 		} else {
 			var2 &= -2;
 		}
 
-		this.ac.b(16, Byte.valueOf(var2));
+		this.dataWatcher.b(16, Byte.valueOf(var2));
 	}
 
 	protected boolean m_() {

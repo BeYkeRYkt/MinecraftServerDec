@@ -16,9 +16,9 @@ public class aep extends afm {
 		this.i.a(3, new yp(this, new aeq(this), 6.0F, 1.0D, 1.2D));
 		this.i.a(4, new zk(this, 1.0D, false));
 		this.i.a(5, new zy(this, 0.8D));
-		this.i.a(6, new zh(this, ahd.class, 8.0F));
+		this.i.a(6, new zh(this, EntityHuman.class, 8.0F));
 		this.i.a(6, new zx(this));
-		this.bg.a(1, new aaq(this, ahd.class, true));
+		this.bg.a(1, new aaq(this, EntityHuman.class, true));
 		this.bg.a(2, new aal(this, false, new Class[0]));
 	}
 
@@ -42,14 +42,14 @@ public class aep extends afm {
 
 	protected void h() {
 		super.h();
-		this.ac.a(16, Byte.valueOf((byte) -1));
-		this.ac.a(17, Byte.valueOf((byte) 0));
-		this.ac.a(18, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(16, Byte.valueOf((byte) -1));
+		this.dataWatcher.a(17, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(18, Byte.valueOf((byte) 0));
 	}
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		if (this.ac.a(17) == 1) {
+		if (this.dataWatcher.a(17) == 1) {
 			var1.put("powered", true);
 		}
 
@@ -60,7 +60,7 @@ public class aep extends afm {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.ac.b(17, Byte.valueOf((byte) (var1.getBoolean("powered") ? 1 : 0)));
+		this.dataWatcher.b(17, Byte.valueOf((byte) (var1.getBoolean("powered") ? 1 : 0)));
 		if (var1.isTagAssignableFrom("Fuse", 99)) {
 			this.bk = var1.getShort("Fuse");
 		}
@@ -112,13 +112,13 @@ public class aep extends afm {
 	public void a(wh var1) {
 		super.a(var1);
 		if (var1.j() instanceof afw) {
-			int var2 = alq.b(amk.cq);
-			int var3 = alq.b(amk.cB);
+			int var2 = Item.getId(amk.cq);
+			int var3 = Item.getId(amk.cB);
 			int var4 = var2 + this.V.nextInt(var3 - var2 + 1);
-			this.a(alq.b(var4), 1);
+			this.a(Item.getById(var4), 1);
 		} else if (var1.j() instanceof aep && var1.j() != this && ((aep) var1.j()).n() && ((aep) var1.j()).cn()) {
 			((aep) var1.j()).co();
-			this.a(new amj(amk.bX, 1, 4), 0.0F);
+			this.a(new ItemStack(amk.bX, 1, 4), 0.0F);
 		}
 
 	}
@@ -128,30 +128,30 @@ public class aep extends afm {
 	}
 
 	public boolean n() {
-		return this.ac.a(17) == 1;
+		return this.dataWatcher.a(17) == 1;
 	}
 
-	protected alq A() {
+	protected Item A() {
 		return amk.H;
 	}
 
 	public int ck() {
-		return this.ac.a(16);
+		return this.dataWatcher.a(16);
 	}
 
 	public void a(int var1) {
-		this.ac.b(16, Byte.valueOf((byte) var1));
+		this.dataWatcher.b(16, Byte.valueOf((byte) var1));
 	}
 
 	public void a(ads var1) {
 		super.a(var1);
-		this.ac.b(17, Byte.valueOf((byte) 1));
+		this.dataWatcher.b(17, Byte.valueOf((byte) 1));
 	}
 
-	protected boolean a(ahd var1) {
-		amj var2 = var1.bg.h();
-		if (var2 != null && var2.b() == amk.d) {
-			this.o.a(this.s + 0.5D, this.t + 0.5D, this.u + 0.5D, "fire.ignite", 1.0F, this.V.nextFloat() * 0.4F + 0.8F);
+	protected boolean a(EntityHuman var1) {
+		ItemStack var2 = var1.playerInventory.getItemInHand();
+		if (var2 != null && var2.getItem() == amk.d) {
+			this.o.a(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.ignite", 1.0F, this.V.nextFloat() * 0.4F + 0.8F);
 			var1.bv();
 			if (!this.o.D) {
 				this.cm();
@@ -167,18 +167,18 @@ public class aep extends afm {
 		if (!this.o.D) {
 			boolean var1 = this.o.Q().b("mobGriefing");
 			float var2 = this.n() ? 2.0F : 1.0F;
-			this.o.a(this, this.s, this.t, this.u, (float) this.bl * var2, var1);
+			this.o.a(this, this.locationX, this.locationY, this.locationZ, (float) this.bl * var2, var1);
 			this.J();
 		}
 
 	}
 
 	public boolean cl() {
-		return this.ac.a(18) != 0;
+		return this.dataWatcher.a(18) != 0;
 	}
 
 	public void cm() {
-		this.ac.b(18, Byte.valueOf((byte) 1));
+		this.dataWatcher.b(18, Byte.valueOf((byte) 1));
 	}
 
 	public boolean cn() {

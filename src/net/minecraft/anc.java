@@ -1,17 +1,17 @@
 package net.minecraft;
 
-public class anc extends alq {
+public class anc extends Item {
 
-	private atr a;
-	private atr b;
+	private Block a;
+	private Block b;
 
-	public anc(atr var1, atr var2) {
+	public anc(Block var1, Block var2) {
 		this.a = var1;
 		this.b = var2;
-		this.a(akf.l);
+		this.a(CreativeModeTab.l);
 	}
 
-	public boolean a(amj var1, ahd var2, World var3, dt var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
 		if (var5 != ej.b) {
 			return false;
 		} else if (!var2.a(var4.a(var5), var5, var1)) {

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class ja implements id<ik> {
+public class ja implements Packet<PlayPacketListener> {
 
 	private aqm a;
 	private jb[] b;
@@ -18,32 +18,32 @@ public class ja implements id<ik> {
 
 	}
 
-	public void a(hd var1) {
+	public void readData(PacketDataSerializer var1) {
 		this.a = new aqm(var1.readInt(), var1.readInt());
-		this.b = new jb[var1.e()];
+		this.b = new jb[var1.readVarInt()];
 
 		for (int var2 = 0; var2 < this.b.length; ++var2) {
-			this.b[var2] = new jb(this, var1.readShort(), (bec) atr.d.a(var1.e()));
+			this.b[var2] = new jb(this, var1.readShort(), (bec) Block.d.a(var1.readVarInt()));
 		}
 
 	}
 
-	public void b(hd var1) {
+	public void writeData(PacketDataSerializer var1) {
 		var1.writeInt(this.a.a);
 		var1.writeInt(this.a.b);
-		var1.b(this.b.length);
+		var1.writeVarInt(this.b.length);
 		jb[] var2 = this.b;
 		int var3 = var2.length;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			jb var5 = var2[var4];
 			var1.writeShort(var5.b());
-			var1.b(atr.d.b(var5.c()));
+			var1.writeVarInt(Block.d.b(var5.c()));
 		}
 
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 

@@ -3,16 +3,16 @@ package net.minecraft;
 final class ih implements Runnable {
 
 	// $FF: synthetic field
-	final id a;
+	final Packet a;
 	// $FF: synthetic field
-	final hg b;
+	final PacketListener b;
 
-	ih(id var1, hg var2) {
+	ih(Packet var1, PacketListener var2) {
 		this.a = var1;
 		this.b = var2;
 	}
 
 	public void run() {
-		this.a.a(this.b);
+		this.a.handlePacket(this.b);
 	}
 }

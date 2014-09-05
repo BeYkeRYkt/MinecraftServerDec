@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class azi extends atr {
+public class azi extends Block {
 
 	public static final bev a = bev.a("variant", azj.class);
 	public static final int b = azj.a.a();
@@ -10,7 +10,7 @@ public class azi extends atr {
 	public azi() {
 		super(bof.e);
 		this.j(this.L.b().a(a, azj.a));
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
 	public int a(bec var1) {

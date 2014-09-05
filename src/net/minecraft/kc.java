@@ -1,25 +1,25 @@
 package net.minecraft;
 
-public class kc implements id<ik> {
+public class kc implements Packet<PlayPacketListener> {
 
-	private dt a;
+	private Position a;
 
 	public kc() {
 	}
 
-	public kc(dt var1) {
+	public kc(Position var1) {
 		this.a = var1;
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 
-	public void a(hd var1) {
-		this.a = var1.c();
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readPosition();
 	}
 
-	public void b(hd var1) {
-		var1.a(this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writePosition(this.a);
 	}
 }

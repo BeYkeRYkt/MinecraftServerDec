@@ -18,7 +18,7 @@ public class brt {
 		this.f = Math.max(var5, var11);
 	}
 
-	public brt(dt var1, dt var2) {
+	public brt(Position var1, Position var2) {
 		this.a = (double) var1.n();
 		this.b = (double) var1.o();
 		this.c = (double) var1.p();

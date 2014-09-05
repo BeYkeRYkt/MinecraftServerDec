@@ -63,25 +63,25 @@ public class PlaySoundCommand extends AbstractCommand {
 					throw new di("commands.playsound.playerTooFar", new Object[] { var5.d_() });
 				}
 
-				double var23 = var7 - var5.s;
-				double var25 = var9 - var5.t;
-				double var27 = var11 - var5.u;
+				double var23 = var7 - var5.locationX;
+				double var25 = var9 - var5.locationY;
+				double var27 = var11 - var5.locationZ;
 				double var29 = Math.sqrt(var23 * var23 + var25 * var25 + var27 * var27);
 				if (var29 > 0.0D) {
-					var7 = var5.s + var23 / var29 * 2.0D;
-					var9 = var5.t + var25 / var29 * 2.0D;
-					var11 = var5.u + var27 / var29 * 2.0D;
+					var7 = var5.locationX + var23 / var29 * 2.0D;
+					var9 = var5.locationY + var25 / var29 * 2.0D;
+					var11 = var5.locationZ + var27 / var29 * 2.0D;
 				}
 
 				var13 = var17;
 			}
 
-			var5.a.a((id) (new jv(var4, var7, var9, var11, (float) var13, (float) var15)));
+			var5.a.a((Packet) (new jv(var4, var7, var9, var11, (float) var13, (float) var15)));
 			a(var1, this, "commands.playsound.success", new Object[] { var4, var5.d_() });
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return var2.length == 2 ? a(var2, MinecraftServer.getInstance().I()) : (var2.length > 2 && var2.length <= 5 ? a(var2, 2, var3) : null);
 	}
 

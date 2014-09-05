@@ -1,13 +1,13 @@
 package net.minecraft;
 
-public class azq extends atr {
+public class azq extends Block {
 
 	public static final bev a = bev.a("type", azr.class);
 
 	public azq() {
 		super(bof.e);
 		this.j(this.L.b().a(a, azr.a));
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
 	public int a(bec var1) {

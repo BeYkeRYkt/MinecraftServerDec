@@ -11,7 +11,7 @@ public class asz extends avt {
 		super(bof.g);
 		this.j(this.L.b().a(a, ej.c).a(b, Integer.valueOf(0)));
 		this.e(0);
-		this.a(akf.c);
+		this.a(CreativeModeTab.c);
 	}
 
 	public boolean d() {
@@ -22,12 +22,12 @@ public class asz extends avt {
 		return false;
 	}
 
-	public bec a(World var1, dt var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		ej var9 = var8.aO().e();
 		return super.a(var1, var2, var3, var4, var5, var6, var7, var8).a(a, var9).a(b, Integer.valueOf(var7 >> 2));
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
 		if (!var1.D) {
 			var4.a((vv) (new ata(var1, var2)));
 		}
@@ -39,7 +39,7 @@ public class asz extends avt {
 		return ((Integer) var1.b(b)).intValue();
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		ej var3 = (ej) var1.p(var2).b(a);
 		if (var3.k() == el.a) {
 			this.a(0.0F, 0.0F, 0.125F, 1.0F, 1.0F, 0.875F);
@@ -53,7 +53,7 @@ public class asz extends avt {
 		var1.a(true);
 	}
 
-	public void a_(World var1, dt var2) {
+	public void a_(World var1, Position var2) {
 		var1.b(1022, var2, 0);
 	}
 

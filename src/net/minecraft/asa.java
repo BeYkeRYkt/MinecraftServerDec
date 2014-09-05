@@ -16,12 +16,12 @@ public class asa extends arm {
 		this.au.clear();
 	}
 
-	public void a(World var1, Random var2, dt var3) {
+	public void a(World var1, Random var2, Position var3) {
 		super.a(var1, var2, var3);
 		if (var2.nextInt(1000) == 0) {
 			int var4 = var2.nextInt(16) + 8;
 			int var5 = var2.nextInt(16) + 8;
-			dt var6 = var1.m(var3.a(var4, 0, var5)).a();
+			Position var6 = var1.m(var3.a(var4, 0, var5)).a();
 			(new bhn()).b(var1, var2, var6);
 		}
 

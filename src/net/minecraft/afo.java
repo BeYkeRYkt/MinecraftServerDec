@@ -56,7 +56,7 @@ public class afo extends agj {
 		}
 
 		if (this.bl > 0 && this.bn != null && this.bc() == null) {
-			ahd var2 = this.o.b(this.bn);
+			EntityHuman var2 = this.o.b(this.bn);
 			this.b((EntityLiving) var2);
 			this.aL = var2;
 			this.aM = this.bd();
@@ -66,7 +66,7 @@ public class afo extends agj {
 	}
 
 	public boolean bQ() {
-		return this.o.aa() != Difficulty.PEACEFUL;
+		return this.o.getDifficulty() != Difficulty.PEACEFUL;
 	}
 
 	public boolean bR() {
@@ -90,7 +90,7 @@ public class afo extends agj {
 		String var2 = var1.getString("HurtBy");
 		if (var2.length() > 0) {
 			this.bn = UUID.fromString(var2);
-			ahd var3 = this.o.b(this.bn);
+			EntityHuman var3 = this.o.b(this.bn);
 			this.b((EntityLiving) var3);
 			if (var3 != null) {
 				this.aL = var3;
@@ -105,7 +105,7 @@ public class afo extends agj {
 			return false;
 		} else {
 			Entity var3 = var1.j();
-			if (var3 instanceof ahd) {
+			if (var3 instanceof EntityHuman) {
 				this.b(var3);
 			}
 
@@ -154,7 +154,7 @@ public class afo extends agj {
 
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return false;
 	}
 
@@ -163,7 +163,7 @@ public class afo extends agj {
 	}
 
 	protected void a(vu var1) {
-		this.c(0, new amj(amk.B));
+		this.c(0, new ItemStack(amk.B));
 	}
 
 	public xq a(vu var1, xq var2) {

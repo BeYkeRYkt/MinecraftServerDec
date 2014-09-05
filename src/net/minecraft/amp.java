@@ -1,18 +1,18 @@
 package net.minecraft;
 
-public class amp extends alq {
+public class amp extends Item {
 
 	private static final eo a = new amq();
 	private final adz b;
 
 	public amp(adz var1) {
-		this.h = 1;
+		this.maxStackSize = 1;
 		this.b = var1;
-		this.a(akf.e);
+		this.a(CreativeModeTab.e);
 		ave.M.a(this, a);
 	}
 
-	public boolean a(amj var1, ahd var2, World var3, dt var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
 		bec var9 = var3.p(var4);
 		if (ati.d(var9)) {
 			if (!var3.D) {

@@ -27,12 +27,12 @@ class afv extends zb {
 		if (this.b <= 0) {
 			World var1 = this.a.o;
 			Random var2 = this.a.bb();
-			dt var3 = new dt(this.a);
+			Position var3 = new Position(this.a);
 
 			for (int var4 = 0; var4 <= 5 && var4 >= -5; var4 = var4 <= 0 ? 1 - var4 : 0 - var4) {
 				for (int var5 = 0; var5 <= 10 && var5 >= -10; var5 = var5 <= 0 ? 1 - var5 : 0 - var5) {
 					for (int var6 = 0; var6 <= 10 && var6 >= -10; var6 = var6 <= 0 ? 1 - var6 : 0 - var6) {
-						dt var7 = var3.a(var5, var4, var6);
+						Position var7 = var3.a(var5, var4, var6);
 						bec var8 = var1.p(var7);
 						if (var8.c() == aty.be) {
 							if (var1.Q().b("mobGriefing")) {

@@ -54,15 +54,15 @@ public class NBTFloatTag extends NBTNumberTag {
 	}
 
 	public int toInt() {
-		return NumberConverter.d(this.f);
+		return DataTypesConverter.d(this.f);
 	}
 
 	public short toShort() {
-		return (short) (NumberConverter.d(this.f) & '\uffff');
+		return (short) (DataTypesConverter.d(this.f) & '\uffff');
 	}
 
 	public byte toByte() {
-		return (byte) (NumberConverter.d(this.f) & 255);
+		return (byte) (DataTypesConverter.d(this.f) & 255);
 	}
 
 	public double toDouble() {

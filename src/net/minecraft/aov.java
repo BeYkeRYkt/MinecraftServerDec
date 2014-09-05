@@ -14,11 +14,11 @@ public class aov {
 			Object var3 = this.b[0][var2];
 
 			for (int var4 = 0; var4 < this.b.length - 1; ++var4) {
-				alq var5 = (alq) this.b[var4 + 1][var2];
-				var1.a(new amj(var5), new Object[] { this.a[var4], Character.valueOf('#'), amk.y, Character.valueOf('X'), var3 });
+				Item var5 = (Item) this.b[var4 + 1][var2];
+				var1.a(new ItemStack(var5), new Object[] { this.a[var4], Character.valueOf('#'), amk.y, Character.valueOf('X'), var3 });
 			}
 		}
 
-		var1.a(new amj(amk.be), new Object[] { " #", "# ", Character.valueOf('#'), amk.j });
+		var1.a(new ItemStack(amk.be), new Object[] { " #", "# ", Character.valueOf('#'), amk.j });
 	}
 }

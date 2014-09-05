@@ -1,18 +1,18 @@
 package net.minecraft;
 
-public class ajy extends alq {
+public class ajy extends Item {
 
 	public ajy() {
-		this.a(akf.k);
+		this.a(CreativeModeTab.k);
 	}
 
-	public amj a(amj var1, World var2, ahd var3) {
+	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
 		bru var4 = this.a(var2, var3, true);
 		if (var4 == null) {
 			return var1;
 		} else {
 			if (var4.a == brv.b) {
-				dt var5 = var4.a();
+				Position var5 = var4.a();
 				if (!var2.a(var3, var5)) {
 					return var1;
 				}
@@ -23,13 +23,13 @@ public class ajy extends alq {
 
 				if (var2.p(var5).c().r() == bof.h) {
 					--var1.b;
-					var3.b(ty.J[alq.b((alq) this)]);
+					var3.b(ty.J[Item.getId((Item) this)]);
 					if (var1.b <= 0) {
-						return new amj(amk.bz);
+						return new ItemStack(amk.bz);
 					}
 
-					if (!var3.bg.a(new amj(amk.bz))) {
-						var3.a(new amj(amk.bz, 1, 0), false);
+					if (!var3.playerInventory.a(new ItemStack(amk.bz))) {
+						var3.a(new ItemStack(amk.bz, 1, 0), false);
 					}
 				}
 			}

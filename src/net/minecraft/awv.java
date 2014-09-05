@@ -1,10 +1,10 @@
 package net.minecraft;
 
-public class awv extends atr {
+public class awv extends Block {
 
 	public awv() {
 		super(bof.e);
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
 	public boh g(bec var1) {

@@ -57,7 +57,7 @@ public class aqo {
 						double var19 = this.g;
 
 						for (float var21 = 0.3F; var14 > 0.0F; var14 -= 0.22500001F) {
-							dt var22 = new dt(var15, var17, var19);
+							Position var22 = new Position(var15, var17, var19);
 							bec var23 = this.d.p(var22);
 							if (var23.c().r() != bof.a) {
 								float var24 = this.h != null ? this.h.a(this, this.d, var22, var23) : var23.c().a((Entity) null);
@@ -79,12 +79,12 @@ public class aqo {
 
 		this.j.addAll(var1);
 		float var30 = this.i * 2.0F;
-		var4 = NumberConverter.c(this.e - (double) var30 - 1.0D);
-		var5 = NumberConverter.c(this.e + (double) var30 + 1.0D);
-		int var31 = NumberConverter.c(this.f - (double) var30 - 1.0D);
-		int var7 = NumberConverter.c(this.f + (double) var30 + 1.0D);
-		int var32 = NumberConverter.c(this.g - (double) var30 - 1.0D);
-		int var9 = NumberConverter.c(this.g + (double) var30 + 1.0D);
+		var4 = DataTypesConverter.toFixedPointInt(this.e - (double) var30 - 1.0D);
+		var5 = DataTypesConverter.toFixedPointInt(this.e + (double) var30 + 1.0D);
+		int var31 = DataTypesConverter.toFixedPointInt(this.f - (double) var30 - 1.0D);
+		int var7 = DataTypesConverter.toFixedPointInt(this.f + (double) var30 + 1.0D);
+		int var32 = DataTypesConverter.toFixedPointInt(this.g - (double) var30 - 1.0D);
+		int var9 = DataTypesConverter.toFixedPointInt(this.g + (double) var30 + 1.0D);
 		List var33 = this.d.b(this.h, new brt((double) var4, (double) var31, (double) var32, (double) var5, (double) var7, (double) var9));
 		brw var11 = new brw(this.e, this.f, this.g);
 
@@ -93,10 +93,10 @@ public class aqo {
 			if (!var13.aV()) {
 				double var35 = var13.f(this.e, this.f, this.g) / (double) var30;
 				if (var35 <= 1.0D) {
-					double var16 = var13.s - this.e;
-					double var18 = var13.t + (double) var13.aR() - this.f;
-					double var20 = var13.u - this.g;
-					double var36 = (double) NumberConverter.a(var16 * var16 + var18 * var18 + var20 * var20);
+					double var16 = var13.locationX - this.e;
+					double var18 = var13.locationY + (double) var13.aR() - this.f;
+					double var20 = var13.locationZ - this.g;
+					double var36 = (double) DataTypesConverter.a(var16 * var16 + var18 * var18 + var20 * var20);
 					if (var36 != 0.0D) {
 						var16 /= var36;
 						var18 /= var36;
@@ -105,11 +105,11 @@ public class aqo {
 						double var26 = (1.0D - var35) * var37;
 						var13.a(wh.a(this), (float) ((int) ((var26 * var26 + var26) / 2.0D * 8.0D * (double) var30 + 1.0D)));
 						double var28 = apu.a(var13, var26);
-						var13.v += var16 * var28;
-						var13.w += var18 * var28;
-						var13.x += var20 * var28;
-						if (var13 instanceof ahd) {
-							this.k.put((ahd) var13, new brw(var16 * var26, var18 * var26, var20 * var26));
+						var13.motionX += var16 * var28;
+						var13.motionY += var18 * var28;
+						var13.motionZ += var20 * var28;
+						if (var13 instanceof EntityHuman) {
+							this.k.put((EntityHuman) var13, new brw(var16 * var26, var18 * var26, var20 * var26));
 						}
 					}
 				}
@@ -127,13 +127,13 @@ public class aqo {
 		}
 
 		Iterator var2;
-		dt var3;
+		Position var3;
 		if (this.b) {
 			var2 = this.j.iterator();
 
 			while (var2.hasNext()) {
-				var3 = (dt) var2.next();
-				atr var4 = this.d.p(var3).c();
+				var3 = (Position) var2.next();
+				Block var4 = this.d.p(var3).c();
 				if (var1) {
 					double var5 = (double) ((float) var3.n() + this.d.s.nextFloat());
 					double var7 = (double) ((float) var3.o() + this.d.s.nextFloat());
@@ -141,7 +141,7 @@ public class aqo {
 					double var11 = var5 - this.e;
 					double var13 = var7 - this.f;
 					double var15 = var9 - this.g;
-					double var17 = (double) NumberConverter.a(var11 * var11 + var13 * var13 + var15 * var15);
+					double var17 = (double) DataTypesConverter.a(var11 * var11 + var13 * var13 + var15 * var15);
 					var11 /= var17;
 					var13 /= var17;
 					var15 /= var17;
@@ -169,7 +169,7 @@ public class aqo {
 			var2 = this.j.iterator();
 
 			while (var2.hasNext()) {
-				var3 = (dt) var2.next();
+				var3 = (Position) var2.next();
 				if (this.d.p(var3).c().r() == bof.a && this.d.p(var3.b()).c().m() && this.c.nextInt(3) == 0) {
 					this.d.a(var3, aty.ab.P());
 				}

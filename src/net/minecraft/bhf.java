@@ -11,7 +11,7 @@ public class bhf extends bhc {
 		this.a = var2;
 	}
 
-	public boolean b(World var1, Random var2, dt var3) {
+	public boolean b(World var1, Random var2, Position var3) {
 		int var4 = var2.nextInt(3) + 5;
 		if (this.a) {
 			var4 += var2.nextInt(7);
@@ -34,7 +34,7 @@ public class bhf extends bhc {
 				for (var8 = var3.n() - var7; var8 <= var3.n() + var7 && var5; ++var8) {
 					for (var9 = var3.p() - var7; var9 <= var3.p() + var7 && var5; ++var9) {
 						if (var6 >= 0 && var6 < 256) {
-							if (!this.a(var1.p(new dt(var8, var6, var9)).c())) {
+							if (!this.a(var1.p(new Position(var8, var6, var9)).c())) {
 								var5 = false;
 							}
 						} else {
@@ -47,7 +47,7 @@ public class bhf extends bhc {
 			if (!var5) {
 				return false;
 			} else {
-				atr var16 = var1.p(var3.b()).c();
+				Block var16 = var1.p(var3.b()).c();
 				if ((var16 == aty.c || var16 == aty.d || var16 == aty.ak) && var3.o() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 
@@ -62,8 +62,8 @@ public class bhf extends bhc {
 							for (int var12 = var3.p() - var9; var12 <= var3.p() + var9; ++var12) {
 								int var13 = var12 - var3.p();
 								if (Math.abs(var11) != var9 || Math.abs(var13) != var9 || var2.nextInt(2) != 0 && var8 != 0) {
-									dt var14 = new dt(var10, var17, var12);
-									atr var15 = var1.p(var14).c();
+									Position var14 = new Position(var10, var17, var12);
+									Block var15 = var1.p(var14).c();
 									if (var15.r() == bof.a || var15.r() == bof.j) {
 										this.a(var1, var14, aty.t, ayx.c.a());
 									}
@@ -73,7 +73,7 @@ public class bhf extends bhc {
 					}
 
 					for (var17 = 0; var17 < var4; ++var17) {
-						atr var18 = var1.p(var3.b(var17)).c();
+						Block var18 = var1.p(var3.b(var17)).c();
 						if (var18.r() == bof.a || var18.r() == bof.j) {
 							this.a(var1, var3.b(var17), aty.r, ayx.c.a());
 						}

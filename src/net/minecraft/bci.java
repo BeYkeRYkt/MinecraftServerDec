@@ -11,10 +11,10 @@ public class bci extends bcm {
 	private List i;
 	private String j;
 
-	public void a(amj var1) {
+	public void a(ItemStack var1) {
 		this.f = null;
-		if (var1.n() && var1.o().isTagAssignableFrom("BlockEntityTag", 10)) {
-			NBTCompoundTag var2 = var1.o().getCompound("BlockEntityTag");
+		if (var1.hasTag() && var1.getTag().isTagAssignableFrom("BlockEntityTag", 10)) {
+			NBTCompoundTag var2 = var1.getTag().getCompound("BlockEntityTag");
 			if (var2.hasKey("Patterns")) {
 				this.f = (NBTListTag) var2.getList("Patterns", 10).getCopy();
 			}
@@ -53,7 +53,7 @@ public class bci extends bcm {
 		this.g = true;
 	}
 
-	public id x_() {
+	public Packet x_() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		this.b(var1);
 		return new iu(this.c, 6, var1);
@@ -63,25 +63,25 @@ public class bci extends bcm {
 		return this.a;
 	}
 
-	public static int b(amj var0) {
+	public static int b(ItemStack var0) {
 		NBTCompoundTag var1 = var0.a("BlockEntityTag", false);
 		return var1 != null && var1.hasKey("Base") ? var1.getInt("Base") : var0.i();
 	}
 
-	public static int c(amj var0) {
+	public static int c(ItemStack var0) {
 		NBTCompoundTag var1 = var0.a("BlockEntityTag", false);
 		return var1 != null && var1.hasKey("Patterns") ? var1.getList("Patterns", 10).getSize() : 0;
 	}
 
-	public static void e(amj var0) {
+	public static void e(ItemStack var0) {
 		NBTCompoundTag var1 = var0.a("BlockEntityTag", false);
 		if (var1 != null && var1.isTagAssignableFrom("Patterns", 9)) {
 			NBTListTag var2 = var1.getList("Patterns", 10);
 			if (var2.getSize() > 0) {
 				var2.removeTag(var2.getSize() - 1);
 				if (var2.isEmpty()) {
-					var0.o().remove("BlockEntityTag");
-					if (var0.o().isEmpty()) {
+					var0.getTag().remove("BlockEntityTag");
+					if (var0.getTag().isEmpty()) {
 						var0.d((NBTCompoundTag) null);
 					}
 				}

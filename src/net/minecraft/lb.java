@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class lb implements id<ik> {
+public class lb implements Packet<PlayPacketListener> {
 
 	private float a;
 	private int b;
@@ -15,19 +15,19 @@ public class lb implements id<ik> {
 		this.c = var3;
 	}
 
-	public void a(hd var1) {
+	public void readData(PacketDataSerializer var1) {
 		this.a = var1.readFloat();
-		this.c = var1.e();
-		this.b = var1.e();
+		this.c = var1.readVarInt();
+		this.b = var1.readVarInt();
 	}
 
-	public void b(hd var1) {
+	public void writeData(PacketDataSerializer var1) {
 		var1.writeFloat(this.a);
-		var1.b(this.c);
-		var1.b(this.b);
+		var1.writeVarInt(this.c);
+		var1.writeVarInt(this.b);
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

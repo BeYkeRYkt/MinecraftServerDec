@@ -8,17 +8,17 @@ public class bos extends bpa {
 	private arm[] f;
 	private final bgl g;
 
-	public bos(long var1, bpa var3, are var4, String var5) {
+	public bos(long var1, bpa var3, LevelType var4, String var5) {
 		super(var1);
 		this.c = new arm[] { arm.r, arm.r, arm.r, arm.Y, arm.Y, arm.q };
 		this.d = new arm[] { arm.t, arm.S, arm.s, arm.q, arm.Q, arm.v };
 		this.e = new arm[] { arm.t, arm.s, arm.u, arm.q };
 		this.f = new arm[] { arm.B, arm.B, arm.B, arm.T };
 		this.a = var3;
-		if (var4 == are.h) {
+		if (var4 == LevelType.DEFAULT_1_1) {
 			this.c = new arm[] { arm.r, arm.t, arm.s, arm.v, arm.q, arm.u };
 			this.g = null;
-		} else if (var4 == are.f) {
+		} else if (var4 == LevelType.CUSTOM) {
 			this.g = bgn.a(var5).b();
 		} else {
 			this.g = null;

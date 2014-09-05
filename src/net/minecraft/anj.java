@@ -2,20 +2,20 @@ package net.minecraft;
 
 public class anj extends aju {
 
-	public anj(atr var1) {
+	public anj(Block var1) {
 		super(var1);
 		this.d(0);
 		this.a(true);
 	}
 
-	public boolean a(amj var1, ahd var2, World var3, dt var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
 		if (var1.b == 0) {
 			return false;
 		} else if (!var2.a(var4, var5, var1)) {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
-			atr var10 = var9.c();
+			Block var10 = var9.c();
 			if (var10 != this.a && var5 != ej.b) {
 				var4 = var4.a(var5);
 				var9 = var3.p(var4);

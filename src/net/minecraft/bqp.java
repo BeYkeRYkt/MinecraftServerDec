@@ -5,9 +5,9 @@ import java.util.concurrent.Callable;
 class bqp implements Callable {
 
 	// $FF: synthetic field
-	final bqo a;
+	final WorldData a;
 
-	bqp(bqo var1) {
+	bqp(WorldData var1) {
 		this.a = var1;
 	}
 

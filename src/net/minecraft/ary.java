@@ -6,7 +6,7 @@ public class ary {
 
 	protected World a;
 	protected Random b;
-	protected dt c;
+	protected Position c;
 	protected bgl d;
 	protected bhp e = new bhl(4);
 	protected bhp f;
@@ -61,7 +61,7 @@ public class ary {
 		this.L = true;
 	}
 
-	public void a(World var1, Random var2, arm var3, dt var4) {
+	public void a(World var1, Random var2, arm var3, Position var4) {
 		if (this.a != null) {
 			throw new RuntimeException("Already decorating");
 		} else {
@@ -122,7 +122,7 @@ public class ary {
 		}
 
 		int var5;
-		dt var7;
+		Position var7;
 		for (var3 = 0; var3 < var2; ++var3) {
 			var4 = this.b.nextInt(16) + 8;
 			var5 = this.b.nextInt(16) + 8;
@@ -178,7 +178,7 @@ public class ary {
 
 			while (true) {
 				if (var7.o() > 0) {
-					dt var13 = var7.b();
+					Position var13 = var7.b();
 					if (this.a.d(var13)) {
 						var7 = var13;
 						continue;
@@ -195,7 +195,7 @@ public class ary {
 			if (this.b.nextInt(4) == 0) {
 				var4 = this.b.nextInt(16) + 8;
 				var5 = this.b.nextInt(16) + 8;
-				dt var12 = this.a.m(this.c.a(var4, 0, var5));
+				Position var12 = this.a.m(this.c.a(var4, 0, var5));
 				this.t.b(this.a, this.b, var12);
 			}
 
@@ -251,7 +251,7 @@ public class ary {
 		}
 
 		if (this.L) {
-			dt var10;
+			Position var10;
 			for (var3 = 0; var3 < 50; ++var3) {
 				var10 = this.c.a(this.b.nextInt(16) + 8, this.b.nextInt(this.b.nextInt(248) + 8), this.b.nextInt(16) + 8);
 				(new bin(aty.i)).b(this.a, this.b, var10);
@@ -280,7 +280,7 @@ public class ary {
 		}
 
 		for (var5 = 0; var5 < var1; ++var5) {
-			dt var6 = this.c.a(this.b.nextInt(16), this.b.nextInt(var4 - var3) + var3, this.b.nextInt(16));
+			Position var6 = this.c.a(this.b.nextInt(16), this.b.nextInt(var4 - var3) + var3, this.b.nextInt(16));
 			var2.b(this.a, this.b, var6);
 		}
 
@@ -288,7 +288,7 @@ public class ary {
 
 	protected void b(int var1, bhp var2, int var3, int var4) {
 		for (int var5 = 0; var5 < var1; ++var5) {
-			dt var6 = this.c.a(this.b.nextInt(16), this.b.nextInt(var4) + this.b.nextInt(var4) + var3 - var4, this.b.nextInt(16));
+			Position var6 = this.c.a(this.b.nextInt(16), this.b.nextInt(var4) + this.b.nextInt(var4) + var3 - var4, this.b.nextInt(16));
 			var2.b(this.a, this.b, var6);
 		}
 

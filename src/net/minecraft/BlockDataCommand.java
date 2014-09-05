@@ -21,7 +21,7 @@ public class BlockDataCommand extends AbstractCommand {
 			throw new dp("commands.blockdata.usage", new Object[0]);
 		} else {
 			var1.a(ag.b, 0);
-			dt var3 = a(var1, var2, 0, false);
+			Position var3 = a(var1, var2, 0, false);
 			World var4 = var1.e();
 			if (!var4.e(var3)) {
 				throw new di("commands.blockdata.outOfWorld", new Object[0]);
@@ -59,7 +59,7 @@ public class BlockDataCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return var2.length > 0 && var2.length <= 3 ? a(var2, 0, var3) : null;
 	}
 }

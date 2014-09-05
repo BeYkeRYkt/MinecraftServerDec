@@ -9,10 +9,10 @@ public class aft extends afm {
 		this.a(0.4F, 0.3F);
 		this.i.a(1, new yy(this));
 		this.i.a(3, this.b = new afv(this));
-		this.i.a(4, new zk(this, ahd.class, 1.0D, false));
+		this.i.a(4, new zk(this, EntityHuman.class, 1.0D, false));
 		this.i.a(5, new afu(this));
 		this.bg.a(1, new aal(this, true, new Class[0]));
-		this.bg.a(2, new aaq(this, ahd.class, true));
+		this.bg.a(2, new aaq(this, EntityHuman.class, true));
 	}
 
 	public float aR() {
@@ -54,20 +54,20 @@ public class aft extends afm {
 		}
 	}
 
-	protected void a(dt var1, atr var2) {
+	protected void a(Position var1, Block var2) {
 		this.a("mob.silverfish.step", 0.15F, 1.0F);
 	}
 
-	protected alq A() {
+	protected Item A() {
 		return null;
 	}
 
 	public void s_() {
-		this.aG = this.y;
+		this.aG = this.yaw;
 		super.s_();
 	}
 
-	public float a(dt var1) {
+	public float a(Position var1) {
 		return this.o.p(var1.b()).c() == aty.b ? 10.0F : super.a(var1);
 	}
 
@@ -77,7 +77,7 @@ public class aft extends afm {
 
 	public boolean bQ() {
 		if (super.bQ()) {
-			ahd var1 = this.o.a(this, 5.0D);
+			EntityHuman var1 = this.o.a(this, 5.0D);
 			return var1 == null;
 		} else {
 			return false;

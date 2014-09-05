@@ -11,7 +11,7 @@ public class bai extends atg {
 		this.a(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, var2, 0.5F + var1);
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
@@ -19,7 +19,7 @@ public class bai extends atg {
 		return false;
 	}
 
-	public boolean b(ard var1, dt var2) {
+	public boolean b(ard var1, Position var2) {
 		return true;
 	}
 
@@ -31,11 +31,11 @@ public class bai extends atg {
 		return new bdj();
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return amk.ap;
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {

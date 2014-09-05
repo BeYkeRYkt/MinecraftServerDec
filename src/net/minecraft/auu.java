@@ -11,17 +11,17 @@ public class auu extends auc implements atz {
 		this.a(true);
 		float var1 = 0.5F;
 		this.a(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 0.25F, 0.5F + var1);
-		this.a((akf) null);
+		this.a((CreativeModeTab) null);
 		this.c(0.0F);
 		this.a(h);
 		this.J();
 	}
 
-	protected boolean c(atr var1) {
+	protected boolean c(Block var1) {
 		return var1 == aty.ak;
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		super.b(var1, var2, var3, var4);
 		if (var1.l(var2.a()) >= 9) {
 			int var5 = ((Integer) var3.b(a)).intValue();
@@ -35,8 +35,8 @@ public class auu extends auc implements atz {
 
 	}
 
-	public void g(World var1, dt var2, bec var3) {
-		int var4 = ((Integer) var3.b(a)).intValue() + NumberConverter.a(var1.s, 2, 5);
+	public void g(World var1, Position var2, bec var3) {
+		int var4 = ((Integer) var3.b(a)).intValue() + DataTypesConverter.a(var1.s, 2, 5);
 		if (var4 > 7) {
 			var4 = 7;
 		}
@@ -44,9 +44,9 @@ public class auu extends auc implements atz {
 		var1.a(var2, var3.a(a, Integer.valueOf(var4)), 2);
 	}
 
-	protected static float a(atr var0, World var1, dt var2) {
+	protected static float a(Block var0, World var1, Position var2) {
 		float var3 = 1.0F;
-		dt var4 = var2.b();
+		Position var4 = var2.b();
 
 		for (int var5 = -1; var5 <= 1; ++var5) {
 			for (int var6 = -1; var6 <= 1; ++var6) {
@@ -67,10 +67,10 @@ public class auu extends auc implements atz {
 			}
 		}
 
-		dt var12 = var2.c();
-		dt var13 = var2.d();
-		dt var14 = var2.e();
-		dt var15 = var2.f();
+		Position var12 = var2.c();
+		Position var13 = var2.d();
+		Position var14 = var2.e();
+		Position var15 = var2.f();
 		boolean var9 = var0 == var1.p(var14).c() || var0 == var1.p(var15).c();
 		boolean var10 = var0 == var1.p(var12).c() || var0 == var1.p(var13).c();
 		if (var9 && var10) {
@@ -85,19 +85,19 @@ public class auu extends auc implements atz {
 		return var3;
 	}
 
-	public boolean f(World var1, dt var2, bec var3) {
+	public boolean f(World var1, Position var2, bec var3) {
 		return (var1.k(var2) >= 8 || var1.i(var2)) && this.c(var1.p(var2.b()).c());
 	}
 
-	protected alq j() {
+	protected Item j() {
 		return amk.N;
 	}
 
-	protected alq l() {
+	protected Item l() {
 		return amk.O;
 	}
 
-	public void a(World var1, dt var2, bec var3, float var4, int var5) {
+	public void a(World var1, Position var2, bec var3, float var4, int var5) {
 		super.a(var1, var2, var3, var4, 0);
 		if (!var1.D) {
 			int var6 = ((Integer) var3.b(a)).intValue();
@@ -106,7 +106,7 @@ public class auu extends auc implements atz {
 
 				for (int var8 = 0; var8 < var7; ++var8) {
 					if (var1.s.nextInt(15) <= var6) {
-						a(var1, var2, new amj(this.j(), 1, 0));
+						a(var1, var2, new ItemStack(this.j(), 1, 0));
 					}
 				}
 			}
@@ -114,19 +114,19 @@ public class auu extends auc implements atz {
 		}
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return ((Integer) var1.b(a)).intValue() == 7 ? this.l() : this.j();
 	}
 
-	public boolean a(World var1, dt var2, bec var3, boolean var4) {
+	public boolean a(World var1, Position var2, bec var3, boolean var4) {
 		return ((Integer) var3.b(a)).intValue() < 7;
 	}
 
-	public boolean a(World var1, Random var2, dt var3, bec var4) {
+	public boolean a(World var1, Random var2, Position var3, bec var4) {
 		return true;
 	}
 
-	public void b(World var1, Random var2, dt var3, bec var4) {
+	public void b(World var1, Random var2, Position var3, bec var4) {
 		this.g(var1, var3, var4);
 	}
 

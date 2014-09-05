@@ -2,14 +2,14 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class axp extends atr {
+public class axp extends Block {
 
 	protected axp() {
 		super(bof.C);
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return amk.bf;
 	}
 

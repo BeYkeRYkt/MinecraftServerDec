@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class azv extends atr {
+public class azv extends Block {
 
 	private final boolean a;
 
@@ -15,7 +15,7 @@ public class azv extends atr {
 
 	}
 
-	public void c(World var1, dt var2, bec var3) {
+	public void c(World var1, Position var2, bec var3) {
 		if (!var1.D) {
 			if (this.a && !var1.z(var2)) {
 				var1.a(var2, aty.bJ.P(), 2);
@@ -26,10 +26,10 @@ public class azv extends atr {
 		}
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (!var1.D) {
 			if (this.a && !var1.z(var2)) {
-				var1.a(var2, (atr) this, 4);
+				var1.a(var2, (Block) this, 4);
 			} else if (!this.a && var1.z(var2)) {
 				var1.a(var2, aty.bK.P(), 2);
 			}
@@ -37,7 +37,7 @@ public class azv extends atr {
 		}
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (!var1.D) {
 			if (this.a && !var1.z(var2)) {
 				var1.a(var2, aty.bJ.P(), 2);
@@ -46,11 +46,11 @@ public class azv extends atr {
 		}
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
-		return alq.a(aty.bJ);
+	public Item a(bec var1, Random var2, int var3) {
+		return Item.getItemOf(aty.bJ);
 	}
 
-	protected amj i(bec var1) {
-		return new amj(aty.bJ);
+	protected ItemStack i(bec var1) {
+		return new ItemStack(aty.bJ);
 	}
 }

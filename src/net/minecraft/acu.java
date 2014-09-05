@@ -21,7 +21,7 @@ public class acu extends xx {
 		this.i.a(6, new yt(this, 1.0D));
 		this.i.a(7, new zy(this, 1.0D));
 		this.i.a(8, new yr(this, 8.0F));
-		this.i.a(9, new zh(this, ahd.class, 8.0F));
+		this.i.a(9, new zh(this, EntityHuman.class, 8.0F));
 		this.i.a(9, new zx(this));
 		this.bg.a(1, new aau(this));
 		this.bg.a(2, new aav(this));
@@ -55,17 +55,17 @@ public class acu extends xx {
 	}
 
 	protected void E() {
-		this.ac.b(18, Float.valueOf(this.bm()));
+		this.dataWatcher.b(18, Float.valueOf(this.bm()));
 	}
 
 	protected void h() {
 		super.h();
-		this.ac.a(18, new Float(this.bm()));
-		this.ac.a(19, new Byte((byte) 0));
-		this.ac.a(20, new Byte((byte) akv.o.a()));
+		this.dataWatcher.a(18, new Float(this.bm()));
+		this.dataWatcher.a(19, new Byte((byte) 0));
+		this.dataWatcher.a(20, new Byte((byte) akv.o.a()));
 	}
 
-	protected void a(dt var1, atr var2) {
+	protected void a(Position var1, Block var2) {
 		this.a("mob.wolf.step", 0.15F, 1.0F);
 	}
 
@@ -85,7 +85,7 @@ public class acu extends xx {
 	}
 
 	protected String z() {
-		return this.ct() ? "mob.wolf.growl" : (this.V.nextInt(3) == 0 ? (this.cj() && this.ac.d(18) < 10.0F ? "mob.wolf.whine" : "mob.wolf.panting") : "mob.wolf.bark");
+		return this.ct() ? "mob.wolf.growl" : (this.V.nextInt(3) == 0 ? (this.cj() && this.dataWatcher.d(18) < 10.0F ? "mob.wolf.whine" : "mob.wolf.panting") : "mob.wolf.bark");
 	}
 
 	protected String bn() {
@@ -100,8 +100,8 @@ public class acu extends xx {
 		return 0.4F;
 	}
 
-	protected alq A() {
-		return alq.b(-1);
+	protected Item A() {
+		return Item.getById(-1);
 	}
 
 	public void m() {
@@ -149,12 +149,12 @@ public class acu extends xx {
 
 			if (this.bq > 0.4F) {
 				float var1 = (float) this.aQ().b;
-				int var2 = (int) (NumberConverter.a((this.bq - 0.4F) * 3.1415927F) * 7.0F);
+				int var2 = (int) (DataTypesConverter.a((this.bq - 0.4F) * 3.1415927F) * 7.0F);
 
 				for (int var3 = 0; var3 < var2; ++var3) {
 					float var4 = (this.V.nextFloat() * 2.0F - 1.0F) * this.J * 0.5F;
 					float var5 = (this.V.nextFloat() * 2.0F - 1.0F) * this.J * 0.5F;
-					this.o.a(ew.f, this.s + (double) var4, (double) (var1 + 0.8F), this.u + (double) var5, this.v, this.w, this.x, new int[0]);
+					this.o.a(ew.f, this.locationX + (double) var4, (double) (var1 + 0.8F), this.locationZ + (double) var5, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 			}
 		}
@@ -175,7 +175,7 @@ public class acu extends xx {
 		} else {
 			Entity var3 = var1.j();
 			this.bk.a(false);
-			if (var3 != null && !(var3 instanceof ahd) && !(var3 instanceof ahj)) {
+			if (var3 != null && !(var3 instanceof EntityHuman) && !(var3 instanceof ahj)) {
 				var2 = (var2 + 1.0F) / 2.0F;
 			}
 
@@ -203,30 +203,30 @@ public class acu extends xx {
 		this.a(afs.e).a(4.0D);
 	}
 
-	public boolean a(ahd var1) {
-		amj var2 = var1.bg.h();
+	public boolean a(EntityHuman var1) {
+		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (this.cj()) {
 			if (var2 != null) {
-				if (var2.b() instanceof all) {
-					all var3 = (all) var2.b();
-					if (var3.g() && this.ac.d(18) < 20.0F) {
+				if (var2.getItem() instanceof all) {
+					all var3 = (all) var2.getItem();
+					if (var3.g() && this.dataWatcher.d(18) < 20.0F) {
 						if (!var1.by.instabuild) {
 							--var2.b;
 						}
 
 						this.g((float) var3.h(var2));
 						if (var2.b <= 0) {
-							var1.bg.a(var1.bg.c, (amj) null);
+							var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
 						}
 
 						return true;
 					}
-				} else if (var2.b() == amk.aW) {
+				} else if (var2.getItem() == amk.aW) {
 					akv var4 = akv.a(var2.i());
 					if (var4 != this.cu()) {
 						this.a(var4);
 						if (!var1.by.instabuild && --var2.b <= 0) {
-							var1.bg.a(var1.bg.c, (amj) null);
+							var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
 						}
 
 						return true;
@@ -240,13 +240,13 @@ public class acu extends xx {
 				this.h.n();
 				this.d((EntityLiving) null);
 			}
-		} else if (var2 != null && var2.b() == amk.aX && !this.ct()) {
+		} else if (var2 != null && var2.getItem() == amk.aX && !this.ct()) {
 			if (!var1.by.instabuild) {
 				--var2.b;
 			}
 
 			if (var2.b <= 0) {
-				var1.bg.a(var1.bg.c, (amj) null);
+				var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
 			}
 
 			if (!this.o.D) {
@@ -271,8 +271,8 @@ public class acu extends xx {
 		return super.a(var1);
 	}
 
-	public boolean d(amj var1) {
-		return var1 == null ? false : (!(var1.b() instanceof all) ? false : ((all) var1.b()).g());
+	public boolean d(ItemStack var1) {
+		return var1 == null ? false : (!(var1.getItem() instanceof all) ? false : ((all) var1.getItem()).g());
 	}
 
 	public int bU() {
@@ -280,25 +280,25 @@ public class acu extends xx {
 	}
 
 	public boolean ct() {
-		return (this.ac.a(16) & 2) != 0;
+		return (this.dataWatcher.a(16) & 2) != 0;
 	}
 
 	public void o(boolean var1) {
-		byte var2 = this.ac.a(16);
+		byte var2 = this.dataWatcher.a(16);
 		if (var1) {
-			this.ac.b(16, Byte.valueOf((byte) (var2 | 2)));
+			this.dataWatcher.b(16, Byte.valueOf((byte) (var2 | 2)));
 		} else {
-			this.ac.b(16, Byte.valueOf((byte) (var2 & -3)));
+			this.dataWatcher.b(16, Byte.valueOf((byte) (var2 & -3)));
 		}
 
 	}
 
 	public akv cu() {
-		return akv.a(this.ac.a(20) & 15);
+		return akv.a(this.dataWatcher.a(20) & 15);
 	}
 
 	public void a(akv var1) {
-		this.ac.b(20, Byte.valueOf((byte) (var1.b() & 15)));
+		this.dataWatcher.b(20, Byte.valueOf((byte) (var1.b() & 15)));
 	}
 
 	public acu b(ws var1) {
@@ -314,9 +314,9 @@ public class acu extends xx {
 
 	public void p(boolean var1) {
 		if (var1) {
-			this.ac.b(19, Byte.valueOf((byte) 1));
+			this.dataWatcher.b(19, Byte.valueOf((byte) 1));
 		} else {
-			this.ac.b(19, Byte.valueOf((byte) 0));
+			this.dataWatcher.b(19, Byte.valueOf((byte) 0));
 		}
 
 	}
@@ -335,7 +335,7 @@ public class acu extends xx {
 	}
 
 	public boolean cv() {
-		return this.ac.a(19) == 1;
+		return this.dataWatcher.a(19) == 1;
 	}
 
 	protected boolean C() {
@@ -351,7 +351,7 @@ public class acu extends xx {
 				}
 			}
 
-			return var1 instanceof ahd && var2 instanceof ahd && !((ahd) var2).a((ahd) var1) ? false : !(var1 instanceof abt) || !((abt) var1).cm();
+			return var1 instanceof EntityHuman && var2 instanceof EntityHuman && !((EntityHuman) var2).a((EntityHuman) var1) ? false : !(var1 instanceof abt) || !((abt) var1).cm();
 		} else {
 			return false;
 		}

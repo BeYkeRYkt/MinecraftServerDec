@@ -8,13 +8,13 @@ public class age extends afm {
 		this.i.a(1, new yy(this));
 		this.i.a(2, this.a);
 		this.i.a(3, new zg(this, 0.4F));
-		this.i.a(4, new agf(this, ahd.class));
+		this.i.a(4, new agf(this, EntityHuman.class));
 		this.i.a(4, new agf(this, acq.class));
 		this.i.a(5, new zy(this, 0.8D));
-		this.i.a(6, new zh(this, ahd.class, 8.0F));
+		this.i.a(6, new zh(this, EntityHuman.class, 8.0F));
 		this.i.a(6, new zx(this));
 		this.bg.a(1, new aal(this, false, new Class[0]));
-		this.bg.a(2, new agh(this, ahd.class));
+		this.bg.a(2, new agh(this, EntityHuman.class));
 		this.bg.a(3, new agh(this, acq.class));
 	}
 
@@ -24,7 +24,7 @@ public class age extends afm {
 
 	protected void h() {
 		super.h();
-		this.ac.a(16, new Byte((byte) 0));
+		this.dataWatcher.a(16, new Byte((byte) 0));
 	}
 
 	public void s_() {
@@ -53,11 +53,11 @@ public class age extends afm {
 		return "mob.spider.death";
 	}
 
-	protected void a(dt var1, atr var2) {
+	protected void a(Position var1, Block var2) {
 		this.a("mob.spider.step", 0.15F, 1.0F);
 	}
 
-	protected alq A() {
+	protected Item A() {
 		return amk.F;
 	}
 
@@ -85,25 +85,25 @@ public class age extends afm {
 	}
 
 	public boolean n() {
-		return (this.ac.a(16) & 1) != 0;
+		return (this.dataWatcher.a(16) & 1) != 0;
 	}
 
 	public void a(boolean var1) {
-		byte var2 = this.ac.a(16);
+		byte var2 = this.dataWatcher.a(16);
 		if (var1) {
 			var2 = (byte) (var2 | 1);
 		} else {
 			var2 &= -2;
 		}
 
-		this.ac.b(16, Byte.valueOf(var2));
+		this.dataWatcher.b(16, Byte.valueOf(var2));
 	}
 
 	public xq a(vu var1, xq var2) {
 		Object var4 = super.a(var1, var2);
 		if (this.o.s.nextInt(100) == 0) {
 			afw var3 = new afw(this.o);
-			var3.b(this.s, this.t, this.u, this.y, 0.0F);
+			var3.b(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
 			var3.a(var1, (xq) null);
 			this.o.d((Entity) var3);
 			var3.a((Entity) this);
@@ -111,7 +111,7 @@ public class age extends afm {
 
 		if (var4 == null) {
 			var4 = new agg();
-			if (this.o.aa() == Difficulty.HARD && this.o.s.nextFloat() < 0.1F * var1.c()) {
+			if (this.o.getDifficulty() == Difficulty.HARD && this.o.s.nextFloat() < 0.1F * var1.c()) {
 				((agg) var4).a(this.o.s);
 			}
 		}

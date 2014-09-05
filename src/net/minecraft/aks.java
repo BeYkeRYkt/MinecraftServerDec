@@ -3,7 +3,7 @@ package net.minecraft;
 import com.google.common.collect.Multimap;
 import java.util.Set;
 
-public class aks extends alq {
+public class aks extends Item {
 
 	private Set c;
 	protected float a = 4.0F;
@@ -13,23 +13,23 @@ public class aks extends alq {
 	protected aks(float var1, ami var2, Set var3) {
 		this.b = var2;
 		this.c = var3;
-		this.h = 1;
+		this.maxStackSize = 1;
 		this.d(var2.a());
 		this.a = var2.b();
 		this.d = var1 + var2.c();
-		this.a(akf.i);
+		this.a(CreativeModeTab.i);
 	}
 
-	public float a(amj var1, atr var2) {
+	public float a(ItemStack var1, Block var2) {
 		return this.c.contains(var2) ? this.a : 1.0F;
 	}
 
-	public boolean a(amj var1, EntityLiving var2, EntityLiving var3) {
+	public boolean a(ItemStack var1, EntityLiving var2, EntityLiving var3) {
 		var1.a(2, var3);
 		return true;
 	}
 
-	public boolean a(amj var1, World var2, atr var3, dt var4, EntityLiving var5) {
+	public boolean a(ItemStack var1, World var2, Block var3, Position var4, EntityLiving var5) {
 		if ((double) var3.g(var2, var4) != 0.0D) {
 			var1.a(1, var5);
 		}
@@ -49,8 +49,8 @@ public class aks extends alq {
 		return this.b.toString();
 	}
 
-	public boolean a(amj var1, amj var2) {
-		return this.b.f() == var2.b() ? true : super.a(var1, var2);
+	public boolean a(ItemStack var1, ItemStack var2) {
+		return this.b.f() == var2.getItem() ? true : super.a(var1, var2);
 	}
 
 	public Multimap i() {

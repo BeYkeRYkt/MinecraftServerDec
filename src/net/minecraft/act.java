@@ -26,7 +26,7 @@ public abstract class act extends xn implements wt {
 		return true;
 	}
 
-	protected int b(ahd var1) {
+	protected int b(EntityHuman var1) {
 		return 1 + this.o.s.nextInt(3);
 	}
 

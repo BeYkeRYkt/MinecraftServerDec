@@ -4,12 +4,12 @@ import com.google.common.cache.LoadingCache;
 
 public class bem {
 
-	private final dt a;
+	private final Position a;
 	private final ej b;
 	private final ej c;
 	private final LoadingCache d;
 
-	public bem(dt var1, ej var2, ej var3, LoadingCache var4) {
+	public bem(Position var1, ej var2, ej var3, LoadingCache var4) {
 		this.a = var1;
 		this.b = var2;
 		this.c = var3;

@@ -2,11 +2,11 @@ package net.minecraft;
 
 public class auh extends auu {
 
-	protected alq j() {
+	protected Item j() {
 		return amk.bR;
 	}
 
-	protected alq l() {
+	protected Item l() {
 		return amk.bR;
 	}
 }

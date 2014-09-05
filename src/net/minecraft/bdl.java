@@ -3,11 +3,11 @@ package net.minecraft;
 class bdl implements CommandSenderInterface {
 
 	// $FF: synthetic field
-	final ahd a;
+	final EntityHuman a;
 	// $FF: synthetic field
 	final bdj b;
 
-	bdl(bdj var1, ahd var2) {
+	bdl(bdj var1, EntityHuman var2) {
 		this.b = var1;
 		this.a = var2;
 	}
@@ -16,18 +16,18 @@ class bdl implements CommandSenderInterface {
 		return this.a.d_();
 	}
 
-	public ho e_() {
+	public IJSONComponent e_() {
 		return this.a.e_();
 	}
 
-	public void a(ho var1) {
+	public void a(IJSONComponent var1) {
 	}
 
 	public boolean a(int var1, String var2) {
 		return true;
 	}
 
-	public dt c() {
+	public Position c() {
 		return this.b.c;
 	}
 

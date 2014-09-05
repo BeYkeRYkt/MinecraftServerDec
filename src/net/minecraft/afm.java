@@ -21,7 +21,7 @@ public abstract class afm extends EntityCreature implements aex {
 
 	public void s_() {
 		super.s_();
-		if (!this.o.D && this.o.aa() == Difficulty.PEACEFUL) {
+		if (!this.o.D && this.o.getDifficulty() == Difficulty.PEACEFUL) {
 			this.J();
 		}
 
@@ -69,9 +69,9 @@ public abstract class afm extends EntityCreature implements aex {
 		boolean var4 = var1.a(wh.a((EntityLiving) this), var2);
 		if (var4) {
 			if (var3 > 0) {
-				var1.g((double) (-NumberConverter.a(this.y * 3.1415927F / 180.0F) * (float) var3 * 0.5F), 0.1D, (double) (NumberConverter.b(this.y * 3.1415927F / 180.0F) * (float) var3 * 0.5F));
-				this.v *= 0.6D;
-				this.x *= 0.6D;
+				var1.g((double) (-DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F) * (float) var3 * 0.5F), 0.1D, (double) (DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F) * (float) var3 * 0.5F));
+				this.motionX *= 0.6D;
+				this.motionZ *= 0.6D;
 			}
 
 			int var5 = aph.b((EntityLiving) this);
@@ -85,12 +85,12 @@ public abstract class afm extends EntityCreature implements aex {
 		return var4;
 	}
 
-	public float a(dt var1) {
+	public float a(Position var1) {
 		return 0.5F - this.o.o(var1);
 	}
 
 	protected boolean m_() {
-		dt var1 = new dt(this.s, this.aQ().b, this.u);
+		Position var1 = new Position(this.locationX, this.aQ().b, this.locationZ);
 		if (this.o.b(arf.a, var1) > this.V.nextInt(32)) {
 			return false;
 		} else {
@@ -107,7 +107,7 @@ public abstract class afm extends EntityCreature implements aex {
 	}
 
 	public boolean bQ() {
-		return this.o.aa() != Difficulty.PEACEFUL && this.m_() && super.bQ();
+		return this.o.getDifficulty() != Difficulty.PEACEFUL && this.m_() && super.bQ();
 	}
 
 	protected void aW() {

@@ -1,18 +1,18 @@
 package net.minecraft;
 
-public class ajz extends alq {
+public class ajz extends Item {
 
 	public static final String[] a = new String[] { "pulling_0", "pulling_1", "pulling_2" };
 
 	public ajz() {
-		this.h = 1;
+		this.maxStackSize = 1;
 		this.d(384);
-		this.a(akf.j);
+		this.a(CreativeModeTab.j);
 	}
 
-	public void a(amj var1, World var2, ahd var3, int var4) {
+	public void a(ItemStack var1, World var2, EntityHuman var3, int var4) {
 		boolean var5 = var3.by.instabuild || aph.a(apf.y.B, var1) > 0;
-		if (var5 || var3.bg.b(amk.g)) {
+		if (var5 || var3.playerInventory.b(amk.g)) {
 			int var6 = this.d(var1) - var4;
 			float var7 = (float) var6 / 20.0F;
 			var7 = (var7 * var7 + var7 * 2.0F) / 3.0F;
@@ -44,14 +44,14 @@ public class ajz extends alq {
 			}
 
 			var1.a(1, (EntityLiving) var3);
-			var2.a((Entity) var3, "random.bow", 1.0F, 1.0F / (g.nextFloat() * 0.4F + 1.2F) + var7 * 0.5F);
+			var2.a((Entity) var3, "random.bow", 1.0F, 1.0F / (rnd.nextFloat() * 0.4F + 1.2F) + var7 * 0.5F);
 			if (var5) {
 				var8.a = 2;
 			} else {
-				var3.bg.a(amk.g);
+				var3.playerInventory.a(amk.g);
 			}
 
-			var3.b(ty.J[alq.b((alq) this)]);
+			var3.b(ty.J[Item.getId((Item) this)]);
 			if (!var2.D) {
 				var2.d((Entity) var8);
 			}
@@ -59,20 +59,20 @@ public class ajz extends alq {
 
 	}
 
-	public amj b(amj var1, World var2, ahd var3) {
+	public ItemStack b(ItemStack var1, World var2, EntityHuman var3) {
 		return var1;
 	}
 
-	public int d(amj var1) {
+	public int d(ItemStack var1) {
 		return 72000;
 	}
 
-	public ano e(amj var1) {
+	public ano e(ItemStack var1) {
 		return ano.e;
 	}
 
-	public amj a(amj var1, World var2, ahd var3) {
-		if (var3.by.instabuild || var3.bg.b(amk.g)) {
+	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
+		if (var3.by.instabuild || var3.playerInventory.b(amk.g)) {
 			var3.a(var1, this.d(var1));
 		}
 

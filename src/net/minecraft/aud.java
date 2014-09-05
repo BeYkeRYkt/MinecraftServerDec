@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.List;
 import java.util.Random;
 
-public abstract class aud extends atr {
+public abstract class aud extends Block {
 
 	public static final beu a = beu.a("facing");
 	public static final bet b = bet.a("powered");
@@ -13,11 +13,11 @@ public abstract class aud extends atr {
 		super(bof.q);
 		this.j(this.L.b().a(a, ej.c).a(b, Boolean.valueOf(false)));
 		this.a(true);
-		this.a(akf.d);
+		this.a(CreativeModeTab.d);
 		this.M = var1;
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
@@ -33,11 +33,11 @@ public abstract class aud extends atr {
 		return false;
 	}
 
-	public boolean a(World var1, dt var2, ej var3) {
+	public boolean a(World var1, Position var2, ej var3) {
 		return var1.p(var2.a(var3.d())).c().t();
 	}
 
-	public boolean c(World var1, dt var2) {
+	public boolean c(World var1, Position var2) {
 		ej[] var3 = ej.values();
 		int var4 = var3.length;
 
@@ -51,11 +51,11 @@ public abstract class aud extends atr {
 		return false;
 	}
 
-	public bec a(World var1, dt var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return var1.p(var2.a(var3.d())).c().t() ? this.P().a(a, var3).a(b, Boolean.valueOf(false)) : this.P().a(a, ej.a).a(b, Boolean.valueOf(false));
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (this.e(var1, var2, var3)) {
 			ej var5 = (ej) var3.b(a);
 			if (!var1.p(var2.a(var5.d())).c().t()) {
@@ -66,7 +66,7 @@ public abstract class aud extends atr {
 
 	}
 
-	private boolean e(World var1, dt var2, bec var3) {
+	private boolean e(World var1, Position var2, bec var3) {
 		if (!this.c(var1, var2)) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -76,7 +76,7 @@ public abstract class aud extends atr {
 		}
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		this.d(var1.p(var2));
 	}
 
@@ -110,7 +110,7 @@ public abstract class aud extends atr {
 
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
 		if (((Boolean) var3.b(b)).booleanValue()) {
 			return true;
 		} else {
@@ -118,12 +118,12 @@ public abstract class aud extends atr {
 			var1.b(var2, var2);
 			var1.a((double) var2.n() + 0.5D, (double) var2.o() + 0.5D, (double) var2.p() + 0.5D, "random.click", 0.3F, 0.6F);
 			this.b(var1, var2, (ej) var3.b(a));
-			var1.a(var2, (atr) this, this.a(var1));
+			var1.a(var2, (Block) this, this.a(var1));
 			return true;
 		}
 	}
 
-	public void b(World var1, dt var2, bec var3) {
+	public void b(World var1, Position var2, bec var3) {
 		if (((Boolean) var3.b(b)).booleanValue()) {
 			this.b(var1, var2, (ej) var3.b(a));
 		}
@@ -131,11 +131,11 @@ public abstract class aud extends atr {
 		super.b(var1, var2, var3);
 	}
 
-	public int a(ard var1, dt var2, bec var3, ej var4) {
+	public int a(ard var1, Position var2, bec var3, ej var4) {
 		return ((Boolean) var3.b(b)).booleanValue() ? 15 : 0;
 	}
 
-	public int b(ard var1, dt var2, bec var3, ej var4) {
+	public int b(ard var1, Position var2, bec var3, ej var4) {
 		return !((Boolean) var3.b(b)).booleanValue() ? 0 : (var3.b(a) == var4 ? 15 : 0);
 	}
 
@@ -143,10 +143,10 @@ public abstract class aud extends atr {
 		return true;
 	}
 
-	public void a(World var1, dt var2, bec var3, Random var4) {
+	public void a(World var1, Position var2, bec var3, Random var4) {
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (!var1.D) {
 			if (((Boolean) var3.b(b)).booleanValue()) {
 				if (this.M) {
@@ -169,7 +169,7 @@ public abstract class aud extends atr {
 		this.a(0.5F - var1, 0.5F - var2, 0.5F - var3, 0.5F + var1, 0.5F + var2, 0.5F + var3);
 	}
 
-	public void a(World var1, dt var2, bec var3, Entity var4) {
+	public void a(World var1, Position var2, bec var3, Entity var4) {
 		if (!var1.D) {
 			if (this.M) {
 				if (!((Boolean) var3.b(b)).booleanValue()) {
@@ -179,7 +179,7 @@ public abstract class aud extends atr {
 		}
 	}
 
-	private void f(World var1, dt var2, bec var3) {
+	private void f(World var1, Position var2, bec var3) {
 		this.d(var3);
 		List var4 = var1.a(ahj.class, new brt((double) var2.n() + this.B, (double) var2.o() + this.C, (double) var2.p() + this.D, (double) var2.n() + this.E, (double) var2.o() + this.F, (double) var2.p() + this.G));
 		boolean var5 = !var4.isEmpty();
@@ -199,14 +199,14 @@ public abstract class aud extends atr {
 		}
 
 		if (var5) {
-			var1.a(var2, (atr) this, this.a(var1));
+			var1.a(var2, (Block) this, this.a(var1));
 		}
 
 	}
 
-	private void b(World var1, dt var2, ej var3) {
-		var1.c(var2, (atr) this);
-		var1.c(var2.a(var3.d()), (atr) this);
+	private void b(World var1, Position var2, ej var3) {
+		var1.c(var2, (Block) this);
+		var1.c(var2.a(var3.d()), (Block) this);
 	}
 
 	public bec a(int var1) {

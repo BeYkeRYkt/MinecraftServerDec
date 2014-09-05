@@ -23,8 +23,8 @@ public class bqe extends bqc {
 
 	public void a(double var1, double var3, int var5) {
 		int var6 = 128 * (1 << var5);
-		int var7 = NumberConverter.c((var1 + 64.0D) / (double) var6);
-		int var8 = NumberConverter.c((var3 + 64.0D) / (double) var6);
+		int var7 = DataTypesConverter.toFixedPointInt((var1 + 64.0D) / (double) var6);
+		int var8 = DataTypesConverter.toFixedPointInt((var3 + 64.0D) / (double) var6);
 		this.b = var7 * var6 + var6 / 2 - 64;
 		this.c = var8 * var6 + var6 / 2 - 64;
 	}
@@ -34,7 +34,7 @@ public class bqe extends bqc {
 		this.b = var1.getInt("xCenter");
 		this.c = var1.getInt("zCenter");
 		this.e = var1.getByte("scale");
-		this.e = (byte) NumberConverter.a(this.e, 0, 4);
+		this.e = (byte) DataTypesConverter.a(this.e, 0, 4);
 		short var2 = var1.getShort("width");
 		short var3 = var1.getShort("height");
 		if (var2 == 128 && var3 == 128) {
@@ -70,22 +70,22 @@ public class bqe extends bqc {
 		var1.put("colors", this.f);
 	}
 
-	public void a(ahd var1, amj var2) {
+	public void a(EntityHuman var1, ItemStack var2) {
 		if (!this.i.containsKey(var1)) {
 			bqf var3 = new bqf(this, var1);
 			this.i.put(var1, var3);
 			this.g.add(var3);
 		}
 
-		if (!var1.bg.c(var2)) {
+		if (!var1.playerInventory.c(var2)) {
 			this.h.remove(var1.d_());
 		}
 
 		for (int var6 = 0; var6 < this.g.size(); ++var6) {
 			bqf var4 = (bqf) this.g.get(var6);
-			if (!var4.a.I && (var4.a.bg.c(var2) || var2.y())) {
+			if (!var4.a.I && (var4.a.playerInventory.c(var2) || var2.y())) {
 				if (!var2.y() && var4.a.am == this.d) {
-					this.a(0, var4.a.o, var4.a.d_(), var4.a.s, var4.a.u, (double) var4.a.y);
+					this.a(0, var4.a.o, var4.a.d_(), var4.a.locationX, var4.a.locationZ, (double) var4.a.yaw);
 				}
 			} else {
 				this.i.remove(var4.a);
@@ -95,12 +95,12 @@ public class bqe extends bqc {
 
 		if (var2.y()) {
 			adk var7 = var2.z();
-			dt var9 = var7.n();
-			this.a(1, var1.o, "frame-" + var7.F(), (double) var9.n(), (double) var9.p(), (double) (var7.b.b() * 90));
+			Position var9 = var7.n();
+			this.a(1, var1.o, "frame-" + var7.getId(), (double) var9.n(), (double) var9.p(), (double) (var7.b.b() * 90));
 		}
 
-		if (var2.n() && var2.o().isTagAssignableFrom("Decorations", 9)) {
-			NBTListTag var8 = var2.o().getList("Decorations", 10);
+		if (var2.hasTag() && var2.getTag().isTagAssignableFrom("Decorations", 9)) {
+			NBTListTag var8 = var2.getTag().getList("Decorations", 10);
 
 			for (int var10 = 0; var10 < var8.getSize(); ++var10) {
 				NBTCompoundTag var5 = var8.getCompound(var10);
@@ -155,7 +155,7 @@ public class bqe extends bqc {
 		this.h.put(var3, new bqd((byte) var1, var13, var14, var15));
 	}
 
-	public id a(amj var1, World var2, ahd var3) {
+	public Packet a(ItemStack var1, World var2, EntityHuman var3) {
 		bqf var4 = (bqf) this.i.get(var3);
 		return var4 == null ? null : var4.a(var1);
 	}
@@ -171,7 +171,7 @@ public class bqe extends bqc {
 
 	}
 
-	public bqf a(ahd var1) {
+	public bqf a(EntityHuman var1) {
 		bqf var2 = (bqf) this.i.get(var1);
 		if (var2 == null) {
 			var2 = new bqf(this, var1);

@@ -1,21 +1,21 @@
 package net.minecraft;
 
-public class akw extends alq {
+public class akw extends Item {
 
 	public static final int[] a = new int[] { 1973019, 11743532, 3887386, 5320730, 2437522, 8073150, 2651799, 11250603, 4408131, 14188952, 4312372, 14602026, 6719955, 12801229, 15435844, 15790320 };
 
 	public akw() {
 		this.a(true);
 		this.d(0);
-		this.a(akf.l);
+		this.a(CreativeModeTab.l);
 	}
 
-	public String e_(amj var1) {
+	public String e_(ItemStack var1) {
 		int var2 = var1.i();
 		return super.a() + "." + akv.a(var2).d();
 	}
 
-	public boolean a(amj var1, ahd var2, World var3, dt var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
 		if (!var2.a(var4.a(var5), var5, var1)) {
 			return false;
 		} else {
@@ -30,7 +30,7 @@ public class akw extends alq {
 				}
 			} else if (var9 == akv.m) {
 				bec var10 = var3.p(var4);
-				atr var11 = var10.c();
+				Block var11 = var10.c();
 				if (var11 == aty.r && var10.b(ayw.a) == ayx.d) {
 					if (var5 == ej.a) {
 						return false;
@@ -57,7 +57,7 @@ public class akw extends alq {
 		}
 	}
 
-	public static boolean a(amj var0, World var1, dt var2) {
+	public static boolean a(ItemStack var0, World var1, Position var2) {
 		bec var3 = var1.p(var2);
 		if (var3.c() instanceof atz) {
 			atz var4 = (atz) var3.c();
@@ -77,7 +77,7 @@ public class akw extends alq {
 		return false;
 	}
 
-	public boolean a(amj var1, ahd var2, EntityLiving var3) {
+	public boolean a(ItemStack var1, EntityHuman var2, EntityLiving var3) {
 		if (var3 instanceof acl) {
 			acl var4 = (acl) var3;
 			akv var5 = akv.a(var1.i());

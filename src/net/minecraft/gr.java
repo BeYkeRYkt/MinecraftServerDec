@@ -32,16 +32,16 @@ public class gr extends SimpleChannelInboundHandler {
 	public static final AttributeKey c = AttributeKey.valueOf("protocol");
 	public static final up d = new gs();
 	public static final up e = new gt();
-	private final ie g;
+	private final PacketDirection g;
 	private final Queue h = Queues.newConcurrentLinkedQueue();
 	private Channel i;
 	private SocketAddress j;
-	private hg k;
-	private ho l;
+	private PacketListener k;
+	private IJSONComponent l;
 	private boolean m;
 	private boolean n;
 
-	public gr(ie var1) {
+	public gr(PacketDirection var1) {
 		this.g = var1;
 	}
 
@@ -51,7 +51,7 @@ public class gr extends SimpleChannelInboundHandler {
 		this.j = this.i.remoteAddress();
 
 		try {
-			this.a(EnumProtocol.a);
+			this.a(EnumProtocol.HANDSHAKING);
 		} catch (Throwable var3) {
 			f.fatal((Object) var3);
 		}
@@ -65,18 +65,18 @@ public class gr extends SimpleChannelInboundHandler {
 	}
 
 	public void channelInactive(ChannelHandlerContext var1) {
-		this.a((ho) (new hz("disconnect.endOfStream", new Object[0])));
+		this.a((IJSONComponent) (new hz("disconnect.endOfStream", new Object[0])));
 	}
 
 	public void exceptionCaught(ChannelHandlerContext var1, Throwable var2) {
 		f.debug("Disconnecting " + this.b(), var2);
-		this.a((ho) (new hz("disconnect.genericReason", new Object[] { "Internal Exception: " + var2 })));
+		this.a((IJSONComponent) (new hz("disconnect.genericReason", new Object[] { "Internal Exception: " + var2 })));
 	}
 
-	protected void a(ChannelHandlerContext var1, id var2) {
+	protected void a(ChannelHandlerContext var1, Packet var2) {
 		if (this.i.isOpen()) {
 			try {
-				var2.a(this.k);
+				var2.handlePacket(this.k);
 			} catch (pi var4) {
 				;
 			}
@@ -84,13 +84,13 @@ public class gr extends SimpleChannelInboundHandler {
 
 	}
 
-	public void a(hg var1) {
+	public void a(PacketListener var1) {
 		Validate.notNull(var1, "packetListener", new Object[0]);
 		f.debug("Set listener of {} to {}", new Object[] { this, var1 });
 		this.k = var1;
 	}
 
-	public void a(id var1) {
+	public void a(Packet var1) {
 		if (this.i != null && this.i.isOpen()) {
 			this.m();
 			this.a(var1, (GenericFutureListener[]) null);
@@ -100,7 +100,7 @@ public class gr extends SimpleChannelInboundHandler {
 
 	}
 
-	public void a(id var1, GenericFutureListener var2, GenericFutureListener... var3) {
+	public void a(Packet var1, GenericFutureListener var2, GenericFutureListener... var3) {
 		if (this.i != null && this.i.isOpen()) {
 			this.m();
 			this.a(var1, (GenericFutureListener[]) ArrayUtils.add(var3, 0, var2));
@@ -110,7 +110,7 @@ public class gr extends SimpleChannelInboundHandler {
 
 	}
 
-	private void a(id var1, GenericFutureListener[] var2) {
+	private void a(Packet var1, GenericFutureListener[] var2) {
 		EnumProtocol var3 = EnumProtocol.a(var1);
 		EnumProtocol var4 = (EnumProtocol) this.i.attr(c).get();
 		if (var4 != var3) {
@@ -158,7 +158,7 @@ public class gr extends SimpleChannelInboundHandler {
 		return this.j;
 	}
 
-	public void a(ho var1) {
+	public void a(IJSONComponent var1) {
 		if (this.i.isOpen()) {
 			this.i.close().awaitUninterruptibly();
 			this.l = var1;
@@ -184,11 +184,11 @@ public class gr extends SimpleChannelInboundHandler {
 		return this.i == null;
 	}
 
-	public hg i() {
+	public PacketListener i() {
 		return this.k;
 	}
 
-	public ho j() {
+	public IJSONComponent j() {
 		return this.l;
 	}
 
@@ -225,9 +225,9 @@ public class gr extends SimpleChannelInboundHandler {
 		if (!this.h() && !this.g() && !this.n) {
 			this.n = true;
 			if (this.j() != null) {
-				this.i().a(this.j());
+				this.i().handle(this.j());
 			} else if (this.i() != null) {
-				this.i().a(new hy("Disconnected"));
+				this.i().handle(new hy("Disconnected"));
 			}
 		}
 
@@ -235,7 +235,7 @@ public class gr extends SimpleChannelInboundHandler {
 
 	// $FF: synthetic method
 	protected void channelRead0(ChannelHandlerContext var1, Object var2) {
-		this.a(var1, (id) var2);
+		this.a(var1, (Packet) var2);
 	}
 
 	// $FF: synthetic method

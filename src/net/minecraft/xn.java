@@ -17,7 +17,7 @@ public abstract class xn extends EntityLiving {
 	protected final zc bg;
 	private EntityLiving c;
 	private abd bi;
-	private amj[] bj = new amj[5];
+	private ItemStack[] bj = new ItemStack[5];
 	protected float[] bh = new float[5];
 	private boolean bk;
 	private boolean bl;
@@ -88,7 +88,7 @@ public abstract class xn extends EntityLiving {
 
 	protected void h() {
 		super.h();
-		this.ac.a(15, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(15, Byte.valueOf((byte) 0));
 	}
 
 	public int w() {
@@ -114,10 +114,10 @@ public abstract class xn extends EntityLiving {
 		this.o.B.b();
 	}
 
-	protected int b(ahd var1) {
+	protected int b(EntityHuman var1) {
 		if (this.b_ > 0) {
 			int var2 = this.b_;
-			amj[] var3 = this.at();
+			ItemStack[] var3 = this.at();
 
 			for (int var4 = 0; var4 < var3.length; ++var4) {
 				if (var3[var4] != null && this.bh[var4] <= 1.0F) {
@@ -138,7 +138,7 @@ public abstract class xn extends EntityLiving {
 				double var4 = this.V.nextGaussian() * 0.02D;
 				double var6 = this.V.nextGaussian() * 0.02D;
 				double var8 = 10.0D;
-				this.o.a(ew.a, this.s + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J - var2 * var8, this.t + (double) (this.V.nextFloat() * this.K) - var4 * var8, this.u + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J - var6 * var8, var2, var4, var6, new int[0]);
+				this.o.a(ew.a, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J - var2 * var8, this.locationY + (double) (this.V.nextFloat() * this.K) - var4 * var8, this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J - var6 * var8, var2, var4, var6, new int[0]);
 			}
 		} else {
 			this.o.a((Entity) this, (byte) 20);
@@ -163,12 +163,12 @@ public abstract class xn extends EntityLiving {
 		return null;
 	}
 
-	protected alq A() {
+	protected Item A() {
 		return null;
 	}
 
 	protected void b(boolean var1, int var2) {
-		alq var3 = this.A();
+		Item var3 = this.A();
 		if (var3 != null) {
 			int var4 = this.V.nextInt(3);
 			if (var2 > 0) {
@@ -213,7 +213,7 @@ public abstract class xn extends EntityLiving {
 				var4.put("UUIDMost", this.bn.aJ().getMostSignificantBits());
 				var4.put("UUIDLeast", this.bn.aJ().getLeastSignificantBits());
 			} else if (this.bn instanceof adj) {
-				dt var5 = ((adj) this.bn).n();
+				Position var5 = ((adj) this.bn).n();
 				var4.put("X", var5.n());
 				var4.put("Y", var5.o());
 				var4.put("Z", var5.p());
@@ -241,7 +241,7 @@ public abstract class xn extends EntityLiving {
 			var2 = var1.getList("Equipment", 10);
 
 			for (var3 = 0; var3 < this.bj.length; ++var3) {
-				this.bj[var3] = amj.a(var2.getCompound(var3));
+				this.bj[var3] = ItemStack.a(var2.getCompound(var3));
 			}
 		}
 
@@ -289,35 +289,35 @@ public abstract class xn extends EntityLiving {
 	}
 
 	protected void a(adw var1) {
-		amj var2 = var1.l();
+		ItemStack var2 = var1.l();
 		int var3 = c(var2);
 		if (var3 > -1) {
 			boolean var4 = true;
-			amj var5 = this.p(var3);
+			ItemStack var5 = this.p(var3);
 			if (var5 != null) {
 				if (var3 == 0) {
-					if (var2.b() instanceof anm && !(var5.b() instanceof anm)) {
+					if (var2.getItem() instanceof anm && !(var5.getItem() instanceof anm)) {
 						var4 = true;
-					} else if (var2.b() instanceof anm && var5.b() instanceof anm) {
-						anm var6 = (anm) var2.b();
-						anm var7 = (anm) var5.b();
+					} else if (var2.getItem() instanceof anm && var5.getItem() instanceof anm) {
+						anm var6 = (anm) var2.getItem();
+						anm var7 = (anm) var5.getItem();
 						if (var6.g() == var7.g()) {
-							var4 = var2.i() > var5.i() || var2.n() && !var5.n();
+							var4 = var2.i() > var5.i() || var2.hasTag() && !var5.hasTag();
 						} else {
 							var4 = var6.g() > var7.g();
 						}
-					} else if (var2.b() instanceof ajz && var5.b() instanceof ajz) {
-						var4 = var2.n() && !var5.n();
+					} else if (var2.getItem() instanceof ajz && var5.getItem() instanceof ajz) {
+						var4 = var2.hasTag() && !var5.hasTag();
 					} else {
 						var4 = false;
 					}
-				} else if (var2.b() instanceof ajn && !(var5.b() instanceof ajn)) {
+				} else if (var2.getItem() instanceof ajn && !(var5.getItem() instanceof ajn)) {
 					var4 = true;
-				} else if (var2.b() instanceof ajn && var5.b() instanceof ajn) {
-					ajn var8 = (ajn) var2.b();
-					ajn var10 = (ajn) var5.b();
+				} else if (var2.getItem() instanceof ajn && var5.getItem() instanceof ajn) {
+					ajn var8 = (ajn) var2.getItem();
+					ajn var10 = (ajn) var5.getItem();
 					if (var8.c == var10.c) {
-						var4 = var2.i() > var5.i() || var2.n() && !var5.n();
+						var4 = var2.i() > var5.i() || var2.hasTag() && !var5.hasTag();
 					} else {
 						var4 = var8.c > var10.c;
 					}
@@ -331,8 +331,8 @@ public abstract class xn extends EntityLiving {
 					this.a(var5, 0.0F);
 				}
 
-				if (var2.b() == amk.i && var1.n() != null) {
-					ahd var9 = this.o.a(var1.n());
+				if (var2.getItem() == amk.i && var1.n() != null) {
+					EntityHuman var9 = this.o.a(var1.n());
 					if (var9 != null) {
 						var9.b((PlayerStatistic) tl.x);
 					}
@@ -348,7 +348,7 @@ public abstract class xn extends EntityLiving {
 
 	}
 
-	protected boolean a(amj var1) {
+	protected boolean a(ItemStack var1) {
 		return true;
 	}
 
@@ -360,11 +360,11 @@ public abstract class xn extends EntityLiving {
 		if (this.bl) {
 			this.aO = 0;
 		} else {
-			ahd var1 = this.o.a(this, -1.0D);
+			EntityHuman var1 = this.o.a(this, -1.0D);
 			if (var1 != null) {
-				double var2 = var1.s - this.s;
-				double var4 = var1.t - this.t;
-				double var6 = var1.u - this.u;
+				double var2 = var1.locationX - this.locationX;
+				double var4 = var1.locationY - this.locationY;
+				double var6 = var1.locationZ - this.locationZ;
 				double var8 = var2 * var2 + var4 * var4 + var6 * var6;
 				if (this.C() && var8 > 16384.0D) {
 					this.J();
@@ -419,25 +419,25 @@ public abstract class xn extends EntityLiving {
 	}
 
 	public void a(Entity var1, float var2, float var3) {
-		double var4 = var1.s - this.s;
-		double var8 = var1.u - this.u;
+		double var4 = var1.locationX - this.locationX;
+		double var8 = var1.locationZ - this.locationZ;
 		double var6;
 		if (var1 instanceof EntityLiving) {
 			EntityLiving var10 = (EntityLiving) var1;
-			var6 = var10.t + (double) var10.aR() - (this.t + (double) this.aR());
+			var6 = var10.locationY + (double) var10.aR() - (this.locationY + (double) this.aR());
 		} else {
-			var6 = (var1.aQ().b + var1.aQ().e) / 2.0D - (this.t + (double) this.aR());
+			var6 = (var1.aQ().b + var1.aQ().e) / 2.0D - (this.locationY + (double) this.aR());
 		}
 
-		double var14 = (double) NumberConverter.a(var4 * var4 + var8 * var8);
+		double var14 = (double) DataTypesConverter.a(var4 * var4 + var8 * var8);
 		float var12 = (float) (Math.atan2(var8, var4) * 180.0D / 3.1415927410125732D) - 90.0F;
 		float var13 = (float) (-(Math.atan2(var6, var14) * 180.0D / 3.1415927410125732D));
-		this.z = this.b(this.z, var13, var3);
-		this.y = this.b(this.y, var12, var2);
+		this.pitch = this.b(this.pitch, var13, var3);
+		this.yaw = this.b(this.yaw, var12, var2);
 	}
 
 	private float b(float var1, float var2, float var3) {
-		float var4 = NumberConverter.g(var2 - var1);
+		float var4 = DataTypesConverter.g(var2 - var1);
 		if (var4 > var3) {
 			var4 = var3;
 		}
@@ -466,7 +466,7 @@ public abstract class xn extends EntityLiving {
 			return 3;
 		} else {
 			int var1 = (int) (this.bm() - this.bt() * 0.33F);
-			var1 -= (3 - this.o.aa().getId()) * 4;
+			var1 -= (3 - this.o.getDifficulty().getId()) * 4;
 			if (var1 < 0) {
 				var1 = 0;
 			}
@@ -475,29 +475,29 @@ public abstract class xn extends EntityLiving {
 		}
 	}
 
-	public amj bz() {
+	public ItemStack bz() {
 		return this.bj[0];
 	}
 
-	public amj p(int var1) {
+	public ItemStack p(int var1) {
 		return this.bj[var1];
 	}
 
-	public amj q(int var1) {
+	public ItemStack q(int var1) {
 		return this.bj[var1 + 1];
 	}
 
-	public void c(int var1, amj var2) {
+	public void c(int var1, ItemStack var2) {
 		this.bj[var1] = var2;
 	}
 
-	public amj[] at() {
+	public ItemStack[] at() {
 		return this.bj;
 	}
 
 	protected void a(boolean var1, int var2) {
 		for (int var3 = 0; var3 < this.at().length; ++var3) {
-			amj var4 = this.p(var3);
+			ItemStack var4 = this.p(var3);
 			boolean var5 = this.bh[var3] > 1.0F;
 			if (var4 != null && (var1 || var5) && this.V.nextFloat() - (float) var2 * 0.01F < this.bh[var3]) {
 				if (!var5 && var4.e()) {
@@ -523,7 +523,7 @@ public abstract class xn extends EntityLiving {
 	protected void a(vu var1) {
 		if (this.V.nextFloat() < 0.15F * var1.c()) {
 			int var2 = this.V.nextInt(2);
-			float var3 = this.o.aa() == Difficulty.HARD ? 0.1F : 0.25F;
+			float var3 = this.o.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
 			if (this.V.nextFloat() < 0.095F) {
 				++var2;
 			}
@@ -537,15 +537,15 @@ public abstract class xn extends EntityLiving {
 			}
 
 			for (int var4 = 3; var4 >= 0; --var4) {
-				amj var5 = this.q(var4);
+				ItemStack var5 = this.q(var4);
 				if (var4 < 3 && this.V.nextFloat() < var3) {
 					break;
 				}
 
 				if (var5 == null) {
-					alq var6 = a(var4 + 1, var2);
+					Item var6 = a(var4 + 1, var2);
 					if (var6 != null) {
-						this.c(var4 + 1, new amj(var6));
+						this.c(var4 + 1, new ItemStack(var6));
 					}
 				}
 			}
@@ -553,10 +553,10 @@ public abstract class xn extends EntityLiving {
 
 	}
 
-	public static int c(amj var0) {
-		if (var0.b() != alq.a(aty.aU) && var0.b() != amk.bX) {
-			if (var0.b() instanceof ajn) {
-				switch (((ajn) var0.b()).b) {
+	public static int c(ItemStack var0) {
+		if (var0.getItem() != Item.getItemOf(aty.aU) && var0.getItem() != amk.bX) {
+			if (var0.getItem() instanceof ajn) {
+				switch (((ajn) var0.getItem()).b) {
 					case 0:
 						return 4;
 					case 1:
@@ -574,7 +574,7 @@ public abstract class xn extends EntityLiving {
 		}
 	}
 
-	public static alq a(int var0, int var1) {
+	public static Item a(int var0, int var1) {
 		switch (var0) {
 			case 4:
 				if (var1 == 0) {
@@ -636,7 +636,7 @@ public abstract class xn extends EntityLiving {
 		}
 
 		for (int var3 = 0; var3 < 4; ++var3) {
-			amj var4 = this.q(var3);
+			ItemStack var4 = this.q(var3);
 			if (var4 != null && this.V.nextFloat() < 0.5F * var2) {
 				aph.a(this.V, var4, (int) (5.0F + var2 * (float) this.V.nextInt(18)));
 			}
@@ -673,13 +673,13 @@ public abstract class xn extends EntityLiving {
 		return this.bl;
 	}
 
-	public final boolean e(ahd var1) {
+	public final boolean e(EntityHuman var1) {
 		if (this.cb() && this.cc() == var1) {
 			this.a(true, !var1.by.instabuild);
 			return true;
 		} else {
-			amj var2 = var1.bg.h();
-			if (var2 != null && var2.b() == amk.cn && this.ca()) {
+			ItemStack var2 = var1.playerInventory.getItemInHand();
+			if (var2 != null && var2.getItem() == amk.cn && this.ca()) {
 				if (!(this instanceof xx) || !((xx) this).cj()) {
 					this.a(var1, true);
 					--var2.b;
@@ -697,7 +697,7 @@ public abstract class xn extends EntityLiving {
 		}
 	}
 
-	protected boolean a(ahd var1) {
+	protected boolean a(EntityHuman var1) {
 		return false;
 	}
 
@@ -726,7 +726,7 @@ public abstract class xn extends EntityLiving {
 			}
 
 			if (!this.o.D && var1 && this.o instanceof WorldServer) {
-				((WorldServer) this.o).s().a((Entity) this, (id) (new ky(1, this, (Entity) null)));
+				((WorldServer) this.o).s().a((Entity) this, (Packet) (new ky(1, this, (Entity) null)));
 			}
 		}
 
@@ -748,7 +748,7 @@ public abstract class xn extends EntityLiving {
 		this.bm = true;
 		this.bn = var1;
 		if (!this.o.D && var2 && this.o instanceof WorldServer) {
-			((WorldServer) this.o).s().a((Entity) this, (id) (new ky(1, this, this.bn)));
+			((WorldServer) this.o).s().a((Entity) this, (Packet) (new ky(1, this, this.bn)));
 		}
 
 	}
@@ -768,7 +768,7 @@ public abstract class xn extends EntityLiving {
 					}
 				}
 			} else if (this.bo.isTagAssignableFrom("X", 99) && this.bo.isTagAssignableFrom("Y", 99) && this.bo.isTagAssignableFrom("Z", 99)) {
-				dt var1 = new dt(this.bo.getInt("X"), this.bo.getInt("Y"), this.bo.getInt("Z"));
+				Position var1 = new Position(this.bo.getInt("X"), this.bo.getInt("Y"), this.bo.getInt("Z"));
 				adl var2 = adl.b(this.o, var1);
 				if (var2 == null) {
 					var2 = adl.a(this.o, var1);
@@ -783,7 +783,7 @@ public abstract class xn extends EntityLiving {
 		this.bo = null;
 	}
 
-	public boolean d(int var1, amj var2) {
+	public boolean d(int var1, ItemStack var2) {
 		int var3;
 		if (var1 == 99) {
 			var3 = 0;
@@ -794,7 +794,7 @@ public abstract class xn extends EntityLiving {
 			}
 		}
 
-		if (var2 != null && c(var2) != var3 && (var3 != 4 || !(var2.b() instanceof aju))) {
+		if (var2 != null && c(var2) != var3 && (var3 != 4 || !(var2.getItem() instanceof aju))) {
 			return false;
 		} else {
 			this.c(var3, var2);
@@ -807,10 +807,10 @@ public abstract class xn extends EntityLiving {
 	}
 
 	protected void k(boolean var1) {
-		this.ac.b(15, Byte.valueOf((byte) (var1 ? 1 : 0)));
+		this.dataWatcher.b(15, Byte.valueOf((byte) (var1 ? 1 : 0)));
 	}
 
 	private boolean cd() {
-		return this.ac.a(15) != 0;
+		return this.dataWatcher.a(15) != 0;
 	}
 }

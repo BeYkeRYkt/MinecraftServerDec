@@ -13,7 +13,7 @@ public class DedicatedPlayerList extends PlayerList {
 	public DedicatedPlayerList(DedicatedMinecraftServer var1) {
 		super(var1);
 		this.a(var1.getIntProperty("view-distance", 10));
-		this.g = var1.getIntProperty("max-players", 20);
+		this.maxPlayers = var1.getIntProperty("max-players", 20);
 		this.a(var1.getBooleanProperty("white-list", false));
 		if (!var1.isSinglePlayer()) {
 			this.i().a(true);

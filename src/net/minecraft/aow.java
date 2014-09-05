@@ -14,12 +14,12 @@ public class aow {
 			Object var3 = this.b[0][var2];
 
 			for (int var4 = 0; var4 < this.b.length - 1; ++var4) {
-				alq var5 = (alq) this.b[var4 + 1][var2];
-				var1.a(new amj(var5), new Object[] { this.a[var4], Character.valueOf('#'), amk.y, Character.valueOf('X'), var3 });
+				Item var5 = (Item) this.b[var4 + 1][var2];
+				var1.a(new ItemStack(var5), new Object[] { this.a[var4], Character.valueOf('#'), amk.y, Character.valueOf('X'), var3 });
 			}
 		}
 
-		var1.a(new amj(amk.f, 1), new Object[] { " #X", "# X", " #X", Character.valueOf('X'), amk.F, Character.valueOf('#'), amk.y });
-		var1.a(new amj(amk.g, 4), new Object[] { "X", "#", "Y", Character.valueOf('Y'), amk.G, Character.valueOf('X'), amk.ak, Character.valueOf('#'), amk.y });
+		var1.a(new ItemStack(amk.f, 1), new Object[] { " #X", "# X", " #X", Character.valueOf('X'), amk.F, Character.valueOf('#'), amk.y });
+		var1.a(new ItemStack(amk.g, 4), new Object[] { "X", "#", "Y", Character.valueOf('Y'), amk.G, Character.valueOf('X'), amk.ak, Character.valueOf('#'), amk.y });
 	}
 }

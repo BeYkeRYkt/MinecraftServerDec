@@ -26,7 +26,7 @@ public class asq extends arm {
 		return var2;
 	}
 
-	public void a(World var1, Random var2, dt var3) {
+	public void a(World var1, Random var2, Position var3) {
 		ag.a(avk.c);
 
 		for (int var4 = 0; var4 < 7; ++var4) {

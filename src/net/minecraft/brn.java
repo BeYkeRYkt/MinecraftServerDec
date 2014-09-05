@@ -16,12 +16,12 @@ import java.util.Map;
 
 public class brn {
 
-	private bqy b;
+	private IDataManager b;
 	protected Map a = Maps.newHashMap();
 	private List c = Lists.newArrayList();
 	private Map d = Maps.newHashMap();
 
-	public brn(bqy var1) {
+	public brn(IDataManager var1) {
 		this.b = var1;
 		this.b();
 	}
@@ -42,7 +42,7 @@ public class brn {
 						}
 
 						FileInputStream var5 = new FileInputStream(var4);
-						NBTCompoundTag var6 = fz.a((InputStream) var5);
+						NBTCompoundTag var6 = NBTCompressedStreamTools.readTag((InputStream) var5);
 						var5.close();
 						var3.a(var6.getCompound("data"));
 					}
@@ -90,7 +90,7 @@ public class brn {
 					NBTCompoundTag var4 = new NBTCompoundTag();
 					var4.put("data", (NBTTag) var3);
 					FileOutputStream var5 = new FileOutputStream(var2);
-					fz.a(var4, (OutputStream) var5);
+					NBTCompressedStreamTools.writeTag(var4, (OutputStream) var5);
 					var5.close();
 				}
 			} catch (Exception var6) {
@@ -110,7 +110,7 @@ public class brn {
 			File var1 = this.b.a("idcounts");
 			if (var1 != null && var1.exists()) {
 				DataInputStream var2 = new DataInputStream(new FileInputStream(var1));
-				NBTCompoundTag var3 = fz.a(var2);
+				NBTCompoundTag var3 = NBTCompressedStreamTools.readTag(var2);
 				var2.close();
 				Iterator var4 = var3.getKeys().iterator();
 
@@ -155,7 +155,7 @@ public class brn {
 					}
 
 					DataOutputStream var9 = new DataOutputStream(new FileOutputStream(var3));
-					fz.a(var4, (DataOutput) var9);
+					NBTCompressedStreamTools.writeTag(var4, (DataOutput) var9);
 					var9.close();
 				}
 			} catch (Exception var8) {

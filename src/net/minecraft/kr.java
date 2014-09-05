@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class kr implements id<ik> {
+public class kr implements Packet<PlayPacketListener> {
 
 	private kt a;
 	private int b;
@@ -27,7 +27,7 @@ public class kr implements id<ik> {
 		this.h = var1.p();
 	}
 
-	public void a(hd var1) {
+	public void readData(PacketDataSerializer var1) {
 		this.a = (kt) var1.a(kt.class);
 		switch (ks.a[this.a.ordinal()]) {
 			case 1:
@@ -36,33 +36,33 @@ public class kr implements id<ik> {
 			case 2:
 				this.f = var1.readDouble();
 				this.e = var1.readDouble();
-				this.g = var1.f();
+				this.g = var1.readVarLong();
 				break;
 			case 3:
 				this.c = var1.readDouble();
 				this.d = var1.readDouble();
 				break;
 			case 4:
-				this.i = var1.e();
+				this.i = var1.readVarInt();
 				break;
 			case 5:
-				this.h = var1.e();
+				this.h = var1.readVarInt();
 				break;
 			case 6:
 				this.c = var1.readDouble();
 				this.d = var1.readDouble();
 				this.f = var1.readDouble();
 				this.e = var1.readDouble();
-				this.g = var1.f();
-				this.b = var1.e();
-				this.i = var1.e();
-				this.h = var1.e();
+				this.g = var1.readVarLong();
+				this.b = var1.readVarInt();
+				this.i = var1.readVarInt();
+				this.h = var1.readVarInt();
 		}
 
 	}
 
-	public void b(hd var1) {
-		var1.a((Enum) this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeEnum((Enum) this.a);
 		switch (ks.a[this.a.ordinal()]) {
 			case 1:
 				var1.writeDouble(this.e);
@@ -70,32 +70,32 @@ public class kr implements id<ik> {
 			case 2:
 				var1.writeDouble(this.f);
 				var1.writeDouble(this.e);
-				var1.b(this.g);
+				var1.writeVarLong(this.g);
 				break;
 			case 3:
 				var1.writeDouble(this.c);
 				var1.writeDouble(this.d);
 				break;
 			case 4:
-				var1.b(this.i);
+				var1.writeVarInt(this.i);
 				break;
 			case 5:
-				var1.b(this.h);
+				var1.writeVarInt(this.h);
 				break;
 			case 6:
 				var1.writeDouble(this.c);
 				var1.writeDouble(this.d);
 				var1.writeDouble(this.f);
 				var1.writeDouble(this.e);
-				var1.b(this.g);
-				var1.b(this.b);
-				var1.b(this.i);
-				var1.b(this.h);
+				var1.writeVarLong(this.g);
+				var1.writeVarInt(this.b);
+				var1.writeVarInt(this.i);
+				var1.writeVarInt(this.h);
 		}
 
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

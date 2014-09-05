@@ -2,10 +2,10 @@ package net.minecraft;
 
 public class ann extends aju {
 
-	private final atr b;
+	private final Block b;
 	private String[] c;
 
-	public ann(atr var1, boolean var2) {
+	public ann(Block var1, boolean var2) {
 		super(var1);
 		this.b = var1;
 		if (var2) {
@@ -24,7 +24,7 @@ public class ann extends aju {
 		return this;
 	}
 
-	public String e_(amj var1) {
+	public String e_(ItemStack var1) {
 		if (this.c == null) {
 			return super.e_(var1);
 		} else {

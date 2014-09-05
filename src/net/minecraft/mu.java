@@ -1,38 +1,38 @@
 package net.minecraft;
 
-public class mu implements id<ls> {
+public class mu implements Packet<ls> {
 
-	private dt a;
-	private ho[] b;
+	private Position a;
+	private IJSONComponent[] b;
 
-	public void a(hd var1) {
-		this.a = var1.c();
-		this.b = new ho[4];
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readPosition();
+		this.b = new IJSONComponent[4];
 
 		for (int var2 = 0; var2 < 4; ++var2) {
-			this.b[var2] = var1.d();
+			this.b[var2] = var1.readJSONComponent();
 		}
 
 	}
 
-	public void b(hd var1) {
-		var1.a(this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writePosition(this.a);
 
 		for (int var2 = 0; var2 < 4; ++var2) {
-			var1.a(this.b[var2]);
+			var1.writeJSONComponent(this.b[var2]);
 		}
 
 	}
 
-	public void a(ls var1) {
+	public void handlePacket(ls var1) {
 		var1.a(this);
 	}
 
-	public dt a() {
+	public Position a() {
 		return this.a;
 	}
 
-	public ho[] b() {
+	public IJSONComponent[] b() {
 		return this.b;
 	}
 }

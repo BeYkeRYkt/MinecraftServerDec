@@ -5,10 +5,10 @@ import java.util.Random;
 
 public class bnb extends bnn {
 
-	private atr a;
-	private atr b;
-	private atr c;
-	private atr d;
+	private Block a;
+	private Block b;
+	private Block c;
+	private Block d;
 
 	public bnb() {
 	}
@@ -25,21 +25,21 @@ public class bnb extends bnn {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		var1.put("CA", atr.c.b(this.a));
-		var1.put("CB", atr.c.b(this.b));
-		var1.put("CC", atr.c.b(this.c));
-		var1.put("CD", atr.c.b(this.d));
+		var1.put("CA", Block.c.b(this.a));
+		var1.put("CB", Block.c.b(this.b));
+		var1.put("CC", Block.c.b(this.c));
+		var1.put("CD", Block.c.b(this.d));
 	}
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.a = atr.c(var1.getInt("CA"));
-		this.b = atr.c(var1.getInt("CB"));
-		this.c = atr.c(var1.getInt("CC"));
-		this.d = atr.c(var1.getInt("CD"));
+		this.a = Block.c(var1.getInt("CA"));
+		this.b = Block.c(var1.getInt("CB"));
+		this.c = Block.c(var1.getInt("CC"));
+		this.d = Block.c(var1.getInt("CD"));
 	}
 
-	private atr a(Random var1) {
+	private Block a(Random var1) {
 		switch (var1.nextInt(5)) {
 			case 0:
 				return aty.cb;
@@ -80,14 +80,14 @@ public class bnb extends bnn {
 
 		int var4;
 		for (var4 = 1; var4 <= 7; ++var4) {
-			this.a(var1, this.a.a(NumberConverter.a(var2, 2, 7)), 1, 1, var4, var3);
-			this.a(var1, this.a.a(NumberConverter.a(var2, 2, 7)), 2, 1, var4, var3);
-			this.a(var1, this.b.a(NumberConverter.a(var2, 2, 7)), 4, 1, var4, var3);
-			this.a(var1, this.b.a(NumberConverter.a(var2, 2, 7)), 5, 1, var4, var3);
-			this.a(var1, this.c.a(NumberConverter.a(var2, 2, 7)), 7, 1, var4, var3);
-			this.a(var1, this.c.a(NumberConverter.a(var2, 2, 7)), 8, 1, var4, var3);
-			this.a(var1, this.d.a(NumberConverter.a(var2, 2, 7)), 10, 1, var4, var3);
-			this.a(var1, this.d.a(NumberConverter.a(var2, 2, 7)), 11, 1, var4, var3);
+			this.a(var1, this.a.a(DataTypesConverter.a(var2, 2, 7)), 1, 1, var4, var3);
+			this.a(var1, this.a.a(DataTypesConverter.a(var2, 2, 7)), 2, 1, var4, var3);
+			this.a(var1, this.b.a(DataTypesConverter.a(var2, 2, 7)), 4, 1, var4, var3);
+			this.a(var1, this.b.a(DataTypesConverter.a(var2, 2, 7)), 5, 1, var4, var3);
+			this.a(var1, this.c.a(DataTypesConverter.a(var2, 2, 7)), 7, 1, var4, var3);
+			this.a(var1, this.c.a(DataTypesConverter.a(var2, 2, 7)), 8, 1, var4, var3);
+			this.a(var1, this.d.a(DataTypesConverter.a(var2, 2, 7)), 10, 1, var4, var3);
+			this.a(var1, this.d.a(DataTypesConverter.a(var2, 2, 7)), 11, 1, var4, var3);
 		}
 
 		for (var4 = 0; var4 < 9; ++var4) {

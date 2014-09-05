@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class azs extends atr {
+public class azs extends Block {
 
 	private final boolean a;
 
@@ -19,22 +19,22 @@ public class azs extends atr {
 		return 30;
 	}
 
-	public void a(World var1, dt var2, ahd var3) {
+	public void a(World var1, Position var2, EntityHuman var3) {
 		this.d(var1, var2);
 		super.a(var1, var2, var3);
 	}
 
-	public void a(World var1, dt var2, Entity var3) {
+	public void a(World var1, Position var2, Entity var3) {
 		this.d(var1, var2);
 		super.a(var1, var2, var3);
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
 		this.d(var1, var2);
 		return super.a(var1, var2, var3, var4, var5, var6, var7, var8);
 	}
 
-	private void d(World var1, dt var2) {
+	private void d(World var1, Position var2) {
 		this.e(var1, var2);
 		if (this == aty.aC) {
 			var1.a(var2, aty.aD.P());
@@ -42,14 +42,14 @@ public class azs extends atr {
 
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (this == aty.aD) {
 			var1.a(var2, aty.aC.P());
 		}
 
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return amk.aC;
 	}
 
@@ -61,16 +61,16 @@ public class azs extends atr {
 		return 4 + var1.nextInt(2);
 	}
 
-	public void a(World var1, dt var2, bec var3, float var4, int var5) {
+	public void a(World var1, Position var2, bec var3, float var4, int var5) {
 		super.a(var1, var2, var3, var4, var5);
-		if (this.a(var3, var1.s, var5) != alq.a((atr) this)) {
+		if (this.a(var3, var1.s, var5) != Item.getItemOf((Block) this)) {
 			int var6 = 1 + var1.s.nextInt(5);
 			this.b(var1, var2, var6);
 		}
 
 	}
 
-	private void e(World var1, dt var2) {
+	private void e(World var1, Position var2) {
 		Random var3 = var1.s;
 		double var4 = 0.0625D;
 
@@ -109,7 +109,7 @@ public class azs extends atr {
 
 	}
 
-	protected amj i(bec var1) {
-		return new amj(aty.aC);
+	protected ItemStack i(bec var1) {
+		return new ItemStack(aty.aC);
 	}
 }

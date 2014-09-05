@@ -9,8 +9,8 @@ public class abi {
 
 	private World a;
 	private final List b = Lists.newArrayList();
-	private dt c;
-	private dt d;
+	private Position c;
+	private Position d;
 	private int e;
 	private int f;
 	private int g;
@@ -21,15 +21,15 @@ public class abi {
 	private int l;
 
 	public abi() {
-		this.c = dt.a;
-		this.d = dt.a;
+		this.c = Position.a;
+		this.d = Position.a;
 		this.j = new TreeMap();
 		this.k = Lists.newArrayList();
 	}
 
 	public abi(World var1) {
-		this.c = dt.a;
-		this.d = dt.a;
+		this.c = Position.a;
+		this.d = Position.a;
 		this.j = new TreeMap();
 		this.k = Lists.newArrayList();
 		this.a = var1;
@@ -64,10 +64,10 @@ public class abi {
 
 	}
 
-	private brw a(dt var1, int var2, int var3, int var4) {
+	private brw a(Position var1, int var2, int var3, int var4) {
 		for (int var5 = 0; var5 < 10; ++var5) {
-			dt var6 = var1.a(this.a.s.nextInt(16) - 8, this.a.s.nextInt(6) - 3, this.a.s.nextInt(16) - 8);
-			if (this.a(var6) && this.a(new dt(var2, var3, var4), var6)) {
+			Position var6 = var1.a(this.a.s.nextInt(16) - 8, this.a.s.nextInt(6) - 3, this.a.s.nextInt(16) - 8);
+			if (this.a(var6) && this.a(new Position(var2, var3, var4), var6)) {
 				return new brw((double) var6.n(), (double) var6.o(), (double) var6.p());
 			}
 		}
@@ -75,7 +75,7 @@ public class abi {
 		return null;
 	}
 
-	private boolean a(dt var1, dt var2) {
+	private boolean a(Position var1, Position var2) {
 		if (!World.a((ard) this.a, var2.b())) {
 			return false;
 		} else {
@@ -85,7 +85,7 @@ public class abi {
 			for (int var5 = var3; var5 < var3 + var1.n(); ++var5) {
 				for (int var6 = var2.o(); var6 < var2.o() + var1.o(); ++var6) {
 					for (int var7 = var4; var7 < var4 + var1.p(); ++var7) {
-						if (this.a.p(new dt(var5, var6, var7)).c().t()) {
+						if (this.a.p(new Position(var5, var6, var7)).c().t()) {
 							return false;
 						}
 					}
@@ -110,7 +110,7 @@ public class abi {
 
 	}
 
-	public dt a() {
+	public Position a() {
 		return this.d;
 	}
 
@@ -130,7 +130,7 @@ public class abi {
 		return this.h;
 	}
 
-	public boolean a(dt var1) {
+	public boolean a(Position var1) {
 		return this.d.i(var1) < (double) (this.e * this.e);
 	}
 
@@ -138,7 +138,7 @@ public class abi {
 		return this.b;
 	}
 
-	public abh b(dt var1) {
+	public abh b(Position var1) {
 		abh var2 = null;
 		int var3 = Integer.MAX_VALUE;
 		Iterator var4 = this.b.iterator();
@@ -155,7 +155,7 @@ public class abi {
 		return var2;
 	}
 
-	public abh c(dt var1) {
+	public abh c(Position var1) {
 		abh var2 = null;
 		int var3 = Integer.MAX_VALUE;
 		Iterator var4 = this.b.iterator();
@@ -178,7 +178,7 @@ public class abi {
 		return var2;
 	}
 
-	public abh e(dt var1) {
+	public abh e(Position var1) {
 		if (this.d.i(var1) > (double) (this.e * this.e)) {
 			return null;
 		} else {
@@ -240,15 +240,15 @@ public class abi {
 		return var4 != null ? var4.a : null;
 	}
 
-	public ahd c(EntityLiving var1) {
+	public EntityHuman c(EntityLiving var1) {
 		double var2 = Double.MAX_VALUE;
-		ahd var4 = null;
+		EntityHuman var4 = null;
 		Iterator var5 = this.j.keySet().iterator();
 
 		while (var5.hasNext()) {
 			String var6 = (String) var5.next();
 			if (this.d(var6)) {
-				ahd var7 = this.a.a(var6);
+				EntityHuman var7 = this.a.a(var6);
 				if (var7 != null) {
 					double var8 = var7.h(var1);
 					if (var8 <= var2) {
@@ -299,18 +299,18 @@ public class abi {
 
 	}
 
-	private boolean f(dt var1) {
-		atr var2 = this.a.p(var1).c();
+	private boolean f(Position var1) {
+		Block var2 = this.a.p(var1).c();
 		return var2 instanceof avf ? var2.r() == bof.d : false;
 	}
 
 	private void n() {
 		int var1 = this.b.size();
 		if (var1 == 0) {
-			this.d = new dt(0, 0, 0);
+			this.d = new Position(0, 0, 0);
 			this.e = 0;
 		} else {
-			this.d = new dt(this.c.n() / var1, this.c.o() / var1, this.c.p() / var1);
+			this.d = new Position(this.c.n() / var1, this.c.o() / var1, this.c.p() / var1);
 			int var2 = 0;
 
 			abh var4;
@@ -329,7 +329,7 @@ public class abi {
 
 	public int a(String var1, int var2) {
 		int var3 = this.a(var1);
-		int var4 = NumberConverter.a(var3 + var2, -30, 10);
+		int var4 = DataTypesConverter.a(var3 + var2, -30, 10);
 		this.j.put(var1, Integer.valueOf(var4));
 		return var4;
 	}
@@ -345,13 +345,13 @@ public class abi {
 		this.f = var1.getInt("Stable");
 		this.g = var1.getInt("Tick");
 		this.i = var1.getInt("MTick");
-		this.d = new dt(var1.getInt("CX"), var1.getInt("CY"), var1.getInt("CZ"));
-		this.c = new dt(var1.getInt("ACX"), var1.getInt("ACY"), var1.getInt("ACZ"));
+		this.d = new Position(var1.getInt("CX"), var1.getInt("CY"), var1.getInt("CZ"));
+		this.c = new Position(var1.getInt("ACX"), var1.getInt("ACY"), var1.getInt("ACZ"));
 		NBTListTag var2 = var1.getList("Doors", 10);
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
-			abh var5 = new abh(new dt(var4.getInt("X"), var4.getInt("Y"), var4.getInt("Z")), var4.getInt("IDX"), var4.getInt("IDZ"), var4.getInt("TS"));
+			abh var5 = new abh(new Position(var4.getInt("X"), var4.getInt("Y"), var4.getInt("Z")), var4.getInt("IDX"), var4.getInt("IDZ"), var4.getInt("TS"));
 			this.b.add(var5);
 		}
 

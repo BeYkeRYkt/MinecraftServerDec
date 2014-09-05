@@ -12,7 +12,7 @@ public class aea extends aed {
 
 	public void a(wh var1) {
 		super.a(var1);
-		this.a(alq.a((atr) aty.ae), 1, 0.0F);
+		this.a(Item.getItemOf((Block) aty.ae), 1, 0.0F);
 	}
 
 	public int n_() {
@@ -35,7 +35,7 @@ public class aea extends aed {
 		return "minecraft:chest";
 	}
 
-	public aib a(ahb var1, ahd var2) {
+	public Container a(PlayerInventory var1, EntityHuman var2) {
 		return new aim(var1, this, var2);
 	}
 }

@@ -18,7 +18,7 @@ public class SetWorldSpawnCommand extends AbstractCommand {
 	}
 
 	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dp, dk, dm {
-		dt var3;
+		Position var3;
 		if (var2.length == 0) {
 			var3 = b(var1).c();
 		} else {
@@ -30,11 +30,11 @@ public class SetWorldSpawnCommand extends AbstractCommand {
 		}
 
 		var1.e().B(var3);
-		MinecraftServer.getInstance().getPlayerList().a((id) (new lh(var3)));
+		MinecraftServer.getInstance().getPlayerList().a((Packet) (new PacketSpawnPosition(var3)));
 		a(var1, this, "commands.setworldspawn.success", new Object[] { Integer.valueOf(var3.n()), Integer.valueOf(var3.o()), Integer.valueOf(var3.p()) });
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return var2.length > 0 && var2.length <= 3 ? a(var2, 0, var3) : null;
 	}
 }

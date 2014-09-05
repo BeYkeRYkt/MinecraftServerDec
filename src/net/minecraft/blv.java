@@ -56,7 +56,7 @@ public class blv extends bmk {
 				this.a(var1, aty.U.a(bbg.f.a()), 2, 1, var4, var3);
 			}
 
-			if (!this.b && var3.b((fd) (new dt(this.a(3, 3), this.d(2), this.b(3, 3))))) {
+			if (!this.b && var3.b((fd) (new Position(this.a(3, 3), this.d(2), this.b(3, 3))))) {
 				this.b = true;
 				this.a(var1, var3, var2, 3, 2, 3, vl.a(a, new vl[] { amk.cd.b(var2) }), 2 + var2.nextInt(2));
 			}

@@ -13,7 +13,7 @@ public class bdi extends bcm {
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
 		this.a = var1.getByte("note");
-		this.a = (byte) NumberConverter.a(this.a, 0, 24);
+		this.a = (byte) DataTypesConverter.a(this.a, 0, 24);
 	}
 
 	public void b() {
@@ -21,7 +21,7 @@ public class bdi extends bcm {
 		this.o_();
 	}
 
-	public void a(World var1, dt var2) {
+	public void a(World var1, Position var2) {
 		if (var1.p(var2.a()).c().r() == bof.a) {
 			bof var3 = var1.p(var2.b()).c().r();
 			byte var4 = 0;

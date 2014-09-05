@@ -30,7 +30,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 			throw new dp("commands.spreadplayers.usage", new Object[0]);
 		} else {
 			byte var3 = 0;
-			dt var4 = var1.c();
+			Position var4 = var1.c();
 			double var10000 = (double) var4.n();
 			int var17 = var3 + 1;
 			double var5 = b(var10000, var2[var3], true);
@@ -91,8 +91,8 @@ public class SpreadPlayersCommand extends AbstractCommand {
 
 		while (var3.hasNext()) {
 			Entity var4 = (Entity) var3.next();
-			if (var4 instanceof ahd) {
-				var2.add(((ahd) var4).bN());
+			if (var4 instanceof EntityHuman) {
+				var2.add(((EntityHuman) var4).bN());
 			} else {
 				var2.add((Object) null);
 			}
@@ -179,7 +179,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 			Entity var10 = (Entity) var1.get(var9);
 			cs var11;
 			if (var4) {
-				bsf var12 = var10 instanceof ahd ? ((ahd) var10).bN() : null;
+				bsf var12 = var10 instanceof EntityHuman ? ((EntityHuman) var10).bN() : null;
 				if (!var8.containsKey(var12)) {
 					var8.put(var12, var3[var7++]);
 				}
@@ -189,7 +189,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 				var11 = var3[var7++];
 			}
 
-			var10.a((double) ((float) NumberConverter.c(var11.a) + 0.5F), (double) var11.a(var2), (double) NumberConverter.c(var11.b) + 0.5D);
+			var10.a((double) ((float) DataTypesConverter.toFixedPointInt(var11.a) + 0.5F), (double) var11.a(var2), (double) DataTypesConverter.toFixedPointInt(var11.b) + 0.5D);
 			double var17 = Double.MAX_VALUE;
 
 			for (int var14 = 0; var14 < var3.length; ++var14) {

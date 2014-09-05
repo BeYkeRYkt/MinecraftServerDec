@@ -10,19 +10,19 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class qs implements bfe {
+public class qs implements IChunkProvider {
 
 	private static final Logger b = LogManager.getLogger();
 	private Set c = Collections.newSetFromMap(new ConcurrentHashMap());
 	private bfh d;
-	private bfe e;
+	private IChunkProvider e;
 	private bfq f;
 	public boolean a = true;
 	private ur g = new ur();
 	private List h = Lists.newArrayList();
 	private WorldServer i;
 
-	public qs(WorldServer var1, bfq var2, bfe var3) {
+	public qs(WorldServer var1, bfq var2, IChunkProvider var3) {
 		this.d = new bfg(var1, 0, 0);
 		this.i = var1;
 		this.f = var2;
@@ -38,7 +38,7 @@ public class qs implements bfe {
 	}
 
 	public void b(int var1, int var2) {
-		if (this.i.t.e()) {
+		if (this.i.worldProvider.e()) {
 			if (!this.i.c(var1, var2)) {
 				this.c.add(Long.valueOf(aqm.a(var1, var2)));
 			}
@@ -139,7 +139,7 @@ public class qs implements bfe {
 		}
 	}
 
-	public void a(bfe var1, int var2, int var3) {
+	public void a(IChunkProvider var1, int var2, int var3) {
 		bfh var4 = this.d(var2, var3);
 		if (!var4.t()) {
 			var4.n();
@@ -151,7 +151,7 @@ public class qs implements bfe {
 
 	}
 
-	public boolean a(bfe var1, bfh var2, int var3, int var4) {
+	public boolean a(IChunkProvider var1, bfh var2, int var3, int var4) {
 		if (this.e != null && this.e.a(var1, var2, var3, var4)) {
 			bfh var5 = this.d(var3, var4);
 			var5.e();
@@ -224,11 +224,11 @@ public class qs implements bfe {
 		return "ServerChunkCache: " + this.g.a() + " Drop: " + this.c.size();
 	}
 
-	public List a(xp var1, dt var2) {
+	public List a(xp var1, Position var2) {
 		return this.e.a(var1, var2);
 	}
 
-	public dt a(World var1, String var2, dt var3) {
+	public Position a(World var1, String var2, Position var3) {
 		return this.e.a(var1, var2, var3);
 	}
 
@@ -239,7 +239,7 @@ public class qs implements bfe {
 	public void a(bfh var1, int var2, int var3) {
 	}
 
-	public bfh a(dt var1) {
+	public bfh a(Position var1) {
 		return this.d(var1.n() >> 4, var1.p() >> 4);
 	}
 

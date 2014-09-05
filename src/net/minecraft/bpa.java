@@ -9,7 +9,7 @@ public abstract class bpa {
 	private long d;
 	protected long b;
 
-	public static bpa[] a(long var0, are var2, String var3) {
+	public static bpa[] a(long var0, LevelType var2, String var3) {
 		boz var4 = new boz(1L);
 		bow var13 = new bow(2000L, var4);
 		boo var14 = new boo(1L, var13);
@@ -32,13 +32,13 @@ public abstract class bpa {
 		bgl var5 = null;
 		int var6 = 4;
 		int var7 = var6;
-		if (var2 == are.f && var3.length() > 0) {
+		if (var2 == LevelType.CUSTOM && var3.length() > 0) {
 			var5 = bgn.a(var3).b();
 			var6 = var5.G;
 			var7 = var5.H;
 		}
 
-		if (var2 == are.d) {
+		if (var2 == LevelType.LARGE_BIOMES) {
 			var6 = 6;
 		}
 

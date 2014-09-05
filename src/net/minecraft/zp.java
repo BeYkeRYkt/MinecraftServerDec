@@ -24,7 +24,7 @@ public class zp extends zb {
 		} else if (this.b.h(this.a) > (double) (this.g * this.g)) {
 			return false;
 		} else {
-			brw var1 = abf.a(this.a, 16, 7, new brw(this.b.s, this.b.t, this.b.u));
+			brw var1 = abf.a(this.a, 16, 7, new brw(this.b.locationX, this.b.locationY, this.b.locationZ));
 			if (var1 == null) {
 				return false;
 			} else {

@@ -24,7 +24,7 @@ public class hu extends hj {
 		Iterator var2 = this.a().iterator();
 
 		while (var2.hasNext()) {
-			ho var3 = (ho) var2.next();
+			IJSONComponent var3 = (IJSONComponent) var2.next();
 			var1.a(var3.f());
 		}
 
@@ -47,7 +47,7 @@ public class hu extends hj {
 	}
 
 	// $FF: synthetic method
-	public ho f() {
+	public IJSONComponent f() {
 		return this.h();
 	}
 }

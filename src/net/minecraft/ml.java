@@ -1,28 +1,28 @@
 package net.minecraft;
 
-public class ml implements id<ls> {
+public class ml implements Packet<ls> {
 
-	private dt a;
+	private Position a;
 	private ej b;
 	private mm c;
 
-	public void a(hd var1) {
+	public void readData(PacketDataSerializer var1) {
 		this.c = (mm) var1.a(mm.class);
-		this.a = var1.c();
+		this.a = var1.readPosition();
 		this.b = ej.a(var1.readUnsignedByte());
 	}
 
-	public void b(hd var1) {
-		var1.a((Enum) this.c);
-		var1.a(this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeEnum((Enum) this.c);
+		var1.writePosition(this.a);
 		var1.writeByte(this.b.a());
 	}
 
-	public void a(ls var1) {
+	public void handlePacket(ls var1) {
 		var1.a(this);
 	}
 
-	public dt a() {
+	public Position a() {
 		return this.a;
 	}
 

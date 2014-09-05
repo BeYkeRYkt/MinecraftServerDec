@@ -27,6 +27,6 @@ class afz extends zb {
 
 	public void e() {
 		this.a.a(this.a.u(), 10.0F, 10.0F);
-		((agc) this.a.q()).a(this.a.y, this.a.cg());
+		((agc) this.a.q()).a(this.a.yaw, this.a.cg());
 	}
 }

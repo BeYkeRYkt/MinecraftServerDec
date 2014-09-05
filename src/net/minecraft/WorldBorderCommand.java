@@ -68,7 +68,7 @@ public class WorldBorderCommand extends AbstractCommand {
 					throw new dp("commands.worldborder.center.usage", new Object[0]);
 				}
 
-				dt var10 = var1.c();
+				Position var10 = var1.c();
 				double var5 = b((double) var10.n() + 0.5D, var2[1], true);
 				double var7 = b((double) var10.p() + 0.5D, var2[2], true);
 				var3.c(var5, var7);
@@ -123,7 +123,7 @@ public class WorldBorderCommand extends AbstractCommand {
 				}
 			} else if (var2[0].equals("get")) {
 				var4 = var3.h();
-				var1.a(ag.e, NumberConverter.c(var4 + 0.5D));
+				var1.a(ag.e, DataTypesConverter.toFixedPointInt(var4 + 0.5D));
 				var1.a(new hz("commands.worldborder.get.success", new Object[] { String.format("%.0f", new Object[] { Double.valueOf(var4) }) }));
 			}
 
@@ -134,7 +134,7 @@ public class WorldBorderCommand extends AbstractCommand {
 		return MinecraftServer.getInstance().worlds[0].af();
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return var2.length == 1 ? a(var2, new String[] { "set", "center", "damage", "warning", "add", "get" }) : (var2.length == 2 && var2[0].equals("damage") ? a(var2, new String[] { "buffer", "amount" }) : (var2.length == 2 && var2[0].equals("warning") ? a(var2, new String[] { "time", "distance" }) : null));
 	}
 }

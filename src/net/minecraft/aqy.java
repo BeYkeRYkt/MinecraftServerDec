@@ -12,7 +12,7 @@ class aqy implements Callable {
 	}
 
 	public String a() {
-		return this.a.v.f();
+		return this.a.chunkProvider.f();
 	}
 
 	// $FF: synthetic method

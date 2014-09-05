@@ -4,13 +4,13 @@ final class ov extends eg {
 
 	private final eg b = new eg();
 
-	public amj b(dz var1, amj var2) {
+	public ItemStack b(dz var1, ItemStack var2) {
 		ej var3 = ave.b(var1.f());
 		World var4 = var1.i();
 		double var5 = var1.a() + (double) ((float) var3.g() * 1.125F);
 		double var7 = var1.b() + (double) ((float) var3.h() * 1.125F);
 		double var9 = var1.c() + (double) ((float) var3.i() * 1.125F);
-		dt var11 = var1.d().a(var3);
+		Position var11 = var1.d().a(var3);
 		bof var12 = var4.p(var11).c().r();
 		double var13;
 		if (bof.h.equals(var12)) {

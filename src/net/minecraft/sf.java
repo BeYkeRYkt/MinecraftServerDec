@@ -60,7 +60,7 @@ public class sf {
 
 			for (int var6 = 0; var6 < var5; ++var6) {
 				String var7 = var4[var6];
-				UUID var8 = ahd.a(new GameProfile((UUID) null, var7));
+				UUID var8 = EntityHuman.a(new GameProfile((UUID) null, var7));
 				GameProfile var9 = new GameProfile(var8, var7);
 				var2.onProfileLookupSucceeded(var9);
 			}
@@ -209,7 +209,7 @@ public class sf {
 				a(var1, Lists.newArrayList((Object[]) (new String[] { var0 })), var4);
 				return var3.size() > 0 && ((GameProfile) var3.get(0)).getId() != null ? ((GameProfile) var3.get(0)).getId().toString() : "";
 			} else {
-				return ahd.a(new GameProfile((UUID) null, var0)).toString();
+				return EntityHuman.a(new GameProfile((UUID) null, var0)).toString();
 			}
 		} else {
 			return var0;

@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.List;
 import java.util.Random;
 
-public class bds extends atr {
+public class bds extends Block {
 
 	public static final beu a = beu.a("facing");
 	public static final bev b = bev.a("type", bdu.class);
@@ -16,12 +16,12 @@ public class bds extends atr {
 		this.c(0.5F);
 	}
 
-	public void a(World var1, dt var2, bec var3, ahd var4) {
+	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
 		if (var4.by.instabuild) {
 			ej var5 = (ej) var3.b(a);
 			if (var5 != null) {
-				dt var6 = var2.a(var5.d());
-				atr var7 = var1.p(var6).c();
+				Position var6 = var2.a(var5.d());
+				Block var7 = var1.p(var6).c();
 				if (var7 == aty.J || var7 == aty.F) {
 					var1.g(var6);
 				}
@@ -31,7 +31,7 @@ public class bds extends atr {
 		super.a(var1, var2, var3, var4);
 	}
 
-	public void b(World var1, dt var2, bec var3) {
+	public void b(World var1, Position var2, bec var3) {
 		super.b(var1, var2, var3);
 		ej var4 = ((ej) var3.b(a)).d();
 		var2 = var2.a(var4);
@@ -51,11 +51,11 @@ public class bds extends atr {
 		return false;
 	}
 
-	public boolean c(World var1, dt var2) {
+	public boolean c(World var1, Position var2) {
 		return false;
 	}
 
-	public boolean a(World var1, dt var2, ej var3) {
+	public boolean a(World var1, Position var2, ej var3) {
 		return false;
 	}
 
@@ -63,7 +63,7 @@ public class bds extends atr {
 		return 0;
 	}
 
-	public void a(World var1, dt var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
 		this.d(var3);
 		super.a(var1, var2, var3, var4, var5, var6);
 		this.e(var3);
@@ -99,7 +99,7 @@ public class bds extends atr {
 
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		this.d(var1.p(var2));
 	}
 
@@ -130,9 +130,9 @@ public class bds extends atr {
 		}
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		ej var5 = (ej) var3.b(a);
-		dt var6 = var2.a(var5.d());
+		Position var6 = var2.a(var5.d());
 		bec var7 = var1.p(var6);
 		if (var7.c() != aty.J && var7.c() != aty.F) {
 			var1.g(var2);

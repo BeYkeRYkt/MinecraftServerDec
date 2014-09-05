@@ -11,11 +11,11 @@ public class bpx extends bpu {
 	}
 
 	public bpt a(Entity var1) {
-		return this.a(NumberConverter.c(var1.aQ().a), NumberConverter.c(var1.aQ().b + 0.5D), NumberConverter.c(var1.aQ().c));
+		return this.a(DataTypesConverter.toFixedPointInt(var1.aQ().a), DataTypesConverter.toFixedPointInt(var1.aQ().b + 0.5D), DataTypesConverter.toFixedPointInt(var1.aQ().c));
 	}
 
 	public bpt a(Entity var1, double var2, double var4, double var6) {
-		return this.a(NumberConverter.c(var2 - (double) (var1.J / 2.0F)), NumberConverter.c(var4 + 0.5D), NumberConverter.c(var6 - (double) (var1.J / 2.0F)));
+		return this.a(DataTypesConverter.toFixedPointInt(var2 - (double) (var1.J / 2.0F)), DataTypesConverter.toFixedPointInt(var4 + 0.5D), DataTypesConverter.toFixedPointInt(var6 - (double) (var1.J / 2.0F)));
 	}
 
 	public int a(bpt[] var1, Entity var2, bpt var3, bpt var4, float var5) {
@@ -43,8 +43,8 @@ public class bpx extends bpu {
 		for (int var5 = var2; var5 < var2 + this.c; ++var5) {
 			for (int var6 = var3; var6 < var3 + this.d; ++var6) {
 				for (int var7 = var4; var7 < var4 + this.e; ++var7) {
-					dt var8 = new dt(var5, var6, var7);
-					atr var9 = this.a.p(var8).c();
+					Position var8 = new Position(var5, var6, var7);
+					Block var9 = this.a.p(var8).c();
 					if (var9.r() != bof.h) {
 						return 0;
 					}

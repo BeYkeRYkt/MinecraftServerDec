@@ -7,11 +7,11 @@ public class alm extends all {
 		this.a(true);
 	}
 
-	public amx g(amj var1) {
+	public amx g(ItemStack var1) {
 		return var1.i() == 0 ? amx.c : amx.d;
 	}
 
-	protected void c(amj var1, World var2, ahd var3) {
+	protected void c(ItemStack var1, World var2, EntityHuman var3) {
 		if (!var2.D) {
 			var3.c(new wq(wp.x.H, 2400, 0));
 		}

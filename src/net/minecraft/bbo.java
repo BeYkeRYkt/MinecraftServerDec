@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class bbo extends atr {
+public class bbo extends Block {
 
 	protected boolean Q;
 

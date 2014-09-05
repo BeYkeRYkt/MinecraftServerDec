@@ -16,23 +16,23 @@ public class he extends ByteToMessageDecoder {
 
 	private static final Logger a = LogManager.getLogger();
 	private static final Marker b = MarkerManager.getMarker("PACKET_RECEIVED", gr.b);
-	private final ie c;
+	private final PacketDirection c;
 
-	public he(ie var1) {
+	public he(PacketDirection var1) {
 		this.c = var1;
 	}
 
 	protected void decode(ChannelHandlerContext var1, ByteBuf var2, List var3) throws InstantiationException, IllegalAccessException, IOException {
 		if (var2.readableBytes() != 0) {
-			hd var4 = new hd(var2);
-			int var5 = var4.e();
-			id var6 = ((EnumProtocol) var1.channel().attr(gr.c).get()).a(this.c, var5);
+			PacketDataSerializer var4 = new PacketDataSerializer(var2);
+			int var5 = var4.readVarInt();
+			Packet var6 = ((EnumProtocol) var1.channel().attr(gr.c).get()).createPacket(this.c, var5);
 			if (var6 == null) {
 				throw new IOException("Bad packet id " + var5);
 			} else {
-				var6.a(var4);
+				var6.readData(var4);
 				if (var4.readableBytes() > 0) {
-					throw new IOException("Packet " + ((EnumProtocol) var1.channel().attr(gr.c).get()).a() + "/" + var5 + " (" + var6.getClass().getSimpleName() + ") was larger than I expected, found " + var4.readableBytes() + " bytes extra whilst reading packet " + var5);
+					throw new IOException("Packet " + ((EnumProtocol) var1.channel().attr(gr.c).get()).getStateId() + "/" + var5 + " (" + var6.getClass().getSimpleName() + ") was larger than I expected, found " + var4.readableBytes() + " bytes extra whilst reading packet " + var5);
 				} else {
 					var3.add(var6);
 					if (a.isDebugEnabled()) {

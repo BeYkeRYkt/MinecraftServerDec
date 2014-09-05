@@ -14,7 +14,7 @@ public class asc extends arz {
 		this.c = var2;
 	}
 
-	public arm a(dt var1) {
+	public arm a(Position var1) {
 		return this.b;
 	}
 
@@ -49,8 +49,8 @@ public class asc extends arz {
 		return this.b(var1, var2, var3, var4, var5);
 	}
 
-	public dt a(int var1, int var2, int var3, List var4, Random var5) {
-		return var4.contains(this.b) ? new dt(var1 - var3 + var5.nextInt(var3 * 2 + 1), 0, var2 - var3 + var5.nextInt(var3 * 2 + 1)) : null;
+	public Position a(int var1, int var2, int var3, List var4, Random var5) {
+		return var4.contains(this.b) ? new Position(var1 - var3 + var5.nextInt(var3 * 2 + 1), 0, var2 - var3 + var5.nextInt(var3 * 2 + 1)) : null;
 	}
 
 	public boolean a(int var1, int var2, int var3, List var4) {

@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.Random;
 
-public class avx extends atr {
+public class avx extends Block {
 
 	public static final bew a = bew.a("age", 0, 15);
 	public static final bet b = bet.a("flip");
@@ -17,7 +17,7 @@ public class avx extends atr {
 	private final Map S = Maps.newIdentityHashMap();
 	private final Map T = Maps.newIdentityHashMap();
 
-	public bec a(bec var1, ard var2, dt var3) {
+	public bec a(bec var1, ard var2, Position var3) {
 		int var4 = var3.n();
 		int var5 = var3.o();
 		int var6 = var3.p();
@@ -79,12 +79,12 @@ public class avx extends atr {
 		aty.ab.a(aty.cy, 60, 20);
 	}
 
-	public void a(atr var1, int var2, int var3) {
+	public void a(Block var1, int var2, int var3) {
 		this.S.put(var1, Integer.valueOf(var2));
 		this.T.put(var1, Integer.valueOf(var3));
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
@@ -104,15 +104,15 @@ public class avx extends atr {
 		return 30;
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (var1.Q().b("doFireTick")) {
 			if (!this.c(var1, var2)) {
 				var1.g(var2);
 			}
 
-			atr var5 = var1.p(var2.b()).c();
+			Block var5 = var1.p(var2.b()).c();
 			boolean var6 = var5 == aty.aV;
-			if (var1.t instanceof bgh && var5 == aty.h) {
+			if (var1.worldProvider instanceof bgh && var5 == aty.h) {
 				var6 = true;
 			}
 
@@ -125,7 +125,7 @@ public class avx extends atr {
 					var1.a(var2, var3, 4);
 				}
 
-				var1.a(var2, (atr) this, this.a(var1) + var4.nextInt(10));
+				var1.a(var2, (Block) this, this.a(var1) + var4.nextInt(10));
 				if (!var6) {
 					if (!this.e(var1, var2)) {
 						if (!World.a((ard) var1, var2.b()) || var7 > 3) {
@@ -163,10 +163,10 @@ public class avx extends atr {
 									var13 += (var12 - 1) * 100;
 								}
 
-								dt var14 = var2.a(var10, var12, var11);
+								Position var14 = var2.a(var10, var12, var11);
 								int var15 = this.m(var1, var14);
 								if (var15 > 0) {
-									int var16 = (var15 + 40 + var1.aa().getId() * 7) / (var7 + 30);
+									int var16 = (var15 + 40 + var1.getDifficulty().getId() * 7) / (var7 + 30);
 									if (var8) {
 										var16 /= 2;
 									}
@@ -189,7 +189,7 @@ public class avx extends atr {
 		}
 	}
 
-	protected boolean d(World var1, dt var2) {
+	protected boolean d(World var1, Position var2) {
 		return var1.C(var2) || var1.C(var2.e()) || var1.C(var2.f()) || var1.C(var2.c()) || var1.C(var2.d());
 	}
 
@@ -197,17 +197,17 @@ public class avx extends atr {
 		return false;
 	}
 
-	private int c(atr var1) {
+	private int c(Block var1) {
 		Integer var2 = (Integer) this.T.get(var1);
 		return var2 == null ? 0 : var2.intValue();
 	}
 
-	private int d(atr var1) {
+	private int d(Block var1) {
 		Integer var2 = (Integer) this.S.get(var1);
 		return var2 == null ? 0 : var2.intValue();
 	}
 
-	private void a(World var1, dt var2, int var3, Random var4, int var5) {
+	private void a(World var1, Position var2, int var3, Random var4, int var5) {
 		int var6 = this.c(var1.p(var2).c());
 		if (var4.nextInt(var3) < var6) {
 			bec var7 = var1.p(var2);
@@ -229,7 +229,7 @@ public class avx extends atr {
 
 	}
 
-	private boolean e(World var1, dt var2) {
+	private boolean e(World var1, Position var2) {
 		ej[] var3 = ej.values();
 		int var4 = var3.length;
 
@@ -243,7 +243,7 @@ public class avx extends atr {
 		return false;
 	}
 
-	private int m(World var1, dt var2) {
+	private int m(World var1, Position var2) {
 		if (!var1.d(var2)) {
 			return 0;
 		} else {
@@ -264,27 +264,27 @@ public class avx extends atr {
 		return false;
 	}
 
-	public boolean e(ard var1, dt var2) {
+	public boolean e(ard var1, Position var2) {
 		return this.d(var1.p(var2).c()) > 0;
 	}
 
-	public boolean c(World var1, dt var2) {
+	public boolean c(World var1, Position var2) {
 		return World.a((ard) var1, var2.b()) || this.e(var1, var2);
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (!World.a((ard) var1, var2.b()) && !this.e(var1, var2)) {
 			var1.g(var2);
 		}
 
 	}
 
-	public void c(World var1, dt var2, bec var3) {
-		if (var1.t.q() > 0 || !aty.aY.d(var1, var2)) {
+	public void c(World var1, Position var2, bec var3) {
+		if (var1.worldProvider.getDimensionId() > 0 || !aty.aY.d(var1, var2)) {
 			if (!World.a((ard) var1, var2.b()) && !this.e(var1, var2)) {
 				var1.g(var2);
 			} else {
-				var1.a(var2, (atr) this, this.a(var1) + var1.s.nextInt(10));
+				var1.a(var2, (Block) this, this.a(var1) + var1.s.nextInt(10));
 			}
 		}
 	}

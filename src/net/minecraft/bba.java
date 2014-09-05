@@ -2,18 +2,18 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class bba extends atr {
+public class bba extends Block {
 
 	public static final bev a = bev.a("variant", bbb.class);
 
 	public bba() {
 		super(bof.e);
 		this.j(this.L.b().a(a, bbb.a));
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
-		return var1.b(a) == bbb.a ? alq.a(aty.e) : alq.a(aty.b);
+	public Item a(bec var1, Random var2, int var3) {
+		return var1.b(a) == bbb.a ? Item.getItemOf(aty.e) : Item.getItemOf(aty.b);
 	}
 
 	public int a(bec var1) {

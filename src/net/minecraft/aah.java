@@ -19,8 +19,8 @@ public class aah extends zb {
 		} else if (this.a.G) {
 			return false;
 		} else {
-			ahd var1 = this.a.u_();
-			return var1 == null ? false : (this.a.h(var1) > 16.0D ? false : var1.bi instanceof aib);
+			EntityHuman var1 = this.a.u_();
+			return var1 == null ? false : (this.a.h(var1) > 16.0D ? false : var1.activeContainer instanceof Container);
 		}
 	}
 
@@ -29,6 +29,6 @@ public class aah extends zb {
 	}
 
 	public void d() {
-		this.a.a_((ahd) null);
+		this.a.a_((EntityHuman) null);
 	}
 }

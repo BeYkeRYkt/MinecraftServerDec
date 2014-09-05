@@ -1,5 +1,5 @@
 package net.minecraft;
 
-public class alf extends alq {
+public class alf extends Item {
 
 }

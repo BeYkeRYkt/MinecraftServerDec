@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public interface bdd extends vq {
+public interface bdd extends IInventory {
 
 	World z();
 

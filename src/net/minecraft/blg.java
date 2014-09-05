@@ -29,7 +29,7 @@ public class blg extends bmm {
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
 			if (((String) var3.getKey()).equals("distance")) {
-				this.g = NumberConverter.a((String) var3.getValue(), this.g, this.h + 1);
+				this.g = DataTypesConverter.a((String) var3.getValue(), this.g, this.h + 1);
 			}
 		}
 
@@ -58,7 +58,7 @@ public class blg extends bmm {
 		var5 += var7.nextInt(this.g - this.h);
 		var6 += var7.nextInt(this.g - this.h);
 		if (var3 == var5 && var4 == var6) {
-			arm var8 = this.c.v().a(new dt(var3 * 16 + 8, 0, var4 * 16 + 8));
+			arm var8 = this.c.v().a(new Position(var3 * 16 + 8, 0, var4 * 16 + 8));
 			if (var8 == null) {
 				return false;
 			}
@@ -80,7 +80,7 @@ public class blg extends bmm {
 		return new blh(this.c, this.b, var1, var2);
 	}
 
-	public boolean a(dt var1) {
+	public boolean a(Position var1) {
 		bmv var2 = this.c(var1);
 		if (var2 != null && var2 instanceof blh && !var2.a.isEmpty()) {
 			bms var3 = (bms) var2.a.getFirst();

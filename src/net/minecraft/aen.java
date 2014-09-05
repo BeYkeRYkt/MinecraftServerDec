@@ -34,11 +34,11 @@ class aen extends zb {
 				this.a.r(var1);
 			}
 
-			this.a.q().a(var1.s, var1.t, var1.u, 1.0D);
+			this.a.q().a(var1.locationX, var1.locationY, var1.locationZ, 1.0D);
 		} else if (var2 < 256.0D) {
-			double var4 = var1.s - this.a.s;
-			double var6 = var1.aQ().b + (double) (var1.K / 2.0F) - (this.a.t + (double) (this.a.K / 2.0F));
-			double var8 = var1.u - this.a.u;
+			double var4 = var1.locationX - this.a.locationX;
+			double var6 = var1.aQ().b + (double) (var1.K / 2.0F) - (this.a.locationY + (double) (this.a.K / 2.0F));
+			double var8 = var1.locationZ - this.a.locationZ;
 			if (this.c <= 0) {
 				++this.b;
 				if (this.b == 1) {
@@ -53,12 +53,12 @@ class aen extends zb {
 				}
 
 				if (this.b > 1) {
-					float var10 = NumberConverter.c(NumberConverter.a(var2)) * 0.5F;
-					this.a.o.a((ahd) null, 1009, new dt((int) this.a.s, (int) this.a.t, (int) this.a.u), 0);
+					float var10 = DataTypesConverter.c(DataTypesConverter.a(var2)) * 0.5F;
+					this.a.o.a((EntityHuman) null, 1009, new Position((int) this.a.locationX, (int) this.a.locationY, (int) this.a.locationZ), 0);
 
 					for (int var11 = 0; var11 < 1; ++var11) {
 						ahp var12 = new ahp(this.a.o, this.a, var4 + this.a.bb().nextGaussian() * (double) var10, var6, var8 + this.a.bb().nextGaussian() * (double) var10);
-						var12.t = this.a.t + (double) (this.a.K / 2.0F) + 0.5D;
+						var12.locationY = this.a.locationY + (double) (this.a.K / 2.0F) + 0.5D;
 						this.a.o.d((Entity) var12);
 					}
 				}
@@ -67,7 +67,7 @@ class aen extends zb {
 			this.a.p().a(var1, 10.0F, 10.0F);
 		} else {
 			this.a.s().n();
-			this.a.q().a(var1.s, var1.t, var1.u, 1.0D);
+			this.a.q().a(var1.locationX, var1.locationY, var1.locationZ, 1.0D);
 		}
 
 		super.e();

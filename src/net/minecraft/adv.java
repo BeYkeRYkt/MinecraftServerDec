@@ -25,9 +25,9 @@ public class adv extends Entity {
 		this.k = true;
 		this.a(0.98F, 0.98F);
 		this.b(var2, var4, var6);
-		this.v = 0.0D;
-		this.w = 0.0D;
-		this.x = 0.0D;
+		this.motionX = 0.0D;
+		this.motionY = 0.0D;
+		this.motionZ = 0.0D;
 		this.p = var2;
 		this.q = var4;
 		this.r = var6;
@@ -45,16 +45,16 @@ public class adv extends Entity {
 	}
 
 	public void s_() {
-		atr var1 = this.d.c();
+		Block var1 = this.d.c();
 		if (var1.r() == bof.a) {
 			this.J();
 		} else {
-			this.p = this.s;
-			this.q = this.t;
-			this.r = this.u;
-			dt var2;
+			this.p = this.locationX;
+			this.q = this.locationY;
+			this.r = this.locationZ;
+			Position var2;
 			if (this.a++ == 0) {
-				var2 = new dt(this);
+				var2 = new Position(this);
 				if (this.o.p(var2).c() == var1) {
 					this.o.g(var2);
 				} else if (!this.o.D) {
@@ -63,20 +63,20 @@ public class adv extends Entity {
 				}
 			}
 
-			this.w -= 0.03999999910593033D;
-			this.d(this.v, this.w, this.x);
-			this.v *= 0.9800000190734863D;
-			this.w *= 0.9800000190734863D;
-			this.x *= 0.9800000190734863D;
+			this.motionY -= 0.03999999910593033D;
+			this.d(this.motionX, this.motionY, this.motionZ);
+			this.motionX *= 0.9800000190734863D;
+			this.motionY *= 0.9800000190734863D;
+			this.motionZ *= 0.9800000190734863D;
 			if (!this.o.D) {
-				var2 = new dt(this);
+				var2 = new Position(this);
 				if (this.C) {
-					this.v *= 0.699999988079071D;
-					this.x *= 0.699999988079071D;
-					this.w *= -0.5D;
+					this.motionX *= 0.699999988079071D;
+					this.motionZ *= 0.699999988079071D;
+					this.motionY *= -0.5D;
 					if (this.o.p(var2).c() != aty.M) {
 						this.J();
-						if (!this.e && this.o.a(var1, var2, true, ej.b, (Entity) null, (amj) null) && !avt.d(this.o, var2.b()) && this.o.a(var2, this.d, 3)) {
+						if (!this.e && this.o.a(var1, var2, true, ej.b, (Entity) null, (ItemStack) null) && !avt.d(this.o, var2.b()) && this.o.a(var2, this.d, 3)) {
 							if (var1 instanceof avt) {
 								((avt) var1).a_(this.o, var2);
 							}
@@ -101,12 +101,12 @@ public class adv extends Entity {
 								}
 							}
 						} else if (this.b && !this.e && this.o.Q().b("doTileDrops")) {
-							this.a(new amj(var1, 1, var1.a(this.d)), 0.0F);
+							this.a(new ItemStack(var1, 1, var1.a(this.d)), 0.0F);
 						}
 					}
 				} else if (this.a > 100 && !this.o.D && (var2.o() < 1 || var2.o() > 256) || this.a > 600) {
 					if (this.b && this.o.Q().b("doTileDrops")) {
-						this.a(new amj(var1, 1, var1.a(this.d)), 0.0F);
+						this.a(new ItemStack(var1, 1, var1.a(this.d)), 0.0F);
 					}
 
 					this.J();
@@ -117,9 +117,9 @@ public class adv extends Entity {
 	}
 
 	public void e(float var1, float var2) {
-		atr var3 = this.d.c();
+		Block var3 = this.d.c();
 		if (this.f) {
-			int var4 = NumberConverter.f(var1 - 1.0F);
+			int var4 = DataTypesConverter.f(var1 - 1.0F);
 			if (var4 > 0) {
 				ArrayList var5 = Lists.newArrayList((Iterable) this.o.b((Entity) this, this.aQ()));
 				boolean var6 = var3 == aty.cf;
@@ -128,7 +128,7 @@ public class adv extends Entity {
 
 				while (var8.hasNext()) {
 					Entity var9 = (Entity) var8.next();
-					var9.a(var7, (float) Math.min(NumberConverter.d((float) var4 * this.h), this.g));
+					var9.a(var7, (float) Math.min(DataTypesConverter.d((float) var4 * this.h), this.g));
 				}
 
 				if (var6 && (double) this.V.nextFloat() < 0.05000000074505806D + (double) var4 * 0.05D) {
@@ -146,8 +146,8 @@ public class adv extends Entity {
 	}
 
 	protected void b(NBTCompoundTag var1) {
-		atr var2 = this.d != null ? this.d.c() : aty.a;
-		oa var3 = (oa) atr.c.c(var2);
+		Block var2 = this.d != null ? this.d.c() : aty.a;
+		oa var3 = (oa) Block.c.c(var2);
 		var1.put("Block", var3 == null ? "" : var3.toString());
 		var1.put("Data", (byte) var2.c(this.d));
 		var1.put("Time", (byte) this.a);
@@ -164,15 +164,15 @@ public class adv extends Entity {
 	protected void a(NBTCompoundTag var1) {
 		int var2 = var1.getByte("Data") & 255;
 		if (var1.isTagAssignableFrom("Block", 8)) {
-			this.d = atr.b(var1.getString("Block")).a(var2);
+			this.d = Block.b(var1.getString("Block")).a(var2);
 		} else if (var1.isTagAssignableFrom("TileID", 99)) {
-			this.d = atr.c(var1.getInt("TileID")).a(var2);
+			this.d = Block.c(var1.getInt("TileID")).a(var2);
 		} else {
-			this.d = atr.c(var1.getByte("Tile") & 255).a(var2);
+			this.d = Block.c(var1.getByte("Tile") & 255).a(var2);
 		}
 
 		this.a = var1.getByte("Time") & 255;
-		atr var3 = this.d.c();
+		Block var3 = this.d.c();
 		if (var1.isTagAssignableFrom("HurtEntities", 99)) {
 			this.f = var1.getBoolean("HurtEntities");
 			this.h = var1.getFloat("FallHurtAmount");
@@ -202,8 +202,8 @@ public class adv extends Entity {
 	public void a(CrashReportSystemDetails var1) {
 		super.a(var1);
 		if (this.d != null) {
-			atr var2 = this.d.c();
-			var1.addDetails("Immitating block ID", (Object) Integer.valueOf(atr.a(var2)));
+			Block var2 = this.d.c();
+			var1.addDetails("Immitating block ID", (Object) Integer.valueOf(Block.a(var2)));
 			var1.addDetails("Immitating block data", (Object) Integer.valueOf(var2.c(this.d)));
 		}
 

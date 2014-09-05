@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class amv extends aju {
 
-	public amv(atr var1) {
+	public amv(Block var1) {
 		super(var1);
 	}
 

@@ -13,29 +13,29 @@ public class bax extends axl {
 
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (!this.e(var1, var2, var3)) {
 			this.f(var1, var2, var3);
 		}
 
 	}
 
-	private void f(World var1, dt var2, bec var3) {
+	private void f(World var1, Position var2, bec var3) {
 		avn var4 = a(this.J);
 		var1.a(var2, var4.P().a(b, var3.b(b)), 2);
-		var1.a(var2, (atr) var4, this.a(var1));
+		var1.a(var2, (Block) var4, this.a(var1));
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (this.J == bof.i) {
 			if (var1.Q().b("doFireTick")) {
 				int var5 = var4.nextInt(3);
 				if (var5 > 0) {
-					dt var6 = var2;
+					Position var6 = var2;
 
 					for (int var7 = 0; var7 < var5; ++var7) {
 						var6 = var6.a(var4.nextInt(3) - 1, 1, var4.nextInt(3) - 1);
-						atr var8 = var1.p(var6).c();
+						Block var8 = var1.p(var6).c();
 						if (var8.J == bof.a) {
 							if (this.e(var1, var6)) {
 								var1.a(var6, aty.ab.P());
@@ -47,7 +47,7 @@ public class bax extends axl {
 					}
 				} else {
 					for (int var9 = 0; var9 < 3; ++var9) {
-						dt var10 = var2.a(var4.nextInt(3) - 1, 0, var4.nextInt(3) - 1);
+						Position var10 = var2.a(var4.nextInt(3) - 1, 0, var4.nextInt(3) - 1);
 						if (var1.d(var10.a()) && this.m(var1, var10)) {
 							var1.a(var10.a(), aty.ab.P());
 						}
@@ -58,7 +58,7 @@ public class bax extends axl {
 		}
 	}
 
-	protected boolean e(World var1, dt var2) {
+	protected boolean e(World var1, Position var2) {
 		ej[] var3 = ej.values();
 		int var4 = var3.length;
 
@@ -72,7 +72,7 @@ public class bax extends axl {
 		return false;
 	}
 
-	private boolean m(World var1, dt var2) {
+	private boolean m(World var1, Position var2) {
 		return var1.p(var2).c().r().h();
 	}
 }

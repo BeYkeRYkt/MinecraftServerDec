@@ -17,7 +17,7 @@ public class afa extends xl implements aex {
 	}
 
 	public void a(boolean var1) {
-		this.ac.b(16, Byte.valueOf((byte) (var1 ? 1 : 0)));
+		this.dataWatcher.b(16, Byte.valueOf((byte) (var1 ? 1 : 0)));
 	}
 
 	public int cd() {
@@ -26,7 +26,7 @@ public class afa extends xl implements aex {
 
 	public void s_() {
 		super.s_();
-		if (!this.o.D && this.o.aa() == Difficulty.PEACEFUL) {
+		if (!this.o.D && this.o.getDifficulty() == Difficulty.PEACEFUL) {
 			this.J();
 		}
 
@@ -35,9 +35,9 @@ public class afa extends xl implements aex {
 	public boolean a(wh var1, float var2) {
 		if (this.b(var1)) {
 			return false;
-		} else if ("fireball".equals(var1.p()) && var1.j() instanceof ahd) {
+		} else if ("fireball".equals(var1.p()) && var1.j() instanceof EntityHuman) {
 			super.a(var1, 1000.0F);
-			((ahd) var1.j()).b((PlayerStatistic) tl.z);
+			((EntityHuman) var1.j()).b((PlayerStatistic) tl.z);
 			return true;
 		} else {
 			return super.a(var1, var2);
@@ -46,7 +46,7 @@ public class afa extends xl implements aex {
 
 	protected void h() {
 		super.h();
-		this.ac.a(16, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(16, Byte.valueOf((byte) 0));
 	}
 
 	protected void aW() {
@@ -67,7 +67,7 @@ public class afa extends xl implements aex {
 		return "mob.ghast.death";
 	}
 
-	protected alq A() {
+	protected Item A() {
 		return amk.H;
 	}
 
@@ -92,7 +92,7 @@ public class afa extends xl implements aex {
 	}
 
 	public boolean bQ() {
-		return this.V.nextInt(20) == 0 && super.bQ() && this.o.aa() != Difficulty.PEACEFUL;
+		return this.V.nextInt(20) == 0 && super.bQ() && this.o.getDifficulty() != Difficulty.PEACEFUL;
 	}
 
 	public int bU() {

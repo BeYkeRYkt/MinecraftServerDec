@@ -19,13 +19,13 @@ public final class EntityPredicates {
 	public static final Predicate<Entity> c = new Predicate<Entity>() {
 		@Override
 		public boolean apply(Entity entity) {
-			return entity instanceof vq && entity.ai();
+			return entity instanceof IInventory && entity.ai();
 		}
 	};
 	public static final Predicate<Entity> d = new Predicate<Entity>() {
 		@Override
 		public boolean apply(Entity entity) {
-			return !(entity instanceof ahd) || !((ahd) entity).v();
+			return !(entity instanceof EntityHuman) || !((EntityHuman) entity).v();
 		}
 	};
 

@@ -5,7 +5,7 @@ public class zi extends zh {
 	private final agp e;
 
 	public zi(agp var1) {
-		super(var1, ahd.class, 8.0F);
+		super(var1, EntityHuman.class, 8.0F);
 		this.e = var1;
 	}
 

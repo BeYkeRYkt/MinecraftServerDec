@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class lf implements id<ik> {
+public class lf implements Packet<PlayPacketListener> {
 
 	private String a = "";
 	private String b = "";
@@ -31,27 +31,27 @@ public class lf implements id<ik> {
 		this.d = lg.b;
 	}
 
-	public void a(hd var1) {
-		this.a = var1.c(40);
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readString(40);
 		this.d = (lg) var1.a(lg.class);
-		this.b = var1.c(16);
+		this.b = var1.readString(16);
 		if (this.d != lg.b) {
-			this.c = var1.e();
+			this.c = var1.readVarInt();
 		}
 
 	}
 
-	public void b(hd var1) {
-		var1.a(this.a);
-		var1.a((Enum) this.d);
-		var1.a(this.b);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeString(this.a);
+		var1.writeEnum((Enum) this.d);
+		var1.writeString(this.b);
 		if (this.d != lg.b) {
-			var1.b(this.c);
+			var1.writeVarInt(this.c);
 		}
 
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

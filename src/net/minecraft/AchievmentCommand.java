@@ -109,7 +109,7 @@ public class AchievmentCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		if (var2.length == 1) {
 			return a(var2, new String[] { "give", "take" });
 		} else if (var2.length != 2) {

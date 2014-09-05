@@ -8,14 +8,14 @@ public class adk extends adj {
 		super(var1);
 	}
 
-	public adk(World var1, dt var2, ej var3) {
+	public adk(World var1, Position var2, ej var3) {
 		super(var1, var2);
 		this.a(var3);
 	}
 
 	protected void h() {
-		this.H().a(8, 5);
-		this.H().a(9, Byte.valueOf((byte) 0));
+		this.getDataWatcher().a(8, 5);
+		this.getDataWatcher().a(9, Byte.valueOf((byte) 0));
 	}
 
 	public float ao() {
@@ -28,7 +28,7 @@ public class adk extends adj {
 		} else if (!var1.c() && this.o() != null) {
 			if (!this.o.D) {
 				this.a(var1.j(), false);
-				this.a((amj) null);
+				this.a((ItemStack) null);
 			}
 
 			return true;
@@ -51,9 +51,9 @@ public class adk extends adj {
 
 	public void a(Entity var1, boolean var2) {
 		if (this.o.Q().b("doTileDrops")) {
-			amj var3 = this.o();
-			if (var1 instanceof ahd) {
-				ahd var4 = (ahd) var1;
+			ItemStack var3 = this.o();
+			if (var1 instanceof EntityHuman) {
+				EntityHuman var4 = (EntityHuman) var1;
 				if (var4.by.instabuild) {
 					this.b(var3);
 					return;
@@ -61,11 +61,11 @@ public class adk extends adj {
 			}
 
 			if (var2) {
-				this.a(new amj(amk.bP), 0.0F);
+				this.a(new ItemStack(amk.bP), 0.0F);
 			}
 
 			if (var3 != null && this.V.nextFloat() < this.c) {
-				var3 = var3.k();
+				var3 = var3.getCopy();
 				this.b(var3);
 				this.a(var3, 0.0F);
 			}
@@ -73,34 +73,34 @@ public class adk extends adj {
 		}
 	}
 
-	private void b(amj var1) {
+	private void b(ItemStack var1) {
 		if (var1 != null) {
-			if (var1.b() == amk.bd) {
-				bqe var2 = ((amn) var1.b()).a(var1, this.o);
-				var2.h.remove("frame-" + this.F());
+			if (var1.getItem() == amk.bd) {
+				bqe var2 = ((amn) var1.getItem()).a(var1, this.o);
+				var2.h.remove("frame-" + this.getId());
 			}
 
 			var1.a((adk) null);
 		}
 	}
 
-	public amj o() {
-		return this.H().f(8);
+	public ItemStack o() {
+		return this.getDataWatcher().f(8);
 	}
 
-	public void a(amj var1) {
+	public void a(ItemStack var1) {
 		this.a(var1, true);
 	}
 
-	private void a(amj var1, boolean var2) {
+	private void a(ItemStack var1, boolean var2) {
 		if (var1 != null) {
-			var1 = var1.k();
+			var1 = var1.getCopy();
 			var1.b = 1;
 			var1.a(this);
 		}
 
-		this.H().b(8, var1);
-		this.H().i(8);
+		this.getDataWatcher().b(8, var1);
+		this.getDataWatcher().i(8);
 		if (var2 && this.a != null) {
 			this.o.e(this.a, aty.a);
 		}
@@ -108,7 +108,7 @@ public class adk extends adj {
 	}
 
 	public int p() {
-		return this.H().a(9);
+		return this.getDataWatcher().a(9);
 	}
 
 	public void a(int var1) {
@@ -116,7 +116,7 @@ public class adk extends adj {
 	}
 
 	private void a(int var1, boolean var2) {
-		this.H().b(9, Byte.valueOf((byte) (var1 % 8)));
+		this.getDataWatcher().b(9, Byte.valueOf((byte) (var1 % 8)));
 		if (var2 && this.a != null) {
 			this.o.e(this.a, aty.a);
 		}
@@ -136,7 +136,7 @@ public class adk extends adj {
 	public void a(NBTCompoundTag var1) {
 		NBTCompoundTag var2 = var1.getCompound("Item");
 		if (var2 != null && !var2.isEmpty()) {
-			this.a(amj.a(var2), false);
+			this.a(ItemStack.a(var2), false);
 			this.a(var1.getByte("ItemRotation"), false);
 			if (var1.isTagAssignableFrom("ItemDropChance", 99)) {
 				this.c = var1.getFloat("ItemDropChance");
@@ -150,13 +150,13 @@ public class adk extends adj {
 		super.a(var1);
 	}
 
-	public boolean e(ahd var1) {
+	public boolean e(EntityHuman var1) {
 		if (this.o() == null) {
-			amj var2 = var1.bz();
+			ItemStack var2 = var1.bz();
 			if (var2 != null && !this.o.D) {
 				this.a(var2);
 				if (!var1.by.instabuild && --var2.b <= 0) {
-					var1.bg.a(var1.bg.c, (amj) null);
+					var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
 				}
 			}
 		} else if (!this.o.D) {

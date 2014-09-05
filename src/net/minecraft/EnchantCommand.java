@@ -37,7 +37,7 @@ public class EnchantCommand extends AbstractCommand {
 			}
 
 			int var5 = 1;
-			amj var13 = var3.bY();
+			ItemStack var13 = var3.bY();
 			if (var13 == null) {
 				throw new di("commands.enchant.noItem", new Object[0]);
 			} else {
@@ -51,7 +51,7 @@ public class EnchantCommand extends AbstractCommand {
 						var5 = a(var2[2], var7.e(), var7.b());
 					}
 
-					if (var13.n()) {
+					if (var13.hasTag()) {
 						NBTListTag var8 = var13.p();
 						if (var8 != null) {
 							for (int var9 = 0; var9 < var8.getSize(); ++var9) {
@@ -74,7 +74,7 @@ public class EnchantCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return var2.length == 1 ? a(var2, this.d()) : (var2.length == 2 ? a(var2, apf.c()) : null);
 	}
 

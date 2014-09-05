@@ -30,7 +30,7 @@ public class asb extends arm {
 		return (bhc) (var1.nextInt(3) > 0 ? this.aE : super.a(var1));
 	}
 
-	public void a(World var1, Random var2, dt var3) {
+	public void a(World var1, Random var2, Position var3) {
 		super.a(var1, var2, var3);
 		int var4 = 3 + var2.nextInt(6);
 
@@ -41,7 +41,7 @@ public class asb extends arm {
 			var6 = var2.nextInt(16);
 			var7 = var2.nextInt(28) + 4;
 			int var8 = var2.nextInt(16);
-			dt var9 = var3.a(var6, var7, var8);
+			Position var9 = var3.a(var6, var7, var8);
 			if (var1.p(var9).c() == aty.b) {
 				var1.a(var9, aty.bP.P(), 2);
 			}

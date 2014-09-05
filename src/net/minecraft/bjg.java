@@ -143,12 +143,12 @@ public class bjg extends bms {
 	}
 
 	protected boolean a(World var1, bjb var2, Random var3, int var4, int var5, int var6, List var7, int var8) {
-		dt var9 = new dt(this.a(var4, var6), this.d(var5), this.b(var4, var6));
+		Position var9 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
 		if (var2.b((fd) var9) && var1.p(var9).c().r() == bof.a) {
 			int var10 = var3.nextBoolean() ? 1 : 0;
 			var1.a(var9, aty.av.a(this.a(aty.av, var10)), 2);
 			aea var11 = new aea(var1, (double) ((float) var9.n() + 0.5F), (double) ((float) var9.o() + 0.5F), (double) ((float) var9.p() + 0.5F));
-			vl.a(var3, var7, (vq) var11, var8);
+			vl.a(var3, var7, (IInventory) var11, var8);
 			var1.d((Entity) var11);
 			return true;
 		} else {
@@ -207,7 +207,7 @@ public class bjg extends bms {
 					int var12 = var10 - 1 + var2.nextInt(3);
 					int var13 = this.a(1, var12);
 					var12 = this.b(1, var12);
-					dt var14 = new dt(var13, var11, var12);
+					Position var14 = new Position(var13, var11, var12);
 					if (var3.b((fd) var14)) {
 						this.c = true;
 						var1.a(var14, aty.ac.P(), 2);

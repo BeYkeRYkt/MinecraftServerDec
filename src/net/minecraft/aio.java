@@ -1,13 +1,13 @@
 package net.minecraft;
 
-public class aio extends aib {
+public class aio extends Container {
 
 	public ain a = new ain(this, 3, 3);
-	public vq f = new aji();
+	public IInventory f = new aji();
 	private World g;
-	private dt h;
+	private Position h;
 
-	public aio(ahb var1, World var2, dt var3) {
+	public aio(PlayerInventory var1, World var2, Position var3) {
 		this.g = var2;
 		this.h = var3;
 		this.a((ajk) (new ajj(var1.d, this.a, this.f, 0, 124, 35)));
@@ -30,18 +30,18 @@ public class aio extends aib {
 			this.a(new ajk(var1, var4, 8 + var4 * 18, 142));
 		}
 
-		this.a((vq) this.a);
+		this.a((IInventory) this.a);
 	}
 
-	public void a(vq var1) {
+	public void a(IInventory var1) {
 		this.f.a(0, aop.a().a(this.a, this.g));
 	}
 
-	public void b(ahd var1) {
+	public void b(EntityHuman var1) {
 		super.b(var1);
 		if (!this.g.D) {
 			for (int var2 = 0; var2 < 9; ++var2) {
-				amj var3 = this.a.b(var2);
+				ItemStack var3 = this.a.b(var2);
 				if (var3 != null) {
 					var1.a(var3, false);
 				}
@@ -50,16 +50,16 @@ public class aio extends aib {
 		}
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return this.g.p(this.h).c() != aty.ai ? false : var1.e((double) this.h.n() + 0.5D, (double) this.h.o() + 0.5D, (double) this.h.p() + 0.5D) <= 64.0D;
 	}
 
-	public amj b(ahd var1, int var2) {
-		amj var3 = null;
+	public ItemStack b(EntityHuman var1, int var2) {
+		ItemStack var3 = null;
 		ajk var4 = (ajk) this.c.get(var2);
 		if (var4 != null && var4.e()) {
-			amj var5 = var4.d();
-			var3 = var5.k();
+			ItemStack var5 = var4.d();
+			var3 = var5.getCopy();
 			if (var2 == 0) {
 				if (!this.a(var5, 10, 46, true)) {
 					return null;
@@ -79,7 +79,7 @@ public class aio extends aib {
 			}
 
 			if (var5.b == 0) {
-				var4.d((amj) null);
+				var4.d((ItemStack) null);
 			} else {
 				var4.f();
 			}
@@ -94,7 +94,7 @@ public class aio extends aib {
 		return var3;
 	}
 
-	public boolean a(amj var1, ajk var2) {
+	public boolean a(ItemStack var1, ajk var2) {
 		return var2.d != this.f && super.a(var1, var2);
 	}
 }

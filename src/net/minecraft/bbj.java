@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.List;
 import java.util.Random;
 
-public class bbj extends atr {
+public class bbj extends Block {
 
 	public static final bet b = bet.a("north");
 	public static final bet M = bet.a("east");
@@ -15,14 +15,14 @@ public class bbj extends atr {
 		super(var1);
 		this.j(this.L.b().a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false)));
 		this.a = var2;
-		this.a(akf.c);
+		this.a(CreativeModeTab.c);
 	}
 
-	public bec a(bec var1, ard var2, dt var3) {
+	public bec a(bec var1, ard var2, Position var3) {
 		return var1.a(b, Boolean.valueOf(this.c(var2.p(var3.c()).c()))).a(N, Boolean.valueOf(this.c(var2.p(var3.d()).c()))).a(O, Boolean.valueOf(this.c(var2.p(var3.e()).c()))).a(M, Boolean.valueOf(this.c(var2.p(var3.f()).c())));
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return !this.a ? null : super.a(var1, var2, var3);
 	}
 
@@ -34,7 +34,7 @@ public class bbj extends atr {
 		return false;
 	}
 
-	public void a(World var1, dt var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
 		boolean var7 = this.c(var1.p(var2.c()).c());
 		boolean var8 = this.c(var1.p(var2.d()).c());
 		boolean var9 = this.c(var1.p(var2.e()).c());
@@ -71,7 +71,7 @@ public class bbj extends atr {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		float var3 = 0.4375F;
 		float var4 = 0.5625F;
 		float var5 = 0.4375F;
@@ -105,7 +105,7 @@ public class bbj extends atr {
 		this.a(var3, 0.0F, var5, var4, 1.0F, var6);
 	}
 
-	public final boolean c(atr var1) {
+	public final boolean c(Block var1) {
 		return var1.m() || var1 == this || var1 == aty.w || var1 == aty.cG || var1 == aty.cH || var1 instanceof bbj;
 	}
 

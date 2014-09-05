@@ -10,7 +10,7 @@ public class adi extends EntityLiving {
 	private static final fa d = new fa(-15.0F, 0.0F, 10.0F);
 	private static final fa e = new fa(-1.0F, 0.0F, -1.0F);
 	private static final fa f = new fa(1.0F, 0.0F, 1.0F);
-	private final amj[] g;
+	private final ItemStack[] g;
 	private boolean h;
 	private long i;
 	private int bg;
@@ -23,7 +23,7 @@ public class adi extends EntityLiving {
 
 	public adi(World var1) {
 		super(var1);
-		this.g = new amj[5];
+		this.g = new ItemStack[5];
 		this.bh = a;
 		this.bi = b;
 		this.bj = c;
@@ -46,32 +46,32 @@ public class adi extends EntityLiving {
 
 	protected void h() {
 		super.h();
-		this.ac.a(10, Byte.valueOf((byte) 0));
-		this.ac.a(11, a);
-		this.ac.a(12, b);
-		this.ac.a(13, c);
-		this.ac.a(14, d);
-		this.ac.a(15, e);
-		this.ac.a(16, f);
+		this.dataWatcher.a(10, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(11, a);
+		this.dataWatcher.a(12, b);
+		this.dataWatcher.a(13, c);
+		this.dataWatcher.a(14, d);
+		this.dataWatcher.a(15, e);
+		this.dataWatcher.a(16, f);
 	}
 
-	public amj bz() {
+	public ItemStack bz() {
 		return this.g[0];
 	}
 
-	public amj p(int var1) {
+	public ItemStack p(int var1) {
 		return this.g[var1];
 	}
 
-	public void c(int var1, amj var2) {
+	public void c(int var1, ItemStack var2) {
 		this.g[var1] = var2;
 	}
 
-	public amj[] at() {
+	public ItemStack[] at() {
 		return this.g;
 	}
 
-	public boolean d(int var1, amj var2) {
+	public boolean d(int var1, ItemStack var2) {
 		int var3;
 		if (var1 == 99) {
 			var3 = 0;
@@ -82,7 +82,7 @@ public class adi extends EntityLiving {
 			}
 		}
 
-		if (var2 != null && xn.c(var2) != var3 && (var3 != 4 || !(var2.b() instanceof aju))) {
+		if (var2 != null && xn.c(var2) != var3 && (var3 != 4 || !(var2.getItem() instanceof aju))) {
 			return false;
 		} else {
 			this.c(var3, var2);
@@ -123,7 +123,7 @@ public class adi extends EntityLiving {
 			NBTListTag var2 = var1.getList("Equipment", 10);
 
 			for (int var3 = 0; var3 < this.g.length; ++var3) {
-				this.g[var3] = amj.a(var2.getCompound(var3));
+				this.g[var3] = ItemStack.a(var2.getCompound(var3));
 			}
 		}
 
@@ -232,13 +232,13 @@ public class adi extends EntityLiving {
 
 	}
 
-	public boolean a(ahd var1, brw var2) {
+	public boolean a(EntityHuman var1, brw var2) {
 		if (!this.o.D && !var1.v()) {
 			byte var3 = 0;
-			amj var4 = var1.bY();
+			ItemStack var4 = var1.bY();
 			boolean var5 = var4 != null;
-			if (var5 && var4.b() instanceof ajn) {
-				ajn var6 = (ajn) var4.b();
+			if (var5 && var4.getItem() instanceof ajn) {
+				ajn var6 = (ajn) var4.getItem();
 				if (var6.b == 3) {
 					var3 = 1;
 				} else if (var6.b == 2) {
@@ -250,7 +250,7 @@ public class adi extends EntityLiving {
 				}
 			}
 
-			if (var5 && (var4.b() == amk.bX || var4.b() == alq.a(aty.aU))) {
+			if (var5 && (var4.getItem() == amk.bX || var4.getItem() == Item.getItemOf(aty.aU))) {
 				var3 = 4;
 			}
 
@@ -299,27 +299,27 @@ public class adi extends EntityLiving {
 		}
 	}
 
-	private void a(ahd var1, int var2) {
-		amj var3 = this.g[var2];
+	private void a(EntityHuman var1, int var2) {
+		ItemStack var3 = this.g[var2];
 		if (var3 == null || (this.bg & 1 << var2 + 8) == 0) {
 			if (var3 != null || (this.bg & 1 << var2 + 16) == 0) {
-				int var4 = var1.bg.c;
-				amj var5 = var1.bg.a(var4);
-				amj var6;
-				if (var1.by.instabuild && (var3 == null || var3.b() == alq.a(aty.a)) && var5 != null) {
-					var6 = var5.k();
+				int var4 = var1.playerInventory.c;
+				ItemStack var5 = var1.playerInventory.a(var4);
+				ItemStack var6;
+				if (var1.by.instabuild && (var3 == null || var3.getItem() == Item.getItemOf(aty.a)) && var5 != null) {
+					var6 = var5.getCopy();
 					var6.b = 1;
 					this.c(var2, var6);
 				} else if (var5 != null && var5.b > 1) {
 					if (var3 == null) {
-						var6 = var5.k();
+						var6 = var5.getCopy();
 						var6.b = 1;
 						this.c(var2, var6);
 						--var5.b;
 					}
 				} else {
 					this.c(var2, var5);
-					var1.bg.a(var4, var3);
+					var1.playerInventory.a(var4, var3);
 				}
 			}
 		}
@@ -357,7 +357,7 @@ public class adi extends EntityLiving {
 						var1.i().J();
 					}
 
-					if (var1.j() instanceof ahd && !((ahd) var1.j()).by.maybuild) {
+					if (var1.j() instanceof EntityHuman && !((EntityHuman) var1.j()).by.maybuild) {
 						return false;
 					} else if (var1.u()) {
 						this.z();
@@ -384,7 +384,7 @@ public class adi extends EntityLiving {
 
 	private void z() {
 		if (this.o instanceof WorldServer) {
-			((WorldServer) this.o).a(ew.M, this.s, this.t + (double) this.K / 1.5D, this.u, 10, (double) (this.J / 4.0F), (double) (this.K / 4.0F), (double) (this.J / 4.0F), 0.05D, new int[] { atr.f(aty.f.P()) });
+			((WorldServer) this.o).a(ew.M, this.locationX, this.locationY + (double) this.K / 1.5D, this.locationZ, 10, (double) (this.J / 4.0F), (double) (this.K / 4.0F), (double) (this.J / 4.0F), 0.05D, new int[] { Block.f(aty.f.P()) });
 		}
 
 	}
@@ -402,7 +402,7 @@ public class adi extends EntityLiving {
 	}
 
 	private void A() {
-		atr.a(this.o, new dt(this), new amj(amk.cj));
+		Block.a(this.o, new Position(this), new ItemStack(amk.cj));
 		this.C();
 	}
 
@@ -410,7 +410,7 @@ public class adi extends EntityLiving {
 		for (int var1 = 0; var1 < this.g.length; ++var1) {
 			if (this.g[var1] != null && this.g[var1].b > 0) {
 				if (this.g[var1] != null) {
-					atr.a(this.o, (new dt(this)).a(), this.g[var1]);
+					Block.a(this.o, (new Position(this)).a(), this.g[var1]);
 				}
 
 				this.g[var1] = null;
@@ -421,7 +421,7 @@ public class adi extends EntityLiving {
 
 	protected float h(float var1, float var2) {
 		this.aH = this.A;
-		this.aG = this.y;
+		this.aG = this.yaw;
 		return 0.0F;
 	}
 
@@ -437,32 +437,32 @@ public class adi extends EntityLiving {
 
 	public void s_() {
 		super.s_();
-		fa var1 = this.ac.h(11);
+		fa var1 = this.dataWatcher.h(11);
 		if (!this.bh.equals(var1)) {
 			this.a(var1);
 		}
 
-		fa var2 = this.ac.h(12);
+		fa var2 = this.dataWatcher.h(12);
 		if (!this.bi.equals(var2)) {
 			this.b(var2);
 		}
 
-		fa var3 = this.ac.h(13);
+		fa var3 = this.dataWatcher.h(13);
 		if (!this.bj.equals(var3)) {
 			this.c(var3);
 		}
 
-		fa var4 = this.ac.h(14);
+		fa var4 = this.dataWatcher.h(14);
 		if (!this.bk.equals(var4)) {
 			this.d(var4);
 		}
 
-		fa var5 = this.ac.h(15);
+		fa var5 = this.dataWatcher.h(15);
 		if (!this.bl.equals(var5)) {
 			this.e(var5);
 		}
 
-		fa var6 = this.ac.h(16);
+		fa var6 = this.dataWatcher.h(16);
 		if (!this.bm.equals(var6)) {
 			this.f(var6);
 		}
@@ -491,93 +491,93 @@ public class adi extends EntityLiving {
 	}
 
 	private void a(boolean var1) {
-		byte var2 = this.ac.a(10);
+		byte var2 = this.dataWatcher.a(10);
 		if (var1) {
 			var2 = (byte) (var2 | 1);
 		} else {
 			var2 &= -2;
 		}
 
-		this.ac.b(10, Byte.valueOf(var2));
+		this.dataWatcher.b(10, Byte.valueOf(var2));
 	}
 
 	public boolean n() {
-		return (this.ac.a(10) & 1) != 0;
+		return (this.dataWatcher.a(10) & 1) != 0;
 	}
 
 	private void j(boolean var1) {
-		byte var2 = this.ac.a(10);
+		byte var2 = this.dataWatcher.a(10);
 		if (var1) {
 			var2 = (byte) (var2 | 2);
 		} else {
 			var2 &= -3;
 		}
 
-		this.ac.b(10, Byte.valueOf(var2));
+		this.dataWatcher.b(10, Byte.valueOf(var2));
 	}
 
 	public boolean p() {
-		return (this.ac.a(10) & 2) != 0;
+		return (this.dataWatcher.a(10) & 2) != 0;
 	}
 
 	private void k(boolean var1) {
-		byte var2 = this.ac.a(10);
+		byte var2 = this.dataWatcher.a(10);
 		if (var1) {
 			var2 = (byte) (var2 | 4);
 		} else {
 			var2 &= -5;
 		}
 
-		this.ac.b(10, Byte.valueOf(var2));
+		this.dataWatcher.b(10, Byte.valueOf(var2));
 	}
 
 	public boolean q() {
-		return (this.ac.a(10) & 4) != 0;
+		return (this.dataWatcher.a(10) & 4) != 0;
 	}
 
 	private void l(boolean var1) {
-		byte var2 = this.ac.a(10);
+		byte var2 = this.dataWatcher.a(10);
 		if (var1) {
 			var2 = (byte) (var2 | 8);
 		} else {
 			var2 &= -9;
 		}
 
-		this.ac.b(10, Byte.valueOf(var2));
+		this.dataWatcher.b(10, Byte.valueOf(var2));
 	}
 
 	public boolean r() {
-		return (this.ac.a(10) & 8) != 0;
+		return (this.dataWatcher.a(10) & 8) != 0;
 	}
 
 	public void a(fa var1) {
 		this.bh = var1;
-		this.ac.b(11, var1);
+		this.dataWatcher.b(11, var1);
 	}
 
 	public void b(fa var1) {
 		this.bi = var1;
-		this.ac.b(12, var1);
+		this.dataWatcher.b(12, var1);
 	}
 
 	public void c(fa var1) {
 		this.bj = var1;
-		this.ac.b(13, var1);
+		this.dataWatcher.b(13, var1);
 	}
 
 	public void d(fa var1) {
 		this.bk = var1;
-		this.ac.b(14, var1);
+		this.dataWatcher.b(14, var1);
 	}
 
 	public void e(fa var1) {
 		this.bl = var1;
-		this.ac.b(15, var1);
+		this.dataWatcher.b(15, var1);
 	}
 
 	public void f(fa var1) {
 		this.bm = var1;
-		this.ac.b(16, var1);
+		this.dataWatcher.b(16, var1);
 	}
 
 	public fa s() {

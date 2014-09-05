@@ -12,7 +12,7 @@ public class abs extends abq {
 		this.i.a(3, new aag(this, 1.25D, amk.O, false));
 		this.i.a(4, new za(this, 1.25D));
 		this.i.a(5, new zy(this, 1.0D));
-		this.i.a(6, new zh(this, ahd.class, 6.0F));
+		this.i.a(6, new zh(this, EntityHuman.class, 6.0F));
 		this.i.a(7, new zx(this));
 	}
 
@@ -34,7 +34,7 @@ public class abs extends abq {
 		return "mob.cow.hurt";
 	}
 
-	protected void a(dt var1, atr var2) {
+	protected void a(Position var1, Block var2) {
 		this.a("mob.cow.step", 0.15F, 1.0F);
 	}
 
@@ -42,7 +42,7 @@ public class abs extends abq {
 		return 0.4F;
 	}
 
-	protected alq A() {
+	protected Item A() {
 		return amk.aF;
 	}
 
@@ -66,13 +66,13 @@ public class abs extends abq {
 
 	}
 
-	public boolean a(ahd var1) {
-		amj var2 = var1.bg.h();
-		if (var2 != null && var2.b() == amk.aw && !var1.by.instabuild) {
+	public boolean a(EntityHuman var1) {
+		ItemStack var2 = var1.playerInventory.getItemInHand();
+		if (var2 != null && var2.getItem() == amk.aw && !var1.by.instabuild) {
 			if (var2.b-- == 1) {
-				var1.bg.a(var1.bg.c, new amj(amk.aG));
-			} else if (!var1.bg.a(new amj(amk.aG))) {
-				var1.a(new amj(amk.aG, 1, 0), false);
+				var1.playerInventory.a(var1.playerInventory.c, new ItemStack(amk.aG));
+			} else if (!var1.playerInventory.a(new ItemStack(amk.aG))) {
+				var1.a(new ItemStack(amk.aG, 1, 0), false);
 			}
 
 			return true;

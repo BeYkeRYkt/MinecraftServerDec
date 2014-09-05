@@ -2,9 +2,9 @@ package net.minecraft;
 
 public class aqc {
 
-	private amj a;
-	private amj b;
-	private amj c;
+	private ItemStack a;
+	private ItemStack b;
+	private ItemStack c;
 	private int d;
 	private int e;
 	private boolean f;
@@ -13,11 +13,11 @@ public class aqc {
 		this.a(var1);
 	}
 
-	public aqc(amj var1, amj var2, amj var3) {
+	public aqc(ItemStack var1, ItemStack var2, ItemStack var3) {
 		this(var1, var2, var3, 0, 7);
 	}
 
-	public aqc(amj var1, amj var2, amj var3, int var4, int var5) {
+	public aqc(ItemStack var1, ItemStack var2, ItemStack var3, int var4, int var5) {
 		this.a = var1;
 		this.b = var2;
 		this.c = var3;
@@ -26,19 +26,19 @@ public class aqc {
 		this.f = true;
 	}
 
-	public aqc(amj var1, amj var2) {
-		this(var1, (amj) null, var2);
+	public aqc(ItemStack var1, ItemStack var2) {
+		this(var1, (ItemStack) null, var2);
 	}
 
-	public aqc(amj var1, alq var2) {
-		this(var1, new amj(var2));
+	public aqc(ItemStack var1, Item var2) {
+		this(var1, new ItemStack(var2));
 	}
 
-	public amj a() {
+	public ItemStack a() {
 		return this.a;
 	}
 
-	public amj b() {
+	public ItemStack b() {
 		return this.b;
 	}
 
@@ -46,7 +46,7 @@ public class aqc {
 		return this.b != null;
 	}
 
-	public amj d() {
+	public ItemStack d() {
 		return this.c;
 	}
 
@@ -76,11 +76,11 @@ public class aqc {
 
 	public void a(NBTCompoundTag var1) {
 		NBTCompoundTag var2 = var1.getCompound("buy");
-		this.a = amj.a(var2);
+		this.a = ItemStack.a(var2);
 		NBTCompoundTag var3 = var1.getCompound("sell");
-		this.c = amj.a(var3);
+		this.c = ItemStack.a(var3);
 		if (var1.isTagAssignableFrom("buyB", 10)) {
-			this.b = amj.a(var1.getCompound("buyB"));
+			this.b = ItemStack.a(var1.getCompound("buyB"));
 		}
 
 		if (var1.isTagAssignableFrom("uses", 99)) {

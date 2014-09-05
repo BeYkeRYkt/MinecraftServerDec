@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class mg implements id<ls> {
+public class mg implements Packet<ls> {
 
 	protected double a;
 	protected double b;
@@ -11,15 +11,15 @@ public class mg implements id<ls> {
 	protected boolean g;
 	protected boolean h;
 
-	public void a(ls var1) {
+	public void handlePacket(ls var1) {
 		var1.a(this);
 	}
 
-	public void a(hd var1) {
+	public void readData(PacketDataSerializer var1) {
 		this.f = var1.readUnsignedByte() != 0;
 	}
 
-	public void b(hd var1) {
+	public void writeData(PacketDataSerializer var1) {
 		var1.writeByte(this.f ? 1 : 0);
 	}
 

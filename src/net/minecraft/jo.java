@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class jo implements id<ik> {
+public class jo implements Packet<PlayPacketListener> {
 
 	public static final String[] a = new String[] { "tile.bed.notValid" };
 	private int b;
@@ -14,17 +14,17 @@ public class jo implements id<ik> {
 		this.c = var2;
 	}
 
-	public void a(hd var1) {
+	public void readData(PacketDataSerializer var1) {
 		this.b = var1.readUnsignedByte();
 		this.c = var1.readFloat();
 	}
 
-	public void b(hd var1) {
+	public void writeData(PacketDataSerializer var1) {
 		var1.writeByte(this.b);
 		var1.writeFloat(this.c);
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 

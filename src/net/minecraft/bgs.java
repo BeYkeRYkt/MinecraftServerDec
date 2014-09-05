@@ -29,13 +29,13 @@ public class bgs extends bgt {
 		int var27 = var25.nextInt(var16 / 2) + var16 / 4;
 
 		for (boolean var28 = var25.nextInt(6) == 0; var15 < var16; ++var15) {
-			double var29 = 1.5D + (double) (NumberConverter.a((float) var15 * 3.1415927F / (float) var16) * var12 * 1.0F);
+			double var29 = 1.5D + (double) (DataTypesConverter.a((float) var15 * 3.1415927F / (float) var16) * var12 * 1.0F);
 			double var31 = var29 * var17;
-			float var33 = NumberConverter.b(var14);
-			float var34 = NumberConverter.a(var14);
-			var6 += (double) (NumberConverter.b(var13) * var33);
+			float var33 = DataTypesConverter.b(var14);
+			float var34 = DataTypesConverter.a(var14);
+			var6 += (double) (DataTypesConverter.b(var13) * var33);
 			var8 += (double) var34;
-			var10 += (double) (NumberConverter.a(var13) * var33);
+			var10 += (double) (DataTypesConverter.a(var13) * var33);
 			if (var28) {
 				var14 *= 0.92F;
 			} else {
@@ -64,12 +64,12 @@ public class bgs extends bgt {
 				}
 
 				if (var6 >= var19 - 16.0D - var29 * 2.0D && var10 >= var21 - 16.0D - var29 * 2.0D && var6 <= var19 + 16.0D + var29 * 2.0D && var10 <= var21 + 16.0D + var29 * 2.0D) {
-					int var55 = NumberConverter.c(var6 - var29) - var3 * 16 - 1;
-					int var36 = NumberConverter.c(var6 + var29) - var3 * 16 + 1;
-					int var56 = NumberConverter.c(var8 - var31) - 1;
-					int var38 = NumberConverter.c(var8 + var31) + 1;
-					int var57 = NumberConverter.c(var10 - var29) - var4 * 16 - 1;
-					int var40 = NumberConverter.c(var10 + var29) - var4 * 16 + 1;
+					int var55 = DataTypesConverter.toFixedPointInt(var6 - var29) - var3 * 16 - 1;
+					int var36 = DataTypesConverter.toFixedPointInt(var6 + var29) - var3 * 16 + 1;
+					int var56 = DataTypesConverter.toFixedPointInt(var8 - var31) - 1;
+					int var38 = DataTypesConverter.toFixedPointInt(var8 + var31) + 1;
+					int var57 = DataTypesConverter.toFixedPointInt(var10 - var29) - var4 * 16 - 1;
+					int var40 = DataTypesConverter.toFixedPointInt(var10 + var29) - var4 * 16 + 1;
 					if (var55 < 0) {
 						var55 = 0;
 					}
@@ -141,7 +141,7 @@ public class bgs extends bgt {
 													}
 
 													if (var48 && var5.a(var42, var49 - 1, var60).c() == aty.d) {
-														var5.a(var42, var49 - 1, var60, this.c.b(new dt(var42 + var3 * 16, 0, var60 + var4 * 16)).ak.c().P());
+														var5.a(var42, var49 - 1, var60, this.c.b(new Position(var42 + var3 * 16, 0, var60 + var4 * 16)).ak.c().P());
 													}
 												}
 											}

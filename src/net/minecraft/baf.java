@@ -11,10 +11,10 @@ public class baf extends auc implements atz {
 		this.j(this.L.b().a(a, ayx.a).a(b, Integer.valueOf(0)));
 		float var1 = 0.4F;
 		this.a(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, var1 * 2.0F, 0.5F + var1);
-		this.a(akf.c);
+		this.a(CreativeModeTab.c);
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (!var1.D) {
 			super.b(var1, var2, var3, var4);
 			if (var1.l(var2.a()) >= 9 && var4.nextInt(7) == 0) {
@@ -24,7 +24,7 @@ public class baf extends auc implements atz {
 		}
 	}
 
-	public void d(World var1, dt var2, bec var3, Random var4) {
+	public void d(World var1, Position var2, bec var3, Random var4) {
 		if (((Integer) var3.b(b)).intValue() == 0) {
 			var1.a(var2, var3.a(b), 4);
 		} else {
@@ -33,7 +33,7 @@ public class baf extends auc implements atz {
 
 	}
 
-	public void e(World var1, dt var2, bec var3, Random var4) {
+	public void e(World var1, Position var2, bec var3, Random var4) {
 		Object var5 = var4.nextInt(10) == 0 ? new bhd(true) : new bir(true);
 		int var6 = 0;
 		int var7 = 0;
@@ -119,7 +119,7 @@ public class baf extends auc implements atz {
 
 	}
 
-	public boolean a(World var1, dt var2, ayx var3) {
+	public boolean a(World var1, Position var2, ayx var3) {
 		bec var4 = var1.p(var2);
 		return var4.c() == this && var4.b(a) == var3;
 	}
@@ -128,15 +128,15 @@ public class baf extends auc implements atz {
 		return ((ayx) var1.b(a)).a();
 	}
 
-	public boolean a(World var1, dt var2, bec var3, boolean var4) {
+	public boolean a(World var1, Position var2, bec var3, boolean var4) {
 		return true;
 	}
 
-	public boolean a(World var1, Random var2, dt var3, bec var4) {
+	public boolean a(World var1, Random var2, Position var3, bec var4) {
 		return (double) var1.s.nextFloat() < 0.45D;
 	}
 
-	public void b(World var1, Random var2, dt var3, bec var4) {
+	public void b(World var1, Random var2, Position var3, bec var4) {
 		this.d(var1, var3, var4, var2);
 	}
 

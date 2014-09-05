@@ -15,13 +15,13 @@ public class tz {
 		return var1.c == null || this.a(var1.c);
 	}
 
-	public void b(ahd var1, PlayerStatistic var2, int var3) {
+	public void b(EntityHuman var1, PlayerStatistic var2, int var3) {
 		if (!var2.d() || this.b((tk) var2)) {
 			this.a(var1, var2, this.a(var2) + var3);
 		}
 	}
 
-	public void a(ahd var1, PlayerStatistic var2, int var3) {
+	public void a(EntityHuman var1, PlayerStatistic var2, int var3) {
 		tw var4 = (tw) this.a.get(var2);
 		if (var4 == null) {
 			var4 = new tw();

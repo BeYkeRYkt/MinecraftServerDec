@@ -6,9 +6,9 @@ import java.util.Comparator;
 final class al implements Comparator {
 
 	// $FF: synthetic field
-	final dt a;
+	final Position a;
 
-	al(dt var1) {
+	al(Position var1) {
 		this.a = var1;
 	}
 

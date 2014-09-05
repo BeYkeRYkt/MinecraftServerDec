@@ -15,7 +15,7 @@ public class atb extends atg {
 		this.a(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, var2, 0.5F + var1);
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
@@ -23,7 +23,7 @@ public class atb extends atg {
 		return false;
 	}
 
-	public boolean b(ard var1, dt var2) {
+	public boolean b(ard var1, Position var2) {
 		return true;
 	}
 
@@ -35,14 +35,14 @@ public class atb extends atg {
 		return new bci();
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return amk.cE;
 	}
 
-	public void a(World var1, dt var2, bec var3, float var4, int var5) {
+	public void a(World var1, Position var2, bec var3, float var4, int var5) {
 		bcm var6 = var1.s(var2);
 		if (var6 instanceof bci) {
-			amj var7 = new amj(amk.cE, 1, ((bci) var6).b());
+			ItemStack var7 = new ItemStack(amk.cE, 1, ((bci) var6).b());
 			NBTCompoundTag var8 = new NBTCompoundTag();
 			var6.b(var8);
 			var8.remove("x");
@@ -57,9 +57,9 @@ public class atb extends atg {
 
 	}
 
-	public void a(World var1, ahd var2, dt var3, bec var4, bcm var5) {
+	public void a(World var1, EntityHuman var2, Position var3, bec var4, bcm var5) {
 		if (var5 instanceof bci) {
-			amj var6 = new amj(amk.cE, 1, ((bci) var5).b());
+			ItemStack var6 = new ItemStack(amk.cE, 1, ((bci) var5).b());
 			NBTCompoundTag var7 = new NBTCompoundTag();
 			var5.b(var7);
 			var7.remove("x");

@@ -56,9 +56,9 @@ public class asd extends arm {
 		return (bhc) (this.aG == 3 && var1.nextInt(3) > 0 ? aF : (this.aG != 2 && var1.nextInt(5) != 0 ? this.aA : aE));
 	}
 
-	public awa a(Random var1, dt var2) {
+	public awa a(Random var1, Position var2) {
 		if (this.aG == 1) {
-			double var3 = NumberConverter.a((1.0D + af.a((double) var2.n() / 48.0D, (double) var2.p() / 48.0D)) / 2.0D, 0.0D, 0.9999D);
+			double var3 = DataTypesConverter.a((1.0D + af.a((double) var2.n() / 48.0D, (double) var2.p() / 48.0D)) / 2.0D, 0.0D, 0.9999D);
 			awa var5 = awa.values()[(int) (var3 * (double) awa.values().length)];
 			return var5 == awa.c ? awa.b : var5;
 		} else {
@@ -66,7 +66,7 @@ public class asd extends arm {
 		}
 	}
 
-	public void a(World var1, Random var2, dt var3) {
+	public void a(World var1, Random var2, Position var3) {
 		int var4;
 		int var5;
 		int var6;
@@ -76,7 +76,7 @@ public class asd extends arm {
 				for (var5 = 0; var5 < 4; ++var5) {
 					var6 = var4 * 4 + 1 + 8 + var2.nextInt(3);
 					var7 = var5 * 4 + 1 + 8 + var2.nextInt(3);
-					dt var8 = var1.m(var3.a(var6, 0, var7));
+					Position var8 = var1.m(var3.a(var6, 0, var7));
 					if (var2.nextInt(20) == 0) {
 						bhv var9 = new bhv();
 						var9.b(var1, var2, var8);
@@ -115,7 +115,7 @@ public class asd extends arm {
 					int var11 = var2.nextInt(16) + 8;
 					int var13 = var2.nextInt(16) + 8;
 					int var10 = var2.nextInt(var1.m(var3.a(var11, 0, var13)).o() + 32);
-					if (!ag.b(var1, var2, new dt(var3.n() + var11, var10, var3.p() + var13))) {
+					if (!ag.b(var1, var2, new Position(var3.n() + var11, var10, var3.p() + var13))) {
 						++var7;
 						continue;
 					}

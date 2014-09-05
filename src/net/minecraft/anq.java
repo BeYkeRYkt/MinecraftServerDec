@@ -1,14 +1,14 @@
 package net.minecraft;
 
-public class anq extends alq {
+public class anq extends Item {
 
 	public anq() {
 		this.c(1);
 	}
 
-	public amj a(amj var1, World var2, ahd var3) {
+	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
 		var3.a(var1);
-		var3.b(ty.J[alq.b((alq) this)]);
+		var3.b(ty.J[Item.getId((Item) this)]);
 		return var1;
 	}
 

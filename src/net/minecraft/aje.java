@@ -1,14 +1,14 @@
 package net.minecraft;
 
-public class aje implements vq {
+public class aje implements IInventory {
 
 	private final aqb a;
-	private amj[] b = new amj[3];
-	private final ahd c;
+	private ItemStack[] b = new ItemStack[3];
+	private final EntityHuman c;
 	private aqc d;
 	private int e;
 
-	public aje(ahd var1, aqb var2) {
+	public aje(EntityHuman var1, aqb var2) {
 		this.c = var1;
 		this.a = var2;
 	}
@@ -17,13 +17,13 @@ public class aje implements vq {
 		return this.b.length;
 	}
 
-	public amj a(int var1) {
+	public ItemStack a(int var1) {
 		return this.b[var1];
 	}
 
-	public amj a(int var1, int var2) {
+	public ItemStack a(int var1, int var2) {
 		if (this.b[var1] != null) {
-			amj var3;
+			ItemStack var3;
 			if (var1 == 2) {
 				var3 = this.b[var1];
 				this.b[var1] = null;
@@ -57,9 +57,9 @@ public class aje implements vq {
 		return var1 == 0 || var1 == 1;
 	}
 
-	public amj b(int var1) {
+	public ItemStack b(int var1) {
 		if (this.b[var1] != null) {
-			amj var2 = this.b[var1];
+			ItemStack var2 = this.b[var1];
 			this.b[var1] = null;
 			return var2;
 		} else {
@@ -67,7 +67,7 @@ public class aje implements vq {
 		}
 	}
 
-	public void a(int var1, amj var2) {
+	public void a(int var1, ItemStack var2) {
 		this.b[var1] = var2;
 		if (var2 != null && var2.b > this.p_()) {
 			var2.b = this.p_();
@@ -87,25 +87,25 @@ public class aje implements vq {
 		return false;
 	}
 
-	public ho e_() {
-		return (ho) (this.k_() ? new hy(this.d_()) : new hz(this.d_(), new Object[0]));
+	public IJSONComponent e_() {
+		return (IJSONComponent) (this.k_() ? new hy(this.d_()) : new hz(this.d_(), new Object[0]));
 	}
 
 	public int p_() {
 		return 64;
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return this.a.u_() == var1;
 	}
 
-	public void b(ahd var1) {
+	public void b(EntityHuman var1) {
 	}
 
-	public void c(ahd var1) {
+	public void c(EntityHuman var1) {
 	}
 
-	public boolean b(int var1, amj var2) {
+	public boolean b(int var1, ItemStack var2) {
 		return true;
 	}
 
@@ -115,32 +115,32 @@ public class aje implements vq {
 
 	public void h() {
 		this.d = null;
-		amj var1 = this.b[0];
-		amj var2 = this.b[1];
+		ItemStack var1 = this.b[0];
+		ItemStack var2 = this.b[1];
 		if (var1 == null) {
 			var1 = var2;
 			var2 = null;
 		}
 
 		if (var1 == null) {
-			this.a(2, (amj) null);
+			this.a(2, (ItemStack) null);
 		} else {
 			aqd var3 = this.a.b_(this.c);
 			if (var3 != null) {
 				aqc var4 = var3.a(var1, var2, this.e);
 				if (var4 != null && !var4.h()) {
 					this.d = var4;
-					this.a(2, var4.d().k());
+					this.a(2, var4.d().getCopy());
 				} else if (var2 != null) {
 					var4 = var3.a(var2, var1, this.e);
 					if (var4 != null && !var4.h()) {
 						this.d = var4;
-						this.a(2, var4.d().k());
+						this.a(2, var4.d().getCopy());
 					} else {
-						this.a(2, (amj) null);
+						this.a(2, (ItemStack) null);
 					}
 				} else {
-					this.a(2, (amj) null);
+					this.a(2, (ItemStack) null);
 				}
 			}
 		}

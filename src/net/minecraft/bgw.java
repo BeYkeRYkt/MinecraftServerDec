@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.List;
 import java.util.Random;
 
-public class bgw implements bfe {
+public class bgw implements IChunkProvider {
 
 	private Random h;
 	private bnv i;
@@ -162,7 +162,7 @@ public class bgw implements bfe {
 			for (int var14 = 0; var14 < var7; ++var14) {
 				float var15 = (float) (var13 + var2) / 1.0F;
 				float var16 = (float) (var14 + var4) / 1.0F;
-				float var17 = 100.0F - NumberConverter.c(var15 * var15 + var16 * var16) * 8.0F;
+				float var17 = 100.0F - DataTypesConverter.c(var15 * var15 + var16 * var16) * 8.0F;
 				if (var17 > 80.0F) {
 					var17 = 80.0F;
 				}
@@ -190,7 +190,7 @@ public class bgw implements bfe {
 					double var28;
 					if (var18 > var6 / 2 - var27) {
 						var28 = (double) ((float) (var18 - (var6 / 2 - var27)) / 64.0F);
-						var28 = NumberConverter.a(var28, 0.0D, 1.0D);
+						var28 = DataTypesConverter.a(var28, 0.0D, 1.0D);
 						var19 = var19 * (1.0D - var28) + -3000.0D * var28;
 					}
 
@@ -213,14 +213,14 @@ public class bgw implements bfe {
 		return true;
 	}
 
-	public void a(bfe var1, int var2, int var3) {
+	public void a(IChunkProvider var1, int var2, int var3) {
 		avt.M = true;
-		dt var4 = new dt(var2 * 16, 0, var3 * 16);
+		Position var4 = new Position(var2 * 16, 0, var3 * 16);
 		this.l.b(var4.a(16, 0, 16)).a(this.l, this.l.s, var4);
 		avt.M = false;
 	}
 
-	public boolean a(bfe var1, bfh var2, int var3, int var4) {
+	public boolean a(IChunkProvider var1, bfh var2, int var3, int var4) {
 		return false;
 	}
 
@@ -243,11 +243,11 @@ public class bgw implements bfe {
 		return "RandomLevelSource";
 	}
 
-	public List a(xp var1, dt var2) {
+	public List a(xp var1, Position var2) {
 		return this.l.b(var2).a(var1);
 	}
 
-	public dt a(World var1, String var2, dt var3) {
+	public Position a(World var1, String var2, Position var3) {
 		return null;
 	}
 
@@ -258,7 +258,7 @@ public class bgw implements bfe {
 	public void a(bfh var1, int var2, int var3) {
 	}
 
-	public bfh a(dt var1) {
+	public bfh a(Position var1) {
 		return this.d(var1.n() >> 4, var1.p() >> 4);
 	}
 }

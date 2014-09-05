@@ -18,15 +18,15 @@ public class arh {
 	}
 
 	public void a(Entity var1, float var2) {
-		if (this.a.t.q() != 1) {
+		if (this.a.worldProvider.getDimensionId() != 1) {
 			if (!this.b(var1, var2)) {
 				this.a(var1);
 				this.b(var1, var2);
 			}
 		} else {
-			int var3 = NumberConverter.c(var1.s);
-			int var4 = NumberConverter.c(var1.t) - 1;
-			int var5 = NumberConverter.c(var1.u);
+			int var3 = DataTypesConverter.toFixedPointInt(var1.locationX);
+			int var4 = DataTypesConverter.toFixedPointInt(var1.locationY) - 1;
+			int var5 = DataTypesConverter.toFixedPointInt(var1.locationZ);
 			byte var6 = 1;
 			byte var7 = 0;
 
@@ -37,23 +37,23 @@ public class arh {
 						int var12 = var4 + var10;
 						int var13 = var5 + var9 * var7 - var8 * var6;
 						boolean var14 = var10 < 0;
-						this.a.a(new dt(var11, var12, var13), var14 ? aty.Z.P() : aty.a.P());
+						this.a.a(new Position(var11, var12, var13), var14 ? aty.Z.P() : aty.a.P());
 					}
 				}
 			}
 
-			var1.b((double) var3, (double) var4, (double) var5, var1.y, 0.0F);
-			var1.v = var1.w = var1.x = 0.0D;
+			var1.b((double) var3, (double) var4, (double) var5, var1.yaw, 0.0F);
+			var1.motionX = var1.motionY = var1.motionZ = 0.0D;
 		}
 	}
 
 	public boolean b(Entity var1, float var2) {
 		boolean var3 = true;
 		double var4 = -1.0D;
-		int var6 = NumberConverter.c(var1.s);
-		int var7 = NumberConverter.c(var1.u);
+		int var6 = DataTypesConverter.toFixedPointInt(var1.locationX);
+		int var7 = DataTypesConverter.toFixedPointInt(var1.locationZ);
 		boolean var8 = true;
-		Object var9 = dt.a;
+		Object var9 = Position.a;
 		long var10 = aqm.a(var6, var7);
 		if (this.c.b(var10)) {
 			ari var12 = (ari) this.c.a(var10);
@@ -62,12 +62,12 @@ public class arh {
 			var12.b = this.a.K();
 			var8 = false;
 		} else {
-			dt var34 = new dt(var1);
+			Position var34 = new Position(var1);
 
 			for (int var13 = -128; var13 <= 128; ++var13) {
-				dt var16;
+				Position var16;
 				for (int var14 = -128; var14 <= 128; ++var14) {
-					for (dt var15 = var34.a(var13, this.a.V() - 1 - var34.o(), var14); var15.o() >= 0; var15 = var16) {
+					for (Position var15 = var34.a(var13, this.a.V() - 1 - var34.o(), var14); var15.o() >= 0; var15 = var16) {
 						var16 = var15.b();
 						if (this.a.p(var15).c() == aty.aY) {
 							while (this.a.p(var16 = var15.b()).c() == aty.aY) {
@@ -87,41 +87,41 @@ public class arh {
 
 		if (var4 >= 0.0D) {
 			if (var8) {
-				this.c.a(var10, new ari(this, (dt) var9, this.a.K()));
+				this.c.a(var10, new ari(this, (Position) var9, this.a.K()));
 				this.d.add(Long.valueOf(var10));
 			}
 
-			double var35 = (double) ((dt) var9).n() + 0.5D;
-			double var36 = (double) ((dt) var9).o() + 0.5D;
-			double var37 = (double) ((dt) var9).p() + 0.5D;
+			double var35 = (double) ((Position) var9).n() + 0.5D;
+			double var36 = (double) ((Position) var9).o() + 0.5D;
+			double var37 = (double) ((Position) var9).p() + 0.5D;
 			ej var18 = null;
-			if (this.a.p(((dt) var9).e()).c() == aty.aY) {
+			if (this.a.p(((Position) var9).e()).c() == aty.aY) {
 				var18 = ej.c;
 			}
 
-			if (this.a.p(((dt) var9).f()).c() == aty.aY) {
+			if (this.a.p(((Position) var9).f()).c() == aty.aY) {
 				var18 = ej.d;
 			}
 
-			if (this.a.p(((dt) var9).c()).c() == aty.aY) {
+			if (this.a.p(((Position) var9).c()).c() == aty.aY) {
 				var18 = ej.f;
 			}
 
-			if (this.a.p(((dt) var9).d()).c() == aty.aY) {
+			if (this.a.p(((Position) var9).d()).c() == aty.aY) {
 				var18 = ej.e;
 			}
 
 			ej var19 = ej.b(var1.aG());
 			if (var18 != null) {
 				ej var20 = var18.f();
-				dt var21 = ((dt) var9).a(var18);
+				Position var21 = ((Position) var9).a(var18);
 				boolean var22 = this.a(var21);
 				boolean var23 = this.a(var21.a(var20));
 				if (var23 && var22) {
-					var9 = ((dt) var9).a(var20);
+					var9 = ((Position) var9).a(var20);
 					var18 = var18.d();
 					var20 = var20.d();
-					dt var24 = ((dt) var9).a(var18);
+					Position var24 = ((Position) var9).a(var18);
 					var22 = this.a(var24);
 					var23 = this.a(var24.a(var20));
 				}
@@ -136,9 +136,9 @@ public class arh {
 					var25 = 0.0F;
 				}
 
-				var35 = (double) ((dt) var9).n() + 0.5D;
-				var36 = (double) ((dt) var9).o() + 0.5D;
-				var37 = (double) ((dt) var9).p() + 0.5D;
+				var35 = (double) ((Position) var9).n() + 0.5D;
+				var36 = (double) ((Position) var9).o() + 0.5D;
+				var37 = (double) ((Position) var9).p() + 0.5D;
 				var35 += (double) ((float) var20.g() * var38 + (float) var18.g() * var25);
 				var37 += (double) ((float) var20.i() * var38 + (float) var18.i() * var25);
 				float var26 = 0.0F;
@@ -159,32 +159,32 @@ public class arh {
 					var29 = 1.0F;
 				}
 
-				double var30 = var1.v;
-				double var32 = var1.x;
-				var1.v = var30 * (double) var26 + var32 * (double) var29;
-				var1.x = var30 * (double) var28 + var32 * (double) var27;
-				var1.y = var2 - (float) (var19.b() * 90) + (float) (var18.b() * 90);
+				double var30 = var1.motionX;
+				double var32 = var1.motionZ;
+				var1.motionX = var30 * (double) var26 + var32 * (double) var29;
+				var1.motionZ = var30 * (double) var28 + var32 * (double) var27;
+				var1.yaw = var2 - (float) (var19.b() * 90) + (float) (var18.b() * 90);
 			} else {
-				var1.v = var1.w = var1.x = 0.0D;
+				var1.motionX = var1.motionY = var1.motionZ = 0.0D;
 			}
 
-			var1.b(var35, var36, var37, var1.y, var1.z);
+			var1.b(var35, var36, var37, var1.yaw, var1.pitch);
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	private boolean a(dt var1) {
+	private boolean a(Position var1) {
 		return !this.a.d(var1) || !this.a.d(var1.a());
 	}
 
 	public boolean a(Entity var1) {
 		byte var2 = 16;
 		double var3 = -1.0D;
-		int var5 = NumberConverter.c(var1.s);
-		int var6 = NumberConverter.c(var1.t);
-		int var7 = NumberConverter.c(var1.u);
+		int var5 = DataTypesConverter.toFixedPointInt(var1.locationX);
+		int var6 = DataTypesConverter.toFixedPointInt(var1.locationY);
+		int var7 = DataTypesConverter.toFixedPointInt(var1.locationZ);
 		int var8 = var5;
 		int var9 = var6;
 		int var10 = var7;
@@ -207,14 +207,14 @@ public class arh {
 		double var32;
 		double var33;
 		for (var13 = var5 - var2; var13 <= var5 + var2; ++var13) {
-			var14 = (double) var13 + 0.5D - var1.s;
+			var14 = (double) var13 + 0.5D - var1.locationX;
 
 			for (var16 = var7 - var2; var16 <= var7 + var2; ++var16) {
-				var17 = (double) var16 + 0.5D - var1.u;
+				var17 = (double) var16 + 0.5D - var1.locationZ;
 
 				label271: for (var19 = this.a.V() - 1; var19 >= 0; --var19) {
-					if (this.a.d(new dt(var13, var19, var16))) {
-						while (var19 > 0 && this.a.d(new dt(var13, var19 - 1, var16))) {
+					if (this.a.d(new Position(var13, var19, var16))) {
+						while (var19 > 0 && this.a.d(new Position(var13, var19 - 1, var16))) {
 							--var19;
 						}
 
@@ -232,14 +232,14 @@ public class arh {
 										var26 = var13 + (var24 - 1) * var21 + var23 * var22;
 										var27 = var19 + var25;
 										int var28 = var16 + (var24 - 1) * var22 - var23 * var21;
-										if (var25 < 0 && !this.a.p(new dt(var26, var27, var28)).c().r().a() || var25 >= 0 && !this.a.d(new dt(var26, var27, var28))) {
+										if (var25 < 0 && !this.a.p(new Position(var26, var27, var28)).c().r().a() || var25 >= 0 && !this.a.d(new Position(var26, var27, var28))) {
 											continue label271;
 										}
 									}
 								}
 							}
 
-							var32 = (double) var19 + 0.5D - var1.t;
+							var32 = (double) var19 + 0.5D - var1.locationY;
 							var33 = var14 * var14 + var32 * var32 + var17 * var17;
 							if (var3 < 0.0D || var33 < var3) {
 								var3 = var33;
@@ -256,14 +256,14 @@ public class arh {
 
 		if (var3 < 0.0D) {
 			for (var13 = var5 - var2; var13 <= var5 + var2; ++var13) {
-				var14 = (double) var13 + 0.5D - var1.s;
+				var14 = (double) var13 + 0.5D - var1.locationX;
 
 				for (var16 = var7 - var2; var16 <= var7 + var2; ++var16) {
-					var17 = (double) var16 + 0.5D - var1.u;
+					var17 = (double) var16 + 0.5D - var1.locationZ;
 
 					label219: for (var19 = this.a.V() - 1; var19 >= 0; --var19) {
-						if (this.a.d(new dt(var13, var19, var16))) {
-							while (var19 > 0 && this.a.d(new dt(var13, var19 - 1, var16))) {
+						if (this.a.d(new Position(var13, var19, var16))) {
+							while (var19 > 0 && this.a.d(new Position(var13, var19 - 1, var16))) {
 								--var19;
 							}
 
@@ -276,13 +276,13 @@ public class arh {
 										var25 = var13 + (var23 - 1) * var21;
 										var26 = var19 + var24;
 										var27 = var16 + (var23 - 1) * var22;
-										if (var24 < 0 && !this.a.p(new dt(var25, var26, var27)).c().r().a() || var24 >= 0 && !this.a.d(new dt(var25, var26, var27))) {
+										if (var24 < 0 && !this.a.p(new Position(var25, var26, var27)).c().r().a() || var24 >= 0 && !this.a.d(new Position(var25, var26, var27))) {
 											continue label219;
 										}
 									}
 								}
 
-								var32 = (double) var19 + 0.5D - var1.t;
+								var32 = (double) var19 + 0.5D - var1.locationY;
 								var33 = var14 * var14 + var32 * var32 + var17 * var17;
 								if (var3 < 0.0D || var33 < var3) {
 									var3 = var33;
@@ -309,7 +309,7 @@ public class arh {
 		}
 
 		if (var3 < 0.0D) {
-			var9 = NumberConverter.a(var9, 70, this.a.V() - 10);
+			var9 = DataTypesConverter.a(var9, 70, this.a.V() - 10);
 			var15 = var9;
 
 			for (var19 = -1; var19 <= 1; ++var19) {
@@ -319,7 +319,7 @@ public class arh {
 						var23 = var15 + var21;
 						var24 = var16 + (var20 - 1) * var18 - var19 * var30;
 						boolean var34 = var21 < 0;
-						this.a.a(new dt(var22, var23, var24), var34 ? aty.Z.P() : aty.a.P());
+						this.a.a(new Position(var22, var23, var24), var34 ? aty.Z.P() : aty.a.P());
 					}
 				}
 			}
@@ -334,7 +334,7 @@ public class arh {
 					var24 = var15 + var22;
 					var25 = var16 + (var21 - 1) * var18;
 					boolean var35 = var21 == 0 || var21 == 3 || var22 == -1 || var22 == 3;
-					this.a.a(new dt(var23, var24, var25), var35 ? aty.Z.P() : var31, 2);
+					this.a.a(new Position(var23, var24, var25), var35 ? aty.Z.P() : var31, 2);
 				}
 			}
 
@@ -343,7 +343,7 @@ public class arh {
 					var23 = var29 + (var21 - 1) * var30;
 					var24 = var15 + var22;
 					var25 = var16 + (var21 - 1) * var18;
-					this.a.c(new dt(var23, var24, var25), this.a.p(new dt(var23, var24, var25)).c());
+					this.a.c(new Position(var23, var24, var25), this.a.p(new Position(var23, var24, var25)).c());
 				}
 			}
 		}

@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class bqf {
 
-	public final ahd a;
+	public final EntityHuman a;
 	private boolean d;
 	private int e;
 	private int f;
@@ -13,7 +13,7 @@ public class bqf {
 	// $FF: synthetic field
 	final bqe c;
 
-	public bqf(bqe var1, ahd var2) {
+	public bqf(bqe var1, EntityHuman var2) {
 		this.c = var1;
 		this.d = true;
 		this.e = 0;
@@ -23,7 +23,7 @@ public class bqf {
 		this.a = var2;
 	}
 
-	public id a(amj var1) {
+	public Packet a(ItemStack var1) {
 		if (this.d) {
 			this.d = false;
 			return new jx(var1.i(), this.c.e, this.c.h.values(), this.c.f, this.e, this.f, this.g + 1 - this.e, this.h + 1 - this.f);

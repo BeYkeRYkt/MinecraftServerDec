@@ -28,13 +28,13 @@ public class ahu extends ahr {
 
 	protected void a(bru var1) {
 		if (!this.o.D) {
-			this.o.b(2002, new dt(this), 0);
+			this.o.b(2002, new Position(this), 0);
 			int var2 = 3 + this.o.s.nextInt(5) + this.o.s.nextInt(5);
 
 			while (var2 > 0) {
 				int var3 = xk.a(var2);
 				var2 -= var3;
-				this.o.d((Entity) (new xk(this.o, this.s, this.t, this.u, var3)));
+				this.o.d((Entity) (new xk(this.o, this.locationX, this.locationY, this.locationZ, var3)));
 			}
 
 			this.J();

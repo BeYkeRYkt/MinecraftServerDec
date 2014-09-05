@@ -27,11 +27,11 @@ public class zg extends zb {
 	}
 
 	public void c() {
-		double var1 = this.b.s - this.a.s;
-		double var3 = this.b.u - this.a.u;
-		float var5 = NumberConverter.a(var1 * var1 + var3 * var3);
-		this.a.v += var1 / (double) var5 * 0.5D * 0.800000011920929D + this.a.v * 0.20000000298023224D;
-		this.a.x += var3 / (double) var5 * 0.5D * 0.800000011920929D + this.a.x * 0.20000000298023224D;
-		this.a.w = (double) this.c;
+		double var1 = this.b.locationX - this.a.locationX;
+		double var3 = this.b.locationZ - this.a.locationZ;
+		float var5 = DataTypesConverter.a(var1 * var1 + var3 * var3);
+		this.a.motionX += var1 / (double) var5 * 0.5D * 0.800000011920929D + this.a.motionX * 0.20000000298023224D;
+		this.a.motionZ += var3 / (double) var5 * 0.5D * 0.800000011920929D + this.a.motionZ * 0.20000000298023224D;
+		this.a.motionY = (double) this.c;
 	}
 }

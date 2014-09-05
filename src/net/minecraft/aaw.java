@@ -45,7 +45,7 @@ public abstract class aaw extends zb {
 						}
 					}
 
-					return !(var1 instanceof ahd) || !((ahd) var1).by.invulnerable;
+					return !(var1 instanceof EntityHuman) || !((EntityHuman) var1).by.invulnerable;
 				}
 			}
 		}
@@ -89,7 +89,7 @@ public abstract class aaw extends zb {
 					if (var1 == ((xt) var0).l_()) {
 						return false;
 					}
-				} else if (var1 instanceof ahd && !var2 && ((ahd) var1).by.invulnerable) {
+				} else if (var1 instanceof EntityHuman && !var2 && ((EntityHuman) var1).by.invulnerable) {
 					return false;
 				}
 
@@ -101,7 +101,7 @@ public abstract class aaw extends zb {
 	protected boolean a(EntityLiving var1, boolean var2) {
 		if (!a(this.e, var1, var2, this.f)) {
 			return false;
-		} else if (!this.e.d(new dt(var1))) {
+		} else if (!this.e.d(new Position(var1))) {
 			return false;
 		} else {
 			if (this.a) {
@@ -132,8 +132,8 @@ public abstract class aaw extends zb {
 			if (var3 == null) {
 				return false;
 			} else {
-				int var4 = var3.a - NumberConverter.c(var1.s);
-				int var5 = var3.c - NumberConverter.c(var1.u);
+				int var4 = var3.a - DataTypesConverter.toFixedPointInt(var1.locationX);
+				int var5 = var3.c - DataTypesConverter.toFixedPointInt(var1.locationZ);
 				return (double) (var4 * var4 + var5 * var5) <= 2.25D;
 			}
 		}

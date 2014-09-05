@@ -66,7 +66,7 @@ public class hx implements JsonDeserializer, JsonSerializer {
 					if (var6 != null) {
 						var7 = var6.getAsJsonPrimitive("action");
 						hs var11 = var7 == null ? null : hs.a(var7.getAsString());
-						ho var12 = (ho) var3.deserialize(var6.get("value"), ho.class);
+						IJSONComponent var12 = (IJSONComponent) var3.deserialize(var6.get("value"), IJSONComponent.class);
 						if (var11 != null && var12 != null && var11.a()) {
 							hv.a(var4, new hr(var11, var12));
 						}

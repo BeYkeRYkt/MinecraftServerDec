@@ -1,8 +1,8 @@
 package net.minecraft;
 
-public class ajx extends alq {
+public class ajx extends Item {
 
-	public boolean f_(amj var1) {
+	public boolean f_(ItemStack var1) {
 		return var1.b == 1;
 	}
 

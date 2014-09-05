@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class awn extends atr implements atz {
+public class awn extends Block implements atz {
 
 	public static final bet a = bet.a("snowy");
 
@@ -10,23 +10,23 @@ public class awn extends atr implements atz {
 		super(bof.b);
 		this.j(this.L.b().a(a, Boolean.valueOf(false)));
 		this.a(true);
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
-	public bec a(bec var1, ard var2, dt var3) {
-		atr var4 = var2.p(var3.a()).c();
+	public bec a(bec var1, ard var2, Position var3) {
+		Block var4 = var2.p(var3.a()).c();
 		return var1.a(a, Boolean.valueOf(var4 == aty.aJ || var4 == aty.aH));
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (!var1.D) {
 			if (var1.l(var2.a()) < 4 && var1.p(var2.a()).c().n() > 2) {
 				var1.a(var2, aty.d.P());
 			} else {
 				if (var1.l(var2.a()) >= 9) {
 					for (int var5 = 0; var5 < 4; ++var5) {
-						dt var6 = var2.a(var4.nextInt(3) - 1, var4.nextInt(5) - 3, var4.nextInt(3) - 1);
-						atr var7 = var1.p(var6.a()).c();
+						Position var6 = var2.a(var4.nextInt(3) - 1, var4.nextInt(5) - 3, var4.nextInt(3) - 1);
+						Block var7 = var1.p(var6.a()).c();
 						bec var8 = var1.p(var6);
 						if (var8.c() == aty.d && var8.b(avc.a) == avd.a && var1.l(var6.a()) >= 4 && var7.n() <= 2) {
 							var1.a(var6, aty.c.P());
@@ -38,24 +38,24 @@ public class awn extends atr implements atz {
 		}
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return aty.d.a(aty.d.P().a(avc.a, avd.a), var2, var3);
 	}
 
-	public boolean a(World var1, dt var2, bec var3, boolean var4) {
+	public boolean a(World var1, Position var2, bec var3, boolean var4) {
 		return true;
 	}
 
-	public boolean a(World var1, Random var2, dt var3, bec var4) {
+	public boolean a(World var1, Random var2, Position var3, bec var4) {
 		return true;
 	}
 
-	public void b(World var1, Random var2, dt var3, bec var4) {
-		dt var5 = var3.a();
+	public void b(World var1, Random var2, Position var3, bec var4) {
+		Position var5 = var3.a();
 		int var6 = 0;
 
 		while (var6 < 128) {
-			dt var7 = var5;
+			Position var7 = var5;
 			int var8 = 0;
 
 			while (true) {

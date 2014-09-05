@@ -12,11 +12,11 @@ import java.util.Map;
 
 class beg extends bea {
 
-	private final atr a;
+	private final Block a;
 	private final ImmutableMap b;
 	private ImmutableTable c;
 
-	private beg(atr var1, ImmutableMap var2) {
+	private beg(Block var1, ImmutableMap var2) {
 		this.a = var1;
 		this.b = var2;
 	}
@@ -37,7 +37,7 @@ class beg extends bea {
 		if (!this.b.containsKey(var1)) {
 			throw new IllegalArgumentException("Cannot set property " + var1 + " as it does not exist in " + this.a.O());
 		} else if (!var1.c().contains(var2)) {
-			throw new IllegalArgumentException("Cannot set property " + var1 + " to " + var2 + " on block " + atr.c.c(this.a) + ", it is not an allowed value");
+			throw new IllegalArgumentException("Cannot set property " + var1 + " to " + var2 + " on block " + Block.c.c(this.a) + ", it is not an allowed value");
 		} else {
 			return (bec) (this.b.get(var1) == var2 ? this : (bec) this.c.get(var1, var2));
 		}
@@ -47,7 +47,7 @@ class beg extends bea {
 		return this.b;
 	}
 
-	public atr c() {
+	public Block c() {
 		return this.a;
 	}
 
@@ -89,7 +89,7 @@ class beg extends bea {
 	}
 
 	// $FF: synthetic method
-	beg(atr var1, ImmutableMap var2, bee var3) {
+	beg(Block var1, ImmutableMap var2, bee var3) {
 		this(var1, var2);
 	}
 }

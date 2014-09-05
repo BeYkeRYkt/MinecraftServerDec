@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class abo extends abn {
 
-	private dt a;
+	private Position a;
 
 	public abo(World var1) {
 		super(var1);
@@ -14,7 +14,7 @@ public class abo extends abn {
 
 	protected void h() {
 		super.h();
-		this.ac.a(16, new Byte((byte) 0));
+		this.dataWatcher.a(16, new Byte((byte) 0));
 	}
 
 	protected float bA() {
@@ -53,15 +53,15 @@ public class abo extends abn {
 	}
 
 	public boolean n() {
-		return (this.ac.a(16) & 1) != 0;
+		return (this.dataWatcher.a(16) & 1) != 0;
 	}
 
 	public void a(boolean var1) {
-		byte var2 = this.ac.a(16);
+		byte var2 = this.dataWatcher.a(16);
 		if (var1) {
-			this.ac.b(16, Byte.valueOf((byte) (var2 | 1)));
+			this.dataWatcher.b(16, Byte.valueOf((byte) (var2 | 1)));
 		} else {
-			this.ac.b(16, Byte.valueOf((byte) (var2 & -2)));
+			this.dataWatcher.b(16, Byte.valueOf((byte) (var2 & -2)));
 		}
 
 	}
@@ -69,22 +69,22 @@ public class abo extends abn {
 	public void s_() {
 		super.s_();
 		if (this.n()) {
-			this.v = this.w = this.x = 0.0D;
-			this.t = (double) NumberConverter.c(this.t) + 1.0D - (double) this.K;
+			this.motionX = this.motionY = this.motionZ = 0.0D;
+			this.locationY = (double) DataTypesConverter.toFixedPointInt(this.locationY) + 1.0D - (double) this.K;
 		} else {
-			this.w *= 0.6000000238418579D;
+			this.motionY *= 0.6000000238418579D;
 		}
 
 	}
 
 	protected void E() {
 		super.E();
-		dt var1 = new dt(this);
-		dt var2 = var1.a();
+		Position var1 = new Position(this);
+		Position var2 = var1.a();
 		if (this.n()) {
 			if (!this.o.p(var2).c().t()) {
 				this.a(false);
-				this.o.a((ahd) null, 1015, var1, 0);
+				this.o.a((EntityHuman) null, 1015, var1, 0);
 			} else {
 				if (this.V.nextInt(200) == 0) {
 					this.aI = (float) this.V.nextInt(360);
@@ -92,7 +92,7 @@ public class abo extends abn {
 
 				if (this.o.a(this, 4.0D) != null) {
 					this.a(false);
-					this.o.a((ahd) null, 1015, var1, 0);
+					this.o.a((EntityHuman) null, 1015, var1, 0);
 				}
 			}
 		} else {
@@ -100,20 +100,20 @@ public class abo extends abn {
 				this.a = null;
 			}
 
-			if (this.a == null || this.V.nextInt(30) == 0 || this.a.c((double) ((int) this.s), (double) ((int) this.t), (double) ((int) this.u)) < 4.0D) {
-				this.a = new dt((int) this.s + this.V.nextInt(7) - this.V.nextInt(7), (int) this.t + this.V.nextInt(6) - 2, (int) this.u + this.V.nextInt(7) - this.V.nextInt(7));
+			if (this.a == null || this.V.nextInt(30) == 0 || this.a.c((double) ((int) this.locationX), (double) ((int) this.locationY), (double) ((int) this.locationZ)) < 4.0D) {
+				this.a = new Position((int) this.locationX + this.V.nextInt(7) - this.V.nextInt(7), (int) this.locationY + this.V.nextInt(6) - 2, (int) this.locationZ + this.V.nextInt(7) - this.V.nextInt(7));
 			}
 
-			double var3 = (double) this.a.n() + 0.5D - this.s;
-			double var5 = (double) this.a.o() + 0.1D - this.t;
-			double var7 = (double) this.a.p() + 0.5D - this.u;
-			this.v += (Math.signum(var3) * 0.5D - this.v) * 0.10000000149011612D;
-			this.w += (Math.signum(var5) * 0.699999988079071D - this.w) * 0.10000000149011612D;
-			this.x += (Math.signum(var7) * 0.5D - this.x) * 0.10000000149011612D;
-			float var9 = (float) (Math.atan2(this.x, this.v) * 180.0D / 3.1415927410125732D) - 90.0F;
-			float var10 = NumberConverter.g(var9 - this.y);
+			double var3 = (double) this.a.n() + 0.5D - this.locationX;
+			double var5 = (double) this.a.o() + 0.1D - this.locationY;
+			double var7 = (double) this.a.p() + 0.5D - this.locationZ;
+			this.motionX += (Math.signum(var3) * 0.5D - this.motionX) * 0.10000000149011612D;
+			this.motionY += (Math.signum(var5) * 0.699999988079071D - this.motionY) * 0.10000000149011612D;
+			this.motionZ += (Math.signum(var7) * 0.5D - this.motionZ) * 0.10000000149011612D;
+			float var9 = (float) (Math.atan2(this.motionZ, this.motionX) * 180.0D / 3.1415927410125732D) - 90.0F;
+			float var10 = DataTypesConverter.g(var9 - this.yaw);
 			this.aY = 0.5F;
-			this.y += var10;
+			this.yaw += var10;
 			if (this.V.nextInt(100) == 0 && this.o.p(var2).c().t()) {
 				this.a(true);
 			}
@@ -128,7 +128,7 @@ public class abo extends abn {
 	public void e(float var1, float var2) {
 	}
 
-	protected void a(double var1, boolean var3, atr var4, dt var5) {
+	protected void a(double var1, boolean var3, Block var4, Position var5) {
 	}
 
 	public boolean aH() {
@@ -149,16 +149,16 @@ public class abo extends abn {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.ac.b(16, Byte.valueOf(var1.getByte("BatFlags")));
+		this.dataWatcher.b(16, Byte.valueOf(var1.getByte("BatFlags")));
 	}
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.put("BatFlags", this.ac.a(16));
+		var1.put("BatFlags", this.dataWatcher.a(16));
 	}
 
 	public boolean bQ() {
-		dt var1 = new dt(this.s, this.aQ().b, this.u);
+		Position var1 = new Position(this.locationX, this.aQ().b, this.locationZ);
 		if (var1.o() >= 63) {
 			return false;
 		} else {

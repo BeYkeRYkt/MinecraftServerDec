@@ -29,10 +29,10 @@ class rf extends ChannelInitializer {
 			;
 		}
 
-		var1.pipeline().addLast("timeout", (ChannelHandler) (new ReadTimeoutHandler(30))).addLast("legacy_query", (ChannelHandler) (new ra(this.a))).addLast("splitter", (ChannelHandler) (new hh())).addLast("decoder", (ChannelHandler) (new he(ie.a))).addLast("prepender", (ChannelHandler) (new hi())).addLast("encoder", (ChannelHandler) (new hf(ie.b)));
-		gr var2 = new gr(ie.a);
+		var1.pipeline().addLast("timeout", (ChannelHandler) (new ReadTimeoutHandler(30))).addLast("legacy_query", (ChannelHandler) (new ra(this.a))).addLast("splitter", (ChannelHandler) (new hh())).addLast("decoder", (ChannelHandler) (new he(PacketDirection.SERVERBOUND))).addLast("prepender", (ChannelHandler) (new hi())).addLast("encoder", (ChannelHandler) (new hf(PacketDirection.CLIENTBOUND)));
+		gr var2 = new gr(PacketDirection.SERVERBOUND);
 		ServerConnection.a(this.a).add(var2);
 		var1.pipeline().addLast("packet_handler", (ChannelHandler) var2);
-		var2.a((hg) (new ro(ServerConnection.b(this.a), var2)));
+		var2.a((PacketListener) (new ro(ServerConnection.b(this.a), var2)));
 	}
 }

@@ -28,7 +28,7 @@ public class zm extends zb {
 		if (this.e && this.a.o.w()) {
 			return false;
 		} else {
-			abi var1 = this.a.o.ae().a(new dt(this.a), 0);
+			abi var1 = this.a.o.ae().a(new Position(this.a), 0);
 			if (var1 == null) {
 				return false;
 			} else {
@@ -87,7 +87,7 @@ public class zm extends zb {
 
 		while (var5.hasNext()) {
 			abh var6 = (abh) var5.next();
-			int var7 = var6.b(NumberConverter.c(this.a.s), NumberConverter.c(this.a.t), NumberConverter.c(this.a.u));
+			int var7 = var6.b(DataTypesConverter.toFixedPointInt(this.a.locationX), DataTypesConverter.toFixedPointInt(this.a.locationY), DataTypesConverter.toFixedPointInt(this.a.locationZ));
 			if (var7 < var3 && !this.a(var6)) {
 				var2 = var6;
 				var3 = var7;

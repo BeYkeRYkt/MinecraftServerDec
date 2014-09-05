@@ -45,12 +45,12 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	protected void h() {
-		this.ac.a(17, new Integer(0));
-		this.ac.a(18, new Integer(1));
-		this.ac.a(19, new Float(0.0F));
-		this.ac.a(20, new Integer(0));
-		this.ac.a(21, new Integer(6));
-		this.ac.a(22, Byte.valueOf((byte) 0));
+		this.dataWatcher.a(17, new Integer(0));
+		this.dataWatcher.a(18, new Integer(1));
+		this.dataWatcher.a(19, new Float(0.0F));
+		this.dataWatcher.a(20, new Integer(0));
+		this.dataWatcher.a(21, new Integer(6));
+		this.dataWatcher.a(22, Byte.valueOf((byte) 0));
 	}
 
 	public brt j(Entity var1) {
@@ -68,9 +68,9 @@ public abstract class adx extends Entity implements vz {
 	public adx(World var1, double var2, double var4, double var6) {
 		this(var1);
 		this.b(var2, var4, var6);
-		this.v = 0.0D;
-		this.w = 0.0D;
-		this.x = 0.0D;
+		this.motionX = 0.0D;
+		this.motionY = 0.0D;
+		this.motionZ = 0.0D;
 		this.p = var2;
 		this.q = var4;
 		this.r = var6;
@@ -89,7 +89,7 @@ public abstract class adx extends Entity implements vz {
 				this.j(10);
 				this.ac();
 				this.a(this.p() + var2 * 10.0F);
-				boolean var3 = var1.j() instanceof ahd && ((ahd) var1.j()).by.instabuild;
+				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).by.instabuild;
 				if (var3 || this.p() > 40.0F) {
 					if (this.l != null) {
 						this.l.a((Entity) null);
@@ -111,7 +111,7 @@ public abstract class adx extends Entity implements vz {
 
 	public void a(wh var1) {
 		this.J();
-		amj var2 = new amj(amk.az, 1);
+		ItemStack var2 = new ItemStack(amk.az, 1);
 		if (this.b != null) {
 			var2.c(this.b);
 		}
@@ -136,7 +136,7 @@ public abstract class adx extends Entity implements vz {
 			this.a(this.p() - 1.0F);
 		}
 
-		if (this.t < -64.0D) {
+		if (this.locationY < -64.0D) {
 			this.O();
 		}
 
@@ -151,7 +151,7 @@ public abstract class adx extends Entity implements vz {
 						this.al = var2;
 						this.aj = this.ar();
 						byte var3;
-						if (this.o.t.q() == -1) {
+						if (this.o.worldProvider.getDimensionId() == -1) {
 							var3 = 0;
 						} else {
 							var3 = -1;
@@ -181,33 +181,33 @@ public abstract class adx extends Entity implements vz {
 
 		if (this.o.D) {
 			if (this.d > 0) {
-				double var15 = this.s + (this.e - this.s) / (double) this.d;
-				double var17 = this.t + (this.f - this.t) / (double) this.d;
-				double var18 = this.u + (this.g - this.u) / (double) this.d;
-				double var7 = NumberConverter.g(this.h - (double) this.y);
-				this.y = (float) ((double) this.y + var7 / (double) this.d);
-				this.z = (float) ((double) this.z + (this.i - (double) this.z) / (double) this.d);
+				double var15 = this.locationX + (this.e - this.locationX) / (double) this.d;
+				double var17 = this.locationY + (this.f - this.locationY) / (double) this.d;
+				double var18 = this.locationZ + (this.g - this.locationZ) / (double) this.d;
+				double var7 = DataTypesConverter.g(this.h - (double) this.yaw);
+				this.yaw = (float) ((double) this.yaw + var7 / (double) this.d);
+				this.pitch = (float) ((double) this.pitch + (this.i - (double) this.pitch) / (double) this.d);
 				--this.d;
 				this.b(var15, var17, var18);
-				this.b(this.y, this.z);
+				this.b(this.yaw, this.pitch);
 			} else {
-				this.b(this.s, this.t, this.u);
-				this.b(this.y, this.z);
+				this.b(this.locationX, this.locationY, this.locationZ);
+				this.b(this.yaw, this.pitch);
 			}
 
 		} else {
-			this.p = this.s;
-			this.q = this.t;
-			this.r = this.u;
-			this.w -= 0.03999999910593033D;
-			int var14 = NumberConverter.c(this.s);
-			var2 = NumberConverter.c(this.t);
-			int var16 = NumberConverter.c(this.u);
-			if (ati.d(this.o, new dt(var14, var2 - 1, var16))) {
+			this.p = this.locationX;
+			this.q = this.locationY;
+			this.r = this.locationZ;
+			this.motionY -= 0.03999999910593033D;
+			int var14 = DataTypesConverter.toFixedPointInt(this.locationX);
+			var2 = DataTypesConverter.toFixedPointInt(this.locationY);
+			int var16 = DataTypesConverter.toFixedPointInt(this.locationZ);
+			if (ati.d(this.o, new Position(var14, var2 - 1, var16))) {
 				--var2;
 			}
 
-			dt var4 = new dt(var14, var2, var16);
+			Position var4 = new Position(var14, var2, var16);
 			bec var5 = this.o.p(var4);
 			if (ati.d(var5)) {
 				this.a(var4, var5);
@@ -219,23 +219,23 @@ public abstract class adx extends Entity implements vz {
 			}
 
 			this.Q();
-			this.z = 0.0F;
-			double var6 = this.p - this.s;
-			double var8 = this.r - this.u;
+			this.pitch = 0.0F;
+			double var6 = this.p - this.locationX;
+			double var8 = this.r - this.locationZ;
 			if (var6 * var6 + var8 * var8 > 0.001D) {
-				this.y = (float) (Math.atan2(var8, var6) * 180.0D / 3.141592653589793D);
+				this.yaw = (float) (Math.atan2(var8, var6) * 180.0D / 3.141592653589793D);
 				if (this.a) {
-					this.y += 180.0F;
+					this.yaw += 180.0F;
 				}
 			}
 
-			double var10 = (double) NumberConverter.g(this.y - this.A);
+			double var10 = (double) DataTypesConverter.g(this.yaw - this.A);
 			if (var10 < -170.0D || var10 >= 170.0D) {
-				this.y += 180.0F;
+				this.yaw += 180.0F;
 				this.a = !this.a;
 			}
 
-			this.b(this.y, this.z);
+			this.b(this.yaw, this.pitch);
 			Iterator var12 = this.o.b((Entity) this, this.aQ().b(0.20000000298023224D, 0.0D, 0.20000000298023224D)).iterator();
 
 			while (var12.hasNext()) {
@@ -266,27 +266,27 @@ public abstract class adx extends Entity implements vz {
 
 	protected void n() {
 		double var1 = this.m();
-		this.v = NumberConverter.a(this.v, -var1, var1);
-		this.x = NumberConverter.a(this.x, -var1, var1);
+		this.motionX = DataTypesConverter.a(this.motionX, -var1, var1);
+		this.motionZ = DataTypesConverter.a(this.motionZ, -var1, var1);
 		if (this.C) {
-			this.v *= 0.5D;
-			this.w *= 0.5D;
-			this.x *= 0.5D;
+			this.motionX *= 0.5D;
+			this.motionY *= 0.5D;
+			this.motionZ *= 0.5D;
 		}
 
-		this.d(this.v, this.w, this.x);
+		this.d(this.motionX, this.motionY, this.motionZ);
 		if (!this.C) {
-			this.v *= 0.949999988079071D;
-			this.w *= 0.949999988079071D;
-			this.x *= 0.949999988079071D;
+			this.motionX *= 0.949999988079071D;
+			this.motionY *= 0.949999988079071D;
+			this.motionZ *= 0.949999988079071D;
 		}
 
 	}
 
-	protected void a(dt var1, bec var2) {
+	protected void a(Position var1, bec var2) {
 		this.O = 0.0F;
-		brw var3 = this.k(this.s, this.t, this.u);
-		this.t = (double) var1.o();
+		brw var3 = this.k(this.locationX, this.locationY, this.locationZ);
+		this.locationY = (double) var1.o();
 		boolean var4 = false;
 		boolean var5 = false;
 		ati var6 = (ati) var2.c();
@@ -299,39 +299,39 @@ public abstract class adx extends Entity implements vz {
 		atl var9 = (atl) var2.b(var6.l());
 		switch (ady.b[var9.ordinal()]) {
 			case 1:
-				this.v -= 0.0078125D;
-				++this.t;
+				this.motionX -= 0.0078125D;
+				++this.locationY;
 				break;
 			case 2:
-				this.v += 0.0078125D;
-				++this.t;
+				this.motionX += 0.0078125D;
+				++this.locationY;
 				break;
 			case 3:
-				this.x += 0.0078125D;
-				++this.t;
+				this.motionZ += 0.0078125D;
+				++this.locationY;
 				break;
 			case 4:
-				this.x -= 0.0078125D;
-				++this.t;
+				this.motionZ -= 0.0078125D;
+				++this.locationY;
 		}
 
 		int[][] var10 = c[var9.a()];
 		double var11 = (double) (var10[1][0] - var10[0][0]);
 		double var13 = (double) (var10[1][2] - var10[0][2]);
 		double var15 = Math.sqrt(var11 * var11 + var13 * var13);
-		double var17 = this.v * var11 + this.x * var13;
+		double var17 = this.motionX * var11 + this.motionZ * var13;
 		if (var17 < 0.0D) {
 			var11 = -var11;
 			var13 = -var13;
 		}
 
-		double var19 = Math.sqrt(this.v * this.v + this.x * this.x);
+		double var19 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		if (var19 > 2.0D) {
 			var19 = 2.0D;
 		}
 
-		this.v = var19 * var11 / var15;
-		this.x = var19 * var13 / var15;
+		this.motionX = var19 * var11 / var15;
+		this.motionZ = var19 * var13 / var15;
 		double var21;
 		double var23;
 		double var25;
@@ -339,27 +339,27 @@ public abstract class adx extends Entity implements vz {
 		if (this.l instanceof EntityLiving) {
 			var21 = (double) ((EntityLiving) this.l).aY;
 			if (var21 > 0.0D) {
-				var23 = -Math.sin((double) (this.l.y * 3.1415927F / 180.0F));
-				var25 = Math.cos((double) (this.l.y * 3.1415927F / 180.0F));
-				var27 = this.v * this.v + this.x * this.x;
+				var23 = -Math.sin((double) (this.l.yaw * 3.1415927F / 180.0F));
+				var25 = Math.cos((double) (this.l.yaw * 3.1415927F / 180.0F));
+				var27 = this.motionX * this.motionX + this.motionZ * this.motionZ;
 				if (var27 < 0.01D) {
-					this.v += var23 * 0.1D;
-					this.x += var25 * 0.1D;
+					this.motionX += var23 * 0.1D;
+					this.motionZ += var25 * 0.1D;
 					var5 = false;
 				}
 			}
 		}
 
 		if (var5) {
-			var21 = Math.sqrt(this.v * this.v + this.x * this.x);
+			var21 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			if (var21 < 0.03D) {
-				this.v *= 0.0D;
-				this.w *= 0.0D;
-				this.x *= 0.0D;
+				this.motionX *= 0.0D;
+				this.motionY *= 0.0D;
+				this.motionZ *= 0.0D;
 			} else {
-				this.v *= 0.5D;
-				this.w *= 0.0D;
-				this.x *= 0.5D;
+				this.motionX *= 0.5D;
+				this.motionY *= 0.0D;
+				this.motionZ *= 0.5D;
 			}
 		}
 
@@ -373,75 +373,75 @@ public abstract class adx extends Entity implements vz {
 		double var31;
 		double var33;
 		if (var11 == 0.0D) {
-			this.s = (double) var1.n() + 0.5D;
-			var21 = this.u - (double) var1.p();
+			this.locationX = (double) var1.n() + 0.5D;
+			var21 = this.locationZ - (double) var1.p();
 		} else if (var13 == 0.0D) {
-			this.u = (double) var1.p() + 0.5D;
-			var21 = this.s - (double) var1.n();
+			this.locationZ = (double) var1.p() + 0.5D;
+			var21 = this.locationX - (double) var1.n();
 		} else {
-			var31 = this.s - var23;
-			var33 = this.u - var25;
+			var31 = this.locationX - var23;
+			var33 = this.locationZ - var25;
 			var21 = (var31 * var11 + var33 * var13) * 2.0D;
 		}
 
-		this.s = var23 + var11 * var21;
-		this.u = var25 + var13 * var21;
-		this.b(this.s, this.t, this.u);
-		var31 = this.v;
-		var33 = this.x;
+		this.locationX = var23 + var11 * var21;
+		this.locationZ = var25 + var13 * var21;
+		this.b(this.locationX, this.locationY, this.locationZ);
+		var31 = this.motionX;
+		var33 = this.motionZ;
 		if (this.l != null) {
 			var31 *= 0.75D;
 			var33 *= 0.75D;
 		}
 
 		double var35 = this.m();
-		var31 = NumberConverter.a(var31, -var35, var35);
-		var33 = NumberConverter.a(var33, -var35, var35);
+		var31 = DataTypesConverter.a(var31, -var35, var35);
+		var33 = DataTypesConverter.a(var33, -var35, var35);
 		this.d(var31, 0.0D, var33);
-		if (var10[0][1] != 0 && NumberConverter.c(this.s) - var1.n() == var10[0][0] && NumberConverter.c(this.u) - var1.p() == var10[0][2]) {
-			this.b(this.s, this.t + (double) var10[0][1], this.u);
-		} else if (var10[1][1] != 0 && NumberConverter.c(this.s) - var1.n() == var10[1][0] && NumberConverter.c(this.u) - var1.p() == var10[1][2]) {
-			this.b(this.s, this.t + (double) var10[1][1], this.u);
+		if (var10[0][1] != 0 && DataTypesConverter.toFixedPointInt(this.locationX) - var1.n() == var10[0][0] && DataTypesConverter.toFixedPointInt(this.locationZ) - var1.p() == var10[0][2]) {
+			this.b(this.locationX, this.locationY + (double) var10[0][1], this.locationZ);
+		} else if (var10[1][1] != 0 && DataTypesConverter.toFixedPointInt(this.locationX) - var1.n() == var10[1][0] && DataTypesConverter.toFixedPointInt(this.locationZ) - var1.p() == var10[1][2]) {
+			this.b(this.locationX, this.locationY + (double) var10[1][1], this.locationZ);
 		}
 
 		this.o();
-		brw var37 = this.k(this.s, this.t, this.u);
+		brw var37 = this.k(this.locationX, this.locationY, this.locationZ);
 		if (var37 != null && var3 != null) {
 			double var38 = (var3.b - var37.b) * 0.05D;
-			var19 = Math.sqrt(this.v * this.v + this.x * this.x);
+			var19 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			if (var19 > 0.0D) {
-				this.v = this.v / var19 * (var19 + var38);
-				this.x = this.x / var19 * (var19 + var38);
+				this.motionX = this.motionX / var19 * (var19 + var38);
+				this.motionZ = this.motionZ / var19 * (var19 + var38);
 			}
 
-			this.b(this.s, var37.b, this.u);
+			this.b(this.locationX, var37.b, this.locationZ);
 		}
 
-		int var44 = NumberConverter.c(this.s);
-		int var39 = NumberConverter.c(this.u);
+		int var44 = DataTypesConverter.toFixedPointInt(this.locationX);
+		int var39 = DataTypesConverter.toFixedPointInt(this.locationZ);
 		if (var44 != var1.n() || var39 != var1.p()) {
-			var19 = Math.sqrt(this.v * this.v + this.x * this.x);
-			this.v = var19 * (double) (var44 - var1.n());
-			this.x = var19 * (double) (var39 - var1.p());
+			var19 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			this.motionX = var19 * (double) (var44 - var1.n());
+			this.motionZ = var19 * (double) (var39 - var1.p());
 		}
 
 		if (var4) {
-			double var40 = Math.sqrt(this.v * this.v + this.x * this.x);
+			double var40 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			if (var40 > 0.01D) {
 				double var42 = 0.06D;
-				this.v += this.v / var40 * var42;
-				this.x += this.x / var40 * var42;
+				this.motionX += this.motionX / var40 * var42;
+				this.motionZ += this.motionZ / var40 * var42;
 			} else if (var9 == atl.b) {
 				if (this.o.p(var1.e()).c().t()) {
-					this.v = 0.02D;
+					this.motionX = 0.02D;
 				} else if (this.o.p(var1.f()).c().t()) {
-					this.v = -0.02D;
+					this.motionX = -0.02D;
 				}
 			} else if (var9 == atl.a) {
 				if (this.o.p(var1.c()).c().t()) {
-					this.x = 0.02D;
+					this.motionZ = 0.02D;
 				} else if (this.o.p(var1.d()).c().t()) {
-					this.x = -0.02D;
+					this.motionZ = -0.02D;
 				}
 			}
 		}
@@ -450,35 +450,35 @@ public abstract class adx extends Entity implements vz {
 
 	protected void o() {
 		if (this.l != null) {
-			this.v *= 0.996999979019165D;
-			this.w *= 0.0D;
-			this.x *= 0.996999979019165D;
+			this.motionX *= 0.996999979019165D;
+			this.motionY *= 0.0D;
+			this.motionZ *= 0.996999979019165D;
 		} else {
-			this.v *= 0.9599999785423279D;
-			this.w *= 0.0D;
-			this.x *= 0.9599999785423279D;
+			this.motionX *= 0.9599999785423279D;
+			this.motionY *= 0.0D;
+			this.motionZ *= 0.9599999785423279D;
 		}
 
 	}
 
 	public void b(double var1, double var3, double var5) {
-		this.s = var1;
-		this.t = var3;
-		this.u = var5;
+		this.locationX = var1;
+		this.locationY = var3;
+		this.locationZ = var5;
 		float var7 = this.J / 2.0F;
 		float var8 = this.K;
 		this.a(new brt(var1 - (double) var7, var3, var5 - (double) var7, var1 + (double) var7, var3 + (double) var8, var5 + (double) var7));
 	}
 
 	public brw k(double var1, double var3, double var5) {
-		int var7 = NumberConverter.c(var1);
-		int var8 = NumberConverter.c(var3);
-		int var9 = NumberConverter.c(var5);
-		if (ati.d(this.o, new dt(var7, var8 - 1, var9))) {
+		int var7 = DataTypesConverter.toFixedPointInt(var1);
+		int var8 = DataTypesConverter.toFixedPointInt(var3);
+		int var9 = DataTypesConverter.toFixedPointInt(var5);
+		if (ati.d(this.o, new Position(var7, var8 - 1, var9))) {
 			--var8;
 		}
 
-		bec var10 = this.o.p(new dt(var7, var8, var9));
+		bec var10 = this.o.p(new Position(var7, var8, var9));
 		if (ati.d(var10)) {
 			atl var11 = (atl) var10.b(((ati) var10.c()).l());
 			int[][] var12 = c[var11.a()];
@@ -524,16 +524,16 @@ public abstract class adx extends Entity implements vz {
 	protected void a(NBTCompoundTag var1) {
 		if (var1.getBoolean("CustomDisplayTile")) {
 			int var2 = var1.getInt("DisplayData");
-			atr var3;
+			Block var3;
 			if (var1.isTagAssignableFrom("DisplayTile", 8)) {
-				var3 = atr.b(var1.getString("DisplayTile"));
+				var3 = Block.b(var1.getString("DisplayTile"));
 				if (var3 == null) {
 					this.a(aty.a.P());
 				} else {
 					this.a(var3.a(var2));
 				}
 			} else {
-				var3 = atr.c(var1.getInt("DisplayTile"));
+				var3 = Block.c(var1.getInt("DisplayTile"));
 				if (var3 == null) {
 					this.a(aty.a.P());
 				} else {
@@ -554,7 +554,7 @@ public abstract class adx extends Entity implements vz {
 		if (this.x()) {
 			var1.put("CustomDisplayTile", true);
 			bec var2 = this.t();
-			oa var3 = (oa) atr.c.c(var2.c());
+			oa var3 = (oa) Block.c.c(var2.c());
 			var1.put("DisplayTile", var3 == null ? "" : var3.toString());
 			var1.put("DisplayData", var2.c().c(var2));
 			var1.put("DisplayOffset", this.v());
@@ -570,15 +570,15 @@ public abstract class adx extends Entity implements vz {
 		if (!this.o.D) {
 			if (!var1.T && !this.T) {
 				if (var1 != this.l) {
-					if (var1 instanceof EntityLiving && !(var1 instanceof ahd) && !(var1 instanceof acq) && this.s() == adz.a && this.v * this.v + this.x * this.x > 0.01D && this.l == null && var1.m == null) {
+					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof acq) && this.s() == adz.a && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.l == null && var1.m == null) {
 						var1.a((Entity) this);
 					}
 
-					double var2 = var1.s - this.s;
-					double var4 = var1.u - this.u;
+					double var2 = var1.locationX - this.locationX;
+					double var4 = var1.locationZ - this.locationZ;
 					double var6 = var2 * var2 + var4 * var4;
 					if (var6 >= 9.999999747378752E-5D) {
-						var6 = (double) NumberConverter.a(var6);
+						var6 = (double) DataTypesConverter.a(var6);
 						var2 /= var6;
 						var4 /= var6;
 						double var8 = 1.0D / var6;
@@ -595,37 +595,37 @@ public abstract class adx extends Entity implements vz {
 						var2 *= 0.5D;
 						var4 *= 0.5D;
 						if (var1 instanceof adx) {
-							double var10 = var1.s - this.s;
-							double var12 = var1.u - this.u;
+							double var10 = var1.locationX - this.locationX;
+							double var12 = var1.locationZ - this.locationZ;
 							brw var14 = (new brw(var10, 0.0D, var12)).a();
-							brw var15 = (new brw((double) NumberConverter.b(this.y * 3.1415927F / 180.0F), 0.0D, (double) NumberConverter.a(this.y * 3.1415927F / 180.0F))).a();
+							brw var15 = (new brw((double) DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F), 0.0D, (double) DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F))).a();
 							double var16 = Math.abs(var14.b(var15));
 							if (var16 < 0.800000011920929D) {
 								return;
 							}
 
-							double var18 = var1.v + this.v;
-							double var20 = var1.x + this.x;
+							double var18 = var1.motionX + this.motionX;
+							double var20 = var1.motionZ + this.motionZ;
 							if (((adx) var1).s() == adz.c && this.s() != adz.c) {
-								this.v *= 0.20000000298023224D;
-								this.x *= 0.20000000298023224D;
-								this.g(var1.v - var2, 0.0D, var1.x - var4);
-								var1.v *= 0.949999988079071D;
-								var1.x *= 0.949999988079071D;
+								this.motionX *= 0.20000000298023224D;
+								this.motionZ *= 0.20000000298023224D;
+								this.g(var1.motionX - var2, 0.0D, var1.motionZ - var4);
+								var1.motionX *= 0.949999988079071D;
+								var1.motionZ *= 0.949999988079071D;
 							} else if (((adx) var1).s() != adz.c && this.s() == adz.c) {
-								var1.v *= 0.20000000298023224D;
-								var1.x *= 0.20000000298023224D;
-								var1.g(this.v + var2, 0.0D, this.x + var4);
-								this.v *= 0.949999988079071D;
-								this.x *= 0.949999988079071D;
+								var1.motionX *= 0.20000000298023224D;
+								var1.motionZ *= 0.20000000298023224D;
+								var1.g(this.motionX + var2, 0.0D, this.motionZ + var4);
+								this.motionX *= 0.949999988079071D;
+								this.motionZ *= 0.949999988079071D;
 							} else {
 								var18 /= 2.0D;
 								var20 /= 2.0D;
-								this.v *= 0.20000000298023224D;
-								this.x *= 0.20000000298023224D;
+								this.motionX *= 0.20000000298023224D;
+								this.motionZ *= 0.20000000298023224D;
 								this.g(var18 - var2, 0.0D, var20 - var4);
-								var1.v *= 0.20000000298023224D;
-								var1.x *= 0.20000000298023224D;
+								var1.motionX *= 0.20000000298023224D;
+								var1.motionZ *= 0.20000000298023224D;
 								var1.g(var18 + var2, 0.0D, var20 + var4);
 							}
 						} else {
@@ -640,33 +640,33 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public void a(float var1) {
-		this.ac.b(19, Float.valueOf(var1));
+		this.dataWatcher.b(19, Float.valueOf(var1));
 	}
 
 	public float p() {
-		return this.ac.d(19);
+		return this.dataWatcher.d(19);
 	}
 
 	public void j(int var1) {
-		this.ac.b(17, Integer.valueOf(var1));
+		this.dataWatcher.b(17, Integer.valueOf(var1));
 	}
 
 	public int q() {
-		return this.ac.c(17);
+		return this.dataWatcher.c(17);
 	}
 
 	public void k(int var1) {
-		this.ac.b(18, Integer.valueOf(var1));
+		this.dataWatcher.b(18, Integer.valueOf(var1));
 	}
 
 	public int r() {
-		return this.ac.c(18);
+		return this.dataWatcher.c(18);
 	}
 
 	public abstract adz s();
 
 	public bec t() {
-		return !this.x() ? this.u() : atr.d(this.H().c(20));
+		return !this.x() ? this.u() : Block.d(this.getDataWatcher().c(20));
 	}
 
 	public bec u() {
@@ -674,7 +674,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public int v() {
-		return !this.x() ? this.w() : this.H().c(21);
+		return !this.x() ? this.w() : this.getDataWatcher().c(21);
 	}
 
 	public int w() {
@@ -682,21 +682,21 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public void a(bec var1) {
-		this.H().b(20, Integer.valueOf(atr.f(var1)));
+		this.getDataWatcher().b(20, Integer.valueOf(Block.f(var1)));
 		this.a(true);
 	}
 
 	public void l(int var1) {
-		this.H().b(21, Integer.valueOf(var1));
+		this.getDataWatcher().b(21, Integer.valueOf(var1));
 		this.a(true);
 	}
 
 	public boolean x() {
-		return this.H().a(22) == 1;
+		return this.getDataWatcher().a(22) == 1;
 	}
 
 	public void a(boolean var1) {
-		this.H().b(22, Byte.valueOf((byte) (var1 ? 1 : 0)));
+		this.getDataWatcher().b(22, Byte.valueOf((byte) (var1 ? 1 : 0)));
 	}
 
 	public void a(String var1) {
@@ -715,7 +715,7 @@ public abstract class adx extends Entity implements vz {
 		return this.b;
 	}
 
-	public ho e_() {
+	public IJSONComponent e_() {
 		if (this.k_()) {
 			hy var2 = new hy(this.b);
 			var2.b().a(this.aP());

@@ -13,8 +13,8 @@ public class bhh extends bhp {
 		this.b = var2;
 	}
 
-	public boolean b(World var1, Random var2, dt var3) {
-		atr var4;
+	public boolean b(World var1, Random var2, Position var3) {
+		Block var4;
 		while (((var4 = var1.p(var3).c()).r() == bof.a || var4.r() == bof.j) && var3.o() > 1) {
 			var3 = var3.b();
 		}
@@ -25,18 +25,18 @@ public class bhh extends bhp {
 			var3 = var3.a();
 
 			for (int var5 = 0; var5 < 4; ++var5) {
-				dt var6 = var3.a(var2.nextInt(4) - var2.nextInt(4), var2.nextInt(3) - var2.nextInt(3), var2.nextInt(4) - var2.nextInt(4));
+				Position var6 = var3.a(var2.nextInt(4) - var2.nextInt(4), var2.nextInt(3) - var2.nextInt(3), var2.nextInt(4) - var2.nextInt(4));
 				if (var1.d(var6) && World.a((ard) var1, var6.b())) {
 					var1.a(var6, aty.ae.P(), 2);
 					bcm var7 = var1.s(var6);
 					if (var7 instanceof bcr) {
-						vl.a(var2, this.a, (vq) ((bcr) var7), this.b);
+						vl.a(var2, this.a, (IInventory) ((bcr) var7), this.b);
 					}
 
-					dt var8 = var6.f();
-					dt var9 = var6.e();
-					dt var10 = var6.c();
-					dt var11 = var6.d();
+					Position var8 = var6.f();
+					Position var9 = var6.e();
+					Position var10 = var6.c();
+					Position var11 = var6.d();
 					if (var1.d(var9) && World.a((ard) var1, var9.b())) {
 						var1.a(var9, aty.aa.P(), 2);
 					}

@@ -40,11 +40,11 @@ public class blp extends bmm {
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
 			if (((String) var3.getKey()).equals("distance")) {
-				this.h = NumberConverter.a((String) var3.getValue(), this.h, 1.0D);
+				this.h = DataTypesConverter.a((String) var3.getValue(), this.h, 1.0D);
 			} else if (((String) var3.getKey()).equals("count")) {
-				this.g = new aqm[NumberConverter.a((String) var3.getValue(), this.g.length, 1)];
+				this.g = new aqm[DataTypesConverter.a((String) var3.getValue(), this.g.length, 1)];
 			} else if (((String) var3.getKey()).equals("spread")) {
-				this.i = NumberConverter.a((String) var3.getValue(), this.i, 1);
+				this.i = DataTypesConverter.a((String) var3.getValue(), this.i, 1);
 			}
 		}
 
@@ -65,7 +65,7 @@ public class blp extends bmm {
 				double var8 = (1.25D * (double) var6 + var3.nextDouble()) * this.h * (double) var6;
 				int var10 = (int) Math.round(Math.cos(var4) * var8);
 				int var11 = (int) Math.round(Math.sin(var4) * var8);
-				dt var12 = this.c.v().a((var10 << 4) + 8, (var11 << 4) + 8, 112, this.d, var3);
+				Position var12 = this.c.v().a((var10 << 4) + 8, (var11 << 4) + 8, 112, this.d, var3);
 				if (var12 != null) {
 					var10 = var12.n() >> 4;
 					var11 = var12.p() >> 4;

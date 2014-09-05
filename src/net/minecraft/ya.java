@@ -14,7 +14,7 @@ public class ya {
 	private boolean e;
 
 	public ya(String var1, double var2, int var4) {
-		this(NumberConverter.a((Random) ThreadLocalRandom.current()), var1, var2, var4);
+		this(DataTypesConverter.a((Random) ThreadLocalRandom.current()), var1, var2, var4);
 	}
 
 	public ya(UUID var1, String var2, double var3, int var5) {

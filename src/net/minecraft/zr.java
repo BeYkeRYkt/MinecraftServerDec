@@ -38,12 +38,12 @@ public class zr extends zn {
 
 	}
 
-	protected boolean a(World var1, dt var2) {
+	protected boolean a(World var1, Position var2) {
 		if (!var1.d(var2.a())) {
 			return false;
 		} else {
 			bec var3 = var1.p(var2);
-			atr var4 = var3.c();
+			Block var4 = var3.c();
 			if (var4 == aty.ae) {
 				bcm var5 = var1.s(var2);
 				if (var5 instanceof bcr && ((bcr) var5).l < 1) {

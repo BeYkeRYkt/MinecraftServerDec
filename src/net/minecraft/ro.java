@@ -2,7 +2,7 @@ package net.minecraft;
 
 import net.minecraft.server.MinecraftServer;
 
-public class ro implements na {
+public class ro implements HandshakingPacketListener {
 
 	private final MinecraftServer a;
 	private final gr b;
@@ -12,33 +12,33 @@ public class ro implements na {
 		this.b = var2;
 	}
 
-	public void a(mz var1) {
-		switch (rp.a[var1.a().ordinal()]) {
+	public void handle(PacketSetProtocol var1) {
+		switch (rp.a[var1.getNextState().ordinal()]) {
 			case 1:
-				this.b.a(EnumProtocol.d);
+				this.b.a(EnumProtocol.LOGIN);
 				hy var2;
-				if (var1.b() > 47) {
+				if (var1.getProtocolVersion() > 47) {
 					var2 = new hy("Outdated server! I\'m still on 1.8");
-					this.b.a((id) (new ng(var2)));
-					this.b.a((ho) var2);
-				} else if (var1.b() < 47) {
+					this.b.a((Packet) (new ng(var2)));
+					this.b.a((IJSONComponent) var2);
+				} else if (var1.getProtocolVersion() < 47) {
 					var2 = new hy("Outdated client! Please use 1.8");
-					this.b.a((id) (new ng(var2)));
-					this.b.a((ho) var2);
+					this.b.a((Packet) (new ng(var2)));
+					this.b.a((IJSONComponent) var2);
 				} else {
-					this.b.a((hg) (new rq(this.a, this.b)));
+					this.b.a((PacketListener) (new rq(this.a, this.b)));
 				}
 				break;
 			case 2:
-				this.b.a(EnumProtocol.c);
-				this.b.a((hg) (new ru(this.a, this.b)));
+				this.b.a(EnumProtocol.STATUS);
+				this.b.a((PacketListener) (new ru(this.a, this.b)));
 				break;
 			default:
-				throw new UnsupportedOperationException("Invalid intention " + var1.a());
+				throw new UnsupportedOperationException("Invalid intention " + var1.getNextState());
 		}
 
 	}
 
-	public void a(ho var1) {
+	public void handle(IJSONComponent var1) {
 	}
 }

@@ -166,7 +166,7 @@ public abstract class arm {
 		return new biq(bbi.b);
 	}
 
-	public awa a(Random var1, dt var2) {
+	public awa a(Random var1, Position var2) {
 		return var1.nextInt(3) > 0 ? awa.a : awa.b;
 	}
 
@@ -241,7 +241,7 @@ public abstract class arm {
 		return (int) (this.aq * 65536.0F);
 	}
 
-	public final float a(dt var1) {
+	public final float a(Position var1) {
 		if (var1.o() > 64) {
 			float var2 = (float) (ae.a((double) var1.n() * 1.0D / 8.0D, (double) var1.p() * 1.0D / 8.0D) * 4.0D);
 			return this.ap - (var2 + (float) var1.o() - 64.0F) * 0.05F / 30.0F;
@@ -250,7 +250,7 @@ public abstract class arm {
 		}
 	}
 
-	public void a(World var1, Random var2, dt var3) {
+	public void a(World var1, Random var2, Position var3) {
 		this.as.a(var1, var2, this, var3);
 	}
 
@@ -289,7 +289,7 @@ public abstract class arm {
 						}
 
 						if (var15 < 63 && (var9 == null || var9.c().r() == bof.a)) {
-							if (this.a(new dt(var4, var15, var5)) < 0.15F) {
+							if (this.a(new Position(var4, var15, var5)) < 0.15F) {
 								var9 = aty.aI.P();
 							} else {
 								var9 = aty.j.P();

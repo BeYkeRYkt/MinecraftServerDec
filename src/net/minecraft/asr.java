@@ -24,7 +24,7 @@ public class asr extends asl {
 		this.b(var1, var2, var3, var4, var5, var6);
 	}
 
-	public void a(World var1, Random var2, dt var3) {
+	public void a(World var1, Random var2, Position var3) {
 		this.as.a(var1, var2, this, var3);
 	}
 }

@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
 
-public class bgp implements bfe {
+public class bgp implements IChunkProvider {
 
 	private static final List a = Lists.newArrayList();
 	private static final int b;
@@ -49,7 +49,7 @@ public class bgp implements bfe {
 			var0 /= 2;
 			var1 /= 2;
 			if (var0 <= b && var1 <= b) {
-				int var3 = NumberConverter.a(var0 * b + var1);
+				int var3 = DataTypesConverter.a(var0 * b + var1);
 				if (var3 < a.size()) {
 					var2 = (bec) a.get(var3);
 				}
@@ -63,10 +63,10 @@ public class bgp implements bfe {
 		return true;
 	}
 
-	public void a(bfe var1, int var2, int var3) {
+	public void a(IChunkProvider var1, int var2, int var3) {
 	}
 
-	public boolean a(bfe var1, bfh var2, int var3, int var4) {
+	public boolean a(IChunkProvider var1, bfh var2, int var3, int var4) {
 		return false;
 	}
 
@@ -89,12 +89,12 @@ public class bgp implements bfe {
 		return "DebugLevelSource";
 	}
 
-	public List a(xp var1, dt var2) {
+	public List a(xp var1, Position var2) {
 		arm var3 = this.c.b(var2);
 		return var3.a(var1);
 	}
 
-	public dt a(World var1, String var2, dt var3) {
+	public Position a(World var1, String var2, Position var3) {
 		return null;
 	}
 
@@ -105,18 +105,18 @@ public class bgp implements bfe {
 	public void a(bfh var1, int var2, int var3) {
 	}
 
-	public bfh a(dt var1) {
+	public bfh a(Position var1) {
 		return this.d(var1.n() >> 4, var1.p() >> 4);
 	}
 
 	static {
-		Iterator var0 = atr.c.iterator();
+		Iterator var0 = Block.c.iterator();
 
 		while (var0.hasNext()) {
-			atr var1 = (atr) var0.next();
+			Block var1 = (Block) var0.next();
 			a.addAll(var1.O().a());
 		}
 
-		b = NumberConverter.f(NumberConverter.c((float) a.size()));
+		b = DataTypesConverter.f(DataTypesConverter.c((float) a.size()));
 	}
 }

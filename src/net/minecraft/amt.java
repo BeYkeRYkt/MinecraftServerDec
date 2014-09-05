@@ -1,12 +1,12 @@
 package net.minecraft;
 
-public class amt extends alq {
+public class amt extends Item {
 
 	public amt() {
-		this.a(akf.i);
+		this.a(CreativeModeTab.i);
 	}
 
-	public boolean a(amj var1, ahd var2, EntityLiving var3) {
+	public boolean a(ItemStack var1, EntityHuman var2, EntityLiving var3) {
 		if (!var1.s()) {
 			return false;
 		} else if (var3 instanceof xn) {

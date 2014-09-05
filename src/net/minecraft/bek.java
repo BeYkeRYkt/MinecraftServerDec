@@ -37,7 +37,7 @@ public class bek {
 		return this.d;
 	}
 
-	private bem a(dt var1, ej var2, ej var3, LoadingCache var4) {
+	private bem a(Position var1, ej var2, ej var3, LoadingCache var4) {
 		for (int var5 = 0; var5 < this.d; ++var5) {
 			for (int var6 = 0; var6 < this.c; ++var6) {
 				for (int var7 = 0; var7 < this.b; ++var7) {
@@ -51,13 +51,13 @@ public class bek {
 		return new bem(var1, var2, var3, var4);
 	}
 
-	public bem a(World var1, dt var2) {
+	public bem a(World var1, Position var2) {
 		LoadingCache var3 = CacheBuilder.newBuilder().build(new bel(var1));
 		int var4 = Math.max(Math.max(this.d, this.c), this.b);
-		Iterator var5 = dt.a(var2, var2.a(var4 - 1, var4 - 1, var4 - 1)).iterator();
+		Iterator var5 = Position.a(var2, var2.a(var4 - 1, var4 - 1, var4 - 1)).iterator();
 
 		while (var5.hasNext()) {
-			dt var6 = (dt) var5.next();
+			Position var6 = (Position) var5.next();
 			ej[] var7 = ej.values();
 			int var8 = var7.length;
 
@@ -81,7 +81,7 @@ public class bek {
 		return null;
 	}
 
-	protected static dt a(dt var0, ej var1, ej var2, int var3, int var4, int var5) {
+	protected static Position a(Position var0, ej var1, ej var2, int var3, int var4, int var5) {
 		if (var1 != var2 && var1 != var2.d()) {
 			fd var6 = new fd(var1.g(), var1.h(), var1.i());
 			fd var7 = new fd(var2.g(), var2.h(), var2.i());

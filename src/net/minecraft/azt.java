@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 
-public class azt extends atr {
+public class azt extends Block {
 
 	public static final bev a = bev.a("north", azu.class);
 	public static final bev b = bev.a("east", azu.class);
@@ -24,7 +24,7 @@ public class azt extends atr {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
 	}
 
-	public bec a(bec var1, ard var2, dt var3) {
+	public bec a(bec var1, ard var2, Position var3) {
 		var1 = var1.a(N, this.c(var2, var3, ej.e));
 		var1 = var1.a(b, this.c(var2, var3, ej.f));
 		var1 = var1.a(a, this.c(var2, var3, ej.c));
@@ -32,18 +32,18 @@ public class azt extends atr {
 		return var1;
 	}
 
-	private azu c(ard var1, dt var2, ej var3) {
-		dt var4 = var2.a(var3);
-		atr var5 = var1.p(var2.a(var3)).c();
+	private azu c(ard var1, Position var2, ej var3) {
+		Position var4 = var2.a(var3);
+		Block var5 = var1.p(var2.a(var3)).c();
 		if (!a(var1.p(var4), var3) && (var5.s() || !d(var1.p(var4.b())))) {
-			atr var6 = var1.p(var2.a()).c();
+			Block var6 = var1.p(var2.a()).c();
 			return !var6.s() && var5.s() && d(var1.p(var4.a())) ? azu.a : azu.c;
 		} else {
 			return azu.b;
 		}
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
@@ -55,25 +55,25 @@ public class azt extends atr {
 		return false;
 	}
 
-	public boolean c(World var1, dt var2) {
+	public boolean c(World var1, Position var2) {
 		return World.a((ard) var1, var2.b()) || var1.p(var2.b()).c() == aty.aX;
 	}
 
-	private bec e(World var1, dt var2, bec var3) {
+	private bec e(World var1, Position var2, bec var3) {
 		var3 = this.a(var1, var2, var2, var3);
 		ArrayList var4 = Lists.newArrayList((Iterable) this.Q);
 		this.Q.clear();
 		Iterator var5 = var4.iterator();
 
 		while (var5.hasNext()) {
-			dt var6 = (dt) var5.next();
-			var1.c(var6, (atr) this);
+			Position var6 = (Position) var5.next();
+			var1.c(var6, (Block) this);
 		}
 
 		return var3;
 	}
 
-	private bec a(World var1, dt var2, dt var3, bec var4) {
+	private bec a(World var1, Position var2, Position var3, bec var4) {
 		bec var5 = var4;
 		int var6 = ((Integer) var4.b(O)).intValue();
 		byte var7 = 0;
@@ -90,7 +90,7 @@ public class azt extends atr {
 
 		while (var10.hasNext()) {
 			ej var11 = (ej) var10.next();
-			dt var12 = var2.a(var11);
+			Position var12 = var2.a(var11);
 			boolean var13 = var12.n() != var3.n() || var12.p() != var3.p();
 			if (var13) {
 				var9 = this.a(var1, var12, var9);
@@ -136,21 +136,21 @@ public class azt extends atr {
 		return var4;
 	}
 
-	private void d(World var1, dt var2) {
+	private void d(World var1, Position var2) {
 		if (var1.p(var2).c() == this) {
-			var1.c(var2, (atr) this);
+			var1.c(var2, (Block) this);
 			ej[] var3 = ej.values();
 			int var4 = var3.length;
 
 			for (int var5 = 0; var5 < var4; ++var5) {
 				ej var6 = var3[var5];
-				var1.c(var2.a(var6), (atr) this);
+				var1.c(var2.a(var6), (Block) this);
 			}
 
 		}
 	}
 
-	public void c(World var1, dt var2, bec var3) {
+	public void c(World var1, Position var2, bec var3) {
 		if (!var1.D) {
 			this.e(var1, var2, var3);
 			Iterator var4 = en.b.iterator();
@@ -158,7 +158,7 @@ public class azt extends atr {
 			ej var5;
 			while (var4.hasNext()) {
 				var5 = (ej) var4.next();
-				var1.c(var2.a(var5), (atr) this);
+				var1.c(var2.a(var5), (Block) this);
 			}
 
 			var4 = en.a.iterator();
@@ -172,7 +172,7 @@ public class azt extends atr {
 
 			while (var4.hasNext()) {
 				var5 = (ej) var4.next();
-				dt var6 = var2.a(var5);
+				Position var6 = var2.a(var5);
 				if (var1.p(var6).c().t()) {
 					this.d(var1, var6.a());
 				} else {
@@ -183,7 +183,7 @@ public class azt extends atr {
 		}
 	}
 
-	public void b(World var1, dt var2, bec var3) {
+	public void b(World var1, Position var2, bec var3) {
 		super.b(var1, var2, var3);
 		if (!var1.D) {
 			ej[] var4 = ej.values();
@@ -191,7 +191,7 @@ public class azt extends atr {
 
 			for (int var6 = 0; var6 < var5; ++var6) {
 				ej var7 = var4[var6];
-				var1.c(var2.a(var7), (atr) this);
+				var1.c(var2.a(var7), (Block) this);
 			}
 
 			this.e(var1, var2, var3);
@@ -207,7 +207,7 @@ public class azt extends atr {
 
 			while (var8.hasNext()) {
 				var9 = (ej) var8.next();
-				dt var10 = var2.a(var9);
+				Position var10 = var2.a(var9);
 				if (var1.p(var10).c().t()) {
 					this.d(var1, var10.a());
 				} else {
@@ -218,7 +218,7 @@ public class azt extends atr {
 		}
 	}
 
-	private int a(World var1, dt var2, int var3) {
+	private int a(World var1, Position var2, int var3) {
 		if (var1.p(var2).c() != this) {
 			return var3;
 		} else {
@@ -227,7 +227,7 @@ public class azt extends atr {
 		}
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (!var1.D) {
 			if (this.c(var1, var2)) {
 				this.e(var1, var2, var3);
@@ -239,15 +239,15 @@ public class azt extends atr {
 		}
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return amk.aC;
 	}
 
-	public int b(ard var1, dt var2, bec var3, ej var4) {
+	public int b(ard var1, Position var2, bec var3, ej var4) {
 		return !this.P ? 0 : this.a(var1, var2, var3, var4);
 	}
 
-	public int a(ard var1, dt var2, bec var3, ej var4) {
+	public int a(ard var1, Position var2, bec var3, ej var4) {
 		if (!this.P) {
 			return 0;
 		} else {
@@ -278,16 +278,16 @@ public class azt extends atr {
 		}
 	}
 
-	private boolean d(ard var1, dt var2, ej var3) {
-		dt var4 = var2.a(var3);
+	private boolean d(ard var1, Position var2, ej var3) {
+		Position var4 = var2.a(var3);
 		bec var5 = var1.p(var4);
-		atr var6 = var5.c();
+		Block var6 = var5.c();
 		boolean var7 = var6.t();
 		boolean var8 = var1.p(var2.a()).c().t();
 		return !var8 && var7 && e(var1, var4.a()) ? true : (a(var5, var3) ? true : (var6 == aty.bc && var5.b(ava.N) == var3 ? true : !var7 && e(var1, var4.b())));
 	}
 
-	protected static boolean e(ard var0, dt var1) {
+	protected static boolean e(ard var0, Position var1) {
 		return d(var0.p(var1));
 	}
 
@@ -296,7 +296,7 @@ public class azt extends atr {
 	}
 
 	protected static boolean a(bec var0, ej var1) {
-		atr var2 = var0.c();
+		Block var2 = var0.c();
 		if (var2 == aty.af) {
 			return true;
 		} else if (aty.bb.e(var2)) {

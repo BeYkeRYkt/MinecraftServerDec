@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class jd implements id<ik> {
+public class jd implements Packet<PlayPacketListener> {
 
 	private int a;
 
@@ -11,15 +11,15 @@ public class jd implements id<ik> {
 		this.a = var1;
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 
-	public void a(hd var1) {
+	public void readData(PacketDataSerializer var1) {
 		this.a = var1.readUnsignedByte();
 	}
 
-	public void b(hd var1) {
+	public void writeData(PacketDataSerializer var1) {
 		var1.writeByte(this.a);
 	}
 }

@@ -2,7 +2,7 @@ package net.minecraft;
 
 import com.google.common.base.Predicate;
 
-public class bbp extends atr {
+public class bbp extends Block {
 
 	public static final beu a = beu.a("facing", (Predicate) en.a);
 	public static final bet b = bet.a("open");
@@ -14,7 +14,7 @@ public class bbp extends atr {
 		float var2 = 0.5F;
 		float var3 = 1.0F;
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-		this.a(akf.d);
+		this.a(CreativeModeTab.d);
 	}
 
 	public boolean c() {
@@ -25,16 +25,16 @@ public class bbp extends atr {
 		return false;
 	}
 
-	public boolean b(ard var1, dt var2) {
+	public boolean b(ard var1, Position var2) {
 		return !((Boolean) var1.p(var2).b(b)).booleanValue();
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3);
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		this.d(var1.p(var2));
 	}
 
@@ -76,7 +76,7 @@ public class bbp extends atr {
 		}
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
 		if (this.J == bof.f) {
 			return true;
 		} else {
@@ -87,9 +87,9 @@ public class bbp extends atr {
 		}
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (!var1.D) {
-			dt var5 = var2.a(((ej) var3.b(a)).d());
+			Position var5 = var2.a(((ej) var3.b(a)).d());
 			if (!c(var1.p(var5).c())) {
 				var1.g(var2);
 				this.b(var1, var2, var3, 0);
@@ -99,7 +99,7 @@ public class bbp extends atr {
 					boolean var7 = ((Boolean) var3.b(b)).booleanValue();
 					if (var7 != var6) {
 						var1.a(var2, var3.a(b, Boolean.valueOf(var6)), 2);
-						var1.a((ahd) null, var6 ? 1003 : 1006, var2, 0);
+						var1.a((EntityHuman) null, var6 ? 1003 : 1006, var2, 0);
 					}
 				}
 
@@ -107,12 +107,12 @@ public class bbp extends atr {
 		}
 	}
 
-	public bru a(World var1, dt var2, brw var3, brw var4) {
+	public bru a(World var1, Position var2, brw var3, brw var4) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3, var4);
 	}
 
-	public bec a(World var1, dt var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		bec var9 = this.P();
 		if (var3.k().c()) {
 			var9 = var9.a(a, var3).a(b, Boolean.valueOf(false));
@@ -122,7 +122,7 @@ public class bbp extends atr {
 		return var9;
 	}
 
-	public boolean a(World var1, dt var2, ej var3) {
+	public boolean a(World var1, Position var2, ej var3) {
 		return !var3.k().b() && c(var1.p(var2.a(var3.d())).c());
 	}
 
@@ -154,7 +154,7 @@ public class bbp extends atr {
 		}
 	}
 
-	private static boolean c(atr var0) {
+	private static boolean c(Block var0) {
 		return var0.J.k() && var0.d() || var0 == aty.aX || var0 instanceof awq || var0 instanceof bat;
 	}
 

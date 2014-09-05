@@ -54,7 +54,7 @@ public class zz extends zb {
 	}
 
 	public void e() {
-		double var1 = this.a.e(this.c.s, this.c.aQ().b, this.c.u);
+		double var1 = this.a.e(this.c.locationX, this.c.aQ().b, this.c.locationZ);
 		boolean var3 = this.a.t().a(this.c);
 		if (var3) {
 			++this.f;
@@ -75,13 +75,13 @@ public class zz extends zb {
 				return;
 			}
 
-			var4 = NumberConverter.a(var1) / this.i;
-			float var5 = NumberConverter.a(var4, 0.1F, 1.0F);
+			var4 = DataTypesConverter.a(var1) / this.i;
+			float var5 = DataTypesConverter.a(var4, 0.1F, 1.0F);
 			this.b.a(this.c, var5);
-			this.d = NumberConverter.d(var4 * (float) (this.h - this.g) + (float) this.g);
+			this.d = DataTypesConverter.d(var4 * (float) (this.h - this.g) + (float) this.g);
 		} else if (this.d < 0) {
-			var4 = NumberConverter.a(var1) / this.i;
-			this.d = NumberConverter.d(var4 * (float) (this.h - this.g) + (float) this.g);
+			var4 = DataTypesConverter.a(var1) / this.i;
+			this.d = DataTypesConverter.d(var4 * (float) (this.h - this.g) + (float) this.g);
 		}
 
 	}

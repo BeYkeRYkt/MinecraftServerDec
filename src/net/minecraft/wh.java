@@ -32,7 +32,7 @@ public class wh {
 		return new wi("mob", var0);
 	}
 
-	public static wh a(ahd var0) {
+	public static wh a(EntityHuman var0) {
 		return new wi("player", var0);
 	}
 
@@ -128,7 +128,7 @@ public class wh {
 		return this;
 	}
 
-	public ho b(EntityLiving var1) {
+	public IJSONComponent b(EntityLiving var1) {
 		EntityLiving var2 = var1.bs();
 		String var3 = "death.attack." + this.p;
 		String var4 = var3 + ".player";
@@ -163,7 +163,7 @@ public class wh {
 
 	public boolean u() {
 		Entity var1 = this.j();
-		return var1 instanceof ahd && ((ahd) var1).by.instabuild;
+		return var1 instanceof EntityHuman && ((EntityHuman) var1).by.instabuild;
 	}
 
 }

@@ -23,7 +23,7 @@ public class yx extends zb {
 			return false;
 		} else if (!this.a.au()) {
 			return false;
-		} else if (!this.f.i(new dt(this.a.s, this.a.aQ().b, this.a.u))) {
+		} else if (!this.f.i(new Position(this.a.locationX, this.a.aQ().b, this.a.locationZ))) {
 			return false;
 		} else {
 			brw var1 = this.f();
@@ -48,10 +48,10 @@ public class yx extends zb {
 
 	private brw f() {
 		Random var1 = this.a.bb();
-		dt var2 = new dt(this.a.s, this.a.aQ().b, this.a.u);
+		Position var2 = new Position(this.a.locationX, this.a.aQ().b, this.a.locationZ);
 
 		for (int var3 = 0; var3 < 10; ++var3) {
-			dt var4 = var2.a(var1.nextInt(20) - 10, var1.nextInt(6) - 3, var1.nextInt(20) - 10);
+			Position var4 = var2.a(var1.nextInt(20) - 10, var1.nextInt(6) - 3, var1.nextInt(20) - 10);
 			if (!this.f.i(var4) && this.a.a(var4) < 0.0F) {
 				return new brw((double) var4.n(), (double) var4.o(), (double) var4.p());
 			}

@@ -109,12 +109,12 @@ public abstract class blb extends bms {
 		int var6 = this.a(var3, var5);
 		int var7 = this.d(var4);
 		int var8 = this.b(var3, var5);
-		if (var2.b((fd) (new dt(var6, var7, var8)))) {
+		if (var2.b((fd) (new Position(var6, var7, var8)))) {
 			afg var9 = new afg(var1);
 			var9.a(true);
 			var9.g(var9.bt());
 			var9.b((double) var6 + 0.5D, (double) var7, (double) var8 + 0.5D, 0.0F, 0.0F);
-			var9.a(var1.E(new dt(var9)), (xq) null);
+			var9.a(var1.E(new Position(var9)), (xq) null);
 			var1.d((Entity) var9);
 			return true;
 		} else {

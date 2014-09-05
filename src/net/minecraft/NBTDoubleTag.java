@@ -55,15 +55,15 @@ public class NBTDoubleTag extends NBTNumberTag {
 	}
 
 	public int toInt() {
-		return NumberConverter.c(this.d);
+		return DataTypesConverter.toFixedPointInt(this.d);
 	}
 
 	public short toShort() {
-		return (short) (NumberConverter.c(this.d) & '\uffff');
+		return (short) (DataTypesConverter.toFixedPointInt(this.d) & '\uffff');
 	}
 
 	public byte toByte() {
-		return (byte) (NumberConverter.c(this.d) & 255);
+		return (byte) (DataTypesConverter.toFixedPointInt(this.d) & 255);
 	}
 
 	public double toDouble() {

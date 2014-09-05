@@ -1,13 +1,13 @@
 package net.minecraft;
 
-public class bad extends atr {
+public class bad extends Block {
 
 	public static final bev a = bev.a("type", bae.class);
 
 	public bad() {
 		super(bof.e);
 		this.j(this.L.b().a(a, bae.a));
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
 	public int a(bec var1) {

@@ -1,12 +1,12 @@
 package net.minecraft;
 
-public class bge extends bgd {
+public class bge extends WorldProvider {
 
 	public void b() {
 		this.c = new asc(arm.x, 0.0F);
 		this.d = true;
 		this.e = true;
-		this.g = -1;
+		this.dimensionId = -1;
 	}
 
 	protected void a() {
@@ -19,7 +19,7 @@ public class bge extends bgd {
 
 	}
 
-	public bfe c() {
+	public IChunkProvider c() {
 		return new bgr(this.b, this.b.P().s(), this.b.J());
 	}
 

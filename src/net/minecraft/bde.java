@@ -4,14 +4,14 @@ import java.util.List;
 
 public class bde extends bdf implements bdd, pm {
 
-	private amj[] a = new amj[5];
+	private ItemStack[] a = new ItemStack[5];
 	private String f;
 	private int g = -1;
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
-		this.a = new amj[this.n_()];
+		this.a = new ItemStack[this.n_()];
 		if (var1.isTagAssignableFrom("CustomName", 8)) {
 			this.f = var1.getString("CustomName");
 		}
@@ -22,7 +22,7 @@ public class bde extends bdf implements bdd, pm {
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			byte var5 = var4.getByte("Slot");
 			if (var5 >= 0 && var5 < this.a.length) {
-				this.a[var5] = amj.a(var4);
+				this.a[var5] = ItemStack.a(var4);
 			}
 		}
 
@@ -57,13 +57,13 @@ public class bde extends bdf implements bdd, pm {
 		return this.a.length;
 	}
 
-	public amj a(int var1) {
+	public ItemStack a(int var1) {
 		return this.a[var1];
 	}
 
-	public amj a(int var1, int var2) {
+	public ItemStack a(int var1, int var2) {
 		if (this.a[var1] != null) {
-			amj var3;
+			ItemStack var3;
 			if (this.a[var1].b <= var2) {
 				var3 = this.a[var1];
 				this.a[var1] = null;
@@ -81,9 +81,9 @@ public class bde extends bdf implements bdd, pm {
 		}
 	}
 
-	public amj b(int var1) {
+	public ItemStack b(int var1) {
 		if (this.a[var1] != null) {
-			amj var2 = this.a[var1];
+			ItemStack var2 = this.a[var1];
 			this.a[var1] = null;
 			return var2;
 		} else {
@@ -91,7 +91,7 @@ public class bde extends bdf implements bdd, pm {
 		}
 	}
 
-	public void a(int var1, amj var2) {
+	public void a(int var1, ItemStack var2) {
 		this.a[var1] = var2;
 		if (var2 != null && var2.b > this.p_()) {
 			var2.b = this.p_();
@@ -115,17 +115,17 @@ public class bde extends bdf implements bdd, pm {
 		return 64;
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return this.b.s(this.c) != this ? false : var1.e((double) this.c.n() + 0.5D, (double) this.c.o() + 0.5D, (double) this.c.p() + 0.5D) <= 64.0D;
 	}
 
-	public void b(ahd var1) {
+	public void b(EntityHuman var1) {
 	}
 
-	public void c(ahd var1) {
+	public void c(EntityHuman var1) {
 	}
 
-	public boolean b(int var1, amj var2) {
+	public boolean b(int var1, ItemStack var2) {
 		return true;
 	}
 
@@ -166,11 +166,11 @@ public class bde extends bdf implements bdd, pm {
 	}
 
 	private boolean p() {
-		amj[] var1 = this.a;
+		ItemStack[] var1 = this.a;
 		int var2 = var1.length;
 
 		for (int var3 = 0; var3 < var2; ++var3) {
-			amj var4 = var1[var3];
+			ItemStack var4 = var1[var3];
 			if (var4 != null) {
 				return false;
 			}
@@ -180,11 +180,11 @@ public class bde extends bdf implements bdd, pm {
 	}
 
 	private boolean q() {
-		amj[] var1 = this.a;
+		ItemStack[] var1 = this.a;
 		int var2 = var1.length;
 
 		for (int var3 = 0; var3 < var2; ++var3) {
-			amj var4 = var1[var3];
+			ItemStack var4 = var1[var3];
 			if (var4 == null || var4.b != var4.c()) {
 				return false;
 			}
@@ -194,7 +194,7 @@ public class bde extends bdf implements bdd, pm {
 	}
 
 	private boolean r() {
-		vq var1 = this.G();
+		IInventory var1 = this.G();
 		if (var1 == null) {
 			return false;
 		} else {
@@ -204,8 +204,8 @@ public class bde extends bdf implements bdd, pm {
 			} else {
 				for (int var3 = 0; var3 < this.n_(); ++var3) {
 					if (this.a(var3) != null) {
-						amj var4 = this.a(var3).k();
-						amj var5 = a(var1, this.a(var3, 1), var2);
+						ItemStack var4 = this.a(var3).getCopy();
+						ItemStack var5 = a(var1, this.a(var3, 1), var2);
 						if (var5 == null || var5.b == 0) {
 							var1.o_();
 							return true;
@@ -220,13 +220,13 @@ public class bde extends bdf implements bdd, pm {
 		}
 	}
 
-	private boolean a(vq var1, ej var2) {
+	private boolean a(IInventory var1, ej var2) {
 		if (var1 instanceof we) {
 			we var3 = (we) var1;
 			int[] var4 = var3.a(var2);
 
 			for (int var5 = 0; var5 < var4.length; ++var5) {
-				amj var6 = var3.a(var4[var5]);
+				ItemStack var6 = var3.a(var4[var5]);
 				if (var6 == null || var6.b != var6.c()) {
 					return false;
 				}
@@ -235,7 +235,7 @@ public class bde extends bdf implements bdd, pm {
 			int var7 = var1.n_();
 
 			for (int var8 = 0; var8 < var7; ++var8) {
-				amj var9 = var1.a(var8);
+				ItemStack var9 = var1.a(var8);
 				if (var9 == null || var9.b != var9.c()) {
 					return false;
 				}
@@ -245,7 +245,7 @@ public class bde extends bdf implements bdd, pm {
 		return true;
 	}
 
-	private static boolean b(vq var0, ej var1) {
+	private static boolean b(IInventory var0, ej var1) {
 		if (var0 instanceof we) {
 			we var2 = (we) var0;
 			int[] var3 = var2.a(var1);
@@ -269,7 +269,7 @@ public class bde extends bdf implements bdd, pm {
 	}
 
 	public static boolean a(bdd var0) {
-		vq var1 = b(var0);
+		IInventory var1 = b(var0);
 		if (var1 != null) {
 			ej var2 = ej.a;
 			if (b(var1, var2)) {
@@ -297,18 +297,18 @@ public class bde extends bdf implements bdd, pm {
 		} else {
 			adw var6 = a(var0.z(), var0.A(), var0.B() + 1.0D, var0.C());
 			if (var6 != null) {
-				return a((vq) var0, var6);
+				return a((IInventory) var0, var6);
 			}
 		}
 
 		return false;
 	}
 
-	private static boolean a(bdd var0, vq var1, int var2, ej var3) {
-		amj var4 = var1.a(var2);
+	private static boolean a(bdd var0, IInventory var1, int var2, ej var3) {
+		ItemStack var4 = var1.a(var2);
 		if (var4 != null && b(var1, var4, var2, var3)) {
-			amj var5 = var4.k();
-			amj var6 = a(var0, var1.a(var2, 1), (ej) null);
+			ItemStack var5 = var4.getCopy();
+			ItemStack var6 = a(var0, var1.a(var2, 1), (ej) null);
 			if (var6 == null || var6.b == 0) {
 				var1.o_();
 				return true;
@@ -320,13 +320,13 @@ public class bde extends bdf implements bdd, pm {
 		return false;
 	}
 
-	public static boolean a(vq var0, adw var1) {
+	public static boolean a(IInventory var0, adw var1) {
 		boolean var2 = false;
 		if (var1 == null) {
 			return false;
 		} else {
-			amj var3 = var1.l().k();
-			amj var4 = a(var0, var3, (ej) null);
+			ItemStack var3 = var1.l().getCopy();
+			ItemStack var4 = a(var0, var3, (ej) null);
 			if (var4 != null && var4.b != 0) {
 				var1.a(var4);
 			} else {
@@ -338,7 +338,7 @@ public class bde extends bdf implements bdd, pm {
 		}
 	}
 
-	public static amj a(vq var0, amj var1, ej var2) {
+	public static ItemStack a(IInventory var0, ItemStack var1, ej var2) {
 		if (var0 instanceof we && var2 != null) {
 			we var6 = (we) var0;
 			int[] var7 = var6.a(var2);
@@ -361,16 +361,16 @@ public class bde extends bdf implements bdd, pm {
 		return var1;
 	}
 
-	private static boolean a(vq var0, amj var1, int var2, ej var3) {
+	private static boolean a(IInventory var0, ItemStack var1, int var2, ej var3) {
 		return !var0.b(var2, var1) ? false : !(var0 instanceof we) || ((we) var0).a(var2, var1, var3);
 	}
 
-	private static boolean b(vq var0, amj var1, int var2, ej var3) {
+	private static boolean b(IInventory var0, ItemStack var1, int var2, ej var3) {
 		return !(var0 instanceof we) || ((we) var0).b(var2, var1, var3);
 	}
 
-	private static amj c(vq var0, amj var1, int var2, ej var3) {
-		amj var4 = var0.a(var2);
+	private static ItemStack c(IInventory var0, ItemStack var1, int var2, ej var3) {
+		ItemStack var4 = var0.a(var2);
 		if (a(var0, var1, var2, var3)) {
 			boolean var5 = false;
 			if (var4 == null) {
@@ -402,12 +402,12 @@ public class bde extends bdf implements bdd, pm {
 		return var1;
 	}
 
-	private vq G() {
+	private IInventory G() {
 		ej var1 = awx.b(this.u());
 		return b(this.z(), (double) (this.c.n() + var1.g()), (double) (this.c.o() + var1.h()), (double) (this.c.p() + var1.i()));
 	}
 
-	public static vq b(bdd var0) {
+	public static IInventory b(bdd var0) {
 		return b(var0.z(), var0.A(), var0.B() + 1.0D, var0.C());
 	}
 
@@ -416,17 +416,17 @@ public class bde extends bdf implements bdd, pm {
 		return var7.size() > 0 ? (adw) var7.get(0) : null;
 	}
 
-	public static vq b(World var0, double var1, double var3, double var5) {
+	public static IInventory b(World var0, double var1, double var3, double var5) {
 		Object var7 = null;
-		int var8 = NumberConverter.c(var1);
-		int var9 = NumberConverter.c(var3);
-		int var10 = NumberConverter.c(var5);
-		dt var11 = new dt(var8, var9, var10);
-		bcm var12 = var0.s(new dt(var8, var9, var10));
-		if (var12 instanceof vq) {
-			var7 = (vq) var12;
+		int var8 = DataTypesConverter.toFixedPointInt(var1);
+		int var9 = DataTypesConverter.toFixedPointInt(var3);
+		int var10 = DataTypesConverter.toFixedPointInt(var5);
+		Position var11 = new Position(var8, var9, var10);
+		bcm var12 = var0.s(new Position(var8, var9, var10));
+		if (var12 instanceof IInventory) {
+			var7 = (IInventory) var12;
 			if (var7 instanceof bcr) {
-				atr var13 = var0.p(new dt(var8, var9, var10)).c();
+				Block var13 = var0.p(new Position(var8, var9, var10)).c();
 				if (var13 instanceof auj) {
 					var7 = ((auj) var13).d(var0, var11);
 				}
@@ -436,15 +436,15 @@ public class bde extends bdf implements bdd, pm {
 		if (var7 == null) {
 			List var14 = var0.a((Entity) null, new brt(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.c);
 			if (var14.size() > 0) {
-				var7 = (vq) var14.get(var0.s.nextInt(var14.size()));
+				var7 = (IInventory) var14.get(var0.s.nextInt(var14.size()));
 			}
 		}
 
-		return (vq) var7;
+		return (IInventory) var7;
 	}
 
-	private static boolean a(amj var0, amj var1) {
-		return var0.b() != var1.b() ? false : (var0.i() != var1.i() ? false : (var0.b > var0.c() ? false : amj.a(var0, var1)));
+	private static boolean a(ItemStack var0, ItemStack var1) {
+		return var0.getItem() != var1.getItem() ? false : (var0.i() != var1.i() ? false : (var0.b > var0.c() ? false : ItemStack.a(var0, var1)));
 	}
 
 	public double A() {
@@ -475,7 +475,7 @@ public class bde extends bdf implements bdd, pm {
 		return "minecraft:hopper";
 	}
 
-	public aib a(ahb var1, ahd var2) {
+	public Container a(PlayerInventory var1, EntityHuman var2) {
 		return new aix(var1, this, var2);
 	}
 

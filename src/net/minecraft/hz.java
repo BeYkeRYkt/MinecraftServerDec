@@ -26,8 +26,8 @@ public class hz extends hj {
 
 		for (int var5 = 0; var5 < var4; ++var5) {
 			Object var6 = var3[var5];
-			if (var6 instanceof ho) {
-				((ho) var6).b().a(this.b());
+			if (var6 instanceof IJSONComponent) {
+				((IJSONComponent) var6).b().a(this.b());
 			}
 		}
 
@@ -106,32 +106,32 @@ public class hz extends hj {
 		}
 	}
 
-	private ho a(int var1) {
+	private IJSONComponent a(int var1) {
 		if (var1 >= this.e.length) {
 			throw new ia(this, var1);
 		} else {
 			Object var2 = this.e[var1];
 			Object var3;
-			if (var2 instanceof ho) {
-				var3 = (ho) var2;
+			if (var2 instanceof IJSONComponent) {
+				var3 = (IJSONComponent) var2;
 			} else {
 				var3 = new hy(var2 == null ? "null" : var2.toString());
-				((ho) var3).b().a(this.b());
+				((IJSONComponent) var3).b().a(this.b());
 			}
 
-			return (ho) var3;
+			return (IJSONComponent) var3;
 		}
 	}
 
-	public ho a(hv var1) {
+	public IJSONComponent a(hv var1) {
 		super.a(var1);
 		Object[] var2 = this.e;
 		int var3 = var2.length;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			Object var5 = var2[var4];
-			if (var5 instanceof ho) {
-				((ho) var5).b().a(this.b());
+			if (var5 instanceof IJSONComponent) {
+				((IJSONComponent) var5).b().a(this.b());
 			}
 		}
 
@@ -139,7 +139,7 @@ public class hz extends hj {
 			Iterator var6 = this.b.iterator();
 
 			while (var6.hasNext()) {
-				ho var7 = (ho) var6.next();
+				IJSONComponent var7 = (IJSONComponent) var6.next();
 				var7.b().a(var1);
 			}
 		}
@@ -158,7 +158,7 @@ public class hz extends hj {
 		Iterator var2 = this.b.iterator();
 
 		while (var2.hasNext()) {
-			ho var3 = (ho) var2.next();
+			IJSONComponent var3 = (IJSONComponent) var2.next();
 			var1.append(var3.e());
 		}
 
@@ -169,8 +169,8 @@ public class hz extends hj {
 		Object[] var1 = new Object[this.e.length];
 
 		for (int var2 = 0; var2 < this.e.length; ++var2) {
-			if (this.e[var2] instanceof ho) {
-				var1[var2] = ((ho) this.e[var2]).f();
+			if (this.e[var2] instanceof IJSONComponent) {
+				var1[var2] = ((IJSONComponent) this.e[var2]).f();
 			} else {
 				var1[var2] = this.e[var2];
 			}
@@ -181,7 +181,7 @@ public class hz extends hj {
 		Iterator var3 = this.a().iterator();
 
 		while (var3.hasNext()) {
-			ho var4 = (ho) var3.next();
+			IJSONComponent var4 = (IJSONComponent) var3.next();
 			var5.a(var4.f());
 		}
 
@@ -219,7 +219,7 @@ public class hz extends hj {
 	}
 
 	// $FF: synthetic method
-	public ho f() {
+	public IJSONComponent f() {
 		return this.h();
 	}
 

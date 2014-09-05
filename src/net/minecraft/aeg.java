@@ -10,8 +10,8 @@ public class aeg extends adx {
 		super(var1, var2, var4, var6);
 	}
 
-	public boolean e(ahd var1) {
-		if (this.l != null && this.l instanceof ahd && this.l != var1) {
+	public boolean e(EntityHuman var1) {
+		if (this.l != null && this.l instanceof EntityHuman && this.l != var1) {
 			return true;
 		} else if (this.l != null && this.l != var1) {
 			return false;

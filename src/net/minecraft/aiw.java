@@ -2,19 +2,19 @@ package net.minecraft;
 
 public class aiw extends ajk {
 
-	private ahd a;
+	private EntityHuman a;
 	private int b;
 
-	public aiw(ahd var1, vq var2, int var3, int var4, int var5) {
+	public aiw(EntityHuman var1, IInventory var2, int var3, int var4, int var5) {
 		super(var2, var3, var4, var5);
 		this.a = var1;
 	}
 
-	public boolean a(amj var1) {
+	public boolean a(ItemStack var1) {
 		return false;
 	}
 
-	public amj a(int var1) {
+	public ItemStack a(int var1) {
 		if (this.e()) {
 			this.b += Math.min(var1, this.d().b);
 		}
@@ -22,17 +22,17 @@ public class aiw extends ajk {
 		return super.a(var1);
 	}
 
-	public void a(ahd var1, amj var2) {
+	public void a(EntityHuman var1, ItemStack var2) {
 		this.c(var2);
 		super.a(var1, var2);
 	}
 
-	protected void a(amj var1, int var2) {
+	protected void a(ItemStack var1, int var2) {
 		this.b += var2;
 		this.c(var1);
 	}
 
-	protected void c(amj var1) {
+	protected void c(ItemStack var1) {
 		var1.a(this.a.o, this.a, this.b);
 		if (!this.a.o.D) {
 			int var2 = this.b;
@@ -41,8 +41,8 @@ public class aiw extends ajk {
 			if (var3 == 0.0F) {
 				var2 = 0;
 			} else if (var3 < 1.0F) {
-				var4 = NumberConverter.d((float) var2 * var3);
-				if (var4 < NumberConverter.f((float) var2 * var3) && Math.random() < (double) ((float) var2 * var3 - (float) var4)) {
+				var4 = DataTypesConverter.d((float) var2 * var3);
+				if (var4 < DataTypesConverter.f((float) var2 * var3) && Math.random() < (double) ((float) var2 * var3 - (float) var4)) {
 					++var4;
 				}
 
@@ -52,16 +52,16 @@ public class aiw extends ajk {
 			while (var2 > 0) {
 				var4 = xk.a(var2);
 				var2 -= var4;
-				this.a.o.d((Entity) (new xk(this.a.o, this.a.s, this.a.t + 0.5D, this.a.u + 0.5D, var4)));
+				this.a.o.d((Entity) (new xk(this.a.o, this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ + 0.5D, var4)));
 			}
 		}
 
 		this.b = 0;
-		if (var1.b() == amk.j) {
+		if (var1.getItem() == amk.j) {
 			this.a.b((PlayerStatistic) tl.k);
 		}
 
-		if (var1.b() == amk.aV) {
+		if (var1.getItem() == amk.aV) {
 			this.a.b((PlayerStatistic) tl.p);
 		}
 

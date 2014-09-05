@@ -1,14 +1,14 @@
 package net.minecraft;
 
-public class bgh extends bgd {
+public class bgh extends WorldProvider {
 
 	public void b() {
 		this.c = new asc(arm.y, 0.0F);
-		this.g = 1;
+		this.dimensionId = 1;
 		this.e = true;
 	}
 
-	public bfe c() {
+	public IChunkProvider c() {
 		return new bgw(this.b, this.b.J());
 	}
 
@@ -25,11 +25,11 @@ public class bgh extends bgd {
 	}
 
 	public boolean a(int var1, int var2) {
-		return this.b.c(new dt(var1, 0, var2)).r().c();
+		return this.b.c(new Position(var1, 0, var2)).r().c();
 	}
 
-	public dt h() {
-		return new dt(100, 50, 0);
+	public Position h() {
+		return new Position(100, 50, 0);
 	}
 
 	public int i() {

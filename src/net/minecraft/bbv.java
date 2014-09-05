@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.Iterator;
 import java.util.Random;
 
-public class bbv extends atr {
+public class bbv extends Block {
 
 	public static final bet a = bet.a("up");
 	public static final bet b = bet.a("north");
@@ -20,10 +20,10 @@ public class bbv extends atr {
 		super(bof.l);
 		this.j(this.L.b().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false)));
 		this.a(true);
-		this.a(akf.c);
+		this.a(CreativeModeTab.c);
 	}
 
-	public bec a(bec var1, ard var2, dt var3) {
+	public bec a(bec var1, ard var2, Position var3) {
 		return var1.a(a, Boolean.valueOf(var2.p(var3.a()).c().s()));
 	}
 
@@ -39,11 +39,11 @@ public class bbv extends atr {
 		return false;
 	}
 
-	public boolean f(World var1, dt var2) {
+	public boolean f(World var1, Position var2) {
 		return true;
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		float var3 = 0.0625F;
 		float var4 = 1.0F;
 		float var5 = 1.0F;
@@ -104,11 +104,11 @@ public class bbv extends atr {
 		this.a(var4, var5, var6, var7, var8, var9);
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
-	public boolean a(World var1, dt var2, ej var3) {
+	public boolean a(World var1, Position var2, ej var3) {
 		switch (bbw.a[var3.ordinal()]) {
 			case 1:
 				return this.c(var1.p(var2.a()).c());
@@ -122,11 +122,11 @@ public class bbv extends atr {
 		}
 	}
 
-	private boolean c(atr var1) {
+	private boolean c(Block var1) {
 		return var1.d() && var1.J.c();
 	}
 
-	private boolean e(World var1, dt var2, bec var3) {
+	private boolean e(World var1, Position var2, bec var3) {
 		bec var4 = var3;
 		Iterator var5 = en.a.iterator();
 
@@ -152,7 +152,7 @@ public class bbv extends atr {
 		}
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (!var1.D && !this.e(var1, var2, var3)) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -160,7 +160,7 @@ public class bbv extends atr {
 
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (!var1.D) {
 			if (var1.s.nextInt(4) == 0) {
 				byte var5 = 4;
@@ -201,18 +201,18 @@ public class bbv extends atr {
 
 					}
 				} else {
-					dt var18;
+					Position var18;
 					if (var17.k().c() && !((Boolean) var3.b(a(var17))).booleanValue()) {
 						if (!var7) {
 							var18 = var2.a(var17);
-							atr var21 = var1.p(var18).c();
+							Block var21 = var1.p(var18).c();
 							if (var21.J == bof.a) {
 								var23 = var17.e();
 								ej var24 = var17.f();
 								boolean var25 = ((Boolean) var3.b(a(var23))).booleanValue();
 								boolean var26 = ((Boolean) var3.b(a(var24))).booleanValue();
-								dt var27 = var18.a(var23);
-								dt var16 = var18.a(var24);
+								Position var27 = var18.a(var23);
+								Position var16 = var18.a(var24);
 								if (var25 && this.c(var1.p(var27).c())) {
 									var1.a(var18, this.P().a(a(var23), Boolean.valueOf(true)), 2);
 								} else if (var26 && this.c(var1.p(var16).c())) {
@@ -233,7 +233,7 @@ public class bbv extends atr {
 						if (var2.o() > 1) {
 							var18 = var2.b();
 							bec var20 = var1.p(var18);
-							atr var11 = var20.c();
+							Block var11 = var20.c();
 							bec var12;
 							Iterator var13;
 							ej var14;
@@ -279,12 +279,12 @@ public class bbv extends atr {
 		return 1 << var0.b();
 	}
 
-	public bec a(World var1, dt var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		bec var9 = this.P().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false));
 		return var3.k().c() ? var9.a(a(var3.d()), Boolean.valueOf(true)) : var9;
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return null;
 	}
 
@@ -292,10 +292,10 @@ public class bbv extends atr {
 		return 0;
 	}
 
-	public void a(World var1, ahd var2, dt var3, bec var4, bcm var5) {
-		if (!var1.D && var2.bY() != null && var2.bY().b() == amk.be) {
-			var2.b(ty.H[atr.a((atr) this)]);
-			a(var1, var3, new amj(aty.bn, 1, 0));
+	public void a(World var1, EntityHuman var2, Position var3, bec var4, bcm var5) {
+		if (!var1.D && var2.bY() != null && var2.bY().getItem() == amk.be) {
+			var2.b(ty.H[Block.a((Block) this)]);
+			a(var1, var3, new ItemStack(aty.bn, 1, 0));
 		} else {
 			super.a(var1, var2, var3, var4, var5);
 		}

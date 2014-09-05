@@ -24,7 +24,7 @@ public class ast extends arm {
 		return this.aC;
 	}
 
-	public awa a(Random var1, dt var2) {
+	public awa a(Random var1, Position var2) {
 		return awa.c;
 	}
 

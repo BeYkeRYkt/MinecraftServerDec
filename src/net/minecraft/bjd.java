@@ -21,7 +21,7 @@ public class bjd extends bmm {
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
 			if (((String) var3.getKey()).equals("chance")) {
-				this.d = NumberConverter.a((String) var3.getValue(), this.d);
+				this.d = DataTypesConverter.a((String) var3.getValue(), this.d);
 			}
 		}
 

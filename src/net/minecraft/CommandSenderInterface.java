@@ -4,13 +4,13 @@ public interface CommandSenderInterface {
 
 	String d_();
 
-	ho e_();
+	IJSONComponent e_();
 
-	void a(ho var1);
+	void a(IJSONComponent var1);
 
 	boolean a(int var1, String var2);
 
-	dt c();
+	Position c();
 
 	brw d();
 

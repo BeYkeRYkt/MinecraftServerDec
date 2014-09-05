@@ -1,14 +1,14 @@
 package net.minecraft;
 
-public class aiv extends aib {
+public class aiv extends Container {
 
-	private final vq a;
+	private final IInventory a;
 	private int f;
 	private int g;
 	private int h;
 	private int i;
 
-	public aiv(ahb var1, vq var2) {
+	public aiv(PlayerInventory var1, IInventory var2) {
 		this.a = var2;
 		this.a(new ajk(var2, 0, 56, 17));
 		this.a((ajk) (new aiu(var2, 1, 56, 53)));
@@ -27,7 +27,7 @@ public class aiv extends aib {
 
 	}
 
-	public void a(ail var1) {
+	public void a(ICrafting var1) {
 		super.a(var1);
 		var1.a(this, this.a);
 	}
@@ -36,7 +36,7 @@ public class aiv extends aib {
 		super.b();
 
 		for (int var1 = 0; var1 < this.e.size(); ++var1) {
-			ail var2 = (ail) this.e.get(var1);
+			ICrafting var2 = (ICrafting) this.e.get(var1);
 			if (this.f != this.a.a_(2)) {
 				var2.a(this, 2, this.a.a_(2));
 			}
@@ -60,16 +60,16 @@ public class aiv extends aib {
 		this.g = this.a.a_(3);
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return this.a.a(var1);
 	}
 
-	public amj b(ahd var1, int var2) {
-		amj var3 = null;
+	public ItemStack b(EntityHuman var1, int var2) {
+		ItemStack var3 = null;
 		ajk var4 = (ajk) this.c.get(var2);
 		if (var4 != null && var4.e()) {
-			amj var5 = var4.d();
-			var3 = var5.k();
+			ItemStack var5 = var4.d();
+			var3 = var5.getCopy();
 			if (var2 == 2) {
 				if (!this.a(var5, 3, 39, true)) {
 					return null;
@@ -97,7 +97,7 @@ public class aiv extends aib {
 			}
 
 			if (var5.b == 0) {
-				var4.d((amj) null);
+				var4.d((ItemStack) null);
 			} else {
 				var4.f();
 			}

@@ -1,23 +1,23 @@
 package net.minecraft;
 
-public class akb extends alq {
+public class akb extends Item {
 
-	private atr a;
+	private Block a;
 
-	public akb(atr var1) {
-		this.h = 1;
+	public akb(Block var1) {
+		this.maxStackSize = 1;
 		this.a = var1;
-		this.a(akf.f);
+		this.a(CreativeModeTab.f);
 	}
 
-	public amj a(amj var1, World var2, ahd var3) {
+	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
 		boolean var4 = this.a == aty.a;
 		bru var5 = this.a(var2, var3, var4);
 		if (var5 == null) {
 			return var1;
 		} else {
 			if (var5.a == brv.b) {
-				dt var6 = var5.a();
+				Position var6 = var5.a();
 				if (!var2.a(var3, var6)) {
 					return var1;
 				}
@@ -31,28 +31,28 @@ public class akb extends alq {
 					bof var8 = var7.c().r();
 					if (var8 == bof.h && ((Integer) var7.b(axl.b)).intValue() == 0) {
 						var2.g(var6);
-						var3.b(ty.J[alq.b((alq) this)]);
+						var3.b(ty.J[Item.getId((Item) this)]);
 						return this.a(var1, var3, amk.ax);
 					}
 
 					if (var8 == bof.i && ((Integer) var7.b(axl.b)).intValue() == 0) {
 						var2.g(var6);
-						var3.b(ty.J[alq.b((alq) this)]);
+						var3.b(ty.J[Item.getId((Item) this)]);
 						return this.a(var1, var3, amk.ay);
 					}
 				} else {
 					if (this.a == aty.a) {
-						return new amj(amk.aw);
+						return new ItemStack(amk.aw);
 					}
 
-					dt var9 = var6.a(var5.b);
+					Position var9 = var6.a(var5.b);
 					if (!var3.a(var9, var5.b, var1)) {
 						return var1;
 					}
 
 					if (this.a(var2, var9) && !var3.by.instabuild) {
-						var3.b(ty.J[alq.b((alq) this)]);
-						return new amj(amk.aw);
+						var3.b(ty.J[Item.getId((Item) this)]);
+						return new ItemStack(amk.aw);
 					}
 				}
 			}
@@ -61,21 +61,21 @@ public class akb extends alq {
 		}
 	}
 
-	private amj a(amj var1, ahd var2, alq var3) {
+	private ItemStack a(ItemStack var1, EntityHuman var2, Item var3) {
 		if (var2.by.instabuild) {
 			return var1;
 		} else if (--var1.b <= 0) {
-			return new amj(var3);
+			return new ItemStack(var3);
 		} else {
-			if (!var2.bg.a(new amj(var3))) {
-				var2.a(new amj(var3, 1, 0), false);
+			if (!var2.playerInventory.a(new ItemStack(var3))) {
+				var2.a(new ItemStack(var3, 1, 0), false);
 			}
 
 			return var1;
 		}
 	}
 
-	public boolean a(World var1, dt var2) {
+	public boolean a(World var1, Position var2) {
 		if (this.a == aty.a) {
 			return false;
 		} else {
@@ -84,7 +84,7 @@ public class akb extends alq {
 			if (!var1.d(var2) && !var4) {
 				return false;
 			} else {
-				if (var1.t.n() && this.a == aty.i) {
+				if (var1.worldProvider.n() && this.a == aty.i) {
 					int var5 = var2.n();
 					int var6 = var2.o();
 					int var7 = var2.p();

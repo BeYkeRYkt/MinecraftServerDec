@@ -83,7 +83,7 @@ public class bnl extends bno {
 	}
 
 	public static bjb a(bnk var0, List var1, Random var2, int var3, int var4, int var5, ej var6) {
-		for (int var7 = 7 * NumberConverter.a(var2, 3, 5); var7 >= 7; var7 -= 7) {
+		for (int var7 = 7 * DataTypesConverter.a(var2, 3, 5); var7 >= 7; var7 -= 7) {
 			bjb var8 = bjb.a(var3, var4, var5, 0, 0, 0, 3, 3, var7, var6);
 			if (bms.a(var1, var8) == null) {
 				return var8;
@@ -99,7 +99,7 @@ public class bnl extends bno {
 
 		for (int var6 = this.l.a; var6 <= this.l.d; ++var6) {
 			for (int var7 = this.l.c; var7 <= this.l.f; ++var7) {
-				dt var8 = new dt(var6, 64, var7);
+				Position var8 = new Position(var6, 64, var7);
 				if (var3.b((fd) var8)) {
 					var8 = var1.r(var8).b();
 					var1.a(var8, var4, 2);

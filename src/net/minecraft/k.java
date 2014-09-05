@@ -7,9 +7,9 @@ final class k implements Callable {
 	// $FF: synthetic field
 	final int a;
 	// $FF: synthetic field
-	final atr b;
+	final Block b;
 
-	k(int var1, atr var2) {
+	k(int var1, Block var2) {
 		this.a = var1;
 		this.b = var2;
 	}

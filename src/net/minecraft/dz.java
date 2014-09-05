@@ -8,9 +8,9 @@ public interface dz extends es {
 
 	double c();
 
-	dt d();
+	Position d();
 
-	atr e();
+	Block e();
 
 	int f();
 

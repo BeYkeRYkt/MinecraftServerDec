@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class ke implements id<ik> {
+public class ke implements Packet<PlayPacketListener> {
 
 	public kg a;
 	public int b;
@@ -17,43 +17,43 @@ public class ke implements id<ik> {
 		switch (kf.a[var2.ordinal()]) {
 			case 1:
 				this.d = var1.f();
-				this.c = var3 == null ? -1 : var3.F();
+				this.c = var3 == null ? -1 : var3.getId();
 				break;
 			case 2:
-				this.b = var1.h().F();
-				this.c = var3 == null ? -1 : var3.F();
+				this.b = var1.h().getId();
+				this.c = var3 == null ? -1 : var3.getId();
 				this.e = var1.b().c();
 		}
 
 	}
 
-	public void a(hd var1) {
+	public void readData(PacketDataSerializer var1) {
 		this.a = (kg) var1.a(kg.class);
 		if (this.a == kg.b) {
-			this.d = var1.e();
+			this.d = var1.readVarInt();
 			this.c = var1.readInt();
 		} else if (this.a == kg.c) {
-			this.b = var1.e();
+			this.b = var1.readVarInt();
 			this.c = var1.readInt();
-			this.e = var1.c(32767);
+			this.e = var1.readString(32767);
 		}
 
 	}
 
-	public void b(hd var1) {
-		var1.a((Enum) this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeEnum((Enum) this.a);
 		if (this.a == kg.b) {
-			var1.b(this.d);
+			var1.writeVarInt(this.d);
 			var1.writeInt(this.c);
 		} else if (this.a == kg.c) {
-			var1.b(this.b);
+			var1.writeVarInt(this.b);
 			var1.writeInt(this.c);
-			var1.a(this.e);
+			var1.writeString(this.e);
 		}
 
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

@@ -20,7 +20,7 @@ public class aee extends adx {
 
 	protected void h() {
 		super.h();
-		this.ac.a(16, new Byte((byte) 0));
+		this.dataWatcher.a(16, new Byte((byte) 0));
 	}
 
 	public void s_() {
@@ -35,7 +35,7 @@ public class aee extends adx {
 
 		this.i(this.c > 0);
 		if (this.j() && this.V.nextInt(4) == 0) {
-			this.o.a(ew.m, this.s, this.t + 0.8D, this.u, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.o.a(ew.m, this.locationX, this.locationY + 0.8D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 	}
@@ -47,19 +47,19 @@ public class aee extends adx {
 	public void a(wh var1) {
 		super.a(var1);
 		if (!var1.c()) {
-			this.a(new amj(aty.al, 1), 0.0F);
+			this.a(new ItemStack(aty.al, 1), 0.0F);
 		}
 
 	}
 
-	protected void a(dt var1, bec var2) {
+	protected void a(Position var1, bec var2) {
 		super.a(var1, var2);
 		double var3 = this.a * this.a + this.b * this.b;
-		if (var3 > 1.0E-4D && this.v * this.v + this.x * this.x > 0.001D) {
-			var3 = (double) NumberConverter.a(var3);
+		if (var3 > 1.0E-4D && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.001D) {
+			var3 = (double) DataTypesConverter.a(var3);
 			this.a /= var3;
 			this.b /= var3;
-			if (this.a * this.v + this.b * this.x < 0.0D) {
+			if (this.a * this.motionX + this.b * this.motionZ < 0.0D) {
 				this.a = 0.0D;
 				this.b = 0.0D;
 			} else {
@@ -74,36 +74,36 @@ public class aee extends adx {
 	protected void o() {
 		double var1 = this.a * this.a + this.b * this.b;
 		if (var1 > 1.0E-4D) {
-			var1 = (double) NumberConverter.a(var1);
+			var1 = (double) DataTypesConverter.a(var1);
 			this.a /= var1;
 			this.b /= var1;
 			double var3 = 1.0D;
-			this.v *= 0.800000011920929D;
-			this.w *= 0.0D;
-			this.x *= 0.800000011920929D;
-			this.v += this.a * var3;
-			this.x += this.b * var3;
+			this.motionX *= 0.800000011920929D;
+			this.motionY *= 0.0D;
+			this.motionZ *= 0.800000011920929D;
+			this.motionX += this.a * var3;
+			this.motionZ += this.b * var3;
 		} else {
-			this.v *= 0.9800000190734863D;
-			this.w *= 0.0D;
-			this.x *= 0.9800000190734863D;
+			this.motionX *= 0.9800000190734863D;
+			this.motionY *= 0.0D;
+			this.motionZ *= 0.9800000190734863D;
 		}
 
 		super.o();
 	}
 
-	public boolean e(ahd var1) {
-		amj var2 = var1.bg.h();
-		if (var2 != null && var2.b() == amk.h) {
+	public boolean e(EntityHuman var1) {
+		ItemStack var2 = var1.playerInventory.getItemInHand();
+		if (var2 != null && var2.getItem() == amk.h) {
 			if (!var1.by.instabuild && --var2.b == 0) {
-				var1.bg.a(var1.bg.c, (amj) null);
+				var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
 			}
 
 			this.c += 3600;
 		}
 
-		this.a = this.s - var1.s;
-		this.b = this.u - var1.u;
+		this.a = this.locationX - var1.locationX;
+		this.b = this.locationZ - var1.locationZ;
 		return true;
 	}
 
@@ -122,14 +122,14 @@ public class aee extends adx {
 	}
 
 	protected boolean j() {
-		return (this.ac.a(16) & 1) != 0;
+		return (this.dataWatcher.a(16) & 1) != 0;
 	}
 
 	protected void i(boolean var1) {
 		if (var1) {
-			this.ac.b(16, Byte.valueOf((byte) (this.ac.a(16) | 1)));
+			this.dataWatcher.b(16, Byte.valueOf((byte) (this.dataWatcher.a(16) | 1)));
 		} else {
-			this.ac.b(16, Byte.valueOf((byte) (this.ac.a(16) & -2)));
+			this.dataWatcher.b(16, Byte.valueOf((byte) (this.dataWatcher.a(16) & -2)));
 		}
 
 	}

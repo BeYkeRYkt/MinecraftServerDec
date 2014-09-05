@@ -1,10 +1,10 @@
 package net.minecraft;
 
-public class ayd extends atr {
+public class ayd extends Block {
 
 	public ayd() {
 		super(bof.e);
-		this.a(akf.b);
+		this.a(CreativeModeTab.b);
 	}
 
 	public boh g(bec var1) {

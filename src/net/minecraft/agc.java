@@ -23,9 +23,9 @@ class agc extends yn {
 	}
 
 	public void c() {
-		this.a.y = this.a(this.a.y, this.g, 30.0F);
-		this.a.aI = this.a.y;
-		this.a.aG = this.a.y;
+		this.a.yaw = this.a(this.a.yaw, this.g, 30.0F);
+		this.a.aI = this.a.yaw;
+		this.a.aG = this.a.yaw;
 		if (!this.f) {
 			this.a.m(0.0F);
 		} else {

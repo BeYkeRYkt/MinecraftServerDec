@@ -36,10 +36,10 @@ public class bcz extends bcm implements pm, vv {
 	public void c() {
 		this.k = this.j;
 		this.m = this.l;
-		ahd var1 = this.b.a((double) ((float) this.c.n() + 0.5F), (double) ((float) this.c.o() + 0.5F), (double) ((float) this.c.p() + 0.5F), 3.0D);
+		EntityHuman var1 = this.b.a((double) ((float) this.c.n() + 0.5F), (double) ((float) this.c.o() + 0.5F), (double) ((float) this.c.p() + 0.5F), 3.0D);
 		if (var1 != null) {
-			double var2 = var1.s - (double) ((float) this.c.n() + 0.5F);
-			double var4 = var1.u - (double) ((float) this.c.p() + 0.5F);
+			double var2 = var1.locationX - (double) ((float) this.c.n() + 0.5F);
+			double var4 = var1.locationZ - (double) ((float) this.c.p() + 0.5F);
 			this.n = (float) Math.atan2(var4, var2);
 			this.j += 0.1F;
 			if (this.j < 0.5F || o.nextInt(40) == 0) {
@@ -80,12 +80,12 @@ public class bcz extends bcm implements pm, vv {
 		}
 
 		this.l += var7 * 0.4F;
-		this.j = NumberConverter.a(this.j, 0.0F, 1.0F);
+		this.j = DataTypesConverter.a(this.j, 0.0F, 1.0F);
 		++this.a;
 		this.g = this.f;
 		float var3 = (this.h - this.f) * 0.4F;
 		float var8 = 0.2F;
-		var3 = NumberConverter.a(var3, -var8, var8);
+		var3 = DataTypesConverter.a(var3, -var8, var8);
 		this.i += (var3 - this.i) * 0.9F;
 		this.f += this.i;
 	}
@@ -102,11 +102,11 @@ public class bcz extends bcm implements pm, vv {
 		this.p = var1;
 	}
 
-	public ho e_() {
-		return (ho) (this.k_() ? new hy(this.d_()) : new hz(this.d_(), new Object[0]));
+	public IJSONComponent e_() {
+		return (IJSONComponent) (this.k_() ? new hy(this.d_()) : new hz(this.d_(), new Object[0]));
 	}
 
-	public aib a(ahb var1, ahd var2) {
+	public Container a(PlayerInventory var1, EntityHuman var2) {
 		return new aiq(var1, this.b, this.c);
 	}
 

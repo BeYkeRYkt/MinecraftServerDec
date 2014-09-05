@@ -15,7 +15,7 @@ public class bhv extends bhp {
 		super(false);
 	}
 
-	public boolean b(World var1, Random var2, dt var3) {
+	public boolean b(World var1, Random var2, Position var3) {
 		int var4 = var2.nextInt(2);
 		if (this.a >= 0) {
 			var4 = this.a;
@@ -35,7 +35,7 @@ public class bhv extends bhp {
 				for (var9 = var3.n() - var8; var9 <= var3.n() + var8 && var6; ++var9) {
 					for (var10 = var3.p() - var8; var10 <= var3.p() + var8 && var6; ++var10) {
 						if (var7 >= 0 && var7 < 256) {
-							atr var11 = var1.p(new dt(var9, var7, var10)).c();
+							Block var11 = var1.p(new Position(var9, var7, var10)).c();
 							if (var11.r() != bof.a && var11.r() != bof.j) {
 								var6 = false;
 							}
@@ -49,7 +49,7 @@ public class bhv extends bhp {
 			if (!var6) {
 				return false;
 			} else {
-				atr var15 = var1.p(var3.b()).c();
+				Block var15 = var1.p(var3.b()).c();
 				if (var15 != aty.d && var15 != aty.c && var15 != aty.bw) {
 					return false;
 				} else {
@@ -130,9 +130,9 @@ public class bhv extends bhp {
 								}
 
 								if (var13 != 0 || var3.o() >= var3.o() + var5 - 1) {
-									dt var14 = new dt(var18, var9, var12);
+									Position var14 = new Position(var18, var9, var12);
 									if (!var1.p(var14).c().m()) {
-										this.a(var1, var14, atr.c(atr.a(aty.bg) + var4), var13);
+										this.a(var1, var14, Block.c(Block.a(aty.bg) + var4), var13);
 									}
 								}
 							}
@@ -140,9 +140,9 @@ public class bhv extends bhp {
 					}
 
 					for (var9 = 0; var9 < var5; ++var9) {
-						atr var17 = var1.p(var3.b(var9)).c();
+						Block var17 = var1.p(var3.b(var9)).c();
 						if (!var17.m()) {
-							this.a(var1, var3.b(var9), atr.c(atr.a(aty.bg) + var4), 10);
+							this.a(var1, var3.b(var9), Block.c(Block.a(aty.bg) + var4), 10);
 						}
 					}
 

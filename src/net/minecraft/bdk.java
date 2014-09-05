@@ -13,18 +13,18 @@ class bdk implements CommandSenderInterface {
 		return "Sign";
 	}
 
-	public ho e_() {
+	public IJSONComponent e_() {
 		return new hy(this.d_());
 	}
 
-	public void a(ho var1) {
+	public void a(IJSONComponent var1) {
 	}
 
 	public boolean a(int var1, String var2) {
 		return true;
 	}
 
-	public dt c() {
+	public Position c() {
 		return this.a.c;
 	}
 

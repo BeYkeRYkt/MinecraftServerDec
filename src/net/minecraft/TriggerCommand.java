@@ -70,7 +70,7 @@ public class TriggerCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		if (var2.length == 1) {
 			bsd var4 = MinecraftServer.getInstance().a(0).Z();
 			ArrayList var5 = Lists.newArrayList();

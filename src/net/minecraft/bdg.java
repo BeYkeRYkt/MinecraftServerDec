@@ -18,7 +18,7 @@ public class bdg extends bcm implements pm {
 		this.a.c();
 	}
 
-	public id x_() {
+	public Packet x_() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		this.b(var1);
 		var1.remove("SpawnPotentials");

@@ -7,7 +7,7 @@ import org.apache.commons.lang3.Validate;
 public abstract class adj extends Entity {
 
 	private int c;
-	protected dt a;
+	protected Position a;
 	public ej b;
 
 	public adj(World var1) {
@@ -15,7 +15,7 @@ public abstract class adj extends Entity {
 		this.a(0.5F, 0.5F);
 	}
 
-	public adj(World var1, dt var2) {
+	public adj(World var1, Position var2) {
 		this(var1);
 		this.a = var2;
 	}
@@ -27,7 +27,7 @@ public abstract class adj extends Entity {
 		Validate.notNull(var1);
 		Validate.isTrue(var1.k().c());
 		this.b = var1;
-		this.A = this.y = (float) (this.b.b() * 90);
+		this.A = this.yaw = (float) (this.b.b() * 90);
 		this.o();
 	}
 
@@ -45,9 +45,9 @@ public abstract class adj extends Entity {
 			ej var13 = this.b.f();
 			var1 += var9 * (double) var13.g();
 			var5 += var9 * (double) var13.i();
-			this.s = var1;
-			this.t = var3;
-			this.u = var5;
+			this.locationX = var1;
+			this.locationY = var3;
+			this.locationZ = var5;
 			double var14 = (double) this.l();
 			double var16 = (double) this.m();
 			double var18 = (double) this.l();
@@ -69,9 +69,9 @@ public abstract class adj extends Entity {
 	}
 
 	public void s_() {
-		this.p = this.s;
-		this.q = this.t;
-		this.r = this.u;
+		this.p = this.locationX;
+		this.q = this.locationY;
+		this.r = this.locationZ;
 		if (this.c++ == 100 && !this.o.D) {
 			this.c = 0;
 			if (!this.I && !this.j()) {
@@ -88,13 +88,13 @@ public abstract class adj extends Entity {
 		} else {
 			int var1 = Math.max(1, this.l() / 16);
 			int var2 = Math.max(1, this.m() / 16);
-			dt var3 = this.a.a(this.b.d());
+			Position var3 = this.a.a(this.b.d());
 			ej var4 = this.b.f();
 
 			for (int var5 = 0; var5 < var1; ++var5) {
 				for (int var6 = 0; var6 < var2; ++var6) {
-					dt var7 = var3.a(var4, var5).b(var6);
-					atr var8 = this.o.p(var7).c();
+					Position var7 = var3.a(var4, var5).b(var6);
+					Block var8 = this.o.p(var7).c();
 					if (!var8.r().a() && !ava.d(var8)) {
 						return false;
 					}
@@ -122,7 +122,7 @@ public abstract class adj extends Entity {
 	}
 
 	public boolean l(Entity var1) {
-		return var1 instanceof ahd ? this.a(wh.a((ahd) var1), 0.0F) : false;
+		return var1 instanceof EntityHuman ? this.a(wh.a((EntityHuman) var1), 0.0F) : false;
 	}
 
 	public ej aO() {
@@ -167,7 +167,7 @@ public abstract class adj extends Entity {
 	}
 
 	public void a(NBTCompoundTag var1) {
-		this.a = new dt(var1.getInt("TileX"), var1.getInt("TileY"), var1.getInt("TileZ"));
+		this.a = new Position(var1.getInt("TileX"), var1.getInt("TileY"), var1.getInt("TileZ"));
 		ej var2;
 		if (var1.isTagAssignableFrom("Direction", 99)) {
 			var2 = ej.b(var1.getByte("Direction"));
@@ -192,11 +192,11 @@ public abstract class adj extends Entity {
 	}
 
 	public void b(double var1, double var3, double var5) {
-		this.s = var1;
-		this.t = var3;
-		this.u = var5;
-		dt var7 = this.a;
-		this.a = new dt(var1, var3, var5);
+		this.locationX = var1;
+		this.locationY = var3;
+		this.locationZ = var5;
+		Position var7 = this.a;
+		this.a = new Position(var1, var3, var5);
 		if (!this.a.equals(var7)) {
 			this.o();
 			this.ai = true;
@@ -204,7 +204,7 @@ public abstract class adj extends Entity {
 
 	}
 
-	public dt n() {
+	public Position n() {
 		return this.a;
 	}
 }

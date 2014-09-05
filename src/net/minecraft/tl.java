@@ -39,7 +39,7 @@ public class tl {
 	public static tk F = (new tk("achievement.overkill", "overkill", -4, 1, amk.u, E)).b().c();
 	public static tk G = (new tk("achievement.bookcase", "bookcase", -3, 6, aty.X, E)).c();
 	public static tk H = (new tk("achievement.breedCow", "breedCow", 7, -5, amk.O, t)).c();
-	public static tk I = (new tk("achievement.spawnWither", "spawnWither", 7, 12, new amj(amk.bX, 1, 1), D)).c();
+	public static tk I = (new tk("achievement.spawnWither", "spawnWither", 7, 12, new ItemStack(amk.bX, 1, 1), D)).c();
 	public static tk J = (new tk("achievement.killWither", "killWither", 7, 10, amk.bZ, I)).c();
 	public static tk K = (new tk("achievement.fullBeacon", "fullBeacon", 7, 8, aty.bY, J)).b().c();
 	public static tk L = (new tk("achievement.exploreAllBiomes", "exploreAllBiomes", 4, 8, amk.af, C)).a(ua.class).b().c();

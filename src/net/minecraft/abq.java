@@ -2,9 +2,9 @@ package net.minecraft;
 
 public abstract class abq extends ws implements wt {
 
-	protected atr bl;
+	protected Block bl;
 	private int bk;
-	private ahd bm;
+	private EntityHuman bm;
 
 	public abq(World var1) {
 		super(var1);
@@ -31,7 +31,7 @@ public abstract class abq extends ws implements wt {
 				double var1 = this.V.nextGaussian() * 0.02D;
 				double var3 = this.V.nextGaussian() * 0.02D;
 				double var5 = this.V.nextGaussian() * 0.02D;
-				this.o.a(ew.I, this.s + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.t + 0.5D + (double) (this.V.nextFloat() * this.K), this.u + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var1, var3, var5, new int[0]);
+				this.o.a(ew.I, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var1, var3, var5, new int[0]);
 			}
 		}
 
@@ -46,7 +46,7 @@ public abstract class abq extends ws implements wt {
 		}
 	}
 
-	public float a(dt var1) {
+	public float a(Position var1) {
 		return this.o.p(var1.b()).c() == aty.c ? 10.0F : this.o.o(var1) - 0.5F;
 	}
 
@@ -61,10 +61,10 @@ public abstract class abq extends ws implements wt {
 	}
 
 	public boolean bQ() {
-		int var1 = NumberConverter.c(this.s);
-		int var2 = NumberConverter.c(this.aQ().b);
-		int var3 = NumberConverter.c(this.u);
-		dt var4 = new dt(var1, var2, var3);
+		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
+		int var2 = DataTypesConverter.toFixedPointInt(this.aQ().b);
+		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
+		Position var4 = new Position(var1, var2, var3);
 		return this.o.p(var4.b()).c() == this.bl && this.o.k(var4) > 8 && super.bQ();
 	}
 
@@ -76,16 +76,16 @@ public abstract class abq extends ws implements wt {
 		return false;
 	}
 
-	protected int b(ahd var1) {
+	protected int b(EntityHuman var1) {
 		return 1 + this.o.s.nextInt(3);
 	}
 
-	public boolean d(amj var1) {
-		return var1 == null ? false : var1.b() == amk.O;
+	public boolean d(ItemStack var1) {
+		return var1 == null ? false : var1.getItem() == amk.O;
 	}
 
-	public boolean a(ahd var1) {
-		amj var2 = var1.bg.h();
+	public boolean a(EntityHuman var1) {
+		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (var2 != null) {
 			if (this.d(var2) && this.l() == 0 && this.bk <= 0) {
 				this.a(var1, var2);
@@ -103,23 +103,23 @@ public abstract class abq extends ws implements wt {
 		return super.a(var1);
 	}
 
-	protected void a(ahd var1, amj var2) {
+	protected void a(EntityHuman var1, ItemStack var2) {
 		if (!var1.by.instabuild) {
 			--var2.b;
 			if (var2.b <= 0) {
-				var1.bg.a(var1.bg.c, (amj) null);
+				var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
 			}
 		}
 
 	}
 
-	public void c(ahd var1) {
+	public void c(EntityHuman var1) {
 		this.bk = 600;
 		this.bm = var1;
 		this.o.a((Entity) this, (byte) 18);
 	}
 
-	public ahd co() {
+	public EntityHuman co() {
 		return this.bm;
 	}
 

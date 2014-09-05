@@ -2,14 +2,14 @@ package net.minecraft;
 
 public class axd extends bcm {
 
-	private amj a;
+	private ItemStack a;
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
 		if (var1.isTagAssignableFrom("RecordItem", 10)) {
-			this.a(amj.a(var1.getCompound("RecordItem")));
+			this.a(ItemStack.a(var1.getCompound("RecordItem")));
 		} else if (var1.getInt("Record") > 0) {
-			this.a(new amj(alq.b(var1.getInt("Record")), 1, 0));
+			this.a(new ItemStack(Item.getById(var1.getInt("Record")), 1, 0));
 		}
 
 	}
@@ -22,11 +22,11 @@ public class axd extends bcm {
 
 	}
 
-	public amj a() {
+	public ItemStack a() {
 		return this.a;
 	}
 
-	public void a(amj var1) {
+	public void a(ItemStack var1) {
 		this.a = var1;
 		this.o_();
 	}

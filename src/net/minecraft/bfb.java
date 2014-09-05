@@ -28,7 +28,7 @@ public class bfb {
 		this.l = 5;
 	}
 
-	public boolean a(dt var1) {
+	public boolean a(Position var1) {
 		return (double) (var1.n() + 1) > this.b() && (double) var1.n() < this.d() && (double) (var1.p() + 1) > this.c() && (double) var1.p() < this.e();
 	}
 
@@ -41,7 +41,7 @@ public class bfb {
 	}
 
 	public double a(Entity var1) {
-		return this.b(var1.s, var1.u);
+		return this.b(var1.locationX, var1.locationZ);
 	}
 
 	public double b(double var1, double var3) {

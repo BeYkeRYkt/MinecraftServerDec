@@ -40,7 +40,7 @@ public class ys extends yv {
 
 	public void d() {
 		super.d();
-		this.a.o.c(this.a.F(), this.b, -1);
+		this.a.o.c(this.a.getId(), this.b, -1);
 	}
 
 	public void e() {
@@ -52,14 +52,14 @@ public class ys extends yv {
 		++this.g;
 		int var1 = (int) ((float) this.g / 240.0F * 10.0F);
 		if (var1 != this.h) {
-			this.a.o.c(this.a.F(), this.b, var1);
+			this.a.o.c(this.a.getId(), this.b, var1);
 			this.h = var1;
 		}
 
-		if (this.g == 240 && this.a.o.aa() == Difficulty.HARD) {
+		if (this.g == 240 && this.a.o.getDifficulty() == Difficulty.HARD) {
 			this.a.o.g(this.b);
 			this.a.o.b(1012, this.b, 0);
-			this.a.o.b(2001, this.b, atr.a((atr) this.c));
+			this.a.o.b(2001, this.b, Block.a((Block) this.c));
 		}
 
 	}

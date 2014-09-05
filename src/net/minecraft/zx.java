@@ -29,6 +29,6 @@ public class zx extends zb {
 
 	public void e() {
 		--this.d;
-		this.a.p().a(this.a.s + this.b, this.a.t + (double) this.a.aR(), this.a.u + this.c, 10.0F, (float) this.a.bP());
+		this.a.p().a(this.a.locationX + this.b, this.a.locationY + (double) this.a.aR(), this.a.locationZ + this.c, 10.0F, (float) this.a.bP());
 	}
 }

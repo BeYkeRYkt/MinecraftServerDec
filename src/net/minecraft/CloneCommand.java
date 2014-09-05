@@ -25,9 +25,9 @@ public class CloneCommand extends AbstractCommand {
 			throw new dp("commands.clone.usage", new Object[0]);
 		} else {
 			var1.a(ag.b, 0);
-			dt var3 = a(var1, var2, 0, false);
-			dt var4 = a(var1, var2, 3, false);
-			dt var5 = a(var1, var2, 6, false);
+			Position var3 = a(var1, var2, 0, false);
+			Position var4 = a(var1, var2, 3, false);
+			Position var5 = a(var1, var2, 6, false);
 			bjb var6 = new bjb(var3, var4);
 			bjb var7 = new bjb(var5, var5.a(var6.b()));
 			int var8 = var6.c() * var6.d() * var6.e();
@@ -35,7 +35,7 @@ public class CloneCommand extends AbstractCommand {
 				throw new di("commands.clone.tooManyBlocks", new Object[] { Integer.valueOf(var8), Integer.valueOf('\u8000') });
 			} else {
 				boolean var9 = false;
-				atr var10 = null;
+				Block var10 = null;
 				int var11 = -1;
 				if ((var2.length < 11 || !var2[10].equals("force") && !var2[10].equals("move")) && var6.a(var7)) {
 					throw new di("commands.clone.noOverlap", new Object[0]);
@@ -67,13 +67,13 @@ public class CloneCommand extends AbstractCommand {
 							ArrayList var15 = Lists.newArrayList();
 							ArrayList var16 = Lists.newArrayList();
 							LinkedList var17 = Lists.newLinkedList();
-							dt var18 = new dt(var7.a - var6.a, var7.b - var6.b, var7.c - var6.c);
+							Position var18 = new Position(var7.a - var6.a, var7.b - var6.b, var7.c - var6.c);
 
 							for (int var19 = var6.c; var19 <= var6.f; ++var19) {
 								for (int var20 = var6.b; var20 <= var6.e; ++var20) {
 									for (int var21 = var6.a; var21 <= var6.d; ++var21) {
-										dt var22 = new dt(var21, var20, var19);
-										dt var23 = var22.a((fd) var18);
+										Position var22 = new Position(var21, var20, var19);
+										Position var23 = var22.a((fd) var18);
 										bec var24 = var12.p(var22);
 										if ((!var13 || var24.c() != aty.a) && (var10 == null || var24.c() == var10 && (var11 < 0 || var24.c().c(var24) == var11))) {
 											bcm var25 = var12.s(var22);
@@ -96,19 +96,19 @@ public class CloneCommand extends AbstractCommand {
 
 							if (var9) {
 								Iterator var27;
-								dt var29;
+								Position var29;
 								for (var27 = var17.iterator(); var27.hasNext(); var12.a(var29, aty.cv.P(), 2)) {
-									var29 = (dt) var27.next();
+									var29 = (Position) var27.next();
 									bcm var31 = var12.s(var29);
-									if (var31 instanceof vq) {
-										((vq) var31).l();
+									if (var31 instanceof IInventory) {
+										((IInventory) var31).l();
 									}
 								}
 
 								var27 = var17.iterator();
 
 								while (var27.hasNext()) {
-									var29 = (dt) var27.next();
+									var29 = (Position) var27.next();
 									var12.a(var29, aty.a.P(), 3);
 								}
 							}
@@ -125,8 +125,8 @@ public class CloneCommand extends AbstractCommand {
 							for (var32 = var30.iterator(); var32.hasNext(); var12.a(var34.a, aty.cv.P(), 2)) {
 								var34 = (bb) var32.next();
 								var36 = var12.s(var34.a);
-								if (var36 instanceof vq) {
-									((vq) var36).l();
+								if (var36 instanceof IInventory) {
+									((IInventory) var36).l();
 								}
 							}
 
@@ -166,7 +166,7 @@ public class CloneCommand extends AbstractCommand {
 								while (var35.hasNext()) {
 									ark var37 = (ark) var35.next();
 									if (var6.b((fd) var37.a)) {
-										dt var38 = var37.a.a((fd) var18);
+										Position var38 = var37.a.a((fd) var18);
 										var12.b(var38, var37.a(), (int) (var37.b - var12.P().f()), var37.c);
 									}
 								}
@@ -189,7 +189,7 @@ public class CloneCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
-		return var2.length > 0 && var2.length <= 3 ? a(var2, 0, var3) : (var2.length > 3 && var2.length <= 6 ? a(var2, 3, var3) : (var2.length > 6 && var2.length <= 9 ? a(var2, 6, var3) : (var2.length == 10 ? a(var2, new String[] { "replace", "masked", "filtered" }) : (var2.length == 11 ? a(var2, new String[] { "normal", "force", "move" }) : (var2.length == 12 && "filtered".equals(var2[9]) ? a(var2, atr.c.c()) : null)))));
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
+		return var2.length > 0 && var2.length <= 3 ? a(var2, 0, var3) : (var2.length > 3 && var2.length <= 6 ? a(var2, 3, var3) : (var2.length > 6 && var2.length <= 9 ? a(var2, 6, var3) : (var2.length == 10 ? a(var2, new String[] { "replace", "masked", "filtered" }) : (var2.length == 11 ? a(var2, new String[] { "normal", "force", "move" }) : (var2.length == 12 && "filtered".equals(var2[9]) ? a(var2, Block.c.c()) : null)))));
 	}
 }

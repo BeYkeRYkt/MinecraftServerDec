@@ -48,7 +48,7 @@ public class TitleCommand extends AbstractCommand {
 						int var12 = a(var2[3]);
 						int var13 = a(var2[4]);
 						lj var14 = new lj(var11, var12, var13);
-						var3.a.a((id) var14);
+						var3.a.a((Packet) var14);
 						a(var1, this, "commands.title.success", new Object[0]);
 					}
 				} else if (var2.length < 3) {
@@ -56,29 +56,29 @@ public class TitleCommand extends AbstractCommand {
 				} else {
 					String var10 = a(var2, 2);
 
-					ho var6;
+					IJSONComponent var6;
 					try {
-						var6 = hp.a(var10);
+						var6 = JSONComponentFormat.a(var10);
 					} catch (JsonParseException var9) {
 						Throwable var8 = ExceptionUtils.getRootCause(var9);
 						throw new dl("commands.tellraw.jsonException", new Object[] { var8 == null ? "" : var8.getMessage() });
 					}
 
 					lj var7 = new lj(var4, hq.a(var1, var6, var3));
-					var3.a.a((id) var7);
+					var3.a.a((Packet) var7);
 					a(var1, this, "commands.title.success", new Object[0]);
 				}
 			} else if (var2.length != 2) {
 				throw new dp("commands.title.usage", new Object[0]);
 			} else {
-				lj var5 = new lj(var4, (ho) null);
-				var3.a.a((id) var5);
+				lj var5 = new lj(var4, (IJSONComponent) null);
+				var3.a.a((Packet) var5);
 				a(var1, this, "commands.title.success", new Object[0]);
 			}
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().I()) : (var2.length == 2 ? a(var2, lk.a()) : null);
 	}
 

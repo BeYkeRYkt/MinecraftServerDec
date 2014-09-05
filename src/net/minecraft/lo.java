@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class lo implements id<ik> {
+public class lo implements Packet<PlayPacketListener> {
 
 	private int a;
 	private int b;
@@ -14,12 +14,12 @@ public class lo implements id<ik> {
 	}
 
 	public lo(Entity var1) {
-		this.a = var1.F();
-		this.b = NumberConverter.c(var1.s * 32.0D);
-		this.c = NumberConverter.c(var1.t * 32.0D);
-		this.d = NumberConverter.c(var1.u * 32.0D);
-		this.e = (byte) ((int) (var1.y * 256.0F / 360.0F));
-		this.f = (byte) ((int) (var1.z * 256.0F / 360.0F));
+		this.a = var1.getId();
+		this.b = DataTypesConverter.toFixedPointInt(var1.locationX * 32.0D);
+		this.c = DataTypesConverter.toFixedPointInt(var1.locationY * 32.0D);
+		this.d = DataTypesConverter.toFixedPointInt(var1.locationZ * 32.0D);
+		this.e = (byte) ((int) (var1.yaw * 256.0F / 360.0F));
+		this.f = (byte) ((int) (var1.pitch * 256.0F / 360.0F));
 		this.g = var1.C;
 	}
 
@@ -33,8 +33,8 @@ public class lo implements id<ik> {
 		this.g = var7;
 	}
 
-	public void a(hd var1) {
-		this.a = var1.e();
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readVarInt();
 		this.b = var1.readInt();
 		this.c = var1.readInt();
 		this.d = var1.readInt();
@@ -43,8 +43,8 @@ public class lo implements id<ik> {
 		this.g = var1.readBoolean();
 	}
 
-	public void b(hd var1) {
-		var1.b(this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeVarInt(this.a);
 		var1.writeInt(this.b);
 		var1.writeInt(this.c);
 		var1.writeInt(this.d);
@@ -53,7 +53,7 @@ public class lo implements id<ik> {
 		var1.writeBoolean(this.g);
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

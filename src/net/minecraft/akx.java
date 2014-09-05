@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class akx extends aju {
 
-	public akx(atr var1) {
+	public akx(Block var1) {
 		super(var1);
 		this.d(0);
 		this.a(true);
@@ -12,7 +12,7 @@ public class akx extends aju {
 		return var1;
 	}
 
-	public String e_(amj var1) {
+	public String e_(ItemStack var1) {
 		return super.a() + "." + akv.b(var1.i()).d();
 	}
 }

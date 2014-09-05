@@ -1,6 +1,6 @@
 package net.minecraft;
 
-class acm extends aib {
+class acm extends Container {
 
 	// $FF: synthetic field
 	final acl a;
@@ -9,7 +9,7 @@ class acm extends aib {
 		this.a = var1;
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return false;
 	}
 }

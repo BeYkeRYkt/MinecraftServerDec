@@ -130,14 +130,14 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.S = var1;
 	}
 
-	protected void a(String var1, String var2, long var3, are var5, String var6) {
+	protected void a(String var1, String var2, long var3, LevelType var5, String var6) {
 		this.a(var1);
 		this.b("menu.loadingLevel");
 		this.worlds = new WorldServer[3];
 		this.h = new long[this.worlds.length][100];
-		bqy var7 = this.convertable.a(var1, true);
+		IDataManager var7 = this.convertable.a(var1, true);
 		this.a(this.getLevelName(), var7);
-		bqo var9 = var7.d();
+		WorldData var9 = var7.d();
 		arb var8;
 		if (var9 == null) {
 			if (this.W()) {
@@ -150,7 +150,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				}
 			}
 
-			var9 = new bqo(var8, var2);
+			var9 = new WorldData(var8, var2);
 		} else {
 			var9.a(var2);
 			var8 = new arb(var9);
@@ -195,7 +195,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		byte var6 = 0;
 		logger.info("Preparing start region for level " + var6);
 		WorldServer var7 = this.worlds[var6];
-		dt var8 = var7.M();
+		Position var8 = var7.M();
 		long var9 = getCurrentMillis();
 
 		for (int var11 = -192; var11 <= 192 && this.isTicking(); var11 += 16) {
@@ -212,7 +212,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		}
 	}
 
-	protected void a(String var1, bqy var2) {
+	protected void a(String var1, IDataManager var2) {
 		File var3 = new File(var2.b(), "resources.zip");
 		if (var3.isFile()) {
 			this.setResourcePack("level://" + var1 + "/" + var3.getName(), "");
@@ -239,7 +239,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			for (WorldServer world : worlds) {
 				if (world != null) {
 					if (!silenced) {
-						logger.info("Saving chunks for level \'" + world.P().k() + "\'/" + world.t.k());
+						logger.info("Saving chunks for level \'" + world.P().k() + "\'/" + world.worldProvider.k());
 					}
 
 					try {
@@ -307,7 +307,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			if (this.startServer()) {
 				this.lastTickTime = getCurrentMillis();
 				long var1 = 0L;
-				this.serverPing.a((ho) (new hy(this.E)));
+				this.serverPing.a((IJSONComponent) (new hy(this.E)));
 				this.serverPing.a(new nt("1.8", 47));
 				this.a(this.serverPing);
 
@@ -419,10 +419,10 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			this.lastServerPingUpdate = var1;
 			this.serverPing.a(new nq(this.H(), this.G()));
 			GameProfile[] var3 = new GameProfile[Math.min(this.G(), 12)];
-			int var4 = NumberConverter.a(this.rnd, 0, this.G() - var3.length);
+			int var4 = DataTypesConverter.a(this.rnd, 0, this.G() - var3.length);
 
 			for (int var5 = 0; var5 < var3.length; ++var5) {
-				var3[var5] = ((EntityPlayer) this.playerList.players.get(var4 + var5)).cc();
+				var3[var5] = ((EntityPlayer) this.playerList.players.get(var4 + var5)).getGameProfile();
 			}
 
 			Collections.shuffle(Arrays.asList(var3));
@@ -475,7 +475,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				this.profiler.a(var4.P().k());
 				if (this.ticks % 20 == 0) {
 					this.profiler.a("timeSync");
-					this.playerList.a((id) (new li(var4.K(), var4.L(), var4.Q().b("doDaylightCycle"))), var4.t.q());
+					this.playerList.a((Packet) (new PacketTimeUpdate(var4.K(), var4.L(), var4.Q().b("doDaylightCycle"))), var4.worldProvider.getDimensionId());
 					this.profiler.b();
 				}
 
@@ -652,7 +652,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public int H() {
-		return this.playerList.q();
+		return this.playerList.getMaxPlayers();
 	}
 
 	public String[] I() {
@@ -701,7 +701,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return var1;
 	}
 
-	public List<String> getTabCompleteList(CommandSenderInterface var1, String var2, dt var3) {
+	public List<String> getTabCompleteList(CommandSenderInterface var1, String var2, Position var3) {
 		ArrayList<String> var4 = Lists.newArrayList();
 		if (var2.startsWith("/")) {
 			var2 = var2.substring(1);
@@ -750,7 +750,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return "Server";
 	}
 
-	public void a(ho var1) {
+	public void a(IJSONComponent var1) {
 		logger.info(var1.c());
 	}
 
@@ -802,12 +802,12 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		for (int var2 = 0; var2 < this.worlds.length; ++var2) {
 			WorldServer var3 = this.worlds[var2];
 			if (var3 != null) {
-				if (var3.P().t()) {
+				if (var3.P().isHardcore()) {
 					var3.P().a(Difficulty.HARD);
 					var3.a(true, true);
 				} else if (this.isSinglePlayer()) {
 					var3.P().a(var1);
-					var3.a(var3.aa() != Difficulty.PEACEFUL, true);
+					var3.a(var3.getDifficulty() != Difficulty.PEACEFUL, true);
 				} else {
 					var3.P().a(var1);
 					var3.a(this.isMonsterSpawnEnabled(), this.spawnAnimals);
@@ -877,19 +877,19 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		var1.a("uses_auth", Boolean.valueOf(this.onlineMode));
 		var1.a("gui_state", this.isGuiEnabled() ? "enabled" : "disabled");
 		var1.a("run_time", Long.valueOf((getCurrentMillis() - var1.g()) / 60L * 1000L));
-		var1.a("avg_tick_ms", Integer.valueOf((int) (NumberConverter.a(this.g) * 1.0E-6D)));
+		var1.a("avg_tick_ms", Integer.valueOf((int) (DataTypesConverter.a(this.g) * 1.0E-6D)));
 		int var2 = 0;
 		if (this.worlds != null) {
 			for (int var3 = 0; var3 < this.worlds.length; ++var3) {
 				if (this.worlds[var3] != null) {
 					WorldServer var4 = this.worlds[var3];
-					bqo var5 = var4.P();
-					var1.a("world[" + var2 + "][dimension]", Integer.valueOf(var4.t.q()));
+					WorldData var5 = var4.P();
+					var1.a("world[" + var2 + "][dimension]", Integer.valueOf(var4.worldProvider.getDimensionId()));
 					var1.a("world[" + var2 + "][mode]", var5.r());
-					var1.a("world[" + var2 + "][difficulty]", var4.aa());
-					var1.a("world[" + var2 + "][hardcore]", Boolean.valueOf(var5.t()));
-					var1.a("world[" + var2 + "][generator_name]", var5.u().a());
-					var1.a("world[" + var2 + "][generator_version]", Integer.valueOf(var5.u().d()));
+					var1.a("world[" + var2 + "][difficulty]", var4.getDifficulty());
+					var1.a("world[" + var2 + "][hardcore]", Boolean.valueOf(var5.isHardcore()));
+					var1.a("world[" + var2 + "][generator_name]", var5.getLevelType().a());
+					var1.a("world[" + var2 + "][generator_version]", Integer.valueOf(var5.getLevelType().d()));
 					var1.a("world[" + var2 + "][height]", Integer.valueOf(this.F));
 					var1.a("world[" + var2 + "][chunks_loaded]", Integer.valueOf(var4.N().g()));
 					++var2;
@@ -1008,8 +1008,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.T = true;
 	}
 
-	public dt c() {
-		return dt.a;
+	public Position c() {
+		return Position.a;
 	}
 
 	public brw d() {
@@ -1028,7 +1028,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return 16;
 	}
 
-	public boolean a(World var1, dt var2, ahd var3) {
+	public boolean a(World var1, Position var2, EntityHuman var3) {
 		return false;
 	}
 
@@ -1056,7 +1056,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.G = var1;
 	}
 
-	public ho e_() {
+	public IJSONComponent e_() {
 		return new hy(this.d_());
 	}
 

@@ -3,22 +3,22 @@ package net.minecraft;
 import com.mojang.authlib.GameProfile;
 import java.util.UUID;
 
-public class anh extends alq {
+public class anh extends Item {
 
 	private static final String[] a = new String[] { "skeleton", "wither", "zombie", "char", "creeper" };
 
 	public anh() {
-		this.a(akf.c);
+		this.a(CreativeModeTab.c);
 		this.d(0);
 		this.a(true);
 	}
 
-	public boolean a(amj var1, ahd var2, World var3, dt var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
 		if (var5 == ej.a) {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
-			atr var10 = var9.c();
+			Block var10 = var9.c();
 			boolean var11 = var10.f(var3, var4);
 			if (!var11) {
 				if (!var3.p(var4).c().r().a()) {
@@ -37,7 +37,7 @@ public class anh extends alq {
 					var3.a(var4, aty.ce.P().a(baj.a, var5), 3);
 					int var12 = 0;
 					if (var5 == ej.b) {
-						var12 = NumberConverter.c((double) (var2.y * 16.0F / 360.0F) + 0.5D) & 15;
+						var12 = DataTypesConverter.toFixedPointInt((double) (var2.yaw * 16.0F / 360.0F) + 0.5D) & 15;
 					}
 
 					bcm var13 = var3.s(var4);
@@ -45,8 +45,8 @@ public class anh extends alq {
 						bdm var14 = (bdm) var13;
 						if (var1.i() == 3) {
 							GameProfile var15 = null;
-							if (var1.n()) {
-								NBTCompoundTag var16 = var1.o();
+							if (var1.hasTag()) {
+								NBTCompoundTag var16 = var1.getTag();
 								if (var16.isTagAssignableFrom("SkullOwner", 10)) {
 									var15 = ga.a(var16.getCompound("SkullOwner"));
 								} else if (var16.isTagAssignableFrom("SkullOwner", 8) && var16.getString("SkullOwner").length() > 0) {
@@ -75,7 +75,7 @@ public class anh extends alq {
 		return var1;
 	}
 
-	public String e_(amj var1) {
+	public String e_(ItemStack var1) {
 		int var2 = var1.i();
 		if (var2 < 0 || var2 >= a.length) {
 			var2 = 0;
@@ -84,14 +84,14 @@ public class anh extends alq {
 		return super.a() + "." + a[var2];
 	}
 
-	public String a(amj var1) {
-		if (var1.i() == 3 && var1.n()) {
-			if (var1.o().isTagAssignableFrom("SkullOwner", 8)) {
-				return fi.a("item.skull.player.name", new Object[] { var1.o().getString("SkullOwner") });
+	public String a(ItemStack var1) {
+		if (var1.i() == 3 && var1.hasTag()) {
+			if (var1.getTag().isTagAssignableFrom("SkullOwner", 8)) {
+				return fi.a("item.skull.player.name", new Object[] { var1.getTag().getString("SkullOwner") });
 			}
 
-			if (var1.o().isTagAssignableFrom("SkullOwner", 10)) {
-				NBTCompoundTag var2 = var1.o().getCompound("SkullOwner");
+			if (var1.getTag().isTagAssignableFrom("SkullOwner", 10)) {
+				NBTCompoundTag var2 = var1.getTag().getCompound("SkullOwner");
 				if (var2.isTagAssignableFrom("Name", 8)) {
 					return fi.a("item.skull.player.name", new Object[] { var2.getString("Name") });
 				}

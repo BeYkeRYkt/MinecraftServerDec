@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class lx implements id<ls> {
+public class lx implements Packet<ls> {
 
 	private String a;
 	private int b;
@@ -8,23 +8,23 @@ public class lx implements id<ls> {
 	private boolean d;
 	private int e;
 
-	public void a(hd var1) {
-		this.a = var1.c(7);
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readString(7);
 		this.b = var1.readByte();
 		this.c = ahg.a(var1.readByte());
 		this.d = var1.readBoolean();
 		this.e = var1.readUnsignedByte();
 	}
 
-	public void b(hd var1) {
-		var1.a(this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeString(this.a);
 		var1.writeByte(this.b);
 		var1.writeByte(this.c.a());
 		var1.writeBoolean(this.d);
 		var1.writeByte(this.e);
 	}
 
-	public void a(ls var1) {
+	public void handlePacket(ls var1) {
 		var1.a(this);
 	}
 

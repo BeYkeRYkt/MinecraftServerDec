@@ -20,13 +20,13 @@ public class afy extends xn implements aex {
 
 	protected void h() {
 		super.h();
-		this.ac.a(16, Byte.valueOf((byte) 1));
+		this.dataWatcher.a(16, Byte.valueOf((byte) 1));
 	}
 
 	protected void a(int var1) {
-		this.ac.b(16, Byte.valueOf((byte) var1));
+		this.dataWatcher.b(16, Byte.valueOf((byte) var1));
 		this.a(0.51000005F * (float) var1, 0.51000005F * (float) var1);
-		this.b(this.s, this.t, this.u);
+		this.b(this.locationX, this.locationY, this.locationZ);
 		this.a(afs.a).a((double) (var1 * var1));
 		this.a(afs.d).a((double) (0.2F + 0.1F * (float) var1));
 		this.h(this.bt());
@@ -34,7 +34,7 @@ public class afy extends xn implements aex {
 	}
 
 	public int ck() {
-		return this.ac.a(16);
+		return this.dataWatcher.a(16);
 	}
 
 	public void b(NBTCompoundTag var1) {
@@ -63,7 +63,7 @@ public class afy extends xn implements aex {
 	}
 
 	public void s_() {
-		if (!this.o.D && this.o.aa() == Difficulty.PEACEFUL && this.ck() > 0) {
+		if (!this.o.D && this.o.getDifficulty() == Difficulty.PEACEFUL && this.ck() > 0) {
 			this.I = true;
 		}
 
@@ -76,12 +76,12 @@ public class afy extends xn implements aex {
 			for (int var2 = 0; var2 < var1 * 8; ++var2) {
 				float var3 = this.V.nextFloat() * 3.1415927F * 2.0F;
 				float var4 = this.V.nextFloat() * 0.5F + 0.5F;
-				float var5 = NumberConverter.a(var3) * (float) var1 * 0.5F * var4;
-				float var6 = NumberConverter.b(var3) * (float) var1 * 0.5F * var4;
+				float var5 = DataTypesConverter.a(var3) * (float) var1 * 0.5F * var4;
+				float var6 = DataTypesConverter.b(var3) * (float) var1 * 0.5F * var4;
 				World var10000 = this.o;
 				ew var10001 = this.n();
-				double var10002 = this.s + (double) var5;
-				double var10004 = this.u + (double) var6;
+				double var10002 = this.locationX + (double) var5;
+				double var10004 = this.locationZ + (double) var6;
 				var10000.a(var10001, var10002, this.aQ().b, var10004, 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 
@@ -114,7 +114,7 @@ public class afy extends xn implements aex {
 		if (var1 == 16) {
 			int var2 = this.ck();
 			this.a(0.51000005F * (float) var2, 0.51000005F * (float) var2);
-			this.y = this.aI;
+			this.yaw = this.aI;
 			this.aG = this.aI;
 			if (this.V() && this.V.nextInt(20) == 0) {
 				this.X();
@@ -142,7 +142,7 @@ public class afy extends xn implements aex {
 				}
 
 				var6.a(var1 / 2);
-				var6.b(this.s + (double) var4, this.t + 0.5D, this.u + (double) var5, this.V.nextFloat() * 360.0F, 0.0F);
+				var6.b(this.locationX + (double) var4, this.locationY + 0.5D, this.locationZ + (double) var5, this.V.nextFloat() * 360.0F, 0.0F);
 				this.o.d((Entity) var6);
 			}
 		}
@@ -158,7 +158,7 @@ public class afy extends xn implements aex {
 
 	}
 
-	public void d(ahd var1) {
+	public void d(EntityHuman var1) {
 		if (this.cg()) {
 			this.e(var1);
 		}
@@ -194,22 +194,22 @@ public class afy extends xn implements aex {
 		return "mob.slime." + (this.ck() > 1 ? "big" : "small");
 	}
 
-	protected alq A() {
+	protected Item A() {
 		return this.ck() == 1 ? amk.aM : null;
 	}
 
 	public boolean bQ() {
-		bfh var1 = this.o.f(new dt(NumberConverter.c(this.s), 0, NumberConverter.c(this.u)));
-		if (this.o.P().u() == are.c && this.V.nextInt(4) != 1) {
+		bfh var1 = this.o.f(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
+		if (this.o.P().getLevelType() == LevelType.FLAT && this.V.nextInt(4) != 1) {
 			return false;
 		} else {
-			if (this.o.aa() != Difficulty.PEACEFUL) {
-				arm var2 = this.o.b(new dt(NumberConverter.c(this.s), 0, NumberConverter.c(this.u)));
-				if (var2 == arm.v && this.t > 50.0D && this.t < 70.0D && this.V.nextFloat() < 0.5F && this.V.nextFloat() < this.o.y() && this.o.l(new dt(this)) <= this.V.nextInt(8)) {
+			if (this.o.getDifficulty() != Difficulty.PEACEFUL) {
+				arm var2 = this.o.b(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
+				if (var2 == arm.v && this.locationY > 50.0D && this.locationY < 70.0D && this.V.nextFloat() < 0.5F && this.V.nextFloat() < this.o.y() && this.o.l(new Position(this)) <= this.V.nextInt(8)) {
 					return super.bQ();
 				}
 
-				if (this.V.nextInt(10) == 0 && var1.a(987234911L).nextInt(10) == 0 && this.t < 40.0D) {
+				if (this.V.nextInt(10) == 0 && var1.a(987234911L).nextInt(10) == 0 && this.locationY < 40.0D) {
 					return super.bQ();
 				}
 			}
@@ -235,7 +235,7 @@ public class afy extends xn implements aex {
 	}
 
 	protected void bE() {
-		this.w = 0.41999998688697815D;
+		this.motionY = 0.41999998688697815D;
 		this.ai = true;
 	}
 

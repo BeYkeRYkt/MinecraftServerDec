@@ -12,11 +12,11 @@ public class azz extends ava {
 		this.j(this.L.b().a(N, ej.c).a(b, Integer.valueOf(1)).a(a, Boolean.valueOf(false)));
 	}
 
-	public bec a(bec var1, ard var2, dt var3) {
+	public bec a(bec var1, ard var2, Position var3) {
 		return var1.a(a, Boolean.valueOf(this.b(var2, var3, var1)));
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
 		if (!var4.by.maybuild) {
 			return false;
 		} else {
@@ -43,19 +43,19 @@ public class azz extends ava {
 		return aty.bb.P().a(N, var4).a(b, var2).a(a, var3);
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return amk.bb;
 	}
 
-	public boolean b(ard var1, dt var2, bec var3) {
+	public boolean b(ard var1, Position var2, bec var3) {
 		return this.c(var1, var2, var3) > 0;
 	}
 
-	protected boolean c(atr var1) {
+	protected boolean c(Block var1) {
 		return d(var1);
 	}
 
-	public void b(World var1, dt var2, bec var3) {
+	public void b(World var1, Position var2, bec var3) {
 		super.b(var1, var2, var3);
 		this.h(var1, var2, var3);
 	}

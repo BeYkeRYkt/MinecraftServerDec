@@ -3,7 +3,7 @@ package net.minecraft;
 import com.google.common.base.Predicate;
 import java.util.Random;
 
-public class avf extends atr {
+public class avf extends Block {
 
 	public static final beu a = beu.a("facing", (Predicate) en.a);
 	public static final bet b = bet.a("open");
@@ -20,7 +20,7 @@ public class avf extends atr {
 		return false;
 	}
 
-	public boolean b(ard var1, dt var2) {
+	public boolean b(ard var1, Position var2) {
 		return g(e(var1, var2));
 	}
 
@@ -28,12 +28,12 @@ public class avf extends atr {
 		return false;
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3);
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		this.k(e(var1, var2));
 	}
 
@@ -81,11 +81,11 @@ public class avf extends atr {
 
 	}
 
-	public boolean a(World var1, dt var2, bec var3, ahd var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
 		if (this.J == bof.f) {
 			return true;
 		} else {
-			dt var9 = var3.b(O) == avg.b ? var2 : var2.b();
+			Position var9 = var3.b(O) == avg.b ? var2 : var2.b();
 			bec var10 = var2.equals(var9) ? var3 : var1.p(var9);
 			if (var10.c() != this) {
 				return false;
@@ -99,23 +99,23 @@ public class avf extends atr {
 		}
 	}
 
-	public void a(World var1, dt var2, boolean var3) {
+	public void a(World var1, Position var2, boolean var3) {
 		bec var4 = var1.p(var2);
 		if (var4.c() == this) {
-			dt var5 = var4.b(O) == avg.b ? var2 : var2.b();
+			Position var5 = var4.b(O) == avg.b ? var2 : var2.b();
 			bec var6 = var2 == var5 ? var4 : var1.p(var5);
 			if (var6.c() == this && ((Boolean) var6.b(b)).booleanValue() != var3) {
 				var1.a(var5, var6.a(b, Boolean.valueOf(var3)), 2);
 				var1.b(var5, var2);
-				var1.a((ahd) null, var3 ? 1003 : 1006, var2, 0);
+				var1.a((EntityHuman) null, var3 ? 1003 : 1006, var2, 0);
 			}
 
 		}
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (var3.b(O) == avg.a) {
-			dt var5 = var2.b();
+			Position var5 = var2.b();
 			bec var6 = var1.p(var5);
 			if (var6.c() != this) {
 				var1.g(var2);
@@ -124,7 +124,7 @@ public class avf extends atr {
 			}
 		} else {
 			boolean var9 = false;
-			dt var10 = var2.a();
+			Position var10 = var2.a();
 			bec var7 = var1.p(var10);
 			if (var7.c() != this) {
 				var1.g(var2);
@@ -150,7 +150,7 @@ public class avf extends atr {
 					if (var8 != ((Boolean) var3.b(b)).booleanValue()) {
 						var1.a(var2, var3.a(b, Boolean.valueOf(var8)), 2);
 						var1.b(var2, var2);
-						var1.a((ahd) null, var8 ? 1003 : 1006, var2, 0);
+						var1.a((EntityHuman) null, var8 ? 1003 : 1006, var2, 0);
 					}
 				}
 			}
@@ -158,16 +158,16 @@ public class avf extends atr {
 
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return var1.b(O) == avg.a ? null : this.j();
 	}
 
-	public bru a(World var1, dt var2, brw var3, brw var4) {
+	public bru a(World var1, Position var2, brw var3, brw var4) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3, var4);
 	}
 
-	public boolean c(World var1, dt var2) {
+	public boolean c(World var1, Position var2) {
 		return var2.o() >= 255 ? false : World.a((ard) var1, var2.b()) && super.c(var1, var2) && super.c(var1, var2.a());
 	}
 
@@ -175,7 +175,7 @@ public class avf extends atr {
 		return 1;
 	}
 
-	public static int e(ard var0, dt var1) {
+	public static int e(ard var0, Position var1) {
 		bec var2 = var0.p(var1);
 		int var3 = var2.c().c(var2);
 		boolean var4 = i(var3);
@@ -190,19 +190,19 @@ public class avf extends atr {
 		return b(var7) | (var4 ? 8 : 0) | (var11 ? 16 : 0) | (var12 ? 32 : 0);
 	}
 
-	private alq j() {
+	private Item j() {
 		return this == aty.aA ? amk.aB : (this == aty.ap ? amk.ar : (this == aty.aq ? amk.as : (this == aty.ar ? amk.at : (this == aty.as ? amk.au : (this == aty.at ? amk.av : amk.aq)))));
 	}
 
-	public void a(World var1, dt var2, bec var3, ahd var4) {
-		dt var5 = var2.b();
+	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
+		Position var5 = var2.b();
 		if (var4.by.instabuild && var3.b(O) == avg.a && var1.p(var5).c() == this) {
 			var1.g(var5);
 		}
 
 	}
 
-	public bec a(bec var1, ard var2, dt var3) {
+	public bec a(bec var1, ard var2, Position var3) {
 		bec var4;
 		if (var1.b(O) == avg.b) {
 			var4 = var2.p(var3.a());
@@ -249,11 +249,11 @@ public class avf extends atr {
 		return var0 & 7;
 	}
 
-	public static boolean f(ard var0, dt var1) {
+	public static boolean f(ard var0, Position var1) {
 		return g(e(var0, var1));
 	}
 
-	public static ej h(ard var0, dt var1) {
+	public static ej h(ard var0, Position var1) {
 		return f(e(var0, var1));
 	}
 

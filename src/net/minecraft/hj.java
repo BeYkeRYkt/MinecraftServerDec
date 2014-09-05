@@ -5,12 +5,12 @@ import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class hj implements ho {
+public abstract class hj implements IJSONComponent {
 
 	protected List a = Lists.newArrayList();
 	private hv b;
 
-	public ho a(ho var1) {
+	public IJSONComponent a(IJSONComponent var1) {
 		var1.b().a(this.b());
 		this.a.add(var1);
 		return this;
@@ -20,16 +20,16 @@ public abstract class hj implements ho {
 		return this.a;
 	}
 
-	public ho a(String var1) {
-		return this.a((ho) (new hy(var1)));
+	public IJSONComponent a(String var1) {
+		return this.a((IJSONComponent) (new hy(var1)));
 	}
 
-	public ho a(hv var1) {
+	public IJSONComponent a(hv var1) {
 		this.b = var1;
 		Iterator var2 = this.a.iterator();
 
 		while (var2.hasNext()) {
-			ho var3 = (ho) var2.next();
+			IJSONComponent var3 = (IJSONComponent) var2.next();
 			var3.b().a(this.b());
 		}
 
@@ -42,7 +42,7 @@ public abstract class hj implements ho {
 			Iterator var1 = this.a.iterator();
 
 			while (var1.hasNext()) {
-				ho var2 = (ho) var1.next();
+				IJSONComponent var2 = (IJSONComponent) var1.next();
 				var2.b().a(this.b);
 			}
 		}
@@ -59,7 +59,7 @@ public abstract class hj implements ho {
 		Iterator var2 = this.iterator();
 
 		while (var2.hasNext()) {
-			ho var3 = (ho) var2.next();
+			IJSONComponent var3 = (IJSONComponent) var2.next();
 			var1.append(var3.e());
 		}
 

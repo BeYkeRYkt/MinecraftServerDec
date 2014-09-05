@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-public class lp implements id<ik> {
+public class lp implements Packet<PlayPacketListener> {
 
 	private int a;
 	private final List b = Lists.newArrayList();
@@ -26,18 +26,18 @@ public class lp implements id<ik> {
 
 	}
 
-	public void a(hd var1) {
-		this.a = var1.e();
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readVarInt();
 		int var2 = var1.readInt();
 
 		for (int var3 = 0; var3 < var2; ++var3) {
-			String var4 = var1.c(64);
+			String var4 = var1.readString(64);
 			double var5 = var1.readDouble();
 			ArrayList var7 = Lists.newArrayList();
-			int var8 = var1.e();
+			int var8 = var1.readVarInt();
 
 			for (int var9 = 0; var9 < var8; ++var9) {
-				UUID var10 = var1.g();
+				UUID var10 = var1.readUUID();
 				var7.add(new ya(var10, "Unknown synced attribute modifier", var1.readDouble(), var1.readByte()));
 			}
 
@@ -46,21 +46,21 @@ public class lp implements id<ik> {
 
 	}
 
-	public void b(hd var1) {
-		var1.b(this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeVarInt(this.a);
 		var1.writeInt(this.b.size());
 		Iterator var2 = this.b.iterator();
 
 		while (var2.hasNext()) {
 			lq var3 = (lq) var2.next();
-			var1.a(var3.a());
+			var1.writeString(var3.a());
 			var1.writeDouble(var3.b());
-			var1.b(var3.c().size());
+			var1.writeVarInt(var3.c().size());
 			Iterator var4 = var3.c().iterator();
 
 			while (var4.hasNext()) {
 				ya var5 = (ya) var4.next();
-				var1.a(var5.a());
+				var1.writeUUID(var5.a());
 				var1.writeDouble(var5.d());
 				var1.writeByte(var5.c());
 			}
@@ -68,7 +68,7 @@ public class lp implements id<ik> {
 
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

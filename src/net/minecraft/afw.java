@@ -5,7 +5,7 @@ import java.util.Calendar;
 public class afw extends afm implements afr {
 
 	private zz b = new zz(this, 1.0D, 20, 60, 15.0F);
-	private zk c = new zk(this, ahd.class, 1.2D, false);
+	private zk c = new zk(this, EntityHuman.class, 1.2D, false);
 
 	public afw(World var1) {
 		super(var1);
@@ -15,10 +15,10 @@ public class afw extends afm implements afr {
 		this.i.a(3, new yx(this, 1.0D));
 		this.i.a(3, new yp(this, new afx(this), 6.0F, 1.0D, 1.2D));
 		this.i.a(4, new zy(this, 1.0D));
-		this.i.a(6, new zh(this, ahd.class, 8.0F));
+		this.i.a(6, new zh(this, EntityHuman.class, 8.0F));
 		this.i.a(6, new zx(this));
 		this.bg.a(1, new aal(this, false, new Class[0]));
-		this.bg.a(2, new aaq(this, ahd.class, true));
+		this.bg.a(2, new aaq(this, EntityHuman.class, true));
 		this.bg.a(3, new aaq(this, acq.class, true));
 		if (var1 != null && !var1.D) {
 			this.n();
@@ -33,7 +33,7 @@ public class afw extends afm implements afr {
 
 	protected void h() {
 		super.h();
-		this.ac.a(13, new Byte((byte) 0));
+		this.dataWatcher.a(13, new Byte((byte) 0));
 	}
 
 	protected String z() {
@@ -48,7 +48,7 @@ public class afw extends afm implements afr {
 		return "mob.skeleton.death";
 	}
 
-	protected void a(dt var1, atr var2) {
+	protected void a(Position var1, Block var2) {
 		this.a("mob.skeleton.step", 0.15F, 1.0F);
 	}
 
@@ -71,16 +71,16 @@ public class afw extends afm implements afr {
 	public void m() {
 		if (this.o.w() && !this.o.D) {
 			float var1 = this.c(1.0F);
-			dt var2 = new dt(this.s, (double) Math.round(this.t), this.u);
+			Position var2 = new Position(this.locationX, (double) Math.round(this.locationY), this.locationZ);
 			if (var1 > 0.5F && this.V.nextFloat() * 30.0F < (var1 - 0.4F) * 2.0F && this.o.i(var2)) {
 				boolean var3 = true;
-				amj var4 = this.p(4);
+				ItemStack var4 = this.p(4);
 				if (var4 != null) {
 					if (var4.e()) {
 						var4.b(var4.h() + this.V.nextInt(2));
 						if (var4.h() >= var4.j()) {
 							this.b(var4);
-							this.c(4, (amj) null);
+							this.c(4, (ItemStack) null);
 						}
 					}
 
@@ -111,21 +111,21 @@ public class afw extends afm implements afr {
 
 	public void a(wh var1) {
 		super.a(var1);
-		if (var1.i() instanceof ahj && var1.j() instanceof ahd) {
-			ahd var2 = (ahd) var1.j();
-			double var3 = var2.s - this.s;
-			double var5 = var2.u - this.u;
+		if (var1.i() instanceof ahj && var1.j() instanceof EntityHuman) {
+			EntityHuman var2 = (EntityHuman) var1.j();
+			double var3 = var2.locationX - this.locationX;
+			double var5 = var2.locationZ - this.locationZ;
 			if (var3 * var3 + var5 * var5 >= 2500.0D) {
 				var2.b((PlayerStatistic) tl.v);
 			}
 		} else if (var1.j() instanceof aep && ((aep) var1.j()).n() && ((aep) var1.j()).cn()) {
 			((aep) var1.j()).co();
-			this.a(new amj(amk.bX, 1, this.ck() == 1 ? 1 : 0), 0.0F);
+			this.a(new ItemStack(amk.bX, 1, this.ck() == 1 ? 1 : 0), 0.0F);
 		}
 
 	}
 
-	protected alq A() {
+	protected Item A() {
 		return amk.g;
 	}
 
@@ -156,22 +156,22 @@ public class afw extends afm implements afr {
 
 	protected void bp() {
 		if (this.ck() == 1) {
-			this.a(new amj(amk.bX, 1, 1), 0.0F);
+			this.a(new ItemStack(amk.bX, 1, 1), 0.0F);
 		}
 
 	}
 
 	protected void a(vu var1) {
 		super.a(var1);
-		this.c(0, new amj(amk.f));
+		this.c(0, new ItemStack(amk.f));
 	}
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		if (this.o.t instanceof bge && this.bb().nextInt(5) > 0) {
+		if (this.o.worldProvider instanceof bge && this.bb().nextInt(5) > 0) {
 			this.i.a(4, this.c);
 			this.a(1);
-			this.c(0, new amj(amk.q));
+			this.c(0, new ItemStack(amk.q));
 			this.a(afs.e).a(4.0D);
 		} else {
 			this.i.a(4, this.b);
@@ -183,7 +183,7 @@ public class afw extends afm implements afr {
 		if (this.p(4) == null) {
 			Calendar var3 = this.o.Y();
 			if (var3.get(2) + 1 == 10 && var3.get(5) == 31 && this.V.nextFloat() < 0.25F) {
-				this.c(4, new amj(this.V.nextFloat() < 0.1F ? aty.aZ : aty.aU));
+				this.c(4, new ItemStack(this.V.nextFloat() < 0.1F ? aty.aZ : aty.aU));
 				this.bh[4] = 0.0F;
 			}
 		}
@@ -194,8 +194,8 @@ public class afw extends afm implements afr {
 	public void n() {
 		this.i.a((zb) this.c);
 		this.i.a((zb) this.b);
-		amj var1 = this.bz();
-		if (var1 != null && var1.b() == amk.f) {
+		ItemStack var1 = this.bz();
+		if (var1 != null && var1.getItem() == amk.f) {
 			this.i.a(4, this.b);
 		} else {
 			this.i.a(4, this.c);
@@ -204,10 +204,10 @@ public class afw extends afm implements afr {
 	}
 
 	public void a(EntityLiving var1, float var2) {
-		ahj var3 = new ahj(this.o, this, var1, 1.6F, (float) (14 - this.o.aa().getId() * 4));
+		ahj var3 = new ahj(this.o, this, var1, 1.6F, (float) (14 - this.o.getDifficulty().getId() * 4));
 		int var4 = aph.a(apf.v.B, this.bz());
 		int var5 = aph.a(apf.w.B, this.bz());
-		var3.b((double) (var2 * 2.0F) + this.V.nextGaussian() * 0.25D + (double) ((float) this.o.aa().getId() * 0.11F));
+		var3.b((double) (var2 * 2.0F) + this.V.nextGaussian() * 0.25D + (double) ((float) this.o.getDifficulty().getId() * 0.11F));
 		if (var4 > 0) {
 			var3.b(var3.j() + (double) var4 * 0.5D + 0.5D);
 		}
@@ -225,11 +225,11 @@ public class afw extends afm implements afr {
 	}
 
 	public int ck() {
-		return this.ac.a(13);
+		return this.dataWatcher.a(13);
 	}
 
 	public void a(int var1) {
-		this.ac.b(13, Byte.valueOf((byte) var1));
+		this.dataWatcher.b(13, Byte.valueOf((byte) var1));
 		this.ab = var1 == 1;
 		if (var1 == 1) {
 			this.a(0.72F, 2.535F);
@@ -254,7 +254,7 @@ public class afw extends afm implements afr {
 		var1.put("SkeletonType", (byte) this.ck());
 	}
 
-	public void c(int var1, amj var2) {
+	public void c(int var1, ItemStack var2) {
 		super.c(var1, var2);
 		if (!this.o.D && var1 == 0) {
 			this.n();

@@ -21,7 +21,7 @@ public class SummonCommand extends AbstractCommand {
 			throw new dp("commands.summon.usage", new Object[0]);
 		} else {
 			String var3 = var2[0];
-			dt var4 = var1.c();
+			Position var4 = var1.c();
 			brw var5 = var1.d();
 			double var6 = var5.a;
 			double var8 = var5.b;
@@ -30,7 +30,7 @@ public class SummonCommand extends AbstractCommand {
 				var6 = b(var6, var2[1], true);
 				var8 = b(var8, var2[2], false);
 				var10 = b(var10, var2[3], true);
-				var4 = new dt(var6, var8, var10);
+				var4 = new Position(var6, var8, var10);
 			}
 
 			World var12 = var1.e();
@@ -43,7 +43,7 @@ public class SummonCommand extends AbstractCommand {
 				NBTCompoundTag var13 = new NBTCompoundTag();
 				boolean var14 = false;
 				if (var2.length >= 5) {
-					ho var15 = a(var1, var2, 4);
+					IJSONComponent var15 = a(var1, var2, 4);
 
 					try {
 						var13 = gg.a(var15.c());
@@ -65,9 +65,9 @@ public class SummonCommand extends AbstractCommand {
 				if (var21 == null) {
 					throw new di("commands.summon.failed", new Object[0]);
 				} else {
-					var21.b(var6, var8, var10, var21.y, var21.z);
+					var21.b(var6, var8, var10, var21.yaw, var21.pitch);
 					if (!var14 && var21 instanceof xn) {
-						((xn) var21).a(var12.E(new dt(var21)), (xq) null);
+						((xn) var21).a(var12.E(new Position(var21)), (xq) null);
 					}
 
 					var12.d(var21);
@@ -76,7 +76,7 @@ public class SummonCommand extends AbstractCommand {
 					for (NBTCompoundTag var17 = var13; var16 != null && var17.isTagAssignableFrom("Riding", 10); var17 = var17.getCompound("Riding")) {
 						Entity var18 = xb.a(var17.getCompound("Riding"), var12);
 						if (var18 != null) {
-							var18.b(var6, var8, var10, var18.y, var18.z);
+							var18.b(var6, var8, var10, var18.yaw, var18.pitch);
 							var12.d(var18);
 							var16.a(var18);
 						}
@@ -90,7 +90,7 @@ public class SummonCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return var2.length == 1 ? a(var2, xb.b()) : (var2.length > 1 && var2.length <= 4 ? a(var2, 1, var3) : null);
 	}
 }

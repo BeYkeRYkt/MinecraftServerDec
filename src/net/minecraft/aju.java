@@ -1,10 +1,10 @@
 package net.minecraft;
 
-public class aju extends alq {
+public class aju extends Item {
 
-	protected final atr a;
+	protected final Block a;
 
-	public aju(atr var1) {
+	public aju(Block var1) {
 		this.a = var1;
 	}
 
@@ -13,9 +13,9 @@ public class aju extends alq {
 		return this;
 	}
 
-	public boolean a(amj var1, ahd var2, World var3, dt var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
 		bec var9 = var3.p(var4);
-		atr var10 = var9.c();
+		Block var10 = var9.c();
 		if (var10 == aty.aH && ((Integer) var9.b(bao.a)).intValue() < 1) {
 			var5 = ej.b;
 		} else if (!var10.f(var3, var4)) {
@@ -48,14 +48,14 @@ public class aju extends alq {
 		}
 	}
 
-	public static boolean a(World var0, dt var1, amj var2) {
-		if (var2.n() && var2.o().isTagAssignableFrom("BlockEntityTag", 10)) {
+	public static boolean a(World var0, Position var1, ItemStack var2) {
+		if (var2.hasTag() && var2.getTag().isTagAssignableFrom("BlockEntityTag", 10)) {
 			bcm var3 = var0.s(var1);
 			if (var3 != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				NBTCompoundTag var5 = (NBTCompoundTag) var4.getCopy();
 				var3.b(var4);
-				NBTCompoundTag var6 = (NBTCompoundTag) var2.o().getTag("BlockEntityTag");
+				NBTCompoundTag var6 = (NBTCompoundTag) var2.getTag().getTag("BlockEntityTag");
 				var4.copyFrom(var6);
 				var4.put("x", var1.n());
 				var4.put("y", var1.o());
@@ -71,7 +71,7 @@ public class aju extends alq {
 		return false;
 	}
 
-	public String e_(amj var1) {
+	public String e_(ItemStack var1) {
 		return this.a.a();
 	}
 
@@ -79,12 +79,12 @@ public class aju extends alq {
 		return this.a.a();
 	}
 
-	public atr d() {
+	public Block d() {
 		return this.a;
 	}
 
 	// $FF: synthetic method
-	public alq c(String var1) {
+	public Item c(String var1) {
 		return this.b(var1);
 	}
 }

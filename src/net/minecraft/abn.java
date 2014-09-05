@@ -10,7 +10,7 @@ public abstract class abn extends xn implements wt {
 		return false;
 	}
 
-	protected boolean a(ahd var1) {
+	protected boolean a(EntityHuman var1) {
 		return false;
 	}
 }

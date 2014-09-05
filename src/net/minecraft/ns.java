@@ -14,7 +14,7 @@ public class ns implements JsonDeserializer, JsonSerializer {
 		JsonObject var4 = uh.l(var1, "status");
 		ServerPing var5 = new ServerPing();
 		if (var4.has("description")) {
-			var5.a((ho) var3.deserialize(var4.get("description"), ho.class));
+			var5.a((IJSONComponent) var3.deserialize(var4.get("description"), IJSONComponent.class));
 		}
 
 		if (var4.has("players")) {

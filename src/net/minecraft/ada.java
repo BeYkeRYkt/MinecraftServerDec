@@ -18,20 +18,20 @@ public class ada extends Entity {
 	}
 
 	protected void h() {
-		this.ac.a(8, Integer.valueOf(this.b));
+		this.dataWatcher.a(8, Integer.valueOf(this.b));
 	}
 
 	public void s_() {
-		this.p = this.s;
-		this.q = this.t;
-		this.r = this.u;
+		this.p = this.locationX;
+		this.q = this.locationY;
+		this.r = this.locationZ;
 		++this.a;
-		this.ac.b(8, Integer.valueOf(this.b));
-		int var1 = NumberConverter.c(this.s);
-		int var2 = NumberConverter.c(this.t);
-		int var3 = NumberConverter.c(this.u);
-		if (this.o.t instanceof bgh && this.o.p(new dt(var1, var2, var3)).c() != aty.ab) {
-			this.o.a(new dt(var1, var2, var3), aty.ab.P());
+		this.dataWatcher.b(8, Integer.valueOf(this.b));
+		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
+		int var2 = DataTypesConverter.toFixedPointInt(this.locationY);
+		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
+		if (this.o.worldProvider instanceof bgh && this.o.p(new Position(var1, var2, var3)).c() != aty.ab) {
+			this.o.a(new Position(var1, var2, var3), aty.ab.P());
 		}
 
 	}
@@ -55,7 +55,7 @@ public class ada extends Entity {
 				if (this.b <= 0) {
 					this.J();
 					if (!this.o.D) {
-						this.o.a((Entity) null, this.s, this.t, this.u, 6.0F, true);
+						this.o.a((Entity) null, this.locationX, this.locationY, this.locationZ, 6.0F, true);
 					}
 				}
 			}

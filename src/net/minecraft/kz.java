@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class kz implements id<ik> {
+public class kz implements Packet<PlayPacketListener> {
 
 	private int a;
 	private int b;
@@ -11,7 +11,7 @@ public class kz implements id<ik> {
 	}
 
 	public kz(Entity var1) {
-		this(var1.F(), var1.v, var1.w, var1.x);
+		this(var1.getId(), var1.motionX, var1.motionY, var1.motionZ);
 	}
 
 	public kz(int var1, double var2, double var4, double var6) {
@@ -46,21 +46,21 @@ public class kz implements id<ik> {
 		this.d = (int) (var6 * 8000.0D);
 	}
 
-	public void a(hd var1) {
-		this.a = var1.e();
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readVarInt();
 		this.b = var1.readShort();
 		this.c = var1.readShort();
 		this.d = var1.readShort();
 	}
 
-	public void b(hd var1) {
-		var1.b(this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeVarInt(this.a);
 		var1.writeShort(this.b);
 		var1.writeShort(this.c);
 		var1.writeShort(this.d);
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

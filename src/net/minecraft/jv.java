@@ -2,7 +2,7 @@ package net.minecraft;
 
 import org.apache.commons.lang3.Validate;
 
-public class jv implements id<ik> {
+public class jv implements Packet<PlayPacketListener> {
 
 	private String a;
 	private int b;
@@ -22,11 +22,11 @@ public class jv implements id<ik> {
 		this.d = (int) (var6 * 8.0D);
 		this.e = var8;
 		this.f = (int) (var9 * 63.0F);
-		var9 = NumberConverter.a(var9, 0.0F, 255.0F);
+		var9 = DataTypesConverter.a(var9, 0.0F, 255.0F);
 	}
 
-	public void a(hd var1) {
-		this.a = var1.c(256);
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readString(256);
 		this.b = var1.readInt();
 		this.c = var1.readInt();
 		this.d = var1.readInt();
@@ -34,8 +34,8 @@ public class jv implements id<ik> {
 		this.f = var1.readUnsignedByte();
 	}
 
-	public void b(hd var1) {
-		var1.a(this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeString(this.a);
 		var1.writeInt(this.b);
 		var1.writeInt(this.c);
 		var1.writeInt(this.d);
@@ -43,7 +43,7 @@ public class jv implements id<ik> {
 		var1.writeByte(this.f);
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

@@ -7,7 +7,7 @@ public abstract class ahr extends Entity implements aho {
 	private int c = -1;
 	private int d = -1;
 	private int e = -1;
-	private atr f;
+	private Block f;
 	protected boolean a;
 	public int b;
 	private EntityLiving g;
@@ -27,16 +27,16 @@ public abstract class ahr extends Entity implements aho {
 		super(var1);
 		this.g = var2;
 		this.a(0.25F, 0.25F);
-		this.b(var2.s, var2.t + (double) var2.aR(), var2.u, var2.y, var2.z);
-		this.s -= (double) (NumberConverter.b(this.y / 180.0F * 3.1415927F) * 0.16F);
-		this.t -= 0.10000000149011612D;
-		this.u -= (double) (NumberConverter.a(this.y / 180.0F * 3.1415927F) * 0.16F);
-		this.b(this.s, this.t, this.u);
+		this.b(var2.locationX, var2.locationY + (double) var2.aR(), var2.locationZ, var2.yaw, var2.pitch);
+		this.locationX -= (double) (DataTypesConverter.b(this.yaw / 180.0F * 3.1415927F) * 0.16F);
+		this.locationY -= 0.10000000149011612D;
+		this.locationZ -= (double) (DataTypesConverter.a(this.yaw / 180.0F * 3.1415927F) * 0.16F);
+		this.b(this.locationX, this.locationY, this.locationZ);
 		float var3 = 0.4F;
-		this.v = (double) (-NumberConverter.a(this.y / 180.0F * 3.1415927F) * NumberConverter.b(this.z / 180.0F * 3.1415927F) * var3);
-		this.x = (double) (NumberConverter.b(this.y / 180.0F * 3.1415927F) * NumberConverter.b(this.z / 180.0F * 3.1415927F) * var3);
-		this.w = (double) (-NumberConverter.a((this.z + this.l()) / 180.0F * 3.1415927F) * var3);
-		this.c(this.v, this.w, this.x, this.j(), 1.0F);
+		this.motionX = (double) (-DataTypesConverter.a(this.yaw / 180.0F * 3.1415927F) * DataTypesConverter.b(this.pitch / 180.0F * 3.1415927F) * var3);
+		this.motionZ = (double) (DataTypesConverter.b(this.yaw / 180.0F * 3.1415927F) * DataTypesConverter.b(this.pitch / 180.0F * 3.1415927F) * var3);
+		this.motionY = (double) (-DataTypesConverter.a((this.pitch + this.l()) / 180.0F * 3.1415927F) * var3);
+		this.c(this.motionX, this.motionY, this.motionZ, this.j(), 1.0F);
 	}
 
 	public ahr(World var1, double var2, double var4, double var6) {
@@ -55,7 +55,7 @@ public abstract class ahr extends Entity implements aho {
 	}
 
 	public void c(double var1, double var3, double var5, float var7, float var8) {
-		float var9 = NumberConverter.a(var1 * var1 + var3 * var3 + var5 * var5);
+		float var9 = DataTypesConverter.a(var1 * var1 + var3 * var3 + var5 * var5);
 		var1 /= (double) var9;
 		var3 /= (double) var9;
 		var5 /= (double) var9;
@@ -65,26 +65,26 @@ public abstract class ahr extends Entity implements aho {
 		var1 *= (double) var7;
 		var3 *= (double) var7;
 		var5 *= (double) var7;
-		this.v = var1;
-		this.w = var3;
-		this.x = var5;
-		float var10 = NumberConverter.a(var1 * var1 + var5 * var5);
-		this.A = this.y = (float) (Math.atan2(var1, var5) * 180.0D / 3.1415927410125732D);
-		this.B = this.z = (float) (Math.atan2(var3, (double) var10) * 180.0D / 3.1415927410125732D);
+		this.motionX = var1;
+		this.motionY = var3;
+		this.motionZ = var5;
+		float var10 = DataTypesConverter.a(var1 * var1 + var5 * var5);
+		this.A = this.yaw = (float) (Math.atan2(var1, var5) * 180.0D / 3.1415927410125732D);
+		this.B = this.pitch = (float) (Math.atan2(var3, (double) var10) * 180.0D / 3.1415927410125732D);
 		this.i = 0;
 	}
 
 	public void s_() {
-		this.P = this.s;
-		this.Q = this.t;
-		this.R = this.u;
+		this.P = this.locationX;
+		this.Q = this.locationY;
+		this.R = this.locationZ;
 		super.s_();
 		if (this.b > 0) {
 			--this.b;
 		}
 
 		if (this.a) {
-			if (this.o.p(new dt(this.c, this.d, this.e)).c() == this.f) {
+			if (this.o.p(new Position(this.c, this.d, this.e)).c() == this.f) {
 				++this.i;
 				if (this.i == 1200) {
 					this.J();
@@ -94,27 +94,27 @@ public abstract class ahr extends Entity implements aho {
 			}
 
 			this.a = false;
-			this.v *= (double) (this.V.nextFloat() * 0.2F);
-			this.w *= (double) (this.V.nextFloat() * 0.2F);
-			this.x *= (double) (this.V.nextFloat() * 0.2F);
+			this.motionX *= (double) (this.V.nextFloat() * 0.2F);
+			this.motionY *= (double) (this.V.nextFloat() * 0.2F);
+			this.motionZ *= (double) (this.V.nextFloat() * 0.2F);
 			this.i = 0;
 			this.ap = 0;
 		} else {
 			++this.ap;
 		}
 
-		brw var1 = new brw(this.s, this.t, this.u);
-		brw var2 = new brw(this.s + this.v, this.t + this.w, this.u + this.x);
+		brw var1 = new brw(this.locationX, this.locationY, this.locationZ);
+		brw var2 = new brw(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 		bru var3 = this.o.a(var1, var2);
-		var1 = new brw(this.s, this.t, this.u);
-		var2 = new brw(this.s + this.v, this.t + this.w, this.u + this.x);
+		var1 = new brw(this.locationX, this.locationY, this.locationZ);
+		var2 = new brw(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 		if (var3 != null) {
 			var2 = new brw(var3.c.a, var3.c.b, var3.c.c);
 		}
 
 		if (!this.o.D) {
 			Entity var4 = null;
-			List var5 = this.o.b((Entity) this, this.aQ().a(this.v, this.w, this.x).b(1.0D, 1.0D, 1.0D));
+			List var5 = this.o.b((Entity) this, this.aQ().a(this.motionX, this.motionY, this.motionZ).b(1.0D, 1.0D, 1.0D));
 			double var6 = 0.0D;
 			EntityLiving var8 = this.n();
 
@@ -147,46 +147,46 @@ public abstract class ahr extends Entity implements aho {
 			}
 		}
 
-		this.s += this.v;
-		this.t += this.w;
-		this.u += this.x;
-		float var16 = NumberConverter.a(this.v * this.v + this.x * this.x);
-		this.y = (float) (Math.atan2(this.v, this.x) * 180.0D / 3.1415927410125732D);
+		this.locationX += this.motionX;
+		this.locationY += this.motionY;
+		this.locationZ += this.motionZ;
+		float var16 = DataTypesConverter.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
+		this.yaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / 3.1415927410125732D);
 
-		for (this.z = (float) (Math.atan2(this.w, (double) var16) * 180.0D / 3.1415927410125732D); this.z - this.B < -180.0F; this.B -= 360.0F) {
+		for (this.pitch = (float) (Math.atan2(this.motionY, (double) var16) * 180.0D / 3.1415927410125732D); this.pitch - this.B < -180.0F; this.B -= 360.0F) {
 			;
 		}
 
-		while (this.z - this.B >= 180.0F) {
+		while (this.pitch - this.B >= 180.0F) {
 			this.B += 360.0F;
 		}
 
-		while (this.y - this.A < -180.0F) {
+		while (this.yaw - this.A < -180.0F) {
 			this.A -= 360.0F;
 		}
 
-		while (this.y - this.A >= 180.0F) {
+		while (this.yaw - this.A >= 180.0F) {
 			this.A += 360.0F;
 		}
 
-		this.z = this.B + (this.z - this.B) * 0.2F;
-		this.y = this.A + (this.y - this.A) * 0.2F;
+		this.pitch = this.B + (this.pitch - this.B) * 0.2F;
+		this.yaw = this.A + (this.yaw - this.A) * 0.2F;
 		float var17 = 0.99F;
 		float var18 = this.m();
 		if (this.V()) {
 			for (int var7 = 0; var7 < 4; ++var7) {
 				float var19 = 0.25F;
-				this.o.a(ew.e, this.s - this.v * (double) var19, this.t - this.w * (double) var19, this.u - this.x * (double) var19, this.v, this.w, this.x, new int[0]);
+				this.o.a(ew.e, this.locationX - this.motionX * (double) var19, this.locationY - this.motionY * (double) var19, this.locationZ - this.motionZ * (double) var19, this.motionX, this.motionY, this.motionZ, new int[0]);
 			}
 
 			var17 = 0.8F;
 		}
 
-		this.v *= (double) var17;
-		this.w *= (double) var17;
-		this.x *= (double) var17;
-		this.w -= (double) var18;
-		this.b(this.s, this.t, this.u);
+		this.motionX *= (double) var17;
+		this.motionY *= (double) var17;
+		this.motionZ *= (double) var17;
+		this.motionY -= (double) var18;
+		this.b(this.locationX, this.locationY, this.locationZ);
 	}
 
 	protected float m() {
@@ -199,11 +199,11 @@ public abstract class ahr extends Entity implements aho {
 		var1.put("xTile", (short) this.c);
 		var1.put("yTile", (short) this.d);
 		var1.put("zTile", (short) this.e);
-		oa var2 = (oa) atr.c.c(this.f);
+		oa var2 = (oa) Block.c.c(this.f);
 		var1.put("inTile", var2 == null ? "" : var2.toString());
 		var1.put("shake", (byte) this.b);
 		var1.put("inGround", (byte) (this.a ? 1 : 0));
-		if ((this.h == null || this.h.length() == 0) && this.g instanceof ahd) {
+		if ((this.h == null || this.h.length() == 0) && this.g instanceof EntityHuman) {
 			this.h = this.g.d_();
 		}
 
@@ -215,9 +215,9 @@ public abstract class ahr extends Entity implements aho {
 		this.d = var1.getShort("yTile");
 		this.e = var1.getShort("zTile");
 		if (var1.isTagAssignableFrom("inTile", 8)) {
-			this.f = atr.b(var1.getString("inTile"));
+			this.f = Block.b(var1.getString("inTile"));
 		} else {
-			this.f = atr.c(var1.getByte("inTile") & 255);
+			this.f = Block.c(var1.getByte("inTile") & 255);
 		}
 
 		this.b = var1.getByte("shake") & 255;

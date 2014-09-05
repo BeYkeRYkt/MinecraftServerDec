@@ -64,26 +64,26 @@ public class ty {
 		while (var1.hasNext()) {
 			aoo var2 = (aoo) var1.next();
 			if (var2.b() != null) {
-				var0.add(var2.b().b());
+				var0.add(var2.b().getItem());
 			}
 		}
 
 		var1 = aok.a().b().values().iterator();
 
 		while (var1.hasNext()) {
-			amj var5 = (amj) var1.next();
-			var0.add(var5.b());
+			ItemStack var5 = (ItemStack) var1.next();
+			var0.add(var5.getItem());
 		}
 
 		var1 = var0.iterator();
 
 		while (var1.hasNext()) {
-			alq var6 = (alq) var1.next();
+			Item var6 = (Item) var1.next();
 			if (var6 != null) {
-				int var3 = alq.b(var6);
+				int var3 = Item.getId(var6);
 				String var4 = a(var6);
 				if (var4 != null) {
-					I[var3] = (new to("stat.craftItem.", var4, new hz("stat.craftItem", new Object[] { (new amj(var6)).C() }), var6)).h();
+					I[var3] = (new to("stat.craftItem.", var4, new hz("stat.craftItem", new Object[] { (new ItemStack(var6)).C() }), var6)).h();
 				}
 			}
 		}
@@ -92,16 +92,16 @@ public class ty {
 	}
 
 	private static void c() {
-		Iterator var0 = atr.c.iterator();
+		Iterator var0 = Block.c.iterator();
 
 		while (var0.hasNext()) {
-			atr var1 = (atr) var0.next();
-			alq var2 = alq.a(var1);
+			Block var1 = (Block) var0.next();
+			Item var2 = Item.getItemOf(var1);
 			if (var2 != null) {
-				int var3 = atr.a(var1);
+				int var3 = Block.a(var1);
 				String var4 = a(var2);
 				if (var4 != null && var1.I()) {
-					H[var3] = (new to("stat.mineBlock.", var4, new hz("stat.mineBlock", new Object[] { (new amj(var1)).C() }), var2)).h();
+					H[var3] = (new to("stat.mineBlock.", var4, new hz("stat.mineBlock", new Object[] { (new ItemStack(var1)).C() }), var2)).h();
 					e.add((to) H[var3]);
 				}
 			}
@@ -111,15 +111,15 @@ public class ty {
 	}
 
 	private static void d() {
-		Iterator var0 = alq.e.iterator();
+		Iterator var0 = Item.REGISTRY.iterator();
 
 		while (var0.hasNext()) {
-			alq var1 = (alq) var0.next();
+			Item var1 = (Item) var0.next();
 			if (var1 != null) {
-				int var2 = alq.b(var1);
+				int var2 = Item.getId(var1);
 				String var3 = a(var1);
 				if (var3 != null) {
-					J[var2] = (new to("stat.useItem.", var3, new hz("stat.useItem", new Object[] { (new amj(var1)).C() }), var1)).h();
+					J[var2] = (new to("stat.useItem.", var3, new hz("stat.useItem", new Object[] { (new ItemStack(var1)).C() }), var1)).h();
 					if (!(var1 instanceof aju)) {
 						d.add((to) J[var2]);
 					}
@@ -131,15 +131,15 @@ public class ty {
 	}
 
 	private static void e() {
-		Iterator var0 = alq.e.iterator();
+		Iterator var0 = Item.REGISTRY.iterator();
 
 		while (var0.hasNext()) {
-			alq var1 = (alq) var0.next();
+			Item var1 = (Item) var0.next();
 			if (var1 != null) {
-				int var2 = alq.b(var1);
+				int var2 = Item.getId(var1);
 				String var3 = a(var1);
 				if (var3 != null && var1.m()) {
-					K[var2] = (new to("stat.breakItem.", var3, new hz("stat.breakItem", new Object[] { (new amj(var1)).C() }), var1)).h();
+					K[var2] = (new to("stat.breakItem.", var3, new hz("stat.breakItem", new Object[] { (new ItemStack(var1)).C() }), var1)).h();
 				}
 			}
 		}
@@ -147,8 +147,8 @@ public class ty {
 		a(K);
 	}
 
-	private static String a(alq var0) {
-		oa var1 = (oa) alq.e.c(var0);
+	private static String a(Item var0) {
+		oa var1 = (oa) Item.REGISTRY.c(var0);
 		return var1 != null ? var1.toString().replace(':', '.') : null;
 	}
 
@@ -169,9 +169,9 @@ public class ty {
 		a(var0, aty.ak, aty.d);
 	}
 
-	private static void a(PlayerStatistic[] var0, atr var1, atr var2) {
-		int var3 = atr.a(var1);
-		int var4 = atr.a(var2);
+	private static void a(PlayerStatistic[] var0, Block var1, Block var2) {
+		int var3 = Block.a(var1);
+		int var4 = Block.a(var2);
 		if (var0[var3] != null && var0[var4] == null) {
 			var0[var4] = var0[var3];
 		} else {

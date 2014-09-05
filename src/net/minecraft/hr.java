@@ -3,9 +3,9 @@ package net.minecraft;
 public class hr {
 
 	private final hs a;
-	private final ho b;
+	private final IJSONComponent b;
 
-	public hr(hs var1, ho var2) {
+	public hr(hs var1, IJSONComponent var2) {
 		this.a = var1;
 		this.b = var2;
 	}
@@ -14,7 +14,7 @@ public class hr {
 		return this.a;
 	}
 
-	public ho b() {
+	public IJSONComponent b() {
 		return this.b;
 	}
 

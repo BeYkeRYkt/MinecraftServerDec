@@ -26,15 +26,15 @@ public class bmy {
 
 	public static List a(Random var0, int var1) {
 		ArrayList var2 = Lists.newArrayList();
-		var2.add(new bne(bng.class, 4, NumberConverter.a(var0, 2 + var1, 4 + var1 * 2)));
-		var2.add(new bne(bni.class, 20, NumberConverter.a(var0, 0 + var1, 1 + var1)));
-		var2.add(new bne(bna.class, 20, NumberConverter.a(var0, 0 + var1, 2 + var1)));
-		var2.add(new bne(bnh.class, 3, NumberConverter.a(var0, 2 + var1, 5 + var1 * 3)));
-		var2.add(new bne(bnf.class, 15, NumberConverter.a(var0, 0 + var1, 2 + var1)));
-		var2.add(new bne(bnb.class, 3, NumberConverter.a(var0, 1 + var1, 4 + var1)));
-		var2.add(new bne(bnc.class, 3, NumberConverter.a(var0, 2 + var1, 4 + var1 * 2)));
-		var2.add(new bne(bnj.class, 15, NumberConverter.a(var0, 0, 1 + var1)));
-		var2.add(new bne(bnm.class, 8, NumberConverter.a(var0, 0 + var1, 3 + var1 * 2)));
+		var2.add(new bne(bng.class, 4, DataTypesConverter.a(var0, 2 + var1, 4 + var1 * 2)));
+		var2.add(new bne(bni.class, 20, DataTypesConverter.a(var0, 0 + var1, 1 + var1)));
+		var2.add(new bne(bna.class, 20, DataTypesConverter.a(var0, 0 + var1, 2 + var1)));
+		var2.add(new bne(bnh.class, 3, DataTypesConverter.a(var0, 2 + var1, 5 + var1 * 3)));
+		var2.add(new bne(bnf.class, 15, DataTypesConverter.a(var0, 0 + var1, 2 + var1)));
+		var2.add(new bne(bnb.class, 3, DataTypesConverter.a(var0, 1 + var1, 4 + var1)));
+		var2.add(new bne(bnc.class, 3, DataTypesConverter.a(var0, 2 + var1, 4 + var1 * 2)));
+		var2.add(new bne(bnj.class, 15, DataTypesConverter.a(var0, 0, 1 + var1)));
+		var2.add(new bne(bnm.class, 8, DataTypesConverter.a(var0, 0 + var1, 3 + var1 * 2)));
 		Iterator var3 = var2.iterator();
 
 		while (var3.hasNext()) {

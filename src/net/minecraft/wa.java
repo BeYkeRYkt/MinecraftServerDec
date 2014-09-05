@@ -3,11 +3,11 @@ package net.minecraft;
 import com.google.common.collect.Lists;
 import java.util.List;
 
-public class wa implements vq {
+public class wa implements IInventory {
 
 	private String a;
 	private int b;
-	private amj[] c;
+	private ItemStack[] c;
 	private List d;
 	private boolean e;
 
@@ -15,7 +15,7 @@ public class wa implements vq {
 		this.a = var1;
 		this.e = var2;
 		this.b = var3;
-		this.c = new amj[var3];
+		this.c = new ItemStack[var3];
 	}
 
 	public void a(vr var1) {
@@ -30,13 +30,13 @@ public class wa implements vq {
 		this.d.remove(var1);
 	}
 
-	public amj a(int var1) {
+	public ItemStack a(int var1) {
 		return var1 >= 0 && var1 < this.c.length ? this.c[var1] : null;
 	}
 
-	public amj a(int var1, int var2) {
+	public ItemStack a(int var1, int var2) {
 		if (this.c[var1] != null) {
-			amj var3;
+			ItemStack var3;
 			if (this.c[var1].b <= var2) {
 				var3 = this.c[var1];
 				this.c[var1] = null;
@@ -56,18 +56,18 @@ public class wa implements vq {
 		}
 	}
 
-	public amj a(amj var1) {
-		amj var2 = var1.k();
+	public ItemStack a(ItemStack var1) {
+		ItemStack var2 = var1.getCopy();
 
 		for (int var3 = 0; var3 < this.b; ++var3) {
-			amj var4 = this.a(var3);
+			ItemStack var4 = this.a(var3);
 			if (var4 == null) {
 				this.a(var3, var2);
 				this.o_();
 				return null;
 			}
 
-			if (amj.c(var4, var2)) {
+			if (ItemStack.c(var4, var2)) {
 				int var5 = Math.min(this.p_(), var4.c());
 				int var6 = Math.min(var2.b, var5 - var4.b);
 				if (var6 > 0) {
@@ -88,9 +88,9 @@ public class wa implements vq {
 		return var2;
 	}
 
-	public amj b(int var1) {
+	public ItemStack b(int var1) {
 		if (this.c[var1] != null) {
-			amj var2 = this.c[var1];
+			ItemStack var2 = this.c[var1];
 			this.c[var1] = null;
 			return var2;
 		} else {
@@ -98,7 +98,7 @@ public class wa implements vq {
 		}
 	}
 
-	public void a(int var1, amj var2) {
+	public void a(int var1, ItemStack var2) {
 		this.c[var1] = var2;
 		if (var2 != null && var2.b > this.p_()) {
 			var2.b = this.p_();
@@ -124,8 +124,8 @@ public class wa implements vq {
 		this.a = var1;
 	}
 
-	public ho e_() {
-		return (ho) (this.k_() ? new hy(this.d_()) : new hz(this.d_(), new Object[0]));
+	public IJSONComponent e_() {
+		return (IJSONComponent) (this.k_() ? new hy(this.d_()) : new hz(this.d_(), new Object[0]));
 	}
 
 	public int p_() {
@@ -141,17 +141,17 @@ public class wa implements vq {
 
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return true;
 	}
 
-	public void b(ahd var1) {
+	public void b(EntityHuman var1) {
 	}
 
-	public void c(ahd var1) {
+	public void c(EntityHuman var1) {
 	}
 
-	public boolean b(int var1, amj var2) {
+	public boolean b(int var1, ItemStack var2) {
 		return true;
 	}
 

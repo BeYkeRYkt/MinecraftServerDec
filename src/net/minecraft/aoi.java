@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class aoi implements aoo {
 
-	private amj a;
+	private ItemStack a;
 
 	public boolean a(ain var1, World var2) {
 		this.a = null;
@@ -17,28 +17,28 @@ public class aoi implements aoo {
 		int var8 = 0;
 
 		for (int var9 = 0; var9 < var1.n_(); ++var9) {
-			amj var10 = var1.a(var9);
+			ItemStack var10 = var1.a(var9);
 			if (var10 != null) {
-				if (var10.b() == amk.H) {
+				if (var10.getItem() == amk.H) {
 					++var4;
-				} else if (var10.b() == amk.cc) {
+				} else if (var10.getItem() == amk.cc) {
 					++var6;
-				} else if (var10.b() == amk.aW) {
+				} else if (var10.getItem() == amk.aW) {
 					++var5;
-				} else if (var10.b() == amk.aK) {
+				} else if (var10.getItem() == amk.aK) {
 					++var3;
-				} else if (var10.b() == amk.aT) {
+				} else if (var10.getItem() == amk.aT) {
 					++var7;
-				} else if (var10.b() == amk.i) {
+				} else if (var10.getItem() == amk.i) {
 					++var7;
-				} else if (var10.b() == amk.bL) {
+				} else if (var10.getItem() == amk.bL) {
 					++var8;
-				} else if (var10.b() == amk.G) {
+				} else if (var10.getItem() == amk.G) {
 					++var8;
-				} else if (var10.b() == amk.bx) {
+				} else if (var10.getItem() == amk.bx) {
 					++var8;
 				} else {
-					if (var10.b() != amk.bX) {
+					if (var10.getItem() != amk.bX) {
 						return false;
 					}
 
@@ -52,16 +52,16 @@ public class aoi implements aoo {
 			NBTCompoundTag var16;
 			NBTCompoundTag var19;
 			if (var4 >= 1 && var3 == 1 && var7 == 0) {
-				this.a = new amj(amk.cb);
+				this.a = new ItemStack(amk.cb);
 				if (var6 > 0) {
 					var16 = new NBTCompoundTag();
 					var19 = new NBTCompoundTag();
 					NBTListTag var23 = new NBTListTag();
 
 					for (int var24 = 0; var24 < var1.n_(); ++var24) {
-						amj var26 = var1.a(var24);
-						if (var26 != null && var26.b() == amk.cc && var26.n() && var26.o().isTagAssignableFrom("Explosion", 10)) {
-							var23.addTag((NBTTag) var26.o().getCompound("Explosion"));
+						ItemStack var26 = var1.a(var24);
+						if (var26 != null && var26.getItem() == amk.cc && var26.hasTag() && var26.getTag().isTagAssignableFrom("Explosion", 10)) {
+							var23.addTag((NBTTag) var26.getTag().getCompound("Explosion"));
 						}
 					}
 
@@ -73,28 +73,28 @@ public class aoi implements aoo {
 
 				return true;
 			} else if (var4 == 1 && var3 == 0 && var6 == 0 && var5 > 0 && var8 <= 1) {
-				this.a = new amj(amk.cc);
+				this.a = new ItemStack(amk.cc);
 				var16 = new NBTCompoundTag();
 				var19 = new NBTCompoundTag();
 				byte var22 = 0;
 				ArrayList var12 = Lists.newArrayList();
 
 				for (int var13 = 0; var13 < var1.n_(); ++var13) {
-					amj var14 = var1.a(var13);
+					ItemStack var14 = var1.a(var13);
 					if (var14 != null) {
-						if (var14.b() == amk.aW) {
+						if (var14.getItem() == amk.aW) {
 							var12.add(Integer.valueOf(akw.a[var14.i() & 15]));
-						} else if (var14.b() == amk.aT) {
+						} else if (var14.getItem() == amk.aT) {
 							var19.put("Flicker", true);
-						} else if (var14.b() == amk.i) {
+						} else if (var14.getItem() == amk.i) {
 							var19.put("Trail", true);
-						} else if (var14.b() == amk.bL) {
+						} else if (var14.getItem() == amk.bL) {
 							var22 = 1;
-						} else if (var14.b() == amk.G) {
+						} else if (var14.getItem() == amk.G) {
 							var22 = 4;
-						} else if (var14.b() == amk.bx) {
+						} else if (var14.getItem() == amk.bx) {
 							var22 = 2;
-						} else if (var14.b() == amk.bX) {
+						} else if (var14.getItem() == amk.bX) {
 							var22 = 3;
 						}
 					}
@@ -115,12 +115,12 @@ public class aoi implements aoo {
 				ArrayList var15 = Lists.newArrayList();
 
 				for (int var17 = 0; var17 < var1.n_(); ++var17) {
-					amj var11 = var1.a(var17);
+					ItemStack var11 = var1.a(var17);
 					if (var11 != null) {
-						if (var11.b() == amk.aW) {
+						if (var11.getItem() == amk.aW) {
 							var15.add(Integer.valueOf(akw.a[var11.i() & 15]));
-						} else if (var11.b() == amk.cc) {
-							this.a = var11.k();
+						} else if (var11.getItem() == amk.cc) {
+							this.a = var11.getCopy();
 							this.a.b = 1;
 						}
 					}
@@ -132,8 +132,8 @@ public class aoi implements aoo {
 					var18[var20] = ((Integer) var15.get(var20)).intValue();
 				}
 
-				if (this.a != null && this.a.n()) {
-					NBTCompoundTag var21 = this.a.o().getCompound("Explosion");
+				if (this.a != null && this.a.hasTag()) {
+					NBTCompoundTag var21 = this.a.getTag().getCompound("Explosion");
 					if (var21 == null) {
 						return false;
 					} else {
@@ -151,25 +151,25 @@ public class aoi implements aoo {
 		}
 	}
 
-	public amj a(ain var1) {
-		return this.a.k();
+	public ItemStack a(ain var1) {
+		return this.a.getCopy();
 	}
 
 	public int a() {
 		return 10;
 	}
 
-	public amj b() {
+	public ItemStack b() {
 		return this.a;
 	}
 
-	public amj[] b(ain var1) {
-		amj[] var2 = new amj[var1.n_()];
+	public ItemStack[] b(ain var1) {
+		ItemStack[] var2 = new ItemStack[var1.n_()];
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {
-			amj var4 = var1.a(var3);
-			if (var4 != null && var4.b().r()) {
-				var2[var3] = new amj(var4.b().q());
+			ItemStack var4 = var1.a(var3);
+			if (var4 != null && var4.getItem().r()) {
+				var2[var3] = new ItemStack(var4.getItem().q());
 			}
 		}
 

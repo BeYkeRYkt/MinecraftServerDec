@@ -26,7 +26,7 @@ public class GameModeCommand extends AbstractCommand {
 			var4.a(var3);
 			var4.O = 0.0F;
 			if (var1.e().Q().b("sendCommandFeedback")) {
-				var4.a((ho) (new hz("gameMode.changed", new Object[0])));
+				var4.a((IJSONComponent) (new hz("gameMode.changed", new Object[0])));
 			}
 
 			hz var5 = new hz("gameMode." + var3.getName(), new Object[0]);
@@ -43,7 +43,7 @@ public class GameModeCommand extends AbstractCommand {
 		return !var2.equalsIgnoreCase(GameMode.SURVIVAL.getName()) && !var2.equalsIgnoreCase("s") ? (!var2.equalsIgnoreCase(GameMode.CREATIVE.getName()) && !var2.equalsIgnoreCase("c") ? (!var2.equalsIgnoreCase(GameMode.ADVENTURE.getName()) && !var2.equalsIgnoreCase("a") ? (!var2.equalsIgnoreCase(GameMode.SPECTATOR.getName()) && !var2.equalsIgnoreCase("sp") ? arb.a(a(var2, 0, GameMode.values().length - 2)) : GameMode.SPECTATOR) : GameMode.ADVENTURE) : GameMode.CREATIVE) : GameMode.SURVIVAL;
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return var2.length == 1 ? a(var2, new String[] { "survival", "creative", "adventure", "spectator" }) : (var2.length == 2 ? a(var2, this.d()) : null);
 	}
 

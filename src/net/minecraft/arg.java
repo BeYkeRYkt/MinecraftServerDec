@@ -22,10 +22,10 @@ public final class arg {
 			int var9;
 			int var12;
 			while (var6.hasNext()) {
-				ahd var7 = (ahd) var6.next();
+				EntityHuman var7 = (EntityHuman) var6.next();
 				if (!var7.v()) {
-					int var8 = NumberConverter.c(var7.s / 16.0D);
-					var9 = NumberConverter.c(var7.u / 16.0D);
+					int var8 = DataTypesConverter.toFixedPointInt(var7.locationX / 16.0D);
+					var9 = DataTypesConverter.toFixedPointInt(var7.locationZ / 16.0D);
 					byte var10 = 8;
 
 					for (int var11 = -var10; var11 <= var10; ++var11) {
@@ -44,7 +44,7 @@ public final class arg {
 			}
 
 			int var36 = 0;
-			dt var37 = var1.M();
+			Position var37 = var1.M();
 			xp[] var38 = xp.values();
 			var9 = var38.length;
 
@@ -58,11 +58,11 @@ public final class arg {
 
 						label115: while (var42.hasNext()) {
 							aqm var15 = (aqm) var42.next();
-							dt var16 = a(var1, var15.a, var15.b);
+							Position var16 = a(var1, var15.a, var15.b);
 							int var17 = var16.n();
 							int var18 = var16.o();
 							int var19 = var16.p();
-							atr var20 = var1.p(var16).c();
+							Block var20 = var1.p(var16).c();
 							if (!var20.t()) {
 								int var21 = 0;
 								int var22 = 0;
@@ -82,7 +82,7 @@ public final class arg {
 												var23 += var1.s.nextInt(var26) - var1.s.nextInt(var26);
 												var24 += var1.s.nextInt(1) - var1.s.nextInt(1);
 												var25 += var1.s.nextInt(var26) - var1.s.nextInt(var26);
-												dt var30 = new dt(var23, var24, var25);
+												Position var30 = new Position(var23, var24, var25);
 												float var31 = (float) var23 + 0.5F;
 												float var32 = (float) var25 + 0.5F;
 												if (!var1.b((double) var31, (double) var24, (double) var32, 24.0D) && var37.c((double) var31, (double) var24, (double) var32) >= 576.0D) {
@@ -104,7 +104,7 @@ public final class arg {
 
 														var33.b((double) var31, (double) var24, (double) var32, var1.s.nextFloat() * 360.0F, 0.0F);
 														if (var33.bQ() && var33.bR()) {
-															var28 = var33.a(var1.E(new dt(var33)), var28);
+															var28 = var33.a(var1.E(new Position(var33)), var28);
 															if (var33.bR()) {
 																++var21;
 																var1.d(var33);
@@ -138,28 +138,28 @@ public final class arg {
 		}
 	}
 
-	protected static dt a(World var0, int var1, int var2) {
+	protected static Position a(World var0, int var1, int var2) {
 		bfh var3 = var0.a(var1, var2);
 		int var4 = var1 * 16 + var0.s.nextInt(16);
 		int var5 = var2 * 16 + var0.s.nextInt(16);
-		int var6 = NumberConverter.c(var3.f(new dt(var4, 0, var5)) + 1, 16);
+		int var6 = DataTypesConverter.c(var3.f(new Position(var4, 0, var5)) + 1, 16);
 		int var7 = var0.s.nextInt(var6 > 0 ? var6 : var3.g() + 16 - 1);
-		return new dt(var4, var7, var5);
+		return new Position(var4, var7, var5);
 	}
 
-	public static boolean a(xo var0, World var1, dt var2) {
+	public static boolean a(xo var0, World var1, Position var2) {
 		if (!var1.af().a(var2)) {
 			return false;
 		} else {
-			atr var3 = var1.p(var2).c();
+			Block var3 = var1.p(var2).c();
 			if (var0 == xo.c) {
 				return var3.r().d() && var1.p(var2.b()).c().r().d() && !var1.p(var2.a()).c().t();
 			} else {
-				dt var4 = var2.b();
+				Position var4 = var2.b();
 				if (!World.a((ard) var1, var4)) {
 					return false;
 				} else {
-					atr var5 = var1.p(var4).c();
+					Block var5 = var1.p(var4).c();
 					boolean var6 = var5 != aty.h && var5 != aty.cv;
 					return var6 && !var3.t() && !var3.r().d() && !var1.p(var2.a()).c().t();
 				}
@@ -183,7 +183,7 @@ public final class arg {
 					boolean var16 = false;
 
 					for (int var17 = 0; !var16 && var17 < 4; ++var17) {
-						dt var18 = var0.r(new dt(var11, 0, var12));
+						Position var18 = var0.r(new Position(var11, 0, var12));
 						if (a(xo.a, var0, var18)) {
 							xn var19;
 							try {
@@ -195,7 +195,7 @@ public final class arg {
 
 							var19.b((double) ((float) var11 + 0.5F), (double) var18.o(), (double) ((float) var12 + 0.5F), var6.nextFloat() * 360.0F, 0.0F);
 							var0.d((Entity) var19);
-							var10 = var19.a(var0.E(new dt(var19)), var10);
+							var10 = var19.a(var0.E(new Position(var19)), var10);
 							var16 = true;
 						}
 

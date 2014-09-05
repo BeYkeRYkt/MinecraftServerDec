@@ -20,7 +20,7 @@ public class zj extends zb {
 		} else if (this.b.bb().nextInt(500) != 0) {
 			return false;
 		} else {
-			this.a = this.d.ae().a(new dt(this.b), 0);
+			this.a = this.d.ae().a(new Position(this.b), 0);
 			if (this.a == null) {
 				return false;
 			} else if (this.f() && this.b.n(true)) {
@@ -83,7 +83,7 @@ public class zj extends zb {
 		this.c.o(false);
 		this.b.o(false);
 		var1.b(-24000);
-		var1.b(this.b.s, this.b.t, this.b.u, 0.0F, 0.0F);
+		var1.b(this.b.locationX, this.b.locationY, this.b.locationZ, 0.0F, 0.0F);
 		this.d.d((Entity) var1);
 		this.d.a((Entity) var1, (byte) 12);
 	}

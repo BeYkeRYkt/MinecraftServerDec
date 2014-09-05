@@ -58,12 +58,12 @@ public abstract class bmm extends bgt {
 		return var6;
 	}
 
-	public boolean b(dt var1) {
+	public boolean b(Position var1) {
 		this.a(this.c);
 		return this.c(var1) != null;
 	}
 
-	protected bmv c(dt var1) {
+	protected bmv c(Position var1) {
 		Iterator var2 = this.e.values().iterator();
 
 		while (var2.hasNext()) {
@@ -83,7 +83,7 @@ public abstract class bmm extends bgt {
 		return null;
 	}
 
-	public boolean a(World var1, dt var2) {
+	public boolean a(World var1, Position var2) {
 		this.a(var1);
 		Iterator var3 = this.e.values().iterator();
 
@@ -99,7 +99,7 @@ public abstract class bmm extends bgt {
 		return true;
 	}
 
-	public dt b(World var1, dt var2) {
+	public Position b(World var1, Position var2) {
 		this.c = var1;
 		this.a(var1);
 		this.b.setSeed(var1.J());
@@ -110,10 +110,10 @@ public abstract class bmm extends bgt {
 		this.b.setSeed(var7 ^ var9 ^ var1.J());
 		this.a(var1, var2.n() >> 4, var2.p() >> 4, 0, 0, (bgk) null);
 		double var11 = Double.MAX_VALUE;
-		dt var13 = null;
+		Position var13 = null;
 		Iterator var14 = this.e.values().iterator();
 
-		dt var17;
+		Position var17;
 		double var18;
 		while (var14.hasNext()) {
 			bmv var15 = (bmv) var14.next();
@@ -133,11 +133,11 @@ public abstract class bmm extends bgt {
 		} else {
 			List var20 = this.y_();
 			if (var20 != null) {
-				dt var21 = null;
+				Position var21 = null;
 				Iterator var22 = var20.iterator();
 
 				while (var22.hasNext()) {
-					var17 = (dt) var22.next();
+					var17 = (Position) var22.next();
 					var18 = var17.i(var2);
 					if (var18 < var11) {
 						var11 = var18;

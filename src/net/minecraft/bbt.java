@@ -5,7 +5,7 @@ import com.google.common.base.Predicate;
 import java.util.Iterator;
 import java.util.Random;
 
-public class bbt extends atr {
+public class bbt extends Block {
 
 	public static final beu a = beu.a("facing", (Predicate) en.a);
 	public static final bet b = bet.a("powered");
@@ -15,15 +15,15 @@ public class bbt extends atr {
 	public bbt() {
 		super(bof.q);
 		this.j(this.L.b().a(a, ej.c).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)));
-		this.a(akf.d);
+		this.a(CreativeModeTab.d);
 		this.a(true);
 	}
 
-	public bec a(bec var1, ard var2, dt var3) {
+	public bec a(bec var1, ard var2, Position var3) {
 		return var1.a(N, Boolean.valueOf(!World.a(var2, var3.b())));
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
@@ -35,11 +35,11 @@ public class bbt extends atr {
 		return false;
 	}
 
-	public boolean a(World var1, dt var2, ej var3) {
+	public boolean a(World var1, Position var2, ej var3) {
 		return var3.k().c() && var1.p(var2.a(var3.d())).c().t();
 	}
 
-	public boolean c(World var1, dt var2) {
+	public boolean c(World var1, Position var2) {
 		Iterator var3 = en.a.iterator();
 
 		ej var4;
@@ -54,7 +54,7 @@ public class bbt extends atr {
 		return true;
 	}
 
-	public bec a(World var1, dt var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		bec var9 = this.P().a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false));
 		if (var3.k().c()) {
 			var9 = var9.a(a, var3);
@@ -63,11 +63,11 @@ public class bbt extends atr {
 		return var9;
 	}
 
-	public void a(World var1, dt var2, bec var3, EntityLiving var4, amj var5) {
+	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
 		this.a(var1, var2, var3, false, false, -1, (bec) null);
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (var4 != this) {
 			if (this.e(var1, var2, var3)) {
 				ej var5 = (ej) var3.b(a);
@@ -80,7 +80,7 @@ public class bbt extends atr {
 		}
 	}
 
-	public void a(World var1, dt var2, bec var3, boolean var4, boolean var5, int var6, bec var7) {
+	public void a(World var1, Position var2, bec var3, boolean var4, boolean var5, int var6, bec var7) {
 		ej var8 = (ej) var3.b(a);
 		boolean var9 = ((Boolean) var3.b(M)).booleanValue();
 		boolean var10 = ((Boolean) var3.b(b)).booleanValue();
@@ -90,7 +90,7 @@ public class bbt extends atr {
 		int var14 = 0;
 		bec[] var15 = new bec[42];
 
-		dt var17;
+		Position var17;
 		for (int var16 = 1; var16 < 42; ++var16) {
 			var17 = var2.a(var8, var16);
 			bec var18 = var1.p(var17);
@@ -116,7 +116,7 @@ public class bbt extends atr {
 				var13 |= var19 && var20;
 				var15[var16] = var18;
 				if (var16 == var6) {
-					var1.a(var2, (atr) this, this.a(var1));
+					var1.a(var2, (Block) this, this.a(var1));
 					var12 &= var19;
 				}
 			}
@@ -143,7 +143,7 @@ public class bbt extends atr {
 
 		if (var9 != var12) {
 			for (int var23 = 1; var23 < var14; ++var23) {
-				dt var25 = var2.a(var8, var23);
+				Position var25 = var2.a(var8, var23);
 				bec var26 = var15[var23];
 				if (var26 != null && var1.p(var25).c() != aty.a) {
 					var1.a(var25, var26.a(M, Boolean.valueOf(var12)), 3);
@@ -153,14 +153,14 @@ public class bbt extends atr {
 
 	}
 
-	public void a(World var1, dt var2, bec var3, Random var4) {
+	public void a(World var1, Position var2, bec var3, Random var4) {
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		this.a(var1, var2, var3, false, true, -1, (bec) null);
 	}
 
-	private void a(World var1, dt var2, boolean var3, boolean var4, boolean var5, boolean var6) {
+	private void a(World var1, Position var2, boolean var3, boolean var4, boolean var5, boolean var6) {
 		if (var4 && !var6) {
 			var1.a((double) var2.n() + 0.5D, (double) var2.o() + 0.1D, (double) var2.p() + 0.5D, "random.click", 0.4F, 0.6F);
 		} else if (!var4 && var6) {
@@ -173,12 +173,12 @@ public class bbt extends atr {
 
 	}
 
-	private void b(World var1, dt var2, ej var3) {
-		var1.c(var2, (atr) this);
-		var1.c(var2.a(var3.d()), (atr) this);
+	private void b(World var1, Position var2, ej var3) {
+		var1.c(var2, (Block) this);
+		var1.c(var2.a(var3.d()), (Block) this);
 	}
 
-	private boolean e(World var1, dt var2, bec var3) {
+	private boolean e(World var1, Position var2, bec var3) {
 		if (!this.c(var1, var2)) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -188,7 +188,7 @@ public class bbt extends atr {
 		}
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		float var3 = 0.1875F;
 		switch (bbu.a[((ej) var1.p(var2).b(a)).ordinal()]) {
 			case 1:
@@ -206,7 +206,7 @@ public class bbt extends atr {
 
 	}
 
-	public void b(World var1, dt var2, bec var3) {
+	public void b(World var1, Position var2, bec var3) {
 		boolean var4 = ((Boolean) var3.b(M)).booleanValue();
 		boolean var5 = ((Boolean) var3.b(b)).booleanValue();
 		if (var4 || var5) {
@@ -214,18 +214,18 @@ public class bbt extends atr {
 		}
 
 		if (var5) {
-			var1.c(var2, (atr) this);
-			var1.c(var2.a(((ej) var3.b(a)).d()), (atr) this);
+			var1.c(var2, (Block) this);
+			var1.c(var2.a(((ej) var3.b(a)).d()), (Block) this);
 		}
 
 		super.b(var1, var2, var3);
 	}
 
-	public int a(ard var1, dt var2, bec var3, ej var4) {
+	public int a(ard var1, Position var2, bec var3, ej var4) {
 		return ((Boolean) var3.b(b)).booleanValue() ? 15 : 0;
 	}
 
-	public int b(ard var1, dt var2, bec var3, ej var4) {
+	public int b(ard var1, Position var2, bec var3, ej var4) {
 		return !((Boolean) var3.b(b)).booleanValue() ? 0 : (var3.b(a) == var4 ? 15 : 0);
 	}
 

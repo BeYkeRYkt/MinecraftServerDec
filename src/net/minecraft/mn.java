@@ -1,24 +1,24 @@
 package net.minecraft;
 
-public class mn implements id<ls> {
+public class mn implements Packet<ls> {
 
 	private int a;
 	private mo b;
 	private int c;
 
-	public void a(hd var1) {
-		this.a = var1.e();
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readVarInt();
 		this.b = (mo) var1.a(mo.class);
-		this.c = var1.e();
+		this.c = var1.readVarInt();
 	}
 
-	public void b(hd var1) {
-		var1.b(this.a);
-		var1.a((Enum) this.b);
-		var1.b(this.c);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeVarInt(this.a);
+		var1.writeEnum((Enum) this.b);
+		var1.writeVarInt(this.c);
 	}
 
-	public void a(ls var1) {
+	public void handlePacket(ls var1) {
 		var1.a(this);
 	}
 

@@ -4,15 +4,15 @@ import java.util.Random;
 
 public class bhu extends bhp {
 
-	private final atr a;
+	private final Block a;
 	private final boolean b;
 
-	public bhu(atr var1, boolean var2) {
+	public bhu(Block var1, boolean var2) {
 		this.a = var1;
 		this.b = var2;
 	}
 
-	public boolean b(World var1, Random var2, dt var3) {
+	public boolean b(World var1, Random var2, Position var3) {
 		if (var1.p(var3.a()).c() != aty.aV) {
 			return false;
 		} else if (var1.p(var3).c().r() != bof.a && var1.p(var3).c() != aty.aV) {

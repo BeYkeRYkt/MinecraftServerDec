@@ -2,9 +2,9 @@ package net.minecraft;
 
 import com.google.common.collect.AbstractIterator;
 
-class dv extends AbstractIterator<dt> {
+class dv extends AbstractIterator<Position> {
 
-	private dt b;
+	private Position b;
 	// $FF: synthetic field
 	final du a;
 
@@ -13,12 +13,12 @@ class dv extends AbstractIterator<dt> {
 		this.b = null;
 	}
 
-	protected dt computeNext() {
+	protected Position computeNext() {
 		if (this.b == null) {
 			this.b = this.a.a;
 			return this.b;
 		} else if (this.b.equals(this.a.b)) {
-			return (dt) this.endOfData();
+			return (Position) this.endOfData();
 		} else {
 			int var1 = this.b.n();
 			int var2 = this.b.o();
@@ -34,7 +34,7 @@ class dv extends AbstractIterator<dt> {
 				++var3;
 			}
 
-			this.b = new dt(var1, var2, var3);
+			this.b = new Position(var1, var2, var3);
 			return this.b;
 		}
 	}

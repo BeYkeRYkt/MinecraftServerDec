@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class atf extends atr {
+public class atf extends Block {
 
 	protected atf() {
 		super(bof.I);
@@ -18,6 +18,6 @@ public class atf extends atr {
 		return false;
 	}
 
-	public void a(World var1, dt var2, bec var3, float var4, int var5) {
+	public void a(World var1, Position var2, bec var3, float var4, int var5) {
 	}
 }

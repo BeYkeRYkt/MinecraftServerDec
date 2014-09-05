@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class bck extends bdf implements pm, vq {
+public class bck extends bdf implements pm, IInventory {
 
 	public static final wp[][] a = new wp[][] { { wp.c, wp.e }, { wp.m, wp.j }, { wp.g }, { wp.l } };
 	private final List f = Lists.newArrayList();
@@ -13,7 +13,7 @@ public class bck extends bdf implements pm, vq {
 	private int j = -1;
 	private int k;
 	private int l;
-	private amj m;
+	private ItemStack m;
 	private String n;
 
 	public void c() {
@@ -40,12 +40,12 @@ public class bck extends bdf implements pm, vq {
 			int var5 = this.c.o();
 			int var6 = this.c.p();
 			brt var7 = (new brt((double) var4, (double) var5, (double) var6, (double) (var4 + 1), (double) (var5 + 1), (double) (var6 + 1))).b(var1, var1, var1).a(0.0D, (double) this.b.U(), 0.0D);
-			List var8 = this.b.a(ahd.class, var7);
+			List var8 = this.b.a(EntityHuman.class, var7);
 			Iterator var9 = var8.iterator();
 
-			ahd var10;
+			EntityHuman var10;
 			while (var9.hasNext()) {
-				var10 = (ahd) var9.next();
+				var10 = (EntityHuman) var9.next();
 				var10.c(new wq(this.k, 180, var3, true, true));
 			}
 
@@ -53,7 +53,7 @@ public class bck extends bdf implements pm, vq {
 				var9 = var8.iterator();
 
 				while (var9.hasNext()) {
-					var10 = (ahd) var9.next();
+					var10 = (EntityHuman) var9.next();
 					var10.c(new wq(this.l, 180, 0, true, true));
 				}
 			}
@@ -75,7 +75,7 @@ public class bck extends bdf implements pm, vq {
 
 		int var7;
 		for (var7 = var3 + 1; var7 < this.b.V(); ++var7) {
-			dt var8 = new dt(var2, var7, var4);
+			Position var8 = new Position(var2, var7, var4);
 			bec var9 = this.b.p(var8);
 			float[] var10;
 			if (var9.c() == aty.cG) {
@@ -120,7 +120,7 @@ public class bck extends bdf implements pm, vq {
 
 				for (int var17 = var2 - var7; var17 <= var2 + var7 && var16; ++var17) {
 					for (int var11 = var4 - var7; var11 <= var4 + var7; ++var11) {
-						atr var12 = this.b.p(new dt(var17, var14, var11)).c();
+						Block var12 = this.b.p(new Position(var17, var14, var11)).c();
 						if (var12 != aty.bT && var12 != aty.R && var12 != aty.ah && var12 != aty.S) {
 							var16 = false;
 							break;
@@ -139,17 +139,17 @@ public class bck extends bdf implements pm, vq {
 		}
 
 		if (!this.b.D && this.j == 4 && var1 < this.j) {
-			Iterator var13 = this.b.a(ahd.class, (new brt((double) var2, (double) var3, (double) var4, (double) var2, (double) (var3 - 4), (double) var4)).b(10.0D, 5.0D, 10.0D)).iterator();
+			Iterator var13 = this.b.a(EntityHuman.class, (new brt((double) var2, (double) var3, (double) var4, (double) var2, (double) (var3 - 4), (double) var4)).b(10.0D, 5.0D, 10.0D)).iterator();
 
 			while (var13.hasNext()) {
-				ahd var15 = (ahd) var13.next();
+				EntityHuman var15 = (EntityHuman) var13.next();
 				var15.b((PlayerStatistic) tl.K);
 			}
 		}
 
 	}
 
-	public id x_() {
+	public Packet x_() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		this.b(var1);
 		return new iu(this.c, 3, var1);
@@ -173,28 +173,28 @@ public class bck extends bdf implements pm, vq {
 		return 1;
 	}
 
-	public amj a(int var1) {
+	public ItemStack a(int var1) {
 		return var1 == 0 ? this.m : null;
 	}
 
-	public amj a(int var1, int var2) {
+	public ItemStack a(int var1, int var2) {
 		if (var1 == 0 && this.m != null) {
 			if (var2 >= this.m.b) {
-				amj var3 = this.m;
+				ItemStack var3 = this.m;
 				this.m = null;
 				return var3;
 			} else {
 				this.m.b -= var2;
-				return new amj(this.m.b(), var2, this.m.i());
+				return new ItemStack(this.m.getItem(), var2, this.m.i());
 			}
 		} else {
 			return null;
 		}
 	}
 
-	public amj b(int var1) {
+	public ItemStack b(int var1) {
 		if (var1 == 0 && this.m != null) {
-			amj var2 = this.m;
+			ItemStack var2 = this.m;
 			this.m = null;
 			return var2;
 		} else {
@@ -202,7 +202,7 @@ public class bck extends bdf implements pm, vq {
 		}
 	}
 
-	public void a(int var1, amj var2) {
+	public void a(int var1, ItemStack var2) {
 		if (var1 == 0) {
 			this.m = var2;
 		}
@@ -225,25 +225,25 @@ public class bck extends bdf implements pm, vq {
 		return 1;
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return this.b.s(this.c) != this ? false : var1.e((double) this.c.n() + 0.5D, (double) this.c.o() + 0.5D, (double) this.c.p() + 0.5D) <= 64.0D;
 	}
 
-	public void b(ahd var1) {
+	public void b(EntityHuman var1) {
 	}
 
-	public void c(ahd var1) {
+	public void c(EntityHuman var1) {
 	}
 
-	public boolean b(int var1, amj var2) {
-		return var2.b() == amk.bO || var2.b() == amk.i || var2.b() == amk.k || var2.b() == amk.j;
+	public boolean b(int var1, ItemStack var2) {
+		return var2.getItem() == amk.bO || var2.getItem() == amk.i || var2.getItem() == amk.k || var2.getItem() == amk.j;
 	}
 
 	public String k() {
 		return "minecraft:beacon";
 	}
 
-	public aib a(ahb var1, ahd var2) {
+	public Container a(PlayerInventory var1, EntityHuman var2) {
 		return new aig(var1, this);
 	}
 

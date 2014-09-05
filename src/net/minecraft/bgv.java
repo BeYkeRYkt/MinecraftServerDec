@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.List;
 import java.util.Random;
 
-public class bgv implements bfe {
+public class bgv implements IChunkProvider {
 
 	private Random h;
 	private bnv i;
@@ -15,11 +15,11 @@ public class bgv implements bfe {
 	public bnv c;
 	private World m;
 	private final boolean n;
-	private are o;
+	private LevelType o;
 	private final double[] p;
 	private final float[] q;
 	private bgl r;
-	private atr s;
+	private Block s;
 	private double[] t;
 	private bgt u;
 	private blp v;
@@ -46,7 +46,7 @@ public class bgv implements bfe {
 		this.A = new bkg();
 		this.m = var1;
 		this.n = var4;
-		this.o = var1.P().u();
+		this.o = var1.P().getLevelType();
 		this.h = new Random(var2);
 		this.i = new bnv(this.h, 16);
 		this.j = new bnv(this.h, 16);
@@ -60,7 +60,7 @@ public class bgv implements bfe {
 
 		for (int var6 = -2; var6 <= 2; ++var6) {
 			for (int var7 = -2; var7 <= 2; ++var7) {
-				float var8 = 10.0F / NumberConverter.c((float) (var6 * var6 + var7 * var7) + 0.2F);
+				float var8 = 10.0F / DataTypesConverter.c((float) (var6 * var6 + var7 * var7) + 0.2F);
 				this.q[var6 + 2 + (var7 + 2) * 5] = var8;
 			}
 		}
@@ -215,7 +215,7 @@ public class bgv implements bfe {
 						arm var17 = this.B[var8 + var15 + 2 + (var9 + var16 + 2) * 10];
 						float var18 = this.r.n + var17.an * this.r.m;
 						float var19 = this.r.p + var17.ao * this.r.o;
-						if (this.o == are.e && var18 > 0.0F) {
+						if (this.o == LevelType.AMPLIFIED && var18 > 0.0F) {
 							var18 = 1.0F + var18 * 2.0F;
 							var19 = 1.0F + var19 * 4.0F;
 						}
@@ -273,7 +273,7 @@ public class bgv implements bfe {
 					double var26 = this.e[var6] / (double) this.r.d;
 					double var28 = this.f[var6] / (double) this.r.c;
 					double var30 = (this.d[var6] / 10.0D + 1.0D) / 2.0D;
-					double var32 = NumberConverter.b(var26, var28, var30) - var24;
+					double var32 = DataTypesConverter.b(var26, var28, var30) - var24;
 					if (var23 > 29) {
 						double var34 = (double) ((float) (var23 - 29) / 3.0F);
 						var32 = var32 * (1.0D - var34) + -10.0D * var34;
@@ -291,11 +291,11 @@ public class bgv implements bfe {
 		return true;
 	}
 
-	public void a(bfe var1, int var2, int var3) {
+	public void a(IChunkProvider var1, int var2, int var3) {
 		avt.M = true;
 		int var4 = var2 * 16;
 		int var5 = var3 * 16;
-		dt var6 = new dt(var4, 0, var5);
+		Position var6 = new Position(var4, 0, var5);
 		arm var7 = this.m.b(var6.a(16, 0, 16));
 		this.h.setSeed(this.m.J());
 		long var8 = this.h.nextLong() / 2L * 2L + 1L;
@@ -351,14 +351,14 @@ public class bgv implements bfe {
 			}
 		}
 
-		var7.a(this.m, this.h, new dt(var4, 0, var5));
+		var7.a(this.m, this.h, new Position(var4, 0, var5));
 		arg.a(this.m, var7, var4 + 8, var5 + 8, 16, 16, this.h);
 		var6 = var6.a(8, 0, 8);
 
 		for (var14 = 0; var14 < 16; ++var14) {
 			for (var15 = 0; var15 < 16; ++var15) {
-				dt var18 = this.m.q(var6.a(var14, 0, var15));
-				dt var19 = var18.b();
+				Position var18 = this.m.q(var6.a(var14, 0, var15));
+				Position var19 = var18.b();
 				if (this.m.v(var19)) {
 					this.m.a(var19, aty.aI.P(), 2);
 				}
@@ -372,7 +372,7 @@ public class bgv implements bfe {
 		avt.M = false;
 	}
 
-	public boolean a(bfe var1, bfh var2, int var3, int var4) {
+	public boolean a(IChunkProvider var1, bfh var2, int var3, int var4) {
 		boolean var5 = false;
 		if (this.r.y && this.n && var2.w() < 3600L) {
 			var5 |= this.A.a(this.m, this.h, new aqm(var3, var4));
@@ -400,7 +400,7 @@ public class bgv implements bfe {
 		return "RandomLevelSource";
 	}
 
-	public List a(xp var1, dt var2) {
+	public List a(xp var1, Position var2) {
 		arm var3 = this.m.b(var2);
 		if (this.n) {
 			if (var1 == xp.a && this.y.a(var2)) {
@@ -415,7 +415,7 @@ public class bgv implements bfe {
 		return var3.a(var1);
 	}
 
-	public dt a(World var1, String var2, dt var3) {
+	public Position a(World var1, String var2, Position var3) {
 		return "Stronghold".equals(var2) && this.v != null ? this.v.b(var1, var3) : null;
 	}
 
@@ -446,7 +446,7 @@ public class bgv implements bfe {
 
 	}
 
-	public bfh a(dt var1) {
+	public bfh a(Position var1) {
 		return this.d(var1.n() >> 4, var1.p() >> 4);
 	}
 }

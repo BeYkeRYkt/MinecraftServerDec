@@ -10,7 +10,7 @@ public class bbz extends bai {
 		this.j(this.L.b().a(a, ej.c));
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		ej var3 = (ej) var1.p(var2).b(a);
 		float var4 = 0.28125F;
 		float var5 = 0.78125F;
@@ -34,7 +34,7 @@ public class bbz extends bai {
 
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		ej var5 = (ej) var3.b(a);
 		if (!var1.p(var2.a(var5.d())).c().r().a()) {
 			this.b(var1, var2, var3, 0);

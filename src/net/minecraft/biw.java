@@ -7,18 +7,18 @@ public class biw {
 	private int c;
 	private int d;
 
-	public biw(int var1, atr var2) {
+	public biw(int var1, Block var2) {
 		this(3, var1, var2);
 	}
 
-	public biw(int var1, int var2, atr var3) {
+	public biw(int var1, int var2, Block var3) {
 		this.c = 1;
 		this.a = var1;
 		this.c = var2;
 		this.b = var3.P();
 	}
 
-	public biw(int var1, int var2, atr var3, int var4) {
+	public biw(int var1, int var2, Block var3, int var4) {
 		this(var1, var2, var3);
 		this.b = var3.a(var4);
 	}
@@ -31,7 +31,7 @@ public class biw {
 		return this.b;
 	}
 
-	private atr e() {
+	private Block e() {
 		return this.b.c();
 	}
 
@@ -50,13 +50,13 @@ public class biw {
 	public String toString() {
 		String var1;
 		if (this.a >= 3) {
-			oa var2 = (oa) atr.c.c(this.e());
+			oa var2 = (oa) Block.c.c(this.e());
 			var1 = var2 == null ? "null" : var2.toString();
 			if (this.c > 1) {
 				var1 = this.c + "*" + var1;
 			}
 		} else {
-			var1 = Integer.toString(atr.a(this.e()));
+			var1 = Integer.toString(Block.a(this.e()));
 			if (this.c > 1) {
 				var1 = this.c + "x" + var1;
 			}

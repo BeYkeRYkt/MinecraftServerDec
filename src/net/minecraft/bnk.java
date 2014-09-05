@@ -22,7 +22,7 @@ public class bnk extends bnp {
 		this.a = var1;
 		this.e = var6;
 		this.c = var7;
-		arm var8 = var1.a(new dt(var4, 0, var5), arm.ad);
+		arm var8 = var1.a(new Position(var4, 0, var5), arm.ad);
 		this.b = var8 == arm.r || var8 == arm.G;
 		this.a(this.b);
 	}

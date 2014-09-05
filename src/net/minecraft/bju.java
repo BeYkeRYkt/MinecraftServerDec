@@ -89,9 +89,9 @@ public class bju extends bkb {
 		this.a(var1, var3, 6, 1, 6, 6, 4, 6, aty.a.P(), aty.a.P(), false);
 		this.a(var1, aty.by.P(), 6, 0, 6, var3);
 		this.a(var1, aty.k.P(), 6, 5, 6, var3);
-		dt var6 = new dt(this.a(6, 6), this.d(5), this.b(6, 6));
+		Position var6 = new Position(this.a(6, 6), this.d(5), this.b(6, 6));
 		if (var3.b((fd) var6)) {
-			var1.a((atr) aty.k, var6, var2);
+			var1.a((Block) aty.k, var6, var2);
 		}
 
 		return true;

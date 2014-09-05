@@ -18,7 +18,7 @@ public class aph {
 	private static final apk d = new apk((api) null);
 	private static final apj e = new apj((api) null);
 
-	public static int a(int var0, amj var1) {
+	public static int a(int var0, ItemStack var1) {
 		if (var1 == null) {
 			return 0;
 		} else {
@@ -39,9 +39,9 @@ public class aph {
 		}
 	}
 
-	public static Map a(amj var0) {
+	public static Map a(ItemStack var0) {
 		LinkedHashMap var1 = Maps.newLinkedHashMap();
-		NBTListTag var2 = var0.b() == amk.cd ? amk.cd.h(var0) : var0.p();
+		NBTListTag var2 = var0.getItem() == amk.cd ? amk.cd.h(var0) : var0.p();
 		if (var2 != null) {
 			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 				short var4 = var2.getCompound(var3).getShort("id");
@@ -53,7 +53,7 @@ public class aph {
 		return var1;
 	}
 
-	public static void a(Map var0, amj var1) {
+	public static void a(Map var0, ItemStack var1) {
 		NBTListTag var2 = new NBTListTag();
 		Iterator var3 = var0.keySet().iterator();
 
@@ -65,32 +65,32 @@ public class aph {
 				var6.put("id", (short) var4);
 				var6.put("lvl", (short) ((Integer) var0.get(Integer.valueOf(var4))).intValue());
 				var2.addTag((NBTTag) var6);
-				if (var1.b() == amk.cd) {
+				if (var1.getItem() == amk.cd) {
 					amk.cd.a(var1, new apo(var5, ((Integer) var0.get(Integer.valueOf(var4))).intValue()));
 				}
 			}
 		}
 
 		if (var2.getSize() > 0) {
-			if (var1.b() != amk.cd) {
+			if (var1.getItem() != amk.cd) {
 				var1.a("ench", (NBTTag) var2);
 			}
-		} else if (var1.n()) {
-			var1.o().remove("ench");
+		} else if (var1.hasTag()) {
+			var1.getTag().remove("ench");
 		}
 
 	}
 
-	public static int a(int var0, amj[] var1) {
+	public static int a(int var0, ItemStack[] var1) {
 		if (var1 == null) {
 			return 0;
 		} else {
 			int var2 = 0;
-			amj[] var3 = var1;
+			ItemStack[] var3 = var1;
 			int var4 = var1.length;
 
 			for (int var5 = 0; var5 < var4; ++var5) {
-				amj var6 = var3[var5];
+				ItemStack var6 = var3[var5];
 				int var7 = a(var0, var6);
 				if (var7 > var2) {
 					var2 = var7;
@@ -101,7 +101,7 @@ public class aph {
 		}
 	}
 
-	private static void a(apl var0, amj var1) {
+	private static void a(apl var0, ItemStack var1) {
 		if (var1 != null) {
 			NBTListTag var2 = var1.p();
 			if (var2 != null) {
@@ -117,18 +117,18 @@ public class aph {
 		}
 	}
 
-	private static void a(apl var0, amj[] var1) {
-		amj[] var2 = var1;
+	private static void a(apl var0, ItemStack[] var1) {
+		ItemStack[] var2 = var1;
 		int var3 = var1.length;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			amj var5 = var2[var4];
+			ItemStack var5 = var2[var4];
 			a(var0, var5);
 		}
 
 	}
 
-	public static int a(amj[] var0, wh var1) {
+	public static int a(ItemStack[] var0, wh var1) {
 		b.a = 0;
 		b.b = var1;
 		a((apl) b, var0);
@@ -139,7 +139,7 @@ public class aph {
 		return (b.a + 1 >> 1) + a.nextInt((b.a >> 1) + 1);
 	}
 
-	public static float a(amj var0, xs var1) {
+	public static float a(ItemStack var0, xs var1) {
 		c.a = 0.0F;
 		c.b = var1;
 		a((apl) c, var0);
@@ -153,7 +153,7 @@ public class aph {
 			a((apl) d, var0.at());
 		}
 
-		if (var1 instanceof ahd) {
+		if (var1 instanceof EntityHuman) {
 			a((apl) d, var0.bz());
 		}
 
@@ -166,7 +166,7 @@ public class aph {
 			a((apl) e, var0.at());
 		}
 
-		if (var0 instanceof ahd) {
+		if (var0 instanceof EntityHuman) {
 			a((apl) e, var0.bz());
 		}
 
@@ -216,12 +216,12 @@ public class aph {
 		return a(apf.i.B, var0.at()) > 0;
 	}
 
-	public static amj a(apf var0, EntityLiving var1) {
-		amj[] var2 = var1.at();
+	public static ItemStack a(apf var0, EntityLiving var1) {
+		ItemStack[] var2 = var1.at();
 		int var3 = var2.length;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			amj var5 = var2[var4];
+			ItemStack var5 = var2[var4];
 			if (var5 != null && a(var0.B, var5) > 0) {
 				return var5;
 			}
@@ -230,8 +230,8 @@ public class aph {
 		return null;
 	}
 
-	public static int a(Random var0, int var1, int var2, amj var3) {
-		alq var4 = var3.b();
+	public static int a(Random var0, int var1, int var2, ItemStack var3) {
+		Item var4 = var3.getItem();
 		int var5 = var4.b();
 		if (var5 <= 0) {
 			return 0;
@@ -245,11 +245,11 @@ public class aph {
 		}
 	}
 
-	public static amj a(Random var0, amj var1, int var2) {
+	public static ItemStack a(Random var0, ItemStack var1, int var2) {
 		List var3 = b(var0, var1, var2);
-		boolean var4 = var1.b() == amk.aL;
+		boolean var4 = var1.getItem() == amk.aL;
 		if (var4) {
-			var1.a((alq) amk.cd);
+			var1.a((Item) amk.cd);
 		}
 
 		if (var3 != null) {
@@ -268,8 +268,8 @@ public class aph {
 		return var1;
 	}
 
-	public static List b(Random var0, amj var1, int var2) {
-		alq var3 = var1.b();
+	public static List b(Random var0, ItemStack var1, int var2) {
+		Item var3 = var1.getItem();
 		int var4 = var3.b();
 		if (var4 <= 0) {
 			return null;
@@ -328,10 +328,10 @@ public class aph {
 		}
 	}
 
-	public static Map b(int var0, amj var1) {
-		alq var2 = var1.b();
+	public static Map b(int var0, ItemStack var1) {
+		Item var2 = var1.getItem();
 		HashMap var3 = null;
-		boolean var4 = var1.b() == amk.aL;
+		boolean var4 = var1.getItem() == amk.aL;
 		apf[] var5 = apf.b;
 		int var6 = var5.length;
 

@@ -33,7 +33,7 @@ public class zh extends zb {
 				this.b = this.a.u();
 			}
 
-			if (this.d == ahd.class) {
+			if (this.d == EntityHuman.class) {
 				this.b = this.a.o.a(this.a, (double) this.c);
 			} else {
 				this.b = this.a.o.a(this.d, this.a.aQ().b((double) this.c, 3.0D, (double) this.c), (Entity) this.a);
@@ -56,7 +56,7 @@ public class zh extends zb {
 	}
 
 	public void e() {
-		this.a.p().a(this.b.s, this.b.t + (double) this.b.aR(), this.b.u, 10.0F, (float) this.a.bP());
+		this.a.p().a(this.b.locationX, this.b.locationY + (double) this.b.aR(), this.b.locationZ, 10.0F, (float) this.a.bP());
 		--this.e;
 	}
 }

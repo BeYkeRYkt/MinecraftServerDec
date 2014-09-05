@@ -28,7 +28,7 @@ public class ahs extends ahr {
 			for (int var3 = 0; var3 < var2; ++var3) {
 				abr var4 = new abr(this.o);
 				var4.b(-24000);
-				var4.b(this.s, this.t, this.u, this.y, 0.0F);
+				var4.b(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
 				this.o.d((Entity) var4);
 			}
 		}
@@ -36,7 +36,7 @@ public class ahs extends ahr {
 		double var5 = 0.08D;
 
 		for (int var6 = 0; var6 < 8; ++var6) {
-			this.o.a(ew.K, this.s, this.t, this.u, ((double) this.V.nextFloat() - 0.5D) * 0.08D, ((double) this.V.nextFloat() - 0.5D) * 0.08D, ((double) this.V.nextFloat() - 0.5D) * 0.08D, new int[] { alq.b(amk.aP) });
+			this.o.a(ew.K, this.locationX, this.locationY, this.locationZ, ((double) this.V.nextFloat() - 0.5D) * 0.08D, ((double) this.V.nextFloat() - 0.5D) * 0.08D, ((double) this.V.nextFloat() - 0.5D) * 0.08D, new int[] { Item.getId(amk.aP) });
 		}
 
 		if (!this.o.D) {

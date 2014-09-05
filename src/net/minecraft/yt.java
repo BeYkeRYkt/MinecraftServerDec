@@ -68,7 +68,7 @@ public class yt extends zb {
 	private void g() {
 		ws var1 = this.d.a((ws) this.e);
 		if (var1 != null) {
-			ahd var2 = this.d.co();
+			EntityHuman var2 = this.d.co();
 			if (var2 == null && this.e.co() != null) {
 				var2 = this.e.co();
 			}
@@ -85,7 +85,7 @@ public class yt extends zb {
 			this.d.cq();
 			this.e.cq();
 			var1.b(-24000);
-			var1.b(this.d.s, this.d.t, this.d.u, 0.0F, 0.0F);
+			var1.b(this.d.locationX, this.d.locationY, this.d.locationZ, 0.0F, 0.0F);
 			this.a.d((Entity) var1);
 			Random var3 = this.d.bb();
 
@@ -93,11 +93,11 @@ public class yt extends zb {
 				double var5 = var3.nextGaussian() * 0.02D;
 				double var7 = var3.nextGaussian() * 0.02D;
 				double var9 = var3.nextGaussian() * 0.02D;
-				this.a.a(ew.I, this.d.s + (double) (var3.nextFloat() * this.d.J * 2.0F) - (double) this.d.J, this.d.t + 0.5D + (double) (var3.nextFloat() * this.d.K), this.d.u + (double) (var3.nextFloat() * this.d.J * 2.0F) - (double) this.d.J, var5, var7, var9, new int[0]);
+				this.a.a(ew.I, this.d.locationX + (double) (var3.nextFloat() * this.d.J * 2.0F) - (double) this.d.J, this.d.locationY + 0.5D + (double) (var3.nextFloat() * this.d.K), this.d.locationZ + (double) (var3.nextFloat() * this.d.J * 2.0F) - (double) this.d.J, var5, var7, var9, new int[0]);
 			}
 
 			if (this.a.Q().b("doMobLoot")) {
-				this.a.d((Entity) (new xk(this.a, this.d.s, this.d.t, this.d.u, var3.nextInt(7) + 1)));
+				this.a.d((Entity) (new xk(this.a, this.d.locationX, this.d.locationY, this.d.locationZ, var3.nextInt(7) + 1)));
 			}
 
 		}

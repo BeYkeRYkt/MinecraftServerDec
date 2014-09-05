@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.Iterator;
 import java.util.Random;
 
-public abstract class axl extends atr {
+public abstract class axl extends Block {
 
 	public static final bew b = bew.a("level", 0, 15);
 
@@ -14,7 +14,7 @@ public abstract class axl extends atr {
 		this.a(true);
 	}
 
-	public boolean b(ard var1, dt var2) {
+	public boolean b(ard var1, Position var2) {
 		return this.J != bof.i;
 	}
 
@@ -26,11 +26,11 @@ public abstract class axl extends atr {
 		return (float) (var0 + 1) / 9.0F;
 	}
 
-	protected int e(ard var1, dt var2) {
+	protected int e(ard var1, Position var2) {
 		return var1.p(var2).c().r() == this.J ? ((Integer) var1.p(var2).b(b)).intValue() : -1;
 	}
 
-	protected int f(ard var1, dt var2) {
+	protected int f(ard var1, Position var2) {
 		int var3 = this.e(var1, var2);
 		return var3 >= 8 ? 0 : var3;
 	}
@@ -47,12 +47,12 @@ public abstract class axl extends atr {
 		return var2 && ((Integer) var1.b(b)).intValue() == 0;
 	}
 
-	public boolean b(ard var1, dt var2, ej var3) {
+	public boolean b(ard var1, Position var2, ej var3) {
 		bof var4 = var1.p(var2).c().r();
 		return var4 == this.J ? false : (var3 == ej.b ? true : (var4 == bof.w ? false : super.b(var1, var2, var3)));
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
@@ -60,7 +60,7 @@ public abstract class axl extends atr {
 		return 1;
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return null;
 	}
 
@@ -68,13 +68,13 @@ public abstract class axl extends atr {
 		return 0;
 	}
 
-	protected brw h(ard var1, dt var2) {
+	protected brw h(ard var1, Position var2) {
 		brw var3 = new brw(0.0D, 0.0D, 0.0D);
 		int var4 = this.f(var1, var2);
 		Iterator var5 = en.a.iterator();
 
 		ej var6;
-		dt var7;
+		Position var7;
 		while (var5.hasNext()) {
 			var6 = (ej) var5.next();
 			var7 = var2.a(var6);
@@ -110,23 +110,23 @@ public abstract class axl extends atr {
 		return var3.a();
 	}
 
-	public brw a(World var1, dt var2, Entity var3, brw var4) {
+	public brw a(World var1, Position var2, Entity var3, brw var4) {
 		return var4.e(this.h(var1, var2));
 	}
 
 	public int a(World var1) {
-		return this.J == bof.h ? 5 : (this.J == bof.i ? (var1.t.o() ? 10 : 30) : 0);
+		return this.J == bof.h ? 5 : (this.J == bof.i ? (var1.worldProvider.o() ? 10 : 30) : 0);
 	}
 
-	public void c(World var1, dt var2, bec var3) {
+	public void c(World var1, Position var2, bec var3) {
 		this.e(var1, var2, var3);
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		this.e(var1, var2, var3);
 	}
 
-	public boolean e(World var1, dt var2, bec var3) {
+	public boolean e(World var1, Position var2, bec var3) {
 		if (this.J == bof.i) {
 			boolean var4 = false;
 			ej[] var5 = ej.values();
@@ -159,7 +159,7 @@ public abstract class axl extends atr {
 		return false;
 	}
 
-	protected void d(World var1, dt var2) {
+	protected void d(World var1, Position var2) {
 		double var3 = (double) var2.n();
 		double var5 = (double) var2.o();
 		double var7 = (double) var2.p();

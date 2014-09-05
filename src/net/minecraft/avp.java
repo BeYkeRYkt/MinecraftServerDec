@@ -14,12 +14,12 @@ public class avp extends atg {
 		return new bdn();
 	}
 
-	public void a(ard var1, dt var2) {
+	public void a(ard var1, Position var2) {
 		float var3 = 0.0625F;
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, var3, 1.0F);
 	}
 
-	public void a(World var1, dt var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
 	}
 
 	public boolean c() {
@@ -34,7 +34,7 @@ public class avp extends atg {
 		return 0;
 	}
 
-	public void a(World var1, dt var2, bec var3, Entity var4) {
+	public void a(World var1, Position var2, bec var3, Entity var4) {
 		if (var4.m == null && var4.l == null && !var1.D) {
 			var4.c(1);
 		}

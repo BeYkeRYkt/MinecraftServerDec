@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class le implements id<ik> {
+public class le implements Packet<PlayPacketListener> {
 
 	private String a = "";
 	private String b = "";
@@ -58,53 +58,53 @@ public class le implements id<ik> {
 		}
 	}
 
-	public void a(hd var1) {
-		this.a = var1.c(16);
+	public void readData(PacketDataSerializer var1) {
+		this.a = var1.readString(16);
 		this.h = var1.readByte();
 		if (this.h == 0 || this.h == 2) {
-			this.b = var1.c(32);
-			this.c = var1.c(16);
-			this.d = var1.c(16);
+			this.b = var1.readString(32);
+			this.c = var1.readString(16);
+			this.d = var1.readString(16);
 			this.i = var1.readByte();
-			this.e = var1.c(32);
+			this.e = var1.readString(32);
 			this.f = var1.readByte();
 		}
 
 		if (this.h == 0 || this.h == 3 || this.h == 4) {
-			int var2 = var1.e();
+			int var2 = var1.readVarInt();
 
 			for (int var3 = 0; var3 < var2; ++var3) {
-				this.g.add(var1.c(40));
+				this.g.add(var1.readString(40));
 			}
 		}
 
 	}
 
-	public void b(hd var1) {
-		var1.a(this.a);
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeString(this.a);
 		var1.writeByte(this.h);
 		if (this.h == 0 || this.h == 2) {
-			var1.a(this.b);
-			var1.a(this.c);
-			var1.a(this.d);
+			var1.writeString(this.b);
+			var1.writeString(this.c);
+			var1.writeString(this.d);
 			var1.writeByte(this.i);
-			var1.a(this.e);
+			var1.writeString(this.e);
 			var1.writeByte(this.f);
 		}
 
 		if (this.h == 0 || this.h == 3 || this.h == 4) {
-			var1.b(this.g.size());
+			var1.writeVarInt(this.g.size());
 			Iterator var2 = this.g.iterator();
 
 			while (var2.hasNext()) {
 				String var3 = (String) var2.next();
-				var1.a(var3);
+				var1.writeString(var3);
 			}
 		}
 
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 }

@@ -30,10 +30,10 @@ public class od {
 		ave.M.a(amk.aw, new og());
 		ave.M.a(amk.d, new oh());
 		ave.M.a(amk.aW, new oi());
-		ave.M.a(alq.a(aty.W), new oj());
+		ave.M.a(Item.getItemOf(aty.W), new oj());
 		ave.M.a(amk.bX, new ok());
-		ave.M.a(alq.a(aty.aU), new ol());
-		ave.M.a(alq.a(aty.bX), new om());
+		ave.M.a(Item.getItemOf(aty.aU), new ol());
+		ave.M.a(Item.getItemOf(aty.bX), new om());
 	}
 
 	public static void c() {
@@ -43,9 +43,9 @@ public class od {
 				d();
 			}
 
-			atr.R();
+			Block.R();
 			avx.j();
-			alq.t();
+			Item.t();
 			ty.a();
 			b();
 		}

@@ -26,7 +26,7 @@ public abstract class bic extends bhc {
 		return var2;
 	}
 
-	private boolean c(World var1, dt var2, int var3) {
+	private boolean c(World var1, Position var2, int var3) {
 		boolean var4 = true;
 		if (var2.o() >= 1 && var2.o() + var3 + 1 <= 256) {
 			for (int var5 = 0; var5 <= 1 + var3; ++var5) {
@@ -52,9 +52,9 @@ public abstract class bic extends bhc {
 		}
 	}
 
-	private boolean a(dt var1, World var2) {
-		dt var3 = var1.b();
-		atr var4 = var2.p(var3).c();
+	private boolean a(Position var1, World var2) {
+		Position var3 = var1.b();
+		Block var4 = var2.p(var3).c();
 		if ((var4 == aty.c || var4 == aty.d) && var1.o() >= 2) {
 			this.a(var2, var3);
 			this.a(var2, var3.f());
@@ -66,11 +66,11 @@ public abstract class bic extends bhc {
 		}
 	}
 
-	protected boolean a(World var1, Random var2, dt var3, int var4) {
+	protected boolean a(World var1, Random var2, Position var3, int var4) {
 		return this.c(var1, var3, var4) && this.a(var3, var1);
 	}
 
-	protected void a(World var1, dt var2, int var3) {
+	protected void a(World var1, Position var2, int var3) {
 		int var4 = var3 * var3;
 
 		for (int var5 = -var3; var5 <= var3 + 1; ++var5) {
@@ -78,7 +78,7 @@ public abstract class bic extends bhc {
 				int var7 = var5 - 1;
 				int var8 = var6 - 1;
 				if (var5 * var5 + var6 * var6 <= var4 || var7 * var7 + var8 * var8 <= var4 || var5 * var5 + var8 * var8 <= var4 || var7 * var7 + var6 * var6 <= var4) {
-					dt var9 = var2.a(var5, 0, var6);
+					Position var9 = var2.a(var5, 0, var6);
 					bof var10 = var1.p(var9).c().r();
 					if (var10 == bof.a || var10 == bof.j) {
 						this.a(var1, var9, aty.t, this.c);
@@ -89,13 +89,13 @@ public abstract class bic extends bhc {
 
 	}
 
-	protected void b(World var1, dt var2, int var3) {
+	protected void b(World var1, Position var2, int var3) {
 		int var4 = var3 * var3;
 
 		for (int var5 = -var3; var5 <= var3; ++var5) {
 			for (int var6 = -var3; var6 <= var3; ++var6) {
 				if (var5 * var5 + var6 * var6 <= var4) {
-					dt var7 = var2.a(var5, 0, var6);
+					Position var7 = var2.a(var5, 0, var6);
 					bof var8 = var1.p(var7).c().r();
 					if (var8 == bof.a || var8 == bof.j) {
 						this.a(var1, var7, aty.t, this.c);

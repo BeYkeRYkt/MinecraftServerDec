@@ -68,7 +68,7 @@ public class WhitelistCommand extends AbstractCommand {
 		}
 	}
 
-	public List<String> getTabCompleteList(CommandSenderInterface var1, String[] args, dt var3) {
+	public List<String> getTabCompleteList(CommandSenderInterface var1, String[] args, Position var3) {
 		if (args.length == 1) {
 			return a(args, new String[] { "on", "off", "list", "add", "remove", "reload" });
 		} else {

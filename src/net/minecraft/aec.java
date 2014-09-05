@@ -10,16 +10,16 @@ class aec extends aqf {
 	}
 
 	public void h() {
-		this.a.H().b(23, this.l());
-		this.a.H().b(24, hp.a(this.k()));
+		this.a.getDataWatcher().b(23, this.l());
+		this.a.getDataWatcher().b(24, JSONComponentFormat.a(this.k()));
 	}
 
-	public dt c() {
-		return new dt(this.a.s, this.a.t + 0.5D, this.a.u);
+	public Position c() {
+		return new Position(this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ);
 	}
 
 	public brw d() {
-		return new brw(this.a.s, this.a.t, this.a.u);
+		return new brw(this.a.locationX, this.a.locationY, this.a.locationZ);
 	}
 
 	public World e() {

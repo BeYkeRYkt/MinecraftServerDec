@@ -46,7 +46,7 @@ public class bjw extends bkb {
 		this.a(var1, var3, 0, 2, 4, 3, 5, 4, aty.by.P(), aty.by.P(), false);
 		this.a(var1, var3, 1, 3, 4, 1, 4, 4, aty.bz.P(), aty.by.P(), false);
 		this.a(var1, var3, 3, 3, 4, 3, 4, 4, aty.bz.P(), aty.by.P(), false);
-		if (this.b && var3.b((fd) (new dt(this.a(3, 3), this.d(2), this.b(3, 3))))) {
+		if (this.b && var3.b((fd) (new Position(this.a(3, 3), this.d(2), this.b(3, 3))))) {
 			this.b = false;
 			this.a(var1, var3, var2, 3, 2, 3, a, 2 + var2.nextInt(4));
 		}

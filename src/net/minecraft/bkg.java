@@ -27,9 +27,9 @@ public class bkg extends bmm {
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
 			if (((String) var3.getKey()).equals("spacing")) {
-				this.f = NumberConverter.a((String) var3.getValue(), this.f, 1);
+				this.f = DataTypesConverter.a((String) var3.getValue(), this.f, 1);
 			} else if (((String) var3.getKey()).equals("separation")) {
-				this.g = NumberConverter.a((String) var3.getValue(), this.g, 1);
+				this.g = DataTypesConverter.a((String) var3.getValue(), this.g, 1);
 			}
 		}
 
@@ -58,7 +58,7 @@ public class bkg extends bmm {
 		var5 += (var7.nextInt(this.f - this.g) + var7.nextInt(this.f - this.g)) / 2;
 		var6 += (var7.nextInt(this.f - this.g) + var7.nextInt(this.f - this.g)) / 2;
 		if (var3 == var5 && var4 == var6) {
-			if (this.c.v().a(new dt(var3 * 16 + 8, 64, var4 * 16 + 8), (arm) null) != arm.N) {
+			if (this.c.v().a(new Position(var3 * 16 + 8, 64, var4 * 16 + 8), (arm) null) != arm.N) {
 				return false;
 			}
 

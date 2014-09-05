@@ -7,10 +7,10 @@ final class ok extends eg {
 
 	private boolean b = true;
 
-	protected amj b(dz var1, amj var2) {
+	protected ItemStack b(dz var1, ItemStack var2) {
 		World var3 = var1.i();
 		ej var4 = ave.b(var1.f());
-		dt var5 = var1.d().a(var4);
+		Position var5 = var1.d().a(var4);
 		baj var6 = aty.ce;
 		if (var3.d(var5) && var6.b(var3, var5, var2)) {
 			if (!var3.D) {
@@ -19,8 +19,8 @@ final class ok extends eg {
 				if (var7 instanceof bdm) {
 					if (var2.i() == 3) {
 						GameProfile var8 = null;
-						if (var2.n()) {
-							NBTCompoundTag var9 = var2.o();
+						if (var2.hasTag()) {
+							NBTCompoundTag var9 = var2.getTag();
 							if (var9.isTagAssignableFrom("SkullOwner", 10)) {
 								var8 = ga.a(var9.getCompound("SkullOwner"));
 							} else if (var9.isTagAssignableFrom("SkullOwner", 8)) {

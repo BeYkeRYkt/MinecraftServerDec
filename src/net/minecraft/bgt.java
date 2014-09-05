@@ -8,7 +8,7 @@ public class bgt {
 	protected Random b = new Random();
 	protected World c;
 
-	public void a(bfe var1, World var2, int var3, int var4, bgk var5) {
+	public void a(IChunkProvider var1, World var2, int var3, int var4, bgk var5) {
 		int var6 = this.a;
 		this.c = var2;
 		this.b.setSeed(var2.J());

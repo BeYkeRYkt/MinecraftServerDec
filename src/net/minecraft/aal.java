@@ -26,7 +26,7 @@ public class aal extends aaw {
 		this.b = this.e.bd();
 		if (this.a) {
 			double var1 = this.f();
-			List var3 = this.e.o.a(this.e.getClass(), (new brt(this.e.s, this.e.t, this.e.u, this.e.s + 1.0D, this.e.t + 1.0D, this.e.u + 1.0D)).b(var1, 10.0D, var1));
+			List var3 = this.e.o.a(this.e.getClass(), (new brt(this.e.locationX, this.e.locationY, this.e.locationZ, this.e.locationX + 1.0D, this.e.locationY + 1.0D, this.e.locationZ + 1.0D)).b(var1, 10.0D, var1));
 			Iterator var4 = var3.iterator();
 
 			while (var4.hasNext()) {

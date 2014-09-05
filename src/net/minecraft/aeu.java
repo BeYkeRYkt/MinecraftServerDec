@@ -5,24 +5,24 @@ import java.util.List;
 
 class aeu extends aaq {
 
-	private ahd g;
+	private EntityHuman g;
 	private int h;
 	private int i;
 	private aer j;
 
 	public aeu(aer var1) {
-		super(var1, ahd.class, true);
+		super(var1, EntityHuman.class, true);
 		this.j = var1;
 	}
 
 	public boolean a() {
 		double var1 = this.f();
-		List var3 = this.e.o.a(ahd.class, this.e.aQ().b(var1, 4.0D, var1), this.c);
+		List var3 = this.e.o.a(EntityHuman.class, this.e.aQ().b(var1, 4.0D, var1), this.c);
 		Collections.sort(var3, this.b);
 		if (var3.isEmpty()) {
 			return false;
 		} else {
-			this.g = (ahd) var3.get(0);
+			this.g = (EntityHuman) var3.get(0);
 			return true;
 		}
 	}
@@ -67,7 +67,7 @@ class aeu extends aaq {
 			}
 		} else {
 			if (this.d != null) {
-				if (this.d instanceof ahd && aer.a(this.j, (ahd) this.d)) {
+				if (this.d instanceof EntityHuman && aer.a(this.j, (EntityHuman) this.d)) {
 					if (this.d.h(this.j) < 16.0D) {
 						this.j.n();
 					}

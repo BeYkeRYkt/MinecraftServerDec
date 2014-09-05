@@ -22,8 +22,8 @@ public class TestforBlockCommand extends AbstractCommand {
 			throw new dp("commands.testforblock.usage", new Object[0]);
 		} else {
 			var1.a(ag.b, 0);
-			dt var3 = a(var1, var2, 0, false);
-			atr var4 = atr.b(var2[3]);
+			Position var3 = a(var1, var2, 0, false);
+			Block var4 = Block.b(var2[3]);
 			if (var4 == null) {
 				throw new dk("commands.setblock.notFound", new Object[] { var2[3] });
 			} else {
@@ -50,7 +50,7 @@ public class TestforBlockCommand extends AbstractCommand {
 					}
 
 					bec var14 = var6.p(var3);
-					atr var10 = var14.c();
+					Block var10 = var14.c();
 					if (var10 != var4) {
 						throw new di("commands.testforblock.failed.tile", new Object[] { Integer.valueOf(var3.n()), Integer.valueOf(var3.o()), Integer.valueOf(var3.p()), var10.H(), var4.H() });
 					} else {
@@ -147,7 +147,7 @@ public class TestforBlockCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
-		return var2.length > 0 && var2.length <= 3 ? a(var2, 0, var3) : (var2.length == 4 ? a(var2, atr.c.c()) : null);
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
+		return var2.length > 0 && var2.length <= 3 ? a(var2, 0, var3) : (var2.length == 4 ? a(var2, Block.c.c()) : null);
 	}
 }

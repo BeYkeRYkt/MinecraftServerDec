@@ -5,17 +5,17 @@ import net.minecraft.server.MinecraftServer;
 
 public class bdj extends bcm {
 
-	public final ho[] a = new ho[] { new hy(""), new hy(""), new hy(""), new hy("") };
+	public final IJSONComponent[] a = new IJSONComponent[] { new hy(""), new hy(""), new hy(""), new hy("") };
 	public int f = -1;
 	private boolean g = true;
-	private ahd h;
+	private EntityHuman h;
 	private final af i = new af();
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
 
 		for (int var2 = 0; var2 < 4; ++var2) {
-			String var3 = hp.a(this.a[var2]);
+			String var3 = JSONComponentFormat.a(this.a[var2]);
 			var1.put("Text" + (var2 + 1), var3);
 		}
 
@@ -31,7 +31,7 @@ public class bdj extends bcm {
 			String var4 = var1.getString("Text" + (var3 + 1));
 
 			try {
-				ho var5 = hp.a(var4);
+				IJSONComponent var5 = JSONComponentFormat.a(var4);
 
 				try {
 					this.a[var3] = hq.a(var2, var5, (Entity) null);
@@ -46,8 +46,8 @@ public class bdj extends bcm {
 		this.i.a(var1);
 	}
 
-	public id x_() {
-		ho[] var1 = new ho[4];
+	public Packet x_() {
+		IJSONComponent[] var1 = new IJSONComponent[4];
 		System.arraycopy(this.a, 0, var1, 0, 4);
 		return new ll(this.b, this.c, var1);
 	}
@@ -56,15 +56,15 @@ public class bdj extends bcm {
 		return this.g;
 	}
 
-	public void a(ahd var1) {
+	public void a(EntityHuman var1) {
 		this.h = var1;
 	}
 
-	public ahd c() {
+	public EntityHuman c() {
 		return this.h;
 	}
 
-	public boolean b(ahd var1) {
+	public boolean b(EntityHuman var1) {
 		bdl var2 = new bdl(this, var1);
 
 		for (int var3 = 0; var3 < this.a.length; ++var3) {

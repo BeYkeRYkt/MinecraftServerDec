@@ -4,13 +4,13 @@ import java.util.Random;
 
 public class bin extends bhp {
 
-	private atr a;
+	private Block a;
 
-	public bin(atr var1) {
+	public bin(Block var1) {
 		this.a = var1;
 	}
 
-	public boolean b(World var1, Random var2, dt var3) {
+	public boolean b(World var1, Random var2, Position var3) {
 		if (var1.p(var3.a()).c() != aty.b) {
 			return false;
 		} else if (var1.p(var3.b()).c() != aty.b) {

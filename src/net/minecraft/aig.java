@@ -1,11 +1,11 @@
 package net.minecraft;
 
-public class aig extends aib {
+public class aig extends Container {
 
-	private vq a;
+	private IInventory a;
 	private final aih f;
 
-	public aig(vq var1, vq var2) {
+	public aig(IInventory var1, IInventory var2) {
 		this.a = var2;
 		this.a((ajk) (this.f = new aih(this, var2, 0, 136, 110)));
 		byte var3 = 36;
@@ -24,25 +24,25 @@ public class aig extends aib {
 
 	}
 
-	public void a(ail var1) {
+	public void a(ICrafting var1) {
 		super.a(var1);
 		var1.a(this, this.a);
 	}
 
-	public vq e() {
+	public IInventory e() {
 		return this.a;
 	}
 
-	public boolean a(ahd var1) {
+	public boolean a(EntityHuman var1) {
 		return this.a.a(var1);
 	}
 
-	public amj b(ahd var1, int var2) {
-		amj var3 = null;
+	public ItemStack b(EntityHuman var1, int var2) {
+		ItemStack var3 = null;
 		ajk var4 = (ajk) this.c.get(var2);
 		if (var4 != null && var4.e()) {
-			amj var5 = var4.d();
-			var3 = var5.k();
+			ItemStack var5 = var4.d();
+			var3 = var5.getCopy();
 			if (var2 == 0) {
 				if (!this.a(var5, 1, 37, true)) {
 					return null;
@@ -66,7 +66,7 @@ public class aig extends aib {
 			}
 
 			if (var5.b == 0) {
-				var4.d((amj) null);
+				var4.d((ItemStack) null);
 			} else {
 				var4.f();
 			}

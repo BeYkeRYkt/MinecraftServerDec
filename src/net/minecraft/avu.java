@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.Iterator;
 import java.util.Random;
 
-public class avu extends atr {
+public class avu extends Block {
 
 	public static final bew a = bew.a("moisture", 0, 7);
 
@@ -15,7 +15,7 @@ public class avu extends atr {
 		this.e(255);
 	}
 
-	public brt a(World var1, dt var2, bec var3) {
+	public brt a(World var1, Position var2, bec var3) {
 		return new brt((double) var2.n(), (double) var2.o(), (double) var2.p(), (double) (var2.n() + 1), (double) (var2.o() + 1), (double) (var2.p() + 1));
 	}
 
@@ -27,7 +27,7 @@ public class avu extends atr {
 		return false;
 	}
 
-	public void b(World var1, dt var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, bec var3, Random var4) {
 		int var5 = ((Integer) var3.b(a)).intValue();
 		if (!this.e(var1, var2) && !var1.C(var2.a())) {
 			if (var5 > 0) {
@@ -41,10 +41,10 @@ public class avu extends atr {
 
 	}
 
-	public void a(World var1, dt var2, Entity var3, float var4) {
+	public void a(World var1, Position var2, Entity var3, float var4) {
 		if (var3 instanceof EntityLiving) {
 			if (!var1.D && var1.s.nextFloat() < var4 - 0.5F) {
-				if (!(var3 instanceof ahd) && !var1.Q().b("mobGriefing")) {
+				if (!(var3 instanceof EntityHuman) && !var1.Q().b("mobGriefing")) {
 					return;
 				}
 
@@ -55,13 +55,13 @@ public class avu extends atr {
 		}
 	}
 
-	private boolean d(World var1, dt var2) {
-		atr var3 = var1.p(var2.a()).c();
+	private boolean d(World var1, Position var2) {
+		Block var3 = var1.p(var2.a()).c();
 		return var3 instanceof auu || var3 instanceof bay;
 	}
 
-	private boolean e(World var1, dt var2) {
-		Iterator var3 = dt.b(var2.a(-4, 0, -4), var2.a(4, 1, 4)).iterator();
+	private boolean e(World var1, Position var2) {
+		Iterator var3 = Position.b(var2.a(-4, 0, -4), var2.a(4, 1, 4)).iterator();
 
 		dy var4;
 		do {
@@ -75,7 +75,7 @@ public class avu extends atr {
 		return true;
 	}
 
-	public void a(World var1, dt var2, bec var3, atr var4) {
+	public void a(World var1, Position var2, bec var3, Block var4) {
 		super.a(var1, var2, var3, var4);
 		if (var1.p(var2.a()).c().r().a()) {
 			var1.a(var2, aty.d.P());
@@ -83,7 +83,7 @@ public class avu extends atr {
 
 	}
 
-	public alq a(bec var1, Random var2, int var3) {
+	public Item a(bec var1, Random var2, int var3) {
 		return aty.d.a(aty.d.P().a(avc.a, avd.a), var2, var3);
 	}
 

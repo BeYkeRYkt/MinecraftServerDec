@@ -21,9 +21,9 @@ public class TestforBlocksCommand extends AbstractCommand {
 			throw new dp("commands.compare.usage", new Object[0]);
 		} else {
 			var1.a(ag.b, 0);
-			dt var3 = a(var1, var2, 0, false);
-			dt var4 = a(var1, var2, 3, false);
-			dt var5 = a(var1, var2, 6, false);
+			Position var3 = a(var1, var2, 0, false);
+			Position var4 = a(var1, var2, 3, false);
+			Position var5 = a(var1, var2, 6, false);
 			bjb var6 = new bjb(var3, var4);
 			bjb var7 = new bjb(var5, var5.a(var6.b()));
 			int var8 = var6.c() * var6.d() * var6.e();
@@ -38,13 +38,13 @@ public class TestforBlocksCommand extends AbstractCommand {
 					}
 
 					var8 = 0;
-					dt var11 = new dt(var7.a - var6.a, var7.b - var6.b, var7.c - var6.c);
+					Position var11 = new Position(var7.a - var6.a, var7.b - var6.b, var7.c - var6.c);
 
 					for (int var12 = var6.c; var12 <= var6.f; ++var12) {
 						for (int var13 = var6.b; var13 <= var6.e; ++var13) {
 							for (int var14 = var6.a; var14 <= var6.d; ++var14) {
-								dt var15 = new dt(var14, var13, var12);
-								dt var16 = var15.a((fd) var11);
+								Position var15 = new Position(var14, var13, var12);
+								Position var16 = var15.a((fd) var11);
 								boolean var17 = false;
 								bec var18 = var9.p(var15);
 								if (!var10 || var18.c() != aty.a) {
@@ -92,7 +92,7 @@ public class TestforBlocksCommand extends AbstractCommand {
 		}
 	}
 
-	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, dt var3) {
+	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		return var2.length > 0 && var2.length <= 3 ? a(var2, 0, var3) : (var2.length > 3 && var2.length <= 6 ? a(var2, 3, var3) : (var2.length > 6 && var2.length <= 9 ? a(var2, 6, var3) : (var2.length == 10 ? a(var2, new String[] { "masked", "all" }) : null)));
 	}
 }

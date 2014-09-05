@@ -9,8 +9,8 @@ class aoe implements aoo {
 		boolean var3 = false;
 
 		for (int var4 = 0; var4 < var1.n_(); ++var4) {
-			amj var5 = var1.a(var4);
-			if (var5 != null && var5.b() == amk.cE) {
+			ItemStack var5 = var1.a(var4);
+			if (var5 != null && var5.getItem() == amk.cE) {
 				if (var3) {
 					return false;
 				}
@@ -30,13 +30,13 @@ class aoe implements aoo {
 		}
 	}
 
-	public amj a(ain var1) {
-		amj var2 = null;
+	public ItemStack a(ain var1) {
+		ItemStack var2 = null;
 
 		for (int var3 = 0; var3 < var1.n_(); ++var3) {
-			amj var4 = var1.a(var3);
-			if (var4 != null && var4.b() == amk.cE) {
-				var2 = var4.k();
+			ItemStack var4 = var1.a(var3);
+			if (var4 != null && var4.getItem() == amk.cE) {
+				var2 = var4.getCopy();
 				var2.b = 1;
 				break;
 			}
@@ -46,10 +46,10 @@ class aoe implements aoo {
 		if (var8 != null) {
 			int var9 = 0;
 
-			amj var6;
+			ItemStack var6;
 			for (int var5 = 0; var5 < var1.n_(); ++var5) {
 				var6 = var1.a(var5);
-				if (var6 != null && var6.b() == amk.aW) {
+				if (var6 != null && var6.getItem() == amk.aW) {
 					var9 = var6.i();
 					break;
 				}
@@ -78,17 +78,17 @@ class aoe implements aoo {
 		return 10;
 	}
 
-	public amj b() {
+	public ItemStack b() {
 		return null;
 	}
 
-	public amj[] b(ain var1) {
-		amj[] var2 = new amj[var1.n_()];
+	public ItemStack[] b(ain var1) {
+		ItemStack[] var2 = new ItemStack[var1.n_()];
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {
-			amj var4 = var1.a(var3);
-			if (var4 != null && var4.b().r()) {
-				var2[var3] = new amj(var4.b().q());
+			ItemStack var4 = var1.a(var3);
+			if (var4 != null && var4.getItem().r()) {
+				var2[var3] = new ItemStack(var4.getItem().q());
 			}
 		}
 
@@ -109,9 +109,9 @@ class aoe implements aoo {
 					boolean var13 = false;
 
 					for (var9 = 0; var9 < var1.n_() && var6; ++var9) {
-						amj var14 = var1.a(var9);
-						if (var14 != null && var14.b() != amk.cE) {
-							if (var14.b() == amk.aW) {
+						ItemStack var14 = var1.a(var9);
+						if (var14 != null && var14.getItem() != amk.cE) {
+							if (var14.getItem() == amk.aW) {
 								if (var13) {
 									var6 = false;
 									break;
@@ -140,9 +140,9 @@ class aoe implements aoo {
 					for (int var8 = 0; var8 < var1.n_() && var6; ++var8) {
 						var9 = var8 / 3;
 						int var10 = var8 % 3;
-						amj var11 = var1.a(var8);
-						if (var11 != null && var11.b() != amk.cE) {
-							if (var11.b() != amk.aW) {
+						ItemStack var11 = var1.a(var8);
+						if (var11 != null && var11.getItem() != amk.cE) {
+							if (var11.getItem() != amk.aW) {
 								var6 = false;
 								break;
 							}

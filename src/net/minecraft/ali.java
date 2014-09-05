@@ -70,8 +70,8 @@ public enum ali {
 		return var1 == null ? a : var1;
 	}
 
-	public static ali a(amj var0) {
-		return var0.b() instanceof alh ? a(var0.i()) : a;
+	public static ali a(ItemStack var0) {
+		return var0.getItem() instanceof alh ? a(var0.i()) : a;
 	}
 
 	static {

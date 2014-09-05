@@ -2,22 +2,22 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class ala extends alq {
+public class ala extends Item {
 
-	public boolean f_(amj var1) {
+	public boolean f_(ItemStack var1) {
 		return false;
 	}
 
-	public amx g(amj var1) {
+	public amx g(ItemStack var1) {
 		return this.h(var1).getSize() > 0 ? amx.b : super.g(var1);
 	}
 
-	public NBTListTag h(amj var1) {
-		NBTCompoundTag var2 = var1.o();
+	public NBTListTag h(ItemStack var1) {
+		NBTCompoundTag var2 = var1.getTag();
 		return var2 != null && var2.isTagAssignableFrom("StoredEnchantments", 9) ? (NBTListTag) var2.getTag("StoredEnchantments") : new NBTListTag();
 	}
 
-	public void a(amj var1, apo var2) {
+	public void a(ItemStack var1, apo var2) {
 		NBTListTag var3 = this.h(var1);
 		boolean var4 = true;
 
@@ -40,15 +40,15 @@ public class ala extends alq {
 			var3.addTag((NBTTag) var7);
 		}
 
-		if (!var1.n()) {
+		if (!var1.hasTag()) {
 			var1.d(new NBTCompoundTag());
 		}
 
-		var1.o().put("StoredEnchantments", (NBTTag) var3);
+		var1.getTag().put("StoredEnchantments", (NBTTag) var3);
 	}
 
-	public amj a(apo var1) {
-		amj var2 = new amj(this);
+	public ItemStack a(apo var1) {
+		ItemStack var2 = new ItemStack(this);
 		this.a(var2, var1);
 		return var2;
 	}
@@ -58,7 +58,7 @@ public class ala extends alq {
 	}
 
 	public vl a(Random var1, int var2, int var3, int var4) {
-		amj var5 = new amj(amk.aL, 1, 0);
+		ItemStack var5 = new ItemStack(amk.aL, 1, 0);
 		aph.a(var1, var5, 30);
 		return new vl(var5, var2, var3, var4);
 	}

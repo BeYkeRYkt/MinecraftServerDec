@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class kd implements id<ik> {
+public class kd implements Packet<PlayPacketListener> {
 
 	private boolean a;
 	private boolean b;
@@ -21,7 +21,7 @@ public class kd implements id<ik> {
 		this.b(var1.getWalkSpeed());
 	}
 
-	public void a(hd var1) {
+	public void readData(PacketDataSerializer var1) {
 		byte var2 = var1.readByte();
 		this.a((var2 & 1) > 0);
 		this.b((var2 & 2) > 0);
@@ -31,7 +31,7 @@ public class kd implements id<ik> {
 		this.b(var1.readFloat());
 	}
 
-	public void b(hd var1) {
+	public void writeData(PacketDataSerializer var1) {
 		byte var2 = 0;
 		if (this.a()) {
 			var2 = (byte) (var2 | 1);
@@ -54,7 +54,7 @@ public class kd implements id<ik> {
 		var1.writeFloat(this.f);
 	}
 
-	public void a(ik var1) {
+	public void handlePacket(PlayPacketListener var1) {
 		var1.a(this);
 	}
 

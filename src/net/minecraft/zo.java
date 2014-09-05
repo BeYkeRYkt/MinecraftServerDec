@@ -18,7 +18,7 @@ public class zo extends zb {
 		if (this.a.ce()) {
 			return false;
 		} else {
-			dt var1 = this.a.cf();
+			Position var1 = this.a.cf();
 			brw var2 = abf.a(this.a, 16, 7, new brw((double) var1.n(), (double) var1.o(), (double) var1.p()));
 			if (var2 == null) {
 				return false;

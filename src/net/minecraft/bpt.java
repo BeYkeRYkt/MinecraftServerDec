@@ -28,7 +28,7 @@ public class bpt {
 		float var2 = (float) (var1.a - this.a);
 		float var3 = (float) (var1.b - this.b);
 		float var4 = (float) (var1.c - this.c);
-		return NumberConverter.c(var2 * var2 + var3 * var3 + var4 * var4);
+		return DataTypesConverter.c(var2 * var2 + var3 * var3 + var4 * var4);
 	}
 
 	public float b(bpt var1) {

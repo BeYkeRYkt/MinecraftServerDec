@@ -39,8 +39,8 @@ public enum ami {
 		return this.j;
 	}
 
-	public alq f() {
-		return this == a ? alq.a(aty.f) : (this == b ? alq.a(aty.e) : (this == e ? amk.k : (this == c ? amk.j : (this == d ? amk.i : null))));
+	public Item f() {
+		return this == a ? Item.getItemOf(aty.f) : (this == b ? Item.getItemOf(aty.e) : (this == e ? amk.k : (this == c ? amk.j : (this == d ? amk.i : null))));
 	}
 
 }

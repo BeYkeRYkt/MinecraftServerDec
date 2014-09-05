@@ -3,7 +3,7 @@ package net.minecraft;
 import com.mojang.authlib.GameProfile;
 import java.util.UUID;
 
-public class ni implements id<nh> {
+public class ni implements Packet<nh> {
 
 	private GameProfile a;
 
@@ -14,15 +14,15 @@ public class ni implements id<nh> {
 		this.a = var1;
 	}
 
-	public void a(hd var1) {
-		this.a = new GameProfile((UUID) null, var1.c(16));
+	public void readData(PacketDataSerializer var1) {
+		this.a = new GameProfile((UUID) null, var1.readString(16));
 	}
 
-	public void b(hd var1) {
-		var1.a(this.a.getName());
+	public void writeData(PacketDataSerializer var1) {
+		var1.writeString(this.a.getName());
 	}
 
-	public void a(nh var1) {
+	public void handlePacket(nh var1) {
 		var1.a(this);
 	}
 

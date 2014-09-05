@@ -8,7 +8,7 @@ public class bqi extends bqm {
 		super(var1, var2, var3);
 	}
 
-	public bfq a(bgd var1) {
+	public bfq a(WorldProvider var1) {
 		File var2 = this.b();
 		File var3;
 		if (var1 instanceof bge) {
@@ -24,7 +24,7 @@ public class bqi extends bqm {
 		}
 	}
 
-	public void a(bqo var1, NBTCompoundTag var2) {
+	public void a(WorldData var1, NBTCompoundTag var2) {
 		var1.e(19133);
 		super.a(var1, var2);
 	}
