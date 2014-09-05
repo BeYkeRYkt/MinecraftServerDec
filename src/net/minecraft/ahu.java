@@ -32,9 +32,9 @@ public class ahu extends ahr {
 			int var2 = 3 + this.o.s.nextInt(5) + this.o.s.nextInt(5);
 
 			while (var2 > 0) {
-				int var3 = xk.a(var2);
+				int var3 = ExpirienceOrb.a(var2);
 				var2 -= var3;
-				this.o.d((Entity) (new xk(this.o, this.locationX, this.locationY, this.locationZ, var3)));
+				this.o.d((Entity) (new ExpirienceOrb(this.o, this.locationX, this.locationY, this.locationZ, var3)));
 			}
 
 			this.J();

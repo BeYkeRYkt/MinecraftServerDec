@@ -220,11 +220,11 @@ public class blk extends bln {
 		Iterator var15 = en.a.iterator();
 
 		while (var15.hasNext()) {
-			ej var11 = (ej) var15.next();
-			if (!this.e[var11.b()]) {
+			PaintingDirection var11 = (PaintingDirection) var15.next();
+			if (!this.e[var11.toByte()]) {
 				int var12 = var11.g() * 2;
 				int var13 = var11.i() * 2;
-				this.e[var11.b()] = this.a(var1, var3, var2, 10 + var12, -11, 10 + var13, vl.a(f, new vl[] { amk.cd.b(var2) }), 2 + var2.nextInt(5));
+				this.e[var11.toByte()] = this.a(var1, var3, var2, 10 + var12, -11, 10 + var13, vl.a(f, new vl[] { amk.cd.b(var2) }), 2 + var2.nextInt(5));
 			}
 		}
 

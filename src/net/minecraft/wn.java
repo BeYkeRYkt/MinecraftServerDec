@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class wn extends wp {
+public class wn extends MobEffectList {
 
 	public wn(int var1, oa var2, boolean var3, int var4) {
 		super(var1, var2, var3, var4);

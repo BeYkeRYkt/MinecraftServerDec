@@ -11,13 +11,13 @@ public class alo extends Item {
 		this.a(CreativeModeTab.i);
 	}
 
-	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (!var2.a(var4.a(var5), var5, var1)) {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
 			Block var10 = var9.c();
-			if (var5 != ej.a && var3.p(var4.a()).c().r() == bof.a) {
+			if (var5 != PaintingDirection.a && var3.p(var4.a()).c().r() == bof.a) {
 				if (var10 == aty.c) {
 					return this.a(var1, var2, var3, var4, aty.ak.P());
 				}

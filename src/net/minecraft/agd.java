@@ -12,7 +12,7 @@ class agd extends zb {
 	}
 
 	public boolean a() {
-		return this.a.u() == null && (this.a.C || this.a.V() || this.a.ab());
+		return this.a.u() == null && (this.a.onGround || this.a.V() || this.a.ab());
 	}
 
 	public void e() {

@@ -11,7 +11,7 @@ public class awj extends atg {
 
 	protected awj(boolean var1) {
 		super(bof.e);
-		this.j(this.L.b().a(a, ej.c));
+		this.j(this.L.b().a(a, PaintingDirection.c));
 		this.b = var1;
 	}
 
@@ -29,22 +29,22 @@ public class awj extends atg {
 			Block var5 = var1.p(var2.d()).c();
 			Block var6 = var1.p(var2.e()).c();
 			Block var7 = var1.p(var2.f()).c();
-			ej var8 = (ej) var3.b(a);
-			if (var8 == ej.c && var4.m() && !var5.m()) {
-				var8 = ej.d;
-			} else if (var8 == ej.d && var5.m() && !var4.m()) {
-				var8 = ej.c;
-			} else if (var8 == ej.e && var6.m() && !var7.m()) {
-				var8 = ej.f;
-			} else if (var8 == ej.f && var7.m() && !var6.m()) {
-				var8 = ej.e;
+			PaintingDirection var8 = (PaintingDirection) var3.b(a);
+			if (var8 == PaintingDirection.c && var4.m() && !var5.m()) {
+				var8 = PaintingDirection.d;
+			} else if (var8 == PaintingDirection.d && var5.m() && !var4.m()) {
+				var8 = PaintingDirection.c;
+			} else if (var8 == PaintingDirection.e && var6.m() && !var7.m()) {
+				var8 = PaintingDirection.f;
+			} else if (var8 == PaintingDirection.f && var7.m() && !var6.m()) {
+				var8 = PaintingDirection.e;
 			}
 
 			var1.a(var2, var3.a(a, var8), 2);
 		}
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {
@@ -81,7 +81,7 @@ public class awj extends atg {
 		return new bdc();
 	}
 
-	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(a, var8.aO().d());
 	}
 
@@ -121,16 +121,16 @@ public class awj extends atg {
 	}
 
 	public bec a(int var1) {
-		ej var2 = ej.a(var1);
+		PaintingDirection var2 = PaintingDirection.a(var1);
 		if (var2.k() == el.b) {
-			var2 = ej.c;
+			var2 = PaintingDirection.c;
 		}
 
 		return this.P().a(a, var2);
 	}
 
 	public int c(bec var1) {
-		return ((ej) var1.b(a)).a();
+		return ((PaintingDirection) var1.b(a)).a();
 	}
 
 	protected bed e() {

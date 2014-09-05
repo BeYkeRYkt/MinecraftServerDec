@@ -113,7 +113,7 @@ public abstract class aaz {
 			} else if (this.d != null && this.d.e() < this.d.d()) {
 				var1 = this.c();
 				brw var2 = this.d.a(this.b, this.d.e());
-				if (var1.b > var2.b && !this.b.C && DataTypesConverter.toFixedPointInt(var1.a) == DataTypesConverter.toFixedPointInt(var2.a) && DataTypesConverter.toFixedPointInt(var1.c) == DataTypesConverter.toFixedPointInt(var2.c)) {
+				if (var1.b > var2.b && !this.b.onGround && DataTypesConverter.toFixedPointInt(var1.a) == DataTypesConverter.toFixedPointInt(var2.a) && DataTypesConverter.toFixedPointInt(var1.c) == DataTypesConverter.toFixedPointInt(var2.c)) {
 					this.d.c(this.d.e() + 1);
 				}
 			}

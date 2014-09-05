@@ -8,10 +8,10 @@ class bkq implements bks {
 	}
 
 	public boolean a(blf var1) {
-		return !var1.c[ej.e.a()] && !var1.c[ej.f.a()] && !var1.c[ej.c.a()] && !var1.c[ej.d.a()] && !var1.c[ej.b.a()];
+		return !var1.c[PaintingDirection.e.a()] && !var1.c[PaintingDirection.f.a()] && !var1.c[PaintingDirection.c.a()] && !var1.c[PaintingDirection.d.a()] && !var1.c[PaintingDirection.b.a()];
 	}
 
-	public blb a(ej var1, blf var2, Random var3) {
+	public blb a(PaintingDirection var1, blf var2, Random var3) {
 		var2.d = true;
 		return new bld(var1, var2, var3);
 	}

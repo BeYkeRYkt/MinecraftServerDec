@@ -14,7 +14,7 @@ public class aah extends zb {
 			return false;
 		} else if (this.a.V()) {
 			return false;
-		} else if (!this.a.C) {
+		} else if (!this.a.onGround) {
 			return false;
 		} else if (this.a.G) {
 			return false;

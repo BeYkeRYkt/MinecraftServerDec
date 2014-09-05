@@ -95,8 +95,8 @@ public class bqe extends bqc {
 
 		if (var2.y()) {
 			adk var7 = var2.z();
-			Position var9 = var7.n();
-			this.a(1, var1.o, "frame-" + var7.getId(), (double) var9.n(), (double) var9.p(), (double) (var7.b.b() * 90));
+			Position var9 = var7.getPosition();
+			this.a(1, var1.o, "frame-" + var7.getId(), (double) var9.n(), (double) var9.p(), (double) (var7.direction.toByte() * 90));
 		}
 
 		if (var2.hasTag() && var2.getTag().isTagAssignableFrom("Decorations", 9)) {

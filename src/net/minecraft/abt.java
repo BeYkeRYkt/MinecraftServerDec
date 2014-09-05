@@ -840,7 +840,7 @@ public class abt extends abq implements vr {
 			this.A = this.yaw = this.l.yaw;
 			this.pitch = this.l.pitch * 0.5F;
 			this.b(this.yaw, this.pitch);
-			this.aI = this.aG = this.yaw;
+			this.headPitch = this.aG = this.yaw;
 			var1 = ((EntityLiving) this.l).aX * 0.5F;
 			var2 = ((EntityLiving) this.l).aY;
 			if (var2 <= 0.0F) {
@@ -848,15 +848,15 @@ public class abt extends abq implements vr {
 				this.bL = 0;
 			}
 
-			if (this.C && this.bp == 0.0F && this.cx() && !this.bE) {
+			if (this.onGround && this.bp == 0.0F && this.cx() && !this.bE) {
 				var1 = 0.0F;
 				var2 = 0.0F;
 			}
 
-			if (this.bp > 0.0F && !this.ct() && this.C) {
+			if (this.bp > 0.0F && !this.ct() && this.onGround) {
 				this.motionY = this.cD() * (double) this.bp;
-				if (this.a(wp.j)) {
-					this.motionY += (double) ((float) (this.b(wp.j).c() + 1) * 0.1F);
+				if (this.a(MobEffectList.j)) {
+					this.motionY += (double) ((float) (this.b(MobEffectList.j).getAmplifier() + 1) * 0.1F);
 				}
 
 				this.m(true);
@@ -879,7 +879,7 @@ public class abt extends abq implements vr {
 				super.g(var1, var2);
 			}
 
-			if (this.C) {
+			if (this.onGround) {
 				this.bp = 0.0F;
 				this.m(false);
 			}

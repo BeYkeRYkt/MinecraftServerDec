@@ -65,7 +65,7 @@ public class auf extends Block {
 		Iterator var3 = en.a.iterator();
 
 		while (var3.hasNext()) {
-			ej var4 = (ej) var3.next();
+			PaintingDirection var4 = (PaintingDirection) var3.next();
 			if (var1.p(var2.a(var4)).c().r().a()) {
 				return false;
 			}

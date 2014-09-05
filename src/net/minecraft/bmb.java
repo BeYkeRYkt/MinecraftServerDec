@@ -10,7 +10,7 @@ public class bmb extends bmk {
 	public bmb() {
 	}
 
-	public bmb(int var1, Random var2, bjb var3, ej var4) {
+	public bmb(int var1, Random var2, bjb var3, PaintingDirection var4) {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
@@ -33,7 +33,7 @@ public class bmb extends bmk {
 
 	}
 
-	public static bmb a(List var0, Random var1, int var2, int var3, int var4, ej var5, int var6) {
+	public static bmb a(List var0, Random var1, int var2, int var3, int var4, PaintingDirection var5, int var6) {
 		bjb var7 = bjb.a(var2, var3, var4, -4, -1, 0, 11, 8, 16, var5);
 		return a(var7) && bms.a(var0, var7) == null ? new bmb(var6, var1, var7, var5) : null;
 	}
@@ -75,27 +75,27 @@ public class bmb extends bmk {
 			this.a(var1, aty.bv.a(var5), var6, 3, 6, var3);
 		}
 
-		var6 = ej.c.b();
-		int var7 = ej.d.b();
-		int var8 = ej.f.b();
-		int var9 = ej.e.b();
+		var6 = PaintingDirection.c.toByte();
+		int var7 = PaintingDirection.d.toByte();
+		int var8 = PaintingDirection.f.toByte();
+		int var9 = PaintingDirection.e.toByte();
 		if (this.m != null) {
 			switch (blu.b[this.m.ordinal()]) {
 				case 2:
-					var6 = ej.d.b();
-					var7 = ej.c.b();
+					var6 = PaintingDirection.d.toByte();
+					var7 = PaintingDirection.c.toByte();
 					break;
 				case 3:
-					var6 = ej.e.b();
-					var7 = ej.f.b();
-					var8 = ej.d.b();
-					var9 = ej.c.b();
+					var6 = PaintingDirection.e.toByte();
+					var7 = PaintingDirection.f.toByte();
+					var8 = PaintingDirection.d.toByte();
+					var9 = PaintingDirection.c.toByte();
 					break;
 				case 4:
-					var6 = ej.f.b();
-					var7 = ej.e.b();
-					var8 = ej.d.b();
-					var9 = ej.c.b();
+					var6 = PaintingDirection.f.toByte();
+					var7 = PaintingDirection.e.toByte();
+					var8 = PaintingDirection.d.toByte();
+					var9 = PaintingDirection.c.toByte();
 			}
 		}
 

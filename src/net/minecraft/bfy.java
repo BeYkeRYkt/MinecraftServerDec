@@ -312,14 +312,14 @@ public class bfy implements bfq, brq {
 		if (var23 != null) {
 			for (int var24 = 0; var24 < var23.getSize(); ++var24) {
 				NBTCompoundTag var26 = var23.getCompound(var24);
-				Entity var29 = xb.a(var26, var1);
+				Entity var29 = EntityTypes.a(var26, var1);
 				var5.g(true);
 				if (var29 != null) {
 					var5.a(var29);
 					Entity var32 = var29;
 
 					for (NBTCompoundTag var35 = var26; var35.isTagAssignableFrom("Riding", 10); var35 = var35.getCompound("Riding")) {
-						Entity var37 = xb.a(var35.getCompound("Riding"), var1);
+						Entity var37 = EntityTypes.a(var35.getCompound("Riding"), var1);
 						if (var37 != null) {
 							var5.a(var37);
 							var32.a(var37);

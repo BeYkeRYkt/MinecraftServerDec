@@ -22,7 +22,7 @@ public class avm extends ave {
 			} else {
 				ItemStack var6 = var4.a(var5);
 				if (var6 != null) {
-					ej var7 = (ej) var1.p(var2).b(a);
+					PaintingDirection var7 = (PaintingDirection) var1.p(var2).b(a);
 					Position var8 = var2.a(var7);
 					IInventory var9 = bde.b(var1, (double) var8.n(), (double) var8.o(), (double) var8.p());
 					ItemStack var10;

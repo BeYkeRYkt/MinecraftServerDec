@@ -10,8 +10,8 @@ public class ajs extends aju {
 		this.d(0);
 	}
 
-	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
-		if (var5 == ej.a) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
+		if (var5 == PaintingDirection.a) {
 			return false;
 		} else if (!var3.p(var4).c().r().a()) {
 			return false;
@@ -24,7 +24,7 @@ public class ajs extends aju {
 			} else if (var3.D) {
 				return true;
 			} else {
-				if (var5 == ej.b) {
+				if (var5 == PaintingDirection.b) {
 					int var9 = DataTypesConverter.toFixedPointInt((double) ((var2.yaw + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
 					var3.a(var4, aty.cK.P().a(baw.a, Integer.valueOf(var9)), 3);
 				} else {

@@ -97,7 +97,7 @@ public class yt extends zb {
 			}
 
 			if (this.a.Q().b("doMobLoot")) {
-				this.a.d((Entity) (new xk(this.a, this.d.locationX, this.d.locationY, this.d.locationZ, var3.nextInt(7) + 1)));
+				this.a.d((Entity) (new ExpirienceOrb(this.a, this.d.locationX, this.d.locationY, this.d.locationZ, var3.nextInt(7) + 1)));
 			}
 
 		}

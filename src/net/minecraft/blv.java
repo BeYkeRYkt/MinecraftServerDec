@@ -13,7 +13,7 @@ public class blv extends bmk {
 	public blv() {
 	}
 
-	public blv(int var1, Random var2, bjb var3, ej var4) {
+	public blv(int var1, Random var2, bjb var3, PaintingDirection var4) {
 		super(var1);
 		this.m = var4;
 		this.d = this.a(var2);
@@ -34,7 +34,7 @@ public class blv extends bmk {
 		this.a((bmh) var1, var2, var3, 1, 1);
 	}
 
-	public static blv a(List var0, Random var1, int var2, int var3, int var4, ej var5, int var6) {
+	public static blv a(List var0, Random var1, int var2, int var3, int var4, PaintingDirection var5, int var6) {
 		bjb var7 = bjb.a(var2, var3, var4, -1, -1, 0, 5, 5, 7, var5);
 		return a(var7) && bms.a(var0, var7) == null ? new blv(var6, var1, var7, var5) : null;
 	}

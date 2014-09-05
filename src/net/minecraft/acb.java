@@ -94,7 +94,7 @@ public class acb extends abq {
 			}
 		}
 
-		if (this.C) {
+		if (this.onGround) {
 			if (!this.bp) {
 				this.a(false, ace.a);
 				this.cu();
@@ -127,7 +127,7 @@ public class acb extends abq {
 			}
 		}
 
-		this.bp = this.C;
+		this.bp = this.onGround;
 	}
 
 	public void Y() {

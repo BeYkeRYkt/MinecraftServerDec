@@ -3,23 +3,23 @@ package net.minecraft;
 import com.google.common.collect.Lists;
 import java.util.ArrayList;
 
-public class adm extends adj {
+public class EntityPainting extends adj {
 
-	public adn c;
+	public PaintingType type;
 
-	public adm(World var1) {
+	public EntityPainting(World var1) {
 		super(var1);
 	}
 
-	public adm(World var1, Position var2, ej var3) {
+	public EntityPainting(World var1, Position var2, PaintingDirection var3) {
 		super(var1, var2);
 		ArrayList var4 = Lists.newArrayList();
-		adn[] var5 = adn.values();
+		PaintingType[] var5 = PaintingType.values();
 		int var6 = var5.length;
 
 		for (int var7 = 0; var7 < var6; ++var7) {
-			adn var8 = var5[var7];
-			this.c = var8;
+			PaintingType var8 = var5[var7];
+			this.type = var8;
 			this.a(var3);
 			if (this.j()) {
 				var4.add(var8);
@@ -27,42 +27,42 @@ public class adm extends adj {
 		}
 
 		if (!var4.isEmpty()) {
-			this.c = (adn) var4.get(this.V.nextInt(var4.size()));
+			this.type = (PaintingType) var4.get(this.V.nextInt(var4.size()));
 		}
 
 		this.a(var3);
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.put("Motive", this.c.B);
+		var1.put("Motive", this.type.name);
 		super.b(var1);
 	}
 
 	public void a(NBTCompoundTag var1) {
 		String var2 = var1.getString("Motive");
-		adn[] var3 = adn.values();
+		PaintingType[] var3 = PaintingType.values();
 		int var4 = var3.length;
 
 		for (int var5 = 0; var5 < var4; ++var5) {
-			adn var6 = var3[var5];
-			if (var6.B.equals(var2)) {
-				this.c = var6;
+			PaintingType var6 = var3[var5];
+			if (var6.name.equals(var2)) {
+				this.type = var6;
 			}
 		}
 
-		if (this.c == null) {
-			this.c = adn.a;
+		if (this.type == null) {
+			this.type = PaintingType.a;
 		}
 
 		super.a(var1);
 	}
 
 	public int l() {
-		return this.c.C;
+		return this.type.C;
 	}
 
 	public int m() {
-		return this.c.D;
+		return this.type.D;
 	}
 
 	public void b(Entity var1) {

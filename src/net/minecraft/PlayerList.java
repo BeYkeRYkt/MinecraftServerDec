@@ -103,13 +103,13 @@ public abstract class PlayerList {
 		Iterator var14 = player.bk().iterator();
 
 		while (var14.hasNext()) {
-			wq var15 = (wq) var14.next();
-			var12.a((Packet) (new lr(player.getId(), var15)));
+			MobEffect var15 = (MobEffect) var14.next();
+			var12.a((Packet) (new PacketEntityEffect(player.getId(), var15)));
 		}
 
 		player.f_();
 		if (var7 != null && var7.isTagAssignableFrom("Riding", 10)) {
-			Entity var16 = xb.a(var7.getCompound("Riding"), (World) worldServer);
+			Entity var16 = EntityTypes.a(var7.getCompound("Riding"), (World) worldServer);
 			if (var16 != null) {
 				var16.n = true;
 				worldServer.d(var16);
@@ -322,7 +322,7 @@ public abstract class PlayerList {
 		var9 = var8.M();
 		var7.a.a(var7.locationX, var7.locationY, var7.locationZ, var7.yaw, var7.pitch);
 		var7.a.a((Packet) (new PacketSpawnPosition(var9)));
-		var7.a.a((Packet) (new lb(var7.bB, var7.bA, var7.bz)));
+		var7.a.a((Packet) (new PacketSetExpirience(var7.bB, var7.bA, var7.bz)));
 		this.b(var7, var8);
 		var8.t().a(var7);
 		var8.d(var7);
@@ -350,8 +350,8 @@ public abstract class PlayerList {
 		Iterator var6 = var1.bk().iterator();
 
 		while (var6.hasNext()) {
-			wq var7 = (wq) var6.next();
-			var1.a.a((Packet) (new lr(var1.getId(), var7)));
+			MobEffect var7 = (MobEffect) var6.next();
+			var1.a.a((Packet) (new PacketEntityEffect(var1.getId(), var7)));
 		}
 
 	}

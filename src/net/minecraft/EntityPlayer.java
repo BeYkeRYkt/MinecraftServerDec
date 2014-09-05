@@ -140,7 +140,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 				var3.remove();
 			}
 
-			this.a.a((Packet) (new km(var2)));
+			this.a.a((Packet) (new PacketDestroyEntities(var2)));
 		}
 
 		if (!this.f.isEmpty()) {
@@ -237,7 +237,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 			if (this.bA != this.bN) {
 				this.bN = this.bA;
-				this.a.a((Packet) (new lb(this.bB, this.bA, this.bz)));
+				this.a.a((Packet) (new PacketSetExpirience(this.bB, this.bA, this.bz)));
 			}
 
 			if (this.W % 20 * 5 == 0 && !this.A().a(tl.L)) {
@@ -317,7 +317,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 		EntityLiving var7 = this.bs();
 		if (var7 != null) {
-			xc var8 = (xc) xb.a.get(Integer.valueOf(xb.a(var7)));
+			xc var8 = (xc) EntityTypes.a.get(Integer.valueOf(EntityTypes.getFixedId(var7)));
 			if (var8 != null) {
 				this.b(var8.e);
 			}
@@ -439,7 +439,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		Entity var2 = this.m;
 		super.a(var1);
 		if (var1 != var2) {
-			this.a.a((Packet) (new ky(0, this, this.m)));
+			this.a.a((Packet) (new PacketAttachEntity(0, this, this.m)));
 			this.a.a(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 		}
 
@@ -661,7 +661,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	protected void s() {
-		this.a.a((Packet) (new jk(this, (byte) 9)));
+		this.a.a((Packet) (new PacketEntityStatus(this, (byte) 9)));
 		super.s();
 	}
 
@@ -681,19 +681,19 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		this.bH.addAll(((EntityPlayer) var1).bH);
 	}
 
-	protected void a(wq var1) {
+	protected void a(MobEffect var1) {
 		super.a(var1);
-		this.a.a((Packet) (new lr(this.getId(), var1)));
+		this.a.a((Packet) (new PacketEntityEffect(this.getId(), var1)));
 	}
 
-	protected void a(wq var1, boolean var2) {
+	protected void a(MobEffect var1, boolean var2) {
 		super.a(var1, var2);
-		this.a.a((Packet) (new lr(this.getId(), var1)));
+		this.a.a((Packet) (new PacketEntityEffect(this.getId(), var1)));
 	}
 
-	protected void b(wq var1) {
+	protected void b(MobEffect var1) {
 		super.b(var1);
-		this.a.a((Packet) (new kn(this.getId(), var1)));
+		this.a.a((Packet) (new PacketRemoveEntityEffect(this.getId(), var1)));
 	}
 
 	public void a(double var1, double var3, double var5) {
@@ -791,7 +791,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void d(Entity var1) {
 		if (var1 instanceof EntityHuman) {
-			this.a.a((Packet) (new km(new int[] { var1.getId() })));
+			this.a.a((Packet) (new PacketDestroyEntities(new int[] { var1.getId() })));
 		} else {
 			this.bH.add(Integer.valueOf(var1.getId()));
 		}

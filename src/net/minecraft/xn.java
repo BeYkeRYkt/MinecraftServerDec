@@ -213,7 +213,7 @@ public abstract class xn extends EntityLiving {
 				var4.put("UUIDMost", this.bn.aJ().getMostSignificantBits());
 				var4.put("UUIDLeast", this.bn.aJ().getLeastSignificantBits());
 			} else if (this.bn instanceof adj) {
-				Position var5 = ((adj) this.bn).n();
+				Position var5 = ((adj) this.bn).getPosition();
 				var4.put("X", var5.n());
 				var4.put("Y", var5.o());
 				var4.put("Z", var5.p());
@@ -726,7 +726,7 @@ public abstract class xn extends EntityLiving {
 			}
 
 			if (!this.o.D && var1 && this.o instanceof WorldServer) {
-				((WorldServer) this.o).s().a((Entity) this, (Packet) (new ky(1, this, (Entity) null)));
+				((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketAttachEntity(1, this, (Entity) null)));
 			}
 		}
 
@@ -748,7 +748,7 @@ public abstract class xn extends EntityLiving {
 		this.bm = true;
 		this.bn = var1;
 		if (!this.o.D && var2 && this.o instanceof WorldServer) {
-			((WorldServer) this.o).s().a((Entity) this, (Packet) (new ky(1, this, this.bn)));
+			((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketAttachEntity(1, this, this.bn)));
 		}
 
 	}

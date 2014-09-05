@@ -9,7 +9,7 @@ import java.util.Collection;
 public class beu extends bev {
 
 	protected beu(String var1, Collection var2) {
-		super(var1, ej.class, var2);
+		super(var1, PaintingDirection.class, var2);
 	}
 
 	public static beu a(String var0) {
@@ -17,7 +17,7 @@ public class beu extends bev {
 	}
 
 	public static beu a(String var0, Predicate var1) {
-		return a(var0, Collections2.filter(Lists.newArrayList((Object[]) ej.values()), var1));
+		return a(var0, Collections2.filter(Lists.newArrayList((Object[]) PaintingDirection.values()), var1));
 	}
 
 	public static beu a(String var0, Collection var1) {

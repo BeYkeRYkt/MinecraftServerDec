@@ -80,8 +80,8 @@ public class age extends afm {
 		return xs.c;
 	}
 
-	public boolean d(wq var1) {
-		return var1.a() == wp.u.H ? false : super.d(var1);
+	public boolean d(MobEffect var1) {
+		return var1.getId() == MobEffectList.u.H ? false : super.d(var1);
 	}
 
 	public boolean n() {
@@ -118,8 +118,8 @@ public class age extends afm {
 
 		if (var4 instanceof agg) {
 			int var5 = ((agg) var4).a;
-			if (var5 > 0 && wp.a[var5] != null) {
-				this.c(new wq(var5, Integer.MAX_VALUE));
+			if (var5 > 0 && MobEffectList.byId[var5] != null) {
+				this.c(new MobEffect(var5, Integer.MAX_VALUE));
 			}
 		}
 

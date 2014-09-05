@@ -390,7 +390,7 @@ public class adf extends afm implements afr {
 	public void e(float var1, float var2) {
 	}
 
-	public void c(wq var1) {
+	public void c(MobEffect var1) {
 	}
 
 	protected void aW() {

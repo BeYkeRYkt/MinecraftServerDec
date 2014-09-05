@@ -127,7 +127,7 @@ public class agp extends ws implements ago, aqb {
 					}
 				}
 
-				this.c(new wq(wp.l.H, 200, 0));
+				this.c(new MobEffect(MobEffectList.l.H, 200, 0));
 			}
 		}
 
@@ -348,7 +348,7 @@ public class agp extends ws implements ago, aqb {
 		}
 
 		if (var1.j()) {
-			this.o.d((Entity) (new xk(this.o, this.locationX, this.locationY + 0.5D, this.locationZ, var2)));
+			this.o.d((Entity) (new ExpirienceOrb(this.o, this.locationX, this.locationY + 0.5D, this.locationZ, var2)));
 		}
 
 	}

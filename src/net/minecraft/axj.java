@@ -73,40 +73,40 @@ class axj {
 			;
 		}
 
-		a = new int[ej.values().length];
+		a = new int[PaintingDirection.values().length];
 
 		try {
-			a[ej.a.ordinal()] = 1;
+			a[PaintingDirection.a.ordinal()] = 1;
 		} catch (NoSuchFieldError var6) {
 			;
 		}
 
 		try {
-			a[ej.b.ordinal()] = 2;
+			a[PaintingDirection.b.ordinal()] = 2;
 		} catch (NoSuchFieldError var5) {
 			;
 		}
 
 		try {
-			a[ej.c.ordinal()] = 3;
+			a[PaintingDirection.c.ordinal()] = 3;
 		} catch (NoSuchFieldError var4) {
 			;
 		}
 
 		try {
-			a[ej.d.ordinal()] = 4;
+			a[PaintingDirection.d.ordinal()] = 4;
 		} catch (NoSuchFieldError var3) {
 			;
 		}
 
 		try {
-			a[ej.e.ordinal()] = 5;
+			a[PaintingDirection.e.ordinal()] = 5;
 		} catch (NoSuchFieldError var2) {
 			;
 		}
 
 		try {
-			a[ej.f.ordinal()] = 6;
+			a[PaintingDirection.f.ordinal()] = 6;
 		} catch (NoSuchFieldError var1) {
 			;
 		}

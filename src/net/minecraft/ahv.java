@@ -74,14 +74,14 @@ public class ahv extends ahr {
 							Iterator var11 = var2.iterator();
 
 							while (var11.hasNext()) {
-								wq var12 = (wq) var11.next();
-								int var13 = var12.a();
-								if (wp.a[var13].b()) {
-									wp.a[var13].a(this, this.n(), var6, var12.c(), var9);
+								MobEffect var12 = (MobEffect) var11.next();
+								int var13 = var12.getId();
+								if (MobEffectList.byId[var13].b()) {
+									MobEffectList.byId[var13].a(this, this.n(), var6, var12.getAmplifier(), var9);
 								} else {
-									int var14 = (int) (var9 * (double) var12.b() + 0.5D);
+									int var14 = (int) (var9 * (double) var12.getDuration() + 0.5D);
 									if (var14 > 20) {
-										var6.c(new wq(var13, var14, var12.c()));
+										var6.c(new MobEffect(var13, var14, var12.getAmplifier()));
 									}
 								}
 							}

@@ -80,7 +80,7 @@ public class qn {
 			this.a(var1, 160, Integer.MAX_VALUE, false);
 		} else if (var1 instanceof adi) {
 			this.a(var1, 160, 3, true);
-		} else if (var1 instanceof xk) {
+		} else if (var1 instanceof ExpirienceOrb) {
 			this.a(var1, 160, 20, true);
 		} else if (var1 instanceof ada) {
 			this.a(var1, 256, Integer.MAX_VALUE, false);

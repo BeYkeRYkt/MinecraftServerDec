@@ -5,11 +5,11 @@ import com.google.common.base.Predicate;
 class auq implements Predicate {
 
 	// $FF: synthetic field
-	final ej a;
+	final PaintingDirection a;
 	// $FF: synthetic field
 	final aup b;
 
-	auq(aup var1, ej var2) {
+	auq(aup var1, PaintingDirection var2) {
 		this.b = var1;
 		this.a = var2;
 	}

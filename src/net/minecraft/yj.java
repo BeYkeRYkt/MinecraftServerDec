@@ -15,14 +15,14 @@ public class yj {
 		double var3 = this.a.locationZ - this.a.r;
 		if (var1 * var1 + var3 * var3 > 2.500000277905201E-7D) {
 			this.a.aG = this.a.yaw;
-			this.a.aI = this.a(this.a.aG, this.a.aI, 75.0F);
-			this.c = this.a.aI;
+			this.a.headPitch = this.a(this.a.aG, this.a.headPitch, 75.0F);
+			this.c = this.a.headPitch;
 			this.b = 0;
 		} else {
 			float var5 = 75.0F;
-			if (Math.abs(this.a.aI - this.c) > 15.0F) {
+			if (Math.abs(this.a.headPitch - this.c) > 15.0F) {
 				this.b = 0;
-				this.c = this.a.aI;
+				this.c = this.a.headPitch;
 			} else {
 				++this.b;
 				boolean var6 = true;
@@ -31,7 +31,7 @@ public class yj {
 				}
 			}
 
-			this.a.aG = this.a(this.a.aI, this.a.aG, var5);
+			this.a.aG = this.a(this.a.headPitch, this.a.aG, var5);
 		}
 	}
 

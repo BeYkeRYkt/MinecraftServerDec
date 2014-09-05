@@ -102,7 +102,7 @@ public abstract class EntityHuman extends EntityLiving {
 	public void s_() {
 		this.T = this.v();
 		if (this.v()) {
-			this.C = false;
+			this.onGround = false;
 		}
 
 		if (this.g != null) {
@@ -307,7 +307,7 @@ public abstract class EntityHuman extends EntityLiving {
 	protected void bJ() {
 		super.bJ();
 		this.bw();
-		this.aI = this.yaw;
+		this.headPitch = this.yaw;
 	}
 
 	public void m() {
@@ -345,11 +345,11 @@ public abstract class EntityHuman extends EntityLiving {
 			var2 = 0.1F;
 		}
 
-		if (!this.C || this.bm() <= 0.0F) {
+		if (!this.onGround || this.bm() <= 0.0F) {
 			var2 = 0.0F;
 		}
 
-		if (this.C || this.bm() <= 0.0F) {
+		if (this.onGround || this.bm() <= 0.0F) {
 			var3 = 0.0F;
 		}
 
@@ -535,13 +535,13 @@ public abstract class EntityHuman extends EntityLiving {
 			}
 		}
 
-		if (this.a(wp.e)) {
-			var2 *= 1.0F + (float) (this.b(wp.e).c() + 1) * 0.2F;
+		if (this.a(MobEffectList.e)) {
+			var2 *= 1.0F + (float) (this.b(MobEffectList.e).getAmplifier() + 1) * 0.2F;
 		}
 
-		if (this.a(wp.f)) {
+		if (this.a(MobEffectList.f)) {
 			float var5 = 1.0F;
-			switch (this.b(wp.f).c()) {
+			switch (this.b(MobEffectList.f).getAmplifier()) {
 				case 0:
 					var5 = 0.3F;
 					break;
@@ -563,7 +563,7 @@ public abstract class EntityHuman extends EntityLiving {
 			var2 /= 5.0F;
 		}
 
-		if (!this.C) {
+		if (!this.onGround) {
 			var2 /= 5.0F;
 		}
 
@@ -824,7 +824,7 @@ public abstract class EntityHuman extends EntityLiving {
 				}
 
 				if (var2 > 0.0F || var4 > 0.0F) {
-					boolean var5 = this.O > 0.0F && !this.C && !this.j_() && !this.V() && !this.a(wp.q) && this.m == null && var1 instanceof EntityLiving;
+					boolean var5 = this.O > 0.0F && !this.onGround && !this.j_() && !this.V() && !this.a(MobEffectList.q) && this.m == null && var1 instanceof EntityLiving;
 					if (var5 && var2 > 0.0F) {
 						var2 *= 1.5F;
 					}
@@ -850,7 +850,7 @@ public abstract class EntityHuman extends EntityLiving {
 						}
 
 						if (var1 instanceof EntityPlayer && var1.G) {
-							((EntityPlayer) var1).a.a((Packet) (new kz(var1)));
+							((EntityPlayer) var1).a.a((Packet) (new PacketEntityVelocity(var1)));
 							var1.G = false;
 							var1.motionX = var8;
 							var1.motionY = var10;
@@ -963,7 +963,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 		this.a(0.2F, 0.2F);
 		if (this.o.e(var1)) {
-			ej var7 = (ej) this.o.p(var1).b(avb.N);
+			PaintingDirection var7 = (PaintingDirection) this.o.p(var1).b(avb.N);
 			float var3 = 0.5F;
 			float var8 = 0.5F;
 			switch (ahe.a[var7.ordinal()]) {
@@ -997,7 +997,7 @@ public abstract class EntityHuman extends EntityLiving {
 		return ahf.a;
 	}
 
-	private void a(ej var1) {
+	private void a(PaintingDirection var1) {
 		this.bw = 0.0F;
 		this.bx = 0.0F;
 		switch (ahe.a[var1.ordinal()]) {
@@ -1153,7 +1153,7 @@ public abstract class EntityHuman extends EntityLiving {
 				if (var3 > 0.0D) {
 					this.a(ty.n, (int) Math.round(var3 * 100.0D));
 				}
-			} else if (this.C) {
+			} else if (this.onGround) {
 				var7 = Math.round(DataTypesConverter.a(var1 * var1 + var5 * var5) * 100.0F);
 				if (var7 > 0) {
 					this.a(ty.i, var7);
@@ -1227,7 +1227,7 @@ public abstract class EntityHuman extends EntityLiving {
 			this.b((PlayerStatistic) tl.s);
 		}
 
-		xc var2 = (xc) xb.a.get(Integer.valueOf(xb.a(var1)));
+		xc var2 = (xc) EntityTypes.a.get(Integer.valueOf(EntityTypes.getFixedId(var1)));
 		if (var2 != null) {
 			this.b(var2.d);
 		}
@@ -1332,7 +1332,7 @@ public abstract class EntityHuman extends EntityLiving {
 		return this.by.maybuild;
 	}
 
-	public boolean a(Position var1, ej var2, ItemStack var3) {
+	public boolean a(Position var1, PaintingDirection var2, ItemStack var3) {
 		if (this.by.maybuild) {
 			return true;
 		} else if (var3 == null) {

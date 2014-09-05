@@ -8,7 +8,7 @@ public abstract class adj extends Entity {
 
 	private int c;
 	protected Position a;
-	public ej b;
+	public PaintingDirection direction;
 
 	public adj(World var1) {
 		super(var1);
@@ -23,26 +23,26 @@ public abstract class adj extends Entity {
 	protected void h() {
 	}
 
-	protected void a(ej var1) {
+	protected void a(PaintingDirection var1) {
 		Validate.notNull(var1);
 		Validate.isTrue(var1.k().c());
-		this.b = var1;
-		this.A = this.yaw = (float) (this.b.b() * 90);
+		this.direction = var1;
+		this.A = this.yaw = (float) (this.direction.toByte() * 90);
 		this.o();
 	}
 
 	private void o() {
-		if (this.b != null) {
+		if (this.direction != null) {
 			double var1 = (double) this.a.n() + 0.5D;
 			double var3 = (double) this.a.o() + 0.5D;
 			double var5 = (double) this.a.p() + 0.5D;
 			double var7 = 0.46875D;
 			double var9 = this.a(this.l());
 			double var11 = this.a(this.m());
-			var1 -= (double) this.b.g() * 0.46875D;
-			var5 -= (double) this.b.i() * 0.46875D;
+			var1 -= (double) this.direction.g() * 0.46875D;
+			var5 -= (double) this.direction.i() * 0.46875D;
 			var3 += var11;
-			ej var13 = this.b.f();
+			PaintingDirection var13 = this.direction.f();
 			var1 += var9 * (double) var13.g();
 			var5 += var9 * (double) var13.i();
 			this.locationX = var1;
@@ -51,7 +51,7 @@ public abstract class adj extends Entity {
 			double var14 = (double) this.l();
 			double var16 = (double) this.m();
 			double var18 = (double) this.l();
-			if (this.b.k() == el.c) {
+			if (this.direction.k() == el.c) {
 				var18 = 1.0D;
 			} else {
 				var14 = 1.0D;
@@ -88,8 +88,8 @@ public abstract class adj extends Entity {
 		} else {
 			int var1 = Math.max(1, this.l() / 16);
 			int var2 = Math.max(1, this.m() / 16);
-			Position var3 = this.a.a(this.b.d());
-			ej var4 = this.b.f();
+			Position var3 = this.a.a(this.direction.d());
+			PaintingDirection var4 = this.direction.f();
 
 			for (int var5 = 0; var5 < var1; ++var5) {
 				for (int var6 = 0; var6 < var2; ++var6) {
@@ -125,8 +125,8 @@ public abstract class adj extends Entity {
 		return var1 instanceof EntityHuman ? this.a(wh.a((EntityHuman) var1), 0.0F) : false;
 	}
 
-	public ej aO() {
-		return this.b;
+	public PaintingDirection aO() {
+		return this.direction;
 	}
 
 	public boolean a(wh var1, float var2) {
@@ -160,22 +160,22 @@ public abstract class adj extends Entity {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.put("Facing", (byte) this.b.b());
-		var1.put("TileX", this.n().n());
-		var1.put("TileY", this.n().o());
-		var1.put("TileZ", this.n().p());
+		var1.put("Facing", (byte) this.direction.toByte());
+		var1.put("TileX", this.getPosition().n());
+		var1.put("TileY", this.getPosition().o());
+		var1.put("TileZ", this.getPosition().p());
 	}
 
 	public void a(NBTCompoundTag var1) {
 		this.a = new Position(var1.getInt("TileX"), var1.getInt("TileY"), var1.getInt("TileZ"));
-		ej var2;
+		PaintingDirection var2;
 		if (var1.isTagAssignableFrom("Direction", 99)) {
-			var2 = ej.b(var1.getByte("Direction"));
+			var2 = PaintingDirection.fromByte(var1.getByte("Direction"));
 			this.a = this.a.a(var2);
 		} else if (var1.isTagAssignableFrom("Facing", 99)) {
-			var2 = ej.b(var1.getByte("Facing"));
+			var2 = PaintingDirection.fromByte(var1.getByte("Facing"));
 		} else {
-			var2 = ej.b(var1.getByte("Dir"));
+			var2 = PaintingDirection.fromByte(var1.getByte("Dir"));
 		}
 
 		this.a(var2);
@@ -204,7 +204,7 @@ public abstract class adj extends Entity {
 
 	}
 
-	public Position n() {
+	public Position getPosition() {
 		return this.a;
 	}
 }

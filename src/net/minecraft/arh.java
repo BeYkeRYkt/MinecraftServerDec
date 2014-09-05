@@ -94,26 +94,26 @@ public class arh {
 			double var35 = (double) ((Position) var9).n() + 0.5D;
 			double var36 = (double) ((Position) var9).o() + 0.5D;
 			double var37 = (double) ((Position) var9).p() + 0.5D;
-			ej var18 = null;
+			PaintingDirection var18 = null;
 			if (this.a.p(((Position) var9).e()).c() == aty.aY) {
-				var18 = ej.c;
+				var18 = PaintingDirection.c;
 			}
 
 			if (this.a.p(((Position) var9).f()).c() == aty.aY) {
-				var18 = ej.d;
+				var18 = PaintingDirection.d;
 			}
 
 			if (this.a.p(((Position) var9).c()).c() == aty.aY) {
-				var18 = ej.f;
+				var18 = PaintingDirection.f;
 			}
 
 			if (this.a.p(((Position) var9).d()).c() == aty.aY) {
-				var18 = ej.e;
+				var18 = PaintingDirection.e;
 			}
 
-			ej var19 = ej.b(var1.aG());
+			PaintingDirection var19 = PaintingDirection.fromByte(var1.aG());
 			if (var18 != null) {
-				ej var20 = var18.f();
+				PaintingDirection var20 = var18.f();
 				Position var21 = ((Position) var9).a(var18);
 				boolean var22 = this.a(var21);
 				boolean var23 = this.a(var21.a(var20));
@@ -163,7 +163,7 @@ public class arh {
 				double var32 = var1.motionZ;
 				var1.motionX = var30 * (double) var26 + var32 * (double) var29;
 				var1.motionZ = var30 * (double) var28 + var32 * (double) var27;
-				var1.yaw = var2 - (float) (var19.b() * 90) + (float) (var18.b() * 90);
+				var1.yaw = var2 - (float) (var19.toByte() * 90) + (float) (var18.toByte() * 90);
 			} else {
 				var1.motionX = var1.motionY = var1.motionZ = 0.0D;
 			}

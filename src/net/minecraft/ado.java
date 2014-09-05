@@ -206,7 +206,7 @@ public class ado extends Entity {
 				this.pitch = this.B + (this.pitch - this.B) * 0.2F;
 				this.yaw = this.A + (this.yaw - this.A) * 0.2F;
 				float var32 = 0.92F;
-				if (this.C || this.D) {
+				if (this.onGround || this.D) {
 					var32 = 0.5F;
 				}
 
@@ -375,7 +375,7 @@ public class ado extends Entity {
 				var13.motionY = var5 * var11 + (double) DataTypesConverter.a(var9) * 0.08D;
 				var13.motionZ = var7 * var11;
 				this.o.d((Entity) var13);
-				this.b.o.d((Entity) (new xk(this.b.o, this.b.locationX, this.b.locationY + 0.5D, this.b.locationZ + 0.5D, this.V.nextInt(6) + 1)));
+				this.b.o.d((Entity) (new ExpirienceOrb(this.b.o, this.b.locationX, this.b.locationY + 0.5D, this.b.locationZ + 0.5D, this.V.nextInt(6) + 1)));
 				var1 = 1;
 			}
 

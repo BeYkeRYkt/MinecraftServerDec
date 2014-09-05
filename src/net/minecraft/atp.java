@@ -14,12 +14,12 @@ public class atp extends avb {
 		this.j();
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {
 			if (var3.b(a) != atq.a) {
-				var2 = var2.a((ej) var3.b(N));
+				var2 = var2.a((PaintingDirection) var3.b(N));
 				var3 = var1.p(var2);
 				if (var3.c() != this) {
 					return true;
@@ -54,7 +54,7 @@ public class atp extends avb {
 				}
 			} else {
 				var1.g(var2);
-				Position var9 = var2.a(((ej) var3.b(N)).d());
+				Position var9 = var2.a(((PaintingDirection) var3.b(N)).d());
 				if (var1.p(var9).c() == this) {
 					var1.g(var9);
 				}
@@ -93,7 +93,7 @@ public class atp extends avb {
 	}
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
-		ej var5 = (ej) var3.b(N);
+		PaintingDirection var5 = (PaintingDirection) var3.b(N);
 		if (var3.b(a) == atq.a) {
 			if (var1.p(var2.a(var5.d())).c() != this) {
 				var1.g(var2);
@@ -116,7 +116,7 @@ public class atp extends avb {
 	}
 
 	public static Position a(World var0, Position var1, int var2) {
-		ej var3 = (ej) var0.p(var1).b(N);
+		PaintingDirection var3 = (PaintingDirection) var0.p(var1).b(N);
 		int var4 = var1.n();
 		int var5 = var1.o();
 		int var6 = var1.p();
@@ -161,7 +161,7 @@ public class atp extends avb {
 
 	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
 		if (var4.by.instabuild && var3.b(a) == atq.a) {
-			Position var5 = var2.a(((ej) var3.b(N)).d());
+			Position var5 = var2.a(((PaintingDirection) var3.b(N)).d());
 			if (var1.p(var5).c() == this) {
 				var1.g(var5);
 			}
@@ -170,13 +170,13 @@ public class atp extends avb {
 	}
 
 	public bec a(int var1) {
-		ej var2 = ej.b(var1);
+		PaintingDirection var2 = PaintingDirection.fromByte(var1);
 		return (var1 & 8) > 0 ? this.P().a(a, atq.a).a(N, var2).a(b, Boolean.valueOf((var1 & 4) > 0)) : this.P().a(a, atq.b).a(N, var2);
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
 		if (var1.b(a) == atq.b) {
-			bec var4 = var2.p(var3.a((ej) var1.b(N)));
+			bec var4 = var2.p(var3.a((PaintingDirection) var1.b(N)));
 			if (var4.c() == this) {
 				var1 = var1.a(b, var4.b(b));
 			}
@@ -187,7 +187,7 @@ public class atp extends avb {
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((ej) var1.b(N)).b();
+		int var3 = var2 | ((PaintingDirection) var1.b(N)).toByte();
 		if (var1.b(a) == atq.a) {
 			var3 |= 8;
 			if (((Boolean) var1.b(b)).booleanValue()) {

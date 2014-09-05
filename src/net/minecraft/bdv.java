@@ -7,7 +7,7 @@ import java.util.List;
 public class bdv extends bcm implements pm {
 
 	private bec a;
-	private ej f;
+	private PaintingDirection f;
 	private boolean g;
 	private boolean h;
 	private float i;
@@ -17,7 +17,7 @@ public class bdv extends bcm implements pm {
 	public bdv() {
 	}
 
-	public bdv(bec var1, ej var2, boolean var3, boolean var4) {
+	public bdv(bec var1, PaintingDirection var2, boolean var3, boolean var4) {
 		this.a = var1;
 		this.f = var2;
 		this.g = var3;
@@ -36,7 +36,7 @@ public class bdv extends bcm implements pm {
 		return this.g;
 	}
 
-	public ej e() {
+	public PaintingDirection e() {
 		return this.f;
 	}
 
@@ -126,7 +126,7 @@ public class bdv extends bcm implements pm {
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
 		this.a = Block.c(var1.getInt("blockId")).a(var1.getInt("blockData"));
-		this.f = ej.a(var1.getInt("facing"));
+		this.f = PaintingDirection.a(var1.getInt("facing"));
 		this.j = this.i = var1.getFloat("progress");
 		this.g = var1.getBoolean("extending");
 	}

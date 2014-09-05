@@ -259,16 +259,16 @@ public class bdc extends bdf implements pm, we {
 		return var1 == 2 ? false : (var1 != 1 ? true : c(var2) || aiu.c_(var2));
 	}
 
-	public int[] a(ej var1) {
-		return var1 == ej.a ? f : (var1 == ej.b ? a : g);
+	public int[] a(PaintingDirection var1) {
+		return var1 == PaintingDirection.a ? f : (var1 == PaintingDirection.b ? a : g);
 	}
 
-	public boolean a(int var1, ItemStack var2, ej var3) {
+	public boolean a(int var1, ItemStack var2, PaintingDirection var3) {
 		return this.b(var1, var2);
 	}
 
-	public boolean b(int var1, ItemStack var2, ej var3) {
-		if (var3 == ej.a && var1 == 1) {
+	public boolean b(int var1, ItemStack var2, PaintingDirection var3) {
+		if (var3 == PaintingDirection.a && var1 == 1) {
 			Item var4 = var2.getItem();
 			if (var4 != amk.ax && var4 != amk.aw) {
 				return false;

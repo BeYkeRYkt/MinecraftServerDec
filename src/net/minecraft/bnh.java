@@ -11,7 +11,7 @@ public class bnh extends bnn {
 	public bnh() {
 	}
 
-	public bnh(bnk var1, int var2, Random var3, bjb var4, ej var5) {
+	public bnh(bnk var1, int var2, Random var3, bjb var4, PaintingDirection var5) {
 		super(var1, var2);
 		this.m = var5;
 		this.l = var4;
@@ -31,7 +31,7 @@ public class bnh extends bnn {
 		this.a = var1.getBoolean("C");
 	}
 
-	public static bnh a(bnk var0, List var1, Random var2, int var3, int var4, int var5, ej var6, int var7) {
+	public static bnh a(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
 		bjb var8 = bjb.a(var3, var4, var5, 0, 0, 0, 4, 6, 5, var6);
 		return a(var8) && bms.a(var1, var8) == null ? new bnh(var0, var7, var2, var8, var6) : null;
 	}
@@ -82,7 +82,7 @@ public class bnh extends bnn {
 
 		this.a(var1, aty.a.P(), 1, 1, 0, var3);
 		this.a(var1, aty.a.P(), 1, 2, 0, var3);
-		this.a(var1, var3, var2, 1, 1, 0, ej.b(this.a(aty.ao, 1)));
+		this.a(var1, var3, var2, 1, 1, 0, PaintingDirection.fromByte(this.a(aty.ao, 1)));
 		if (this.a(var1, 1, 0, -1, var3).c().r() == bof.a && this.a(var1, 1, -1, -1, var3).c().r() != bof.a) {
 			this.a(var1, aty.aw.a(this.a(aty.aw, 3)), 1, 0, -1, var3);
 		}

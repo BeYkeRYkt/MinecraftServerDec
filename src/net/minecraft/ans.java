@@ -55,11 +55,11 @@ public class ans {
 			Iterator var6 = var0.iterator();
 
 			while (var6.hasNext()) {
-				wq var7 = (wq) var6.next();
-				if (var7.f()) {
-					int var8 = wp.a[var7.a()].k();
+				MobEffect var7 = (MobEffect) var6.next();
+				if (var7.isParticlesShown()) {
+					int var8 = MobEffectList.byId[var7.getId()].k();
 
-					for (int var9 = 0; var9 <= var7.c(); ++var9) {
+					for (int var9 = 0; var9 <= var7.getAmplifier(); ++var9) {
 						var2 += (float) (var8 >> 16 & 255) / 255.0F;
 						var3 += (float) (var8 >> 8 & 255) / 255.0F;
 						var4 += (float) (var8 >> 0 & 255) / 255.0F;
@@ -84,14 +84,14 @@ public class ans {
 	public static boolean b(Collection var0) {
 		Iterator var1 = var0.iterator();
 
-		wq var2;
+		MobEffect var2;
 		do {
 			if (!var1.hasNext()) {
 				return true;
 			}
 
-			var2 = (wq) var1.next();
-		} while (var2.e());
+			var2 = (MobEffect) var1.next();
+		} while (var2.isAmbient());
 
 		return false;
 	}
@@ -261,11 +261,11 @@ public class ans {
 
 	public static List b(int var0, boolean var1) {
 		ArrayList var2 = null;
-		wp[] var3 = wp.a;
+		MobEffectList[] var3 = MobEffectList.byId;
 		int var4 = var3.length;
 
 		for (int var5 = 0; var5 < var4; ++var5) {
-			wp var6 = var3[var5];
+			MobEffectList var6 = var3[var5];
 			if (var6 != null && (!var6.j() || var1)) {
 				String var7 = (String) o.get(Integer.valueOf(var6.d()));
 				if (var7 != null) {
@@ -295,9 +295,9 @@ public class ans {
 							var2 = Lists.newArrayList();
 						}
 
-						wq var11 = new wq(var6.d(), var8, var9);
+						MobEffect var11 = new MobEffect(var6.d(), var8, var9);
 						if ((var0 & 16384) != 0) {
-							var11.a(true);
+							var11.setSplash(true);
 						}
 
 						var2.add(var11);
@@ -401,38 +401,38 @@ public class ans {
 	}
 
 	static {
-		o.put(Integer.valueOf(wp.l.d()), "0 & !1 & !2 & !3 & 0+6");
+		o.put(Integer.valueOf(MobEffectList.l.d()), "0 & !1 & !2 & !3 & 0+6");
 		b = "-0+1-2-3&4-4+13";
-		o.put(Integer.valueOf(wp.c.d()), "!0 & 1 & !2 & !3 & 1+6");
+		o.put(Integer.valueOf(MobEffectList.c.d()), "!0 & 1 & !2 & !3 & 1+6");
 		h = "+0+1-2-3&4-4+13";
-		o.put(Integer.valueOf(wp.n.d()), "0 & 1 & !2 & !3 & 0+6");
+		o.put(Integer.valueOf(MobEffectList.n.d()), "0 & 1 & !2 & !3 & 0+6");
 		f = "+0-1+2-3&4-4+13";
-		o.put(Integer.valueOf(wp.h.d()), "0 & !1 & 2 & !3");
+		o.put(Integer.valueOf(MobEffectList.h.d()), "0 & !1 & 2 & !3");
 		d = "-0-1+2-3&4-4+13";
-		o.put(Integer.valueOf(wp.u.d()), "!0 & !1 & 2 & !3 & 2+6");
+		o.put(Integer.valueOf(MobEffectList.u.d()), "!0 & !1 & 2 & !3 & 2+6");
 		e = "-0+3-4+13";
-		o.put(Integer.valueOf(wp.t.d()), "!0 & !1 & !2 & 3 & 3+6");
-		o.put(Integer.valueOf(wp.i.d()), "!0 & !1 & 2 & 3");
-		o.put(Integer.valueOf(wp.d.d()), "!0 & 1 & !2 & 3 & 3+6");
+		o.put(Integer.valueOf(MobEffectList.t.d()), "!0 & !1 & !2 & 3 & 3+6");
+		o.put(Integer.valueOf(MobEffectList.i.d()), "!0 & !1 & 2 & 3");
+		o.put(Integer.valueOf(MobEffectList.d.d()), "!0 & 1 & !2 & 3 & 3+6");
 		g = "+0-1-2+3&4-4+13";
-		o.put(Integer.valueOf(wp.g.d()), "0 & !1 & !2 & 3 & 3+6");
+		o.put(Integer.valueOf(MobEffectList.g.d()), "0 & !1 & !2 & 3 & 3+6");
 		l = "-0+1+2-3+13&4-4";
-		o.put(Integer.valueOf(wp.r.d()), "!0 & 1 & 2 & !3 & 2+6");
-		o.put(Integer.valueOf(wp.p.d()), "!0 & 1 & 2 & 3 & 2+6");
+		o.put(Integer.valueOf(MobEffectList.r.d()), "!0 & 1 & 2 & !3 & 2+6");
+		o.put(Integer.valueOf(MobEffectList.p.d()), "!0 & 1 & 2 & 3 & 2+6");
 		m = "+0-1+2+3+13&4-4";
-		o.put(Integer.valueOf(wp.o.d()), "0 & !1 & 2 & 3 & 2+6");
+		o.put(Integer.valueOf(MobEffectList.o.d()), "0 & !1 & 2 & 3 & 2+6");
 		n = "+0+1-2+3&4-4+13";
-		o.put(Integer.valueOf(wp.j.d()), "0 & 1 & !2 & 3");
+		o.put(Integer.valueOf(MobEffectList.j.d()), "0 & 1 & !2 & 3");
 		j = "+5-6-7";
-		p.put(Integer.valueOf(wp.c.d()), "5");
-		p.put(Integer.valueOf(wp.e.d()), "5");
-		p.put(Integer.valueOf(wp.g.d()), "5");
-		p.put(Integer.valueOf(wp.l.d()), "5");
-		p.put(Integer.valueOf(wp.i.d()), "5");
-		p.put(Integer.valueOf(wp.h.d()), "5");
-		p.put(Integer.valueOf(wp.m.d()), "5");
-		p.put(Integer.valueOf(wp.u.d()), "5");
-		p.put(Integer.valueOf(wp.j.d()), "5");
+		p.put(Integer.valueOf(MobEffectList.c.d()), "5");
+		p.put(Integer.valueOf(MobEffectList.e.d()), "5");
+		p.put(Integer.valueOf(MobEffectList.g.d()), "5");
+		p.put(Integer.valueOf(MobEffectList.l.d()), "5");
+		p.put(Integer.valueOf(MobEffectList.i.d()), "5");
+		p.put(Integer.valueOf(MobEffectList.h.d()), "5");
+		p.put(Integer.valueOf(MobEffectList.m.d()), "5");
+		p.put(Integer.valueOf(MobEffectList.u.d()), "5");
+		p.put(Integer.valueOf(MobEffectList.j.d()), "5");
 		i = "-5+6-7";
 		k = "+14&13-13";
 		q = Maps.newHashMap();

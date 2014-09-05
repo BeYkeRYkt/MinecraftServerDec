@@ -237,15 +237,15 @@ public class bcq extends bdf implements pm, we {
 		return var1;
 	}
 
-	public int[] a(ej var1) {
-		return var1 == ej.b ? a : f;
+	public int[] a(PaintingDirection var1) {
+		return var1 == PaintingDirection.b ? a : f;
 	}
 
-	public boolean a(int var1, ItemStack var2, ej var3) {
+	public boolean a(int var1, ItemStack var2, PaintingDirection var3) {
 		return this.b(var1, var2);
 	}
 
-	public boolean b(int var1, ItemStack var2, ej var3) {
+	public boolean b(int var1, ItemStack var2, PaintingDirection var3) {
 		return true;
 	}
 

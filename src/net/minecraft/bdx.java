@@ -9,7 +9,7 @@ public class bdx extends atg {
 
 	public bdx() {
 		super(bof.H);
-		this.j(this.L.b().a(a, ej.c).a(b, bdu.a));
+		this.j(this.L.b().a(a, PaintingDirection.c).a(b, bdu.a));
 		this.c(-1.0F);
 	}
 
@@ -17,7 +17,7 @@ public class bdx extends atg {
 		return null;
 	}
 
-	public static bcm a(bec var0, ej var1, boolean var2, boolean var3) {
+	public static bcm a(bec var0, PaintingDirection var1, boolean var2, boolean var3) {
 		return new bdv(var0, var1, var2, var3);
 	}
 
@@ -35,12 +35,12 @@ public class bdx extends atg {
 		return false;
 	}
 
-	public boolean a(World var1, Position var2, ej var3) {
+	public boolean a(World var1, Position var2, PaintingDirection var3) {
 		return false;
 	}
 
 	public void d(World var1, Position var2, bec var3) {
-		Position var4 = var2.a(((ej) var3.b(a)).d());
+		Position var4 = var2.a(((PaintingDirection) var3.b(a)).d());
 		bec var5 = var1.p(var4);
 		if (var5.c() instanceof bdq && ((Boolean) var5.b(bdq.b)).booleanValue()) {
 			var1.g(var4);
@@ -56,7 +56,7 @@ public class bdx extends atg {
 		return false;
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (!var1.D && var1.s(var2) == null) {
 			var1.g(var2);
 			return true;
@@ -123,7 +123,7 @@ public class bdx extends atg {
 				var6 = 0.0F;
 			}
 
-			ej var7 = var3.e();
+			PaintingDirection var7 = var3.e();
 			this.B = var5.z() - (double) ((float) var7.g() * var6);
 			this.C = var5.B() - (double) ((float) var7.h() * var6);
 			this.D = var5.D() - (double) ((float) var7.i() * var6);
@@ -134,7 +134,7 @@ public class bdx extends atg {
 
 	}
 
-	public brt a(World var1, Position var2, bec var3, float var4, ej var5) {
+	public brt a(World var1, Position var2, bec var3, float var4, PaintingDirection var5) {
 		if (var3.c() != this && var3.c().r() != bof.a) {
 			brt var6 = var3.c().a(var1, var2, var3);
 			if (var6 == null) {
@@ -182,7 +182,7 @@ public class bdx extends atg {
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((ej) var1.b(a)).a();
+		int var3 = var2 | ((PaintingDirection) var1.b(a)).a();
 		if (var1.b(b) == bdu.b) {
 			var3 |= 8;
 		}

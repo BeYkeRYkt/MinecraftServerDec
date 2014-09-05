@@ -70,7 +70,7 @@ public class afy extends xn implements aex {
 		this.b += (this.a - this.b) * 0.5F;
 		this.c = this.b;
 		super.s_();
-		if (this.C && !this.bi) {
+		if (this.onGround && !this.bi) {
 			int var1 = this.ck();
 
 			for (int var2 = 0; var2 < var1 * 8; ++var2) {
@@ -90,11 +90,11 @@ public class afy extends xn implements aex {
 			}
 
 			this.a = -0.5F;
-		} else if (!this.C && this.bi) {
+		} else if (!this.onGround && this.bi) {
 			this.a = 1.0F;
 		}
 
-		this.bi = this.C;
+		this.bi = this.onGround;
 		this.cf();
 	}
 
@@ -114,8 +114,8 @@ public class afy extends xn implements aex {
 		if (var1 == 16) {
 			int var2 = this.ck();
 			this.a(0.51000005F * (float) var2, 0.51000005F * (float) var2);
-			this.yaw = this.aI;
-			this.aG = this.aI;
+			this.yaw = this.headPitch;
+			this.aG = this.headPitch;
 			if (this.V() && this.V.nextInt(20) == 0) {
 				this.X();
 			}

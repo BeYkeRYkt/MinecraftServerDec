@@ -46,13 +46,13 @@ public class azy extends Block {
 		} else {
 			Iterator var4 = en.a.iterator();
 
-			ej var5;
+			PaintingDirection var5;
 			do {
 				if (!var4.hasNext()) {
 					return false;
 				}
 
-				var5 = (ej) var4.next();
+				var5 = (PaintingDirection) var4.next();
 			} while (var1.p(var2.a(var5).b()).c().r() != bof.h);
 
 			return true;

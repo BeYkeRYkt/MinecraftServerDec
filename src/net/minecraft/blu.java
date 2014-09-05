@@ -6,29 +6,29 @@ class blu {
 	// $FF: synthetic field
 	static final int[] a;
 	// $FF: synthetic field
-	static final int[] b = new int[ej.values().length];
+	static final int[] b = new int[PaintingDirection.values().length];
 
 	static {
 		try {
-			b[ej.c.ordinal()] = 1;
+			b[PaintingDirection.c.ordinal()] = 1;
 		} catch (NoSuchFieldError var8) {
 			;
 		}
 
 		try {
-			b[ej.d.ordinal()] = 2;
+			b[PaintingDirection.d.ordinal()] = 2;
 		} catch (NoSuchFieldError var7) {
 			;
 		}
 
 		try {
-			b[ej.e.ordinal()] = 3;
+			b[PaintingDirection.e.ordinal()] = 3;
 		} catch (NoSuchFieldError var6) {
 			;
 		}
 
 		try {
-			b[ej.f.ordinal()] = 4;
+			b[PaintingDirection.f.ordinal()] = 4;
 		} catch (NoSuchFieldError var5) {
 			;
 		}

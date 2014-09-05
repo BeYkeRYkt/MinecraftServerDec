@@ -8,5 +8,5 @@ public interface ard {
 
 	boolean d(Position var1);
 
-	int a(Position var1, ej var2);
+	int a(Position var1, PaintingDirection var2);
 }

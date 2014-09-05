@@ -10,7 +10,7 @@ public class awx extends atg {
 
 	public awx() {
 		super(bof.f);
-		this.j(this.L.b().a(a, ej.a).a(b, Boolean.valueOf(true)));
+		this.j(this.L.b().a(a, PaintingDirection.a).a(b, Boolean.valueOf(true)));
 		this.a(CreativeModeTab.d);
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
@@ -34,10 +34,10 @@ public class awx extends atg {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
-	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		ej var9 = var3.d();
-		if (var9 == ej.b) {
-			var9 = ej.a;
+	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		PaintingDirection var9 = var3.d();
+		if (var9 == PaintingDirection.b) {
+			var9 = PaintingDirection.a;
 		}
 
 		return this.P().a(a, var9).a(b, Boolean.valueOf(true));
@@ -62,7 +62,7 @@ public class awx extends atg {
 		this.e(var1, var2, var3);
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {
@@ -109,8 +109,8 @@ public class awx extends atg {
 		return false;
 	}
 
-	public static ej b(int var0) {
-		return ej.a(var0 & 7);
+	public static PaintingDirection b(int var0) {
+		return PaintingDirection.a(var0 & 7);
 	}
 
 	public static boolean f(int var0) {
@@ -131,7 +131,7 @@ public class awx extends atg {
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((ej) var1.b(a)).a();
+		int var3 = var2 | ((PaintingDirection) var1.b(a)).a();
 		if (!((Boolean) var1.b(b)).booleanValue()) {
 			var3 |= 8;
 		}

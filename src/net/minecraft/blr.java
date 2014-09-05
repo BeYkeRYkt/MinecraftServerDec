@@ -58,7 +58,7 @@ public class blr {
 		return var0;
 	}
 
-	private static bmk a(Class var0, List var1, Random var2, int var3, int var4, int var5, ej var6, int var7) {
+	private static bmk a(Class var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
 		Object var8 = null;
 		if (var0 == bmi.class) {
 			var8 = bmi.a(var1, var2, var3, var4, var5, var6, var7);
@@ -87,7 +87,7 @@ public class blr {
 		return (bmk) var8;
 	}
 
-	private static bmk b(bmh var0, List var1, Random var2, int var3, int var4, int var5, ej var6, int var7) {
+	private static bmk b(bmh var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
 		if (!d()) {
 			return null;
 		} else {
@@ -137,7 +137,7 @@ public class blr {
 		}
 	}
 
-	private static bms c(bmh var0, List var1, Random var2, int var3, int var4, int var5, ej var6, int var7) {
+	private static bms c(bmh var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
 		if (var7 > 50) {
 			return null;
 		} else if (Math.abs(var3 - var0.c().a) <= 112 && Math.abs(var5 - var0.c().c) <= 112) {
@@ -154,7 +154,7 @@ public class blr {
 	}
 
 	// $FF: synthetic method
-	static bms a(bmh var0, List var1, Random var2, int var3, int var4, int var5, ej var6, int var7) {
+	static bms a(bmh var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
 		return c(var0, var1, var2, var3, var4, var5, var6, var7);
 	}
 

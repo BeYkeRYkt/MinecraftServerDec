@@ -10,7 +10,7 @@ public class azl extends Block {
 		this.a(CreativeModeTab.b);
 	}
 
-	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		if (var7 == azn.c.a()) {
 			switch (azm.a[var3.k().ordinal()]) {
 				case 1:

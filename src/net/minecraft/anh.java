@@ -13,8 +13,8 @@ public class anh extends Item {
 		this.a(true);
 	}
 
-	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
-		if (var5 == ej.a) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
+		if (var5 == PaintingDirection.a) {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
@@ -36,7 +36,7 @@ public class anh extends Item {
 				if (!var3.D) {
 					var3.a(var4, aty.ce.P().a(baj.a, var5), 3);
 					int var12 = 0;
-					if (var5 == ej.b) {
+					if (var5 == PaintingDirection.b) {
 						var12 = DataTypesConverter.toFixedPointInt((double) (var2.yaw * 16.0F / 360.0F) + 0.5D) & 15;
 					}
 

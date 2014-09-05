@@ -11,7 +11,7 @@ public class bay extends auc implements atz {
 	private final Block M;
 
 	protected bay(Block var1) {
-		this.j(this.L.b().a(a, Integer.valueOf(0)).a(b, ej.b));
+		this.j(this.L.b().a(a, Integer.valueOf(0)).a(b, PaintingDirection.b));
 		this.M = var1;
 		this.a(true);
 		float var2 = 0.125F;
@@ -20,11 +20,11 @@ public class bay extends auc implements atz {
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
-		var1 = var1.a(b, ej.b);
+		var1 = var1.a(b, PaintingDirection.b);
 		Iterator var4 = en.a.iterator();
 
 		while (var4.hasNext()) {
-			ej var5 = (ej) var4.next();
+			PaintingDirection var5 = (PaintingDirection) var4.next();
 			if (var2.p(var3.a(var5)).c() == this.M) {
 				var1 = var1.a(b, var5);
 				break;
@@ -51,7 +51,7 @@ public class bay extends auc implements atz {
 					Iterator var7 = en.a.iterator();
 
 					while (var7.hasNext()) {
-						ej var8 = (ej) var7.next();
+						PaintingDirection var8 = (PaintingDirection) var7.next();
 						if (var1.p(var2.a(var8)).c() == this.M) {
 							return;
 						}

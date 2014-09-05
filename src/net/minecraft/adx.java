@@ -268,14 +268,14 @@ public abstract class adx extends Entity implements vz {
 		double var1 = this.m();
 		this.motionX = DataTypesConverter.a(this.motionX, -var1, var1);
 		this.motionZ = DataTypesConverter.a(this.motionZ, -var1, var1);
-		if (this.C) {
+		if (this.onGround) {
 			this.motionX *= 0.5D;
 			this.motionY *= 0.5D;
 			this.motionZ *= 0.5D;
 		}
 
 		this.d(this.motionX, this.motionY, this.motionZ);
-		if (!this.C) {
+		if (!this.onGround) {
 			this.motionX *= 0.949999988079071D;
 			this.motionY *= 0.949999988079071D;
 			this.motionZ *= 0.949999988079071D;

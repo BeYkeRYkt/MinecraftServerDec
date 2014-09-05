@@ -46,7 +46,7 @@ public class bij extends bhc {
 					this.a(var1, var3.a(1, -1, 0));
 					this.a(var1, var3.a(1, -1, 1));
 					this.a(var1, var3.a(0, -1, 1));
-					ej var19 = en.a.a(var2);
+					PaintingDirection var19 = en.a.a(var2);
 					var8 = var4 - var2.nextInt(4);
 					var9 = 2 - var2.nextInt(3);
 					int var10 = var3.n();

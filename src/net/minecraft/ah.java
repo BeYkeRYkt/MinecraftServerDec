@@ -99,7 +99,7 @@ public class ah {
 	private static boolean b(CommandSenderInterface var0, Map var1) {
 		String var2 = b(var1, "type");
 		var2 = var2 != null && var2.startsWith("!") ? var2.substring(1) : var2;
-		if (var2 != null && !xb.b(var2)) {
+		if (var2 != null && !EntityTypes.b(var2)) {
 			hz var3 = new hz("commands.generic.entity.invalidType", new Object[] { var2 });
 			var3.b().a(FormattingCode.m);
 			var0.a(var3);

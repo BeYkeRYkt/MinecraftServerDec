@@ -8,7 +8,7 @@ public class adk extends adj {
 		super(var1);
 	}
 
-	public adk(World var1, Position var2, ej var3) {
+	public adk(World var1, Position var2, PaintingDirection var3) {
 		super(var1, var2);
 		this.a(var3);
 	}

@@ -20,11 +20,11 @@ public class bpx extends bpu {
 
 	public int a(bpt[] var1, Entity var2, bpt var3, bpt var4, float var5) {
 		int var6 = 0;
-		ej[] var7 = ej.values();
+		PaintingDirection[] var7 = PaintingDirection.values();
 		int var8 = var7.length;
 
 		for (int var9 = 0; var9 < var8; ++var9) {
-			ej var10 = var7[var9];
+			PaintingDirection var10 = var7[var9];
 			bpt var11 = this.a(var2, var3.a + var10.g(), var3.b + var10.h(), var3.c + var10.i());
 			if (var11 != null && !var11.i && var11.a(var4) < var5) {
 				var1[var6++] = var11;

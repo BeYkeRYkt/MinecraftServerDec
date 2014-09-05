@@ -106,7 +106,7 @@ public class acu extends xx {
 
 	public void m() {
 		super.m();
-		if (!this.o.D && this.bo && !this.bp && !this.cd() && this.C) {
+		if (!this.o.D && this.bo && !this.bp && !this.cd() && this.onGround) {
 			this.bp = true;
 			this.bq = 0.0F;
 			this.br = 0.0F;

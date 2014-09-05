@@ -10,7 +10,7 @@ public class bdq extends Block {
 
 	public bdq(boolean var1) {
 		super(bof.H);
-		this.j(this.L.b().a(a, ej.c).a(b, Boolean.valueOf(false)));
+		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Boolean.valueOf(false)));
 		this.M = var1;
 		this.a(i);
 		this.c(0.5F);
@@ -43,12 +43,12 @@ public class bdq extends Block {
 
 	}
 
-	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(a, a(var1, var2, var8)).a(b, Boolean.valueOf(false));
 	}
 
 	private void e(World var1, Position var2, bec var3) {
-		ej var4 = (ej) var3.b(a);
+		PaintingDirection var4 = (PaintingDirection) var3.b(a);
 		boolean var5 = this.b(var1, var2, var4);
 		if (var5 && !((Boolean) var3.b(b)).booleanValue()) {
 			if ((new bdy(var1, var2, var4, true)).a()) {
@@ -61,28 +61,28 @@ public class bdq extends Block {
 
 	}
 
-	private boolean b(World var1, Position var2, ej var3) {
-		ej[] var4 = ej.values();
+	private boolean b(World var1, Position var2, PaintingDirection var3) {
+		PaintingDirection[] var4 = PaintingDirection.values();
 		int var5 = var4.length;
 
 		int var6;
 		for (var6 = 0; var6 < var5; ++var6) {
-			ej var7 = var4[var6];
+			PaintingDirection var7 = var4[var6];
 			if (var7 != var3 && var1.b(var2.a(var7), var7)) {
 				return true;
 			}
 		}
 
-		if (var1.b(var2, ej.c)) {
+		if (var1.b(var2, PaintingDirection.c)) {
 			return true;
 		} else {
 			Position var9 = var2.a();
-			ej[] var10 = ej.values();
+			PaintingDirection[] var10 = PaintingDirection.values();
 			var6 = var10.length;
 
 			for (int var11 = 0; var11 < var6; ++var11) {
-				ej var8 = var10[var11];
-				if (var8 != ej.a && var1.b(var9.a(var8), var8)) {
+				PaintingDirection var8 = var10[var11];
+				if (var8 != PaintingDirection.a && var1.b(var9.a(var8), var8)) {
 					return true;
 				}
 			}
@@ -92,7 +92,7 @@ public class bdq extends Block {
 	}
 
 	public boolean a(World var1, Position var2, bec var3, int var4, int var5) {
-		ej var6 = (ej) var3.b(a);
+		PaintingDirection var6 = (PaintingDirection) var3.b(a);
 		if (!var1.D) {
 			boolean var7 = this.b(var1, var2, var6);
 			if (var7 && var4 == 1) {
@@ -152,7 +152,7 @@ public class bdq extends Block {
 		bec var3 = var1.p(var2);
 		if (var3.c() == this && ((Boolean) var3.b(b)).booleanValue()) {
 			float var4 = 0.25F;
-			ej var5 = (ej) var3.b(a);
+			PaintingDirection var5 = (PaintingDirection) var3.b(a);
 			if (var5 != null) {
 				switch (bdr.a[var5.ordinal()]) {
 					case 1:
@@ -198,33 +198,33 @@ public class bdq extends Block {
 		return false;
 	}
 
-	public static ej b(int var0) {
+	public static PaintingDirection b(int var0) {
 		int var1 = var0 & 7;
-		return var1 > 5 ? null : ej.a(var1);
+		return var1 > 5 ? null : PaintingDirection.a(var1);
 	}
 
-	public static ej a(World var0, Position var1, EntityLiving var2) {
+	public static PaintingDirection a(World var0, Position var1, EntityLiving var2) {
 		if (DataTypesConverter.e((float) var2.locationX - (float) var1.n()) < 2.0F && DataTypesConverter.e((float) var2.locationZ - (float) var1.p()) < 2.0F) {
 			double var3 = var2.locationY + (double) var2.aR();
 			if (var3 - (double) var1.o() > 2.0D) {
-				return ej.b;
+				return PaintingDirection.b;
 			}
 
 			if ((double) var1.o() - var3 > 0.0D) {
-				return ej.a;
+				return PaintingDirection.a;
 			}
 		}
 
 		return var2.aO().d();
 	}
 
-	public static boolean a(Block var0, World var1, Position var2, ej var3, boolean var4) {
+	public static boolean a(Block var0, World var1, Position var2, PaintingDirection var3, boolean var4) {
 		if (var0 == aty.Z) {
 			return false;
 		} else if (!var1.af().a(var2)) {
 			return false;
-		} else if (var2.o() >= 0 && (var3 != ej.a || var2.o() != 0)) {
-			if (var2.o() <= var1.U() - 1 && (var3 != ej.b || var2.o() != var1.U() - 1)) {
+		} else if (var2.o() >= 0 && (var3 != PaintingDirection.a || var2.o() != 0)) {
+			if (var2.o() <= var1.U() - 1 && (var3 != PaintingDirection.b || var2.o() != var1.U() - 1)) {
 				if (var0 != aty.J && var0 != aty.F) {
 					if (var0.g(var1, var2) == -1.0F) {
 						return false;
@@ -254,7 +254,7 @@ public class bdq extends Block {
 		}
 	}
 
-	private boolean a(World var1, Position var2, ej var3, boolean var4) {
+	private boolean a(World var1, Position var2, PaintingDirection var3, boolean var4) {
 		if (!var4) {
 			var1.g(var2.a(var3));
 		}
@@ -267,7 +267,7 @@ public class bdq extends Block {
 		} else {
 			int var8 = var6.size() + var7.size();
 			Block[] var9 = new Block[var8];
-			ej var10 = var4 ? var3 : var3.d();
+			PaintingDirection var10 = var4 ? var3 : var3.d();
 
 			int var11;
 			Position var12;
@@ -327,7 +327,7 @@ public class bdq extends Block {
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((ej) var1.b(a)).a();
+		int var3 = var2 | ((PaintingDirection) var1.b(a)).a();
 		if (((Boolean) var1.b(b)).booleanValue()) {
 			var3 |= 8;
 		}

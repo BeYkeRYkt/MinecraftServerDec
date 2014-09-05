@@ -14,23 +14,23 @@ public enum en implements Predicate, Iterable {
 	private en(String var1, int var2) {
 	}
 
-	public ej[] a() {
+	public PaintingDirection[] a() {
 		switch (ek.c[this.ordinal()]) {
 			case 1:
-				return new ej[] { ej.c, ej.f, ej.d, ej.e };
+				return new PaintingDirection[] { PaintingDirection.c, PaintingDirection.f, PaintingDirection.d, PaintingDirection.e };
 			case 2:
-				return new ej[] { ej.b, ej.a };
+				return new PaintingDirection[] { PaintingDirection.b, PaintingDirection.a };
 			default:
 				throw new Error("Someone\'s been tampering with the universe!");
 		}
 	}
 
-	public ej a(Random var1) {
-		ej[] var2 = this.a();
+	public PaintingDirection a(Random var1) {
+		PaintingDirection[] var2 = this.a();
 		return var2[var1.nextInt(var2.length)];
 	}
 
-	public boolean a(ej var1) {
+	public boolean a(PaintingDirection var1) {
 		return var1 != null && var1.k().d() == this;
 	}
 
@@ -40,7 +40,7 @@ public enum en implements Predicate, Iterable {
 
 	// $FF: synthetic method
 	public boolean apply(Object var1) {
-		return this.a((ej) var1);
+		return this.a((PaintingDirection) var1);
 	}
 
 }

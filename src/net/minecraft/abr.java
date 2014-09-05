@@ -38,14 +38,14 @@ public class abr extends abq {
 		super.m();
 		this.bo = this.bk;
 		this.bn = this.bm;
-		this.bm = (float) ((double) this.bm + (double) (this.C ? -1 : 4) * 0.3D);
+		this.bm = (float) ((double) this.bm + (double) (this.onGround ? -1 : 4) * 0.3D);
 		this.bm = DataTypesConverter.a(this.bm, 0.0F, 1.0F);
-		if (!this.C && this.bp < 1.0F) {
+		if (!this.onGround && this.bp < 1.0F) {
 			this.bp = 1.0F;
 		}
 
 		this.bp = (float) ((double) this.bp * 0.9D);
-		if (!this.C && this.motionY < 0.0D) {
+		if (!this.onGround && this.motionY < 0.0D) {
 			this.motionY *= 0.6D;
 		}
 

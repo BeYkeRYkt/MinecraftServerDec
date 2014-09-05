@@ -4,8 +4,8 @@ public class ayz {
 
 	private final World a;
 	private final el b;
-	private final ej c;
-	private final ej d;
+	private final PaintingDirection c;
+	private final PaintingDirection d;
 	private int e = 0;
 	private Position f;
 	private int g;
@@ -15,11 +15,11 @@ public class ayz {
 		this.a = var1;
 		this.b = var3;
 		if (var3 == el.a) {
-			this.d = ej.f;
-			this.c = ej.e;
+			this.d = PaintingDirection.f;
+			this.c = PaintingDirection.e;
 		} else {
-			this.d = ej.c;
-			this.c = ej.d;
+			this.d = PaintingDirection.c;
+			this.c = PaintingDirection.d;
 		}
 
 		for (Position var4 = var2; var2.o() > var4.o() - 21 && var2.o() > 0 && this.a(var1.p(var2.b()).c()); var2 = var2.b()) {
@@ -42,7 +42,7 @@ public class ayz {
 
 	}
 
-	protected int a(Position var1, ej var2) {
+	protected int a(Position var1, PaintingDirection var2) {
 		int var3;
 		for (var3 = 0; var3 < 22; ++var3) {
 			Position var4 = var1.a(var2, var3);

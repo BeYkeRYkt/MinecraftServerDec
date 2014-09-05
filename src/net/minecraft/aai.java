@@ -53,7 +53,7 @@ public class aai extends zf {
 						double var11 = this.f.locationY - 0.30000001192092896D + (double) this.f.aR();
 						adw var12 = new adw(this.f.o, this.f.locationX, var11, this.f.locationZ, var4);
 						float var8 = 0.3F;
-						float var9 = this.f.aI;
+						float var9 = this.f.headPitch;
 						float var10 = this.f.pitch;
 						var12.motionX = (double) (-DataTypesConverter.a(var9 / 180.0F * 3.1415927F) * DataTypesConverter.b(var10 / 180.0F * 3.1415927F) * var8);
 						var12.motionZ = (double) (DataTypesConverter.b(var9 / 180.0F * 3.1415927F) * DataTypesConverter.b(var10 / 180.0F * 3.1415927F) * var8);

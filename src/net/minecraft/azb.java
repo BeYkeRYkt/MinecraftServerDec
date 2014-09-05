@@ -11,7 +11,7 @@ public class azb extends axq {
 		return true;
 	}
 
-	public int a(ard var1, Position var2, bec var3, ej var4) {
+	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
 		return 15;
 	}
 }

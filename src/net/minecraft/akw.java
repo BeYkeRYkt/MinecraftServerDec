@@ -15,7 +15,7 @@ public class akw extends Item {
 		return super.a() + "." + akv.a(var2).d();
 	}
 
-	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (!var2.a(var4.a(var5), var5, var1)) {
 			return false;
 		} else {
@@ -32,11 +32,11 @@ public class akw extends Item {
 				bec var10 = var3.p(var4);
 				Block var11 = var10.c();
 				if (var11 == aty.r && var10.b(ayw.a) == ayx.d) {
-					if (var5 == ej.a) {
+					if (var5 == PaintingDirection.a) {
 						return false;
 					}
 
-					if (var5 == ej.b) {
+					if (var5 == PaintingDirection.b) {
 						return false;
 					}
 

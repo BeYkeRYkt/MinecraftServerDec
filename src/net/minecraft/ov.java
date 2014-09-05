@@ -5,7 +5,7 @@ final class ov extends eg {
 	private final eg b = new eg();
 
 	public ItemStack b(dz var1, ItemStack var2) {
-		ej var3 = ave.b(var1.f());
+		PaintingDirection var3 = ave.b(var1.f());
 		World var4 = var1.i();
 		double var5 = var1.a() + (double) ((float) var3.g() * 1.125F);
 		double var7 = var1.b() + (double) ((float) var3.h() * 1.125F);

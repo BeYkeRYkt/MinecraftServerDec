@@ -87,7 +87,7 @@ public class abo extends abn {
 				this.o.a((EntityHuman) null, 1015, var1, 0);
 			} else {
 				if (this.V.nextInt(200) == 0) {
-					this.aI = (float) this.V.nextInt(360);
+					this.headPitch = (float) this.V.nextInt(360);
 				}
 
 				if (this.o.a(this, 4.0D) != null) {

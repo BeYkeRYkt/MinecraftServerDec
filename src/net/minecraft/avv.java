@@ -108,7 +108,7 @@ public class avv extends Block {
 		return var3 == aty.cv ? false : ((!(var3 instanceof avv) || var3.J != this.J) && !(var3 instanceof avw) ? (var3.J.k() && var3.d() ? var3.J != bof.C : false) : true);
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		return var1.D ? true : aml.a(var4, var1, var2);
 	}
 

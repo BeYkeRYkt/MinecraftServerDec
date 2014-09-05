@@ -54,7 +54,7 @@ public class Item {
 		return this;
 	}
 
-	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
 		return false;
 	}
 
@@ -456,8 +456,8 @@ public class Item {
 		a(318, "flint", (new Item()).c("flint").a(CreativeModeTab.l));
 		a(319, "porkchop", (new all(3, 0.3F, true)).c("porkchopRaw"));
 		a(320, "cooked_porkchop", (new all(8, 0.8F, true)).c("porkchopCooked"));
-		a(321, "painting", (new aln(adm.class)).c("painting"));
-		a(322, "golden_apple", (new alm(4, 1.2F, false)).h().a(wp.l.H, 5, 1, 1.0F).c("appleGold"));
+		a(321, "painting", (new aln(EntityPainting.class)).c("painting"));
+		a(322, "golden_apple", (new alm(4, 1.2F, false)).h().a(MobEffectList.l.H, 5, 1, 1.0F).c("appleGold"));
 		a(323, "sign", (new anf()).c("sign"));
 		a(324, "wooden_door", (new akt(aty.ao)).c("doorOak"));
 		Item var0 = (new akb(aty.a)).c("bucket").c(16);
@@ -501,9 +501,9 @@ public class Item {
 		a(362, "melon_seeds", (new anc(aty.bm, aty.ak)).c("seeds_melon"));
 		a(363, "beef", (new all(3, 0.3F, true)).c("beefRaw"));
 		a(364, "cooked_beef", (new all(8, 0.8F, true)).c("beefCooked"));
-		a(365, "chicken", (new all(2, 0.3F, true)).a(wp.s.H, 30, 0, 0.3F).c("chickenRaw"));
+		a(365, "chicken", (new all(2, 0.3F, true)).a(MobEffectList.s.H, 30, 0, 0.3F).c("chickenRaw"));
 		a(366, "cooked_chicken", (new all(6, 0.6F, true)).c("chickenCooked"));
-		a(367, "rotten_flesh", (new all(4, 0.1F, true)).a(wp.s.H, 30, 0, 0.8F).c("rottenFlesh"));
+		a(367, "rotten_flesh", (new all(4, 0.1F, true)).a(MobEffectList.s.H, 30, 0, 0.8F).c("rottenFlesh"));
 		a(368, "ender_pearl", (new alc()).c("enderPearl"));
 		a(369, "blaze_rod", (new Item()).c("blazeRod").a(CreativeModeTab.l).n());
 		a(370, "ghast_tear", (new Item()).c("ghastTear").e(ans.c).a(CreativeModeTab.k));
@@ -511,7 +511,7 @@ public class Item {
 		a(372, "nether_wart", (new anc(aty.bB, aty.aW)).c("netherStalkSeeds").e("+4"));
 		a(373, "potion", (new amw()).c("potion"));
 		a(374, "glass_bottle", (new ajy()).c("glassBottle"));
-		a(375, "spider_eye", (new all(2, 0.8F, false)).a(wp.u.H, 5, 0, 1.0F).c("spiderEye").e(ans.d));
+		a(375, "spider_eye", (new all(2, 0.8F, false)).a(MobEffectList.u.H, 5, 0, 1.0F).c("spiderEye").e(ans.d));
 		a(376, "fermented_spider_eye", (new Item()).c("fermentedSpiderEye").e(ans.e).a(CreativeModeTab.k));
 		a(377, "blaze_powder", (new Item()).c("blazePowder").e(ans.g).a(CreativeModeTab.k));
 		a(378, "magma_cream", (new Item()).c("magmaCream").e(ans.h).a(CreativeModeTab.k));
@@ -530,7 +530,7 @@ public class Item {
 		a(391, "carrot", (new anb(3, 0.6F, aty.cb, aty.ak)).c("carrots"));
 		a(392, "potato", (new anb(1, 0.3F, aty.cc, aty.ak)).c("potato"));
 		a(393, "baked_potato", (new all(5, 0.6F, false)).c("potatoBaked"));
-		a(394, "poisonous_potato", (new all(2, 0.3F, false)).a(wp.u.H, 5, 0, 0.6F).c("potatoPoisonous"));
+		a(394, "poisonous_potato", (new all(2, 0.3F, false)).a(MobEffectList.u.H, 5, 0, 0.6F).c("potatoPoisonous"));
 		a(395, "map", (new akz()).c("emptyMap"));
 		a(396, "golden_carrot", (new all(6, 1.2F, false)).c("carrotGolden").e(ans.l).a(CreativeModeTab.k));
 		a(397, "skull", (new anh()).c("skull"));

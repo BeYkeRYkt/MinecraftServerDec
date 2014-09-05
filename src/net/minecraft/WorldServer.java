@@ -696,7 +696,7 @@ public class WorldServer extends World implements vn {
 	}
 
 	public void a(Entity var1, byte var2) {
-		this.s().b(var1, new jk(var1, var2));
+		this.s().b(var1, new PacketEntityStatus(var1, var2));
 	}
 
 	public aqo a(Entity var1, double var2, double var4, double var6, float var8, boolean var9, boolean var10) {

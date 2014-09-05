@@ -34,7 +34,7 @@ public enum el implements Predicate, va {
 		return this.e;
 	}
 
-	public boolean a(ej var1) {
+	public boolean a(PaintingDirection var1) {
 		return var1 != null && var1.k() == this;
 	}
 
@@ -48,7 +48,7 @@ public enum el implements Predicate, va {
 
 	// $FF: synthetic method
 	public boolean apply(Object var1) {
-		return this.a((ej) var1);
+		return this.a((PaintingDirection) var1);
 	}
 
 	static {

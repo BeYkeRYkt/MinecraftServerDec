@@ -29,7 +29,7 @@ public class azs extends Block {
 		super.a(var1, var2, var3);
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		this.d(var1, var2);
 		return super.a(var1, var2, var3, var4, var5, var6, var7, var8);
 	}

@@ -198,7 +198,7 @@ public class bde extends bdf implements bdd, pm {
 		if (var1 == null) {
 			return false;
 		} else {
-			ej var2 = awx.b(this.u()).d();
+			PaintingDirection var2 = awx.b(this.u()).d();
 			if (this.a(var1, var2)) {
 				return false;
 			} else {
@@ -220,7 +220,7 @@ public class bde extends bdf implements bdd, pm {
 		}
 	}
 
-	private boolean a(IInventory var1, ej var2) {
+	private boolean a(IInventory var1, PaintingDirection var2) {
 		if (var1 instanceof we) {
 			we var3 = (we) var1;
 			int[] var4 = var3.a(var2);
@@ -245,7 +245,7 @@ public class bde extends bdf implements bdd, pm {
 		return true;
 	}
 
-	private static boolean b(IInventory var0, ej var1) {
+	private static boolean b(IInventory var0, PaintingDirection var1) {
 		if (var0 instanceof we) {
 			we var2 = (we) var0;
 			int[] var3 = var2.a(var1);
@@ -271,7 +271,7 @@ public class bde extends bdf implements bdd, pm {
 	public static boolean a(bdd var0) {
 		IInventory var1 = b(var0);
 		if (var1 != null) {
-			ej var2 = ej.a;
+			PaintingDirection var2 = PaintingDirection.a;
 			if (b(var1, var2)) {
 				return false;
 			}
@@ -304,11 +304,11 @@ public class bde extends bdf implements bdd, pm {
 		return false;
 	}
 
-	private static boolean a(bdd var0, IInventory var1, int var2, ej var3) {
+	private static boolean a(bdd var0, IInventory var1, int var2, PaintingDirection var3) {
 		ItemStack var4 = var1.a(var2);
 		if (var4 != null && b(var1, var4, var2, var3)) {
 			ItemStack var5 = var4.getCopy();
-			ItemStack var6 = a(var0, var1.a(var2, 1), (ej) null);
+			ItemStack var6 = a(var0, var1.a(var2, 1), (PaintingDirection) null);
 			if (var6 == null || var6.b == 0) {
 				var1.o_();
 				return true;
@@ -326,7 +326,7 @@ public class bde extends bdf implements bdd, pm {
 			return false;
 		} else {
 			ItemStack var3 = var1.l().getCopy();
-			ItemStack var4 = a(var0, var3, (ej) null);
+			ItemStack var4 = a(var0, var3, (PaintingDirection) null);
 			if (var4 != null && var4.b != 0) {
 				var1.a(var4);
 			} else {
@@ -338,7 +338,7 @@ public class bde extends bdf implements bdd, pm {
 		}
 	}
 
-	public static ItemStack a(IInventory var0, ItemStack var1, ej var2) {
+	public static ItemStack a(IInventory var0, ItemStack var1, PaintingDirection var2) {
 		if (var0 instanceof we && var2 != null) {
 			we var6 = (we) var0;
 			int[] var7 = var6.a(var2);
@@ -361,15 +361,15 @@ public class bde extends bdf implements bdd, pm {
 		return var1;
 	}
 
-	private static boolean a(IInventory var0, ItemStack var1, int var2, ej var3) {
+	private static boolean a(IInventory var0, ItemStack var1, int var2, PaintingDirection var3) {
 		return !var0.b(var2, var1) ? false : !(var0 instanceof we) || ((we) var0).a(var2, var1, var3);
 	}
 
-	private static boolean b(IInventory var0, ItemStack var1, int var2, ej var3) {
+	private static boolean b(IInventory var0, ItemStack var1, int var2, PaintingDirection var3) {
 		return !(var0 instanceof we) || ((we) var0).b(var2, var1, var3);
 	}
 
-	private static ItemStack c(IInventory var0, ItemStack var1, int var2, ej var3) {
+	private static ItemStack c(IInventory var0, ItemStack var1, int var2, PaintingDirection var3) {
 		ItemStack var4 = var0.a(var2);
 		if (a(var0, var1, var2, var3)) {
 			boolean var5 = false;
@@ -403,7 +403,7 @@ public class bde extends bdf implements bdd, pm {
 	}
 
 	private IInventory G() {
-		ej var1 = awx.b(this.u());
+		PaintingDirection var1 = awx.b(this.u());
 		return b(this.z(), (double) (this.c.n() + var1.g()), (double) (this.c.o() + var1.h()), (double) (this.c.p() + var1.i()));
 	}
 

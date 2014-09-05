@@ -13,13 +13,13 @@ public class bnj extends bnn {
 	public bnj() {
 	}
 
-	public bnj(bnk var1, int var2, Random var3, bjb var4, ej var5) {
+	public bnj(bnk var1, int var2, Random var3, bjb var4, PaintingDirection var5) {
 		super(var1, var2);
 		this.m = var5;
 		this.l = var4;
 	}
 
-	public static bnj a(bnk var0, List var1, Random var2, int var3, int var4, int var5, ej var6, int var7) {
+	public static bnj a(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
 		bjb var8 = bjb.a(var3, var4, var5, 0, 0, 0, 10, 6, 7, var6);
 		return a(var8) && bms.a(var1, var8) == null ? new bnj(var0, var7, var2, var8, var6) : null;
 	}

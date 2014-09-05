@@ -453,9 +453,9 @@ public class adb extends xn implements acy, aex {
 				var4 = 1000;
 
 				while (var4 > 0) {
-					var5 = xk.a(var4);
+					var5 = ExpirienceOrb.a(var4);
 					var4 -= var5;
-					this.o.d((Entity) (new xk(this.o, this.locationX, this.locationY, this.locationZ, var5)));
+					this.o.d((Entity) (new ExpirienceOrb(this.o, this.locationX, this.locationY, this.locationZ, var5)));
 				}
 			}
 
@@ -470,9 +470,9 @@ public class adb extends xn implements acy, aex {
 			var4 = 2000;
 
 			while (var4 > 0) {
-				var5 = xk.a(var4);
+				var5 = ExpirienceOrb.a(var4);
 				var4 -= var5;
-				this.o.d((Entity) (new xk(this.o, this.locationX, this.locationY, this.locationZ, var5)));
+				this.o.d((Entity) (new ExpirienceOrb(this.o, this.locationX, this.locationY, this.locationZ, var5)));
 			}
 
 			this.a(new Position(this.locationX, 64.0D, this.locationZ));
@@ -512,10 +512,10 @@ public class adb extends xn implements acy, aex {
 		this.o.a(var1.a(), aty.h.P());
 		Position var13 = var1.b(2);
 		this.o.a(var13, aty.h.P());
-		this.o.a(var13.e(), aty.aa.P().a(bbl.a, ej.f));
-		this.o.a(var13.f(), aty.aa.P().a(bbl.a, ej.e));
-		this.o.a(var13.c(), aty.aa.P().a(bbl.a, ej.d));
-		this.o.a(var13.d(), aty.aa.P().a(bbl.a, ej.c));
+		this.o.a(var13.e(), aty.aa.P().a(bbl.a, PaintingDirection.f));
+		this.o.a(var13.f(), aty.aa.P().a(bbl.a, PaintingDirection.e));
+		this.o.a(var13.c(), aty.aa.P().a(bbl.a, PaintingDirection.d));
+		this.o.a(var13.d(), aty.aa.P().a(bbl.a, PaintingDirection.c));
 		this.o.a(var1.b(3), aty.h.P());
 		this.o.a(var1.b(4), aty.bI.P());
 	}

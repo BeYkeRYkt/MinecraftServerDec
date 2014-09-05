@@ -42,7 +42,7 @@ public class auo extends atg {
 		return 1;
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		bcm var9 = var1.s(var2);
 		return var9 instanceof bct ? ((bct) var9).b().a(var4) : false;
 	}
@@ -96,7 +96,7 @@ public class auo extends atg {
 		return new bed(this, new bex[] { a });
 	}
 
-	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(a, Boolean.valueOf(false));
 	}
 

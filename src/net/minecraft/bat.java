@@ -18,7 +18,7 @@ public class bat extends Block {
 
 	protected bat(bec var1) {
 		super(var1.c().J);
-		this.j(this.L.b().a(a, ej.c).a(b, bau.b).a(M, bav.a));
+		this.j(this.L.b().a(a, PaintingDirection.c).a(b, bau.b).a(M, bav.a));
 		this.O = var1.c();
 		this.P = var1;
 		this.c(this.O.w);
@@ -66,61 +66,61 @@ public class bat extends Block {
 
 	public int f(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
-		ej var4 = (ej) var3.b(a);
+		PaintingDirection var4 = (PaintingDirection) var3.b(a);
 		bau var5 = (bau) var3.b(b);
 		boolean var6 = var5 == bau.a;
 		bec var7;
 		Block var8;
-		ej var9;
-		if (var4 == ej.f) {
+		PaintingDirection var9;
+		if (var4 == PaintingDirection.f) {
 			var7 = var1.p(var2.f());
 			var8 = var7.c();
 			if (c(var8) && var5 == var7.b(b)) {
-				var9 = (ej) var7.b(a);
-				if (var9 == ej.c && !a(var1, var2.d(), var3)) {
+				var9 = (PaintingDirection) var7.b(a);
+				if (var9 == PaintingDirection.c && !a(var1, var2.d(), var3)) {
 					return var6 ? 1 : 2;
 				}
 
-				if (var9 == ej.d && !a(var1, var2.c(), var3)) {
+				if (var9 == PaintingDirection.d && !a(var1, var2.c(), var3)) {
 					return var6 ? 2 : 1;
 				}
 			}
-		} else if (var4 == ej.e) {
+		} else if (var4 == PaintingDirection.e) {
 			var7 = var1.p(var2.e());
 			var8 = var7.c();
 			if (c(var8) && var5 == var7.b(b)) {
-				var9 = (ej) var7.b(a);
-				if (var9 == ej.c && !a(var1, var2.d(), var3)) {
+				var9 = (PaintingDirection) var7.b(a);
+				if (var9 == PaintingDirection.c && !a(var1, var2.d(), var3)) {
 					return var6 ? 2 : 1;
 				}
 
-				if (var9 == ej.d && !a(var1, var2.c(), var3)) {
+				if (var9 == PaintingDirection.d && !a(var1, var2.c(), var3)) {
 					return var6 ? 1 : 2;
 				}
 			}
-		} else if (var4 == ej.d) {
+		} else if (var4 == PaintingDirection.d) {
 			var7 = var1.p(var2.d());
 			var8 = var7.c();
 			if (c(var8) && var5 == var7.b(b)) {
-				var9 = (ej) var7.b(a);
-				if (var9 == ej.e && !a(var1, var2.f(), var3)) {
+				var9 = (PaintingDirection) var7.b(a);
+				if (var9 == PaintingDirection.e && !a(var1, var2.f(), var3)) {
 					return var6 ? 2 : 1;
 				}
 
-				if (var9 == ej.f && !a(var1, var2.e(), var3)) {
+				if (var9 == PaintingDirection.f && !a(var1, var2.e(), var3)) {
 					return var6 ? 1 : 2;
 				}
 			}
-		} else if (var4 == ej.c) {
+		} else if (var4 == PaintingDirection.c) {
 			var7 = var1.p(var2.c());
 			var8 = var7.c();
 			if (c(var8) && var5 == var7.b(b)) {
-				var9 = (ej) var7.b(a);
-				if (var9 == ej.e && !a(var1, var2.f(), var3)) {
+				var9 = (PaintingDirection) var7.b(a);
+				if (var9 == PaintingDirection.e && !a(var1, var2.f(), var3)) {
 					return var6 ? 1 : 2;
 				}
 
-				if (var9 == ej.f && !a(var1, var2.e(), var3)) {
+				if (var9 == PaintingDirection.f && !a(var1, var2.e(), var3)) {
 					return var6 ? 2 : 1;
 				}
 			}
@@ -131,61 +131,61 @@ public class bat extends Block {
 
 	public int g(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
-		ej var4 = (ej) var3.b(a);
+		PaintingDirection var4 = (PaintingDirection) var3.b(a);
 		bau var5 = (bau) var3.b(b);
 		boolean var6 = var5 == bau.a;
 		bec var7;
 		Block var8;
-		ej var9;
-		if (var4 == ej.f) {
+		PaintingDirection var9;
+		if (var4 == PaintingDirection.f) {
 			var7 = var1.p(var2.e());
 			var8 = var7.c();
 			if (c(var8) && var5 == var7.b(b)) {
-				var9 = (ej) var7.b(a);
-				if (var9 == ej.c && !a(var1, var2.c(), var3)) {
+				var9 = (PaintingDirection) var7.b(a);
+				if (var9 == PaintingDirection.c && !a(var1, var2.c(), var3)) {
 					return var6 ? 1 : 2;
 				}
 
-				if (var9 == ej.d && !a(var1, var2.d(), var3)) {
+				if (var9 == PaintingDirection.d && !a(var1, var2.d(), var3)) {
 					return var6 ? 2 : 1;
 				}
 			}
-		} else if (var4 == ej.e) {
+		} else if (var4 == PaintingDirection.e) {
 			var7 = var1.p(var2.f());
 			var8 = var7.c();
 			if (c(var8) && var5 == var7.b(b)) {
-				var9 = (ej) var7.b(a);
-				if (var9 == ej.c && !a(var1, var2.c(), var3)) {
+				var9 = (PaintingDirection) var7.b(a);
+				if (var9 == PaintingDirection.c && !a(var1, var2.c(), var3)) {
 					return var6 ? 2 : 1;
 				}
 
-				if (var9 == ej.d && !a(var1, var2.d(), var3)) {
+				if (var9 == PaintingDirection.d && !a(var1, var2.d(), var3)) {
 					return var6 ? 1 : 2;
 				}
 			}
-		} else if (var4 == ej.d) {
+		} else if (var4 == PaintingDirection.d) {
 			var7 = var1.p(var2.c());
 			var8 = var7.c();
 			if (c(var8) && var5 == var7.b(b)) {
-				var9 = (ej) var7.b(a);
-				if (var9 == ej.e && !a(var1, var2.e(), var3)) {
+				var9 = (PaintingDirection) var7.b(a);
+				if (var9 == PaintingDirection.e && !a(var1, var2.e(), var3)) {
 					return var6 ? 2 : 1;
 				}
 
-				if (var9 == ej.f && !a(var1, var2.f(), var3)) {
+				if (var9 == PaintingDirection.f && !a(var1, var2.f(), var3)) {
 					return var6 ? 1 : 2;
 				}
 			}
-		} else if (var4 == ej.c) {
+		} else if (var4 == PaintingDirection.c) {
 			var7 = var1.p(var2.d());
 			var8 = var7.c();
 			if (c(var8) && var5 == var7.b(b)) {
-				var9 = (ej) var7.b(a);
-				if (var9 == ej.e && !a(var1, var2.e(), var3)) {
+				var9 = (PaintingDirection) var7.b(a);
+				if (var9 == PaintingDirection.e && !a(var1, var2.e(), var3)) {
 					return var6 ? 1 : 2;
 				}
 
-				if (var9 == ej.f && !a(var1, var2.f(), var3)) {
+				if (var9 == PaintingDirection.f && !a(var1, var2.f(), var3)) {
 					return var6 ? 2 : 1;
 				}
 			}
@@ -196,7 +196,7 @@ public class bat extends Block {
 
 	public boolean h(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
-		ej var4 = (ej) var3.b(a);
+		PaintingDirection var4 = (PaintingDirection) var3.b(a);
 		bau var5 = (bau) var3.b(b);
 		boolean var6 = var5 == bau.a;
 		float var7 = 0.5F;
@@ -213,61 +213,61 @@ public class bat extends Block {
 		boolean var13 = true;
 		bec var14;
 		Block var15;
-		ej var16;
-		if (var4 == ej.f) {
+		PaintingDirection var16;
+		if (var4 == PaintingDirection.f) {
 			var9 = 0.5F;
 			var12 = 1.0F;
 			var14 = var1.p(var2.f());
 			var15 = var14.c();
 			if (c(var15) && var5 == var14.b(b)) {
-				var16 = (ej) var14.b(a);
-				if (var16 == ej.c && !a(var1, var2.d(), var3)) {
+				var16 = (PaintingDirection) var14.b(a);
+				if (var16 == PaintingDirection.c && !a(var1, var2.d(), var3)) {
 					var12 = 0.5F;
 					var13 = false;
-				} else if (var16 == ej.d && !a(var1, var2.c(), var3)) {
+				} else if (var16 == PaintingDirection.d && !a(var1, var2.c(), var3)) {
 					var11 = 0.5F;
 					var13 = false;
 				}
 			}
-		} else if (var4 == ej.e) {
+		} else if (var4 == PaintingDirection.e) {
 			var10 = 0.5F;
 			var12 = 1.0F;
 			var14 = var1.p(var2.e());
 			var15 = var14.c();
 			if (c(var15) && var5 == var14.b(b)) {
-				var16 = (ej) var14.b(a);
-				if (var16 == ej.c && !a(var1, var2.d(), var3)) {
+				var16 = (PaintingDirection) var14.b(a);
+				if (var16 == PaintingDirection.c && !a(var1, var2.d(), var3)) {
 					var12 = 0.5F;
 					var13 = false;
-				} else if (var16 == ej.d && !a(var1, var2.c(), var3)) {
+				} else if (var16 == PaintingDirection.d && !a(var1, var2.c(), var3)) {
 					var11 = 0.5F;
 					var13 = false;
 				}
 			}
-		} else if (var4 == ej.d) {
+		} else if (var4 == PaintingDirection.d) {
 			var11 = 0.5F;
 			var12 = 1.0F;
 			var14 = var1.p(var2.d());
 			var15 = var14.c();
 			if (c(var15) && var5 == var14.b(b)) {
-				var16 = (ej) var14.b(a);
-				if (var16 == ej.e && !a(var1, var2.f(), var3)) {
+				var16 = (PaintingDirection) var14.b(a);
+				if (var16 == PaintingDirection.e && !a(var1, var2.f(), var3)) {
 					var10 = 0.5F;
 					var13 = false;
-				} else if (var16 == ej.f && !a(var1, var2.e(), var3)) {
+				} else if (var16 == PaintingDirection.f && !a(var1, var2.e(), var3)) {
 					var9 = 0.5F;
 					var13 = false;
 				}
 			}
-		} else if (var4 == ej.c) {
+		} else if (var4 == PaintingDirection.c) {
 			var14 = var1.p(var2.c());
 			var15 = var14.c();
 			if (c(var15) && var5 == var14.b(b)) {
-				var16 = (ej) var14.b(a);
-				if (var16 == ej.e && !a(var1, var2.f(), var3)) {
+				var16 = (PaintingDirection) var14.b(a);
+				if (var16 == PaintingDirection.e && !a(var1, var2.f(), var3)) {
 					var10 = 0.5F;
 					var13 = false;
-				} else if (var16 == ej.f && !a(var1, var2.e(), var3)) {
+				} else if (var16 == PaintingDirection.f && !a(var1, var2.e(), var3)) {
 					var9 = 0.5F;
 					var13 = false;
 				}
@@ -280,7 +280,7 @@ public class bat extends Block {
 
 	public boolean i(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
-		ej var4 = (ej) var3.b(a);
+		PaintingDirection var4 = (PaintingDirection) var3.b(a);
 		bau var5 = (bau) var3.b(b);
 		boolean var6 = var5 == bau.a;
 		float var7 = 0.5F;
@@ -297,62 +297,62 @@ public class bat extends Block {
 		boolean var13 = false;
 		bec var14;
 		Block var15;
-		ej var16;
-		if (var4 == ej.f) {
+		PaintingDirection var16;
+		if (var4 == PaintingDirection.f) {
 			var14 = var1.p(var2.e());
 			var15 = var14.c();
 			if (c(var15) && var5 == var14.b(b)) {
-				var16 = (ej) var14.b(a);
-				if (var16 == ej.c && !a(var1, var2.c(), var3)) {
+				var16 = (PaintingDirection) var14.b(a);
+				if (var16 == PaintingDirection.c && !a(var1, var2.c(), var3)) {
 					var11 = 0.0F;
 					var12 = 0.5F;
 					var13 = true;
-				} else if (var16 == ej.d && !a(var1, var2.d(), var3)) {
+				} else if (var16 == PaintingDirection.d && !a(var1, var2.d(), var3)) {
 					var11 = 0.5F;
 					var12 = 1.0F;
 					var13 = true;
 				}
 			}
-		} else if (var4 == ej.e) {
+		} else if (var4 == PaintingDirection.e) {
 			var14 = var1.p(var2.f());
 			var15 = var14.c();
 			if (c(var15) && var5 == var14.b(b)) {
 				var9 = 0.5F;
 				var10 = 1.0F;
-				var16 = (ej) var14.b(a);
-				if (var16 == ej.c && !a(var1, var2.c(), var3)) {
+				var16 = (PaintingDirection) var14.b(a);
+				if (var16 == PaintingDirection.c && !a(var1, var2.c(), var3)) {
 					var11 = 0.0F;
 					var12 = 0.5F;
 					var13 = true;
-				} else if (var16 == ej.d && !a(var1, var2.d(), var3)) {
+				} else if (var16 == PaintingDirection.d && !a(var1, var2.d(), var3)) {
 					var11 = 0.5F;
 					var12 = 1.0F;
 					var13 = true;
 				}
 			}
-		} else if (var4 == ej.d) {
+		} else if (var4 == PaintingDirection.d) {
 			var14 = var1.p(var2.c());
 			var15 = var14.c();
 			if (c(var15) && var5 == var14.b(b)) {
 				var11 = 0.0F;
 				var12 = 0.5F;
-				var16 = (ej) var14.b(a);
-				if (var16 == ej.e && !a(var1, var2.e(), var3)) {
+				var16 = (PaintingDirection) var14.b(a);
+				if (var16 == PaintingDirection.e && !a(var1, var2.e(), var3)) {
 					var13 = true;
-				} else if (var16 == ej.f && !a(var1, var2.f(), var3)) {
+				} else if (var16 == PaintingDirection.f && !a(var1, var2.f(), var3)) {
 					var9 = 0.5F;
 					var10 = 1.0F;
 					var13 = true;
 				}
 			}
-		} else if (var4 == ej.c) {
+		} else if (var4 == PaintingDirection.c) {
 			var14 = var1.p(var2.d());
 			var15 = var14.c();
 			if (c(var15) && var5 == var14.b(b)) {
-				var16 = (ej) var14.b(a);
-				if (var16 == ej.e && !a(var1, var2.e(), var3)) {
+				var16 = (PaintingDirection) var14.b(a);
+				if (var16 == PaintingDirection.e && !a(var1, var2.e(), var3)) {
 					var13 = true;
-				} else if (var16 == ej.f && !a(var1, var2.f(), var3)) {
+				} else if (var16 == PaintingDirection.f && !a(var1, var2.f(), var3)) {
 					var9 = 0.5F;
 					var10 = 1.0F;
 					var13 = true;
@@ -428,8 +428,8 @@ public class bat extends Block {
 		this.O.b(var1, var2, var3, var4);
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
-		return this.O.a(var1, var2, this.P, var4, ej.a, 0.0F, 0.0F, 0.0F);
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+		return this.O.a(var1, var2, this.P, var4, PaintingDirection.a, 0.0F, 0.0F, 0.0F);
 	}
 
 	public void a(World var1, Position var2, aqo var3) {
@@ -440,16 +440,16 @@ public class bat extends Block {
 		return this.O.g(this.P);
 	}
 
-	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		bec var9 = super.a(var1, var2, var3, var4, var5, var6, var7, var8);
 		var9 = var9.a(a, var8.aO()).a(M, bav.a);
-		return var3 != ej.a && (var3 == ej.b || (double) var5 <= 0.5D) ? var9.a(b, bau.b) : var9.a(b, bau.a);
+		return var3 != PaintingDirection.a && (var3 == PaintingDirection.b || (double) var5 <= 0.5D) ? var9.a(b, bau.b) : var9.a(b, bau.a);
 	}
 
 	public bru a(World var1, Position var2, brw var3, brw var4) {
 		bru[] var5 = new bru[8];
 		bec var6 = var1.p(var2);
-		int var7 = ((ej) var6.b(a)).b();
+		int var7 = ((PaintingDirection) var6.b(a)).toByte();
 		boolean var8 = var6.b(b) == bau.a;
 		int[] var9 = N[var7 + (var8 ? 4 : 0)];
 		this.Q = true;
@@ -490,7 +490,7 @@ public class bat extends Block {
 
 	public bec a(int var1) {
 		bec var2 = this.P().a(b, (var1 & 4) > 0 ? bau.a : bau.b);
-		var2 = var2.a(a, ej.a(5 - (var1 & 3)));
+		var2 = var2.a(a, PaintingDirection.a(5 - (var1 & 3)));
 		return var2;
 	}
 
@@ -500,7 +500,7 @@ public class bat extends Block {
 			var2 |= 4;
 		}
 
-		var2 |= 5 - ((ej) var1.b(a)).a();
+		var2 |= 5 - ((PaintingDirection) var1.b(a)).a();
 		return var2;
 	}
 

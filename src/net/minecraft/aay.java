@@ -18,7 +18,7 @@ public class aay extends aaz {
 	}
 
 	protected boolean b() {
-		return this.b.C || this.h() && this.o() || this.b.av() && this.b instanceof agj && this.b.m instanceof abr;
+		return this.b.onGround || this.h() && this.o() || this.b.av() && this.b instanceof agj && this.b.m instanceof abr;
 	}
 
 	protected brw c() {

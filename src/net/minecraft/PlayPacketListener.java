@@ -2,17 +2,17 @@ package net.minecraft;
 
 public interface PlayPacketListener extends PacketListener {
 
-	void handle(SpawnObject var1);
+	void handle(PacketSpawnObject var1);
 
-	void a(im var1);
+	void handle(PacketSpawnExpirienceOrb var1);
 
 	void a(in var1);
 
-	void a(io var1);
+	void handle(PacketSpawnMob var1);
 
 	void a(ld var1);
 
-	void a(ip var1);
+	void handle(PacketSpawnPainting var1);
 
 	void handle(PacketSpawnPlayer var1);
 
@@ -56,9 +56,9 @@ public interface PlayPacketListener extends PacketListener {
 
 	void handle(PacketUseBed var1);
 
-	void a(jk var1);
+	void handle(PacketEntityStatus var1);
 
-	void a(ky var1);
+	void handle(PacketAttachEntity var1);
 
 	void a(jm var1);
 
@@ -74,7 +74,7 @@ public interface PlayPacketListener extends PacketListener {
 
 	void handle(PacketJoinGame var1);
 
-	void a(jy var1);
+	void handle(PacketEntity var1);
 
 	void handle(PacketPlayerPositionAndLook var1);
 
@@ -84,25 +84,25 @@ public interface PlayPacketListener extends PacketListener {
 
 	void a(kh var1);
 
-	void a(km var1);
+	void handle(PacketDestroyEntities var1);
 
-	void a(kn var1);
+	void handle(PacketRemoveEntityEffect var1);
 
 	void handle(PacketRespawn var1);
 
-	void a(kq var1);
+	void handle(PacketEntityHeadLook var1);
 
 	void handle(PacketHeldItemChange var1);
 
 	void a(kw var1);
 
-	void a(kx var1);
+	void handle(PacketEntityMetadata var1);
 
-	void a(kz var1);
+	void handle(PacketEntityVelocity var1);
 
 	void handle(PacketEntityEquipment var1);
 
-	void a(lb var1);
+	void handle(PacketSetExpirience var1);
 
 	void handle(PacketUpdateHealth var1);
 
@@ -120,11 +120,11 @@ public interface PlayPacketListener extends PacketListener {
 
 	void handle(PacketCollectItem var1);
 
-	void a(lo var1);
+	void handle(PacketEntityTeleport var1);
 
 	void a(lp var1);
 
-	void a(lr var1);
+	void handle(PacketEntityEffect var1);
 
 	void a(ke var1);
 

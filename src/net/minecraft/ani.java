@@ -21,7 +21,7 @@ public class ani extends aju {
 		return this.b.b(var1.i());
 	}
 
-	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (var1.b == 0) {
 			return false;
 		} else if (!var2.a(var4.a(var5), var5, var1)) {
@@ -33,7 +33,7 @@ public class ani extends aju {
 				bex var11 = this.b.l();
 				Comparable var12 = var10.b(var11);
 				awr var13 = (awr) var10.b(awq.a);
-				if ((var5 == ej.b && var13 == awr.b || var5 == ej.a && var13 == awr.a) && var12 == var9) {
+				if ((var5 == PaintingDirection.b && var13 == awr.b || var5 == PaintingDirection.a && var13 == awr.a) && var12 == var9) {
 					bec var14 = this.c.P().a(var11, var12);
 					if (var3.b(this.c.a(var3, var4, var14)) && var3.a(var4, var14, 3)) {
 						var3.a((double) ((float) var4.n() + 0.5F), (double) ((float) var4.o() + 0.5F), (double) ((float) var4.p() + 0.5F), this.c.H.b(), (this.c.H.d() + 1.0F) / 2.0F, this.c.H.e() * 0.8F);

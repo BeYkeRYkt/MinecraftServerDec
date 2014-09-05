@@ -8,7 +8,7 @@ public class bjt extends bkb {
 	public bjt() {
 	}
 
-	public bjt(int var1, Random var2, bjb var3, ej var4) {
+	public bjt(int var1, Random var2, bjb var3, PaintingDirection var4) {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
@@ -16,7 +16,7 @@ public class bjt extends bkb {
 
 	public void a(bms var1, List var2, Random var3) {
 		byte var4 = 1;
-		if (this.m == ej.e || this.m == ej.c) {
+		if (this.m == PaintingDirection.e || this.m == PaintingDirection.c) {
 			var4 = 5;
 		}
 
@@ -24,7 +24,7 @@ public class bjt extends bkb {
 		this.c((bkf) var1, var2, var3, 0, var4, var3.nextInt(8) > 0);
 	}
 
-	public static bjt a(List var0, Random var1, int var2, int var3, int var4, ej var5, int var6) {
+	public static bjt a(List var0, Random var1, int var2, int var3, int var4, PaintingDirection var5, int var6) {
 		bjb var7 = bjb.a(var2, var3, var4, -3, 0, 0, 9, 7, 9, var5);
 		return a(var7) && bms.a(var0, var7) == null ? new bjt(var6, var1, var7, var5) : null;
 	}

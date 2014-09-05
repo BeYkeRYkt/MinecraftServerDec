@@ -70,13 +70,13 @@ public class adv extends Entity {
 			this.motionZ *= 0.9800000190734863D;
 			if (!this.o.D) {
 				var2 = new Position(this);
-				if (this.C) {
+				if (this.onGround) {
 					this.motionX *= 0.699999988079071D;
 					this.motionZ *= 0.699999988079071D;
 					this.motionY *= -0.5D;
 					if (this.o.p(var2).c() != aty.M) {
 						this.J();
-						if (!this.e && this.o.a(var1, var2, true, ej.b, (Entity) null, (ItemStack) null) && !avt.d(this.o, var2.b()) && this.o.a(var2, this.d, 3)) {
+						if (!this.e && this.o.a(var1, var2, true, PaintingDirection.b, (Entity) null, (ItemStack) null) && !avt.d(this.o, var2.b()) && this.o.a(var2, this.d, 3)) {
 							if (var1 instanceof avt) {
 								((avt) var1).a_(this.o, var2);
 							}

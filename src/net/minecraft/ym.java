@@ -48,19 +48,19 @@ public class ym {
 			float var9 = (float) (Math.atan2(var5, var1) * 180.0D / 3.1415927410125732D) - 90.0F;
 			float var10 = (float) (-(Math.atan2(var3, var7) * 180.0D / 3.1415927410125732D));
 			this.a.pitch = this.a(this.a.pitch, var10, this.c);
-			this.a.aI = this.a(this.a.aI, var9, this.b);
+			this.a.headPitch = this.a(this.a.headPitch, var9, this.b);
 		} else {
-			this.a.aI = this.a(this.a.aI, this.a.aG, 10.0F);
+			this.a.headPitch = this.a(this.a.headPitch, this.a.aG, 10.0F);
 		}
 
-		float var11 = DataTypesConverter.g(this.a.aI - this.a.aG);
+		float var11 = DataTypesConverter.g(this.a.headPitch - this.a.aG);
 		if (!this.a.s().m()) {
 			if (var11 < -75.0F) {
-				this.a.aI = this.a.aG - 75.0F;
+				this.a.headPitch = this.a.aG - 75.0F;
 			}
 
 			if (var11 > 75.0F) {
-				this.a.aI = this.a.aG + 75.0F;
+				this.a.headPitch = this.a.aG + 75.0F;
 			}
 		}
 

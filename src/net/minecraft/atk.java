@@ -126,7 +126,7 @@ public class atk {
 		Iterator var2 = en.a.iterator();
 
 		while (var2.hasNext()) {
-			ej var3 = (ej) var2.next();
+			PaintingDirection var3 = (PaintingDirection) var2.next();
 			if (this.a(this.c.a(var3))) {
 				++var1;
 			}

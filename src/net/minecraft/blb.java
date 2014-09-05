@@ -26,13 +26,13 @@ public abstract class blb extends bms {
 		super(var1);
 	}
 
-	public blb(ej var1, bjb var2) {
+	public blb(PaintingDirection var1, bjb var2) {
 		super(1);
 		this.m = var1;
 		this.l = var2;
 	}
 
-	protected blb(int var1, ej var2, blf var3, int var4, int var5, int var6) {
+	protected blb(int var1, PaintingDirection var2, blf var3, int var4, int var5, int var6) {
 		super(var1);
 		this.m = var2;
 		this.k = var3;
@@ -40,7 +40,7 @@ public abstract class blb extends bms {
 		int var8 = var7 % 5;
 		int var9 = var7 / 5 % 5;
 		int var10 = var7 / 25;
-		if (var2 != ej.c && var2 != ej.d) {
+		if (var2 != PaintingDirection.c && var2 != PaintingDirection.d) {
 			this.l = new bjb(0, 0, 0, var6 * 8 - 1, var5 * 4 - 1, var4 * 8 - 1);
 		} else {
 			this.l = new bjb(0, 0, 0, var4 * 8 - 1, var5 * 4 - 1, var6 * 8 - 1);

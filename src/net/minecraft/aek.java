@@ -45,7 +45,7 @@ public class aek extends Entity {
 		this.motionX *= 0.9800000190734863D;
 		this.motionY *= 0.9800000190734863D;
 		this.motionZ *= 0.9800000190734863D;
-		if (this.C) {
+		if (this.onGround) {
 			this.motionX *= 0.699999988079071D;
 			this.motionZ *= 0.699999988079071D;
 			this.motionY *= -0.5D;

@@ -90,7 +90,7 @@ public class qx {
 
 	}
 
-	public void a(Position var1, ej var2) {
+	public void a(Position var1, PaintingDirection var2) {
 		if (this.d()) {
 			if (!this.a.a((EntityHuman) null, var1, var2)) {
 				this.b(var1);
@@ -250,7 +250,7 @@ public class qx {
 		}
 	}
 
-	public boolean a(EntityHuman var1, World var2, ItemStack var3, Position var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(EntityHuman var1, World var2, ItemStack var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (this.gameMode == GameMode.SPECTATOR) {
 			bcm var13 = var2.s(var4);
 			if (var13 instanceof vy) {

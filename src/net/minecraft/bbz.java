@@ -7,11 +7,11 @@ public class bbz extends bai {
 	public static final beu a = beu.a("facing", (Predicate) en.a);
 
 	public bbz() {
-		this.j(this.L.b().a(a, ej.c));
+		this.j(this.L.b().a(a, PaintingDirection.c));
 	}
 
 	public void a(ard var1, Position var2) {
-		ej var3 = (ej) var1.p(var2).b(a);
+		PaintingDirection var3 = (PaintingDirection) var1.p(var2).b(a);
 		float var4 = 0.28125F;
 		float var5 = 0.78125F;
 		float var6 = 0.0F;
@@ -35,7 +35,7 @@ public class bbz extends bai {
 	}
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
-		ej var5 = (ej) var3.b(a);
+		PaintingDirection var5 = (PaintingDirection) var3.b(a);
 		if (!var1.p(var2.a(var5.d())).c().r().a()) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -45,16 +45,16 @@ public class bbz extends bai {
 	}
 
 	public bec a(int var1) {
-		ej var2 = ej.a(var1);
+		PaintingDirection var2 = PaintingDirection.a(var1);
 		if (var2.k() == el.b) {
-			var2 = ej.c;
+			var2 = PaintingDirection.c;
 		}
 
 		return this.P().a(a, var2);
 	}
 
 	public int c(bec var1) {
-		return ((ej) var1.b(a)).a();
+		return ((PaintingDirection) var1.b(a)).a();
 	}
 
 	protected bed e() {

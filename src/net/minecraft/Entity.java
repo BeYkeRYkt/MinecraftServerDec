@@ -32,7 +32,7 @@ public abstract class Entity implements CommandSenderInterface {
 	public float A;
 	public float B;
 	private brt f;
-	public boolean C;
+	public boolean onGround;
 	public boolean D;
 	public boolean E;
 	public boolean F;
@@ -312,7 +312,7 @@ public abstract class Entity implements CommandSenderInterface {
 			double var13 = var1;
 			double var15 = var3;
 			double var17 = var5;
-			boolean var19 = this.C && this.aw() && this instanceof EntityHuman;
+			boolean var19 = this.onGround && this.aw() && this instanceof EntityHuman;
 			if (var19) {
 				double var20;
 				for (var20 = 0.05D; var1 != 0.0D && this.o.a(this, this.aQ().c(var1, -1.0D, 0.0D)).isEmpty(); var13 = var1) {
@@ -364,7 +364,7 @@ public abstract class Entity implements CommandSenderInterface {
 			}
 
 			this.a(this.aQ().c(0.0D, var3, 0.0D));
-			boolean var54 = this.C || var15 != var3 && var15 < 0.0D;
+			boolean var54 = this.onGround || var15 != var3 && var15 < 0.0D;
 
 			brt var24;
 			Iterator var55;
@@ -471,7 +471,7 @@ public abstract class Entity implements CommandSenderInterface {
 			this.m();
 			this.D = var13 != var1 || var17 != var5;
 			this.E = var15 != var3;
-			this.C = this.E && var15 < 0.0D;
+			this.onGround = this.E && var15 < 0.0D;
 			this.F = this.D || this.E;
 			int var57 = DataTypesConverter.toFixedPointInt(this.locationX);
 			int var58 = DataTypesConverter.toFixedPointInt(this.locationY - 0.20000000298023224D);
@@ -486,7 +486,7 @@ public abstract class Entity implements CommandSenderInterface {
 				}
 			}
 
-			this.a(var3, this.C, var60, var26);
+			this.a(var3, this.onGround, var60, var26);
 			if (var13 != var1) {
 				this.motionX = 0.0D;
 			}
@@ -507,7 +507,7 @@ public abstract class Entity implements CommandSenderInterface {
 					var64 = 0.0D;
 				}
 
-				if (var60 != null && this.C) {
+				if (var60 != null && this.onGround) {
 					var60.a(this.o, var26, this);
 				}
 
@@ -973,7 +973,7 @@ public abstract class Entity implements CommandSenderInterface {
 			var1.put("FallDistance", this.O);
 			var1.put("Fire", (short) this.i);
 			var1.put("Air", (short) this.aA());
-			var1.put("OnGround", this.C);
+			var1.put("OnGround", this.onGround);
 			var1.put("Dimension", this.am);
 			var1.put("Invulnerable", this.ar);
 			var1.put("PortalCooldown", this.aj);
@@ -1033,7 +1033,7 @@ public abstract class Entity implements CommandSenderInterface {
 			this.O = var1.getFloat("FallDistance");
 			this.i = var1.getShort("Fire");
 			this.h(var1.getShort("Air"));
-			this.C = var1.getBoolean("OnGround");
+			this.onGround = var1.getBoolean("OnGround");
 			this.am = var1.getInt("Dimension");
 			this.ar = var1.getBoolean("Invulnerable");
 			this.aj = var1.getInt("PortalCooldown");
@@ -1070,7 +1070,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected final String ag() {
-		return xb.b(this);
+		return EntityTypes.b(this);
 	}
 
 	protected abstract void a(NBTCompoundTag var1);
@@ -1266,9 +1266,9 @@ public abstract class Entity implements CommandSenderInterface {
 			if (!this.o.D && !this.ak) {
 				int var5;
 				if (DataTypesConverter.e((float) var1) > DataTypesConverter.e((float) var3)) {
-					var5 = var1 > 0.0D ? ej.e.b() : ej.f.b();
+					var5 = var1 > 0.0D ? PaintingDirection.e.toByte() : PaintingDirection.f.toByte();
 				} else {
-					var5 = var3 > 0.0D ? ej.c.b() : ej.d.b();
+					var5 = var3 > 0.0D ? PaintingDirection.c.toByte() : PaintingDirection.d.toByte();
 				}
 
 				this.an = var5;
@@ -1430,7 +1430,7 @@ public abstract class Entity implements CommandSenderInterface {
 		if (this.k_()) {
 			return this.aL();
 		} else {
-			String var1 = xb.b(this);
+			String var1 = EntityTypes.b(this);
 			if (var1 == null) {
 				var1 = "generic";
 			}
@@ -1500,7 +1500,7 @@ public abstract class Entity implements CommandSenderInterface {
 			this.o.B.a("reposition");
 			var2.getPlayerList().a(this, var3, var4, var5);
 			this.o.B.c("reloading");
-			Entity var6 = xb.a(xb.b(this), (World) var5);
+			Entity var6 = EntityTypes.a(EntityTypes.b(this), (World) var5);
 			if (var6 != null) {
 				var6.n(this);
 				if (var3 == 1 && var1 == 1) {
@@ -1592,13 +1592,13 @@ public abstract class Entity implements CommandSenderInterface {
 	public void i(int var1) {
 	}
 
-	public ej aO() {
-		return ej.b(DataTypesConverter.toFixedPointInt((double) (this.yaw * 4.0F / 360.0F) + 0.5D) & 3);
+	public PaintingDirection aO() {
+		return PaintingDirection.fromByte(DataTypesConverter.toFixedPointInt((double) (this.yaw * 4.0F / 360.0F) + 0.5D) & 3);
 	}
 
 	protected hr aP() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
-		String var2 = xb.b(this);
+		String var2 = EntityTypes.b(this);
 		var1.put("id", this.aJ().toString());
 		if (var2 != null) {
 			var1.put("type", var2);

@@ -186,16 +186,16 @@ public class bfh {
 						int var7 = Integer.MAX_VALUE;
 
 						Iterator var8;
-						ej var9;
+						PaintingDirection var9;
 						for (var8 = en.a.iterator(); var8.hasNext(); var7 = Math.min(var7, this.i.b(var5 + var9.g(), var6 + var9.i()))) {
-							var9 = (ej) var8.next();
+							var9 = (PaintingDirection) var8.next();
 						}
 
 						this.c(var5, var6, var7);
 						var8 = en.a.iterator();
 
 						while (var8.hasNext()) {
-							var9 = (ej) var8.next();
+							var9 = (PaintingDirection) var8.next();
 							this.c(var5 + var9.g(), var6 + var9.i(), var4);
 						}
 
@@ -309,7 +309,7 @@ public class bfh {
 				Iterator var11 = en.a.iterator();
 
 				while (var11.hasNext()) {
-					ej var12 = (ej) var11.next();
+					PaintingDirection var12 = (PaintingDirection) var11.next();
 					this.a(var6 + var12.g(), var7 + var12.i(), var13, var14);
 				}
 
@@ -934,11 +934,11 @@ public class bfh {
 				Position var7 = var1.a(var4, (var3 << 4) + var6, var5);
 				boolean var8 = var6 == 0 || var6 == 15 || var4 == 0 || var4 == 15 || var5 == 0 || var5 == 15;
 				if (this.d[var3] == null && var8 || this.d[var3] != null && this.d[var3].b(var4, var6, var5).r() == bof.a) {
-					ej[] var9 = ej.values();
+					PaintingDirection[] var9 = PaintingDirection.values();
 					int var10 = var9.length;
 
 					for (int var11 = 0; var11 < var10; ++var11) {
-						ej var12 = var9[var11];
+						PaintingDirection var12 = var9[var11];
 						Position var13 = var7.a(var12);
 						if (this.i.p(var13).c().p() > 0) {
 							this.i.x(var13);
@@ -971,7 +971,7 @@ public class bfh {
 					Iterator var5 = en.a.iterator();
 
 					while (var5.hasNext()) {
-						ej var6 = (ej) var5.next();
+						PaintingDirection var6 = (PaintingDirection) var5.next();
 						int var4 = var6.c() == em.a ? 16 : 1;
 						this.i.f(var1.a(var6, var4)).a(var6.d());
 					}
@@ -993,22 +993,22 @@ public class bfh {
 		this.h(false);
 	}
 
-	private void a(ej var1) {
+	private void a(PaintingDirection var1) {
 		if (this.n) {
 			int var2;
-			if (var1 == ej.f) {
+			if (var1 == PaintingDirection.f) {
 				for (var2 = 0; var2 < 16; ++var2) {
 					this.e(15, var2);
 				}
-			} else if (var1 == ej.e) {
+			} else if (var1 == PaintingDirection.e) {
 				for (var2 = 0; var2 < 16; ++var2) {
 					this.e(0, var2);
 				}
-			} else if (var1 == ej.d) {
+			} else if (var1 == PaintingDirection.d) {
 				for (var2 = 0; var2 < 16; ++var2) {
 					this.e(var2, 15);
 				}
-			} else if (var1 == ej.c) {
+			} else if (var1 == PaintingDirection.c) {
 				for (var2 = 0; var2 < 16; ++var2) {
 					this.e(var2, 0);
 				}

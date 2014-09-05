@@ -6,7 +6,7 @@ public class alb extends Item {
 		this.a(CreativeModeTab.f);
 	}
 
-	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
 		bec var9 = var3.p(var4);
 		if (var2.a(var4.a(var5), var5, var1) && var9.c() == aty.bG && !((Boolean) var9.b(avq.b)).booleanValue()) {
 			if (var3.D) {
@@ -26,12 +26,12 @@ public class alb extends Item {
 					var3.a(ew.l, var11, var13, var15, var17, var19, var21, new int[0]);
 				}
 
-				ej var23 = (ej) var9.b(avq.a);
+				PaintingDirection var23 = (PaintingDirection) var9.b(avq.a);
 				int var24 = 0;
 				int var12 = 0;
 				boolean var25 = false;
 				boolean var14 = true;
-				ej var26 = var23.e();
+				PaintingDirection var26 = var23.e();
 
 				for (int var16 = -2; var16 <= 2; ++var16) {
 					Position var28 = var4.a(var26, var16);

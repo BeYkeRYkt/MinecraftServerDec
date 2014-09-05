@@ -9,7 +9,7 @@ public class anl extends Item {
 
 	public String a(ItemStack var1) {
 		String var2 = ("" + fi.a(this.a() + ".name")).trim();
-		String var3 = xb.b(var1.i());
+		String var3 = EntityTypes.b(var1.i());
 		if (var3 != null) {
 			var2 = var2 + " " + fi.a("entity." + var3 + ".name");
 		}
@@ -17,7 +17,7 @@ public class anl extends Item {
 		return var2;
 	}
 
-	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (var3.D) {
 			return true;
 		} else if (!var2.a(var4.a(var5), var5, var1)) {
@@ -28,7 +28,7 @@ public class anl extends Item {
 				bcm var10 = var3.s(var4);
 				if (var10 instanceof bdg) {
 					aqi var11 = ((bdg) var10).b();
-					var11.a(xb.b(var1.i()));
+					var11.a(EntityTypes.b(var1.i()));
 					var10.o_();
 					var3.h(var4);
 					if (!var2.by.instabuild) {
@@ -41,7 +41,7 @@ public class anl extends Item {
 
 			var4 = var4.a(var5);
 			double var13 = 0.0D;
-			if (var5 == ej.b && var9 instanceof avv) {
+			if (var5 == PaintingDirection.b && var9 instanceof avv) {
 				var13 = 0.5D;
 			}
 
@@ -100,17 +100,17 @@ public class anl extends Item {
 	}
 
 	public static Entity a(World var0, int var1, double var2, double var4, double var6) {
-		if (!xb.a.containsKey(Integer.valueOf(var1))) {
+		if (!EntityTypes.a.containsKey(Integer.valueOf(var1))) {
 			return null;
 		} else {
 			Entity var8 = null;
 
 			for (int var9 = 0; var9 < 1; ++var9) {
-				var8 = xb.a(var1, var0);
+				var8 = EntityTypes.a(var1, var0);
 				if (var8 instanceof EntityLiving) {
 					xn var10 = (xn) var8;
 					var8.b(var2, var4, var6, DataTypesConverter.g(var0.s.nextFloat() * 360.0F), 0.0F);
-					var10.aI = var10.yaw;
+					var10.headPitch = var10.yaw;
 					var10.aG = var10.yaw;
 					var10.a(var0.E(new Position(var10)), (xq) null);
 					var0.d(var8);

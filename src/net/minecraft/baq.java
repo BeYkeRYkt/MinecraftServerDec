@@ -47,11 +47,11 @@ public class baq extends Block {
 			vi var6 = (vi) var3.poll();
 			var7 = (Position) var6.a();
 			int var8 = ((Integer) var6.b()).intValue();
-			ej[] var9 = ej.values();
+			PaintingDirection[] var9 = PaintingDirection.values();
 			int var10 = var9.length;
 
 			for (int var11 = 0; var11 < var10; ++var11) {
-				ej var12 = var9[var11];
+				PaintingDirection var12 = var9[var11];
 				Position var13 = var7.a(var12);
 				if (var1.p(var13).c().r() == bof.h) {
 					var1.a(var13, aty.a.P(), 2);

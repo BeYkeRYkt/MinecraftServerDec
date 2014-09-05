@@ -384,7 +384,7 @@ public class agj extends afm {
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.bY();
-		if (var2 != null && var2.getItem() == amk.ao && var2.i() == 0 && this.cm() && this.a(wp.t)) {
+		if (var2 != null && var2.getItem() == amk.ao && var2.i() == 0 && this.cm() && this.a(MobEffectList.t)) {
 			if (!var1.by.instabuild) {
 				--var2.b;
 			}
@@ -406,8 +406,8 @@ public class agj extends afm {
 	protected void a(int var1) {
 		this.bm = var1;
 		this.getDataWatcher().b(14, Byte.valueOf((byte) 1));
-		this.m(wp.t.H);
-		this.c(new wq(wp.g.H, var1, Math.min(this.o.getDifficulty().getId() - 1, 0)));
+		this.m(MobEffectList.t.H);
+		this.c(new MobEffect(MobEffectList.g.H, var1, Math.min(this.o.getDifficulty().getId() - 1, 0)));
 		this.o.a((Entity) this, (byte) 16);
 	}
 
@@ -430,7 +430,7 @@ public class agj extends afm {
 
 		this.o.e((Entity) this);
 		this.o.d((Entity) var1);
-		var1.c(new wq(wp.k.H, 200, 0));
+		var1.c(new MobEffect(MobEffectList.k.H, 200, 0));
 		this.o.a((EntityHuman) null, 1017, new Position((int) this.locationX, (int) this.locationY, (int) this.locationZ), 0);
 	}
 

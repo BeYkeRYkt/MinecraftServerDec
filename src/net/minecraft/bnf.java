@@ -8,13 +8,13 @@ public class bnf extends bnn {
 	public bnf() {
 	}
 
-	public bnf(bnk var1, int var2, Random var3, bjb var4, ej var5) {
+	public bnf(bnk var1, int var2, Random var3, bjb var4, PaintingDirection var5) {
 		super(var1, var2);
 		this.m = var5;
 		this.l = var4;
 	}
 
-	public static bnf a(bnk var0, List var1, Random var2, int var3, int var4, int var5, ej var6, int var7) {
+	public static bnf a(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
 		bjb var8 = bjb.a(var3, var4, var5, 0, 0, 0, 9, 7, 11, var6);
 		return a(var8) && bms.a(var1, var8) == null ? new bnf(var0, var7, var2, var8, var6) : null;
 	}
@@ -85,7 +85,7 @@ public class bnf extends bnn {
 		this.a(var1, aty.a.P(), 2, 1, 0, var3);
 		this.a(var1, aty.a.P(), 2, 2, 0, var3);
 		this.a(var1, aty.aa.P().a(bbl.a, this.m), 2, 3, 1, var3);
-		this.a(var1, var3, var2, 2, 1, 0, ej.b(this.a(aty.ao, 1)));
+		this.a(var1, var3, var2, 2, 1, 0, PaintingDirection.fromByte(this.a(aty.ao, 1)));
 		if (this.a(var1, 2, 0, -1, var3).c().r() == bof.a && this.a(var1, 2, -1, -1, var3).c().r() != bof.a) {
 			this.a(var1, aty.aw.a(this.a(aty.aw, 3)), 2, 0, -1, var3);
 		}
@@ -93,7 +93,7 @@ public class bnf extends bnn {
 		this.a(var1, aty.a.P(), 6, 1, 5, var3);
 		this.a(var1, aty.a.P(), 6, 2, 5, var3);
 		this.a(var1, aty.aa.P().a(bbl.a, this.m.d()), 6, 3, 4, var3);
-		this.a(var1, var3, var2, 6, 1, 5, ej.b(this.a(aty.ao, 1)));
+		this.a(var1, var3, var2, 6, 1, 5, PaintingDirection.fromByte(this.a(aty.ao, 1)));
 
 		for (var6 = 0; var6 < 5; ++var6) {
 			for (var7 = 0; var7 < 9; ++var7) {

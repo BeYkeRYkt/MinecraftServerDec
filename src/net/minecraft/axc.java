@@ -10,7 +10,7 @@ public class axc extends atg {
 		this.a(CreativeModeTab.c);
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (((Boolean) var3.b(a)).booleanValue()) {
 			this.e(var1, var2, var3);
 			var3 = var3.a(a, Boolean.valueOf(false));

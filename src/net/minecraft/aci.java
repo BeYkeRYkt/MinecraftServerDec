@@ -10,7 +10,7 @@ class aci extends yn {
 	}
 
 	public void c() {
-		if (this.g.C && !this.g.cj()) {
+		if (this.g.onGround && !this.g.cj()) {
 			this.g.b(0.0D);
 		}
 

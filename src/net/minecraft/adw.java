@@ -77,14 +77,14 @@ public class adw extends Entity {
 			}
 
 			float var2 = 0.98F;
-			if (this.C) {
+			if (this.onGround) {
 				var2 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).c().K * 0.98F;
 			}
 
 			this.motionX *= (double) var2;
 			this.motionY *= 0.9800000190734863D;
 			this.motionZ *= (double) var2;
-			if (this.C) {
+			if (this.onGround) {
 				this.motionY *= -0.5D;
 			}
 

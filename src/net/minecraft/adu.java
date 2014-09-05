@@ -161,7 +161,7 @@ public class adu extends Entity {
 				var8 = this.locationY + this.motionY;
 				var24 = this.locationZ + this.motionZ;
 				this.b(var6, var8, var24);
-				if (this.C) {
+				if (this.onGround) {
 					this.motionX *= 0.5D;
 					this.motionY *= 0.5D;
 					this.motionZ *= 0.5D;
@@ -230,7 +230,7 @@ public class adu extends Entity {
 				}
 			}
 
-			if (this.C) {
+			if (this.onGround) {
 				this.motionX *= 0.5D;
 				this.motionY *= 0.5D;
 				this.motionZ *= 0.5D;

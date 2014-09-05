@@ -47,7 +47,7 @@ public class qy {
 		this.g = DataTypesConverter.d(var1.yaw * 256.0F / 360.0F);
 		this.h = DataTypesConverter.d(var1.pitch * 256.0F / 360.0F);
 		this.i = DataTypesConverter.d(var1.aD() * 256.0F / 360.0F);
-		this.y = var1.C;
+		this.y = var1.onGround;
 	}
 
 	public boolean equals(Object var1) {
@@ -71,7 +71,7 @@ public class qy {
 
 		if (this.w != this.a.m || this.a.m != null && this.m % 60 == 0) {
 			this.w = this.a.m;
-			this.a((Packet) (new ky(0, this.a, this.a.m)));
+			this.a((Packet) (new PacketAttachEntity(0, this.a, this.a.m)));
 		}
 
 		if (this.a instanceof adk && this.m % 10 == 0) {
@@ -112,18 +112,18 @@ public class qy {
 				boolean var11 = Math.abs(var29) >= 4 || Math.abs(var30) >= 4 || Math.abs(var9) >= 4 || this.m % 60 == 0;
 				boolean var12 = Math.abs(var27 - this.g) >= 4 || Math.abs(var28 - this.h) >= 4;
 				if (this.m > 0 || this.a instanceof ahj) {
-					if (var29 >= -128 && var29 < 128 && var30 >= -128 && var30 < 128 && var9 >= -128 && var9 < 128 && this.v <= 400 && !this.x && this.y == this.a.C) {
+					if (var29 >= -128 && var29 < 128 && var30 >= -128 && var30 < 128 && var9 >= -128 && var9 < 128 && this.v <= 400 && !this.x && this.y == this.a.onGround) {
 						if (var11 && var12) {
-							var10 = new ka(this.a.getId(), (byte) var29, (byte) var30, (byte) var9, (byte) var27, (byte) var28, this.a.C);
+							var10 = new PacketEntityRelativeLookMove(this.a.getId(), (byte) var29, (byte) var30, (byte) var9, (byte) var27, (byte) var28, this.a.onGround);
 						} else if (var11) {
-							var10 = new jz(this.a.getId(), (byte) var29, (byte) var30, (byte) var9, this.a.C);
+							var10 = new PacketEntityRelativeMove(this.a.getId(), (byte) var29, (byte) var30, (byte) var9, this.a.onGround);
 						} else if (var12) {
-							var10 = new kb(this.a.getId(), (byte) var27, (byte) var28, this.a.C);
+							var10 = new PacketEntityLook(this.a.getId(), (byte) var27, (byte) var28, this.a.onGround);
 						}
 					} else {
-						this.y = this.a.C;
+						this.y = this.a.onGround;
 						this.v = 0;
-						var10 = new lo(this.a.getId(), var23, var24, var25, (byte) var27, (byte) var28, this.a.C);
+						var10 = new PacketEntityTeleport(this.a.getId(), var23, var24, var25, (byte) var27, (byte) var28, this.a.onGround);
 					}
 				}
 
@@ -137,7 +137,7 @@ public class qy {
 						this.j = this.a.motionX;
 						this.k = this.a.motionY;
 						this.l = this.a.motionZ;
-						this.a((Packet) (new kz(this.a.getId(), this.j, this.k, this.l)));
+						this.a((Packet) (new PacketEntityVelocity(this.a.getId(), this.j, this.k, this.l)));
 					}
 				}
 
@@ -163,7 +163,7 @@ public class qy {
 				var24 = DataTypesConverter.d(this.a.pitch * 256.0F / 360.0F);
 				boolean var26 = Math.abs(var23 - this.g) >= 4 || Math.abs(var24 - this.h) >= 4;
 				if (var26) {
-					this.a((Packet) (new kb(this.a.getId(), (byte) var23, (byte) var24, this.a.C)));
+					this.a((Packet) (new PacketEntityLook(this.a.getId(), (byte) var23, (byte) var24, this.a.onGround)));
 					this.g = var23;
 					this.h = var24;
 				}
@@ -177,7 +177,7 @@ public class qy {
 
 			var23 = DataTypesConverter.d(this.a.aD() * 256.0F / 360.0F);
 			if (Math.abs(var23 - this.i) >= 4) {
-				this.a((Packet) (new kq(this.a, (byte) var23)));
+				this.a((Packet) (new PacketEntityHeadLook(this.a, (byte) var23)));
 				this.i = var23;
 			}
 
@@ -186,7 +186,7 @@ public class qy {
 
 		++this.m;
 		if (this.a.G) {
-			this.b((Packet) (new kz(this.a)));
+			this.b((Packet) (new PacketEntityVelocity(this.a)));
 			this.a.G = false;
 		}
 
@@ -195,7 +195,7 @@ public class qy {
 	private void b() {
 		DataWatcher var1 = this.a.getDataWatcher();
 		if (var1.a()) {
-			this.b((Packet) (new kx(this.a.getId(), var1, false)));
+			this.b((Packet) (new PacketEntityMetadata(this.a.getId(), var1, false)));
 		}
 
 		if (this.a instanceof EntityLiving) {
@@ -254,7 +254,7 @@ public class qy {
 					Packet var2 = this.c();
 					var1.a.a(var2);
 					if (!this.a.getDataWatcher().d()) {
-						var1.a.a((Packet) (new kx(this.a.getId(), this.a.getDataWatcher(), true)));
+						var1.a.a((Packet) (new PacketEntityMetadata(this.a.getId(), this.a.getDataWatcher(), true)));
 					}
 
 					NBTCompoundTag var3 = this.a.aU();
@@ -273,16 +273,16 @@ public class qy {
 					this.j = this.a.motionX;
 					this.k = this.a.motionY;
 					this.l = this.a.motionZ;
-					if (this.u && !(var2 instanceof io)) {
-						var1.a.a((Packet) (new kz(this.a.getId(), this.a.motionX, this.a.motionY, this.a.motionZ)));
+					if (this.u && !(var2 instanceof PacketSpawnMob)) {
+						var1.a.a((Packet) (new PacketEntityVelocity(this.a.getId(), this.a.motionX, this.a.motionY, this.a.motionZ)));
 					}
 
 					if (this.a.m != null) {
-						var1.a.a((Packet) (new ky(0, this.a, this.a.m)));
+						var1.a.a((Packet) (new PacketAttachEntity(0, this.a, this.a.m)));
 					}
 
 					if (this.a instanceof xn && ((xn) this.a).cc() != null) {
-						var1.a.a((Packet) (new ky(1, this.a, ((xn) this.a).cc())));
+						var1.a.a((Packet) (new PacketAttachEntity(1, this.a, ((xn) this.a).cc())));
 					}
 
 					if (this.a instanceof EntityLiving) {
@@ -306,8 +306,8 @@ public class qy {
 						Iterator var11 = var9.bk().iterator();
 
 						while (var11.hasNext()) {
-							wq var6 = (wq) var11.next();
-							var1.a.a((Packet) (new lr(this.a.getId(), var6)));
+							MobEffect var6 = (MobEffect) var11.next();
+							var1.a.a((Packet) (new PacketEntityEffect(this.a.getId(), var6)));
 						}
 					}
 				}
@@ -342,37 +342,37 @@ public class qy {
 		}
 
 		if (this.a instanceof adw) {
-			return new SpawnObject(this.a, 2, 1);
+			return new PacketSpawnObject(this.a, 2, 1);
 		} else if (this.a instanceof EntityPlayer) {
 			return new PacketSpawnPlayer((EntityHuman) this.a);
 		} else if (this.a instanceof adx) {
 			adx var9 = (adx) this.a;
-			return new SpawnObject(this.a, 10, var9.s().a());
+			return new PacketSpawnObject(this.a, 10, var9.s().a());
 		} else if (this.a instanceof adu) {
-			return new SpawnObject(this.a, 1);
+			return new PacketSpawnObject(this.a, 1);
 		} else if (this.a instanceof wt) {
 			this.i = DataTypesConverter.d(this.a.aD() * 256.0F / 360.0F);
-			return new io((EntityLiving) this.a);
+			return new PacketSpawnMob((EntityLiving) this.a);
 		} else if (this.a instanceof ado) {
 			EntityHuman var8 = ((ado) this.a).b;
-			return new SpawnObject(this.a, 90, var8 != null ? var8.getId() : this.a.getId());
+			return new PacketSpawnObject(this.a, 90, var8 != null ? var8.getId() : this.a.getId());
 		} else if (this.a instanceof ahj) {
 			Entity var7 = ((ahj) this.a).c;
-			return new SpawnObject(this.a, 60, var7 != null ? var7.getId() : this.a.getId());
+			return new PacketSpawnObject(this.a, 60, var7 != null ? var7.getId() : this.a.getId());
 		} else if (this.a instanceof ahq) {
-			return new SpawnObject(this.a, 61);
+			return new PacketSpawnObject(this.a, 61);
 		} else if (this.a instanceof ahv) {
-			return new SpawnObject(this.a, 73, ((ahv) this.a).o());
+			return new PacketSpawnObject(this.a, 73, ((ahv) this.a).o());
 		} else if (this.a instanceof ahu) {
-			return new SpawnObject(this.a, 75);
+			return new PacketSpawnObject(this.a, 75);
 		} else if (this.a instanceof aht) {
-			return new SpawnObject(this.a, 65);
+			return new PacketSpawnObject(this.a, 65);
 		} else if (this.a instanceof ahk) {
-			return new SpawnObject(this.a, 72);
+			return new PacketSpawnObject(this.a, 72);
 		} else if (this.a instanceof ahm) {
-			return new SpawnObject(this.a, 76);
+			return new PacketSpawnObject(this.a, 76);
 		} else {
-			SpawnObject var2;
+			PacketSpawnObject var2;
 			if (this.a instanceof ahl) {
 				ahl var6 = (ahl) this.a;
 				var2 = null;
@@ -384,9 +384,9 @@ public class qy {
 				}
 
 				if (var6.a != null) {
-					var2 = new SpawnObject(this.a, var10, ((ahl) this.a).a.getId());
+					var2 = new PacketSpawnObject(this.a, var10, ((ahl) this.a).a.getId());
 				} else {
-					var2 = new SpawnObject(this.a, var10, 0);
+					var2 = new PacketSpawnObject(this.a, var10, 0);
 				}
 
 				var2.setSpeedX((int) (var6.b * 8000.0D));
@@ -394,38 +394,38 @@ public class qy {
 				var2.setSpeedZ((int) (var6.d * 8000.0D));
 				return var2;
 			} else if (this.a instanceof ahs) {
-				return new SpawnObject(this.a, 62);
+				return new PacketSpawnObject(this.a, 62);
 			} else if (this.a instanceof aek) {
-				return new SpawnObject(this.a, 50);
+				return new PacketSpawnObject(this.a, 50);
 			} else if (this.a instanceof ada) {
-				return new SpawnObject(this.a, 51);
+				return new PacketSpawnObject(this.a, 51);
 			} else if (this.a instanceof adv) {
 				adv var5 = (adv) this.a;
-				return new SpawnObject(this.a, 70, Block.f(var5.l()));
+				return new PacketSpawnObject(this.a, 70, Block.f(var5.l()));
 			} else if (this.a instanceof adi) {
-				return new SpawnObject(this.a, 78);
-			} else if (this.a instanceof adm) {
-				return new ip((adm) this.a);
+				return new PacketSpawnObject(this.a, 78);
+			} else if (this.a instanceof EntityPainting) {
+				return new PacketSpawnPainting((EntityPainting) this.a);
 			} else {
 				Position var3;
 				if (this.a instanceof adk) {
 					adk var4 = (adk) this.a;
-					var2 = new SpawnObject(this.a, 71, var4.b.b());
-					var3 = var4.n();
+					var2 = new PacketSpawnObject(this.a, 71, var4.direction.toByte());
+					var3 = var4.getPosition();
 					var2.setX(DataTypesConverter.d((float) (var3.n() * 32)));
 					var2.setY(DataTypesConverter.d((float) (var3.o() * 32)));
 					var2.setZ(DataTypesConverter.d((float) (var3.p() * 32)));
 					return var2;
 				} else if (this.a instanceof adl) {
 					adl var1 = (adl) this.a;
-					var2 = new SpawnObject(this.a, 77);
-					var3 = var1.n();
+					var2 = new PacketSpawnObject(this.a, 77);
+					var3 = var1.getPosition();
 					var2.setX(DataTypesConverter.d((float) (var3.n() * 32)));
 					var2.setY(DataTypesConverter.d((float) (var3.o() * 32)));
 					var2.setZ(DataTypesConverter.d((float) (var3.p() * 32)));
 					return var2;
-				} else if (this.a instanceof xk) {
-					return new im((xk) this.a);
+				} else if (this.a instanceof ExpirienceOrb) {
+					return new PacketSpawnExpirienceOrb((ExpirienceOrb) this.a);
 				} else {
 					throw new IllegalArgumentException("Don\'t know how to add " + this.a.getClass() + "!");
 				}

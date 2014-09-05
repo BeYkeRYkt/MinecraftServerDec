@@ -16,7 +16,7 @@ public class bkr extends blb {
 	public bkr() {
 	}
 
-	public bkr(Random var1, int var2, int var3, ej var4) {
+	public bkr(Random var1, int var2, int var3, PaintingDirection var4) {
 		super(0);
 		this.m = var4;
 		switch (bkj.a[this.m.ordinal()]) {
@@ -119,11 +119,11 @@ public class bkr extends blb {
 				for (int var17 = 0; var17 < 3; ++var17) {
 					var6 = a(var3, var17, var4);
 					if (var2[var6] != null) {
-						ej[] var7 = ej.values();
+						PaintingDirection[] var7 = PaintingDirection.values();
 						var8 = var7.length;
 
 						for (var9 = 0; var9 < var8; ++var9) {
-							ej var10 = var7[var9];
+							PaintingDirection var10 = var7[var9];
 							var11 = var3 + var10.g();
 							var12 = var17 + var10.h();
 							var13 = var4 + var10.i();
@@ -146,22 +146,22 @@ public class bkr extends blb {
 		blf var15;
 		blf var16;
 		blf var18;
-		var2[h].a(ej.b, var15 = new blf(1003));
-		var2[i].a(ej.d, var16 = new blf(1001));
-		var2[j].a(ej.d, var18 = new blf(1002));
+		var2[h].a(PaintingDirection.b, var15 = new blf(1003));
+		var2[i].a(PaintingDirection.d, var16 = new blf(1001));
+		var2[j].a(PaintingDirection.d, var18 = new blf(1002));
 		var15.d = true;
 		var16.d = true;
 		var18.d = true;
 		this.o.e = true;
 		this.p = var2[a(var1.nextInt(4), 0, 2)];
 		this.p.d = true;
-		this.p.b[ej.f.a()].d = true;
-		this.p.b[ej.c.a()].d = true;
-		this.p.b[ej.f.a()].b[ej.c.a()].d = true;
-		this.p.b[ej.b.a()].d = true;
-		this.p.b[ej.f.a()].b[ej.b.a()].d = true;
-		this.p.b[ej.c.a()].b[ej.b.a()].d = true;
-		this.p.b[ej.f.a()].b[ej.c.a()].b[ej.b.a()].d = true;
+		this.p.b[PaintingDirection.f.a()].d = true;
+		this.p.b[PaintingDirection.c.a()].d = true;
+		this.p.b[PaintingDirection.f.a()].b[PaintingDirection.c.a()].d = true;
+		this.p.b[PaintingDirection.b.a()].d = true;
+		this.p.b[PaintingDirection.f.a()].b[PaintingDirection.b.a()].d = true;
+		this.p.b[PaintingDirection.c.a()].b[PaintingDirection.b.a()].d = true;
+		this.p.b[PaintingDirection.f.a()].b[PaintingDirection.c.a()].b[PaintingDirection.b.a()].d = true;
 		ArrayList var19 = Lists.newArrayList();
 		blf[] var20 = var2;
 		var8 = var2.length;
@@ -188,7 +188,7 @@ public class bkr extends blb {
 				++var11;
 				var12 = var1.nextInt(6);
 				if (var23.c[var12]) {
-					var13 = ej.a(var12).d().a();
+					var13 = PaintingDirection.a(var12).d().a();
 					var23.c[var12] = false;
 					var23.b[var12].c[var13] = false;
 					if (var23.a(var21++) && var23.b[var12].a(var21++)) {

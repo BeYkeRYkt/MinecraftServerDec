@@ -7,25 +7,25 @@ public class bkv extends blb {
 	public bkv() {
 	}
 
-	public bkv(ej var1, blf var2, Random var3) {
+	public bkv(PaintingDirection var1, blf var2, Random var3) {
 		super(1, var1, var2, 2, 2, 1);
 	}
 
 	public boolean a(World var1, Random var2, bjb var3) {
-		blf var4 = this.k.b[ej.f.a()];
+		blf var4 = this.k.b[PaintingDirection.f.a()];
 		blf var5 = this.k;
-		blf var6 = var5.b[ej.b.a()];
-		blf var7 = var4.b[ej.b.a()];
+		blf var6 = var5.b[PaintingDirection.b.a()];
+		blf var7 = var4.b[PaintingDirection.b.a()];
 		if (this.k.a / 25 > 0) {
-			this.a(var1, var3, 8, 0, var4.c[ej.a.a()]);
-			this.a(var1, var3, 0, 0, var5.c[ej.a.a()]);
+			this.a(var1, var3, 8, 0, var4.c[PaintingDirection.a.a()]);
+			this.a(var1, var3, 0, 0, var5.c[PaintingDirection.a.a()]);
 		}
 
-		if (var6.b[ej.b.a()] == null) {
+		if (var6.b[PaintingDirection.b.a()] == null) {
 			this.a(var1, var3, 1, 8, 1, 7, 8, 6, a);
 		}
 
-		if (var7.b[ej.b.a()] == null) {
+		if (var7.b[PaintingDirection.b.a()] == null) {
 			this.a(var1, var3, 8, 8, 1, 14, 8, 6, a);
 		}
 
@@ -64,51 +64,51 @@ public class bkv extends blb {
 		this.a(var1, e, 5, 4, 5, var3);
 		this.a(var1, e, 10, 4, 2, var3);
 		this.a(var1, e, 10, 4, 5, var3);
-		if (var5.c[ej.d.a()]) {
+		if (var5.c[PaintingDirection.d.a()]) {
 			this.a(var1, var3, 3, 1, 0, 4, 2, 0, f, f, false);
 		}
 
-		if (var5.c[ej.c.a()]) {
+		if (var5.c[PaintingDirection.c.a()]) {
 			this.a(var1, var3, 3, 1, 7, 4, 2, 7, f, f, false);
 		}
 
-		if (var5.c[ej.e.a()]) {
+		if (var5.c[PaintingDirection.e.a()]) {
 			this.a(var1, var3, 0, 1, 3, 0, 2, 4, f, f, false);
 		}
 
-		if (var4.c[ej.d.a()]) {
+		if (var4.c[PaintingDirection.d.a()]) {
 			this.a(var1, var3, 11, 1, 0, 12, 2, 0, f, f, false);
 		}
 
-		if (var4.c[ej.c.a()]) {
+		if (var4.c[PaintingDirection.c.a()]) {
 			this.a(var1, var3, 11, 1, 7, 12, 2, 7, f, f, false);
 		}
 
-		if (var4.c[ej.f.a()]) {
+		if (var4.c[PaintingDirection.f.a()]) {
 			this.a(var1, var3, 15, 1, 3, 15, 2, 4, f, f, false);
 		}
 
-		if (var6.c[ej.d.a()]) {
+		if (var6.c[PaintingDirection.d.a()]) {
 			this.a(var1, var3, 3, 5, 0, 4, 6, 0, f, f, false);
 		}
 
-		if (var6.c[ej.c.a()]) {
+		if (var6.c[PaintingDirection.c.a()]) {
 			this.a(var1, var3, 3, 5, 7, 4, 6, 7, f, f, false);
 		}
 
-		if (var6.c[ej.e.a()]) {
+		if (var6.c[PaintingDirection.e.a()]) {
 			this.a(var1, var3, 0, 5, 3, 0, 6, 4, f, f, false);
 		}
 
-		if (var7.c[ej.d.a()]) {
+		if (var7.c[PaintingDirection.d.a()]) {
 			this.a(var1, var3, 11, 5, 0, 12, 6, 0, f, f, false);
 		}
 
-		if (var7.c[ej.c.a()]) {
+		if (var7.c[PaintingDirection.c.a()]) {
 			this.a(var1, var3, 11, 5, 7, 12, 6, 7, f, f, false);
 		}
 
-		if (var7.c[ej.f.a()]) {
+		if (var7.c[PaintingDirection.f.a()]) {
 			this.a(var1, var3, 15, 5, 3, 15, 6, 4, f, f, false);
 		}
 

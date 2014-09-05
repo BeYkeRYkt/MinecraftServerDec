@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class SpawnObject implements Packet<PlayPacketListener> {
+public class PacketSpawnObject implements Packet<PlayPacketListener> {
 
 	private int entityId;
 	private int x;
@@ -14,14 +14,14 @@ public class SpawnObject implements Packet<PlayPacketListener> {
 	private int type;
 	private int contentsLength;
 
-	public SpawnObject() {
+	public PacketSpawnObject() {
 	}
 
-	public SpawnObject(Entity entity, int type) {
+	public PacketSpawnObject(Entity entity, int type) {
 		this(entity, type, 0);
 	}
 
-	public SpawnObject(Entity entity, int type, int contentsLength) {
+	public PacketSpawnObject(Entity entity, int type, int contentsLength) {
 		this.entityId = entity.getId();
 		this.x = DataTypesConverter.toFixedPointInt(entity.locationX * 32.0D);
 		this.y = DataTypesConverter.toFixedPointInt(entity.locationY * 32.0D);

@@ -30,9 +30,9 @@ public class avn extends axl {
 			int var8 = -100;
 			this.a = 0;
 
-			ej var10;
+			PaintingDirection var10;
 			for (Iterator var9 = en.a.iterator(); var9.hasNext(); var8 = this.a(var1, var2.a(var10), var8)) {
-				var10 = (ej) var9.next();
+				var10 = (PaintingDirection) var9.next();
 			}
 
 			int var14 = var8 + var6;
@@ -106,7 +106,7 @@ public class avn extends axl {
 			Iterator var11 = var15.iterator();
 
 			while (var11.hasNext()) {
-				ej var12 = (ej) var11.next();
+				PaintingDirection var12 = (PaintingDirection) var11.next();
 				this.a(var1, var2.a(var12), var1.p(var2.a(var12)), var16);
 			}
 		}
@@ -128,12 +128,12 @@ public class avn extends axl {
 
 	}
 
-	private int a(World var1, Position var2, int var3, ej var4) {
+	private int a(World var1, Position var2, int var3, PaintingDirection var4) {
 		int var5 = 1000;
 		Iterator var6 = en.a.iterator();
 
 		while (var6.hasNext()) {
-			ej var7 = (ej) var6.next();
+			PaintingDirection var7 = (PaintingDirection) var6.next();
 			if (var7 != var4) {
 				Position var8 = var2.a(var7);
 				bec var9 = var1.p(var8);
@@ -157,11 +157,11 @@ public class avn extends axl {
 
 	private Set e(World var1, Position var2) {
 		int var3 = 1000;
-		EnumSet var4 = EnumSet.noneOf(ej.class);
+		EnumSet var4 = EnumSet.noneOf(PaintingDirection.class);
 		Iterator var5 = en.a.iterator();
 
 		while (var5.hasNext()) {
-			ej var6 = (ej) var5.next();
+			PaintingDirection var6 = (PaintingDirection) var5.next();
 			Position var7 = var2.a(var6);
 			bec var8 = var1.p(var7);
 			if (!this.g(var1, var7, var8) && (var8.c().r() != this.J || ((Integer) var8.b(b)).intValue() > 0)) {

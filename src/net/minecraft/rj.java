@@ -125,7 +125,7 @@ public class rj implements ls, pm {
 						var18 = var1.e();
 					}
 
-					this.b.C = var1.f();
+					this.b.onGround = var1.f();
 					this.b.l();
 					this.b.a(var19, var21, var23, var47, var18);
 					if (this.b.m != null) {
@@ -136,7 +136,7 @@ public class rj implements ls, pm {
 					if (this.b.m != null) {
 						if (var9 > 4.0D) {
 							Entity var48 = this.b.m;
-							this.b.a.a((Packet) (new lo(var48)));
+							this.b.a.a((Packet) (new PacketEntityTeleport(var48)));
 							this.a(this.b.locationX, this.b.locationY, this.b.locationZ, this.b.yaw, this.b.pitch);
 						}
 
@@ -209,12 +209,12 @@ public class rj implements ls, pm {
 
 				float var41 = 0.0625F;
 				boolean var42 = var2.a((Entity) this.b, this.b.aQ().d((double) var41, (double) var41, (double) var41)).isEmpty();
-				if (this.b.C && !var1.f() && var29 > 0.0D) {
+				if (this.b.onGround && !var1.f() && var29 > 0.0D) {
 					this.b.bE();
 				}
 
 				this.b.d(var27, var29, var31);
-				this.b.C = var1.f();
+				this.b.onGround = var1.f();
 				double var43 = var29;
 				var27 = var19 - this.b.locationX;
 				var29 = var21 - this.b.locationY;
@@ -254,7 +254,7 @@ public class rj implements ls, pm {
 					this.g = 0;
 				}
 
-				this.b.C = var1.f();
+				this.b.onGround = var1.f();
 				this.d.getPlayerList().d(this.b);
 				this.b.a(this.b.locationY - var17, var1.f());
 			} else if (this.e - this.f > 20) {
@@ -363,7 +363,7 @@ public class rj implements ls, pm {
 		ItemStack var3 = this.b.playerInventory.getItemInHand();
 		boolean var4 = false;
 		Position var5 = var1.a();
-		ej var6 = ej.a(var1.b());
+		PaintingDirection var6 = PaintingDirection.a(var1.b());
 		this.b.z();
 		if (var1.b() == 255) {
 			if (var3 == null) {
@@ -371,7 +371,7 @@ public class rj implements ls, pm {
 			}
 
 			this.b.c.a(this.b, var2, var3);
-		} else if (var5.o() >= this.d.al() - 1 && (var6 == ej.b || var5.o() >= this.d.al())) {
+		} else if (var5.o() >= this.d.al() - 1 && (var6 == PaintingDirection.b || var5.o() >= this.d.al())) {
 			hz var7 = new hz("build.tooHigh", new Object[] { Integer.valueOf(this.d.al()) });
 			var7.b().a(FormattingCode.m);
 			this.b.a.a((Packet) (new PacketChatMessage(var7)));
@@ -604,7 +604,7 @@ public class rj implements ls, pm {
 				} else if (var1.a() == me.c) {
 					var3.a((EntityHuman) this.b, var1.b());
 				} else if (var1.a() == me.b) {
-					if (var3 instanceof adw || var3 instanceof xk || var3 instanceof ahj || var3 == this.b) {
+					if (var3 instanceof adw || var3 instanceof ExpirienceOrb || var3 instanceof ahj || var3 == this.b) {
 						this.c("Attempting to attack an invalid entity");
 						this.d.f("Player " + this.b.d_() + " tried to attack an invalid entity");
 						return;

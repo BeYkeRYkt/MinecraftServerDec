@@ -68,8 +68,8 @@ public class agi extends afm implements afr {
 							Iterator var3 = var2.iterator();
 
 							while (var3.hasNext()) {
-								wq var4 = (wq) var3.next();
-								this.c(new wq(var4));
+								MobEffect var4 = (MobEffect) var3.next();
+								this.c(new MobEffect(var4));
 							}
 						}
 					}
@@ -78,15 +78,15 @@ public class agi extends afm implements afr {
 				}
 			} else {
 				short var5 = -1;
-				if (this.V.nextFloat() < 0.15F && this.a(bof.h) && !this.a(wp.o)) {
+				if (this.V.nextFloat() < 0.15F && this.a(bof.h) && !this.a(MobEffectList.o)) {
 					var5 = 8237;
-				} else if (this.V.nextFloat() < 0.15F && this.au() && !this.a(wp.n)) {
+				} else if (this.V.nextFloat() < 0.15F && this.au() && !this.a(MobEffectList.n)) {
 					var5 = 16307;
 				} else if (this.V.nextFloat() < 0.05F && this.bm() < this.bt()) {
 					var5 = 16341;
-				} else if (this.V.nextFloat() < 0.25F && this.u() != null && !this.a(wp.c) && this.u().h(this) > 121.0D) {
+				} else if (this.V.nextFloat() < 0.25F && this.u() != null && !this.a(MobEffectList.c) && this.u().h(this) > 121.0D) {
 					var5 = 16274;
-				} else if (this.V.nextFloat() < 0.25F && this.u() != null && !this.a(wp.c) && this.u().h(this) > 121.0D) {
+				} else if (this.V.nextFloat() < 0.25F && this.u() != null && !this.a(MobEffectList.c) && this.u().h(this) > 121.0D) {
 					var5 = 16274;
 				}
 
@@ -147,11 +147,11 @@ public class agi extends afm implements afr {
 			double var8 = var4 - this.locationY;
 			double var10 = var1.locationZ + var1.motionZ - this.locationZ;
 			float var12 = DataTypesConverter.a(var6 * var6 + var10 * var10);
-			if (var12 >= 8.0F && !var1.a(wp.d)) {
+			if (var12 >= 8.0F && !var1.a(MobEffectList.d)) {
 				var3.a(32698);
-			} else if (var1.bm() >= 8.0F && !var1.a(wp.u)) {
+			} else if (var1.bm() >= 8.0F && !var1.a(MobEffectList.u)) {
 				var3.a(32660);
-			} else if (var12 <= 3.0F && !var1.a(wp.t) && this.V.nextFloat() < 0.25F) {
+			} else if (var12 <= 3.0F && !var1.a(MobEffectList.t) && this.V.nextFloat() < 0.25F) {
 				var3.a(32696);
 			}
 

@@ -9,8 +9,8 @@ public class akt extends Item {
 		this.a(CreativeModeTab.d);
 	}
 
-	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, ej var5, float var6, float var7, float var8) {
-		if (var5 != ej.b) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
+		if (var5 != PaintingDirection.b) {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
@@ -24,14 +24,14 @@ public class akt extends Item {
 			} else if (!this.a.c(var3, var4)) {
 				return false;
 			} else {
-				a(var3, var4, ej.a((double) var2.yaw), this.a);
+				a(var3, var4, PaintingDirection.a((double) var2.yaw), this.a);
 				--var1.b;
 				return true;
 			}
 		}
 	}
 
-	public static void a(World var0, Position var1, ej var2, Block var3) {
+	public static void a(World var0, Position var1, PaintingDirection var2, Block var3) {
 		Position var4 = var1.a(var2.e());
 		Position var5 = var1.a(var2.f());
 		int var6 = (var0.p(var5).c().t() ? 1 : 0) + (var0.p(var5.a()).c().t() ? 1 : 0);

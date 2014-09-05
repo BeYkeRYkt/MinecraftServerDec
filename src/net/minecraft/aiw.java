@@ -50,9 +50,9 @@ public class aiw extends ajk {
 			}
 
 			while (var2 > 0) {
-				var4 = xk.a(var2);
+				var4 = ExpirienceOrb.a(var2);
 				var2 -= var4;
-				this.a.o.d((Entity) (new xk(this.a.o, this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ + 0.5D, var4)));
+				this.a.o.d((Entity) (new ExpirienceOrb(this.a.o, this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ + 0.5D, var4)));
 			}
 		}
 

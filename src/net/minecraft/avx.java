@@ -230,11 +230,11 @@ public class avx extends Block {
 	}
 
 	private boolean e(World var1, Position var2) {
-		ej[] var3 = ej.values();
+		PaintingDirection[] var3 = PaintingDirection.values();
 		int var4 = var3.length;
 
 		for (int var5 = 0; var5 < var4; ++var5) {
-			ej var6 = var3[var5];
+			PaintingDirection var6 = var3[var5];
 			if (this.e((ard) var1, var2.a(var6))) {
 				return true;
 			}
@@ -248,11 +248,11 @@ public class avx extends Block {
 			return 0;
 		} else {
 			int var3 = 0;
-			ej[] var4 = ej.values();
+			PaintingDirection[] var4 = PaintingDirection.values();
 			int var5 = var4.length;
 
 			for (int var6 = 0; var6 < var5; ++var6) {
-				ej var7 = var4[var6];
+				PaintingDirection var7 = var4[var6];
 				var3 = Math.max(this.d(var1.p(var2.a(var7)).c()), var3);
 			}
 

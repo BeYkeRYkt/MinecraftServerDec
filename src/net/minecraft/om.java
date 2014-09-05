@@ -22,6 +22,6 @@ final class om extends eg {
 	protected void a(dz var1) {
 	}
 
-	protected void a(dz var1, ej var2) {
+	protected void a(dz var1, PaintingDirection var2) {
 	}
 }

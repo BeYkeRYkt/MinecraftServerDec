@@ -10,7 +10,7 @@ public class bnl extends bno {
 	public bnl() {
 	}
 
-	public bnl(bnk var1, int var2, Random var3, bjb var4, ej var5) {
+	public bnl(bnk var1, int var2, Random var3, bjb var4, PaintingDirection var5) {
 		super(var1, var2);
 		this.m = var5;
 		this.l = var4;
@@ -51,38 +51,38 @@ public class bnl extends bno {
 		if (var4 && var3.nextInt(3) > 0 && this.m != null) {
 			switch (bmz.a[this.m.ordinal()]) {
 				case 1:
-					bmy.b((bnk) var1, var2, var3, this.l.a - 1, this.l.b, this.l.c, ej.e, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.a - 1, this.l.b, this.l.c, PaintingDirection.e, this.d());
 					break;
 				case 2:
-					bmy.b((bnk) var1, var2, var3, this.l.a - 1, this.l.b, this.l.f - 2, ej.e, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.a - 1, this.l.b, this.l.f - 2, PaintingDirection.e, this.d());
 					break;
 				case 3:
-					bmy.b((bnk) var1, var2, var3, this.l.a, this.l.b, this.l.c - 1, ej.c, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.a, this.l.b, this.l.c - 1, PaintingDirection.c, this.d());
 					break;
 				case 4:
-					bmy.b((bnk) var1, var2, var3, this.l.d - 2, this.l.b, this.l.c - 1, ej.c, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.d - 2, this.l.b, this.l.c - 1, PaintingDirection.c, this.d());
 			}
 		}
 
 		if (var4 && var3.nextInt(3) > 0 && this.m != null) {
 			switch (bmz.a[this.m.ordinal()]) {
 				case 1:
-					bmy.b((bnk) var1, var2, var3, this.l.d + 1, this.l.b, this.l.c, ej.f, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.d + 1, this.l.b, this.l.c, PaintingDirection.f, this.d());
 					break;
 				case 2:
-					bmy.b((bnk) var1, var2, var3, this.l.d + 1, this.l.b, this.l.f - 2, ej.f, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.d + 1, this.l.b, this.l.f - 2, PaintingDirection.f, this.d());
 					break;
 				case 3:
-					bmy.b((bnk) var1, var2, var3, this.l.a, this.l.b, this.l.f + 1, ej.d, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.a, this.l.b, this.l.f + 1, PaintingDirection.d, this.d());
 					break;
 				case 4:
-					bmy.b((bnk) var1, var2, var3, this.l.d - 2, this.l.b, this.l.f + 1, ej.d, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.d - 2, this.l.b, this.l.f + 1, PaintingDirection.d, this.d());
 			}
 		}
 
 	}
 
-	public static bjb a(bnk var0, List var1, Random var2, int var3, int var4, int var5, ej var6) {
+	public static bjb a(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6) {
 		for (int var7 = 7 * DataTypesConverter.a(var2, 3, 5); var7 >= 7; var7 -= 7) {
 			bjb var8 = bjb.a(var3, var4, var5, 0, 0, 0, 3, 3, var7, var6);
 			if (bms.a(var1, var8) == null) {

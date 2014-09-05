@@ -25,14 +25,14 @@ public class azt extends Block {
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
-		var1 = var1.a(N, this.c(var2, var3, ej.e));
-		var1 = var1.a(b, this.c(var2, var3, ej.f));
-		var1 = var1.a(a, this.c(var2, var3, ej.c));
-		var1 = var1.a(M, this.c(var2, var3, ej.d));
+		var1 = var1.a(N, this.c(var2, var3, PaintingDirection.e));
+		var1 = var1.a(b, this.c(var2, var3, PaintingDirection.f));
+		var1 = var1.a(a, this.c(var2, var3, PaintingDirection.c));
+		var1 = var1.a(M, this.c(var2, var3, PaintingDirection.d));
 		return var1;
 	}
 
-	private azu c(ard var1, Position var2, ej var3) {
+	private azu c(ard var1, Position var2, PaintingDirection var3) {
 		Position var4 = var2.a(var3);
 		Block var5 = var1.p(var2.a(var3)).c();
 		if (!a(var1.p(var4), var3) && (var5.s() || !d(var1.p(var4.b())))) {
@@ -89,7 +89,7 @@ public class azt extends Block {
 		Iterator var10 = en.a.iterator();
 
 		while (var10.hasNext()) {
-			ej var11 = (ej) var10.next();
+			PaintingDirection var11 = (PaintingDirection) var10.next();
 			Position var12 = var2.a(var11);
 			boolean var13 = var12.n() != var3.n() || var12.p() != var3.p();
 			if (var13) {
@@ -124,11 +124,11 @@ public class azt extends Block {
 			}
 
 			this.Q.add(var2);
-			ej[] var15 = ej.values();
+			PaintingDirection[] var15 = PaintingDirection.values();
 			int var16 = var15.length;
 
 			for (int var17 = 0; var17 < var16; ++var17) {
-				ej var18 = var15[var17];
+				PaintingDirection var18 = var15[var17];
 				this.Q.add(var2.a(var18));
 			}
 		}
@@ -139,11 +139,11 @@ public class azt extends Block {
 	private void d(World var1, Position var2) {
 		if (var1.p(var2).c() == this) {
 			var1.c(var2, (Block) this);
-			ej[] var3 = ej.values();
+			PaintingDirection[] var3 = PaintingDirection.values();
 			int var4 = var3.length;
 
 			for (int var5 = 0; var5 < var4; ++var5) {
-				ej var6 = var3[var5];
+				PaintingDirection var6 = var3[var5];
 				var1.c(var2.a(var6), (Block) this);
 			}
 
@@ -155,23 +155,23 @@ public class azt extends Block {
 			this.e(var1, var2, var3);
 			Iterator var4 = en.b.iterator();
 
-			ej var5;
+			PaintingDirection var5;
 			while (var4.hasNext()) {
-				var5 = (ej) var4.next();
+				var5 = (PaintingDirection) var4.next();
 				var1.c(var2.a(var5), (Block) this);
 			}
 
 			var4 = en.a.iterator();
 
 			while (var4.hasNext()) {
-				var5 = (ej) var4.next();
+				var5 = (PaintingDirection) var4.next();
 				this.d(var1, var2.a(var5));
 			}
 
 			var4 = en.a.iterator();
 
 			while (var4.hasNext()) {
-				var5 = (ej) var4.next();
+				var5 = (PaintingDirection) var4.next();
 				Position var6 = var2.a(var5);
 				if (var1.p(var6).c().t()) {
 					this.d(var1, var6.a());
@@ -186,27 +186,27 @@ public class azt extends Block {
 	public void b(World var1, Position var2, bec var3) {
 		super.b(var1, var2, var3);
 		if (!var1.D) {
-			ej[] var4 = ej.values();
+			PaintingDirection[] var4 = PaintingDirection.values();
 			int var5 = var4.length;
 
 			for (int var6 = 0; var6 < var5; ++var6) {
-				ej var7 = var4[var6];
+				PaintingDirection var7 = var4[var6];
 				var1.c(var2.a(var7), (Block) this);
 			}
 
 			this.e(var1, var2, var3);
 			Iterator var8 = en.a.iterator();
 
-			ej var9;
+			PaintingDirection var9;
 			while (var8.hasNext()) {
-				var9 = (ej) var8.next();
+				var9 = (PaintingDirection) var8.next();
 				this.d(var1, var2.a(var9));
 			}
 
 			var8 = en.a.iterator();
 
 			while (var8.hasNext()) {
-				var9 = (ej) var8.next();
+				var9 = (PaintingDirection) var8.next();
 				Position var10 = var2.a(var9);
 				if (var1.p(var10).c().t()) {
 					this.d(var1, var10.a());
@@ -243,25 +243,25 @@ public class azt extends Block {
 		return amk.aC;
 	}
 
-	public int b(ard var1, Position var2, bec var3, ej var4) {
+	public int b(ard var1, Position var2, bec var3, PaintingDirection var4) {
 		return !this.P ? 0 : this.a(var1, var2, var3, var4);
 	}
 
-	public int a(ard var1, Position var2, bec var3, ej var4) {
+	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
 		if (!this.P) {
 			return 0;
 		} else {
 			int var5 = ((Integer) var3.b(O)).intValue();
 			if (var5 == 0) {
 				return 0;
-			} else if (var4 == ej.b) {
+			} else if (var4 == PaintingDirection.b) {
 				return var5;
 			} else {
-				EnumSet var6 = EnumSet.noneOf(ej.class);
+				EnumSet var6 = EnumSet.noneOf(PaintingDirection.class);
 				Iterator var7 = en.a.iterator();
 
 				while (var7.hasNext()) {
-					ej var8 = (ej) var7.next();
+					PaintingDirection var8 = (PaintingDirection) var7.next();
 					if (this.d(var1, var2, var8)) {
 						var6.add(var8);
 					}
@@ -278,7 +278,7 @@ public class azt extends Block {
 		}
 	}
 
-	private boolean d(ard var1, Position var2, ej var3) {
+	private boolean d(ard var1, Position var2, PaintingDirection var3) {
 		Position var4 = var2.a(var3);
 		bec var5 = var1.p(var4);
 		Block var6 = var5.c();
@@ -292,15 +292,15 @@ public class azt extends Block {
 	}
 
 	protected static boolean d(bec var0) {
-		return a(var0, (ej) null);
+		return a(var0, (PaintingDirection) null);
 	}
 
-	protected static boolean a(bec var0, ej var1) {
+	protected static boolean a(bec var0, PaintingDirection var1) {
 		Block var2 = var0.c();
 		if (var2 == aty.af) {
 			return true;
 		} else if (aty.bb.e(var2)) {
-			ej var3 = (ej) var0.b(azz.N);
+			PaintingDirection var3 = (PaintingDirection) var0.b(azz.N);
 			return var3 == var1 || var3.d() == var1;
 		} else {
 			return var2.g() && var1 != null;

@@ -12,7 +12,7 @@ public class bme extends bmk {
 	public bme() {
 	}
 
-	public bme(int var1, Random var2, bjb var3, ej var4) {
+	public bme(int var1, Random var2, bjb var3, PaintingDirection var4) {
 		super(var1);
 		this.m = var4;
 		this.d = this.a(var2);
@@ -36,7 +36,7 @@ public class bme extends bmk {
 		this.c((bmh) var1, var2, var3, 1, 4);
 	}
 
-	public static bme a(List var0, Random var1, int var2, int var3, int var4, ej var5, int var6) {
+	public static bme a(List var0, Random var1, int var2, int var3, int var4, PaintingDirection var5, int var6) {
 		bjb var7 = bjb.a(var2, var3, var4, -4, -1, 0, 11, 7, 11, var5);
 		return a(var7) && bms.a(var0, var7) == null ? new bme(var6, var1, var7, var5) : null;
 	}
@@ -124,9 +124,9 @@ public class bme extends bmk {
 						this.a(var1, aty.f.P(), 8, 3, var4, var3);
 					}
 
-					this.a(var1, aty.au.a(this.a(aty.au, ej.e.a())), 9, 1, 3, var3);
-					this.a(var1, aty.au.a(this.a(aty.au, ej.e.a())), 9, 2, 3, var3);
-					this.a(var1, aty.au.a(this.a(aty.au, ej.e.a())), 9, 3, 3, var3);
+					this.a(var1, aty.au.a(this.a(aty.au, PaintingDirection.e.a())), 9, 1, 3, var3);
+					this.a(var1, aty.au.a(this.a(aty.au, PaintingDirection.e.a())), 9, 2, 3, var3);
+					this.a(var1, aty.au.a(this.a(aty.au, PaintingDirection.e.a())), 9, 3, 3, var3);
 					this.a(var1, var3, var2, 3, 4, 8, vl.a(b, new vl[] { amk.cd.b(var2) }), 1 + var2.nextInt(4));
 			}
 

@@ -12,7 +12,7 @@ public class aup extends ava implements avs {
 
 	public aup(boolean var1) {
 		super(var1);
-		this.j(this.L.b().a(N, ej.c).a(a, Boolean.valueOf(false)).a(b, aur.a));
+		this.j(this.L.b().a(N, PaintingDirection.c).a(a, Boolean.valueOf(false)).a(b, aur.a));
 		this.A = true;
 	}
 
@@ -27,14 +27,14 @@ public class aup extends ava implements avs {
 	protected bec e(bec var1) {
 		Boolean var2 = (Boolean) var1.b(a);
 		aur var3 = (aur) var1.b(b);
-		ej var4 = (ej) var1.b(N);
+		PaintingDirection var4 = (PaintingDirection) var1.b(N);
 		return aty.ck.P().a(N, var4).a(a, var2).a(b, var3);
 	}
 
 	protected bec k(bec var1) {
 		Boolean var2 = (Boolean) var1.b(a);
 		aur var3 = (aur) var1.b(b);
-		ej var4 = (ej) var1.b(N);
+		PaintingDirection var4 = (PaintingDirection) var1.b(N);
 		return aty.cj.P().a(N, var4).a(a, var2).a(b, var3);
 	}
 
@@ -65,7 +65,7 @@ public class aup extends ava implements avs {
 
 	protected int f(World var1, Position var2, bec var3) {
 		int var4 = super.f(var1, var2, var3);
-		ej var5 = (ej) var3.b(N);
+		PaintingDirection var5 = (PaintingDirection) var3.b(N);
 		Position var6 = var2.a(var5);
 		Block var7 = var1.p(var6).c();
 		if (var7.N()) {
@@ -86,12 +86,12 @@ public class aup extends ava implements avs {
 		return var4;
 	}
 
-	private adk a(World var1, ej var2, Position var3) {
+	private adk a(World var1, PaintingDirection var2, Position var3) {
 		List var4 = var1.a(adk.class, new brt((double) var3.n(), (double) var3.o(), (double) var3.p(), (double) (var3.n() + 1), (double) (var3.o() + 1), (double) (var3.p() + 1)), (Predicate) (new auq(this, var2)));
 		return var4.size() == 1 ? (adk) var4.get(0) : null;
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (!var4.by.maybuild) {
 			return false;
 		} else {
@@ -173,12 +173,12 @@ public class aup extends ava implements avs {
 	}
 
 	public bec a(int var1) {
-		return this.P().a(N, ej.b(var1)).a(a, Boolean.valueOf((var1 & 8) > 0)).a(b, (var1 & 4) > 0 ? aur.b : aur.a);
+		return this.P().a(N, PaintingDirection.fromByte(var1)).a(a, Boolean.valueOf((var1 & 8) > 0)).a(b, (var1 & 4) > 0 ? aur.b : aur.a);
 	}
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((ej) var1.b(N)).b();
+		int var3 = var2 | ((PaintingDirection) var1.b(N)).toByte();
 		if (((Boolean) var1.b(a)).booleanValue()) {
 			var3 |= 8;
 		}
@@ -194,7 +194,7 @@ public class aup extends ava implements avs {
 		return new bed(this, new bex[] { N, b, a });
 	}
 
-	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(N, var8.aO().d()).a(a, Boolean.valueOf(false)).a(b, aur.a);
 	}
 

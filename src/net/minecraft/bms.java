@@ -7,7 +7,7 @@ import java.util.Random;
 public abstract class bms {
 
 	protected bjb l;
-	protected ej m;
+	protected PaintingDirection m;
 	protected int n;
 
 	public bms() {
@@ -21,7 +21,7 @@ public abstract class bms {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		var1.put("id", bmq.a(this));
 		var1.put("BB", (NBTTag) this.l.g());
-		var1.put("O", this.m == null ? -1 : this.m.b());
+		var1.put("O", this.m == null ? -1 : this.m.toByte());
 		var1.put("GD", this.n);
 		this.a(var1);
 		return var1;
@@ -35,7 +35,7 @@ public abstract class bms {
 		}
 
 		int var3 = var2.getInt("O");
-		this.m = var3 == -1 ? null : ej.b(var3);
+		this.m = var3 == -1 ? null : PaintingDirection.fromByte(var3);
 		this.n = var2.getInt("GD");
 		this.b(var2);
 	}
@@ -165,7 +165,7 @@ public abstract class bms {
 
 	protected int a(Block var1, int var2) {
 		if (var1 == aty.av) {
-			if (this.m == ej.e || this.m == ej.f) {
+			if (this.m == PaintingDirection.e || this.m == PaintingDirection.f) {
 				if (var2 == 1) {
 					return 0;
 				}
@@ -173,7 +173,7 @@ public abstract class bms {
 				return 1;
 			}
 		} else if (var1 instanceof avf) {
-			if (this.m == ej.d) {
+			if (this.m == PaintingDirection.d) {
 				if (var2 == 0) {
 					return 2;
 				}
@@ -182,59 +182,59 @@ public abstract class bms {
 					return 0;
 				}
 			} else {
-				if (this.m == ej.e) {
+				if (this.m == PaintingDirection.e) {
 					return var2 + 1 & 3;
 				}
 
-				if (this.m == ej.f) {
+				if (this.m == PaintingDirection.f) {
 					return var2 + 3 & 3;
 				}
 			}
 		} else if (var1 != aty.aw && var1 != aty.ad && var1 != aty.bA && var1 != aty.bv && var1 != aty.bO) {
 			if (var1 == aty.au) {
-				if (this.m == ej.d) {
-					if (var2 == ej.c.a()) {
-						return ej.d.a();
+				if (this.m == PaintingDirection.d) {
+					if (var2 == PaintingDirection.c.a()) {
+						return PaintingDirection.d.a();
 					}
 
-					if (var2 == ej.d.a()) {
-						return ej.c.a();
+					if (var2 == PaintingDirection.d.a()) {
+						return PaintingDirection.c.a();
 					}
-				} else if (this.m == ej.e) {
-					if (var2 == ej.c.a()) {
-						return ej.e.a();
-					}
-
-					if (var2 == ej.d.a()) {
-						return ej.f.a();
+				} else if (this.m == PaintingDirection.e) {
+					if (var2 == PaintingDirection.c.a()) {
+						return PaintingDirection.e.a();
 					}
 
-					if (var2 == ej.e.a()) {
-						return ej.c.a();
+					if (var2 == PaintingDirection.d.a()) {
+						return PaintingDirection.f.a();
 					}
 
-					if (var2 == ej.f.a()) {
-						return ej.d.a();
-					}
-				} else if (this.m == ej.f) {
-					if (var2 == ej.c.a()) {
-						return ej.f.a();
+					if (var2 == PaintingDirection.e.a()) {
+						return PaintingDirection.c.a();
 					}
 
-					if (var2 == ej.d.a()) {
-						return ej.e.a();
+					if (var2 == PaintingDirection.f.a()) {
+						return PaintingDirection.d.a();
+					}
+				} else if (this.m == PaintingDirection.f) {
+					if (var2 == PaintingDirection.c.a()) {
+						return PaintingDirection.f.a();
 					}
 
-					if (var2 == ej.e.a()) {
-						return ej.c.a();
+					if (var2 == PaintingDirection.d.a()) {
+						return PaintingDirection.e.a();
 					}
 
-					if (var2 == ej.f.a()) {
-						return ej.d.a();
+					if (var2 == PaintingDirection.e.a()) {
+						return PaintingDirection.c.a();
+					}
+
+					if (var2 == PaintingDirection.f.a()) {
+						return PaintingDirection.d.a();
 					}
 				}
 			} else if (var1 == aty.aG) {
-				if (this.m == ej.d) {
+				if (this.m == PaintingDirection.d) {
 					if (var2 == 3) {
 						return 4;
 					}
@@ -242,7 +242,7 @@ public abstract class bms {
 					if (var2 == 4) {
 						return 3;
 					}
-				} else if (this.m == ej.e) {
+				} else if (this.m == PaintingDirection.e) {
 					if (var2 == 3) {
 						return 1;
 					}
@@ -258,7 +258,7 @@ public abstract class bms {
 					if (var2 == 1) {
 						return 4;
 					}
-				} else if (this.m == ej.f) {
+				} else if (this.m == PaintingDirection.f) {
 					if (var2 == 3) {
 						return 2;
 					}
@@ -277,85 +277,85 @@ public abstract class bms {
 				}
 			} else if (var1 != aty.bR && !(var1 instanceof avb)) {
 				if (var1 == aty.J || var1 == aty.F || var1 == aty.ay || var1 == aty.z) {
-					if (this.m == ej.d) {
-						if (var2 == ej.c.a() || var2 == ej.d.a()) {
-							return ej.a(var2).d().a();
+					if (this.m == PaintingDirection.d) {
+						if (var2 == PaintingDirection.c.a() || var2 == PaintingDirection.d.a()) {
+							return PaintingDirection.a(var2).d().a();
 						}
-					} else if (this.m == ej.e) {
-						if (var2 == ej.c.a()) {
-							return ej.e.a();
-						}
-
-						if (var2 == ej.d.a()) {
-							return ej.f.a();
+					} else if (this.m == PaintingDirection.e) {
+						if (var2 == PaintingDirection.c.a()) {
+							return PaintingDirection.e.a();
 						}
 
-						if (var2 == ej.e.a()) {
-							return ej.c.a();
+						if (var2 == PaintingDirection.d.a()) {
+							return PaintingDirection.f.a();
 						}
 
-						if (var2 == ej.f.a()) {
-							return ej.d.a();
-						}
-					} else if (this.m == ej.f) {
-						if (var2 == ej.c.a()) {
-							return ej.f.a();
+						if (var2 == PaintingDirection.e.a()) {
+							return PaintingDirection.c.a();
 						}
 
-						if (var2 == ej.d.a()) {
-							return ej.e.a();
+						if (var2 == PaintingDirection.f.a()) {
+							return PaintingDirection.d.a();
+						}
+					} else if (this.m == PaintingDirection.f) {
+						if (var2 == PaintingDirection.c.a()) {
+							return PaintingDirection.f.a();
 						}
 
-						if (var2 == ej.e.a()) {
-							return ej.c.a();
+						if (var2 == PaintingDirection.d.a()) {
+							return PaintingDirection.e.a();
 						}
 
-						if (var2 == ej.f.a()) {
-							return ej.d.a();
+						if (var2 == PaintingDirection.e.a()) {
+							return PaintingDirection.c.a();
+						}
+
+						if (var2 == PaintingDirection.f.a()) {
+							return PaintingDirection.d.a();
 						}
 					}
 				}
 			} else {
-				ej var3 = ej.b(var2);
-				if (this.m == ej.d) {
-					if (var3 == ej.d || var3 == ej.c) {
-						return var3.d().b();
+				PaintingDirection var3 = PaintingDirection.fromByte(var2);
+				if (this.m == PaintingDirection.d) {
+					if (var3 == PaintingDirection.d || var3 == PaintingDirection.c) {
+						return var3.d().toByte();
 					}
-				} else if (this.m == ej.e) {
-					if (var3 == ej.c) {
-						return ej.e.b();
-					}
-
-					if (var3 == ej.d) {
-						return ej.f.b();
+				} else if (this.m == PaintingDirection.e) {
+					if (var3 == PaintingDirection.c) {
+						return PaintingDirection.e.toByte();
 					}
 
-					if (var3 == ej.e) {
-						return ej.c.b();
+					if (var3 == PaintingDirection.d) {
+						return PaintingDirection.f.toByte();
 					}
 
-					if (var3 == ej.f) {
-						return ej.d.b();
-					}
-				} else if (this.m == ej.f) {
-					if (var3 == ej.c) {
-						return ej.f.b();
+					if (var3 == PaintingDirection.e) {
+						return PaintingDirection.c.toByte();
 					}
 
-					if (var3 == ej.d) {
-						return ej.e.b();
+					if (var3 == PaintingDirection.f) {
+						return PaintingDirection.d.toByte();
+					}
+				} else if (this.m == PaintingDirection.f) {
+					if (var3 == PaintingDirection.c) {
+						return PaintingDirection.f.toByte();
 					}
 
-					if (var3 == ej.e) {
-						return ej.c.b();
+					if (var3 == PaintingDirection.d) {
+						return PaintingDirection.e.toByte();
 					}
 
-					if (var3 == ej.f) {
-						return ej.d.b();
+					if (var3 == PaintingDirection.e) {
+						return PaintingDirection.c.toByte();
+					}
+
+					if (var3 == PaintingDirection.f) {
+						return PaintingDirection.d.toByte();
 					}
 				}
 			}
-		} else if (this.m == ej.d) {
+		} else if (this.m == PaintingDirection.d) {
 			if (var2 == 2) {
 				return 3;
 			}
@@ -363,7 +363,7 @@ public abstract class bms {
 			if (var2 == 3) {
 				return 2;
 			}
-		} else if (this.m == ej.e) {
+		} else if (this.m == PaintingDirection.e) {
 			if (var2 == 0) {
 				return 2;
 			}
@@ -379,7 +379,7 @@ public abstract class bms {
 			if (var2 == 3) {
 				return 1;
 			}
-		} else if (this.m == ej.f) {
+		} else if (this.m == PaintingDirection.f) {
 			if (var2 == 0) {
 				return 2;
 			}
@@ -562,7 +562,7 @@ public abstract class bms {
 		}
 	}
 
-	protected void a(World var1, bjb var2, Random var3, int var4, int var5, int var6, ej var7) {
+	protected void a(World var1, bjb var2, Random var3, int var4, int var5, int var6, PaintingDirection var7) {
 		Position var8 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
 		if (var2.b((fd) var8)) {
 			akt.a(var1, var8, var7.f(), aty.ao);

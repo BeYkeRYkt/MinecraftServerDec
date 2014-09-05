@@ -16,11 +16,11 @@ public class bht extends bhp {
 				Position var5 = var3.a(var2.nextInt(8) - var2.nextInt(8), var2.nextInt(12), var2.nextInt(8) - var2.nextInt(8));
 				if (var1.p(var5).c().r() == bof.a) {
 					int var6 = 0;
-					ej[] var7 = ej.values();
+					PaintingDirection[] var7 = PaintingDirection.values();
 					int var8 = var7.length;
 
 					for (int var9 = 0; var9 < var8; ++var9) {
-						ej var10 = var7[var9];
+						PaintingDirection var10 = var7[var9];
 						if (var1.p(var5.a(var10)).c() == aty.aX) {
 							++var6;
 						}

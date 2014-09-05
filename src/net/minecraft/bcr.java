@@ -130,7 +130,7 @@ public class bcr extends bdf implements pm, IInventory {
 		this.a = false;
 	}
 
-	private void a(bcr var1, ej var2) {
+	private void a(bcr var1, PaintingDirection var2) {
 		if (var1.x()) {
 			this.a = false;
 		} else if (this.a) {
@@ -162,14 +162,14 @@ public class bcr extends bdf implements pm, IInventory {
 	public void m() {
 		if (!this.a) {
 			this.a = true;
-			this.h = this.a(ej.e);
-			this.g = this.a(ej.f);
-			this.f = this.a(ej.c);
-			this.i = this.a(ej.d);
+			this.h = this.a(PaintingDirection.e);
+			this.g = this.a(PaintingDirection.f);
+			this.f = this.a(PaintingDirection.c);
+			this.i = this.a(PaintingDirection.d);
 		}
 	}
 
-	protected bcr a(ej var1) {
+	protected bcr a(PaintingDirection var1) {
 		Position var2 = this.c.a(var1);
 		if (this.b(var2)) {
 			bcm var3 = this.b.s(var2);

@@ -11,7 +11,7 @@ public class ave extends atg {
 
 	protected ave() {
 		super(bof.e);
-		this.j(this.L.b().a(a, ej.c).a(b, Boolean.valueOf(false)));
+		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Boolean.valueOf(false)));
 		this.a(CreativeModeTab.d);
 	}
 
@@ -26,20 +26,20 @@ public class ave extends atg {
 
 	private void e(World var1, Position var2, bec var3) {
 		if (!var1.D) {
-			ej var4 = (ej) var3.b(a);
+			PaintingDirection var4 = (PaintingDirection) var3.b(a);
 			boolean var5 = var1.p(var2.c()).c().m();
 			boolean var6 = var1.p(var2.d()).c().m();
-			if (var4 == ej.c && var5 && !var6) {
-				var4 = ej.d;
-			} else if (var4 == ej.d && var6 && !var5) {
-				var4 = ej.c;
+			if (var4 == PaintingDirection.c && var5 && !var6) {
+				var4 = PaintingDirection.d;
+			} else if (var4 == PaintingDirection.d && var6 && !var5) {
+				var4 = PaintingDirection.c;
 			} else {
 				boolean var7 = var1.p(var2.e()).c().m();
 				boolean var8 = var1.p(var2.f()).c().m();
-				if (var4 == ej.e && var7 && !var8) {
-					var4 = ej.f;
-				} else if (var4 == ej.f && var8 && !var7) {
-					var4 = ej.e;
+				if (var4 == PaintingDirection.e && var7 && !var8) {
+					var4 = PaintingDirection.f;
+				} else if (var4 == PaintingDirection.f && var8 && !var7) {
+					var4 = PaintingDirection.e;
 				}
 			}
 
@@ -47,7 +47,7 @@ public class ave extends atg {
 		}
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {
@@ -106,7 +106,7 @@ public class ave extends atg {
 		return new bcx();
 	}
 
-	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(a, bdq.a(var1, var2, var8)).a(b, Boolean.valueOf(false));
 	}
 
@@ -132,15 +132,15 @@ public class ave extends atg {
 	}
 
 	public static ex a(dz var0) {
-		ej var1 = b(var0.f());
+		PaintingDirection var1 = b(var0.f());
 		double var2 = var0.a() + 0.7D * (double) var1.g();
 		double var4 = var0.b() + 0.7D * (double) var1.h();
 		double var6 = var0.c() + 0.7D * (double) var1.i();
 		return new ey(var2, var4, var6);
 	}
 
-	public static ej b(int var0) {
-		return ej.a(var0 & 7);
+	public static PaintingDirection b(int var0) {
+		return PaintingDirection.a(var0 & 7);
 	}
 
 	public boolean N() {
@@ -161,7 +161,7 @@ public class ave extends atg {
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((ej) var1.b(a)).a();
+		int var3 = var2 | ((PaintingDirection) var1.b(a)).a();
 		if (((Boolean) var1.b(b)).booleanValue()) {
 			var3 |= 8;
 		}

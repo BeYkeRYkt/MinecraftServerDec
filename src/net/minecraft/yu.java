@@ -62,7 +62,7 @@ public class yu extends zb {
 		}
 
 		float var8 = 0.91F;
-		if (this.a.C) {
+		if (this.a.onGround) {
 			var8 = this.a.o.p(new Position(DataTypesConverter.d((float) var4), DataTypesConverter.d((float) var5) - 1, DataTypesConverter.d((float) var6))).c().K * 0.91F;
 		}
 

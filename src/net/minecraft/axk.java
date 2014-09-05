@@ -2,15 +2,15 @@ package net.minecraft;
 
 public enum axk implements va {
 
-	a("DOWN_X", 0, 0, "down_x", ej.a), b("EAST", 1, 1, "east", ej.f), c("WEST", 2, 2, "west", ej.e), d("SOUTH", 3, 3, "south", ej.d), e("NORTH", 4, 4, "north", ej.c), f("UP_Z", 5, 5, "up_z", ej.b), g("UP_X", 6, 6, "up_x", ej.b), h("DOWN_Z", 7, 7, "down_z", ej.a);
+	a("DOWN_X", 0, 0, "down_x", PaintingDirection.a), b("EAST", 1, 1, "east", PaintingDirection.f), c("WEST", 2, 2, "west", PaintingDirection.e), d("SOUTH", 3, 3, "south", PaintingDirection.d), e("NORTH", 4, 4, "north", PaintingDirection.c), f("UP_Z", 5, 5, "up_z", PaintingDirection.b), g("UP_X", 6, 6, "up_x", PaintingDirection.b), h("DOWN_Z", 7, 7, "down_z", PaintingDirection.a);
 	private static final axk[] i = new axk[values().length];
 	private final int j;
 	private final String k;
-	private final ej l;
+	private final PaintingDirection l;
 	// $FF: synthetic field
 	private static final axk[] m = new axk[] { a, b, c, d, e, f, g, h };
 
-	private axk(String var1, int var2, int var3, String var4, ej var5) {
+	private axk(String var1, int var2, int var3, String var4, PaintingDirection var5) {
 		this.j = var3;
 		this.k = var4;
 		this.l = var5;
@@ -20,7 +20,7 @@ public enum axk implements va {
 		return this.j;
 	}
 
-	public ej c() {
+	public PaintingDirection c() {
 		return this.l;
 	}
 
@@ -36,7 +36,7 @@ public enum axk implements va {
 		return i[var0];
 	}
 
-	public static axk a(ej var0, ej var1) {
+	public static axk a(PaintingDirection var0, PaintingDirection var1) {
 		switch (axj.a[var0.ordinal()]) {
 			case 1:
 				switch (axj.c[var1.k().ordinal()]) {

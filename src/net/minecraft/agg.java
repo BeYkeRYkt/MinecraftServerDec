@@ -9,13 +9,13 @@ public class agg implements xq {
 	public void a(Random var1) {
 		int var2 = var1.nextInt(5);
 		if (var2 <= 1) {
-			this.a = wp.c.H;
+			this.a = MobEffectList.c.H;
 		} else if (var2 <= 2) {
-			this.a = wp.g.H;
+			this.a = MobEffectList.g.H;
 		} else if (var2 <= 3) {
-			this.a = wp.l.H;
+			this.a = MobEffectList.l.H;
 		} else if (var2 <= 4) {
-			this.a = wp.p.H;
+			this.a = MobEffectList.p.H;
 		}
 
 	}

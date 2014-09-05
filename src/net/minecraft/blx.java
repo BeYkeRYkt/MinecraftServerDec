@@ -13,7 +13,7 @@ public class blx extends bmk {
 	public blx() {
 	}
 
-	public blx(int var1, Random var2, bjb var3, ej var4) {
+	public blx(int var1, Random var2, bjb var3, PaintingDirection var4) {
 		super(var1);
 		this.m = var4;
 		this.d = this.a(var2);
@@ -43,7 +43,7 @@ public class blx extends bmk {
 	public void a(bms var1, List var2, Random var3) {
 		int var4 = 3;
 		int var5 = 5;
-		if (this.m == ej.e || this.m == ej.c) {
+		if (this.m == PaintingDirection.e || this.m == PaintingDirection.c) {
 			var4 = 8 - var4;
 			var5 = 8 - var5;
 		}
@@ -67,7 +67,7 @@ public class blx extends bmk {
 
 	}
 
-	public static blx a(List var0, Random var1, int var2, int var3, int var4, ej var5, int var6) {
+	public static blx a(List var0, Random var1, int var2, int var3, int var4, PaintingDirection var5, int var6) {
 		bjb var7 = bjb.a(var2, var3, var4, -4, -3, 0, 10, 9, 11, var5);
 		return a(var7) && bms.a(var0, var7) == null ? new blx(var6, var1, var7, var5) : null;
 	}

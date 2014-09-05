@@ -57,7 +57,7 @@ public class SummonCommand extends AbstractCommand {
 
 				Entity var21;
 				try {
-					var21 = xb.a(var13, var12);
+					var21 = EntityTypes.a(var13, var12);
 				} catch (RuntimeException var19) {
 					throw new di("commands.summon.failed", new Object[0]);
 				}
@@ -74,7 +74,7 @@ public class SummonCommand extends AbstractCommand {
 					Entity var16 = var21;
 
 					for (NBTCompoundTag var17 = var13; var16 != null && var17.isTagAssignableFrom("Riding", 10); var17 = var17.getCompound("Riding")) {
-						Entity var18 = xb.a(var17.getCompound("Riding"), var12);
+						Entity var18 = EntityTypes.a(var17.getCompound("Riding"), var12);
 						if (var18 != null) {
 							var18.b(var6, var8, var10, var18.yaw, var18.pitch);
 							var12.d(var18);
@@ -91,6 +91,6 @@ public class SummonCommand extends AbstractCommand {
 	}
 
 	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
-		return var2.length == 1 ? a(var2, xb.b()) : (var2.length > 1 && var2.length <= 4 ? a(var2, 1, var3) : null);
+		return var2.length == 1 ? a(var2, EntityTypes.b()) : (var2.length > 1 && var2.length <= 4 ? a(var2, 1, var3) : null);
 	}
 }

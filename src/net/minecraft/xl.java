@@ -27,14 +27,14 @@ public abstract class xl extends xn {
 			this.motionZ *= 0.5D;
 		} else {
 			float var3 = 0.91F;
-			if (this.C) {
+			if (this.onGround) {
 				var3 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).c().K * 0.91F;
 			}
 
 			float var4 = 0.16277136F / (var3 * var3 * var3);
-			this.a(var1, var2, this.C ? 0.1F * var4 : 0.02F);
+			this.a(var1, var2, this.onGround ? 0.1F * var4 : 0.02F);
 			var3 = 0.91F;
-			if (this.C) {
+			if (this.onGround) {
 				var3 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).c().K * 0.91F;
 			}
 

@@ -90,7 +90,7 @@ public class bie extends bhp {
 								Iterator var21 = en.a.iterator();
 
 								while (var21.hasNext()) {
-									ej var22 = (ej) var21.next();
+									PaintingDirection var22 = (PaintingDirection) var21.next();
 									if (var1.p(var26.a(var22)).c().r().a()) {
 										++var20;
 									}

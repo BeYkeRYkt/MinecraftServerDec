@@ -54,7 +54,7 @@ public class GameRuleCommand extends AbstractCommand {
 
 			while (var3.hasNext()) {
 				EntityPlayer var4 = (EntityPlayer) var3.next();
-				var4.a.a((Packet) (new jk(var4, (byte) var2)));
+				var4.a.a((Packet) (new PacketEntityStatus(var4, (byte) var2)));
 			}
 		}
 

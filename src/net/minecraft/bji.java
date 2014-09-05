@@ -33,7 +33,7 @@ public class bji extends bms {
 				break;
 			}
 
-			var7 = bje.a(var1, var2, var3, this.l.a + var5, this.l.b + var3.nextInt(var6) + 1, this.l.c - 1, ej.c, var4);
+			var7 = bje.a(var1, var2, var3, this.l.a + var5, this.l.b + var3.nextInt(var6) + 1, this.l.c - 1, PaintingDirection.c, var4);
 			if (var7 != null) {
 				var8 = var7.c();
 				this.a.add(new bjb(var8.a, var8.b, this.l.c, var8.d, var8.e, this.l.c + 1));
@@ -46,7 +46,7 @@ public class bji extends bms {
 				break;
 			}
 
-			var7 = bje.a(var1, var2, var3, this.l.a + var5, this.l.b + var3.nextInt(var6) + 1, this.l.f + 1, ej.d, var4);
+			var7 = bje.a(var1, var2, var3, this.l.a + var5, this.l.b + var3.nextInt(var6) + 1, this.l.f + 1, PaintingDirection.d, var4);
 			if (var7 != null) {
 				var8 = var7.c();
 				this.a.add(new bjb(var8.a, var8.b, this.l.f - 1, var8.d, var8.e, this.l.f));
@@ -59,7 +59,7 @@ public class bji extends bms {
 				break;
 			}
 
-			var7 = bje.a(var1, var2, var3, this.l.a - 1, this.l.b + var3.nextInt(var6) + 1, this.l.c + var5, ej.e, var4);
+			var7 = bje.a(var1, var2, var3, this.l.a - 1, this.l.b + var3.nextInt(var6) + 1, this.l.c + var5, PaintingDirection.e, var4);
 			if (var7 != null) {
 				var8 = var7.c();
 				this.a.add(new bjb(this.l.a, var8.b, var8.c, this.l.a + 1, var8.e, var8.f));
@@ -72,7 +72,7 @@ public class bji extends bms {
 				break;
 			}
 
-			var7 = bje.a(var1, var2, var3, this.l.d + 1, this.l.b + var3.nextInt(var6) + 1, this.l.c + var5, ej.f, var4);
+			var7 = bje.a(var1, var2, var3, this.l.d + 1, this.l.b + var3.nextInt(var6) + 1, this.l.c + var5, PaintingDirection.f, var4);
 			if (var7 != null) {
 				var8 = var7.c();
 				this.a.add(new bjb(this.l.d - 1, var8.b, var8.c, this.l.d, var8.e, var8.f));

@@ -30,7 +30,7 @@ public abstract class axm extends baa {
 		}
 	}
 
-	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return super.a(var1, var2, var3, var4, var5, var6, var7, var8).a(a, axo.a(var3.k()));
 	}
 

@@ -23,7 +23,7 @@ public class bbs extends Block {
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
-		return var1.a(O, Boolean.valueOf(c(var2, var3, var1, ej.c))).a(P, Boolean.valueOf(c(var2, var3, var1, ej.f))).a(Q, Boolean.valueOf(c(var2, var3, var1, ej.d))).a(R, Boolean.valueOf(c(var2, var3, var1, ej.e)));
+		return var1.a(O, Boolean.valueOf(c(var2, var3, var1, PaintingDirection.c))).a(P, Boolean.valueOf(c(var2, var3, var1, PaintingDirection.f))).a(Q, Boolean.valueOf(c(var2, var3, var1, PaintingDirection.d))).a(R, Boolean.valueOf(c(var2, var3, var1, PaintingDirection.e)));
 	}
 
 	public brt a(World var1, Position var2, bec var3) {
@@ -86,12 +86,12 @@ public class bbs extends Block {
 	}
 
 	private void e(World var1, Position var2, bec var3) {
-		ej[] var4 = new ej[] { ej.d, ej.e };
+		PaintingDirection[] var4 = new PaintingDirection[] { PaintingDirection.d, PaintingDirection.e };
 		int var5 = var4.length;
 		int var6 = 0;
 
 		while (var6 < var5) {
-			ej var7 = var4[var6];
+			PaintingDirection var7 = var4[var6];
 			int var8 = 1;
 
 			while (true) {
@@ -163,12 +163,12 @@ public class bbs extends Block {
 
 	}
 
-	public static boolean c(ard var0, Position var1, bec var2, ej var3) {
+	public static boolean c(ard var0, Position var1, bec var2, PaintingDirection var3) {
 		Position var4 = var1.a(var3);
 		bec var5 = var0.p(var4);
 		Block var6 = var5.c();
 		if (var6 == aty.bR) {
-			ej var9 = var3.d();
+			PaintingDirection var9 = var3.d();
 			return var5.b(bbt.a) == var9;
 		} else if (var6 == aty.bS) {
 			boolean var7 = ((Boolean) var2.b(b)).booleanValue();

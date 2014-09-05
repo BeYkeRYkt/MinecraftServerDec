@@ -8,7 +8,7 @@ public class aul extends avb implements atz {
 
 	public aul() {
 		super(bof.k);
-		this.j(this.L.b().a(N, ej.c).a(a, Integer.valueOf(0)));
+		this.j(this.L.b().a(N, PaintingDirection.c).a(a, Integer.valueOf(0)));
 		this.a(true);
 	}
 
@@ -25,7 +25,7 @@ public class aul extends avb implements atz {
 	}
 
 	public boolean e(World var1, Position var2, bec var3) {
-		var2 = var2.a((ej) var3.b(N));
+		var2 = var2.a((PaintingDirection) var3.b(N));
 		bec var4 = var1.p(var2);
 		return var4.c() == aty.r && var4.b(ayw.a) == ayx.d;
 	}
@@ -45,7 +45,7 @@ public class aul extends avb implements atz {
 
 	public void a(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
-		ej var4 = (ej) var3.b(N);
+		PaintingDirection var4 = (PaintingDirection) var3.b(N);
 		int var5 = ((Integer) var3.b(a)).intValue();
 		int var6 = 4 + var5 * 2;
 		int var7 = 5 + var5 * 2;
@@ -67,13 +67,13 @@ public class aul extends avb implements atz {
 	}
 
 	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
-		ej var6 = ej.a((double) var4.yaw);
+		PaintingDirection var6 = PaintingDirection.a((double) var4.yaw);
 		var1.a(var2, var3.a(N, var6), 2);
 	}
 
-	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		if (!var3.k().c()) {
-			var3 = ej.c;
+			var3 = PaintingDirection.c;
 		}
 
 		return this.P().a(N, var3.d()).a(a, Integer.valueOf(0));
@@ -121,12 +121,12 @@ public class aul extends avb implements atz {
 	}
 
 	public bec a(int var1) {
-		return this.P().a(N, ej.b(var1)).a(a, Integer.valueOf((var1 & 15) >> 2));
+		return this.P().a(N, PaintingDirection.fromByte(var1)).a(a, Integer.valueOf((var1 & 15) >> 2));
 	}
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((ej) var1.b(N)).b();
+		int var3 = var2 | ((PaintingDirection) var1.b(N)).toByte();
 		var3 |= ((Integer) var1.b(a)).intValue() << 2;
 		return var3;
 	}

@@ -11,10 +11,10 @@ public class bbv extends Block {
 	public static final bet N = bet.a("south");
 	public static final bet O = bet.a("west");
 	public static final bet[] P = new bet[] { a, b, N, O, M };
-	public static final int Q = b(ej.d);
-	public static final int R = b(ej.c);
-	public static final int S = b(ej.f);
-	public static final int T = b(ej.e);
+	public static final int Q = b(PaintingDirection.d);
+	public static final int R = b(PaintingDirection.c);
+	public static final int S = b(PaintingDirection.f);
+	public static final int T = b(PaintingDirection.e);
 
 	public bbv() {
 		super(bof.l);
@@ -108,7 +108,7 @@ public class bbv extends Block {
 		return null;
 	}
 
-	public boolean a(World var1, Position var2, ej var3) {
+	public boolean a(World var1, Position var2, PaintingDirection var3) {
 		switch (bbw.a[var3.ordinal()]) {
 			case 1:
 				return this.c(var1.p(var2.a()).c());
@@ -131,7 +131,7 @@ public class bbv extends Block {
 		Iterator var5 = en.a.iterator();
 
 		while (var5.hasNext()) {
-			ej var6 = (ej) var5.next();
+			PaintingDirection var6 = (PaintingDirection) var5.next();
 			bet var7 = a(var6);
 			if (((Boolean) var3.b(var7)).booleanValue() && !this.c(var1.p(var2.a(var6)).c())) {
 				bec var8 = var1.p(var2.a());
@@ -181,15 +181,15 @@ public class bbv extends Block {
 					}
 				}
 
-				ej var17 = ej.a(var4);
-				ej var23;
-				if (var17 == ej.b && var2.o() < 255 && var1.d(var2.a())) {
+				PaintingDirection var17 = PaintingDirection.a(var4);
+				PaintingDirection var23;
+				if (var17 == PaintingDirection.b && var2.o() < 255 && var1.d(var2.a())) {
 					if (!var7) {
 						bec var19 = var3;
 						Iterator var22 = en.a.iterator();
 
 						while (var22.hasNext()) {
-							var23 = (ej) var22.next();
+							var23 = (PaintingDirection) var22.next();
 							if (var4.nextBoolean() || !this.c(var1.p(var2.a(var23).a()).c())) {
 								var19 = var19.a(a(var23), Boolean.valueOf(false));
 							}
@@ -208,7 +208,7 @@ public class bbv extends Block {
 							Block var21 = var1.p(var18).c();
 							if (var21.J == bof.a) {
 								var23 = var17.e();
-								ej var24 = var17.f();
+								PaintingDirection var24 = var17.f();
 								boolean var25 = ((Boolean) var3.b(a(var23))).booleanValue();
 								boolean var26 = ((Boolean) var3.b(a(var24))).booleanValue();
 								Position var27 = var18.a(var23);
@@ -236,13 +236,13 @@ public class bbv extends Block {
 							Block var11 = var20.c();
 							bec var12;
 							Iterator var13;
-							ej var14;
+							PaintingDirection var14;
 							if (var11.J == bof.a) {
 								var12 = var3;
 								var13 = en.a.iterator();
 
 								while (var13.hasNext()) {
-									var14 = (ej) var13.next();
+									var14 = (PaintingDirection) var13.next();
 									if (var4.nextBoolean()) {
 										var12 = var12.a(a(var14), Boolean.valueOf(false));
 									}
@@ -256,7 +256,7 @@ public class bbv extends Block {
 								var13 = en.a.iterator();
 
 								while (var13.hasNext()) {
-									var14 = (ej) var13.next();
+									var14 = (PaintingDirection) var13.next();
 									bet var15 = a(var14);
 									if (var4.nextBoolean() || !((Boolean) var3.b(var15)).booleanValue()) {
 										var12 = var12.a(var15, Boolean.valueOf(false));
@@ -275,11 +275,11 @@ public class bbv extends Block {
 		}
 	}
 
-	private static int b(ej var0) {
-		return 1 << var0.b();
+	private static int b(PaintingDirection var0) {
+		return 1 << var0.toByte();
 	}
 
-	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		bec var9 = this.P().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false));
 		return var3.k().c() ? var9.a(a(var3.d()), Boolean.valueOf(true)) : var9;
 	}
@@ -331,7 +331,7 @@ public class bbv extends Block {
 		return new bed(this, new bex[] { a, b, M, N, O });
 	}
 
-	public static bet a(ej var0) {
+	public static bet a(PaintingDirection var0) {
 		switch (bbw.a[var0.ordinal()]) {
 			case 1:
 				return a;

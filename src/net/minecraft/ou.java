@@ -5,7 +5,7 @@ import java.util.Random;
 final class ou extends eg {
 
 	public ItemStack b(dz var1, ItemStack var2) {
-		ej var3 = ave.b(var1.f());
+		PaintingDirection var3 = ave.b(var1.f());
 		ex var4 = ave.a(var1);
 		double var5 = var4.a() + (double) ((float) var3.g() * 0.3F);
 		double var7 = var4.b() + (double) ((float) var3.g() * 0.3F);

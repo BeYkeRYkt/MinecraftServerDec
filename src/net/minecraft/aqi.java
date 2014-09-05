@@ -70,7 +70,7 @@ public abstract class aqi {
 				boolean var13 = false;
 
 				for (int var3 = 0; var3 < this.i; ++var3) {
-					Entity var14 = xb.a(this.f(), this.a());
+					Entity var14 = EntityTypes.a(this.f(), this.a());
 					if (var14 == null) {
 						return;
 					}
@@ -125,7 +125,7 @@ public abstract class aqi {
 			NBTCompoundTag var12;
 			for (Entity var11 = var1; var3.isTagAssignableFrom("Riding", 10); var3 = var12) {
 				var12 = var3.getCompound("Riding");
-				Entity var13 = xb.a(var12.getString("id"), var1.o);
+				Entity var13 = EntityTypes.a(var12.getString("id"), var1.o);
 				if (var13 != null) {
 					NBTCompoundTag var7 = new NBTCompoundTag();
 					var13.d(var7);

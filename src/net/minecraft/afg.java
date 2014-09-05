@@ -241,17 +241,17 @@ public class afg extends afm {
 
 		if (this.Y) {
 			this.h(300);
-		} else if (this.C) {
+		} else if (this.onGround) {
 			this.motionY += 0.5D;
 			this.motionX += (double) ((this.V.nextFloat() * 2.0F - 1.0F) * 0.4F);
 			this.motionZ += (double) ((this.V.nextFloat() * 2.0F - 1.0F) * 0.4F);
 			this.yaw = this.V.nextFloat() * 360.0F;
-			this.C = false;
+			this.onGround = false;
 			this.ai = true;
 		}
 
 		if (this.cn()) {
-			this.yaw = this.aI;
+			this.yaw = this.headPitch;
 		}
 
 		super.m();
@@ -269,15 +269,15 @@ public class afg extends afm {
 			boolean var3 = true;
 			boolean var4 = true;
 			if ((this.W + this.getId()) % 1200 == 0) {
-				wp var5 = wp.f;
+				MobEffectList var5 = MobEffectList.f;
 				List var6 = this.o.b(EntityPlayer.class, (Predicate) (new afh(this)));
 				Iterator var7 = var6.iterator();
 
 				while (var7.hasNext()) {
 					EntityPlayer var8 = (EntityPlayer) var7.next();
-					if (!var8.a(var5) || var8.b(var5).c() < 2 || var8.b(var5).b() < 1200) {
+					if (!var8.a(var5) || var8.b(var5).getAmplifier() < 2 || var8.b(var5).getDuration() < 1200) {
 						var8.a.a((Packet) (new jo(10, 0.0F)));
-						var8.c(new wq(var5.H, 6000, 2));
+						var8.c(new MobEffect(var5.H, 6000, 2));
 					}
 				}
 			}

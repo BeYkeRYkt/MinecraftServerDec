@@ -54,7 +54,7 @@ public class ty {
 		e();
 		b();
 		tl.a();
-		xb.a();
+		EntityTypes.a();
 	}
 
 	private static void b() {
@@ -183,12 +183,12 @@ public class ty {
 	}
 
 	public static PlayerStatistic a(xc var0) {
-		String var1 = xb.b(var0.a);
+		String var1 = EntityTypes.b(var0.a);
 		return var1 == null ? null : (new PlayerStatistic("stat.killEntity." + var1, new hz("stat.entityKill", new Object[] { new hz("entity." + var1 + ".name", new Object[0]) }))).h();
 	}
 
 	public static PlayerStatistic b(xc var0) {
-		String var1 = xb.b(var0.a);
+		String var1 = EntityTypes.b(var0.a);
 		return var1 == null ? null : (new PlayerStatistic("stat.entityKilledBy." + var1, new hz("stat.entityKilledBy", new Object[] { new hz("entity." + var1 + ".name", new Object[0]) }))).h();
 	}
 

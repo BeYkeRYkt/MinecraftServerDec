@@ -4,15 +4,15 @@ public class bru {
 
 	private Position e;
 	public brv a;
-	public ej b;
+	public PaintingDirection b;
 	public brw c;
 	public Entity d;
 
-	public bru(brw var1, ej var2, Position var3) {
+	public bru(brw var1, PaintingDirection var2, Position var3) {
 		this(brv.b, var1, var2, var3);
 	}
 
-	public bru(brw var1, ej var2) {
+	public bru(brw var1, PaintingDirection var2) {
 		this(brv.b, var1, var2, Position.a);
 	}
 
@@ -20,7 +20,7 @@ public class bru {
 		this(var1, new brw(var1.locationX, var1.locationY, var1.locationZ));
 	}
 
-	public bru(brv var1, brw var2, ej var3, Position var4) {
+	public bru(brv var1, brw var2, PaintingDirection var3, Position var4) {
 		this.a = var1;
 		this.e = var4;
 		this.b = var3;

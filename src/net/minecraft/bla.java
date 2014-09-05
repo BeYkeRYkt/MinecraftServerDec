@@ -7,7 +7,7 @@ public class bla extends blb {
 	public bla() {
 	}
 
-	public bla(ej var1, bjb var2) {
+	public bla(PaintingDirection var1, bjb var2) {
 		super(var1, var2);
 	}
 

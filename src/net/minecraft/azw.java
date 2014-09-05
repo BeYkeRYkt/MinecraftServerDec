@@ -48,11 +48,11 @@ public class azw extends bbl {
 
 	public void c(World var1, Position var2, bec var3) {
 		if (this.M) {
-			ej[] var4 = ej.values();
+			PaintingDirection[] var4 = PaintingDirection.values();
 			int var5 = var4.length;
 
 			for (int var6 = 0; var6 < var5; ++var6) {
-				ej var7 = var4[var6];
+				PaintingDirection var7 = var4[var6];
 				var1.c(var2.a(var7), (Block) this);
 			}
 		}
@@ -61,23 +61,23 @@ public class azw extends bbl {
 
 	public void b(World var1, Position var2, bec var3) {
 		if (this.M) {
-			ej[] var4 = ej.values();
+			PaintingDirection[] var4 = PaintingDirection.values();
 			int var5 = var4.length;
 
 			for (int var6 = 0; var6 < var5; ++var6) {
-				ej var7 = var4[var6];
+				PaintingDirection var7 = var4[var6];
 				var1.c(var2.a(var7), (Block) this);
 			}
 		}
 
 	}
 
-	public int a(ard var1, Position var2, bec var3, ej var4) {
+	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
 		return this.M && var3.b(a) != var4 ? 15 : 0;
 	}
 
 	private boolean g(World var1, Position var2, bec var3) {
-		ej var4 = ((ej) var3.b(a)).d();
+		PaintingDirection var4 = ((PaintingDirection) var3.b(a)).d();
 		return var1.b(var2.a(var4), var4);
 	}
 
@@ -123,8 +123,8 @@ public class azw extends bbl {
 		}
 	}
 
-	public int b(ard var1, Position var2, bec var3, ej var4) {
-		return var4 == ej.a ? this.a(var1, var2, var3, var4) : 0;
+	public int b(ard var1, Position var2, bec var3, PaintingDirection var4) {
+		return var4 == PaintingDirection.a ? this.a(var1, var2, var3, var4) : 0;
 	}
 
 	public Item a(bec var1, Random var2, int var3) {

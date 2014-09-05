@@ -9,14 +9,14 @@ public class azz extends ava {
 
 	protected azz(boolean var1) {
 		super(var1);
-		this.j(this.L.b().a(N, ej.c).a(b, Integer.valueOf(1)).a(a, Boolean.valueOf(false)));
+		this.j(this.L.b().a(N, PaintingDirection.c).a(b, Integer.valueOf(1)).a(a, Boolean.valueOf(false)));
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
 		return var1.a(a, Boolean.valueOf(this.b(var2, var3, var1)));
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (!var4.by.maybuild) {
 			return false;
 		} else {
@@ -32,14 +32,14 @@ public class azz extends ava {
 	protected bec e(bec var1) {
 		Integer var2 = (Integer) var1.b(b);
 		Boolean var3 = (Boolean) var1.b(a);
-		ej var4 = (ej) var1.b(N);
+		PaintingDirection var4 = (PaintingDirection) var1.b(N);
 		return aty.bc.P().a(N, var4).a(b, var2).a(a, var3);
 	}
 
 	protected bec k(bec var1) {
 		Integer var2 = (Integer) var1.b(b);
 		Boolean var3 = (Boolean) var1.b(a);
-		ej var4 = (ej) var1.b(N);
+		PaintingDirection var4 = (PaintingDirection) var1.b(N);
 		return aty.bb.P().a(N, var4).a(b, var2).a(a, var3);
 	}
 
@@ -61,12 +61,12 @@ public class azz extends ava {
 	}
 
 	public bec a(int var1) {
-		return this.P().a(N, ej.b(var1)).a(a, Boolean.valueOf(false)).a(b, Integer.valueOf(1 + (var1 >> 2)));
+		return this.P().a(N, PaintingDirection.fromByte(var1)).a(a, Boolean.valueOf(false)).a(b, Integer.valueOf(1 + (var1 >> 2)));
 	}
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((ej) var1.b(N)).b();
+		int var3 = var2 | ((PaintingDirection) var1.b(N)).toByte();
 		var3 |= ((Integer) var1.b(b)).intValue() - 1 << 2;
 		return var3;
 	}

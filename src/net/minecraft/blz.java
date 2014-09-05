@@ -12,7 +12,7 @@ public class blz extends bmk {
 	public blz() {
 	}
 
-	public blz(int var1, Random var2, bjb var3, ej var4) {
+	public blz(int var1, Random var2, bjb var3, PaintingDirection var4) {
 		super(var1);
 		this.m = var4;
 		this.d = this.a(var2);
@@ -30,7 +30,7 @@ public class blz extends bmk {
 		this.b = var1.getBoolean("Tall");
 	}
 
-	public static blz a(List var0, Random var1, int var2, int var3, int var4, ej var5, int var6) {
+	public static blz a(List var0, Random var1, int var2, int var3, int var4, PaintingDirection var5, int var6) {
 		bjb var7 = bjb.a(var2, var3, var4, -4, -1, 0, 14, 11, 15, var5);
 		if (!a(var7) || bms.a(var0, var7) != null) {
 			var7 = bjb.a(var2, var3, var4, -4, -1, 0, 14, 6, 15, var5);

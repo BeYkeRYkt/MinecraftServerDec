@@ -55,7 +55,7 @@ public class afw extends afm implements afr {
 	public boolean r(Entity var1) {
 		if (super.r(var1)) {
 			if (this.ck() == 1 && var1 instanceof EntityLiving) {
-				((EntityLiving) var1).c(new wq(wp.v.H, 200));
+				((EntityLiving) var1).c(new MobEffect(MobEffectList.v.H, 200));
 			}
 
 			return true;

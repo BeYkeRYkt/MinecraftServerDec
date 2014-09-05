@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class xk extends Entity {
+public class ExpirienceOrb extends Entity {
 
 	public int a;
 	public int b;
@@ -10,7 +10,7 @@ public class xk extends Entity {
 	private EntityHuman f;
 	private int g;
 
-	public xk(World var1, double var2, double var4, double var6, int var8) {
+	public ExpirienceOrb(World var1, double var2, double var4, double var6, int var8) {
 		super(var1);
 		this.a(0.5F, 0.5F);
 		this.b(var2, var4, var6);
@@ -25,7 +25,7 @@ public class xk extends Entity {
 		return false;
 	}
 
-	public xk(World var1) {
+	public ExpirienceOrb(World var1) {
 		super(var1);
 		this.a(0.25F, 0.25F);
 	}
@@ -80,14 +80,14 @@ public class xk extends Entity {
 
 		this.d(this.motionX, this.motionY, this.motionZ);
 		float var13 = 0.98F;
-		if (this.C) {
+		if (this.onGround) {
 			var13 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).c().K * 0.98F;
 		}
 
 		this.motionX *= (double) var13;
 		this.motionY *= 0.9800000190734863D;
 		this.motionZ *= (double) var13;
-		if (this.C) {
+		if (this.onGround) {
 			this.motionY *= -0.8999999761581421D;
 		}
 
@@ -146,7 +146,7 @@ public class xk extends Entity {
 		}
 	}
 
-	public int j() {
+	public int getExp() {
 		return this.e;
 	}
 

@@ -46,11 +46,11 @@ public abstract class ava extends avb {
 		return this.M;
 	}
 
-	public int b(ard var1, Position var2, bec var3, ej var4) {
+	public int b(ard var1, Position var2, bec var3, PaintingDirection var4) {
 		return this.a(var1, var2, var3, var4);
 	}
 
-	public int a(ard var1, Position var2, bec var3, ej var4) {
+	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
 		return !this.l(var3) ? 0 : (var3.b(N) == var4 ? this.a(var1, var2, var3) : 0);
 	}
 
@@ -60,11 +60,11 @@ public abstract class ava extends avb {
 		} else {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
-			ej[] var5 = ej.values();
+			PaintingDirection[] var5 = PaintingDirection.values();
 			int var6 = var5.length;
 
 			for (int var7 = 0; var7 < var6; ++var7) {
-				ej var8 = var5[var7];
+				PaintingDirection var8 = var5[var7];
 				var1.c(var2.a(var8), (Block) this);
 			}
 
@@ -97,7 +97,7 @@ public abstract class ava extends avb {
 	}
 
 	protected int f(World var1, Position var2, bec var3) {
-		ej var4 = (ej) var3.b(N);
+		PaintingDirection var4 = (PaintingDirection) var3.b(N);
 		Position var5 = var2.a(var4);
 		int var6 = var1.c(var5, var4);
 		if (var6 >= 15) {
@@ -109,13 +109,13 @@ public abstract class ava extends avb {
 	}
 
 	protected int c(ard var1, Position var2, bec var3) {
-		ej var4 = (ej) var3.b(N);
-		ej var5 = var4.e();
-		ej var6 = var4.f();
+		PaintingDirection var4 = (PaintingDirection) var3.b(N);
+		PaintingDirection var5 = var4.e();
+		PaintingDirection var6 = var4.f();
 		return Math.max(this.c(var1, var2.a(var5), var5), this.c(var1, var2.a(var6), var6));
 	}
 
-	protected int c(ard var1, Position var2, ej var3) {
+	protected int c(ard var1, Position var2, PaintingDirection var3) {
 		bec var4 = var1.p(var2);
 		Block var5 = var4.c();
 		return this.c(var5) ? (var5 == aty.af ? ((Integer) var4.b(azt.O)).intValue() : var1.a(var2, var3)) : 0;
@@ -125,7 +125,7 @@ public abstract class ava extends avb {
 		return true;
 	}
 
-	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(N, var8.aO().d());
 	}
 
@@ -141,7 +141,7 @@ public abstract class ava extends avb {
 	}
 
 	protected void h(World var1, Position var2, bec var3) {
-		ej var4 = (ej) var3.b(N);
+		PaintingDirection var4 = (PaintingDirection) var3.b(N);
 		Position var5 = var2.a(var4.d());
 		var1.d(var5, this);
 		var1.a(var5, (Block) this, var4);
@@ -149,11 +149,11 @@ public abstract class ava extends avb {
 
 	public void d(World var1, Position var2, bec var3) {
 		if (this.M) {
-			ej[] var4 = ej.values();
+			PaintingDirection[] var4 = PaintingDirection.values();
 			int var5 = var4.length;
 
 			for (int var6 = 0; var6 < var5; ++var6) {
-				ej var7 = var4[var6];
+				PaintingDirection var7 = var4[var6];
 				var1.c(var2.a(var7), (Block) this);
 			}
 		}
@@ -182,7 +182,7 @@ public abstract class ava extends avb {
 	}
 
 	public boolean i(World var1, Position var2, bec var3) {
-		ej var4 = ((ej) var3.b(N)).d();
+		PaintingDirection var4 = ((PaintingDirection) var3.b(N)).d();
 		Position var5 = var2.a(var4);
 		return d(var1.p(var5).c()) ? var1.p(var5).b(N) != var4 : false;
 	}

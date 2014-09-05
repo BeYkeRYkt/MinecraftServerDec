@@ -24,13 +24,13 @@ class agc extends yn {
 
 	public void c() {
 		this.a.yaw = this.a(this.a.yaw, this.g, 30.0F);
-		this.a.aI = this.a.yaw;
+		this.a.headPitch = this.a.yaw;
 		this.a.aG = this.a.yaw;
 		if (!this.f) {
 			this.a.m(0.0F);
 		} else {
 			this.f = false;
-			if (this.a.C) {
+			if (this.a.onGround) {
 				this.a.j((float) (this.e * this.a.a(afs.d).e()));
 				if (this.h-- <= 0) {
 					this.h = this.i.ce();

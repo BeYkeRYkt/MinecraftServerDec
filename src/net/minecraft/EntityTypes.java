@@ -10,7 +10,7 @@ import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class xb {
+public class EntityTypes {
 
 	private static final Logger b = LogManager.getLogger();
 	private static final Map c = Maps.newHashMap();
@@ -102,7 +102,7 @@ public class xb {
 		return var2;
 	}
 
-	public static int a(Entity var0) {
+	public static int getFixedId(Entity var0) {
 		Integer var1 = (Integer) f.get(var0.getClass());
 		return var1 == null ? 0 : var1.intValue();
 	}
@@ -156,9 +156,9 @@ public class xb {
 
 	static {
 		a(adw.class, "Item", 1);
-		a(xk.class, "XPOrb", 2);
+		a(ExpirienceOrb.class, "XPOrb", 2);
 		a(adl.class, "LeashKnot", 8);
-		a(adm.class, "Painting", 9);
+		a(EntityPainting.class, "Painting", 9);
 		a(ahj.class, "Arrow", 10);
 		a(ahq.class, "Snowball", 11);
 		a(ahn.class, "Fireball", 12);

@@ -47,7 +47,7 @@ public class aem extends afm {
 	}
 
 	public void m() {
-		if (!this.C && this.motionY < 0.0D) {
+		if (!this.onGround && this.motionY < 0.0D) {
 			this.motionY *= 0.6D;
 		}
 

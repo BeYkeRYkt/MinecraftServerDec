@@ -61,7 +61,7 @@ public class bmy {
 		return var1 ? var2 : -1;
 	}
 
-	private static bnn a(bnk var0, bne var1, List var2, Random var3, int var4, int var5, int var6, ej var7, int var8) {
+	private static bnn a(bnk var0, bne var1, List var2, Random var3, int var4, int var5, int var6, PaintingDirection var7, int var8) {
 		Class var9 = var1.a;
 		Object var10 = null;
 		if (var9 == bng.class) {
@@ -87,7 +87,7 @@ public class bmy {
 		return (bnn) var10;
 	}
 
-	private static bnn c(bnk var0, List var1, Random var2, int var3, int var4, int var5, ej var6, int var7) {
+	private static bnn c(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
 		int var8 = a(var0.e);
 		if (var8 <= 0) {
 			return null;
@@ -130,7 +130,7 @@ public class bmy {
 		}
 	}
 
-	private static bms d(bnk var0, List var1, Random var2, int var3, int var4, int var5, ej var6, int var7) {
+	private static bms d(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
 		if (var7 > 50) {
 			return null;
 		} else if (Math.abs(var3 - var0.c().a) <= 112 && Math.abs(var5 - var0.c().c) <= 112) {
@@ -154,7 +154,7 @@ public class bmy {
 		}
 	}
 
-	private static bms e(bnk var0, List var1, Random var2, int var3, int var4, int var5, ej var6, int var7) {
+	private static bms e(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
 		if (var7 > 3 + var0.c) {
 			return null;
 		} else if (Math.abs(var3 - var0.c().a) <= 112 && Math.abs(var5 - var0.c().c) <= 112) {
@@ -180,12 +180,12 @@ public class bmy {
 	}
 
 	// $FF: synthetic method
-	static bms a(bnk var0, List var1, Random var2, int var3, int var4, int var5, ej var6, int var7) {
+	static bms a(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
 		return d(var0, var1, var2, var3, var4, var5, var6, var7);
 	}
 
 	// $FF: synthetic method
-	static bms b(bnk var0, List var1, Random var2, int var3, int var4, int var5, ej var6, int var7) {
+	static bms b(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
 		return e(var0, var1, var2, var3, var4, var5, var6, var7);
 	}
 }

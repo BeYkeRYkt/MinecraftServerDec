@@ -7,7 +7,7 @@ import java.util.List;
 
 public class bck extends bdf implements pm, IInventory {
 
-	public static final wp[][] a = new wp[][] { { wp.c, wp.e }, { wp.m, wp.j }, { wp.g }, { wp.l } };
+	public static final MobEffectList[][] a = new MobEffectList[][] { { MobEffectList.c, MobEffectList.e }, { MobEffectList.m, MobEffectList.j }, { MobEffectList.g }, { MobEffectList.l } };
 	private final List f = Lists.newArrayList();
 	private boolean i;
 	private int j = -1;
@@ -46,7 +46,7 @@ public class bck extends bdf implements pm, IInventory {
 			EntityHuman var10;
 			while (var9.hasNext()) {
 				var10 = (EntityHuman) var9.next();
-				var10.c(new wq(this.k, 180, var3, true, true));
+				var10.c(new MobEffect(this.k, 180, var3, true, true));
 			}
 
 			if (this.j >= 4 && this.k != this.l && this.l > 0) {
@@ -54,7 +54,7 @@ public class bck extends bdf implements pm, IInventory {
 
 				while (var9.hasNext()) {
 					var10 = (EntityHuman) var9.next();
-					var10.c(new wq(this.l, 180, 0, true, true));
+					var10.c(new MobEffect(this.l, 180, 0, true, true));
 				}
 			}
 		}

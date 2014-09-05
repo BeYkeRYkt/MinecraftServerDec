@@ -135,6 +135,6 @@ public class aee extends adx {
 	}
 
 	public bec u() {
-		return (this.j() ? aty.am : aty.al).P().a(awj.a, ej.c);
+		return (this.j() ? aty.am : aty.al).P().a(awj.a, PaintingDirection.c);
 	}
 }

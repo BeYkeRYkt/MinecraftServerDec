@@ -116,7 +116,7 @@ public class DataWatcher {
 		return this.e;
 	}
 
-	public static void a(List var0, PacketDataSerializer var1) {
+	public static void writeData(List var0, PacketDataSerializer var1) {
 		if (var0 != null) {
 			Iterator var2 = var0.iterator();
 

@@ -223,7 +223,7 @@ public class Block {
 		this.G = (double) var6;
 	}
 
-	public boolean b(ard var1, Position var2, ej var3) {
+	public boolean b(ard var1, Position var2, PaintingDirection var3) {
 		return var1.p(var2).c().r().a();
 	}
 
@@ -322,9 +322,9 @@ public class Block {
 	protected void b(World var1, Position var2, int var3) {
 		if (!var1.D) {
 			while (var3 > 0) {
-				int var4 = xk.a(var3);
+				int var4 = ExpirienceOrb.a(var3);
 				var3 -= var4;
-				var1.d((Entity) (new xk(var1, (double) var2.n() + 0.5D, (double) var2.o() + 0.5D, (double) var2.p() + 0.5D, var4)));
+				var1.d((Entity) (new ExpirienceOrb(var1, (double) var2.n() + 0.5D, (double) var2.o() + 0.5D, (double) var2.p() + 0.5D, var4)));
 			}
 		}
 
@@ -400,29 +400,29 @@ public class Block {
 		if (var11 == null) {
 			return null;
 		} else {
-			ej var12 = null;
+			PaintingDirection var12 = null;
 			if (var11 == var5) {
-				var12 = ej.e;
+				var12 = PaintingDirection.e;
 			}
 
 			if (var11 == var6) {
-				var12 = ej.f;
+				var12 = PaintingDirection.f;
 			}
 
 			if (var11 == var7) {
-				var12 = ej.a;
+				var12 = PaintingDirection.a;
 			}
 
 			if (var11 == var8) {
-				var12 = ej.b;
+				var12 = PaintingDirection.b;
 			}
 
 			if (var11 == var9) {
-				var12 = ej.c;
+				var12 = PaintingDirection.c;
 			}
 
 			if (var11 == var10) {
-				var12 = ej.d;
+				var12 = PaintingDirection.d;
 			}
 
 			return new bru(var11.b((double) var2.n(), (double) var2.o(), (double) var2.p()), var12, var2);
@@ -444,11 +444,11 @@ public class Block {
 	public void a(World var1, Position var2, aqo var3) {
 	}
 
-	public boolean a(World var1, Position var2, ej var3, ItemStack var4) {
+	public boolean a(World var1, Position var2, PaintingDirection var3, ItemStack var4) {
 		return this.a(var1, var2, var3);
 	}
 
-	public boolean a(World var1, Position var2, ej var3) {
+	public boolean a(World var1, Position var2, PaintingDirection var3) {
 		return this.c(var1, var2);
 	}
 
@@ -456,14 +456,14 @@ public class Block {
 		return var1.p(var2).c().J.j();
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		return false;
 	}
 
 	public void a(World var1, Position var2, Entity var3) {
 	}
 
-	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.a(var7);
 	}
 
@@ -501,7 +501,7 @@ public class Block {
 		return this.G;
 	}
 
-	public int a(ard var1, Position var2, bec var3, ej var4) {
+	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
 		return 0;
 	}
 
@@ -512,7 +512,7 @@ public class Block {
 	public void a(World var1, Position var2, bec var3, Entity var4) {
 	}
 
-	public int b(ard var1, Position var2, bec var3, ej var4) {
+	public int b(ard var1, Position var2, bec var3, PaintingDirection var4) {
 		return 0;
 	}
 

@@ -9,7 +9,7 @@ public class avr extends atg {
 
 	protected avr() {
 		super(bof.e);
-		this.j(this.L.b().a(a, ej.c));
+		this.j(this.L.b().a(a, PaintingDirection.c));
 		this.a(CreativeModeTab.c);
 		this.a(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 	}
@@ -38,7 +38,7 @@ public class avr extends atg {
 		return true;
 	}
 
-	public bec a(World var1, Position var2, ej var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(a, var8.aO().d());
 	}
 
@@ -46,7 +46,7 @@ public class avr extends atg {
 		var1.a(var2, var3.a(a, var4.aO().d()), 2);
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, ej var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		InventoryEnderChest var9 = var4.cn();
 		bcm var10 = var1.s(var2);
 		if (var9 != null && var10 instanceof bda) {
@@ -69,16 +69,16 @@ public class avr extends atg {
 	}
 
 	public bec a(int var1) {
-		ej var2 = ej.a(var1);
+		PaintingDirection var2 = PaintingDirection.a(var1);
 		if (var2.k() == el.b) {
-			var2 = ej.c;
+			var2 = PaintingDirection.c;
 		}
 
 		return this.P().a(a, var2);
 	}
 
 	public int c(bec var1) {
-		return ((ej) var1.b(a)).a();
+		return ((PaintingDirection) var1.b(a)).a();
 	}
 
 	protected bed e() {

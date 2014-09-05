@@ -37,7 +37,7 @@ abstract class bkb extends bms {
 		return var2 ? var3 : -1;
 	}
 
-	private bkb a(bkf var1, List var2, List var3, Random var4, int var5, int var6, int var7, ej var8, int var9) {
+	private bkb a(bkf var1, List var2, List var3, Random var4, int var5, int var6, int var7, PaintingDirection var8, int var9) {
 		int var10 = this.a(var2);
 		boolean var11 = var10 > 0 && var9 <= 30;
 		int var12 = 0;
@@ -72,7 +72,7 @@ abstract class bkb extends bms {
 		return bjq.a(var3, var4, var5, var6, var7, var8, var9);
 	}
 
-	private bms a(bkf var1, List var2, Random var3, int var4, int var5, int var6, ej var7, int var8, boolean var9) {
+	private bms a(bkf var1, List var2, Random var3, int var4, int var5, int var6, PaintingDirection var7, int var8, boolean var9) {
 		if (Math.abs(var4 - var1.c().a) <= 112 && Math.abs(var6 - var1.c().c) <= 112) {
 			List var10 = var1.c;
 			if (var9) {
@@ -112,13 +112,13 @@ abstract class bkb extends bms {
 		if (this.m != null) {
 			switch (bjo.a[this.m.ordinal()]) {
 				case 1:
-					return this.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, ej.e, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, PaintingDirection.e, this.d(), var6);
 				case 2:
-					return this.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, ej.e, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, PaintingDirection.e, this.d(), var6);
 				case 3:
-					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, ej.c, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, PaintingDirection.c, this.d(), var6);
 				case 4:
-					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, ej.c, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, PaintingDirection.c, this.d(), var6);
 			}
 		}
 
@@ -129,13 +129,13 @@ abstract class bkb extends bms {
 		if (this.m != null) {
 			switch (bjo.a[this.m.ordinal()]) {
 				case 1:
-					return this.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, ej.f, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, PaintingDirection.f, this.d(), var6);
 				case 2:
-					return this.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, ej.f, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, PaintingDirection.f, this.d(), var6);
 				case 3:
-					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, ej.d, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, PaintingDirection.d, this.d(), var6);
 				case 4:
-					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, ej.d, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, PaintingDirection.d, this.d(), var6);
 			}
 		}
 

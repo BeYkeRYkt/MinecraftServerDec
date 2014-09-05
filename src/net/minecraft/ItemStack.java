@@ -80,7 +80,7 @@ public final class ItemStack {
 		return this.item;
 	}
 
-	public boolean a(EntityHuman var1, World var2, Position var3, ej var4, float var5, float var6, float var7) {
+	public boolean a(EntityHuman var1, World var2, Position var3, PaintingDirection var4, float var5, float var6, float var7) {
 		boolean var8 = this.getItem().a(this, var1, var2, var3, var4, var5, var6, var7);
 		if (var8) {
 			var1.b(ty.J[Item.getId(this.item)]);

@@ -36,13 +36,13 @@ abstract class bnn extends bms {
 		if (this.m != null) {
 			switch (bmz.a[this.m.ordinal()]) {
 				case 1:
-					return bmy.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, ej.e, this.d());
+					return bmy.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, PaintingDirection.e, this.d());
 				case 2:
-					return bmy.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, ej.e, this.d());
+					return bmy.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, PaintingDirection.e, this.d());
 				case 3:
-					return bmy.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, ej.c, this.d());
+					return bmy.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, PaintingDirection.c, this.d());
 				case 4:
-					return bmy.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, ej.c, this.d());
+					return bmy.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, PaintingDirection.c, this.d());
 			}
 		}
 
@@ -53,13 +53,13 @@ abstract class bnn extends bms {
 		if (this.m != null) {
 			switch (bmz.a[this.m.ordinal()]) {
 				case 1:
-					return bmy.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, ej.f, this.d());
+					return bmy.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, PaintingDirection.f, this.d());
 				case 2:
-					return bmy.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, ej.f, this.d());
+					return bmy.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, PaintingDirection.f, this.d());
 				case 3:
-					return bmy.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, ej.d, this.d());
+					return bmy.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, PaintingDirection.d, this.d());
 				case 4:
-					return bmy.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, ej.d, this.d());
+					return bmy.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, PaintingDirection.d, this.d());
 			}
 		}
 

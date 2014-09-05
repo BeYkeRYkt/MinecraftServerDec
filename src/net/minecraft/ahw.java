@@ -53,7 +53,7 @@ public class ahw extends ahl {
 					}
 
 					if (var2 > 0) {
-						((EntityLiving) var1.d).c(new wq(wp.v.H, 20 * var2, 1));
+						((EntityLiving) var1.d).c(new MobEffect(MobEffectList.v.H, 20 * var2, 1));
 					}
 				}
 			}

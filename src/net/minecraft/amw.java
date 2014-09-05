@@ -26,7 +26,7 @@ public class amw extends Item {
 
 			for (int var4 = 0; var4 < var3.getSize(); ++var4) {
 				NBTCompoundTag var5 = var3.getCompound(var4);
-				wq var6 = wq.b(var5);
+				MobEffect var6 = MobEffect.load(var5);
 				if (var6 != null) {
 					var7.add(var6);
 				}
@@ -65,8 +65,8 @@ public class amw extends Item {
 				Iterator var5 = var4.iterator();
 
 				while (var5.hasNext()) {
-					wq var6 = (wq) var5.next();
-					var3.c(new wq(var6));
+					MobEffect var6 = (MobEffect) var5.next();
+					var3.c(new MobEffect(var6));
 				}
 			}
 		}
@@ -126,7 +126,7 @@ public class amw extends Item {
 			List var3 = amk.bz.h(var1);
 			String var4;
 			if (var3 != null && !var3.isEmpty()) {
-				var4 = ((wq) var3.get(0)).g();
+				var4 = ((MobEffect) var3.get(0)).getName();
 				var4 = var4 + ".postfix";
 				return var2 + fi.a(var4).trim();
 			} else {

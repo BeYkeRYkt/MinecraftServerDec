@@ -22,7 +22,7 @@ public class adl extends adj {
 		super.h();
 	}
 
-	public void a(ej var1) {
+	public void a(PaintingDirection var1) {
 	}
 
 	public int l() {
@@ -115,7 +115,7 @@ public class adl extends adj {
 			}
 
 			var7 = (adl) var6.next();
-		} while (!var7.n().equals(var1));
+		} while (!var7.getPosition().equals(var1));
 
 		return var7;
 	}
