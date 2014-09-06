@@ -11,7 +11,7 @@ public class BlockEnderPortalFrame extends Block {
 
 	public BlockEnderPortalFrame() {
 		super(Material.STONE);
-		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Boolean.valueOf(false)));
+		this.j(this.L.b().a(a, BlockFace.c).a(b, Boolean.valueOf(false)));
 	}
 
 	public boolean c() {
@@ -37,7 +37,7 @@ public class BlockEnderPortalFrame extends Block {
 		return null;
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(a, var8.aO().d()).a(b, Boolean.valueOf(false));
 	}
 
@@ -50,12 +50,12 @@ public class BlockEnderPortalFrame extends Block {
 	}
 
 	public bec a(int var1) {
-		return this.P().a(b, Boolean.valueOf((var1 & 4) != 0)).a(a, PaintingDirection.fromByte(var1 & 3));
+		return this.P().a(b, Boolean.valueOf((var1 & 4) != 0)).a(a, BlockFace.fromByte(var1 & 3));
 	}
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((PaintingDirection) var1.b(a)).toByte();
+		int var3 = var2 | ((BlockFace) var1.b(a)).toByte();
 		if (((Boolean) var1.b(b)).booleanValue()) {
 			var3 |= 4;
 		}

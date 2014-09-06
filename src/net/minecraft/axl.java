@@ -47,9 +47,9 @@ public abstract class axl extends Block {
 		return var2 && ((Integer) var1.b(b)).intValue() == 0;
 	}
 
-	public boolean b(ard var1, Position var2, PaintingDirection var3) {
+	public boolean b(ard var1, Position var2, BlockFace var3) {
 		Material var4 = var1.p(var2).getBlock().r();
-		return var4 == this.material ? false : (var3 == PaintingDirection.b ? true : (var4 == Material.ICE ? false : super.b(var1, var2, var3)));
+		return var4 == this.material ? false : (var3 == BlockFace.b ? true : (var4 == Material.ICE ? false : super.b(var1, var2, var3)));
 	}
 
 	public brt a(World var1, Position var2, bec var3) {
@@ -73,10 +73,10 @@ public abstract class axl extends Block {
 		int var4 = this.f(var1, var2);
 		Iterator var5 = en.a.iterator();
 
-		PaintingDirection var6;
+		BlockFace var6;
 		Position var7;
 		while (var5.hasNext()) {
-			var6 = (PaintingDirection) var5.next();
+			var6 = (BlockFace) var5.next();
 			var7 = var2.a(var6);
 			int var8 = this.f(var1, var7);
 			int var9;
@@ -98,7 +98,7 @@ public abstract class axl extends Block {
 			var5 = en.a.iterator();
 
 			while (var5.hasNext()) {
-				var6 = (PaintingDirection) var5.next();
+				var6 = (BlockFace) var5.next();
 				var7 = var2.a(var6);
 				if (this.b(var1, var7, var6) || this.b(var1, var7.a(), var6)) {
 					var3 = var3.a().b(0.0D, -6.0D, 0.0D);
@@ -129,12 +129,12 @@ public abstract class axl extends Block {
 	public boolean e(World var1, Position var2, bec var3) {
 		if (this.material == Material.LAVA) {
 			boolean var4 = false;
-			PaintingDirection[] var5 = PaintingDirection.values();
+			BlockFace[] var5 = BlockFace.values();
 			int var6 = var5.length;
 
 			for (int var7 = 0; var7 < var6; ++var7) {
-				PaintingDirection var8 = var5[var7];
-				if (var8 != PaintingDirection.a && var1.p(var2.a(var8)).getBlock().r() == Material.WATER) {
+				BlockFace var8 = var5[var7];
+				if (var8 != BlockFace.a && var1.p(var2.a(var8)).getBlock().r() == Material.WATER) {
 					var4 = true;
 					break;
 				}

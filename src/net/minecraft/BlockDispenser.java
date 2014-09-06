@@ -11,7 +11,7 @@ public class BlockDispenser extends atg {
 
 	protected BlockDispenser() {
 		super(Material.STONE);
-		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Boolean.valueOf(false)));
+		this.j(this.L.b().a(a, BlockFace.c).a(b, Boolean.valueOf(false)));
 		this.a(CreativeModeTab.REDSTONE);
 	}
 
@@ -26,20 +26,20 @@ public class BlockDispenser extends atg {
 
 	private void e(World var1, Position var2, bec var3) {
 		if (!var1.D) {
-			PaintingDirection var4 = (PaintingDirection) var3.b(a);
+			BlockFace var4 = (BlockFace) var3.b(a);
 			boolean var5 = var1.p(var2.c()).getBlock().m();
 			boolean var6 = var1.p(var2.d()).getBlock().m();
-			if (var4 == PaintingDirection.c && var5 && !var6) {
-				var4 = PaintingDirection.d;
-			} else if (var4 == PaintingDirection.d && var6 && !var5) {
-				var4 = PaintingDirection.c;
+			if (var4 == BlockFace.c && var5 && !var6) {
+				var4 = BlockFace.d;
+			} else if (var4 == BlockFace.d && var6 && !var5) {
+				var4 = BlockFace.c;
 			} else {
 				boolean var7 = var1.p(var2.e()).getBlock().m();
 				boolean var8 = var1.p(var2.f()).getBlock().m();
-				if (var4 == PaintingDirection.e && var7 && !var8) {
-					var4 = PaintingDirection.f;
-				} else if (var4 == PaintingDirection.f && var8 && !var7) {
-					var4 = PaintingDirection.e;
+				if (var4 == BlockFace.e && var7 && !var8) {
+					var4 = BlockFace.f;
+				} else if (var4 == BlockFace.f && var8 && !var7) {
+					var4 = BlockFace.e;
 				}
 			}
 
@@ -47,7 +47,7 @@ public class BlockDispenser extends atg {
 		}
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {
@@ -106,7 +106,7 @@ public class BlockDispenser extends atg {
 		return new TileEntityDispenser();
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(a, BlockPiston.a(var1, var2, var8)).a(b, Boolean.valueOf(false));
 	}
 
@@ -132,15 +132,15 @@ public class BlockDispenser extends atg {
 	}
 
 	public static ex a(dz var0) {
-		PaintingDirection var1 = b(var0.f());
+		BlockFace var1 = b(var0.f());
 		double var2 = var0.a() + 0.7D * (double) var1.g();
 		double var4 = var0.b() + 0.7D * (double) var1.h();
 		double var6 = var0.c() + 0.7D * (double) var1.i();
 		return new ey(var2, var4, var6);
 	}
 
-	public static PaintingDirection b(int var0) {
-		return PaintingDirection.a(var0 & 7);
+	public static BlockFace b(int var0) {
+		return BlockFace.a(var0 & 7);
 	}
 
 	public boolean N() {
@@ -161,7 +161,7 @@ public class BlockDispenser extends atg {
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((PaintingDirection) var1.b(a)).a();
+		int var3 = var2 | ((BlockFace) var1.b(a)).a();
 		if (((Boolean) var1.b(b)).booleanValue()) {
 			var3 |= 8;
 		}

@@ -186,16 +186,16 @@ public class Chunk {
 						int var7 = Integer.MAX_VALUE;
 
 						Iterator var8;
-						PaintingDirection var9;
+						BlockFace var9;
 						for (var8 = en.a.iterator(); var8.hasNext(); var7 = Math.min(var7, this.i.b(var5 + var9.g(), var6 + var9.i()))) {
-							var9 = (PaintingDirection) var8.next();
+							var9 = (BlockFace) var8.next();
 						}
 
 						this.c(var5, var6, var7);
 						var8 = en.a.iterator();
 
 						while (var8.hasNext()) {
-							var9 = (PaintingDirection) var8.next();
+							var9 = (BlockFace) var8.next();
 							this.c(var5 + var9.g(), var6 + var9.i(), var4);
 						}
 
@@ -309,7 +309,7 @@ public class Chunk {
 				Iterator var11 = en.a.iterator();
 
 				while (var11.hasNext()) {
-					PaintingDirection var12 = (PaintingDirection) var11.next();
+					BlockFace var12 = (BlockFace) var11.next();
 					this.a(var6 + var12.g(), var7 + var12.i(), var13, var14);
 				}
 
@@ -934,11 +934,11 @@ public class Chunk {
 				Position var7 = var1.a(var4, (var3 << 4) + var6, var5);
 				boolean var8 = var6 == 0 || var6 == 15 || var4 == 0 || var4 == 15 || var5 == 0 || var5 == 15;
 				if (this.chunkSections[var3] == null && var8 || this.chunkSections[var3] != null && this.chunkSections[var3].b(var4, var6, var5).r() == Material.AIR) {
-					PaintingDirection[] var9 = PaintingDirection.values();
+					BlockFace[] var9 = BlockFace.values();
 					int var10 = var9.length;
 
 					for (int var11 = 0; var11 < var10; ++var11) {
-						PaintingDirection var12 = var9[var11];
+						BlockFace var12 = var9[var11];
 						Position var13 = var7.a(var12);
 						if (this.i.p(var13).getBlock().p() > 0) {
 							this.i.x(var13);
@@ -971,7 +971,7 @@ public class Chunk {
 					Iterator var5 = en.a.iterator();
 
 					while (var5.hasNext()) {
-						PaintingDirection var6 = (PaintingDirection) var5.next();
+						BlockFace var6 = (BlockFace) var5.next();
 						int var4 = var6.c() == em.a ? 16 : 1;
 						this.i.f(var1.a(var6, var4)).a(var6.d());
 					}
@@ -993,22 +993,22 @@ public class Chunk {
 		this.h(false);
 	}
 
-	private void a(PaintingDirection var1) {
+	private void a(BlockFace var1) {
 		if (this.n) {
 			int var2;
-			if (var1 == PaintingDirection.f) {
+			if (var1 == BlockFace.f) {
 				for (var2 = 0; var2 < 16; ++var2) {
 					this.e(15, var2);
 				}
-			} else if (var1 == PaintingDirection.e) {
+			} else if (var1 == BlockFace.e) {
 				for (var2 = 0; var2 < 16; ++var2) {
 					this.e(0, var2);
 				}
-			} else if (var1 == PaintingDirection.d) {
+			} else if (var1 == BlockFace.d) {
 				for (var2 = 0; var2 < 16; ++var2) {
 					this.e(var2, 15);
 				}
-			} else if (var1 == PaintingDirection.c) {
+			} else if (var1 == BlockFace.c) {
 				for (var2 = 0; var2 < 16; ++var2) {
 					this.e(var2, 0);
 				}

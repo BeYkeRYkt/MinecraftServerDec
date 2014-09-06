@@ -13,7 +13,7 @@ public class BlockDoor extends Block {
 
 	protected BlockDoor(Material var1) {
 		super(var1);
-		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Boolean.valueOf(false)).a(M, avh.a).a(N, Boolean.valueOf(false)).a(O, avg.b));
+		this.j(this.L.b().a(a, BlockFace.c).a(b, Boolean.valueOf(false)).a(M, avh.a).a(N, Boolean.valueOf(false)).a(O, avg.b));
 	}
 
 	public boolean c() {
@@ -40,48 +40,48 @@ public class BlockDoor extends Block {
 	private void k(int var1) {
 		float var2 = 0.1875F;
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
-		PaintingDirection var3 = f(var1);
+		BlockFace var3 = f(var1);
 		boolean var4 = g(var1);
 		boolean var5 = j(var1);
 		if (var4) {
-			if (var3 == PaintingDirection.f) {
+			if (var3 == BlockFace.f) {
 				if (!var5) {
 					this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var2);
 				} else {
 					this.a(0.0F, 0.0F, 1.0F - var2, 1.0F, 1.0F, 1.0F);
 				}
-			} else if (var3 == PaintingDirection.d) {
+			} else if (var3 == BlockFace.d) {
 				if (!var5) {
 					this.a(1.0F - var2, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 				} else {
 					this.a(0.0F, 0.0F, 0.0F, var2, 1.0F, 1.0F);
 				}
-			} else if (var3 == PaintingDirection.e) {
+			} else if (var3 == BlockFace.e) {
 				if (!var5) {
 					this.a(0.0F, 0.0F, 1.0F - var2, 1.0F, 1.0F, 1.0F);
 				} else {
 					this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var2);
 				}
-			} else if (var3 == PaintingDirection.c) {
+			} else if (var3 == BlockFace.c) {
 				if (!var5) {
 					this.a(0.0F, 0.0F, 0.0F, var2, 1.0F, 1.0F);
 				} else {
 					this.a(1.0F - var2, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 				}
 			}
-		} else if (var3 == PaintingDirection.f) {
+		} else if (var3 == BlockFace.f) {
 			this.a(0.0F, 0.0F, 0.0F, var2, 1.0F, 1.0F);
-		} else if (var3 == PaintingDirection.d) {
+		} else if (var3 == BlockFace.d) {
 			this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var2);
-		} else if (var3 == PaintingDirection.e) {
+		} else if (var3 == BlockFace.e) {
 			this.a(1.0F - var2, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-		} else if (var3 == PaintingDirection.c) {
+		} else if (var3 == BlockFace.c) {
 			this.a(0.0F, 0.0F, 1.0F - var2, 1.0F, 1.0F, 1.0F);
 		}
 
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (this.material == Material.ORE) {
 			return true;
 		} else {
@@ -191,7 +191,7 @@ public class BlockDoor extends Block {
 	}
 
 	private Item j() {
-		return this == Blocks.IRON_DOOR ? Items.aB : (this == Blocks.SPRUCE_DOOR ? Items.ar : (this == Blocks.BIRCH_DOOR ? Items.as : (this == Blocks.JUNGLE_DOOR ? Items.at : (this == Blocks.ACACIA_DOOR ? Items.au : (this == Blocks.DARK_OAK_DOOR ? Items.av : Items.aq)))));
+		return this == Blocks.IRON_DOOR ? Items.IRON_DOOR : (this == Blocks.SPRUCE_DOOR ? Items.SPRUCE_DOOR : (this == Blocks.BIRCH_DOOR ? Items.BIRCH_DOOR : (this == Blocks.JUNGLE_DOOR ? Items.JUNGLE_DOOR : (this == Blocks.ACACIA_DOOR ? Items.ACACIA_DOOR : (this == Blocks.DARK_OAK_DOOR ? Items.DARK_OAK_DOOR : Items.WOODEN_DOOR)))));
 	}
 
 	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
@@ -220,7 +220,7 @@ public class BlockDoor extends Block {
 	}
 
 	public bec a(int var1) {
-		return (var1 & 8) > 0 ? this.P().a(O, avg.a).a(M, (var1 & 1) > 0 ? avh.b : avh.a).a(N, Boolean.valueOf((var1 & 2) > 0)) : this.P().a(O, avg.b).a(a, PaintingDirection.fromByte(var1 & 3).f()).a(b, Boolean.valueOf((var1 & 4) > 0));
+		return (var1 & 8) > 0 ? this.P().a(O, avg.a).a(M, (var1 & 1) > 0 ? avh.b : avh.a).a(N, Boolean.valueOf((var1 & 2) > 0)) : this.P().a(O, avg.b).a(a, BlockFace.fromByte(var1 & 3).f()).a(b, Boolean.valueOf((var1 & 4) > 0));
 	}
 
 	public int c(bec var1) {
@@ -236,7 +236,7 @@ public class BlockDoor extends Block {
 				var3 |= 2;
 			}
 		} else {
-			var3 = var2 | ((PaintingDirection) var1.b(a)).e().toByte();
+			var3 = var2 | ((BlockFace) var1.b(a)).e().toByte();
 			if (((Boolean) var1.b(b)).booleanValue()) {
 				var3 |= 4;
 			}
@@ -253,12 +253,12 @@ public class BlockDoor extends Block {
 		return g(e(var0, var1));
 	}
 
-	public static PaintingDirection h(ard var0, Position var1) {
+	public static BlockFace h(ard var0, Position var1) {
 		return f(e(var0, var1));
 	}
 
-	public static PaintingDirection f(int var0) {
-		return PaintingDirection.fromByte(var0 & 3).f();
+	public static BlockFace f(int var0) {
+		return BlockFace.fromByte(var0 & 3).f();
 	}
 
 	protected static boolean g(int var0) {

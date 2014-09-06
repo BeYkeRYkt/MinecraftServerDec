@@ -5,12 +5,12 @@ import com.google.common.collect.Multimap;
 public class ItemSword extends Item {
 
 	private float a;
-	private final ami b;
+	private final EnumToolMaterial b;
 
-	public ItemSword(ami var1) {
+	public ItemSword(EnumToolMaterial var1) {
 		this.b = var1;
 		this.maxStackSize = 1;
-		this.d(var1.a());
+		this.setDurability(var1.a());
 		this.setCreativeModeTab(CreativeModeTab.COMBAT);
 		this.a = 4.0F + var1.c();
 	}

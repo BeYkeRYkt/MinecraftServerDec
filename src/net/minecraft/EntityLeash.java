@@ -22,7 +22,7 @@ public class EntityLeash extends adj {
 		super.h();
 	}
 
-	public void a(PaintingDirection var1) {
+	public void a(BlockFace var1) {
 	}
 
 	public int l() {
@@ -57,7 +57,7 @@ public class EntityLeash extends adj {
 		List var6;
 		Iterator var7;
 		EntityInsentient var8;
-		if (var2 != null && var2.getItem() == Items.cn && !this.o.D) {
+		if (var2 != null && var2.getItem() == Items.LEAD && !this.o.D) {
 			var4 = 7.0D;
 			var6 = this.o.a(EntityInsentient.class, new brt(this.locationX - var4, this.locationY - var4, this.locationZ - var4, this.locationX + var4, this.locationY + var4, this.locationZ + var4));
 			var7 = var6.iterator();

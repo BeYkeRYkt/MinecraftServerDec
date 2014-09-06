@@ -33,15 +33,15 @@ public class aai extends zf {
 					if (var3 != null) {
 						Item var5 = var3.getItem();
 						int var6;
-						if ((var5 == Items.P || var5 == Items.bS || var5 == Items.bR) && var3.b > 3) {
+						if ((var5 == Items.BREAD || var5 == Items.POTATO || var5 == Items.CARROT) && var3.b > 3) {
 							var6 = var3.b / 2;
 							var3.b -= var6;
 							var4 = new ItemStack(var5, var6, var3.i());
-						} else if (var5 == Items.O && var3.b > 5) {
+						} else if (var5 == Items.WHEAT && var3.b > 5) {
 							var6 = var3.b / 2 / 3 * 3;
 							int var7 = var6 / 3;
 							var3.b -= var6;
-							var4 = new ItemStack(Items.P, var7, 0);
+							var4 = new ItemStack(Items.BREAD, var7, 0);
 						}
 
 						if (var3.b <= 0) {

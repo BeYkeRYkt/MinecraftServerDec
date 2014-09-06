@@ -9,7 +9,7 @@ public class ble extends blb {
 	public ble() {
 	}
 
-	public ble(PaintingDirection var1, bjb var2, int var3) {
+	public ble(BlockFace var1, bjb var2, int var3) {
 		super(var1, var2);
 		this.o = var3 & 1;
 	}

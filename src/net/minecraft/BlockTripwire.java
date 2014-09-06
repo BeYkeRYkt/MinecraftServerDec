@@ -23,7 +23,7 @@ public class BlockTripwire extends Block {
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
-		return var1.a(O, Boolean.valueOf(c(var2, var3, var1, PaintingDirection.c))).a(P, Boolean.valueOf(c(var2, var3, var1, PaintingDirection.f))).a(Q, Boolean.valueOf(c(var2, var3, var1, PaintingDirection.d))).a(R, Boolean.valueOf(c(var2, var3, var1, PaintingDirection.e)));
+		return var1.a(O, Boolean.valueOf(c(var2, var3, var1, BlockFace.c))).a(P, Boolean.valueOf(c(var2, var3, var1, BlockFace.f))).a(Q, Boolean.valueOf(c(var2, var3, var1, BlockFace.d))).a(R, Boolean.valueOf(c(var2, var3, var1, BlockFace.e)));
 	}
 
 	public brt a(World var1, Position var2, bec var3) {
@@ -39,7 +39,7 @@ public class BlockTripwire extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Items.F;
+		return Items.STRING;
 	}
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
@@ -78,7 +78,7 @@ public class BlockTripwire extends Block {
 
 	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
 		if (!var1.D) {
-			if (var4.bY() != null && var4.bY().getItem() == Items.be) {
+			if (var4.bY() != null && var4.bY().getItem() == Items.SHEARS) {
 				var1.a(var2, var3.a(N, Boolean.valueOf(true)), 4);
 			}
 
@@ -86,12 +86,12 @@ public class BlockTripwire extends Block {
 	}
 
 	private void e(World var1, Position var2, bec var3) {
-		PaintingDirection[] var4 = new PaintingDirection[] { PaintingDirection.d, PaintingDirection.e };
+		BlockFace[] var4 = new BlockFace[] { BlockFace.d, BlockFace.e };
 		int var5 = var4.length;
 		int var6 = 0;
 
 		while (var6 < var5) {
-			PaintingDirection var7 = var4[var6];
+			BlockFace var7 = var4[var6];
 			int var8 = 1;
 
 			while (true) {
@@ -163,12 +163,12 @@ public class BlockTripwire extends Block {
 
 	}
 
-	public static boolean c(ard var0, Position var1, bec var2, PaintingDirection var3) {
+	public static boolean c(ard var0, Position var1, bec var2, BlockFace var3) {
 		Position var4 = var1.a(var3);
 		bec var5 = var0.p(var4);
 		Block var6 = var5.getBlock();
 		if (var6 == Blocks.TRIPWIRE_HOOK) {
-			PaintingDirection var9 = var3.d();
+			BlockFace var9 = var3.d();
 			return var5.b(BlockTripwireHook.a) == var9;
 		} else if (var6 == Blocks.TRIPWIRE) {
 			boolean var7 = ((Boolean) var2.b(b)).booleanValue();

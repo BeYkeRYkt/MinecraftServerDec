@@ -10,7 +10,7 @@ public class BlockClay extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Items.aI;
+		return Items.CLAY_BALL;
 	}
 
 	public int a(Random var1) {

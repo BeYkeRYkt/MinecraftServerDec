@@ -151,7 +151,7 @@ public class TileEntityFurnace extends bdf implements pm, we {
 						if (this.h[1] != null) {
 							--this.h[1].b;
 							if (this.h[1].b == 0) {
-								Item var3 = this.h[1].getItem().q();
+								Item var3 = this.h[1].getItem().getCraftingResult();
 								this.h[1] = var3 != null ? new ItemStack(var3) : null;
 							}
 						}
@@ -205,8 +205,8 @@ public class TileEntityFurnace extends bdf implements pm, we {
 				++this.h[2].b;
 			}
 
-			if (this.h[0].getItem() == Item.getItemOf(Blocks.SPONGE) && this.h[0].i() == 1 && this.h[1] != null && this.h[1].getItem() == Items.aw) {
-				this.h[1] = new ItemStack(Items.ax);
+			if (this.h[0].getItem() == Item.getItemOf(Blocks.SPONGE) && this.h[0].i() == 1 && this.h[1] != null && this.h[1].getItem() == Items.BUCKET) {
+				this.h[1] = new ItemStack(Items.WATER_BUCKET);
 			}
 
 			--this.h[0].b;
@@ -222,7 +222,7 @@ public class TileEntityFurnace extends bdf implements pm, we {
 			return 0;
 		} else {
 			Item var1 = var0.getItem();
-			if (var1 instanceof aju && Block.a(var1) != Blocks.AIR) {
+			if (var1 instanceof ItemBlock && Block.a(var1) != Blocks.AIR) {
 				Block var2 = Block.a(var1);
 				if (var2 == Blocks.WOODEN_SLAB) {
 					return 150;
@@ -237,7 +237,7 @@ public class TileEntityFurnace extends bdf implements pm, we {
 				}
 			}
 
-			return var1 instanceof ItemTool && ((ItemTool) var1).h().equals("WOOD") ? 200 : (var1 instanceof ItemSword && ((ItemSword) var1).h().equals("WOOD") ? 200 : (var1 instanceof alo && ((alo) var1).g().equals("WOOD") ? 200 : (var1 == Items.y ? 100 : (var1 == Items.h ? 1600 : (var1 == Items.ay ? 20000 : (var1 == Item.getItemOf(Blocks.SAPLING) ? 100 : (var1 == Items.bv ? 2400 : 0)))))));
+			return var1 instanceof ItemTool && ((ItemTool) var1).h().equals("WOOD") ? 200 : (var1 instanceof ItemSword && ((ItemSword) var1).h().equals("WOOD") ? 200 : (var1 instanceof ItemHoe && ((ItemHoe) var1).g().equals("WOOD") ? 200 : (var1 == Items.STICK ? 100 : (var1 == Items.COAL ? 1600 : (var1 == Items.LAVA_BUCKET ? 20000 : (var1 == Item.getItemOf(Blocks.SAPLING) ? 100 : (var1 == Items.BLAZE_ROD ? 2400 : 0)))))));
 		}
 	}
 
@@ -259,18 +259,18 @@ public class TileEntityFurnace extends bdf implements pm, we {
 		return var1 == 2 ? false : (var1 != 1 ? true : c(var2) || aiu.c_(var2));
 	}
 
-	public int[] a(PaintingDirection var1) {
-		return var1 == PaintingDirection.a ? f : (var1 == PaintingDirection.b ? a : g);
+	public int[] a(BlockFace var1) {
+		return var1 == BlockFace.a ? f : (var1 == BlockFace.b ? a : g);
 	}
 
-	public boolean a(int var1, ItemStack var2, PaintingDirection var3) {
+	public boolean a(int var1, ItemStack var2, BlockFace var3) {
 		return this.b(var1, var2);
 	}
 
-	public boolean b(int var1, ItemStack var2, PaintingDirection var3) {
-		if (var3 == PaintingDirection.a && var1 == 1) {
+	public boolean b(int var1, ItemStack var2, BlockFace var3) {
+		if (var3 == BlockFace.a && var1 == 1) {
 			Item var4 = var2.getItem();
-			if (var4 != Items.ax && var4 != Items.aw) {
+			if (var4 != Items.WATER_BUCKET && var4 != Items.BUCKET) {
 				return false;
 			}
 		}

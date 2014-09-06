@@ -292,13 +292,13 @@ public class EntityGuardian extends EntityMonster {
 	protected void b(boolean var1, int var2) {
 		int var3 = this.V.nextInt(3) + this.V.nextInt(var2 + 1);
 		if (var3 > 0) {
-			this.a(new ItemStack(Items.cC, var3, 0), 1.0F);
+			this.a(new ItemStack(Items.PRISMARINE_SHARD, var3, 0), 1.0F);
 		}
 
 		if (this.V.nextInt(3 + var2) > 1) {
-			this.a(new ItemStack(Items.aU, 1, ali.a.a()), 1.0F);
+			this.a(new ItemStack(Items.FISH, 1, ali.a.a()), 1.0F);
 		} else if (this.V.nextInt(3 + var2) > 1) {
-			this.a(new ItemStack(Items.cD, 1, 0), 1.0F);
+			this.a(new ItemStack(Items.PRISMARINE_CRYSTALS, 1, 0), 1.0F);
 		}
 
 		if (var1 && this.cl()) {

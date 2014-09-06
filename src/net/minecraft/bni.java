@@ -8,13 +8,13 @@ public class bni extends bnn {
 	public bni() {
 	}
 
-	public bni(bnk var1, int var2, Random var3, bjb var4, PaintingDirection var5) {
+	public bni(bnk var1, int var2, Random var3, bjb var4, BlockFace var5) {
 		super(var1, var2);
 		this.m = var5;
 		this.l = var4;
 	}
 
-	public static bni a(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
+	public static bni a(bnk var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6, int var7) {
 		bjb var8 = bjb.a(var3, var4, var5, 0, 0, 0, 5, 12, 9, var6);
 		return a(var8) && bms.a(var1, var8) == null ? new bni(var0, var7, var2, var8, var6) : null;
 	}
@@ -84,7 +84,7 @@ public class bni extends bnn {
 
 		this.a(var1, Blocks.AIR.P(), 2, 1, 0, var3);
 		this.a(var1, Blocks.AIR.P(), 2, 2, 0, var3);
-		this.a(var1, var3, var2, 2, 1, 0, PaintingDirection.fromByte(this.a(Blocks.WOODEN_DOOR, 1)));
+		this.a(var1, var3, var2, 2, 1, 0, BlockFace.fromByte(this.a(Blocks.WOODEN_DOOR, 1)));
 		if (this.a(var1, 2, 0, -1, var3).getBlock().r() == Material.AIR && this.a(var1, 2, -1, -1, var3).getBlock().r() != Material.AIR) {
 			this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 2, 0, -1, var3);
 		}

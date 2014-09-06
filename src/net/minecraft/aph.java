@@ -41,7 +41,7 @@ public class aph {
 
 	public static Map a(ItemStack var0) {
 		LinkedHashMap var1 = Maps.newLinkedHashMap();
-		NBTListTag var2 = var0.getItem() == Items.cd ? Items.cd.h(var0) : var0.p();
+		NBTListTag var2 = var0.getItem() == Items.ENCHANTED_BOOK ? Items.ENCHANTED_BOOK.h(var0) : var0.p();
 		if (var2 != null) {
 			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 				short var4 = var2.getCompound(var3).getShort("id");
@@ -65,14 +65,14 @@ public class aph {
 				var6.put("id", (short) var4);
 				var6.put("lvl", (short) ((Integer) var0.get(Integer.valueOf(var4))).intValue());
 				var2.addTag((NBTTag) var6);
-				if (var1.getItem() == Items.cd) {
-					Items.cd.a(var1, new apo(var5, ((Integer) var0.get(Integer.valueOf(var4))).intValue()));
+				if (var1.getItem() == Items.ENCHANTED_BOOK) {
+					Items.ENCHANTED_BOOK.a(var1, new apo(var5, ((Integer) var0.get(Integer.valueOf(var4))).intValue()));
 				}
 			}
 		}
 
 		if (var2.getSize() > 0) {
-			if (var1.getItem() != Items.cd) {
+			if (var1.getItem() != Items.ENCHANTED_BOOK) {
 				var1.a("ench", (NBTTag) var2);
 			}
 		} else if (var1.hasTag()) {
@@ -247,9 +247,9 @@ public class aph {
 
 	public static ItemStack a(Random var0, ItemStack var1, int var2) {
 		List var3 = b(var0, var1, var2);
-		boolean var4 = var1.getItem() == Items.aL;
+		boolean var4 = var1.getItem() == Items.BOOK;
 		if (var4) {
-			var1.a((Item) Items.cd);
+			var1.a((Item) Items.ENCHANTED_BOOK);
 		}
 
 		if (var3 != null) {
@@ -258,7 +258,7 @@ public class aph {
 			while (var5.hasNext()) {
 				apo var6 = (apo) var5.next();
 				if (var4) {
-					Items.cd.a(var1, var6);
+					Items.ENCHANTED_BOOK.a(var1, var6);
 				} else {
 					var1.a(var6.b, var6.c);
 				}
@@ -331,7 +331,7 @@ public class aph {
 	public static Map b(int var0, ItemStack var1) {
 		Item var2 = var1.getItem();
 		HashMap var3 = null;
-		boolean var4 = var1.getItem() == Items.aL;
+		boolean var4 = var1.getItem() == Items.BOOK;
 		Enchantment[] var5 = Enchantment.enchants;
 		int var6 = var5.length;
 

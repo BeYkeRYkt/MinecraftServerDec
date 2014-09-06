@@ -15,25 +15,25 @@ public class Bootstrap {
 	}
 
 	static void registerDispensers() {
-		BlockDispenser.M.a(Items.g, new oe());
-		BlockDispenser.M.a(Items.aP, new on());
-		BlockDispenser.M.a(Items.aD, new oo());
-		BlockDispenser.M.a(Items.bK, new op());
-		BlockDispenser.M.a(Items.bz, new oq());
-		BlockDispenser.M.a(Items.bJ, new os());
-		BlockDispenser.M.a(Items.cb, new ot());
-		BlockDispenser.M.a(Items.bL, new ou());
-		BlockDispenser.M.a(Items.aE, new ov());
+		BlockDispenser.M.a(Items.ARROW, new DispenseBehaviorArrow());
+		BlockDispenser.M.a(Items.EGG, new DispenseBehaviorEgg());
+		BlockDispenser.M.a(Items.SNOWBALL, new DispenseBehaviorSnowBall());
+		BlockDispenser.M.a(Items.EXP_BOTTLE, new DispenseBehaviorExpBottle());
+		BlockDispenser.M.a(Items.POTION, new DispenseBehaviorPotion());
+		BlockDispenser.M.a(Items.SPAWNEGG, new DispenseBehaviorMonsterEgg());
+		BlockDispenser.M.a(Items.FIREWORKS, new DispenseBehaviorFireworks());
+		BlockDispenser.M.a(Items.FIRE_CHARGE, new DispenseBehaviorFireball());
+		BlockDispenser.M.a(Items.BOAT, new DispenseBehaviorBoat());
 		DispenseBehaviorFilledBucket dispensebehaviorfilledbucket = new DispenseBehaviorFilledBucket();
-		BlockDispenser.M.a(Items.ay, dispensebehaviorfilledbucket);
-		BlockDispenser.M.a(Items.ax, dispensebehaviorfilledbucket);
-		BlockDispenser.M.a(Items.aw, new og());
-		BlockDispenser.M.a(Items.d, new oh());
-		BlockDispenser.M.a(Items.aW, new oi());
-		BlockDispenser.M.a(Item.getItemOf(Blocks.TNT), new oj());
-		BlockDispenser.M.a(Items.bX, new ok());
-		BlockDispenser.M.a(Item.getItemOf(Blocks.PUMPKIN), new ol());
-		BlockDispenser.M.a(Item.getItemOf(Blocks.COMMAND_BLOCK), new om());
+		BlockDispenser.M.a(Items.LAVA_BUCKET, dispensebehaviorfilledbucket);
+		BlockDispenser.M.a(Items.WATER_BUCKET, dispensebehaviorfilledbucket);
+		BlockDispenser.M.a(Items.BUCKET, new DispenseBehaviorEmptyBucket());
+		BlockDispenser.M.a(Items.FLINT_AND_STEEL, new DispenseBehaviorFlintAndSteel());
+		BlockDispenser.M.a(Items.DYE, new DispenseBehaviorDye());
+		BlockDispenser.M.a(Item.getItemOf(Blocks.TNT), new DispenseBehaviorBonemeal());
+		BlockDispenser.M.a(Items.SKULL, new DispenseBehaviorSkull());
+		BlockDispenser.M.a(Item.getItemOf(Blocks.PUMPKIN), new DispenseBehaviorPumpkin());
+		BlockDispenser.M.a(Item.getItemOf(Blocks.COMMAND_BLOCK), new DispenseBehaviorCommandBlock());
 	}
 
 	public static void load() {

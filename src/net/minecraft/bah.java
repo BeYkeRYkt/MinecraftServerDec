@@ -18,7 +18,7 @@ public class bah extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Items.cD;
+		return Items.PRISMARINE_CRYSTALS;
 	}
 
 	public MaterialMapColor g(bec var1) {

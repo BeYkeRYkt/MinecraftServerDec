@@ -17,7 +17,7 @@ public class EntityChicken extends abq {
 		this.i.a(0, new yy(this));
 		this.i.a(1, new zu(this, 1.4D));
 		this.i.a(2, new yt(this, 1.0D));
-		this.i.a(3, new aag(this, 1.0D, Items.N, false));
+		this.i.a(3, new aag(this, 1.0D, Items.WHEAT_SEEDS, false));
 		this.i.a(4, new za(this, 1.1D));
 		this.i.a(5, new zy(this, 1.0D));
 		this.i.a(6, new zh(this, EntityHuman.class, 6.0F));
@@ -52,7 +52,7 @@ public class EntityChicken extends abq {
 		this.bk += this.bp * 2.0F;
 		if (!this.o.D && !this.i_() && !this.cj() && --this.bq <= 0) {
 			this.a("mob.chicken.plop", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
-			this.a(Items.aP, 1);
+			this.a(Items.EGG, 1);
 			this.bq = this.V.nextInt(6000) + 6000;
 		}
 
@@ -78,20 +78,20 @@ public class EntityChicken extends abq {
 	}
 
 	protected Item A() {
-		return Items.G;
+		return Items.FEATHER;
 	}
 
 	protected void b(boolean var1, int var2) {
 		int var3 = this.V.nextInt(3) + this.V.nextInt(1 + var2);
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			this.a(Items.G, 1);
+			this.a(Items.FEATHER, 1);
 		}
 
 		if (this.au()) {
-			this.a(Items.bl, 1);
+			this.a(Items.COOKED_CHICKEN, 1);
 		} else {
-			this.a(Items.bk, 1);
+			this.a(Items.CHICKEN, 1);
 		}
 
 	}
@@ -101,7 +101,7 @@ public class EntityChicken extends abq {
 	}
 
 	public boolean d(ItemStack var1) {
-		return var1 != null && var1.getItem() == Items.N;
+		return var1 != null && var1.getItem() == Items.WHEAT_SEEDS;
 	}
 
 	public void a(NBTCompoundTag var1) {

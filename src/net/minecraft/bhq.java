@@ -4,14 +4,14 @@ import java.util.Random;
 
 public class bhq extends bhp {
 
-	private avy a;
+	private BlockFlowers a;
 	private bec b;
 
-	public bhq(avy var1, awa var2) {
+	public bhq(BlockFlowers var1, awa var2) {
 		this.a(var1, var2);
 	}
 
-	public void a(avy var1, awa var2) {
+	public void a(BlockFlowers var1, awa var2) {
 		this.a = var1;
 		this.b = var1.P().a(var1.l(), var2);
 	}

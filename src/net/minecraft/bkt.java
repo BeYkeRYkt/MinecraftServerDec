@@ -7,7 +7,7 @@ public class bkt extends blb {
 	public bkt() {
 	}
 
-	public bkt(PaintingDirection var1, blf var2, Random var3) {
+	public bkt(BlockFace var1, blf var2, Random var3) {
 		super(1, var1, var2, 2, 2, 2);
 	}
 

@@ -8,7 +8,7 @@ public class bjx extends bkb {
 	public bjx() {
 	}
 
-	public bjx(int var1, Random var2, bjb var3, PaintingDirection var4) {
+	public bjx(int var1, Random var2, bjb var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
@@ -18,7 +18,7 @@ public class bjx extends bkb {
 		this.a((bkf) var1, var2, var3, 1, 0, true);
 	}
 
-	public static bjx a(List var0, Random var1, int var2, int var3, int var4, PaintingDirection var5, int var6) {
+	public static bjx a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5, int var6) {
 		bjb var7 = bjb.a(var2, var3, var4, -1, 0, 0, 5, 7, 5, var5);
 		return a(var7) && bms.a(var0, var7) == null ? new bjx(var6, var1, var7, var5) : null;
 	}

@@ -8,13 +8,13 @@ public class bnd extends bnn {
 	public bnd() {
 	}
 
-	public bnd(bnk var1, int var2, Random var3, bjb var4, PaintingDirection var5) {
+	public bnd(bnk var1, int var2, Random var3, bjb var4, BlockFace var5) {
 		super(var1, var2);
 		this.m = var5;
 		this.l = var4;
 	}
 
-	public static bjb a(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6) {
+	public static bjb a(bnk var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6) {
 		bjb var7 = bjb.a(var3, var4, var5, 0, 0, 0, 3, 4, 2, var6);
 		return bms.a(var1, var7) != null ? null : var7;
 	}
@@ -34,7 +34,7 @@ public class bnd extends bnn {
 		this.a(var1, Blocks.FENCE.P(), 1, 1, 0, var3);
 		this.a(var1, Blocks.FENCE.P(), 1, 2, 0, var3);
 		this.a(var1, Blocks.WOOL.a(akv.a.b()), 1, 3, 0, var3);
-		boolean var4 = this.m == PaintingDirection.f || this.m == PaintingDirection.c;
+		boolean var4 = this.m == BlockFace.f || this.m == BlockFace.c;
 		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m.e()), var4 ? 2 : 0, 3, 0, var3);
 		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m), 1, 3, 1, var3);
 		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m.f()), var4 ? 0 : 2, 3, 0, var3);

@@ -195,7 +195,7 @@ public class EntitySlime extends EntityInsentient implements aex {
 	}
 
 	protected Item A() {
-		return this.ck() == 1 ? Items.aM : null;
+		return this.ck() == 1 ? Items.SLIME_BALL : null;
 	}
 
 	public boolean bQ() {

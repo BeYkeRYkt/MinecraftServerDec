@@ -46,10 +46,10 @@ public class aor implements aoo {
 			var4 = (ItemStack) var2.get(1);
 			if (var10.getItem() == var4.getItem() && var10.b == 1 && var4.b == 1 && var10.getItem().usesDurability()) {
 				Item var11 = var10.getItem();
-				int var6 = var11.l() - var10.h();
-				int var7 = var11.l() - var4.h();
-				int var8 = var6 + var7 + var11.l() * 5 / 100;
-				int var9 = var11.l() - var8;
+				int var6 = var11.getDurability() - var10.h();
+				int var7 = var11.getDurability() - var4.h();
+				int var8 = var6 + var7 + var11.getDurability() * 5 / 100;
+				int var9 = var11.getDurability() - var8;
 				if (var9 < 0) {
 					var9 = 0;
 				}
@@ -75,7 +75,7 @@ public class aor implements aoo {
 		for (int var3 = 0; var3 < var2.length; ++var3) {
 			ItemStack var4 = var1.a(var3);
 			if (var4 != null && var4.getItem().r()) {
-				var2[var3] = new ItemStack(var4.getItem().q());
+				var2[var3] = new ItemStack(var4.getItem().getCraftingResult());
 			}
 		}
 

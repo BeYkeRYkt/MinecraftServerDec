@@ -12,7 +12,7 @@ class aof implements aoo {
 		for (int var5 = 0; var5 < var1.n_(); ++var5) {
 			ItemStack var6 = var1.a(var5);
 			if (var6 != null) {
-				if (var6.getItem() != Items.cE) {
+				if (var6.getItem() != Items.BANNER) {
 					return false;
 				}
 
@@ -81,7 +81,7 @@ class aof implements aoo {
 			ItemStack var4 = var1.a(var3);
 			if (var4 != null) {
 				if (var4.getItem().r()) {
-					var2[var3] = new ItemStack(var4.getItem().q());
+					var2[var3] = new ItemStack(var4.getItem().getCraftingResult());
 				} else if (var4.hasTag() && TileEntityBanner.c(var4) > 0) {
 					var2[var3] = var4.getCopy();
 					var2[var3].b = 1;

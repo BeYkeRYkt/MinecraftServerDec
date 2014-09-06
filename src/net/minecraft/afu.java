@@ -5,7 +5,7 @@ import java.util.Random;
 class afu extends zy {
 
 	private final EntitySilverfish a;
-	private PaintingDirection b;
+	private BlockFace b;
 	private boolean c;
 
 	public afu(EntitySilverfish var1) {
@@ -22,7 +22,7 @@ class afu extends zy {
 		} else {
 			Random var1 = this.a.bb();
 			if (var1.nextInt(10) == 0) {
-				this.b = PaintingDirection.a(var1);
+				this.b = BlockFace.a(var1);
 				Position var2 = (new Position(this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ)).a(this.b);
 				bec var3 = this.a.o.p(var2);
 				if (BlockMonsterEggs.d(var3)) {

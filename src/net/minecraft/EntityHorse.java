@@ -186,7 +186,7 @@ public class EntityHorse extends abq implements vr {
 			return 0;
 		} else {
 			Item var2 = var1.getItem();
-			return var2 == Items.ck ? 1 : (var2 == Items.cl ? 2 : (var2 == Items.cm ? 3 : 0));
+			return var2 == Items.IRON_HORSE_ARMOR ? 1 : (var2 == Items.GOLDEN_HORSE_ARMOR ? 2 : (var2 == Items.DIAMOND_HORSE_ARMOR ? 3 : 0));
 		}
 	}
 
@@ -386,7 +386,7 @@ public class EntityHorse extends abq implements vr {
 	protected Item A() {
 		boolean var1 = this.V.nextInt(4) == 0;
 		int var2 = this.cj();
-		return var2 == 4 ? Items.aX : (var2 == 3 ? (var1 ? null : Items.bt) : Items.aF);
+		return var2 == 4 ? Items.BONE : (var2 == 3 ? (var1 ? null : Items.ROTTEN_FLESH) : Items.LEATHER);
 	}
 
 	protected String bn() {
@@ -484,7 +484,7 @@ public class EntityHorse extends abq implements vr {
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		if (var2 != null && var2.getItem() == Items.bJ) {
+		if (var2 != null && var2.getItem() == Items.SPAWNEGG) {
 			return super.a(var1);
 		} else if (!this.cm() && this.cP()) {
 			return false;
@@ -498,11 +498,11 @@ public class EntityHorse extends abq implements vr {
 				boolean var3 = false;
 				if (this.cM()) {
 					byte var4 = -1;
-					if (var2.getItem() == Items.ck) {
+					if (var2.getItem() == Items.IRON_HORSE_ARMOR) {
 						var4 = 1;
-					} else if (var2.getItem() == Items.cl) {
+					} else if (var2.getItem() == Items.GOLDEN_HORSE_ARMOR) {
 						var4 = 2;
-					} else if (var2.getItem() == Items.cm) {
+					} else if (var2.getItem() == Items.DIAMOND_HORSE_ARMOR) {
 						var4 = 3;
 					}
 
@@ -521,22 +521,22 @@ public class EntityHorse extends abq implements vr {
 					float var7 = 0.0F;
 					short var5 = 0;
 					byte var6 = 0;
-					if (var2.getItem() == Items.O) {
+					if (var2.getItem() == Items.WHEAT) {
 						var7 = 2.0F;
 						var5 = 20;
 						var6 = 3;
-					} else if (var2.getItem() == Items.aY) {
+					} else if (var2.getItem() == Items.SUGAR) {
 						var7 = 1.0F;
 						var5 = 30;
 						var6 = 3;
 					} else if (Block.a(var2.getItem()) == Blocks.HAY_BLOCK) {
 						var7 = 20.0F;
 						var5 = 180;
-					} else if (var2.getItem() == Items.e) {
+					} else if (var2.getItem() == Items.APPLE) {
 						var7 = 3.0F;
 						var5 = 60;
 						var6 = 3;
-					} else if (var2.getItem() == Items.bW) {
+					} else if (var2.getItem() == Items.GOLDEN_CARROT) {
 						var7 = 4.0F;
 						var5 = 60;
 						var6 = 5;
@@ -544,7 +544,7 @@ public class EntityHorse extends abq implements vr {
 							var3 = true;
 							this.c(var1);
 						}
-					} else if (var2.getItem() == Items.ao) {
+					} else if (var2.getItem() == Items.GOLDEN_APPLE) {
 						var7 = 10.0F;
 						var5 = 240;
 						var6 = 10;
@@ -590,7 +590,7 @@ public class EntityHorse extends abq implements vr {
 					this.cY();
 				}
 
-				if (!var3 && this.cn() && !this.cE() && var2.getItem() == Items.aA) {
+				if (!var3 && this.cn() && !this.cE() && var2.getItem() == Items.SADDLE) {
 					this.g(var1);
 					return true;
 				}
@@ -988,11 +988,11 @@ public class EntityHorse extends abq implements vr {
 
 		if (var1.isTagAssignableFrom("SaddleItem", 10)) {
 			var9 = ItemStack.a(var1.getCompound("SaddleItem"));
-			if (var9 != null && var9.getItem() == Items.aA) {
+			if (var9 != null && var9.getItem() == Items.SADDLE) {
 				this.bC.a(0, var9);
 			}
 		} else if (var1.getBoolean("Saddle")) {
-			this.bC.a(0, new ItemStack(Items.aA));
+			this.bC.a(0, new ItemStack(Items.SADDLE));
 		}
 
 		this.cZ();
@@ -1155,7 +1155,7 @@ public class EntityHorse extends abq implements vr {
 	}
 
 	public static boolean a(Item var0) {
-		return var0 == Items.ck || var0 == Items.cl || var0 == Items.cm;
+		return var0 == Items.IRON_HORSE_ARMOR || var0 == Items.GOLDEN_HORSE_ARMOR || var0 == Items.DIAMOND_HORSE_ARMOR;
 	}
 
 	public boolean j_() {
@@ -1183,7 +1183,7 @@ public class EntityHorse extends abq implements vr {
 
 		int var3 = var1 - 400;
 		if (var3 >= 0 && var3 < 2 && var3 < this.bC.n_()) {
-			if (var3 == 0 && var2 != null && var2.getItem() != Items.aA) {
+			if (var3 == 0 && var2 != null && var2.getItem() != Items.SADDLE) {
 				return false;
 			} else if (var3 == 1 && (var2 != null && !a(var2.getItem()) || !this.cM())) {
 				return false;

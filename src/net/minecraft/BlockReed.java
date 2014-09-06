@@ -46,13 +46,13 @@ public class BlockReed extends Block {
 		} else {
 			Iterator var4 = en.a.iterator();
 
-			PaintingDirection var5;
+			BlockFace var5;
 			do {
 				if (!var4.hasNext()) {
 					return false;
 				}
 
-				var5 = (PaintingDirection) var4.next();
+				var5 = (BlockFace) var4.next();
 			} while (var1.p(var2.a(var5).b()).getBlock().r() != Material.WATER);
 
 			return true;
@@ -82,7 +82,7 @@ public class BlockReed extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Items.aJ;
+		return Items.REEDS;
 	}
 
 	public boolean c() {

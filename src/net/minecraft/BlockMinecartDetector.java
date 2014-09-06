@@ -40,12 +40,12 @@ public class BlockMinecartDetector extends ati {
 		}
 	}
 
-	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int a(ard var1, Position var2, bec var3, BlockFace var4) {
 		return ((Boolean) var3.b(M)).booleanValue() ? 15 : 0;
 	}
 
-	public int b(ard var1, Position var2, bec var3, PaintingDirection var4) {
-		return !((Boolean) var3.b(M)).booleanValue() ? 0 : (var4 == PaintingDirection.b ? 15 : 0);
+	public int b(ard var1, Position var2, bec var3, BlockFace var4) {
+		return !((Boolean) var3.b(M)).booleanValue() ? 0 : (var4 == BlockFace.b ? 15 : 0);
 	}
 
 	private void e(World var1, Position var2, bec var3) {

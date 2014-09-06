@@ -1,6 +1,5 @@
 package net.minecraft;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -295,12 +294,12 @@ public class Block {
 	private bec M;
 	private String name;
 
-	public static int a(Block var0) {
-		return BLOCKREGISTRY.getBlockId(var0);
+	public static int getBlockId(Block block) {
+		return BLOCKREGISTRY.getBlockId(block);
 	}
 
 	public static int f(bec var0) {
-		return a(var0.getBlock()) + (var0.getBlock().c(var0) << 12);
+		return getBlockId(var0.getBlock()) + (var0.getBlock().c(var0) << 12);
 	}
 
 	public static Block c(int var0) {
@@ -314,7 +313,7 @@ public class Block {
 	}
 
 	public static Block a(Item var0) {
-		return var0 instanceof aju ? ((aju) var0).d() : null;
+		return var0 instanceof ItemBlock ? ((ItemBlock) var0).getBlock() : null;
 	}
 
 	public static Block b(String var0) {
@@ -471,7 +470,7 @@ public class Block {
 		this.G = (double) var6;
 	}
 
-	public boolean b(ard var1, Position var2, PaintingDirection var3) {
+	public boolean b(ard var1, Position var2, BlockFace var3) {
 		return var1.p(var2).getBlock().r().isBuildable();
 	}
 
@@ -648,29 +647,29 @@ public class Block {
 		if (var11 == null) {
 			return null;
 		} else {
-			PaintingDirection var12 = null;
+			BlockFace var12 = null;
 			if (var11 == var5) {
-				var12 = PaintingDirection.e;
+				var12 = BlockFace.e;
 			}
 
 			if (var11 == var6) {
-				var12 = PaintingDirection.f;
+				var12 = BlockFace.f;
 			}
 
 			if (var11 == var7) {
-				var12 = PaintingDirection.a;
+				var12 = BlockFace.a;
 			}
 
 			if (var11 == var8) {
-				var12 = PaintingDirection.b;
+				var12 = BlockFace.b;
 			}
 
 			if (var11 == var9) {
-				var12 = PaintingDirection.c;
+				var12 = BlockFace.c;
 			}
 
 			if (var11 == var10) {
-				var12 = PaintingDirection.d;
+				var12 = BlockFace.d;
 			}
 
 			return new bru(var11.b((double) var2.getX(), (double) var2.getY(), (double) var2.getZ()), var12, var2);
@@ -692,11 +691,11 @@ public class Block {
 	public void a(World var1, Position var2, aqo var3) {
 	}
 
-	public boolean a(World var1, Position var2, PaintingDirection var3, ItemStack var4) {
+	public boolean a(World var1, Position var2, BlockFace var3, ItemStack var4) {
 		return this.a(var1, var2, var3);
 	}
 
-	public boolean a(World var1, Position var2, PaintingDirection var3) {
+	public boolean a(World var1, Position var2, BlockFace var3) {
 		return this.c(var1, var2);
 	}
 
@@ -704,14 +703,14 @@ public class Block {
 		return var1.p(var2).getBlock().material.j();
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		return false;
 	}
 
 	public void a(World var1, Position var2, Entity var3) {
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.a(var7);
 	}
 
@@ -749,7 +748,7 @@ public class Block {
 		return this.G;
 	}
 
-	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int a(ard var1, Position var2, bec var3, BlockFace var4) {
 		return 0;
 	}
 
@@ -760,7 +759,7 @@ public class Block {
 	public void a(World var1, Position var2, bec var3, Entity var4) {
 	}
 
-	public int b(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int b(ard var1, Position var2, bec var3, BlockFace var4) {
 		return 0;
 	}
 
@@ -768,7 +767,7 @@ public class Block {
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
-		var2.b(StatisticList.H[a(this)]);
+		var2.b(StatisticList.H[getBlockId(this)]);
 		var2.a(0.025F);
 		if (this.G() && aph.e(var2)) {
 			ItemStack var7 = this.i(var4);
@@ -803,16 +802,16 @@ public class Block {
 	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
 	}
 
-	public Block setName(String var1) {
-		this.name = var1;
+	public Block setName(String name) {
+		this.name = name;
 		return this;
 	}
 
-	public String H() {
-		return LocaleI18n.get(this.a() + ".name");
+	public String getLocalizedName() {
+		return LocaleI18n.get(this.getName() + ".name");
 	}
 
-	public String a() {
+	public String getName() {
 		return "tile." + this.name;
 	}
 

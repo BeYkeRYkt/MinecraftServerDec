@@ -170,8 +170,8 @@ public class PersistentVillage extends bqc {
 	}
 
 	private void d(Position var1) {
-		PaintingDirection var2 = BlockDoor.h(this.b, var1);
-		PaintingDirection var3 = var2.d();
+		BlockFace var2 = BlockDoor.h(this.b, var1);
+		BlockFace var3 = var2.d();
 		int var4 = this.a(var1, var2, 5);
 		int var5 = this.a(var1, var3, var4 + 1);
 		if (var4 != var5) {
@@ -180,7 +180,7 @@ public class PersistentVillage extends bqc {
 
 	}
 
-	private int a(Position var1, PaintingDirection var2, int var3) {
+	private int a(Position var1, BlockFace var2, int var3) {
 		int var4 = 0;
 
 		for (int var5 = 1; var5 <= 5; ++var5) {

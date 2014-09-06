@@ -3,11 +3,11 @@ package net.minecraft;
 public class BlockWallBanner extends atb {
 
 	public BlockWallBanner() {
-		this.j(this.L.b().a(a, PaintingDirection.c));
+		this.j(this.L.b().a(a, BlockFace.c));
 	}
 
 	public void a(ard var1, Position var2) {
-		PaintingDirection var3 = (PaintingDirection) var1.p(var2).b(a);
+		BlockFace var3 = (BlockFace) var1.p(var2).b(a);
 		float var4 = 0.0F;
 		float var5 = 0.78125F;
 		float var6 = 0.0F;
@@ -32,7 +32,7 @@ public class BlockWallBanner extends atb {
 	}
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
-		PaintingDirection var5 = (PaintingDirection) var3.b(a);
+		BlockFace var5 = (BlockFace) var3.b(a);
 		if (!var1.p(var2.a(var5.d())).getBlock().r().isBuildable()) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -42,16 +42,16 @@ public class BlockWallBanner extends atb {
 	}
 
 	public bec a(int var1) {
-		PaintingDirection var2 = PaintingDirection.a(var1);
+		BlockFace var2 = BlockFace.a(var1);
 		if (var2.k() == el.b) {
-			var2 = PaintingDirection.c;
+			var2 = BlockFace.c;
 		}
 
 		return this.P().a(a, var2);
 	}
 
 	public int c(bec var1) {
-		return ((PaintingDirection) var1.b(a)).a();
+		return ((BlockFace) var1.b(a)).a();
 	}
 
 	protected bed e() {

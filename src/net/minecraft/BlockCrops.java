@@ -90,11 +90,11 @@ public class BlockCrops extends auc implements atz {
 	}
 
 	protected Item j() {
-		return Items.N;
+		return Items.WHEAT_SEEDS;
 	}
 
 	protected Item l() {
-		return Items.O;
+		return Items.WHEAT;
 	}
 
 	public void a(World var1, Position var2, bec var3, float var4, int var5) {

@@ -57,7 +57,7 @@ public class yw extends zb {
 				Position var2 = var1.b();
 				if (this.d.p(var2).getBlock() == Blocks.GRASS) {
 					if (this.d.Q().b("mobGriefing")) {
-						this.d.b(2001, var2, Block.a((Block) Blocks.GRASS));
+						this.d.b(2001, var2, Block.getBlockId((Block) Blocks.GRASS));
 						this.d.a(var2, Blocks.DIRT.P(), 2);
 					}
 

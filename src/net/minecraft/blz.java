@@ -6,13 +6,13 @@ import java.util.Random;
 
 public class blz extends bmk {
 
-	private static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.aL, 0, 1, 3, 20), new vl(Items.aK, 0, 2, 7, 20), new vl(Items.bV, 0, 1, 1, 1), new vl(Items.aQ, 0, 1, 1, 1) }));
+	private static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.BOOK, 0, 1, 3, 20), new vl(Items.PAPER, 0, 2, 7, 20), new vl(Items.MAP, 0, 1, 1, 1), new vl(Items.COMPASS, 0, 1, 1, 1) }));
 	private boolean b;
 
 	public blz() {
 	}
 
-	public blz(int var1, Random var2, bjb var3, PaintingDirection var4) {
+	public blz(int var1, Random var2, bjb var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.d = this.a(var2);
@@ -30,7 +30,7 @@ public class blz extends bmk {
 		this.b = var1.getBoolean("Tall");
 	}
 
-	public static blz a(List var0, Random var1, int var2, int var3, int var4, PaintingDirection var5, int var6) {
+	public static blz a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5, int var6) {
 		bjb var7 = bjb.a(var2, var3, var4, -4, -1, 0, 14, 11, 15, var5);
 		if (!a(var7) || bms.a(var0, var7) != null) {
 			var7 = bjb.a(var2, var3, var4, -4, -1, 0, 14, 6, 15, var5);
@@ -129,10 +129,10 @@ public class blz extends bmk {
 				this.a(var1, Blocks.TORCH.P(), var8, 8, var9 + 1, var3);
 			}
 
-			this.a(var1, var3, var2, 3, 3, 5, vl.a(a, new vl[] { Items.cd.a(var2, 1, 5, 2) }), 1 + var2.nextInt(4));
+			this.a(var1, var3, var2, 3, 3, 5, vl.a(a, new vl[] { Items.ENCHANTED_BOOK.a(var2, 1, 5, 2) }), 1 + var2.nextInt(4));
 			if (this.b) {
 				this.a(var1, Blocks.AIR.P(), 12, 9, 1, var3);
-				this.a(var1, var3, var2, 12, 8, 1, vl.a(a, new vl[] { Items.cd.a(var2, 1, 5, 2) }), 1 + var2.nextInt(4));
+				this.a(var1, var3, var2, 12, 8, 1, vl.a(a, new vl[] { Items.ENCHANTED_BOOK.a(var2, 1, 5, 2) }), 1 + var2.nextInt(4));
 			}
 
 			return true;

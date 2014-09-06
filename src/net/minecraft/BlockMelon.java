@@ -10,7 +10,7 @@ public class BlockMelon extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Items.bf;
+		return Items.MELON;
 	}
 
 	public int a(Random var1) {

@@ -31,9 +31,9 @@ public class BlockFlowerPot extends atg {
 		return false;
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		ItemStack var9 = var4.playerInventory.getItemInHand();
-		if (var9 != null && var9.getItem() instanceof aju) {
+		if (var9 != null && var9.getItem() instanceof ItemBlock) {
 			TileEntityFlowerPot var10 = this.d(var1, var2);
 			if (var10 == null) {
 				return false;
@@ -101,7 +101,7 @@ public class BlockFlowerPot extends atg {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Items.bQ;
+		return Items.FLOWER_POT;
 	}
 
 	private TileEntityFlowerPot d(World var1, Position var2) {
@@ -178,7 +178,7 @@ public class BlockFlowerPot extends atg {
 		if (var5 instanceof TileEntityFlowerPot) {
 			TileEntityFlowerPot var6 = (TileEntityFlowerPot) var5;
 			Item var7 = var6.b();
-			if (var7 instanceof aju) {
+			if (var7 instanceof ItemBlock) {
 				int var8 = var6.c();
 				Block var9 = Block.a(var7);
 				if (var9 == Blocks.SAPLING) {

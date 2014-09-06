@@ -367,7 +367,7 @@ public class EntityWither extends EntityMonster implements afr {
 	}
 
 	protected void b(boolean var1, int var2) {
-		EntityItem var3 = this.a(Items.bZ, 1);
+		EntityItem var3 = this.a(Items.NETHER_STAR, 1);
 		if (var3 != null) {
 			var3.u();
 		}

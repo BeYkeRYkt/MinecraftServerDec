@@ -13,7 +13,7 @@ public class EntityOcelot extends xx {
 		((aay) this.s()).a(true);
 		this.i.a(1, new yy(this));
 		this.i.a(2, this.bk);
-		this.i.a(3, this.bn = new aag(this, 0.6D, Items.aU, true));
+		this.i.a(3, this.bn = new aag(this, 0.6D, Items.FISH, true));
 		this.i.a(5, new yz(this, 1.0D, 10.0F, 5.0F));
 		this.i.a(6, new zr(this, 0.8D));
 		this.i.a(7, new zg(this, 0.3F));
@@ -89,7 +89,7 @@ public class EntityOcelot extends xx {
 	}
 
 	protected Item A() {
-		return Items.aF;
+		return Items.LEATHER;
 	}
 
 	public boolean r(Entity var1) {
@@ -114,7 +114,7 @@ public class EntityOcelot extends xx {
 			if (this.e(var1) && !this.o.D && !this.d(var2)) {
 				this.bk.a(!this.cl());
 			}
-		} else if (this.bn.f() && var2 != null && var2.getItem() == Items.aU && var1.h(this) < 9.0D) {
+		} else if (this.bn.f() && var2 != null && var2.getItem() == Items.FISH && var1.h(this) < 9.0D) {
 			if (!var1.by.instabuild) {
 				--var2.b;
 			}
@@ -155,7 +155,7 @@ public class EntityOcelot extends xx {
 	}
 
 	public boolean d(ItemStack var1) {
-		return var1 != null && var1.getItem() == Items.aU;
+		return var1 != null && var1.getItem() == Items.FISH;
 	}
 
 	public boolean a(abq var1) {

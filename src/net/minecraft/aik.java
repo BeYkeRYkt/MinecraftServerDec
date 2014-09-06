@@ -18,7 +18,7 @@ class aik extends ajk {
 	}
 
 	public void a(EntityHuman var1, ItemStack var2) {
-		if (var2.getItem() == Items.bz && var2.i() > 0) {
+		if (var2.getItem() == Items.POTION && var2.i() > 0) {
 			this.a.b((Statistic) tl.B);
 		}
 
@@ -26,6 +26,6 @@ class aik extends ajk {
 	}
 
 	public static boolean b_(ItemStack var0) {
-		return var0 != null && (var0.getItem() == Items.bz || var0.getItem() == Items.bA);
+		return var0 != null && (var0.getItem() == Items.POTION || var0.getItem() == Items.GLASS_BOTTLE);
 	}
 }

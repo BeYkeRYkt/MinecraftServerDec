@@ -8,7 +8,7 @@ public class EntityItemFrame extends adj {
 		super(var1);
 	}
 
-	public EntityItemFrame(World var1, Position var2, PaintingDirection var3) {
+	public EntityItemFrame(World var1, Position var2, BlockFace var3) {
 		super(var1, var2);
 		this.a(var3);
 	}
@@ -61,7 +61,7 @@ public class EntityItemFrame extends adj {
 			}
 
 			if (var2) {
-				this.a(new ItemStack(Items.bP), 0.0F);
+				this.a(new ItemStack(Items.ITEM_FRAME), 0.0F);
 			}
 
 			if (var3 != null && this.V.nextFloat() < this.c) {
@@ -75,8 +75,8 @@ public class EntityItemFrame extends adj {
 
 	private void b(ItemStack var1) {
 		if (var1 != null) {
-			if (var1.getItem() == Items.bd) {
-				bqe var2 = ((amn) var1.getItem()).a(var1, this.o);
+			if (var1.getItem() == Items.FILLED_MAP) {
+				bqe var2 = ((ItemMapFilled) var1.getItem()).a(var1, this.o);
 				var2.h.remove("frame-" + this.getId());
 			}
 

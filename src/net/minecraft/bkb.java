@@ -7,7 +7,7 @@ import java.util.Random;
 
 abstract class bkb extends bms {
 
-	protected static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.i, 0, 1, 3, 5), new vl(Items.j, 0, 1, 5, 5), new vl(Items.k, 0, 1, 3, 15), new vl(Items.B, 0, 1, 1, 5), new vl(Items.ah, 0, 1, 1, 5), new vl(Items.d, 0, 1, 1, 5), new vl(Items.by, 0, 3, 7, 5), new vl(Items.aA, 0, 1, 1, 10), new vl(Items.cl, 0, 1, 1, 8), new vl(Items.ck, 0, 1, 1, 5), new vl(Items.cm, 0, 1, 1, 3), new vl(Item.getItemOf(Blocks.OBSIDIAN), 0, 2, 4, 2) }));
+	protected static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.DIAMOND, 0, 1, 3, 5), new vl(Items.IRON_INGOT, 0, 1, 5, 5), new vl(Items.GOLD_INGOT, 0, 1, 3, 15), new vl(Items.GOLDEN_SWORD, 0, 1, 1, 5), new vl(Items.GOLD_CHESTPLATE, 0, 1, 1, 5), new vl(Items.FLINT_AND_STEEL, 0, 1, 1, 5), new vl(Items.NETHER_WART, 0, 3, 7, 5), new vl(Items.SADDLE, 0, 1, 1, 10), new vl(Items.GOLDEN_HORSE_ARMOR, 0, 1, 1, 8), new vl(Items.IRON_HORSE_ARMOR, 0, 1, 1, 5), new vl(Items.DIAMOND_HORSE_ARMOR, 0, 1, 1, 3), new vl(Item.getItemOf(Blocks.OBSIDIAN), 0, 2, 4, 2) }));
 
 	public bkb() {
 	}
@@ -37,7 +37,7 @@ abstract class bkb extends bms {
 		return var2 ? var3 : -1;
 	}
 
-	private bkb a(bkf var1, List var2, List var3, Random var4, int var5, int var6, int var7, PaintingDirection var8, int var9) {
+	private bkb a(bkf var1, List var2, List var3, Random var4, int var5, int var6, int var7, BlockFace var8, int var9) {
 		int var10 = this.a(var2);
 		boolean var11 = var10 > 0 && var9 <= 30;
 		int var12 = 0;
@@ -72,7 +72,7 @@ abstract class bkb extends bms {
 		return bjq.a(var3, var4, var5, var6, var7, var8, var9);
 	}
 
-	private bms a(bkf var1, List var2, Random var3, int var4, int var5, int var6, PaintingDirection var7, int var8, boolean var9) {
+	private bms a(bkf var1, List var2, Random var3, int var4, int var5, int var6, BlockFace var7, int var8, boolean var9) {
 		if (Math.abs(var4 - var1.c().a) <= 112 && Math.abs(var6 - var1.c().c) <= 112) {
 			List var10 = var1.c;
 			if (var9) {
@@ -112,13 +112,13 @@ abstract class bkb extends bms {
 		if (this.m != null) {
 			switch (bjo.a[this.m.ordinal()]) {
 				case 1:
-					return this.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, PaintingDirection.e, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, BlockFace.e, this.d(), var6);
 				case 2:
-					return this.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, PaintingDirection.e, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, BlockFace.e, this.d(), var6);
 				case 3:
-					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, PaintingDirection.c, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, BlockFace.c, this.d(), var6);
 				case 4:
-					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, PaintingDirection.c, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, BlockFace.c, this.d(), var6);
 			}
 		}
 
@@ -129,13 +129,13 @@ abstract class bkb extends bms {
 		if (this.m != null) {
 			switch (bjo.a[this.m.ordinal()]) {
 				case 1:
-					return this.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, PaintingDirection.f, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, BlockFace.f, this.d(), var6);
 				case 2:
-					return this.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, PaintingDirection.f, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, BlockFace.f, this.d(), var6);
 				case 3:
-					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, PaintingDirection.d, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, BlockFace.d, this.d(), var6);
 				case 4:
-					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, PaintingDirection.d, this.d(), var6);
+					return this.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, BlockFace.d, this.d(), var6);
 			}
 		}
 

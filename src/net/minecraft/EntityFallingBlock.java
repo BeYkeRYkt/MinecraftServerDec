@@ -76,7 +76,7 @@ public class EntityFallingBlock extends Entity {
 					this.motionY *= -0.5D;
 					if (this.o.p(var2).getBlock() != Blocks.PISTON_EXTENSION) {
 						this.J();
-						if (!this.e && this.o.a(var1, var2, true, PaintingDirection.b, (Entity) null, (ItemStack) null) && !avt.d(this.o, var2.b()) && this.o.a(var2, this.d, 3)) {
+						if (!this.e && this.o.a(var1, var2, true, BlockFace.b, (Entity) null, (ItemStack) null) && !avt.d(this.o, var2.b()) && this.o.a(var2, this.d, 3)) {
 							if (var1 instanceof avt) {
 								((avt) var1).a_(this.o, var2);
 							}
@@ -203,7 +203,7 @@ public class EntityFallingBlock extends Entity {
 		super.a(var1);
 		if (this.d != null) {
 			Block var2 = this.d.getBlock();
-			var1.addDetails("Immitating block ID", (Object) Integer.valueOf(Block.a(var2)));
+			var1.addDetails("Immitating block ID", (Object) Integer.valueOf(Block.getBlockId(var2)));
 			var1.addDetails("Immitating block data", (Object) Integer.valueOf(var2.c(this.d)));
 		}
 

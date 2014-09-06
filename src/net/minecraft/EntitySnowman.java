@@ -46,14 +46,14 @@ public class EntitySnowman extends abw implements afr {
 	}
 
 	protected Item A() {
-		return Items.aD;
+		return Items.SNOWBALL;
 	}
 
 	protected void b(boolean var1, int var2) {
 		int var3 = this.V.nextInt(16);
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			this.a(Items.aD, 1);
+			this.a(Items.SNOWBALL, 1);
 		}
 
 	}

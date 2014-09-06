@@ -120,13 +120,13 @@ public class EntitySkeleton extends EntityMonster implements afr {
 			}
 		} else if (var1.j() instanceof EntityCreeper && ((EntityCreeper) var1.j()).n() && ((EntityCreeper) var1.j()).cn()) {
 			((EntityCreeper) var1.j()).co();
-			this.a(new ItemStack(Items.bX, 1, this.ck() == 1 ? 1 : 0), 0.0F);
+			this.a(new ItemStack(Items.SKULL, 1, this.ck() == 1 ? 1 : 0), 0.0F);
 		}
 
 	}
 
 	protected Item A() {
-		return Items.g;
+		return Items.ARROW;
 	}
 
 	protected void b(boolean var1, int var2) {
@@ -136,34 +136,34 @@ public class EntitySkeleton extends EntityMonster implements afr {
 			var3 = this.V.nextInt(3 + var2) - 1;
 
 			for (var4 = 0; var4 < var3; ++var4) {
-				this.a(Items.h, 1);
+				this.a(Items.COAL, 1);
 			}
 		} else {
 			var3 = this.V.nextInt(3 + var2);
 
 			for (var4 = 0; var4 < var3; ++var4) {
-				this.a(Items.g, 1);
+				this.a(Items.ARROW, 1);
 			}
 		}
 
 		var3 = this.V.nextInt(3 + var2);
 
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(Items.aX, 1);
+			this.a(Items.BONE, 1);
 		}
 
 	}
 
 	protected void bp() {
 		if (this.ck() == 1) {
-			this.a(new ItemStack(Items.bX, 1, 1), 0.0F);
+			this.a(new ItemStack(Items.SKULL, 1, 1), 0.0F);
 		}
 
 	}
 
 	protected void a(vu var1) {
 		super.a(var1);
-		this.c(0, new ItemStack(Items.f));
+		this.c(0, new ItemStack(Items.BOW));
 	}
 
 	public xq a(vu var1, xq var2) {
@@ -171,7 +171,7 @@ public class EntitySkeleton extends EntityMonster implements afr {
 		if (this.o.worldProvider instanceof NetherWorldProvider && this.bb().nextInt(5) > 0) {
 			this.i.a(4, this.c);
 			this.a(1);
-			this.c(0, new ItemStack(Items.q));
+			this.c(0, new ItemStack(Items.STONE_SWORD));
 			this.a(afs.e).a(4.0D);
 		} else {
 			this.i.a(4, this.b);
@@ -195,7 +195,7 @@ public class EntitySkeleton extends EntityMonster implements afr {
 		this.i.a((zb) this.c);
 		this.i.a((zb) this.b);
 		ItemStack var1 = this.bz();
-		if (var1 != null && var1.getItem() == Items.f) {
+		if (var1 != null && var1.getItem() == Items.BOW) {
 			this.i.a(4, this.b);
 		} else {
 			this.i.a(4, this.c);

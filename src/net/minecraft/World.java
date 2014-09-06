@@ -291,28 +291,28 @@ public abstract class World implements ard {
 		this.d(var1.d(), var2);
 	}
 
-	public void a(Position var1, Block var2, PaintingDirection var3) {
-		if (var3 != PaintingDirection.e) {
+	public void a(Position var1, Block var2, BlockFace var3) {
+		if (var3 != BlockFace.e) {
 			this.d(var1.e(), var2);
 		}
 
-		if (var3 != PaintingDirection.f) {
+		if (var3 != BlockFace.f) {
 			this.d(var1.f(), var2);
 		}
 
-		if (var3 != PaintingDirection.a) {
+		if (var3 != BlockFace.a) {
 			this.d(var1.b(), var2);
 		}
 
-		if (var3 != PaintingDirection.b) {
+		if (var3 != BlockFace.b) {
 			this.d(var1.a(), var2);
 		}
 
-		if (var3 != PaintingDirection.c) {
+		if (var3 != BlockFace.c) {
 			this.d(var1.c(), var2);
 		}
 
-		if (var3 != PaintingDirection.d) {
+		if (var3 != BlockFace.d) {
 			this.d(var1.d(), var2);
 		}
 
@@ -595,21 +595,21 @@ public abstract class World implements ard {
 						var29 = -1.0E-4D;
 					}
 
-					PaintingDirection var37;
+					BlockFace var37;
 					if (var25 < var27 && var25 < var29) {
-						var37 = var6 > var9 ? PaintingDirection.e : PaintingDirection.f;
+						var37 = var6 > var9 ? BlockFace.e : BlockFace.f;
 						var1 = new Vec3D(var19, var1.y + var33 * var25, var1.z + var35 * var25);
 					} else if (var27 < var29) {
-						var37 = var7 > var10 ? PaintingDirection.a : PaintingDirection.b;
+						var37 = var7 > var10 ? BlockFace.a : BlockFace.b;
 						var1 = new Vec3D(var1.x + var31 * var27, var21, var1.z + var35 * var27);
 					} else {
-						var37 = var8 > var11 ? PaintingDirection.c : PaintingDirection.d;
+						var37 = var8 > var11 ? BlockFace.c : BlockFace.d;
 						var1 = new Vec3D(var1.x + var31 * var29, var1.y + var33 * var29, var23);
 					}
 
-					var9 = DataTypesConverter.toFixedPointInt(var1.x) - (var37 == PaintingDirection.f ? 1 : 0);
-					var10 = DataTypesConverter.toFixedPointInt(var1.y) - (var37 == PaintingDirection.b ? 1 : 0);
-					var11 = DataTypesConverter.toFixedPointInt(var1.z) - (var37 == PaintingDirection.d ? 1 : 0);
+					var9 = DataTypesConverter.toFixedPointInt(var1.x) - (var37 == BlockFace.f ? 1 : 0);
+					var10 = DataTypesConverter.toFixedPointInt(var1.y) - (var37 == BlockFace.b ? 1 : 0);
+					var11 = DataTypesConverter.toFixedPointInt(var1.z) - (var37 == BlockFace.d ? 1 : 0);
 					var12 = new Position(var9, var10, var11);
 					bec var38 = this.p(var12);
 					Block var39 = var38.getBlock();
@@ -1385,7 +1385,7 @@ public abstract class World implements ard {
 		}
 	}
 
-	public boolean a(EntityHuman var1, Position var2, PaintingDirection var3) {
+	public boolean a(EntityHuman var1, Position var2, BlockFace var3) {
 		var2 = var2.a(var3);
 		if (this.p(var2).getBlock() == Blocks.FIRE) {
 			this.a(var1, 1004, var2, 0);
@@ -1752,11 +1752,11 @@ public abstract class World implements ard {
 			} else if (var4 >= 14) {
 				return var4;
 			} else {
-				PaintingDirection[] var6 = PaintingDirection.values();
+				BlockFace[] var6 = BlockFace.values();
 				int var7 = var6.length;
 
 				for (int var8 = 0; var8 < var7; ++var8) {
-					PaintingDirection var9 = var6[var8];
+					BlockFace var9 = var6[var8];
 					Position var10 = var1.a(var9);
 					int var11 = this.b(var2, var10) - var5;
 					if (var11 > var4) {
@@ -1813,11 +1813,11 @@ public abstract class World implements ard {
 							var18 = DataTypesConverter.a(var12 - var8);
 							var19 = DataTypesConverter.a(var13 - var9);
 							if (var17 + var18 + var19 < 17) {
-								PaintingDirection[] var20 = PaintingDirection.values();
+								BlockFace[] var20 = BlockFace.values();
 								int var21 = var20.length;
 
 								for (int var22 = 0; var22 < var21; ++var22) {
-									PaintingDirection var23 = var20[var22];
+									BlockFace var23 = var20[var22];
 									int var24 = var11 + var23.g();
 									int var25 = var12 + var23.h();
 									int var26 = var13 + var23.i();
@@ -2031,13 +2031,13 @@ public abstract class World implements ard {
 		this.g.addAll(var1);
 	}
 
-	public boolean a(Block var1, Position var2, boolean var3, PaintingDirection var4, Entity var5, ItemStack var6) {
+	public boolean a(Block var1, Position var2, boolean var3, BlockFace var4, Entity var5, ItemStack var6) {
 		Block var7 = this.p(var2).getBlock();
 		brt var8 = var3 ? null : var1.a(this, var2, var1.P());
 		return var8 != null && !this.a(var8, var5) ? false : (var7.r() == Material.ORIENTABLE && var1 == Blocks.ANVIL ? true : var7.r().j() && var1.a(this, var2, var4, var6));
 	}
 
-	public int a(Position var1, PaintingDirection var2) {
+	public int a(Position var1, BlockFace var2) {
 		bec var3 = this.p(var1);
 		return var3.getBlock().b((ard) this, var1, var3, var2);
 	}
@@ -2048,27 +2048,27 @@ public abstract class World implements ard {
 
 	public int y(Position var1) {
 		byte var2 = 0;
-		int var3 = Math.max(var2, this.a(var1.b(), PaintingDirection.a));
+		int var3 = Math.max(var2, this.a(var1.b(), BlockFace.a));
 		if (var3 >= 15) {
 			return var3;
 		} else {
-			var3 = Math.max(var3, this.a(var1.a(), PaintingDirection.b));
+			var3 = Math.max(var3, this.a(var1.a(), BlockFace.b));
 			if (var3 >= 15) {
 				return var3;
 			} else {
-				var3 = Math.max(var3, this.a(var1.c(), PaintingDirection.c));
+				var3 = Math.max(var3, this.a(var1.c(), BlockFace.c));
 				if (var3 >= 15) {
 					return var3;
 				} else {
-					var3 = Math.max(var3, this.a(var1.d(), PaintingDirection.d));
+					var3 = Math.max(var3, this.a(var1.d(), BlockFace.d));
 					if (var3 >= 15) {
 						return var3;
 					} else {
-						var3 = Math.max(var3, this.a(var1.e(), PaintingDirection.e));
+						var3 = Math.max(var3, this.a(var1.e(), BlockFace.e));
 						if (var3 >= 15) {
 							return var3;
 						} else {
-							var3 = Math.max(var3, this.a(var1.f(), PaintingDirection.f));
+							var3 = Math.max(var3, this.a(var1.f(), BlockFace.f));
 							return var3 >= 15 ? var3 : var3;
 						}
 					}
@@ -2077,27 +2077,27 @@ public abstract class World implements ard {
 		}
 	}
 
-	public boolean b(Position var1, PaintingDirection var2) {
+	public boolean b(Position var1, BlockFace var2) {
 		return this.c(var1, var2) > 0;
 	}
 
-	public int c(Position var1, PaintingDirection var2) {
+	public int c(Position var1, BlockFace var2) {
 		bec var3 = this.p(var1);
 		Block var4 = var3.getBlock();
 		return var4.t() ? this.y(var1) : var4.a((ard) this, var1, var3, var2);
 	}
 
 	public boolean z(Position var1) {
-		return this.c(var1.b(), PaintingDirection.a) > 0 ? true : (this.c(var1.a(), PaintingDirection.b) > 0 ? true : (this.c(var1.c(), PaintingDirection.c) > 0 ? true : (this.c(var1.d(), PaintingDirection.d) > 0 ? true : (this.c(var1.e(), PaintingDirection.e) > 0 ? true : this.c(var1.f(), PaintingDirection.f) > 0))));
+		return this.c(var1.b(), BlockFace.a) > 0 ? true : (this.c(var1.a(), BlockFace.b) > 0 ? true : (this.c(var1.c(), BlockFace.c) > 0 ? true : (this.c(var1.d(), BlockFace.d) > 0 ? true : (this.c(var1.e(), BlockFace.e) > 0 ? true : this.c(var1.f(), BlockFace.f) > 0))));
 	}
 
 	public int A(Position var1) {
 		int var2 = 0;
-		PaintingDirection[] var3 = PaintingDirection.values();
+		BlockFace[] var3 = BlockFace.values();
 		int var4 = var3.length;
 
 		for (int var5 = 0; var5 < var4; ++var5) {
-			PaintingDirection var6 = var3[var5];
+			BlockFace var6 = var3[var5];
 			int var7 = this.c(var1.a(var6), var6);
 			if (var7 >= 15) {
 				return 15;
@@ -2367,7 +2367,7 @@ public abstract class World implements ard {
 		Iterator var3 = en.a.iterator();
 
 		while (var3.hasNext()) {
-			PaintingDirection var4 = (PaintingDirection) var3.next();
+			BlockFace var4 = (BlockFace) var3.next();
 			Position var5 = var1.a(var4);
 			if (this.e(var5)) {
 				bec var6 = this.p(var5);

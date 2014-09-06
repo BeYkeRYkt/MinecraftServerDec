@@ -22,7 +22,7 @@ public class BlockLongGrass extends auc implements atz {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return var2.nextInt(8) == 0 ? Items.N : null;
+		return var2.nextInt(8) == 0 ? Items.WHEAT_SEEDS : null;
 	}
 
 	public int a(int var1, Random var2) {
@@ -30,8 +30,8 @@ public class BlockLongGrass extends auc implements atz {
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
-		if (!var1.D && var2.bY() != null && var2.bY().getItem() == Items.be) {
-			var2.b(StatisticList.H[Block.a((Block) this)]);
+		if (!var1.D && var2.bY() != null && var2.bY().getItem() == Items.SHEARS) {
+			var2.b(StatisticList.H[Block.getBlockId((Block) this)]);
 			a(var1, var3, new ItemStack(Blocks.TALLGRASS, 1, ((bbi) var4.b(a)).a()));
 		} else {
 			super.a(var1, var2, var3, var4, var5);

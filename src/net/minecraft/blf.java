@@ -13,7 +13,7 @@ class blf {
 		this.a = var1;
 	}
 
-	public void a(PaintingDirection var1, blf var2) {
+	public void a(BlockFace var1, blf var2) {
 		this.b[var1.a()] = var2;
 		var2.b[var1.d().a()] = this;
 	}

@@ -12,7 +12,7 @@ public class BlockBeacon extends atg {
 		return new TileEntityBeacon();
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {

@@ -10,8 +10,8 @@ public class bll extends bln {
 	private boolean f;
 	private boolean g;
 	private boolean h;
-	private static final List i = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.i, 0, 1, 3, 3), new vl(Items.j, 0, 1, 5, 10), new vl(Items.k, 0, 2, 7, 15), new vl(Items.bO, 0, 1, 3, 2), new vl(Items.aX, 0, 4, 6, 20), new vl(Items.bt, 0, 3, 7, 16), new vl(Items.aA, 0, 1, 1, 3), new vl(Items.ck, 0, 1, 1, 1), new vl(Items.cl, 0, 1, 1, 1), new vl(Items.cm, 0, 1, 1, 1) }));
-	private static final List j = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.g, 0, 2, 7, 30) }));
+	private static final List i = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.DIAMOND, 0, 1, 3, 3), new vl(Items.IRON_INGOT, 0, 1, 5, 10), new vl(Items.GOLD_INGOT, 0, 2, 7, 15), new vl(Items.EMERALD, 0, 1, 3, 2), new vl(Items.BONE, 0, 4, 6, 20), new vl(Items.ROTTEN_FLESH, 0, 3, 7, 16), new vl(Items.SADDLE, 0, 1, 1, 3), new vl(Items.IRON_HORSE_ARMOR, 0, 1, 1, 1), new vl(Items.GOLDEN_HORSE_ARMOR, 0, 1, 1, 1), new vl(Items.DIAMOND_HORSE_ARMOR, 0, 1, 1, 1) }));
+	private static final List j = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.ARROW, 0, 2, 7, 30) }));
 	private static blm k = new blm((blj) null);
 
 	public bll() {
@@ -143,8 +143,8 @@ public class bll extends bln {
 			this.a(var1, var3, 7, -2, 1, 9, -2, 1, false, var2, k);
 			this.a(var1, var3, 6, -3, 1, 6, -3, 1, false, var2, k);
 			this.a(var1, var3, 6, -1, 1, 6, -1, 1, false, var2, k);
-			this.a(var1, Blocks.TRIPWIRE_HOOK.a(this.a(Blocks.TRIPWIRE_HOOK, PaintingDirection.f.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 1, -3, 8, var3);
-			this.a(var1, Blocks.TRIPWIRE_HOOK.a(this.a(Blocks.TRIPWIRE_HOOK, PaintingDirection.e.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 4, -3, 8, var3);
+			this.a(var1, Blocks.TRIPWIRE_HOOK.a(this.a(Blocks.TRIPWIRE_HOOK, BlockFace.f.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 1, -3, 8, var3);
+			this.a(var1, Blocks.TRIPWIRE_HOOK.a(this.a(Blocks.TRIPWIRE_HOOK, BlockFace.e.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 4, -3, 8, var3);
 			this.a(var1, Blocks.TRIPWIRE.P().a(BlockTripwire.M, Boolean.valueOf(true)), 2, -3, 8, var3);
 			this.a(var1, Blocks.TRIPWIRE.P().a(BlockTripwire.M, Boolean.valueOf(true)), 3, -3, 8, var3);
 			this.a(var1, Blocks.REDSTONE_WIRE.P(), 5, -3, 7, var3);
@@ -157,12 +157,12 @@ public class bll extends bln {
 			this.a(var1, Blocks.REDSTONE_WIRE.P(), 4, -3, 1, var3);
 			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 3, -3, 1, var3);
 			if (!this.g) {
-				this.g = this.a(var1, var3, var2, 3, -2, 1, PaintingDirection.c.a(), j, 2);
+				this.g = this.a(var1, var3, var2, 3, -2, 1, BlockFace.c.a(), j, 2);
 			}
 
 			this.a(var1, Blocks.VINE.a(15), 3, -2, 2, var3);
-			this.a(var1, Blocks.TRIPWIRE_HOOK.a(this.a(Blocks.TRIPWIRE_HOOK, PaintingDirection.c.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 7, -3, 1, var3);
-			this.a(var1, Blocks.TRIPWIRE_HOOK.a(this.a(Blocks.TRIPWIRE_HOOK, PaintingDirection.d.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 7, -3, 5, var3);
+			this.a(var1, Blocks.TRIPWIRE_HOOK.a(this.a(Blocks.TRIPWIRE_HOOK, BlockFace.c.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 7, -3, 1, var3);
+			this.a(var1, Blocks.TRIPWIRE_HOOK.a(this.a(Blocks.TRIPWIRE_HOOK, BlockFace.d.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 7, -3, 5, var3);
 			this.a(var1, Blocks.TRIPWIRE.P().a(BlockTripwire.M, Boolean.valueOf(true)), 7, -3, 2, var3);
 			this.a(var1, Blocks.TRIPWIRE.P().a(BlockTripwire.M, Boolean.valueOf(true)), 7, -3, 3, var3);
 			this.a(var1, Blocks.TRIPWIRE.P().a(BlockTripwire.M, Boolean.valueOf(true)), 7, -3, 4, var3);
@@ -172,13 +172,13 @@ public class bll extends bln {
 			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 9, -3, 4, var3);
 			this.a(var1, Blocks.REDSTONE_WIRE.P(), 9, -2, 4, var3);
 			if (!this.h) {
-				this.h = this.a(var1, var3, var2, 9, -2, 3, PaintingDirection.e.a(), j, 2);
+				this.h = this.a(var1, var3, var2, 9, -2, 3, BlockFace.e.a(), j, 2);
 			}
 
 			this.a(var1, Blocks.VINE.a(15), 8, -1, 3, var3);
 			this.a(var1, Blocks.VINE.a(15), 8, -2, 3, var3);
 			if (!this.e) {
-				this.e = this.a(var1, var3, var2, 8, -3, 3, vl.a(i, new vl[] { Items.cd.b(var2) }), 2 + var2.nextInt(5));
+				this.e = this.a(var1, var3, var2, 8, -3, 3, vl.a(i, new vl[] { Items.ENCHANTED_BOOK.b(var2) }), 2 + var2.nextInt(5));
 			}
 
 			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 9, -3, 2, var3);
@@ -195,21 +195,21 @@ public class bll extends bln {
 			this.a(var1, Blocks.STONEBRICK.a(BlockSmoothBrick.O), 8, -2, 11, var3);
 			this.a(var1, Blocks.STONEBRICK.a(BlockSmoothBrick.O), 9, -2, 11, var3);
 			this.a(var1, Blocks.STONEBRICK.a(BlockSmoothBrick.O), 10, -2, 11, var3);
-			this.a(var1, Blocks.LEVER.a(BlockLever.a(PaintingDirection.a(this.a(Blocks.LEVER, PaintingDirection.c.a())))), 8, -2, 12, var3);
-			this.a(var1, Blocks.LEVER.a(BlockLever.a(PaintingDirection.a(this.a(Blocks.LEVER, PaintingDirection.c.a())))), 9, -2, 12, var3);
-			this.a(var1, Blocks.LEVER.a(BlockLever.a(PaintingDirection.a(this.a(Blocks.LEVER, PaintingDirection.c.a())))), 10, -2, 12, var3);
+			this.a(var1, Blocks.LEVER.a(BlockLever.a(BlockFace.a(this.a(Blocks.LEVER, BlockFace.c.a())))), 8, -2, 12, var3);
+			this.a(var1, Blocks.LEVER.a(BlockLever.a(BlockFace.a(this.a(Blocks.LEVER, BlockFace.c.a())))), 9, -2, 12, var3);
+			this.a(var1, Blocks.LEVER.a(BlockLever.a(BlockFace.a(this.a(Blocks.LEVER, BlockFace.c.a())))), 10, -2, 12, var3);
 			this.a(var1, var3, 8, -3, 8, 8, -3, 10, false, var2, k);
 			this.a(var1, var3, 10, -3, 8, 10, -3, 10, false, var2, k);
 			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 10, -2, 9, var3);
 			this.a(var1, Blocks.REDSTONE_WIRE.P(), 8, -2, 9, var3);
 			this.a(var1, Blocks.REDSTONE_WIRE.P(), 8, -2, 10, var3);
 			this.a(var1, Blocks.REDSTONE_WIRE.P(), 10, -1, 9, var3);
-			this.a(var1, Blocks.STICKY_PISTON.a(PaintingDirection.b.a()), 9, -2, 8, var3);
-			this.a(var1, Blocks.STICKY_PISTON.a(this.a(Blocks.STICKY_PISTON, PaintingDirection.e.a())), 10, -2, 8, var3);
-			this.a(var1, Blocks.STICKY_PISTON.a(this.a(Blocks.STICKY_PISTON, PaintingDirection.e.a())), 10, -1, 8, var3);
-			this.a(var1, Blocks.UNPOWERED_REPEATER.a(this.a(Blocks.UNPOWERED_REPEATER, PaintingDirection.c.toByte())), 10, -2, 10, var3);
+			this.a(var1, Blocks.STICKY_PISTON.a(BlockFace.b.a()), 9, -2, 8, var3);
+			this.a(var1, Blocks.STICKY_PISTON.a(this.a(Blocks.STICKY_PISTON, BlockFace.e.a())), 10, -2, 8, var3);
+			this.a(var1, Blocks.STICKY_PISTON.a(this.a(Blocks.STICKY_PISTON, BlockFace.e.a())), 10, -1, 8, var3);
+			this.a(var1, Blocks.UNPOWERED_REPEATER.a(this.a(Blocks.UNPOWERED_REPEATER, BlockFace.c.toByte())), 10, -2, 10, var3);
 			if (!this.f) {
-				this.f = this.a(var1, var3, var2, 9, -3, 10, vl.a(i, new vl[] { Items.cd.b(var2) }), 2 + var2.nextInt(5));
+				this.f = this.a(var1, var3, var2, 9, -3, 10, vl.a(i, new vl[] { Items.ENCHANTED_BOOK.b(var2) }), 2 + var2.nextInt(5));
 			}
 
 			return true;

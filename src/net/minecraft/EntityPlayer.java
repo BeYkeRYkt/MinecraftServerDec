@@ -210,7 +210,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			for (int var1 = 0; var1 < this.playerInventory.n_(); ++var1) {
 				ItemStack var6 = this.playerInventory.a(var1);
 				if (var6 != null && var6.getItem().f()) {
-					Packet var8 = ((ake) var6.getItem()).c(var6, this.o, this);
+					Packet var8 = ((ItemMap) var6.getItem()).c(var6, this.o, this);
 					if (var8 != null) {
 						this.playerConncetion.sendPacket(var8);
 					}
@@ -541,7 +541,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void a(ItemStack var1) {
 		Item var2 = var1.getItem();
-		if (var2 == Items.bN) {
+		if (var2 == Items.WRITTEN_BOK) {
 			this.playerConncetion.sendPacket((Packet) (new ji("MC|BOpen", new PacketDataSerializer(Unpooled.buffer()))));
 		}
 

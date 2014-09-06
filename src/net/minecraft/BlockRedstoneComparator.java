@@ -12,12 +12,12 @@ public class BlockRedstoneComparator extends ava implements avs {
 
 	public BlockRedstoneComparator(boolean var1) {
 		super(var1);
-		this.j(this.L.b().a(N, PaintingDirection.c).a(a, Boolean.valueOf(false)).a(b, aur.a));
+		this.j(this.L.b().a(N, BlockFace.c).a(a, Boolean.valueOf(false)).a(b, aur.a));
 		this.A = true;
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Items.ce;
+		return Items.COMPARATOR;
 	}
 
 	protected int d(bec var1) {
@@ -27,14 +27,14 @@ public class BlockRedstoneComparator extends ava implements avs {
 	protected bec e(bec var1) {
 		Boolean var2 = (Boolean) var1.b(a);
 		aur var3 = (aur) var1.b(b);
-		PaintingDirection var4 = (PaintingDirection) var1.b(N);
+		BlockFace var4 = (BlockFace) var1.b(N);
 		return Blocks.POWERED_COMPARATOR.P().a(N, var4).a(a, var2).a(b, var3);
 	}
 
 	protected bec k(bec var1) {
 		Boolean var2 = (Boolean) var1.b(a);
 		aur var3 = (aur) var1.b(b);
-		PaintingDirection var4 = (PaintingDirection) var1.b(N);
+		BlockFace var4 = (BlockFace) var1.b(N);
 		return Blocks.UNPOWERED_COMPARATOR.P().a(N, var4).a(a, var2).a(b, var3);
 	}
 
@@ -65,7 +65,7 @@ public class BlockRedstoneComparator extends ava implements avs {
 
 	protected int f(World var1, Position var2, bec var3) {
 		int var4 = super.f(var1, var2, var3);
-		PaintingDirection var5 = (PaintingDirection) var3.b(N);
+		BlockFace var5 = (BlockFace) var3.b(N);
 		Position var6 = var2.a(var5);
 		Block var7 = var1.p(var6).getBlock();
 		if (var7.N()) {
@@ -86,12 +86,12 @@ public class BlockRedstoneComparator extends ava implements avs {
 		return var4;
 	}
 
-	private EntityItemFrame a(World var1, PaintingDirection var2, Position var3) {
+	private EntityItemFrame a(World var1, BlockFace var2, Position var3) {
 		List var4 = var1.a(EntityItemFrame.class, new brt((double) var3.getX(), (double) var3.getY(), (double) var3.getZ(), (double) (var3.getX() + 1), (double) (var3.getY() + 1), (double) (var3.getZ() + 1)), (Predicate) (new auq(this, var2)));
 		return var4.size() == 1 ? (EntityItemFrame) var4.get(0) : null;
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (!var4.by.maybuild) {
 			return false;
 		} else {
@@ -173,12 +173,12 @@ public class BlockRedstoneComparator extends ava implements avs {
 	}
 
 	public bec a(int var1) {
-		return this.P().a(N, PaintingDirection.fromByte(var1)).a(a, Boolean.valueOf((var1 & 8) > 0)).a(b, (var1 & 4) > 0 ? aur.b : aur.a);
+		return this.P().a(N, BlockFace.fromByte(var1)).a(a, Boolean.valueOf((var1 & 8) > 0)).a(b, (var1 & 4) > 0 ? aur.b : aur.a);
 	}
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((PaintingDirection) var1.b(N)).toByte();
+		int var3 = var2 | ((BlockFace) var1.b(N)).toByte();
 		if (((Boolean) var1.b(a)).booleanValue()) {
 			var3 |= 8;
 		}
@@ -194,7 +194,7 @@ public class BlockRedstoneComparator extends ava implements avs {
 		return new bed(this, new bex[] { N, b, a });
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(N, var8.aO().d()).a(a, Boolean.valueOf(false)).a(b, aur.a);
 	}
 

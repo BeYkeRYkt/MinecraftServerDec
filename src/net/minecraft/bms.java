@@ -7,7 +7,7 @@ import java.util.Random;
 public abstract class bms {
 
 	protected bjb l;
-	protected PaintingDirection m;
+	protected BlockFace m;
 	protected int n;
 
 	public bms() {
@@ -35,7 +35,7 @@ public abstract class bms {
 		}
 
 		int var3 = var2.getInt("O");
-		this.m = var3 == -1 ? null : PaintingDirection.fromByte(var3);
+		this.m = var3 == -1 ? null : BlockFace.fromByte(var3);
 		this.n = var2.getInt("GD");
 		this.b(var2);
 	}
@@ -165,7 +165,7 @@ public abstract class bms {
 
 	protected int a(Block var1, int var2) {
 		if (var1 == Blocks.RAIL) {
-			if (this.m == PaintingDirection.e || this.m == PaintingDirection.f) {
+			if (this.m == BlockFace.e || this.m == BlockFace.f) {
 				if (var2 == 1) {
 					return 0;
 				}
@@ -173,7 +173,7 @@ public abstract class bms {
 				return 1;
 			}
 		} else if (var1 instanceof BlockDoor) {
-			if (this.m == PaintingDirection.d) {
+			if (this.m == BlockFace.d) {
 				if (var2 == 0) {
 					return 2;
 				}
@@ -182,59 +182,59 @@ public abstract class bms {
 					return 0;
 				}
 			} else {
-				if (this.m == PaintingDirection.e) {
+				if (this.m == BlockFace.e) {
 					return var2 + 1 & 3;
 				}
 
-				if (this.m == PaintingDirection.f) {
+				if (this.m == BlockFace.f) {
 					return var2 + 3 & 3;
 				}
 			}
 		} else if (var1 != Blocks.STONE_STAIRS && var1 != Blocks.OAK_STAIRS && var1 != Blocks.NETHER_BRICK_STAIRS && var1 != Blocks.STONE_BROCK_STAIRS && var1 != Blocks.SANDSTONE_STAIRS) {
 			if (var1 == Blocks.LADDER) {
-				if (this.m == PaintingDirection.d) {
-					if (var2 == PaintingDirection.c.a()) {
-						return PaintingDirection.d.a();
+				if (this.m == BlockFace.d) {
+					if (var2 == BlockFace.c.a()) {
+						return BlockFace.d.a();
 					}
 
-					if (var2 == PaintingDirection.d.a()) {
-						return PaintingDirection.c.a();
+					if (var2 == BlockFace.d.a()) {
+						return BlockFace.c.a();
 					}
-				} else if (this.m == PaintingDirection.e) {
-					if (var2 == PaintingDirection.c.a()) {
-						return PaintingDirection.e.a();
-					}
-
-					if (var2 == PaintingDirection.d.a()) {
-						return PaintingDirection.f.a();
+				} else if (this.m == BlockFace.e) {
+					if (var2 == BlockFace.c.a()) {
+						return BlockFace.e.a();
 					}
 
-					if (var2 == PaintingDirection.e.a()) {
-						return PaintingDirection.c.a();
+					if (var2 == BlockFace.d.a()) {
+						return BlockFace.f.a();
 					}
 
-					if (var2 == PaintingDirection.f.a()) {
-						return PaintingDirection.d.a();
-					}
-				} else if (this.m == PaintingDirection.f) {
-					if (var2 == PaintingDirection.c.a()) {
-						return PaintingDirection.f.a();
+					if (var2 == BlockFace.e.a()) {
+						return BlockFace.c.a();
 					}
 
-					if (var2 == PaintingDirection.d.a()) {
-						return PaintingDirection.e.a();
+					if (var2 == BlockFace.f.a()) {
+						return BlockFace.d.a();
+					}
+				} else if (this.m == BlockFace.f) {
+					if (var2 == BlockFace.c.a()) {
+						return BlockFace.f.a();
 					}
 
-					if (var2 == PaintingDirection.e.a()) {
-						return PaintingDirection.c.a();
+					if (var2 == BlockFace.d.a()) {
+						return BlockFace.e.a();
 					}
 
-					if (var2 == PaintingDirection.f.a()) {
-						return PaintingDirection.d.a();
+					if (var2 == BlockFace.e.a()) {
+						return BlockFace.c.a();
+					}
+
+					if (var2 == BlockFace.f.a()) {
+						return BlockFace.d.a();
 					}
 				}
 			} else if (var1 == Blocks.STONE_BUTTON) {
-				if (this.m == PaintingDirection.d) {
+				if (this.m == BlockFace.d) {
 					if (var2 == 3) {
 						return 4;
 					}
@@ -242,7 +242,7 @@ public abstract class bms {
 					if (var2 == 4) {
 						return 3;
 					}
-				} else if (this.m == PaintingDirection.e) {
+				} else if (this.m == BlockFace.e) {
 					if (var2 == 3) {
 						return 1;
 					}
@@ -258,7 +258,7 @@ public abstract class bms {
 					if (var2 == 1) {
 						return 4;
 					}
-				} else if (this.m == PaintingDirection.f) {
+				} else if (this.m == BlockFace.f) {
 					if (var2 == 3) {
 						return 2;
 					}
@@ -277,85 +277,85 @@ public abstract class bms {
 				}
 			} else if (var1 != Blocks.TRIPWIRE_HOOK && !(var1 instanceof avb)) {
 				if (var1 == Blocks.PISTON || var1 == Blocks.STICKY_PISTON || var1 == Blocks.LEVER || var1 == Blocks.DISPENSER) {
-					if (this.m == PaintingDirection.d) {
-						if (var2 == PaintingDirection.c.a() || var2 == PaintingDirection.d.a()) {
-							return PaintingDirection.a(var2).d().a();
+					if (this.m == BlockFace.d) {
+						if (var2 == BlockFace.c.a() || var2 == BlockFace.d.a()) {
+							return BlockFace.a(var2).d().a();
 						}
-					} else if (this.m == PaintingDirection.e) {
-						if (var2 == PaintingDirection.c.a()) {
-							return PaintingDirection.e.a();
-						}
-
-						if (var2 == PaintingDirection.d.a()) {
-							return PaintingDirection.f.a();
+					} else if (this.m == BlockFace.e) {
+						if (var2 == BlockFace.c.a()) {
+							return BlockFace.e.a();
 						}
 
-						if (var2 == PaintingDirection.e.a()) {
-							return PaintingDirection.c.a();
+						if (var2 == BlockFace.d.a()) {
+							return BlockFace.f.a();
 						}
 
-						if (var2 == PaintingDirection.f.a()) {
-							return PaintingDirection.d.a();
-						}
-					} else if (this.m == PaintingDirection.f) {
-						if (var2 == PaintingDirection.c.a()) {
-							return PaintingDirection.f.a();
+						if (var2 == BlockFace.e.a()) {
+							return BlockFace.c.a();
 						}
 
-						if (var2 == PaintingDirection.d.a()) {
-							return PaintingDirection.e.a();
+						if (var2 == BlockFace.f.a()) {
+							return BlockFace.d.a();
+						}
+					} else if (this.m == BlockFace.f) {
+						if (var2 == BlockFace.c.a()) {
+							return BlockFace.f.a();
 						}
 
-						if (var2 == PaintingDirection.e.a()) {
-							return PaintingDirection.c.a();
+						if (var2 == BlockFace.d.a()) {
+							return BlockFace.e.a();
 						}
 
-						if (var2 == PaintingDirection.f.a()) {
-							return PaintingDirection.d.a();
+						if (var2 == BlockFace.e.a()) {
+							return BlockFace.c.a();
+						}
+
+						if (var2 == BlockFace.f.a()) {
+							return BlockFace.d.a();
 						}
 					}
 				}
 			} else {
-				PaintingDirection var3 = PaintingDirection.fromByte(var2);
-				if (this.m == PaintingDirection.d) {
-					if (var3 == PaintingDirection.d || var3 == PaintingDirection.c) {
+				BlockFace var3 = BlockFace.fromByte(var2);
+				if (this.m == BlockFace.d) {
+					if (var3 == BlockFace.d || var3 == BlockFace.c) {
 						return var3.d().toByte();
 					}
-				} else if (this.m == PaintingDirection.e) {
-					if (var3 == PaintingDirection.c) {
-						return PaintingDirection.e.toByte();
+				} else if (this.m == BlockFace.e) {
+					if (var3 == BlockFace.c) {
+						return BlockFace.e.toByte();
 					}
 
-					if (var3 == PaintingDirection.d) {
-						return PaintingDirection.f.toByte();
+					if (var3 == BlockFace.d) {
+						return BlockFace.f.toByte();
 					}
 
-					if (var3 == PaintingDirection.e) {
-						return PaintingDirection.c.toByte();
+					if (var3 == BlockFace.e) {
+						return BlockFace.c.toByte();
 					}
 
-					if (var3 == PaintingDirection.f) {
-						return PaintingDirection.d.toByte();
+					if (var3 == BlockFace.f) {
+						return BlockFace.d.toByte();
 					}
-				} else if (this.m == PaintingDirection.f) {
-					if (var3 == PaintingDirection.c) {
-						return PaintingDirection.f.toByte();
-					}
-
-					if (var3 == PaintingDirection.d) {
-						return PaintingDirection.e.toByte();
+				} else if (this.m == BlockFace.f) {
+					if (var3 == BlockFace.c) {
+						return BlockFace.f.toByte();
 					}
 
-					if (var3 == PaintingDirection.e) {
-						return PaintingDirection.c.toByte();
+					if (var3 == BlockFace.d) {
+						return BlockFace.e.toByte();
 					}
 
-					if (var3 == PaintingDirection.f) {
-						return PaintingDirection.d.toByte();
+					if (var3 == BlockFace.e) {
+						return BlockFace.c.toByte();
+					}
+
+					if (var3 == BlockFace.f) {
+						return BlockFace.d.toByte();
 					}
 				}
 			}
-		} else if (this.m == PaintingDirection.d) {
+		} else if (this.m == BlockFace.d) {
 			if (var2 == 2) {
 				return 3;
 			}
@@ -363,7 +363,7 @@ public abstract class bms {
 			if (var2 == 3) {
 				return 2;
 			}
-		} else if (this.m == PaintingDirection.e) {
+		} else if (this.m == BlockFace.e) {
 			if (var2 == 0) {
 				return 2;
 			}
@@ -379,7 +379,7 @@ public abstract class bms {
 			if (var2 == 3) {
 				return 1;
 			}
-		} else if (this.m == PaintingDirection.f) {
+		} else if (this.m == BlockFace.f) {
 			if (var2 == 0) {
 				return 2;
 			}
@@ -562,10 +562,10 @@ public abstract class bms {
 		}
 	}
 
-	protected void a(World var1, bjb var2, Random var3, int var4, int var5, int var6, PaintingDirection var7) {
+	protected void a(World var1, bjb var2, Random var3, int var4, int var5, int var6, BlockFace var7) {
 		Position var8 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
 		if (var2.b((fd) var8)) {
-			akt.a(var1, var8, var7.f(), Blocks.WOODEN_DOOR);
+			ItemDoor.a(var1, var8, var7.f(), Blocks.WOODEN_DOOR);
 		}
 
 	}

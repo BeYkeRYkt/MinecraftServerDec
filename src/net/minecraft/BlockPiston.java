@@ -10,7 +10,7 @@ public class BlockPiston extends Block {
 
 	public BlockPiston(boolean var1) {
 		super(Material.PISTON);
-		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Boolean.valueOf(false)));
+		this.j(this.L.b().a(a, BlockFace.c).a(b, Boolean.valueOf(false)));
 		this.M = var1;
 		this.a(i);
 		this.c(0.5F);
@@ -43,12 +43,12 @@ public class BlockPiston extends Block {
 
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(a, a(var1, var2, var8)).a(b, Boolean.valueOf(false));
 	}
 
 	private void e(World var1, Position var2, bec var3) {
-		PaintingDirection var4 = (PaintingDirection) var3.b(a);
+		BlockFace var4 = (BlockFace) var3.b(a);
 		boolean var5 = this.b(var1, var2, var4);
 		if (var5 && !((Boolean) var3.b(b)).booleanValue()) {
 			if ((new bdy(var1, var2, var4, true)).a()) {
@@ -61,28 +61,28 @@ public class BlockPiston extends Block {
 
 	}
 
-	private boolean b(World var1, Position var2, PaintingDirection var3) {
-		PaintingDirection[] var4 = PaintingDirection.values();
+	private boolean b(World var1, Position var2, BlockFace var3) {
+		BlockFace[] var4 = BlockFace.values();
 		int var5 = var4.length;
 
 		int var6;
 		for (var6 = 0; var6 < var5; ++var6) {
-			PaintingDirection var7 = var4[var6];
+			BlockFace var7 = var4[var6];
 			if (var7 != var3 && var1.b(var2.a(var7), var7)) {
 				return true;
 			}
 		}
 
-		if (var1.b(var2, PaintingDirection.c)) {
+		if (var1.b(var2, BlockFace.c)) {
 			return true;
 		} else {
 			Position var9 = var2.a();
-			PaintingDirection[] var10 = PaintingDirection.values();
+			BlockFace[] var10 = BlockFace.values();
 			var6 = var10.length;
 
 			for (int var11 = 0; var11 < var6; ++var11) {
-				PaintingDirection var8 = var10[var11];
-				if (var8 != PaintingDirection.a && var1.b(var9.a(var8), var8)) {
+				BlockFace var8 = var10[var11];
+				if (var8 != BlockFace.a && var1.b(var9.a(var8), var8)) {
 					return true;
 				}
 			}
@@ -92,7 +92,7 @@ public class BlockPiston extends Block {
 	}
 
 	public boolean a(World var1, Position var2, bec var3, int var4, int var5) {
-		PaintingDirection var6 = (PaintingDirection) var3.b(a);
+		BlockFace var6 = (BlockFace) var3.b(a);
 		if (!var1.D) {
 			boolean var7 = this.b(var1, var2, var6);
 			if (var7 && var4 == 1) {
@@ -152,7 +152,7 @@ public class BlockPiston extends Block {
 		bec var3 = var1.p(var2);
 		if (var3.getBlock() == this && ((Boolean) var3.b(b)).booleanValue()) {
 			float var4 = 0.25F;
-			PaintingDirection var5 = (PaintingDirection) var3.b(a);
+			BlockFace var5 = (BlockFace) var3.b(a);
 			if (var5 != null) {
 				switch (bdr.a[var5.ordinal()]) {
 					case 1:
@@ -198,33 +198,33 @@ public class BlockPiston extends Block {
 		return false;
 	}
 
-	public static PaintingDirection b(int var0) {
+	public static BlockFace b(int var0) {
 		int var1 = var0 & 7;
-		return var1 > 5 ? null : PaintingDirection.a(var1);
+		return var1 > 5 ? null : BlockFace.a(var1);
 	}
 
-	public static PaintingDirection a(World var0, Position var1, EntityLiving var2) {
+	public static BlockFace a(World var0, Position var1, EntityLiving var2) {
 		if (DataTypesConverter.e((float) var2.locationX - (float) var1.getX()) < 2.0F && DataTypesConverter.e((float) var2.locationZ - (float) var1.getZ()) < 2.0F) {
 			double var3 = var2.locationY + (double) var2.aR();
 			if (var3 - (double) var1.getY() > 2.0D) {
-				return PaintingDirection.b;
+				return BlockFace.b;
 			}
 
 			if ((double) var1.getY() - var3 > 0.0D) {
-				return PaintingDirection.a;
+				return BlockFace.a;
 			}
 		}
 
 		return var2.aO().d();
 	}
 
-	public static boolean a(Block var0, World var1, Position var2, PaintingDirection var3, boolean var4) {
+	public static boolean a(Block var0, World var1, Position var2, BlockFace var3, boolean var4) {
 		if (var0 == Blocks.OBSIDIAN) {
 			return false;
 		} else if (!var1.af().a(var2)) {
 			return false;
-		} else if (var2.getY() >= 0 && (var3 != PaintingDirection.a || var2.getY() != 0)) {
-			if (var2.getY() <= var1.U() - 1 && (var3 != PaintingDirection.b || var2.getY() != var1.U() - 1)) {
+		} else if (var2.getY() >= 0 && (var3 != BlockFace.a || var2.getY() != 0)) {
+			if (var2.getY() <= var1.U() - 1 && (var3 != BlockFace.b || var2.getY() != var1.U() - 1)) {
 				if (var0 != Blocks.PISTON && var0 != Blocks.STICKY_PISTON) {
 					if (var0.g(var1, var2) == -1.0F) {
 						return false;
@@ -254,7 +254,7 @@ public class BlockPiston extends Block {
 		}
 	}
 
-	private boolean a(World var1, Position var2, PaintingDirection var3, boolean var4) {
+	private boolean a(World var1, Position var2, BlockFace var3, boolean var4) {
 		if (!var4) {
 			var1.g(var2.a(var3));
 		}
@@ -267,7 +267,7 @@ public class BlockPiston extends Block {
 		} else {
 			int var8 = var6.size() + var7.size();
 			Block[] var9 = new Block[var8];
-			PaintingDirection var10 = var4 ? var3 : var3.d();
+			BlockFace var10 = var4 ? var3 : var3.d();
 
 			int var11;
 			Position var12;
@@ -327,7 +327,7 @@ public class BlockPiston extends Block {
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((PaintingDirection) var1.b(a)).a();
+		int var3 = var2 | ((BlockFace) var1.b(a)).a();
 		if (((Boolean) var1.b(b)).booleanValue()) {
 			var3 |= 8;
 		}

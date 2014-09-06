@@ -56,9 +56,9 @@ public abstract class BlockStepAbstract extends Block {
 		return this.j();
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		bec var9 = super.a(var1, var2, var3, var4, var5, var6, var7, var8).a(a, awr.b);
-		return this.j() ? var9 : (var3 != PaintingDirection.a && (var3 == PaintingDirection.b || (double) var5 <= 0.5D) ? var9 : var9.a(a, awr.a));
+		return this.j() ? var9 : (var3 != BlockFace.a && (var3 == BlockFace.b || (double) var5 <= 0.5D) ? var9 : var9.a(a, awr.a));
 	}
 
 	public int a(Random var1) {

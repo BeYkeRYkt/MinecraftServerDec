@@ -94,7 +94,7 @@ public class EntityMinecartFurnace extends adx {
 
 	public boolean e(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		if (var2 != null && var2.getItem() == Items.h) {
+		if (var2 != null && var2.getItem() == Items.COAL) {
 			if (!var1.by.instabuild && --var2.b == 0) {
 				var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
 			}
@@ -135,6 +135,6 @@ public class EntityMinecartFurnace extends adx {
 	}
 
 	public bec u() {
-		return (this.j() ? Blocks.LIT_FURNACE : Blocks.FURNACE).P().a(BlockFurnace.a, PaintingDirection.c);
+		return (this.j() ? Blocks.LIT_FURNACE : Blocks.FURNACE).P().a(BlockFurnace.a, BlockFace.c);
 	}
 }

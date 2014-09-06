@@ -8,7 +8,7 @@ public class EntityWitch extends EntityMonster implements afr {
 
 	private static final UUID b = UUID.fromString("5CD17E52-A79A-43D3-A529-90FDE04B181E");
 	private static final AttributeModifier c = (new AttributeModifier(b, "Drinking speed penalty", -0.25D, 0)).setSerializable(false);
-	private static final Item[] bk = new Item[] { Items.aT, Items.aY, Items.aC, Items.bB, Items.bA, Items.H, Items.y, Items.y };
+	private static final Item[] bk = new Item[] { Items.GLOWSTONE_DUST, Items.SUGAR, Items.REDSTONE, Items.SPIDER_EYE, Items.GLASS_BOTTLE, Items.GUNPOWDER, Items.STICK, Items.STICK };
 	private int bl;
 
 	public EntityWitch(World var1) {
@@ -62,8 +62,8 @@ public class EntityWitch extends EntityMonster implements afr {
 					this.a(false);
 					ItemStack var1 = this.bz();
 					this.c(0, (ItemStack) null);
-					if (var1 != null && var1.getItem() == Items.bz) {
-						List var2 = Items.bz.h(var1);
+					if (var1 != null && var1.getItem() == Items.POTION) {
+						List var2 = Items.POTION.h(var1);
 						if (var2 != null) {
 							Iterator var3 = var2.iterator();
 
@@ -91,7 +91,7 @@ public class EntityWitch extends EntityMonster implements afr {
 				}
 
 				if (var5 > -1) {
-					this.c(0, new ItemStack(Items.bz, 1, var5));
+					this.c(0, new ItemStack(Items.POTION, 1, var5));
 					this.bl = this.bz().l();
 					this.a(true);
 					AttributeInstance var6 = this.a(afs.d);

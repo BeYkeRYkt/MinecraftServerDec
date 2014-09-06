@@ -8,7 +8,7 @@ public class bmj extends bmk {
 	public bmj() {
 	}
 
-	public bmj(int var1, Random var2, bjb var3, PaintingDirection var4) {
+	public bmj(int var1, Random var2, bjb var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.d = this.a(var2);
@@ -19,7 +19,7 @@ public class bmj extends bmk {
 		this.a((bmh) var1, var2, var3, 1, 1);
 	}
 
-	public static bmj a(List var0, Random var1, int var2, int var3, int var4, PaintingDirection var5, int var6) {
+	public static bmj a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5, int var6) {
 		bjb var7 = bjb.a(var2, var3, var4, -1, -7, 0, 5, 11, 8, var5);
 		return a(var7) && bms.a(var0, var7) == null ? new bmj(var6, var1, var7, var5) : null;
 	}

@@ -9,7 +9,7 @@ public enum awc {
 	private awc(String var1, int var2) {
 	}
 
-	public avy a() {
+	public BlockFlowers a() {
 		return this == a ? Blocks.YELLOW_FLOWER : Blocks.RED_FLOWER;
 	}
 

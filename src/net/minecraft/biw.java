@@ -56,7 +56,7 @@ public class biw {
 				var1 = this.c + "*" + var1;
 			}
 		} else {
-			var1 = Integer.toString(Block.a(this.e()));
+			var1 = Integer.toString(Block.getBlockId(this.e()));
 			if (this.c > 1) {
 				var1 = this.c + "x" + var1;
 			}

@@ -72,7 +72,7 @@ public class aid extends Container {
 			this.k = 0;
 			int var16;
 			if (var13 != null) {
-				var15 = var13.getItem() == Items.cd && Items.cd.h(var13).getSize() > 0;
+				var15 = var13.getItem() == Items.ENCHANTED_BOOK && Items.ENCHANTED_BOOK.h(var13).getSize() > 0;
 				int var17;
 				int var18;
 				if (var12.e() && var12.getItem().a(var8, var13)) {
@@ -134,7 +134,7 @@ public class aid extends Container {
 
 							var21 = var10000;
 							boolean var22 = var28.canEnchant(var8);
-							if (this.m.by.instabuild || var8.getItem() == Items.cd) {
+							if (this.m.by.instabuild || var8.getItem() == Items.ENCHANTED_BOOK) {
 								var22 = true;
 							}
 

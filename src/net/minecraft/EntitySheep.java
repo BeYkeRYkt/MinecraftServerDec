@@ -22,14 +22,14 @@ public class EntitySheep extends abq {
 		this.i.a(0, new yy(this));
 		this.i.a(1, new zu(this, 1.25D));
 		this.i.a(2, new yt(this, 1.0D));
-		this.i.a(3, new aag(this, 1.1D, Items.O, false));
+		this.i.a(3, new aag(this, 1.1D, Items.WHEAT, false));
 		this.i.a(4, new za(this, 1.1D));
 		this.i.a(5, this.bo);
 		this.i.a(6, new zy(this, 1.0D));
 		this.i.a(7, new zh(this, EntityHuman.class, 6.0F));
 		this.i.a(8, new zx(this));
-		this.bk.a(0, new ItemStack(Items.aW, 1, 0));
-		this.bk.a(1, new ItemStack(Items.aW, 1, 0));
+		this.bk.a(0, new ItemStack(Items.DYE, 1, 0));
+		this.bk.a(1, new ItemStack(Items.DYE, 1, 0));
 	}
 
 	protected void E() {
@@ -65,9 +65,9 @@ public class EntitySheep extends abq {
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			if (this.au()) {
-				this.a(Items.bn, 1);
+				this.a(Items.COOKED_MUTTON, 1);
 			} else {
-				this.a(Items.bm, 1);
+				this.a(Items.MUTTON, 1);
 			}
 		}
 
@@ -79,7 +79,7 @@ public class EntitySheep extends abq {
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		if (var2 != null && var2.getItem() == Items.be && !this.ck() && !this.i_()) {
+		if (var2 != null && var2.getItem() == Items.SHEARS && !this.ck() && !this.i_()) {
 			if (!this.o.D) {
 				this.l(true);
 				int var3 = 1 + this.V.nextInt(3);
@@ -183,7 +183,7 @@ public class EntitySheep extends abq {
 		this.bk.a(1).b(var4);
 		ItemStack var5 = aop.a().a(this.bk, ((EntitySheep) var1).o);
 		int var6;
-		if (var5 != null && var5.getItem() == Items.aW) {
+		if (var5 != null && var5.getItem() == Items.DYE) {
 			var6 = var5.i();
 		} else {
 			var6 = this.o.s.nextBoolean() ? var3 : var4;

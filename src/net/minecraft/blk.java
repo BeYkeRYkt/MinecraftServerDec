@@ -8,7 +8,7 @@ import java.util.Random;
 public class blk extends bln {
 
 	private boolean[] e = new boolean[4];
-	private static final List f = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.i, 0, 1, 3, 3), new vl(Items.j, 0, 1, 5, 10), new vl(Items.k, 0, 2, 7, 15), new vl(Items.bO, 0, 1, 3, 2), new vl(Items.aX, 0, 4, 6, 20), new vl(Items.bt, 0, 3, 7, 16), new vl(Items.aA, 0, 1, 1, 3), new vl(Items.ck, 0, 1, 1, 1), new vl(Items.cl, 0, 1, 1, 1), new vl(Items.cm, 0, 1, 1, 1) }));
+	private static final List f = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.DIAMOND, 0, 1, 3, 3), new vl(Items.IRON_INGOT, 0, 1, 5, 10), new vl(Items.GOLD_INGOT, 0, 2, 7, 15), new vl(Items.EMERALD, 0, 1, 3, 2), new vl(Items.BONE, 0, 4, 6, 20), new vl(Items.ROTTEN_FLESH, 0, 3, 7, 16), new vl(Items.SADDLE, 0, 1, 1, 3), new vl(Items.IRON_HORSE_ARMOR, 0, 1, 1, 1), new vl(Items.GOLDEN_HORSE_ARMOR, 0, 1, 1, 1), new vl(Items.DIAMOND_HORSE_ARMOR, 0, 1, 1, 1) }));
 
 	public blk() {
 	}
@@ -220,11 +220,11 @@ public class blk extends bln {
 		Iterator var15 = en.a.iterator();
 
 		while (var15.hasNext()) {
-			PaintingDirection var11 = (PaintingDirection) var15.next();
+			BlockFace var11 = (BlockFace) var15.next();
 			if (!this.e[var11.toByte()]) {
 				int var12 = var11.g() * 2;
 				int var13 = var11.i() * 2;
-				this.e[var11.toByte()] = this.a(var1, var3, var2, 10 + var12, -11, 10 + var13, vl.a(f, new vl[] { Items.cd.b(var2) }), 2 + var2.nextInt(5));
+				this.e[var11.toByte()] = this.a(var1, var3, var2, 10 + var12, -11, 10 + var13, vl.a(f, new vl[] { Items.ENCHANTED_BOOK.b(var2) }), 2 + var2.nextInt(5));
 			}
 		}
 

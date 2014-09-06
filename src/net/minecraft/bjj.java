@@ -8,7 +8,7 @@ public class bjj extends bms {
 	public bjj() {
 	}
 
-	public bjj(int var1, Random var2, bjb var3, PaintingDirection var4) {
+	public bjj(int var1, Random var2, bjb var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
@@ -20,7 +20,7 @@ public class bjj extends bms {
 	protected void b(NBTCompoundTag var1) {
 	}
 
-	public static bjb a(List var0, Random var1, int var2, int var3, int var4, PaintingDirection var5) {
+	public static bjb a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5) {
 		bjb var6 = new bjb(var2, var3 - 5, var4, var2, var3 + 2, var4);
 		switch (bjf.a[var5.ordinal()]) {
 			case 1:
@@ -48,16 +48,16 @@ public class bjj extends bms {
 		if (this.m != null) {
 			switch (bjf.a[this.m.ordinal()]) {
 				case 1:
-					bje.a(var1, var2, var3, this.l.a, this.l.b, this.l.c - 1, PaintingDirection.c, var4);
+					bje.a(var1, var2, var3, this.l.a, this.l.b, this.l.c - 1, BlockFace.c, var4);
 					break;
 				case 2:
-					bje.a(var1, var2, var3, this.l.a, this.l.b, this.l.f + 1, PaintingDirection.d, var4);
+					bje.a(var1, var2, var3, this.l.a, this.l.b, this.l.f + 1, BlockFace.d, var4);
 					break;
 				case 3:
-					bje.a(var1, var2, var3, this.l.a - 1, this.l.b, this.l.c, PaintingDirection.e, var4);
+					bje.a(var1, var2, var3, this.l.a - 1, this.l.b, this.l.c, BlockFace.e, var4);
 					break;
 				case 4:
-					bje.a(var1, var2, var3, this.l.d + 1, this.l.b, this.l.c, PaintingDirection.f, var4);
+					bje.a(var1, var2, var3, this.l.d + 1, this.l.b, this.l.c, BlockFace.f, var4);
 			}
 		}
 

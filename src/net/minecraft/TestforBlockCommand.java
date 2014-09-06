@@ -52,7 +52,7 @@ public class TestforBlockCommand extends AbstractCommand {
 					bec var14 = var6.p(var3);
 					Block var10 = var14.getBlock();
 					if (var10 != var4) {
-						throw new di("commands.testforblock.failed.tile", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()), var10.H(), var4.H() });
+						throw new di("commands.testforblock.failed.tile", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()), var10.getLocalizedName(), var4.getLocalizedName() });
 					} else {
 						if (var5 > -1) {
 							int var11 = var14.getBlock().c(var14);

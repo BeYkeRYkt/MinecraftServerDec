@@ -30,9 +30,9 @@ public class BlockFlowing extends axl {
 			int var8 = -100;
 			this.a = 0;
 
-			PaintingDirection var10;
+			BlockFace var10;
 			for (Iterator var9 = en.a.iterator(); var9.hasNext(); var8 = this.a(var1, var2.a(var10), var8)) {
-				var10 = (PaintingDirection) var9.next();
+				var10 = (BlockFace) var9.next();
 			}
 
 			int var14 = var8 + var6;
@@ -106,7 +106,7 @@ public class BlockFlowing extends axl {
 			Iterator var11 = var15.iterator();
 
 			while (var11.hasNext()) {
-				PaintingDirection var12 = (PaintingDirection) var11.next();
+				BlockFace var12 = (BlockFace) var11.next();
 				this.a(var1, var2.a(var12), var1.p(var2.a(var12)), var16);
 			}
 		}
@@ -128,12 +128,12 @@ public class BlockFlowing extends axl {
 
 	}
 
-	private int a(World var1, Position var2, int var3, PaintingDirection var4) {
+	private int a(World var1, Position var2, int var3, BlockFace var4) {
 		int var5 = 1000;
 		Iterator var6 = en.a.iterator();
 
 		while (var6.hasNext()) {
-			PaintingDirection var7 = (PaintingDirection) var6.next();
+			BlockFace var7 = (BlockFace) var6.next();
 			if (var7 != var4) {
 				Position var8 = var2.a(var7);
 				bec var9 = var1.p(var8);
@@ -157,11 +157,11 @@ public class BlockFlowing extends axl {
 
 	private Set e(World var1, Position var2) {
 		int var3 = 1000;
-		EnumSet var4 = EnumSet.noneOf(PaintingDirection.class);
+		EnumSet var4 = EnumSet.noneOf(BlockFace.class);
 		Iterator var5 = en.a.iterator();
 
 		while (var5.hasNext()) {
-			PaintingDirection var6 = (PaintingDirection) var5.next();
+			BlockFace var6 = (BlockFace) var5.next();
 			Position var7 = var2.a(var6);
 			bec var8 = var1.p(var7);
 			if (!this.g(var1, var7, var8) && (var8.getBlock().r() != this.material || ((Integer) var8.b(b)).intValue() > 0)) {

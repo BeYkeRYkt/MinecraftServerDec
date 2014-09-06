@@ -18,6 +18,6 @@ class agr implements agw {
 			var3 = this.b.a(var2);
 		}
 
-		var1.add(new aqc(new ItemStack(this.a, var3, 0), Items.bO));
+		var1.add(new aqc(new ItemStack(this.a, var3, 0), Items.EMERALD));
 	}
 }

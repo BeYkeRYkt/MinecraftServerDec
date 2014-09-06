@@ -12,7 +12,7 @@ public class EntityPotion extends ahr {
 	}
 
 	public EntityPotion(World var1, EntityLiving var2, int var3) {
-		this(var1, var2, new ItemStack(Items.bz, 1, var3));
+		this(var1, var2, new ItemStack(Items.POTION, 1, var3));
 	}
 
 	public EntityPotion(World var1, EntityLiving var2, ItemStack var3) {
@@ -39,7 +39,7 @@ public class EntityPotion extends ahr {
 
 	public void a(int var1) {
 		if (this.c == null) {
-			this.c = new ItemStack(Items.bz, 1, 0);
+			this.c = new ItemStack(Items.POTION, 1, 0);
 		}
 
 		this.c.b(var1);
@@ -47,7 +47,7 @@ public class EntityPotion extends ahr {
 
 	public int o() {
 		if (this.c == null) {
-			this.c = new ItemStack(Items.bz, 1, 0);
+			this.c = new ItemStack(Items.POTION, 1, 0);
 		}
 
 		return this.c.i();
@@ -55,7 +55,7 @@ public class EntityPotion extends ahr {
 
 	protected void a(bru var1) {
 		if (!this.o.D) {
-			List var2 = Items.bz.h(this.c);
+			List var2 = Items.POTION.h(this.c);
 			if (var2 != null && !var2.isEmpty()) {
 				brt var3 = this.aQ().b(4.0D, 2.0D, 4.0D);
 				List var4 = this.o.a(EntityLiving.class, var3);

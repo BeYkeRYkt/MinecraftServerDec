@@ -14,7 +14,7 @@ public class BlockSkull extends atg {
 
 	protected BlockSkull() {
 		super(Material.ORIENTABLE);
-		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Boolean.valueOf(false)));
+		this.j(this.L.b().a(a, BlockFace.c).a(b, Boolean.valueOf(false)));
 		this.a(0.25F, 0.0F, 0.25F, 0.75F, 0.5F, 0.75F);
 	}
 
@@ -27,7 +27,7 @@ public class BlockSkull extends atg {
 	}
 
 	public void a(ard var1, Position var2) {
-		switch (bal.a[((PaintingDirection) var1.p(var2).b(a)).ordinal()]) {
+		switch (bal.a[((BlockFace) var1.p(var2).b(a)).ordinal()]) {
 			case 1:
 			default:
 				this.a(0.25F, 0.0F, 0.25F, 0.75F, 0.5F, 0.75F);
@@ -52,7 +52,7 @@ public class BlockSkull extends atg {
 		return super.a(var1, var2, var3);
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(a, var8.aO()).a(b, Boolean.valueOf(false));
 	}
 
@@ -83,7 +83,7 @@ public class BlockSkull extends atg {
 				TileEntity var4 = var1.s(var2);
 				if (var4 instanceof TileEntitySkull) {
 					TileEntitySkull var5 = (TileEntitySkull) var4;
-					ItemStack var6 = new ItemStack(Items.bX, 1, this.j(var1, var2));
+					ItemStack var6 = new ItemStack(Items.SKULL, 1, this.j(var1, var2));
 					if (var5.c() == 3 && var5.b() != null) {
 						var6.d(new NBTCompoundTag());
 						NBTCompoundTag var7 = new NBTCompoundTag();
@@ -100,7 +100,7 @@ public class BlockSkull extends atg {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Items.bX;
+		return Items.SKULL;
 	}
 
 	public boolean b(World var1, Position var2, ItemStack var3) {
@@ -157,12 +157,12 @@ public class BlockSkull extends atg {
 	}
 
 	public bec a(int var1) {
-		return this.P().a(a, PaintingDirection.a(var1 & 7)).a(b, Boolean.valueOf((var1 & 8) > 0));
+		return this.P().a(a, BlockFace.a(var1 & 7)).a(b, Boolean.valueOf((var1 & 8) > 0));
 	}
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((PaintingDirection) var1.b(a)).a();
+		int var3 = var2 | ((BlockFace) var1.b(a)).a();
 		if (((Boolean) var1.b(b)).booleanValue()) {
 			var3 |= 8;
 		}

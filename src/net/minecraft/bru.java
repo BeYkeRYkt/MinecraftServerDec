@@ -4,15 +4,15 @@ public class bru {
 
 	private Position e;
 	public brv a;
-	public PaintingDirection b;
+	public BlockFace b;
 	public Vec3D c;
 	public Entity d;
 
-	public bru(Vec3D var1, PaintingDirection var2, Position var3) {
+	public bru(Vec3D var1, BlockFace var2, Position var3) {
 		this(brv.b, var1, var2, var3);
 	}
 
-	public bru(Vec3D var1, PaintingDirection var2) {
+	public bru(Vec3D var1, BlockFace var2) {
 		this(brv.b, var1, var2, Position.ZERO);
 	}
 
@@ -20,7 +20,7 @@ public class bru {
 		this(var1, new Vec3D(var1.locationX, var1.locationY, var1.locationZ));
 	}
 
-	public bru(brv var1, Vec3D var2, PaintingDirection var3, Position var4) {
+	public bru(brv var1, Vec3D var2, BlockFace var3, Position var4) {
 		this.a = var1;
 		this.e = var4;
 		this.b = var3;

@@ -94,26 +94,26 @@ public class arh {
 			double var35 = (double) ((Position) var9).getX() + 0.5D;
 			double var36 = (double) ((Position) var9).getY() + 0.5D;
 			double var37 = (double) ((Position) var9).getZ() + 0.5D;
-			PaintingDirection var18 = null;
+			BlockFace var18 = null;
 			if (this.a.p(((Position) var9).e()).getBlock() == Blocks.PORTAL) {
-				var18 = PaintingDirection.c;
+				var18 = BlockFace.c;
 			}
 
 			if (this.a.p(((Position) var9).f()).getBlock() == Blocks.PORTAL) {
-				var18 = PaintingDirection.d;
+				var18 = BlockFace.d;
 			}
 
 			if (this.a.p(((Position) var9).c()).getBlock() == Blocks.PORTAL) {
-				var18 = PaintingDirection.f;
+				var18 = BlockFace.f;
 			}
 
 			if (this.a.p(((Position) var9).d()).getBlock() == Blocks.PORTAL) {
-				var18 = PaintingDirection.e;
+				var18 = BlockFace.e;
 			}
 
-			PaintingDirection var19 = PaintingDirection.fromByte(var1.aG());
+			BlockFace var19 = BlockFace.fromByte(var1.aG());
 			if (var18 != null) {
-				PaintingDirection var20 = var18.f();
+				BlockFace var20 = var18.f();
 				Position var21 = ((Position) var9).a(var18);
 				boolean var22 = this.a(var21);
 				boolean var23 = this.a(var21.a(var20));

@@ -49,7 +49,7 @@ public class BlockCauldron extends Block {
 
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {
@@ -59,10 +59,10 @@ public class BlockCauldron extends Block {
 			} else {
 				int var10 = ((Integer) var3.b(a)).intValue();
 				Item var11 = var9.getItem();
-				if (var11 == Items.ax) {
+				if (var11 == Items.WATER_BUCKET) {
 					if (var10 < 3) {
 						if (!var4.by.instabuild) {
-							var4.playerInventory.a(var4.playerInventory.c, new ItemStack(Items.aw));
+							var4.playerInventory.a(var4.playerInventory.c, new ItemStack(Items.BUCKET));
 						}
 
 						this.a(var1, var2, var3, 3);
@@ -71,10 +71,10 @@ public class BlockCauldron extends Block {
 					return true;
 				} else {
 					ItemStack var13;
-					if (var11 == Items.bA) {
+					if (var11 == Items.GLASS_BOTTLE) {
 						if (var10 > 0) {
 							if (!var4.by.instabuild) {
-								var13 = new ItemStack(Items.bz, 1, 0);
+								var13 = new ItemStack(Items.POTION, 1, 0);
 								if (!var4.playerInventory.a(var13)) {
 									var1.d((Entity) (new EntityItem(var1, (double) var2.getX() + 0.5D, (double) var2.getY() + 1.5D, (double) var2.getZ() + 0.5D, var13)));
 								} else if (var4 instanceof EntityPlayer) {
@@ -94,14 +94,14 @@ public class BlockCauldron extends Block {
 					} else {
 						if (var10 > 0 && var11 instanceof ItemArmor) {
 							ItemArmor var12 = (ItemArmor) var11;
-							if (var12.w_() == ajp.a && var12.d_(var9)) {
+							if (var12.w_() == EnumArmorMaterial.LEATHER && var12.d_(var9)) {
 								var12.c(var9);
 								this.a(var1, var2, var3, var10 - 1);
 								return true;
 							}
 						}
 
-						if (var10 > 0 && var11 instanceof ajs && TileEntityBanner.c(var9) > 0) {
+						if (var10 > 0 && var11 instanceof ItemBanner && TileEntityBanner.c(var9) > 0) {
 							var13 = var9.getCopy();
 							var13.b = 1;
 							TileEntityBanner.e(var13);
@@ -149,7 +149,7 @@ public class BlockCauldron extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Items.bG;
+		return Items.CAULDRON;
 	}
 
 	public boolean N() {

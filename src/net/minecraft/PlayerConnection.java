@@ -363,7 +363,7 @@ public class PlayerConnection implements ls, pm {
 		ItemStack var3 = this.b.playerInventory.getItemInHand();
 		boolean var4 = false;
 		Position var5 = var1.a();
-		PaintingDirection var6 = PaintingDirection.a(var1.b());
+		BlockFace var6 = BlockFace.a(var1.b());
 		this.b.z();
 		if (var1.b() == 255) {
 			if (var3 == null) {
@@ -371,7 +371,7 @@ public class PlayerConnection implements ls, pm {
 			}
 
 			this.b.c.a(this.b, var2, var3);
-		} else if (var5.getY() >= this.d.al() - 1 && (var6 == PaintingDirection.b || var5.getY() >= this.d.al())) {
+		} else if (var5.getY() >= this.d.al() - 1 && (var6 == BlockFace.b || var5.getY() >= this.d.al())) {
 			hz var7 = new hz("build.tooHigh", new Object[] { Integer.valueOf(this.d.al()) });
 			var7.b().a(FormattingCode.m);
 			this.b.playerConncetion.sendPacket((Packet) (new PacketOutChatMessage(var7)));
@@ -825,7 +825,7 @@ public class PlayerConnection implements ls, pm {
 			try {
 				var3 = var2.readItemStack();
 				if (var3 != null) {
-					if (!anq.b(var3.getTag())) {
+					if (!ItemBookAndQuill.b(var3.getTag())) {
 						throw new IOException("Invalid book tag!");
 					}
 
@@ -834,7 +834,7 @@ public class PlayerConnection implements ls, pm {
 						return;
 					}
 
-					if (var3.getItem() == Items.bM && var3.getItem() == var4.getItem()) {
+					if (var3.getItem() == Items.WRITABLE_BOOK && var3.getItem() == var4.getItem()) {
 						var4.a("pages", (NBTTag) var3.getTag().getList("pages", 8));
 					}
 
@@ -854,7 +854,7 @@ public class PlayerConnection implements ls, pm {
 			try {
 				var3 = var2.readItemStack();
 				if (var3 != null) {
-					if (!anr.b(var3.getTag())) {
+					if (!ItemWrittenBook.b(var3.getTag())) {
 						throw new IOException("Invalid book tag!");
 					}
 
@@ -863,11 +863,11 @@ public class PlayerConnection implements ls, pm {
 						return;
 					}
 
-					if (var3.getItem() == Items.bN && var4.getItem() == Items.bM) {
+					if (var3.getItem() == Items.WRITTEN_BOK && var4.getItem() == Items.WRITABLE_BOOK) {
 						var4.a("author", (NBTTag) (new NBTStringTag(this.b.d_())));
 						var4.a("title", (NBTTag) (new NBTStringTag(var3.getTag().getString("title"))));
 						var4.a("pages", (NBTTag) var3.getTag().getList("pages", 8));
-						var4.a(Items.bN);
+						var4.a(Items.WRITTEN_BOK);
 					}
 
 					return;

@@ -75,16 +75,16 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 				boolean var2 = false;
 
 				for (int var3 = 0; var3 < 3; ++var3) {
-					if (this.g[var3] != null && this.g[var3].getItem() == Items.bz) {
+					if (this.g[var3] != null && this.g[var3].getItem() == Items.POTION) {
 						int var4 = this.g[var3].i();
 						int var5 = this.c(var4, var1);
-						if (!amw.f(var4) && amw.f(var5)) {
+						if (!ItemPotion.f(var4) && ItemPotion.f(var5)) {
 							var2 = true;
 							break;
 						}
 
-						List var6 = Items.bz.e(var4);
-						List var7 = Items.bz.e(var5);
+						List var6 = Items.POTION.e(var4);
+						List var7 = Items.POTION.e(var5);
 						if ((var4 <= 0 || var6 != var7) && (var6 == null || !var6.equals(var7) && var7 != null) && var4 != var5) {
 							var2 = true;
 							break;
@@ -104,23 +104,23 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 			ItemStack var1 = this.g[3];
 
 			for (int var2 = 0; var2 < 3; ++var2) {
-				if (this.g[var2] != null && this.g[var2].getItem() == Items.bz) {
+				if (this.g[var2] != null && this.g[var2].getItem() == Items.POTION) {
 					int var3 = this.g[var2].i();
 					int var4 = this.c(var3, var1);
-					List var5 = Items.bz.e(var3);
-					List var6 = Items.bz.e(var4);
+					List var5 = Items.POTION.e(var3);
+					List var6 = Items.POTION.e(var4);
 					if ((var3 <= 0 || var5 != var6) && (var5 == null || !var5.equals(var6) && var6 != null)) {
 						if (var3 != var4) {
 							this.g[var2].b(var4);
 						}
-					} else if (!amw.f(var3) && amw.f(var4)) {
+					} else if (!ItemPotion.f(var3) && ItemPotion.f(var4)) {
 						this.g[var2].b(var4);
 					}
 				}
 			}
 
 			if (var1.getItem().r()) {
-				this.g[3] = new ItemStack(var1.getItem().q());
+				this.g[3] = new ItemStack(var1.getItem().getCraftingResult());
 			} else {
 				--this.g[3].b;
 				if (this.g[3].b <= 0) {
@@ -132,7 +132,7 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 	}
 
 	private int c(int var1, ItemStack var2) {
-		return var2 == null ? var1 : (var2.getItem().l(var2) ? ans.a(var1, var2.getItem().j(var2)) : var1);
+		return var2 == null ? var1 : (var2.getItem().l(var2) ? PotionBrewer.a(var1, var2.getItem().j(var2)) : var1);
 	}
 
 	public void read(NBTCompoundTag var1) {
@@ -222,7 +222,7 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 	}
 
 	public boolean b(int var1, ItemStack var2) {
-		return var1 == 3 ? var2.getItem().l(var2) : var2.getItem() == Items.bz || var2.getItem() == Items.bA;
+		return var1 == 3 ? var2.getItem().l(var2) : var2.getItem() == Items.POTION || var2.getItem() == Items.GLASS_BOTTLE;
 	}
 
 	public boolean[] m() {
@@ -237,15 +237,15 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 		return var1;
 	}
 
-	public int[] a(PaintingDirection var1) {
-		return var1 == PaintingDirection.b ? a : f;
+	public int[] a(BlockFace var1) {
+		return var1 == BlockFace.b ? a : f;
 	}
 
-	public boolean a(int var1, ItemStack var2, PaintingDirection var3) {
+	public boolean a(int var1, ItemStack var2, BlockFace var3) {
 		return this.b(var1, var2);
 	}
 
-	public boolean b(int var1, ItemStack var2, PaintingDirection var3) {
+	public boolean b(int var1, ItemStack var2, BlockFace var3) {
 		return true;
 	}
 

@@ -4,7 +4,7 @@ public class abh {
 
 	private final Position a;
 	private final Position b;
-	private final PaintingDirection c;
+	private final BlockFace c;
 	private int d;
 	private boolean e;
 	private int f;
@@ -13,11 +13,11 @@ public class abh {
 		this(var1, a(var2, var3), var4);
 	}
 
-	private static PaintingDirection a(int var0, int var1) {
-		return var0 < 0 ? PaintingDirection.e : (var0 > 0 ? PaintingDirection.f : (var1 < 0 ? PaintingDirection.c : PaintingDirection.d));
+	private static BlockFace a(int var0, int var1) {
+		return var0 < 0 ? BlockFace.e : (var0 > 0 ? BlockFace.f : (var1 < 0 ? BlockFace.c : BlockFace.d));
 	}
 
-	public abh(Position var1, PaintingDirection var2, int var3) {
+	public abh(Position var1, BlockFace var2, int var3) {
 		this.a = var1;
 		this.c = var2;
 		this.b = var1.a(var2, 2);

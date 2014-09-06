@@ -433,8 +433,8 @@ public abstract class EntityLiving extends Entity {
 			this.bi();
 			this.e(false);
 		} else {
-			int var1 = ans.a(this.g.values());
-			this.dataWatcher.b(8, Byte.valueOf((byte) (ans.b(this.g.values()) ? 1 : 0)));
+			int var1 = PotionBrewer.a(this.g.values());
+			this.dataWatcher.b(8, Byte.valueOf((byte) (PotionBrewer.b(this.g.values()) ? 1 : 0)));
 			this.dataWatcher.b(7, Integer.valueOf(var1));
 			this.e(this.k(MobEffectList.p.H));
 		}

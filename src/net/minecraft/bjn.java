@@ -26,7 +26,7 @@ public class bjn {
 		bmq.a(bkf.class, "NeStart");
 	}
 
-	private static bkb b(bkc var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
+	private static bkb b(bkc var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6, int var7) {
 		Class var8 = var0.a;
 		Object var9 = null;
 		if (var8 == bjr.class) {
@@ -61,7 +61,7 @@ public class bjn {
 	}
 
 	// $FF: synthetic method
-	static bkb a(bkc var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
+	static bkb a(bkc var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6, int var7) {
 		return b(var0, var1, var2, var3, var4, var5, var6, var7);
 	}
 

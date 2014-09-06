@@ -5,7 +5,7 @@ final class amq extends eg {
 	private final eg b = new eg();
 
 	public ItemStack b(dz var1, ItemStack var2) {
-		PaintingDirection var3 = BlockDispenser.b(var1.f());
+		BlockFace var3 = BlockDispenser.b(var1.f());
 		World var4 = var1.i();
 		double var5 = var1.a() + (double) var3.g() * 1.125D;
 		double var7 = Math.floor(var1.b()) + (double) var3.h();
@@ -27,14 +27,14 @@ final class amq extends eg {
 
 			bec var16 = var4.p(var11.b());
 			atl var17 = var16.getBlock() instanceof ati ? (atl) var16.b(((ati) var16.getBlock()).l()) : atl.a;
-			if (var3 != PaintingDirection.a && var17.c()) {
+			if (var3 != BlockFace.a && var17.c()) {
 				var14 = -0.4D;
 			} else {
 				var14 = -0.9D;
 			}
 		}
 
-		adx var18 = adx.a(var4, var5, var7 + var14, var9, amp.a((amp) var2.getItem()));
+		adx var18 = adx.a(var4, var5, var7 + var14, var9, ItemMinecart.a((ItemMinecart) var2.getItem()));
 		if (var2.s()) {
 			var18.a(var2.q());
 		}

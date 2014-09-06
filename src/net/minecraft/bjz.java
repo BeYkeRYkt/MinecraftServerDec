@@ -8,7 +8,7 @@ public class bjz extends bkb {
 	public bjz() {
 	}
 
-	public bjz(int var1, Random var2, bjb var3, PaintingDirection var4) {
+	public bjz(int var1, Random var2, bjb var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
@@ -19,7 +19,7 @@ public class bjz extends bkb {
 		this.a((bkf) var1, var2, var3, 5, 11, true);
 	}
 
-	public static bjz a(List var0, Random var1, int var2, int var3, int var4, PaintingDirection var5, int var6) {
+	public static bjz a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5, int var6) {
 		bjb var7 = bjb.a(var2, var3, var4, -5, -3, 0, 13, 14, 13, var5);
 		return a(var7) && bms.a(var0, var7) == null ? new bjz(var6, var1, var7, var5) : null;
 	}

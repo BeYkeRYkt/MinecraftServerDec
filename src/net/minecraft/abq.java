@@ -81,7 +81,7 @@ public abstract class abq extends ws implements wt {
 	}
 
 	public boolean d(ItemStack var1) {
-		return var1 == null ? false : var1.getItem() == Items.O;
+		return var1 == null ? false : var1.getItem() == Items.WHEAT;
 	}
 
 	public boolean a(EntityHuman var1) {

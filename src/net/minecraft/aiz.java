@@ -11,6 +11,6 @@ class aiz extends ajk {
 	}
 
 	public boolean a(ItemStack var1) {
-		return super.a(var1) && var1.getItem() == Items.aA && !this.e();
+		return super.a(var1) && var1.getItem() == Items.SADDLE && !this.e();
 	}
 }

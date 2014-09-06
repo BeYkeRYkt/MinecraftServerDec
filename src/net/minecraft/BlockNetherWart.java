@@ -43,7 +43,7 @@ public class BlockNetherWart extends auc {
 			}
 
 			for (int var7 = 0; var7 < var6; ++var7) {
-				a(var1, var2, new ItemStack(Items.by));
+				a(var1, var2, new ItemStack(Items.NETHER_WART));
 			}
 
 		}

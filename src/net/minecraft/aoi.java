@@ -19,26 +19,26 @@ public class aoi implements aoo {
 		for (int var9 = 0; var9 < var1.n_(); ++var9) {
 			ItemStack var10 = var1.a(var9);
 			if (var10 != null) {
-				if (var10.getItem() == Items.H) {
+				if (var10.getItem() == Items.GUNPOWDER) {
 					++var4;
-				} else if (var10.getItem() == Items.cc) {
+				} else if (var10.getItem() == Items.FIREWORK_CHARGE) {
 					++var6;
-				} else if (var10.getItem() == Items.aW) {
+				} else if (var10.getItem() == Items.DYE) {
 					++var5;
-				} else if (var10.getItem() == Items.aK) {
+				} else if (var10.getItem() == Items.PAPER) {
 					++var3;
-				} else if (var10.getItem() == Items.aT) {
+				} else if (var10.getItem() == Items.GLOWSTONE_DUST) {
 					++var7;
-				} else if (var10.getItem() == Items.i) {
+				} else if (var10.getItem() == Items.DIAMOND) {
 					++var7;
-				} else if (var10.getItem() == Items.bL) {
+				} else if (var10.getItem() == Items.FIRE_CHARGE) {
 					++var8;
-				} else if (var10.getItem() == Items.G) {
+				} else if (var10.getItem() == Items.FEATHER) {
 					++var8;
-				} else if (var10.getItem() == Items.bx) {
+				} else if (var10.getItem() == Items.GOLD_NUGGET) {
 					++var8;
 				} else {
-					if (var10.getItem() != Items.bX) {
+					if (var10.getItem() != Items.SKULL) {
 						return false;
 					}
 
@@ -52,7 +52,7 @@ public class aoi implements aoo {
 			NBTCompoundTag var16;
 			NBTCompoundTag var19;
 			if (var4 >= 1 && var3 == 1 && var7 == 0) {
-				this.a = new ItemStack(Items.cb);
+				this.a = new ItemStack(Items.FIREWORKS);
 				if (var6 > 0) {
 					var16 = new NBTCompoundTag();
 					var19 = new NBTCompoundTag();
@@ -60,7 +60,7 @@ public class aoi implements aoo {
 
 					for (int var24 = 0; var24 < var1.n_(); ++var24) {
 						ItemStack var26 = var1.a(var24);
-						if (var26 != null && var26.getItem() == Items.cc && var26.hasTag() && var26.getTag().isTagAssignableFrom("Explosion", 10)) {
+						if (var26 != null && var26.getItem() == Items.FIREWORK_CHARGE && var26.hasTag() && var26.getTag().isTagAssignableFrom("Explosion", 10)) {
 							var23.addTag((NBTTag) var26.getTag().getCompound("Explosion"));
 						}
 					}
@@ -73,7 +73,7 @@ public class aoi implements aoo {
 
 				return true;
 			} else if (var4 == 1 && var3 == 0 && var6 == 0 && var5 > 0 && var8 <= 1) {
-				this.a = new ItemStack(Items.cc);
+				this.a = new ItemStack(Items.FIREWORK_CHARGE);
 				var16 = new NBTCompoundTag();
 				var19 = new NBTCompoundTag();
 				byte var22 = 0;
@@ -82,19 +82,19 @@ public class aoi implements aoo {
 				for (int var13 = 0; var13 < var1.n_(); ++var13) {
 					ItemStack var14 = var1.a(var13);
 					if (var14 != null) {
-						if (var14.getItem() == Items.aW) {
-							var12.add(Integer.valueOf(akw.a[var14.i() & 15]));
-						} else if (var14.getItem() == Items.aT) {
+						if (var14.getItem() == Items.DYE) {
+							var12.add(Integer.valueOf(ItemDye.a[var14.i() & 15]));
+						} else if (var14.getItem() == Items.GLOWSTONE_DUST) {
 							var19.put("Flicker", true);
-						} else if (var14.getItem() == Items.i) {
+						} else if (var14.getItem() == Items.DIAMOND) {
 							var19.put("Trail", true);
-						} else if (var14.getItem() == Items.bL) {
+						} else if (var14.getItem() == Items.FIRE_CHARGE) {
 							var22 = 1;
-						} else if (var14.getItem() == Items.G) {
+						} else if (var14.getItem() == Items.FEATHER) {
 							var22 = 4;
-						} else if (var14.getItem() == Items.bx) {
+						} else if (var14.getItem() == Items.GOLD_NUGGET) {
 							var22 = 2;
-						} else if (var14.getItem() == Items.bX) {
+						} else if (var14.getItem() == Items.SKULL) {
 							var22 = 3;
 						}
 					}
@@ -117,9 +117,9 @@ public class aoi implements aoo {
 				for (int var17 = 0; var17 < var1.n_(); ++var17) {
 					ItemStack var11 = var1.a(var17);
 					if (var11 != null) {
-						if (var11.getItem() == Items.aW) {
-							var15.add(Integer.valueOf(akw.a[var11.i() & 15]));
-						} else if (var11.getItem() == Items.cc) {
+						if (var11.getItem() == Items.DYE) {
+							var15.add(Integer.valueOf(ItemDye.a[var11.i() & 15]));
+						} else if (var11.getItem() == Items.FIREWORK_CHARGE) {
 							this.a = var11.getCopy();
 							this.a.b = 1;
 						}
@@ -169,7 +169,7 @@ public class aoi implements aoo {
 		for (int var3 = 0; var3 < var2.length; ++var3) {
 			ItemStack var4 = var1.a(var3);
 			if (var4 != null && var4.getItem().r()) {
-				var2[var3] = new ItemStack(var4.getItem().q());
+				var2[var3] = new ItemStack(var4.getItem().getCraftingResult());
 			}
 		}
 

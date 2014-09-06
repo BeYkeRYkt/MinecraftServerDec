@@ -22,7 +22,7 @@ public abstract class bcf extends BlockStepAbstract {
 	}
 
 	public String b(int var1) {
-		return super.a() + "." + ayx.a(var1).c();
+		return super.getName() + "." + ayx.a(var1).c();
 	}
 
 	public bex l() {

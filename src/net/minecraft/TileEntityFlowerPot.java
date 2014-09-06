@@ -23,7 +23,7 @@ public class TileEntityFlowerPot extends TileEntity {
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
 		if (var1.isTagAssignableFrom("Item", 8)) {
-			this.a = Item.d(var1.getString("Item"));
+			this.a = Item.getByName(var1.getString("Item"));
 		} else {
 			this.a = Item.getById(var1.getInt("Item"));
 		}

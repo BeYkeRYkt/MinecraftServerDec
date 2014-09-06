@@ -22,7 +22,7 @@ public class BlockDropper extends BlockDispenser {
 			} else {
 				ItemStack var6 = var4.a(var5);
 				if (var6 != null) {
-					PaintingDirection var7 = (PaintingDirection) var1.p(var2).b(a);
+					BlockFace var7 = (BlockFace) var1.p(var2).b(a);
 					Position var8 = var2.a(var7);
 					IInventory var9 = TileEntityHopper.b(var1, (double) var8.getX(), (double) var8.getY(), (double) var8.getZ());
 					ItemStack var10;

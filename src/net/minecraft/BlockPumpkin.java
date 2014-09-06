@@ -9,7 +9,7 @@ public class BlockPumpkin extends avb {
 
 	protected BlockPumpkin() {
 		super(Material.PUMPKIN);
-		this.j(this.L.b().a(N, PaintingDirection.c));
+		this.j(this.L.b().a(N, BlockFace.c));
 		this.a(true);
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
@@ -77,16 +77,16 @@ public class BlockPumpkin extends avb {
 		return var1.p(var2).getBlock().material.j() && World.a((ard) var1, var2.b());
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(N, var8.aO().d());
 	}
 
 	public bec a(int var1) {
-		return this.P().a(N, PaintingDirection.fromByte(var1));
+		return this.P().a(N, BlockFace.fromByte(var1));
 	}
 
 	public int c(bec var1) {
-		return ((PaintingDirection) var1.b(N)).toByte();
+		return ((BlockFace) var1.b(N)).toByte();
 	}
 
 	protected bed e() {

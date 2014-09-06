@@ -176,7 +176,7 @@ public class EntityItem extends Entity {
 	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
-		} else if (this.l() != null && this.l().getItem() == Items.bZ && var1.c()) {
+		} else if (this.l() != null && this.l().getItem() == Items.NETHER_STAR && var1.c()) {
 			return false;
 		} else {
 			this.ac();
@@ -243,19 +243,19 @@ public class EntityItem extends Entity {
 					var1.b((Statistic) tl.g);
 				}
 
-				if (var2.getItem() == Items.aF) {
+				if (var2.getItem() == Items.LEATHER) {
 					var1.b((Statistic) tl.t);
 				}
 
-				if (var2.getItem() == Items.i) {
+				if (var2.getItem() == Items.DIAMOND) {
 					var1.b((Statistic) tl.w);
 				}
 
-				if (var2.getItem() == Items.bv) {
+				if (var2.getItem() == Items.BLAZE_ROD) {
 					var1.b((Statistic) tl.A);
 				}
 
-				if (var2.getItem() == Items.i && this.n() != null) {
+				if (var2.getItem() == Items.DIAMOND && this.n() != null) {
 					EntityHuman var4 = this.o.a(this.n());
 					if (var4 != null && var4 != var1) {
 						var4.b((Statistic) tl.x);

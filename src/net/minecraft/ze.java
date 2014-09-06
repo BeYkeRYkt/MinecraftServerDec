@@ -55,13 +55,13 @@ public class ze extends zn {
 					ItemStack var7 = var5.a(var6);
 					boolean var8 = false;
 					if (var7 != null) {
-						if (var7.getItem() == Items.N) {
+						if (var7.getItem() == Items.WHEAT_SEEDS) {
 							var1.a(var2, Blocks.WHEAT.P(), 3);
 							var8 = true;
-						} else if (var7.getItem() == Items.bS) {
+						} else if (var7.getItem() == Items.POTATO) {
 							var1.a(var2, Blocks.POTATOES.P(), 3);
 							var8 = true;
-						} else if (var7.getItem() == Items.bR) {
+						} else if (var7.getItem() == Items.CARROT) {
 							var1.a(var2, Blocks.CARROTS.P(), 3);
 							var8 = true;
 						}

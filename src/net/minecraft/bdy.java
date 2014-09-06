@@ -9,11 +9,11 @@ public class bdy {
 	private final World a;
 	private final Position b;
 	private final Position c;
-	private final PaintingDirection d;
+	private final BlockFace d;
 	private final List e = Lists.newArrayList();
 	private final List f = Lists.newArrayList();
 
-	public bdy(World var1, Position var2, PaintingDirection var3, boolean var4) {
+	public bdy(World var1, Position var2, BlockFace var3, boolean var4) {
 		this.a = var1;
 		this.b = var2;
 		if (var4) {
@@ -145,11 +145,11 @@ public class bdy {
 	}
 
 	private boolean b(Position var1) {
-		PaintingDirection[] var2 = PaintingDirection.values();
+		BlockFace[] var2 = BlockFace.values();
 		int var3 = var2.length;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			PaintingDirection var5 = var2[var4];
+			BlockFace var5 = var2[var4];
 			if (var5.k() != this.d.k() && !this.a(var1.a(var5))) {
 				return false;
 			}

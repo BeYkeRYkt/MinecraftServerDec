@@ -6,20 +6,20 @@ import java.util.Random;
 
 public class bnj extends bnn {
 
-	private static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.i, 0, 1, 3, 3), new vl(Items.j, 0, 1, 5, 10), new vl(Items.k, 0, 1, 3, 5), new vl(Items.P, 0, 1, 3, 15), new vl(Items.e, 0, 1, 3, 15), new vl(Items.b, 0, 1, 1, 5), new vl(Items.l, 0, 1, 1, 5), new vl(Items.Z, 0, 1, 1, 5), new vl(Items.Y, 0, 1, 1, 5), new vl(Items.aa, 0, 1, 1, 5), new vl(Items.ab, 0, 1, 1, 5), new vl(Item.getItemOf(Blocks.OBSIDIAN), 0, 3, 7, 5), new vl(Item.getItemOf(Blocks.SAPLING), 0, 3, 7, 5), new vl(Items.aA, 0, 1, 1, 3),
-			new vl(Items.ck, 0, 1, 1, 1), new vl(Items.cl, 0, 1, 1, 1), new vl(Items.cm, 0, 1, 1, 1) }));
+	private static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.DIAMOND, 0, 1, 3, 3), new vl(Items.IRON_INGOT, 0, 1, 5, 10), new vl(Items.GOLD_INGOT, 0, 1, 3, 5), new vl(Items.BREAD, 0, 1, 3, 15), new vl(Items.APPLE, 0, 1, 3, 15), new vl(Items.IRON_PICKAXE, 0, 1, 1, 5), new vl(Items.IRON_SWORD, 0, 1, 1, 5), new vl(Items.IRON_CHESTPLATE, 0, 1, 1, 5), new vl(Items.IRON_HELMET, 0, 1, 1, 5), new vl(Items.IRON_LEGGINS, 0, 1, 1, 5), new vl(Items.IRON_BOOTS, 0, 1, 1, 5), new vl(Item.getItemOf(Blocks.OBSIDIAN), 0, 3, 7, 5), new vl(Item.getItemOf(Blocks.SAPLING), 0, 3, 7, 5), new vl(Items.SADDLE, 0, 1, 1, 3),
+			new vl(Items.IRON_HORSE_ARMOR, 0, 1, 1, 1), new vl(Items.GOLDEN_HORSE_ARMOR, 0, 1, 1, 1), new vl(Items.DIAMOND_HORSE_ARMOR, 0, 1, 1, 1) }));
 	private boolean b;
 
 	public bnj() {
 	}
 
-	public bnj(bnk var1, int var2, Random var3, bjb var4, PaintingDirection var5) {
+	public bnj(bnk var1, int var2, Random var3, bjb var4, BlockFace var5) {
 		super(var1, var2);
 		this.m = var5;
 		this.l = var4;
 	}
 
-	public static bnj a(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
+	public static bnj a(bnk var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6, int var7) {
 		bjb var8 = bjb.a(var3, var4, var5, 0, 0, 0, 10, 6, 7, var6);
 		return a(var8) && bms.a(var1, var8) == null ? new bnj(var0, var7, var2, var8, var6) : null;
 	}

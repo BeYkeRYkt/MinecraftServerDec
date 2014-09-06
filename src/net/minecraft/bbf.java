@@ -25,7 +25,7 @@ public abstract class bbf extends BlockStepAbstract {
 	}
 
 	public String b(int var1) {
-		return super.a() + "." + bbg.a(var1).c();
+		return super.getName() + "." + bbg.a(var1).c();
 	}
 
 	public bex l() {

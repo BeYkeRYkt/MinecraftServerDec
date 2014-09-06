@@ -147,7 +147,7 @@ public class ary {
 			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).getY() + 32);
 			var7 = this.c.a(var4, var11, var5);
 			awa var8 = var1.a(this.b, var7);
-			avy var9 = var8.a().a();
+			BlockFlowers var9 = var8.a().a();
 			if (var9.r() != Material.AIR) {
 				this.s.a(var9, var8);
 				this.s.b(this.a, this.b, var7);

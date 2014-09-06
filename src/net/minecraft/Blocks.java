@@ -41,8 +41,8 @@ public class Blocks {
 	public static final BlockPistonExtension PISTON_HEAD;
 	public static final Block WOOL;
 	public static final BlockPistonMoving PISTON_EXTENSION;
-	public static final avy YELLOW_FLOWER;
-	public static final avy RED_FLOWER;
+	public static final BlockFlowers YELLOW_FLOWER;
+	public static final BlockFlowers RED_FLOWER;
 	public static final auc BRWON_MUSHROOM;
 	public static final auc RED_MUSHROOM;
 	public static final Block GOLD_BLOCK;
@@ -129,7 +129,7 @@ public class Blocks {
 	public static final Block BRICK_STAIRS;
 	public static final Block STONE_BROCK_STAIRS;
 	public static final BlockMycel MYCELIUM;
-	public static final Block WATERLILY;
+	public static final Block WATER_LILY;
 	public static final Block NETHER_BRICK;
 	public static final Block NETHER_BRICK_FENCE;
 	public static final Block NETHER_BRICK_STAIRS;
@@ -248,8 +248,8 @@ public class Blocks {
 			PISTON_HEAD = (BlockPistonExtension) getBlock("piston_head");
 			WOOL = getBlock("wool");
 			PISTON_EXTENSION = (BlockPistonMoving) getBlock("piston_extension");
-			YELLOW_FLOWER = (avy) getBlock("yellow_flower");
-			RED_FLOWER = (avy) getBlock("red_flower");
+			YELLOW_FLOWER = (BlockFlowers) getBlock("yellow_flower");
+			RED_FLOWER = (BlockFlowers) getBlock("red_flower");
 			BRWON_MUSHROOM = (auc) getBlock("brown_mushroom");
 			RED_MUSHROOM = (auc) getBlock("red_mushroom");
 			GOLD_BLOCK = getBlock("gold_block");
@@ -336,7 +336,7 @@ public class Blocks {
 			BRICK_STAIRS = getBlock("brick_stairs");
 			STONE_BROCK_STAIRS = getBlock("stone_brick_stairs");
 			MYCELIUM = (BlockMycel) getBlock("mycelium");
-			WATERLILY = getBlock("waterlily");
+			WATER_LILY = getBlock("waterlily");
 			NETHER_BRICK = getBlock("nether_brick");
 			NETHER_BRICK_FENCE = getBlock("nether_brick_fence");
 			NETHER_BRICK_STAIRS = getBlock("nether_brick_stairs");

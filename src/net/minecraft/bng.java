@@ -10,7 +10,7 @@ public class bng extends bnn {
 	public bng() {
 	}
 
-	public bng(bnk var1, int var2, Random var3, bjb var4, PaintingDirection var5) {
+	public bng(bnk var1, int var2, Random var3, bjb var4, BlockFace var5) {
 		super(var1, var2);
 		this.m = var5;
 		this.l = var4;
@@ -27,7 +27,7 @@ public class bng extends bnn {
 		this.a = var1.getBoolean("Terrace");
 	}
 
-	public static bng a(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
+	public static bng a(bnk var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6, int var7) {
 		bjb var8 = bjb.a(var3, var4, var5, 0, 0, 0, 5, 6, 5, var6);
 		return bms.a(var1, var8) != null ? null : new bng(var0, var7, var2, var8, var6);
 	}

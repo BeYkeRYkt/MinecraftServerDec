@@ -38,7 +38,7 @@ public class EnchantmentWeaponDamage extends Enchantment {
 	}
 
 	public boolean canEnchant(ItemStack var1) {
-		return var1.getItem() instanceof ajr ? true : super.canEnchant(var1);
+		return var1.getItem() instanceof ItemAxe ? true : super.canEnchant(var1);
 	}
 
 	public void a(EntityLiving var1, Entity var2, int var3) {

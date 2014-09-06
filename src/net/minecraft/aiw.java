@@ -57,11 +57,11 @@ public class aiw extends ajk {
 		}
 
 		this.b = 0;
-		if (var1.getItem() == Items.j) {
+		if (var1.getItem() == Items.IRON_INGOT) {
 			this.a.b((Statistic) tl.k);
 		}
 
-		if (var1.getItem() == Items.aV) {
+		if (var1.getItem() == Items.COOKED_FISH) {
 			this.a.b((Statistic) tl.p);
 		}
 

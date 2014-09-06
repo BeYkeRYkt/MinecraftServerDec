@@ -82,7 +82,7 @@ public class EntityArmorStand extends EntityLiving {
 			}
 		}
 
-		if (var2 != null && EntityInsentient.c(var2) != var3 && (var3 != 4 || !(var2.getItem() instanceof aju))) {
+		if (var2 != null && EntityInsentient.c(var2) != var3 && (var3 != 4 || !(var2.getItem() instanceof ItemBlock))) {
 			return false;
 		} else {
 			this.c(var3, var2);
@@ -250,7 +250,7 @@ public class EntityArmorStand extends EntityLiving {
 				}
 			}
 
-			if (var5 && (var4.getItem() == Items.bX || var4.getItem() == Item.getItemOf(Blocks.PUMPKIN))) {
+			if (var5 && (var4.getItem() == Items.SKULL || var4.getItem() == Item.getItemOf(Blocks.PUMPKIN))) {
 				var3 = 4;
 			}
 
@@ -402,7 +402,7 @@ public class EntityArmorStand extends EntityLiving {
 	}
 
 	private void A() {
-		Block.a(this.o, new Position(this), new ItemStack(Items.cj));
+		Block.a(this.o, new Position(this), new ItemStack(Items.ARMOR_STAND));
 		this.C();
 	}
 

@@ -59,11 +59,11 @@ public class BlockStationary extends axl {
 	}
 
 	protected boolean e(World var1, Position var2) {
-		PaintingDirection[] var3 = PaintingDirection.values();
+		BlockFace[] var3 = BlockFace.values();
 		int var4 = var3.length;
 
 		for (int var5 = 0; var5 < var4; ++var5) {
-			PaintingDirection var6 = var3[var5];
+			BlockFace var6 = var3[var5];
 			if (this.m(var1, var2.a(var6))) {
 				return true;
 			}

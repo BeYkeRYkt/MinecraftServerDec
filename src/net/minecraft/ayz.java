@@ -4,8 +4,8 @@ public class ayz {
 
 	private final World a;
 	private final el b;
-	private final PaintingDirection c;
-	private final PaintingDirection d;
+	private final BlockFace c;
+	private final BlockFace d;
 	private int e = 0;
 	private Position f;
 	private int g;
@@ -15,11 +15,11 @@ public class ayz {
 		this.a = var1;
 		this.b = var3;
 		if (var3 == el.a) {
-			this.d = PaintingDirection.f;
-			this.c = PaintingDirection.e;
+			this.d = BlockFace.f;
+			this.c = BlockFace.e;
 		} else {
-			this.d = PaintingDirection.c;
-			this.c = PaintingDirection.d;
+			this.d = BlockFace.c;
+			this.c = BlockFace.d;
 		}
 
 		for (Position var4 = var2; var2.getY() > var4.getY() - 21 && var2.getY() > 0 && this.a(var1.p(var2.b()).getBlock()); var2 = var2.b()) {
@@ -42,7 +42,7 @@ public class ayz {
 
 	}
 
-	protected int a(Position var1, PaintingDirection var2) {
+	protected int a(Position var1, BlockFace var2) {
 		int var3;
 		for (var3 = 0; var3 < 22; ++var3) {
 			Position var4 = var1.a(var2, var3);

@@ -16,7 +16,7 @@ public abstract class ws extends EntityCreature {
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		if (var2 != null && var2.getItem() == Items.bJ) {
+		if (var2 != null && var2.getItem() == Items.SPAWNEGG) {
 			if (!this.o.D) {
 				Class var3 = EntityTypes.getClassById(var2.i());
 				if (var3 != null && this.getClass() == var3) {

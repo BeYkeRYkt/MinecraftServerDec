@@ -12,7 +12,7 @@ public class bie extends bhp {
 	private static final Logger a = LogManager.getLogger();
 	private static final String[] b = new String[] { "Skeleton", "Zombie", "Zombie", "Spider" };
 	private static final List c = Lists
-			.newArrayList((Object[]) (new vl[] { new vl(Items.aA, 0, 1, 1, 10), new vl(Items.j, 0, 1, 4, 10), new vl(Items.P, 0, 1, 1, 10), new vl(Items.O, 0, 1, 4, 10), new vl(Items.H, 0, 1, 4, 10), new vl(Items.F, 0, 1, 4, 10), new vl(Items.aw, 0, 1, 1, 10), new vl(Items.ao, 0, 1, 1, 1), new vl(Items.aC, 0, 1, 4, 10), new vl(Items.cq, 0, 1, 1, 4), new vl(Items.cr, 0, 1, 1, 4), new vl(Items.co, 0, 1, 1, 10), new vl(Items.cl, 0, 1, 1, 2), new vl(Items.ck, 0, 1, 1, 5), new vl(Items.cm, 0, 1, 1, 1) }));
+			.newArrayList((Object[]) (new vl[] { new vl(Items.SADDLE, 0, 1, 1, 10), new vl(Items.IRON_INGOT, 0, 1, 4, 10), new vl(Items.BREAD, 0, 1, 1, 10), new vl(Items.WHEAT, 0, 1, 4, 10), new vl(Items.GUNPOWDER, 0, 1, 4, 10), new vl(Items.STRING, 0, 1, 4, 10), new vl(Items.BUCKET, 0, 1, 1, 10), new vl(Items.GOLDEN_APPLE, 0, 1, 1, 1), new vl(Items.REDSTONE, 0, 1, 4, 10), new vl(Items.RECORD_13, 0, 1, 1, 4), new vl(Items.RECORD_CAT, 0, 1, 1, 4), new vl(Items.NAMETAG, 0, 1, 1, 10), new vl(Items.GOLDEN_HORSE_ARMOR, 0, 1, 1, 2), new vl(Items.IRON_HORSE_ARMOR, 0, 1, 1, 5), new vl(Items.DIAMOND_HORSE_ARMOR, 0, 1, 1, 1) }));
 
 	public boolean b(World var1, Random var2, Position var3) {
 		boolean var4 = true;
@@ -90,7 +90,7 @@ public class bie extends bhp {
 								Iterator var21 = en.a.iterator();
 
 								while (var21.hasNext()) {
-									PaintingDirection var22 = (PaintingDirection) var21.next();
+									BlockFace var22 = (BlockFace) var21.next();
 									if (var1.p(var26.a(var22)).getBlock().r().isBuildable()) {
 										++var20;
 									}
@@ -98,7 +98,7 @@ public class bie extends bhp {
 
 								if (var20 == 1) {
 									var1.a(var26, Blocks.CHEST.f(var1, var26, Blocks.CHEST.P()), 2);
-									List var27 = vl.a(c, new vl[] { Items.cd.b(var2) });
+									List var27 = vl.a(c, new vl[] { Items.ENCHANTED_BOOK.b(var2) });
 									TileEntity var28 = var1.s(var26);
 									if (var28 instanceof TileEntityChest) {
 										vl.a(var2, var27, (IInventory) ((TileEntityChest) var28), 8);

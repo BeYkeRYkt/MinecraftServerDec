@@ -10,7 +10,7 @@ public class bmb extends bmk {
 	public bmb() {
 	}
 
-	public bmb(int var1, Random var2, bjb var3, PaintingDirection var4) {
+	public bmb(int var1, Random var2, bjb var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
@@ -33,7 +33,7 @@ public class bmb extends bmk {
 
 	}
 
-	public static bmb a(List var0, Random var1, int var2, int var3, int var4, PaintingDirection var5, int var6) {
+	public static bmb a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5, int var6) {
 		bjb var7 = bjb.a(var2, var3, var4, -4, -1, 0, 11, 8, 16, var5);
 		return a(var7) && bms.a(var0, var7) == null ? new bmb(var6, var1, var7, var5) : null;
 	}
@@ -75,27 +75,27 @@ public class bmb extends bmk {
 			this.a(var1, Blocks.STONE_BROCK_STAIRS.a(var5), var6, 3, 6, var3);
 		}
 
-		var6 = PaintingDirection.c.toByte();
-		int var7 = PaintingDirection.d.toByte();
-		int var8 = PaintingDirection.f.toByte();
-		int var9 = PaintingDirection.e.toByte();
+		var6 = BlockFace.c.toByte();
+		int var7 = BlockFace.d.toByte();
+		int var8 = BlockFace.f.toByte();
+		int var9 = BlockFace.e.toByte();
 		if (this.m != null) {
 			switch (blu.b[this.m.ordinal()]) {
 				case 2:
-					var6 = PaintingDirection.d.toByte();
-					var7 = PaintingDirection.c.toByte();
+					var6 = BlockFace.d.toByte();
+					var7 = BlockFace.c.toByte();
 					break;
 				case 3:
-					var6 = PaintingDirection.e.toByte();
-					var7 = PaintingDirection.f.toByte();
-					var8 = PaintingDirection.d.toByte();
-					var9 = PaintingDirection.c.toByte();
+					var6 = BlockFace.e.toByte();
+					var7 = BlockFace.f.toByte();
+					var8 = BlockFace.d.toByte();
+					var9 = BlockFace.c.toByte();
 					break;
 				case 4:
-					var6 = PaintingDirection.f.toByte();
-					var7 = PaintingDirection.e.toByte();
-					var8 = PaintingDirection.d.toByte();
-					var9 = PaintingDirection.c.toByte();
+					var6 = BlockFace.f.toByte();
+					var7 = BlockFace.e.toByte();
+					var8 = BlockFace.d.toByte();
+					var9 = BlockFace.c.toByte();
 			}
 		}
 

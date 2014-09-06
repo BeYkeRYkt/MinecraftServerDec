@@ -7,7 +7,7 @@ import java.util.List;
 public class TileEntityPiston extends TileEntity implements pm {
 
 	private bec a;
-	private PaintingDirection f;
+	private BlockFace f;
 	private boolean g;
 	private boolean h;
 	private float i;
@@ -17,7 +17,7 @@ public class TileEntityPiston extends TileEntity implements pm {
 	public TileEntityPiston() {
 	}
 
-	public TileEntityPiston(bec var1, PaintingDirection var2, boolean var3, boolean var4) {
+	public TileEntityPiston(bec var1, BlockFace var2, boolean var3, boolean var4) {
 		this.a = var1;
 		this.f = var2;
 		this.g = var3;
@@ -36,7 +36,7 @@ public class TileEntityPiston extends TileEntity implements pm {
 		return this.g;
 	}
 
-	public PaintingDirection e() {
+	public BlockFace e() {
 		return this.f;
 	}
 
@@ -126,14 +126,14 @@ public class TileEntityPiston extends TileEntity implements pm {
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
 		this.a = Block.c(var1.getInt("blockId")).a(var1.getInt("blockData"));
-		this.f = PaintingDirection.a(var1.getInt("facing"));
+		this.f = BlockFace.a(var1.getInt("facing"));
 		this.j = this.i = var1.getFloat("progress");
 		this.g = var1.getBoolean("extending");
 	}
 
 	public void write(NBTCompoundTag var1) {
 		super.write(var1);
-		var1.put("blockId", Block.a(this.a.getBlock()));
+		var1.put("blockId", Block.getBlockId(this.a.getBlock()));
 		var1.put("blockData", this.a.getBlock().c(this.a));
 		var1.put("facing", this.f.a());
 		var1.put("progress", this.j);

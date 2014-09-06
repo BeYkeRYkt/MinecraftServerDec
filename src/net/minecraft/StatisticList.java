@@ -98,7 +98,7 @@ public class StatisticList {
 			Block var1 = (Block) var0.next();
 			Item var2 = Item.getItemOf(var1);
 			if (var2 != null) {
-				int var3 = Block.a(var1);
+				int var3 = Block.getBlockId(var1);
 				String var4 = a(var2);
 				if (var4 != null && var1.I()) {
 					H[var3] = (new to("stat.mineBlock.", var4, new hz("stat.mineBlock", new Object[] { (new ItemStack(var1)).C() }), var2)).h();
@@ -120,7 +120,7 @@ public class StatisticList {
 				String var3 = a(var1);
 				if (var3 != null) {
 					J[var2] = (new to("stat.useItem.", var3, new hz("stat.useItem", new Object[] { (new ItemStack(var1)).C() }), var1)).h();
-					if (!(var1 instanceof aju)) {
+					if (!(var1 instanceof ItemBlock)) {
 						d.add((to) J[var2]);
 					}
 				}
@@ -170,8 +170,8 @@ public class StatisticList {
 	}
 
 	private static void a(Statistic[] var0, Block var1, Block var2) {
-		int var3 = Block.a(var1);
-		int var4 = Block.a(var2);
+		int var3 = Block.getBlockId(var1);
+		int var4 = Block.getBlockId(var2);
 		if (var0[var3] != null && var0[var4] == null) {
 			var0[var4] = var0[var3];
 		} else {

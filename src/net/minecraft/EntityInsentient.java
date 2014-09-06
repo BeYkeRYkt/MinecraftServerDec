@@ -331,7 +331,7 @@ public abstract class EntityInsentient extends EntityLiving {
 					this.a(var5, 0.0F);
 				}
 
-				if (var2.getItem() == Items.i && var1.n() != null) {
+				if (var2.getItem() == Items.DIAMOND && var1.n() != null) {
 					EntityHuman var9 = this.o.a(var1.n());
 					if (var9 != null) {
 						var9.b((Statistic) tl.x);
@@ -554,7 +554,7 @@ public abstract class EntityInsentient extends EntityLiving {
 	}
 
 	public static int c(ItemStack var0) {
-		if (var0.getItem() != Item.getItemOf(Blocks.PUMPKIN) && var0.getItem() != Items.bX) {
+		if (var0.getItem() != Item.getItemOf(Blocks.PUMPKIN) && var0.getItem() != Items.SKULL) {
 			if (var0.getItem() instanceof ItemArmor) {
 				switch (((ItemArmor) var0.getItem()).b) {
 					case 0:
@@ -578,51 +578,51 @@ public abstract class EntityInsentient extends EntityLiving {
 		switch (var0) {
 			case 4:
 				if (var1 == 0) {
-					return Items.Q;
+					return Items.LEATHER_HELMET;
 				} else if (var1 == 1) {
-					return Items.ag;
+					return Items.GOLD_HELMET;
 				} else if (var1 == 2) {
-					return Items.U;
+					return Items.CHAINMAIL_HELMET;
 				} else if (var1 == 3) {
-					return Items.Y;
+					return Items.IRON_HELMET;
 				} else if (var1 == 4) {
-					return Items.ac;
+					return Items.DIAMOND_HELMET;
 				}
 			case 3:
 				if (var1 == 0) {
-					return Items.R;
+					return Items.LEATHER_CHESTPLATE;
 				} else if (var1 == 1) {
-					return Items.ah;
+					return Items.GOLD_CHESTPLATE;
 				} else if (var1 == 2) {
-					return Items.V;
+					return Items.CHAINMAIL_CHESTPLATE;
 				} else if (var1 == 3) {
-					return Items.Z;
+					return Items.IRON_CHESTPLATE;
 				} else if (var1 == 4) {
-					return Items.ad;
+					return Items.DIAMOND_CHESTPLATE;
 				}
 			case 2:
 				if (var1 == 0) {
-					return Items.S;
+					return Items.LEATHER_LEGGINS;
 				} else if (var1 == 1) {
-					return Items.ai;
+					return Items.GOLD_LEGGINS;
 				} else if (var1 == 2) {
-					return Items.W;
+					return Items.CHAINMAIL_LEGGINS;
 				} else if (var1 == 3) {
-					return Items.aa;
+					return Items.IRON_LEGGINS;
 				} else if (var1 == 4) {
-					return Items.ae;
+					return Items.DIAMOND_LEGGINS;
 				}
 			case 1:
 				if (var1 == 0) {
-					return Items.T;
+					return Items.LEATHER_BOOTS;
 				} else if (var1 == 1) {
-					return Items.aj;
+					return Items.GOLD_BOOTS;
 				} else if (var1 == 2) {
-					return Items.X;
+					return Items.CHAINMAIL_BOOTS;
 				} else if (var1 == 3) {
-					return Items.ab;
+					return Items.IRON_BOOTS;
 				} else if (var1 == 4) {
-					return Items.af;
+					return Items.DIAMOND_BOOTS;
 				}
 			default:
 				return null;
@@ -679,7 +679,7 @@ public abstract class EntityInsentient extends EntityLiving {
 			return true;
 		} else {
 			ItemStack var2 = var1.playerInventory.getItemInHand();
-			if (var2 != null && var2.getItem() == Items.cn && this.ca()) {
+			if (var2 != null && var2.getItem() == Items.LEAD && this.ca()) {
 				if (!(this instanceof xx) || !((xx) this).cj()) {
 					this.a(var1, true);
 					--var2.b;
@@ -722,7 +722,7 @@ public abstract class EntityInsentient extends EntityLiving {
 			this.bm = false;
 			this.bn = null;
 			if (!this.o.D && var2) {
-				this.a(Items.cn, 1);
+				this.a(Items.LEAD, 1);
 			}
 
 			if (!this.o.D && var1 && this.o instanceof WorldServer) {
@@ -794,7 +794,7 @@ public abstract class EntityInsentient extends EntityLiving {
 			}
 		}
 
-		if (var2 != null && c(var2) != var3 && (var3 != 4 || !(var2.getItem() instanceof aju))) {
+		if (var2 != null && c(var2) != var3 && (var3 != 4 || !(var2.getItem() instanceof ItemBlock))) {
 			return false;
 		} else {
 			this.c(var3, var2);

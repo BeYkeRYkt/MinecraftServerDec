@@ -4,7 +4,7 @@ public class PacketOutSpawnPainting implements Packet<PlayClientboundPacketListe
 
 	private int entityId;
 	private Position position;
-	private PaintingDirection direction;
+	private BlockFace direction;
 	private String title;
 
 	public PacketOutSpawnPainting() {
@@ -21,7 +21,7 @@ public class PacketOutSpawnPainting implements Packet<PlayClientboundPacketListe
 		this.entityId = serializer.readVarInt();
 		this.title = serializer.readString(PaintingType.maxNameLength);
 		this.position = serializer.readPosition();
-		this.direction = PaintingDirection.fromByte(serializer.readUnsignedByte());
+		this.direction = BlockFace.fromByte(serializer.readUnsignedByte());
 	}
 
 	public void writeData(PacketDataSerializer serializer) {

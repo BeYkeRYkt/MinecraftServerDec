@@ -80,7 +80,7 @@ public final class ItemStack {
 		return this.item;
 	}
 
-	public boolean a(EntityHuman var1, World var2, Position var3, PaintingDirection var4, float var5, float var6, float var7) {
+	public boolean a(EntityHuman var1, World var2, Position var3, BlockFace var4, float var5, float var6, float var7) {
 		boolean var8 = this.getItem().a(this, var1, var2, var3, var4, var5, var6, var7);
 		if (var8) {
 			var1.b(StatisticList.J[Item.getId(this.item)]);
@@ -115,7 +115,7 @@ public final class ItemStack {
 
 	public void c(NBTCompoundTag var1) {
 		if (var1.isTagAssignableFrom("id", 8)) {
-			this.item = Item.d(var1.getString("id"));
+			this.item = Item.getByName(var1.getString("id"));
 		} else {
 			this.item = Item.getById(var1.getShort("id"));
 		}
@@ -136,7 +136,7 @@ public final class ItemStack {
 	}
 
 	public int c() {
-		return this.getItem().j();
+		return this.getItem().getMaxStackSize();
 	}
 
 	public boolean d() {
@@ -144,7 +144,7 @@ public final class ItemStack {
 	}
 
 	public boolean e() {
-		return this.item == null ? false : (this.item.l() <= 0 ? false : !this.hasTag() || !this.getTag().getBoolean("Unbreakable"));
+		return this.item == null ? false : (this.item.getDurability() <= 0 ? false : !this.hasTag() || !this.getTag().getBoolean("Unbreakable"));
 	}
 
 	public boolean f() {
@@ -172,7 +172,7 @@ public final class ItemStack {
 	}
 
 	public int j() {
-		return this.item.l();
+		return this.item.getDurability();
 	}
 
 	public boolean a(int var1, Random var2) {
@@ -279,7 +279,7 @@ public final class ItemStack {
 	}
 
 	public String a() {
-		return this.item.e_(this);
+		return this.item.getName(this);
 	}
 
 	public static ItemStack b(ItemStack var0) {
@@ -287,7 +287,7 @@ public final class ItemStack {
 	}
 
 	public String toString() {
-		return this.b + "x" + this.item.a() + "@" + this.f;
+		return this.b + "x" + this.item.getName() + "@" + this.f;
 	}
 
 	public void a(World var1, Entity var2, int var3, boolean var4) {

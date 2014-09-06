@@ -10,7 +10,7 @@ public class BlockOre extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return this == Blocks.COAL_ORE ? Items.h : (this == Blocks.DIAMOND_ORE ? Items.i : (this == Blocks.LAPIS_ORE ? Items.aW : (this == Blocks.EMERALD_ORE ? Items.bO : (this == Blocks.QUARTZ_ORE ? Items.cg : Item.getItemOf((Block) this)))));
+		return this == Blocks.COAL_ORE ? Items.COAL : (this == Blocks.DIAMOND_ORE ? Items.DIAMOND : (this == Blocks.LAPIS_ORE ? Items.DYE : (this == Blocks.EMERALD_ORE ? Items.EMERALD : (this == Blocks.QUARTZ_ORE ? Items.QUARTZ : Item.getItemOf((Block) this)))));
 	}
 
 	public int a(Random var1) {

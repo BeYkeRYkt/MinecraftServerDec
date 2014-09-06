@@ -10,14 +10,14 @@ public class eg implements eo {
 	}
 
 	protected ItemStack b(dz var1, ItemStack var2) {
-		PaintingDirection var3 = BlockDispenser.b(var1.f());
+		BlockFace var3 = BlockDispenser.b(var1.f());
 		ex var4 = BlockDispenser.a(var1);
 		ItemStack var5 = var2.a(1);
 		a(var1.i(), var5, 6, var3, var4);
 		return var2;
 	}
 
-	public static void a(World var0, ItemStack var1, int var2, PaintingDirection var3, ex var4) {
+	public static void a(World var0, ItemStack var1, int var2, BlockFace var3, ex var4) {
 		double var5 = var4.a();
 		double var7 = var4.b();
 		double var9 = var4.c();
@@ -42,11 +42,11 @@ public class eg implements eo {
 		var1.i().b(1000, var1.d(), 0);
 	}
 
-	protected void a(dz var1, PaintingDirection var2) {
+	protected void a(dz var1, BlockFace var2) {
 		var1.i().b(2000, var1.d(), this.a(var2));
 	}
 
-	private int a(PaintingDirection var1) {
+	private int a(BlockFace var1) {
 		return var1.g() + 1 + (var1.i() + 1) * 3;
 	}
 }

@@ -398,7 +398,7 @@ public abstract class EntityHuman extends EntityLiving {
 		this.b(this.locationX, this.locationY, this.locationZ);
 		this.motionY = 0.10000000149011612D;
 		if (this.d_().equals("Notch")) {
-			this.a(new ItemStack(Items.e, 1), true, false);
+			this.a(new ItemStack(Items.APPLE, 1), true, false);
 		}
 
 		if (!this.o.Q().b("keepInventory")) {
@@ -963,7 +963,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 		this.a(0.2F, 0.2F);
 		if (this.o.e(var1)) {
-			PaintingDirection var7 = (PaintingDirection) this.o.p(var1).b(avb.N);
+			BlockFace var7 = (BlockFace) this.o.p(var1).b(avb.N);
 			float var3 = 0.5F;
 			float var8 = 0.5F;
 			switch (ahe.a[var7.ordinal()]) {
@@ -997,7 +997,7 @@ public abstract class EntityHuman extends EntityLiving {
 		return ahf.a;
 	}
 
-	private void a(PaintingDirection var1) {
+	private void a(BlockFace var1) {
 		this.bw = 0.0F;
 		this.bx = 0.0F;
 		switch (ahe.a[var1.ordinal()]) {
@@ -1332,7 +1332,7 @@ public abstract class EntityHuman extends EntityLiving {
 		return this.by.maybuild;
 	}
 
-	public boolean a(Position var1, PaintingDirection var2, ItemStack var3) {
+	public boolean a(Position var1, BlockFace var2, ItemStack var3) {
 		if (this.by.maybuild) {
 			return true;
 		} else if (var3 == null) {
@@ -1500,7 +1500,7 @@ public abstract class EntityHuman extends EntityLiving {
 						if (EntityInsentient.c(var2) != var4) {
 							return false;
 						}
-					} else if (var4 != 4 || var2.getItem() != Items.bX && !(var2.getItem() instanceof aju)) {
+					} else if (var4 != 4 || var2.getItem() != Items.SKULL && !(var2.getItem() instanceof ItemBlock)) {
 						return false;
 					}
 				}

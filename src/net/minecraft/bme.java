@@ -6,13 +6,13 @@ import java.util.Random;
 
 public class bme extends bmk {
 
-	private static final List b = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.j, 0, 1, 5, 10), new vl(Items.k, 0, 1, 3, 5), new vl(Items.aC, 0, 4, 9, 5), new vl(Items.h, 0, 3, 8, 10), new vl(Items.P, 0, 1, 3, 15), new vl(Items.e, 0, 1, 3, 15), new vl(Items.b, 0, 1, 1, 1) }));
+	private static final List b = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.IRON_INGOT, 0, 1, 5, 10), new vl(Items.GOLD_INGOT, 0, 1, 3, 5), new vl(Items.REDSTONE, 0, 4, 9, 5), new vl(Items.COAL, 0, 3, 8, 10), new vl(Items.BREAD, 0, 1, 3, 15), new vl(Items.APPLE, 0, 1, 3, 15), new vl(Items.IRON_PICKAXE, 0, 1, 1, 1) }));
 	protected int a;
 
 	public bme() {
 	}
 
-	public bme(int var1, Random var2, bjb var3, PaintingDirection var4) {
+	public bme(int var1, Random var2, bjb var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.d = this.a(var2);
@@ -36,7 +36,7 @@ public class bme extends bmk {
 		this.c((bmh) var1, var2, var3, 1, 4);
 	}
 
-	public static bme a(List var0, Random var1, int var2, int var3, int var4, PaintingDirection var5, int var6) {
+	public static bme a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5, int var6) {
 		bjb var7 = bjb.a(var2, var3, var4, -4, -1, 0, 11, 7, 11, var5);
 		return a(var7) && bms.a(var0, var7) == null ? new bme(var6, var1, var7, var5) : null;
 	}
@@ -124,10 +124,10 @@ public class bme extends bmk {
 						this.a(var1, Blocks.PLANKS.P(), 8, 3, var4, var3);
 					}
 
-					this.a(var1, Blocks.LADDER.a(this.a(Blocks.LADDER, PaintingDirection.e.a())), 9, 1, 3, var3);
-					this.a(var1, Blocks.LADDER.a(this.a(Blocks.LADDER, PaintingDirection.e.a())), 9, 2, 3, var3);
-					this.a(var1, Blocks.LADDER.a(this.a(Blocks.LADDER, PaintingDirection.e.a())), 9, 3, 3, var3);
-					this.a(var1, var3, var2, 3, 4, 8, vl.a(b, new vl[] { Items.cd.b(var2) }), 1 + var2.nextInt(4));
+					this.a(var1, Blocks.LADDER.a(this.a(Blocks.LADDER, BlockFace.e.a())), 9, 1, 3, var3);
+					this.a(var1, Blocks.LADDER.a(this.a(Blocks.LADDER, BlockFace.e.a())), 9, 2, 3, var3);
+					this.a(var1, Blocks.LADDER.a(this.a(Blocks.LADDER, BlockFace.e.a())), 9, 3, 3, var3);
+					this.a(var1, var3, var2, 3, 4, 8, vl.a(b, new vl[] { Items.ENCHANTED_BOOK.b(var2) }), 1 + var2.nextInt(4));
 			}
 
 			return true;

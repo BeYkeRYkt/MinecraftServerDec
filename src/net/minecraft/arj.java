@@ -61,7 +61,7 @@ public class arj implements ard {
 		return this.p(var1).getBlock().r() == Material.AIR;
 	}
 
-	public int a(Position var1, PaintingDirection var2) {
+	public int a(Position var1, BlockFace var2) {
 		bec var3 = this.p(var1);
 		return var3.getBlock().b((ard) this, var1, var3, var2);
 	}

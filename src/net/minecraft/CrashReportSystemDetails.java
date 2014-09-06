@@ -164,7 +164,7 @@ public class CrashReportSystemDetails {
 	}
 
 	public static void a(CrashReportSystemDetails var0, Position var1, Block var2, int var3) {
-		int var4 = Block.a(var2);
+		int var4 = Block.getBlockId(var2);
 		var0.addDetails("Block type", (Callable) (new k(var4, var2)));
 		var0.addDetails("Block data value", (Callable) (new l(var3)));
 		var0.addDetails("Block location", (Callable) (new m(var1)));

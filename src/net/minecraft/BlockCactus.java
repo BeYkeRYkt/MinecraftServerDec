@@ -65,7 +65,7 @@ public class BlockCactus extends Block {
 		Iterator var3 = en.a.iterator();
 
 		while (var3.hasNext()) {
-			PaintingDirection var4 = (PaintingDirection) var3.next();
+			BlockFace var4 = (BlockFace) var3.next();
 			if (var1.p(var2.a(var4)).getBlock().r().isBuildable()) {
 				return false;
 			}

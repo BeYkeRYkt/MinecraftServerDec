@@ -14,13 +14,13 @@ public class aoa implements aoo {
 			if (var6 != null) {
 				if (var6.getItem() instanceof ItemArmor) {
 					ItemArmor var7 = (ItemArmor) var6.getItem();
-					if (var7.w_() != ajp.a || var3 != null) {
+					if (var7.w_() != EnumArmorMaterial.LEATHER || var3 != null) {
 						return false;
 					}
 
 					var3 = var6;
 				} else {
-					if (var6.getItem() != Items.aW) {
+					if (var6.getItem() != Items.DYE) {
 						return false;
 					}
 
@@ -49,7 +49,7 @@ public class aoa implements aoo {
 			if (var8 != null) {
 				if (var8.getItem() instanceof ItemArmor) {
 					var6 = (ItemArmor) var8.getItem();
-					if (var6.w_() != ajp.a || var2 != null) {
+					if (var6.w_() != EnumArmorMaterial.LEATHER || var2 != null) {
 						return null;
 					}
 
@@ -67,7 +67,7 @@ public class aoa implements aoo {
 						++var5;
 					}
 				} else {
-					if (var8.getItem() != Items.aW) {
+					if (var8.getItem() != Items.DYE) {
 						return null;
 					}
 
@@ -116,7 +116,7 @@ public class aoa implements aoo {
 		for (int var3 = 0; var3 < var2.length; ++var3) {
 			ItemStack var4 = var1.a(var3);
 			if (var4 != null && var4.getItem().r()) {
-				var2[var3] = new ItemStack(var4.getItem().q());
+				var2[var3] = new ItemStack(var4.getItem().getCraftingResult());
 			}
 		}
 

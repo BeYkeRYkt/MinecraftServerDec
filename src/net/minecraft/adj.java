@@ -8,7 +8,7 @@ public abstract class adj extends Entity {
 
 	private int c;
 	protected Position a;
-	public PaintingDirection direction;
+	public BlockFace direction;
 
 	public adj(World var1) {
 		super(var1);
@@ -23,7 +23,7 @@ public abstract class adj extends Entity {
 	protected void h() {
 	}
 
-	protected void a(PaintingDirection var1) {
+	protected void a(BlockFace var1) {
 		Validate.notNull(var1);
 		Validate.isTrue(var1.k().c());
 		this.direction = var1;
@@ -42,7 +42,7 @@ public abstract class adj extends Entity {
 			var1 -= (double) this.direction.g() * 0.46875D;
 			var5 -= (double) this.direction.i() * 0.46875D;
 			var3 += var11;
-			PaintingDirection var13 = this.direction.f();
+			BlockFace var13 = this.direction.f();
 			var1 += var9 * (double) var13.g();
 			var5 += var9 * (double) var13.i();
 			this.locationX = var1;
@@ -89,7 +89,7 @@ public abstract class adj extends Entity {
 			int var1 = Math.max(1, this.l() / 16);
 			int var2 = Math.max(1, this.m() / 16);
 			Position var3 = this.a.a(this.direction.d());
-			PaintingDirection var4 = this.direction.f();
+			BlockFace var4 = this.direction.f();
 
 			for (int var5 = 0; var5 < var1; ++var5) {
 				for (int var6 = 0; var6 < var2; ++var6) {
@@ -125,7 +125,7 @@ public abstract class adj extends Entity {
 		return var1 instanceof EntityHuman ? this.a(DamageSource.a((EntityHuman) var1), 0.0F) : false;
 	}
 
-	public PaintingDirection aO() {
+	public BlockFace aO() {
 		return this.direction;
 	}
 
@@ -168,14 +168,14 @@ public abstract class adj extends Entity {
 
 	public void a(NBTCompoundTag var1) {
 		this.a = new Position(var1.getInt("TileX"), var1.getInt("TileY"), var1.getInt("TileZ"));
-		PaintingDirection var2;
+		BlockFace var2;
 		if (var1.isTagAssignableFrom("Direction", 99)) {
-			var2 = PaintingDirection.fromByte(var1.getByte("Direction"));
+			var2 = BlockFace.fromByte(var1.getByte("Direction"));
 			this.a = this.a.a(var2);
 		} else if (var1.isTagAssignableFrom("Facing", 99)) {
-			var2 = PaintingDirection.fromByte(var1.getByte("Facing"));
+			var2 = BlockFace.fromByte(var1.getByte("Facing"));
 		} else {
-			var2 = PaintingDirection.fromByte(var1.getByte("Dir"));
+			var2 = BlockFace.fromByte(var1.getByte("Dir"));
 		}
 
 		this.a(var2);

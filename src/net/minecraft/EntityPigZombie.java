@@ -143,13 +143,13 @@ public class EntityPigZombie extends EntityZombie {
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(Items.bt, 1);
+			this.a(Items.ROTTEN_FLESH, 1);
 		}
 
 		var3 = this.V.nextInt(2 + var2);
 
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(Items.bx, 1);
+			this.a(Items.GOLD_NUGGET, 1);
 		}
 
 	}
@@ -159,11 +159,11 @@ public class EntityPigZombie extends EntityZombie {
 	}
 
 	protected void bp() {
-		this.a(Items.k, 1);
+		this.a(Items.GOLD_INGOT, 1);
 	}
 
 	protected void a(vu var1) {
-		this.c(0, new ItemStack(Items.B));
+		this.c(0, new ItemStack(Items.GOLDEN_SWORD));
 	}
 
 	public xq a(vu var1, xq var2) {

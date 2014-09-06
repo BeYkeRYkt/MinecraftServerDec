@@ -5,7 +5,7 @@ public class aon {
 	private Object[][] a;
 
 	public aon() {
-		this.a = new Object[][] { { Blocks.GOLD_BLOCK, new ItemStack(Items.k, 9) }, { Blocks.IRON_BLOCK, new ItemStack(Items.j, 9) }, { Blocks.DIAMOND_BLOCK, new ItemStack(Items.i, 9) }, { Blocks.EMERALD_BLOCK, new ItemStack(Items.bO, 9) }, { Blocks.LAPIS_BLOCK, new ItemStack(Items.aW, 9, akv.l.b()) }, { Blocks.REDSTONE_BLOCK, new ItemStack(Items.aC, 9) }, { Blocks.COAL_BLOCK, new ItemStack(Items.h, 9, 0) }, { Blocks.HAY_BLOCK, new ItemStack(Items.O, 9) }, { Blocks.SLIME, new ItemStack(Items.aM, 9) } };
+		this.a = new Object[][] { { Blocks.GOLD_BLOCK, new ItemStack(Items.GOLD_INGOT, 9) }, { Blocks.IRON_BLOCK, new ItemStack(Items.IRON_INGOT, 9) }, { Blocks.DIAMOND_BLOCK, new ItemStack(Items.DIAMOND, 9) }, { Blocks.EMERALD_BLOCK, new ItemStack(Items.EMERALD, 9) }, { Blocks.LAPIS_BLOCK, new ItemStack(Items.DYE, 9, akv.l.b()) }, { Blocks.REDSTONE_BLOCK, new ItemStack(Items.REDSTONE, 9) }, { Blocks.COAL_BLOCK, new ItemStack(Items.COAL, 9, 0) }, { Blocks.HAY_BLOCK, new ItemStack(Items.WHEAT, 9) }, { Blocks.SLIME, new ItemStack(Items.SLIME_BALL, 9) } };
 	}
 
 	public void a(aop var1) {
@@ -16,7 +16,7 @@ public class aon {
 			var1.a(var4, new Object[] { "#", Character.valueOf('#'), var3 });
 		}
 
-		var1.a(new ItemStack(Items.k), new Object[] { "###", "###", "###", Character.valueOf('#'), Items.bx });
-		var1.a(new ItemStack(Items.bx, 9), new Object[] { "#", Character.valueOf('#'), Items.k });
+		var1.a(new ItemStack(Items.GOLD_INGOT), new Object[] { "###", "###", "###", Character.valueOf('#'), Items.GOLD_NUGGET });
+		var1.a(new ItemStack(Items.GOLD_NUGGET, 9), new Object[] { "#", Character.valueOf('#'), Items.GOLD_INGOT });
 	}
 }

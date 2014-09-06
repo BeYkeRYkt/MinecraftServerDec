@@ -12,10 +12,10 @@ class bco implements Callable {
 	}
 
 	public String a() {
-		int var1 = Block.a(this.a.world.p(this.a.position).getBlock());
+		int var1 = Block.getBlockId(this.a.world.p(this.a.position).getBlock());
 
 		try {
-			return String.format("ID #%d (%s // %s)", new Object[] { Integer.valueOf(var1), Block.c(var1).a(), Block.c(var1).getClass().getCanonicalName() });
+			return String.format("ID #%d (%s // %s)", new Object[] { Integer.valueOf(var1), Block.c(var1).getName(), Block.c(var1).getClass().getCanonicalName() });
 		} catch (Throwable var3) {
 			return "ID #" + var1;
 		}

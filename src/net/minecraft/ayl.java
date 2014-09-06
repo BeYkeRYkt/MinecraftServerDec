@@ -25,7 +25,7 @@ public abstract class ayl extends BlockStepAbstract {
 	}
 
 	public String b(int var1) {
-		return super.a() + "." + aym.a(var1).c();
+		return super.getName() + "." + aym.a(var1).c();
 	}
 
 	public bex l() {

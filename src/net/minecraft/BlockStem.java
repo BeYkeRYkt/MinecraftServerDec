@@ -11,7 +11,7 @@ public class BlockStem extends auc implements atz {
 	private final Block M;
 
 	protected BlockStem(Block var1) {
-		this.j(this.L.b().a(a, Integer.valueOf(0)).a(b, PaintingDirection.b));
+		this.j(this.L.b().a(a, Integer.valueOf(0)).a(b, BlockFace.b));
 		this.M = var1;
 		this.a(true);
 		float var2 = 0.125F;
@@ -20,11 +20,11 @@ public class BlockStem extends auc implements atz {
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
-		var1 = var1.a(b, PaintingDirection.b);
+		var1 = var1.a(b, BlockFace.b);
 		Iterator var4 = en.a.iterator();
 
 		while (var4.hasNext()) {
-			PaintingDirection var5 = (PaintingDirection) var4.next();
+			BlockFace var5 = (BlockFace) var4.next();
 			if (var2.p(var3.a(var5)).getBlock() == this.M) {
 				var1 = var1.a(b, var5);
 				break;
@@ -51,7 +51,7 @@ public class BlockStem extends auc implements atz {
 					Iterator var7 = en.a.iterator();
 
 					while (var7.hasNext()) {
-						PaintingDirection var8 = (PaintingDirection) var7.next();
+						BlockFace var8 = (BlockFace) var7.next();
 						if (var1.p(var2.a(var8)).getBlock() == this.M) {
 							return;
 						}
@@ -102,7 +102,7 @@ public class BlockStem extends auc implements atz {
 	}
 
 	protected Item j() {
-		return this.M == Blocks.PUMPKIN ? Items.bg : (this.M == Blocks.MELON_BLOCK ? Items.bh : null);
+		return this.M == Blocks.PUMPKIN ? Items.PUMPKIN_SEEDS : (this.M == Blocks.MELON_BLOCK ? Items.MELON_SEEDS : null);
 	}
 
 	public Item a(bec var1, Random var2, int var3) {

@@ -1266,9 +1266,9 @@ public abstract class Entity implements CommandSenderInterface {
 			if (!this.o.D && !this.ak) {
 				int var5;
 				if (DataTypesConverter.e((float) var1) > DataTypesConverter.e((float) var3)) {
-					var5 = var1 > 0.0D ? PaintingDirection.e.toByte() : PaintingDirection.f.toByte();
+					var5 = var1 > 0.0D ? BlockFace.e.toByte() : BlockFace.f.toByte();
 				} else {
-					var5 = var3 > 0.0D ? PaintingDirection.c.toByte() : PaintingDirection.d.toByte();
+					var5 = var3 > 0.0D ? BlockFace.c.toByte() : BlockFace.d.toByte();
 				}
 
 				this.an = var5;
@@ -1592,8 +1592,8 @@ public abstract class Entity implements CommandSenderInterface {
 	public void i(int var1) {
 	}
 
-	public PaintingDirection aO() {
-		return PaintingDirection.fromByte(DataTypesConverter.toFixedPointInt((double) (this.yaw * 4.0F / 360.0F) + 0.5D) & 3);
+	public BlockFace aO() {
+		return BlockFace.fromByte(DataTypesConverter.toFixedPointInt((double) (this.yaw * 4.0F / 360.0F) + 0.5D) & 3);
 	}
 
 	protected hr aP() {

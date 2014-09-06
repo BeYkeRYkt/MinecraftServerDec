@@ -3,8 +3,8 @@ package net.minecraft;
 public class ItemFishingRod extends Item {
 
 	public ItemFishingRod() {
-		this.d(64);
-		this.c(1);
+		this.setDurability(64);
+		this.setMaxStackSize(1);
 		this.setCreativeModeTab(CreativeModeTab.TOOLS);
 	}
 

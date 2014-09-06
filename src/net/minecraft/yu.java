@@ -111,10 +111,10 @@ public class yu extends zb {
 
 		if (!var1.by.instabuild && this.c >= this.b * 0.5F && this.a.bb().nextFloat() < 0.006F && !this.d) {
 			ItemStack var24 = var1.bz();
-			if (var24 != null && var24.getItem() == Items.bY) {
+			if (var24 != null && var24.getItem() == Items.CARROT_ON_A_STICK) {
 				var24.a(1, (EntityLiving) var1);
 				if (var24.b == 0) {
-					ItemStack var25 = new ItemStack(Items.aR);
+					ItemStack var25 = new ItemStack(Items.FISHING_ROD);
 					var25.d(var24.getTag());
 					var1.playerInventory.contents[var1.playerInventory.c] = var25;
 				}

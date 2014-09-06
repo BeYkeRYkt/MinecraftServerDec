@@ -10,7 +10,7 @@ public class bka extends bkb {
 	public bka() {
 	}
 
-	public bka(int var1, Random var2, bjb var3, PaintingDirection var4) {
+	public bka(int var1, Random var2, bjb var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
@@ -26,7 +26,7 @@ public class bka extends bkb {
 		var1.put("Mob", this.b);
 	}
 
-	public static bka a(List var0, Random var1, int var2, int var3, int var4, int var5, PaintingDirection var6) {
+	public static bka a(List var0, Random var1, int var2, int var3, int var4, int var5, BlockFace var6) {
 		bjb var7 = bjb.a(var2, var3, var4, -2, 0, 0, 7, 8, 9, var6);
 		return a(var7) && bms.a(var0, var7) == null ? new bka(var5, var1, var7, var6) : null;
 	}

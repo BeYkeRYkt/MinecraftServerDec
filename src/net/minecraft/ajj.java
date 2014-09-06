@@ -39,7 +39,7 @@ public class ajj extends ajk {
 			this.b.b((Statistic) tl.h);
 		}
 
-		if (var1.getItem() instanceof amu) {
+		if (var1.getItem() instanceof ItemPickaxe) {
 			this.b.b((Statistic) tl.i);
 		}
 
@@ -47,19 +47,19 @@ public class ajj extends ajk {
 			this.b.b((Statistic) tl.j);
 		}
 
-		if (var1.getItem() instanceof alo) {
+		if (var1.getItem() instanceof ItemHoe) {
 			this.b.b((Statistic) tl.l);
 		}
 
-		if (var1.getItem() == Items.P) {
+		if (var1.getItem() == Items.BREAD) {
 			this.b.b((Statistic) tl.m);
 		}
 
-		if (var1.getItem() == Items.aZ) {
+		if (var1.getItem() == Items.CAKE) {
 			this.b.b((Statistic) tl.n);
 		}
 
-		if (var1.getItem() instanceof amu && ((amu) var1.getItem()).g() != ami.a) {
+		if (var1.getItem() instanceof ItemPickaxe && ((ItemPickaxe) var1.getItem()).g() != EnumToolMaterial.WOOD) {
 			this.b.b((Statistic) tl.o);
 		}
 
@@ -75,7 +75,7 @@ public class ajj extends ajk {
 			this.b.b((Statistic) tl.G);
 		}
 
-		if (var1.getItem() == Items.ao && var1.i() == 1) {
+		if (var1.getItem() == Items.GOLDEN_APPLE && var1.i() == 1) {
 			this.b.b((Statistic) tl.M);
 		}
 

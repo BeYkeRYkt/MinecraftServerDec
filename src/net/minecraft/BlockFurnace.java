@@ -11,7 +11,7 @@ public class BlockFurnace extends atg {
 
 	protected BlockFurnace(boolean var1) {
 		super(Material.STONE);
-		this.j(this.L.b().a(a, PaintingDirection.c));
+		this.j(this.L.b().a(a, BlockFace.c));
 		this.b = var1;
 	}
 
@@ -29,22 +29,22 @@ public class BlockFurnace extends atg {
 			Block var5 = var1.p(var2.d()).getBlock();
 			Block var6 = var1.p(var2.e()).getBlock();
 			Block var7 = var1.p(var2.f()).getBlock();
-			PaintingDirection var8 = (PaintingDirection) var3.b(a);
-			if (var8 == PaintingDirection.c && var4.m() && !var5.m()) {
-				var8 = PaintingDirection.d;
-			} else if (var8 == PaintingDirection.d && var5.m() && !var4.m()) {
-				var8 = PaintingDirection.c;
-			} else if (var8 == PaintingDirection.e && var6.m() && !var7.m()) {
-				var8 = PaintingDirection.f;
-			} else if (var8 == PaintingDirection.f && var7.m() && !var6.m()) {
-				var8 = PaintingDirection.e;
+			BlockFace var8 = (BlockFace) var3.b(a);
+			if (var8 == BlockFace.c && var4.m() && !var5.m()) {
+				var8 = BlockFace.d;
+			} else if (var8 == BlockFace.d && var5.m() && !var4.m()) {
+				var8 = BlockFace.c;
+			} else if (var8 == BlockFace.e && var6.m() && !var7.m()) {
+				var8 = BlockFace.f;
+			} else if (var8 == BlockFace.f && var7.m() && !var6.m()) {
+				var8 = BlockFace.e;
 			}
 
 			var1.a(var2, var3.a(a, var8), 2);
 		}
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {
@@ -81,7 +81,7 @@ public class BlockFurnace extends atg {
 		return new TileEntityFurnace();
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(a, var8.aO().d());
 	}
 
@@ -121,16 +121,16 @@ public class BlockFurnace extends atg {
 	}
 
 	public bec a(int var1) {
-		PaintingDirection var2 = PaintingDirection.a(var1);
+		BlockFace var2 = BlockFace.a(var1);
 		if (var2.k() == el.b) {
-			var2 = PaintingDirection.c;
+			var2 = BlockFace.c;
 		}
 
 		return this.P().a(a, var2);
 	}
 
 	public int c(bec var1) {
-		return ((PaintingDirection) var1.b(a)).a();
+		return ((BlockFace) var1.b(a)).a();
 	}
 
 	protected bed e() {

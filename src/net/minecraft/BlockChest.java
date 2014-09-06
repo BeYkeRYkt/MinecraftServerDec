@@ -12,7 +12,7 @@ public class BlockChest extends atg {
 
 	protected BlockChest(int var1) {
 		super(Material.WOOD);
-		this.j(this.L.b().a(a, PaintingDirection.c));
+		this.j(this.L.b().a(a, BlockFace.c));
 		this.b = var1;
 		this.a(CreativeModeTab.DECORATIONS);
 		this.a(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
@@ -50,7 +50,7 @@ public class BlockChest extends atg {
 		Iterator var4 = en.a.iterator();
 
 		while (var4.hasNext()) {
-			PaintingDirection var5 = (PaintingDirection) var4.next();
+			BlockFace var5 = (BlockFace) var4.next();
 			Position var6 = var2.a(var5);
 			bec var7 = var1.p(var6);
 			if (var7.getBlock() == this) {
@@ -60,12 +60,12 @@ public class BlockChest extends atg {
 
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.P().a(a, var8.aO());
 	}
 
 	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
-		PaintingDirection var6 = PaintingDirection.fromByte(DataTypesConverter.toFixedPointInt((double) (var4.yaw * 4.0F / 360.0F) + 0.5D) & 3).d();
+		BlockFace var6 = BlockFace.fromByte(DataTypesConverter.toFixedPointInt((double) (var4.yaw * 4.0F / 360.0F) + 0.5D) & 3).d();
 		var3 = var3.a(a, var6);
 		Position var7 = var2.c();
 		Position var8 = var2.d();
@@ -112,7 +112,7 @@ public class BlockChest extends atg {
 			bec var5 = var1.p(var2.d());
 			bec var6 = var1.p(var2.e());
 			bec var7 = var1.p(var2.f());
-			PaintingDirection var8 = (PaintingDirection) var3.b(a);
+			BlockFace var8 = (BlockFace) var3.b(a);
 			Block var9 = var4.getBlock();
 			Block var10 = var5.getBlock();
 			Block var11 = var6.getBlock();
@@ -124,52 +124,52 @@ public class BlockChest extends atg {
 					Position var23 = var11 == this ? var2.e() : var2.f();
 					bec var24 = var1.p(var23.c());
 					bec var25 = var1.p(var23.d());
-					var8 = PaintingDirection.d;
-					PaintingDirection var26;
+					var8 = BlockFace.d;
+					BlockFace var26;
 					if (var11 == this) {
-						var26 = (PaintingDirection) var6.b(a);
+						var26 = (BlockFace) var6.b(a);
 					} else {
-						var26 = (PaintingDirection) var7.b(a);
+						var26 = (BlockFace) var7.b(a);
 					}
 
-					if (var26 == PaintingDirection.c) {
-						var8 = PaintingDirection.c;
+					if (var26 == BlockFace.c) {
+						var8 = BlockFace.c;
 					}
 
 					Block var19 = var24.getBlock();
 					Block var20 = var25.getBlock();
 					if ((var21 || var19.m()) && !var22 && !var20.m()) {
-						var8 = PaintingDirection.d;
+						var8 = BlockFace.d;
 					}
 
 					if ((var22 || var20.m()) && !var21 && !var19.m()) {
-						var8 = PaintingDirection.c;
+						var8 = BlockFace.c;
 					}
 				}
 			} else {
 				Position var13 = var9 == this ? var2.c() : var2.d();
 				bec var14 = var1.p(var13.e());
 				bec var15 = var1.p(var13.f());
-				var8 = PaintingDirection.f;
-				PaintingDirection var16;
+				var8 = BlockFace.f;
+				BlockFace var16;
 				if (var9 == this) {
-					var16 = (PaintingDirection) var4.b(a);
+					var16 = (BlockFace) var4.b(a);
 				} else {
-					var16 = (PaintingDirection) var5.b(a);
+					var16 = (BlockFace) var5.b(a);
 				}
 
-				if (var16 == PaintingDirection.e) {
-					var8 = PaintingDirection.e;
+				if (var16 == BlockFace.e) {
+					var8 = BlockFace.e;
 				}
 
 				Block var17 = var14.getBlock();
 				Block var18 = var15.getBlock();
 				if ((var11.m() || var17.m()) && !var12.m() && !var18.m()) {
-					var8 = PaintingDirection.f;
+					var8 = BlockFace.f;
 				}
 
 				if ((var12.m() || var18.m()) && !var11.m() && !var17.m()) {
-					var8 = PaintingDirection.e;
+					var8 = BlockFace.e;
 				}
 			}
 
@@ -180,11 +180,11 @@ public class BlockChest extends atg {
 	}
 
 	public bec f(World var1, Position var2, bec var3) {
-		PaintingDirection var4 = null;
+		BlockFace var4 = null;
 		Iterator var5 = en.a.iterator();
 
 		while (var5.hasNext()) {
-			PaintingDirection var6 = (PaintingDirection) var5.next();
+			BlockFace var6 = (BlockFace) var5.next();
 			bec var7 = var1.p(var2.a(var6));
 			if (var7.getBlock() == this) {
 				return var3;
@@ -203,7 +203,7 @@ public class BlockChest extends atg {
 		if (var4 != null) {
 			return var3.a(a, var4.d());
 		} else {
-			PaintingDirection var8 = (PaintingDirection) var3.b(a);
+			BlockFace var8 = (BlockFace) var3.b(a);
 			if (var1.p(var2.a(var8)).getBlock().m()) {
 				var8 = var8.d();
 			}
@@ -267,13 +267,13 @@ public class BlockChest extends atg {
 		} else {
 			Iterator var3 = en.a.iterator();
 
-			PaintingDirection var4;
+			BlockFace var4;
 			do {
 				if (!var3.hasNext()) {
 					return false;
 				}
 
-				var4 = (PaintingDirection) var3.next();
+				var4 = (BlockFace) var3.next();
 			} while (var1.p(var2.a(var4)).getBlock() != this);
 
 			return true;
@@ -299,7 +299,7 @@ public class BlockChest extends atg {
 		super.b(var1, var2, var3);
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {
@@ -324,7 +324,7 @@ public class BlockChest extends atg {
 				Iterator var5 = en.a.iterator();
 
 				while (var5.hasNext()) {
-					PaintingDirection var6 = (PaintingDirection) var5.next();
+					BlockFace var6 = (BlockFace) var5.next();
 					Position var7 = var2.a(var6);
 					Block var8 = var1.p(var7).getBlock();
 					if (var8 == this) {
@@ -334,7 +334,7 @@ public class BlockChest extends atg {
 
 						TileEntity var9 = var1.s(var7);
 						if (var9 instanceof TileEntityChest) {
-							if (var6 != PaintingDirection.e && var6 != PaintingDirection.c) {
+							if (var6 != BlockFace.e && var6 != BlockFace.c) {
 								var4 = new vp("container.chestDouble", (vy) var4, (TileEntityChest) var9);
 							} else {
 								var4 = new vp("container.chestDouble", (TileEntityChest) var9, (vy) var4);
@@ -356,7 +356,7 @@ public class BlockChest extends atg {
 		return this.b == 1;
 	}
 
-	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int a(ard var1, Position var2, bec var3, BlockFace var4) {
 		if (!this.g()) {
 			return 0;
 		} else {
@@ -370,8 +370,8 @@ public class BlockChest extends atg {
 		}
 	}
 
-	public int b(ard var1, Position var2, bec var3, PaintingDirection var4) {
-		return var4 == PaintingDirection.b ? this.a(var1, var2, var3, var4) : 0;
+	public int b(ard var1, Position var2, bec var3, BlockFace var4) {
+		return var4 == BlockFace.b ? this.a(var1, var2, var3, var4) : 0;
 	}
 
 	private boolean m(World var1, Position var2) {
@@ -407,16 +407,16 @@ public class BlockChest extends atg {
 	}
 
 	public bec a(int var1) {
-		PaintingDirection var2 = PaintingDirection.a(var1);
+		BlockFace var2 = BlockFace.a(var1);
 		if (var2.k() == el.b) {
-			var2 = PaintingDirection.c;
+			var2 = BlockFace.c;
 		}
 
 		return this.P().a(a, var2);
 	}
 
 	public int c(bec var1) {
-		return ((PaintingDirection) var1.b(a)).a();
+		return ((BlockFace) var1.b(a)).a();
 	}
 
 	protected bed e() {

@@ -34,7 +34,7 @@ public class WorldServer extends World implements vn {
 	protected final abk d = new abk(this);
 	private qv[] S = new qv[] { new qv((qu) null), new qv((qu) null) };
 	private int T;
-	private static final List U = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.y, 0, 1, 3, 10), new vl(Item.getItemOf(Blocks.PLANKS), 0, 1, 3, 10), new vl(Item.getItemOf(Blocks.LOG), 0, 1, 3, 10), new vl(Items.t, 0, 1, 1, 3), new vl(Items.p, 0, 1, 1, 5), new vl(Items.s, 0, 1, 1, 3), new vl(Items.o, 0, 1, 1, 5), new vl(Items.e, 0, 2, 3, 5), new vl(Items.P, 0, 2, 3, 3), new vl(Item.getItemOf(Blocks.LOG2), 0, 1, 3, 10) }));
+	private static final List U = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.STICK, 0, 1, 3, 10), new vl(Item.getItemOf(Blocks.PLANKS), 0, 1, 3, 10), new vl(Item.getItemOf(Blocks.LOG), 0, 1, 3, 10), new vl(Items.STONE_AXE, 0, 1, 1, 3), new vl(Items.WOODEN_AXE, 0, 1, 1, 5), new vl(Items.STONE_PICKAXE, 0, 1, 1, 3), new vl(Items.WOODEN_PICKAXE, 0, 1, 1, 5), new vl(Items.APPLE, 0, 2, 3, 5), new vl(Items.BREAD, 0, 2, 3, 3), new vl(Item.getItemOf(Blocks.LOG2), 0, 1, 3, 10) }));
 	private List V = Lists.newArrayList();
 
 	public WorldServer(MinecraftServer var1, IDataManager var2, WorldData var3, int var4, MethodProfiler var5) {

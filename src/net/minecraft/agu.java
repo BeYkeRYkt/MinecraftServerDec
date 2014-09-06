@@ -27,6 +27,6 @@ class agu implements agw {
 			var4 = this.d.a(var2);
 		}
 
-		var1.add(new aqc(new ItemStack(this.a.getItem(), var3, this.a.i()), new ItemStack(Items.bO), new ItemStack(this.c.getItem(), var4, this.c.i())));
+		var1.add(new aqc(new ItemStack(this.a.getItem(), var3, this.a.i()), new ItemStack(Items.EMERALD), new ItemStack(this.c.getItem(), var4, this.c.i())));
 	}
 }

@@ -16,25 +16,25 @@ public class aok {
 	}
 
 	private aok() {
-		this.a(Blocks.IRON_ORE, new ItemStack(Items.j), 0.7F);
-		this.a(Blocks.GOLD_ORE, new ItemStack(Items.k), 1.0F);
-		this.a(Blocks.DIAMOND_ORE, new ItemStack(Items.i), 1.0F);
+		this.a(Blocks.IRON_ORE, new ItemStack(Items.IRON_INGOT), 0.7F);
+		this.a(Blocks.GOLD_ORE, new ItemStack(Items.GOLD_INGOT), 1.0F);
+		this.a(Blocks.DIAMOND_ORE, new ItemStack(Items.DIAMOND), 1.0F);
 		this.a((Block) Blocks.SAND, new ItemStack(Blocks.GLASS), 0.1F);
-		this.a(Items.al, new ItemStack(Items.am), 0.35F);
-		this.a(Items.bi, new ItemStack(Items.bj), 0.35F);
-		this.a(Items.bk, new ItemStack(Items.bl), 0.35F);
-		this.a(Items.bo, new ItemStack(Items.bp), 0.35F);
-		this.a(Items.bm, new ItemStack(Items.bn), 0.35F);
+		this.a(Items.PORKCHOP, new ItemStack(Items.COOCKED_PORKCHOP), 0.35F);
+		this.a(Items.BEEF, new ItemStack(Items.COOKED_BEEF), 0.35F);
+		this.a(Items.CHICKEN, new ItemStack(Items.COOKED_CHICKEN), 0.35F);
+		this.a(Items.RABBIT, new ItemStack(Items.COOCKED_RABBIT), 0.35F);
+		this.a(Items.MUTTON, new ItemStack(Items.COOKED_MUTTON), 0.35F);
 		this.a(Blocks.COBBLESTONE, new ItemStack(Blocks.STONE), 0.1F);
 		this.a(new ItemStack(Blocks.STONEBRICK, 1, BlockSmoothBrick.b), new ItemStack(Blocks.STONEBRICK, 1, BlockSmoothBrick.N), 0.1F);
-		this.a(Items.aI, new ItemStack(Items.aH), 0.3F);
+		this.a(Items.CLAY_BALL, new ItemStack(Items.BRICK), 0.3F);
 		this.a(Blocks.CLAY, new ItemStack(Blocks.HARDENED_CLAY), 0.35F);
-		this.a((Block) Blocks.CACTUS, new ItemStack(Items.aW, 1, akv.n.b()), 0.2F);
-		this.a(Blocks.LOG, new ItemStack(Items.h, 1, 1), 0.15F);
-		this.a(Blocks.LOG2, new ItemStack(Items.h, 1, 1), 0.15F);
-		this.a(Blocks.EMERALD_ORE, new ItemStack(Items.bO), 1.0F);
-		this.a(Items.bS, new ItemStack(Items.bT), 0.35F);
-		this.a(Blocks.NETHERRACK, new ItemStack(Items.cf), 0.1F);
+		this.a((Block) Blocks.CACTUS, new ItemStack(Items.DYE, 1, akv.n.b()), 0.2F);
+		this.a(Blocks.LOG, new ItemStack(Items.COAL, 1, 1), 0.15F);
+		this.a(Blocks.LOG2, new ItemStack(Items.COAL, 1, 1), 0.15F);
+		this.a(Blocks.EMERALD_ORE, new ItemStack(Items.EMERALD), 1.0F);
+		this.a(Items.POTATO, new ItemStack(Items.BAKED_POTATO), 0.35F);
+		this.a(Blocks.NETHERRACK, new ItemStack(Items.NETHERBRICK), 0.1F);
 		this.a(new ItemStack(Blocks.SPONGE, 1, 1), new ItemStack(Blocks.SPONGE, 1, 0), 0.15F);
 		ali[] var1 = ali.values();
 		int var2 = var1.length;
@@ -42,14 +42,14 @@ public class aok {
 		for (int var3 = 0; var3 < var2; ++var3) {
 			ali var4 = var1[var3];
 			if (var4.g()) {
-				this.a(new ItemStack(Items.aU, 1, var4.a()), new ItemStack(Items.aV, 1, var4.a()), 0.35F);
+				this.a(new ItemStack(Items.FISH, 1, var4.a()), new ItemStack(Items.COOKED_FISH, 1, var4.a()), 0.35F);
 			}
 		}
 
-		this.a(Blocks.COAL_ORE, new ItemStack(Items.h), 0.1F);
-		this.a(Blocks.REDSTONE_ORE, new ItemStack(Items.aC), 0.7F);
-		this.a(Blocks.LAPIS_ORE, new ItemStack(Items.aW, 1, akv.l.b()), 0.2F);
-		this.a(Blocks.QUARTZ_ORE, new ItemStack(Items.cg), 0.2F);
+		this.a(Blocks.COAL_ORE, new ItemStack(Items.COAL), 0.1F);
+		this.a(Blocks.REDSTONE_ORE, new ItemStack(Items.REDSTONE), 0.7F);
+		this.a(Blocks.LAPIS_ORE, new ItemStack(Items.DYE, 1, akv.l.b()), 0.2F);
+		this.a(Blocks.QUARTZ_ORE, new ItemStack(Items.QUARTZ), 0.2F);
 	}
 
 	public void a(Block var1, ItemStack var2, float var3) {

@@ -4,29 +4,29 @@ package net.minecraft;
 class aum {
 
 	// $FF: synthetic field
-	static final int[] a = new int[PaintingDirection.values().length];
+	static final int[] a = new int[BlockFace.values().length];
 
 	static {
 		try {
-			a[PaintingDirection.d.ordinal()] = 1;
+			a[BlockFace.d.ordinal()] = 1;
 		} catch (NoSuchFieldError var4) {
 			;
 		}
 
 		try {
-			a[PaintingDirection.c.ordinal()] = 2;
+			a[BlockFace.c.ordinal()] = 2;
 		} catch (NoSuchFieldError var3) {
 			;
 		}
 
 		try {
-			a[PaintingDirection.e.ordinal()] = 3;
+			a[BlockFace.e.ordinal()] = 3;
 		} catch (NoSuchFieldError var2) {
 			;
 		}
 
 		try {
-			a[PaintingDirection.f.ordinal()] = 4;
+			a[BlockFace.f.ordinal()] = 4;
 		} catch (NoSuchFieldError var1) {
 			;
 		}

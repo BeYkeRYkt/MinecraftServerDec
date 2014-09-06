@@ -8,14 +8,14 @@ public class ItemArmor extends Item {
 	public final int b;
 	public final int c;
 	public final int d;
-	private final ajp m;
+	private final EnumArmorMaterial m;
 
-	public ItemArmor(ajp var1, int var2, int var3) {
+	public ItemArmor(EnumArmorMaterial var1, int var2, int var3) {
 		this.m = var1;
 		this.b = var3;
 		this.d = var2;
 		this.c = var1.b(var3);
-		this.d(var1.a(var3));
+		this.setDurability(var1.a(var3));
 		this.maxStackSize = 1;
 		this.setCreativeModeTab(CreativeModeTab.COMBAT);
 		BlockDispenser.M.a(this, l);
@@ -25,16 +25,16 @@ public class ItemArmor extends Item {
 		return this.m.a();
 	}
 
-	public ajp w_() {
+	public EnumArmorMaterial w_() {
 		return this.m;
 	}
 
 	public boolean d_(ItemStack var1) {
-		return this.m != ajp.a ? false : (!var1.hasTag() ? false : (!var1.getTag().isTagAssignableFrom("display", 10) ? false : var1.getTag().getCompound("display").isTagAssignableFrom("color", 3)));
+		return this.m != EnumArmorMaterial.LEATHER ? false : (!var1.hasTag() ? false : (!var1.getTag().isTagAssignableFrom("display", 10) ? false : var1.getTag().getCompound("display").isTagAssignableFrom("color", 3)));
 	}
 
 	public int b(ItemStack var1) {
-		if (this.m != ajp.a) {
+		if (this.m != EnumArmorMaterial.LEATHER) {
 			return -1;
 		} else {
 			NBTCompoundTag var2 = var1.getTag();
@@ -50,7 +50,7 @@ public class ItemArmor extends Item {
 	}
 
 	public void c(ItemStack var1) {
-		if (this.m == ajp.a) {
+		if (this.m == EnumArmorMaterial.LEATHER) {
 			NBTCompoundTag var2 = var1.getTag();
 			if (var2 != null) {
 				NBTCompoundTag var3 = var2.getCompound("display");
@@ -63,7 +63,7 @@ public class ItemArmor extends Item {
 	}
 
 	public void b(ItemStack var1, int var2) {
-		if (this.m != ajp.a) {
+		if (this.m != EnumArmorMaterial.LEATHER) {
 			throw new UnsupportedOperationException("Can\'t dye non-leather!");
 		} else {
 			NBTCompoundTag var3 = var1.getTag();

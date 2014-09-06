@@ -47,7 +47,7 @@ public class bhn extends bhp {
 			Iterator var7 = en.a.iterator();
 
 			while (var7.hasNext()) {
-				PaintingDirection var8 = (PaintingDirection) var7.next();
+				BlockFace var8 = (BlockFace) var7.next();
 				var1.a(var3.a(var8), this.d, 2);
 			}
 

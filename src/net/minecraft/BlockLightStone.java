@@ -18,7 +18,7 @@ public class BlockLightStone extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Items.aT;
+		return Items.GLOWSTONE_DUST;
 	}
 
 	public MaterialMapColor g(bec var1) {

@@ -14,6 +14,6 @@ public class BlockBookshelf extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Items.aL;
+		return Items.BOOK;
 	}
 }

@@ -42,7 +42,7 @@ public class ark implements Comparable {
 	}
 
 	public String toString() {
-		return Block.a(this.e) + ": " + this.a + ", " + this.b + ", " + this.c + ", " + this.f;
+		return Block.getBlockId(this.e) + ": " + this.a + ", " + this.b + ", " + this.c + ", " + this.f;
 	}
 
 	public Block a() {

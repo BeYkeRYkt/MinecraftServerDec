@@ -53,7 +53,7 @@ public class Position extends fd {
 	}
 
 	public Position b(int var1) {
-		return this.a(PaintingDirection.b, var1);
+		return this.a(BlockFace.b, var1);
 	}
 
 	public Position b() {
@@ -61,7 +61,7 @@ public class Position extends fd {
 	}
 
 	public Position c(int var1) {
-		return this.a(PaintingDirection.a, var1);
+		return this.a(BlockFace.a, var1);
 	}
 
 	public Position c() {
@@ -69,7 +69,7 @@ public class Position extends fd {
 	}
 
 	public Position d(int var1) {
-		return this.a(PaintingDirection.c, var1);
+		return this.a(BlockFace.c, var1);
 	}
 
 	public Position d() {
@@ -77,7 +77,7 @@ public class Position extends fd {
 	}
 
 	public Position e(int var1) {
-		return this.a(PaintingDirection.d, var1);
+		return this.a(BlockFace.d, var1);
 	}
 
 	public Position e() {
@@ -85,7 +85,7 @@ public class Position extends fd {
 	}
 
 	public Position f(int var1) {
-		return this.a(PaintingDirection.e, var1);
+		return this.a(BlockFace.e, var1);
 	}
 
 	public Position f() {
@@ -93,14 +93,14 @@ public class Position extends fd {
 	}
 
 	public Position g(int var1) {
-		return this.a(PaintingDirection.f, var1);
+		return this.a(BlockFace.f, var1);
 	}
 
-	public Position a(PaintingDirection var1) {
+	public Position a(BlockFace var1) {
 		return this.a(var1, 1);
 	}
 
-	public Position a(PaintingDirection var1, int var2) {
+	public Position a(BlockFace var1, int var2) {
 		return new Position(this.getX() + var1.g() * var2, this.getY() + var1.h() * var2, this.getZ() + var1.i() * var2);
 	}
 

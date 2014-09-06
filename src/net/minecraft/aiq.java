@@ -142,17 +142,17 @@ public class aiq extends Container {
 		} else if (this.g[var2] > 0 && var3 != null && (var1.bz >= var5 && var1.bz >= this.g[var2] || var1.by.instabuild)) {
 			if (!this.i.D) {
 				List var6 = this.a(var3, var2, this.g[var2]);
-				boolean var7 = var3.getItem() == Items.aL;
+				boolean var7 = var3.getItem() == Items.BOOK;
 				if (var6 != null) {
 					var1.b(var5);
 					if (var7) {
-						var3.a((Item) Items.cd);
+						var3.a((Item) Items.ENCHANTED_BOOK);
 					}
 
 					for (int var8 = 0; var8 < var6.size(); ++var8) {
 						apo var9 = (apo) var6.get(var8);
 						if (var7) {
-							Items.cd.a(var3, var9);
+							Items.ENCHANTED_BOOK.a(var3, var9);
 						} else {
 							var3.a(var9.b, var9.c);
 						}
@@ -180,7 +180,7 @@ public class aiq extends Container {
 	private List a(ItemStack var1, int var2, int var3) {
 		this.k.setSeed((long) (this.f + var2));
 		List var4 = aph.b(this.k, var1, var3);
-		if (var1.getItem() == Items.aL && var4 != null && var4.size() > 1) {
+		if (var1.getItem() == Items.BOOK && var4 != null && var4.size() > 1) {
 			var4.remove(this.k.nextInt(var4.size()));
 		}
 
@@ -218,7 +218,7 @@ public class aiq extends Container {
 				if (!this.a(var5, 2, 38, true)) {
 					return null;
 				}
-			} else if (var5.getItem() == Items.aW && akv.a(var5.i()) == akv.l) {
+			} else if (var5.getItem() == Items.DYE && akv.a(var5.i()) == akv.l) {
 				if (!this.a(var5, 1, 2, true)) {
 					return null;
 				}

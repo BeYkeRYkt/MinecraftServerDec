@@ -24,7 +24,7 @@ public class EntityRabbit extends abq {
 		this.h.a(2.5F);
 		this.i.a(1, new yy(this));
 		this.i.a(1, new acj(this, 1.33D));
-		this.i.a(2, new aag(this, 1.0D, Items.bR, false));
+		this.i.a(2, new aag(this, 1.0D, Items.CARROT, false));
 		this.i.a(3, new yt(this, 0.8D));
 		this.i.a(5, new ack(this));
 		this.i.a(5, new zy(this, 0.6D));
@@ -221,7 +221,7 @@ public class EntityRabbit extends abq {
 	}
 
 	protected void bp() {
-		this.a(new ItemStack(Items.br, 1), 0.0F);
+		this.a(new ItemStack(Items.RABBIT_FOOT, 1), 0.0F);
 	}
 
 	protected void b(boolean var1, int var2) {
@@ -229,23 +229,23 @@ public class EntityRabbit extends abq {
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(Items.bs, 1);
+			this.a(Items.RABBIT_HIDE, 1);
 		}
 
 		var3 = this.V.nextInt(2);
 
 		for (var4 = 0; var4 < var3; ++var4) {
 			if (this.au()) {
-				this.a(Items.bp, 1);
+				this.a(Items.COOCKED_RABBIT, 1);
 			} else {
-				this.a(Items.bo, 1);
+				this.a(Items.RABBIT, 1);
 			}
 		}
 
 	}
 
 	private boolean a(Item var1) {
-		return var1 == Items.bR || var1 == Items.bW || var1 == Item.getItemOf((Block) Blocks.YELLOW_FLOWER);
+		return var1 == Items.CARROT || var1 == Items.GOLDEN_CARROT || var1 == Item.getItemOf((Block) Blocks.YELLOW_FLOWER);
 	}
 
 	public EntityRabbit b(ws var1) {

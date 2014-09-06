@@ -111,7 +111,7 @@ public abstract class adx extends Entity implements vz {
 
 	public void a(DamageSource var1) {
 		this.J();
-		ItemStack var2 = new ItemStack(Items.az, 1);
+		ItemStack var2 = new ItemStack(Items.MINECART, 1);
 		if (this.b != null) {
 			var2.c(this.b);
 		}

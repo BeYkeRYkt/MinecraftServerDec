@@ -8,13 +8,13 @@ public class ItemTool extends Item {
 	private Set c;
 	protected float a = 4.0F;
 	private float d;
-	protected ami b;
+	protected EnumToolMaterial b;
 
-	protected ItemTool(float var1, ami var2, Set var3) {
+	protected ItemTool(float var1, EnumToolMaterial var2, Set var3) {
 		this.b = var2;
 		this.c = var3;
 		this.maxStackSize = 1;
-		this.d(var2.a());
+		this.setDurability(var2.a());
 		this.a = var2.b();
 		this.d = var1 + var2.c();
 		this.setCreativeModeTab(CreativeModeTab.TOOLS);
@@ -37,7 +37,7 @@ public class ItemTool extends Item {
 		return true;
 	}
 
-	public ami g() {
+	public EnumToolMaterial g() {
 		return this.b;
 	}
 

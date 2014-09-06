@@ -9,14 +9,14 @@ public class aog implements aoo {
 		for (int var5 = 0; var5 < var1.n_(); ++var5) {
 			ItemStack var6 = var1.a(var5);
 			if (var6 != null) {
-				if (var6.getItem() == Items.bN) {
+				if (var6.getItem() == Items.WRITTEN_BOK) {
 					if (var4 != null) {
 						return false;
 					}
 
 					var4 = var6;
 				} else {
-					if (var6.getItem() != Items.bM) {
+					if (var6.getItem() != Items.WRITABLE_BOOK) {
 						return false;
 					}
 
@@ -35,14 +35,14 @@ public class aog implements aoo {
 		for (int var4 = 0; var4 < var1.n_(); ++var4) {
 			ItemStack var5 = var1.a(var4);
 			if (var5 != null) {
-				if (var5.getItem() == Items.bN) {
+				if (var5.getItem() == Items.WRITTEN_BOK) {
 					if (var3 != null) {
 						return null;
 					}
 
 					var3 = var5;
 				} else {
-					if (var5.getItem() != Items.bM) {
+					if (var5.getItem() != Items.WRITABLE_BOOK) {
 						return null;
 					}
 
@@ -51,10 +51,10 @@ public class aog implements aoo {
 			}
 		}
 
-		if (var3 != null && var2 >= 1 && anr.h(var3) < 2) {
-			ItemStack var6 = new ItemStack(Items.bN, var2);
+		if (var3 != null && var2 >= 1 && ItemWrittenBook.h(var3) < 2) {
+			ItemStack var6 = new ItemStack(Items.WRITTEN_BOK, var2);
 			var6.d((NBTCompoundTag) var3.getTag().getCopy());
-			var6.getTag().put("generation", anr.h(var3) + 1);
+			var6.getTag().put("generation", ItemWrittenBook.h(var3) + 1);
 			if (var3.s()) {
 				var6.c(var3.q());
 			}
@@ -78,7 +78,7 @@ public class aog implements aoo {
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {
 			ItemStack var4 = var1.a(var3);
-			if (var4 != null && var4.getItem() instanceof anr) {
+			if (var4 != null && var4.getItem() instanceof ItemWrittenBook) {
 				var2[var3] = var4;
 				break;
 			}

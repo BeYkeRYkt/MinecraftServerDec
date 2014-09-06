@@ -13,7 +13,7 @@ public class FoodMetaData {
 		this.b = Math.min(this.b + (float) var1 * var2 * 2.0F, (float) this.a);
 	}
 
-	public void a(all var1, ItemStack var2) {
+	public void a(ItemFood var1, ItemStack var2) {
 		this.a(var1.h(var2), var1.i(var2));
 	}
 

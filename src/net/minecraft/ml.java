@@ -3,13 +3,13 @@ package net.minecraft;
 public class ml implements Packet<ls> {
 
 	private Position a;
-	private PaintingDirection b;
+	private BlockFace b;
 	private mm c;
 
 	public void readData(PacketDataSerializer var1) {
 		this.c = (mm) var1.a(mm.class);
 		this.a = var1.readPosition();
-		this.b = PaintingDirection.a(var1.readUnsignedByte());
+		this.b = BlockFace.a(var1.readUnsignedByte());
 	}
 
 	public void writeData(PacketDataSerializer var1) {
@@ -26,7 +26,7 @@ public class ml implements Packet<ls> {
 		return this.a;
 	}
 
-	public PaintingDirection b() {
+	public BlockFace b() {
 		return this.b;
 	}
 

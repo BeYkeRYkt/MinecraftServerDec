@@ -144,7 +144,7 @@ public class EntityIronGolem extends abw {
 		var4 = 3 + this.V.nextInt(3);
 
 		for (int var5 = 0; var5 < var4; ++var5) {
-			this.a(Items.j, 1);
+			this.a(Items.IRON_INGOT, 1);
 		}
 
 	}

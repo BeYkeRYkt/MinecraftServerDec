@@ -76,7 +76,7 @@ public class EntityBoat extends Entity {
 					}
 
 					if (!var3) {
-						this.a(Items.aE, 1, 0.0F);
+						this.a(Items.BOAT, 1, 0.0F);
 					}
 
 					this.J();
@@ -223,7 +223,7 @@ public class EntityBoat extends Entity {
 					if (var14 == Blocks.SNOW_LAYER) {
 						this.o.g(var27);
 						this.D = false;
-					} else if (var14 == Blocks.WATERLILY) {
+					} else if (var14 == Blocks.WATER_LILY) {
 						this.o.b(var27, true);
 						this.D = false;
 					}
@@ -246,7 +246,7 @@ public class EntityBoat extends Entity {
 					}
 
 					for (var22 = 0; var22 < 2; ++var22) {
-						this.a(Items.y, 1, 0.0F);
+						this.a(Items.STICK, 1, 0.0F);
 					}
 				}
 			} else {
@@ -332,7 +332,7 @@ public class EntityBoat extends Entity {
 					}
 
 					for (var6 = 0; var6 < 2; ++var6) {
-						this.a(Items.y, 1, 0.0F);
+						this.a(Items.STICK, 1, 0.0F);
 					}
 				}
 

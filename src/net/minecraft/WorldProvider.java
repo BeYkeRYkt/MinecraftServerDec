@@ -82,7 +82,7 @@ public abstract class WorldProvider {
 	}
 
 	public static WorldProvider a(int var0) {
-		return (WorldProvider) (var0 == -1 ? new NetherWorldProvider() : (var0 == 0 ? new bgg() : (var0 == 1 ? new TheEndWorldProvider() : null)));
+		return (WorldProvider) (var0 == -1 ? new NetherWorldProvider() : (var0 == 0 ? new NormalWorldProvider() : (var0 == 1 ? new TheEndWorldProvider() : null)));
 	}
 
 	public Position h() {

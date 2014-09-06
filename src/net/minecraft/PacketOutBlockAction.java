@@ -28,7 +28,7 @@ public class PacketOutBlockAction implements Packet<PlayClientboundPacketListene
 		serializer.writePosition(this.a);
 		serializer.writeByte(this.b1);
 		serializer.writeByte(this.b2);
-		serializer.writeVarInt(Block.a(this.block) & 4095);
+		serializer.writeVarInt(Block.getBlockId(this.block) & 4095);
 	}
 
 	public void handlePacket(PlayClientboundPacketListener listener) {

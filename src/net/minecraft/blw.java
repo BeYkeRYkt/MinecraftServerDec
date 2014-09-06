@@ -10,11 +10,11 @@ public class blw extends bmk {
 	public blw() {
 	}
 
-	public blw(int var1, Random var2, bjb var3, PaintingDirection var4) {
+	public blw(int var1, Random var2, bjb var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
-		this.a = var4 != PaintingDirection.c && var4 != PaintingDirection.d ? var3.c() : var3.e();
+		this.a = var4 != BlockFace.c && var4 != BlockFace.d ? var3.c() : var3.e();
 	}
 
 	protected void a(NBTCompoundTag var1) {
@@ -27,7 +27,7 @@ public class blw extends bmk {
 		this.a = var1.getInt("Steps");
 	}
 
-	public static bjb a(List var0, Random var1, int var2, int var3, int var4, PaintingDirection var5) {
+	public static bjb a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5) {
 		boolean var6 = true;
 		bjb var7 = bjb.a(var2, var3, var4, -1, -1, 0, 5, 5, 4, var5);
 		bms var8 = bms.a(var0, var7);

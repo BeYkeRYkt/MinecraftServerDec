@@ -9,7 +9,7 @@ public class BlockAnvil extends avt {
 
 	protected BlockAnvil() {
 		super(Material.HEAVY);
-		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Integer.valueOf(0)));
+		this.j(this.L.b().a(a, BlockFace.c).a(b, Integer.valueOf(0)));
 		this.e(0);
 		this.a(CreativeModeTab.DECORATIONS);
 	}
@@ -22,12 +22,12 @@ public class BlockAnvil extends avt {
 		return false;
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		PaintingDirection var9 = var8.aO().e();
+	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		BlockFace var9 = var8.aO().e();
 		return super.a(var1, var2, var3, var4, var5, var6, var7, var8).a(a, var9).a(b, Integer.valueOf(var7 >> 2));
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (!var1.D) {
 			var4.a((vv) (new ata(var1, var2)));
 		}
@@ -40,7 +40,7 @@ public class BlockAnvil extends avt {
 	}
 
 	public void a(ard var1, Position var2) {
-		PaintingDirection var3 = (PaintingDirection) var1.p(var2).b(a);
+		BlockFace var3 = (BlockFace) var1.p(var2).b(a);
 		if (var3.k() == el.a) {
 			this.a(0.0F, 0.0F, 0.125F, 1.0F, 1.0F, 0.875F);
 		} else {
@@ -58,12 +58,12 @@ public class BlockAnvil extends avt {
 	}
 
 	public bec a(int var1) {
-		return this.P().a(a, PaintingDirection.fromByte(var1 & 3)).a(b, Integer.valueOf((var1 & 15) >> 2));
+		return this.P().a(a, BlockFace.fromByte(var1 & 3)).a(b, Integer.valueOf((var1 & 15) >> 2));
 	}
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((PaintingDirection) var1.b(a)).toByte();
+		int var3 = var2 | ((BlockFace) var1.b(a)).toByte();
 		var3 |= ((Integer) var1.b(b)).intValue() << 2;
 		return var3;
 	}

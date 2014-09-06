@@ -12,7 +12,7 @@ public class BlockIce extends awt {
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
-		var2.b(StatisticList.H[Block.a((Block) this)]);
+		var2.b(StatisticList.H[Block.getBlockId((Block) this)]);
 		var2.a(0.025F);
 		if (this.G() && aph.e(var2)) {
 			ItemStack var8 = this.i(var4);

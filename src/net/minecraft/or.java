@@ -5,9 +5,9 @@ class or extends oc {
 	// $FF: synthetic field
 	final ItemStack b;
 	// $FF: synthetic field
-	final oq c;
+	final DispenseBehaviorPotion c;
 
-	or(oq var1, ItemStack var2) {
+	or(DispenseBehaviorPotion var1, ItemStack var2) {
 		this.c = var1;
 		this.b = var2;
 	}

@@ -11,7 +11,7 @@ public class EntityPainting extends adj {
 		super(var1);
 	}
 
-	public EntityPainting(World var1, Position var2, PaintingDirection var3) {
+	public EntityPainting(World var1, Position var2, BlockFace var3) {
 		super(var1, var2);
 		ArrayList var4 = Lists.newArrayList();
 		PaintingType[] var5 = PaintingType.values();
@@ -74,7 +74,7 @@ public class EntityPainting extends adj {
 				}
 			}
 
-			this.a(new ItemStack(Items.an), 0.0F);
+			this.a(new ItemStack(Items.PAINTING), 0.0F);
 		}
 	}
 

@@ -236,7 +236,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 	}
 
 	public boolean b(int var1, ItemStack var2) {
-		return var2.getItem() == Items.bO || var2.getItem() == Items.i || var2.getItem() == Items.k || var2.getItem() == Items.j;
+		return var2.getItem() == Items.EMERALD || var2.getItem() == Items.DIAMOND || var2.getItem() == Items.GOLD_INGOT || var2.getItem() == Items.IRON_INGOT;
 	}
 
 	public String k() {

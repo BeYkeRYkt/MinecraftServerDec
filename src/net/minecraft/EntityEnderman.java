@@ -45,7 +45,7 @@ public class EntityEnderman extends EntityMonster {
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
 		bec var2 = this.ck();
-		var1.put("carried", (short) Block.a(var2.getBlock()));
+		var1.put("carried", (short) Block.getBlockId(var2.getBlock()));
 		var1.put("carriedData", (short) var2.getBlock().c(var2));
 	}
 
@@ -196,7 +196,7 @@ public class EntityEnderman extends EntityMonster {
 	}
 
 	protected Item A() {
-		return Items.bu;
+		return Items.ENDER_PEARL;
 	}
 
 	protected void b(boolean var1, int var2) {

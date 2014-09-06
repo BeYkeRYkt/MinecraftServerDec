@@ -78,7 +78,7 @@ public class BlockTallPlant extends auc implements atz {
 			return null;
 		} else {
 			avk var4 = (avk) var1.b(a);
-			return var4 == avk.d ? null : (var4 == avk.c ? (var2.nextInt(8) == 0 ? Items.N : null) : Item.getItemOf((Block) this));
+			return var4 == avk.d ? null : (var4 == avk.c ? (var2.nextInt(8) == 0 ? Items.WHEAT_SEEDS : null) : Item.getItemOf((Block) this));
 		}
 	}
 
@@ -96,7 +96,7 @@ public class BlockTallPlant extends auc implements atz {
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
-		if (var1.D || var2.bY() == null || var2.bY().getItem() != Items.be || var4.b(b) != avj.b || !this.b(var1, var3, var4, var2)) {
+		if (var1.D || var2.bY() == null || var2.bY().getItem() != Items.SHEARS || var4.b(b) != avj.b || !this.b(var1, var3, var4, var2)) {
 			super.a(var1, var2, var3, var4, var5);
 		}
 	}
@@ -110,7 +110,7 @@ public class BlockTallPlant extends auc implements atz {
 					if (var6 != avk.d && var6 != avk.c) {
 						var1.b(var2.b(), true);
 					} else if (!var1.D) {
-						if (var4.bY() != null && var4.bY().getItem() == Items.be) {
+						if (var4.bY() != null && var4.bY().getItem() == Items.SHEARS) {
 							this.b(var1, var2, var5, var4);
 							var1.g(var2.b());
 						} else {
@@ -135,7 +135,7 @@ public class BlockTallPlant extends auc implements atz {
 		if (var5 != avk.d && var5 != avk.c) {
 			return false;
 		} else {
-			var4.b(StatisticList.H[Block.a((Block) this)]);
+			var4.b(StatisticList.H[Block.getBlockId((Block) this)]);
 			int var6 = (var5 == avk.c ? bbi.b : bbi.c).a();
 			a(var1, var2, new ItemStack(Blocks.TALLGRASS, 2, var6));
 			return true;

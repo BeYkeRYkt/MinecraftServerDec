@@ -30,7 +30,7 @@ public class bjb {
 		return new bjb(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
 	}
 
-	public static bjb a(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, PaintingDirection var9) {
+	public static bjb a(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockFace var9) {
 		switch (bjc.a[var9.ordinal()]) {
 			case 1:
 				return new bjb(var0 + var3, var1 + var4, var2 - var8 + 1 + var5, var0 + var6 - 1 + var3, var1 + var7 - 1 + var4, var2 + var5);

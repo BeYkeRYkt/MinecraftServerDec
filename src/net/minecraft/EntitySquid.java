@@ -62,7 +62,7 @@ public class EntitySquid extends act {
 		int var3 = this.V.nextInt(3 + var2) + 1;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			this.a(new ItemStack(Items.aW, 1, akv.p.b()), 0.0F);
+			this.a(new ItemStack(Items.DYE, 1, akv.p.b()), 0.0F);
 		}
 
 	}

@@ -222,7 +222,7 @@ public class EntityZombie extends EntityMonster {
 	}
 
 	protected Item A() {
-		return Items.bt;
+		return Items.ROTTEN_FLESH;
 	}
 
 	public EnumMonsterType by() {
@@ -232,13 +232,13 @@ public class EntityZombie extends EntityMonster {
 	protected void bp() {
 		switch (this.V.nextInt(3)) {
 			case 0:
-				this.a(Items.j, 1);
+				this.a(Items.IRON_INGOT, 1);
 				break;
 			case 1:
-				this.a(Items.bR, 1);
+				this.a(Items.CARROT, 1);
 				break;
 			case 2:
-				this.a(Items.bS, 1);
+				this.a(Items.POTATO, 1);
 		}
 
 	}
@@ -248,9 +248,9 @@ public class EntityZombie extends EntityMonster {
 		if (this.V.nextFloat() < (this.o.getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
 			int var2 = this.V.nextInt(3);
 			if (var2 == 0) {
-				this.c(0, new ItemStack(Items.l));
+				this.c(0, new ItemStack(Items.IRON_SWORD));
 			} else {
-				this.c(0, new ItemStack(Items.IRON_PICKAXE));
+				this.c(0, new ItemStack(Items.IRON_SHOWEL));
 			}
 		}
 
@@ -319,7 +319,7 @@ public class EntityZombie extends EntityMonster {
 	}
 
 	protected boolean a(ItemStack var1) {
-		return var1.getItem() == Items.aP && this.i_() && this.av() ? false : super.a(var1);
+		return var1.getItem() == Items.EGG && this.i_() && this.av() ? false : super.a(var1);
 	}
 
 	public xq a(vu var1, xq var2) {
@@ -384,7 +384,7 @@ public class EntityZombie extends EntityMonster {
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.bY();
-		if (var2 != null && var2.getItem() == Items.ao && var2.i() == 0 && this.cm() && this.a(MobEffectList.t)) {
+		if (var2 != null && var2.getItem() == Items.GOLDEN_APPLE && var2.i() == 0 && this.cm() && this.a(MobEffectList.t)) {
 			if (!var1.by.instabuild) {
 				--var2.b;
 			}
@@ -484,7 +484,7 @@ public class EntityZombie extends EntityMonster {
 		super.a(var1);
 		if (var1.j() instanceof EntityCreeper && !(this instanceof EntityPigZombie) && ((EntityCreeper) var1.j()).n() && ((EntityCreeper) var1.j()).cn()) {
 			((EntityCreeper) var1.j()).co();
-			this.a(new ItemStack(Items.bX, 1, 2), 0.0F);
+			this.a(new ItemStack(Items.SKULL, 1, 2), 0.0F);
 		}
 
 	}

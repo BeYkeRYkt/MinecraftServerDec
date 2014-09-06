@@ -15,6 +15,6 @@ public class aiu extends ajk {
 	}
 
 	public static boolean c_(ItemStack var0) {
-		return var0 != null && var0.getItem() != null && var0.getItem() == Items.aw;
+		return var0 != null && var0.getItem() != null && var0.getItem() == Items.BUCKET;
 	}
 }

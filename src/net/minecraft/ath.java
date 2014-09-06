@@ -125,12 +125,12 @@ public abstract class ath extends Block {
 		var1.c(var2.b(), (Block) this);
 	}
 
-	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int a(ard var1, Position var2, bec var3, BlockFace var4) {
 		return this.e(var3);
 	}
 
-	public int b(ard var1, Position var2, bec var3, PaintingDirection var4) {
-		return var4 == PaintingDirection.b ? this.e(var3) : 0;
+	public int b(ard var1, Position var2, bec var3, BlockFace var4) {
+		return var4 == BlockFace.b ? this.e(var3) : 0;
 	}
 
 	public boolean g() {

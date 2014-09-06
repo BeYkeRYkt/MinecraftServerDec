@@ -31,7 +31,7 @@ public class BlockSponge extends Block {
 	protected void e(World var1, Position var2, bec var3) {
 		if (!((Boolean) var3.b(a)).booleanValue() && this.d(var1, var2)) {
 			var1.a(var2, var3.a(a, Boolean.valueOf(true)), 2);
-			var1.b(2001, var2, Block.a((Block) Blocks.WATER));
+			var1.b(2001, var2, Block.getBlockId((Block) Blocks.WATER));
 		}
 
 	}
@@ -47,11 +47,11 @@ public class BlockSponge extends Block {
 			vi var6 = (vi) var3.poll();
 			var7 = (Position) var6.a();
 			int var8 = ((Integer) var6.b()).intValue();
-			PaintingDirection[] var9 = PaintingDirection.values();
+			BlockFace[] var9 = BlockFace.values();
 			int var10 = var9.length;
 
 			for (int var11 = 0; var11 < var10; ++var11) {
-				PaintingDirection var12 = var9[var11];
+				BlockFace var12 = var9[var11];
 				Position var13 = var7.a(var12);
 				if (var1.p(var13).getBlock().r() == Material.WATER) {
 					var1.a(var13, Blocks.AIR.P(), 2);

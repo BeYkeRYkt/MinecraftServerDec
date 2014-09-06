@@ -13,7 +13,7 @@ public class bnb extends bnn {
 	public bnb() {
 	}
 
-	public bnb(bnk var1, int var2, Random var3, bjb var4, PaintingDirection var5) {
+	public bnb(bnk var1, int var2, Random var3, bjb var4, BlockFace var5) {
 		super(var1, var2);
 		this.m = var5;
 		this.l = var4;
@@ -50,7 +50,7 @@ public class bnb extends bnn {
 		}
 	}
 
-	public static bnb a(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
+	public static bnb a(bnk var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6, int var7) {
 		bjb var8 = bjb.a(var3, var4, var5, 0, 0, 0, 13, 4, 9, var6);
 		return a(var8) && bms.a(var1, var8) == null ? new bnb(var0, var7, var2, var8, var6) : null;
 	}

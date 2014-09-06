@@ -23,7 +23,7 @@ public class BlockPortal extends awt {
 			}
 
 			if (var5 > 0 && !var1.p(var6.a()).getBlock().t()) {
-				Entity var7 = anl.a(var1, 57, (double) var6.getX() + 0.5D, (double) var6.getY() + 1.1D, (double) var6.getZ() + 0.5D);
+				Entity var7 = ItemMonsterEgg.a(var1, 57, (double) var6.getX() + 0.5D, (double) var6.getY() + 1.1D, (double) var6.getZ() + 0.5D);
 				if (var7 != null) {
 					var7.aj = var7.ar();
 				}

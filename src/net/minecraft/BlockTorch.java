@@ -9,7 +9,7 @@ public class BlockTorch extends Block {
 
 	protected BlockTorch() {
 		super(Material.ORIENTABLE);
-		this.j(this.L.b().a(a, PaintingDirection.b));
+		this.j(this.L.b().a(a, BlockFace.b));
 		this.a(true);
 		this.a(CreativeModeTab.DECORATIONS);
 	}
@@ -38,37 +38,37 @@ public class BlockTorch extends Block {
 	public boolean c(World var1, Position var2) {
 		Iterator var3 = a.c().iterator();
 
-		PaintingDirection var4;
+		BlockFace var4;
 		do {
 			if (!var3.hasNext()) {
 				return false;
 			}
 
-			var4 = (PaintingDirection) var3.next();
+			var4 = (BlockFace) var3.next();
 		} while (!this.b(var1, var2, var4));
 
 		return true;
 	}
 
-	private boolean b(World var1, Position var2, PaintingDirection var3) {
+	private boolean b(World var1, Position var2, BlockFace var3) {
 		Position var4 = var2.a(var3.d());
 		boolean var5 = var3.k().c();
-		return var5 && var1.d(var4, true) || var3.equals(PaintingDirection.b) && this.d(var1, var4);
+		return var5 && var1.d(var4, true) || var3.equals(BlockFace.b) && this.d(var1, var4);
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		if (this.b(var1, var2, var3)) {
 			return this.P().a(a, var3);
 		} else {
 			Iterator var9 = en.a.iterator();
 
-			PaintingDirection var10;
+			BlockFace var10;
 			do {
 				if (!var9.hasNext()) {
 					return this.P();
 				}
 
-				var10 = (PaintingDirection) var9.next();
+				var10 = (BlockFace) var9.next();
 			} while (!var1.d(var2.a(var10.d()), true));
 
 			return this.P().a(a, var10);
@@ -87,9 +87,9 @@ public class BlockTorch extends Block {
 		if (!this.f(var1, var2, var3)) {
 			return true;
 		} else {
-			PaintingDirection var4 = (PaintingDirection) var3.b(a);
+			BlockFace var4 = (BlockFace) var3.b(a);
 			el var5 = var4.k();
-			PaintingDirection var6 = var4.d();
+			BlockFace var6 = var4.d();
 			boolean var7 = false;
 			if (var5.c() && !var1.d(var2.a(var6), true)) {
 				var7 = true;
@@ -108,7 +108,7 @@ public class BlockTorch extends Block {
 	}
 
 	protected boolean f(World var1, Position var2, bec var3) {
-		if (var3.getBlock() == this && this.b(var1, var2, (PaintingDirection) var3.b(a))) {
+		if (var3.getBlock() == this && this.b(var1, var2, (BlockFace) var3.b(a))) {
 			return true;
 		} else {
 			if (var1.p(var2).getBlock() == this) {
@@ -121,15 +121,15 @@ public class BlockTorch extends Block {
 	}
 
 	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
-		PaintingDirection var5 = (PaintingDirection) var1.p(var2).b(a);
+		BlockFace var5 = (BlockFace) var1.p(var2).b(a);
 		float var6 = 0.15F;
-		if (var5 == PaintingDirection.f) {
+		if (var5 == BlockFace.f) {
 			this.a(0.0F, 0.2F, 0.5F - var6, var6 * 2.0F, 0.8F, 0.5F + var6);
-		} else if (var5 == PaintingDirection.e) {
+		} else if (var5 == BlockFace.e) {
 			this.a(1.0F - var6 * 2.0F, 0.2F, 0.5F - var6, 1.0F, 0.8F, 0.5F + var6);
-		} else if (var5 == PaintingDirection.d) {
+		} else if (var5 == BlockFace.d) {
 			this.a(0.5F - var6, 0.2F, 0.0F, 0.5F + var6, 0.8F, var6 * 2.0F);
-		} else if (var5 == PaintingDirection.c) {
+		} else if (var5 == BlockFace.c) {
 			this.a(0.5F - var6, 0.2F, 1.0F - var6 * 2.0F, 0.5F + var6, 0.8F, 1.0F);
 		} else {
 			var6 = 0.1F;
@@ -143,20 +143,20 @@ public class BlockTorch extends Block {
 		bec var2 = this.P();
 		switch (var1) {
 			case 1:
-				var2 = var2.a(a, PaintingDirection.f);
+				var2 = var2.a(a, BlockFace.f);
 				break;
 			case 2:
-				var2 = var2.a(a, PaintingDirection.e);
+				var2 = var2.a(a, BlockFace.e);
 				break;
 			case 3:
-				var2 = var2.a(a, PaintingDirection.d);
+				var2 = var2.a(a, BlockFace.d);
 				break;
 			case 4:
-				var2 = var2.a(a, PaintingDirection.c);
+				var2 = var2.a(a, BlockFace.c);
 				break;
 			case 5:
 			default:
-				var2 = var2.a(a, PaintingDirection.b);
+				var2 = var2.a(a, BlockFace.b);
 		}
 
 		return var2;
@@ -165,7 +165,7 @@ public class BlockTorch extends Block {
 	public int c(bec var1) {
 		byte var2 = 0;
 		int var3;
-		switch (bbn.a[((PaintingDirection) var1.b(a)).ordinal()]) {
+		switch (bbn.a[((BlockFace) var1.b(a)).ordinal()]) {
 			case 1:
 				var3 = var2 | 1;
 				break;

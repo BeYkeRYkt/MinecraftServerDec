@@ -10,19 +10,19 @@ public class EntityMushroomCow extends EntityCow {
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		if (var2 != null && var2.getItem() == Items.z && this.l() >= 0) {
+		if (var2 != null && var2.getItem() == Items.BOWL && this.l() >= 0) {
 			if (var2.b == 1) {
-				var1.playerInventory.a(var1.playerInventory.c, new ItemStack(Items.A));
+				var1.playerInventory.a(var1.playerInventory.c, new ItemStack(Items.MUSHROOM_STEW));
 				return true;
 			}
 
-			if (var1.playerInventory.a(new ItemStack(Items.A)) && !var1.by.instabuild) {
+			if (var1.playerInventory.a(new ItemStack(Items.MUSHROOM_STEW)) && !var1.by.instabuild) {
 				var1.playerInventory.a(var1.playerInventory.c, 1);
 				return true;
 			}
 		}
 
-		if (var2 != null && var2.getItem() == Items.be && this.l() >= 0) {
+		if (var2 != null && var2.getItem() == Items.SHEARS && this.l() >= 0) {
 			this.J();
 			this.o.a(Particle.b, this.locationX, this.locationY + (double) (this.K / 2.0F), this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 			if (!this.o.D) {

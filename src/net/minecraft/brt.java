@@ -236,19 +236,19 @@ public class brt {
 		if (var9 == null) {
 			return null;
 		} else {
-			PaintingDirection var10 = null;
+			BlockFace var10 = null;
 			if (var9 == var3) {
-				var10 = PaintingDirection.e;
+				var10 = BlockFace.e;
 			} else if (var9 == var4) {
-				var10 = PaintingDirection.f;
+				var10 = BlockFace.f;
 			} else if (var9 == var5) {
-				var10 = PaintingDirection.a;
+				var10 = BlockFace.a;
 			} else if (var9 == var6) {
-				var10 = PaintingDirection.b;
+				var10 = BlockFace.b;
 			} else if (var9 == var7) {
-				var10 = PaintingDirection.c;
+				var10 = BlockFace.c;
 			} else {
-				var10 = PaintingDirection.d;
+				var10 = BlockFace.d;
 			}
 
 			return new bru(var9, var10);

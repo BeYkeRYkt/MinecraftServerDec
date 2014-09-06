@@ -112,13 +112,13 @@ public class EntityCreeper extends EntityMonster {
 	public void a(DamageSource var1) {
 		super.a(var1);
 		if (var1.j() instanceof EntitySkeleton) {
-			int var2 = Item.getId(Items.cq);
-			int var3 = Item.getId(Items.cB);
+			int var2 = Item.getId(Items.RECORD_13);
+			int var3 = Item.getId(Items.RECORD_WAIT);
 			int var4 = var2 + this.V.nextInt(var3 - var2 + 1);
 			this.a(Item.getById(var4), 1);
 		} else if (var1.j() instanceof EntityCreeper && var1.j() != this && ((EntityCreeper) var1.j()).n() && ((EntityCreeper) var1.j()).cn()) {
 			((EntityCreeper) var1.j()).co();
-			this.a(new ItemStack(Items.bX, 1, 4), 0.0F);
+			this.a(new ItemStack(Items.SKULL, 1, 4), 0.0F);
 		}
 
 	}
@@ -132,7 +132,7 @@ public class EntityCreeper extends EntityMonster {
 	}
 
 	protected Item A() {
-		return Items.H;
+		return Items.GUNPOWDER;
 	}
 
 	public int ck() {
@@ -150,7 +150,7 @@ public class EntityCreeper extends EntityMonster {
 
 	protected boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		if (var2 != null && var2.getItem() == Items.d) {
+		if (var2 != null && var2.getItem() == Items.FLINT_AND_STEEL) {
 			this.o.a(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.ignite", 1.0F, this.V.nextFloat() * 0.4F + 0.8F);
 			var1.bv();
 			if (!this.o.D) {

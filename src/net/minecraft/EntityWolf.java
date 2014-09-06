@@ -207,8 +207,8 @@ public class EntityWolf extends xx {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (this.cj()) {
 			if (var2 != null) {
-				if (var2.getItem() instanceof all) {
-					all var3 = (all) var2.getItem();
+				if (var2.getItem() instanceof ItemFood) {
+					ItemFood var3 = (ItemFood) var2.getItem();
 					if (var3.g() && this.dataWatcher.d(18) < 20.0F) {
 						if (!var1.by.instabuild) {
 							--var2.b;
@@ -221,7 +221,7 @@ public class EntityWolf extends xx {
 
 						return true;
 					}
-				} else if (var2.getItem() == Items.aW) {
+				} else if (var2.getItem() == Items.DYE) {
 					akv var4 = akv.a(var2.i());
 					if (var4 != this.cu()) {
 						this.a(var4);
@@ -240,7 +240,7 @@ public class EntityWolf extends xx {
 				this.h.n();
 				this.d((EntityLiving) null);
 			}
-		} else if (var2 != null && var2.getItem() == Items.aX && !this.ct()) {
+		} else if (var2 != null && var2.getItem() == Items.BONE && !this.ct()) {
 			if (!var1.by.instabuild) {
 				--var2.b;
 			}
@@ -272,7 +272,7 @@ public class EntityWolf extends xx {
 	}
 
 	public boolean d(ItemStack var1) {
-		return var1 == null ? false : (!(var1.getItem() instanceof all) ? false : ((all) var1.getItem()).g());
+		return var1 == null ? false : (!(var1.getItem() instanceof ItemFood) ? false : ((ItemFood) var1.getItem()).g());
 	}
 
 	public int bU() {
