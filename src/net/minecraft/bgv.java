@@ -360,11 +360,11 @@ public class bgv implements IChunkProvider {
 				Position var18 = this.m.q(var6.a(var14, 0, var15));
 				Position var19 = var18.b();
 				if (this.m.v(var19)) {
-					this.m.a(var19, Blocks.aI.P(), 2);
+					this.m.a(var19, Blocks.ICE.P(), 2);
 				}
 
 				if (this.m.f(var18, true)) {
-					this.m.a(var18, Blocks.aH.P(), 2);
+					this.m.a(var18, Blocks.SNOW_LAYER.P(), 2);
 				}
 			}
 		}

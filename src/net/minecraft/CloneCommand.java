@@ -97,7 +97,7 @@ public class CloneCommand extends AbstractCommand {
 							if (var9) {
 								Iterator var27;
 								Position var29;
-								for (var27 = var17.iterator(); var27.hasNext(); var12.a(var29, Blocks.cv.P(), 2)) {
+								for (var27 = var17.iterator(); var27.hasNext(); var12.a(var29, Blocks.BARRIER.P(), 2)) {
 									var29 = (Position) var27.next();
 									TileEntity var31 = var12.s(var29);
 									if (var31 instanceof IInventory) {
@@ -122,7 +122,7 @@ public class CloneCommand extends AbstractCommand {
 							Iterator var32;
 							bb var34;
 							TileEntity var36;
-							for (var32 = var30.iterator(); var32.hasNext(); var12.a(var34.a, Blocks.cv.P(), 2)) {
+							for (var32 = var30.iterator(); var32.hasNext(); var12.a(var34.a, Blocks.BARRIER.P(), 2)) {
 								var34 = (bb) var32.next();
 								var36 = var12.s(var34.a);
 								if (var36 instanceof IInventory) {

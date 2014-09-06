@@ -35,14 +35,14 @@ public class bmc extends bmk {
 			this.a(var1, var3, 4, 1, 3, 4, 3, 3, false, var2, blr.c());
 			this.a(var1, var3, 4, 1, 7, 4, 3, 7, false, var2, blr.c());
 			this.a(var1, var3, 4, 1, 9, 4, 3, 9, false, var2, blr.c());
-			this.a(var1, var3, 4, 1, 4, 4, 3, 6, Blocks.bi.P(), Blocks.bi.P(), false);
-			this.a(var1, var3, 5, 1, 5, 7, 3, 5, Blocks.bi.P(), Blocks.bi.P(), false);
-			this.a(var1, Blocks.bi.P(), 4, 3, 2, var3);
-			this.a(var1, Blocks.bi.P(), 4, 3, 8, var3);
-			this.a(var1, Blocks.aA.a(this.a(Blocks.aA, 3)), 4, 1, 2, var3);
-			this.a(var1, Blocks.aA.a(this.a(Blocks.aA, 3) + 8), 4, 2, 2, var3);
-			this.a(var1, Blocks.aA.a(this.a(Blocks.aA, 3)), 4, 1, 8, var3);
-			this.a(var1, Blocks.aA.a(this.a(Blocks.aA, 3) + 8), 4, 2, 8, var3);
+			this.a(var1, var3, 4, 1, 4, 4, 3, 6, Blocks.IRON_BARS.P(), Blocks.IRON_BARS.P(), false);
+			this.a(var1, var3, 5, 1, 5, 7, 3, 5, Blocks.IRON_BARS.P(), Blocks.IRON_BARS.P(), false);
+			this.a(var1, Blocks.IRON_BARS.P(), 4, 3, 2, var3);
+			this.a(var1, Blocks.IRON_BARS.P(), 4, 3, 8, var3);
+			this.a(var1, Blocks.IRON_DOOR.a(this.a(Blocks.IRON_DOOR, 3)), 4, 1, 2, var3);
+			this.a(var1, Blocks.IRON_DOOR.a(this.a(Blocks.IRON_DOOR, 3) + 8), 4, 2, 2, var3);
+			this.a(var1, Blocks.IRON_DOOR.a(this.a(Blocks.IRON_DOOR, 3)), 4, 1, 8, var3);
+			this.a(var1, Blocks.IRON_DOOR.a(this.a(Blocks.IRON_DOOR, 3) + 8), 4, 2, 8, var3);
 			return true;
 		}
 	}

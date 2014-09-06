@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class ajr extends ItemTool {
 
-	private static final Set c = Sets.newHashSet((Object[]) (new Block[] { Blocks.PLANKS, Blocks.BOOKSHELF, Blocks.LOG, Blocks.LOG2, Blocks.ae, Blocks.aU, Blocks.aZ, Blocks.bk, Blocks.au }));
+	private static final Set c = Sets.newHashSet((Object[]) (new Block[] { Blocks.PLANKS, Blocks.BOOKSHELF, Blocks.LOG, Blocks.LOG2, Blocks.CHEST, Blocks.PUMPKIN, Blocks.LIT_PUMPKIN, Blocks.MELON_BLOCK, Blocks.LADDER }));
 
 	protected ajr(ami var1) {
 		super(3.0F, var1, c);

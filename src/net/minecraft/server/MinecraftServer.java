@@ -525,7 +525,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public static void main(String[] var0) {
-		od.c();
+		Bootstrap.load();
 
 		try {
 			boolean var1 = true;

@@ -19,13 +19,13 @@ public class alo extends Item {
 			Block var10 = var9.getBlock();
 			if (var5 != PaintingDirection.a && var3.p(var4.a()).getBlock().r() == Material.AIR) {
 				if (var10 == Blocks.GRASS) {
-					return this.a(var1, var2, var3, var4, Blocks.ak.P());
+					return this.a(var1, var2, var3, var4, Blocks.FARMLAND.P());
 				}
 
 				if (var10 == Blocks.DIRT) {
 					switch (alp.a[((avd) var9.b(BlockDirt.a)).ordinal()]) {
 						case 1:
-							return this.a(var1, var2, var3, var4, Blocks.ak.P());
+							return this.a(var1, var2, var3, var4, Blocks.FARMLAND.P());
 						case 2:
 							return this.a(var1, var2, var3, var4, Blocks.DIRT.P().a(BlockDirt.a, avd.a));
 					}

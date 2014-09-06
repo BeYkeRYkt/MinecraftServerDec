@@ -131,7 +131,7 @@ public class bpy extends bpu {
 					Position var16 = new Position(var13, var14, var15);
 					Block var17 = var0.p(var16).getBlock();
 					if (var17.r() != Material.AIR) {
-						if (var17 != Blocks.bd && var17 != Blocks.cw) {
+						if (var17 != Blocks.TRAPDOOR && var17 != Blocks.IRON_TRAPDOOR) {
 							if (var17 != Blocks.FLOWING_WATER && var17 != Blocks.WATER) {
 								if (!var10 && var17 instanceof BlockDoor && var17.r() == Material.WOOD) {
 									return 0;
@@ -156,7 +156,7 @@ public class bpy extends bpu {
 								return -3;
 							}
 
-							if (var17 == Blocks.bd || var17 == Blocks.cw) {
+							if (var17 == Blocks.TRAPDOOR || var17 == Blocks.IRON_TRAPDOOR) {
 								return -4;
 							}
 

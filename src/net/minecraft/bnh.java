@@ -73,18 +73,18 @@ public class bnh extends bnn {
 		this.a(var1, var3, 3, 1, 1, 3, 3, 3, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
 		this.a(var1, var3, 1, 1, 0, 2, 3, 0, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
 		this.a(var1, var3, 1, 1, 4, 2, 3, 4, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
-		this.a(var1, Blocks.bj.P(), 0, 2, 2, var3);
-		this.a(var1, Blocks.bj.P(), 3, 2, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 0, 2, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 3, 2, 2, var3);
 		if (this.b > 0) {
-			this.a(var1, Blocks.aO.P(), this.b, 1, 3, var3);
-			this.a(var1, Blocks.aB.P(), this.b, 2, 3, var3);
+			this.a(var1, Blocks.FENCE.P(), this.b, 1, 3, var3);
+			this.a(var1, Blocks.WOODEN_PRESSURE_PLATE.P(), this.b, 2, 3, var3);
 		}
 
 		this.a(var1, Blocks.AIR.P(), 1, 1, 0, var3);
 		this.a(var1, Blocks.AIR.P(), 1, 2, 0, var3);
-		this.a(var1, var3, var2, 1, 1, 0, PaintingDirection.fromByte(this.a(Blocks.ao, 1)));
+		this.a(var1, var3, var2, 1, 1, 0, PaintingDirection.fromByte(this.a(Blocks.WOODEN_DOOR, 1)));
 		if (this.a(var1, 1, 0, -1, var3).getBlock().r() == Material.AIR && this.a(var1, 1, -1, -1, var3).getBlock().r() != Material.AIR) {
-			this.a(var1, Blocks.aw.a(this.a(Blocks.aw, 3)), 1, 0, -1, var3);
+			this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 1, 0, -1, var3);
 		}
 
 		for (int var4 = 0; var4 < 5; ++var4) {

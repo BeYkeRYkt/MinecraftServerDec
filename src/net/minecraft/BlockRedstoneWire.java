@@ -56,7 +56,7 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return World.a((ard) var1, var2.b()) || var1.p(var2.b()).getBlock() == Blocks.aX;
+		return World.a((ard) var1, var2.b()) || var1.p(var2.b()).getBlock() == Blocks.GLOWSTONE;
 	}
 
 	private bec e(World var1, Position var2, bec var3) {
@@ -284,7 +284,7 @@ public class BlockRedstoneWire extends Block {
 		Block var6 = var5.getBlock();
 		boolean var7 = var6.t();
 		boolean var8 = var1.p(var2.a()).getBlock().t();
-		return !var8 && var7 && e(var1, var4.a()) ? true : (a(var5, var3) ? true : (var6 == Blocks.bc && var5.b(ava.N) == var3 ? true : !var7 && e(var1, var4.b())));
+		return !var8 && var7 && e(var1, var4.a()) ? true : (a(var5, var3) ? true : (var6 == Blocks.POWERED_REPEATER && var5.b(ava.N) == var3 ? true : !var7 && e(var1, var4.b())));
 	}
 
 	protected static boolean e(ard var0, Position var1) {
@@ -297,9 +297,9 @@ public class BlockRedstoneWire extends Block {
 
 	protected static boolean a(bec var0, PaintingDirection var1) {
 		Block var2 = var0.getBlock();
-		if (var2 == Blocks.af) {
+		if (var2 == Blocks.REDSTONE_WIRE) {
 			return true;
-		} else if (Blocks.bb.e(var2)) {
+		} else if (Blocks.UNPOWERED_REPEATER.e(var2)) {
 			PaintingDirection var3 = (PaintingDirection) var0.b(BlockRepeater.N);
 			return var3 == var1 || var3.d() == var1;
 		} else {

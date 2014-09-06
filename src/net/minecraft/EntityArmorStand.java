@@ -250,7 +250,7 @@ public class EntityArmorStand extends EntityLiving {
 				}
 			}
 
-			if (var5 && (var4.getItem() == Items.bX || var4.getItem() == Item.getItemOf(Blocks.aU))) {
+			if (var5 && (var4.getItem() == Items.bX || var4.getItem() == Item.getItemOf(Blocks.PUMPKIN))) {
 				var3 = 4;
 			}
 

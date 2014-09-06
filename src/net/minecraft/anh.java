@@ -30,11 +30,11 @@ public class anh extends Item {
 
 			if (!var2.a(var4, var5, var1)) {
 				return false;
-			} else if (!Blocks.ce.c(var3, var4)) {
+			} else if (!Blocks.SKULL.c(var3, var4)) {
 				return false;
 			} else {
 				if (!var3.D) {
-					var3.a(var4, Blocks.ce.P().a(BlockSkull.a, var5), 3);
+					var3.a(var4, Blocks.SKULL.P().a(BlockSkull.a, var5), 3);
 					int var12 = 0;
 					if (var5 == PaintingDirection.b) {
 						var12 = DataTypesConverter.toFixedPointInt((double) (var2.yaw * 16.0F / 360.0F) + 0.5D) & 15;
@@ -60,7 +60,7 @@ public class anh extends Item {
 						}
 
 						var14.b(var12);
-						Blocks.ce.a(var3, var4, var14);
+						Blocks.SKULL.a(var3, var4, var14);
 					}
 
 					--var1.b;

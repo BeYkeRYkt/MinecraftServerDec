@@ -28,14 +28,14 @@ public class BlockRedstoneComparator extends ava implements avs {
 		Boolean var2 = (Boolean) var1.b(a);
 		aur var3 = (aur) var1.b(b);
 		PaintingDirection var4 = (PaintingDirection) var1.b(N);
-		return Blocks.ck.P().a(N, var4).a(a, var2).a(b, var3);
+		return Blocks.POWERED_COMPARATOR.P().a(N, var4).a(a, var2).a(b, var3);
 	}
 
 	protected bec k(bec var1) {
 		Boolean var2 = (Boolean) var1.b(a);
 		aur var3 = (aur) var1.b(b);
 		PaintingDirection var4 = (PaintingDirection) var1.b(N);
-		return Blocks.cj.P().a(N, var4).a(a, var2).a(b, var3);
+		return Blocks.UNPOWERED_COMPARATOR.P().a(N, var4).a(a, var2).a(b, var3);
 	}
 
 	protected boolean l(bec var1) {

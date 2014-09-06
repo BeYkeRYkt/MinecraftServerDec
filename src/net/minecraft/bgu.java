@@ -124,7 +124,7 @@ public class bgu extends bgt {
 									double var49 = ((double) (var48 - 1) + 0.5D - var8) / var31;
 									if (var49 > -0.7D && var57 * var57 + var49 * var49 + var46 * var46 < 1.0D) {
 										bec var51 = var5.a(var42, var48, var58);
-										if (var51.getBlock() == Blocks.aV || var51.getBlock() == Blocks.DIRT || var51.getBlock() == Blocks.GRASS) {
+										if (var51.getBlock() == Blocks.NETHERRACK || var51.getBlock() == Blocks.DIRT || var51.getBlock() == Blocks.GRASS) {
 											var5.a(var42, var48, var58, Blocks.AIR.P());
 										}
 									}

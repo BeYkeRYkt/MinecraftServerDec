@@ -127,7 +127,7 @@ public class bgs extends bgt {
 										if (var50 > -0.7D && var59 * var59 + var50 * var50 + var46 * var46 < 1.0D) {
 											bec var52 = var5.a(var42, var49, var60);
 											bec var53 = (bec) Objects.firstNonNull(var5.a(var42, var49 + 1, var60), Blocks.AIR.P());
-											if (var52.getBlock() == Blocks.GRASS || var52.getBlock() == Blocks.bw) {
+											if (var52.getBlock() == Blocks.GRASS || var52.getBlock() == Blocks.MYCELIUM) {
 												var48 = true;
 											}
 
@@ -137,7 +137,7 @@ public class bgs extends bgt {
 												} else {
 													var5.a(var42, var49, var60, Blocks.AIR.P());
 													if (var53.getBlock() == Blocks.SAND) {
-														var5.a(var42, var49 + 1, var60, var53.b(BlockSand.a) == bac.b ? Blocks.cM.P() : Blocks.SANDSTONE.P());
+														var5.a(var42, var49 + 1, var60, var53.b(BlockSand.a) == bac.b ? Blocks.RED_SANDSTONE.P() : Blocks.SANDSTONE.P());
 													}
 
 													if (var48 && var5.a(var42, var49 - 1, var60).getBlock() == Blocks.DIRT) {
@@ -162,7 +162,7 @@ public class bgs extends bgt {
 	}
 
 	protected boolean a(bec var1, bec var2) {
-		return var1.getBlock() == Blocks.STONE ? true : (var1.getBlock() == Blocks.DIRT ? true : (var1.getBlock() == Blocks.GRASS ? true : (var1.getBlock() == Blocks.cz ? true : (var1.getBlock() == Blocks.cu ? true : (var1.getBlock() == Blocks.SANDSTONE ? true : (var1.getBlock() == Blocks.cM ? true : (var1.getBlock() == Blocks.bw ? true : (var1.getBlock() == Blocks.aH ? true : (var1.getBlock() == Blocks.SAND || var1.getBlock() == Blocks.GRAVEL) && var2.getBlock().r() != Material.WATER))))))));
+		return var1.getBlock() == Blocks.STONE ? true : (var1.getBlock() == Blocks.DIRT ? true : (var1.getBlock() == Blocks.GRASS ? true : (var1.getBlock() == Blocks.HARDENED_CLAY ? true : (var1.getBlock() == Blocks.STAINDED_HARDENED_CLAY ? true : (var1.getBlock() == Blocks.SANDSTONE ? true : (var1.getBlock() == Blocks.RED_SANDSTONE ? true : (var1.getBlock() == Blocks.MYCELIUM ? true : (var1.getBlock() == Blocks.SNOW_LAYER ? true : (var1.getBlock() == Blocks.SAND || var1.getBlock() == Blocks.GRAVEL) && var2.getBlock().r() != Material.WATER))))))));
 	}
 
 	protected void a(World var1, int var2, int var3, int var4, int var5, bgk var6) {

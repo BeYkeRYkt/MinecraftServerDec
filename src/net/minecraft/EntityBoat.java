@@ -220,10 +220,10 @@ public class EntityBoat extends Entity {
 					int var12 = DataTypesConverter.toFixedPointInt(this.locationY) + var25;
 					Position var27 = new Position(var23, var12, var10);
 					Block var14 = this.o.p(var27).getBlock();
-					if (var14 == Blocks.aH) {
+					if (var14 == Blocks.SNOW_LAYER) {
 						this.o.g(var27);
 						this.D = false;
-					} else if (var14 == Blocks.bx) {
+					} else if (var14 == Blocks.WATERLILY) {
 						this.o.b(var27, true);
 						this.D = false;
 					}

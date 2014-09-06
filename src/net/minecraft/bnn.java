@@ -130,12 +130,12 @@ abstract class bnn extends bms {
 				return Blocks.SANDSTONE.a(bae.c.a());
 			}
 
-			if (var1.getBlock() == Blocks.ad) {
-				return Blocks.bO.P().a(BlockStairs.a, var1.b(BlockStairs.a));
+			if (var1.getBlock() == Blocks.OAK_STAIRS) {
+				return Blocks.SANDSTONE_STAIRS.P().a(BlockStairs.a, var1.b(BlockStairs.a));
 			}
 
-			if (var1.getBlock() == Blocks.aw) {
-				return Blocks.bO.P().a(BlockStairs.a, var1.b(BlockStairs.a));
+			if (var1.getBlock() == Blocks.STONE_STAIRS) {
+				return Blocks.SANDSTONE_STAIRS.P().a(BlockStairs.a, var1.b(BlockStairs.a));
 			}
 
 			if (var1.getBlock() == Blocks.GRAVEL) {

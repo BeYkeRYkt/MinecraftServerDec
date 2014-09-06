@@ -69,8 +69,8 @@ public class arh {
 				for (int var14 = -128; var14 <= 128; ++var14) {
 					for (Position var15 = var34.a(var13, this.a.V() - 1 - var34.getY(), var14); var15.getY() >= 0; var15 = var16) {
 						var16 = var15.b();
-						if (this.a.p(var15).getBlock() == Blocks.aY) {
-							while (this.a.p(var16 = var15.b()).getBlock() == Blocks.aY) {
+						if (this.a.p(var15).getBlock() == Blocks.PORTAL) {
+							while (this.a.p(var16 = var15.b()).getBlock() == Blocks.PORTAL) {
 								var15 = var16;
 							}
 
@@ -95,19 +95,19 @@ public class arh {
 			double var36 = (double) ((Position) var9).getY() + 0.5D;
 			double var37 = (double) ((Position) var9).getZ() + 0.5D;
 			PaintingDirection var18 = null;
-			if (this.a.p(((Position) var9).e()).getBlock() == Blocks.aY) {
+			if (this.a.p(((Position) var9).e()).getBlock() == Blocks.PORTAL) {
 				var18 = PaintingDirection.c;
 			}
 
-			if (this.a.p(((Position) var9).f()).getBlock() == Blocks.aY) {
+			if (this.a.p(((Position) var9).f()).getBlock() == Blocks.PORTAL) {
 				var18 = PaintingDirection.d;
 			}
 
-			if (this.a.p(((Position) var9).c()).getBlock() == Blocks.aY) {
+			if (this.a.p(((Position) var9).c()).getBlock() == Blocks.PORTAL) {
 				var18 = PaintingDirection.f;
 			}
 
-			if (this.a.p(((Position) var9).d()).getBlock() == Blocks.aY) {
+			if (this.a.p(((Position) var9).d()).getBlock() == Blocks.PORTAL) {
 				var18 = PaintingDirection.e;
 			}
 
@@ -325,7 +325,7 @@ public class arh {
 			}
 		}
 
-		bec var31 = Blocks.aY.P().a(BlockPortal.a, var30 != 0 ? el.a : el.c);
+		bec var31 = Blocks.PORTAL.P().a(BlockPortal.a, var30 != 0 ? el.a : el.c);
 
 		for (var20 = 0; var20 < 4; ++var20) {
 			for (var21 = 0; var21 < 4; ++var21) {

@@ -78,10 +78,10 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 			Position var8 = new Position(var2, var7, var4);
 			bec var9 = this.world.p(var8);
 			float[] var10;
-			if (var9.getBlock() == Blocks.cG) {
+			if (var9.getBlock() == Blocks.STAINED_GLASS) {
 				var10 = EntitySheep.a((akv) var9.b(BlockStainedGlass.a));
 			} else {
-				if (var9.getBlock() != Blocks.cH) {
+				if (var9.getBlock() != Blocks.STAINED_GLASS_PANE) {
 					if (var9.getBlock().n() >= 15) {
 						this.i = false;
 						this.f.clear();
@@ -121,7 +121,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 				for (int var17 = var2 - var7; var17 <= var2 + var7 && var16; ++var17) {
 					for (int var11 = var4 - var7; var11 <= var4 + var7; ++var11) {
 						Block var12 = this.world.p(new Position(var17, var14, var11)).getBlock();
-						if (var12 != Blocks.bT && var12 != Blocks.GOLD_BLOCK && var12 != Blocks.ah && var12 != Blocks.IRON_BLOCK) {
+						if (var12 != Blocks.EMERALD_BLOCK && var12 != Blocks.GOLD_BLOCK && var12 != Blocks.DIAMOND_BLOCK && var12 != Blocks.IRON_BLOCK) {
 							var16 = false;
 							break;
 						}

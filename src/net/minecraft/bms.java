@@ -164,7 +164,7 @@ public abstract class bms {
 	}
 
 	protected int a(Block var1, int var2) {
-		if (var1 == Blocks.av) {
+		if (var1 == Blocks.RAIL) {
 			if (this.m == PaintingDirection.e || this.m == PaintingDirection.f) {
 				if (var2 == 1) {
 					return 0;
@@ -190,8 +190,8 @@ public abstract class bms {
 					return var2 + 3 & 3;
 				}
 			}
-		} else if (var1 != Blocks.aw && var1 != Blocks.ad && var1 != Blocks.bA && var1 != Blocks.bv && var1 != Blocks.bO) {
-			if (var1 == Blocks.au) {
+		} else if (var1 != Blocks.STONE_STAIRS && var1 != Blocks.OAK_STAIRS && var1 != Blocks.NETHER_BRICK_STAIRS && var1 != Blocks.STONE_BROCK_STAIRS && var1 != Blocks.SANDSTONE_STAIRS) {
+			if (var1 == Blocks.LADDER) {
 				if (this.m == PaintingDirection.d) {
 					if (var2 == PaintingDirection.c.a()) {
 						return PaintingDirection.d.a();
@@ -233,7 +233,7 @@ public abstract class bms {
 						return PaintingDirection.d.a();
 					}
 				}
-			} else if (var1 == Blocks.aG) {
+			} else if (var1 == Blocks.STONE_BUTTON) {
 				if (this.m == PaintingDirection.d) {
 					if (var2 == 3) {
 						return 4;
@@ -275,8 +275,8 @@ public abstract class bms {
 						return 4;
 					}
 				}
-			} else if (var1 != Blocks.bR && !(var1 instanceof avb)) {
-				if (var1 == Blocks.PISTON || var1 == Blocks.STICKY_PISTON || var1 == Blocks.ay || var1 == Blocks.DISPENSER) {
+			} else if (var1 != Blocks.TRIPWIRE_HOOK && !(var1 instanceof avb)) {
+				if (var1 == Blocks.PISTON || var1 == Blocks.STICKY_PISTON || var1 == Blocks.LEVER || var1 == Blocks.DISPENSER) {
 					if (this.m == PaintingDirection.d) {
 						if (var2 == PaintingDirection.c.a() || var2 == PaintingDirection.d.a()) {
 							return PaintingDirection.a(var2).d().a();
@@ -533,9 +533,9 @@ public abstract class bms {
 
 	protected boolean a(World var1, bjb var2, Random var3, int var4, int var5, int var6, List var7, int var8) {
 		Position var9 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
-		if (var2.b((fd) var9) && var1.p(var9).getBlock() != Blocks.ae) {
-			bec var10 = Blocks.ae.P();
-			var1.a(var9, Blocks.ae.f(var1, var9, var10), 2);
+		if (var2.b((fd) var9) && var1.p(var9).getBlock() != Blocks.CHEST) {
+			bec var10 = Blocks.CHEST.P();
+			var1.a(var9, Blocks.CHEST.f(var1, var9, var10), 2);
 			TileEntity var11 = var1.s(var9);
 			if (var11 instanceof TileEntityChest) {
 				vl.a(var3, var7, (IInventory) ((TileEntityChest) var11), var8);
@@ -565,7 +565,7 @@ public abstract class bms {
 	protected void a(World var1, bjb var2, Random var3, int var4, int var5, int var6, PaintingDirection var7) {
 		Position var8 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
 		if (var2.b((fd) var8)) {
-			akt.a(var1, var8, var7.f(), Blocks.ao);
+			akt.a(var1, var8, var7.f(), Blocks.WOODEN_DOOR);
 		}
 
 	}

@@ -211,7 +211,7 @@ public abstract class adx extends Entity implements vz {
 			bec var5 = this.o.p(var4);
 			if (ati.d(var5)) {
 				this.a(var4, var5);
-				if (var5.getBlock() == Blocks.cs) {
+				if (var5.getBlock() == Blocks.ACTIVATOR_RAIL) {
 					this.a(var14, var2, var16, ((Boolean) var5.b(BlockPoweredRail.M)).booleanValue());
 				}
 			} else {

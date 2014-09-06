@@ -18,7 +18,7 @@ public abstract class bcf extends BlockStepAbstract {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Item.getItemOf((Block) Blocks.bM);
+		return Item.getItemOf((Block) Blocks.WOODEN_SLAB);
 	}
 
 	public String b(int var1) {

@@ -35,7 +35,7 @@ public class ajj extends ajk {
 		}
 
 		this.c = 0;
-		if (var1.getItem() == Item.getItemOf(Blocks.ai)) {
+		if (var1.getItem() == Item.getItemOf(Blocks.CRAFTING_TABLE)) {
 			this.b.b((Statistic) tl.h);
 		}
 
@@ -43,7 +43,7 @@ public class ajj extends ajk {
 			this.b.b((Statistic) tl.i);
 		}
 
-		if (var1.getItem() == Item.getItemOf(Blocks.al)) {
+		if (var1.getItem() == Item.getItemOf(Blocks.FURNACE)) {
 			this.b.b((Statistic) tl.j);
 		}
 
@@ -67,7 +67,7 @@ public class ajj extends ajk {
 			this.b.b((Statistic) tl.r);
 		}
 
-		if (var1.getItem() == Item.getItemOf(Blocks.bC)) {
+		if (var1.getItem() == Item.getItemOf(Blocks.ENCHANTING_TABLE)) {
 			this.b.b((Statistic) tl.E);
 		}
 

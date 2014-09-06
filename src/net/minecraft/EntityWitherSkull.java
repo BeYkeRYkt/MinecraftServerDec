@@ -22,7 +22,7 @@ public class EntityWitherSkull extends ahl {
 
 	public float a(aqo var1, World var2, Position var3, bec var4) {
 		float var5 = super.a(var1, var2, var3, var4);
-		if (this.l() && var4.getBlock() != Blocks.BEDROCK && var4.getBlock() != Blocks.bF && var4.getBlock() != Blocks.bG && var4.getBlock() != Blocks.bX) {
+		if (this.l() && var4.getBlock() != Blocks.BEDROCK && var4.getBlock() != Blocks.END_PORTAL && var4.getBlock() != Blocks.END_PORTAL_FRAME && var4.getBlock() != Blocks.COMMAND_BLOCK) {
 			var5 = Math.min(0.8F, var5);
 		}
 

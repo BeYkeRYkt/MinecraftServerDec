@@ -155,7 +155,7 @@ public class BlockTrapdoor extends Block {
 	}
 
 	private static boolean c(Block var0) {
-		return var0.material.k() && var0.d() || var0 == Blocks.aX || var0 instanceof BlockStepAbstract || var0 instanceof BlockStairs;
+		return var0.material.k() && var0.d() || var0 == Blocks.GLOWSTONE || var0 instanceof BlockStepAbstract || var0 instanceof BlockStairs;
 	}
 
 	public bec a(int var1) {

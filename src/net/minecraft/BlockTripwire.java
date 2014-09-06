@@ -98,11 +98,11 @@ public class BlockTripwire extends Block {
 				if (var8 < 42) {
 					Position var9 = var2.a(var7, var8);
 					bec var10 = var1.p(var9);
-					if (var10.getBlock() == Blocks.bR) {
+					if (var10.getBlock() == Blocks.TRIPWIRE_HOOK) {
 						if (var10.b(BlockTripwireHook.a) == var7.d()) {
-							Blocks.bR.a(var1, var9, var10, false, true, var8, var3);
+							Blocks.TRIPWIRE_HOOK.a(var1, var9, var10, false, true, var8, var3);
 						}
-					} else if (var10.getBlock() == Blocks.bS) {
+					} else if (var10.getBlock() == Blocks.TRIPWIRE) {
 						++var8;
 						continue;
 					}
@@ -167,10 +167,10 @@ public class BlockTripwire extends Block {
 		Position var4 = var1.a(var3);
 		bec var5 = var0.p(var4);
 		Block var6 = var5.getBlock();
-		if (var6 == Blocks.bR) {
+		if (var6 == Blocks.TRIPWIRE_HOOK) {
 			PaintingDirection var9 = var3.d();
 			return var5.b(BlockTripwireHook.a) == var9;
-		} else if (var6 == Blocks.bS) {
+		} else if (var6 == Blocks.TRIPWIRE) {
 			boolean var7 = ((Boolean) var2.b(b)).booleanValue();
 			boolean var8 = ((Boolean) var5.b(b)).booleanValue();
 			return var7 == var8;

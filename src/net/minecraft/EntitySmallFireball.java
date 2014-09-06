@@ -37,7 +37,7 @@ public class EntitySmallFireball extends ahl {
 				if (var2) {
 					Position var3 = var1.a().a(var1.b);
 					if (this.o.d(var3)) {
-						this.o.a(var3, Blocks.ab.P());
+						this.o.a(var3, Blocks.FIRE.P());
 					}
 				}
 			}

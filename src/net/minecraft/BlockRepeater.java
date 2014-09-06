@@ -33,14 +33,14 @@ public class BlockRepeater extends ava {
 		Integer var2 = (Integer) var1.b(b);
 		Boolean var3 = (Boolean) var1.b(a);
 		PaintingDirection var4 = (PaintingDirection) var1.b(N);
-		return Blocks.bc.P().a(N, var4).a(b, var2).a(a, var3);
+		return Blocks.POWERED_REPEATER.P().a(N, var4).a(b, var2).a(a, var3);
 	}
 
 	protected bec k(bec var1) {
 		Integer var2 = (Integer) var1.b(b);
 		Boolean var3 = (Boolean) var1.b(a);
 		PaintingDirection var4 = (PaintingDirection) var1.b(N);
-		return Blocks.bb.P().a(N, var4).a(b, var2).a(a, var3);
+		return Blocks.UNPOWERED_REPEATER.P().a(N, var4).a(b, var2).a(a, var3);
 	}
 
 	public Item a(bec var1, Random var2, int var3) {

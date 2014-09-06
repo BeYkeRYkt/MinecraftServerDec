@@ -33,28 +33,28 @@ public class bka extends bkb {
 
 	public boolean a(World var1, Random var2, bjb var3) {
 		this.a(var1, var3, 0, 2, 0, 6, 7, 7, Blocks.AIR.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, 1, 0, 0, 5, 1, 7, Blocks.by.P(), Blocks.by.P(), false);
-		this.a(var1, var3, 1, 2, 1, 5, 2, 7, Blocks.by.P(), Blocks.by.P(), false);
-		this.a(var1, var3, 1, 3, 2, 5, 3, 7, Blocks.by.P(), Blocks.by.P(), false);
-		this.a(var1, var3, 1, 4, 3, 5, 4, 7, Blocks.by.P(), Blocks.by.P(), false);
-		this.a(var1, var3, 1, 2, 0, 1, 4, 2, Blocks.by.P(), Blocks.by.P(), false);
-		this.a(var1, var3, 5, 2, 0, 5, 4, 2, Blocks.by.P(), Blocks.by.P(), false);
-		this.a(var1, var3, 1, 5, 2, 1, 5, 3, Blocks.by.P(), Blocks.by.P(), false);
-		this.a(var1, var3, 5, 5, 2, 5, 5, 3, Blocks.by.P(), Blocks.by.P(), false);
-		this.a(var1, var3, 0, 5, 3, 0, 5, 8, Blocks.by.P(), Blocks.by.P(), false);
-		this.a(var1, var3, 6, 5, 3, 6, 5, 8, Blocks.by.P(), Blocks.by.P(), false);
-		this.a(var1, var3, 1, 5, 8, 5, 5, 8, Blocks.by.P(), Blocks.by.P(), false);
-		this.a(var1, Blocks.bz.P(), 1, 6, 3, var3);
-		this.a(var1, Blocks.bz.P(), 5, 6, 3, var3);
-		this.a(var1, var3, 0, 6, 3, 0, 6, 8, Blocks.bz.P(), Blocks.bz.P(), false);
-		this.a(var1, var3, 6, 6, 3, 6, 6, 8, Blocks.bz.P(), Blocks.bz.P(), false);
-		this.a(var1, var3, 1, 6, 8, 5, 7, 8, Blocks.bz.P(), Blocks.bz.P(), false);
-		this.a(var1, var3, 2, 8, 8, 4, 8, 8, Blocks.bz.P(), Blocks.bz.P(), false);
+		this.a(var1, var3, 1, 0, 0, 5, 1, 7, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
+		this.a(var1, var3, 1, 2, 1, 5, 2, 7, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
+		this.a(var1, var3, 1, 3, 2, 5, 3, 7, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
+		this.a(var1, var3, 1, 4, 3, 5, 4, 7, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
+		this.a(var1, var3, 1, 2, 0, 1, 4, 2, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
+		this.a(var1, var3, 5, 2, 0, 5, 4, 2, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
+		this.a(var1, var3, 1, 5, 2, 1, 5, 3, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
+		this.a(var1, var3, 5, 5, 2, 5, 5, 3, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
+		this.a(var1, var3, 0, 5, 3, 0, 5, 8, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
+		this.a(var1, var3, 6, 5, 3, 6, 5, 8, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
+		this.a(var1, var3, 1, 5, 8, 5, 5, 8, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
+		this.a(var1, Blocks.NETHER_BRICK_FENCE.P(), 1, 6, 3, var3);
+		this.a(var1, Blocks.NETHER_BRICK_FENCE.P(), 5, 6, 3, var3);
+		this.a(var1, var3, 0, 6, 3, 0, 6, 8, Blocks.NETHER_BRICK_FENCE.P(), Blocks.NETHER_BRICK_FENCE.P(), false);
+		this.a(var1, var3, 6, 6, 3, 6, 6, 8, Blocks.NETHER_BRICK_FENCE.P(), Blocks.NETHER_BRICK_FENCE.P(), false);
+		this.a(var1, var3, 1, 6, 8, 5, 7, 8, Blocks.NETHER_BRICK_FENCE.P(), Blocks.NETHER_BRICK_FENCE.P(), false);
+		this.a(var1, var3, 2, 8, 8, 4, 8, 8, Blocks.NETHER_BRICK_FENCE.P(), Blocks.NETHER_BRICK_FENCE.P(), false);
 		if (!this.b) {
 			Position var4 = new Position(this.a(3, 5), this.d(5), this.b(3, 5));
 			if (var3.b((fd) var4)) {
 				this.b = true;
-				var1.a(var4, Blocks.ac.P(), 2);
+				var1.a(var4, Blocks.MOB_SPAWNER.P(), 2);
 				TileEntity var5 = var1.s(var4);
 				if (var5 instanceof TileEntityMobSpawner) {
 					((TileEntityMobSpawner) var5).b().a("Blaze");
@@ -64,7 +64,7 @@ public class bka extends bkb {
 
 		for (int var6 = 0; var6 <= 6; ++var6) {
 			for (int var7 = 0; var7 <= 6; ++var7) {
-				this.b(var1, Blocks.by.P(), var6, -1, var7, var3);
+				this.b(var1, Blocks.NETHER_BRICK.P(), var6, -1, var7, var3);
 			}
 		}
 

@@ -503,7 +503,7 @@ public abstract class Entity implements CommandSenderInterface {
 				double var61 = this.locationX - var7;
 				double var64 = this.locationY - var9;
 				double var66 = this.locationZ - var11;
-				if (var60 != Blocks.au) {
+				if (var60 != Blocks.LADDER) {
 					var64 = 0.0D;
 				}
 
@@ -596,8 +596,8 @@ public abstract class Entity implements CommandSenderInterface {
 
 	protected void a(Position var1, Block var2) {
 		BlockSound var3 = var2.H;
-		if (this.o.p(var1.a()).getBlock() == Blocks.aH) {
-			var3 = Blocks.aH.H;
+		if (this.o.p(var1.a()).getBlock() == Blocks.SNOW_LAYER) {
+			var3 = Blocks.SNOW_LAYER.H;
 			this.a(var3.c(), var3.d() * 0.15F, var3.e());
 		} else if (!var2.r().isLiquid()) {
 			this.a(var3.c(), var3.d() * 0.15F, var3.e());

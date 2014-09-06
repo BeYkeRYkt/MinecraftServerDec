@@ -21,7 +21,7 @@ public class asj extends arm {
 		this.a(2.0F, 0.0F);
 		this.au.clear();
 		this.ak = Blocks.SAND.P().a(BlockSand.a, bac.b);
-		this.al = Blocks.cu.P();
+		this.al = Blocks.STAINDED_HARDENED_CLAY.P();
 		this.as.A = -999;
 		this.as.D = 20;
 		this.as.F = 3;
@@ -77,7 +77,7 @@ public class asj extends arm {
 		var10 = var4 & 15;
 		var11 = var5 & 15;
 		boolean var23 = true;
-		bec var13 = Blocks.cu.P();
+		bec var13 = Blocks.STAINDED_HARDENED_CLAY.P();
 		bec var24 = this.al;
 		int var15 = (int) (var6 / 3.0D + 3.0D + var2.nextDouble() * 0.25D);
 		boolean var25 = Math.cos(var6 / 3.0D * 3.141592653589793D) > 0.0D;
@@ -103,7 +103,7 @@ public class asj extends arm {
 							var13 = null;
 							var24 = Blocks.STONE.P();
 						} else if (var19 >= 59 && var19 <= 64) {
-							var13 = Blocks.cu.P();
+							var13 = Blocks.STAINDED_HARDENED_CLAY.P();
 							var24 = this.al;
 						}
 
@@ -122,12 +122,12 @@ public class asj extends arm {
 							} else if (var19 > 66 + var15) {
 								if (var19 >= 64 && var19 <= 127) {
 									if (var25) {
-										var21 = Blocks.cz.P();
+										var21 = Blocks.HARDENED_CLAY.P();
 									} else {
 										var21 = this.a(var4, var19, var5);
 									}
 								} else {
-									var21 = Blocks.cu.P().a(BlockCloth.a, akv.b);
+									var21 = Blocks.STAINDED_HARDENED_CLAY.P().a(BlockCloth.a, akv.b);
 								}
 
 								var3.a(var11, var19, var10, var21);
@@ -137,14 +137,14 @@ public class asj extends arm {
 							}
 						} else {
 							var3.a(var11, var19, var10, var24);
-							if (var24.getBlock() == Blocks.cu) {
+							if (var24.getBlock() == Blocks.STAINDED_HARDENED_CLAY) {
 								var3.a(var11, var19, var10, var24.getBlock().P().a(BlockCloth.a, akv.b));
 							}
 						}
 					} else if (var17 > 0) {
 						--var17;
 						if (var26) {
-							var3.a(var11, var19, var10, Blocks.cu.P().a(BlockCloth.a, akv.b));
+							var3.a(var11, var19, var10, Blocks.STAINDED_HARDENED_CLAY.P().a(BlockCloth.a, akv.b));
 						} else {
 							var21 = this.a(var4, var19, var5);
 							var3.a(var11, var19, var10, var21);
@@ -158,7 +158,7 @@ public class asj extends arm {
 
 	private void a(long var1) {
 		this.aD = new bec[64];
-		Arrays.fill(this.aD, Blocks.cz.P());
+		Arrays.fill(this.aD, Blocks.HARDENED_CLAY.P());
 		Random var3 = new Random(var1);
 		this.aH = new bnw(var3, 1);
 
@@ -166,7 +166,7 @@ public class asj extends arm {
 		for (var4 = 0; var4 < 64; ++var4) {
 			var4 += var3.nextInt(5) + 1;
 			if (var4 < 64) {
-				this.aD[var4] = Blocks.cu.P().a(BlockCloth.a, akv.b);
+				this.aD[var4] = Blocks.STAINDED_HARDENED_CLAY.P().a(BlockCloth.a, akv.b);
 			}
 		}
 
@@ -181,7 +181,7 @@ public class asj extends arm {
 			var7 = var3.nextInt(64);
 
 			for (var8 = 0; var7 + var8 < 64 && var8 < var6; ++var8) {
-				this.aD[var7 + var8] = Blocks.cu.P().a(BlockCloth.a, akv.e);
+				this.aD[var7 + var8] = Blocks.STAINDED_HARDENED_CLAY.P().a(BlockCloth.a, akv.e);
 			}
 		}
 
@@ -193,7 +193,7 @@ public class asj extends arm {
 			var8 = var3.nextInt(64);
 
 			for (var9 = 0; var8 + var9 < 64 && var9 < var7; ++var9) {
-				this.aD[var8 + var9] = Blocks.cu.P().a(BlockCloth.a, akv.m);
+				this.aD[var8 + var9] = Blocks.STAINDED_HARDENED_CLAY.P().a(BlockCloth.a, akv.m);
 			}
 		}
 
@@ -204,7 +204,7 @@ public class asj extends arm {
 			var9 = var3.nextInt(64);
 
 			for (int var10 = 0; var9 + var10 < 64 && var10 < var8; ++var10) {
-				this.aD[var9 + var10] = Blocks.cu.P().a(BlockCloth.a, akv.o);
+				this.aD[var9 + var10] = Blocks.STAINDED_HARDENED_CLAY.P().a(BlockCloth.a, akv.o);
 			}
 		}
 
@@ -216,13 +216,13 @@ public class asj extends arm {
 			var8 += var3.nextInt(16) + 4;
 
 			for (int var11 = 0; var8 + var11 < 64 && var11 < var12; ++var11) {
-				this.aD[var8 + var11] = Blocks.cu.P().a(BlockCloth.a, akv.a);
+				this.aD[var8 + var11] = Blocks.STAINDED_HARDENED_CLAY.P().a(BlockCloth.a, akv.a);
 				if (var8 + var11 > 1 && var3.nextBoolean()) {
-					this.aD[var8 + var11 - 1] = Blocks.cu.P().a(BlockCloth.a, akv.i);
+					this.aD[var8 + var11 - 1] = Blocks.STAINDED_HARDENED_CLAY.P().a(BlockCloth.a, akv.i);
 				}
 
 				if (var8 + var11 < 63 && var3.nextBoolean()) {
-					this.aD[var8 + var11 + 1] = Blocks.cu.P().a(BlockCloth.a, akv.i);
+					this.aD[var8 + var11 + 1] = Blocks.STAINDED_HARDENED_CLAY.P().a(BlockCloth.a, akv.i);
 				}
 			}
 		}

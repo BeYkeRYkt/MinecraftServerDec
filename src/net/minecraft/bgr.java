@@ -36,7 +36,7 @@ public class bgr implements IChunkProvider {
 	double[] g;
 
 	public bgr(World var1, boolean var2, long var3) {
-		this.w = new bif(Blocks.co.P(), 14, bep.a(Blocks.aV));
+		this.w = new bif(Blocks.QUARTZ_ORE.P(), 14, bep.a(Blocks.NETHERRACK));
 		this.x = new bhu(Blocks.FLOWING_LAVA, true);
 		this.y = new bhu(Blocks.FLOWING_LAVA, false);
 		this.z = new bhi(Blocks.BRWON_MUSHROOM);
@@ -95,7 +95,7 @@ public class bgr implements IChunkProvider {
 								}
 
 								if (var44 > 0.0D) {
-									var49 = Blocks.aV.P();
+									var49 = Blocks.NETHERRACK.P();
 								}
 
 								int var50 = var41 + var9 * 4;
@@ -133,29 +133,29 @@ public class bgr implements IChunkProvider {
 				boolean var10 = this.l[var7 + var8 * 16] + this.j.nextDouble() * 0.2D > 0.0D;
 				int var11 = (int) (this.m[var7 + var8 * 16] / 3.0D + 3.0D + this.j.nextDouble() * 0.25D);
 				int var12 = -1;
-				bec var13 = Blocks.aV.P();
-				bec var14 = Blocks.aV.P();
+				bec var13 = Blocks.NETHERRACK.P();
+				bec var14 = Blocks.NETHERRACK.P();
 
 				for (int var15 = 127; var15 >= 0; --var15) {
 					if (var15 < 127 - this.j.nextInt(5) && var15 > this.j.nextInt(5)) {
 						bec var16 = var3.a(var8, var15, var7);
 						if (var16.getBlock() != null && var16.getBlock().r() != Material.AIR) {
-							if (var16.getBlock() == Blocks.aV) {
+							if (var16.getBlock() == Blocks.NETHERRACK) {
 								if (var12 == -1) {
 									if (var11 <= 0) {
 										var13 = null;
-										var14 = Blocks.aV.P();
+										var14 = Blocks.NETHERRACK.P();
 									} else if (var15 >= var4 - 4 && var15 <= var4 + 1) {
-										var13 = Blocks.aV.P();
-										var14 = Blocks.aV.P();
+										var13 = Blocks.NETHERRACK.P();
+										var14 = Blocks.NETHERRACK.P();
 										if (var10) {
 											var13 = Blocks.GRAVEL.P();
-											var14 = Blocks.aV.P();
+											var14 = Blocks.NETHERRACK.P();
 										}
 
 										if (var9) {
-											var13 = Blocks.aW.P();
-											var14 = Blocks.aW.P();
+											var13 = Blocks.SOUL_SAND.P();
+											var14 = Blocks.SOUL_SAND.P();
 										}
 									}
 
@@ -352,7 +352,7 @@ public class bgr implements IChunkProvider {
 				return this.B.b();
 			}
 
-			if (this.B.a(this.h, var2) && this.h.p(var2.b()).getBlock() == Blocks.by) {
+			if (this.B.a(this.h, var2) && this.h.p(var2.b()).getBlock() == Blocks.NETHER_BRICK) {
 				return this.B.b();
 			}
 		}

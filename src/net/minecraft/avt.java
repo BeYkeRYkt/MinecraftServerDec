@@ -65,7 +65,7 @@ public class avt extends Block {
 	public static boolean d(World var0, Position var1) {
 		Block var2 = var0.p(var1).getBlock();
 		Material var3 = var2.material;
-		return var2 == Blocks.ab || var3 == Material.AIR || var3 == Material.WATER || var3 == Material.LAVA;
+		return var2 == Blocks.FIRE || var3 == Material.AIR || var3 == Material.WATER || var3 == Material.LAVA;
 	}
 
 	public void a_(World var1, Position var2) {

@@ -42,11 +42,11 @@ public class bnb extends bnn {
 	private Block a(Random var1) {
 		switch (var1.nextInt(5)) {
 			case 0:
-				return Blocks.cb;
+				return Blocks.CARROTS;
 			case 1:
-				return Blocks.cc;
+				return Blocks.POTATOES;
 			default:
-				return Blocks.aj;
+				return Blocks.WHEAT;
 		}
 	}
 
@@ -66,10 +66,10 @@ public class bnb extends bnn {
 		}
 
 		this.a(var1, var3, 0, 1, 0, 12, 4, 8, Blocks.AIR.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, 1, 0, 1, 2, 0, 7, Blocks.ak.P(), Blocks.ak.P(), false);
-		this.a(var1, var3, 4, 0, 1, 5, 0, 7, Blocks.ak.P(), Blocks.ak.P(), false);
-		this.a(var1, var3, 7, 0, 1, 8, 0, 7, Blocks.ak.P(), Blocks.ak.P(), false);
-		this.a(var1, var3, 10, 0, 1, 11, 0, 7, Blocks.ak.P(), Blocks.ak.P(), false);
+		this.a(var1, var3, 1, 0, 1, 2, 0, 7, Blocks.FARMLAND.P(), Blocks.FARMLAND.P(), false);
+		this.a(var1, var3, 4, 0, 1, 5, 0, 7, Blocks.FARMLAND.P(), Blocks.FARMLAND.P(), false);
+		this.a(var1, var3, 7, 0, 1, 8, 0, 7, Blocks.FARMLAND.P(), Blocks.FARMLAND.P(), false);
+		this.a(var1, var3, 10, 0, 1, 11, 0, 7, Blocks.FARMLAND.P(), Blocks.FARMLAND.P(), false);
 		this.a(var1, var3, 0, 0, 0, 0, 0, 8, Blocks.LOG.P(), Blocks.LOG.P(), false);
 		this.a(var1, var3, 6, 0, 0, 6, 0, 8, Blocks.LOG.P(), Blocks.LOG.P(), false);
 		this.a(var1, var3, 12, 0, 0, 12, 0, 8, Blocks.LOG.P(), Blocks.LOG.P(), false);

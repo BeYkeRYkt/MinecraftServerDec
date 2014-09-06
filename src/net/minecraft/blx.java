@@ -108,7 +108,7 @@ public class blx extends bmk {
 			this.a(var1, var3, 4, 5, 7, 4, 5, 9, Blocks.STONE_SLAB.P(), Blocks.STONE_SLAB.P(), false);
 			this.a(var1, var3, 8, 5, 7, 8, 5, 9, Blocks.STONE_SLAB.P(), Blocks.STONE_SLAB.P(), false);
 			this.a(var1, var3, 5, 5, 7, 7, 5, 9, Blocks.DOUBLE_STONE_SLAB.P(), Blocks.DOUBLE_STONE_SLAB.P(), false);
-			this.a(var1, Blocks.aa.P(), 6, 5, 6, var3);
+			this.a(var1, Blocks.TORCH.P(), 6, 5, 6, var3);
 			return true;
 		}
 	}

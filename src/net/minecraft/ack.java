@@ -58,7 +58,7 @@ class ack extends zn {
 
 	protected boolean a(World var1, Position var2) {
 		Block var3 = var1.p(var2).getBlock();
-		if (var3 == Blocks.ak) {
+		if (var3 == Blocks.FARMLAND) {
 			var2 = var2.a();
 			bec var4 = var1.p(var2);
 			var3 = var4.getBlock();

@@ -188,7 +188,7 @@ public class BlockFlowing extends axl {
 
 	private boolean g(World var1, Position var2, bec var3) {
 		Block var4 = var1.p(var2).getBlock();
-		return !(var4 instanceof BlockDoor) && var4 != Blocks.an && var4 != Blocks.au && var4 != Blocks.aM ? (var4.material == Material.PORTAL ? true : var4.material.isSolid()) : true;
+		return !(var4 instanceof BlockDoor) && var4 != Blocks.STANDING_SIGN && var4 != Blocks.LADDER && var4 != Blocks.REEDS ? (var4.material == Material.PORTAL ? true : var4.material.isSolid()) : true;
 	}
 
 	protected int a(World var1, Position var2, int var3) {

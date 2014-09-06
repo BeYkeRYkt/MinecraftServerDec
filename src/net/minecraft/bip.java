@@ -126,11 +126,11 @@ public class bip extends bhc {
 	}
 
 	private void a(World var1, Position var2, int var3) {
-		this.a(var1, var2, Blocks.bn, var3);
+		this.a(var1, var2, Blocks.VINE, var3);
 		int var4 = 4;
 
 		for (var2 = var2.b(); var1.p(var2).getBlock().r() == Material.AIR && var4 > 0; --var4) {
-			this.a(var1, var2, Blocks.bn, var3);
+			this.a(var1, var2, Blocks.VINE, var3);
 			var2 = var2.b();
 		}
 

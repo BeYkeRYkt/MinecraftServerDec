@@ -84,8 +84,8 @@ public class bhy extends bhp {
 							Position var33 = var3.a(var6, var8 - 1, var30);
 							if (var1.p(var33).getBlock() == Blocks.DIRT && var1.b(arf.a, var3.a(var6, var8, var30)) > 0) {
 								arm var34 = var1.b(var33);
-								if (var34.ak.getBlock() == Blocks.bw) {
-									var1.a(var33, Blocks.bw.P(), 2);
+								if (var34.ak.getBlock() == Blocks.MYCELIUM) {
+									var1.a(var33, Blocks.MYCELIUM.P(), 2);
 								} else {
 									var1.a(var33, Blocks.GRASS.P(), 2);
 								}
@@ -113,7 +113,7 @@ public class bhy extends bhp {
 					for (var30 = 0; var30 < 16; ++var30) {
 						byte var31 = 4;
 						if (var1.v(var3.a(var6, var31, var30))) {
-							var1.a(var3.a(var6, var31, var30), Blocks.aI.P(), 2);
+							var1.a(var3.a(var6, var31, var30), Blocks.ICE.P(), 2);
 						}
 					}
 				}

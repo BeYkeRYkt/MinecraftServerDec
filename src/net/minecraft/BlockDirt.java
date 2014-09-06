@@ -14,7 +14,7 @@ public class BlockDirt extends Block {
 	public bec a(bec var1, ard var2, Position var3) {
 		if (var1.b(a) == avd.c) {
 			Block var4 = var2.p(var3.a()).getBlock();
-			var1 = var1.a(b, Boolean.valueOf(var4 == Blocks.aJ || var4 == Blocks.aH));
+			var1 = var1.a(b, Boolean.valueOf(var4 == Blocks.SNOW || var4 == Blocks.SNOW_LAYER));
 		}
 
 		return var1;

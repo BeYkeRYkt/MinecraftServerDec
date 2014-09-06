@@ -13,7 +13,7 @@ public class asb extends arm {
 
 	protected asb(int var1, boolean var2) {
 		super(var1);
-		this.aD = new bif(Blocks.be.P().a(BlockMonsterEggs.a, axu.a), 9);
+		this.aD = new bif(Blocks.MONSTER_EGG.P().a(BlockMonsterEggs.a, axu.a), 9);
 		this.aE = new bio(false);
 		this.aF = 0;
 		this.aG = 1;
@@ -43,7 +43,7 @@ public class asb extends arm {
 			int var8 = var2.nextInt(16);
 			Position var9 = var3.a(var6, var7, var8);
 			if (var1.p(var9).getBlock() == Blocks.STONE) {
-				var1.a(var9, Blocks.bP.P(), 2);
+				var1.a(var9, Blocks.EMERALD_ORE.P(), 2);
 			}
 		}
 

@@ -6,9 +6,9 @@ public class aoh {
 		int var2;
 		for (var2 = 0; var2 < 16; ++var2) {
 			var1.b(new ItemStack(Blocks.WOOL, 1, var2), new Object[] { new ItemStack(Items.aW, 1, 15 - var2), new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 0) });
-			var1.a(new ItemStack(Blocks.cu, 8, 15 - var2), new Object[] { "###", "#X#", "###", Character.valueOf('#'), new ItemStack(Blocks.cz), Character.valueOf('X'), new ItemStack(Items.aW, 1, var2) });
-			var1.a(new ItemStack(Blocks.cG, 8, 15 - var2), new Object[] { "###", "#X#", "###", Character.valueOf('#'), new ItemStack(Blocks.GLASS), Character.valueOf('X'), new ItemStack(Items.aW, 1, var2) });
-			var1.a(new ItemStack(Blocks.cH, 16, var2), new Object[] { "###", "###", Character.valueOf('#'), new ItemStack(Blocks.cG, 1, var2) });
+			var1.a(new ItemStack(Blocks.STAINDED_HARDENED_CLAY, 8, 15 - var2), new Object[] { "###", "#X#", "###", Character.valueOf('#'), new ItemStack(Blocks.HARDENED_CLAY), Character.valueOf('X'), new ItemStack(Items.aW, 1, var2) });
+			var1.a(new ItemStack(Blocks.STAINED_GLASS, 8, 15 - var2), new Object[] { "###", "#X#", "###", Character.valueOf('#'), new ItemStack(Blocks.GLASS), Character.valueOf('X'), new ItemStack(Items.aW, 1, var2) });
+			var1.a(new ItemStack(Blocks.STAINED_GLASS_PANE, 16, var2), new Object[] { "###", "###", Character.valueOf('#'), new ItemStack(Blocks.STAINED_GLASS, 1, var2) });
 		}
 
 		var1.b(new ItemStack(Items.aW, 1, akv.e.b()), new Object[] { new ItemStack(Blocks.YELLOW_FLOWER, 1, awa.a.b()) });
@@ -34,13 +34,13 @@ public class aoh {
 		var1.b(new ItemStack(Items.aW, 1, akv.i.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, awa.h.b()) });
 		var1.b(new ItemStack(Items.aW, 1, akv.g.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, awa.i.b()) });
 		var1.b(new ItemStack(Items.aW, 1, akv.i.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, awa.j.b()) });
-		var1.b(new ItemStack(Items.aW, 2, akv.e.b()), new Object[] { new ItemStack(Blocks.cF, 1, avk.a.a()) });
-		var1.b(new ItemStack(Items.aW, 2, akv.c.b()), new Object[] { new ItemStack(Blocks.cF, 1, avk.b.a()) });
-		var1.b(new ItemStack(Items.aW, 2, akv.o.b()), new Object[] { new ItemStack(Blocks.cF, 1, avk.e.a()) });
-		var1.b(new ItemStack(Items.aW, 2, akv.g.b()), new Object[] { new ItemStack(Blocks.cF, 1, avk.f.a()) });
+		var1.b(new ItemStack(Items.aW, 2, akv.e.b()), new Object[] { new ItemStack(Blocks.DOUBLE_PLANT, 1, avk.a.a()) });
+		var1.b(new ItemStack(Items.aW, 2, akv.c.b()), new Object[] { new ItemStack(Blocks.DOUBLE_PLANT, 1, avk.b.a()) });
+		var1.b(new ItemStack(Items.aW, 2, akv.o.b()), new Object[] { new ItemStack(Blocks.DOUBLE_PLANT, 1, avk.e.a()) });
+		var1.b(new ItemStack(Items.aW, 2, akv.g.b()), new Object[] { new ItemStack(Blocks.DOUBLE_PLANT, 1, avk.f.a()) });
 
 		for (var2 = 0; var2 < 16; ++var2) {
-			var1.a(new ItemStack(Blocks.cy, 3, var2), new Object[] { "##", Character.valueOf('#'), new ItemStack(Blocks.WOOL, 1, var2) });
+			var1.a(new ItemStack(Blocks.CARPET, 3, var2), new Object[] { "##", Character.valueOf('#'), new ItemStack(Blocks.WOOL, 1, var2) });
 		}
 
 	}

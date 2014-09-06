@@ -44,13 +44,13 @@ public class zr extends zn {
 		} else {
 			bec var3 = var1.p(var2);
 			Block var4 = var3.getBlock();
-			if (var4 == Blocks.ae) {
+			if (var4 == Blocks.CHEST) {
 				TileEntity var5 = var1.s(var2);
 				if (var5 instanceof TileEntityChest && ((TileEntityChest) var5).l < 1) {
 					return true;
 				}
 			} else {
-				if (var4 == Blocks.am) {
+				if (var4 == Blocks.LIT_FURNACE) {
 					return true;
 				}
 

@@ -247,7 +247,7 @@ public class aid extends Container {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.i.p(this.j).getBlock() != Blocks.cf ? false : var1.e((double) this.j.getX() + 0.5D, (double) this.j.getY() + 0.5D, (double) this.j.getZ() + 0.5D) <= 64.0D;
+		return this.i.p(this.j).getBlock() != Blocks.ANVIL ? false : var1.e((double) this.j.getX() + 0.5D, (double) this.j.getY() + 0.5D, (double) this.j.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {

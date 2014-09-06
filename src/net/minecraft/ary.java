@@ -83,8 +83,8 @@ public class ary {
 			this.m = new bif(Blocks.COAL_ORE.P(), this.d.ac);
 			this.n = new bif(Blocks.IRON_ORE.P(), this.d.ag);
 			this.o = new bif(Blocks.GOLD_ORE.P(), this.d.ak);
-			this.p = new bif(Blocks.aC.P(), this.d.ao);
-			this.q = new bif(Blocks.ag.P(), this.d.as);
+			this.p = new bif(Blocks.REDSTONE_ORE.P(), this.d.ao);
+			this.q = new bif(Blocks.DIAMOND_ORE.P(), this.d.as);
 			this.r = new bif(Blocks.LAPIS_ORE.P(), this.d.aw);
 			this.a(var3);
 			this.a = null;

@@ -60,9 +60,9 @@ public class bng extends bnn {
 		this.a(var1, var3, 0, 1, 1, 0, 3, 3, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
 		this.a(var1, var3, 4, 1, 1, 4, 3, 3, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
 		this.a(var1, var3, 1, 1, 4, 3, 3, 4, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
-		this.a(var1, Blocks.bj.P(), 0, 2, 2, var3);
-		this.a(var1, Blocks.bj.P(), 2, 2, 4, var3);
-		this.a(var1, Blocks.bj.P(), 4, 2, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 0, 2, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 2, 2, 4, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 4, 2, 2, var3);
 		this.a(var1, Blocks.PLANKS.P(), 1, 1, 0, var3);
 		this.a(var1, Blocks.PLANKS.P(), 1, 2, 0, var3);
 		this.a(var1, Blocks.PLANKS.P(), 1, 3, 0, var3);
@@ -71,39 +71,39 @@ public class bng extends bnn {
 		this.a(var1, Blocks.PLANKS.P(), 3, 2, 0, var3);
 		this.a(var1, Blocks.PLANKS.P(), 3, 1, 0, var3);
 		if (this.a(var1, 2, 0, -1, var3).getBlock().r() == Material.AIR && this.a(var1, 2, -1, -1, var3).getBlock().r() != Material.AIR) {
-			this.a(var1, Blocks.aw.a(this.a(Blocks.aw, 3)), 2, 0, -1, var3);
+			this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 2, 0, -1, var3);
 		}
 
 		this.a(var1, var3, 1, 1, 1, 3, 3, 3, Blocks.AIR.P(), Blocks.AIR.P(), false);
 		if (this.a) {
-			this.a(var1, Blocks.aO.P(), 0, 5, 0, var3);
-			this.a(var1, Blocks.aO.P(), 1, 5, 0, var3);
-			this.a(var1, Blocks.aO.P(), 2, 5, 0, var3);
-			this.a(var1, Blocks.aO.P(), 3, 5, 0, var3);
-			this.a(var1, Blocks.aO.P(), 4, 5, 0, var3);
-			this.a(var1, Blocks.aO.P(), 0, 5, 4, var3);
-			this.a(var1, Blocks.aO.P(), 1, 5, 4, var3);
-			this.a(var1, Blocks.aO.P(), 2, 5, 4, var3);
-			this.a(var1, Blocks.aO.P(), 3, 5, 4, var3);
-			this.a(var1, Blocks.aO.P(), 4, 5, 4, var3);
-			this.a(var1, Blocks.aO.P(), 4, 5, 1, var3);
-			this.a(var1, Blocks.aO.P(), 4, 5, 2, var3);
-			this.a(var1, Blocks.aO.P(), 4, 5, 3, var3);
-			this.a(var1, Blocks.aO.P(), 0, 5, 1, var3);
-			this.a(var1, Blocks.aO.P(), 0, 5, 2, var3);
-			this.a(var1, Blocks.aO.P(), 0, 5, 3, var3);
+			this.a(var1, Blocks.FENCE.P(), 0, 5, 0, var3);
+			this.a(var1, Blocks.FENCE.P(), 1, 5, 0, var3);
+			this.a(var1, Blocks.FENCE.P(), 2, 5, 0, var3);
+			this.a(var1, Blocks.FENCE.P(), 3, 5, 0, var3);
+			this.a(var1, Blocks.FENCE.P(), 4, 5, 0, var3);
+			this.a(var1, Blocks.FENCE.P(), 0, 5, 4, var3);
+			this.a(var1, Blocks.FENCE.P(), 1, 5, 4, var3);
+			this.a(var1, Blocks.FENCE.P(), 2, 5, 4, var3);
+			this.a(var1, Blocks.FENCE.P(), 3, 5, 4, var3);
+			this.a(var1, Blocks.FENCE.P(), 4, 5, 4, var3);
+			this.a(var1, Blocks.FENCE.P(), 4, 5, 1, var3);
+			this.a(var1, Blocks.FENCE.P(), 4, 5, 2, var3);
+			this.a(var1, Blocks.FENCE.P(), 4, 5, 3, var3);
+			this.a(var1, Blocks.FENCE.P(), 0, 5, 1, var3);
+			this.a(var1, Blocks.FENCE.P(), 0, 5, 2, var3);
+			this.a(var1, Blocks.FENCE.P(), 0, 5, 3, var3);
 		}
 
 		int var4;
 		if (this.a) {
-			var4 = this.a(Blocks.au, 3);
-			this.a(var1, Blocks.au.a(var4), 3, 1, 3, var3);
-			this.a(var1, Blocks.au.a(var4), 3, 2, 3, var3);
-			this.a(var1, Blocks.au.a(var4), 3, 3, 3, var3);
-			this.a(var1, Blocks.au.a(var4), 3, 4, 3, var3);
+			var4 = this.a(Blocks.LADDER, 3);
+			this.a(var1, Blocks.LADDER.a(var4), 3, 1, 3, var3);
+			this.a(var1, Blocks.LADDER.a(var4), 3, 2, 3, var3);
+			this.a(var1, Blocks.LADDER.a(var4), 3, 3, 3, var3);
+			this.a(var1, Blocks.LADDER.a(var4), 3, 4, 3, var3);
 		}
 
-		this.a(var1, Blocks.aa.P().a(BlockTorch.a, this.m), 2, 3, 1, var3);
+		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m), 2, 3, 1, var3);
 
 		for (var4 = 0; var4 < 5; ++var4) {
 			for (int var5 = 0; var5 < 5; ++var5) {

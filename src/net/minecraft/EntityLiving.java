@@ -735,7 +735,7 @@ public abstract class EntityLiving extends Entity {
 		int var2 = DataTypesConverter.toFixedPointInt(this.aQ().b);
 		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
 		Block var4 = this.o.p(new Position(var1, var2, var3)).getBlock();
-		return (var4 == Blocks.au || var4 == Blocks.bn) && (!(this instanceof EntityHuman) || !((EntityHuman) this).v());
+		return (var4 == Blocks.LADDER || var4 == Blocks.VINE) && (!(this instanceof EntityHuman) || !((EntityHuman) this).v());
 	}
 
 	public boolean ai() {

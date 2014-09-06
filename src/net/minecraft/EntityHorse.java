@@ -263,7 +263,7 @@ public class EntityHorse extends abq implements vr {
 
 	public void cC() {
 		if (!this.o.D && this.cu()) {
-			this.a(Item.getItemOf((Block) Blocks.ae), 1);
+			this.a(Item.getItemOf((Block) Blocks.CHEST), 1);
 			this.o(false);
 		}
 	}
@@ -422,8 +422,8 @@ public class EntityHorse extends abq implements vr {
 
 	protected void a(Position var1, Block var2) {
 		BlockSound var3 = var2.H;
-		if (this.o.p(var1.a()).getBlock() == Blocks.aH) {
-			var3 = Blocks.aH.H;
+		if (this.o.p(var1.a()).getBlock() == Blocks.SNOW_LAYER) {
+			var3 = Blocks.SNOW_LAYER.H;
 		}
 
 		if (!var2.r().isLiquid()) {
@@ -529,7 +529,7 @@ public class EntityHorse extends abq implements vr {
 						var7 = 1.0F;
 						var5 = 30;
 						var6 = 3;
-					} else if (Block.a(var2.getItem()) == Blocks.cx) {
+					} else if (Block.a(var2.getItem()) == Blocks.HAY_BLOCK) {
 						var7 = 20.0F;
 						var5 = 180;
 					} else if (var2.getItem() == Items.e) {
@@ -583,7 +583,7 @@ public class EntityHorse extends abq implements vr {
 					return true;
 				}
 
-				if (!var3 && this.cN() && !this.cu() && var2.getItem() == Item.getItemOf((Block) Blocks.ae)) {
+				if (!var3 && this.cN() && !this.cu() && var2.getItem() == Item.getItemOf((Block) Blocks.CHEST)) {
 					this.o(true);
 					this.a("mob.chickenplop", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
 					var3 = true;
@@ -1174,7 +1174,7 @@ public class EntityHorse extends abq implements vr {
 				return true;
 			}
 
-			if (var2 != null && var2.getItem() == Item.getItemOf((Block) Blocks.ae) && !this.cu()) {
+			if (var2 != null && var2.getItem() == Item.getItemOf((Block) Blocks.CHEST) && !this.cu()) {
 				this.o(true);
 				this.cY();
 				return true;

@@ -42,7 +42,7 @@ public class akw extends Item {
 
 					var4 = var4.a(var5);
 					if (var3.d(var4)) {
-						bec var12 = Blocks.bN.a(var3, var4, var5, var6, var7, var8, 0, var2);
+						bec var12 = Blocks.COCOA.a(var3, var4, var5, var6, var7, var8, 0, var2);
 						var3.a(var4, var12, 2);
 						if (!var2.by.instabuild) {
 							--var1.b;

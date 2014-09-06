@@ -3,7 +3,7 @@ package net.minecraft;
 public class ajs extends aju {
 
 	public ajs() {
-		super(Blocks.cK);
+		super(Blocks.STANDING_BANNER);
 		this.maxStackSize = 16;
 		this.setCreativeModeTab(CreativeModeTab.DECORATIONS);
 		this.a(true);
@@ -19,16 +19,16 @@ public class ajs extends aju {
 			var4 = var4.a(var5);
 			if (!var2.a(var4, var5, var1)) {
 				return false;
-			} else if (!Blocks.cK.c(var3, var4)) {
+			} else if (!Blocks.STANDING_BANNER.c(var3, var4)) {
 				return false;
 			} else if (var3.D) {
 				return true;
 			} else {
 				if (var5 == PaintingDirection.b) {
 					int var9 = DataTypesConverter.toFixedPointInt((double) ((var2.yaw + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
-					var3.a(var4, Blocks.cK.P().a(BlockStandingSign.a, Integer.valueOf(var9)), 3);
+					var3.a(var4, Blocks.STANDING_BANNER.P().a(BlockStandingSign.a, Integer.valueOf(var9)), 3);
 				} else {
-					var3.a(var4, Blocks.cL.P().a(BlockWallSign.a, var5), 3);
+					var3.a(var4, Blocks.WALL_BANNER.P().a(BlockWallSign.a, var5), 3);
 				}
 
 				--var1.b;

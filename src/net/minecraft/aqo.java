@@ -171,7 +171,7 @@ public class aqo {
 			while (var2.hasNext()) {
 				var3 = (Position) var2.next();
 				if (this.d.p(var3).getBlock().r() == Material.AIR && this.d.p(var3.b()).getBlock().m() && this.c.nextInt(3) == 0) {
-					this.d.a(var3, Blocks.ab.P());
+					this.d.a(var3, Blocks.FIRE.P());
 				}
 			}
 		}

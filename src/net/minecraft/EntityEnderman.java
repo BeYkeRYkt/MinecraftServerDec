@@ -63,7 +63,7 @@ public class EntityEnderman extends EntityMonster {
 
 	private boolean c(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.armor[3];
-		if (var2 != null && var2.getItem() == Item.getItemOf(Blocks.aU)) {
+		if (var2 != null && var2.getItem() == Item.getItemOf(Blocks.PUMPKIN)) {
 			return false;
 		} else {
 			Vec3D var3 = var1.d(1.0F).a();
@@ -296,10 +296,10 @@ public class EntityEnderman extends EntityMonster {
 		bk.add(Blocks.BRWON_MUSHROOM);
 		bk.add(Blocks.RED_MUSHROOM);
 		bk.add(Blocks.TNT);
-		bk.add(Blocks.aK);
-		bk.add(Blocks.aL);
-		bk.add(Blocks.aU);
-		bk.add(Blocks.bk);
-		bk.add(Blocks.bw);
+		bk.add(Blocks.CACTUS);
+		bk.add(Blocks.CLAY);
+		bk.add(Blocks.PUMPKIN);
+		bk.add(Blocks.MELON_BLOCK);
+		bk.add(Blocks.MYCELIUM);
 	}
 }

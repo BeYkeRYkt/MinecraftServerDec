@@ -52,25 +52,25 @@ public class blw extends bmk {
 			return false;
 		} else {
 			for (int var4 = 0; var4 < this.a; ++var4) {
-				this.a(var1, Blocks.bf.P(), 0, 0, var4, var3);
-				this.a(var1, Blocks.bf.P(), 1, 0, var4, var3);
-				this.a(var1, Blocks.bf.P(), 2, 0, var4, var3);
-				this.a(var1, Blocks.bf.P(), 3, 0, var4, var3);
-				this.a(var1, Blocks.bf.P(), 4, 0, var4, var3);
+				this.a(var1, Blocks.STONEBRICK.P(), 0, 0, var4, var3);
+				this.a(var1, Blocks.STONEBRICK.P(), 1, 0, var4, var3);
+				this.a(var1, Blocks.STONEBRICK.P(), 2, 0, var4, var3);
+				this.a(var1, Blocks.STONEBRICK.P(), 3, 0, var4, var3);
+				this.a(var1, Blocks.STONEBRICK.P(), 4, 0, var4, var3);
 
 				for (int var5 = 1; var5 <= 3; ++var5) {
-					this.a(var1, Blocks.bf.P(), 0, var5, var4, var3);
+					this.a(var1, Blocks.STONEBRICK.P(), 0, var5, var4, var3);
 					this.a(var1, Blocks.AIR.P(), 1, var5, var4, var3);
 					this.a(var1, Blocks.AIR.P(), 2, var5, var4, var3);
 					this.a(var1, Blocks.AIR.P(), 3, var5, var4, var3);
-					this.a(var1, Blocks.bf.P(), 4, var5, var4, var3);
+					this.a(var1, Blocks.STONEBRICK.P(), 4, var5, var4, var3);
 				}
 
-				this.a(var1, Blocks.bf.P(), 0, 4, var4, var3);
-				this.a(var1, Blocks.bf.P(), 1, 4, var4, var3);
-				this.a(var1, Blocks.bf.P(), 2, 4, var4, var3);
-				this.a(var1, Blocks.bf.P(), 3, 4, var4, var3);
-				this.a(var1, Blocks.bf.P(), 4, 4, var4, var3);
+				this.a(var1, Blocks.STONEBRICK.P(), 0, 4, var4, var3);
+				this.a(var1, Blocks.STONEBRICK.P(), 1, 4, var4, var3);
+				this.a(var1, Blocks.STONEBRICK.P(), 2, 4, var4, var3);
+				this.a(var1, Blocks.STONEBRICK.P(), 3, 4, var4, var3);
+				this.a(var1, Blocks.STONEBRICK.P(), 4, 4, var4, var3);
 			}
 
 			return true;

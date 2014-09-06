@@ -140,7 +140,7 @@ public abstract class ahr extends Entity implements aho {
 		}
 
 		if (var3 != null) {
-			if (var3.a == brv.b && this.o.p(var3.a()).getBlock() == Blocks.aY) {
+			if (var3.a == brv.b && this.o.p(var3.a()).getBlock() == Blocks.PORTAL) {
 				this.aq();
 			} else {
 				this.a(var3);

@@ -39,7 +39,7 @@ public class ast extends arm {
 					if (var12 == 62 && var3.a(var11, var12, var10).getBlock() != Blocks.WATER) {
 						var3.a(var11, var12, var10, Blocks.WATER.P());
 						if (var8 < 0.12D) {
-							var3.a(var11, var12 + 1, var10, Blocks.bx.P());
+							var3.a(var11, var12 + 1, var10, Blocks.WATERLILY.P());
 						}
 					}
 					break;

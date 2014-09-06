@@ -369,7 +369,7 @@ public class Chunk {
 		if (this.i.G() == LevelType.DEBUG) {
 			bec var7 = null;
 			if (var1.getY() == 60) {
-				var7 = Blocks.cv.P();
+				var7 = Blocks.BARRIER.P();
 			}
 
 			if (var1.getY() == 70) {

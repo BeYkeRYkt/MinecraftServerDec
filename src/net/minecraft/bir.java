@@ -54,7 +54,7 @@ public class bir extends bhc {
 				return false;
 			} else {
 				Block var19 = var1.p(var3.b()).getBlock();
-				if ((var19 == Blocks.GRASS || var19 == Blocks.DIRT || var19 == Blocks.ak) && var3.getY() < 256 - var4 - 1) {
+				if ((var19 == Blocks.GRASS || var19 == Blocks.DIRT || var19 == Blocks.FARMLAND) && var3.getY() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 					var7 = 3;
 					byte var20 = 0;
@@ -90,19 +90,19 @@ public class bir extends bhc {
 							this.a(var1, var3.b(var9), Blocks.LOG, this.c);
 							if (this.b && var9 > 0) {
 								if (var2.nextInt(3) > 0 && var1.d(var3.a(-1, var9, 0))) {
-									this.a(var1, var3.a(-1, var9, 0), Blocks.bn, BlockVine.S);
+									this.a(var1, var3.a(-1, var9, 0), Blocks.VINE, BlockVine.S);
 								}
 
 								if (var2.nextInt(3) > 0 && var1.d(var3.a(1, var9, 0))) {
-									this.a(var1, var3.a(1, var9, 0), Blocks.bn, BlockVine.T);
+									this.a(var1, var3.a(1, var9, 0), Blocks.VINE, BlockVine.T);
 								}
 
 								if (var2.nextInt(3) > 0 && var1.d(var3.a(0, var9, -1))) {
-									this.a(var1, var3.a(0, var9, -1), Blocks.bn, BlockVine.Q);
+									this.a(var1, var3.a(0, var9, -1), Blocks.VINE, BlockVine.Q);
 								}
 
 								if (var2.nextInt(3) > 0 && var1.d(var3.a(0, var9, 1))) {
-									this.a(var1, var3.a(0, var9, 1), Blocks.bn, BlockVine.R);
+									this.a(var1, var3.a(0, var9, 1), Blocks.VINE, BlockVine.R);
 								}
 							}
 						}
@@ -147,7 +147,7 @@ public class bir extends bhc {
 									if (var2.nextInt(4 - var9) == 0) {
 										var11 = var2.nextInt(3);
 										PaintingDirection var22 = PaintingDirection.fromByte(var10).d();
-										this.a(var1, var3.a(var22.g(), var4 - 5 + var9, var22.i()), Blocks.bN, var11 << 2 | PaintingDirection.fromByte(var10).toByte());
+										this.a(var1, var3.a(var22.g(), var4 - 5 + var9, var22.i()), Blocks.COCOA, var11 << 2 | PaintingDirection.fromByte(var10).toByte());
 									}
 								}
 							}
@@ -165,11 +165,11 @@ public class bir extends bhc {
 	}
 
 	private void a(World var1, Position var2, int var3) {
-		this.a(var1, var2, Blocks.bn, var3);
+		this.a(var1, var2, Blocks.VINE, var3);
 		int var4 = 4;
 
 		for (var2 = var2.b(); var1.p(var2).getBlock().r() == Material.AIR && var4 > 0; --var4) {
-			this.a(var1, var2, Blocks.bn, var3);
+			this.a(var1, var2, Blocks.VINE, var3);
 			var2 = var2.b();
 		}
 

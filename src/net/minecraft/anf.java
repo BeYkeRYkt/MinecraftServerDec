@@ -16,16 +16,16 @@ public class anf extends Item {
 			var4 = var4.a(var5);
 			if (!var2.a(var4, var5, var1)) {
 				return false;
-			} else if (!Blocks.an.c(var3, var4)) {
+			} else if (!Blocks.STANDING_SIGN.c(var3, var4)) {
 				return false;
 			} else if (var3.D) {
 				return true;
 			} else {
 				if (var5 == PaintingDirection.b) {
 					int var9 = DataTypesConverter.toFixedPointInt((double) ((var2.yaw + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
-					var3.a(var4, Blocks.an.P().a(BlockStandingSign.a, Integer.valueOf(var9)), 3);
+					var3.a(var4, Blocks.STANDING_SIGN.P().a(BlockStandingSign.a, Integer.valueOf(var9)), 3);
 				} else {
-					var3.a(var4, Blocks.ax.P().a(BlockWallSign.a, var5), 3);
+					var3.a(var4, Blocks.WALL_SIGN.P().a(BlockWallSign.a, var5), 3);
 				}
 
 				--var1.b;

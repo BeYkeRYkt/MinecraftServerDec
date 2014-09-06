@@ -36,7 +36,7 @@ public class EntityMinecartCommandBlock extends adx {
 	}
 
 	public bec u() {
-		return Blocks.bX.P();
+		return Blocks.COMMAND_BLOCK.P();
 	}
 
 	public aqf j() {

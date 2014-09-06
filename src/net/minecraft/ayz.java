@@ -65,7 +65,7 @@ public class ayz {
 					break label56;
 				}
 
-				if (var3 == Blocks.aY) {
+				if (var3 == Blocks.PORTAL) {
 					++this.e;
 				}
 
@@ -101,7 +101,7 @@ public class ayz {
 	}
 
 	protected boolean a(Block var1) {
-		return var1.material == Material.AIR || var1 == Blocks.ab || var1 == Blocks.aY;
+		return var1.material == Material.AIR || var1 == Blocks.FIRE || var1 == Blocks.PORTAL;
 	}
 
 	public boolean b() {
@@ -113,7 +113,7 @@ public class ayz {
 			Position var2 = this.f.a(this.c, var1);
 
 			for (int var3 = 0; var3 < this.g; ++var3) {
-				this.a.a(var2.b(var3), Blocks.aY.P().a(BlockPortal.a, this.b), 2);
+				this.a.a(var2.b(var3), Blocks.PORTAL.P().a(BlockPortal.a, this.b), 2);
 			}
 		}
 

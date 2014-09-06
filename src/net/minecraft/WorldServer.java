@@ -246,11 +246,11 @@ public class WorldServer extends World implements vn {
 					var9 = this.q(new Position(var5 + (var8 & 15), 0, var6 + (var8 >> 8 & 15)));
 					Position var10 = var9.b();
 					if (this.w(var10)) {
-						this.a(var10, Blocks.aI.P());
+						this.a(var10, Blocks.ICE.P());
 					}
 
 					if (this.S() && this.f(var9, true)) {
-						this.a(var9, Blocks.aH.P());
+						this.a(var9, Blocks.SNOW_LAYER.P());
 					}
 
 					if (this.S() && this.b(var10).e()) {

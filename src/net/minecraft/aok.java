@@ -18,7 +18,7 @@ public class aok {
 	private aok() {
 		this.a(Blocks.IRON_ORE, new ItemStack(Items.j), 0.7F);
 		this.a(Blocks.GOLD_ORE, new ItemStack(Items.k), 1.0F);
-		this.a(Blocks.ag, new ItemStack(Items.i), 1.0F);
+		this.a(Blocks.DIAMOND_ORE, new ItemStack(Items.i), 1.0F);
 		this.a((Block) Blocks.SAND, new ItemStack(Blocks.GLASS), 0.1F);
 		this.a(Items.al, new ItemStack(Items.am), 0.35F);
 		this.a(Items.bi, new ItemStack(Items.bj), 0.35F);
@@ -26,15 +26,15 @@ public class aok {
 		this.a(Items.bo, new ItemStack(Items.bp), 0.35F);
 		this.a(Items.bm, new ItemStack(Items.bn), 0.35F);
 		this.a(Blocks.COBBLESTONE, new ItemStack(Blocks.STONE), 0.1F);
-		this.a(new ItemStack(Blocks.bf, 1, BlockSmoothBrick.b), new ItemStack(Blocks.bf, 1, BlockSmoothBrick.N), 0.1F);
+		this.a(new ItemStack(Blocks.STONEBRICK, 1, BlockSmoothBrick.b), new ItemStack(Blocks.STONEBRICK, 1, BlockSmoothBrick.N), 0.1F);
 		this.a(Items.aI, new ItemStack(Items.aH), 0.3F);
-		this.a(Blocks.aL, new ItemStack(Blocks.cz), 0.35F);
-		this.a((Block) Blocks.aK, new ItemStack(Items.aW, 1, akv.n.b()), 0.2F);
+		this.a(Blocks.CLAY, new ItemStack(Blocks.HARDENED_CLAY), 0.35F);
+		this.a((Block) Blocks.CACTUS, new ItemStack(Items.aW, 1, akv.n.b()), 0.2F);
 		this.a(Blocks.LOG, new ItemStack(Items.h, 1, 1), 0.15F);
 		this.a(Blocks.LOG2, new ItemStack(Items.h, 1, 1), 0.15F);
-		this.a(Blocks.bP, new ItemStack(Items.bO), 1.0F);
+		this.a(Blocks.EMERALD_ORE, new ItemStack(Items.bO), 1.0F);
 		this.a(Items.bS, new ItemStack(Items.bT), 0.35F);
-		this.a(Blocks.aV, new ItemStack(Items.cf), 0.1F);
+		this.a(Blocks.NETHERRACK, new ItemStack(Items.cf), 0.1F);
 		this.a(new ItemStack(Blocks.SPONGE, 1, 1), new ItemStack(Blocks.SPONGE, 1, 0), 0.15F);
 		ali[] var1 = ali.values();
 		int var2 = var1.length;
@@ -47,9 +47,9 @@ public class aok {
 		}
 
 		this.a(Blocks.COAL_ORE, new ItemStack(Items.h), 0.1F);
-		this.a(Blocks.aC, new ItemStack(Items.aC), 0.7F);
+		this.a(Blocks.REDSTONE_ORE, new ItemStack(Items.aC), 0.7F);
 		this.a(Blocks.LAPIS_ORE, new ItemStack(Items.aW, 1, akv.l.b()), 0.2F);
-		this.a(Blocks.co, new ItemStack(Items.cg), 0.2F);
+		this.a(Blocks.QUARTZ_ORE, new ItemStack(Items.cg), 0.2F);
 	}
 
 	public void a(Block var1, ItemStack var2, float var3) {

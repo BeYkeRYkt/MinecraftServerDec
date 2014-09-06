@@ -44,7 +44,7 @@ class aif extends ajk {
 
 		this.c.a = 0;
 		bec var5 = this.a.p(this.b);
-		if (!var1.by.instabuild && !this.a.D && var5.getBlock() == Blocks.cf && var1.bb().nextFloat() < 0.12F) {
+		if (!var1.by.instabuild && !this.a.D && var5.getBlock() == Blocks.ANVIL && var1.bb().nextFloat() < 0.12F) {
 			int var4 = ((Integer) var5.b(BlockAnvil.b)).intValue();
 			++var4;
 			if (var4 > 2) {

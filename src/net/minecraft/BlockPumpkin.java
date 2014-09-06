@@ -95,7 +95,7 @@ public class BlockPumpkin extends avb {
 
 	protected bek j() {
 		if (this.a == null) {
-			this.a = ben.a().a(new String[] { " ", "#", "#" }).a('#', bei.a(beq.a(Blocks.aJ))).b();
+			this.a = ben.a().a(new String[] { " ", "#", "#" }).a('#', bei.a(beq.a(Blocks.SNOW))).b();
 		}
 
 		return this.a;
@@ -103,7 +103,7 @@ public class BlockPumpkin extends avb {
 
 	protected bek l() {
 		if (this.b == null) {
-			this.b = ben.a().a(new String[] { "^", "#", "#" }).a('^', bei.a(beq.a(Blocks.aU))).a('#', bei.a(beq.a(Blocks.aJ))).b();
+			this.b = ben.a().a(new String[] { "^", "#", "#" }).a('^', bei.a(beq.a(Blocks.PUMPKIN))).a('#', bei.a(beq.a(Blocks.SNOW))).b();
 		}
 
 		return this.b;
@@ -119,7 +119,7 @@ public class BlockPumpkin extends avb {
 
 	protected bek T() {
 		if (this.O == null) {
-			this.O = ben.a().a(new String[] { "~^~", "###", "~#~" }).a('^', bei.a(beq.a(Blocks.aU))).a('#', bei.a(beq.a(Blocks.IRON_BLOCK))).a('~', bei.a(beq.a(Blocks.AIR))).b();
+			this.O = ben.a().a(new String[] { "~^~", "###", "~#~" }).a('^', bei.a(beq.a(Blocks.PUMPKIN))).a('#', bei.a(beq.a(Blocks.IRON_BLOCK))).a('~', bei.a(beq.a(Blocks.AIR))).b();
 		}
 
 		return this.O;

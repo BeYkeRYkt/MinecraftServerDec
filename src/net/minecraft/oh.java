@@ -8,7 +8,7 @@ final class oh extends eg {
 		World var3 = var1.i();
 		Position var4 = var1.d().a(BlockDispenser.b(var1.f()));
 		if (var3.d(var4)) {
-			var3.a(var4, Blocks.ab.P());
+			var3.a(var4, Blocks.FIRE.P());
 			if (var2.a(1, var3.s)) {
 				var2.b = 0;
 			}

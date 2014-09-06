@@ -94,7 +94,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 
 		if (this.M) {
 			if (var5) {
-				var1.a(var2, Blocks.aE.P().a(a, var3.b(a)), 3);
+				var1.a(var2, Blocks.UNLIT_REDSTONE_TORCH.P().a(a, var3.b(a)), 3);
 				if (this.a(var1, var2, true)) {
 					var1.a((double) ((float) var2.getX() + 0.5F), (double) ((float) var2.getY() + 0.5F), (double) ((float) var2.getZ() + 0.5F), "random.fizz", 0.5F, 2.6F + (var1.s.nextFloat() - var1.s.nextFloat()) * 0.8F);
 
@@ -109,7 +109,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 				}
 			}
 		} else if (!var5 && !this.a(var1, var2, false)) {
-			var1.a(var2, Blocks.aF.P().a(a, var3.b(a)), 3);
+			var1.a(var2, Blocks.REDSTONE_TORCH.P().a(a, var3.b(a)), 3);
 		}
 
 	}
@@ -128,7 +128,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Item.getItemOf(Blocks.aF);
+		return Item.getItemOf(Blocks.REDSTONE_TORCH);
 	}
 
 	public boolean g() {
@@ -136,7 +136,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 	}
 
 	public boolean b(Block var1) {
-		return var1 == Blocks.aE || var1 == Blocks.aF;
+		return var1 == Blocks.UNLIT_REDSTONE_TORCH || var1 == Blocks.REDSTONE_TORCH;
 	}
 
 }

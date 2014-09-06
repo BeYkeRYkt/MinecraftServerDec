@@ -106,7 +106,7 @@ public class BlockThin extends Block {
 	}
 
 	public final boolean c(Block var1) {
-		return var1.m() || var1 == this || var1 == Blocks.GLASS || var1 == Blocks.cG || var1 == Blocks.cH || var1 instanceof BlockThin;
+		return var1.m() || var1 == this || var1 == Blocks.GLASS || var1 == Blocks.STAINED_GLASS || var1 == Blocks.STAINED_GLASS_PANE || var1 instanceof BlockThin;
 	}
 
 	protected boolean G() {

@@ -47,7 +47,7 @@ public class EntityMinecartFurnace extends adx {
 	public void a(DamageSource var1) {
 		super.a(var1);
 		if (!var1.c()) {
-			this.a(new ItemStack(Blocks.al, 1), 0.0F);
+			this.a(new ItemStack(Blocks.FURNACE, 1), 0.0F);
 		}
 
 	}
@@ -135,6 +135,6 @@ public class EntityMinecartFurnace extends adx {
 	}
 
 	public bec u() {
-		return (this.j() ? Blocks.am : Blocks.al).P().a(BlockFurnace.a, PaintingDirection.c);
+		return (this.j() ? Blocks.LIT_FURNACE : Blocks.FURNACE).P().a(BlockFurnace.a, PaintingDirection.c);
 	}
 }

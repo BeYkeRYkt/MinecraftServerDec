@@ -23,9 +23,9 @@ public class wg {
 		this.j();
 		if (this.b.j_()) {
 			Block var1 = this.b.o.p(new Position(this.b.locationX, this.b.aQ().b, this.b.locationZ)).getBlock();
-			if (var1 == Blocks.au) {
+			if (var1 == Blocks.LADDER) {
 				this.h = "ladder";
-			} else if (var1 == Blocks.bn) {
+			} else if (var1 == Blocks.VINE) {
 				this.h = "vines";
 			}
 		} else if (this.b.V()) {

@@ -9,7 +9,7 @@ public class TileEntityEnderChest extends TileEntity implements pm {
 
 	public void c() {
 		if (++this.h % 20 * 4 == 0) {
-			this.world.c(this.position, Blocks.bQ, 1, this.g);
+			this.world.c(this.position, Blocks.ENDER_CHEST, 1, this.g);
 		}
 
 		this.f = this.a;
@@ -66,12 +66,12 @@ public class TileEntityEnderChest extends TileEntity implements pm {
 
 	public void b() {
 		++this.g;
-		this.world.c(this.position, Blocks.bQ, 1, this.g);
+		this.world.c(this.position, Blocks.ENDER_CHEST, 1, this.g);
 	}
 
 	public void d() {
 		--this.g;
-		this.world.c(this.position, Blocks.bQ, 1, this.g);
+		this.world.c(this.position, Blocks.ENDER_CHEST, 1, this.g);
 	}
 
 	public boolean a(EntityHuman var1) {

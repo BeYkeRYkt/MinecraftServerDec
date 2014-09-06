@@ -108,7 +108,7 @@ public class FillCommand extends AbstractCommand {
 									((IInventory) var29).l();
 								}
 
-								var10.a(var17, Blocks.cv.P(), var5 == Blocks.cv ? 2 : 4);
+								var10.a(var17, Blocks.BARRIER.P(), var5 == Blocks.BARRIER ? 2 : 4);
 							}
 
 							var19 = var5.a(var6);

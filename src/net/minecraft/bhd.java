@@ -244,7 +244,7 @@ public class bhd extends bhc {
 
 	private boolean f() {
 		Block var1 = this.l.p(this.m.b()).getBlock();
-		if (var1 != Blocks.DIRT && var1 != Blocks.GRASS && var1 != Blocks.ak) {
+		if (var1 != Blocks.DIRT && var1 != Blocks.GRASS && var1 != Blocks.FARMLAND) {
 			return false;
 		} else {
 			int var2 = this.a(this.m, this.m.b(this.a - 1));

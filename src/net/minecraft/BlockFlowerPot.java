@@ -60,7 +60,7 @@ public class BlockFlowerPot extends atg {
 	}
 
 	private boolean a(Block var1, int var2) {
-		return var1 != Blocks.YELLOW_FLOWER && var1 != Blocks.RED_FLOWER && var1 != Blocks.aK && var1 != Blocks.BRWON_MUSHROOM && var1 != Blocks.RED_MUSHROOM && var1 != Blocks.SAPLING && var1 != Blocks.DEADBUSH ? var1 == Blocks.TALLGRASS && var2 == bbi.c.a() : true;
+		return var1 != Blocks.YELLOW_FLOWER && var1 != Blocks.RED_FLOWER && var1 != Blocks.CACTUS && var1 != Blocks.BRWON_MUSHROOM && var1 != Blocks.RED_MUSHROOM && var1 != Blocks.SAPLING && var1 != Blocks.DEADBUSH ? var1 == Blocks.TALLGRASS && var2 == bbi.c.a() : true;
 	}
 
 	public int j(World var1, Position var2) {
@@ -143,7 +143,7 @@ public class BlockFlowerPot extends atg {
 				var3 = Blocks.BRWON_MUSHROOM;
 				break;
 			case 9:
-				var3 = Blocks.aK;
+				var3 = Blocks.CACTUS;
 				break;
 			case 10:
 				var3 = Blocks.DEADBUSH;
@@ -255,7 +255,7 @@ public class BlockFlowerPot extends atg {
 					var4 = awf.s;
 				} else if (var9 == Blocks.DEADBUSH) {
 					var4 = awf.t;
-				} else if (var9 == Blocks.aK) {
+				} else if (var9 == Blocks.CACTUS) {
 					var4 = awf.v;
 				}
 			}

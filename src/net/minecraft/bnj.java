@@ -58,27 +58,27 @@ public class bnj extends bnn {
 		this.a(var1, var3, 4, 1, 3, 5, 3, 3, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
 		this.a(var1, var3, 0, 1, 1, 0, 3, 5, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
 		this.a(var1, var3, 1, 1, 6, 5, 3, 6, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
-		this.a(var1, var3, 5, 1, 0, 5, 3, 0, Blocks.aO.P(), Blocks.aO.P(), false);
-		this.a(var1, var3, 9, 1, 0, 9, 3, 0, Blocks.aO.P(), Blocks.aO.P(), false);
+		this.a(var1, var3, 5, 1, 0, 5, 3, 0, Blocks.FENCE.P(), Blocks.FENCE.P(), false);
+		this.a(var1, var3, 9, 1, 0, 9, 3, 0, Blocks.FENCE.P(), Blocks.FENCE.P(), false);
 		this.a(var1, var3, 6, 1, 4, 9, 4, 6, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
 		this.a(var1, Blocks.FLOWING_LAVA.P(), 7, 1, 5, var3);
 		this.a(var1, Blocks.FLOWING_LAVA.P(), 8, 1, 5, var3);
-		this.a(var1, Blocks.bi.P(), 9, 2, 5, var3);
-		this.a(var1, Blocks.bi.P(), 9, 2, 4, var3);
+		this.a(var1, Blocks.IRON_BARS.P(), 9, 2, 5, var3);
+		this.a(var1, Blocks.IRON_BARS.P(), 9, 2, 4, var3);
 		this.a(var1, var3, 7, 2, 4, 8, 2, 5, Blocks.AIR.P(), Blocks.AIR.P(), false);
 		this.a(var1, Blocks.COBBLESTONE.P(), 6, 1, 3, var3);
-		this.a(var1, Blocks.al.P(), 6, 2, 3, var3);
-		this.a(var1, Blocks.al.P(), 6, 3, 3, var3);
+		this.a(var1, Blocks.FURNACE.P(), 6, 2, 3, var3);
+		this.a(var1, Blocks.FURNACE.P(), 6, 3, 3, var3);
 		this.a(var1, Blocks.DOUBLE_STONE_SLAB.P(), 8, 1, 1, var3);
-		this.a(var1, Blocks.bj.P(), 0, 2, 2, var3);
-		this.a(var1, Blocks.bj.P(), 0, 2, 4, var3);
-		this.a(var1, Blocks.bj.P(), 2, 2, 6, var3);
-		this.a(var1, Blocks.bj.P(), 4, 2, 6, var3);
-		this.a(var1, Blocks.aO.P(), 2, 1, 4, var3);
-		this.a(var1, Blocks.aB.P(), 2, 2, 4, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 0, 2, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 0, 2, 4, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 2, 2, 6, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 4, 2, 6, var3);
+		this.a(var1, Blocks.FENCE.P(), 2, 1, 4, var3);
+		this.a(var1, Blocks.WOODEN_PRESSURE_PLATE.P(), 2, 2, 4, var3);
 		this.a(var1, Blocks.PLANKS.P(), 1, 1, 5, var3);
-		this.a(var1, Blocks.ad.a(this.a(Blocks.ad, 3)), 2, 1, 5, var3);
-		this.a(var1, Blocks.ad.a(this.a(Blocks.ad, 1)), 1, 1, 4, var3);
+		this.a(var1, Blocks.OAK_STAIRS.a(this.a(Blocks.OAK_STAIRS, 3)), 2, 1, 5, var3);
+		this.a(var1, Blocks.OAK_STAIRS.a(this.a(Blocks.OAK_STAIRS, 1)), 1, 1, 4, var3);
 		if (!this.b && var3.b((fd) (new Position(this.a(5, 5), this.d(1), this.b(5, 5))))) {
 			this.b = true;
 			this.a(var1, var3, var2, 5, 1, 5, a, 3 + var2.nextInt(6));
@@ -87,7 +87,7 @@ public class bnj extends bnn {
 		int var4;
 		for (var4 = 6; var4 <= 8; ++var4) {
 			if (this.a(var1, var4, 0, -1, var3).getBlock().r() == Material.AIR && this.a(var1, var4, -1, -1, var3).getBlock().r() != Material.AIR) {
-				this.a(var1, Blocks.aw.a(this.a(Blocks.aw, 3)), var4, 0, -1, var3);
+				this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), var4, 0, -1, var3);
 			}
 		}
 

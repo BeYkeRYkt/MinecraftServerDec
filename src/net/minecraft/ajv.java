@@ -11,7 +11,7 @@ public class ajv extends Item {
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
 		bec var9 = var3.p(var4);
 		Block var10 = var9.getBlock();
-		if (var10 == Blocks.aH && ((Integer) var9.b(BlockSnow.a)).intValue() < 1) {
+		if (var10 == Blocks.SNOW_LAYER && ((Integer) var9.b(BlockSnow.a)).intValue() < 1) {
 			var5 = PaintingDirection.b;
 		} else if (!var10.f(var3, var4)) {
 			var4 = var4.a(var5);

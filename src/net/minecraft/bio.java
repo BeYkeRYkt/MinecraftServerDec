@@ -43,7 +43,7 @@ public class bio extends bhc {
 				return false;
 			} else {
 				Block var20 = var1.p(var3.b()).getBlock();
-				if ((var20 == Blocks.GRASS || var20 == Blocks.DIRT || var20 == Blocks.ak) && var3.getY() < 256 - var4 - 1) {
+				if ((var20 == Blocks.GRASS || var20 == Blocks.DIRT || var20 == Blocks.FARMLAND) && var3.getY() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 					var21 = var2.nextInt(2);
 					var11 = 1;

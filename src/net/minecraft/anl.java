@@ -24,7 +24,7 @@ public class anl extends Item {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
-			if (var9.getBlock() == Blocks.ac) {
+			if (var9.getBlock() == Blocks.MOB_SPAWNER) {
 				TileEntity var10 = var3.s(var4);
 				if (var10 instanceof TileEntityMobSpawner) {
 					aqi var11 = ((TileEntityMobSpawner) var10).b();

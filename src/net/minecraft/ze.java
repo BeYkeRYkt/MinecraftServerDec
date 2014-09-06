@@ -56,13 +56,13 @@ public class ze extends zn {
 					boolean var8 = false;
 					if (var7 != null) {
 						if (var7.getItem() == Items.N) {
-							var1.a(var2, Blocks.aj.P(), 3);
+							var1.a(var2, Blocks.WHEAT.P(), 3);
 							var8 = true;
 						} else if (var7.getItem() == Items.bS) {
-							var1.a(var2, Blocks.cc.P(), 3);
+							var1.a(var2, Blocks.POTATOES.P(), 3);
 							var8 = true;
 						} else if (var7.getItem() == Items.bR) {
-							var1.a(var2, Blocks.cb.P(), 3);
+							var1.a(var2, Blocks.CARROTS.P(), 3);
 							var8 = true;
 						}
 					}
@@ -85,7 +85,7 @@ public class ze extends zn {
 
 	protected boolean a(World var1, Position var2) {
 		Block var3 = var1.p(var2).getBlock();
-		if (var3 == Blocks.ak) {
+		if (var3 == Blocks.FARMLAND) {
 			var2 = var2.a();
 			bec var4 = var1.p(var2);
 			var3 = var4.getBlock();

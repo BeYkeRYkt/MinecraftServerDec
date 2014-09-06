@@ -49,16 +49,16 @@ public class bnm extends bnn {
 		this.a(var1, Blocks.PLANKS.P(), 8, 4, 2, var3);
 		this.a(var1, Blocks.PLANKS.P(), 8, 4, 3, var3);
 		this.a(var1, Blocks.PLANKS.P(), 8, 4, 4, var3);
-		int var4 = this.a(Blocks.ad, 3);
-		int var5 = this.a(Blocks.ad, 2);
+		int var4 = this.a(Blocks.OAK_STAIRS, 3);
+		int var5 = this.a(Blocks.OAK_STAIRS, 2);
 
 		int var6;
 		int var7;
 		for (var6 = -1; var6 <= 2; ++var6) {
 			for (var7 = 0; var7 <= 8; ++var7) {
-				this.a(var1, Blocks.ad.a(var4), var7, 4 + var6, var6, var3);
+				this.a(var1, Blocks.OAK_STAIRS.a(var4), var7, 4 + var6, var6, var3);
 				if ((var6 > -1 || var7 <= 1) && (var6 > 0 || var7 <= 3) && (var6 > 1 || var7 <= 4 || var7 >= 6)) {
-					this.a(var1, Blocks.ad.a(var5), var7, 4 + var6, 5 - var6, var3);
+					this.a(var1, Blocks.OAK_STAIRS.a(var5), var7, 4 + var6, 5 - var6, var3);
 				}
 			}
 		}
@@ -68,60 +68,60 @@ public class bnm extends bnn {
 		this.a(var1, var3, 4, 5, 4, 4, 5, 10, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
 		this.a(var1, var3, 6, 5, 4, 6, 5, 10, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
 		this.a(var1, var3, 5, 6, 3, 5, 6, 10, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
-		var6 = this.a(Blocks.ad, 0);
+		var6 = this.a(Blocks.OAK_STAIRS, 0);
 
 		int var8;
 		for (var7 = 4; var7 >= 1; --var7) {
 			this.a(var1, Blocks.PLANKS.P(), var7, 2 + var7, 7 - var7, var3);
 
 			for (var8 = 8 - var7; var8 <= 10; ++var8) {
-				this.a(var1, Blocks.ad.a(var6), var7, 2 + var7, var8, var3);
+				this.a(var1, Blocks.OAK_STAIRS.a(var6), var7, 2 + var7, var8, var3);
 			}
 		}
 
-		var7 = this.a(Blocks.ad, 1);
+		var7 = this.a(Blocks.OAK_STAIRS, 1);
 		this.a(var1, Blocks.PLANKS.P(), 6, 6, 3, var3);
 		this.a(var1, Blocks.PLANKS.P(), 7, 5, 4, var3);
-		this.a(var1, Blocks.ad.a(var7), 6, 6, 4, var3);
+		this.a(var1, Blocks.OAK_STAIRS.a(var7), 6, 6, 4, var3);
 
 		int var9;
 		for (var8 = 6; var8 <= 8; ++var8) {
 			for (var9 = 5; var9 <= 10; ++var9) {
-				this.a(var1, Blocks.ad.a(var7), var8, 12 - var8, var9, var3);
+				this.a(var1, Blocks.OAK_STAIRS.a(var7), var8, 12 - var8, var9, var3);
 			}
 		}
 
 		this.a(var1, Blocks.LOG.P(), 0, 2, 1, var3);
 		this.a(var1, Blocks.LOG.P(), 0, 2, 4, var3);
-		this.a(var1, Blocks.bj.P(), 0, 2, 2, var3);
-		this.a(var1, Blocks.bj.P(), 0, 2, 3, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 0, 2, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 0, 2, 3, var3);
 		this.a(var1, Blocks.LOG.P(), 4, 2, 0, var3);
-		this.a(var1, Blocks.bj.P(), 5, 2, 0, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 5, 2, 0, var3);
 		this.a(var1, Blocks.LOG.P(), 6, 2, 0, var3);
 		this.a(var1, Blocks.LOG.P(), 8, 2, 1, var3);
-		this.a(var1, Blocks.bj.P(), 8, 2, 2, var3);
-		this.a(var1, Blocks.bj.P(), 8, 2, 3, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 8, 2, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 8, 2, 3, var3);
 		this.a(var1, Blocks.LOG.P(), 8, 2, 4, var3);
 		this.a(var1, Blocks.PLANKS.P(), 8, 2, 5, var3);
 		this.a(var1, Blocks.LOG.P(), 8, 2, 6, var3);
-		this.a(var1, Blocks.bj.P(), 8, 2, 7, var3);
-		this.a(var1, Blocks.bj.P(), 8, 2, 8, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 8, 2, 7, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 8, 2, 8, var3);
 		this.a(var1, Blocks.LOG.P(), 8, 2, 9, var3);
 		this.a(var1, Blocks.LOG.P(), 2, 2, 6, var3);
-		this.a(var1, Blocks.bj.P(), 2, 2, 7, var3);
-		this.a(var1, Blocks.bj.P(), 2, 2, 8, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 2, 2, 7, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 2, 2, 8, var3);
 		this.a(var1, Blocks.LOG.P(), 2, 2, 9, var3);
 		this.a(var1, Blocks.LOG.P(), 4, 4, 10, var3);
-		this.a(var1, Blocks.bj.P(), 5, 4, 10, var3);
+		this.a(var1, Blocks.GLASS_PANE.P(), 5, 4, 10, var3);
 		this.a(var1, Blocks.LOG.P(), 6, 4, 10, var3);
 		this.a(var1, Blocks.PLANKS.P(), 5, 5, 10, var3);
 		this.a(var1, Blocks.AIR.P(), 2, 1, 0, var3);
 		this.a(var1, Blocks.AIR.P(), 2, 2, 0, var3);
-		this.a(var1, Blocks.aa.P().a(BlockTorch.a, this.m), 2, 3, 1, var3);
-		this.a(var1, var3, var2, 2, 1, 0, PaintingDirection.fromByte(this.a(Blocks.ao, 1)));
+		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m), 2, 3, 1, var3);
+		this.a(var1, var3, var2, 2, 1, 0, PaintingDirection.fromByte(this.a(Blocks.WOODEN_DOOR, 1)));
 		this.a(var1, var3, 1, 0, -1, 3, 2, -1, Blocks.AIR.P(), Blocks.AIR.P(), false);
 		if (this.a(var1, 2, 0, -1, var3).getBlock().r() == Material.AIR && this.a(var1, 2, -1, -1, var3).getBlock().r() != Material.AIR) {
-			this.a(var1, Blocks.aw.a(this.a(Blocks.aw, 3)), 2, 0, -1, var3);
+			this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 2, 0, -1, var3);
 		}
 
 		for (var8 = 0; var8 < 5; ++var8) {

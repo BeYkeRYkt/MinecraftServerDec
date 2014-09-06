@@ -9,7 +9,7 @@ public abstract class bhc extends bhp {
 	}
 
 	protected boolean a(Block var1) {
-		return var1.r() == Material.AIR || var1.r() == Material.LEAVES || var1 == Blocks.GRASS || var1 == Blocks.DIRT || var1 == Blocks.LOG || var1 == Blocks.LOG2 || var1 == Blocks.SAPLING || var1 == Blocks.bn;
+		return var1.r() == Material.AIR || var1.r() == Material.LEAVES || var1 == Blocks.GRASS || var1 == Blocks.DIRT || var1 == Blocks.LOG || var1 == Blocks.LOG2 || var1 == Blocks.SAPLING || var1 == Blocks.VINE;
 	}
 
 	public void a(World var1, Random var2, Position var3) {

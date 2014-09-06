@@ -16,7 +16,7 @@ public class BlockReed extends Block {
 	}
 
 	public void b(World var1, Position var2, bec var3, Random var4) {
-		if (var1.p(var2.b()).getBlock() == Blocks.aM || this.e(var1, var2, var3)) {
+		if (var1.p(var2.b()).getBlock() == Blocks.REEDS || this.e(var1, var2, var3)) {
 			if (var1.d(var2.a())) {
 				int var5;
 				for (var5 = 1; var1.p(var2.c(var5)).getBlock() == this; ++var5) {

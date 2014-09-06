@@ -58,8 +58,8 @@ public class BlockLongGrass extends auc implements atz {
 			var5 = avk.d;
 		}
 
-		if (Blocks.cF.c(var1, var3)) {
-			Blocks.cF.a(var1, var3, var5, 2);
+		if (Blocks.DOUBLE_PLANT.c(var1, var3)) {
+			Blocks.DOUBLE_PLANT.a(var1, var3, var5, 2);
 		}
 
 	}

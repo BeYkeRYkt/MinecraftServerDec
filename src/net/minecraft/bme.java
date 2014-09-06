@@ -53,13 +53,13 @@ public class bme extends bmk {
 			int var4;
 			switch (this.a) {
 				case 0:
-					this.a(var1, Blocks.bf.P(), 5, 1, 5, var3);
-					this.a(var1, Blocks.bf.P(), 5, 2, 5, var3);
-					this.a(var1, Blocks.bf.P(), 5, 3, 5, var3);
-					this.a(var1, Blocks.aa.P(), 4, 3, 5, var3);
-					this.a(var1, Blocks.aa.P(), 6, 3, 5, var3);
-					this.a(var1, Blocks.aa.P(), 5, 3, 4, var3);
-					this.a(var1, Blocks.aa.P(), 5, 3, 6, var3);
+					this.a(var1, Blocks.STONEBRICK.P(), 5, 1, 5, var3);
+					this.a(var1, Blocks.STONEBRICK.P(), 5, 2, 5, var3);
+					this.a(var1, Blocks.STONEBRICK.P(), 5, 3, 5, var3);
+					this.a(var1, Blocks.TORCH.P(), 4, 3, 5, var3);
+					this.a(var1, Blocks.TORCH.P(), 6, 3, 5, var3);
+					this.a(var1, Blocks.TORCH.P(), 5, 3, 4, var3);
+					this.a(var1, Blocks.TORCH.P(), 5, 3, 6, var3);
 					this.a(var1, Blocks.STONE_SLAB.P(), 4, 1, 4, var3);
 					this.a(var1, Blocks.STONE_SLAB.P(), 4, 1, 5, var3);
 					this.a(var1, Blocks.STONE_SLAB.P(), 4, 1, 6, var3);
@@ -71,15 +71,15 @@ public class bme extends bmk {
 					break;
 				case 1:
 					for (var4 = 0; var4 < 5; ++var4) {
-						this.a(var1, Blocks.bf.P(), 3, 1, 3 + var4, var3);
-						this.a(var1, Blocks.bf.P(), 7, 1, 3 + var4, var3);
-						this.a(var1, Blocks.bf.P(), 3 + var4, 1, 3, var3);
-						this.a(var1, Blocks.bf.P(), 3 + var4, 1, 7, var3);
+						this.a(var1, Blocks.STONEBRICK.P(), 3, 1, 3 + var4, var3);
+						this.a(var1, Blocks.STONEBRICK.P(), 7, 1, 3 + var4, var3);
+						this.a(var1, Blocks.STONEBRICK.P(), 3 + var4, 1, 3, var3);
+						this.a(var1, Blocks.STONEBRICK.P(), 3 + var4, 1, 7, var3);
 					}
 
-					this.a(var1, Blocks.bf.P(), 5, 1, 5, var3);
-					this.a(var1, Blocks.bf.P(), 5, 2, 5, var3);
-					this.a(var1, Blocks.bf.P(), 5, 3, 5, var3);
+					this.a(var1, Blocks.STONEBRICK.P(), 5, 1, 5, var3);
+					this.a(var1, Blocks.STONEBRICK.P(), 5, 2, 5, var3);
+					this.a(var1, Blocks.STONEBRICK.P(), 5, 3, 5, var3);
 					this.a(var1, Blocks.FLOWING_WATER.P(), 5, 4, 5, var3);
 					break;
 				case 2:
@@ -109,7 +109,7 @@ public class bme extends bmk {
 						this.a(var1, Blocks.COBBLESTONE.P(), 6, var4, 6, var3);
 					}
 
-					this.a(var1, Blocks.aa.P(), 5, 3, 5, var3);
+					this.a(var1, Blocks.TORCH.P(), 5, 3, 5, var3);
 
 					for (var4 = 2; var4 <= 8; ++var4) {
 						this.a(var1, Blocks.PLANKS.P(), 2, 3, var4, var3);
@@ -124,9 +124,9 @@ public class bme extends bmk {
 						this.a(var1, Blocks.PLANKS.P(), 8, 3, var4, var3);
 					}
 
-					this.a(var1, Blocks.au.a(this.a(Blocks.au, PaintingDirection.e.a())), 9, 1, 3, var3);
-					this.a(var1, Blocks.au.a(this.a(Blocks.au, PaintingDirection.e.a())), 9, 2, 3, var3);
-					this.a(var1, Blocks.au.a(this.a(Blocks.au, PaintingDirection.e.a())), 9, 3, 3, var3);
+					this.a(var1, Blocks.LADDER.a(this.a(Blocks.LADDER, PaintingDirection.e.a())), 9, 1, 3, var3);
+					this.a(var1, Blocks.LADDER.a(this.a(Blocks.LADDER, PaintingDirection.e.a())), 9, 2, 3, var3);
+					this.a(var1, Blocks.LADDER.a(this.a(Blocks.LADDER, PaintingDirection.e.a())), 9, 3, 3, var3);
 					this.a(var1, var3, var2, 3, 4, 8, vl.a(b, new vl[] { Items.cd.b(var2) }), 1 + var2.nextInt(4));
 			}
 

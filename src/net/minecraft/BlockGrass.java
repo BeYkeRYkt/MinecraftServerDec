@@ -15,7 +15,7 @@ public class BlockGrass extends Block implements atz {
 
 	public bec a(bec var1, ard var2, Position var3) {
 		Block var4 = var2.p(var3.a()).getBlock();
-		return var1.a(a, Boolean.valueOf(var4 == Blocks.aJ || var4 == Blocks.aH));
+		return var1.a(a, Boolean.valueOf(var4 == Blocks.SNOW || var4 == Blocks.SNOW_LAYER));
 	}
 
 	public void b(World var1, Position var2, bec var3, Random var4) {

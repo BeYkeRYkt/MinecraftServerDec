@@ -183,7 +183,7 @@ public class EntitySkeleton extends EntityMonster implements afr {
 		if (this.p(4) == null) {
 			Calendar var3 = this.o.Y();
 			if (var3.get(2) + 1 == 10 && var3.get(5) == 31 && this.V.nextFloat() < 0.25F) {
-				this.c(4, new ItemStack(this.V.nextFloat() < 0.1F ? Blocks.aZ : Blocks.aU));
+				this.c(4, new ItemStack(this.V.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
 				this.bh[4] = 0.0F;
 			}
 		}

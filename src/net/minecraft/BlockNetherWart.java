@@ -15,7 +15,7 @@ public class BlockNetherWart extends auc {
 	}
 
 	protected boolean c(Block var1) {
-		return var1 == Blocks.aW;
+		return var1 == Blocks.SOUL_SAND;
 	}
 
 	public boolean f(World var1, Position var2, bec var3) {

@@ -5,7 +5,7 @@ public class EntityMushroomCow extends EntityCow {
 	public EntityMushroomCow(World var1) {
 		super(var1);
 		this.a(0.9F, 1.3F);
-		this.bl = Blocks.bw;
+		this.bl = Blocks.MYCELIUM;
 	}
 
 	public boolean a(EntityHuman var1) {

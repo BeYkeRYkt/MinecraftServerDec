@@ -1239,7 +1239,7 @@ public abstract class World implements ard {
 				for (int var9 = var4; var9 < var5; ++var9) {
 					for (int var10 = var6; var10 < var7; ++var10) {
 						Block var11 = this.p(new Position(var8, var9, var10)).getBlock();
-						if (var11 == Blocks.ab || var11 == Blocks.FLOWING_LAVA || var11 == Blocks.LAVA) {
+						if (var11 == Blocks.FIRE || var11 == Blocks.FLOWING_LAVA || var11 == Blocks.LAVA) {
 							return true;
 						}
 					}
@@ -1387,7 +1387,7 @@ public abstract class World implements ard {
 
 	public boolean a(EntityHuman var1, Position var2, PaintingDirection var3) {
 		var2 = var2.a(var3);
-		if (this.p(var2).getBlock() == Blocks.ab) {
+		if (this.p(var2).getBlock() == Blocks.FIRE) {
 			this.a(var1, 1004, var2, 0);
 			this.g(var2);
 			return true;
@@ -1713,7 +1713,7 @@ public abstract class World implements ard {
 		} else {
 			if (var1.getY() >= 0 && var1.getY() < 256 && this.b(arf.b, var1) < 10) {
 				Block var5 = this.p(var1).getBlock();
-				if (var5.r() == Material.AIR && Blocks.aH.c(this, var1)) {
+				if (var5.r() == Material.AIR && Blocks.SNOW_LAYER.c(this, var1)) {
 					return true;
 				}
 			}
@@ -2034,7 +2034,7 @@ public abstract class World implements ard {
 	public boolean a(Block var1, Position var2, boolean var3, PaintingDirection var4, Entity var5, ItemStack var6) {
 		Block var7 = this.p(var2).getBlock();
 		brt var8 = var3 ? null : var1.a(this, var2, var1.P());
-		return var8 != null && !this.a(var8, var5) ? false : (var7.r() == Material.ORIENTABLE && var1 == Blocks.cf ? true : var7.r().j() && var1.a(this, var2, var4, var6));
+		return var8 != null && !this.a(var8, var5) ? false : (var7.r() == Material.ORIENTABLE && var1 == Blocks.ANVIL ? true : var7.r().j() && var1.a(this, var2, var4, var6));
 	}
 
 	public int a(Position var1, PaintingDirection var2) {
@@ -2371,12 +2371,12 @@ public abstract class World implements ard {
 			Position var5 = var1.a(var4);
 			if (this.e(var5)) {
 				bec var6 = this.p(var5);
-				if (Blocks.cj.e(var6.getBlock())) {
+				if (Blocks.UNPOWERED_COMPARATOR.e(var6.getBlock())) {
 					var6.getBlock().a(this, var5, var6, var2);
 				} else if (var6.getBlock().t()) {
 					var5 = var5.a(var4);
 					var6 = this.p(var5);
-					if (Blocks.cj.e(var6.getBlock())) {
+					if (Blocks.UNPOWERED_COMPARATOR.e(var6.getBlock())) {
 						var6.getBlock().a(this, var5, var6, var2);
 					}
 				}

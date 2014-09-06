@@ -8,7 +8,7 @@ public class bhw extends bhp {
 	private int b;
 
 	public bhw(int var1) {
-		this.a = Blocks.cB;
+		this.a = Blocks.PACKED_ICE;
 		this.b = var1;
 	}
 
@@ -17,7 +17,7 @@ public class bhw extends bhp {
 			var3 = var3.b();
 		}
 
-		if (var1.p(var3).getBlock() != Blocks.aJ) {
+		if (var1.p(var3).getBlock() != Blocks.SNOW) {
 			return false;
 		} else {
 			int var4 = var2.nextInt(this.b - 2) + 2;
@@ -31,7 +31,7 @@ public class bhw extends bhp {
 						for (int var10 = var3.getY() - var5; var10 <= var3.getY() + var5; ++var10) {
 							Position var11 = new Position(var6, var10, var7);
 							Block var12 = var1.p(var11).getBlock();
-							if (var12 == Blocks.DIRT || var12 == Blocks.aJ || var12 == Blocks.aI) {
+							if (var12 == Blocks.DIRT || var12 == Blocks.SNOW || var12 == Blocks.ICE) {
 								var1.a(var11, this.a.P(), 2);
 							}
 						}

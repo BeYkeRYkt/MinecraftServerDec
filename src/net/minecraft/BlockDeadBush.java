@@ -11,7 +11,7 @@ public class BlockDeadBush extends auc {
 	}
 
 	protected boolean c(Block var1) {
-		return var1 == Blocks.SAND || var1 == Blocks.cz || var1 == Blocks.cu || var1 == Blocks.DIRT;
+		return var1 == Blocks.SAND || var1 == Blocks.HARDENED_CLAY || var1 == Blocks.STAINDED_HARDENED_CLAY || var1 == Blocks.DIRT;
 	}
 
 	public boolean f(World var1, Position var2) {

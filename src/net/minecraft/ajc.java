@@ -18,6 +18,6 @@ class ajc extends ajk {
 	}
 
 	public boolean a(ItemStack var1) {
-		return var1 == null ? false : (var1.getItem() instanceof ItemArmor ? ((ItemArmor) var1.getItem()).b == this.a : (var1.getItem() != Item.getItemOf(Blocks.aU) && var1.getItem() != Items.bX ? false : this.a == 0));
+		return var1 == null ? false : (var1.getItem() instanceof ItemArmor ? ((ItemArmor) var1.getItem()).b == this.a : (var1.getItem() != Item.getItemOf(Blocks.PUMPKIN) && var1.getItem() != Items.bX ? false : this.a == 0));
 	}
 }

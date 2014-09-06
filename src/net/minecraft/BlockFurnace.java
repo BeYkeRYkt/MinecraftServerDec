@@ -16,7 +16,7 @@ public class BlockFurnace extends atg {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Item.getItemOf(Blocks.al);
+		return Item.getItemOf(Blocks.FURNACE);
 	}
 
 	public void c(World var1, Position var2, bec var3) {
@@ -62,11 +62,11 @@ public class BlockFurnace extends atg {
 		TileEntity var4 = var1.s(var2);
 		M = true;
 		if (var0) {
-			var1.a(var2, Blocks.am.P().a(a, var3.b(a)), 3);
-			var1.a(var2, Blocks.am.P().a(a, var3.b(a)), 3);
+			var1.a(var2, Blocks.LIT_FURNACE.P().a(a, var3.b(a)), 3);
+			var1.a(var2, Blocks.LIT_FURNACE.P().a(a, var3.b(a)), 3);
 		} else {
-			var1.a(var2, Blocks.al.P().a(a, var3.b(a)), 3);
-			var1.a(var2, Blocks.al.P().a(a, var3.b(a)), 3);
+			var1.a(var2, Blocks.FURNACE.P().a(a, var3.b(a)), 3);
+			var1.a(var2, Blocks.FURNACE.P().a(a, var3.b(a)), 3);
 		}
 
 		M = false;

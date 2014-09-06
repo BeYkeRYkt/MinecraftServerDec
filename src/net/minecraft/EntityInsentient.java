@@ -554,7 +554,7 @@ public abstract class EntityInsentient extends EntityLiving {
 	}
 
 	public static int c(ItemStack var0) {
-		if (var0.getItem() != Item.getItemOf(Blocks.aU) && var0.getItem() != Items.bX) {
+		if (var0.getItem() != Item.getItemOf(Blocks.PUMPKIN) && var0.getItem() != Items.bX) {
 			if (var0.getItem() instanceof ItemArmor) {
 				switch (((ItemArmor) var0.getItem()).b) {
 					case 0:

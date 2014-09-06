@@ -235,7 +235,7 @@ public class EntityWither extends EntityMonster implements afr {
 								int var9 = var1 + var7;
 								int var10 = var15 + var19;
 								Block var11 = this.o.p(new Position(var20, var9, var10)).getBlock();
-								if (var11.r() != Material.AIR && var11 != Blocks.BEDROCK && var11 != Blocks.bF && var11 != Blocks.bG && var11 != Blocks.bX && var11 != Blocks.cv) {
+								if (var11.r() != Material.AIR && var11 != Blocks.BEDROCK && var11 != Blocks.END_PORTAL && var11 != Blocks.END_PORTAL_FRAME && var11 != Blocks.COMMAND_BLOCK && var11 != Blocks.BARRIER) {
 									var17 = this.o.b(new Position(var20, var9, var10), true) || var17;
 								}
 							}

@@ -290,7 +290,7 @@ public abstract class arm {
 
 						if (var15 < 63 && (var9 == null || var9.getBlock().r() == Material.AIR)) {
 							if (this.a(new Position(var4, var15, var5)) < 0.15F) {
-								var9 = Blocks.aI.P();
+								var9 = Blocks.ICE.P();
 							} else {
 								var9 = Blocks.WATER.P();
 							}
@@ -311,7 +311,7 @@ public abstract class arm {
 						var3.a(var14, var15, var13, var10);
 						if (var11 == 0 && var10.getBlock() == Blocks.SAND) {
 							var11 = var2.nextInt(4) + Math.max(0, var15 - 63);
-							var10 = var10.b(BlockSand.a) == bac.b ? Blocks.cM.P() : Blocks.SANDSTONE.P();
+							var10 = var10.b(BlockSand.a) == bac.b ? Blocks.RED_SANDSTONE.P() : Blocks.SANDSTONE.P();
 						}
 					}
 				}

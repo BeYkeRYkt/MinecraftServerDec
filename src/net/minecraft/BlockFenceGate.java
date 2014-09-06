@@ -14,7 +14,7 @@ public class BlockFenceGate extends avb {
 
 	public bec a(bec var1, ard var2, Position var3) {
 		el var4 = ((PaintingDirection) var1.b(N)).k();
-		if (var4 == el.c && (var2.p(var3.e()).getBlock() == Blocks.bZ || var2.p(var3.f()).getBlock() == Blocks.bZ) || var4 == el.a && (var2.p(var3.c()).getBlock() == Blocks.bZ || var2.p(var3.d()).getBlock() == Blocks.bZ)) {
+		if (var4 == el.c && (var2.p(var3.e()).getBlock() == Blocks.COBBLESTONE_WALL || var2.p(var3.f()).getBlock() == Blocks.COBBLESTONE_WALL) || var4 == el.a && (var2.p(var3.c()).getBlock() == Blocks.COBBLESTONE_WALL || var2.p(var3.d()).getBlock() == Blocks.COBBLESTONE_WALL)) {
 			var1 = var1.a(M, Boolean.valueOf(true));
 		}
 

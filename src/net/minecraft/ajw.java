@@ -50,7 +50,7 @@ public class ajw extends Item {
 			} else {
 				if (var24.a == brv.b) {
 					Position var33 = var24.a();
-					if (var2.p(var33).getBlock() == Blocks.aH) {
+					if (var2.p(var33).getBlock() == Blocks.SNOW_LAYER) {
 						var33 = var33.b();
 					}
 

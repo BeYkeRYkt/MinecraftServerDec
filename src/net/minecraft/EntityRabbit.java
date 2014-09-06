@@ -308,7 +308,7 @@ public class EntityRabbit extends abq {
 	}
 
 	protected void cn() {
-		this.o.a(Particle.M, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[] { Block.f(Blocks.cb.a(7)) });
+		this.o.a(Particle.M, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[] { Block.f(Blocks.CARROTS.a(7)) });
 		this.bs = 100;
 	}
 

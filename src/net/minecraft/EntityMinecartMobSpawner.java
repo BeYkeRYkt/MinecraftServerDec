@@ -17,7 +17,7 @@ public class EntityMinecartMobSpawner extends adx {
 	}
 
 	public bec u() {
-		return Blocks.ac.P();
+		return Blocks.MOB_SPAWNER.P();
 	}
 
 	protected void a(NBTCompoundTag var1) {

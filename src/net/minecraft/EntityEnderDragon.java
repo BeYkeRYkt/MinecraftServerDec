@@ -382,7 +382,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 				for (int var12 = var4; var12 <= var7; ++var12) {
 					Block var13 = this.o.p(new Position(var10, var11, var12)).getBlock();
 					if (var13.r() != Material.AIR) {
-						if (var13 != Blocks.cv && var13 != Blocks.OBSIDIAN && var13 != Blocks.bH && var13 != Blocks.BEDROCK && var13 != Blocks.bX && this.o.Q().b("mobGriefing")) {
+						if (var13 != Blocks.BARRIER && var13 != Blocks.OBSIDIAN && var13 != Blocks.END_STONE && var13 != Blocks.BEDROCK && var13 != Blocks.COMMAND_BLOCK && this.o.Q().b("mobGriefing")) {
 							var9 = this.o.g(new Position(var10, var11, var12)) || var9;
 						} else {
 							var8 = true;
@@ -501,7 +501,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 						} else if (var10 > 6.25D) {
 							this.o.a(var12, Blocks.BEDROCK.P());
 						} else {
-							this.o.a(var12, Blocks.bF.P());
+							this.o.a(var12, Blocks.END_PORTAL.P());
 						}
 					}
 				}
@@ -512,12 +512,12 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 		this.o.a(var1.a(), Blocks.BEDROCK.P());
 		Position var13 = var1.b(2);
 		this.o.a(var13, Blocks.BEDROCK.P());
-		this.o.a(var13.e(), Blocks.aa.P().a(BlockTorch.a, PaintingDirection.f));
-		this.o.a(var13.f(), Blocks.aa.P().a(BlockTorch.a, PaintingDirection.e));
-		this.o.a(var13.c(), Blocks.aa.P().a(BlockTorch.a, PaintingDirection.d));
-		this.o.a(var13.d(), Blocks.aa.P().a(BlockTorch.a, PaintingDirection.c));
+		this.o.a(var13.e(), Blocks.TORCH.P().a(BlockTorch.a, PaintingDirection.f));
+		this.o.a(var13.f(), Blocks.TORCH.P().a(BlockTorch.a, PaintingDirection.e));
+		this.o.a(var13.c(), Blocks.TORCH.P().a(BlockTorch.a, PaintingDirection.d));
+		this.o.a(var13.d(), Blocks.TORCH.P().a(BlockTorch.a, PaintingDirection.c));
 		this.o.a(var1.b(3), Blocks.BEDROCK.P());
-		this.o.a(var1.b(4), Blocks.bI.P());
+		this.o.a(var1.b(4), Blocks.DRAGON_EGG.P());
 	}
 
 	protected void D() {

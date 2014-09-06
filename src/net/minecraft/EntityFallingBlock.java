@@ -122,7 +122,7 @@ public class EntityFallingBlock extends Entity {
 			int var4 = DataTypesConverter.f(var1 - 1.0F);
 			if (var4 > 0) {
 				ArrayList var5 = Lists.newArrayList((Iterable) this.o.b((Entity) this, this.aQ()));
-				boolean var6 = var3 == Blocks.cf;
+				boolean var6 = var3 == Blocks.ANVIL;
 				DamageSource var7 = var6 ? DamageSource.n : DamageSource.o;
 				Iterator var8 = var5.iterator();
 
@@ -177,7 +177,7 @@ public class EntityFallingBlock extends Entity {
 			this.f = var1.getBoolean("HurtEntities");
 			this.h = var1.getFloat("FallHurtAmount");
 			this.g = var1.getInt("FallHurtMax");
-		} else if (var3 == Blocks.cf) {
+		} else if (var3 == Blocks.ANVIL) {
 			this.f = true;
 		}
 

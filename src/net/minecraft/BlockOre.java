@@ -10,7 +10,7 @@ public class BlockOre extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return this == Blocks.COAL_ORE ? Items.h : (this == Blocks.ag ? Items.i : (this == Blocks.LAPIS_ORE ? Items.aW : (this == Blocks.bP ? Items.bO : (this == Blocks.co ? Items.cg : Item.getItemOf((Block) this)))));
+		return this == Blocks.COAL_ORE ? Items.h : (this == Blocks.DIAMOND_ORE ? Items.i : (this == Blocks.LAPIS_ORE ? Items.aW : (this == Blocks.EMERALD_ORE ? Items.bO : (this == Blocks.QUARTZ_ORE ? Items.cg : Item.getItemOf((Block) this)))));
 	}
 
 	public int a(Random var1) {
@@ -36,13 +36,13 @@ public class BlockOre extends Block {
 			int var6 = 0;
 			if (this == Blocks.COAL_ORE) {
 				var6 = DataTypesConverter.a(var1.s, 0, 2);
-			} else if (this == Blocks.ag) {
+			} else if (this == Blocks.DIAMOND_ORE) {
 				var6 = DataTypesConverter.a(var1.s, 3, 7);
-			} else if (this == Blocks.bP) {
+			} else if (this == Blocks.EMERALD_ORE) {
 				var6 = DataTypesConverter.a(var1.s, 3, 7);
 			} else if (this == Blocks.LAPIS_ORE) {
 				var6 = DataTypesConverter.a(var1.s, 2, 5);
-			} else if (this == Blocks.co) {
+			} else if (this == Blocks.QUARTZ_ORE) {
 				var6 = DataTypesConverter.a(var1.s, 2, 5);
 			}
 

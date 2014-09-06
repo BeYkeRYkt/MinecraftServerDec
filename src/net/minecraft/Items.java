@@ -190,12 +190,12 @@ public class Items {
 	public static final Item cD;
 	public static final Item cE;
 
-	private static Item a(String var0) {
-		return (Item) Item.REGISTRY.getByName(new RegistryObjectName(var0));
+	private static Item a(String name) {
+		return (Item) Item.REGISTRY.getByName(new RegistryObjectName(name));
 	}
 
 	static {
-		if (!od.a()) {
+		if (!Bootstrap.isReady()) {
 			throw new RuntimeException("Accessed Items before Bootstrap!");
 		} else {
 			IRON_PICKAXE = a("iron_shovel");

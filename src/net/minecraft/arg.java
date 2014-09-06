@@ -160,7 +160,7 @@ public final class arg {
 					return false;
 				} else {
 					Block var5 = var1.p(var4).getBlock();
-					boolean var6 = var5 != Blocks.BEDROCK && var5 != Blocks.cv;
+					boolean var6 = var5 != Blocks.BEDROCK && var5 != Blocks.BARRIER;
 					return var6 && !var3.t() && !var3.r().isLiquid() && !var1.p(var2.a()).getBlock().t();
 				}
 			}

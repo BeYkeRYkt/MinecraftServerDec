@@ -224,7 +224,7 @@ public class TileEntityFurnace extends bdf implements pm, we {
 			Item var1 = var0.getItem();
 			if (var1 instanceof aju && Block.a(var1) != Blocks.AIR) {
 				Block var2 = Block.a(var1);
-				if (var2 == Blocks.bM) {
+				if (var2 == Blocks.WOODEN_SLAB) {
 					return 150;
 				}
 
@@ -232,7 +232,7 @@ public class TileEntityFurnace extends bdf implements pm, we {
 					return 300;
 				}
 
-				if (var2 == Blocks.cA) {
+				if (var2 == Blocks.COAL_BLOCK) {
 					return 16000;
 				}
 			}

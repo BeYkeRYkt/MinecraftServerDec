@@ -64,7 +64,7 @@ public class TileEntityPiston extends TileEntity implements pm {
 
 				while (var5.hasNext()) {
 					Entity var6 = (Entity) var5.next();
-					if (this.a.getBlock() == Blocks.cE && this.g) {
+					if (this.a.getBlock() == Blocks.SLIME && this.g) {
 						switch (bdw.a[this.f.k().ordinal()]) {
 							case 1:
 								var6.motionX = (double) this.f.g();

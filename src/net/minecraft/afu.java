@@ -48,7 +48,7 @@ class afu extends zy {
 			Position var2 = (new Position(this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ)).a(this.b);
 			bec var3 = var1.p(var2);
 			if (BlockMonsterEggs.d(var3)) {
-				var1.a(var2, Blocks.be.P().a(BlockMonsterEggs.a, axu.a(var3)), 3);
+				var1.a(var2, Blocks.MONSTER_EGG.P().a(BlockMonsterEggs.a, axu.a(var3)), 3);
 				this.a.y();
 				this.a.J();
 			}

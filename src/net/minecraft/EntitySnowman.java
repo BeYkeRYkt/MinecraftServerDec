@@ -37,8 +37,8 @@ public class EntitySnowman extends abw implements afr {
 				var1 = DataTypesConverter.toFixedPointInt(this.locationX + (double) ((float) (var4 % 2 * 2 - 1) * 0.25F));
 				var2 = DataTypesConverter.toFixedPointInt(this.locationY);
 				var3 = DataTypesConverter.toFixedPointInt(this.locationZ + (double) ((float) (var4 / 2 % 2 * 2 - 1) * 0.25F));
-				if (this.o.p(new Position(var1, var2, var3)).getBlock().r() == Material.AIR && this.o.b(new Position(var1, 0, var3)).a(new Position(var1, var2, var3)) < 0.8F && Blocks.aH.c(this.o, new Position(var1, var2, var3))) {
-					this.o.a(new Position(var1, var2, var3), Blocks.aH.P());
+				if (this.o.p(new Position(var1, var2, var3)).getBlock().r() == Material.AIR && this.o.b(new Position(var1, 0, var3)).a(new Position(var1, var2, var3)) < 0.8F && Blocks.SNOW_LAYER.c(this.o, new Position(var1, var2, var3))) {
+					this.o.a(new Position(var1, var2, var3), Blocks.SNOW_LAYER.P());
 				}
 			}
 		}

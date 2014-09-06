@@ -11,8 +11,8 @@ public class bhj extends bhp {
 				int var6 = 1 + var2.nextInt(var2.nextInt(3) + 1);
 
 				for (int var7 = 0; var7 < var6; ++var7) {
-					if (Blocks.aK.d(var1, var5)) {
-						var1.a(var5.b(var7), Blocks.aK.P(), 2);
+					if (Blocks.CACTUS.d(var1, var5)) {
+						var1.a(var5.b(var7), Blocks.CACTUS.P(), 2);
 					}
 				}
 			}

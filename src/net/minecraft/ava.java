@@ -104,7 +104,7 @@ public abstract class ava extends avb {
 			return var6;
 		} else {
 			bec var7 = var1.p(var5);
-			return Math.max(var6, var7.getBlock() == Blocks.af ? ((Integer) var7.b(BlockRedstoneWire.O)).intValue() : 0);
+			return Math.max(var6, var7.getBlock() == Blocks.REDSTONE_WIRE ? ((Integer) var7.b(BlockRedstoneWire.O)).intValue() : 0);
 		}
 	}
 
@@ -118,7 +118,7 @@ public abstract class ava extends avb {
 	protected int c(ard var1, Position var2, PaintingDirection var3) {
 		bec var4 = var1.p(var2);
 		Block var5 = var4.getBlock();
-		return this.c(var5) ? (var5 == Blocks.af ? ((Integer) var4.b(BlockRedstoneWire.O)).intValue() : var1.a(var2, var3)) : 0;
+		return this.c(var5) ? (var5 == Blocks.REDSTONE_WIRE ? ((Integer) var4.b(BlockRedstoneWire.O)).intValue() : var1.a(var2, var3)) : 0;
 	}
 
 	public boolean g() {
@@ -174,7 +174,7 @@ public abstract class ava extends avb {
 	}
 
 	public static boolean d(Block var0) {
-		return Blocks.bb.e(var0) || Blocks.cj.e(var0);
+		return Blocks.UNPOWERED_REPEATER.e(var0) || Blocks.UNPOWERED_COMPARATOR.e(var0);
 	}
 
 	public boolean e(Block var1) {
