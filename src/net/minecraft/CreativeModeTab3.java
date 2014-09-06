@@ -2,7 +2,7 @@ package net.minecraft;
 
 final class CreativeModeTab3 extends CreativeModeTab {
 
-	CreativeModeTab3(int var1, String var2) {
-		super(var1, var2);
+	CreativeModeTab3(int id, String name) {
+		super(id, name);
 	}
 }
