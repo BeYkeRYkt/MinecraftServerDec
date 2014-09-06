@@ -3,7 +3,7 @@ package net.minecraft;
 public class akc extends Item {
 
 	public akc() {
-		this.a(CreativeModeTab.e);
+		this.setCreativeModeTab(CreativeModeTab.TRANSPORTATION);
 		this.c(1);
 		this.d(25);
 	}
@@ -15,7 +15,7 @@ public class akc extends Item {
 				var4.ck().g();
 				var1.a(7, (EntityLiving) var3);
 				if (var1.b == 0) {
-					ItemStack var5 = new ItemStack(amk.aR);
+					ItemStack var5 = new ItemStack(Items.aR);
 					var5.d(var1.getTag());
 					return var5;
 				}

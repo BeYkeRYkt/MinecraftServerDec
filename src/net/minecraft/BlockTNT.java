@@ -7,7 +7,7 @@ public class BlockTNT extends Block {
 	public BlockTNT() {
 		super(Material.TNT);
 		this.j(this.L.b().a(a, Boolean.valueOf(false)));
-		this.a(CreativeModeTab.d);
+		this.a(CreativeModeTab.REDSTONE);
 	}
 
 	public void c(World var1, Position var2, bec var3) {
@@ -53,10 +53,10 @@ public class BlockTNT extends Block {
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (var4.bY() != null) {
 			Item var9 = var4.bY().getItem();
-			if (var9 == amk.d || var9 == amk.bL) {
+			if (var9 == Items.d || var9 == Items.bL) {
 				this.a(var1, var2, var3.a(a, Boolean.valueOf(true)), (EntityLiving) var4);
 				var1.g(var2);
-				if (var9 == amk.d) {
+				if (var9 == Items.d) {
 					var4.bY().a(1, (EntityLiving) var4);
 				} else if (!var4.by.instabuild) {
 					--var4.bY().b;

@@ -15,7 +15,7 @@ public class BlockCobbleWall extends Block {
 		this.c(var1.w);
 		this.b(var1.x / 3.0F);
 		this.a(var1.H);
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public boolean d() {
@@ -77,7 +77,7 @@ public class BlockCobbleWall extends Block {
 
 	public boolean e(ard var1, Position var2) {
 		Block var3 = var1.p(var2).getBlock();
-		return var3 == aty.cv ? false : (var3 != this && !(var3 instanceof BlockFenceGate) ? (var3.material.k() && var3.d() ? var3.material != Material.PUMPKIN : false) : true);
+		return var3 == Blocks.cv ? false : (var3 != this && !(var3 instanceof BlockFenceGate) ? (var3.material.k() && var3.d() ? var3.material != Material.PUMPKIN : false) : true);
 	}
 
 	public int a(bec var1) {

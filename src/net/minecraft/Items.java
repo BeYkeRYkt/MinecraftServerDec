@@ -1,13 +1,13 @@
 package net.minecraft;
 
-public class amk {
+public class Items {
 
-	public static final Item a;
+	public static final Item IRON_PICKAXE;
 	public static final Item b;
 	public static final Item c;
 	public static final Item d;
 	public static final Item e;
-	public static final ajz f;
+	public static final ItemBow f;
 	public static final Item g;
 	public static final Item h;
 	public static final Item i;
@@ -44,26 +44,26 @@ public class amk {
 	public static final Item N;
 	public static final Item O;
 	public static final Item P;
-	public static final ajn Q;
-	public static final ajn R;
-	public static final ajn S;
-	public static final ajn T;
-	public static final ajn U;
-	public static final ajn V;
-	public static final ajn W;
-	public static final ajn X;
-	public static final ajn Y;
-	public static final ajn Z;
-	public static final ajn aa;
-	public static final ajn ab;
-	public static final ajn ac;
-	public static final ajn ad;
-	public static final ajn ae;
-	public static final ajn af;
-	public static final ajn ag;
-	public static final ajn ah;
-	public static final ajn ai;
-	public static final ajn aj;
+	public static final ItemArmor Q;
+	public static final ItemArmor R;
+	public static final ItemArmor S;
+	public static final ItemArmor T;
+	public static final ItemArmor U;
+	public static final ItemArmor V;
+	public static final ItemArmor W;
+	public static final ItemArmor X;
+	public static final ItemArmor Y;
+	public static final ItemArmor Z;
+	public static final ItemArmor aa;
+	public static final ItemArmor ab;
+	public static final ItemArmor ac;
+	public static final ItemArmor ad;
+	public static final ItemArmor ae;
+	public static final ItemArmor af;
+	public static final ItemArmor ag;
+	public static final ItemArmor ah;
+	public static final ItemArmor ai;
+	public static final ItemArmor aj;
 	public static final Item ak;
 	public static final Item al;
 	public static final Item am;
@@ -97,7 +97,7 @@ public class amk {
 	public static final Item aO;
 	public static final Item aP;
 	public static final Item aQ;
-	public static final alj aR;
+	public static final ItemFishingRod aR;
 	public static final Item aS;
 	public static final Item aT;
 	public static final Item aU;
@@ -191,19 +191,19 @@ public class amk {
 	public static final Item cE;
 
 	private static Item a(String var0) {
-		return (Item) Item.REGISTRY.getByName(new BlockNameInfo(var0));
+		return (Item) Item.REGISTRY.getByName(new RegistryObjectName(var0));
 	}
 
 	static {
 		if (!od.a()) {
 			throw new RuntimeException("Accessed Items before Bootstrap!");
 		} else {
-			a = a("iron_shovel");
+			IRON_PICKAXE = a("iron_shovel");
 			b = a("iron_pickaxe");
 			c = a("iron_axe");
 			d = a("flint_and_steel");
 			e = a("apple");
-			f = (ajz) a("bow");
+			f = (ItemBow) a("bow");
 			g = a("arrow");
 			h = a("coal");
 			i = a("diamond");
@@ -240,26 +240,26 @@ public class amk {
 			N = a("wheat_seeds");
 			O = a("wheat");
 			P = a("bread");
-			Q = (ajn) a("leather_helmet");
-			R = (ajn) a("leather_chestplate");
-			S = (ajn) a("leather_leggings");
-			T = (ajn) a("leather_boots");
-			U = (ajn) a("chainmail_helmet");
-			V = (ajn) a("chainmail_chestplate");
-			W = (ajn) a("chainmail_leggings");
-			X = (ajn) a("chainmail_boots");
-			Y = (ajn) a("iron_helmet");
-			Z = (ajn) a("iron_chestplate");
-			aa = (ajn) a("iron_leggings");
-			ab = (ajn) a("iron_boots");
-			ac = (ajn) a("diamond_helmet");
-			ad = (ajn) a("diamond_chestplate");
-			ae = (ajn) a("diamond_leggings");
-			af = (ajn) a("diamond_boots");
-			ag = (ajn) a("golden_helmet");
-			ah = (ajn) a("golden_chestplate");
-			ai = (ajn) a("golden_leggings");
-			aj = (ajn) a("golden_boots");
+			Q = (ItemArmor) a("leather_helmet");
+			R = (ItemArmor) a("leather_chestplate");
+			S = (ItemArmor) a("leather_leggings");
+			T = (ItemArmor) a("leather_boots");
+			U = (ItemArmor) a("chainmail_helmet");
+			V = (ItemArmor) a("chainmail_chestplate");
+			W = (ItemArmor) a("chainmail_leggings");
+			X = (ItemArmor) a("chainmail_boots");
+			Y = (ItemArmor) a("iron_helmet");
+			Z = (ItemArmor) a("iron_chestplate");
+			aa = (ItemArmor) a("iron_leggings");
+			ab = (ItemArmor) a("iron_boots");
+			ac = (ItemArmor) a("diamond_helmet");
+			ad = (ItemArmor) a("diamond_chestplate");
+			ae = (ItemArmor) a("diamond_leggings");
+			af = (ItemArmor) a("diamond_boots");
+			ag = (ItemArmor) a("golden_helmet");
+			ah = (ItemArmor) a("golden_chestplate");
+			ai = (ItemArmor) a("golden_leggings");
+			aj = (ItemArmor) a("golden_boots");
 			ak = a("flint");
 			al = a("porkchop");
 			am = a("cooked_porkchop");
@@ -293,7 +293,7 @@ public class amk {
 			aO = a("furnace_minecart");
 			aP = a("egg");
 			aQ = a("compass");
-			aR = (alj) a("fishing_rod");
+			aR = (ItemFishingRod) a("fishing_rod");
 			aS = a("clock");
 			aT = a("glowstone_dust");
 			aU = a("fish");

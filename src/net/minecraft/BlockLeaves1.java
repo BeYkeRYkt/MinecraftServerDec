@@ -2,7 +2,7 @@ package net.minecraft;
 
 import com.google.common.base.Predicate;
 
-public class BlockLeaves1 extends axg {
+public class BlockLeaves1 extends BlockLeaves {
 
 	public static final bev P = bev.a("variant", ayx.class, (Predicate) (new ayq()));
 
@@ -12,7 +12,7 @@ public class BlockLeaves1 extends axg {
 
 	protected void a(World var1, Position var2, bec var3, int var4) {
 		if (var3.b(P) == ayx.a && var1.s.nextInt(var4) == 0) {
-			a(var1, var2, new ItemStack(amk.e, 1, 0));
+			a(var1, var2, new ItemStack(Items.e, 1, 0));
 		}
 
 	}
@@ -56,7 +56,7 @@ public class BlockLeaves1 extends axg {
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
-		if (!var1.D && var2.bY() != null && var2.bY().getItem() == amk.be) {
+		if (!var1.D && var2.bY() != null && var2.bY().getItem() == Items.be) {
 			var2.b(StatisticList.H[Block.a((Block) this)]);
 			a(var1, var3, new ItemStack(Item.getItemOf((Block) this), 1, ((ayx) var4.b(P)).a()));
 		} else {

@@ -6,7 +6,7 @@ public class ajw extends Item {
 
 	public ajw() {
 		this.maxStackSize = 1;
-		this.a(CreativeModeTab.e);
+		this.setCreativeModeTab(CreativeModeTab.TRANSPORTATION);
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
@@ -50,7 +50,7 @@ public class ajw extends Item {
 			} else {
 				if (var24.a == brv.b) {
 					Position var33 = var24.a();
-					if (var2.p(var33).getBlock() == aty.aH) {
+					if (var2.p(var33).getBlock() == Blocks.aH) {
 						var33 = var33.b();
 					}
 

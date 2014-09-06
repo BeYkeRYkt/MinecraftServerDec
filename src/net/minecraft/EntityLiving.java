@@ -69,7 +69,7 @@ public abstract class EntityLiving extends Entity {
 	private float bm;
 
 	public void G() {
-		this.a(wh.j, Float.MAX_VALUE);
+		this.a(DamageSource.j, Float.MAX_VALUE);
 	}
 
 	public EntityLiving(World var1) {
@@ -132,11 +132,11 @@ public abstract class EntityLiving extends Entity {
 		boolean var1 = this instanceof EntityHuman;
 		if (this.ai()) {
 			if (this.aj()) {
-				this.a(wh.e, 1.0F);
+				this.a(DamageSource.e, 1.0F);
 			} else if (var1 && !this.o.af().a(this.aQ())) {
 				double var2 = this.o.af().a((Entity) this) + this.o.af().m();
 				if (var2 < 0.0D) {
-					this.a(wh.e, (float) Math.max(1, DataTypesConverter.toFixedPointInt(-var2 * this.o.af().n())));
+					this.a(DamageSource.e, (float) Math.max(1, DataTypesConverter.toFixedPointInt(-var2 * this.o.af().n())));
 				}
 			}
 		}
@@ -159,7 +159,7 @@ public abstract class EntityLiving extends Entity {
 						this.o.a(Particle.e, this.locationX + (double) var4, this.locationY + (double) var5, this.locationZ + (double) var6, this.motionX, this.motionY, this.motionZ, new int[0]);
 					}
 
-					this.a(wh.f, 2.0F);
+					this.a(DamageSource.f, 2.0F);
 				}
 			}
 
@@ -490,7 +490,7 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public boolean d(MobEffect var1) {
-		if (this.by() == xs.b) {
+		if (this.by() == EnumMonsterType.b) {
 			int var2 = var1.getId();
 			if (var2 == MobEffectList.l.H || var2 == MobEffectList.u.H) {
 				return false;
@@ -501,7 +501,7 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public boolean bl() {
-		return this.by() == xs.b;
+		return this.by() == EnumMonsterType.b;
 	}
 
 	public void m(int var1) {
@@ -553,7 +553,7 @@ public abstract class EntityLiving extends Entity {
 		this.dataWatcher.b(6, Float.valueOf(DataTypesConverter.a(var1, 0.0F, this.bt())));
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else if (this.o.D) {
@@ -565,7 +565,7 @@ public abstract class EntityLiving extends Entity {
 			} else if (var1.o() && this.a(MobEffectList.n)) {
 				return false;
 			} else {
-				if ((var1 == wh.n || var1 == wh.o) && this.p(4) != null) {
+				if ((var1 == DamageSource.n || var1 == DamageSource.o) && this.p(4) != null) {
 					this.p(4).a((int) (var2 * 4.0F + this.V.nextFloat() * var2 * 2.0F), this);
 					var2 *= 0.75F;
 				}
@@ -608,7 +608,7 @@ public abstract class EntityLiving extends Entity {
 
 				if (var3) {
 					this.o.a((Entity) this, (byte) 2);
-					if (var1 != wh.f) {
+					if (var1 != DamageSource.f) {
 						this.ac();
 					}
 
@@ -664,7 +664,7 @@ public abstract class EntityLiving extends Entity {
 
 	}
 
-	public void a(wh var1) {
+	public void a(DamageSource var1) {
 		Entity var2 = var1.j();
 		EntityLiving var3 = this.bs();
 		if (this.aU >= 0 && var3 != null) {
@@ -735,7 +735,7 @@ public abstract class EntityLiving extends Entity {
 		int var2 = DataTypesConverter.toFixedPointInt(this.aQ().b);
 		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
 		Block var4 = this.o.p(new Position(var1, var2, var3)).getBlock();
-		return (var4 == aty.au || var4 == aty.bn) && (!(this instanceof EntityHuman) || !((EntityHuman) this).v());
+		return (var4 == Blocks.au || var4 == Blocks.bn) && (!(this instanceof EntityHuman) || !((EntityHuman) this).v());
 	}
 
 	public boolean ai() {
@@ -749,7 +749,7 @@ public abstract class EntityLiving extends Entity {
 		int var5 = DataTypesConverter.f((var1 - 3.0F - var4) * var2);
 		if (var5 > 0) {
 			this.a(this.n(var5), 1.0F, 1.0F);
-			this.a(wh.i, (float) var5);
+			this.a(DamageSource.i, (float) var5);
 			int var6 = DataTypesConverter.toFixedPointInt(this.locationX);
 			int var7 = DataTypesConverter.toFixedPointInt(this.locationY - 0.20000000298023224D);
 			int var8 = DataTypesConverter.toFixedPointInt(this.locationZ);
@@ -773,8 +773,8 @@ public abstract class EntityLiving extends Entity {
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			ItemStack var5 = var2[var4];
-			if (var5 != null && var5.getItem() instanceof ajn) {
-				int var6 = ((ajn) var5.getItem()).c;
+			if (var5 != null && var5.getItem() instanceof ItemArmor) {
+				int var6 = ((ItemArmor) var5.getItem()).c;
 				var1 += var6;
 			}
 		}
@@ -785,7 +785,7 @@ public abstract class EntityLiving extends Entity {
 	protected void i(float var1) {
 	}
 
-	protected float b(wh var1, float var2) {
+	protected float b(DamageSource var1, float var2) {
 		if (!var1.e()) {
 			int var3 = 25 - this.bq();
 			float var4 = var2 * (float) var3;
@@ -796,14 +796,14 @@ public abstract class EntityLiving extends Entity {
 		return var2;
 	}
 
-	protected float c(wh var1, float var2) {
+	protected float c(DamageSource var1, float var2) {
 		if (var1.h()) {
 			return var2;
 		} else {
 			int var3;
 			int var4;
 			float var5;
-			if (this.a(MobEffectList.m) && var1 != wh.j) {
+			if (this.a(MobEffectList.m) && var1 != DamageSource.j) {
 				var3 = (this.b(MobEffectList.m).getAmplifier() + 1) * 5;
 				var4 = 25 - var3;
 				var5 = var2 * (float) var4;
@@ -829,7 +829,7 @@ public abstract class EntityLiving extends Entity {
 		}
 	}
 
-	protected void d(wh var1, float var2) {
+	protected void d(DamageSource var1, float var2) {
 		if (!this.b(var1)) {
 			var2 = this.b(var1, var2);
 			var2 = this.c(var1, var2);
@@ -881,7 +881,7 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	protected void O() {
-		this.a(wh.j, 4.0F);
+		this.a(DamageSource.j, 4.0F);
 	}
 
 	protected void bw() {
@@ -911,8 +911,8 @@ public abstract class EntityLiving extends Entity {
 		return this.c;
 	}
 
-	public xs by() {
-		return xs.a;
+	public EnumMonsterType by() {
+		return EnumMonsterType.a;
 	}
 
 	public abstract ItemStack bz();

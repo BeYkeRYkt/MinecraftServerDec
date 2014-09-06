@@ -9,7 +9,7 @@ public class EntityEnderPearl extends ahr {
 	protected void a(bru var1) {
 		EntityLiving var2 = this.n();
 		if (var1.d != null) {
-			var1.d.a(wh.a((Entity) this, var2), 0.0F);
+			var1.d.a(DamageSource.a((Entity) this, var2), 0.0F);
 		}
 
 		for (int var3 = 0; var3 < 32; ++var3) {
@@ -33,7 +33,7 @@ public class EntityEnderPearl extends ahr {
 
 					var2.a(this.locationX, this.locationY, this.locationZ);
 					var2.O = 0.0F;
-					var2.a(wh.i, 5.0F);
+					var2.a(DamageSource.i, 5.0F);
 				}
 			}
 

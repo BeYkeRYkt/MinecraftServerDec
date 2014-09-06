@@ -75,7 +75,7 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 				boolean var2 = false;
 
 				for (int var3 = 0; var3 < 3; ++var3) {
-					if (this.g[var3] != null && this.g[var3].getItem() == amk.bz) {
+					if (this.g[var3] != null && this.g[var3].getItem() == Items.bz) {
 						int var4 = this.g[var3].i();
 						int var5 = this.c(var4, var1);
 						if (!amw.f(var4) && amw.f(var5)) {
@@ -83,8 +83,8 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 							break;
 						}
 
-						List var6 = amk.bz.e(var4);
-						List var7 = amk.bz.e(var5);
+						List var6 = Items.bz.e(var4);
+						List var7 = Items.bz.e(var5);
 						if ((var4 <= 0 || var6 != var7) && (var6 == null || !var6.equals(var7) && var7 != null) && var4 != var5) {
 							var2 = true;
 							break;
@@ -104,11 +104,11 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 			ItemStack var1 = this.g[3];
 
 			for (int var2 = 0; var2 < 3; ++var2) {
-				if (this.g[var2] != null && this.g[var2].getItem() == amk.bz) {
+				if (this.g[var2] != null && this.g[var2].getItem() == Items.bz) {
 					int var3 = this.g[var2].i();
 					int var4 = this.c(var3, var1);
-					List var5 = amk.bz.e(var3);
-					List var6 = amk.bz.e(var4);
+					List var5 = Items.bz.e(var3);
+					List var6 = Items.bz.e(var4);
 					if ((var3 <= 0 || var5 != var6) && (var5 == null || !var5.equals(var6) && var6 != null)) {
 						if (var3 != var4) {
 							this.g[var2].b(var4);
@@ -222,7 +222,7 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 	}
 
 	public boolean b(int var1, ItemStack var2) {
-		return var1 == 3 ? var2.getItem().l(var2) : var2.getItem() == amk.bz || var2.getItem() == amk.bA;
+		return var1 == 3 ? var2.getItem().l(var2) : var2.getItem() == Items.bz || var2.getItem() == Items.bA;
 	}
 
 	public boolean[] m() {

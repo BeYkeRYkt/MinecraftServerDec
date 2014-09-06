@@ -14,7 +14,7 @@ public class BlockTrapdoor extends Block {
 		float var2 = 0.5F;
 		float var3 = 1.0F;
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-		this.a(CreativeModeTab.d);
+		this.a(CreativeModeTab.REDSTONE);
 	}
 
 	public boolean c() {
@@ -155,7 +155,7 @@ public class BlockTrapdoor extends Block {
 	}
 
 	private static boolean c(Block var0) {
-		return var0.material.k() && var0.d() || var0 == aty.aX || var0 instanceof BlockStepAbstract || var0 instanceof BlockStairs;
+		return var0.material.k() && var0.d() || var0 == Blocks.aX || var0 instanceof BlockStepAbstract || var0 instanceof BlockStairs;
 	}
 
 	public bec a(int var1) {

@@ -6,7 +6,7 @@ public class bgk {
 	private final bec b;
 
 	public bgk() {
-		this.b = aty.a.P();
+		this.b = Blocks.AIR.P();
 	}
 
 	public bec a(int var1, int var2, int var3) {

@@ -329,7 +329,7 @@ public abstract class AbstractCommand implements CommandInterface {
 	}
 
 	public static Item f(CommandSenderInterface var0, String var1) throws dk {
-		BlockNameInfo var2 = new BlockNameInfo(var1);
+		RegistryObjectName var2 = new RegistryObjectName(var1);
 		Item var3 = (Item) Item.REGISTRY.getByName(var2);
 		if (var3 == null) {
 			throw new dk("commands.give.notFound", new Object[] { var2 });
@@ -339,7 +339,7 @@ public abstract class AbstractCommand implements CommandInterface {
 	}
 
 	public static Block g(CommandSenderInterface var0, String var1) throws dk {
-		BlockNameInfo var2 = new BlockNameInfo(var1);
+		RegistryObjectName var2 = new RegistryObjectName(var1);
 		if (!Block.BLOCKREGISTRY.d(var2)) {
 			throw new dk("commands.give.notFound", new Object[] { var2 });
 		} else {
@@ -440,7 +440,7 @@ public abstract class AbstractCommand implements CommandInterface {
 
 				while (var4.hasNext()) {
 					Object var6 = var4.next();
-					if (var6 instanceof BlockNameInfo && startWith(var2, ((BlockNameInfo) var6).getBlockName())) {
+					if (var6 instanceof RegistryObjectName && startWith(var2, ((RegistryObjectName) var6).getBlockName())) {
 						var3.add(String.valueOf(var6));
 					}
 				}

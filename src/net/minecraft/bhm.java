@@ -12,8 +12,8 @@ public class bhm extends bhp {
 
 		for (int var5 = 0; var5 < 4; ++var5) {
 			Position var6 = var3.a(var2.nextInt(8) - var2.nextInt(8), var2.nextInt(4) - var2.nextInt(4), var2.nextInt(8) - var2.nextInt(8));
-			if (var1.d(var6) && aty.I.f(var1, var6, aty.I.P())) {
-				var1.a(var6, aty.I.P(), 2);
+			if (var1.d(var6) && Blocks.DEADBUSH.f(var1, var6, Blocks.DEADBUSH.P())) {
+				var1.a(var6, Blocks.DEADBUSH.P(), 2);
 			}
 		}
 

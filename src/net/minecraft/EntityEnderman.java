@@ -63,7 +63,7 @@ public class EntityEnderman extends EntityMonster {
 
 	private boolean c(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.armor[3];
-		if (var2 != null && var2.getItem() == Item.getItemOf(aty.aU)) {
+		if (var2 != null && var2.getItem() == Item.getItemOf(Blocks.aU)) {
 			return false;
 		} else {
 			Vec3D var3 = var1.d(1.0F).a();
@@ -92,7 +92,7 @@ public class EntityEnderman extends EntityMonster {
 
 	protected void E() {
 		if (this.U()) {
-			this.a(wh.f, 1.0F);
+			this.a(DamageSource.f, 1.0F);
 		}
 
 		if (this.cm() && !this.bl && this.V.nextInt(100) == 0) {
@@ -196,7 +196,7 @@ public class EntityEnderman extends EntityMonster {
 	}
 
 	protected Item A() {
-		return amk.bu;
+		return Items.bu;
 	}
 
 	protected void b(boolean var1, int var2) {
@@ -219,7 +219,7 @@ public class EntityEnderman extends EntityMonster {
 		return Block.d(this.dataWatcher.b(16) & '\uffff');
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
@@ -287,19 +287,19 @@ public class EntityEnderman extends EntityMonster {
 	}
 
 	static {
-		bk.add(aty.c);
-		bk.add(aty.d);
-		bk.add(aty.m);
-		bk.add(aty.n);
-		bk.add(aty.N);
-		bk.add(aty.O);
-		bk.add(aty.P);
-		bk.add(aty.Q);
-		bk.add(aty.W);
-		bk.add(aty.aK);
-		bk.add(aty.aL);
-		bk.add(aty.aU);
-		bk.add(aty.bk);
-		bk.add(aty.bw);
+		bk.add(Blocks.GRASS);
+		bk.add(Blocks.DIRT);
+		bk.add(Blocks.SAND);
+		bk.add(Blocks.GRAVEL);
+		bk.add(Blocks.YELLOW_FLOWER);
+		bk.add(Blocks.RED_FLOWER);
+		bk.add(Blocks.BRWON_MUSHROOM);
+		bk.add(Blocks.RED_MUSHROOM);
+		bk.add(Blocks.TNT);
+		bk.add(Blocks.aK);
+		bk.add(Blocks.aL);
+		bk.add(Blocks.aU);
+		bk.add(Blocks.bk);
+		bk.add(Blocks.bw);
 	}
 }

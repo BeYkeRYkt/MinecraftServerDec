@@ -10,7 +10,7 @@ public enum awc {
 	}
 
 	public avy a() {
-		return this == a ? aty.N : aty.O;
+		return this == a ? Blocks.YELLOW_FLOWER : Blocks.RED_FLOWER;
 	}
 
 }

@@ -7,7 +7,7 @@ public class BlockStainedGlassPane extends BlockThin {
 	public BlockStainedGlassPane() {
 		super(Material.SHATTERABLE, false);
 		this.j(this.L.b().a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false)).a(a, akv.a));
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	public int a(bec var1) {

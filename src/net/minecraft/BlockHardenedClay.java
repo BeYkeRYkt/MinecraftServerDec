@@ -4,7 +4,7 @@ public class BlockHardenedClay extends Block {
 
 	public BlockHardenedClay() {
 		super(Material.STONE);
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public MaterialMapColor g(bec var1) {

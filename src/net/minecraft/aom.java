@@ -3,7 +3,7 @@ package net.minecraft;
 public class aom extends aos {
 
 	public aom() {
-		super(3, 3, new ItemStack[] { new ItemStack(amk.aK), new ItemStack(amk.aK), new ItemStack(amk.aK), new ItemStack(amk.aK), new ItemStack(amk.bd, 0, 32767), new ItemStack(amk.aK), new ItemStack(amk.aK), new ItemStack(amk.aK), new ItemStack(amk.aK) }, new ItemStack(amk.bV, 0, 0));
+		super(3, 3, new ItemStack[] { new ItemStack(Items.aK), new ItemStack(Items.aK), new ItemStack(Items.aK), new ItemStack(Items.aK), new ItemStack(Items.bd, 0, 32767), new ItemStack(Items.aK), new ItemStack(Items.aK), new ItemStack(Items.aK), new ItemStack(Items.aK) }, new ItemStack(Items.bV, 0, 0));
 	}
 
 	public boolean a(ain var1, World var2) {
@@ -14,7 +14,7 @@ public class aom extends aos {
 
 			for (int var4 = 0; var4 < var1.n_() && var3 == null; ++var4) {
 				ItemStack var5 = var1.a(var4);
-				if (var5 != null && var5.getItem() == amk.bd) {
+				if (var5 != null && var5.getItem() == Items.bd) {
 					var3 = var5;
 				}
 			}
@@ -22,7 +22,7 @@ public class aom extends aos {
 			if (var3 == null) {
 				return false;
 			} else {
-				bqe var6 = amk.bd.a(var3, var2);
+				bqe var6 = Items.bd.a(var3, var2);
 				return var6 == null ? false : var6.e < 4;
 			}
 		}
@@ -33,7 +33,7 @@ public class aom extends aos {
 
 		for (int var3 = 0; var3 < var1.n_() && var2 == null; ++var3) {
 			ItemStack var4 = var1.a(var3);
-			if (var4 != null && var4.getItem() == amk.bd) {
+			if (var4 != null && var4.getItem() == Items.bd) {
 				var2 = var4;
 			}
 		}

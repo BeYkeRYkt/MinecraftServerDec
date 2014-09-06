@@ -386,8 +386,8 @@ public class PlayerInventory implements IInventory {
 		int var1 = 0;
 
 		for (int var2 = 0; var2 < this.armor.length; ++var2) {
-			if (this.armor[var2] != null && this.armor[var2].getItem() instanceof ajn) {
-				int var3 = ((ajn) this.armor[var2].getItem()).c;
+			if (this.armor[var2] != null && this.armor[var2].getItem() instanceof ItemArmor) {
+				int var3 = ((ItemArmor) this.armor[var2].getItem()).c;
 				var1 += var3;
 			}
 		}
@@ -402,7 +402,7 @@ public class PlayerInventory implements IInventory {
 		}
 
 		for (int var2 = 0; var2 < this.armor.length; ++var2) {
-			if (this.armor[var2] != null && this.armor[var2].getItem() instanceof ajn) {
+			if (this.armor[var2] != null && this.armor[var2].getItem() instanceof ItemArmor) {
 				this.armor[var2].a((int) var1, (EntityLiving) this.d);
 				if (this.armor[var2].b == 0) {
 					this.armor[var2] = null;

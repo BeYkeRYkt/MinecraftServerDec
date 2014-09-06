@@ -55,7 +55,7 @@ public class TileEntityPiston extends TileEntity implements pm {
 			--var1;
 		}
 
-		brt var3 = aty.M.a(this.world, this.position, this.a, var1, this.f);
+		brt var3 = Blocks.PISTON_EXTENSION.a(this.world, this.position, this.a, var1, this.f);
 		if (var3 != null) {
 			List var4 = this.world.b((Entity) null, var3);
 			if (!var4.isEmpty()) {
@@ -64,7 +64,7 @@ public class TileEntityPiston extends TileEntity implements pm {
 
 				while (var5.hasNext()) {
 					Entity var6 = (Entity) var5.next();
-					if (this.a.getBlock() == aty.cE && this.g) {
+					if (this.a.getBlock() == Blocks.cE && this.g) {
 						switch (bdw.a[this.f.k().ordinal()]) {
 							case 1:
 								var6.motionX = (double) this.f.g();
@@ -91,7 +91,7 @@ public class TileEntityPiston extends TileEntity implements pm {
 			this.j = this.i = 1.0F;
 			this.world.t(this.position);
 			this.y();
-			if (this.world.p(this.position).getBlock() == aty.M) {
+			if (this.world.p(this.position).getBlock() == Blocks.PISTON_EXTENSION) {
 				this.world.a(this.position, this.a, 3);
 				this.world.d(this.position, this.a.getBlock());
 			}
@@ -105,7 +105,7 @@ public class TileEntityPiston extends TileEntity implements pm {
 			this.a(1.0F, 0.25F);
 			this.world.t(this.position);
 			this.y();
-			if (this.world.p(this.position).getBlock() == aty.M) {
+			if (this.world.p(this.position).getBlock() == Blocks.PISTON_EXTENSION) {
 				this.world.a(this.position, this.a, 3);
 				this.world.d(this.position, this.a.getBlock());
 			}

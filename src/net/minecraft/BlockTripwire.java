@@ -39,7 +39,7 @@ public class BlockTripwire extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return amk.F;
+		return Items.F;
 	}
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
@@ -78,7 +78,7 @@ public class BlockTripwire extends Block {
 
 	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
 		if (!var1.D) {
-			if (var4.bY() != null && var4.bY().getItem() == amk.be) {
+			if (var4.bY() != null && var4.bY().getItem() == Items.be) {
 				var1.a(var2, var3.a(N, Boolean.valueOf(true)), 4);
 			}
 
@@ -98,11 +98,11 @@ public class BlockTripwire extends Block {
 				if (var8 < 42) {
 					Position var9 = var2.a(var7, var8);
 					bec var10 = var1.p(var9);
-					if (var10.getBlock() == aty.bR) {
+					if (var10.getBlock() == Blocks.bR) {
 						if (var10.b(BlockTripwireHook.a) == var7.d()) {
-							aty.bR.a(var1, var9, var10, false, true, var8, var3);
+							Blocks.bR.a(var1, var9, var10, false, true, var8, var3);
 						}
-					} else if (var10.getBlock() == aty.bS) {
+					} else if (var10.getBlock() == Blocks.bS) {
 						++var8;
 						continue;
 					}
@@ -167,10 +167,10 @@ public class BlockTripwire extends Block {
 		Position var4 = var1.a(var3);
 		bec var5 = var0.p(var4);
 		Block var6 = var5.getBlock();
-		if (var6 == aty.bR) {
+		if (var6 == Blocks.bR) {
 			PaintingDirection var9 = var3.d();
 			return var5.b(BlockTripwireHook.a) == var9;
-		} else if (var6 == aty.bS) {
+		} else if (var6 == Blocks.bS) {
 			boolean var7 = ((Boolean) var2.b(b)).booleanValue();
 			boolean var8 = ((Boolean) var5.b(b)).booleanValue();
 			return var7 == var8;

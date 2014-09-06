@@ -24,7 +24,7 @@ public class anp extends ann {
 				Position var6 = var5.a();
 				bec var7 = var2.p(var5);
 				if (var7.getBlock().r() == Material.WATER && ((Integer) var7.b(axl.b)).intValue() == 0 && var2.d(var6)) {
-					var2.a(var6, aty.bx.P());
+					var2.a(var6, Blocks.bx.P());
 					if (!var3.by.instabuild) {
 						--var1.b;
 					}

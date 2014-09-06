@@ -17,7 +17,7 @@ public class BlockRedstoneComparator extends ava implements avs {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return amk.ce;
+		return Items.ce;
 	}
 
 	protected int d(bec var1) {
@@ -28,14 +28,14 @@ public class BlockRedstoneComparator extends ava implements avs {
 		Boolean var2 = (Boolean) var1.b(a);
 		aur var3 = (aur) var1.b(b);
 		PaintingDirection var4 = (PaintingDirection) var1.b(N);
-		return aty.ck.P().a(N, var4).a(a, var2).a(b, var3);
+		return Blocks.ck.P().a(N, var4).a(a, var2).a(b, var3);
 	}
 
 	protected bec k(bec var1) {
 		Boolean var2 = (Boolean) var1.b(a);
 		aur var3 = (aur) var1.b(b);
 		PaintingDirection var4 = (PaintingDirection) var1.b(N);
-		return aty.cj.P().a(N, var4).a(a, var2).a(b, var3);
+		return Blocks.cj.P().a(N, var4).a(a, var2).a(b, var3);
 	}
 
 	protected boolean l(bec var1) {

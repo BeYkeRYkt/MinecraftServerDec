@@ -296,26 +296,26 @@ public abstract class EntityInsentient extends EntityLiving {
 			ItemStack var5 = this.p(var3);
 			if (var5 != null) {
 				if (var3 == 0) {
-					if (var2.getItem() instanceof anm && !(var5.getItem() instanceof anm)) {
+					if (var2.getItem() instanceof ItemSword && !(var5.getItem() instanceof ItemSword)) {
 						var4 = true;
-					} else if (var2.getItem() instanceof anm && var5.getItem() instanceof anm) {
-						anm var6 = (anm) var2.getItem();
-						anm var7 = (anm) var5.getItem();
+					} else if (var2.getItem() instanceof ItemSword && var5.getItem() instanceof ItemSword) {
+						ItemSword var6 = (ItemSword) var2.getItem();
+						ItemSword var7 = (ItemSword) var5.getItem();
 						if (var6.g() == var7.g()) {
 							var4 = var2.i() > var5.i() || var2.hasTag() && !var5.hasTag();
 						} else {
 							var4 = var6.g() > var7.g();
 						}
-					} else if (var2.getItem() instanceof ajz && var5.getItem() instanceof ajz) {
+					} else if (var2.getItem() instanceof ItemBow && var5.getItem() instanceof ItemBow) {
 						var4 = var2.hasTag() && !var5.hasTag();
 					} else {
 						var4 = false;
 					}
-				} else if (var2.getItem() instanceof ajn && !(var5.getItem() instanceof ajn)) {
+				} else if (var2.getItem() instanceof ItemArmor && !(var5.getItem() instanceof ItemArmor)) {
 					var4 = true;
-				} else if (var2.getItem() instanceof ajn && var5.getItem() instanceof ajn) {
-					ajn var8 = (ajn) var2.getItem();
-					ajn var10 = (ajn) var5.getItem();
+				} else if (var2.getItem() instanceof ItemArmor && var5.getItem() instanceof ItemArmor) {
+					ItemArmor var8 = (ItemArmor) var2.getItem();
+					ItemArmor var10 = (ItemArmor) var5.getItem();
 					if (var8.c == var10.c) {
 						var4 = var2.i() > var5.i() || var2.hasTag() && !var5.hasTag();
 					} else {
@@ -331,7 +331,7 @@ public abstract class EntityInsentient extends EntityLiving {
 					this.a(var5, 0.0F);
 				}
 
-				if (var2.getItem() == amk.i && var1.n() != null) {
+				if (var2.getItem() == Items.i && var1.n() != null) {
 					EntityHuman var9 = this.o.a(var1.n());
 					if (var9 != null) {
 						var9.b((Statistic) tl.x);
@@ -554,9 +554,9 @@ public abstract class EntityInsentient extends EntityLiving {
 	}
 
 	public static int c(ItemStack var0) {
-		if (var0.getItem() != Item.getItemOf(aty.aU) && var0.getItem() != amk.bX) {
-			if (var0.getItem() instanceof ajn) {
-				switch (((ajn) var0.getItem()).b) {
+		if (var0.getItem() != Item.getItemOf(Blocks.aU) && var0.getItem() != Items.bX) {
+			if (var0.getItem() instanceof ItemArmor) {
+				switch (((ItemArmor) var0.getItem()).b) {
 					case 0:
 						return 4;
 					case 1:
@@ -578,51 +578,51 @@ public abstract class EntityInsentient extends EntityLiving {
 		switch (var0) {
 			case 4:
 				if (var1 == 0) {
-					return amk.Q;
+					return Items.Q;
 				} else if (var1 == 1) {
-					return amk.ag;
+					return Items.ag;
 				} else if (var1 == 2) {
-					return amk.U;
+					return Items.U;
 				} else if (var1 == 3) {
-					return amk.Y;
+					return Items.Y;
 				} else if (var1 == 4) {
-					return amk.ac;
+					return Items.ac;
 				}
 			case 3:
 				if (var1 == 0) {
-					return amk.R;
+					return Items.R;
 				} else if (var1 == 1) {
-					return amk.ah;
+					return Items.ah;
 				} else if (var1 == 2) {
-					return amk.V;
+					return Items.V;
 				} else if (var1 == 3) {
-					return amk.Z;
+					return Items.Z;
 				} else if (var1 == 4) {
-					return amk.ad;
+					return Items.ad;
 				}
 			case 2:
 				if (var1 == 0) {
-					return amk.S;
+					return Items.S;
 				} else if (var1 == 1) {
-					return amk.ai;
+					return Items.ai;
 				} else if (var1 == 2) {
-					return amk.W;
+					return Items.W;
 				} else if (var1 == 3) {
-					return amk.aa;
+					return Items.aa;
 				} else if (var1 == 4) {
-					return amk.ae;
+					return Items.ae;
 				}
 			case 1:
 				if (var1 == 0) {
-					return amk.T;
+					return Items.T;
 				} else if (var1 == 1) {
-					return amk.aj;
+					return Items.aj;
 				} else if (var1 == 2) {
-					return amk.X;
+					return Items.X;
 				} else if (var1 == 3) {
-					return amk.ab;
+					return Items.ab;
 				} else if (var1 == 4) {
-					return amk.af;
+					return Items.af;
 				}
 			default:
 				return null;
@@ -679,7 +679,7 @@ public abstract class EntityInsentient extends EntityLiving {
 			return true;
 		} else {
 			ItemStack var2 = var1.playerInventory.getItemInHand();
-			if (var2 != null && var2.getItem() == amk.cn && this.ca()) {
+			if (var2 != null && var2.getItem() == Items.cn && this.ca()) {
 				if (!(this instanceof xx) || !((xx) this).cj()) {
 					this.a(var1, true);
 					--var2.b;
@@ -722,7 +722,7 @@ public abstract class EntityInsentient extends EntityLiving {
 			this.bm = false;
 			this.bn = null;
 			if (!this.o.D && var2) {
-				this.a(amk.cn, 1);
+				this.a(Items.cn, 1);
 			}
 
 			if (!this.o.D && var1 && this.o instanceof WorldServer) {

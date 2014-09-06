@@ -66,7 +66,7 @@ public class EntityBlaze extends EntityMonster {
 
 	protected void E() {
 		if (this.U()) {
-			this.a(wh.f, 1.0F);
+			this.a(DamageSource.f, 1.0F);
 		}
 
 		--this.c;
@@ -88,7 +88,7 @@ public class EntityBlaze extends EntityMonster {
 	}
 
 	protected Item A() {
-		return amk.bv;
+		return Items.bv;
 	}
 
 	public boolean au() {
@@ -100,7 +100,7 @@ public class EntityBlaze extends EntityMonster {
 			int var3 = this.V.nextInt(2 + var2);
 
 			for (int var4 = 0; var4 < var3; ++var4) {
-				this.a(amk.bv, 1);
+				this.a(Items.bv, 1);
 			}
 		}
 

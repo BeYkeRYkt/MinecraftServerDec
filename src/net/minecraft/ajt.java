@@ -3,7 +3,7 @@ package net.minecraft;
 public class ajt extends Item {
 
 	public ajt() {
-		this.a(CreativeModeTab.c);
+		this.setCreativeModeTab(CreativeModeTab.DECORATIONS);
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
@@ -28,7 +28,7 @@ public class ajt extends Item {
 			if (var2.a(var4, var5, var1) && var2.a(var14, var5, var1)) {
 				if (var16 && var17 && World.a((ard) var3, var4.b()) && World.a((ard) var3, var14.b())) {
 					int var18 = var13.toByte();
-					bec var19 = aty.C.P().a(BlockBed.b, Boolean.valueOf(false)).a(BlockBed.N, var13).a(BlockBed.a, atq.b);
+					bec var19 = Blocks.BED.P().a(BlockBed.b, Boolean.valueOf(false)).a(BlockBed.N, var13).a(BlockBed.a, atq.b);
 					if (var3.a(var4, var19, 3)) {
 						bec var20 = var19.a(BlockBed.a, atq.a);
 						var3.a(var14, var20, 3);

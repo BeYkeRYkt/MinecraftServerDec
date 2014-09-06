@@ -4,7 +4,7 @@ public class BlockWorkbench extends Block {
 
 	protected BlockWorkbench() {
 		super(Material.WOOD);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {

@@ -15,7 +15,7 @@ public class BlockNetherWart extends auc {
 	}
 
 	protected boolean c(Block var1) {
-		return var1 == aty.aW;
+		return var1 == Blocks.aW;
 	}
 
 	public boolean f(World var1, Position var2, bec var3) {
@@ -43,7 +43,7 @@ public class BlockNetherWart extends auc {
 			}
 
 			for (int var7 = 0; var7 < var6; ++var7) {
-				a(var1, var2, new ItemStack(amk.by));
+				a(var1, var2, new ItemStack(Items.by));
 			}
 
 		}

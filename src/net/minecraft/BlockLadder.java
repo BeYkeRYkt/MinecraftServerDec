@@ -10,7 +10,7 @@ public class BlockLadder extends Block {
 	protected BlockLadder() {
 		super(Material.ORIENTABLE);
 		this.j(this.L.b().a(a, PaintingDirection.c));
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	public brt a(World var1, Position var2, bec var3) {

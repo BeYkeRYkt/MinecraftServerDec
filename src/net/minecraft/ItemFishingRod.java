@@ -1,11 +1,11 @@
 package net.minecraft;
 
-public class alj extends Item {
+public class ItemFishingRod extends Item {
 
-	public alj() {
+	public ItemFishingRod() {
 		this.d(64);
 		this.c(1);
-		this.a(CreativeModeTab.i);
+		this.setCreativeModeTab(CreativeModeTab.TOOLS);
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {

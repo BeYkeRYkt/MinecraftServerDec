@@ -21,23 +21,23 @@ public class bib extends bic {
 			for (int var5 = 0; var5 < var4; ++var5) {
 				Block var6 = var1.p(var3.b(var5)).getBlock();
 				if (var6.r() == Material.AIR || var6.r() == Material.LEAVES) {
-					this.a(var1, var3.b(var5), aty.r, this.b);
+					this.a(var1, var3.b(var5), Blocks.LOG, this.b);
 				}
 
 				if (var5 < var4 - 1) {
 					var6 = var1.p(var3.a(1, var5, 0)).getBlock();
 					if (var6.r() == Material.AIR || var6.r() == Material.LEAVES) {
-						this.a(var1, var3.a(1, var5, 0), aty.r, this.b);
+						this.a(var1, var3.a(1, var5, 0), Blocks.LOG, this.b);
 					}
 
 					var6 = var1.p(var3.a(1, var5, 1)).getBlock();
 					if (var6.r() == Material.AIR || var6.r() == Material.LEAVES) {
-						this.a(var1, var3.a(1, var5, 1), aty.r, this.b);
+						this.a(var1, var3.a(1, var5, 1), Blocks.LOG, this.b);
 					}
 
 					var6 = var1.p(var3.a(0, var5, 1)).getBlock();
 					if (var6.r() == Material.AIR || var6.r() == Material.LEAVES) {
-						this.a(var1, var3.a(0, var5, 1), aty.r, this.b);
+						this.a(var1, var3.a(0, var5, 1), Blocks.LOG, this.b);
 					}
 				}
 			}
@@ -91,8 +91,8 @@ public class bib extends bic {
 		for (int var3 = 2; var3 >= -3; --var3) {
 			Position var4 = var2.b(var3);
 			Block var5 = var1.p(var4).getBlock();
-			if (var5 == aty.c || var5 == aty.d) {
-				this.a(var1, var4, aty.d, avd.c.a());
+			if (var5 == Blocks.GRASS || var5 == Blocks.DIRT) {
+				this.a(var1, var4, Blocks.DIRT, avd.c.a());
 				break;
 			}
 

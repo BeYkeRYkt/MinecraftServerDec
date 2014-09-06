@@ -40,7 +40,7 @@ public class bkt extends blb {
 		}
 
 		this.a(var1, var3, 6, 3, 6, 9, 6, 9, c, c, false);
-		this.a(var1, var3, 7, 4, 7, 8, 5, 8, aty.R.P(), aty.R.P(), false);
+		this.a(var1, var3, 7, 4, 7, 8, 5, 8, Blocks.GOLD_BLOCK.P(), Blocks.GOLD_BLOCK.P(), false);
 
 		for (var7 = 3; var7 <= 6; var7 += 3) {
 			for (int var8 = 6; var8 <= 9; var8 += 3) {

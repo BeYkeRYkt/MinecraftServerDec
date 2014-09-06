@@ -22,6 +22,6 @@ public class wj extends wi {
 		ItemStack var3 = this.r instanceof EntityLiving ? ((EntityLiving) this.r).bz() : null;
 		String var4 = "death.attack." + this.p;
 		String var5 = var4 + ".item";
-		return var3 != null && var3.s() && fi.c(var5) ? new hz(var5, new Object[] { var1.e_(), var2, var3.C() }) : new hz(var4, new Object[] { var1.e_(), var2 });
+		return var3 != null && var3.s() && LocaleI18n.c(var5) ? new hz(var5, new Object[] { var1.e_(), var2, var3.C() }) : new hz(var4, new Object[] { var1.e_(), var2 });
 	}
 }

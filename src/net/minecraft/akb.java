@@ -7,11 +7,11 @@ public class akb extends Item {
 	public akb(Block var1) {
 		this.maxStackSize = 1;
 		this.a = var1;
-		this.a(CreativeModeTab.f);
+		this.setCreativeModeTab(CreativeModeTab.MISC);
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
-		boolean var4 = this.a == aty.a;
+		boolean var4 = this.a == Blocks.AIR;
 		bru var5 = this.a(var2, var3, var4);
 		if (var5 == null) {
 			return var1;
@@ -32,17 +32,17 @@ public class akb extends Item {
 					if (var8 == Material.WATER && ((Integer) var7.b(axl.b)).intValue() == 0) {
 						var2.g(var6);
 						var3.b(StatisticList.J[Item.getId((Item) this)]);
-						return this.a(var1, var3, amk.ax);
+						return this.a(var1, var3, Items.ax);
 					}
 
 					if (var8 == Material.LAVA && ((Integer) var7.b(axl.b)).intValue() == 0) {
 						var2.g(var6);
 						var3.b(StatisticList.J[Item.getId((Item) this)]);
-						return this.a(var1, var3, amk.ay);
+						return this.a(var1, var3, Items.ay);
 					}
 				} else {
-					if (this.a == aty.a) {
-						return new ItemStack(amk.aw);
+					if (this.a == Blocks.AIR) {
+						return new ItemStack(Items.aw);
 					}
 
 					Position var9 = var6.a(var5.b);
@@ -52,7 +52,7 @@ public class akb extends Item {
 
 					if (this.a(var2, var9) && !var3.by.instabuild) {
 						var3.b(StatisticList.J[Item.getId((Item) this)]);
-						return new ItemStack(amk.aw);
+						return new ItemStack(Items.aw);
 					}
 				}
 			}
@@ -76,7 +76,7 @@ public class akb extends Item {
 	}
 
 	public boolean a(World var1, Position var2) {
-		if (this.a == aty.a) {
+		if (this.a == Blocks.AIR) {
 			return false;
 		} else {
 			Material var3 = var1.p(var2).getBlock().r();
@@ -84,7 +84,7 @@ public class akb extends Item {
 			if (!var1.d(var2) && !var4) {
 				return false;
 			} else {
-				if (var1.worldProvider.n() && this.a == aty.i) {
+				if (var1.worldProvider.n() && this.a == Blocks.FLOWING_WATER) {
 					int var5 = var2.getX();
 					int var6 = var2.getY();
 					int var7 = var2.getZ();

@@ -11,7 +11,7 @@ public class BlockSnow extends Block {
 		this.j(this.L.b().a(a, Integer.valueOf(1)));
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
 		this.a(true);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 		this.h();
 	}
 
@@ -49,7 +49,7 @@ public class BlockSnow extends Block {
 	public boolean c(World var1, Position var2) {
 		bec var3 = var1.p(var2.b());
 		Block var4 = var3.getBlock();
-		return var4 != aty.aI && var4 != aty.cB ? (var4.r() == Material.LEAVES ? true : (var4 == this && ((Integer) var3.b(a)).intValue() == 7 ? true : var4.c() && var4.material.isSolid())) : false;
+		return var4 != Blocks.aI && var4 != Blocks.cB ? (var4.r() == Material.LEAVES ? true : (var4 == this && ((Integer) var3.b(a)).intValue() == 7 ? true : var4.c() && var4.material.isSolid())) : false;
 	}
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
@@ -67,13 +67,13 @@ public class BlockSnow extends Block {
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
-		a(var1, var3, new ItemStack(amk.aD, ((Integer) var4.b(a)).intValue() + 1, 0));
+		a(var1, var3, new ItemStack(Items.aD, ((Integer) var4.b(a)).intValue() + 1, 0));
 		var1.g(var3);
 		var2.b(StatisticList.H[Block.a((Block) this)]);
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return amk.aD;
+		return Items.aD;
 	}
 
 	public int a(Random var1) {

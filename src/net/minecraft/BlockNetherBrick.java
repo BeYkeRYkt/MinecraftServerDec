@@ -4,7 +4,7 @@ public class BlockNetherBrick extends Block {
 
 	public BlockNetherBrick() {
 		super(Material.STONE);
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public MaterialMapColor g(bec var1) {

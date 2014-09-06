@@ -5,24 +5,24 @@ public class EntityMushroomCow extends EntityCow {
 	public EntityMushroomCow(World var1) {
 		super(var1);
 		this.a(0.9F, 1.3F);
-		this.bl = aty.bw;
+		this.bl = Blocks.bw;
 	}
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		if (var2 != null && var2.getItem() == amk.z && this.l() >= 0) {
+		if (var2 != null && var2.getItem() == Items.z && this.l() >= 0) {
 			if (var2.b == 1) {
-				var1.playerInventory.a(var1.playerInventory.c, new ItemStack(amk.A));
+				var1.playerInventory.a(var1.playerInventory.c, new ItemStack(Items.A));
 				return true;
 			}
 
-			if (var1.playerInventory.a(new ItemStack(amk.A)) && !var1.by.instabuild) {
+			if (var1.playerInventory.a(new ItemStack(Items.A)) && !var1.by.instabuild) {
 				var1.playerInventory.a(var1.playerInventory.c, 1);
 				return true;
 			}
 		}
 
-		if (var2 != null && var2.getItem() == amk.be && this.l() >= 0) {
+		if (var2 != null && var2.getItem() == Items.be && this.l() >= 0) {
 			this.J();
 			this.o.a(Particle.b, this.locationX, this.locationY + (double) (this.K / 2.0F), this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 			if (!this.o.D) {
@@ -37,7 +37,7 @@ public class EntityMushroomCow extends EntityCow {
 				this.o.d((Entity) var3);
 
 				for (int var4 = 0; var4 < 5; ++var4) {
-					this.o.d((Entity) (new EntityItem(this.o, this.locationX, this.locationY + (double) this.K, this.locationZ, new ItemStack(aty.Q))));
+					this.o.d((Entity) (new EntityItem(this.o, this.locationX, this.locationY + (double) this.K, this.locationZ, new ItemStack(Blocks.RED_MUSHROOM))));
 				}
 
 				var2.a(1, (EntityLiving) var1);

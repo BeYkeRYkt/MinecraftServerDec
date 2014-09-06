@@ -248,7 +248,7 @@ public class bfy implements bfq, brq {
 			while (var28.hasNext()) {
 				ark var29 = (ark) var28.next();
 				NBTCompoundTag var30 = new NBTCompoundTag();
-				BlockNameInfo var31 = (BlockNameInfo) Block.BLOCKREGISTRY.c(var29.a());
+				RegistryObjectName var31 = (RegistryObjectName) Block.BLOCKREGISTRY.c(var29.a());
 				var30.put("i", var31 == null ? "" : var31.toString());
 				var30.put("x", var29.a.getX());
 				var30.put("y", var29.a.getY());

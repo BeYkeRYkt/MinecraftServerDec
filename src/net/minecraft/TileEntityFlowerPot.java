@@ -15,7 +15,7 @@ public class TileEntityFlowerPot extends TileEntity {
 
 	public void write(NBTCompoundTag var1) {
 		super.write(var1);
-		BlockNameInfo var2 = (BlockNameInfo) Item.REGISTRY.c(this.a);
+		RegistryObjectName var2 = (RegistryObjectName) Item.REGISTRY.c(this.a);
 		var1.put("Item", var2 == null ? "" : var2.toString());
 		var1.put("Data", this.f);
 	}

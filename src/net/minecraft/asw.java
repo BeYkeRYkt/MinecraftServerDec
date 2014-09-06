@@ -5,7 +5,7 @@ public class asw extends ary {
 	protected bhp M;
 
 	public asw() {
-		this.M = new bim(aty.bH);
+		this.M = new bim(Blocks.bH);
 	}
 
 	protected void a(arm var1) {

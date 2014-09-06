@@ -37,7 +37,7 @@ public class arh {
 						int var12 = var4 + var10;
 						int var13 = var5 + var9 * var7 - var8 * var6;
 						boolean var14 = var10 < 0;
-						this.a.a(new Position(var11, var12, var13), var14 ? aty.Z.P() : aty.a.P());
+						this.a.a(new Position(var11, var12, var13), var14 ? Blocks.OBSIDIAN.P() : Blocks.AIR.P());
 					}
 				}
 			}
@@ -69,8 +69,8 @@ public class arh {
 				for (int var14 = -128; var14 <= 128; ++var14) {
 					for (Position var15 = var34.a(var13, this.a.V() - 1 - var34.getY(), var14); var15.getY() >= 0; var15 = var16) {
 						var16 = var15.b();
-						if (this.a.p(var15).getBlock() == aty.aY) {
-							while (this.a.p(var16 = var15.b()).getBlock() == aty.aY) {
+						if (this.a.p(var15).getBlock() == Blocks.aY) {
+							while (this.a.p(var16 = var15.b()).getBlock() == Blocks.aY) {
 								var15 = var16;
 							}
 
@@ -95,19 +95,19 @@ public class arh {
 			double var36 = (double) ((Position) var9).getY() + 0.5D;
 			double var37 = (double) ((Position) var9).getZ() + 0.5D;
 			PaintingDirection var18 = null;
-			if (this.a.p(((Position) var9).e()).getBlock() == aty.aY) {
+			if (this.a.p(((Position) var9).e()).getBlock() == Blocks.aY) {
 				var18 = PaintingDirection.c;
 			}
 
-			if (this.a.p(((Position) var9).f()).getBlock() == aty.aY) {
+			if (this.a.p(((Position) var9).f()).getBlock() == Blocks.aY) {
 				var18 = PaintingDirection.d;
 			}
 
-			if (this.a.p(((Position) var9).c()).getBlock() == aty.aY) {
+			if (this.a.p(((Position) var9).c()).getBlock() == Blocks.aY) {
 				var18 = PaintingDirection.f;
 			}
 
-			if (this.a.p(((Position) var9).d()).getBlock() == aty.aY) {
+			if (this.a.p(((Position) var9).d()).getBlock() == Blocks.aY) {
 				var18 = PaintingDirection.e;
 			}
 
@@ -319,13 +319,13 @@ public class arh {
 						var23 = var15 + var21;
 						var24 = var16 + (var20 - 1) * var18 - var19 * var30;
 						boolean var34 = var21 < 0;
-						this.a.a(new Position(var22, var23, var24), var34 ? aty.Z.P() : aty.a.P());
+						this.a.a(new Position(var22, var23, var24), var34 ? Blocks.OBSIDIAN.P() : Blocks.AIR.P());
 					}
 				}
 			}
 		}
 
-		bec var31 = aty.aY.P().a(BlockPortal.a, var30 != 0 ? el.a : el.c);
+		bec var31 = Blocks.aY.P().a(BlockPortal.a, var30 != 0 ? el.a : el.c);
 
 		for (var20 = 0; var20 < 4; ++var20) {
 			for (var21 = 0; var21 < 4; ++var21) {
@@ -334,7 +334,7 @@ public class arh {
 					var24 = var15 + var22;
 					var25 = var16 + (var21 - 1) * var18;
 					boolean var35 = var21 == 0 || var21 == 3 || var22 == -1 || var22 == 3;
-					this.a.a(new Position(var23, var24, var25), var35 ? aty.Z.P() : var31, 2);
+					this.a.a(new Position(var23, var24, var25), var35 ? Blocks.OBSIDIAN.P() : var31, 2);
 				}
 			}
 

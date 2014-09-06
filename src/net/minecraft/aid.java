@@ -72,7 +72,7 @@ public class aid extends Container {
 			this.k = 0;
 			int var16;
 			if (var13 != null) {
-				var15 = var13.getItem() == amk.cd && amk.cd.h(var13).getSize() > 0;
+				var15 = var13.getItem() == Items.cd && Items.cd.h(var13).getSize() > 0;
 				int var17;
 				int var18;
 				if (var12.e() && var12.getItem().a(var8, var13)) {
@@ -120,7 +120,7 @@ public class aid extends Container {
 
 					while (var27.hasNext()) {
 						var18 = ((Integer) var27.next()).intValue();
-						apf var28 = apf.c(var18);
+						Enchantment var28 = Enchantment.getById(var18);
 						if (var28 != null) {
 							var20 = var14.containsKey(Integer.valueOf(var18)) ? ((Integer) var14.get(Integer.valueOf(var18))).intValue() : 0;
 							int var21 = ((Integer) var26.get(Integer.valueOf(var18))).intValue();
@@ -133,8 +133,8 @@ public class aid extends Container {
 							}
 
 							var21 = var10000;
-							boolean var22 = var28.a(var8);
-							if (this.m.by.instabuild || var8.getItem() == amk.cd) {
+							boolean var22 = var28.canEnchant(var8);
+							if (this.m.by.instabuild || var8.getItem() == Items.cd) {
 								var22 = true;
 							}
 
@@ -142,20 +142,20 @@ public class aid extends Container {
 
 							while (var23.hasNext()) {
 								int var24 = ((Integer) var23.next()).intValue();
-								if (var24 != var18 && !var28.a(apf.c(var24))) {
+								if (var24 != var18 && !var28.a(Enchantment.getById(var24))) {
 									var22 = false;
 									++var9;
 								}
 							}
 
 							if (var22) {
-								if (var21 > var28.b()) {
-									var21 = var28.b();
+								if (var21 > var28.getMaxLevel()) {
+									var21 = var28.getMaxLevel();
 								}
 
 								var14.put(Integer.valueOf(var18), Integer.valueOf(var21));
 								int var29 = 0;
-								switch (var28.d()) {
+								switch (var28.getRandomWeight()) {
 									case 1:
 										var29 = 8;
 										break;
@@ -247,7 +247,7 @@ public class aid extends Container {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.i.p(this.j).getBlock() != aty.cf ? false : var1.e((double) this.j.getX() + 0.5D, (double) this.j.getY() + 0.5D, (double) this.j.getZ() + 0.5D) <= 64.0D;
+		return this.i.p(this.j).getBlock() != Blocks.cf ? false : var1.e((double) this.j.getX() + 0.5D, (double) this.j.getY() + 0.5D, (double) this.j.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {

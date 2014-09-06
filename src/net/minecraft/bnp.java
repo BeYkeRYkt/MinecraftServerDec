@@ -39,25 +39,25 @@ public class bnp extends bnn {
 			this.l.a(0, this.h - this.l.e + 3, 0);
 		}
 
-		this.a(var1, var3, 1, 0, 1, 4, 12, 4, aty.e.P(), aty.i.P(), false);
-		this.a(var1, aty.a.P(), 2, 12, 2, var3);
-		this.a(var1, aty.a.P(), 3, 12, 2, var3);
-		this.a(var1, aty.a.P(), 2, 12, 3, var3);
-		this.a(var1, aty.a.P(), 3, 12, 3, var3);
-		this.a(var1, aty.aO.P(), 1, 13, 1, var3);
-		this.a(var1, aty.aO.P(), 1, 14, 1, var3);
-		this.a(var1, aty.aO.P(), 4, 13, 1, var3);
-		this.a(var1, aty.aO.P(), 4, 14, 1, var3);
-		this.a(var1, aty.aO.P(), 1, 13, 4, var3);
-		this.a(var1, aty.aO.P(), 1, 14, 4, var3);
-		this.a(var1, aty.aO.P(), 4, 13, 4, var3);
-		this.a(var1, aty.aO.P(), 4, 14, 4, var3);
-		this.a(var1, var3, 1, 15, 1, 4, 15, 4, aty.e.P(), aty.e.P(), false);
+		this.a(var1, var3, 1, 0, 1, 4, 12, 4, Blocks.COBBLESTONE.P(), Blocks.FLOWING_WATER.P(), false);
+		this.a(var1, Blocks.AIR.P(), 2, 12, 2, var3);
+		this.a(var1, Blocks.AIR.P(), 3, 12, 2, var3);
+		this.a(var1, Blocks.AIR.P(), 2, 12, 3, var3);
+		this.a(var1, Blocks.AIR.P(), 3, 12, 3, var3);
+		this.a(var1, Blocks.aO.P(), 1, 13, 1, var3);
+		this.a(var1, Blocks.aO.P(), 1, 14, 1, var3);
+		this.a(var1, Blocks.aO.P(), 4, 13, 1, var3);
+		this.a(var1, Blocks.aO.P(), 4, 14, 1, var3);
+		this.a(var1, Blocks.aO.P(), 1, 13, 4, var3);
+		this.a(var1, Blocks.aO.P(), 1, 14, 4, var3);
+		this.a(var1, Blocks.aO.P(), 4, 13, 4, var3);
+		this.a(var1, Blocks.aO.P(), 4, 14, 4, var3);
+		this.a(var1, var3, 1, 15, 1, 4, 15, 4, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
 
 		for (int var4 = 0; var4 <= 5; ++var4) {
 			for (int var5 = 0; var5 <= 5; ++var5) {
 				if (var5 == 0 || var5 == 5 || var4 == 0 || var4 == 5) {
-					this.a(var1, aty.n.P(), var5, 11, var4, var3);
+					this.a(var1, Blocks.GRAVEL.P(), var5, 11, var4, var3);
 					this.b(var1, var5, 12, var4, var3);
 				}
 			}

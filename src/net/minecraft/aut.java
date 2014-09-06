@@ -19,7 +19,7 @@ public class aut implements vv {
 	}
 
 	public IJSONComponent e_() {
-		return new hz(aty.ai.a() + ".name", new Object[0]);
+		return new hz(Blocks.ai.a() + ".name", new Object[0]);
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {

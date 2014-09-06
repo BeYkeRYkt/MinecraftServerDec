@@ -14,7 +14,7 @@ public class aor implements aoo {
 				var3.add(var5);
 				if (var3.size() > 1) {
 					ItemStack var6 = (ItemStack) var3.get(0);
-					if (var5.getItem() != var6.getItem() || var6.b != 1 || var5.b != 1 || !var6.getItem().m()) {
+					if (var5.getItem() != var6.getItem() || var6.b != 1 || var5.b != 1 || !var6.getItem().usesDurability()) {
 						return false;
 					}
 				}
@@ -34,7 +34,7 @@ public class aor implements aoo {
 				var2.add(var4);
 				if (var2.size() > 1) {
 					ItemStack var5 = (ItemStack) var2.get(0);
-					if (var4.getItem() != var5.getItem() || var5.b != 1 || var4.b != 1 || !var5.getItem().m()) {
+					if (var4.getItem() != var5.getItem() || var5.b != 1 || var4.b != 1 || !var5.getItem().usesDurability()) {
 						return null;
 					}
 				}
@@ -44,7 +44,7 @@ public class aor implements aoo {
 		if (var2.size() == 2) {
 			ItemStack var10 = (ItemStack) var2.get(0);
 			var4 = (ItemStack) var2.get(1);
-			if (var10.getItem() == var4.getItem() && var10.b == 1 && var4.b == 1 && var10.getItem().m()) {
+			if (var10.getItem() == var4.getItem() && var10.b == 1 && var4.b == 1 && var10.getItem().usesDurability()) {
 				Item var11 = var10.getItem();
 				int var6 = var11.l() - var10.h();
 				int var7 = var11.l() - var4.h();

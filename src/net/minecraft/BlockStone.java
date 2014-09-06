@@ -9,11 +9,11 @@ public class BlockStone extends Block {
 	public BlockStone() {
 		super(Material.STONE);
 		this.j(this.L.b().a(a, bbb.a));
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return var1.b(a) == bbb.a ? Item.getItemOf(aty.e) : Item.getItemOf(aty.b);
+		return var1.b(a) == bbb.a ? Item.getItemOf(Blocks.COBBLESTONE) : Item.getItemOf(Blocks.STONE);
 	}
 
 	public int a(bec var1) {

@@ -36,21 +36,21 @@ public class BlockRedstoneOre extends Block {
 
 	private void d(World var1, Position var2) {
 		this.e(var1, var2);
-		if (this == aty.aC) {
-			var1.a(var2, aty.aD.P());
+		if (this == Blocks.aC) {
+			var1.a(var2, Blocks.aD.P());
 		}
 
 	}
 
 	public void b(World var1, Position var2, bec var3, Random var4) {
-		if (this == aty.aD) {
-			var1.a(var2, aty.aC.P());
+		if (this == Blocks.aD) {
+			var1.a(var2, Blocks.aC.P());
 		}
 
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return amk.aC;
+		return Items.aC;
 	}
 
 	public int a(int var1, Random var2) {
@@ -110,6 +110,6 @@ public class BlockRedstoneOre extends Block {
 	}
 
 	protected ItemStack i(bec var1) {
-		return new ItemStack(aty.aC);
+		return new ItemStack(Blocks.aC);
 	}
 }

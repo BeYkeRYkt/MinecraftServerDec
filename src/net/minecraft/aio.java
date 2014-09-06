@@ -51,7 +51,7 @@ public class aio extends Container {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.g.p(this.h).getBlock() != aty.ai ? false : var1.e((double) this.h.getX() + 0.5D, (double) this.h.getY() + 0.5D, (double) this.h.getZ() + 0.5D) <= 64.0D;
+		return this.g.p(this.h).getBlock() != Blocks.ai ? false : var1.e((double) this.h.getX() + 0.5D, (double) this.h.getY() + 0.5D, (double) this.h.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {

@@ -33,7 +33,7 @@ public class bip extends bhc {
 						if (var6 >= 0 && var6 < 256) {
 							Block var10 = var1.p(new Position(var8, var6, var9)).getBlock();
 							if (var10.r() != Material.AIR && var10.r() != Material.LEAVES) {
-								if (var10 != aty.j && var10 != aty.i) {
+								if (var10 != Blocks.WATER && var10 != Blocks.FLOWING_WATER) {
 									var5 = false;
 								} else if (var6 > var3.getY()) {
 									var5 = false;
@@ -50,7 +50,7 @@ public class bip extends bhc {
 				return false;
 			} else {
 				Block var17 = var1.p(var3.b()).getBlock();
-				if ((var17 == aty.c || var17 == aty.d) && var3.getY() < 256 - var4 - 1) {
+				if ((var17 == Blocks.GRASS || var17 == Blocks.DIRT) && var3.getY() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 
 					int var11;
@@ -69,7 +69,7 @@ public class bip extends bhc {
 								if (Math.abs(var11) != var9 || Math.abs(var13) != var9 || var2.nextInt(2) != 0 && var8 != 0) {
 									var14 = new Position(var20, var18, var12);
 									if (!var1.p(var14).getBlock().m()) {
-										this.a(var1, var14, aty.t);
+										this.a(var1, var14, Blocks.LEAVES);
 									}
 								}
 							}
@@ -78,8 +78,8 @@ public class bip extends bhc {
 
 					for (var18 = 0; var18 < var4; ++var18) {
 						Block var19 = var1.p(var3.b(var18)).getBlock();
-						if (var19.r() == Material.AIR || var19.r() == Material.LEAVES || var19 == aty.i || var19 == aty.j) {
-							this.a(var1, var3.b(var18), aty.r);
+						if (var19.r() == Material.AIR || var19.r() == Material.LEAVES || var19 == Blocks.FLOWING_WATER || var19 == Blocks.WATER) {
+							this.a(var1, var3.b(var18), Blocks.LOG);
 						}
 					}
 
@@ -126,11 +126,11 @@ public class bip extends bhc {
 	}
 
 	private void a(World var1, Position var2, int var3) {
-		this.a(var1, var2, aty.bn, var3);
+		this.a(var1, var2, Blocks.bn, var3);
 		int var4 = 4;
 
 		for (var2 = var2.b(); var1.p(var2).getBlock().r() == Material.AIR && var4 > 0; --var4) {
-			this.a(var1, var2, aty.bn, var3);
+			this.a(var1, var2, Blocks.bn, var3);
 			var2 = var2.b();
 		}
 

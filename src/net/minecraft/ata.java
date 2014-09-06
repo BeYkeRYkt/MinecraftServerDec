@@ -19,7 +19,7 @@ public class ata implements vv {
 	}
 
 	public IJSONComponent e_() {
-		return new hz(aty.cf.a() + ".name", new Object[0]);
+		return new hz(Blocks.cf.a() + ".name", new Object[0]);
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {

@@ -6,15 +6,15 @@ public class BlockOre extends Block {
 
 	public BlockOre() {
 		super(Material.STONE);
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return this == aty.q ? amk.h : (this == aty.ag ? amk.i : (this == aty.x ? amk.aW : (this == aty.bP ? amk.bO : (this == aty.co ? amk.cg : Item.getItemOf((Block) this)))));
+		return this == Blocks.COAL_ORE ? Items.h : (this == Blocks.ag ? Items.i : (this == Blocks.LAPIS_ORE ? Items.aW : (this == Blocks.bP ? Items.bO : (this == Blocks.co ? Items.cg : Item.getItemOf((Block) this)))));
 	}
 
 	public int a(Random var1) {
-		return this == aty.x ? 4 + var1.nextInt(5) : 1;
+		return this == Blocks.LAPIS_ORE ? 4 + var1.nextInt(5) : 1;
 	}
 
 	public int a(int var1, Random var2) {
@@ -34,15 +34,15 @@ public class BlockOre extends Block {
 		super.a(var1, var2, var3, var4, var5);
 		if (this.a(var3, var1.s, var5) != Item.getItemOf((Block) this)) {
 			int var6 = 0;
-			if (this == aty.q) {
+			if (this == Blocks.COAL_ORE) {
 				var6 = DataTypesConverter.a(var1.s, 0, 2);
-			} else if (this == aty.ag) {
+			} else if (this == Blocks.ag) {
 				var6 = DataTypesConverter.a(var1.s, 3, 7);
-			} else if (this == aty.bP) {
+			} else if (this == Blocks.bP) {
 				var6 = DataTypesConverter.a(var1.s, 3, 7);
-			} else if (this == aty.x) {
+			} else if (this == Blocks.LAPIS_ORE) {
 				var6 = DataTypesConverter.a(var1.s, 2, 5);
-			} else if (this == aty.co) {
+			} else if (this == Blocks.co) {
 				var6 = DataTypesConverter.a(var1.s, 2, 5);
 			}
 
@@ -56,6 +56,6 @@ public class BlockOre extends Block {
 	}
 
 	public int a(bec var1) {
-		return this == aty.x ? akv.l.b() : 0;
+		return this == Blocks.LAPIS_ORE ? akv.l.b() : 0;
 	}
 }

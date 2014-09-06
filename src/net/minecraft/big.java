@@ -43,7 +43,7 @@ public class big extends bhc {
 				return false;
 			} else {
 				Block var17 = var1.p(var3.b()).getBlock();
-				if ((var17 == aty.c || var17 == aty.d) && var3.getY() < 256 - var4 - 1) {
+				if ((var17 == Blocks.GRASS || var17 == Blocks.DIRT) && var3.getY() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 					var18 = 0;
 
@@ -56,7 +56,7 @@ public class big extends bhc {
 								if (Math.abs(var13) != var18 || Math.abs(var15) != var18 || var18 <= 0) {
 									Position var16 = new Position(var12, var11, var14);
 									if (!var1.p(var16).getBlock().m()) {
-										this.a(var1, var16, aty.t, ayx.b.a());
+										this.a(var1, var16, Blocks.LEAVES, ayx.b.a());
 									}
 								}
 							}
@@ -72,7 +72,7 @@ public class big extends bhc {
 					for (var11 = 0; var11 < var4 - 1; ++var11) {
 						Block var19 = var1.p(var3.b(var11)).getBlock();
 						if (var19.r() == Material.AIR || var19.r() == Material.LEAVES) {
-							this.a(var1, var3.b(var11), aty.r, ayx.b.a());
+							this.a(var1, var3.b(var11), Blocks.LOG, ayx.b.a());
 						}
 					}
 

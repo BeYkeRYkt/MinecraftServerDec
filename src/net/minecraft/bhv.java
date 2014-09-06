@@ -50,7 +50,7 @@ public class bhv extends bhp {
 				return false;
 			} else {
 				Block var15 = var1.p(var3.b()).getBlock();
-				if (var15 != aty.d && var15 != aty.c && var15 != aty.bw) {
+				if (var15 != Blocks.DIRT && var15 != Blocks.GRASS && var15 != Blocks.bw) {
 					return false;
 				} else {
 					int var16 = var3.getY() + var5;
@@ -132,7 +132,7 @@ public class bhv extends bhp {
 								if (var13 != 0 || var3.getY() >= var3.getY() + var5 - 1) {
 									Position var14 = new Position(var18, var9, var12);
 									if (!var1.p(var14).getBlock().m()) {
-										this.a(var1, var14, Block.c(Block.a(aty.bg) + var4), var13);
+										this.a(var1, var14, Block.c(Block.a(Blocks.bg) + var4), var13);
 									}
 								}
 							}
@@ -142,7 +142,7 @@ public class bhv extends bhp {
 					for (var9 = 0; var9 < var5; ++var9) {
 						Block var17 = var1.p(var3.b(var9)).getBlock();
 						if (!var17.m()) {
-							this.a(var1, var3.b(var9), Block.c(Block.a(aty.bg) + var4), 10);
+							this.a(var1, var3.b(var9), Block.c(Block.a(Blocks.bg) + var4), 10);
 						}
 					}
 

@@ -36,10 +36,10 @@ public class ast extends arm {
 
 			for (int var12 = 255; var12 >= 0; --var12) {
 				if (var3.a(var11, var12, var10).getBlock().r() != Material.AIR) {
-					if (var12 == 62 && var3.a(var11, var12, var10).getBlock() != aty.j) {
-						var3.a(var11, var12, var10, aty.j.P());
+					if (var12 == 62 && var3.a(var11, var12, var10).getBlock() != Blocks.WATER) {
+						var3.a(var11, var12, var10, Blocks.WATER.P());
 						if (var8 < 0.12D) {
-							var3.a(var11, var12 + 1, var10, aty.bx.P());
+							var3.a(var11, var12 + 1, var10, Blocks.bx.P());
 						}
 					}
 					break;

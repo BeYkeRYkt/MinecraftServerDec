@@ -85,16 +85,16 @@ public class bji extends bms {
 		if (this.a(var1, var3)) {
 			return false;
 		} else {
-			this.a(var1, var3, this.l.a, this.l.b, this.l.c, this.l.d, this.l.b, this.l.f, aty.d.P(), aty.a.P(), true);
-			this.a(var1, var3, this.l.a, this.l.b + 1, this.l.c, this.l.d, Math.min(this.l.b + 3, this.l.e), this.l.f, aty.a.P(), aty.a.P(), false);
+			this.a(var1, var3, this.l.a, this.l.b, this.l.c, this.l.d, this.l.b, this.l.f, Blocks.DIRT.P(), Blocks.AIR.P(), true);
+			this.a(var1, var3, this.l.a, this.l.b + 1, this.l.c, this.l.d, Math.min(this.l.b + 3, this.l.e), this.l.f, Blocks.AIR.P(), Blocks.AIR.P(), false);
 			Iterator var4 = this.a.iterator();
 
 			while (var4.hasNext()) {
 				bjb var5 = (bjb) var4.next();
-				this.a(var1, var3, var5.a, var5.e - 2, var5.c, var5.d, var5.e, var5.f, aty.a.P(), aty.a.P(), false);
+				this.a(var1, var3, var5.a, var5.e - 2, var5.c, var5.d, var5.e, var5.f, Blocks.AIR.P(), Blocks.AIR.P(), false);
 			}
 
-			this.a(var1, var3, this.l.a, this.l.b + 4, this.l.c, this.l.d, this.l.e, this.l.f, aty.a.P(), false);
+			this.a(var1, var3, this.l.a, this.l.b + 4, this.l.c, this.l.d, this.l.e, this.l.f, Blocks.AIR.P(), false);
 			return true;
 		}
 	}

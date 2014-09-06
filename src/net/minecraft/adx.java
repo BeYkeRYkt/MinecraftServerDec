@@ -80,7 +80,7 @@ public abstract class adx extends Entity implements vz {
 		return (double) this.K * 0.5D - 0.20000000298023224D;
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (!this.o.D && !this.I) {
 			if (this.b(var1)) {
 				return false;
@@ -109,9 +109,9 @@ public abstract class adx extends Entity implements vz {
 		}
 	}
 
-	public void a(wh var1) {
+	public void a(DamageSource var1) {
 		this.J();
-		ItemStack var2 = new ItemStack(amk.az, 1);
+		ItemStack var2 = new ItemStack(Items.az, 1);
 		if (this.b != null) {
 			var2.c(this.b);
 		}
@@ -211,7 +211,7 @@ public abstract class adx extends Entity implements vz {
 			bec var5 = this.o.p(var4);
 			if (ati.d(var5)) {
 				this.a(var4, var5);
-				if (var5.getBlock() == aty.cs) {
+				if (var5.getBlock() == Blocks.cs) {
 					this.a(var14, var2, var16, ((Boolean) var5.b(BlockPoweredRail.M)).booleanValue());
 				}
 			} else {
@@ -290,7 +290,7 @@ public abstract class adx extends Entity implements vz {
 		boolean var4 = false;
 		boolean var5 = false;
 		ati var6 = (ati) var2.getBlock();
-		if (var6 == aty.D) {
+		if (var6 == Blocks.GOLDEN_RAIL) {
 			var4 = ((Boolean) var2.b(BlockPoweredRail.M)).booleanValue();
 			var5 = !var4;
 		}
@@ -528,14 +528,14 @@ public abstract class adx extends Entity implements vz {
 			if (var1.isTagAssignableFrom("DisplayTile", 8)) {
 				var3 = Block.b(var1.getString("DisplayTile"));
 				if (var3 == null) {
-					this.a(aty.a.P());
+					this.a(Blocks.AIR.P());
 				} else {
 					this.a(var3.a(var2));
 				}
 			} else {
 				var3 = Block.c(var1.getInt("DisplayTile"));
 				if (var3 == null) {
-					this.a(aty.a.P());
+					this.a(Blocks.AIR.P());
 				} else {
 					this.a(var3.a(var2));
 				}
@@ -554,7 +554,7 @@ public abstract class adx extends Entity implements vz {
 		if (this.x()) {
 			var1.put("CustomDisplayTile", true);
 			bec var2 = this.t();
-			BlockNameInfo var3 = (BlockNameInfo) Block.BLOCKREGISTRY.c(var2.getBlock());
+			RegistryObjectName var3 = (RegistryObjectName) Block.BLOCKREGISTRY.c(var2.getBlock());
 			var1.put("DisplayTile", var3 == null ? "" : var3.toString());
 			var1.put("DisplayData", var2.getBlock().c(var2));
 			var1.put("DisplayOffset", this.v());
@@ -670,7 +670,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public bec u() {
-		return aty.a.P();
+		return Blocks.AIR.P();
 	}
 
 	public int v() {

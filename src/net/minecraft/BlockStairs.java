@@ -25,7 +25,7 @@ public class BlockStairs extends Block {
 		this.b(this.O.x / 3.0F);
 		this.a(this.O.H);
 		this.e(255);
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public void a(ard var1, Position var2) {
@@ -412,7 +412,7 @@ public class BlockStairs extends Block {
 	}
 
 	public void c(World var1, Position var2, bec var3) {
-		this.a(var1, var2, this.P, aty.a);
+		this.a(var1, var2, this.P, Blocks.AIR);
 		this.O.c(var1, var2, this.P);
 	}
 

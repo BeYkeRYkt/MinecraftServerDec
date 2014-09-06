@@ -9,7 +9,7 @@ public class BlockNote extends atg {
 
 	public BlockNote() {
 		super(Material.WOOD);
-		this.a(CreativeModeTab.d);
+		this.a(CreativeModeTab.REDSTONE);
 	}
 
 	public void a(World var1, Position var2, bec var3, Block var4) {

@@ -31,16 +31,16 @@ public class bmj extends bmk {
 			this.a(var1, var3, 0, 0, 0, 4, 10, 7, true, var2, blr.c());
 			this.a(var1, var2, var3, this.d, 1, 7, 0);
 			this.a(var1, var2, var3, bml.a, 1, 1, 7);
-			int var4 = this.a(aty.aw, 2);
+			int var4 = this.a(Blocks.aw, 2);
 
 			for (int var5 = 0; var5 < 6; ++var5) {
-				this.a(var1, aty.aw.a(var4), 1, 6 - var5, 1 + var5, var3);
-				this.a(var1, aty.aw.a(var4), 2, 6 - var5, 1 + var5, var3);
-				this.a(var1, aty.aw.a(var4), 3, 6 - var5, 1 + var5, var3);
+				this.a(var1, Blocks.aw.a(var4), 1, 6 - var5, 1 + var5, var3);
+				this.a(var1, Blocks.aw.a(var4), 2, 6 - var5, 1 + var5, var3);
+				this.a(var1, Blocks.aw.a(var4), 3, 6 - var5, 1 + var5, var3);
 				if (var5 < 5) {
-					this.a(var1, aty.bf.P(), 1, 5 - var5, 1 + var5, var3);
-					this.a(var1, aty.bf.P(), 2, 5 - var5, 1 + var5, var3);
-					this.a(var1, aty.bf.P(), 3, 5 - var5, 1 + var5, var3);
+					this.a(var1, Blocks.bf.P(), 1, 5 - var5, 1 + var5, var3);
+					this.a(var1, Blocks.bf.P(), 2, 5 - var5, 1 + var5, var3);
+					this.a(var1, Blocks.bf.P(), 3, 5 - var5, 1 + var5, var3);
 				}
 			}
 

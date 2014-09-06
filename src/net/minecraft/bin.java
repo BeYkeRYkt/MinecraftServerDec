@@ -11,27 +11,27 @@ public class bin extends bhp {
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
-		if (var1.p(var3.a()).getBlock() != aty.b) {
+		if (var1.p(var3.a()).getBlock() != Blocks.STONE) {
 			return false;
-		} else if (var1.p(var3.b()).getBlock() != aty.b) {
+		} else if (var1.p(var3.b()).getBlock() != Blocks.STONE) {
 			return false;
-		} else if (var1.p(var3).getBlock().r() != Material.AIR && var1.p(var3).getBlock() != aty.b) {
+		} else if (var1.p(var3).getBlock().r() != Material.AIR && var1.p(var3).getBlock() != Blocks.STONE) {
 			return false;
 		} else {
 			int var4 = 0;
-			if (var1.p(var3.e()).getBlock() == aty.b) {
+			if (var1.p(var3.e()).getBlock() == Blocks.STONE) {
 				++var4;
 			}
 
-			if (var1.p(var3.f()).getBlock() == aty.b) {
+			if (var1.p(var3.f()).getBlock() == Blocks.STONE) {
 				++var4;
 			}
 
-			if (var1.p(var3.c()).getBlock() == aty.b) {
+			if (var1.p(var3.c()).getBlock() == Blocks.STONE) {
 				++var4;
 			}
 
-			if (var1.p(var3.d()).getBlock() == aty.b) {
+			if (var1.p(var3.d()).getBlock() == Blocks.STONE) {
 				++var4;
 			}
 

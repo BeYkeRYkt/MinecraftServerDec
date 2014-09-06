@@ -75,7 +75,7 @@ public class CloneCommand extends AbstractCommand {
 										Position var22 = new Position(var21, var20, var19);
 										Position var23 = var22.a((fd) var18);
 										bec var24 = var12.p(var22);
-										if ((!var13 || var24.getBlock() != aty.a) && (var10 == null || var24.getBlock() == var10 && (var11 < 0 || var24.getBlock().c(var24) == var11))) {
+										if ((!var13 || var24.getBlock() != Blocks.AIR) && (var10 == null || var24.getBlock() == var10 && (var11 < 0 || var24.getBlock().c(var24) == var11))) {
 											TileEntity var25 = var12.s(var22);
 											if (var25 != null) {
 												NBTCompoundTag var26 = new NBTCompoundTag();
@@ -97,7 +97,7 @@ public class CloneCommand extends AbstractCommand {
 							if (var9) {
 								Iterator var27;
 								Position var29;
-								for (var27 = var17.iterator(); var27.hasNext(); var12.a(var29, aty.cv.P(), 2)) {
+								for (var27 = var17.iterator(); var27.hasNext(); var12.a(var29, Blocks.cv.P(), 2)) {
 									var29 = (Position) var27.next();
 									TileEntity var31 = var12.s(var29);
 									if (var31 instanceof IInventory) {
@@ -109,7 +109,7 @@ public class CloneCommand extends AbstractCommand {
 
 								while (var27.hasNext()) {
 									var29 = (Position) var27.next();
-									var12.a(var29, aty.a.P(), 3);
+									var12.a(var29, Blocks.AIR.P(), 3);
 								}
 							}
 
@@ -122,7 +122,7 @@ public class CloneCommand extends AbstractCommand {
 							Iterator var32;
 							bb var34;
 							TileEntity var36;
-							for (var32 = var30.iterator(); var32.hasNext(); var12.a(var34.a, aty.cv.P(), 2)) {
+							for (var32 = var30.iterator(); var32.hasNext(); var12.a(var34.a, Blocks.cv.P(), 2)) {
 								var34 = (bb) var32.next();
 								var36 = var12.s(var34.a);
 								if (var36 instanceof IInventory) {

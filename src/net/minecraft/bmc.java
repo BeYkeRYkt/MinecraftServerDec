@@ -30,19 +30,19 @@ public class bmc extends bmk {
 		} else {
 			this.a(var1, var3, 0, 0, 0, 8, 4, 10, true, var2, blr.c());
 			this.a(var1, var2, var3, this.d, 1, 1, 0);
-			this.a(var1, var3, 1, 1, 10, 3, 3, 10, aty.a.P(), aty.a.P(), false);
+			this.a(var1, var3, 1, 1, 10, 3, 3, 10, Blocks.AIR.P(), Blocks.AIR.P(), false);
 			this.a(var1, var3, 4, 1, 1, 4, 3, 1, false, var2, blr.c());
 			this.a(var1, var3, 4, 1, 3, 4, 3, 3, false, var2, blr.c());
 			this.a(var1, var3, 4, 1, 7, 4, 3, 7, false, var2, blr.c());
 			this.a(var1, var3, 4, 1, 9, 4, 3, 9, false, var2, blr.c());
-			this.a(var1, var3, 4, 1, 4, 4, 3, 6, aty.bi.P(), aty.bi.P(), false);
-			this.a(var1, var3, 5, 1, 5, 7, 3, 5, aty.bi.P(), aty.bi.P(), false);
-			this.a(var1, aty.bi.P(), 4, 3, 2, var3);
-			this.a(var1, aty.bi.P(), 4, 3, 8, var3);
-			this.a(var1, aty.aA.a(this.a(aty.aA, 3)), 4, 1, 2, var3);
-			this.a(var1, aty.aA.a(this.a(aty.aA, 3) + 8), 4, 2, 2, var3);
-			this.a(var1, aty.aA.a(this.a(aty.aA, 3)), 4, 1, 8, var3);
-			this.a(var1, aty.aA.a(this.a(aty.aA, 3) + 8), 4, 2, 8, var3);
+			this.a(var1, var3, 4, 1, 4, 4, 3, 6, Blocks.bi.P(), Blocks.bi.P(), false);
+			this.a(var1, var3, 5, 1, 5, 7, 3, 5, Blocks.bi.P(), Blocks.bi.P(), false);
+			this.a(var1, Blocks.bi.P(), 4, 3, 2, var3);
+			this.a(var1, Blocks.bi.P(), 4, 3, 8, var3);
+			this.a(var1, Blocks.aA.a(this.a(Blocks.aA, 3)), 4, 1, 2, var3);
+			this.a(var1, Blocks.aA.a(this.a(Blocks.aA, 3) + 8), 4, 2, 2, var3);
+			this.a(var1, Blocks.aA.a(this.a(Blocks.aA, 3)), 4, 1, 8, var3);
+			this.a(var1, Blocks.aA.a(this.a(Blocks.aA, 3) + 8), 4, 2, 8, var3);
 			return true;
 		}
 	}

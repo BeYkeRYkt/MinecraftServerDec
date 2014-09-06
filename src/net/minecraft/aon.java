@@ -5,7 +5,7 @@ public class aon {
 	private Object[][] a;
 
 	public aon() {
-		this.a = new Object[][] { { aty.R, new ItemStack(amk.k, 9) }, { aty.S, new ItemStack(amk.j, 9) }, { aty.ah, new ItemStack(amk.i, 9) }, { aty.bT, new ItemStack(amk.bO, 9) }, { aty.y, new ItemStack(amk.aW, 9, akv.l.b()) }, { aty.cn, new ItemStack(amk.aC, 9) }, { aty.cA, new ItemStack(amk.h, 9, 0) }, { aty.cx, new ItemStack(amk.O, 9) }, { aty.cE, new ItemStack(amk.aM, 9) } };
+		this.a = new Object[][] { { Blocks.GOLD_BLOCK, new ItemStack(Items.k, 9) }, { Blocks.IRON_BLOCK, new ItemStack(Items.j, 9) }, { Blocks.ah, new ItemStack(Items.i, 9) }, { Blocks.bT, new ItemStack(Items.bO, 9) }, { Blocks.LAPIS_BLOCK, new ItemStack(Items.aW, 9, akv.l.b()) }, { Blocks.cn, new ItemStack(Items.aC, 9) }, { Blocks.cA, new ItemStack(Items.h, 9, 0) }, { Blocks.cx, new ItemStack(Items.O, 9) }, { Blocks.cE, new ItemStack(Items.aM, 9) } };
 	}
 
 	public void a(aop var1) {
@@ -16,7 +16,7 @@ public class aon {
 			var1.a(var4, new Object[] { "#", Character.valueOf('#'), var3 });
 		}
 
-		var1.a(new ItemStack(amk.k), new Object[] { "###", "###", "###", Character.valueOf('#'), amk.bx });
-		var1.a(new ItemStack(amk.bx, 9), new Object[] { "#", Character.valueOf('#'), amk.k });
+		var1.a(new ItemStack(Items.k), new Object[] { "###", "###", "###", Character.valueOf('#'), Items.bx });
+		var1.a(new ItemStack(Items.bx, 9), new Object[] { "#", Character.valueOf('#'), Items.k });
 	}
 }

@@ -40,7 +40,7 @@ public enum ami {
 	}
 
 	public Item f() {
-		return this == a ? Item.getItemOf(aty.f) : (this == b ? Item.getItemOf(aty.e) : (this == e ? amk.k : (this == c ? amk.j : (this == d ? amk.i : null))));
+		return this == a ? Item.getItemOf(Blocks.PLANKS) : (this == b ? Item.getItemOf(Blocks.COBBLESTONE) : (this == e ? Items.k : (this == c ? Items.j : (this == d ? Items.i : null))));
 	}
 
 }

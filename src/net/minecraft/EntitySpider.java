@@ -58,13 +58,13 @@ public class EntitySpider extends EntityMonster {
 	}
 
 	protected Item A() {
-		return amk.F;
+		return Items.F;
 	}
 
 	protected void b(boolean var1, int var2) {
 		super.b(var1, var2);
 		if (var1 && (this.V.nextInt(3) == 0 || this.V.nextInt(1 + var2) > 0)) {
-			this.a(amk.bB, 1);
+			this.a(Items.bB, 1);
 		}
 
 	}
@@ -76,8 +76,8 @@ public class EntitySpider extends EntityMonster {
 	public void aB() {
 	}
 
-	public xs by() {
-		return xs.c;
+	public EnumMonsterType by() {
+		return EnumMonsterType.c;
 	}
 
 	public boolean d(MobEffect var1) {

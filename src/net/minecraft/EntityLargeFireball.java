@@ -15,7 +15,7 @@ public class EntityLargeFireball extends ahl {
 	protected void a(bru var1) {
 		if (!this.o.D) {
 			if (var1.d != null) {
-				var1.d.a(wh.a((ahl) this, this.a), 6.0F);
+				var1.d.a(DamageSource.a((ahl) this, this.a), 6.0F);
 				this.a(this.a, var1.d);
 			}
 

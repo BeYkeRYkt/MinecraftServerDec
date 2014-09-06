@@ -8,7 +8,7 @@ public class aoc {
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			akv var5 = var2[var4];
-			var1.a(new ItemStack(amk.cE, 1, var5.b()), new Object[] { "###", "###", " | ", Character.valueOf('#'), new ItemStack(aty.L, 1, var5.a()), Character.valueOf('|'), amk.y });
+			var1.a(new ItemStack(Items.cE, 1, var5.b()), new Object[] { "###", "###", " | ", Character.valueOf('#'), new ItemStack(Blocks.WOOL, 1, var5.a()), Character.valueOf('|'), Items.y });
 		}
 
 		var1.a(new aof((aod) null));

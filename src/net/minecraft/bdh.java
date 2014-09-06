@@ -10,7 +10,7 @@ class bdh extends aqi {
 	}
 
 	public void a(int var1) {
-		this.a.world.c(this.a.position, aty.ac, var1, 0);
+		this.a.world.c(this.a.position, Blocks.ac, var1, 0);
 	}
 
 	public World a() {

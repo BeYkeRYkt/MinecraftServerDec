@@ -45,7 +45,7 @@ class ack extends zn {
 			bec var3 = var1.p(var2);
 			Block var4 = var3.getBlock();
 			if (this.e && var4 instanceof BlockCarrots && ((Integer) var3.b(BlockCarrots.a)).intValue() == 7) {
-				var1.a(var2, aty.a.P(), 2);
+				var1.a(var2, Blocks.AIR.P(), 2);
 				var1.b(var2, true);
 				this.c.cn();
 			}
@@ -58,7 +58,7 @@ class ack extends zn {
 
 	protected boolean a(World var1, Position var2) {
 		Block var3 = var1.p(var2).getBlock();
-		if (var3 == aty.ak) {
+		if (var3 == Blocks.ak) {
 			var2 = var2.a();
 			bec var4 = var1.p(var2);
 			var3 = var4.getBlock();

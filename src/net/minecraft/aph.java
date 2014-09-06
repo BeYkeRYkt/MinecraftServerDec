@@ -41,7 +41,7 @@ public class aph {
 
 	public static Map a(ItemStack var0) {
 		LinkedHashMap var1 = Maps.newLinkedHashMap();
-		NBTListTag var2 = var0.getItem() == amk.cd ? amk.cd.h(var0) : var0.p();
+		NBTListTag var2 = var0.getItem() == Items.cd ? Items.cd.h(var0) : var0.p();
 		if (var2 != null) {
 			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 				short var4 = var2.getCompound(var3).getShort("id");
@@ -59,20 +59,20 @@ public class aph {
 
 		while (var3.hasNext()) {
 			int var4 = ((Integer) var3.next()).intValue();
-			apf var5 = apf.c(var4);
+			Enchantment var5 = Enchantment.getById(var4);
 			if (var5 != null) {
 				NBTCompoundTag var6 = new NBTCompoundTag();
 				var6.put("id", (short) var4);
 				var6.put("lvl", (short) ((Integer) var0.get(Integer.valueOf(var4))).intValue());
 				var2.addTag((NBTTag) var6);
-				if (var1.getItem() == amk.cd) {
-					amk.cd.a(var1, new apo(var5, ((Integer) var0.get(Integer.valueOf(var4))).intValue()));
+				if (var1.getItem() == Items.cd) {
+					Items.cd.a(var1, new apo(var5, ((Integer) var0.get(Integer.valueOf(var4))).intValue()));
 				}
 			}
 		}
 
 		if (var2.getSize() > 0) {
-			if (var1.getItem() != amk.cd) {
+			if (var1.getItem() != Items.cd) {
 				var1.a("ench", (NBTTag) var2);
 			}
 		} else if (var1.hasTag()) {
@@ -108,8 +108,8 @@ public class aph {
 				for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 					short var4 = var2.getCompound(var3).getShort("id");
 					short var5 = var2.getCompound(var3).getShort("lvl");
-					if (apf.c(var4) != null) {
-						var0.a(apf.c(var4), var5);
+					if (Enchantment.getById(var4) != null) {
+						var0.a(Enchantment.getById(var4), var5);
 					}
 				}
 
@@ -128,7 +128,7 @@ public class aph {
 
 	}
 
-	public static int a(ItemStack[] var0, wh var1) {
+	public static int a(ItemStack[] var0, DamageSource var1) {
 		b.a = 0;
 		b.b = var1;
 		a((apl) b, var0);
@@ -139,7 +139,7 @@ public class aph {
 		return (b.a + 1 >> 1) + a.nextInt((b.a >> 1) + 1);
 	}
 
-	public static float a(ItemStack var0, xs var1) {
+	public static float a(ItemStack var0, EnumMonsterType var1) {
 		c.a = 0.0F;
 		c.b = var1;
 		a((apl) c, var0);
@@ -173,56 +173,56 @@ public class aph {
 	}
 
 	public static int a(EntityLiving var0) {
-		return a(apf.o.B, var0.bz());
+		return a(Enchantment.KNOCKBACK.id, var0.bz());
 	}
 
 	public static int b(EntityLiving var0) {
-		return a(apf.p.B, var0.bz());
+		return a(Enchantment.FIRE_ASPECT.id, var0.bz());
 	}
 
 	public static int a(Entity var0) {
-		return a(apf.h.B, var0.at());
+		return a(Enchantment.OXYGEN.id, var0.at());
 	}
 
 	public static int b(Entity var0) {
-		return a(apf.k.B, var0.at());
+		return a(Enchantment.DEPTH_STRIDER.id, var0.at());
 	}
 
 	public static int c(EntityLiving var0) {
-		return a(apf.r.B, var0.bz());
+		return a(Enchantment.DIG_SPEED.id, var0.bz());
 	}
 
 	public static boolean e(EntityLiving var0) {
-		return a(apf.s.B, var0.bz()) > 0;
+		return a(Enchantment.SILK_TOUCH.id, var0.bz()) > 0;
 	}
 
 	public static int f(EntityLiving var0) {
-		return a(apf.u.B, var0.bz());
+		return a(Enchantment.LOOT_BONUS_BLOCKS.id, var0.bz());
 	}
 
 	public static int g(EntityLiving var0) {
-		return a(apf.z.B, var0.bz());
+		return a(Enchantment.LUCK.id, var0.bz());
 	}
 
 	public static int h(EntityLiving var0) {
-		return a(apf.A.B, var0.bz());
+		return a(Enchantment.LURE.id, var0.bz());
 	}
 
 	public static int i(EntityLiving var0) {
-		return a(apf.q.B, var0.bz());
+		return a(Enchantment.LOOT_BONUS_MOBS.id, var0.bz());
 	}
 
 	public static boolean j(EntityLiving var0) {
-		return a(apf.i.B, var0.at()) > 0;
+		return a(Enchantment.WATER_WORKER.id, var0.at()) > 0;
 	}
 
-	public static ItemStack a(apf var0, EntityLiving var1) {
+	public static ItemStack a(Enchantment var0, EntityLiving var1) {
 		ItemStack[] var2 = var1.at();
 		int var3 = var2.length;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			ItemStack var5 = var2[var4];
-			if (var5 != null && a(var0.B, var5) > 0) {
+			if (var5 != null && a(var0.id, var5) > 0) {
 				return var5;
 			}
 		}
@@ -247,9 +247,9 @@ public class aph {
 
 	public static ItemStack a(Random var0, ItemStack var1, int var2) {
 		List var3 = b(var0, var1, var2);
-		boolean var4 = var1.getItem() == amk.aL;
+		boolean var4 = var1.getItem() == Items.aL;
 		if (var4) {
-			var1.a((Item) amk.cd);
+			var1.a((Item) Items.cd);
 		}
 
 		if (var3 != null) {
@@ -258,7 +258,7 @@ public class aph {
 			while (var5.hasNext()) {
 				apo var6 = (apo) var5.next();
 				if (var4) {
-					amk.cd.a(var1, var6);
+					Items.cd.a(var1, var6);
 				} else {
 					var1.a(var6.b, var6.c);
 				}
@@ -302,7 +302,7 @@ public class aph {
 							while (true) {
 								if (var15.hasNext()) {
 									apo var16 = (apo) var15.next();
-									if (var16.b.a(apf.c(var13.intValue()))) {
+									if (var16.b.a(Enchantment.getById(var13.intValue()))) {
 										continue;
 									}
 
@@ -331,20 +331,20 @@ public class aph {
 	public static Map b(int var0, ItemStack var1) {
 		Item var2 = var1.getItem();
 		HashMap var3 = null;
-		boolean var4 = var1.getItem() == amk.aL;
-		apf[] var5 = apf.b;
+		boolean var4 = var1.getItem() == Items.aL;
+		Enchantment[] var5 = Enchantment.enchants;
 		int var6 = var5.length;
 
 		for (int var7 = 0; var7 < var6; ++var7) {
-			apf var8 = var5[var7];
-			if (var8 != null && (var8.C.a(var2) || var4)) {
-				for (int var9 = var8.e(); var9 <= var8.b(); ++var9) {
+			Enchantment var8 = var5[var7];
+			if (var8 != null && (var8.slot.canEnchant(var2) || var4)) {
+				for (int var9 = var8.getStartLevel(); var9 <= var8.getMaxLevel(); ++var9) {
 					if (var0 >= var8.a(var9) && var0 <= var8.b(var9)) {
 						if (var3 == null) {
 							var3 = Maps.newHashMap();
 						}
 
-						var3.put(Integer.valueOf(var8.B), new apo(var8, var9));
+						var3.put(Integer.valueOf(var8.id), new apo(var8, var9));
 					}
 				}
 			}

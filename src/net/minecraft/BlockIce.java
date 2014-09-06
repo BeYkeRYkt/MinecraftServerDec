@@ -8,7 +8,7 @@ public class BlockIce extends awt {
 		super(Material.ICE, false);
 		this.K = 0.98F;
 		this.a(true);
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
@@ -29,7 +29,7 @@ public class BlockIce extends awt {
 			this.b(var1, var3, var4, var6);
 			Material var7 = var1.p(var3.b()).getBlock().r();
 			if (var7.isSolid() || var7.isLiquid()) {
-				var1.a(var3, aty.i.P());
+				var1.a(var3, Blocks.FLOWING_WATER.P());
 			}
 		}
 
@@ -45,7 +45,7 @@ public class BlockIce extends awt {
 				var1.g(var2);
 			} else {
 				this.b(var1, var2, var1.p(var2), 0);
-				var1.a(var2, aty.j.P());
+				var1.a(var2, Blocks.WATER.P());
 			}
 		}
 	}

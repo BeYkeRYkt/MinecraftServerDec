@@ -18,7 +18,7 @@ public class BlockCrops extends auc implements atz {
 	}
 
 	protected boolean c(Block var1) {
-		return var1 == aty.ak;
+		return var1 == Blocks.ak;
 	}
 
 	public void b(World var1, Position var2, bec var3, Random var4) {
@@ -52,7 +52,7 @@ public class BlockCrops extends auc implements atz {
 			for (int var6 = -1; var6 <= 1; ++var6) {
 				float var7 = 0.0F;
 				bec var8 = var1.p(var4.a(var5, 0, var6));
-				if (var8.getBlock() == aty.ak) {
+				if (var8.getBlock() == Blocks.ak) {
 					var7 = 1.0F;
 					if (((Integer) var8.b(BlockSoil.a)).intValue() > 0) {
 						var7 = 3.0F;
@@ -90,11 +90,11 @@ public class BlockCrops extends auc implements atz {
 	}
 
 	protected Item j() {
-		return amk.N;
+		return Items.N;
 	}
 
 	protected Item l() {
-		return amk.O;
+		return Items.O;
 	}
 
 	public void a(World var1, Position var2, bec var3, float var4, int var5) {

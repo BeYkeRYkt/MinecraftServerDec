@@ -12,7 +12,7 @@ public class bie extends bhp {
 	private static final Logger a = LogManager.getLogger();
 	private static final String[] b = new String[] { "Skeleton", "Zombie", "Zombie", "Spider" };
 	private static final List c = Lists
-			.newArrayList((Object[]) (new vl[] { new vl(amk.aA, 0, 1, 1, 10), new vl(amk.j, 0, 1, 4, 10), new vl(amk.P, 0, 1, 1, 10), new vl(amk.O, 0, 1, 4, 10), new vl(amk.H, 0, 1, 4, 10), new vl(amk.F, 0, 1, 4, 10), new vl(amk.aw, 0, 1, 1, 10), new vl(amk.ao, 0, 1, 1, 1), new vl(amk.aC, 0, 1, 4, 10), new vl(amk.cq, 0, 1, 1, 4), new vl(amk.cr, 0, 1, 1, 4), new vl(amk.co, 0, 1, 1, 10), new vl(amk.cl, 0, 1, 1, 2), new vl(amk.ck, 0, 1, 1, 5), new vl(amk.cm, 0, 1, 1, 1) }));
+			.newArrayList((Object[]) (new vl[] { new vl(Items.aA, 0, 1, 1, 10), new vl(Items.j, 0, 1, 4, 10), new vl(Items.P, 0, 1, 1, 10), new vl(Items.O, 0, 1, 4, 10), new vl(Items.H, 0, 1, 4, 10), new vl(Items.F, 0, 1, 4, 10), new vl(Items.aw, 0, 1, 1, 10), new vl(Items.ao, 0, 1, 1, 1), new vl(Items.aC, 0, 1, 4, 10), new vl(Items.cq, 0, 1, 1, 4), new vl(Items.cr, 0, 1, 1, 4), new vl(Items.co, 0, 1, 1, 10), new vl(Items.cl, 0, 1, 1, 2), new vl(Items.ck, 0, 1, 1, 5), new vl(Items.cm, 0, 1, 1, 1) }));
 
 	public boolean b(World var1, Random var2, Position var3) {
 		boolean var4 = true;
@@ -57,16 +57,16 @@ public class bie extends bhp {
 					for (var16 = var11; var16 <= var12; ++var16) {
 						var17 = var3.a(var14, var15, var16);
 						if (var14 != var6 && var15 != -1 && var16 != var11 && var14 != var7 && var15 != 4 && var16 != var12) {
-							if (var1.p(var17).getBlock() != aty.ae) {
+							if (var1.p(var17).getBlock() != Blocks.ae) {
 								var1.g(var17);
 							}
 						} else if (var17.getY() >= 0 && !var1.p(var17.b()).getBlock().r().isBuildable()) {
 							var1.g(var17);
-						} else if (var1.p(var17).getBlock().r().isBuildable() && var1.p(var17).getBlock() != aty.ae) {
+						} else if (var1.p(var17).getBlock().r().isBuildable() && var1.p(var17).getBlock() != Blocks.ae) {
 							if (var15 == -1 && var2.nextInt(4) != 0) {
-								var1.a(var17, aty.Y.P(), 2);
+								var1.a(var17, Blocks.MOSSY_COBBLESTONE.P(), 2);
 							} else {
-								var1.a(var17, aty.e.P(), 2);
+								var1.a(var17, Blocks.COBBLESTONE.P(), 2);
 							}
 						}
 					}
@@ -97,8 +97,8 @@ public class bie extends bhp {
 								}
 
 								if (var20 == 1) {
-									var1.a(var26, aty.ae.f(var1, var26, aty.ae.P()), 2);
-									List var27 = vl.a(c, new vl[] { amk.cd.b(var2) });
+									var1.a(var26, Blocks.ae.f(var1, var26, Blocks.ae.P()), 2);
+									List var27 = vl.a(c, new vl[] { Items.cd.b(var2) });
 									TileEntity var28 = var1.s(var26);
 									if (var28 instanceof TileEntityChest) {
 										vl.a(var2, var27, (IInventory) ((TileEntityChest) var28), 8);
@@ -117,7 +117,7 @@ public class bie extends bhp {
 				}
 			}
 
-			var1.a(var3, aty.ac.P(), 2);
+			var1.a(var3, Blocks.ac.P(), 2);
 			TileEntity var23 = var1.s(var3);
 			if (var23 instanceof TileEntityMobSpawner) {
 				((TileEntityMobSpawner) var23).b().a(this.a(var2));

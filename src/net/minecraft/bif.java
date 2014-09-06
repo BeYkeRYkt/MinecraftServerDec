@@ -10,7 +10,7 @@ public class bif extends bhp {
 	private final Predicate c;
 
 	public bif(bec var1, int var2) {
-		this(var1, var2, bep.a(aty.b));
+		this(var1, var2, bep.a(Blocks.STONE));
 	}
 
 	public bif(bec var1, int var2, Predicate var3) {

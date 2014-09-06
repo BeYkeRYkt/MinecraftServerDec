@@ -5,7 +5,7 @@ public class BlockBeacon extends atg {
 	public BlockBeacon() {
 		super(Material.SHATTERABLE);
 		this.c(3.0F);
-		this.a(CreativeModeTab.f);
+		this.a(CreativeModeTab.MISC);
 	}
 
 	public TileEntity a(World var1, int var2) {

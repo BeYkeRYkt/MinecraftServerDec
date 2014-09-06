@@ -23,7 +23,7 @@ public class bpy extends bpu {
 		if (this.i && var1.V()) {
 			var2 = (int) var1.aQ().b;
 
-			for (Block var3 = this.a.p(new Position(DataTypesConverter.toFixedPointInt(var1.locationX), var2, DataTypesConverter.toFixedPointInt(var1.locationZ))).getBlock(); var3 == aty.i || var3 == aty.j; var3 = this.a.p(new Position(DataTypesConverter.toFixedPointInt(var1.locationX), var2, DataTypesConverter.toFixedPointInt(var1.locationZ))).getBlock()) {
+			for (Block var3 = this.a.p(new Position(DataTypesConverter.toFixedPointInt(var1.locationX), var2, DataTypesConverter.toFixedPointInt(var1.locationZ))).getBlock(); var3 == Blocks.FLOWING_WATER || var3 == Blocks.WATER; var3 = this.a.p(new Position(DataTypesConverter.toFixedPointInt(var1.locationX), var2, DataTypesConverter.toFixedPointInt(var1.locationZ))).getBlock()) {
 				++var2;
 			}
 
@@ -131,8 +131,8 @@ public class bpy extends bpu {
 					Position var16 = new Position(var13, var14, var15);
 					Block var17 = var0.p(var16).getBlock();
 					if (var17.r() != Material.AIR) {
-						if (var17 != aty.bd && var17 != aty.cw) {
-							if (var17 != aty.i && var17 != aty.j) {
+						if (var17 != Blocks.bd && var17 != Blocks.cw) {
+							if (var17 != Blocks.FLOWING_WATER && var17 != Blocks.WATER) {
 								if (!var10 && var17 instanceof BlockDoor && var17.r() == Material.WOOD) {
 									return 0;
 								}
@@ -156,7 +156,7 @@ public class bpy extends bpu {
 								return -3;
 							}
 
-							if (var17 == aty.bd || var17 == aty.cw) {
+							if (var17 == Blocks.bd || var17 == Blocks.cw) {
 								return -4;
 							}
 

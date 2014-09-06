@@ -121,7 +121,7 @@ public abstract class TileEntity {
 			bec var1 = this.world.p(this.position);
 			this.h = var1.getBlock().c(var1);
 			this.world.b(this.position, this);
-			if (this.getBlock() != aty.a) {
+			if (this.getBlock() != Blocks.AIR) {
 				this.world.e(this.position, this.getBlock());
 			}
 		}

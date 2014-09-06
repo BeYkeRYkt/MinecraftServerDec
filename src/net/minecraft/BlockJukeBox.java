@@ -7,7 +7,7 @@ public class BlockJukeBox extends atg {
 	protected BlockJukeBox() {
 		super(Material.WOOD);
 		this.j(this.L.b().a(a, Boolean.valueOf(false)));
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
@@ -78,7 +78,7 @@ public class BlockJukeBox extends atg {
 		if (var3 instanceof TileEntityRecordPlayer) {
 			ItemStack var4 = ((TileEntityRecordPlayer) var3).a();
 			if (var4 != null) {
-				return Item.getId(var4.getItem()) + 1 - Item.getId(amk.cq);
+				return Item.getId(var4.getItem()) + 1 - Item.getId(Items.cq);
 			}
 		}
 

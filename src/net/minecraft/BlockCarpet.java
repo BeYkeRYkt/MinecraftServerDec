@@ -9,7 +9,7 @@ public class BlockCarpet extends Block {
 		this.j(this.L.b().a(a, akv.a));
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
 		this.a(true);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 		this.b(0);
 	}
 

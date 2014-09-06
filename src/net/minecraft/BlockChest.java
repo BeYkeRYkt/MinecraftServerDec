@@ -14,7 +14,7 @@ public class BlockChest extends atg {
 		super(Material.WOOD);
 		this.j(this.L.b().a(a, PaintingDirection.c));
 		this.b = var1;
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 		this.a(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 	}
 

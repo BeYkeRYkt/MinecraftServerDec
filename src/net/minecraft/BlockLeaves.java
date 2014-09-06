@@ -2,16 +2,16 @@ package net.minecraft;
 
 import java.util.Random;
 
-public abstract class axg extends bbo {
+public abstract class BlockLeaves extends BlockTransparent {
 
 	public static final bet a = bet.a("decayable");
 	public static final bet b = bet.a("check_decay");
 	int[] M;
 
-	public axg() {
+	public BlockLeaves() {
 		super(Material.LEAVES, false);
 		this.a(true);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 		this.c(0.2F);
 		this.e(1);
 		this.a(h);
@@ -62,7 +62,7 @@ public abstract class axg extends bbo {
 						for (var14 = -var5; var14 <= var5; ++var14) {
 							for (var15 = -var5; var15 <= var5; ++var15) {
 								Block var16 = var1.p(new Position(var7 + var13, var8 + var14, var9 + var15)).getBlock();
-								if (var16 != aty.r && var16 != aty.s) {
+								if (var16 != Blocks.LOG && var16 != Blocks.LOG2) {
 									if (var16.r() == Material.LEAVES) {
 										this.M[(var13 + var12) * var11 + (var14 + var12) * var10 + var15 + var12] = -2;
 									} else {
@@ -131,7 +131,7 @@ public abstract class axg extends bbo {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Item.getItemOf(aty.g);
+		return Item.getItemOf(Blocks.SAPLING);
 	}
 
 	public void a(World var1, Position var2, bec var3, float var4, int var5) {

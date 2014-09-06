@@ -44,11 +44,11 @@ public class ary {
 	public boolean L;
 
 	public ary() {
-		this.f = new bik(aty.m, 7);
-		this.g = new bik(aty.n, 6);
-		this.s = new bhq(aty.N, awa.a);
-		this.t = new bhi(aty.P);
-		this.u = new bhi(aty.Q);
+		this.f = new bik(Blocks.SAND, 7);
+		this.g = new bik(Blocks.GRAVEL, 6);
+		this.s = new bhq(Blocks.YELLOW_FLOWER, awa.a);
+		this.t = new bhi(Blocks.BRWON_MUSHROOM);
+		this.u = new bhi(Blocks.RED_MUSHROOM);
 		this.v = new bhv();
 		this.w = new bii();
 		this.x = new bhj();
@@ -75,17 +75,17 @@ public class ary {
 
 			this.b = var2;
 			this.c = var4;
-			this.h = new bif(aty.d.P(), this.d.I);
-			this.i = new bif(aty.n.P(), this.d.M);
-			this.j = new bif(aty.b.P().a(BlockStone.a, bbb.b), this.d.Q);
-			this.k = new bif(aty.b.P().a(BlockStone.a, bbb.d), this.d.U);
-			this.l = new bif(aty.b.P().a(BlockStone.a, bbb.f), this.d.Y);
-			this.m = new bif(aty.q.P(), this.d.ac);
-			this.n = new bif(aty.p.P(), this.d.ag);
-			this.o = new bif(aty.o.P(), this.d.ak);
-			this.p = new bif(aty.aC.P(), this.d.ao);
-			this.q = new bif(aty.ag.P(), this.d.as);
-			this.r = new bif(aty.x.P(), this.d.aw);
+			this.h = new bif(Blocks.DIRT.P(), this.d.I);
+			this.i = new bif(Blocks.GRAVEL.P(), this.d.M);
+			this.j = new bif(Blocks.STONE.P().a(BlockStone.a, bbb.b), this.d.Q);
+			this.k = new bif(Blocks.STONE.P().a(BlockStone.a, bbb.d), this.d.U);
+			this.l = new bif(Blocks.STONE.P().a(BlockStone.a, bbb.f), this.d.Y);
+			this.m = new bif(Blocks.COAL_ORE.P(), this.d.ac);
+			this.n = new bif(Blocks.IRON_ORE.P(), this.d.ag);
+			this.o = new bif(Blocks.GOLD_ORE.P(), this.d.ak);
+			this.p = new bif(Blocks.aC.P(), this.d.ao);
+			this.q = new bif(Blocks.ag.P(), this.d.as);
+			this.r = new bif(Blocks.LAPIS_ORE.P(), this.d.aw);
 			this.a(var3);
 			this.a = null;
 			this.b = null;
@@ -254,12 +254,12 @@ public class ary {
 			Position var10;
 			for (var3 = 0; var3 < 50; ++var3) {
 				var10 = this.c.a(this.b.nextInt(16) + 8, this.b.nextInt(this.b.nextInt(248) + 8), this.b.nextInt(16) + 8);
-				(new bin(aty.i)).b(this.a, this.b, var10);
+				(new bin(Blocks.FLOWING_WATER)).b(this.a, this.b, var10);
 			}
 
 			for (var3 = 0; var3 < 20; ++var3) {
 				var10 = this.c.a(this.b.nextInt(16) + 8, this.b.nextInt(this.b.nextInt(this.b.nextInt(240) + 8) + 8), this.b.nextInt(16) + 8);
-				(new bin(aty.k)).b(this.a, this.b, var10);
+				(new bin(Blocks.FLOWING_LAVA)).b(this.a, this.b, var10);
 			}
 		}
 

@@ -109,7 +109,7 @@ public class EntityEndermite extends EntityMonster {
 		}
 	}
 
-	public xs by() {
-		return xs.c;
+	public EnumMonsterType by() {
+		return EnumMonsterType.c;
 	}
 }

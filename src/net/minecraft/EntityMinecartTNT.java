@@ -17,7 +17,7 @@ public class EntityMinecartTNT extends adx {
 	}
 
 	public bec u() {
-		return aty.W.P();
+		return Blocks.TNT.P();
 	}
 
 	public void s_() {
@@ -38,7 +38,7 @@ public class EntityMinecartTNT extends adx {
 
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		Entity var3 = var1.i();
 		if (var3 instanceof EntityArrow) {
 			EntityArrow var4 = (EntityArrow) var3;
@@ -50,11 +50,11 @@ public class EntityMinecartTNT extends adx {
 		return super.a(var1, var2);
 	}
 
-	public void a(wh var1) {
+	public void a(DamageSource var1) {
 		super.a(var1);
 		double var2 = this.motionX * this.motionX + this.motionZ * this.motionZ;
 		if (!var1.c()) {
-			this.a(new ItemStack(aty.W, 1), 0.0F);
+			this.a(new ItemStack(Blocks.TNT, 1), 0.0F);
 		}
 
 		if (var1.o() || var1.c() || var2 >= 0.009999999776482582D) {

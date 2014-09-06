@@ -74,7 +74,7 @@ public class EntityPainting extends adj {
 				}
 			}
 
-			this.a(new ItemStack(amk.an), 0.0F);
+			this.a(new ItemStack(Items.an), 0.0F);
 		}
 	}
 

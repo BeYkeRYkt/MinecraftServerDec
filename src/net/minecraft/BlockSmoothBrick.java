@@ -11,7 +11,7 @@ public class BlockSmoothBrick extends Block {
 	public BlockSmoothBrick() {
 		super(Material.STONE);
 		this.j(this.L.b().a(a, bbd.a));
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public int a(bec var1) {

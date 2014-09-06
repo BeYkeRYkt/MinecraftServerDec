@@ -8,7 +8,7 @@ public class BlockWaterLily extends auc {
 		float var1 = 0.5F;
 		float var2 = 0.015625F;
 		this.a(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, var2, 0.5F + var1);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
@@ -23,7 +23,7 @@ public class BlockWaterLily extends auc {
 	}
 
 	protected boolean c(Block var1) {
-		return var1 == aty.j;
+		return var1 == Blocks.WATER;
 	}
 
 	public boolean f(World var1, Position var2, bec var3) {

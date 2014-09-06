@@ -1,18 +1,18 @@
 package net.minecraft;
 
-public class ajz extends Item {
+public class ItemBow extends Item {
 
 	public static final String[] a = new String[] { "pulling_0", "pulling_1", "pulling_2" };
 
-	public ajz() {
+	public ItemBow() {
 		this.maxStackSize = 1;
 		this.d(384);
-		this.a(CreativeModeTab.j);
+		this.setCreativeModeTab(CreativeModeTab.COMBAT);
 	}
 
 	public void a(ItemStack var1, World var2, EntityHuman var3, int var4) {
-		boolean var5 = var3.by.instabuild || aph.a(apf.y.B, var1) > 0;
-		if (var5 || var3.playerInventory.b(amk.g)) {
+		boolean var5 = var3.by.instabuild || aph.a(Enchantment.ARROW_INFINITE.id, var1) > 0;
+		if (var5 || var3.playerInventory.b(Items.g)) {
 			int var6 = this.d(var1) - var4;
 			float var7 = (float) var6 / 20.0F;
 			var7 = (var7 * var7 + var7 * 2.0F) / 3.0F;
@@ -29,17 +29,17 @@ public class ajz extends Item {
 				var8.a(true);
 			}
 
-			int var9 = aph.a(apf.v.B, var1);
+			int var9 = aph.a(Enchantment.ARROW_DAMAGE.id, var1);
 			if (var9 > 0) {
 				var8.b(var8.j() + (double) var9 * 0.5D + 0.5D);
 			}
 
-			int var10 = aph.a(apf.w.B, var1);
+			int var10 = aph.a(Enchantment.ARROW_KNOCKBACK.id, var1);
 			if (var10 > 0) {
 				var8.a(var10);
 			}
 
-			if (aph.a(apf.x.B, var1) > 0) {
+			if (aph.a(Enchantment.ARROW_FIRE.id, var1) > 0) {
 				var8.e(100);
 			}
 
@@ -48,7 +48,7 @@ public class ajz extends Item {
 			if (var5) {
 				var8.a = 2;
 			} else {
-				var3.playerInventory.a(amk.g);
+				var3.playerInventory.a(Items.g);
 			}
 
 			var3.b(StatisticList.J[Item.getId((Item) this)]);
@@ -72,7 +72,7 @@ public class ajz extends Item {
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
-		if (var3.by.instabuild || var3.playerInventory.b(amk.g)) {
+		if (var3.by.instabuild || var3.playerInventory.b(Items.g)) {
 			var3.a(var1, this.d(var1));
 		}
 

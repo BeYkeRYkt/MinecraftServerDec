@@ -22,7 +22,7 @@ public class EntityItemFrame extends adj {
 		return 0.0F;
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else if (!var1.c() && this.o() != null) {
@@ -61,7 +61,7 @@ public class EntityItemFrame extends adj {
 			}
 
 			if (var2) {
-				this.a(new ItemStack(amk.bP), 0.0F);
+				this.a(new ItemStack(Items.bP), 0.0F);
 			}
 
 			if (var3 != null && this.V.nextFloat() < this.c) {
@@ -75,7 +75,7 @@ public class EntityItemFrame extends adj {
 
 	private void b(ItemStack var1) {
 		if (var1 != null) {
-			if (var1.getItem() == amk.bd) {
+			if (var1.getItem() == Items.bd) {
 				bqe var2 = ((amn) var1.getItem()).a(var1, this.o);
 				var2.h.remove("frame-" + this.getId());
 			}
@@ -102,7 +102,7 @@ public class EntityItemFrame extends adj {
 		this.getDataWatcher().b(8, var1);
 		this.getDataWatcher().i(8);
 		if (var2 && this.a != null) {
-			this.o.e(this.a, aty.a);
+			this.o.e(this.a, Blocks.AIR);
 		}
 
 	}
@@ -118,7 +118,7 @@ public class EntityItemFrame extends adj {
 	private void a(int var1, boolean var2) {
 		this.getDataWatcher().b(9, Byte.valueOf((byte) (var1 % 8)));
 		if (var2 && this.a != null) {
-			this.o.e(this.a, aty.a);
+			this.o.e(this.a, Blocks.AIR);
 		}
 
 	}

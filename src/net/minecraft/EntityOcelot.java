@@ -13,7 +13,7 @@ public class EntityOcelot extends xx {
 		((aay) this.s()).a(true);
 		this.i.a(1, new yy(this));
 		this.i.a(2, this.bk);
-		this.i.a(3, this.bn = new aag(this, 0.6D, amk.aU, true));
+		this.i.a(3, this.bn = new aag(this, 0.6D, Items.aU, true));
 		this.i.a(5, new yz(this, 1.0D, 10.0F, 5.0F));
 		this.i.a(6, new zr(this, 0.8D));
 		this.i.a(7, new zg(this, 0.3F));
@@ -89,14 +89,14 @@ public class EntityOcelot extends xx {
 	}
 
 	protected Item A() {
-		return amk.aF;
+		return Items.aF;
 	}
 
 	public boolean r(Entity var1) {
-		return var1.a(wh.a((EntityLiving) this), 3.0F);
+		return var1.a(DamageSource.a((EntityLiving) this), 3.0F);
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
@@ -114,7 +114,7 @@ public class EntityOcelot extends xx {
 			if (this.e(var1) && !this.o.D && !this.d(var2)) {
 				this.bk.a(!this.cl());
 			}
-		} else if (this.bn.f() && var2 != null && var2.getItem() == amk.aU && var1.h(this) < 9.0D) {
+		} else if (this.bn.f() && var2 != null && var2.getItem() == Items.aU && var1.h(this) < 9.0D) {
 			if (!var1.by.instabuild) {
 				--var2.b;
 			}
@@ -155,7 +155,7 @@ public class EntityOcelot extends xx {
 	}
 
 	public boolean d(ItemStack var1) {
-		return var1 != null && var1.getItem() == amk.aU;
+		return var1 != null && var1.getItem() == Items.aU;
 	}
 
 	public boolean a(abq var1) {
@@ -191,7 +191,7 @@ public class EntityOcelot extends xx {
 			}
 
 			Block var2 = this.o.p(var1.b()).getBlock();
-			if (var2 == aty.c || var2.r() == Material.LEAVES) {
+			if (var2 == Blocks.GRASS || var2.r() == Material.LEAVES) {
 				return true;
 			}
 		}
@@ -200,7 +200,7 @@ public class EntityOcelot extends xx {
 	}
 
 	public String d_() {
-		return this.k_() ? this.aL() : (this.cj() ? fi.a("entity.Cat.name") : super.d_());
+		return this.k_() ? this.aL() : (this.cj() ? LocaleI18n.get("entity.Cat.name") : super.d_());
 	}
 
 	public void m(boolean var1) {

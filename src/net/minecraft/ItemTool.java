@@ -3,21 +3,21 @@ package net.minecraft;
 import com.google.common.collect.Multimap;
 import java.util.Set;
 
-public class aks extends Item {
+public class ItemTool extends Item {
 
 	private Set c;
 	protected float a = 4.0F;
 	private float d;
 	protected ami b;
 
-	protected aks(float var1, ami var2, Set var3) {
+	protected ItemTool(float var1, ami var2, Set var3) {
 		this.b = var2;
 		this.c = var3;
 		this.maxStackSize = 1;
 		this.d(var2.a());
 		this.a = var2.b();
 		this.d = var1 + var2.c();
-		this.a(CreativeModeTab.i);
+		this.setCreativeModeTab(CreativeModeTab.TOOLS);
 	}
 
 	public float a(ItemStack var1, Block var2) {

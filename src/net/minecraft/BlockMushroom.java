@@ -55,7 +55,7 @@ public class BlockMushroom extends auc implements atz {
 	public boolean f(World var1, Position var2, bec var3) {
 		if (var2.getY() >= 0 && var2.getY() < 256) {
 			bec var4 = var1.p(var2.b());
-			return var4.getBlock() == aty.bw ? true : (var4.getBlock() == aty.d && var4.b(BlockDirt.a) == avd.c ? true : var1.k(var2) < 13 && this.c(var4.getBlock()));
+			return var4.getBlock() == Blocks.bw ? true : (var4.getBlock() == Blocks.DIRT && var4.b(BlockDirt.a) == avd.c ? true : var1.k(var2) < 13 && this.c(var4.getBlock()));
 		} else {
 			return false;
 		}
@@ -64,9 +64,9 @@ public class BlockMushroom extends auc implements atz {
 	public boolean d(World var1, Position var2, bec var3, Random var4) {
 		var1.g(var2);
 		bhv var5 = null;
-		if (this == aty.P) {
+		if (this == Blocks.BRWON_MUSHROOM) {
 			var5 = new bhv(0);
-		} else if (this == aty.Q) {
+		} else if (this == Blocks.RED_MUSHROOM) {
 			var5 = new bhv(1);
 		}
 

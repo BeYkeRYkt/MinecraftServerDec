@@ -9,6 +9,6 @@ public class BlockGravel extends avt {
 			var3 = 3;
 		}
 
-		return var2.nextInt(10 - var3 * 3) == 0 ? amk.ak : Item.getItemOf((Block) this);
+		return var2.nextInt(10 - var3 * 3) == 0 ? Items.ak : Item.getItemOf((Block) this);
 	}
 }

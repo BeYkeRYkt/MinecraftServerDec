@@ -11,7 +11,7 @@ public class BlockCactus extends Block {
 		super(Material.CACTUS);
 		this.j(this.L.b().a(a, Integer.valueOf(0)));
 		this.a(true);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	public void b(World var1, Position var2, bec var3, Random var4) {
@@ -72,11 +72,11 @@ public class BlockCactus extends Block {
 		}
 
 		Block var5 = var1.p(var2.b()).getBlock();
-		return var5 == aty.aK || var5 == aty.m;
+		return var5 == Blocks.aK || var5 == Blocks.SAND;
 	}
 
 	public void a(World var1, Position var2, bec var3, Entity var4) {
-		var4.a(wh.h, 1.0F);
+		var4.a(DamageSource.h, 1.0F);
 	}
 
 	public bec a(int var1) {

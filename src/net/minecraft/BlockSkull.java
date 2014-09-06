@@ -83,7 +83,7 @@ public class BlockSkull extends atg {
 				TileEntity var4 = var1.s(var2);
 				if (var4 instanceof TileEntitySkull) {
 					TileEntitySkull var5 = (TileEntitySkull) var4;
-					ItemStack var6 = new ItemStack(amk.bX, 1, this.j(var1, var2));
+					ItemStack var6 = new ItemStack(Items.bX, 1, this.j(var1, var2));
 					if (var5.c() == 3 && var5.b() != null) {
 						var6.d(new NBTCompoundTag());
 						NBTCompoundTag var7 = new NBTCompoundTag();
@@ -100,7 +100,7 @@ public class BlockSkull extends atg {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return amk.bX;
+		return Items.bX;
 	}
 
 	public boolean b(World var1, Position var2, ItemStack var3) {
@@ -121,7 +121,7 @@ public class BlockSkull extends atg {
 				for (var6 = 0; var6 < var4.c(); ++var6) {
 					for (int var13 = 0; var13 < var4.b(); ++var13) {
 						bei var8 = var5.a(var6, var13, 0);
-						var1.a(var8.d(), aty.a.P(), 2);
+						var1.a(var8.d(), Blocks.AIR.P(), 2);
 					}
 				}
 
@@ -148,7 +148,7 @@ public class BlockSkull extends atg {
 				for (var16 = 0; var16 < var4.c(); ++var16) {
 					for (int var17 = 0; var17 < var4.b(); ++var17) {
 						bei var11 = var5.a(var16, var17, 0);
-						var1.b(var11.d(), aty.a);
+						var1.b(var11.d(), Blocks.AIR);
 					}
 				}
 
@@ -176,7 +176,7 @@ public class BlockSkull extends atg {
 
 	protected bek j() {
 		if (this.N == null) {
-			this.N = ben.a().a(new String[] { "   ", "###", "~#~" }).a('#', bei.a(beq.a(aty.aW))).a('~', bei.a(beq.a(aty.a))).b();
+			this.N = ben.a().a(new String[] { "   ", "###", "~#~" }).a('#', bei.a(beq.a(Blocks.aW))).a('~', bei.a(beq.a(Blocks.AIR))).b();
 		}
 
 		return this.N;
@@ -184,7 +184,7 @@ public class BlockSkull extends atg {
 
 	protected bek l() {
 		if (this.O == null) {
-			this.O = ben.a().a(new String[] { "^^^", "###", "~#~" }).a('#', bei.a(beq.a(aty.aW))).a('^', M).a('~', bei.a(beq.a(aty.a))).b();
+			this.O = ben.a().a(new String[] { "^^^", "###", "~#~" }).a('#', bei.a(beq.a(Blocks.aW))).a('^', M).a('~', bei.a(beq.a(Blocks.AIR))).b();
 		}
 
 		return this.O;

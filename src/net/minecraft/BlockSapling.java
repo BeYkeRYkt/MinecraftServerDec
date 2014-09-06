@@ -11,7 +11,7 @@ public class BlockSapling extends auc implements atz {
 		this.j(this.L.b().a(a, ayx.a).a(b, Integer.valueOf(0)));
 		float var1 = 0.4F;
 		this.a(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, var1 * 2.0F, 0.5F + var1);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	public void b(World var1, Position var2, bec var3, Random var4) {
@@ -96,7 +96,7 @@ public class BlockSapling extends auc implements atz {
 			case 6:
 		}
 
-		bec var9 = aty.a.P();
+		bec var9 = Blocks.AIR.P();
 		if (var8) {
 			var1.a(var2.a(var6, 0, var7), var9, 4);
 			var1.a(var2.a(var6 + 1, 0, var7), var9, 4);

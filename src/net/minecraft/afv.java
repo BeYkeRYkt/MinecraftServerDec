@@ -34,7 +34,7 @@ class afv extends zb {
 					for (int var6 = 0; var6 <= 10 && var6 >= -10; var6 = var6 <= 0 ? 1 - var6 : 0 - var6) {
 						Position var7 = var3.a(var5, var4, var6);
 						bec var8 = var1.p(var7);
-						if (var8.getBlock() == aty.be) {
+						if (var8.getBlock() == Blocks.be) {
 							if (var1.Q().b("mobGriefing")) {
 								var1.b(var7, true);
 							} else {

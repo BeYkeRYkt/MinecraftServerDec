@@ -167,7 +167,7 @@ public class EntitySlime extends EntityInsentient implements aex {
 
 	protected void e(EntityLiving var1) {
 		int var2 = this.ck();
-		if (this.t(var1) && this.h(var1) < 0.6D * (double) var2 * 0.6D * (double) var2 && var1.a(wh.a((EntityLiving) this), (float) this.ch())) {
+		if (this.t(var1) && this.h(var1) < 0.6D * (double) var2 * 0.6D * (double) var2 && var1.a(DamageSource.a((EntityLiving) this), (float) this.ch())) {
 			this.a("mob.attack", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
 			this.a(this, var1);
 		}
@@ -195,7 +195,7 @@ public class EntitySlime extends EntityInsentient implements aex {
 	}
 
 	protected Item A() {
-		return this.ck() == 1 ? amk.aM : null;
+		return this.ck() == 1 ? Items.aM : null;
 	}
 
 	public boolean bQ() {

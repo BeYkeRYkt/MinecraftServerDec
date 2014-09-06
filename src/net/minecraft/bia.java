@@ -24,7 +24,7 @@ public class bia extends bic {
 				for (var9 = 0; var9 < 5; ++var9) {
 					var7 = var3.getX() + (int) (1.5F + DataTypesConverter.b(var6) * (float) var9);
 					var8 = var3.getZ() + (int) (1.5F + DataTypesConverter.a(var6) * (float) var9);
-					this.a(var1, new Position(var7, var5 - 3 + var9 / 2, var8), aty.r, this.b);
+					this.a(var1, new Position(var7, var5 - 3 + var9 / 2, var8), Blocks.LOG, this.b);
 				}
 
 				var9 = 1 + var2.nextInt(2);
@@ -39,7 +39,7 @@ public class bia extends bic {
 			for (int var13 = 0; var13 < var4; ++var13) {
 				Position var14 = var3.b(var13);
 				if (this.a(var1.p(var14).getBlock().r())) {
-					this.a(var1, var14, aty.r, this.b);
+					this.a(var1, var14, Blocks.LOG, this.b);
 					if (var13 > 0) {
 						this.b(var1, var2, var14.e(), BlockVine.S);
 						this.b(var1, var2, var14.c(), BlockVine.Q);
@@ -49,7 +49,7 @@ public class bia extends bic {
 				if (var13 < var4 - 1) {
 					Position var15 = var14.f();
 					if (this.a(var1.p(var15).getBlock().r())) {
-						this.a(var1, var15, aty.r, this.b);
+						this.a(var1, var15, Blocks.LOG, this.b);
 						if (var13 > 0) {
 							this.b(var1, var2, var15.f(), BlockVine.T);
 							this.b(var1, var2, var15.c(), BlockVine.Q);
@@ -58,7 +58,7 @@ public class bia extends bic {
 
 					Position var16 = var14.d().f();
 					if (this.a(var1.p(var16).getBlock().r())) {
-						this.a(var1, var16, aty.r, this.b);
+						this.a(var1, var16, Blocks.LOG, this.b);
 						if (var13 > 0) {
 							this.b(var1, var2, var16.f(), BlockVine.T);
 							this.b(var1, var2, var16.d(), BlockVine.R);
@@ -67,7 +67,7 @@ public class bia extends bic {
 
 					Position var17 = var14.d();
 					if (this.a(var1.p(var17).getBlock().r())) {
-						this.a(var1, var17, aty.r, this.b);
+						this.a(var1, var17, Blocks.LOG, this.b);
 						if (var13 > 0) {
 							this.b(var1, var2, var17.e(), BlockVine.S);
 							this.b(var1, var2, var17.d(), BlockVine.R);
@@ -86,7 +86,7 @@ public class bia extends bic {
 
 	private void b(World var1, Random var2, Position var3, int var4) {
 		if (var2.nextInt(3) > 0 && var1.d(var3)) {
-			this.a(var1, var3, aty.bn, var4);
+			this.a(var1, var3, Blocks.bn, var4);
 		}
 
 	}

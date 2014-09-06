@@ -12,7 +12,7 @@ public class BlockFence extends Block {
 	public BlockFence(Material var1) {
 		super(var1);
 		this.j(this.L.b().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)));
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
@@ -105,7 +105,7 @@ public class BlockFence extends Block {
 
 	public boolean e(ard var1, Position var2) {
 		Block var3 = var1.p(var2).getBlock();
-		return var3 == aty.cv ? false : ((!(var3 instanceof BlockFence) || var3.material != this.material) && !(var3 instanceof BlockFenceGate) ? (var3.material.k() && var3.d() ? var3.material != Material.PUMPKIN : false) : true);
+		return var3 == Blocks.cv ? false : ((!(var3 instanceof BlockFence) || var3.material != this.material) && !(var3 instanceof BlockFenceGate) ? (var3.material.k() && var3.d() ? var3.material != Material.PUMPKIN : false) : true);
 	}
 
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {

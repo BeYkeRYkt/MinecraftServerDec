@@ -8,13 +8,13 @@ public class BlockDirt extends Block {
 	protected BlockDirt() {
 		super(Material.EARTH);
 		this.j(this.L.b().a(a, avd.a).a(b, Boolean.valueOf(false)));
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
 		if (var1.b(a) == avd.c) {
 			Block var4 = var2.p(var3.a()).getBlock();
-			var1 = var1.a(b, Boolean.valueOf(var4 == aty.aJ || var4 == aty.aH));
+			var1 = var1.a(b, Boolean.valueOf(var4 == Blocks.aJ || var4 == Blocks.aH));
 		}
 
 		return var1;

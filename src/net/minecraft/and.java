@@ -5,11 +5,11 @@ public class and extends Item {
 	public and() {
 		this.c(1);
 		this.d(238);
-		this.a(CreativeModeTab.i);
+		this.setCreativeModeTab(CreativeModeTab.TOOLS);
 	}
 
 	public boolean a(ItemStack var1, World var2, Block var3, Position var4, EntityLiving var5) {
-		if (var3.r() != Material.LEAVES && var3 != aty.G && var3 != aty.H && var3 != aty.bn && var3 != aty.bS && var3 != aty.L) {
+		if (var3.r() != Material.LEAVES && var3 != Blocks.WEB && var3 != Blocks.TALLGRASS && var3 != Blocks.bn && var3 != Blocks.bS && var3 != Blocks.WOOL) {
 			return super.a(var1, var2, var3, var4, var5);
 		} else {
 			var1.a(1, var5);
@@ -18,10 +18,10 @@ public class and extends Item {
 	}
 
 	public boolean b(Block var1) {
-		return var1 == aty.G || var1 == aty.af || var1 == aty.bS;
+		return var1 == Blocks.WEB || var1 == Blocks.af || var1 == Blocks.bS;
 	}
 
 	public float a(ItemStack var1, Block var2) {
-		return var2 != aty.G && var2.r() != Material.LEAVES ? (var2 == aty.L ? 5.0F : super.a(var1, var2)) : 15.0F;
+		return var2 != Blocks.WEB && var2.r() != Material.LEAVES ? (var2 == Blocks.WOOL ? 5.0F : super.a(var1, var2)) : 15.0F;
 	}
 }

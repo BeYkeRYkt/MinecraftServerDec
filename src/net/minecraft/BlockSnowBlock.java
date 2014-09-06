@@ -7,11 +7,11 @@ public class BlockSnowBlock extends Block {
 	protected BlockSnowBlock() {
 		super(Material.SNOW_BLOCK);
 		this.a(true);
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return amk.aD;
+		return Items.aD;
 	}
 
 	public int a(Random var1) {

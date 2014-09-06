@@ -6,7 +6,7 @@ public class BlockLightStone extends Block {
 
 	public BlockLightStone(Material var1) {
 		super(var1);
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public int a(int var1, Random var2) {
@@ -18,7 +18,7 @@ public class BlockLightStone extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return amk.aT;
+		return Items.aT;
 	}
 
 	public MaterialMapColor g(bec var1) {

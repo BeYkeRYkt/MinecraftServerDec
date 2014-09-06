@@ -12,8 +12,8 @@ public class EntityPig extends abq {
 		this.i.a(1, new zu(this, 1.25D));
 		this.i.a(2, this.bk = new yu(this, 0.3F));
 		this.i.a(3, new yt(this, 1.0D));
-		this.i.a(4, new aag(this, 1.2D, amk.bY, false));
-		this.i.a(4, new aag(this, 1.2D, amk.bR, false));
+		this.i.a(4, new aag(this, 1.2D, Items.bY, false));
+		this.i.a(4, new aag(this, 1.2D, Items.bR, false));
 		this.i.a(5, new za(this, 1.1D));
 		this.i.a(6, new zy(this, 1.0D));
 		this.i.a(7, new zh(this, EntityHuman.class, 6.0F));
@@ -28,7 +28,7 @@ public class EntityPig extends abq {
 
 	public boolean bV() {
 		ItemStack var1 = ((EntityHuman) this.l).bz();
-		return var1 != null && var1.getItem() == amk.bY;
+		return var1 != null && var1.getItem() == Items.bY;
 	}
 
 	protected void h() {
@@ -74,7 +74,7 @@ public class EntityPig extends abq {
 	}
 
 	protected Item A() {
-		return this.au() ? amk.am : amk.al;
+		return this.au() ? Items.am : Items.al;
 	}
 
 	protected void b(boolean var1, int var2) {
@@ -82,14 +82,14 @@ public class EntityPig extends abq {
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			if (this.au()) {
-				this.a(amk.am, 1);
+				this.a(Items.am, 1);
 			} else {
-				this.a(amk.al, 1);
+				this.a(Items.al, 1);
 			}
 		}
 
 		if (this.cj()) {
-			this.a(amk.aA, 1);
+			this.a(Items.aA, 1);
 		}
 
 	}
@@ -110,7 +110,7 @@ public class EntityPig extends abq {
 	public void a(EntityLightning var1) {
 		if (!this.o.D) {
 			EntityPigZombie var2 = new EntityPigZombie(this.o);
-			var2.c(0, new ItemStack(amk.B));
+			var2.c(0, new ItemStack(Items.B));
 			var2.b(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 			this.o.d((Entity) var2);
 			this.J();
@@ -130,7 +130,7 @@ public class EntityPig extends abq {
 	}
 
 	public boolean d(ItemStack var1) {
-		return var1 != null && var1.getItem() == amk.bR;
+		return var1 != null && var1.getItem() == Items.bR;
 	}
 
 	public yu ck() {

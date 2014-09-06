@@ -8,7 +8,7 @@ public class anc extends Item {
 	public anc(Block var1, Block var2) {
 		this.a = var1;
 		this.b = var2;
-		this.a(CreativeModeTab.l);
+		this.setCreativeModeTab(CreativeModeTab.MATERIALS);
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {

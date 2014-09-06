@@ -72,28 +72,28 @@ public class aiq extends Container {
 					for (var4 = -1; var4 <= 1; ++var4) {
 						for (int var5 = -1; var5 <= 1; ++var5) {
 							if ((var4 != 0 || var5 != 0) && this.i.d(this.j.a(var5, 0, var4)) && this.i.d(this.j.a(var5, 1, var4))) {
-								if (this.i.p(this.j.a(var5 * 2, 0, var4 * 2)).getBlock() == aty.X) {
+								if (this.i.p(this.j.a(var5 * 2, 0, var4 * 2)).getBlock() == Blocks.BOOKSHELF) {
 									++var3;
 								}
 
-								if (this.i.p(this.j.a(var5 * 2, 1, var4 * 2)).getBlock() == aty.X) {
+								if (this.i.p(this.j.a(var5 * 2, 1, var4 * 2)).getBlock() == Blocks.BOOKSHELF) {
 									++var3;
 								}
 
 								if (var5 != 0 && var4 != 0) {
-									if (this.i.p(this.j.a(var5 * 2, 0, var4)).getBlock() == aty.X) {
+									if (this.i.p(this.j.a(var5 * 2, 0, var4)).getBlock() == Blocks.BOOKSHELF) {
 										++var3;
 									}
 
-									if (this.i.p(this.j.a(var5 * 2, 1, var4)).getBlock() == aty.X) {
+									if (this.i.p(this.j.a(var5 * 2, 1, var4)).getBlock() == Blocks.BOOKSHELF) {
 										++var3;
 									}
 
-									if (this.i.p(this.j.a(var5, 0, var4 * 2)).getBlock() == aty.X) {
+									if (this.i.p(this.j.a(var5, 0, var4 * 2)).getBlock() == Blocks.BOOKSHELF) {
 										++var3;
 									}
 
-									if (this.i.p(this.j.a(var5, 1, var4 * 2)).getBlock() == aty.X) {
+									if (this.i.p(this.j.a(var5, 1, var4 * 2)).getBlock() == Blocks.BOOKSHELF) {
 										++var3;
 									}
 								}
@@ -116,7 +116,7 @@ public class aiq extends Container {
 							List var7 = this.a(var2, var4, this.g[var4]);
 							if (var7 != null && !var7.isEmpty()) {
 								apo var6 = (apo) var7.get(this.k.nextInt(var7.size()));
-								this.h[var4] = var6.b.B | var6.c << 8;
+								this.h[var4] = var6.b.id | var6.c << 8;
 							}
 						}
 					}
@@ -142,17 +142,17 @@ public class aiq extends Container {
 		} else if (this.g[var2] > 0 && var3 != null && (var1.bz >= var5 && var1.bz >= this.g[var2] || var1.by.instabuild)) {
 			if (!this.i.D) {
 				List var6 = this.a(var3, var2, this.g[var2]);
-				boolean var7 = var3.getItem() == amk.aL;
+				boolean var7 = var3.getItem() == Items.aL;
 				if (var6 != null) {
 					var1.b(var5);
 					if (var7) {
-						var3.a((Item) amk.cd);
+						var3.a((Item) Items.cd);
 					}
 
 					for (int var8 = 0; var8 < var6.size(); ++var8) {
 						apo var9 = (apo) var6.get(var8);
 						if (var7) {
-							amk.cd.a(var3, var9);
+							Items.cd.a(var3, var9);
 						} else {
 							var3.a(var9.b, var9.c);
 						}
@@ -180,7 +180,7 @@ public class aiq extends Container {
 	private List a(ItemStack var1, int var2, int var3) {
 		this.k.setSeed((long) (this.f + var2));
 		List var4 = aph.b(this.k, var1, var3);
-		if (var1.getItem() == amk.aL && var4 != null && var4.size() > 1) {
+		if (var1.getItem() == Items.aL && var4 != null && var4.size() > 1) {
 			var4.remove(this.k.nextInt(var4.size()));
 		}
 
@@ -201,7 +201,7 @@ public class aiq extends Container {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.i.p(this.j).getBlock() != aty.bC ? false : var1.e((double) this.j.getX() + 0.5D, (double) this.j.getY() + 0.5D, (double) this.j.getZ() + 0.5D) <= 64.0D;
+		return this.i.p(this.j).getBlock() != Blocks.bC ? false : var1.e((double) this.j.getX() + 0.5D, (double) this.j.getY() + 0.5D, (double) this.j.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {
@@ -218,7 +218,7 @@ public class aiq extends Container {
 				if (!this.a(var5, 2, 38, true)) {
 					return null;
 				}
-			} else if (var5.getItem() == amk.aW && akv.a(var5.i()) == akv.l) {
+			} else if (var5.getItem() == Items.aW && akv.a(var5.i()) == akv.l) {
 				if (!this.a(var5, 1, 2, true)) {
 					return null;
 				}

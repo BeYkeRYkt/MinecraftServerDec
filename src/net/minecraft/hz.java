@@ -36,7 +36,7 @@ public class hz extends hj {
 	synchronized void g() {
 		Object var1 = this.f;
 		synchronized (this.f) {
-			long var2 = fi.a();
+			long var2 = LocaleI18n.a();
 			if (var2 == this.g) {
 				return;
 			}
@@ -46,12 +46,12 @@ public class hz extends hj {
 		}
 
 		try {
-			this.b(fi.a(this.d));
+			this.b(LocaleI18n.get(this.d));
 		} catch (ia var6) {
 			this.b.clear();
 
 			try {
-				this.b(fi.b(this.d));
+				this.b(LocaleI18n.b(this.d));
 			} catch (ia var5) {
 				throw var6;
 			}

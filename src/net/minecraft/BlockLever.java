@@ -10,7 +10,7 @@ public class BlockLever extends Block {
 	protected BlockLever() {
 		super(Material.ORIENTABLE);
 		this.j(this.L.b().a(a, axk.e).a(b, Boolean.valueOf(false)));
-		this.a(CreativeModeTab.d);
+		this.a(CreativeModeTab.REDSTONE);
 	}
 
 	public brt a(World var1, Position var2, bec var3) {

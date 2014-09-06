@@ -22,7 +22,7 @@ public class bfg extends Chunk {
 	}
 
 	public Block a(Position var1) {
-		return aty.a;
+		return Blocks.AIR;
 	}
 
 	public int b(Position var1) {

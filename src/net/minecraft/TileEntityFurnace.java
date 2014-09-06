@@ -205,8 +205,8 @@ public class TileEntityFurnace extends bdf implements pm, we {
 				++this.h[2].b;
 			}
 
-			if (this.h[0].getItem() == Item.getItemOf(aty.v) && this.h[0].i() == 1 && this.h[1] != null && this.h[1].getItem() == amk.aw) {
-				this.h[1] = new ItemStack(amk.ax);
+			if (this.h[0].getItem() == Item.getItemOf(Blocks.SPONGE) && this.h[0].i() == 1 && this.h[1] != null && this.h[1].getItem() == Items.aw) {
+				this.h[1] = new ItemStack(Items.ax);
 			}
 
 			--this.h[0].b;
@@ -222,9 +222,9 @@ public class TileEntityFurnace extends bdf implements pm, we {
 			return 0;
 		} else {
 			Item var1 = var0.getItem();
-			if (var1 instanceof aju && Block.a(var1) != aty.a) {
+			if (var1 instanceof aju && Block.a(var1) != Blocks.AIR) {
 				Block var2 = Block.a(var1);
-				if (var2 == aty.bM) {
+				if (var2 == Blocks.bM) {
 					return 150;
 				}
 
@@ -232,12 +232,12 @@ public class TileEntityFurnace extends bdf implements pm, we {
 					return 300;
 				}
 
-				if (var2 == aty.cA) {
+				if (var2 == Blocks.cA) {
 					return 16000;
 				}
 			}
 
-			return var1 instanceof aks && ((aks) var1).h().equals("WOOD") ? 200 : (var1 instanceof anm && ((anm) var1).h().equals("WOOD") ? 200 : (var1 instanceof alo && ((alo) var1).g().equals("WOOD") ? 200 : (var1 == amk.y ? 100 : (var1 == amk.h ? 1600 : (var1 == amk.ay ? 20000 : (var1 == Item.getItemOf(aty.g) ? 100 : (var1 == amk.bv ? 2400 : 0)))))));
+			return var1 instanceof ItemTool && ((ItemTool) var1).h().equals("WOOD") ? 200 : (var1 instanceof ItemSword && ((ItemSword) var1).h().equals("WOOD") ? 200 : (var1 instanceof alo && ((alo) var1).g().equals("WOOD") ? 200 : (var1 == Items.y ? 100 : (var1 == Items.h ? 1600 : (var1 == Items.ay ? 20000 : (var1 == Item.getItemOf(Blocks.SAPLING) ? 100 : (var1 == Items.bv ? 2400 : 0)))))));
 		}
 	}
 
@@ -270,7 +270,7 @@ public class TileEntityFurnace extends bdf implements pm, we {
 	public boolean b(int var1, ItemStack var2, PaintingDirection var3) {
 		if (var3 == PaintingDirection.a && var1 == 1) {
 			Item var4 = var2.getItem();
-			if (var4 != amk.ax && var4 != amk.aw) {
+			if (var4 != Items.ax && var4 != Items.aw) {
 				return false;
 			}
 		}

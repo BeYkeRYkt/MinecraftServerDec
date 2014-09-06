@@ -237,8 +237,8 @@ public class EntityArmorStand extends EntityLiving {
 			byte var3 = 0;
 			ItemStack var4 = var1.bY();
 			boolean var5 = var4 != null;
-			if (var5 && var4.getItem() instanceof ajn) {
-				ajn var6 = (ajn) var4.getItem();
+			if (var5 && var4.getItem() instanceof ItemArmor) {
+				ItemArmor var6 = (ItemArmor) var4.getItem();
 				if (var6.b == 3) {
 					var3 = 1;
 				} else if (var6.b == 2) {
@@ -250,7 +250,7 @@ public class EntityArmorStand extends EntityLiving {
 				}
 			}
 
-			if (var5 && (var4.getItem() == amk.bX || var4.getItem() == Item.getItemOf(aty.aU))) {
+			if (var5 && (var4.getItem() == Items.bX || var4.getItem() == Item.getItemOf(Blocks.aU))) {
 				var3 = 4;
 			}
 
@@ -306,7 +306,7 @@ public class EntityArmorStand extends EntityLiving {
 				int var4 = var1.playerInventory.c;
 				ItemStack var5 = var1.playerInventory.a(var4);
 				ItemStack var6;
-				if (var1.by.instabuild && (var3 == null || var3.getItem() == Item.getItemOf(aty.a)) && var5 != null) {
+				if (var1.by.instabuild && (var3 == null || var3.getItem() == Item.getItemOf(Blocks.AIR)) && var5 != null) {
 					var6 = var5.getCopy();
 					var6.b = 1;
 					this.c(var2, var6);
@@ -325,9 +325,9 @@ public class EntityArmorStand extends EntityLiving {
 		}
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (!this.o.D && !this.h) {
-			if (wh.j.equals(var1)) {
+			if (DamageSource.j.equals(var1)) {
 				this.J();
 				return false;
 			} else if (this.b(var1)) {
@@ -336,7 +336,7 @@ public class EntityArmorStand extends EntityLiving {
 				this.C();
 				this.J();
 				return false;
-			} else if (wh.a.equals(var1)) {
+			} else if (DamageSource.a.equals(var1)) {
 				if (!this.au()) {
 					this.e(5);
 				} else {
@@ -344,7 +344,7 @@ public class EntityArmorStand extends EntityLiving {
 				}
 
 				return false;
-			} else if (wh.c.equals(var1) && this.bm() > 0.5F) {
+			} else if (DamageSource.c.equals(var1) && this.bm() > 0.5F) {
 				this.a(4.0F);
 				return false;
 			} else {
@@ -384,7 +384,7 @@ public class EntityArmorStand extends EntityLiving {
 
 	private void z() {
 		if (this.o instanceof WorldServer) {
-			((WorldServer) this.o).a(Particle.M, this.locationX, this.locationY + (double) this.K / 1.5D, this.locationZ, 10, (double) (this.J / 4.0F), (double) (this.K / 4.0F), (double) (this.J / 4.0F), 0.05D, new int[] { Block.f(aty.f.P()) });
+			((WorldServer) this.o).a(Particle.M, this.locationX, this.locationY + (double) this.K / 1.5D, this.locationZ, 10, (double) (this.J / 4.0F), (double) (this.K / 4.0F), (double) (this.J / 4.0F), 0.05D, new int[] { Block.f(Blocks.PLANKS.P()) });
 		}
 
 	}
@@ -402,7 +402,7 @@ public class EntityArmorStand extends EntityLiving {
 	}
 
 	private void A() {
-		Block.a(this.o, new Position(this), new ItemStack(amk.cj));
+		Block.a(this.o, new Position(this), new ItemStack(Items.cj));
 		this.C();
 	}
 

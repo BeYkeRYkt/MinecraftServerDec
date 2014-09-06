@@ -16,40 +16,40 @@ public class aok {
 	}
 
 	private aok() {
-		this.a(aty.p, new ItemStack(amk.j), 0.7F);
-		this.a(aty.o, new ItemStack(amk.k), 1.0F);
-		this.a(aty.ag, new ItemStack(amk.i), 1.0F);
-		this.a((Block) aty.m, new ItemStack(aty.w), 0.1F);
-		this.a(amk.al, new ItemStack(amk.am), 0.35F);
-		this.a(amk.bi, new ItemStack(amk.bj), 0.35F);
-		this.a(amk.bk, new ItemStack(amk.bl), 0.35F);
-		this.a(amk.bo, new ItemStack(amk.bp), 0.35F);
-		this.a(amk.bm, new ItemStack(amk.bn), 0.35F);
-		this.a(aty.e, new ItemStack(aty.b), 0.1F);
-		this.a(new ItemStack(aty.bf, 1, BlockSmoothBrick.b), new ItemStack(aty.bf, 1, BlockSmoothBrick.N), 0.1F);
-		this.a(amk.aI, new ItemStack(amk.aH), 0.3F);
-		this.a(aty.aL, new ItemStack(aty.cz), 0.35F);
-		this.a((Block) aty.aK, new ItemStack(amk.aW, 1, akv.n.b()), 0.2F);
-		this.a(aty.r, new ItemStack(amk.h, 1, 1), 0.15F);
-		this.a(aty.s, new ItemStack(amk.h, 1, 1), 0.15F);
-		this.a(aty.bP, new ItemStack(amk.bO), 1.0F);
-		this.a(amk.bS, new ItemStack(amk.bT), 0.35F);
-		this.a(aty.aV, new ItemStack(amk.cf), 0.1F);
-		this.a(new ItemStack(aty.v, 1, 1), new ItemStack(aty.v, 1, 0), 0.15F);
+		this.a(Blocks.IRON_ORE, new ItemStack(Items.j), 0.7F);
+		this.a(Blocks.GOLD_ORE, new ItemStack(Items.k), 1.0F);
+		this.a(Blocks.ag, new ItemStack(Items.i), 1.0F);
+		this.a((Block) Blocks.SAND, new ItemStack(Blocks.GLASS), 0.1F);
+		this.a(Items.al, new ItemStack(Items.am), 0.35F);
+		this.a(Items.bi, new ItemStack(Items.bj), 0.35F);
+		this.a(Items.bk, new ItemStack(Items.bl), 0.35F);
+		this.a(Items.bo, new ItemStack(Items.bp), 0.35F);
+		this.a(Items.bm, new ItemStack(Items.bn), 0.35F);
+		this.a(Blocks.COBBLESTONE, new ItemStack(Blocks.STONE), 0.1F);
+		this.a(new ItemStack(Blocks.bf, 1, BlockSmoothBrick.b), new ItemStack(Blocks.bf, 1, BlockSmoothBrick.N), 0.1F);
+		this.a(Items.aI, new ItemStack(Items.aH), 0.3F);
+		this.a(Blocks.aL, new ItemStack(Blocks.cz), 0.35F);
+		this.a((Block) Blocks.aK, new ItemStack(Items.aW, 1, akv.n.b()), 0.2F);
+		this.a(Blocks.LOG, new ItemStack(Items.h, 1, 1), 0.15F);
+		this.a(Blocks.LOG2, new ItemStack(Items.h, 1, 1), 0.15F);
+		this.a(Blocks.bP, new ItemStack(Items.bO), 1.0F);
+		this.a(Items.bS, new ItemStack(Items.bT), 0.35F);
+		this.a(Blocks.aV, new ItemStack(Items.cf), 0.1F);
+		this.a(new ItemStack(Blocks.SPONGE, 1, 1), new ItemStack(Blocks.SPONGE, 1, 0), 0.15F);
 		ali[] var1 = ali.values();
 		int var2 = var1.length;
 
 		for (int var3 = 0; var3 < var2; ++var3) {
 			ali var4 = var1[var3];
 			if (var4.g()) {
-				this.a(new ItemStack(amk.aU, 1, var4.a()), new ItemStack(amk.aV, 1, var4.a()), 0.35F);
+				this.a(new ItemStack(Items.aU, 1, var4.a()), new ItemStack(Items.aV, 1, var4.a()), 0.35F);
 			}
 		}
 
-		this.a(aty.q, new ItemStack(amk.h), 0.1F);
-		this.a(aty.aC, new ItemStack(amk.aC), 0.7F);
-		this.a(aty.x, new ItemStack(amk.aW, 1, akv.l.b()), 0.2F);
-		this.a(aty.co, new ItemStack(amk.cg), 0.2F);
+		this.a(Blocks.COAL_ORE, new ItemStack(Items.h), 0.1F);
+		this.a(Blocks.aC, new ItemStack(Items.aC), 0.7F);
+		this.a(Blocks.LAPIS_ORE, new ItemStack(Items.aW, 1, akv.l.b()), 0.2F);
+		this.a(Blocks.co, new ItemStack(Items.cg), 0.2F);
 	}
 
 	public void a(Block var1, ItemStack var2, float var3) {

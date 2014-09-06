@@ -48,7 +48,7 @@ public class SetBlockCommand extends AbstractCommand {
 				if (var2.length >= 6) {
 					if (var2[5].equals("destroy")) {
 						var6.b(var3, true);
-						if (var4 == aty.a) {
+						if (var4 == Blocks.AIR) {
 							a(var1, this, "commands.setblock.success", new Object[0]);
 							return;
 						}
@@ -63,7 +63,7 @@ public class SetBlockCommand extends AbstractCommand {
 						((IInventory) var13).l();
 					}
 
-					var6.a(var3, aty.a.P(), var4 == aty.a ? 2 : 4);
+					var6.a(var3, Blocks.AIR.P(), var4 == Blocks.AIR ? 2 : 4);
 				}
 
 				bec var10 = var4.a(var5);

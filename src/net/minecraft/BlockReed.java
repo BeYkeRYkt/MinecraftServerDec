@@ -16,7 +16,7 @@ public class BlockReed extends Block {
 	}
 
 	public void b(World var1, Position var2, bec var3, Random var4) {
-		if (var1.p(var2.b()).getBlock() == aty.aM || this.e(var1, var2, var3)) {
+		if (var1.p(var2.b()).getBlock() == Blocks.aM || this.e(var1, var2, var3)) {
 			if (var1.d(var2.a())) {
 				int var5;
 				for (var5 = 1; var1.p(var2.c(var5)).getBlock() == this; ++var5) {
@@ -41,7 +41,7 @@ public class BlockReed extends Block {
 		Block var3 = var1.p(var2.b()).getBlock();
 		if (var3 == this) {
 			return true;
-		} else if (var3 != aty.c && var3 != aty.d && var3 != aty.m) {
+		} else if (var3 != Blocks.GRASS && var3 != Blocks.DIRT && var3 != Blocks.SAND) {
 			return false;
 		} else {
 			Iterator var4 = en.a.iterator();
@@ -82,7 +82,7 @@ public class BlockReed extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return amk.aJ;
+		return Items.aJ;
 	}
 
 	public boolean c() {

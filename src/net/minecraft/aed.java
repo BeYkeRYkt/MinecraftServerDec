@@ -13,7 +13,7 @@ public abstract class aed extends adx implements vy {
 		super(var1, var2, var4, var6);
 	}
 
-	public void a(wh var1) {
+	public void a(DamageSource var1) {
 		super.a(var1);
 		vs.a(this.o, (Entity) this, this);
 	}

@@ -193,11 +193,11 @@ public class EntityArrow extends Entity implements aho {
 						var24 += this.V.nextInt(var24 / 2 + 2);
 					}
 
-					wh var26;
+					DamageSource var26;
 					if (this.c == null) {
-						var26 = wh.a(this, this);
+						var26 = DamageSource.a(this, this);
 					} else {
-						var26 = wh.a(this, this.c);
+						var26 = DamageSource.a(this, this.c);
 					}
 
 					if (this.au() && !(var6.d instanceof EntityEnderman)) {
@@ -324,7 +324,7 @@ public class EntityArrow extends Entity implements aho {
 		var1.put("yTile", (short) this.e);
 		var1.put("zTile", (short) this.f);
 		var1.put("life", (short) this.ap);
-		BlockNameInfo var2 = (BlockNameInfo) Block.BLOCKREGISTRY.c(this.g);
+		RegistryObjectName var2 = (RegistryObjectName) Block.BLOCKREGISTRY.c(this.g);
 		var1.put("inTile", var2 == null ? "" : var2.toString());
 		var1.put("inData", (byte) this.h);
 		var1.put("shake", (byte) this.b);
@@ -362,7 +362,7 @@ public class EntityArrow extends Entity implements aho {
 	public void d(EntityHuman var1) {
 		if (!this.o.D && this.i && this.b <= 0) {
 			boolean var2 = this.a == 1 || this.a == 2 && var1.by.instabuild;
-			if (this.a == 1 && !var1.playerInventory.a(new ItemStack(amk.g, 1))) {
+			if (this.a == 1 && !var1.playerInventory.a(new ItemStack(Items.g, 1))) {
 				var2 = false;
 			}
 

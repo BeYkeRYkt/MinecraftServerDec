@@ -2,12 +2,12 @@ package net.minecraft;
 
 public abstract class blb extends bms {
 
-	protected static final bec a = aty.cI.a(BlockPrismarine.b);
-	protected static final bec b = aty.cI.a(BlockPrismarine.M);
-	protected static final bec c = aty.cI.a(BlockPrismarine.N);
+	protected static final bec a = Blocks.cI.a(BlockPrismarine.b);
+	protected static final bec b = Blocks.cI.a(BlockPrismarine.M);
+	protected static final bec c = Blocks.cI.a(BlockPrismarine.N);
 	protected static final bec d = b;
-	protected static final bec e = aty.cJ.P();
-	protected static final bec f = aty.j.P();
+	protected static final bec e = Blocks.cJ.P();
+	protected static final bec f = Blocks.WATER.P();
 	protected static final int g = a(2, 0, 0);
 	protected static final int h = a(2, 2, 0);
 	protected static final int i = a(0, 1, 0);

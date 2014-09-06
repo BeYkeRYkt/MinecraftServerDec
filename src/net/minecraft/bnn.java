@@ -118,28 +118,28 @@ abstract class bnn extends bms {
 
 	protected bec a(bec var1) {
 		if (this.b) {
-			if (var1.getBlock() == aty.r || var1.getBlock() == aty.s) {
-				return aty.A.P();
+			if (var1.getBlock() == Blocks.LOG || var1.getBlock() == Blocks.LOG2) {
+				return Blocks.SANDSTONE.P();
 			}
 
-			if (var1.getBlock() == aty.e) {
-				return aty.A.a(bae.a.a());
+			if (var1.getBlock() == Blocks.COBBLESTONE) {
+				return Blocks.SANDSTONE.a(bae.a.a());
 			}
 
-			if (var1.getBlock() == aty.f) {
-				return aty.A.a(bae.c.a());
+			if (var1.getBlock() == Blocks.PLANKS) {
+				return Blocks.SANDSTONE.a(bae.c.a());
 			}
 
-			if (var1.getBlock() == aty.ad) {
-				return aty.bO.P().a(BlockStairs.a, var1.b(BlockStairs.a));
+			if (var1.getBlock() == Blocks.ad) {
+				return Blocks.bO.P().a(BlockStairs.a, var1.b(BlockStairs.a));
 			}
 
-			if (var1.getBlock() == aty.aw) {
-				return aty.bO.P().a(BlockStairs.a, var1.b(BlockStairs.a));
+			if (var1.getBlock() == Blocks.aw) {
+				return Blocks.bO.P().a(BlockStairs.a, var1.b(BlockStairs.a));
 			}
 
-			if (var1.getBlock() == aty.n) {
-				return aty.A.P();
+			if (var1.getBlock() == Blocks.GRAVEL) {
+				return Blocks.SANDSTONE.P();
 			}
 		}
 

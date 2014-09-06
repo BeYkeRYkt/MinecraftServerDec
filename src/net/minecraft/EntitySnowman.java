@@ -26,19 +26,19 @@ public class EntitySnowman extends abw implements afr {
 			int var2 = DataTypesConverter.toFixedPointInt(this.locationY);
 			int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
 			if (this.U()) {
-				this.a(wh.f, 1.0F);
+				this.a(DamageSource.f, 1.0F);
 			}
 
 			if (this.o.b(new Position(var1, 0, var3)).a(new Position(var1, var2, var3)) > 1.0F) {
-				this.a(wh.c, 1.0F);
+				this.a(DamageSource.c, 1.0F);
 			}
 
 			for (int var4 = 0; var4 < 4; ++var4) {
 				var1 = DataTypesConverter.toFixedPointInt(this.locationX + (double) ((float) (var4 % 2 * 2 - 1) * 0.25F));
 				var2 = DataTypesConverter.toFixedPointInt(this.locationY);
 				var3 = DataTypesConverter.toFixedPointInt(this.locationZ + (double) ((float) (var4 / 2 % 2 * 2 - 1) * 0.25F));
-				if (this.o.p(new Position(var1, var2, var3)).getBlock().r() == Material.AIR && this.o.b(new Position(var1, 0, var3)).a(new Position(var1, var2, var3)) < 0.8F && aty.aH.c(this.o, new Position(var1, var2, var3))) {
-					this.o.a(new Position(var1, var2, var3), aty.aH.P());
+				if (this.o.p(new Position(var1, var2, var3)).getBlock().r() == Material.AIR && this.o.b(new Position(var1, 0, var3)).a(new Position(var1, var2, var3)) < 0.8F && Blocks.aH.c(this.o, new Position(var1, var2, var3))) {
+					this.o.a(new Position(var1, var2, var3), Blocks.aH.P());
 				}
 			}
 		}
@@ -46,14 +46,14 @@ public class EntitySnowman extends abw implements afr {
 	}
 
 	protected Item A() {
-		return amk.aD;
+		return Items.aD;
 	}
 
 	protected void b(boolean var1, int var2) {
 		int var3 = this.V.nextInt(16);
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			this.a(amk.aD, 1);
+			this.a(Items.aD, 1);
 		}
 
 	}

@@ -9,9 +9,9 @@ class blm extends bmu {
 
 	public void a(Random var1, int var2, int var3, int var4, boolean var5) {
 		if (var1.nextFloat() < 0.4F) {
-			this.a = aty.e.P();
+			this.a = Blocks.COBBLESTONE.P();
 		} else {
-			this.a = aty.Y.P();
+			this.a = Blocks.MOSSY_COBBLESTONE.P();
 		}
 
 	}

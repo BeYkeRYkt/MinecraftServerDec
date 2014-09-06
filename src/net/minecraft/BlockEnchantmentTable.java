@@ -6,7 +6,7 @@ public class BlockEnchantmentTable extends atg {
 		super(Material.STONE);
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
 		this.e(0);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	public boolean d() {

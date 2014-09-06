@@ -59,10 +59,10 @@ public class BlockCauldron extends Block {
 			} else {
 				int var10 = ((Integer) var3.b(a)).intValue();
 				Item var11 = var9.getItem();
-				if (var11 == amk.ax) {
+				if (var11 == Items.ax) {
 					if (var10 < 3) {
 						if (!var4.by.instabuild) {
-							var4.playerInventory.a(var4.playerInventory.c, new ItemStack(amk.aw));
+							var4.playerInventory.a(var4.playerInventory.c, new ItemStack(Items.aw));
 						}
 
 						this.a(var1, var2, var3, 3);
@@ -71,10 +71,10 @@ public class BlockCauldron extends Block {
 					return true;
 				} else {
 					ItemStack var13;
-					if (var11 == amk.bA) {
+					if (var11 == Items.bA) {
 						if (var10 > 0) {
 							if (!var4.by.instabuild) {
-								var13 = new ItemStack(amk.bz, 1, 0);
+								var13 = new ItemStack(Items.bz, 1, 0);
 								if (!var4.playerInventory.a(var13)) {
 									var1.d((Entity) (new EntityItem(var1, (double) var2.getX() + 0.5D, (double) var2.getY() + 1.5D, (double) var2.getZ() + 0.5D, var13)));
 								} else if (var4 instanceof EntityPlayer) {
@@ -92,8 +92,8 @@ public class BlockCauldron extends Block {
 
 						return true;
 					} else {
-						if (var10 > 0 && var11 instanceof ajn) {
-							ajn var12 = (ajn) var11;
+						if (var10 > 0 && var11 instanceof ItemArmor) {
+							ItemArmor var12 = (ItemArmor) var11;
 							if (var12.w_() == ajp.a && var12.d_(var9)) {
 								var12.c(var9);
 								this.a(var1, var2, var3, var10 - 1);
@@ -149,7 +149,7 @@ public class BlockCauldron extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return amk.bG;
+		return Items.bG;
 	}
 
 	public boolean N() {

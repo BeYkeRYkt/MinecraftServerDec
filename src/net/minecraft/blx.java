@@ -79,36 +79,36 @@ public class blx extends bmk {
 			this.a(var1, var3, 0, 0, 0, 9, 8, 10, true, var2, blr.c());
 			this.a(var1, var2, var3, this.d, 4, 3, 0);
 			if (this.a) {
-				this.a(var1, var3, 0, 3, 1, 0, 5, 3, aty.a.P(), aty.a.P(), false);
+				this.a(var1, var3, 0, 3, 1, 0, 5, 3, Blocks.AIR.P(), Blocks.AIR.P(), false);
 			}
 
 			if (this.c) {
-				this.a(var1, var3, 9, 3, 1, 9, 5, 3, aty.a.P(), aty.a.P(), false);
+				this.a(var1, var3, 9, 3, 1, 9, 5, 3, Blocks.AIR.P(), Blocks.AIR.P(), false);
 			}
 
 			if (this.b) {
-				this.a(var1, var3, 0, 5, 7, 0, 7, 9, aty.a.P(), aty.a.P(), false);
+				this.a(var1, var3, 0, 5, 7, 0, 7, 9, Blocks.AIR.P(), Blocks.AIR.P(), false);
 			}
 
 			if (this.e) {
-				this.a(var1, var3, 9, 5, 7, 9, 7, 9, aty.a.P(), aty.a.P(), false);
+				this.a(var1, var3, 9, 5, 7, 9, 7, 9, Blocks.AIR.P(), Blocks.AIR.P(), false);
 			}
 
-			this.a(var1, var3, 5, 1, 10, 7, 3, 10, aty.a.P(), aty.a.P(), false);
+			this.a(var1, var3, 5, 1, 10, 7, 3, 10, Blocks.AIR.P(), Blocks.AIR.P(), false);
 			this.a(var1, var3, 1, 2, 1, 8, 2, 6, false, var2, blr.c());
 			this.a(var1, var3, 4, 1, 5, 4, 4, 9, false, var2, blr.c());
 			this.a(var1, var3, 8, 1, 5, 8, 4, 9, false, var2, blr.c());
 			this.a(var1, var3, 1, 4, 7, 3, 4, 9, false, var2, blr.c());
 			this.a(var1, var3, 1, 3, 5, 3, 3, 6, false, var2, blr.c());
-			this.a(var1, var3, 1, 3, 4, 3, 3, 4, aty.U.P(), aty.U.P(), false);
-			this.a(var1, var3, 1, 4, 6, 3, 4, 6, aty.U.P(), aty.U.P(), false);
+			this.a(var1, var3, 1, 3, 4, 3, 3, 4, Blocks.STONE_SLAB.P(), Blocks.STONE_SLAB.P(), false);
+			this.a(var1, var3, 1, 4, 6, 3, 4, 6, Blocks.STONE_SLAB.P(), Blocks.STONE_SLAB.P(), false);
 			this.a(var1, var3, 5, 1, 7, 7, 1, 8, false, var2, blr.c());
-			this.a(var1, var3, 5, 1, 9, 7, 1, 9, aty.U.P(), aty.U.P(), false);
-			this.a(var1, var3, 5, 2, 7, 7, 2, 7, aty.U.P(), aty.U.P(), false);
-			this.a(var1, var3, 4, 5, 7, 4, 5, 9, aty.U.P(), aty.U.P(), false);
-			this.a(var1, var3, 8, 5, 7, 8, 5, 9, aty.U.P(), aty.U.P(), false);
-			this.a(var1, var3, 5, 5, 7, 7, 5, 9, aty.T.P(), aty.T.P(), false);
-			this.a(var1, aty.aa.P(), 6, 5, 6, var3);
+			this.a(var1, var3, 5, 1, 9, 7, 1, 9, Blocks.STONE_SLAB.P(), Blocks.STONE_SLAB.P(), false);
+			this.a(var1, var3, 5, 2, 7, 7, 2, 7, Blocks.STONE_SLAB.P(), Blocks.STONE_SLAB.P(), false);
+			this.a(var1, var3, 4, 5, 7, 4, 5, 9, Blocks.STONE_SLAB.P(), Blocks.STONE_SLAB.P(), false);
+			this.a(var1, var3, 8, 5, 7, 8, 5, 9, Blocks.STONE_SLAB.P(), Blocks.STONE_SLAB.P(), false);
+			this.a(var1, var3, 5, 5, 7, 7, 5, 9, Blocks.DOUBLE_STONE_SLAB.P(), Blocks.DOUBLE_STONE_SLAB.P(), false);
+			this.a(var1, Blocks.aa.P(), 6, 5, 6, var3);
 			return true;
 		}
 	}

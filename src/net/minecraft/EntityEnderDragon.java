@@ -273,7 +273,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 		if (this.bx != null) {
 			if (this.bx.I) {
 				if (!this.o.D) {
-					this.a(this.bl, wh.a((aqo) null), 10.0F);
+					this.a(this.bl, DamageSource.a((aqo) null), 10.0F);
 				}
 
 				this.bx = null;
@@ -324,7 +324,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 		for (int var2 = 0; var2 < var1.size(); ++var2) {
 			Entity var3 = (Entity) var1.get(var2);
 			if (var3 instanceof EntityLiving) {
-				var3.a(wh.a((EntityLiving) this), 10.0F);
+				var3.a(DamageSource.a((EntityLiving) this), 10.0F);
 				this.a(this, var3);
 			}
 		}
@@ -382,7 +382,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 				for (int var12 = var4; var12 <= var7; ++var12) {
 					Block var13 = this.o.p(new Position(var10, var11, var12)).getBlock();
 					if (var13.r() != Material.AIR) {
-						if (var13 != aty.cv && var13 != aty.Z && var13 != aty.bH && var13 != aty.h && var13 != aty.bX && this.o.Q().b("mobGriefing")) {
+						if (var13 != Blocks.cv && var13 != Blocks.OBSIDIAN && var13 != Blocks.bH && var13 != Blocks.BEDROCK && var13 != Blocks.bX && this.o.Q().b("mobGriefing")) {
 							var9 = this.o.g(new Position(var10, var11, var12)) || var9;
 						} else {
 							var8 = true;
@@ -402,7 +402,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 		return var8;
 	}
 
-	public boolean a(acz var1, wh var2, float var3) {
+	public boolean a(acz var1, DamageSource var2, float var3) {
 		if (var1 != this.bl) {
 			var3 = var3 / 4.0F + 1.0F;
 		}
@@ -421,7 +421,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 		return true;
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (var1 instanceof wi && ((wi) var1).w()) {
 			this.e(var1, var2);
 		}
@@ -429,7 +429,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 		return false;
 	}
 
-	protected boolean e(wh var1, float var2) {
+	protected boolean e(DamageSource var1, float var2) {
 		return super.a(var1, var2);
 	}
 
@@ -494,30 +494,30 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 						Position var12 = var1.a(var8, var7, var9);
 						if (var7 < 0) {
 							if (var10 <= 6.25D) {
-								this.o.a(var12, aty.h.P());
+								this.o.a(var12, Blocks.BEDROCK.P());
 							}
 						} else if (var7 > 0) {
-							this.o.a(var12, aty.a.P());
+							this.o.a(var12, Blocks.AIR.P());
 						} else if (var10 > 6.25D) {
-							this.o.a(var12, aty.h.P());
+							this.o.a(var12, Blocks.BEDROCK.P());
 						} else {
-							this.o.a(var12, aty.bF.P());
+							this.o.a(var12, Blocks.bF.P());
 						}
 					}
 				}
 			}
 		}
 
-		this.o.a(var1, aty.h.P());
-		this.o.a(var1.a(), aty.h.P());
+		this.o.a(var1, Blocks.BEDROCK.P());
+		this.o.a(var1.a(), Blocks.BEDROCK.P());
 		Position var13 = var1.b(2);
-		this.o.a(var13, aty.h.P());
-		this.o.a(var13.e(), aty.aa.P().a(BlockTorch.a, PaintingDirection.f));
-		this.o.a(var13.f(), aty.aa.P().a(BlockTorch.a, PaintingDirection.e));
-		this.o.a(var13.c(), aty.aa.P().a(BlockTorch.a, PaintingDirection.d));
-		this.o.a(var13.d(), aty.aa.P().a(BlockTorch.a, PaintingDirection.c));
-		this.o.a(var1.b(3), aty.h.P());
-		this.o.a(var1.b(4), aty.bI.P());
+		this.o.a(var13, Blocks.BEDROCK.P());
+		this.o.a(var13.e(), Blocks.aa.P().a(BlockTorch.a, PaintingDirection.f));
+		this.o.a(var13.f(), Blocks.aa.P().a(BlockTorch.a, PaintingDirection.e));
+		this.o.a(var13.c(), Blocks.aa.P().a(BlockTorch.a, PaintingDirection.d));
+		this.o.a(var13.d(), Blocks.aa.P().a(BlockTorch.a, PaintingDirection.c));
+		this.o.a(var1.b(3), Blocks.BEDROCK.P());
+		this.o.a(var1.b(4), Blocks.bI.P());
 	}
 
 	protected void D() {

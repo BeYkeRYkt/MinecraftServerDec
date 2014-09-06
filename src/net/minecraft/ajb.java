@@ -78,8 +78,8 @@ public class ajb extends Container {
 				if (!this.a(var5, 9, 45, false)) {
 					return null;
 				}
-			} else if (var3.getItem() instanceof ajn && !((ajk) this.c.get(5 + ((ajn) var3.getItem()).b)).e()) {
-				int var6 = 5 + ((ajn) var3.getItem()).b;
+			} else if (var3.getItem() instanceof ItemArmor && !((ajk) this.c.get(5 + ((ItemArmor) var3.getItem()).b)).e()) {
+				int var6 = 5 + ((ItemArmor) var3.getItem()).b;
 				if (!this.a(var5, var6, var6 + 1, false)) {
 					return null;
 				}

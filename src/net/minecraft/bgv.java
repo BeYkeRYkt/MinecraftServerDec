@@ -35,7 +35,7 @@ public class bgv implements IChunkProvider {
 	double[] g;
 
 	public bgv(World var1, long var2, boolean var4, String var5) {
-		this.s = aty.j;
+		this.s = Blocks.WATER;
 		this.t = new double[256];
 		this.u = new bgs();
 		this.v = new blp();
@@ -67,7 +67,7 @@ public class bgv implements IChunkProvider {
 
 		if (var5 != null) {
 			this.r = bgn.a(var5).b();
-			this.s = this.r.E ? aty.l : aty.j;
+			this.s = this.r.E ? Blocks.LAVA : Blocks.WATER;
 		}
 
 	}
@@ -111,7 +111,7 @@ public class bgv implements IChunkProvider {
 
 							for (int var49 = 0; var49 < 4; ++var49) {
 								if ((var45 += var47) > 0.0D) {
-									var3.a(var4 * 4 + var42, var12 * 8 + var31, var7 * 4 + var49, aty.b.P());
+									var3.a(var4 * 4 + var42, var12 * 8 + var31, var7 * 4 + var49, Blocks.STONE.P());
 								} else if (var12 * 8 + var31 < this.r.q) {
 									var3.a(var4 * 4 + var42, var12 * 8 + var31, var7 * 4 + var49, this.s.P());
 								}
@@ -330,7 +330,7 @@ public class bgv implements IChunkProvider {
 			var14 = this.h.nextInt(16) + 8;
 			var15 = this.h.nextInt(256);
 			var16 = this.h.nextInt(16) + 8;
-			(new bhy(aty.j)).b(this.m, this.h, var6.a(var14, var15, var16));
+			(new bhy(Blocks.WATER)).b(this.m, this.h, var6.a(var14, var15, var16));
 		}
 
 		if (!var12 && this.h.nextInt(this.r.D / 10) == 0 && this.r.C) {
@@ -338,7 +338,7 @@ public class bgv implements IChunkProvider {
 			var15 = this.h.nextInt(this.h.nextInt(248) + 8);
 			var16 = this.h.nextInt(16) + 8;
 			if (var15 < 63 || this.h.nextInt(this.r.D / 8) == 0) {
-				(new bhy(aty.l)).b(this.m, this.h, var6.a(var14, var15, var16));
+				(new bhy(Blocks.LAVA)).b(this.m, this.h, var6.a(var14, var15, var16));
 			}
 		}
 
@@ -360,11 +360,11 @@ public class bgv implements IChunkProvider {
 				Position var18 = this.m.q(var6.a(var14, 0, var15));
 				Position var19 = var18.b();
 				if (this.m.v(var19)) {
-					this.m.a(var19, aty.aI.P(), 2);
+					this.m.a(var19, Blocks.aI.P(), 2);
 				}
 
 				if (this.m.f(var18, true)) {
-					this.m.a(var18, aty.aH.P(), 2);
+					this.m.a(var18, Blocks.aH.P(), 2);
 				}
 			}
 		}

@@ -15,7 +15,7 @@ public class BlockThin extends Block {
 		super(var1);
 		this.j(this.L.b().a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false)));
 		this.a = var2;
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
@@ -106,7 +106,7 @@ public class BlockThin extends Block {
 	}
 
 	public final boolean c(Block var1) {
-		return var1.m() || var1 == this || var1 == aty.w || var1 == aty.cG || var1 == aty.cH || var1 instanceof BlockThin;
+		return var1.m() || var1 == this || var1 == Blocks.GLASS || var1 == Blocks.cG || var1 == Blocks.cH || var1 instanceof BlockThin;
 	}
 
 	protected boolean G() {

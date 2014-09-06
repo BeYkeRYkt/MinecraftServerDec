@@ -95,7 +95,7 @@ public class FillCommand extends AbstractCommand {
 									}
 								} else if (var16 != var7.getX() && var16 != var8.getX() && var15 != var7.getY() && var15 != var8.getY() && var14 != var7.getZ() && var14 != var8.getZ()) {
 									if (var2[8].equals("hollow")) {
-										var10.a(var17, aty.a.P(), 2);
+										var10.a(var17, Blocks.AIR.P(), 2);
 										var24.add(var17);
 									}
 									continue;
@@ -108,7 +108,7 @@ public class FillCommand extends AbstractCommand {
 									((IInventory) var29).l();
 								}
 
-								var10.a(var17, aty.cv.P(), var5 == aty.cv ? 2 : 4);
+								var10.a(var17, Blocks.cv.P(), var5 == Blocks.cv ? 2 : 4);
 							}
 
 							var19 = var5.a(var6);

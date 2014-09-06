@@ -81,12 +81,12 @@ public class BlockPortal extends awt {
 		if (var5 == el.a) {
 			var6 = new ayz(var1, var2, el.a);
 			if (!var6.b() || ayz.a(var6) < ayz.b(var6) * ayz.c(var6)) {
-				var1.a(var2, aty.a.P());
+				var1.a(var2, Blocks.AIR.P());
 			}
 		} else if (var5 == el.c) {
 			var6 = new ayz(var1, var2, el.c);
 			if (!var6.b() || ayz.a(var6) < ayz.b(var6) * ayz.c(var6)) {
-				var1.a(var2, aty.a.P());
+				var1.a(var2, Blocks.AIR.P());
 			}
 		}
 

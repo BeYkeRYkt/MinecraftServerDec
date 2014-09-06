@@ -6,15 +6,15 @@ import java.util.Random;
 
 public class bhn extends bhp {
 
-	private static final beq a = beq.a((Block) aty.m).a(BlockSand.a, Predicates.equalTo(bac.a));
+	private static final beq a = beq.a((Block) Blocks.SAND).a(BlockSand.a, Predicates.equalTo(bac.a));
 	private final bec b;
 	private final bec c;
 	private final bec d;
 
 	public bhn() {
-		this.b = aty.U.P().a(bbf.M, bbg.b).a(BlockStepAbstract.a, awr.b);
-		this.c = aty.A.P();
-		this.d = aty.i.P();
+		this.b = Blocks.STONE_SLAB.P().a(bbf.M, bbg.b).a(BlockStepAbstract.a, awr.b);
+		this.c = Blocks.SANDSTONE.P();
+		this.d = Blocks.FLOWING_WATER.P();
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {

@@ -4,7 +4,7 @@ public class aky extends Item {
 
 	public aky() {
 		this.maxStackSize = 16;
-		this.a(CreativeModeTab.l);
+		this.setCreativeModeTab(CreativeModeTab.MATERIALS);
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {

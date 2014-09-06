@@ -169,7 +169,7 @@ public abstract class ahl extends Entity {
 		var1.put("xTile", (short) this.e);
 		var1.put("yTile", (short) this.f);
 		var1.put("zTile", (short) this.g);
-		BlockNameInfo var2 = (BlockNameInfo) Block.BLOCKREGISTRY.c(this.h);
+		RegistryObjectName var2 = (RegistryObjectName) Block.BLOCKREGISTRY.c(this.h);
 		var1.put("inTile", var2 == null ? "" : var2.toString());
 		var1.put("inGround", (byte) (this.i ? 1 : 0));
 		var1.put("direction", (NBTTag) this.a(new double[] { this.motionX, this.motionY, this.motionZ }));
@@ -205,7 +205,7 @@ public abstract class ahl extends Entity {
 		return 1.0F;
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {

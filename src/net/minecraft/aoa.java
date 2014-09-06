@@ -12,15 +12,15 @@ public class aoa implements aoo {
 		for (int var5 = 0; var5 < var1.n_(); ++var5) {
 			ItemStack var6 = var1.a(var5);
 			if (var6 != null) {
-				if (var6.getItem() instanceof ajn) {
-					ajn var7 = (ajn) var6.getItem();
+				if (var6.getItem() instanceof ItemArmor) {
+					ItemArmor var7 = (ItemArmor) var6.getItem();
 					if (var7.w_() != ajp.a || var3 != null) {
 						return false;
 					}
 
 					var3 = var6;
 				} else {
-					if (var6.getItem() != amk.aW) {
+					if (var6.getItem() != Items.aW) {
 						return false;
 					}
 
@@ -37,7 +37,7 @@ public class aoa implements aoo {
 		int[] var3 = new int[3];
 		int var4 = 0;
 		int var5 = 0;
-		ajn var6 = null;
+		ItemArmor var6 = null;
 
 		int var7;
 		int var9;
@@ -47,8 +47,8 @@ public class aoa implements aoo {
 		for (var7 = 0; var7 < var1.n_(); ++var7) {
 			ItemStack var8 = var1.a(var7);
 			if (var8 != null) {
-				if (var8.getItem() instanceof ajn) {
-					var6 = (ajn) var8.getItem();
+				if (var8.getItem() instanceof ItemArmor) {
+					var6 = (ItemArmor) var8.getItem();
 					if (var6.w_() != ajp.a || var2 != null) {
 						return null;
 					}
@@ -67,7 +67,7 @@ public class aoa implements aoo {
 						++var5;
 					}
 				} else {
-					if (var8.getItem() != amk.aW) {
+					if (var8.getItem() != Items.aW) {
 						return null;
 					}
 

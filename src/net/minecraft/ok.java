@@ -11,7 +11,7 @@ final class ok extends eg {
 		World var3 = var1.i();
 		PaintingDirection var4 = BlockDispenser.b(var1.f());
 		Position var5 = var1.d().a(var4);
-		BlockSkull var6 = aty.ce;
+		BlockSkull var6 = Blocks.ce;
 		if (var3.d(var5) && var6.b(var3, var5, var2)) {
 			if (!var3.D) {
 				var3.a(var5, var6.P().a(BlockSkull.a, PaintingDirection.b), 3);
@@ -34,7 +34,7 @@ final class ok extends eg {
 					}
 
 					((TileEntitySkull) var7).b(var4.d().toByte() * 4);
-					aty.ce.a(var3, var5, (TileEntitySkull) var7);
+					Blocks.ce.a(var3, var5, (TileEntitySkull) var7);
 				}
 
 				--var2.b;

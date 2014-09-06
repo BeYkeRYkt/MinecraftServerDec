@@ -8,7 +8,7 @@ public class alo extends Item {
 		this.a = var1;
 		this.maxStackSize = 1;
 		this.d(var1.a());
-		this.a(CreativeModeTab.i);
+		this.setCreativeModeTab(CreativeModeTab.TOOLS);
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
@@ -18,16 +18,16 @@ public class alo extends Item {
 			bec var9 = var3.p(var4);
 			Block var10 = var9.getBlock();
 			if (var5 != PaintingDirection.a && var3.p(var4.a()).getBlock().r() == Material.AIR) {
-				if (var10 == aty.c) {
-					return this.a(var1, var2, var3, var4, aty.ak.P());
+				if (var10 == Blocks.GRASS) {
+					return this.a(var1, var2, var3, var4, Blocks.ak.P());
 				}
 
-				if (var10 == aty.d) {
+				if (var10 == Blocks.DIRT) {
 					switch (alp.a[((avd) var9.b(BlockDirt.a)).ordinal()]) {
 						case 1:
-							return this.a(var1, var2, var3, var4, aty.ak.P());
+							return this.a(var1, var2, var3, var4, Blocks.ak.P());
 						case 2:
-							return this.a(var1, var2, var3, var4, aty.d.P().a(BlockDirt.a, avd.a));
+							return this.a(var1, var2, var3, var4, Blocks.DIRT.P().a(BlockDirt.a, avd.a));
 					}
 				}
 			}

@@ -73,7 +73,7 @@ public class BlockBrewingStand extends atg {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return amk.bF;
+		return Items.bF;
 	}
 
 	public boolean N() {

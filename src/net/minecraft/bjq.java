@@ -41,24 +41,24 @@ public class bjq extends bkb {
 		for (var5 = 0; var5 <= 4; ++var5) {
 			for (var6 = 3; var6 <= 4; ++var6) {
 				var7 = var4.nextInt(8);
-				this.a(var1, var3, var5, var6, 0, var5, var6, var7, aty.by.P(), aty.by.P(), false);
+				this.a(var1, var3, var5, var6, 0, var5, var6, var7, Blocks.by.P(), Blocks.by.P(), false);
 			}
 		}
 
 		var5 = var4.nextInt(8);
-		this.a(var1, var3, 0, 5, 0, 0, 5, var5, aty.by.P(), aty.by.P(), false);
+		this.a(var1, var3, 0, 5, 0, 0, 5, var5, Blocks.by.P(), Blocks.by.P(), false);
 		var5 = var4.nextInt(8);
-		this.a(var1, var3, 4, 5, 0, 4, 5, var5, aty.by.P(), aty.by.P(), false);
+		this.a(var1, var3, 4, 5, 0, 4, 5, var5, Blocks.by.P(), Blocks.by.P(), false);
 
 		for (var5 = 0; var5 <= 4; ++var5) {
 			var6 = var4.nextInt(5);
-			this.a(var1, var3, var5, 2, 0, var5, 2, var6, aty.by.P(), aty.by.P(), false);
+			this.a(var1, var3, var5, 2, 0, var5, 2, var6, Blocks.by.P(), Blocks.by.P(), false);
 		}
 
 		for (var5 = 0; var5 <= 4; ++var5) {
 			for (var6 = 0; var6 <= 1; ++var6) {
 				var7 = var4.nextInt(3);
-				this.a(var1, var3, var5, var6, 0, var5, var6, var7, aty.by.P(), aty.by.P(), false);
+				this.a(var1, var3, var5, var6, 0, var5, var6, var7, Blocks.by.P(), Blocks.by.P(), false);
 			}
 		}
 

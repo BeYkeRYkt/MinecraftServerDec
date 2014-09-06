@@ -140,7 +140,7 @@ public abstract class ahr extends Entity implements aho {
 		}
 
 		if (var3 != null) {
-			if (var3.a == brv.b && this.o.p(var3.a()).getBlock() == aty.aY) {
+			if (var3.a == brv.b && this.o.p(var3.a()).getBlock() == Blocks.aY) {
 				this.aq();
 			} else {
 				this.a(var3);
@@ -199,7 +199,7 @@ public abstract class ahr extends Entity implements aho {
 		var1.put("xTile", (short) this.c);
 		var1.put("yTile", (short) this.d);
 		var1.put("zTile", (short) this.e);
-		BlockNameInfo var2 = (BlockNameInfo) Block.BLOCKREGISTRY.c(this.f);
+		RegistryObjectName var2 = (RegistryObjectName) Block.BLOCKREGISTRY.c(this.f);
 		var1.put("inTile", var2 == null ? "" : var2.toString());
 		var1.put("shake", (byte) this.b);
 		var1.put("inGround", (byte) (this.a ? 1 : 0));

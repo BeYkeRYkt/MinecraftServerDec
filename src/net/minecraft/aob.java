@@ -6,7 +6,7 @@ public class aob {
 	private Item[][] b;
 
 	public aob() {
-		this.b = new Item[][] { { amk.aF, amk.j, amk.i, amk.k }, { amk.Q, amk.Y, amk.ac, amk.ag }, { amk.R, amk.Z, amk.ad, amk.ah }, { amk.S, amk.aa, amk.ae, amk.ai }, { amk.T, amk.ab, amk.af, amk.aj } };
+		this.b = new Item[][] { { Items.aF, Items.j, Items.i, Items.k }, { Items.Q, Items.Y, Items.ac, Items.ag }, { Items.R, Items.Z, Items.ad, Items.ah }, { Items.S, Items.aa, Items.ae, Items.ai }, { Items.T, Items.ab, Items.af, Items.aj } };
 	}
 
 	public void a(aop var1) {

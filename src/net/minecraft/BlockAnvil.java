@@ -11,7 +11,7 @@ public class BlockAnvil extends avt {
 		super(Material.HEAVY);
 		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Integer.valueOf(0)));
 		this.e(0);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	public boolean d() {

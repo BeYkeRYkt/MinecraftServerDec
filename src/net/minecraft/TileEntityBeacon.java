@@ -78,10 +78,10 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 			Position var8 = new Position(var2, var7, var4);
 			bec var9 = this.world.p(var8);
 			float[] var10;
-			if (var9.getBlock() == aty.cG) {
+			if (var9.getBlock() == Blocks.cG) {
 				var10 = EntitySheep.a((akv) var9.b(BlockStainedGlass.a));
 			} else {
-				if (var9.getBlock() != aty.cH) {
+				if (var9.getBlock() != Blocks.cH) {
 					if (var9.getBlock().n() >= 15) {
 						this.i = false;
 						this.f.clear();
@@ -121,7 +121,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 				for (int var17 = var2 - var7; var17 <= var2 + var7 && var16; ++var17) {
 					for (int var11 = var4 - var7; var11 <= var4 + var7; ++var11) {
 						Block var12 = this.world.p(new Position(var17, var14, var11)).getBlock();
-						if (var12 != aty.bT && var12 != aty.R && var12 != aty.ah && var12 != aty.S) {
+						if (var12 != Blocks.bT && var12 != Blocks.GOLD_BLOCK && var12 != Blocks.ah && var12 != Blocks.IRON_BLOCK) {
 							var16 = false;
 							break;
 						}
@@ -236,7 +236,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 	}
 
 	public boolean b(int var1, ItemStack var2) {
-		return var2.getItem() == amk.bO || var2.getItem() == amk.i || var2.getItem() == amk.k || var2.getItem() == amk.j;
+		return var2.getItem() == Items.bO || var2.getItem() == Items.i || var2.getItem() == Items.k || var2.getItem() == Items.j;
 	}
 
 	public String k() {

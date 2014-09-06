@@ -2,9 +2,9 @@ package net.minecraft;
 
 public class amm extends aju {
 
-	private final axg b;
+	private final BlockLeaves b;
 
-	public amm(axg var1) {
+	public amm(BlockLeaves var1) {
 		super(var1);
 		this.b = var1;
 		this.d(0);

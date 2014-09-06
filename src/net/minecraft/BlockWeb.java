@@ -6,7 +6,7 @@ public class BlockWeb extends Block {
 
 	public BlockWeb() {
 		super(Material.WEB);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	public void a(World var1, Position var2, bec var3, Entity var4) {
@@ -26,7 +26,7 @@ public class BlockWeb extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return amk.F;
+		return Items.F;
 	}
 
 	protected boolean G() {

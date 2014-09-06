@@ -25,7 +25,7 @@ class aet extends zb {
 		Block var8 = var2.p(var6.b()).getBlock();
 		if (this.a(var2, var6, this.a.ck().getBlock(), var7, var8)) {
 			var2.a(var6, this.a.ck(), 3);
-			this.a.a(aty.a.P());
+			this.a.a(Blocks.AIR.P());
 		}
 
 	}

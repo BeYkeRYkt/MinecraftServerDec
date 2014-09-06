@@ -11,7 +11,7 @@ class aih extends ajk {
 	}
 
 	public boolean a(ItemStack var1) {
-		return var1 == null ? false : var1.getItem() == amk.bO || var1.getItem() == amk.i || var1.getItem() == amk.k || var1.getItem() == amk.j;
+		return var1 == null ? false : var1.getItem() == Items.bO || var1.getItem() == Items.i || var1.getItem() == Items.k || var1.getItem() == Items.j;
 	}
 
 	public int a() {

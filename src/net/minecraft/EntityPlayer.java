@@ -288,7 +288,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	}
 
-	public void a(wh var1) {
+	public void a(DamageSource var1) {
 		if (this.o.Q().b("showDeathMessages")) {
 			bsf var2 = this.bN();
 			if (var2 != null && var2.j() != bsg.a) {
@@ -330,12 +330,12 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		this.br().g();
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
 			boolean var3 = this.b.isDedicated() && this.cq() && "fall".equals(var1.p);
-			if (!var3 && this.bO > 0 && var1 != wh.j) {
+			if (!var3 && this.bO > 0 && var1 != DamageSource.j) {
 				return false;
 			} else {
 				if (var1 instanceof wi) {
@@ -541,7 +541,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void a(ItemStack var1) {
 		Item var2 = var1.getItem();
-		if (var2 == amk.bN) {
+		if (var2 == Items.bN) {
 			this.playerConncetion.sendPacket((Packet) (new ji("MC|BOpen", new PacketDataSerializer(Unpooled.buffer()))));
 		}
 

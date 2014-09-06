@@ -22,7 +22,7 @@ public class BlockPistonExtension extends Block {
 			if (var5 != null) {
 				Position var6 = var2.a(var5.d());
 				Block var7 = var1.p(var6).getBlock();
-				if (var7 == aty.J || var7 == aty.F) {
+				if (var7 == Blocks.PISTON || var7 == Blocks.STICKY_PISTON) {
 					var1.g(var6);
 				}
 			}
@@ -36,7 +36,7 @@ public class BlockPistonExtension extends Block {
 		PaintingDirection var4 = ((PaintingDirection) var3.b(a)).d();
 		var2 = var2.a(var4);
 		bec var5 = var1.p(var2);
-		if ((var5.getBlock() == aty.J || var5.getBlock() == aty.F) && ((Boolean) var5.b(BlockPiston.b)).booleanValue()) {
+		if ((var5.getBlock() == Blocks.PISTON || var5.getBlock() == Blocks.STICKY_PISTON) && ((Boolean) var5.b(BlockPiston.b)).booleanValue()) {
 			var5.getBlock().b(var1, var2, var5, 0);
 			var1.g(var2);
 		}
@@ -134,7 +134,7 @@ public class BlockPistonExtension extends Block {
 		PaintingDirection var5 = (PaintingDirection) var3.b(a);
 		Position var6 = var2.a(var5.d());
 		bec var7 = var1.p(var6);
-		if (var7.getBlock() != aty.J && var7.getBlock() != aty.F) {
+		if (var7.getBlock() != Blocks.PISTON && var7.getBlock() != Blocks.STICKY_PISTON) {
 			var1.g(var2);
 		} else {
 			var7.getBlock().a(var1, var6, var7, var4);

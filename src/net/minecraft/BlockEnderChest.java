@@ -10,7 +10,7 @@ public class BlockEnderChest extends atg {
 	protected BlockEnderChest() {
 		super(Material.STONE);
 		this.j(this.L.b().a(a, PaintingDirection.c));
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 		this.a(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 	}
 
@@ -27,7 +27,7 @@ public class BlockEnderChest extends atg {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Item.getItemOf(aty.Z);
+		return Item.getItemOf(Blocks.OBSIDIAN);
 	}
 
 	public int a(Random var1) {

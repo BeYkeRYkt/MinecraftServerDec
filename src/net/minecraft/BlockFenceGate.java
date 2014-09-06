@@ -9,12 +9,12 @@ public class BlockFenceGate extends avb {
 	public BlockFenceGate() {
 		super(Material.WOOD);
 		this.j(this.L.b().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)));
-		this.a(CreativeModeTab.d);
+		this.a(CreativeModeTab.REDSTONE);
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
 		el var4 = ((PaintingDirection) var1.b(N)).k();
-		if (var4 == el.c && (var2.p(var3.e()).getBlock() == aty.bZ || var2.p(var3.f()).getBlock() == aty.bZ) || var4 == el.a && (var2.p(var3.c()).getBlock() == aty.bZ || var2.p(var3.d()).getBlock() == aty.bZ)) {
+		if (var4 == el.c && (var2.p(var3.e()).getBlock() == Blocks.bZ || var2.p(var3.f()).getBlock() == Blocks.bZ) || var4 == el.a && (var2.p(var3.c()).getBlock() == Blocks.bZ || var2.p(var3.d()).getBlock() == Blocks.bZ)) {
 			var1 = var1.a(M, Boolean.valueOf(true));
 		}
 

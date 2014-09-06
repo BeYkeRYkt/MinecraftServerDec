@@ -18,9 +18,9 @@ public class BlockRedstoneLamp extends Block {
 	public void c(World var1, Position var2, bec var3) {
 		if (!var1.D) {
 			if (this.a && !var1.z(var2)) {
-				var1.a(var2, aty.bJ.P(), 2);
+				var1.a(var2, Blocks.bJ.P(), 2);
 			} else if (!this.a && var1.z(var2)) {
-				var1.a(var2, aty.bK.P(), 2);
+				var1.a(var2, Blocks.bK.P(), 2);
 			}
 
 		}
@@ -31,7 +31,7 @@ public class BlockRedstoneLamp extends Block {
 			if (this.a && !var1.z(var2)) {
 				var1.a(var2, (Block) this, 4);
 			} else if (!this.a && var1.z(var2)) {
-				var1.a(var2, aty.bK.P(), 2);
+				var1.a(var2, Blocks.bK.P(), 2);
 			}
 
 		}
@@ -40,17 +40,17 @@ public class BlockRedstoneLamp extends Block {
 	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (!var1.D) {
 			if (this.a && !var1.z(var2)) {
-				var1.a(var2, aty.bJ.P(), 2);
+				var1.a(var2, Blocks.bJ.P(), 2);
 			}
 
 		}
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Item.getItemOf(aty.bJ);
+		return Item.getItemOf(Blocks.bJ);
 	}
 
 	protected ItemStack i(bec var1) {
-		return new ItemStack(aty.bJ);
+		return new ItemStack(Blocks.bJ);
 	}
 }

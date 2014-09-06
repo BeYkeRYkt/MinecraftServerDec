@@ -98,8 +98,8 @@ public abstract class arm {
 	protected bip aC;
 
 	protected arm(int var1) {
-		this.ak = aty.c.P();
-		this.al = aty.d.P();
+		this.ak = Blocks.GRASS.P();
+		this.al = Blocks.DIRT.P();
 		this.am = 5169201;
 		this.an = a.a;
 		this.ao = a.b;
@@ -273,16 +273,16 @@ public abstract class arm {
 
 		for (int var15 = 255; var15 >= 0; --var15) {
 			if (var15 <= var2.nextInt(5)) {
-				var3.a(var14, var15, var13, aty.h.P());
+				var3.a(var14, var15, var13, Blocks.BEDROCK.P());
 			} else {
 				bec var16 = var3.a(var14, var15, var13);
 				if (var16.getBlock().r() == Material.AIR) {
 					var11 = -1;
-				} else if (var16.getBlock() == aty.b) {
+				} else if (var16.getBlock() == Blocks.STONE) {
 					if (var11 == -1) {
 						if (var12 <= 0) {
 							var9 = null;
-							var10 = aty.b.P();
+							var10 = Blocks.STONE.P();
 						} else if (var15 >= 59 && var15 <= 64) {
 							var9 = this.ak;
 							var10 = this.al;
@@ -290,9 +290,9 @@ public abstract class arm {
 
 						if (var15 < 63 && (var9 == null || var9.getBlock().r() == Material.AIR)) {
 							if (this.a(new Position(var4, var15, var5)) < 0.15F) {
-								var9 = aty.aI.P();
+								var9 = Blocks.aI.P();
 							} else {
-								var9 = aty.j.P();
+								var9 = Blocks.WATER.P();
 							}
 						}
 
@@ -301,17 +301,17 @@ public abstract class arm {
 							var3.a(var14, var15, var13, var9);
 						} else if (var15 < 56 - var12) {
 							var9 = null;
-							var10 = aty.b.P();
-							var3.a(var14, var15, var13, aty.n.P());
+							var10 = Blocks.STONE.P();
+							var3.a(var14, var15, var13, Blocks.GRAVEL.P());
 						} else {
 							var3.a(var14, var15, var13, var10);
 						}
 					} else if (var11 > 0) {
 						--var11;
 						var3.a(var14, var15, var13, var10);
-						if (var11 == 0 && var10.getBlock() == aty.m) {
+						if (var11 == 0 && var10.getBlock() == Blocks.SAND) {
 							var11 = var2.nextInt(4) + Math.max(0, var15 - 63);
-							var10 = var10.b(BlockSand.a) == bac.b ? aty.cM.P() : aty.A.P();
+							var10 = var10.b(BlockSand.a) == bac.b ? Blocks.cM.P() : Blocks.SANDSTONE.P();
 						}
 					}
 				}

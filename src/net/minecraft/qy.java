@@ -78,14 +78,14 @@ public class qy {
 			EntityItemFrame var2 = (EntityItemFrame) this.a;
 			ItemStack var3 = var2.o();
 			if (var3 != null && var3.getItem() instanceof amn) {
-				bqe var4 = amk.bd.a(var3, this.a.o);
+				bqe var4 = Items.bd.a(var3, this.a.o);
 				Iterator var5 = var1.iterator();
 
 				while (var5.hasNext()) {
 					EntityHuman var6 = (EntityHuman) var5.next();
 					EntityPlayer var7 = (EntityPlayer) var6;
 					var4.a(var7, var3);
-					Packet var8 = amk.bd.c(var3, this.a.o, var7);
+					Packet var8 = Items.bd.c(var3, this.a.o, var7);
 					if (var8 != null) {
 						var7.playerConncetion.sendPacket(var8);
 					}

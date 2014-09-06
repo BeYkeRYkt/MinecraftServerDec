@@ -8,7 +8,7 @@ final class of extends eg {
 		akb var3 = (akb) var2.getItem();
 		Position var4 = var1.d().a(BlockDispenser.b(var1.f()));
 		if (var3.a(var1.i(), var4)) {
-			var2.a(amk.aw);
+			var2.a(Items.aw);
 			var2.b = 1;
 			return var2;
 		} else {

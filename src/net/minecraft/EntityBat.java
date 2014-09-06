@@ -135,7 +135,7 @@ public class EntityBat extends abn {
 		return true;
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {

@@ -6,7 +6,7 @@ public abstract class ath extends Block {
 
 	protected ath(Material var1) {
 		super(var1);
-		this.a(CreativeModeTab.d);
+		this.a(CreativeModeTab.REDSTONE);
 		this.a(true);
 	}
 

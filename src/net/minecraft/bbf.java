@@ -17,11 +17,11 @@ public abstract class bbf extends BlockStepAbstract {
 		}
 
 		this.j(var1.a(M, bbg.a));
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Item.getItemOf((Block) aty.U);
+		return Item.getItemOf((Block) Blocks.STONE_SLAB);
 	}
 
 	public String b(int var1) {

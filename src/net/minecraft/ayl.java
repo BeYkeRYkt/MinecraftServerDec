@@ -17,11 +17,11 @@ public abstract class ayl extends BlockStepAbstract {
 		}
 
 		this.j(var1.a(M, aym.a));
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Item.getItemOf((Block) aty.cP);
+		return Item.getItemOf((Block) Blocks.cP);
 	}
 
 	public String b(int var1) {

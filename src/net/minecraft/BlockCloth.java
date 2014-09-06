@@ -7,7 +7,7 @@ public class BlockCloth extends Block {
 	public BlockCloth(Material var1) {
 		super(var1);
 		this.j(this.L.b().a(a, akv.a));
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public int a(bec var1) {

@@ -11,7 +11,7 @@ public class BlockTorch extends Block {
 		super(Material.ORIENTABLE);
 		this.j(this.L.b().a(a, PaintingDirection.b));
 		this.a(true);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	public brt a(World var1, Position var2, bec var3) {
@@ -31,7 +31,7 @@ public class BlockTorch extends Block {
 			return true;
 		} else {
 			Block var3 = var1.p(var2).getBlock();
-			return var3 instanceof BlockFence || var3 == aty.w || var3 == aty.bZ || var3 == aty.cG;
+			return var3 instanceof BlockFence || var3 == Blocks.GLASS || var3 == Blocks.bZ || var3 == Blocks.cG;
 		}
 	}
 

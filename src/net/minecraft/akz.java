@@ -3,11 +3,11 @@ package net.minecraft;
 public class akz extends ake {
 
 	protected akz() {
-		this.a(CreativeModeTab.f);
+		this.setCreativeModeTab(CreativeModeTab.MISC);
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
-		ItemStack var4 = new ItemStack(amk.bd, 1, var2.b("map"));
+		ItemStack var4 = new ItemStack(Items.bd, 1, var2.b("map"));
 		String var5 = "map_" + var4.i();
 		bqe var6 = new bqe(var5);
 		var2.a(var5, (bqc) var6);

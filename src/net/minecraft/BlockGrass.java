@@ -10,26 +10,26 @@ public class BlockGrass extends Block implements atz {
 		super(Material.GRASS);
 		this.j(this.L.b().a(a, Boolean.valueOf(false)));
 		this.a(true);
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
 		Block var4 = var2.p(var3.a()).getBlock();
-		return var1.a(a, Boolean.valueOf(var4 == aty.aJ || var4 == aty.aH));
+		return var1.a(a, Boolean.valueOf(var4 == Blocks.aJ || var4 == Blocks.aH));
 	}
 
 	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (!var1.D) {
 			if (var1.l(var2.a()) < 4 && var1.p(var2.a()).getBlock().n() > 2) {
-				var1.a(var2, aty.d.P());
+				var1.a(var2, Blocks.DIRT.P());
 			} else {
 				if (var1.l(var2.a()) >= 9) {
 					for (int var5 = 0; var5 < 4; ++var5) {
 						Position var6 = var2.a(var4.nextInt(3) - 1, var4.nextInt(5) - 3, var4.nextInt(3) - 1);
 						Block var7 = var1.p(var6.a()).getBlock();
 						bec var8 = var1.p(var6);
-						if (var8.getBlock() == aty.d && var8.b(BlockDirt.a) == avd.a && var1.l(var6.a()) >= 4 && var7.n() <= 2) {
-							var1.a(var6, aty.c.P());
+						if (var8.getBlock() == Blocks.DIRT && var8.b(BlockDirt.a) == avd.a && var1.l(var6.a()) >= 4 && var7.n() <= 2) {
+							var1.a(var6, Blocks.GRASS.P());
 						}
 					}
 				}
@@ -39,7 +39,7 @@ public class BlockGrass extends Block implements atz {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return aty.d.a(aty.d.P().a(BlockDirt.a, avd.a), var2, var3);
+		return Blocks.DIRT.a(Blocks.DIRT.P().a(BlockDirt.a, avd.a), var2, var3);
 	}
 
 	public boolean a(World var1, Position var2, bec var3, boolean var4) {
@@ -61,7 +61,7 @@ public class BlockGrass extends Block implements atz {
 			while (true) {
 				if (var8 < var6 / 16) {
 					var7 = var7.a(var2.nextInt(3) - 1, (var2.nextInt(3) - 1) * var2.nextInt(3) / 2, var2.nextInt(3) - 1);
-					if (var1.p(var7.b()).getBlock() == aty.c && !var1.p(var7).getBlock().t()) {
+					if (var1.p(var7.b()).getBlock() == Blocks.GRASS && !var1.p(var7).getBlock().t()) {
 						++var8;
 						continue;
 					}
@@ -74,8 +74,8 @@ public class BlockGrass extends Block implements atz {
 							var1.a(var7, var10, 3);
 						}
 					} else {
-						bec var12 = aty.H.P().a(BlockLongGrass.a, bbi.b);
-						if (aty.H.f(var1, var7, var12)) {
+						bec var12 = Blocks.TALLGRASS.P().a(BlockLongGrass.a, bbi.b);
+						if (Blocks.TALLGRASS.f(var1, var7, var12)) {
 							var1.a(var7, var12, 3);
 						}
 					}

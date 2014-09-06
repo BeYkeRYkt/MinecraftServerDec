@@ -27,7 +27,7 @@ public class bik extends bhp {
 						for (int var10 = var3.getY() - var5; var10 <= var3.getY() + var5; ++var10) {
 							Position var11 = new Position(var6, var10, var7);
 							Block var12 = var1.p(var11).getBlock();
-							if (var12 == aty.d || var12 == aty.c) {
+							if (var12 == Blocks.DIRT || var12 == Blocks.GRASS) {
 								var1.a(var11, this.a.P(), 2);
 							}
 						}

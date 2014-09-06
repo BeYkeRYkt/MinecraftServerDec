@@ -24,7 +24,7 @@ public class EntityRabbit extends abq {
 		this.h.a(2.5F);
 		this.i.a(1, new yy(this));
 		this.i.a(1, new acj(this, 1.33D));
-		this.i.a(2, new aag(this, 1.0D, amk.bR, false));
+		this.i.a(2, new aag(this, 1.0D, Items.bR, false));
 		this.i.a(3, new yt(this, 0.8D));
 		this.i.a(5, new ack(this));
 		this.i.a(5, new zy(this, 0.6D));
@@ -206,9 +206,9 @@ public class EntityRabbit extends abq {
 	public boolean r(Entity var1) {
 		if (this.cl() == 99) {
 			this.a("mob.attack", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
-			return var1.a(wh.a((EntityLiving) this), 8.0F);
+			return var1.a(DamageSource.a((EntityLiving) this), 8.0F);
 		} else {
-			return var1.a(wh.a((EntityLiving) this), 3.0F);
+			return var1.a(DamageSource.a((EntityLiving) this), 3.0F);
 		}
 	}
 
@@ -216,12 +216,12 @@ public class EntityRabbit extends abq {
 		return this.cl() == 99 ? 8 : super.bq();
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		return this.b(var1) ? false : super.a(var1, var2);
 	}
 
 	protected void bp() {
-		this.a(new ItemStack(amk.br, 1), 0.0F);
+		this.a(new ItemStack(Items.br, 1), 0.0F);
 	}
 
 	protected void b(boolean var1, int var2) {
@@ -229,23 +229,23 @@ public class EntityRabbit extends abq {
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(amk.bs, 1);
+			this.a(Items.bs, 1);
 		}
 
 		var3 = this.V.nextInt(2);
 
 		for (var4 = 0; var4 < var3; ++var4) {
 			if (this.au()) {
-				this.a(amk.bp, 1);
+				this.a(Items.bp, 1);
 			} else {
-				this.a(amk.bo, 1);
+				this.a(Items.bo, 1);
 			}
 		}
 
 	}
 
 	private boolean a(Item var1) {
-		return var1 == amk.bR || var1 == amk.bW || var1 == Item.getItemOf((Block) aty.N);
+		return var1 == Items.bR || var1 == Items.bW || var1 == Item.getItemOf((Block) Blocks.YELLOW_FLOWER);
 	}
 
 	public EntityRabbit b(ws var1) {
@@ -273,7 +273,7 @@ public class EntityRabbit extends abq {
 			this.bg.a(2, new aaq(this, EntityHuman.class, true));
 			this.bg.a(2, new aaq(this, EntityWolf.class, true));
 			if (!this.k_()) {
-				this.a(fi.a("entity.KillerBunny.name"));
+				this.a(LocaleI18n.get("entity.KillerBunny.name"));
 			}
 		}
 
@@ -308,7 +308,7 @@ public class EntityRabbit extends abq {
 	}
 
 	protected void cn() {
-		this.o.a(Particle.M, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[] { Block.f(aty.cb.a(7)) });
+		this.o.a(Particle.M, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[] { Block.f(Blocks.cb.a(7)) });
 		this.bs = 100;
 	}
 

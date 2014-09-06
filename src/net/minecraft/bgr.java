@@ -36,11 +36,11 @@ public class bgr implements IChunkProvider {
 	double[] g;
 
 	public bgr(World var1, boolean var2, long var3) {
-		this.w = new bif(aty.co.P(), 14, bep.a(aty.aV));
-		this.x = new bhu(aty.k, true);
-		this.y = new bhu(aty.k, false);
-		this.z = new bhi(aty.P);
-		this.A = new bhi(aty.Q);
+		this.w = new bif(Blocks.co.P(), 14, bep.a(Blocks.aV));
+		this.x = new bhu(Blocks.FLOWING_LAVA, true);
+		this.y = new bhu(Blocks.FLOWING_LAVA, false);
+		this.z = new bhi(Blocks.BRWON_MUSHROOM);
+		this.A = new bhi(Blocks.RED_MUSHROOM);
 		this.B = new bjl();
 		this.C = new bgu();
 		this.h = var1;
@@ -91,11 +91,11 @@ public class bgr implements IChunkProvider {
 							for (int var48 = 0; var48 < 4; ++var48) {
 								bec var49 = null;
 								if (var11 * 8 + var30 < var5) {
-									var49 = aty.l.P();
+									var49 = Blocks.LAVA.P();
 								}
 
 								if (var44 > 0.0D) {
-									var49 = aty.aV.P();
+									var49 = Blocks.aV.P();
 								}
 
 								int var50 = var41 + var9 * 4;
@@ -133,34 +133,34 @@ public class bgr implements IChunkProvider {
 				boolean var10 = this.l[var7 + var8 * 16] + this.j.nextDouble() * 0.2D > 0.0D;
 				int var11 = (int) (this.m[var7 + var8 * 16] / 3.0D + 3.0D + this.j.nextDouble() * 0.25D);
 				int var12 = -1;
-				bec var13 = aty.aV.P();
-				bec var14 = aty.aV.P();
+				bec var13 = Blocks.aV.P();
+				bec var14 = Blocks.aV.P();
 
 				for (int var15 = 127; var15 >= 0; --var15) {
 					if (var15 < 127 - this.j.nextInt(5) && var15 > this.j.nextInt(5)) {
 						bec var16 = var3.a(var8, var15, var7);
 						if (var16.getBlock() != null && var16.getBlock().r() != Material.AIR) {
-							if (var16.getBlock() == aty.aV) {
+							if (var16.getBlock() == Blocks.aV) {
 								if (var12 == -1) {
 									if (var11 <= 0) {
 										var13 = null;
-										var14 = aty.aV.P();
+										var14 = Blocks.aV.P();
 									} else if (var15 >= var4 - 4 && var15 <= var4 + 1) {
-										var13 = aty.aV.P();
-										var14 = aty.aV.P();
+										var13 = Blocks.aV.P();
+										var14 = Blocks.aV.P();
 										if (var10) {
-											var13 = aty.n.P();
-											var14 = aty.aV.P();
+											var13 = Blocks.GRAVEL.P();
+											var14 = Blocks.aV.P();
 										}
 
 										if (var9) {
-											var13 = aty.aW.P();
-											var14 = aty.aW.P();
+											var13 = Blocks.aW.P();
+											var14 = Blocks.aW.P();
 										}
 									}
 
 									if (var15 < var4 && (var13 == null || var13.getBlock().r() == Material.AIR)) {
-										var13 = aty.l.P();
+										var13 = Blocks.LAVA.P();
 									}
 
 									var12 = var11;
@@ -178,7 +178,7 @@ public class bgr implements IChunkProvider {
 							var12 = -1;
 						}
 					} else {
-						var3.a(var8, var15, var7, aty.h.P());
+						var3.a(var8, var15, var7, Blocks.BEDROCK.P());
 					}
 				}
 			}
@@ -352,7 +352,7 @@ public class bgr implements IChunkProvider {
 				return this.B.b();
 			}
 
-			if (this.B.a(this.h, var2) && this.h.p(var2.b()).getBlock() == aty.by) {
+			if (this.B.a(this.h, var2) && this.h.p(var2.b()).getBlock() == Blocks.by) {
 				return this.B.b();
 			}
 		}

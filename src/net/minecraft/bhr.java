@@ -20,9 +20,9 @@ public class bhr extends bir {
 		}
 
 		Block var5 = var1.p(var3).getBlock();
-		if (var5 == aty.d || var5 == aty.c) {
+		if (var5 == Blocks.DIRT || var5 == Blocks.GRASS) {
 			var3 = var3.a();
-			this.a(var1, var3, aty.r, this.b);
+			this.a(var1, var3, Blocks.LOG, this.b);
 
 			for (int var6 = var3.getY(); var6 <= var3.getY() + 2; ++var6) {
 				int var7 = var6 - var3.getY();
@@ -36,7 +36,7 @@ public class bhr extends bir {
 						if (Math.abs(var10) != var8 || Math.abs(var12) != var8 || var2.nextInt(2) != 0) {
 							Position var13 = new Position(var9, var6, var11);
 							if (!var1.p(var13).getBlock().m()) {
-								this.a(var1, var13, aty.t, this.a);
+								this.a(var1, var13, Blocks.LEAVES, this.a);
 							}
 						}
 					}

@@ -122,14 +122,14 @@ public abstract class adj extends Entity {
 	}
 
 	public boolean l(Entity var1) {
-		return var1 instanceof EntityHuman ? this.a(wh.a((EntityHuman) var1), 0.0F) : false;
+		return var1 instanceof EntityHuman ? this.a(DamageSource.a((EntityHuman) var1), 0.0F) : false;
 	}
 
 	public PaintingDirection aO() {
 		return this.direction;
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {

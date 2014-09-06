@@ -108,7 +108,7 @@ public class BlockBed extends avb {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return var1.b(a) == atq.a ? null : amk.ba;
+		return var1.b(a) == atq.a ? null : Items.ba;
 	}
 
 	private void j() {

@@ -10,8 +10,8 @@ public class bll extends bln {
 	private boolean f;
 	private boolean g;
 	private boolean h;
-	private static final List i = Lists.newArrayList((Object[]) (new vl[] { new vl(amk.i, 0, 1, 3, 3), new vl(amk.j, 0, 1, 5, 10), new vl(amk.k, 0, 2, 7, 15), new vl(amk.bO, 0, 1, 3, 2), new vl(amk.aX, 0, 4, 6, 20), new vl(amk.bt, 0, 3, 7, 16), new vl(amk.aA, 0, 1, 1, 3), new vl(amk.ck, 0, 1, 1, 1), new vl(amk.cl, 0, 1, 1, 1), new vl(amk.cm, 0, 1, 1, 1) }));
-	private static final List j = Lists.newArrayList((Object[]) (new vl[] { new vl(amk.g, 0, 2, 7, 30) }));
+	private static final List i = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.i, 0, 1, 3, 3), new vl(Items.j, 0, 1, 5, 10), new vl(Items.k, 0, 2, 7, 15), new vl(Items.bO, 0, 1, 3, 2), new vl(Items.aX, 0, 4, 6, 20), new vl(Items.bt, 0, 3, 7, 16), new vl(Items.aA, 0, 1, 1, 3), new vl(Items.ck, 0, 1, 1, 1), new vl(Items.cl, 0, 1, 1, 1), new vl(Items.cm, 0, 1, 1, 1) }));
+	private static final List j = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.g, 0, 2, 7, 30) }));
 	private static blm k = new blm((blj) null);
 
 	public bll() {
@@ -41,10 +41,10 @@ public class bll extends bln {
 		if (!this.a(var1, var3, 0)) {
 			return false;
 		} else {
-			int var4 = this.a(aty.aw, 3);
-			int var5 = this.a(aty.aw, 2);
-			int var6 = this.a(aty.aw, 0);
-			int var7 = this.a(aty.aw, 1);
+			int var4 = this.a(Blocks.aw, 3);
+			int var5 = this.a(Blocks.aw, 2);
+			int var6 = this.a(Blocks.aw, 0);
+			int var7 = this.a(Blocks.aw, 1);
 			this.a(var1, var3, 0, -4, 0, this.a - 1, 0, this.c - 1, false, var2, k);
 			this.a(var1, var3, 2, 1, 2, 9, 2, 2, false, var2, k);
 			this.a(var1, var3, 2, 1, 12, 9, 2, 12, false, var2, k);
@@ -67,10 +67,10 @@ public class bll extends bln {
 			this.a(var1, var3, 5, 2, 12, 6, 2, 12);
 			this.a(var1, var3, 5, 5, 1, 6, 5, 1);
 			this.a(var1, var3, 5, 5, 13, 6, 5, 13);
-			this.a(var1, aty.a.P(), 1, 5, 5, var3);
-			this.a(var1, aty.a.P(), 10, 5, 5, var3);
-			this.a(var1, aty.a.P(), 1, 5, 9, var3);
-			this.a(var1, aty.a.P(), 10, 5, 9, var3);
+			this.a(var1, Blocks.AIR.P(), 1, 5, 5, var3);
+			this.a(var1, Blocks.AIR.P(), 10, 5, 5, var3);
+			this.a(var1, Blocks.AIR.P(), 1, 5, 9, var3);
+			this.a(var1, Blocks.AIR.P(), 10, 5, 9, var3);
 
 			int var8;
 			for (var8 = 0; var8 <= 14; var8 += 14) {
@@ -100,30 +100,30 @@ public class bll extends bln {
 			this.a(var1, var3, 4, 9, 10, 4, 9, 10, false, var2, k);
 			this.a(var1, var3, 7, 9, 10, 7, 9, 10, false, var2, k);
 			this.a(var1, var3, 5, 9, 7, 6, 9, 7, false, var2, k);
-			this.a(var1, aty.aw.a(var4), 5, 9, 6, var3);
-			this.a(var1, aty.aw.a(var4), 6, 9, 6, var3);
-			this.a(var1, aty.aw.a(var5), 5, 9, 8, var3);
-			this.a(var1, aty.aw.a(var5), 6, 9, 8, var3);
-			this.a(var1, aty.aw.a(var4), 4, 0, 0, var3);
-			this.a(var1, aty.aw.a(var4), 5, 0, 0, var3);
-			this.a(var1, aty.aw.a(var4), 6, 0, 0, var3);
-			this.a(var1, aty.aw.a(var4), 7, 0, 0, var3);
-			this.a(var1, aty.aw.a(var4), 4, 1, 8, var3);
-			this.a(var1, aty.aw.a(var4), 4, 2, 9, var3);
-			this.a(var1, aty.aw.a(var4), 4, 3, 10, var3);
-			this.a(var1, aty.aw.a(var4), 7, 1, 8, var3);
-			this.a(var1, aty.aw.a(var4), 7, 2, 9, var3);
-			this.a(var1, aty.aw.a(var4), 7, 3, 10, var3);
+			this.a(var1, Blocks.aw.a(var4), 5, 9, 6, var3);
+			this.a(var1, Blocks.aw.a(var4), 6, 9, 6, var3);
+			this.a(var1, Blocks.aw.a(var5), 5, 9, 8, var3);
+			this.a(var1, Blocks.aw.a(var5), 6, 9, 8, var3);
+			this.a(var1, Blocks.aw.a(var4), 4, 0, 0, var3);
+			this.a(var1, Blocks.aw.a(var4), 5, 0, 0, var3);
+			this.a(var1, Blocks.aw.a(var4), 6, 0, 0, var3);
+			this.a(var1, Blocks.aw.a(var4), 7, 0, 0, var3);
+			this.a(var1, Blocks.aw.a(var4), 4, 1, 8, var3);
+			this.a(var1, Blocks.aw.a(var4), 4, 2, 9, var3);
+			this.a(var1, Blocks.aw.a(var4), 4, 3, 10, var3);
+			this.a(var1, Blocks.aw.a(var4), 7, 1, 8, var3);
+			this.a(var1, Blocks.aw.a(var4), 7, 2, 9, var3);
+			this.a(var1, Blocks.aw.a(var4), 7, 3, 10, var3);
 			this.a(var1, var3, 4, 1, 9, 4, 1, 9, false, var2, k);
 			this.a(var1, var3, 7, 1, 9, 7, 1, 9, false, var2, k);
 			this.a(var1, var3, 4, 1, 10, 7, 2, 10, false, var2, k);
 			this.a(var1, var3, 5, 4, 5, 6, 4, 5, false, var2, k);
-			this.a(var1, aty.aw.a(var6), 4, 4, 5, var3);
-			this.a(var1, aty.aw.a(var7), 7, 4, 5, var3);
+			this.a(var1, Blocks.aw.a(var6), 4, 4, 5, var3);
+			this.a(var1, Blocks.aw.a(var7), 7, 4, 5, var3);
 
 			for (var8 = 0; var8 < 4; ++var8) {
-				this.a(var1, aty.aw.a(var5), 5, 0 - var8, 6 + var8, var3);
-				this.a(var1, aty.aw.a(var5), 6, 0 - var8, 6 + var8, var3);
+				this.a(var1, Blocks.aw.a(var5), 5, 0 - var8, 6 + var8, var3);
+				this.a(var1, Blocks.aw.a(var5), 6, 0 - var8, 6 + var8, var3);
 				this.a(var1, var3, 5, 0 - var8, 7 + var8, 6, 0 - var8, 9 + var8);
 			}
 
@@ -143,73 +143,73 @@ public class bll extends bln {
 			this.a(var1, var3, 7, -2, 1, 9, -2, 1, false, var2, k);
 			this.a(var1, var3, 6, -3, 1, 6, -3, 1, false, var2, k);
 			this.a(var1, var3, 6, -1, 1, 6, -1, 1, false, var2, k);
-			this.a(var1, aty.bR.a(this.a(aty.bR, PaintingDirection.f.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 1, -3, 8, var3);
-			this.a(var1, aty.bR.a(this.a(aty.bR, PaintingDirection.e.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 4, -3, 8, var3);
-			this.a(var1, aty.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 2, -3, 8, var3);
-			this.a(var1, aty.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 3, -3, 8, var3);
-			this.a(var1, aty.af.P(), 5, -3, 7, var3);
-			this.a(var1, aty.af.P(), 5, -3, 6, var3);
-			this.a(var1, aty.af.P(), 5, -3, 5, var3);
-			this.a(var1, aty.af.P(), 5, -3, 4, var3);
-			this.a(var1, aty.af.P(), 5, -3, 3, var3);
-			this.a(var1, aty.af.P(), 5, -3, 2, var3);
-			this.a(var1, aty.af.P(), 5, -3, 1, var3);
-			this.a(var1, aty.af.P(), 4, -3, 1, var3);
-			this.a(var1, aty.Y.P(), 3, -3, 1, var3);
+			this.a(var1, Blocks.bR.a(this.a(Blocks.bR, PaintingDirection.f.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 1, -3, 8, var3);
+			this.a(var1, Blocks.bR.a(this.a(Blocks.bR, PaintingDirection.e.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 4, -3, 8, var3);
+			this.a(var1, Blocks.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 2, -3, 8, var3);
+			this.a(var1, Blocks.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 3, -3, 8, var3);
+			this.a(var1, Blocks.af.P(), 5, -3, 7, var3);
+			this.a(var1, Blocks.af.P(), 5, -3, 6, var3);
+			this.a(var1, Blocks.af.P(), 5, -3, 5, var3);
+			this.a(var1, Blocks.af.P(), 5, -3, 4, var3);
+			this.a(var1, Blocks.af.P(), 5, -3, 3, var3);
+			this.a(var1, Blocks.af.P(), 5, -3, 2, var3);
+			this.a(var1, Blocks.af.P(), 5, -3, 1, var3);
+			this.a(var1, Blocks.af.P(), 4, -3, 1, var3);
+			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 3, -3, 1, var3);
 			if (!this.g) {
 				this.g = this.a(var1, var3, var2, 3, -2, 1, PaintingDirection.c.a(), j, 2);
 			}
 
-			this.a(var1, aty.bn.a(15), 3, -2, 2, var3);
-			this.a(var1, aty.bR.a(this.a(aty.bR, PaintingDirection.c.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 7, -3, 1, var3);
-			this.a(var1, aty.bR.a(this.a(aty.bR, PaintingDirection.d.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 7, -3, 5, var3);
-			this.a(var1, aty.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 7, -3, 2, var3);
-			this.a(var1, aty.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 7, -3, 3, var3);
-			this.a(var1, aty.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 7, -3, 4, var3);
-			this.a(var1, aty.af.P(), 8, -3, 6, var3);
-			this.a(var1, aty.af.P(), 9, -3, 6, var3);
-			this.a(var1, aty.af.P(), 9, -3, 5, var3);
-			this.a(var1, aty.Y.P(), 9, -3, 4, var3);
-			this.a(var1, aty.af.P(), 9, -2, 4, var3);
+			this.a(var1, Blocks.bn.a(15), 3, -2, 2, var3);
+			this.a(var1, Blocks.bR.a(this.a(Blocks.bR, PaintingDirection.c.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 7, -3, 1, var3);
+			this.a(var1, Blocks.bR.a(this.a(Blocks.bR, PaintingDirection.d.toByte())).a(BlockTripwireHook.M, Boolean.valueOf(true)), 7, -3, 5, var3);
+			this.a(var1, Blocks.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 7, -3, 2, var3);
+			this.a(var1, Blocks.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 7, -3, 3, var3);
+			this.a(var1, Blocks.bS.P().a(BlockTripwire.M, Boolean.valueOf(true)), 7, -3, 4, var3);
+			this.a(var1, Blocks.af.P(), 8, -3, 6, var3);
+			this.a(var1, Blocks.af.P(), 9, -3, 6, var3);
+			this.a(var1, Blocks.af.P(), 9, -3, 5, var3);
+			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 9, -3, 4, var3);
+			this.a(var1, Blocks.af.P(), 9, -2, 4, var3);
 			if (!this.h) {
 				this.h = this.a(var1, var3, var2, 9, -2, 3, PaintingDirection.e.a(), j, 2);
 			}
 
-			this.a(var1, aty.bn.a(15), 8, -1, 3, var3);
-			this.a(var1, aty.bn.a(15), 8, -2, 3, var3);
+			this.a(var1, Blocks.bn.a(15), 8, -1, 3, var3);
+			this.a(var1, Blocks.bn.a(15), 8, -2, 3, var3);
 			if (!this.e) {
-				this.e = this.a(var1, var3, var2, 8, -3, 3, vl.a(i, new vl[] { amk.cd.b(var2) }), 2 + var2.nextInt(5));
+				this.e = this.a(var1, var3, var2, 8, -3, 3, vl.a(i, new vl[] { Items.cd.b(var2) }), 2 + var2.nextInt(5));
 			}
 
-			this.a(var1, aty.Y.P(), 9, -3, 2, var3);
-			this.a(var1, aty.Y.P(), 8, -3, 1, var3);
-			this.a(var1, aty.Y.P(), 4, -3, 5, var3);
-			this.a(var1, aty.Y.P(), 5, -2, 5, var3);
-			this.a(var1, aty.Y.P(), 5, -1, 5, var3);
-			this.a(var1, aty.Y.P(), 6, -3, 5, var3);
-			this.a(var1, aty.Y.P(), 7, -2, 5, var3);
-			this.a(var1, aty.Y.P(), 7, -1, 5, var3);
-			this.a(var1, aty.Y.P(), 8, -3, 5, var3);
+			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 9, -3, 2, var3);
+			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 8, -3, 1, var3);
+			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 4, -3, 5, var3);
+			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 5, -2, 5, var3);
+			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 5, -1, 5, var3);
+			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 6, -3, 5, var3);
+			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 7, -2, 5, var3);
+			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 7, -1, 5, var3);
+			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 8, -3, 5, var3);
 			this.a(var1, var3, 9, -1, 1, 9, -1, 5, false, var2, k);
 			this.a(var1, var3, 8, -3, 8, 10, -1, 10);
-			this.a(var1, aty.bf.a(BlockSmoothBrick.O), 8, -2, 11, var3);
-			this.a(var1, aty.bf.a(BlockSmoothBrick.O), 9, -2, 11, var3);
-			this.a(var1, aty.bf.a(BlockSmoothBrick.O), 10, -2, 11, var3);
-			this.a(var1, aty.ay.a(BlockLever.a(PaintingDirection.a(this.a(aty.ay, PaintingDirection.c.a())))), 8, -2, 12, var3);
-			this.a(var1, aty.ay.a(BlockLever.a(PaintingDirection.a(this.a(aty.ay, PaintingDirection.c.a())))), 9, -2, 12, var3);
-			this.a(var1, aty.ay.a(BlockLever.a(PaintingDirection.a(this.a(aty.ay, PaintingDirection.c.a())))), 10, -2, 12, var3);
+			this.a(var1, Blocks.bf.a(BlockSmoothBrick.O), 8, -2, 11, var3);
+			this.a(var1, Blocks.bf.a(BlockSmoothBrick.O), 9, -2, 11, var3);
+			this.a(var1, Blocks.bf.a(BlockSmoothBrick.O), 10, -2, 11, var3);
+			this.a(var1, Blocks.ay.a(BlockLever.a(PaintingDirection.a(this.a(Blocks.ay, PaintingDirection.c.a())))), 8, -2, 12, var3);
+			this.a(var1, Blocks.ay.a(BlockLever.a(PaintingDirection.a(this.a(Blocks.ay, PaintingDirection.c.a())))), 9, -2, 12, var3);
+			this.a(var1, Blocks.ay.a(BlockLever.a(PaintingDirection.a(this.a(Blocks.ay, PaintingDirection.c.a())))), 10, -2, 12, var3);
 			this.a(var1, var3, 8, -3, 8, 8, -3, 10, false, var2, k);
 			this.a(var1, var3, 10, -3, 8, 10, -3, 10, false, var2, k);
-			this.a(var1, aty.Y.P(), 10, -2, 9, var3);
-			this.a(var1, aty.af.P(), 8, -2, 9, var3);
-			this.a(var1, aty.af.P(), 8, -2, 10, var3);
-			this.a(var1, aty.af.P(), 10, -1, 9, var3);
-			this.a(var1, aty.F.a(PaintingDirection.b.a()), 9, -2, 8, var3);
-			this.a(var1, aty.F.a(this.a(aty.F, PaintingDirection.e.a())), 10, -2, 8, var3);
-			this.a(var1, aty.F.a(this.a(aty.F, PaintingDirection.e.a())), 10, -1, 8, var3);
-			this.a(var1, aty.bb.a(this.a(aty.bb, PaintingDirection.c.toByte())), 10, -2, 10, var3);
+			this.a(var1, Blocks.MOSSY_COBBLESTONE.P(), 10, -2, 9, var3);
+			this.a(var1, Blocks.af.P(), 8, -2, 9, var3);
+			this.a(var1, Blocks.af.P(), 8, -2, 10, var3);
+			this.a(var1, Blocks.af.P(), 10, -1, 9, var3);
+			this.a(var1, Blocks.STICKY_PISTON.a(PaintingDirection.b.a()), 9, -2, 8, var3);
+			this.a(var1, Blocks.STICKY_PISTON.a(this.a(Blocks.STICKY_PISTON, PaintingDirection.e.a())), 10, -2, 8, var3);
+			this.a(var1, Blocks.STICKY_PISTON.a(this.a(Blocks.STICKY_PISTON, PaintingDirection.e.a())), 10, -1, 8, var3);
+			this.a(var1, Blocks.bb.a(this.a(Blocks.bb, PaintingDirection.c.toByte())), 10, -2, 10, var3);
 			if (!this.f) {
-				this.f = this.a(var1, var3, var2, 9, -3, 10, vl.a(i, new vl[] { amk.cd.b(var2) }), 2 + var2.nextInt(5));
+				this.f = this.a(var1, var3, var2, 9, -3, 10, vl.a(i, new vl[] { Items.cd.b(var2) }), 2 + var2.nextInt(5));
 			}
 
 			return true;

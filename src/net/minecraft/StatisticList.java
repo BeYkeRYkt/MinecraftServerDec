@@ -138,7 +138,7 @@ public class StatisticList {
 			if (var1 != null) {
 				int var2 = Item.getId(var1);
 				String var3 = a(var1);
-				if (var3 != null && var1.m()) {
+				if (var3 != null && var1.usesDurability()) {
 					K[var2] = (new to("stat.breakItem.", var3, new hz("stat.breakItem", new Object[] { (new ItemStack(var1)).C() }), var1)).h();
 				}
 			}
@@ -148,25 +148,25 @@ public class StatisticList {
 	}
 
 	private static String a(Item var0) {
-		BlockNameInfo var1 = (BlockNameInfo) Item.REGISTRY.c(var0);
+		RegistryObjectName var1 = (RegistryObjectName) Item.REGISTRY.c(var0);
 		return var1 != null ? var1.toString().replace(':', '.') : null;
 	}
 
 	private static void a(Statistic[] var0) {
-		a(var0, aty.j, aty.i);
-		a(var0, aty.l, aty.k);
-		a(var0, aty.aZ, aty.aU);
-		a(var0, aty.am, aty.al);
-		a(var0, aty.aD, aty.aC);
-		a(var0, aty.bc, aty.bb);
-		a(var0, aty.ck, aty.cj);
-		a(var0, aty.aF, aty.aE);
-		a(var0, aty.bK, aty.bJ);
-		a(var0, aty.T, aty.U);
-		a(var0, aty.bL, aty.bM);
-		a(var0, aty.cO, aty.cP);
-		a(var0, aty.c, aty.d);
-		a(var0, aty.ak, aty.d);
+		a(var0, Blocks.WATER, Blocks.FLOWING_WATER);
+		a(var0, Blocks.LAVA, Blocks.FLOWING_LAVA);
+		a(var0, Blocks.aZ, Blocks.aU);
+		a(var0, Blocks.am, Blocks.al);
+		a(var0, Blocks.aD, Blocks.aC);
+		a(var0, Blocks.bc, Blocks.bb);
+		a(var0, Blocks.ck, Blocks.cj);
+		a(var0, Blocks.aF, Blocks.aE);
+		a(var0, Blocks.bK, Blocks.bJ);
+		a(var0, Blocks.DOUBLE_STONE_SLAB, Blocks.STONE_SLAB);
+		a(var0, Blocks.bL, Blocks.bM);
+		a(var0, Blocks.cO, Blocks.cP);
+		a(var0, Blocks.GRASS, Blocks.DIRT);
+		a(var0, Blocks.ak, Blocks.DIRT);
 	}
 
 	private static void a(Statistic[] var0, Block var1, Block var2) {

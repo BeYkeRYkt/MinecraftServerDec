@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class wm extends MobEffectList {
 
-	protected wm(int var1, BlockNameInfo var2, boolean var3, int var4) {
+	protected wm(int var1, RegistryObjectName var2, boolean var3, int var4) {
 		super(var1, var2, var3, var4);
 	}
 

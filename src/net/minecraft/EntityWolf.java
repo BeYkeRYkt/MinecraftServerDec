@@ -169,7 +169,7 @@ public class EntityWolf extends xx {
 		return this.cl() ? 20 : super.bP();
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
@@ -184,7 +184,7 @@ public class EntityWolf extends xx {
 	}
 
 	public boolean r(Entity var1) {
-		boolean var2 = var1.a(wh.a((EntityLiving) this), (float) ((int) this.a(afs.e).e()));
+		boolean var2 = var1.a(DamageSource.a((EntityLiving) this), (float) ((int) this.a(afs.e).e()));
 		if (var2) {
 			this.a((EntityLiving) this, var1);
 		}
@@ -221,7 +221,7 @@ public class EntityWolf extends xx {
 
 						return true;
 					}
-				} else if (var2.getItem() == amk.aW) {
+				} else if (var2.getItem() == Items.aW) {
 					akv var4 = akv.a(var2.i());
 					if (var4 != this.cu()) {
 						this.a(var4);
@@ -240,7 +240,7 @@ public class EntityWolf extends xx {
 				this.h.n();
 				this.d((EntityLiving) null);
 			}
-		} else if (var2 != null && var2.getItem() == amk.aX && !this.ct()) {
+		} else if (var2 != null && var2.getItem() == Items.aX && !this.ct()) {
 			if (!var1.by.instabuild) {
 				--var2.b;
 			}

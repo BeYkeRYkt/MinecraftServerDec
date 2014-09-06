@@ -9,7 +9,7 @@ public class BlockStainedGlass extends awt {
 	public BlockStainedGlass(Material var1) {
 		super(var1, false);
 		this.j(this.L.b().a(a, akv.a));
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public int a(bec var1) {

@@ -42,11 +42,11 @@ public class EntitySilverfish extends EntityMonster {
 		return "mob.silverfish.kill";
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
-			if (var1 instanceof wi || var1 == wh.l) {
+			if (var1 instanceof wi || var1 == DamageSource.l) {
 				this.b.f();
 			}
 
@@ -68,7 +68,7 @@ public class EntitySilverfish extends EntityMonster {
 	}
 
 	public float a(Position var1) {
-		return this.o.p(var1.b()).getBlock() == aty.b ? 10.0F : super.a(var1);
+		return this.o.p(var1.b()).getBlock() == Blocks.STONE ? 10.0F : super.a(var1);
 	}
 
 	protected boolean m_() {
@@ -84,7 +84,7 @@ public class EntitySilverfish extends EntityMonster {
 		}
 	}
 
-	public xs by() {
-		return xs.c;
+	public EnumMonsterType by() {
+		return EnumMonsterType.c;
 	}
 }

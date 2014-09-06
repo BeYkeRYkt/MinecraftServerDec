@@ -12,7 +12,7 @@ public class BlockDispenser extends atg {
 	protected BlockDispenser() {
 		super(Material.STONE);
 		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Boolean.valueOf(false)));
-		this.a(CreativeModeTab.d);
+		this.a(CreativeModeTab.REDSTONE);
 	}
 
 	public int a(World var1) {

@@ -144,7 +144,7 @@ public class EntityZombie extends EntityMonster {
 		super.m();
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (super.a(var1, var2)) {
 			EntityLiving var3 = this.u();
 			if (var3 == null && var1.j() instanceof EntityLiving) {
@@ -222,23 +222,23 @@ public class EntityZombie extends EntityMonster {
 	}
 
 	protected Item A() {
-		return amk.bt;
+		return Items.bt;
 	}
 
-	public xs by() {
-		return xs.b;
+	public EnumMonsterType by() {
+		return EnumMonsterType.b;
 	}
 
 	protected void bp() {
 		switch (this.V.nextInt(3)) {
 			case 0:
-				this.a(amk.j, 1);
+				this.a(Items.j, 1);
 				break;
 			case 1:
-				this.a(amk.bR, 1);
+				this.a(Items.bR, 1);
 				break;
 			case 2:
-				this.a(amk.bS, 1);
+				this.a(Items.bS, 1);
 		}
 
 	}
@@ -248,9 +248,9 @@ public class EntityZombie extends EntityMonster {
 		if (this.V.nextFloat() < (this.o.getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
 			int var2 = this.V.nextInt(3);
 			if (var2 == 0) {
-				this.c(0, new ItemStack(amk.l));
+				this.c(0, new ItemStack(Items.l));
 			} else {
-				this.c(0, new ItemStack(amk.a));
+				this.c(0, new ItemStack(Items.IRON_PICKAXE));
 			}
 		}
 
@@ -319,7 +319,7 @@ public class EntityZombie extends EntityMonster {
 	}
 
 	protected boolean a(ItemStack var1) {
-		return var1.getItem() == amk.aP && this.i_() && this.av() ? false : super.a(var1);
+		return var1.getItem() == Items.aP && this.i_() && this.av() ? false : super.a(var1);
 	}
 
 	public xq a(vu var1, xq var2) {
@@ -362,7 +362,7 @@ public class EntityZombie extends EntityMonster {
 		if (this.p(4) == null) {
 			Calendar var8 = this.o.Y();
 			if (var8.get(2) + 1 == 10 && var8.get(5) == 31 && this.V.nextFloat() < 0.25F) {
-				this.c(4, new ItemStack(this.V.nextFloat() < 0.1F ? aty.aZ : aty.aU));
+				this.c(4, new ItemStack(this.V.nextFloat() < 0.1F ? Blocks.aZ : Blocks.aU));
 				this.bh[4] = 0.0F;
 			}
 		}
@@ -384,7 +384,7 @@ public class EntityZombie extends EntityMonster {
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.bY();
-		if (var2 != null && var2.getItem() == amk.ao && var2.i() == 0 && this.cm() && this.a(MobEffectList.t)) {
+		if (var2 != null && var2.getItem() == Items.ao && var2.i() == 0 && this.cm() && this.a(MobEffectList.t)) {
 			if (!var1.by.instabuild) {
 				--var2.b;
 			}
@@ -443,7 +443,7 @@ public class EntityZombie extends EntityMonster {
 				for (int var4 = (int) this.locationY - 4; var4 < (int) this.locationY + 4 && var2 < 14; ++var4) {
 					for (int var5 = (int) this.locationZ - 4; var5 < (int) this.locationZ + 4 && var2 < 14; ++var5) {
 						Block var6 = this.o.p(new Position(var3, var4, var5)).getBlock();
-						if (var6 == aty.bi || var6 == aty.C) {
+						if (var6 == Blocks.bi || var6 == Blocks.BED) {
 							if (this.V.nextFloat() < 0.3F) {
 								++var1;
 							}
@@ -480,11 +480,11 @@ public class EntityZombie extends EntityMonster {
 		return super.am() - 0.5D;
 	}
 
-	public void a(wh var1) {
+	public void a(DamageSource var1) {
 		super.a(var1);
 		if (var1.j() instanceof EntityCreeper && !(this instanceof EntityPigZombie) && ((EntityCreeper) var1.j()).n() && ((EntityCreeper) var1.j()).cn()) {
 			((EntityCreeper) var1.j()).co();
-			this.a(new ItemStack(amk.bX, 1, 2), 0.0F);
+			this.a(new ItemStack(Items.bX, 1, 2), 0.0F);
 		}
 
 	}

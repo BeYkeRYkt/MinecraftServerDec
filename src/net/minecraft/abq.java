@@ -8,7 +8,7 @@ public abstract class abq extends ws implements wt {
 
 	public abq(World var1) {
 		super(var1);
-		this.bl = aty.c;
+		this.bl = Blocks.GRASS;
 	}
 
 	protected void E() {
@@ -37,7 +37,7 @@ public abstract class abq extends ws implements wt {
 
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
@@ -47,7 +47,7 @@ public abstract class abq extends ws implements wt {
 	}
 
 	public float a(Position var1) {
-		return this.o.p(var1.b()).getBlock() == aty.c ? 10.0F : this.o.o(var1) - 0.5F;
+		return this.o.p(var1.b()).getBlock() == Blocks.GRASS ? 10.0F : this.o.o(var1) - 0.5F;
 	}
 
 	public void b(NBTCompoundTag var1) {
@@ -81,7 +81,7 @@ public abstract class abq extends ws implements wt {
 	}
 
 	public boolean d(ItemStack var1) {
-		return var1 == null ? false : var1.getItem() == amk.O;
+		return var1 == null ? false : var1.getItem() == Items.O;
 	}
 
 	public boolean a(EntityHuman var1) {

@@ -5,7 +5,7 @@ import com.google.common.base.Predicates;
 
 public class yw extends zb {
 
-	private static final Predicate b = beq.a((Block) aty.H).a(BlockLongGrass.a, Predicates.equalTo(bbi.b));
+	private static final Predicate b = beq.a((Block) Blocks.TALLGRASS).a(BlockLongGrass.a, Predicates.equalTo(bbi.b));
 	private EntityInsentient c;
 	private World d;
 	int a;
@@ -21,7 +21,7 @@ public class yw extends zb {
 			return false;
 		} else {
 			Position var1 = new Position(this.c.locationX, this.c.locationY, this.c.locationZ);
-			return b.apply(this.d.p(var1)) ? true : this.d.p(var1.b()).getBlock() == aty.c;
+			return b.apply(this.d.p(var1)) ? true : this.d.p(var1.b()).getBlock() == Blocks.GRASS;
 		}
 	}
 
@@ -55,10 +55,10 @@ public class yw extends zb {
 				this.c.v();
 			} else {
 				Position var2 = var1.b();
-				if (this.d.p(var2).getBlock() == aty.c) {
+				if (this.d.p(var2).getBlock() == Blocks.GRASS) {
 					if (this.d.Q().b("mobGriefing")) {
-						this.d.b(2001, var2, Block.a((Block) aty.c));
-						this.d.a(var2, aty.d.P(), 2);
+						this.d.b(2001, var2, Block.a((Block) Blocks.GRASS));
+						this.d.a(var2, Blocks.DIRT.P(), 2);
 					}
 
 					this.c.v();

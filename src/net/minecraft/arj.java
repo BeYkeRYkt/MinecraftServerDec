@@ -54,7 +54,7 @@ public class arj implements ard {
 			}
 		}
 
-		return aty.a.P();
+		return Blocks.AIR.P();
 	}
 
 	public boolean d(Position var1) {

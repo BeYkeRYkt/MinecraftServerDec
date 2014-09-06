@@ -5,9 +5,9 @@ import java.util.List;
 
 public class ado extends Entity {
 
-	private static final List d = Arrays.asList(new adp[] { (new adp(new ItemStack(amk.T), 10)).a(0.9F), new adp(new ItemStack(amk.aF), 10), new adp(new ItemStack(amk.aX), 10), new adp(new ItemStack(amk.bz), 10), new adp(new ItemStack(amk.F), 5), (new adp(new ItemStack(amk.aR), 2)).a(0.9F), new adp(new ItemStack(amk.z), 10), new adp(new ItemStack(amk.y), 5), new adp(new ItemStack(amk.aW, 10, akv.p.b()), 1), new adp(new ItemStack(aty.bR), 10), new adp(new ItemStack(amk.bt), 10) });
-	private static final List e = Arrays.asList(new adp[] { new adp(new ItemStack(aty.bx), 1), new adp(new ItemStack(amk.co), 1), new adp(new ItemStack(amk.aA), 1), (new adp(new ItemStack(amk.f), 1)).a(0.25F).a(), (new adp(new ItemStack(amk.aR), 1)).a(0.25F).a(), (new adp(new ItemStack(amk.aL), 1)).a() });
-	private static final List f = Arrays.asList(new adp[] { new adp(new ItemStack(amk.aU, 1, ali.a.a()), 60), new adp(new ItemStack(amk.aU, 1, ali.b.a()), 25), new adp(new ItemStack(amk.aU, 1, ali.c.a()), 2), new adp(new ItemStack(amk.aU, 1, ali.d.a()), 13) });
+	private static final List d = Arrays.asList(new adp[] { (new adp(new ItemStack(Items.T), 10)).a(0.9F), new adp(new ItemStack(Items.aF), 10), new adp(new ItemStack(Items.aX), 10), new adp(new ItemStack(Items.bz), 10), new adp(new ItemStack(Items.F), 5), (new adp(new ItemStack(Items.aR), 2)).a(0.9F), new adp(new ItemStack(Items.z), 10), new adp(new ItemStack(Items.y), 5), new adp(new ItemStack(Items.aW, 10, akv.p.b()), 1), new adp(new ItemStack(Blocks.bR), 10), new adp(new ItemStack(Items.bt), 10) });
+	private static final List e = Arrays.asList(new adp[] { new adp(new ItemStack(Blocks.bx), 1), new adp(new ItemStack(Items.co), 1), new adp(new ItemStack(Items.aA), 1), (new adp(new ItemStack(Items.f), 1)).a(0.25F).a(), (new adp(new ItemStack(Items.aR), 1)).a(0.25F).a(), (new adp(new ItemStack(Items.aL), 1)).a() });
+	private static final List f = Arrays.asList(new adp[] { new adp(new ItemStack(Items.aU, 1, ali.a.a()), 60), new adp(new ItemStack(Items.aU, 1, ali.b.a()), 25), new adp(new ItemStack(Items.aU, 1, ali.c.a()), 2), new adp(new ItemStack(Items.aU, 1, ali.d.a()), 13) });
 	private int g = -1;
 	private int h = -1;
 	private int i = -1;
@@ -95,7 +95,7 @@ public class ado extends Entity {
 		} else {
 			if (!this.o.D) {
 				ItemStack var1 = this.b.bY();
-				if (this.b.I || !this.b.ai() || var1 == null || var1.getItem() != amk.aR || this.h(this.b) > 1024.0D) {
+				if (this.b.I || !this.b.ai() || var1 == null || var1.getItem() != Items.aR || this.h(this.b) > 1024.0D) {
 					this.J();
 					this.b.bE = null;
 					return;
@@ -174,7 +174,7 @@ public class ado extends Entity {
 
 			if (var3 != null) {
 				if (var3.d != null) {
-					if (var3.d.a(wh.a((Entity) this, this.b), 0.0F)) {
+					if (var3.d.a(DamageSource.a((Entity) this, this.b), 0.0F)) {
 						this.c = var3.d;
 					}
 				} else {
@@ -329,7 +329,7 @@ public class ado extends Entity {
 		var1.put("xTile", (short) this.g);
 		var1.put("yTile", (short) this.h);
 		var1.put("zTile", (short) this.i);
-		BlockNameInfo var2 = (BlockNameInfo) Block.BLOCKREGISTRY.c(this.ap);
+		RegistryObjectName var2 = (RegistryObjectName) Block.BLOCKREGISTRY.c(this.ap);
 		var1.put("inTile", var2 == null ? "" : var2.toString());
 		var1.put("shake", (byte) this.a);
 		var1.put("inGround", (byte) (this.aq ? 1 : 0));

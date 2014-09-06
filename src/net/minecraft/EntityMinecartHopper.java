@@ -23,7 +23,7 @@ public class EntityMinecartHopper extends aed implements bdd {
 	}
 
 	public bec u() {
-		return aty.cp.P();
+		return Blocks.cp.P();
 	}
 
 	public int w() {
@@ -108,9 +108,9 @@ public class EntityMinecartHopper extends aed implements bdd {
 		}
 	}
 
-	public void a(wh var1) {
+	public void a(DamageSource var1) {
 		super.a(var1);
-		this.a(Item.getItemOf((Block) aty.cp), 1, 0.0F);
+		this.a(Item.getItemOf((Block) Blocks.cp), 1, 0.0F);
 	}
 
 	protected void b(NBTCompoundTag var1) {

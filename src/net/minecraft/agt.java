@@ -18,7 +18,7 @@ class agt implements agw {
 			var3 = this.b.a(var2);
 		}
 
-		ItemStack var4 = new ItemStack(amk.bO, var3, 0);
+		ItemStack var4 = new ItemStack(Items.bO, var3, 0);
 		ItemStack var5 = new ItemStack(this.a.getItem(), 1, this.a.i());
 		var5 = aph.a(var2, var5, 5 + var2.nextInt(15));
 		var1.add(new aqc(var4, var5));

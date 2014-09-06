@@ -4,7 +4,7 @@ public class BlockSlime extends awt {
 
 	public BlockSlime() {
 		super(Material.CLAY, false);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 		this.K = 0.8F;
 	}
 

@@ -10,7 +10,7 @@ public class BlockMonsterEggs extends Block {
 		super(Material.CLAY);
 		this.j(this.L.b().a(a, axu.a));
 		this.c(0.0F);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	public int a(Random var1) {
@@ -19,23 +19,23 @@ public class BlockMonsterEggs extends Block {
 
 	public static boolean d(bec var0) {
 		Block var1 = var0.getBlock();
-		return var0 == aty.b.P().a(BlockStone.a, bbb.a) || var1 == aty.e || var1 == aty.bf;
+		return var0 == Blocks.STONE.P().a(BlockStone.a, bbb.a) || var1 == Blocks.COBBLESTONE || var1 == Blocks.bf;
 	}
 
 	protected ItemStack i(bec var1) {
 		switch (axt.a[((axu) var1.b(a)).ordinal()]) {
 			case 1:
-				return new ItemStack(aty.e);
+				return new ItemStack(Blocks.COBBLESTONE);
 			case 2:
-				return new ItemStack(aty.bf);
+				return new ItemStack(Blocks.bf);
 			case 3:
-				return new ItemStack(aty.bf, 1, bbd.b.a());
+				return new ItemStack(Blocks.bf, 1, bbd.b.a());
 			case 4:
-				return new ItemStack(aty.bf, 1, bbd.c.a());
+				return new ItemStack(Blocks.bf, 1, bbd.c.a());
 			case 5:
-				return new ItemStack(aty.bf, 1, bbd.d.a());
+				return new ItemStack(Blocks.bf, 1, bbd.d.a());
 			default:
-				return new ItemStack(aty.b);
+				return new ItemStack(Blocks.STONE);
 		}
 	}
 

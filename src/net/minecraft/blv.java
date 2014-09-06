@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class blv extends bmk {
 
-	private static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(amk.bu, 0, 1, 1, 10), new vl(amk.i, 0, 1, 3, 3), new vl(amk.j, 0, 1, 5, 10), new vl(amk.k, 0, 1, 3, 5), new vl(amk.aC, 0, 4, 9, 5), new vl(amk.P, 0, 1, 3, 15), new vl(amk.e, 0, 1, 3, 15), new vl(amk.b, 0, 1, 1, 5), new vl(amk.l, 0, 1, 1, 5), new vl(amk.Z, 0, 1, 1, 5), new vl(amk.Y, 0, 1, 1, 5), new vl(amk.aa, 0, 1, 1, 5), new vl(amk.ab, 0, 1, 1, 5), new vl(amk.ao, 0, 1, 1, 1), new vl(amk.aA, 0, 1, 1, 1),
-			new vl(amk.ck, 0, 1, 1, 1), new vl(amk.cl, 0, 1, 1, 1), new vl(amk.cm, 0, 1, 1, 1) }));
+	private static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.bu, 0, 1, 1, 10), new vl(Items.i, 0, 1, 3, 3), new vl(Items.j, 0, 1, 5, 10), new vl(Items.k, 0, 1, 3, 5), new vl(Items.aC, 0, 4, 9, 5), new vl(Items.P, 0, 1, 3, 15), new vl(Items.e, 0, 1, 3, 15), new vl(Items.b, 0, 1, 1, 5), new vl(Items.l, 0, 1, 1, 5), new vl(Items.Z, 0, 1, 1, 5), new vl(Items.Y, 0, 1, 1, 5), new vl(Items.aa, 0, 1, 1, 5), new vl(Items.ab, 0, 1, 1, 5), new vl(Items.ao, 0, 1, 1, 1), new vl(Items.aA, 0, 1, 1, 1),
+			new vl(Items.ck, 0, 1, 1, 1), new vl(Items.cl, 0, 1, 1, 1), new vl(Items.cm, 0, 1, 1, 1) }));
 	private boolean b;
 
 	public blv() {
@@ -46,19 +46,19 @@ public class blv extends bmk {
 			this.a(var1, var3, 0, 0, 0, 4, 4, 6, true, var2, blr.c());
 			this.a(var1, var2, var3, this.d, 1, 1, 0);
 			this.a(var1, var2, var3, bml.a, 1, 1, 6);
-			this.a(var1, var3, 3, 1, 2, 3, 1, 4, aty.bf.P(), aty.bf.P(), false);
-			this.a(var1, aty.U.a(bbg.f.a()), 3, 1, 1, var3);
-			this.a(var1, aty.U.a(bbg.f.a()), 3, 1, 5, var3);
-			this.a(var1, aty.U.a(bbg.f.a()), 3, 2, 2, var3);
-			this.a(var1, aty.U.a(bbg.f.a()), 3, 2, 4, var3);
+			this.a(var1, var3, 3, 1, 2, 3, 1, 4, Blocks.bf.P(), Blocks.bf.P(), false);
+			this.a(var1, Blocks.STONE_SLAB.a(bbg.f.a()), 3, 1, 1, var3);
+			this.a(var1, Blocks.STONE_SLAB.a(bbg.f.a()), 3, 1, 5, var3);
+			this.a(var1, Blocks.STONE_SLAB.a(bbg.f.a()), 3, 2, 2, var3);
+			this.a(var1, Blocks.STONE_SLAB.a(bbg.f.a()), 3, 2, 4, var3);
 
 			for (int var4 = 2; var4 <= 4; ++var4) {
-				this.a(var1, aty.U.a(bbg.f.a()), 2, 1, var4, var3);
+				this.a(var1, Blocks.STONE_SLAB.a(bbg.f.a()), 2, 1, var4, var3);
 			}
 
 			if (!this.b && var3.b((fd) (new Position(this.a(3, 3), this.d(2), this.b(3, 3))))) {
 				this.b = true;
-				this.a(var1, var3, var2, 3, 2, 3, vl.a(a, new vl[] { amk.cd.b(var2) }), 2 + var2.nextInt(2));
+				this.a(var1, var3, var2, 3, 2, 3, vl.a(a, new vl[] { Items.cd.b(var2) }), 2 + var2.nextInt(2));
 			}
 
 			return true;

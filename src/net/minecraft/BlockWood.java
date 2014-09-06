@@ -7,7 +7,7 @@ public class BlockWood extends Block {
 	public BlockWood() {
 		super(Material.WOOD);
 		this.j(this.L.b().a(a, ayx.a));
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public int a(bec var1) {

@@ -13,7 +13,7 @@ public abstract class aud extends Block {
 		super(Material.ORIENTABLE);
 		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Boolean.valueOf(false)));
 		this.a(true);
-		this.a(CreativeModeTab.d);
+		this.a(CreativeModeTab.REDSTONE);
 		this.M = var1;
 	}
 

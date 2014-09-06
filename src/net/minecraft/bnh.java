@@ -46,51 +46,51 @@ public class bnh extends bnn {
 			this.l.a(0, this.h - this.l.e + 6 - 1, 0);
 		}
 
-		this.a(var1, var3, 1, 1, 1, 3, 5, 4, aty.a.P(), aty.a.P(), false);
-		this.a(var1, var3, 0, 0, 0, 3, 0, 4, aty.e.P(), aty.e.P(), false);
-		this.a(var1, var3, 1, 0, 1, 2, 0, 3, aty.d.P(), aty.d.P(), false);
+		this.a(var1, var3, 1, 1, 1, 3, 5, 4, Blocks.AIR.P(), Blocks.AIR.P(), false);
+		this.a(var1, var3, 0, 0, 0, 3, 0, 4, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
+		this.a(var1, var3, 1, 0, 1, 2, 0, 3, Blocks.DIRT.P(), Blocks.DIRT.P(), false);
 		if (this.a) {
-			this.a(var1, var3, 1, 4, 1, 2, 4, 3, aty.r.P(), aty.r.P(), false);
+			this.a(var1, var3, 1, 4, 1, 2, 4, 3, Blocks.LOG.P(), Blocks.LOG.P(), false);
 		} else {
-			this.a(var1, var3, 1, 5, 1, 2, 5, 3, aty.r.P(), aty.r.P(), false);
+			this.a(var1, var3, 1, 5, 1, 2, 5, 3, Blocks.LOG.P(), Blocks.LOG.P(), false);
 		}
 
-		this.a(var1, aty.r.P(), 1, 4, 0, var3);
-		this.a(var1, aty.r.P(), 2, 4, 0, var3);
-		this.a(var1, aty.r.P(), 1, 4, 4, var3);
-		this.a(var1, aty.r.P(), 2, 4, 4, var3);
-		this.a(var1, aty.r.P(), 0, 4, 1, var3);
-		this.a(var1, aty.r.P(), 0, 4, 2, var3);
-		this.a(var1, aty.r.P(), 0, 4, 3, var3);
-		this.a(var1, aty.r.P(), 3, 4, 1, var3);
-		this.a(var1, aty.r.P(), 3, 4, 2, var3);
-		this.a(var1, aty.r.P(), 3, 4, 3, var3);
-		this.a(var1, var3, 0, 1, 0, 0, 3, 0, aty.r.P(), aty.r.P(), false);
-		this.a(var1, var3, 3, 1, 0, 3, 3, 0, aty.r.P(), aty.r.P(), false);
-		this.a(var1, var3, 0, 1, 4, 0, 3, 4, aty.r.P(), aty.r.P(), false);
-		this.a(var1, var3, 3, 1, 4, 3, 3, 4, aty.r.P(), aty.r.P(), false);
-		this.a(var1, var3, 0, 1, 1, 0, 3, 3, aty.f.P(), aty.f.P(), false);
-		this.a(var1, var3, 3, 1, 1, 3, 3, 3, aty.f.P(), aty.f.P(), false);
-		this.a(var1, var3, 1, 1, 0, 2, 3, 0, aty.f.P(), aty.f.P(), false);
-		this.a(var1, var3, 1, 1, 4, 2, 3, 4, aty.f.P(), aty.f.P(), false);
-		this.a(var1, aty.bj.P(), 0, 2, 2, var3);
-		this.a(var1, aty.bj.P(), 3, 2, 2, var3);
+		this.a(var1, Blocks.LOG.P(), 1, 4, 0, var3);
+		this.a(var1, Blocks.LOG.P(), 2, 4, 0, var3);
+		this.a(var1, Blocks.LOG.P(), 1, 4, 4, var3);
+		this.a(var1, Blocks.LOG.P(), 2, 4, 4, var3);
+		this.a(var1, Blocks.LOG.P(), 0, 4, 1, var3);
+		this.a(var1, Blocks.LOG.P(), 0, 4, 2, var3);
+		this.a(var1, Blocks.LOG.P(), 0, 4, 3, var3);
+		this.a(var1, Blocks.LOG.P(), 3, 4, 1, var3);
+		this.a(var1, Blocks.LOG.P(), 3, 4, 2, var3);
+		this.a(var1, Blocks.LOG.P(), 3, 4, 3, var3);
+		this.a(var1, var3, 0, 1, 0, 0, 3, 0, Blocks.LOG.P(), Blocks.LOG.P(), false);
+		this.a(var1, var3, 3, 1, 0, 3, 3, 0, Blocks.LOG.P(), Blocks.LOG.P(), false);
+		this.a(var1, var3, 0, 1, 4, 0, 3, 4, Blocks.LOG.P(), Blocks.LOG.P(), false);
+		this.a(var1, var3, 3, 1, 4, 3, 3, 4, Blocks.LOG.P(), Blocks.LOG.P(), false);
+		this.a(var1, var3, 0, 1, 1, 0, 3, 3, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
+		this.a(var1, var3, 3, 1, 1, 3, 3, 3, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
+		this.a(var1, var3, 1, 1, 0, 2, 3, 0, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
+		this.a(var1, var3, 1, 1, 4, 2, 3, 4, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
+		this.a(var1, Blocks.bj.P(), 0, 2, 2, var3);
+		this.a(var1, Blocks.bj.P(), 3, 2, 2, var3);
 		if (this.b > 0) {
-			this.a(var1, aty.aO.P(), this.b, 1, 3, var3);
-			this.a(var1, aty.aB.P(), this.b, 2, 3, var3);
+			this.a(var1, Blocks.aO.P(), this.b, 1, 3, var3);
+			this.a(var1, Blocks.aB.P(), this.b, 2, 3, var3);
 		}
 
-		this.a(var1, aty.a.P(), 1, 1, 0, var3);
-		this.a(var1, aty.a.P(), 1, 2, 0, var3);
-		this.a(var1, var3, var2, 1, 1, 0, PaintingDirection.fromByte(this.a(aty.ao, 1)));
+		this.a(var1, Blocks.AIR.P(), 1, 1, 0, var3);
+		this.a(var1, Blocks.AIR.P(), 1, 2, 0, var3);
+		this.a(var1, var3, var2, 1, 1, 0, PaintingDirection.fromByte(this.a(Blocks.ao, 1)));
 		if (this.a(var1, 1, 0, -1, var3).getBlock().r() == Material.AIR && this.a(var1, 1, -1, -1, var3).getBlock().r() != Material.AIR) {
-			this.a(var1, aty.aw.a(this.a(aty.aw, 3)), 1, 0, -1, var3);
+			this.a(var1, Blocks.aw.a(this.a(Blocks.aw, 3)), 1, 0, -1, var3);
 		}
 
 		for (int var4 = 0; var4 < 5; ++var4) {
 			for (int var5 = 0; var5 < 4; ++var5) {
 				this.b(var1, var5, 6, var4, var3);
-				this.b(var1, aty.e.P(), var5, -1, var4, var3);
+				this.b(var1, Blocks.COBBLESTONE.P(), var5, -1, var4, var3);
 			}
 		}
 

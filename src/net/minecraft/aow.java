@@ -6,7 +6,7 @@ public class aow {
 	private Object[][] b;
 
 	public aow() {
-		this.b = new Object[][] { { aty.f, aty.e, amk.j, amk.i, amk.k }, { amk.m, amk.q, amk.l, amk.u, amk.B } };
+		this.b = new Object[][] { { Blocks.PLANKS, Blocks.COBBLESTONE, Items.j, Items.i, Items.k }, { Items.m, Items.q, Items.l, Items.u, Items.B } };
 	}
 
 	public void a(aop var1) {
@@ -15,11 +15,11 @@ public class aow {
 
 			for (int var4 = 0; var4 < this.b.length - 1; ++var4) {
 				Item var5 = (Item) this.b[var4 + 1][var2];
-				var1.a(new ItemStack(var5), new Object[] { this.a[var4], Character.valueOf('#'), amk.y, Character.valueOf('X'), var3 });
+				var1.a(new ItemStack(var5), new Object[] { this.a[var4], Character.valueOf('#'), Items.y, Character.valueOf('X'), var3 });
 			}
 		}
 
-		var1.a(new ItemStack(amk.f, 1), new Object[] { " #X", "# X", " #X", Character.valueOf('X'), amk.F, Character.valueOf('#'), amk.y });
-		var1.a(new ItemStack(amk.g, 4), new Object[] { "X", "#", "Y", Character.valueOf('Y'), amk.G, Character.valueOf('X'), amk.ak, Character.valueOf('#'), amk.y });
+		var1.a(new ItemStack(Items.f, 1), new Object[] { " #X", "# X", " #X", Character.valueOf('X'), Items.F, Character.valueOf('#'), Items.y });
+		var1.a(new ItemStack(Items.g, 4), new Object[] { "X", "#", "Y", Character.valueOf('Y'), Items.G, Character.valueOf('X'), Items.ak, Character.valueOf('#'), Items.y });
 	}
 }

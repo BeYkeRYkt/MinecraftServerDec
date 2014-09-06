@@ -30,29 +30,29 @@ public class bjt extends bkb {
 	}
 
 	public boolean a(World var1, Random var2, bjb var3) {
-		this.a(var1, var3, 0, 0, 0, 8, 1, 8, aty.by.P(), aty.by.P(), false);
-		this.a(var1, var3, 0, 2, 0, 8, 5, 8, aty.a.P(), aty.a.P(), false);
-		this.a(var1, var3, 0, 6, 0, 8, 6, 5, aty.by.P(), aty.by.P(), false);
-		this.a(var1, var3, 0, 2, 0, 2, 5, 0, aty.by.P(), aty.by.P(), false);
-		this.a(var1, var3, 6, 2, 0, 8, 5, 0, aty.by.P(), aty.by.P(), false);
-		this.a(var1, var3, 1, 3, 0, 1, 4, 0, aty.bz.P(), aty.bz.P(), false);
-		this.a(var1, var3, 7, 3, 0, 7, 4, 0, aty.bz.P(), aty.bz.P(), false);
-		this.a(var1, var3, 0, 2, 4, 8, 2, 8, aty.by.P(), aty.by.P(), false);
-		this.a(var1, var3, 1, 1, 4, 2, 2, 4, aty.a.P(), aty.a.P(), false);
-		this.a(var1, var3, 6, 1, 4, 7, 2, 4, aty.a.P(), aty.a.P(), false);
-		this.a(var1, var3, 0, 3, 8, 8, 3, 8, aty.bz.P(), aty.bz.P(), false);
-		this.a(var1, var3, 0, 3, 6, 0, 3, 7, aty.bz.P(), aty.bz.P(), false);
-		this.a(var1, var3, 8, 3, 6, 8, 3, 7, aty.bz.P(), aty.bz.P(), false);
-		this.a(var1, var3, 0, 3, 4, 0, 5, 5, aty.by.P(), aty.by.P(), false);
-		this.a(var1, var3, 8, 3, 4, 8, 5, 5, aty.by.P(), aty.by.P(), false);
-		this.a(var1, var3, 1, 3, 5, 2, 5, 5, aty.by.P(), aty.by.P(), false);
-		this.a(var1, var3, 6, 3, 5, 7, 5, 5, aty.by.P(), aty.by.P(), false);
-		this.a(var1, var3, 1, 4, 5, 1, 5, 5, aty.bz.P(), aty.bz.P(), false);
-		this.a(var1, var3, 7, 4, 5, 7, 5, 5, aty.bz.P(), aty.bz.P(), false);
+		this.a(var1, var3, 0, 0, 0, 8, 1, 8, Blocks.by.P(), Blocks.by.P(), false);
+		this.a(var1, var3, 0, 2, 0, 8, 5, 8, Blocks.AIR.P(), Blocks.AIR.P(), false);
+		this.a(var1, var3, 0, 6, 0, 8, 6, 5, Blocks.by.P(), Blocks.by.P(), false);
+		this.a(var1, var3, 0, 2, 0, 2, 5, 0, Blocks.by.P(), Blocks.by.P(), false);
+		this.a(var1, var3, 6, 2, 0, 8, 5, 0, Blocks.by.P(), Blocks.by.P(), false);
+		this.a(var1, var3, 1, 3, 0, 1, 4, 0, Blocks.bz.P(), Blocks.bz.P(), false);
+		this.a(var1, var3, 7, 3, 0, 7, 4, 0, Blocks.bz.P(), Blocks.bz.P(), false);
+		this.a(var1, var3, 0, 2, 4, 8, 2, 8, Blocks.by.P(), Blocks.by.P(), false);
+		this.a(var1, var3, 1, 1, 4, 2, 2, 4, Blocks.AIR.P(), Blocks.AIR.P(), false);
+		this.a(var1, var3, 6, 1, 4, 7, 2, 4, Blocks.AIR.P(), Blocks.AIR.P(), false);
+		this.a(var1, var3, 0, 3, 8, 8, 3, 8, Blocks.bz.P(), Blocks.bz.P(), false);
+		this.a(var1, var3, 0, 3, 6, 0, 3, 7, Blocks.bz.P(), Blocks.bz.P(), false);
+		this.a(var1, var3, 8, 3, 6, 8, 3, 7, Blocks.bz.P(), Blocks.bz.P(), false);
+		this.a(var1, var3, 0, 3, 4, 0, 5, 5, Blocks.by.P(), Blocks.by.P(), false);
+		this.a(var1, var3, 8, 3, 4, 8, 5, 5, Blocks.by.P(), Blocks.by.P(), false);
+		this.a(var1, var3, 1, 3, 5, 2, 5, 5, Blocks.by.P(), Blocks.by.P(), false);
+		this.a(var1, var3, 6, 3, 5, 7, 5, 5, Blocks.by.P(), Blocks.by.P(), false);
+		this.a(var1, var3, 1, 4, 5, 1, 5, 5, Blocks.bz.P(), Blocks.bz.P(), false);
+		this.a(var1, var3, 7, 4, 5, 7, 5, 5, Blocks.bz.P(), Blocks.bz.P(), false);
 
 		for (int var4 = 0; var4 <= 5; ++var4) {
 			for (int var5 = 0; var5 <= 8; ++var5) {
-				this.b(var1, aty.by.P(), var5, -1, var4, var3);
+				this.b(var1, Blocks.by.P(), var5, -1, var4, var3);
 			}
 		}
 

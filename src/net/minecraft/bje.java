@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class bje {
 
-	private static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(amk.j, 0, 1, 5, 10), new vl(amk.k, 0, 1, 3, 5), new vl(amk.aC, 0, 4, 9, 5), new vl(amk.aW, akv.l.b(), 4, 9, 5), new vl(amk.i, 0, 1, 2, 3), new vl(amk.h, 0, 3, 8, 10), new vl(amk.P, 0, 1, 3, 15), new vl(amk.b, 0, 1, 1, 1), new vl(Item.getItemOf(aty.av), 0, 4, 8, 1), new vl(amk.bh, 0, 2, 4, 10), new vl(amk.bg, 0, 2, 4, 10), new vl(amk.aA, 0, 1, 1, 3), new vl(amk.ck, 0, 1, 1, 1) }));
+	private static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.j, 0, 1, 5, 10), new vl(Items.k, 0, 1, 3, 5), new vl(Items.aC, 0, 4, 9, 5), new vl(Items.aW, akv.l.b(), 4, 9, 5), new vl(Items.i, 0, 1, 2, 3), new vl(Items.h, 0, 3, 8, 10), new vl(Items.P, 0, 1, 3, 15), new vl(Items.b, 0, 1, 1, 1), new vl(Item.getItemOf(Blocks.av), 0, 4, 8, 1), new vl(Items.bh, 0, 2, 4, 10), new vl(Items.bg, 0, 2, 4, 10), new vl(Items.aA, 0, 1, 1, 3), new vl(Items.ck, 0, 1, 1, 1) }));
 
 	public static void a() {
 		bmq.a(bjg.class, "MSCorridor");

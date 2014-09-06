@@ -4,7 +4,7 @@ public class alc extends Item {
 
 	public alc() {
 		this.maxStackSize = 16;
-		this.a(CreativeModeTab.f);
+		this.setCreativeModeTab(CreativeModeTab.MISC);
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {

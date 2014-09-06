@@ -21,9 +21,9 @@ public class bmd extends bly {
 			this.a(var1, var3, 0, 0, 0, 4, 4, 4, true, var2, blr.c());
 			this.a(var1, var2, var3, this.d, 1, 1, 0);
 			if (this.m != PaintingDirection.c && this.m != PaintingDirection.f) {
-				this.a(var1, var3, 0, 1, 1, 0, 3, 3, aty.a.P(), aty.a.P(), false);
+				this.a(var1, var3, 0, 1, 1, 0, 3, 3, Blocks.AIR.P(), Blocks.AIR.P(), false);
 			} else {
-				this.a(var1, var3, 4, 1, 1, 4, 3, 3, aty.a.P(), aty.a.P(), false);
+				this.a(var1, var3, 4, 1, 1, 4, 3, 3, Blocks.AIR.P(), Blocks.AIR.P(), false);
 			}
 
 			return true;

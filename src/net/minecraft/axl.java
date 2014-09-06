@@ -143,13 +143,13 @@ public abstract class axl extends Block {
 			if (var4) {
 				Integer var9 = (Integer) var3.b(b);
 				if (var9.intValue() == 0) {
-					var1.a(var2, aty.Z.P());
+					var1.a(var2, Blocks.OBSIDIAN.P());
 					this.d(var1, var2);
 					return true;
 				}
 
 				if (var9.intValue() <= 4) {
-					var1.a(var2, aty.e.P());
+					var1.a(var2, Blocks.COBBLESTONE.P());
 					this.d(var1, var2);
 					return true;
 				}
@@ -185,9 +185,9 @@ public abstract class axl extends Block {
 
 	public static BlockFlowing a(Material var0) {
 		if (var0 == Material.WATER) {
-			return aty.i;
+			return Blocks.FLOWING_WATER;
 		} else if (var0 == Material.LAVA) {
-			return aty.k;
+			return Blocks.FLOWING_LAVA;
 		} else {
 			throw new IllegalArgumentException("Invalid material");
 		}
@@ -195,9 +195,9 @@ public abstract class axl extends Block {
 
 	public static BlockStationary b(Material var0) {
 		if (var0 == Material.WATER) {
-			return aty.j;
+			return Blocks.WATER;
 		} else if (var0 == Material.LAVA) {
-			return aty.l;
+			return Blocks.LAVA;
 		} else {
 			throw new IllegalArgumentException("Invalid material");
 		}

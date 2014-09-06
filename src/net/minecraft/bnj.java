@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class bnj extends bnn {
 
-	private static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(amk.i, 0, 1, 3, 3), new vl(amk.j, 0, 1, 5, 10), new vl(amk.k, 0, 1, 3, 5), new vl(amk.P, 0, 1, 3, 15), new vl(amk.e, 0, 1, 3, 15), new vl(amk.b, 0, 1, 1, 5), new vl(amk.l, 0, 1, 1, 5), new vl(amk.Z, 0, 1, 1, 5), new vl(amk.Y, 0, 1, 1, 5), new vl(amk.aa, 0, 1, 1, 5), new vl(amk.ab, 0, 1, 1, 5), new vl(Item.getItemOf(aty.Z), 0, 3, 7, 5), new vl(Item.getItemOf(aty.g), 0, 3, 7, 5), new vl(amk.aA, 0, 1, 1, 3),
-			new vl(amk.ck, 0, 1, 1, 1), new vl(amk.cl, 0, 1, 1, 1), new vl(amk.cm, 0, 1, 1, 1) }));
+	private static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.i, 0, 1, 3, 3), new vl(Items.j, 0, 1, 5, 10), new vl(Items.k, 0, 1, 3, 5), new vl(Items.P, 0, 1, 3, 15), new vl(Items.e, 0, 1, 3, 15), new vl(Items.b, 0, 1, 1, 5), new vl(Items.l, 0, 1, 1, 5), new vl(Items.Z, 0, 1, 1, 5), new vl(Items.Y, 0, 1, 1, 5), new vl(Items.aa, 0, 1, 1, 5), new vl(Items.ab, 0, 1, 1, 5), new vl(Item.getItemOf(Blocks.OBSIDIAN), 0, 3, 7, 5), new vl(Item.getItemOf(Blocks.SAPLING), 0, 3, 7, 5), new vl(Items.aA, 0, 1, 1, 3),
+			new vl(Items.ck, 0, 1, 1, 1), new vl(Items.cl, 0, 1, 1, 1), new vl(Items.cm, 0, 1, 1, 1) }));
 	private boolean b;
 
 	public bnj() {
@@ -44,41 +44,41 @@ public class bnj extends bnn {
 			this.l.a(0, this.h - this.l.e + 6 - 1, 0);
 		}
 
-		this.a(var1, var3, 0, 1, 0, 9, 4, 6, aty.a.P(), aty.a.P(), false);
-		this.a(var1, var3, 0, 0, 0, 9, 0, 6, aty.e.P(), aty.e.P(), false);
-		this.a(var1, var3, 0, 4, 0, 9, 4, 6, aty.e.P(), aty.e.P(), false);
-		this.a(var1, var3, 0, 5, 0, 9, 5, 6, aty.U.P(), aty.U.P(), false);
-		this.a(var1, var3, 1, 5, 1, 8, 5, 5, aty.a.P(), aty.a.P(), false);
-		this.a(var1, var3, 1, 1, 0, 2, 3, 0, aty.f.P(), aty.f.P(), false);
-		this.a(var1, var3, 0, 1, 0, 0, 4, 0, aty.r.P(), aty.r.P(), false);
-		this.a(var1, var3, 3, 1, 0, 3, 4, 0, aty.r.P(), aty.r.P(), false);
-		this.a(var1, var3, 0, 1, 6, 0, 4, 6, aty.r.P(), aty.r.P(), false);
-		this.a(var1, aty.f.P(), 3, 3, 1, var3);
-		this.a(var1, var3, 3, 1, 2, 3, 3, 2, aty.f.P(), aty.f.P(), false);
-		this.a(var1, var3, 4, 1, 3, 5, 3, 3, aty.f.P(), aty.f.P(), false);
-		this.a(var1, var3, 0, 1, 1, 0, 3, 5, aty.f.P(), aty.f.P(), false);
-		this.a(var1, var3, 1, 1, 6, 5, 3, 6, aty.f.P(), aty.f.P(), false);
-		this.a(var1, var3, 5, 1, 0, 5, 3, 0, aty.aO.P(), aty.aO.P(), false);
-		this.a(var1, var3, 9, 1, 0, 9, 3, 0, aty.aO.P(), aty.aO.P(), false);
-		this.a(var1, var3, 6, 1, 4, 9, 4, 6, aty.e.P(), aty.e.P(), false);
-		this.a(var1, aty.k.P(), 7, 1, 5, var3);
-		this.a(var1, aty.k.P(), 8, 1, 5, var3);
-		this.a(var1, aty.bi.P(), 9, 2, 5, var3);
-		this.a(var1, aty.bi.P(), 9, 2, 4, var3);
-		this.a(var1, var3, 7, 2, 4, 8, 2, 5, aty.a.P(), aty.a.P(), false);
-		this.a(var1, aty.e.P(), 6, 1, 3, var3);
-		this.a(var1, aty.al.P(), 6, 2, 3, var3);
-		this.a(var1, aty.al.P(), 6, 3, 3, var3);
-		this.a(var1, aty.T.P(), 8, 1, 1, var3);
-		this.a(var1, aty.bj.P(), 0, 2, 2, var3);
-		this.a(var1, aty.bj.P(), 0, 2, 4, var3);
-		this.a(var1, aty.bj.P(), 2, 2, 6, var3);
-		this.a(var1, aty.bj.P(), 4, 2, 6, var3);
-		this.a(var1, aty.aO.P(), 2, 1, 4, var3);
-		this.a(var1, aty.aB.P(), 2, 2, 4, var3);
-		this.a(var1, aty.f.P(), 1, 1, 5, var3);
-		this.a(var1, aty.ad.a(this.a(aty.ad, 3)), 2, 1, 5, var3);
-		this.a(var1, aty.ad.a(this.a(aty.ad, 1)), 1, 1, 4, var3);
+		this.a(var1, var3, 0, 1, 0, 9, 4, 6, Blocks.AIR.P(), Blocks.AIR.P(), false);
+		this.a(var1, var3, 0, 0, 0, 9, 0, 6, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
+		this.a(var1, var3, 0, 4, 0, 9, 4, 6, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
+		this.a(var1, var3, 0, 5, 0, 9, 5, 6, Blocks.STONE_SLAB.P(), Blocks.STONE_SLAB.P(), false);
+		this.a(var1, var3, 1, 5, 1, 8, 5, 5, Blocks.AIR.P(), Blocks.AIR.P(), false);
+		this.a(var1, var3, 1, 1, 0, 2, 3, 0, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
+		this.a(var1, var3, 0, 1, 0, 0, 4, 0, Blocks.LOG.P(), Blocks.LOG.P(), false);
+		this.a(var1, var3, 3, 1, 0, 3, 4, 0, Blocks.LOG.P(), Blocks.LOG.P(), false);
+		this.a(var1, var3, 0, 1, 6, 0, 4, 6, Blocks.LOG.P(), Blocks.LOG.P(), false);
+		this.a(var1, Blocks.PLANKS.P(), 3, 3, 1, var3);
+		this.a(var1, var3, 3, 1, 2, 3, 3, 2, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
+		this.a(var1, var3, 4, 1, 3, 5, 3, 3, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
+		this.a(var1, var3, 0, 1, 1, 0, 3, 5, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
+		this.a(var1, var3, 1, 1, 6, 5, 3, 6, Blocks.PLANKS.P(), Blocks.PLANKS.P(), false);
+		this.a(var1, var3, 5, 1, 0, 5, 3, 0, Blocks.aO.P(), Blocks.aO.P(), false);
+		this.a(var1, var3, 9, 1, 0, 9, 3, 0, Blocks.aO.P(), Blocks.aO.P(), false);
+		this.a(var1, var3, 6, 1, 4, 9, 4, 6, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
+		this.a(var1, Blocks.FLOWING_LAVA.P(), 7, 1, 5, var3);
+		this.a(var1, Blocks.FLOWING_LAVA.P(), 8, 1, 5, var3);
+		this.a(var1, Blocks.bi.P(), 9, 2, 5, var3);
+		this.a(var1, Blocks.bi.P(), 9, 2, 4, var3);
+		this.a(var1, var3, 7, 2, 4, 8, 2, 5, Blocks.AIR.P(), Blocks.AIR.P(), false);
+		this.a(var1, Blocks.COBBLESTONE.P(), 6, 1, 3, var3);
+		this.a(var1, Blocks.al.P(), 6, 2, 3, var3);
+		this.a(var1, Blocks.al.P(), 6, 3, 3, var3);
+		this.a(var1, Blocks.DOUBLE_STONE_SLAB.P(), 8, 1, 1, var3);
+		this.a(var1, Blocks.bj.P(), 0, 2, 2, var3);
+		this.a(var1, Blocks.bj.P(), 0, 2, 4, var3);
+		this.a(var1, Blocks.bj.P(), 2, 2, 6, var3);
+		this.a(var1, Blocks.bj.P(), 4, 2, 6, var3);
+		this.a(var1, Blocks.aO.P(), 2, 1, 4, var3);
+		this.a(var1, Blocks.aB.P(), 2, 2, 4, var3);
+		this.a(var1, Blocks.PLANKS.P(), 1, 1, 5, var3);
+		this.a(var1, Blocks.ad.a(this.a(Blocks.ad, 3)), 2, 1, 5, var3);
+		this.a(var1, Blocks.ad.a(this.a(Blocks.ad, 1)), 1, 1, 4, var3);
 		if (!this.b && var3.b((fd) (new Position(this.a(5, 5), this.d(1), this.b(5, 5))))) {
 			this.b = true;
 			this.a(var1, var3, var2, 5, 1, 5, a, 3 + var2.nextInt(6));
@@ -87,14 +87,14 @@ public class bnj extends bnn {
 		int var4;
 		for (var4 = 6; var4 <= 8; ++var4) {
 			if (this.a(var1, var4, 0, -1, var3).getBlock().r() == Material.AIR && this.a(var1, var4, -1, -1, var3).getBlock().r() != Material.AIR) {
-				this.a(var1, aty.aw.a(this.a(aty.aw, 3)), var4, 0, -1, var3);
+				this.a(var1, Blocks.aw.a(this.a(Blocks.aw, 3)), var4, 0, -1, var3);
 			}
 		}
 
 		for (var4 = 0; var4 < 7; ++var4) {
 			for (int var5 = 0; var5 < 10; ++var5) {
 				this.b(var1, var5, 6, var4, var3);
-				this.b(var1, aty.e.P(), var5, -1, var4, var3);
+				this.b(var1, Blocks.COBBLESTONE.P(), var5, -1, var4, var3);
 			}
 		}
 

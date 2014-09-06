@@ -25,7 +25,7 @@ class aev extends zb {
 		Block var8 = var7.getBlock();
 		if (EntityEnderman.co().contains(var8)) {
 			this.a.a(var7);
-			var2.a(var6, aty.a.P());
+			var2.a(var6, Blocks.AIR.P());
 		}
 
 	}

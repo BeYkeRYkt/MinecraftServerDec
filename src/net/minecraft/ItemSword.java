@@ -2,16 +2,16 @@ package net.minecraft;
 
 import com.google.common.collect.Multimap;
 
-public class anm extends Item {
+public class ItemSword extends Item {
 
 	private float a;
 	private final ami b;
 
-	public anm(ami var1) {
+	public ItemSword(ami var1) {
 		this.b = var1;
 		this.maxStackSize = 1;
 		this.d(var1.a());
-		this.a(CreativeModeTab.j);
+		this.setCreativeModeTab(CreativeModeTab.COMBAT);
 		this.a = 4.0F + var1.c();
 	}
 
@@ -20,7 +20,7 @@ public class anm extends Item {
 	}
 
 	public float a(ItemStack var1, Block var2) {
-		if (var2 == aty.G) {
+		if (var2 == Blocks.WEB) {
 			return 15.0F;
 		} else {
 			Material var3 = var2.r();
@@ -55,7 +55,7 @@ public class anm extends Item {
 	}
 
 	public boolean b(Block var1) {
-		return var1 == aty.G;
+		return var1 == Blocks.WEB;
 	}
 
 	public int b() {

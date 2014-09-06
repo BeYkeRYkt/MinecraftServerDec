@@ -229,7 +229,7 @@ public abstract class Entity implements CommandSenderInterface {
 				}
 			} else {
 				if (this.i % 20 == 0) {
-					this.a(wh.c, 1.0F);
+					this.a(DamageSource.c, 1.0F);
 				}
 
 				--this.i;
@@ -259,14 +259,14 @@ public abstract class Entity implements CommandSenderInterface {
 
 	protected void M() {
 		if (!this.ab) {
-			this.a(wh.d, 4.0F);
+			this.a(DamageSource.d, 4.0F);
 			this.e(15);
 		}
 	}
 
 	public void e(int var1) {
 		int var2 = var1 * 20;
-		var2 = apu.a(this, var2);
+		var2 = EnchantmentProtection.a(this, var2);
 		if (this.i < var2) {
 			this.i = var2;
 		}
@@ -503,7 +503,7 @@ public abstract class Entity implements CommandSenderInterface {
 				double var61 = this.locationX - var7;
 				double var64 = this.locationY - var9;
 				double var66 = this.locationZ - var11;
-				if (var60 != aty.au) {
+				if (var60 != Blocks.au) {
 					var64 = 0.0D;
 				}
 
@@ -596,8 +596,8 @@ public abstract class Entity implements CommandSenderInterface {
 
 	protected void a(Position var1, Block var2) {
 		BlockSound var3 = var2.H;
-		if (this.o.p(var1.a()).getBlock() == aty.aH) {
-			var3 = aty.aH.H;
+		if (this.o.p(var1.a()).getBlock() == Blocks.aH) {
+			var3 = Blocks.aH.H;
 			this.a(var3.c(), var3.d() * 0.15F, var3.e());
 		} else if (!var2.r().isLiquid()) {
 			this.a(var3.c(), var3.d() * 0.15F, var3.e());
@@ -647,7 +647,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 	protected void f(int var1) {
 		if (!this.ab) {
-			this.a(wh.a, (float) var1);
+			this.a(DamageSource.a, (float) var1);
 		}
 
 	}
@@ -905,7 +905,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.G = true;
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
@@ -1349,7 +1349,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public void a(EntityLightning var1) {
-		this.a(wh.b, 5.0F);
+		this.a(DamageSource.b, 5.0F);
 		++this.i;
 		if (this.i == 0) {
 			this.e(8);
@@ -1435,7 +1435,7 @@ public abstract class Entity implements CommandSenderInterface {
 				var1 = "generic";
 			}
 
-			return fi.a("entity." + var1 + ".name");
+			return LocaleI18n.get("entity." + var1 + ".name");
 		}
 	}
 
@@ -1466,8 +1466,8 @@ public abstract class Entity implements CommandSenderInterface {
 		return String.format("%s[\'%s\'/%d, l=\'%s\', x=%.2f, y=%.2f, z=%.2f]", new Object[] { this.getClass().getSimpleName(), this.d_(), Integer.valueOf(this.entityId), this.o == null ? "~NULL~" : this.o.P().k(), Double.valueOf(this.locationX), Double.valueOf(this.locationY), Double.valueOf(this.locationZ) });
 	}
 
-	public boolean b(wh var1) {
-		return this.ar && var1 != wh.j && !var1.u();
+	public boolean b(DamageSource var1) {
+		return this.ar && var1 != DamageSource.j && !var1.u();
 	}
 
 	public void m(Entity var1) {

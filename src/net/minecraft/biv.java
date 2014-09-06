@@ -144,7 +144,7 @@ public class biv {
 				}
 			}
 
-			if (var6 == aty.a) {
+			if (var6 == Blocks.AIR) {
 				var5 = 0;
 			}
 
@@ -244,9 +244,9 @@ public class biv {
 	public static biv e() {
 		biv var0 = new biv();
 		var0.a(arm.q.az);
-		var0.c().add(new biw(1, aty.h));
-		var0.c().add(new biw(2, aty.d));
-		var0.c().add(new biw(1, aty.c));
+		var0.c().add(new biw(1, Blocks.BEDROCK));
+		var0.c().add(new biw(2, Blocks.DIRT));
+		var0.c().add(new biw(1, Blocks.GRASS));
 		var0.d();
 		var0.b().put("village", Maps.newHashMap());
 		return var0;

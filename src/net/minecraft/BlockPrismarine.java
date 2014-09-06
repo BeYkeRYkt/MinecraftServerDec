@@ -10,7 +10,7 @@ public class BlockPrismarine extends Block {
 	public BlockPrismarine() {
 		super(Material.STONE);
 		this.j(this.L.b().a(a, azj.a));
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public int a(bec var1) {

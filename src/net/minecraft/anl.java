@@ -4,14 +4,14 @@ public class anl extends Item {
 
 	public anl() {
 		this.a(true);
-		this.a(CreativeModeTab.f);
+		this.setCreativeModeTab(CreativeModeTab.MISC);
 	}
 
 	public String a(ItemStack var1) {
-		String var2 = ("" + fi.a(this.a() + ".name")).trim();
+		String var2 = ("" + LocaleI18n.get(this.a() + ".name")).trim();
 		String var3 = EntityTypes.getNameById(var1.i());
 		if (var3 != null) {
-			var2 = var2 + " " + fi.a("entity." + var3 + ".name");
+			var2 = var2 + " " + LocaleI18n.get("entity." + var3 + ".name");
 		}
 
 		return var2;
@@ -24,7 +24,7 @@ public class anl extends Item {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
-			if (var9.getBlock() == aty.ac) {
+			if (var9.getBlock() == Blocks.ac) {
 				TileEntity var10 = var3.s(var4);
 				if (var10 instanceof TileEntityMobSpawner) {
 					aqi var11 = ((TileEntityMobSpawner) var10).b();

@@ -47,7 +47,7 @@ public class TestforBlocksCommand extends AbstractCommand {
 								Position var16 = var15.a((fd) var11);
 								boolean var17 = false;
 								bec var18 = var9.p(var15);
-								if (!var10 || var18.getBlock() != aty.a) {
+								if (!var10 || var18.getBlock() != Blocks.AIR) {
 									if (var18 == var9.p(var16)) {
 										TileEntity var19 = var9.s(var15);
 										TileEntity var20 = var9.s(var16);

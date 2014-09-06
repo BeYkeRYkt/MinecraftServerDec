@@ -8,7 +8,7 @@ public class anh extends Item {
 	private static final String[] a = new String[] { "skeleton", "wither", "zombie", "char", "creeper" };
 
 	public anh() {
-		this.a(CreativeModeTab.c);
+		this.setCreativeModeTab(CreativeModeTab.DECORATIONS);
 		this.d(0);
 		this.a(true);
 	}
@@ -30,11 +30,11 @@ public class anh extends Item {
 
 			if (!var2.a(var4, var5, var1)) {
 				return false;
-			} else if (!aty.ce.c(var3, var4)) {
+			} else if (!Blocks.ce.c(var3, var4)) {
 				return false;
 			} else {
 				if (!var3.D) {
-					var3.a(var4, aty.ce.P().a(BlockSkull.a, var5), 3);
+					var3.a(var4, Blocks.ce.P().a(BlockSkull.a, var5), 3);
 					int var12 = 0;
 					if (var5 == PaintingDirection.b) {
 						var12 = DataTypesConverter.toFixedPointInt((double) (var2.yaw * 16.0F / 360.0F) + 0.5D) & 15;
@@ -60,7 +60,7 @@ public class anh extends Item {
 						}
 
 						var14.b(var12);
-						aty.ce.a(var3, var4, var14);
+						Blocks.ce.a(var3, var4, var14);
 					}
 
 					--var1.b;
@@ -87,13 +87,13 @@ public class anh extends Item {
 	public String a(ItemStack var1) {
 		if (var1.i() == 3 && var1.hasTag()) {
 			if (var1.getTag().isTagAssignableFrom("SkullOwner", 8)) {
-				return fi.a("item.skull.player.name", new Object[] { var1.getTag().getString("SkullOwner") });
+				return LocaleI18n.a("item.skull.player.name", new Object[] { var1.getTag().getString("SkullOwner") });
 			}
 
 			if (var1.getTag().isTagAssignableFrom("SkullOwner", 10)) {
 				NBTCompoundTag var2 = var1.getTag().getCompound("SkullOwner");
 				if (var2.isTagAssignableFrom("Name", 8)) {
-					return fi.a("item.skull.player.name", new Object[] { var2.getString("Name") });
+					return LocaleI18n.a("item.skull.player.name", new Object[] { var2.getString("Name") });
 				}
 			}
 		}

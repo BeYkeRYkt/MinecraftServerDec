@@ -6,7 +6,7 @@ import java.util.Random;
 public class ajq extends Item {
 
 	public ajq() {
-		this.a(CreativeModeTab.c);
+		this.setCreativeModeTab(CreativeModeTab.DECORATIONS);
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {

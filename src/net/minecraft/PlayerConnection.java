@@ -834,7 +834,7 @@ public class PlayerConnection implements ls, pm {
 						return;
 					}
 
-					if (var3.getItem() == amk.bM && var3.getItem() == var4.getItem()) {
+					if (var3.getItem() == Items.bM && var3.getItem() == var4.getItem()) {
 						var4.a("pages", (NBTTag) var3.getTag().getList("pages", 8));
 					}
 
@@ -863,11 +863,11 @@ public class PlayerConnection implements ls, pm {
 						return;
 					}
 
-					if (var3.getItem() == amk.bN && var4.getItem() == amk.bM) {
+					if (var3.getItem() == Items.bN && var4.getItem() == Items.bM) {
 						var4.a("author", (NBTTag) (new NBTStringTag(this.b.d_())));
 						var4.a("title", (NBTTag) (new NBTStringTag(var3.getTag().getString("title"))));
 						var4.a("pages", (NBTTag) var3.getTag().getList("pages", 8));
-						var4.a(amk.bN);
+						var4.a(Items.bN);
 					}
 
 					return;

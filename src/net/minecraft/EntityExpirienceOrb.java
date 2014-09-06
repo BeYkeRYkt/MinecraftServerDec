@@ -104,10 +104,10 @@ public class EntityExpirienceOrb extends Entity {
 	}
 
 	protected void f(int var1) {
-		this.a(wh.a, (float) var1);
+		this.a(DamageSource.a, (float) var1);
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {

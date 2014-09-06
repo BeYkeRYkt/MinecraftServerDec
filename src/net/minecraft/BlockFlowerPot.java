@@ -60,7 +60,7 @@ public class BlockFlowerPot extends atg {
 	}
 
 	private boolean a(Block var1, int var2) {
-		return var1 != aty.N && var1 != aty.O && var1 != aty.aK && var1 != aty.P && var1 != aty.Q && var1 != aty.g && var1 != aty.I ? var1 == aty.H && var2 == bbi.c.a() : true;
+		return var1 != Blocks.YELLOW_FLOWER && var1 != Blocks.RED_FLOWER && var1 != Blocks.aK && var1 != Blocks.BRWON_MUSHROOM && var1 != Blocks.RED_MUSHROOM && var1 != Blocks.SAPLING && var1 != Blocks.DEADBUSH ? var1 == Blocks.TALLGRASS && var2 == bbi.c.a() : true;
 	}
 
 	public int j(World var1, Position var2) {
@@ -101,7 +101,7 @@ public class BlockFlowerPot extends atg {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return amk.bQ;
+		return Items.bQ;
 	}
 
 	private TileEntityFlowerPot d(World var1, Position var2) {
@@ -114,50 +114,50 @@ public class BlockFlowerPot extends atg {
 		int var4 = 0;
 		switch (var2) {
 			case 1:
-				var3 = aty.O;
+				var3 = Blocks.RED_FLOWER;
 				var4 = awa.b.b();
 				break;
 			case 2:
-				var3 = aty.N;
+				var3 = Blocks.YELLOW_FLOWER;
 				break;
 			case 3:
-				var3 = aty.g;
+				var3 = Blocks.SAPLING;
 				var4 = ayx.a.a();
 				break;
 			case 4:
-				var3 = aty.g;
+				var3 = Blocks.SAPLING;
 				var4 = ayx.b.a();
 				break;
 			case 5:
-				var3 = aty.g;
+				var3 = Blocks.SAPLING;
 				var4 = ayx.c.a();
 				break;
 			case 6:
-				var3 = aty.g;
+				var3 = Blocks.SAPLING;
 				var4 = ayx.d.a();
 				break;
 			case 7:
-				var3 = aty.Q;
+				var3 = Blocks.RED_MUSHROOM;
 				break;
 			case 8:
-				var3 = aty.P;
+				var3 = Blocks.BRWON_MUSHROOM;
 				break;
 			case 9:
-				var3 = aty.aK;
+				var3 = Blocks.aK;
 				break;
 			case 10:
-				var3 = aty.I;
+				var3 = Blocks.DEADBUSH;
 				break;
 			case 11:
-				var3 = aty.H;
+				var3 = Blocks.TALLGRASS;
 				var4 = bbi.c.a();
 				break;
 			case 12:
-				var3 = aty.g;
+				var3 = Blocks.SAPLING;
 				var4 = ayx.e.a();
 				break;
 			case 13:
-				var3 = aty.g;
+				var3 = Blocks.SAPLING;
 				var4 = ayx.f.a();
 		}
 
@@ -181,7 +181,7 @@ public class BlockFlowerPot extends atg {
 			if (var7 instanceof aju) {
 				int var8 = var6.c();
 				Block var9 = Block.a(var7);
-				if (var9 == aty.g) {
+				if (var9 == Blocks.SAPLING) {
 					switch (awe.a[ayx.a(var8).ordinal()]) {
 						case 1:
 							var4 = awf.l;
@@ -204,7 +204,7 @@ public class BlockFlowerPot extends atg {
 						default:
 							var4 = awf.a;
 					}
-				} else if (var9 == aty.H) {
+				} else if (var9 == Blocks.TALLGRASS) {
 					switch (var8) {
 						case 0:
 							var4 = awf.t;
@@ -215,9 +215,9 @@ public class BlockFlowerPot extends atg {
 						default:
 							var4 = awf.a;
 					}
-				} else if (var9 == aty.N) {
+				} else if (var9 == Blocks.YELLOW_FLOWER) {
 					var4 = awf.k;
-				} else if (var9 == aty.O) {
+				} else if (var9 == Blocks.RED_FLOWER) {
 					switch (awe.b[awa.a(awc.b, var8).ordinal()]) {
 						case 1:
 							var4 = awf.b;
@@ -249,13 +249,13 @@ public class BlockFlowerPot extends atg {
 						default:
 							var4 = awf.a;
 					}
-				} else if (var9 == aty.Q) {
+				} else if (var9 == Blocks.RED_MUSHROOM) {
 					var4 = awf.r;
-				} else if (var9 == aty.P) {
+				} else if (var9 == Blocks.BRWON_MUSHROOM) {
 					var4 = awf.s;
-				} else if (var9 == aty.I) {
+				} else if (var9 == Blocks.DEADBUSH) {
 					var4 = awf.t;
-				} else if (var9 == aty.aK) {
+				} else if (var9 == Blocks.aK) {
 					var4 = awf.v;
 				}
 			}

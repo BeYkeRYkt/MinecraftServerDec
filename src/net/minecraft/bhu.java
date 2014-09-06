@@ -13,29 +13,29 @@ public class bhu extends bhp {
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
-		if (var1.p(var3.a()).getBlock() != aty.aV) {
+		if (var1.p(var3.a()).getBlock() != Blocks.aV) {
 			return false;
-		} else if (var1.p(var3).getBlock().r() != Material.AIR && var1.p(var3).getBlock() != aty.aV) {
+		} else if (var1.p(var3).getBlock().r() != Material.AIR && var1.p(var3).getBlock() != Blocks.aV) {
 			return false;
 		} else {
 			int var4 = 0;
-			if (var1.p(var3.e()).getBlock() == aty.aV) {
+			if (var1.p(var3.e()).getBlock() == Blocks.aV) {
 				++var4;
 			}
 
-			if (var1.p(var3.f()).getBlock() == aty.aV) {
+			if (var1.p(var3.f()).getBlock() == Blocks.aV) {
 				++var4;
 			}
 
-			if (var1.p(var3.c()).getBlock() == aty.aV) {
+			if (var1.p(var3.c()).getBlock() == Blocks.aV) {
 				++var4;
 			}
 
-			if (var1.p(var3.d()).getBlock() == aty.aV) {
+			if (var1.p(var3.d()).getBlock() == Blocks.aV) {
 				++var4;
 			}
 
-			if (var1.p(var3.b()).getBlock() == aty.aV) {
+			if (var1.p(var3.b()).getBlock() == Blocks.aV) {
 				++var4;
 			}
 

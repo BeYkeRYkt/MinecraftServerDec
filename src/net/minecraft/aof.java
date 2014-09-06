@@ -12,7 +12,7 @@ class aof implements aoo {
 		for (int var5 = 0; var5 < var1.n_(); ++var5) {
 			ItemStack var6 = var1.a(var5);
 			if (var6 != null) {
-				if (var6.getItem() != amk.cE) {
+				if (var6.getItem() != Items.cE) {
 					return false;
 				}
 

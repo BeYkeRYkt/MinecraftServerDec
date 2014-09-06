@@ -292,17 +292,17 @@ public class EntityGuardian extends EntityMonster {
 	protected void b(boolean var1, int var2) {
 		int var3 = this.V.nextInt(3) + this.V.nextInt(var2 + 1);
 		if (var3 > 0) {
-			this.a(new ItemStack(amk.cC, var3, 0), 1.0F);
+			this.a(new ItemStack(Items.cC, var3, 0), 1.0F);
 		}
 
 		if (this.V.nextInt(3 + var2) > 1) {
-			this.a(new ItemStack(amk.aU, 1, ali.a.a()), 1.0F);
+			this.a(new ItemStack(Items.aU, 1, ali.a.a()), 1.0F);
 		} else if (this.V.nextInt(3 + var2) > 1) {
-			this.a(new ItemStack(amk.cD, 1, 0), 1.0F);
+			this.a(new ItemStack(Items.cD, 1, 0), 1.0F);
 		}
 
 		if (var1 && this.cl()) {
-			this.a(new ItemStack(aty.v, 1, 1), 1.0F);
+			this.a(new ItemStack(Blocks.SPONGE, 1, 1), 1.0F);
 		}
 
 	}
@@ -324,11 +324,11 @@ public class EntityGuardian extends EntityMonster {
 		return (this.V.nextInt(20) == 0 || !this.o.j(new Position(this))) && super.bQ();
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (!this.n() && !var1.s() && var1.i() instanceof EntityLiving) {
 			EntityLiving var3 = (EntityLiving) var1.i();
 			if (!var1.c()) {
-				var3.a(wh.a((Entity) this), 2.0F);
+				var3.a(DamageSource.a((Entity) this), 2.0F);
 				var3.a("damage.thorns", 0.5F, 1.0F);
 			}
 		}

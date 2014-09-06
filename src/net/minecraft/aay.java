@@ -32,7 +32,7 @@ public class aay extends aaz {
 			int var3 = 0;
 
 			do {
-				if (var2 != aty.i && var2 != aty.j) {
+				if (var2 != Blocks.FLOWING_WATER && var2 != Blocks.WATER) {
 					return var1;
 				}
 

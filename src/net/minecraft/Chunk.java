@@ -329,7 +329,7 @@ public class Chunk {
 	}
 
 	private Block f(int var1, int var2, int var3) {
-		Block var4 = aty.a;
+		Block var4 = Blocks.AIR;
 		if (var2 >= 0 && var2 >> 4 < this.chunkSections.length) {
 			ChunkSection var5 = this.chunkSections[var2 >> 4];
 			if (var5 != null) {
@@ -369,14 +369,14 @@ public class Chunk {
 		if (this.i.G() == LevelType.DEBUG) {
 			bec var7 = null;
 			if (var1.getY() == 60) {
-				var7 = aty.cv.P();
+				var7 = Blocks.cv.P();
 			}
 
 			if (var1.getY() == 70) {
 				var7 = bgp.b(var1.getX(), var1.getZ());
 			}
 
-			return var7 == null ? aty.a.P() : var7;
+			return var7 == null ? Blocks.AIR.P() : var7;
 		} else {
 			try {
 				if (var1.getY() >= 0 && var1.getY() >> 4 < this.chunkSections.length) {
@@ -389,7 +389,7 @@ public class Chunk {
 					}
 				}
 
-				return aty.a.P();
+				return Blocks.AIR.P();
 			} catch (Throwable var6) {
 				CrashReport var3 = CrashReport.generateCrashReport(var6, "Getting block state");
 				CrashReportSystemDetails var4 = var3.generateSystemDetails("Block being got");
@@ -431,7 +431,7 @@ public class Chunk {
 			ChunkSection var11 = this.chunkSections[var4 >> 4];
 			boolean var12 = false;
 			if (var11 == null) {
-				if (var9 == aty.a) {
+				if (var9 == Blocks.AIR) {
 					return null;
 				}
 

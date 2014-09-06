@@ -6,7 +6,7 @@ public class bah extends Block {
 
 	public bah(Material var1) {
 		super(var1);
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public int a(Random var1) {
@@ -18,7 +18,7 @@ public class bah extends Block {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return amk.cD;
+		return Items.cD;
 	}
 
 	public MaterialMapColor g(bec var1) {

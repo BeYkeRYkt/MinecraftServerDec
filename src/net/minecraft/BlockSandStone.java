@@ -7,7 +7,7 @@ public class BlockSandStone extends Block {
 	public BlockSandStone() {
 		super(Material.STONE);
 		this.j(this.L.b().a(a, bae.a));
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public int a(bec var1) {

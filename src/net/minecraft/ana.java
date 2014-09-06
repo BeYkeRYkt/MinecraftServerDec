@@ -4,7 +4,7 @@ public class ana extends Item {
 
 	public ana() {
 		this.maxStackSize = 1;
-		this.a(CreativeModeTab.e);
+		this.setCreativeModeTab(CreativeModeTab.TRANSPORTATION);
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, EntityLiving var3) {

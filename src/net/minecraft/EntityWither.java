@@ -235,7 +235,7 @@ public class EntityWither extends EntityMonster implements afr {
 								int var9 = var1 + var7;
 								int var10 = var15 + var19;
 								Block var11 = this.o.p(new Position(var20, var9, var10)).getBlock();
-								if (var11.r() != Material.AIR && var11 != aty.h && var11 != aty.bF && var11 != aty.bG && var11 != aty.bX && var11 != aty.cv) {
+								if (var11.r() != Material.AIR && var11 != Blocks.BEDROCK && var11 != Blocks.bF && var11 != Blocks.bG && var11 != Blocks.bX && var11 != Blocks.cv) {
 									var17 = this.o.b(new Position(var20, var9, var10), true) || var17;
 								}
 							}
@@ -331,11 +331,11 @@ public class EntityWither extends EntityMonster implements afr {
 		this.a(0, var1);
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
-		} else if (var1 != wh.f && !(var1.j() instanceof EntityWither)) {
-			if (this.cj() > 0 && var1 != wh.j) {
+		} else if (var1 != DamageSource.f && !(var1.j() instanceof EntityWither)) {
+			if (this.cj() > 0 && var1 != DamageSource.j) {
 				return false;
 			} else {
 				Entity var3;
@@ -367,7 +367,7 @@ public class EntityWither extends EntityMonster implements afr {
 	}
 
 	protected void b(boolean var1, int var2) {
-		EntityItem var3 = this.a(amk.bZ, 1);
+		EntityItem var3 = this.a(Items.bZ, 1);
 		if (var3 != null) {
 			var3.u();
 		}
@@ -420,8 +420,8 @@ public class EntityWither extends EntityMonster implements afr {
 		return this.bm() <= this.bt() / 2.0F;
 	}
 
-	public xs by() {
-		return xs.b;
+	public EnumMonsterType by() {
+		return EnumMonsterType.b;
 	}
 
 	public void a(Entity var1) {

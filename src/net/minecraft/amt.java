@@ -3,7 +3,7 @@ package net.minecraft;
 public class amt extends Item {
 
 	public amt() {
-		this.a(CreativeModeTab.i);
+		this.setCreativeModeTab(CreativeModeTab.TOOLS);
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, EntityLiving var3) {

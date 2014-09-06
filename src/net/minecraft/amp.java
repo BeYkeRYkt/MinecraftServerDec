@@ -8,7 +8,7 @@ public class amp extends Item {
 	public amp(MinecartType var1) {
 		this.maxStackSize = 1;
 		this.b = var1;
-		this.a(CreativeModeTab.e);
+		this.setCreativeModeTab(CreativeModeTab.TRANSPORTATION);
 		BlockDispenser.M.a(this, a);
 	}
 

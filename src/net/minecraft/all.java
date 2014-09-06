@@ -17,7 +17,7 @@ public class all extends Item {
 		this.b = var1;
 		this.d = var3;
 		this.c = var2;
-		this.a(CreativeModeTab.h);
+		this.setCreativeModeTab(CreativeModeTab.FOOD);
 	}
 
 	public all(int var1, boolean var2) {

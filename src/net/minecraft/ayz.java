@@ -46,13 +46,13 @@ public class ayz {
 		int var3;
 		for (var3 = 0; var3 < 22; ++var3) {
 			Position var4 = var1.a(var2, var3);
-			if (!this.a(this.a.p(var4).getBlock()) || this.a.p(var4.b()).getBlock() != aty.Z) {
+			if (!this.a(this.a.p(var4).getBlock()) || this.a.p(var4.b()).getBlock() != Blocks.OBSIDIAN) {
 				break;
 			}
 		}
 
 		Block var5 = this.a.p(var1.a(var2, var3)).getBlock();
-		return var5 == aty.Z ? var3 : 0;
+		return var5 == Blocks.OBSIDIAN ? var3 : 0;
 	}
 
 	protected int a() {
@@ -65,18 +65,18 @@ public class ayz {
 					break label56;
 				}
 
-				if (var3 == aty.aY) {
+				if (var3 == Blocks.aY) {
 					++this.e;
 				}
 
 				if (var1 == 0) {
 					var3 = this.a.p(var2.a(this.d)).getBlock();
-					if (var3 != aty.Z) {
+					if (var3 != Blocks.OBSIDIAN) {
 						break label56;
 					}
 				} else if (var1 == this.h - 1) {
 					var3 = this.a.p(var2.a(this.c)).getBlock();
-					if (var3 != aty.Z) {
+					if (var3 != Blocks.OBSIDIAN) {
 						break label56;
 					}
 				}
@@ -84,7 +84,7 @@ public class ayz {
 		}
 
 		for (var1 = 0; var1 < this.h; ++var1) {
-			if (this.a.p(this.f.a(this.c, var1).b(this.g)).getBlock() != aty.Z) {
+			if (this.a.p(this.f.a(this.c, var1).b(this.g)).getBlock() != Blocks.OBSIDIAN) {
 				this.g = 0;
 				break;
 			}
@@ -101,7 +101,7 @@ public class ayz {
 	}
 
 	protected boolean a(Block var1) {
-		return var1.material == Material.AIR || var1 == aty.ab || var1 == aty.aY;
+		return var1.material == Material.AIR || var1 == Blocks.ab || var1 == Blocks.aY;
 	}
 
 	public boolean b() {
@@ -113,7 +113,7 @@ public class ayz {
 			Position var2 = this.f.a(this.c, var1);
 
 			for (int var3 = 0; var3 < this.g; ++var3) {
-				this.a.a(var2.b(var3), aty.aY.P().a(BlockPortal.a, this.b), 2);
+				this.a.a(var2.b(var3), Blocks.aY.P().a(BlockPortal.a, this.b), 2);
 			}
 		}
 

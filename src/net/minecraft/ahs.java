@@ -16,7 +16,7 @@ public class ahs extends ahr {
 
 	protected void a(bru var1) {
 		if (var1.d != null) {
-			var1.d.a(wh.a((Entity) this, this.n()), 0.0F);
+			var1.d.a(DamageSource.a((Entity) this, this.n()), 0.0F);
 		}
 
 		if (!this.o.D && this.V.nextInt(8) == 0) {
@@ -36,7 +36,7 @@ public class ahs extends ahr {
 		double var5 = 0.08D;
 
 		for (int var6 = 0; var6 < 8; ++var6) {
-			this.o.a(Particle.K, this.locationX, this.locationY, this.locationZ, ((double) this.V.nextFloat() - 0.5D) * 0.08D, ((double) this.V.nextFloat() - 0.5D) * 0.08D, ((double) this.V.nextFloat() - 0.5D) * 0.08D, new int[] { Item.getId(amk.aP) });
+			this.o.a(Particle.K, this.locationX, this.locationY, this.locationZ, ((double) this.V.nextFloat() - 0.5D) * 0.08D, ((double) this.V.nextFloat() - 0.5D) * 0.08D, ((double) this.V.nextFloat() - 0.5D) * 0.08D, new int[] { Item.getId(Items.aP) });
 		}
 
 		if (!this.o.D) {

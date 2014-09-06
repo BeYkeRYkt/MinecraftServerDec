@@ -41,7 +41,7 @@ public class TileEntityNote extends TileEntity {
 				var4 = 4;
 			}
 
-			var1.c(var2, aty.B, var4, this.a);
+			var1.c(var2, Blocks.NOTEBLOCK, var4, this.a);
 		}
 	}
 }

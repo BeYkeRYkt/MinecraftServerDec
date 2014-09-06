@@ -23,9 +23,9 @@ public class wg {
 		this.j();
 		if (this.b.j_()) {
 			Block var1 = this.b.o.p(new Position(this.b.locationX, this.b.aQ().b, this.b.locationZ)).getBlock();
-			if (var1 == aty.au) {
+			if (var1 == Blocks.au) {
 				this.h = "ladder";
-			} else if (var1 == aty.bn) {
+			} else if (var1 == Blocks.bn) {
 				this.h = "vines";
 			}
 		} else if (this.b.V()) {
@@ -34,7 +34,7 @@ public class wg {
 
 	}
 
-	public void a(wh var1, float var2, float var3) {
+	public void a(DamageSource var1, float var2, float var3) {
 		this.g();
 		this.a();
 		wf var4 = new wf(var1, this.b.W, var2, var3, this.h, this.b.O);
@@ -59,9 +59,9 @@ public class wg {
 			IJSONComponent var4 = var2.h();
 			Entity var5 = var2.a().j();
 			Object var3;
-			if (var1 != null && var2.a() == wh.i) {
+			if (var1 != null && var2.a() == DamageSource.i) {
 				IJSONComponent var6 = var1.h();
-				if (var1.a() != wh.i && var1.a() != wh.j) {
+				if (var1.a() != DamageSource.i && var1.a() != DamageSource.j) {
 					if (var6 != null && (var4 == null || !var6.equals(var4))) {
 						Entity var9 = var1.a().j();
 						ItemStack var8 = var9 instanceof EntityLiving ? ((EntityLiving) var9).bz() : null;
@@ -127,7 +127,7 @@ public class wg {
 		for (int var5 = 0; var5 < this.a.size(); ++var5) {
 			wf var6 = (wf) this.a.get(var5);
 			wf var7 = var5 > 0 ? (wf) this.a.get(var5 - 1) : null;
-			if ((var6.a() == wh.i || var6.a() == wh.j) && var6.i() > 0.0F && (var1 == null || var6.i() > var4)) {
+			if ((var6.a() == DamageSource.i || var6.a() == DamageSource.j) && var6.i() > 0.0F && (var1 == null || var6.i() > var4)) {
 				if (var5 > 0) {
 					var1 = var7;
 				} else {

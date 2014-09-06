@@ -67,9 +67,9 @@ public class amn extends ake {
 									var28 = var19 + var20 * 231871;
 									var28 = var28 * var28 * 31287121 + var28 * 11;
 									if ((var28 >> 20 & 1) == 0) {
-										var21.add(aty.d.g(aty.d.P().a(BlockDirt.a, avd.a)), 10);
+										var21.add(Blocks.DIRT.g(Blocks.DIRT.P().a(BlockDirt.a, avd.a)), 10);
 									} else {
-										var21.add(aty.b.g(aty.b.P().a(BlockStone.a, bbb.a)), 100);
+										var21.add(Blocks.STONE.g(Blocks.STONE.P().a(BlockStone.a, bbb.a)), 100);
 									}
 
 									var26 = 100.0D;
@@ -77,7 +77,7 @@ public class amn extends ake {
 									for (var28 = 0; var28 < var4; ++var28) {
 										for (int var29 = 0; var29 < var4; ++var29) {
 											int var30 = var22.b(var28 + var23, var29 + var24) + 1;
-											bec var31 = aty.a.P();
+											bec var31 = Blocks.AIR.P();
 											if (var30 > 1) {
 												do {
 													--var30;
@@ -165,7 +165,7 @@ public class amn extends ake {
 
 	public void d(ItemStack var1, World var2, EntityHuman var3) {
 		if (var1.hasTag() && var1.getTag().getBoolean("map_is_scaling")) {
-			bqe var4 = amk.bd.a(var1, var2);
+			bqe var4 = Items.bd.a(var1, var2);
 			var1.b(var2.b("map"));
 			bqe var5 = new bqe("map_" + var1.i());
 			var5.e = (byte) (var4.e + 1);

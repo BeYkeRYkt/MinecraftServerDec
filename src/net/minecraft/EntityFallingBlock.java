@@ -74,7 +74,7 @@ public class EntityFallingBlock extends Entity {
 					this.motionX *= 0.699999988079071D;
 					this.motionZ *= 0.699999988079071D;
 					this.motionY *= -0.5D;
-					if (this.o.p(var2).getBlock() != aty.M) {
+					if (this.o.p(var2).getBlock() != Blocks.PISTON_EXTENSION) {
 						this.J();
 						if (!this.e && this.o.a(var1, var2, true, PaintingDirection.b, (Entity) null, (ItemStack) null) && !avt.d(this.o, var2.b()) && this.o.a(var2, this.d, 3)) {
 							if (var1 instanceof avt) {
@@ -122,8 +122,8 @@ public class EntityFallingBlock extends Entity {
 			int var4 = DataTypesConverter.f(var1 - 1.0F);
 			if (var4 > 0) {
 				ArrayList var5 = Lists.newArrayList((Iterable) this.o.b((Entity) this, this.aQ()));
-				boolean var6 = var3 == aty.cf;
-				wh var7 = var6 ? wh.n : wh.o;
+				boolean var6 = var3 == Blocks.cf;
+				DamageSource var7 = var6 ? DamageSource.n : DamageSource.o;
 				Iterator var8 = var5.iterator();
 
 				while (var8.hasNext()) {
@@ -146,8 +146,8 @@ public class EntityFallingBlock extends Entity {
 	}
 
 	protected void b(NBTCompoundTag var1) {
-		Block var2 = this.d != null ? this.d.getBlock() : aty.a;
-		BlockNameInfo var3 = (BlockNameInfo) Block.BLOCKREGISTRY.c(var2);
+		Block var2 = this.d != null ? this.d.getBlock() : Blocks.AIR;
+		RegistryObjectName var3 = (RegistryObjectName) Block.BLOCKREGISTRY.c(var2);
 		var1.put("Block", var3 == null ? "" : var3.toString());
 		var1.put("Data", (byte) var2.c(this.d));
 		var1.put("Time", (byte) this.a);
@@ -177,7 +177,7 @@ public class EntityFallingBlock extends Entity {
 			this.f = var1.getBoolean("HurtEntities");
 			this.h = var1.getFloat("FallHurtAmount");
 			this.g = var1.getInt("FallHurtMax");
-		} else if (var3 == aty.cf) {
+		} else if (var3 == Blocks.cf) {
 			this.f = true;
 		}
 
@@ -190,7 +190,7 @@ public class EntityFallingBlock extends Entity {
 		}
 
 		if (var3 == null || var3.r() == Material.AIR) {
-			this.d = aty.m.P();
+			this.d = Blocks.SAND.P();
 		}
 
 	}

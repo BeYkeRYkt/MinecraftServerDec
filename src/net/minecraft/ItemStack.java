@@ -102,7 +102,7 @@ public final class ItemStack {
 	}
 
 	public NBTCompoundTag b(NBTCompoundTag var1) {
-		BlockNameInfo var2 = (BlockNameInfo) Item.REGISTRY.c(this.item);
+		RegistryObjectName var2 = (RegistryObjectName) Item.REGISTRY.c(this.item);
 		var1.put("id", var2 == null ? "minecraft:air" : var2.toString());
 		var1.put("Count", (byte) this.b);
 		var1.put("Damage", (short) this.f);
@@ -180,11 +180,11 @@ public final class ItemStack {
 			return false;
 		} else {
 			if (var1 > 0) {
-				int var3 = aph.a(apf.t.B, this);
+				int var3 = aph.a(Enchantment.DURABILITY.id, this);
 				int var4 = 0;
 
 				for (int var5 = 0; var3 > 0 && var5 < var1; ++var5) {
-					if (apd.a(this, var3, var2)) {
+					if (EnchantmentDurability.a(this, var3, var2)) {
 						++var4;
 					}
 				}
@@ -209,7 +209,7 @@ public final class ItemStack {
 					if (var2 instanceof EntityHuman) {
 						EntityHuman var3 = (EntityHuman) var2;
 						var3.b(StatisticList.K[Item.getId(this.item)]);
-						if (this.b == 0 && this.getItem() instanceof ajz) {
+						if (this.b == 0 && this.getItem() instanceof ItemBow) {
 							var3.bZ();
 						}
 					}
@@ -396,7 +396,7 @@ public final class ItemStack {
 		return !this.getItem().f_(this) ? false : !this.w();
 	}
 
-	public void a(apf var1, int var2) {
+	public void a(Enchantment var1, int var2) {
 		if (this.tag == null) {
 			this.d(new NBTCompoundTag());
 		}
@@ -407,7 +407,7 @@ public final class ItemStack {
 
 		NBTListTag var3 = this.tag.getList("ench", 10);
 		NBTCompoundTag var4 = new NBTCompoundTag();
-		var4.put("id", (short) var1.B);
+		var4.put("id", (short) var1.id);
 		var4.put("lvl", (short) ((byte) var2));
 		var3.addTag((NBTTag) var4);
 	}

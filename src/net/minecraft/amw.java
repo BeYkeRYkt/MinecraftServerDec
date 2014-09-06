@@ -16,7 +16,7 @@ public class amw extends Item {
 		this.c(1);
 		this.a(true);
 		this.d(0);
-		this.a(CreativeModeTab.k);
+		this.setCreativeModeTab(CreativeModeTab.BREWING);
 	}
 
 	public List h(ItemStack var1) {
@@ -74,10 +74,10 @@ public class amw extends Item {
 		var3.b(StatisticList.J[Item.getId((Item) this)]);
 		if (!var3.by.instabuild) {
 			if (var1.b <= 0) {
-				return new ItemStack(amk.bA);
+				return new ItemStack(Items.bA);
 			}
 
-			var3.playerInventory.a(new ItemStack(amk.bA));
+			var3.playerInventory.a(new ItemStack(Items.bA));
 		}
 
 		return var1;
@@ -116,22 +116,22 @@ public class amw extends Item {
 
 	public String a(ItemStack var1) {
 		if (var1.i() == 0) {
-			return fi.a("item.emptyPotion.name").trim();
+			return LocaleI18n.get("item.emptyPotion.name").trim();
 		} else {
 			String var2 = "";
 			if (f(var1.i())) {
-				var2 = fi.a("potion.prefix.grenade").trim() + " ";
+				var2 = LocaleI18n.get("potion.prefix.grenade").trim() + " ";
 			}
 
-			List var3 = amk.bz.h(var1);
+			List var3 = Items.bz.h(var1);
 			String var4;
 			if (var3 != null && !var3.isEmpty()) {
 				var4 = ((MobEffect) var3.get(0)).getName();
 				var4 = var4 + ".postfix";
-				return var2 + fi.a(var4).trim();
+				return var2 + LocaleI18n.get(var4).trim();
 			} else {
 				var4 = ans.c(var1.i());
-				return fi.a(var4).trim() + " " + super.a(var1);
+				return LocaleI18n.get(var4).trim() + " " + super.a(var1);
 			}
 		}
 	}

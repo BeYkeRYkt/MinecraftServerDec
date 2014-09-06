@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class ajn extends Item {
+public class ItemArmor extends Item {
 
 	private static final int[] k = new int[] { 11, 16, 15, 13 };
 	public static final String[] a = new String[] { "minecraft:items/empty_armor_slot_helmet", "minecraft:items/empty_armor_slot_chestplate", "minecraft:items/empty_armor_slot_leggings", "minecraft:items/empty_armor_slot_boots" };
@@ -10,14 +10,14 @@ public class ajn extends Item {
 	public final int d;
 	private final ajp m;
 
-	public ajn(ajp var1, int var2, int var3) {
+	public ItemArmor(ajp var1, int var2, int var3) {
 		this.m = var1;
 		this.b = var3;
 		this.d = var2;
 		this.c = var1.b(var3);
 		this.d(var1.a(var3));
 		this.maxStackSize = 1;
-		this.a(CreativeModeTab.j);
+		this.setCreativeModeTab(CreativeModeTab.COMBAT);
 		BlockDispenser.M.a(this, l);
 	}
 

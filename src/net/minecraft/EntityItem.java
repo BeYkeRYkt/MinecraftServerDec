@@ -40,7 +40,7 @@ public class EntityItem extends Entity {
 		this.e = 5;
 		this.a = (float) (Math.random() * 3.141592653589793D * 2.0D);
 		this.a(0.25F, 0.25F);
-		this.a(new ItemStack(aty.a, 0));
+		this.a(new ItemStack(Blocks.AIR, 0));
 	}
 
 	protected void h() {
@@ -170,13 +170,13 @@ public class EntityItem extends Entity {
 	}
 
 	protected void f(int var1) {
-		this.a(wh.a, (float) var1);
+		this.a(DamageSource.a, (float) var1);
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
-		} else if (this.l() != null && this.l().getItem() == amk.bZ && var1.c()) {
+		} else if (this.l() != null && this.l().getItem() == Items.bZ && var1.c()) {
 			return false;
 		} else {
 			this.ac();
@@ -235,27 +235,27 @@ public class EntityItem extends Entity {
 			ItemStack var2 = this.l();
 			int var3 = var2.b;
 			if (this.d == 0 && (this.g == null || 6000 - this.c <= 200 || this.g.equals(var1.d_())) && var1.playerInventory.a(var2)) {
-				if (var2.getItem() == Item.getItemOf(aty.r)) {
+				if (var2.getItem() == Item.getItemOf(Blocks.LOG)) {
 					var1.b((Statistic) tl.g);
 				}
 
-				if (var2.getItem() == Item.getItemOf(aty.s)) {
+				if (var2.getItem() == Item.getItemOf(Blocks.LOG2)) {
 					var1.b((Statistic) tl.g);
 				}
 
-				if (var2.getItem() == amk.aF) {
+				if (var2.getItem() == Items.aF) {
 					var1.b((Statistic) tl.t);
 				}
 
-				if (var2.getItem() == amk.i) {
+				if (var2.getItem() == Items.i) {
 					var1.b((Statistic) tl.w);
 				}
 
-				if (var2.getItem() == amk.bv) {
+				if (var2.getItem() == Items.bv) {
 					var1.b((Statistic) tl.A);
 				}
 
-				if (var2.getItem() == amk.i && this.n() != null) {
+				if (var2.getItem() == Items.i && this.n() != null) {
 					EntityHuman var4 = this.o.a(this.n());
 					if (var4 != null && var4 != var1) {
 						var4.b((Statistic) tl.x);
@@ -276,7 +276,7 @@ public class EntityItem extends Entity {
 	}
 
 	public String d_() {
-		return this.k_() ? this.aL() : fi.a("item." + this.l().a());
+		return this.k_() ? this.aL() : LocaleI18n.get("item." + this.l().a());
 	}
 
 	public boolean aE() {
@@ -298,7 +298,7 @@ public class EntityItem extends Entity {
 				b.error("Item entity " + this.getId() + " has no item?!");
 			}
 
-			return new ItemStack(aty.b);
+			return new ItemStack(Blocks.STONE);
 		} else {
 			return var1;
 		}

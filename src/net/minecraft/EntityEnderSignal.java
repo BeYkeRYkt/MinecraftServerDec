@@ -108,7 +108,7 @@ public class EntityEnderSignal extends Entity {
 			if (this.d > 80 && !this.o.D) {
 				this.J();
 				if (this.e) {
-					this.o.d((Entity) (new EntityItem(this.o, this.locationX, this.locationY, this.locationZ, new ItemStack(amk.bH))));
+					this.o.d((Entity) (new EntityItem(this.o, this.locationX, this.locationY, this.locationZ, new ItemStack(Items.bH))));
 				} else {
 					this.o.b(2003, new Position(this), 0);
 				}

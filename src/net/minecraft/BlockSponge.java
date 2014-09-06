@@ -12,7 +12,7 @@ public class BlockSponge extends Block {
 	protected BlockSponge() {
 		super(Material.SPONGE);
 		this.j(this.L.b().a(a, Boolean.valueOf(false)));
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public int a(bec var1) {
@@ -31,7 +31,7 @@ public class BlockSponge extends Block {
 	protected void e(World var1, Position var2, bec var3) {
 		if (!((Boolean) var3.b(a)).booleanValue() && this.d(var1, var2)) {
 			var1.a(var2, var3.a(a, Boolean.valueOf(true)), 2);
-			var1.b(2001, var2, Block.a((Block) aty.j));
+			var1.b(2001, var2, Block.a((Block) Blocks.WATER));
 		}
 
 	}
@@ -54,7 +54,7 @@ public class BlockSponge extends Block {
 				PaintingDirection var12 = var9[var11];
 				Position var13 = var7.a(var12);
 				if (var1.p(var13).getBlock().r() == Material.WATER) {
-					var1.a(var13, aty.a.P(), 2);
+					var1.a(var13, Blocks.AIR.P(), 2);
 					var4.add(var13);
 					++var5;
 					if (var8 < 6) {
@@ -72,7 +72,7 @@ public class BlockSponge extends Block {
 
 		while (var14.hasNext()) {
 			var7 = (Position) var14.next();
-			var1.c(var7, aty.a);
+			var1.c(var7, Blocks.AIR);
 		}
 
 		return var5 > 0;

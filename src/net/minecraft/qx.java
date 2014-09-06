@@ -174,7 +174,7 @@ public class qx {
 	}
 
 	public boolean b(Position var1) {
-		if (this.gameMode.isCreative() && this.b.bz() != null && this.b.bz().getItem() instanceof anm) {
+		if (this.gameMode.isCreative() && this.b.bz() != null && this.b.bz().getItem() instanceof ItemSword) {
 			return false;
 		} else {
 			bec var2 = this.a.p(var1);

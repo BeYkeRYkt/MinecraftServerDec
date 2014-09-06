@@ -22,14 +22,14 @@ public class EntitySheep extends abq {
 		this.i.a(0, new yy(this));
 		this.i.a(1, new zu(this, 1.25D));
 		this.i.a(2, new yt(this, 1.0D));
-		this.i.a(3, new aag(this, 1.1D, amk.O, false));
+		this.i.a(3, new aag(this, 1.1D, Items.O, false));
 		this.i.a(4, new za(this, 1.1D));
 		this.i.a(5, this.bo);
 		this.i.a(6, new zy(this, 1.0D));
 		this.i.a(7, new zh(this, EntityHuman.class, 6.0F));
 		this.i.a(8, new zx(this));
-		this.bk.a(0, new ItemStack(amk.aW, 1, 0));
-		this.bk.a(1, new ItemStack(amk.aW, 1, 0));
+		this.bk.a(0, new ItemStack(Items.aW, 1, 0));
+		this.bk.a(1, new ItemStack(Items.aW, 1, 0));
 	}
 
 	protected void E() {
@@ -58,34 +58,34 @@ public class EntitySheep extends abq {
 
 	protected void b(boolean var1, int var2) {
 		if (!this.ck()) {
-			this.a(new ItemStack(Item.getItemOf(aty.L), 1, this.cj().a()), 0.0F);
+			this.a(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, this.cj().a()), 0.0F);
 		}
 
 		int var3 = this.V.nextInt(2) + 1 + this.V.nextInt(1 + var2);
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			if (this.au()) {
-				this.a(amk.bn, 1);
+				this.a(Items.bn, 1);
 			} else {
-				this.a(amk.bm, 1);
+				this.a(Items.bm, 1);
 			}
 		}
 
 	}
 
 	protected Item A() {
-		return Item.getItemOf(aty.L);
+		return Item.getItemOf(Blocks.WOOL);
 	}
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		if (var2 != null && var2.getItem() == amk.be && !this.ck() && !this.i_()) {
+		if (var2 != null && var2.getItem() == Items.be && !this.ck() && !this.i_()) {
 			if (!this.o.D) {
 				this.l(true);
 				int var3 = 1 + this.V.nextInt(3);
 
 				for (int var4 = 0; var4 < var3; ++var4) {
-					EntityItem var5 = this.a(new ItemStack(Item.getItemOf(aty.L), 1, this.cj().a()), 1.0F);
+					EntityItem var5 = this.a(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, this.cj().a()), 1.0F);
 					var5.motionY += (double) (this.V.nextFloat() * 0.05F);
 					var5.motionX += (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.1F);
 					var5.motionZ += (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.1F);
@@ -183,7 +183,7 @@ public class EntitySheep extends abq {
 		this.bk.a(1).b(var4);
 		ItemStack var5 = aop.a().a(this.bk, ((EntitySheep) var1).o);
 		int var6;
-		if (var5 != null && var5.getItem() == amk.aW) {
+		if (var5 != null && var5.getItem() == Items.aW) {
 			var6 = var5.i();
 		} else {
 			var6 = this.o.s.nextBoolean() ? var3 : var4;

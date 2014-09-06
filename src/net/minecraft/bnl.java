@@ -94,8 +94,8 @@ public class bnl extends bno {
 	}
 
 	public boolean a(World var1, Random var2, bjb var3) {
-		bec var4 = this.a(aty.n.P());
-		bec var5 = this.a(aty.e.P());
+		bec var4 = this.a(Blocks.GRAVEL.P());
+		bec var5 = this.a(Blocks.COBBLESTONE.P());
 
 		for (int var6 = this.l.a; var6 <= this.l.d; ++var6) {
 			for (int var7 = this.l.c; var7 <= this.l.f; ++var7) {

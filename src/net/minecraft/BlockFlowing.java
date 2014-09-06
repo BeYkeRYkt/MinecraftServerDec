@@ -82,7 +82,7 @@ public class BlockFlowing extends axl {
 		bec var13 = var1.p(var2.b());
 		if (this.h(var1, var2.b(), var13)) {
 			if (this.material == Material.LAVA && var1.p(var2.b()).getBlock().r() == Material.WATER) {
-				var1.a(var2.b(), aty.b.P());
+				var1.a(var2.b(), Blocks.STONE.P());
 				this.d(var1, var2.b());
 				return;
 			}
@@ -115,7 +115,7 @@ public class BlockFlowing extends axl {
 
 	private void a(World var1, Position var2, bec var3, int var4) {
 		if (this.h(var1, var2, var3)) {
-			if (var3.getBlock() != aty.a) {
+			if (var3.getBlock() != Blocks.AIR) {
 				if (this.material == Material.LAVA) {
 					this.d(var1, var2);
 				} else {
@@ -188,7 +188,7 @@ public class BlockFlowing extends axl {
 
 	private boolean g(World var1, Position var2, bec var3) {
 		Block var4 = var1.p(var2).getBlock();
-		return !(var4 instanceof BlockDoor) && var4 != aty.an && var4 != aty.au && var4 != aty.aM ? (var4.material == Material.PORTAL ? true : var4.material.isSolid()) : true;
+		return !(var4 instanceof BlockDoor) && var4 != Blocks.an && var4 != Blocks.au && var4 != Blocks.aM ? (var4.material == Material.PORTAL ? true : var4.material.isSolid()) : true;
 	}
 
 	protected int a(World var1, Position var2, int var3) {

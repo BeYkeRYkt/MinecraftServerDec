@@ -3,7 +3,7 @@ package net.minecraft;
 public class ale extends Item {
 
 	public ale() {
-		this.a(CreativeModeTab.f);
+		this.setCreativeModeTab(CreativeModeTab.MISC);
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
@@ -16,7 +16,7 @@ public class ale extends Item {
 			} else {
 				if (var3.p(var4).getBlock().r() == Material.AIR) {
 					var3.a((double) var4.getX() + 0.5D, (double) var4.getY() + 0.5D, (double) var4.getZ() + 0.5D, "item.fireCharge.use", 1.0F, (rnd.nextFloat() - rnd.nextFloat()) * 0.2F + 1.0F);
-					var3.a(var4, aty.ab.P());
+					var3.a(var4, Blocks.ab.P());
 				}
 
 				if (!var2.by.instabuild) {

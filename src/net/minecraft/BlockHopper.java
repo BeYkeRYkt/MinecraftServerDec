@@ -11,7 +11,7 @@ public class BlockHopper extends atg {
 	public BlockHopper() {
 		super(Material.ORE);
 		this.j(this.L.b().a(a, PaintingDirection.a).a(b, Boolean.valueOf(true)));
-		this.a(CreativeModeTab.d);
+		this.a(CreativeModeTab.REDSTONE);
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 

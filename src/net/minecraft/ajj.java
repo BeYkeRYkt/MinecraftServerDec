@@ -35,7 +35,7 @@ public class ajj extends ajk {
 		}
 
 		this.c = 0;
-		if (var1.getItem() == Item.getItemOf(aty.ai)) {
+		if (var1.getItem() == Item.getItemOf(Blocks.ai)) {
 			this.b.b((Statistic) tl.h);
 		}
 
@@ -43,7 +43,7 @@ public class ajj extends ajk {
 			this.b.b((Statistic) tl.i);
 		}
 
-		if (var1.getItem() == Item.getItemOf(aty.al)) {
+		if (var1.getItem() == Item.getItemOf(Blocks.al)) {
 			this.b.b((Statistic) tl.j);
 		}
 
@@ -51,11 +51,11 @@ public class ajj extends ajk {
 			this.b.b((Statistic) tl.l);
 		}
 
-		if (var1.getItem() == amk.P) {
+		if (var1.getItem() == Items.P) {
 			this.b.b((Statistic) tl.m);
 		}
 
-		if (var1.getItem() == amk.aZ) {
+		if (var1.getItem() == Items.aZ) {
 			this.b.b((Statistic) tl.n);
 		}
 
@@ -63,19 +63,19 @@ public class ajj extends ajk {
 			this.b.b((Statistic) tl.o);
 		}
 
-		if (var1.getItem() instanceof anm) {
+		if (var1.getItem() instanceof ItemSword) {
 			this.b.b((Statistic) tl.r);
 		}
 
-		if (var1.getItem() == Item.getItemOf(aty.bC)) {
+		if (var1.getItem() == Item.getItemOf(Blocks.bC)) {
 			this.b.b((Statistic) tl.E);
 		}
 
-		if (var1.getItem() == Item.getItemOf(aty.X)) {
+		if (var1.getItem() == Item.getItemOf(Blocks.BOOKSHELF)) {
 			this.b.b((Statistic) tl.G);
 		}
 
-		if (var1.getItem() == amk.ao && var1.i() == 1) {
+		if (var1.getItem() == Items.ao && var1.i() == 1) {
 			this.b.b((Statistic) tl.M);
 		}
 

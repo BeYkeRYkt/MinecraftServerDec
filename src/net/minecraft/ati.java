@@ -10,14 +10,14 @@ public abstract class ati extends Block {
 
 	public static boolean d(bec var0) {
 		Block var1 = var0.getBlock();
-		return var1 == aty.av || var1 == aty.D || var1 == aty.E || var1 == aty.cs;
+		return var1 == Blocks.av || var1 == Blocks.GOLDEN_RAIL || var1 == Blocks.DETECTOR_RAIL || var1 == Blocks.cs;
 	}
 
 	protected ati(boolean var1) {
 		super(Material.ORIENTABLE);
 		this.a = var1;
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
-		this.a(CreativeModeTab.e);
+		this.a(CreativeModeTab.TRANSPORTATION);
 	}
 
 	public brt a(World var1, Position var2, bec var3) {

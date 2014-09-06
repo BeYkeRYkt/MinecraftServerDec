@@ -48,7 +48,7 @@ public class bhf extends bhc {
 				return false;
 			} else {
 				Block var16 = var1.p(var3.b()).getBlock();
-				if ((var16 == aty.c || var16 == aty.d || var16 == aty.ak) && var3.getY() < 256 - var4 - 1) {
+				if ((var16 == Blocks.GRASS || var16 == Blocks.DIRT || var16 == Blocks.ak) && var3.getY() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 
 					int var17;
@@ -65,7 +65,7 @@ public class bhf extends bhc {
 									Position var14 = new Position(var10, var17, var12);
 									Block var15 = var1.p(var14).getBlock();
 									if (var15.r() == Material.AIR || var15.r() == Material.LEAVES) {
-										this.a(var1, var14, aty.t, ayx.c.a());
+										this.a(var1, var14, Blocks.LEAVES, ayx.c.a());
 									}
 								}
 							}
@@ -75,7 +75,7 @@ public class bhf extends bhc {
 					for (var17 = 0; var17 < var4; ++var17) {
 						Block var18 = var1.p(var3.b(var17)).getBlock();
 						if (var18.r() == Material.AIR || var18.r() == Material.LEAVES) {
-							this.a(var1, var3.b(var17), aty.r, ayx.c.a());
+							this.a(var1, var3.b(var17), Blocks.LOG, ayx.c.a());
 						}
 					}
 

@@ -5,7 +5,7 @@ public class BlockHay extends baa {
 	public BlockHay() {
 		super(Material.GRASS);
 		this.j(this.L.b().a(M, el.b));
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public bec a(int var1) {

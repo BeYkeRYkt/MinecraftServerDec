@@ -103,8 +103,8 @@ public class aqo {
 						var20 /= var36;
 						double var37 = (double) this.d.a(var11, var13.aQ());
 						double var26 = (1.0D - var35) * var37;
-						var13.a(wh.a(this), (float) ((int) ((var26 * var26 + var26) / 2.0D * 8.0D * (double) var30 + 1.0D)));
-						double var28 = apu.a(var13, var26);
+						var13.a(DamageSource.a(this), (float) ((int) ((var26 * var26 + var26) / 2.0D * 8.0D * (double) var30 + 1.0D)));
+						double var28 = EnchantmentProtection.a(var13, var26);
 						var13.motionX += var16 * var28;
 						var13.motionY += var18 * var28;
 						var13.motionZ += var20 * var28;
@@ -159,7 +159,7 @@ public class aqo {
 						var4.a(this.d, var3, this.d.p(var3), 1.0F / this.i, 0);
 					}
 
-					this.d.a(var3, aty.a.P(), 3);
+					this.d.a(var3, Blocks.AIR.P(), 3);
 					var4.a(this.d, var3, this);
 				}
 			}
@@ -171,7 +171,7 @@ public class aqo {
 			while (var2.hasNext()) {
 				var3 = (Position) var2.next();
 				if (this.d.p(var3).getBlock().r() == Material.AIR && this.d.p(var3.b()).getBlock().m() && this.c.nextInt(3) == 0) {
-					this.d.a(var3, aty.ab.P());
+					this.d.a(var3, Blocks.ab.P());
 				}
 			}
 		}

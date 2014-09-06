@@ -22,7 +22,7 @@ public class EntityWitherSkull extends ahl {
 
 	public float a(aqo var1, World var2, Position var3, bec var4) {
 		float var5 = super.a(var1, var2, var3, var4);
-		if (this.l() && var4.getBlock() != aty.h && var4.getBlock() != aty.bF && var4.getBlock() != aty.bG && var4.getBlock() != aty.bX) {
+		if (this.l() && var4.getBlock() != Blocks.BEDROCK && var4.getBlock() != Blocks.bF && var4.getBlock() != Blocks.bG && var4.getBlock() != Blocks.bX) {
 			var5 = Math.min(0.8F, var5);
 		}
 
@@ -33,7 +33,7 @@ public class EntityWitherSkull extends ahl {
 		if (!this.o.D) {
 			if (var1.d != null) {
 				if (this.a != null) {
-					if (var1.d.a(wh.a(this.a), 8.0F)) {
+					if (var1.d.a(DamageSource.a(this.a), 8.0F)) {
 						if (!var1.d.ai()) {
 							this.a.g(5.0F);
 						} else {
@@ -41,7 +41,7 @@ public class EntityWitherSkull extends ahl {
 						}
 					}
 				} else {
-					var1.d.a(wh.l, 5.0F);
+					var1.d.a(DamageSource.l, 5.0F);
 				}
 
 				if (var1.d instanceof EntityLiving) {
@@ -68,7 +68,7 @@ public class EntityWitherSkull extends ahl {
 		return false;
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		return false;
 	}
 

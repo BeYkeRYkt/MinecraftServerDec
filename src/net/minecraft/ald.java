@@ -3,7 +3,7 @@ package net.minecraft;
 public class ald extends Item {
 
 	public ald() {
-		this.a(CreativeModeTab.f);
+		this.setCreativeModeTab(CreativeModeTab.MISC);
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {

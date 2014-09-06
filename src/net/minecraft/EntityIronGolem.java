@@ -102,7 +102,7 @@ public class EntityIronGolem extends abw {
 	public boolean r(Entity var1) {
 		this.c = 10;
 		this.o.a((Entity) this, (byte) 4);
-		boolean var2 = var1.a(wh.a((EntityLiving) this), (float) (7 + this.V.nextInt(15)));
+		boolean var2 = var1.a(DamageSource.a((EntityLiving) this), (float) (7 + this.V.nextInt(15)));
 		if (var2) {
 			var1.motionY += 0.4000000059604645D;
 			this.a(this, var1);
@@ -138,13 +138,13 @@ public class EntityIronGolem extends abw {
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(Item.getItemOf((Block) aty.O), 1, (float) awa.b.b());
+			this.a(Item.getItemOf((Block) Blocks.RED_FLOWER), 1, (float) awa.b.b());
 		}
 
 		var4 = 3 + this.V.nextInt(3);
 
 		for (int var5 = 0; var5 < var4; ++var5) {
-			this.a(amk.j, 1);
+			this.a(Items.j, 1);
 		}
 
 	}
@@ -167,7 +167,7 @@ public class EntityIronGolem extends abw {
 
 	}
 
-	public void a(wh var1) {
+	public void a(DamageSource var1) {
 		if (!this.cl() && this.aL != null && this.a != null) {
 			this.a.a(this.aL.d_(), -5);
 		}

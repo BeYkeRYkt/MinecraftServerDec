@@ -115,7 +115,7 @@ public class bhd extends bhc {
 
 	void a(Position var1) {
 		for (int var2 = 0; var2 < this.i; ++var2) {
-			this.a(var1.b(var2), this.b(var2), aty.t);
+			this.a(var1.b(var2), this.b(var2), Blocks.LEAVES);
 		}
 
 	}
@@ -175,7 +175,7 @@ public class bhd extends bhc {
 	void c() {
 		Position var1 = this.m;
 		Position var2 = this.m.b(this.b);
-		Block var3 = aty.r;
+		Block var3 = Blocks.LOG;
 		this.a(var1, var2, var3);
 		if (this.g == 2) {
 			this.a(var1.f(), var2.f(), var3);
@@ -193,7 +193,7 @@ public class bhd extends bhc {
 			int var3 = var2.q();
 			Position var4 = new Position(this.m.getX(), var3, this.m.getZ());
 			if (this.c(var3 - this.m.getY())) {
-				this.a(var4, var2, aty.r);
+				this.a(var4, var2, Blocks.LOG);
 			}
 		}
 
@@ -244,7 +244,7 @@ public class bhd extends bhc {
 
 	private boolean f() {
 		Block var1 = this.l.p(this.m.b()).getBlock();
-		if (var1 != aty.d && var1 != aty.c && var1 != aty.ak) {
+		if (var1 != Blocks.DIRT && var1 != Blocks.GRASS && var1 != Blocks.ak) {
 			return false;
 		} else {
 			int var2 = this.a(this.m, this.m.b(this.a - 1));

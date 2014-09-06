@@ -7,7 +7,7 @@ public class BlockQuartz extends Block {
 	public BlockQuartz() {
 		super(Material.STONE);
 		this.j(this.L.b().a(a, azn.a));
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {

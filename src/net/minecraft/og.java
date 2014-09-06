@@ -12,13 +12,13 @@ final class og extends eg {
 		Material var7 = var6.r();
 		Item var8;
 		if (Material.WATER.equals(var7) && var6 instanceof axl && ((Integer) var5.b(axl.b)).intValue() == 0) {
-			var8 = amk.ax;
+			var8 = Items.ax;
 		} else {
 			if (!Material.LAVA.equals(var7) || !(var6 instanceof axl) || ((Integer) var5.b(axl.b)).intValue() != 0) {
 				return super.b(var1, var2);
 			}
 
-			var8 = amk.ay;
+			var8 = Items.ay;
 		}
 
 		var3.g(var4);

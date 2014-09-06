@@ -22,7 +22,7 @@ final class atn implements Runnable {
 			}
 
 			bec var4 = this.a.p(var3);
-			if (var4.getBlock() == aty.bY) {
+			if (var4.getBlock() == Blocks.bY) {
 				((WorldServer) this.a).a((Runnable) (new ato(this, var3)));
 			}
 		}

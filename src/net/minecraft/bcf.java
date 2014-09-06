@@ -14,11 +14,11 @@ public abstract class bcf extends BlockStepAbstract {
 		}
 
 		this.j(var1.a(b, ayx.a));
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return Item.getItemOf((Block) aty.bM);
+		return Item.getItemOf((Block) Blocks.bM);
 	}
 
 	public String b(int var1) {

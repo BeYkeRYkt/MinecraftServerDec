@@ -9,14 +9,14 @@ public class aol implements aoo {
 		for (int var5 = 0; var5 < var1.n_(); ++var5) {
 			ItemStack var6 = var1.a(var5);
 			if (var6 != null) {
-				if (var6.getItem() == amk.bd) {
+				if (var6.getItem() == Items.bd) {
 					if (var4 != null) {
 						return false;
 					}
 
 					var4 = var6;
 				} else {
-					if (var6.getItem() != amk.bV) {
+					if (var6.getItem() != Items.bV) {
 						return false;
 					}
 
@@ -35,14 +35,14 @@ public class aol implements aoo {
 		for (int var4 = 0; var4 < var1.n_(); ++var4) {
 			ItemStack var5 = var1.a(var4);
 			if (var5 != null) {
-				if (var5.getItem() == amk.bd) {
+				if (var5.getItem() == Items.bd) {
 					if (var3 != null) {
 						return null;
 					}
 
 					var3 = var5;
 				} else {
-					if (var5.getItem() != amk.bV) {
+					if (var5.getItem() != Items.bV) {
 						return null;
 					}
 
@@ -52,7 +52,7 @@ public class aol implements aoo {
 		}
 
 		if (var3 != null && var2 >= 1) {
-			ItemStack var6 = new ItemStack(amk.bd, var2 + 1, var3.i());
+			ItemStack var6 = new ItemStack(Items.bd, var2 + 1, var3.i());
 			if (var3.s()) {
 				var6.c(var3.q());
 			}

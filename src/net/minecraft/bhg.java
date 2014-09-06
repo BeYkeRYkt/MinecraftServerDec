@@ -20,7 +20,7 @@ public class bhg extends bhp {
 				label47: {
 					if (!var1.d(var3.b())) {
 						Block var4 = var1.p(var3.b()).getBlock();
-						if (var4 == aty.c || var4 == aty.d || var4 == aty.b) {
+						if (var4 == Blocks.GRASS || var4 == Blocks.DIRT || var4 == Blocks.STONE) {
 							break label47;
 						}
 					}

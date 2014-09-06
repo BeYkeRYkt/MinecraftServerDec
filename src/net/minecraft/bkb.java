@@ -7,7 +7,7 @@ import java.util.Random;
 
 abstract class bkb extends bms {
 
-	protected static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(amk.i, 0, 1, 3, 5), new vl(amk.j, 0, 1, 5, 5), new vl(amk.k, 0, 1, 3, 15), new vl(amk.B, 0, 1, 1, 5), new vl(amk.ah, 0, 1, 1, 5), new vl(amk.d, 0, 1, 1, 5), new vl(amk.by, 0, 3, 7, 5), new vl(amk.aA, 0, 1, 1, 10), new vl(amk.cl, 0, 1, 1, 8), new vl(amk.ck, 0, 1, 1, 5), new vl(amk.cm, 0, 1, 1, 3), new vl(Item.getItemOf(aty.Z), 0, 2, 4, 2) }));
+	protected static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.i, 0, 1, 3, 5), new vl(Items.j, 0, 1, 5, 5), new vl(Items.k, 0, 1, 3, 15), new vl(Items.B, 0, 1, 1, 5), new vl(Items.ah, 0, 1, 1, 5), new vl(Items.d, 0, 1, 1, 5), new vl(Items.by, 0, 3, 7, 5), new vl(Items.aA, 0, 1, 1, 10), new vl(Items.cl, 0, 1, 1, 8), new vl(Items.ck, 0, 1, 1, 5), new vl(Items.cm, 0, 1, 1, 3), new vl(Item.getItemOf(Blocks.OBSIDIAN), 0, 2, 4, 2) }));
 
 	public bkb() {
 	}

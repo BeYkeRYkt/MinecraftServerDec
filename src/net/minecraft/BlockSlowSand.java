@@ -4,7 +4,7 @@ public class BlockSlowSand extends Block {
 
 	public BlockSlowSand() {
 		super(Material.SAND);
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public brt a(World var1, Position var2, bec var3) {

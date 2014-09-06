@@ -36,13 +36,13 @@ public class atb extends atg {
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
-		return amk.cE;
+		return Items.cE;
 	}
 
 	public void a(World var1, Position var2, bec var3, float var4, int var5) {
 		TileEntity var6 = var1.s(var2);
 		if (var6 instanceof TileEntityBanner) {
-			ItemStack var7 = new ItemStack(amk.cE, 1, ((TileEntityBanner) var6).b());
+			ItemStack var7 = new ItemStack(Items.cE, 1, ((TileEntityBanner) var6).b());
 			NBTCompoundTag var8 = new NBTCompoundTag();
 			var6.write(var8);
 			var8.remove("x");
@@ -59,7 +59,7 @@ public class atb extends atg {
 
 	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
 		if (var5 instanceof TileEntityBanner) {
-			ItemStack var6 = new ItemStack(amk.cE, 1, ((TileEntityBanner) var5).b());
+			ItemStack var6 = new ItemStack(Items.cE, 1, ((TileEntityBanner) var5).b());
 			NBTCompoundTag var7 = new NBTCompoundTag();
 			var5.write(var7);
 			var7.remove("x");

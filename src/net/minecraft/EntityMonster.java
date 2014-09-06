@@ -35,7 +35,7 @@ public abstract class EntityMonster extends EntityCreature implements aex {
 		return "game.hostile.swim.splash";
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else if (super.a(var1, var2)) {
@@ -66,7 +66,7 @@ public abstract class EntityMonster extends EntityCreature implements aex {
 			var3 += aph.a((EntityLiving) this);
 		}
 
-		boolean var4 = var1.a(wh.a((EntityLiving) this), var2);
+		boolean var4 = var1.a(DamageSource.a((EntityLiving) this), var2);
 		if (var4) {
 			if (var3 > 0) {
 				var1.g((double) (-DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F) * (float) var3 * 0.5F), 0.1D, (double) (DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F) * (float) var3 * 0.5F));

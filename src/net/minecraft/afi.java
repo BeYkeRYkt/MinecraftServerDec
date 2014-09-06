@@ -53,8 +53,8 @@ class afi extends zb {
 					var2 += 2.0F;
 				}
 
-				var1.a(wh.b(this.a, this.a), var2);
-				var1.a(wh.a((EntityLiving) this.a), (float) this.a.a(afs.e).e());
+				var1.a(DamageSource.b(this.a, this.a), var2);
+				var1.a(DamageSource.a((EntityLiving) this.a), (float) this.a.a(afs.e).e());
 				this.a.d((EntityLiving) null);
 			} else if (this.b >= 60 && this.b % 20 == 0) {
 				;

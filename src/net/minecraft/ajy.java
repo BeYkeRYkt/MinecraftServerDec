@@ -3,7 +3,7 @@ package net.minecraft;
 public class ajy extends Item {
 
 	public ajy() {
-		this.a(CreativeModeTab.k);
+		this.setCreativeModeTab(CreativeModeTab.BREWING);
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
@@ -25,11 +25,11 @@ public class ajy extends Item {
 					--var1.b;
 					var3.b(StatisticList.J[Item.getId((Item) this)]);
 					if (var1.b <= 0) {
-						return new ItemStack(amk.bz);
+						return new ItemStack(Items.bz);
 					}
 
-					if (!var3.playerInventory.a(new ItemStack(amk.bz))) {
-						var3.a(new ItemStack(amk.bz, 1, 0), false);
+					if (!var3.playerInventory.a(new ItemStack(Items.bz))) {
+						var3.a(new ItemStack(Items.bz, 1, 0), false);
 					}
 				}
 			}

@@ -15,7 +15,7 @@ public class BlockTripwireHook extends Block {
 	public BlockTripwireHook() {
 		super(Material.ORIENTABLE);
 		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)));
-		this.a(CreativeModeTab.d);
+		this.a(CreativeModeTab.REDSTONE);
 		this.a(true);
 	}
 
@@ -94,14 +94,14 @@ public class BlockTripwireHook extends Block {
 		for (int var16 = 1; var16 < 42; ++var16) {
 			var17 = var2.a(var8, var16);
 			bec var18 = var1.p(var17);
-			if (var18.getBlock() == aty.bR) {
+			if (var18.getBlock() == Blocks.bR) {
 				if (var18.b(a) == var8.d()) {
 					var14 = var16;
 				}
 				break;
 			}
 
-			if (var18.getBlock() != aty.bS && var16 != var6) {
+			if (var18.getBlock() != Blocks.bS && var16 != var6) {
 				var15[var16] = null;
 				var12 = false;
 			} else {
@@ -145,7 +145,7 @@ public class BlockTripwireHook extends Block {
 			for (int var23 = 1; var23 < var14; ++var23) {
 				Position var25 = var2.a(var8, var23);
 				bec var26 = var15[var23];
-				if (var26 != null && var1.p(var25).getBlock() != aty.a) {
+				if (var26 != null && var1.p(var25).getBlock() != Blocks.AIR) {
 					var1.a(var25, var26.a(M, Boolean.valueOf(var12)), 3);
 				}
 			}

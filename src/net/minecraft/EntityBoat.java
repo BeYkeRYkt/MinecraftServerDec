@@ -58,7 +58,7 @@ public class EntityBoat extends Entity {
 		return (double) this.K * 0.0D - 0.30000001192092896D;
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else if (!this.o.D && !this.I) {
@@ -76,7 +76,7 @@ public class EntityBoat extends Entity {
 					}
 
 					if (!var3) {
-						this.a(amk.aE, 1, 0.0F);
+						this.a(Items.aE, 1, 0.0F);
 					}
 
 					this.J();
@@ -220,10 +220,10 @@ public class EntityBoat extends Entity {
 					int var12 = DataTypesConverter.toFixedPointInt(this.locationY) + var25;
 					Position var27 = new Position(var23, var12, var10);
 					Block var14 = this.o.p(var27).getBlock();
-					if (var14 == aty.aH) {
+					if (var14 == Blocks.aH) {
 						this.o.g(var27);
 						this.D = false;
-					} else if (var14 == aty.bx) {
+					} else if (var14 == Blocks.bx) {
 						this.o.b(var27, true);
 						this.D = false;
 					}
@@ -242,11 +242,11 @@ public class EntityBoat extends Entity {
 					this.J();
 
 					for (var22 = 0; var22 < 3; ++var22) {
-						this.a(Item.getItemOf(aty.f), 1, 0.0F);
+						this.a(Item.getItemOf(Blocks.PLANKS), 1, 0.0F);
 					}
 
 					for (var22 = 0; var22 < 2; ++var22) {
-						this.a(amk.y, 1, 0.0F);
+						this.a(Items.y, 1, 0.0F);
 					}
 				}
 			} else {
@@ -328,11 +328,11 @@ public class EntityBoat extends Entity {
 
 					int var6;
 					for (var6 = 0; var6 < 3; ++var6) {
-						this.a(Item.getItemOf(aty.f), 1, 0.0F);
+						this.a(Item.getItemOf(Blocks.PLANKS), 1, 0.0F);
 					}
 
 					for (var6 = 0; var6 < 2; ++var6) {
-						this.a(amk.y, 1, 0.0F);
+						this.a(Items.y, 1, 0.0F);
 					}
 				}
 

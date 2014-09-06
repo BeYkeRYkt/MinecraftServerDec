@@ -9,7 +9,7 @@ public class auc extends Block {
 		this.a(true);
 		float var2 = 0.2F;
 		this.a(0.5F - var2, 0.0F, 0.5F - var2, 0.5F + var2, var2 * 3.0F, 0.5F + var2);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
 	protected auc() {
@@ -21,7 +21,7 @@ public class auc extends Block {
 	}
 
 	protected boolean c(Block var1) {
-		return var1 == aty.c || var1 == aty.d || var1 == aty.ak;
+		return var1 == Blocks.GRASS || var1 == Blocks.DIRT || var1 == Blocks.ak;
 	}
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
@@ -36,7 +36,7 @@ public class auc extends Block {
 	protected void e(World var1, Position var2, bec var3) {
 		if (!this.f(var1, var2, var3)) {
 			this.b(var1, var2, var3, 0);
-			var1.a(var2, aty.a.P(), 3);
+			var1.a(var2, Blocks.AIR.P(), 3);
 		}
 
 	}

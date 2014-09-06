@@ -41,7 +41,7 @@ public class bil extends bhc {
 				return false;
 			} else {
 				Block var20 = var1.p(var3.b()).getBlock();
-				if ((var20 == aty.c || var20 == aty.d) && var3.getY() < 256 - var4 - 1) {
+				if ((var20 == Blocks.GRASS || var20 == Blocks.DIRT) && var3.getY() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 					PaintingDirection var21 = en.a.a(var2);
 					var8 = var4 - var2.nextInt(4) - 1;
@@ -62,7 +62,7 @@ public class bil extends bhc {
 						Position var15 = new Position(var10, var14, var11);
 						Material var16 = var1.p(var15).getBlock().r();
 						if (var16 == Material.AIR || var16 == Material.LEAVES) {
-							this.a(var1, var15, aty.s, ayx.e.a() - 4);
+							this.a(var1, var15, Blocks.LOG2, ayx.e.a() - 4);
 							var12 = var14;
 						}
 					}
@@ -107,7 +107,7 @@ public class bil extends bhc {
 								Position var18 = new Position(var10, var17, var11);
 								Material var19 = var1.p(var18).getBlock().r();
 								if (var19 == Material.AIR || var19 == Material.LEAVES) {
-									this.a(var1, var18, aty.s, ayx.e.a() - 4);
+									this.a(var1, var18, Blocks.LOG2, ayx.e.a() - 4);
 									var12 = var17;
 								}
 							}
@@ -150,7 +150,7 @@ public class bil extends bhc {
 	private void b(World var1, Position var2) {
 		Material var3 = var1.p(var2).getBlock().r();
 		if (var3 == Material.AIR || var3 == Material.LEAVES) {
-			this.a(var1, var2, aty.u, 0);
+			this.a(var1, var2, Blocks.LEAVES2, 0);
 		}
 
 	}

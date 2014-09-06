@@ -392,13 +392,13 @@ public abstract class EntityHuman extends EntityLiving {
 		this.dataWatcher.b(18, Integer.valueOf(var2 + var1));
 	}
 
-	public void a(wh var1) {
+	public void a(DamageSource var1) {
 		super.a(var1);
 		this.a(0.2F, 0.2F);
 		this.b(this.locationX, this.locationY, this.locationZ);
 		this.motionY = 0.10000000149011612D;
 		if (this.d_().equals("Notch")) {
-			this.a(new ItemStack(amk.e, 1), true, false);
+			this.a(new ItemStack(Items.e, 1), true, false);
 		}
 
 		if (!this.o.Q().b("keepInventory")) {
@@ -638,7 +638,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else if (this.by.invulnerable && !var1.g()) {
@@ -709,7 +709,7 @@ public abstract class EntityHuman extends EntityLiving {
 		return (float) var1 / (float) this.playerInventory.armor.length;
 	}
 
-	protected void d(wh var1, float var2) {
+	protected void d(DamageSource var1, float var2) {
 		if (!this.b(var1)) {
 			if (!var1.e() && this.bV() && var2 > 0.0F) {
 				var2 = (1.0F + var2) * 0.5F;
@@ -815,7 +815,7 @@ public abstract class EntityHuman extends EntityLiving {
 				if (var1 instanceof EntityLiving) {
 					var4 = aph.a(this.bz(), ((EntityLiving) var1).by());
 				} else {
-					var4 = aph.a(this.bz(), xs.a);
+					var4 = aph.a(this.bz(), EnumMonsterType.a);
 				}
 
 				int var18 = var3 + aph.a((EntityLiving) this);
@@ -840,7 +840,7 @@ public abstract class EntityHuman extends EntityLiving {
 					double var8 = var1.motionX;
 					double var10 = var1.motionY;
 					double var12 = var1.motionZ;
-					boolean var14 = var1.a(wh.a(this), var2);
+					boolean var14 = var1.a(DamageSource.a(this), var2);
 					if (var14) {
 						if (var18 > 0) {
 							var1.g((double) (-DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F) * (float) var18 * 0.5F), 0.1D, (double) (DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F) * (float) var18 * 0.5F));
@@ -1019,7 +1019,7 @@ public abstract class EntityHuman extends EntityLiving {
 	public void a(boolean var1, boolean var2, boolean var3) {
 		this.a(0.6F, 1.8F);
 		bec var4 = this.o.p(this.bv);
-		if (this.bv != null && var4.getBlock() == aty.C) {
+		if (this.bv != null && var4.getBlock() == Blocks.BED) {
 			this.o.a(this.bv, var4.a(BlockBed.b, Boolean.valueOf(false)), 4);
 			Position var5 = BlockBed.a(this.o, this.bv, 0);
 			if (var5 == null) {
@@ -1042,11 +1042,11 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	private boolean p() {
-		return this.o.p(this.bv).getBlock() == aty.C;
+		return this.o.p(this.bv).getBlock() == Blocks.BED;
 	}
 
 	public static Position a(World var0, Position var1, boolean var2) {
-		if (var0.p(var1).getBlock() != aty.C) {
+		if (var0.p(var1).getBlock() != Blocks.BED) {
 			if (!var2) {
 				return null;
 			} else {
@@ -1496,11 +1496,11 @@ public abstract class EntityHuman extends EntityLiving {
 			if (var3 >= 0 && var3 < this.playerInventory.armor.length) {
 				var4 = var3 + 1;
 				if (var2 != null && var2.getItem() != null) {
-					if (var2.getItem() instanceof ajn) {
+					if (var2.getItem() instanceof ItemArmor) {
 						if (EntityInsentient.c(var2) != var4) {
 							return false;
 						}
-					} else if (var4 != 4 || var2.getItem() != amk.bX && !(var2.getItem() instanceof aju)) {
+					} else if (var4 != 4 || var2.getItem() != Items.bX && !(var2.getItem() instanceof aju)) {
 						return false;
 					}
 				}

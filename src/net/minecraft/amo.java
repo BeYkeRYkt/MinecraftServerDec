@@ -4,7 +4,7 @@ public class amo extends Item {
 
 	public amo() {
 		this.c(1);
-		this.a(CreativeModeTab.f);
+		this.setCreativeModeTab(CreativeModeTab.MISC);
 	}
 
 	public ItemStack b(ItemStack var1, World var2, EntityHuman var3) {
@@ -17,7 +17,7 @@ public class amo extends Item {
 		}
 
 		var3.b(StatisticList.J[Item.getId((Item) this)]);
-		return var1.b <= 0 ? new ItemStack(amk.aw) : var1;
+		return var1.b <= 0 ? new ItemStack(Items.aw) : var1;
 	}
 
 	public int d(ItemStack var1) {

@@ -21,7 +21,7 @@ public class EntitySmallFireball extends ahl {
 		if (!this.o.D) {
 			boolean var2;
 			if (var1.d != null) {
-				var2 = var1.d.a(wh.a((ahl) this, this.a), 5.0F);
+				var2 = var1.d.a(DamageSource.a((ahl) this, this.a), 5.0F);
 				if (var2) {
 					this.a(this.a, var1.d);
 					if (!var1.d.T()) {
@@ -37,7 +37,7 @@ public class EntitySmallFireball extends ahl {
 				if (var2) {
 					Position var3 = var1.a().a(var1.b);
 					if (this.o.d(var3)) {
-						this.o.a(var3, aty.ab.P());
+						this.o.a(var3, Blocks.ab.P());
 					}
 				}
 			}
@@ -51,7 +51,7 @@ public class EntitySmallFireball extends ahl {
 		return false;
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean a(DamageSource var1, float var2) {
 		return false;
 	}
 }
