@@ -98,11 +98,11 @@ public class BlockTripwire extends Block {
 				if (var8 < 42) {
 					Position var9 = var2.a(var7, var8);
 					bec var10 = var1.p(var9);
-					if (var10.c() == aty.bR) {
+					if (var10.getBlock() == aty.bR) {
 						if (var10.b(BlockTripwireHook.a) == var7.d()) {
 							aty.bR.a(var1, var9, var10, false, true, var8, var3);
 						}
-					} else if (var10.c() == aty.bS) {
+					} else if (var10.getBlock() == aty.bS) {
 						++var8;
 						continue;
 					}
@@ -138,7 +138,7 @@ public class BlockTripwire extends Block {
 		bec var3 = var1.p(var2);
 		boolean var4 = ((Boolean) var3.b(a)).booleanValue();
 		boolean var5 = false;
-		List var6 = var1.b((Entity) null, new brt((double) var2.n() + this.B, (double) var2.o() + this.C, (double) var2.p() + this.D, (double) var2.n() + this.E, (double) var2.o() + this.F, (double) var2.p() + this.G));
+		List var6 = var1.b((Entity) null, new brt((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G));
 		if (!var6.isEmpty()) {
 			Iterator var7 = var6.iterator();
 
@@ -166,7 +166,7 @@ public class BlockTripwire extends Block {
 	public static boolean c(ard var0, Position var1, bec var2, PaintingDirection var3) {
 		Position var4 = var1.a(var3);
 		bec var5 = var0.p(var4);
-		Block var6 = var5.c();
+		Block var6 = var5.getBlock();
 		if (var6 == aty.bR) {
 			PaintingDirection var9 = var3.d();
 			return var5.b(BlockTripwireHook.a) == var9;

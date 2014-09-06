@@ -24,10 +24,10 @@ public class anl extends Item {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
-			if (var9.c() == aty.ac) {
-				bcm var10 = var3.s(var4);
-				if (var10 instanceof bdg) {
-					aqi var11 = ((bdg) var10).b();
+			if (var9.getBlock() == aty.ac) {
+				TileEntity var10 = var3.s(var4);
+				if (var10 instanceof TileEntityMobSpawner) {
+					aqi var11 = ((TileEntityMobSpawner) var10).b();
 					var11.a(EntityTypes.getNameById(var1.i()));
 					var10.o_();
 					var3.h(var4);
@@ -45,7 +45,7 @@ public class anl extends Item {
 				var13 = 0.5D;
 			}
 
-			Entity var12 = a(var3, var1.i(), (double) var4.n() + 0.5D, (double) var4.o() + var13, (double) var4.p() + 0.5D);
+			Entity var12 = a(var3, var1.i(), (double) var4.getX() + 0.5D, (double) var4.getY() + var13, (double) var4.getZ() + 0.5D);
 			if (var12 != null) {
 				if (var12 instanceof EntityLiving && var1.s()) {
 					var12.a(var1.q());
@@ -78,8 +78,8 @@ public class anl extends Item {
 						return var1;
 					}
 
-					if (var2.p(var5).c() instanceof axl) {
-						Entity var6 = a(var2, var1.i(), (double) var5.n() + 0.5D, (double) var5.o() + 0.5D, (double) var5.p() + 0.5D);
+					if (var2.p(var5).getBlock() instanceof axl) {
+						Entity var6 = a(var2, var1.i(), (double) var5.getX() + 0.5D, (double) var5.getY() + 0.5D, (double) var5.getZ() + 0.5D);
 						if (var6 != null) {
 							if (var6 instanceof EntityLiving && var1.s()) {
 								((EntityInsentient) var6).a(var1.q());

@@ -74,7 +74,7 @@ abstract class bnn extends bms {
 			for (int var6 = this.l.a; var6 <= this.l.d; ++var6) {
 				Position var7 = new Position(var6, 64, var5);
 				if (var2.b((fd) var7)) {
-					var3 += Math.max(var1.r(var7).o(), var1.worldProvider.i());
+					var3 += Math.max(var1.r(var7).getY(), var1.worldProvider.i());
 					++var4;
 				}
 			}
@@ -118,27 +118,27 @@ abstract class bnn extends bms {
 
 	protected bec a(bec var1) {
 		if (this.b) {
-			if (var1.c() == aty.r || var1.c() == aty.s) {
+			if (var1.getBlock() == aty.r || var1.getBlock() == aty.s) {
 				return aty.A.P();
 			}
 
-			if (var1.c() == aty.e) {
+			if (var1.getBlock() == aty.e) {
 				return aty.A.a(bae.a.a());
 			}
 
-			if (var1.c() == aty.f) {
+			if (var1.getBlock() == aty.f) {
 				return aty.A.a(bae.c.a());
 			}
 
-			if (var1.c() == aty.ad) {
+			if (var1.getBlock() == aty.ad) {
 				return aty.bO.P().a(BlockStairs.a, var1.b(BlockStairs.a));
 			}
 
-			if (var1.c() == aty.aw) {
+			if (var1.getBlock() == aty.aw) {
 				return aty.bO.P().a(BlockStairs.a, var1.b(BlockStairs.a));
 			}
 
-			if (var1.c() == aty.n) {
+			if (var1.getBlock() == aty.n) {
 				return aty.A.P();
 			}
 		}

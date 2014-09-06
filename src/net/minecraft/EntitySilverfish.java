@@ -68,7 +68,7 @@ public class EntitySilverfish extends EntityMonster {
 	}
 
 	public float a(Position var1) {
-		return this.o.p(var1.b()).c() == aty.b ? 10.0F : super.a(var1);
+		return this.o.p(var1.b()).getBlock() == aty.b ? 10.0F : super.a(var1);
 	}
 
 	protected boolean m_() {

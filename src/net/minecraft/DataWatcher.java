@@ -208,9 +208,9 @@ public class DataWatcher {
 				break;
 			case 6:
 				Position var4 = (Position) var1.b();
-				var0.writeInt(var4.n());
-				var0.writeInt(var4.o());
-				var0.writeInt(var4.p());
+				var0.writeInt(var4.getX());
+				var0.writeInt(var4.getY());
+				var0.writeInt(var4.getZ());
 				break;
 			case 7:
 				fa var5 = (fa) var1.b();

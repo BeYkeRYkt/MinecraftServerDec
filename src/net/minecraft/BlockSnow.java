@@ -22,7 +22,7 @@ public class BlockSnow extends Block {
 	public brt a(World var1, Position var2, bec var3) {
 		int var4 = ((Integer) var3.b(a)).intValue() - 1;
 		float var5 = 0.125F;
-		return new brt((double) var2.n() + this.B, (double) var2.o() + this.C, (double) var2.p() + this.D, (double) var2.n() + this.E, (double) ((float) var2.o() + (float) var4 * var5), (double) var2.p() + this.G);
+		return new brt((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) ((float) var2.getY() + (float) var4 * var5), (double) var2.getZ() + this.G);
 	}
 
 	public boolean c() {
@@ -48,8 +48,8 @@ public class BlockSnow extends Block {
 
 	public boolean c(World var1, Position var2) {
 		bec var3 = var1.p(var2.b());
-		Block var4 = var3.c();
-		return var4 != aty.aI && var4 != aty.cB ? (var4.r() == Material.LEAVES ? true : (var4 == this && ((Integer) var3.b(a)).intValue() == 7 ? true : var4.c() && var4.J.isSolid())) : false;
+		Block var4 = var3.getBlock();
+		return var4 != aty.aI && var4 != aty.cB ? (var4.r() == Material.LEAVES ? true : (var4 == this && ((Integer) var3.b(a)).intValue() == 7 ? true : var4.c() && var4.material.isSolid())) : false;
 	}
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
@@ -66,7 +66,7 @@ public class BlockSnow extends Block {
 		}
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, bec var4, bcm var5) {
+	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
 		a(var1, var3, new ItemStack(amk.aD, ((Integer) var4.b(a)).intValue() + 1, 0));
 		var1.g(var3);
 		var2.b(StatisticList.H[Block.a((Block) this)]);

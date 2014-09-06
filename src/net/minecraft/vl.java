@@ -45,7 +45,7 @@ public class vl extends vk {
 
 	}
 
-	public static void a(Random var0, List var1, bcx var2, int var3) {
+	public static void a(Random var0, List var1, TileEntityDispenser var2, int var3) {
 		for (int var4 = 0; var4 < var3; ++var4) {
 			vl var5 = (vl) vj.a(var0, var1);
 			int var6 = var5.c + var0.nextInt(var5.d - var5.c + 1);

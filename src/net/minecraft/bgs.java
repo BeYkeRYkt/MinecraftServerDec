@@ -102,7 +102,7 @@ public class bgs extends bgt {
 							for (int var44 = var38 + 1; !var58 && var44 >= var56 - 1; --var44) {
 								if (var44 >= 0 && var44 < 256) {
 									bec var45 = var5.a(var42, var44, var43);
-									if (var45.c() == aty.i || var45.c() == aty.j) {
+									if (var45.getBlock() == aty.i || var45.getBlock() == aty.j) {
 										var58 = true;
 									}
 
@@ -127,7 +127,7 @@ public class bgs extends bgt {
 										if (var50 > -0.7D && var59 * var59 + var50 * var50 + var46 * var46 < 1.0D) {
 											bec var52 = var5.a(var42, var49, var60);
 											bec var53 = (bec) Objects.firstNonNull(var5.a(var42, var49 + 1, var60), aty.a.P());
-											if (var52.c() == aty.c || var52.c() == aty.bw) {
+											if (var52.getBlock() == aty.c || var52.getBlock() == aty.bw) {
 												var48 = true;
 											}
 
@@ -136,12 +136,12 @@ public class bgs extends bgt {
 													var5.a(var42, var49, var60, aty.l.P());
 												} else {
 													var5.a(var42, var49, var60, aty.a.P());
-													if (var53.c() == aty.m) {
+													if (var53.getBlock() == aty.m) {
 														var5.a(var42, var49 + 1, var60, var53.b(BlockSand.a) == bac.b ? aty.cM.P() : aty.A.P());
 													}
 
-													if (var48 && var5.a(var42, var49 - 1, var60).c() == aty.d) {
-														var5.a(var42, var49 - 1, var60, this.c.b(new Position(var42 + var3 * 16, 0, var60 + var4 * 16)).ak.c().P());
+													if (var48 && var5.a(var42, var49 - 1, var60).getBlock() == aty.d) {
+														var5.a(var42, var49 - 1, var60, this.c.b(new Position(var42 + var3 * 16, 0, var60 + var4 * 16)).ak.getBlock().P());
 													}
 												}
 											}
@@ -162,7 +162,7 @@ public class bgs extends bgt {
 	}
 
 	protected boolean a(bec var1, bec var2) {
-		return var1.c() == aty.b ? true : (var1.c() == aty.d ? true : (var1.c() == aty.c ? true : (var1.c() == aty.cz ? true : (var1.c() == aty.cu ? true : (var1.c() == aty.A ? true : (var1.c() == aty.cM ? true : (var1.c() == aty.bw ? true : (var1.c() == aty.aH ? true : (var1.c() == aty.m || var1.c() == aty.n) && var2.c().r() != Material.WATER))))))));
+		return var1.getBlock() == aty.b ? true : (var1.getBlock() == aty.d ? true : (var1.getBlock() == aty.c ? true : (var1.getBlock() == aty.cz ? true : (var1.getBlock() == aty.cu ? true : (var1.getBlock() == aty.A ? true : (var1.getBlock() == aty.cM ? true : (var1.getBlock() == aty.bw ? true : (var1.getBlock() == aty.aH ? true : (var1.getBlock() == aty.m || var1.getBlock() == aty.n) && var2.getBlock().r() != Material.WATER))))))));
 	}
 
 	protected void a(World var1, int var2, int var3, int var4, int var5, bgk var6) {

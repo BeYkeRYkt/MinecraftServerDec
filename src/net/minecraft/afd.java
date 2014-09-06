@@ -33,16 +33,16 @@ class afd extends zb {
 
 			if (this.a == 20) {
 				double var5 = 4.0D;
-				brw var7 = this.b.d(1.0F);
-				double var8 = var1.locationX - (this.b.locationX + var7.a * var5);
+				Vec3D var7 = this.b.d(1.0F);
+				double var8 = var1.locationX - (this.b.locationX + var7.x * var5);
 				double var10 = var1.aQ().b + (double) (var1.K / 2.0F) - (0.5D + this.b.locationY + (double) (this.b.K / 2.0F));
-				double var12 = var1.locationZ - (this.b.locationZ + var7.c * var5);
+				double var12 = var1.locationZ - (this.b.locationZ + var7.z * var5);
 				var4.a((EntityHuman) null, 1008, new Position(this.b), 0);
 				EntityLargeFireball var14 = new EntityLargeFireball(var4, this.b, var8, var10, var12);
 				var14.e = this.b.cd();
-				var14.locationX = this.b.locationX + var7.a * var5;
+				var14.locationX = this.b.locationX + var7.x * var5;
 				var14.locationY = this.b.locationY + (double) (this.b.K / 2.0F) + 0.5D;
-				var14.locationZ = this.b.locationZ + var7.c * var5;
+				var14.locationZ = this.b.locationZ + var7.z * var5;
 				var4.d((Entity) var14);
 				this.a = -40;
 			}

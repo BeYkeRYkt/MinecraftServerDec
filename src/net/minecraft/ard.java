@@ -2,7 +2,7 @@ package net.minecraft;
 
 public interface ard {
 
-	bcm s(Position var1);
+	TileEntity s(Position var1);
 
 	bec p(Position var1);
 

@@ -20,16 +20,16 @@ public abstract class axg extends bbo {
 	public void b(World var1, Position var2, bec var3) {
 		byte var4 = 1;
 		int var5 = var4 + 1;
-		int var6 = var2.n();
-		int var7 = var2.o();
-		int var8 = var2.p();
+		int var6 = var2.getX();
+		int var7 = var2.getY();
+		int var8 = var2.getZ();
 		if (var1.a(new Position(var6 - var5, var7 - var5, var8 - var5), new Position(var6 + var5, var7 + var5, var8 + var5))) {
 			for (int var9 = -var4; var9 <= var4; ++var9) {
 				for (int var10 = -var4; var10 <= var4; ++var10) {
 					for (int var11 = -var4; var11 <= var4; ++var11) {
 						Position var12 = var2.a(var9, var10, var11);
 						bec var13 = var1.p(var12);
-						if (var13.c().r() == Material.LEAVES && !((Boolean) var13.b(b)).booleanValue()) {
+						if (var13.getBlock().r() == Material.LEAVES && !((Boolean) var13.b(b)).booleanValue()) {
 							var1.a(var12, var13.a(b, Boolean.valueOf(true)), 4);
 						}
 					}
@@ -44,9 +44,9 @@ public abstract class axg extends bbo {
 			if (((Boolean) var3.b(b)).booleanValue() && ((Boolean) var3.b(a)).booleanValue()) {
 				byte var5 = 4;
 				int var6 = var5 + 1;
-				int var7 = var2.n();
-				int var8 = var2.o();
-				int var9 = var2.p();
+				int var7 = var2.getX();
+				int var8 = var2.getY();
+				int var9 = var2.getZ();
 				byte var10 = 32;
 				int var11 = var10 * var10;
 				int var12 = var10 / 2;
@@ -61,7 +61,7 @@ public abstract class axg extends bbo {
 					for (var13 = -var5; var13 <= var5; ++var13) {
 						for (var14 = -var5; var14 <= var5; ++var14) {
 							for (var15 = -var5; var15 <= var5; ++var15) {
-								Block var16 = var1.p(new Position(var7 + var13, var8 + var14, var9 + var15)).c();
+								Block var16 = var1.p(new Position(var7 + var13, var8 + var14, var9 + var15)).getBlock();
 								if (var16 != aty.r && var16 != aty.s) {
 									if (var16.r() == Material.LEAVES) {
 										this.M[(var13 + var12) * var11 + (var14 + var12) * var10 + var15 + var12] = -2;

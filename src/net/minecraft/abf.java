@@ -4,23 +4,23 @@ import java.util.Random;
 
 public class abf {
 
-	private static brw a = new brw(0.0D, 0.0D, 0.0D);
+	private static Vec3D a = new Vec3D(0.0D, 0.0D, 0.0D);
 
-	public static brw a(EntityCreature var0, int var1, int var2) {
-		return c(var0, var1, var2, (brw) null);
+	public static Vec3D a(EntityCreature var0, int var1, int var2) {
+		return c(var0, var1, var2, (Vec3D) null);
 	}
 
-	public static brw a(EntityCreature var0, int var1, int var2, brw var3) {
+	public static Vec3D a(EntityCreature var0, int var1, int var2, Vec3D var3) {
 		a = var3.a(var0.locationX, var0.locationY, var0.locationZ);
 		return c(var0, var1, var2, a);
 	}
 
-	public static brw b(EntityCreature var0, int var1, int var2, brw var3) {
-		a = (new brw(var0.locationX, var0.locationY, var0.locationZ)).d(var3);
+	public static Vec3D b(EntityCreature var0, int var1, int var2, Vec3D var3) {
+		a = (new Vec3D(var0.locationX, var0.locationY, var0.locationZ)).d(var3);
 		return c(var0, var1, var2, a);
 	}
 
-	private static brw c(EntityCreature var0, int var1, int var2, brw var3) {
+	private static Vec3D c(EntityCreature var0, int var1, int var2, Vec3D var3) {
 		Random var4 = var0.bb();
 		boolean var5 = false;
 		int var6 = 0;
@@ -40,17 +40,17 @@ public class abf {
 			int var12 = var4.nextInt(2 * var1 + 1) - var1;
 			int var18 = var4.nextInt(2 * var2 + 1) - var2;
 			int var14 = var4.nextInt(2 * var1 + 1) - var1;
-			if (var3 == null || (double) var12 * var3.a + (double) var14 * var3.c >= 0.0D) {
+			if (var3 == null || (double) var12 * var3.x + (double) var14 * var3.z >= 0.0D) {
 				Position var15;
 				if (var0.ci() && var1 > 1) {
 					var15 = var0.cf();
-					if (var0.locationX > (double) var15.n()) {
+					if (var0.locationX > (double) var15.getX()) {
 						var12 -= var4.nextInt(var1 / 2);
 					} else {
 						var12 += var4.nextInt(var1 / 2);
 					}
 
-					if (var0.locationZ > (double) var15.p()) {
+					if (var0.locationZ > (double) var15.getZ()) {
 						var14 -= var4.nextInt(var1 / 2);
 					} else {
 						var14 += var4.nextInt(var1 / 2);
@@ -75,7 +75,7 @@ public class abf {
 		}
 
 		if (var5) {
-			return new brw((double) var6, (double) var7, (double) var8);
+			return new Vec3D((double) var6, (double) var7, (double) var8);
 		} else {
 			return null;
 		}

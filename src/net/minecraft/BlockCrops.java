@@ -52,7 +52,7 @@ public class BlockCrops extends auc implements atz {
 			for (int var6 = -1; var6 <= 1; ++var6) {
 				float var7 = 0.0F;
 				bec var8 = var1.p(var4.a(var5, 0, var6));
-				if (var8.c() == aty.ak) {
+				if (var8.getBlock() == aty.ak) {
 					var7 = 1.0F;
 					if (((Integer) var8.b(BlockSoil.a)).intValue() > 0) {
 						var7 = 3.0F;
@@ -71,12 +71,12 @@ public class BlockCrops extends auc implements atz {
 		Position var13 = var2.d();
 		Position var14 = var2.e();
 		Position var15 = var2.f();
-		boolean var9 = var0 == var1.p(var14).c() || var0 == var1.p(var15).c();
-		boolean var10 = var0 == var1.p(var12).c() || var0 == var1.p(var13).c();
+		boolean var9 = var0 == var1.p(var14).getBlock() || var0 == var1.p(var15).getBlock();
+		boolean var10 = var0 == var1.p(var12).getBlock() || var0 == var1.p(var13).getBlock();
 		if (var9 && var10) {
 			var3 /= 2.0F;
 		} else {
-			boolean var11 = var0 == var1.p(var14.c()).c() || var0 == var1.p(var15.c()).c() || var0 == var1.p(var15.d()).c() || var0 == var1.p(var14.d()).c();
+			boolean var11 = var0 == var1.p(var14.c()).getBlock() || var0 == var1.p(var15.c()).getBlock() || var0 == var1.p(var15.d()).getBlock() || var0 == var1.p(var14.d()).getBlock();
 			if (var11) {
 				var3 /= 2.0F;
 			}
@@ -86,7 +86,7 @@ public class BlockCrops extends auc implements atz {
 	}
 
 	public boolean f(World var1, Position var2, bec var3) {
-		return (var1.k(var2) >= 8 || var1.i(var2)) && this.c(var1.p(var2.b()).c());
+		return (var1.k(var2) >= 8 || var1.i(var2)) && this.c(var1.p(var2.b()).getBlock());
 	}
 
 	protected Item j() {

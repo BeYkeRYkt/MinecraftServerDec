@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public abstract class ayl extends awq {
+public abstract class ayl extends BlockStepAbstract {
 
 	public static final bet b = bet.a("seamless");
 	public static final bev M = bev.a("variant", aym.class);

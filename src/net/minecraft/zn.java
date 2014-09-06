@@ -12,7 +12,7 @@ public abstract class zn extends zb {
 	private int h;
 
 	public zn(EntityCreature var1, double var2, int var4) {
-		this.b = Position.a;
+		this.b = Position.ZERO;
 		this.c = var1;
 		this.d = var2;
 		this.h = var4;
@@ -34,7 +34,7 @@ public abstract class zn extends zb {
 	}
 
 	public void c() {
-		this.c.s().a((double) ((float) this.b.n()) + 0.5D, (double) (this.b.o() + 1), (double) ((float) this.b.p()) + 0.5D, this.d);
+		this.c.s().a((double) ((float) this.b.getX()) + 0.5D, (double) (this.b.getY() + 1), (double) ((float) this.b.getZ()) + 0.5D, this.d);
 		this.e = 0;
 		this.f = this.c.bb().nextInt(this.c.bb().nextInt(1200) + 1200) + 1200;
 	}
@@ -47,7 +47,7 @@ public abstract class zn extends zb {
 			this.g = false;
 			++this.e;
 			if (this.e % 40 == 0) {
-				this.c.s().a((double) ((float) this.b.n()) + 0.5D, (double) (this.b.o() + 1), (double) ((float) this.b.p()) + 0.5D, this.d);
+				this.c.s().a((double) ((float) this.b.getX()) + 0.5D, (double) (this.b.getY() + 1), (double) ((float) this.b.getZ()) + 0.5D, this.d);
 			}
 		} else {
 			this.g = true;

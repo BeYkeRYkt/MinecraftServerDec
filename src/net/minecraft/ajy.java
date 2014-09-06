@@ -21,7 +21,7 @@ public class ajy extends Item {
 					return var1;
 				}
 
-				if (var2.p(var5).c().r() == Material.WATER) {
+				if (var2.p(var5).getBlock().r() == Material.WATER) {
 					--var1.b;
 					var3.b(StatisticList.J[Item.getId((Item) this)]);
 					if (var1.b <= 0) {

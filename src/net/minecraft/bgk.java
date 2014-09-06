@@ -16,7 +16,7 @@ public class bgk {
 
 	public bec a(int var1) {
 		if (var1 >= 0 && var1 < this.a.length) {
-			bec var2 = (bec) Block.IDREGISTRY.a(this.a[var1]);
+			bec var2 = (bec) Block.IDREGISTRY.getObject(this.a[var1]);
 			return var2 != null ? var2 : this.b;
 		} else {
 			throw new IndexOutOfBoundsException("The coordinate is out of range");
@@ -30,7 +30,7 @@ public class bgk {
 
 	public void a(int var1, bec var2) {
 		if (var1 >= 0 && var1 < this.a.length) {
-			this.a[var1] = (short) Block.IDREGISTRY.b(var2);
+			this.a[var1] = (short) Block.IDREGISTRY.getId(var2);
 		} else {
 			throw new IndexOutOfBoundsException("The coordinate is out of range");
 		}

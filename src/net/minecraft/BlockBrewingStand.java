@@ -21,8 +21,8 @@ public class BlockBrewingStand extends atg {
 		return 3;
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bcq();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntityBrewingStand();
 	}
 
 	public boolean d() {
@@ -44,9 +44,9 @@ public class BlockBrewingStand extends atg {
 		if (var1.D) {
 			return true;
 		} else {
-			bcm var9 = var1.s(var2);
-			if (var9 instanceof bcq) {
-				var4.a((IInventory) ((bcq) var9));
+			TileEntity var9 = var1.s(var2);
+			if (var9 instanceof TileEntityBrewingStand) {
+				var4.a((IInventory) ((TileEntityBrewingStand) var9));
 			}
 
 			return true;
@@ -55,18 +55,18 @@ public class BlockBrewingStand extends atg {
 
 	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
 		if (var5.s()) {
-			bcm var6 = var1.s(var2);
-			if (var6 instanceof bcq) {
-				((bcq) var6).a(var5.q());
+			TileEntity var6 = var1.s(var2);
+			if (var6 instanceof TileEntityBrewingStand) {
+				((TileEntityBrewingStand) var6).a(var5.q());
 			}
 		}
 
 	}
 
 	public void b(World var1, Position var2, bec var3) {
-		bcm var4 = var1.s(var2);
-		if (var4 instanceof bcq) {
-			vs.a(var1, var2, (bcq) var4);
+		TileEntity var4 = var1.s(var2);
+		if (var4 instanceof TileEntityBrewingStand) {
+			vs.a(var1, var2, (TileEntityBrewingStand) var4);
 		}
 
 		super.b(var1, var2, var3);

@@ -78,9 +78,9 @@ public class abk {
 					while (true) {
 						if (var7 < 10) {
 							float var8 = this.a.s.nextFloat() * 3.1415927F * 2.0F;
-							this.g = var4.n() + (int) ((double) (DataTypesConverter.b(var8) * var5) * 0.9D);
-							this.h = var4.o();
-							this.i = var4.p() + (int) ((double) (DataTypesConverter.a(var8) * var5) * 0.9D);
+							this.g = var4.getX() + (int) ((double) (DataTypesConverter.b(var8) * var5) * 0.9D);
+							this.h = var4.getY();
+							this.i = var4.getZ() + (int) ((double) (DataTypesConverter.a(var8) * var5) * 0.9D);
 							var6 = false;
 							Iterator var9 = this.a.ae().b().iterator();
 
@@ -102,7 +102,7 @@ public class abk {
 							return false;
 						}
 
-						brw var11 = this.a(new Position(this.g, this.h, this.i));
+						Vec3D var11 = this.a(new Position(this.g, this.h, this.i));
 						if (var11 != null) {
 							this.e = 0;
 							this.d = 20;
@@ -118,7 +118,7 @@ public class abk {
 	}
 
 	private boolean c() {
-		brw var1 = this.a(new Position(this.g, this.h, this.i));
+		Vec3D var1 = this.a(new Position(this.g, this.h, this.i));
 		if (var1 == null) {
 			return false;
 		} else {
@@ -132,7 +132,7 @@ public class abk {
 				return false;
 			}
 
-			var2.b(var1.a, var1.b, var1.c, this.a.s.nextFloat() * 360.0F, 0.0F);
+			var2.b(var1.x, var1.y, var1.z, this.a.s.nextFloat() * 360.0F, 0.0F);
 			this.a.d((Entity) var2);
 			Position var3 = this.f.a();
 			var2.a(var3, this.f.b());
@@ -140,11 +140,11 @@ public class abk {
 		}
 	}
 
-	private brw a(Position var1) {
+	private Vec3D a(Position var1) {
 		for (int var2 = 0; var2 < 10; ++var2) {
 			Position var3 = var1.a(this.a.s.nextInt(16) - 8, this.a.s.nextInt(6) - 3, this.a.s.nextInt(16) - 8);
 			if (this.f.a(var3) && arg.a(xo.a, this.a, var3)) {
-				return new brw((double) var3.n(), (double) var3.o(), (double) var3.p());
+				return new Vec3D((double) var3.getX(), (double) var3.getY(), (double) var3.getZ());
 			}
 		}
 

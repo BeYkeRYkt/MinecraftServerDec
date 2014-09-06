@@ -86,8 +86,8 @@ public class BlockDaylightDetector extends atg {
 		return true;
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bcw();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntityLightDetector();
 	}
 
 	public bec a(int var1) {

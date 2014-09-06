@@ -125,7 +125,7 @@ public class bjh extends bms {
 
 			for (int var4 = this.l.a; var4 <= this.l.d; ++var4) {
 				for (int var5 = this.l.c; var5 <= this.l.f; ++var5) {
-					if (this.a(var1, var4, this.l.b - 1, var5, var3).c().r() == Material.AIR) {
+					if (this.a(var1, var4, this.l.b - 1, var5, var3).getBlock().r() == Material.AIR) {
 						this.a(var1, aty.f.P(), var4, this.l.b - 1, var5, var3);
 					}
 				}

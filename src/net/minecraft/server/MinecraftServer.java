@@ -202,7 +202,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				}
 
 				++var5;
-				var7.b.c(var8.n() + var11 >> 4, var8.p() + var12 >> 4);
+				var7.b.c(var8.getX() + var11 >> 4, var8.getZ() + var12 >> 4);
 			}
 		}
 	}
@@ -470,7 +470,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 				if (this.ticks % 20 == 0) {
 					this.profiler.a("timeSync");
-					this.playerList.sendPacket((Packet<?>) (new PacketTimeUpdate(world.K(), world.L(), world.Q().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
+					this.playerList.sendPacket((Packet<?>) (new PacketOutTimeUpdate(world.K(), world.L(), world.Q().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
 					this.profiler.b();
 				}
 
@@ -1004,11 +1004,11 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public Position c() {
-		return Position.a;
+		return Position.ZERO;
 	}
 
-	public brw d() {
-		return new brw(0.0D, 0.0D, 0.0D);
+	public Vec3D d() {
+		return new Vec3D(0.0D, 0.0D, 0.0D);
 	}
 
 	public World e() {

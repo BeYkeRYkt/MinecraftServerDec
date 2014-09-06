@@ -81,6 +81,6 @@ public class EntityPainting extends adj {
 	public void b(double var1, double var3, double var5, float var7, float var8) {
 		Position var9 = new Position(var1 - this.locationX, var3 - this.locationY, var5 - this.locationZ);
 		Position var10 = this.a.a((fd) var9);
-		this.b((double) var10.n(), (double) var10.o(), (double) var10.p());
+		this.b((double) var10.getX(), (double) var10.getY(), (double) var10.getZ());
 	}
 }

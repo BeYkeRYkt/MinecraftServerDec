@@ -8,7 +8,7 @@ public class alb extends Item {
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
 		bec var9 = var3.p(var4);
-		if (var2.a(var4.a(var5), var5, var1) && var9.c() == aty.bG && !((Boolean) var9.b(BlockEnderPortalFrame.b)).booleanValue()) {
+		if (var2.a(var4.a(var5), var5, var1) && var9.getBlock() == aty.bG && !((Boolean) var9.b(BlockEnderPortalFrame.b)).booleanValue()) {
 			if (var3.D) {
 				return true;
 			} else {
@@ -17,13 +17,13 @@ public class alb extends Item {
 				--var1.b;
 
 				for (int var10 = 0; var10 < 16; ++var10) {
-					double var11 = (double) ((float) var4.n() + (5.0F + rnd.nextFloat() * 6.0F) / 16.0F);
-					double var13 = (double) ((float) var4.o() + 0.8125F);
-					double var15 = (double) ((float) var4.p() + (5.0F + rnd.nextFloat() * 6.0F) / 16.0F);
+					double var11 = (double) ((float) var4.getX() + (5.0F + rnd.nextFloat() * 6.0F) / 16.0F);
+					double var13 = (double) ((float) var4.getY() + 0.8125F);
+					double var15 = (double) ((float) var4.getZ() + (5.0F + rnd.nextFloat() * 6.0F) / 16.0F);
 					double var17 = 0.0D;
 					double var19 = 0.0D;
 					double var21 = 0.0D;
-					var3.a(ew.l, var11, var13, var15, var17, var19, var21, new int[0]);
+					var3.a(Particle.l, var11, var13, var15, var17, var19, var21, new int[0]);
 				}
 
 				PaintingDirection var23 = (PaintingDirection) var9.b(BlockEnderPortalFrame.a);
@@ -36,7 +36,7 @@ public class alb extends Item {
 				for (int var16 = -2; var16 <= 2; ++var16) {
 					Position var28 = var4.a(var26, var16);
 					bec var18 = var3.p(var28);
-					if (var18.c() == aty.bG) {
+					if (var18.getBlock() == aty.bG) {
 						if (!((Boolean) var18.b(BlockEnderPortalFrame.b)).booleanValue()) {
 							var14 = false;
 							break;
@@ -57,7 +57,7 @@ public class alb extends Item {
 					for (var29 = var24; var29 <= var12; ++var29) {
 						Position var30 = var27.a(var26, var29);
 						bec var32 = var3.p(var30);
-						if (var32.c() != aty.bG || !((Boolean) var32.b(BlockEnderPortalFrame.b)).booleanValue()) {
+						if (var32.getBlock() != aty.bG || !((Boolean) var32.b(BlockEnderPortalFrame.b)).booleanValue()) {
 							var14 = false;
 							break;
 						}
@@ -71,7 +71,7 @@ public class alb extends Item {
 						for (var31 = 1; var31 <= 3; ++var31) {
 							var33 = var27.a(var23, var31);
 							bec var20 = var3.p(var33);
-							if (var20.c() != aty.bG || !((Boolean) var20.b(BlockEnderPortalFrame.b)).booleanValue()) {
+							if (var20.getBlock() != aty.bG || !((Boolean) var20.b(BlockEnderPortalFrame.b)).booleanValue()) {
 								var14 = false;
 								break;
 							}
@@ -99,7 +99,7 @@ public class alb extends Item {
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
 		bru var4 = this.a(var2, var3, false);
-		if (var4 != null && var4.a == brv.b && var2.p(var4.a()).c() == aty.bG) {
+		if (var4 != null && var4.a == brv.b && var2.p(var4.a()).getBlock() == aty.bG) {
 			return var1;
 		} else {
 			if (!var2.D) {

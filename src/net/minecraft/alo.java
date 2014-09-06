@@ -16,8 +16,8 @@ public class alo extends Item {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
-			Block var10 = var9.c();
-			if (var5 != PaintingDirection.a && var3.p(var4.a()).c().r() == Material.AIR) {
+			Block var10 = var9.getBlock();
+			if (var5 != PaintingDirection.a && var3.p(var4.a()).getBlock().r() == Material.AIR) {
 				if (var10 == aty.c) {
 					return this.a(var1, var2, var3, var4, aty.ak.P());
 				}
@@ -37,7 +37,7 @@ public class alo extends Item {
 	}
 
 	protected boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, bec var5) {
-		var3.a((double) ((float) var4.n() + 0.5F), (double) ((float) var4.o() + 0.5F), (double) ((float) var4.p() + 0.5F), var5.c().H.c(), (var5.c().H.d() + 1.0F) / 2.0F, var5.c().H.e() * 0.8F);
+		var3.a((double) ((float) var4.getX() + 0.5F), (double) ((float) var4.getY() + 0.5F), (double) ((float) var4.getZ() + 0.5F), var5.getBlock().H.c(), (var5.getBlock().H.d() + 1.0F) / 2.0F, var5.getBlock().H.e() * 0.8F);
 		if (var3.D) {
 			return true;
 		} else {

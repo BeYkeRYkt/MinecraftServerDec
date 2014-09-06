@@ -7,7 +7,7 @@ public class ari extends Position {
 	final arh c;
 
 	public ari(arh var1, Position var2, long var3) {
-		super(var2.n(), var2.o(), var2.p());
+		super(var2.getX(), var2.getY(), var2.getZ());
 		this.c = var1;
 		this.b = var3;
 	}

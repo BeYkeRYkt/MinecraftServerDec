@@ -19,7 +19,7 @@ public class BlockNetherWart extends auc {
 	}
 
 	public boolean f(World var1, Position var2, bec var3) {
-		return this.c(var1.p(var2.b()).c());
+		return this.c(var1.p(var2.b()).getBlock());
 	}
 
 	public void b(World var1, Position var2, bec var3, Random var4) {

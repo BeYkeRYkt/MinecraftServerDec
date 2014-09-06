@@ -4,13 +4,13 @@ public class md implements Packet<ls> {
 
 	private int a;
 	private me b;
-	private brw c;
+	private Vec3D c;
 
 	public void readData(PacketDataSerializer var1) {
 		this.a = var1.readVarInt();
 		this.b = (me) var1.a(me.class);
 		if (this.b == me.c) {
-			this.c = new brw((double) var1.readFloat(), (double) var1.readFloat(), (double) var1.readFloat());
+			this.c = new Vec3D((double) var1.readFloat(), (double) var1.readFloat(), (double) var1.readFloat());
 		}
 
 	}
@@ -19,9 +19,9 @@ public class md implements Packet<ls> {
 		var1.writeVarInt(this.a);
 		var1.writeEnum((Enum) this.b);
 		if (this.b == me.c) {
-			var1.writeFloat((float) this.c.a);
-			var1.writeFloat((float) this.c.b);
-			var1.writeFloat((float) this.c.c);
+			var1.writeFloat((float) this.c.x);
+			var1.writeFloat((float) this.c.y);
+			var1.writeFloat((float) this.c.z);
 		}
 
 	}
@@ -38,7 +38,7 @@ public class md implements Packet<ls> {
 		return this.b;
 	}
 
-	public brw b() {
+	public Vec3D b() {
 		return this.c;
 	}
 }

@@ -105,10 +105,10 @@ public abstract class bmm extends bgt {
 		this.b.setSeed(var1.J());
 		long var3 = this.b.nextLong();
 		long var5 = this.b.nextLong();
-		long var7 = (long) (var2.n() >> 4) * var3;
-		long var9 = (long) (var2.p() >> 4) * var5;
+		long var7 = (long) (var2.getX() >> 4) * var3;
+		long var9 = (long) (var2.getZ() >> 4) * var5;
 		this.b.setSeed(var7 ^ var9 ^ var1.J());
-		this.a(var1, var2.n() >> 4, var2.p() >> 4, 0, 0, (bgk) null);
+		this.a(var1, var2.getX() >> 4, var2.getZ() >> 4, 0, 0, (bgk) null);
 		double var11 = Double.MAX_VALUE;
 		Position var13 = null;
 		Iterator var14 = this.e.values().iterator();

@@ -16,26 +16,26 @@ public class bib extends bic {
 		if (!this.a(var1, var2, var3, var4)) {
 			return false;
 		} else {
-			this.a(var1, var3.n(), var3.p(), var3.o() + var4, 0, var2);
+			this.a(var1, var3.getX(), var3.getZ(), var3.getY() + var4, 0, var2);
 
 			for (int var5 = 0; var5 < var4; ++var5) {
-				Block var6 = var1.p(var3.b(var5)).c();
+				Block var6 = var1.p(var3.b(var5)).getBlock();
 				if (var6.r() == Material.AIR || var6.r() == Material.LEAVES) {
 					this.a(var1, var3.b(var5), aty.r, this.b);
 				}
 
 				if (var5 < var4 - 1) {
-					var6 = var1.p(var3.a(1, var5, 0)).c();
+					var6 = var1.p(var3.a(1, var5, 0)).getBlock();
 					if (var6.r() == Material.AIR || var6.r() == Material.LEAVES) {
 						this.a(var1, var3.a(1, var5, 0), aty.r, this.b);
 					}
 
-					var6 = var1.p(var3.a(1, var5, 1)).c();
+					var6 = var1.p(var3.a(1, var5, 1)).getBlock();
 					if (var6.r() == Material.AIR || var6.r() == Material.LEAVES) {
 						this.a(var1, var3.a(1, var5, 1), aty.r, this.b);
 					}
 
-					var6 = var1.p(var3.a(0, var5, 1)).c();
+					var6 = var1.p(var3.a(0, var5, 1)).getBlock();
 					if (var6.r() == Material.AIR || var6.r() == Material.LEAVES) {
 						this.a(var1, var3.a(0, var5, 1), aty.r, this.b);
 					}
@@ -90,7 +90,7 @@ public class bib extends bic {
 	private void c(World var1, Position var2) {
 		for (int var3 = 2; var3 >= -3; --var3) {
 			Position var4 = var2.b(var3);
-			Block var5 = var1.p(var4).c();
+			Block var5 = var1.p(var4).getBlock();
 			if (var5 == aty.c || var5 == aty.d) {
 				this.a(var1, var4, aty.d, avd.c.a());
 				break;

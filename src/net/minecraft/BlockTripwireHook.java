@@ -36,7 +36,7 @@ public class BlockTripwireHook extends Block {
 	}
 
 	public boolean a(World var1, Position var2, PaintingDirection var3) {
-		return var3.k().c() && var1.p(var2.a(var3.d())).c().t();
+		return var3.k().c() && var1.p(var2.a(var3.d())).getBlock().t();
 	}
 
 	public boolean c(World var1, Position var2) {
@@ -49,7 +49,7 @@ public class BlockTripwireHook extends Block {
 			}
 
 			var4 = (PaintingDirection) var3.next();
-		} while (!var1.p(var2.a(var4)).c().t());
+		} while (!var1.p(var2.a(var4)).getBlock().t());
 
 		return true;
 	}
@@ -71,7 +71,7 @@ public class BlockTripwireHook extends Block {
 		if (var4 != this) {
 			if (this.e(var1, var2, var3)) {
 				PaintingDirection var5 = (PaintingDirection) var3.b(a);
-				if (!var1.p(var2.a(var5.d())).c().t()) {
+				if (!var1.p(var2.a(var5.d())).getBlock().t()) {
 					this.b(var1, var2, var3, 0);
 					var1.g(var2);
 				}
@@ -94,14 +94,14 @@ public class BlockTripwireHook extends Block {
 		for (int var16 = 1; var16 < 42; ++var16) {
 			var17 = var2.a(var8, var16);
 			bec var18 = var1.p(var17);
-			if (var18.c() == aty.bR) {
+			if (var18.getBlock() == aty.bR) {
 				if (var18.b(a) == var8.d()) {
 					var14 = var16;
 				}
 				break;
 			}
 
-			if (var18.c() != aty.bS && var16 != var6) {
+			if (var18.getBlock() != aty.bS && var16 != var6) {
 				var15[var16] = null;
 				var12 = false;
 			} else {
@@ -145,7 +145,7 @@ public class BlockTripwireHook extends Block {
 			for (int var23 = 1; var23 < var14; ++var23) {
 				Position var25 = var2.a(var8, var23);
 				bec var26 = var15[var23];
-				if (var26 != null && var1.p(var25).c() != aty.a) {
+				if (var26 != null && var1.p(var25).getBlock() != aty.a) {
 					var1.a(var25, var26.a(M, Boolean.valueOf(var12)), 3);
 				}
 			}
@@ -162,13 +162,13 @@ public class BlockTripwireHook extends Block {
 
 	private void a(World var1, Position var2, boolean var3, boolean var4, boolean var5, boolean var6) {
 		if (var4 && !var6) {
-			var1.a((double) var2.n() + 0.5D, (double) var2.o() + 0.1D, (double) var2.p() + 0.5D, "random.click", 0.4F, 0.6F);
+			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.click", 0.4F, 0.6F);
 		} else if (!var4 && var6) {
-			var1.a((double) var2.n() + 0.5D, (double) var2.o() + 0.1D, (double) var2.p() + 0.5D, "random.click", 0.4F, 0.5F);
+			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.click", 0.4F, 0.5F);
 		} else if (var3 && !var5) {
-			var1.a((double) var2.n() + 0.5D, (double) var2.o() + 0.1D, (double) var2.p() + 0.5D, "random.click", 0.4F, 0.7F);
+			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.click", 0.4F, 0.7F);
 		} else if (!var3 && var5) {
-			var1.a((double) var2.n() + 0.5D, (double) var2.o() + 0.1D, (double) var2.p() + 0.5D, "random.bowhit", 0.4F, 1.2F / (var1.s.nextFloat() * 0.2F + 0.9F));
+			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.bowhit", 0.4F, 1.2F / (var1.s.nextFloat() * 0.2F + 0.9F));
 		}
 
 	}

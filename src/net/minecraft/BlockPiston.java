@@ -111,23 +111,23 @@ public class BlockPiston extends Block {
 			}
 
 			var1.a(var2, var3.a(b, Boolean.valueOf(true)), 2);
-			var1.a((double) var2.n() + 0.5D, (double) var2.o() + 0.5D, (double) var2.p() + 0.5D, "tile.piston.out", 0.5F, var1.s.nextFloat() * 0.25F + 0.6F);
+			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "tile.piston.out", 0.5F, var1.s.nextFloat() * 0.25F + 0.6F);
 		} else if (var4 == 1) {
-			bcm var13 = var1.s(var2.a(var6));
-			if (var13 instanceof bdv) {
-				((bdv) var13).h();
+			TileEntity var13 = var1.s(var2.a(var6));
+			if (var13 instanceof TileEntityPiston) {
+				((TileEntityPiston) var13).h();
 			}
 
 			var1.a(var2, aty.M.P().a(BlockPistonMoving.a, var6).a(BlockPistonMoving.b, this.M ? bdu.b : bdu.a), 3);
 			var1.a(var2, BlockPistonMoving.a(this.a(var5), var6, false, true));
 			if (this.M) {
 				Position var8 = var2.a(var6.g() * 2, var6.h() * 2, var6.i() * 2);
-				Block var9 = var1.p(var8).c();
+				Block var9 = var1.p(var8).getBlock();
 				boolean var10 = false;
 				if (var9 == aty.M) {
-					bcm var11 = var1.s(var8);
-					if (var11 instanceof bdv) {
-						bdv var12 = (bdv) var11;
+					TileEntity var11 = var1.s(var8);
+					if (var11 instanceof TileEntityPiston) {
+						TileEntityPiston var12 = (TileEntityPiston) var11;
 						if (var12.e() == var6 && var12.d()) {
 							var12.h();
 							var10 = true;
@@ -142,7 +142,7 @@ public class BlockPiston extends Block {
 				var1.g(var2.a(var6));
 			}
 
-			var1.a((double) var2.n() + 0.5D, (double) var2.o() + 0.5D, (double) var2.p() + 0.5D, "tile.piston.in", 0.5F, var1.s.nextFloat() * 0.15F + 0.6F);
+			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "tile.piston.in", 0.5F, var1.s.nextFloat() * 0.15F + 0.6F);
 		}
 
 		return true;
@@ -150,7 +150,7 @@ public class BlockPiston extends Block {
 
 	public void a(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
-		if (var3.c() == this && ((Boolean) var3.b(b)).booleanValue()) {
+		if (var3.getBlock() == this && ((Boolean) var3.b(b)).booleanValue()) {
 			float var4 = 0.25F;
 			PaintingDirection var5 = (PaintingDirection) var3.b(a);
 			if (var5 != null) {
@@ -204,13 +204,13 @@ public class BlockPiston extends Block {
 	}
 
 	public static PaintingDirection a(World var0, Position var1, EntityLiving var2) {
-		if (DataTypesConverter.e((float) var2.locationX - (float) var1.n()) < 2.0F && DataTypesConverter.e((float) var2.locationZ - (float) var1.p()) < 2.0F) {
+		if (DataTypesConverter.e((float) var2.locationX - (float) var1.getX()) < 2.0F && DataTypesConverter.e((float) var2.locationZ - (float) var1.getZ()) < 2.0F) {
 			double var3 = var2.locationY + (double) var2.aR();
-			if (var3 - (double) var1.o() > 2.0D) {
+			if (var3 - (double) var1.getY() > 2.0D) {
 				return PaintingDirection.b;
 			}
 
-			if ((double) var1.o() - var3 > 0.0D) {
+			if ((double) var1.getY() - var3 > 0.0D) {
 				return PaintingDirection.a;
 			}
 		}
@@ -223,8 +223,8 @@ public class BlockPiston extends Block {
 			return false;
 		} else if (!var1.af().a(var2)) {
 			return false;
-		} else if (var2.o() >= 0 && (var3 != PaintingDirection.a || var2.o() != 0)) {
-			if (var2.o() <= var1.U() - 1 && (var3 != PaintingDirection.b || var2.o() != var1.U() - 1)) {
+		} else if (var2.getY() >= 0 && (var3 != PaintingDirection.a || var2.getY() != 0)) {
+			if (var2.getY() <= var1.U() - 1 && (var3 != PaintingDirection.b || var2.getY() != var1.U() - 1)) {
 				if (var0 != aty.J && var0 != aty.F) {
 					if (var0.g(var1, var2) == -1.0F) {
 						return false;
@@ -273,7 +273,7 @@ public class BlockPiston extends Block {
 			Position var12;
 			for (var11 = var7.size() - 1; var11 >= 0; --var11) {
 				var12 = (Position) var7.get(var11);
-				Block var13 = var1.p(var12).c();
+				Block var13 = var1.p(var12).getBlock();
 				var13.b(var1, var12, var1.p(var12), 0);
 				var1.g(var12);
 				--var8;
@@ -284,7 +284,7 @@ public class BlockPiston extends Block {
 			for (var11 = var6.size() - 1; var11 >= 0; --var11) {
 				var12 = (Position) var6.get(var11);
 				var19 = var1.p(var12);
-				Block var14 = var19.c();
+				Block var14 = var19.getBlock();
 				var14.c(var19);
 				var1.g(var12);
 				var12 = var12.a(var10);

@@ -75,11 +75,11 @@ public class qq {
 	}
 
 	public void a(Position var1) {
-		int var2 = var1.n() >> 4;
-		int var3 = var1.p() >> 4;
+		int var2 = var1.getX() >> 4;
+		int var3 = var1.getZ() >> 4;
 		qr var4 = this.a(var2, var3, false);
 		if (var4 != null) {
-			var4.a(var1.n() & 15, var1.o(), var1.p() & 15);
+			var4.a(var1.getX() & 15, var1.getY(), var1.getZ() & 15);
 		}
 
 	}

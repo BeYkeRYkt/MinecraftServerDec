@@ -59,10 +59,10 @@ public final class arg {
 						label115: while (var42.hasNext()) {
 							ChunkCoordIntPair var15 = (ChunkCoordIntPair) var42.next();
 							Position var16 = a(var1, var15.chunkX, var15.chunkZ);
-							int var17 = var16.n();
-							int var18 = var16.o();
-							int var19 = var16.p();
-							Block var20 = var1.p(var16).c();
+							int var17 = var16.getX();
+							int var18 = var16.getY();
+							int var19 = var16.getZ();
+							Block var20 = var1.p(var16).getBlock();
 							if (!var20.t()) {
 								int var21 = 0;
 								int var22 = 0;
@@ -151,17 +151,17 @@ public final class arg {
 		if (!var1.af().a(var2)) {
 			return false;
 		} else {
-			Block var3 = var1.p(var2).c();
+			Block var3 = var1.p(var2).getBlock();
 			if (var0 == xo.c) {
-				return var3.r().isLiquid() && var1.p(var2.b()).c().r().isLiquid() && !var1.p(var2.a()).c().t();
+				return var3.r().isLiquid() && var1.p(var2.b()).getBlock().r().isLiquid() && !var1.p(var2.a()).getBlock().t();
 			} else {
 				Position var4 = var2.b();
 				if (!World.a((ard) var1, var4)) {
 					return false;
 				} else {
-					Block var5 = var1.p(var4).c();
+					Block var5 = var1.p(var4).getBlock();
 					boolean var6 = var5 != aty.h && var5 != aty.cv;
-					return var6 && !var3.t() && !var3.r().isLiquid() && !var1.p(var2.a()).c().t();
+					return var6 && !var3.t() && !var3.r().isLiquid() && !var1.p(var2.a()).getBlock().t();
 				}
 			}
 		}
@@ -193,7 +193,7 @@ public final class arg {
 								continue;
 							}
 
-							var19.b((double) ((float) var11 + 0.5F), (double) var18.o(), (double) ((float) var12 + 0.5F), var6.nextFloat() * 360.0F, 0.0F);
+							var19.b((double) ((float) var11 + 0.5F), (double) var18.getY(), (double) ((float) var12 + 0.5F), var6.nextFloat() * 360.0F, 0.0F);
 							var0.d((Entity) var19);
 							var10 = var19.a(var0.E(new Position(var19)), var10);
 							var16 = true;

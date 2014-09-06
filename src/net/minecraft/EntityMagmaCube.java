@@ -28,8 +28,8 @@ public class EntityMagmaCube extends EntitySlime {
 		return 1.0F;
 	}
 
-	protected ew n() {
-		return ew.A;
+	protected Particle n() {
+		return Particle.A;
 	}
 
 	protected EntitySlime cd() {

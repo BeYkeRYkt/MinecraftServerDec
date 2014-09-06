@@ -117,9 +117,9 @@ public class bmb extends bmk {
 			if (var3.b((fd) var10)) {
 				this.a = true;
 				var1.a(var10, aty.ac.P(), 2);
-				bcm var11 = var1.s(var10);
-				if (var11 instanceof bdg) {
-					((bdg) var11).b().a("Silverfish");
+				TileEntity var11 = var1.s(var10);
+				if (var11 instanceof TileEntityMobSpawner) {
+					((TileEntityMobSpawner) var11).b().a("Silverfish");
 				}
 			}
 		}

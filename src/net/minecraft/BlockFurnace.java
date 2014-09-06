@@ -25,10 +25,10 @@ public class BlockFurnace extends atg {
 
 	private void e(World var1, Position var2, bec var3) {
 		if (!var1.D) {
-			Block var4 = var1.p(var2.c()).c();
-			Block var5 = var1.p(var2.d()).c();
-			Block var6 = var1.p(var2.e()).c();
-			Block var7 = var1.p(var2.f()).c();
+			Block var4 = var1.p(var2.c()).getBlock();
+			Block var5 = var1.p(var2.d()).getBlock();
+			Block var6 = var1.p(var2.e()).getBlock();
+			Block var7 = var1.p(var2.f()).getBlock();
 			PaintingDirection var8 = (PaintingDirection) var3.b(a);
 			if (var8 == PaintingDirection.c && var4.m() && !var5.m()) {
 				var8 = PaintingDirection.d;
@@ -48,9 +48,9 @@ public class BlockFurnace extends atg {
 		if (var1.D) {
 			return true;
 		} else {
-			bcm var9 = var1.s(var2);
-			if (var9 instanceof bdc) {
-				var4.a((IInventory) ((bdc) var9));
+			TileEntity var9 = var1.s(var2);
+			if (var9 instanceof TileEntityFurnace) {
+				var4.a((IInventory) ((TileEntityFurnace) var9));
 			}
 
 			return true;
@@ -59,7 +59,7 @@ public class BlockFurnace extends atg {
 
 	public static void a(boolean var0, World var1, Position var2) {
 		bec var3 = var1.p(var2);
-		bcm var4 = var1.s(var2);
+		TileEntity var4 = var1.s(var2);
 		M = true;
 		if (var0) {
 			var1.a(var2, aty.am.P().a(a, var3.b(a)), 3);
@@ -77,8 +77,8 @@ public class BlockFurnace extends atg {
 
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bdc();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntityFurnace();
 	}
 
 	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
@@ -88,9 +88,9 @@ public class BlockFurnace extends atg {
 	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
 		var1.a(var2, var3.a(a, var4.aO().d()), 2);
 		if (var5.s()) {
-			bcm var6 = var1.s(var2);
-			if (var6 instanceof bdc) {
-				((bdc) var6).a(var5.q());
+			TileEntity var6 = var1.s(var2);
+			if (var6 instanceof TileEntityFurnace) {
+				((TileEntityFurnace) var6).a(var5.q());
 			}
 		}
 
@@ -98,9 +98,9 @@ public class BlockFurnace extends atg {
 
 	public void b(World var1, Position var2, bec var3) {
 		if (!M) {
-			bcm var4 = var1.s(var2);
-			if (var4 instanceof bdc) {
-				vs.a(var1, var2, (bdc) var4);
+			TileEntity var4 = var1.s(var2);
+			if (var4 instanceof TileEntityFurnace) {
+				vs.a(var1, var2, (TileEntityFurnace) var4);
 				var1.e(var2, this);
 			}
 		}

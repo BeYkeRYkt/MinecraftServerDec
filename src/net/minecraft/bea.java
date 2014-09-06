@@ -33,7 +33,7 @@ public abstract class bea implements bec {
 
 	public String toString() {
 		StringBuilder var1 = new StringBuilder();
-		var1.append(Block.BLOCKREGISTRY.c(this.c()));
+		var1.append(Block.BLOCKREGISTRY.c(this.getBlock()));
 		if (!this.b().isEmpty()) {
 			var1.append("[");
 			a.appendTo(var1, Iterables.transform(this.b().entrySet(), b));

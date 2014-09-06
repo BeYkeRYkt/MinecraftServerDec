@@ -21,12 +21,12 @@ public class ParticleCommand extends AbstractCommand {
 			throw new dp("commands.particle.usage", new Object[0]);
 		} else {
 			boolean var3 = false;
-			ew var4 = null;
-			ew[] var5 = ew.values();
+			Particle var4 = null;
+			Particle[] var5 = Particle.values();
 			int var6 = var5.length;
 
 			for (int var7 = 0; var7 < var6; ++var7) {
-				ew var8 = var5[var7];
+				Particle var8 = var5[var7];
 				if (var8.f()) {
 					if (var2[0].startsWith(var8.b())) {
 						var3 = true;
@@ -44,10 +44,10 @@ public class ParticleCommand extends AbstractCommand {
 				throw new di("commands.particle.notFound", new Object[] { var2[0] });
 			} else {
 				String var30 = var2[0];
-				brw var31 = var1.d();
-				double var32 = (double) ((float) b(var31.a, var2[1], true));
-				double var9 = (double) ((float) b(var31.b, var2[2], true));
-				double var11 = (double) ((float) b(var31.c, var2[3], true));
+				Vec3D var31 = var1.d();
+				double var32 = (double) ((float) b(var31.x, var2[1], true));
+				double var9 = (double) ((float) b(var31.y, var2[2], true));
+				double var11 = (double) ((float) b(var31.z, var2[3], true));
 				double var13 = (double) ((float) c(var2[4]));
 				double var15 = (double) ((float) c(var2[5]));
 				double var17 = (double) ((float) c(var2[6]));
@@ -87,6 +87,6 @@ public class ParticleCommand extends AbstractCommand {
 	}
 
 	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
-		return var2.length == 1 ? a(var2, ew.a()) : (var2.length > 1 && var2.length <= 4 ? a(var2, 1, var3) : (var2.length == 9 ? a(var2, new String[] { "normal", "force" }) : null));
+		return var2.length == 1 ? a(var2, Particle.a()) : (var2.length > 1 && var2.length <= 4 ? a(var2, 1, var3) : (var2.length == 9 ? a(var2, new String[] { "normal", "force" }) : null));
 	}
 }

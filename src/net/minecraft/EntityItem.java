@@ -64,7 +64,7 @@ public class EntityItem extends Entity {
 			this.d(this.motionX, this.motionY, this.motionZ);
 			boolean var1 = (int) this.p != (int) this.locationX || (int) this.q != (int) this.locationY || (int) this.r != (int) this.locationZ;
 			if (var1 || this.W % 25 == 0) {
-				if (this.o.p(new Position(this)).c().r() == Material.LAVA) {
+				if (this.o.p(new Position(this)).getBlock().r() == Material.LAVA) {
 					this.motionY = 0.20000000298023224D;
 					this.motionX = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
 					this.motionZ = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
@@ -78,7 +78,7 @@ public class EntityItem extends Entity {
 
 			float var2 = 0.98F;
 			if (this.onGround) {
-				var2 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).c().K * 0.98F;
+				var2 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
 			}
 
 			this.motionX *= (double) var2;

@@ -5,14 +5,14 @@ import java.util.concurrent.Callable;
 class bco implements Callable {
 
 	// $FF: synthetic field
-	final bcm a;
+	final TileEntity a;
 
-	bco(bcm var1) {
+	bco(TileEntity var1) {
 		this.a = var1;
 	}
 
 	public String a() {
-		int var1 = Block.a(this.a.b.p(this.a.c).c());
+		int var1 = Block.a(this.a.world.p(this.a.position).getBlock());
 
 		try {
 			return String.format("ID #%d (%s // %s)", new Object[] { Integer.valueOf(var1), Block.c(var1).a(), Block.c(var1).getClass().getCanonicalName() });

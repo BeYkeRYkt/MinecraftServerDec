@@ -31,13 +31,13 @@ public class BlockChest extends atg {
 	}
 
 	public void a(ard var1, Position var2) {
-		if (var1.p(var2.c()).c() == this) {
+		if (var1.p(var2.c()).getBlock() == this) {
 			this.a(0.0625F, 0.0F, 0.0F, 0.9375F, 0.875F, 0.9375F);
-		} else if (var1.p(var2.d()).c() == this) {
+		} else if (var1.p(var2.d()).getBlock() == this) {
 			this.a(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 1.0F);
-		} else if (var1.p(var2.e()).c() == this) {
+		} else if (var1.p(var2.e()).getBlock() == this) {
 			this.a(0.0F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
-		} else if (var1.p(var2.f()).c() == this) {
+		} else if (var1.p(var2.f()).getBlock() == this) {
 			this.a(0.0625F, 0.0F, 0.0625F, 1.0F, 0.875F, 0.9375F);
 		} else {
 			this.a(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
@@ -53,7 +53,7 @@ public class BlockChest extends atg {
 			PaintingDirection var5 = (PaintingDirection) var4.next();
 			Position var6 = var2.a(var5);
 			bec var7 = var1.p(var6);
-			if (var7.c() == this) {
+			if (var7.getBlock() == this) {
 				this.e(var1, var6, var7);
 			}
 		}
@@ -71,10 +71,10 @@ public class BlockChest extends atg {
 		Position var8 = var2.d();
 		Position var9 = var2.e();
 		Position var10 = var2.f();
-		boolean var11 = this == var1.p(var7).c();
-		boolean var12 = this == var1.p(var8).c();
-		boolean var13 = this == var1.p(var9).c();
-		boolean var14 = this == var1.p(var10).c();
+		boolean var11 = this == var1.p(var7).getBlock();
+		boolean var12 = this == var1.p(var8).getBlock();
+		boolean var13 = this == var1.p(var9).getBlock();
+		boolean var14 = this == var1.p(var10).getBlock();
 		if (!var11 && !var12 && !var13 && !var14) {
 			var1.a(var2, var3, 3);
 		} else if (var6.k() == el.a && (var11 || var12)) {
@@ -96,9 +96,9 @@ public class BlockChest extends atg {
 		}
 
 		if (var5.s()) {
-			bcm var15 = var1.s(var2);
-			if (var15 instanceof bcr) {
-				((bcr) var15).a(var5.q());
+			TileEntity var15 = var1.s(var2);
+			if (var15 instanceof TileEntityChest) {
+				((TileEntityChest) var15).a(var5.q());
 			}
 		}
 
@@ -113,10 +113,10 @@ public class BlockChest extends atg {
 			bec var6 = var1.p(var2.e());
 			bec var7 = var1.p(var2.f());
 			PaintingDirection var8 = (PaintingDirection) var3.b(a);
-			Block var9 = var4.c();
-			Block var10 = var5.c();
-			Block var11 = var6.c();
-			Block var12 = var7.c();
+			Block var9 = var4.getBlock();
+			Block var10 = var5.getBlock();
+			Block var11 = var6.getBlock();
+			Block var12 = var7.getBlock();
 			if (var9 != this && var10 != this) {
 				boolean var21 = var9.m();
 				boolean var22 = var10.m();
@@ -136,8 +136,8 @@ public class BlockChest extends atg {
 						var8 = PaintingDirection.c;
 					}
 
-					Block var19 = var24.c();
-					Block var20 = var25.c();
+					Block var19 = var24.getBlock();
+					Block var20 = var25.getBlock();
 					if ((var21 || var19.m()) && !var22 && !var20.m()) {
 						var8 = PaintingDirection.d;
 					}
@@ -162,8 +162,8 @@ public class BlockChest extends atg {
 					var8 = PaintingDirection.e;
 				}
 
-				Block var17 = var14.c();
-				Block var18 = var15.c();
+				Block var17 = var14.getBlock();
+				Block var18 = var15.getBlock();
 				if ((var11.m() || var17.m()) && !var12.m() && !var18.m()) {
 					var8 = PaintingDirection.f;
 				}
@@ -186,11 +186,11 @@ public class BlockChest extends atg {
 		while (var5.hasNext()) {
 			PaintingDirection var6 = (PaintingDirection) var5.next();
 			bec var7 = var1.p(var2.a(var6));
-			if (var7.c() == this) {
+			if (var7.getBlock() == this) {
 				return var3;
 			}
 
-			if (var7.c().m()) {
+			if (var7.getBlock().m()) {
 				if (var4 != null) {
 					var4 = null;
 					break;
@@ -204,15 +204,15 @@ public class BlockChest extends atg {
 			return var3.a(a, var4.d());
 		} else {
 			PaintingDirection var8 = (PaintingDirection) var3.b(a);
-			if (var1.p(var2.a(var8)).c().m()) {
+			if (var1.p(var2.a(var8)).getBlock().m()) {
 				var8 = var8.d();
 			}
 
-			if (var1.p(var2.a(var8)).c().m()) {
+			if (var1.p(var2.a(var8)).getBlock().m()) {
 				var8 = var8.e();
 			}
 
-			if (var1.p(var2.a(var8)).c().m()) {
+			if (var1.p(var2.a(var8)).getBlock().m()) {
 				var8 = var8.d();
 			}
 
@@ -226,7 +226,7 @@ public class BlockChest extends atg {
 		Position var5 = var2.f();
 		Position var6 = var2.c();
 		Position var7 = var2.d();
-		if (var1.p(var4).c() == this) {
+		if (var1.p(var4).getBlock() == this) {
 			if (this.e(var1, var4)) {
 				return false;
 			}
@@ -234,7 +234,7 @@ public class BlockChest extends atg {
 			++var3;
 		}
 
-		if (var1.p(var5).c() == this) {
+		if (var1.p(var5).getBlock() == this) {
 			if (this.e(var1, var5)) {
 				return false;
 			}
@@ -242,7 +242,7 @@ public class BlockChest extends atg {
 			++var3;
 		}
 
-		if (var1.p(var6).c() == this) {
+		if (var1.p(var6).getBlock() == this) {
 			if (this.e(var1, var6)) {
 				return false;
 			}
@@ -250,7 +250,7 @@ public class BlockChest extends atg {
 			++var3;
 		}
 
-		if (var1.p(var7).c() == this) {
+		if (var1.p(var7).getBlock() == this) {
 			if (this.e(var1, var7)) {
 				return false;
 			}
@@ -262,7 +262,7 @@ public class BlockChest extends atg {
 	}
 
 	private boolean e(World var1, Position var2) {
-		if (var1.p(var2).c() != this) {
+		if (var1.p(var2).getBlock() != this) {
 			return false;
 		} else {
 			Iterator var3 = en.a.iterator();
@@ -274,7 +274,7 @@ public class BlockChest extends atg {
 				}
 
 				var4 = (PaintingDirection) var3.next();
-			} while (var1.p(var2.a(var4)).c() != this);
+			} while (var1.p(var2.a(var4)).getBlock() != this);
 
 			return true;
 		}
@@ -282,15 +282,15 @@ public class BlockChest extends atg {
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
 		super.a(var1, var2, var3, var4);
-		bcm var5 = var1.s(var2);
-		if (var5 instanceof bcr) {
+		TileEntity var5 = var1.s(var2);
+		if (var5 instanceof TileEntityChest) {
 			var5.E();
 		}
 
 	}
 
 	public void b(World var1, Position var2, bec var3) {
-		bcm var4 = var1.s(var2);
+		TileEntity var4 = var1.s(var2);
 		if (var4 instanceof IInventory) {
 			vs.a(var1, var2, (IInventory) var4);
 			var1.e(var2, this);
@@ -313,11 +313,11 @@ public class BlockChest extends atg {
 	}
 
 	public vy d(World var1, Position var2) {
-		bcm var3 = var1.s(var2);
-		if (!(var3 instanceof bcr)) {
+		TileEntity var3 = var1.s(var2);
+		if (!(var3 instanceof TileEntityChest)) {
 			return null;
 		} else {
-			Object var4 = (bcr) var3;
+			Object var4 = (TileEntityChest) var3;
 			if (this.m(var1, var2)) {
 				return null;
 			} else {
@@ -326,18 +326,18 @@ public class BlockChest extends atg {
 				while (var5.hasNext()) {
 					PaintingDirection var6 = (PaintingDirection) var5.next();
 					Position var7 = var2.a(var6);
-					Block var8 = var1.p(var7).c();
+					Block var8 = var1.p(var7).getBlock();
 					if (var8 == this) {
 						if (this.m(var1, var7)) {
 							return null;
 						}
 
-						bcm var9 = var1.s(var7);
-						if (var9 instanceof bcr) {
+						TileEntity var9 = var1.s(var7);
+						if (var9 instanceof TileEntityChest) {
 							if (var6 != PaintingDirection.e && var6 != PaintingDirection.c) {
-								var4 = new vp("container.chestDouble", (vy) var4, (bcr) var9);
+								var4 = new vp("container.chestDouble", (vy) var4, (TileEntityChest) var9);
 							} else {
-								var4 = new vp("container.chestDouble", (bcr) var9, (vy) var4);
+								var4 = new vp("container.chestDouble", (TileEntityChest) var9, (vy) var4);
 							}
 						}
 					}
@@ -348,8 +348,8 @@ public class BlockChest extends atg {
 		}
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bcr();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntityChest();
 	}
 
 	public boolean g() {
@@ -361,9 +361,9 @@ public class BlockChest extends atg {
 			return 0;
 		} else {
 			int var5 = 0;
-			bcm var6 = var1.s(var2);
-			if (var6 instanceof bcr) {
-				var5 = ((bcr) var6).l;
+			TileEntity var6 = var1.s(var2);
+			if (var6 instanceof TileEntityChest) {
+				var5 = ((TileEntityChest) var6).l;
 			}
 
 			return DataTypesConverter.a(var5, 0, 15);
@@ -379,11 +379,11 @@ public class BlockChest extends atg {
 	}
 
 	private boolean n(World var1, Position var2) {
-		return var1.p(var2.a()).c().t();
+		return var1.p(var2.a()).getBlock().t();
 	}
 
 	private boolean o(World var1, Position var2) {
-		Iterator var3 = var1.a(EntityOcelot.class, new brt((double) var2.n(), (double) (var2.o() + 1), (double) var2.p(), (double) (var2.n() + 1), (double) (var2.o() + 2), (double) (var2.p() + 1))).iterator();
+		Iterator var3 = var1.a(EntityOcelot.class, new brt((double) var2.getX(), (double) (var2.getY() + 1), (double) var2.getZ(), (double) (var2.getX() + 1), (double) (var2.getY() + 2), (double) (var2.getZ() + 1))).iterator();
 
 		EntityOcelot var5;
 		do {

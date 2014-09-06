@@ -8,7 +8,7 @@ final class og extends eg {
 		World var3 = var1.i();
 		Position var4 = var1.d().a(BlockDispenser.b(var1.f()));
 		bec var5 = var3.p(var4);
-		Block var6 = var5.c();
+		Block var6 = var5.getBlock();
 		Material var7 = var6.r();
 		Item var8;
 		if (Material.WATER.equals(var7) && var6 instanceof axl && ((Integer) var5.b(axl.b)).intValue() == 0) {
@@ -25,7 +25,7 @@ final class og extends eg {
 		if (--var2.b == 0) {
 			var2.a(var8);
 			var2.b = 1;
-		} else if (((bcx) var1.h()).a(new ItemStack(var8)) < 0) {
+		} else if (((TileEntityDispenser) var1.h()).a(new ItemStack(var8)) < 0) {
 			this.b.a(var1, new ItemStack(var8));
 		}
 

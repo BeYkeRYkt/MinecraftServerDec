@@ -19,7 +19,7 @@ public class BlockThin extends Block {
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
-		return var1.a(b, Boolean.valueOf(this.c(var2.p(var3.c()).c()))).a(N, Boolean.valueOf(this.c(var2.p(var3.d()).c()))).a(O, Boolean.valueOf(this.c(var2.p(var3.e()).c()))).a(M, Boolean.valueOf(this.c(var2.p(var3.f()).c())));
+		return var1.a(b, Boolean.valueOf(this.c(var2.p(var3.c()).getBlock()))).a(N, Boolean.valueOf(this.c(var2.p(var3.d()).getBlock()))).a(O, Boolean.valueOf(this.c(var2.p(var3.e()).getBlock()))).a(M, Boolean.valueOf(this.c(var2.p(var3.f()).getBlock())));
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
@@ -35,10 +35,10 @@ public class BlockThin extends Block {
 	}
 
 	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
-		boolean var7 = this.c(var1.p(var2.c()).c());
-		boolean var8 = this.c(var1.p(var2.d()).c());
-		boolean var9 = this.c(var1.p(var2.e()).c());
-		boolean var10 = this.c(var1.p(var2.f()).c());
+		boolean var7 = this.c(var1.p(var2.c()).getBlock());
+		boolean var8 = this.c(var1.p(var2.d()).getBlock());
+		boolean var9 = this.c(var1.p(var2.e()).getBlock());
+		boolean var10 = this.c(var1.p(var2.f()).getBlock());
 		if ((!var9 || !var10) && (var9 || var10 || var7 || var8)) {
 			if (var9) {
 				this.a(0.0F, 0.0F, 0.4375F, 0.5F, 1.0F, 0.5625F);
@@ -76,10 +76,10 @@ public class BlockThin extends Block {
 		float var4 = 0.5625F;
 		float var5 = 0.4375F;
 		float var6 = 0.5625F;
-		boolean var7 = this.c(var1.p(var2.c()).c());
-		boolean var8 = this.c(var1.p(var2.d()).c());
-		boolean var9 = this.c(var1.p(var2.e()).c());
-		boolean var10 = this.c(var1.p(var2.f()).c());
+		boolean var7 = this.c(var1.p(var2.c()).getBlock());
+		boolean var8 = this.c(var1.p(var2.d()).getBlock());
+		boolean var9 = this.c(var1.p(var2.e()).getBlock());
+		boolean var10 = this.c(var1.p(var2.f()).getBlock());
 		if ((!var9 || !var10) && (var9 || var10 || var7 || var8)) {
 			if (var9) {
 				var3 = 0.0F;

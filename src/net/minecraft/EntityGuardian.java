@@ -171,7 +171,7 @@ public class EntityGuardian extends EntityMonster {
 	}
 
 	public float a(Position var1) {
-		return this.o.p(var1).c().r() == Material.WATER ? 10.0F + this.o.o(var1) - 0.5F : super.a(var1);
+		return this.o.p(var1).getBlock().r() == Material.WATER ? 10.0F + this.o.o(var1) - 0.5F : super.a(var1);
 	}
 
 	public void m() {
@@ -205,10 +205,10 @@ public class EntityGuardian extends EntityMonster {
 			}
 
 			if (this.n() && this.V()) {
-				brw var1 = this.d(0.0F);
+				Vec3D var1 = this.d(0.0F);
 
 				for (int var2 = 0; var2 < 2; ++var2) {
-					this.o.a(ew.e, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J - var1.a * 1.5D, this.locationY + this.V.nextDouble() * (double) this.K - var1.b * 1.5D, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J - var1.c * 1.5D, 0.0D, 0.0D, 0.0D, new int[0]);
+					this.o.a(Particle.e, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J - var1.x * 1.5D, this.locationY + this.V.nextDouble() * (double) this.K - var1.y * 1.5D, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J - var1.z * 1.5D, 0.0D, 0.0D, 0.0D, new int[0]);
 				}
 			}
 
@@ -233,7 +233,7 @@ public class EntityGuardian extends EntityMonster {
 
 					while (var12 < var10) {
 						var12 += 1.8D - var15 + this.V.nextDouble() * (1.7D - var15);
-						this.o.a(ew.e, this.locationX + var4 * var12, this.locationY + var6 * var12 + (double) this.aR(), this.locationZ + var8 * var12, 0.0D, 0.0D, 0.0D, new int[0]);
+						this.o.a(Particle.e, this.locationX + var4 * var12, this.locationY + var6 * var12 + (double) this.aR(), this.locationZ + var8 * var12, 0.0D, 0.0D, 0.0D, new int[0]);
 					}
 				}
 			}
@@ -276,7 +276,7 @@ public class EntityGuardian extends EntityMonster {
 				while (var7.hasNext()) {
 					EntityPlayer var8 = (EntityPlayer) var7.next();
 					if (!var8.a(var5) || var8.b(var5).getAmplifier() < 2 || var8.b(var5).getDuration() < 1200) {
-						var8.playerConncetion.sendPacket((Packet) (new jo(10, 0.0F)));
+						var8.playerConncetion.sendPacket((Packet) (new PacketOutChangeGameState(10, 0.0F)));
 						var8.c(new MobEffect(var5.H, 6000, 2));
 					}
 				}

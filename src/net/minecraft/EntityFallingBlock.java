@@ -45,7 +45,7 @@ public class EntityFallingBlock extends Entity {
 	}
 
 	public void s_() {
-		Block var1 = this.d.c();
+		Block var1 = this.d.getBlock();
 		if (var1.r() == Material.AIR) {
 			this.J();
 		} else {
@@ -55,7 +55,7 @@ public class EntityFallingBlock extends Entity {
 			Position var2;
 			if (this.a++ == 0) {
 				var2 = new Position(this);
-				if (this.o.p(var2).c() == var1) {
+				if (this.o.p(var2).getBlock() == var1) {
 					this.o.g(var2);
 				} else if (!this.o.D) {
 					this.J();
@@ -74,7 +74,7 @@ public class EntityFallingBlock extends Entity {
 					this.motionX *= 0.699999988079071D;
 					this.motionZ *= 0.699999988079071D;
 					this.motionY *= -0.5D;
-					if (this.o.p(var2).c() != aty.M) {
+					if (this.o.p(var2).getBlock() != aty.M) {
 						this.J();
 						if (!this.e && this.o.a(var1, var2, true, PaintingDirection.b, (Entity) null, (ItemStack) null) && !avt.d(this.o, var2.b()) && this.o.a(var2, this.d, 3)) {
 							if (var1 instanceof avt) {
@@ -82,10 +82,10 @@ public class EntityFallingBlock extends Entity {
 							}
 
 							if (this.c != null && var1 instanceof avs) {
-								bcm var3 = this.o.s(var2);
+								TileEntity var3 = this.o.s(var2);
 								if (var3 != null) {
 									NBTCompoundTag var4 = new NBTCompoundTag();
-									var3.b(var4);
+									var3.write(var4);
 									Iterator var5 = this.c.getKeys().iterator();
 
 									while (var5.hasNext()) {
@@ -96,7 +96,7 @@ public class EntityFallingBlock extends Entity {
 										}
 									}
 
-									var3.a(var4);
+									var3.read(var4);
 									var3.o_();
 								}
 							}
@@ -104,7 +104,7 @@ public class EntityFallingBlock extends Entity {
 							this.a(new ItemStack(var1, 1, var1.a(this.d)), 0.0F);
 						}
 					}
-				} else if (this.a > 100 && !this.o.D && (var2.o() < 1 || var2.o() > 256) || this.a > 600) {
+				} else if (this.a > 100 && !this.o.D && (var2.getY() < 1 || var2.getY() > 256) || this.a > 600) {
 					if (this.b && this.o.Q().b("doTileDrops")) {
 						this.a(new ItemStack(var1, 1, var1.a(this.d)), 0.0F);
 					}
@@ -117,7 +117,7 @@ public class EntityFallingBlock extends Entity {
 	}
 
 	public void e(float var1, float var2) {
-		Block var3 = this.d.c();
+		Block var3 = this.d.getBlock();
 		if (this.f) {
 			int var4 = DataTypesConverter.f(var1 - 1.0F);
 			if (var4 > 0) {
@@ -146,7 +146,7 @@ public class EntityFallingBlock extends Entity {
 	}
 
 	protected void b(NBTCompoundTag var1) {
-		Block var2 = this.d != null ? this.d.c() : aty.a;
+		Block var2 = this.d != null ? this.d.getBlock() : aty.a;
 		BlockNameInfo var3 = (BlockNameInfo) Block.BLOCKREGISTRY.c(var2);
 		var1.put("Block", var3 == null ? "" : var3.toString());
 		var1.put("Data", (byte) var2.c(this.d));
@@ -172,7 +172,7 @@ public class EntityFallingBlock extends Entity {
 		}
 
 		this.a = var1.getByte("Time") & 255;
-		Block var3 = this.d.c();
+		Block var3 = this.d.getBlock();
 		if (var1.isTagAssignableFrom("HurtEntities", 99)) {
 			this.f = var1.getBoolean("HurtEntities");
 			this.h = var1.getFloat("FallHurtAmount");
@@ -202,7 +202,7 @@ public class EntityFallingBlock extends Entity {
 	public void a(CrashReportSystemDetails var1) {
 		super.a(var1);
 		if (this.d != null) {
-			Block var2 = this.d.c();
+			Block var2 = this.d.getBlock();
 			var1.addDetails("Immitating block ID", (Object) Integer.valueOf(Block.a(var2)));
 			var1.addDetails("Immitating block data", (Object) Integer.valueOf(var2.c(this.d)));
 		}

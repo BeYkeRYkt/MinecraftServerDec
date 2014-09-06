@@ -14,5 +14,5 @@ public interface dz extends es {
 
 	int f();
 
-	bcm h();
+	TileEntity h();
 }

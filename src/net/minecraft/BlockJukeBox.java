@@ -23,9 +23,9 @@ public class BlockJukeBox extends atg {
 
 	public void a(World var1, Position var2, bec var3, ItemStack var4) {
 		if (!var1.D) {
-			bcm var5 = var1.s(var2);
-			if (var5 instanceof axd) {
-				((axd) var5).a(new ItemStack(var4.getItem(), 1, var4.i()));
+			TileEntity var5 = var1.s(var2);
+			if (var5 instanceof TileEntityRecordPlayer) {
+				((TileEntityRecordPlayer) var5).a(new ItemStack(var4.getItem(), 1, var4.i()));
 				var1.a(var2, var3.a(a, Boolean.valueOf(true)), 2);
 			}
 		}
@@ -33,9 +33,9 @@ public class BlockJukeBox extends atg {
 
 	private void e(World var1, Position var2, bec var3) {
 		if (!var1.D) {
-			bcm var4 = var1.s(var2);
-			if (var4 instanceof axd) {
-				axd var5 = (axd) var4;
+			TileEntity var4 = var1.s(var2);
+			if (var4 instanceof TileEntityRecordPlayer) {
+				TileEntityRecordPlayer var5 = (TileEntityRecordPlayer) var4;
 				ItemStack var6 = var5.a();
 				if (var6 != null) {
 					var1.b(1005, var2, 0);
@@ -46,7 +46,7 @@ public class BlockJukeBox extends atg {
 					double var10 = (double) (var1.s.nextFloat() * var7) + (double) (1.0F - var7) * 0.2D + 0.6D;
 					double var12 = (double) (var1.s.nextFloat() * var7) + (double) (1.0F - var7) * 0.5D;
 					ItemStack var14 = var6.getCopy();
-					EntityItem var15 = new EntityItem(var1, (double) var2.n() + var8, (double) var2.o() + var10, (double) var2.p() + var12, var14);
+					EntityItem var15 = new EntityItem(var1, (double) var2.getX() + var8, (double) var2.getY() + var10, (double) var2.getZ() + var12, var14);
 					var15.p();
 					var1.d((Entity) var15);
 				}
@@ -65,8 +65,8 @@ public class BlockJukeBox extends atg {
 		}
 	}
 
-	public bcm a(World var1, int var2) {
-		return new axd();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntityRecordPlayer();
 	}
 
 	public boolean N() {
@@ -74,9 +74,9 @@ public class BlockJukeBox extends atg {
 	}
 
 	public int l(World var1, Position var2) {
-		bcm var3 = var1.s(var2);
-		if (var3 instanceof axd) {
-			ItemStack var4 = ((axd) var3).a();
+		TileEntity var3 = var1.s(var2);
+		if (var3 instanceof TileEntityRecordPlayer) {
+			ItemStack var4 = ((TileEntityRecordPlayer) var3).a();
 			if (var4 != null) {
 				return Item.getId(var4.getItem()) + 1 - Item.getId(amk.cq);
 			}

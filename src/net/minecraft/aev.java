@@ -11,7 +11,7 @@ class aev extends zb {
 	}
 
 	public boolean a() {
-		return !this.a.o.Q().b("mobGriefing") ? false : (this.a.ck().c().r() != Material.AIR ? false : this.a.bb().nextInt(20) == 0);
+		return !this.a.o.Q().b("mobGriefing") ? false : (this.a.ck().getBlock().r() != Material.AIR ? false : this.a.bb().nextInt(20) == 0);
 	}
 
 	public void e() {
@@ -22,7 +22,7 @@ class aev extends zb {
 		int var5 = DataTypesConverter.toFixedPointInt(this.a.locationZ - 2.0D + var1.nextDouble() * 4.0D);
 		Position var6 = new Position(var3, var4, var5);
 		bec var7 = var2.p(var6);
-		Block var8 = var7.c();
+		Block var8 = var7.getBlock();
 		if (EntityEnderman.co().contains(var8)) {
 			this.a.a(var7);
 			var2.a(var6, aty.a.P());

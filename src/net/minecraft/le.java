@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class le implements Packet<PlayPacketListener> {
+public class le implements Packet<PlayClientboundPacketListener> {
 
 	private String a = "";
 	private String b = "";
@@ -104,7 +104,7 @@ public class le implements Packet<PlayPacketListener> {
 
 	}
 
-	public void handlePacket(PlayPacketListener var1) {
+	public void handlePacket(PlayClientboundPacketListener var1) {
 		var1.a(this);
 	}
 }

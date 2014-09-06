@@ -19,7 +19,7 @@ public class BlockWaterLily extends auc {
 	}
 
 	public brt a(World var1, Position var2, bec var3) {
-		return new brt((double) var2.n() + this.B, (double) var2.o() + this.C, (double) var2.p() + this.D, (double) var2.n() + this.E, (double) var2.o() + this.F, (double) var2.p() + this.G);
+		return new brt((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G);
 	}
 
 	protected boolean c(Block var1) {
@@ -27,9 +27,9 @@ public class BlockWaterLily extends auc {
 	}
 
 	public boolean f(World var1, Position var2, bec var3) {
-		if (var2.o() >= 0 && var2.o() < 256) {
+		if (var2.getY() >= 0 && var2.getY() < 256) {
 			bec var4 = var1.p(var2.b());
-			return var4.c().r() == Material.WATER && ((Integer) var4.b(axl.b)).intValue() == 0;
+			return var4.getBlock().r() == Material.WATER && ((Integer) var4.b(axl.b)).intValue() == 0;
 		} else {
 			return false;
 		}

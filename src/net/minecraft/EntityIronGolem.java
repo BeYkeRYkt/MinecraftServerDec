@@ -77,9 +77,9 @@ public class EntityIronGolem extends abw {
 			int var2 = DataTypesConverter.toFixedPointInt(this.locationY - 0.20000000298023224D);
 			int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
 			bec var4 = this.o.p(new Position(var1, var2, var3));
-			Block var5 = var4.c();
+			Block var5 = var4.getBlock();
 			if (var5.r() != Material.AIR) {
-				this.o.a(ew.L, this.locationX + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, this.aQ().b + 0.1D, this.locationZ + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, 4.0D * ((double) this.V.nextFloat() - 0.5D), 0.5D, ((double) this.V.nextFloat() - 0.5D) * 4.0D, new int[] { Block.f(var4) });
+				this.o.a(Particle.L, this.locationX + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, this.aQ().b + 0.1D, this.locationZ + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, 4.0D * ((double) this.V.nextFloat() - 0.5D), 0.5D, ((double) this.V.nextFloat() - 0.5D) * 4.0D, new int[] { Block.f(var4) });
 			}
 		}
 

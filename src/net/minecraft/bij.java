@@ -11,23 +11,23 @@ public class bij extends bhc {
 	public boolean b(World var1, Random var2, Position var3) {
 		int var4 = var2.nextInt(3) + var2.nextInt(2) + 6;
 		boolean var5 = true;
-		if (var3.o() >= 1 && var3.o() + var4 + 1 <= 256) {
+		if (var3.getY() >= 1 && var3.getY() + var4 + 1 <= 256) {
 			int var8;
 			int var9;
-			for (int var6 = var3.o(); var6 <= var3.o() + 1 + var4; ++var6) {
+			for (int var6 = var3.getY(); var6 <= var3.getY() + 1 + var4; ++var6) {
 				byte var7 = 1;
-				if (var6 == var3.o()) {
+				if (var6 == var3.getY()) {
 					var7 = 0;
 				}
 
-				if (var6 >= var3.o() + 1 + var4 - 2) {
+				if (var6 >= var3.getY() + 1 + var4 - 2) {
 					var7 = 2;
 				}
 
-				for (var8 = var3.n() - var7; var8 <= var3.n() + var7 && var5; ++var8) {
-					for (var9 = var3.p() - var7; var9 <= var3.p() + var7 && var5; ++var9) {
+				for (var8 = var3.getX() - var7; var8 <= var3.getX() + var7 && var5; ++var8) {
+					for (var9 = var3.getZ() - var7; var9 <= var3.getZ() + var7 && var5; ++var9) {
 						if (var6 >= 0 && var6 < 256) {
-							if (!this.a(var1.p(new Position(var8, var6, var9)).c())) {
+							if (!this.a(var1.p(new Position(var8, var6, var9)).getBlock())) {
 								var5 = false;
 							}
 						} else {
@@ -40,8 +40,8 @@ public class bij extends bhc {
 			if (!var5) {
 				return false;
 			} else {
-				Block var18 = var1.p(var3.b()).c();
-				if ((var18 == aty.c || var18 == aty.d) && var3.o() < 256 - var4 - 1) {
+				Block var18 = var1.p(var3.b()).getBlock();
+				if ((var18 == aty.c || var18 == aty.d) && var3.getY() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 					this.a(var1, var3.a(1, -1, 0));
 					this.a(var1, var3.a(1, -1, 1));
@@ -49,14 +49,14 @@ public class bij extends bhc {
 					PaintingDirection var19 = en.a.a(var2);
 					var8 = var4 - var2.nextInt(4);
 					var9 = 2 - var2.nextInt(3);
-					int var10 = var3.n();
-					int var11 = var3.p();
+					int var10 = var3.getX();
+					int var11 = var3.getZ();
 					int var12 = 0;
 
 					int var13;
 					int var14;
 					for (var13 = 0; var13 < var4; ++var13) {
-						var14 = var3.o() + var13;
+						var14 = var3.getY() + var13;
 						if (var13 >= var8 && var9 > 0) {
 							var10 += var19.g();
 							var11 += var19.i();
@@ -64,7 +64,7 @@ public class bij extends bhc {
 						}
 
 						Position var15 = new Position(var10, var14, var11);
-						Material var16 = var1.p(var15).c().r();
+						Material var16 = var1.p(var15).getBlock().r();
 						if (var16 == Material.AIR || var16 == Material.LEAVES) {
 							this.a(var1, var15, aty.s, ayx.f.a() - 4);
 							this.a(var1, var15.f(), aty.s, ayx.f.a() - 4);
@@ -113,7 +113,7 @@ public class bij extends bhc {
 
 								int var23;
 								for (var23 = 0; var23 < var22; ++var23) {
-									this.a(var1, new Position(var3.n() + var13, var12 - var23 - 1, var3.p() + var14), aty.s, ayx.f.a() - 4);
+									this.a(var1, new Position(var3.getX() + var13, var12 - var23 - 1, var3.getZ() + var14), aty.s, ayx.f.a() - 4);
 								}
 
 								int var17;
@@ -145,7 +145,7 @@ public class bij extends bhc {
 	}
 
 	private void a(World var1, int var2, int var3, int var4) {
-		Block var5 = var1.p(new Position(var2, var3, var4)).c();
+		Block var5 = var1.p(new Position(var2, var3, var4)).getBlock();
 		if (var5.r() == Material.AIR) {
 			this.a(var1, new Position(var2, var3, var4), aty.u, 1);
 		}

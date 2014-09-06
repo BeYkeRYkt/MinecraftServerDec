@@ -43,14 +43,14 @@ public class bpv {
 		this.b = var1;
 	}
 
-	public brw a(Entity var1, int var2) {
+	public Vec3D a(Entity var1, int var2) {
 		double var3 = (double) this.a[var2].a + (double) ((int) (var1.J + 1.0F)) * 0.5D;
 		double var5 = (double) this.a[var2].b;
 		double var7 = (double) this.a[var2].c + (double) ((int) (var1.J + 1.0F)) * 0.5D;
-		return new brw(var3, var5, var7);
+		return new Vec3D(var3, var5, var7);
 	}
 
-	public brw a(Entity var1) {
+	public Vec3D a(Entity var1) {
 		return this.a(var1, this.b);
 	}
 
@@ -70,8 +70,8 @@ public class bpv {
 		}
 	}
 
-	public boolean b(brw var1) {
+	public boolean b(Vec3D var1) {
 		bpt var2 = this.c();
-		return var2 == null ? false : var2.a == (int) var1.a && var2.c == (int) var1.c;
+		return var2 == null ? false : var2.a == (int) var1.x && var2.c == (int) var1.z;
 	}
 }

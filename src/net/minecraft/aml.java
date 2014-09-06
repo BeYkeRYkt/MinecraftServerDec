@@ -10,7 +10,7 @@ public class aml extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
-		Block var9 = var3.p(var4).c();
+		Block var9 = var3.p(var4).getBlock();
 		if (var9 instanceof BlockFence) {
 			if (var3.D) {
 				return true;
@@ -27,9 +27,9 @@ public class aml extends Item {
 		EntityLeash var3 = EntityLeash.b(var1, var2);
 		boolean var4 = false;
 		double var5 = 7.0D;
-		int var7 = var2.n();
-		int var8 = var2.o();
-		int var9 = var2.p();
+		int var7 = var2.getX();
+		int var8 = var2.getY();
+		int var9 = var2.getZ();
 		List var10 = var1.a(EntityInsentient.class, new brt((double) var7 - var5, (double) var8 - var5, (double) var9 - var5, (double) var7 + var5, (double) var8 + var5, (double) var9 + var5));
 		Iterator var11 = var10.iterator();
 

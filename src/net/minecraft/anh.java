@@ -18,10 +18,10 @@ public class anh extends Item {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
-			Block var10 = var9.c();
+			Block var10 = var9.getBlock();
 			boolean var11 = var10.f(var3, var4);
 			if (!var11) {
-				if (!var3.p(var4).c().r().isBuildable()) {
+				if (!var3.p(var4).getBlock().r().isBuildable()) {
 					return false;
 				}
 
@@ -40,9 +40,9 @@ public class anh extends Item {
 						var12 = DataTypesConverter.toFixedPointInt((double) (var2.yaw * 16.0F / 360.0F) + 0.5D) & 15;
 					}
 
-					bcm var13 = var3.s(var4);
-					if (var13 instanceof bdm) {
-						bdm var14 = (bdm) var13;
+					TileEntity var13 = var3.s(var4);
+					if (var13 instanceof TileEntitySkull) {
+						TileEntitySkull var14 = (TileEntitySkull) var13;
 						if (var1.i() == 3) {
 							GameProfile var15 = null;
 							if (var1.hasTag()) {
@@ -105,7 +105,7 @@ public class anh extends Item {
 		super.a(var1);
 		if (var1.isTagAssignableFrom("SkullOwner", 8) && var1.getString("SkullOwner").length() > 0) {
 			GameProfile var2 = new GameProfile((UUID) null, var1.getString("SkullOwner"));
-			var2 = bdm.b(var2);
+			var2 = TileEntitySkull.b(var2);
 			var1.put("SkullOwner", (NBTTag) ga.a(new NBTCompoundTag(), var2));
 			return true;
 		} else {

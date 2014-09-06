@@ -43,16 +43,16 @@ public class BlockHopper extends atg {
 		return this.P().a(a, var9).a(b, Boolean.valueOf(true));
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bde();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntityHopper();
 	}
 
 	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
 		super.a(var1, var2, var3, var4, var5);
 		if (var5.s()) {
-			bcm var6 = var1.s(var2);
-			if (var6 instanceof bde) {
-				((bde) var6).a(var5.q());
+			TileEntity var6 = var1.s(var2);
+			if (var6 instanceof TileEntityHopper) {
+				((TileEntityHopper) var6).a(var5.q());
 			}
 		}
 
@@ -66,9 +66,9 @@ public class BlockHopper extends atg {
 		if (var1.D) {
 			return true;
 		} else {
-			bcm var9 = var1.s(var2);
-			if (var9 instanceof bde) {
-				var4.a((IInventory) ((bde) var9));
+			TileEntity var9 = var1.s(var2);
+			if (var9 instanceof TileEntityHopper) {
+				var4.a((IInventory) ((TileEntityHopper) var9));
 			}
 
 			return true;
@@ -88,9 +88,9 @@ public class BlockHopper extends atg {
 	}
 
 	public void b(World var1, Position var2, bec var3) {
-		bcm var4 = var1.s(var2);
-		if (var4 instanceof bde) {
-			vs.a(var1, var2, (bde) var4);
+		TileEntity var4 = var1.s(var2);
+		if (var4 instanceof TileEntityHopper) {
+			vs.a(var1, var2, (TileEntityHopper) var4);
 			var1.e(var2, this);
 		}
 

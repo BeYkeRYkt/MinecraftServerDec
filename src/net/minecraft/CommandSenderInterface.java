@@ -12,7 +12,7 @@ public interface CommandSenderInterface {
 
 	Position c();
 
-	brw d();
+	Vec3D d();
 
 	World e();
 

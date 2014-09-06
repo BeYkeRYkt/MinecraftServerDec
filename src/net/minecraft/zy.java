@@ -32,13 +32,13 @@ public class zy extends zb {
 			}
 		}
 
-		brw var1 = abf.a(this.a, 10, 7);
+		Vec3D var1 = abf.a(this.a, 10, 7);
 		if (var1 == null) {
 			return false;
 		} else {
-			this.b = var1.a;
-			this.c = var1.b;
-			this.d = var1.c;
+			this.b = var1.x;
+			this.c = var1.y;
+			this.d = var1.z;
 			this.g = false;
 			return true;
 		}

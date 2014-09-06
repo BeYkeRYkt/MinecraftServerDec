@@ -12,13 +12,13 @@ public class bhn extends bhp {
 	private final bec d;
 
 	public bhn() {
-		this.b = aty.U.P().a(bbf.M, bbg.b).a(awq.a, awr.b);
+		this.b = aty.U.P().a(bbf.M, bbg.b).a(BlockStepAbstract.a, awr.b);
 		this.c = aty.A.P();
 		this.d = aty.i.P();
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
-		while (var1.d(var3) && var3.o() > 2) {
+		while (var1.d(var3) && var3.getY() > 2) {
 			var3 = var3.b();
 		}
 

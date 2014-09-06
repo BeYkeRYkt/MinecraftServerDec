@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class ix implements Packet<PlayPacketListener> {
+public class ix implements Packet<PlayClientboundPacketListener> {
 
 	private Difficulty a;
 	private boolean b;
@@ -13,7 +13,7 @@ public class ix implements Packet<PlayPacketListener> {
 		this.b = var2;
 	}
 
-	public void handlePacket(PlayPacketListener var1) {
+	public void handlePacket(PlayClientboundPacketListener var1) {
 		var1.a(this);
 	}
 

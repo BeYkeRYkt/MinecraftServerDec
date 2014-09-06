@@ -58,7 +58,7 @@ public abstract class ahl extends Entity {
 			super.s_();
 			this.e(1);
 			if (this.i) {
-				if (this.o.p(new Position(this.e, this.f, this.g)).c() == this.h) {
+				if (this.o.p(new Position(this.e, this.f, this.g)).getBlock() == this.h) {
 					++this.ap;
 					if (this.ap == 600) {
 						this.J();
@@ -77,13 +77,13 @@ public abstract class ahl extends Entity {
 				++this.aq;
 			}
 
-			brw var1 = new brw(this.locationX, this.locationY, this.locationZ);
-			brw var2 = new brw(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
+			Vec3D var1 = new Vec3D(this.locationX, this.locationY, this.locationZ);
+			Vec3D var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 			bru var3 = this.o.a(var1, var2);
-			var1 = new brw(this.locationX, this.locationY, this.locationZ);
-			var2 = new brw(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
+			var1 = new Vec3D(this.locationX, this.locationY, this.locationZ);
+			var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 			if (var3 != null) {
-				var2 = new brw(var3.c.a, var3.c.b, var3.c.c);
+				var2 = new Vec3D(var3.c.x, var3.c.y, var3.c.z);
 			}
 
 			Entity var4 = null;
@@ -142,7 +142,7 @@ public abstract class ahl extends Entity {
 			if (this.V()) {
 				for (int var17 = 0; var17 < 4; ++var17) {
 					float var18 = 0.25F;
-					this.o.a(ew.e, this.locationX - this.motionX * (double) var18, this.locationY - this.motionY * (double) var18, this.locationZ - this.motionZ * (double) var18, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.o.a(Particle.e, this.locationX - this.motionX * (double) var18, this.locationY - this.motionY * (double) var18, this.locationZ - this.motionZ * (double) var18, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 
 				var16 = 0.8F;
@@ -154,7 +154,7 @@ public abstract class ahl extends Entity {
 			this.motionX *= (double) var16;
 			this.motionY *= (double) var16;
 			this.motionZ *= (double) var16;
-			this.o.a(ew.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.o.a(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 			this.b(this.locationX, this.locationY, this.locationZ);
 		}
 	}
@@ -211,11 +211,11 @@ public abstract class ahl extends Entity {
 		} else {
 			this.ac();
 			if (var1.j() != null) {
-				brw var3 = var1.j().ap();
+				Vec3D var3 = var1.j().ap();
 				if (var3 != null) {
-					this.motionX = var3.a;
-					this.motionY = var3.b;
-					this.motionZ = var3.c;
+					this.motionX = var3.x;
+					this.motionY = var3.y;
+					this.motionZ = var3.z;
 					this.b = this.motionX * 0.1D;
 					this.c = this.motionY * 0.1D;
 					this.d = this.motionZ * 0.1D;

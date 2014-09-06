@@ -28,7 +28,7 @@ public class akb extends Item {
 					}
 
 					bec var7 = var2.p(var6);
-					Material var8 = var7.c().r();
+					Material var8 = var7.getBlock().r();
 					if (var8 == Material.WATER && ((Integer) var7.b(axl.b)).intValue() == 0) {
 						var2.g(var6);
 						var3.b(StatisticList.J[Item.getId((Item) this)]);
@@ -79,19 +79,19 @@ public class akb extends Item {
 		if (this.a == aty.a) {
 			return false;
 		} else {
-			Material var3 = var1.p(var2).c().r();
+			Material var3 = var1.p(var2).getBlock().r();
 			boolean var4 = !var3.isBuildable();
 			if (!var1.d(var2) && !var4) {
 				return false;
 			} else {
 				if (var1.worldProvider.n() && this.a == aty.i) {
-					int var5 = var2.n();
-					int var6 = var2.o();
-					int var7 = var2.p();
+					int var5 = var2.getX();
+					int var6 = var2.getY();
+					int var7 = var2.getZ();
 					var1.a((double) ((float) var5 + 0.5F), (double) ((float) var6 + 0.5F), (double) ((float) var7 + 0.5F), "random.fizz", 0.5F, 2.6F + (var1.s.nextFloat() - var1.s.nextFloat()) * 0.8F);
 
 					for (int var8 = 0; var8 < 8; ++var8) {
-						var1.a(ew.m, (double) var5 + Math.random(), (double) var6 + Math.random(), (double) var7 + Math.random(), 0.0D, 0.0D, 0.0D, new int[0]);
+						var1.a(Particle.m, (double) var5 + Math.random(), (double) var6 + Math.random(), (double) var7 + Math.random(), 0.0D, 0.0D, 0.0D, new int[0]);
 					}
 				} else {
 					if (!var1.D && var4 && !var3.isLiquid()) {

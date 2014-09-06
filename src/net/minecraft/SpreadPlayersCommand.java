@@ -31,10 +31,10 @@ public class SpreadPlayersCommand extends AbstractCommand {
 		} else {
 			byte var3 = 0;
 			Position var4 = var1.c();
-			double var10000 = (double) var4.n();
+			double var10000 = (double) var4.getX();
 			int var17 = var3 + 1;
 			double var5 = b(var10000, var2[var3], true);
-			double var7 = b((double) var4.p(), var2[var17++], true);
+			double var7 = b((double) var4.getZ(), var2[var17++], true);
 			double var9 = a(var2[var17++], 0.0D);
 			double var11 = a(var2[var17++], var9 + 1.0D);
 			boolean var13 = d(var2[var17++]);

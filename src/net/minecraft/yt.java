@@ -93,7 +93,7 @@ public class yt extends zb {
 				double var5 = var3.nextGaussian() * 0.02D;
 				double var7 = var3.nextGaussian() * 0.02D;
 				double var9 = var3.nextGaussian() * 0.02D;
-				this.a.a(ew.I, this.d.locationX + (double) (var3.nextFloat() * this.d.J * 2.0F) - (double) this.d.J, this.d.locationY + 0.5D + (double) (var3.nextFloat() * this.d.K), this.d.locationZ + (double) (var3.nextFloat() * this.d.J * 2.0F) - (double) this.d.J, var5, var7, var9, new int[0]);
+				this.a.a(Particle.I, this.d.locationX + (double) (var3.nextFloat() * this.d.J * 2.0F) - (double) this.d.J, this.d.locationY + 0.5D + (double) (var3.nextFloat() * this.d.K), this.d.locationZ + (double) (var3.nextFloat() * this.d.J * 2.0F) - (double) this.d.J, var5, var7, var9, new int[0]);
 			}
 
 			if (this.a.Q().b("doMobLoot")) {

@@ -21,7 +21,7 @@ public class atk {
 		this.b = var2;
 		this.c = var3;
 		this.e = var4;
-		this.d = (ati) var4.c();
+		this.d = (ati) var4.getBlock();
 		atl var5 = (atl) var4.b(var1.l());
 		this.f = this.d.a;
 		this.a(var5);
@@ -113,7 +113,7 @@ public class atk {
 	private boolean c(Position var1) {
 		for (int var2 = 0; var2 < this.g.size(); ++var2) {
 			Position var3 = (Position) this.g.get(var2);
-			if (var3.n() == var1.n() && var3.p() == var1.p()) {
+			if (var3.getX() == var1.getX() && var3.getZ() == var1.getZ()) {
 				return true;
 			}
 		}

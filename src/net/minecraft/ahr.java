@@ -84,7 +84,7 @@ public abstract class ahr extends Entity implements aho {
 		}
 
 		if (this.a) {
-			if (this.o.p(new Position(this.c, this.d, this.e)).c() == this.f) {
+			if (this.o.p(new Position(this.c, this.d, this.e)).getBlock() == this.f) {
 				++this.i;
 				if (this.i == 1200) {
 					this.J();
@@ -103,13 +103,13 @@ public abstract class ahr extends Entity implements aho {
 			++this.ap;
 		}
 
-		brw var1 = new brw(this.locationX, this.locationY, this.locationZ);
-		brw var2 = new brw(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
+		Vec3D var1 = new Vec3D(this.locationX, this.locationY, this.locationZ);
+		Vec3D var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 		bru var3 = this.o.a(var1, var2);
-		var1 = new brw(this.locationX, this.locationY, this.locationZ);
-		var2 = new brw(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
+		var1 = new Vec3D(this.locationX, this.locationY, this.locationZ);
+		var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 		if (var3 != null) {
-			var2 = new brw(var3.c.a, var3.c.b, var3.c.c);
+			var2 = new Vec3D(var3.c.x, var3.c.y, var3.c.z);
 		}
 
 		if (!this.o.D) {
@@ -140,7 +140,7 @@ public abstract class ahr extends Entity implements aho {
 		}
 
 		if (var3 != null) {
-			if (var3.a == brv.b && this.o.p(var3.a()).c() == aty.aY) {
+			if (var3.a == brv.b && this.o.p(var3.a()).getBlock() == aty.aY) {
 				this.aq();
 			} else {
 				this.a(var3);
@@ -176,7 +176,7 @@ public abstract class ahr extends Entity implements aho {
 		if (this.V()) {
 			for (int var7 = 0; var7 < 4; ++var7) {
 				float var19 = 0.25F;
-				this.o.a(ew.e, this.locationX - this.motionX * (double) var19, this.locationY - this.motionY * (double) var19, this.locationZ - this.motionZ * (double) var19, this.motionX, this.motionY, this.motionZ, new int[0]);
+				this.o.a(Particle.e, this.locationX - this.motionX * (double) var19, this.locationY - this.motionY * (double) var19, this.locationZ - this.motionZ * (double) var19, this.motionX, this.motionY, this.motionZ, new int[0]);
 			}
 
 			var17 = 0.8F;

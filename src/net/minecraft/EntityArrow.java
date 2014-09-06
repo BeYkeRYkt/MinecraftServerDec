@@ -109,11 +109,11 @@ public class EntityArrow extends Entity implements aho {
 
 		Position var18 = new Position(this.d, this.e, this.f);
 		bec var2 = this.o.p(var18);
-		Block var3 = var2.c();
+		Block var3 = var2.getBlock();
 		if (var3.r() != Material.AIR) {
 			var3.a((ard) this.o, var18);
 			brt var4 = var3.a(this.o, var18, var2);
-			if (var4 != null && var4.a(new brw(this.locationX, this.locationY, this.locationZ))) {
+			if (var4 != null && var4.a(new Vec3D(this.locationX, this.locationY, this.locationZ))) {
 				this.i = true;
 			}
 		}
@@ -140,13 +140,13 @@ public class EntityArrow extends Entity implements aho {
 			}
 		} else {
 			++this.aq;
-			brw var19 = new brw(this.locationX, this.locationY, this.locationZ);
-			brw var5 = new brw(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
+			Vec3D var19 = new Vec3D(this.locationX, this.locationY, this.locationZ);
+			Vec3D var5 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 			bru var6 = this.o.a(var19, var5, false, true, false);
-			var19 = new brw(this.locationX, this.locationY, this.locationZ);
-			var5 = new brw(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
+			var19 = new Vec3D(this.locationX, this.locationY, this.locationZ);
+			var5 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 			if (var6 != null) {
-				var5 = new brw(var6.c.a, var6.c.b, var6.c.c);
+				var5 = new Vec3D(var6.c.x, var6.c.y, var6.c.z);
 			}
 
 			Entity var7 = null;
@@ -224,7 +224,7 @@ public class EntityArrow extends Entity implements aho {
 							}
 
 							if (this.c != null && var6.d != this.c && var6.d instanceof EntityHuman && this.c instanceof EntityPlayer) {
-								((EntityPlayer) this.c).playerConncetion.sendPacket((Packet) (new jo(6, 0.0F)));
+								((EntityPlayer) this.c).playerConncetion.sendPacket((Packet) (new PacketOutChangeGameState(6, 0.0F)));
 							}
 						}
 
@@ -242,15 +242,15 @@ public class EntityArrow extends Entity implements aho {
 					}
 				} else {
 					Position var23 = var6.a();
-					this.d = var23.n();
-					this.e = var23.o();
-					this.f = var23.p();
+					this.d = var23.getX();
+					this.e = var23.getY();
+					this.f = var23.getZ();
 					var2 = this.o.p(var23);
-					this.g = var2.c();
+					this.g = var2.getBlock();
 					this.h = this.g.c(var2);
-					this.motionX = (double) ((float) (var6.c.a - this.locationX));
-					this.motionY = (double) ((float) (var6.c.b - this.locationY));
-					this.motionZ = (double) ((float) (var6.c.c - this.locationZ));
+					this.motionX = (double) ((float) (var6.c.x - this.locationX));
+					this.motionY = (double) ((float) (var6.c.y - this.locationY));
+					this.motionZ = (double) ((float) (var6.c.z - this.locationZ));
 					var25 = DataTypesConverter.a(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
 					this.locationX -= this.motionX / (double) var25 * 0.05000000074505806D;
 					this.locationY -= this.motionY / (double) var25 * 0.05000000074505806D;
@@ -267,7 +267,7 @@ public class EntityArrow extends Entity implements aho {
 
 			if (this.l()) {
 				for (var11 = 0; var11 < 4; ++var11) {
-					this.o.a(ew.j, this.locationX + this.motionX * (double) var11 / 4.0D, this.locationY + this.motionY * (double) var11 / 4.0D, this.locationZ + this.motionZ * (double) var11 / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
+					this.o.a(Particle.j, this.locationX + this.motionX * (double) var11 / 4.0D, this.locationY + this.motionY * (double) var11 / 4.0D, this.locationZ + this.motionZ * (double) var11 / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
 				}
 			}
 
@@ -300,7 +300,7 @@ public class EntityArrow extends Entity implements aho {
 			if (this.V()) {
 				for (int var28 = 0; var28 < 4; ++var28) {
 					var29 = 0.25F;
-					this.o.a(ew.e, this.locationX - this.motionX * (double) var29, this.locationY - this.motionY * (double) var29, this.locationZ - this.motionZ * (double) var29, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.o.a(Particle.e, this.locationX - this.motionX * (double) var29, this.locationY - this.motionY * (double) var29, this.locationZ - this.motionZ * (double) var29, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 
 				var25 = 0.6F;

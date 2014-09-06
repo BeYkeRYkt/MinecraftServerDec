@@ -5,15 +5,16 @@ import java.util.Collection;
 
 public interface bec {
 
-	Collection a();
+	Collection<?> a();
 
-	Comparable b(bex var1);
+	Comparable<?> b(bex<?> var1);
 
-	bec a(bex var1, Comparable var2);
+	bec a(bex<?> var1, Comparable<?> var2);
 
-	bec a(bex var1);
+	bec a(bex<?> var1);
 
-	ImmutableMap b();
+	ImmutableMap<?, ?> b();
 
-	Block c();
+	Block getBlock();
+
 }

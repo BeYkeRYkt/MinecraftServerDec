@@ -11,7 +11,7 @@ public class EntityLeash extends adj {
 
 	public EntityLeash(World var1, Position var2) {
 		super(var1, var2);
-		this.b((double) var2.n() + 0.5D, (double) var2.o() + 0.5D, (double) var2.p() + 0.5D);
+		this.b((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D);
 		float var3 = 0.125F;
 		float var4 = 0.1875F;
 		float var5 = 0.25F;
@@ -91,7 +91,7 @@ public class EntityLeash extends adj {
 	}
 
 	public boolean j() {
-		return this.o.p(this.a).c() instanceof BlockFence;
+		return this.o.p(this.a).getBlock() instanceof BlockFence;
 	}
 
 	public static EntityLeash a(World var0, Position var1) {
@@ -102,9 +102,9 @@ public class EntityLeash extends adj {
 	}
 
 	public static EntityLeash b(World var0, Position var1) {
-		int var2 = var1.n();
-		int var3 = var1.o();
-		int var4 = var1.p();
+		int var2 = var1.getX();
+		int var3 = var1.getY();
+		int var4 = var1.getZ();
 		List var5 = var0.a(EntityLeash.class, new brt((double) var2 - 1.0D, (double) var3 - 1.0D, (double) var4 - 1.0D, (double) var2 + 1.0D, (double) var3 + 1.0D, (double) var4 + 1.0D));
 		Iterator var6 = var5.iterator();
 

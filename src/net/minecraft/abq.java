@@ -31,7 +31,7 @@ public abstract class abq extends ws implements wt {
 				double var1 = this.V.nextGaussian() * 0.02D;
 				double var3 = this.V.nextGaussian() * 0.02D;
 				double var5 = this.V.nextGaussian() * 0.02D;
-				this.o.a(ew.I, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var1, var3, var5, new int[0]);
+				this.o.a(Particle.I, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var1, var3, var5, new int[0]);
 			}
 		}
 
@@ -47,7 +47,7 @@ public abstract class abq extends ws implements wt {
 	}
 
 	public float a(Position var1) {
-		return this.o.p(var1.b()).c() == aty.c ? 10.0F : this.o.o(var1) - 0.5F;
+		return this.o.p(var1.b()).getBlock() == aty.c ? 10.0F : this.o.o(var1) - 0.5F;
 	}
 
 	public void b(NBTCompoundTag var1) {
@@ -65,7 +65,7 @@ public abstract class abq extends ws implements wt {
 		int var2 = DataTypesConverter.toFixedPointInt(this.aQ().b);
 		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
 		Position var4 = new Position(var1, var2, var3);
-		return this.o.p(var4.b()).c() == this.bl && this.o.k(var4) > 8 && super.bQ();
+		return this.o.p(var4.b()).getBlock() == this.bl && this.o.k(var4) > 8 && super.bQ();
 	}
 
 	public int w() {

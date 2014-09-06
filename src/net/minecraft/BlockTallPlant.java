@@ -21,7 +21,7 @@ public class BlockTallPlant extends auc implements atz {
 
 	public avk e(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
-		if (var3.c() == this) {
+		if (var3.getBlock() == this) {
 			var3 = this.a(var3, var1, var2);
 			return (avk) var3.b(a);
 		} else {
@@ -35,7 +35,7 @@ public class BlockTallPlant extends auc implements atz {
 
 	public boolean f(World var1, Position var2) {
 		bec var3 = var1.p(var2);
-		if (var3.c() != this) {
+		if (var3.getBlock() != this) {
 			return true;
 		} else {
 			avk var4 = (avk) this.a(var3, var1, var2).b(a);
@@ -48,8 +48,8 @@ public class BlockTallPlant extends auc implements atz {
 			boolean var4 = var3.b(b) == avj.a;
 			Position var5 = var4 ? var2 : var2.a();
 			Position var6 = var4 ? var2.b() : var2;
-			Object var7 = var4 ? this : var1.p(var5).c();
-			Object var8 = var4 ? var1.p(var6).c() : this;
+			Object var7 = var4 ? this : var1.p(var5).getBlock();
+			Object var8 = var4 ? var1.p(var6).getBlock() : this;
 			if (var7 == this) {
 				var1.a(var5, aty.a.P(), 3);
 			}
@@ -66,10 +66,10 @@ public class BlockTallPlant extends auc implements atz {
 
 	public boolean f(World var1, Position var2, bec var3) {
 		if (var3.b(b) == avj.a) {
-			return var1.p(var2.b()).c() == this;
+			return var1.p(var2.b()).getBlock() == this;
 		} else {
 			bec var4 = var1.p(var2.a());
-			return var4.c() == this && super.f(var1, var2, var4);
+			return var4.getBlock() == this && super.f(var1, var2, var4);
 		}
 	}
 
@@ -95,7 +95,7 @@ public class BlockTallPlant extends auc implements atz {
 		var1.a(var2.a(), this.P().a(b, avj.a), 2);
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, bec var4, bcm var5) {
+	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
 		if (var1.D || var2.bY() == null || var2.bY().getItem() != amk.be || var4.b(b) != avj.b || !this.b(var1, var3, var4, var2)) {
 			super.a(var1, var2, var3, var4, var5);
 		}
@@ -103,7 +103,7 @@ public class BlockTallPlant extends auc implements atz {
 
 	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
 		if (var3.b(b) == avj.a) {
-			if (var1.p(var2.b()).c() == this) {
+			if (var1.p(var2.b()).getBlock() == this) {
 				if (!var4.by.instabuild) {
 					bec var5 = var1.p(var2.b());
 					avk var6 = (avk) var5.b(a);
@@ -123,7 +123,7 @@ public class BlockTallPlant extends auc implements atz {
 					var1.g(var2.b());
 				}
 			}
-		} else if (var4.by.instabuild && var1.p(var2.a()).c() == this) {
+		} else if (var4.by.instabuild && var1.p(var2.a()).getBlock() == this) {
 			var1.a(var2.a(), aty.a.P(), 2);
 		}
 
@@ -166,7 +166,7 @@ public class BlockTallPlant extends auc implements atz {
 	public bec a(bec var1, ard var2, Position var3) {
 		if (var1.b(b) == avj.a) {
 			bec var4 = var2.p(var3.b());
-			if (var4.c() == this) {
+			if (var4.getBlock() == this) {
 				var1 = var1.a(a, var4.b(a));
 			}
 		}

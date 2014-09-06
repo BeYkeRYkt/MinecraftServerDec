@@ -39,8 +39,8 @@ public class tc implements CommandSenderInterface {
 		return new Position(0, 0, 0);
 	}
 
-	public brw d() {
-		return new brw(0.0D, 0.0D, 0.0D);
+	public Vec3D d() {
+		return new Vec3D(0.0D, 0.0D, 0.0D);
 	}
 
 	public World e() {

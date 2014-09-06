@@ -72,28 +72,28 @@ public class aiq extends Container {
 					for (var4 = -1; var4 <= 1; ++var4) {
 						for (int var5 = -1; var5 <= 1; ++var5) {
 							if ((var4 != 0 || var5 != 0) && this.i.d(this.j.a(var5, 0, var4)) && this.i.d(this.j.a(var5, 1, var4))) {
-								if (this.i.p(this.j.a(var5 * 2, 0, var4 * 2)).c() == aty.X) {
+								if (this.i.p(this.j.a(var5 * 2, 0, var4 * 2)).getBlock() == aty.X) {
 									++var3;
 								}
 
-								if (this.i.p(this.j.a(var5 * 2, 1, var4 * 2)).c() == aty.X) {
+								if (this.i.p(this.j.a(var5 * 2, 1, var4 * 2)).getBlock() == aty.X) {
 									++var3;
 								}
 
 								if (var5 != 0 && var4 != 0) {
-									if (this.i.p(this.j.a(var5 * 2, 0, var4)).c() == aty.X) {
+									if (this.i.p(this.j.a(var5 * 2, 0, var4)).getBlock() == aty.X) {
 										++var3;
 									}
 
-									if (this.i.p(this.j.a(var5 * 2, 1, var4)).c() == aty.X) {
+									if (this.i.p(this.j.a(var5 * 2, 1, var4)).getBlock() == aty.X) {
 										++var3;
 									}
 
-									if (this.i.p(this.j.a(var5, 0, var4 * 2)).c() == aty.X) {
+									if (this.i.p(this.j.a(var5, 0, var4 * 2)).getBlock() == aty.X) {
 										++var3;
 									}
 
-									if (this.i.p(this.j.a(var5, 1, var4 * 2)).c() == aty.X) {
+									if (this.i.p(this.j.a(var5, 1, var4 * 2)).getBlock() == aty.X) {
 										++var3;
 									}
 								}
@@ -201,7 +201,7 @@ public class aiq extends Container {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.i.p(this.j).c() != aty.bC ? false : var1.e((double) this.j.n() + 0.5D, (double) this.j.o() + 0.5D, (double) this.j.p() + 0.5D) <= 64.0D;
+		return this.i.p(this.j).getBlock() != aty.bC ? false : var1.e((double) this.j.getX() + 0.5D, (double) this.j.getY() + 0.5D, (double) this.j.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {

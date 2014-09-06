@@ -42,7 +42,7 @@ public class asb extends arm {
 			var7 = var2.nextInt(28) + 4;
 			int var8 = var2.nextInt(16);
 			Position var9 = var3.a(var6, var7, var8);
-			if (var1.p(var9).c() == aty.b) {
+			if (var1.p(var9).getBlock() == aty.b) {
 				var1.a(var9, aty.bP.P(), 2);
 			}
 		}

@@ -113,7 +113,7 @@ public class BlockMinecartDetector extends ati {
 
 	private brt a(Position var1) {
 		float var2 = 0.2F;
-		return new brt((double) ((float) var1.n() + 0.2F), (double) var1.o(), (double) ((float) var1.p() + 0.2F), (double) ((float) (var1.n() + 1) - 0.2F), (double) ((float) (var1.o() + 1) - 0.2F), (double) ((float) (var1.p() + 1) - 0.2F));
+		return new brt((double) ((float) var1.getX() + 0.2F), (double) var1.getY(), (double) ((float) var1.getZ() + 0.2F), (double) ((float) (var1.getX() + 1) - 0.2F), (double) ((float) (var1.getY() + 1) - 0.2F), (double) ((float) (var1.getZ() + 1) - 0.2F));
 	}
 
 	public bec a(int var1) {

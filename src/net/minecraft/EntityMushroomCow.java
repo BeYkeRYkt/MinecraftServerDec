@@ -24,7 +24,7 @@ public class EntityMushroomCow extends EntityCow {
 
 		if (var2 != null && var2.getItem() == amk.be && this.l() >= 0) {
 			this.J();
-			this.o.a(ew.b, this.locationX, this.locationY + (double) (this.K / 2.0F), this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.o.a(Particle.b, this.locationX, this.locationY + (double) (this.K / 2.0F), this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 			if (!this.o.D) {
 				EntityCow var3 = new EntityCow(this.o);
 				var3.b(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);

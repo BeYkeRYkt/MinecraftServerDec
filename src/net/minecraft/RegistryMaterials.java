@@ -15,7 +15,7 @@ public class RegistryMaterials extends RegistrySimple implements Registry {
 	}
 
 	public void register(int var1, Object var2, Object var3) {
-		this.a.a(var3, var1);
+		this.a.register(var3, var1);
 		this.a(var2, var3);
 	}
 
@@ -35,12 +35,12 @@ public class RegistryMaterials extends RegistrySimple implements Registry {
 		return super.d(var1);
 	}
 
-	public int b(Object var1) {
-		return this.a.b(var1);
+	public int getBlockId(Object var1) {
+		return this.a.getId(var1);
 	}
 
 	public Object getById(int var1) {
-		return this.a.a(var1);
+		return this.a.getObject(var1);
 	}
 
 	public Iterator<Object> iterator() {

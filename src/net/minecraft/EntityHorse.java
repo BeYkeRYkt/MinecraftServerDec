@@ -288,7 +288,7 @@ public class EntityHorse extends abq implements vr {
 				this.l.a(wh.i, (float) var3);
 			}
 
-			Block var4 = this.o.p(new Position(this.locationX, this.locationY - 0.2D - (double) this.A, this.locationZ)).c();
+			Block var4 = this.o.p(new Position(this.locationX, this.locationY - 0.2D - (double) this.A, this.locationZ)).getBlock();
 			if (var4.r() != Material.AIR && !this.R()) {
 				BlockSound var5 = var4.H;
 				this.o.a((Entity) this, var5.c(), var5.d() * 0.5F, var5.e() * 0.75F);
@@ -422,7 +422,7 @@ public class EntityHorse extends abq implements vr {
 
 	protected void a(Position var1, Block var2) {
 		BlockSound var3 = var2.H;
-		if (this.o.p(var1.a()).c() == aty.aH) {
+		if (this.o.p(var1.a()).getBlock() == aty.aH) {
 			var3 = aty.aH.H;
 		}
 
@@ -677,7 +677,7 @@ public class EntityHorse extends abq implements vr {
 				this.g(1.0F);
 			}
 
-			if (!this.cw() && this.l == null && this.V.nextInt(300) == 0 && this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.locationY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).c() == aty.c) {
+			if (!this.cw() && this.l == null && this.V.nextInt(300) == 0 && this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.locationY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock() == aty.c) {
 				this.r(true);
 			}
 

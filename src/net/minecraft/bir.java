@@ -24,23 +24,23 @@ public class bir extends bhc {
 	public boolean b(World var1, Random var2, Position var3) {
 		int var4 = var2.nextInt(3) + this.a;
 		boolean var5 = true;
-		if (var3.o() >= 1 && var3.o() + var4 + 1 <= 256) {
+		if (var3.getY() >= 1 && var3.getY() + var4 + 1 <= 256) {
 			byte var7;
 			int var9;
-			for (int var6 = var3.o(); var6 <= var3.o() + 1 + var4; ++var6) {
+			for (int var6 = var3.getY(); var6 <= var3.getY() + 1 + var4; ++var6) {
 				var7 = 1;
-				if (var6 == var3.o()) {
+				if (var6 == var3.getY()) {
 					var7 = 0;
 				}
 
-				if (var6 >= var3.o() + 1 + var4 - 2) {
+				if (var6 >= var3.getY() + 1 + var4 - 2) {
 					var7 = 2;
 				}
 
-				for (int var8 = var3.n() - var7; var8 <= var3.n() + var7 && var5; ++var8) {
-					for (var9 = var3.p() - var7; var9 <= var3.p() + var7 && var5; ++var9) {
+				for (int var8 = var3.getX() - var7; var8 <= var3.getX() + var7 && var5; ++var8) {
+					for (var9 = var3.getZ() - var7; var9 <= var3.getZ() + var7 && var5; ++var9) {
 						if (var6 >= 0 && var6 < 256) {
-							if (!this.a(var1.p(new Position(var8, var6, var9)).c())) {
+							if (!this.a(var1.p(new Position(var8, var6, var9)).getBlock())) {
 								var5 = false;
 							}
 						} else {
@@ -53,8 +53,8 @@ public class bir extends bhc {
 			if (!var5) {
 				return false;
 			} else {
-				Block var19 = var1.p(var3.b()).c();
-				if ((var19 == aty.c || var19 == aty.d || var19 == aty.ak) && var3.o() < 256 - var4 - 1) {
+				Block var19 = var1.p(var3.b()).getBlock();
+				if ((var19 == aty.c || var19 == aty.d || var19 == aty.ak) && var3.getY() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 					var7 = 3;
 					byte var20 = 0;
@@ -64,18 +64,18 @@ public class bir extends bhc {
 					int var12;
 					int var13;
 					Position var16;
-					for (var9 = var3.o() - var7 + var4; var9 <= var3.o() + var4; ++var9) {
-						var10 = var9 - (var3.o() + var4);
+					for (var9 = var3.getY() - var7 + var4; var9 <= var3.getY() + var4; ++var9) {
+						var10 = var9 - (var3.getY() + var4);
 						var11 = var20 + 1 - var10 / 2;
 
-						for (var12 = var3.n() - var11; var12 <= var3.n() + var11; ++var12) {
-							var13 = var12 - var3.n();
+						for (var12 = var3.getX() - var11; var12 <= var3.getX() + var11; ++var12) {
+							var13 = var12 - var3.getX();
 
-							for (int var14 = var3.p() - var11; var14 <= var3.p() + var11; ++var14) {
-								int var15 = var14 - var3.p();
+							for (int var14 = var3.getZ() - var11; var14 <= var3.getZ() + var11; ++var14) {
+								int var15 = var14 - var3.getZ();
 								if (Math.abs(var13) != var11 || Math.abs(var15) != var11 || var2.nextInt(2) != 0 && var10 != 0) {
 									var16 = new Position(var12, var9, var14);
-									Block var17 = var1.p(var16).c();
+									Block var17 = var1.p(var16).getBlock();
 									if (var17.r() == Material.AIR || var17.r() == Material.LEAVES || var17.r() == Material.REPLACEABLE_PLANT) {
 										this.a(var1, var16, aty.t, this.d);
 									}
@@ -85,7 +85,7 @@ public class bir extends bhc {
 					}
 
 					for (var9 = 0; var9 < var4; ++var9) {
-						Block var21 = var1.p(var3.b(var9)).c();
+						Block var21 = var1.p(var3.b(var9)).getBlock();
 						if (var21.r() == Material.AIR || var21.r() == Material.LEAVES || var21.r() == Material.REPLACEABLE_PLANT) {
 							this.a(var1, var3.b(var9), aty.r, this.c);
 							if (this.b && var9 > 0) {
@@ -109,31 +109,31 @@ public class bir extends bhc {
 					}
 
 					if (this.b) {
-						for (var9 = var3.o() - 3 + var4; var9 <= var3.o() + var4; ++var9) {
-							var10 = var9 - (var3.o() + var4);
+						for (var9 = var3.getY() - 3 + var4; var9 <= var3.getY() + var4; ++var9) {
+							var10 = var9 - (var3.getY() + var4);
 							var11 = 2 - var10 / 2;
 
-							for (var12 = var3.n() - var11; var12 <= var3.n() + var11; ++var12) {
-								for (var13 = var3.p() - var11; var13 <= var3.p() + var11; ++var13) {
+							for (var12 = var3.getX() - var11; var12 <= var3.getX() + var11; ++var12) {
+								for (var13 = var3.getZ() - var11; var13 <= var3.getZ() + var11; ++var13) {
 									Position var23 = new Position(var12, var9, var13);
-									if (var1.p(var23).c().r() == Material.LEAVES) {
+									if (var1.p(var23).getBlock().r() == Material.LEAVES) {
 										Position var24 = var23.e();
 										var16 = var23.f();
 										Position var25 = var23.c();
 										Position var18 = var23.d();
-										if (var2.nextInt(4) == 0 && var1.p(var24).c().r() == Material.AIR) {
+										if (var2.nextInt(4) == 0 && var1.p(var24).getBlock().r() == Material.AIR) {
 											this.a(var1, var24, BlockVine.S);
 										}
 
-										if (var2.nextInt(4) == 0 && var1.p(var16).c().r() == Material.AIR) {
+										if (var2.nextInt(4) == 0 && var1.p(var16).getBlock().r() == Material.AIR) {
 											this.a(var1, var16, BlockVine.T);
 										}
 
-										if (var2.nextInt(4) == 0 && var1.p(var25).c().r() == Material.AIR) {
+										if (var2.nextInt(4) == 0 && var1.p(var25).getBlock().r() == Material.AIR) {
 											this.a(var1, var25, BlockVine.Q);
 										}
 
-										if (var2.nextInt(4) == 0 && var1.p(var18).c().r() == Material.AIR) {
+										if (var2.nextInt(4) == 0 && var1.p(var18).getBlock().r() == Material.AIR) {
 											this.a(var1, var18, BlockVine.R);
 										}
 									}
@@ -168,7 +168,7 @@ public class bir extends bhc {
 		this.a(var1, var2, aty.bn, var3);
 		int var4 = 4;
 
-		for (var2 = var2.b(); var1.p(var2).c().r() == Material.AIR && var4 > 0; --var4) {
+		for (var2 = var2.b(); var1.p(var2).getBlock().r() == Material.AIR && var4 > 0; --var4) {
 			this.a(var1, var2, aty.bn, var3);
 			var2 = var2.b();
 		}

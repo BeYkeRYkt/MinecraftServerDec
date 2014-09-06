@@ -14,21 +14,21 @@ public class BlockMycel extends Block {
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
-		Block var4 = var2.p(var3.a()).c();
+		Block var4 = var2.p(var3.a()).getBlock();
 		return var1.a(a, Boolean.valueOf(var4 == aty.aJ || var4 == aty.aH));
 	}
 
 	public void b(World var1, Position var2, bec var3, Random var4) {
 		if (!var1.D) {
-			if (var1.l(var2.a()) < 4 && var1.p(var2.a()).c().n() > 2) {
+			if (var1.l(var2.a()) < 4 && var1.p(var2.a()).getBlock().n() > 2) {
 				var1.a(var2, aty.d.P().a(BlockDirt.a, avd.a));
 			} else {
 				if (var1.l(var2.a()) >= 9) {
 					for (int var5 = 0; var5 < 4; ++var5) {
 						Position var6 = var2.a(var4.nextInt(3) - 1, var4.nextInt(5) - 3, var4.nextInt(3) - 1);
 						bec var7 = var1.p(var6);
-						Block var8 = var1.p(var6.a()).c();
-						if (var7.c() == aty.d && var7.b(BlockDirt.a) == avd.a && var1.l(var6.a()) >= 4 && var8.n() <= 2) {
+						Block var8 = var1.p(var6.a()).getBlock();
+						if (var7.getBlock() == aty.d && var7.b(BlockDirt.a) == avd.a && var1.l(var6.a()) >= 4 && var8.n() <= 2) {
 							var1.a(var6, this.P());
 						}
 					}

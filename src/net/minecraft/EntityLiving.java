@@ -105,7 +105,7 @@ public abstract class EntityLiving extends Entity {
 
 		if (!this.o.D && this.O > 3.0F && var3) {
 			bec var6 = this.o.p(var5);
-			Block var7 = var6.c();
+			Block var7 = var6.getBlock();
 			float var8 = (float) DataTypesConverter.f(this.O - 3.0F);
 			if (var7.r() != Material.AIR) {
 				double var9 = (double) Math.min(0.2F + var8 / 15.0F, 10.0F);
@@ -114,7 +114,7 @@ public abstract class EntityLiving extends Entity {
 				}
 
 				int var11 = (int) (150.0D * var9);
-				((WorldServer) this.o).a(ew.M, this.locationX, this.locationY, this.locationZ, var11, 0.0D, 0.0D, 0.0D, 0.15000000596046448D, new int[] { Block.f(var6) });
+				((WorldServer) this.o).a(Particle.M, this.locationX, this.locationY, this.locationZ, var11, 0.0D, 0.0D, 0.0D, 0.15000000596046448D, new int[] { Block.f(var6) });
 			}
 		}
 
@@ -156,7 +156,7 @@ public abstract class EntityLiving extends Entity {
 						float var4 = this.V.nextFloat() - this.V.nextFloat();
 						float var5 = this.V.nextFloat() - this.V.nextFloat();
 						float var6 = this.V.nextFloat() - this.V.nextFloat();
-						this.o.a(ew.e, this.locationX + (double) var4, this.locationY + (double) var5, this.locationZ + (double) var6, this.motionX, this.motionY, this.motionZ, new int[0]);
+						this.o.a(Particle.e, this.locationX + (double) var4, this.locationY + (double) var5, this.locationZ + (double) var6, this.motionX, this.motionY, this.motionZ, new int[0]);
 					}
 
 					this.a(wh.f, 2.0F);
@@ -238,7 +238,7 @@ public abstract class EntityLiving extends Entity {
 				double var8 = this.V.nextGaussian() * 0.02D;
 				double var4 = this.V.nextGaussian() * 0.02D;
 				double var6 = this.V.nextGaussian() * 0.02D;
-				this.o.a(ew.a, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var8, var4, var6, new int[0]);
+				this.o.a(Particle.a, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var8, var4, var6, new int[0]);
 			}
 		}
 
@@ -422,7 +422,7 @@ public abstract class EntityLiving extends Entity {
 				double var5 = (double) (var11 >> 16 & 255) / 255.0D;
 				double var7 = (double) (var11 >> 8 & 255) / 255.0D;
 				double var9 = (double) (var11 >> 0 & 255) / 255.0D;
-				this.o.a(var12 ? ew.q : ew.p, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, var5, var7, var9, new int[0]);
+				this.o.a(var12 ? Particle.q : Particle.p, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, var5, var7, var9, new int[0]);
 			}
 		}
 
@@ -651,15 +651,15 @@ public abstract class EntityLiving extends Entity {
 		this.a("random.break", 0.8F, 0.8F + this.o.s.nextFloat() * 0.4F);
 
 		for (int var2 = 0; var2 < 5; ++var2) {
-			brw var3 = new brw(((double) this.V.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D);
+			Vec3D var3 = new Vec3D(((double) this.V.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D);
 			var3 = var3.a(-this.pitch * 3.1415927F / 180.0F);
 			var3 = var3.b(-this.yaw * 3.1415927F / 180.0F);
 			double var4 = (double) (-this.V.nextFloat()) * 0.6D - 0.3D;
-			brw var6 = new brw(((double) this.V.nextFloat() - 0.5D) * 0.3D, var4, 0.6D);
+			Vec3D var6 = new Vec3D(((double) this.V.nextFloat() - 0.5D) * 0.3D, var4, 0.6D);
 			var6 = var6.a(-this.pitch * 3.1415927F / 180.0F);
 			var6 = var6.b(-this.yaw * 3.1415927F / 180.0F);
 			var6 = var6.b(this.locationX, this.locationY + (double) this.aR(), this.locationZ);
-			this.o.a(ew.K, var6.a, var6.b, var6.c, var3.a, var3.b + 0.05D, var3.c, new int[] { Item.getId(var1.getItem()) });
+			this.o.a(Particle.K, var6.x, var6.y, var6.z, var3.x, var3.y + 0.05D, var3.z, new int[] { Item.getId(var1.getItem()) });
 		}
 
 	}
@@ -734,7 +734,7 @@ public abstract class EntityLiving extends Entity {
 		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
 		int var2 = DataTypesConverter.toFixedPointInt(this.aQ().b);
 		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
-		Block var4 = this.o.p(new Position(var1, var2, var3)).c();
+		Block var4 = this.o.p(new Position(var1, var2, var3)).getBlock();
 		return (var4 == aty.au || var4 == aty.bn) && (!(this instanceof EntityHuman) || !((EntityHuman) this).v());
 	}
 
@@ -753,7 +753,7 @@ public abstract class EntityLiving extends Entity {
 			int var6 = DataTypesConverter.toFixedPointInt(this.locationX);
 			int var7 = DataTypesConverter.toFixedPointInt(this.locationY - 0.20000000298023224D);
 			int var8 = DataTypesConverter.toFixedPointInt(this.locationZ);
-			Block var9 = this.o.p(new Position(var6, var7, var8)).c();
+			Block var9 = this.o.p(new Position(var6, var7, var8)).getBlock();
 			if (var9.r() != Material.AIR) {
 				BlockSound var10 = var9.H;
 				this.a(var10.c(), var10.d() * 0.5F, var10.e() * 0.75F);
@@ -874,7 +874,7 @@ public abstract class EntityLiving extends Entity {
 			this.aq = -1;
 			this.ap = true;
 			if (this.o instanceof WorldServer) {
-				((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketAnimation(this, 0)));
+				((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketOutAnimation(this, 0)));
 			}
 		}
 
@@ -966,7 +966,7 @@ public abstract class EntityLiving extends Entity {
 							return;
 						}
 
-						if (World.a((ard) this.o, new Position(var12, (int) this.locationY - 1, var13)) || this.o.p(new Position(var12, (int) this.locationY - 1, var13)).c().r() == Material.WATER) {
+						if (World.a((ard) this.o, new Position(var12, (int) this.locationY - 1, var13)) || this.o.p(new Position(var12, (int) this.locationY - 1, var13)).getBlock().r() == Material.WATER) {
 							var3 = this.locationX + (double) var10;
 							var5 = this.locationY + 1.0D;
 							var7 = this.locationZ + (double) var11;
@@ -1053,7 +1053,7 @@ public abstract class EntityLiving extends Entity {
 			} else {
 				float var3 = 0.91F;
 				if (this.onGround) {
-					var3 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).c().K * 0.91F;
+					var3 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
 				}
 
 				float var4 = 0.16277136F / (var3 * var3 * var3);
@@ -1066,7 +1066,7 @@ public abstract class EntityLiving extends Entity {
 				this.a(var1, var2, var5);
 				var3 = 0.91F;
 				if (this.onGround) {
-					var3 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).c().K * 0.91F;
+					var3 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
 				}
 
 				if (this.j_()) {
@@ -1153,7 +1153,7 @@ public abstract class EntityLiving extends Entity {
 				ItemStack var3 = this.h[var2];
 				ItemStack var4 = this.p(var2);
 				if (!ItemStack.b(var4, var3)) {
-					((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketEntityEquipment(this.getId(), var2, var4)));
+					((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketOutEntityEquipment(this.getId(), var2, var4)));
 					if (var3 != null) {
 						this.c.a(var3.B());
 					}
@@ -1386,29 +1386,29 @@ public abstract class EntityLiving extends Entity {
 		if (!var1.I && !this.o.D) {
 			qn var3 = ((WorldServer) this.o).s();
 			if (var1 instanceof EntityItem) {
-				var3.a(var1, (Packet) (new PacketCollectItem(var1.getId(), this.getId())));
+				var3.a(var1, (Packet) (new PacketOutCollectItem(var1.getId(), this.getId())));
 			}
 
 			if (var1 instanceof EntityArrow) {
-				var3.a(var1, (Packet) (new PacketCollectItem(var1.getId(), this.getId())));
+				var3.a(var1, (Packet) (new PacketOutCollectItem(var1.getId(), this.getId())));
 			}
 
 			if (var1 instanceof EntityExpirienceOrb) {
-				var3.a(var1, (Packet) (new PacketCollectItem(var1.getId(), this.getId())));
+				var3.a(var1, (Packet) (new PacketOutCollectItem(var1.getId(), this.getId())));
 			}
 		}
 
 	}
 
 	public boolean t(Entity var1) {
-		return this.o.a(new brw(this.locationX, this.locationY + (double) this.aR(), this.locationZ), new brw(var1.locationX, var1.locationY + (double) var1.aR(), var1.locationZ)) == null;
+		return this.o.a(new Vec3D(this.locationX, this.locationY + (double) this.aR(), this.locationZ), new Vec3D(var1.locationX, var1.locationY + (double) var1.aR(), var1.locationZ)) == null;
 	}
 
-	public brw ap() {
+	public Vec3D ap() {
 		return this.d(1.0F);
 	}
 
-	public brw d(float var1) {
+	public Vec3D d(float var1) {
 		if (var1 == 1.0F) {
 			return this.f(this.pitch, this.headPitch);
 		} else {

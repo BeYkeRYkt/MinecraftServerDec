@@ -27,15 +27,15 @@ public class BlockDispenser extends atg {
 	private void e(World var1, Position var2, bec var3) {
 		if (!var1.D) {
 			PaintingDirection var4 = (PaintingDirection) var3.b(a);
-			boolean var5 = var1.p(var2.c()).c().m();
-			boolean var6 = var1.p(var2.d()).c().m();
+			boolean var5 = var1.p(var2.c()).getBlock().m();
+			boolean var6 = var1.p(var2.d()).getBlock().m();
 			if (var4 == PaintingDirection.c && var5 && !var6) {
 				var4 = PaintingDirection.d;
 			} else if (var4 == PaintingDirection.d && var6 && !var5) {
 				var4 = PaintingDirection.c;
 			} else {
-				boolean var7 = var1.p(var2.e()).c().m();
-				boolean var8 = var1.p(var2.f()).c().m();
+				boolean var7 = var1.p(var2.e()).getBlock().m();
+				boolean var8 = var1.p(var2.f()).getBlock().m();
 				if (var4 == PaintingDirection.e && var7 && !var8) {
 					var4 = PaintingDirection.f;
 				} else if (var4 == PaintingDirection.f && var8 && !var7) {
@@ -51,9 +51,9 @@ public class BlockDispenser extends atg {
 		if (var1.D) {
 			return true;
 		} else {
-			bcm var9 = var1.s(var2);
-			if (var9 instanceof bcx) {
-				var4.a((IInventory) ((bcx) var9));
+			TileEntity var9 = var1.s(var2);
+			if (var9 instanceof TileEntityDispenser) {
+				var4.a((IInventory) ((TileEntityDispenser) var9));
 			}
 
 			return true;
@@ -62,7 +62,7 @@ public class BlockDispenser extends atg {
 
 	protected void d(World var1, Position var2) {
 		ea var3 = new ea(var1, var2);
-		bcx var4 = (bcx) var3.h();
+		TileEntityDispenser var4 = (TileEntityDispenser) var3.h();
 		if (var4 != null) {
 			int var5 = var4.m();
 			if (var5 < 0) {
@@ -102,8 +102,8 @@ public class BlockDispenser extends atg {
 
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bcx();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntityDispenser();
 	}
 
 	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
@@ -113,18 +113,18 @@ public class BlockDispenser extends atg {
 	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
 		var1.a(var2, var3.a(a, BlockPiston.a(var1, var2, var4)), 2);
 		if (var5.s()) {
-			bcm var6 = var1.s(var2);
-			if (var6 instanceof bcx) {
-				((bcx) var6).a(var5.q());
+			TileEntity var6 = var1.s(var2);
+			if (var6 instanceof TileEntityDispenser) {
+				((TileEntityDispenser) var6).a(var5.q());
 			}
 		}
 
 	}
 
 	public void b(World var1, Position var2, bec var3) {
-		bcm var4 = var1.s(var2);
-		if (var4 instanceof bcx) {
-			vs.a(var1, var2, (bcx) var4);
+		TileEntity var4 = var1.s(var2);
+		if (var4 instanceof TileEntityDispenser) {
+			vs.a(var1, var2, (TileEntityDispenser) var4);
 			var1.e(var2, this);
 		}
 

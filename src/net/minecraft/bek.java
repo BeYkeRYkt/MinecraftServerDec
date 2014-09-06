@@ -86,7 +86,7 @@ public class bek {
 			fd var6 = new fd(var1.g(), var1.h(), var1.i());
 			fd var7 = new fd(var2.g(), var2.h(), var2.i());
 			fd var8 = var6.d(var7);
-			return var0.a(var7.n() * -var4 + var8.n() * var3 + var6.n() * var5, var7.o() * -var4 + var8.o() * var3 + var6.o() * var5, var7.p() * -var4 + var8.p() * var3 + var6.p() * var5);
+			return var0.a(var7.getX() * -var4 + var8.getX() * var3 + var6.getX() * var5, var7.getY() * -var4 + var8.getY() * var3 + var6.getY() * var5, var7.getZ() * -var4 + var8.getZ() * var3 + var6.getZ() * var5);
 		} else {
 			throw new IllegalArgumentException("Invalid forwards & up combination");
 		}

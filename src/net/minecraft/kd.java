@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class kd implements Packet<PlayPacketListener> {
+public class kd implements Packet<PlayClientboundPacketListener> {
 
 	private boolean a;
 	private boolean b;
@@ -54,7 +54,7 @@ public class kd implements Packet<PlayPacketListener> {
 		var1.writeFloat(this.f);
 	}
 
-	public void handlePacket(PlayPacketListener var1) {
+	public void handlePacket(PlayClientboundPacketListener var1) {
 		var1.a(this);
 	}
 

@@ -22,7 +22,7 @@ public class ayz {
 			this.c = PaintingDirection.d;
 		}
 
-		for (Position var4 = var2; var2.o() > var4.o() - 21 && var2.o() > 0 && this.a(var1.p(var2.b()).c()); var2 = var2.b()) {
+		for (Position var4 = var2; var2.getY() > var4.getY() - 21 && var2.getY() > 0 && this.a(var1.p(var2.b()).getBlock()); var2 = var2.b()) {
 			;
 		}
 
@@ -46,12 +46,12 @@ public class ayz {
 		int var3;
 		for (var3 = 0; var3 < 22; ++var3) {
 			Position var4 = var1.a(var2, var3);
-			if (!this.a(this.a.p(var4).c()) || this.a.p(var4.b()).c() != aty.Z) {
+			if (!this.a(this.a.p(var4).getBlock()) || this.a.p(var4.b()).getBlock() != aty.Z) {
 				break;
 			}
 		}
 
-		Block var5 = this.a.p(var1.a(var2, var3)).c();
+		Block var5 = this.a.p(var1.a(var2, var3)).getBlock();
 		return var5 == aty.Z ? var3 : 0;
 	}
 
@@ -60,7 +60,7 @@ public class ayz {
 		label56: for (this.g = 0; this.g < 21; ++this.g) {
 			for (var1 = 0; var1 < this.h; ++var1) {
 				Position var2 = this.f.a(this.c, var1).b(this.g);
-				Block var3 = this.a.p(var2).c();
+				Block var3 = this.a.p(var2).getBlock();
 				if (!this.a(var3)) {
 					break label56;
 				}
@@ -70,12 +70,12 @@ public class ayz {
 				}
 
 				if (var1 == 0) {
-					var3 = this.a.p(var2.a(this.d)).c();
+					var3 = this.a.p(var2.a(this.d)).getBlock();
 					if (var3 != aty.Z) {
 						break label56;
 					}
 				} else if (var1 == this.h - 1) {
-					var3 = this.a.p(var2.a(this.c)).c();
+					var3 = this.a.p(var2.a(this.c)).getBlock();
 					if (var3 != aty.Z) {
 						break label56;
 					}
@@ -84,7 +84,7 @@ public class ayz {
 		}
 
 		for (var1 = 0; var1 < this.h; ++var1) {
-			if (this.a.p(this.f.a(this.c, var1).b(this.g)).c() != aty.Z) {
+			if (this.a.p(this.f.a(this.c, var1).b(this.g)).getBlock() != aty.Z) {
 				this.g = 0;
 				break;
 			}
@@ -101,7 +101,7 @@ public class ayz {
 	}
 
 	protected boolean a(Block var1) {
-		return var1.J == Material.AIR || var1 == aty.ab || var1 == aty.aY;
+		return var1.material == Material.AIR || var1 == aty.ab || var1 == aty.aY;
 	}
 
 	public boolean b() {

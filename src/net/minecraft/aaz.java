@@ -9,7 +9,7 @@ public abstract class aaz {
 	private final AttributeInstance a;
 	private int f;
 	private int g;
-	private brw h = new brw(0.0D, 0.0D, 0.0D);
+	private Vec3D h = new Vec3D(0.0D, 0.0D, 0.0D);
 	private float i = 1.0F;
 	private final bpw j;
 
@@ -92,7 +92,7 @@ public abstract class aaz {
 				return false;
 			} else {
 				this.e = var2;
-				brw var4 = this.c();
+				Vec3D var4 = this.c();
 				this.g = this.f;
 				this.h = var4;
 				return true;
@@ -107,13 +107,13 @@ public abstract class aaz {
 	public void k() {
 		++this.f;
 		if (!this.m()) {
-			brw var1;
+			Vec3D var1;
 			if (this.b()) {
 				this.l();
 			} else if (this.d != null && this.d.e() < this.d.d()) {
 				var1 = this.c();
-				brw var2 = this.d.a(this.b, this.d.e());
-				if (var1.b > var2.b && !this.b.onGround && DataTypesConverter.toFixedPointInt(var1.a) == DataTypesConverter.toFixedPointInt(var2.a) && DataTypesConverter.toFixedPointInt(var1.c) == DataTypesConverter.toFixedPointInt(var2.c)) {
+				Vec3D var2 = this.d.a(this.b, this.d.e());
+				if (var1.y > var2.y && !this.b.onGround && DataTypesConverter.toFixedPointInt(var1.x) == DataTypesConverter.toFixedPointInt(var2.x) && DataTypesConverter.toFixedPointInt(var1.z) == DataTypesConverter.toFixedPointInt(var2.z)) {
 					this.d.c(this.d.e() + 1);
 				}
 			}
@@ -121,18 +121,18 @@ public abstract class aaz {
 			if (!this.m()) {
 				var1 = this.d.a((Entity) this.b);
 				if (var1 != null) {
-					this.b.q().a(var1.a, var1.b, var1.c, this.e);
+					this.b.q().a(var1.x, var1.y, var1.z, this.e);
 				}
 			}
 		}
 	}
 
 	protected void l() {
-		brw var1 = this.c();
+		Vec3D var1 = this.c();
 		int var2 = this.d.d();
 
 		for (int var3 = this.d.e(); var3 < this.d.d(); ++var3) {
-			if (this.d.a(var3).b != (int) var1.b) {
+			if (this.d.a(var3).b != (int) var1.y) {
 				var2 = var3;
 				break;
 			}
@@ -142,7 +142,7 @@ public abstract class aaz {
 
 		int var4;
 		for (var4 = this.d.e(); var4 < var2; ++var4) {
-			brw var5 = this.d.a(this.b, var4);
+			Vec3D var5 = this.d.a(this.b, var4);
 			if (var1.g(var5) < (double) var8) {
 				this.d.c(var4 + 1);
 			}
@@ -162,7 +162,7 @@ public abstract class aaz {
 		this.a(var1);
 	}
 
-	protected void a(brw var1) {
+	protected void a(Vec3D var1) {
 		if (this.f - this.g > 100) {
 			if (var1.g(this.h) < 2.25D) {
 				this.n();
@@ -182,7 +182,7 @@ public abstract class aaz {
 		this.d = null;
 	}
 
-	protected abstract brw c();
+	protected abstract Vec3D c();
 
 	protected abstract boolean b();
 
@@ -193,5 +193,5 @@ public abstract class aaz {
 	protected void d() {
 	}
 
-	protected abstract boolean a(brw var1, brw var2, int var3, int var4, int var5);
+	protected abstract boolean a(Vec3D var1, Vec3D var2, int var3, int var4, int var5);
 }

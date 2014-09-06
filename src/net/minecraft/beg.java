@@ -47,7 +47,7 @@ class beg extends bea {
 		return this.b;
 	}
 
-	public Block c() {
+	public Block getBlock() {
 		return this.a;
 	}
 

@@ -20,17 +20,17 @@ class dv extends AbstractIterator<Position> {
 		} else if (this.b.equals(this.a.b)) {
 			return (Position) this.endOfData();
 		} else {
-			int var1 = this.b.n();
-			int var2 = this.b.o();
-			int var3 = this.b.p();
-			if (var1 < this.a.b.n()) {
+			int var1 = this.b.getX();
+			int var2 = this.b.getY();
+			int var3 = this.b.getZ();
+			if (var1 < this.a.b.getX()) {
 				++var1;
-			} else if (var2 < this.a.b.o()) {
-				var1 = this.a.a.n();
+			} else if (var2 < this.a.b.getY()) {
+				var1 = this.a.a.getX();
 				++var2;
-			} else if (var3 < this.a.b.p()) {
-				var1 = this.a.a.n();
-				var2 = this.a.a.o();
+			} else if (var3 < this.a.b.getZ()) {
+				var1 = this.a.a.getX();
+				var2 = this.a.a.getY();
 				++var3;
 			}
 

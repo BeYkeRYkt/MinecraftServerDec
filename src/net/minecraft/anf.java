@@ -10,7 +10,7 @@ public class anf extends Item {
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (var5 == PaintingDirection.a) {
 			return false;
-		} else if (!var3.p(var4).c().r().isBuildable()) {
+		} else if (!var3.p(var4).getBlock().r().isBuildable()) {
 			return false;
 		} else {
 			var4 = var4.a(var5);
@@ -29,9 +29,9 @@ public class anf extends Item {
 				}
 
 				--var1.b;
-				bcm var10 = var3.s(var4);
-				if (var10 instanceof bdj && !aju.a(var3, var4, var1)) {
-					var2.a((bdj) var10);
+				TileEntity var10 = var3.s(var4);
+				if (var10 instanceof TileEntitySign && !aju.a(var3, var4, var1)) {
+					var2.a((TileEntitySign) var10);
 				}
 
 				return true;

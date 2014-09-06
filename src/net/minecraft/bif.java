@@ -21,12 +21,12 @@ public class bif extends bhp {
 
 	public boolean b(World var1, Random var2, Position var3) {
 		float var4 = var2.nextFloat() * 3.1415927F;
-		double var5 = (double) ((float) (var3.n() + 8) + DataTypesConverter.a(var4) * (float) this.b / 8.0F);
-		double var7 = (double) ((float) (var3.n() + 8) - DataTypesConverter.a(var4) * (float) this.b / 8.0F);
-		double var9 = (double) ((float) (var3.p() + 8) + DataTypesConverter.b(var4) * (float) this.b / 8.0F);
-		double var11 = (double) ((float) (var3.p() + 8) - DataTypesConverter.b(var4) * (float) this.b / 8.0F);
-		double var13 = (double) (var3.o() + var2.nextInt(3) - 2);
-		double var15 = (double) (var3.o() + var2.nextInt(3) - 2);
+		double var5 = (double) ((float) (var3.getX() + 8) + DataTypesConverter.a(var4) * (float) this.b / 8.0F);
+		double var7 = (double) ((float) (var3.getX() + 8) - DataTypesConverter.a(var4) * (float) this.b / 8.0F);
+		double var9 = (double) ((float) (var3.getZ() + 8) + DataTypesConverter.b(var4) * (float) this.b / 8.0F);
+		double var11 = (double) ((float) (var3.getZ() + 8) - DataTypesConverter.b(var4) * (float) this.b / 8.0F);
+		double var13 = (double) (var3.getY() + var2.nextInt(3) - 2);
+		double var15 = (double) (var3.getY() + var2.nextInt(3) - 2);
 
 		for (int var17 = 0; var17 < this.b; ++var17) {
 			float var18 = (float) var17 / (float) this.b;

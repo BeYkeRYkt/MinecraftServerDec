@@ -63,7 +63,7 @@ public class yu extends zb {
 
 		float var8 = 0.91F;
 		if (this.a.onGround) {
-			var8 = this.a.o.p(new Position(DataTypesConverter.d((float) var4), DataTypesConverter.d((float) var5) - 1, DataTypesConverter.d((float) var6))).c().K * 0.91F;
+			var8 = this.a.o.p(new Position(DataTypesConverter.d((float) var4), DataTypesConverter.d((float) var5) - 1, DataTypesConverter.d((float) var6))).getBlock().K * 0.91F;
 		}
 
 		float var9 = 0.16277136F / (var8 * var8 * var8);
@@ -102,8 +102,8 @@ public class yu extends zb {
 		int var20 = DataTypesConverter.d(this.a.K + var1.K + 1.0F);
 		int var21 = DataTypesConverter.d(this.a.J + 1.0F);
 		if (var4 != var17 || var6 != var18) {
-			Block var22 = this.a.o.p(new Position(var4, var5, var6)).c();
-			boolean var23 = !this.a(var22) && (var22.r() != Material.AIR || !this.a(this.a.o.p(new Position(var4, var5 - 1, var6)).c()));
+			Block var22 = this.a.o.p(new Position(var4, var5, var6)).getBlock();
+			boolean var23 = !this.a(var22) && (var22.r() != Material.AIR || !this.a(this.a.o.p(new Position(var4, var5 - 1, var6)).getBlock()));
 			if (var23 && 0 == bpy.a(this.a.o, this.a, var17, var5, var18, var19, var20, var21, false, false, true) && 1 == bpy.a(this.a.o, this.a, var4, var5 + 1, var6, var19, var20, var21, false, false, true) && 1 == bpy.a(this.a.o, this.a, var17, var5 + 1, var18, var19, var20, var21, false, false, true)) {
 				var2.r().a();
 			}
@@ -125,7 +125,7 @@ public class yu extends zb {
 	}
 
 	private boolean a(Block var1) {
-		return var1 instanceof BlockStairs || var1 instanceof awq;
+		return var1 instanceof BlockStairs || var1 instanceof BlockStepAbstract;
 	}
 
 	public boolean f() {

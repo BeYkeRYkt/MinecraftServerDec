@@ -7,7 +7,7 @@ public class aiu extends ajk {
 	}
 
 	public boolean a(ItemStack var1) {
-		return bdc.c(var1) || c_(var1);
+		return TileEntityFurnace.c(var1) || c_(var1);
 	}
 
 	public int b(ItemStack var1) {

@@ -20,7 +20,7 @@ public class BlockLadder extends Block {
 
 	public void a(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
-		if (var3.c() == this) {
+		if (var3.getBlock() == this) {
 			float var4 = 0.125F;
 			switch (axf.a[((PaintingDirection) var3.b(a)).ordinal()]) {
 				case 1:
@@ -49,7 +49,7 @@ public class BlockLadder extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return var1.p(var2.e()).c().t() ? true : (var1.p(var2.f()).c().t() ? true : (var1.p(var2.c()).c().t() ? true : var1.p(var2.d()).c().t()));
+		return var1.p(var2.e()).getBlock().t() ? true : (var1.p(var2.f()).getBlock().t() ? true : (var1.p(var2.c()).getBlock().t() ? true : var1.p(var2.d()).getBlock().t()));
 	}
 
 	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
@@ -82,7 +82,7 @@ public class BlockLadder extends Block {
 	}
 
 	protected boolean b(World var1, Position var2, PaintingDirection var3) {
-		return var1.p(var2.a(var3.d())).c().t();
+		return var1.p(var2.a(var3.d())).getBlock().t();
 	}
 
 	public bec a(int var1) {

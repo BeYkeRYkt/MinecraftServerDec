@@ -69,8 +69,8 @@ public class WorldBorderCommand extends AbstractCommand {
 				}
 
 				Position var10 = var1.c();
-				double var5 = b((double) var10.n() + 0.5D, var2[1], true);
-				double var7 = b((double) var10.p() + 0.5D, var2[2], true);
+				double var5 = b((double) var10.getX() + 0.5D, var2[1], true);
+				double var7 = b((double) var10.getZ() + 0.5D, var2[2], true);
 				var3.c(var5, var7);
 				a(var1, this, "commands.worldborder.center.success", new Object[] { Double.valueOf(var5), Double.valueOf(var7) });
 			} else if (var2[0].equals("damage")) {

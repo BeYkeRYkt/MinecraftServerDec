@@ -43,7 +43,7 @@ public class EntityExpirienceOrb extends Entity {
 		this.q = this.locationY;
 		this.r = this.locationZ;
 		this.motionY -= 0.029999999329447746D;
-		if (this.o.p(new Position(this)).c().r() == Material.LAVA) {
+		if (this.o.p(new Position(this)).getBlock().r() == Material.LAVA) {
 			this.motionY = 0.20000000298023224D;
 			this.motionX = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
 			this.motionZ = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
@@ -81,7 +81,7 @@ public class EntityExpirienceOrb extends Entity {
 		this.d(this.motionX, this.motionY, this.motionZ);
 		float var13 = 0.98F;
 		if (this.onGround) {
-			var13 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).c().K * 0.98F;
+			var13 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
 		}
 
 		this.motionX *= (double) var13;

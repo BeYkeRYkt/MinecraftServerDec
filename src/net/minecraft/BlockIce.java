@@ -11,7 +11,7 @@ public class BlockIce extends awt {
 		this.a(CreativeModeTab.b);
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, bec var4, bcm var5) {
+	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
 		var2.b(StatisticList.H[Block.a((Block) this)]);
 		var2.a(0.025F);
 		if (this.G() && aph.e(var2)) {
@@ -27,7 +27,7 @@ public class BlockIce extends awt {
 
 			int var6 = aph.f(var2);
 			this.b(var1, var3, var4, var6);
-			Material var7 = var1.p(var3.b()).c().r();
+			Material var7 = var1.p(var3.b()).getBlock().r();
 			if (var7.isSolid() || var7.isLiquid()) {
 				var1.a(var3, aty.i.P());
 			}

@@ -45,8 +45,8 @@ public class EntityEnderman extends EntityMonster {
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
 		bec var2 = this.ck();
-		var1.put("carried", (short) Block.a(var2.c()));
-		var1.put("carriedData", (short) var2.c().c(var2));
+		var1.put("carried", (short) Block.a(var2.getBlock()));
+		var1.put("carriedData", (short) var2.getBlock().c(var2));
 	}
 
 	public void a(NBTCompoundTag var1) {
@@ -66,8 +66,8 @@ public class EntityEnderman extends EntityMonster {
 		if (var2 != null && var2.getItem() == Item.getItemOf(aty.aU)) {
 			return false;
 		} else {
-			brw var3 = var1.d(1.0F).a();
-			brw var4 = new brw(this.locationX - var1.locationX, this.aQ().b + (double) (this.K / 2.0F) - (var1.locationY + (double) var1.aR()), this.locationZ - var1.locationZ);
+			Vec3D var3 = var1.d(1.0F).a();
+			Vec3D var4 = new Vec3D(this.locationX - var1.locationX, this.aQ().b + (double) (this.K / 2.0F) - (var1.locationY + (double) var1.aR()), this.locationZ - var1.locationZ);
 			double var5 = var4.b();
 			var4 = var4.a();
 			double var7 = var3.b(var4);
@@ -82,7 +82,7 @@ public class EntityEnderman extends EntityMonster {
 	public void m() {
 		if (this.o.D) {
 			for (int var1 = 0; var1 < 2; ++var1) {
-				this.o.a(ew.y, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K - 0.25D, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, (this.V.nextDouble() - 0.5D) * 2.0D, -this.V.nextDouble(), (this.V.nextDouble() - 0.5D) * 2.0D, new int[0]);
+				this.o.a(Particle.y, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K - 0.25D, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, (this.V.nextDouble() - 0.5D) * 2.0D, -this.V.nextDouble(), (this.V.nextDouble() - 0.5D) * 2.0D, new int[0]);
 			}
 		}
 
@@ -120,12 +120,12 @@ public class EntityEnderman extends EntityMonster {
 	}
 
 	protected boolean b(Entity var1) {
-		brw var2 = new brw(this.locationX - var1.locationX, this.aQ().b + (double) (this.K / 2.0F) - var1.locationY + (double) var1.aR(), this.locationZ - var1.locationZ);
+		Vec3D var2 = new Vec3D(this.locationX - var1.locationX, this.aQ().b + (double) (this.K / 2.0F) - var1.locationY + (double) var1.aR(), this.locationZ - var1.locationZ);
 		var2 = var2.a();
 		double var3 = 16.0D;
-		double var5 = this.locationX + (this.V.nextDouble() - 0.5D) * 8.0D - var2.a * var3;
-		double var7 = this.locationY + (double) (this.V.nextInt(16) - 8) - var2.b * var3;
-		double var9 = this.locationZ + (this.V.nextDouble() - 0.5D) * 8.0D - var2.c * var3;
+		double var5 = this.locationX + (this.V.nextDouble() - 0.5D) * 8.0D - var2.x * var3;
+		double var7 = this.locationY + (double) (this.V.nextInt(16) - 8) - var2.y * var3;
+		double var9 = this.locationZ + (this.V.nextDouble() - 0.5D) * 8.0D - var2.z * var3;
 		return this.k(var5, var7, var9);
 	}
 
@@ -141,9 +141,9 @@ public class EntityEnderman extends EntityMonster {
 		if (this.o.e(var14)) {
 			boolean var15 = false;
 
-			while (!var15 && var14.o() > 0) {
+			while (!var15 && var14.getY() > 0) {
 				Position var16 = var14.b();
-				Block var17 = this.o.p(var16).c();
+				Block var17 = this.o.p(var16).getBlock();
 				if (var17.r().isSolid()) {
 					var15 = true;
 				} else {
@@ -174,7 +174,7 @@ public class EntityEnderman extends EntityMonster {
 				double var22 = var7 + (this.locationX - var7) * var30 + (this.V.nextDouble() - 0.5D) * (double) this.J * 2.0D;
 				double var24 = var9 + (this.locationY - var9) * var30 + this.V.nextDouble() * (double) this.K;
 				double var26 = var11 + (this.locationZ - var11) * var30 + (this.V.nextDouble() - 0.5D) * (double) this.J * 2.0D;
-				this.o.a(ew.y, var22, var24, var26, (double) var19, (double) var20, (double) var21, new int[0]);
+				this.o.a(Particle.y, var22, var24, var26, (double) var19, (double) var20, (double) var21, new int[0]);
 			}
 
 			this.o.a(var7, var9, var11, "mob.endermen.portal", 1.0F, 1.0F);

@@ -23,7 +23,7 @@ public class bpy extends bpu {
 		if (this.i && var1.V()) {
 			var2 = (int) var1.aQ().b;
 
-			for (Block var3 = this.a.p(new Position(DataTypesConverter.toFixedPointInt(var1.locationX), var2, DataTypesConverter.toFixedPointInt(var1.locationZ))).c(); var3 == aty.i || var3 == aty.j; var3 = this.a.p(new Position(DataTypesConverter.toFixedPointInt(var1.locationX), var2, DataTypesConverter.toFixedPointInt(var1.locationZ))).c()) {
+			for (Block var3 = this.a.p(new Position(DataTypesConverter.toFixedPointInt(var1.locationX), var2, DataTypesConverter.toFixedPointInt(var1.locationZ))).getBlock(); var3 == aty.i || var3 == aty.j; var3 = this.a.p(new Position(DataTypesConverter.toFixedPointInt(var1.locationX), var2, DataTypesConverter.toFixedPointInt(var1.locationZ))).getBlock()) {
 				++var2;
 			}
 
@@ -129,7 +129,7 @@ public class bpy extends bpu {
 			for (int var14 = var3; var14 < var3 + var6; ++var14) {
 				for (int var15 = var4; var15 < var4 + var7; ++var15) {
 					Position var16 = new Position(var13, var14, var15);
-					Block var17 = var0.p(var16).c();
+					Block var17 = var0.p(var16).getBlock();
 					if (var17.r() != Material.AIR) {
 						if (var17 != aty.bd && var17 != aty.cw) {
 							if (var17 != aty.i && var17 != aty.j) {
@@ -147,8 +147,8 @@ public class bpy extends bpu {
 							var11 = true;
 						}
 
-						if (var1.o.p(var16).c() instanceof ati) {
-							if (!(var1.o.p(var12).c() instanceof ati) && !(var1.o.p(var12.b()).c() instanceof ati)) {
+						if (var1.o.p(var16).getBlock() instanceof ati) {
+							if (!(var1.o.p(var12).getBlock() instanceof ati) && !(var1.o.p(var12.b()).getBlock() instanceof ati)) {
 								return -3;
 							}
 						} else if (!var17.b(var0, var16) && (!var9 || !(var17 instanceof BlockDoor) || var17.r() != Material.WOOD)) {

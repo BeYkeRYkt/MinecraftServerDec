@@ -134,11 +134,11 @@ public class EntityBoat extends Entity {
 				if (this.V.nextBoolean()) {
 					var15 = this.locationX - var6 * var11 * 0.8D + var8 * var13;
 					var17 = this.locationZ - var8 * var11 * 0.8D - var6 * var13;
-					this.o.a(ew.f, var15, this.locationY - 0.125D, var17, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.o.a(Particle.f, var15, this.locationY - 0.125D, var17, this.motionX, this.motionY, this.motionZ, new int[0]);
 				} else {
 					var15 = this.locationX + var6 + var8 * var11 * 0.7D;
 					var17 = this.locationZ + var8 - var6 * var11 * 0.7D;
-					this.o.a(ew.f, var15, this.locationY - 0.125D, var17, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.o.a(Particle.f, var15, this.locationY - 0.125D, var17, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 			}
 		}
@@ -219,7 +219,7 @@ public class EntityBoat extends Entity {
 				for (int var25 = 0; var25 < 2; ++var25) {
 					int var12 = DataTypesConverter.toFixedPointInt(this.locationY) + var25;
 					Position var27 = new Position(var23, var12, var10);
-					Block var14 = this.o.p(var27).c();
+					Block var14 = this.o.p(var27).getBlock();
 					if (var14 == aty.aH) {
 						this.o.g(var27);
 						this.D = false;
@@ -338,7 +338,7 @@ public class EntityBoat extends Entity {
 
 				this.O = 0.0F;
 			}
-		} else if (this.o.p((new Position(this)).b()).c().r() != Material.WATER && var1 < 0.0D) {
+		} else if (this.o.p((new Position(this)).b()).getBlock().r() != Material.WATER && var1 < 0.0D) {
 			this.O = (float) ((double) this.O - var1);
 		}
 

@@ -13,7 +13,7 @@ public abstract class EntityCreature extends EntityInsentient {
 
 	public EntityCreature(World var1) {
 		super(var1);
-		this.a = Position.a;
+		this.a = Position.ZERO;
 		this.b = -1.0F;
 		this.c = new zo(this, 1.0D);
 	}

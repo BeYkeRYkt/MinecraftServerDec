@@ -119,7 +119,7 @@ public class ado extends Entity {
 			}
 
 			if (this.aq) {
-				if (this.o.p(new Position(this.g, this.h, this.i)).c() == this.ap) {
+				if (this.o.p(new Position(this.g, this.h, this.i)).getBlock() == this.ap) {
 					++this.ar;
 					if (this.ar == 1200) {
 						this.J();
@@ -138,13 +138,13 @@ public class ado extends Entity {
 				++this.as;
 			}
 
-			brw var27 = new brw(this.locationX, this.locationY, this.locationZ);
-			brw var2 = new brw(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
+			Vec3D var27 = new Vec3D(this.locationX, this.locationY, this.locationZ);
+			Vec3D var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 			bru var3 = this.o.a(var27, var2);
-			var27 = new brw(this.locationX, this.locationY, this.locationZ);
-			var2 = new brw(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
+			var27 = new Vec3D(this.locationX, this.locationY, this.locationZ);
+			var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 			if (var3 != null) {
-				var2 = new brw(var3.c.a, var3.c.b, var3.c.c);
+				var2 = new Vec3D(var3.c.x, var3.c.y, var3.c.z);
 			}
 
 			Entity var4 = null;
@@ -255,8 +255,8 @@ public class ado extends Entity {
 								this.motionY -= 0.20000000298023224D;
 								this.a("random.splash", 0.25F, 1.0F + (this.V.nextFloat() - this.V.nextFloat()) * 0.4F);
 								var16 = (float) DataTypesConverter.toFixedPointInt(this.aQ().b);
-								var36.a(ew.e, this.locationX, (double) (var16 + 1.0F), this.locationZ, (int) (1.0F + this.J * 20.0F), (double) this.J, 0.0D, (double) this.J, 0.20000000298023224D, new int[0]);
-								var36.a(ew.g, this.locationX, (double) (var16 + 1.0F), this.locationZ, (int) (1.0F + this.J * 20.0F), (double) this.J, 0.0D, (double) this.J, 0.20000000298023224D, new int[0]);
+								var36.a(Particle.e, this.locationX, (double) (var16 + 1.0F), this.locationZ, (int) (1.0F + this.J * 20.0F), (double) this.J, 0.0D, (double) this.J, 0.20000000298023224D, new int[0]);
+								var36.a(Particle.g, this.locationX, (double) (var16 + 1.0F), this.locationZ, (int) (1.0F + this.J * 20.0F), (double) this.J, 0.0D, (double) this.J, 0.20000000298023224D, new int[0]);
 								this.at = DataTypesConverter.a(this.V, 10, 30);
 							} else {
 								this.aw = (float) ((double) this.aw + this.V.nextGaussian() * 4.0D);
@@ -267,13 +267,13 @@ public class ado extends Entity {
 								var40 = (double) ((float) DataTypesConverter.toFixedPointInt(this.aQ().b) + 1.0F);
 								var23 = this.locationZ + (double) (var18 * (float) this.av * 0.1F);
 								if (this.V.nextFloat() < 0.15F) {
-									var36.a(ew.e, var19, var40 - 0.10000000149011612D, var23, 1, (double) var39, 0.1D, (double) var18, 0.0D, new int[0]);
+									var36.a(Particle.e, var19, var40 - 0.10000000149011612D, var23, 1, (double) var39, 0.1D, (double) var18, 0.0D, new int[0]);
 								}
 
 								float var25 = var39 * 0.04F;
 								float var26 = var18 * 0.04F;
-								var36.a(ew.g, var19, var40, var23, 0, (double) var26, 0.01D, (double) (-var25), 1.0D, new int[0]);
-								var36.a(ew.g, var19, var40, var23, 0, (double) (-var26), 0.01D, (double) var25, 1.0D, new int[0]);
+								var36.a(Particle.g, var19, var40, var23, 0, (double) var26, 0.01D, (double) (-var25), 1.0D, new int[0]);
+								var36.a(Particle.g, var19, var40, var23, 0, (double) (-var26), 0.01D, (double) var25, 1.0D, new int[0]);
 							}
 						} else if (this.au > 0) {
 							this.au -= var37;
@@ -292,7 +292,7 @@ public class ado extends Entity {
 								var19 = this.locationX + (double) (DataTypesConverter.a(var39) * var18 * 0.1F);
 								var40 = (double) ((float) DataTypesConverter.toFixedPointInt(this.aQ().b) + 1.0F);
 								var23 = this.locationZ + (double) (DataTypesConverter.b(var39) * var18 * 0.1F);
-								var36.a(ew.f, var19, var40, var23, 2 + this.V.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D, new int[0]);
+								var36.a(Particle.f, var19, var40, var23, 2 + this.V.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D, new int[0]);
 							}
 
 							if (this.au <= 0) {

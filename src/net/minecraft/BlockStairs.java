@@ -17,9 +17,9 @@ public class BlockStairs extends Block {
 	private int R;
 
 	protected BlockStairs(bec var1) {
-		super(var1.c().J);
+		super(var1.getBlock().material);
 		this.j(this.L.b().a(a, PaintingDirection.c).a(b, bau.b).a(M, bav.a));
-		this.O = var1.c();
+		this.O = var1.getBlock();
 		this.P = var1;
 		this.c(this.O.w);
 		this.b(this.O.x / 3.0F);
@@ -60,7 +60,7 @@ public class BlockStairs extends Block {
 
 	public static boolean a(ard var0, Position var1, bec var2) {
 		bec var3 = var0.p(var1);
-		Block var4 = var3.c();
+		Block var4 = var3.getBlock();
 		return c(var4) && var3.b(b) == var2.b(b) && var3.b(a) == var2.b(a);
 	}
 
@@ -74,7 +74,7 @@ public class BlockStairs extends Block {
 		PaintingDirection var9;
 		if (var4 == PaintingDirection.f) {
 			var7 = var1.p(var2.f());
-			var8 = var7.c();
+			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (PaintingDirection) var7.b(a);
 				if (var9 == PaintingDirection.c && !a(var1, var2.d(), var3)) {
@@ -87,7 +87,7 @@ public class BlockStairs extends Block {
 			}
 		} else if (var4 == PaintingDirection.e) {
 			var7 = var1.p(var2.e());
-			var8 = var7.c();
+			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (PaintingDirection) var7.b(a);
 				if (var9 == PaintingDirection.c && !a(var1, var2.d(), var3)) {
@@ -100,7 +100,7 @@ public class BlockStairs extends Block {
 			}
 		} else if (var4 == PaintingDirection.d) {
 			var7 = var1.p(var2.d());
-			var8 = var7.c();
+			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (PaintingDirection) var7.b(a);
 				if (var9 == PaintingDirection.e && !a(var1, var2.f(), var3)) {
@@ -113,7 +113,7 @@ public class BlockStairs extends Block {
 			}
 		} else if (var4 == PaintingDirection.c) {
 			var7 = var1.p(var2.c());
-			var8 = var7.c();
+			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (PaintingDirection) var7.b(a);
 				if (var9 == PaintingDirection.e && !a(var1, var2.f(), var3)) {
@@ -139,7 +139,7 @@ public class BlockStairs extends Block {
 		PaintingDirection var9;
 		if (var4 == PaintingDirection.f) {
 			var7 = var1.p(var2.e());
-			var8 = var7.c();
+			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (PaintingDirection) var7.b(a);
 				if (var9 == PaintingDirection.c && !a(var1, var2.c(), var3)) {
@@ -152,7 +152,7 @@ public class BlockStairs extends Block {
 			}
 		} else if (var4 == PaintingDirection.e) {
 			var7 = var1.p(var2.f());
-			var8 = var7.c();
+			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (PaintingDirection) var7.b(a);
 				if (var9 == PaintingDirection.c && !a(var1, var2.c(), var3)) {
@@ -165,7 +165,7 @@ public class BlockStairs extends Block {
 			}
 		} else if (var4 == PaintingDirection.d) {
 			var7 = var1.p(var2.c());
-			var8 = var7.c();
+			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (PaintingDirection) var7.b(a);
 				if (var9 == PaintingDirection.e && !a(var1, var2.e(), var3)) {
@@ -178,7 +178,7 @@ public class BlockStairs extends Block {
 			}
 		} else if (var4 == PaintingDirection.c) {
 			var7 = var1.p(var2.d());
-			var8 = var7.c();
+			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (PaintingDirection) var7.b(a);
 				if (var9 == PaintingDirection.e && !a(var1, var2.e(), var3)) {
@@ -218,7 +218,7 @@ public class BlockStairs extends Block {
 			var9 = 0.5F;
 			var12 = 1.0F;
 			var14 = var1.p(var2.f());
-			var15 = var14.c();
+			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (PaintingDirection) var14.b(a);
 				if (var16 == PaintingDirection.c && !a(var1, var2.d(), var3)) {
@@ -233,7 +233,7 @@ public class BlockStairs extends Block {
 			var10 = 0.5F;
 			var12 = 1.0F;
 			var14 = var1.p(var2.e());
-			var15 = var14.c();
+			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (PaintingDirection) var14.b(a);
 				if (var16 == PaintingDirection.c && !a(var1, var2.d(), var3)) {
@@ -248,7 +248,7 @@ public class BlockStairs extends Block {
 			var11 = 0.5F;
 			var12 = 1.0F;
 			var14 = var1.p(var2.d());
-			var15 = var14.c();
+			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (PaintingDirection) var14.b(a);
 				if (var16 == PaintingDirection.e && !a(var1, var2.f(), var3)) {
@@ -261,7 +261,7 @@ public class BlockStairs extends Block {
 			}
 		} else if (var4 == PaintingDirection.c) {
 			var14 = var1.p(var2.c());
-			var15 = var14.c();
+			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (PaintingDirection) var14.b(a);
 				if (var16 == PaintingDirection.e && !a(var1, var2.f(), var3)) {
@@ -300,7 +300,7 @@ public class BlockStairs extends Block {
 		PaintingDirection var16;
 		if (var4 == PaintingDirection.f) {
 			var14 = var1.p(var2.e());
-			var15 = var14.c();
+			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (PaintingDirection) var14.b(a);
 				if (var16 == PaintingDirection.c && !a(var1, var2.c(), var3)) {
@@ -315,7 +315,7 @@ public class BlockStairs extends Block {
 			}
 		} else if (var4 == PaintingDirection.e) {
 			var14 = var1.p(var2.f());
-			var15 = var14.c();
+			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var9 = 0.5F;
 				var10 = 1.0F;
@@ -332,7 +332,7 @@ public class BlockStairs extends Block {
 			}
 		} else if (var4 == PaintingDirection.d) {
 			var14 = var1.p(var2.c());
-			var15 = var14.c();
+			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var11 = 0.0F;
 				var12 = 0.5F;
@@ -347,7 +347,7 @@ public class BlockStairs extends Block {
 			}
 		} else if (var4 == PaintingDirection.c) {
 			var14 = var1.p(var2.d());
-			var15 = var14.c();
+			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (PaintingDirection) var14.b(a);
 				if (var16 == PaintingDirection.e && !a(var1, var2.e(), var3)) {
@@ -395,7 +395,7 @@ public class BlockStairs extends Block {
 		return this.O.a(var1);
 	}
 
-	public brw a(World var1, Position var2, Entity var3, brw var4) {
+	public Vec3D a(World var1, Position var2, Entity var3, Vec3D var4) {
 		return this.O.a(var1, var2, var3, var4);
 	}
 
@@ -446,7 +446,7 @@ public class BlockStairs extends Block {
 		return var3 != PaintingDirection.a && (var3 == PaintingDirection.b || (double) var5 <= 0.5D) ? var9.a(b, bau.b) : var9.a(b, bau.a);
 	}
 
-	public bru a(World var1, Position var2, brw var3, brw var4) {
+	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		bru[] var5 = new bru[8];
 		bec var6 = var1.p(var2);
 		int var7 = ((PaintingDirection) var6.b(a)).toByte();

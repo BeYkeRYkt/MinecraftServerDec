@@ -10,12 +10,12 @@ public class EntityMinecartHopper extends aed implements bdd {
 
 	public EntityMinecartHopper(World var1) {
 		super(var1);
-		this.c = Position.a;
+		this.c = Position.ZERO;
 	}
 
 	public EntityMinecartHopper(World var1, double var2, double var4, double var6) {
 		super(var1, var2, var4, var6);
-		this.c = Position.a;
+		this.c = Position.ZERO;
 	}
 
 	public MinecartType s() {
@@ -96,12 +96,12 @@ public class EntityMinecartHopper extends aed implements bdd {
 	}
 
 	public boolean D() {
-		if (bde.a((bdd) this)) {
+		if (TileEntityHopper.a((bdd) this)) {
 			return true;
 		} else {
 			List var1 = this.o.a(EntityItem.class, this.aQ().b(0.25D, 0.0D, 0.25D), EntityPredicates.a);
 			if (var1.size() > 0) {
-				bde.a((IInventory) this, (EntityItem) var1.get(0));
+				TileEntityHopper.a((IInventory) this, (EntityItem) var1.get(0));
 			}
 
 			return false;

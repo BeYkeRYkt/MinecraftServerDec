@@ -67,7 +67,7 @@ public class bgq implements IChunkProvider {
 
 			for (int var9 = var8.d(); var9 < var8.d() + var8.b(); ++var9) {
 				bec var10 = var8.c();
-				if (var10.c() != aty.a) {
+				if (var10.getBlock() != aty.a) {
 					var11 = false;
 					this.c[var9] = var10;
 				}
@@ -142,7 +142,7 @@ public class bgq implements IChunkProvider {
 
 		if (this.i != null && !var8 && this.b.nextInt(8) == 0) {
 			Position var17 = var6.a(this.b.nextInt(16) + 8, this.b.nextInt(this.b.nextInt(248) + 8), this.b.nextInt(16) + 8);
-			if (var17.o() < 63 || this.b.nextInt(10) == 0) {
+			if (var17.getY() < 63 || this.b.nextInt(10) == 0) {
 				this.i.b(this.a, this.b, var17);
 			}
 		}
@@ -217,6 +217,6 @@ public class bgq implements IChunkProvider {
 	}
 
 	public Chunk a(Position var1) {
-		return this.d(var1.n() >> 4, var1.p() >> 4);
+		return this.d(var1.getX() >> 4, var1.getZ() >> 4);
 	}
 }

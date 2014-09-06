@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class is implements Packet<PlayPacketListener> {
+public class is implements Packet<PlayClientboundPacketListener> {
 
 	private Map a;
 
@@ -16,7 +16,7 @@ public class is implements Packet<PlayPacketListener> {
 		this.a = var1;
 	}
 
-	public void handlePacket(PlayPacketListener var1) {
+	public void handlePacket(PlayClientboundPacketListener var1) {
 		var1.a(this);
 	}
 

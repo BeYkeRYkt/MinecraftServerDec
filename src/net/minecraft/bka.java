@@ -55,9 +55,9 @@ public class bka extends bkb {
 			if (var3.b((fd) var4)) {
 				this.b = true;
 				var1.a(var4, aty.ac.P(), 2);
-				bcm var5 = var1.s(var4);
-				if (var5 instanceof bdg) {
-					((bdg) var5).b().a("Blaze");
+				TileEntity var5 = var1.s(var4);
+				if (var5 instanceof TileEntityMobSpawner) {
+					((TileEntityMobSpawner) var5).b().a("Blaze");
 				}
 			}
 		}

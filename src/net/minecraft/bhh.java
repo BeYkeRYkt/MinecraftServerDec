@@ -15,11 +15,11 @@ public class bhh extends bhp {
 
 	public boolean b(World var1, Random var2, Position var3) {
 		Block var4;
-		while (((var4 = var1.p(var3).c()).r() == Material.AIR || var4.r() == Material.LEAVES) && var3.o() > 1) {
+		while (((var4 = var1.p(var3).getBlock()).r() == Material.AIR || var4.r() == Material.LEAVES) && var3.getY() > 1) {
 			var3 = var3.b();
 		}
 
-		if (var3.o() < 1) {
+		if (var3.getY() < 1) {
 			return false;
 		} else {
 			var3 = var3.a();
@@ -28,9 +28,9 @@ public class bhh extends bhp {
 				Position var6 = var3.a(var2.nextInt(4) - var2.nextInt(4), var2.nextInt(3) - var2.nextInt(3), var2.nextInt(4) - var2.nextInt(4));
 				if (var1.d(var6) && World.a((ard) var1, var6.b())) {
 					var1.a(var6, aty.ae.P(), 2);
-					bcm var7 = var1.s(var6);
-					if (var7 instanceof bcr) {
-						vl.a(var2, this.a, (IInventory) ((bcr) var7), this.b);
+					TileEntity var7 = var1.s(var6);
+					if (var7 instanceof TileEntityChest) {
+						vl.a(var2, this.a, (IInventory) ((TileEntityChest) var7), this.b);
 					}
 
 					Position var8 = var6.f();

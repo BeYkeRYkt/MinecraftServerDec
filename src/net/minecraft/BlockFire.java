@@ -18,9 +18,9 @@ public class BlockFire extends Block {
 	private final Map T = Maps.newIdentityHashMap();
 
 	public bec a(bec var1, ard var2, Position var3) {
-		int var4 = var3.n();
-		int var5 = var3.o();
-		int var6 = var3.p();
+		int var4 = var3.getX();
+		int var5 = var3.getY();
+		int var6 = var3.getZ();
 		if (!World.a(var2, var3.b()) && !aty.ab.e(var2, var3.b())) {
 			boolean var7 = (var4 + var5 + var6 & 1) == 1;
 			boolean var8 = (var4 / 2 + var5 / 2 + var6 / 2 & 1) == 1;
@@ -110,7 +110,7 @@ public class BlockFire extends Block {
 				var1.g(var2);
 			}
 
-			Block var5 = var1.p(var2.b()).c();
+			Block var5 = var1.p(var2.b()).getBlock();
 			boolean var6 = var5 == aty.aV;
 			if (var1.worldProvider instanceof TheEndWorldProvider && var5 == aty.h) {
 				var6 = true;
@@ -208,7 +208,7 @@ public class BlockFire extends Block {
 	}
 
 	private void a(World var1, Position var2, int var3, Random var4, int var5) {
-		int var6 = this.c(var1.p(var2).c());
+		int var6 = this.c(var1.p(var2).getBlock());
 		if (var4.nextInt(var3) < var6) {
 			bec var7 = var1.p(var2);
 			if (var4.nextInt(var5 + 10) < 5 && !var1.C(var2)) {
@@ -222,7 +222,7 @@ public class BlockFire extends Block {
 				var1.g(var2);
 			}
 
-			if (var7.c() == aty.W) {
+			if (var7.getBlock() == aty.W) {
 				aty.W.d(var1, var2, var7.a(BlockTNT.a, Boolean.valueOf(true)));
 			}
 		}
@@ -253,7 +253,7 @@ public class BlockFire extends Block {
 
 			for (int var6 = 0; var6 < var5; ++var6) {
 				PaintingDirection var7 = var4[var6];
-				var3 = Math.max(this.d(var1.p(var2.a(var7)).c()), var3);
+				var3 = Math.max(this.d(var1.p(var2.a(var7)).getBlock()), var3);
 			}
 
 			return var3;
@@ -265,7 +265,7 @@ public class BlockFire extends Block {
 	}
 
 	public boolean e(ard var1, Position var2) {
-		return this.d(var1.p(var2).c()) > 0;
+		return this.d(var1.p(var2).getBlock()) > 0;
 	}
 
 	public boolean c(World var1, Position var2) {

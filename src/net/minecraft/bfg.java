@@ -57,14 +57,14 @@ public class bfg extends Chunk {
 		return false;
 	}
 
-	public bcm a(Position var1, bfl var2) {
+	public TileEntity a(Position var1, bfl var2) {
 		return null;
 	}
 
-	public void a(bcm var1) {
+	public void a(TileEntity var1) {
 	}
 
-	public void a(Position var1, bcm var2) {
+	public void a(Position var1, TileEntity var2) {
 	}
 
 	public void e(Position var1) {

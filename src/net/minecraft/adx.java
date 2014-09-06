@@ -211,7 +211,7 @@ public abstract class adx extends Entity implements vz {
 			bec var5 = this.o.p(var4);
 			if (ati.d(var5)) {
 				this.a(var4, var5);
-				if (var5.c() == aty.cs) {
+				if (var5.getBlock() == aty.cs) {
 					this.a(var14, var2, var16, ((Boolean) var5.b(BlockPoweredRail.M)).booleanValue());
 				}
 			} else {
@@ -285,11 +285,11 @@ public abstract class adx extends Entity implements vz {
 
 	protected void a(Position var1, bec var2) {
 		this.O = 0.0F;
-		brw var3 = this.k(this.locationX, this.locationY, this.locationZ);
-		this.locationY = (double) var1.o();
+		Vec3D var3 = this.k(this.locationX, this.locationY, this.locationZ);
+		this.locationY = (double) var1.getY();
 		boolean var4 = false;
 		boolean var5 = false;
-		ati var6 = (ati) var2.c();
+		ati var6 = (ati) var2.getBlock();
 		if (var6 == aty.D) {
 			var4 = ((Boolean) var2.b(BlockPoweredRail.M)).booleanValue();
 			var5 = !var4;
@@ -364,20 +364,20 @@ public abstract class adx extends Entity implements vz {
 		}
 
 		var21 = 0.0D;
-		var23 = (double) var1.n() + 0.5D + (double) var10[0][0] * 0.5D;
-		var25 = (double) var1.p() + 0.5D + (double) var10[0][2] * 0.5D;
-		var27 = (double) var1.n() + 0.5D + (double) var10[1][0] * 0.5D;
-		double var29 = (double) var1.p() + 0.5D + (double) var10[1][2] * 0.5D;
+		var23 = (double) var1.getX() + 0.5D + (double) var10[0][0] * 0.5D;
+		var25 = (double) var1.getZ() + 0.5D + (double) var10[0][2] * 0.5D;
+		var27 = (double) var1.getX() + 0.5D + (double) var10[1][0] * 0.5D;
+		double var29 = (double) var1.getZ() + 0.5D + (double) var10[1][2] * 0.5D;
 		var11 = var27 - var23;
 		var13 = var29 - var25;
 		double var31;
 		double var33;
 		if (var11 == 0.0D) {
-			this.locationX = (double) var1.n() + 0.5D;
-			var21 = this.locationZ - (double) var1.p();
+			this.locationX = (double) var1.getX() + 0.5D;
+			var21 = this.locationZ - (double) var1.getZ();
 		} else if (var13 == 0.0D) {
-			this.locationZ = (double) var1.p() + 0.5D;
-			var21 = this.locationX - (double) var1.n();
+			this.locationZ = (double) var1.getZ() + 0.5D;
+			var21 = this.locationX - (double) var1.getX();
 		} else {
 			var31 = this.locationX - var23;
 			var33 = this.locationZ - var25;
@@ -398,31 +398,31 @@ public abstract class adx extends Entity implements vz {
 		var31 = DataTypesConverter.a(var31, -var35, var35);
 		var33 = DataTypesConverter.a(var33, -var35, var35);
 		this.d(var31, 0.0D, var33);
-		if (var10[0][1] != 0 && DataTypesConverter.toFixedPointInt(this.locationX) - var1.n() == var10[0][0] && DataTypesConverter.toFixedPointInt(this.locationZ) - var1.p() == var10[0][2]) {
+		if (var10[0][1] != 0 && DataTypesConverter.toFixedPointInt(this.locationX) - var1.getX() == var10[0][0] && DataTypesConverter.toFixedPointInt(this.locationZ) - var1.getZ() == var10[0][2]) {
 			this.b(this.locationX, this.locationY + (double) var10[0][1], this.locationZ);
-		} else if (var10[1][1] != 0 && DataTypesConverter.toFixedPointInt(this.locationX) - var1.n() == var10[1][0] && DataTypesConverter.toFixedPointInt(this.locationZ) - var1.p() == var10[1][2]) {
+		} else if (var10[1][1] != 0 && DataTypesConverter.toFixedPointInt(this.locationX) - var1.getX() == var10[1][0] && DataTypesConverter.toFixedPointInt(this.locationZ) - var1.getZ() == var10[1][2]) {
 			this.b(this.locationX, this.locationY + (double) var10[1][1], this.locationZ);
 		}
 
 		this.o();
-		brw var37 = this.k(this.locationX, this.locationY, this.locationZ);
+		Vec3D var37 = this.k(this.locationX, this.locationY, this.locationZ);
 		if (var37 != null && var3 != null) {
-			double var38 = (var3.b - var37.b) * 0.05D;
+			double var38 = (var3.y - var37.y) * 0.05D;
 			var19 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			if (var19 > 0.0D) {
 				this.motionX = this.motionX / var19 * (var19 + var38);
 				this.motionZ = this.motionZ / var19 * (var19 + var38);
 			}
 
-			this.b(this.locationX, var37.b, this.locationZ);
+			this.b(this.locationX, var37.y, this.locationZ);
 		}
 
 		int var44 = DataTypesConverter.toFixedPointInt(this.locationX);
 		int var39 = DataTypesConverter.toFixedPointInt(this.locationZ);
-		if (var44 != var1.n() || var39 != var1.p()) {
+		if (var44 != var1.getX() || var39 != var1.getZ()) {
 			var19 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			this.motionX = var19 * (double) (var44 - var1.n());
-			this.motionZ = var19 * (double) (var39 - var1.p());
+			this.motionX = var19 * (double) (var44 - var1.getX());
+			this.motionZ = var19 * (double) (var39 - var1.getZ());
 		}
 
 		if (var4) {
@@ -432,15 +432,15 @@ public abstract class adx extends Entity implements vz {
 				this.motionX += this.motionX / var40 * var42;
 				this.motionZ += this.motionZ / var40 * var42;
 			} else if (var9 == atl.b) {
-				if (this.o.p(var1.e()).c().t()) {
+				if (this.o.p(var1.e()).getBlock().t()) {
 					this.motionX = 0.02D;
-				} else if (this.o.p(var1.f()).c().t()) {
+				} else if (this.o.p(var1.f()).getBlock().t()) {
 					this.motionX = -0.02D;
 				}
 			} else if (var9 == atl.a) {
-				if (this.o.p(var1.c()).c().t()) {
+				if (this.o.p(var1.c()).getBlock().t()) {
 					this.motionZ = 0.02D;
-				} else if (this.o.p(var1.d()).c().t()) {
+				} else if (this.o.p(var1.d()).getBlock().t()) {
 					this.motionZ = -0.02D;
 				}
 			}
@@ -470,7 +470,7 @@ public abstract class adx extends Entity implements vz {
 		this.a(new brt(var1 - (double) var7, var3, var5 - (double) var7, var1 + (double) var7, var3 + (double) var8, var5 + (double) var7));
 	}
 
-	public brw k(double var1, double var3, double var5) {
+	public Vec3D k(double var1, double var3, double var5) {
 		int var7 = DataTypesConverter.toFixedPointInt(var1);
 		int var8 = DataTypesConverter.toFixedPointInt(var3);
 		int var9 = DataTypesConverter.toFixedPointInt(var5);
@@ -480,7 +480,7 @@ public abstract class adx extends Entity implements vz {
 
 		bec var10 = this.o.p(new Position(var7, var8, var9));
 		if (ati.d(var10)) {
-			atl var11 = (atl) var10.b(((ati) var10.c()).l());
+			atl var11 = (atl) var10.b(((ati) var10.getBlock()).l());
 			int[][] var12 = c[var11.a()];
 			double var13 = 0.0D;
 			double var15 = (double) var7 + 0.5D + (double) var12[0][0] * 0.5D;
@@ -515,7 +515,7 @@ public abstract class adx extends Entity implements vz {
 				var3 += 0.5D;
 			}
 
-			return new brw(var1, var3, var5);
+			return new Vec3D(var1, var3, var5);
 		} else {
 			return null;
 		}
@@ -554,9 +554,9 @@ public abstract class adx extends Entity implements vz {
 		if (this.x()) {
 			var1.put("CustomDisplayTile", true);
 			bec var2 = this.t();
-			BlockNameInfo var3 = (BlockNameInfo) Block.BLOCKREGISTRY.c(var2.c());
+			BlockNameInfo var3 = (BlockNameInfo) Block.BLOCKREGISTRY.c(var2.getBlock());
 			var1.put("DisplayTile", var3 == null ? "" : var3.toString());
-			var1.put("DisplayData", var2.c().c(var2));
+			var1.put("DisplayData", var2.getBlock().c(var2));
 			var1.put("DisplayOffset", this.v());
 		}
 
@@ -597,8 +597,8 @@ public abstract class adx extends Entity implements vz {
 						if (var1 instanceof adx) {
 							double var10 = var1.locationX - this.locationX;
 							double var12 = var1.locationZ - this.locationZ;
-							brw var14 = (new brw(var10, 0.0D, var12)).a();
-							brw var15 = (new brw((double) DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F), 0.0D, (double) DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F))).a();
+							Vec3D var14 = (new Vec3D(var10, 0.0D, var12)).a();
+							Vec3D var15 = (new Vec3D((double) DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F), 0.0D, (double) DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F))).a();
 							double var16 = Math.abs(var14.b(var15));
 							if (var16 < 0.800000011920929D) {
 								return;

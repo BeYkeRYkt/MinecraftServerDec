@@ -242,9 +242,9 @@ public abstract class arm {
 	}
 
 	public final float a(Position var1) {
-		if (var1.o() > 64) {
-			float var2 = (float) (ae.a((double) var1.n() * 1.0D / 8.0D, (double) var1.p() * 1.0D / 8.0D) * 4.0D);
-			return this.ap - (var2 + (float) var1.o() - 64.0F) * 0.05F / 30.0F;
+		if (var1.getY() > 64) {
+			float var2 = (float) (ae.a((double) var1.getX() * 1.0D / 8.0D, (double) var1.getZ() * 1.0D / 8.0D) * 4.0D);
+			return this.ap - (var2 + (float) var1.getY() - 64.0F) * 0.05F / 30.0F;
 		} else {
 			return this.ap;
 		}
@@ -276,9 +276,9 @@ public abstract class arm {
 				var3.a(var14, var15, var13, aty.h.P());
 			} else {
 				bec var16 = var3.a(var14, var15, var13);
-				if (var16.c().r() == Material.AIR) {
+				if (var16.getBlock().r() == Material.AIR) {
 					var11 = -1;
-				} else if (var16.c() == aty.b) {
+				} else if (var16.getBlock() == aty.b) {
 					if (var11 == -1) {
 						if (var12 <= 0) {
 							var9 = null;
@@ -288,7 +288,7 @@ public abstract class arm {
 							var10 = this.al;
 						}
 
-						if (var15 < 63 && (var9 == null || var9.c().r() == Material.AIR)) {
+						if (var15 < 63 && (var9 == null || var9.getBlock().r() == Material.AIR)) {
 							if (this.a(new Position(var4, var15, var5)) < 0.15F) {
 								var9 = aty.aI.P();
 							} else {
@@ -309,7 +309,7 @@ public abstract class arm {
 					} else if (var11 > 0) {
 						--var11;
 						var3.a(var14, var15, var13, var10);
-						if (var11 == 0 && var10.c() == aty.m) {
+						if (var11 == 0 && var10.getBlock() == aty.m) {
 							var11 = var2.nextInt(4) + Math.max(0, var15 - 63);
 							var10 = var10.b(BlockSand.a) == bac.b ? aty.cM.P() : aty.A.P();
 						}

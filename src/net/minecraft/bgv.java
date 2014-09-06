@@ -447,6 +447,6 @@ public class bgv implements IChunkProvider {
 	}
 
 	public Chunk a(Position var1) {
-		return this.d(var1.n() >> 4, var1.p() >> 4);
+		return this.d(var1.getX() >> 4, var1.getZ() >> 4);
 	}
 }

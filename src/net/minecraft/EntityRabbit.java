@@ -114,12 +114,12 @@ public class EntityRabbit extends abq {
 			if (!var4.c()) {
 				if (this.f.a() && this.bq == 0) {
 					bpv var2 = this.h.j();
-					brw var3 = new brw(this.f.d(), this.f.e(), this.f.f());
+					Vec3D var3 = new Vec3D(this.f.d(), this.f.e(), this.f.f());
 					if (var2 != null && var2.e() < var2.d()) {
 						var3 = var2.a((Entity) this);
 					}
 
-					this.a(var3.a, var3.c);
+					this.a(var3.x, var3.z);
 					this.b(this.br);
 				}
 			} else if (!var4.d()) {
@@ -308,7 +308,7 @@ public class EntityRabbit extends abq {
 	}
 
 	protected void cn() {
-		this.o.a(ew.M, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[] { Block.f(aty.cb.a(7)) });
+		this.o.a(Particle.M, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[] { Block.f(aty.cb.a(7)) });
 		this.bs = 100;
 	}
 

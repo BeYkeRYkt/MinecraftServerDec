@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public abstract class bcf extends awq {
+public abstract class bcf extends BlockStepAbstract {
 
 	public static final bev b = bev.a("variant", ayx.class);
 

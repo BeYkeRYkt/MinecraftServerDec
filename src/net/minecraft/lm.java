@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class lm implements Packet<PlayPacketListener> {
+public class lm implements Packet<PlayClientboundPacketListener> {
 
 	private IJSONComponent a;
 	private IJSONComponent b;
@@ -22,7 +22,7 @@ public class lm implements Packet<PlayPacketListener> {
 		var1.writeJSONComponent(this.b);
 	}
 
-	public void handlePacket(PlayPacketListener var1) {
+	public void handlePacket(PlayClientboundPacketListener var1) {
 		var1.a(this);
 	}
 }

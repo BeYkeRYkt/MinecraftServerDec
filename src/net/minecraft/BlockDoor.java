@@ -82,12 +82,12 @@ public class BlockDoor extends Block {
 	}
 
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
-		if (this.J == Material.ORE) {
+		if (this.material == Material.ORE) {
 			return true;
 		} else {
 			Position var9 = var3.b(O) == avg.b ? var2 : var2.b();
 			bec var10 = var2.equals(var9) ? var3 : var1.p(var9);
-			if (var10.c() != this) {
+			if (var10.getBlock() != this) {
 				return false;
 			} else {
 				var3 = var10.a(b);
@@ -101,10 +101,10 @@ public class BlockDoor extends Block {
 
 	public void a(World var1, Position var2, boolean var3) {
 		bec var4 = var1.p(var2);
-		if (var4.c() == this) {
+		if (var4.getBlock() == this) {
 			Position var5 = var4.b(O) == avg.b ? var2 : var2.b();
 			bec var6 = var2 == var5 ? var4 : var1.p(var5);
-			if (var6.c() == this && ((Boolean) var6.b(b)).booleanValue() != var3) {
+			if (var6.getBlock() == this && ((Boolean) var6.b(b)).booleanValue() != var3) {
 				var1.a(var5, var6.a(b, Boolean.valueOf(var3)), 2);
 				var1.b(var5, var2);
 				var1.a((EntityHuman) null, var3 ? 1003 : 1006, var2, 0);
@@ -117,7 +117,7 @@ public class BlockDoor extends Block {
 		if (var3.b(O) == avg.a) {
 			Position var5 = var2.b();
 			bec var6 = var1.p(var5);
-			if (var6.c() != this) {
+			if (var6.getBlock() != this) {
 				var1.g(var2);
 			} else if (var4 != this) {
 				this.a(var1, var5, var6, var4);
@@ -126,7 +126,7 @@ public class BlockDoor extends Block {
 			boolean var9 = false;
 			Position var10 = var2.a();
 			bec var7 = var1.p(var10);
-			if (var7.c() != this) {
+			if (var7.getBlock() != this) {
 				var1.g(var2);
 				var9 = true;
 			}
@@ -134,7 +134,7 @@ public class BlockDoor extends Block {
 			if (!World.a((ard) var1, var2.b())) {
 				var1.g(var2);
 				var9 = true;
-				if (var7.c() == this) {
+				if (var7.getBlock() == this) {
 					var1.g(var10);
 				}
 			}
@@ -162,13 +162,13 @@ public class BlockDoor extends Block {
 		return var1.b(O) == avg.a ? null : this.j();
 	}
 
-	public bru a(World var1, Position var2, brw var3, brw var4) {
+	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3, var4);
 	}
 
 	public boolean c(World var1, Position var2) {
-		return var2.o() >= 255 ? false : World.a((ard) var1, var2.b()) && super.c(var1, var2) && super.c(var1, var2.a());
+		return var2.getY() >= 255 ? false : World.a((ard) var1, var2.b()) && super.c(var1, var2) && super.c(var1, var2.a());
 	}
 
 	public int i() {
@@ -177,13 +177,13 @@ public class BlockDoor extends Block {
 
 	public static int e(ard var0, Position var1) {
 		bec var2 = var0.p(var1);
-		int var3 = var2.c().c(var2);
+		int var3 = var2.getBlock().c(var2);
 		boolean var4 = i(var3);
 		bec var5 = var0.p(var1.b());
-		int var6 = var5.c().c(var5);
+		int var6 = var5.getBlock().c(var5);
 		int var7 = var4 ? var6 : var3;
 		bec var8 = var0.p(var1.a());
-		int var9 = var8.c().c(var8);
+		int var9 = var8.getBlock().c(var8);
 		int var10 = var4 ? var3 : var9;
 		boolean var11 = (var10 & 1) != 0;
 		boolean var12 = (var10 & 2) != 0;
@@ -196,7 +196,7 @@ public class BlockDoor extends Block {
 
 	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
 		Position var5 = var2.b();
-		if (var4.by.instabuild && var3.b(O) == avg.a && var1.p(var5).c() == this) {
+		if (var4.by.instabuild && var3.b(O) == avg.a && var1.p(var5).getBlock() == this) {
 			var1.g(var5);
 		}
 
@@ -206,12 +206,12 @@ public class BlockDoor extends Block {
 		bec var4;
 		if (var1.b(O) == avg.b) {
 			var4 = var2.p(var3.a());
-			if (var4.c() == this) {
+			if (var4.getBlock() == this) {
 				var1 = var1.a(M, var4.b(M)).a(N, var4.b(N));
 			}
 		} else {
 			var4 = var2.p(var3.b());
-			if (var4.c() == this) {
+			if (var4.getBlock() == this) {
 				var1 = var1.a(a, var4.b(a)).a(b, var4.b(b));
 			}
 		}

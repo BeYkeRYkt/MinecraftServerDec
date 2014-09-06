@@ -138,7 +138,7 @@ public abstract class EntityInsentient extends EntityLiving {
 				double var4 = this.V.nextGaussian() * 0.02D;
 				double var6 = this.V.nextGaussian() * 0.02D;
 				double var8 = 10.0D;
-				this.o.a(ew.a, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J - var2 * var8, this.locationY + (double) (this.V.nextFloat() * this.K) - var4 * var8, this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J - var6 * var8, var2, var4, var6, new int[0]);
+				this.o.a(Particle.a, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J - var2 * var8, this.locationY + (double) (this.V.nextFloat() * this.K) - var4 * var8, this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J - var6 * var8, var2, var4, var6, new int[0]);
 			}
 		} else {
 			this.o.a((Entity) this, (byte) 20);
@@ -214,9 +214,9 @@ public abstract class EntityInsentient extends EntityLiving {
 				var4.put("UUIDLeast", this.bn.aJ().getLeastSignificantBits());
 			} else if (this.bn instanceof adj) {
 				Position var5 = ((adj) this.bn).getPosition();
-				var4.put("X", var5.n());
-				var4.put("Y", var5.o());
-				var4.put("Z", var5.p());
+				var4.put("X", var5.getX());
+				var4.put("Y", var5.getY());
+				var4.put("Z", var5.getZ());
 			}
 
 			var1.put("Leash", (NBTTag) var4);
@@ -726,7 +726,7 @@ public abstract class EntityInsentient extends EntityLiving {
 			}
 
 			if (!this.o.D && var1 && this.o instanceof WorldServer) {
-				((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketAttachEntity(1, this, (Entity) null)));
+				((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketOutAttachEntity(1, this, (Entity) null)));
 			}
 		}
 
@@ -748,7 +748,7 @@ public abstract class EntityInsentient extends EntityLiving {
 		this.bm = true;
 		this.bn = var1;
 		if (!this.o.D && var2 && this.o instanceof WorldServer) {
-			((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketAttachEntity(1, this, this.bn)));
+			((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketOutAttachEntity(1, this, this.bn)));
 		}
 
 	}

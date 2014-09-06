@@ -71,7 +71,7 @@ public class EntityFireworks extends Entity {
 
 		++this.a;
 		if (this.o.D && this.a % 2 < 2) {
-			this.o.a(ew.d, this.locationX, this.locationY - 0.3D, this.locationZ, this.V.nextGaussian() * 0.05D, -this.motionY * 0.5D, this.V.nextGaussian() * 0.05D, new int[0]);
+			this.o.a(Particle.d, this.locationX, this.locationY - 0.3D, this.locationZ, this.V.nextGaussian() * 0.05D, -this.motionY * 0.5D, this.V.nextGaussian() * 0.05D, new int[0]);
 		}
 
 		if (!this.o.D && this.a > this.b) {

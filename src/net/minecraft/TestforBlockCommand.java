@@ -50,32 +50,32 @@ public class TestforBlockCommand extends AbstractCommand {
 					}
 
 					bec var14 = var6.p(var3);
-					Block var10 = var14.c();
+					Block var10 = var14.getBlock();
 					if (var10 != var4) {
-						throw new di("commands.testforblock.failed.tile", new Object[] { Integer.valueOf(var3.n()), Integer.valueOf(var3.o()), Integer.valueOf(var3.p()), var10.H(), var4.H() });
+						throw new di("commands.testforblock.failed.tile", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()), var10.H(), var4.H() });
 					} else {
 						if (var5 > -1) {
-							int var11 = var14.c().c(var14);
+							int var11 = var14.getBlock().c(var14);
 							if (var11 != var5) {
-								throw new di("commands.testforblock.failed.data", new Object[] { Integer.valueOf(var3.n()), Integer.valueOf(var3.o()), Integer.valueOf(var3.p()), Integer.valueOf(var11), Integer.valueOf(var5) });
+								throw new di("commands.testforblock.failed.data", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()), Integer.valueOf(var11), Integer.valueOf(var5) });
 							}
 						}
 
 						if (var8) {
-							bcm var15 = var6.s(var3);
+							TileEntity var15 = var6.s(var3);
 							if (var15 == null) {
-								throw new di("commands.testforblock.failed.tileEntity", new Object[] { Integer.valueOf(var3.n()), Integer.valueOf(var3.o()), Integer.valueOf(var3.p()) });
+								throw new di("commands.testforblock.failed.tileEntity", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()) });
 							}
 
 							NBTCompoundTag var12 = new NBTCompoundTag();
-							var15.b(var12);
+							var15.write(var12);
 							if (!a(var7, var12, true)) {
-								throw new di("commands.testforblock.failed.nbt", new Object[] { Integer.valueOf(var3.n()), Integer.valueOf(var3.o()), Integer.valueOf(var3.p()) });
+								throw new di("commands.testforblock.failed.nbt", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()) });
 							}
 						}
 
 						var1.a(ag.b, 1);
-						a(var1, this, "commands.testforblock.success", new Object[] { Integer.valueOf(var3.n()), Integer.valueOf(var3.o()), Integer.valueOf(var3.p()) });
+						a(var1, this, "commands.testforblock.success", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()) });
 					}
 				}
 			}

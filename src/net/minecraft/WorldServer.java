@@ -235,7 +235,7 @@ public class WorldServer extends World implements vn {
 					var8 = this.m >> 2;
 					var9 = this.a(new Position(var5 + (var8 & 15), 0, var6 + (var8 >> 8 & 15)));
 					if (this.C(var9)) {
-						this.c(new EntityLightning(this, (double) var9.n(), (double) var9.o(), (double) var9.p()));
+						this.c(new EntityLightning(this, (double) var9.getX(), (double) var9.getY(), (double) var9.getZ()));
 					}
 				}
 
@@ -254,7 +254,7 @@ public class WorldServer extends World implements vn {
 					}
 
 					if (this.S() && this.b(var10).e()) {
-						this.p(var10).c().k(this, var10);
+						this.p(var10).getBlock().k(this, var10);
 					}
 				}
 
@@ -276,7 +276,7 @@ public class WorldServer extends World implements vn {
 								++var2;
 								Position var18 = new Position(var15 + var5, var17 + var12.d(), var16 + var6);
 								bec var19 = var12.a(var15, var17, var16);
-								Block var20 = var19.c();
+								Block var20 = var19.getBlock();
 								if (var20.w()) {
 									++var1;
 									var20.a((World) this, var18, var19, this.s);
@@ -292,7 +292,7 @@ public class WorldServer extends World implements vn {
 
 	protected Position a(Position var1) {
 		Position var2 = this.q(var1);
-		brt var3 = (new brt(var2, new Position(var2.n(), this.U(), var2.p()))).b(3.0D, 3.0D, 3.0D);
+		brt var3 = (new brt(var2, new Position(var2.getX(), this.U(), var2.getZ()))).b(3.0D, 3.0D, 3.0D);
 		List var4 = this.a(EntityLiving.class, var3, new qu(this));
 		return !var4.isEmpty() ? ((EntityLiving) var4.get(this.s.nextInt(var4.size()))).c() : var2;
 	}
@@ -314,8 +314,8 @@ public class WorldServer extends World implements vn {
 				var6 = 8;
 				if (this.a(var5.a.a(-var6, -var6, -var6), var5.a.a(var6, var6, var6))) {
 					bec var7 = this.p(var5.a);
-					if (var7.c().r() != Material.AIR && var7.c() == var5.a()) {
-						var7.c().b((World) this, var5.a, var7, this.s);
+					if (var7.getBlock().r() != Material.AIR && var7.getBlock() == var5.a()) {
+						var7.getBlock().b((World) this, var5.a, var7, this.s);
 					}
 				}
 
@@ -405,9 +405,9 @@ public class WorldServer extends World implements vn {
 					byte var5 = 0;
 					if (this.a(var4.a.a(-var5, -var5, -var5), var4.a.a(var5, var5, var5))) {
 						bec var6 = this.p(var4.a);
-						if (var6.c().r() != Material.AIR && Block.a(var6.c(), var4.a())) {
+						if (var6.getBlock().r() != Material.AIR && Block.a(var6.getBlock(), var4.a())) {
 							try {
-								var6.c().b((World) this, var4.a, var6, this.s);
+								var6.getBlock().b((World) this, var4.a, var6, this.s);
 							} catch (Throwable var10) {
 								CrashReport var8 = CrashReport.generateCrashReport(var10, "Exception while ticking a block");
 								CrashReportSystemDetails var9 = var8.generateSystemDetails("Block being ticked");
@@ -453,7 +453,7 @@ public class WorldServer extends World implements vn {
 			while (var5.hasNext()) {
 				ark var6 = (ark) var5.next();
 				Position var7 = var6.a;
-				if (var7.n() >= var1.a && var7.n() < var1.d && var7.p() >= var1.c && var7.p() < var1.f) {
+				if (var7.getX() >= var1.a && var7.getX() < var1.d && var7.getZ() >= var1.c && var7.getZ() < var1.f) {
 					if (var2) {
 						this.L.remove(var6);
 						var5.remove();
@@ -501,9 +501,9 @@ public class WorldServer extends World implements vn {
 		ArrayList var7 = Lists.newArrayList();
 
 		for (int var8 = 0; var8 < this.h.size(); ++var8) {
-			bcm var9 = (bcm) this.h.get(var8);
+			TileEntity var9 = (TileEntity) this.h.get(var8);
 			Position var10 = var9.v();
-			if (var10.n() >= var1 && var10.o() >= var2 && var10.p() >= var3 && var10.n() < var4 && var10.o() < var5 && var10.p() < var6) {
+			if (var10.getX() >= var1 && var10.getY() >= var2 && var10.getZ() >= var3 && var10.getX() < var4 && var10.getY() < var5 && var10.getZ() < var6) {
 				var7.add(var9);
 			}
 		}
@@ -557,9 +557,9 @@ public class WorldServer extends World implements vn {
 
 	private void b(arb var1) {
 		if (!this.worldProvider.e()) {
-			this.worldData.a(Position.a.b(this.worldProvider.i()));
+			this.worldData.a(Position.ZERO.b(this.worldProvider.i()));
 		} else if (this.worldData.getLevelType() == LevelType.DEBUG) {
-			this.worldData.a(Position.a.a());
+			this.worldData.a(Position.ZERO.a());
 		} else {
 			this.y = true;
 			arz var2 = this.worldProvider.m();
@@ -570,8 +570,8 @@ public class WorldServer extends World implements vn {
 			int var7 = this.worldProvider.i();
 			int var8 = 0;
 			if (var5 != null) {
-				var6 = var5.n();
-				var8 = var5.p();
+				var6 = var5.getX();
+				var8 = var5.getZ();
 			} else {
 				a.warn("Unable to find spawn biome");
 			}
@@ -688,7 +688,7 @@ public class WorldServer extends World implements vn {
 
 	public boolean c(Entity var1) {
 		if (super.c(var1)) {
-			this.I.getPlayerList().a(var1.locationX, var1.locationY, var1.locationZ, 512.0D, this.worldProvider.getDimensionId(), new in(var1));
+			this.I.getPlayerList().a(var1.locationX, var1.locationY, var1.locationZ, 512.0D, this.worldProvider.getDimensionId(), new PacketOutSpawnGlobalEntity(var1));
 			return true;
 		} else {
 			return false;
@@ -696,7 +696,7 @@ public class WorldServer extends World implements vn {
 	}
 
 	public void a(Entity var1, byte var2) {
-		this.s().b(var1, new PacketEntityStatus(var1, var2));
+		this.s().b(var1, new PacketOutEntityStatus(var1, var2));
 	}
 
 	public aqo a(Entity var1, double var2, double var4, double var6, float var8, boolean var9, boolean var10) {
@@ -712,7 +712,7 @@ public class WorldServer extends World implements vn {
 		while (var12.hasNext()) {
 			EntityHuman var13 = (EntityHuman) var12.next();
 			if (var13.e(var2, var4, var6) < 4096.0D) {
-				((EntityPlayer) var13).playerConncetion.sendPacket((Packet) (new jm(var2, var4, var6, var8, var11.e(), (brw) var11.b().get(var13))));
+				((EntityPlayer) var13).playerConncetion.sendPacket((Packet) (new PacketOutExplosion(var2, var4, var6, var8, var11.e(), (Vec3D) var11.b().get(var13))));
 			}
 		}
 
@@ -744,7 +744,7 @@ public class WorldServer extends World implements vn {
 			while (var2.hasNext()) {
 				aqk var3 = (aqk) var2.next();
 				if (this.a(var3)) {
-					this.I.getPlayerList().a((double) var3.a().n(), (double) var3.a().o(), (double) var3.a().p(), 64.0D, this.worldProvider.getDimensionId(), new iv(var3.a(), var3.d(), var3.b(), var3.c()));
+					this.I.getPlayerList().a((double) var3.a().getX(), (double) var3.a().getY(), (double) var3.a().getZ(), 64.0D, this.worldProvider.getDimensionId(), new PacketOutBlockAction(var3.a(), var3.d(), var3.b(), var3.c()));
 				}
 			}
 
@@ -755,7 +755,7 @@ public class WorldServer extends World implements vn {
 
 	private boolean a(aqk var1) {
 		bec var2 = this.p(var1.a());
-		return var2.c() == var1.d() ? var2.c().a(this, var1.a(), var2, var1.b(), var1.c()) : false;
+		return var2.getBlock() == var1.d() ? var2.getBlock().a(this, var1.a(), var2, var1.b(), var1.c()) : false;
 	}
 
 	public void saveData() {
@@ -766,22 +766,22 @@ public class WorldServer extends World implements vn {
 		boolean var1 = this.S();
 		super.p();
 		if (this.o != this.p) {
-			this.I.getPlayerList().sendPacket((Packet) (new jo(7, this.p)), this.worldProvider.getDimensionId());
+			this.I.getPlayerList().sendPacket((Packet) (new PacketOutChangeGameState(7, this.p)), this.worldProvider.getDimensionId());
 		}
 
 		if (this.q != this.r) {
-			this.I.getPlayerList().sendPacket((Packet) (new jo(8, this.r)), this.worldProvider.getDimensionId());
+			this.I.getPlayerList().sendPacket((Packet) (new PacketOutChangeGameState(8, this.r)), this.worldProvider.getDimensionId());
 		}
 
 		if (var1 != this.S()) {
 			if (var1) {
-				this.I.getPlayerList().sendPacket((Packet) (new jo(2, 0.0F)));
+				this.I.getPlayerList().sendPacket((Packet) (new PacketOutChangeGameState(2, 0.0F)));
 			} else {
-				this.I.getPlayerList().sendPacket((Packet) (new jo(1, 0.0F)));
+				this.I.getPlayerList().sendPacket((Packet) (new PacketOutChangeGameState(1, 0.0F)));
 			}
 
-			this.I.getPlayerList().sendPacket((Packet) (new jo(7, this.p)));
-			this.I.getPlayerList().sendPacket((Packet) (new jo(8, this.r)));
+			this.I.getPlayerList().sendPacket((Packet) (new PacketOutChangeGameState(7, this.p)));
+			this.I.getPlayerList().sendPacket((Packet) (new PacketOutChangeGameState(8, this.r)));
 		}
 
 	}
@@ -806,12 +806,12 @@ public class WorldServer extends World implements vn {
 		return this.Q;
 	}
 
-	public void a(ew var1, double var2, double var4, double var6, int var8, double var9, double var11, double var13, double var15, int... var17) {
+	public void a(Particle var1, double var2, double var4, double var6, int var8, double var9, double var11, double var13, double var15, int... var17) {
 		this.a(var1, false, var2, var4, var6, var8, var9, var11, var13, var15, var17);
 	}
 
-	public void a(ew var1, boolean var2, double var3, double var5, double var7, int var9, double var10, double var12, double var14, double var16, int... var18) {
-		ju var19 = new ju(var1, var2, (float) var3, (float) var5, (float) var7, (float) var10, (float) var12, (float) var14, (float) var16, var9, var18);
+	public void a(Particle var1, boolean var2, double var3, double var5, double var7, int var9, double var10, double var12, double var14, double var16, int... var18) {
+		PacketOutParticle var19 = new PacketOutParticle(var1, var2, (float) var3, (float) var5, (float) var7, (float) var10, (float) var12, (float) var14, (float) var16, var9, var18);
 
 		for (int var20 = 0; var20 < this.j.size(); ++var20) {
 			EntityPlayer var21 = (EntityPlayer) this.j.get(var20);

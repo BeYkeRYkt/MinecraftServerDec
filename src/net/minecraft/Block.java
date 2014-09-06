@@ -239,37 +239,33 @@ public class Block {
 		BLOCKREGISTRY.validate();
 
 
-		Iterator<Object> var13 = BLOCKREGISTRY.iterator();
-		Block var14;
-		while (var13.hasNext()) {
-			var14 = (Block) var13.next();
-			if (var14.J == Material.AIR) {
-				var14.v = false;
+		for (Object obj : BLOCKREGISTRY) {
+			Block block = (Block) obj;
+			if (block.material == Material.AIR) {
+				block.v = false;
 			} else {
-				boolean var15 = false;
-				boolean var16 = var14 instanceof BlockStairs;
-				boolean var17 = var14 instanceof awq;
-				boolean var18 = var14 == soil;
-				boolean var19 = var14.t;
-				boolean var20 = var14.s == 0;
-				if (var16 || var17 || var18 || var19 || var20) {
-					var15 = true;
+				boolean flag = false;
+
+				boolean b1 = block instanceof BlockStairs;
+				boolean b2 = block instanceof BlockStepAbstract;
+				boolean b3 = block == soil;
+				boolean b4 = block.t;
+				boolean b5 = block.s == 0;
+
+				if (b1 || b2 || b3 || b4 || b5) {
+					flag = true;
 				}
 
-				var14.v = var15;
+				block.v = flag;
 			}
 		}
 
-		var13 = BLOCKREGISTRY.iterator();
-
-		while (var13.hasNext()) {
-			var14 = (Block) var13.next();
-			Iterator<?> var21 = var14.O().a().iterator();
-
-			while (var21.hasNext()) {
-				bec var22 = (bec) var21.next();
-				int var23 = BLOCKREGISTRY.b(var14) << 4 | var14.c(var22);
-				IDREGISTRY.a(var22, var23);
+		for (Object obj : BLOCKREGISTRY) {
+			Block block = (Block) obj;
+			for (Object becObj : block.O().a()) {
+				bec bec = (bec) becObj;
+				int id = BLOCKREGISTRY.getBlockId(block) << 4 | block.c(bec);
+				IDREGISTRY.register(bec, id);
 			}
 		}
 
@@ -293,18 +289,18 @@ public class Block {
 	protected double G;
 	public BlockSound H;
 	public float I;
-	protected final Material J;
+	protected final Material material;
 	public float K;
 	protected final bed L;
 	private bec M;
 	private String name;
 
 	public static int a(Block var0) {
-		return BLOCKREGISTRY.b(var0);
+		return BLOCKREGISTRY.getBlockId(var0);
 	}
 
 	public static int f(bec var0) {
-		return a(var0.c()) + (var0.c().c(var0) << 12);
+		return a(var0.getBlock()) + (var0.getBlock().c(var0) << 12);
 	}
 
 	public static Block c(int var0) {
@@ -351,7 +347,7 @@ public class Block {
 	}
 
 	public Material r() {
-		return this.J;
+		return this.material;
 	}
 
 	public MaterialMapColor g(bec var1) {
@@ -378,7 +374,7 @@ public class Block {
 		this.H = e;
 		this.I = 1.0F;
 		this.K = 0.6F;
-		this.J = var1;
+		this.material = var1;
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		this.r = this.c();
 		this.s = this.c() ? 255 : 0;
@@ -408,15 +404,15 @@ public class Block {
 	}
 
 	public boolean s() {
-		return this.J.isSolid() && this.d();
+		return this.material.isSolid() && this.d();
 	}
 
 	public boolean t() {
-		return this.J.k() && this.d() && !this.g();
+		return this.material.k() && this.d() && !this.g();
 	}
 
 	public boolean u() {
-		return this.J.isSolid() && this.d();
+		return this.material.isSolid() && this.d();
 	}
 
 	public boolean d() {
@@ -424,7 +420,7 @@ public class Block {
 	}
 
 	public boolean b(ard var1, Position var2) {
-		return !this.J.isSolid();
+		return !this.material.isSolid();
 	}
 
 	public int b() {
@@ -476,7 +472,7 @@ public class Block {
 	}
 
 	public boolean b(ard var1, Position var2, PaintingDirection var3) {
-		return var1.p(var2).c().r().isBuildable();
+		return var1.p(var2).getBlock().r().isBuildable();
 	}
 
 	public void a(World var1, Position var2, bec var3, brt var4, List<brt> var5, Entity var6) {
@@ -488,7 +484,7 @@ public class Block {
 	}
 
 	public brt a(World var1, Position var2, bec var3) {
-		return new brt((double) var2.n() + this.B, (double) var2.o() + this.C, (double) var2.p() + this.D, (double) var2.n() + this.E, (double) var2.o() + this.F, (double) var2.p() + this.G);
+		return new brt((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G);
 	}
 
 	public boolean c() {
@@ -565,7 +561,7 @@ public class Block {
 			double var4 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
 			double var6 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
 			double var8 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
-			EntityItem var10 = new EntityItem(var0, (double) var1.n() + var4, (double) var1.o() + var6, (double) var1.p() + var8, var2);
+			EntityItem var10 = new EntityItem(var0, (double) var1.getX() + var4, (double) var1.getY() + var6, (double) var1.getZ() + var8, var2);
 			var10.p();
 			var0.d((Entity) var10);
 		}
@@ -576,7 +572,7 @@ public class Block {
 			while (var3 > 0) {
 				int var4 = EntityExpirienceOrb.a(var3);
 				var3 -= var4;
-				var1.d((Entity) (new EntityExpirienceOrb(var1, (double) var2.n() + 0.5D, (double) var2.o() + 0.5D, (double) var2.p() + 0.5D, var4)));
+				var1.d((Entity) (new EntityExpirienceOrb(var1, (double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, var4)));
 			}
 		}
 
@@ -590,16 +586,16 @@ public class Block {
 		return this.x / 5.0F;
 	}
 
-	public bru a(World var1, Position var2, brw var3, brw var4) {
+	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		this.a((ard) var1, var2);
-		var3 = var3.b((double) (-var2.n()), (double) (-var2.o()), (double) (-var2.p()));
-		var4 = var4.b((double) (-var2.n()), (double) (-var2.o()), (double) (-var2.p()));
-		brw var5 = var3.a(var4, this.B);
-		brw var6 = var3.a(var4, this.E);
-		brw var7 = var3.b(var4, this.C);
-		brw var8 = var3.b(var4, this.F);
-		brw var9 = var3.c(var4, this.D);
-		brw var10 = var3.c(var4, this.G);
+		var3 = var3.b((double) (-var2.getX()), (double) (-var2.getY()), (double) (-var2.getZ()));
+		var4 = var4.b((double) (-var2.getX()), (double) (-var2.getY()), (double) (-var2.getZ()));
+		Vec3D var5 = var3.a(var4, this.B);
+		Vec3D var6 = var3.a(var4, this.E);
+		Vec3D var7 = var3.b(var4, this.C);
+		Vec3D var8 = var3.b(var4, this.F);
+		Vec3D var9 = var3.c(var4, this.D);
+		Vec3D var10 = var3.c(var4, this.G);
 		if (!this.a(var5)) {
 			var5 = null;
 		}
@@ -624,7 +620,7 @@ public class Block {
 			var10 = null;
 		}
 
-		brw var11 = null;
+		Vec3D var11 = null;
 		if (var5 != null && (var11 == null || var3.g(var5) < var3.g(var11))) {
 			var11 = var5;
 		}
@@ -677,20 +673,20 @@ public class Block {
 				var12 = PaintingDirection.d;
 			}
 
-			return new bru(var11.b((double) var2.n(), (double) var2.o(), (double) var2.p()), var12, var2);
+			return new bru(var11.b((double) var2.getX(), (double) var2.getY(), (double) var2.getZ()), var12, var2);
 		}
 	}
 
-	private boolean a(brw var1) {
-		return var1 == null ? false : var1.b >= this.C && var1.b <= this.F && var1.c >= this.D && var1.c <= this.G;
+	private boolean a(Vec3D var1) {
+		return var1 == null ? false : var1.y >= this.C && var1.y <= this.F && var1.z >= this.D && var1.z <= this.G;
 	}
 
-	private boolean b(brw var1) {
-		return var1 == null ? false : var1.a >= this.B && var1.a <= this.E && var1.c >= this.D && var1.c <= this.G;
+	private boolean b(Vec3D var1) {
+		return var1 == null ? false : var1.x >= this.B && var1.x <= this.E && var1.z >= this.D && var1.z <= this.G;
 	}
 
-	private boolean c(brw var1) {
-		return var1 == null ? false : var1.a >= this.B && var1.a <= this.E && var1.b >= this.C && var1.b <= this.F;
+	private boolean c(Vec3D var1) {
+		return var1 == null ? false : var1.x >= this.B && var1.x <= this.E && var1.y >= this.C && var1.y <= this.F;
 	}
 
 	public void a(World var1, Position var2, aqo var3) {
@@ -705,7 +701,7 @@ public class Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return var1.p(var2).c().J.j();
+		return var1.p(var2).getBlock().material.j();
 	}
 
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
@@ -722,7 +718,7 @@ public class Block {
 	public void a(World var1, Position var2, EntityHuman var3) {
 	}
 
-	public brw a(World var1, Position var2, Entity var3, brw var4) {
+	public Vec3D a(World var1, Position var2, Entity var3, Vec3D var4) {
 		return var4;
 	}
 
@@ -771,7 +767,7 @@ public class Block {
 	public void h() {
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, bec var4, bcm var5) {
+	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
 		var2.b(StatisticList.H[a(this)]);
 		var2.a(0.025F);
 		if (this.G() && aph.e(var2)) {
@@ -834,7 +830,7 @@ public class Block {
 	}
 
 	public int i() {
-		return this.J.m();
+		return this.material.m();
 	}
 
 	public void a(World var1, Position var2, Entity var3, float var4) {

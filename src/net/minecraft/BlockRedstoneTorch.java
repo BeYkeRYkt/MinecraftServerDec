@@ -96,16 +96,16 @@ public class BlockRedstoneTorch extends BlockTorch {
 			if (var5) {
 				var1.a(var2, aty.aE.P().a(a, var3.b(a)), 3);
 				if (this.a(var1, var2, true)) {
-					var1.a((double) ((float) var2.n() + 0.5F), (double) ((float) var2.o() + 0.5F), (double) ((float) var2.p() + 0.5F), "random.fizz", 0.5F, 2.6F + (var1.s.nextFloat() - var1.s.nextFloat()) * 0.8F);
+					var1.a((double) ((float) var2.getX() + 0.5F), (double) ((float) var2.getY() + 0.5F), (double) ((float) var2.getZ() + 0.5F), "random.fizz", 0.5F, 2.6F + (var1.s.nextFloat() - var1.s.nextFloat()) * 0.8F);
 
 					for (int var7 = 0; var7 < 5; ++var7) {
-						double var8 = (double) var2.n() + var4.nextDouble() * 0.6D + 0.2D;
-						double var10 = (double) var2.o() + var4.nextDouble() * 0.6D + 0.2D;
-						double var12 = (double) var2.p() + var4.nextDouble() * 0.6D + 0.2D;
-						var1.a(ew.l, var8, var10, var12, 0.0D, 0.0D, 0.0D, new int[0]);
+						double var8 = (double) var2.getX() + var4.nextDouble() * 0.6D + 0.2D;
+						double var10 = (double) var2.getY() + var4.nextDouble() * 0.6D + 0.2D;
+						double var12 = (double) var2.getZ() + var4.nextDouble() * 0.6D + 0.2D;
+						var1.a(Particle.l, var8, var10, var12, 0.0D, 0.0D, 0.0D, new int[0]);
 					}
 
-					var1.a(var2, var1.p(var2).c(), 160);
+					var1.a(var2, var1.p(var2).getBlock(), 160);
 				}
 			}
 		} else if (!var5 && !this.a(var1, var2, false)) {

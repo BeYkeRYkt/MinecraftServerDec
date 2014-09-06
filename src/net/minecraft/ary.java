@@ -144,7 +144,7 @@ public class ary {
 		for (var3 = 0; var3 < this.B; ++var3) {
 			var4 = this.b.nextInt(16) + 8;
 			var5 = this.b.nextInt(16) + 8;
-			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).o() + 32);
+			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).getY() + 32);
 			var7 = this.c.a(var4, var11, var5);
 			awa var8 = var1.a(this.b, var7);
 			avy var9 = var8.a().a();
@@ -157,14 +157,14 @@ public class ary {
 		for (var3 = 0; var3 < this.C; ++var3) {
 			var4 = this.b.nextInt(16) + 8;
 			var5 = this.b.nextInt(16) + 8;
-			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).o() * 2);
+			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).getY() * 2);
 			var1.b(this.b).b(this.a, this.b, this.c.a(var4, var11, var5));
 		}
 
 		for (var3 = 0; var3 < this.D; ++var3) {
 			var4 = this.b.nextInt(16) + 8;
 			var5 = this.b.nextInt(16) + 8;
-			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).o() * 2);
+			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).getY() * 2);
 			(new bhm()).b(this.a, this.b, this.c.a(var4, var11, var5));
 		}
 
@@ -173,11 +173,11 @@ public class ary {
 		while (var3 < this.z) {
 			var4 = this.b.nextInt(16) + 8;
 			var5 = this.b.nextInt(16) + 8;
-			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).o() * 2);
+			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).getY() * 2);
 			var7 = this.c.a(var4, var11, var5);
 
 			while (true) {
-				if (var7.o() > 0) {
+				if (var7.getY() > 0) {
 					Position var13 = var7.b();
 					if (this.a.d(var13)) {
 						var7 = var13;
@@ -202,7 +202,7 @@ public class ary {
 			if (this.b.nextInt(8) == 0) {
 				var4 = this.b.nextInt(16) + 8;
 				var5 = this.b.nextInt(16) + 8;
-				var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).o() * 2);
+				var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).getY() * 2);
 				var7 = this.c.a(var4, var11, var5);
 				this.u.b(this.a, this.b, var7);
 			}
@@ -211,42 +211,42 @@ public class ary {
 		if (this.b.nextInt(4) == 0) {
 			var3 = this.b.nextInt(16) + 8;
 			var4 = this.b.nextInt(16) + 8;
-			var5 = this.b.nextInt(this.a.m(this.c.a(var3, 0, var4)).o() * 2);
+			var5 = this.b.nextInt(this.a.m(this.c.a(var3, 0, var4)).getY() * 2);
 			this.t.b(this.a, this.b, this.c.a(var3, var5, var4));
 		}
 
 		if (this.b.nextInt(8) == 0) {
 			var3 = this.b.nextInt(16) + 8;
 			var4 = this.b.nextInt(16) + 8;
-			var5 = this.b.nextInt(this.a.m(this.c.a(var3, 0, var4)).o() * 2);
+			var5 = this.b.nextInt(this.a.m(this.c.a(var3, 0, var4)).getY() * 2);
 			this.u.b(this.a, this.b, this.c.a(var3, var5, var4));
 		}
 
 		for (var3 = 0; var3 < this.F; ++var3) {
 			var4 = this.b.nextInt(16) + 8;
 			var5 = this.b.nextInt(16) + 8;
-			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).o() * 2);
+			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).getY() * 2);
 			this.w.b(this.a, this.b, this.c.a(var4, var11, var5));
 		}
 
 		for (var3 = 0; var3 < 10; ++var3) {
 			var4 = this.b.nextInt(16) + 8;
 			var5 = this.b.nextInt(16) + 8;
-			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).o() * 2);
+			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).getY() * 2);
 			this.w.b(this.a, this.b, this.c.a(var4, var11, var5));
 		}
 
 		if (this.b.nextInt(32) == 0) {
 			var3 = this.b.nextInt(16) + 8;
 			var4 = this.b.nextInt(16) + 8;
-			var5 = this.b.nextInt(this.a.m(this.c.a(var3, 0, var4)).o() * 2);
+			var5 = this.b.nextInt(this.a.m(this.c.a(var3, 0, var4)).getY() * 2);
 			(new bih()).b(this.a, this.b, this.c.a(var3, var5, var4));
 		}
 
 		for (var3 = 0; var3 < this.G; ++var3) {
 			var4 = this.b.nextInt(16) + 8;
 			var5 = this.b.nextInt(16) + 8;
-			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).o() * 2);
+			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).getY() * 2);
 			this.x.b(this.a, this.b, this.c.a(var4, var11, var5));
 		}
 

@@ -17,7 +17,7 @@ public class asn extends arm {
 	}
 
 	public awa a(Random var1, Position var2) {
-		double var3 = af.a((double) var2.n() / 200.0D, (double) var2.p() / 200.0D);
+		double var3 = af.a((double) var2.getX() / 200.0D, (double) var2.getZ() / 200.0D);
 		int var5;
 		if (var3 < -0.8D) {
 			var5 = var1.nextInt(4);
@@ -41,7 +41,7 @@ public class asn extends arm {
 	}
 
 	public void a(World var1, Random var2, Position var3) {
-		double var4 = af.a((double) (var3.n() + 8) / 200.0D, (double) (var3.p() + 8) / 200.0D);
+		double var4 = af.a((double) (var3.getX() + 8) / 200.0D, (double) (var3.getZ() + 8) / 200.0D);
 		int var6;
 		int var7;
 		int var8;
@@ -57,7 +57,7 @@ public class asn extends arm {
 			for (var6 = 0; var6 < 7; ++var6) {
 				var7 = var2.nextInt(16) + 8;
 				var8 = var2.nextInt(16) + 8;
-				var9 = var2.nextInt(var1.m(var3.a(var7, 0, var8)).o() + 32);
+				var9 = var2.nextInt(var1.m(var3.a(var7, 0, var8)).getY() + 32);
 				ag.b(var1, var2, var3.a(var7, var9, var8));
 			}
 		}
@@ -68,7 +68,7 @@ public class asn extends arm {
 			for (var6 = 0; var6 < 10; ++var6) {
 				var7 = var2.nextInt(16) + 8;
 				var8 = var2.nextInt(16) + 8;
-				var9 = var2.nextInt(var1.m(var3.a(var7, 0, var8)).o() + 32);
+				var9 = var2.nextInt(var1.m(var3.a(var7, 0, var8)).getY() + 32);
 				ag.b(var1, var2, var3.a(var7, var9, var8));
 			}
 		}

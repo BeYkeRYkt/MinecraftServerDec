@@ -232,7 +232,7 @@ public class EntityArmorStand extends EntityLiving {
 
 	}
 
-	public boolean a(EntityHuman var1, brw var2) {
+	public boolean a(EntityHuman var1, Vec3D var2) {
 		if (!this.o.D && !var1.v()) {
 			byte var3 = 0;
 			ItemStack var4 = var1.bY();
@@ -260,7 +260,7 @@ public class EntityArmorStand extends EntityLiving {
 			double var12 = 1.6D;
 			byte var14 = 0;
 			boolean var15 = this.n();
-			double var16 = var15 ? var2.b * 2.0D : var2.b;
+			double var16 = var15 ? var2.y * 2.0D : var2.y;
 			if (var16 >= 0.1D && var16 < 0.1D + (var15 ? 0.8D : 0.45D) && this.g[1] != null) {
 				var14 = 1;
 			} else if (var16 >= 0.9D + (var15 ? 0.3D : 0.0D) && var16 < 0.9D + (var15 ? 1.0D : 0.7D) && this.g[3] != null) {
@@ -384,7 +384,7 @@ public class EntityArmorStand extends EntityLiving {
 
 	private void z() {
 		if (this.o instanceof WorldServer) {
-			((WorldServer) this.o).a(ew.M, this.locationX, this.locationY + (double) this.K / 1.5D, this.locationZ, 10, (double) (this.J / 4.0F), (double) (this.K / 4.0F), (double) (this.J / 4.0F), 0.05D, new int[] { Block.f(aty.f.P()) });
+			((WorldServer) this.o).a(Particle.M, this.locationX, this.locationY + (double) this.K / 1.5D, this.locationZ, 10, (double) (this.J / 4.0F), (double) (this.K / 4.0F), (double) (this.J / 4.0F), 0.05D, new int[] { Block.f(aty.f.P()) });
 		}
 
 	}

@@ -15,15 +15,15 @@ public class ea implements dz {
 	}
 
 	public double a() {
-		return (double) this.b.n() + 0.5D;
+		return (double) this.b.getX() + 0.5D;
 	}
 
 	public double b() {
-		return (double) this.b.o() + 0.5D;
+		return (double) this.b.getY() + 0.5D;
 	}
 
 	public double c() {
-		return (double) this.b.p() + 0.5D;
+		return (double) this.b.getZ() + 0.5D;
 	}
 
 	public Position d() {
@@ -31,15 +31,15 @@ public class ea implements dz {
 	}
 
 	public Block e() {
-		return this.a.p(this.b).c();
+		return this.a.p(this.b).getBlock();
 	}
 
 	public int f() {
 		bec var1 = this.a.p(this.b);
-		return var1.c().c(var1);
+		return var1.getBlock().c(var1);
 	}
 
-	public bcm h() {
+	public TileEntity h() {
 		return this.a.s(this.b);
 	}
 }

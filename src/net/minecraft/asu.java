@@ -56,7 +56,7 @@ public class asu extends arm {
 		for (var4 = 0; var4 < 7; ++var4) {
 			var5 = var2.nextInt(16) + 8;
 			var6 = var2.nextInt(16) + 8;
-			var7 = var2.nextInt(var1.m(var3.a(var5, 0, var6)).o() + 32);
+			var7 = var2.nextInt(var1.m(var3.a(var5, 0, var6)).getY() + 32);
 			ag.b(var1, var2, var3.a(var5, var7, var6));
 		}
 

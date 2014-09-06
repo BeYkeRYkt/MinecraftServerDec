@@ -102,19 +102,19 @@ public abstract class World implements ard {
 
 	public Block c(Position var1) {
 		Position var2;
-		for (var2 = new Position(var1.n(), 63, var1.p()); !this.d(var2.a()); var2 = var2.a()) {
+		for (var2 = new Position(var1.getX(), 63, var1.getZ()); !this.d(var2.a()); var2 = var2.a()) {
 			;
 		}
 
-		return this.p(var2).c();
+		return this.p(var2).getBlock();
 	}
 
 	private boolean a(Position var1) {
-		return var1.n() >= -30000000 && var1.p() >= -30000000 && var1.n() < 30000000 && var1.p() < 30000000 && var1.o() >= 0 && var1.o() < 256;
+		return var1.getX() >= -30000000 && var1.getZ() >= -30000000 && var1.getX() < 30000000 && var1.getZ() < 30000000 && var1.getY() >= 0 && var1.getY() < 256;
 	}
 
 	public boolean d(Position var1) {
-		return this.p(var1).c().r() == Material.AIR;
+		return this.p(var1).getBlock().r() == Material.AIR;
 	}
 
 	public boolean e(Position var1) {
@@ -122,7 +122,7 @@ public abstract class World implements ard {
 	}
 
 	public boolean a(Position var1, boolean var2) {
-		return !this.a(var1) ? false : this.a(var1.n() >> 4, var1.p() >> 4, var2);
+		return !this.a(var1) ? false : this.a(var1.getX() >> 4, var1.getZ() >> 4, var2);
 	}
 
 	public boolean a(Position var1, int var2) {
@@ -130,7 +130,7 @@ public abstract class World implements ard {
 	}
 
 	public boolean a(Position var1, int var2, boolean var3) {
-		return this.a(var1.n() - var2, var1.o() - var2, var1.p() - var2, var1.n() + var2, var1.o() + var2, var1.p() + var2, var3);
+		return this.a(var1.getX() - var2, var1.getY() - var2, var1.getZ() - var2, var1.getX() + var2, var1.getY() + var2, var1.getZ() + var2, var3);
 	}
 
 	public boolean a(Position var1, Position var2) {
@@ -138,7 +138,7 @@ public abstract class World implements ard {
 	}
 
 	public boolean a(Position var1, Position var2, boolean var3) {
-		return this.a(var1.n(), var1.o(), var1.p(), var2.n(), var2.o(), var2.p(), var3);
+		return this.a(var1.getX(), var1.getY(), var1.getZ(), var2.getX(), var2.getY(), var2.getZ(), var3);
 	}
 
 	public boolean a(bjb var1) {
@@ -175,7 +175,7 @@ public abstract class World implements ard {
 	}
 
 	public Chunk f(Position var1) {
-		return this.a(var1.n() >> 4, var1.p() >> 4);
+		return this.a(var1.getX() >> 4, var1.getZ() >> 4);
 	}
 
 	public Chunk a(int var1, int var2) {
@@ -189,12 +189,12 @@ public abstract class World implements ard {
 			return false;
 		} else {
 			Chunk var4 = this.f(var1);
-			Block var5 = var2.c();
+			Block var5 = var2.getBlock();
 			bec var6 = var4.a(var1, var2);
 			if (var6 == null) {
 				return false;
 			} else {
-				Block var7 = var6.c();
+				Block var7 = var6.getBlock();
 				if (var5.n() != var7.n() || var5.p() != var7.p()) {
 					this.B.a("checkLight");
 					this.x(var1);
@@ -206,7 +206,7 @@ public abstract class World implements ard {
 				}
 
 				if (!this.D && (var3 & 1) != 0) {
-					this.b(var1, var6.c());
+					this.b(var1, var6.getBlock());
 					if (var5.N()) {
 						this.e(var1, var5);
 					}
@@ -223,7 +223,7 @@ public abstract class World implements ard {
 
 	public boolean b(Position var1, boolean var2) {
 		bec var3 = this.p(var1);
-		Block var4 = var3.c();
+		Block var4 = var3.getBlock();
 		if (var4.r() == Material.AIR) {
 			return false;
 		} else {
@@ -272,7 +272,7 @@ public abstract class World implements ard {
 	}
 
 	public void b(Position var1, Position var2) {
-		this.b(var1.n(), var1.o(), var1.p(), var2.n(), var2.o(), var2.p());
+		this.b(var1.getX(), var1.getY(), var1.getZ(), var2.getX(), var2.getY(), var2.getZ());
 	}
 
 	public void b(int var1, int var2, int var3, int var4, int var5, int var6) {
@@ -323,7 +323,7 @@ public abstract class World implements ard {
 			bec var3 = this.p(var1);
 
 			try {
-				var3.c().a(this, var1, var3, var2);
+				var3.getBlock().a(this, var1, var3, var2);
 			} catch (Throwable var7) {
 				CrashReport var5 = CrashReport.generateCrashReport(var7, "Exception while updating neighbours");
 				CrashReportSystemDetails var6 = var5.generateSystemDetails("Block being updated");
@@ -343,15 +343,15 @@ public abstract class World implements ard {
 	}
 
 	public boolean j(Position var1) {
-		if (var1.o() >= 63) {
+		if (var1.getY() >= 63) {
 			return this.i(var1);
 		} else {
-			Position var2 = new Position(var1.n(), 63, var1.p());
+			Position var2 = new Position(var1.getX(), 63, var1.getZ());
 			if (!this.i(var2)) {
 				return false;
 			} else {
-				for (var2 = var2.b(); var2.o() > var1.o(); var2 = var2.b()) {
-					Block var3 = this.p(var2).c();
+				for (var2 = var2.b(); var2.getY() > var1.getY(); var2 = var2.b()) {
+					Block var3 = this.p(var2).getBlock();
 					if (var3.n() > 0 && !var3.r().isLiquid()) {
 						return false;
 					}
@@ -363,11 +363,11 @@ public abstract class World implements ard {
 	}
 
 	public int k(Position var1) {
-		if (var1.o() < 0) {
+		if (var1.getY() < 0) {
 			return 0;
 		} else {
-			if (var1.o() >= 256) {
-				var1 = new Position(var1.n(), 255, var1.p());
+			if (var1.getY() >= 256) {
+				var1 = new Position(var1.getX(), 255, var1.getZ());
 			}
 
 			return this.f(var1).a(var1, 0);
@@ -379,8 +379,8 @@ public abstract class World implements ard {
 	}
 
 	public int c(Position var1, boolean var2) {
-		if (var1.n() >= -30000000 && var1.p() >= -30000000 && var1.n() < 30000000 && var1.p() < 30000000) {
-			if (var2 && this.p(var1).c().q()) {
+		if (var1.getX() >= -30000000 && var1.getZ() >= -30000000 && var1.getX() < 30000000 && var1.getZ() < 30000000) {
+			if (var2 && this.p(var1).getBlock().q()) {
 				int var8 = this.c(var1.a(), false);
 				int var4 = this.c(var1.f(), false);
 				int var5 = this.c(var1.e(), false);
@@ -403,11 +403,11 @@ public abstract class World implements ard {
 				}
 
 				return var8;
-			} else if (var1.o() < 0) {
+			} else if (var1.getY() < 0) {
 				return 0;
 			} else {
-				if (var1.o() >= 256) {
-					var1 = new Position(var1.n(), 255, var1.p());
+				if (var1.getY() >= 256) {
+					var1 = new Position(var1.getX(), 255, var1.getZ());
 				}
 
 				Chunk var3 = this.f(var1);
@@ -420,9 +420,9 @@ public abstract class World implements ard {
 
 	public Position m(Position var1) {
 		int var2;
-		if (var1.n() >= -30000000 && var1.p() >= -30000000 && var1.n() < 30000000 && var1.p() < 30000000) {
-			if (this.a(var1.n() >> 4, var1.p() >> 4, true)) {
-				var2 = this.a(var1.n() >> 4, var1.p() >> 4).b(var1.n() & 15, var1.p() & 15);
+		if (var1.getX() >= -30000000 && var1.getZ() >= -30000000 && var1.getX() < 30000000 && var1.getZ() < 30000000) {
+			if (this.a(var1.getX() >> 4, var1.getZ() >> 4, true)) {
+				var2 = this.a(var1.getX() >> 4, var1.getZ() >> 4).b(var1.getX() & 15, var1.getZ() & 15);
 			} else {
 				var2 = 0;
 			}
@@ -430,7 +430,7 @@ public abstract class World implements ard {
 			var2 = 64;
 		}
 
-		return new Position(var1.n(), var2, var1.p());
+		return new Position(var1.getX(), var2, var1.getZ());
 	}
 
 	public int b(int var1, int var2) {
@@ -447,8 +447,8 @@ public abstract class World implements ard {
 	}
 
 	public int b(arf var1, Position var2) {
-		if (var2.o() < 0) {
-			var2 = new Position(var2.n(), 0, var2.p());
+		if (var2.getY() < 0) {
+			var2 = new Position(var2.getX(), 0, var2.getZ());
 		}
 
 		if (!this.a(var2)) {
@@ -495,27 +495,27 @@ public abstract class World implements ard {
 		return this.d < 4;
 	}
 
-	public bru a(brw var1, brw var2) {
+	public bru a(Vec3D var1, Vec3D var2) {
 		return this.a(var1, var2, false, false, false);
 	}
 
-	public bru a(brw var1, brw var2, boolean var3) {
+	public bru a(Vec3D var1, Vec3D var2, boolean var3) {
 		return this.a(var1, var2, var3, false, false);
 	}
 
-	public bru a(brw var1, brw var2, boolean var3, boolean var4, boolean var5) {
-		if (!Double.isNaN(var1.a) && !Double.isNaN(var1.b) && !Double.isNaN(var1.c)) {
-			if (!Double.isNaN(var2.a) && !Double.isNaN(var2.b) && !Double.isNaN(var2.c)) {
-				int var6 = DataTypesConverter.toFixedPointInt(var2.a);
-				int var7 = DataTypesConverter.toFixedPointInt(var2.b);
-				int var8 = DataTypesConverter.toFixedPointInt(var2.c);
-				int var9 = DataTypesConverter.toFixedPointInt(var1.a);
-				int var10 = DataTypesConverter.toFixedPointInt(var1.b);
-				int var11 = DataTypesConverter.toFixedPointInt(var1.c);
+	public bru a(Vec3D var1, Vec3D var2, boolean var3, boolean var4, boolean var5) {
+		if (!Double.isNaN(var1.x) && !Double.isNaN(var1.y) && !Double.isNaN(var1.z)) {
+			if (!Double.isNaN(var2.x) && !Double.isNaN(var2.y) && !Double.isNaN(var2.z)) {
+				int var6 = DataTypesConverter.toFixedPointInt(var2.x);
+				int var7 = DataTypesConverter.toFixedPointInt(var2.y);
+				int var8 = DataTypesConverter.toFixedPointInt(var2.z);
+				int var9 = DataTypesConverter.toFixedPointInt(var1.x);
+				int var10 = DataTypesConverter.toFixedPointInt(var1.y);
+				int var11 = DataTypesConverter.toFixedPointInt(var1.z);
 				Position var12 = new Position(var9, var10, var11);
 				new Position(var6, var7, var8);
 				bec var14 = this.p(var12);
-				Block var15 = var14.c();
+				Block var15 = var14.getBlock();
 				if ((!var4 || var15.a(this, var12, var14) != null) && var15.a(var14, var3)) {
 					bru var16 = var15.a(this, var12, var1, var2);
 					if (var16 != null) {
@@ -527,7 +527,7 @@ public abstract class World implements ard {
 				int var42 = 200;
 
 				while (var42-- >= 0) {
-					if (Double.isNaN(var1.a) || Double.isNaN(var1.b) || Double.isNaN(var1.c)) {
+					if (Double.isNaN(var1.x) || Double.isNaN(var1.y) || Double.isNaN(var1.z)) {
 						return null;
 					}
 
@@ -568,19 +568,19 @@ public abstract class World implements ard {
 					double var25 = 999.0D;
 					double var27 = 999.0D;
 					double var29 = 999.0D;
-					double var31 = var2.a - var1.a;
-					double var33 = var2.b - var1.b;
-					double var35 = var2.c - var1.c;
+					double var31 = var2.x - var1.x;
+					double var33 = var2.y - var1.y;
+					double var35 = var2.z - var1.z;
 					if (var43) {
-						var25 = (var19 - var1.a) / var31;
+						var25 = (var19 - var1.x) / var31;
 					}
 
 					if (var17) {
-						var27 = (var21 - var1.b) / var33;
+						var27 = (var21 - var1.y) / var33;
 					}
 
 					if (var18) {
-						var29 = (var23 - var1.c) / var35;
+						var29 = (var23 - var1.z) / var35;
 					}
 
 					if (var25 == -0.0D) {
@@ -598,21 +598,21 @@ public abstract class World implements ard {
 					PaintingDirection var37;
 					if (var25 < var27 && var25 < var29) {
 						var37 = var6 > var9 ? PaintingDirection.e : PaintingDirection.f;
-						var1 = new brw(var19, var1.b + var33 * var25, var1.c + var35 * var25);
+						var1 = new Vec3D(var19, var1.y + var33 * var25, var1.z + var35 * var25);
 					} else if (var27 < var29) {
 						var37 = var7 > var10 ? PaintingDirection.a : PaintingDirection.b;
-						var1 = new brw(var1.a + var31 * var27, var21, var1.c + var35 * var27);
+						var1 = new Vec3D(var1.x + var31 * var27, var21, var1.z + var35 * var27);
 					} else {
 						var37 = var8 > var11 ? PaintingDirection.c : PaintingDirection.d;
-						var1 = new brw(var1.a + var31 * var29, var1.b + var33 * var29, var23);
+						var1 = new Vec3D(var1.x + var31 * var29, var1.y + var33 * var29, var23);
 					}
 
-					var9 = DataTypesConverter.toFixedPointInt(var1.a) - (var37 == PaintingDirection.f ? 1 : 0);
-					var10 = DataTypesConverter.toFixedPointInt(var1.b) - (var37 == PaintingDirection.b ? 1 : 0);
-					var11 = DataTypesConverter.toFixedPointInt(var1.c) - (var37 == PaintingDirection.d ? 1 : 0);
+					var9 = DataTypesConverter.toFixedPointInt(var1.x) - (var37 == PaintingDirection.f ? 1 : 0);
+					var10 = DataTypesConverter.toFixedPointInt(var1.y) - (var37 == PaintingDirection.b ? 1 : 0);
+					var11 = DataTypesConverter.toFixedPointInt(var1.z) - (var37 == PaintingDirection.d ? 1 : 0);
 					var12 = new Position(var9, var10, var11);
 					bec var38 = this.p(var12);
-					Block var39 = var38.c();
+					Block var39 = var38.getBlock();
 					if (!var4 || var39.a(this, var12, var38) != null) {
 						if (var39.a(var38, var3)) {
 							bru var40 = var39.a(this, var12, var1, var2);
@@ -665,7 +665,7 @@ public abstract class World implements ard {
 
 	}
 
-	public void a(ew var1, double var2, double var4, double var6, double var8, double var10, double var12, int... var14) {
+	public void a(Particle var1, double var2, double var4, double var6, double var8, double var10, double var12, int... var14) {
 		this.a(var1.c(), var1.e(), var2, var4, var6, var8, var10, var12, var14);
 	}
 
@@ -787,7 +787,7 @@ public abstract class World implements ard {
 							var16 = this.p(var13);
 						}
 
-						var16.c().a(this, var13, var16, var2, var3, var1);
+						var16.getBlock().a(this, var13, var16, var2, var3, var1);
 					}
 				}
 			}
@@ -854,7 +854,7 @@ public abstract class World implements ard {
 							var12 = aty.h.P();
 						}
 
-						var12.c().a(this, var13, var12, var1, var2, (Entity) null);
+						var12.getBlock().a(this, var13, var12, var1, var2, (Entity) null);
 					}
 				}
 			}
@@ -896,7 +896,7 @@ public abstract class World implements ard {
 
 		Position var3;
 		Position var4;
-		for (var3 = new Position(var1.n(), var2.g() + 16, var1.p()); var3.o() >= 0; var3 = var4) {
+		for (var3 = new Position(var1.getX(), var2.g() + 16, var1.getZ()); var3.getY() >= 0; var3 = var4) {
 			var4 = var3.b();
 			Material var5 = var2.a(var4).r();
 			if (var5.isSolid() && var5 != Material.LEAVES) {
@@ -1012,7 +1012,7 @@ public abstract class World implements ard {
 		Iterator var10 = this.i.iterator();
 
 		while (var10.hasNext()) {
-			bcm var11 = (bcm) var10.next();
+			TileEntity var11 = (TileEntity) var10.next();
 			if (!var11.x() && var11.t()) {
 				Position var13 = var11.v();
 				if (this.e(var13) && this.M.a(var13)) {
@@ -1046,7 +1046,7 @@ public abstract class World implements ard {
 		this.B.c("pendingBlockEntities");
 		if (!this.a.isEmpty()) {
 			for (int var12 = 0; var12 < this.a.size(); ++var12) {
-				bcm var14 = (bcm) this.a.get(var12);
+				TileEntity var14 = (TileEntity) this.a.get(var12);
 				if (!var14.x()) {
 					if (!this.h.contains(var14)) {
 						this.a(var14);
@@ -1067,7 +1067,7 @@ public abstract class World implements ard {
 		this.B.b();
 	}
 
-	public boolean a(bcm var1) {
+	public boolean a(TileEntity var1) {
 		boolean var2 = this.h.add(var1);
 		if (var2 && var1 instanceof pm) {
 			this.i.add(var1);
@@ -1083,7 +1083,7 @@ public abstract class World implements ard {
 			Iterator var2 = var1.iterator();
 
 			while (var2.hasNext()) {
-				bcm var3 = (bcm) var2.next();
+				TileEntity var3 = (TileEntity) var2.next();
 				this.h.add(var3);
 				if (var3 instanceof pm) {
 					this.i.add(var3);
@@ -1194,7 +1194,7 @@ public abstract class World implements ard {
 		for (int var8 = var2; var8 <= var3; ++var8) {
 			for (int var9 = var4; var9 <= var5; ++var9) {
 				for (int var10 = var6; var10 <= var7; ++var10) {
-					Block var11 = this.p(new Position(var8, var9, var10)).c();
+					Block var11 = this.p(new Position(var8, var9, var10)).getBlock();
 					if (var11.r() != Material.AIR) {
 						return true;
 					}
@@ -1216,7 +1216,7 @@ public abstract class World implements ard {
 		for (int var8 = var2; var8 <= var3; ++var8) {
 			for (int var9 = var4; var9 <= var5; ++var9) {
 				for (int var10 = var6; var10 <= var7; ++var10) {
-					Block var11 = this.p(new Position(var8, var9, var10)).c();
+					Block var11 = this.p(new Position(var8, var9, var10)).getBlock();
 					if (var11.r().isLiquid()) {
 						return true;
 					}
@@ -1238,7 +1238,7 @@ public abstract class World implements ard {
 			for (int var8 = var2; var8 < var3; ++var8) {
 				for (int var9 = var4; var9 < var5; ++var9) {
 					for (int var10 = var6; var10 < var7; ++var10) {
-						Block var11 = this.p(new Position(var8, var9, var10)).c();
+						Block var11 = this.p(new Position(var8, var9, var10)).getBlock();
 						if (var11 == aty.ab || var11 == aty.k || var11 == aty.l) {
 							return true;
 						}
@@ -1261,14 +1261,14 @@ public abstract class World implements ard {
 			return false;
 		} else {
 			boolean var10 = false;
-			brw var11 = new brw(0.0D, 0.0D, 0.0D);
+			Vec3D var11 = new Vec3D(0.0D, 0.0D, 0.0D);
 
 			for (int var12 = var4; var12 < var5; ++var12) {
 				for (int var13 = var6; var13 < var7; ++var13) {
 					for (int var14 = var8; var14 < var9; ++var14) {
 						Position var15 = new Position(var12, var13, var14);
 						bec var16 = this.p(var15);
-						Block var17 = var16.c();
+						Block var17 = var16.getBlock();
 						if (var17.r() == var2) {
 							double var18 = (double) ((float) (var13 + 1) - axl.b(((Integer) var16.b(axl.b)).intValue()));
 							if ((double) var7 >= var18) {
@@ -1283,9 +1283,9 @@ public abstract class World implements ard {
 			if (var11.b() > 0.0D && var3.aK()) {
 				var11 = var11.a();
 				double var20 = 0.014D;
-				var3.motionX += var11.a * var20;
-				var3.motionY += var11.b * var20;
-				var3.motionZ += var11.c * var20;
+				var3.motionX += var11.x * var20;
+				var3.motionY += var11.y * var20;
+				var3.motionZ += var11.z * var20;
 			}
 
 			return var10;
@@ -1303,7 +1303,7 @@ public abstract class World implements ard {
 		for (int var9 = var3; var9 < var4; ++var9) {
 			for (int var10 = var5; var10 < var6; ++var10) {
 				for (int var11 = var7; var11 < var8; ++var11) {
-					if (this.p(new Position(var9, var10, var11)).c().r() == var2) {
+					if (this.p(new Position(var9, var10, var11)).getBlock().r() == var2) {
 						return true;
 					}
 				}
@@ -1326,7 +1326,7 @@ public abstract class World implements ard {
 				for (int var11 = var7; var11 < var8; ++var11) {
 					Position var12 = new Position(var9, var10, var11);
 					bec var13 = this.p(var12);
-					Block var14 = var13.c();
+					Block var14 = var13.getBlock();
 					if (var14.r() == var2) {
 						int var15 = ((Integer) var13.b(axl.b)).intValue();
 						double var16 = (double) (var10 + 1);
@@ -1356,7 +1356,7 @@ public abstract class World implements ard {
 		return var11;
 	}
 
-	public float a(brw var1, brt var2) {
+	public float a(Vec3D var1, brt var2) {
 		double var3 = 1.0D / ((var2.d - var2.a) * 2.0D + 1.0D);
 		double var5 = 1.0D / ((var2.e - var2.b) * 2.0D + 1.0D);
 		double var7 = 1.0D / ((var2.f - var2.c) * 2.0D + 1.0D);
@@ -1370,7 +1370,7 @@ public abstract class World implements ard {
 						double var14 = var2.a + (var2.d - var2.a) * (double) var11;
 						double var16 = var2.b + (var2.e - var2.b) * (double) var12;
 						double var18 = var2.c + (var2.f - var2.c) * (double) var13;
-						if (this.a(new brw(var14, var16, var18), var1) == null) {
+						if (this.a(new Vec3D(var14, var16, var18), var1) == null) {
 							++var9;
 						}
 
@@ -1387,7 +1387,7 @@ public abstract class World implements ard {
 
 	public boolean a(EntityHuman var1, Position var2, PaintingDirection var3) {
 		var2 = var2.a(var3);
-		if (this.p(var2).c() == aty.ab) {
+		if (this.p(var2).getBlock() == aty.ab) {
 			this.a(var1, 1004, var2, 0);
 			this.g(var2);
 			return true;
@@ -1396,16 +1396,16 @@ public abstract class World implements ard {
 		}
 	}
 
-	public bcm s(Position var1) {
+	public TileEntity s(Position var1) {
 		if (!this.a(var1)) {
 			return null;
 		} else {
-			bcm var2 = null;
+			TileEntity var2 = null;
 			int var3;
-			bcm var4;
+			TileEntity var4;
 			if (this.L) {
 				for (var3 = 0; var3 < this.a.size(); ++var3) {
-					var4 = (bcm) this.a.get(var3);
+					var4 = (TileEntity) this.a.get(var3);
 					if (!var4.x() && var4.v().equals(var1)) {
 						var2 = var4;
 						break;
@@ -1419,7 +1419,7 @@ public abstract class World implements ard {
 
 			if (var2 == null) {
 				for (var3 = 0; var3 < this.a.size(); ++var3) {
-					var4 = (bcm) this.a.get(var3);
+					var4 = (TileEntity) this.a.get(var3);
 					if (!var4.x() && var4.v().equals(var1)) {
 						var2 = var4;
 						break;
@@ -1431,14 +1431,14 @@ public abstract class World implements ard {
 		}
 	}
 
-	public void a(Position var1, bcm var2) {
+	public void a(Position var1, TileEntity var2) {
 		if (var2 != null && !var2.x()) {
 			if (this.L) {
 				var2.a(var1);
 				Iterator var3 = this.a.iterator();
 
 				while (var3.hasNext()) {
-					bcm var4 = (bcm) var3.next();
+					TileEntity var4 = (TileEntity) var3.next();
 					if (var4.v().equals(var1)) {
 						var4.y();
 						var3.remove();
@@ -1455,7 +1455,7 @@ public abstract class World implements ard {
 	}
 
 	public void t(Position var1) {
-		bcm var2 = this.s(var1);
+		TileEntity var2 = this.s(var1);
 		if (var2 != null && this.L) {
 			var2.y();
 			this.a.remove(var2);
@@ -1471,20 +1471,20 @@ public abstract class World implements ard {
 
 	}
 
-	public void b(bcm var1) {
+	public void b(TileEntity var1) {
 		this.b.add(var1);
 	}
 
 	public boolean u(Position var1) {
 		bec var2 = this.p(var1);
-		brt var3 = var2.c().a(this, var1, var2);
+		brt var3 = var2.getBlock().a(this, var1, var2);
 		return var3 != null && var3.a() >= 1.0D;
 	}
 
 	public static boolean a(ard var0, Position var1) {
 		bec var2 = var0.p(var1);
-		Block var3 = var2.c();
-		return var3.r().k() && var3.d() ? true : (var3 instanceof BlockStairs ? var2.b(BlockStairs.b) == bau.a : (var3 instanceof awq ? var2.b(awq.a) == awr.a : (var3 instanceof BlockHopper ? true : (var3 instanceof BlockSnow ? ((Integer) var2.b(BlockSnow.a)).intValue() == 7 : false))));
+		Block var3 = var2.getBlock();
+		return var3.r().k() && var3.d() ? true : (var3 instanceof BlockStairs ? var2.b(BlockStairs.b) == bau.a : (var3 instanceof BlockStepAbstract ? var2.b(BlockStepAbstract.a) == awr.a : (var3 instanceof BlockHopper ? true : (var3 instanceof BlockSnow ? ((Integer) var2.b(BlockSnow.a)).intValue() == 7 : false))));
 	}
 
 	public boolean d(Position var1, boolean var2) {
@@ -1495,7 +1495,7 @@ public abstract class World implements ard {
 			if (var3.f()) {
 				return var2;
 			} else {
-				Block var4 = this.p(var1).c();
+				Block var4 = this.p(var1).getBlock();
 				return var4.r().k() && var4.d();
 			}
 		}
@@ -1680,9 +1680,9 @@ public abstract class World implements ard {
 		if (var4 > 0.15F) {
 			return false;
 		} else {
-			if (var1.o() >= 0 && var1.o() < 256 && this.b(arf.b, var1) < 10) {
+			if (var1.getY() >= 0 && var1.getY() < 256 && this.b(arf.b, var1) < 10) {
 				bec var5 = this.p(var1);
-				Block var6 = var5.c();
+				Block var6 = var5.getBlock();
 				if ((var6 == aty.j || var6 == aty.i) && ((Integer) var5.b(axl.b)).intValue() == 0) {
 					if (!var2) {
 						return true;
@@ -1700,7 +1700,7 @@ public abstract class World implements ard {
 	}
 
 	private boolean F(Position var1) {
-		return this.p(var1).c().r() == Material.WATER;
+		return this.p(var1).getBlock().r() == Material.WATER;
 	}
 
 	public boolean f(Position var1, boolean var2) {
@@ -1711,8 +1711,8 @@ public abstract class World implements ard {
 		} else if (!var2) {
 			return true;
 		} else {
-			if (var1.o() >= 0 && var1.o() < 256 && this.b(arf.b, var1) < 10) {
-				Block var5 = this.p(var1).c();
+			if (var1.getY() >= 0 && var1.getY() < 256 && this.b(arf.b, var1) < 10) {
+				Block var5 = this.p(var1).getBlock();
 				if (var5.r() == Material.AIR && aty.aH.c(this, var1)) {
 					return true;
 				}
@@ -1736,7 +1736,7 @@ public abstract class World implements ard {
 		if (var2 == arf.a && this.i(var1)) {
 			return 15;
 		} else {
-			Block var3 = this.p(var1).c();
+			Block var3 = this.p(var1).getBlock();
 			int var4 = var2 == arf.a ? 0 : var3.p();
 			int var5 = var3.n();
 			if (var5 >= 15 && var3.p() > 0) {
@@ -1782,9 +1782,9 @@ public abstract class World implements ard {
 			this.B.a("getBrightness");
 			int var5 = this.b(var1, var2);
 			int var6 = this.a(var2, var1);
-			int var7 = var2.n();
-			int var8 = var2.o();
-			int var9 = var2.p();
+			int var7 = var2.getX();
+			int var8 = var2.getY();
+			int var9 = var2.getZ();
 			int var10;
 			int var11;
 			int var12;
@@ -1822,7 +1822,7 @@ public abstract class World implements ard {
 									int var25 = var12 + var23.h();
 									int var26 = var13 + var23.i();
 									Position var27 = new Position(var24, var25, var26);
-									int var28 = Math.max(1, this.p(var27).c().n());
+									int var28 = Math.max(1, this.p(var27).getBlock().n());
 									var16 = this.b(var1, var27);
 									if (var16 == var14 - var28 && var4 < this.H.length) {
 										this.H[var4++] = var24 - var7 + 32 | var25 - var8 + 32 << 6 | var26 - var9 + 32 << 12 | var14 - var28 << 18;
@@ -1995,7 +1995,7 @@ public abstract class World implements ard {
 		return (Entity) this.l.a(var1);
 	}
 
-	public void b(Position var1, bcm var2) {
+	public void b(Position var1, TileEntity var2) {
 		if (this.e(var1)) {
 			this.f(var1).e();
 		}
@@ -2032,14 +2032,14 @@ public abstract class World implements ard {
 	}
 
 	public boolean a(Block var1, Position var2, boolean var3, PaintingDirection var4, Entity var5, ItemStack var6) {
-		Block var7 = this.p(var2).c();
+		Block var7 = this.p(var2).getBlock();
 		brt var8 = var3 ? null : var1.a(this, var2, var1.P());
 		return var8 != null && !this.a(var8, var5) ? false : (var7.r() == Material.ORIENTABLE && var1 == aty.cf ? true : var7.r().j() && var1.a(this, var2, var4, var6));
 	}
 
 	public int a(Position var1, PaintingDirection var2) {
 		bec var3 = this.p(var1);
-		return var3.c().b((ard) this, var1, var3, var2);
+		return var3.getBlock().b((ard) this, var1, var3, var2);
 	}
 
 	public LevelType G() {
@@ -2083,7 +2083,7 @@ public abstract class World implements ard {
 
 	public int c(Position var1, PaintingDirection var2) {
 		bec var3 = this.p(var1);
-		Block var4 = var3.c();
+		Block var4 = var3.getBlock();
 		return var4.t() ? this.y(var1) : var4.a((ard) this, var1, var3, var2);
 	}
 
@@ -2253,7 +2253,7 @@ public abstract class World implements ard {
 			return false;
 		} else if (!this.i(var1)) {
 			return false;
-		} else if (this.q(var1).o() > var1.o()) {
+		} else if (this.q(var1).getY() > var1.getY()) {
 			return false;
 		} else {
 			arm var2 = this.b(var1);
@@ -2371,13 +2371,13 @@ public abstract class World implements ard {
 			Position var5 = var1.a(var4);
 			if (this.e(var5)) {
 				bec var6 = this.p(var5);
-				if (aty.cj.e(var6.c())) {
-					var6.c().a(this, var5, var6, var2);
-				} else if (var6.c().t()) {
+				if (aty.cj.e(var6.getBlock())) {
+					var6.getBlock().a(this, var5, var6, var2);
+				} else if (var6.getBlock().t()) {
 					var5 = var5.a(var4);
 					var6 = this.p(var5);
-					if (aty.cj.e(var6.c())) {
-						var6.c().a(this, var5, var6, var2);
+					if (aty.cj.e(var6.getBlock())) {
+						var6.getBlock().a(this, var5, var6, var2);
 					}
 				}
 			}
@@ -2426,8 +2426,8 @@ public abstract class World implements ard {
 
 	public boolean c(int var1, int var2) {
 		Position var3 = this.M();
-		int var4 = var1 * 16 + 8 - var3.n();
-		int var5 = var2 * 16 + 8 - var3.p();
+		int var4 = var1 * 16 + 8 - var3.getX();
+		int var5 = var2 * 16 + 8 - var3.getZ();
 		short var6 = 128;
 		return var4 >= -var6 && var4 <= var6 && var5 >= -var6 && var5 <= var6;
 	}

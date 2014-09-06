@@ -10,8 +10,8 @@ public class BlockEnderPortal extends atg {
 		this.a(1.0F);
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bdn();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntityEnderPortal();
 	}
 
 	public void a(ard var1, Position var2) {

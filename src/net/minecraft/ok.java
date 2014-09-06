@@ -15,8 +15,8 @@ final class ok extends eg {
 		if (var3.d(var5) && var6.b(var3, var5, var2)) {
 			if (!var3.D) {
 				var3.a(var5, var6.P().a(BlockSkull.a, PaintingDirection.b), 3);
-				bcm var7 = var3.s(var5);
-				if (var7 instanceof bdm) {
+				TileEntity var7 = var3.s(var5);
+				if (var7 instanceof TileEntitySkull) {
 					if (var2.i() == 3) {
 						GameProfile var8 = null;
 						if (var2.hasTag()) {
@@ -28,13 +28,13 @@ final class ok extends eg {
 							}
 						}
 
-						((bdm) var7).a(var8);
+						((TileEntitySkull) var7).a(var8);
 					} else {
-						((bdm) var7).a(var2.i());
+						((TileEntitySkull) var7).a(var2.i());
 					}
 
-					((bdm) var7).b(var4.d().toByte() * 4);
-					aty.ce.a(var3, var5, (bdm) var7);
+					((TileEntitySkull) var7).b(var4.d().toByte() * 4);
+					aty.ce.a(var3, var5, (TileEntitySkull) var7);
 				}
 
 				--var2.b;

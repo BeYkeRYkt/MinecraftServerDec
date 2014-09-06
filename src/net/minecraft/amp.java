@@ -16,13 +16,13 @@ public class amp extends Item {
 		bec var9 = var3.p(var4);
 		if (ati.d(var9)) {
 			if (!var3.D) {
-				atl var10 = var9.c() instanceof ati ? (atl) var9.b(((ati) var9.c()).l()) : atl.a;
+				atl var10 = var9.getBlock() instanceof ati ? (atl) var9.b(((ati) var9.getBlock()).l()) : atl.a;
 				double var11 = 0.0D;
 				if (var10.c()) {
 					var11 = 0.5D;
 				}
 
-				adx var13 = adx.a(var3, (double) var4.n() + 0.5D, (double) var4.o() + 0.0625D + var11, (double) var4.p() + 0.5D, this.b);
+				adx var13 = adx.a(var3, (double) var4.getX() + 0.5D, (double) var4.getY() + 0.0625D + var11, (double) var4.getZ() + 0.5D, this.b);
 				if (var1.s()) {
 					var13.a(var1.q());
 				}

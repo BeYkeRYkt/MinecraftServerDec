@@ -15,14 +15,14 @@ final class atn implements Runnable {
 	public void run() {
 		Chunk var1 = this.a.f(this.b);
 
-		for (int var2 = this.b.o() - 1; var2 >= 0; --var2) {
-			Position var3 = new Position(this.b.n(), var2, this.b.p());
+		for (int var2 = this.b.getY() - 1; var2 >= 0; --var2) {
+			Position var3 = new Position(this.b.getX(), var2, this.b.getZ());
 			if (!var1.d(var3)) {
 				break;
 			}
 
 			bec var4 = this.a.p(var3);
-			if (var4.c() == aty.bY) {
+			if (var4.getBlock() == aty.bY) {
 				((WorldServer) this.a).a((Runnable) (new ato(this, var3)));
 			}
 		}

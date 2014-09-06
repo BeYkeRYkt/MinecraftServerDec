@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class ld implements Packet<PlayPacketListener> {
+public class ld implements Packet<PlayClientboundPacketListener> {
 
 	private String a;
 	private String b;
@@ -37,7 +37,7 @@ public class ld implements Packet<PlayPacketListener> {
 
 	}
 
-	public void handlePacket(PlayPacketListener var1) {
+	public void handlePacket(PlayClientboundPacketListener var1) {
 		var1.a(this);
 	}
 }

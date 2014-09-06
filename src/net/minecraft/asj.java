@@ -85,7 +85,7 @@ public class asj extends arm {
 		boolean var26 = false;
 
 		for (int var19 = 255; var19 >= 0; --var19) {
-			if (var3.a(var11, var19, var10).c().r() == Material.AIR && var19 < (int) var22) {
+			if (var3.a(var11, var19, var10).getBlock().r() == Material.AIR && var19 < (int) var22) {
 				var3.a(var11, var19, var10, aty.b.P());
 			}
 
@@ -93,9 +93,9 @@ public class asj extends arm {
 				var3.a(var11, var19, var10, aty.h.P());
 			} else {
 				bec var20 = var3.a(var11, var19, var10);
-				if (var20.c().r() == Material.AIR) {
+				if (var20.getBlock().r() == Material.AIR) {
 					var17 = -1;
-				} else if (var20.c() == aty.b) {
+				} else if (var20.getBlock() == aty.b) {
 					bec var21;
 					if (var17 == -1) {
 						var26 = false;
@@ -107,7 +107,7 @@ public class asj extends arm {
 							var24 = this.al;
 						}
 
-						if (var19 < 63 && (var13 == null || var13.c().r() == Material.AIR)) {
+						if (var19 < 63 && (var13 == null || var13.getBlock().r() == Material.AIR)) {
 							var13 = aty.j.P();
 						}
 
@@ -137,8 +137,8 @@ public class asj extends arm {
 							}
 						} else {
 							var3.a(var11, var19, var10, var24);
-							if (var24.c() == aty.cu) {
-								var3.a(var11, var19, var10, var24.c().P().a(BlockCloth.a, akv.b));
+							if (var24.getBlock() == aty.cu) {
+								var3.a(var11, var19, var10, var24.getBlock().P().a(BlockCloth.a, akv.b));
 							}
 						}
 					} else if (var17 > 0) {

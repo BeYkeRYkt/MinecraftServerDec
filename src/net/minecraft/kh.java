@@ -6,7 +6,7 @@ import com.mojang.authlib.properties.Property;
 import java.util.Iterator;
 import java.util.List;
 
-public class kh implements Packet<PlayPacketListener> {
+public class kh implements Packet<PlayClientboundPacketListener> {
 
 	private kj a;
 	private final List b = Lists.newArrayList();
@@ -149,7 +149,7 @@ public class kh implements Packet<PlayPacketListener> {
 
 	}
 
-	public void handlePacket(PlayPacketListener var1) {
+	public void handlePacket(PlayClientboundPacketListener var1) {
 		var1.a(this);
 	}
 }

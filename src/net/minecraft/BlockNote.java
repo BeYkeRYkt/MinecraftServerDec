@@ -14,9 +14,9 @@ public class BlockNote extends atg {
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
 		boolean var5 = var1.z(var2);
-		bcm var6 = var1.s(var2);
-		if (var6 instanceof bdi) {
-			bdi var7 = (bdi) var6;
+		TileEntity var6 = var1.s(var2);
+		if (var6 instanceof TileEntityNote) {
+			TileEntityNote var7 = (TileEntityNote) var6;
 			if (var7.f != var5) {
 				if (var5) {
 					var7.a(var1, var2);
@@ -32,9 +32,9 @@ public class BlockNote extends atg {
 		if (var1.D) {
 			return true;
 		} else {
-			bcm var9 = var1.s(var2);
-			if (var9 instanceof bdi) {
-				bdi var10 = (bdi) var9;
+			TileEntity var9 = var1.s(var2);
+			if (var9 instanceof TileEntityNote) {
+				TileEntityNote var10 = (TileEntityNote) var9;
 				var10.b();
 				var10.a(var1, var2);
 			}
@@ -45,16 +45,16 @@ public class BlockNote extends atg {
 
 	public void a(World var1, Position var2, EntityHuman var3) {
 		if (!var1.D) {
-			bcm var4 = var1.s(var2);
-			if (var4 instanceof bdi) {
-				((bdi) var4).a(var1, var2);
+			TileEntity var4 = var1.s(var2);
+			if (var4 instanceof TileEntityNote) {
+				((TileEntityNote) var4).a(var1, var2);
 			}
 
 		}
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bdi();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntityNote();
 	}
 
 	private String b(int var1) {
@@ -67,8 +67,8 @@ public class BlockNote extends atg {
 
 	public boolean a(World var1, Position var2, bec var3, int var4, int var5) {
 		float var6 = (float) Math.pow(2.0D, (double) (var5 - 12) / 12.0D);
-		var1.a((double) var2.n() + 0.5D, (double) var2.o() + 0.5D, (double) var2.p() + 0.5D, "note." + this.b(var4), 3.0F, var6);
-		var1.a(ew.x, (double) var2.n() + 0.5D, (double) var2.o() + 1.2D, (double) var2.p() + 0.5D, (double) var5 / 24.0D, 0.0D, 0.0D, new int[0]);
+		var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "note." + this.b(var4), 3.0F, var6);
+		var1.a(Particle.x, (double) var2.getX() + 0.5D, (double) var2.getY() + 1.2D, (double) var2.getZ() + 0.5D, (double) var5 / 24.0D, 0.0D, 0.0D, new int[0]);
 		return true;
 	}
 

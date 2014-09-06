@@ -77,7 +77,7 @@ public abstract class AbstractCommand implements CommandInterface {
 
 	public static Position a(CommandSenderInterface var0, String[] var1, int var2, boolean var3) throws dk {
 		Position var4 = var0.c();
-		return new Position(b((double) var4.n(), var1[var2], -30000000, 30000000, var3), b((double) var4.o(), var1[var2 + 1], 0, 256, false), b((double) var4.p(), var1[var2 + 2], -30000000, 30000000, var3));
+		return new Position(b((double) var4.getX(), var1[var2], -30000000, 30000000, var3), b((double) var4.getY(), var1[var2 + 1], 0, 256, false), b((double) var4.getZ(), var1[var2 + 2], -30000000, 30000000, var3));
 	}
 
 	public static double c(String var0) throws dk {
@@ -399,15 +399,15 @@ public abstract class AbstractCommand implements CommandInterface {
 		} else {
 			String var3;
 			if (var0.length - 1 == var1) {
-				var3 = Integer.toString(var2.n());
+				var3 = Integer.toString(var2.getX());
 			} else if (var0.length - 1 == var1 + 1) {
-				var3 = Integer.toString(var2.o());
+				var3 = Integer.toString(var2.getY());
 			} else {
 				if (var0.length - 1 != var1 + 2) {
 					return null;
 				}
 
-				var3 = Integer.toString(var2.p());
+				var3 = Integer.toString(var2.getZ());
 			}
 
 			return Lists.newArrayList((Object[]) (new String[] { var3 }));

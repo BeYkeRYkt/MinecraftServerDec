@@ -14,7 +14,7 @@ public class BlockFenceGate extends avb {
 
 	public bec a(bec var1, ard var2, Position var3) {
 		el var4 = ((PaintingDirection) var1.b(N)).k();
-		if (var4 == el.c && (var2.p(var3.e()).c() == aty.bZ || var2.p(var3.f()).c() == aty.bZ) || var4 == el.a && (var2.p(var3.c()).c() == aty.bZ || var2.p(var3.d()).c() == aty.bZ)) {
+		if (var4 == el.c && (var2.p(var3.e()).getBlock() == aty.bZ || var2.p(var3.f()).getBlock() == aty.bZ) || var4 == el.a && (var2.p(var3.c()).getBlock() == aty.bZ || var2.p(var3.d()).getBlock() == aty.bZ)) {
 			var1 = var1.a(M, Boolean.valueOf(true));
 		}
 
@@ -22,7 +22,7 @@ public class BlockFenceGate extends avb {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return var1.p(var2.b()).c().r().isBuildable() ? super.c(var1, var2) : false;
+		return var1.p(var2.b()).getBlock().r().isBuildable() ? super.c(var1, var2) : false;
 	}
 
 	public brt a(World var1, Position var2, bec var3) {
@@ -30,7 +30,7 @@ public class BlockFenceGate extends avb {
 			return null;
 		} else {
 			el var4 = ((PaintingDirection) var3.b(N)).k();
-			return var4 == el.c ? new brt((double) var2.n(), (double) var2.o(), (double) ((float) var2.p() + 0.375F), (double) (var2.n() + 1), (double) ((float) var2.o() + 1.5F), (double) ((float) var2.p() + 0.625F)) : new brt((double) ((float) var2.n() + 0.375F), (double) var2.o(), (double) var2.p(), (double) ((float) var2.n() + 0.625F), (double) ((float) var2.o() + 1.5F), (double) (var2.p() + 1));
+			return var4 == el.c ? new brt((double) var2.getX(), (double) var2.getY(), (double) ((float) var2.getZ() + 0.375F), (double) (var2.getX() + 1), (double) ((float) var2.getY() + 1.5F), (double) ((float) var2.getZ() + 0.625F)) : new brt((double) ((float) var2.getX() + 0.375F), (double) var2.getY(), (double) var2.getZ(), (double) ((float) var2.getX() + 0.625F), (double) ((float) var2.getY() + 1.5F), (double) (var2.getZ() + 1));
 		}
 	}
 

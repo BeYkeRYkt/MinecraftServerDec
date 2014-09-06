@@ -24,7 +24,7 @@ public class BlockVine extends Block {
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
-		return var1.a(a, Boolean.valueOf(var2.p(var3.a()).c().s()));
+		return var1.a(a, Boolean.valueOf(var2.p(var3.a()).getBlock().s()));
 	}
 
 	public void h() {
@@ -92,7 +92,7 @@ public class BlockVine extends Block {
 			var10 = true;
 		}
 
-		if (!var10 && this.c(var1.p(var2.a()).c())) {
+		if (!var10 && this.c(var1.p(var2.a()).getBlock())) {
 			var5 = Math.min(var5, 0.9375F);
 			var8 = 1.0F;
 			var4 = 0.0F;
@@ -111,19 +111,19 @@ public class BlockVine extends Block {
 	public boolean a(World var1, Position var2, PaintingDirection var3) {
 		switch (bbw.a[var3.ordinal()]) {
 			case 1:
-				return this.c(var1.p(var2.a()).c());
+				return this.c(var1.p(var2.a()).getBlock());
 			case 2:
 			case 3:
 			case 4:
 			case 5:
-				return this.c(var1.p(var2.a(var3.d())).c());
+				return this.c(var1.p(var2.a(var3.d())).getBlock());
 			default:
 				return false;
 		}
 	}
 
 	private boolean c(Block var1) {
-		return var1.d() && var1.J.isSolid();
+		return var1.d() && var1.material.isSolid();
 	}
 
 	private boolean e(World var1, Position var2, bec var3) {
@@ -133,9 +133,9 @@ public class BlockVine extends Block {
 		while (var5.hasNext()) {
 			PaintingDirection var6 = (PaintingDirection) var5.next();
 			bet var7 = a(var6);
-			if (((Boolean) var3.b(var7)).booleanValue() && !this.c(var1.p(var2.a(var6)).c())) {
+			if (((Boolean) var3.b(var7)).booleanValue() && !this.c(var1.p(var2.a(var6)).getBlock())) {
 				bec var8 = var1.p(var2.a());
-				if (var8.c() != this || !((Boolean) var8.b(var7)).booleanValue()) {
+				if (var8.getBlock() != this || !((Boolean) var8.b(var7)).booleanValue()) {
 					var3 = var3.a(var7, Boolean.valueOf(false));
 				}
 			}
@@ -170,7 +170,7 @@ public class BlockVine extends Block {
 				label189: for (int var8 = -var5; var8 <= var5; ++var8) {
 					for (int var9 = -var5; var9 <= var5; ++var9) {
 						for (int var10 = -1; var10 <= 1; ++var10) {
-							if (var1.p(var2.a(var8, var10, var9)).c() == this) {
+							if (var1.p(var2.a(var8, var10, var9)).getBlock() == this) {
 								--var6;
 								if (var6 <= 0) {
 									var7 = true;
@@ -183,14 +183,14 @@ public class BlockVine extends Block {
 
 				PaintingDirection var17 = PaintingDirection.a(var4);
 				PaintingDirection var23;
-				if (var17 == PaintingDirection.b && var2.o() < 255 && var1.d(var2.a())) {
+				if (var17 == PaintingDirection.b && var2.getY() < 255 && var1.d(var2.a())) {
 					if (!var7) {
 						bec var19 = var3;
 						Iterator var22 = en.a.iterator();
 
 						while (var22.hasNext()) {
 							var23 = (PaintingDirection) var22.next();
-							if (var4.nextBoolean() || !this.c(var1.p(var2.a(var23).a()).c())) {
+							if (var4.nextBoolean() || !this.c(var1.p(var2.a(var23).a()).getBlock())) {
 								var19 = var19.a(a(var23), Boolean.valueOf(false));
 							}
 						}
@@ -205,39 +205,39 @@ public class BlockVine extends Block {
 					if (var17.k().c() && !((Boolean) var3.b(a(var17))).booleanValue()) {
 						if (!var7) {
 							var18 = var2.a(var17);
-							Block var21 = var1.p(var18).c();
-							if (var21.J == Material.AIR) {
+							Block var21 = var1.p(var18).getBlock();
+							if (var21.material == Material.AIR) {
 								var23 = var17.e();
 								PaintingDirection var24 = var17.f();
 								boolean var25 = ((Boolean) var3.b(a(var23))).booleanValue();
 								boolean var26 = ((Boolean) var3.b(a(var24))).booleanValue();
 								Position var27 = var18.a(var23);
 								Position var16 = var18.a(var24);
-								if (var25 && this.c(var1.p(var27).c())) {
+								if (var25 && this.c(var1.p(var27).getBlock())) {
 									var1.a(var18, this.P().a(a(var23), Boolean.valueOf(true)), 2);
-								} else if (var26 && this.c(var1.p(var16).c())) {
+								} else if (var26 && this.c(var1.p(var16).getBlock())) {
 									var1.a(var18, this.P().a(a(var24), Boolean.valueOf(true)), 2);
-								} else if (var25 && var1.d(var27) && this.c(var1.p(var2.a(var23)).c())) {
+								} else if (var25 && var1.d(var27) && this.c(var1.p(var2.a(var23)).getBlock())) {
 									var1.a(var27, this.P().a(a(var17.d()), Boolean.valueOf(true)), 2);
-								} else if (var26 && var1.d(var16) && this.c(var1.p(var2.a(var24)).c())) {
+								} else if (var26 && var1.d(var16) && this.c(var1.p(var2.a(var24)).getBlock())) {
 									var1.a(var16, this.P().a(a(var17.d()), Boolean.valueOf(true)), 2);
-								} else if (this.c(var1.p(var18.a()).c())) {
+								} else if (this.c(var1.p(var18.a()).getBlock())) {
 									var1.a(var18, this.P(), 2);
 								}
-							} else if (var21.J.k() && var21.d()) {
+							} else if (var21.material.k() && var21.d()) {
 								var1.a(var2, var3.a(a(var17), Boolean.valueOf(true)), 2);
 							}
 
 						}
 					} else {
-						if (var2.o() > 1) {
+						if (var2.getY() > 1) {
 							var18 = var2.b();
 							bec var20 = var1.p(var18);
-							Block var11 = var20.c();
+							Block var11 = var20.getBlock();
 							bec var12;
 							Iterator var13;
 							PaintingDirection var14;
-							if (var11.J == Material.AIR) {
+							if (var11.material == Material.AIR) {
 								var12 = var3;
 								var13 = en.a.iterator();
 
@@ -292,7 +292,7 @@ public class BlockVine extends Block {
 		return 0;
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, bec var4, bcm var5) {
+	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
 		if (!var1.D && var2.bY() != null && var2.bY().getItem() == amk.be) {
 			var2.b(StatisticList.H[Block.a((Block) this)]);
 			a(var1, var3, new ItemStack(aty.bn, 1, 0));

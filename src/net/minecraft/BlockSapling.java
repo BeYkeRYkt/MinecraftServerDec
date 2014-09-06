@@ -121,7 +121,7 @@ public class BlockSapling extends auc implements atz {
 
 	public boolean a(World var1, Position var2, ayx var3) {
 		bec var4 = var1.p(var2);
-		return var4.c() == this && var4.b(a) == var3;
+		return var4.getBlock() == this && var4.b(a) == var3;
 	}
 
 	public int a(bec var1) {

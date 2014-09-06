@@ -358,9 +358,9 @@ public class WorldData {
 	}
 
 	public void a(Position var1) {
-		this.e = var1.n();
-		this.f = var1.o();
-		this.g = var1.p();
+		this.e = var1.getX();
+		this.f = var1.getY();
+		this.g = var1.getZ();
 	}
 
 	public String k() {

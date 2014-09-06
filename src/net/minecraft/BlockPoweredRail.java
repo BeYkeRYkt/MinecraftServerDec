@@ -16,9 +16,9 @@ public class BlockPoweredRail extends ati {
 		if (var5 >= 8) {
 			return false;
 		} else {
-			int var6 = var2.n();
-			int var7 = var2.o();
-			int var8 = var2.p();
+			int var6 = var2.getX();
+			int var7 = var2.getY();
+			int var8 = var2.getZ();
 			boolean var9 = true;
 			atl var10 = (atl) var3.b(b);
 			switch (aze.a[var10.ordinal()]) {
@@ -87,7 +87,7 @@ public class BlockPoweredRail extends ati {
 
 	protected boolean a(World var1, Position var2, boolean var3, int var4, atl var5) {
 		bec var6 = var1.p(var2);
-		if (var6.c() != this) {
+		if (var6.getBlock() != this) {
 			return false;
 		} else {
 			atl var7 = (atl) var6.b(b);

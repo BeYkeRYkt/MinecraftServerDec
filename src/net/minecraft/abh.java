@@ -37,8 +37,8 @@ public class abh {
 	}
 
 	public boolean c(Position var1) {
-		int var2 = var1.n() - this.a.n();
-		int var3 = var1.p() - this.a.o();
+		int var2 = var1.getX() - this.a.getX();
+		int var3 = var1.getZ() - this.a.getY();
 		return var2 * this.c.g() + var3 * this.c.i() >= 0;
 	}
 

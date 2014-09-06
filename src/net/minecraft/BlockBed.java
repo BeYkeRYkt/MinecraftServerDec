@@ -21,7 +21,7 @@ public class BlockBed extends avb {
 			if (var3.b(a) != atq.a) {
 				var2 = var2.a((PaintingDirection) var3.b(N));
 				var3 = var1.p(var2);
-				if (var3.c() != this) {
+				if (var3.getBlock() != this) {
 					return true;
 				}
 			}
@@ -55,11 +55,11 @@ public class BlockBed extends avb {
 			} else {
 				var1.g(var2);
 				Position var9 = var2.a(((PaintingDirection) var3.b(N)).d());
-				if (var1.p(var9).c() == this) {
+				if (var1.p(var9).getBlock() == this) {
 					var1.g(var9);
 				}
 
-				var1.a((Entity) null, (double) var2.n() + 0.5D, (double) var2.o() + 0.5D, (double) var2.p() + 0.5D, 5.0F, true, true);
+				var1.a((Entity) null, (double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, 5.0F, true, true);
 				return true;
 			}
 		}
@@ -95,10 +95,10 @@ public class BlockBed extends avb {
 	public void a(World var1, Position var2, bec var3, Block var4) {
 		PaintingDirection var5 = (PaintingDirection) var3.b(N);
 		if (var3.b(a) == atq.a) {
-			if (var1.p(var2.a(var5.d())).c() != this) {
+			if (var1.p(var2.a(var5.d())).getBlock() != this) {
 				var1.g(var2);
 			}
-		} else if (var1.p(var2.a(var5)).c() != this) {
+		} else if (var1.p(var2.a(var5)).getBlock() != this) {
 			var1.g(var2);
 			if (!var1.D) {
 				this.b(var1, var2, var3, 0);
@@ -117,9 +117,9 @@ public class BlockBed extends avb {
 
 	public static Position a(World var0, Position var1, int var2) {
 		PaintingDirection var3 = (PaintingDirection) var0.p(var1).b(N);
-		int var4 = var1.n();
-		int var5 = var1.o();
-		int var6 = var1.p();
+		int var4 = var1.getX();
+		int var5 = var1.getY();
+		int var6 = var1.getZ();
 
 		for (int var7 = 0; var7 <= 1; ++var7) {
 			int var8 = var4 - var3.g() * var7 - 1;
@@ -145,7 +145,7 @@ public class BlockBed extends avb {
 	}
 
 	protected static boolean d(World var0, Position var1) {
-		return World.a((ard) var0, var1.b()) && !var0.p(var1).c().r().isBuildable() && !var0.p(var1.a()).c().r().isBuildable();
+		return World.a((ard) var0, var1.b()) && !var0.p(var1).getBlock().r().isBuildable() && !var0.p(var1.a()).getBlock().r().isBuildable();
 	}
 
 	public void a(World var1, Position var2, bec var3, float var4, int var5) {
@@ -162,7 +162,7 @@ public class BlockBed extends avb {
 	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
 		if (var4.by.instabuild && var3.b(a) == atq.a) {
 			Position var5 = var2.a(((PaintingDirection) var3.b(N)).d());
-			if (var1.p(var5).c() == this) {
+			if (var1.p(var5).getBlock() == this) {
 				var1.g(var5);
 			}
 		}
@@ -177,7 +177,7 @@ public class BlockBed extends avb {
 	public bec a(bec var1, ard var2, Position var3) {
 		if (var1.b(a) == atq.b) {
 			bec var4 = var2.p(var3.a((PaintingDirection) var1.b(N)));
-			if (var4.c() == this) {
+			if (var4.getBlock() == this) {
 				var1 = var1.a(b, var4.b(b));
 			}
 		}

@@ -30,7 +30,7 @@ public class akw extends Item {
 				}
 			} else if (var9 == akv.m) {
 				bec var10 = var3.p(var4);
-				Block var11 = var10.c();
+				Block var11 = var10.getBlock();
 				if (var11 == aty.r && var10.b(BlockWood.a) == ayx.d) {
 					if (var5 == PaintingDirection.a) {
 						return false;
@@ -59,8 +59,8 @@ public class akw extends Item {
 
 	public static boolean a(ItemStack var0, World var1, Position var2) {
 		bec var3 = var1.p(var2);
-		if (var3.c() instanceof atz) {
-			atz var4 = (atz) var3.c();
+		if (var3.getBlock() instanceof atz) {
+			atz var4 = (atz) var3.getBlock();
 			if (var4.a(var1, var2, var3, var1.D)) {
 				if (!var1.D) {
 					if (var4.a(var1, var1.s, var2, var3)) {

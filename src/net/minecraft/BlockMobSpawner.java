@@ -8,8 +8,8 @@ public class BlockMobSpawner extends atg {
 		super(Material.STONE);
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bdg();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntityMobSpawner();
 	}
 
 	public Item a(bec var1, Random var2, int var3) {

@@ -11,11 +11,11 @@ public class bhy extends bhp {
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
-		for (var3 = var3.a(-8, 0, -8); var3.o() > 5 && var1.d(var3); var3 = var3.b()) {
+		for (var3 = var3.a(-8, 0, -8); var3.getY() > 5 && var1.d(var3); var3 = var3.b()) {
 			;
 		}
 
-		if (var3.o() <= 4) {
+		if (var3.getY() <= 4) {
 			return false;
 		} else {
 			var3 = var3.c(4);
@@ -54,12 +54,12 @@ public class bhy extends bhp {
 					for (var8 = 0; var8 < 8; ++var8) {
 						var32 = !var4[(var6 * 16 + var30) * 8 + var8] && (var6 < 15 && var4[((var6 + 1) * 16 + var30) * 8 + var8] || var6 > 0 && var4[((var6 - 1) * 16 + var30) * 8 + var8] || var30 < 15 && var4[(var6 * 16 + var30 + 1) * 8 + var8] || var30 > 0 && var4[(var6 * 16 + (var30 - 1)) * 8 + var8] || var8 < 7 && var4[(var6 * 16 + var30) * 8 + var8 + 1] || var8 > 0 && var4[(var6 * 16 + var30) * 8 + (var8 - 1)]);
 						if (var32) {
-							Material var10 = var1.p(var3.a(var6, var8, var30)).c().r();
+							Material var10 = var1.p(var3.a(var6, var8, var30)).getBlock().r();
 							if (var8 >= 4 && var10.isLiquid()) {
 								return false;
 							}
 
-							if (var8 < 4 && !var10.isBuildable() && var1.p(var3.a(var6, var8, var30)).c() != this.a) {
+							if (var8 < 4 && !var10.isBuildable() && var1.p(var3.a(var6, var8, var30)).getBlock() != this.a) {
 								return false;
 							}
 						}
@@ -82,9 +82,9 @@ public class bhy extends bhp {
 					for (var8 = 4; var8 < 8; ++var8) {
 						if (var4[(var6 * 16 + var30) * 8 + var8]) {
 							Position var33 = var3.a(var6, var8 - 1, var30);
-							if (var1.p(var33).c() == aty.d && var1.b(arf.a, var3.a(var6, var8, var30)) > 0) {
+							if (var1.p(var33).getBlock() == aty.d && var1.b(arf.a, var3.a(var6, var8, var30)) > 0) {
 								arm var34 = var1.b(var33);
-								if (var34.ak.c() == aty.bw) {
+								if (var34.ak.getBlock() == aty.bw) {
 									var1.a(var33, aty.bw.P(), 2);
 								} else {
 									var1.a(var33, aty.c.P(), 2);
@@ -100,7 +100,7 @@ public class bhy extends bhp {
 					for (var30 = 0; var30 < 16; ++var30) {
 						for (var8 = 0; var8 < 8; ++var8) {
 							var32 = !var4[(var6 * 16 + var30) * 8 + var8] && (var6 < 15 && var4[((var6 + 1) * 16 + var30) * 8 + var8] || var6 > 0 && var4[((var6 - 1) * 16 + var30) * 8 + var8] || var30 < 15 && var4[(var6 * 16 + var30 + 1) * 8 + var8] || var30 > 0 && var4[(var6 * 16 + (var30 - 1)) * 8 + var8] || var8 < 7 && var4[(var6 * 16 + var30) * 8 + var8 + 1] || var8 > 0 && var4[(var6 * 16 + var30) * 8 + (var8 - 1)]);
-							if (var32 && (var8 < 4 || var2.nextInt(2) != 0) && var1.p(var3.a(var6, var8, var30)).c().r().isBuildable()) {
+							if (var32 && (var8 < 4 || var2.nextInt(2) != 0) && var1.p(var3.a(var6, var8, var30)).getBlock().r().isBuildable()) {
 								var1.a(var3.a(var6, var8, var30), aty.b.P(), 2);
 							}
 						}

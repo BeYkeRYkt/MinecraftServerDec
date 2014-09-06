@@ -16,7 +16,7 @@ public abstract class bhc extends bhp {
 	}
 
 	protected void a(World var1, Position var2) {
-		if (var1.p(var2).c() != aty.d) {
+		if (var1.p(var2).getBlock() != aty.d) {
 			this.a(var1, var2, aty.d.P());
 		}
 

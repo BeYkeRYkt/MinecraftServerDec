@@ -442,7 +442,7 @@ public class EntityZombie extends EntityMonster {
 			for (int var3 = (int) this.locationX - 4; var3 < (int) this.locationX + 4 && var2 < 14; ++var3) {
 				for (int var4 = (int) this.locationY - 4; var4 < (int) this.locationY + 4 && var2 < 14; ++var4) {
 					for (int var5 = (int) this.locationZ - 4; var5 < (int) this.locationZ + 4 && var2 < 14; ++var5) {
-						Block var6 = this.o.p(new Position(var3, var4, var5)).c();
+						Block var6 = this.o.p(new Position(var3, var4, var5)).getBlock();
 						if (var6 == aty.bi || var6 == aty.C) {
 							if (this.V.nextFloat() < 0.3F) {
 								++var1;

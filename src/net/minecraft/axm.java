@@ -22,7 +22,7 @@ public abstract class axm extends baa {
 			while (var6.hasNext()) {
 				Position var7 = (Position) var6.next();
 				bec var8 = var1.p(var7);
-				if (var8.c().r() == Material.LEAVES && !((Boolean) var8.b(axg.b)).booleanValue()) {
+				if (var8.getBlock().r() == Material.LEAVES && !((Boolean) var8.b(axg.b)).booleanValue()) {
 					var1.a(var7, var8.a(axg.b, Boolean.valueOf(true)), 4);
 				}
 			}

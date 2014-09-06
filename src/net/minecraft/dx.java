@@ -15,22 +15,22 @@ class dx extends AbstractIterator {
 
 	protected dy a() {
 		if (this.b == null) {
-			this.b = new dy(this.a.a.n(), this.a.a.o(), this.a.a.p(), (du) null);
+			this.b = new dy(this.a.a.getX(), this.a.a.getY(), this.a.a.getZ(), (du) null);
 			return this.b;
 		} else if (this.b.equals(this.a.b)) {
 			return (dy) this.endOfData();
 		} else {
-			int var1 = this.b.n();
-			int var2 = this.b.o();
-			int var3 = this.b.p();
-			if (var1 < this.a.b.n()) {
+			int var1 = this.b.getX();
+			int var2 = this.b.getY();
+			int var3 = this.b.getZ();
+			if (var1 < this.a.b.getX()) {
 				++var1;
-			} else if (var2 < this.a.b.o()) {
-				var1 = this.a.a.n();
+			} else if (var2 < this.a.b.getY()) {
+				var1 = this.a.a.getX();
 				++var2;
-			} else if (var3 < this.a.b.p()) {
-				var1 = this.a.a.n();
-				var2 = this.a.a.o();
+			} else if (var3 < this.a.b.getZ()) {
+				var1 = this.a.a.getX();
+				var2 = this.a.a.getY();
 				++var3;
 			}
 

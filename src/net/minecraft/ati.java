@@ -9,7 +9,7 @@ public abstract class ati extends Block {
 	}
 
 	public static boolean d(bec var0) {
-		Block var1 = var0.c();
+		Block var1 = var0.getBlock();
 		return var1 == aty.av || var1 == aty.D || var1 == aty.E || var1 == aty.cs;
 	}
 
@@ -28,14 +28,14 @@ public abstract class ati extends Block {
 		return false;
 	}
 
-	public bru a(World var1, Position var2, brw var3, brw var4) {
+	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3, var4);
 	}
 
 	public void a(ard var1, Position var2) {
 		bec var3 = var1.p(var2);
-		atl var4 = var3.c() == this ? (atl) var3.b(this.l()) : null;
+		atl var4 = var3.getBlock() == this ? (atl) var3.b(this.l()) : null;
 		if (var4 != null && var4.c()) {
 			this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.625F, 1.0F);
 		} else {

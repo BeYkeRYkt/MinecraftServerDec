@@ -20,14 +20,14 @@ class aof implements aoo {
 					return false;
 				}
 
-				int var7 = bci.b(var6);
-				boolean var8 = bci.c(var6) > 0;
+				int var7 = TileEntityBanner.b(var6);
+				boolean var8 = TileEntityBanner.c(var6) > 0;
 				if (var3 != null) {
 					if (var8) {
 						return false;
 					}
 
-					if (var7 != bci.b(var3)) {
+					if (var7 != TileEntityBanner.b(var3)) {
 						return false;
 					}
 
@@ -37,7 +37,7 @@ class aof implements aoo {
 						return false;
 					}
 
-					if (var7 != bci.b(var4)) {
+					if (var7 != TileEntityBanner.b(var4)) {
 						return false;
 					}
 
@@ -56,7 +56,7 @@ class aof implements aoo {
 	public ItemStack a(ain var1) {
 		for (int var2 = 0; var2 < var1.n_(); ++var2) {
 			ItemStack var3 = var1.a(var2);
-			if (var3 != null && bci.c(var3) > 0) {
+			if (var3 != null && TileEntityBanner.c(var3) > 0) {
 				ItemStack var4 = var3.getCopy();
 				var4.b = 1;
 				return var4;
@@ -82,7 +82,7 @@ class aof implements aoo {
 			if (var4 != null) {
 				if (var4.getItem().r()) {
 					var2[var3] = new ItemStack(var4.getItem().q());
-				} else if (var4.hasTag() && bci.c(var4) > 0) {
+				} else if (var4.hasTag() && TileEntityBanner.c(var4) > 0) {
 					var2[var3] = var4.getCopy();
 					var2[var3].b = 1;
 				}

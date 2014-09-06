@@ -55,7 +55,7 @@ public abstract class EntityHuman extends EntityLiving {
 		this.defaultContainer = new ajb(this.playerInventory, !var1.D, this);
 		this.activeContainer = this.defaultContainer;
 		Position var3 = var1.M();
-		this.b((double) var3.n() + 0.5D, (double) (var3.o() + 1), (double) var3.p() + 0.5D, 0.0F, 0.0F);
+		this.b((double) var3.getX() + 0.5D, (double) (var3.getY() + 1), (double) var3.getZ() + 0.5D, 0.0F, 0.0F);
 		this.aT = 180.0F;
 		this.X = 20;
 	}
@@ -236,18 +236,18 @@ public abstract class EntityHuman extends EntityLiving {
 
 		if (var1.m() == ano.b) {
 			for (int var3 = 0; var3 < var2; ++var3) {
-				brw var4 = new brw(((double) this.V.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D);
+				Vec3D var4 = new Vec3D(((double) this.V.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D);
 				var4 = var4.a(-this.pitch * 3.1415927F / 180.0F);
 				var4 = var4.b(-this.yaw * 3.1415927F / 180.0F);
 				double var5 = (double) (-this.V.nextFloat()) * 0.6D - 0.3D;
-				brw var7 = new brw(((double) this.V.nextFloat() - 0.5D) * 0.3D, var5, 0.6D);
+				Vec3D var7 = new Vec3D(((double) this.V.nextFloat() - 0.5D) * 0.3D, var5, 0.6D);
 				var7 = var7.a(-this.pitch * 3.1415927F / 180.0F);
 				var7 = var7.b(-this.yaw * 3.1415927F / 180.0F);
 				var7 = var7.b(this.locationX, this.locationY + (double) this.aR(), this.locationZ);
 				if (var1.f()) {
-					this.o.a(ew.K, var7.a, var7.b, var7.c, var4.a, var4.b + 0.05D, var4.c, new int[] { Item.getId(var1.getItem()), var1.i() });
+					this.o.a(Particle.K, var7.x, var7.y, var7.z, var4.x, var4.y + 0.05D, var4.z, new int[] { Item.getId(var1.getItem()), var1.i() });
 				} else {
-					this.o.a(ew.K, var7.a, var7.b, var7.c, var4.a, var4.b + 0.05D, var4.c, new int[] { Item.getId(var1.getItem()) });
+					this.o.a(Particle.K, var7.x, var7.y, var7.z, var4.x, var4.y + 0.05D, var4.z, new int[] { Item.getId(var1.getItem()) });
 				}
 			}
 
@@ -622,9 +622,9 @@ public abstract class EntityHuman extends EntityLiving {
 		var1.put("XpSeed", this.f);
 		var1.put("Score", this.bW());
 		if (this.c != null) {
-			var1.put("SpawnX", this.c.n());
-			var1.put("SpawnY", this.c.o());
-			var1.put("SpawnZ", this.c.p());
+			var1.put("SpawnX", this.c.getX());
+			var1.put("SpawnY", this.c.getY());
+			var1.put("SpawnZ", this.c.getZ());
 			var1.put("SpawnForced", this.d);
 		}
 
@@ -733,7 +733,7 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 	}
 
-	public void a(bdj var1) {
+	public void a(TileEntitySign var1) {
 	}
 
 	public void a(aqf var1) {
@@ -850,7 +850,7 @@ public abstract class EntityHuman extends EntityLiving {
 						}
 
 						if (var1 instanceof EntityPlayer && var1.G) {
-							((EntityPlayer) var1).playerConncetion.sendPacket((Packet) (new PacketEntityVelocity(var1)));
+							((EntityPlayer) var1).playerConncetion.sendPacket((Packet) (new PacketOutEntityVelocity(var1)));
 							var1.G = false;
 							var1.motionX = var8;
 							var1.motionY = var10;
@@ -945,13 +945,13 @@ public abstract class EntityHuman extends EntityLiving {
 				return ahf.c;
 			}
 
-			if (Math.abs(this.locationX - (double) var1.n()) > 3.0D || Math.abs(this.locationY - (double) var1.o()) > 2.0D || Math.abs(this.locationZ - (double) var1.p()) > 3.0D) {
+			if (Math.abs(this.locationX - (double) var1.getX()) > 3.0D || Math.abs(this.locationY - (double) var1.getY()) > 2.0D || Math.abs(this.locationZ - (double) var1.getZ()) > 3.0D) {
 				return ahf.d;
 			}
 
 			double var2 = 8.0D;
 			double var4 = 5.0D;
-			List var6 = this.o.a(EntityMonster.class, new brt((double) var1.n() - var2, (double) var1.o() - var4, (double) var1.p() - var2, (double) var1.n() + var2, (double) var1.o() + var4, (double) var1.p() + var2));
+			List var6 = this.o.a(EntityMonster.class, new brt((double) var1.getX() - var2, (double) var1.getY() - var4, (double) var1.getZ() - var2, (double) var1.getX() + var2, (double) var1.getY() + var4, (double) var1.getZ() + var2));
 			if (!var6.isEmpty()) {
 				return ahf.f;
 			}
@@ -981,9 +981,9 @@ public abstract class EntityHuman extends EntityLiving {
 			}
 
 			this.a(var7);
-			this.b((double) ((float) var1.n() + var3), (double) ((float) var1.o() + 0.6875F), (double) ((float) var1.p() + var8));
+			this.b((double) ((float) var1.getX() + var3), (double) ((float) var1.getY() + 0.6875F), (double) ((float) var1.getZ() + var8));
 		} else {
-			this.b((double) ((float) var1.n() + 0.5F), (double) ((float) var1.o() + 0.6875F), (double) ((float) var1.p() + 0.5F));
+			this.b((double) ((float) var1.getX() + 0.5F), (double) ((float) var1.getY() + 0.6875F), (double) ((float) var1.getZ() + 0.5F));
 		}
 
 		this.bu = true;
@@ -1019,14 +1019,14 @@ public abstract class EntityHuman extends EntityLiving {
 	public void a(boolean var1, boolean var2, boolean var3) {
 		this.a(0.6F, 1.8F);
 		bec var4 = this.o.p(this.bv);
-		if (this.bv != null && var4.c() == aty.C) {
+		if (this.bv != null && var4.getBlock() == aty.C) {
 			this.o.a(this.bv, var4.a(BlockBed.b, Boolean.valueOf(false)), 4);
 			Position var5 = BlockBed.a(this.o, this.bv, 0);
 			if (var5 == null) {
 				var5 = this.bv.a();
 			}
 
-			this.b((double) ((float) var5.n() + 0.5F), (double) ((float) var5.o() + 0.1F), (double) ((float) var5.p() + 0.5F));
+			this.b((double) ((float) var5.getX() + 0.5F), (double) ((float) var5.getY() + 0.1F), (double) ((float) var5.getZ() + 0.5F));
 		}
 
 		this.bu = false;
@@ -1042,16 +1042,16 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	private boolean p() {
-		return this.o.p(this.bv).c() == aty.C;
+		return this.o.p(this.bv).getBlock() == aty.C;
 	}
 
 	public static Position a(World var0, Position var1, boolean var2) {
-		if (var0.p(var1).c() != aty.C) {
+		if (var0.p(var1).getBlock() != aty.C) {
 			if (!var2) {
 				return null;
 			} else {
-				Material var3 = var0.p(var1).c().r();
-				Material var4 = var0.p(var1.a()).c().r();
+				Material var3 = var0.p(var1).getBlock().r();
+				Material var4 = var0.p(var1.a()).getBlock().r();
 				boolean var5 = !var3.isBuildable() && !var3.isLiquid();
 				boolean var6 = !var4.isBuildable() && !var4.isLiquid();
 				return var5 && var6 ? var1 : null;
@@ -1339,7 +1339,7 @@ public abstract class EntityHuman extends EntityLiving {
 			return false;
 		} else {
 			Position var4 = var1.a(var2.d());
-			Block var5 = this.o.p(var4).c();
+			Block var5 = this.o.p(var4).getBlock();
 			return var3.d(var5) || var3.x();
 		}
 	}

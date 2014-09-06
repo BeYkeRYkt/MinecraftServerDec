@@ -16,8 +16,8 @@ public class qx {
 
 	public qx(World var1) {
 		this.gameMode = GameMode.NOT_SET;
-		this.f = Position.a;
-		this.i = Position.a;
+		this.f = Position.ZERO;
+		this.i = Position.ZERO;
 		this.k = -1;
 		this.a = var1;
 	}
@@ -55,7 +55,7 @@ public class qx {
 		int var4;
 		if (this.h) {
 			int var1 = this.g - this.j;
-			Block var2 = this.a.p(this.i).c();
+			Block var2 = this.a.p(this.i).getBlock();
 			if (var2.r() == Material.AIR) {
 				this.h = false;
 			} else {
@@ -72,7 +72,7 @@ public class qx {
 				}
 			}
 		} else if (this.d) {
-			Block var5 = this.a.p(this.f).c();
+			Block var5 = this.a.p(this.f).getBlock();
 			if (var5.r() == Material.AIR) {
 				this.a.c(this.b.getId(), this.f, -1);
 				this.k = -1;
@@ -97,7 +97,7 @@ public class qx {
 			}
 
 		} else {
-			Block var3 = this.a.p(var1).c();
+			Block var3 = this.a.p(var1).getBlock();
 			if (this.gameMode.buildDisallowed()) {
 				if (this.gameMode == GameMode.SPECTATOR) {
 					return;
@@ -139,7 +139,7 @@ public class qx {
 	public void a(Position var1) {
 		if (var1.equals(this.f)) {
 			int var2 = this.g - this.e;
-			Block var3 = this.a.p(var1).c();
+			Block var3 = this.a.p(var1).getBlock();
 			if (var3.r() != Material.AIR) {
 				float var4 = var3.a((EntityHuman) this.b, this.b.o, var1) * (float) (var2 + 1);
 				if (var4 >= 0.7F) {
@@ -164,10 +164,10 @@ public class qx {
 
 	private boolean c(Position var1) {
 		bec var2 = this.a.p(var1);
-		var2.c().a(this.a, var1, var2, (EntityHuman) this.b);
+		var2.getBlock().a(this.a, var1, var2, (EntityHuman) this.b);
 		boolean var3 = this.a.g(var1);
 		if (var3) {
-			var2.c().d(this.a, var1, var2);
+			var2.getBlock().d(this.a, var1, var2);
 		}
 
 		return var3;
@@ -178,7 +178,7 @@ public class qx {
 			return false;
 		} else {
 			bec var2 = this.a.p(var1);
-			bcm var3 = this.a.s(var1);
+			TileEntity var3 = this.a.s(var1);
 			if (this.gameMode.buildDisallowed()) {
 				if (this.gameMode == GameMode.SPECTATOR) {
 					return false;
@@ -190,7 +190,7 @@ public class qx {
 						return false;
 					}
 
-					if (!var4.c(var2.c())) {
+					if (!var4.c(var2.getBlock())) {
 						return false;
 					}
 				}
@@ -199,19 +199,19 @@ public class qx {
 			this.a.a(this.b, 2001, var1, Block.f(var2));
 			boolean var7 = this.c(var1);
 			if (this.d()) {
-				this.b.playerConncetion.sendPacket((Packet) (new iw(this.a, var1)));
+				this.b.playerConncetion.sendPacket((Packet) (new PacketOutBlockChange(this.a, var1)));
 			} else {
 				ItemStack var5 = this.b.bY();
-				boolean var6 = this.b.b(var2.c());
+				boolean var6 = this.b.b(var2.getBlock());
 				if (var5 != null) {
-					var5.a(this.a, var2.c(), var1, this.b);
+					var5.a(this.a, var2.getBlock(), var1, this.b);
 					if (var5.b == 0) {
 						this.b.bZ();
 					}
 				}
 
 				if (var7 && var6) {
-					var2.c().a(this.a, (EntityHuman) this.b, var1, var2, var3);
+					var2.getBlock().a(this.a, (EntityHuman) this.b, var1, var2, var3);
 				}
 			}
 
@@ -252,11 +252,11 @@ public class qx {
 
 	public boolean a(EntityHuman var1, World var2, ItemStack var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (this.gameMode == GameMode.SPECTATOR) {
-			bcm var13 = var2.s(var4);
+			TileEntity var13 = var2.s(var4);
 			if (var13 instanceof vy) {
-				Block var14 = var2.p(var4).c();
+				Block var14 = var2.p(var4).getBlock();
 				vy var15 = (vy) var13;
-				if (var15 instanceof bcr && var14 instanceof BlockChest) {
+				if (var15 instanceof TileEntityChest && var14 instanceof BlockChest) {
 					var15 = ((BlockChest) var14).d(var2, var4);
 				}
 
@@ -273,7 +273,7 @@ public class qx {
 		} else {
 			if (!var1.aw() || var1.bz() == null) {
 				bec var9 = var2.p(var4);
-				if (var9.c().a(var2, var4, var9, var1, var5, var6, var7, var8)) {
+				if (var9.getBlock().a(var2, var4, var9, var1, var5, var6, var7, var8)) {
 					return true;
 				}
 			}

@@ -100,9 +100,9 @@ public class bgw implements IChunkProvider {
 
 				for (int var8 = 127; var8 >= 0; --var8) {
 					bec var9 = var1.a(var2, var8, var3);
-					if (var9.c().r() == Material.AIR) {
+					if (var9.getBlock().r() == Material.AIR) {
 						var5 = -1;
-					} else if (var9.c() == aty.b) {
+					} else if (var9.getBlock() == aty.b) {
 						if (var5 == -1) {
 							if (var4 <= 0) {
 								var6 = aty.a.P();
@@ -259,6 +259,6 @@ public class bgw implements IChunkProvider {
 	}
 
 	public Chunk a(Position var1) {
-		return this.d(var1.n() >> 4, var1.p() >> 4);
+		return this.d(var1.getX() >> 4, var1.getZ() >> 4);
 	}
 }

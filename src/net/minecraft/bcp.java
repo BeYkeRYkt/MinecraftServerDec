@@ -5,15 +5,15 @@ import java.util.concurrent.Callable;
 class bcp implements Callable {
 
 	// $FF: synthetic field
-	final bcm a;
+	final TileEntity a;
 
-	bcp(bcm var1) {
+	bcp(TileEntity var1) {
 		this.a = var1;
 	}
 
 	public String a() {
-		bec var1 = this.a.b.p(this.a.c);
-		int var2 = var1.c().c(var1);
+		bec var1 = this.a.world.p(this.a.position);
+		int var2 = var1.getBlock().c(var1);
 		if (var2 < 0) {
 			return "Unknown? (Got " + var2 + ")";
 		} else {

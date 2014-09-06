@@ -59,8 +59,8 @@ public class aqo {
 						for (float var21 = 0.3F; var14 > 0.0F; var14 -= 0.22500001F) {
 							Position var22 = new Position(var15, var17, var19);
 							bec var23 = this.d.p(var22);
-							if (var23.c().r() != Material.AIR) {
-								float var24 = this.h != null ? this.h.a(this, this.d, var22, var23) : var23.c().a((Entity) null);
+							if (var23.getBlock().r() != Material.AIR) {
+								float var24 = this.h != null ? this.h.a(this, this.d, var22, var23) : var23.getBlock().a((Entity) null);
 								var14 -= (var24 + 0.3F) * 0.3F;
 							}
 
@@ -86,7 +86,7 @@ public class aqo {
 		int var32 = DataTypesConverter.toFixedPointInt(this.g - (double) var30 - 1.0D);
 		int var9 = DataTypesConverter.toFixedPointInt(this.g + (double) var30 + 1.0D);
 		List var33 = this.d.b(this.h, new brt((double) var4, (double) var31, (double) var32, (double) var5, (double) var7, (double) var9));
-		brw var11 = new brw(this.e, this.f, this.g);
+		Vec3D var11 = new Vec3D(this.e, this.f, this.g);
 
 		for (int var34 = 0; var34 < var33.size(); ++var34) {
 			Entity var13 = (Entity) var33.get(var34);
@@ -109,7 +109,7 @@ public class aqo {
 						var13.motionY += var18 * var28;
 						var13.motionZ += var20 * var28;
 						if (var13 instanceof EntityHuman) {
-							this.k.put((EntityHuman) var13, new brw(var16 * var26, var18 * var26, var20 * var26));
+							this.k.put((EntityHuman) var13, new Vec3D(var16 * var26, var18 * var26, var20 * var26));
 						}
 					}
 				}
@@ -121,9 +121,9 @@ public class aqo {
 	public void a(boolean var1) {
 		this.d.a(this.e, this.f, this.g, "random.explode", 4.0F, (1.0F + (this.d.s.nextFloat() - this.d.s.nextFloat()) * 0.2F) * 0.7F);
 		if (this.i >= 2.0F && this.b) {
-			this.d.a(ew.c, this.e, this.f, this.g, 1.0D, 0.0D, 0.0D, new int[0]);
+			this.d.a(Particle.c, this.e, this.f, this.g, 1.0D, 0.0D, 0.0D, new int[0]);
 		} else {
-			this.d.a(ew.b, this.e, this.f, this.g, 1.0D, 0.0D, 0.0D, new int[0]);
+			this.d.a(Particle.b, this.e, this.f, this.g, 1.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 		Iterator var2;
@@ -133,11 +133,11 @@ public class aqo {
 
 			while (var2.hasNext()) {
 				var3 = (Position) var2.next();
-				Block var4 = this.d.p(var3).c();
+				Block var4 = this.d.p(var3).getBlock();
 				if (var1) {
-					double var5 = (double) ((float) var3.n() + this.d.s.nextFloat());
-					double var7 = (double) ((float) var3.o() + this.d.s.nextFloat());
-					double var9 = (double) ((float) var3.p() + this.d.s.nextFloat());
+					double var5 = (double) ((float) var3.getX() + this.d.s.nextFloat());
+					double var7 = (double) ((float) var3.getY() + this.d.s.nextFloat());
+					double var9 = (double) ((float) var3.getZ() + this.d.s.nextFloat());
 					double var11 = var5 - this.e;
 					double var13 = var7 - this.f;
 					double var15 = var9 - this.g;
@@ -150,8 +150,8 @@ public class aqo {
 					var11 *= var19;
 					var13 *= var19;
 					var15 *= var19;
-					this.d.a(ew.a, (var5 + this.e * 1.0D) / 2.0D, (var7 + this.f * 1.0D) / 2.0D, (var9 + this.g * 1.0D) / 2.0D, var11, var13, var15, new int[0]);
-					this.d.a(ew.l, var5, var7, var9, var11, var13, var15, new int[0]);
+					this.d.a(Particle.a, (var5 + this.e * 1.0D) / 2.0D, (var7 + this.f * 1.0D) / 2.0D, (var9 + this.g * 1.0D) / 2.0D, var11, var13, var15, new int[0]);
+					this.d.a(Particle.l, var5, var7, var9, var11, var13, var15, new int[0]);
 				}
 
 				if (var4.r() != Material.AIR) {
@@ -170,7 +170,7 @@ public class aqo {
 
 			while (var2.hasNext()) {
 				var3 = (Position) var2.next();
-				if (this.d.p(var3).c().r() == Material.AIR && this.d.p(var3.b()).c().m() && this.c.nextInt(3) == 0) {
+				if (this.d.p(var3).getBlock().r() == Material.AIR && this.d.p(var3.b()).getBlock().m() && this.c.nextInt(3) == 0) {
 					this.d.a(var3, aty.ab.P());
 				}
 			}

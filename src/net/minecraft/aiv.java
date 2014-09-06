@@ -81,7 +81,7 @@ public class aiv extends Container {
 					if (!this.a(var5, 0, 1, false)) {
 						return null;
 					}
-				} else if (bdc.c(var5)) {
+				} else if (TileEntityFurnace.c(var5)) {
 					if (!this.a(var5, 1, 2, false)) {
 						return null;
 					}

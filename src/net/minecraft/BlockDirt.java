@@ -13,7 +13,7 @@ public class BlockDirt extends Block {
 
 	public bec a(bec var1, ard var2, Position var3) {
 		if (var1.b(a) == avd.c) {
-			Block var4 = var2.p(var3.a()).c();
+			Block var4 = var2.p(var3.a()).getBlock();
 			var1 = var1.a(b, Boolean.valueOf(var4 == aty.aJ || var4 == aty.aH));
 		}
 
@@ -22,7 +22,7 @@ public class BlockDirt extends Block {
 
 	public int j(World var1, Position var2) {
 		bec var3 = var1.p(var2);
-		return var3.c() != this ? 0 : ((avd) var3.b(a)).a();
+		return var3.getBlock() != this ? 0 : ((avd) var3.b(a)).a();
 	}
 
 	public bec a(int var1) {

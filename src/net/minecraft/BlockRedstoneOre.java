@@ -75,35 +75,35 @@ public class BlockRedstoneOre extends Block {
 		double var4 = 0.0625D;
 
 		for (int var6 = 0; var6 < 6; ++var6) {
-			double var7 = (double) ((float) var2.n() + var3.nextFloat());
-			double var9 = (double) ((float) var2.o() + var3.nextFloat());
-			double var11 = (double) ((float) var2.p() + var3.nextFloat());
-			if (var6 == 0 && !var1.p(var2.a()).c().c()) {
-				var9 = (double) var2.o() + var4 + 1.0D;
+			double var7 = (double) ((float) var2.getX() + var3.nextFloat());
+			double var9 = (double) ((float) var2.getY() + var3.nextFloat());
+			double var11 = (double) ((float) var2.getZ() + var3.nextFloat());
+			if (var6 == 0 && !var1.p(var2.a()).getBlock().c()) {
+				var9 = (double) var2.getY() + var4 + 1.0D;
 			}
 
-			if (var6 == 1 && !var1.p(var2.b()).c().c()) {
-				var9 = (double) var2.o() - var4;
+			if (var6 == 1 && !var1.p(var2.b()).getBlock().c()) {
+				var9 = (double) var2.getY() - var4;
 			}
 
-			if (var6 == 2 && !var1.p(var2.d()).c().c()) {
-				var11 = (double) var2.p() + var4 + 1.0D;
+			if (var6 == 2 && !var1.p(var2.d()).getBlock().c()) {
+				var11 = (double) var2.getZ() + var4 + 1.0D;
 			}
 
-			if (var6 == 3 && !var1.p(var2.c()).c().c()) {
-				var11 = (double) var2.p() - var4;
+			if (var6 == 3 && !var1.p(var2.c()).getBlock().c()) {
+				var11 = (double) var2.getZ() - var4;
 			}
 
-			if (var6 == 4 && !var1.p(var2.f()).c().c()) {
-				var7 = (double) var2.n() + var4 + 1.0D;
+			if (var6 == 4 && !var1.p(var2.f()).getBlock().c()) {
+				var7 = (double) var2.getX() + var4 + 1.0D;
 			}
 
-			if (var6 == 5 && !var1.p(var2.e()).c().c()) {
-				var7 = (double) var2.n() - var4;
+			if (var6 == 5 && !var1.p(var2.e()).getBlock().c()) {
+				var7 = (double) var2.getX() - var4;
 			}
 
-			if (var7 < (double) var2.n() || var7 > (double) (var2.n() + 1) || var9 < 0.0D || var9 > (double) (var2.o() + 1) || var11 < (double) var2.p() || var11 > (double) (var2.p() + 1)) {
-				var1.a(ew.E, var7, var9, var11, 0.0D, 0.0D, 0.0D, new int[0]);
+			if (var7 < (double) var2.getX() || var7 > (double) (var2.getX() + 1) || var9 < 0.0D || var9 > (double) (var2.getY() + 1) || var11 < (double) var2.getZ() || var11 > (double) (var2.getZ() + 1)) {
+				var1.a(Particle.E, var7, var9, var11, 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 		}
 

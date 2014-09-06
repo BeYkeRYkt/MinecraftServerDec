@@ -58,7 +58,7 @@ public abstract class ath extends Block {
 	}
 
 	private boolean m(World var1, Position var2) {
-		return World.a((ard) var1, var2) || var1.p(var2).c() instanceof BlockFence;
+		return World.a((ard) var1, var2) || var1.p(var2).getBlock() instanceof BlockFence;
 	}
 
 	public void a(World var1, Position var2, bec var3, Random var4) {
@@ -96,9 +96,9 @@ public abstract class ath extends Block {
 		}
 
 		if (!var7 && var6) {
-			var1.a((double) var2.n() + 0.5D, (double) var2.o() + 0.1D, (double) var2.p() + 0.5D, "random.click", 0.3F, 0.5F);
+			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.5F);
 		} else if (var7 && !var6) {
-			var1.a((double) var2.n() + 0.5D, (double) var2.o() + 0.1D, (double) var2.p() + 0.5D, "random.click", 0.3F, 0.6F);
+			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
 		}
 
 		if (var7) {
@@ -109,7 +109,7 @@ public abstract class ath extends Block {
 
 	protected brt a(Position var1) {
 		float var2 = 0.125F;
-		return new brt((double) ((float) var1.n() + 0.125F), (double) var1.o(), (double) ((float) var1.p() + 0.125F), (double) ((float) (var1.n() + 1) - 0.125F), (double) var1.o() + 0.25D, (double) ((float) (var1.p() + 1) - 0.125F));
+		return new brt((double) ((float) var1.getX() + 0.125F), (double) var1.getY(), (double) ((float) var1.getZ() + 0.125F), (double) ((float) (var1.getX() + 1) - 0.125F), (double) var1.getY() + 0.25D, (double) ((float) (var1.getZ() + 1) - 0.125F));
 	}
 
 	public void b(World var1, Position var2, bec var3) {

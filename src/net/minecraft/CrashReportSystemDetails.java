@@ -20,9 +20,9 @@ public class CrashReportSystemDetails {
 	}
 
 	public static String a(Position var0) {
-		int var1 = var0.n();
-		int var2 = var0.o();
-		int var3 = var0.p();
+		int var1 = var0.getX();
+		int var2 = var0.getY();
+		int var3 = var0.getZ();
 		StringBuilder var4 = new StringBuilder();
 
 		try {

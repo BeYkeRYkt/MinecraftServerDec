@@ -22,7 +22,7 @@ public class Item {
 	private String l;
 
 	public static int getId(Item var0) {
-		return var0 == null ? 0 : REGISTRY.b(var0);
+		return var0 == null ? 0 : REGISTRY.getBlockId(var0);
 	}
 
 	public static Item getById(int id) {
@@ -208,7 +208,7 @@ public class Item {
 		double var6 = var2.p + (var2.locationX - var2.p);
 		double var8 = var2.q + (var2.locationY - var2.q) + (double) var2.aR();
 		double var10 = var2.r + (var2.locationZ - var2.r);
-		brw var12 = new brw(var6, var8, var10);
+		Vec3D var12 = new Vec3D(var6, var8, var10);
 		float var13 = DataTypesConverter.b(-var5 * 0.017453292F - 3.1415927F);
 		float var14 = DataTypesConverter.a(-var5 * 0.017453292F - 3.1415927F);
 		float var15 = -DataTypesConverter.b(-var4 * 0.017453292F);
@@ -216,7 +216,7 @@ public class Item {
 		float var17 = var14 * var15;
 		float var19 = var13 * var15;
 		double var20 = 5.0D;
-		brw var22 = var12.b((double) var17 * var20, (double) var16 * var20, (double) var19 * var20);
+		Vec3D var22 = var12.b((double) var17 * var20, (double) var16 * var20, (double) var19 * var20);
 		return var1.a(var12, var22, var3, !var3, false);
 	}
 

@@ -16,10 +16,10 @@ public class bhg extends bhp {
 
 	public boolean b(World var1, Random var2, Position var3) {
 		while (true) {
-			if (var3.o() > 3) {
+			if (var3.getY() > 3) {
 				label47: {
 					if (!var1.d(var3.b())) {
-						Block var4 = var1.p(var3.b()).c();
+						Block var4 = var1.p(var3.b()).getBlock();
 						if (var4 == aty.c || var4 == aty.d || var4 == aty.b) {
 							break label47;
 						}
@@ -30,7 +30,7 @@ public class bhg extends bhp {
 				}
 			}
 
-			if (var3.o() <= 3) {
+			if (var3.getY() <= 3) {
 				return false;
 			}
 

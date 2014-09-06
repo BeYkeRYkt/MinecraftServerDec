@@ -16,7 +16,7 @@ public class BlockSoil extends Block {
 	}
 
 	public brt a(World var1, Position var2, bec var3) {
-		return new brt((double) var2.n(), (double) var2.o(), (double) var2.p(), (double) (var2.n() + 1), (double) (var2.o() + 1), (double) (var2.p() + 1));
+		return new brt((double) var2.getX(), (double) var2.getY(), (double) var2.getZ(), (double) (var2.getX() + 1), (double) (var2.getY() + 1), (double) (var2.getZ() + 1));
 	}
 
 	public boolean c() {
@@ -56,7 +56,7 @@ public class BlockSoil extends Block {
 	}
 
 	private boolean d(World var1, Position var2) {
-		Block var3 = var1.p(var2.a()).c();
+		Block var3 = var1.p(var2.a()).getBlock();
 		return var3 instanceof BlockCrops || var3 instanceof BlockStem;
 	}
 
@@ -70,14 +70,14 @@ public class BlockSoil extends Block {
 			}
 
 			var4 = (dy) var3.next();
-		} while (var1.p(var4).c().r() != Material.WATER);
+		} while (var1.p(var4).getBlock().r() != Material.WATER);
 
 		return true;
 	}
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
 		super.a(var1, var2, var3, var4);
-		if (var1.p(var2.a()).c().r().isBuildable()) {
+		if (var1.p(var2.a()).getBlock().r().isBuildable()) {
 			var1.a(var2, aty.d.P());
 		}
 

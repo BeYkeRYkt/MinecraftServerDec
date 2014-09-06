@@ -41,7 +41,7 @@ public class BlockCauldron extends Block {
 
 	public void a(World var1, Position var2, bec var3, Entity var4) {
 		int var5 = ((Integer) var3.b(a)).intValue();
-		float var6 = (float) var2.o() + (6.0F + (float) (3 * var5)) / 16.0F;
+		float var6 = (float) var2.getY() + (6.0F + (float) (3 * var5)) / 16.0F;
 		if (!var1.D && var4.au() && var5 > 0 && var4.aQ().b <= (double) var6) {
 			var4.N();
 			this.a(var1, var2, var3, var5 - 1);
@@ -76,7 +76,7 @@ public class BlockCauldron extends Block {
 							if (!var4.by.instabuild) {
 								var13 = new ItemStack(amk.bz, 1, 0);
 								if (!var4.playerInventory.a(var13)) {
-									var1.d((Entity) (new EntityItem(var1, (double) var2.n() + 0.5D, (double) var2.o() + 1.5D, (double) var2.p() + 0.5D, var13)));
+									var1.d((Entity) (new EntityItem(var1, (double) var2.getX() + 0.5D, (double) var2.getY() + 1.5D, (double) var2.getZ() + 0.5D, var13)));
 								} else if (var4 instanceof EntityPlayer) {
 									((EntityPlayer) var4).a(var4.defaultContainer);
 								}
@@ -101,15 +101,15 @@ public class BlockCauldron extends Block {
 							}
 						}
 
-						if (var10 > 0 && var11 instanceof ajs && bci.c(var9) > 0) {
+						if (var10 > 0 && var11 instanceof ajs && TileEntityBanner.c(var9) > 0) {
 							var13 = var9.getCopy();
 							var13.b = 1;
-							bci.e(var13);
+							TileEntityBanner.e(var13);
 							if (var9.b <= 1 && !var4.by.instabuild) {
 								var4.playerInventory.a(var4.playerInventory.c, var13);
 							} else {
 								if (!var4.playerInventory.a(var13)) {
-									var1.d((Entity) (new EntityItem(var1, (double) var2.n() + 0.5D, (double) var2.o() + 1.5D, (double) var2.p() + 0.5D, var13)));
+									var1.d((Entity) (new EntityItem(var1, (double) var2.getX() + 0.5D, (double) var2.getY() + 1.5D, (double) var2.getZ() + 0.5D, var13)));
 								} else if (var4 instanceof EntityPlayer) {
 									((EntityPlayer) var4).a(var4.defaultContainer);
 								}

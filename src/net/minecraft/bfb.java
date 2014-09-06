@@ -29,7 +29,7 @@ public class bfb {
 	}
 
 	public boolean a(Position var1) {
-		return (double) (var1.n() + 1) > this.b() && (double) var1.n() < this.d() && (double) (var1.p() + 1) > this.c() && (double) var1.p() < this.e();
+		return (double) (var1.getX() + 1) > this.b() && (double) var1.getX() < this.d() && (double) (var1.getZ() + 1) > this.c() && (double) var1.getZ() < this.e();
 	}
 
 	public boolean a(ChunkCoordIntPair var1) {

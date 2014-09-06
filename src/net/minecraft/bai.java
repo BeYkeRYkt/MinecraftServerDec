@@ -27,8 +27,8 @@ public class bai extends atg {
 		return false;
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bdj();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntitySign();
 	}
 
 	public Item a(bec var1, Random var2, int var3) {
@@ -39,8 +39,8 @@ public class bai extends atg {
 		if (var1.D) {
 			return true;
 		} else {
-			bcm var9 = var1.s(var2);
-			return var9 instanceof bdj ? ((bdj) var9).b(var4) : false;
+			TileEntity var9 = var1.s(var2);
+			return var9 instanceof TileEntitySign ? ((TileEntitySign) var9).b(var4) : false;
 		}
 	}
 }

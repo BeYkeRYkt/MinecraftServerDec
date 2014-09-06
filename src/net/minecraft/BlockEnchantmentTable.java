@@ -21,17 +21,17 @@ public class BlockEnchantmentTable extends atg {
 		return 3;
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bcz();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntityEnchantTable();
 	}
 
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {
-			bcm var9 = var1.s(var2);
-			if (var9 instanceof bcz) {
-				var4.a((vv) ((bcz) var9));
+			TileEntity var9 = var1.s(var2);
+			if (var9 instanceof TileEntityEnchantTable) {
+				var4.a((vv) ((TileEntityEnchantTable) var9));
 			}
 
 			return true;
@@ -41,9 +41,9 @@ public class BlockEnchantmentTable extends atg {
 	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
 		super.a(var1, var2, var3, var4, var5);
 		if (var5.s()) {
-			bcm var6 = var1.s(var2);
-			if (var6 instanceof bcz) {
-				((bcz) var6).a(var5.q());
+			TileEntity var6 = var1.s(var2);
+			if (var6 instanceof TileEntityEnchantTable) {
+				((TileEntityEnchantTable) var6).a(var5.q());
 			}
 		}
 

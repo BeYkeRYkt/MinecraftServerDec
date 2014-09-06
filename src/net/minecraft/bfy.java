@@ -232,9 +232,9 @@ public class bfy implements bfq, brq {
 		var22 = var1.r().values().iterator();
 
 		while (var22.hasNext()) {
-			bcm var25 = (bcm) var22.next();
+			TileEntity var25 = (TileEntity) var22.next();
 			var11 = new NBTCompoundTag();
-			var25.b(var11);
+			var25.write(var11);
 			var21.addTag((NBTTag) var11);
 		}
 
@@ -250,9 +250,9 @@ public class bfy implements bfq, brq {
 				NBTCompoundTag var30 = new NBTCompoundTag();
 				BlockNameInfo var31 = (BlockNameInfo) Block.BLOCKREGISTRY.c(var29.a());
 				var30.put("i", var31 == null ? "" : var31.toString());
-				var30.put("x", var29.a.n());
-				var30.put("y", var29.a.o());
-				var30.put("z", var29.a.p());
+				var30.put("x", var29.a.getX());
+				var30.put("y", var29.a.getY());
+				var30.put("z", var29.a.getZ());
 				var30.put("t", (int) (var29.b - var26));
 				var30.put("p", var29.c);
 				var27.addTag((NBTTag) var30);
@@ -335,7 +335,7 @@ public class bfy implements bfq, brq {
 		if (var25 != null) {
 			for (int var27 = 0; var27 < var25.getSize(); ++var27) {
 				NBTCompoundTag var30 = var25.getCompound(var27);
-				bcm var33 = bcm.c(var30);
+				TileEntity var33 = TileEntity.fromNBT(var30);
 				if (var33 != null) {
 					var5.a(var33);
 				}

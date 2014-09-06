@@ -16,10 +16,10 @@ public class BlockReed extends Block {
 	}
 
 	public void b(World var1, Position var2, bec var3, Random var4) {
-		if (var1.p(var2.b()).c() == aty.aM || this.e(var1, var2, var3)) {
+		if (var1.p(var2.b()).getBlock() == aty.aM || this.e(var1, var2, var3)) {
 			if (var1.d(var2.a())) {
 				int var5;
-				for (var5 = 1; var1.p(var2.c(var5)).c() == this; ++var5) {
+				for (var5 = 1; var1.p(var2.c(var5)).getBlock() == this; ++var5) {
 					;
 				}
 
@@ -38,7 +38,7 @@ public class BlockReed extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		Block var3 = var1.p(var2.b()).c();
+		Block var3 = var1.p(var2.b()).getBlock();
 		if (var3 == this) {
 			return true;
 		} else if (var3 != aty.c && var3 != aty.d && var3 != aty.m) {
@@ -53,7 +53,7 @@ public class BlockReed extends Block {
 				}
 
 				var5 = (PaintingDirection) var4.next();
-			} while (var1.p(var2.a(var5).b()).c().r() != Material.WATER);
+			} while (var1.p(var2.a(var5).b()).getBlock().r() != Material.WATER);
 
 			return true;
 		}

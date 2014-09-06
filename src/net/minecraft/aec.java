@@ -18,8 +18,8 @@ class aec extends aqf {
 		return new Position(this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ);
 	}
 
-	public brw d() {
-		return new brw(this.a.locationX, this.a.locationY, this.a.locationZ);
+	public Vec3D d() {
+		return new Vec3D(this.a.locationX, this.a.locationY, this.a.locationZ);
 	}
 
 	public World e() {

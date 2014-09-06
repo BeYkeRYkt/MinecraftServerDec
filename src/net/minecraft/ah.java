@@ -242,7 +242,7 @@ public class ah {
 			brt var19;
 			if (!var0.containsKey("dx") && !var0.containsKey("dy") && !var0.containsKey("dz")) {
 				if (var13 >= 0) {
-					var19 = new brt((double) (var5.n() - var13), (double) (var5.o() - var13), (double) (var5.p() - var13), (double) (var5.n() + var13 + 1), (double) (var5.o() + var13 + 1), (double) (var5.p() + var13 + 1));
+					var19 = new brt((double) (var5.getX() - var13), (double) (var5.getY() - var13), (double) (var5.getZ() - var13), (double) (var5.getX() + var13 + 1), (double) (var5.getY() + var13 + 1), (double) (var5.getZ() + var13 + 1));
 					if (var8 && var18 && !var9) {
 						var6.addAll(var4.b(var1, var15));
 					} else {
@@ -305,12 +305,12 @@ public class ah {
 		boolean var4 = var1 < 0;
 		boolean var5 = var2 < 0;
 		boolean var6 = var3 < 0;
-		int var7 = var0.n() + (var4 ? var1 : 0);
-		int var8 = var0.o() + (var5 ? var2 : 0);
-		int var9 = var0.p() + (var6 ? var3 : 0);
-		int var10 = var0.n() + (var4 ? 0 : var1) + 1;
-		int var11 = var0.o() + (var5 ? 0 : var2) + 1;
-		int var12 = var0.p() + (var6 ? 0 : var3) + 1;
+		int var7 = var0.getX() + (var4 ? var1 : 0);
+		int var8 = var0.getY() + (var5 ? var2 : 0);
+		int var9 = var0.getZ() + (var6 ? var3 : 0);
+		int var10 = var0.getX() + (var4 ? 0 : var1) + 1;
+		int var11 = var0.getY() + (var5 ? 0 : var2) + 1;
+		int var12 = var0.getZ() + (var6 ? 0 : var3) + 1;
 		return new brt((double) var7, (double) var8, (double) var9, (double) var10, (double) var11, (double) var12);
 	}
 
@@ -328,7 +328,7 @@ public class ah {
 	}
 
 	private static Position b(Map var0, Position var1) {
-		return new Position(a(var0, "x", var1.n()), a(var0, "y", var1.o()), a(var0, "z", var1.p()));
+		return new Position(a(var0, "x", var1.getX()), a(var0, "y", var1.getY()), a(var0, "z", var1.getZ()));
 	}
 
 	private static boolean h(Map var0) {

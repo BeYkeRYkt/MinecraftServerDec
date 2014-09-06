@@ -3,9 +3,9 @@ package net.minecraft;
 class bdk implements CommandSenderInterface {
 
 	// $FF: synthetic field
-	final bdj a;
+	final TileEntitySign a;
 
-	bdk(bdj var1) {
+	bdk(TileEntitySign var1) {
 		this.a = var1;
 	}
 
@@ -25,15 +25,15 @@ class bdk implements CommandSenderInterface {
 	}
 
 	public Position c() {
-		return this.a.c;
+		return this.a.position;
 	}
 
-	public brw d() {
-		return new brw((double) this.a.c.n() + 0.5D, (double) this.a.c.o() + 0.5D, (double) this.a.c.p() + 0.5D);
+	public Vec3D d() {
+		return new Vec3D((double) this.a.position.getX() + 0.5D, (double) this.a.position.getY() + 0.5D, (double) this.a.position.getZ() + 0.5D);
 	}
 
 	public World e() {
-		return this.a.b;
+		return this.a.world;
 	}
 
 	public Entity f() {

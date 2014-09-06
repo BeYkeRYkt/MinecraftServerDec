@@ -16,7 +16,7 @@ public class asw extends ary {
 			this.M.b(this.a, this.b, this.a.r(this.c.a(var2, 0, var3)));
 		}
 
-		if (this.c.n() == 0 && this.c.p() == 0) {
+		if (this.c.getX() == 0 && this.c.getZ() == 0) {
 			EntityEnderDragon var4 = new EntityEnderDragon(this.a);
 			var4.b(0.0D, 128.0D, 0.0D, this.b.nextFloat() * 360.0F, 0.0F);
 			this.a.d((Entity) var4);

@@ -47,8 +47,8 @@ public class aty {
 	public static final auc Q;
 	public static final Block R;
 	public static final Block S;
-	public static final awq T;
-	public static final awq U;
+	public static final BlockStepAbstract T;
+	public static final BlockStepAbstract U;
 	public static final Block V;
 	public static final Block W;
 	public static final Block X;
@@ -143,8 +143,8 @@ public class aty {
 	public static final Block bI;
 	public static final Block bJ;
 	public static final Block bK;
-	public static final awq bL;
-	public static final awq bM;
+	public static final BlockStepAbstract bL;
+	public static final BlockStepAbstract bM;
 	public static final Block bN;
 	public static final Block bO;
 	public static final Block bP;
@@ -198,8 +198,8 @@ public class aty {
 	public static final Block cL;
 	public static final Block cM;
 	public static final Block cN;
-	public static final awq cO;
-	public static final awq cP;
+	public static final BlockStepAbstract cO;
+	public static final BlockStepAbstract cP;
 
 	private static Block a(String var0) {
 		return (Block) Block.BLOCKREGISTRY.getByName(new BlockNameInfo(var0));
@@ -254,8 +254,8 @@ public class aty {
 			Q = (auc) a("red_mushroom");
 			R = a("gold_block");
 			S = a("iron_block");
-			T = (awq) a("double_stone_slab");
-			U = (awq) a("stone_slab");
+			T = (BlockStepAbstract) a("double_stone_slab");
+			U = (BlockStepAbstract) a("stone_slab");
 			V = a("brick_block");
 			W = a("tnt");
 			X = a("bookshelf");
@@ -350,8 +350,8 @@ public class aty {
 			bI = a("dragon_egg");
 			bJ = a("redstone_lamp");
 			bK = a("lit_redstone_lamp");
-			bL = (awq) a("double_wooden_slab");
-			bM = (awq) a("wooden_slab");
+			bL = (BlockStepAbstract) a("double_wooden_slab");
+			bM = (BlockStepAbstract) a("wooden_slab");
 			bN = a("cocoa");
 			bO = a("sandstone_stairs");
 			bP = a("emerald_ore");
@@ -405,8 +405,8 @@ public class aty {
 			cL = a("wall_banner");
 			cM = a("red_sandstone");
 			cN = a("red_sandstone_stairs");
-			cO = (awq) a("double_stone_slab2");
-			cP = (awq) a("stone_slab2");
+			cO = (BlockStepAbstract) a("double_stone_slab2");
+			cP = (BlockStepAbstract) a("stone_slab2");
 		}
 	}
 }

@@ -49,8 +49,8 @@ class bl implements CommandSenderInterface {
 		return this.c;
 	}
 
-	public brw d() {
-		return new brw(this.d, this.e, this.f);
+	public Vec3D d() {
+		return new Vec3D(this.d, this.e, this.f);
 	}
 
 	public World e() {

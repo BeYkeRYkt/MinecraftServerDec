@@ -32,11 +32,11 @@ public class biw {
 	}
 
 	private Block e() {
-		return this.b.c();
+		return this.b.getBlock();
 	}
 
 	private int f() {
-		return this.b.c().c(this.b);
+		return this.b.getBlock().c(this.b);
 	}
 
 	public int d() {

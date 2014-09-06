@@ -68,12 +68,12 @@ public class bjb {
 	}
 
 	public bjb(fd var1, fd var2) {
-		this.a = Math.min(var1.n(), var2.n());
-		this.b = Math.min(var1.o(), var2.o());
-		this.c = Math.min(var1.p(), var2.p());
-		this.d = Math.max(var1.n(), var2.n());
-		this.e = Math.max(var1.o(), var2.o());
-		this.f = Math.max(var1.p(), var2.p());
+		this.a = Math.min(var1.getX(), var2.getX());
+		this.b = Math.min(var1.getY(), var2.getY());
+		this.c = Math.min(var1.getZ(), var2.getZ());
+		this.d = Math.max(var1.getX(), var2.getX());
+		this.e = Math.max(var1.getY(), var2.getY());
+		this.f = Math.max(var1.getZ(), var2.getZ());
 	}
 
 	public bjb(int var1, int var2, int var3, int var4) {
@@ -112,7 +112,7 @@ public class bjb {
 	}
 
 	public boolean b(fd var1) {
-		return var1.n() >= this.a && var1.n() <= this.d && var1.p() >= this.c && var1.p() <= this.f && var1.o() >= this.b && var1.o() <= this.e;
+		return var1.getX() >= this.a && var1.getX() <= this.d && var1.getZ() >= this.c && var1.getZ() <= this.f && var1.getY() >= this.b && var1.getY() <= this.e;
 	}
 
 	public fd b() {

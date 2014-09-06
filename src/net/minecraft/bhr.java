@@ -15,27 +15,27 @@ public class bhr extends bir {
 
 	public boolean b(World var1, Random var2, Position var3) {
 		Block var4;
-		while (((var4 = var1.p(var3).c()).r() == Material.AIR || var4.r() == Material.LEAVES) && var3.o() > 0) {
+		while (((var4 = var1.p(var3).getBlock()).r() == Material.AIR || var4.r() == Material.LEAVES) && var3.getY() > 0) {
 			var3 = var3.b();
 		}
 
-		Block var5 = var1.p(var3).c();
+		Block var5 = var1.p(var3).getBlock();
 		if (var5 == aty.d || var5 == aty.c) {
 			var3 = var3.a();
 			this.a(var1, var3, aty.r, this.b);
 
-			for (int var6 = var3.o(); var6 <= var3.o() + 2; ++var6) {
-				int var7 = var6 - var3.o();
+			for (int var6 = var3.getY(); var6 <= var3.getY() + 2; ++var6) {
+				int var7 = var6 - var3.getY();
 				int var8 = 2 - var7;
 
-				for (int var9 = var3.n() - var8; var9 <= var3.n() + var8; ++var9) {
-					int var10 = var9 - var3.n();
+				for (int var9 = var3.getX() - var8; var9 <= var3.getX() + var8; ++var9) {
+					int var10 = var9 - var3.getX();
 
-					for (int var11 = var3.p() - var8; var11 <= var3.p() + var8; ++var11) {
-						int var12 = var11 - var3.p();
+					for (int var11 = var3.getZ() - var8; var11 <= var3.getZ() + var8; ++var11) {
+						int var12 = var11 - var3.getZ();
 						if (Math.abs(var10) != var8 || Math.abs(var12) != var8 || var2.nextInt(2) != 0) {
 							Position var13 = new Position(var9, var6, var11);
-							if (!var1.p(var13).c().m()) {
+							if (!var1.p(var13).getBlock().m()) {
 								this.a(var1, var13, aty.t, this.a);
 							}
 						}

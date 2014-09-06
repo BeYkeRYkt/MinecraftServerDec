@@ -23,7 +23,7 @@ public class BlockLeaves2 extends axg {
 
 	public int j(World var1, Position var2) {
 		bec var3 = var1.p(var2);
-		return var3.c().c(var3) & 3;
+		return var3.getBlock().c(var3) & 3;
 	}
 
 	protected ItemStack i(bec var1) {
@@ -56,7 +56,7 @@ public class BlockLeaves2 extends axg {
 		return new bed(this, new bex[] { P, b, a });
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, bec var4, bcm var5) {
+	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
 		if (!var1.D && var2.bY() != null && var2.bY().getItem() == amk.be) {
 			var2.b(StatisticList.H[Block.a((Block) this)]);
 			a(var1, var3, new ItemStack(Item.getItemOf((Block) this), 1, ((ayx) var4.b(P)).a() - 4));

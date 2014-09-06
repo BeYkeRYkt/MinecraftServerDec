@@ -86,7 +86,7 @@ public class bnf extends bnn {
 		this.a(var1, aty.a.P(), 2, 2, 0, var3);
 		this.a(var1, aty.aa.P().a(BlockTorch.a, this.m), 2, 3, 1, var3);
 		this.a(var1, var3, var2, 2, 1, 0, PaintingDirection.fromByte(this.a(aty.ao, 1)));
-		if (this.a(var1, 2, 0, -1, var3).c().r() == Material.AIR && this.a(var1, 2, -1, -1, var3).c().r() != Material.AIR) {
+		if (this.a(var1, 2, 0, -1, var3).getBlock().r() == Material.AIR && this.a(var1, 2, -1, -1, var3).getBlock().r() != Material.AIR) {
 			this.a(var1, aty.aw.a(this.a(aty.aw, 3)), 2, 0, -1, var3);
 		}
 

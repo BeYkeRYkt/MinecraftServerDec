@@ -44,12 +44,12 @@ public class zm extends zb {
 					if (this.c != null) {
 						return true;
 					} else {
-						brw var4 = abf.a(this.a, 10, 7, new brw((double) this.d.d().n(), (double) this.d.d().o(), (double) this.d.d().p()));
+						Vec3D var4 = abf.a(this.a, 10, 7, new Vec3D((double) this.d.d().getX(), (double) this.d.d().getY(), (double) this.d.d().getZ()));
 						if (var4 == null) {
 							return false;
 						} else {
 							var2.b(false);
-							this.c = this.a.s().a(var4.a, var4.b, var4.c);
+							this.c = this.a.s().a(var4.x, var4.y, var4.z);
 							var2.b(var3);
 							return this.c != null;
 						}

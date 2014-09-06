@@ -19,12 +19,12 @@ public class brt {
 	}
 
 	public brt(Position var1, Position var2) {
-		this.a = (double) var1.n();
-		this.b = (double) var1.o();
-		this.c = (double) var1.p();
-		this.d = (double) var2.n();
-		this.e = (double) var2.o();
-		this.f = (double) var2.p();
+		this.a = (double) var1.getX();
+		this.b = (double) var1.getY();
+		this.c = (double) var1.getZ();
+		this.d = (double) var2.getX();
+		this.e = (double) var2.getY();
+		this.f = (double) var2.getZ();
 	}
 
 	public brt a(double var1, double var3, double var5) {
@@ -156,8 +156,8 @@ public class brt {
 		return var1.d > this.a && var1.a < this.d ? (var1.e > this.b && var1.b < this.e ? var1.f > this.c && var1.c < this.f : false) : false;
 	}
 
-	public boolean a(brw var1) {
-		return var1.a > this.a && var1.a < this.d ? (var1.b > this.b && var1.b < this.e ? var1.c > this.c && var1.c < this.f : false) : false;
+	public boolean a(Vec3D var1) {
+		return var1.x > this.a && var1.x < this.d ? (var1.y > this.b && var1.y < this.e ? var1.z > this.c && var1.z < this.f : false) : false;
 	}
 
 	public double a() {
@@ -177,13 +177,13 @@ public class brt {
 		return new brt(var7, var9, var11, var13, var15, var17);
 	}
 
-	public bru a(brw var1, brw var2) {
-		brw var3 = var1.a(var2, this.a);
-		brw var4 = var1.a(var2, this.d);
-		brw var5 = var1.b(var2, this.b);
-		brw var6 = var1.b(var2, this.e);
-		brw var7 = var1.c(var2, this.c);
-		brw var8 = var1.c(var2, this.f);
+	public bru a(Vec3D var1, Vec3D var2) {
+		Vec3D var3 = var1.a(var2, this.a);
+		Vec3D var4 = var1.a(var2, this.d);
+		Vec3D var5 = var1.b(var2, this.b);
+		Vec3D var6 = var1.b(var2, this.e);
+		Vec3D var7 = var1.c(var2, this.c);
+		Vec3D var8 = var1.c(var2, this.f);
 		if (!this.b(var3)) {
 			var3 = null;
 		}
@@ -208,7 +208,7 @@ public class brt {
 			var8 = null;
 		}
 
-		brw var9 = null;
+		Vec3D var9 = null;
 		if (var3 != null) {
 			var9 = var3;
 		}
@@ -255,16 +255,16 @@ public class brt {
 		}
 	}
 
-	private boolean b(brw var1) {
-		return var1 == null ? false : var1.b >= this.b && var1.b <= this.e && var1.c >= this.c && var1.c <= this.f;
+	private boolean b(Vec3D var1) {
+		return var1 == null ? false : var1.y >= this.b && var1.y <= this.e && var1.z >= this.c && var1.z <= this.f;
 	}
 
-	private boolean c(brw var1) {
-		return var1 == null ? false : var1.a >= this.a && var1.a <= this.d && var1.c >= this.c && var1.c <= this.f;
+	private boolean c(Vec3D var1) {
+		return var1 == null ? false : var1.x >= this.a && var1.x <= this.d && var1.z >= this.c && var1.z <= this.f;
 	}
 
-	private boolean d(brw var1) {
-		return var1 == null ? false : var1.a >= this.a && var1.a <= this.d && var1.b >= this.b && var1.b <= this.e;
+	private boolean d(Vec3D var1) {
+		return var1 == null ? false : var1.x >= this.a && var1.x <= this.d && var1.y >= this.b && var1.y <= this.e;
 	}
 
 	public String toString() {

@@ -29,7 +29,7 @@ public class BlockTNT extends Block {
 
 	public void a(World var1, Position var2, aqo var3) {
 		if (!var1.D) {
-			EntityTNTPrimed var4 = new EntityTNTPrimed(var1, (double) ((float) var2.n() + 0.5F), (double) ((float) var2.o() + 0.5F), (double) ((float) var2.p() + 0.5F), var3.c());
+			EntityTNTPrimed var4 = new EntityTNTPrimed(var1, (double) ((float) var2.getX() + 0.5F), (double) ((float) var2.getY() + 0.5F), (double) ((float) var2.getZ() + 0.5F), var3.c());
 			var4.a = var1.s.nextInt(var4.a / 4) + var4.a / 8;
 			var1.d((Entity) var4);
 		}
@@ -42,7 +42,7 @@ public class BlockTNT extends Block {
 	public void a(World var1, Position var2, bec var3, EntityLiving var4) {
 		if (!var1.D) {
 			if (((Boolean) var3.b(a)).booleanValue()) {
-				EntityTNTPrimed var5 = new EntityTNTPrimed(var1, (double) ((float) var2.n() + 0.5F), (double) ((float) var2.o() + 0.5F), (double) ((float) var2.p() + 0.5F), var4);
+				EntityTNTPrimed var5 = new EntityTNTPrimed(var1, (double) ((float) var2.getX() + 0.5F), (double) ((float) var2.getY() + 0.5F), (double) ((float) var2.getZ() + 0.5F), var4);
 				var1.d((Entity) var5);
 				var1.a((Entity) var5, "game.tnt.primed", 1.0F, 1.0F);
 			}

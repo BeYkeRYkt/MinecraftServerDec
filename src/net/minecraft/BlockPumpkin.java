@@ -35,11 +35,11 @@ public class BlockPumpkin extends avb {
 
 			EntitySnowman var9 = new EntitySnowman(var1);
 			Position var11 = var3.a(0, 2, 0).d();
-			var9.b((double) var11.n() + 0.5D, (double) var11.o() + 0.05D, (double) var11.p() + 0.5D, 0.0F, 0.0F);
+			var9.b((double) var11.getX() + 0.5D, (double) var11.getY() + 0.05D, (double) var11.getZ() + 0.5D, 0.0F, 0.0F);
 			var1.d((Entity) var9);
 
 			for (var6 = 0; var6 < 120; ++var6) {
-				var1.a(ew.G, (double) var11.n() + var1.s.nextDouble(), (double) var11.o() + var1.s.nextDouble() * 2.5D, (double) var11.p() + var1.s.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
+				var1.a(Particle.G, (double) var11.getX() + var1.s.nextDouble(), (double) var11.getY() + var1.s.nextDouble() * 2.5D, (double) var11.getZ() + var1.s.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 
 			for (var6 = 0; var6 < this.l().b(); ++var6) {
@@ -56,11 +56,11 @@ public class BlockPumpkin extends avb {
 			Position var10 = var3.a(1, 2, 0).d();
 			EntityIronGolem var13 = new EntityIronGolem(var1);
 			var13.l(true);
-			var13.b((double) var10.n() + 0.5D, (double) var10.o() + 0.05D, (double) var10.p() + 0.5D, 0.0F, 0.0F);
+			var13.b((double) var10.getX() + 0.5D, (double) var10.getY() + 0.05D, (double) var10.getZ() + 0.5D, 0.0F, 0.0F);
 			var1.d((Entity) var13);
 
 			for (var6 = 0; var6 < 120; ++var6) {
-				var1.a(ew.F, (double) var10.n() + var1.s.nextDouble(), (double) var10.o() + var1.s.nextDouble() * 3.9D, (double) var10.p() + var1.s.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
+				var1.a(Particle.F, (double) var10.getX() + var1.s.nextDouble(), (double) var10.getY() + var1.s.nextDouble() * 3.9D, (double) var10.getZ() + var1.s.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 
 			for (var6 = 0; var6 < this.T().c(); ++var6) {
@@ -74,7 +74,7 @@ public class BlockPumpkin extends avb {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return var1.p(var2).c().J.j() && World.a((ard) var1, var2.b());
+		return var1.p(var2).getBlock().material.j() && World.a((ard) var1, var2.b());
 	}
 
 	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {

@@ -186,11 +186,11 @@ public class EntityOcelot extends xx {
 	public boolean bR() {
 		if (this.o.a(this.aQ(), (Entity) this) && this.o.a((Entity) this, this.aQ()).isEmpty() && !this.o.d(this.aQ())) {
 			Position var1 = new Position(this.locationX, this.aQ().b, this.locationZ);
-			if (var1.o() < 63) {
+			if (var1.getY() < 63) {
 				return false;
 			}
 
-			Block var2 = this.o.p(var1.b()).c();
+			Block var2 = this.o.p(var1.b()).getBlock();
 			if (var2 == aty.c || var2.r() == Material.LEAVES) {
 				return true;
 			}

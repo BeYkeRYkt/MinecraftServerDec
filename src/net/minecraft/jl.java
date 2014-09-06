@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.io.IOException;
 
-public class jl implements Packet<PlayPacketListener> {
+public class jl implements Packet<PlayClientboundPacketListener> {
 
 	private int a;
 	private NBTCompoundTag b;
@@ -25,7 +25,7 @@ public class jl implements Packet<PlayPacketListener> {
 		var1.writeCompound(this.b);
 	}
 
-	public void handlePacket(PlayPacketListener var1) {
+	public void handlePacket(PlayClientboundPacketListener var1) {
 		var1.a(this);
 	}
 }

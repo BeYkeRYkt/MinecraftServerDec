@@ -15,7 +15,7 @@ class aoe implements aoo {
 					return false;
 				}
 
-				if (bci.c(var5) >= 6) {
+				if (TileEntityBanner.c(var5) >= 6) {
 					return false;
 				}
 

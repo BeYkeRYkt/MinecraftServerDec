@@ -13,18 +13,18 @@ public class BlockPistonMoving extends atg {
 		this.c(-1.0F);
 	}
 
-	public bcm a(World var1, int var2) {
+	public TileEntity a(World var1, int var2) {
 		return null;
 	}
 
-	public static bcm a(bec var0, PaintingDirection var1, boolean var2, boolean var3) {
-		return new bdv(var0, var1, var2, var3);
+	public static TileEntity a(bec var0, PaintingDirection var1, boolean var2, boolean var3) {
+		return new TileEntityPiston(var0, var1, var2, var3);
 	}
 
 	public void b(World var1, Position var2, bec var3) {
-		bcm var4 = var1.s(var2);
-		if (var4 instanceof bdv) {
-			((bdv) var4).h();
+		TileEntity var4 = var1.s(var2);
+		if (var4 instanceof TileEntityPiston) {
+			((TileEntityPiston) var4).h();
 		} else {
 			super.b(var1, var2, var3);
 		}
@@ -42,7 +42,7 @@ public class BlockPistonMoving extends atg {
 	public void d(World var1, Position var2, bec var3) {
 		Position var4 = var2.a(((PaintingDirection) var3.b(a)).d());
 		bec var5 = var1.p(var4);
-		if (var5.c() instanceof BlockPiston && ((Boolean) var5.b(BlockPiston.b)).booleanValue()) {
+		if (var5.getBlock() instanceof BlockPiston && ((Boolean) var5.b(BlockPiston.b)).booleanValue()) {
 			var1.g(var4);
 		}
 
@@ -71,15 +71,15 @@ public class BlockPistonMoving extends atg {
 
 	public void a(World var1, Position var2, bec var3, float var4, int var5) {
 		if (!var1.D) {
-			bdv var6 = this.e(var1, var2);
+			TileEntityPiston var6 = this.e(var1, var2);
 			if (var6 != null) {
 				bec var7 = var6.b();
-				var7.c().b(var1, var2, var7, 0);
+				var7.getBlock().b(var1, var2, var7, 0);
 			}
 		}
 	}
 
-	public bru a(World var1, Position var2, brw var3, brw var4) {
+	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		return null;
 	}
 
@@ -91,7 +91,7 @@ public class BlockPistonMoving extends atg {
 	}
 
 	public brt a(World var1, Position var2, bec var3) {
-		bdv var4 = this.e(var1, var2);
+		TileEntityPiston var4 = this.e(var1, var2);
 		if (var4 == null) {
 			return null;
 		} else {
@@ -105,10 +105,10 @@ public class BlockPistonMoving extends atg {
 	}
 
 	public void a(ard var1, Position var2) {
-		bdv var3 = this.e(var1, var2);
+		TileEntityPiston var3 = this.e(var1, var2);
 		if (var3 != null) {
 			bec var4 = var3.b();
-			Block var5 = var4.c();
+			Block var5 = var4.getBlock();
 			if (var5 == this || var5.r() == Material.AIR) {
 				return;
 			}
@@ -135,8 +135,8 @@ public class BlockPistonMoving extends atg {
 	}
 
 	public brt a(World var1, Position var2, bec var3, float var4, PaintingDirection var5) {
-		if (var3.c() != this && var3.c().r() != Material.AIR) {
-			brt var6 = var3.c().a(var1, var2, var3);
+		if (var3.getBlock() != this && var3.getBlock().r() != Material.AIR) {
+			brt var6 = var3.getBlock().a(var1, var2, var3);
 			if (var6 == null) {
 				return null;
 			} else {
@@ -171,9 +171,9 @@ public class BlockPistonMoving extends atg {
 		}
 	}
 
-	private bdv e(ard var1, Position var2) {
-		bcm var3 = var1.s(var2);
-		return var3 instanceof bdv ? (bdv) var3 : null;
+	private TileEntityPiston e(ard var1, Position var2) {
+		TileEntity var3 = var1.s(var2);
+		return var3 instanceof TileEntityPiston ? (TileEntityPiston) var3 : null;
 	}
 
 	public bec a(int var1) {

@@ -25,7 +25,7 @@ public class SpawnPointCommand extends AbstractCommand {
 			Position var4 = var2.length > 3 ? a(var1, var2, 1, true) : var3.c();
 			if (var3.o != null) {
 				var3.a(var4, true);
-				a(var1, this, "commands.spawnpoint.success", new Object[] { var3.d_(), Integer.valueOf(var4.n()), Integer.valueOf(var4.o()), Integer.valueOf(var4.p()) });
+				a(var1, this, "commands.spawnpoint.success", new Object[] { var3.d_(), Integer.valueOf(var4.getX()), Integer.valueOf(var4.getY()), Integer.valueOf(var4.getZ()) });
 			}
 
 		}

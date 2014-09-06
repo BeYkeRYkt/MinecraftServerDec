@@ -57,7 +57,7 @@ public class EntityBlaze extends EntityMonster {
 			}
 
 			for (int var1 = 0; var1 < 2; ++var1) {
-				this.o.a(ew.m, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, 0.0D, 0.0D, 0.0D, new int[0]);
+				this.o.a(Particle.m, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 		}
 

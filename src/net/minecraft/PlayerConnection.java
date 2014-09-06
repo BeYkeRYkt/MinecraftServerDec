@@ -55,7 +55,7 @@ public class PlayerConnection implements ls, pm {
 			this.k = (long) this.e;
 			this.j = this.d();
 			this.i = (int) this.j;
-			this.sendPacket((Packet) (new PacketKeepAlive(this.i)));
+			this.sendPacket((Packet) (new PacketOutKeepAlive(this.i)));
 		}
 
 		this.d.profiler.b();
@@ -136,7 +136,7 @@ public class PlayerConnection implements ls, pm {
 					if (this.b.m != null) {
 						if (var9 > 4.0D) {
 							Entity var48 = this.b.m;
-							this.b.playerConncetion.sendPacket((Packet) (new PacketEntityTeleport(var48)));
+							this.b.playerConncetion.sendPacket((Packet) (new PacketOutEntityTeleport(var48)));
 							this.a(this.b.locationX, this.b.locationY, this.b.locationZ, this.b.yaw, this.b.pitch);
 						}
 
@@ -296,7 +296,7 @@ public class PlayerConnection implements ls, pm {
 		}
 
 		this.b.a(this.o, this.p, this.q, var10, var11);
-		this.b.playerConncetion.sendPacket((Packet) (new PacketPlayerPositionAndLook(var1, var3, var5, var7, var8, var9)));
+		this.b.playerConncetion.sendPacket((Packet) (new PacketOutPlayerPositionAndLook(var1, var3, var5, var7, var8, var9)));
 	}
 
 	public void a(ml var1) {
@@ -323,20 +323,20 @@ public class PlayerConnection implements ls, pm {
 			case 4:
 			case 5:
 			case 6:
-				double var4 = this.b.locationX - ((double) var3.n() + 0.5D);
-				double var6 = this.b.locationY - ((double) var3.o() + 0.5D) + 1.5D;
-				double var8 = this.b.locationZ - ((double) var3.p() + 0.5D);
+				double var4 = this.b.locationX - ((double) var3.getX() + 0.5D);
+				double var6 = this.b.locationY - ((double) var3.getY() + 0.5D) + 1.5D;
+				double var8 = this.b.locationZ - ((double) var3.getZ() + 0.5D);
 				double var10 = var4 * var4 + var6 * var6 + var8 * var8;
 				if (var10 > 36.0D) {
 					return;
-				} else if (var3.o() >= this.d.al()) {
+				} else if (var3.getY() >= this.d.al()) {
 					return;
 				} else {
 					if (var1.c() == mm.a) {
 						if (!this.d.a((World) var2, var3, (EntityHuman) this.b) && var2.af().a(var3)) {
 							this.b.c.a(var3, var1.b());
 						} else {
-							this.b.playerConncetion.sendPacket((Packet) (new iw(var2, var3)));
+							this.b.playerConncetion.sendPacket((Packet) (new PacketOutBlockChange(var2, var3)));
 						}
 					} else {
 						if (var1.c() == mm.c) {
@@ -345,8 +345,8 @@ public class PlayerConnection implements ls, pm {
 							this.b.c.e();
 						}
 
-						if (var2.p(var3).c().r() != Material.AIR) {
-							this.b.playerConncetion.sendPacket((Packet) (new iw(var2, var3)));
+						if (var2.p(var3).getBlock().r() != Material.AIR) {
+							this.b.playerConncetion.sendPacket((Packet) (new PacketOutBlockChange(var2, var3)));
 						}
 					}
 
@@ -371,13 +371,13 @@ public class PlayerConnection implements ls, pm {
 			}
 
 			this.b.c.a(this.b, var2, var3);
-		} else if (var5.o() >= this.d.al() - 1 && (var6 == PaintingDirection.b || var5.o() >= this.d.al())) {
+		} else if (var5.getY() >= this.d.al() - 1 && (var6 == PaintingDirection.b || var5.getY() >= this.d.al())) {
 			hz var7 = new hz("build.tooHigh", new Object[] { Integer.valueOf(this.d.al()) });
 			var7.b().a(FormattingCode.m);
-			this.b.playerConncetion.sendPacket((Packet) (new PacketChatMessage(var7)));
+			this.b.playerConncetion.sendPacket((Packet) (new PacketOutChatMessage(var7)));
 			var4 = true;
 		} else {
-			if (this.r && this.b.e((double) var5.n() + 0.5D, (double) var5.o() + 0.5D, (double) var5.p() + 0.5D) < 64.0D && !this.d.a((World) var2, var5, (EntityHuman) this.b) && var2.af().a(var5)) {
+			if (this.r && this.b.e((double) var5.getX() + 0.5D, (double) var5.getY() + 0.5D, (double) var5.getZ() + 0.5D) < 64.0D && !this.d.a((World) var2, var5, (EntityHuman) this.b) && var2.af().a(var5)) {
 				this.b.c.a(this.b, var2, var3, var5, var6, var1.d(), var1.e(), var1.f());
 			}
 
@@ -385,8 +385,8 @@ public class PlayerConnection implements ls, pm {
 		}
 
 		if (var4) {
-			this.b.playerConncetion.sendPacket((Packet) (new iw(var2, var5)));
-			this.b.playerConncetion.sendPacket((Packet) (new iw(var2, var5.a(var6))));
+			this.b.playerConncetion.sendPacket((Packet) (new PacketOutBlockChange(var2, var5)));
+			this.b.playerConncetion.sendPacket((Packet) (new PacketOutBlockChange(var2, var5.a(var6))));
 		}
 
 		var3 = this.b.playerInventory.getItemInHand();
@@ -402,7 +402,7 @@ public class PlayerConnection implements ls, pm {
 			this.b.activeContainer.b();
 			this.b.g = false;
 			if (!ItemStack.b(this.b.playerInventory.getItemInHand(), var1.c())) {
-				this.sendPacket((Packet) (new jh(this.b.activeContainer.d, var8.e, this.b.playerInventory.getItemInHand())));
+				this.sendPacket((Packet) (new PacketOutSetSlot(this.b.activeContainer.d, var8.e, this.b.playerInventory.getItemInHand())));
 			}
 		}
 
@@ -432,7 +432,7 @@ public class PlayerConnection implements ls, pm {
 					WorldServer var7 = this.b.u();
 					WorldServer var8 = (WorldServer) var2.o;
 					this.b.dimensionId = var2.dimensionId;
-					this.sendPacket((Packet) (new PacketRespawn(this.b.dimensionId, var7.getDifficulty(), var7.P().getLevelType(), this.b.c.getGameMode())));
+					this.sendPacket((Packet) (new PacketOutRespawn(this.b.dimensionId, var7.getDifficulty(), var7.P().getLevelType(), this.b.c.getGameMode())));
 					var7.f(this.b);
 					this.b.I = false;
 					this.b.b(var2.locationX, var2.locationY, var2.locationZ, var2.yaw, var2.pitch);
@@ -475,8 +475,8 @@ public class PlayerConnection implements ls, pm {
 	}
 
 	public void sendPacket(Packet var1) {
-		if (var1 instanceof PacketChatMessage) {
-			PacketChatMessage var2 = (PacketChatMessage) var1;
+		if (var1 instanceof PacketOutChatMessage) {
+			PacketOutChatMessage var2 = (PacketOutChatMessage) var1;
 			ahg var3 = this.b.y();
 			if (var3 == ahg.c) {
 				return;
@@ -512,7 +512,7 @@ public class PlayerConnection implements ls, pm {
 		if (this.b.y() == ahg.c) {
 			hz var4 = new hz("chat.cannotSend", new Object[0]);
 			var4.b().a(FormattingCode.m);
-			this.sendPacket((Packet) (new PacketChatMessage(var4)));
+			this.sendPacket((Packet) (new PacketOutChatMessage(var4)));
 		} else {
 			this.b.z();
 			String var2 = var1.a();
@@ -671,14 +671,14 @@ public class PlayerConnection implements ls, pm {
 			} else {
 				ItemStack var5 = this.b.activeContainer.a(var1.b(), var1.c(), var1.f(), this.b);
 				if (ItemStack.b(var1.e(), var5)) {
-					this.b.playerConncetion.sendPacket((Packet) (new jc(var1.a(), var1.d(), true)));
+					this.b.playerConncetion.sendPacket((Packet) (new PacketOutConfirmTransaction(var1.a(), var1.d(), true)));
 					this.b.g = true;
 					this.b.activeContainer.b();
 					this.b.o();
 					this.b.g = false;
 				} else {
 					this.n.a(this.b.activeContainer.d, Short.valueOf(var1.d()));
-					this.b.playerConncetion.sendPacket((Packet) (new jc(var1.a(), var1.d(), false)));
+					this.b.playerConncetion.sendPacket((Packet) (new PacketOutConfirmTransaction(var1.a(), var1.d(), false)));
 					this.b.activeContainer.a(this.b, false);
 					ArrayList var6 = Lists.newArrayList();
 
@@ -712,10 +712,10 @@ public class PlayerConnection implements ls, pm {
 				NBTCompoundTag var4 = var3.getTag().getCompound("BlockEntityTag");
 				if (var4.hasKey("x") && var4.hasKey("y") && var4.hasKey("z")) {
 					Position var5 = new Position(var4.getInt("x"), var4.getInt("y"), var4.getInt("z"));
-					bcm var6 = this.b.o.s(var5);
+					TileEntity var6 = this.b.o.s(var5);
 					if (var6 != null) {
 						NBTCompoundTag var7 = new NBTCompoundTag();
-						var6.b(var7);
+						var6.write(var7);
 						var7.remove("x");
 						var7.remove("y");
 						var7.remove("z");
@@ -761,12 +761,12 @@ public class PlayerConnection implements ls, pm {
 		WorldServer var2 = this.d.a(this.b.dimensionId);
 		Position var3 = var1.a();
 		if (var2.e(var3)) {
-			bcm var4 = var2.s(var3);
-			if (!(var4 instanceof bdj)) {
+			TileEntity var4 = var2.s(var3);
+			if (!(var4 instanceof TileEntitySign)) {
 				return;
 			}
 
-			bdj var5 = (bdj) var4;
+			TileEntitySign var5 = (TileEntitySign) var4;
 			if (!var5.b() || var5.c() != this.b) {
 				this.d.f("Player " + this.b.d_() + " just tried to change non-editable sign");
 				return;
@@ -900,9 +900,9 @@ public class PlayerConnection implements ls, pm {
 					byte var43 = var2.readByte();
 					aqf var46 = null;
 					if (var43 == 0) {
-						bcm var5 = this.b.o.s(new Position(var2.readInt(), var2.readInt(), var2.readInt()));
-						if (var5 instanceof bct) {
-							var46 = ((bct) var5).b();
+						TileEntity var5 = this.b.o.s(new Position(var2.readInt(), var2.readInt(), var2.readInt()));
+						if (var5 instanceof TileEntityCommand) {
+							var46 = ((TileEntityCommand) var5).b();
 						}
 					} else if (var43 == 1) {
 						Entity var48 = this.b.o.a(var2.readInt());

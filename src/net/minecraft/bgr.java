@@ -139,8 +139,8 @@ public class bgr implements IChunkProvider {
 				for (int var15 = 127; var15 >= 0; --var15) {
 					if (var15 < 127 - this.j.nextInt(5) && var15 > this.j.nextInt(5)) {
 						bec var16 = var3.a(var8, var15, var7);
-						if (var16.c() != null && var16.c().r() != Material.AIR) {
-							if (var16.c() == aty.aV) {
+						if (var16.getBlock() != null && var16.getBlock().r() != Material.AIR) {
+							if (var16.getBlock() == aty.aV) {
 								if (var12 == -1) {
 									if (var11 <= 0) {
 										var13 = null;
@@ -159,7 +159,7 @@ public class bgr implements IChunkProvider {
 										}
 									}
 
-									if (var15 < var4 && (var13 == null || var13.c().r() == Material.AIR)) {
+									if (var15 < var4 && (var13 == null || var13.getBlock().r() == Material.AIR)) {
 										var13 = aty.l.P();
 									}
 
@@ -352,7 +352,7 @@ public class bgr implements IChunkProvider {
 				return this.B.b();
 			}
 
-			if (this.B.a(this.h, var2) && this.h.p(var2.b()).c() == aty.by) {
+			if (this.B.a(this.h, var2) && this.h.p(var2.b()).getBlock() == aty.by) {
 				return this.B.b();
 			}
 		}
@@ -374,6 +374,6 @@ public class bgr implements IChunkProvider {
 	}
 
 	public Chunk a(Position var1) {
-		return this.d(var1.n() >> 4, var1.p() >> 4);
+		return this.d(var1.getX() >> 4, var1.getZ() >> 4);
 	}
 }

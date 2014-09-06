@@ -36,7 +36,7 @@ public class ahs extends ahr {
 		double var5 = 0.08D;
 
 		for (int var6 = 0; var6 < 8; ++var6) {
-			this.o.a(ew.K, this.locationX, this.locationY, this.locationZ, ((double) this.V.nextFloat() - 0.5D) * 0.08D, ((double) this.V.nextFloat() - 0.5D) * 0.08D, ((double) this.V.nextFloat() - 0.5D) * 0.08D, new int[] { Item.getId(amk.aP) });
+			this.o.a(Particle.K, this.locationX, this.locationY, this.locationZ, ((double) this.V.nextFloat() - 0.5D) * 0.08D, ((double) this.V.nextFloat() - 0.5D) * 0.08D, ((double) this.V.nextFloat() - 0.5D) * 0.08D, new int[] { Item.getId(amk.aP) });
 		}
 
 		if (!this.o.D) {

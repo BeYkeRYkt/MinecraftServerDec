@@ -17,7 +17,7 @@ public class auc extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return super.c(var1, var2) && this.c(var1.p(var2.b()).c());
+		return super.c(var1, var2) && this.c(var1.p(var2.b()).getBlock());
 	}
 
 	protected boolean c(Block var1) {
@@ -42,7 +42,7 @@ public class auc extends Block {
 	}
 
 	public boolean f(World var1, Position var2, bec var3) {
-		return this.c(var1.p(var2.b()).c());
+		return this.c(var1.p(var2.b()).getBlock());
 	}
 
 	public brt a(World var1, Position var2, bec var3) {

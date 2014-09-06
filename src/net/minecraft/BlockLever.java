@@ -34,7 +34,7 @@ public class BlockLever extends Block {
 	}
 
 	protected boolean d(World var1, Position var2) {
-		return var1.p(var2).c().t();
+		return var1.p(var2).getBlock().t();
 	}
 
 	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
@@ -132,7 +132,7 @@ public class BlockLever extends Block {
 		} else {
 			var3 = var3.a(b);
 			var1.a(var2, var3, 3);
-			var1.a((double) var2.n() + 0.5D, (double) var2.o() + 0.5D, (double) var2.p() + 0.5D, "random.click", 0.3F, ((Boolean) var3.b(b)).booleanValue() ? 0.6F : 0.5F);
+			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, ((Boolean) var3.b(b)).booleanValue() ? 0.6F : 0.5F);
 			var1.c(var2, (Block) this);
 			PaintingDirection var9 = ((axk) var3.b(a)).c();
 			var1.c(var2.a(var9.d()), (Block) this);

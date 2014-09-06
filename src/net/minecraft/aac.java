@@ -16,13 +16,13 @@ public class aac extends zb {
 
 	public boolean a() {
 		if (!this.a.cm() && this.a.l != null) {
-			brw var1 = abf.a(this.a, 5, 4);
+			Vec3D var1 = abf.a(this.a, 5, 4);
 			if (var1 == null) {
 				return false;
 			} else {
-				this.c = var1.a;
-				this.d = var1.b;
-				this.e = var1.c;
+				this.c = var1.x;
+				this.d = var1.y;
+				this.e = var1.z;
 				return true;
 			}
 		} else {

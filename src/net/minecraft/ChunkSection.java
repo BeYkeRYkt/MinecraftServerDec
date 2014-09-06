@@ -20,14 +20,14 @@ public class ChunkSection {
 	}
 
 	public bec a(int var1, int var2, int var3) {
-		bec var4 = (bec) Block.IDREGISTRY.a(this.blockIs[var2 << 8 | var3 << 4 | var1]);
+		bec var4 = (bec) Block.IDREGISTRY.getObject(this.blockIs[var2 << 8 | var3 << 4 | var1]);
 		return var4 != null ? var4 : aty.a.P();
 	}
 
 	public void a(int var1, int var2, int var3, bec var4) {
 		bec var5 = this.a(var1, var2, var3);
-		Block var6 = var5.c();
-		Block var7 = var4.c();
+		Block var6 = var5.getBlock();
+		Block var7 = var4.getBlock();
 		if (var6 != aty.a) {
 			--this.nonEmptyBlockCount;
 			if (var6.w()) {
@@ -42,16 +42,16 @@ public class ChunkSection {
 			}
 		}
 
-		this.blockIs[var2 << 8 | var3 << 4 | var1] = (char) Block.IDREGISTRY.b(var4);
+		this.blockIs[var2 << 8 | var3 << 4 | var1] = (char) Block.IDREGISTRY.getId(var4);
 	}
 
 	public Block b(int var1, int var2, int var3) {
-		return this.a(var1, var2, var3).c();
+		return this.a(var1, var2, var3).getBlock();
 	}
 
 	public int c(int var1, int var2, int var3) {
 		bec var4 = this.a(var1, var2, var3);
-		return var4.c().c(var4);
+		return var4.getBlock().c(var4);
 	}
 
 	public boolean isEmpty() {

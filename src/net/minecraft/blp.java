@@ -67,8 +67,8 @@ public class blp extends bmm {
 				int var11 = (int) Math.round(Math.sin(var4) * var8);
 				Position var12 = this.c.v().a((var10 << 4) + 8, (var11 << 4) + 8, 112, this.d, var3);
 				if (var12 != null) {
-					var10 = var12.n() >> 4;
-					var11 = var12.p() >> 4;
+					var10 = var12.getX() >> 4;
+					var11 = var12.getZ() >> 4;
 				}
 
 				this.g[var7] = new ChunkCoordIntPair(var10, var11);

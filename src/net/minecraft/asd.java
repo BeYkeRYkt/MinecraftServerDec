@@ -58,7 +58,7 @@ public class asd extends arm {
 
 	public awa a(Random var1, Position var2) {
 		if (this.aG == 1) {
-			double var3 = DataTypesConverter.a((1.0D + af.a((double) var2.n() / 48.0D, (double) var2.p() / 48.0D)) / 2.0D, 0.0D, 0.9999D);
+			double var3 = DataTypesConverter.a((1.0D + af.a((double) var2.getX() / 48.0D, (double) var2.getZ() / 48.0D)) / 2.0D, 0.0D, 0.9999D);
 			awa var5 = awa.values()[(int) (var3 * (double) awa.values().length)];
 			return var5 == awa.c ? awa.b : var5;
 		} else {
@@ -114,8 +114,8 @@ public class asd extends arm {
 				if (var7 < 5) {
 					int var11 = var2.nextInt(16) + 8;
 					int var13 = var2.nextInt(16) + 8;
-					int var10 = var2.nextInt(var1.m(var3.a(var11, 0, var13)).o() + 32);
-					if (!ag.b(var1, var2, new Position(var3.n() + var11, var10, var3.p() + var13))) {
+					int var10 = var2.nextInt(var1.m(var3.a(var11, 0, var13)).getY() + 32);
+					if (!ag.b(var1, var2, new Position(var3.getX() + var11, var10, var3.getZ() + var13))) {
 						++var7;
 						continue;
 					}

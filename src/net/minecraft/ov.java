@@ -11,12 +11,12 @@ final class ov extends eg {
 		double var7 = var1.b() + (double) ((float) var3.h() * 1.125F);
 		double var9 = var1.c() + (double) ((float) var3.i() * 1.125F);
 		Position var11 = var1.d().a(var3);
-		Material var12 = var4.p(var11).c().r();
+		Material var12 = var4.p(var11).getBlock().r();
 		double var13;
 		if (Material.WATER.equals(var12)) {
 			var13 = 1.0D;
 		} else {
-			if (!Material.AIR.equals(var12) || !Material.WATER.equals(var4.p(var11.b()).c().r())) {
+			if (!Material.AIR.equals(var12) || !Material.WATER.equals(var4.p(var11.b()).getBlock().r())) {
 				return this.b.a(var1, var2);
 			}
 

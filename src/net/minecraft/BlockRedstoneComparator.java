@@ -43,8 +43,8 @@ public class BlockRedstoneComparator extends ava implements avs {
 	}
 
 	protected int a(ard var1, Position var2, bec var3) {
-		bcm var4 = var1.s(var2);
-		return var4 instanceof bcv ? ((bcv) var4).b() : 0;
+		TileEntity var4 = var1.s(var2);
+		return var4 instanceof TileEntityComparator ? ((TileEntityComparator) var4).b() : 0;
 	}
 
 	private int j(World var1, Position var2, bec var3) {
@@ -67,12 +67,12 @@ public class BlockRedstoneComparator extends ava implements avs {
 		int var4 = super.f(var1, var2, var3);
 		PaintingDirection var5 = (PaintingDirection) var3.b(N);
 		Position var6 = var2.a(var5);
-		Block var7 = var1.p(var6).c();
+		Block var7 = var1.p(var6).getBlock();
 		if (var7.N()) {
 			var4 = var7.l(var1, var6);
 		} else if (var4 < 15 && var7.t()) {
 			var6 = var6.a(var5);
-			var7 = var1.p(var6).c();
+			var7 = var1.p(var6).getBlock();
 			if (var7.N()) {
 				var4 = var7.l(var1, var6);
 			} else if (var7.r() == Material.AIR) {
@@ -87,7 +87,7 @@ public class BlockRedstoneComparator extends ava implements avs {
 	}
 
 	private EntityItemFrame a(World var1, PaintingDirection var2, Position var3) {
-		List var4 = var1.a(EntityItemFrame.class, new brt((double) var3.n(), (double) var3.o(), (double) var3.p(), (double) (var3.n() + 1), (double) (var3.o() + 1), (double) (var3.p() + 1)), (Predicate) (new auq(this, var2)));
+		List var4 = var1.a(EntityItemFrame.class, new brt((double) var3.getX(), (double) var3.getY(), (double) var3.getZ(), (double) (var3.getX() + 1), (double) (var3.getY() + 1), (double) (var3.getZ() + 1)), (Predicate) (new auq(this, var2)));
 		return var4.size() == 1 ? (EntityItemFrame) var4.get(0) : null;
 	}
 
@@ -96,7 +96,7 @@ public class BlockRedstoneComparator extends ava implements avs {
 			return false;
 		} else {
 			var3 = var3.a(b);
-			var1.a((double) var2.n() + 0.5D, (double) var2.o() + 0.5D, (double) var2.p() + 0.5D, "random.click", 0.3F, var3.b(b) == aur.b ? 0.55F : 0.5F);
+			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, var3.b(b) == aur.b ? 0.55F : 0.5F);
 			var1.a(var2, var3, 2);
 			this.k(var1, var2, var3);
 			return true;
@@ -106,8 +106,8 @@ public class BlockRedstoneComparator extends ava implements avs {
 	protected void g(World var1, Position var2, bec var3) {
 		if (!var1.a(var2, (Block) this)) {
 			int var4 = this.j(var1, var2, var3);
-			bcm var5 = var1.s(var2);
-			int var6 = var5 instanceof bcv ? ((bcv) var5).b() : 0;
+			TileEntity var5 = var1.s(var2);
+			int var6 = var5 instanceof TileEntityComparator ? ((TileEntityComparator) var5).b() : 0;
 			if (var4 != var6 || this.l(var3) != this.e(var1, var2, var3)) {
 				if (this.i(var1, var2, var3)) {
 					var1.a(var2, this, 2, -1);
@@ -121,10 +121,10 @@ public class BlockRedstoneComparator extends ava implements avs {
 
 	private void k(World var1, Position var2, bec var3) {
 		int var4 = this.j(var1, var2, var3);
-		bcm var5 = var1.s(var2);
+		TileEntity var5 = var1.s(var2);
 		int var6 = 0;
-		if (var5 instanceof bcv) {
-			bcv var7 = (bcv) var5;
+		if (var5 instanceof TileEntityComparator) {
+			TileEntityComparator var7 = (TileEntityComparator) var5;
 			var6 = var7.b();
 			var7.a(var4);
 		}
@@ -164,12 +164,12 @@ public class BlockRedstoneComparator extends ava implements avs {
 
 	public boolean a(World var1, Position var2, bec var3, int var4, int var5) {
 		super.a(var1, var2, var3, var4, var5);
-		bcm var6 = var1.s(var2);
+		TileEntity var6 = var1.s(var2);
 		return var6 == null ? false : var6.c(var4, var5);
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bcv();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntityComparator();
 	}
 
 	public bec a(int var1) {

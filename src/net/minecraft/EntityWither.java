@@ -132,15 +132,15 @@ public class EntityWither extends EntityMonster implements afr {
 			double var23 = this.t(var22);
 			double var5 = this.u(var22);
 			double var7 = this.v(var22);
-			this.o.a(ew.l, var23 + this.V.nextGaussian() * 0.30000001192092896D, var5 + this.V.nextGaussian() * 0.30000001192092896D, var7 + this.V.nextGaussian() * 0.30000001192092896D, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.o.a(Particle.l, var23 + this.V.nextGaussian() * 0.30000001192092896D, var5 + this.V.nextGaussian() * 0.30000001192092896D, var7 + this.V.nextGaussian() * 0.30000001192092896D, 0.0D, 0.0D, 0.0D, new int[0]);
 			if (var21 && this.o.s.nextInt(4) == 0) {
-				this.o.a(ew.p, var23 + this.V.nextGaussian() * 0.30000001192092896D, var5 + this.V.nextGaussian() * 0.30000001192092896D, var7 + this.V.nextGaussian() * 0.30000001192092896D, 0.699999988079071D, 0.699999988079071D, 0.5D, new int[0]);
+				this.o.a(Particle.p, var23 + this.V.nextGaussian() * 0.30000001192092896D, var5 + this.V.nextGaussian() * 0.30000001192092896D, var7 + this.V.nextGaussian() * 0.30000001192092896D, 0.699999988079071D, 0.699999988079071D, 0.5D, new int[0]);
 			}
 		}
 
 		if (this.cj() > 0) {
 			for (var22 = 0; var22 < 3; ++var22) {
-				this.o.a(ew.p, this.locationX + this.V.nextGaussian() * 1.0D, this.locationY + (double) (this.V.nextFloat() * 3.3F), this.locationZ + this.V.nextGaussian() * 1.0D, 0.699999988079071D, 0.699999988079071D, 0.8999999761581421D, new int[0]);
+				this.o.a(Particle.p, this.locationX + this.V.nextGaussian() * 1.0D, this.locationY + (double) (this.V.nextFloat() * 3.3F), this.locationZ + this.V.nextGaussian() * 1.0D, 0.699999988079071D, 0.699999988079071D, 0.8999999761581421D, new int[0]);
 			}
 		}
 
@@ -234,7 +234,7 @@ public class EntityWither extends EntityMonster implements afr {
 								int var20 = var12 + var18;
 								int var9 = var1 + var7;
 								int var10 = var15 + var19;
-								Block var11 = this.o.p(new Position(var20, var9, var10)).c();
+								Block var11 = this.o.p(new Position(var20, var9, var10)).getBlock();
 								if (var11.r() != Material.AIR && var11 != aty.h && var11 != aty.bF && var11 != aty.bG && var11 != aty.bX && var11 != aty.cv) {
 									var17 = this.o.b(new Position(var20, var9, var10), true) || var17;
 								}

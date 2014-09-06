@@ -11,8 +11,8 @@ public class BlockCommand extends atg {
 		this.j(this.L.b().a(a, Boolean.valueOf(false)));
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bct();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntityCommand();
 	}
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
@@ -30,9 +30,9 @@ public class BlockCommand extends atg {
 	}
 
 	public void b(World var1, Position var2, bec var3, Random var4) {
-		bcm var5 = var1.s(var2);
-		if (var5 instanceof bct) {
-			((bct) var5).b().a(var1);
+		TileEntity var5 = var1.s(var2);
+		if (var5 instanceof TileEntityCommand) {
+			((TileEntityCommand) var5).b().a(var1);
 			var1.e(var2, this);
 		}
 
@@ -43,8 +43,8 @@ public class BlockCommand extends atg {
 	}
 
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
-		bcm var9 = var1.s(var2);
-		return var9 instanceof bct ? ((bct) var9).b().a(var4) : false;
+		TileEntity var9 = var1.s(var2);
+		return var9 instanceof TileEntityCommand ? ((TileEntityCommand) var9).b().a(var4) : false;
 	}
 
 	public boolean N() {
@@ -52,14 +52,14 @@ public class BlockCommand extends atg {
 	}
 
 	public int l(World var1, Position var2) {
-		bcm var3 = var1.s(var2);
-		return var3 instanceof bct ? ((bct) var3).b().j() : 0;
+		TileEntity var3 = var1.s(var2);
+		return var3 instanceof TileEntityCommand ? ((TileEntityCommand) var3).b().j() : 0;
 	}
 
 	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
-		bcm var6 = var1.s(var2);
-		if (var6 instanceof bct) {
-			aqf var7 = ((bct) var6).b();
+		TileEntity var6 = var1.s(var2);
+		if (var6 instanceof TileEntityCommand) {
+			aqf var7 = ((TileEntityCommand) var6).b();
 			if (var5.s()) {
 				var7.b(var5.q());
 			}

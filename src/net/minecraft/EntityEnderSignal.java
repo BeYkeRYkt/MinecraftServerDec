@@ -24,9 +24,9 @@ public class EntityEnderSignal extends Entity {
 	}
 
 	public void a(Position var1) {
-		double var2 = (double) var1.n();
-		int var4 = var1.o();
-		double var5 = (double) var1.p();
+		double var2 = (double) var1.getX();
+		int var4 = var1.getY();
+		double var5 = (double) var1.getZ();
 		double var7 = var2 - this.locationX;
 		double var9 = var5 - this.locationZ;
 		float var11 = DataTypesConverter.a(var7 * var7 + var9 * var9);
@@ -96,10 +96,10 @@ public class EntityEnderSignal extends Entity {
 		float var10 = 0.25F;
 		if (this.V()) {
 			for (int var3 = 0; var3 < 4; ++var3) {
-				this.o.a(ew.e, this.locationX - this.motionX * (double) var10, this.locationY - this.motionY * (double) var10, this.locationZ - this.motionZ * (double) var10, this.motionX, this.motionY, this.motionZ, new int[0]);
+				this.o.a(Particle.e, this.locationX - this.motionX * (double) var10, this.locationY - this.motionY * (double) var10, this.locationZ - this.motionZ * (double) var10, this.motionX, this.motionY, this.motionZ, new int[0]);
 			}
 		} else {
-			this.o.a(ew.y, this.locationX - this.motionX * (double) var10 + this.V.nextDouble() * 0.6D - 0.3D, this.locationY - this.motionY * (double) var10 - 0.5D, this.locationZ - this.motionZ * (double) var10 + this.V.nextDouble() * 0.6D - 0.3D, this.motionX, this.motionY, this.motionZ, new int[0]);
+			this.o.a(Particle.y, this.locationX - this.motionX * (double) var10 + this.V.nextDouble() * 0.6D - 0.3D, this.locationY - this.motionY * (double) var10 - 0.5D, this.locationZ - this.motionZ * (double) var10 + this.V.nextDouble() * 0.6D - 0.3D, this.motionX, this.motionY, this.motionZ, new int[0]);
 		}
 
 		if (!this.o.D) {

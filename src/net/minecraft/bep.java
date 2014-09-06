@@ -15,7 +15,7 @@ public class bep implements Predicate {
 	}
 
 	public boolean a(bec var1) {
-		return var1 != null && var1.c() == this.a;
+		return var1 != null && var1.getBlock() == this.a;
 	}
 
 	// $FF: synthetic method

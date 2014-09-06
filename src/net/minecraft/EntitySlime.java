@@ -54,8 +54,8 @@ public class EntitySlime extends EntityInsentient implements aex {
 		this.bi = var1.getBoolean("wasOnGround");
 	}
 
-	protected ew n() {
-		return ew.H;
+	protected Particle n() {
+		return Particle.H;
 	}
 
 	protected String ci() {
@@ -79,7 +79,7 @@ public class EntitySlime extends EntityInsentient implements aex {
 				float var5 = DataTypesConverter.a(var3) * (float) var1 * 0.5F * var4;
 				float var6 = DataTypesConverter.b(var3) * (float) var1 * 0.5F * var4;
 				World var10000 = this.o;
-				ew var10001 = this.n();
+				Particle var10001 = this.n();
 				double var10002 = this.locationX + (double) var5;
 				double var10004 = this.locationZ + (double) var6;
 				var10000.a(var10001, var10002, this.aQ().b, var10004, 0.0D, 0.0D, 0.0D, new int[0]);

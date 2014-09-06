@@ -75,14 +75,14 @@ public class CloneCommand extends AbstractCommand {
 										Position var22 = new Position(var21, var20, var19);
 										Position var23 = var22.a((fd) var18);
 										bec var24 = var12.p(var22);
-										if ((!var13 || var24.c() != aty.a) && (var10 == null || var24.c() == var10 && (var11 < 0 || var24.c().c(var24) == var11))) {
-											bcm var25 = var12.s(var22);
+										if ((!var13 || var24.getBlock() != aty.a) && (var10 == null || var24.getBlock() == var10 && (var11 < 0 || var24.getBlock().c(var24) == var11))) {
+											TileEntity var25 = var12.s(var22);
 											if (var25 != null) {
 												NBTCompoundTag var26 = new NBTCompoundTag();
-												var25.b(var26);
+												var25.write(var26);
 												var15.add(new bb(var23, var24, var26));
 												var17.addLast(var22);
-											} else if (!var24.c().m() && !var24.c().d()) {
+											} else if (!var24.getBlock().m() && !var24.getBlock().d()) {
 												var16.add(new bb(var23, var24, (NBTCompoundTag) null));
 												var17.addFirst(var22);
 											} else {
@@ -99,7 +99,7 @@ public class CloneCommand extends AbstractCommand {
 								Position var29;
 								for (var27 = var17.iterator(); var27.hasNext(); var12.a(var29, aty.cv.P(), 2)) {
 									var29 = (Position) var27.next();
-									bcm var31 = var12.s(var29);
+									TileEntity var31 = var12.s(var29);
 									if (var31 instanceof IInventory) {
 										((IInventory) var31).l();
 									}
@@ -121,7 +121,7 @@ public class CloneCommand extends AbstractCommand {
 
 							Iterator var32;
 							bb var34;
-							bcm var36;
+							TileEntity var36;
 							for (var32 = var30.iterator(); var32.hasNext(); var12.a(var34.a, aty.cv.P(), 2)) {
 								var34 = (bb) var32.next();
 								var36 = var12.s(var34.a);
@@ -144,10 +144,10 @@ public class CloneCommand extends AbstractCommand {
 								var34 = (bb) var32.next();
 								var36 = var12.s(var34.a);
 								if (var34.c != null && var36 != null) {
-									var34.c.put("x", var34.a.n());
-									var34.c.put("y", var34.a.o());
-									var34.c.put("z", var34.a.p());
-									var36.a(var34.c);
+									var34.c.put("x", var34.a.getX());
+									var34.c.put("y", var34.a.getY());
+									var34.c.put("z", var34.a.getZ());
+									var36.read(var34.c);
 									var36.o_();
 								}
 							}
@@ -156,7 +156,7 @@ public class CloneCommand extends AbstractCommand {
 
 							while (var32.hasNext()) {
 								var34 = (bb) var32.next();
-								var12.b(var34.a, var34.b.c());
+								var12.b(var34.a, var34.b.getBlock());
 							}
 
 							List var33 = var12.a(var6, false);

@@ -144,10 +144,10 @@ public class bjg extends bms {
 
 	protected boolean a(World var1, bjb var2, Random var3, int var4, int var5, int var6, List var7, int var8) {
 		Position var9 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
-		if (var2.b((fd) var9) && var1.p(var9).c().r() == Material.AIR) {
+		if (var2.b((fd) var9) && var1.p(var9).getBlock().r() == Material.AIR) {
 			int var10 = var3.nextBoolean() ? 1 : 0;
 			var1.a(var9, aty.av.a(this.a(aty.av, var10)), 2);
-			EntityMinecartChest var11 = new EntityMinecartChest(var1, (double) ((float) var9.n() + 0.5F), (double) ((float) var9.o() + 0.5F), (double) ((float) var9.p() + 0.5F));
+			EntityMinecartChest var11 = new EntityMinecartChest(var1, (double) ((float) var9.getX() + 0.5F), (double) ((float) var9.getY() + 0.5F), (double) ((float) var9.getZ() + 0.5F));
 			vl.a(var3, var7, (IInventory) var11, var8);
 			var1.d((Entity) var11);
 			return true;
@@ -211,9 +211,9 @@ public class bjg extends bms {
 					if (var3.b((fd) var14)) {
 						this.c = true;
 						var1.a(var14, aty.ac.P(), 2);
-						bcm var15 = var1.s(var14);
-						if (var15 instanceof bdg) {
-							((bdg) var15).b().a("CaveSpider");
+						TileEntity var15 = var1.s(var14);
+						if (var15 instanceof TileEntityMobSpawner) {
+							((TileEntityMobSpawner) var15).b().a("CaveSpider");
 						}
 					}
 				}
@@ -223,7 +223,7 @@ public class bjg extends bms {
 				for (var10 = 0; var10 <= var8; ++var10) {
 					byte var17 = -1;
 					bec var18 = this.a(var1, var9, var17, var10, var3);
-					if (var18.c().r() == Material.AIR) {
+					if (var18.getBlock().r() == Material.AIR) {
 						byte var19 = -1;
 						this.a(var1, aty.f.P(), var9, var19, var10, var3);
 					}
@@ -233,7 +233,7 @@ public class bjg extends bms {
 			if (this.a) {
 				for (var9 = 0; var9 <= var8; ++var9) {
 					bec var16 = this.a(var1, 1, -1, var9, var3);
-					if (var16.c().r() != Material.AIR && var16.c().m()) {
+					if (var16.getBlock().r() != Material.AIR && var16.getBlock().m()) {
 						this.a(var1, var3, var2, 0.7F, 1, 0, var9, aty.av.a(this.a(aty.av, 0)));
 					}
 				}

@@ -26,54 +26,54 @@ public class fd implements Comparable {
 			return false;
 		} else {
 			fd var2 = (fd) var1;
-			return this.n() != var2.n() ? false : (this.o() != var2.o() ? false : this.p() == var2.p());
+			return this.getX() != var2.getX() ? false : (this.getY() != var2.getY() ? false : this.getZ() == var2.getZ());
 		}
 	}
 
 	public int hashCode() {
-		return (this.o() + this.p() * 31) * 31 + this.n();
+		return (this.getY() + this.getZ() * 31) * 31 + this.getX();
 	}
 
 	public int g(fd var1) {
-		return this.o() == var1.o() ? (this.p() == var1.p() ? this.n() - var1.n() : this.p() - var1.p()) : this.o() - var1.o();
+		return this.getY() == var1.getY() ? (this.getZ() == var1.getZ() ? this.getX() - var1.getX() : this.getZ() - var1.getZ()) : this.getY() - var1.getY();
 	}
 
-	public int n() {
+	public int getX() {
 		return this.a;
 	}
 
-	public int o() {
+	public int getY() {
 		return this.b;
 	}
 
-	public int p() {
+	public int getZ() {
 		return this.c;
 	}
 
 	public fd d(fd var1) {
-		return new fd(this.o() * var1.p() - this.p() * var1.o(), this.p() * var1.n() - this.n() * var1.p(), this.n() * var1.o() - this.o() * var1.n());
+		return new fd(this.getY() * var1.getZ() - this.getZ() * var1.getY(), this.getZ() * var1.getX() - this.getX() * var1.getZ(), this.getX() * var1.getY() - this.getY() * var1.getX());
 	}
 
 	public double c(double var1, double var3, double var5) {
-		double var7 = (double) this.n() - var1;
-		double var9 = (double) this.o() - var3;
-		double var11 = (double) this.p() - var5;
+		double var7 = (double) this.getX() - var1;
+		double var9 = (double) this.getY() - var3;
+		double var11 = (double) this.getZ() - var5;
 		return var7 * var7 + var9 * var9 + var11 * var11;
 	}
 
 	public double d(double var1, double var3, double var5) {
-		double var7 = (double) this.n() + 0.5D - var1;
-		double var9 = (double) this.o() + 0.5D - var3;
-		double var11 = (double) this.p() + 0.5D - var5;
+		double var7 = (double) this.getX() + 0.5D - var1;
+		double var9 = (double) this.getY() + 0.5D - var3;
+		double var11 = (double) this.getZ() + 0.5D - var5;
 		return var7 * var7 + var9 * var9 + var11 * var11;
 	}
 
 	public double i(fd var1) {
-		return this.c((double) var1.n(), (double) var1.o(), (double) var1.p());
+		return this.c((double) var1.getX(), (double) var1.getY(), (double) var1.getZ());
 	}
 
 	public String toString() {
-		return Objects.toStringHelper((Object) this).add("x", this.n()).add("y", this.o()).add("z", this.p()).toString();
+		return Objects.toStringHelper((Object) this).add("x", this.getX()).add("y", this.getY()).add("z", this.getZ()).toString();
 	}
 
 	// $FF: synthetic method

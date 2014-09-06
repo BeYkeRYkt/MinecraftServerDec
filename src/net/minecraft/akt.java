@@ -14,7 +14,7 @@ public class akt extends Item {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
-			Block var10 = var9.c();
+			Block var10 = var9.getBlock();
 			if (!var10.f(var3, var4)) {
 				var4 = var4.a(var5);
 			}
@@ -34,10 +34,10 @@ public class akt extends Item {
 	public static void a(World var0, Position var1, PaintingDirection var2, Block var3) {
 		Position var4 = var1.a(var2.e());
 		Position var5 = var1.a(var2.f());
-		int var6 = (var0.p(var5).c().t() ? 1 : 0) + (var0.p(var5.a()).c().t() ? 1 : 0);
-		int var7 = (var0.p(var4).c().t() ? 1 : 0) + (var0.p(var4.a()).c().t() ? 1 : 0);
-		boolean var8 = var0.p(var5).c() == var3 || var0.p(var5.a()).c() == var3;
-		boolean var9 = var0.p(var4).c() == var3 || var0.p(var4.a()).c() == var3;
+		int var6 = (var0.p(var5).getBlock().t() ? 1 : 0) + (var0.p(var5.a()).getBlock().t() ? 1 : 0);
+		int var7 = (var0.p(var4).getBlock().t() ? 1 : 0) + (var0.p(var4.a()).getBlock().t() ? 1 : 0);
+		boolean var8 = var0.p(var5).getBlock() == var3 || var0.p(var5.a()).getBlock() == var3;
+		boolean var9 = var0.p(var4).getBlock() == var3 || var0.p(var4.a()).getBlock() == var3;
 		boolean var10 = false;
 		if (var8 && !var9 || var7 > var6) {
 			var10 = true;

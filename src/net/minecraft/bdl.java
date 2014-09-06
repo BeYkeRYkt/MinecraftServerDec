@@ -5,9 +5,9 @@ class bdl implements CommandSenderInterface {
 	// $FF: synthetic field
 	final EntityHuman a;
 	// $FF: synthetic field
-	final bdj b;
+	final TileEntitySign b;
 
-	bdl(bdj var1, EntityHuman var2) {
+	bdl(TileEntitySign var1, EntityHuman var2) {
 		this.b = var1;
 		this.a = var2;
 	}
@@ -28,11 +28,11 @@ class bdl implements CommandSenderInterface {
 	}
 
 	public Position c() {
-		return this.b.c;
+		return this.b.position;
 	}
 
-	public brw d() {
-		return new brw((double) this.b.c.n() + 0.5D, (double) this.b.c.o() + 0.5D, (double) this.b.c.p() + 0.5D);
+	public Vec3D d() {
+		return new Vec3D((double) this.b.position.getX() + 0.5D, (double) this.b.position.getY() + 0.5D, (double) this.b.position.getZ() + 0.5D);
 	}
 
 	public World e() {
@@ -48,6 +48,6 @@ class bdl implements CommandSenderInterface {
 	}
 
 	public void a(ag var1, int var2) {
-		bdj.a(this.b).a(this, var1, var2);
+		TileEntitySign.a(this.b).a(this, var1, var2);
 	}
 }

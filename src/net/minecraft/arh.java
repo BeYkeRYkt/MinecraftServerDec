@@ -53,7 +53,7 @@ public class arh {
 		int var6 = DataTypesConverter.toFixedPointInt(var1.locationX);
 		int var7 = DataTypesConverter.toFixedPointInt(var1.locationZ);
 		boolean var8 = true;
-		Object var9 = Position.a;
+		Object var9 = Position.ZERO;
 		long var10 = ChunkCoordIntPair.toLongHash(var6, var7);
 		if (this.c.b(var10)) {
 			ari var12 = (ari) this.c.a(var10);
@@ -67,10 +67,10 @@ public class arh {
 			for (int var13 = -128; var13 <= 128; ++var13) {
 				Position var16;
 				for (int var14 = -128; var14 <= 128; ++var14) {
-					for (Position var15 = var34.a(var13, this.a.V() - 1 - var34.o(), var14); var15.o() >= 0; var15 = var16) {
+					for (Position var15 = var34.a(var13, this.a.V() - 1 - var34.getY(), var14); var15.getY() >= 0; var15 = var16) {
 						var16 = var15.b();
-						if (this.a.p(var15).c() == aty.aY) {
-							while (this.a.p(var16 = var15.b()).c() == aty.aY) {
+						if (this.a.p(var15).getBlock() == aty.aY) {
+							while (this.a.p(var16 = var15.b()).getBlock() == aty.aY) {
 								var15 = var16;
 							}
 
@@ -91,23 +91,23 @@ public class arh {
 				this.d.add(Long.valueOf(var10));
 			}
 
-			double var35 = (double) ((Position) var9).n() + 0.5D;
-			double var36 = (double) ((Position) var9).o() + 0.5D;
-			double var37 = (double) ((Position) var9).p() + 0.5D;
+			double var35 = (double) ((Position) var9).getX() + 0.5D;
+			double var36 = (double) ((Position) var9).getY() + 0.5D;
+			double var37 = (double) ((Position) var9).getZ() + 0.5D;
 			PaintingDirection var18 = null;
-			if (this.a.p(((Position) var9).e()).c() == aty.aY) {
+			if (this.a.p(((Position) var9).e()).getBlock() == aty.aY) {
 				var18 = PaintingDirection.c;
 			}
 
-			if (this.a.p(((Position) var9).f()).c() == aty.aY) {
+			if (this.a.p(((Position) var9).f()).getBlock() == aty.aY) {
 				var18 = PaintingDirection.d;
 			}
 
-			if (this.a.p(((Position) var9).c()).c() == aty.aY) {
+			if (this.a.p(((Position) var9).c()).getBlock() == aty.aY) {
 				var18 = PaintingDirection.f;
 			}
 
-			if (this.a.p(((Position) var9).d()).c() == aty.aY) {
+			if (this.a.p(((Position) var9).d()).getBlock() == aty.aY) {
 				var18 = PaintingDirection.e;
 			}
 
@@ -136,9 +136,9 @@ public class arh {
 					var25 = 0.0F;
 				}
 
-				var35 = (double) ((Position) var9).n() + 0.5D;
-				var36 = (double) ((Position) var9).o() + 0.5D;
-				var37 = (double) ((Position) var9).p() + 0.5D;
+				var35 = (double) ((Position) var9).getX() + 0.5D;
+				var36 = (double) ((Position) var9).getY() + 0.5D;
+				var37 = (double) ((Position) var9).getZ() + 0.5D;
 				var35 += (double) ((float) var20.g() * var38 + (float) var18.g() * var25);
 				var37 += (double) ((float) var20.i() * var38 + (float) var18.i() * var25);
 				float var26 = 0.0F;
@@ -232,7 +232,7 @@ public class arh {
 										var26 = var13 + (var24 - 1) * var21 + var23 * var22;
 										var27 = var19 + var25;
 										int var28 = var16 + (var24 - 1) * var22 - var23 * var21;
-										if (var25 < 0 && !this.a.p(new Position(var26, var27, var28)).c().r().isBuildable() || var25 >= 0 && !this.a.d(new Position(var26, var27, var28))) {
+										if (var25 < 0 && !this.a.p(new Position(var26, var27, var28)).getBlock().r().isBuildable() || var25 >= 0 && !this.a.d(new Position(var26, var27, var28))) {
 											continue label271;
 										}
 									}
@@ -276,7 +276,7 @@ public class arh {
 										var25 = var13 + (var23 - 1) * var21;
 										var26 = var19 + var24;
 										var27 = var16 + (var23 - 1) * var22;
-										if (var24 < 0 && !this.a.p(new Position(var25, var26, var27)).c().r().isBuildable() || var24 >= 0 && !this.a.d(new Position(var25, var26, var27))) {
+										if (var24 < 0 && !this.a.p(new Position(var25, var26, var27)).getBlock().r().isBuildable() || var24 >= 0 && !this.a.d(new Position(var25, var26, var27))) {
 											continue label219;
 										}
 									}
@@ -343,7 +343,7 @@ public class arh {
 					var23 = var29 + (var21 - 1) * var30;
 					var24 = var15 + var22;
 					var25 = var16 + (var21 - 1) * var18;
-					this.a.c(new Position(var23, var24, var25), this.a.p(new Position(var23, var24, var25)).c());
+					this.a.c(new Position(var23, var24, var25), this.a.p(new Position(var23, var24, var25)).getBlock());
 				}
 			}
 		}

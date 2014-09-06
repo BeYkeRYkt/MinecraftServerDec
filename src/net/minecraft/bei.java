@@ -7,7 +7,7 @@ public class bei {
 	private final World a;
 	private final Position b;
 	private bec c;
-	private bcm d;
+	private TileEntity d;
 	private boolean e;
 
 	public bei(World var1, Position var2) {
@@ -23,7 +23,7 @@ public class bei {
 		return this.c;
 	}
 
-	public bcm b() {
+	public TileEntity b() {
 		if (this.d == null && !this.e) {
 			this.d = this.a.s(this.b);
 			this.e = true;

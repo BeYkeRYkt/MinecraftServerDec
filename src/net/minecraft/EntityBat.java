@@ -82,7 +82,7 @@ public class EntityBat extends abn {
 		Position var1 = new Position(this);
 		Position var2 = var1.a();
 		if (this.n()) {
-			if (!this.o.p(var2).c().t()) {
+			if (!this.o.p(var2).getBlock().t()) {
 				this.a(false);
 				this.o.a((EntityHuman) null, 1015, var1, 0);
 			} else {
@@ -96,7 +96,7 @@ public class EntityBat extends abn {
 				}
 			}
 		} else {
-			if (this.a != null && (!this.o.d(this.a) || this.a.o() < 1)) {
+			if (this.a != null && (!this.o.d(this.a) || this.a.getY() < 1)) {
 				this.a = null;
 			}
 
@@ -104,9 +104,9 @@ public class EntityBat extends abn {
 				this.a = new Position((int) this.locationX + this.V.nextInt(7) - this.V.nextInt(7), (int) this.locationY + this.V.nextInt(6) - 2, (int) this.locationZ + this.V.nextInt(7) - this.V.nextInt(7));
 			}
 
-			double var3 = (double) this.a.n() + 0.5D - this.locationX;
-			double var5 = (double) this.a.o() + 0.1D - this.locationY;
-			double var7 = (double) this.a.p() + 0.5D - this.locationZ;
+			double var3 = (double) this.a.getX() + 0.5D - this.locationX;
+			double var5 = (double) this.a.getY() + 0.1D - this.locationY;
+			double var7 = (double) this.a.getZ() + 0.5D - this.locationZ;
 			this.motionX += (Math.signum(var3) * 0.5D - this.motionX) * 0.10000000149011612D;
 			this.motionY += (Math.signum(var5) * 0.699999988079071D - this.motionY) * 0.10000000149011612D;
 			this.motionZ += (Math.signum(var7) * 0.5D - this.motionZ) * 0.10000000149011612D;
@@ -114,7 +114,7 @@ public class EntityBat extends abn {
 			float var10 = DataTypesConverter.g(var9 - this.yaw);
 			this.aY = 0.5F;
 			this.yaw += var10;
-			if (this.V.nextInt(100) == 0 && this.o.p(var2).c().t()) {
+			if (this.V.nextInt(100) == 0 && this.o.p(var2).getBlock().t()) {
 				this.a(true);
 			}
 		}
@@ -159,7 +159,7 @@ public class EntityBat extends abn {
 
 	public boolean bQ() {
 		Position var1 = new Position(this.locationX, this.aQ().b, this.locationZ);
-		if (var1.o() >= 63) {
+		if (var1.getY() >= 63) {
 			return false;
 		} else {
 			int var2 = this.o.l(var1);

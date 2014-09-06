@@ -21,14 +21,14 @@ public class aay extends aaz {
 		return this.b.onGround || this.h() && this.o() || this.b.av() && this.b instanceof EntityZombie && this.b.m instanceof EntityChicken;
 	}
 
-	protected brw c() {
-		return new brw(this.b.locationX, (double) this.p(), this.b.locationZ);
+	protected Vec3D c() {
+		return new Vec3D(this.b.locationX, (double) this.p(), this.b.locationZ);
 	}
 
 	private int p() {
 		if (this.b.V() && this.h()) {
 			int var1 = (int) this.b.aQ().b;
-			Block var2 = this.c.p(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).c();
+			Block var2 = this.c.p(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).getBlock();
 			int var3 = 0;
 
 			do {
@@ -37,7 +37,7 @@ public class aay extends aaz {
 				}
 
 				++var1;
-				var2 = this.c.p(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).c();
+				var2 = this.c.p(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).getBlock();
 				++var3;
 			} while (var3 <= 16);
 
@@ -65,11 +65,11 @@ public class aay extends aaz {
 
 	}
 
-	protected boolean a(brw var1, brw var2, int var3, int var4, int var5) {
-		int var6 = DataTypesConverter.toFixedPointInt(var1.a);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.c);
-		double var8 = var2.a - var1.a;
-		double var10 = var2.c - var1.c;
+	protected boolean a(Vec3D var1, Vec3D var2, int var3, int var4, int var5) {
+		int var6 = DataTypesConverter.toFixedPointInt(var1.x);
+		int var7 = DataTypesConverter.toFixedPointInt(var1.z);
+		double var8 = var2.x - var1.x;
+		double var10 = var2.z - var1.z;
 		double var12 = var8 * var8 + var10 * var10;
 		if (var12 < 1.0E-8D) {
 			return false;
@@ -79,15 +79,15 @@ public class aay extends aaz {
 			var10 *= var14;
 			var3 += 2;
 			var5 += 2;
-			if (!this.a(var6, (int) var1.b, var7, var3, var4, var5, var1, var8, var10)) {
+			if (!this.a(var6, (int) var1.y, var7, var3, var4, var5, var1, var8, var10)) {
 				return false;
 			} else {
 				var3 -= 2;
 				var5 -= 2;
 				double var16 = 1.0D / Math.abs(var8);
 				double var18 = 1.0D / Math.abs(var10);
-				double var20 = (double) (var6 * 1) - var1.a;
-				double var22 = (double) (var7 * 1) - var1.c;
+				double var20 = (double) (var6 * 1) - var1.x;
+				double var22 = (double) (var7 * 1) - var1.z;
 				if (var8 >= 0.0D) {
 					++var20;
 				}
@@ -100,8 +100,8 @@ public class aay extends aaz {
 				var22 /= var10;
 				int var24 = var8 < 0.0D ? -1 : 1;
 				int var25 = var10 < 0.0D ? -1 : 1;
-				int var26 = DataTypesConverter.toFixedPointInt(var2.a);
-				int var27 = DataTypesConverter.toFixedPointInt(var2.c);
+				int var26 = DataTypesConverter.toFixedPointInt(var2.x);
+				int var27 = DataTypesConverter.toFixedPointInt(var2.z);
 				int var28 = var26 - var6;
 				int var29 = var27 - var7;
 
@@ -119,14 +119,14 @@ public class aay extends aaz {
 						var7 += var25;
 						var29 = var27 - var7;
 					}
-				} while (this.a(var6, (int) var1.b, var7, var3, var4, var5, var1, var8, var10));
+				} while (this.a(var6, (int) var1.y, var7, var3, var4, var5, var1, var8, var10));
 
 				return false;
 			}
 		}
 	}
 
-	private boolean a(int var1, int var2, int var3, int var4, int var5, int var6, brw var7, double var8, double var10) {
+	private boolean a(int var1, int var2, int var3, int var4, int var5, int var6, Vec3D var7, double var8, double var10) {
 		int var12 = var1 - var4 / 2;
 		int var13 = var3 - var6 / 2;
 		if (!this.b(var12, var2, var13, var4, var5, var6, var7, var8, var10)) {
@@ -134,10 +134,10 @@ public class aay extends aaz {
 		} else {
 			for (int var14 = var12; var14 < var12 + var4; ++var14) {
 				for (int var15 = var13; var15 < var13 + var6; ++var15) {
-					double var16 = (double) var14 + 0.5D - var7.a;
-					double var18 = (double) var15 + 0.5D - var7.c;
+					double var16 = (double) var14 + 0.5D - var7.x;
+					double var18 = (double) var15 + 0.5D - var7.z;
 					if (var16 * var8 + var18 * var10 >= 0.0D) {
-						Block var20 = this.c.p(new Position(var14, var2 - 1, var15)).c();
+						Block var20 = this.c.p(new Position(var14, var2 - 1, var15)).getBlock();
 						Material var21 = var20.r();
 						if (var21 == Material.AIR) {
 							return false;
@@ -158,15 +158,15 @@ public class aay extends aaz {
 		}
 	}
 
-	private boolean b(int var1, int var2, int var3, int var4, int var5, int var6, brw var7, double var8, double var10) {
+	private boolean b(int var1, int var2, int var3, int var4, int var5, int var6, Vec3D var7, double var8, double var10) {
 		Iterator var12 = Position.a(new Position(var1, var2, var3), new Position(var1 + var4 - 1, var2 + var5 - 1, var3 + var6 - 1)).iterator();
 
 		while (var12.hasNext()) {
 			Position var13 = (Position) var12.next();
-			double var14 = (double) var13.n() + 0.5D - var7.a;
-			double var16 = (double) var13.p() + 0.5D - var7.c;
+			double var14 = (double) var13.getX() + 0.5D - var7.x;
+			double var16 = (double) var13.getZ() + 0.5D - var7.z;
 			if (var14 * var8 + var16 * var10 >= 0.0D) {
-				Block var18 = this.c.p(var13).c();
+				Block var18 = this.c.p(var13).getBlock();
 				if (!var18.b(this.c, var13)) {
 					return false;
 				}

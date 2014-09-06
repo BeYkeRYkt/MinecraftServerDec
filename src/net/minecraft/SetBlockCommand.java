@@ -57,7 +57,7 @@ public class SetBlockCommand extends AbstractCommand {
 					}
 				}
 
-				bcm var13 = var6.s(var3);
+				TileEntity var13 = var6.s(var3);
 				if (var13 != null) {
 					if (var13 instanceof IInventory) {
 						((IInventory) var13).l();
@@ -71,16 +71,16 @@ public class SetBlockCommand extends AbstractCommand {
 					throw new di("commands.setblock.noChange", new Object[0]);
 				} else {
 					if (var8) {
-						bcm var11 = var6.s(var3);
+						TileEntity var11 = var6.s(var3);
 						if (var11 != null) {
-							var7.put("x", var3.n());
-							var7.put("y", var3.o());
-							var7.put("z", var3.p());
-							var11.a(var7);
+							var7.put("x", var3.getX());
+							var7.put("y", var3.getY());
+							var7.put("z", var3.getZ());
+							var11.read(var7);
 						}
 					}
 
-					var6.b(var3, var10.c());
+					var6.b(var3, var10.getBlock());
 					var1.a(ag.b, 1);
 					a(var1, this, "commands.setblock.success", new Object[0]);
 				}

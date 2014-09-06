@@ -34,7 +34,7 @@ public class bie extends bhp {
 			for (var15 = -1; var15 <= 4; ++var15) {
 				for (var16 = var11; var16 <= var12; ++var16) {
 					var17 = var3.a(var14, var15, var16);
-					Material var18 = var1.p(var17).c().r();
+					Material var18 = var1.p(var17).getBlock().r();
 					boolean var19 = var18.isBuildable();
 					if (var15 == -1 && !var19) {
 						return false;
@@ -57,12 +57,12 @@ public class bie extends bhp {
 					for (var16 = var11; var16 <= var12; ++var16) {
 						var17 = var3.a(var14, var15, var16);
 						if (var14 != var6 && var15 != -1 && var16 != var11 && var14 != var7 && var15 != 4 && var16 != var12) {
-							if (var1.p(var17).c() != aty.ae) {
+							if (var1.p(var17).getBlock() != aty.ae) {
 								var1.g(var17);
 							}
-						} else if (var17.o() >= 0 && !var1.p(var17.b()).c().r().isBuildable()) {
+						} else if (var17.getY() >= 0 && !var1.p(var17.b()).getBlock().r().isBuildable()) {
 							var1.g(var17);
-						} else if (var1.p(var17).c().r().isBuildable() && var1.p(var17).c() != aty.ae) {
+						} else if (var1.p(var17).getBlock().r().isBuildable() && var1.p(var17).getBlock() != aty.ae) {
 							if (var15 == -1 && var2.nextInt(4) != 0) {
 								var1.a(var17, aty.Y.P(), 2);
 							} else {
@@ -81,9 +81,9 @@ public class bie extends bhp {
 				while (true) {
 					if (var15 < 3) {
 						label197: {
-							var16 = var3.n() + var2.nextInt(var5 * 2 + 1) - var5;
-							int var24 = var3.o();
-							int var25 = var3.p() + var2.nextInt(var10 * 2 + 1) - var10;
+							var16 = var3.getX() + var2.nextInt(var5 * 2 + 1) - var5;
+							int var24 = var3.getY();
+							int var25 = var3.getZ() + var2.nextInt(var10 * 2 + 1) - var10;
 							Position var26 = new Position(var16, var24, var25);
 							if (var1.d(var26)) {
 								int var20 = 0;
@@ -91,7 +91,7 @@ public class bie extends bhp {
 
 								while (var21.hasNext()) {
 									PaintingDirection var22 = (PaintingDirection) var21.next();
-									if (var1.p(var26.a(var22)).c().r().isBuildable()) {
+									if (var1.p(var26.a(var22)).getBlock().r().isBuildable()) {
 										++var20;
 									}
 								}
@@ -99,9 +99,9 @@ public class bie extends bhp {
 								if (var20 == 1) {
 									var1.a(var26, aty.ae.f(var1, var26, aty.ae.P()), 2);
 									List var27 = vl.a(c, new vl[] { amk.cd.b(var2) });
-									bcm var28 = var1.s(var26);
-									if (var28 instanceof bcr) {
-										vl.a(var2, var27, (IInventory) ((bcr) var28), 8);
+									TileEntity var28 = var1.s(var26);
+									if (var28 instanceof TileEntityChest) {
+										vl.a(var2, var27, (IInventory) ((TileEntityChest) var28), 8);
 									}
 									break label197;
 								}
@@ -118,11 +118,11 @@ public class bie extends bhp {
 			}
 
 			var1.a(var3, aty.ac.P(), 2);
-			bcm var23 = var1.s(var3);
-			if (var23 instanceof bdg) {
-				((bdg) var23).b().a(this.a(var2));
+			TileEntity var23 = var1.s(var3);
+			if (var23 instanceof TileEntityMobSpawner) {
+				((TileEntityMobSpawner) var23).b().a(this.a(var2));
 			} else {
-				a.error("Failed to fetch mob spawner entity at (" + var3.n() + ", " + var3.o() + ", " + var3.p() + ")");
+				a.error("Failed to fetch mob spawner entity at (" + var3.getX() + ", " + var3.getY() + ", " + var3.getZ() + ")");
 			}
 
 			return true;

@@ -26,13 +26,13 @@ public class yx extends zb {
 		} else if (!this.f.i(new Position(this.a.locationX, this.a.aQ().b, this.a.locationZ))) {
 			return false;
 		} else {
-			brw var1 = this.f();
+			Vec3D var1 = this.f();
 			if (var1 == null) {
 				return false;
 			} else {
-				this.b = var1.a;
-				this.c = var1.b;
-				this.d = var1.c;
+				this.b = var1.x;
+				this.c = var1.y;
+				this.d = var1.z;
 				return true;
 			}
 		}
@@ -46,14 +46,14 @@ public class yx extends zb {
 		this.a.s().a(this.b, this.c, this.d, this.e);
 	}
 
-	private brw f() {
+	private Vec3D f() {
 		Random var1 = this.a.bb();
 		Position var2 = new Position(this.a.locationX, this.a.aQ().b, this.a.locationZ);
 
 		for (int var3 = 0; var3 < 10; ++var3) {
 			Position var4 = var2.a(var1.nextInt(20) - 10, var1.nextInt(6) - 3, var1.nextInt(20) - 10);
 			if (!this.f.i(var4) && this.a.a(var4) < 0.0F) {
-				return new brw((double) var4.n(), (double) var4.o(), (double) var4.p());
+				return new Vec3D((double) var4.getX(), (double) var4.getY(), (double) var4.getZ());
 			}
 		}
 

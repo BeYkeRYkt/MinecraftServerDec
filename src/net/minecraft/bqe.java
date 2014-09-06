@@ -96,7 +96,7 @@ public class bqe extends bqc {
 		if (var2.y()) {
 			EntityItemFrame var7 = var2.z();
 			Position var9 = var7.getPosition();
-			this.a(1, var1.o, "frame-" + var7.getId(), (double) var9.n(), (double) var9.p(), (double) (var7.direction.toByte() * 90));
+			this.a(1, var1.o, "frame-" + var7.getId(), (double) var9.getX(), (double) var9.getZ(), (double) (var7.direction.toByte() * 90));
 		}
 
 		if (var2.hasTag() && var2.getTag().isTagAssignableFrom("Decorations", 9)) {
@@ -152,7 +152,7 @@ public class bqe extends bqc {
 			}
 		}
 
-		this.h.put(var3, new bqd((byte) var1, var13, var14, var15));
+		this.h.put(var3, new MapIcon((byte) var1, var13, var14, var15));
 	}
 
 	public Packet a(ItemStack var1, World var2, EntityHuman var3) {

@@ -9,7 +9,7 @@ public class bii extends bhp {
 			Position var5 = var3.a(var2.nextInt(4) - var2.nextInt(4), 0, var2.nextInt(4) - var2.nextInt(4));
 			if (var1.d(var5)) {
 				Position var6 = var5.b();
-				if (var1.p(var6.e()).c().r() == Material.WATER || var1.p(var6.f()).c().r() == Material.WATER || var1.p(var6.c()).c().r() == Material.WATER || var1.p(var6.d()).c().r() == Material.WATER) {
+				if (var1.p(var6.e()).getBlock().r() == Material.WATER || var1.p(var6.f()).getBlock().r() == Material.WATER || var1.p(var6.c()).getBlock().r() == Material.WATER || var1.p(var6.d()).getBlock().r() == Material.WATER) {
 					int var7 = 2 + var2.nextInt(var2.nextInt(3) + 1);
 
 					for (int var8 = 0; var8 < var7; ++var8) {

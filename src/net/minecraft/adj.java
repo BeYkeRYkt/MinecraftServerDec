@@ -33,9 +33,9 @@ public abstract class adj extends Entity {
 
 	private void o() {
 		if (this.direction != null) {
-			double var1 = (double) this.a.n() + 0.5D;
-			double var3 = (double) this.a.o() + 0.5D;
-			double var5 = (double) this.a.p() + 0.5D;
+			double var1 = (double) this.a.getX() + 0.5D;
+			double var3 = (double) this.a.getY() + 0.5D;
+			double var5 = (double) this.a.getZ() + 0.5D;
 			double var7 = 0.46875D;
 			double var9 = this.a(this.l());
 			double var11 = this.a(this.m());
@@ -94,7 +94,7 @@ public abstract class adj extends Entity {
 			for (int var5 = 0; var5 < var1; ++var5) {
 				for (int var6 = 0; var6 < var2; ++var6) {
 					Position var7 = var3.a(var4, var5).b(var6);
-					Block var8 = this.o.p(var7).c();
+					Block var8 = this.o.p(var7).getBlock();
 					if (!var8.r().isBuildable() && !ava.d(var8)) {
 						return false;
 					}
@@ -161,9 +161,9 @@ public abstract class adj extends Entity {
 
 	public void b(NBTCompoundTag var1) {
 		var1.put("Facing", (byte) this.direction.toByte());
-		var1.put("TileX", this.getPosition().n());
-		var1.put("TileY", this.getPosition().o());
-		var1.put("TileZ", this.getPosition().p());
+		var1.put("TileX", this.getPosition().getX());
+		var1.put("TileY", this.getPosition().getY());
+		var1.put("TileZ", this.getPosition().getZ());
 	}
 
 	public void a(NBTCompoundTag var1) {

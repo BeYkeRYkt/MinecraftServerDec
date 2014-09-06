@@ -22,7 +22,7 @@ public class BlockDeadBush extends auc {
 		return null;
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, bec var4, bcm var5) {
+	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
 		if (!var1.D && var2.bY() != null && var2.bY().getItem() == amk.be) {
 			var2.b(StatisticList.H[Block.a((Block) this)]);
 			a(var1, var3, new ItemStack(aty.I, 1, 0));

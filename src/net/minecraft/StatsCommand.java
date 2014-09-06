@@ -82,22 +82,22 @@ public class StatsCommand extends AbstractCommand {
 				World var7 = var1.e();
 				af var8;
 				Position var9;
-				bcm var10;
+				TileEntity var10;
 				if (var3) {
 					var9 = a(var1, var2, 1, false);
 					var10 = var7.s(var9);
 					if (var10 == null) {
-						throw new di("commands.stats.noCompatibleBlock", new Object[] { Integer.valueOf(var9.n()), Integer.valueOf(var9.o()), Integer.valueOf(var9.p()) });
+						throw new di("commands.stats.noCompatibleBlock", new Object[] { Integer.valueOf(var9.getX()), Integer.valueOf(var9.getY()), Integer.valueOf(var9.getZ()) });
 					}
 
-					if (var10 instanceof bct) {
-						var8 = ((bct) var10).c();
+					if (var10 instanceof TileEntityCommand) {
+						var8 = ((TileEntityCommand) var10).c();
 					} else {
-						if (!(var10 instanceof bdj)) {
-							throw new di("commands.stats.noCompatibleBlock", new Object[] { Integer.valueOf(var9.n()), Integer.valueOf(var9.o()), Integer.valueOf(var9.p()) });
+						if (!(var10 instanceof TileEntitySign)) {
+							throw new di("commands.stats.noCompatibleBlock", new Object[] { Integer.valueOf(var9.getX()), Integer.valueOf(var9.getY()), Integer.valueOf(var9.getZ()) });
 						}
 
-						var8 = ((bdj) var10).d();
+						var8 = ((TileEntitySign) var10).d();
 					}
 				} else {
 					Entity var12 = b(var1, var2[1]);

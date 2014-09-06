@@ -14,7 +14,7 @@ public class BlockLongGrass extends auc implements atz {
 	}
 
 	public boolean f(World var1, Position var2, bec var3) {
-		return this.c(var1.p(var2.b()).c());
+		return this.c(var1.p(var2.b()).getBlock());
 	}
 
 	public boolean f(World var1, Position var2) {
@@ -29,7 +29,7 @@ public class BlockLongGrass extends auc implements atz {
 		return 1 + var2.nextInt(var1 * 2 + 1);
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, bec var4, bcm var5) {
+	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
 		if (!var1.D && var2.bY() != null && var2.bY().getItem() == amk.be) {
 			var2.b(StatisticList.H[Block.a((Block) this)]);
 			a(var1, var3, new ItemStack(aty.H, 1, ((bbi) var4.b(a)).a()));
@@ -41,7 +41,7 @@ public class BlockLongGrass extends auc implements atz {
 
 	public int j(World var1, Position var2) {
 		bec var3 = var1.p(var2);
-		return var3.c().c(var3);
+		return var3.getBlock().c(var3);
 	}
 
 	public boolean a(World var1, Position var2, bec var3, boolean var4) {

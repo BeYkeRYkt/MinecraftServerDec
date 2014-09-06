@@ -19,7 +19,7 @@ public class BlockMushroom extends auc implements atz {
 
 			while (var7.hasNext()) {
 				Position var8 = (Position) var7.next();
-				if (var1.p(var8).c() == this) {
+				if (var1.p(var8).getBlock() == this) {
 					--var5;
 					if (var5 <= 0) {
 						return;
@@ -53,9 +53,9 @@ public class BlockMushroom extends auc implements atz {
 	}
 
 	public boolean f(World var1, Position var2, bec var3) {
-		if (var2.o() >= 0 && var2.o() < 256) {
+		if (var2.getY() >= 0 && var2.getY() < 256) {
 			bec var4 = var1.p(var2.b());
-			return var4.c() == aty.bw ? true : (var4.c() == aty.d && var4.b(BlockDirt.a) == avd.c ? true : var1.k(var2) < 13 && this.c(var4.c()));
+			return var4.getBlock() == aty.bw ? true : (var4.getBlock() == aty.d && var4.b(BlockDirt.a) == avd.c ? true : var1.k(var2) < 13 && this.c(var4.getBlock()));
 		} else {
 			return false;
 		}

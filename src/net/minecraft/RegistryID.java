@@ -10,30 +10,30 @@ import java.util.List;
 
 public class RegistryID implements Registry {
 
-	private final IdentityHashMap<Object, Integer> a = new IdentityHashMap<Object, Integer>(512);
-	private final List<Object> b = Lists.newArrayList();
+	private final IdentityHashMap<Object, Integer> objToId = new IdentityHashMap<Object, Integer>(512);
+	private final List<Object> idToObj = Lists.newArrayList();
 
-	public void a(Object var1, int var2) {
-		this.a.put(var1, Integer.valueOf(var2));
+	public void register(Object obj, int id) {
+		this.objToId.put(obj, id);
 
-		while (this.b.size() <= var2) {
-			this.b.add((Object) null);
+		while (this.idToObj.size() <= id) {
+			this.idToObj.add(null);
 		}
 
-		this.b.set(var2, var1);
+		this.idToObj.set(id, obj);
 	}
 
-	public int b(Object var1) {
-		Integer var2 = (Integer) this.a.get(var1);
-		return var2 == null ? -1 : var2.intValue();
+	public int getId(Object obj) {
+		Integer integer = this.objToId.get(obj);
+		return integer == null ? -1 : integer.intValue();
 	}
 
-	public final Object a(int var1) {
-		return var1 >= 0 && var1 < this.b.size() ? this.b.get(var1) : null;
+	public final Object getObject(int id) {
+		return id >= 0 && id < this.idToObj.size() ? this.idToObj.get(id) : null;
 	}
 
 	public Iterator<Object> iterator() {
-		return Iterators.filter(this.b.iterator(), Predicates.notNull());
+		return Iterators.filter(this.idToObj.iterator(), Predicates.notNull());
 	}
 
 }

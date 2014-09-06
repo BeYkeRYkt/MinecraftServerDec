@@ -30,7 +30,7 @@ public class BlockTorch extends Block {
 		if (World.a((ard) var1, var2)) {
 			return true;
 		} else {
-			Block var3 = var1.p(var2).c();
+			Block var3 = var1.p(var2).getBlock();
 			return var3 instanceof BlockFence || var3 == aty.w || var3 == aty.bZ || var3 == aty.cG;
 		}
 	}
@@ -108,10 +108,10 @@ public class BlockTorch extends Block {
 	}
 
 	protected boolean f(World var1, Position var2, bec var3) {
-		if (var3.c() == this && this.b(var1, var2, (PaintingDirection) var3.b(a))) {
+		if (var3.getBlock() == this && this.b(var1, var2, (PaintingDirection) var3.b(a))) {
 			return true;
 		} else {
-			if (var1.p(var2).c() == this) {
+			if (var1.p(var2).getBlock() == this) {
 				this.b(var1, var2, var3, 0);
 				var1.g(var2);
 			}
@@ -120,7 +120,7 @@ public class BlockTorch extends Block {
 		}
 	}
 
-	public bru a(World var1, Position var2, brw var3, brw var4) {
+	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		PaintingDirection var5 = (PaintingDirection) var1.p(var2).b(a);
 		float var6 = 0.15F;
 		if (var5 == PaintingDirection.f) {

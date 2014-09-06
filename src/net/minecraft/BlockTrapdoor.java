@@ -44,7 +44,7 @@ public class BlockTrapdoor extends Block {
 	}
 
 	public void d(bec var1) {
-		if (var1.c() == this) {
+		if (var1.getBlock() == this) {
 			boolean var2 = var1.b(M) == bbr.a;
 			Boolean var3 = (Boolean) var1.b(b);
 			PaintingDirection var4 = (PaintingDirection) var1.b(a);
@@ -77,7 +77,7 @@ public class BlockTrapdoor extends Block {
 	}
 
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
-		if (this.J == Material.ORE) {
+		if (this.material == Material.ORE) {
 			return true;
 		} else {
 			var3 = var3.a(b);
@@ -90,7 +90,7 @@ public class BlockTrapdoor extends Block {
 	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (!var1.D) {
 			Position var5 = var2.a(((PaintingDirection) var3.b(a)).d());
-			if (!c(var1.p(var5).c())) {
+			if (!c(var1.p(var5).getBlock())) {
 				var1.g(var2);
 				this.b(var1, var2, var3, 0);
 			} else {
@@ -107,7 +107,7 @@ public class BlockTrapdoor extends Block {
 		}
 	}
 
-	public bru a(World var1, Position var2, brw var3, brw var4) {
+	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3, var4);
 	}
@@ -123,7 +123,7 @@ public class BlockTrapdoor extends Block {
 	}
 
 	public boolean a(World var1, Position var2, PaintingDirection var3) {
-		return !var3.k().b() && c(var1.p(var2.a(var3.d())).c());
+		return !var3.k().b() && c(var1.p(var2.a(var3.d())).getBlock());
 	}
 
 	protected static PaintingDirection b(int var0) {
@@ -155,7 +155,7 @@ public class BlockTrapdoor extends Block {
 	}
 
 	private static boolean c(Block var0) {
-		return var0.J.k() && var0.d() || var0 == aty.aX || var0 instanceof awq || var0 instanceof BlockStairs;
+		return var0.material.k() && var0.d() || var0 == aty.aX || var0 instanceof BlockStepAbstract || var0 instanceof BlockStairs;
 	}
 
 	public bec a(int var1) {

@@ -29,7 +29,7 @@ public class BlockCake extends Block {
 		float var4 = 0.0625F;
 		float var5 = (float) (1 + ((Integer) var3.b(a)).intValue() * 2) / 16.0F;
 		float var6 = 0.5F;
-		return new brt((double) ((float) var2.n() + var5), (double) var2.o(), (double) ((float) var2.p() + var4), (double) ((float) (var2.n() + 1) - var4), (double) ((float) var2.o() + var6), (double) ((float) (var2.p() + 1) - var4));
+		return new brt((double) ((float) var2.getX() + var5), (double) var2.getY(), (double) ((float) var2.getZ() + var4), (double) ((float) (var2.getX() + 1) - var4), (double) ((float) var2.getY() + var6), (double) ((float) (var2.getZ() + 1) - var4));
 	}
 
 	public boolean d() {
@@ -74,7 +74,7 @@ public class BlockCake extends Block {
 	}
 
 	private boolean d(World var1, Position var2) {
-		return var1.p(var2.b()).c().r().isBuildable();
+		return var1.p(var2.b()).getBlock().r().isBuildable();
 	}
 
 	public int a(Random var1) {

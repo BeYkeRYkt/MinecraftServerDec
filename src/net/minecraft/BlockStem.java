@@ -25,7 +25,7 @@ public class BlockStem extends auc implements atz {
 
 		while (var4.hasNext()) {
 			PaintingDirection var5 = (PaintingDirection) var4.next();
-			if (var2.p(var3.a(var5)).c() == this.M) {
+			if (var2.p(var3.a(var5)).getBlock() == this.M) {
 				var1 = var1.a(b, var5);
 				break;
 			}
@@ -52,14 +52,14 @@ public class BlockStem extends auc implements atz {
 
 					while (var7.hasNext()) {
 						PaintingDirection var8 = (PaintingDirection) var7.next();
-						if (var1.p(var2.a(var8)).c() == this.M) {
+						if (var1.p(var2.a(var8)).getBlock() == this.M) {
 							return;
 						}
 					}
 
 					var2 = var2.a(en.a.a(var4));
-					Block var9 = var1.p(var2.b()).c();
-					if (var1.p(var2).c().J == Material.AIR && (var9 == aty.ak || var9 == aty.d || var9 == aty.c)) {
+					Block var9 = var1.p(var2.b()).getBlock();
+					if (var1.p(var2).getBlock().material == Material.AIR && (var9 == aty.ak || var9 == aty.d || var9 == aty.c)) {
 						var1.a(var2, this.M.P());
 					}
 				}

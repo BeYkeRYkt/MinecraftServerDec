@@ -3,28 +3,28 @@ package net.minecraft;
 class bdh extends aqi {
 
 	// $FF: synthetic field
-	final bdg a;
+	final TileEntityMobSpawner a;
 
-	bdh(bdg var1) {
+	bdh(TileEntityMobSpawner var1) {
 		this.a = var1;
 	}
 
 	public void a(int var1) {
-		this.a.b.c(this.a.c, aty.ac, var1, 0);
+		this.a.world.c(this.a.position, aty.ac, var1, 0);
 	}
 
 	public World a() {
-		return this.a.b;
+		return this.a.world;
 	}
 
 	public Position b() {
-		return this.a.c;
+		return this.a.position;
 	}
 
 	public void a(aqj var1) {
 		super.a(var1);
 		if (this.a() != null) {
-			this.a().h(this.a.c);
+			this.a().h(this.a.position);
 		}
 
 	}

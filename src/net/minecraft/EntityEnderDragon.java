@@ -84,7 +84,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 			var1 = (this.V.nextFloat() - 0.5F) * 8.0F;
 			var2 = (this.V.nextFloat() - 0.5F) * 4.0F;
 			var3 = (this.V.nextFloat() - 0.5F) * 8.0F;
-			this.o.a(ew.b, this.locationX + (double) var1, this.locationY + 2.0D + (double) var2, this.locationZ + (double) var3, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.o.a(Particle.b, this.locationX + (double) var1, this.locationY + 2.0D + (double) var2, this.locationZ + (double) var3, 0.0D, 0.0D, 0.0D, new int[0]);
 		} else {
 			this.n();
 			var1 = 0.2F / (DataTypesConverter.a(this.motionX * this.motionX + this.motionZ * this.motionZ) * 10.0F + 1.0F);
@@ -168,9 +168,9 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 					var13 = -50.0D;
 				}
 
-				brw var15 = (new brw(this.a - this.locationX, this.b - this.locationY, this.c - this.locationZ)).a();
+				Vec3D var15 = (new Vec3D(this.a - this.locationX, this.b - this.locationY, this.c - this.locationZ)).a();
 				var16 = (double) (-DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F));
-				brw var18 = (new brw((double) DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F), this.motionY, var16)).a();
+				Vec3D var18 = (new Vec3D((double) DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F), this.motionY, var16)).a();
 				float var19 = ((float) var18.b(var15) + 0.5F) / 1.5F;
 				if (var19 < 0.0F) {
 					var19 = 0.0F;
@@ -194,7 +194,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 					this.d(this.motionX, this.motionY, this.motionZ);
 				}
 
-				brw var25 = (new brw(this.motionX, this.motionY, this.motionZ)).a();
+				Vec3D var25 = (new Vec3D(this.motionX, this.motionY, this.motionZ)).a();
 				float var26 = ((float) var25.b(var18) + 1.0F) / 2.0F;
 				var26 = 0.8F + 0.15F * var26;
 				this.motionX *= (double) var26;
@@ -380,7 +380,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 		for (int var10 = var2; var10 <= var5; ++var10) {
 			for (int var11 = var3; var11 <= var6; ++var11) {
 				for (int var12 = var4; var12 <= var7; ++var12) {
-					Block var13 = this.o.p(new Position(var10, var11, var12)).c();
+					Block var13 = this.o.p(new Position(var10, var11, var12)).getBlock();
 					if (var13.r() != Material.AIR) {
 						if (var13 != aty.cv && var13 != aty.Z && var13 != aty.bH && var13 != aty.h && var13 != aty.bX && this.o.Q().b("mobGriefing")) {
 							var9 = this.o.g(new Position(var10, var11, var12)) || var9;
@@ -396,7 +396,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 			double var16 = var1.a + (var1.d - var1.a) * (double) this.V.nextFloat();
 			double var17 = var1.b + (var1.e - var1.b) * (double) this.V.nextFloat();
 			double var14 = var1.c + (var1.f - var1.c) * (double) this.V.nextFloat();
-			this.o.a(ew.b, var16, var17, var14, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.o.a(Particle.b, var16, var17, var14, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 		return var8;
@@ -443,7 +443,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 			float var1 = (this.V.nextFloat() - 0.5F) * 8.0F;
 			float var2 = (this.V.nextFloat() - 0.5F) * 4.0F;
 			float var3 = (this.V.nextFloat() - 0.5F) * 8.0F;
-			this.o.a(ew.c, this.locationX + (double) var1, this.locationY + 2.0D + (double) var2, this.locationZ + (double) var3, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.o.a(Particle.c, this.locationX + (double) var1, this.locationY + 2.0D + (double) var2, this.locationZ + (double) var3, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 		int var4;

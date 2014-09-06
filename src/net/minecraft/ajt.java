@@ -13,7 +13,7 @@ public class ajt extends Item {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
-			Block var10 = var9.c();
+			Block var10 = var9.getBlock();
 			boolean var11 = var10.f(var3, var4);
 			if (!var11) {
 				var4 = var4.a();

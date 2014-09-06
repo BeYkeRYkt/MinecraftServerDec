@@ -5,7 +5,7 @@ class bhe extends Position {
 	private final int b;
 
 	public bhe(Position var1, int var2) {
-		super(var1.n(), var1.o(), var1.p());
+		super(var1.getX(), var1.getY(), var1.getZ());
 		this.b = var2;
 	}
 

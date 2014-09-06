@@ -82,9 +82,9 @@ public class amn extends ake {
 												do {
 													--var30;
 													var31 = var22.g(new Position(var28 + var23, var30, var29 + var24));
-												} while (var31.c().g(var31) == MaterialMapColor.b && var30 > 0);
+												} while (var31.getBlock().g(var31) == MaterialMapColor.b && var30 > 0);
 
-												if (var30 > 0 && var31.c().r().isLiquid()) {
+												if (var30 > 0 && var31.getBlock().r().isLiquid()) {
 													int var32 = var30 - 1;
 
 													Block var33;
@@ -96,7 +96,7 @@ public class amn extends ake {
 											}
 
 											var26 += (double) var30 / (double) (var4 * var4);
-											var21.add(var31.c().g(var31));
+											var21.add(var31.getBlock().g(var31));
 										}
 									}
 								}

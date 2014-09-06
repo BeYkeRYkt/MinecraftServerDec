@@ -104,8 +104,8 @@ public class BlockFence extends Block {
 	}
 
 	public boolean e(ard var1, Position var2) {
-		Block var3 = var1.p(var2).c();
-		return var3 == aty.cv ? false : ((!(var3 instanceof BlockFence) || var3.J != this.J) && !(var3 instanceof BlockFenceGate) ? (var3.J.k() && var3.d() ? var3.J != Material.PUMPKIN : false) : true);
+		Block var3 = var1.p(var2).getBlock();
+		return var3 == aty.cv ? false : ((!(var3 instanceof BlockFence) || var3.material != this.material) && !(var3 instanceof BlockFenceGate) ? (var3.material.k() && var3.d() ? var3.material != Material.PUMPKIN : false) : true);
 	}
 
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {

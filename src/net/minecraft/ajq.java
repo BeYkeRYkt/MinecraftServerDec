@@ -13,20 +13,20 @@ public class ajq extends Item {
 		if (var5 == PaintingDirection.a) {
 			return false;
 		} else {
-			boolean var9 = var3.p(var4).c().f(var3, var4);
+			boolean var9 = var3.p(var4).getBlock().f(var3, var4);
 			Position var10 = var9 ? var4 : var4.a(var5);
 			if (!var2.a(var10, var5, var1)) {
 				return false;
 			} else {
 				Position var11 = var10.a();
-				boolean var12 = !var3.d(var10) && !var3.p(var10).c().f(var3, var10);
-				var12 |= !var3.d(var11) && !var3.p(var11).c().f(var3, var11);
+				boolean var12 = !var3.d(var10) && !var3.p(var10).getBlock().f(var3, var10);
+				var12 |= !var3.d(var11) && !var3.p(var11).getBlock().f(var3, var11);
 				if (var12) {
 					return false;
 				} else {
-					double var13 = (double) var10.n();
-					double var15 = (double) var10.o();
-					double var17 = (double) var10.p();
+					double var13 = (double) var10.getX();
+					double var15 = (double) var10.getY();
+					double var17 = (double) var10.getZ();
 					List var19 = var3.b((Entity) null, brt.a(var13, var15, var17, var13 + 1.0D, var15 + 2.0D, var17 + 1.0D));
 					if (var19.size() > 0) {
 						return false;

@@ -22,10 +22,10 @@ public class SummonCommand extends AbstractCommand {
 		} else {
 			String var3 = var2[0];
 			Position var4 = var1.c();
-			brw var5 = var1.d();
-			double var6 = var5.a;
-			double var8 = var5.b;
-			double var10 = var5.c;
+			Vec3D var5 = var1.d();
+			double var6 = var5.x;
+			double var8 = var5.y;
+			double var10 = var5.z;
 			if (var2.length >= 4) {
 				var6 = b(var6, var2[1], true);
 				var8 = b(var8, var2[2], false);

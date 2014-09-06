@@ -36,7 +36,7 @@ public class ExecuteCommand extends AbstractCommand {
 				int var20 = a(var2[9], -1, 15);
 				Position var21 = new Position(var13, var15, var17);
 				bec var22 = var12.p(var21);
-				if (var22.c() != var19 || var20 >= 0 && var22.c().c(var22) != var20) {
+				if (var22.getBlock() != var19 || var20 >= 0 && var22.getBlock().c(var22) != var20) {
 					throw new di("commands.execute.failed", new Object[] { "detect", var3.d_() });
 				}
 

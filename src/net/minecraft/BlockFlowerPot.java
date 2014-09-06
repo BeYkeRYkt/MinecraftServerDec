@@ -34,7 +34,7 @@ public class BlockFlowerPot extends atg {
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		ItemStack var9 = var4.playerInventory.getItemInHand();
 		if (var9 != null && var9.getItem() instanceof aju) {
-			bdb var10 = this.d(var1, var2);
+			TileEntityFlowerPot var10 = this.d(var1, var2);
 			if (var10 == null) {
 				return false;
 			} else if (var10.b() != null) {
@@ -64,7 +64,7 @@ public class BlockFlowerPot extends atg {
 	}
 
 	public int j(World var1, Position var2) {
-		bdb var3 = this.d(var1, var2);
+		TileEntityFlowerPot var3 = this.d(var1, var2);
 		return var3 != null && var3.b() != null ? var3.c() : 0;
 	}
 
@@ -81,7 +81,7 @@ public class BlockFlowerPot extends atg {
 	}
 
 	public void b(World var1, Position var2, bec var3) {
-		bdb var4 = this.d(var1, var2);
+		TileEntityFlowerPot var4 = this.d(var1, var2);
 		if (var4 != null && var4.b() != null) {
 			a(var1, var2, new ItemStack(var4.b(), 1, var4.c()));
 		}
@@ -92,7 +92,7 @@ public class BlockFlowerPot extends atg {
 	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
 		super.a(var1, var2, var3, var4);
 		if (var4.by.instabuild) {
-			bdb var5 = this.d(var1, var2);
+			TileEntityFlowerPot var5 = this.d(var1, var2);
 			if (var5 != null) {
 				var5.a((Item) null, 0);
 			}
@@ -104,12 +104,12 @@ public class BlockFlowerPot extends atg {
 		return amk.bQ;
 	}
 
-	private bdb d(World var1, Position var2) {
-		bcm var3 = var1.s(var2);
-		return var3 instanceof bdb ? (bdb) var3 : null;
+	private TileEntityFlowerPot d(World var1, Position var2) {
+		TileEntity var3 = var1.s(var2);
+		return var3 instanceof TileEntityFlowerPot ? (TileEntityFlowerPot) var3 : null;
 	}
 
-	public bcm a(World var1, int var2) {
+	public TileEntity a(World var1, int var2) {
 		Object var3 = null;
 		int var4 = 0;
 		switch (var2) {
@@ -161,7 +161,7 @@ public class BlockFlowerPot extends atg {
 				var4 = ayx.f.a();
 		}
 
-		return new bdb(Item.getItemOf((Block) var3), var4);
+		return new TileEntityFlowerPot(Item.getItemOf((Block) var3), var4);
 	}
 
 	protected bed e() {
@@ -174,9 +174,9 @@ public class BlockFlowerPot extends atg {
 
 	public bec a(bec var1, ard var2, Position var3) {
 		awf var4 = awf.a;
-		bcm var5 = var2.s(var3);
-		if (var5 instanceof bdb) {
-			bdb var6 = (bdb) var5;
+		TileEntity var5 = var2.s(var3);
+		if (var5 instanceof TileEntityFlowerPot) {
+			TileEntityFlowerPot var6 = (TileEntityFlowerPot) var5;
 			Item var7 = var6.b();
 			if (var7 instanceof aju) {
 				int var8 = var6.c();

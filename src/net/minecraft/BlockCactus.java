@@ -18,7 +18,7 @@ public class BlockCactus extends Block {
 		Position var5 = var2.a();
 		if (var1.d(var5)) {
 			int var6;
-			for (var6 = 1; var1.p(var2.c(var6)).c() == this; ++var6) {
+			for (var6 = 1; var1.p(var2.c(var6)).getBlock() == this; ++var6) {
 				;
 			}
 
@@ -39,7 +39,7 @@ public class BlockCactus extends Block {
 
 	public brt a(World var1, Position var2, bec var3) {
 		float var4 = 0.0625F;
-		return new brt((double) ((float) var2.n() + var4), (double) var2.o(), (double) ((float) var2.p() + var4), (double) ((float) (var2.n() + 1) - var4), (double) ((float) (var2.o() + 1) - var4), (double) ((float) (var2.p() + 1) - var4));
+		return new brt((double) ((float) var2.getX() + var4), (double) var2.getY(), (double) ((float) var2.getZ() + var4), (double) ((float) (var2.getX() + 1) - var4), (double) ((float) (var2.getY() + 1) - var4), (double) ((float) (var2.getZ() + 1) - var4));
 	}
 
 	public boolean d() {
@@ -66,12 +66,12 @@ public class BlockCactus extends Block {
 
 		while (var3.hasNext()) {
 			PaintingDirection var4 = (PaintingDirection) var3.next();
-			if (var1.p(var2.a(var4)).c().r().isBuildable()) {
+			if (var1.p(var2.a(var4)).getBlock().r().isBuildable()) {
 				return false;
 			}
 		}
 
-		Block var5 = var1.p(var2.b()).c();
+		Block var5 = var1.p(var2.b()).getBlock();
 		return var5 == aty.aK || var5 == aty.m;
 	}
 

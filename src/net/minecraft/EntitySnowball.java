@@ -25,7 +25,7 @@ public class EntitySnowball extends ahr {
 		}
 
 		for (int var3 = 0; var3 < 8; ++var3) {
-			this.o.a(ew.F, this.locationX, this.locationY, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.o.a(Particle.F, this.locationX, this.locationY, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 		if (!this.o.D) {

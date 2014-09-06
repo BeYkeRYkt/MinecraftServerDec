@@ -47,18 +47,18 @@ public class TestforBlocksCommand extends AbstractCommand {
 								Position var16 = var15.a((fd) var11);
 								boolean var17 = false;
 								bec var18 = var9.p(var15);
-								if (!var10 || var18.c() != aty.a) {
+								if (!var10 || var18.getBlock() != aty.a) {
 									if (var18 == var9.p(var16)) {
-										bcm var19 = var9.s(var15);
-										bcm var20 = var9.s(var16);
+										TileEntity var19 = var9.s(var15);
+										TileEntity var20 = var9.s(var16);
 										if (var19 != null && var20 != null) {
 											NBTCompoundTag var21 = new NBTCompoundTag();
-											var19.b(var21);
+											var19.write(var21);
 											var21.remove("x");
 											var21.remove("y");
 											var21.remove("z");
 											NBTCompoundTag var22 = new NBTCompoundTag();
-											var20.b(var22);
+											var20.write(var22);
 											var22.remove("x");
 											var22.remove("y");
 											var22.remove("z");

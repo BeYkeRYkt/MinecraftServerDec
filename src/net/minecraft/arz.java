@@ -46,7 +46,7 @@ public class arz {
 	}
 
 	public arm a(Position var1, arm var2) {
-		return this.d.a(var1.n(), var1.p(), var2);
+		return this.d.a(var1.getX(), var1.getZ(), var2);
 	}
 
 	public float[] a(float[] var1, int var2, int var3, int var4, int var5) {

@@ -23,7 +23,7 @@ public class bhd extends bhc {
 
 	public bhd(boolean var1) {
 		super(var1);
-		this.m = Position.a;
+		this.m = Position.ZERO;
 		this.c = 0.618D;
 		this.d = 0.381D;
 		this.e = 1.0D;
@@ -44,7 +44,7 @@ public class bhd extends bhc {
 			var1 = 1;
 		}
 
-		int var2 = this.m.o() + this.b;
+		int var2 = this.m.getY() + this.b;
 		int var3 = this.a - this.i;
 		this.j = Lists.newArrayList();
 		this.j.add(new bhe(this.m.b(var3), var2));
@@ -60,13 +60,13 @@ public class bhd extends bhc {
 					Position var14 = this.m.a(var10, (double) (var3 - 1), var12);
 					Position var15 = var14.b(this.i);
 					if (this.a(var14, var15) == -1) {
-						int var16 = this.m.n() - var14.n();
-						int var17 = this.m.p() - var14.p();
-						double var18 = (double) var14.o() - Math.sqrt((double) (var16 * var16 + var17 * var17)) * this.d;
+						int var16 = this.m.getX() - var14.getX();
+						int var17 = this.m.getZ() - var14.getZ();
+						double var18 = (double) var14.getY() - Math.sqrt((double) (var16 * var16 + var17 * var17)) * this.d;
 						int var20 = var18 > (double) var2 ? var2 : (int) var18;
-						Position var21 = new Position(this.m.n(), var20, this.m.p());
+						Position var21 = new Position(this.m.getX(), var20, this.m.getZ());
 						if (this.a(var21, var14) == -1) {
-							this.j.add(new bhe(var14, var21.o()));
+							this.j.add(new bhe(var14, var21.getY()));
 						}
 					}
 				}
@@ -82,7 +82,7 @@ public class bhd extends bhc {
 			for (int var6 = -var4; var6 <= var4; ++var6) {
 				if (Math.pow((double) Math.abs(var5) + 0.5D, 2.0D) + Math.pow((double) Math.abs(var6) + 0.5D, 2.0D) <= (double) (var2 * var2)) {
 					Position var7 = var1.a(var5, 0, var6);
-					Material var8 = this.l.p(var7).c().r();
+					Material var8 = this.l.p(var7).getBlock().r();
 					if (var8 == Material.AIR || var8 == Material.LEAVES) {
 						this.a(this.l, var7, var3, 0);
 					}
@@ -121,11 +121,11 @@ public class bhd extends bhc {
 	}
 
 	void a(Position var1, Position var2, Block var3) {
-		Position var4 = var2.a(-var1.n(), -var1.o(), -var1.p());
+		Position var4 = var2.a(-var1.getX(), -var1.getY(), -var1.getZ());
 		int var5 = this.b(var4);
-		float var6 = (float) var4.n() / (float) var5;
-		float var7 = (float) var4.o() / (float) var5;
-		float var8 = (float) var4.p() / (float) var5;
+		float var6 = (float) var4.getX() / (float) var5;
+		float var7 = (float) var4.getY() / (float) var5;
+		float var8 = (float) var4.getZ() / (float) var5;
 
 		for (int var9 = 0; var9 <= var5; ++var9) {
 			Position var10 = var1.a((double) (0.5F + (float) var9 * var6), (double) (0.5F + (float) var9 * var7), (double) (0.5F + (float) var9 * var8));
@@ -136,16 +136,16 @@ public class bhd extends bhc {
 	}
 
 	private int b(Position var1) {
-		int var2 = DataTypesConverter.a(var1.n());
-		int var3 = DataTypesConverter.a(var1.o());
-		int var4 = DataTypesConverter.a(var1.p());
+		int var2 = DataTypesConverter.a(var1.getX());
+		int var3 = DataTypesConverter.a(var1.getY());
+		int var4 = DataTypesConverter.a(var1.getZ());
 		return var4 > var2 && var4 > var3 ? var4 : (var3 > var2 ? var3 : var2);
 	}
 
 	private axo b(Position var1, Position var2) {
 		axo var3 = axo.b;
-		int var4 = Math.abs(var2.n() - var1.n());
-		int var5 = Math.abs(var2.p() - var1.p());
+		int var4 = Math.abs(var2.getX() - var1.getX());
+		int var5 = Math.abs(var2.getZ() - var1.getZ());
 		int var6 = Math.max(var4, var5);
 		if (var6 > 0) {
 			if (var4 == var6) {
@@ -191,8 +191,8 @@ public class bhd extends bhc {
 		while (var1.hasNext()) {
 			bhe var2 = (bhe) var1.next();
 			int var3 = var2.q();
-			Position var4 = new Position(this.m.n(), var3, this.m.p());
-			if (this.c(var3 - this.m.o())) {
+			Position var4 = new Position(this.m.getX(), var3, this.m.getZ());
+			if (this.c(var3 - this.m.getY())) {
 				this.a(var4, var2, aty.r);
 			}
 		}
@@ -200,17 +200,17 @@ public class bhd extends bhc {
 	}
 
 	int a(Position var1, Position var2) {
-		Position var3 = var2.a(-var1.n(), -var1.o(), -var1.p());
+		Position var3 = var2.a(-var1.getX(), -var1.getY(), -var1.getZ());
 		int var4 = this.b(var3);
-		float var5 = (float) var3.n() / (float) var4;
-		float var6 = (float) var3.o() / (float) var4;
-		float var7 = (float) var3.p() / (float) var4;
+		float var5 = (float) var3.getX() / (float) var4;
+		float var6 = (float) var3.getY() / (float) var4;
+		float var7 = (float) var3.getZ() / (float) var4;
 		if (var4 == 0) {
 			return -1;
 		} else {
 			for (int var8 = 0; var8 <= var4; ++var8) {
 				Position var9 = var1.a((double) (0.5F + (float) var8 * var5), (double) (0.5F + (float) var8 * var6), (double) (0.5F + (float) var8 * var7));
-				if (!this.a(this.l.p(var9).c())) {
+				if (!this.a(this.l.p(var9).getBlock())) {
 					return var8;
 				}
 			}
@@ -243,7 +243,7 @@ public class bhd extends bhc {
 	}
 
 	private boolean f() {
-		Block var1 = this.l.p(this.m.b()).c();
+		Block var1 = this.l.p(this.m.b()).getBlock();
 		if (var1 != aty.d && var1 != aty.c && var1 != aty.ak) {
 			return false;
 		} else {

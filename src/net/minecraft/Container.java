@@ -487,7 +487,7 @@ public abstract class Container {
 		return true;
 	}
 
-	public static int a(bcm var0) {
+	public static int a(TileEntity var0) {
 		return var0 instanceof IInventory ? b((IInventory) var0) : 0;
 	}
 

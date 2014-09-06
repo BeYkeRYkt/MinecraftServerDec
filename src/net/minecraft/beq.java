@@ -20,7 +20,7 @@ public class beq implements Predicate {
 	}
 
 	public boolean a(bec var1) {
-		if (var1 != null && var1.c().equals(this.a.c())) {
+		if (var1 != null && var1.getBlock().equals(this.a.c())) {
 			Iterator var2 = this.b.entrySet().iterator();
 
 			Entry var3;

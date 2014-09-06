@@ -68,7 +68,7 @@ public class anr extends Item {
 					var3.put("pages", (NBTTag) var4);
 					if (var2 instanceof EntityPlayer && var2.bY() == var1) {
 						ajk var10 = var2.activeContainer.a((IInventory) var2.playerInventory, var2.playerInventory.c);
-						((EntityPlayer) var2).playerConncetion.sendPacket((Packet) (new jh(0, var10.e, var1)));
+						((EntityPlayer) var2).playerConncetion.sendPacket((Packet) (new PacketOutSetSlot(0, var10.e, var1)));
 					}
 
 				}

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class kc implements Packet<PlayPacketListener> {
+public class kc implements Packet<PlayClientboundPacketListener> {
 
 	private Position a;
 
@@ -11,7 +11,7 @@ public class kc implements Packet<PlayPacketListener> {
 		this.a = var1;
 	}
 
-	public void handlePacket(PlayPacketListener var1) {
+	public void handlePacket(PlayClientboundPacketListener var1) {
 		var1.a(this);
 	}
 

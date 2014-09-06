@@ -11,7 +11,7 @@ public class RegistryBlocks extends RegistryMaterials {
 		this.defaultBlockName = blockName;
 	}
 
-	public void register(int id, Object nameInfo, Object object) {
+	public void register(int id, BlockNameInfo nameInfo, Object object) {
 		if (this.defaultBlockName.equals(nameInfo)) {
 			this.defaultObject = object;
 		}

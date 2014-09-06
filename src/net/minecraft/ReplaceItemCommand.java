@@ -87,9 +87,9 @@ public class ReplaceItemCommand extends AbstractCommand {
 				var1.a(ag.d, 0);
 				Position var17 = a(var1, var2, 1, false);
 				World var11 = var1.e();
-				bcm var12 = var11.s(var17);
+				TileEntity var12 = var11.s(var17);
 				if (var12 == null || !(var12 instanceof IInventory)) {
-					throw new di("commands.replaceitem.noContainer", new Object[] { Integer.valueOf(var17.n()), Integer.valueOf(var17.o()), Integer.valueOf(var17.p()) });
+					throw new di("commands.replaceitem.noContainer", new Object[] { Integer.valueOf(var17.getX()), Integer.valueOf(var17.getY()), Integer.valueOf(var17.getZ()) });
 				}
 
 				IInventory var13 = (IInventory) var12;

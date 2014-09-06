@@ -7,7 +7,7 @@ public class vs {
 	private static final Random a = new Random();
 
 	public static void a(World var0, Position var1, IInventory var2) {
-		a(var0, (double) var1.n(), (double) var1.o(), (double) var1.p(), var2);
+		a(var0, (double) var1.getX(), (double) var1.getY(), (double) var1.getZ(), var2);
 	}
 
 	public static void a(World var0, Entity var1, IInventory var2) {

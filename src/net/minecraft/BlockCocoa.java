@@ -27,7 +27,7 @@ public class BlockCocoa extends avb implements atz {
 	public boolean e(World var1, Position var2, bec var3) {
 		var2 = var2.a((PaintingDirection) var3.b(N));
 		bec var4 = var1.p(var2);
-		return var4.c() == aty.r && var4.b(BlockWood.a) == ayx.d;
+		return var4.getBlock() == aty.r && var4.b(BlockWood.a) == ayx.d;
 	}
 
 	public boolean d() {

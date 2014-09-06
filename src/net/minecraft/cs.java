@@ -61,14 +61,14 @@ class cs {
 		Position var2 = new Position(this.a, 256.0D, this.b);
 
 		do {
-			if (var2.o() <= 0) {
+			if (var2.getY() <= 0) {
 				return 257;
 			}
 
 			var2 = var2.b();
-		} while (var1.p(var2).c().r() == Material.AIR);
+		} while (var1.p(var2).getBlock().r() == Material.AIR);
 
-		return var2.o() + 1;
+		return var2.getY() + 1;
 	}
 
 	public boolean b(World var1) {
@@ -76,12 +76,12 @@ class cs {
 
 		Material var3;
 		do {
-			if (var2.o() <= 0) {
+			if (var2.getY() <= 0) {
 				return false;
 			}
 
 			var2 = var2.b();
-			var3 = var1.p(var2).c().r();
+			var3 = var1.p(var2).getBlock().r();
 		} while (var3 == Material.AIR);
 
 		return !var3.isLiquid() && var3 != Material.FIRE;

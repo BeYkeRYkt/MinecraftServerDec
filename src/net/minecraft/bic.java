@@ -28,7 +28,7 @@ public abstract class bic extends bhc {
 
 	private boolean c(World var1, Position var2, int var3) {
 		boolean var4 = true;
-		if (var2.o() >= 1 && var2.o() + var3 + 1 <= 256) {
+		if (var2.getY() >= 1 && var2.getY() + var3 + 1 <= 256) {
 			for (int var5 = 0; var5 <= 1 + var3; ++var5) {
 				byte var6 = 2;
 				if (var5 == 0) {
@@ -39,7 +39,7 @@ public abstract class bic extends bhc {
 
 				for (int var7 = -var6; var7 <= var6 && var4; ++var7) {
 					for (int var8 = -var6; var8 <= var6 && var4; ++var8) {
-						if (var2.o() + var5 < 0 || var2.o() + var5 >= 256 || !this.a(var1.p(var2.a(var7, var5, var8)).c())) {
+						if (var2.getY() + var5 < 0 || var2.getY() + var5 >= 256 || !this.a(var1.p(var2.a(var7, var5, var8)).getBlock())) {
 							var4 = false;
 						}
 					}
@@ -54,8 +54,8 @@ public abstract class bic extends bhc {
 
 	private boolean a(Position var1, World var2) {
 		Position var3 = var1.b();
-		Block var4 = var2.p(var3).c();
-		if ((var4 == aty.c || var4 == aty.d) && var1.o() >= 2) {
+		Block var4 = var2.p(var3).getBlock();
+		if ((var4 == aty.c || var4 == aty.d) && var1.getY() >= 2) {
 			this.a(var2, var3);
 			this.a(var2, var3.f());
 			this.a(var2, var3.d());
@@ -79,7 +79,7 @@ public abstract class bic extends bhc {
 				int var8 = var6 - 1;
 				if (var5 * var5 + var6 * var6 <= var4 || var7 * var7 + var8 * var8 <= var4 || var5 * var5 + var8 * var8 <= var4 || var7 * var7 + var6 * var6 <= var4) {
 					Position var9 = var2.a(var5, 0, var6);
-					Material var10 = var1.p(var9).c().r();
+					Material var10 = var1.p(var9).getBlock().r();
 					if (var10 == Material.AIR || var10 == Material.LEAVES) {
 						this.a(var1, var9, aty.t, this.c);
 					}
@@ -96,7 +96,7 @@ public abstract class bic extends bhc {
 			for (int var6 = -var3; var6 <= var3; ++var6) {
 				if (var5 * var5 + var6 * var6 <= var4) {
 					Position var7 = var2.a(var5, 0, var6);
-					Material var8 = var1.p(var7).c().r();
+					Material var8 = var1.p(var7).getBlock().r();
 					if (var8 == Material.AIR || var8 == Material.LEAVES) {
 						this.a(var1, var7, aty.t, this.c);
 					}

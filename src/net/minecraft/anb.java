@@ -16,7 +16,7 @@ public class anb extends all {
 			return false;
 		} else if (!var2.a(var4.a(var5), var5, var1)) {
 			return false;
-		} else if (var3.p(var4).c() == this.c && var3.d(var4.a())) {
+		} else if (var3.p(var4).getBlock() == this.c && var3.d(var4.a())) {
 			var3.a(var4.a(), this.b.P());
 			--var1.b;
 			return true;

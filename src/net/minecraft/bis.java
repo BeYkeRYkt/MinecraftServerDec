@@ -5,7 +5,7 @@ import java.util.Random;
 public class bis extends bhp {
 
 	public boolean b(World var1, Random var2, Position var3) {
-		for (; var3.o() < 128; var3 = var3.a()) {
+		for (; var3.getY() < 128; var3 = var3.a()) {
 			if (var1.d(var3)) {
 				PaintingDirection[] var4 = en.a.a();
 				int var5 = var4.length;

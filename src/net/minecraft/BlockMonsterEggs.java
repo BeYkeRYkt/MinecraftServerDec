@@ -18,7 +18,7 @@ public class BlockMonsterEggs extends Block {
 	}
 
 	public static boolean d(bec var0) {
-		Block var1 = var0.c();
+		Block var1 = var0.getBlock();
 		return var0 == aty.b.P().a(BlockStone.a, bbb.a) || var1 == aty.e || var1 == aty.bf;
 	}
 
@@ -42,7 +42,7 @@ public class BlockMonsterEggs extends Block {
 	public void a(World var1, Position var2, bec var3, float var4, int var5) {
 		if (!var1.D && var1.Q().b("doTileDrops")) {
 			EntitySilverfish var6 = new EntitySilverfish(var1);
-			var6.b((double) var2.n() + 0.5D, (double) var2.o(), (double) var2.p() + 0.5D, 0.0F, 0.0F);
+			var6.b((double) var2.getX() + 0.5D, (double) var2.getY(), (double) var2.getZ() + 0.5D, 0.0F, 0.0F);
 			var1.d((Entity) var6);
 			var6.y();
 		}
@@ -51,7 +51,7 @@ public class BlockMonsterEggs extends Block {
 
 	public int j(World var1, Position var2) {
 		bec var3 = var1.p(var2);
-		return var3.c().c(var3);
+		return var3.getBlock().c(var3);
 	}
 
 	public bec a(int var1) {

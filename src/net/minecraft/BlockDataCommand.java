@@ -26,12 +26,12 @@ public class BlockDataCommand extends AbstractCommand {
 			if (!var4.e(var3)) {
 				throw new di("commands.blockdata.outOfWorld", new Object[0]);
 			} else {
-				bcm var5 = var4.s(var3);
+				TileEntity var5 = var4.s(var3);
 				if (var5 == null) {
 					throw new di("commands.blockdata.notValid", new Object[0]);
 				} else {
 					NBTCompoundTag var6 = new NBTCompoundTag();
-					var5.b(var6);
+					var5.write(var6);
 					NBTCompoundTag var7 = (NBTCompoundTag) var6.getCopy();
 
 					NBTCompoundTag var8;
@@ -42,13 +42,13 @@ public class BlockDataCommand extends AbstractCommand {
 					}
 
 					var6.copyFrom(var8);
-					var6.put("x", var3.n());
-					var6.put("y", var3.o());
-					var6.put("z", var3.p());
+					var6.put("x", var3.getX());
+					var6.put("y", var3.getY());
+					var6.put("z", var3.getZ());
 					if (var6.equals(var7)) {
 						throw new di("commands.blockdata.failed", new Object[] { var6.toString() });
 					} else {
-						var5.a(var6);
+						var5.read(var6);
 						var5.o_();
 						var4.h(var3);
 						var1.a(ag.b, 1);

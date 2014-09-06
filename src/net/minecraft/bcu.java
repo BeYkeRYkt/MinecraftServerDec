@@ -3,18 +3,18 @@ package net.minecraft;
 class bcu extends aqf {
 
 	// $FF: synthetic field
-	final bct a;
+	final TileEntityCommand a;
 
-	bcu(bct var1) {
+	bcu(TileEntityCommand var1) {
 		this.a = var1;
 	}
 
 	public Position c() {
-		return this.a.c;
+		return this.a.position;
 	}
 
-	public brw d() {
-		return new brw((double) this.a.c.n() + 0.5D, (double) this.a.c.o() + 0.5D, (double) this.a.c.p() + 0.5D);
+	public Vec3D d() {
+		return new Vec3D((double) this.a.position.getX() + 0.5D, (double) this.a.position.getY() + 0.5D, (double) this.a.position.getZ() + 0.5D);
 	}
 
 	public World e() {
@@ -27,7 +27,7 @@ class bcu extends aqf {
 	}
 
 	public void h() {
-		this.a.z().h(this.a.c);
+		this.a.z().h(this.a.position);
 	}
 
 	public Entity f() {

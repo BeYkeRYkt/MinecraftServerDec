@@ -48,14 +48,14 @@ public class BlockEnderChest extends atg {
 
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
 		InventoryEnderChest var9 = var4.cn();
-		bcm var10 = var1.s(var2);
-		if (var9 != null && var10 instanceof bda) {
-			if (var1.p(var2.a()).c().t()) {
+		TileEntity var10 = var1.s(var2);
+		if (var9 != null && var10 instanceof TileEntityEnderChest) {
+			if (var1.p(var2.a()).getBlock().t()) {
 				return true;
 			} else if (var1.D) {
 				return true;
 			} else {
-				var9.a((bda) var10);
+				var9.a((TileEntityEnderChest) var10);
 				var4.a((IInventory) var9);
 				return true;
 			}
@@ -64,8 +64,8 @@ public class BlockEnderChest extends atg {
 		}
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bda();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntityEnderChest();
 	}
 
 	public bec a(int var1) {

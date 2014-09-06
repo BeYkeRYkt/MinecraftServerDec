@@ -164,7 +164,7 @@ public class PersistentVillage extends bqc {
 			}
 
 			var3 = (abh) var2.next();
-		} while (var3.d().n() != var1.n() || var3.d().p() != var1.p() || Math.abs(var3.d().o() - var1.o()) > 1);
+		} while (var3.d().getX() != var1.getX() || var3.d().getZ() != var1.getZ() || Math.abs(var3.d().getY() - var1.getY()) > 1);
 
 		return var3;
 	}
@@ -211,7 +211,7 @@ public class PersistentVillage extends bqc {
 	}
 
 	private boolean f(Position var1) {
-		Block var2 = this.b.p(var1).c();
+		Block var2 = this.b.p(var1).getBlock();
 		return var2 instanceof BlockDoor ? var2.r() == Material.WOOD : false;
 	}
 

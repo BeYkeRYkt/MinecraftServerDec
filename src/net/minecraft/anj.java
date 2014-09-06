@@ -15,11 +15,11 @@ public class anj extends aju {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
-			Block var10 = var9.c();
+			Block var10 = var9.getBlock();
 			if (var10 != this.a && var5 != PaintingDirection.b) {
 				var4 = var4.a(var5);
 				var9 = var3.p(var4);
-				var10 = var9.c();
+				var10 = var9.getBlock();
 			}
 
 			if (var10 == this.a) {
@@ -27,7 +27,7 @@ public class anj extends aju {
 				if (var11 <= 7) {
 					bec var12 = var9.a(BlockSnow.a, Integer.valueOf(var11 + 1));
 					if (var3.b(this.a.a(var3, var4, var12)) && var3.a(var4, var12, 2)) {
-						var3.a((double) ((float) var4.n() + 0.5F), (double) ((float) var4.o() + 0.5F), (double) ((float) var4.p() + 0.5F), this.a.H.b(), (this.a.H.d() + 1.0F) / 2.0F, this.a.H.e() * 0.8F);
+						var3.a((double) ((float) var4.getX() + 0.5F), (double) ((float) var4.getY() + 0.5F), (double) ((float) var4.getZ() + 0.5F), this.a.H.b(), (this.a.H.d() + 1.0F) / 2.0F, this.a.H.e() * 0.8F);
 						--var1.b;
 						return true;
 					}

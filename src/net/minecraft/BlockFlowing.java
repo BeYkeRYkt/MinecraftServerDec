@@ -14,13 +14,13 @@ public class BlockFlowing extends axl {
 	}
 
 	private void f(World var1, Position var2, bec var3) {
-		var1.a(var2, b(this.J).P().a(b, var3.b(b)), 2);
+		var1.a(var2, b(this.material).P().a(b, var3.b(b)), 2);
 	}
 
 	public void b(World var1, Position var2, bec var3, Random var4) {
 		int var5 = ((Integer) var3.b(b)).intValue();
 		byte var6 = 1;
-		if (this.J == Material.LAVA && !var1.worldProvider.n()) {
+		if (this.material == Material.LAVA && !var1.worldProvider.n()) {
 			var6 = 2;
 		}
 
@@ -49,16 +49,16 @@ public class BlockFlowing extends axl {
 				}
 			}
 
-			if (this.a >= 2 && this.J == Material.WATER) {
+			if (this.a >= 2 && this.material == Material.WATER) {
 				bec var17 = var1.p(var2.b());
-				if (var17.c().r().isBuildable()) {
+				if (var17.getBlock().r().isBuildable()) {
 					var14 = 0;
-				} else if (var17.c().r() == this.J && ((Integer) var17.b(b)).intValue() == 0) {
+				} else if (var17.getBlock().r() == this.material && ((Integer) var17.b(b)).intValue() == 0) {
 					var14 = 0;
 				}
 			}
 
-			if (this.J == Material.LAVA && var5 < 8 && var14 < 8 && var14 > var5 && var4.nextInt(4) != 0) {
+			if (this.material == Material.LAVA && var5 < 8 && var14 < 8 && var14 > var5 && var4.nextInt(4) != 0) {
 				var7 *= 4;
 			}
 
@@ -81,7 +81,7 @@ public class BlockFlowing extends axl {
 
 		bec var13 = var1.p(var2.b());
 		if (this.h(var1, var2.b(), var13)) {
-			if (this.J == Material.LAVA && var1.p(var2.b()).c().r() == Material.WATER) {
+			if (this.material == Material.LAVA && var1.p(var2.b()).getBlock().r() == Material.WATER) {
 				var1.a(var2.b(), aty.b.P());
 				this.d(var1, var2.b());
 				return;
@@ -115,11 +115,11 @@ public class BlockFlowing extends axl {
 
 	private void a(World var1, Position var2, bec var3, int var4) {
 		if (this.h(var1, var2, var3)) {
-			if (var3.c() != aty.a) {
-				if (this.J == Material.LAVA) {
+			if (var3.getBlock() != aty.a) {
+				if (this.material == Material.LAVA) {
 					this.d(var1, var2);
 				} else {
-					var3.c().b(var1, var2, var3, 0);
+					var3.getBlock().b(var1, var2, var3, 0);
 				}
 			}
 
@@ -137,7 +137,7 @@ public class BlockFlowing extends axl {
 			if (var7 != var4) {
 				Position var8 = var2.a(var7);
 				bec var9 = var1.p(var8);
-				if (!this.g(var1, var8, var9) && (var9.c().r() != this.J || ((Integer) var9.b(b)).intValue() > 0)) {
+				if (!this.g(var1, var8, var9) && (var9.getBlock().r() != this.material || ((Integer) var9.b(b)).intValue() > 0)) {
 					if (!this.g(var1, var8.b(), var9)) {
 						return var3;
 					}
@@ -164,7 +164,7 @@ public class BlockFlowing extends axl {
 			PaintingDirection var6 = (PaintingDirection) var5.next();
 			Position var7 = var2.a(var6);
 			bec var8 = var1.p(var7);
-			if (!this.g(var1, var7, var8) && (var8.c().r() != this.J || ((Integer) var8.b(b)).intValue() > 0)) {
+			if (!this.g(var1, var7, var8) && (var8.getBlock().r() != this.material || ((Integer) var8.b(b)).intValue() > 0)) {
 				int var9;
 				if (this.g(var1, var7.b(), var1.p(var7.b()))) {
 					var9 = this.a(var1, var7, 1, var6.d());
@@ -187,8 +187,8 @@ public class BlockFlowing extends axl {
 	}
 
 	private boolean g(World var1, Position var2, bec var3) {
-		Block var4 = var1.p(var2).c();
-		return !(var4 instanceof BlockDoor) && var4 != aty.an && var4 != aty.au && var4 != aty.aM ? (var4.J == Material.PORTAL ? true : var4.J.isSolid()) : true;
+		Block var4 = var1.p(var2).getBlock();
+		return !(var4 instanceof BlockDoor) && var4 != aty.an && var4 != aty.au && var4 != aty.aM ? (var4.material == Material.PORTAL ? true : var4.material.isSolid()) : true;
 	}
 
 	protected int a(World var1, Position var2, int var3) {
@@ -209,8 +209,8 @@ public class BlockFlowing extends axl {
 	}
 
 	private boolean h(World var1, Position var2, bec var3) {
-		Material var4 = var3.c().r();
-		return var4 != this.J && var4 != Material.LAVA && !this.g(var1, var2, var3);
+		Material var4 = var3.getBlock().r();
+		return var4 != this.material && var4 != Material.LAVA && !this.g(var1, var2, var3);
 	}
 
 	public void c(World var1, Position var2, bec var3) {

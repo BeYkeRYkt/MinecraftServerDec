@@ -56,13 +56,13 @@ public class BlockSkull extends atg {
 		return this.P().a(a, var8.aO()).a(b, Boolean.valueOf(false));
 	}
 
-	public bcm a(World var1, int var2) {
-		return new bdm();
+	public TileEntity a(World var1, int var2) {
+		return new TileEntitySkull();
 	}
 
 	public int j(World var1, Position var2) {
-		bcm var3 = var1.s(var2);
-		return var3 instanceof bdm ? ((bdm) var3).c() : super.j(var1, var2);
+		TileEntity var3 = var1.s(var2);
+		return var3 instanceof TileEntitySkull ? ((TileEntitySkull) var3).c() : super.j(var1, var2);
 	}
 
 	public void a(World var1, Position var2, bec var3, float var4, int var5) {
@@ -80,9 +80,9 @@ public class BlockSkull extends atg {
 	public void b(World var1, Position var2, bec var3) {
 		if (!var1.D) {
 			if (!((Boolean) var3.b(b)).booleanValue()) {
-				bcm var4 = var1.s(var2);
-				if (var4 instanceof bdm) {
-					bdm var5 = (bdm) var4;
+				TileEntity var4 = var1.s(var2);
+				if (var4 instanceof TileEntitySkull) {
+					TileEntitySkull var5 = (TileEntitySkull) var4;
 					ItemStack var6 = new ItemStack(amk.bX, 1, this.j(var1, var2));
 					if (var5.c() == 3 && var5.b() != null) {
 						var6.d(new NBTCompoundTag());
@@ -104,11 +104,11 @@ public class BlockSkull extends atg {
 	}
 
 	public boolean b(World var1, Position var2, ItemStack var3) {
-		return var3.i() == 1 && var2.o() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.D ? this.j().a(var1, var2) != null : false;
+		return var3.i() == 1 && var2.getY() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.D ? this.j().a(var1, var2) != null : false;
 	}
 
-	public void a(World var1, Position var2, bdm var3) {
-		if (var3.c() == 1 && var2.o() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.D) {
+	public void a(World var1, Position var2, TileEntitySkull var3) {
+		if (var3.c() == 1 && var2.getY() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.D) {
 			bek var4 = this.l();
 			bem var5 = var4.a(var1, var2);
 			if (var5 != null) {
@@ -128,7 +128,7 @@ public class BlockSkull extends atg {
 				Position var12 = var5.a(1, 0, 0).d();
 				EntityWither var14 = new EntityWither(var1);
 				Position var15 = var5.a(1, 2, 0).d();
-				var14.b((double) var15.n() + 0.5D, (double) var15.o() + 0.55D, (double) var15.p() + 0.5D, var5.b().k() == el.a ? 0.0F : 90.0F, 0.0F);
+				var14.b((double) var15.getX() + 0.5D, (double) var15.getY() + 0.55D, (double) var15.getZ() + 0.5D, var5.b().k() == el.a ? 0.0F : 90.0F, 0.0F);
 				var14.aG = var5.b().k() == el.a ? 0.0F : 90.0F;
 				var14.n();
 				Iterator var9 = var1.a(EntityHuman.class, var14.aQ().b(50.0D, 50.0D, 50.0D)).iterator();
@@ -142,7 +142,7 @@ public class BlockSkull extends atg {
 
 				int var16;
 				for (var16 = 0; var16 < 120; ++var16) {
-					var1.a(ew.F, (double) var12.n() + var1.s.nextDouble(), (double) (var12.o() - 2) + var1.s.nextDouble() * 3.9D, (double) var12.p() + var1.s.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
+					var1.a(Particle.F, (double) var12.getX() + var1.s.nextDouble(), (double) (var12.getY() - 2) + var1.s.nextDouble() * 3.9D, (double) var12.getZ() + var1.s.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
 				}
 
 				for (var16 = 0; var16 < var4.c(); ++var16) {

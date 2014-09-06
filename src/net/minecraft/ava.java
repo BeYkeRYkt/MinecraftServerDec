@@ -35,7 +35,7 @@ public abstract class ava extends avb {
 			} else if (!this.M) {
 				var1.a(var2, this.e(var3), 2);
 				if (!var5) {
-					var1.a(var2, this.e(var3).c(), this.m(var3), -1);
+					var1.a(var2, this.e(var3).getBlock(), this.m(var3), -1);
 				}
 			}
 
@@ -104,7 +104,7 @@ public abstract class ava extends avb {
 			return var6;
 		} else {
 			bec var7 = var1.p(var5);
-			return Math.max(var6, var7.c() == aty.af ? ((Integer) var7.b(BlockRedstoneWire.O)).intValue() : 0);
+			return Math.max(var6, var7.getBlock() == aty.af ? ((Integer) var7.b(BlockRedstoneWire.O)).intValue() : 0);
 		}
 	}
 
@@ -117,7 +117,7 @@ public abstract class ava extends avb {
 
 	protected int c(ard var1, Position var2, PaintingDirection var3) {
 		bec var4 = var1.p(var2);
-		Block var5 = var4.c();
+		Block var5 = var4.getBlock();
 		return this.c(var5) ? (var5 == aty.af ? ((Integer) var4.b(BlockRedstoneWire.O)).intValue() : var1.a(var2, var3)) : 0;
 	}
 
@@ -178,13 +178,13 @@ public abstract class ava extends avb {
 	}
 
 	public boolean e(Block var1) {
-		return var1 == this.e(this.P()).c() || var1 == this.k(this.P()).c();
+		return var1 == this.e(this.P()).getBlock() || var1 == this.k(this.P()).getBlock();
 	}
 
 	public boolean i(World var1, Position var2, bec var3) {
 		PaintingDirection var4 = ((PaintingDirection) var3.b(N)).d();
 		Position var5 = var2.a(var4);
-		return d(var1.p(var5).c()) ? var1.p(var5).b(N) != var4 : false;
+		return d(var1.p(var5).getBlock()) ? var1.p(var5).b(N) != var4 : false;
 	}
 
 	protected int m(bec var1) {

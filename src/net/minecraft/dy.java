@@ -13,15 +13,15 @@ public final class dy extends Position {
 		this.d = var3;
 	}
 
-	public int n() {
+	public int getX() {
 		return this.b;
 	}
 
-	public int o() {
+	public int getY() {
 		return this.c;
 	}
 
-	public int p() {
+	public int getZ() {
 		return this.d;
 	}
 

@@ -2,7 +2,7 @@ package net.minecraft;
 
 import net.minecraft.server.MinecraftServer;
 
-public class ro implements HandshakingPacketListener {
+public class ro implements HandshakingServerboundPacketListener {
 
 	private final MinecraftServer a;
 	private final gr b;
@@ -12,7 +12,7 @@ public class ro implements HandshakingPacketListener {
 		this.b = var2;
 	}
 
-	public void handle(PacketSetProtocol var1) {
+	public void handle(PacketInSetProtocol var1) {
 		switch (rp.a[var1.getNextState().ordinal()]) {
 			case 1:
 				this.b.a(EnumProtocol.LOGIN);

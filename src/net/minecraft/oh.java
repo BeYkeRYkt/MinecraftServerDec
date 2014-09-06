@@ -12,7 +12,7 @@ final class oh extends eg {
 			if (var2.a(1, var3.s)) {
 				var2.b = 0;
 			}
-		} else if (var3.p(var4).c() == aty.W) {
+		} else if (var3.p(var4).getBlock() == aty.W) {
 			aty.W.d(var3, var4, aty.W.P().a(BlockTNT.a, Boolean.valueOf(true)));
 			var3.g(var4);
 		} else {

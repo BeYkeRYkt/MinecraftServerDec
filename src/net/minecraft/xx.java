@@ -48,9 +48,9 @@ public abstract class xx extends abq implements xt {
 	}
 
 	protected void l(boolean var1) {
-		ew var2 = ew.I;
+		Particle var2 = Particle.I;
 		if (!var1) {
-			var2 = ew.l;
+			var2 = Particle.l;
 		}
 
 		for (int var3 = 0; var3 < 7; ++var3) {

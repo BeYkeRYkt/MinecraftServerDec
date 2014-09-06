@@ -21,15 +21,15 @@ public class abi {
 	private int l;
 
 	public abi() {
-		this.c = Position.a;
-		this.d = Position.a;
+		this.c = Position.ZERO;
+		this.d = Position.ZERO;
 		this.j = new TreeMap();
 		this.k = Lists.newArrayList();
 	}
 
 	public abi(World var1) {
-		this.c = Position.a;
-		this.d = Position.a;
+		this.c = Position.ZERO;
+		this.d = Position.ZERO;
 		this.j = new TreeMap();
 		this.k = Lists.newArrayList();
 		this.a = var1;
@@ -53,10 +53,10 @@ public class abi {
 
 		int var2 = this.h / 10;
 		if (this.l < var2 && this.b.size() > 20 && this.a.s.nextInt(7000) == 0) {
-			brw var3 = this.a(this.d, 2, 4, 2);
+			Vec3D var3 = this.a(this.d, 2, 4, 2);
 			if (var3 != null) {
 				EntityIronGolem var4 = new EntityIronGolem(this.a);
-				var4.b(var3.a, var3.b, var3.c);
+				var4.b(var3.x, var3.y, var3.z);
 				this.a.d((Entity) var4);
 				++this.l;
 			}
@@ -64,11 +64,11 @@ public class abi {
 
 	}
 
-	private brw a(Position var1, int var2, int var3, int var4) {
+	private Vec3D a(Position var1, int var2, int var3, int var4) {
 		for (int var5 = 0; var5 < 10; ++var5) {
 			Position var6 = var1.a(this.a.s.nextInt(16) - 8, this.a.s.nextInt(6) - 3, this.a.s.nextInt(16) - 8);
 			if (this.a(var6) && this.a(new Position(var2, var3, var4), var6)) {
-				return new brw((double) var6.n(), (double) var6.o(), (double) var6.p());
+				return new Vec3D((double) var6.getX(), (double) var6.getY(), (double) var6.getZ());
 			}
 		}
 
@@ -79,13 +79,13 @@ public class abi {
 		if (!World.a((ard) this.a, var2.b())) {
 			return false;
 		} else {
-			int var3 = var2.n() - var1.n() / 2;
-			int var4 = var2.p() - var1.p() / 2;
+			int var3 = var2.getX() - var1.getX() / 2;
+			int var4 = var2.getZ() - var1.getZ() / 2;
 
-			for (int var5 = var3; var5 < var3 + var1.n(); ++var5) {
-				for (int var6 = var2.o(); var6 < var2.o() + var1.o(); ++var6) {
-					for (int var7 = var4; var7 < var4 + var1.p(); ++var7) {
-						if (this.a.p(new Position(var5, var6, var7)).c().t()) {
+			for (int var5 = var3; var5 < var3 + var1.getX(); ++var5) {
+				for (int var6 = var2.getY(); var6 < var2.getY() + var1.getY(); ++var6) {
+					for (int var7 = var4; var7 < var4 + var1.getZ(); ++var7) {
+						if (this.a.p(new Position(var5, var6, var7)).getBlock().t()) {
 							return false;
 						}
 					}
@@ -97,12 +97,12 @@ public class abi {
 	}
 
 	private void j() {
-		List var1 = this.a.a(EntityIronGolem.class, new brt((double) (this.d.n() - this.e), (double) (this.d.o() - 4), (double) (this.d.p() - this.e), (double) (this.d.n() + this.e), (double) (this.d.o() + 4), (double) (this.d.p() + this.e)));
+		List var1 = this.a.a(EntityIronGolem.class, new brt((double) (this.d.getX() - this.e), (double) (this.d.getY() - 4), (double) (this.d.getZ() - this.e), (double) (this.d.getX() + this.e), (double) (this.d.getY() + 4), (double) (this.d.getZ() + this.e)));
 		this.l = var1.size();
 	}
 
 	private void k() {
-		List var1 = this.a.a(EntityVillager.class, new brt((double) (this.d.n() - this.e), (double) (this.d.o() - 4), (double) (this.d.p() - this.e), (double) (this.d.n() + this.e), (double) (this.d.o() + 4), (double) (this.d.p() + this.e)));
+		List var1 = this.a.a(EntityVillager.class, new brt((double) (this.d.getX() - this.e), (double) (this.d.getY() - 4), (double) (this.d.getZ() - this.e), (double) (this.d.getX() + this.e), (double) (this.d.getY() + 4), (double) (this.d.getZ() + this.e)));
 		this.h = var1.size();
 		if (this.h == 0) {
 			this.j.clear();
@@ -191,7 +191,7 @@ public class abi {
 				}
 
 				var3 = (abh) var2.next();
-			} while (var3.d().n() != var1.n() || var3.d().p() != var1.p() || Math.abs(var3.d().o() - var1.o()) > 1);
+			} while (var3.d().getX() != var1.getX() || var3.d().getZ() != var1.getZ() || Math.abs(var3.d().getY() - var1.getY()) > 1);
 
 			return var3;
 		}
@@ -300,7 +300,7 @@ public class abi {
 	}
 
 	private boolean f(Position var1) {
-		Block var2 = this.a.p(var1).c();
+		Block var2 = this.a.p(var1).getBlock();
 		return var2 instanceof BlockDoor ? var2.r() == Material.WOOD : false;
 	}
 
@@ -310,7 +310,7 @@ public class abi {
 			this.d = new Position(0, 0, 0);
 			this.e = 0;
 		} else {
-			this.d = new Position(this.c.n() / var1, this.c.o() / var1, this.c.p() / var1);
+			this.d = new Position(this.c.getX() / var1, this.c.getY() / var1, this.c.getZ() / var1);
 			int var2 = 0;
 
 			abh var4;
@@ -371,21 +371,21 @@ public class abi {
 		var1.put("Stable", this.f);
 		var1.put("Tick", this.g);
 		var1.put("MTick", this.i);
-		var1.put("CX", this.d.n());
-		var1.put("CY", this.d.o());
-		var1.put("CZ", this.d.p());
-		var1.put("ACX", this.c.n());
-		var1.put("ACY", this.c.o());
-		var1.put("ACZ", this.c.p());
+		var1.put("CX", this.d.getX());
+		var1.put("CY", this.d.getY());
+		var1.put("CZ", this.d.getZ());
+		var1.put("ACX", this.c.getX());
+		var1.put("ACY", this.c.getY());
+		var1.put("ACZ", this.c.getZ());
 		NBTListTag var2 = new NBTListTag();
 		Iterator var3 = this.b.iterator();
 
 		while (var3.hasNext()) {
 			abh var4 = (abh) var3.next();
 			NBTCompoundTag var5 = new NBTCompoundTag();
-			var5.put("X", var4.d().n());
-			var5.put("Y", var4.d().o());
-			var5.put("Z", var4.d().p());
+			var5.put("X", var4.d().getX());
+			var5.put("Y", var4.d().getY());
+			var5.put("Z", var4.d().getZ());
 			var5.put("IDX", var4.f());
 			var5.put("IDZ", var4.g());
 			var5.put("TS", var4.h());

@@ -32,13 +32,13 @@ public class yp extends zb {
 			return false;
 		} else {
 			this.c = (Entity) var1.get(0);
-			brw var2 = abf.b(this.b, 16, 7, new brw(this.c.locationX, this.c.locationY, this.c.locationZ));
+			Vec3D var2 = abf.b(this.b, 16, 7, new Vec3D(this.c.locationX, this.c.locationY, this.c.locationZ));
 			if (var2 == null) {
 				return false;
-			} else if (this.c.e(var2.a, var2.b, var2.c) < this.c.h(this.b)) {
+			} else if (this.c.e(var2.x, var2.y, var2.z) < this.c.h(this.b)) {
 				return false;
 			} else {
-				this.g = this.h.a(var2.a, var2.b, var2.c);
+				this.g = this.h.a(var2.x, var2.y, var2.z);
 				return this.g == null ? false : this.g.b(var2);
 			}
 		}

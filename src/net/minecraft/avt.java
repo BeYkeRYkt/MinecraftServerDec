@@ -31,11 +31,11 @@ public class avt extends Block {
 	}
 
 	private void e(World var1, Position var2) {
-		if (d(var1, var2.b()) && var2.o() >= 0) {
+		if (d(var1, var2.b()) && var2.getY() >= 0) {
 			byte var3 = 32;
 			if (!M && var1.a(var2.a(-var3, -var3, -var3), var2.a(var3, var3, var3))) {
 				if (!var1.D) {
-					EntityFallingBlock var5 = new EntityFallingBlock(var1, (double) var2.n() + 0.5D, (double) var2.o(), (double) var2.p() + 0.5D, var1.p(var2));
+					EntityFallingBlock var5 = new EntityFallingBlock(var1, (double) var2.getX() + 0.5D, (double) var2.getY(), (double) var2.getZ() + 0.5D, var1.p(var2));
 					this.a(var5);
 					var1.d((Entity) var5);
 				}
@@ -43,11 +43,11 @@ public class avt extends Block {
 				var1.g(var2);
 
 				Position var4;
-				for (var4 = var2.b(); d(var1, var4) && var4.o() > 0; var4 = var4.b()) {
+				for (var4 = var2.b(); d(var1, var4) && var4.getY() > 0; var4 = var4.b()) {
 					;
 				}
 
-				if (var4.o() > 0) {
+				if (var4.getY() > 0) {
 					var1.a(var4.a(), this.P());
 				}
 			}
@@ -63,8 +63,8 @@ public class avt extends Block {
 	}
 
 	public static boolean d(World var0, Position var1) {
-		Block var2 = var0.p(var1).c();
-		Material var3 = var2.J;
+		Block var2 = var0.p(var1).getBlock();
+		Material var3 = var2.material;
 		return var2 == aty.ab || var3 == Material.AIR || var3 == Material.WATER || var3 == Material.LAVA;
 	}
 
