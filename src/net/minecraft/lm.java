@@ -2,13 +2,13 @@ package net.minecraft;
 
 public class lm implements Packet<PlayClientboundPacketListener> {
 
-	private IJSONComponent a;
-	private IJSONComponent b;
+	private IChatBaseComponent a;
+	private IChatBaseComponent b;
 
 	public lm() {
 	}
 
-	public lm(IJSONComponent var1) {
+	public lm(IChatBaseComponent var1) {
 		this.a = var1;
 	}
 

@@ -10,7 +10,7 @@ public abstract class aqf implements CommandSenderInterface {
 	private static final SimpleDateFormat a = new SimpleDateFormat("HH:mm:ss");
 	private int b;
 	private boolean c = true;
-	private IJSONComponent d = null;
+	private IChatBaseComponent d = null;
 	private String e = "";
 	private String f = "@";
 	private final af g = new af();
@@ -19,7 +19,7 @@ public abstract class aqf implements CommandSenderInterface {
 		return this.b;
 	}
 
-	public IJSONComponent k() {
+	public IChatBaseComponent k() {
 		return this.d;
 	}
 
@@ -95,17 +95,17 @@ public abstract class aqf implements CommandSenderInterface {
 		return this.f;
 	}
 
-	public IJSONComponent e_() {
-		return new hy(this.d_());
+	public IChatBaseComponent e_() {
+		return new ChatComponentText(this.d_());
 	}
 
 	public void b(String var1) {
 		this.f = var1;
 	}
 
-	public void sendChatMessage(IJSONComponent var1) {
+	public void sendChatMessage(IChatBaseComponent var1) {
 		if (this.c && this.e() != null && !this.e().D) {
-			this.d = (new hy("[" + a.format(new Date()) + "] ")).a(var1);
+			this.d = (new ChatComponentText("[" + a.format(new Date()) + "] ")).a(var1);
 			this.h();
 		}
 
@@ -122,7 +122,7 @@ public abstract class aqf implements CommandSenderInterface {
 
 	public abstract void h();
 
-	public void b(IJSONComponent var1) {
+	public void b(IChatBaseComponent var1) {
 		this.d = var1;
 	}
 

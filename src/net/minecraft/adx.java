@@ -715,14 +715,14 @@ public abstract class adx extends Entity implements vz {
 		return this.b;
 	}
 
-	public IJSONComponent e_() {
+	public IChatBaseComponent e_() {
 		if (this.k_()) {
-			hy var2 = new hy(this.b);
+			ChatComponentText var2 = new ChatComponentText(this.b);
 			var2.b().a(this.aP());
 			var2.b().a(this.aJ().toString());
 			return var2;
 		} else {
-			hz var1 = new hz(this.d_(), new Object[0]);
+			ChatMessage var1 = new ChatMessage(this.d_(), new Object[0]);
 			var1.b().a(this.aP());
 			var1.b().a(this.aJ().toString());
 			return var1;

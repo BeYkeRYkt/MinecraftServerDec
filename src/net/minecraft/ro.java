@@ -16,15 +16,15 @@ public class ro implements HandshakingServerboundPacketListener {
 		switch (rp.a[var1.getNextState().ordinal()]) {
 			case 1:
 				this.b.a(EnumProtocol.LOGIN);
-				hy var2;
+				ChatComponentText var2;
 				if (var1.getProtocolVersion() > 47) {
-					var2 = new hy("Outdated server! I\'m still on 1.8");
+					var2 = new ChatComponentText("Outdated server! I\'m still on 1.8");
 					this.b.a((Packet) (new ng(var2)));
-					this.b.a((IJSONComponent) var2);
+					this.b.a((IChatBaseComponent) var2);
 				} else if (var1.getProtocolVersion() < 47) {
-					var2 = new hy("Outdated client! Please use 1.8");
+					var2 = new ChatComponentText("Outdated client! Please use 1.8");
 					this.b.a((Packet) (new ng(var2)));
-					this.b.a((IJSONComponent) var2);
+					this.b.a((IChatBaseComponent) var2);
 				} else {
 					this.b.a((PacketListener) (new rq(this.a, this.b)));
 				}
@@ -39,6 +39,6 @@ public class ro implements HandshakingServerboundPacketListener {
 
 	}
 
-	public void handle(IJSONComponent var1) {
+	public void handle(IChatBaseComponent var1) {
 	}
 }

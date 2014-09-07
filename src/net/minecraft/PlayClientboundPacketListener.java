@@ -18,11 +18,11 @@ public interface PlayClientboundPacketListener extends PacketListener {
 
 	void handle(PacketOutAnimation var1);
 
-	void a(is var1);
+	void handle(PacketOutStatistics var1);
 
 	void handle(PacketOutBlockBreakAnimation var1);
 
-	void a(kc var1);
+	void handle(PacketOutSignEditorOpen var1);
 
 	void handle(PacketOutUpdateBlockEntity var1);
 

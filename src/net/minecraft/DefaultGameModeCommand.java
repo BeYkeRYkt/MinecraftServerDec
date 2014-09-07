@@ -19,7 +19,7 @@ public class DefaultGameModeCommand extends GameModeCommand {
 		} else {
 			GameMode var3 = this.h(var1, var2[0]);
 			this.a(var3);
-			a(var1, this, "commands.defaultgamemode.success", new Object[] { new hz("gameMode." + var3.getName(), new Object[0]) });
+			a(var1, this, "commands.defaultgamemode.success", new Object[] { new ChatMessage("gameMode." + var3.getName(), new Object[0]) });
 		}
 	}
 

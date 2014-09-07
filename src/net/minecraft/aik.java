@@ -19,7 +19,7 @@ class aik extends ajk {
 
 	public void a(EntityHuman var1, ItemStack var2) {
 		if (var2.getItem() == Items.POTION && var2.i() > 0) {
-			this.a.b((Statistic) tl.B);
+			this.a.b((Statistic) AchievementList.B);
 		}
 
 		super.a(var1, var2);

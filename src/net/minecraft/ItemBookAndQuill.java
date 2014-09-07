@@ -8,7 +8,7 @@ public class ItemBookAndQuill extends Item {
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
 		var3.a(var1);
-		var3.b(StatisticList.J[Item.getId((Item) this)]);
+		var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
 		return var1;
 	}
 

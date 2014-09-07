@@ -30,10 +30,10 @@ public class ab implements CommandHandlerInterface {
 		CommandInterface var5 = (CommandInterface) this.b.get(var4);
 		int var6 = this.a(var5, var3);
 		int var7 = 0;
-		hz var8;
+		ChatMessage var8;
 		if (var5 == null) {
-			var8 = new hz("commands.generic.notFound", new Object[0]);
-			var8.b().a(FormattingCode.m);
+			var8 = new ChatMessage("commands.generic.notFound", new Object[0]);
+			var8.b().a(EnumChatFormat.RED);
 			var1.sendChatMessage(var8);
 		} else if (var5.a(var1)) {
 			if (var6 > -1) {
@@ -58,8 +58,8 @@ public class ab implements CommandHandlerInterface {
 				}
 			}
 		} else {
-			var8 = new hz("commands.generic.permission", new Object[0]);
-			var8.b().a(FormattingCode.m);
+			var8 = new ChatMessage("commands.generic.permission", new Object[0]);
+			var8.b().a(EnumChatFormat.RED);
 			var1.sendChatMessage(var8);
 		}
 
@@ -68,21 +68,21 @@ public class ab implements CommandHandlerInterface {
 	}
 
 	protected boolean a(CommandSenderInterface var1, String[] var2, CommandInterface var3, String var4) {
-		hz var6;
+		ChatMessage var6;
 		try {
 			var3.executeCommand(var1, var2);
 			return true;
 		} catch (dp var7) {
-			var6 = new hz("commands.generic.usage", new Object[] { new hz(var7.getMessage(), var7.a()) });
-			var6.b().a(FormattingCode.m);
+			var6 = new ChatMessage("commands.generic.usage", new Object[] { new ChatMessage(var7.getMessage(), var7.a()) });
+			var6.b().a(EnumChatFormat.RED);
 			var1.sendChatMessage(var6);
 		} catch (di var8) {
-			var6 = new hz(var8.getMessage(), var8.a());
-			var6.b().a(FormattingCode.m);
+			var6 = new ChatMessage(var8.getMessage(), var8.a());
+			var6.b().a(EnumChatFormat.RED);
 			var1.sendChatMessage(var6);
 		} catch (Throwable var9) {
-			var6 = new hz("commands.generic.exception", new Object[0]);
-			var6.b().a(FormattingCode.m);
+			var6 = new ChatMessage("commands.generic.exception", new Object[0]);
+			var6.b().a(EnumChatFormat.RED);
 			var1.sendChatMessage(var6);
 			a.error("Couldn\'t process command: \'" + var4 + "\'", var9);
 		}

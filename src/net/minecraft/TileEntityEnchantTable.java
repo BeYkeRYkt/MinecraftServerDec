@@ -102,8 +102,8 @@ public class TileEntityEnchantTable extends TileEntity implements pm, vv {
 		this.p = var1;
 	}
 
-	public IJSONComponent e_() {
-		return (IJSONComponent) (this.k_() ? new hy(this.d_()) : new hz(this.d_(), new Object[0]));
+	public IChatBaseComponent e_() {
+		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.d_()) : new ChatMessage(this.d_(), new Object[0]));
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {

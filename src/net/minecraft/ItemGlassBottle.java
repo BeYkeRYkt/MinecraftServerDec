@@ -23,7 +23,7 @@ public class ItemGlassBottle extends Item {
 
 				if (var2.p(var5).getBlock().r() == Material.WATER) {
 					--var1.b;
-					var3.b(StatisticList.J[Item.getId((Item) this)]);
+					var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
 					if (var1.b <= 0) {
 						return new ItemStack(Items.POTION);
 					}

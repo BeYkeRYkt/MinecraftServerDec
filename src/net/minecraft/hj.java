@@ -5,12 +5,12 @@ import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class hj implements IJSONComponent {
+public abstract class hj implements IChatBaseComponent {
 
 	protected List a = Lists.newArrayList();
 	private hv b;
 
-	public IJSONComponent a(IJSONComponent var1) {
+	public IChatBaseComponent a(IChatBaseComponent var1) {
 		var1.b().a(this.b());
 		this.a.add(var1);
 		return this;
@@ -20,16 +20,16 @@ public abstract class hj implements IJSONComponent {
 		return this.a;
 	}
 
-	public IJSONComponent a(String var1) {
-		return this.a((IJSONComponent) (new hy(var1)));
+	public IChatBaseComponent a(String var1) {
+		return this.a((IChatBaseComponent) (new ChatComponentText(var1)));
 	}
 
-	public IJSONComponent a(hv var1) {
+	public IChatBaseComponent a(hv var1) {
 		this.b = var1;
 		Iterator var2 = this.a.iterator();
 
 		while (var2.hasNext()) {
-			IJSONComponent var3 = (IJSONComponent) var2.next();
+			IChatBaseComponent var3 = (IChatBaseComponent) var2.next();
 			var3.b().a(this.b());
 		}
 
@@ -42,7 +42,7 @@ public abstract class hj implements IJSONComponent {
 			Iterator var1 = this.a.iterator();
 
 			while (var1.hasNext()) {
-				IJSONComponent var2 = (IJSONComponent) var1.next();
+				IChatBaseComponent var2 = (IChatBaseComponent) var1.next();
 				var2.b().a(this.b);
 			}
 		}
@@ -59,7 +59,7 @@ public abstract class hj implements IJSONComponent {
 		Iterator var2 = this.iterator();
 
 		while (var2.hasNext()) {
-			IJSONComponent var3 = (IJSONComponent) var2.next();
+			IChatBaseComponent var3 = (IChatBaseComponent) var2.next();
 			var1.append(var3.e());
 		}
 

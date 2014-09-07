@@ -116,7 +116,7 @@ public class EntitySkeleton extends EntityMonster implements afr {
 			double var3 = var2.locationX - this.locationX;
 			double var5 = var2.locationZ - this.locationZ;
 			if (var3 * var3 + var5 * var5 >= 2500.0D) {
-				var2.b((Statistic) tl.v);
+				var2.b((Statistic) AchievementList.v);
 			}
 		} else if (var1.j() instanceof EntityCreeper && ((EntityCreeper) var1.j()).n() && ((EntityCreeper) var1.j()).cn()) {
 			((EntityCreeper) var1.j()).co();

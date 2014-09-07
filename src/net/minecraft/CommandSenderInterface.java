@@ -4,9 +4,9 @@ public interface CommandSenderInterface {
 
 	String d_();
 
-	IJSONComponent e_();
+	IChatBaseComponent e_();
 
-	void sendChatMessage(IJSONComponent var1);
+	void sendChatMessage(IChatBaseComponent var1);
 
 	boolean a(int var1, String var2);
 

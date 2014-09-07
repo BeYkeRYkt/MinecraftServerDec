@@ -236,29 +236,29 @@ public class EntityItem extends Entity {
 			int var3 = var2.b;
 			if (this.d == 0 && (this.g == null || 6000 - this.c <= 200 || this.g.equals(var1.d_())) && var1.playerInventory.a(var2)) {
 				if (var2.getItem() == Item.getItemOf(Blocks.LOG)) {
-					var1.b((Statistic) tl.g);
+					var1.b((Statistic) AchievementList.g);
 				}
 
 				if (var2.getItem() == Item.getItemOf(Blocks.LOG2)) {
-					var1.b((Statistic) tl.g);
+					var1.b((Statistic) AchievementList.g);
 				}
 
 				if (var2.getItem() == Items.LEATHER) {
-					var1.b((Statistic) tl.t);
+					var1.b((Statistic) AchievementList.t);
 				}
 
 				if (var2.getItem() == Items.DIAMOND) {
-					var1.b((Statistic) tl.w);
+					var1.b((Statistic) AchievementList.w);
 				}
 
 				if (var2.getItem() == Items.BLAZE_ROD) {
-					var1.b((Statistic) tl.A);
+					var1.b((Statistic) AchievementList.A);
 				}
 
 				if (var2.getItem() == Items.DIAMOND && this.n() != null) {
 					EntityHuman var4 = this.o.a(this.n());
 					if (var4 != null && var4 != var1) {
-						var4.b((Statistic) tl.x);
+						var4.b((Statistic) AchievementList.x);
 					}
 				}
 

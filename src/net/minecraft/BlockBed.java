@@ -30,7 +30,7 @@ public class BlockBed extends avb {
 				if (((Boolean) var3.b(b)).booleanValue()) {
 					EntityHuman var10 = this.e(var1, var2);
 					if (var10 != null) {
-						var4.b((IJSONComponent) (new hz("tile.bed.occupied", new Object[0])));
+						var4.b((IChatBaseComponent) (new ChatMessage("tile.bed.occupied", new Object[0])));
 						return true;
 					}
 
@@ -45,9 +45,9 @@ public class BlockBed extends avb {
 					return true;
 				} else {
 					if (var11 == ahf.c) {
-						var4.b((IJSONComponent) (new hz("tile.bed.noSleep", new Object[0])));
+						var4.b((IChatBaseComponent) (new ChatMessage("tile.bed.noSleep", new Object[0])));
 					} else if (var11 == ahf.f) {
-						var4.b((IJSONComponent) (new hz("tile.bed.notSafe", new Object[0])));
+						var4.b((IChatBaseComponent) (new ChatMessage("tile.bed.notSafe", new Object[0])));
 					}
 
 					return true;

@@ -84,15 +84,15 @@ public abstract class PlayerList {
 		player.A().b(player);
 		this.a((pk) worldServer.Z(), player);
 		this.minecraftserver.aF();
-		hz var13;
+		ChatMessage var13;
 		if (!player.d_().equalsIgnoreCase(var6)) {
-			var13 = new hz("multiplayer.player.joined.renamed", new Object[] { player.e_(), var6 });
+			var13 = new ChatMessage("multiplayer.player.joined.renamed", new Object[] { player.e_(), var6 });
 		} else {
-			var13 = new hz("multiplayer.player.joined", new Object[] { player.e_() });
+			var13 = new ChatMessage("multiplayer.player.joined", new Object[] { player.e_() });
 		}
 
-		var13.b().a(FormattingCode.o);
-		this.a((IJSONComponent) var13);
+		var13.b().a(EnumChatFormat.YELLOW);
+		this.a((IChatBaseComponent) var13);
 		this.c(player);
 		var12.a(player.locationX, player.locationY, player.locationZ, player.yaw, player.pitch);
 		this.b(player, worldServer);
@@ -434,7 +434,7 @@ public abstract class PlayerList {
 		}
 	}
 
-	public void a(EntityHuman var1, IJSONComponent var2) {
+	public void a(EntityHuman var1, IChatBaseComponent var2) {
 		bsf var3 = var1.bN();
 		if (var3 != null) {
 			Collection var4 = var3.d();
@@ -451,7 +451,7 @@ public abstract class PlayerList {
 		}
 	}
 
-	public void b(EntityHuman var1, IJSONComponent var2) {
+	public void b(EntityHuman var1, IChatBaseComponent var2) {
 		bsf var3 = var1.bN();
 		if (var3 == null) {
 			this.a(var2);
@@ -673,13 +673,13 @@ public abstract class PlayerList {
 
 	}
 
-	public void a(IJSONComponent var1, boolean var2) {
+	public void a(IChatBaseComponent var1, boolean var2) {
 		this.minecraftserver.sendChatMessage(var1);
 		int var3 = var2 ? 1 : 0;
 		this.sendPacket((Packet) (new PacketOutChatMessage(var1, (byte) var3)));
 	}
 
-	public void a(IJSONComponent var1) {
+	public void a(IChatBaseComponent var1) {
 		this.a(var1, true);
 	}
 

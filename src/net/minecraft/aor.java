@@ -3,9 +3,9 @@ package net.minecraft;
 import com.google.common.collect.Lists;
 import java.util.ArrayList;
 
-public class aor implements aoo {
+public class aor implements IRecipe {
 
-	public boolean a(ain var1, World var2) {
+	public boolean a(InventoryCrafting var1, World var2) {
 		ArrayList var3 = Lists.newArrayList();
 
 		for (int var4 = 0; var4 < var1.n_(); ++var4) {
@@ -24,7 +24,7 @@ public class aor implements aoo {
 		return var3.size() == 2;
 	}
 
-	public ItemStack a(ain var1) {
+	public ItemStack a(InventoryCrafting var1) {
 		ArrayList var2 = Lists.newArrayList();
 
 		ItemStack var4;
@@ -65,11 +65,11 @@ public class aor implements aoo {
 		return 4;
 	}
 
-	public ItemStack b() {
+	public ItemStack getResult() {
 		return null;
 	}
 
-	public ItemStack[] b(ain var1) {
+	public ItemStack[] b(InventoryCrafting var1) {
 		ItemStack[] var2 = new ItemStack[var1.n_()];
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {

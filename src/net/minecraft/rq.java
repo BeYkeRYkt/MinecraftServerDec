@@ -50,9 +50,9 @@ public class rq implements nh, pm {
 	public void a(String var1) {
 		try {
 			c.info("Disconnecting " + this.d() + ": " + var1);
-			hy var2 = new hy(var1);
+			ChatComponentText var2 = new ChatComponentText(var1);
 			this.a.a((Packet) (new ng(var2)));
-			this.a.a((IJSONComponent) var2);
+			this.a.a((IChatBaseComponent) var2);
 		} catch (Exception var3) {
 			c.error("Error whilst disconnecting player", (Throwable) var3);
 		}
@@ -79,7 +79,7 @@ public class rq implements nh, pm {
 
 	}
 
-	public void handle(IJSONComponent var1) {
+	public void handle(IChatBaseComponent var1) {
 		c.info(this.d() + " lost connection: " + var1.c());
 	}
 

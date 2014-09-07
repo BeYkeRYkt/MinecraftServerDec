@@ -16,7 +16,7 @@ public class ItemMilkBucket extends Item {
 			var3.bj();
 		}
 
-		var3.b(StatisticList.J[Item.getId((Item) this)]);
+		var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
 		return var1.b <= 0 ? new ItemStack(Items.BUCKET) : var1;
 	}
 

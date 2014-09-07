@@ -29,7 +29,7 @@ public class ItemWaterLily extends ItemWithAuxData {
 						--var1.b;
 					}
 
-					var3.b(StatisticList.J[Item.getId((Item) this)]);
+					var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
 				}
 			}
 

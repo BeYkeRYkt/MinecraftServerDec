@@ -4,11 +4,11 @@ public class bry {
 
 	private final bsd a;
 	private final String b;
-	private final bsk c;
+	private final IScoreboardCriteria c;
 	private bsl d;
 	private String e;
 
-	public bry(bsd var1, String var2, bsk var3) {
+	public bry(bsd var1, String var2, IScoreboardCriteria var3) {
 		this.a = var1;
 		this.b = var2;
 		this.c = var3;
@@ -20,7 +20,7 @@ public class bry {
 		return this.b;
 	}
 
-	public bsk c() {
+	public IScoreboardCriteria c() {
 		return this.c;
 	}
 

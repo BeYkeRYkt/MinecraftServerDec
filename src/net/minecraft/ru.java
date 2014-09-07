@@ -12,7 +12,7 @@ public class ru implements nv {
 		this.b = var2;
 	}
 
-	public void handle(IJSONComponent var1) {
+	public void handle(IChatBaseComponent var1) {
 	}
 
 	public void a(nx var1) {

@@ -6,5 +6,5 @@ public interface vz {
 
 	boolean k_();
 
-	IJSONComponent e_();
+	IChatBaseComponent e_();
 }

@@ -37,7 +37,7 @@ public class gr extends SimpleChannelInboundHandler {
 	private Channel i;
 	private SocketAddress j;
 	private PacketListener k;
-	private IJSONComponent l;
+	private IChatBaseComponent l;
 	private boolean m;
 	private boolean n;
 
@@ -65,12 +65,12 @@ public class gr extends SimpleChannelInboundHandler {
 	}
 
 	public void channelInactive(ChannelHandlerContext var1) {
-		this.a((IJSONComponent) (new hz("disconnect.endOfStream", new Object[0])));
+		this.a((IChatBaseComponent) (new ChatMessage("disconnect.endOfStream", new Object[0])));
 	}
 
 	public void exceptionCaught(ChannelHandlerContext var1, Throwable var2) {
 		f.debug("Disconnecting " + this.b(), var2);
-		this.a((IJSONComponent) (new hz("disconnect.genericReason", new Object[] { "Internal Exception: " + var2 })));
+		this.a((IChatBaseComponent) (new ChatMessage("disconnect.genericReason", new Object[] { "Internal Exception: " + var2 })));
 	}
 
 	protected void a(ChannelHandlerContext var1, Packet var2) {
@@ -158,7 +158,7 @@ public class gr extends SimpleChannelInboundHandler {
 		return this.j;
 	}
 
-	public void a(IJSONComponent var1) {
+	public void a(IChatBaseComponent var1) {
 		if (this.i.isOpen()) {
 			this.i.close().awaitUninterruptibly();
 			this.l = var1;
@@ -188,7 +188,7 @@ public class gr extends SimpleChannelInboundHandler {
 		return this.k;
 	}
 
-	public IJSONComponent j() {
+	public IChatBaseComponent j() {
 		return this.l;
 	}
 
@@ -227,7 +227,7 @@ public class gr extends SimpleChannelInboundHandler {
 			if (this.j() != null) {
 				this.i().handle(this.j());
 			} else if (this.i() != null) {
-				this.i().handle(new hy("Disconnected"));
+				this.i().handle(new ChatComponentText("Disconnected"));
 			}
 		}
 

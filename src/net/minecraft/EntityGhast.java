@@ -37,7 +37,7 @@ public class EntityGhast extends xl implements aex {
 			return false;
 		} else if ("fireball".equals(var1.p()) && var1.j() instanceof EntityHuman) {
 			super.a(var1, 1000.0F);
-			((EntityHuman) var1.j()).b((Statistic) tl.z);
+			((EntityHuman) var1.j()).b((Statistic) AchievementList.z);
 			return true;
 		} else {
 			return super.a(var1, var2);

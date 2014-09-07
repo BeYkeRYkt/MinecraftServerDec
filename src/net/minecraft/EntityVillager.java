@@ -402,10 +402,10 @@ public class EntityVillager extends ws implements ago, aqb {
 
 	}
 
-	public IJSONComponent e_() {
+	public IChatBaseComponent e_() {
 		String var1 = this.aL();
 		if (var1 != null && var1.length() > 0) {
-			return new hy(var1);
+			return new ChatComponentText(var1);
 		} else {
 			if (this.bp == null) {
 				this.cu();
@@ -448,7 +448,7 @@ public class EntityVillager extends ws implements ago, aqb {
 			}
 
 			if (var2 != null) {
-				hz var3 = new hz("entity.Villager." + var2, new Object[0]);
+				ChatMessage var3 = new ChatMessage("entity.Villager." + var2, new Object[0]);
 				var3.b().a(this.aP());
 				var3.b().a(this.aJ().toString());
 				return var3;

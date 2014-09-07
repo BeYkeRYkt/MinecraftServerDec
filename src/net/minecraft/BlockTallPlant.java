@@ -135,7 +135,7 @@ public class BlockTallPlant extends auc implements atz {
 		if (var5 != avk.d && var5 != avk.c) {
 			return false;
 		} else {
-			var4.b(StatisticList.H[Block.getBlockId((Block) this)]);
+			var4.b(StatisticList.MINE_BLOCK_COUNT[Block.getBlockId((Block) this)]);
 			int var6 = (var5 == avk.c ? bbi.b : bbi.c).a();
 			a(var1, var2, new ItemStack(Blocks.TALLGRASS, 2, var6));
 			return true;

@@ -144,7 +144,7 @@ public class StatsCommand extends AbstractCommand {
 
 		while (var3.hasNext()) {
 			bry var4 = (bry) var3.next();
-			if (!var4.c().b()) {
+			if (!var4.c().isReadOnly()) {
 				var2.add(var4.b());
 			}
 		}

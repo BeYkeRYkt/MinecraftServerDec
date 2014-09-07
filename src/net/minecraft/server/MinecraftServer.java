@@ -302,7 +302,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			if (this.startServer()) {
 				this.lastTickTime = getCurrentMillis();
 				long var1 = 0L;
-				this.serverPing.a((IJSONComponent) (new hy(this.E)));
+				this.serverPing.a((IChatBaseComponent) (new ChatComponentText(this.E)));
 				this.serverPing.a(new nt("1.8", 47));
 				this.a(this.serverPing);
 
@@ -745,7 +745,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return "Server";
 	}
 
-	public void sendChatMessage(IJSONComponent var1) {
+	public void sendChatMessage(IChatBaseComponent var1) {
 		logger.info(var1.c());
 	}
 
@@ -1051,8 +1051,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.G = var1;
 	}
 
-	public IJSONComponent e_() {
-		return new hy(this.d_());
+	public IChatBaseComponent e_() {
+		return new ChatComponentText(this.d_());
 	}
 
 	public boolean isAnnouncePlayerAchievmentsEnabled() {

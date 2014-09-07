@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 
 public class no implements Packet<nm> {
 
-	private static final Gson a = (new GsonBuilder()).registerTypeAdapter(nt.class, new nu()).registerTypeAdapter(nq.class, new nr()).registerTypeAdapter(ServerPing.class, new ns()).registerTypeHierarchyAdapter(IJSONComponent.class, new JSONComponentFormat()).registerTypeHierarchyAdapter(hv.class, new hx()).registerTypeAdapterFactory(new ut()).create();
+	private static final Gson a = (new GsonBuilder()).registerTypeAdapter(nt.class, new nu()).registerTypeAdapter(nq.class, new nr()).registerTypeAdapter(ServerPing.class, new ns()).registerTypeHierarchyAdapter(IChatBaseComponent.class, new JSONComponentFormat()).registerTypeHierarchyAdapter(hv.class, new hx()).registerTypeAdapterFactory(new ut()).create();
 	private ServerPing b;
 
 	public no() {

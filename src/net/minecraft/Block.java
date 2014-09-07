@@ -767,7 +767,7 @@ public class Block {
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
-		var2.b(StatisticList.H[getBlockId(this)]);
+		var2.b(StatisticList.MINE_BLOCK_COUNT[getBlockId(this)]);
 		var2.a(0.025F);
 		if (this.G() && aph.e(var2)) {
 			ItemStack var7 = this.i(var4);

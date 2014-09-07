@@ -191,14 +191,14 @@ public class TileEntityFurnace extends bdf implements pm, we {
 		if (this.h[0] == null) {
 			return false;
 		} else {
-			ItemStack var1 = aok.a().a(this.h[0]);
+			ItemStack var1 = RecipesFurnace.getInstance().a(this.h[0]);
 			return var1 == null ? false : (this.h[2] == null ? true : (!this.h[2].a(var1) ? false : (this.h[2].b < this.p_() && this.h[2].b < this.h[2].c() ? true : this.h[2].b < var1.c())));
 		}
 	}
 
 	public void n() {
 		if (this.o()) {
-			ItemStack var1 = aok.a().a(this.h[0]);
+			ItemStack var1 = RecipesFurnace.getInstance().a(this.h[0]);
 			if (this.h[2] == null) {
 				this.h[2] = var1.getCopy();
 			} else if (this.h[2].getItem() == var1.getItem()) {

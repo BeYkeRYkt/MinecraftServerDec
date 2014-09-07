@@ -17,7 +17,7 @@ public class ItemEgg extends Item {
 			var2.d((Entity) (new ahs(var2, var3)));
 		}
 
-		var3.b(StatisticList.J[Item.getId((Item) this)]);
+		var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
 		return var1;
 	}
 }

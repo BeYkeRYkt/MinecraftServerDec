@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class EntitySheep extends abq {
 
-	private final ain bk = new ain(new acm(this), 2, 1);
+	private final InventoryCrafting bk = new InventoryCrafting(new acm(this), 2, 1);
 	private static final Map bm = Maps.newEnumMap(akv.class);
 	private int bn;
 	private yw bo = new yw(this);
@@ -181,7 +181,7 @@ public class EntitySheep extends abq {
 		int var4 = ((EntitySheep) var2).cj().b();
 		this.bk.a(0).b(var3);
 		this.bk.a(1).b(var4);
-		ItemStack var5 = aop.a().a(this.bk, ((EntitySheep) var1).o);
+		ItemStack var5 = CraftingManager.getInstance().a(this.bk, ((EntitySheep) var1).o);
 		int var6;
 		if (var5 != null && var5.getItem() == Items.DYE) {
 			var6 = var5.i();

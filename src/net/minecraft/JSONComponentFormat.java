@@ -19,18 +19,18 @@ public class JSONComponentFormat implements JsonDeserializer, JsonSerializer {
 
 	private static final Gson a;
 
-	public IJSONComponent a(JsonElement var1, Type var2, JsonDeserializationContext var3) {
+	public IChatBaseComponent a(JsonElement var1, Type var2, JsonDeserializationContext var3) {
 		if (var1.isJsonPrimitive()) {
-			return new hy(var1.getAsString());
+			return new ChatComponentText(var1.getAsString());
 		} else if (!var1.isJsonObject()) {
 			if (var1.isJsonArray()) {
 				JsonArray var11 = var1.getAsJsonArray();
-				IJSONComponent var12 = null;
+				IChatBaseComponent var12 = null;
 				Iterator var15 = var11.iterator();
 
 				while (var15.hasNext()) {
 					JsonElement var17 = (JsonElement) var15.next();
-					IJSONComponent var18 = this.a(var17, (Type) var17.getClass(), var3);
+					IChatBaseComponent var18 = this.a(var17, (Type) var17.getClass(), var3);
 					if (var12 == null) {
 						var12 = var18;
 					} else {
@@ -46,7 +46,7 @@ public class JSONComponentFormat implements JsonDeserializer, JsonSerializer {
 			JsonObject var4 = var1.getAsJsonObject();
 			Object var5;
 			if (var4.has("text")) {
-				var5 = new hy(var4.get("text").getAsString());
+				var5 = new ChatComponentText(var4.get("text").getAsString());
 			} else if (var4.has("translate")) {
 				String var6 = var4.get("translate").getAsString();
 				if (var4.has("with")) {
@@ -55,17 +55,17 @@ public class JSONComponentFormat implements JsonDeserializer, JsonSerializer {
 
 					for (int var9 = 0; var9 < var8.length; ++var9) {
 						var8[var9] = this.a(var7.get(var9), var2, var3);
-						if (var8[var9] instanceof hy) {
-							hy var10 = (hy) var8[var9];
+						if (var8[var9] instanceof ChatComponentText) {
+							ChatComponentText var10 = (ChatComponentText) var8[var9];
 							if (var10.b().g() && var10.a().isEmpty()) {
 								var8[var9] = var10.g();
 							}
 						}
 					}
 
-					var5 = new hz(var6, var8);
+					var5 = new ChatMessage(var6, var8);
 				} else {
-					var5 = new hz(var6, new Object[0]);
+					var5 = new ChatMessage(var6, new Object[0]);
 				}
 			} else if (var4.has("score")) {
 				JsonObject var13 = var4.getAsJsonObject("score");
@@ -92,12 +92,12 @@ public class JSONComponentFormat implements JsonDeserializer, JsonSerializer {
 				}
 
 				for (int var16 = 0; var16 < var14.size(); ++var16) {
-					((IJSONComponent) var5).a(this.a(var14.get(var16), var2, var3));
+					((IChatBaseComponent) var5).a(this.a(var14.get(var16), var2, var3));
 				}
 			}
 
-			((IJSONComponent) var5).a((hv) var3.deserialize(var1, hv.class));
-			return (IJSONComponent) var5;
+			((IChatBaseComponent) var5).a((hv) var3.deserialize(var1, hv.class));
+			return (IChatBaseComponent) var5;
 		}
 	}
 
@@ -115,9 +115,9 @@ public class JSONComponentFormat implements JsonDeserializer, JsonSerializer {
 
 	}
 
-	public JsonElement a(IJSONComponent var1, Type var2, JsonSerializationContext var3) {
-		if (var1 instanceof hy && var1.b().g() && var1.a().isEmpty()) {
-			return new JsonPrimitive(((hy) var1).g());
+	public JsonElement a(IChatBaseComponent var1, Type var2, JsonSerializationContext var3) {
+		if (var1 instanceof ChatComponentText && var1.b().g() && var1.a().isEmpty()) {
+			return new JsonPrimitive(((ChatComponentText) var1).g());
 		} else {
 			JsonObject var4 = new JsonObject();
 			if (!var1.b().g()) {
@@ -129,17 +129,17 @@ public class JSONComponentFormat implements JsonDeserializer, JsonSerializer {
 				Iterator var6 = var1.a().iterator();
 
 				while (var6.hasNext()) {
-					IJSONComponent var7 = (IJSONComponent) var6.next();
+					IChatBaseComponent var7 = (IChatBaseComponent) var6.next();
 					var5.add(this.a(var7, (Type) var7.getClass(), var3));
 				}
 
 				var4.add("extra", var5);
 			}
 
-			if (var1 instanceof hy) {
-				var4.addProperty("text", ((hy) var1).g());
-			} else if (var1 instanceof hz) {
-				hz var11 = (hz) var1;
+			if (var1 instanceof ChatComponentText) {
+				var4.addProperty("text", ((ChatComponentText) var1).g());
+			} else if (var1 instanceof ChatMessage) {
+				ChatMessage var11 = (ChatMessage) var1;
 				var4.addProperty("translate", var11.i());
 				if (var11.j() != null && var11.j().length > 0) {
 					JsonArray var14 = new JsonArray();
@@ -148,8 +148,8 @@ public class JSONComponentFormat implements JsonDeserializer, JsonSerializer {
 
 					for (int var9 = 0; var9 < var8; ++var9) {
 						Object var10 = var16[var9];
-						if (var10 instanceof IJSONComponent) {
-							var14.add(this.a((IJSONComponent) var10, (Type) var10.getClass(), var3));
+						if (var10 instanceof IChatBaseComponent) {
+							var14.add(this.a((IChatBaseComponent) var10, (Type) var10.getClass(), var3));
 						} else {
 							var14.add(new JsonPrimitive(String.valueOf(var10)));
 						}
@@ -177,17 +177,17 @@ public class JSONComponentFormat implements JsonDeserializer, JsonSerializer {
 		}
 	}
 
-	public static String a(IJSONComponent var0) {
+	public static String a(IChatBaseComponent var0) {
 		return a.toJson((Object) var0);
 	}
 
-	public static IJSONComponent a(String var0) {
-		return (IJSONComponent) a.fromJson(var0, IJSONComponent.class);
+	public static IChatBaseComponent a(String var0) {
+		return (IChatBaseComponent) a.fromJson(var0, IChatBaseComponent.class);
 	}
 
 	// $FF: synthetic method
 	public JsonElement serialize(Object var1, Type var2, JsonSerializationContext var3) {
-		return this.a((IJSONComponent) var1, var2, var3);
+		return this.a((IChatBaseComponent) var1, var2, var3);
 	}
 
 	// $FF: synthetic method
@@ -197,7 +197,7 @@ public class JSONComponentFormat implements JsonDeserializer, JsonSerializer {
 
 	static {
 		GsonBuilder var0 = new GsonBuilder();
-		var0.registerTypeHierarchyAdapter(IJSONComponent.class, new JSONComponentFormat());
+		var0.registerTypeHierarchyAdapter(IChatBaseComponent.class, new JSONComponentFormat());
 		var0.registerTypeHierarchyAdapter(hv.class, new hx());
 		var0.registerTypeAdapterFactory(new ut());
 		a = var0.create();

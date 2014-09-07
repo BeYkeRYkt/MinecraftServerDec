@@ -51,7 +51,7 @@ public class ItemBow extends Item {
 				var3.playerInventory.a(Items.ARROW);
 			}
 
-			var3.b(StatisticList.J[Item.getId((Item) this)]);
+			var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
 			if (!var2.D) {
 				var2.d((Entity) var8);
 			}

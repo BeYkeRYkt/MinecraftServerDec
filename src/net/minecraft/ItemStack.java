@@ -83,7 +83,7 @@ public final class ItemStack {
 	public boolean a(EntityHuman var1, World var2, Position var3, BlockFace var4, float var5, float var6, float var7) {
 		boolean var8 = this.getItem().a(this, var1, var2, var3, var4, var5, var6, var7);
 		if (var8) {
-			var1.b(StatisticList.J[Item.getId(this.item)]);
+			var1.b(StatisticList.USE_ITEM_COUNT[Item.getId(this.item)]);
 		}
 
 		return var8;
@@ -208,7 +208,7 @@ public final class ItemStack {
 					--this.b;
 					if (var2 instanceof EntityHuman) {
 						EntityHuman var3 = (EntityHuman) var2;
-						var3.b(StatisticList.K[Item.getId(this.item)]);
+						var3.b(StatisticList.BREAK_ITEM_COUNT[Item.getId(this.item)]);
 						if (this.b == 0 && this.getItem() instanceof ItemBow) {
 							var3.bZ();
 						}
@@ -228,7 +228,7 @@ public final class ItemStack {
 	public void a(EntityLiving var1, EntityHuman var2) {
 		boolean var3 = this.item.a(this, var1, (EntityLiving) var2);
 		if (var3) {
-			var2.b(StatisticList.J[Item.getId(this.item)]);
+			var2.b(StatisticList.USE_ITEM_COUNT[Item.getId(this.item)]);
 		}
 
 	}
@@ -236,7 +236,7 @@ public final class ItemStack {
 	public void a(World var1, Block var2, Position var3, EntityHuman var4) {
 		boolean var5 = this.item.a(this, var1, var2, var3, var4);
 		if (var5) {
-			var4.b(StatisticList.J[Item.getId(this.item)]);
+			var4.b(StatisticList.USE_ITEM_COUNT[Item.getId(this.item)]);
 		}
 
 	}
@@ -299,7 +299,7 @@ public final class ItemStack {
 	}
 
 	public void a(World var1, EntityHuman var2, int var3) {
-		var2.a(StatisticList.I[Item.getId(this.item)], var3);
+		var2.a(StatisticList.CRAFT_BLOCK_COUNT[Item.getId(this.item)], var3);
 		this.item.d(this, var1, var2);
 	}
 
@@ -476,17 +476,17 @@ public final class ItemStack {
 		this.item = var1;
 	}
 
-	public IJSONComponent C() {
-		hy var1 = new hy(this.q());
+	public IChatBaseComponent C() {
+		ChatComponentText var1 = new ChatComponentText(this.q());
 		if (this.s()) {
 			var1.b().b(Boolean.valueOf(true));
 		}
 
-		IJSONComponent var2 = (new hy("[")).a(var1).a("]");
+		IChatBaseComponent var2 = (new ChatComponentText("[")).a(var1).a("]");
 		if (this.item != null) {
 			NBTCompoundTag var3 = new NBTCompoundTag();
 			this.b(var3);
-			var2.b().a(new hr(hs.c, new hy(var3.toString())));
+			var2.b().a(new ChatHoverable(EnumHoverAction.c, new ChatComponentText(var3.toString())));
 			var2.b().a(this.u().e);
 		}
 

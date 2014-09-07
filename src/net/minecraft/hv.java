@@ -3,18 +3,18 @@ package net.minecraft;
 public class hv {
 
 	private hv a;
-	private FormattingCode b;
+	private EnumChatFormat b;
 	private Boolean c;
 	private Boolean d;
 	private Boolean e;
 	private Boolean f;
 	private Boolean g;
 	private hm h;
-	private hr i;
+	private ChatHoverable i;
 	private String j;
 	private static final hv k = new hw();
 
-	public FormattingCode a() {
+	public EnumChatFormat a() {
 		return this.b == null ? this.o().a() : this.b;
 	}
 
@@ -46,7 +46,7 @@ public class hv {
 		return this.h == null ? this.o().h() : this.h;
 	}
 
-	public hr i() {
+	public ChatHoverable i() {
 		return this.i == null ? this.o().i() : this.i;
 	}
 
@@ -54,7 +54,7 @@ public class hv {
 		return this.j == null ? this.o().j() : this.j;
 	}
 
-	public hv a(FormattingCode var1) {
+	public hv a(EnumChatFormat var1) {
 		this.b = var1;
 		return this;
 	}
@@ -89,7 +89,7 @@ public class hv {
 		return this;
 	}
 
-	public hv a(hr var1) {
+	public hv a(ChatHoverable var1) {
 		this.i = var1;
 		return this;
 	}
@@ -224,7 +224,7 @@ public class hv {
 	}
 
 	// $FF: synthetic method
-	static FormattingCode a(hv var0, FormattingCode var1) {
+	static EnumChatFormat a(hv var0, EnumChatFormat var1) {
 		return var0.b = var1;
 	}
 
@@ -239,7 +239,7 @@ public class hv {
 	}
 
 	// $FF: synthetic method
-	static hr a(hv var0, hr var1) {
+	static ChatHoverable a(hv var0, ChatHoverable var1) {
 		return var0.i = var1;
 	}
 
@@ -269,7 +269,7 @@ public class hv {
 	}
 
 	// $FF: synthetic method
-	static FormattingCode g(hv var0) {
+	static EnumChatFormat g(hv var0) {
 		return var0.b;
 	}
 
@@ -284,7 +284,7 @@ public class hv {
 	}
 
 	// $FF: synthetic method
-	static hr j(hv var0) {
+	static ChatHoverable j(hv var0) {
 		return var0.i;
 	}
 

@@ -226,7 +226,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 			if (this.bm() + this.bM() != this.bJ) {
 				this.bJ = this.bm() + this.bM();
-				Collection var5 = this.co().a(bsk.g);
+				Collection var5 = this.co().a(IScoreboardCriteria.health);
 				Iterator var7 = var5.iterator();
 
 				while (var7.hasNext()) {
@@ -240,7 +240,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 				this.playerConncetion.sendPacket((Packet) (new PacketOutSetExpirience(this.bB, this.bA, this.bz)));
 			}
 
-			if (this.W % 20 * 5 == 0 && !this.A().a(tl.L)) {
+			if (this.W % 20 * 5 == 0 && !this.A().a(AchievementList.L)) {
 				this.h_();
 			}
 
@@ -255,13 +255,13 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	protected void h_() {
 		arm var1 = this.o.b(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
 		String var2 = var1.ah;
-		ua var3 = (ua) this.A().b((Statistic) tl.L);
+		AchievmentSet var3 = (AchievmentSet) this.A().b((Statistic) AchievementList.L);
 		if (var3 == null) {
-			var3 = (ua) this.A().a(tl.L, new ua());
+			var3 = (AchievmentSet) this.A().a(AchievementList.L, new AchievmentSet());
 		}
 
 		var3.add(var2);
-		if (this.A().b(tl.L) && var3.size() >= arm.n.size()) {
+		if (this.A().b(AchievementList.L) && var3.size() >= arm.n.size()) {
 			HashSet var4 = Sets.newHashSet((Iterable) arm.n);
 			Iterator var5 = var3.iterator();
 
@@ -282,7 +282,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			}
 
 			if (var4.isEmpty()) {
-				this.b((Statistic) tl.L);
+				this.b((Statistic) AchievementList.L);
 			}
 		}
 
@@ -306,7 +306,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			this.playerInventory.n();
 		}
 
-		Collection var6 = this.o.Z().a(bsk.d);
+		Collection var6 = this.o.Z().a(IScoreboardCriteria.deathCount);
 		Iterator var3 = var6.iterator();
 
 		while (var3.hasNext()) {
@@ -367,13 +367,13 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void c(int var1) {
 		if (this.dimensionId == 1 && var1 == 1) {
-			this.b((Statistic) tl.D);
+			this.b((Statistic) AchievementList.D);
 			this.o.e((Entity) this);
 			this.i = true;
 			this.playerConncetion.sendPacket((Packet) (new PacketOutChangeGameState(4, 0.0F)));
 		} else {
 			if (this.dimensionId == 0 && var1 == 1) {
-				this.b((Statistic) tl.C);
+				this.b((Statistic) AchievementList.C);
 				Position var2 = this.b.a(var1).m();
 				if (var2 != null) {
 					this.playerConncetion.a((double) var2.getX(), (double) var2.getY(), (double) var2.getZ(), 0.0F, 0.0F);
@@ -381,7 +381,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 				var1 = 1;
 			} else {
-				this.b((Statistic) tl.y);
+				this.b((Statistic) AchievementList.y);
 			}
 
 			this.b.getPlayerList().a(this, var1);
@@ -467,7 +467,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void a(TileEntitySign var1) {
 		var1.a((EntityHuman) this);
-		this.playerConncetion.sendPacket((Packet) (new kc(var1.v())));
+		this.playerConncetion.sendPacket((Packet) (new PacketOutSignEditorOpen(var1.v())));
 	}
 
 	private void cr() {
@@ -490,7 +490,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		if (var1 instanceof vy) {
 			vy var2 = (vy) var1;
 			if (var2.q_() && !this.a(var2.i()) && !this.v()) {
-				this.playerConncetion.sendPacket((Packet) (new PacketOutChatMessage(new hz("container.isLocked", new Object[] { var1.e_() }), (byte) 2)));
+				this.playerConncetion.sendPacket((Packet) (new PacketOutChatMessage(new ChatMessage("container.isLocked", new Object[] { var1.e_() }), (byte) 2)));
 				this.playerConncetion.sendPacket((Packet) (new PacketOutSoundEffect("random.door_close", this.locationX, this.locationY, this.locationZ, 1.0F, 1.0F)));
 				return;
 			}
@@ -515,7 +515,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		this.activeContainer.d = this.bT;
 		this.activeContainer.a((ICrafting) this);
 		aje var2 = ((ajf) this.activeContainer).e();
-		IJSONComponent var3 = var1.e_();
+		IChatBaseComponent var3 = var1.e_();
 		this.playerConncetion.sendPacket((Packet) (new PacketOutOpenWindow(this.bT, "minecraft:villager", var3, var2.n_())));
 		aqd var4 = var1.b_(this);
 		if (var4 != null) {
@@ -610,7 +610,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	public void a(Statistic var1, int var2) {
 		if (var1 != null) {
 			this.bI.b(this, var1, var2);
-			Iterator var3 = this.co().a(var1.k()).iterator();
+			Iterator var3 = this.co().a(var1.getCrteria()).iterator();
 
 			while (var3.hasNext()) {
 				bry var4 = (bry) var3.next();
@@ -627,7 +627,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	public void a(Statistic var1) {
 		if (var1 != null) {
 			this.bI.a(this, var1, 0);
-			Iterator var2 = this.co().a(var1.k()).iterator();
+			Iterator var2 = this.co().a(var1.getCrteria()).iterator();
 
 			while (var2.hasNext()) {
 				bry var3 = (bry) var2.next();
@@ -656,7 +656,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		this.bK = -1.0E8F;
 	}
 
-	public void b(IJSONComponent var1) {
+	public void b(IChatBaseComponent var1) {
 		this.playerConncetion.sendPacket((Packet) (new PacketOutChatMessage(var1)));
 	}
 
@@ -736,7 +736,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		return this.c.getGameMode() == GameMode.SPECTATOR;
 	}
 
-	public void sendChatMessage(IJSONComponent json) {
+	public void sendChatMessage(IChatBaseComponent json) {
 		this.playerConncetion.sendPacket(new PacketOutChatMessage(json));
 	}
 
@@ -836,7 +836,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		return this.bR;
 	}
 
-	public IJSONComponent E() {
+	public IChatBaseComponent E() {
 		return null;
 	}
 

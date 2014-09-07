@@ -49,20 +49,20 @@ public class HelpCommand extends AbstractCommand {
 		}
 
 		int var7 = Math.min((var13 + 1) * 7, var3.size());
-		hz var14 = new hz("commands.help.header", new Object[] { Integer.valueOf(var13 + 1), Integer.valueOf(var5 + 1) });
-		var14.b().a(FormattingCode.c);
+		ChatMessage var14 = new ChatMessage("commands.help.header", new Object[] { Integer.valueOf(var13 + 1), Integer.valueOf(var5 + 1) });
+		var14.b().a(EnumChatFormat.DARK_GREEN);
 		var1.sendChatMessage(var14);
 
 		for (int var15 = var13 * 7; var15 < var7; ++var15) {
 			CommandInterface var10 = (CommandInterface) var3.get(var15);
-			hz var11 = new hz(var10.getUsage(var1), new Object[0]);
+			ChatMessage var11 = new ChatMessage(var10.getUsage(var1), new Object[0]);
 			var11.b().a(new hm(hn.e, "/" + var10.getName() + " "));
 			var1.sendChatMessage(var11);
 		}
 
 		if (var13 == 0 && var1 instanceof EntityHuman) {
-			hz var16 = new hz("commands.help.footer", new Object[0]);
-			var16.b().a(FormattingCode.k);
+			ChatMessage var16 = new ChatMessage("commands.help.footer", new Object[0]);
+			var16.b().a(EnumChatFormat.GREEN);
 			var1.sendChatMessage(var16);
 		}
 

@@ -79,8 +79,8 @@ public class cl extends ab implements y {
 			var6 = false;
 		}
 
-		hz var8 = new hz("chat.type.admin", new Object[] { var1.d_(), new hz(var4, var5) });
-		var8.b().a(FormattingCode.h);
+		ChatMessage var8 = new ChatMessage("chat.type.admin", new Object[] { var1.d_(), new ChatMessage(var4, var5) });
+		var8.b().a(EnumChatFormat.GRAY);
 		var8.b().b(Boolean.valueOf(true));
 		if (var6) {
 			Iterator var9 = var7.getPlayerList().players.iterator();
@@ -88,13 +88,13 @@ public class cl extends ab implements y {
 			while (var9.hasNext()) {
 				EntityHuman var10 = (EntityHuman) var9.next();
 				if (var10 != var1 && var7.getPlayerList().g(var10.getGameProfile()) && var2.a(var1)) {
-					var10.sendChatMessage((IJSONComponent) var8);
+					var10.sendChatMessage((IChatBaseComponent) var8);
 				}
 			}
 		}
 
 		if (var1 != var7 && var7.worlds[0].Q().b("logAdminCommands")) {
-			var7.sendChatMessage((IJSONComponent) var8);
+			var7.sendChatMessage((IChatBaseComponent) var8);
 		}
 
 		boolean var11 = var7.worlds[0].Q().b("sendCommandFeedback");
@@ -103,7 +103,7 @@ public class cl extends ab implements y {
 		}
 
 		if ((var3 & 1) != 1 && var11) {
-			var1.sendChatMessage(new hz(var4, var5));
+			var1.sendChatMessage(new ChatMessage(var4, var5));
 		}
 
 	}

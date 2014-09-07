@@ -426,10 +426,10 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public void b(Entity var1, int var2) {
 		this.s(var2);
-		Collection var3 = this.co().a(bsk.f);
+		Collection var3 = this.co().a(IScoreboardCriteria.totalKillCount);
 		if (var1 instanceof EntityHuman) {
 			this.b(StatisticList.B);
-			var3.addAll(this.co().a(bsk.e));
+			var3.addAll(this.co().a(IScoreboardCriteria.playerKillCount));
 			var3.addAll(this.e(var1));
 		} else {
 			this.b(StatisticList.z);
@@ -448,9 +448,9 @@ public abstract class EntityHuman extends EntityLiving {
 	private Collection e(Entity var1) {
 		brz var2 = this.co().h(this.d_());
 		if (var2 != null) {
-			int var3 = var2.l().b();
-			if (var3 >= 0 && var3 < bsk.i.length) {
-				Iterator var4 = this.co().a(bsk.i[var3]).iterator();
+			int var3 = var2.l().getId();
+			if (var3 >= 0 && var3 < IScoreboardCriteria.killedByTeam.length) {
+				Iterator var4 = this.co().a(IScoreboardCriteria.killedByTeam[var3]).iterator();
 
 				while (var4.hasNext()) {
 					bry var5 = (bry) var4.next();
@@ -462,9 +462,9 @@ public abstract class EntityHuman extends EntityLiving {
 
 		brz var7 = this.co().h(var1.d_());
 		if (var7 != null) {
-			int var8 = var7.l().b();
-			if (var8 >= 0 && var8 < bsk.h.length) {
-				return this.co().a(bsk.h[var8]);
+			int var8 = var7.l().getId();
+			if (var8 >= 0 && var8 < IScoreboardCriteria.teamKill.length) {
+				return this.co().a(IScoreboardCriteria.teamKill[var8]);
 			}
 		}
 
@@ -866,7 +866,7 @@ public abstract class EntityHuman extends EntityLiving {
 						}
 
 						if (var2 >= 18.0F) {
-							this.b((Statistic) tl.F);
+							this.b((Statistic) AchievementList.F);
 						}
 
 						this.p(var1);
@@ -1069,7 +1069,7 @@ public abstract class EntityHuman extends EntityLiving {
 		return this.bu && this.b >= 100;
 	}
 
-	public void b(IJSONComponent var1) {
+	public void b(IChatBaseComponent var1) {
 	}
 
 	public Position cg() {
@@ -1187,7 +1187,7 @@ public abstract class EntityHuman extends EntityLiving {
 					if (this.e == null) {
 						this.e = new Position(this);
 					} else if (this.e.c((double) DataTypesConverter.toFixedPointInt(this.locationX), (double) DataTypesConverter.toFixedPointInt(this.locationY), (double) DataTypesConverter.toFixedPointInt(this.locationZ)) >= 1000000.0D) {
-						this.b((Statistic) tl.q);
+						this.b((Statistic) AchievementList.q);
 					}
 				} else if (this.m instanceof EntityBoat) {
 					this.a(StatisticList.r, var7);
@@ -1224,7 +1224,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public void a(EntityLiving var1) {
 		if (var1 instanceof aex) {
-			this.b((Statistic) tl.s);
+			this.b((Statistic) AchievementList.s);
 		}
 
 		MonsterEggInfo var2 = (MonsterEggInfo) EntityTypes.eggInfo.get(Integer.valueOf(EntityTypes.getFixedId(var1)));
@@ -1427,8 +1427,8 @@ public abstract class EntityHuman extends EntityLiving {
 		return this.co().h(this.d_());
 	}
 
-	public IJSONComponent e_() {
-		hy var1 = new hy(brz.a(this.bN(), this.d_()));
+	public IChatBaseComponent e_() {
+		ChatComponentText var1 = new ChatComponentText(brz.a(this.bN(), this.d_()));
 		var1.b().a(new hm(hn.e, "/msg " + this.d_() + " "));
 		var1.b().a(this.aP());
 		var1.b().a(this.d_());

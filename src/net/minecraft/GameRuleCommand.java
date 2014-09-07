@@ -24,7 +24,7 @@ public class GameRuleCommand extends AbstractCommand {
 		String var5 = var2.length > 1 ? a(var2, 1) : "";
 		switch (var2.length) {
 			case 0:
-				var1.sendChatMessage(new hy(a(var3.getGameRules())));
+				var1.sendChatMessage(new ChatComponentText(a(var3.getGameRules())));
 				break;
 			case 1:
 				if (!var3.e(var4)) {
@@ -32,7 +32,7 @@ public class GameRuleCommand extends AbstractCommand {
 				}
 
 				String var6 = var3.a(var4);
-				var1.sendChatMessage((new hy(var4)).a(" = ").a(var6));
+				var1.sendChatMessage((new ChatComponentText(var4)).a(" = ").a(var6));
 				var1.a(ag.e, var3.c(var4));
 				break;
 			default:

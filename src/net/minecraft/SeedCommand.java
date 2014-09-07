@@ -22,6 +22,6 @@ public class SeedCommand extends AbstractCommand {
 
 	public void executeCommand(CommandSenderInterface var1, String[] var2) {
 		Object var3 = var1 instanceof EntityHuman ? ((EntityHuman) var1).o : MinecraftServer.getInstance().a(0);
-		var1.sendChatMessage(new hz("commands.seed.success", new Object[] { Long.valueOf(((World) var3).J()) }));
+		var1.sendChatMessage(new ChatMessage("commands.seed.success", new Object[] { Long.valueOf(((World) var3).J()) }));
 	}
 }

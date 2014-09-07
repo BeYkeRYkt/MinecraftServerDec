@@ -2,12 +2,12 @@ package net.minecraft;
 
 public class jj implements Packet<PlayClientboundPacketListener> {
 
-	private IJSONComponent a;
+	private IChatBaseComponent a;
 
 	public jj() {
 	}
 
-	public jj(IJSONComponent var1) {
+	public jj(IChatBaseComponent var1) {
 		this.a = var1;
 	}
 

@@ -45,7 +45,7 @@ public class ClearCommand extends AbstractCommand {
 				throw new di("commands.clear.failure", new Object[] { var3.d_() });
 			} else {
 				if (var6 == 0) {
-					var1.sendChatMessage(new hz("commands.clear.testing", new Object[] { var3.d_(), Integer.valueOf(var8) }));
+					var1.sendChatMessage(new ChatMessage("commands.clear.testing", new Object[] { var3.d_(), Integer.valueOf(var8) }));
 				} else {
 					a(var1, this, "commands.clear.success", new Object[] { var3.d_(), Integer.valueOf(var8) });
 				}

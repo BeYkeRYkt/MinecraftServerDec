@@ -18,8 +18,8 @@ public class ata implements vv {
 		return false;
 	}
 
-	public IJSONComponent e_() {
-		return new hz(Blocks.ANVIL.getName() + ".name", new Object[0]);
+	public IChatBaseComponent e_() {
+		return new ChatMessage(Blocks.ANVIL.getName() + ".name", new Object[0]);
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {

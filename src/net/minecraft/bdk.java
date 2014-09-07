@@ -13,11 +13,11 @@ class bdk implements CommandSenderInterface {
 		return "Sign";
 	}
 
-	public IJSONComponent e_() {
-		return new hy(this.d_());
+	public IChatBaseComponent e_() {
+		return new ChatComponentText(this.d_());
 	}
 
-	public void sendChatMessage(IJSONComponent var1) {
+	public void sendChatMessage(IChatBaseComponent var1) {
 	}
 
 	public boolean a(int var1, String var2) {

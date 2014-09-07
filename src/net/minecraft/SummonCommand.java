@@ -43,7 +43,7 @@ public class SummonCommand extends AbstractCommand {
 				NBTCompoundTag var13 = new NBTCompoundTag();
 				boolean var14 = false;
 				if (var2.length >= 5) {
-					IJSONComponent var15 = a(var1, var2, 4);
+					IChatBaseComponent var15 = a(var1, var2, 4);
 
 					try {
 						var13 = gg.a(var15.c());

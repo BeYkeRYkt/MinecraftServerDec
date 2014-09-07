@@ -5,7 +5,7 @@ import java.util.List;
 
 public class hq {
 
-	public static IJSONComponent a(CommandSenderInterface var0, IJSONComponent var1, Entity var2) throws dj {
+	public static IChatBaseComponent a(CommandSenderInterface var0, IChatBaseComponent var1, Entity var2) throws dj {
 		Object var3 = null;
 		if (var1 instanceof ht) {
 			ht var4 = (ht) var1;
@@ -25,39 +25,39 @@ public class hq {
 			String var7 = ((hu) var1).g();
 			var3 = ah.b(var0, var7);
 			if (var3 == null) {
-				var3 = new hy("");
+				var3 = new ChatComponentText("");
 			}
-		} else if (var1 instanceof hy) {
-			var3 = new hy(((hy) var1).g());
+		} else if (var1 instanceof ChatComponentText) {
+			var3 = new ChatComponentText(((ChatComponentText) var1).g());
 		} else {
-			if (!(var1 instanceof hz)) {
+			if (!(var1 instanceof ChatMessage)) {
 				return var1;
 			}
 
-			Object[] var8 = ((hz) var1).j();
+			Object[] var8 = ((ChatMessage) var1).j();
 
 			for (int var10 = 0; var10 < var8.length; ++var10) {
 				Object var12 = var8[var10];
-				if (var12 instanceof IJSONComponent) {
-					var8[var10] = a(var0, (IJSONComponent) var12, var2);
+				if (var12 instanceof IChatBaseComponent) {
+					var8[var10] = a(var0, (IChatBaseComponent) var12, var2);
 				}
 			}
 
-			var3 = new hz(((hz) var1).i(), var8);
+			var3 = new ChatMessage(((ChatMessage) var1).i(), var8);
 		}
 
 		hv var9 = var1.b();
 		if (var9 != null) {
-			((IJSONComponent) var3).a(var9.m());
+			((IChatBaseComponent) var3).a(var9.m());
 		}
 
 		Iterator var11 = var1.a().iterator();
 
 		while (var11.hasNext()) {
-			IJSONComponent var13 = (IJSONComponent) var11.next();
-			((IJSONComponent) var3).a(a(var0, var13, var2));
+			IChatBaseComponent var13 = (IChatBaseComponent) var11.next();
+			((IChatBaseComponent) var3).a(a(var0, var13, var2));
 		}
 
-		return (IJSONComponent) var3;
+		return (IChatBaseComponent) var3;
 	}
 }

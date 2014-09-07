@@ -3,11 +3,11 @@ package net.minecraft;
 public class mu implements Packet<ls> {
 
 	private Position a;
-	private IJSONComponent[] b;
+	private IChatBaseComponent[] b;
 
 	public void readData(PacketDataSerializer var1) {
 		this.a = var1.readPosition();
-		this.b = new IJSONComponent[4];
+		this.b = new IChatBaseComponent[4];
 
 		for (int var2 = 0; var2 < 4; ++var2) {
 			this.b[var2] = var1.readJSONComponent();
@@ -32,7 +32,7 @@ public class mu implements Packet<ls> {
 		return this.a;
 	}
 
-	public IJSONComponent[] b() {
+	public IChatBaseComponent[] b() {
 		return this.b;
 	}
 }

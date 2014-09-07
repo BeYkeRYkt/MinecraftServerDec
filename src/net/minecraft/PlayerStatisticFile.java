@@ -67,14 +67,14 @@ public class PlayerStatisticFile extends tz {
 		if (var2.d() && var4 == 0 && var3 > 0) {
 			this.g = true;
 			if (this.minecraftserver.isAnnouncePlayerAchievmentsEnabled()) {
-				this.minecraftserver.getPlayerList().a((IJSONComponent) (new hz("chat.type.achievement", new Object[] { var1.e_(), var2.j() })));
+				this.minecraftserver.getPlayerList().a((IChatBaseComponent) (new ChatMessage("chat.type.achievement", new Object[] { var1.e_(), var2.j() })));
 			}
 		}
 
 		if (var2.d() && var4 > 0 && var3 == 0) {
 			this.g = true;
 			if (this.minecraftserver.isAnnouncePlayerAchievmentsEnabled()) {
-				this.minecraftserver.getPlayerList().a((IJSONComponent) (new hz("chat.type.achievement.taken", new Object[] { var1.e_(), var2.j() })));
+				this.minecraftserver.getPlayerList().a((IChatBaseComponent) (new ChatMessage("chat.type.achievement.taken", new Object[] { var1.e_(), var2.j() })));
 			}
 		}
 
@@ -98,7 +98,7 @@ public class PlayerStatisticFile extends tz {
 
 			while (var5.hasNext()) {
 				Entry<?, ?> var6 = (Entry<?, ?>) var5.next();
-				Statistic var7 = StatisticList.a((String) var6.getKey());
+				Statistic var7 = StatisticList.fromName((String) var6.getKey());
 				if (var7 != null) {
 					tw var8 = new tw();
 					if (((JsonElement) var6.getValue()).isJsonPrimitive() && ((JsonElement) var6.getValue()).getAsJsonPrimitive().isNumber()) {
@@ -112,7 +112,7 @@ public class PlayerStatisticFile extends tz {
 						if (var9.has("progress") && var7.l() != null) {
 							try {
 								Constructor<?> var10 = var7.l().getConstructor(new Class[0]);
-								tx var11 = (tx) var10.newInstance(new Object[0]);
+								IJsonStatistic var11 = (IJsonStatistic) var10.newInstance(new Object[0]);
 								var11.a(var9.get("progress"));
 								var8.a(var11);
 							} catch (Throwable var12) {
@@ -147,9 +147,9 @@ public class PlayerStatisticFile extends tz {
 					logger.warn("Couldn\'t save statistic " + ((Statistic) var3.getKey()).e() + ": error serializing progress", var6);
 				}
 
-				var1.add(((Statistic) var3.getKey()).e, var4);
+				var1.add(((Statistic) var3.getKey()).name, var4);
 			} else {
-				var1.addProperty(((Statistic) var3.getKey()).e, (Number) Integer.valueOf(((tw) var3.getValue()).a()));
+				var1.addProperty(((Statistic) var3.getKey()).name, (Number) Integer.valueOf(((tw) var3.getValue()).a()));
 			}
 		}
 
@@ -179,22 +179,22 @@ public class PlayerStatisticFile extends tz {
 			}
 		}
 
-		var1.playerConncetion.sendPacket((Packet<?>) (new is(var3)));
+		var1.playerConncetion.sendPacket((Packet<?>) (new PacketOutStatistics(var3)));
 	}
 
 	public void b(EntityPlayer var1) {
 		HashMap<Statistic, Integer> var2 = Maps.newHashMap();
-		Iterator<?> var3 = tl.e.iterator();
+		Iterator<?> var3 = AchievementList.list.iterator();
 
 		while (var3.hasNext()) {
-			tk var4 = (tk) var3.next();
+			Achievement var4 = (Achievement) var3.next();
 			if (this.a(var4)) {
 				var2.put(var4, Integer.valueOf(this.a((Statistic) var4)));
 				this.e.remove(var4);
 			}
 		}
 
-		var1.playerConncetion.sendPacket((Packet<?>) (new is(var2)));
+		var1.playerConncetion.sendPacket((Packet<?>) (new PacketOutStatistics(var2)));
 	}
 
 	public boolean e() {

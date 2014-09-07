@@ -56,11 +56,11 @@ public class PacketDataSerializer extends ByteBuf {
 		this.writeLong(var1.g());
 	}
 
-	public IJSONComponent readJSONComponent() {
+	public IChatBaseComponent readJSONComponent() {
 		return JSONComponentFormat.a(this.readString(32767));
 	}
 
-	public void writeJSONComponent(IJSONComponent var1) {
+	public void writeJSONComponent(IChatBaseComponent var1) {
 		this.writeString(JSONComponentFormat.a(var1));
 	}
 

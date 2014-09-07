@@ -38,7 +38,7 @@ public class TriggerCommand extends AbstractCommand {
 
 			bsd var8 = MinecraftServer.getInstance().a(0).Z();
 			bry var5 = var8.b(var2[0]);
-			if (var5 != null && var5.c() == bsk.c) {
+			if (var5 != null && var5.c() == IScoreboardCriteria.trigger) {
 				int var6 = a(var2[2]);
 				if (!var8.b(var3.d_(), var5)) {
 					throw new di("commands.trigger.invalidObjective", new Object[] { var2[0] });
@@ -78,7 +78,7 @@ public class TriggerCommand extends AbstractCommand {
 
 			while (var6.hasNext()) {
 				bry var7 = (bry) var6.next();
-				if (var7.c() == bsk.c) {
+				if (var7.c() == IScoreboardCriteria.trigger) {
 					var5.add(var7.b());
 				}
 			}

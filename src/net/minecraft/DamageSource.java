@@ -128,11 +128,11 @@ public class DamageSource {
 		return this;
 	}
 
-	public IJSONComponent b(EntityLiving var1) {
+	public IChatBaseComponent b(EntityLiving var1) {
 		EntityLiving var2 = var1.bs();
 		String var3 = "death.attack." + this.p;
 		String var4 = var3 + ".player";
-		return var2 != null && LocaleI18n.c(var4) ? new hz(var4, new Object[] { var1.e_(), var2.e_() }) : new hz(var3, new Object[] { var1.e_() });
+		return var2 != null && LocaleI18n.c(var4) ? new ChatMessage(var4, new Object[] { var1.e_(), var2.e_() }) : new ChatMessage(var3, new Object[] { var1.e_() });
 	}
 
 	public boolean o() {

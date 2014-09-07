@@ -50,7 +50,7 @@ public class bse extends bqc {
 			brz var4 = this.c.e(var3.getString("Name"));
 			var4.a(var3.getString("DisplayName"));
 			if (var3.isTagAssignableFrom("TeamColor", 8)) {
-				var4.a(FormattingCode.b(var3.getString("TeamColor")));
+				var4.a(EnumChatFormat.getByName(var3.getString("TeamColor")));
 			}
 
 			var4.b(var3.getString("Prefix"));
@@ -104,7 +104,7 @@ public class bse extends bqc {
 	protected void b(NBTListTag var1) {
 		for (int var2 = 0; var2 < var1.getSize(); ++var2) {
 			NBTCompoundTag var3 = var1.getCompound(var2);
-			bsk var4 = (bsk) bsk.a.get(var3.getString("CriteriaName"));
+			IScoreboardCriteria var4 = (IScoreboardCriteria) IScoreboardCriteria.byName.get(var3.getString("CriteriaName"));
 			if (var4 != null) {
 				bry var5 = this.c.a(var3.getString("Name"), var4);
 				var5.a(var3.getString("DisplayName"));
@@ -148,8 +148,8 @@ public class bse extends bqc {
 			NBTCompoundTag var5 = new NBTCompoundTag();
 			var5.put("Name", var4.b());
 			var5.put("DisplayName", var4.c());
-			if (var4.l().b() >= 0) {
-				var5.put("TeamColor", var4.l().e());
+			if (var4.l().getId() >= 0) {
+				var5.put("TeamColor", var4.l().getEnumLCName());
 			}
 
 			var5.put("Prefix", var4.e());
@@ -201,7 +201,7 @@ public class bse extends bqc {
 			if (var4.c() != null) {
 				NBTCompoundTag var5 = new NBTCompoundTag();
 				var5.put("Name", var4.b());
-				var5.put("CriteriaName", var4.c().a());
+				var5.put("CriteriaName", var4.c().getName());
 				var5.put("DisplayName", var4.d());
 				var5.put("RenderType", var4.e().a());
 				var1.addTag((NBTTag) var5);

@@ -23,7 +23,7 @@ public class bsd {
 		return (bry) this.a.get(var1);
 	}
 
-	public bry a(String var1, bsk var2) {
+	public bry a(String var1, IScoreboardCriteria var2) {
 		bry var3 = this.b(var1);
 		if (var3 != null) {
 			throw new IllegalArgumentException("An objective with the name \'" + var1 + "\' already exists!");
@@ -42,7 +42,7 @@ public class bsd {
 		}
 	}
 
-	public Collection a(bsk var1) {
+	public Collection a(IScoreboardCriteria var1) {
 		Collection var2 = (Collection) this.b.get(var1);
 		return var2 == null ? Lists.newArrayList() : Lists.newArrayList((Iterable) var2);
 	}
@@ -286,9 +286,9 @@ public class bsd {
 				return "belowName";
 			default:
 				if (var0 >= 3 && var0 <= 18) {
-					FormattingCode var1 = FormattingCode.a(var0 - 3);
-					if (var1 != null && var1 != FormattingCode.v) {
-						return "sidebar.team." + var1.e();
+					EnumChatFormat var1 = EnumChatFormat.getById(var0 - 3);
+					if (var1 != null && var1 != EnumChatFormat.RESET) {
+						return "sidebar.team." + var1.getEnumLCName();
 					}
 				}
 
@@ -306,9 +306,9 @@ public class bsd {
 		} else {
 			if (var0.startsWith("sidebar.team.")) {
 				String var1 = var0.substring("sidebar.team.".length());
-				FormattingCode var2 = FormattingCode.b(var1);
-				if (var2 != null && var2.b() >= 0) {
-					return var2.b() + 3;
+				EnumChatFormat var2 = EnumChatFormat.getByName(var1);
+				if (var2 != null && var2.getId() >= 0) {
+					return var2.getId() + 3;
 				}
 			}
 

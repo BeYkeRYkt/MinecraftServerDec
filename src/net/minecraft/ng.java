@@ -2,12 +2,12 @@ package net.minecraft;
 
 public class ng implements Packet<nc> {
 
-	private IJSONComponent a;
+	private IChatBaseComponent a;
 
 	public ng() {
 	}
 
-	public ng(IJSONComponent var1) {
+	public ng(IChatBaseComponent var1) {
 		this.a = var1;
 	}
 

@@ -14,7 +14,7 @@ public class ServerSaveCommand extends AbstractCommand {
 
 	public void executeCommand(CommandSenderInterface var1, String[] var2) {
 		MinecraftServer var3 = MinecraftServer.getInstance();
-		var1.sendChatMessage(new hz("commands.save.start", new Object[0]));
+		var1.sendChatMessage(new ChatMessage("commands.save.start", new Object[0]));
 		if (var3.getPlayerList() != null) {
 			var3.getPlayerList().k();
 		}
@@ -37,7 +37,7 @@ public class ServerSaveCommand extends AbstractCommand {
 		}
 
 		if (var2.length > 0 && "flush".equals(var2[0])) {
-			var1.sendChatMessage(new hz("commands.save.flushStart", new Object[0]));
+			var1.sendChatMessage(new ChatMessage("commands.save.flushStart", new Object[0]));
 
 			for (var4 = 0; var4 < var3.worlds.length; ++var4) {
 				if (var3.worlds[var4] != null) {
@@ -49,7 +49,7 @@ public class ServerSaveCommand extends AbstractCommand {
 				}
 			}
 
-			var1.sendChatMessage(new hz("commands.save.flushEnd", new Object[0]));
+			var1.sendChatMessage(new ChatMessage("commands.save.flushEnd", new Object[0]));
 		}
 
 		a(var1, this, "commands.save.success", new Object[0]);

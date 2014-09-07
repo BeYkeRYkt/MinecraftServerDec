@@ -39,7 +39,7 @@ public class hx implements JsonDeserializer, JsonSerializer {
 				}
 
 				if (var5.has("color")) {
-					hv.a(var4, (FormattingCode) var3.deserialize(var5.get("color"), FormattingCode.class));
+					hv.a(var4, (EnumChatFormat) var3.deserialize(var5.get("color"), EnumChatFormat.class));
 				}
 
 				if (var5.has("insertion")) {
@@ -65,10 +65,10 @@ public class hx implements JsonDeserializer, JsonSerializer {
 					var6 = var5.getAsJsonObject("hoverEvent");
 					if (var6 != null) {
 						var7 = var6.getAsJsonPrimitive("action");
-						hs var11 = var7 == null ? null : hs.a(var7.getAsString());
-						IJSONComponent var12 = (IJSONComponent) var3.deserialize(var6.get("value"), IJSONComponent.class);
+						EnumHoverAction var11 = var7 == null ? null : EnumHoverAction.a(var7.getAsString());
+						IChatBaseComponent var12 = (IChatBaseComponent) var3.deserialize(var6.get("value"), IChatBaseComponent.class);
 						if (var11 != null && var12 != null && var11.a()) {
-							hv.a(var4, new hr(var11, var12));
+							hv.a(var4, new ChatHoverable(var11, var12));
 						}
 					}
 				}

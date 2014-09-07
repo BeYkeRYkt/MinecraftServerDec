@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class aio extends Container {
 
-	public ain a = new ain(this, 3, 3);
+	public InventoryCrafting a = new InventoryCrafting(this, 3, 3);
 	public IInventory f = new aji();
 	private World g;
 	private Position h;
@@ -34,7 +34,7 @@ public class aio extends Container {
 	}
 
 	public void a(IInventory var1) {
-		this.f.a(0, aop.a().a(this.a, this.g));
+		this.f.a(0, CraftingManager.getInstance().a(this.a, this.g));
 	}
 
 	public void b(EntityHuman var1) {

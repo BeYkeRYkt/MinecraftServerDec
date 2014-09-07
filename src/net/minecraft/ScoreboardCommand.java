@@ -206,8 +206,8 @@ public class ScoreboardCommand extends AbstractCommand {
 					this.executeCommand(var1, var2);
 					var6.add(var8);
 				} catch (di var11) {
-					hz var10 = new hz(var11.getMessage(), var11.a());
-					var10.b().a(FormattingCode.m);
+					ChatMessage var10 = new ChatMessage(var11.getMessage(), var11.a());
+					var10.b().a(EnumChatFormat.RED);
 					var1.sendChatMessage(var10);
 				}
 			}
@@ -231,7 +231,7 @@ public class ScoreboardCommand extends AbstractCommand {
 		bry var4 = var3.b(var1);
 		if (var4 == null) {
 			throw new di("commands.scoreboard.objectiveNotFound", new Object[] { var1 });
-		} else if (var2 && var4.c().b()) {
+		} else if (var2 && var4.c().isReadOnly()) {
 			throw new di("commands.scoreboard.objectiveReadOnly", new Object[] { var1 });
 		} else {
 			return var4;
@@ -252,7 +252,7 @@ public class ScoreboardCommand extends AbstractCommand {
 		String var4 = var2[var3++];
 		String var5 = var2[var3++];
 		bsd var6 = this.d();
-		bsk var7 = (bsk) bsk.a.get(var5);
+		IScoreboardCriteria var7 = (IScoreboardCriteria) IScoreboardCriteria.byName.get(var5);
 		if (var7 == null) {
 			throw new dp("commands.scoreboard.objectives.add.wrongType", new Object[] { var5 });
 		} else if (var6.b(var4) != null) {
@@ -318,7 +318,7 @@ public class ScoreboardCommand extends AbstractCommand {
 				throw new dp("commands.scoreboard.teams.option.usage", new Object[0]);
 			} else if (var2.length == 4) {
 				if (var5.equalsIgnoreCase("FormattingCode")) {
-					throw new dp("commands.scoreboard.teams.option.noValue", new Object[] { var5, a(FormattingCode.a(true, false)) });
+					throw new dp("commands.scoreboard.teams.option.noValue", new Object[] { var5, a(EnumChatFormat.getCodes(true, false)) });
 				} else if (!var5.equalsIgnoreCase("friendlyfire") && !var5.equalsIgnoreCase("seeFriendlyInvisibles")) {
 					if (!var5.equalsIgnoreCase("nametagVisibility") && !var5.equalsIgnoreCase("deathMessageVisibility")) {
 						throw new dp("commands.scoreboard.teams.option.usage", new Object[0]);
@@ -331,14 +331,14 @@ public class ScoreboardCommand extends AbstractCommand {
 			} else {
 				String var6 = var2[var3];
 				if (var5.equalsIgnoreCase("FormattingCode")) {
-					FormattingCode var7 = FormattingCode.b(var6);
-					if (var7 == null || var7.c()) {
-						throw new dp("commands.scoreboard.teams.option.noValue", new Object[] { var5, a(FormattingCode.a(true, false)) });
+					EnumChatFormat var7 = EnumChatFormat.getByName(var6);
+					if (var7 == null || var7.isFormattingCode()) {
+						throw new dp("commands.scoreboard.teams.option.noValue", new Object[] { var5, a(EnumChatFormat.getCodes(true, false)) });
 					}
 
 					var4.a(var7);
 					var4.b(var7.toString());
-					var4.c(FormattingCode.v.toString());
+					var4.c(EnumChatFormat.RESET.toString());
 				} else if (var5.equalsIgnoreCase("friendlyfire")) {
 					if (!var6.equalsIgnoreCase("true") && !var6.equalsIgnoreCase("false")) {
 						throw new dp("commands.scoreboard.teams.option.noValue", new Object[] { var5, a(Arrays.asList(new String[] { "true", "false" })) });
@@ -398,10 +398,10 @@ public class ScoreboardCommand extends AbstractCommand {
 				throw new di("commands.scoreboard.teams.list.player.empty", new Object[] { var5.b() });
 			}
 
-			hz var7 = new hz("commands.scoreboard.teams.list.player.count", new Object[] { Integer.valueOf(var6.size()), var5.b() });
-			var7.b().a(FormattingCode.c);
+			ChatMessage var7 = new ChatMessage("commands.scoreboard.teams.list.player.count", new Object[] { Integer.valueOf(var6.size()), var5.b() });
+			var7.b().a(EnumChatFormat.DARK_GREEN);
 			var1.sendChatMessage(var7);
-			var1.sendChatMessage(new hy(a(var6.toArray())));
+			var1.sendChatMessage(new ChatComponentText(a(var6.toArray())));
 		} else {
 			Collection var9 = var4.g();
 			var1.a(ag.e, var9.size());
@@ -409,14 +409,14 @@ public class ScoreboardCommand extends AbstractCommand {
 				throw new di("commands.scoreboard.teams.list.empty", new Object[0]);
 			}
 
-			hz var10 = new hz("commands.scoreboard.teams.list.count", new Object[] { Integer.valueOf(var9.size()) });
-			var10.b().a(FormattingCode.c);
+			ChatMessage var10 = new ChatMessage("commands.scoreboard.teams.list.count", new Object[] { Integer.valueOf(var9.size()) });
+			var10.b().a(EnumChatFormat.DARK_GREEN);
 			var1.sendChatMessage(var10);
 			Iterator var11 = var9.iterator();
 
 			while (var11.hasNext()) {
 				brz var8 = (brz) var11.next();
-				var1.sendChatMessage(new hz("commands.scoreboard.teams.list.entry", new Object[] { var8.b(), var8.c(), Integer.valueOf(var8.d().size()) }));
+				var1.sendChatMessage(new ChatMessage("commands.scoreboard.teams.list.entry", new Object[] { var8.b(), var8.c(), Integer.valueOf(var8.d().size()) }));
 			}
 		}
 
@@ -555,14 +555,14 @@ public class ScoreboardCommand extends AbstractCommand {
 		if (var3.size() <= 0) {
 			throw new di("commands.scoreboard.objectives.list.empty", new Object[0]);
 		} else {
-			hz var4 = new hz("commands.scoreboard.objectives.list.count", new Object[] { Integer.valueOf(var3.size()) });
-			var4.b().a(FormattingCode.c);
+			ChatMessage var4 = new ChatMessage("commands.scoreboard.objectives.list.count", new Object[] { Integer.valueOf(var3.size()) });
+			var4.b().a(EnumChatFormat.DARK_GREEN);
 			var1.sendChatMessage(var4);
 			Iterator var5 = var3.iterator();
 
 			while (var5.hasNext()) {
 				bry var6 = (bry) var5.next();
-				var1.sendChatMessage(new hz("commands.scoreboard.objectives.list.entry", new Object[] { var6.b(), var6.d(), var6.c().a() }));
+				var1.sendChatMessage(new ChatMessage("commands.scoreboard.objectives.list.entry", new Object[] { var6.b(), var6.d(), var6.c().getName() }));
 			}
 
 		}
@@ -600,14 +600,14 @@ public class ScoreboardCommand extends AbstractCommand {
 				throw new di("commands.scoreboard.players.list.player.empty", new Object[] { var5 });
 			}
 
-			hz var7 = new hz("commands.scoreboard.players.list.player.count", new Object[] { Integer.valueOf(var6.size()), var5 });
-			var7.b().a(FormattingCode.c);
+			ChatMessage var7 = new ChatMessage("commands.scoreboard.players.list.player.count", new Object[] { Integer.valueOf(var6.size()), var5 });
+			var7.b().a(EnumChatFormat.DARK_GREEN);
 			var1.sendChatMessage(var7);
 			Iterator var8 = var6.values().iterator();
 
 			while (var8.hasNext()) {
 				bsa var9 = (bsa) var8.next();
-				var1.sendChatMessage(new hz("commands.scoreboard.players.list.player.entry", new Object[] { Integer.valueOf(var9.c()), var9.d().d(), var9.d().b() }));
+				var1.sendChatMessage(new ChatMessage("commands.scoreboard.players.list.player.entry", new Object[] { Integer.valueOf(var9.c()), var9.d().d(), var9.d().b() }));
 			}
 		} else {
 			Collection var10 = var4.d();
@@ -616,10 +616,10 @@ public class ScoreboardCommand extends AbstractCommand {
 				throw new di("commands.scoreboard.players.list.empty", new Object[0]);
 			}
 
-			hz var11 = new hz("commands.scoreboard.players.list.count", new Object[] { Integer.valueOf(var10.size()) });
-			var11.b().a(FormattingCode.c);
+			ChatMessage var11 = new ChatMessage("commands.scoreboard.players.list.count", new Object[] { Integer.valueOf(var10.size()) });
+			var11.b().a(EnumChatFormat.DARK_GREEN);
 			var1.sendChatMessage(var11);
-			var1.sendChatMessage(new hy(a(var10.toArray())));
+			var1.sendChatMessage(new ChatComponentText(a(var10.toArray())));
 		}
 
 	}
@@ -676,7 +676,7 @@ public class ScoreboardCommand extends AbstractCommand {
 		bsd var4 = this.d();
 		String var5 = d(var1, var2[var3++]);
 		bry var6 = this.a(var2[var3], false);
-		if (var6.c() != bsk.c) {
+		if (var6.c() != IScoreboardCriteria.trigger) {
 			throw new di("commands.scoreboard.players.enable.noTrigger", new Object[] { var6.b() });
 		} else {
 			bsa var7 = var4.c(var5, var6);
@@ -761,7 +761,7 @@ public class ScoreboardCommand extends AbstractCommand {
 
 				if (var2[1].equalsIgnoreCase("add")) {
 					if (var2.length == 4) {
-						Set var4 = bsk.a.keySet();
+						Set var4 = IScoreboardCriteria.byName.keySet();
 						return a(var2, var4);
 					}
 				} else if (var2[1].equalsIgnoreCase("remove")) {
@@ -861,7 +861,7 @@ public class ScoreboardCommand extends AbstractCommand {
 
 							if (var2.length == 5) {
 								if (var2[3].equalsIgnoreCase("FormattingCode")) {
-									return a(var2, FormattingCode.a(true, false));
+									return a(var2, EnumChatFormat.getCodes(true, false));
 								}
 
 								if (var2[3].equalsIgnoreCase("nametagVisibility") || var2[3].equalsIgnoreCase("deathMessageVisibility")) {
@@ -890,7 +890,7 @@ public class ScoreboardCommand extends AbstractCommand {
 
 		while (var4.hasNext()) {
 			bry var5 = (bry) var4.next();
-			if (!var1 || !var5.c().b()) {
+			if (!var1 || !var5.c().isReadOnly()) {
 				var3.add(var5.b());
 			}
 		}
@@ -905,7 +905,7 @@ public class ScoreboardCommand extends AbstractCommand {
 
 		while (var3.hasNext()) {
 			bry var4 = (bry) var3.next();
-			if (var4.c() == bsk.c) {
+			if (var4.c() == IScoreboardCriteria.trigger) {
 				var2.add(var4.b());
 			}
 		}

@@ -4,152 +4,136 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 public class StatisticList {
 
-	protected static Map a = Maps.newHashMap();
-	public static List b = Lists.newArrayList();
-	public static List c = Lists.newArrayList();
-	public static List d = Lists.newArrayList();
-	public static List e = Lists.newArrayList();
-	public static Statistic f = (new tn("stat.leaveGame", new hz("stat.leaveGame", new Object[0]))).i().h();
-	public static Statistic g = (new tn("stat.playOneMinute", new hz("stat.playOneMinute", new Object[0]), Statistic.h)).i().h();
-	public static Statistic h = (new tn("stat.timeSinceDeath", new hz("stat.timeSinceDeath", new Object[0]), Statistic.h)).i().h();
-	public static Statistic i = (new tn("stat.walkOneCm", new hz("stat.walkOneCm", new Object[0]), Statistic.i)).i().h();
-	public static Statistic j = (new tn("stat.crouchOneCm", new hz("stat.crouchOneCm", new Object[0]), Statistic.i)).i().h();
-	public static Statistic k = (new tn("stat.sprintOneCm", new hz("stat.sprintOneCm", new Object[0]), Statistic.i)).i().h();
-	public static Statistic l = (new tn("stat.swimOneCm", new hz("stat.swimOneCm", new Object[0]), Statistic.i)).i().h();
-	public static Statistic m = (new tn("stat.fallOneCm", new hz("stat.fallOneCm", new Object[0]), Statistic.i)).i().h();
-	public static Statistic n = (new tn("stat.climbOneCm", new hz("stat.climbOneCm", new Object[0]), Statistic.i)).i().h();
-	public static Statistic o = (new tn("stat.flyOneCm", new hz("stat.flyOneCm", new Object[0]), Statistic.i)).i().h();
-	public static Statistic p = (new tn("stat.diveOneCm", new hz("stat.diveOneCm", new Object[0]), Statistic.i)).i().h();
-	public static Statistic q = (new tn("stat.minecartOneCm", new hz("stat.minecartOneCm", new Object[0]), Statistic.i)).i().h();
-	public static Statistic r = (new tn("stat.boatOneCm", new hz("stat.boatOneCm", new Object[0]), Statistic.i)).i().h();
-	public static Statistic s = (new tn("stat.pigOneCm", new hz("stat.pigOneCm", new Object[0]), Statistic.i)).i().h();
-	public static Statistic t = (new tn("stat.horseOneCm", new hz("stat.horseOneCm", new Object[0]), Statistic.i)).i().h();
-	public static Statistic u = (new tn("stat.jump", new hz("stat.jump", new Object[0]))).i().h();
-	public static Statistic v = (new tn("stat.drop", new hz("stat.drop", new Object[0]))).i().h();
-	public static Statistic w = (new tn("stat.damageDealt", new hz("stat.damageDealt", new Object[0]), Statistic.j)).h();
-	public static Statistic x = (new tn("stat.damageTaken", new hz("stat.damageTaken", new Object[0]), Statistic.j)).h();
-	public static Statistic y = (new tn("stat.deaths", new hz("stat.deaths", new Object[0]))).h();
-	public static Statistic z = (new tn("stat.mobKills", new hz("stat.mobKills", new Object[0]))).h();
-	public static Statistic A = (new tn("stat.animalsBred", new hz("stat.animalsBred", new Object[0]))).h();
-	public static Statistic B = (new tn("stat.playerKills", new hz("stat.playerKills", new Object[0]))).h();
-	public static Statistic C = (new tn("stat.fishCaught", new hz("stat.fishCaught", new Object[0]))).h();
-	public static Statistic D = (new tn("stat.junkFished", new hz("stat.junkFished", new Object[0]))).h();
-	public static Statistic E = (new tn("stat.treasureFished", new hz("stat.treasureFished", new Object[0]))).h();
-	public static Statistic F = (new tn("stat.talkedToVillager", new hz("stat.talkedToVillager", new Object[0]))).h();
-	public static Statistic G = (new tn("stat.tradedWithVillager", new hz("stat.tradedWithVillager", new Object[0]))).h();
-	public static final Statistic[] H = new Statistic[4096];
-	public static final Statistic[] I = new Statistic[32000];
-	public static final Statistic[] J = new Statistic[32000];
-	public static final Statistic[] K = new Statistic[32000];
+	protected static Map<String, Statistic> list = Maps.newHashMap();
+	public static List<Statistic> b = Lists.newArrayList();
+	public static List<Statistic> c = Lists.newArrayList();
+	public static List<CraftingStatistic> d = Lists.newArrayList();
+	public static List<CraftingStatistic> e = Lists.newArrayList();
+	public static Statistic f = (new CounterStatistic("stat.leaveGame", new ChatMessage("stat.leaveGame", new Object[0]))).setLocal().h();
+	public static Statistic g = (new CounterStatistic("stat.playOneMinute", new ChatMessage("stat.playOneMinute", new Object[0]), Statistic.timeCounter)).setLocal().h();
+	public static Statistic h = (new CounterStatistic("stat.timeSinceDeath", new ChatMessage("stat.timeSinceDeath", new Object[0]), Statistic.timeCounter)).setLocal().h();
+	public static Statistic i = (new CounterStatistic("stat.walkOneCm", new ChatMessage("stat.walkOneCm", new Object[0]), Statistic.distancesCounter)).setLocal().h();
+	public static Statistic j = (new CounterStatistic("stat.crouchOneCm", new ChatMessage("stat.crouchOneCm", new Object[0]), Statistic.distancesCounter)).setLocal().h();
+	public static Statistic k = (new CounterStatistic("stat.sprintOneCm", new ChatMessage("stat.sprintOneCm", new Object[0]), Statistic.distancesCounter)).setLocal().h();
+	public static Statistic l = (new CounterStatistic("stat.swimOneCm", new ChatMessage("stat.swimOneCm", new Object[0]), Statistic.distancesCounter)).setLocal().h();
+	public static Statistic m = (new CounterStatistic("stat.fallOneCm", new ChatMessage("stat.fallOneCm", new Object[0]), Statistic.distancesCounter)).setLocal().h();
+	public static Statistic n = (new CounterStatistic("stat.climbOneCm", new ChatMessage("stat.climbOneCm", new Object[0]), Statistic.distancesCounter)).setLocal().h();
+	public static Statistic o = (new CounterStatistic("stat.flyOneCm", new ChatMessage("stat.flyOneCm", new Object[0]), Statistic.distancesCounter)).setLocal().h();
+	public static Statistic p = (new CounterStatistic("stat.diveOneCm", new ChatMessage("stat.diveOneCm", new Object[0]), Statistic.distancesCounter)).setLocal().h();
+	public static Statistic q = (new CounterStatistic("stat.minecartOneCm", new ChatMessage("stat.minecartOneCm", new Object[0]), Statistic.distancesCounter)).setLocal().h();
+	public static Statistic r = (new CounterStatistic("stat.boatOneCm", new ChatMessage("stat.boatOneCm", new Object[0]), Statistic.distancesCounter)).setLocal().h();
+	public static Statistic s = (new CounterStatistic("stat.pigOneCm", new ChatMessage("stat.pigOneCm", new Object[0]), Statistic.distancesCounter)).setLocal().h();
+	public static Statistic t = (new CounterStatistic("stat.horseOneCm", new ChatMessage("stat.horseOneCm", new Object[0]), Statistic.distancesCounter)).setLocal().h();
+	public static Statistic u = (new CounterStatistic("stat.jump", new ChatMessage("stat.jump", new Object[0]))).setLocal().h();
+	public static Statistic v = (new CounterStatistic("stat.drop", new ChatMessage("stat.drop", new Object[0]))).setLocal().h();
+	public static Statistic w = (new CounterStatistic("stat.damageDealt", new ChatMessage("stat.damageDealt", new Object[0]), Statistic.damageCounter)).h();
+	public static Statistic x = (new CounterStatistic("stat.damageTaken", new ChatMessage("stat.damageTaken", new Object[0]), Statistic.damageCounter)).h();
+	public static Statistic y = (new CounterStatistic("stat.deaths", new ChatMessage("stat.deaths", new Object[0]))).h();
+	public static Statistic z = (new CounterStatistic("stat.mobKills", new ChatMessage("stat.mobKills", new Object[0]))).h();
+	public static Statistic A = (new CounterStatistic("stat.animalsBred", new ChatMessage("stat.animalsBred", new Object[0]))).h();
+	public static Statistic B = (new CounterStatistic("stat.playerKills", new ChatMessage("stat.playerKills", new Object[0]))).h();
+	public static Statistic C = (new CounterStatistic("stat.fishCaught", new ChatMessage("stat.fishCaught", new Object[0]))).h();
+	public static Statistic D = (new CounterStatistic("stat.junkFished", new ChatMessage("stat.junkFished", new Object[0]))).h();
+	public static Statistic E = (new CounterStatistic("stat.treasureFished", new ChatMessage("stat.treasureFished", new Object[0]))).h();
+	public static Statistic F = (new CounterStatistic("stat.talkedToVillager", new ChatMessage("stat.talkedToVillager", new Object[0]))).h();
+	public static Statistic G = (new CounterStatistic("stat.tradedWithVillager", new ChatMessage("stat.tradedWithVillager", new Object[0]))).h();
+	public static final Statistic[] MINE_BLOCK_COUNT = new Statistic[4096];
+	public static final Statistic[] CRAFT_BLOCK_COUNT = new Statistic[32000];
+	public static final Statistic[] USE_ITEM_COUNT = new Statistic[32000];
+	public static final Statistic[] BREAK_ITEM_COUNT = new Statistic[32000];
 
 	public static void register() {
 		c();
 		d();
 		e();
 		b();
-		tl.a();
 		EntityTypes.someEmptyMethodIDKWhyItsThere();
 	}
 
 	private static void b() {
-		HashSet var0 = Sets.newHashSet();
-		Iterator var1 = aop.a().b().iterator();
+		HashSet<Item> hashset = Sets.newHashSet();
 
-		while (var1.hasNext()) {
-			aoo var2 = (aoo) var1.next();
-			if (var2.b() != null) {
-				var0.add(var2.b().getItem());
+		for (IRecipe irecipe : CraftingManager.getInstance().getRecipes()) {
+			if (irecipe.getResult() != null) {
+				hashset.add(irecipe.getResult().getItem());
 			}
 		}
 
-		var1 = aok.a().b().values().iterator();
-
-		while (var1.hasNext()) {
-			ItemStack var5 = (ItemStack) var1.next();
-			var0.add(var5.getItem());
+		for (ItemStack furnaceResultItem : RecipesFurnace.getInstance().getRecipes().values()) {
+			hashset.add(furnaceResultItem.getItem());
 		}
 
-		var1 = var0.iterator();
-
-		while (var1.hasNext()) {
-			Item var6 = (Item) var1.next();
-			if (var6 != null) {
-				int var3 = Item.getId(var6);
-				String var4 = a(var6);
-				if (var4 != null) {
-					I[var3] = (new to("stat.craftItem.", var4, new hz("stat.craftItem", new Object[] { (new ItemStack(var6)).C() }), var6)).h();
+		for (Item item : hashset) {
+			if (item != null) {
+				int id = Item.getId(item);
+				String statname = getItemStatName(item);
+				if (statname != null) {
+					CRAFT_BLOCK_COUNT[id] = (new CraftingStatistic("stat.craftItem.", statname, new ChatMessage("stat.craftItem", new Object[] { (new ItemStack(item)).C() }), item)).h();
 				}
 			}
 		}
 
-		a(I);
+		a(CRAFT_BLOCK_COUNT);
 	}
 
 	private static void c() {
-		Iterator var0 = Block.BLOCKREGISTRY.iterator();
-
-		while (var0.hasNext()) {
-			Block var1 = (Block) var0.next();
-			Item var2 = Item.getItemOf(var1);
-			if (var2 != null) {
-				int var3 = Block.getBlockId(var1);
-				String var4 = a(var2);
-				if (var4 != null && var1.I()) {
-					H[var3] = (new to("stat.mineBlock.", var4, new hz("stat.mineBlock", new Object[] { (new ItemStack(var1)).C() }), var2)).h();
-					e.add((to) H[var3]);
+		for (Object blockObj : Block.BLOCKREGISTRY) {
+			Block block = (Block) blockObj;
+			Item item = Item.getItemOf(block);
+			if (item != null) {
+				int blockItem = Block.getBlockId(block);
+				String statName = getItemStatName(item);
+				if (statName != null && block.I()) {
+					MINE_BLOCK_COUNT[blockItem] = (new CraftingStatistic("stat.mineBlock.", statName, new ChatMessage("stat.mineBlock", new Object[] { (new ItemStack(block)).C() }), item)).h();
+					e.add((CraftingStatistic) MINE_BLOCK_COUNT[blockItem]);
 				}
 			}
 		}
 
-		a(H);
+		a(MINE_BLOCK_COUNT);
 	}
 
 	private static void d() {
-		Iterator var0 = Item.REGISTRY.iterator();
-
-		while (var0.hasNext()) {
-			Item var1 = (Item) var0.next();
-			if (var1 != null) {
-				int var2 = Item.getId(var1);
-				String var3 = a(var1);
-				if (var3 != null) {
-					J[var2] = (new to("stat.useItem.", var3, new hz("stat.useItem", new Object[] { (new ItemStack(var1)).C() }), var1)).h();
-					if (!(var1 instanceof ItemBlock)) {
-						d.add((to) J[var2]);
+		for (Object itemObj : Item.REGISTRY) {
+			Item item = (Item) itemObj;
+			if (item != null) {
+				int itemId = Item.getId(item);
+				String statName = getItemStatName(item);
+				if (statName != null) {
+					USE_ITEM_COUNT[itemId] = (new CraftingStatistic("stat.useItem.", statName, new ChatMessage("stat.useItem", new Object[] { (new ItemStack(item)).C() }), item)).h();
+					if (!(item instanceof ItemBlock)) {
+						d.add((CraftingStatistic) USE_ITEM_COUNT[itemId]);
 					}
 				}
 			}
 		}
 
-		a(J);
+		a(USE_ITEM_COUNT);
 	}
 
 	private static void e() {
-		Iterator var0 = Item.REGISTRY.iterator();
-
-		while (var0.hasNext()) {
-			Item var1 = (Item) var0.next();
-			if (var1 != null) {
-				int var2 = Item.getId(var1);
-				String var3 = a(var1);
-				if (var3 != null && var1.usesDurability()) {
-					K[var2] = (new to("stat.breakItem.", var3, new hz("stat.breakItem", new Object[] { (new ItemStack(var1)).C() }), var1)).h();
+		for (Object itemObj : Item.REGISTRY) {
+			Item item = (Item) itemObj;
+			if (item != null) {
+				int itemId = Item.getId(item);
+				String statName = getItemStatName(item);
+				if (statName != null && item.usesDurability()) {
+					BREAK_ITEM_COUNT[itemId] = (new CraftingStatistic("stat.breakItem.", statName, new ChatMessage("stat.breakItem", new Object[] { (new ItemStack(item)).C() }), item)).h();
 				}
 			}
 		}
 
-		a(K);
+		a(BREAK_ITEM_COUNT);
 	}
 
-	private static String a(Item var0) {
-		RegistryObjectName var1 = (RegistryObjectName) Item.REGISTRY.c(var0);
-		return var1 != null ? var1.toString().replace(':', '.') : null;
+	private static String getItemStatName(Item item) {
+		RegistryObjectName registryName = (RegistryObjectName) Item.REGISTRY.c(item);
+		return registryName != null ? registryName.toString().replace(':', '.') : null;
 	}
 
 	private static void a(Statistic[] var0) {
@@ -183,17 +167,17 @@ public class StatisticList {
 	}
 
 	public static Statistic loadKilledEntityCount(MonsterEggInfo info) {
-		String var1 = EntityTypes.getNameById(info.fixedId);
-		return var1 == null ? null : (new Statistic("stat.killEntity." + var1, new hz("stat.entityKill", new Object[] { new hz("entity." + var1 + ".name", new Object[0]) }))).h();
+		String entityName = EntityTypes.getNameById(info.fixedId);
+		return entityName == null ? null : (new Statistic("stat.killEntity." + entityName, new ChatMessage("stat.entityKill", new Object[] { new ChatMessage("entity." + entityName + ".name", new Object[0]) }))).h();
 	}
 
 	public static Statistic loadKilledByEntityCount(MonsterEggInfo info) {
-		String name = EntityTypes.getNameById(info.fixedId);
-		return name == null ? null : (new Statistic("stat.entityKilledBy." + name, new hz("stat.entityKilledBy", new Object[] { new hz("entity." + name + ".name", new Object[0]) }))).h();
+		String entityName = EntityTypes.getNameById(info.fixedId);
+		return entityName == null ? null : (new Statistic("stat.entityKilledBy." + entityName, new ChatMessage("stat.entityKilledBy", new Object[] { new ChatMessage("entity." + entityName + ".name", new Object[0]) }))).h();
 	}
 
-	public static Statistic a(String var0) {
-		return (Statistic) a.get(var0);
+	public static Statistic fromName(String var0) {
+		return list.get(var0);
 	}
 
 }

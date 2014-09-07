@@ -120,7 +120,7 @@ public class EntityPig extends abq {
 	public void e(float var1, float var2) {
 		super.e(var1, var2);
 		if (var1 > 5.0F && this.l instanceof EntityHuman) {
-			((EntityHuman) this.l).b((Statistic) tl.u);
+			((EntityHuman) this.l).b((Statistic) AchievementList.u);
 		}
 
 	}

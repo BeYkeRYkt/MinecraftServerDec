@@ -3,7 +3,7 @@ package net.minecraft;
 public class lj implements Packet<PlayClientboundPacketListener> {
 
 	private lk a;
-	private IJSONComponent b;
+	private IChatBaseComponent b;
 	private int c;
 	private int d;
 	private int e;
@@ -11,15 +11,15 @@ public class lj implements Packet<PlayClientboundPacketListener> {
 	public lj() {
 	}
 
-	public lj(lk var1, IJSONComponent var2) {
+	public lj(lk var1, IChatBaseComponent var2) {
 		this(var1, var2, -1, -1, -1);
 	}
 
 	public lj(int var1, int var2, int var3) {
-		this(lk.c, (IJSONComponent) null, var1, var2, var3);
+		this(lk.c, (IChatBaseComponent) null, var1, var2, var3);
 	}
 
-	public lj(lk var1, IJSONComponent var2, int var3, int var4, int var5) {
+	public lj(lk var1, IChatBaseComponent var2, int var3, int var4, int var5) {
 		this.a = var1;
 		this.b = var2;
 		this.c = var3;

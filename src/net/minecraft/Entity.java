@@ -1558,8 +1558,8 @@ public abstract class Entity implements CommandSenderInterface {
 		return true;
 	}
 
-	public IJSONComponent e_() {
-		hy var1 = new hy(this.d_());
+	public IChatBaseComponent e_() {
+		ChatComponentText var1 = new ChatComponentText(this.d_());
 		var1.b().a(this.aP());
 		var1.b().a(this.aJ().toString());
 		return var1;
@@ -1596,7 +1596,7 @@ public abstract class Entity implements CommandSenderInterface {
 		return BlockFace.fromByte(DataTypesConverter.toFixedPointInt((double) (this.yaw * 4.0F / 360.0F) + 0.5D) & 3);
 	}
 
-	protected hr aP() {
+	protected ChatHoverable aP() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		String var2 = EntityTypes.getNameByClass(this);
 		var1.put("id", this.aJ().toString());
@@ -1605,7 +1605,7 @@ public abstract class Entity implements CommandSenderInterface {
 		}
 
 		var1.put("name", this.d_());
-		return new hr(hs.d, new hy(var1.toString()));
+		return new ChatHoverable(EnumHoverAction.d, new ChatComponentText(var1.toString()));
 	}
 
 	public boolean a(EntityPlayer var1) {
@@ -1636,7 +1636,7 @@ public abstract class Entity implements CommandSenderInterface {
 		return false;
 	}
 
-	public void sendChatMessage(IJSONComponent var1) {
+	public void sendChatMessage(IChatBaseComponent var1) {
 	}
 
 	public boolean a(int var1, String var2) {

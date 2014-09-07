@@ -4,25 +4,25 @@ public class PacketOutOpenWindow implements Packet<PlayClientboundPacketListener
 
 	private int windowId;
 	private String type;
-	private IJSONComponent title;
+	private IChatBaseComponent title;
 	private int slots;
 	private int entityId;
 
 	public PacketOutOpenWindow() {
 	}
 
-	public PacketOutOpenWindow(int windowId, String type, IJSONComponent title) {
+	public PacketOutOpenWindow(int windowId, String type, IChatBaseComponent title) {
 		this(windowId, type, title, 0);
 	}
 
-	public PacketOutOpenWindow(int windowId, String type, IJSONComponent title, int slots) {
+	public PacketOutOpenWindow(int windowId, String type, IChatBaseComponent title, int slots) {
 		this.windowId = windowId;
 		this.type = type;
 		this.title = title;
 		this.slots = slots;
 	}
 
-	public PacketOutOpenWindow(int var1, String var2, IJSONComponent var3, int slots, int entityId) {
+	public PacketOutOpenWindow(int var1, String var2, IChatBaseComponent var3, int slots, int entityId) {
 		this(var1, var2, var3, slots);
 		this.entityId = entityId;
 	}

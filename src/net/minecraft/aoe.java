@@ -1,11 +1,11 @@
 package net.minecraft;
 
-class aoe implements aoo {
+class aoe implements IRecipe {
 
 	private aoe() {
 	}
 
-	public boolean a(ain var1, World var2) {
+	public boolean a(InventoryCrafting var1, World var2) {
 		boolean var3 = false;
 
 		for (int var4 = 0; var4 < var1.n_(); ++var4) {
@@ -30,7 +30,7 @@ class aoe implements aoo {
 		}
 	}
 
-	public ItemStack a(ain var1) {
+	public ItemStack a(InventoryCrafting var1) {
 		ItemStack var2 = null;
 
 		for (int var3 = 0; var3 < var1.n_(); ++var3) {
@@ -78,11 +78,11 @@ class aoe implements aoo {
 		return 10;
 	}
 
-	public ItemStack b() {
+	public ItemStack getResult() {
 		return null;
 	}
 
-	public ItemStack[] b(ain var1) {
+	public ItemStack[] b(InventoryCrafting var1) {
 		ItemStack[] var2 = new ItemStack[var1.n_()];
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {
@@ -95,7 +95,7 @@ class aoe implements aoo {
 		return var2;
 	}
 
-	private bcj c(ain var1) {
+	private bcj c(InventoryCrafting var1) {
 		bcj[] var2 = bcj.values();
 		int var3 = var2.length;
 

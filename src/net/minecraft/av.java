@@ -17,12 +17,12 @@ class av implements Predicate {
 		this.b = var3;
 	}
 
-	public boolean a(tk var1) {
+	public boolean a(Achievement var1) {
 		return this.a.A().a(var1) && var1 != this.b;
 	}
 
 	// $FF: synthetic method
 	public boolean apply(Object var1) {
-		return this.a((tk) var1);
+		return this.a((Achievement) var1);
 	}
 }

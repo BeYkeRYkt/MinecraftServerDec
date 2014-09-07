@@ -78,7 +78,7 @@ public class PlayerConnection implements ls, pm {
 	}
 
 	public void c(String var1) {
-		hy var2 = new hy(var1);
+		ChatComponentText var2 = new ChatComponentText(var1);
 		this.a.a(new jj(var2), new rk(this, var2), new GenericFutureListener[0]);
 		this.a.k();
 		Futures.getUnchecked(this.d.a((Runnable) (new rl(this))));
@@ -372,8 +372,8 @@ public class PlayerConnection implements ls, pm {
 
 			this.b.c.a(this.b, var2, var3);
 		} else if (var5.getY() >= this.d.al() - 1 && (var6 == BlockFace.b || var5.getY() >= this.d.al())) {
-			hz var7 = new hz("build.tooHigh", new Object[] { Integer.valueOf(this.d.al()) });
-			var7.b().a(FormattingCode.m);
+			ChatMessage var7 = new ChatMessage("build.tooHigh", new Object[] { Integer.valueOf(this.d.al()) });
+			var7.b().a(EnumChatFormat.RED);
 			this.b.playerConncetion.sendPacket((Packet) (new PacketOutChatMessage(var7)));
 			var4 = true;
 		} else {
@@ -459,12 +459,12 @@ public class PlayerConnection implements ls, pm {
 	public void a(mq var1) {
 	}
 
-	public void handle(IJSONComponent var1) {
+	public void handle(IChatBaseComponent var1) {
 		c.info(this.b.d_() + " lost connection: " + var1);
 		this.d.aF();
-		hz var2 = new hz("multiplayer.player.left", new Object[] { this.b.e_() });
-		var2.b().a(FormattingCode.o);
-		this.d.getPlayerList().a((IJSONComponent) var2);
+		ChatMessage var2 = new ChatMessage("multiplayer.player.left", new Object[] { this.b.e_() });
+		var2.b().a(EnumChatFormat.YELLOW);
+		this.d.getPlayerList().a((IChatBaseComponent) var2);
 		this.b.q();
 		this.d.getPlayerList().e(this.b);
 		if (this.d.isSinglePlayer() && this.b.d_().equals(this.d.R())) {
@@ -510,8 +510,8 @@ public class PlayerConnection implements ls, pm {
 	public void a(lu var1) {
 		ig.a(var1, this, this.b.u());
 		if (this.b.y() == ahg.c) {
-			hz var4 = new hz("chat.cannotSend", new Object[0]);
-			var4.b().a(FormattingCode.m);
+			ChatMessage var4 = new ChatMessage("chat.cannotSend", new Object[0]);
+			var4.b().a(EnumChatFormat.RED);
 			this.sendPacket((Packet) (new PacketOutChatMessage(var4)));
 		} else {
 			this.b.z();
@@ -528,7 +528,7 @@ public class PlayerConnection implements ls, pm {
 			if (var2.startsWith("/")) {
 				this.d(var2);
 			} else {
-				hz var5 = new hz("chat.type.text", new Object[] { this.b.e_(), var2 });
+				ChatMessage var5 = new ChatMessage("chat.type.text", new Object[] { this.b.e_(), var2 });
 				this.d.getPlayerList().a(var5, false);
 			}
 
@@ -646,7 +646,7 @@ public class PlayerConnection implements ls, pm {
 				this.b.A().a(this.b);
 				break;
 			case 3:
-				this.b.b((Statistic) tl.f);
+				this.b.b((Statistic) AchievementList.f);
 		}
 
 	}
@@ -892,7 +892,7 @@ public class PlayerConnection implements ls, pm {
 			}
 		} else if ("MC|AdvCdm".equals(var1.a())) {
 			if (!this.d.isCommandBlockEnabled()) {
-				this.b.sendChatMessage((IJSONComponent) (new hz("advMode.notEnabled", new Object[0])));
+				this.b.sendChatMessage((IChatBaseComponent) (new ChatMessage("advMode.notEnabled", new Object[0])));
 			} else if (this.b.a(2, "") && this.b.by.instabuild) {
 				var2 = var1.b();
 
@@ -917,11 +917,11 @@ public class PlayerConnection implements ls, pm {
 						var46.a(var49);
 						var46.a(var6);
 						if (!var6) {
-							var46.b((IJSONComponent) null);
+							var46.b((IChatBaseComponent) null);
 						}
 
 						var46.h();
-						this.b.sendChatMessage((IJSONComponent) (new hz("advMode.setCommand.success", new Object[] { var49 })));
+						this.b.sendChatMessage((IChatBaseComponent) (new ChatMessage("advMode.setCommand.success", new Object[] { var49 })));
 					}
 				} catch (Exception var33) {
 					c.error("Couldn\'t set command block", (Throwable) var33);
@@ -929,7 +929,7 @@ public class PlayerConnection implements ls, pm {
 					var2.release();
 				}
 			} else {
-				this.b.sendChatMessage((IJSONComponent) (new hz("advMode.notAllowed", new Object[0])));
+				this.b.sendChatMessage((IChatBaseComponent) (new ChatMessage("advMode.notAllowed", new Object[0])));
 			}
 		} else if ("MC|Beacon".equals(var1.a())) {
 			if (this.b.activeContainer instanceof aig) {

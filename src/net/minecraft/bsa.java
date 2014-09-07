@@ -21,7 +21,7 @@ public class bsa {
 	}
 
 	public void a(int var1) {
-		if (this.c.c().b()) {
+		if (this.c.c().isReadOnly()) {
 			throw new IllegalStateException("Cannot modify read-only score");
 		} else {
 			this.c(this.c() + var1);
@@ -29,7 +29,7 @@ public class bsa {
 	}
 
 	public void b(int var1) {
-		if (this.c.c().b()) {
+		if (this.c.c().isReadOnly()) {
 			throw new IllegalStateException("Cannot modify read-only score");
 		} else {
 			this.c(this.c() - var1);
@@ -37,7 +37,7 @@ public class bsa {
 	}
 
 	public void a() {
-		if (this.c.c().b()) {
+		if (this.c.c().isReadOnly()) {
 			throw new IllegalStateException("Cannot modify read-only score");
 		} else {
 			this.a(1);
@@ -79,7 +79,7 @@ public class bsa {
 	}
 
 	public void a(List var1) {
-		this.c(this.c.c().a(var1));
+		this.c(this.c.c().getScoreModifier(var1));
 	}
 
 }

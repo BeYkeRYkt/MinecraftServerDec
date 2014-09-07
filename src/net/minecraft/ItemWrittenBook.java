@@ -39,7 +39,7 @@ public class ItemWrittenBook extends Item {
 		}
 
 		var3.a(var1);
-		var3.b(StatisticList.J[Item.getId((Item) this)]);
+		var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
 		return var1;
 	}
 
@@ -56,13 +56,13 @@ public class ItemWrittenBook extends Item {
 
 						Object var7;
 						try {
-							IJSONComponent var11 = JSONComponentFormat.a(var6);
+							IChatBaseComponent var11 = JSONComponentFormat.a(var6);
 							var7 = hq.a(var2, var11, var2);
 						} catch (Exception var9) {
-							var7 = new hy(var6);
+							var7 = new ChatComponentText(var6);
 						}
 
-						var4.setTag(var5, new NBTStringTag(JSONComponentFormat.a((IJSONComponent) var7)));
+						var4.setTag(var5, new NBTStringTag(JSONComponentFormat.a((IChatBaseComponent) var7)));
 					}
 
 					var3.put("pages", (NBTTag) var4);

@@ -75,8 +75,8 @@ public enum EnumProtocol {
 			registerPacket(PacketDirection.CLIENTBOUND, PacketOutUpdateSign.class);
 			registerPacket(PacketDirection.CLIENTBOUND, PacketOutMap.class);
 			registerPacket(PacketDirection.CLIENTBOUND, PacketOutUpdateBlockEntity.class);
-			registerPacket(PacketDirection.CLIENTBOUND, kc.class);
-			registerPacket(PacketDirection.CLIENTBOUND, is.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketOutSignEditorOpen.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketOutStatistics.class);
 			registerPacket(PacketDirection.CLIENTBOUND, kh.class);
 			registerPacket(PacketDirection.CLIENTBOUND, kd.class);
 			registerPacket(PacketDirection.CLIENTBOUND, iy.class);

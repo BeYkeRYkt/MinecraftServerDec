@@ -1,11 +1,11 @@
 package net.minecraft;
 
-class aof implements aoo {
+class aof implements IRecipe {
 
 	private aof() {
 	}
 
-	public boolean a(ain var1, World var2) {
+	public boolean a(InventoryCrafting var1, World var2) {
 		ItemStack var3 = null;
 		ItemStack var4 = null;
 
@@ -53,7 +53,7 @@ class aof implements aoo {
 		return var3 != null && var4 != null;
 	}
 
-	public ItemStack a(ain var1) {
+	public ItemStack a(InventoryCrafting var1) {
 		for (int var2 = 0; var2 < var1.n_(); ++var2) {
 			ItemStack var3 = var1.a(var2);
 			if (var3 != null && TileEntityBanner.c(var3) > 0) {
@@ -70,11 +70,11 @@ class aof implements aoo {
 		return 2;
 	}
 
-	public ItemStack b() {
+	public ItemStack getResult() {
 		return null;
 	}
 
-	public ItemStack[] b(ain var1) {
+	public ItemStack[] b(InventoryCrafting var1) {
 		ItemStack[] var2 = new ItemStack[var1.n_()];
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {

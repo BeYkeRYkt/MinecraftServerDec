@@ -377,7 +377,7 @@ public class EntityWither extends EntityMonster implements afr {
 
 			while (var4.hasNext()) {
 				EntityHuman var5 = (EntityHuman) var4.next();
-				var5.b((Statistic) tl.J);
+				var5.b((Statistic) AchievementList.J);
 			}
 		}
 

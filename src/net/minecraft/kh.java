@@ -45,7 +45,7 @@ public class kh implements Packet<PlayClientboundPacketListener> {
 			GameProfile var4 = null;
 			int var5 = 0;
 			GameMode var6 = null;
-			IJSONComponent var7 = null;
+			IChatBaseComponent var7 = null;
 			switch (ki.a[this.a.ordinal()]) {
 				case 1:
 					var4 = new GameProfile(var1.readUUID(), var1.readString(16));

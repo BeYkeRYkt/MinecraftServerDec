@@ -70,12 +70,12 @@ public class EffectCommand extends AbstractCommand {
 					if (var12 > 0) {
 						MobEffect var10 = new MobEffect(var4, var5, var7, false, var9);
 						var3.c(var10);
-						a(var1, this, "commands.effect.success", new Object[] { new hz(var10.getName(), new Object[0]), Integer.valueOf(var4), Integer.valueOf(var7), var3.d_(), Integer.valueOf(var12) });
+						a(var1, this, "commands.effect.success", new Object[] { new ChatMessage(var10.getName(), new Object[0]), Integer.valueOf(var4), Integer.valueOf(var7), var3.d_(), Integer.valueOf(var12) });
 					} else if (var3.k(var4)) {
 						var3.m(var4);
-						a(var1, this, "commands.effect.success.removed", new Object[] { new hz(var8.getName(), new Object[0]), var3.d_() });
+						a(var1, this, "commands.effect.success.removed", new Object[] { new ChatMessage(var8.getName(), new Object[0]), var3.d_() });
 					} else {
-						throw new di("commands.effect.failure.notActive", new Object[] { new hz(var8.getName(), new Object[0]), var3.d_() });
+						throw new di("commands.effect.failure.notActive", new Object[] { new ChatMessage(var8.getName(), new Object[0]), var3.d_() });
 					}
 				} else {
 					throw new dk("commands.effect.notFound", new Object[] { Integer.valueOf(var4) });

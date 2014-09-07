@@ -42,8 +42,8 @@ public class vp implements vy {
 		return this.b.k_() || this.c.k_();
 	}
 
-	public IJSONComponent e_() {
-		return (IJSONComponent) (this.k_() ? new hy(this.d_()) : new hz(this.d_(), new Object[0]));
+	public IChatBaseComponent e_() {
+		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.d_()) : new ChatMessage(this.d_(), new Object[0]));
 	}
 
 	public ItemStack a(int var1) {

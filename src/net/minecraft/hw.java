@@ -2,7 +2,7 @@ package net.minecraft;
 
 final class hw extends hv {
 
-	public FormattingCode a() {
+	public EnumChatFormat a() {
 		return null;
 	}
 
@@ -30,7 +30,7 @@ final class hw extends hv {
 		return null;
 	}
 
-	public hr i() {
+	public ChatHoverable i() {
 		return null;
 	}
 
@@ -38,7 +38,7 @@ final class hw extends hv {
 		return null;
 	}
 
-	public hv a(FormattingCode var1) {
+	public hv a(EnumChatFormat var1) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -66,7 +66,7 @@ final class hw extends hv {
 		throw new UnsupportedOperationException();
 	}
 
-	public hv a(hr var1) {
+	public hv a(ChatHoverable var1) {
 		throw new UnsupportedOperationException();
 	}
 

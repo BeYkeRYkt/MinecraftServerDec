@@ -2,16 +2,16 @@ package net.minecraft;
 
 public class ServerPing {
 
-	private IJSONComponent a;
+	private IChatBaseComponent a;
 	private nq b;
 	private nt c;
 	private String d;
 
-	public IJSONComponent a() {
+	public IChatBaseComponent a() {
 		return this.a;
 	}
 
-	public void a(IJSONComponent var1) {
+	public void a(IChatBaseComponent var1) {
 		this.a = var1;
 	}
 

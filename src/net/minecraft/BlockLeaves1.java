@@ -57,7 +57,7 @@ public class BlockLeaves1 extends BlockLeaves {
 
 	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
 		if (!var1.D && var2.bY() != null && var2.bY().getItem() == Items.SHEARS) {
-			var2.b(StatisticList.H[Block.getBlockId((Block) this)]);
+			var2.b(StatisticList.MINE_BLOCK_COUNT[Block.getBlockId((Block) this)]);
 			a(var1, var3, new ItemStack(Item.getItemOf((Block) this), 1, ((ayx) var4.b(P)).a()));
 		} else {
 			super.a(var1, var2, var3, var4, var5);

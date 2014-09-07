@@ -31,13 +31,13 @@ public class ItemBucket extends Item {
 					Material var8 = var7.getBlock().r();
 					if (var8 == Material.WATER && ((Integer) var7.b(axl.b)).intValue() == 0) {
 						var2.g(var6);
-						var3.b(StatisticList.J[Item.getId((Item) this)]);
+						var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
 						return this.a(var1, var3, Items.WATER_BUCKET);
 					}
 
 					if (var8 == Material.LAVA && ((Integer) var7.b(axl.b)).intValue() == 0) {
 						var2.g(var6);
-						var3.b(StatisticList.J[Item.getId((Item) this)]);
+						var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
 						return this.a(var1, var3, Items.LAVA_BUCKET);
 					}
 				} else {
@@ -51,7 +51,7 @@ public class ItemBucket extends Item {
 					}
 
 					if (this.a(var2, var9) && !var3.by.instabuild) {
-						var3.b(StatisticList.J[Item.getId((Item) this)]);
+						var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
 						return new ItemStack(Items.BUCKET);
 					}
 				}

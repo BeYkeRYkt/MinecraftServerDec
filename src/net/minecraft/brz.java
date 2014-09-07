@@ -16,12 +16,12 @@ public class brz extends bsf {
 	private boolean h = true;
 	private bsg i;
 	private bsg j;
-	private FormattingCode k;
+	private EnumChatFormat k;
 
 	public brz(bsd var1, String var2) {
 		this.i = bsg.a;
 		this.j = bsg.a;
-		this.k = FormattingCode.v;
+		this.k = EnumChatFormat.RESET;
 		this.a = var1;
 		this.b = var2;
 		this.d = var2;
@@ -127,11 +127,11 @@ public class brz extends bsf {
 		return var1;
 	}
 
-	public void a(FormattingCode var1) {
+	public void a(EnumChatFormat var1) {
 		this.k = var1;
 	}
 
-	public FormattingCode l() {
+	public EnumChatFormat l() {
 		return this.k;
 	}
 }

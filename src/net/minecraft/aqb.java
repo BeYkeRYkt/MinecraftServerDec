@@ -12,5 +12,5 @@ public interface aqb {
 
 	void a_(ItemStack var1);
 
-	IJSONComponent e_();
+	IChatBaseComponent e_();
 }

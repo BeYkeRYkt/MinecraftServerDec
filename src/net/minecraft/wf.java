@@ -34,7 +34,7 @@ public class wf {
 		return this.e;
 	}
 
-	public IJSONComponent h() {
+	public IChatBaseComponent h() {
 		return this.a().j() == null ? null : this.a().j().e_();
 	}
 

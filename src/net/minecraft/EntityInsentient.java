@@ -334,7 +334,7 @@ public abstract class EntityInsentient extends EntityLiving {
 				if (var2.getItem() == Items.DIAMOND && var1.n() != null) {
 					EntityHuman var9 = this.o.a(var1.n());
 					if (var9 != null) {
-						var9.b((Statistic) tl.x);
+						var9.b((Statistic) AchievementList.x);
 					}
 				}
 

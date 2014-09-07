@@ -211,21 +211,21 @@ public abstract class AbstractCommand implements CommandInterface {
 		}
 	}
 
-	public static IJSONComponent a(CommandSenderInterface var0, String[] var1, int var2) throws dm {
+	public static IChatBaseComponent a(CommandSenderInterface var0, String[] var1, int var2) throws dm {
 		return b(var0, var1, var2, false);
 	}
 
-	public static IJSONComponent b(CommandSenderInterface var0, String[] var1, int var2, boolean var3) throws dm {
-		hy var4 = new hy("");
+	public static IChatBaseComponent b(CommandSenderInterface var0, String[] var1, int var2, boolean var3) throws dm {
+		ChatComponentText var4 = new ChatComponentText("");
 
 		for (int var5 = var2; var5 < var1.length; ++var5) {
 			if (var5 > var2) {
 				var4.a(" ");
 			}
 
-			Object var6 = new hy(var1[var5]);
+			Object var6 = new ChatComponentText(var1[var5]);
 			if (var3) {
-				IJSONComponent var7 = ah.b(var0, var1[var5]);
+				IChatBaseComponent var7 = ah.b(var0, var1[var5]);
 				if (var7 == null) {
 					if (ah.b(var1[var5])) {
 						throw new dm();
@@ -235,7 +235,7 @@ public abstract class AbstractCommand implements CommandInterface {
 				}
 			}
 
-			var4.a((IJSONComponent) var6);
+			var4.a((IChatBaseComponent) var6);
 		}
 
 		return var4;
@@ -371,8 +371,8 @@ public abstract class AbstractCommand implements CommandInterface {
 		return var1.toString();
 	}
 
-	public static IJSONComponent a(List var0) {
-		hy var1 = new hy("");
+	public static IChatBaseComponent a(List var0) {
+		ChatComponentText var1 = new ChatComponentText("");
 
 		for (int var2 = 0; var2 < var0.size(); ++var2) {
 			if (var2 > 0) {
@@ -383,7 +383,7 @@ public abstract class AbstractCommand implements CommandInterface {
 				}
 			}
 
-			var1.a((IJSONComponent) var0.get(var2));
+			var1.a((IChatBaseComponent) var0.get(var2));
 		}
 
 		return var1;

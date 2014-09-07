@@ -56,7 +56,7 @@ public class TitleCommand extends AbstractCommand {
 				} else {
 					String var10 = a(var2, 2);
 
-					IJSONComponent var6;
+					IChatBaseComponent var6;
 					try {
 						var6 = JSONComponentFormat.a(var10);
 					} catch (JsonParseException var9) {
@@ -71,7 +71,7 @@ public class TitleCommand extends AbstractCommand {
 			} else if (var2.length != 2) {
 				throw new dp("commands.title.usage", new Object[0]);
 			} else {
-				lj var5 = new lj(var4, (IJSONComponent) null);
+				lj var5 = new lj(var4, (IChatBaseComponent) null);
 				var3.playerConncetion.sendPacket((Packet) var5);
 				a(var1, this, "commands.title.success", new Object[0]);
 			}

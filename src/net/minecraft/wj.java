@@ -17,11 +17,11 @@ public class wj extends wi {
 		return this.r;
 	}
 
-	public IJSONComponent b(EntityLiving var1) {
-		IJSONComponent var2 = this.r == null ? this.q.e_() : this.r.e_();
+	public IChatBaseComponent b(EntityLiving var1) {
+		IChatBaseComponent var2 = this.r == null ? this.q.e_() : this.r.e_();
 		ItemStack var3 = this.r instanceof EntityLiving ? ((EntityLiving) this.r).bz() : null;
 		String var4 = "death.attack." + this.p;
 		String var5 = var4 + ".item";
-		return var3 != null && var3.s() && LocaleI18n.c(var5) ? new hz(var5, new Object[] { var1.e_(), var2, var3.C() }) : new hz(var4, new Object[] { var1.e_(), var2 });
+		return var3 != null && var3.s() && LocaleI18n.c(var5) ? new ChatMessage(var5, new Object[] { var1.e_(), var2, var3.C() }) : new ChatMessage(var4, new Object[] { var1.e_(), var2 });
 	}
 }

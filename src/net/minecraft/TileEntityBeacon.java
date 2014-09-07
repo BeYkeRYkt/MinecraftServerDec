@@ -143,7 +143,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 
 			while (var13.hasNext()) {
 				EntityHuman var15 = (EntityHuman) var13.next();
-				var15.b((Statistic) tl.K);
+				var15.b((Statistic) AchievementList.K);
 			}
 		}
 

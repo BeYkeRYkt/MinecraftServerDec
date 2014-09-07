@@ -2,17 +2,17 @@ package net.minecraft;
 
 public class PacketOutChatMessage implements Packet<PlayClientboundPacketListener> {
 
-	private IJSONComponent jsonChat;
+	private IChatBaseComponent jsonChat;
 	private byte displayPosition;
 
 	public PacketOutChatMessage() {
 	}
 
-	public PacketOutChatMessage(IJSONComponent jsonChat) {
+	public PacketOutChatMessage(IChatBaseComponent jsonChat) {
 		this(jsonChat, (byte) 1);
 	}
 
-	public PacketOutChatMessage(IJSONComponent jsonChat, byte position) {
+	public PacketOutChatMessage(IChatBaseComponent jsonChat, byte position) {
 		this.jsonChat = jsonChat;
 		this.displayPosition = position;
 	}

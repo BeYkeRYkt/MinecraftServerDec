@@ -36,7 +36,7 @@ public class aiw extends ajk {
 		var1.a(this.a.o, this.a, this.b);
 		if (!this.a.o.D) {
 			int var2 = this.b;
-			float var3 = aok.a().b(var1);
+			float var3 = RecipesFurnace.getInstance().b(var1);
 			int var4;
 			if (var3 == 0.0F) {
 				var2 = 0;
@@ -58,11 +58,11 @@ public class aiw extends ajk {
 
 		this.b = 0;
 		if (var1.getItem() == Items.IRON_INGOT) {
-			this.a.b((Statistic) tl.k);
+			this.a.b((Statistic) AchievementList.k);
 		}
 
 		if (var1.getItem() == Items.COOKED_FISH) {
-			this.a.b((Statistic) tl.p);
+			this.a.b((Statistic) AchievementList.p);
 		}
 
 	}

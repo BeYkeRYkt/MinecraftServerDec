@@ -7,11 +7,11 @@ public class kk {
 	private final int b;
 	private final GameMode c;
 	private final GameProfile d;
-	private final IJSONComponent e;
+	private final IChatBaseComponent e;
 	// $FF: synthetic field
 	final kh a;
 
-	public kk(kh var1, GameProfile var2, int var3, GameMode var4, IJSONComponent var5) {
+	public kk(kh var1, GameProfile var2, int var3, GameMode var4, IChatBaseComponent var5) {
 		this.a = var1;
 		this.d = var2;
 		this.b = var3;
@@ -31,7 +31,7 @@ public class kk {
 		return this.c;
 	}
 
-	public IJSONComponent d() {
+	public IChatBaseComponent d() {
 		return this.e;
 	}
 }
