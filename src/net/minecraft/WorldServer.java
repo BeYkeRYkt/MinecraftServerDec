@@ -47,7 +47,7 @@ public class WorldServer extends World implements vn {
 		this.Q = new arh(this);
 		this.B();
 		this.C();
-		this.af().a(var1.getMaxWorldSize());
+		this.getWorldBorder().setPortalTeleportBoundary(var1.getMaxWorldSize());
 	}
 
 	public World b() {
@@ -71,15 +71,15 @@ public class WorldServer extends World implements vn {
 
 		var3.a(this.C);
 		((pk) this.C).a(var3);
-		this.af().c(this.worldData.C(), this.worldData.D());
-		this.af().c(this.worldData.I());
-		this.af().b(this.worldData.H());
-		this.af().c(this.worldData.J());
-		this.af().b(this.worldData.K());
+		this.getWorldBorder().setCenter(this.worldData.C(), this.worldData.D());
+		this.getWorldBorder().setDamageAmount(this.worldData.I());
+		this.getWorldBorder().setDamageBuffer(this.worldData.H());
+		this.getWorldBorder().setWarningBlocks(this.worldData.J());
+		this.getWorldBorder().setWarningTime(this.worldData.K());
 		if (this.worldData.F() > 0L) {
-			this.af().a(this.worldData.E(), this.worldData.G(), this.worldData.F());
+			this.getWorldBorder().changeSize(this.worldData.E(), this.worldData.G(), this.worldData.F());
 		} else {
-			this.af().a(this.worldData.E());
+			this.getWorldBorder().setSize(this.worldData.E());
 		}
 
 		return this;
@@ -512,7 +512,7 @@ public class WorldServer extends World implements vn {
 	}
 
 	public boolean a(EntityHuman var1, Position var2) {
-		return !this.I.a((World) this, var2, var1) && this.af().a(var2);
+		return !this.I.a((World) this, var2, var1) && this.getWorldBorder().a(var2);
 	}
 
 	public void a(arb var1) {
@@ -647,15 +647,15 @@ public class WorldServer extends World implements vn {
 
 	protected void a() throws aqz {
 		this.I();
-		this.worldData.a(this.af().h());
-		this.worldData.d(this.af().f());
-		this.worldData.c(this.af().g());
-		this.worldData.e(this.af().m());
-		this.worldData.f(this.af().n());
-		this.worldData.j(this.af().q());
-		this.worldData.k(this.af().p());
-		this.worldData.b(this.af().j());
-		this.worldData.e(this.af().i());
+		this.worldData.a(this.getWorldBorder().getOldRadius());
+		this.worldData.d(this.getWorldBorder().getX());
+		this.worldData.c(this.getWorldBorder().getZ());
+		this.worldData.e(this.getWorldBorder().getDamageBuffer());
+		this.worldData.f(this.getWorldBorder().getDamageAmount());
+		this.worldData.j(this.getWorldBorder().getWarningBlocks());
+		this.worldData.k(this.getWorldBorder().getWarningTime());
+		this.worldData.b(this.getWorldBorder().getCurrentRadius());
+		this.worldData.e(this.getWorldBorder().getSpeed());
 		this.dataManager.a(this.worldData, this.I.getPlayerList().u());
 		this.z.a();
 	}

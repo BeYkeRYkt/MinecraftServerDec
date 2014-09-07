@@ -1,31 +1,30 @@
 package net.minecraft;
 
 import com.google.common.collect.Lists;
-import java.util.Iterator;
 import java.util.List;
 
 public class WorldBorder {
 
-	private final List a = Lists.newArrayList();
-	private double b = 0.0D;
-	private double c = 0.0D;
-	private double d = 6.0E7D;
-	private double e;
-	private long f;
-	private long g;
-	private int h;
-	private double i;
-	private double j;
-	private int k;
-	private int l;
+	private final List<WorldBorderChangeListener> listeners = Lists.newArrayList();
+	private double x = 0.0D;
+	private double z = 0.0D;
+	private double oldRadius = 6.0E7D;
+	private double currentRadius;
+	private long lerpEndTime;
+	private long lerpStartTime;
+	private int portalTeleportBoundary;
+	private double damageAmount;
+	private double damageBuffer;
+	private int warningTime;
+	private int warningBlocks;
 
 	public WorldBorder() {
-		this.e = this.d;
-		this.h = 29999984;
-		this.i = 0.2D;
-		this.j = 5.0D;
-		this.k = 15;
-		this.l = 5;
+		this.currentRadius = this.oldRadius;
+		this.portalTeleportBoundary = 29999984;
+		this.damageAmount = 0.2D;
+		this.damageBuffer = 5.0D;
+		this.warningTime = 15;
+		this.warningBlocks = 5;
 	}
 
 	public boolean a(Position var1) {
@@ -55,187 +54,167 @@ public class WorldBorder {
 	}
 
 	public bfa a() {
-		return this.e < this.d ? bfa.b : (this.e > this.d ? bfa.a : bfa.c);
+		return this.currentRadius < this.oldRadius ? bfa.b : (this.currentRadius > this.oldRadius ? bfa.a : bfa.c);
 	}
 
 	public double b() {
-		double var1 = this.f() - this.h() / 2.0D;
-		if (var1 < (double) (-this.h)) {
-			var1 = (double) (-this.h);
+		double var1 = this.getX() - this.getOldRadius() / 2.0D;
+		if (var1 < (double) (-this.portalTeleportBoundary)) {
+			var1 = (double) (-this.portalTeleportBoundary);
 		}
 
 		return var1;
 	}
 
 	public double c() {
-		double var1 = this.g() - this.h() / 2.0D;
-		if (var1 < (double) (-this.h)) {
-			var1 = (double) (-this.h);
+		double var1 = this.getZ() - this.getOldRadius() / 2.0D;
+		if (var1 < (double) (-this.portalTeleportBoundary)) {
+			var1 = (double) (-this.portalTeleportBoundary);
 		}
 
 		return var1;
 	}
 
 	public double d() {
-		double var1 = this.f() + this.h() / 2.0D;
-		if (var1 > (double) this.h) {
-			var1 = (double) this.h;
+		double var1 = this.getX() + this.getOldRadius() / 2.0D;
+		if (var1 > (double) this.portalTeleportBoundary) {
+			var1 = (double) this.portalTeleportBoundary;
 		}
 
 		return var1;
 	}
 
 	public double e() {
-		double var1 = this.g() + this.h() / 2.0D;
-		if (var1 > (double) this.h) {
-			var1 = (double) this.h;
+		double var1 = this.getZ() + this.getOldRadius() / 2.0D;
+		if (var1 > (double) this.portalTeleportBoundary) {
+			var1 = (double) this.portalTeleportBoundary;
 		}
 
 		return var1;
 	}
 
-	public double f() {
-		return this.b;
+	public double getX() {
+		return this.x;
 	}
 
-	public double g() {
-		return this.c;
+	public double getZ() {
+		return this.z;
 	}
 
-	public void c(double var1, double var3) {
-		this.b = var1;
-		this.c = var3;
-		Iterator var5 = this.k().iterator();
+	public void setCenter(double x, double z) {
+		this.x = x;
+		this.z = z;
 
-		while (var5.hasNext()) {
-			bez var6 = (bez) var5.next();
-			var6.a(this, var1, var3);
+		for (WorldBorderChangeListener listener : this.getChangeListeners()) {
+			listener.onSetCenter(this, x, z);
 		}
-
 	}
 
-	public double h() {
+	public double getOldRadius() {
 		if (this.a() != bfa.c) {
-			double var1 = (double) ((float) (System.currentTimeMillis() - this.g) / (float) (this.f - this.g));
+			double var1 = (double) ((float) (System.currentTimeMillis() - this.lerpStartTime) / (float) (this.lerpEndTime - this.lerpStartTime));
 			if (var1 < 1.0D) {
-				return this.d + (this.e - this.d) * var1;
+				return this.oldRadius + (this.currentRadius - this.oldRadius) * var1;
 			}
 
-			this.a(this.e);
+			this.setSize(this.currentRadius);
 		}
 
-		return this.d;
+		return this.oldRadius;
 	}
 
-	public long i() {
-		return this.a() != bfa.c ? this.f - System.currentTimeMillis() : 0L;
+	public long getSpeed() {
+		return this.a() != bfa.c ? this.lerpEndTime - System.currentTimeMillis() : 0L;
 	}
 
-	public double j() {
-		return this.e;
+	public double getCurrentRadius() {
+		return this.currentRadius;
 	}
 
-	public void a(double var1) {
-		this.d = var1;
-		this.e = var1;
-		this.f = System.currentTimeMillis();
-		this.g = this.f;
-		Iterator var3 = this.k().iterator();
+	public void setSize(double size) {
+		this.oldRadius = size;
+		this.currentRadius = size;
+		this.lerpEndTime = System.currentTimeMillis();
+		this.lerpStartTime = this.lerpEndTime;
 
-		while (var3.hasNext()) {
-			bez var4 = (bez) var3.next();
-			var4.a(this, var1);
+		for (WorldBorderChangeListener listener : this.getChangeListeners()) {
+			listener.onSizeSet(this, size);
 		}
-
 	}
 
-	public void a(double var1, double var3, long var5) {
-		this.d = var1;
-		this.e = var3;
-		this.g = System.currentTimeMillis();
-		this.f = this.g + var5;
-		Iterator var7 = this.k().iterator();
+	public void changeSize(double oldRadius, double currentRadius, long time) {
+		this.oldRadius = oldRadius;
+		this.currentRadius = currentRadius;
+		this.lerpStartTime = System.currentTimeMillis();
+		this.lerpEndTime = this.lerpStartTime + time;
 
-		while (var7.hasNext()) {
-			bez var8 = (bez) var7.next();
-			var8.a(this, var1, var3, var5);
+		for (WorldBorderChangeListener listener : this.getChangeListeners()) {
+			listener.onSizeChange(this, oldRadius, currentRadius, time);
 		}
-
 	}
 
-	protected List k() {
-		return Lists.newArrayList((Iterable) this.a);
+	protected List<WorldBorderChangeListener> getChangeListeners() {
+		return Lists.newArrayList(this.listeners);
 	}
 
-	public void a(bez var1) {
-		this.a.add(var1);
+	public void addChangeListener(WorldBorderChangeListener listener) {
+		this.listeners.add(listener);
 	}
 
-	public void a(int var1) {
-		this.h = var1;
+	public void setPortalTeleportBoundary(int portalTeleportBoundary) {
+		this.portalTeleportBoundary = portalTeleportBoundary;
 	}
 
-	public int l() {
-		return this.h;
+	public int getPortalTeleportBoundary() {
+		return this.portalTeleportBoundary;
 	}
 
-	public double m() {
-		return this.j;
+	public double getDamageBuffer() {
+		return this.damageBuffer;
 	}
 
-	public void b(double var1) {
-		this.j = var1;
-		Iterator var3 = this.k().iterator();
+	public void setDamageBuffer(double buffer) {
+		this.damageBuffer = buffer;
 
-		while (var3.hasNext()) {
-			bez var4 = (bez) var3.next();
-			var4.c(this, var1);
+		for (WorldBorderChangeListener listener : this.getChangeListeners()) {
+			listener.onSetDamageBuffer(this, buffer);
 		}
-
 	}
 
-	public double n() {
-		return this.i;
+	public double getDamageAmount() {
+		return this.damageAmount;
 	}
 
-	public void c(double var1) {
-		this.i = var1;
-		Iterator var3 = this.k().iterator();
+	public void setDamageAmount(double damage) {
+		this.damageAmount = damage;
 
-		while (var3.hasNext()) {
-			bez var4 = (bez) var3.next();
-			var4.b(this, var1);
+		for (WorldBorderChangeListener listener : this.getChangeListeners()) {
+			listener.onSetDamageAmount(this, damage);
 		}
-
 	}
 
-	public int p() {
-		return this.k;
+	public int getWarningTime() {
+		return this.warningTime;
 	}
 
-	public void b(int var1) {
-		this.k = var1;
-		Iterator var2 = this.k().iterator();
+	public void setWarningTime(int time) {
+		this.warningTime = time;
 
-		while (var2.hasNext()) {
-			bez var3 = (bez) var2.next();
-			var3.a(this, var1);
+		for (WorldBorderChangeListener listener : this.getChangeListeners()) {
+			listener.onSetWarningTime(this, time);
 		}
-
 	}
 
-	public int q() {
-		return this.l;
+	public int getWarningBlocks() {
+		return this.warningBlocks;
 	}
 
-	public void c(int var1) {
-		this.l = var1;
-		Iterator var2 = this.k().iterator();
+	public void setWarningBlocks(int blocks) {
+		this.warningBlocks = blocks;
 
-		while (var2.hasNext()) {
-			bez var3 = (bez) var2.next();
-			var3.b(this, var1);
+		for (WorldBorderChangeListener listener : this.getChangeListeners()) {
+			listener.onSetWarningBlocks(this, blocks);
 		}
-
 	}
+
 }

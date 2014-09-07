@@ -133,10 +133,10 @@ public abstract class EntityLiving extends Entity {
 		if (this.ai()) {
 			if (this.aj()) {
 				this.a(DamageSource.e, 1.0F);
-			} else if (var1 && !this.o.af().a(this.aQ())) {
-				double var2 = this.o.af().a((Entity) this) + this.o.af().m();
+			} else if (var1 && !this.o.getWorldBorder().a(this.aQ())) {
+				double var2 = this.o.getWorldBorder().a((Entity) this) + this.o.getWorldBorder().getDamageBuffer();
 				if (var2 < 0.0D) {
-					this.a(DamageSource.e, (float) Math.max(1, DataTypesConverter.toFixedPointInt(-var2 * this.o.af().n())));
+					this.a(DamageSource.e, (float) Math.max(1, DataTypesConverter.toFixedPointInt(-var2 * this.o.getWorldBorder().getDamageAmount())));
 				}
 			}
 		}

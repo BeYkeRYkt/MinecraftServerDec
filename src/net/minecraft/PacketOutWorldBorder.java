@@ -17,14 +17,14 @@ public class PacketOutWorldBorder implements Packet<PlayClientboundPacketListene
 
 	public PacketOutWorldBorder(WorldBorder worldborder, WorldBorderAction action) {
 		this.action = action;
-		this.x = worldborder.f();
-		this.z = worldborder.g();
-		this.oldRadius = worldborder.h();
-		this.radius = worldborder.j();
-		this.speed = worldborder.i();
-		this.teleportBoundary = worldborder.l();
-		this.warningBlocks = worldborder.q();
-		this.warningTime = worldborder.p();
+		this.x = worldborder.getX();
+		this.z = worldborder.getZ();
+		this.oldRadius = worldborder.getOldRadius();
+		this.radius = worldborder.getCurrentRadius();
+		this.speed = worldborder.getSpeed();
+		this.teleportBoundary = worldborder.getPortalTeleportBoundary();
+		this.warningBlocks = worldborder.getWarningBlocks();
+		this.warningTime = worldborder.getWarningTime();
 	}
 
 	public void readData(PacketDataSerializer serializer) {
@@ -64,7 +64,6 @@ public class PacketOutWorldBorder implements Packet<PlayClientboundPacketListene
 				this.warningTime = serializer.readVarInt();
 			}
 		}
-
 	}
 
 	public void writeData(PacketDataSerializer serializer) {
@@ -104,7 +103,6 @@ public class PacketOutWorldBorder implements Packet<PlayClientboundPacketListene
 				serializer.writeVarInt(this.warningTime);
 			}
 		}
-
 	}
 
 	public void handlePacket(PlayClientboundPacketListener listener) {

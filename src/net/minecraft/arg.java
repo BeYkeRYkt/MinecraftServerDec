@@ -34,7 +34,7 @@ public final class arg {
 							ChunkCoordIntPair var14 = new ChunkCoordIntPair(var11 + var8, var12 + var9);
 							if (!this.b.contains(var14)) {
 								++var5;
-								if (!var13 && var1.af().a(var14)) {
+								if (!var13 && var1.getWorldBorder().a(var14)) {
 									this.b.add(var14);
 								}
 							}
@@ -148,7 +148,7 @@ public final class arg {
 	}
 
 	public static boolean a(xo var0, World var1, Position var2) {
-		if (!var1.af().a(var2)) {
+		if (!var1.getWorldBorder().a(var2)) {
 			return false;
 		} else {
 			Block var3 = var1.p(var2).getBlock();

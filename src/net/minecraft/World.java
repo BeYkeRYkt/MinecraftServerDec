@@ -53,7 +53,7 @@ public abstract class World implements ard {
 	protected boolean F;
 	protected boolean G;
 	private boolean L;
-	private final WorldBorder M;
+	private final WorldBorder worldborder;
 	int[] H;
 
 	protected World(IDataManager var1, WorldData var2, WorldProvider var3, MethodProfiler var4, boolean var5) {
@@ -66,7 +66,7 @@ public abstract class World implements ard {
 		this.worldData = var2;
 		this.worldProvider = var3;
 		this.D = var5;
-		this.M = var3.r();
+		this.worldborder = var3.r();
 	}
 
 	public World b() {
@@ -773,7 +773,7 @@ public abstract class World implements ard {
 					for (int var12 = var6 - 1; var12 < var7; ++var12) {
 						Position var13 = new Position(var10, var12, var11);
 						boolean var14 = var1.aS();
-						boolean var15 = this.a(this.af(), var1);
+						boolean var15 = this.a(this.getWorldBorder(), var1);
 						if (var14 && var15) {
 							var1.h(false);
 						} else if (!var14 && !var15) {
@@ -781,7 +781,7 @@ public abstract class World implements ard {
 						}
 
 						bec var16;
-						if (!this.af().a(var13) && var15) {
+						if (!this.getWorldBorder().a(var13) && var15) {
 							var16 = Blocks.STONE.P();
 						} else {
 							var16 = this.p(var13);
@@ -1015,7 +1015,7 @@ public abstract class World implements ard {
 			TileEntity var11 = (TileEntity) var10.next();
 			if (!var11.x() && var11.t()) {
 				Position var13 = var11.v();
-				if (this.e(var13) && this.M.a(var13)) {
+				if (this.e(var13) && this.worldborder.a(var13)) {
 					try {
 						((pm) var11).c();
 					} catch (Throwable var7) {
@@ -2191,8 +2191,8 @@ public abstract class World implements ard {
 
 	public Position M() {
 		Position var1 = new Position(this.worldData.c(), this.worldData.d(), this.worldData.e());
-		if (!this.af().a(var1)) {
-			var1 = this.m(new Position(this.af().f(), 0.0D, this.af().g()));
+		if (!this.getWorldBorder().a(var1)) {
+			var1 = this.m(new Position(this.getWorldBorder().getX(), 0.0D, this.getWorldBorder().getZ()));
 		}
 
 		return var1;
@@ -2420,8 +2420,8 @@ public abstract class World implements ard {
 		return this.A;
 	}
 
-	public WorldBorder af() {
-		return this.M;
+	public WorldBorder getWorldBorder() {
+		return this.worldborder;
 	}
 
 	public boolean c(int var1, int var2) {

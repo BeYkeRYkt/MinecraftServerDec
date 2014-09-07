@@ -221,7 +221,7 @@ public class BlockPiston extends Block {
 	public static boolean a(Block var0, World var1, Position var2, BlockFace var3, boolean var4) {
 		if (var0 == Blocks.OBSIDIAN) {
 			return false;
-		} else if (!var1.af().a(var2)) {
+		} else if (!var1.getWorldBorder().a(var2)) {
 			return false;
 		} else if (var2.getY() >= 0 && (var3 != BlockFace.a || var2.getY() != 0)) {
 			if (var2.getY() <= var1.U() - 1 && (var3 != BlockFace.b || var2.getY() != var1.U() - 1)) {

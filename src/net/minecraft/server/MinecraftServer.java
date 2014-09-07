@@ -136,7 +136,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		arb var8;
 		if (var9 == null) {
 			if (this.W()) {
-				var8 = qj.a;
+				var8 = DemoWorldServer.a;
 			} else {
 				var8 = new arb(var3, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), var5);
 				var8.a(var6);
@@ -163,14 +163,14 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 			if (var10 == 0) {
 				if (this.W()) {
-					this.worlds[var10] = (WorldServer) (new qj(this, var7, var9, var11, this.profiler)).b();
+					this.worlds[var10] = (WorldServer) (new DemoWorldServer(this, var7, var9, var11, this.profiler)).b();
 				} else {
 					this.worlds[var10] = (WorldServer) (new WorldServer(this, var7, var9, var11, this.profiler)).b();
 				}
 
 				this.worlds[var10].a(var8);
 			} else {
-				this.worlds[var10] = (WorldServer) (new ql(this, var7, var11, this.worlds[0], this.profiler)).b();
+				this.worlds[var10] = (WorldServer) (new SecondaryWorldServer(this, var7, var11, this.worlds[0], this.profiler)).b();
 			}
 
 			this.worlds[var10].a((ara) (new qp(this, this.worlds[var10])));

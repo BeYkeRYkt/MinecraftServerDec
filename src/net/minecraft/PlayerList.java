@@ -154,7 +154,7 @@ public abstract class PlayerList {
 
 	public void a(WorldServer[] var1) {
 		this.p = var1[0].O().e();
-		var1[0].af().a((bez) (new so(this)));
+		var1[0].getWorldBorder().addChangeListener((WorldBorderChangeListener) (new PlayerUpdaterWorldBorderChangeListener(this)));
 	}
 
 	public void a(EntityPlayer var1, WorldServer var2) {
@@ -369,15 +369,15 @@ public abstract class PlayerList {
 		float var11 = var1.yaw;
 		var3.B.a("moving");
 		if (var1.dimensionId == -1) {
-			var5 = DataTypesConverter.a(var5 / var9, var4.af().b() + 16.0D, var4.af().d() - 16.0D);
-			var7 = DataTypesConverter.a(var7 / var9, var4.af().c() + 16.0D, var4.af().e() - 16.0D);
+			var5 = DataTypesConverter.a(var5 / var9, var4.getWorldBorder().b() + 16.0D, var4.getWorldBorder().d() - 16.0D);
+			var7 = DataTypesConverter.a(var7 / var9, var4.getWorldBorder().c() + 16.0D, var4.getWorldBorder().e() - 16.0D);
 			var1.b(var5, var1.locationY, var7, var1.yaw, var1.pitch);
 			if (var1.ai()) {
 				var3.a(var1, false);
 			}
 		} else if (var1.dimensionId == 0) {
-			var5 = DataTypesConverter.a(var5 * var9, var4.af().b() + 16.0D, var4.af().d() - 16.0D);
-			var7 = DataTypesConverter.a(var7 * var9, var4.af().c() + 16.0D, var4.af().e() - 16.0D);
+			var5 = DataTypesConverter.a(var5 * var9, var4.getWorldBorder().b() + 16.0D, var4.getWorldBorder().d() - 16.0D);
+			var7 = DataTypesConverter.a(var7 * var9, var4.getWorldBorder().c() + 16.0D, var4.getWorldBorder().e() - 16.0D);
 			var1.b(var5, var1.locationY, var7, var1.yaw, var1.pitch);
 			if (var1.ai()) {
 				var3.a(var1, false);
@@ -599,7 +599,7 @@ public abstract class PlayerList {
 	}
 
 	public void b(EntityPlayer var1, WorldServer var2) {
-		WorldBorder var3 = this.minecraftserver.worlds[0].af();
+		WorldBorder var3 = this.minecraftserver.worlds[0].getWorldBorder();
 		var1.playerConncetion.sendPacket((Packet) (new PacketOutWorldBorder(var3, WorldBorderAction.INITIALIZE)));
 		var1.playerConncetion.sendPacket((Packet) (new PacketOutTimeUpdate(var2.K(), var2.L(), var2.Q().b("doDaylightCycle"))));
 		if (var2.S()) {

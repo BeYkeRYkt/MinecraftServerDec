@@ -9,11 +9,11 @@ class bgf extends WorldBorder {
 		this.a = var1;
 	}
 
-	public double f() {
-		return super.f() / 8.0D;
+	public double getX() {
+		return super.getX() / 8.0D;
 	}
 
-	public double g() {
-		return super.g() / 8.0D;
+	public double getZ() {
+		return super.getZ() / 8.0D;
 	}
 }

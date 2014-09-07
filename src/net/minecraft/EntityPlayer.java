@@ -53,7 +53,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		Position var5 = var2.M();
 		if (!var2.worldProvider.noSkyLight() && var2.P().r() != GameMode.ADVENTURE) {
 			int var6 = Math.max(5, var1.isSpawnProtectionEnabled() - 6);
-			int var7 = DataTypesConverter.toFixedPointInt(var2.af().b((double) var5.getX(), (double) var5.getZ()));
+			int var7 = DataTypesConverter.toFixedPointInt(var2.getWorldBorder().b((double) var5.getX(), (double) var5.getZ()));
 			if (var7 < var6) {
 				var6 = var7;
 			}
