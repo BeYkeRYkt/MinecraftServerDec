@@ -22,7 +22,7 @@ public class TileEntityMobSpawner extends TileEntity implements pm {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		this.write(var1);
 		var1.remove("SpawnPotentials");
-		return new PacketOutUpdateBlockEntity(this.position, 1, var1);
+		return new PacketPlayOutUpdateBlockEntity(this.position, 1, var1);
 	}
 
 	public boolean c(int var1, int var2) {

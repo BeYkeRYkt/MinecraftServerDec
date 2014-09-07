@@ -49,7 +49,7 @@ public class TileEntitySign extends TileEntity {
 	public Packet getUpdatePacket() {
 		IChatBaseComponent[] var1 = new IChatBaseComponent[4];
 		System.arraycopy(this.a, 0, var1, 0, 4);
-		return new PacketOutUpdateSign(this.world, this.position, var1);
+		return new PacketPlayOutUpdateSign(this.world, this.position, var1);
 	}
 
 	public boolean b() {

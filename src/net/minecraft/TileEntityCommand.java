@@ -17,7 +17,7 @@ public class TileEntityCommand extends TileEntity {
 	public Packet getUpdatePacket() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		this.write(var1);
-		return new PacketOutUpdateBlockEntity(this.position, 2, var1);
+		return new PacketPlayOutUpdateBlockEntity(this.position, 2, var1);
 	}
 
 	public aqf b() {

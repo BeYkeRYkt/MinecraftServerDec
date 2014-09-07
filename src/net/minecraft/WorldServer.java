@@ -688,7 +688,7 @@ public class WorldServer extends World implements vn {
 
 	public boolean c(Entity var1) {
 		if (super.c(var1)) {
-			this.I.getPlayerList().a(var1.locationX, var1.locationY, var1.locationZ, 512.0D, this.worldProvider.getDimensionId(), new PacketOutSpawnGlobalEntity(var1));
+			this.I.getPlayerList().a(var1.locationX, var1.locationY, var1.locationZ, 512.0D, this.worldProvider.getDimensionId(), new PacketPlayOutSpawnGlobalEntity(var1));
 			return true;
 		} else {
 			return false;
@@ -696,7 +696,7 @@ public class WorldServer extends World implements vn {
 	}
 
 	public void a(Entity var1, byte var2) {
-		this.s().b(var1, new PacketOutEntityStatus(var1, var2));
+		this.s().b(var1, new PacketPlayOutEntityStatus(var1, var2));
 	}
 
 	public aqo a(Entity var1, double var2, double var4, double var6, float var8, boolean var9, boolean var10) {
@@ -712,7 +712,7 @@ public class WorldServer extends World implements vn {
 		while (var12.hasNext()) {
 			EntityHuman var13 = (EntityHuman) var12.next();
 			if (var13.e(var2, var4, var6) < 4096.0D) {
-				((EntityPlayer) var13).playerConncetion.sendPacket((Packet) (new PacketOutExplosion(var2, var4, var6, var8, var11.e(), (Vec3D) var11.b().get(var13))));
+				((EntityPlayer) var13).playerConncetion.sendPacket((Packet) (new PacketPlayOutExplosion(var2, var4, var6, var8, var11.e(), (Vec3D) var11.b().get(var13))));
 			}
 		}
 
@@ -744,7 +744,7 @@ public class WorldServer extends World implements vn {
 			while (var2.hasNext()) {
 				aqk var3 = (aqk) var2.next();
 				if (this.a(var3)) {
-					this.I.getPlayerList().a((double) var3.a().getX(), (double) var3.a().getY(), (double) var3.a().getZ(), 64.0D, this.worldProvider.getDimensionId(), new PacketOutBlockAction(var3.a(), var3.d(), var3.b(), var3.c()));
+					this.I.getPlayerList().a((double) var3.a().getX(), (double) var3.a().getY(), (double) var3.a().getZ(), 64.0D, this.worldProvider.getDimensionId(), new PacketPlayOutBlockAction(var3.a(), var3.d(), var3.b(), var3.c()));
 				}
 			}
 
@@ -766,22 +766,22 @@ public class WorldServer extends World implements vn {
 		boolean var1 = this.S();
 		super.p();
 		if (this.o != this.p) {
-			this.I.getPlayerList().sendPacket((Packet) (new PacketOutChangeGameState(7, this.p)), this.worldProvider.getDimensionId());
+			this.I.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(7, this.p)), this.worldProvider.getDimensionId());
 		}
 
 		if (this.q != this.r) {
-			this.I.getPlayerList().sendPacket((Packet) (new PacketOutChangeGameState(8, this.r)), this.worldProvider.getDimensionId());
+			this.I.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(8, this.r)), this.worldProvider.getDimensionId());
 		}
 
 		if (var1 != this.S()) {
 			if (var1) {
-				this.I.getPlayerList().sendPacket((Packet) (new PacketOutChangeGameState(2, 0.0F)));
+				this.I.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(2, 0.0F)));
 			} else {
-				this.I.getPlayerList().sendPacket((Packet) (new PacketOutChangeGameState(1, 0.0F)));
+				this.I.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(1, 0.0F)));
 			}
 
-			this.I.getPlayerList().sendPacket((Packet) (new PacketOutChangeGameState(7, this.p)));
-			this.I.getPlayerList().sendPacket((Packet) (new PacketOutChangeGameState(8, this.r)));
+			this.I.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(7, this.p)));
+			this.I.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(8, this.r)));
 		}
 
 	}
@@ -811,7 +811,7 @@ public class WorldServer extends World implements vn {
 	}
 
 	public void a(Particle var1, boolean var2, double var3, double var5, double var7, int var9, double var10, double var12, double var14, double var16, int... var18) {
-		PacketOutParticle var19 = new PacketOutParticle(var1, var2, (float) var3, (float) var5, (float) var7, (float) var10, (float) var12, (float) var14, (float) var16, var9, var18);
+		PacketPlayOutParticle var19 = new PacketPlayOutParticle(var1, var2, (float) var3, (float) var5, (float) var7, (float) var10, (float) var12, (float) var14, (float) var16, var9, var18);
 
 		for (int var20 = 0; var20 < this.j.size(); ++var20) {
 			EntityPlayer var21 = (EntityPlayer) this.j.get(var20);

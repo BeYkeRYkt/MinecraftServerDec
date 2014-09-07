@@ -22,7 +22,7 @@ public class pk extends Scoreboard {
 	public void handleScoreChanged(ScoreboardScore var1) {
 		super.handleScoreChanged(var1);
 		if (this.b.contains(var1.getObjective())) {
-			this.a.getPlayerList().sendPacket((Packet) (new PacketOutUpdateScore(var1)));
+			this.a.getPlayerList().sendPacket((Packet) (new PacketPlayOutUpdateScore(var1)));
 		}
 
 		this.b();
@@ -30,13 +30,13 @@ public class pk extends Scoreboard {
 
 	public void a(String var1) {
 		super.a(var1);
-		this.a.getPlayerList().sendPacket((Packet) (new PacketOutUpdateScore(var1)));
+		this.a.getPlayerList().sendPacket((Packet) (new PacketPlayOutUpdateScore(var1)));
 		this.b();
 	}
 
 	public void a(String var1, ScoreboardObjective var2) {
 		super.a(var1, var2);
-		this.a.getPlayerList().sendPacket((Packet) (new PacketOutUpdateScore(var1, var2)));
+		this.a.getPlayerList().sendPacket((Packet) (new PacketPlayOutUpdateScore(var1, var2)));
 		this.b();
 	}
 
@@ -45,7 +45,7 @@ public class pk extends Scoreboard {
 		super.a(var1, var2);
 		if (var3 != var2 && var3 != null) {
 			if (this.h(var3) > 0) {
-				this.a.getPlayerList().sendPacket((Packet) (new PacketOutDisplayScoreboard(var1, var2)));
+				this.a.getPlayerList().sendPacket((Packet) (new PacketPlayOutDisplayScoreboard(var1, var2)));
 			} else {
 				this.g(var3);
 			}
@@ -53,7 +53,7 @@ public class pk extends Scoreboard {
 
 		if (var2 != null) {
 			if (this.b.contains(var2)) {
-				this.a.getPlayerList().sendPacket((Packet) (new PacketOutDisplayScoreboard(var1, var2)));
+				this.a.getPlayerList().sendPacket((Packet) (new PacketPlayOutDisplayScoreboard(var1, var2)));
 			} else {
 				this.e(var2);
 			}
@@ -65,7 +65,7 @@ public class pk extends Scoreboard {
 	public boolean a(String var1, String var2) {
 		if (super.a(var1, var2)) {
 			ScoreboardTeam var3 = this.d(var2);
-			this.a.getPlayerList().sendPacket((Packet) (new PacketOutScoreboardTeam(var3, Arrays.asList(new String[] { var1 }), 3)));
+			this.a.getPlayerList().sendPacket((Packet) (new PacketPlayOutScoreboardTeam(var3, Arrays.asList(new String[] { var1 }), 3)));
 			this.b();
 			return true;
 		} else {
@@ -75,7 +75,7 @@ public class pk extends Scoreboard {
 
 	public void a(String var1, ScoreboardTeam var2) {
 		super.a(var1, var2);
-		this.a.getPlayerList().sendPacket((Packet) (new PacketOutScoreboardTeam(var2, Arrays.asList(new String[] { var1 }), 4)));
+		this.a.getPlayerList().sendPacket((Packet) (new PacketPlayOutScoreboardTeam(var2, Arrays.asList(new String[] { var1 }), 4)));
 		this.b();
 	}
 
@@ -87,7 +87,7 @@ public class pk extends Scoreboard {
 	public void b(ScoreboardObjective var1) {
 		super.b(var1);
 		if (this.b.contains(var1)) {
-			this.a.getPlayerList().sendPacket((Packet) (new PacketOutScoreboardObjective(var1, 2)));
+			this.a.getPlayerList().sendPacket((Packet) (new PacketPlayOutScoreboardObjective(var1, 2)));
 		}
 
 		this.b();
@@ -104,19 +104,19 @@ public class pk extends Scoreboard {
 
 	public void a(ScoreboardTeam var1) {
 		super.a(var1);
-		this.a.getPlayerList().sendPacket((Packet) (new PacketOutScoreboardTeam(var1, 0)));
+		this.a.getPlayerList().sendPacket((Packet) (new PacketPlayOutScoreboardTeam(var1, 0)));
 		this.b();
 	}
 
 	public void handleTeamChanged(ScoreboardTeam var1) {
 		super.handleTeamChanged(var1);
-		this.a.getPlayerList().sendPacket((Packet) (new PacketOutScoreboardTeam(var1, 2)));
+		this.a.getPlayerList().sendPacket((Packet) (new PacketPlayOutScoreboardTeam(var1, 2)));
 		this.b();
 	}
 
 	public void c(ScoreboardTeam var1) {
 		super.c(var1);
-		this.a.getPlayerList().sendPacket((Packet) (new PacketOutScoreboardTeam(var1, 1)));
+		this.a.getPlayerList().sendPacket((Packet) (new PacketPlayOutScoreboardTeam(var1, 1)));
 		this.b();
 	}
 
@@ -133,11 +133,11 @@ public class pk extends Scoreboard {
 
 	public List d(ScoreboardObjective var1) {
 		ArrayList var2 = Lists.newArrayList();
-		var2.add(new PacketOutScoreboardObjective(var1, 0));
+		var2.add(new PacketPlayOutScoreboardObjective(var1, 0));
 
 		for (int var3 = 0; var3 < 19; ++var3) {
 			if (this.a(var3) == var1) {
-				var2.add(new PacketOutDisplayScoreboard(var3, var1));
+				var2.add(new PacketPlayOutDisplayScoreboard(var3, var1));
 			}
 		}
 
@@ -145,7 +145,7 @@ public class pk extends Scoreboard {
 
 		while (var5.hasNext()) {
 			ScoreboardScore var4 = (ScoreboardScore) var5.next();
-			var2.add(new PacketOutUpdateScore(var4));
+			var2.add(new PacketPlayOutUpdateScore(var4));
 		}
 
 		return var2;
@@ -170,11 +170,11 @@ public class pk extends Scoreboard {
 
 	public List f(ScoreboardObjective var1) {
 		ArrayList var2 = Lists.newArrayList();
-		var2.add(new PacketOutScoreboardObjective(var1, 1));
+		var2.add(new PacketPlayOutScoreboardObjective(var1, 1));
 
 		for (int var3 = 0; var3 < 19; ++var3) {
 			if (this.a(var3) == var1) {
-				var2.add(new PacketOutDisplayScoreboard(var3, var1));
+				var2.add(new PacketPlayOutDisplayScoreboard(var3, var1));
 			}
 		}
 

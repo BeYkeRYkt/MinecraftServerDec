@@ -26,9 +26,9 @@ public class bqf {
 	public Packet a(ItemStack var1) {
 		if (this.d) {
 			this.d = false;
-			return new PacketOutMap(var1.i(), this.c.e, this.c.h.values(), this.c.f, this.e, this.f, this.g + 1 - this.e, this.h + 1 - this.f);
+			return new PacketPlayOutMap(var1.i(), this.c.e, this.c.h.values(), this.c.f, this.e, this.f, this.g + 1 - this.e, this.h + 1 - this.f);
 		} else {
-			return this.i++ % 5 == 0 ? new PacketOutMap(var1.i(), this.c.e, this.c.h.values(), this.c.f, 0, 0, 0, 0) : null;
+			return this.i++ % 5 == 0 ? new PacketPlayOutMap(var1.i(), this.c.e, this.c.h.values(), this.c.f, 0, 0, 0, 0) : null;
 		}
 	}
 

@@ -36,7 +36,7 @@ public class TileEntityFlowerPot extends TileEntity {
 		this.write(var1);
 		var1.remove("Item");
 		var1.put("Item", Item.getId(this.a));
-		return new PacketOutUpdateBlockEntity(this.position, 5, var1);
+		return new PacketPlayOutUpdateBlockEntity(this.position, 5, var1);
 	}
 
 	public void a(Item var1, int var2) {

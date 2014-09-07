@@ -12,7 +12,7 @@ public class ro implements HandshakingServerboundPacketListener {
 		this.b = var2;
 	}
 
-	public void handle(PacketInSetProtocol var1) {
+	public void handle(PacketHandshakingInSetProtocol var1) {
 		switch (rp.a[var1.getNextState().ordinal()]) {
 			case 1:
 				this.b.a(EnumProtocol.LOGIN);

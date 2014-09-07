@@ -78,7 +78,7 @@ public class ServerConnection {
 
 							d.warn("Failed to handle packet for " + var3.b(), (Throwable) var8);
 							ChatComponentText var5 = new ChatComponentText("Internal server error");
-							var3.a(new PacketOutDisconnect(var5), new ri(this, var3, var5), new GenericFutureListener[0]);
+							var3.a(new PacketPlayOutDisconnect(var5), new ri(this, var3, var5), new GenericFutureListener[0]);
 							var3.k();
 						}
 					}

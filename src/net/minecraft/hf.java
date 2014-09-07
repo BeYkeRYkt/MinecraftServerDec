@@ -32,7 +32,7 @@ public class hf extends MessageToByteEncoder {
 			var5.writeVarInt(var4.intValue());
 
 			try {
-				if (var2 instanceof PacketOutSpawnPlayer) {
+				if (var2 instanceof PacketPlayOutSpawnPlayer) {
 					var2 = var2;
 				}
 

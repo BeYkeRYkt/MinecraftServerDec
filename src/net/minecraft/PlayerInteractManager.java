@@ -1,6 +1,6 @@
 package net.minecraft;
 
-import net.minecraft.PacketOutListItem.ListItemAction;
+import net.minecraft.PacketPlayOutListItem.ListItemAction;
 
 public class PlayerInteractManager {
 
@@ -28,7 +28,7 @@ public class PlayerInteractManager {
 		this.gameMode = var1;
 		var1.setGameModeProperties(this.b.by);
 		this.b.t();
-		this.b.minecraftserver.getPlayerList().sendPacket((Packet) (new PacketOutListItem(ListItemAction.UPDATE_GAME_MODE, new EntityPlayer[] { this.b })));
+		this.b.minecraftserver.getPlayerList().sendPacket((Packet) (new PacketPlayOutListItem(ListItemAction.UPDATE_GAME_MODE, new EntityPlayer[] { this.b })));
 	}
 
 	public GameMode getGameMode() {
@@ -201,7 +201,7 @@ public class PlayerInteractManager {
 			this.a.a(this.b, 2001, var1, Block.f(var2));
 			boolean var7 = this.c(var1);
 			if (this.d()) {
-				this.b.playerConncetion.sendPacket((Packet) (new PacketOutBlockChange(this.a, var1)));
+				this.b.playerConncetion.sendPacket((Packet) (new PacketPlayOutBlockChange(this.a, var1)));
 			} else {
 				ItemStack var5 = this.b.bY();
 				boolean var6 = this.b.b(var2.getBlock());

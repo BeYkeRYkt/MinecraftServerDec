@@ -39,7 +39,7 @@ class qr {
 		if (this.b.contains(var1)) {
 			Chunk var2 = qq.a(this.a).a(this.c.chunkX, this.c.chunkZ);
 			if (var2.i()) {
-				var1.playerConncetion.sendPacket((Packet) (new PacketOutChunkData(var2, true, 0)));
+				var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutChunkData(var2, true, 0)));
 			}
 
 			this.b.remove(var1);
@@ -108,7 +108,7 @@ class qr {
 				var2 = this.d[0] & 255;
 				var3 = (this.d[0] >> 8 & 15) + this.c.chunkZ * 16;
 				Position var4 = new Position(var1, var2, var3);
-				this.a((Packet) (new PacketOutBlockChange(qq.a(this.a), var4)));
+				this.a((Packet) (new PacketPlayOutBlockChange(qq.a(this.a), var4)));
 				if (qq.a(this.a).p(var4).getBlock().x()) {
 					this.a(qq.a(this.a).s(var4));
 				}
@@ -117,7 +117,7 @@ class qr {
 				if (this.e == 64) {
 					var1 = this.c.chunkX * 16;
 					var2 = this.c.chunkZ * 16;
-					this.a((Packet) (new PacketOutChunkData(qq.a(this.a).a(this.c.chunkX, this.c.chunkZ), false, this.f)));
+					this.a((Packet) (new PacketPlayOutChunkData(qq.a(this.a).a(this.c.chunkX, this.c.chunkZ), false, this.f)));
 
 					for (var3 = 0; var3 < 16; ++var3) {
 						if ((this.f & 1 << var3) != 0) {
@@ -130,7 +130,7 @@ class qr {
 						}
 					}
 				} else {
-					this.a((Packet) (new PacketOutMultiBlockChange(this.e, this.d, qq.a(this.a).a(this.c.chunkX, this.c.chunkZ))));
+					this.a((Packet) (new PacketPlayOutMultiBlockChange(this.e, this.d, qq.a(this.a).a(this.c.chunkX, this.c.chunkZ))));
 
 					for (var1 = 0; var1 < this.e; ++var1) {
 						var2 = (this.d[var1] >> 12 & 15) + this.c.chunkX * 16;

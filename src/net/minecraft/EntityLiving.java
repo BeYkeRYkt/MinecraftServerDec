@@ -874,7 +874,7 @@ public abstract class EntityLiving extends Entity {
 			this.aq = -1;
 			this.ap = true;
 			if (this.o instanceof WorldServer) {
-				((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketOutAnimation(this, 0)));
+				((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketPlayOutAnimation(this, 0)));
 			}
 		}
 
@@ -1153,7 +1153,7 @@ public abstract class EntityLiving extends Entity {
 				ItemStack var3 = this.h[var2];
 				ItemStack var4 = this.p(var2);
 				if (!ItemStack.b(var4, var3)) {
-					((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketOutEntityEquipment(this.getId(), var2, var4)));
+					((WorldServer) this.o).s().a((Entity) this, (Packet) (new PacketPlayOutEntityEquipment(this.getId(), var2, var4)));
 					if (var3 != null) {
 						this.c.a(var3.B());
 					}
@@ -1386,15 +1386,15 @@ public abstract class EntityLiving extends Entity {
 		if (!var1.I && !this.o.D) {
 			qn var3 = ((WorldServer) this.o).s();
 			if (var1 instanceof EntityItem) {
-				var3.a(var1, (Packet) (new PacketOutCollectItem(var1.getId(), this.getId())));
+				var3.a(var1, (Packet) (new PacketPlayOutCollectItem(var1.getId(), this.getId())));
 			}
 
 			if (var1 instanceof EntityArrow) {
-				var3.a(var1, (Packet) (new PacketOutCollectItem(var1.getId(), this.getId())));
+				var3.a(var1, (Packet) (new PacketPlayOutCollectItem(var1.getId(), this.getId())));
 			}
 
 			if (var1 instanceof EntityExpirienceOrb) {
-				var3.a(var1, (Packet) (new PacketOutCollectItem(var1.getId(), this.getId())));
+				var3.a(var1, (Packet) (new PacketPlayOutCollectItem(var1.getId(), this.getId())));
 			}
 		}
 

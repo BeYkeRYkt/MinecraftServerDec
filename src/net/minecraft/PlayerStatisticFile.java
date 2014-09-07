@@ -179,7 +179,7 @@ public class PlayerStatisticFile extends tz {
 			}
 		}
 
-		var1.playerConncetion.sendPacket((Packet<?>) (new PacketOutStatistics(var3)));
+		var1.playerConncetion.sendPacket((Packet<?>) (new PacketPlayOutStatistics(var3)));
 	}
 
 	public void b(EntityPlayer var1) {
@@ -194,7 +194,7 @@ public class PlayerStatisticFile extends tz {
 			}
 		}
 
-		var1.playerConncetion.sendPacket((Packet<?>) (new PacketOutStatistics(var2)));
+		var1.playerConncetion.sendPacket((Packet<?>) (new PacketPlayOutStatistics(var2)));
 	}
 
 	public boolean e() {

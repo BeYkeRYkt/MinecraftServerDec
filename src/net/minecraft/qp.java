@@ -25,11 +25,11 @@ public class qp implements ara {
 	}
 
 	public void a(String var1, double var2, double var4, double var6, float var8, float var9) {
-		this.a.getPlayerList().a(var2, var4, var6, var8 > 1.0F ? (double) (16.0F * var8) : 16.0D, this.b.worldProvider.getDimensionId(), new PacketOutSoundEffect(var1, var2, var4, var6, var8, var9));
+		this.a.getPlayerList().a(var2, var4, var6, var8 > 1.0F ? (double) (16.0F * var8) : 16.0D, this.b.worldProvider.getDimensionId(), new PacketPlayOutSoundEffect(var1, var2, var4, var6, var8, var9));
 	}
 
 	public void a(EntityHuman var1, String var2, double var3, double var5, double var7, float var9, float var10) {
-		this.a.getPlayerList().a(var1, var3, var5, var7, var9 > 1.0F ? (double) (16.0F * var9) : 16.0D, this.b.worldProvider.getDimensionId(), new PacketOutSoundEffect(var2, var3, var5, var7, var9, var10));
+		this.a.getPlayerList().a(var1, var3, var5, var7, var9 > 1.0F ? (double) (16.0F * var9) : 16.0D, this.b.worldProvider.getDimensionId(), new PacketPlayOutSoundEffect(var2, var3, var5, var7, var9, var10));
 	}
 
 	public void a(int var1, int var2, int var3, int var4, int var5, int var6) {
@@ -46,11 +46,11 @@ public class qp implements ara {
 	}
 
 	public void a(EntityHuman var1, int var2, Position var3, int var4) {
-		this.a.getPlayerList().a(var1, (double) var3.getX(), (double) var3.getY(), (double) var3.getZ(), 64.0D, this.b.worldProvider.getDimensionId(), new PacketOutEffect(var2, var3, var4, false));
+		this.a.getPlayerList().a(var1, (double) var3.getX(), (double) var3.getY(), (double) var3.getZ(), 64.0D, this.b.worldProvider.getDimensionId(), new PacketPlayOutEffect(var2, var3, var4, false));
 	}
 
 	public void a(int var1, Position var2, int var3) {
-		this.a.getPlayerList().sendPacket((Packet) (new PacketOutEffect(var1, var2, var3, true)));
+		this.a.getPlayerList().sendPacket((Packet) (new PacketPlayOutEffect(var1, var2, var3, true)));
 	}
 
 	public void b(int var1, Position var2, int var3) {
@@ -63,7 +63,7 @@ public class qp implements ara {
 				double var8 = (double) var2.getY() - var5.locationY;
 				double var10 = (double) var2.getZ() - var5.locationZ;
 				if (var6 * var6 + var8 * var8 + var10 * var10 < 1024.0D) {
-					var5.playerConncetion.sendPacket((Packet) (new PacketOutBlockBreakAnimation(var1, var2, var3)));
+					var5.playerConncetion.sendPacket((Packet) (new PacketPlayOutBlockBreakAnimation(var1, var2, var3)));
 				}
 			}
 		}

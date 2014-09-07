@@ -224,7 +224,7 @@ public class EntityArrow extends Entity implements aho {
 							}
 
 							if (this.c != null && var6.entity != this.c && var6.entity instanceof EntityHuman && this.c instanceof EntityPlayer) {
-								((EntityPlayer) this.c).playerConncetion.sendPacket((Packet) (new PacketOutChangeGameState(6, 0.0F)));
+								((EntityPlayer) this.c).playerConncetion.sendPacket((Packet) (new PacketPlayOutChangeGameState(6, 0.0F)));
 							}
 						}
 
