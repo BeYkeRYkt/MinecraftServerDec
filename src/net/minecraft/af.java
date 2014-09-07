@@ -24,12 +24,12 @@ public class af {
 
 			String var6 = this.d[var2.a()];
 			if (var6 != null) {
-				bsd var7 = var1.e().Z();
-				bry var8 = var7.b(var6);
+				Scoreboard var7 = var1.e().Z();
+				ScoreboardObjective var8 = var7.b(var6);
 				if (var8 != null) {
 					if (var7.b(var5, var8)) {
-						bsa var9 = var7.c(var5, var8);
-						var9.c(var3);
+						ScoreboardScore var9 = var7.c(var5, var8);
+						var9.setScore(var3);
 					}
 				}
 			}

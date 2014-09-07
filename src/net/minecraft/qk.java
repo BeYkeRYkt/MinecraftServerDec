@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class qk extends qx {
+public class qk extends PlayerInteractManager {
 
 	private boolean c;
 	private boolean d;

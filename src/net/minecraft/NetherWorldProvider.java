@@ -47,7 +47,7 @@ public class NetherWorldProvider extends WorldProvider {
 		return "_nether";
 	}
 
-	public bfb r() {
+	public WorldBorder r() {
 		return new bgf(this);
 	}
 }

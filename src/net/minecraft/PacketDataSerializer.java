@@ -64,7 +64,7 @@ public class PacketDataSerializer extends ByteBuf {
 		this.writeString(JSONComponentFormat.a(var1));
 	}
 
-	public <T extends Enum<T>> Enum<T> a(Class<T> enumClass) {
+	public <T extends Enum<T>> Enum<T> readEnum(Class<T> enumClass) {
 		return enumClass.getEnumConstants()[readVarInt()];
 	}
 

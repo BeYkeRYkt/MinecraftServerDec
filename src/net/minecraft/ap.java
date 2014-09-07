@@ -19,8 +19,8 @@ final class ap implements Predicate {
 			return false;
 		} else {
 			EntityLiving var2 = (EntityLiving) var1;
-			bsf var3 = var2.bN();
-			String var4 = var3 == null ? "" : var3.b();
+			ScoreboardTeamBase var3 = var2.bN();
+			String var4 = var3 == null ? "" : var3.getName();
 			return var4.equals(this.a) != this.b;
 		}
 	}

@@ -79,7 +79,7 @@ public class PlayerConnection implements ls, pm {
 
 	public void c(String var1) {
 		ChatComponentText var2 = new ChatComponentText(var1);
-		this.a.a(new jj(var2), new rk(this, var2), new GenericFutureListener[0]);
+		this.a.a(new PacketOutDisconnect(var2), new rk(this, var2), new GenericFutureListener[0]);
 		this.a.k();
 		Futures.getUnchecked(this.d.a((Runnable) (new rl(this))));
 	}
@@ -225,7 +225,7 @@ public class PlayerConnection implements ls, pm {
 				var31 = var23 - this.b.locationZ;
 				var39 = var27 * var27 + var29 * var29 + var31 * var31;
 				boolean var45 = false;
-				if (var39 > 0.0625D && !this.b.bI() && !this.b.c.d()) {
+				if (var39 > 0.0625D && !this.b.bI() && !this.b.playerInteractManager.d()) {
 					var45 = true;
 					c.warn(this.b.d_() + " moved wrongly!");
 				}
@@ -334,15 +334,15 @@ public class PlayerConnection implements ls, pm {
 				} else {
 					if (var1.c() == mm.a) {
 						if (!this.d.a((World) var2, var3, (EntityHuman) this.b) && var2.af().a(var3)) {
-							this.b.c.a(var3, var1.b());
+							this.b.playerInteractManager.a(var3, var1.b());
 						} else {
 							this.b.playerConncetion.sendPacket((Packet) (new PacketOutBlockChange(var2, var3)));
 						}
 					} else {
 						if (var1.c() == mm.c) {
-							this.b.c.a(var3);
+							this.b.playerInteractManager.a(var3);
 						} else if (var1.c() == mm.b) {
-							this.b.c.e();
+							this.b.playerInteractManager.e();
 						}
 
 						if (var2.p(var3).getBlock().r() != Material.AIR) {
@@ -370,7 +370,7 @@ public class PlayerConnection implements ls, pm {
 				return;
 			}
 
-			this.b.c.a(this.b, var2, var3);
+			this.b.playerInteractManager.a(this.b, var2, var3);
 		} else if (var5.getY() >= this.d.al() - 1 && (var6 == BlockFace.b || var5.getY() >= this.d.al())) {
 			ChatMessage var7 = new ChatMessage("build.tooHigh", new Object[] { Integer.valueOf(this.d.al()) });
 			var7.b().a(EnumChatFormat.RED);
@@ -378,7 +378,7 @@ public class PlayerConnection implements ls, pm {
 			var4 = true;
 		} else {
 			if (this.r && this.b.e((double) var5.getX() + 0.5D, (double) var5.getY() + 0.5D, (double) var5.getZ() + 0.5D) < 64.0D && !this.d.a((World) var2, var5, (EntityHuman) this.b) && var2.af().a(var5)) {
-				this.b.c.a(this.b, var2, var3, var5, var6, var1.d(), var1.e(), var1.f());
+				this.b.playerInteractManager.a(this.b, var2, var3, var5, var6, var1.d(), var1.e(), var1.f());
 			}
 
 			var4 = true;
@@ -432,7 +432,7 @@ public class PlayerConnection implements ls, pm {
 					WorldServer var7 = this.b.u();
 					WorldServer var8 = (WorldServer) var2.o;
 					this.b.dimensionId = var2.dimensionId;
-					this.sendPacket((Packet) (new PacketOutRespawn(this.b.dimensionId, var7.getDifficulty(), var7.P().getLevelType(), this.b.c.getGameMode())));
+					this.sendPacket((Packet) (new PacketOutRespawn(this.b.dimensionId, var7.getDifficulty(), var7.P().getLevelType(), this.b.playerInteractManager.getGameMode())));
 					var7.f(this.b);
 					this.b.I = false;
 					this.b.b(var2.locationX, var2.locationY, var2.locationZ, var2.yaw, var2.pitch);
@@ -445,7 +445,7 @@ public class PlayerConnection implements ls, pm {
 					this.b.a((World) var8);
 					this.d.getPlayerList().a(this.b, var7);
 					this.b.a(var2.locationX, var2.locationY, var2.locationZ);
-					this.b.c.a(var8);
+					this.b.playerInteractManager.a(var8);
 					this.d.getPlayerList().b(this.b, var8);
 					this.d.getPlayerList().f(this.b);
 				} else {
@@ -705,7 +705,7 @@ public class PlayerConnection implements ls, pm {
 
 	public void a(mt var1) {
 		ig.a(var1, this, this.b.u());
-		if (this.b.c.d()) {
+		if (this.b.playerInteractManager.d()) {
 			boolean var2 = var1.a() < 0;
 			ItemStack var3 = var1.b();
 			if (var3 != null && var3.hasTag() && var3.getTag().isTagAssignableFrom("BlockEntityTag", 10)) {
@@ -782,7 +782,7 @@ public class PlayerConnection implements ls, pm {
 	public void a(mf var1) {
 		if (var1.a() == this.i) {
 			int var2 = (int) (this.d() - this.j);
-			this.b.h = (this.b.h * 3 + var2) / 4;
+			this.b.ping = (this.b.ping * 3 + var2) / 4;
 		}
 
 	}
@@ -806,7 +806,7 @@ public class PlayerConnection implements ls, pm {
 			var2.add(var4);
 		}
 
-		this.b.playerConncetion.sendPacket((Packet) (new iy((String[]) var2.toArray(new String[var2.size()]))));
+		this.b.playerConncetion.sendPacket((Packet) (new PacketOutTabComplete((String[]) var2.toArray(new String[var2.size()]))));
 	}
 
 	public void a(lx var1) {

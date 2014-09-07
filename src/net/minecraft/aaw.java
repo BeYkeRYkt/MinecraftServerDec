@@ -28,8 +28,8 @@ public abstract class aaw extends zb {
 		} else if (!var1.ai()) {
 			return false;
 		} else {
-			bsf var2 = this.e.bN();
-			bsf var3 = var1.bN();
+			ScoreboardTeamBase var2 = this.e.bN();
+			ScoreboardTeamBase var3 = var1.bN();
 			if (var2 != null && var3 == var2) {
 				return false;
 			} else {
@@ -76,8 +76,8 @@ public abstract class aaw extends zb {
 		} else if (!var0.a(var1.getClass())) {
 			return false;
 		} else {
-			bsf var4 = var0.bN();
-			bsf var5 = var1.bN();
+			ScoreboardTeamBase var4 = var0.bN();
+			ScoreboardTeamBase var5 = var1.bN();
 			if (var4 != null && var5 == var4) {
 				return false;
 			} else {

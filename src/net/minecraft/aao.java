@@ -53,13 +53,13 @@ public class aao extends zb {
 		} else if (!var1.ai()) {
 			return false;
 		} else {
-			bsf var2 = this.b.bN();
-			bsf var3 = var1.bN();
+			ScoreboardTeamBase var2 = this.b.bN();
+			ScoreboardTeamBase var3 = var1.bN();
 			if (var2 != null && var3 == var2) {
 				return false;
 			} else {
 				double var4 = this.f();
-				return this.b.h(var1) > var4 * var4 ? false : !(var1 instanceof EntityPlayer) || !((EntityPlayer) var1).c.d();
+				return this.b.h(var1) > var4 * var4 ? false : !(var1 instanceof EntityPlayer) || !((EntityPlayer) var1).playerInteractManager.d();
 			}
 		}
 	}

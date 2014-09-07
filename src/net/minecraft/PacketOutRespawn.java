@@ -20,7 +20,7 @@ public class PacketOutRespawn implements Packet<PlayClientboundPacketListener> {
 	public void readData(PacketDataSerializer serializer) {
 		this.dimensionId = serializer.readInt();
 		this.difficulty = Difficulty.clampAndGetById(serializer.readUnsignedByte());
-		this.gameMode = GameMode.byId(serializer.readUnsignedByte());
+		this.gameMode = GameMode.getById(serializer.readUnsignedByte());
 		this.levelType = LevelType.byName(serializer.readString(16));
 		if (this.levelType == null) {
 			this.levelType = LevelType.DEFAULT;

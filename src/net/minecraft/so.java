@@ -1,5 +1,7 @@
 package net.minecraft;
 
+import net.minecraft.PacketOutWorldBorder.WorldBorderAction;
+
 class so implements bez {
 
 	// $FF: synthetic field
@@ -9,29 +11,29 @@ class so implements bez {
 		this.a = var1;
 	}
 
-	public void a(bfb var1, double var2) {
-		this.a.sendPacket((Packet) (new kr(var1, kt.a)));
+	public void a(WorldBorder var1, double var2) {
+		this.a.sendPacket((Packet) (new PacketOutWorldBorder(var1, WorldBorderAction.SET_SIZE)));
 	}
 
-	public void a(bfb var1, double var2, double var4, long var6) {
-		this.a.sendPacket((Packet) (new kr(var1, kt.b)));
+	public void a(WorldBorder var1, double var2, double var4, long var6) {
+		this.a.sendPacket((Packet) (new PacketOutWorldBorder(var1, WorldBorderAction.LERP_SIZE)));
 	}
 
-	public void a(bfb var1, double var2, double var4) {
-		this.a.sendPacket((Packet) (new kr(var1, kt.c)));
+	public void a(WorldBorder var1, double var2, double var4) {
+		this.a.sendPacket((Packet) (new PacketOutWorldBorder(var1, WorldBorderAction.SET_CENTER)));
 	}
 
-	public void a(bfb var1, int var2) {
-		this.a.sendPacket((Packet) (new kr(var1, kt.e)));
+	public void a(WorldBorder var1, int var2) {
+		this.a.sendPacket((Packet) (new PacketOutWorldBorder(var1, WorldBorderAction.SET_WARNING_TIME)));
 	}
 
-	public void b(bfb var1, int var2) {
-		this.a.sendPacket((Packet) (new kr(var1, kt.f)));
+	public void b(WorldBorder var1, int var2) {
+		this.a.sendPacket((Packet) (new PacketOutWorldBorder(var1, WorldBorderAction.SET_WARNING_BLOCKS)));
 	}
 
-	public void b(bfb var1, double var2) {
+	public void b(WorldBorder var1, double var2) {
 	}
 
-	public void c(bfb var1, double var2) {
+	public void c(WorldBorder var1, double var2) {
 	}
 }

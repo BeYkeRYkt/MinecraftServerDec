@@ -63,7 +63,7 @@ public final class arb {
 	}
 
 	public static GameMode a(int var0) {
-		return GameMode.byId(var0);
+		return GameMode.getById(var0);
 	}
 
 	public String j() {

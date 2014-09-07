@@ -12,7 +12,7 @@ public class lv implements Packet<ls> {
 	}
 
 	public void readData(PacketDataSerializer var1) {
-		this.a = (lw) var1.a(lw.class);
+		this.a = (lw) var1.readEnum(lw.class);
 	}
 
 	public void writeData(PacketDataSerializer var1) {

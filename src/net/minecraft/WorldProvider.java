@@ -117,8 +117,8 @@ public abstract class WorldProvider {
 		return this.dimensionId;
 	}
 
-	public bfb r() {
-		return new bfb();
+	public WorldBorder r() {
+		return new WorldBorder();
 	}
 
 }

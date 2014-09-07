@@ -23,7 +23,7 @@ public class ScoreboardBaseCriteria implements IScoreboardCriteria {
 		return false;
 	}
 
-	public bsl c() {
-		return bsl.a;
+	public ScoreboardObjectiveType getType() {
+		return ScoreboardObjectiveType.INTEGER;
 	}
 }

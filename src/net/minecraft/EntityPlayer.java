@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import net.minecraft.PacketOutCombatEvent.CombatEvent;
 import net.minecraft.server.MinecraftServer;
 
 import org.apache.logging.log4j.LogManager;
@@ -23,8 +24,8 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	private static final Logger logger = LogManager.getLogger();
 	private String locale = "en_US";
 	public PlayerConnection playerConncetion;
-	public final MinecraftServer b;
-	public final qx c;
+	public final MinecraftServer minecraftserver;
+	public final PlayerInteractManager playerInteractManager;
 	public double d;
 	public double e;
 	public final List f = Lists.newLinkedList();
@@ -42,13 +43,13 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	private Entity bS = null;
 	private int bT;
 	public boolean g;
-	public int h;
+	public int ping;
 	public boolean i;
 
-	public EntityPlayer(MinecraftServer var1, WorldServer var2, GameProfile var3, qx var4) {
+	public EntityPlayer(MinecraftServer var1, WorldServer var2, GameProfile var3, PlayerInteractManager var4) {
 		super(var2, var3);
 		var4.b = this;
-		this.c = var4;
+		this.playerInteractManager = var4;
 		Position var5 = var2.M();
 		if (!var2.worldProvider.noSkyLight() && var2.P().r() != GameMode.ADVENTURE) {
 			int var6 = Math.max(5, var1.isSpawnProtectionEnabled() - 6);
@@ -64,7 +65,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			var5 = var2.r(var5.a(this.V.nextInt(var6 * 2) - var6, 0, this.V.nextInt(var6 * 2) - var6));
 		}
 
-		this.b = var1;
+		this.minecraftserver = var1;
 		this.bI = var1.getPlayerList().getPLayerStatistic((EntityHuman) this);
 		this.S = 0.0F;
 		this.a(var5, 0.0F, 0.0F);
@@ -79,9 +80,9 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		super.a(var1);
 		if (var1.isTagAssignableFrom("playerGameType", 99)) {
 			if (MinecraftServer.getInstance().av()) {
-				this.c.a(MinecraftServer.getInstance().getServerGameMode());
+				this.playerInteractManager.a(MinecraftServer.getInstance().getServerGameMode());
 			} else {
-				this.c.a(GameMode.byId(var1.getInt("playerGameType")));
+				this.playerInteractManager.a(GameMode.getById(var1.getInt("playerGameType")));
 			}
 		}
 
@@ -89,7 +90,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		var1.put("playerGameType", this.c.getGameMode().getId());
+		var1.put("playerGameType", this.playerInteractManager.getGameMode().getId());
 	}
 
 	public void a(int var1) {
@@ -108,16 +109,16 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void g_() {
 		super.g_();
-		this.playerConncetion.sendPacket((Packet) (new ke(this.br(), kg.a)));
+		this.playerConncetion.sendPacket((Packet) (new PacketOutCombatEvent(this.br(), CombatEvent.ENTER_COMBAT)));
 	}
 
 	public void j() {
 		super.j();
-		this.playerConncetion.sendPacket((Packet) (new ke(this.br(), kg.b)));
+		this.playerConncetion.sendPacket((Packet) (new PacketOutCombatEvent(this.br(), CombatEvent.END_COMBAT)));
 	}
 
 	public void s_() {
-		this.c.a();
+		this.playerInteractManager.a();
 		--this.bO;
 		if (this.Z > 0) {
 			--this.Z;
@@ -194,7 +195,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 				this.e(this);
 			} else {
 				this.a(var7.locationX, var7.locationY, var7.locationZ, var7.yaw, var7.pitch);
-				this.b.getPlayerList().d(this);
+				this.minecraftserver.getPlayerList().d(this);
 				if (this.aw()) {
 					this.e(this);
 				}
@@ -230,8 +231,8 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 				Iterator var7 = var5.iterator();
 
 				while (var7.hasNext()) {
-					bry var9 = (bry) var7.next();
-					this.co().c(this.d_(), var9).a(Arrays.asList(new EntityHuman[] { this }));
+					ScoreboardObjective var9 = (ScoreboardObjective) var7.next();
+					this.co().c(this.d_(), var9).updateForList(Arrays.asList(new EntityHuman[] { this }));
 				}
 			}
 
@@ -290,15 +291,15 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void a(DamageSource var1) {
 		if (this.o.Q().b("showDeathMessages")) {
-			bsf var2 = this.bN();
-			if (var2 != null && var2.j() != bsg.a) {
-				if (var2.j() == bsg.c) {
-					this.b.getPlayerList().a((EntityHuman) this, this.br().b());
-				} else if (var2.j() == bsg.d) {
-					this.b.getPlayerList().b((EntityHuman) this, this.br().b());
+			ScoreboardTeamBase var2 = this.bN();
+			if (var2 != null && var2.getDeathMessageVisibility() != ScoreboardTeamNameTagVisibility.ALWAYS) {
+				if (var2.getDeathMessageVisibility() == ScoreboardTeamNameTagVisibility.HIDE_FOR_OTHER_TEAMS) {
+					this.minecraftserver.getPlayerList().a((EntityHuman) this, this.br().getMessage());
+				} else if (var2.getDeathMessageVisibility() == ScoreboardTeamNameTagVisibility.HIDE_FOR_OWN_TEAM) {
+					this.minecraftserver.getPlayerList().b((EntityHuman) this, this.br().getMessage());
 				}
 			} else {
-				this.b.getPlayerList().a(this.br().b());
+				this.minecraftserver.getPlayerList().a(this.br().getMessage());
 			}
 		}
 
@@ -310,9 +311,9 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		Iterator var3 = var6.iterator();
 
 		while (var3.hasNext()) {
-			bry var4 = (bry) var3.next();
-			bsa var5 = this.co().c(this.d_(), var4);
-			var5.a();
+			ScoreboardObjective var4 = (ScoreboardObjective) var3.next();
+			ScoreboardScore var5 = this.co().c(this.d_(), var4);
+			var5.incrementScore();
 		}
 
 		EntityLiving var7 = this.bs();
@@ -334,7 +335,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		if (this.b(var1)) {
 			return false;
 		} else {
-			boolean var3 = this.b.isDedicated() && this.cq() && "fall".equals(var1.p);
+			boolean var3 = this.minecraftserver.isDedicated() && this.cq() && "fall".equals(var1.p);
 			if (!var3 && this.bO > 0 && var1 != DamageSource.j) {
 				return false;
 			} else {
@@ -362,7 +363,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	private boolean cq() {
-		return this.b.isPVPEnabled();
+		return this.minecraftserver.isPVPEnabled();
 	}
 
 	public void c(int var1) {
@@ -374,7 +375,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		} else {
 			if (this.dimensionId == 0 && var1 == 1) {
 				this.b((Statistic) AchievementList.C);
-				Position var2 = this.b.a(var1).m();
+				Position var2 = this.minecraftserver.a(var1).m();
 				if (var2 != null) {
 					this.playerConncetion.a((double) var2.getX(), (double) var2.getY(), (double) var2.getZ(), 0.0F, 0.0F);
 				}
@@ -384,7 +385,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 				this.b((Statistic) AchievementList.y);
 			}
 
-			this.b.getPlayerList().a(this, var1);
+			this.minecraftserver.getPlayerList().a(this, var1);
 			this.bN = -1;
 			this.bK = -1.0F;
 			this.bL = -1;
@@ -522,7 +523,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			PacketDataSerializer var5 = new PacketDataSerializer(Unpooled.buffer());
 			var5.writeInt(this.bT);
 			var4.a(var5);
-			this.playerConncetion.sendPacket((Packet) (new ji("MC|TrList", var5)));
+			this.playerConncetion.sendPacket((Packet) (new PacketOutPluginMessage("MC|TrList", var5)));
 		}
 
 	}
@@ -542,7 +543,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	public void a(ItemStack var1) {
 		Item var2 = var1.getItem();
 		if (var2 == Items.WRITTEN_BOK) {
-			this.playerConncetion.sendPacket((Packet) (new ji("MC|BOpen", new PacketDataSerializer(Unpooled.buffer()))));
+			this.playerConncetion.sendPacket((Packet) (new PacketOutPluginMessage("MC|BOpen", new PacketDataSerializer(Unpooled.buffer()))));
 		}
 
 	}
@@ -613,8 +614,8 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			Iterator var3 = this.co().a(var1.getCrteria()).iterator();
 
 			while (var3.hasNext()) {
-				bry var4 = (bry) var3.next();
-				this.co().c(this.d_(), var4).a(var2);
+				ScoreboardObjective var4 = (ScoreboardObjective) var3.next();
+				this.co().c(this.d_(), var4).addScore(var2);
 			}
 
 			if (this.bI.e()) {
@@ -630,8 +631,8 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			Iterator var2 = this.co().a(var1.getCrteria()).iterator();
 
 			while (var2.hasNext()) {
-				bry var3 = (bry) var2.next();
-				this.co().c(this.d_(), var3).c(0);
+				ScoreboardObjective var3 = (ScoreboardObjective) var2.next();
+				this.co().c(this.d_(), var3).setScore(0);
 			}
 
 			if (this.bI.e()) {
@@ -710,7 +711,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void t() {
 		if (this.playerConncetion != null) {
-			this.playerConncetion.sendPacket((Packet) (new kd(this.by)));
+			this.playerConncetion.sendPacket((Packet) (new PacketOutPlayerAbilities(this.by)));
 			this.B();
 		}
 	}
@@ -720,7 +721,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public void a(GameMode var1) {
-		this.c.a(var1);
+		this.playerInteractManager.a(var1);
 		this.playerConncetion.sendPacket((Packet) (new PacketOutChangeGameState(3, (float) var1.getId())));
 		if (var1 == GameMode.SPECTATOR) {
 			this.a((Entity) null);
@@ -733,7 +734,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public boolean v() {
-		return this.c.getGameMode() == GameMode.SPECTATOR;
+		return this.playerInteractManager.getGameMode() == GameMode.SPECTATOR;
 	}
 
 	public void sendChatMessage(IChatBaseComponent json) {
@@ -741,12 +742,12 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public boolean a(int var1, String var2) {
-		if ("seed".equals(var2) && !this.b.isDedicated()) {
+		if ("seed".equals(var2) && !this.minecraftserver.isDedicated()) {
 			return true;
 		} else if (!"tell".equals(var2) && !"help".equals(var2) && !"me".equals(var2) && !"trigger".equals(var2)) {
-			if (this.b.getPlayerList().g(this.getGameProfile())) {
-				sq var3 = (sq) this.b.getPlayerList().n().b((Object) this.getGameProfile());
-				return var3 != null ? var3.a() >= var1 : this.b.getOpPermissionLevel() >= var1;
+			if (this.minecraftserver.getPlayerList().g(this.getGameProfile())) {
+				sq var3 = (sq) this.minecraftserver.getPlayerList().n().b((Object) this.getGameProfile());
+				return var3 != null ? var3.a() >= var1 : this.minecraftserver.getOpPermissionLevel() >= var1;
 			} else {
 				return false;
 			}
@@ -817,14 +818,14 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		Entity var2 = this.C();
 		this.bS = (Entity) (var1 == null ? this : var1);
 		if (var2 != this.bS) {
-			this.playerConncetion.sendPacket((Packet) (new ku(this.bS)));
+			this.playerConncetion.sendPacket((Packet) (new PacketOutCamera(this.bS)));
 			this.a(this.bS.locationX, this.bS.locationY, this.bS.locationZ);
 		}
 
 	}
 
 	public void f(Entity var1) {
-		if (this.c.getGameMode() == GameMode.SPECTATOR) {
+		if (this.playerInteractManager.getGameMode() == GameMode.SPECTATOR) {
 			this.e(var1);
 		} else {
 			super.f(var1);
@@ -836,7 +837,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		return this.bR;
 	}
 
-	public IChatBaseComponent E() {
+	public IChatBaseComponent getPlayerListName() {
 		return null;
 	}
 

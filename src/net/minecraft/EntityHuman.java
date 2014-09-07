@@ -438,31 +438,31 @@ public abstract class EntityHuman extends EntityLiving {
 		Iterator var4 = var3.iterator();
 
 		while (var4.hasNext()) {
-			bry var5 = (bry) var4.next();
-			bsa var6 = this.co().c(this.d_(), var5);
-			var6.a();
+			ScoreboardObjective var5 = (ScoreboardObjective) var4.next();
+			ScoreboardScore var6 = this.co().c(this.d_(), var5);
+			var6.incrementScore();
 		}
 
 	}
 
 	private Collection e(Entity var1) {
-		brz var2 = this.co().h(this.d_());
+		ScoreboardTeam var2 = this.co().h(this.d_());
 		if (var2 != null) {
-			int var3 = var2.l().getId();
+			int var3 = var2.getColor().getId();
 			if (var3 >= 0 && var3 < IScoreboardCriteria.killedByTeam.length) {
 				Iterator var4 = this.co().a(IScoreboardCriteria.killedByTeam[var3]).iterator();
 
 				while (var4.hasNext()) {
-					bry var5 = (bry) var4.next();
-					bsa var6 = this.co().c(var1.d_(), var5);
-					var6.a();
+					ScoreboardObjective var5 = (ScoreboardObjective) var4.next();
+					ScoreboardScore var6 = this.co().c(var1.d_(), var5);
+					var6.incrementScore();
 				}
 			}
 		}
 
-		brz var7 = this.co().h(var1.d_());
+		ScoreboardTeam var7 = this.co().h(var1.d_());
 		if (var7 != null) {
-			int var8 = var7.l().getId();
+			int var8 = var7.getColor().getId();
 			if (var8 >= 0 && var8 < IScoreboardCriteria.teamKill.length) {
 				return this.co().a(IScoreboardCriteria.teamKill[var8]);
 			}
@@ -681,9 +681,9 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public boolean a(EntityHuman var1) {
-		bsf var2 = this.bN();
-		bsf var3 = var1.bN();
-		return var2 == null ? true : (!var2.a(var3) ? true : var2.g());
+		ScoreboardTeamBase var2 = this.bN();
+		ScoreboardTeamBase var3 = var1.bN();
+		return var2 == null ? true : (!var2.a(var3) ? true : var2.allowFriendlyFire());
 	}
 
 	protected void i(float var1) {
@@ -1419,16 +1419,16 @@ public abstract class EntityHuman extends EntityLiving {
 		return !this.by.flying;
 	}
 
-	public bsd co() {
+	public Scoreboard co() {
 		return this.o.Z();
 	}
 
-	public bsf bN() {
+	public ScoreboardTeamBase bN() {
 		return this.co().h(this.d_());
 	}
 
 	public IChatBaseComponent e_() {
-		ChatComponentText var1 = new ChatComponentText(brz.a(this.bN(), this.d_()));
+		ChatComponentText var1 = new ChatComponentText(ScoreboardTeam.getPlayerDisplayName(this.bN(), this.d_()));
 		var1.b().a(new hm(hn.e, "/msg " + this.d_() + " "));
 		var1.b().a(this.aP());
 		var1.b().a(this.d_());

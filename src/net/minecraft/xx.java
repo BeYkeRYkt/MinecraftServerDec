@@ -123,7 +123,7 @@ public abstract class xx extends abq implements xt {
 		return true;
 	}
 
-	public bsf bN() {
+	public ScoreboardTeamBase bN() {
 		if (this.cj()) {
 			EntityLiving var1 = this.cm();
 			if (var1 != null) {
@@ -151,7 +151,7 @@ public abstract class xx extends abq implements xt {
 
 	public void a(DamageSource var1) {
 		if (!this.o.D && this.o.Q().b("showDeathMessages") && this.k_() && this.cm() instanceof EntityPlayer) {
-			((EntityPlayer) this.cm()).sendChatMessage(this.br().b());
+			((EntityPlayer) this.cm()).sendChatMessage(this.br().getMessage());
 		}
 
 		super.a(var1);

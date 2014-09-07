@@ -7,7 +7,7 @@ public class ml implements Packet<ls> {
 	private mm c;
 
 	public void readData(PacketDataSerializer var1) {
-		this.c = (mm) var1.a(mm.class);
+		this.c = (mm) var1.readEnum(mm.class);
 		this.a = var1.readPosition();
 		this.b = BlockFace.a(var1.readUnsignedByte());
 	}

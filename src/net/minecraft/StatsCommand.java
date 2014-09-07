@@ -143,9 +143,9 @@ public class StatsCommand extends AbstractCommand {
 		Iterator var3 = var1.iterator();
 
 		while (var3.hasNext()) {
-			bry var4 = (bry) var3.next();
-			if (!var4.c().isReadOnly()) {
-				var2.add(var4.b());
+			ScoreboardObjective var4 = (ScoreboardObjective) var3.next();
+			if (!var4.getCriteria().isReadOnly()) {
+				var2.add(var4.getName());
 			}
 		}
 

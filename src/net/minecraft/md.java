@@ -8,7 +8,7 @@ public class md implements Packet<ls> {
 
 	public void readData(PacketDataSerializer var1) {
 		this.a = var1.readVarInt();
-		this.b = (me) var1.a(me.class);
+		this.b = (me) var1.readEnum(me.class);
 		if (this.b == me.c) {
 			this.c = new Vec3D((double) var1.readFloat(), (double) var1.readFloat(), (double) var1.readFloat());
 		}

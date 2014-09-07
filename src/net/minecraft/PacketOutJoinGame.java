@@ -29,7 +29,7 @@ public class PacketOutJoinGame implements Packet<PlayClientboundPacketListener> 
 		this.entityId = serializer.readInt();
 		short playerGameModeId = serializer.readUnsignedByte();
 		this.isHardcore = (playerGameModeId & 8) == 8;
-		this.playerGameMode = GameMode.byId(playerGameModeId & -9);
+		this.playerGameMode = GameMode.getById(playerGameModeId & -9);
 		this.dimensionId = serializer.readByte();
 		this.difficulty = Difficulty.clampAndGetById(serializer.readUnsignedByte());
 		this.maxPlayers = serializer.readUnsignedByte();

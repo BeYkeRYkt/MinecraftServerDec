@@ -8,7 +8,7 @@ public class mn implements Packet<ls> {
 
 	public void readData(PacketDataSerializer var1) {
 		this.a = var1.readVarInt();
-		this.b = (mo) var1.a(mo.class);
+		this.b = (mo) var1.readEnum(mo.class);
 		this.c = var1.readVarInt();
 	}
 

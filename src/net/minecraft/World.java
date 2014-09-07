@@ -46,14 +46,14 @@ public abstract class World implements ard {
 	protected PersistentVillage A;
 	public final MethodProfiler B;
 	private final Calendar J = Calendar.getInstance();
-	protected bsd C = new bsd();
+	protected Scoreboard C = new Scoreboard();
 	public final boolean D;
 	protected Set E = Sets.newHashSet();
 	private int K;
 	protected boolean F;
 	protected boolean G;
 	private boolean L;
-	private final bfb M;
+	private final WorldBorder M;
 	int[] H;
 
 	protected World(IDataManager var1, WorldData var2, WorldProvider var3, MethodProfiler var4, boolean var5) {
@@ -813,7 +813,7 @@ public abstract class World implements ard {
 		return var3;
 	}
 
-	public boolean a(bfb var1, Entity var2) {
+	public boolean a(WorldBorder var1, Entity var2) {
 		double var3 = var1.b();
 		double var5 = var1.c();
 		double var7 = var1.d();
@@ -2359,7 +2359,7 @@ public abstract class World implements ard {
 		return this.J;
 	}
 
-	public bsd Z() {
+	public Scoreboard Z() {
 		return this.C;
 	}
 
@@ -2420,7 +2420,7 @@ public abstract class World implements ard {
 		return this.A;
 	}
 
-	public bfb af() {
+	public WorldBorder af() {
 		return this.M;
 	}
 

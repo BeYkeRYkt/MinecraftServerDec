@@ -179,7 +179,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 			Entity var10 = (Entity) var1.get(var9);
 			cs var11;
 			if (var4) {
-				bsf var12 = var10 instanceof EntityHuman ? ((EntityHuman) var10).bN() : null;
+				ScoreboardTeamBase var12 = var10 instanceof EntityHuman ? ((EntityHuman) var10).bN() : null;
 				if (!var8.containsKey(var12)) {
 					var8.put(var12, var3[var7++]);
 				}

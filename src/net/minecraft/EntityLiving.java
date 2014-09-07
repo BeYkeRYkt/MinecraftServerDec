@@ -13,7 +13,7 @@ public abstract class EntityLiving extends Entity {
 	private static final UUID a = UUID.fromString("662A6B8D-DA3E-4C1C-8813-96EA6097278D");
 	private static final AttributeModifier b = (new AttributeModifier(a, "Sprinting speed boost", 0.30000001192092896D, 2)).setSerializable(false);
 	private yc c;
-	private final wg f = new wg(this);
+	private final CombatTracker f = new CombatTracker(this);
 	private final Map g = Maps.newHashMap();
 	private final ItemStack[] h = new ItemStack[5];
 	public boolean ap;
@@ -845,12 +845,12 @@ public abstract class EntityLiving extends Entity {
 		}
 	}
 
-	public wg br() {
+	public CombatTracker br() {
 		return this.f;
 	}
 
 	public EntityLiving bs() {
-		return (EntityLiving) (this.f.c() != null ? this.f.c() : (this.aL != null ? this.aL : (this.bg != null ? this.bg : null)));
+		return (EntityLiving) (this.f.getEntity() != null ? this.f.getEntity() : (this.aL != null ? this.aL : (this.bg != null ? this.bg : null)));
 	}
 
 	public final float bt() {
@@ -1454,7 +1454,7 @@ public abstract class EntityLiving extends Entity {
 		this.bm = var1;
 	}
 
-	public bsf bN() {
+	public ScoreboardTeamBase bN() {
 		return this.o.Z().h(this.aJ().toString());
 	}
 
@@ -1462,7 +1462,7 @@ public abstract class EntityLiving extends Entity {
 		return this.a(var1.bN());
 	}
 
-	public boolean a(bsf var1) {
+	public boolean a(ScoreboardTeamBase var1) {
 		return this.bN() != null ? this.bN().a(var1) : false;
 	}
 

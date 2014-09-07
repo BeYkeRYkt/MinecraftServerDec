@@ -229,7 +229,7 @@ public class EntityEnderman extends EntityMonster {
 				}
 
 				if (var1 instanceof wi && var1.j() instanceof EntityHuman) {
-					if (var1.j() instanceof EntityPlayer && ((EntityPlayer) var1.j()).c.d()) {
+					if (var1.j() instanceof EntityPlayer && ((EntityPlayer) var1.j()).playerInteractManager.d()) {
 						this.a(false);
 					} else {
 						this.bl = true;

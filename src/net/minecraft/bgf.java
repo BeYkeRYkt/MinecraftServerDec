@@ -1,6 +1,6 @@
 package net.minecraft;
 
-class bgf extends bfb {
+class bgf extends WorldBorder {
 
 	// $FF: synthetic field
 	final NetherWorldProvider a;

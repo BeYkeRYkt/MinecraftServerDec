@@ -7,7 +7,7 @@ public class mq implements Packet<ls> {
 
 	public void readData(PacketDataSerializer var1) {
 		this.a = var1.readString(40);
-		this.b = (mr) var1.a(mr.class);
+		this.b = (mr) var1.readEnum(mr.class);
 	}
 
 	public void writeData(PacketDataSerializer var1) {

@@ -28,7 +28,7 @@ public class lj implements Packet<PlayClientboundPacketListener> {
 	}
 
 	public void readData(PacketDataSerializer var1) {
-		this.a = (lk) var1.a(lk.class);
+		this.a = (lk) var1.readEnum(lk.class);
 		if (this.a == lk.a || this.a == lk.b) {
 			this.b = var1.readJSONComponent();
 		}

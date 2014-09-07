@@ -91,7 +91,7 @@ public class WorldData {
 			}
 		}
 
-		this.u = GameMode.byId(var1.getInt("GameType"));
+		this.u = GameMode.getById(var1.getInt("GameType"));
 		if (var1.isTagAssignableFrom("MapFeatures", 99)) {
 			this.v = var1.getBoolean("MapFeatures");
 		} else {

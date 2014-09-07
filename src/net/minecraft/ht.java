@@ -29,11 +29,11 @@ public class ht extends hj {
 	public String e() {
 		MinecraftServer var1 = MinecraftServer.getInstance();
 		if (var1 != null && var1.hasUniverse() && vb.b(this.d)) {
-			bsd var2 = var1.a(0).Z();
-			bry var3 = var2.b(this.c);
+			Scoreboard var2 = var1.a(0).Z();
+			ScoreboardObjective var3 = var2.b(this.c);
 			if (var2.b(this.b, var3)) {
-				bsa var4 = var2.c(this.b, var3);
-				this.b(String.format("%d", new Object[] { Integer.valueOf(var4.c()) }));
+				ScoreboardScore var4 = var2.c(this.b, var3);
+				this.b(String.format("%d", new Object[] { Integer.valueOf(var4.getScore()) }));
 			} else {
 				this.d = "";
 			}

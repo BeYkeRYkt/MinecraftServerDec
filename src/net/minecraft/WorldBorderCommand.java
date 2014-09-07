@@ -21,7 +21,7 @@ public class WorldBorderCommand extends AbstractCommand {
 		if (var2.length < 1) {
 			throw new dp("commands.worldborder.usage", new Object[0]);
 		} else {
-			bfb var3 = this.d();
+			WorldBorder var3 = this.d();
 			double var4;
 			double var6;
 			long var8;
@@ -130,7 +130,7 @@ public class WorldBorderCommand extends AbstractCommand {
 		}
 	}
 
-	protected bfb d() {
+	protected WorldBorder d() {
 		return MinecraftServer.getInstance().worlds[0].af();
 	}
 

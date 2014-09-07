@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import net.minecraft.server.MinecraftServer;
 
-public class pk extends bsd {
+public class pk extends Scoreboard {
 
 	private final MinecraftServer a;
 	private final Set b = Sets.newHashSet();
@@ -19,10 +19,10 @@ public class pk extends bsd {
 		this.a = var1;
 	}
 
-	public void a(bsa var1) {
-		super.a(var1);
-		if (this.b.contains(var1.d())) {
-			this.a.getPlayerList().sendPacket((Packet) (new lf(var1)));
+	public void handleScoreChanged(ScoreboardScore var1) {
+		super.handleScoreChanged(var1);
+		if (this.b.contains(var1.getObjective())) {
+			this.a.getPlayerList().sendPacket((Packet) (new PacketOutUpdateScore(var1)));
 		}
 
 		this.b();
@@ -30,22 +30,22 @@ public class pk extends bsd {
 
 	public void a(String var1) {
 		super.a(var1);
-		this.a.getPlayerList().sendPacket((Packet) (new lf(var1)));
+		this.a.getPlayerList().sendPacket((Packet) (new PacketOutUpdateScore(var1)));
 		this.b();
 	}
 
-	public void a(String var1, bry var2) {
+	public void a(String var1, ScoreboardObjective var2) {
 		super.a(var1, var2);
-		this.a.getPlayerList().sendPacket((Packet) (new lf(var1, var2)));
+		this.a.getPlayerList().sendPacket((Packet) (new PacketOutUpdateScore(var1, var2)));
 		this.b();
 	}
 
-	public void a(int var1, bry var2) {
-		bry var3 = this.a(var1);
+	public void a(int var1, ScoreboardObjective var2) {
+		ScoreboardObjective var3 = this.a(var1);
 		super.a(var1, var2);
 		if (var3 != var2 && var3 != null) {
 			if (this.h(var3) > 0) {
-				this.a.getPlayerList().sendPacket((Packet) (new kw(var1, var2)));
+				this.a.getPlayerList().sendPacket((Packet) (new PacketOutDisplayScoreboard(var1, var2)));
 			} else {
 				this.g(var3);
 			}
@@ -53,7 +53,7 @@ public class pk extends bsd {
 
 		if (var2 != null) {
 			if (this.b.contains(var2)) {
-				this.a.getPlayerList().sendPacket((Packet) (new kw(var1, var2)));
+				this.a.getPlayerList().sendPacket((Packet) (new PacketOutDisplayScoreboard(var1, var2)));
 			} else {
 				this.e(var2);
 			}
@@ -64,8 +64,8 @@ public class pk extends bsd {
 
 	public boolean a(String var1, String var2) {
 		if (super.a(var1, var2)) {
-			brz var3 = this.d(var2);
-			this.a.getPlayerList().sendPacket((Packet) (new le(var3, Arrays.asList(new String[] { var1 }), 3)));
+			ScoreboardTeam var3 = this.d(var2);
+			this.a.getPlayerList().sendPacket((Packet) (new PacketOutScoreboardTeam(var3, Arrays.asList(new String[] { var1 }), 3)));
 			this.b();
 			return true;
 		} else {
@@ -73,27 +73,27 @@ public class pk extends bsd {
 		}
 	}
 
-	public void a(String var1, brz var2) {
+	public void a(String var1, ScoreboardTeam var2) {
 		super.a(var1, var2);
-		this.a.getPlayerList().sendPacket((Packet) (new le(var2, Arrays.asList(new String[] { var1 }), 4)));
+		this.a.getPlayerList().sendPacket((Packet) (new PacketOutScoreboardTeam(var2, Arrays.asList(new String[] { var1 }), 4)));
 		this.b();
 	}
 
-	public void a(bry var1) {
+	public void a(ScoreboardObjective var1) {
 		super.a(var1);
 		this.b();
 	}
 
-	public void b(bry var1) {
+	public void b(ScoreboardObjective var1) {
 		super.b(var1);
 		if (this.b.contains(var1)) {
-			this.a.getPlayerList().sendPacket((Packet) (new ld(var1, 2)));
+			this.a.getPlayerList().sendPacket((Packet) (new PacketOutScoreboardObjective(var1, 2)));
 		}
 
 		this.b();
 	}
 
-	public void c(bry var1) {
+	public void c(ScoreboardObjective var1) {
 		super.c(var1);
 		if (this.b.contains(var1)) {
 			this.g(var1);
@@ -102,21 +102,21 @@ public class pk extends bsd {
 		this.b();
 	}
 
-	public void a(brz var1) {
+	public void a(ScoreboardTeam var1) {
 		super.a(var1);
-		this.a.getPlayerList().sendPacket((Packet) (new le(var1, 0)));
+		this.a.getPlayerList().sendPacket((Packet) (new PacketOutScoreboardTeam(var1, 0)));
 		this.b();
 	}
 
-	public void b(brz var1) {
-		super.b(var1);
-		this.a.getPlayerList().sendPacket((Packet) (new le(var1, 2)));
+	public void handleTeamChanged(ScoreboardTeam var1) {
+		super.handleTeamChanged(var1);
+		this.a.getPlayerList().sendPacket((Packet) (new PacketOutScoreboardTeam(var1, 2)));
 		this.b();
 	}
 
-	public void c(brz var1) {
+	public void c(ScoreboardTeam var1) {
 		super.c(var1);
-		this.a.getPlayerList().sendPacket((Packet) (new le(var1, 1)));
+		this.a.getPlayerList().sendPacket((Packet) (new PacketOutScoreboardTeam(var1, 1)));
 		this.b();
 	}
 
@@ -131,27 +131,27 @@ public class pk extends bsd {
 
 	}
 
-	public List d(bry var1) {
+	public List d(ScoreboardObjective var1) {
 		ArrayList var2 = Lists.newArrayList();
-		var2.add(new ld(var1, 0));
+		var2.add(new PacketOutScoreboardObjective(var1, 0));
 
 		for (int var3 = 0; var3 < 19; ++var3) {
 			if (this.a(var3) == var1) {
-				var2.add(new kw(var3, var1));
+				var2.add(new PacketOutDisplayScoreboard(var3, var1));
 			}
 		}
 
 		Iterator var5 = this.i(var1).iterator();
 
 		while (var5.hasNext()) {
-			bsa var4 = (bsa) var5.next();
-			var2.add(new lf(var4));
+			ScoreboardScore var4 = (ScoreboardScore) var5.next();
+			var2.add(new PacketOutUpdateScore(var4));
 		}
 
 		return var2;
 	}
 
-	public void e(bry var1) {
+	public void e(ScoreboardObjective var1) {
 		List var2 = this.d(var1);
 		Iterator var3 = this.a.getPlayerList().players.iterator();
 
@@ -168,20 +168,20 @@ public class pk extends bsd {
 		this.b.add(var1);
 	}
 
-	public List f(bry var1) {
+	public List f(ScoreboardObjective var1) {
 		ArrayList var2 = Lists.newArrayList();
-		var2.add(new ld(var1, 1));
+		var2.add(new PacketOutScoreboardObjective(var1, 1));
 
 		for (int var3 = 0; var3 < 19; ++var3) {
 			if (this.a(var3) == var1) {
-				var2.add(new kw(var3, var1));
+				var2.add(new PacketOutDisplayScoreboard(var3, var1));
 			}
 		}
 
 		return var2;
 	}
 
-	public void g(bry var1) {
+	public void g(ScoreboardObjective var1) {
 		List var2 = this.f(var1);
 		Iterator var3 = this.a.getPlayerList().players.iterator();
 
@@ -198,7 +198,7 @@ public class pk extends bsd {
 		this.b.remove(var1);
 	}
 
-	public int h(bry var1) {
+	public int h(ScoreboardObjective var1) {
 		int var2 = 0;
 
 		for (int var3 = 0; var3 < 19; ++var3) {

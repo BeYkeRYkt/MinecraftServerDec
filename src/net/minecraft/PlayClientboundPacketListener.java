@@ -10,7 +10,7 @@ public interface PlayClientboundPacketListener extends PacketListener {
 
 	void handle(PacketOutSpawnMob var1);
 
-	void a(ld var1);
+	void handle(PacketOutScoreboardObjective var1);
 
 	void handle(PacketOutSpawnPainting var1);
 
@@ -32,7 +32,7 @@ public interface PlayClientboundPacketListener extends PacketListener {
 
 	void handle(PacketOutChatMessage var1);
 
-	void a(iy var1);
+	void handle(PacketOutTabComplete var1);
 
 	void handle(PacketOutMultiBlockChange var1);
 
@@ -50,9 +50,9 @@ public interface PlayClientboundPacketListener extends PacketListener {
 
 	void a(PacketOutSetSlot var1);
 
-	void a(ji var1);
+	void handle(PacketOutPluginMessage var1);
 
-	void a(jj var1);
+	void handle(PacketOutDisconnect var1);
 
 	void handle(PacketOutUseBed var1);
 
@@ -80,9 +80,9 @@ public interface PlayClientboundPacketListener extends PacketListener {
 
 	void handle(PacketOutParticle var1);
 
-	void a(kd var1);
+	void handle(PacketOutPlayerAbilities var1);
 
-	void a(kh var1);
+	void handle(PacketOutListItem var1);
 
 	void handle(PacketOutDestroyEntities var1);
 
@@ -94,7 +94,7 @@ public interface PlayClientboundPacketListener extends PacketListener {
 
 	void handle(PacketOutHeldItemChange var1);
 
-	void a(kw var1);
+	void a(PacketOutDisplayScoreboard var1);
 
 	void handle(PacketOutEntityMetadata var1);
 
@@ -106,9 +106,9 @@ public interface PlayClientboundPacketListener extends PacketListener {
 
 	void handle(PacketOutUpdateHealth var1);
 
-	void a(le var1);
+	void handle(PacketOutScoreboardTeam var1);
 
-	void a(lf var1);
+	void handle(PacketOutUpdateScore var1);
 
 	void handle(PacketOutSpawnPosition var1);
 
@@ -126,13 +126,13 @@ public interface PlayClientboundPacketListener extends PacketListener {
 
 	void handle(PacketOutEntityEffect var1);
 
-	void a(ke var1);
+	void handle(PacketOutCombatEvent var1);
 
-	void a(ix var1);
+	void handle(PacketOutServerDifficulty var1);
 
-	void a(ku var1);
+	void handle(PacketOutCamera var1);
 
-	void a(kr var1);
+	void handle(PacketOutWorldBorder var1);
 
 	void a(lj var1);
 

@@ -56,7 +56,7 @@ public enum GameMode {
 		return this == SURVIVAL || this == ADVENTURE;
 	}
 
-	public static GameMode byId(int id) {
+	public static GameMode getById(int id) {
 		GameMode[] modes = values();
 		for (int i = 0; i < modes.length; i++) {
 			GameMode mode = modes[i];

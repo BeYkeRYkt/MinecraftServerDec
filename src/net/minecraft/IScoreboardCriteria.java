@@ -56,6 +56,6 @@ public interface IScoreboardCriteria {
 
 	boolean isReadOnly();
 
-	bsl c();
+	ScoreboardObjectiveType getType();
 
 }

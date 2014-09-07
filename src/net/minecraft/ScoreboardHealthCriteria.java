@@ -28,7 +28,7 @@ public class ScoreboardHealthCriteria extends ScoreboardBaseCriteria {
 		return true;
 	}
 
-	public bsl c() {
-		return bsl.b;
+	public ScoreboardObjectiveType getType() {
+		return ScoreboardObjectiveType.HEARTS;
 	}
 }
