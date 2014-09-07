@@ -12,11 +12,11 @@ public class EntityLargeFireball extends ahl {
 		super(var1, var2, var3, var5, var7);
 	}
 
-	protected void a(bru var1) {
+	protected void a(MovingObjectPosition var1) {
 		if (!this.o.D) {
-			if (var1.d != null) {
-				var1.d.a(DamageSource.a((ahl) this, this.a), 6.0F);
-				this.a(this.a, var1.d);
+			if (var1.entity != null) {
+				var1.entity.a(DamageSource.a((ahl) this, this.a), 6.0F);
+				this.a(this.a, var1.entity);
 			}
 
 			boolean var2 = this.o.Q().b("mobGriefing");

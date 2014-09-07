@@ -11,15 +11,15 @@ public class BlockWaterLily extends auc {
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
 		if (var6 == null || !(var6 instanceof EntityBoat)) {
 			super.a(var1, var2, var3, var4, var5, var6);
 		}
 
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
-		return new brt((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G);
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
+		return new AxisAlignedBB((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G);
 	}
 
 	protected boolean c(Block var1) {

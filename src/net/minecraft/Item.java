@@ -202,7 +202,7 @@ public class Item {
 		return this.getMaxStackSize() == 1 && this.usesDurability();
 	}
 
-	protected bru a(World var1, EntityHuman var2, boolean var3) {
+	protected MovingObjectPosition a(World var1, EntityHuman var2, boolean var3) {
 		float var4 = var2.B + (var2.pitch - var2.B);
 		float var5 = var2.A + (var2.yaw - var2.A);
 		double var6 = var2.p + (var2.locationX - var2.p);

@@ -45,7 +45,7 @@ public class auc extends Block {
 		return this.c(var1.p(var2.b()).getBlock());
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		return null;
 	}
 

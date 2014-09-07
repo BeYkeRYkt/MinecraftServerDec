@@ -495,15 +495,15 @@ public abstract class World implements ard {
 		return this.d < 4;
 	}
 
-	public bru a(Vec3D var1, Vec3D var2) {
+	public MovingObjectPosition a(Vec3D var1, Vec3D var2) {
 		return this.a(var1, var2, false, false, false);
 	}
 
-	public bru a(Vec3D var1, Vec3D var2, boolean var3) {
+	public MovingObjectPosition a(Vec3D var1, Vec3D var2, boolean var3) {
 		return this.a(var1, var2, var3, false, false);
 	}
 
-	public bru a(Vec3D var1, Vec3D var2, boolean var3, boolean var4, boolean var5) {
+	public MovingObjectPosition a(Vec3D var1, Vec3D var2, boolean var3, boolean var4, boolean var5) {
 		if (!Double.isNaN(var1.x) && !Double.isNaN(var1.y) && !Double.isNaN(var1.z)) {
 			if (!Double.isNaN(var2.x) && !Double.isNaN(var2.y) && !Double.isNaN(var2.z)) {
 				int var6 = DataTypesConverter.toFixedPointInt(var2.x);
@@ -517,13 +517,13 @@ public abstract class World implements ard {
 				bec var14 = this.p(var12);
 				Block var15 = var14.getBlock();
 				if ((!var4 || var15.a(this, var12, var14) != null) && var15.a(var14, var3)) {
-					bru var16 = var15.a(this, var12, var1, var2);
+					MovingObjectPosition var16 = var15.a(this, var12, var1, var2);
 					if (var16 != null) {
 						return var16;
 					}
 				}
 
-				bru var41 = null;
+				MovingObjectPosition var41 = null;
 				int var42 = 200;
 
 				while (var42-- >= 0) {
@@ -615,12 +615,12 @@ public abstract class World implements ard {
 					Block var39 = var38.getBlock();
 					if (!var4 || var39.a(this, var12, var38) != null) {
 						if (var39.a(var38, var3)) {
-							bru var40 = var39.a(this, var12, var1, var2);
+							MovingObjectPosition var40 = var39.a(this, var12, var1, var2);
 							if (var40 != null) {
 								return var40;
 							}
 						} else {
-							var41 = new bru(brv.a, var1, var37, var12);
+							var41 = new MovingObjectPosition(EnumMovingObjectType.MISS, var1, var37, var12);
 						}
 					}
 				}
@@ -758,14 +758,14 @@ public abstract class World implements ard {
 		this.u.add(var1);
 	}
 
-	public List a(Entity var1, brt var2) {
+	public List a(Entity var1, AxisAlignedBB var2) {
 		ArrayList var3 = Lists.newArrayList();
-		int var4 = DataTypesConverter.toFixedPointInt(var2.a);
-		int var5 = DataTypesConverter.toFixedPointInt(var2.d + 1.0D);
-		int var6 = DataTypesConverter.toFixedPointInt(var2.b);
-		int var7 = DataTypesConverter.toFixedPointInt(var2.e + 1.0D);
-		int var8 = DataTypesConverter.toFixedPointInt(var2.c);
-		int var9 = DataTypesConverter.toFixedPointInt(var2.f + 1.0D);
+		int var4 = DataTypesConverter.toFixedPointInt(var2.minX);
+		int var5 = DataTypesConverter.toFixedPointInt(var2.maxX + 1.0D);
+		int var6 = DataTypesConverter.toFixedPointInt(var2.minY);
+		int var7 = DataTypesConverter.toFixedPointInt(var2.maxY + 1.0D);
+		int var8 = DataTypesConverter.toFixedPointInt(var2.minZ);
+		int var9 = DataTypesConverter.toFixedPointInt(var2.maxZ + 1.0D);
 
 		for (int var10 = var4; var10 < var5; ++var10) {
 			for (int var11 = var8; var11 < var9; ++var11) {
@@ -781,7 +781,7 @@ public abstract class World implements ard {
 						}
 
 						bec var16;
-						if (!this.getWorldBorder().a(var13) && var15) {
+						if (!this.getWorldBorder().isInside(var13) && var15) {
 							var16 = Blocks.STONE.P();
 						} else {
 							var16 = this.p(var13);
@@ -798,7 +798,7 @@ public abstract class World implements ard {
 
 		for (int var19 = 0; var19 < var18.size(); ++var19) {
 			if (var1.l != var18 && var1.m != var18) {
-				brt var20 = ((Entity) var18.get(var19)).S();
+				AxisAlignedBB var20 = ((Entity) var18.get(var19)).S();
 				if (var20 != null && var20.b(var2)) {
 					var3.add(var20);
 				}
@@ -814,10 +814,10 @@ public abstract class World implements ard {
 	}
 
 	public boolean a(WorldBorder var1, Entity var2) {
-		double var3 = var1.b();
-		double var5 = var1.c();
-		double var7 = var1.d();
-		double var9 = var1.e();
+		double var3 = var1.getMinX();
+		double var5 = var1.getMinZ();
+		double var7 = var1.getMaxX();
+		double var9 = var1.getMaxZ();
 		if (var2.aS()) {
 			++var3;
 			++var5;
@@ -833,14 +833,14 @@ public abstract class World implements ard {
 		return var2.locationX > var3 && var2.locationX < var7 && var2.locationZ > var5 && var2.locationZ < var9;
 	}
 
-	public List a(brt var1) {
+	public List a(AxisAlignedBB var1) {
 		ArrayList var2 = Lists.newArrayList();
-		int var3 = DataTypesConverter.toFixedPointInt(var1.a);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.d + 1.0D);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.b);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.e + 1.0D);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.c);
-		int var8 = DataTypesConverter.toFixedPointInt(var1.f + 1.0D);
+		int var3 = DataTypesConverter.toFixedPointInt(var1.minX);
+		int var4 = DataTypesConverter.toFixedPointInt(var1.maxX + 1.0D);
+		int var5 = DataTypesConverter.toFixedPointInt(var1.minY);
+		int var6 = DataTypesConverter.toFixedPointInt(var1.maxY + 1.0D);
+		int var7 = DataTypesConverter.toFixedPointInt(var1.minZ);
+		int var8 = DataTypesConverter.toFixedPointInt(var1.maxZ + 1.0D);
 
 		for (int var9 = var3; var9 < var4; ++var9) {
 			for (int var10 = var7; var10 < var8; ++var10) {
@@ -1015,7 +1015,7 @@ public abstract class World implements ard {
 			TileEntity var11 = (TileEntity) var10.next();
 			if (!var11.x() && var11.t()) {
 				Position var13 = var11.v();
-				if (this.e(var13) && this.worldborder.a(var13)) {
+				if (this.e(var13) && this.worldborder.isInside(var13)) {
 					try {
 						((pm) var11).c();
 					} catch (Throwable var7) {
@@ -1166,11 +1166,11 @@ public abstract class World implements ard {
 		}
 	}
 
-	public boolean b(brt var1) {
+	public boolean b(AxisAlignedBB var1) {
 		return this.a(var1, (Entity) null);
 	}
 
-	public boolean a(brt var1, Entity var2) {
+	public boolean a(AxisAlignedBB var1, Entity var2) {
 		List var3 = this.b((Entity) null, var1);
 
 		for (int var4 = 0; var4 < var3.size(); ++var4) {
@@ -1183,13 +1183,13 @@ public abstract class World implements ard {
 		return true;
 	}
 
-	public boolean c(brt var1) {
-		int var2 = DataTypesConverter.toFixedPointInt(var1.a);
-		int var3 = DataTypesConverter.toFixedPointInt(var1.d);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.b);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.e);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.c);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.f);
+	public boolean c(AxisAlignedBB var1) {
+		int var2 = DataTypesConverter.toFixedPointInt(var1.minX);
+		int var3 = DataTypesConverter.toFixedPointInt(var1.maxX);
+		int var4 = DataTypesConverter.toFixedPointInt(var1.minY);
+		int var5 = DataTypesConverter.toFixedPointInt(var1.maxY);
+		int var6 = DataTypesConverter.toFixedPointInt(var1.minZ);
+		int var7 = DataTypesConverter.toFixedPointInt(var1.maxZ);
 
 		for (int var8 = var2; var8 <= var3; ++var8) {
 			for (int var9 = var4; var9 <= var5; ++var9) {
@@ -1205,13 +1205,13 @@ public abstract class World implements ard {
 		return false;
 	}
 
-	public boolean d(brt var1) {
-		int var2 = DataTypesConverter.toFixedPointInt(var1.a);
-		int var3 = DataTypesConverter.toFixedPointInt(var1.d);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.b);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.e);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.c);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.f);
+	public boolean d(AxisAlignedBB var1) {
+		int var2 = DataTypesConverter.toFixedPointInt(var1.minX);
+		int var3 = DataTypesConverter.toFixedPointInt(var1.maxX);
+		int var4 = DataTypesConverter.toFixedPointInt(var1.minY);
+		int var5 = DataTypesConverter.toFixedPointInt(var1.maxY);
+		int var6 = DataTypesConverter.toFixedPointInt(var1.minZ);
+		int var7 = DataTypesConverter.toFixedPointInt(var1.maxZ);
 
 		for (int var8 = var2; var8 <= var3; ++var8) {
 			for (int var9 = var4; var9 <= var5; ++var9) {
@@ -1227,13 +1227,13 @@ public abstract class World implements ard {
 		return false;
 	}
 
-	public boolean e(brt var1) {
-		int var2 = DataTypesConverter.toFixedPointInt(var1.a);
-		int var3 = DataTypesConverter.toFixedPointInt(var1.d + 1.0D);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.b);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.e + 1.0D);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.c);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.f + 1.0D);
+	public boolean e(AxisAlignedBB var1) {
+		int var2 = DataTypesConverter.toFixedPointInt(var1.minX);
+		int var3 = DataTypesConverter.toFixedPointInt(var1.maxX + 1.0D);
+		int var4 = DataTypesConverter.toFixedPointInt(var1.minY);
+		int var5 = DataTypesConverter.toFixedPointInt(var1.maxY + 1.0D);
+		int var6 = DataTypesConverter.toFixedPointInt(var1.minZ);
+		int var7 = DataTypesConverter.toFixedPointInt(var1.maxZ + 1.0D);
 		if (this.a(var2, var4, var6, var3, var5, var7, true)) {
 			for (int var8 = var2; var8 < var3; ++var8) {
 				for (int var9 = var4; var9 < var5; ++var9) {
@@ -1250,13 +1250,13 @@ public abstract class World implements ard {
 		return false;
 	}
 
-	public boolean a(brt var1, Material var2, Entity var3) {
-		int var4 = DataTypesConverter.toFixedPointInt(var1.a);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.d + 1.0D);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.b);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.e + 1.0D);
-		int var8 = DataTypesConverter.toFixedPointInt(var1.c);
-		int var9 = DataTypesConverter.toFixedPointInt(var1.f + 1.0D);
+	public boolean a(AxisAlignedBB var1, Material var2, Entity var3) {
+		int var4 = DataTypesConverter.toFixedPointInt(var1.minX);
+		int var5 = DataTypesConverter.toFixedPointInt(var1.maxX + 1.0D);
+		int var6 = DataTypesConverter.toFixedPointInt(var1.minY);
+		int var7 = DataTypesConverter.toFixedPointInt(var1.maxY + 1.0D);
+		int var8 = DataTypesConverter.toFixedPointInt(var1.minZ);
+		int var9 = DataTypesConverter.toFixedPointInt(var1.maxZ + 1.0D);
 		if (!this.a(var4, var6, var8, var5, var7, var9, true)) {
 			return false;
 		} else {
@@ -1292,13 +1292,13 @@ public abstract class World implements ard {
 		}
 	}
 
-	public boolean a(brt var1, Material var2) {
-		int var3 = DataTypesConverter.toFixedPointInt(var1.a);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.d + 1.0D);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.b);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.e + 1.0D);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.c);
-		int var8 = DataTypesConverter.toFixedPointInt(var1.f + 1.0D);
+	public boolean a(AxisAlignedBB var1, Material var2) {
+		int var3 = DataTypesConverter.toFixedPointInt(var1.minX);
+		int var4 = DataTypesConverter.toFixedPointInt(var1.maxX + 1.0D);
+		int var5 = DataTypesConverter.toFixedPointInt(var1.minY);
+		int var6 = DataTypesConverter.toFixedPointInt(var1.maxY + 1.0D);
+		int var7 = DataTypesConverter.toFixedPointInt(var1.minZ);
+		int var8 = DataTypesConverter.toFixedPointInt(var1.maxZ + 1.0D);
 
 		for (int var9 = var3; var9 < var4; ++var9) {
 			for (int var10 = var5; var10 < var6; ++var10) {
@@ -1313,13 +1313,13 @@ public abstract class World implements ard {
 		return false;
 	}
 
-	public boolean b(brt var1, Material var2) {
-		int var3 = DataTypesConverter.toFixedPointInt(var1.a);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.d + 1.0D);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.b);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.e + 1.0D);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.c);
-		int var8 = DataTypesConverter.toFixedPointInt(var1.f + 1.0D);
+	public boolean b(AxisAlignedBB var1, Material var2) {
+		int var3 = DataTypesConverter.toFixedPointInt(var1.minX);
+		int var4 = DataTypesConverter.toFixedPointInt(var1.maxX + 1.0D);
+		int var5 = DataTypesConverter.toFixedPointInt(var1.minY);
+		int var6 = DataTypesConverter.toFixedPointInt(var1.maxY + 1.0D);
+		int var7 = DataTypesConverter.toFixedPointInt(var1.minZ);
+		int var8 = DataTypesConverter.toFixedPointInt(var1.maxZ + 1.0D);
 
 		for (int var9 = var3; var9 < var4; ++var9) {
 			for (int var10 = var5; var10 < var6; ++var10) {
@@ -1334,7 +1334,7 @@ public abstract class World implements ard {
 							var16 = (double) (var10 + 1) - (double) var15 / 8.0D;
 						}
 
-						if (var16 >= var1.b) {
+						if (var16 >= var1.minY) {
 							return true;
 						}
 					}
@@ -1356,10 +1356,10 @@ public abstract class World implements ard {
 		return var11;
 	}
 
-	public float a(Vec3D var1, brt var2) {
-		double var3 = 1.0D / ((var2.d - var2.a) * 2.0D + 1.0D);
-		double var5 = 1.0D / ((var2.e - var2.b) * 2.0D + 1.0D);
-		double var7 = 1.0D / ((var2.f - var2.c) * 2.0D + 1.0D);
+	public float a(Vec3D var1, AxisAlignedBB var2) {
+		double var3 = 1.0D / ((var2.maxX - var2.minX) * 2.0D + 1.0D);
+		double var5 = 1.0D / ((var2.maxY - var2.minY) * 2.0D + 1.0D);
+		double var7 = 1.0D / ((var2.maxZ - var2.minZ) * 2.0D + 1.0D);
 		if (var3 >= 0.0D && var5 >= 0.0D && var7 >= 0.0D) {
 			int var9 = 0;
 			int var10 = 0;
@@ -1367,9 +1367,9 @@ public abstract class World implements ard {
 			for (float var11 = 0.0F; var11 <= 1.0F; var11 = (float) ((double) var11 + var3)) {
 				for (float var12 = 0.0F; var12 <= 1.0F; var12 = (float) ((double) var12 + var5)) {
 					for (float var13 = 0.0F; var13 <= 1.0F; var13 = (float) ((double) var13 + var7)) {
-						double var14 = var2.a + (var2.d - var2.a) * (double) var11;
-						double var16 = var2.b + (var2.e - var2.b) * (double) var12;
-						double var18 = var2.c + (var2.f - var2.c) * (double) var13;
+						double var14 = var2.minX + (var2.maxX - var2.minX) * (double) var11;
+						double var16 = var2.minY + (var2.maxY - var2.minY) * (double) var12;
+						double var18 = var2.minZ + (var2.maxZ - var2.minZ) * (double) var13;
 						if (this.a(new Vec3D(var14, var16, var18), var1) == null) {
 							++var9;
 						}
@@ -1477,7 +1477,7 @@ public abstract class World implements ard {
 
 	public boolean u(Position var1) {
 		bec var2 = this.p(var1);
-		brt var3 = var2.getBlock().a(this, var1, var2);
+		AxisAlignedBB var3 = var2.getBlock().a(this, var1, var2);
 		return var3 != null && var3.a() >= 1.0D;
 	}
 
@@ -1900,16 +1900,16 @@ public abstract class World implements ard {
 		return null;
 	}
 
-	public List b(Entity var1, brt var2) {
+	public List b(Entity var1, AxisAlignedBB var2) {
 		return this.a(var1, var2, EntityPredicates.d);
 	}
 
-	public List a(Entity var1, brt var2, Predicate var3) {
+	public List a(Entity var1, AxisAlignedBB var2, Predicate var3) {
 		ArrayList var4 = Lists.newArrayList();
-		int var5 = DataTypesConverter.toFixedPointInt((var2.a - 2.0D) / 16.0D);
-		int var6 = DataTypesConverter.toFixedPointInt((var2.d + 2.0D) / 16.0D);
-		int var7 = DataTypesConverter.toFixedPointInt((var2.c - 2.0D) / 16.0D);
-		int var8 = DataTypesConverter.toFixedPointInt((var2.f + 2.0D) / 16.0D);
+		int var5 = DataTypesConverter.toFixedPointInt((var2.minX - 2.0D) / 16.0D);
+		int var6 = DataTypesConverter.toFixedPointInt((var2.maxX + 2.0D) / 16.0D);
+		int var7 = DataTypesConverter.toFixedPointInt((var2.minZ - 2.0D) / 16.0D);
+		int var8 = DataTypesConverter.toFixedPointInt((var2.maxZ + 2.0D) / 16.0D);
 
 		for (int var9 = var5; var9 <= var6; ++var9) {
 			for (int var10 = var7; var10 <= var8; ++var10) {
@@ -1950,15 +1950,15 @@ public abstract class World implements ard {
 		return var3;
 	}
 
-	public <T> List<T> a(Class<T> var1, brt var2) {
+	public <T> List<T> a(Class<T> var1, AxisAlignedBB var2) {
 		return this.a(var1, var2, EntityPredicates.d);
 	}
 
-	public <T> List<T> a(Class<T> var1, brt var2, Predicate<?> var3) {
-		int var4 = DataTypesConverter.toFixedPointInt((var2.a - 2.0D) / 16.0D);
-		int var5 = DataTypesConverter.toFixedPointInt((var2.d + 2.0D) / 16.0D);
-		int var6 = DataTypesConverter.toFixedPointInt((var2.c - 2.0D) / 16.0D);
-		int var7 = DataTypesConverter.toFixedPointInt((var2.f + 2.0D) / 16.0D);
+	public <T> List<T> a(Class<T> var1, AxisAlignedBB var2, Predicate<?> var3) {
+		int var4 = DataTypesConverter.toFixedPointInt((var2.minX - 2.0D) / 16.0D);
+		int var5 = DataTypesConverter.toFixedPointInt((var2.maxX + 2.0D) / 16.0D);
+		int var6 = DataTypesConverter.toFixedPointInt((var2.minZ - 2.0D) / 16.0D);
+		int var7 = DataTypesConverter.toFixedPointInt((var2.maxZ + 2.0D) / 16.0D);
 		ArrayList<T> var8 = Lists.newArrayList();
 
 		for (int var9 = var4; var9 <= var5; ++var9) {
@@ -1972,7 +1972,7 @@ public abstract class World implements ard {
 		return var8;
 	}
 
-	public <T> Entity a(Class<T> var1, brt var2, Entity var3) {
+	public <T> Entity a(Class<T> var1, AxisAlignedBB var2, Entity var3) {
 		List<T> var4 = this.a(var1, var2);
 		Entity var5 = null;
 		double var6 = Double.MAX_VALUE;
@@ -2033,7 +2033,7 @@ public abstract class World implements ard {
 
 	public boolean a(Block var1, Position var2, boolean var3, BlockFace var4, Entity var5, ItemStack var6) {
 		Block var7 = this.p(var2).getBlock();
-		brt var8 = var3 ? null : var1.a(this, var2, var1.P());
+		AxisAlignedBB var8 = var3 ? null : var1.a(this, var2, var1.P());
 		return var8 != null && !this.a(var8, var5) ? false : (var7.r() == Material.ORIENTABLE && var1 == Blocks.ANVIL ? true : var7.r().j() && var1.a(this, var2, var4, var6));
 	}
 
@@ -2191,7 +2191,7 @@ public abstract class World implements ard {
 
 	public Position M() {
 		Position var1 = new Position(this.worldData.c(), this.worldData.d(), this.worldData.e());
-		if (!this.getWorldBorder().a(var1)) {
+		if (!this.getWorldBorder().isInside(var1)) {
 			var1 = this.m(new Position(this.getWorldBorder().getX(), 0.0D, this.getWorldBorder().getZ()));
 		}
 

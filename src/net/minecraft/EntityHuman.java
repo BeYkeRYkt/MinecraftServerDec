@@ -356,7 +356,7 @@ public abstract class EntityHuman extends EntityLiving {
 		this.bm += (var2 - this.bm) * 0.4F;
 		this.aD += (var3 - this.aD) * 0.8F;
 		if (this.bm() > 0.0F && !this.v()) {
-			brt var4 = null;
+			AxisAlignedBB var4 = null;
 			if (this.m != null && !this.m.I) {
 				var4 = this.aQ().a(this.m.aQ()).b(1.0D, 0.0D, 1.0D);
 			} else {
@@ -951,7 +951,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 			double var2 = 8.0D;
 			double var4 = 5.0D;
-			List var6 = this.o.a(EntityMonster.class, new brt((double) var1.getX() - var2, (double) var1.getY() - var4, (double) var1.getZ() - var2, (double) var1.getX() + var2, (double) var1.getY() + var4, (double) var1.getZ() + var2));
+			List var6 = this.o.a(EntityMonster.class, new AxisAlignedBB((double) var1.getX() - var2, (double) var1.getY() - var4, (double) var1.getZ() - var2, (double) var1.getX() + var2, (double) var1.getY() + var4, (double) var1.getZ() + var2));
 			if (!var6.isEmpty()) {
 				return ahf.f;
 			}

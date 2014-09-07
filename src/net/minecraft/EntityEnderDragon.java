@@ -143,7 +143,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 						var16 = 10.0D;
 					}
 
-					this.b = this.by.aQ().b + var16;
+					this.b = this.by.aQ().minY + var16;
 				} else {
 					this.a += this.V.nextGaussian() * 2.0D;
 					this.c += this.V.nextGaussian() * 2.0D;
@@ -304,8 +304,8 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 	}
 
 	private void a(List var1) {
-		double var2 = (this.bm.aQ().a + this.bm.aQ().d) / 2.0D;
-		double var4 = (this.bm.aQ().c + this.bm.aQ().f) / 2.0D;
+		double var2 = (this.bm.aQ().minX + this.bm.aQ().maxX) / 2.0D;
+		double var4 = (this.bm.aQ().minZ + this.bm.aQ().maxZ) / 2.0D;
 		Iterator var6 = var1.iterator();
 
 		while (var6.hasNext()) {
@@ -367,13 +367,13 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 		return (float) DataTypesConverter.g(var1);
 	}
 
-	private boolean b(brt var1) {
-		int var2 = DataTypesConverter.toFixedPointInt(var1.a);
-		int var3 = DataTypesConverter.toFixedPointInt(var1.b);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.c);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.d);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.e);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.f);
+	private boolean b(AxisAlignedBB var1) {
+		int var2 = DataTypesConverter.toFixedPointInt(var1.minX);
+		int var3 = DataTypesConverter.toFixedPointInt(var1.minY);
+		int var4 = DataTypesConverter.toFixedPointInt(var1.minZ);
+		int var5 = DataTypesConverter.toFixedPointInt(var1.maxX);
+		int var6 = DataTypesConverter.toFixedPointInt(var1.maxY);
+		int var7 = DataTypesConverter.toFixedPointInt(var1.maxZ);
 		boolean var8 = false;
 		boolean var9 = false;
 
@@ -393,9 +393,9 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 		}
 
 		if (var9) {
-			double var16 = var1.a + (var1.d - var1.a) * (double) this.V.nextFloat();
-			double var17 = var1.b + (var1.e - var1.b) * (double) this.V.nextFloat();
-			double var14 = var1.c + (var1.f - var1.c) * (double) this.V.nextFloat();
+			double var16 = var1.minX + (var1.maxX - var1.minX) * (double) this.V.nextFloat();
+			double var17 = var1.minY + (var1.maxY - var1.minY) * (double) this.V.nextFloat();
+			double var14 = var1.minZ + (var1.maxZ - var1.minZ) * (double) this.V.nextFloat();
 			this.o.a(Particle.b, var16, var17, var14, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 

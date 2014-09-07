@@ -105,11 +105,11 @@ public abstract class ahr extends Entity implements aho {
 
 		Vec3D var1 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 		Vec3D var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
-		bru var3 = this.o.a(var1, var2);
+		MovingObjectPosition var3 = this.o.a(var1, var2);
 		var1 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 		var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 		if (var3 != null) {
-			var2 = new Vec3D(var3.c.x, var3.c.y, var3.c.z);
+			var2 = new Vec3D(var3.vec.x, var3.vec.y, var3.vec.z);
 		}
 
 		if (!this.o.D) {
@@ -122,10 +122,10 @@ public abstract class ahr extends Entity implements aho {
 				Entity var10 = (Entity) var5.get(var9);
 				if (var10.ad() && (var10 != var8 || this.ap >= 5)) {
 					float var11 = 0.3F;
-					brt var12 = var10.aQ().b((double) var11, (double) var11, (double) var11);
-					bru var13 = var12.a(var1, var2);
+					AxisAlignedBB var12 = var10.aQ().b((double) var11, (double) var11, (double) var11);
+					MovingObjectPosition var13 = var12.a(var1, var2);
 					if (var13 != null) {
-						double var14 = var1.f(var13.c);
+						double var14 = var1.f(var13.vec);
 						if (var14 < var6 || var6 == 0.0D) {
 							var4 = var10;
 							var6 = var14;
@@ -135,12 +135,12 @@ public abstract class ahr extends Entity implements aho {
 			}
 
 			if (var4 != null) {
-				var3 = new bru(var4);
+				var3 = new MovingObjectPosition(var4);
 			}
 		}
 
 		if (var3 != null) {
-			if (var3.a == brv.b && this.o.p(var3.a()).getBlock() == Blocks.PORTAL) {
+			if (var3.type == EnumMovingObjectType.BLOCK && this.o.p(var3.getPosition()).getBlock() == Blocks.PORTAL) {
 				this.aq();
 			} else {
 				this.a(var3);
@@ -193,7 +193,7 @@ public abstract class ahr extends Entity implements aho {
 		return 0.03F;
 	}
 
-	protected abstract void a(bru var1);
+	protected abstract void a(MovingObjectPosition var1);
 
 	public void b(NBTCompoundTag var1) {
 		var1.put("xTile", (short) this.c);

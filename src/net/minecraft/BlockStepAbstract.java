@@ -47,7 +47,7 @@ public abstract class BlockStepAbstract extends Block {
 
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.a(var1, var2);
 		super.a(var1, var2, var3, var4, var5, var6);
 	}

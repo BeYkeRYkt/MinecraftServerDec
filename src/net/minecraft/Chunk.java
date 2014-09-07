@@ -684,9 +684,9 @@ public class Chunk {
 		this.q = true;
 	}
 
-	public void a(Entity var1, brt var2, List var3, Predicate var4) {
-		int var5 = DataTypesConverter.toFixedPointInt((var2.b - 2.0D) / 16.0D);
-		int var6 = DataTypesConverter.toFixedPointInt((var2.e + 2.0D) / 16.0D);
+	public void a(Entity var1, AxisAlignedBB var2, List var3, Predicate var4) {
+		int var5 = DataTypesConverter.toFixedPointInt((var2.minY - 2.0D) / 16.0D);
+		int var6 = DataTypesConverter.toFixedPointInt((var2.maxY + 2.0D) / 16.0D);
 		var5 = DataTypesConverter.a(var5, 0, this.m.length - 1);
 		var6 = DataTypesConverter.a(var6, 0, this.m.length - 1);
 
@@ -712,9 +712,9 @@ public class Chunk {
 
 	}
 
-	public void a(Class var1, brt var2, List var3, Predicate var4) {
-		int var5 = DataTypesConverter.toFixedPointInt((var2.b - 2.0D) / 16.0D);
-		int var6 = DataTypesConverter.toFixedPointInt((var2.e + 2.0D) / 16.0D);
+	public void a(Class var1, AxisAlignedBB var2, List var3, Predicate var4) {
+		int var5 = DataTypesConverter.toFixedPointInt((var2.minY - 2.0D) / 16.0D);
+		int var6 = DataTypesConverter.toFixedPointInt((var2.maxY + 2.0D) / 16.0D);
 		var5 = DataTypesConverter.a(var5, 0, this.m.length - 1);
 		var6 = DataTypesConverter.a(var6, 0, this.m.length - 1);
 

@@ -184,12 +184,12 @@ public class BlockPiston extends Block {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		super.a(var1, var2, var3, var4, var5, var6);
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3);
 	}
@@ -221,7 +221,7 @@ public class BlockPiston extends Block {
 	public static boolean a(Block var0, World var1, Position var2, BlockFace var3, boolean var4) {
 		if (var0 == Blocks.OBSIDIAN) {
 			return false;
-		} else if (!var1.getWorldBorder().a(var2)) {
+		} else if (!var1.getWorldBorder().isInside(var2)) {
 			return false;
 		} else if (var2.getY() >= 0 && (var3 != BlockFace.a || var2.getY() != 0)) {
 			if (var2.getY() <= var1.U() - 1 && (var3 != BlockFace.b || var2.getY() != var1.U() - 1)) {

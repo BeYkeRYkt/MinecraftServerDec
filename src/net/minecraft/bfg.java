@@ -79,10 +79,10 @@ public class bfg extends Chunk {
 	public void e() {
 	}
 
-	public void a(Entity var1, brt var2, List var3, Predicate var4) {
+	public void a(Entity var1, AxisAlignedBB var2, List var3, Predicate var4) {
 	}
 
-	public void a(Class var1, brt var2, List var3, Predicate var4) {
+	public void a(Class var1, AxisAlignedBB var2, List var3, Predicate var4) {
 	}
 
 	public boolean a(boolean var1) {

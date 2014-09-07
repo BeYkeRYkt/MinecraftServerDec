@@ -15,8 +15,8 @@ public class BlockSoil extends Block {
 		this.e(255);
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
-		return new brt((double) var2.getX(), (double) var2.getY(), (double) var2.getZ(), (double) (var2.getX() + 1), (double) (var2.getY() + 1), (double) (var2.getZ() + 1));
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
+		return new AxisAlignedBB((double) var2.getX(), (double) var2.getY(), (double) var2.getZ(), (double) (var2.getX() + 1), (double) (var2.getY() + 1), (double) (var2.getZ() + 1));
 	}
 
 	public boolean c() {

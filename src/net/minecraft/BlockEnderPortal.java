@@ -19,7 +19,7 @@ public class BlockEnderPortal extends atg {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, var3, 1.0F);
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
 	}
 
 	public boolean c() {

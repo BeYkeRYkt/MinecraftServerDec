@@ -25,7 +25,7 @@ public class ItemBoat extends Item {
 		float var20 = var14 * var16;
 		double var21 = 5.0D;
 		Vec3D var23 = var13.b((double) var18 * var21, (double) var17 * var21, (double) var20 * var21);
-		bru var24 = var2.a(var13, var23, true);
+		MovingObjectPosition var24 = var2.a(var13, var23, true);
 		if (var24 == null) {
 			return var1;
 		} else {
@@ -38,7 +38,7 @@ public class ItemBoat extends Item {
 				Entity var30 = (Entity) var28.get(var29);
 				if (var30.ad()) {
 					float var31 = var30.ao();
-					brt var32 = var30.aQ().b((double) var31, (double) var31, (double) var31);
+					AxisAlignedBB var32 = var30.aQ().b((double) var31, (double) var31, (double) var31);
 					if (var32.a(var13)) {
 						var26 = true;
 					}
@@ -48,8 +48,8 @@ public class ItemBoat extends Item {
 			if (var26) {
 				return var1;
 			} else {
-				if (var24.a == brv.b) {
-					Position var33 = var24.a();
+				if (var24.type == EnumMovingObjectType.BLOCK) {
+					Position var33 = var24.getPosition();
 					if (var2.p(var33).getBlock() == Blocks.SNOW_LAYER) {
 						var33 = var33.b();
 					}

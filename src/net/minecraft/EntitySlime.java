@@ -82,7 +82,7 @@ public class EntitySlime extends EntityInsentient implements aex {
 				Particle var10001 = this.n();
 				double var10002 = this.locationX + (double) var5;
 				double var10004 = this.locationZ + (double) var6;
-				var10000.a(var10001, var10002, this.aQ().b, var10004, 0.0D, 0.0D, 0.0D, new int[0]);
+				var10000.a(var10001, var10002, this.aQ().minY, var10004, 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 
 			if (this.cj()) {

@@ -53,11 +53,11 @@ public class EntityPotion extends ahr {
 		return this.c.i();
 	}
 
-	protected void a(bru var1) {
+	protected void a(MovingObjectPosition var1) {
 		if (!this.o.D) {
 			List var2 = Items.POTION.h(this.c);
 			if (var2 != null && !var2.isEmpty()) {
-				brt var3 = this.aQ().b(4.0D, 2.0D, 4.0D);
+				AxisAlignedBB var3 = this.aQ().b(4.0D, 2.0D, 4.0D);
 				List var4 = this.o.a(EntityLiving.class, var3);
 				if (!var4.isEmpty()) {
 					Iterator var5 = var4.iterator();
@@ -67,7 +67,7 @@ public class EntityPotion extends ahr {
 						double var7 = this.h(var6);
 						if (var7 < 16.0D) {
 							double var9 = 1.0D - Math.sqrt(var7) / 4.0D;
-							if (var6 == var1.d) {
+							if (var6 == var1.entity) {
 								var9 = 1.0D;
 							}
 

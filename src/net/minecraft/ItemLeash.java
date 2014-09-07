@@ -30,7 +30,7 @@ public class ItemLeash extends Item {
 		int var7 = var2.getX();
 		int var8 = var2.getY();
 		int var9 = var2.getZ();
-		List var10 = var1.a(EntityInsentient.class, new brt((double) var7 - var5, (double) var8 - var5, (double) var9 - var5, (double) var7 + var5, (double) var8 + var5, (double) var9 + var5));
+		List var10 = var1.a(EntityInsentient.class, new AxisAlignedBB((double) var7 - var5, (double) var8 - var5, (double) var9 - var5, (double) var7 + var5, (double) var8 + var5, (double) var9 + var5));
 		Iterator var11 = var10.iterator();
 
 		while (var11.hasNext()) {

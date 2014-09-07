@@ -75,7 +75,7 @@ public abstract class aqi {
 						return;
 					}
 
-					int var5 = this.a().a(var14.getClass(), (new brt((double) var1.getX(), (double) var1.getY(), (double) var1.getZ(), (double) (var1.getX() + 1), (double) (var1.getY() + 1), (double) (var1.getZ() + 1))).b((double) this.m, (double) this.m, (double) this.m)).size();
+					int var5 = this.a().a(var14.getClass(), (new AxisAlignedBB((double) var1.getX(), (double) var1.getY(), (double) var1.getZ(), (double) (var1.getX() + 1), (double) (var1.getY() + 1), (double) (var1.getZ() + 1))).b((double) this.m, (double) this.m, (double) this.m)).size();
 					if (var5 >= this.k) {
 						this.h();
 						return;

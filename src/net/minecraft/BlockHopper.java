@@ -19,7 +19,7 @@ public class BlockHopper extends atg {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.625F, 1.0F);
 		super.a(var1, var2, var3, var4, var5, var6);
 		float var7 = 0.125F;

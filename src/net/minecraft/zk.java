@@ -58,12 +58,12 @@ public class zk extends zb {
 	public void e() {
 		EntityLiving var1 = this.b.u();
 		this.b.p().a(var1, 30.0F, 30.0F);
-		double var2 = this.b.e(var1.locationX, var1.aQ().b, var1.locationZ);
+		double var2 = this.b.e(var1.locationX, var1.aQ().minY, var1.locationZ);
 		double var4 = this.a(var1);
 		--this.h;
 		if ((this.e || this.b.t().a(var1)) && this.h <= 0 && (this.i == 0.0D && this.j == 0.0D && this.k == 0.0D || var1.e(this.i, this.j, this.k) >= 1.0D || this.b.bb().nextFloat() < 0.05F)) {
 			this.i = var1.locationX;
-			this.j = var1.aQ().b;
+			this.j = var1.aQ().minY;
 			this.k = var1.locationZ;
 			this.h = 4 + this.b.bb().nextInt(7);
 			if (var2 > 1024.0D) {

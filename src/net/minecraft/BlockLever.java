@@ -13,7 +13,7 @@ public class BlockLever extends Block {
 		this.a(CreativeModeTab.REDSTONE);
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		return null;
 	}
 

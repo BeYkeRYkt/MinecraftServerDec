@@ -292,7 +292,7 @@ public class WorldServer extends World implements vn {
 
 	protected Position a(Position var1) {
 		Position var2 = this.q(var1);
-		brt var3 = (new brt(var2, new Position(var2.getX(), this.U(), var2.getZ()))).b(3.0D, 3.0D, 3.0D);
+		AxisAlignedBB var3 = (new AxisAlignedBB(var2, new Position(var2.getX(), this.U(), var2.getZ()))).b(3.0D, 3.0D, 3.0D);
 		List var4 = this.a(EntityLiving.class, var3, new qu(this));
 		return !var4.isEmpty() ? ((EntityLiving) var4.get(this.s.nextInt(var4.size()))).c() : var2;
 	}
@@ -512,7 +512,7 @@ public class WorldServer extends World implements vn {
 	}
 
 	public boolean a(EntityHuman var1, Position var2) {
-		return !this.I.a((World) this, var2, var1) && this.getWorldBorder().a(var2);
+		return !this.I.a((World) this, var2, var1) && this.getWorldBorder().isInside(var2);
 	}
 
 	public void a(arb var1) {

@@ -474,16 +474,16 @@ public class Block {
 		return var1.p(var2).getBlock().r().isBuildable();
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List<brt> var5, Entity var6) {
-		brt var7 = this.a(var1, var2, var3);
+	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List<AxisAlignedBB> var5, Entity var6) {
+		AxisAlignedBB var7 = this.a(var1, var2, var3);
 		if (var7 != null && var4.b(var7)) {
 			var5.add(var7);
 		}
 
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
-		return new brt((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G);
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
+		return new AxisAlignedBB((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G);
 	}
 
 	public boolean c() {
@@ -585,7 +585,7 @@ public class Block {
 		return this.x / 5.0F;
 	}
 
-	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
+	public MovingObjectPosition a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		this.a((ard) var1, var2);
 		var3 = var3.b((double) (-var2.getX()), (double) (-var2.getY()), (double) (-var2.getZ()));
 		var4 = var4.b((double) (-var2.getX()), (double) (-var2.getY()), (double) (-var2.getZ()));
@@ -672,7 +672,7 @@ public class Block {
 				var12 = BlockFace.d;
 			}
 
-			return new bru(var11.b((double) var2.getX(), (double) var2.getY(), (double) var2.getZ()), var12, var2);
+			return new MovingObjectPosition(var11.b((double) var2.getX(), (double) var2.getY(), (double) var2.getZ()), var12, var2);
 		}
 	}
 

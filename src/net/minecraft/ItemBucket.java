@@ -12,18 +12,18 @@ public class ItemBucket extends Item {
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
 		boolean var4 = this.a == Blocks.AIR;
-		bru var5 = this.a(var2, var3, var4);
+		MovingObjectPosition var5 = this.a(var2, var3, var4);
 		if (var5 == null) {
 			return var1;
 		} else {
-			if (var5.a == brv.b) {
-				Position var6 = var5.a();
+			if (var5.type == EnumMovingObjectType.BLOCK) {
+				Position var6 = var5.getPosition();
 				if (!var2.a(var3, var6)) {
 					return var1;
 				}
 
 				if (var4) {
-					if (!var3.a(var6.a(var5.b), var5.b, var1)) {
+					if (!var3.a(var6.a(var5.face), var5.face, var1)) {
 						return var1;
 					}
 
@@ -45,8 +45,8 @@ public class ItemBucket extends Item {
 						return new ItemStack(Items.BUCKET);
 					}
 
-					Position var9 = var6.a(var5.b);
-					if (!var3.a(var9, var5.b, var1)) {
+					Position var9 = var6.a(var5.face);
+					if (!var3.a(var9, var5.face, var1)) {
 						return var1;
 					}
 

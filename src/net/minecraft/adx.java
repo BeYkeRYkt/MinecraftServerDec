@@ -53,11 +53,11 @@ public abstract class adx extends Entity implements vz {
 		this.dataWatcher.a(22, Byte.valueOf((byte) 0));
 	}
 
-	public brt j(Entity var1) {
+	public AxisAlignedBB j(Entity var1) {
 		return var1.ae() ? var1.aQ() : null;
 	}
 
-	public brt S() {
+	public AxisAlignedBB S() {
 		return null;
 	}
 
@@ -467,7 +467,7 @@ public abstract class adx extends Entity implements vz {
 		this.locationZ = var5;
 		float var7 = this.J / 2.0F;
 		float var8 = this.K;
-		this.a(new brt(var1 - (double) var7, var3, var5 - (double) var7, var1 + (double) var7, var3 + (double) var8, var5 + (double) var7));
+		this.a(new AxisAlignedBB(var1 - (double) var7, var3, var5 - (double) var7, var1 + (double) var7, var3 + (double) var8, var5 + (double) var7));
 	}
 
 	public Vec3D k(double var1, double var3, double var5) {

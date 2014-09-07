@@ -60,7 +60,7 @@ public class EntityItem extends Entity {
 			this.q = this.locationY;
 			this.r = this.locationZ;
 			this.motionY -= 0.03999999910593033D;
-			this.T = this.j(this.locationX, (this.aQ().b + this.aQ().e) / 2.0D, this.locationZ);
+			this.T = this.j(this.locationX, (this.aQ().minY + this.aQ().maxY) / 2.0D, this.locationZ);
 			this.d(this.motionX, this.motionY, this.motionZ);
 			boolean var1 = (int) this.p != (int) this.locationX || (int) this.q != (int) this.locationY || (int) this.r != (int) this.locationZ;
 			if (var1 || this.W % 25 == 0) {
@@ -78,7 +78,7 @@ public class EntityItem extends Entity {
 
 			float var2 = 0.98F;
 			if (this.onGround) {
-				var2 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
+				var2 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
 			}
 
 			this.motionX *= (double) var2;

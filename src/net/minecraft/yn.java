@@ -36,7 +36,7 @@ public class yn {
 		this.a.m(0.0F);
 		if (this.f) {
 			this.f = false;
-			int var1 = DataTypesConverter.toFixedPointInt(this.a.aQ().b + 0.5D);
+			int var1 = DataTypesConverter.toFixedPointInt(this.a.aQ().minY + 0.5D);
 			double var2 = this.b - this.a.locationX;
 			double var4 = this.d - this.a.locationZ;
 			double var6 = this.c - (double) var1;

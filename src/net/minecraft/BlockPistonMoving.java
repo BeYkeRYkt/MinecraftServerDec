@@ -79,7 +79,7 @@ public class BlockPistonMoving extends atg {
 		}
 	}
 
-	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
+	public MovingObjectPosition a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		return null;
 	}
 
@@ -90,7 +90,7 @@ public class BlockPistonMoving extends atg {
 
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		TileEntityPiston var4 = this.e(var1, var2);
 		if (var4 == null) {
 			return null;
@@ -134,18 +134,18 @@ public class BlockPistonMoving extends atg {
 
 	}
 
-	public brt a(World var1, Position var2, bec var3, float var4, BlockFace var5) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3, float var4, BlockFace var5) {
 		if (var3.getBlock() != this && var3.getBlock().r() != Material.AIR) {
-			brt var6 = var3.getBlock().a(var1, var2, var3);
+			AxisAlignedBB var6 = var3.getBlock().a(var1, var2, var3);
 			if (var6 == null) {
 				return null;
 			} else {
-				double var7 = var6.a;
-				double var9 = var6.b;
-				double var11 = var6.c;
-				double var13 = var6.d;
-				double var15 = var6.e;
-				double var17 = var6.f;
+				double var7 = var6.minX;
+				double var9 = var6.minY;
+				double var11 = var6.minZ;
+				double var13 = var6.maxX;
+				double var15 = var6.maxY;
+				double var17 = var6.maxZ;
 				if (var5.g() < 0) {
 					var7 -= (double) ((float) var5.g() * var4);
 				} else {
@@ -164,7 +164,7 @@ public class BlockPistonMoving extends atg {
 					var17 -= (double) ((float) var5.i() * var4);
 				}
 
-				return new brt(var7, var9, var11, var13, var15, var17);
+				return new AxisAlignedBB(var7, var9, var11, var13, var15, var17);
 			}
 		} else {
 			return null;

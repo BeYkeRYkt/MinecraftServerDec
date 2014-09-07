@@ -52,7 +52,7 @@ public abstract class axl extends Block {
 		return var4 == this.material ? false : (var3 == BlockFace.b ? true : (var4 == Material.ICE ? false : super.b(var1, var2, var3)));
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		return null;
 	}
 

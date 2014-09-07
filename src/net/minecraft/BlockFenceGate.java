@@ -25,12 +25,12 @@ public class BlockFenceGate extends avb {
 		return var1.p(var2.b()).getBlock().r().isBuildable() ? super.c(var1, var2) : false;
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		if (((Boolean) var3.b(a)).booleanValue()) {
 			return null;
 		} else {
 			el var4 = ((BlockFace) var3.b(N)).k();
-			return var4 == el.c ? new brt((double) var2.getX(), (double) var2.getY(), (double) ((float) var2.getZ() + 0.375F), (double) (var2.getX() + 1), (double) ((float) var2.getY() + 1.5F), (double) ((float) var2.getZ() + 0.625F)) : new brt((double) ((float) var2.getX() + 0.375F), (double) var2.getY(), (double) var2.getZ(), (double) ((float) var2.getX() + 0.625F), (double) ((float) var2.getY() + 1.5F), (double) (var2.getZ() + 1));
+			return var4 == el.c ? new AxisAlignedBB((double) var2.getX(), (double) var2.getY(), (double) ((float) var2.getZ() + 0.375F), (double) (var2.getX() + 1), (double) ((float) var2.getY() + 1.5F), (double) ((float) var2.getZ() + 0.625F)) : new AxisAlignedBB((double) ((float) var2.getX() + 0.375F), (double) var2.getY(), (double) var2.getZ(), (double) ((float) var2.getX() + 0.625F), (double) ((float) var2.getY() + 1.5F), (double) (var2.getZ() + 1));
 		}
 	}
 

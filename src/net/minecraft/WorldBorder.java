@@ -27,46 +27,46 @@ public class WorldBorder {
 		this.warningBlocks = 5;
 	}
 
-	public boolean a(Position var1) {
-		return (double) (var1.getX() + 1) > this.b() && (double) var1.getX() < this.d() && (double) (var1.getZ() + 1) > this.c() && (double) var1.getZ() < this.e();
+	public boolean isInside(Position position) {
+		return (double) (position.getX() + 1) > this.getMinX() && (double) position.getX() < this.getMaxX() && (double) (position.getZ() + 1) > this.getMinZ() && (double) position.getZ() < this.getMaxZ();
 	}
 
-	public boolean a(ChunkCoordIntPair var1) {
-		return (double) var1.getBlockMaxX() > this.b() && (double) var1.getBlockMinX() < this.d() && (double) var1.getBlockMaxZ() > this.c() && (double) var1.getBlockMinZ() < this.e();
+	public boolean isInside(ChunkCoordIntPair var1) {
+		return (double) var1.getBlockMaxX() > this.getMinX() && (double) var1.getBlockMinX() < this.getMaxX() && (double) var1.getBlockMaxZ() > this.getMinZ() && (double) var1.getBlockMinZ() < this.getMaxZ();
 	}
 
-	public boolean a(brt var1) {
-		return var1.d > this.b() && var1.a < this.d() && var1.f > this.c() && var1.c < this.e();
+	public boolean isInside(AxisAlignedBB axis) {
+		return axis.maxX > this.getMinX() && axis.minX < this.getMaxX() && axis.maxZ > this.getMinZ() && axis.minZ < this.getMaxZ();
 	}
 
-	public double a(Entity var1) {
-		return this.b(var1.locationX, var1.locationZ);
+	public double getDistance(Entity entity) {
+		return this.getDistance(entity.locationX, entity.locationZ);
 	}
 
-	public double b(double var1, double var3) {
-		double var5 = var3 - this.c();
-		double var7 = this.e() - var3;
-		double var9 = var1 - this.b();
-		double var11 = this.d() - var1;
-		double var13 = Math.min(var9, var11);
-		var13 = Math.min(var13, var5);
-		return Math.min(var13, var7);
+	public double getDistance(double locX, double locZ) {
+		double distMinZ = locZ - this.getMinZ();
+		double distMaxZ = this.getMaxZ() - locZ;
+		double distMinX = locX - this.getMinX();
+		double distMaxX = this.getMaxX() - locX;
+		double dist = Math.min(distMinX, distMaxX);
+		dist = Math.min(dist, distMinZ);
+		return Math.min(dist, distMaxZ);
 	}
 
-	public bfa a() {
-		return this.currentRadius < this.oldRadius ? bfa.b : (this.currentRadius > this.oldRadius ? bfa.a : bfa.c);
+	public EnumWorldBorderStatus getStatus() {
+		return this.currentRadius < this.oldRadius ? EnumWorldBorderStatus.SHRINKING : (this.currentRadius > this.oldRadius ? EnumWorldBorderStatus.GROWING : EnumWorldBorderStatus.STATIONARY);
 	}
 
-	public double b() {
-		double var1 = this.getX() - this.getOldRadius() / 2.0D;
-		if (var1 < (double) (-this.portalTeleportBoundary)) {
-			var1 = (double) (-this.portalTeleportBoundary);
+	public double getMinX() {
+		double x = this.getX() - this.getOldRadius() / 2.0D;
+		if (x < (double) (-this.portalTeleportBoundary)) {
+			x = (double) (-this.portalTeleportBoundary);
 		}
 
-		return var1;
+		return x;
 	}
 
-	public double c() {
+	public double getMinZ() {
 		double var1 = this.getZ() - this.getOldRadius() / 2.0D;
 		if (var1 < (double) (-this.portalTeleportBoundary)) {
 			var1 = (double) (-this.portalTeleportBoundary);
@@ -75,22 +75,22 @@ public class WorldBorder {
 		return var1;
 	}
 
-	public double d() {
-		double var1 = this.getX() + this.getOldRadius() / 2.0D;
-		if (var1 > (double) this.portalTeleportBoundary) {
-			var1 = (double) this.portalTeleportBoundary;
+	public double getMaxX() {
+		double x = this.getX() + this.getOldRadius() / 2.0D;
+		if (x > (double) this.portalTeleportBoundary) {
+			x = (double) this.portalTeleportBoundary;
 		}
 
-		return var1;
+		return x;
 	}
 
-	public double e() {
-		double var1 = this.getZ() + this.getOldRadius() / 2.0D;
-		if (var1 > (double) this.portalTeleportBoundary) {
-			var1 = (double) this.portalTeleportBoundary;
+	public double getMaxZ() {
+		double z = this.getZ() + this.getOldRadius() / 2.0D;
+		if (z > (double) this.portalTeleportBoundary) {
+			z = (double) this.portalTeleportBoundary;
 		}
 
-		return var1;
+		return z;
 	}
 
 	public double getX() {
@@ -111,7 +111,7 @@ public class WorldBorder {
 	}
 
 	public double getOldRadius() {
-		if (this.a() != bfa.c) {
+		if (this.getStatus() != EnumWorldBorderStatus.STATIONARY) {
 			double var1 = (double) ((float) (System.currentTimeMillis() - this.lerpStartTime) / (float) (this.lerpEndTime - this.lerpStartTime));
 			if (var1 < 1.0D) {
 				return this.oldRadius + (this.currentRadius - this.oldRadius) * var1;
@@ -124,7 +124,7 @@ public class WorldBorder {
 	}
 
 	public long getSpeed() {
-		return this.a() != bfa.c ? this.lerpEndTime - System.currentTimeMillis() : 0L;
+		return this.getStatus() != EnumWorldBorderStatus.STATIONARY ? this.lerpEndTime - System.currentTimeMillis() : 0L;
 	}
 
 	public double getCurrentRadius() {

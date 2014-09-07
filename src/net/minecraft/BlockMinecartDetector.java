@@ -107,13 +107,13 @@ public class BlockMinecartDetector extends ati {
 	}
 
 	protected List a(World var1, Position var2, Class var3, Predicate... var4) {
-		brt var5 = this.a(var2);
+		AxisAlignedBB var5 = this.a(var2);
 		return var4.length != 1 ? var1.a(var3, var5) : var1.a(var3, var5, var4[0]);
 	}
 
-	private brt a(Position var1) {
+	private AxisAlignedBB a(Position var1) {
 		float var2 = 0.2F;
-		return new brt((double) ((float) var1.getX() + 0.2F), (double) var1.getY(), (double) ((float) var1.getZ() + 0.2F), (double) ((float) (var1.getX() + 1) - 0.2F), (double) ((float) (var1.getY() + 1) - 0.2F), (double) ((float) (var1.getZ() + 1) - 0.2F));
+		return new AxisAlignedBB((double) ((float) var1.getX() + 0.2F), (double) var1.getY(), (double) ((float) var1.getZ() + 0.2F), (double) ((float) (var1.getX() + 1) - 0.2F), (double) ((float) (var1.getY() + 1) - 0.2F), (double) ((float) (var1.getZ() + 1) - 0.2F));
 	}
 
 	public bec a(int var1) {

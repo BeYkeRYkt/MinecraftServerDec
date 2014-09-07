@@ -57,7 +57,7 @@ public class EntityLightning extends EntityWeather {
 				this.o.c(2);
 			} else {
 				double var6 = 3.0D;
-				List var3 = this.o.b((Entity) this, new brt(this.locationX - var6, this.locationY - var6, this.locationZ - var6, this.locationX + var6, this.locationY + 6.0D + var6, this.locationZ + var6));
+				List var3 = this.o.b((Entity) this, new AxisAlignedBB(this.locationX - var6, this.locationY - var6, this.locationZ - var6, this.locationX + var6, this.locationY + 6.0D + var6, this.locationZ + var6));
 
 				for (int var4 = 0; var4 < var3.size(); ++var4) {
 					Entity var5 = (Entity) var3.get(var4);

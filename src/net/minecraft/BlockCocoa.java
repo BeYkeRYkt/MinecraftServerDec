@@ -38,7 +38,7 @@ public class BlockCocoa extends avb implements atz {
 		return false;
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3);
 	}

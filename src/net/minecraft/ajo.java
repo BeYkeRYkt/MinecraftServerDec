@@ -10,7 +10,7 @@ final class ajo extends eg {
 		int var4 = var3.getX();
 		int var5 = var3.getY();
 		int var6 = var3.getZ();
-		brt var7 = new brt((double) var4, (double) var5, (double) var6, (double) (var4 + 1), (double) (var5 + 1), (double) (var6 + 1));
+		AxisAlignedBB var7 = new AxisAlignedBB((double) var4, (double) var5, (double) var6, (double) (var4 + 1), (double) (var5 + 1), (double) (var6 + 1));
 		List var8 = var1.i().a(EntityLiving.class, var7, Predicates.and(EntityPredicates.d, new xj(var2)));
 		if (var8.size() > 0) {
 			EntityLiving var9 = (EntityLiving) var8.get(0);

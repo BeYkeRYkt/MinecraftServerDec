@@ -65,7 +65,7 @@ public class yz extends zb {
 						if (this.d.h(this.e) >= 144.0D) {
 							int var1 = DataTypesConverter.toFixedPointInt(this.e.locationX) - 2;
 							int var2 = DataTypesConverter.toFixedPointInt(this.e.locationZ) - 2;
-							int var3 = DataTypesConverter.toFixedPointInt(this.e.aQ().b);
+							int var3 = DataTypesConverter.toFixedPointInt(this.e.aQ().minY);
 
 							for (int var4 = 0; var4 <= 4; ++var4) {
 								for (int var5 = 0; var5 <= 4; ++var5) {

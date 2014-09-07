@@ -98,8 +98,8 @@ public class ItemEnderEye extends Item {
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
-		bru var4 = this.a(var2, var3, false);
-		if (var4 != null && var4.a == brv.b && var2.p(var4.a()).getBlock() == Blocks.END_PORTAL_FRAME) {
+		MovingObjectPosition var4 = this.a(var2, var3, false);
+		if (var4 != null && var4.type == EnumMovingObjectType.BLOCK && var2.p(var4.getPosition()).getBlock() == Blocks.END_PORTAL_FRAME) {
 			return var1;
 		} else {
 			if (!var2.D) {

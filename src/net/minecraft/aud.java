@@ -17,7 +17,7 @@ public abstract class aud extends Block {
 		this.M = var1;
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
@@ -181,7 +181,7 @@ public abstract class aud extends Block {
 
 	private void f(World var1, Position var2, bec var3) {
 		this.d(var3);
-		List var4 = var1.a(EntityArrow.class, new brt((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G));
+		List var4 = var1.a(EntityArrow.class, new AxisAlignedBB((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G));
 		boolean var5 = !var4.isEmpty();
 		boolean var6 = ((Boolean) var3.b(b)).booleanValue();
 		if (var5 && !var6) {

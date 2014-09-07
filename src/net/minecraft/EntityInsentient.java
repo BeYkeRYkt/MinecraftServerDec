@@ -426,7 +426,7 @@ public abstract class EntityInsentient extends EntityLiving {
 			EntityLiving var10 = (EntityLiving) var1;
 			var6 = var10.locationY + (double) var10.aR() - (this.locationY + (double) this.aR());
 		} else {
-			var6 = (var1.aQ().b + var1.aQ().e) / 2.0D - (this.locationY + (double) this.aR());
+			var6 = (var1.aQ().minY + var1.aQ().maxY) / 2.0D - (this.locationY + (double) this.aR());
 		}
 
 		double var14 = (double) DataTypesConverter.a(var4 * var4 + var8 * var8);

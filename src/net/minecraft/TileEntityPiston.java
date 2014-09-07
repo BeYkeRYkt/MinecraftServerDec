@@ -55,7 +55,7 @@ public class TileEntityPiston extends TileEntity implements pm {
 			--var1;
 		}
 
-		brt var3 = Blocks.PISTON_EXTENSION.a(this.world, this.position, this.a, var1, this.f);
+		AxisAlignedBB var3 = Blocks.PISTON_EXTENSION.a(this.world, this.position, this.a, var1, this.f);
 		if (var3 != null) {
 			List var4 = this.world.b((Entity) null, var3);
 			if (!var4.isEmpty()) {

@@ -9,7 +9,7 @@ import net.minecraft.server.MinecraftServer;
 
 public abstract class Entity implements CommandSenderInterface {
 
-	private static final brt a = new brt(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
+	private static final AxisAlignedBB a = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 	private static int b;
 	private int entityId;
 	public double j;
@@ -31,7 +31,7 @@ public abstract class Entity implements CommandSenderInterface {
 	public float pitch;
 	public float A;
 	public float B;
-	private brt f;
+	private AxisAlignedBB f;
 	public boolean onGround;
 	public boolean D;
 	public boolean E;
@@ -141,7 +141,7 @@ public abstract class Entity implements CommandSenderInterface {
 			float var3 = this.J;
 			this.J = var1;
 			this.K = var2;
-			this.a(new brt(this.aQ().a, this.aQ().b, this.aQ().c, this.aQ().a + (double) this.J, this.aQ().b + (double) this.K, this.aQ().c + (double) this.J));
+			this.a(new AxisAlignedBB(this.aQ().minX, this.aQ().minY, this.aQ().minZ, this.aQ().minX + (double) this.J, this.aQ().minY + (double) this.K, this.aQ().minZ + (double) this.J));
 			if (this.J > var3 && !this.aa && !this.o.D) {
 				this.d((double) (var3 - this.J), 0.0D, (double) (var3 - this.J));
 			}
@@ -160,7 +160,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.locationZ = var5;
 		float var7 = this.J / 2.0F;
 		float var8 = this.K;
-		this.a(new brt(var1 - (double) var7, var3, var5 - (double) var7, var1 + (double) var7, var3 + (double) var8, var5 + (double) var7));
+		this.a(new AxisAlignedBB(var1 - (double) var7, var3, var5 - (double) var7, var1 + (double) var7, var3 + (double) var8, var5 + (double) var7));
 	}
 
 	public void s_() {
@@ -282,11 +282,11 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public boolean c(double var1, double var3, double var5) {
-		brt var7 = this.aQ().c(var1, var3, var5);
+		AxisAlignedBB var7 = this.aQ().c(var1, var3, var5);
 		return this.b(var7);
 	}
 
-	private boolean b(brt var1) {
+	private boolean b(AxisAlignedBB var1) {
 		return this.o.a(this, var1).isEmpty() && !this.o.d(var1);
 	}
 
@@ -356,26 +356,26 @@ public abstract class Entity implements CommandSenderInterface {
 			}
 
 			List var53 = this.o.a(this, this.aQ().a(var1, var3, var5));
-			brt var21 = this.aQ();
+			AxisAlignedBB var21 = this.aQ();
 
-			brt var23;
+			AxisAlignedBB var23;
 			for (Iterator var22 = var53.iterator(); var22.hasNext(); var3 = var23.b(this.aQ(), var3)) {
-				var23 = (brt) var22.next();
+				var23 = (AxisAlignedBB) var22.next();
 			}
 
 			this.a(this.aQ().c(0.0D, var3, 0.0D));
 			boolean var54 = this.onGround || var15 != var3 && var15 < 0.0D;
 
-			brt var24;
+			AxisAlignedBB var24;
 			Iterator var55;
 			for (var55 = var53.iterator(); var55.hasNext(); var1 = var24.a(this.aQ(), var1)) {
-				var24 = (brt) var55.next();
+				var24 = (AxisAlignedBB) var55.next();
 			}
 
 			this.a(this.aQ().c(var1, 0.0D, 0.0D));
 
 			for (var55 = var53.iterator(); var55.hasNext(); var5 = var24.c(this.aQ(), var5)) {
-				var24 = (brt) var55.next();
+				var24 = (AxisAlignedBB) var55.next();
 			}
 
 			this.a(this.aQ().c(0.0D, 0.0D, var5));
@@ -383,58 +383,58 @@ public abstract class Entity implements CommandSenderInterface {
 				double var56 = var1;
 				double var25 = var3;
 				double var27 = var5;
-				brt var29 = this.aQ();
+				AxisAlignedBB var29 = this.aQ();
 				this.a(var21);
 				var3 = (double) this.S;
 				List var30 = this.o.a(this, this.aQ().a(var13, var3, var17));
-				brt var31 = this.aQ();
-				brt var32 = var31.a(var13, 0.0D, var17);
+				AxisAlignedBB var31 = this.aQ();
+				AxisAlignedBB var32 = var31.a(var13, 0.0D, var17);
 				double var33 = var3;
 
-				brt var36;
+				AxisAlignedBB var36;
 				for (Iterator var35 = var30.iterator(); var35.hasNext(); var33 = var36.b(var32, var33)) {
-					var36 = (brt) var35.next();
+					var36 = (AxisAlignedBB) var35.next();
 				}
 
 				var31 = var31.c(0.0D, var33, 0.0D);
 				double var67 = var13;
 
-				brt var38;
+				AxisAlignedBB var38;
 				for (Iterator var37 = var30.iterator(); var37.hasNext(); var67 = var38.a(var31, var67)) {
-					var38 = (brt) var37.next();
+					var38 = (AxisAlignedBB) var37.next();
 				}
 
 				var31 = var31.c(var67, 0.0D, 0.0D);
 				double var68 = var17;
 
-				brt var40;
+				AxisAlignedBB var40;
 				for (Iterator var39 = var30.iterator(); var39.hasNext(); var68 = var40.c(var31, var68)) {
-					var40 = (brt) var39.next();
+					var40 = (AxisAlignedBB) var39.next();
 				}
 
 				var31 = var31.c(0.0D, 0.0D, var68);
-				brt var69 = this.aQ();
+				AxisAlignedBB var69 = this.aQ();
 				double var70 = var3;
 
-				brt var43;
+				AxisAlignedBB var43;
 				for (Iterator var42 = var30.iterator(); var42.hasNext(); var70 = var43.b(var69, var70)) {
-					var43 = (brt) var42.next();
+					var43 = (AxisAlignedBB) var42.next();
 				}
 
 				var69 = var69.c(0.0D, var70, 0.0D);
 				double var71 = var13;
 
-				brt var45;
+				AxisAlignedBB var45;
 				for (Iterator var44 = var30.iterator(); var44.hasNext(); var71 = var45.a(var69, var71)) {
-					var45 = (brt) var44.next();
+					var45 = (AxisAlignedBB) var44.next();
 				}
 
 				var69 = var69.c(var71, 0.0D, 0.0D);
 				double var72 = var17;
 
-				brt var47;
+				AxisAlignedBB var47;
 				for (Iterator var46 = var30.iterator(); var46.hasNext(); var72 = var47.c(var69, var72)) {
-					var47 = (brt) var46.next();
+					var47 = (AxisAlignedBB) var46.next();
 				}
 
 				var69 = var69.c(0.0D, 0.0D, var72);
@@ -452,9 +452,9 @@ public abstract class Entity implements CommandSenderInterface {
 
 				var3 = (double) (-this.S);
 
-				brt var51;
+				AxisAlignedBB var51;
 				for (Iterator var50 = var30.iterator(); var50.hasNext(); var3 = var51.b(this.aQ(), var3)) {
-					var51 = (brt) var50.next();
+					var51 = (AxisAlignedBB) var50.next();
 				}
 
 				this.a(this.aQ().c(0.0D, var3, 0.0D));
@@ -560,9 +560,9 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	private void m() {
-		this.locationX = (this.aQ().a + this.aQ().d) / 2.0D;
-		this.locationY = this.aQ().b;
-		this.locationZ = (this.aQ().c + this.aQ().f) / 2.0D;
+		this.locationX = (this.aQ().minX + this.aQ().maxX) / 2.0D;
+		this.locationY = this.aQ().minY;
+		this.locationZ = (this.aQ().minZ + this.aQ().maxZ) / 2.0D;
 	}
 
 	protected String P() {
@@ -570,8 +570,8 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected void Q() {
-		Position var1 = new Position(this.aQ().a + 0.001D, this.aQ().b + 0.001D, this.aQ().c + 0.001D);
-		Position var2 = new Position(this.aQ().d - 0.001D, this.aQ().e - 0.001D, this.aQ().f - 0.001D);
+		Position var1 = new Position(this.aQ().minX + 0.001D, this.aQ().minY + 0.001D, this.aQ().minZ + 0.001D);
+		Position var2 = new Position(this.aQ().maxX - 0.001D, this.aQ().maxY - 0.001D, this.aQ().maxZ - 0.001D);
 		if (this.o.a(var1, var2)) {
 			for (int var3 = var1.getX(); var3 <= var2.getX(); ++var3) {
 				for (int var4 = var1.getY(); var4 <= var2.getY(); ++var4) {
@@ -641,7 +641,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 	}
 
-	public brt S() {
+	public AxisAlignedBB S() {
 		return null;
 	}
 
@@ -694,7 +694,7 @@ public abstract class Entity implements CommandSenderInterface {
 		}
 
 		this.a(this.aa(), var1, 1.0F + (this.V.nextFloat() - this.V.nextFloat()) * 0.4F);
-		float var2 = (float) DataTypesConverter.toFixedPointInt(this.aQ().b);
+		float var2 = (float) DataTypesConverter.toFixedPointInt(this.aQ().minY);
 
 		int var3;
 		float var4;
@@ -728,7 +728,7 @@ public abstract class Entity implements CommandSenderInterface {
 		bec var5 = this.o.p(var4);
 		Block var6 = var5.getBlock();
 		if (var6.b() != -1) {
-			this.o.a(Particle.L, this.locationX + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, this.aQ().b + 0.1D, this.locationZ + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, -this.motionX * 4.0D, 1.5D, -this.motionZ * 4.0D, new int[] { Block.f(var5) });
+			this.o.a(Particle.L, this.locationX + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, this.aQ().minY + 0.1D, this.locationZ + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, -this.motionX * 4.0D, 1.5D, -this.motionZ * 4.0D, new int[] { Block.f(var5) });
 		}
 
 	}
@@ -777,7 +777,7 @@ public abstract class Entity implements CommandSenderInterface {
 	public float c(float var1) {
 		Position var2 = new Position(this.locationX, 0.0D, this.locationZ);
 		if (this.o.e(var2)) {
-			double var3 = (this.aQ().e - this.aQ().b) * 0.66D;
+			double var3 = (this.aQ().maxY - this.aQ().minY) * 0.66D;
 			int var5 = DataTypesConverter.toFixedPointInt(this.locationY + var3);
 			return this.o.o(var2.b(var5));
 		} else {
@@ -1150,7 +1150,7 @@ public abstract class Entity implements CommandSenderInterface {
 		return false;
 	}
 
-	public brt j(Entity var1) {
+	public AxisAlignedBB j(Entity var1) {
 		return null;
 	}
 
@@ -1226,7 +1226,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.aq = 0.0D;
 		if (var1 == null) {
 			if (this.m != null) {
-				this.b(this.m.locationX, this.m.aQ().b + (double) this.m.K, this.m.locationZ, this.yaw, this.pitch);
+				this.b(this.m.locationX, this.m.aQ().minY + (double) this.m.K, this.m.locationZ, this.yaw, this.pitch);
 				this.m.l = null;
 			}
 
@@ -1612,11 +1612,11 @@ public abstract class Entity implements CommandSenderInterface {
 		return true;
 	}
 
-	public brt aQ() {
+	public AxisAlignedBB aQ() {
 		return this.f;
 	}
 
-	public void a(brt var1) {
+	public void a(AxisAlignedBB var1) {
 		this.f = var1;
 	}
 

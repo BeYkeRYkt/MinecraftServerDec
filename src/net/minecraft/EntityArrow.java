@@ -41,7 +41,7 @@ public class EntityArrow extends Entity implements aho {
 
 		this.locationY = var2.locationY + (double) var2.aR() - 0.10000000149011612D;
 		double var6 = var3.locationX - var2.locationX;
-		double var8 = var3.aQ().b + (double) (var3.K / 3.0F) - this.locationY;
+		double var8 = var3.aQ().minY + (double) (var3.K / 3.0F) - this.locationY;
 		double var10 = var3.locationZ - var2.locationZ;
 		double var12 = (double) DataTypesConverter.a(var6 * var6 + var10 * var10);
 		if (var12 >= 1.0E-7D) {
@@ -112,7 +112,7 @@ public class EntityArrow extends Entity implements aho {
 		Block var3 = var2.getBlock();
 		if (var3.r() != Material.AIR) {
 			var3.a((ard) this.o, var18);
-			brt var4 = var3.a(this.o, var18, var2);
+			AxisAlignedBB var4 = var3.a(this.o, var18, var2);
 			if (var4 != null && var4.a(new Vec3D(this.locationX, this.locationY, this.locationZ))) {
 				this.i = true;
 			}
@@ -142,11 +142,11 @@ public class EntityArrow extends Entity implements aho {
 			++this.aq;
 			Vec3D var19 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 			Vec3D var5 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
-			bru var6 = this.o.a(var19, var5, false, true, false);
+			MovingObjectPosition var6 = this.o.a(var19, var5, false, true, false);
 			var19 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 			var5 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 			if (var6 != null) {
-				var5 = new Vec3D(var6.c.x, var6.c.y, var6.c.z);
+				var5 = new Vec3D(var6.vec.x, var6.vec.y, var6.vec.z);
 			}
 
 			Entity var7 = null;
@@ -159,10 +159,10 @@ public class EntityArrow extends Entity implements aho {
 				Entity var12 = (Entity) var8.get(var11);
 				if (var12.ad() && (var12 != this.c || this.aq >= 5)) {
 					var13 = 0.3F;
-					brt var14 = var12.aQ().b((double) var13, (double) var13, (double) var13);
-					bru var15 = var14.a(var19, var5);
+					AxisAlignedBB var14 = var12.aQ().b((double) var13, (double) var13, (double) var13);
+					MovingObjectPosition var15 = var14.a(var19, var5);
 					if (var15 != null) {
-						double var16 = var19.f(var15.c);
+						double var16 = var19.f(var15.vec);
 						if (var16 < var9 || var9 == 0.0D) {
 							var7 = var12;
 							var9 = var16;
@@ -172,11 +172,11 @@ public class EntityArrow extends Entity implements aho {
 			}
 
 			if (var7 != null) {
-				var6 = new bru(var7);
+				var6 = new MovingObjectPosition(var7);
 			}
 
-			if (var6 != null && var6.d != null && var6.d instanceof EntityHuman) {
-				EntityHuman var21 = (EntityHuman) var6.d;
+			if (var6 != null && var6.entity != null && var6.entity instanceof EntityHuman) {
+				EntityHuman var21 = (EntityHuman) var6.entity;
 				if (var21.by.invulnerable || this.c instanceof EntityHuman && !((EntityHuman) this.c).a(var21)) {
 					var6 = null;
 				}
@@ -186,7 +186,7 @@ public class EntityArrow extends Entity implements aho {
 			float var25;
 			float var29;
 			if (var6 != null) {
-				if (var6.d != null) {
+				if (var6.entity != null) {
 					var22 = DataTypesConverter.a(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
 					int var24 = DataTypesConverter.f((double) var22 * this.ar);
 					if (this.l()) {
@@ -200,13 +200,13 @@ public class EntityArrow extends Entity implements aho {
 						var26 = DamageSource.a(this, this.c);
 					}
 
-					if (this.au() && !(var6.d instanceof EntityEnderman)) {
-						var6.d.e(5);
+					if (this.au() && !(var6.entity instanceof EntityEnderman)) {
+						var6.entity.e(5);
 					}
 
-					if (var6.d.a(var26, (float) var24)) {
-						if (var6.d instanceof EntityLiving) {
-							EntityLiving var27 = (EntityLiving) var6.d;
+					if (var6.entity.a(var26, (float) var24)) {
+						if (var6.entity instanceof EntityLiving) {
+							EntityLiving var27 = (EntityLiving) var6.entity;
 							if (!this.o.D) {
 								var27.o(var27.bu() + 1);
 							}
@@ -214,7 +214,7 @@ public class EntityArrow extends Entity implements aho {
 							if (this.as > 0) {
 								var29 = DataTypesConverter.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
 								if (var29 > 0.0F) {
-									var6.d.g(this.motionX * (double) this.as * 0.6000000238418579D / (double) var29, 0.1D, this.motionZ * (double) this.as * 0.6000000238418579D / (double) var29);
+									var6.entity.g(this.motionX * (double) this.as * 0.6000000238418579D / (double) var29, 0.1D, this.motionZ * (double) this.as * 0.6000000238418579D / (double) var29);
 								}
 							}
 
@@ -223,13 +223,13 @@ public class EntityArrow extends Entity implements aho {
 								aph.b((EntityLiving) this.c, var27);
 							}
 
-							if (this.c != null && var6.d != this.c && var6.d instanceof EntityHuman && this.c instanceof EntityPlayer) {
+							if (this.c != null && var6.entity != this.c && var6.entity instanceof EntityHuman && this.c instanceof EntityPlayer) {
 								((EntityPlayer) this.c).playerConncetion.sendPacket((Packet) (new PacketOutChangeGameState(6, 0.0F)));
 							}
 						}
 
 						this.a("random.bowhit", 1.0F, 1.2F / (this.V.nextFloat() * 0.2F + 0.9F));
-						if (!(var6.d instanceof EntityEnderman)) {
+						if (!(var6.entity instanceof EntityEnderman)) {
 							this.J();
 						}
 					} else {
@@ -241,16 +241,16 @@ public class EntityArrow extends Entity implements aho {
 						this.aq = 0;
 					}
 				} else {
-					Position var23 = var6.a();
+					Position var23 = var6.getPosition();
 					this.d = var23.getX();
 					this.e = var23.getY();
 					this.f = var23.getZ();
 					var2 = this.o.p(var23);
 					this.g = var2.getBlock();
 					this.h = this.g.c(var2);
-					this.motionX = (double) ((float) (var6.c.x - this.locationX));
-					this.motionY = (double) ((float) (var6.c.y - this.locationY));
-					this.motionZ = (double) ((float) (var6.c.z - this.locationZ));
+					this.motionX = (double) ((float) (var6.vec.x - this.locationX));
+					this.motionY = (double) ((float) (var6.vec.y - this.locationY));
+					this.motionZ = (double) ((float) (var6.vec.z - this.locationZ));
 					var25 = DataTypesConverter.a(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
 					this.locationX -= this.motionX / (double) var25 * 0.05000000074505806D;
 					this.locationY -= this.motionY / (double) var25 * 0.05000000074505806D;

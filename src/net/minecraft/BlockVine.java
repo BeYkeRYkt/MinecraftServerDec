@@ -104,7 +104,7 @@ public class BlockVine extends Block {
 		this.a(var4, var5, var6, var7, var8, var9);
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		return null;
 	}
 

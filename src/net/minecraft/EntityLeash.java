@@ -15,7 +15,7 @@ public class EntityLeash extends adj {
 		float var3 = 0.125F;
 		float var4 = 0.1875F;
 		float var5 = 0.25F;
-		this.a(new brt(this.locationX - 0.1875D, this.locationY - 0.25D + 0.125D, this.locationZ - 0.1875D, this.locationX + 0.1875D, this.locationY + 0.25D + 0.125D, this.locationZ + 0.1875D));
+		this.a(new AxisAlignedBB(this.locationX - 0.1875D, this.locationY - 0.25D + 0.125D, this.locationZ - 0.1875D, this.locationX + 0.1875D, this.locationY + 0.25D + 0.125D, this.locationZ + 0.1875D));
 	}
 
 	protected void h() {
@@ -59,7 +59,7 @@ public class EntityLeash extends adj {
 		EntityInsentient var8;
 		if (var2 != null && var2.getItem() == Items.LEAD && !this.o.D) {
 			var4 = 7.0D;
-			var6 = this.o.a(EntityInsentient.class, new brt(this.locationX - var4, this.locationY - var4, this.locationZ - var4, this.locationX + var4, this.locationY + var4, this.locationZ + var4));
+			var6 = this.o.a(EntityInsentient.class, new AxisAlignedBB(this.locationX - var4, this.locationY - var4, this.locationZ - var4, this.locationX + var4, this.locationY + var4, this.locationZ + var4));
 			var7 = var6.iterator();
 
 			while (var7.hasNext()) {
@@ -75,7 +75,7 @@ public class EntityLeash extends adj {
 			this.J();
 			if (var1.by.instabuild) {
 				var4 = 7.0D;
-				var6 = this.o.a(EntityInsentient.class, new brt(this.locationX - var4, this.locationY - var4, this.locationZ - var4, this.locationX + var4, this.locationY + var4, this.locationZ + var4));
+				var6 = this.o.a(EntityInsentient.class, new AxisAlignedBB(this.locationX - var4, this.locationY - var4, this.locationZ - var4, this.locationX + var4, this.locationY + var4, this.locationZ + var4));
 				var7 = var6.iterator();
 
 				while (var7.hasNext()) {
@@ -105,7 +105,7 @@ public class EntityLeash extends adj {
 		int var2 = var1.getX();
 		int var3 = var1.getY();
 		int var4 = var1.getZ();
-		List var5 = var0.a(EntityLeash.class, new brt((double) var2 - 1.0D, (double) var3 - 1.0D, (double) var4 - 1.0D, (double) var2 + 1.0D, (double) var3 + 1.0D, (double) var4 + 1.0D));
+		List var5 = var0.a(EntityLeash.class, new AxisAlignedBB((double) var2 - 1.0D, (double) var3 - 1.0D, (double) var4 - 1.0D, (double) var2 + 1.0D, (double) var3 + 1.0D, (double) var4 + 1.0D));
 		Iterator var6 = var5.iterator();
 
 		EntityLeash var7;

@@ -29,7 +29,7 @@ public class BlockBrewingStand extends atg {
 		return false;
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.a(0.4375F, 0.0F, 0.4375F, 0.5625F, 0.875F, 0.5625F);
 		super.a(var1, var2, var3, var4, var5, var6);
 		this.h();

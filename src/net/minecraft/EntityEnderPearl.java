@@ -6,10 +6,10 @@ public class EntityEnderPearl extends ahr {
 		super(var1, var2);
 	}
 
-	protected void a(bru var1) {
+	protected void a(MovingObjectPosition var1) {
 		EntityLiving var2 = this.n();
-		if (var1.d != null) {
-			var1.d.a(DamageSource.a((Entity) this, var2), 0.0F);
+		if (var1.entity != null) {
+			var1.entity.a(DamageSource.a((Entity) this, var2), 0.0F);
 		}
 
 		for (int var3 = 0; var3 < 32; ++var3) {

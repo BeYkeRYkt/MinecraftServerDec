@@ -202,7 +202,7 @@ public class TileEntityChest extends bdf implements pm, IInventory {
 		if (!this.world.D && this.l != 0 && (this.n + var1 + var2 + var3) % 200 == 0) {
 			this.l = 0;
 			var4 = 5.0F;
-			List var5 = this.world.a(EntityHuman.class, new brt((double) ((float) var1 - var4), (double) ((float) var2 - var4), (double) ((float) var3 - var4), (double) ((float) (var1 + 1) + var4), (double) ((float) (var2 + 1) + var4), (double) ((float) (var3 + 1) + var4)));
+			List var5 = this.world.a(EntityHuman.class, new AxisAlignedBB((double) ((float) var1 - var4), (double) ((float) var2 - var4), (double) ((float) var3 - var4), (double) ((float) (var1 + 1) + var4), (double) ((float) (var2 + 1) + var4), (double) ((float) (var3 + 1) + var4)));
 			Iterator var6 = var5.iterator();
 
 			while (var6.hasNext()) {

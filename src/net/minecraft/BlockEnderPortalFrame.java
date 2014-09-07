@@ -22,7 +22,7 @@ public class BlockEnderPortalFrame extends Block {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.8125F, 1.0F);
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.8125F, 1.0F);
 		super.a(var1, var2, var3, var4, var5, var6);
 		if (((Boolean) var1.p(var2).b(b)).booleanValue()) {

@@ -85,7 +85,7 @@ public class aqo {
 		int var7 = DataTypesConverter.toFixedPointInt(this.f + (double) var30 + 1.0D);
 		int var32 = DataTypesConverter.toFixedPointInt(this.g - (double) var30 - 1.0D);
 		int var9 = DataTypesConverter.toFixedPointInt(this.g + (double) var30 + 1.0D);
-		List var33 = this.d.b(this.h, new brt((double) var4, (double) var31, (double) var32, (double) var5, (double) var7, (double) var9));
+		List var33 = this.d.b(this.h, new AxisAlignedBB((double) var4, (double) var31, (double) var32, (double) var5, (double) var7, (double) var9));
 		Vec3D var11 = new Vec3D(this.e, this.f, this.g);
 
 		for (int var34 = 0; var34 < var33.size(); ++var34) {

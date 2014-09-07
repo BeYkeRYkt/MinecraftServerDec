@@ -367,7 +367,7 @@ public class BlockStairs extends Block {
 		return var13;
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.e(var1, var2);
 		super.a(var1, var2, var3, var4, var5, var6);
 		boolean var7 = this.h(var1, var2);
@@ -446,8 +446,8 @@ public class BlockStairs extends Block {
 		return var3 != BlockFace.a && (var3 == BlockFace.b || (double) var5 <= 0.5D) ? var9.a(b, bau.b) : var9.a(b, bau.a);
 	}
 
-	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
-		bru[] var5 = new bru[8];
+	public MovingObjectPosition a(World var1, Position var2, Vec3D var3, Vec3D var4) {
+		MovingObjectPosition[] var5 = new MovingObjectPosition[8];
 		bec var6 = var1.p(var2);
 		int var7 = ((BlockFace) var6.b(a)).toByte();
 		boolean var8 = var6.b(b) == bau.a;
@@ -469,15 +469,15 @@ public class BlockStairs extends Block {
 			var5[var13] = null;
 		}
 
-		bru var20 = null;
+		MovingObjectPosition var20 = null;
 		double var21 = 0.0D;
-		bru[] var22 = var5;
+		MovingObjectPosition[] var22 = var5;
 		int var14 = var5.length;
 
 		for (int var15 = 0; var15 < var14; ++var15) {
-			bru var16 = var22[var15];
+			MovingObjectPosition var16 = var22[var15];
 			if (var16 != null) {
-				double var17 = var16.c.g(var4);
+				double var17 = var16.vec.g(var4);
 				if (var17 > var21) {
 					var20 = var16;
 					var21 = var17;

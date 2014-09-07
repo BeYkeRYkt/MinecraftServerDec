@@ -42,7 +42,7 @@ public class abb extends aaz {
 	}
 
 	protected boolean a(Vec3D var1, Vec3D var2, int var3, int var4, int var5) {
-		bru var6 = this.c.a(var1, new Vec3D(var2.x, var2.y + (double) this.b.K * 0.5D, var2.z), false, true, false);
-		return var6 == null || var6.a == brv.a;
+		MovingObjectPosition var6 = this.c.a(var1, new Vec3D(var2.x, var2.y + (double) this.b.K * 0.5D, var2.z), false, true, false);
+		return var6 == null || var6.type == EnumMovingObjectType.MISS;
 	}
 }

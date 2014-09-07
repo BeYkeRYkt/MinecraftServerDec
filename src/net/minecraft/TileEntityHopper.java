@@ -412,7 +412,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 	}
 
 	public static EntityItem a(World var0, double var1, double var3, double var5) {
-		List var7 = var0.a(EntityItem.class, new brt(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.a);
+		List var7 = var0.a(EntityItem.class, new AxisAlignedBB(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.a);
 		return var7.size() > 0 ? (EntityItem) var7.get(0) : null;
 	}
 
@@ -434,7 +434,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 		}
 
 		if (var7 == null) {
-			List var14 = var0.a((Entity) null, new brt(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.c);
+			List var14 = var0.a((Entity) null, new AxisAlignedBB(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.c);
 			if (var14.size() > 0) {
 				var7 = (IInventory) var14.get(var0.s.nextInt(var14.size()));
 			}

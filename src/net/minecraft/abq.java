@@ -62,7 +62,7 @@ public abstract class abq extends ws implements wt {
 
 	public boolean bQ() {
 		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
-		int var2 = DataTypesConverter.toFixedPointInt(this.aQ().b);
+		int var2 = DataTypesConverter.toFixedPointInt(this.aQ().minY);
 		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
 		Position var4 = new Position(var1, var2, var3);
 		return this.o.p(var4.b()).getBlock() == this.bl && this.o.k(var4) > 8 && super.bQ();

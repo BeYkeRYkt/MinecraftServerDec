@@ -7,9 +7,9 @@ public class BlockSlowSand extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		float var4 = 0.125F;
-		return new brt((double) var2.getX(), (double) var2.getY(), (double) var2.getZ(), (double) (var2.getX() + 1), (double) ((float) (var2.getY() + 1) - var4), (double) (var2.getZ() + 1));
+		return new AxisAlignedBB((double) var2.getX(), (double) var2.getY(), (double) var2.getZ(), (double) (var2.getX() + 1), (double) ((float) (var2.getY() + 1) - var4), (double) (var2.getZ() + 1));
 	}
 
 	public void a(World var1, Position var2, bec var3, Entity var4) {

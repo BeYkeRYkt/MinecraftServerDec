@@ -90,7 +90,7 @@ public abstract class EntityMonster extends EntityCreature implements aex {
 	}
 
 	protected boolean m_() {
-		Position var1 = new Position(this.locationX, this.aQ().b, this.locationZ);
+		Position var1 = new Position(this.locationX, this.aQ().minY, this.locationZ);
 		if (this.o.b(arf.a, var1) > this.V.nextInt(32)) {
 			return false;
 		} else {

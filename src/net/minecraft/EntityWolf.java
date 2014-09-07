@@ -148,7 +148,7 @@ public class EntityWolf extends xx {
 			}
 
 			if (this.bq > 0.4F) {
-				float var1 = (float) this.aQ().b;
+				float var1 = (float) this.aQ().minY;
 				int var2 = (int) (DataTypesConverter.a((this.bq - 0.4F) * 3.1415927F) * 7.0F);
 
 				for (int var3 = 0; var3 < var2; ++var3) {

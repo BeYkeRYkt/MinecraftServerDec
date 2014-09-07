@@ -39,7 +39,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 			int var4 = this.position.getX();
 			int var5 = this.position.getY();
 			int var6 = this.position.getZ();
-			brt var7 = (new brt((double) var4, (double) var5, (double) var6, (double) (var4 + 1), (double) (var5 + 1), (double) (var6 + 1))).b(var1, var1, var1).a(0.0D, (double) this.world.U(), 0.0D);
+			AxisAlignedBB var7 = (new AxisAlignedBB((double) var4, (double) var5, (double) var6, (double) (var4 + 1), (double) (var5 + 1), (double) (var6 + 1))).b(var1, var1, var1).a(0.0D, (double) this.world.U(), 0.0D);
 			List var8 = this.world.a(EntityHuman.class, var7);
 			Iterator var9 = var8.iterator();
 
@@ -139,7 +139,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 		}
 
 		if (!this.world.D && this.j == 4 && var1 < this.j) {
-			Iterator var13 = this.world.a(EntityHuman.class, (new brt((double) var2, (double) var3, (double) var4, (double) var2, (double) (var3 - 4), (double) var4)).b(10.0D, 5.0D, 10.0D)).iterator();
+			Iterator var13 = this.world.a(EntityHuman.class, (new AxisAlignedBB((double) var2, (double) var3, (double) var4, (double) var2, (double) (var3 - 4), (double) var4)).b(10.0D, 5.0D, 10.0D)).iterator();
 
 			while (var13.hasNext()) {
 				EntityHuman var15 = (EntityHuman) var13.next();

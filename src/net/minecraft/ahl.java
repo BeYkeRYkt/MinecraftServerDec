@@ -79,11 +79,11 @@ public abstract class ahl extends Entity {
 
 			Vec3D var1 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 			Vec3D var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
-			bru var3 = this.o.a(var1, var2);
+			MovingObjectPosition var3 = this.o.a(var1, var2);
 			var1 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 			var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 			if (var3 != null) {
-				var2 = new Vec3D(var3.c.x, var3.c.y, var3.c.z);
+				var2 = new Vec3D(var3.vec.x, var3.vec.y, var3.vec.z);
 			}
 
 			Entity var4 = null;
@@ -94,10 +94,10 @@ public abstract class ahl extends Entity {
 				Entity var9 = (Entity) var5.get(var8);
 				if (var9.ad() && (!var9.k(this.a) || this.aq >= 25)) {
 					float var10 = 0.3F;
-					brt var11 = var9.aQ().b((double) var10, (double) var10, (double) var10);
-					bru var12 = var11.a(var1, var2);
+					AxisAlignedBB var11 = var9.aQ().b((double) var10, (double) var10, (double) var10);
+					MovingObjectPosition var12 = var11.a(var1, var2);
 					if (var12 != null) {
-						double var13 = var1.f(var12.c);
+						double var13 = var1.f(var12.vec);
 						if (var13 < var6 || var6 == 0.0D) {
 							var4 = var9;
 							var6 = var13;
@@ -107,7 +107,7 @@ public abstract class ahl extends Entity {
 			}
 
 			if (var4 != null) {
-				var3 = new bru(var4);
+				var3 = new MovingObjectPosition(var4);
 			}
 
 			if (var3 != null) {
@@ -163,7 +163,7 @@ public abstract class ahl extends Entity {
 		return 0.95F;
 	}
 
-	protected abstract void a(bru var1);
+	protected abstract void a(MovingObjectPosition var1);
 
 	public void b(NBTCompoundTag var1) {
 		var1.put("xTile", (short) this.e);

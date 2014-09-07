@@ -34,7 +34,7 @@ public class BlockThin extends Block {
 		return false;
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
 		boolean var7 = this.c(var1.p(var2.c()).getBlock());
 		boolean var8 = this.c(var1.p(var2.d()).getBlock());
 		boolean var9 = this.c(var1.p(var2.e()).getBlock());

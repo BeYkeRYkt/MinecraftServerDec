@@ -14,9 +14,9 @@ public class ahs extends ahr {
 		super(var1, var2, var4, var6);
 	}
 
-	protected void a(bru var1) {
-		if (var1.d != null) {
-			var1.d.a(DamageSource.a((Entity) this, this.n()), 0.0F);
+	protected void a(MovingObjectPosition var1) {
+		if (var1.entity != null) {
+			var1.entity.a(DamageSource.a((Entity) this, this.n()), 0.0F);
 		}
 
 		if (!this.o.D && this.V.nextInt(8) == 0) {

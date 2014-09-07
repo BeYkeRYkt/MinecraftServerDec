@@ -105,7 +105,7 @@ public class ado extends Entity {
 					if (!this.c.I) {
 						this.locationX = this.c.locationX;
 						double var10002 = (double) this.c.K;
-						this.locationY = this.c.aQ().b + var10002 * 0.8D;
+						this.locationY = this.c.aQ().minY + var10002 * 0.8D;
 						this.locationZ = this.c.locationZ;
 						return;
 					}
@@ -140,11 +140,11 @@ public class ado extends Entity {
 
 			Vec3D var27 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 			Vec3D var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
-			bru var3 = this.o.a(var27, var2);
+			MovingObjectPosition var3 = this.o.a(var27, var2);
 			var27 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 			var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 			if (var3 != null) {
-				var2 = new Vec3D(var3.c.x, var3.c.y, var3.c.z);
+				var2 = new Vec3D(var3.vec.x, var3.vec.y, var3.vec.z);
 			}
 
 			Entity var4 = null;
@@ -156,10 +156,10 @@ public class ado extends Entity {
 				Entity var9 = (Entity) var5.get(var8);
 				if (var9.ad() && (var9 != this.b || this.as >= 5)) {
 					float var10 = 0.3F;
-					brt var11 = var9.aQ().b((double) var10, (double) var10, (double) var10);
-					bru var12 = var11.a(var27, var2);
+					AxisAlignedBB var11 = var9.aQ().b((double) var10, (double) var10, (double) var10);
+					MovingObjectPosition var12 = var11.a(var27, var2);
 					if (var12 != null) {
-						var13 = var27.f(var12.c);
+						var13 = var27.f(var12.vec);
 						if (var13 < var6 || var6 == 0.0D) {
 							var4 = var9;
 							var6 = var13;
@@ -169,13 +169,13 @@ public class ado extends Entity {
 			}
 
 			if (var4 != null) {
-				var3 = new bru(var4);
+				var3 = new MovingObjectPosition(var4);
 			}
 
 			if (var3 != null) {
-				if (var3.d != null) {
-					if (var3.d.a(DamageSource.a((Entity) this, this.b), 0.0F)) {
-						this.c = var3.d;
+				if (var3.entity != null) {
+					if (var3.entity.a(DamageSource.a((Entity) this, this.b), 0.0F)) {
+						this.c = var3.entity;
 					}
 				} else {
 					this.aq = true;
@@ -215,11 +215,11 @@ public class ado extends Entity {
 
 				double var19;
 				for (int var35 = 0; var35 < var33; ++var35) {
-					brt var14 = this.aQ();
-					double var15 = var14.e - var14.b;
-					double var17 = var14.b + var15 * (double) var35 / (double) var33;
-					var19 = var14.b + var15 * (double) (var35 + 1) / (double) var33;
-					brt var21 = new brt(var14.a, var17, var14.c, var14.d, var19, var14.f);
+					AxisAlignedBB var14 = this.aQ();
+					double var15 = var14.maxY - var14.minY;
+					double var17 = var14.minY + var15 * (double) var35 / (double) var33;
+					var19 = var14.minY + var15 * (double) (var35 + 1) / (double) var33;
+					AxisAlignedBB var21 = new AxisAlignedBB(var14.minX, var17, var14.minZ, var14.maxX, var19, var14.maxZ);
 					if (this.o.b(var21, Material.WATER)) {
 						var34 += 1.0D / (double) var33;
 					}
@@ -254,7 +254,7 @@ public class ado extends Entity {
 							if (this.av <= 0) {
 								this.motionY -= 0.20000000298023224D;
 								this.a("random.splash", 0.25F, 1.0F + (this.V.nextFloat() - this.V.nextFloat()) * 0.4F);
-								var16 = (float) DataTypesConverter.toFixedPointInt(this.aQ().b);
+								var16 = (float) DataTypesConverter.toFixedPointInt(this.aQ().minY);
 								var36.a(Particle.e, this.locationX, (double) (var16 + 1.0F), this.locationZ, (int) (1.0F + this.J * 20.0F), (double) this.J, 0.0D, (double) this.J, 0.20000000298023224D, new int[0]);
 								var36.a(Particle.g, this.locationX, (double) (var16 + 1.0F), this.locationZ, (int) (1.0F + this.J * 20.0F), (double) this.J, 0.0D, (double) this.J, 0.20000000298023224D, new int[0]);
 								this.at = DataTypesConverter.a(this.V, 10, 30);
@@ -264,7 +264,7 @@ public class ado extends Entity {
 								var39 = DataTypesConverter.a(var16);
 								var18 = DataTypesConverter.b(var16);
 								var19 = this.locationX + (double) (var39 * (float) this.av * 0.1F);
-								var40 = (double) ((float) DataTypesConverter.toFixedPointInt(this.aQ().b) + 1.0F);
+								var40 = (double) ((float) DataTypesConverter.toFixedPointInt(this.aQ().minY) + 1.0F);
 								var23 = this.locationZ + (double) (var18 * (float) this.av * 0.1F);
 								if (this.V.nextFloat() < 0.15F) {
 									var36.a(Particle.e, var19, var40 - 0.10000000149011612D, var23, 1, (double) var39, 0.1D, (double) var18, 0.0D, new int[0]);
@@ -290,7 +290,7 @@ public class ado extends Entity {
 								var39 = DataTypesConverter.a(this.V, 0.0F, 360.0F) * 0.017453292F;
 								var18 = DataTypesConverter.a(this.V, 25.0F, 60.0F);
 								var19 = this.locationX + (double) (DataTypesConverter.a(var39) * var18 * 0.1F);
-								var40 = (double) ((float) DataTypesConverter.toFixedPointInt(this.aQ().b) + 1.0F);
+								var40 = (double) ((float) DataTypesConverter.toFixedPointInt(this.aQ().minY) + 1.0F);
 								var23 = this.locationZ + (double) (DataTypesConverter.b(var39) * var18 * 0.1F);
 								var36.a(Particle.f, var19, var40, var23, 2 + this.V.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D, new int[0]);
 							}

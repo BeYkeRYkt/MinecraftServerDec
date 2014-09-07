@@ -37,9 +37,9 @@ public class BlockCactus extends Block {
 		}
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		float var4 = 0.0625F;
-		return new brt((double) ((float) var2.getX() + var4), (double) var2.getY(), (double) ((float) var2.getZ() + var4), (double) ((float) (var2.getX() + 1) - var4), (double) ((float) (var2.getY() + 1) - var4), (double) ((float) (var2.getZ() + 1) - var4));
+		return new AxisAlignedBB((double) ((float) var2.getX() + var4), (double) var2.getY(), (double) ((float) var2.getZ() + var4), (double) ((float) (var2.getX() + 1) - var4), (double) ((float) (var2.getY() + 1) - var4), (double) ((float) (var2.getZ() + 1) - var4));
 	}
 
 	public boolean d() {

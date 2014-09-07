@@ -240,7 +240,7 @@ public class PlayerConnection implements ls, pm {
 					}
 				}
 
-				brt var49 = this.b.aQ().b((double) var41, (double) var41, (double) var41).a(0.0D, -0.55D, 0.0D);
+				AxisAlignedBB var49 = this.b.aQ().b((double) var41, (double) var41, (double) var41).a(0.0D, -0.55D, 0.0D);
 				if (!this.d.isFlightAllowed() && !this.b.by.mayfly && !var2.c(var49)) {
 					if (var43 >= -0.03125D) {
 						++this.g;
@@ -333,7 +333,7 @@ public class PlayerConnection implements ls, pm {
 					return;
 				} else {
 					if (var1.c() == mm.a) {
-						if (!this.d.a((World) var2, var3, (EntityHuman) this.b) && var2.getWorldBorder().a(var3)) {
+						if (!this.d.a((World) var2, var3, (EntityHuman) this.b) && var2.getWorldBorder().isInside(var3)) {
 							this.b.playerInteractManager.a(var3, var1.b());
 						} else {
 							this.b.playerConncetion.sendPacket((Packet) (new PacketOutBlockChange(var2, var3)));
@@ -377,7 +377,7 @@ public class PlayerConnection implements ls, pm {
 			this.b.playerConncetion.sendPacket((Packet) (new PacketOutChatMessage(var7)));
 			var4 = true;
 		} else {
-			if (this.r && this.b.e((double) var5.getX() + 0.5D, (double) var5.getY() + 0.5D, (double) var5.getZ() + 0.5D) < 64.0D && !this.d.a((World) var2, var5, (EntityHuman) this.b) && var2.getWorldBorder().a(var5)) {
+			if (this.r && this.b.e((double) var5.getX() + 0.5D, (double) var5.getY() + 0.5D, (double) var5.getZ() + 0.5D) < 64.0D && !this.d.a((World) var2, var5, (EntityHuman) this.b) && var2.getWorldBorder().isInside(var5)) {
 				this.b.playerInteractManager.a(this.b, var2, var3, var5, var6, var1.d(), var1.e(), var1.f());
 			}
 

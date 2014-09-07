@@ -23,7 +23,7 @@ public class BlockPressurePlateBinary extends ath {
 	}
 
 	protected int e(World var1, Position var2) {
-		brt var3 = this.a(var2);
+		AxisAlignedBB var3 = this.a(var2);
 		List var4;
 		switch (azg.a[this.b.ordinal()]) {
 			case 1:

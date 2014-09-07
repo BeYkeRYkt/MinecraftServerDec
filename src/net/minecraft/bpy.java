@@ -21,7 +21,7 @@ public class bpy extends bpu {
 	public bpt a(Entity var1) {
 		int var2;
 		if (this.i && var1.V()) {
-			var2 = (int) var1.aQ().b;
+			var2 = (int) var1.aQ().minY;
 
 			for (Block var3 = this.a.p(new Position(DataTypesConverter.toFixedPointInt(var1.locationX), var2, DataTypesConverter.toFixedPointInt(var1.locationZ))).getBlock(); var3 == Blocks.FLOWING_WATER || var3 == Blocks.WATER; var3 = this.a.p(new Position(DataTypesConverter.toFixedPointInt(var1.locationX), var2, DataTypesConverter.toFixedPointInt(var1.locationZ))).getBlock()) {
 				++var2;
@@ -29,10 +29,10 @@ public class bpy extends bpu {
 
 			this.h = false;
 		} else {
-			var2 = DataTypesConverter.toFixedPointInt(var1.aQ().b + 0.5D);
+			var2 = DataTypesConverter.toFixedPointInt(var1.aQ().minY + 0.5D);
 		}
 
-		return this.a(DataTypesConverter.toFixedPointInt(var1.aQ().a), var2, DataTypesConverter.toFixedPointInt(var1.aQ().c));
+		return this.a(DataTypesConverter.toFixedPointInt(var1.aQ().minX), var2, DataTypesConverter.toFixedPointInt(var1.aQ().minZ));
 	}
 
 	public bpt a(Entity var1, double var2, double var4, double var6) {

@@ -369,15 +369,15 @@ public abstract class PlayerList {
 		float var11 = var1.yaw;
 		var3.B.a("moving");
 		if (var1.dimensionId == -1) {
-			var5 = DataTypesConverter.a(var5 / var9, var4.getWorldBorder().b() + 16.0D, var4.getWorldBorder().d() - 16.0D);
-			var7 = DataTypesConverter.a(var7 / var9, var4.getWorldBorder().c() + 16.0D, var4.getWorldBorder().e() - 16.0D);
+			var5 = DataTypesConverter.a(var5 / var9, var4.getWorldBorder().getMinX() + 16.0D, var4.getWorldBorder().getMaxX() - 16.0D);
+			var7 = DataTypesConverter.a(var7 / var9, var4.getWorldBorder().getMinZ() + 16.0D, var4.getWorldBorder().getMaxZ() - 16.0D);
 			var1.b(var5, var1.locationY, var7, var1.yaw, var1.pitch);
 			if (var1.ai()) {
 				var3.a(var1, false);
 			}
 		} else if (var1.dimensionId == 0) {
-			var5 = DataTypesConverter.a(var5 * var9, var4.getWorldBorder().b() + 16.0D, var4.getWorldBorder().d() - 16.0D);
-			var7 = DataTypesConverter.a(var7 * var9, var4.getWorldBorder().c() + 16.0D, var4.getWorldBorder().e() - 16.0D);
+			var5 = DataTypesConverter.a(var5 * var9, var4.getWorldBorder().getMinX() + 16.0D, var4.getWorldBorder().getMaxX() - 16.0D);
+			var7 = DataTypesConverter.a(var7 * var9, var4.getWorldBorder().getMinZ() + 16.0D, var4.getWorldBorder().getMaxZ() - 16.0D);
 			var1.b(var5, var1.locationY, var7, var1.yaw, var1.pitch);
 			if (var1.ai()) {
 				var3.a(var1, false);

@@ -12,7 +12,7 @@ public class BlockCauldron extends Block {
 		this.j(this.L.b().a(a, Integer.valueOf(0)));
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.3125F, 1.0F);
 		super.a(var1, var2, var3, var4, var5, var6);
 		float var7 = 0.125F;
@@ -42,7 +42,7 @@ public class BlockCauldron extends Block {
 	public void a(World var1, Position var2, bec var3, Entity var4) {
 		int var5 = ((Integer) var3.b(a)).intValue();
 		float var6 = (float) var2.getY() + (6.0F + (float) (3 * var5)) / 16.0F;
-		if (!var1.D && var4.au() && var5 > 0 && var4.aQ().b <= (double) var6) {
+		if (!var1.D && var4.au() && var5 > 0 && var4.aQ().minY <= (double) var6) {
 			var4.N();
 			this.a(var1, var2, var3, var5 - 1);
 		}

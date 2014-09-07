@@ -50,7 +50,7 @@ public class EntityExpirienceOrb extends Entity {
 			this.a("random.fizz", 0.4F, 2.0F + this.V.nextFloat() * 0.4F);
 		}
 
-		this.j(this.locationX, (this.aQ().b + this.aQ().e) / 2.0D, this.locationZ);
+		this.j(this.locationX, (this.aQ().minY + this.aQ().maxY) / 2.0D, this.locationZ);
 		double var1 = 8.0D;
 		if (this.g < this.a - 20 + this.getId() % 100) {
 			if (this.f == null || this.f.h(this) > var1 * var1) {
@@ -81,7 +81,7 @@ public class EntityExpirienceOrb extends Entity {
 		this.d(this.motionX, this.motionY, this.motionZ);
 		float var13 = 0.98F;
 		if (this.onGround) {
-			var13 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
+			var13 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
 		}
 
 		this.motionX *= (double) var13;

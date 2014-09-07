@@ -15,7 +15,7 @@ public class BlockFence extends Block {
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
 		boolean var7 = this.e(var1, var2.c());
 		boolean var8 = this.e(var1, var2.d());
 		boolean var9 = this.e(var1, var2.e());

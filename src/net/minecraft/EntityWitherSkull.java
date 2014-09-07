@@ -29,22 +29,22 @@ public class EntityWitherSkull extends ahl {
 		return var5;
 	}
 
-	protected void a(bru var1) {
+	protected void a(MovingObjectPosition var1) {
 		if (!this.o.D) {
-			if (var1.d != null) {
+			if (var1.entity != null) {
 				if (this.a != null) {
-					if (var1.d.a(DamageSource.a(this.a), 8.0F)) {
-						if (!var1.d.ai()) {
+					if (var1.entity.a(DamageSource.a(this.a), 8.0F)) {
+						if (!var1.entity.ai()) {
 							this.a.g(5.0F);
 						} else {
-							this.a(this.a, var1.d);
+							this.a(this.a, var1.entity);
 						}
 					}
 				} else {
-					var1.d.a(DamageSource.l, 5.0F);
+					var1.entity.a(DamageSource.l, 5.0F);
 				}
 
-				if (var1.d instanceof EntityLiving) {
+				if (var1.entity instanceof EntityLiving) {
 					byte var2 = 0;
 					if (this.o.getDifficulty() == Difficulty.NORMAL) {
 						var2 = 10;
@@ -53,7 +53,7 @@ public class EntityWitherSkull extends ahl {
 					}
 
 					if (var2 > 0) {
-						((EntityLiving) var1.d).c(new MobEffect(MobEffectList.v.H, 20 * var2, 1));
+						((EntityLiving) var1.entity).c(new MobEffect(MobEffectList.v.H, 20 * var2, 1));
 					}
 				}
 			}

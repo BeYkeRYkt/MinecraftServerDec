@@ -14,7 +14,7 @@ public class BlockTorch extends Block {
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
@@ -120,7 +120,7 @@ public class BlockTorch extends Block {
 		}
 	}
 
-	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
+	public MovingObjectPosition a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		BlockFace var5 = (BlockFace) var1.p(var2).b(a);
 		float var6 = 0.15F;
 		if (var5 == BlockFace.f) {

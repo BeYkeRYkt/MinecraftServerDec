@@ -7,17 +7,17 @@ public class ItemWaterLily extends ItemWithAuxData {
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
-		bru var4 = this.a(var2, var3, true);
+		MovingObjectPosition var4 = this.a(var2, var3, true);
 		if (var4 == null) {
 			return var1;
 		} else {
-			if (var4.a == brv.b) {
-				Position var5 = var4.a();
+			if (var4.type == EnumMovingObjectType.BLOCK) {
+				Position var5 = var4.getPosition();
 				if (!var2.a(var3, var5)) {
 					return var1;
 				}
 
-				if (!var3.a(var5.a(var4.b), var4.b, var1)) {
+				if (!var3.a(var5.a(var4.face), var4.face, var1)) {
 					return var1;
 				}
 

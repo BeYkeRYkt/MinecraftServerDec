@@ -27,7 +27,7 @@ public class ItemArmorStand extends Item {
 					double var13 = (double) var10.getX();
 					double var15 = (double) var10.getY();
 					double var17 = (double) var10.getZ();
-					List var19 = var3.b((Entity) null, brt.a(var13, var15, var17, var13 + 1.0D, var15 + 2.0D, var17 + 1.0D));
+					List var19 = var3.b((Entity) null, AxisAlignedBB.a(var13, var15, var17, var13 + 1.0D, var15 + 2.0D, var17 + 1.0D));
 					if (var19.size() > 0) {
 						return false;
 					} else {

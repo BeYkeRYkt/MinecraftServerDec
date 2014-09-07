@@ -133,8 +133,8 @@ public abstract class EntityLiving extends Entity {
 		if (this.ai()) {
 			if (this.aj()) {
 				this.a(DamageSource.e, 1.0F);
-			} else if (var1 && !this.o.getWorldBorder().a(this.aQ())) {
-				double var2 = this.o.getWorldBorder().a((Entity) this) + this.o.getWorldBorder().getDamageBuffer();
+			} else if (var1 && !this.o.getWorldBorder().isInside(this.aQ())) {
+				double var2 = this.o.getWorldBorder().getDistance((Entity) this) + this.o.getWorldBorder().getDamageBuffer();
 				if (var2 < 0.0D) {
 					this.a(DamageSource.e, (float) Math.max(1, DataTypesConverter.toFixedPointInt(-var2 * this.o.getWorldBorder().getDamageAmount())));
 				}
@@ -732,7 +732,7 @@ public abstract class EntityLiving extends Entity {
 
 	public boolean j_() {
 		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
-		int var2 = DataTypesConverter.toFixedPointInt(this.aQ().b);
+		int var2 = DataTypesConverter.toFixedPointInt(this.aQ().minY);
 		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
 		Block var4 = this.o.p(new Position(var1, var2, var3)).getBlock();
 		return (var4 == Blocks.LADDER || var4 == Blocks.VINE) && (!(this instanceof EntityHuman) || !((EntityHuman) this).v());
@@ -950,7 +950,7 @@ public abstract class EntityLiving extends Entity {
 
 	public void q(Entity var1) {
 		double var3 = var1.locationX;
-		double var5 = var1.aQ().b + (double) var1.K;
+		double var5 = var1.aQ().minY + (double) var1.K;
 		double var7 = var1.locationZ;
 		byte var9 = 1;
 
@@ -959,7 +959,7 @@ public abstract class EntityLiving extends Entity {
 				if (var10 != 0 || var11 != 0) {
 					int var12 = (int) (this.locationX + (double) var10);
 					int var13 = (int) (this.locationZ + (double) var11);
-					brt var2 = this.aQ().c((double) var10, 1.0D, (double) var11);
+					AxisAlignedBB var2 = this.aQ().c((double) var10, 1.0D, (double) var11);
 					if (this.o.a(var2).isEmpty()) {
 						if (World.a((ard) this.o, new Position(var12, (int) this.locationY, var13))) {
 							this.a(this.locationX + (double) var10, this.locationY + 1.0D, this.locationZ + (double) var11);
@@ -1053,7 +1053,7 @@ public abstract class EntityLiving extends Entity {
 			} else {
 				float var3 = 0.91F;
 				if (this.onGround) {
-					var3 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
+					var3 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
 				}
 
 				float var4 = 0.16277136F / (var3 * var3 * var3);
@@ -1066,7 +1066,7 @@ public abstract class EntityLiving extends Entity {
 				this.a(var1, var2, var5);
 				var3 = 0.91F;
 				if (this.onGround) {
-					var3 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
+					var3 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
 				}
 
 				if (this.j_()) {

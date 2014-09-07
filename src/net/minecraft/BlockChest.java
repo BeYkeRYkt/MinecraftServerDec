@@ -383,7 +383,7 @@ public class BlockChest extends atg {
 	}
 
 	private boolean o(World var1, Position var2) {
-		Iterator var3 = var1.a(EntityOcelot.class, new brt((double) var2.getX(), (double) (var2.getY() + 1), (double) var2.getZ(), (double) (var2.getX() + 1), (double) (var2.getY() + 2), (double) (var2.getZ() + 1))).iterator();
+		Iterator var3 = var1.a(EntityOcelot.class, new AxisAlignedBB((double) var2.getX(), (double) (var2.getY() + 1), (double) var2.getZ(), (double) (var2.getX() + 1), (double) (var2.getY() + 2), (double) (var2.getZ() + 1))).iterator();
 
 		EntityOcelot var5;
 		do {

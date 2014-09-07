@@ -29,7 +29,7 @@ public abstract class ath extends Block {
 		return 20;
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
@@ -107,9 +107,9 @@ public abstract class ath extends Block {
 
 	}
 
-	protected brt a(Position var1) {
+	protected AxisAlignedBB a(Position var1) {
 		float var2 = 0.125F;
-		return new brt((double) ((float) var1.getX() + 0.125F), (double) var1.getY(), (double) ((float) var1.getZ() + 0.125F), (double) ((float) (var1.getX() + 1) - 0.125F), (double) var1.getY() + 0.25D, (double) ((float) (var1.getZ() + 1) - 0.125F));
+		return new AxisAlignedBB((double) ((float) var1.getX() + 0.125F), (double) var1.getY(), (double) ((float) var1.getZ() + 0.125F), (double) ((float) (var1.getX() + 1) - 0.125F), (double) var1.getY() + 0.25D, (double) ((float) (var1.getZ() + 1) - 0.125F));
 	}
 
 	public void b(World var1, Position var2, bec var3) {

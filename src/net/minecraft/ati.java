@@ -20,7 +20,7 @@ public abstract class ati extends Block {
 		this.a(CreativeModeTab.TRANSPORTATION);
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		return null;
 	}
 
@@ -28,7 +28,7 @@ public abstract class ati extends Block {
 		return false;
 	}
 
-	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
+	public MovingObjectPosition a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3, var4);
 	}

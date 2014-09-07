@@ -29,7 +29,7 @@ public class BlockTrapdoor extends Block {
 		return !((Boolean) var1.p(var2).b(b)).booleanValue();
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, bec var3) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3);
 	}
@@ -107,7 +107,7 @@ public class BlockTrapdoor extends Block {
 		}
 	}
 
-	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
+	public MovingObjectPosition a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3, var4);
 	}

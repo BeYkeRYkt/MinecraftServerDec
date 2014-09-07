@@ -31,11 +31,11 @@ public class EntityBoat extends Entity {
 		this.dataWatcher.a(19, new Float(0.0F));
 	}
 
-	public brt j(Entity var1) {
+	public AxisAlignedBB j(Entity var1) {
 		return var1.aQ();
 	}
 
-	public brt S() {
+	public AxisAlignedBB S() {
 		return this.aQ();
 	}
 
@@ -110,9 +110,9 @@ public class EntityBoat extends Entity {
 		double var2 = 0.0D;
 
 		for (int var4 = 0; var4 < var1; ++var4) {
-			double var5 = this.aQ().b + (this.aQ().e - this.aQ().b) * (double) (var4 + 0) / (double) var1 - 0.125D;
-			double var7 = this.aQ().b + (this.aQ().e - this.aQ().b) * (double) (var4 + 1) / (double) var1 - 0.125D;
-			brt var9 = new brt(this.aQ().a, var5, this.aQ().c, this.aQ().d, var7, this.aQ().f);
+			double var5 = this.aQ().minY + (this.aQ().maxY - this.aQ().minY) * (double) (var4 + 0) / (double) var1 - 0.125D;
+			double var7 = this.aQ().minY + (this.aQ().maxY - this.aQ().minY) * (double) (var4 + 1) / (double) var1 - 0.125D;
+			AxisAlignedBB var9 = new AxisAlignedBB(this.aQ().minX, var5, this.aQ().minZ, this.aQ().maxX, var7, this.aQ().maxZ);
 			if (this.o.b(var9, Material.WATER)) {
 				var2 += 1.0D / (double) var1;
 			}
