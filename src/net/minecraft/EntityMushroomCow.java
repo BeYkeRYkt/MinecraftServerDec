@@ -11,33 +11,33 @@ public class EntityMushroomCow extends EntityCow {
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (var2 != null && var2.getItem() == Items.BOWL && this.l() >= 0) {
-			if (var2.b == 1) {
-				var1.playerInventory.a(var1.playerInventory.c, new ItemStack(Items.MUSHROOM_STEW));
+			if (var2.amount == 1) {
+				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, new ItemStack(Items.MUSHROOM_STEW));
 				return true;
 			}
 
-			if (var1.playerInventory.a(new ItemStack(Items.MUSHROOM_STEW)) && !var1.by.instabuild) {
-				var1.playerInventory.a(var1.playerInventory.c, 1);
+			if (var1.playerInventory.a(new ItemStack(Items.MUSHROOM_STEW)) && !var1.playerProperties.instabuild) {
+				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, 1);
 				return true;
 			}
 		}
 
 		if (var2 != null && var2.getItem() == Items.SHEARS && this.l() >= 0) {
-			this.J();
-			this.o.a(Particle.b, this.locationX, this.locationY + (double) (this.K / 2.0F), this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
-			if (!this.o.D) {
-				EntityCow var3 = new EntityCow(this.o);
-				var3.b(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
-				var3.h(this.bm());
+			this.die();
+			this.world.a(Particle.b, this.locationX, this.locationY + (double) (this.K / 2.0F), this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			if (!this.world.D) {
+				EntityCow var3 = new EntityCow(this.world);
+				var3.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
+				var3.h(this.getHealth());
 				var3.aG = this.aG;
 				if (this.k_()) {
 					var3.a(this.aL());
 				}
 
-				this.o.d((Entity) var3);
+				this.world.d((Entity) var3);
 
 				for (int var4 = 0; var4 < 5; ++var4) {
-					this.o.d((Entity) (new EntityItem(this.o, this.locationX, this.locationY + (double) this.K, this.locationZ, new ItemStack(Blocks.RED_MUSHROOM))));
+					this.world.d((Entity) (new EntityItem(this.world, this.locationX, this.locationY + (double) this.K, this.locationZ, new ItemStack(Blocks.RED_MUSHROOM))));
 				}
 
 				var2.a(1, (EntityLiving) var1);
@@ -51,7 +51,7 @@ public class EntityMushroomCow extends EntityCow {
 	}
 
 	public EntityMushroomCow c(ws var1) {
-		return new EntityMushroomCow(this.o);
+		return new EntityMushroomCow(this.world);
 	}
 
 	// $FF: synthetic method

@@ -25,10 +25,10 @@ public class zm extends zb {
 
 	public boolean a() {
 		this.f();
-		if (this.e && this.a.o.w()) {
+		if (this.e && this.a.world.w()) {
 			return false;
 		} else {
-			abi var1 = this.a.o.ae().a(new Position(this.a), 0);
+			abi var1 = this.a.world.ae().a(new Position(this.a), 0);
 			if (var1 == null) {
 				return false;
 			} else {

@@ -28,8 +28,8 @@ public class bio extends bhc {
 				for (var11 = var3.getX() - var21; var11 <= var3.getX() + var21 && var8; ++var11) {
 					for (int var12 = var3.getZ() - var21; var12 <= var3.getZ() + var21 && var8; ++var12) {
 						if (var9 >= 0 && var9 < 256) {
-							Block var13 = var1.p(new Position(var11, var9, var12)).getBlock();
-							if (var13.r() != Material.AIR && var13.r() != Material.LEAVES) {
+							Block var13 = var1.getBlockState(new Position(var11, var9, var12)).getBlock();
+							if (var13.getMaterial() != Material.AIR && var13.getMaterial() != Material.LEAVES) {
 								var8 = false;
 							}
 						} else {
@@ -42,7 +42,7 @@ public class bio extends bhc {
 			if (!var8) {
 				return false;
 			} else {
-				Block var20 = var1.p(var3.b()).getBlock();
+				Block var20 = var1.getBlockState(var3.b()).getBlock();
 				if ((var20 == Blocks.GRASS || var20 == Blocks.DIRT || var20 == Blocks.FARMLAND) && var3.getY() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 					var21 = var2.nextInt(2);
@@ -61,7 +61,7 @@ public class bio extends bhc {
 								int var18 = var17 - var3.getZ();
 								if (Math.abs(var16) != var21 || Math.abs(var18) != var21 || var21 <= 0) {
 									Position var19 = new Position(var15, var14, var17);
-									if (!var1.p(var19).getBlock().m()) {
+									if (!var1.getBlockState(var19).getBlock().m()) {
 										this.a(var1, var19, Blocks.LEAVES, ayx.b.a());
 									}
 								}
@@ -83,8 +83,8 @@ public class bio extends bhc {
 					var23 = var2.nextInt(3);
 
 					for (var14 = 0; var14 < var4 - var23; ++var14) {
-						Block var24 = var1.p(var3.b(var14)).getBlock();
-						if (var24.r() == Material.AIR || var24.r() == Material.LEAVES) {
+						Block var24 = var1.getBlockState(var3.b(var14)).getBlock();
+						if (var24.getMaterial() == Material.AIR || var24.getMaterial() == Material.LEAVES) {
 							this.a(var1, var3.b(var14), Blocks.LOG, ayx.b.a());
 						}
 					}

@@ -12,7 +12,7 @@ import java.util.Map.Entry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ab implements CommandHandlerInterface {
+public class ab implements ICommandHandler {
 
 	private static final Logger a = LogManager.getLogger();
 	private final Map b = Maps.newHashMap();
@@ -33,7 +33,7 @@ public class ab implements CommandHandlerInterface {
 		ChatMessage var8;
 		if (var5 == null) {
 			var8 = new ChatMessage("commands.generic.notFound", new Object[0]);
-			var8.b().a(EnumChatFormat.RED);
+			var8.getChatModifier().setColor(EnumChatFormat.RED);
 			var1.sendChatMessage(var8);
 		} else if (var5.a(var1)) {
 			if (var6 > -1) {
@@ -59,7 +59,7 @@ public class ab implements CommandHandlerInterface {
 			}
 		} else {
 			var8 = new ChatMessage("commands.generic.permission", new Object[0]);
-			var8.b().a(EnumChatFormat.RED);
+			var8.getChatModifier().setColor(EnumChatFormat.RED);
 			var1.sendChatMessage(var8);
 		}
 
@@ -74,15 +74,15 @@ public class ab implements CommandHandlerInterface {
 			return true;
 		} catch (dp var7) {
 			var6 = new ChatMessage("commands.generic.usage", new Object[] { new ChatMessage(var7.getMessage(), var7.a()) });
-			var6.b().a(EnumChatFormat.RED);
+			var6.getChatModifier().setColor(EnumChatFormat.RED);
 			var1.sendChatMessage(var6);
 		} catch (di var8) {
 			var6 = new ChatMessage(var8.getMessage(), var8.a());
-			var6.b().a(EnumChatFormat.RED);
+			var6.getChatModifier().setColor(EnumChatFormat.RED);
 			var1.sendChatMessage(var6);
 		} catch (Throwable var9) {
 			var6 = new ChatMessage("commands.generic.exception", new Object[0]);
-			var6.b().a(EnumChatFormat.RED);
+			var6.getChatModifier().setColor(EnumChatFormat.RED);
 			var1.sendChatMessage(var6);
 			a.error("Couldn\'t process command: \'" + var4 + "\'", var9);
 		}

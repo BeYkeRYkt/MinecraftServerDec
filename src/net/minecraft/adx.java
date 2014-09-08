@@ -81,7 +81,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public boolean a(DamageSource var1, float var2) {
-		if (!this.o.D && !this.I) {
+		if (!this.world.D && !this.dead) {
 			if (this.b(var1)) {
 				return false;
 			} else {
@@ -89,14 +89,14 @@ public abstract class adx extends Entity implements vz {
 				this.j(10);
 				this.ac();
 				this.a(this.p() + var2 * 10.0F);
-				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).by.instabuild;
+				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).playerProperties.instabuild;
 				if (var3 || this.p() > 40.0F) {
 					if (this.l != null) {
 						this.l.a((Entity) null);
 					}
 
 					if (var3 && !this.k_()) {
-						this.J();
+						this.die();
 					} else {
 						this.a(var1);
 					}
@@ -110,7 +110,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public void a(DamageSource var1) {
-		this.J();
+		this.die();
 		ItemStack var2 = new ItemStack(Items.MINECART, 1);
 		if (this.b != null) {
 			var2.c(this.b);
@@ -120,11 +120,11 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public boolean ad() {
-		return !this.I;
+		return !this.dead;
 	}
 
-	public void J() {
-		super.J();
+	public void die() {
+		super.die();
 	}
 
 	public void s_() {
@@ -141,17 +141,17 @@ public abstract class adx extends Entity implements vz {
 		}
 
 		int var2;
-		if (!this.o.D && this.o instanceof WorldServer) {
-			this.o.B.a("portal");
-			MinecraftServer var1 = ((WorldServer) this.o).r();
+		if (!this.world.D && this.world instanceof WorldServer) {
+			this.world.B.a("portal");
+			MinecraftServer var1 = ((WorldServer) this.world).r();
 			var2 = this.L();
 			if (this.ak) {
 				if (var1.isNetherAllowed()) {
-					if (this.m == null && this.al++ >= var2) {
+					if (this.vehicle == null && this.al++ >= var2) {
 						this.al = var2;
 						this.aj = this.ar();
 						byte var3;
-						if (this.o.worldProvider.getDimensionId() == -1) {
+						if (this.world.worldProvider.getDimensionId() == -1) {
 							var3 = 0;
 						} else {
 							var3 = -1;
@@ -176,10 +176,10 @@ public abstract class adx extends Entity implements vz {
 				--this.aj;
 			}
 
-			this.o.B.b();
+			this.world.B.b();
 		}
 
-		if (this.o.D) {
+		if (this.world.D) {
 			if (this.d > 0) {
 				double var15 = this.locationX + (this.e - this.locationX) / (double) this.d;
 				double var17 = this.locationY + (this.f - this.locationY) / (double) this.d;
@@ -203,12 +203,12 @@ public abstract class adx extends Entity implements vz {
 			int var14 = DataTypesConverter.toFixedPointInt(this.locationX);
 			var2 = DataTypesConverter.toFixedPointInt(this.locationY);
 			int var16 = DataTypesConverter.toFixedPointInt(this.locationZ);
-			if (ati.d(this.o, new Position(var14, var2 - 1, var16))) {
+			if (ati.d(this.world, new Position(var14, var2 - 1, var16))) {
 				--var2;
 			}
 
 			Position var4 = new Position(var14, var2, var16);
-			bec var5 = this.o.p(var4);
+			BlockState var5 = this.world.getBlockState(var4);
 			if (ati.d(var5)) {
 				this.a(var4, var5);
 				if (var5.getBlock() == Blocks.ACTIVATOR_RAIL) {
@@ -236,7 +236,7 @@ public abstract class adx extends Entity implements vz {
 			}
 
 			this.b(this.yaw, this.pitch);
-			Iterator var12 = this.o.b((Entity) this, this.aQ().b(0.20000000298023224D, 0.0D, 0.20000000298023224D)).iterator();
+			Iterator var12 = this.world.b((Entity) this, this.aQ().b(0.20000000298023224D, 0.0D, 0.20000000298023224D)).iterator();
 
 			while (var12.hasNext()) {
 				Entity var13 = (Entity) var12.next();
@@ -245,9 +245,9 @@ public abstract class adx extends Entity implements vz {
 				}
 			}
 
-			if (this.l != null && this.l.I) {
-				if (this.l.m == this) {
-					this.l.m = null;
+			if (this.l != null && this.l.dead) {
+				if (this.l.vehicle == this) {
+					this.l.vehicle = null;
 				}
 
 				this.l = null;
@@ -283,7 +283,7 @@ public abstract class adx extends Entity implements vz {
 
 	}
 
-	protected void a(Position var1, bec var2) {
+	protected void a(Position var1, BlockState var2) {
 		this.O = 0.0F;
 		Vec3D var3 = this.k(this.locationX, this.locationY, this.locationZ);
 		this.locationY = (double) var1.getY();
@@ -432,15 +432,15 @@ public abstract class adx extends Entity implements vz {
 				this.motionX += this.motionX / var40 * var42;
 				this.motionZ += this.motionZ / var40 * var42;
 			} else if (var9 == atl.b) {
-				if (this.o.p(var1.e()).getBlock().t()) {
+				if (this.world.getBlockState(var1.e()).getBlock().t()) {
 					this.motionX = 0.02D;
-				} else if (this.o.p(var1.f()).getBlock().t()) {
+				} else if (this.world.getBlockState(var1.f()).getBlock().t()) {
 					this.motionX = -0.02D;
 				}
 			} else if (var9 == atl.a) {
-				if (this.o.p(var1.c()).getBlock().t()) {
+				if (this.world.getBlockState(var1.c()).getBlock().t()) {
 					this.motionZ = 0.02D;
-				} else if (this.o.p(var1.d()).getBlock().t()) {
+				} else if (this.world.getBlockState(var1.d()).getBlock().t()) {
 					this.motionZ = -0.02D;
 				}
 			}
@@ -474,11 +474,11 @@ public abstract class adx extends Entity implements vz {
 		int var7 = DataTypesConverter.toFixedPointInt(var1);
 		int var8 = DataTypesConverter.toFixedPointInt(var3);
 		int var9 = DataTypesConverter.toFixedPointInt(var5);
-		if (ati.d(this.o, new Position(var7, var8 - 1, var9))) {
+		if (ati.d(this.world, new Position(var7, var8 - 1, var9))) {
 			--var8;
 		}
 
-		bec var10 = this.o.p(new Position(var7, var8, var9));
+		BlockState var10 = this.world.getBlockState(new Position(var7, var8, var9));
 		if (ati.d(var10)) {
 			atl var11 = (atl) var10.b(((ati) var10.getBlock()).l());
 			int[][] var12 = c[var11.a()];
@@ -528,14 +528,14 @@ public abstract class adx extends Entity implements vz {
 			if (var1.isTagAssignableFrom("DisplayTile", 8)) {
 				var3 = Block.b(var1.getString("DisplayTile"));
 				if (var3 == null) {
-					this.a(Blocks.AIR.P());
+					this.a(Blocks.AIR.getBlockState());
 				} else {
 					this.a(var3.a(var2));
 				}
 			} else {
 				var3 = Block.c(var1.getInt("DisplayTile"));
 				if (var3 == null) {
-					this.a(Blocks.AIR.P());
+					this.a(Blocks.AIR.getBlockState());
 				} else {
 					this.a(var3.a(var2));
 				}
@@ -553,7 +553,7 @@ public abstract class adx extends Entity implements vz {
 	protected void b(NBTCompoundTag var1) {
 		if (this.x()) {
 			var1.put("CustomDisplayTile", true);
-			bec var2 = this.t();
+			BlockState var2 = this.t();
 			RegistryObjectName var3 = (RegistryObjectName) Block.BLOCKREGISTRY.c(var2.getBlock());
 			var1.put("DisplayTile", var3 == null ? "" : var3.toString());
 			var1.put("DisplayData", var2.getBlock().c(var2));
@@ -567,10 +567,10 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public void i(Entity var1) {
-		if (!this.o.D) {
+		if (!this.world.D) {
 			if (!var1.T && !this.T) {
 				if (var1 != this.l) {
-					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof EntityIronGolem) && this.s() == MinecartType.RIDEABLE && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.l == null && var1.m == null) {
+					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof EntityIronGolem) && this.s() == MinecartType.RIDEABLE && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.l == null && var1.vehicle == null) {
 						var1.a((Entity) this);
 					}
 
@@ -644,7 +644,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public float p() {
-		return this.dataWatcher.d(19);
+		return this.dataWatcher.getData(19);
 	}
 
 	public void j(int var1) {
@@ -665,12 +665,12 @@ public abstract class adx extends Entity implements vz {
 
 	public abstract MinecartType s();
 
-	public bec t() {
+	public BlockState t() {
 		return !this.x() ? this.u() : Block.d(this.getDataWatcher().c(20));
 	}
 
-	public bec u() {
-		return Blocks.AIR.P();
+	public BlockState u() {
+		return Blocks.AIR.getBlockState();
 	}
 
 	public int v() {
@@ -681,7 +681,7 @@ public abstract class adx extends Entity implements vz {
 		return 6;
 	}
 
-	public void a(bec var1) {
+	public void a(BlockState var1) {
 		this.getDataWatcher().b(20, Integer.valueOf(Block.f(var1)));
 		this.a(true);
 	}
@@ -703,8 +703,8 @@ public abstract class adx extends Entity implements vz {
 		this.b = var1;
 	}
 
-	public String d_() {
-		return this.b != null ? this.b : super.d_();
+	public String getName() {
+		return this.b != null ? this.b : super.getName();
 	}
 
 	public boolean k_() {
@@ -715,16 +715,16 @@ public abstract class adx extends Entity implements vz {
 		return this.b;
 	}
 
-	public IChatBaseComponent e_() {
+	public IChatBaseComponent getComponentName() {
 		if (this.k_()) {
 			ChatComponentText var2 = new ChatComponentText(this.b);
-			var2.b().a(this.aP());
-			var2.b().a(this.aJ().toString());
+			var2.getChatModifier().a(this.aP());
+			var2.getChatModifier().a(this.aJ().toString());
 			return var2;
 		} else {
-			ChatMessage var1 = new ChatMessage(this.d_(), new Object[0]);
-			var1.b().a(this.aP());
-			var1.b().a(this.aJ().toString());
+			ChatMessage var1 = new ChatMessage(this.getName(), new Object[0]);
+			var1.getChatModifier().a(this.aP());
+			var1.getChatModifier().a(this.aJ().toString());
 			return var1;
 		}
 	}

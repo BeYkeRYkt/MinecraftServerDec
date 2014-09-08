@@ -5,22 +5,22 @@ public class BlockSand extends avt {
 	public static final bev a = bev.a("variant", bac.class);
 
 	public BlockSand() {
-		this.j(this.L.b().a(a, bac.a));
+		this.setBlockState(this.L.b().a(a, bac.a));
 	}
 
-	public int a(bec var1) {
+	public int a(BlockState var1) {
 		return ((bac) var1.b(a)).a();
 	}
 
-	public MaterialMapColor g(bec var1) {
+	public MaterialMapColor g(BlockState var1) {
 		return ((bac) var1.b(a)).c();
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, bac.a(var1));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(a, bac.a(var1));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((bac) var1.b(a)).a();
 	}
 

@@ -35,11 +35,11 @@ public class TestforCommand extends AbstractCommand {
 				NBTCompoundTag var5 = new NBTCompoundTag();
 				var3.e(var5);
 				if (!TestforBlockCommand.a(var4, var5, true)) {
-					throw new di("commands.testfor.failure", new Object[] { var3.d_() });
+					throw new di("commands.testfor.failure", new Object[] { var3.getName() });
 				}
 			}
 
-			a(var1, this, "commands.testfor.success", new Object[] { var3.d_() });
+			a(var1, this, "commands.testfor.success", new Object[] { var3.getName() });
 		}
 	}
 

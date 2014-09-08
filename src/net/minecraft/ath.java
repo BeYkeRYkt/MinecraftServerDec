@@ -11,10 +11,10 @@ public abstract class ath extends Block {
 	}
 
 	public void a(ard var1, Position var2) {
-		this.d(var1.p(var2));
+		this.d(var1.getBlockState(var2));
 	}
 
-	protected void d(bec var1) {
+	protected void d(BlockState var1) {
 		boolean var2 = this.e(var1) > 0;
 		float var3 = 0.0625F;
 		if (var2) {
@@ -29,7 +29,7 @@ public abstract class ath extends Block {
 		return 20;
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
 		return null;
 	}
 
@@ -49,7 +49,7 @@ public abstract class ath extends Block {
 		return this.m(var1, var2.b());
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, BlockState var3, Block var4) {
 		if (!this.m(var1, var2.b())) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -58,13 +58,13 @@ public abstract class ath extends Block {
 	}
 
 	private boolean m(World var1, Position var2) {
-		return World.a((ard) var1, var2) || var1.p(var2).getBlock() instanceof BlockFence;
+		return World.a((ard) var1, var2) || var1.getBlockState(var2).getBlock() instanceof BlockFence;
 	}
 
-	public void a(World var1, Position var2, bec var3, Random var4) {
+	public void a(World var1, Position var2, BlockState var3, Random var4) {
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, BlockState var3, Random var4) {
 		if (!var1.D) {
 			int var5 = this.e(var3);
 			if (var5 > 0) {
@@ -74,7 +74,7 @@ public abstract class ath extends Block {
 		}
 	}
 
-	public void a(World var1, Position var2, bec var3, Entity var4) {
+	public void a(World var1, Position var2, BlockState var3, Entity var4) {
 		if (!var1.D) {
 			int var5 = this.e(var3);
 			if (var5 == 0) {
@@ -84,7 +84,7 @@ public abstract class ath extends Block {
 		}
 	}
 
-	protected void a(World var1, Position var2, bec var3, int var4) {
+	protected void a(World var1, Position var2, BlockState var3, int var4) {
 		int var5 = this.e(var1, var2);
 		boolean var6 = var4 > 0;
 		boolean var7 = var5 > 0;
@@ -112,7 +112,7 @@ public abstract class ath extends Block {
 		return new AxisAlignedBB((double) ((float) var1.getX() + 0.125F), (double) var1.getY(), (double) ((float) var1.getZ() + 0.125F), (double) ((float) (var1.getX() + 1) - 0.125F), (double) var1.getY() + 0.25D, (double) ((float) (var1.getZ() + 1) - 0.125F));
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, BlockState var3) {
 		if (this.e(var3) > 0) {
 			this.d(var1, var2);
 		}
@@ -125,11 +125,11 @@ public abstract class ath extends Block {
 		var1.c(var2.b(), (Block) this);
 	}
 
-	public int a(ard var1, Position var2, bec var3, BlockFace var4) {
+	public int a(ard var1, Position var2, BlockState var3, BlockFace var4) {
 		return this.e(var3);
 	}
 
-	public int b(ard var1, Position var2, bec var3, BlockFace var4) {
+	public int b(ard var1, Position var2, BlockState var3, BlockFace var4) {
 		return var4 == BlockFace.UP ? this.e(var3) : 0;
 	}
 
@@ -150,7 +150,7 @@ public abstract class ath extends Block {
 
 	protected abstract int e(World var1, Position var2);
 
-	protected abstract int e(bec var1);
+	protected abstract int e(BlockState var1);
 
-	protected abstract bec a(bec var1, int var2);
+	protected abstract BlockState a(BlockState var1, int var2);
 }

@@ -13,7 +13,7 @@ public class asb extends arm {
 
 	protected asb(int var1, boolean var2) {
 		super(var1);
-		this.aD = new bif(Blocks.MONSTER_EGG.P().a(BlockMonsterEggs.a, axu.a), 9);
+		this.aD = new bif(Blocks.MONSTER_EGG.getBlockState().a(BlockMonsterEggs.a, axu.a), 9);
 		this.aE = new bio(false);
 		this.aF = 0;
 		this.aG = 1;
@@ -42,8 +42,8 @@ public class asb extends arm {
 			var7 = var2.nextInt(28) + 4;
 			int var8 = var2.nextInt(16);
 			Position var9 = var3.a(var6, var7, var8);
-			if (var1.p(var9).getBlock() == Blocks.STONE) {
-				var1.a(var9, Blocks.EMERALD_ORE.P(), 2);
+			if (var1.getBlockState(var9).getBlock() == Blocks.STONE) {
+				var1.a(var9, Blocks.EMERALD_ORE.getBlockState(), 2);
 			}
 		}
 
@@ -57,14 +57,14 @@ public class asb extends arm {
 	}
 
 	public void a(World var1, Random var2, bgk var3, int var4, int var5, double var6) {
-		this.ak = Blocks.GRASS.P();
-		this.al = Blocks.DIRT.P();
+		this.ak = Blocks.GRASS.getBlockState();
+		this.al = Blocks.DIRT.getBlockState();
 		if ((var6 < -1.0D || var6 > 2.0D) && this.aI == this.aH) {
-			this.ak = Blocks.GRAVEL.P();
-			this.al = Blocks.GRAVEL.P();
+			this.ak = Blocks.GRAVEL.getBlockState();
+			this.al = Blocks.GRAVEL.getBlockState();
 		} else if (var6 > 1.0D && this.aI != this.aG) {
-			this.ak = Blocks.STONE.P();
-			this.al = Blocks.STONE.P();
+			this.ak = Blocks.STONE.getBlockState();
+			this.al = Blocks.STONE.getBlockState();
 		}
 
 		this.b(var1, var2, var3, var4, var5, var6);

@@ -13,16 +13,16 @@ public class BlockThin extends Block {
 
 	protected BlockThin(Material var1, boolean var2) {
 		super(var1);
-		this.j(this.L.b().a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false)));
+		this.setBlockState(this.L.b().a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false)));
 		this.a = var2;
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public bec a(bec var1, ard var2, Position var3) {
-		return var1.a(b, Boolean.valueOf(this.c(var2.p(var3.c()).getBlock()))).a(N, Boolean.valueOf(this.c(var2.p(var3.d()).getBlock()))).a(O, Boolean.valueOf(this.c(var2.p(var3.e()).getBlock()))).a(M, Boolean.valueOf(this.c(var2.p(var3.f()).getBlock())));
+	public BlockState a(BlockState var1, ard var2, Position var3) {
+		return var1.a(b, Boolean.valueOf(this.c(var2.getBlockState(var3.c()).getBlock()))).a(N, Boolean.valueOf(this.c(var2.getBlockState(var3.d()).getBlock()))).a(O, Boolean.valueOf(this.c(var2.getBlockState(var3.e()).getBlock()))).a(M, Boolean.valueOf(this.c(var2.getBlockState(var3.f()).getBlock())));
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
+	public Item a(BlockState var1, Random var2, int var3) {
 		return !this.a ? null : super.a(var1, var2, var3);
 	}
 
@@ -34,11 +34,11 @@ public class BlockThin extends Block {
 		return false;
 	}
 
-	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
-		boolean var7 = this.c(var1.p(var2.c()).getBlock());
-		boolean var8 = this.c(var1.p(var2.d()).getBlock());
-		boolean var9 = this.c(var1.p(var2.e()).getBlock());
-		boolean var10 = this.c(var1.p(var2.f()).getBlock());
+	public void a(World var1, Position var2, BlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
+		boolean var7 = this.c(var1.getBlockState(var2.c()).getBlock());
+		boolean var8 = this.c(var1.getBlockState(var2.d()).getBlock());
+		boolean var9 = this.c(var1.getBlockState(var2.e()).getBlock());
+		boolean var10 = this.c(var1.getBlockState(var2.f()).getBlock());
 		if ((!var9 || !var10) && (var9 || var10 || var7 || var8)) {
 			if (var9) {
 				this.a(0.0F, 0.0F, 0.4375F, 0.5F, 1.0F, 0.5625F);
@@ -76,10 +76,10 @@ public class BlockThin extends Block {
 		float var4 = 0.5625F;
 		float var5 = 0.4375F;
 		float var6 = 0.5625F;
-		boolean var7 = this.c(var1.p(var2.c()).getBlock());
-		boolean var8 = this.c(var1.p(var2.d()).getBlock());
-		boolean var9 = this.c(var1.p(var2.e()).getBlock());
-		boolean var10 = this.c(var1.p(var2.f()).getBlock());
+		boolean var7 = this.c(var1.getBlockState(var2.c()).getBlock());
+		boolean var8 = this.c(var1.getBlockState(var2.d()).getBlock());
+		boolean var9 = this.c(var1.getBlockState(var2.e()).getBlock());
+		boolean var10 = this.c(var1.getBlockState(var2.f()).getBlock());
 		if ((!var9 || !var10) && (var9 || var10 || var7 || var8)) {
 			if (var9) {
 				var3 = 0.0F;
@@ -113,7 +113,7 @@ public class BlockThin extends Block {
 		return true;
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return 0;
 	}
 

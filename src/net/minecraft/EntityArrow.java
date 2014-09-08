@@ -49,7 +49,7 @@ public class EntityArrow extends Entity implements aho {
 			float var15 = (float) (-(Math.atan2(var8, var12) * 180.0D / 3.1415927410125732D));
 			double var16 = var6 / var12;
 			double var18 = var10 / var12;
-			this.b(var2.locationX + var16, this.locationY, var2.locationZ + var18, var14, var15);
+			this.setPositionRotation(var2.locationX + var16, this.locationY, var2.locationZ + var18, var14, var15);
 			float var20 = (float) (var12 * 0.20000000298023224D);
 			this.c(var6, var8 + (double) var20, var10, var4, var5);
 		}
@@ -64,7 +64,7 @@ public class EntityArrow extends Entity implements aho {
 		}
 
 		this.a(0.5F, 0.5F);
-		this.b(var2.locationX, var2.locationY + (double) var2.aR(), var2.locationZ, var2.yaw, var2.pitch);
+		this.setPositionRotation(var2.locationX, var2.locationY + (double) var2.aR(), var2.locationZ, var2.yaw, var2.pitch);
 		this.locationX -= (double) (DataTypesConverter.b(this.yaw / 180.0F * 3.1415927F) * 0.16F);
 		this.locationY -= 0.10000000149011612D;
 		this.locationZ -= (double) (DataTypesConverter.a(this.yaw / 180.0F * 3.1415927F) * 0.16F);
@@ -108,11 +108,11 @@ public class EntityArrow extends Entity implements aho {
 		}
 
 		Position var18 = new Position(this.d, this.e, this.f);
-		bec var2 = this.o.p(var18);
+		BlockState var2 = this.world.getBlockState(var18);
 		Block var3 = var2.getBlock();
-		if (var3.r() != Material.AIR) {
-			var3.a((ard) this.o, var18);
-			AxisAlignedBB var4 = var3.a(this.o, var18, var2);
+		if (var3.getMaterial() != Material.AIR) {
+			var3.a((ard) this.world, var18);
+			AxisAlignedBB var4 = var3.a(this.world, var18, var2);
 			if (var4 != null && var4.a(new Vec3D(this.locationX, this.locationY, this.locationZ))) {
 				this.i = true;
 			}
@@ -127,7 +127,7 @@ public class EntityArrow extends Entity implements aho {
 			if (var3 == this.g && var20 == this.h) {
 				++this.ap;
 				if (this.ap >= 1200) {
-					this.J();
+					this.die();
 				}
 
 			} else {
@@ -142,7 +142,7 @@ public class EntityArrow extends Entity implements aho {
 			++this.aq;
 			Vec3D var19 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 			Vec3D var5 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
-			MovingObjectPosition var6 = this.o.a(var19, var5, false, true, false);
+			MovingObjectPosition var6 = this.world.a(var19, var5, false, true, false);
 			var19 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 			var5 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 			if (var6 != null) {
@@ -150,7 +150,7 @@ public class EntityArrow extends Entity implements aho {
 			}
 
 			Entity var7 = null;
-			List var8 = this.o.b((Entity) this, this.aQ().a(this.motionX, this.motionY, this.motionZ).b(1.0D, 1.0D, 1.0D));
+			List var8 = this.world.b((Entity) this, this.aQ().a(this.motionX, this.motionY, this.motionZ).b(1.0D, 1.0D, 1.0D));
 			double var9 = 0.0D;
 
 			int var11;
@@ -177,7 +177,7 @@ public class EntityArrow extends Entity implements aho {
 
 			if (var6 != null && var6.entity != null && var6.entity instanceof EntityHuman) {
 				EntityHuman var21 = (EntityHuman) var6.entity;
-				if (var21.by.invulnerable || this.c instanceof EntityHuman && !((EntityHuman) this.c).a(var21)) {
+				if (var21.playerProperties.invulnerable || this.c instanceof EntityHuman && !((EntityHuman) this.c).a(var21)) {
 					var6 = null;
 				}
 			}
@@ -207,7 +207,7 @@ public class EntityArrow extends Entity implements aho {
 					if (var6.entity.a(var26, (float) var24)) {
 						if (var6.entity instanceof EntityLiving) {
 							EntityLiving var27 = (EntityLiving) var6.entity;
-							if (!this.o.D) {
+							if (!this.world.D) {
 								var27.o(var27.bu() + 1);
 							}
 
@@ -230,7 +230,7 @@ public class EntityArrow extends Entity implements aho {
 
 						this.a("random.bowhit", 1.0F, 1.2F / (this.V.nextFloat() * 0.2F + 0.9F));
 						if (!(var6.entity instanceof EntityEnderman)) {
-							this.J();
+							this.die();
 						}
 					} else {
 						this.motionX *= -0.10000000149011612D;
@@ -245,7 +245,7 @@ public class EntityArrow extends Entity implements aho {
 					this.d = var23.getX();
 					this.e = var23.getY();
 					this.f = var23.getZ();
-					var2 = this.o.p(var23);
+					var2 = this.world.getBlockState(var23);
 					this.g = var2.getBlock();
 					this.h = this.g.c(var2);
 					this.motionX = (double) ((float) (var6.vec.x - this.locationX));
@@ -259,15 +259,15 @@ public class EntityArrow extends Entity implements aho {
 					this.i = true;
 					this.b = 7;
 					this.a(false);
-					if (this.g.r() != Material.AIR) {
-						this.g.a(this.o, var23, var2, (Entity) this);
+					if (this.g.getMaterial() != Material.AIR) {
+						this.g.a(this.world, var23, var2, (Entity) this);
 					}
 				}
 			}
 
 			if (this.l()) {
 				for (var11 = 0; var11 < 4; ++var11) {
-					this.o.a(Particle.j, this.locationX + this.motionX * (double) var11 / 4.0D, this.locationY + this.motionY * (double) var11 / 4.0D, this.locationZ + this.motionZ * (double) var11 / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
+					this.world.a(Particle.j, this.locationX + this.motionX * (double) var11 / 4.0D, this.locationY + this.motionY * (double) var11 / 4.0D, this.locationZ + this.motionZ * (double) var11 / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
 				}
 			}
 
@@ -300,7 +300,7 @@ public class EntityArrow extends Entity implements aho {
 			if (this.V()) {
 				for (int var28 = 0; var28 < 4; ++var28) {
 					var29 = 0.25F;
-					this.o.a(Particle.e, this.locationX - this.motionX * (double) var29, this.locationY - this.motionY * (double) var29, this.locationZ - this.motionZ * (double) var29, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.world.a(Particle.e, this.locationX - this.motionX * (double) var29, this.locationY - this.motionY * (double) var29, this.locationZ - this.motionZ * (double) var29, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 
 				var25 = 0.6F;
@@ -360,8 +360,8 @@ public class EntityArrow extends Entity implements aho {
 	}
 
 	public void d(EntityHuman var1) {
-		if (!this.o.D && this.i && this.b <= 0) {
-			boolean var2 = this.a == 1 || this.a == 2 && var1.by.instabuild;
+		if (!this.world.D && this.i && this.b <= 0) {
+			boolean var2 = this.a == 1 || this.a == 2 && var1.playerProperties.instabuild;
 			if (this.a == 1 && !var1.playerInventory.a(new ItemStack(Items.ARROW, 1))) {
 				var2 = false;
 			}
@@ -369,7 +369,7 @@ public class EntityArrow extends Entity implements aho {
 			if (var2) {
 				this.a("random.pop", 0.2F, ((this.V.nextFloat() - this.V.nextFloat()) * 0.7F + 1.0F) * 2.0F);
 				var1.a((Entity) this, 1);
-				this.J();
+				this.die();
 			}
 
 		}

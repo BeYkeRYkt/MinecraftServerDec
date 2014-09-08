@@ -5,7 +5,7 @@ import java.util.Random;
 public class bhq extends bhp {
 
 	private BlockFlowers a;
-	private bec b;
+	private BlockState b;
 
 	public bhq(BlockFlowers var1, awa var2) {
 		this.a(var1, var2);
@@ -13,7 +13,7 @@ public class bhq extends bhp {
 
 	public void a(BlockFlowers var1, awa var2) {
 		this.a = var1;
-		this.b = var1.P().a(var1.l(), var2);
+		this.b = var1.getBlockState().a(var1.l(), var2);
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {

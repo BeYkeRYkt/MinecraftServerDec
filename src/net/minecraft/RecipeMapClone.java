@@ -52,7 +52,7 @@ public class RecipeMapClone implements IRecipe {
 		}
 
 		if (var3 != null && var2 >= 1) {
-			ItemStack var6 = new ItemStack(Items.FILLED_MAP, var2 + 1, var3.i());
+			ItemStack var6 = new ItemStack(Items.FILLED_MAP, var2 + 1, var3.getDurability());
 			if (var3.s()) {
 				var6.c(var3.q());
 			}

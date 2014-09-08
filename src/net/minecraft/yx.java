@@ -14,7 +14,7 @@ public class yx extends zb {
 	public yx(EntityCreature var1, double var2) {
 		this.a = var1;
 		this.e = var2;
-		this.f = var1.o;
+		this.f = var1.world;
 		this.a(1);
 	}
 

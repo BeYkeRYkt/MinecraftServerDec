@@ -12,7 +12,7 @@ public class ItemBed extends Item {
 		} else if (var5 != BlockFace.UP) {
 			return false;
 		} else {
-			bec var9 = var3.p(var4);
+			BlockState var9 = var3.getBlockState(var4);
 			Block var10 = var9.getBlock();
 			boolean var11 = var10.f(var3, var4);
 			if (!var11) {
@@ -28,13 +28,13 @@ public class ItemBed extends Item {
 			if (var2.a(var4, var5, var1) && var2.a(var14, var5, var1)) {
 				if (var16 && var17 && World.a((ard) var3, var4.b()) && World.a((ard) var3, var14.b())) {
 					int var18 = var13.toDirection();
-					bec var19 = Blocks.BED.P().a(BlockBed.b, Boolean.valueOf(false)).a(BlockBed.N, var13).a(BlockBed.a, atq.b);
+					BlockState var19 = Blocks.BED.getBlockState().a(BlockBed.b, Boolean.valueOf(false)).a(BlockBed.N, var13).a(BlockBed.a, atq.b);
 					if (var3.a(var4, var19, 3)) {
-						bec var20 = var19.a(BlockBed.a, atq.a);
+						BlockState var20 = var19.a(BlockBed.a, atq.a);
 						var3.a(var14, var20, 3);
 					}
 
-					--var1.b;
+					--var1.amount;
 					return true;
 				} else {
 					return false;

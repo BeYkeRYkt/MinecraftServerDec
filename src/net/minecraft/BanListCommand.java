@@ -14,7 +14,7 @@ public class BanListCommand extends AbstractCommand {
 	}
 
 	public boolean a(CommandSenderInterface var1) {
-		return (MinecraftServer.getInstance().getPlayerList().j().b() || MinecraftServer.getInstance().getPlayerList().i().b()) && super.a(var1);
+		return (MinecraftServer.getInstance().getPlayerList().j().b() || MinecraftServer.getInstance().getPlayerList().getProfileBans().b()) && super.a(var1);
 	}
 
 	public String getUsage(CommandSenderInterface var1) {
@@ -26,8 +26,8 @@ public class BanListCommand extends AbstractCommand {
 			var1.sendChatMessage(new ChatMessage("commands.banlist.ips", new Object[] { Integer.valueOf(MinecraftServer.getInstance().getPlayerList().j().a().length) }));
 			var1.sendChatMessage(new ChatComponentText(a(MinecraftServer.getInstance().getPlayerList().j().a())));
 		} else {
-			var1.sendChatMessage(new ChatMessage("commands.banlist.players", new Object[] { Integer.valueOf(MinecraftServer.getInstance().getPlayerList().i().a().length) }));
-			var1.sendChatMessage(new ChatComponentText(a(MinecraftServer.getInstance().getPlayerList().i().a())));
+			var1.sendChatMessage(new ChatMessage("commands.banlist.players", new Object[] { Integer.valueOf(MinecraftServer.getInstance().getPlayerList().getProfileBans().a().length) }));
+			var1.sendChatMessage(new ChatComponentText(a(MinecraftServer.getInstance().getPlayerList().getProfileBans().a())));
 		}
 
 	}

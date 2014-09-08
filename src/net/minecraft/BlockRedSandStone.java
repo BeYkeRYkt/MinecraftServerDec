@@ -6,19 +6,19 @@ public class BlockRedSandStone extends Block {
 
 	public BlockRedSandStone() {
 		super(Material.STONE);
-		this.j(this.L.b().a(a, azr.a));
+		this.setBlockState(this.L.b().a(a, azr.a));
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(bec var1) {
+	public int a(BlockState var1) {
 		return ((azr) var1.b(a)).a();
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, azr.a(var1));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(a, azr.a(var1));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((azr) var1.b(a)).a();
 	}
 

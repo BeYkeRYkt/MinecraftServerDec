@@ -34,7 +34,7 @@ public class TeleportCommand extends AbstractCommand {
 			if (var2.length != 1 && var2.length != 2) {
 				if (var2.length < var3 + 3) {
 					throw new dp("commands.tp.usage", new Object[0]);
-				} else if (((Entity) var4).o != null) {
+				} else if (((Entity) var4).world != null) {
 					int var14 = var3 + 1;
 					aa var6 = a(((Entity) var4).locationX, var2[var3], true);
 					aa var7 = a(((Entity) var4).locationY, var2[var14++], 0, 0, false);
@@ -90,25 +90,25 @@ public class TeleportCommand extends AbstractCommand {
 							var15 = DataTypesConverter.g(var15 + 180.0F);
 						}
 
-						((Entity) var4).b(var6.a(), var7.a(), var8.a(), var15, var12);
+						((Entity) var4).setPositionRotation(var6.a(), var7.a(), var8.a(), var15, var12);
 						((Entity) var4).f(var15);
 					}
 
-					a(var1, this, "commands.tp.success.coordinates", new Object[] { ((Entity) var4).d_(), Double.valueOf(var6.a()), Double.valueOf(var7.a()), Double.valueOf(var8.a()) });
+					a(var1, this, "commands.tp.success.coordinates", new Object[] { ((Entity) var4).getName(), Double.valueOf(var6.a()), Double.valueOf(var7.a()), Double.valueOf(var8.a()) });
 				}
 			} else {
 				Entity var5 = b(var1, var2[var2.length - 1]);
-				if (var5.o != ((Entity) var4).o) {
+				if (var5.world != ((Entity) var4).world) {
 					throw new di("commands.tp.notSameDimension", new Object[0]);
 				} else {
 					((Entity) var4).a((Entity) null);
 					if (var4 instanceof EntityPlayer) {
 						((EntityPlayer) var4).playerConncetion.a(var5.locationX, var5.locationY, var5.locationZ, var5.yaw, var5.pitch);
 					} else {
-						((Entity) var4).b(var5.locationX, var5.locationY, var5.locationZ, var5.yaw, var5.pitch);
+						((Entity) var4).setPositionRotation(var5.locationX, var5.locationY, var5.locationZ, var5.yaw, var5.pitch);
 					}
 
-					a(var1, this, "commands.tp.success", new Object[] { ((Entity) var4).d_(), var5.d_() });
+					a(var1, this, "commands.tp.success", new Object[] { ((Entity) var4).getName(), var5.getName() });
 				}
 			}
 		}

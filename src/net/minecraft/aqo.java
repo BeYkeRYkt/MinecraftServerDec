@@ -58,8 +58,8 @@ public class aqo {
 
 						for (float var21 = 0.3F; var14 > 0.0F; var14 -= 0.22500001F) {
 							Position var22 = new Position(var15, var17, var19);
-							bec var23 = this.d.p(var22);
-							if (var23.getBlock().r() != Material.AIR) {
+							BlockState var23 = this.d.getBlockState(var22);
+							if (var23.getBlock().getMaterial() != Material.AIR) {
 								float var24 = this.h != null ? this.h.a(this, this.d, var22, var23) : var23.getBlock().a((Entity) null);
 								var14 -= (var24 + 0.3F) * 0.3F;
 							}
@@ -133,7 +133,7 @@ public class aqo {
 
 			while (var2.hasNext()) {
 				var3 = (Position) var2.next();
-				Block var4 = this.d.p(var3).getBlock();
+				Block var4 = this.d.getBlockState(var3).getBlock();
 				if (var1) {
 					double var5 = (double) ((float) var3.getX() + this.d.s.nextFloat());
 					double var7 = (double) ((float) var3.getY() + this.d.s.nextFloat());
@@ -154,12 +154,12 @@ public class aqo {
 					this.d.a(Particle.l, var5, var7, var9, var11, var13, var15, new int[0]);
 				}
 
-				if (var4.r() != Material.AIR) {
+				if (var4.getMaterial() != Material.AIR) {
 					if (var4.a(this)) {
-						var4.a(this.d, var3, this.d.p(var3), 1.0F / this.i, 0);
+						var4.a(this.d, var3, this.d.getBlockState(var3), 1.0F / this.i, 0);
 					}
 
-					this.d.a(var3, Blocks.AIR.P(), 3);
+					this.d.a(var3, Blocks.AIR.getBlockState(), 3);
 					var4.a(this.d, var3, this);
 				}
 			}
@@ -170,8 +170,8 @@ public class aqo {
 
 			while (var2.hasNext()) {
 				var3 = (Position) var2.next();
-				if (this.d.p(var3).getBlock().r() == Material.AIR && this.d.p(var3.b()).getBlock().m() && this.c.nextInt(3) == 0) {
-					this.d.a(var3, Blocks.FIRE.P());
+				if (this.d.getBlockState(var3).getBlock().getMaterial() == Material.AIR && this.d.getBlockState(var3.b()).getBlock().m() && this.c.nextInt(3) == 0) {
+					this.d.a(var3, Blocks.FIRE.getBlockState());
 				}
 			}
 		}

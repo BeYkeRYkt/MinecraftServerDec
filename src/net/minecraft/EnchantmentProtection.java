@@ -52,7 +52,7 @@ public class EnchantmentProtection extends Enchantment {
 	}
 
 	public static int a(Entity var0, int var1) {
-		int var2 = aph.a(Enchantment.PROTECTION_FIRE.id, var0.at());
+		int var2 = aph.a(Enchantment.PROTECTION_FIRE.id, var0.getArmorContents());
 		if (var2 > 0) {
 			var1 -= DataTypesConverter.d((float) var1 * (float) var2 * 0.15F);
 		}
@@ -61,7 +61,7 @@ public class EnchantmentProtection extends Enchantment {
 	}
 
 	public static double a(Entity var0, double var1) {
-		int var3 = aph.a(Enchantment.PROTECTION_EXPLOSIONS.id, var0.at());
+		int var3 = aph.a(Enchantment.PROTECTION_EXPLOSIONS.id, var0.getArmorContents());
 		if (var3 > 0) {
 			var1 -= (double) DataTypesConverter.toFixedPointInt(var1 * (double) ((float) var3 * 0.15F));
 		}

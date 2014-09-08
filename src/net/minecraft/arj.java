@@ -36,33 +36,33 @@ public class arj implements ard {
 
 	}
 
-	public TileEntity s(Position var1) {
+	public TileEntity getTileEntity(Position var1) {
 		int var2 = (var1.getX() >> 4) - this.a;
 		int var3 = (var1.getZ() >> 4) - this.b;
 		return this.c[var2][var3].a(var1, bfl.a);
 	}
 
-	public bec p(Position var1) {
+	public BlockState getBlockState(Position var1) {
 		if (var1.getY() >= 0 && var1.getY() < 256) {
 			int var2 = (var1.getX() >> 4) - this.a;
 			int var3 = (var1.getZ() >> 4) - this.b;
 			if (var2 >= 0 && var2 < this.c.length && var3 >= 0 && var3 < this.c[var2].length) {
 				Chunk var4 = this.c[var2][var3];
 				if (var4 != null) {
-					return var4.g(var1);
+					return var4.getBlockState(var1);
 				}
 			}
 		}
 
-		return Blocks.AIR.P();
+		return Blocks.AIR.getBlockState();
 	}
 
 	public boolean d(Position var1) {
-		return this.p(var1).getBlock().r() == Material.AIR;
+		return this.getBlockState(var1).getBlock().getMaterial() == Material.AIR;
 	}
 
 	public int a(Position var1, BlockFace var2) {
-		bec var3 = this.p(var1);
+		BlockState var3 = this.getBlockState(var1);
 		return var3.getBlock().b((ard) this, var1, var3, var2);
 	}
 }

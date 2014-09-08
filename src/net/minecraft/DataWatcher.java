@@ -63,7 +63,7 @@ public class DataWatcher {
 		return ((Integer) this.j(var1).b()).intValue();
 	}
 
-	public float d(int var1) {
+	public float getData(int var1) {
 		return ((Float) this.j(var1).b()).floatValue();
 	}
 

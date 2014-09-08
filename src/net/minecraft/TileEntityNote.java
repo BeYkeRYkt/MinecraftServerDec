@@ -18,12 +18,12 @@ public class TileEntityNote extends TileEntity {
 
 	public void b() {
 		this.a = (byte) ((this.a + 1) % 25);
-		this.o_();
+		this.update();
 	}
 
 	public void a(World var1, Position var2) {
-		if (var1.p(var2.a()).getBlock().r() == Material.AIR) {
-			Material var3 = var1.p(var2.b()).getBlock().r();
+		if (var1.getBlockState(var2.a()).getBlock().getMaterial() == Material.AIR) {
+			Material var3 = var1.getBlockState(var2.b()).getBlock().getMaterial();
 			byte var4 = 0;
 			if (var3 == Material.STONE) {
 				var4 = 1;

@@ -19,24 +19,24 @@ public class bib extends bic {
 			this.a(var1, var3.getX(), var3.getZ(), var3.getY() + var4, 0, var2);
 
 			for (int var5 = 0; var5 < var4; ++var5) {
-				Block var6 = var1.p(var3.b(var5)).getBlock();
-				if (var6.r() == Material.AIR || var6.r() == Material.LEAVES) {
+				Block var6 = var1.getBlockState(var3.b(var5)).getBlock();
+				if (var6.getMaterial() == Material.AIR || var6.getMaterial() == Material.LEAVES) {
 					this.a(var1, var3.b(var5), Blocks.LOG, this.b);
 				}
 
 				if (var5 < var4 - 1) {
-					var6 = var1.p(var3.a(1, var5, 0)).getBlock();
-					if (var6.r() == Material.AIR || var6.r() == Material.LEAVES) {
+					var6 = var1.getBlockState(var3.a(1, var5, 0)).getBlock();
+					if (var6.getMaterial() == Material.AIR || var6.getMaterial() == Material.LEAVES) {
 						this.a(var1, var3.a(1, var5, 0), Blocks.LOG, this.b);
 					}
 
-					var6 = var1.p(var3.a(1, var5, 1)).getBlock();
-					if (var6.r() == Material.AIR || var6.r() == Material.LEAVES) {
+					var6 = var1.getBlockState(var3.a(1, var5, 1)).getBlock();
+					if (var6.getMaterial() == Material.AIR || var6.getMaterial() == Material.LEAVES) {
 						this.a(var1, var3.a(1, var5, 1), Blocks.LOG, this.b);
 					}
 
-					var6 = var1.p(var3.a(0, var5, 1)).getBlock();
-					if (var6.r() == Material.AIR || var6.r() == Material.LEAVES) {
+					var6 = var1.getBlockState(var3.a(0, var5, 1)).getBlock();
+					if (var6.getMaterial() == Material.AIR || var6.getMaterial() == Material.LEAVES) {
 						this.a(var1, var3.a(0, var5, 1), Blocks.LOG, this.b);
 					}
 				}
@@ -90,13 +90,13 @@ public class bib extends bic {
 	private void c(World var1, Position var2) {
 		for (int var3 = 2; var3 >= -3; --var3) {
 			Position var4 = var2.b(var3);
-			Block var5 = var1.p(var4).getBlock();
+			Block var5 = var1.getBlockState(var4).getBlock();
 			if (var5 == Blocks.GRASS || var5 == Blocks.DIRT) {
 				this.a(var1, var4, Blocks.DIRT, avd.c.a());
 				break;
 			}
 
-			if (var5.r() != Material.AIR && var3 < 0) {
+			if (var5.getMaterial() != Material.AIR && var3 < 0) {
 				break;
 			}
 		}

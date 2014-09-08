@@ -21,15 +21,15 @@ public class ItemGlassBottle extends Item {
 					return var1;
 				}
 
-				if (var2.p(var5).getBlock().r() == Material.WATER) {
-					--var1.b;
+				if (var2.getBlockState(var5).getBlock().getMaterial() == Material.WATER) {
+					--var1.amount;
 					var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
-					if (var1.b <= 0) {
+					if (var1.amount <= 0) {
 						return new ItemStack(Items.POTION);
 					}
 
 					if (!var3.playerInventory.a(new ItemStack(Items.POTION))) {
-						var3.a(new ItemStack(Items.POTION, 1, 0), false);
+						var3.dropItem(new ItemStack(Items.POTION, 1, 0), false);
 					}
 				}
 			}

@@ -101,7 +101,7 @@ public class bgs extends bgt {
 						for (int var43 = var57; !var58 && var43 < var40; ++var43) {
 							for (int var44 = var38 + 1; !var58 && var44 >= var56 - 1; --var44) {
 								if (var44 >= 0 && var44 < 256) {
-									bec var45 = var5.a(var42, var44, var43);
+									BlockState var45 = var5.a(var42, var44, var43);
 									if (var45.getBlock() == Blocks.FLOWING_WATER || var45.getBlock() == Blocks.WATER) {
 										var58 = true;
 									}
@@ -125,23 +125,23 @@ public class bgs extends bgt {
 									for (int var49 = var38; var49 > var56; --var49) {
 										double var50 = ((double) (var49 - 1) + 0.5D - var8) / var31;
 										if (var50 > -0.7D && var59 * var59 + var50 * var50 + var46 * var46 < 1.0D) {
-											bec var52 = var5.a(var42, var49, var60);
-											bec var53 = (bec) Objects.firstNonNull(var5.a(var42, var49 + 1, var60), Blocks.AIR.P());
+											BlockState var52 = var5.a(var42, var49, var60);
+											BlockState var53 = (BlockState) Objects.firstNonNull(var5.a(var42, var49 + 1, var60), Blocks.AIR.getBlockState());
 											if (var52.getBlock() == Blocks.GRASS || var52.getBlock() == Blocks.MYCELIUM) {
 												var48 = true;
 											}
 
 											if (this.a(var52, var53)) {
 												if (var49 - 1 < 10) {
-													var5.a(var42, var49, var60, Blocks.LAVA.P());
+													var5.a(var42, var49, var60, Blocks.LAVA.getBlockState());
 												} else {
-													var5.a(var42, var49, var60, Blocks.AIR.P());
+													var5.a(var42, var49, var60, Blocks.AIR.getBlockState());
 													if (var53.getBlock() == Blocks.SAND) {
-														var5.a(var42, var49 + 1, var60, var53.b(BlockSand.a) == bac.b ? Blocks.RED_SANDSTONE.P() : Blocks.SANDSTONE.P());
+														var5.a(var42, var49 + 1, var60, var53.b(BlockSand.a) == bac.b ? Blocks.RED_SANDSTONE.getBlockState() : Blocks.SANDSTONE.getBlockState());
 													}
 
 													if (var48 && var5.a(var42, var49 - 1, var60).getBlock() == Blocks.DIRT) {
-														var5.a(var42, var49 - 1, var60, this.c.b(new Position(var42 + var3 * 16, 0, var60 + var4 * 16)).ak.getBlock().P());
+														var5.a(var42, var49 - 1, var60, this.c.b(new Position(var42 + var3 * 16, 0, var60 + var4 * 16)).ak.getBlock().getBlockState());
 													}
 												}
 											}
@@ -161,8 +161,8 @@ public class bgs extends bgt {
 
 	}
 
-	protected boolean a(bec var1, bec var2) {
-		return var1.getBlock() == Blocks.STONE ? true : (var1.getBlock() == Blocks.DIRT ? true : (var1.getBlock() == Blocks.GRASS ? true : (var1.getBlock() == Blocks.HARDENED_CLAY ? true : (var1.getBlock() == Blocks.STAINDED_HARDENED_CLAY ? true : (var1.getBlock() == Blocks.SANDSTONE ? true : (var1.getBlock() == Blocks.RED_SANDSTONE ? true : (var1.getBlock() == Blocks.MYCELIUM ? true : (var1.getBlock() == Blocks.SNOW_LAYER ? true : (var1.getBlock() == Blocks.SAND || var1.getBlock() == Blocks.GRAVEL) && var2.getBlock().r() != Material.WATER))))))));
+	protected boolean a(BlockState var1, BlockState var2) {
+		return var1.getBlock() == Blocks.STONE ? true : (var1.getBlock() == Blocks.DIRT ? true : (var1.getBlock() == Blocks.GRASS ? true : (var1.getBlock() == Blocks.HARDENED_CLAY ? true : (var1.getBlock() == Blocks.STAINDED_HARDENED_CLAY ? true : (var1.getBlock() == Blocks.SANDSTONE ? true : (var1.getBlock() == Blocks.RED_SANDSTONE ? true : (var1.getBlock() == Blocks.MYCELIUM ? true : (var1.getBlock() == Blocks.SNOW_LAYER ? true : (var1.getBlock() == Blocks.SAND || var1.getBlock() == Blocks.GRAVEL) && var2.getBlock().getMaterial() != Material.WATER))))))));
 	}
 
 	protected void a(World var1, int var2, int var3, int var4, int var5, bgk var6) {

@@ -65,18 +65,18 @@ public class bnb extends bnn {
 			this.l.a(0, this.h - this.l.e + 4 - 1, 0);
 		}
 
-		this.a(var1, var3, 0, 1, 0, 12, 4, 8, Blocks.AIR.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, 1, 0, 1, 2, 0, 7, Blocks.FARMLAND.P(), Blocks.FARMLAND.P(), false);
-		this.a(var1, var3, 4, 0, 1, 5, 0, 7, Blocks.FARMLAND.P(), Blocks.FARMLAND.P(), false);
-		this.a(var1, var3, 7, 0, 1, 8, 0, 7, Blocks.FARMLAND.P(), Blocks.FARMLAND.P(), false);
-		this.a(var1, var3, 10, 0, 1, 11, 0, 7, Blocks.FARMLAND.P(), Blocks.FARMLAND.P(), false);
-		this.a(var1, var3, 0, 0, 0, 0, 0, 8, Blocks.LOG.P(), Blocks.LOG.P(), false);
-		this.a(var1, var3, 6, 0, 0, 6, 0, 8, Blocks.LOG.P(), Blocks.LOG.P(), false);
-		this.a(var1, var3, 12, 0, 0, 12, 0, 8, Blocks.LOG.P(), Blocks.LOG.P(), false);
-		this.a(var1, var3, 1, 0, 0, 11, 0, 0, Blocks.LOG.P(), Blocks.LOG.P(), false);
-		this.a(var1, var3, 1, 0, 8, 11, 0, 8, Blocks.LOG.P(), Blocks.LOG.P(), false);
-		this.a(var1, var3, 3, 0, 1, 3, 0, 7, Blocks.WATER.P(), Blocks.WATER.P(), false);
-		this.a(var1, var3, 9, 0, 1, 9, 0, 7, Blocks.WATER.P(), Blocks.WATER.P(), false);
+		this.a(var1, var3, 0, 1, 0, 12, 4, 8, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, 1, 0, 1, 2, 0, 7, Blocks.FARMLAND.getBlockState(), Blocks.FARMLAND.getBlockState(), false);
+		this.a(var1, var3, 4, 0, 1, 5, 0, 7, Blocks.FARMLAND.getBlockState(), Blocks.FARMLAND.getBlockState(), false);
+		this.a(var1, var3, 7, 0, 1, 8, 0, 7, Blocks.FARMLAND.getBlockState(), Blocks.FARMLAND.getBlockState(), false);
+		this.a(var1, var3, 10, 0, 1, 11, 0, 7, Blocks.FARMLAND.getBlockState(), Blocks.FARMLAND.getBlockState(), false);
+		this.a(var1, var3, 0, 0, 0, 0, 0, 8, Blocks.LOG.getBlockState(), Blocks.LOG.getBlockState(), false);
+		this.a(var1, var3, 6, 0, 0, 6, 0, 8, Blocks.LOG.getBlockState(), Blocks.LOG.getBlockState(), false);
+		this.a(var1, var3, 12, 0, 0, 12, 0, 8, Blocks.LOG.getBlockState(), Blocks.LOG.getBlockState(), false);
+		this.a(var1, var3, 1, 0, 0, 11, 0, 0, Blocks.LOG.getBlockState(), Blocks.LOG.getBlockState(), false);
+		this.a(var1, var3, 1, 0, 8, 11, 0, 8, Blocks.LOG.getBlockState(), Blocks.LOG.getBlockState(), false);
+		this.a(var1, var3, 3, 0, 1, 3, 0, 7, Blocks.WATER.getBlockState(), Blocks.WATER.getBlockState(), false);
+		this.a(var1, var3, 9, 0, 1, 9, 0, 7, Blocks.WATER.getBlockState(), Blocks.WATER.getBlockState(), false);
 
 		int var4;
 		for (var4 = 1; var4 <= 7; ++var4) {
@@ -93,7 +93,7 @@ public class bnb extends bnn {
 		for (var4 = 0; var4 < 9; ++var4) {
 			for (int var5 = 0; var5 < 13; ++var5) {
 				this.b(var1, var5, 4, var4, var3);
-				this.b(var1, Blocks.DIRT.P(), var5, -1, var4, var3);
+				this.b(var1, Blocks.DIRT.getBlockState(), var5, -1, var4, var3);
 			}
 		}
 

@@ -12,7 +12,7 @@ class qu implements Predicate {
 	}
 
 	public boolean a(EntityLiving var1) {
-		return var1 != null && var1.ai() && this.a.i(var1.c());
+		return var1 != null && var1.isAlive() && this.a.i(var1.getEntityPosition());
 	}
 
 	// $FF: synthetic method

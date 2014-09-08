@@ -10,7 +10,7 @@ public class BlockPiston extends Block {
 
 	public BlockPiston(boolean var1) {
 		super(Material.PISTON);
-		this.j(this.L.b().a(a, BlockFace.NORTH).a(b, Boolean.valueOf(false)));
+		this.setBlockState(this.L.b().a(a, BlockFace.NORTH).a(b, Boolean.valueOf(false)));
 		this.M = var1;
 		this.a(i);
 		this.c(0.5F);
@@ -21,7 +21,7 @@ public class BlockPiston extends Block {
 		return false;
 	}
 
-	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
+	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
 		var1.a(var2, var3.a(a, a(var1, var2, var4)), 2);
 		if (!var1.D) {
 			this.e(var1, var2, var3);
@@ -29,25 +29,25 @@ public class BlockPiston extends Block {
 
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, BlockState var3, Block var4) {
 		if (!var1.D) {
 			this.e(var1, var2, var3);
 		}
 
 	}
 
-	public void c(World var1, Position var2, bec var3) {
-		if (!var1.D && var1.s(var2) == null) {
+	public void c(World var1, Position var2, BlockState var3) {
+		if (!var1.D && var1.getTileEntity(var2) == null) {
 			this.e(var1, var2, var3);
 		}
 
 	}
 
-	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return this.P().a(a, a(var1, var2, var8)).a(b, Boolean.valueOf(false));
+	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		return this.getBlockState().a(a, a(var1, var2, var8)).a(b, Boolean.valueOf(false));
 	}
 
-	private void e(World var1, Position var2, bec var3) {
+	private void e(World var1, Position var2, BlockState var3) {
 		BlockFace var4 = (BlockFace) var3.b(a);
 		boolean var5 = this.b(var1, var2, var4);
 		if (var5 && !((Boolean) var3.b(b)).booleanValue()) {
@@ -91,7 +91,7 @@ public class BlockPiston extends Block {
 		}
 	}
 
-	public boolean a(World var1, Position var2, bec var3, int var4, int var5) {
+	public boolean a(World var1, Position var2, BlockState var3, int var4, int var5) {
 		BlockFace var6 = (BlockFace) var3.b(a);
 		if (!var1.D) {
 			boolean var7 = this.b(var1, var2, var6);
@@ -113,19 +113,19 @@ public class BlockPiston extends Block {
 			var1.a(var2, var3.a(b, Boolean.valueOf(true)), 2);
 			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "tile.piston.out", 0.5F, var1.s.nextFloat() * 0.25F + 0.6F);
 		} else if (var4 == 1) {
-			TileEntity var13 = var1.s(var2.a(var6));
+			TileEntity var13 = var1.getTileEntity(var2.a(var6));
 			if (var13 instanceof TileEntityPiston) {
 				((TileEntityPiston) var13).h();
 			}
 
-			var1.a(var2, Blocks.PISTON_EXTENSION.P().a(BlockPistonMoving.a, var6).a(BlockPistonMoving.b, this.M ? bdu.b : bdu.a), 3);
+			var1.a(var2, Blocks.PISTON_EXTENSION.getBlockState().a(BlockPistonMoving.a, var6).a(BlockPistonMoving.b, this.M ? bdu.b : bdu.a), 3);
 			var1.a(var2, BlockPistonMoving.a(this.a(var5), var6, false, true));
 			if (this.M) {
 				Position var8 = var2.a(var6.g() * 2, var6.h() * 2, var6.i() * 2);
-				Block var9 = var1.p(var8).getBlock();
+				Block var9 = var1.getBlockState(var8).getBlock();
 				boolean var10 = false;
 				if (var9 == Blocks.PISTON_EXTENSION) {
-					TileEntity var11 = var1.s(var8);
+					TileEntity var11 = var1.getTileEntity(var8);
 					if (var11 instanceof TileEntityPiston) {
 						TileEntityPiston var12 = (TileEntityPiston) var11;
 						if (var12.e() == var6 && var12.d()) {
@@ -135,7 +135,7 @@ public class BlockPiston extends Block {
 					}
 				}
 
-				if (!var10 && var9.r() != Material.AIR && a(var9, var1, var8, var6.getOpposite(), false) && (var9.i() == 0 || var9 == Blocks.PISTON || var9 == Blocks.STICKY_PISTON)) {
+				if (!var10 && var9.getMaterial() != Material.AIR && a(var9, var1, var8, var6.getOpposite(), false) && (var9.i() == 0 || var9 == Blocks.PISTON || var9 == Blocks.STICKY_PISTON)) {
 					this.a(var1, var2, var6, false);
 				}
 			} else {
@@ -149,7 +149,7 @@ public class BlockPiston extends Block {
 	}
 
 	public void a(ard var1, Position var2) {
-		bec var3 = var1.p(var2);
+		BlockState var3 = var1.getBlockState(var2);
 		if (var3.getBlock() == this && ((Boolean) var3.b(b)).booleanValue()) {
 			float var4 = 0.25F;
 			BlockFace var5 = (BlockFace) var3.b(a);
@@ -184,12 +184,12 @@ public class BlockPiston extends Block {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
-	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, BlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		super.a(var1, var2, var3, var4, var5, var6);
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3);
 	}
@@ -241,7 +241,7 @@ public class BlockPiston extends Block {
 
 						return true;
 					}
-				} else if (((Boolean) var1.p(var2).b(b)).booleanValue()) {
+				} else if (((Boolean) var1.getBlockState(var2).b(b)).booleanValue()) {
 					return false;
 				}
 
@@ -273,22 +273,22 @@ public class BlockPiston extends Block {
 			Position var12;
 			for (var11 = var7.size() - 1; var11 >= 0; --var11) {
 				var12 = (Position) var7.get(var11);
-				Block var13 = var1.p(var12).getBlock();
-				var13.b(var1, var12, var1.p(var12), 0);
+				Block var13 = var1.getBlockState(var12).getBlock();
+				var13.b(var1, var12, var1.getBlockState(var12), 0);
 				var1.g(var12);
 				--var8;
 				var9[var8] = var13;
 			}
 
-			bec var19;
+			BlockState var19;
 			for (var11 = var6.size() - 1; var11 >= 0; --var11) {
 				var12 = (Position) var6.get(var11);
-				var19 = var1.p(var12);
+				var19 = var1.getBlockState(var12);
 				Block var14 = var19.getBlock();
 				var14.c(var19);
 				var1.g(var12);
 				var12 = var12.a(var10);
-				var1.a(var12, Blocks.PISTON_EXTENSION.P().a(a, var3), 4);
+				var1.a(var12, Blocks.PISTON_EXTENSION.getBlockState().a(a, var3), 4);
 				var1.a(var12, BlockPistonMoving.a(var19, var3, var4, false));
 				--var8;
 				var9[var8] = var14;
@@ -297,8 +297,8 @@ public class BlockPiston extends Block {
 			Position var16 = var2.a(var3);
 			if (var4) {
 				bdu var17 = this.M ? bdu.b : bdu.a;
-				var19 = Blocks.PISTON_HEAD.P().a(BlockPistonExtension.a, var3).a(BlockPistonExtension.b, var17);
-				bec var20 = Blocks.PISTON_EXTENSION.P().a(BlockPistonMoving.a, var3).a(BlockPistonMoving.b, this.M ? bdu.b : bdu.a);
+				var19 = Blocks.PISTON_HEAD.getBlockState().a(BlockPistonExtension.a, var3).a(BlockPistonExtension.b, var17);
+				BlockState var20 = Blocks.PISTON_EXTENSION.getBlockState().a(BlockPistonMoving.a, var3).a(BlockPistonMoving.b, this.M ? bdu.b : bdu.a);
 				var1.a(var16, var20, 4);
 				var1.a(var16, BlockPistonMoving.a(var19, var3, true, false));
 			}
@@ -321,11 +321,11 @@ public class BlockPiston extends Block {
 		}
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, b(var1)).a(b, Boolean.valueOf((var1 & 8) > 0));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(a, b(var1)).a(b, Boolean.valueOf((var1 & 8) > 0));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((BlockFace) var1.b(a)).getId();
 		if (((Boolean) var1.b(b)).booleanValue()) {

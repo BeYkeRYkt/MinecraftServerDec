@@ -38,7 +38,7 @@ final class hw extends ChatModifier {
 		return null;
 	}
 
-	public ChatModifier a(EnumChatFormat var1) {
+	public ChatModifier setColor(EnumChatFormat var1) {
 		throw new UnsupportedOperationException();
 	}
 

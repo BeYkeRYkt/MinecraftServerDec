@@ -23,7 +23,7 @@ public class EntityDataCommand extends AbstractCommand {
 		} else {
 			Entity var3 = b(var1, var2[0]);
 			if (var3 instanceof EntityHuman) {
-				throw new di("commands.entitydata.noPlayers", new Object[] { var3.e_() });
+				throw new di("commands.entitydata.noPlayers", new Object[] { var3.getComponentName() });
 			} else {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var3.e(var4);

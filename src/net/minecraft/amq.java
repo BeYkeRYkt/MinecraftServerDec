@@ -11,7 +11,7 @@ final class amq extends eg {
 		double var7 = Math.floor(var1.b()) + (double) var3.h();
 		double var9 = var1.c() + (double) var3.i() * 1.125D;
 		Position var11 = var1.d().a(var3);
-		bec var12 = var4.p(var11);
+		BlockState var12 = var4.getBlockState(var11);
 		atl var13 = var12.getBlock() instanceof ati ? (atl) var12.b(((ati) var12.getBlock()).l()) : atl.a;
 		double var14;
 		if (ati.d(var12)) {
@@ -21,11 +21,11 @@ final class amq extends eg {
 				var14 = 0.1D;
 			}
 		} else {
-			if (var12.getBlock().r() != Material.AIR || !ati.d(var4.p(var11.b()))) {
+			if (var12.getBlock().getMaterial() != Material.AIR || !ati.d(var4.getBlockState(var11.b()))) {
 				return this.b.a(var1, var2);
 			}
 
-			bec var16 = var4.p(var11.b());
+			BlockState var16 = var4.getBlockState(var11.b());
 			atl var17 = var16.getBlock() instanceof ati ? (atl) var16.b(((ati) var16.getBlock()).l()) : atl.a;
 			if (var3 != BlockFace.DOWN && var17.c()) {
 				var14 = -0.4D;

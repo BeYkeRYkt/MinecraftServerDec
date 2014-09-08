@@ -79,7 +79,7 @@ public abstract class TileEntity {
 		this.h = -1;
 	}
 
-	public World z() {
+	public World getWorld() {
 		return this.world;
 	}
 
@@ -109,16 +109,16 @@ public abstract class TileEntity {
 
 	public int u() {
 		if (this.h == -1) {
-			bec var1 = this.world.p(this.position);
+			BlockState var1 = this.world.getBlockState(this.position);
 			this.h = var1.getBlock().c(var1);
 		}
 
 		return this.h;
 	}
 
-	public void o_() {
+	public void update() {
 		if (this.world != null) {
-			bec var1 = this.world.p(this.position);
+			BlockState var1 = this.world.getBlockState(this.position);
 			this.h = var1.getBlock().c(var1);
 			this.world.b(this.position, this);
 			if (this.getBlock() != Blocks.AIR) {
@@ -134,7 +134,7 @@ public abstract class TileEntity {
 
 	public Block getBlock() {
 		if (this.e == null) {
-			this.e = this.world.p(this.position).getBlock();
+			this.e = this.world.getBlockState(this.position).getBlock();
 		}
 
 		return this.e;

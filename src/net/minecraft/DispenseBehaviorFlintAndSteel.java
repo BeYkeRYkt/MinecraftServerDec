@@ -8,12 +8,12 @@ final class DispenseBehaviorFlintAndSteel extends eg {
 		World var3 = var1.i();
 		Position var4 = var1.d().a(BlockDispenser.b(var1.f()));
 		if (var3.d(var4)) {
-			var3.a(var4, Blocks.FIRE.P());
+			var3.a(var4, Blocks.FIRE.getBlockState());
 			if (var2.a(1, var3.s)) {
-				var2.b = 0;
+				var2.amount = 0;
 			}
-		} else if (var3.p(var4).getBlock() == Blocks.TNT) {
-			Blocks.TNT.d(var3, var4, Blocks.TNT.P().a(BlockTNT.a, Boolean.valueOf(true)));
+		} else if (var3.getBlockState(var4).getBlock() == Blocks.TNT) {
+			Blocks.TNT.d(var3, var4, Blocks.TNT.getBlockState().a(BlockTNT.a, Boolean.valueOf(true)));
 			var3.g(var4);
 		} else {
 			this.b = false;

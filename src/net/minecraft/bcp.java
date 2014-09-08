@@ -12,7 +12,7 @@ class bcp implements Callable {
 	}
 
 	public String a() {
-		bec var1 = this.a.world.p(this.a.position);
+		BlockState var1 = this.a.world.getBlockState(this.a.position);
 		int var2 = var1.getBlock().c(var1);
 		if (var2 < 0) {
 			return "Unknown? (Got " + var2 + ")";

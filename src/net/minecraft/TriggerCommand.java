@@ -28,7 +28,7 @@ public class TriggerCommand extends AbstractCommand {
 			if (var1 instanceof EntityPlayer) {
 				var3 = (EntityPlayer) var1;
 			} else {
-				Entity var4 = var1.f();
+				Entity var4 = var1.getEntity();
 				if (!(var4 instanceof EntityPlayer)) {
 					throw new di("commands.trigger.invalidPlayer", new Object[0]);
 				}
@@ -40,10 +40,10 @@ public class TriggerCommand extends AbstractCommand {
 			ScoreboardObjective var5 = var8.b(var2[0]);
 			if (var5 != null && var5.getCriteria() == IScoreboardCriteria.trigger) {
 				int var6 = a(var2[2]);
-				if (!var8.b(var3.d_(), var5)) {
+				if (!var8.b(var3.getName(), var5)) {
 					throw new di("commands.trigger.invalidObjective", new Object[] { var2[0] });
 				} else {
-					ScoreboardScore var7 = var8.c(var3.d_(), var5);
+					ScoreboardScore var7 = var8.c(var3.getName(), var5);
 					if (var7.isLocked()) {
 						throw new di("commands.trigger.disabled", new Object[] { var2[0] });
 					} else {
@@ -58,7 +58,7 @@ public class TriggerCommand extends AbstractCommand {
 						}
 
 						var7.setLocked(true);
-						if (var3.playerInteractManager.d()) {
+						if (var3.playerInteractManager.isCreative()) {
 							a(var1, this, "commands.trigger.success", new Object[] { var2[0], var2[1], var2[2] });
 						}
 

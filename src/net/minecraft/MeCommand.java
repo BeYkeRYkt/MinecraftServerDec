@@ -22,7 +22,7 @@ public class MeCommand extends AbstractCommand {
 			throw new dp("commands.me.usage", new Object[0]);
 		} else {
 			IChatBaseComponent var3 = b(var1, var2, 0, !(var1 instanceof EntityHuman));
-			MinecraftServer.getInstance().getPlayerList().a((IChatBaseComponent) (new ChatMessage("chat.type.emote", new Object[] { var1.e_(), var3 })));
+			MinecraftServer.getInstance().getPlayerList().sendMessage((IChatBaseComponent) (new ChatMessage("chat.type.emote", new Object[] { var1.getComponentName(), var3 })));
 		}
 	}
 

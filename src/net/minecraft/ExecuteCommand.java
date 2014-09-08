@@ -28,16 +28,16 @@ public class ExecuteCommand extends AbstractCommand {
 			Position var10 = new Position(var4, var6, var8);
 			byte var11 = 4;
 			if ("detect".equals(var2[4]) && var2.length > 10) {
-				World var12 = var1.e();
+				World var12 = var1.getWorld();
 				double var13 = b(var4, var2[5], false);
 				double var15 = b(var6, var2[6], false);
 				double var17 = b(var8, var2[7], false);
 				Block var19 = g(var1, var2[8]);
 				int var20 = a(var2[9], -1, 15);
 				Position var21 = new Position(var13, var15, var17);
-				bec var22 = var12.p(var21);
+				BlockState var22 = var12.getBlockState(var21);
 				if (var22.getBlock() != var19 || var20 >= 0 && var22.getBlock().c(var22) != var20) {
-					throw new di("commands.execute.failed", new Object[] { "detect", var3.d_() });
+					throw new di("commands.execute.failed", new Object[] { "detect", var3.getName() });
 				}
 
 				var11 = 10;
@@ -45,7 +45,7 @@ public class ExecuteCommand extends AbstractCommand {
 
 			String var24 = a(var2, var11);
 			bl var14 = new bl(this, var3, var1, var10, var4, var6, var8);
-			CommandHandlerInterface var25 = MinecraftServer.getInstance().getCommandHandler();
+			ICommandHandler var25 = MinecraftServer.getInstance().getCommandHandler();
 
 			try {
 				int var16 = var25.a(var14, var24);
@@ -53,7 +53,7 @@ public class ExecuteCommand extends AbstractCommand {
 					throw new di("commands.execute.allInvocationsFailed", new Object[] { var24 });
 				}
 			} catch (Throwable var23) {
-				throw new di("commands.execute.failed", new Object[] { var24, var3.d_() });
+				throw new di("commands.execute.failed", new Object[] { var24, var3.getName() });
 			}
 		}
 	}

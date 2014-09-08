@@ -103,7 +103,7 @@ abstract class bnn extends bms {
 
 				++this.a;
 				EntityVillager var11 = new EntityVillager(var1);
-				var11.b((double) var8 + 0.5D, (double) var9, (double) var10 + 0.5D, 0.0F, 0.0F);
+				var11.setPositionRotation((double) var8 + 0.5D, (double) var9, (double) var10 + 0.5D, 0.0F, 0.0F);
 				var11.a(var1.E(new Position(var11)), (xq) null);
 				var11.r(this.c(var7, var11.cj()));
 				var1.d((Entity) var11);
@@ -116,10 +116,10 @@ abstract class bnn extends bms {
 		return var2;
 	}
 
-	protected bec a(bec var1) {
+	protected BlockState a(BlockState var1) {
 		if (this.b) {
 			if (var1.getBlock() == Blocks.LOG || var1.getBlock() == Blocks.LOG2) {
-				return Blocks.SANDSTONE.P();
+				return Blocks.SANDSTONE.getBlockState();
 			}
 
 			if (var1.getBlock() == Blocks.COBBLESTONE) {
@@ -131,34 +131,34 @@ abstract class bnn extends bms {
 			}
 
 			if (var1.getBlock() == Blocks.OAK_STAIRS) {
-				return Blocks.SANDSTONE_STAIRS.P().a(BlockStairs.a, var1.b(BlockStairs.a));
+				return Blocks.SANDSTONE_STAIRS.getBlockState().a(BlockStairs.a, var1.b(BlockStairs.a));
 			}
 
 			if (var1.getBlock() == Blocks.STONE_STAIRS) {
-				return Blocks.SANDSTONE_STAIRS.P().a(BlockStairs.a, var1.b(BlockStairs.a));
+				return Blocks.SANDSTONE_STAIRS.getBlockState().a(BlockStairs.a, var1.b(BlockStairs.a));
 			}
 
 			if (var1.getBlock() == Blocks.GRAVEL) {
-				return Blocks.SANDSTONE.P();
+				return Blocks.SANDSTONE.getBlockState();
 			}
 		}
 
 		return var1;
 	}
 
-	protected void a(World var1, bec var2, int var3, int var4, int var5, bjb var6) {
-		bec var7 = this.a(var2);
+	protected void a(World var1, BlockState var2, int var3, int var4, int var5, bjb var6) {
+		BlockState var7 = this.a(var2);
 		super.a(var1, var7, var3, var4, var5, var6);
 	}
 
-	protected void a(World var1, bjb var2, int var3, int var4, int var5, int var6, int var7, int var8, bec var9, bec var10, boolean var11) {
-		bec var12 = this.a(var9);
-		bec var13 = this.a(var10);
+	protected void a(World var1, bjb var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockState var9, BlockState var10, boolean var11) {
+		BlockState var12 = this.a(var9);
+		BlockState var13 = this.a(var10);
 		super.a(var1, var2, var3, var4, var5, var6, var7, var8, var12, var13, var11);
 	}
 
-	protected void b(World var1, bec var2, int var3, int var4, int var5, bjb var6) {
-		bec var7 = this.a(var2);
+	protected void b(World var1, BlockState var2, int var3, int var4, int var5, bjb var6) {
+		BlockState var7 = this.a(var2);
 		super.b(var1, var7, var3, var4, var5, var6);
 	}
 

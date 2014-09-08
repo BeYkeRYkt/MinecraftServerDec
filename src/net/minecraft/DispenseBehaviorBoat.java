@@ -11,12 +11,12 @@ final class DispenseBehaviorBoat extends eg {
 		double var7 = var1.b() + (double) ((float) var3.h() * 1.125F);
 		double var9 = var1.c() + (double) ((float) var3.i() * 1.125F);
 		Position var11 = var1.d().a(var3);
-		Material var12 = var4.p(var11).getBlock().r();
+		Material var12 = var4.getBlockState(var11).getBlock().getMaterial();
 		double var13;
 		if (Material.WATER.equals(var12)) {
 			var13 = 1.0D;
 		} else {
-			if (!Material.AIR.equals(var12) || !Material.WATER.equals(var4.p(var11.b()).getBlock().r())) {
+			if (!Material.AIR.equals(var12) || !Material.WATER.equals(var4.getBlockState(var11.b()).getBlock().getMaterial())) {
 				return this.b.a(var1, var2);
 			}
 

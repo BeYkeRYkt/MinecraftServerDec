@@ -90,7 +90,7 @@ public class TileEntityEnchantTable extends TileEntity implements PacketTickable
 		this.f += this.i;
 	}
 
-	public String d_() {
+	public String getName() {
 		return this.k_() ? this.p : "container.enchant";
 	}
 
@@ -102,8 +102,8 @@ public class TileEntityEnchantTable extends TileEntity implements PacketTickable
 		this.p = var1;
 	}
 
-	public IChatBaseComponent e_() {
-		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.d_()) : new ChatMessage(this.d_(), new Object[0]));
+	public IChatBaseComponent getComponentName() {
+		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {

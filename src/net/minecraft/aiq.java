@@ -17,45 +17,45 @@ public class aiq extends Container {
 		this.i = var2;
 		this.j = var3;
 		this.f = var1.d.ci();
-		this.a((ajk) (new ais(this, this.a, 0, 15, 47)));
-		this.a((ajk) (new ait(this, this.a, 1, 35, 47)));
+		this.addSlot((Slot) (new ais(this, this.a, 0, 15, 47)));
+		this.addSlot((Slot) (new ait(this, this.a, 1, 35, 47)));
 
 		int var4;
 		for (var4 = 0; var4 < 3; ++var4) {
 			for (int var5 = 0; var5 < 9; ++var5) {
-				this.a(new ajk(var1, var5 + var4 * 9 + 9, 8 + var5 * 18, 84 + var4 * 18));
+				this.addSlot(new Slot(var1, var5 + var4 * 9 + 9, 8 + var5 * 18, 84 + var4 * 18));
 			}
 		}
 
 		for (var4 = 0; var4 < 9; ++var4) {
-			this.a(new ajk(var1, var4, 8 + var4 * 18, 142));
+			this.addSlot(new Slot(var1, var4, 8 + var4 * 18, 142));
 		}
 
 	}
 
-	public void a(ICrafting var1) {
-		super.a(var1);
-		var1.a(this, 0, this.g[0]);
-		var1.a(this, 1, this.g[1]);
-		var1.a(this, 2, this.g[2]);
-		var1.a(this, 3, this.f & -16);
-		var1.a(this, 4, this.h[0]);
-		var1.a(this, 5, this.h[1]);
-		var1.a(this, 6, this.h[2]);
+	public void addSlotListener(ICrafting var1) {
+		super.addSlotListener(var1);
+		var1.setContainerData(this, 0, this.g[0]);
+		var1.setContainerData(this, 1, this.g[1]);
+		var1.setContainerData(this, 2, this.g[2]);
+		var1.setContainerData(this, 3, this.f & -16);
+		var1.setContainerData(this, 4, this.h[0]);
+		var1.setContainerData(this, 5, this.h[1]);
+		var1.setContainerData(this, 6, this.h[2]);
 	}
 
 	public void b() {
 		super.b();
 
-		for (int var1 = 0; var1 < this.e.size(); ++var1) {
-			ICrafting var2 = (ICrafting) this.e.get(var1);
-			var2.a(this, 0, this.g[0]);
-			var2.a(this, 1, this.g[1]);
-			var2.a(this, 2, this.g[2]);
-			var2.a(this, 3, this.f & -16);
-			var2.a(this, 4, this.h[0]);
-			var2.a(this, 5, this.h[1]);
-			var2.a(this, 6, this.h[2]);
+		for (int var1 = 0; var1 < this.listeners.size(); ++var1) {
+			ICrafting var2 = (ICrafting) this.listeners.get(var1);
+			var2.setContainerData(this, 0, this.g[0]);
+			var2.setContainerData(this, 1, this.g[1]);
+			var2.setContainerData(this, 2, this.g[2]);
+			var2.setContainerData(this, 3, this.f & -16);
+			var2.setContainerData(this, 4, this.h[0]);
+			var2.setContainerData(this, 5, this.h[1]);
+			var2.setContainerData(this, 6, this.h[2]);
 		}
 
 	}
@@ -72,28 +72,28 @@ public class aiq extends Container {
 					for (var4 = -1; var4 <= 1; ++var4) {
 						for (int var5 = -1; var5 <= 1; ++var5) {
 							if ((var4 != 0 || var5 != 0) && this.i.d(this.j.a(var5, 0, var4)) && this.i.d(this.j.a(var5, 1, var4))) {
-								if (this.i.p(this.j.a(var5 * 2, 0, var4 * 2)).getBlock() == Blocks.BOOKSHELF) {
+								if (this.i.getBlockState(this.j.a(var5 * 2, 0, var4 * 2)).getBlock() == Blocks.BOOKSHELF) {
 									++var3;
 								}
 
-								if (this.i.p(this.j.a(var5 * 2, 1, var4 * 2)).getBlock() == Blocks.BOOKSHELF) {
+								if (this.i.getBlockState(this.j.a(var5 * 2, 1, var4 * 2)).getBlock() == Blocks.BOOKSHELF) {
 									++var3;
 								}
 
 								if (var5 != 0 && var4 != 0) {
-									if (this.i.p(this.j.a(var5 * 2, 0, var4)).getBlock() == Blocks.BOOKSHELF) {
+									if (this.i.getBlockState(this.j.a(var5 * 2, 0, var4)).getBlock() == Blocks.BOOKSHELF) {
 										++var3;
 									}
 
-									if (this.i.p(this.j.a(var5 * 2, 1, var4)).getBlock() == Blocks.BOOKSHELF) {
+									if (this.i.getBlockState(this.j.a(var5 * 2, 1, var4)).getBlock() == Blocks.BOOKSHELF) {
 										++var3;
 									}
 
-									if (this.i.p(this.j.a(var5, 0, var4 * 2)).getBlock() == Blocks.BOOKSHELF) {
+									if (this.i.getBlockState(this.j.a(var5, 0, var4 * 2)).getBlock() == Blocks.BOOKSHELF) {
 										++var3;
 									}
 
-									if (this.i.p(this.j.a(var5, 1, var4 * 2)).getBlock() == Blocks.BOOKSHELF) {
+									if (this.i.getBlockState(this.j.a(var5, 1, var4 * 2)).getBlock() == Blocks.BOOKSHELF) {
 										++var3;
 									}
 								}
@@ -137,16 +137,16 @@ public class aiq extends Container {
 		ItemStack var3 = this.a.a(0);
 		ItemStack var4 = this.a.a(1);
 		int var5 = var2 + 1;
-		if ((var4 == null || var4.b < var5) && !var1.by.instabuild) {
+		if ((var4 == null || var4.amount < var5) && !var1.playerProperties.instabuild) {
 			return false;
-		} else if (this.g[var2] > 0 && var3 != null && (var1.bz >= var5 && var1.bz >= this.g[var2] || var1.by.instabuild)) {
+		} else if (this.g[var2] > 0 && var3 != null && (var1.bz >= var5 && var1.bz >= this.g[var2] || var1.playerProperties.instabuild)) {
 			if (!this.i.D) {
 				List var6 = this.a(var3, var2, this.g[var2]);
 				boolean var7 = var3.getItem() == Items.BOOK;
 				if (var6 != null) {
 					var1.b(var5);
 					if (var7) {
-						var3.a((Item) Items.ENCHANTED_BOOK);
+						var3.setItem((Item) Items.ENCHANTED_BOOK);
 					}
 
 					for (int var8 = 0; var8 < var6.size(); ++var8) {
@@ -158,14 +158,14 @@ public class aiq extends Container {
 						}
 					}
 
-					if (!var1.by.instabuild) {
-						var4.b -= var5;
-						if (var4.b <= 0) {
+					if (!var1.playerProperties.instabuild) {
+						var4.amount -= var5;
+						if (var4.amount <= 0) {
 							this.a.a(1, (ItemStack) null);
 						}
 					}
 
-					this.a.o_();
+					this.a.update();
 					this.f = var1.ci();
 					this.a(this.a);
 				}
@@ -187,13 +187,13 @@ public class aiq extends Container {
 		return var4;
 	}
 
-	public void b(EntityHuman var1) {
-		super.b(var1);
+	public void onClose(EntityHuman var1) {
+		super.onClose(var1);
 		if (!this.i.D) {
 			for (int var2 = 0; var2 < this.a.n_(); ++var2) {
 				ItemStack var3 = this.a.b(var2);
 				if (var3 != null) {
-					var1.a(var3, false);
+					var1.dropItem(var3, false);
 				}
 			}
 
@@ -201,14 +201,14 @@ public class aiq extends Container {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.i.p(this.j).getBlock() != Blocks.ENCHANTING_TABLE ? false : var1.e((double) this.j.getX() + 0.5D, (double) this.j.getY() + 0.5D, (double) this.j.getZ() + 0.5D) <= 64.0D;
+		return this.i.getBlockState(this.j).getBlock() != Blocks.ENCHANTING_TABLE ? false : var1.getDistanceSquared((double) this.j.getX() + 0.5D, (double) this.j.getY() + 0.5D, (double) this.j.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {
 		ItemStack var3 = null;
-		ajk var4 = (ajk) this.c.get(var2);
-		if (var4 != null && var4.e()) {
-			ItemStack var5 = var4.d();
+		Slot var4 = (Slot) this.slots.get(var2);
+		if (var4 != null && var4.hasItem()) {
+			ItemStack var5 = var4.getItemStack();
 			var3 = var5.getCopy();
 			if (var2 == 0) {
 				if (!this.a(var5, 2, 38, true)) {
@@ -218,31 +218,31 @@ public class aiq extends Container {
 				if (!this.a(var5, 2, 38, true)) {
 					return null;
 				}
-			} else if (var5.getItem() == Items.DYE && akv.a(var5.i()) == akv.l) {
+			} else if (var5.getItem() == Items.DYE && akv.a(var5.getDurability()) == akv.l) {
 				if (!this.a(var5, 1, 2, true)) {
 					return null;
 				}
 			} else {
-				if (((ajk) this.c.get(0)).e() || !((ajk) this.c.get(0)).a(var5)) {
+				if (((Slot) this.slots.get(0)).hasItem() || !((Slot) this.slots.get(0)).a(var5)) {
 					return null;
 				}
 
-				if (var5.hasTag() && var5.b == 1) {
-					((ajk) this.c.get(0)).d(var5.getCopy());
-					var5.b = 0;
-				} else if (var5.b >= 1) {
-					((ajk) this.c.get(0)).d(new ItemStack(var5.getItem(), 1, var5.i()));
-					--var5.b;
+				if (var5.hasTag() && var5.amount == 1) {
+					((Slot) this.slots.get(0)).d(var5.getCopy());
+					var5.amount = 0;
+				} else if (var5.amount >= 1) {
+					((Slot) this.slots.get(0)).d(new ItemStack(var5.getItem(), 1, var5.getDurability()));
+					--var5.amount;
 				}
 			}
 
-			if (var5.b == 0) {
+			if (var5.amount == 0) {
 				var4.d((ItemStack) null);
 			} else {
-				var4.f();
+				var4.update();
 			}
 
-			if (var5.b == var3.b) {
+			if (var5.amount == var3.amount) {
 				return null;
 			}
 

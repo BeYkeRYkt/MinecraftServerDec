@@ -21,7 +21,7 @@ public class zp extends zb {
 		this.b = this.a.u();
 		if (this.b == null) {
 			return false;
-		} else if (this.b.h(this.a) > (double) (this.g * this.g)) {
+		} else if (this.b.getDistanceSquared(this.a) > (double) (this.g * this.g)) {
 			return false;
 		} else {
 			Vec3D var1 = abf.a(this.a, 16, 7, new Vec3D(this.b.locationX, this.b.locationY, this.b.locationZ));
@@ -37,7 +37,7 @@ public class zp extends zb {
 	}
 
 	public boolean b() {
-		return !this.a.s().m() && this.b.ai() && this.b.h(this.a) < (double) (this.g * this.g);
+		return !this.a.s().m() && this.b.isAlive() && this.b.getDistanceSquared(this.a) < (double) (this.g * this.g);
 	}
 
 	public void d() {

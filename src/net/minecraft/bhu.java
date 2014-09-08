@@ -13,29 +13,29 @@ public class bhu extends bhp {
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
-		if (var1.p(var3.a()).getBlock() != Blocks.NETHERRACK) {
+		if (var1.getBlockState(var3.a()).getBlock() != Blocks.NETHERRACK) {
 			return false;
-		} else if (var1.p(var3).getBlock().r() != Material.AIR && var1.p(var3).getBlock() != Blocks.NETHERRACK) {
+		} else if (var1.getBlockState(var3).getBlock().getMaterial() != Material.AIR && var1.getBlockState(var3).getBlock() != Blocks.NETHERRACK) {
 			return false;
 		} else {
 			int var4 = 0;
-			if (var1.p(var3.e()).getBlock() == Blocks.NETHERRACK) {
+			if (var1.getBlockState(var3.e()).getBlock() == Blocks.NETHERRACK) {
 				++var4;
 			}
 
-			if (var1.p(var3.f()).getBlock() == Blocks.NETHERRACK) {
+			if (var1.getBlockState(var3.f()).getBlock() == Blocks.NETHERRACK) {
 				++var4;
 			}
 
-			if (var1.p(var3.c()).getBlock() == Blocks.NETHERRACK) {
+			if (var1.getBlockState(var3.c()).getBlock() == Blocks.NETHERRACK) {
 				++var4;
 			}
 
-			if (var1.p(var3.d()).getBlock() == Blocks.NETHERRACK) {
+			if (var1.getBlockState(var3.d()).getBlock() == Blocks.NETHERRACK) {
 				++var4;
 			}
 
-			if (var1.p(var3.b()).getBlock() == Blocks.NETHERRACK) {
+			if (var1.getBlockState(var3.b()).getBlock() == Blocks.NETHERRACK) {
 				++var4;
 			}
 
@@ -61,7 +61,7 @@ public class bhu extends bhp {
 			}
 
 			if (!this.b && var4 == 4 && var5 == 1 || var4 == 5) {
-				var1.a(var3, this.a.P(), 2);
+				var1.a(var3, this.a.getBlockState(), 2);
 				var1.a(this.a, var3, var2);
 			}
 

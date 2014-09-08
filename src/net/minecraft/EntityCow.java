@@ -68,11 +68,11 @@ public class EntityCow extends abq {
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		if (var2 != null && var2.getItem() == Items.BUCKET && !var1.by.instabuild) {
-			if (var2.b-- == 1) {
-				var1.playerInventory.a(var1.playerInventory.c, new ItemStack(Items.MILK_BUCKET));
+		if (var2 != null && var2.getItem() == Items.BUCKET && !var1.playerProperties.instabuild) {
+			if (var2.amount-- == 1) {
+				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, new ItemStack(Items.MILK_BUCKET));
 			} else if (!var1.playerInventory.a(new ItemStack(Items.MILK_BUCKET))) {
-				var1.a(new ItemStack(Items.MILK_BUCKET, 1, 0), false);
+				var1.dropItem(new ItemStack(Items.MILK_BUCKET, 1, 0), false);
 			}
 
 			return true;
@@ -82,7 +82,7 @@ public class EntityCow extends abq {
 	}
 
 	public EntityCow b(ws var1) {
-		return new EntityCow(this.o);
+		return new EntityCow(this.world);
 	}
 
 	public float aR() {

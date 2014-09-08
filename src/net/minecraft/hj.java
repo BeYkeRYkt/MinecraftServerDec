@@ -11,7 +11,7 @@ public abstract class hj implements IChatBaseComponent {
 	private ChatModifier b;
 
 	public IChatBaseComponent a(IChatBaseComponent var1) {
-		var1.b().a(this.b());
+		var1.getChatModifier().a(this.getChatModifier());
 		this.a.add(var1);
 		return this;
 	}
@@ -30,20 +30,20 @@ public abstract class hj implements IChatBaseComponent {
 
 		while (var2.hasNext()) {
 			IChatBaseComponent var3 = (IChatBaseComponent) var2.next();
-			var3.b().a(this.b());
+			var3.getChatModifier().a(this.getChatModifier());
 		}
 
 		return this;
 	}
 
-	public ChatModifier b() {
+	public ChatModifier getChatModifier() {
 		if (this.b == null) {
 			this.b = new ChatModifier();
 			Iterator var1 = this.a.iterator();
 
 			while (var1.hasNext()) {
 				IChatBaseComponent var2 = (IChatBaseComponent) var1.next();
-				var2.b().a(this.b);
+				var2.getChatModifier().a(this.b);
 			}
 		}
 
@@ -79,7 +79,7 @@ public abstract class hj implements IChatBaseComponent {
 			return false;
 		} else {
 			hj var2 = (hj) var1;
-			return this.a.equals(var2.a) && this.b().equals(var2.b());
+			return this.a.equals(var2.a) && this.getChatModifier().equals(var2.getChatModifier());
 		}
 	}
 

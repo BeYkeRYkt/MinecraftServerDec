@@ -63,9 +63,9 @@ public class bgw implements IChunkProvider {
 							double var45 = (var34 - var32) * var41;
 
 							for (int var47 = 0; var47 < 8; ++var47) {
-								bec var48 = null;
+								BlockState var48 = null;
 								if (var43 > 0.0D) {
-									var48 = Blocks.END_STONE.P();
+									var48 = Blocks.END_STONE.getBlockState();
 								}
 
 								int var49 = var40 + var8 * 8;
@@ -95,18 +95,18 @@ public class bgw implements IChunkProvider {
 			for (int var3 = 0; var3 < 16; ++var3) {
 				byte var4 = 1;
 				int var5 = -1;
-				bec var6 = Blocks.END_STONE.P();
-				bec var7 = Blocks.END_STONE.P();
+				BlockState var6 = Blocks.END_STONE.getBlockState();
+				BlockState var7 = Blocks.END_STONE.getBlockState();
 
 				for (int var8 = 127; var8 >= 0; --var8) {
-					bec var9 = var1.a(var2, var8, var3);
-					if (var9.getBlock().r() == Material.AIR) {
+					BlockState var9 = var1.a(var2, var8, var3);
+					if (var9.getBlock().getMaterial() == Material.AIR) {
 						var5 = -1;
 					} else if (var9.getBlock() == Blocks.STONE) {
 						if (var5 == -1) {
 							if (var4 <= 0) {
-								var6 = Blocks.AIR.P();
-								var7 = Blocks.END_STONE.P();
+								var6 = Blocks.AIR.getBlockState();
+								var7 = Blocks.END_STONE.getBlockState();
 							}
 
 							var5 = var4;

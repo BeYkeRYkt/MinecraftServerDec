@@ -10,15 +10,15 @@ public class BlockPressurePlateBinary extends ath {
 
 	protected BlockPressurePlateBinary(Material var1, azh var2) {
 		super(var1);
-		this.j(this.L.b().a(a, Boolean.valueOf(false)));
+		this.setBlockState(this.L.b().a(a, Boolean.valueOf(false)));
 		this.b = var2;
 	}
 
-	protected int e(bec var1) {
+	protected int e(BlockState var1) {
 		return ((Boolean) var1.b(a)).booleanValue() ? 15 : 0;
 	}
 
-	protected bec a(bec var1, int var2) {
+	protected BlockState a(BlockState var1, int var2) {
 		return var1.a(a, Boolean.valueOf(var2 > 0));
 	}
 
@@ -50,11 +50,11 @@ public class BlockPressurePlateBinary extends ath {
 		return 0;
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, Boolean.valueOf(var1 == 1));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(a, Boolean.valueOf(var1 == 1));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((Boolean) var1.b(a)).booleanValue() ? 1 : 0;
 	}
 

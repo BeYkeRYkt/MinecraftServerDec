@@ -30,8 +30,8 @@ public class aaq extends aaw {
 		this.b = new Comparator<Entity>() {
 			@Override
 			public int compare(Entity entity1, Entity entity2) {
-				double var3 = var1.h(entity1);
-				double var5 = var1.h(entity2);
+				double var3 = var1.getDistanceSquared(entity1);
+				double var5 = var1.getDistanceSquared(entity2);
 				return var3 < var5 ? -1 : (var3 > var5 ? 1 : 0);
 			}
 		};
@@ -44,7 +44,7 @@ public class aaq extends aaw {
 			return false;
 		} else {
 			double var1 = this.f();
-			List var3 = this.e.o.a(this.a, this.e.aQ().b(var1, 4.0D, var1), Predicates.and(this.c, EntityPredicates.d));
+			List var3 = this.e.world.a(this.a, this.e.aQ().b(var1, 4.0D, var1), Predicates.and(this.c, EntityPredicates.d));
 			Collections.sort(var3, this.b);
 			if (var3.isEmpty()) {
 				return false;

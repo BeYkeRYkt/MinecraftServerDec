@@ -102,7 +102,7 @@ public class EntityRabbit extends abq {
 
 			if (this.cl() == 99 && this.bq == 0) {
 				EntityLiving var1 = this.u();
-				if (var1 != null && this.h(var1) < 16.0D) {
+				if (var1 != null && this.getDistanceSquared(var1) < 16.0D) {
 					this.a(var1.locationX, var1.locationZ);
 					this.f.a(var1.locationX, var1.locationY, var1.locationZ, this.f.b());
 					this.b(ace.e);
@@ -157,8 +157,8 @@ public class EntityRabbit extends abq {
 	public void m() {
 		super.m();
 		if (this.bm != this.bn) {
-			if (this.bm == 0 && !this.o.D) {
-				this.o.a((Entity) this, (byte) 1);
+			if (this.bm == 0 && !this.world.D) {
+				this.world.a((Entity) this, (byte) 1);
 			}
 
 			++this.bm;
@@ -249,7 +249,7 @@ public class EntityRabbit extends abq {
 	}
 
 	public EntityRabbit b(ws var1) {
-		EntityRabbit var2 = new EntityRabbit(this.o);
+		EntityRabbit var2 = new EntityRabbit(this.world);
 		if (var1 instanceof EntityRabbit) {
 			var2.r(this.V.nextBoolean() ? this.cl() : ((EntityRabbit) var1).cl());
 		}
@@ -308,7 +308,7 @@ public class EntityRabbit extends abq {
 	}
 
 	protected void cn() {
-		this.o.a(Particle.M, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[] { Block.f(Blocks.CARROTS.a(7)) });
+		this.world.a(Particle.M, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[] { Block.f(Blocks.CARROTS.a(7)) });
 		this.bs = 100;
 	}
 

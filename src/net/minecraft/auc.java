@@ -17,35 +17,35 @@ public class auc extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return super.c(var1, var2) && this.c(var1.p(var2.b()).getBlock());
+		return super.c(var1, var2) && this.c(var1.getBlockState(var2.b()).getBlock());
 	}
 
 	protected boolean c(Block var1) {
 		return var1 == Blocks.GRASS || var1 == Blocks.DIRT || var1 == Blocks.FARMLAND;
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, BlockState var3, Block var4) {
 		super.a(var1, var2, var3, var4);
 		this.e(var1, var2, var3);
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, BlockState var3, Random var4) {
 		this.e(var1, var2, var3);
 	}
 
-	protected void e(World var1, Position var2, bec var3) {
+	protected void e(World var1, Position var2, BlockState var3) {
 		if (!this.f(var1, var2, var3)) {
 			this.b(var1, var2, var3, 0);
-			var1.a(var2, Blocks.AIR.P(), 3);
+			var1.a(var2, Blocks.AIR.getBlockState(), 3);
 		}
 
 	}
 
-	public boolean f(World var1, Position var2, bec var3) {
-		return this.c(var1.p(var2.b()).getBlock());
+	public boolean f(World var1, Position var2, BlockState var3) {
+		return this.c(var1.getBlockState(var2.b()).getBlock());
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
 		return null;
 	}
 

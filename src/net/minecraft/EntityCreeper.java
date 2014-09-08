@@ -28,7 +28,7 @@ public class EntityCreeper extends EntityMonster {
 	}
 
 	public int aF() {
-		return this.u() == null ? 3 : 3 + (int) (this.bm() - 1.0F);
+		return this.u() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
 	}
 
 	public void e(float var1, float var2) {
@@ -76,7 +76,7 @@ public class EntityCreeper extends EntityMonster {
 	}
 
 	public void s_() {
-		if (this.ai()) {
+		if (this.isAlive()) {
 			this.b = this.c;
 			if (this.cl()) {
 				this.a(1);
@@ -151,9 +151,9 @@ public class EntityCreeper extends EntityMonster {
 	protected boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (var2 != null && var2.getItem() == Items.FLINT_AND_STEEL) {
-			this.o.makeSound(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.ignite", 1.0F, this.V.nextFloat() * 0.4F + 0.8F);
-			var1.bv();
-			if (!this.o.D) {
+			this.world.makeSound(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.ignite", 1.0F, this.V.nextFloat() * 0.4F + 0.8F);
+			var1.performHandAnimation();
+			if (!this.world.D) {
 				this.cm();
 				var2.a(1, (EntityLiving) var1);
 				return true;
@@ -164,11 +164,11 @@ public class EntityCreeper extends EntityMonster {
 	}
 
 	private void cp() {
-		if (!this.o.D) {
-			boolean var1 = this.o.Q().b("mobGriefing");
+		if (!this.world.D) {
+			boolean var1 = this.world.Q().b("mobGriefing");
 			float var2 = this.n() ? 2.0F : 1.0F;
-			this.o.a(this, this.locationX, this.locationY, this.locationZ, (float) this.bl * var2, var1);
-			this.J();
+			this.world.a(this, this.locationX, this.locationY, this.locationZ, (float) this.bl * var2, var1);
+			this.die();
 		}
 
 	}
@@ -182,7 +182,7 @@ public class EntityCreeper extends EntityMonster {
 	}
 
 	public boolean cn() {
-		return this.bm < 1 && this.o.Q().b("doMobLoot");
+		return this.bm < 1 && this.world.Q().b("doMobLoot");
 	}
 
 	public void co() {

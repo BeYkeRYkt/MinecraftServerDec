@@ -35,11 +35,11 @@ public class ast extends arm {
 			int var11 = var5 & 15;
 
 			for (int var12 = 255; var12 >= 0; --var12) {
-				if (var3.a(var11, var12, var10).getBlock().r() != Material.AIR) {
+				if (var3.a(var11, var12, var10).getBlock().getMaterial() != Material.AIR) {
 					if (var12 == 62 && var3.a(var11, var12, var10).getBlock() != Blocks.WATER) {
-						var3.a(var11, var12, var10, Blocks.WATER.P());
+						var3.a(var11, var12, var10, Blocks.WATER.getBlockState());
 						if (var8 < 0.12D) {
-							var3.a(var11, var12 + 1, var10, Blocks.WATER_LILY.P());
+							var3.a(var11, var12 + 1, var10, Blocks.WATER_LILY.getBlockState());
 						}
 					}
 					break;

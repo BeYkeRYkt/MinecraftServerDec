@@ -37,7 +37,7 @@ class aoe implements IRecipe {
 			ItemStack var4 = var1.a(var3);
 			if (var4 != null && var4.getItem() == Items.BANNER) {
 				var2 = var4.getCopy();
-				var2.b = 1;
+				var2.amount = 1;
 				break;
 			}
 		}
@@ -50,7 +50,7 @@ class aoe implements IRecipe {
 			for (int var5 = 0; var5 < var1.n_(); ++var5) {
 				var6 = var1.a(var5);
 				if (var6 != null && var6.getItem() == Items.DYE) {
-					var9 = var6.i();
+					var9 = var6.getDurability();
 					break;
 				}
 			}
@@ -147,7 +147,7 @@ class aoe implements IRecipe {
 								break;
 							}
 
-							if (var7 != -1 && var7 != var11.i()) {
+							if (var7 != -1 && var7 != var11.getDurability()) {
 								var6 = false;
 								break;
 							}
@@ -157,7 +157,7 @@ class aoe implements IRecipe {
 								break;
 							}
 
-							var7 = var11.i();
+							var7 = var11.getDurability();
 						} else if (var5.c()[var9].charAt(var10) != 32) {
 							var6 = false;
 							break;

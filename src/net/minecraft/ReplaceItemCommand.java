@@ -73,7 +73,7 @@ public class ReplaceItemCommand extends AbstractCommand {
 				String var10 = a(var1, var2, var16).getStrippedMessage();
 
 				try {
-					var9.d(gg.a(var10));
+					var9.setTag(gg.a(var10));
 				} catch (gf var14) {
 					throw new di("commands.replaceitem.tagError", new Object[] { var14.getMessage() });
 				}
@@ -86,8 +86,8 @@ public class ReplaceItemCommand extends AbstractCommand {
 			if (var3) {
 				var1.a(ag.d, 0);
 				Position var17 = a(var1, var2, 1, false);
-				World var11 = var1.e();
-				TileEntity var12 = var11.s(var17);
+				World var11 = var1.getWorld();
+				TileEntity var12 = var11.getTileEntity(var17);
 				if (var12 == null || !(var12 instanceof IInventory)) {
 					throw new di("commands.replaceitem.noContainer", new Object[] { Integer.valueOf(var17.getX()), Integer.valueOf(var17.getY()), Integer.valueOf(var17.getZ()) });
 				}

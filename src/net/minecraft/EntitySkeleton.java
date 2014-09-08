@@ -69,18 +69,18 @@ public class EntitySkeleton extends EntityMonster implements afr {
 	}
 
 	public void m() {
-		if (this.o.w() && !this.o.D) {
+		if (this.world.w() && !this.world.D) {
 			float var1 = this.c(1.0F);
 			Position var2 = new Position(this.locationX, (double) Math.round(this.locationY), this.locationZ);
-			if (var1 > 0.5F && this.V.nextFloat() * 30.0F < (var1 - 0.4F) * 2.0F && this.o.i(var2)) {
+			if (var1 > 0.5F && this.V.nextFloat() * 30.0F < (var1 - 0.4F) * 2.0F && this.world.i(var2)) {
 				boolean var3 = true;
 				ItemStack var4 = this.p(4);
 				if (var4 != null) {
 					if (var4.e()) {
-						var4.b(var4.h() + this.V.nextInt(2));
+						var4.setDurability(var4.h() + this.V.nextInt(2));
 						if (var4.h() >= var4.j()) {
 							this.b(var4);
-							this.c(4, (ItemStack) null);
+							this.setArmor(4, (ItemStack) null);
 						}
 					}
 
@@ -93,7 +93,7 @@ public class EntitySkeleton extends EntityMonster implements afr {
 			}
 		}
 
-		if (this.o.D && this.ck() == 1) {
+		if (this.world.D && this.ck() == 1) {
 			this.a(0.72F, 2.535F);
 		}
 
@@ -102,8 +102,8 @@ public class EntitySkeleton extends EntityMonster implements afr {
 
 	public void ak() {
 		super.ak();
-		if (this.m instanceof EntityCreature) {
-			EntityCreature var1 = (EntityCreature) this.m;
+		if (this.vehicle instanceof EntityCreature) {
+			EntityCreature var1 = (EntityCreature) this.vehicle;
 			this.aG = var1.aG;
 		}
 
@@ -163,15 +163,15 @@ public class EntitySkeleton extends EntityMonster implements afr {
 
 	protected void a(vu var1) {
 		super.a(var1);
-		this.c(0, new ItemStack(Items.BOW));
+		this.setArmor(0, new ItemStack(Items.BOW));
 	}
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		if (this.o.worldProvider instanceof NetherWorldProvider && this.bb().nextInt(5) > 0) {
+		if (this.world.worldProvider instanceof NetherWorldProvider && this.bb().nextInt(5) > 0) {
 			this.i.a(4, this.c);
 			this.a(1);
-			this.c(0, new ItemStack(Items.STONE_SWORD));
+			this.setArmor(0, new ItemStack(Items.STONE_SWORD));
 			this.a(afs.e).a(4.0D);
 		} else {
 			this.i.a(4, this.b);
@@ -181,9 +181,9 @@ public class EntitySkeleton extends EntityMonster implements afr {
 
 		this.j(this.V.nextFloat() < 0.55F * var1.c());
 		if (this.p(4) == null) {
-			Calendar var3 = this.o.Y();
+			Calendar var3 = this.world.Y();
 			if (var3.get(2) + 1 == 10 && var3.get(5) == 31 && this.V.nextFloat() < 0.25F) {
-				this.c(4, new ItemStack(this.V.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
+				this.setArmor(4, new ItemStack(this.V.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
 				this.bh[4] = 0.0F;
 			}
 		}
@@ -194,7 +194,7 @@ public class EntitySkeleton extends EntityMonster implements afr {
 	public void n() {
 		this.i.a((zb) this.c);
 		this.i.a((zb) this.b);
-		ItemStack var1 = this.bz();
+		ItemStack var1 = this.getItemInHand();
 		if (var1 != null && var1.getItem() == Items.BOW) {
 			this.i.a(4, this.b);
 		} else {
@@ -204,10 +204,10 @@ public class EntitySkeleton extends EntityMonster implements afr {
 	}
 
 	public void a(EntityLiving var1, float var2) {
-		EntityArrow var3 = new EntityArrow(this.o, this, var1, 1.6F, (float) (14 - this.o.getDifficulty().getId() * 4));
-		int var4 = aph.a(Enchantment.ARROW_DAMAGE.id, this.bz());
-		int var5 = aph.a(Enchantment.ARROW_KNOCKBACK.id, this.bz());
-		var3.b((double) (var2 * 2.0F) + this.V.nextGaussian() * 0.25D + (double) ((float) this.o.getDifficulty().getId() * 0.11F));
+		EntityArrow var3 = new EntityArrow(this.world, this, var1, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
+		int var4 = aph.a(Enchantment.ARROW_DAMAGE.id, this.getItemInHand());
+		int var5 = aph.a(Enchantment.ARROW_KNOCKBACK.id, this.getItemInHand());
+		var3.b((double) (var2 * 2.0F) + this.V.nextGaussian() * 0.25D + (double) ((float) this.world.getDifficulty().getId() * 0.11F));
 		if (var4 > 0) {
 			var3.b(var3.j() + (double) var4 * 0.5D + 0.5D);
 		}
@@ -216,12 +216,12 @@ public class EntitySkeleton extends EntityMonster implements afr {
 			var3.a(var5);
 		}
 
-		if (aph.a(Enchantment.ARROW_FIRE.id, this.bz()) > 0 || this.ck() == 1) {
+		if (aph.a(Enchantment.ARROW_FIRE.id, this.getItemInHand()) > 0 || this.ck() == 1) {
 			var3.e(100);
 		}
 
 		this.a("random.bow", 1.0F, 1.0F / (this.bb().nextFloat() * 0.4F + 0.8F));
-		this.o.d((Entity) var3);
+		this.world.d((Entity) var3);
 	}
 
 	public int ck() {
@@ -254,9 +254,9 @@ public class EntitySkeleton extends EntityMonster implements afr {
 		var1.put("SkeletonType", (byte) this.ck());
 	}
 
-	public void c(int var1, ItemStack var2) {
-		super.c(var1, var2);
-		if (!this.o.D && var1 == 0) {
+	public void setArmor(int var1, ItemStack var2) {
+		super.setArmor(var1, var2);
+		if (!this.world.D && var1 == 0) {
 			this.n();
 		}
 

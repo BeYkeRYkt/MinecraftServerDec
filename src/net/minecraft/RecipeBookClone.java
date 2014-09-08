@@ -9,7 +9,7 @@ public class RecipeBookClone implements IRecipe {
 		for (int var5 = 0; var5 < var1.n_(); ++var5) {
 			ItemStack var6 = var1.a(var5);
 			if (var6 != null) {
-				if (var6.getItem() == Items.WRITTEN_BOK) {
+				if (var6.getItem() == Items.WRITTEN_BOOK) {
 					if (var4 != null) {
 						return false;
 					}
@@ -35,7 +35,7 @@ public class RecipeBookClone implements IRecipe {
 		for (int var4 = 0; var4 < var1.n_(); ++var4) {
 			ItemStack var5 = var1.a(var4);
 			if (var5 != null) {
-				if (var5.getItem() == Items.WRITTEN_BOK) {
+				if (var5.getItem() == Items.WRITTEN_BOOK) {
 					if (var3 != null) {
 						return null;
 					}
@@ -52,8 +52,8 @@ public class RecipeBookClone implements IRecipe {
 		}
 
 		if (var3 != null && var2 >= 1 && ItemWrittenBook.h(var3) < 2) {
-			ItemStack var6 = new ItemStack(Items.WRITTEN_BOK, var2);
-			var6.d((NBTCompoundTag) var3.getTag().getCopy());
+			ItemStack var6 = new ItemStack(Items.WRITTEN_BOOK, var2);
+			var6.setTag((NBTCompoundTag) var3.getTag().getCopy());
 			var6.getTag().put("generation", ItemWrittenBook.h(var3) + 1);
 			if (var3.s()) {
 				var6.c(var3.q());

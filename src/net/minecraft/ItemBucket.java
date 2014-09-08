@@ -27,8 +27,8 @@ public class ItemBucket extends Item {
 						return var1;
 					}
 
-					bec var7 = var2.p(var6);
-					Material var8 = var7.getBlock().r();
+					BlockState var7 = var2.getBlockState(var6);
+					Material var8 = var7.getBlock().getMaterial();
 					if (var8 == Material.WATER && ((Integer) var7.b(axl.b)).intValue() == 0) {
 						var2.g(var6);
 						var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
@@ -50,7 +50,7 @@ public class ItemBucket extends Item {
 						return var1;
 					}
 
-					if (this.a(var2, var9) && !var3.by.instabuild) {
+					if (this.a(var2, var9) && !var3.playerProperties.instabuild) {
 						var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
 						return new ItemStack(Items.BUCKET);
 					}
@@ -62,13 +62,13 @@ public class ItemBucket extends Item {
 	}
 
 	private ItemStack a(ItemStack var1, EntityHuman var2, Item var3) {
-		if (var2.by.instabuild) {
+		if (var2.playerProperties.instabuild) {
 			return var1;
-		} else if (--var1.b <= 0) {
+		} else if (--var1.amount <= 0) {
 			return new ItemStack(var3);
 		} else {
 			if (!var2.playerInventory.a(new ItemStack(var3))) {
-				var2.a(new ItemStack(var3, 1, 0), false);
+				var2.dropItem(new ItemStack(var3, 1, 0), false);
 			}
 
 			return var1;
@@ -79,7 +79,7 @@ public class ItemBucket extends Item {
 		if (this.a == Blocks.AIR) {
 			return false;
 		} else {
-			Material var3 = var1.p(var2).getBlock().r();
+			Material var3 = var1.getBlockState(var2).getBlock().getMaterial();
 			boolean var4 = !var3.isBuildable();
 			if (!var1.d(var2) && !var4) {
 				return false;
@@ -98,7 +98,7 @@ public class ItemBucket extends Item {
 						var1.b(var2, true);
 					}
 
-					var1.a(var2, this.a.P(), 3);
+					var1.a(var2, this.a.getBlockState(), 3);
 				}
 
 				return true;

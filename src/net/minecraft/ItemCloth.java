@@ -13,6 +13,6 @@ public class ItemCloth extends ItemBlock {
 	}
 
 	public String getName(ItemStack var1) {
-		return super.getName() + "." + akv.b(var1.i()).d();
+		return super.getName() + "." + akv.b(var1.getDurability()).d();
 	}
 }

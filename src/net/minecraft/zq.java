@@ -9,7 +9,7 @@ public class zq extends zb {
 
 	public zq(EntityInsentient var1) {
 		this.b = var1;
-		this.a = var1.o;
+		this.a = var1.world;
 		this.a(3);
 	}
 
@@ -24,7 +24,7 @@ public class zq extends zb {
 	}
 
 	public boolean b() {
-		return !this.c.ai() ? false : (this.b.h(this.c) > 225.0D ? false : !this.b.s().m() || this.a());
+		return !this.c.isAlive() ? false : (this.b.getDistanceSquared(this.c) > 225.0D ? false : !this.b.s().m() || this.a());
 	}
 
 	public void d() {
@@ -35,7 +35,7 @@ public class zq extends zb {
 	public void e() {
 		this.b.p().a(this.c, 30.0F, 30.0F);
 		double var1 = (double) (this.b.J * 2.0F * this.b.J * 2.0F);
-		double var3 = this.b.e(this.c.locationX, this.c.aQ().minY, this.c.locationZ);
+		double var3 = this.b.getDistanceSquared(this.c.locationX, this.c.aQ().minY, this.c.locationZ);
 		double var5 = 0.8D;
 		if (var3 > var1 && var3 < 16.0D) {
 			var5 = 1.33D;

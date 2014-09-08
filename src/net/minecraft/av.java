@@ -18,7 +18,7 @@ class av implements Predicate {
 	}
 
 	public boolean a(Achievement var1) {
-		return this.a.A().a(var1) && var1 != this.b;
+		return this.a.getStatisticManager().a(var1) && var1 != this.b;
 	}
 
 	// $FF: synthetic method

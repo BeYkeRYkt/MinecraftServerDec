@@ -21,8 +21,8 @@ public class SummonCommand extends AbstractCommand {
 			throw new dp("commands.summon.usage", new Object[0]);
 		} else {
 			String var3 = var2[0];
-			Position var4 = var1.c();
-			Vec3D var5 = var1.d();
+			Position var4 = var1.getEntityPosition();
+			Vec3D var5 = var1.getCenter();
 			double var6 = var5.x;
 			double var8 = var5.y;
 			double var10 = var5.z;
@@ -33,8 +33,8 @@ public class SummonCommand extends AbstractCommand {
 				var4 = new Position(var6, var8, var10);
 			}
 
-			World var12 = var1.e();
-			if (!var12.e(var4)) {
+			World var12 = var1.getWorld();
+			if (!var12.isLoaded(var4)) {
 				throw new di("commands.summon.outOfWorld", new Object[0]);
 			} else if ("LightningBolt".equals(var3)) {
 				var12.c((Entity) (new EntityLightning(var12, var6, var8, var10)));
@@ -65,7 +65,7 @@ public class SummonCommand extends AbstractCommand {
 				if (var21 == null) {
 					throw new di("commands.summon.failed", new Object[0]);
 				} else {
-					var21.b(var6, var8, var10, var21.yaw, var21.pitch);
+					var21.setPositionRotation(var6, var8, var10, var21.yaw, var21.pitch);
 					if (!var14 && var21 instanceof EntityInsentient) {
 						((EntityInsentient) var21).a(var12.E(new Position(var21)), (xq) null);
 					}
@@ -76,7 +76,7 @@ public class SummonCommand extends AbstractCommand {
 					for (NBTCompoundTag var17 = var13; var16 != null && var17.isTagAssignableFrom("Riding", 10); var17 = var17.getCompound("Riding")) {
 						Entity var18 = EntityTypes.loadEntity(var17.getCompound("Riding"), var12);
 						if (var18 != null) {
-							var18.b(var6, var8, var10, var18.yaw, var18.pitch);
+							var18.setPositionRotation(var6, var8, var10, var18.yaw, var18.pitch);
 							var12.d(var18);
 							var16.a(var18);
 						}

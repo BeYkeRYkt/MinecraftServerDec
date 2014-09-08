@@ -67,11 +67,11 @@ public class bjj extends bms {
 		if (this.a(var1, var3)) {
 			return false;
 		} else {
-			this.a(var1, var3, 0, 5, 0, 2, 7, 1, Blocks.AIR.P(), Blocks.AIR.P(), false);
-			this.a(var1, var3, 0, 0, 7, 2, 2, 8, Blocks.AIR.P(), Blocks.AIR.P(), false);
+			this.a(var1, var3, 0, 5, 0, 2, 7, 1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+			this.a(var1, var3, 0, 0, 7, 2, 2, 8, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 
 			for (int var4 = 0; var4 < 5; ++var4) {
-				this.a(var1, var3, 0, 5 - var4 - (var4 < 4 ? 1 : 0), 2 + var4, 2, 7 - var4, 2 + var4, Blocks.AIR.P(), Blocks.AIR.P(), false);
+				this.a(var1, var3, 0, 5 - var4 - (var4 < 4 ? 1 : 0), 2 + var4, 2, 7 - var4, 2 + var4, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 			}
 
 			return true;

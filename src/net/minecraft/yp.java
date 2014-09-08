@@ -27,7 +27,7 @@ public class yp extends zb {
 	}
 
 	public boolean a() {
-		List var1 = this.b.o.a((Entity) this.b, this.b.aQ().b((double) this.f, 3.0D, (double) this.f), Predicates.and(new Predicate[] { EntityPredicates.d, this.a, this.i }));
+		List var1 = this.b.world.a((Entity) this.b, this.b.aQ().b((double) this.f, 3.0D, (double) this.f), Predicates.and(new Predicate[] { EntityPredicates.d, this.a, this.i }));
 		if (var1.isEmpty()) {
 			return false;
 		} else {
@@ -35,7 +35,7 @@ public class yp extends zb {
 			Vec3D var2 = abf.b(this.b, 16, 7, new Vec3D(this.c.locationX, this.c.locationY, this.c.locationZ));
 			if (var2 == null) {
 				return false;
-			} else if (this.c.e(var2.x, var2.y, var2.z) < this.c.h(this.b)) {
+			} else if (this.c.getDistanceSquared(var2.x, var2.y, var2.z) < this.c.getDistanceSquared(this.b)) {
 				return false;
 			} else {
 				this.g = this.h.a(var2.x, var2.y, var2.z);
@@ -57,7 +57,7 @@ public class yp extends zb {
 	}
 
 	public void e() {
-		if (this.b.h(this.c) < 49.0D) {
+		if (this.b.getDistanceSquared(this.c) < 49.0D) {
 			this.b.s().a(this.e);
 		} else {
 			this.b.s().a(this.d);

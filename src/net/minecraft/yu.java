@@ -25,7 +25,7 @@ public class yu extends zb {
 	}
 
 	public boolean a() {
-		return this.a.ai() && this.a.l != null && this.a.l instanceof EntityHuman && (this.d || this.a.bV());
+		return this.a.isAlive() && this.a.l != null && this.a.l instanceof EntityHuman && (this.d || this.a.bV());
 	}
 
 	public void e() {
@@ -63,7 +63,7 @@ public class yu extends zb {
 
 		float var8 = 0.91F;
 		if (this.a.onGround) {
-			var8 = this.a.o.p(new Position(DataTypesConverter.d((float) var4), DataTypesConverter.d((float) var5) - 1, DataTypesConverter.d((float) var6))).getBlock().K * 0.91F;
+			var8 = this.a.world.getBlockState(new Position(DataTypesConverter.d((float) var4), DataTypesConverter.d((float) var5) - 1, DataTypesConverter.d((float) var6))).getBlock().K * 0.91F;
 		}
 
 		float var9 = 0.16277136F / (var8 * var8 * var8);
@@ -102,21 +102,21 @@ public class yu extends zb {
 		int var20 = DataTypesConverter.d(this.a.K + var1.K + 1.0F);
 		int var21 = DataTypesConverter.d(this.a.J + 1.0F);
 		if (var4 != var17 || var6 != var18) {
-			Block var22 = this.a.o.p(new Position(var4, var5, var6)).getBlock();
-			boolean var23 = !this.a(var22) && (var22.r() != Material.AIR || !this.a(this.a.o.p(new Position(var4, var5 - 1, var6)).getBlock()));
-			if (var23 && 0 == bpy.a(this.a.o, this.a, var17, var5, var18, var19, var20, var21, false, false, true) && 1 == bpy.a(this.a.o, this.a, var4, var5 + 1, var6, var19, var20, var21, false, false, true) && 1 == bpy.a(this.a.o, this.a, var17, var5 + 1, var18, var19, var20, var21, false, false, true)) {
+			Block var22 = this.a.world.getBlockState(new Position(var4, var5, var6)).getBlock();
+			boolean var23 = !this.a(var22) && (var22.getMaterial() != Material.AIR || !this.a(this.a.world.getBlockState(new Position(var4, var5 - 1, var6)).getBlock()));
+			if (var23 && 0 == bpy.a(this.a.world, this.a, var17, var5, var18, var19, var20, var21, false, false, true) && 1 == bpy.a(this.a.world, this.a, var4, var5 + 1, var6, var19, var20, var21, false, false, true) && 1 == bpy.a(this.a.world, this.a, var17, var5 + 1, var18, var19, var20, var21, false, false, true)) {
 				var2.r().a();
 			}
 		}
 
-		if (!var1.by.instabuild && this.c >= this.b * 0.5F && this.a.bb().nextFloat() < 0.006F && !this.d) {
-			ItemStack var24 = var1.bz();
+		if (!var1.playerProperties.instabuild && this.c >= this.b * 0.5F && this.a.bb().nextFloat() < 0.006F && !this.d) {
+			ItemStack var24 = var1.getItemInHand();
 			if (var24 != null && var24.getItem() == Items.CARROT_ON_A_STICK) {
 				var24.a(1, (EntityLiving) var1);
-				if (var24.b == 0) {
+				if (var24.amount == 0) {
 					ItemStack var25 = new ItemStack(Items.FISHING_ROD);
-					var25.d(var24.getTag());
-					var1.playerInventory.contents[var1.playerInventory.c] = var25;
+					var25.setTag(var24.getTag());
+					var1.playerInventory.contents[var1.playerInventory.itemInHandIndex] = var25;
 				}
 			}
 		}

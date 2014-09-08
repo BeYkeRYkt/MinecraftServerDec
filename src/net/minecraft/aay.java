@@ -18,7 +18,7 @@ public class aay extends aaz {
 	}
 
 	protected boolean b() {
-		return this.b.onGround || this.h() && this.o() || this.b.av() && this.b instanceof EntityZombie && this.b.m instanceof EntityChicken;
+		return this.b.onGround || this.h() && this.o() || this.b.av() && this.b instanceof EntityZombie && this.b.vehicle instanceof EntityChicken;
 	}
 
 	protected Vec3D c() {
@@ -28,7 +28,7 @@ public class aay extends aaz {
 	private int p() {
 		if (this.b.V() && this.h()) {
 			int var1 = (int) this.b.aQ().minY;
-			Block var2 = this.c.p(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).getBlock();
+			Block var2 = this.c.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).getBlock();
 			int var3 = 0;
 
 			do {
@@ -37,7 +37,7 @@ public class aay extends aaz {
 				}
 
 				++var1;
-				var2 = this.c.p(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).getBlock();
+				var2 = this.c.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).getBlock();
 				++var3;
 			} while (var3 <= 16);
 
@@ -137,8 +137,8 @@ public class aay extends aaz {
 					double var16 = (double) var14 + 0.5D - var7.x;
 					double var18 = (double) var15 + 0.5D - var7.z;
 					if (var16 * var8 + var18 * var10 >= 0.0D) {
-						Block var20 = this.c.p(new Position(var14, var2 - 1, var15)).getBlock();
-						Material var21 = var20.r();
+						Block var20 = this.c.getBlockState(new Position(var14, var2 - 1, var15)).getBlock();
+						Material var21 = var20.getMaterial();
 						if (var21 == Material.AIR) {
 							return false;
 						}
@@ -166,7 +166,7 @@ public class aay extends aaz {
 			double var14 = (double) var13.getX() + 0.5D - var7.x;
 			double var16 = (double) var13.getZ() + 0.5D - var7.z;
 			if (var14 * var8 + var16 * var10 >= 0.0D) {
-				Block var18 = this.c.p(var13).getBlock();
+				Block var18 = this.c.getBlockState(var13).getBlock();
 				if (!var18.b(this.c, var13)) {
 					return false;
 				}

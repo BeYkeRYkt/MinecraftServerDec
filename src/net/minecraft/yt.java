@@ -14,7 +14,7 @@ public class yt extends zb {
 
 	public yt(abq var1, double var2) {
 		this.d = var1;
-		this.a = var1.o;
+		this.a = var1.world;
 		this.c = var2;
 		this.a(3);
 	}
@@ -29,7 +29,7 @@ public class yt extends zb {
 	}
 
 	public boolean b() {
-		return this.e.ai() && this.e.cp() && this.b < 60;
+		return this.e.isAlive() && this.e.cp() && this.b < 60;
 	}
 
 	public void d() {
@@ -41,7 +41,7 @@ public class yt extends zb {
 		this.d.p().a(this.e, 10.0F, (float) this.d.bP());
 		this.d.s().a((Entity) this.e, this.c);
 		++this.b;
-		if (this.b >= 60 && this.d.h(this.e) < 9.0D) {
+		if (this.b >= 60 && this.d.getDistanceSquared(this.e) < 9.0D) {
 			this.g();
 		}
 
@@ -56,9 +56,9 @@ public class yt extends zb {
 
 		while (var6.hasNext()) {
 			abq var7 = (abq) var6.next();
-			if (this.d.a(var7) && this.d.h(var7) < var3) {
+			if (this.d.a(var7) && this.d.getDistanceSquared(var7) < var3) {
 				var5 = var7;
-				var3 = this.d.h(var7);
+				var3 = this.d.getDistanceSquared(var7);
 			}
 		}
 
@@ -85,7 +85,7 @@ public class yt extends zb {
 			this.d.cq();
 			this.e.cq();
 			var1.b(-24000);
-			var1.b(this.d.locationX, this.d.locationY, this.d.locationZ, 0.0F, 0.0F);
+			var1.setPositionRotation(this.d.locationX, this.d.locationY, this.d.locationZ, 0.0F, 0.0F);
 			this.a.d((Entity) var1);
 			Random var3 = this.d.bb();
 

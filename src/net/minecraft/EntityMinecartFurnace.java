@@ -35,7 +35,7 @@ public class EntityMinecartFurnace extends adx {
 
 		this.i(this.c > 0);
 		if (this.j() && this.V.nextInt(4) == 0) {
-			this.o.a(Particle.m, this.locationX, this.locationY + 0.8D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.world.a(Particle.m, this.locationX, this.locationY + 0.8D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 	}
@@ -52,7 +52,7 @@ public class EntityMinecartFurnace extends adx {
 
 	}
 
-	protected void a(Position var1, bec var2) {
+	protected void a(Position var1, BlockState var2) {
 		super.a(var1, var2);
 		double var3 = this.a * this.a + this.b * this.b;
 		if (var3 > 1.0E-4D && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.001D) {
@@ -95,8 +95,8 @@ public class EntityMinecartFurnace extends adx {
 	public boolean e(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (var2 != null && var2.getItem() == Items.COAL) {
-			if (!var1.by.instabuild && --var2.b == 0) {
-				var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
+			if (!var1.playerProperties.instabuild && --var2.amount == 0) {
+				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 
 			this.c += 3600;
@@ -134,7 +134,7 @@ public class EntityMinecartFurnace extends adx {
 
 	}
 
-	public bec u() {
-		return (this.j() ? Blocks.LIT_FURNACE : Blocks.FURNACE).P().a(BlockFurnace.a, BlockFace.NORTH);
+	public BlockState u() {
+		return (this.j() ? Blocks.LIT_FURNACE : Blocks.FURNACE).getBlockState().a(BlockFurnace.a, BlockFace.NORTH);
 	}
 }

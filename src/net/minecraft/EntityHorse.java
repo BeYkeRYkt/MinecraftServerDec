@@ -81,7 +81,7 @@ public class EntityHorse extends abq implements vr {
 		return this.dataWatcher.c(20);
 	}
 
-	public String d_() {
+	public String getName() {
 		if (this.k_()) {
 			return this.aL();
 		} else {
@@ -257,12 +257,12 @@ public class EntityHorse extends abq implements vr {
 	public boolean cB() {
 		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
 		int var2 = DataTypesConverter.toFixedPointInt(this.locationZ);
-		this.o.b(new Position(var1, 0, var2));
+		this.world.b(new Position(var1, 0, var2));
 		return true;
 	}
 
 	public void cC() {
-		if (!this.o.D && this.cu()) {
+		if (!this.world.D && this.cu()) {
 			this.a(Item.getItemOf((Block) Blocks.CHEST), 1);
 			this.o(false);
 		}
@@ -271,7 +271,7 @@ public class EntityHorse extends abq implements vr {
 	private void cW() {
 		this.dd();
 		if (!this.R()) {
-			this.o.a((Entity) this, "eating", 1.0F, 1.0F + (this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
+			this.world.a((Entity) this, "eating", 1.0F, 1.0F + (this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
 		}
 
 	}
@@ -288,10 +288,10 @@ public class EntityHorse extends abq implements vr {
 				this.l.a(DamageSource.i, (float) var3);
 			}
 
-			Block var4 = this.o.p(new Position(this.locationX, this.locationY - 0.2D - (double) this.A, this.locationZ)).getBlock();
-			if (var4.r() != Material.AIR && !this.R()) {
+			Block var4 = this.world.getBlockState(new Position(this.locationX, this.locationY - 0.2D - (double) this.A, this.locationZ)).getBlock();
+			if (var4.getMaterial() != Material.AIR && !this.R()) {
 				BlockSound var5 = var4.H;
-				this.o.a((Entity) this, var5.c(), var5.d() * 0.5F, var5.e() * 0.75F);
+				this.world.a((Entity) this, var5.c(), var5.d() * 0.5F, var5.e() * 0.75F);
 			}
 
 		}
@@ -305,7 +305,7 @@ public class EntityHorse extends abq implements vr {
 	private void cY() {
 		aic var1 = this.bC;
 		this.bC = new aic("HorseChest", this.cX());
-		this.bC.a(this.d_());
+		this.bC.a(this.getName());
 		if (var1 != null) {
 			var1.b(this);
 			int var2 = Math.min(var1.n_(), this.bC.n_());
@@ -323,7 +323,7 @@ public class EntityHorse extends abq implements vr {
 	}
 
 	private void cZ() {
-		if (!this.o.D) {
+		if (!this.world.D) {
 			this.q(this.bC.a(0) != null);
 			if (this.cM()) {
 				this.e(this.bC.a(1));
@@ -358,12 +358,12 @@ public class EntityHorse extends abq implements vr {
 	protected EntityHorse a(Entity var1, double var2) {
 		double var4 = Double.MAX_VALUE;
 		Entity var6 = null;
-		List var7 = this.o.a(var1, var1.aQ().a(var2, var2, var2), bq);
+		List var7 = this.world.a(var1, var1.aQ().a(var2, var2, var2), bq);
 		Iterator var8 = var7.iterator();
 
 		while (var8.hasNext()) {
 			Entity var9 = (Entity) var8.next();
-			double var10 = var9.e(var1.locationX, var1.locationY, var1.locationZ);
+			double var10 = var9.getDistanceSquared(var1.locationX, var1.locationY, var1.locationZ);
 			if (var10 < var4) {
 				var6 = var9;
 				var4 = var10;
@@ -422,11 +422,11 @@ public class EntityHorse extends abq implements vr {
 
 	protected void a(Position var1, Block var2) {
 		BlockSound var3 = var2.H;
-		if (this.o.p(var1.a()).getBlock() == Blocks.SNOW_LAYER) {
+		if (this.world.getBlockState(var1.a()).getBlock() == Blocks.SNOW_LAYER) {
 			var3 = Blocks.SNOW_LAYER.H;
 		}
 
-		if (!var2.r().isLiquid()) {
+		if (!var2.getMaterial().isLiquid()) {
 			int var4 = this.cj();
 			if (this.l != null && var4 != 1 && var4 != 2) {
 				++this.bL;
@@ -474,10 +474,10 @@ public class EntityHorse extends abq implements vr {
 		this.bM = null;
 	}
 
-	public void g(EntityHuman var1) {
-		if (!this.o.D && (this.l == null || this.l == var1) && this.cm()) {
-			this.bC.a(this.d_());
-			var1.a(this, this.bC);
+	public void openChest(EntityHuman human) {
+		if (!this.world.D && (this.l == null || this.l == human) && this.cm()) {
+			this.bC.a(this.getName());
+			human.a(this, this.bC);
 		}
 
 	}
@@ -489,7 +489,7 @@ public class EntityHorse extends abq implements vr {
 		} else if (!this.cm() && this.cP()) {
 			return false;
 		} else if (this.cm() && this.cl() && var1.aw()) {
-			this.g(var1);
+			this.openChest(var1);
 			return true;
 		} else if (this.cn() && this.l != null) {
 			return super.a(var1);
@@ -512,7 +512,7 @@ public class EntityHorse extends abq implements vr {
 							return true;
 						}
 
-						this.g(var1);
+						this.openChest(var1);
 						return true;
 					}
 				}
@@ -554,7 +554,7 @@ public class EntityHorse extends abq implements vr {
 						}
 					}
 
-					if (this.bm() < this.bt() && var7 > 0.0F) {
+					if (this.getHealth() < this.bt() && var7 > 0.0F) {
 						this.g(var7);
 						var3 = true;
 					}
@@ -591,13 +591,13 @@ public class EntityHorse extends abq implements vr {
 				}
 
 				if (!var3 && this.cn() && !this.cE() && var2.getItem() == Items.SADDLE) {
-					this.g(var1);
+					this.openChest(var1);
 					return true;
 				}
 
 				if (var3) {
-					if (!var1.by.instabuild && --var2.b == 0) {
-						var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
+					if (!var1.playerProperties.instabuild && --var2.amount == 0) {
+						var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 					}
 
 					return true;
@@ -622,7 +622,7 @@ public class EntityHorse extends abq implements vr {
 		var1.pitch = this.pitch;
 		this.r(false);
 		this.s(false);
-		if (!this.o.D) {
+		if (!this.world.D) {
 			var1.a((Entity) this);
 		}
 
@@ -660,7 +660,7 @@ public class EntityHorse extends abq implements vr {
 
 	public void a(DamageSource var1) {
 		super.a(var1);
-		if (!this.o.D) {
+		if (!this.world.D) {
 			this.cV();
 		}
 
@@ -672,12 +672,12 @@ public class EntityHorse extends abq implements vr {
 		}
 
 		super.m();
-		if (!this.o.D) {
+		if (!this.world.D) {
 			if (this.V.nextInt(900) == 0 && this.av == 0) {
 				this.g(1.0F);
 			}
 
-			if (!this.cw() && this.l == null && this.V.nextInt(300) == 0 && this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.locationY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock() == Blocks.GRASS) {
+			if (!this.cw() && this.l == null && this.V.nextInt(300) == 0 && this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.locationY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock() == Blocks.GRASS) {
 				this.r(true);
 			}
 
@@ -688,7 +688,7 @@ public class EntityHorse extends abq implements vr {
 
 			if (this.cy() && !this.cl() && !this.cw()) {
 				EntityHorse var1 = this.a(this, 16.0D);
-				if (var1 != null && this.h(var1) > 4.0D) {
+				if (var1 != null && this.getDistanceSquared(var1) > 4.0D) {
 					this.h.a((Entity) var1);
 				}
 			}
@@ -698,7 +698,7 @@ public class EntityHorse extends abq implements vr {
 
 	public void s_() {
 		super.s_();
-		if (this.o.D && this.dataWatcher.a()) {
+		if (this.world.D && this.dataWatcher.a()) {
 			this.dataWatcher.e();
 			this.da();
 		}
@@ -708,7 +708,7 @@ public class EntityHorse extends abq implements vr {
 			this.c(128, false);
 		}
 
-		if (!this.o.D && this.bB > 0 && ++this.bB > 20) {
+		if (!this.world.D && this.bB > 0 && ++this.bB > 20) {
 			this.bB = 0;
 			this.s(false);
 		}
@@ -768,7 +768,7 @@ public class EntityHorse extends abq implements vr {
 	}
 
 	private void dd() {
-		if (!this.o.D) {
+		if (!this.world.D) {
 			this.bA = 1;
 			this.c(128, true);
 		}
@@ -776,7 +776,7 @@ public class EntityHorse extends abq implements vr {
 	}
 
 	private boolean de() {
-		return this.l == null && this.m == null && this.cm() && this.cl() && !this.cQ() && this.bm() >= this.bt() && this.cp();
+		return this.l == null && this.vehicle == null && this.cm() && this.cl() && !this.cQ() && this.getHealth() >= this.bt() && this.cp();
 	}
 
 	public void f(boolean var1) {
@@ -796,7 +796,7 @@ public class EntityHorse extends abq implements vr {
 	}
 
 	private void df() {
-		if (!this.o.D) {
+		if (!this.world.D) {
 			this.bB = 1;
 			this.s(true);
 		}
@@ -818,7 +818,7 @@ public class EntityHorse extends abq implements vr {
 	}
 
 	private void a(Entity var1, aic var2) {
-		if (var2 != null && !this.o.D) {
+		if (var2 != null && !this.world.D) {
 			for (int var3 = 0; var3 < var2.n_(); ++var3) {
 				ItemStack var4 = var2.a(var3);
 				if (var4 != null) {
@@ -874,7 +874,7 @@ public class EntityHorse extends abq implements vr {
 
 			this.S = 1.0F;
 			this.aK = this.bH() * 0.1F;
-			if (!this.o.D) {
+			if (!this.world.D) {
 				this.j((float) this.a(afs.d).e());
 				super.g(var1, var2);
 			}
@@ -920,7 +920,7 @@ public class EntityHorse extends abq implements vr {
 				if (var4 != null) {
 					NBTCompoundTag var5 = new NBTCompoundTag();
 					var5.put("Slot", (byte) var3);
-					var4.b(var5);
+					var4.write(var5);
 					var2.addTag((NBTTag) var5);
 				}
 			}
@@ -929,11 +929,11 @@ public class EntityHorse extends abq implements vr {
 		}
 
 		if (this.bC.a(1) != null) {
-			var1.put("ArmorItem", (NBTTag) this.bC.a(1).b(new NBTCompoundTag()));
+			var1.put("ArmorItem", (NBTTag) this.bC.a(1).write(new NBTCompoundTag()));
 		}
 
 		if (this.bC.a(0) != null) {
-			var1.put("SaddleItem", (NBTTag) this.bC.a(0).b(new NBTCompoundTag()));
+			var1.put("SaddleItem", (NBTTag) this.bC.a(0).write(new NBTCompoundTag()));
 		}
 
 	}
@@ -1017,7 +1017,7 @@ public class EntityHorse extends abq implements vr {
 
 	public ws a(ws var1) {
 		EntityHorse var2 = (EntityHorse) var1;
-		EntityHorse var3 = new EntityHorse(this.o);
+		EntityHorse var3 = new EntityHorse(this.world);
 		int var4 = this.cj();
 		int var5 = var2.cj();
 		int var6 = 0;
@@ -1109,19 +1109,19 @@ public class EntityHorse extends abq implements vr {
 		return (xq) var7;
 	}
 
-	public void v(int var1) {
+	public void jump(int boost) {
 		if (this.cE()) {
-			if (var1 < 0) {
-				var1 = 0;
+			if (boost < 0) {
+				boost = 0;
 			} else {
 				this.bE = true;
 				this.df();
 			}
 
-			if (var1 >= 90) {
+			if (boost >= 90) {
 				this.bp = 1.0F;
 			} else {
-				this.bp = 0.4F + 0.4F * (float) var1 / 90.0F;
+				this.bp = 0.4F + 0.4F * (float) boost / 90.0F;
 			}
 		}
 

@@ -13,14 +13,14 @@ public class ItemArmorStand extends Item {
 		if (var5 == BlockFace.DOWN) {
 			return false;
 		} else {
-			boolean var9 = var3.p(var4).getBlock().f(var3, var4);
+			boolean var9 = var3.getBlockState(var4).getBlock().f(var3, var4);
 			Position var10 = var9 ? var4 : var4.a(var5);
 			if (!var2.a(var10, var5, var1)) {
 				return false;
 			} else {
 				Position var11 = var10.a();
-				boolean var12 = !var3.d(var10) && !var3.p(var10).getBlock().f(var3, var10);
-				var12 |= !var3.d(var11) && !var3.p(var11).getBlock().f(var3, var11);
+				boolean var12 = !var3.d(var10) && !var3.getBlockState(var10).getBlock().f(var3, var10);
+				var12 |= !var3.d(var11) && !var3.getBlockState(var11).getBlock().f(var3, var11);
 				if (var12) {
 					return false;
 				} else {
@@ -36,7 +36,7 @@ public class ItemArmorStand extends Item {
 							var3.g(var11);
 							EntityArmorStand var20 = new EntityArmorStand(var3, var13 + 0.5D, var15, var17 + 0.5D);
 							float var21 = (float) DataTypesConverter.d((DataTypesConverter.g(var2.yaw - 180.0F) + 22.5F) / 45.0F) * 45.0F;
-							var20.b(var13 + 0.5D, var15, var17 + 0.5D, var21, 0.0F);
+							var20.setPositionRotation(var13 + 0.5D, var15, var17 + 0.5D, var21, 0.0F);
 							this.a(var20, var3.s);
 							NBTCompoundTag var22 = var1.getTag();
 							if (var22 != null && var22.isTagAssignableFrom("EntityTag", 10)) {
@@ -49,7 +49,7 @@ public class ItemArmorStand extends Item {
 							var3.d((Entity) var20);
 						}
 
-						--var1.b;
+						--var1.amount;
 						return true;
 					}
 				}

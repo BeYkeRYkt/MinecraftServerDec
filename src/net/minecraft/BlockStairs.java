@@ -12,13 +12,13 @@ public class BlockStairs extends Block {
 	public static final bev M = bev.a("shape", bav.class);
 	private static final int[][] N = new int[][] { { 4, 5 }, { 5, 7 }, { 6, 7 }, { 4, 6 }, { 0, 1 }, { 1, 3 }, { 2, 3 }, { 0, 2 } };
 	private final Block O;
-	private final bec P;
+	private final BlockState P;
 	private boolean Q;
 	private int R;
 
-	protected BlockStairs(bec var1) {
+	protected BlockStairs(BlockState var1) {
 		super(var1.getBlock().material);
-		this.j(this.L.b().a(a, BlockFace.NORTH).a(b, bau.b).a(M, bav.a));
+		this.setBlockState(this.L.b().a(a, BlockFace.NORTH).a(b, bau.b).a(M, bav.a));
 		this.O = var1.getBlock();
 		this.P = var1;
 		this.c(this.O.w);
@@ -46,7 +46,7 @@ public class BlockStairs extends Block {
 	}
 
 	public void e(ard var1, Position var2) {
-		if (var1.p(var2).b(b) == bau.a) {
+		if (var1.getBlockState(var2).b(b) == bau.a) {
 			this.a(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
 		} else {
 			this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
@@ -58,22 +58,22 @@ public class BlockStairs extends Block {
 		return var0 instanceof BlockStairs;
 	}
 
-	public static boolean a(ard var0, Position var1, bec var2) {
-		bec var3 = var0.p(var1);
+	public static boolean a(ard var0, Position var1, BlockState var2) {
+		BlockState var3 = var0.getBlockState(var1);
 		Block var4 = var3.getBlock();
 		return c(var4) && var3.b(b) == var2.b(b) && var3.b(a) == var2.b(a);
 	}
 
 	public int f(ard var1, Position var2) {
-		bec var3 = var1.p(var2);
+		BlockState var3 = var1.getBlockState(var2);
 		BlockFace var4 = (BlockFace) var3.b(a);
 		bau var5 = (bau) var3.b(b);
 		boolean var6 = var5 == bau.a;
-		bec var7;
+		BlockState var7;
 		Block var8;
 		BlockFace var9;
 		if (var4 == BlockFace.EAST) {
-			var7 = var1.p(var2.f());
+			var7 = var1.getBlockState(var2.f());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
@@ -86,7 +86,7 @@ public class BlockStairs extends Block {
 				}
 			}
 		} else if (var4 == BlockFace.WEST) {
-			var7 = var1.p(var2.e());
+			var7 = var1.getBlockState(var2.e());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
@@ -99,7 +99,7 @@ public class BlockStairs extends Block {
 				}
 			}
 		} else if (var4 == BlockFace.SOUTH) {
-			var7 = var1.p(var2.d());
+			var7 = var1.getBlockState(var2.d());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
@@ -112,7 +112,7 @@ public class BlockStairs extends Block {
 				}
 			}
 		} else if (var4 == BlockFace.NORTH) {
-			var7 = var1.p(var2.c());
+			var7 = var1.getBlockState(var2.c());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
@@ -130,15 +130,15 @@ public class BlockStairs extends Block {
 	}
 
 	public int g(ard var1, Position var2) {
-		bec var3 = var1.p(var2);
+		BlockState var3 = var1.getBlockState(var2);
 		BlockFace var4 = (BlockFace) var3.b(a);
 		bau var5 = (bau) var3.b(b);
 		boolean var6 = var5 == bau.a;
-		bec var7;
+		BlockState var7;
 		Block var8;
 		BlockFace var9;
 		if (var4 == BlockFace.EAST) {
-			var7 = var1.p(var2.e());
+			var7 = var1.getBlockState(var2.e());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
@@ -151,7 +151,7 @@ public class BlockStairs extends Block {
 				}
 			}
 		} else if (var4 == BlockFace.WEST) {
-			var7 = var1.p(var2.f());
+			var7 = var1.getBlockState(var2.f());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
@@ -164,7 +164,7 @@ public class BlockStairs extends Block {
 				}
 			}
 		} else if (var4 == BlockFace.SOUTH) {
-			var7 = var1.p(var2.c());
+			var7 = var1.getBlockState(var2.c());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
@@ -177,7 +177,7 @@ public class BlockStairs extends Block {
 				}
 			}
 		} else if (var4 == BlockFace.NORTH) {
-			var7 = var1.p(var2.d());
+			var7 = var1.getBlockState(var2.d());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
@@ -195,7 +195,7 @@ public class BlockStairs extends Block {
 	}
 
 	public boolean h(ard var1, Position var2) {
-		bec var3 = var1.p(var2);
+		BlockState var3 = var1.getBlockState(var2);
 		BlockFace var4 = (BlockFace) var3.b(a);
 		bau var5 = (bau) var3.b(b);
 		boolean var6 = var5 == bau.a;
@@ -211,13 +211,13 @@ public class BlockStairs extends Block {
 		float var11 = 0.0F;
 		float var12 = 0.5F;
 		boolean var13 = true;
-		bec var14;
+		BlockState var14;
 		Block var15;
 		BlockFace var16;
 		if (var4 == BlockFace.EAST) {
 			var9 = 0.5F;
 			var12 = 1.0F;
-			var14 = var1.p(var2.f());
+			var14 = var1.getBlockState(var2.f());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (BlockFace) var14.b(a);
@@ -232,7 +232,7 @@ public class BlockStairs extends Block {
 		} else if (var4 == BlockFace.WEST) {
 			var10 = 0.5F;
 			var12 = 1.0F;
-			var14 = var1.p(var2.e());
+			var14 = var1.getBlockState(var2.e());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (BlockFace) var14.b(a);
@@ -247,7 +247,7 @@ public class BlockStairs extends Block {
 		} else if (var4 == BlockFace.SOUTH) {
 			var11 = 0.5F;
 			var12 = 1.0F;
-			var14 = var1.p(var2.d());
+			var14 = var1.getBlockState(var2.d());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (BlockFace) var14.b(a);
@@ -260,7 +260,7 @@ public class BlockStairs extends Block {
 				}
 			}
 		} else if (var4 == BlockFace.NORTH) {
-			var14 = var1.p(var2.c());
+			var14 = var1.getBlockState(var2.c());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (BlockFace) var14.b(a);
@@ -279,7 +279,7 @@ public class BlockStairs extends Block {
 	}
 
 	public boolean i(ard var1, Position var2) {
-		bec var3 = var1.p(var2);
+		BlockState var3 = var1.getBlockState(var2);
 		BlockFace var4 = (BlockFace) var3.b(a);
 		bau var5 = (bau) var3.b(b);
 		boolean var6 = var5 == bau.a;
@@ -295,11 +295,11 @@ public class BlockStairs extends Block {
 		float var11 = 0.5F;
 		float var12 = 1.0F;
 		boolean var13 = false;
-		bec var14;
+		BlockState var14;
 		Block var15;
 		BlockFace var16;
 		if (var4 == BlockFace.EAST) {
-			var14 = var1.p(var2.e());
+			var14 = var1.getBlockState(var2.e());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (BlockFace) var14.b(a);
@@ -314,7 +314,7 @@ public class BlockStairs extends Block {
 				}
 			}
 		} else if (var4 == BlockFace.WEST) {
-			var14 = var1.p(var2.f());
+			var14 = var1.getBlockState(var2.f());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var9 = 0.5F;
@@ -331,7 +331,7 @@ public class BlockStairs extends Block {
 				}
 			}
 		} else if (var4 == BlockFace.SOUTH) {
-			var14 = var1.p(var2.c());
+			var14 = var1.getBlockState(var2.c());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var11 = 0.0F;
@@ -346,7 +346,7 @@ public class BlockStairs extends Block {
 				}
 			}
 		} else if (var4 == BlockFace.NORTH) {
-			var14 = var1.p(var2.d());
+			var14 = var1.getBlockState(var2.d());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (BlockFace) var14.b(a);
@@ -367,7 +367,7 @@ public class BlockStairs extends Block {
 		return var13;
 	}
 
-	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, BlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.e(var1, var2);
 		super.a(var1, var2, var3, var4, var5, var6);
 		boolean var7 = this.h(var1, var2);
@@ -383,7 +383,7 @@ public class BlockStairs extends Block {
 		this.O.a(var1, var2, var3);
 	}
 
-	public void d(World var1, Position var2, bec var3) {
+	public void d(World var1, Position var2, BlockState var3) {
 		this.O.d(var1, var2, var3);
 	}
 
@@ -403,7 +403,7 @@ public class BlockStairs extends Block {
 		return this.O.y();
 	}
 
-	public boolean a(bec var1, boolean var2) {
+	public boolean a(BlockState var1, boolean var2) {
 		return this.O.a(var1, var2);
 	}
 
@@ -411,12 +411,12 @@ public class BlockStairs extends Block {
 		return this.O.c(var1, var2);
 	}
 
-	public void c(World var1, Position var2, bec var3) {
+	public void c(World var1, Position var2, BlockState var3) {
 		this.a(var1, var2, this.P, Blocks.AIR);
 		this.O.c(var1, var2, this.P);
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, BlockState var3) {
 		this.O.b(var1, var2, this.P);
 	}
 
@@ -424,11 +424,11 @@ public class BlockStairs extends Block {
 		this.O.a(var1, var2, var3);
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, BlockState var3, Random var4) {
 		this.O.b(var1, var2, var3, var4);
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		return this.O.a(var1, var2, this.P, var4, BlockFace.DOWN, 0.0F, 0.0F, 0.0F);
 	}
 
@@ -436,19 +436,19 @@ public class BlockStairs extends Block {
 		this.O.a(var1, var2, var3);
 	}
 
-	public MaterialMapColor g(bec var1) {
+	public MaterialMapColor g(BlockState var1) {
 		return this.O.g(this.P);
 	}
 
-	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		bec var9 = super.a(var1, var2, var3, var4, var5, var6, var7, var8);
+	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		BlockState var9 = super.a(var1, var2, var3, var4, var5, var6, var7, var8);
 		var9 = var9.a(a, var8.aO()).a(M, bav.a);
 		return var3 != BlockFace.DOWN && (var3 == BlockFace.UP || (double) var5 <= 0.5D) ? var9.a(b, bau.b) : var9.a(b, bau.a);
 	}
 
 	public MovingObjectPosition a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		MovingObjectPosition[] var5 = new MovingObjectPosition[8];
-		bec var6 = var1.p(var2);
+		BlockState var6 = var1.getBlockState(var2);
 		int var7 = ((BlockFace) var6.b(a)).toDirection();
 		boolean var8 = var6.b(b) == bau.a;
 		int[] var9 = N[var7 + (var8 ? 4 : 0)];
@@ -488,13 +488,13 @@ public class BlockStairs extends Block {
 		return var20;
 	}
 
-	public bec a(int var1) {
-		bec var2 = this.P().a(b, (var1 & 4) > 0 ? bau.a : bau.b);
+	public BlockState a(int var1) {
+		BlockState var2 = this.getBlockState().a(b, (var1 & 4) > 0 ? bau.a : bau.b);
 		var2 = var2.a(a, BlockFace.getById(5 - (var1 & 3)));
 		return var2;
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		int var2 = 0;
 		if (var1.b(b) == bau.a) {
 			var2 |= 4;
@@ -504,7 +504,7 @@ public class BlockStairs extends Block {
 		return var2;
 	}
 
-	public bec a(bec var1, ard var2, Position var3) {
+	public BlockState a(BlockState var1, ard var2, Position var3) {
 		if (this.h(var2, var3)) {
 			switch (this.g(var2, var3)) {
 				case 0:

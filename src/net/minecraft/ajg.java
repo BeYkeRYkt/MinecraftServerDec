@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class ajg extends ajk {
+public class ajg extends Slot {
 
 	private final aje a;
 	private EntityHuman b;
@@ -19,8 +19,8 @@ public class ajg extends ajk {
 	}
 
 	public ItemStack a(int var1) {
-		if (this.e()) {
-			this.c += Math.min(var1, this.d().b);
+		if (this.hasItem()) {
+			this.c += Math.min(var1, this.getItemStack().amount);
 		}
 
 		return super.a(var1);
@@ -32,7 +32,7 @@ public class ajg extends ajk {
 	}
 
 	protected void c(ItemStack var1) {
-		var1.a(this.b.o, this.b, this.c);
+		var1.a(this.b.world, this.b, this.c);
 		this.c = 0;
 	}
 
@@ -45,11 +45,11 @@ public class ajg extends ajk {
 			if (this.a(var3, var4, var5) || this.a(var3, var5, var4)) {
 				this.h.a(var3);
 				var1.b(StatisticList.G);
-				if (var4 != null && var4.b <= 0) {
+				if (var4 != null && var4.amount <= 0) {
 					var4 = null;
 				}
 
-				if (var5 != null && var5.b <= 0) {
+				if (var5 != null && var5.amount <= 0) {
 					var5 = null;
 				}
 
@@ -65,13 +65,13 @@ public class ajg extends ajk {
 		ItemStack var5 = var1.b();
 		if (var2 != null && var2.getItem() == var4.getItem()) {
 			if (var5 != null && var3 != null && var5.getItem() == var3.getItem()) {
-				var2.b -= var4.b;
-				var3.b -= var5.b;
+				var2.amount -= var4.amount;
+				var3.amount -= var5.amount;
 				return true;
 			}
 
 			if (var5 == null && var3 == null) {
-				var2.b -= var4.b;
+				var2.amount -= var4.amount;
 				return true;
 			}
 		}

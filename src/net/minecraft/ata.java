@@ -10,7 +10,7 @@ public class ata implements vv {
 		this.b = var2;
 	}
 
-	public String d_() {
+	public String getName() {
 		return "anvil";
 	}
 
@@ -18,12 +18,12 @@ public class ata implements vv {
 		return false;
 	}
 
-	public IChatBaseComponent e_() {
+	public IChatBaseComponent getComponentName() {
 		return new ChatMessage(Blocks.ANVIL.getName() + ".name", new Object[0]);
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {
-		return new aid(var1, this.a, this.b, var2);
+		return new ContainerAnvil(var1, this.a, this.b, var2);
 	}
 
 	public String k() {

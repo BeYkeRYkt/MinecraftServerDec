@@ -10,7 +10,7 @@ public class BlockHopper extends atg {
 
 	public BlockHopper() {
 		super(Material.ORE);
-		this.j(this.L.b().a(a, BlockFace.DOWN).a(b, Boolean.valueOf(true)));
+		this.setBlockState(this.L.b().a(a, BlockFace.DOWN).a(b, Boolean.valueOf(true)));
 		this.a(CreativeModeTab.REDSTONE);
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
@@ -19,7 +19,7 @@ public class BlockHopper extends atg {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
-	public void a(World var1, Position var2, bec var3, AxisAlignedBB var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, BlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.625F, 1.0F);
 		super.a(var1, var2, var3, var4, var5, var6);
 		float var7 = 0.125F;
@@ -34,23 +34,23 @@ public class BlockHopper extends atg {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
-	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		BlockFace var9 = var3.getOpposite();
 		if (var9 == BlockFace.UP) {
 			var9 = BlockFace.DOWN;
 		}
 
-		return this.P().a(a, var9).a(b, Boolean.valueOf(true));
+		return this.getBlockState().a(a, var9).a(b, Boolean.valueOf(true));
 	}
 
 	public TileEntity a(World var1, int var2) {
 		return new TileEntityHopper();
 	}
 
-	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
+	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
 		super.a(var1, var2, var3, var4, var5);
 		if (var5.s()) {
-			TileEntity var6 = var1.s(var2);
+			TileEntity var6 = var1.getTileEntity(var2);
 			if (var6 instanceof TileEntityHopper) {
 				((TileEntityHopper) var6).a(var5.q());
 			}
@@ -58,15 +58,15 @@ public class BlockHopper extends atg {
 
 	}
 
-	public void c(World var1, Position var2, bec var3) {
+	public void c(World var1, Position var2, BlockState var3) {
 		this.e(var1, var2, var3);
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {
-			TileEntity var9 = var1.s(var2);
+			TileEntity var9 = var1.getTileEntity(var2);
 			if (var9 instanceof TileEntityHopper) {
 				var4.a((IInventory) ((TileEntityHopper) var9));
 			}
@@ -75,11 +75,11 @@ public class BlockHopper extends atg {
 		}
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, BlockState var3, Block var4) {
 		this.e(var1, var2, var3);
 	}
 
-	private void e(World var1, Position var2, bec var3) {
+	private void e(World var1, Position var2, BlockState var3) {
 		boolean var4 = !var1.z(var2);
 		if (var4 != ((Boolean) var3.b(b)).booleanValue()) {
 			var1.a(var2, var3.a(b, Boolean.valueOf(var4)), 4);
@@ -87,8 +87,8 @@ public class BlockHopper extends atg {
 
 	}
 
-	public void b(World var1, Position var2, bec var3) {
-		TileEntity var4 = var1.s(var2);
+	public void b(World var1, Position var2, BlockState var3) {
+		TileEntity var4 = var1.getTileEntity(var2);
 		if (var4 instanceof TileEntityHopper) {
 			vs.a(var1, var2, (TileEntityHopper) var4);
 			var1.e(var2, this);
@@ -122,14 +122,14 @@ public class BlockHopper extends atg {
 	}
 
 	public int l(World var1, Position var2) {
-		return Container.a(var1.s(var2));
+		return Container.a(var1.getTileEntity(var2));
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, b(var1)).a(b, Boolean.valueOf(f(var1)));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(a, b(var1)).a(b, Boolean.valueOf(f(var1)));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((BlockFace) var1.b(a)).getId();
 		if (!((Boolean) var1.b(b)).booleanValue()) {

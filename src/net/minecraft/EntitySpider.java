@@ -29,7 +29,7 @@ public class EntitySpider extends EntityMonster {
 
 	public void s_() {
 		super.s_();
-		if (!this.o.D) {
+		if (!this.world.D) {
 			this.a(this.D);
 		}
 
@@ -101,18 +101,18 @@ public class EntitySpider extends EntityMonster {
 
 	public xq a(vu var1, xq var2) {
 		Object var4 = super.a(var1, var2);
-		if (this.o.s.nextInt(100) == 0) {
-			EntitySkeleton var3 = new EntitySkeleton(this.o);
-			var3.b(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
+		if (this.world.s.nextInt(100) == 0) {
+			EntitySkeleton var3 = new EntitySkeleton(this.world);
+			var3.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
 			var3.a(var1, (xq) null);
-			this.o.d((Entity) var3);
+			this.world.d((Entity) var3);
 			var3.a((Entity) this);
 		}
 
 		if (var4 == null) {
 			var4 = new agg();
-			if (this.o.getDifficulty() == Difficulty.HARD && this.o.s.nextFloat() < 0.1F * var1.c()) {
-				((agg) var4).a(this.o.s);
+			if (this.world.getDifficulty() == Difficulty.HARD && this.world.s.nextFloat() < 0.1F * var1.c()) {
+				((agg) var4).a(this.world.s);
 			}
 		}
 

@@ -211,8 +211,8 @@ public class PersistentVillage extends bqc {
 	}
 
 	private boolean f(Position var1) {
-		Block var2 = this.b.p(var1).getBlock();
-		return var2 instanceof BlockDoor ? var2.r() == Material.WOOD : false;
+		Block var2 = this.b.getBlockState(var1).getBlock();
+		return var2 instanceof BlockDoor ? var2.getMaterial() == Material.WOOD : false;
 	}
 
 	public void a(NBTCompoundTag var1) {

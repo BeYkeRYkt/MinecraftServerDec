@@ -24,8 +24,8 @@ class afd extends zb {
 	public void e() {
 		EntityLiving var1 = this.b.u();
 		double var2 = 64.0D;
-		if (var1.h(this.b) < var2 * var2 && this.b.t(var1)) {
-			World var4 = this.b.o;
+		if (var1.getDistanceSquared(this.b) < var2 * var2 && this.b.t(var1)) {
+			World var4 = this.b.world;
 			++this.a;
 			if (this.a == 10) {
 				var4.a((EntityHuman) null, 1007, new Position(this.b), 0);

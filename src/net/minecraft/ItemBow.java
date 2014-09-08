@@ -11,7 +11,7 @@ public class ItemBow extends Item {
 	}
 
 	public void a(ItemStack var1, World var2, EntityHuman var3, int var4) {
-		boolean var5 = var3.by.instabuild || aph.a(Enchantment.ARROW_INFINITE.id, var1) > 0;
+		boolean var5 = var3.playerProperties.instabuild || aph.a(Enchantment.ARROW_INFINITE.id, var1) > 0;
 		if (var5 || var3.playerInventory.b(Items.ARROW)) {
 			int var6 = this.d(var1) - var4;
 			float var7 = (float) var6 / 20.0F;
@@ -72,7 +72,7 @@ public class ItemBow extends Item {
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
-		if (var3.by.instabuild || var3.playerInventory.b(Items.ARROW)) {
+		if (var3.playerProperties.instabuild || var3.playerInventory.b(Items.ARROW)) {
 			var3.a(var1, this.d(var1));
 		}
 

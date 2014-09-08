@@ -132,7 +132,7 @@ public class DamageSource {
 		EntityLiving var2 = var1.bs();
 		String var3 = "death.attack." + this.p;
 		String var4 = var3 + ".player";
-		return var2 != null && LocaleI18n.c(var4) ? new ChatMessage(var4, new Object[] { var1.e_(), var2.e_() }) : new ChatMessage(var3, new Object[] { var1.e_() });
+		return var2 != null && LocaleI18n.c(var4) ? new ChatMessage(var4, new Object[] { var1.getComponentName(), var2.getComponentName() }) : new ChatMessage(var3, new Object[] { var1.getComponentName() });
 	}
 
 	public boolean o() {
@@ -163,7 +163,7 @@ public class DamageSource {
 
 	public boolean u() {
 		Entity var1 = this.j();
-		return var1 instanceof EntityHuman && ((EntityHuman) var1).by.instabuild;
+		return var1 instanceof EntityHuman && ((EntityHuman) var1).playerProperties.instabuild;
 	}
 
 }

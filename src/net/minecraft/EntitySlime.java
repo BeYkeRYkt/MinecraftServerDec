@@ -63,8 +63,8 @@ public class EntitySlime extends EntityInsentient implements aex {
 	}
 
 	public void s_() {
-		if (!this.o.D && this.o.getDifficulty() == Difficulty.PEACEFUL && this.ck() > 0) {
-			this.I = true;
+		if (!this.world.D && this.world.getDifficulty() == Difficulty.PEACEFUL && this.ck() > 0) {
+			this.dead = true;
 		}
 
 		this.b += (this.a - this.b) * 0.5F;
@@ -78,7 +78,7 @@ public class EntitySlime extends EntityInsentient implements aex {
 				float var4 = this.V.nextFloat() * 0.5F + 0.5F;
 				float var5 = DataTypesConverter.a(var3) * (float) var1 * 0.5F * var4;
 				float var6 = DataTypesConverter.b(var3) * (float) var1 * 0.5F * var4;
-				World var10000 = this.o;
+				World var10000 = this.world;
 				Particle var10001 = this.n();
 				double var10002 = this.locationX + (double) var5;
 				double var10004 = this.locationZ + (double) var6;
@@ -107,7 +107,7 @@ public class EntitySlime extends EntityInsentient implements aex {
 	}
 
 	protected EntitySlime cd() {
-		return new EntitySlime(this.o);
+		return new EntitySlime(this.world);
 	}
 
 	public void i(int var1) {
@@ -124,9 +124,9 @@ public class EntitySlime extends EntityInsentient implements aex {
 		super.i(var1);
 	}
 
-	public void J() {
+	public void die() {
 		int var1 = this.ck();
-		if (!this.o.D && var1 > 1 && this.bm() <= 0.0F) {
+		if (!this.world.D && var1 > 1 && this.getHealth() <= 0.0F) {
 			int var2 = 2 + this.V.nextInt(3);
 
 			for (int var3 = 0; var3 < var2; ++var3) {
@@ -142,12 +142,12 @@ public class EntitySlime extends EntityInsentient implements aex {
 				}
 
 				var6.a(var1 / 2);
-				var6.b(this.locationX + (double) var4, this.locationY + 0.5D, this.locationZ + (double) var5, this.V.nextFloat() * 360.0F, 0.0F);
-				this.o.d((Entity) var6);
+				var6.setPositionRotation(this.locationX + (double) var4, this.locationY + 0.5D, this.locationZ + (double) var5, this.V.nextFloat() * 360.0F, 0.0F);
+				this.world.d((Entity) var6);
 			}
 		}
 
-		super.J();
+		super.die();
 	}
 
 	public void i(Entity var1) {
@@ -167,7 +167,7 @@ public class EntitySlime extends EntityInsentient implements aex {
 
 	protected void e(EntityLiving var1) {
 		int var2 = this.ck();
-		if (this.t(var1) && this.h(var1) < 0.6D * (double) var2 * 0.6D * (double) var2 && var1.a(DamageSource.a((EntityLiving) this), (float) this.ch())) {
+		if (this.t(var1) && this.getDistanceSquared(var1) < 0.6D * (double) var2 * 0.6D * (double) var2 && var1.a(DamageSource.a((EntityLiving) this), (float) this.ch())) {
 			this.a("mob.attack", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
 			this.a(this, var1);
 		}
@@ -199,13 +199,13 @@ public class EntitySlime extends EntityInsentient implements aex {
 	}
 
 	public boolean bQ() {
-		Chunk var1 = this.o.f(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
-		if (this.o.P().getLevelType() == LevelType.FLAT && this.V.nextInt(4) != 1) {
+		Chunk var1 = this.world.getChunk(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
+		if (this.world.getWorldData().getLevelType() == LevelType.FLAT && this.V.nextInt(4) != 1) {
 			return false;
 		} else {
-			if (this.o.getDifficulty() != Difficulty.PEACEFUL) {
-				arm var2 = this.o.b(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
-				if (var2 == arm.v && this.locationY > 50.0D && this.locationY < 70.0D && this.V.nextFloat() < 0.5F && this.V.nextFloat() < this.o.y() && this.o.l(new Position(this)) <= this.V.nextInt(8)) {
+			if (this.world.getDifficulty() != Difficulty.PEACEFUL) {
+				arm var2 = this.world.b(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
+				if (var2 == arm.v && this.locationY > 50.0D && this.locationY < 70.0D && this.V.nextFloat() < 0.5F && this.V.nextFloat() < this.world.y() && this.world.l(new Position(this)) <= this.V.nextInt(8)) {
 					return super.bQ();
 				}
 

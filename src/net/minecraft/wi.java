@@ -24,10 +24,10 @@ public class wi extends DamageSource {
 	}
 
 	public IChatBaseComponent b(EntityLiving var1) {
-		ItemStack var2 = this.q instanceof EntityLiving ? ((EntityLiving) this.q).bz() : null;
+		ItemStack var2 = this.q instanceof EntityLiving ? ((EntityLiving) this.q).getItemInHand() : null;
 		String var3 = "death.attack." + this.p;
 		String var4 = var3 + ".item";
-		return var2 != null && var2.s() && LocaleI18n.c(var4) ? new ChatMessage(var4, new Object[] { var1.e_(), this.q.e_(), var2.C() }) : new ChatMessage(var3, new Object[] { var1.e_(), this.q.e_() });
+		return var2 != null && var2.s() && LocaleI18n.c(var4) ? new ChatMessage(var4, new Object[] { var1.getComponentName(), this.q.getComponentName(), var2.C() }) : new ChatMessage(var3, new Object[] { var1.getComponentName(), this.q.getComponentName() });
 	}
 
 	public boolean r() {

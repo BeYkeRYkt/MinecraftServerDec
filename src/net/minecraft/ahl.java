@@ -27,7 +27,7 @@ public abstract class ahl extends Entity {
 	public ahl(World var1, double var2, double var4, double var6, double var8, double var10, double var12) {
 		super(var1);
 		this.a(1.0F, 1.0F);
-		this.b(var2, var4, var6, this.yaw, this.pitch);
+		this.setPositionRotation(var2, var4, var6, this.yaw, this.pitch);
 		this.b(var2, var4, var6);
 		double var14 = (double) DataTypesConverter.a(var8 * var8 + var10 * var10 + var12 * var12);
 		this.b = var8 / var14 * 0.1D;
@@ -39,7 +39,7 @@ public abstract class ahl extends Entity {
 		super(var1);
 		this.a = var2;
 		this.a(1.0F, 1.0F);
-		this.b(var2.locationX, var2.locationY, var2.locationZ, var2.yaw, var2.pitch);
+		this.setPositionRotation(var2.locationX, var2.locationY, var2.locationZ, var2.yaw, var2.pitch);
 		this.b(this.locationX, this.locationY, this.locationZ);
 		this.motionX = this.motionY = this.motionZ = 0.0D;
 		var3 += this.V.nextGaussian() * 0.4D;
@@ -52,16 +52,16 @@ public abstract class ahl extends Entity {
 	}
 
 	public void s_() {
-		if (!this.o.D && (this.a != null && this.a.I || !this.o.e(new Position(this)))) {
-			this.J();
+		if (!this.world.D && (this.a != null && this.a.dead || !this.world.isLoaded(new Position(this)))) {
+			this.die();
 		} else {
 			super.s_();
 			this.e(1);
 			if (this.i) {
-				if (this.o.p(new Position(this.e, this.f, this.g)).getBlock() == this.h) {
+				if (this.world.getBlockState(new Position(this.e, this.f, this.g)).getBlock() == this.h) {
 					++this.ap;
 					if (this.ap == 600) {
-						this.J();
+						this.die();
 					}
 
 					return;
@@ -79,7 +79,7 @@ public abstract class ahl extends Entity {
 
 			Vec3D var1 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 			Vec3D var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
-			MovingObjectPosition var3 = this.o.a(var1, var2);
+			MovingObjectPosition var3 = this.world.a(var1, var2);
 			var1 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 			var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 			if (var3 != null) {
@@ -87,7 +87,7 @@ public abstract class ahl extends Entity {
 			}
 
 			Entity var4 = null;
-			List var5 = this.o.b((Entity) this, this.aQ().a(this.motionX, this.motionY, this.motionZ).b(1.0D, 1.0D, 1.0D));
+			List var5 = this.world.b((Entity) this, this.aQ().a(this.motionX, this.motionY, this.motionZ).b(1.0D, 1.0D, 1.0D));
 			double var6 = 0.0D;
 
 			for (int var8 = 0; var8 < var5.size(); ++var8) {
@@ -142,7 +142,7 @@ public abstract class ahl extends Entity {
 			if (this.V()) {
 				for (int var17 = 0; var17 < 4; ++var17) {
 					float var18 = 0.25F;
-					this.o.a(Particle.e, this.locationX - this.motionX * (double) var18, this.locationY - this.motionY * (double) var18, this.locationZ - this.motionZ * (double) var18, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.world.a(Particle.e, this.locationX - this.motionX * (double) var18, this.locationY - this.motionY * (double) var18, this.locationZ - this.motionZ * (double) var18, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 
 				var16 = 0.8F;
@@ -154,7 +154,7 @@ public abstract class ahl extends Entity {
 			this.motionX *= (double) var16;
 			this.motionY *= (double) var16;
 			this.motionZ *= (double) var16;
-			this.o.a(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.world.a(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 			this.b(this.locationX, this.locationY, this.locationZ);
 		}
 	}
@@ -192,7 +192,7 @@ public abstract class ahl extends Entity {
 			this.motionY = var2.getDouble(1);
 			this.motionZ = var2.getDouble(2);
 		} else {
-			this.J();
+			this.die();
 		}
 
 	}

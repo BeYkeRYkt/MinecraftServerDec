@@ -34,7 +34,7 @@ public class arz {
 	}
 
 	public arz(World var1) {
-		this(var1.J(), var1.P().getLevelType(), var1.P().B());
+		this(var1.J(), var1.getWorldData().getLevelType(), var1.getWorldData().B());
 	}
 
 	public List a() {

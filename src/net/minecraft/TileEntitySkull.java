@@ -65,7 +65,7 @@ public class TileEntitySkull extends TileEntity {
 
 	private void e() {
 		this.g = b(this.g);
-		this.o_();
+		this.update();
 	}
 
 	public static GameProfile b(GameProfile var0) {

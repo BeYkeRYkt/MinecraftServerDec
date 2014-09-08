@@ -109,8 +109,8 @@ class qr {
 				var3 = (this.d[0] >> 8 & 15) + this.c.chunkZ * 16;
 				Position var4 = new Position(var1, var2, var3);
 				this.a((Packet) (new PacketPlayOutBlockChange(qq.a(this.a), var4)));
-				if (qq.a(this.a).p(var4).getBlock().x()) {
-					this.a(qq.a(this.a).s(var4));
+				if (qq.a(this.a).getBlockState(var4).getBlock().x()) {
+					this.a(qq.a(this.a).getTileEntity(var4));
 				}
 			} else {
 				int var7;
@@ -137,8 +137,8 @@ class qr {
 						var3 = this.d[var1] & 255;
 						var7 = (this.d[var1] >> 8 & 15) + this.c.chunkZ * 16;
 						Position var8 = new Position(var2, var3, var7);
-						if (qq.a(this.a).p(var8).getBlock().x()) {
-							this.a(qq.a(this.a).s(var8));
+						if (qq.a(this.a).getBlockState(var8).getBlock().x()) {
+							this.a(qq.a(this.a).getTileEntity(var8));
 						}
 					}
 				}

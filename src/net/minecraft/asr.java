@@ -12,13 +12,13 @@ public class asr extends asl {
 	}
 
 	public void a(World var1, Random var2, bgk var3, int var4, int var5, double var6) {
-		this.ak = Blocks.GRASS.P();
-		this.al = Blocks.DIRT.P();
+		this.ak = Blocks.GRASS.getBlockState();
+		this.al = Blocks.DIRT.getBlockState();
 		if (var6 > 1.75D) {
-			this.ak = Blocks.STONE.P();
-			this.al = Blocks.STONE.P();
+			this.ak = Blocks.STONE.getBlockState();
+			this.al = Blocks.STONE.getBlockState();
 		} else if (var6 > -0.5D) {
-			this.ak = Blocks.DIRT.P().a(BlockDirt.a, avd.b);
+			this.ak = Blocks.DIRT.getBlockState().a(BlockDirt.a, avd.b);
 		}
 
 		this.b(var1, var2, var3, var4, var5, var6);

@@ -16,9 +16,9 @@ public class ItemSeedFood extends ItemFood {
 			return false;
 		} else if (!var2.a(var4.a(var5), var5, var1)) {
 			return false;
-		} else if (var3.p(var4).getBlock() == this.c && var3.d(var4.a())) {
-			var3.a(var4.a(), this.b.P());
-			--var1.b;
+		} else if (var3.getBlockState(var4).getBlock() == this.c && var3.d(var4.a())) {
+			var3.a(var4.a(), this.b.getBlockState());
+			--var1.amount;
 			return true;
 		} else {
 			return false;

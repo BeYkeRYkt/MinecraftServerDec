@@ -12,7 +12,7 @@ class wz implements Callable {
 	}
 
 	public String a() {
-		return this.a.m.toString();
+		return this.a.vehicle.toString();
 	}
 
 	// $FF: synthetic method

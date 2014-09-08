@@ -11,7 +11,7 @@ public class BlockDispenser extends atg {
 
 	protected BlockDispenser() {
 		super(Material.STONE);
-		this.j(this.L.b().a(a, BlockFace.NORTH).a(b, Boolean.valueOf(false)));
+		this.setBlockState(this.L.b().a(a, BlockFace.NORTH).a(b, Boolean.valueOf(false)));
 		this.a(CreativeModeTab.REDSTONE);
 	}
 
@@ -19,23 +19,23 @@ public class BlockDispenser extends atg {
 		return 4;
 	}
 
-	public void c(World var1, Position var2, bec var3) {
+	public void c(World var1, Position var2, BlockState var3) {
 		super.c(var1, var2, var3);
 		this.e(var1, var2, var3);
 	}
 
-	private void e(World var1, Position var2, bec var3) {
+	private void e(World var1, Position var2, BlockState var3) {
 		if (!var1.D) {
 			BlockFace var4 = (BlockFace) var3.b(a);
-			boolean var5 = var1.p(var2.c()).getBlock().m();
-			boolean var6 = var1.p(var2.d()).getBlock().m();
+			boolean var5 = var1.getBlockState(var2.c()).getBlock().m();
+			boolean var6 = var1.getBlockState(var2.d()).getBlock().m();
 			if (var4 == BlockFace.NORTH && var5 && !var6) {
 				var4 = BlockFace.SOUTH;
 			} else if (var4 == BlockFace.SOUTH && var6 && !var5) {
 				var4 = BlockFace.NORTH;
 			} else {
-				boolean var7 = var1.p(var2.e()).getBlock().m();
-				boolean var8 = var1.p(var2.f()).getBlock().m();
+				boolean var7 = var1.getBlockState(var2.e()).getBlock().m();
+				boolean var8 = var1.getBlockState(var2.f()).getBlock().m();
 				if (var4 == BlockFace.WEST && var7 && !var8) {
 					var4 = BlockFace.EAST;
 				} else if (var4 == BlockFace.EAST && var8 && !var7) {
@@ -47,11 +47,11 @@ public class BlockDispenser extends atg {
 		}
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.D) {
 			return true;
 		} else {
-			TileEntity var9 = var1.s(var2);
+			TileEntity var9 = var1.getTileEntity(var2);
 			if (var9 instanceof TileEntityDispenser) {
 				var4.a((IInventory) ((TileEntityDispenser) var9));
 			}
@@ -72,7 +72,7 @@ public class BlockDispenser extends atg {
 				eo var7 = this.a(var6);
 				if (var7 != eo.a) {
 					ItemStack var8 = var7.a(var3, var6);
-					var4.a(var5, var8.b == 0 ? null : var8);
+					var4.a(var5, var8.amount == 0 ? null : var8);
 				}
 
 			}
@@ -83,7 +83,7 @@ public class BlockDispenser extends atg {
 		return (eo) M.getByName(var1 == null ? null : var1.getItem());
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, BlockState var3, Block var4) {
 		boolean var5 = var1.z(var2) || var1.z(var2.a());
 		boolean var6 = ((Boolean) var3.b(b)).booleanValue();
 		if (var5 && !var6) {
@@ -95,7 +95,7 @@ public class BlockDispenser extends atg {
 
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, BlockState var3, Random var4) {
 		if (!var1.D) {
 			this.d(var1, var2);
 		}
@@ -106,14 +106,14 @@ public class BlockDispenser extends atg {
 		return new TileEntityDispenser();
 	}
 
-	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return this.P().a(a, BlockPiston.a(var1, var2, var8)).a(b, Boolean.valueOf(false));
+	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		return this.getBlockState().a(a, BlockPiston.a(var1, var2, var8)).a(b, Boolean.valueOf(false));
 	}
 
-	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
+	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
 		var1.a(var2, var3.a(a, BlockPiston.a(var1, var2, var4)), 2);
 		if (var5.s()) {
-			TileEntity var6 = var1.s(var2);
+			TileEntity var6 = var1.getTileEntity(var2);
 			if (var6 instanceof TileEntityDispenser) {
 				((TileEntityDispenser) var6).a(var5.q());
 			}
@@ -121,8 +121,8 @@ public class BlockDispenser extends atg {
 
 	}
 
-	public void b(World var1, Position var2, bec var3) {
-		TileEntity var4 = var1.s(var2);
+	public void b(World var1, Position var2, BlockState var3) {
+		TileEntity var4 = var1.getTileEntity(var2);
 		if (var4 instanceof TileEntityDispenser) {
 			vs.a(var1, var2, (TileEntityDispenser) var4);
 			var1.e(var2, this);
@@ -148,18 +148,18 @@ public class BlockDispenser extends atg {
 	}
 
 	public int l(World var1, Position var2) {
-		return Container.a(var1.s(var2));
+		return Container.a(var1.getTileEntity(var2));
 	}
 
 	public int b() {
 		return 3;
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, b(var1)).a(b, Boolean.valueOf((var1 & 8) > 0));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(a, b(var1)).a(b, Boolean.valueOf((var1 & 8) > 0));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((BlockFace) var1.b(a)).getId();
 		if (((Boolean) var1.b(b)).booleanValue()) {

@@ -6,19 +6,19 @@ public class BlockStainedGlassPane extends BlockThin {
 
 	public BlockStainedGlassPane() {
 		super(Material.SHATTERABLE, false);
-		this.j(this.L.b().a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false)).a(a, akv.a));
+		this.setBlockState(this.L.b().a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false)).a(a, akv.a));
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public int a(bec var1) {
+	public int a(BlockState var1) {
 		return ((akv) var1.b(a)).a();
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, akv.b(var1));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(a, akv.b(var1));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((akv) var1.b(a)).a();
 	}
 
@@ -26,14 +26,14 @@ public class BlockStainedGlassPane extends BlockThin {
 		return new bed(this, new bex[] { b, M, O, N, a });
 	}
 
-	public void c(World var1, Position var2, bec var3) {
+	public void c(World var1, Position var2, BlockState var3) {
 		if (!var1.D) {
 			BlockBeacon.d(var1, var2);
 		}
 
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, BlockState var3) {
 		if (!var1.D) {
 			BlockBeacon.d(var1, var2);
 		}

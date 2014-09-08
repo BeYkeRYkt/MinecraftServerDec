@@ -25,7 +25,7 @@ public class ItemFood extends Item {
 	}
 
 	public ItemStack b(ItemStack var1, World var2, EntityHuman var3) {
-		--var1.b;
+		--var1.amount;
 		var3.ck().a(this, var1);
 		var2.a((Entity) var3, "random.burp", 0.5F, var2.s.nextFloat() * 0.1F + 0.9F);
 		this.c(var1, var2, var3);

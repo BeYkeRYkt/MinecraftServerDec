@@ -9,34 +9,34 @@ class bdk implements CommandSenderInterface {
 		this.a = var1;
 	}
 
-	public String d_() {
+	public String getName() {
 		return "Sign";
 	}
 
-	public IChatBaseComponent e_() {
-		return new ChatComponentText(this.d_());
+	public IChatBaseComponent getComponentName() {
+		return new ChatComponentText(this.getName());
 	}
 
 	public void sendChatMessage(IChatBaseComponent var1) {
 	}
 
-	public boolean a(int var1, String var2) {
+	public boolean canExecuteCommand(int var1, String var2) {
 		return true;
 	}
 
-	public Position c() {
+	public Position getEntityPosition() {
 		return this.a.position;
 	}
 
-	public Vec3D d() {
+	public Vec3D getCenter() {
 		return new Vec3D((double) this.a.position.getX() + 0.5D, (double) this.a.position.getY() + 0.5D, (double) this.a.position.getZ() + 0.5D);
 	}
 
-	public World e() {
+	public World getWorld() {
 		return this.a.world;
 	}
 
-	public Entity f() {
+	public Entity getEntity() {
 		return null;
 	}
 

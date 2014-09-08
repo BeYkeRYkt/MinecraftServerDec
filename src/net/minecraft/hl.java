@@ -6,7 +6,7 @@ final class hl implements Function {
 
 	public IChatBaseComponent a(IChatBaseComponent var1) {
 		IChatBaseComponent var2 = var1.f();
-		var2.a(var2.b().n());
+		var2.a(var2.getChatModifier().n());
 		return var2;
 	}
 

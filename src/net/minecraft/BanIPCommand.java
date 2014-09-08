@@ -52,14 +52,14 @@ public class BanIPCommand extends AbstractCommand {
 	}
 
 	protected void a(CommandSenderInterface var1, String var2, String var3) {
-		se var4 = new se(var2, (Date) null, var1.d_(), (Date) null, var3);
-		MinecraftServer.getInstance().getPlayerList().j().a((sr) var4);
+		se var4 = new se(var2, (Date) null, var1.getName(), (Date) null, var3);
+		MinecraftServer.getInstance().getPlayerList().j().add((sr) var4);
 		List var5 = MinecraftServer.getInstance().getPlayerList().b(var2);
 		String[] var6 = new String[var5.size()];
 		int var7 = 0;
 
 		EntityPlayer var9;
-		for (Iterator var8 = var5.iterator(); var8.hasNext(); var6[var7++] = var9.d_()) {
+		for (Iterator var8 = var5.iterator(); var8.hasNext(); var6[var7++] = var9.getName()) {
 			var9 = (EntityPlayer) var8.next();
 			var9.playerConncetion.disconnect("You have been IP banned.");
 		}

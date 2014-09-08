@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class EntityFallingBlock extends Entity {
 
-	private bec d;
+	private BlockState d;
 	public int a;
 	public boolean b = true;
 	private boolean e;
@@ -19,7 +19,7 @@ public class EntityFallingBlock extends Entity {
 		super(var1);
 	}
 
-	public EntityFallingBlock(World var1, double var2, double var4, double var6, bec var8) {
+	public EntityFallingBlock(World var1, double var2, double var4, double var6, BlockState var8) {
 		super(var1);
 		this.d = var8;
 		this.k = true;
@@ -41,13 +41,13 @@ public class EntityFallingBlock extends Entity {
 	}
 
 	public boolean ad() {
-		return !this.I;
+		return !this.dead;
 	}
 
 	public void s_() {
 		Block var1 = this.d.getBlock();
-		if (var1.r() == Material.AIR) {
-			this.J();
+		if (var1.getMaterial() == Material.AIR) {
+			this.die();
 		} else {
 			this.p = this.locationX;
 			this.q = this.locationY;
@@ -55,10 +55,10 @@ public class EntityFallingBlock extends Entity {
 			Position var2;
 			if (this.a++ == 0) {
 				var2 = new Position(this);
-				if (this.o.p(var2).getBlock() == var1) {
-					this.o.g(var2);
-				} else if (!this.o.D) {
-					this.J();
+				if (this.world.getBlockState(var2).getBlock() == var1) {
+					this.world.g(var2);
+				} else if (!this.world.D) {
+					this.die();
 					return;
 				}
 			}
@@ -68,21 +68,21 @@ public class EntityFallingBlock extends Entity {
 			this.motionX *= 0.9800000190734863D;
 			this.motionY *= 0.9800000190734863D;
 			this.motionZ *= 0.9800000190734863D;
-			if (!this.o.D) {
+			if (!this.world.D) {
 				var2 = new Position(this);
 				if (this.onGround) {
 					this.motionX *= 0.699999988079071D;
 					this.motionZ *= 0.699999988079071D;
 					this.motionY *= -0.5D;
-					if (this.o.p(var2).getBlock() != Blocks.PISTON_EXTENSION) {
-						this.J();
-						if (!this.e && this.o.a(var1, var2, true, BlockFace.UP, (Entity) null, (ItemStack) null) && !avt.d(this.o, var2.b()) && this.o.a(var2, this.d, 3)) {
+					if (this.world.getBlockState(var2).getBlock() != Blocks.PISTON_EXTENSION) {
+						this.die();
+						if (!this.e && this.world.a(var1, var2, true, BlockFace.UP, (Entity) null, (ItemStack) null) && !avt.d(this.world, var2.b()) && this.world.a(var2, this.d, 3)) {
 							if (var1 instanceof avt) {
-								((avt) var1).a_(this.o, var2);
+								((avt) var1).a_(this.world, var2);
 							}
 
 							if (this.c != null && var1 instanceof avs) {
-								TileEntity var3 = this.o.s(var2);
+								TileEntity var3 = this.world.getTileEntity(var2);
 								if (var3 != null) {
 									NBTCompoundTag var4 = new NBTCompoundTag();
 									var3.write(var4);
@@ -97,19 +97,19 @@ public class EntityFallingBlock extends Entity {
 									}
 
 									var3.read(var4);
-									var3.o_();
+									var3.update();
 								}
 							}
-						} else if (this.b && !this.e && this.o.Q().b("doTileDrops")) {
+						} else if (this.b && !this.e && this.world.Q().b("doTileDrops")) {
 							this.a(new ItemStack(var1, 1, var1.a(this.d)), 0.0F);
 						}
 					}
-				} else if (this.a > 100 && !this.o.D && (var2.getY() < 1 || var2.getY() > 256) || this.a > 600) {
-					if (this.b && this.o.Q().b("doTileDrops")) {
+				} else if (this.a > 100 && !this.world.D && (var2.getY() < 1 || var2.getY() > 256) || this.a > 600) {
+					if (this.b && this.world.Q().b("doTileDrops")) {
 						this.a(new ItemStack(var1, 1, var1.a(this.d)), 0.0F);
 					}
 
-					this.J();
+					this.die();
 				}
 			}
 
@@ -121,7 +121,7 @@ public class EntityFallingBlock extends Entity {
 		if (this.f) {
 			int var4 = DataTypesConverter.f(var1 - 1.0F);
 			if (var4 > 0) {
-				ArrayList var5 = Lists.newArrayList((Iterable) this.o.b((Entity) this, this.aQ()));
+				ArrayList var5 = Lists.newArrayList((Iterable) this.world.b((Entity) this, this.aQ()));
 				boolean var6 = var3 == Blocks.ANVIL;
 				DamageSource var7 = var6 ? DamageSource.n : DamageSource.o;
 				Iterator var8 = var5.iterator();
@@ -189,8 +189,8 @@ public class EntityFallingBlock extends Entity {
 			this.c = var1.getCompound("TileEntityData");
 		}
 
-		if (var3 == null || var3.r() == Material.AIR) {
-			this.d = Blocks.SAND.P();
+		if (var3 == null || var3.getMaterial() == Material.AIR) {
+			this.d = Blocks.SAND.getBlockState();
 		}
 
 	}
@@ -209,7 +209,7 @@ public class EntityFallingBlock extends Entity {
 
 	}
 
-	public bec l() {
+	public BlockState l() {
 		return this.d;
 	}
 }

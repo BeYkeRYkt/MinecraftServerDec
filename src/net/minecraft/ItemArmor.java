@@ -69,7 +69,7 @@ public class ItemArmor extends Item {
 			NBTCompoundTag var3 = var1.getTag();
 			if (var3 == null) {
 				var3 = new NBTCompoundTag();
-				var1.d(var3);
+				var1.setTag(var3);
 			}
 
 			NBTCompoundTag var4 = var3.getCompound("display");
@@ -89,8 +89,8 @@ public class ItemArmor extends Item {
 		int var4 = EntityInsentient.c(var1) - 1;
 		ItemStack var5 = var3.q(var4);
 		if (var5 == null) {
-			var3.c(var4, var1.getCopy());
-			var1.b = 0;
+			var3.setArmor(var4, var1.getCopy());
+			var1.amount = 0;
 		}
 
 		return var1;

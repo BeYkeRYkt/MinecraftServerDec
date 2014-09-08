@@ -9,11 +9,11 @@ public class BlockObsidian extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
+	public Item a(BlockState var1, Random var2, int var3) {
 		return Item.getItemOf(Blocks.OBSIDIAN);
 	}
 
-	public MaterialMapColor g(bec var1) {
+	public MaterialMapColor g(BlockState var1) {
 		return MaterialMapColor.J;
 	}
 }

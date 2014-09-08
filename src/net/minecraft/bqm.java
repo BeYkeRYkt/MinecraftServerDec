@@ -177,7 +177,7 @@ public class bqm implements IDataManager, brl {
 
 			var3.renameTo(var4);
 		} catch (Exception var5) {
-			a.warn("Failed to save player data for " + var1.d_());
+			a.warn("Failed to save player data for " + var1.getName());
 		}
 
 	}
@@ -191,7 +191,7 @@ public class bqm implements IDataManager, brl {
 				var2 = NBTCompressedStreamTools.readTag((InputStream) (new FileInputStream(var3)));
 			}
 		} catch (Exception var4) {
-			a.warn("Failed to load player data for " + var1.d_());
+			a.warn("Failed to load player data for " + var1.getName());
 		}
 
 		if (var2 != null) {

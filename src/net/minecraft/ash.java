@@ -12,7 +12,7 @@ public class ash extends arm {
 		super(var1);
 		this.aD = var2;
 		if (var2) {
-			this.ak = Blocks.SNOW.P();
+			this.ak = Blocks.SNOW.getBlockState();
 		}
 
 		this.au.clear();

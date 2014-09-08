@@ -3,11 +3,11 @@ package net.minecraft;
 public class BlockStandingBanner extends atb {
 
 	public BlockStandingBanner() {
-		this.j(this.L.b().a(b, Integer.valueOf(0)));
+		this.setBlockState(this.L.b().a(b, Integer.valueOf(0)));
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
-		if (!var1.p(var2.b()).getBlock().r().isBuildable()) {
+	public void a(World var1, Position var2, BlockState var3, Block var4) {
+		if (!var1.getBlockState(var2.b()).getBlock().getMaterial().isBuildable()) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
 		}
@@ -15,11 +15,11 @@ public class BlockStandingBanner extends atb {
 		super.a(var1, var2, var3, var4);
 	}
 
-	public bec a(int var1) {
-		return this.P().a(b, Integer.valueOf(var1));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(b, Integer.valueOf(var1));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((Integer) var1.b(b)).intValue();
 	}
 

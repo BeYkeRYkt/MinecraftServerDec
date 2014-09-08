@@ -44,7 +44,7 @@ public class AchievmentCommand extends AbstractCommand {
 								var4.b((Statistic) var12);
 							}
 
-							a(var1, this, "commands.achievement.give.success.all", new Object[] { var4.d_() });
+							a(var1, this, "commands.achievement.give.success.all", new Object[] { var4.getName() });
 						} else if (var6) {
 							var11 = Lists.reverse(AchievementList.list).iterator();
 
@@ -53,7 +53,7 @@ public class AchievmentCommand extends AbstractCommand {
 								var4.a((Statistic) var12);
 							}
 
-							a(var1, this, "commands.achievement.take.success.all", new Object[] { var4.d_() });
+							a(var1, this, "commands.achievement.take.success.all", new Object[] { var4.getName() });
 						}
 
 					} else {
@@ -63,11 +63,11 @@ public class AchievmentCommand extends AbstractCommand {
 							Iterator var9;
 							Achievement var10;
 							if (var5) {
-								if (var4.A().a(var7)) {
-									throw new di("commands.achievement.alreadyHave", new Object[] { var4.d_(), var3.j() });
+								if (var4.getStatisticManager().a(var7)) {
+									throw new di("commands.achievement.alreadyHave", new Object[] { var4.getName(), var3.j() });
 								}
 
-								for (var8 = Lists.newArrayList(); var7.c != null && !var4.A().a(var7.c); var7 = var7.c) {
+								for (var8 = Lists.newArrayList(); var7.c != null && !var4.getStatisticManager().a(var7.c); var7 = var7.c) {
 									var8.add(var7.c);
 								}
 
@@ -78,11 +78,11 @@ public class AchievmentCommand extends AbstractCommand {
 									var4.b((Statistic) var10);
 								}
 							} else if (var6) {
-								if (!var4.A().a(var7)) {
-									throw new di("commands.achievement.dontHave", new Object[] { var4.d_(), var3.j() });
+								if (!var4.getStatisticManager().a(var7)) {
+									throw new di("commands.achievement.dontHave", new Object[] { var4.getName(), var3.j() });
 								}
 
-								for (var8 = Lists.newArrayList(Iterators.filter(AchievementList.list.iterator(), new av(this, var4, var3))); var7.c != null && var4.A().a(var7.c); var7 = var7.c) {
+								for (var8 = Lists.newArrayList(Iterators.filter(AchievementList.list.iterator(), new av(this, var4, var3))); var7.c != null && var4.getStatisticManager().a(var7.c); var7 = var7.c) {
 									var8.remove(var7.c);
 								}
 
@@ -97,10 +97,10 @@ public class AchievmentCommand extends AbstractCommand {
 
 						if (var5) {
 							var4.b(var3);
-							a(var1, this, "commands.achievement.give.success.one", new Object[] { var4.d_(), var3.j() });
+							a(var1, this, "commands.achievement.give.success.one", new Object[] { var4.getName(), var3.j() });
 						} else if (var6) {
 							var4.a(var3);
-							a(var1, this, "commands.achievement.take.success.one", new Object[] { var3.j(), var4.d_() });
+							a(var1, this, "commands.achievement.take.success.one", new Object[] { var3.j(), var4.getName() });
 						}
 
 					}

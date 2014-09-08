@@ -67,7 +67,7 @@ public class abk {
 
 		while (var2.hasNext()) {
 			EntityHuman var3 = (EntityHuman) var2.next();
-			if (!var3.v()) {
+			if (!var3.isSpectator()) {
 				this.f = this.a.ae().a(new Position(var3), 1);
 				if (this.f != null && this.f.c() >= 10 && this.f.d() >= 20 && this.f.e() >= 20) {
 					Position var4 = this.f.a();
@@ -132,7 +132,7 @@ public class abk {
 				return false;
 			}
 
-			var2.b(var1.x, var1.y, var1.z, this.a.s.nextFloat() * 360.0F, 0.0F);
+			var2.setPositionRotation(var1.x, var1.y, var1.z, this.a.s.nextFloat() * 360.0F, 0.0F);
 			this.a.d((Entity) var2);
 			Position var3 = this.f.a();
 			var2.a(var3, this.f.b());

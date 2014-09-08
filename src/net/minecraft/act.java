@@ -15,7 +15,7 @@ public abstract class act extends EntityInsentient implements wt {
 	}
 
 	public boolean bR() {
-		return this.o.a(this.aQ(), (Entity) this);
+		return this.world.a(this.aQ(), (Entity) this);
 	}
 
 	public int w() {
@@ -27,13 +27,13 @@ public abstract class act extends EntityInsentient implements wt {
 	}
 
 	protected int b(EntityHuman var1) {
-		return 1 + this.o.s.nextInt(3);
+		return 1 + this.world.s.nextInt(3);
 	}
 
 	public void K() {
 		int var1 = this.aA();
 		super.K();
-		if (this.ai() && !this.V()) {
+		if (this.isAlive() && !this.V()) {
 			--var1;
 			this.h(var1);
 			if (this.aA() == -20) {

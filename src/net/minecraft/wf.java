@@ -35,7 +35,7 @@ public class wf {
 	}
 
 	public IChatBaseComponent h() {
-		return this.a().j() == null ? null : this.a().j().e_();
+		return this.a().j() == null ? null : this.a().j().getComponentName();
 	}
 
 	public float i() {

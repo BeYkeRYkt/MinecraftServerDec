@@ -145,7 +145,7 @@ public class Items {
 	public static final Item EXP_BOTTLE;
 	public static final Item FIRE_CHARGE;
 	public static final Item WRITABLE_BOOK;
-	public static final Item WRITTEN_BOK;
+	public static final Item WRITTEN_BOOK;
 	public static final Item EMERALD;
 	public static final Item ITEM_FRAME;
 	public static final Item FLOWER_POT;
@@ -341,7 +341,7 @@ public class Items {
 			EXP_BOTTLE = getItem("experience_bottle");
 			FIRE_CHARGE = getItem("fire_charge");
 			WRITABLE_BOOK = getItem("writable_book");
-			WRITTEN_BOK = getItem("written_book");
+			WRITTEN_BOOK = getItem("written_book");
 			EMERALD = getItem("emerald");
 			ITEM_FRAME = getItem("item_frame");
 			FLOWER_POT = getItem("flower_pot");

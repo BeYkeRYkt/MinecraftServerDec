@@ -34,16 +34,16 @@ public class InventoryLargeChest implements vy {
 		return this.b == var1 || this.c == var1;
 	}
 
-	public String d_() {
-		return this.b.k_() ? this.b.d_() : (this.c.k_() ? this.c.d_() : this.a);
+	public String getName() {
+		return this.b.k_() ? this.b.getName() : (this.c.k_() ? this.c.getName() : this.a);
 	}
 
 	public boolean k_() {
 		return this.b.k_() || this.c.k_();
 	}
 
-	public IChatBaseComponent e_() {
-		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.d_()) : new ChatMessage(this.d_(), new Object[0]));
+	public IChatBaseComponent getComponentName() {
+		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 
 	public ItemStack a(int var1) {
@@ -71,9 +71,9 @@ public class InventoryLargeChest implements vy {
 		return this.b.p_();
 	}
 
-	public void o_() {
-		this.b.o_();
-		this.c.o_();
+	public void update() {
+		this.b.update();
+		this.c.update();
 	}
 
 	public boolean a(EntityHuman var1) {

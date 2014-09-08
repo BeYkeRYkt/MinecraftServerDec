@@ -8,8 +8,8 @@ public class ItemSnowball extends Item {
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
-		if (!var3.by.instabuild) {
-			--var1.b;
+		if (!var3.playerProperties.instabuild) {
+			--var1.amount;
 		}
 
 		var2.a((Entity) var3, "random.bow", 0.5F, 0.4F / (rnd.nextFloat() * 0.4F + 0.8F));

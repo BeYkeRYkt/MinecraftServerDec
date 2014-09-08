@@ -13,9 +13,9 @@ public class alk extends Item {
 		if (!var2.a(var4, var5, var1)) {
 			return false;
 		} else {
-			if (var3.p(var4).getBlock().r() == Material.AIR) {
+			if (var3.getBlockState(var4).getBlock().getMaterial() == Material.AIR) {
 				var3.makeSound((double) var4.getX() + 0.5D, (double) var4.getY() + 0.5D, (double) var4.getZ() + 0.5D, "fire.ignite", 1.0F, rnd.nextFloat() * 0.4F + 0.8F);
-				var3.a(var4, Blocks.FIRE.P());
+				var3.a(var4, Blocks.FIRE.getBlockState());
 			}
 
 			var1.a(1, (EntityLiving) var2);

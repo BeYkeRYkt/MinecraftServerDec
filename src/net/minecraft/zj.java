@@ -10,7 +10,7 @@ public class zj extends zb {
 
 	public zj(EntityVillager var1) {
 		this.b = var1;
-		this.d = var1.o;
+		this.d = var1.world;
 		this.a(3);
 	}
 
@@ -55,7 +55,7 @@ public class zj extends zb {
 	public void e() {
 		--this.e;
 		this.b.p().a(this.c, 10.0F, 30.0F);
-		if (this.b.h(this.c) > 2.25D) {
+		if (this.b.getDistanceSquared(this.c) > 2.25D) {
 			this.b.s().a((Entity) this.c, 0.25D);
 		} else if (this.e == 0 && this.c.ck()) {
 			this.g();
@@ -83,7 +83,7 @@ public class zj extends zb {
 		this.c.o(false);
 		this.b.o(false);
 		var1.b(-24000);
-		var1.b(this.b.locationX, this.b.locationY, this.b.locationZ, 0.0F, 0.0F);
+		var1.setPositionRotation(this.b.locationX, this.b.locationY, this.b.locationZ, 0.0F, 0.0F);
 		this.d.d((Entity) var1);
 		this.d.a((Entity) var1, (byte) 12);
 	}

@@ -26,17 +26,17 @@ public class bjv extends bkb {
 	}
 
 	public boolean a(World var1, Random var2, bjb var3) {
-		this.a(var1, var3, 0, 0, 0, 4, 1, 4, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 0, 2, 0, 4, 5, 4, Blocks.AIR.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, 0, 2, 0, 0, 5, 0, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 4, 2, 0, 4, 5, 0, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 0, 2, 4, 0, 5, 4, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 4, 2, 4, 4, 5, 4, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 0, 6, 0, 4, 6, 4, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
+		this.a(var1, var3, 0, 0, 0, 4, 1, 4, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 0, 2, 0, 4, 5, 4, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, 0, 2, 0, 0, 5, 0, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 4, 2, 0, 4, 5, 0, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 0, 2, 4, 0, 5, 4, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 4, 2, 4, 4, 5, 4, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 0, 6, 0, 4, 6, 4, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
 
 		for (int var4 = 0; var4 <= 4; ++var4) {
 			for (int var5 = 0; var5 <= 4; ++var5) {
-				this.b(var1, Blocks.NETHER_BRICK.P(), var4, -1, var5, var3);
+				this.b(var1, Blocks.NETHER_BRICK.getBlockState(), var4, -1, var5, var3);
 			}
 		}
 

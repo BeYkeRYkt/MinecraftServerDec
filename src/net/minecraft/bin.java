@@ -11,27 +11,27 @@ public class bin extends bhp {
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
-		if (var1.p(var3.a()).getBlock() != Blocks.STONE) {
+		if (var1.getBlockState(var3.a()).getBlock() != Blocks.STONE) {
 			return false;
-		} else if (var1.p(var3.b()).getBlock() != Blocks.STONE) {
+		} else if (var1.getBlockState(var3.b()).getBlock() != Blocks.STONE) {
 			return false;
-		} else if (var1.p(var3).getBlock().r() != Material.AIR && var1.p(var3).getBlock() != Blocks.STONE) {
+		} else if (var1.getBlockState(var3).getBlock().getMaterial() != Material.AIR && var1.getBlockState(var3).getBlock() != Blocks.STONE) {
 			return false;
 		} else {
 			int var4 = 0;
-			if (var1.p(var3.e()).getBlock() == Blocks.STONE) {
+			if (var1.getBlockState(var3.e()).getBlock() == Blocks.STONE) {
 				++var4;
 			}
 
-			if (var1.p(var3.f()).getBlock() == Blocks.STONE) {
+			if (var1.getBlockState(var3.f()).getBlock() == Blocks.STONE) {
 				++var4;
 			}
 
-			if (var1.p(var3.c()).getBlock() == Blocks.STONE) {
+			if (var1.getBlockState(var3.c()).getBlock() == Blocks.STONE) {
 				++var4;
 			}
 
-			if (var1.p(var3.d()).getBlock() == Blocks.STONE) {
+			if (var1.getBlockState(var3.d()).getBlock() == Blocks.STONE) {
 				++var4;
 			}
 
@@ -53,7 +53,7 @@ public class bin extends bhp {
 			}
 
 			if (var4 == 3 && var5 == 1) {
-				var1.a(var3, this.a.P(), 2);
+				var1.a(var3, this.a.getBlockState(), 2);
 				var1.a(this.a, var3, var2);
 			}
 

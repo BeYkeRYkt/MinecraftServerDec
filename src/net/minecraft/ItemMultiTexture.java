@@ -19,7 +19,7 @@ public class ItemMultiTexture extends ItemBlock {
 		this(block1, block2, new Function<ItemStack, String>() {
 			@Override
 			public String apply(ItemStack item) {
-				int data = item.i();
+				int data = item.getDurability();
 				if (data < 0 || data >= textures.length) {
 					data = 0;
 				}

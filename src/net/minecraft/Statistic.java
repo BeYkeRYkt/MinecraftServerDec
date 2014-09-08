@@ -47,15 +47,15 @@ public class Statistic {
 
 	public IChatBaseComponent e() {
 		IChatBaseComponent var1 = this.nameId.f();
-		var1.b().a(EnumChatFormat.GRAY);
-		var1.b().a(new ChatHoverable(EnumHoverAction.b, new ChatComponentText(this.name)));
+		var1.getChatModifier().setColor(EnumChatFormat.GRAY);
+		var1.getChatModifier().a(new ChatHoverable(EnumHoverAction.b, new ChatComponentText(this.name)));
 		return var1;
 	}
 
 	public IChatBaseComponent j() {
 		IChatBaseComponent var1 = this.e();
 		IChatBaseComponent var2 = (new ChatComponentText("[")).a(var1).a("]");
-		var2.a(var1.b());
+		var2.a(var1.getChatModifier());
 		return var2;
 	}
 

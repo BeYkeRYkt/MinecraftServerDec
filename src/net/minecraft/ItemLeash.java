@@ -10,7 +10,7 @@ public class ItemLeash extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		Block var9 = var3.p(var4).getBlock();
+		Block var9 = var3.getBlockState(var4).getBlock();
 		if (var9 instanceof BlockFence) {
 			if (var3.D) {
 				return true;

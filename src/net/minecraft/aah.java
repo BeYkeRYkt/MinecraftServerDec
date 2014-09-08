@@ -10,7 +10,7 @@ public class aah extends zb {
 	}
 
 	public boolean a() {
-		if (!this.a.ai()) {
+		if (!this.a.isAlive()) {
 			return false;
 		} else if (this.a.V()) {
 			return false;
@@ -20,7 +20,7 @@ public class aah extends zb {
 			return false;
 		} else {
 			EntityHuman var1 = this.a.u_();
-			return var1 == null ? false : (this.a.h(var1) > 16.0D ? false : var1.activeContainer instanceof Container);
+			return var1 == null ? false : (this.a.getDistanceSquared(var1) > 16.0D ? false : var1.activeContainer instanceof Container);
 		}
 	}
 

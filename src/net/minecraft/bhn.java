@@ -7,14 +7,14 @@ import java.util.Random;
 public class bhn extends bhp {
 
 	private static final beq a = beq.a((Block) Blocks.SAND).a(BlockSand.a, Predicates.equalTo(bac.a));
-	private final bec b;
-	private final bec c;
-	private final bec d;
+	private final BlockState b;
+	private final BlockState c;
+	private final BlockState d;
 
 	public bhn() {
-		this.b = Blocks.STONE_SLAB.P().a(bbf.M, bbg.b).a(BlockStepAbstract.a, awr.b);
-		this.c = Blocks.SANDSTONE.P();
-		this.d = Blocks.FLOWING_WATER.P();
+		this.b = Blocks.STONE_SLAB.getBlockState().a(bbf.M, bbg.b).a(BlockStepAbstract.a, awr.b);
+		this.c = Blocks.SANDSTONE.getBlockState();
+		this.d = Blocks.FLOWING_WATER.getBlockState();
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
@@ -22,7 +22,7 @@ public class bhn extends bhp {
 			var3 = var3.b();
 		}
 
-		if (!a.a(var1.p(var3))) {
+		if (!a.a(var1.getBlockState(var3))) {
 			return false;
 		} else {
 			int var4;

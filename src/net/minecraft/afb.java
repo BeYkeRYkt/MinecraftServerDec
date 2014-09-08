@@ -19,7 +19,7 @@ class afb extends zb {
 		} else {
 			EntityLiving var1 = this.a.u();
 			double var2 = 64.0D;
-			if (var1.h(this.a) < var2 * var2) {
+			if (var1.getDistanceSquared(this.a) < var2 * var2) {
 				double var4 = var1.locationX - this.a.locationX;
 				double var6 = var1.locationZ - this.a.locationZ;
 				this.a.aG = this.a.yaw = -((float) Math.atan2(var4, var6)) * 180.0F / 3.1415927F;

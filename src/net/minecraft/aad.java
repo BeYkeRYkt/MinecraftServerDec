@@ -19,7 +19,7 @@ public class aad extends zb {
 			return false;
 		} else {
 			EntityLiving var1 = this.a.cm();
-			return var1 == null ? true : (this.a.h(var1) < 144.0D && var1.bc() != null ? false : this.b);
+			return var1 == null ? true : (this.a.getDistanceSquared(var1) < 144.0D && var1.bc() != null ? false : this.b);
 		}
 	}
 

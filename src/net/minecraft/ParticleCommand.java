@@ -44,7 +44,7 @@ public class ParticleCommand extends AbstractCommand {
 				throw new di("commands.particle.notFound", new Object[] { var2[0] });
 			} else {
 				String var30 = var2[0];
-				Vec3D var31 = var1.d();
+				Vec3D var31 = var1.getCenter();
 				double var32 = (double) ((float) b(var31.x, var2[1], true));
 				double var9 = (double) ((float) b(var31.y, var2[2], true));
 				double var11 = (double) ((float) b(var31.z, var2[3], true));
@@ -62,7 +62,7 @@ public class ParticleCommand extends AbstractCommand {
 					var22 = true;
 				}
 
-				World var23 = var1.e();
+				World var23 = var1.getWorld();
 				if (var23 instanceof WorldServer) {
 					WorldServer var24 = (WorldServer) var23;
 					int[] var25 = new int[var4.d()];

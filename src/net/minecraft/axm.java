@@ -13,7 +13,7 @@ public abstract class axm extends baa {
 		this.a(f);
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, BlockState var3) {
 		byte var4 = 4;
 		int var5 = var4 + 1;
 		if (var1.a(var2.a(-var5, -var5, -var5), var2.a(var5, var5, var5))) {
@@ -21,8 +21,8 @@ public abstract class axm extends baa {
 
 			while (var6.hasNext()) {
 				Position var7 = (Position) var6.next();
-				bec var8 = var1.p(var7);
-				if (var8.getBlock().r() == Material.LEAVES && !((Boolean) var8.b(BlockLeaves.b)).booleanValue()) {
+				BlockState var8 = var1.getBlockState(var7);
+				if (var8.getBlock().getMaterial() == Material.LEAVES && !((Boolean) var8.b(BlockLeaves.b)).booleanValue()) {
 					var1.a(var7, var8.a(BlockLeaves.b, Boolean.valueOf(true)), 4);
 				}
 			}
@@ -30,7 +30,7 @@ public abstract class axm extends baa {
 		}
 	}
 
-	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return super.a(var1, var2, var3, var4, var5, var6, var7, var8).a(a, axo.a(var3.k()));
 	}
 

@@ -26,7 +26,7 @@ public class WeatherCommand extends AbstractCommand {
 			}
 
 			WorldServer var4 = MinecraftServer.getInstance().worlds[0];
-			WorldData var5 = var4.P();
+			WorldData var5 = var4.getWorldData();
 			if ("clear".equalsIgnoreCase(var2[0])) {
 				var5.i(var3);
 				var5.g(0);

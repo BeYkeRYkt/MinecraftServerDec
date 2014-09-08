@@ -20,7 +20,7 @@ public class NetherWorldProvider extends WorldProvider {
 	}
 
 	public IChunkProvider c() {
-		return new bgr(this.b, this.b.P().s(), this.b.J());
+		return new bgr(this.b, this.b.getWorldData().s(), this.b.J());
 	}
 
 	public boolean d() {

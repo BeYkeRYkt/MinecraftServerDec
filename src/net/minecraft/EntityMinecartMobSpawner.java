@@ -16,8 +16,8 @@ public class EntityMinecartMobSpawner extends adx {
 		return MinecartType.SPAWNER;
 	}
 
-	public bec u() {
-		return Blocks.MOB_SPAWNER.P();
+	public BlockState u() {
+		return Blocks.MOB_SPAWNER.getBlockState();
 	}
 
 	protected void a(NBTCompoundTag var1) {

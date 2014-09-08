@@ -58,7 +58,7 @@ public class qp implements ara {
 
 		while (var4.hasNext()) {
 			EntityPlayer var5 = (EntityPlayer) var4.next();
-			if (var5 != null && var5.o == this.b && var5.getId() != var1) {
+			if (var5 != null && var5.world == this.b && var5.getId() != var1) {
 				double var6 = (double) var2.getX() - var5.locationX;
 				double var8 = (double) var2.getY() - var5.locationY;
 				double var10 = (double) var2.getZ() - var5.locationZ;

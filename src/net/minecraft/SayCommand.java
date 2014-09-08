@@ -20,7 +20,7 @@ public class SayCommand extends AbstractCommand {
 	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dp, dm {
 		if (var2.length > 0 && var2[0].length() > 0) {
 			IChatBaseComponent var3 = b(var1, var2, 0, true);
-			MinecraftServer.getInstance().getPlayerList().a((IChatBaseComponent) (new ChatMessage("chat.type.announcement", new Object[] { var1.e_(), var3 })));
+			MinecraftServer.getInstance().getPlayerList().sendMessage((IChatBaseComponent) (new ChatMessage("chat.type.announcement", new Object[] { var1.getComponentName(), var3 })));
 		} else {
 			throw new dp("commands.say.usage", new Object[0]);
 		}

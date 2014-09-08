@@ -13,15 +13,15 @@ public class EntityLargeFireball extends ahl {
 	}
 
 	protected void a(MovingObjectPosition var1) {
-		if (!this.o.D) {
+		if (!this.world.D) {
 			if (var1.entity != null) {
 				var1.entity.a(DamageSource.a((ahl) this, this.a), 6.0F);
 				this.a(this.a, var1.entity);
 			}
 
-			boolean var2 = this.o.Q().b("mobGriefing");
-			this.o.a((Entity) null, this.locationX, this.locationY, this.locationZ, (float) this.e, var2, var2);
-			this.J();
+			boolean var2 = this.world.Q().b("mobGriefing");
+			this.world.a((Entity) null, this.locationX, this.locationY, this.locationZ, (float) this.e, var2, var2);
+			this.die();
 		}
 
 	}

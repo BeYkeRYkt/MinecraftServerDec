@@ -14,7 +14,7 @@ public class bkt extends blb {
 	public boolean a(World var1, Random var2, bjb var3) {
 		this.a(var1, var3, 1, 8, 0, 14, 8, 14, a);
 		byte var4 = 7;
-		bec var5 = b;
+		BlockState var5 = b;
 		this.a(var1, var3, 0, var4, 0, 0, var4, 15, var5, var5, false);
 		this.a(var1, var3, 15, var4, 0, 15, var4, 15, var5, var5, false);
 		this.a(var1, var3, 1, var4, 0, 15, var4, 0, var5, var5, false);
@@ -40,7 +40,7 @@ public class bkt extends blb {
 		}
 
 		this.a(var1, var3, 6, 3, 6, 9, 6, 9, c, c, false);
-		this.a(var1, var3, 7, 4, 7, 8, 5, 8, Blocks.GOLD_BLOCK.P(), Blocks.GOLD_BLOCK.P(), false);
+		this.a(var1, var3, 7, 4, 7, 8, 5, 8, Blocks.GOLD_BLOCK.getBlockState(), Blocks.GOLD_BLOCK.getBlockState(), false);
 
 		for (var7 = 3; var7 <= 6; var7 += 3) {
 			for (int var8 = 6; var8 <= 9; var8 += 3) {

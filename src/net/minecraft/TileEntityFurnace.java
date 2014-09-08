@@ -23,13 +23,13 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 	public ItemStack a(int var1, int var2) {
 		if (this.h[var1] != null) {
 			ItemStack var3;
-			if (this.h[var1].b <= var2) {
+			if (this.h[var1].amount <= var2) {
 				var3 = this.h[var1];
 				this.h[var1] = null;
 				return var3;
 			} else {
 				var3 = this.h[var1].a(var2);
-				if (this.h[var1].b == 0) {
+				if (this.h[var1].amount == 0) {
 					this.h[var1] = null;
 				}
 
@@ -53,19 +53,19 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 	public void a(int var1, ItemStack var2) {
 		boolean var3 = var2 != null && var2.a(this.h[var1]) && ItemStack.a(var2, this.h[var1]);
 		this.h[var1] = var2;
-		if (var2 != null && var2.b > this.p_()) {
-			var2.b = this.p_();
+		if (var2 != null && var2.amount > this.p_()) {
+			var2.amount = this.p_();
 		}
 
 		if (var1 == 0 && !var3) {
 			this.l = this.a(var2);
 			this.k = 0;
-			this.o_();
+			this.update();
 		}
 
 	}
 
-	public String d_() {
+	public String getName() {
 		return this.k_() ? this.m : "container.furnace";
 	}
 
@@ -111,7 +111,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 			if (this.h[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.put("Slot", (byte) var3);
-				this.h[var3].b(var4);
+				this.h[var3].write(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
@@ -149,8 +149,8 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 					if (this.m()) {
 						var2 = true;
 						if (this.h[1] != null) {
-							--this.h[1].b;
-							if (this.h[1].b == 0) {
+							--this.h[1].amount;
+							if (this.h[1].amount == 0) {
 								Item var3 = this.h[1].getItem().getCraftingResult();
 								this.h[1] = var3 != null ? new ItemStack(var3) : null;
 							}
@@ -178,7 +178,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 		}
 
 		if (var2) {
-			this.o_();
+			this.update();
 		}
 
 	}
@@ -192,7 +192,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 			return false;
 		} else {
 			ItemStack var1 = RecipesFurnace.getInstance().a(this.h[0]);
-			return var1 == null ? false : (this.h[2] == null ? true : (!this.h[2].a(var1) ? false : (this.h[2].b < this.p_() && this.h[2].b < this.h[2].c() ? true : this.h[2].b < var1.c())));
+			return var1 == null ? false : (this.h[2] == null ? true : (!this.h[2].a(var1) ? false : (this.h[2].amount < this.p_() && this.h[2].amount < this.h[2].getMaxStackSize() ? true : this.h[2].amount < var1.getMaxStackSize())));
 		}
 	}
 
@@ -202,15 +202,15 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 			if (this.h[2] == null) {
 				this.h[2] = var1.getCopy();
 			} else if (this.h[2].getItem() == var1.getItem()) {
-				++this.h[2].b;
+				++this.h[2].amount;
 			}
 
-			if (this.h[0].getItem() == Item.getItemOf(Blocks.SPONGE) && this.h[0].i() == 1 && this.h[1] != null && this.h[1].getItem() == Items.BUCKET) {
+			if (this.h[0].getItem() == Item.getItemOf(Blocks.SPONGE) && this.h[0].getDurability() == 1 && this.h[1] != null && this.h[1].getItem() == Items.BUCKET) {
 				this.h[1] = new ItemStack(Items.WATER_BUCKET);
 			}
 
-			--this.h[0].b;
-			if (this.h[0].b <= 0) {
+			--this.h[0].amount;
+			if (this.h[0].amount <= 0) {
 				this.h[0] = null;
 			}
 
@@ -228,7 +228,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 					return 150;
 				}
 
-				if (var2.r() == Material.WOOD) {
+				if (var2.getMaterial() == Material.WOOD) {
 					return 300;
 				}
 
@@ -246,7 +246,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.world.s(this.position) != this ? false : var1.e((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
+		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public void b(EntityHuman var1) {

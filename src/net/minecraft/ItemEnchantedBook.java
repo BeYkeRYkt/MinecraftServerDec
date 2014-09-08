@@ -41,7 +41,7 @@ public class ItemEnchantedBook extends Item {
 		}
 
 		if (!var1.hasTag()) {
-			var1.d(new NBTCompoundTag());
+			var1.setTag(new NBTCompoundTag());
 		}
 
 		var1.getTag().put("StoredEnchantments", (NBTTag) var3);

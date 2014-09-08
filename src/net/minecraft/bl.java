@@ -29,35 +29,35 @@ class bl implements CommandSenderInterface {
 		this.f = var9;
 	}
 
-	public String d_() {
-		return this.a.d_();
+	public String getName() {
+		return this.a.getName();
 	}
 
-	public IChatBaseComponent e_() {
-		return this.a.e_();
+	public IChatBaseComponent getComponentName() {
+		return this.a.getComponentName();
 	}
 
 	public void sendChatMessage(IChatBaseComponent var1) {
 		this.b.sendChatMessage(var1);
 	}
 
-	public boolean a(int var1, String var2) {
-		return this.b.a(var1, var2);
+	public boolean canExecuteCommand(int var1, String var2) {
+		return this.b.canExecuteCommand(var1, var2);
 	}
 
-	public Position c() {
+	public Position getEntityPosition() {
 		return this.c;
 	}
 
-	public Vec3D d() {
+	public Vec3D getCenter() {
 		return new Vec3D(this.d, this.e, this.f);
 	}
 
-	public World e() {
-		return this.a.o;
+	public World getWorld() {
+		return this.a.world;
 	}
 
-	public Entity f() {
+	public Entity getEntity() {
 		return this.a;
 	}
 

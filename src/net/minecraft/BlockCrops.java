@@ -7,7 +7,7 @@ public class BlockCrops extends auc implements atz {
 	public static final bew a = bew.a("age", 0, 7);
 
 	protected BlockCrops() {
-		this.j(this.L.b().a(a, Integer.valueOf(0)));
+		this.setBlockState(this.L.b().a(a, Integer.valueOf(0)));
 		this.a(true);
 		float var1 = 0.5F;
 		this.a(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 0.25F, 0.5F + var1);
@@ -21,7 +21,7 @@ public class BlockCrops extends auc implements atz {
 		return var1 == Blocks.FARMLAND;
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, BlockState var3, Random var4) {
 		super.b(var1, var2, var3, var4);
 		if (var1.l(var2.a()) >= 9) {
 			int var5 = ((Integer) var3.b(a)).intValue();
@@ -35,7 +35,7 @@ public class BlockCrops extends auc implements atz {
 
 	}
 
-	public void g(World var1, Position var2, bec var3) {
+	public void g(World var1, Position var2, BlockState var3) {
 		int var4 = ((Integer) var3.b(a)).intValue() + DataTypesConverter.a(var1.s, 2, 5);
 		if (var4 > 7) {
 			var4 = 7;
@@ -51,7 +51,7 @@ public class BlockCrops extends auc implements atz {
 		for (int var5 = -1; var5 <= 1; ++var5) {
 			for (int var6 = -1; var6 <= 1; ++var6) {
 				float var7 = 0.0F;
-				bec var8 = var1.p(var4.a(var5, 0, var6));
+				BlockState var8 = var1.getBlockState(var4.a(var5, 0, var6));
 				if (var8.getBlock() == Blocks.FARMLAND) {
 					var7 = 1.0F;
 					if (((Integer) var8.b(BlockSoil.a)).intValue() > 0) {
@@ -71,12 +71,12 @@ public class BlockCrops extends auc implements atz {
 		Position var13 = var2.d();
 		Position var14 = var2.e();
 		Position var15 = var2.f();
-		boolean var9 = var0 == var1.p(var14).getBlock() || var0 == var1.p(var15).getBlock();
-		boolean var10 = var0 == var1.p(var12).getBlock() || var0 == var1.p(var13).getBlock();
+		boolean var9 = var0 == var1.getBlockState(var14).getBlock() || var0 == var1.getBlockState(var15).getBlock();
+		boolean var10 = var0 == var1.getBlockState(var12).getBlock() || var0 == var1.getBlockState(var13).getBlock();
 		if (var9 && var10) {
 			var3 /= 2.0F;
 		} else {
-			boolean var11 = var0 == var1.p(var14.c()).getBlock() || var0 == var1.p(var15.c()).getBlock() || var0 == var1.p(var15.d()).getBlock() || var0 == var1.p(var14.d()).getBlock();
+			boolean var11 = var0 == var1.getBlockState(var14.c()).getBlock() || var0 == var1.getBlockState(var15.c()).getBlock() || var0 == var1.getBlockState(var15.d()).getBlock() || var0 == var1.getBlockState(var14.d()).getBlock();
 			if (var11) {
 				var3 /= 2.0F;
 			}
@@ -85,8 +85,8 @@ public class BlockCrops extends auc implements atz {
 		return var3;
 	}
 
-	public boolean f(World var1, Position var2, bec var3) {
-		return (var1.k(var2) >= 8 || var1.i(var2)) && this.c(var1.p(var2.b()).getBlock());
+	public boolean f(World var1, Position var2, BlockState var3) {
+		return (var1.k(var2) >= 8 || var1.i(var2)) && this.c(var1.getBlockState(var2.b()).getBlock());
 	}
 
 	protected Item j() {
@@ -97,7 +97,7 @@ public class BlockCrops extends auc implements atz {
 		return Items.WHEAT;
 	}
 
-	public void a(World var1, Position var2, bec var3, float var4, int var5) {
+	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
 		super.a(var1, var2, var3, var4, 0);
 		if (!var1.D) {
 			int var6 = ((Integer) var3.b(a)).intValue();
@@ -114,27 +114,27 @@ public class BlockCrops extends auc implements atz {
 		}
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
+	public Item a(BlockState var1, Random var2, int var3) {
 		return ((Integer) var1.b(a)).intValue() == 7 ? this.l() : this.j();
 	}
 
-	public boolean a(World var1, Position var2, bec var3, boolean var4) {
+	public boolean a(World var1, Position var2, BlockState var3, boolean var4) {
 		return ((Integer) var3.b(a)).intValue() < 7;
 	}
 
-	public boolean a(World var1, Random var2, Position var3, bec var4) {
+	public boolean a(World var1, Random var2, Position var3, BlockState var4) {
 		return true;
 	}
 
-	public void b(World var1, Random var2, Position var3, bec var4) {
+	public void b(World var1, Random var2, Position var3, BlockState var4) {
 		this.g(var1, var3, var4);
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, Integer.valueOf(var1));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((Integer) var1.b(a)).intValue();
 	}
 

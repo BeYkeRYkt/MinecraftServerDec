@@ -2,9 +2,9 @@ package net.minecraft;
 
 public interface vz {
 
-	String d_();
+	String getName();
 
 	boolean k_();
 
-	IChatBaseComponent e_();
+	IChatBaseComponent getComponentName();
 }

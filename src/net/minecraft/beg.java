@@ -33,13 +33,13 @@ class beg extends bea {
 		}
 	}
 
-	public bec a(bex var1, Comparable var2) {
+	public BlockState a(bex var1, Comparable var2) {
 		if (!this.b.containsKey(var1)) {
 			throw new IllegalArgumentException("Cannot set property " + var1 + " as it does not exist in " + this.a.O());
 		} else if (!var1.c().contains(var2)) {
 			throw new IllegalArgumentException("Cannot set property " + var1 + " to " + var2 + " on block " + Block.BLOCKREGISTRY.c(this.a) + ", it is not an allowed value");
 		} else {
-			return (bec) (this.b.get(var1) == var2 ? this : (bec) this.c.get(var1, var2));
+			return (BlockState) (this.b.get(var1) == var2 ? this : (BlockState) this.c.get(var1, var2));
 		}
 	}
 

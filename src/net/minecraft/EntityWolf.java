@@ -55,12 +55,12 @@ public class EntityWolf extends xx {
 	}
 
 	protected void E() {
-		this.dataWatcher.b(18, Float.valueOf(this.bm()));
+		this.dataWatcher.b(18, Float.valueOf(this.getHealth()));
 	}
 
 	protected void h() {
 		super.h();
-		this.dataWatcher.a(18, new Float(this.bm()));
+		this.dataWatcher.a(18, new Float(this.getHealth()));
 		this.dataWatcher.a(19, new Byte((byte) 0));
 		this.dataWatcher.a(20, new Byte((byte) akv.o.a()));
 	}
@@ -85,7 +85,7 @@ public class EntityWolf extends xx {
 	}
 
 	protected String z() {
-		return this.ct() ? "mob.wolf.growl" : (this.V.nextInt(3) == 0 ? (this.cj() && this.dataWatcher.d(18) < 10.0F ? "mob.wolf.whine" : "mob.wolf.panting") : "mob.wolf.bark");
+		return this.ct() ? "mob.wolf.growl" : (this.V.nextInt(3) == 0 ? (this.cj() && this.dataWatcher.getData(18) < 10.0F ? "mob.wolf.whine" : "mob.wolf.panting") : "mob.wolf.bark");
 	}
 
 	protected String bn() {
@@ -106,14 +106,14 @@ public class EntityWolf extends xx {
 
 	public void m() {
 		super.m();
-		if (!this.o.D && this.bo && !this.bp && !this.cd() && this.onGround) {
+		if (!this.world.D && this.bo && !this.bp && !this.cd() && this.onGround) {
 			this.bp = true;
 			this.bq = 0.0F;
 			this.br = 0.0F;
-			this.o.a((Entity) this, (byte) 8);
+			this.world.a((Entity) this, (byte) 8);
 		}
 
-		if (!this.o.D && this.u() == null && this.ct()) {
+		if (!this.world.D && this.u() == null && this.ct()) {
 			this.o(false);
 		}
 
@@ -154,7 +154,7 @@ public class EntityWolf extends xx {
 				for (int var3 = 0; var3 < var2; ++var3) {
 					float var4 = (this.V.nextFloat() * 2.0F - 1.0F) * this.J * 0.5F;
 					float var5 = (this.V.nextFloat() * 2.0F - 1.0F) * this.J * 0.5F;
-					this.o.a(Particle.f, this.locationX + (double) var4, (double) (var1 + 0.8F), this.locationZ + (double) var5, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.world.a(Particle.f, this.locationX + (double) var4, (double) (var1 + 0.8F), this.locationZ + (double) var5, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 			}
 		}
@@ -209,24 +209,24 @@ public class EntityWolf extends xx {
 			if (var2 != null) {
 				if (var2.getItem() instanceof ItemFood) {
 					ItemFood var3 = (ItemFood) var2.getItem();
-					if (var3.g() && this.dataWatcher.d(18) < 20.0F) {
-						if (!var1.by.instabuild) {
-							--var2.b;
+					if (var3.g() && this.dataWatcher.getData(18) < 20.0F) {
+						if (!var1.playerProperties.instabuild) {
+							--var2.amount;
 						}
 
 						this.g((float) var3.h(var2));
-						if (var2.b <= 0) {
-							var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
+						if (var2.amount <= 0) {
+							var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 						}
 
 						return true;
 					}
 				} else if (var2.getItem() == Items.DYE) {
-					akv var4 = akv.a(var2.i());
+					akv var4 = akv.a(var2.getDurability());
 					if (var4 != this.cu()) {
 						this.a(var4);
-						if (!var1.by.instabuild && --var2.b <= 0) {
-							var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
+						if (!var1.playerProperties.instabuild && --var2.amount <= 0) {
+							var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 						}
 
 						return true;
@@ -234,22 +234,22 @@ public class EntityWolf extends xx {
 				}
 			}
 
-			if (this.e(var1) && !this.o.D && !this.d(var2)) {
+			if (this.e(var1) && !this.world.D && !this.d(var2)) {
 				this.bk.a(!this.cl());
 				this.aW = false;
 				this.h.n();
 				this.d((EntityLiving) null);
 			}
 		} else if (var2 != null && var2.getItem() == Items.BONE && !this.ct()) {
-			if (!var1.by.instabuild) {
-				--var2.b;
+			if (!var1.playerProperties.instabuild) {
+				--var2.amount;
 			}
 
-			if (var2.b <= 0) {
-				var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
+			if (var2.amount <= 0) {
+				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 
-			if (!this.o.D) {
+			if (!this.world.D) {
 				if (this.V.nextInt(3) == 0) {
 					this.m(true);
 					this.h.n();
@@ -258,10 +258,10 @@ public class EntityWolf extends xx {
 					this.h(20.0F);
 					this.b(var1.aJ().toString());
 					this.l(true);
-					this.o.a((Entity) this, (byte) 7);
+					this.world.a((Entity) this, (byte) 7);
 				} else {
 					this.l(false);
-					this.o.a((Entity) this, (byte) 6);
+					this.world.a((Entity) this, (byte) 6);
 				}
 			}
 
@@ -302,7 +302,7 @@ public class EntityWolf extends xx {
 	}
 
 	public EntityWolf b(ws var1) {
-		EntityWolf var2 = new EntityWolf(this.o);
+		EntityWolf var2 = new EntityWolf(this.world);
 		String var3 = this.b();
 		if (var3 != null && var3.trim().length() > 0) {
 			var2.b(var3);

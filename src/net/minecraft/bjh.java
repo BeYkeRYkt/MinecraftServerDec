@@ -108,25 +108,25 @@ public class bjh extends bms {
 			return false;
 		} else {
 			if (this.b) {
-				this.a(var1, var3, this.l.a + 1, this.l.b, this.l.c, this.l.d - 1, this.l.b + 3 - 1, this.l.f, Blocks.AIR.P(), Blocks.AIR.P(), false);
-				this.a(var1, var3, this.l.a, this.l.b, this.l.c + 1, this.l.d, this.l.b + 3 - 1, this.l.f - 1, Blocks.AIR.P(), Blocks.AIR.P(), false);
-				this.a(var1, var3, this.l.a + 1, this.l.e - 2, this.l.c, this.l.d - 1, this.l.e, this.l.f, Blocks.AIR.P(), Blocks.AIR.P(), false);
-				this.a(var1, var3, this.l.a, this.l.e - 2, this.l.c + 1, this.l.d, this.l.e, this.l.f - 1, Blocks.AIR.P(), Blocks.AIR.P(), false);
-				this.a(var1, var3, this.l.a + 1, this.l.b + 3, this.l.c + 1, this.l.d - 1, this.l.b + 3, this.l.f - 1, Blocks.AIR.P(), Blocks.AIR.P(), false);
+				this.a(var1, var3, this.l.a + 1, this.l.b, this.l.c, this.l.d - 1, this.l.b + 3 - 1, this.l.f, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+				this.a(var1, var3, this.l.a, this.l.b, this.l.c + 1, this.l.d, this.l.b + 3 - 1, this.l.f - 1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+				this.a(var1, var3, this.l.a + 1, this.l.e - 2, this.l.c, this.l.d - 1, this.l.e, this.l.f, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+				this.a(var1, var3, this.l.a, this.l.e - 2, this.l.c + 1, this.l.d, this.l.e, this.l.f - 1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+				this.a(var1, var3, this.l.a + 1, this.l.b + 3, this.l.c + 1, this.l.d - 1, this.l.b + 3, this.l.f - 1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 			} else {
-				this.a(var1, var3, this.l.a + 1, this.l.b, this.l.c, this.l.d - 1, this.l.e, this.l.f, Blocks.AIR.P(), Blocks.AIR.P(), false);
-				this.a(var1, var3, this.l.a, this.l.b, this.l.c + 1, this.l.d, this.l.e, this.l.f - 1, Blocks.AIR.P(), Blocks.AIR.P(), false);
+				this.a(var1, var3, this.l.a + 1, this.l.b, this.l.c, this.l.d - 1, this.l.e, this.l.f, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+				this.a(var1, var3, this.l.a, this.l.b, this.l.c + 1, this.l.d, this.l.e, this.l.f - 1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 			}
 
-			this.a(var1, var3, this.l.a + 1, this.l.b, this.l.c + 1, this.l.a + 1, this.l.e, this.l.c + 1, Blocks.PLANKS.P(), Blocks.AIR.P(), false);
-			this.a(var1, var3, this.l.a + 1, this.l.b, this.l.f - 1, this.l.a + 1, this.l.e, this.l.f - 1, Blocks.PLANKS.P(), Blocks.AIR.P(), false);
-			this.a(var1, var3, this.l.d - 1, this.l.b, this.l.c + 1, this.l.d - 1, this.l.e, this.l.c + 1, Blocks.PLANKS.P(), Blocks.AIR.P(), false);
-			this.a(var1, var3, this.l.d - 1, this.l.b, this.l.f - 1, this.l.d - 1, this.l.e, this.l.f - 1, Blocks.PLANKS.P(), Blocks.AIR.P(), false);
+			this.a(var1, var3, this.l.a + 1, this.l.b, this.l.c + 1, this.l.a + 1, this.l.e, this.l.c + 1, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
+			this.a(var1, var3, this.l.a + 1, this.l.b, this.l.f - 1, this.l.a + 1, this.l.e, this.l.f - 1, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
+			this.a(var1, var3, this.l.d - 1, this.l.b, this.l.c + 1, this.l.d - 1, this.l.e, this.l.c + 1, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
+			this.a(var1, var3, this.l.d - 1, this.l.b, this.l.f - 1, this.l.d - 1, this.l.e, this.l.f - 1, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
 
 			for (int var4 = this.l.a; var4 <= this.l.d; ++var4) {
 				for (int var5 = this.l.c; var5 <= this.l.f; ++var5) {
-					if (this.a(var1, var4, this.l.b - 1, var5, var3).getBlock().r() == Material.AIR) {
-						this.a(var1, Blocks.PLANKS.P(), var4, this.l.b - 1, var5, var3);
+					if (this.a(var1, var4, this.l.b - 1, var5, var3).getBlock().getMaterial() == Material.AIR) {
+						this.a(var1, Blocks.PLANKS.getBlockState(), var4, this.l.b - 1, var5, var3);
 					}
 				}
 			}

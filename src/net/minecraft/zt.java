@@ -17,12 +17,12 @@ public class zt extends yv {
 
 	public void c() {
 		this.h = 20;
-		this.c.a(this.a.o, this.b, true);
+		this.c.a(this.a.world, this.b, true);
 	}
 
 	public void d() {
 		if (this.g) {
-			this.c.a(this.a.o, this.b, false);
+			this.c.a(this.a.world, this.b, false);
 		}
 
 	}

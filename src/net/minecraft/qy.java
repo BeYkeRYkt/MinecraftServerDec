@@ -60,7 +60,7 @@ public class qy {
 
 	public void a(List var1) {
 		this.n = false;
-		if (!this.t || this.a.e(this.q, this.r, this.s) > 16.0D) {
+		if (!this.t || this.a.getDistanceSquared(this.q, this.r, this.s) > 16.0D) {
 			this.q = this.a.locationX;
 			this.r = this.a.locationY;
 			this.s = this.a.locationZ;
@@ -69,23 +69,23 @@ public class qy {
 			this.b(var1);
 		}
 
-		if (this.w != this.a.m || this.a.m != null && this.m % 60 == 0) {
-			this.w = this.a.m;
-			this.a((Packet) (new PacketPlayOutAttachEntity(0, this.a, this.a.m)));
+		if (this.w != this.a.vehicle || this.a.vehicle != null && this.m % 60 == 0) {
+			this.w = this.a.vehicle;
+			this.a((Packet) (new PacketPlayOutAttachEntity(0, this.a, this.a.vehicle)));
 		}
 
 		if (this.a instanceof EntityItemFrame && this.m % 10 == 0) {
 			EntityItemFrame var2 = (EntityItemFrame) this.a;
 			ItemStack var3 = var2.o();
 			if (var3 != null && var3.getItem() instanceof ItemMapFilled) {
-				bqe var4 = Items.FILLED_MAP.a(var3, this.a.o);
+				bqe var4 = Items.FILLED_MAP.a(var3, this.a.world);
 				Iterator var5 = var1.iterator();
 
 				while (var5.hasNext()) {
 					EntityHuman var6 = (EntityHuman) var5.next();
 					EntityPlayer var7 = (EntityPlayer) var6;
 					var4.a(var7, var3);
-					Packet var8 = Items.FILLED_MAP.c(var3, this.a.o, var7);
+					Packet var8 = Items.FILLED_MAP.c(var3, this.a.world, var7);
 					if (var8 != null) {
 						var7.playerConncetion.sendPacket(var8);
 					}
@@ -98,7 +98,7 @@ public class qy {
 		if (this.m % this.c == 0 || this.a.ai || this.a.getDataWatcher().a()) {
 			int var23;
 			int var24;
-			if (this.a.m == null) {
+			if (this.a.vehicle == null) {
 				++this.v;
 				var23 = DataTypesConverter.toFixedPointInt(this.a.locationX * 32.0D);
 				var24 = DataTypesConverter.toFixedPointInt(this.a.locationY * 32.0D);
@@ -277,8 +277,8 @@ public class qy {
 						var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutEntityVelocity(this.a.getId(), this.a.motionX, this.a.motionY, this.a.motionZ)));
 					}
 
-					if (this.a.m != null) {
-						var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutAttachEntity(0, this.a, this.a.m)));
+					if (this.a.vehicle != null) {
+						var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutAttachEntity(0, this.a, this.a.vehicle)));
 					}
 
 					if (this.a instanceof EntityInsentient && ((EntityInsentient) this.a).cc() != null) {
@@ -337,7 +337,7 @@ public class qy {
 	}
 
 	private Packet c() {
-		if (this.a.I) {
+		if (this.a.dead) {
 			p.warn("Fetching addPacket for removed entity");
 		}
 

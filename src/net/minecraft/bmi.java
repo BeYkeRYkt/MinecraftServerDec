@@ -56,16 +56,16 @@ public class bmi extends bmk {
 			this.a(var1, var3, 0, 0, 0, 4, 4, 6, true, var2, blr.c());
 			this.a(var1, var2, var3, this.d, 1, 1, 0);
 			this.a(var1, var2, var3, bml.a, 1, 1, 6);
-			this.a(var1, var3, var2, 0.1F, 1, 2, 1, Blocks.TORCH.P());
-			this.a(var1, var3, var2, 0.1F, 3, 2, 1, Blocks.TORCH.P());
-			this.a(var1, var3, var2, 0.1F, 1, 2, 5, Blocks.TORCH.P());
-			this.a(var1, var3, var2, 0.1F, 3, 2, 5, Blocks.TORCH.P());
+			this.a(var1, var3, var2, 0.1F, 1, 2, 1, Blocks.TORCH.getBlockState());
+			this.a(var1, var3, var2, 0.1F, 3, 2, 1, Blocks.TORCH.getBlockState());
+			this.a(var1, var3, var2, 0.1F, 1, 2, 5, Blocks.TORCH.getBlockState());
+			this.a(var1, var3, var2, 0.1F, 3, 2, 5, Blocks.TORCH.getBlockState());
 			if (this.a) {
-				this.a(var1, var3, 0, 1, 2, 0, 3, 4, Blocks.AIR.P(), Blocks.AIR.P(), false);
+				this.a(var1, var3, 0, 1, 2, 0, 3, 4, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 			}
 
 			if (this.b) {
-				this.a(var1, var3, 4, 1, 2, 4, 3, 4, Blocks.AIR.P(), Blocks.AIR.P(), false);
+				this.a(var1, var3, 4, 1, 2, 4, 3, 4, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 			}
 
 			return true;

@@ -13,7 +13,7 @@ class aen extends zb {
 
 	public boolean a() {
 		EntityLiving var1 = this.a.u();
-		return var1 != null && var1.ai();
+		return var1 != null && var1.isAlive();
 	}
 
 	public void c() {
@@ -27,7 +27,7 @@ class aen extends zb {
 	public void e() {
 		--this.c;
 		EntityLiving var1 = this.a.u();
-		double var2 = this.a.h(var1);
+		double var2 = this.a.getDistanceSquared(var1);
 		if (var2 < 4.0D) {
 			if (this.c <= 0) {
 				this.c = 20;
@@ -54,12 +54,12 @@ class aen extends zb {
 
 				if (this.b > 1) {
 					float var10 = DataTypesConverter.c(DataTypesConverter.a(var2)) * 0.5F;
-					this.a.o.a((EntityHuman) null, 1009, new Position((int) this.a.locationX, (int) this.a.locationY, (int) this.a.locationZ), 0);
+					this.a.world.a((EntityHuman) null, 1009, new Position((int) this.a.locationX, (int) this.a.locationY, (int) this.a.locationZ), 0);
 
 					for (int var11 = 0; var11 < 1; ++var11) {
-						EntitySmallFireball var12 = new EntitySmallFireball(this.a.o, this.a, var4 + this.a.bb().nextGaussian() * (double) var10, var6, var8 + this.a.bb().nextGaussian() * (double) var10);
+						EntitySmallFireball var12 = new EntitySmallFireball(this.a.world, this.a, var4 + this.a.bb().nextGaussian() * (double) var10, var6, var8 + this.a.bb().nextGaussian() * (double) var10);
 						var12.locationY = this.a.locationY + (double) (this.a.K / 2.0F) + 0.5D;
-						this.a.o.d((Entity) var12);
+						this.a.world.d((Entity) var12);
 					}
 				}
 			}

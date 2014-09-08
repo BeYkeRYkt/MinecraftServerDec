@@ -22,8 +22,8 @@ public class EntityMinecartHopper extends aed implements bdd {
 		return MinecartType.HOPPER;
 	}
 
-	public bec u() {
-		return Blocks.HOPPER.P();
+	public BlockState u() {
+		return Blocks.HOPPER.getBlockState();
 	}
 
 	public int w() {
@@ -35,7 +35,7 @@ public class EntityMinecartHopper extends aed implements bdd {
 	}
 
 	public boolean e(EntityHuman var1) {
-		if (!this.o.D) {
+		if (!this.world.D) {
 			var1.a((IInventory) this);
 		}
 
@@ -58,8 +58,8 @@ public class EntityMinecartHopper extends aed implements bdd {
 		this.a = var1;
 	}
 
-	public World z() {
-		return this.o;
+	public World getWorld() {
+		return this.world;
 	}
 
 	public double A() {
@@ -76,7 +76,7 @@ public class EntityMinecartHopper extends aed implements bdd {
 
 	public void s_() {
 		super.s_();
-		if (!this.o.D && this.ai() && this.y()) {
+		if (!this.world.D && this.isAlive() && this.y()) {
 			Position var1 = new Position(this);
 			if (var1.equals(this.c)) {
 				--this.b;
@@ -88,7 +88,7 @@ public class EntityMinecartHopper extends aed implements bdd {
 				this.m(0);
 				if (this.D()) {
 					this.m(4);
-					this.o_();
+					this.update();
 				}
 			}
 		}
@@ -99,7 +99,7 @@ public class EntityMinecartHopper extends aed implements bdd {
 		if (TileEntityHopper.a((bdd) this)) {
 			return true;
 		} else {
-			List var1 = this.o.a(EntityItem.class, this.aQ().b(0.25D, 0.0D, 0.25D), EntityPredicates.a);
+			List var1 = this.world.a(EntityItem.class, this.aQ().b(0.25D, 0.0D, 0.25D), EntityPredicates.a);
 			if (var1.size() > 0) {
 				TileEntityHopper.a((IInventory) this, (EntityItem) var1.get(0));
 			}

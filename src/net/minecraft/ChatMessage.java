@@ -27,7 +27,7 @@ public class ChatMessage extends hj {
 		for (int var5 = 0; var5 < var4; ++var5) {
 			Object var6 = var3[var5];
 			if (var6 instanceof IChatBaseComponent) {
-				((IChatBaseComponent) var6).b().a(this.b());
+				((IChatBaseComponent) var6).getChatModifier().a(this.getChatModifier());
 			}
 		}
 
@@ -72,7 +72,7 @@ public class ChatMessage extends hj {
 				var7 = var3.end();
 				if (var6 > var5) {
 					ChatComponentText var8 = new ChatComponentText(String.format(var1.substring(var5, var6), new Object[0]));
-					var8.b().a(this.b());
+					var8.getChatModifier().a(this.getChatModifier());
 					this.b.add(var8);
 				}
 
@@ -80,7 +80,7 @@ public class ChatMessage extends hj {
 				String var9 = var1.substring(var6, var7);
 				if ("%".equals(var14) && "%%".equals(var9)) {
 					ChatComponentText var15 = new ChatComponentText("%");
-					var15.b().a(this.b());
+					var15.getChatModifier().a(this.getChatModifier());
 					this.b.add(var15);
 				} else {
 					if (!"s".equals(var14)) {
@@ -97,7 +97,7 @@ public class ChatMessage extends hj {
 
 			if (var5 < var1.length()) {
 				ChatComponentText var13 = new ChatComponentText(String.format(var1.substring(var5), new Object[0]));
-				var13.b().a(this.b());
+				var13.getChatModifier().a(this.getChatModifier());
 				this.b.add(var13);
 			}
 
@@ -116,7 +116,7 @@ public class ChatMessage extends hj {
 				var3 = (IChatBaseComponent) var2;
 			} else {
 				var3 = new ChatComponentText(var2 == null ? "null" : var2.toString());
-				((IChatBaseComponent) var3).b().a(this.b());
+				((IChatBaseComponent) var3).getChatModifier().a(this.getChatModifier());
 			}
 
 			return (IChatBaseComponent) var3;
@@ -131,7 +131,7 @@ public class ChatMessage extends hj {
 		for (int var4 = 0; var4 < var3; ++var4) {
 			Object var5 = var2[var4];
 			if (var5 instanceof IChatBaseComponent) {
-				((IChatBaseComponent) var5).b().a(this.b());
+				((IChatBaseComponent) var5).getChatModifier().a(this.getChatModifier());
 			}
 		}
 
@@ -140,7 +140,7 @@ public class ChatMessage extends hj {
 
 			while (var6.hasNext()) {
 				IChatBaseComponent var7 = (IChatBaseComponent) var6.next();
-				var7.b().a(var1);
+				var7.getChatModifier().a(var1);
 			}
 		}
 
@@ -177,7 +177,7 @@ public class ChatMessage extends hj {
 		}
 
 		ChatMessage var5 = new ChatMessage(this.d, var1);
-		var5.a(this.b().m());
+		var5.a(this.getChatModifier().m());
 		Iterator var3 = this.a().iterator();
 
 		while (var3.hasNext()) {
@@ -207,7 +207,7 @@ public class ChatMessage extends hj {
 	}
 
 	public String toString() {
-		return "TranslatableComponent{key=\'" + this.d + '\'' + ", args=" + Arrays.toString(this.e) + ", siblings=" + this.a + ", style=" + this.b() + '}';
+		return "TranslatableComponent{key=\'" + this.d + '\'' + ", args=" + Arrays.toString(this.e) + ", siblings=" + this.a + ", style=" + this.getChatModifier() + '}';
 	}
 
 	public String i() {

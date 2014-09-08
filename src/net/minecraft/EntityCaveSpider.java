@@ -16,9 +16,9 @@ public class EntityCaveSpider extends EntitySpider {
 		if (super.r(var1)) {
 			if (var1 instanceof EntityLiving) {
 				byte var2 = 0;
-				if (this.o.getDifficulty() == Difficulty.NORMAL) {
+				if (this.world.getDifficulty() == Difficulty.NORMAL) {
 					var2 = 7;
-				} else if (this.o.getDifficulty() == Difficulty.HARD) {
+				} else if (this.world.getDifficulty() == Difficulty.HARD) {
 					var2 = 15;
 				}
 

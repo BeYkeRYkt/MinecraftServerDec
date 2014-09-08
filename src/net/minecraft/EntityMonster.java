@@ -21,8 +21,8 @@ public abstract class EntityMonster extends EntityCreature implements aex {
 
 	public void s_() {
 		super.s_();
-		if (!this.o.D && this.o.getDifficulty() == Difficulty.PEACEFUL) {
-			this.J();
+		if (!this.world.D && this.world.getDifficulty() == Difficulty.PEACEFUL) {
+			this.die();
 		}
 
 	}
@@ -40,7 +40,7 @@ public abstract class EntityMonster extends EntityCreature implements aex {
 			return false;
 		} else if (super.a(var1, var2)) {
 			Entity var3 = var1.j();
-			return this.l != var3 && this.m != var3 ? true : true;
+			return this.l != var3 && this.vehicle != var3 ? true : true;
 		} else {
 			return false;
 		}
@@ -62,7 +62,7 @@ public abstract class EntityMonster extends EntityCreature implements aex {
 		float var2 = (float) this.a(afs.e).e();
 		int var3 = 0;
 		if (var1 instanceof EntityLiving) {
-			var2 += aph.a(this.bz(), ((EntityLiving) var1).by());
+			var2 += aph.a(this.getItemInHand(), ((EntityLiving) var1).by());
 			var3 += aph.a((EntityLiving) this);
 		}
 
@@ -86,20 +86,20 @@ public abstract class EntityMonster extends EntityCreature implements aex {
 	}
 
 	public float a(Position var1) {
-		return 0.5F - this.o.o(var1);
+		return 0.5F - this.world.o(var1);
 	}
 
 	protected boolean m_() {
 		Position var1 = new Position(this.locationX, this.aQ().minY, this.locationZ);
-		if (this.o.b(arf.a, var1) > this.V.nextInt(32)) {
+		if (this.world.b(arf.a, var1) > this.V.nextInt(32)) {
 			return false;
 		} else {
-			int var2 = this.o.l(var1);
-			if (this.o.R()) {
-				int var3 = this.o.ab();
-				this.o.b(10);
-				var2 = this.o.l(var1);
-				this.o.b(var3);
+			int var2 = this.world.l(var1);
+			if (this.world.R()) {
+				int var3 = this.world.ab();
+				this.world.b(10);
+				var2 = this.world.l(var1);
+				this.world.b(var3);
 			}
 
 			return var2 <= this.V.nextInt(8);
@@ -107,7 +107,7 @@ public abstract class EntityMonster extends EntityCreature implements aex {
 	}
 
 	public boolean bQ() {
-		return this.o.getDifficulty() != Difficulty.PEACEFUL && this.m_() && super.bQ();
+		return this.world.getDifficulty() != Difficulty.PEACEFUL && this.m_() && super.bQ();
 	}
 
 	protected void aW() {

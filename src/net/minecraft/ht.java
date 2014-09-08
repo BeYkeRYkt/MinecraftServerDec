@@ -45,7 +45,7 @@ public class ht extends hj {
 	public ht i() {
 		ht var1 = new ht(this.b, this.c);
 		var1.b(this.d);
-		var1.a(this.b().m());
+		var1.a(this.getChatModifier().m());
 		Iterator var2 = this.a().iterator();
 
 		while (var2.hasNext()) {
@@ -68,7 +68,7 @@ public class ht extends hj {
 	}
 
 	public String toString() {
-		return "ScoreComponent{name=\'" + this.b + '\'' + "objective=\'" + this.c + '\'' + ", siblings=" + this.a + ", style=" + this.b() + '}';
+		return "ScoreComponent{name=\'" + this.b + '\'' + "objective=\'" + this.c + '\'' + ", siblings=" + this.a + ", style=" + this.getChatModifier() + '}';
 	}
 
 	// $FF: synthetic method

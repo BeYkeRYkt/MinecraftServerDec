@@ -19,18 +19,18 @@ public class TileEntityDispenser extends bdf implements IInventory {
 	public ItemStack a(int var1, int var2) {
 		if (this.g[var1] != null) {
 			ItemStack var3;
-			if (this.g[var1].b <= var2) {
+			if (this.g[var1].amount <= var2) {
 				var3 = this.g[var1];
 				this.g[var1] = null;
-				this.o_();
+				this.update();
 				return var3;
 			} else {
 				var3 = this.g[var1].a(var2);
-				if (this.g[var1].b == 0) {
+				if (this.g[var1].amount == 0) {
 					this.g[var1] = null;
 				}
 
-				this.o_();
+				this.update();
 				return var3;
 			}
 		} else {
@@ -63,11 +63,11 @@ public class TileEntityDispenser extends bdf implements IInventory {
 
 	public void a(int var1, ItemStack var2) {
 		this.g[var1] = var2;
-		if (var2 != null && var2.b > this.p_()) {
-			var2.b = this.p_();
+		if (var2 != null && var2.amount > this.p_()) {
+			var2.amount = this.p_();
 		}
 
-		this.o_();
+		this.update();
 	}
 
 	public int a(ItemStack var1) {
@@ -81,7 +81,7 @@ public class TileEntityDispenser extends bdf implements IInventory {
 		return -1;
 	}
 
-	public String d_() {
+	public String getName() {
 		return this.k_() ? this.a : "container.dispenser";
 	}
 
@@ -120,7 +120,7 @@ public class TileEntityDispenser extends bdf implements IInventory {
 			if (this.g[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.put("Slot", (byte) var3);
-				this.g[var3].b(var4);
+				this.g[var3].write(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
@@ -137,7 +137,7 @@ public class TileEntityDispenser extends bdf implements IInventory {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.world.s(this.position) != this ? false : var1.e((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
+		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public void b(EntityHuman var1) {

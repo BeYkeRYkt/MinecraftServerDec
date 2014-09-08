@@ -19,13 +19,13 @@ public class ChunkSection {
 
 	}
 
-	public bec a(int var1, int var2, int var3) {
-		bec var4 = (bec) Block.IDREGISTRY.getObject(this.blockIs[var2 << 8 | var3 << 4 | var1]);
-		return var4 != null ? var4 : Blocks.AIR.P();
+	public BlockState a(int var1, int var2, int var3) {
+		BlockState var4 = (BlockState) Block.IDREGISTRY.getObject(this.blockIs[var2 << 8 | var3 << 4 | var1]);
+		return var4 != null ? var4 : Blocks.AIR.getBlockState();
 	}
 
-	public void a(int var1, int var2, int var3, bec var4) {
-		bec var5 = this.a(var1, var2, var3);
+	public void a(int var1, int var2, int var3, BlockState var4) {
+		BlockState var5 = this.a(var1, var2, var3);
 		Block var6 = var5.getBlock();
 		Block var7 = var4.getBlock();
 		if (var6 != Blocks.AIR) {
@@ -50,7 +50,7 @@ public class ChunkSection {
 	}
 
 	public int c(int var1, int var2, int var3) {
-		bec var4 = this.a(var1, var2, var3);
+		BlockState var4 = this.a(var1, var2, var3);
 		return var4.getBlock().c(var4);
 	}
 

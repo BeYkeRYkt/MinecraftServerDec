@@ -6,14 +6,14 @@ public class ItemWrittenBook extends Item {
 		this.setMaxStackSize(1);
 	}
 
-	public static boolean b(NBTCompoundTag var0) {
-		if (!ItemBookAndQuill.b(var0)) {
+	public static boolean isValid(NBTCompoundTag tag) {
+		if (!ItemBookAndQuill.isValid(tag)) {
 			return false;
-		} else if (!var0.isTagAssignableFrom("title", 8)) {
+		} else if (!tag.isTagAssignableFrom("title", 8)) {
 			return false;
 		} else {
-			String var1 = var0.getString("title");
-			return var1 != null && var1.length() <= 32 ? var0.isTagAssignableFrom("author", 8) : false;
+			String title = tag.getString("title");
+			return title != null && title.length() <= 32 ? tag.isTagAssignableFrom("author", 8) : false;
 		}
 	}
 
@@ -48,7 +48,7 @@ public class ItemWrittenBook extends Item {
 			NBTCompoundTag var3 = var1.getTag();
 			if (!var3.getBoolean("resolved")) {
 				var3.put("resolved", true);
-				if (b(var3)) {
+				if (isValid(var3)) {
 					NBTListTag var4 = var3.getList("pages", 8);
 
 					for (int var5 = 0; var5 < var4.getSize(); ++var5) {
@@ -56,19 +56,19 @@ public class ItemWrittenBook extends Item {
 
 						Object var7;
 						try {
-							IChatBaseComponent var11 = ChatSerializer.a(var6);
+							IChatBaseComponent var11 = ChatSerializer.fromJsonString(var6);
 							var7 = hq.a(var2, var11, var2);
 						} catch (Exception var9) {
 							var7 = new ChatComponentText(var6);
 						}
 
-						var4.setTag(var5, new NBTStringTag(ChatSerializer.a((IChatBaseComponent) var7)));
+						var4.setTag(var5, new NBTStringTag(ChatSerializer.toJsonString((IChatBaseComponent) var7)));
 					}
 
 					var3.put("pages", (NBTTag) var4);
 					if (var2 instanceof EntityPlayer && var2.bY() == var1) {
-						ajk var10 = var2.activeContainer.a((IInventory) var2.playerInventory, var2.playerInventory.c);
-						((EntityPlayer) var2).playerConncetion.sendPacket((Packet) (new PacketPlayOutSetSlot(0, var10.e, var1)));
+						Slot var10 = var2.activeContainer.a((IInventory) var2.playerInventory, var2.playerInventory.itemInHandIndex);
+						((EntityPlayer) var2).playerConncetion.sendPacket((Packet) (new PacketPlayOutSetSlot(0, var10.index, var1)));
 					}
 
 				}

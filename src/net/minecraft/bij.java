@@ -27,7 +27,7 @@ public class bij extends bhc {
 				for (var8 = var3.getX() - var7; var8 <= var3.getX() + var7 && var5; ++var8) {
 					for (var9 = var3.getZ() - var7; var9 <= var3.getZ() + var7 && var5; ++var9) {
 						if (var6 >= 0 && var6 < 256) {
-							if (!this.a(var1.p(new Position(var8, var6, var9)).getBlock())) {
+							if (!this.a(var1.getBlockState(new Position(var8, var6, var9)).getBlock())) {
 								var5 = false;
 							}
 						} else {
@@ -40,7 +40,7 @@ public class bij extends bhc {
 			if (!var5) {
 				return false;
 			} else {
-				Block var18 = var1.p(var3.b()).getBlock();
+				Block var18 = var1.getBlockState(var3.b()).getBlock();
 				if ((var18 == Blocks.GRASS || var18 == Blocks.DIRT) && var3.getY() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 					this.a(var1, var3.a(1, -1, 0));
@@ -64,7 +64,7 @@ public class bij extends bhc {
 						}
 
 						Position var15 = new Position(var10, var14, var11);
-						Material var16 = var1.p(var15).getBlock().r();
+						Material var16 = var1.getBlockState(var15).getBlock().getMaterial();
 						if (var16 == Material.AIR || var16 == Material.LEAVES) {
 							this.a(var1, var15, Blocks.LOG2, ayx.f.a() - 4);
 							this.a(var1, var15.f(), Blocks.LOG2, ayx.f.a() - 4);
@@ -145,8 +145,8 @@ public class bij extends bhc {
 	}
 
 	private void a(World var1, int var2, int var3, int var4) {
-		Block var5 = var1.p(new Position(var2, var3, var4)).getBlock();
-		if (var5.r() == Material.AIR) {
+		Block var5 = var1.getBlockState(new Position(var2, var3, var4)).getBlock();
+		if (var5.getMaterial() == Material.AIR) {
 			this.a(var1, new Position(var2, var3, var4), Blocks.LEAVES2, 1);
 		}
 

@@ -17,7 +17,7 @@ public class zg extends zb {
 		if (this.b == null) {
 			return false;
 		} else {
-			double var1 = this.a.h(this.b);
+			double var1 = this.a.getDistanceSquared(this.b);
 			return var1 >= 4.0D && var1 <= 16.0D ? (!this.a.onGround ? false : this.a.bb().nextInt(5) == 0) : false;
 		}
 	}

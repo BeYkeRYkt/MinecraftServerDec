@@ -9,8 +9,8 @@ public class asv extends arm {
 		this.av.clear();
 		this.aw.clear();
 		this.at.add(new arq(EntityEnderman.class, 10, 4, 4));
-		this.ak = Blocks.DIRT.P();
-		this.al = Blocks.DIRT.P();
+		this.ak = Blocks.DIRT.getBlockState();
+		this.al = Blocks.DIRT.getBlockState();
 		this.as = new asw();
 	}
 }

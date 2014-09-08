@@ -29,7 +29,7 @@ public class EntityVillager extends ws implements ago, aqb {
 							{ new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 0), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 1), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 2), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 3), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 4), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 5), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 6), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 7), new agx(1, 2)),
 									new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 8), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 9), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 10), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 11), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 12), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 13), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 14), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 15), new agx(1, 2)) } },
 					{ { new agr(Items.STRING, new agx(15, 20)), new agv(Items.ARROW, new agx(-12, -8)) }, { new agv(Items.BOW, new agx(2, 3)), new agu(Item.getItemOf(Blocks.GRAVEL), new agx(10, 10), Items.FLINT, new agx(6, 10)) } } },
-			{ { { new agr(Items.PAPER, new agx(24, 36)), new ags() }, { new agr(Items.BOOK, new agx(8, 10)), new agv(Items.COMPASS, new agx(10, 12)), new agv(Item.getItemOf(Blocks.BOOKSHELF), new agx(3, 4)) }, { new agr(Items.WRITTEN_BOK, new agx(2, 2)), new agv(Items.CLOCK, new agx(10, 12)), new agv(Item.getItemOf(Blocks.GLASS), new agx(-5, -3)) }, { new ags() }, { new ags() }, { new agv(Items.NAMETAG, new agx(20, 22)) } } },
+			{ { { new agr(Items.PAPER, new agx(24, 36)), new ags() }, { new agr(Items.BOOK, new agx(8, 10)), new agv(Items.COMPASS, new agx(10, 12)), new agv(Item.getItemOf(Blocks.BOOKSHELF), new agx(3, 4)) }, { new agr(Items.WRITTEN_BOOK, new agx(2, 2)), new agv(Items.CLOCK, new agx(10, 12)), new agv(Item.getItemOf(Blocks.GLASS), new agx(-5, -3)) }, { new ags() }, { new ags() }, { new agv(Items.NAMETAG, new agx(20, 22)) } } },
 			{ { { new agr(Items.ROTTEN_FLESH, new agx(36, 40)), new agr(Items.GOLD_INGOT, new agx(8, 10)) }, { new agv(Items.REDSTONE, new agx(-4, -1)), new agv(new ItemStack(Items.DYE, 1, akv.l.b()), new agx(-2, -1)) }, { new agv(Items.ENDER_EYE, new agx(7, 11)), new agv(Item.getItemOf(Blocks.GLOWSTONE), new agx(-3, -1)) }, { new agv(Items.EXP_BOTTLE, new agx(3, 11)) } } },
 			{ { { new agr(Items.COAL, new agx(16, 24)), new agv(Items.IRON_HELMET, new agx(4, 6)) }, { new agr(Items.IRON_INGOT, new agx(7, 9)), new agv(Items.IRON_CHESTPLATE, new agx(10, 14)) }, { new agr(Items.DIAMOND, new agx(3, 4)), new agt(Items.DIAMOND_CHESTPLATE, new agx(16, 19)) }, { new agv(Items.CHAINMAIL_BOOTS, new agx(5, 7)), new agv(Items.CHAINMAIL_LEGGINS, new agx(9, 11)), new agv(Items.CHAINMAIL_HELMET, new agx(5, 7)), new agv(Items.CHAINMAIL_CHESTPLATE, new agx(11, 15)) } },
 					{ { new agr(Items.COAL, new agx(16, 24)), new agv(Items.IRON_AXE, new agx(6, 8)) }, { new agr(Items.IRON_INGOT, new agx(7, 9)), new agt(Items.IRON_SWORD, new agx(9, 10)) }, { new agr(Items.DIAMOND, new agx(3, 4)), new agt(Items.DIAMOND_SWORD, new agx(12, 15)), new agt(Items.DIAMOND_AXE, new agx(9, 12)) } }, { { new agr(Items.COAL, new agx(16, 24)), new agt(Items.IRON_SHOWEL, new agx(5, 7)) }, { new agr(Items.IRON_INGOT, new agx(7, 9)), new agt(Items.IRON_PICKAXE, new agx(9, 11)) }, { new agr(Items.DIAMOND, new agx(3, 4)), new agt(Items.DIAMOND_PICKAXE, new agx(12, 15)) } } },
@@ -91,9 +91,9 @@ public class EntityVillager extends ws implements ago, aqb {
 	protected void E() {
 		if (--this.bl <= 0) {
 			Position var1 = new Position(this);
-			this.o.ae().a(var1);
+			this.world.ae().a(var1);
 			this.bl = 70 + this.V.nextInt(50);
-			this.bk = this.o.ae().a(var1, 32);
+			this.bk = this.world.ae().a(var1, 32);
 			if (this.bk == null) {
 				this.ch();
 			} else {
@@ -122,7 +122,7 @@ public class EntityVillager extends ws implements ago, aqb {
 					this.cu();
 					this.br = false;
 					if (this.bk != null && this.bu != null) {
-						this.o.a((Entity) this, (byte) 14);
+						this.world.a((Entity) this, (byte) 14);
 						this.bk.a(this.bu, 1);
 					}
 				}
@@ -137,8 +137,8 @@ public class EntityVillager extends ws implements ago, aqb {
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		boolean var3 = var2 != null && var2.getItem() == Items.SPAWNEGG;
-		if (!var3 && this.ai() && !this.cm() && !this.i_()) {
-			if (!this.o.D && (this.bp == null || this.bp.size() > 0)) {
+		if (!var3 && this.isAlive() && !this.cm() && !this.i_()) {
+			if (!this.world.D && (this.bp == null || this.bp.size() > 0)) {
 				this.a_(var1);
 				var1.a((aqb) this);
 			}
@@ -171,7 +171,7 @@ public class EntityVillager extends ws implements ago, aqb {
 		for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
 			ItemStack var4 = this.bz.a(var3);
 			if (var4 != null) {
-				var2.addTag((NBTTag) var4.b(new NBTCompoundTag()));
+				var2.addTag((NBTTag) var4.write(new NBTCompoundTag()));
 			}
 		}
 
@@ -253,9 +253,9 @@ public class EntityVillager extends ws implements ago, aqb {
 					var2 = -3;
 				}
 
-				this.bk.a(var1.d_(), var2);
-				if (this.ai()) {
-					this.o.a((Entity) this, (byte) 13);
+				this.bk.a(var1.getName(), var2);
+				if (this.isAlive()) {
+					this.world.a((Entity) this, (byte) 13);
 				}
 			}
 		}
@@ -267,12 +267,12 @@ public class EntityVillager extends ws implements ago, aqb {
 			Entity var2 = var1.j();
 			if (var2 != null) {
 				if (var2 instanceof EntityHuman) {
-					this.bk.a(var2.d_(), -2);
+					this.bk.a(var2.getName(), -2);
 				} else if (var2 instanceof aex) {
 					this.bk.h();
 				}
 			} else {
-				EntityHuman var3 = this.o.a(this, 16.0D);
+				EntityHuman var3 = this.world.a(this, 16.0D);
 				if (var3 != null) {
 					this.bk.h();
 				}
@@ -301,17 +301,17 @@ public class EntityVillager extends ws implements ago, aqb {
 			for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
 				ItemStack var4 = this.bz.a(var3);
 				if (var4 != null) {
-					if (var4.getItem() == Items.BREAD && var4.b >= 3) {
+					if (var4.getItem() == Items.BREAD && var4.amount >= 3) {
 						var2 = true;
 						this.bz.a(var3, 3);
-					} else if ((var4.getItem() == Items.POTATO || var4.getItem() == Items.CARROT) && var4.b >= 12) {
+					} else if ((var4.getItem() == Items.POTATO || var4.getItem() == Items.CARROT) && var4.amount >= 12) {
 						var2 = true;
 						this.bz.a(var3, 12);
 					}
 				}
 
 				if (var2) {
-					this.o.a((Entity) this, (byte) 18);
+					this.world.a((Entity) this, (byte) 18);
 					this.bs = true;
 					break;
 				}
@@ -335,7 +335,7 @@ public class EntityVillager extends ws implements ago, aqb {
 			this.br = true;
 			this.bs = true;
 			if (this.bo != null) {
-				this.bu = this.bo.d_();
+				this.bu = this.bo.getName();
 			} else {
 				this.bu = null;
 			}
@@ -344,17 +344,17 @@ public class EntityVillager extends ws implements ago, aqb {
 		}
 
 		if (var1.a().getItem() == Items.EMERALD) {
-			this.bt += var1.a().b;
+			this.bt += var1.a().amount;
 		}
 
 		if (var1.j()) {
-			this.o.d((Entity) (new EntityExpirienceOrb(this.o, this.locationX, this.locationY + 0.5D, this.locationZ, var2)));
+			this.world.d((Entity) (new EntityExpirienceOrb(this.world, this.locationX, this.locationY + 0.5D, this.locationZ, var2)));
 		}
 
 	}
 
 	public void a_(ItemStack var1) {
-		if (!this.o.D && this.a_ > -this.w() + 20) {
+		if (!this.world.D && this.a_ > -this.w() + 20) {
 			this.a_ = -this.w();
 			if (var1 != null) {
 				this.a("mob.villager.yes", this.bA(), this.bB());
@@ -402,7 +402,7 @@ public class EntityVillager extends ws implements ago, aqb {
 
 	}
 
-	public IChatBaseComponent e_() {
+	public IChatBaseComponent getComponentName() {
 		String var1 = this.aL();
 		if (var1 != null && var1.length() > 0) {
 			return new ChatComponentText(var1);
@@ -449,11 +449,11 @@ public class EntityVillager extends ws implements ago, aqb {
 
 			if (var2 != null) {
 				ChatMessage var3 = new ChatMessage("entity.Villager." + var2, new Object[0]);
-				var3.b().a(this.aP());
-				var3.b().a(this.aJ().toString());
+				var3.getChatModifier().a(this.aP());
+				var3.getChatModifier().a(this.aJ().toString());
 				return var3;
 			} else {
-				return super.e_();
+				return super.getComponentName();
 			}
 		}
 	}
@@ -469,7 +469,7 @@ public class EntityVillager extends ws implements ago, aqb {
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		this.r(this.o.s.nextInt(5));
+		this.r(this.world.s.nextInt(5));
 		this.ct();
 		return var2;
 	}
@@ -479,8 +479,8 @@ public class EntityVillager extends ws implements ago, aqb {
 	}
 
 	public EntityVillager b(ws var1) {
-		EntityVillager var2 = new EntityVillager(this.o);
-		var2.a(this.o.E(new Position(var2)), (xq) null);
+		EntityVillager var2 = new EntityVillager(this.world);
+		var2.a(this.world.E(new Position(var2)), (xq) null);
 		return var2;
 	}
 
@@ -489,12 +489,12 @@ public class EntityVillager extends ws implements ago, aqb {
 	}
 
 	public void a(EntityLightning var1) {
-		if (!this.o.D) {
-			EntityWitch var2 = new EntityWitch(this.o);
-			var2.b(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
-			var2.a(this.o.E(new Position(var2)), (xq) null);
-			this.o.d((Entity) var2);
-			this.J();
+		if (!this.world.D) {
+			EntityWitch var2 = new EntityWitch(this.world);
+			var2.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
+			var2.a(this.world.E(new Position(var2)), (xq) null);
+			this.world.d((Entity) var2);
+			this.die();
 		}
 	}
 
@@ -508,9 +508,9 @@ public class EntityVillager extends ws implements ago, aqb {
 		if (this.a(var3)) {
 			ItemStack var4 = this.bz.a(var2);
 			if (var4 == null) {
-				var1.J();
+				var1.die();
 			} else {
-				var2.b = var4.b;
+				var2.amount = var4.amount;
 			}
 		}
 
@@ -539,11 +539,11 @@ public class EntityVillager extends ws implements ago, aqb {
 		for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
 			ItemStack var4 = this.bz.a(var3);
 			if (var4 != null) {
-				if (var4.getItem() == Items.BREAD && var4.b >= 3 * var1 || var4.getItem() == Items.POTATO && var4.b >= 12 * var1 || var4.getItem() == Items.CARROT && var4.b >= 12 * var1) {
+				if (var4.getItem() == Items.BREAD && var4.amount >= 3 * var1 || var4.getItem() == Items.POTATO && var4.amount >= 12 * var1 || var4.getItem() == Items.CARROT && var4.amount >= 12 * var1) {
 					return true;
 				}
 
-				if (var2 && var4.getItem() == Items.WHEAT && var4.b >= 9 * var1) {
+				if (var2 && var4.getItem() == Items.WHEAT && var4.amount >= 9 * var1) {
 					return true;
 				}
 			}

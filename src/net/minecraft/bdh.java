@@ -24,7 +24,7 @@ class bdh extends aqi {
 	public void a(aqj var1) {
 		super.a(var1);
 		if (this.a() != null) {
-			this.a().h(this.a.position);
+			this.a().notify(this.a.position);
 		}
 
 	}

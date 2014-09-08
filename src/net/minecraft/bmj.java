@@ -38,9 +38,9 @@ public class bmj extends bmk {
 				this.a(var1, Blocks.STONE_STAIRS.a(var4), 2, 6 - var5, 1 + var5, var3);
 				this.a(var1, Blocks.STONE_STAIRS.a(var4), 3, 6 - var5, 1 + var5, var3);
 				if (var5 < 5) {
-					this.a(var1, Blocks.STONEBRICK.P(), 1, 5 - var5, 1 + var5, var3);
-					this.a(var1, Blocks.STONEBRICK.P(), 2, 5 - var5, 1 + var5, var3);
-					this.a(var1, Blocks.STONEBRICK.P(), 3, 5 - var5, 1 + var5, var3);
+					this.a(var1, Blocks.STONEBRICK.getBlockState(), 1, 5 - var5, 1 + var5, var3);
+					this.a(var1, Blocks.STONEBRICK.getBlockState(), 2, 5 - var5, 1 + var5, var3);
+					this.a(var1, Blocks.STONEBRICK.getBlockState(), 3, 5 - var5, 1 + var5, var3);
 				}
 			}
 

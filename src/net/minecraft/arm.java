@@ -77,8 +77,8 @@ public abstract class arm {
 	public String ah;
 	public int ai;
 	public int aj;
-	public bec ak;
-	public bec al;
+	public BlockState ak;
+	public BlockState al;
 	public int am;
 	public float an;
 	public float ao;
@@ -98,8 +98,8 @@ public abstract class arm {
 	protected bip aC;
 
 	protected arm(int var1) {
-		this.ak = Blocks.GRASS.P();
-		this.al = Blocks.DIRT.P();
+		this.ak = Blocks.GRASS.getBlockState();
+		this.al = Blocks.DIRT.getBlockState();
 		this.am = 5169201;
 		this.an = a.a;
 		this.ao = a.b;
@@ -264,8 +264,8 @@ public abstract class arm {
 
 	public final void b(World var1, Random var2, bgk var3, int var4, int var5, double var6) {
 		boolean var8 = true;
-		bec var9 = this.ak;
-		bec var10 = this.al;
+		BlockState var9 = this.ak;
+		BlockState var10 = this.al;
 		int var11 = -1;
 		int var12 = (int) (var6 / 3.0D + 3.0D + var2.nextDouble() * 0.25D);
 		int var13 = var4 & 15;
@@ -273,26 +273,26 @@ public abstract class arm {
 
 		for (int var15 = 255; var15 >= 0; --var15) {
 			if (var15 <= var2.nextInt(5)) {
-				var3.a(var14, var15, var13, Blocks.BEDROCK.P());
+				var3.a(var14, var15, var13, Blocks.BEDROCK.getBlockState());
 			} else {
-				bec var16 = var3.a(var14, var15, var13);
-				if (var16.getBlock().r() == Material.AIR) {
+				BlockState var16 = var3.a(var14, var15, var13);
+				if (var16.getBlock().getMaterial() == Material.AIR) {
 					var11 = -1;
 				} else if (var16.getBlock() == Blocks.STONE) {
 					if (var11 == -1) {
 						if (var12 <= 0) {
 							var9 = null;
-							var10 = Blocks.STONE.P();
+							var10 = Blocks.STONE.getBlockState();
 						} else if (var15 >= 59 && var15 <= 64) {
 							var9 = this.ak;
 							var10 = this.al;
 						}
 
-						if (var15 < 63 && (var9 == null || var9.getBlock().r() == Material.AIR)) {
+						if (var15 < 63 && (var9 == null || var9.getBlock().getMaterial() == Material.AIR)) {
 							if (this.a(new Position(var4, var15, var5)) < 0.15F) {
-								var9 = Blocks.ICE.P();
+								var9 = Blocks.ICE.getBlockState();
 							} else {
-								var9 = Blocks.WATER.P();
+								var9 = Blocks.WATER.getBlockState();
 							}
 						}
 
@@ -301,8 +301,8 @@ public abstract class arm {
 							var3.a(var14, var15, var13, var9);
 						} else if (var15 < 56 - var12) {
 							var9 = null;
-							var10 = Blocks.STONE.P();
-							var3.a(var14, var15, var13, Blocks.GRAVEL.P());
+							var10 = Blocks.STONE.getBlockState();
+							var3.a(var14, var15, var13, Blocks.GRAVEL.getBlockState());
 						} else {
 							var3.a(var14, var15, var13, var10);
 						}
@@ -311,7 +311,7 @@ public abstract class arm {
 						var3.a(var14, var15, var13, var10);
 						if (var11 == 0 && var10.getBlock() == Blocks.SAND) {
 							var11 = var2.nextInt(4) + Math.max(0, var15 - 63);
-							var10 = var10.b(BlockSand.a) == bac.b ? Blocks.RED_SANDSTONE.P() : Blocks.SANDSTONE.P();
+							var10 = var10.b(BlockSand.a) == bac.b ? Blocks.RED_SANDSTONE.getBlockState() : Blocks.SANDSTONE.getBlockState();
 						}
 					}
 				}

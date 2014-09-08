@@ -19,7 +19,7 @@ public class za extends zb {
 		if (this.a.l() >= 0) {
 			return false;
 		} else {
-			List var1 = this.a.o.a(this.a.getClass(), this.a.aQ().b(8.0D, 4.0D, 8.0D));
+			List var1 = this.a.world.a(this.a.getClass(), this.a.aQ().b(8.0D, 4.0D, 8.0D));
 			abq var2 = null;
 			double var3 = Double.MAX_VALUE;
 			Iterator var5 = var1.iterator();
@@ -27,7 +27,7 @@ public class za extends zb {
 			while (var5.hasNext()) {
 				abq var6 = (abq) var5.next();
 				if (var6.l() >= 0) {
-					double var7 = this.a.h(var6);
+					double var7 = this.a.getDistanceSquared(var6);
 					if (var7 <= var3) {
 						var3 = var7;
 						var2 = var6;
@@ -49,10 +49,10 @@ public class za extends zb {
 	public boolean b() {
 		if (this.a.l() >= 0) {
 			return false;
-		} else if (!this.b.ai()) {
+		} else if (!this.b.isAlive()) {
 			return false;
 		} else {
-			double var1 = this.a.h(this.b);
+			double var1 = this.a.getDistanceSquared(this.b);
 			return var1 >= 9.0D && var1 <= 256.0D;
 		}
 	}

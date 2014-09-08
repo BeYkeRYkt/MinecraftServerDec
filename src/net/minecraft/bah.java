@@ -17,11 +17,11 @@ public class bah extends Block {
 		return DataTypesConverter.a(this.a(var2) + var2.nextInt(var1 + 1), 1, 5);
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
+	public Item a(BlockState var1, Random var2, int var3) {
 		return Items.PRISMARINE_CRYSTALS;
 	}
 
-	public MaterialMapColor g(bec var1) {
+	public MaterialMapColor g(BlockState var1) {
 		return MaterialMapColor.p;
 	}
 

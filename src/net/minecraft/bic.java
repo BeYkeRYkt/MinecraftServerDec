@@ -39,7 +39,7 @@ public abstract class bic extends bhc {
 
 				for (int var7 = -var6; var7 <= var6 && var4; ++var7) {
 					for (int var8 = -var6; var8 <= var6 && var4; ++var8) {
-						if (var2.getY() + var5 < 0 || var2.getY() + var5 >= 256 || !this.a(var1.p(var2.a(var7, var5, var8)).getBlock())) {
+						if (var2.getY() + var5 < 0 || var2.getY() + var5 >= 256 || !this.a(var1.getBlockState(var2.a(var7, var5, var8)).getBlock())) {
 							var4 = false;
 						}
 					}
@@ -54,7 +54,7 @@ public abstract class bic extends bhc {
 
 	private boolean a(Position var1, World var2) {
 		Position var3 = var1.b();
-		Block var4 = var2.p(var3).getBlock();
+		Block var4 = var2.getBlockState(var3).getBlock();
 		if ((var4 == Blocks.GRASS || var4 == Blocks.DIRT) && var1.getY() >= 2) {
 			this.a(var2, var3);
 			this.a(var2, var3.f());
@@ -79,7 +79,7 @@ public abstract class bic extends bhc {
 				int var8 = var6 - 1;
 				if (var5 * var5 + var6 * var6 <= var4 || var7 * var7 + var8 * var8 <= var4 || var5 * var5 + var8 * var8 <= var4 || var7 * var7 + var6 * var6 <= var4) {
 					Position var9 = var2.a(var5, 0, var6);
-					Material var10 = var1.p(var9).getBlock().r();
+					Material var10 = var1.getBlockState(var9).getBlock().getMaterial();
 					if (var10 == Material.AIR || var10 == Material.LEAVES) {
 						this.a(var1, var9, Blocks.LEAVES, this.c);
 					}
@@ -96,7 +96,7 @@ public abstract class bic extends bhc {
 			for (int var6 = -var3; var6 <= var3; ++var6) {
 				if (var5 * var5 + var6 * var6 <= var4) {
 					Position var7 = var2.a(var5, 0, var6);
-					Material var8 = var1.p(var7).getBlock().r();
+					Material var8 = var1.getBlockState(var7).getBlock().getMaterial();
 					if (var8 == Material.AIR || var8 == Material.LEAVES) {
 						this.a(var1, var7, Blocks.LEAVES, this.c);
 					}

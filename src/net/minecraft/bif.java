@@ -5,15 +5,15 @@ import java.util.Random;
 
 public class bif extends bhp {
 
-	private final bec a;
+	private final BlockState a;
 	private final int b;
 	private final Predicate c;
 
-	public bif(bec var1, int var2) {
+	public bif(BlockState var1, int var2) {
 		this(var1, var2, bep.a(Blocks.STONE));
 	}
 
-	public bif(bec var1, int var2, Predicate var3) {
+	public bif(BlockState var1, int var2, Predicate var3) {
 		this.a = var1;
 		this.b = var2;
 		this.c = var3;
@@ -53,7 +53,7 @@ public class bif extends bhp {
 								double var44 = ((double) var43 + 0.5D - var23) / (var27 / 2.0D);
 								if (var38 * var38 + var41 * var41 + var44 * var44 < 1.0D) {
 									Position var46 = new Position(var37, var40, var43);
-									if (this.c.apply(var1.p(var46))) {
+									if (this.c.apply(var1.getBlockState(var46))) {
 										var1.a(var46, this.a, 2);
 									}
 								}

@@ -27,7 +27,7 @@ public abstract class ahr extends Entity implements aho {
 		super(var1);
 		this.g = var2;
 		this.a(0.25F, 0.25F);
-		this.b(var2.locationX, var2.locationY + (double) var2.aR(), var2.locationZ, var2.yaw, var2.pitch);
+		this.setPositionRotation(var2.locationX, var2.locationY + (double) var2.aR(), var2.locationZ, var2.yaw, var2.pitch);
 		this.locationX -= (double) (DataTypesConverter.b(this.yaw / 180.0F * 3.1415927F) * 0.16F);
 		this.locationY -= 0.10000000149011612D;
 		this.locationZ -= (double) (DataTypesConverter.a(this.yaw / 180.0F * 3.1415927F) * 0.16F);
@@ -84,10 +84,10 @@ public abstract class ahr extends Entity implements aho {
 		}
 
 		if (this.a) {
-			if (this.o.p(new Position(this.c, this.d, this.e)).getBlock() == this.f) {
+			if (this.world.getBlockState(new Position(this.c, this.d, this.e)).getBlock() == this.f) {
 				++this.i;
 				if (this.i == 1200) {
-					this.J();
+					this.die();
 				}
 
 				return;
@@ -105,16 +105,16 @@ public abstract class ahr extends Entity implements aho {
 
 		Vec3D var1 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 		Vec3D var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
-		MovingObjectPosition var3 = this.o.a(var1, var2);
+		MovingObjectPosition var3 = this.world.a(var1, var2);
 		var1 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 		var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 		if (var3 != null) {
 			var2 = new Vec3D(var3.vec.x, var3.vec.y, var3.vec.z);
 		}
 
-		if (!this.o.D) {
+		if (!this.world.D) {
 			Entity var4 = null;
-			List var5 = this.o.b((Entity) this, this.aQ().a(this.motionX, this.motionY, this.motionZ).b(1.0D, 1.0D, 1.0D));
+			List var5 = this.world.b((Entity) this, this.aQ().a(this.motionX, this.motionY, this.motionZ).b(1.0D, 1.0D, 1.0D));
 			double var6 = 0.0D;
 			EntityLiving var8 = this.n();
 
@@ -140,7 +140,7 @@ public abstract class ahr extends Entity implements aho {
 		}
 
 		if (var3 != null) {
-			if (var3.type == EnumMovingObjectType.BLOCK && this.o.p(var3.getPosition()).getBlock() == Blocks.PORTAL) {
+			if (var3.type == EnumMovingObjectType.BLOCK && this.world.getBlockState(var3.getPosition()).getBlock() == Blocks.PORTAL) {
 				this.aq();
 			} else {
 				this.a(var3);
@@ -176,7 +176,7 @@ public abstract class ahr extends Entity implements aho {
 		if (this.V()) {
 			for (int var7 = 0; var7 < 4; ++var7) {
 				float var19 = 0.25F;
-				this.o.a(Particle.e, this.locationX - this.motionX * (double) var19, this.locationY - this.motionY * (double) var19, this.locationZ - this.motionZ * (double) var19, this.motionX, this.motionY, this.motionZ, new int[0]);
+				this.world.a(Particle.e, this.locationX - this.motionX * (double) var19, this.locationY - this.motionY * (double) var19, this.locationZ - this.motionZ * (double) var19, this.motionX, this.motionY, this.motionZ, new int[0]);
 			}
 
 			var17 = 0.8F;
@@ -204,7 +204,7 @@ public abstract class ahr extends Entity implements aho {
 		var1.put("shake", (byte) this.b);
 		var1.put("inGround", (byte) (this.a ? 1 : 0));
 		if ((this.h == null || this.h.length() == 0) && this.g instanceof EntityHuman) {
-			this.h = this.g.d_();
+			this.h = this.g.getName();
 		}
 
 		var1.put("ownerName", this.h == null ? "" : this.h);
@@ -231,7 +231,7 @@ public abstract class ahr extends Entity implements aho {
 
 	public EntityLiving n() {
 		if (this.g == null && this.h != null && this.h.length() > 0) {
-			this.g = this.o.a(this.h);
+			this.g = this.world.a(this.h);
 		}
 
 		return this.g;

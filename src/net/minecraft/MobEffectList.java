@@ -92,11 +92,11 @@ public class MobEffectList {
 
 	public void tick(EntityLiving var1, int var2) {
 		if (this.H == l.H) {
-			if (var1.bm() < var1.bt()) {
+			if (var1.getHealth() < var1.bt()) {
 				var1.g(1.0F);
 			}
 		} else if (this.H == u.H) {
-			if (var1.bm() > 1.0F) {
+			if (var1.getHealth() > 1.0F) {
 				var1.a(DamageSource.l, 1.0F);
 			}
 		} else if (this.H == v.H) {
@@ -104,7 +104,7 @@ public class MobEffectList {
 		} else if (this.H == s.H && var1 instanceof EntityHuman) {
 			((EntityHuman) var1).a(0.025F * (float) (var2 + 1));
 		} else if (this.H == y.H && var1 instanceof EntityHuman) {
-			if (!var1.o.D) {
+			if (!var1.world.D) {
 				((EntityHuman) var1).ck().a(var2 + 1, 1.0F);
 			}
 		} else if ((this.H != h.H || var1.bl()) && (this.H != i.H || !var1.bl())) {

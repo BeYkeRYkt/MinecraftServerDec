@@ -15,18 +15,18 @@ public class ContainerChest extends Container {
 		int var6;
 		for (var5 = 0; var5 < this.f; ++var5) {
 			for (var6 = 0; var6 < 9; ++var6) {
-				this.a(new ajk(var2, var6 + var5 * 9, 8 + var6 * 18, 18 + var5 * 18));
+				this.addSlot(new Slot(var2, var6 + var5 * 9, 8 + var6 * 18, 18 + var5 * 18));
 			}
 		}
 
 		for (var5 = 0; var5 < 3; ++var5) {
 			for (var6 = 0; var6 < 9; ++var6) {
-				this.a(new ajk(var1, var6 + var5 * 9 + 9, 8 + var6 * 18, 103 + var5 * 18 + var4));
+				this.addSlot(new Slot(var1, var6 + var5 * 9 + 9, 8 + var6 * 18, 103 + var5 * 18 + var4));
 			}
 		}
 
 		for (var5 = 0; var5 < 9; ++var5) {
-			this.a(new ajk(var1, var5, 8 + var5 * 18, 161 + var4));
+			this.addSlot(new Slot(var1, var5, 8 + var5 * 18, 161 + var4));
 		}
 
 	}
@@ -37,30 +37,30 @@ public class ContainerChest extends Container {
 
 	public ItemStack b(EntityHuman var1, int var2) {
 		ItemStack var3 = null;
-		ajk var4 = (ajk) this.c.get(var2);
-		if (var4 != null && var4.e()) {
-			ItemStack var5 = var4.d();
+		Slot var4 = (Slot) this.slots.get(var2);
+		if (var4 != null && var4.hasItem()) {
+			ItemStack var5 = var4.getItemStack();
 			var3 = var5.getCopy();
 			if (var2 < this.f * 9) {
-				if (!this.a(var5, this.f * 9, this.c.size(), true)) {
+				if (!this.a(var5, this.f * 9, this.slots.size(), true)) {
 					return null;
 				}
 			} else if (!this.a(var5, 0, this.f * 9, false)) {
 				return null;
 			}
 
-			if (var5.b == 0) {
+			if (var5.amount == 0) {
 				var4.d((ItemStack) null);
 			} else {
-				var4.f();
+				var4.update();
 			}
 		}
 
 		return var3;
 	}
 
-	public void b(EntityHuman var1) {
-		super.b(var1);
+	public void onClose(EntityHuman var1) {
+		super.onClose(var1);
 		this.a.c(var1);
 	}
 

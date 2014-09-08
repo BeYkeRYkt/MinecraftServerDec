@@ -14,10 +14,10 @@ final class DispenseBehaviorSkull extends eg {
 		BlockSkull var6 = Blocks.SKULL;
 		if (var3.d(var5) && var6.b(var3, var5, var2)) {
 			if (!var3.D) {
-				var3.a(var5, var6.P().a(BlockSkull.a, BlockFace.UP), 3);
-				TileEntity var7 = var3.s(var5);
+				var3.a(var5, var6.getBlockState().a(BlockSkull.a, BlockFace.UP), 3);
+				TileEntity var7 = var3.getTileEntity(var5);
 				if (var7 instanceof TileEntitySkull) {
-					if (var2.i() == 3) {
+					if (var2.getDurability() == 3) {
 						GameProfile var8 = null;
 						if (var2.hasTag()) {
 							NBTCompoundTag var9 = var2.getTag();
@@ -30,14 +30,14 @@ final class DispenseBehaviorSkull extends eg {
 
 						((TileEntitySkull) var7).a(var8);
 					} else {
-						((TileEntitySkull) var7).a(var2.i());
+						((TileEntitySkull) var7).a(var2.getDurability());
 					}
 
 					((TileEntitySkull) var7).b(var4.getOpposite().toDirection() * 4);
 					Blocks.SKULL.a(var3, var5, (TileEntitySkull) var7);
 				}
 
-				--var2.b;
+				--var2.amount;
 			}
 		} else {
 			this.b = false;

@@ -20,7 +20,7 @@ public class hu extends hj {
 
 	public hu h() {
 		hu var1 = new hu(this.b);
-		var1.a(this.b().m());
+		var1.a(this.getChatModifier().m());
 		Iterator var2 = this.a().iterator();
 
 		while (var2.hasNext()) {
@@ -43,7 +43,7 @@ public class hu extends hj {
 	}
 
 	public String toString() {
-		return "SelectorComponent{pattern=\'" + this.b + '\'' + ", siblings=" + this.a + ", style=" + this.b() + '}';
+		return "SelectorComponent{pattern=\'" + this.b + '\'' + ", siblings=" + this.a + ", style=" + this.getChatModifier() + '}';
 	}
 
 	// $FF: synthetic method

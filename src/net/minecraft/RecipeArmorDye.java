@@ -54,7 +54,7 @@ public class RecipeArmorDye implements IRecipe {
 					}
 
 					var2 = var8.getCopy();
-					var2.b = 1;
+					var2.amount = 1;
 					if (var6.d_(var8)) {
 						var9 = var6.b(var2);
 						var10 = (float) (var9 >> 16 & 255) / 255.0F;
@@ -71,7 +71,7 @@ public class RecipeArmorDye implements IRecipe {
 						return null;
 					}
 
-					float[] var14 = EntitySheep.a(akv.a(var8.i()));
+					float[] var14 = EntitySheep.a(akv.a(var8.getDurability()));
 					int var15 = (int) (var14[0] * 255.0F);
 					int var16 = (int) (var14[1] * 255.0F);
 					var17 = (int) (var14[2] * 255.0F);

@@ -54,7 +54,7 @@ public class ChatModifier {
 		return this.j == null ? this.o().j() : this.j;
 	}
 
-	public ChatModifier a(EnumChatFormat var1) {
+	public ChatModifier setColor(EnumChatFormat var1) {
 		this.b = var1;
 		return this;
 	}
@@ -191,7 +191,7 @@ public class ChatModifier {
 		var1.c(Boolean.valueOf(this.d()));
 		var1.d(Boolean.valueOf(this.e()));
 		var1.e(Boolean.valueOf(this.f()));
-		var1.a(this.a());
+		var1.setColor(this.a());
 		var1.a(this.h());
 		var1.a(this.i());
 		var1.a(this.j());

@@ -8,15 +8,15 @@ public abstract class BlockFlowers extends auc {
 
 	protected BlockFlowers() {
 		super(Material.PLANT);
-		this.j(this.L.b().a(this.l(), this.j() == awc.b ? awa.b : awa.a));
+		this.setBlockState(this.L.b().a(this.l(), this.j() == awc.b ? awa.b : awa.a));
 	}
 
-	public int a(bec var1) {
+	public int a(BlockState var1) {
 		return ((awa) var1.b(this.l())).b();
 	}
 
-	public bec a(int var1) {
-		return this.P().a(this.l(), awa.a(this.j(), var1));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(this.l(), awa.a(this.j(), var1));
 	}
 
 	public abstract awc j();
@@ -29,7 +29,7 @@ public abstract class BlockFlowers extends auc {
 		return this.a;
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((awa) var1.b(this.l())).b();
 	}
 

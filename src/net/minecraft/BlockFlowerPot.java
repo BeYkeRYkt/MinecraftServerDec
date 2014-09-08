@@ -9,7 +9,7 @@ public class BlockFlowerPot extends atg {
 
 	public BlockFlowerPot() {
 		super(Material.ORIENTABLE);
-		this.j(this.L.b().a(b, awf.a).a(a, Integer.valueOf(0)));
+		this.setBlockState(this.L.b().a(b, awf.a).a(a, Integer.valueOf(0)));
 		this.h();
 	}
 
@@ -31,7 +31,7 @@ public class BlockFlowerPot extends atg {
 		return false;
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		ItemStack var9 = var4.playerInventory.getItemInHand();
 		if (var9 != null && var9.getItem() instanceof ItemBlock) {
 			TileEntityFlowerPot var10 = this.d(var1, var2);
@@ -41,14 +41,14 @@ public class BlockFlowerPot extends atg {
 				return false;
 			} else {
 				Block var11 = Block.a(var9.getItem());
-				if (!this.a(var11, var9.i())) {
+				if (!this.a(var11, var9.getDurability())) {
 					return false;
 				} else {
-					var10.a(var9.getItem(), var9.i());
-					var10.o_();
-					var1.h(var2);
-					if (!var4.by.instabuild && --var9.b <= 0) {
-						var4.playerInventory.a(var4.playerInventory.c, (ItemStack) null);
+					var10.a(var9.getItem(), var9.getDurability());
+					var10.update();
+					var1.notify(var2);
+					if (!var4.playerProperties.instabuild && --var9.amount <= 0) {
+						var4.playerInventory.a(var4.playerInventory.itemInHandIndex, (ItemStack) null);
 					}
 
 					return true;
@@ -72,7 +72,7 @@ public class BlockFlowerPot extends atg {
 		return super.c(var1, var2) && World.a((ard) var1, var2.b());
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, BlockState var3, Block var4) {
 		if (!World.a((ard) var1, var2.b())) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -80,7 +80,7 @@ public class BlockFlowerPot extends atg {
 
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, BlockState var3) {
 		TileEntityFlowerPot var4 = this.d(var1, var2);
 		if (var4 != null && var4.b() != null) {
 			a(var1, var2, new ItemStack(var4.b(), 1, var4.c()));
@@ -89,9 +89,9 @@ public class BlockFlowerPot extends atg {
 		super.b(var1, var2, var3);
 	}
 
-	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
+	public void a(World var1, Position var2, BlockState var3, EntityHuman var4) {
 		super.a(var1, var2, var3, var4);
-		if (var4.by.instabuild) {
+		if (var4.playerProperties.instabuild) {
 			TileEntityFlowerPot var5 = this.d(var1, var2);
 			if (var5 != null) {
 				var5.a((Item) null, 0);
@@ -100,12 +100,12 @@ public class BlockFlowerPot extends atg {
 
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
+	public Item a(BlockState var1, Random var2, int var3) {
 		return Items.FLOWER_POT;
 	}
 
 	private TileEntityFlowerPot d(World var1, Position var2) {
-		TileEntity var3 = var1.s(var2);
+		TileEntity var3 = var1.getTileEntity(var2);
 		return var3 instanceof TileEntityFlowerPot ? (TileEntityFlowerPot) var3 : null;
 	}
 
@@ -168,13 +168,13 @@ public class BlockFlowerPot extends atg {
 		return new bed(this, new bex[] { b, a });
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((Integer) var1.b(a)).intValue();
 	}
 
-	public bec a(bec var1, ard var2, Position var3) {
+	public BlockState a(BlockState var1, ard var2, Position var3) {
 		awf var4 = awf.a;
-		TileEntity var5 = var2.s(var3);
+		TileEntity var5 = var2.getTileEntity(var3);
 		if (var5 instanceof TileEntityFlowerPot) {
 			TileEntityFlowerPot var6 = (TileEntityFlowerPot) var5;
 			Item var7 = var6.b();

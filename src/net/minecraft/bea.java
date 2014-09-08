@@ -6,12 +6,12 @@ import com.google.common.collect.Iterables;
 import java.util.Collection;
 import java.util.Iterator;
 
-public abstract class bea implements bec {
+public abstract class bea implements BlockState {
 
 	private static final Joiner a = Joiner.on(',');
 	private static final Function b = new beb();
 
-	public bec a(bex var1) {
+	public BlockState a(bex var1) {
 		return this.a(var1, (Comparable) a(var1.c(), this.b(var1)));
 	}
 

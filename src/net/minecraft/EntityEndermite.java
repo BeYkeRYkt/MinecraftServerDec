@@ -80,9 +80,9 @@ public class EntityEndermite extends EntityMonster {
 
 	public void m() {
 		super.m();
-		if (this.o.D) {
+		if (this.world.D) {
 			for (int var1 = 0; var1 < 2; ++var1) {
-				this.o.a(Particle.y, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, (this.V.nextDouble() - 0.5D) * 2.0D, -this.V.nextDouble(), (this.V.nextDouble() - 0.5D) * 2.0D, new int[0]);
+				this.world.a(Particle.y, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, (this.V.nextDouble() - 0.5D) * 2.0D, -this.V.nextDouble(), (this.V.nextDouble() - 0.5D) * 2.0D, new int[0]);
 			}
 		} else {
 			if (!this.bY()) {
@@ -90,7 +90,7 @@ public class EntityEndermite extends EntityMonster {
 			}
 
 			if (this.b >= 2400) {
-				this.J();
+				this.die();
 			}
 		}
 
@@ -102,7 +102,7 @@ public class EntityEndermite extends EntityMonster {
 
 	public boolean bQ() {
 		if (super.bQ()) {
-			EntityHuman var1 = this.o.a(this, 5.0D);
+			EntityHuman var1 = this.world.a(this, 5.0D);
 			return var1 == null;
 		} else {
 			return false;

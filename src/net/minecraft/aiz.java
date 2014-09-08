@@ -1,6 +1,6 @@
 package net.minecraft;
 
-class aiz extends ajk {
+class aiz extends Slot {
 
 	// $FF: synthetic field
 	final aiy a;
@@ -11,6 +11,6 @@ class aiz extends ajk {
 	}
 
 	public boolean a(ItemStack var1) {
-		return super.a(var1) && var1.getItem() == Items.SADDLE && !this.e();
+		return super.a(var1) && var1.getItem() == Items.SADDLE && !this.hasItem();
 	}
 }

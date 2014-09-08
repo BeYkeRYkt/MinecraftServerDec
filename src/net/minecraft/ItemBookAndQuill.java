@@ -12,26 +12,25 @@ public class ItemBookAndQuill extends Item {
 		return var1;
 	}
 
-	public static boolean b(NBTCompoundTag var0) {
-		if (var0 == null) {
+	public static boolean isValid(NBTCompoundTag tag) {
+		if (tag == null) {
 			return false;
-		} else if (!var0.isTagAssignableFrom("pages", 9)) {
+		} else if (!tag.isTagAssignableFrom("pages", 9)) {
 			return false;
 		} else {
-			NBTListTag var1 = var0.getList("pages", 8);
+			NBTListTag pages = tag.getList("pages", 8);
 
-			for (int var2 = 0; var2 < var1.getSize(); ++var2) {
-				String var3 = var1.getString(var2);
-				if (var3 == null) {
+			for (int i = 0; i < pages.getSize(); ++i) {
+				String page = pages.getString(i);
+				if (page == null) {
 					return false;
 				}
-
-				if (var3.length() > 32767) {
+				if (page.length() > 32767) {
 					return false;
 				}
 			}
-
 			return true;
 		}
 	}
+
 }

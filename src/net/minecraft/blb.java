@@ -2,12 +2,12 @@ package net.minecraft;
 
 public abstract class blb extends bms {
 
-	protected static final bec a = Blocks.PRISMARINE.a(BlockPrismarine.b);
-	protected static final bec b = Blocks.PRISMARINE.a(BlockPrismarine.M);
-	protected static final bec c = Blocks.PRISMARINE.a(BlockPrismarine.N);
-	protected static final bec d = b;
-	protected static final bec e = Blocks.SEA_LANTERN.P();
-	protected static final bec f = Blocks.WATER.P();
+	protected static final BlockState a = Blocks.PRISMARINE.a(BlockPrismarine.b);
+	protected static final BlockState b = Blocks.PRISMARINE.a(BlockPrismarine.M);
+	protected static final BlockState c = Blocks.PRISMARINE.a(BlockPrismarine.N);
+	protected static final BlockState d = b;
+	protected static final BlockState e = Blocks.SEA_LANTERN.getBlockState();
+	protected static final BlockState f = Blocks.WATER.getBlockState();
 	protected static final int g = a(2, 0, 0);
 	protected static final int h = a(2, 2, 0);
 	protected static final int i = a(0, 1, 0);
@@ -84,7 +84,7 @@ public abstract class blb extends bms {
 
 	}
 
-	protected void a(World var1, bjb var2, int var3, int var4, int var5, int var6, int var7, int var8, bec var9) {
+	protected void a(World var1, bjb var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockState var9) {
 		for (int var10 = var4; var10 <= var7; ++var10) {
 			for (int var11 = var3; var11 <= var6; ++var11) {
 				for (int var12 = var5; var12 <= var8; ++var12) {
@@ -113,7 +113,7 @@ public abstract class blb extends bms {
 			EntityGuardian var9 = new EntityGuardian(var1);
 			var9.a(true);
 			var9.g(var9.bt());
-			var9.b((double) var6 + 0.5D, (double) var7, (double) var8 + 0.5D, 0.0F, 0.0F);
+			var9.setPositionRotation((double) var6 + 0.5D, (double) var7, (double) var8 + 0.5D, 0.0F, 0.0F);
 			var9.a(var1.E(new Position(var9)), (xq) null);
 			var1.d((Entity) var9);
 			return true;

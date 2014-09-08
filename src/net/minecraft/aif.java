@@ -1,15 +1,15 @@
 package net.minecraft;
 
-class aif extends ajk {
+class aif extends Slot {
 
 	// $FF: synthetic field
 	final World a;
 	// $FF: synthetic field
 	final Position b;
 	// $FF: synthetic field
-	final aid c;
+	final ContainerAnvil c;
 
-	aif(aid var1, IInventory var2, int var3, int var4, int var5, World var6, Position var7) {
+	aif(ContainerAnvil var1, IInventory var2, int var3, int var4, int var5, World var6, Position var7) {
 		super(var2, var3, var4, var5);
 		this.c = var1;
 		this.a = var6;
@@ -21,30 +21,30 @@ class aif extends ajk {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return (var1.by.instabuild || var1.bz >= this.c.a) && this.c.a > 0 && this.e();
+		return (var1.playerProperties.instabuild || var1.bz >= this.c.a) && this.c.a > 0 && this.hasItem();
 	}
 
 	public void a(EntityHuman var1, ItemStack var2) {
-		if (!var1.by.instabuild) {
+		if (!var1.playerProperties.instabuild) {
 			var1.a(-this.c.a);
 		}
 
-		aid.a(this.c).a(0, (ItemStack) null);
-		if (aid.b(this.c) > 0) {
-			ItemStack var3 = aid.a(this.c).a(1);
-			if (var3 != null && var3.b > aid.b(this.c)) {
-				var3.b -= aid.b(this.c);
-				aid.a(this.c).a(1, var3);
+		ContainerAnvil.a(this.c).a(0, (ItemStack) null);
+		if (ContainerAnvil.b(this.c) > 0) {
+			ItemStack var3 = ContainerAnvil.a(this.c).a(1);
+			if (var3 != null && var3.amount > ContainerAnvil.b(this.c)) {
+				var3.amount -= ContainerAnvil.b(this.c);
+				ContainerAnvil.a(this.c).a(1, var3);
 			} else {
-				aid.a(this.c).a(1, (ItemStack) null);
+				ContainerAnvil.a(this.c).a(1, (ItemStack) null);
 			}
 		} else {
-			aid.a(this.c).a(1, (ItemStack) null);
+			ContainerAnvil.a(this.c).a(1, (ItemStack) null);
 		}
 
 		this.c.a = 0;
-		bec var5 = this.a.p(this.b);
-		if (!var1.by.instabuild && !this.a.D && var5.getBlock() == Blocks.ANVIL && var1.bb().nextFloat() < 0.12F) {
+		BlockState var5 = this.a.getBlockState(this.b);
+		if (!var1.playerProperties.instabuild && !this.a.D && var5.getBlock() == Blocks.ANVIL && var1.bb().nextFloat() < 0.12F) {
 			int var4 = ((Integer) var5.b(BlockAnvil.b)).intValue();
 			++var4;
 			if (var4 > 2) {

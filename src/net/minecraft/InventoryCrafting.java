@@ -27,7 +27,7 @@ public class InventoryCrafting implements IInventory {
 		return var1 >= 0 && var1 < this.b && var2 >= 0 && var2 <= this.c ? this.a(var1 + var2 * this.b) : null;
 	}
 
-	public String d_() {
+	public String getName() {
 		return "container.crafting";
 	}
 
@@ -35,8 +35,8 @@ public class InventoryCrafting implements IInventory {
 		return false;
 	}
 
-	public IChatBaseComponent e_() {
-		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.d_()) : new ChatMessage(this.d_(), new Object[0]));
+	public IChatBaseComponent getComponentName() {
+		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 
 	public ItemStack b(int var1) {
@@ -52,14 +52,14 @@ public class InventoryCrafting implements IInventory {
 	public ItemStack a(int var1, int var2) {
 		if (this.a[var1] != null) {
 			ItemStack var3;
-			if (this.a[var1].b <= var2) {
+			if (this.a[var1].amount <= var2) {
 				var3 = this.a[var1];
 				this.a[var1] = null;
 				this.d.a((IInventory) this);
 				return var3;
 			} else {
 				var3 = this.a[var1].a(var2);
-				if (this.a[var1].b == 0) {
+				if (this.a[var1].amount == 0) {
 					this.a[var1] = null;
 				}
 
@@ -80,7 +80,7 @@ public class InventoryCrafting implements IInventory {
 		return 64;
 	}
 
-	public void o_() {
+	public void update() {
 	}
 
 	public boolean a(EntityHuman var1) {

@@ -16,7 +16,7 @@ public class EntityMinecartRideable extends adx {
 		} else if (this.l != null && this.l != var1) {
 			return false;
 		} else {
-			if (!this.o.D) {
+			if (!this.world.D) {
 				var1.a((Entity) this);
 			}
 

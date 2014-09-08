@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class aiw extends ajk {
+public class aiw extends Slot {
 
 	private EntityHuman a;
 	private int b;
@@ -15,8 +15,8 @@ public class aiw extends ajk {
 	}
 
 	public ItemStack a(int var1) {
-		if (this.e()) {
-			this.b += Math.min(var1, this.d().b);
+		if (this.hasItem()) {
+			this.b += Math.min(var1, this.getItemStack().amount);
 		}
 
 		return super.a(var1);
@@ -33,8 +33,8 @@ public class aiw extends ajk {
 	}
 
 	protected void c(ItemStack var1) {
-		var1.a(this.a.o, this.a, this.b);
-		if (!this.a.o.D) {
+		var1.a(this.a.world, this.a, this.b);
+		if (!this.a.world.D) {
 			int var2 = this.b;
 			float var3 = RecipesFurnace.getInstance().b(var1);
 			int var4;
@@ -52,7 +52,7 @@ public class aiw extends ajk {
 			while (var2 > 0) {
 				var4 = EntityExpirienceOrb.a(var2);
 				var2 -= var4;
-				this.a.o.d((Entity) (new EntityExpirienceOrb(this.a.o, this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ + 0.5D, var4)));
+				this.a.world.d((Entity) (new EntityExpirienceOrb(this.a.world, this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ + 0.5D, var4)));
 			}
 		}
 

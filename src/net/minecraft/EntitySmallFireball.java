@@ -18,7 +18,7 @@ public class EntitySmallFireball extends ahl {
 	}
 
 	protected void a(MovingObjectPosition var1) {
-		if (!this.o.D) {
+		if (!this.world.D) {
 			boolean var2;
 			if (var1.entity != null) {
 				var2 = var1.entity.a(DamageSource.a((ahl) this, this.a), 5.0F);
@@ -31,18 +31,18 @@ public class EntitySmallFireball extends ahl {
 			} else {
 				var2 = true;
 				if (this.a != null && this.a instanceof EntityInsentient) {
-					var2 = this.o.Q().b("mobGriefing");
+					var2 = this.world.Q().b("mobGriefing");
 				}
 
 				if (var2) {
 					Position var3 = var1.getPosition().a(var1.face);
-					if (this.o.d(var3)) {
-						this.o.a(var3, Blocks.FIRE.P());
+					if (this.world.d(var3)) {
+						this.world.a(var3, Blocks.FIRE.getBlockState());
 					}
 				}
 			}
 
-			this.J();
+			this.die();
 		}
 
 	}

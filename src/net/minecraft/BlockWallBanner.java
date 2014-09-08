@@ -3,11 +3,11 @@ package net.minecraft;
 public class BlockWallBanner extends atb {
 
 	public BlockWallBanner() {
-		this.j(this.L.b().a(a, BlockFace.NORTH));
+		this.setBlockState(this.L.b().a(a, BlockFace.NORTH));
 	}
 
 	public void a(ard var1, Position var2) {
-		BlockFace var3 = (BlockFace) var1.p(var2).b(a);
+		BlockFace var3 = (BlockFace) var1.getBlockState(var2).b(a);
 		float var4 = 0.0F;
 		float var5 = 0.78125F;
 		float var6 = 0.0F;
@@ -31,9 +31,9 @@ public class BlockWallBanner extends atb {
 
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, BlockState var3, Block var4) {
 		BlockFace var5 = (BlockFace) var3.b(a);
-		if (!var1.p(var2.a(var5.getOpposite())).getBlock().r().isBuildable()) {
+		if (!var1.getBlockState(var2.a(var5.getOpposite())).getBlock().getMaterial().isBuildable()) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
 		}
@@ -41,16 +41,16 @@ public class BlockWallBanner extends atb {
 		super.a(var1, var2, var3, var4);
 	}
 
-	public bec a(int var1) {
+	public BlockState a(int var1) {
 		BlockFace var2 = BlockFace.getById(var1);
 		if (var2.k() == el.b) {
 			var2 = BlockFace.NORTH;
 		}
 
-		return this.P().a(a, var2);
+		return this.getBlockState().a(a, var2);
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((BlockFace) var1.b(a)).getId();
 	}
 

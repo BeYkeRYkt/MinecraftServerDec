@@ -9,6 +9,6 @@ public class ItemCoal extends Item {
 	}
 
 	public String getName(ItemStack var1) {
-		return var1.i() == 1 ? "item.charcoal" : "item.coal";
+		return var1.getDurability() == 1 ? "item.charcoal" : "item.coal";
 	}
 }

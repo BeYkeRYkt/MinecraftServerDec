@@ -19,7 +19,7 @@ public class bhg extends bhp {
 			if (var3.getY() > 3) {
 				label47: {
 					if (!var1.d(var3.b())) {
-						Block var4 = var1.p(var3.b()).getBlock();
+						Block var4 = var1.getBlockState(var3.b()).getBlock();
 						if (var4 == Blocks.GRASS || var4 == Blocks.DIRT || var4 == Blocks.STONE) {
 							break label47;
 						}
@@ -46,7 +46,7 @@ public class bhg extends bhp {
 				while (var10.hasNext()) {
 					Position var11 = (Position) var10.next();
 					if (var11.i(var3) <= (double) (var9 * var9)) {
-						var1.a(var11, this.a.P(), 4);
+						var1.a(var11, this.a.getBlockState(), 4);
 					}
 				}
 

@@ -13,7 +13,7 @@ public class ItemNameTag extends Item {
 			EntityInsentient var4 = (EntityInsentient) var3;
 			var4.a(var1.q());
 			var4.bW();
-			--var1.b;
+			--var1.amount;
 			return true;
 		} else {
 			return super.a(var1, var2, var3);

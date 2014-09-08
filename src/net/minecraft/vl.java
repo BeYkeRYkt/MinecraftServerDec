@@ -30,14 +30,14 @@ public class vl extends vk {
 		for (int var4 = 0; var4 < var3; ++var4) {
 			vl var5 = (vl) vj.a(var0, var1);
 			int var6 = var5.c + var0.nextInt(var5.d - var5.c + 1);
-			if (var5.b.c() >= var6) {
+			if (var5.b.getMaxStackSize() >= var6) {
 				ItemStack var7 = var5.b.getCopy();
-				var7.b = var6;
+				var7.amount = var6;
 				var2.a(var0.nextInt(var2.n_()), var7);
 			} else {
 				for (int var9 = 0; var9 < var6; ++var9) {
 					ItemStack var8 = var5.b.getCopy();
-					var8.b = 1;
+					var8.amount = 1;
 					var2.a(var0.nextInt(var2.n_()), var8);
 				}
 			}
@@ -49,14 +49,14 @@ public class vl extends vk {
 		for (int var4 = 0; var4 < var3; ++var4) {
 			vl var5 = (vl) vj.a(var0, var1);
 			int var6 = var5.c + var0.nextInt(var5.d - var5.c + 1);
-			if (var5.b.c() >= var6) {
+			if (var5.b.getMaxStackSize() >= var6) {
 				ItemStack var7 = var5.b.getCopy();
-				var7.b = var6;
+				var7.amount = var6;
 				var2.a(var0.nextInt(var2.n_()), var7);
 			} else {
 				for (int var9 = 0; var9 < var6; ++var9) {
 					ItemStack var8 = var5.b.getCopy();
-					var8.b = 1;
+					var8.amount = 1;
 					var2.a(var0.nextInt(var2.n_()), var8);
 				}
 			}

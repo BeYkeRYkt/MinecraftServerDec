@@ -3,7 +3,7 @@ package net.minecraft;
 public class biw {
 
 	private final int a;
-	private bec b;
+	private BlockState b;
 	private int c;
 	private int d;
 
@@ -15,7 +15,7 @@ public class biw {
 		this.c = 1;
 		this.a = var1;
 		this.c = var2;
-		this.b = var3.P();
+		this.b = var3.getBlockState();
 	}
 
 	public biw(int var1, int var2, Block var3, int var4) {
@@ -27,7 +27,7 @@ public class biw {
 		return this.c;
 	}
 
-	public bec c() {
+	public BlockState c() {
 		return this.b;
 	}
 

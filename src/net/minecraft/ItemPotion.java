@@ -34,10 +34,10 @@ public class ItemPotion extends Item {
 
 			return var7;
 		} else {
-			List var2 = (List) this.a.get(Integer.valueOf(var1.i()));
+			List var2 = (List) this.a.get(Integer.valueOf(var1.getDurability()));
 			if (var2 == null) {
-				var2 = PotionBrewer.b(var1.i(), false);
-				this.a.put(Integer.valueOf(var1.i()), var2);
+				var2 = PotionBrewer.b(var1.getDurability(), false);
+				this.a.put(Integer.valueOf(var1.getDurability()), var2);
 			}
 
 			return var2;
@@ -55,8 +55,8 @@ public class ItemPotion extends Item {
 	}
 
 	public ItemStack b(ItemStack var1, World var2, EntityHuman var3) {
-		if (!var3.by.instabuild) {
-			--var1.b;
+		if (!var3.playerProperties.instabuild) {
+			--var1.amount;
 		}
 
 		if (!var2.D) {
@@ -72,8 +72,8 @@ public class ItemPotion extends Item {
 		}
 
 		var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
-		if (!var3.by.instabuild) {
-			if (var1.b <= 0) {
+		if (!var3.playerProperties.instabuild) {
+			if (var1.amount <= 0) {
 				return new ItemStack(Items.GLASS_BOTTLE);
 			}
 
@@ -92,9 +92,9 @@ public class ItemPotion extends Item {
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
-		if (f(var1.i())) {
-			if (!var3.by.instabuild) {
-				--var1.b;
+		if (f(var1.getDurability())) {
+			if (!var3.playerProperties.instabuild) {
+				--var1.amount;
 			}
 
 			var2.a((Entity) var3, "random.bow", 0.5F, 0.4F / (rnd.nextFloat() * 0.4F + 0.8F));
@@ -115,11 +115,11 @@ public class ItemPotion extends Item {
 	}
 
 	public String a(ItemStack var1) {
-		if (var1.i() == 0) {
+		if (var1.getDurability() == 0) {
 			return LocaleI18n.get("item.emptyPotion.name").trim();
 		} else {
 			String var2 = "";
-			if (f(var1.i())) {
+			if (f(var1.getDurability())) {
 				var2 = LocaleI18n.get("potion.prefix.grenade").trim() + " ";
 			}
 
@@ -130,7 +130,7 @@ public class ItemPotion extends Item {
 				var4 = var4 + ".postfix";
 				return var2 + LocaleI18n.get(var4).trim();
 			} else {
-				var4 = PotionBrewer.c(var1.i());
+				var4 = PotionBrewer.c(var1.getDurability());
 				return LocaleI18n.get(var4).trim() + " " + super.a(var1);
 			}
 		}

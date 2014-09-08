@@ -58,7 +58,7 @@ class aof implements IRecipe {
 			ItemStack var3 = var1.a(var2);
 			if (var3 != null && TileEntityBanner.c(var3) > 0) {
 				ItemStack var4 = var3.getCopy();
-				var4.b = 1;
+				var4.amount = 1;
 				return var4;
 			}
 		}
@@ -84,7 +84,7 @@ class aof implements IRecipe {
 					var2[var3] = new ItemStack(var4.getItem().getCraftingResult());
 				} else if (var4.hasTag() && TileEntityBanner.c(var4) > 0) {
 					var2[var3] = var4.getCopy();
-					var2[var3].b = 1;
+					var2[var3].amount = 1;
 				}
 			}
 		}

@@ -20,7 +20,7 @@ public class ChatComponentText extends hj {
 
 	public ChatComponentText h() {
 		ChatComponentText var1 = new ChatComponentText(this.b);
-		var1.a(this.b().m());
+		var1.a(this.getChatModifier().m());
 		Iterator var2 = this.a().iterator();
 
 		while (var2.hasNext()) {
@@ -43,7 +43,7 @@ public class ChatComponentText extends hj {
 	}
 
 	public String toString() {
-		return "TextComponent{text=\'" + this.b + '\'' + ", siblings=" + this.a + ", style=" + this.b() + '}';
+		return "TextComponent{text=\'" + this.b + '\'' + ", siblings=" + this.a + ", style=" + this.getChatModifier() + '}';
 	}
 
 	// $FF: synthetic method

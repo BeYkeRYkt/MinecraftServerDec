@@ -22,11 +22,11 @@ public class ItemWaterLily extends ItemWithAuxData {
 				}
 
 				Position var6 = var5.a();
-				bec var7 = var2.p(var5);
-				if (var7.getBlock().r() == Material.WATER && ((Integer) var7.b(axl.b)).intValue() == 0 && var2.d(var6)) {
-					var2.a(var6, Blocks.WATER_LILY.P());
-					if (!var3.by.instabuild) {
-						--var1.b;
+				BlockState var7 = var2.getBlockState(var5);
+				if (var7.getBlock().getMaterial() == Material.WATER && ((Integer) var7.b(axl.b)).intValue() == 0 && var2.d(var6)) {
+					var2.a(var6, Blocks.WATER_LILY.getBlockState());
+					if (!var3.playerProperties.instabuild) {
+						--var1.amount;
 					}
 
 					var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);

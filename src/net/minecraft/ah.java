@@ -42,7 +42,7 @@ public class ah {
 
 			while (var4.hasNext()) {
 				Entity var5 = (Entity) var4.next();
-				var3.add(var5.e_());
+				var3.add(var5.getComponentName());
 			}
 
 			return AbstractCommand.a((List) var3);
@@ -51,13 +51,13 @@ public class ah {
 
 	public static List b(CommandSenderInterface var0, String var1, Class var2) {
 		Matcher var3 = a.matcher(var1);
-		if (var3.matches() && var0.a(1, "@")) {
+		if (var3.matches() && var0.canExecuteCommand(1, "@")) {
 			Map var4 = c(var3.group(2));
 			if (!b(var0, var4)) {
 				return Collections.emptyList();
 			} else {
 				String var5 = var3.group(1);
-				Position var6 = b(var4, var0.c());
+				Position var6 = b(var4, var0.getEntityPosition());
 				List var7 = a(var0, var4);
 				ArrayList var8 = Lists.newArrayList();
 				Iterator var9 = var7.iterator();
@@ -88,7 +88,7 @@ public class ah {
 	private static List a(CommandSenderInterface var0, Map var1) {
 		ArrayList var2 = Lists.newArrayList();
 		if (h(var1)) {
-			var2.add(var0.e());
+			var2.add(var0.getWorld());
 		} else {
 			Collections.addAll(var2, MinecraftServer.getInstance().worlds);
 		}
@@ -101,7 +101,7 @@ public class ah {
 		var2 = var2 != null && var2.startsWith("!") ? var2.substring(1) : var2;
 		if (var2 != null && !EntityTypes.isEntity(var2)) {
 			ChatMessage var3 = new ChatMessage("commands.generic.entity.invalidType", new Object[] { var2 });
-			var3.b().a(EnumChatFormat.RED);
+			var3.getChatModifier().setColor(EnumChatFormat.RED);
 			var0.sendChatMessage(var3);
 			return false;
 		} else {
@@ -285,7 +285,7 @@ public class ah {
 			Collections.sort((List) var0, new al(var5));
 		}
 
-		Entity var7 = var2.f();
+		Entity var7 = var2.getEntity();
 		if (var7 != null && var3.isAssignableFrom(var7.getClass()) && var6 == 1 && ((List) var0).contains(var7) && !"r".equals(var4)) {
 			var0 = Lists.newArrayList((Object[]) (new Entity[] { var7 }));
 		}

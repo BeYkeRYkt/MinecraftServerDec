@@ -8,8 +8,8 @@ public class ItemMilkBucket extends Item {
 	}
 
 	public ItemStack b(ItemStack var1, World var2, EntityHuman var3) {
-		if (!var3.by.instabuild) {
-			--var1.b;
+		if (!var3.playerProperties.instabuild) {
+			--var1.amount;
 		}
 
 		if (!var2.D) {
@@ -17,7 +17,7 @@ public class ItemMilkBucket extends Item {
 		}
 
 		var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
-		return var1.b <= 0 ? new ItemStack(Items.BUCKET) : var1;
+		return var1.amount <= 0 ? new ItemStack(Items.BUCKET) : var1;
 	}
 
 	public int d(ItemStack var1) {

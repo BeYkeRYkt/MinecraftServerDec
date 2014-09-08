@@ -25,7 +25,7 @@ public abstract class aaw extends zb {
 		EntityLiving var1 = this.e.u();
 		if (var1 == null) {
 			return false;
-		} else if (!var1.ai()) {
+		} else if (!var1.isAlive()) {
 			return false;
 		} else {
 			ScoreboardTeamBase var2 = this.e.bN();
@@ -34,7 +34,7 @@ public abstract class aaw extends zb {
 				return false;
 			} else {
 				double var4 = this.f();
-				if (this.e.h(var1) > var4 * var4) {
+				if (this.e.getDistanceSquared(var1) > var4 * var4) {
 					return false;
 				} else {
 					if (this.f) {
@@ -45,7 +45,7 @@ public abstract class aaw extends zb {
 						}
 					}
 
-					return !(var1 instanceof EntityHuman) || !((EntityHuman) var1).by.invulnerable;
+					return !(var1 instanceof EntityHuman) || !((EntityHuman) var1).playerProperties.invulnerable;
 				}
 			}
 		}
@@ -71,7 +71,7 @@ public abstract class aaw extends zb {
 			return false;
 		} else if (var1 == var0) {
 			return false;
-		} else if (!var1.ai()) {
+		} else if (!var1.isAlive()) {
 			return false;
 		} else if (!var0.a(var1.getClass())) {
 			return false;
@@ -89,7 +89,7 @@ public abstract class aaw extends zb {
 					if (var1 == ((xt) var0).l_()) {
 						return false;
 					}
-				} else if (var1 instanceof EntityHuman && !var2 && ((EntityHuman) var1).by.invulnerable) {
+				} else if (var1 instanceof EntityHuman && !var2 && ((EntityHuman) var1).playerProperties.invulnerable) {
 					return false;
 				}
 

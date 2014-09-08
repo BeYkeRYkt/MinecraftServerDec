@@ -72,7 +72,7 @@ public class ShapedRecipes implements IRecipe {
 						return false;
 					}
 
-					if (var9.i() != 32767 && var9.i() != var10.i()) {
+					if (var9.getDurability() != 32767 && var9.getDurability() != var10.getDurability()) {
 						return false;
 					}
 				}
@@ -88,7 +88,7 @@ public class ShapedRecipes implements IRecipe {
 			for (int var3 = 0; var3 < var1.n_(); ++var3) {
 				ItemStack var4 = var1.a(var3);
 				if (var4 != null && var4.hasTag()) {
-					var2.d((NBTCompoundTag) var4.getTag().getCopy());
+					var2.setTag((NBTCompoundTag) var4.getTag().getCopy());
 				}
 			}
 		}

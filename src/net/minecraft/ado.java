@@ -45,7 +45,7 @@ public class ado extends Entity {
 		this.b = var2;
 		this.b.bE = this;
 		this.a(0.25F, 0.25F);
-		this.b(var2.locationX, var2.locationY + (double) var2.aR(), var2.locationZ, var2.yaw, var2.pitch);
+		this.setPositionRotation(var2.locationX, var2.locationY + (double) var2.aR(), var2.locationZ, var2.yaw, var2.pitch);
 		this.locationX -= (double) (DataTypesConverter.b(this.yaw / 180.0F * 3.1415927F) * 0.16F);
 		this.locationY -= 0.10000000149011612D;
 		this.locationZ -= (double) (DataTypesConverter.a(this.yaw / 180.0F * 3.1415927F) * 0.16F);
@@ -93,16 +93,16 @@ public class ado extends Entity {
 			this.b(var28, var29, var30);
 			this.b(this.yaw, this.pitch);
 		} else {
-			if (!this.o.D) {
+			if (!this.world.D) {
 				ItemStack var1 = this.b.bY();
-				if (this.b.I || !this.b.ai() || var1 == null || var1.getItem() != Items.FISHING_ROD || this.h(this.b) > 1024.0D) {
-					this.J();
+				if (this.b.dead || !this.b.isAlive() || var1 == null || var1.getItem() != Items.FISHING_ROD || this.getDistanceSquared(this.b) > 1024.0D) {
+					this.die();
 					this.b.bE = null;
 					return;
 				}
 
 				if (this.c != null) {
-					if (!this.c.I) {
+					if (!this.c.dead) {
 						this.locationX = this.c.locationX;
 						double var10002 = (double) this.c.K;
 						this.locationY = this.c.aQ().minY + var10002 * 0.8D;
@@ -119,10 +119,10 @@ public class ado extends Entity {
 			}
 
 			if (this.aq) {
-				if (this.o.p(new Position(this.g, this.h, this.i)).getBlock() == this.ap) {
+				if (this.world.getBlockState(new Position(this.g, this.h, this.i)).getBlock() == this.ap) {
 					++this.ar;
 					if (this.ar == 1200) {
-						this.J();
+						this.die();
 					}
 
 					return;
@@ -140,7 +140,7 @@ public class ado extends Entity {
 
 			Vec3D var27 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 			Vec3D var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
-			MovingObjectPosition var3 = this.o.a(var27, var2);
+			MovingObjectPosition var3 = this.world.a(var27, var2);
 			var27 = new Vec3D(this.locationX, this.locationY, this.locationZ);
 			var2 = new Vec3D(this.locationX + this.motionX, this.locationY + this.motionY, this.locationZ + this.motionZ);
 			if (var3 != null) {
@@ -148,7 +148,7 @@ public class ado extends Entity {
 			}
 
 			Entity var4 = null;
-			List var5 = this.o.b((Entity) this, this.aQ().a(this.motionX, this.motionY, this.motionZ).b(1.0D, 1.0D, 1.0D));
+			List var5 = this.world.b((Entity) this, this.aQ().a(this.motionX, this.motionY, this.motionZ).b(1.0D, 1.0D, 1.0D));
 			double var6 = 0.0D;
 
 			double var13;
@@ -220,20 +220,20 @@ public class ado extends Entity {
 					double var17 = var14.minY + var15 * (double) var35 / (double) var33;
 					var19 = var14.minY + var15 * (double) (var35 + 1) / (double) var33;
 					AxisAlignedBB var21 = new AxisAlignedBB(var14.minX, var17, var14.minZ, var14.maxX, var19, var14.maxZ);
-					if (this.o.b(var21, Material.WATER)) {
+					if (this.world.b(var21, Material.WATER)) {
 						var34 += 1.0D / (double) var33;
 					}
 				}
 
-				if (!this.o.D && var34 > 0.0D) {
-					WorldServer var36 = (WorldServer) this.o;
+				if (!this.world.D && var34 > 0.0D) {
+					WorldServer var36 = (WorldServer) this.world;
 					int var37 = 1;
 					Position var38 = (new Position(this)).a();
-					if (this.V.nextFloat() < 0.25F && this.o.C(var38)) {
+					if (this.V.nextFloat() < 0.25F && this.world.C(var38)) {
 						var37 = 2;
 					}
 
-					if (this.V.nextFloat() < 0.5F && !this.o.i(var38)) {
+					if (this.V.nextFloat() < 0.5F && !this.world.i(var38)) {
 						--var37;
 					}
 
@@ -350,7 +350,7 @@ public class ado extends Entity {
 	}
 
 	public int l() {
-		if (this.o.D) {
+		if (this.world.D) {
 			return 0;
 		} else {
 			byte var1 = 0;
@@ -365,7 +365,7 @@ public class ado extends Entity {
 				this.c.motionZ += var6 * var10;
 				var1 = 3;
 			} else if (this.at > 0) {
-				EntityItem var13 = new EntityItem(this.o, this.locationX, this.locationY, this.locationZ, this.m());
+				EntityItem var13 = new EntityItem(this.world, this.locationX, this.locationY, this.locationZ, this.m());
 				double var3 = this.b.locationX - this.locationX;
 				double var5 = this.b.locationY - this.locationY;
 				double var7 = this.b.locationZ - this.locationZ;
@@ -374,8 +374,8 @@ public class ado extends Entity {
 				var13.motionX = var3 * var11;
 				var13.motionY = var5 * var11 + (double) DataTypesConverter.a(var9) * 0.08D;
 				var13.motionZ = var7 * var11;
-				this.o.d((Entity) var13);
-				this.b.o.d((Entity) (new EntityExpirienceOrb(this.b.o, this.b.locationX, this.b.locationY + 0.5D, this.b.locationZ + 0.5D, this.V.nextInt(6) + 1)));
+				this.world.d((Entity) var13);
+				this.b.world.d((Entity) (new EntityExpirienceOrb(this.b.world, this.b.locationX, this.b.locationY + 0.5D, this.b.locationZ + 0.5D, this.V.nextInt(6) + 1)));
 				var1 = 1;
 			}
 
@@ -383,14 +383,14 @@ public class ado extends Entity {
 				var1 = 2;
 			}
 
-			this.J();
+			this.die();
 			this.b.bE = null;
 			return var1;
 		}
 	}
 
 	private ItemStack m() {
-		float var1 = this.o.s.nextFloat();
+		float var1 = this.world.s.nextFloat();
 		int var2 = aph.g(this.b);
 		int var3 = aph.h(this.b);
 		float var4 = 0.1F - (float) var2 * 0.025F - (float) var3 * 0.01F;
@@ -413,8 +413,8 @@ public class ado extends Entity {
 		}
 	}
 
-	public void J() {
-		super.J();
+	public void die() {
+		super.die();
 		if (this.b != null) {
 			this.b.bE = null;
 		}

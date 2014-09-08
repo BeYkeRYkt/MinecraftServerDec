@@ -9,7 +9,7 @@ public abstract class axl extends Block {
 
 	protected axl(Material var1) {
 		super(var1);
-		this.j(this.L.b().a(b, Integer.valueOf(0)));
+		this.setBlockState(this.L.b().a(b, Integer.valueOf(0)));
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		this.a(true);
 	}
@@ -27,7 +27,7 @@ public abstract class axl extends Block {
 	}
 
 	protected int e(ard var1, Position var2) {
-		return var1.p(var2).getBlock().r() == this.material ? ((Integer) var1.p(var2).b(b)).intValue() : -1;
+		return var1.getBlockState(var2).getBlock().getMaterial() == this.material ? ((Integer) var1.getBlockState(var2).b(b)).intValue() : -1;
 	}
 
 	protected int f(ard var1, Position var2) {
@@ -43,16 +43,16 @@ public abstract class axl extends Block {
 		return false;
 	}
 
-	public boolean a(bec var1, boolean var2) {
+	public boolean a(BlockState var1, boolean var2) {
 		return var2 && ((Integer) var1.b(b)).intValue() == 0;
 	}
 
 	public boolean b(ard var1, Position var2, BlockFace var3) {
-		Material var4 = var1.p(var2).getBlock().r();
+		Material var4 = var1.getBlockState(var2).getBlock().getMaterial();
 		return var4 == this.material ? false : (var3 == BlockFace.UP ? true : (var4 == Material.ICE ? false : super.b(var1, var2, var3)));
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
 		return null;
 	}
 
@@ -60,7 +60,7 @@ public abstract class axl extends Block {
 		return 1;
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
+	public Item a(BlockState var1, Random var2, int var3) {
 		return null;
 	}
 
@@ -81,7 +81,7 @@ public abstract class axl extends Block {
 			int var8 = this.f(var1, var7);
 			int var9;
 			if (var8 < 0) {
-				if (!var1.p(var7).getBlock().r().isSolid()) {
+				if (!var1.getBlockState(var7).getBlock().getMaterial().isSolid()) {
 					var8 = this.f(var1, var7.b());
 					if (var8 >= 0) {
 						var9 = var8 - (var4 - 8);
@@ -94,7 +94,7 @@ public abstract class axl extends Block {
 			}
 		}
 
-		if (((Integer) var1.p(var2).b(b)).intValue() >= 8) {
+		if (((Integer) var1.getBlockState(var2).b(b)).intValue() >= 8) {
 			var5 = en.a.iterator();
 
 			while (var5.hasNext()) {
@@ -118,15 +118,15 @@ public abstract class axl extends Block {
 		return this.material == Material.WATER ? 5 : (this.material == Material.LAVA ? (var1.worldProvider.noSkyLight() ? 10 : 30) : 0);
 	}
 
-	public void c(World var1, Position var2, bec var3) {
+	public void c(World var1, Position var2, BlockState var3) {
 		this.e(var1, var2, var3);
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, BlockState var3, Block var4) {
 		this.e(var1, var2, var3);
 	}
 
-	public boolean e(World var1, Position var2, bec var3) {
+	public boolean e(World var1, Position var2, BlockState var3) {
 		if (this.material == Material.LAVA) {
 			boolean var4 = false;
 			BlockFace[] var5 = BlockFace.values();
@@ -134,7 +134,7 @@ public abstract class axl extends Block {
 
 			for (int var7 = 0; var7 < var6; ++var7) {
 				BlockFace var8 = var5[var7];
-				if (var8 != BlockFace.DOWN && var1.p(var2.a(var8)).getBlock().r() == Material.WATER) {
+				if (var8 != BlockFace.DOWN && var1.getBlockState(var2.a(var8)).getBlock().getMaterial() == Material.WATER) {
 					var4 = true;
 					break;
 				}
@@ -143,13 +143,13 @@ public abstract class axl extends Block {
 			if (var4) {
 				Integer var9 = (Integer) var3.b(b);
 				if (var9.intValue() == 0) {
-					var1.a(var2, Blocks.OBSIDIAN.P());
+					var1.a(var2, Blocks.OBSIDIAN.getBlockState());
 					this.d(var1, var2);
 					return true;
 				}
 
 				if (var9.intValue() <= 4) {
-					var1.a(var2, Blocks.COBBLESTONE.P());
+					var1.a(var2, Blocks.COBBLESTONE.getBlockState());
 					this.d(var1, var2);
 					return true;
 				}
@@ -171,11 +171,11 @@ public abstract class axl extends Block {
 
 	}
 
-	public bec a(int var1) {
-		return this.P().a(b, Integer.valueOf(var1));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(b, Integer.valueOf(var1));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((Integer) var1.b(b)).intValue();
 	}
 

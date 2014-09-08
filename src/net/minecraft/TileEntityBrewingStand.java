@@ -13,7 +13,7 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 	private Item j;
 	private String k;
 
-	public String d_() {
+	public String getName() {
 		return this.k_() ? this.k : "container.brewing";
 	}
 
@@ -34,13 +34,13 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 			--this.h;
 			if (this.h == 0) {
 				this.o();
-				this.o_();
+				this.update();
 			} else if (!this.n()) {
 				this.h = 0;
-				this.o_();
+				this.update();
 			} else if (this.j != this.g[3].getItem()) {
 				this.h = 0;
-				this.o_();
+				this.update();
 			}
 		} else if (this.n()) {
 			this.h = 400;
@@ -51,7 +51,7 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 			boolean[] var1 = this.m();
 			if (!Arrays.equals(var1, this.i)) {
 				this.i = var1;
-				bec var2 = this.world.p(this.v());
+				BlockState var2 = this.world.getBlockState(this.v());
 				if (!(var2.getBlock() instanceof BlockBrewingStand)) {
 					return;
 				}
@@ -67,7 +67,7 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 	}
 
 	private boolean n() {
-		if (this.g[3] != null && this.g[3].b > 0) {
+		if (this.g[3] != null && this.g[3].amount > 0) {
 			ItemStack var1 = this.g[3];
 			if (!var1.getItem().l(var1)) {
 				return false;
@@ -76,7 +76,7 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 
 				for (int var3 = 0; var3 < 3; ++var3) {
 					if (this.g[var3] != null && this.g[var3].getItem() == Items.POTION) {
-						int var4 = this.g[var3].i();
+						int var4 = this.g[var3].getDurability();
 						int var5 = this.c(var4, var1);
 						if (!ItemPotion.f(var4) && ItemPotion.f(var5)) {
 							var2 = true;
@@ -105,16 +105,16 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 
 			for (int var2 = 0; var2 < 3; ++var2) {
 				if (this.g[var2] != null && this.g[var2].getItem() == Items.POTION) {
-					int var3 = this.g[var2].i();
+					int var3 = this.g[var2].getDurability();
 					int var4 = this.c(var3, var1);
 					List var5 = Items.POTION.e(var3);
 					List var6 = Items.POTION.e(var4);
 					if ((var3 <= 0 || var5 != var6) && (var5 == null || !var5.equals(var6) && var6 != null)) {
 						if (var3 != var4) {
-							this.g[var2].b(var4);
+							this.g[var2].setDurability(var4);
 						}
 					} else if (!ItemPotion.f(var3) && ItemPotion.f(var4)) {
-						this.g[var2].b(var4);
+						this.g[var2].setDurability(var4);
 					}
 				}
 			}
@@ -122,8 +122,8 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 			if (var1.getItem().r()) {
 				this.g[3] = new ItemStack(var1.getItem().getCraftingResult());
 			} else {
-				--this.g[3].b;
-				if (this.g[3].b <= 0) {
+				--this.g[3].amount;
+				if (this.g[3].amount <= 0) {
 					this.g[3] = null;
 				}
 			}
@@ -164,7 +164,7 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 			if (this.g[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.put("Slot", (byte) var3);
-				this.g[var3].b(var4);
+				this.g[var3].write(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
@@ -212,7 +212,7 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.world.s(this.position) != this ? false : var1.e((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
+		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public void b(EntityHuman var1) {

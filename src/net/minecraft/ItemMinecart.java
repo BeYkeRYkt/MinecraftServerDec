@@ -13,7 +13,7 @@ public class ItemMinecart extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		bec var9 = var3.p(var4);
+		BlockState var9 = var3.getBlockState(var4);
 		if (ati.d(var9)) {
 			if (!var3.D) {
 				atl var10 = var9.getBlock() instanceof ati ? (atl) var9.b(((ati) var9.getBlock()).l()) : atl.a;
@@ -30,7 +30,7 @@ public class ItemMinecart extends Item {
 				var3.d((Entity) var13);
 			}
 
-			--var1.b;
+			--var1.amount;
 			return true;
 		} else {
 			return false;

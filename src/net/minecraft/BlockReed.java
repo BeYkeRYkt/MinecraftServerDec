@@ -9,24 +9,24 @@ public class BlockReed extends Block {
 
 	protected BlockReed() {
 		super(Material.PLANT);
-		this.j(this.L.b().a(a, Integer.valueOf(0)));
+		this.setBlockState(this.L.b().a(a, Integer.valueOf(0)));
 		float var1 = 0.375F;
 		this.a(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 1.0F, 0.5F + var1);
 		this.a(true);
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
-		if (var1.p(var2.b()).getBlock() == Blocks.REEDS || this.e(var1, var2, var3)) {
+	public void b(World var1, Position var2, BlockState var3, Random var4) {
+		if (var1.getBlockState(var2.b()).getBlock() == Blocks.REEDS || this.e(var1, var2, var3)) {
 			if (var1.d(var2.a())) {
 				int var5;
-				for (var5 = 1; var1.p(var2.c(var5)).getBlock() == this; ++var5) {
+				for (var5 = 1; var1.getBlockState(var2.c(var5)).getBlock() == this; ++var5) {
 					;
 				}
 
 				if (var5 < 3) {
 					int var6 = ((Integer) var3.b(a)).intValue();
 					if (var6 == 15) {
-						var1.a(var2.a(), this.P());
+						var1.a(var2.a(), this.getBlockState());
 						var1.a(var2, var3.a(a, Integer.valueOf(0)), 4);
 					} else {
 						var1.a(var2, var3.a(a, Integer.valueOf(var6 + 1)), 4);
@@ -38,7 +38,7 @@ public class BlockReed extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		Block var3 = var1.p(var2.b()).getBlock();
+		Block var3 = var1.getBlockState(var2.b()).getBlock();
 		if (var3 == this) {
 			return true;
 		} else if (var3 != Blocks.GRASS && var3 != Blocks.DIRT && var3 != Blocks.SAND) {
@@ -53,17 +53,17 @@ public class BlockReed extends Block {
 				}
 
 				var5 = (BlockFace) var4.next();
-			} while (var1.p(var2.a(var5).b()).getBlock().r() != Material.WATER);
+			} while (var1.getBlockState(var2.a(var5).b()).getBlock().getMaterial() != Material.WATER);
 
 			return true;
 		}
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, BlockState var3, Block var4) {
 		this.e(var1, var2, var3);
 	}
 
-	protected final boolean e(World var1, Position var2, bec var3) {
+	protected final boolean e(World var1, Position var2, BlockState var3) {
 		if (this.d(var1, var2)) {
 			return true;
 		} else {
@@ -77,11 +77,11 @@ public class BlockReed extends Block {
 		return this.c(var1, var2);
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
 		return null;
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
+	public Item a(BlockState var1, Random var2, int var3) {
 		return Items.REEDS;
 	}
 
@@ -93,11 +93,11 @@ public class BlockReed extends Block {
 		return false;
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, Integer.valueOf(var1));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((Integer) var1.b(a)).intValue();
 	}
 

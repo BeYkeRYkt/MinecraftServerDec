@@ -66,17 +66,17 @@ public class EntityFireworks extends Entity {
 		this.pitch = this.B + (this.pitch - this.B) * 0.2F;
 		this.yaw = this.A + (this.yaw - this.A) * 0.2F;
 		if (this.a == 0 && !this.R()) {
-			this.o.a((Entity) this, "fireworks.launch", 3.0F, 1.0F);
+			this.world.a((Entity) this, "fireworks.launch", 3.0F, 1.0F);
 		}
 
 		++this.a;
-		if (this.o.D && this.a % 2 < 2) {
-			this.o.a(Particle.d, this.locationX, this.locationY - 0.3D, this.locationZ, this.V.nextGaussian() * 0.05D, -this.motionY * 0.5D, this.V.nextGaussian() * 0.05D, new int[0]);
+		if (this.world.D && this.a % 2 < 2) {
+			this.world.a(Particle.d, this.locationX, this.locationY - 0.3D, this.locationZ, this.V.nextGaussian() * 0.05D, -this.motionY * 0.5D, this.V.nextGaussian() * 0.05D, new int[0]);
 		}
 
-		if (!this.o.D && this.a > this.b) {
-			this.o.a((Entity) this, (byte) 17);
-			this.J();
+		if (!this.world.D && this.a > this.b) {
+			this.world.a((Entity) this, (byte) 17);
+			this.die();
 		}
 
 	}
@@ -87,7 +87,7 @@ public class EntityFireworks extends Entity {
 		ItemStack var2 = this.dataWatcher.f(8);
 		if (var2 != null) {
 			NBTCompoundTag var3 = new NBTCompoundTag();
-			var2.b(var3);
+			var2.write(var3);
 			var1.put("FireworksItem", (NBTTag) var3);
 		}
 

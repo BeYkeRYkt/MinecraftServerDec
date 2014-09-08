@@ -7,13 +7,13 @@ public class BlockDirt extends Block {
 
 	protected BlockDirt() {
 		super(Material.EARTH);
-		this.j(this.L.b().a(a, avd.a).a(b, Boolean.valueOf(false)));
+		this.setBlockState(this.L.b().a(a, avd.a).a(b, Boolean.valueOf(false)));
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public bec a(bec var1, ard var2, Position var3) {
+	public BlockState a(BlockState var1, ard var2, Position var3) {
 		if (var1.b(a) == avd.c) {
-			Block var4 = var2.p(var3.a()).getBlock();
+			Block var4 = var2.getBlockState(var3.a()).getBlock();
 			var1 = var1.a(b, Boolean.valueOf(var4 == Blocks.SNOW || var4 == Blocks.SNOW_LAYER));
 		}
 
@@ -21,15 +21,15 @@ public class BlockDirt extends Block {
 	}
 
 	public int j(World var1, Position var2) {
-		bec var3 = var1.p(var2);
+		BlockState var3 = var1.getBlockState(var2);
 		return var3.getBlock() != this ? 0 : ((avd) var3.b(a)).a();
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, avd.a(var1));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(a, avd.a(var1));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((avd) var1.b(a)).a();
 	}
 
@@ -37,7 +37,7 @@ public class BlockDirt extends Block {
 		return new bed(this, new bex[] { a, b });
 	}
 
-	public int a(bec var1) {
+	public int a(BlockState var1) {
 		avd var2 = (avd) var1.b(a);
 		if (var2 == avd.c) {
 			var2 = avd.a;

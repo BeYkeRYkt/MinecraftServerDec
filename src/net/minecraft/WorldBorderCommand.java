@@ -68,7 +68,7 @@ public class WorldBorderCommand extends AbstractCommand {
 					throw new dp("commands.worldborder.center.usage", new Object[0]);
 				}
 
-				Position var10 = var1.c();
+				Position var10 = var1.getEntityPosition();
 				double var5 = b((double) var10.getX() + 0.5D, var2[1], true);
 				double var7 = b((double) var10.getZ() + 0.5D, var2[2], true);
 				var3.setCenter(var5, var7);

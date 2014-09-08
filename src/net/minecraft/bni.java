@@ -29,52 +29,52 @@ public class bni extends bnn {
 			this.l.a(0, this.h - this.l.e + 12 - 1, 0);
 		}
 
-		this.a(var1, var3, 1, 1, 1, 3, 3, 7, Blocks.AIR.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, 1, 5, 1, 3, 9, 3, Blocks.AIR.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, 1, 0, 0, 3, 0, 8, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
-		this.a(var1, var3, 1, 1, 0, 3, 10, 0, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
-		this.a(var1, var3, 0, 1, 1, 0, 10, 3, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
-		this.a(var1, var3, 4, 1, 1, 4, 10, 3, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
-		this.a(var1, var3, 0, 0, 4, 0, 4, 7, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
-		this.a(var1, var3, 4, 0, 4, 4, 4, 7, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
-		this.a(var1, var3, 1, 1, 8, 3, 4, 8, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
-		this.a(var1, var3, 1, 5, 4, 3, 10, 4, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
-		this.a(var1, var3, 1, 5, 5, 3, 5, 7, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
-		this.a(var1, var3, 0, 9, 0, 4, 9, 4, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
-		this.a(var1, var3, 0, 4, 0, 4, 4, 4, Blocks.COBBLESTONE.P(), Blocks.COBBLESTONE.P(), false);
-		this.a(var1, Blocks.COBBLESTONE.P(), 0, 11, 2, var3);
-		this.a(var1, Blocks.COBBLESTONE.P(), 4, 11, 2, var3);
-		this.a(var1, Blocks.COBBLESTONE.P(), 2, 11, 0, var3);
-		this.a(var1, Blocks.COBBLESTONE.P(), 2, 11, 4, var3);
-		this.a(var1, Blocks.COBBLESTONE.P(), 1, 1, 6, var3);
-		this.a(var1, Blocks.COBBLESTONE.P(), 1, 1, 7, var3);
-		this.a(var1, Blocks.COBBLESTONE.P(), 2, 1, 7, var3);
-		this.a(var1, Blocks.COBBLESTONE.P(), 3, 1, 6, var3);
-		this.a(var1, Blocks.COBBLESTONE.P(), 3, 1, 7, var3);
+		this.a(var1, var3, 1, 1, 1, 3, 3, 7, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, 1, 5, 1, 3, 9, 3, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, 1, 0, 0, 3, 0, 8, Blocks.COBBLESTONE.getBlockState(), Blocks.COBBLESTONE.getBlockState(), false);
+		this.a(var1, var3, 1, 1, 0, 3, 10, 0, Blocks.COBBLESTONE.getBlockState(), Blocks.COBBLESTONE.getBlockState(), false);
+		this.a(var1, var3, 0, 1, 1, 0, 10, 3, Blocks.COBBLESTONE.getBlockState(), Blocks.COBBLESTONE.getBlockState(), false);
+		this.a(var1, var3, 4, 1, 1, 4, 10, 3, Blocks.COBBLESTONE.getBlockState(), Blocks.COBBLESTONE.getBlockState(), false);
+		this.a(var1, var3, 0, 0, 4, 0, 4, 7, Blocks.COBBLESTONE.getBlockState(), Blocks.COBBLESTONE.getBlockState(), false);
+		this.a(var1, var3, 4, 0, 4, 4, 4, 7, Blocks.COBBLESTONE.getBlockState(), Blocks.COBBLESTONE.getBlockState(), false);
+		this.a(var1, var3, 1, 1, 8, 3, 4, 8, Blocks.COBBLESTONE.getBlockState(), Blocks.COBBLESTONE.getBlockState(), false);
+		this.a(var1, var3, 1, 5, 4, 3, 10, 4, Blocks.COBBLESTONE.getBlockState(), Blocks.COBBLESTONE.getBlockState(), false);
+		this.a(var1, var3, 1, 5, 5, 3, 5, 7, Blocks.COBBLESTONE.getBlockState(), Blocks.COBBLESTONE.getBlockState(), false);
+		this.a(var1, var3, 0, 9, 0, 4, 9, 4, Blocks.COBBLESTONE.getBlockState(), Blocks.COBBLESTONE.getBlockState(), false);
+		this.a(var1, var3, 0, 4, 0, 4, 4, 4, Blocks.COBBLESTONE.getBlockState(), Blocks.COBBLESTONE.getBlockState(), false);
+		this.a(var1, Blocks.COBBLESTONE.getBlockState(), 0, 11, 2, var3);
+		this.a(var1, Blocks.COBBLESTONE.getBlockState(), 4, 11, 2, var3);
+		this.a(var1, Blocks.COBBLESTONE.getBlockState(), 2, 11, 0, var3);
+		this.a(var1, Blocks.COBBLESTONE.getBlockState(), 2, 11, 4, var3);
+		this.a(var1, Blocks.COBBLESTONE.getBlockState(), 1, 1, 6, var3);
+		this.a(var1, Blocks.COBBLESTONE.getBlockState(), 1, 1, 7, var3);
+		this.a(var1, Blocks.COBBLESTONE.getBlockState(), 2, 1, 7, var3);
+		this.a(var1, Blocks.COBBLESTONE.getBlockState(), 3, 1, 6, var3);
+		this.a(var1, Blocks.COBBLESTONE.getBlockState(), 3, 1, 7, var3);
 		this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 1, 1, 5, var3);
 		this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 2, 1, 6, var3);
 		this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 3, 1, 5, var3);
 		this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 1)), 1, 2, 7, var3);
 		this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 0)), 3, 2, 7, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 0, 2, 2, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 0, 3, 2, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 4, 2, 2, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 4, 3, 2, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 0, 6, 2, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 0, 7, 2, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 4, 6, 2, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 4, 7, 2, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 2, 6, 0, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 2, 7, 0, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 2, 6, 4, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 2, 7, 4, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 0, 3, 6, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 4, 3, 6, var3);
-		this.a(var1, Blocks.GLASS_PANE.P(), 2, 3, 8, var3);
-		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m.getOpposite()), 2, 4, 7, var3);
-		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m.e()), 1, 4, 6, var3);
-		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m.f()), 3, 4, 6, var3);
-		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m), 2, 4, 5, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 0, 2, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 0, 3, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 4, 2, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 4, 3, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 0, 6, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 0, 7, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 4, 6, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 4, 7, 2, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 2, 6, 0, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 2, 7, 0, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 2, 6, 4, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 2, 7, 4, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 0, 3, 6, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 4, 3, 6, var3);
+		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 2, 3, 8, var3);
+		this.a(var1, Blocks.TORCH.getBlockState().a(BlockTorch.a, this.m.getOpposite()), 2, 4, 7, var3);
+		this.a(var1, Blocks.TORCH.getBlockState().a(BlockTorch.a, this.m.e()), 1, 4, 6, var3);
+		this.a(var1, Blocks.TORCH.getBlockState().a(BlockTorch.a, this.m.f()), 3, 4, 6, var3);
+		this.a(var1, Blocks.TORCH.getBlockState().a(BlockTorch.a, this.m), 2, 4, 5, var3);
 		int var4 = this.a(Blocks.LADDER, 4);
 
 		int var5;
@@ -82,17 +82,17 @@ public class bni extends bnn {
 			this.a(var1, Blocks.LADDER.a(var4), 3, var5, 3, var3);
 		}
 
-		this.a(var1, Blocks.AIR.P(), 2, 1, 0, var3);
-		this.a(var1, Blocks.AIR.P(), 2, 2, 0, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), 2, 1, 0, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), 2, 2, 0, var3);
 		this.a(var1, var3, var2, 2, 1, 0, BlockFace.fromDirection(this.a(Blocks.WOODEN_DOOR, 1)));
-		if (this.a(var1, 2, 0, -1, var3).getBlock().r() == Material.AIR && this.a(var1, 2, -1, -1, var3).getBlock().r() != Material.AIR) {
+		if (this.a(var1, 2, 0, -1, var3).getBlock().getMaterial() == Material.AIR && this.a(var1, 2, -1, -1, var3).getBlock().getMaterial() != Material.AIR) {
 			this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 2, 0, -1, var3);
 		}
 
 		for (var5 = 0; var5 < 9; ++var5) {
 			for (int var6 = 0; var6 < 5; ++var6) {
 				this.b(var1, var6, 12, var5, var3);
-				this.b(var1, Blocks.COBBLESTONE.P(), var6, -1, var5, var3);
+				this.b(var1, Blocks.COBBLESTONE.getBlockState(), var6, -1, var5, var3);
 			}
 		}
 

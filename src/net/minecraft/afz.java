@@ -12,7 +12,7 @@ class afz extends zb {
 
 	public boolean a() {
 		EntityLiving var1 = this.a.u();
-		return var1 == null ? false : var1.ai();
+		return var1 == null ? false : var1.isAlive();
 	}
 
 	public void c() {
@@ -22,7 +22,7 @@ class afz extends zb {
 
 	public boolean b() {
 		EntityLiving var1 = this.a.u();
-		return var1 == null ? false : (!var1.ai() ? false : --this.b > 0);
+		return var1 == null ? false : (!var1.isAlive() ? false : --this.b > 0);
 	}
 
 	public void e() {

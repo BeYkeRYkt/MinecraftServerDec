@@ -17,7 +17,14 @@ import java.util.Map.Entry;
 
 public class ChatSerializer implements JsonDeserializer, JsonSerializer {
 
-	private static final Gson a;
+	private static final Gson gson;
+	static {
+		GsonBuilder builder = new GsonBuilder();
+		builder.registerTypeHierarchyAdapter(IChatBaseComponent.class, new ChatSerializer());
+		builder.registerTypeHierarchyAdapter(ChatModifier.class, new ChatModifierSerializer());
+		builder.registerTypeAdapterFactory(new ChatTypeAdapterFactory());
+		gson = builder.create();
+	}
 
 	public IChatBaseComponent a(JsonElement var1, Type var2, JsonDeserializationContext var3) {
 		if (var1.isJsonPrimitive()) {
@@ -57,7 +64,7 @@ public class ChatSerializer implements JsonDeserializer, JsonSerializer {
 						var8[var9] = this.a(var7.get(var9), var2, var3);
 						if (var8[var9] instanceof ChatComponentText) {
 							ChatComponentText var10 = (ChatComponentText) var8[var9];
-							if (var10.b().g() && var10.a().isEmpty()) {
+							if (var10.getChatModifier().g() && var10.a().isEmpty()) {
 								var8[var9] = var10.g();
 							}
 						}
@@ -116,12 +123,12 @@ public class ChatSerializer implements JsonDeserializer, JsonSerializer {
 	}
 
 	public JsonElement a(IChatBaseComponent var1, Type var2, JsonSerializationContext var3) {
-		if (var1 instanceof ChatComponentText && var1.b().g() && var1.a().isEmpty()) {
+		if (var1 instanceof ChatComponentText && var1.getChatModifier().g() && var1.a().isEmpty()) {
 			return new JsonPrimitive(((ChatComponentText) var1).g());
 		} else {
 			JsonObject var4 = new JsonObject();
-			if (!var1.b().g()) {
-				this.a(var1.b(), var4, var3);
+			if (!var1.getChatModifier().g()) {
+				this.a(var1.getChatModifier(), var4, var3);
 			}
 
 			if (!var1.a().isEmpty()) {
@@ -177,12 +184,12 @@ public class ChatSerializer implements JsonDeserializer, JsonSerializer {
 		}
 	}
 
-	public static String a(IChatBaseComponent var0) {
-		return a.toJson((Object) var0);
+	public static String toJsonString(IChatBaseComponent component) {
+		return gson.toJson(component);
 	}
 
-	public static IChatBaseComponent a(String var0) {
-		return (IChatBaseComponent) a.fromJson(var0, IChatBaseComponent.class);
+	public static IChatBaseComponent fromJsonString(String string) {
+		return (IChatBaseComponent) gson.fromJson(string, IChatBaseComponent.class);
 	}
 
 	// $FF: synthetic method
@@ -195,11 +202,4 @@ public class ChatSerializer implements JsonDeserializer, JsonSerializer {
 		return this.a(var1, var2, var3);
 	}
 
-	static {
-		GsonBuilder var0 = new GsonBuilder();
-		var0.registerTypeHierarchyAdapter(IChatBaseComponent.class, new ChatSerializer());
-		var0.registerTypeHierarchyAdapter(ChatModifier.class, new ChatModifierSerializer());
-		var0.registerTypeAdapterFactory(new ChatTypeAdapterFactory());
-		a = var0.create();
-	}
 }

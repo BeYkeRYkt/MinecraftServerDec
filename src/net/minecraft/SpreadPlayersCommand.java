@@ -30,7 +30,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 			throw new dp("commands.spreadplayers.usage", new Object[0]);
 		} else {
 			byte var3 = 0;
-			Position var4 = var1.c();
+			Position var4 = var1.getEntityPosition();
 			double var10000 = (double) var4.getX();
 			int var17 = var3 + 1;
 			double var5 = b(var10000, var2[var3], true);
@@ -64,7 +64,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 				throw new dj();
 			} else {
 				var1.sendChatMessage(new ChatMessage("commands.spreadplayers.spreading." + (var13 ? "teams" : "players"), new Object[] { Integer.valueOf(var14.size()), Double.valueOf(var11), Double.valueOf(var5), Double.valueOf(var7), Double.valueOf(var9) }));
-				this.a(var1, var14, new cs(var5, var7), var9, var11, ((Entity) var14.get(0)).o, var13);
+				this.a(var1, var14, new cs(var5, var7), var9, var11, ((Entity) var14.get(0)).world, var13);
 			}
 		}
 	}
@@ -189,7 +189,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 				var11 = var3[var7++];
 			}
 
-			var10.a((double) ((float) DataTypesConverter.toFixedPointInt(var11.a) + 0.5F), (double) var11.a(var2), (double) DataTypesConverter.toFixedPointInt(var11.b) + 0.5D);
+			var10.updatePosition((double) ((float) DataTypesConverter.toFixedPointInt(var11.a) + 0.5F), (double) var11.a(var2), (double) DataTypesConverter.toFixedPointInt(var11.b) + 0.5D);
 			double var17 = Double.MAX_VALUE;
 
 			for (int var14 = 0; var14 < var3.length; ++var14) {

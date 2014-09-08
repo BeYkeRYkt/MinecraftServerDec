@@ -5,7 +5,7 @@ import com.google.common.base.Function;
 final class als implements Function {
 
 	public String a(ItemStack var1) {
-		return awa.a(awc.a, var1.i()).d();
+		return awa.a(awc.a, var1.getDurability()).d();
 	}
 
 	// $FF: synthetic method

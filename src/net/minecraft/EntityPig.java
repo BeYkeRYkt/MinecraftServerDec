@@ -27,7 +27,7 @@ public class EntityPig extends abq {
 	}
 
 	public boolean bV() {
-		ItemStack var1 = ((EntityHuman) this.l).bz();
+		ItemStack var1 = ((EntityHuman) this.l).getItemInHand();
 		return var1 != null && var1.getItem() == Items.CARROT_ON_A_STICK;
 	}
 
@@ -65,7 +65,7 @@ public class EntityPig extends abq {
 	public boolean a(EntityHuman var1) {
 		if (super.a(var1)) {
 			return true;
-		} else if (this.cj() && !this.o.D && (this.l == null || this.l == var1)) {
+		} else if (this.cj() && !this.world.D && (this.l == null || this.l == var1)) {
 			var1.a((Entity) this);
 			return true;
 		} else {
@@ -108,12 +108,12 @@ public class EntityPig extends abq {
 	}
 
 	public void a(EntityLightning var1) {
-		if (!this.o.D) {
-			EntityPigZombie var2 = new EntityPigZombie(this.o);
-			var2.c(0, new ItemStack(Items.GOLDEN_SWORD));
-			var2.b(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
-			this.o.d((Entity) var2);
-			this.J();
+		if (!this.world.D) {
+			EntityPigZombie var2 = new EntityPigZombie(this.world);
+			var2.setArmor(0, new ItemStack(Items.GOLDEN_SWORD));
+			var2.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
+			this.world.d((Entity) var2);
+			this.die();
 		}
 	}
 
@@ -126,7 +126,7 @@ public class EntityPig extends abq {
 	}
 
 	public EntityPig b(ws var1) {
-		return new EntityPig(this.o);
+		return new EntityPig(this.world);
 	}
 
 	public boolean d(ItemStack var1) {

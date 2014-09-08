@@ -48,19 +48,19 @@ public class bmb extends bmk {
 		this.a(var1, var3, 2, var4, 14, 8, var4, 14, false, var2, blr.c());
 		this.a(var1, var3, 1, 1, 1, 2, 1, 4, false, var2, blr.c());
 		this.a(var1, var3, 8, 1, 1, 9, 1, 4, false, var2, blr.c());
-		this.a(var1, var3, 1, 1, 1, 1, 1, 3, Blocks.FLOWING_LAVA.P(), Blocks.FLOWING_LAVA.P(), false);
-		this.a(var1, var3, 9, 1, 1, 9, 1, 3, Blocks.FLOWING_LAVA.P(), Blocks.FLOWING_LAVA.P(), false);
+		this.a(var1, var3, 1, 1, 1, 1, 1, 3, Blocks.FLOWING_LAVA.getBlockState(), Blocks.FLOWING_LAVA.getBlockState(), false);
+		this.a(var1, var3, 9, 1, 1, 9, 1, 3, Blocks.FLOWING_LAVA.getBlockState(), Blocks.FLOWING_LAVA.getBlockState(), false);
 		this.a(var1, var3, 3, 1, 8, 7, 1, 12, false, var2, blr.c());
-		this.a(var1, var3, 4, 1, 9, 6, 1, 11, Blocks.FLOWING_LAVA.P(), Blocks.FLOWING_LAVA.P(), false);
+		this.a(var1, var3, 4, 1, 9, 6, 1, 11, Blocks.FLOWING_LAVA.getBlockState(), Blocks.FLOWING_LAVA.getBlockState(), false);
 
 		int var5;
 		for (var5 = 3; var5 < 14; var5 += 2) {
-			this.a(var1, var3, 0, 3, var5, 0, 4, var5, Blocks.IRON_BARS.P(), Blocks.IRON_BARS.P(), false);
-			this.a(var1, var3, 10, 3, var5, 10, 4, var5, Blocks.IRON_BARS.P(), Blocks.IRON_BARS.P(), false);
+			this.a(var1, var3, 0, 3, var5, 0, 4, var5, Blocks.IRON_BARS.getBlockState(), Blocks.IRON_BARS.getBlockState(), false);
+			this.a(var1, var3, 10, 3, var5, 10, 4, var5, Blocks.IRON_BARS.getBlockState(), Blocks.IRON_BARS.getBlockState(), false);
 		}
 
 		for (var5 = 2; var5 < 9; var5 += 2) {
-			this.a(var1, var3, var5, 3, 15, var5, 4, 15, Blocks.IRON_BARS.P(), Blocks.IRON_BARS.P(), false);
+			this.a(var1, var3, var5, 3, 15, var5, 4, 15, Blocks.IRON_BARS.getBlockState(), Blocks.IRON_BARS.getBlockState(), false);
 		}
 
 		var5 = this.a(Blocks.STONE_BROCK_STAIRS, 3);
@@ -116,8 +116,8 @@ public class bmb extends bmk {
 			Position var10 = new Position(this.a(5, 6), var12, this.b(5, 6));
 			if (var3.b((fd) var10)) {
 				this.a = true;
-				var1.a(var10, Blocks.MOB_SPAWNER.P(), 2);
-				TileEntity var11 = var1.s(var10);
+				var1.a(var10, Blocks.MOB_SPAWNER.getBlockState(), 2);
+				TileEntity var11 = var1.getTileEntity(var10);
 				if (var11 instanceof TileEntityMobSpawner) {
 					((TileEntityMobSpawner) var11).b().a("Silverfish");
 				}

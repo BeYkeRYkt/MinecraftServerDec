@@ -28,7 +28,7 @@ public class ItemWithAuxData extends ItemBlock {
 		if (this.c == null) {
 			return super.getName(var1);
 		} else {
-			int var2 = var1.i();
+			int var2 = var1.getDurability();
 			return var2 >= 0 && var2 < this.c.length ? super.getName(var1) + "." + this.c[var2] : super.getName(var1);
 		}
 	}

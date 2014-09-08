@@ -35,8 +35,8 @@ public class bhv extends bhp {
 				for (var9 = var3.getX() - var8; var9 <= var3.getX() + var8 && var6; ++var9) {
 					for (var10 = var3.getZ() - var8; var10 <= var3.getZ() + var8 && var6; ++var10) {
 						if (var7 >= 0 && var7 < 256) {
-							Block var11 = var1.p(new Position(var9, var7, var10)).getBlock();
-							if (var11.r() != Material.AIR && var11.r() != Material.LEAVES) {
+							Block var11 = var1.getBlockState(new Position(var9, var7, var10)).getBlock();
+							if (var11.getMaterial() != Material.AIR && var11.getMaterial() != Material.LEAVES) {
 								var6 = false;
 							}
 						} else {
@@ -49,7 +49,7 @@ public class bhv extends bhp {
 			if (!var6) {
 				return false;
 			} else {
-				Block var15 = var1.p(var3.b()).getBlock();
+				Block var15 = var1.getBlockState(var3.b()).getBlock();
 				if (var15 != Blocks.DIRT && var15 != Blocks.GRASS && var15 != Blocks.MYCELIUM) {
 					return false;
 				} else {
@@ -131,7 +131,7 @@ public class bhv extends bhp {
 
 								if (var13 != 0 || var3.getY() >= var3.getY() + var5 - 1) {
 									Position var14 = new Position(var18, var9, var12);
-									if (!var1.p(var14).getBlock().m()) {
+									if (!var1.getBlockState(var14).getBlock().m()) {
 										this.a(var1, var14, Block.c(Block.getBlockId(Blocks.BROWN_MUSHROOM_BLOCK) + var4), var13);
 									}
 								}
@@ -140,7 +140,7 @@ public class bhv extends bhp {
 					}
 
 					for (var9 = 0; var9 < var5; ++var9) {
-						Block var17 = var1.p(var3.b(var9)).getBlock();
+						Block var17 = var1.getBlockState(var3.b(var9)).getBlock();
 						if (!var17.m()) {
 							this.a(var1, var3.b(var9), Block.c(Block.getBlockId(Blocks.BROWN_MUSHROOM_BLOCK) + var4), 10);
 						}

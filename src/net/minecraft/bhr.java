@@ -15,11 +15,11 @@ public class bhr extends bir {
 
 	public boolean b(World var1, Random var2, Position var3) {
 		Block var4;
-		while (((var4 = var1.p(var3).getBlock()).r() == Material.AIR || var4.r() == Material.LEAVES) && var3.getY() > 0) {
+		while (((var4 = var1.getBlockState(var3).getBlock()).getMaterial() == Material.AIR || var4.getMaterial() == Material.LEAVES) && var3.getY() > 0) {
 			var3 = var3.b();
 		}
 
-		Block var5 = var1.p(var3).getBlock();
+		Block var5 = var1.getBlockState(var3).getBlock();
 		if (var5 == Blocks.DIRT || var5 == Blocks.GRASS) {
 			var3 = var3.a();
 			this.a(var1, var3, Blocks.LOG, this.b);
@@ -35,7 +35,7 @@ public class bhr extends bir {
 						int var12 = var11 - var3.getZ();
 						if (Math.abs(var10) != var8 || Math.abs(var12) != var8 || var2.nextInt(2) != 0) {
 							Position var13 = new Position(var9, var6, var11);
-							if (!var1.p(var13).getBlock().m()) {
+							if (!var1.getBlockState(var13).getBlock().m()) {
 								this.a(var1, var13, Blocks.LEAVES, this.a);
 							}
 						}

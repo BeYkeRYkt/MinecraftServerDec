@@ -26,28 +26,28 @@ public class bkd extends bkb {
 	}
 
 	public boolean a(World var1, Random var2, bjb var3) {
-		this.a(var1, var3, 0, 0, 0, 6, 1, 6, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 0, 2, 0, 6, 7, 6, Blocks.AIR.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, 0, 2, 0, 1, 6, 0, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 0, 2, 6, 1, 6, 6, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 5, 2, 0, 6, 6, 0, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 5, 2, 6, 6, 6, 6, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 0, 2, 0, 0, 6, 1, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 0, 2, 5, 0, 6, 6, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 6, 2, 0, 6, 6, 1, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 6, 2, 5, 6, 6, 6, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 2, 6, 0, 4, 6, 0, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 2, 5, 0, 4, 5, 0, Blocks.NETHER_BRICK_FENCE.P(), Blocks.NETHER_BRICK_FENCE.P(), false);
-		this.a(var1, var3, 2, 6, 6, 4, 6, 6, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 2, 5, 6, 4, 5, 6, Blocks.NETHER_BRICK_FENCE.P(), Blocks.NETHER_BRICK_FENCE.P(), false);
-		this.a(var1, var3, 0, 6, 2, 0, 6, 4, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 0, 5, 2, 0, 5, 4, Blocks.NETHER_BRICK_FENCE.P(), Blocks.NETHER_BRICK_FENCE.P(), false);
-		this.a(var1, var3, 6, 6, 2, 6, 6, 4, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-		this.a(var1, var3, 6, 5, 2, 6, 5, 4, Blocks.NETHER_BRICK_FENCE.P(), Blocks.NETHER_BRICK_FENCE.P(), false);
+		this.a(var1, var3, 0, 0, 0, 6, 1, 6, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 0, 2, 0, 6, 7, 6, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, 0, 2, 0, 1, 6, 0, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 0, 2, 6, 1, 6, 6, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 5, 2, 0, 6, 6, 0, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 5, 2, 6, 6, 6, 6, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 0, 2, 0, 0, 6, 1, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 0, 2, 5, 0, 6, 6, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 6, 2, 0, 6, 6, 1, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 6, 2, 5, 6, 6, 6, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 2, 6, 0, 4, 6, 0, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 2, 5, 0, 4, 5, 0, Blocks.NETHER_BRICK_FENCE.getBlockState(), Blocks.NETHER_BRICK_FENCE.getBlockState(), false);
+		this.a(var1, var3, 2, 6, 6, 4, 6, 6, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 2, 5, 6, 4, 5, 6, Blocks.NETHER_BRICK_FENCE.getBlockState(), Blocks.NETHER_BRICK_FENCE.getBlockState(), false);
+		this.a(var1, var3, 0, 6, 2, 0, 6, 4, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 0, 5, 2, 0, 5, 4, Blocks.NETHER_BRICK_FENCE.getBlockState(), Blocks.NETHER_BRICK_FENCE.getBlockState(), false);
+		this.a(var1, var3, 6, 6, 2, 6, 6, 4, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+		this.a(var1, var3, 6, 5, 2, 6, 5, 4, Blocks.NETHER_BRICK_FENCE.getBlockState(), Blocks.NETHER_BRICK_FENCE.getBlockState(), false);
 
 		for (int var4 = 0; var4 <= 6; ++var4) {
 			for (int var5 = 0; var5 <= 6; ++var5) {
-				this.b(var1, Blocks.NETHER_BRICK.P(), var4, -1, var5, var3);
+				this.b(var1, Blocks.NETHER_BRICK.getBlockState(), var4, -1, var5, var3);
 			}
 		}
 

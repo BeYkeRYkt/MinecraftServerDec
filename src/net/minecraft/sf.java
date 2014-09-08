@@ -122,7 +122,7 @@ public class sf {
 					String var7 = var5.length > 2 ? var5[2] : null;
 					Date var8 = var5.length > 3 ? b(var5[3], (Date) null) : null;
 					String var9 = var5.length > 4 ? var5[4] : null;
-					var1.a((sr) (new se(var4, var6, var7, var8, var9)));
+					var1.add((sr) (new se(var4, var6, var7, var8, var9)));
 				}
 
 				var1.f();

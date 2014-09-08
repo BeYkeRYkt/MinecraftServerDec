@@ -33,7 +33,7 @@ public class EntityTNTPrimed extends Entity {
 	}
 
 	public boolean ad() {
-		return !this.I;
+		return !this.dead;
 	}
 
 	public void s_() {
@@ -52,20 +52,20 @@ public class EntityTNTPrimed extends Entity {
 		}
 
 		if (this.a-- <= 0) {
-			this.J();
-			if (!this.o.D) {
+			this.die();
+			if (!this.world.D) {
 				this.l();
 			}
 		} else {
 			this.W();
-			this.o.a(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.world.a(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 	}
 
 	private void l() {
 		float var1 = 4.0F;
-		this.o.a(this, this.locationX, this.locationY + (double) (this.K / 2.0F), this.locationZ, var1, true);
+		this.world.a(this, this.locationX, this.locationY + (double) (this.K / 2.0F), this.locationZ, var1, true);
 	}
 
 	protected void b(NBTCompoundTag var1) {

@@ -36,7 +36,7 @@ public class bgr implements IChunkProvider {
 	double[] g;
 
 	public bgr(World var1, boolean var2, long var3) {
-		this.w = new bif(Blocks.QUARTZ_ORE.P(), 14, bep.a(Blocks.NETHERRACK));
+		this.w = new bif(Blocks.QUARTZ_ORE.getBlockState(), 14, bep.a(Blocks.NETHERRACK));
 		this.x = new bhu(Blocks.FLOWING_LAVA, true);
 		this.y = new bhu(Blocks.FLOWING_LAVA, false);
 		this.z = new bhi(Blocks.BRWON_MUSHROOM);
@@ -89,13 +89,13 @@ public class bgr implements IChunkProvider {
 							double var46 = (var35 - var33) * var42;
 
 							for (int var48 = 0; var48 < 4; ++var48) {
-								bec var49 = null;
+								BlockState var49 = null;
 								if (var11 * 8 + var30 < var5) {
-									var49 = Blocks.LAVA.P();
+									var49 = Blocks.LAVA.getBlockState();
 								}
 
 								if (var44 > 0.0D) {
-									var49 = Blocks.NETHERRACK.P();
+									var49 = Blocks.NETHERRACK.getBlockState();
 								}
 
 								int var50 = var41 + var9 * 4;
@@ -133,34 +133,34 @@ public class bgr implements IChunkProvider {
 				boolean var10 = this.l[var7 + var8 * 16] + this.j.nextDouble() * 0.2D > 0.0D;
 				int var11 = (int) (this.m[var7 + var8 * 16] / 3.0D + 3.0D + this.j.nextDouble() * 0.25D);
 				int var12 = -1;
-				bec var13 = Blocks.NETHERRACK.P();
-				bec var14 = Blocks.NETHERRACK.P();
+				BlockState var13 = Blocks.NETHERRACK.getBlockState();
+				BlockState var14 = Blocks.NETHERRACK.getBlockState();
 
 				for (int var15 = 127; var15 >= 0; --var15) {
 					if (var15 < 127 - this.j.nextInt(5) && var15 > this.j.nextInt(5)) {
-						bec var16 = var3.a(var8, var15, var7);
-						if (var16.getBlock() != null && var16.getBlock().r() != Material.AIR) {
+						BlockState var16 = var3.a(var8, var15, var7);
+						if (var16.getBlock() != null && var16.getBlock().getMaterial() != Material.AIR) {
 							if (var16.getBlock() == Blocks.NETHERRACK) {
 								if (var12 == -1) {
 									if (var11 <= 0) {
 										var13 = null;
-										var14 = Blocks.NETHERRACK.P();
+										var14 = Blocks.NETHERRACK.getBlockState();
 									} else if (var15 >= var4 - 4 && var15 <= var4 + 1) {
-										var13 = Blocks.NETHERRACK.P();
-										var14 = Blocks.NETHERRACK.P();
+										var13 = Blocks.NETHERRACK.getBlockState();
+										var14 = Blocks.NETHERRACK.getBlockState();
 										if (var10) {
-											var13 = Blocks.GRAVEL.P();
-											var14 = Blocks.NETHERRACK.P();
+											var13 = Blocks.GRAVEL.getBlockState();
+											var14 = Blocks.NETHERRACK.getBlockState();
 										}
 
 										if (var9) {
-											var13 = Blocks.SOUL_SAND.P();
-											var14 = Blocks.SOUL_SAND.P();
+											var13 = Blocks.SOUL_SAND.getBlockState();
+											var14 = Blocks.SOUL_SAND.getBlockState();
 										}
 									}
 
-									if (var15 < var4 && (var13 == null || var13.getBlock().r() == Material.AIR)) {
-										var13 = Blocks.LAVA.P();
+									if (var15 < var4 && (var13 == null || var13.getBlock().getMaterial() == Material.AIR)) {
+										var13 = Blocks.LAVA.getBlockState();
 									}
 
 									var12 = var11;
@@ -178,7 +178,7 @@ public class bgr implements IChunkProvider {
 							var12 = -1;
 						}
 					} else {
-						var3.a(var8, var15, var7, Blocks.BEDROCK.P());
+						var3.a(var8, var15, var7, Blocks.BEDROCK.getBlockState());
 					}
 				}
 			}
@@ -352,7 +352,7 @@ public class bgr implements IChunkProvider {
 				return this.B.b();
 			}
 
-			if (this.B.a(this.h, var2) && this.h.p(var2.b()).getBlock() == Blocks.NETHER_BRICK) {
+			if (this.B.a(this.h, var2) && this.h.getBlockState(var2.b()).getBlock() == Blocks.NETHER_BRICK) {
 				return this.B.b();
 			}
 		}

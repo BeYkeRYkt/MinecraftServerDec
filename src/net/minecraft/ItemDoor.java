@@ -13,7 +13,7 @@ public class ItemDoor extends Item {
 		if (var5 != BlockFace.UP) {
 			return false;
 		} else {
-			bec var9 = var3.p(var4);
+			BlockState var9 = var3.getBlockState(var4);
 			Block var10 = var9.getBlock();
 			if (!var10.f(var3, var4)) {
 				var4 = var4.a(var5);
@@ -25,7 +25,7 @@ public class ItemDoor extends Item {
 				return false;
 			} else {
 				a(var3, var4, BlockFace.fromDirection((double) var2.yaw), this.a);
-				--var1.b;
+				--var1.amount;
 				return true;
 			}
 		}
@@ -34,17 +34,17 @@ public class ItemDoor extends Item {
 	public static void a(World var0, Position var1, BlockFace var2, Block var3) {
 		Position var4 = var1.a(var2.e());
 		Position var5 = var1.a(var2.f());
-		int var6 = (var0.p(var5).getBlock().t() ? 1 : 0) + (var0.p(var5.a()).getBlock().t() ? 1 : 0);
-		int var7 = (var0.p(var4).getBlock().t() ? 1 : 0) + (var0.p(var4.a()).getBlock().t() ? 1 : 0);
-		boolean var8 = var0.p(var5).getBlock() == var3 || var0.p(var5.a()).getBlock() == var3;
-		boolean var9 = var0.p(var4).getBlock() == var3 || var0.p(var4.a()).getBlock() == var3;
+		int var6 = (var0.getBlockState(var5).getBlock().t() ? 1 : 0) + (var0.getBlockState(var5.a()).getBlock().t() ? 1 : 0);
+		int var7 = (var0.getBlockState(var4).getBlock().t() ? 1 : 0) + (var0.getBlockState(var4.a()).getBlock().t() ? 1 : 0);
+		boolean var8 = var0.getBlockState(var5).getBlock() == var3 || var0.getBlockState(var5.a()).getBlock() == var3;
+		boolean var9 = var0.getBlockState(var4).getBlock() == var3 || var0.getBlockState(var4.a()).getBlock() == var3;
 		boolean var10 = false;
 		if (var8 && !var9 || var7 > var6) {
 			var10 = true;
 		}
 
 		Position var11 = var1.a();
-		bec var12 = var3.P().a(BlockDoor.a, var2).a(BlockDoor.M, var10 ? avh.b : avh.a);
+		BlockState var12 = var3.getBlockState().a(BlockDoor.a, var2).a(BlockDoor.M, var10 ? avh.b : avh.a);
 		var0.a(var1, var12.a(BlockDoor.O, avg.b), 2);
 		var0.a(var11, var12.a(BlockDoor.O, avg.a), 2);
 		var0.c(var1, var3);

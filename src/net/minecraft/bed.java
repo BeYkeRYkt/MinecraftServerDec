@@ -65,8 +65,8 @@ public class bed {
 		return var1;
 	}
 
-	public bec b() {
-		return (bec) this.e.get(0);
+	public BlockState b() {
+		return (BlockState) this.e.get(0);
 	}
 
 	public Block c() {

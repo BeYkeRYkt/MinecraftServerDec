@@ -30,24 +30,24 @@ public class bjs extends bkb {
 			int var6 = Math.max(1, 7 - var5);
 			int var7 = Math.min(Math.max(var6 + 5, 14 - var5), 13);
 			int var8 = var5;
-			this.a(var1, var3, 0, 0, var5, 4, var6, var5, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-			this.a(var1, var3, 1, var6 + 1, var5, 3, var7 - 1, var5, Blocks.AIR.P(), Blocks.AIR.P(), false);
+			this.a(var1, var3, 0, 0, var5, 4, var6, var5, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+			this.a(var1, var3, 1, var6 + 1, var5, 3, var7 - 1, var5, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 			if (var5 <= 6) {
 				this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var4), 1, var6 + 1, var5, var3);
 				this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var4), 2, var6 + 1, var5, var3);
 				this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var4), 3, var6 + 1, var5, var3);
 			}
 
-			this.a(var1, var3, 0, var7, var5, 4, var7, var5, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-			this.a(var1, var3, 0, var6 + 1, var5, 0, var7 - 1, var5, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
-			this.a(var1, var3, 4, var6 + 1, var5, 4, var7 - 1, var5, Blocks.NETHER_BRICK.P(), Blocks.NETHER_BRICK.P(), false);
+			this.a(var1, var3, 0, var7, var5, 4, var7, var5, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+			this.a(var1, var3, 0, var6 + 1, var5, 0, var7 - 1, var5, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
+			this.a(var1, var3, 4, var6 + 1, var5, 4, var7 - 1, var5, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
 			if ((var5 & 1) == 0) {
-				this.a(var1, var3, 0, var6 + 2, var5, 0, var6 + 3, var5, Blocks.NETHER_BRICK_FENCE.P(), Blocks.NETHER_BRICK_FENCE.P(), false);
-				this.a(var1, var3, 4, var6 + 2, var5, 4, var6 + 3, var5, Blocks.NETHER_BRICK_FENCE.P(), Blocks.NETHER_BRICK_FENCE.P(), false);
+				this.a(var1, var3, 0, var6 + 2, var5, 0, var6 + 3, var5, Blocks.NETHER_BRICK_FENCE.getBlockState(), Blocks.NETHER_BRICK_FENCE.getBlockState(), false);
+				this.a(var1, var3, 4, var6 + 2, var5, 4, var6 + 3, var5, Blocks.NETHER_BRICK_FENCE.getBlockState(), Blocks.NETHER_BRICK_FENCE.getBlockState(), false);
 			}
 
 			for (int var9 = 0; var9 <= 4; ++var9) {
-				this.b(var1, Blocks.NETHER_BRICK.P(), var9, -1, var8, var3);
+				this.b(var1, Blocks.NETHER_BRICK.getBlockState(), var9, -1, var8, var3);
 			}
 		}
 

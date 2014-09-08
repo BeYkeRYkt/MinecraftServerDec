@@ -25,7 +25,7 @@ public class ItemHanging extends Item {
 						var3.d((Entity) var10);
 					}
 
-					--var1.b;
+					--var1.amount;
 				}
 
 				return true;

@@ -61,7 +61,7 @@ public abstract class EntityCreature extends EntityInsentient {
 
 	protected void bZ() {
 		super.bZ();
-		if (this.cb() && this.cc() != null && this.cc().o == this.o) {
+		if (this.cb() && this.cc() != null && this.cc().world == this.world) {
 			Entity var1 = this.cc();
 			this.a(new Position((int) var1.locationX, (int) var1.locationY, (int) var1.locationZ), 5);
 			float var2 = this.g(var1);

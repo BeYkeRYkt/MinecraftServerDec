@@ -13,11 +13,11 @@ public class EntityMagmaCube extends EntitySlime {
 	}
 
 	public boolean bQ() {
-		return this.o.getDifficulty() != Difficulty.PEACEFUL;
+		return this.world.getDifficulty() != Difficulty.PEACEFUL;
 	}
 
 	public boolean bR() {
-		return this.o.a(this.aQ(), (Entity) this) && this.o.a((Entity) this, this.aQ()).isEmpty() && !this.o.d(this.aQ());
+		return this.world.a(this.aQ(), (Entity) this) && this.world.a((Entity) this, this.aQ()).isEmpty() && !this.world.d(this.aQ());
 	}
 
 	public int bq() {
@@ -33,7 +33,7 @@ public class EntityMagmaCube extends EntitySlime {
 	}
 
 	protected EntitySlime cd() {
-		return new EntityMagmaCube(this.o);
+		return new EntityMagmaCube(this.world);
 	}
 
 	protected Item A() {

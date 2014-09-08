@@ -43,11 +43,11 @@ public abstract class te implements Runnable {
 	}
 
 	protected void b(String var1) {
-		this.b.e(var1);
+		this.b.logInfo(var1);
 	}
 
 	protected void c(String var1) {
-		this.b.f(var1);
+		this.b.logWarning(var1);
 	}
 
 	protected void d(String var1) {

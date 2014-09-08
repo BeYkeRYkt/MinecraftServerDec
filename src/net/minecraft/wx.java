@@ -12,7 +12,7 @@ class wx implements Callable {
 	}
 
 	public String a() {
-		return this.a.d_();
+		return this.a.getName();
 	}
 
 	// $FF: synthetic method

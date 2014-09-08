@@ -7,13 +7,13 @@ final class DispenseBehaviorCommandBlock extends eg {
 		Position var4 = var1.d().a(BlockDispenser.b(var1.f()));
 		if (var3.d(var4)) {
 			if (!var3.D) {
-				bec var5 = Blocks.COMMAND_BLOCK.P().a(BlockCommand.a, Boolean.valueOf(false));
+				BlockState var5 = Blocks.COMMAND_BLOCK.getBlockState().a(BlockCommand.a, Boolean.valueOf(false));
 				var3.a(var4, var5, 3);
 				ItemBlock.a(var3, var4, var2);
 				var3.c(var1.d(), var1.e());
 			}
 
-			--var2.b;
+			--var2.amount;
 		}
 
 		return var2;

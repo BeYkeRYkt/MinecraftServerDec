@@ -61,7 +61,7 @@ public class EntityBoat extends Entity {
 	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
-		} else if (!this.o.D && !this.I) {
+		} else if (!this.world.D && !this.dead) {
 			if (this.l != null && this.l == var1.j() && var1 instanceof wj) {
 				return false;
 			} else {
@@ -69,7 +69,7 @@ public class EntityBoat extends Entity {
 				this.a(10);
 				this.a(this.j() + var2 * 10.0F);
 				this.ac();
-				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).by.instabuild;
+				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).playerProperties.instabuild;
 				if (var3 || this.j() > 40.0F) {
 					if (this.l != null) {
 						this.l.a((Entity) this);
@@ -79,7 +79,7 @@ public class EntityBoat extends Entity {
 						this.a(Items.BOAT, 1, 0.0F);
 					}
 
-					this.J();
+					this.die();
 				}
 
 				return true;
@@ -90,7 +90,7 @@ public class EntityBoat extends Entity {
 	}
 
 	public boolean ad() {
-		return !this.I;
+		return !this.dead;
 	}
 
 	public void s_() {
@@ -113,7 +113,7 @@ public class EntityBoat extends Entity {
 			double var5 = this.aQ().minY + (this.aQ().maxY - this.aQ().minY) * (double) (var4 + 0) / (double) var1 - 0.125D;
 			double var7 = this.aQ().minY + (this.aQ().maxY - this.aQ().minY) * (double) (var4 + 1) / (double) var1 - 0.125D;
 			AxisAlignedBB var9 = new AxisAlignedBB(this.aQ().minX, var5, this.aQ().minZ, this.aQ().maxX, var7, this.aQ().maxZ);
-			if (this.o.b(var9, Material.WATER)) {
+			if (this.world.b(var9, Material.WATER)) {
 				var2 += 1.0D / (double) var1;
 			}
 		}
@@ -134,18 +134,18 @@ public class EntityBoat extends Entity {
 				if (this.V.nextBoolean()) {
 					var15 = this.locationX - var6 * var11 * 0.8D + var8 * var13;
 					var17 = this.locationZ - var8 * var11 * 0.8D - var6 * var13;
-					this.o.a(Particle.f, var15, this.locationY - 0.125D, var17, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.world.a(Particle.f, var15, this.locationY - 0.125D, var17, this.motionX, this.motionY, this.motionZ, new int[0]);
 				} else {
 					var15 = this.locationX + var6 + var8 * var11 * 0.7D;
 					var17 = this.locationZ + var8 - var6 * var11 * 0.7D;
-					this.o.a(Particle.f, var15, this.locationY - 0.125D, var17, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.world.a(Particle.f, var15, this.locationY - 0.125D, var17, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 			}
 		}
 
 		double var24;
 		double var26;
-		if (this.o.D && this.a) {
+		if (this.world.D && this.a) {
 			if (this.c > 0) {
 				var6 = this.locationX + (this.d - this.locationX) / (double) this.c;
 				var8 = this.locationY + (this.e - this.locationY) / (double) this.c;
@@ -219,12 +219,12 @@ public class EntityBoat extends Entity {
 				for (int var25 = 0; var25 < 2; ++var25) {
 					int var12 = DataTypesConverter.toFixedPointInt(this.locationY) + var25;
 					Position var27 = new Position(var23, var12, var10);
-					Block var14 = this.o.p(var27).getBlock();
+					Block var14 = this.world.getBlockState(var27).getBlock();
 					if (var14 == Blocks.SNOW_LAYER) {
-						this.o.g(var27);
+						this.world.g(var27);
 						this.D = false;
 					} else if (var14 == Blocks.WATER_LILY) {
-						this.o.b(var27, true);
+						this.world.b(var27, true);
 						this.D = false;
 					}
 				}
@@ -238,8 +238,8 @@ public class EntityBoat extends Entity {
 
 			this.d(this.motionX, this.motionY, this.motionZ);
 			if (this.D && var19 > 0.2D) {
-				if (!this.o.D && !this.I) {
-					this.J();
+				if (!this.world.D && !this.dead) {
+					this.die();
 
 					for (var22 = 0; var22 < 3; ++var22) {
 						this.a(Item.getItemOf(Blocks.PLANKS), 1, 0.0F);
@@ -274,8 +274,8 @@ public class EntityBoat extends Entity {
 
 			this.yaw = (float) ((double) this.yaw + var28);
 			this.b(this.yaw, this.pitch);
-			if (!this.o.D) {
-				List var16 = this.o.b((Entity) this, this.aQ().b(0.20000000298023224D, 0.0D, 0.20000000298023224D));
+			if (!this.world.D) {
+				List var16 = this.world.b((Entity) this, this.aQ().b(0.20000000298023224D, 0.0D, 0.20000000298023224D));
 				if (var16 != null && !var16.isEmpty()) {
 					for (int var29 = 0; var29 < var16.size(); ++var29) {
 						Entity var18 = (Entity) var16.get(var29);
@@ -285,7 +285,7 @@ public class EntityBoat extends Entity {
 					}
 				}
 
-				if (this.l != null && this.l.I) {
+				if (this.l != null && this.l.dead) {
 					this.l = null;
 				}
 
@@ -311,7 +311,7 @@ public class EntityBoat extends Entity {
 		if (this.l != null && this.l instanceof EntityHuman && this.l != var1) {
 			return true;
 		} else {
-			if (!this.o.D) {
+			if (!this.world.D) {
 				var1.a((Entity) this);
 			}
 
@@ -323,8 +323,8 @@ public class EntityBoat extends Entity {
 		if (var3) {
 			if (this.O > 3.0F) {
 				this.e(this.O, 1.0F);
-				if (!this.o.D && !this.I) {
-					this.J();
+				if (!this.world.D && !this.dead) {
+					this.die();
 
 					int var6;
 					for (var6 = 0; var6 < 3; ++var6) {
@@ -338,7 +338,7 @@ public class EntityBoat extends Entity {
 
 				this.O = 0.0F;
 			}
-		} else if (this.o.p((new Position(this)).b()).getBlock().r() != Material.WATER && var1 < 0.0D) {
+		} else if (this.world.getBlockState((new Position(this)).b()).getBlock().getMaterial() != Material.WATER && var1 < 0.0D) {
 			this.O = (float) ((double) this.O - var1);
 		}
 
@@ -349,7 +349,7 @@ public class EntityBoat extends Entity {
 	}
 
 	public float j() {
-		return this.dataWatcher.d(19);
+		return this.dataWatcher.getData(19);
 	}
 
 	public void a(int var1) {

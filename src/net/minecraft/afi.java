@@ -12,11 +12,11 @@ class afi extends zb {
 
 	public boolean a() {
 		EntityLiving var1 = this.a.u();
-		return var1 != null && var1.ai();
+		return var1 != null && var1.isAlive();
 	}
 
 	public boolean b() {
-		return super.b() && (this.a.cl() || this.a.h(this.a.u()) > 9.0D);
+		return super.b() && (this.a.cl() || this.a.getDistanceSquared(this.a.u()) > 9.0D);
 	}
 
 	public void c() {
@@ -42,10 +42,10 @@ class afi extends zb {
 			++this.b;
 			if (this.b == 0) {
 				EntityGuardian.a(this.a, this.a.u().getId());
-				this.a.o.a((Entity) this.a, (byte) 21);
+				this.a.world.a((Entity) this.a, (byte) 21);
 			} else if (this.b >= this.a.ck()) {
 				float var2 = 1.0F;
-				if (this.a.o.getDifficulty() == Difficulty.HARD) {
+				if (this.a.world.getDifficulty() == Difficulty.HARD) {
 					var2 += 2.0F;
 				}
 

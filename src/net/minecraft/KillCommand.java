@@ -18,11 +18,11 @@ public class KillCommand extends AbstractCommand {
 		if (var2.length == 0) {
 			EntityPlayer var4 = b(var1);
 			var4.G();
-			a(var1, this, "commands.kill.successful", new Object[] { var4.e_() });
+			a(var1, this, "commands.kill.successful", new Object[] { var4.getComponentName() });
 		} else {
 			Entity var3 = b(var1, var2[0]);
 			var3.G();
-			a(var1, this, "commands.kill.successful", new Object[] { var3.e_() });
+			a(var1, this, "commands.kill.successful", new Object[] { var3.getComponentName() });
 		}
 	}
 

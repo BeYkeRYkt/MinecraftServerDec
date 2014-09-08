@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class ajj extends ajk {
+public class ajj extends Slot {
 
 	private final InventoryCrafting a;
 	private final EntityHuman b;
@@ -17,8 +17,8 @@ public class ajj extends ajk {
 	}
 
 	public ItemStack a(int var1) {
-		if (this.e()) {
-			this.c += Math.min(var1, this.d().b);
+		if (this.hasItem()) {
+			this.c += Math.min(var1, this.getItemStack().amount);
 		}
 
 		return super.a(var1);
@@ -31,7 +31,7 @@ public class ajj extends ajk {
 
 	protected void c(ItemStack var1) {
 		if (this.c > 0) {
-			var1.a(this.b.o, this.b, this.c);
+			var1.a(this.b.world, this.b, this.c);
 		}
 
 		this.c = 0;
@@ -75,7 +75,7 @@ public class ajj extends ajk {
 			this.b.b((Statistic) AchievementList.G);
 		}
 
-		if (var1.getItem() == Items.GOLDEN_APPLE && var1.i() == 1) {
+		if (var1.getItem() == Items.GOLDEN_APPLE && var1.getDurability() == 1) {
 			this.b.b((Statistic) AchievementList.M);
 		}
 
@@ -83,7 +83,7 @@ public class ajj extends ajk {
 
 	public void a(EntityHuman var1, ItemStack var2) {
 		this.c(var2);
-		ItemStack[] var3 = CraftingManager.getInstance().b(this.a, var1.o);
+		ItemStack[] var3 = CraftingManager.getInstance().b(this.a, var1.world);
 
 		for (int var4 = 0; var4 < var3.length; ++var4) {
 			ItemStack var5 = this.a.a(var4);
@@ -96,7 +96,7 @@ public class ajj extends ajk {
 				if (this.a.a(var4) == null) {
 					this.a.a(var4, var6);
 				} else if (!this.b.playerInventory.a(var6)) {
-					this.b.a(var6, false);
+					this.b.dropItem(var6, false);
 				}
 			}
 		}

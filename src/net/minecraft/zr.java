@@ -42,10 +42,10 @@ public class zr extends zn {
 		if (!var1.d(var2.a())) {
 			return false;
 		} else {
-			bec var3 = var1.p(var2);
+			BlockState var3 = var1.getBlockState(var2);
 			Block var4 = var3.getBlock();
 			if (var4 == Blocks.CHEST) {
-				TileEntity var5 = var1.s(var2);
+				TileEntity var5 = var1.getTileEntity(var2);
 				if (var5 instanceof TileEntityChest && ((TileEntityChest) var5).l < 1) {
 					return true;
 				}

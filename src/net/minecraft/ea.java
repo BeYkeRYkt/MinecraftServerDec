@@ -31,15 +31,15 @@ public class ea implements dz {
 	}
 
 	public Block e() {
-		return this.a.p(this.b).getBlock();
+		return this.a.getBlockState(this.b).getBlock();
 	}
 
 	public int f() {
-		bec var1 = this.a.p(this.b);
+		BlockState var1 = this.a.getBlockState(this.b);
 		return var1.getBlock().c(var1);
 	}
 
 	public TileEntity h() {
-		return this.a.s(this.b);
+		return this.a.getTileEntity(this.b);
 	}
 }

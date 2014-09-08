@@ -6,8 +6,8 @@ public class ItemFireworks extends Item {
 		if (!var3.D) {
 			EntityFireworks var9 = new EntityFireworks(var3, (double) ((float) var4.getX() + var6), (double) ((float) var4.getY() + var7), (double) ((float) var4.getZ() + var8), var1);
 			var3.d((Entity) var9);
-			if (!var2.by.instabuild) {
-				--var1.b;
+			if (!var2.playerProperties.instabuild) {
+				--var1.amount;
 			}
 
 			return true;

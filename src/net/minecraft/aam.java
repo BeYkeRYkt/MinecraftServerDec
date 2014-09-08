@@ -39,8 +39,8 @@ public class aam extends zb {
 		this.comparator = new Comparator<Entity>() {
 			@Override
 			public int compare(Entity entity1, Entity entity2) {
-				double var3 = b.h(entity1);
-				double var5 = b.h(entity2);
+				double var3 = b.getDistanceSquared(entity1);
+				double var5 = b.getDistanceSquared(entity2);
 				return var3 < var5 ? -1 : (var3 > var5 ? 1 : 0);
 			}
 		};
@@ -48,7 +48,7 @@ public class aam extends zb {
 
 	public boolean a() {
 		double var1 = this.f();
-		List<EntityLiving> list = this.b.o.a(this.f, this.b.aQ().b(var1, 4.0D, var1), this.predicate);
+		List<EntityLiving> list = this.b.world.a(this.f, this.b.aQ().b(var1, 4.0D, var1), this.predicate);
 		Collections.sort(list, this.comparator);
 		if (list.isEmpty()) {
 			return false;
@@ -62,11 +62,11 @@ public class aam extends zb {
 		EntityLiving var1 = this.b.u();
 		if (var1 == null) {
 			return false;
-		} else if (!var1.ai()) {
+		} else if (!var1.isAlive()) {
 			return false;
 		} else {
 			double var2 = this.f();
-			return this.b.h(var1) > var2 * var2 ? false : !(var1 instanceof EntityPlayer) || !((EntityPlayer) var1).playerInteractManager.d();
+			return this.b.getDistanceSquared(var1) > var2 * var2 ? false : !(var1 instanceof EntityPlayer) || !((EntityPlayer) var1).playerInteractManager.isCreative();
 		}
 	}
 

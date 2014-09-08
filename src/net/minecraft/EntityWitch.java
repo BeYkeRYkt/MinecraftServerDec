@@ -56,12 +56,12 @@ public class EntityWitch extends EntityMonster implements afr {
 	}
 
 	public void m() {
-		if (!this.o.D) {
+		if (!this.world.D) {
 			if (this.n()) {
 				if (this.bl-- <= 0) {
 					this.a(false);
-					ItemStack var1 = this.bz();
-					this.c(0, (ItemStack) null);
+					ItemStack var1 = this.getItemInHand();
+					this.setArmor(0, (ItemStack) null);
 					if (var1 != null && var1.getItem() == Items.POTION) {
 						List var2 = Items.POTION.h(var1);
 						if (var2 != null) {
@@ -82,17 +82,17 @@ public class EntityWitch extends EntityMonster implements afr {
 					var5 = 8237;
 				} else if (this.V.nextFloat() < 0.15F && this.au() && !this.a(MobEffectList.n)) {
 					var5 = 16307;
-				} else if (this.V.nextFloat() < 0.05F && this.bm() < this.bt()) {
+				} else if (this.V.nextFloat() < 0.05F && this.getHealth() < this.bt()) {
 					var5 = 16341;
-				} else if (this.V.nextFloat() < 0.25F && this.u() != null && !this.a(MobEffectList.c) && this.u().h(this) > 121.0D) {
+				} else if (this.V.nextFloat() < 0.25F && this.u() != null && !this.a(MobEffectList.c) && this.u().getDistanceSquared(this) > 121.0D) {
 					var5 = 16274;
-				} else if (this.V.nextFloat() < 0.25F && this.u() != null && !this.a(MobEffectList.c) && this.u().h(this) > 121.0D) {
+				} else if (this.V.nextFloat() < 0.25F && this.u() != null && !this.a(MobEffectList.c) && this.u().getDistanceSquared(this) > 121.0D) {
 					var5 = 16274;
 				}
 
 				if (var5 > -1) {
-					this.c(0, new ItemStack(Items.POTION, 1, var5));
-					this.bl = this.bz().l();
+					this.setArmor(0, new ItemStack(Items.POTION, 1, var5));
+					this.bl = this.getItemInHand().l();
 					this.a(true);
 					AttributeInstance var6 = this.a(afs.d);
 					var6.c(c);
@@ -101,7 +101,7 @@ public class EntityWitch extends EntityMonster implements afr {
 			}
 
 			if (this.V.nextFloat() < 7.5E-4F) {
-				this.o.a((Entity) this, (byte) 15);
+				this.world.a((Entity) this, (byte) 15);
 			}
 		}
 
@@ -140,7 +140,7 @@ public class EntityWitch extends EntityMonster implements afr {
 
 	public void a(EntityLiving var1, float var2) {
 		if (!this.n()) {
-			EntityPotion var3 = new EntityPotion(this.o, this, 32732);
+			EntityPotion var3 = new EntityPotion(this.world, this, 32732);
 			double var4 = var1.locationY + (double) var1.aR() - 1.100000023841858D;
 			var3.pitch -= -20.0F;
 			double var6 = var1.locationX + var1.motionX - this.locationX;
@@ -149,14 +149,14 @@ public class EntityWitch extends EntityMonster implements afr {
 			float var12 = DataTypesConverter.a(var6 * var6 + var10 * var10);
 			if (var12 >= 8.0F && !var1.a(MobEffectList.d)) {
 				var3.a(32698);
-			} else if (var1.bm() >= 8.0F && !var1.a(MobEffectList.u)) {
+			} else if (var1.getHealth() >= 8.0F && !var1.a(MobEffectList.u)) {
 				var3.a(32660);
 			} else if (var12 <= 3.0F && !var1.a(MobEffectList.t) && this.V.nextFloat() < 0.25F) {
 				var3.a(32696);
 			}
 
 			var3.c(var6, var8 + (double) (var12 * 0.2F), var10, 0.75F, 8.0F);
-			this.o.d((Entity) var3);
+			this.world.d((Entity) var3);
 		}
 	}
 

@@ -142,10 +142,10 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 				this.getOpPermissionLevel();
 				this.isSnooperEnabled();
 				this.getCompressionThreshold();
-				this.c(this.serverProperties.getInt("max-build-height", 256));
-				this.c((this.al() + 8) / 16 * 16);
-				this.c(DataTypesConverter.a(this.al(), 64, 256));
-				this.serverProperties.setProperty("max-build-height", (Object) Integer.valueOf(this.al()));
+				this.setMaxBuildHeight(this.serverProperties.getInt("max-build-height", 256));
+				this.setMaxBuildHeight((this.getMaxBuildHeight() + 8) / 16 * 16);
+				this.setMaxBuildHeight(DataTypesConverter.a(this.getMaxBuildHeight(), 64, 256));
+				this.serverProperties.setProperty("max-build-height", (Object) Integer.valueOf(this.getMaxBuildHeight()));
 				logger.info("Preparing level \"" + this.getLevelName() + "\"");
 				this.a(this.getLevelName(), this.getLevelName(), randomLong, var18, gensettings);
 				long var12 = System.nanoTime() - nanoTime;
@@ -308,12 +308,12 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		return this.serverProperties.getInt("spawn-protection", super.isSpawnProtectionEnabled());
 	}
 
-	public boolean a(World var1, Position var2, EntityHuman var3) {
+	public boolean isProtected(World var1, Position var2, EntityHuman var3) {
 		if (var1.worldProvider.getDimensionId() != 0) {
 			return false;
 		} else if (this.getDedicatedPlayerList().n().d()) {
 			return false;
-		} else if (this.getDedicatedPlayerList().g(var3.getGameProfile())) {
+		} else if (this.getDedicatedPlayerList().isOp(var3.getGameProfile())) {
 			return false;
 		} else if (this.isSpawnProtectionEnabled() <= 0) {
 			return false;

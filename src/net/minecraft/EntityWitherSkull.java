@@ -20,7 +20,7 @@ public class EntityWitherSkull extends ahl {
 		return false;
 	}
 
-	public float a(aqo var1, World var2, Position var3, bec var4) {
+	public float a(aqo var1, World var2, Position var3, BlockState var4) {
 		float var5 = super.a(var1, var2, var3, var4);
 		if (this.l() && var4.getBlock() != Blocks.BEDROCK && var4.getBlock() != Blocks.END_PORTAL && var4.getBlock() != Blocks.END_PORTAL_FRAME && var4.getBlock() != Blocks.COMMAND_BLOCK) {
 			var5 = Math.min(0.8F, var5);
@@ -30,11 +30,11 @@ public class EntityWitherSkull extends ahl {
 	}
 
 	protected void a(MovingObjectPosition var1) {
-		if (!this.o.D) {
+		if (!this.world.D) {
 			if (var1.entity != null) {
 				if (this.a != null) {
 					if (var1.entity.a(DamageSource.a(this.a), 8.0F)) {
-						if (!var1.entity.ai()) {
+						if (!var1.entity.isAlive()) {
 							this.a.g(5.0F);
 						} else {
 							this.a(this.a, var1.entity);
@@ -46,9 +46,9 @@ public class EntityWitherSkull extends ahl {
 
 				if (var1.entity instanceof EntityLiving) {
 					byte var2 = 0;
-					if (this.o.getDifficulty() == Difficulty.NORMAL) {
+					if (this.world.getDifficulty() == Difficulty.NORMAL) {
 						var2 = 10;
-					} else if (this.o.getDifficulty() == Difficulty.HARD) {
+					} else if (this.world.getDifficulty() == Difficulty.HARD) {
 						var2 = 40;
 					}
 
@@ -58,8 +58,8 @@ public class EntityWitherSkull extends ahl {
 				}
 			}
 
-			this.o.a(this, this.locationX, this.locationY, this.locationZ, 1.0F, false, this.o.Q().b("mobGriefing"));
-			this.J();
+			this.world.a(this, this.locationX, this.locationY, this.locationZ, 1.0F, false, this.world.Q().b("mobGriefing"));
+			this.die();
 		}
 
 	}

@@ -12,34 +12,34 @@ class bdl implements CommandSenderInterface {
 		this.a = var2;
 	}
 
-	public String d_() {
-		return this.a.d_();
+	public String getName() {
+		return this.a.getName();
 	}
 
-	public IChatBaseComponent e_() {
-		return this.a.e_();
+	public IChatBaseComponent getComponentName() {
+		return this.a.getComponentName();
 	}
 
 	public void sendChatMessage(IChatBaseComponent var1) {
 	}
 
-	public boolean a(int var1, String var2) {
+	public boolean canExecuteCommand(int var1, String var2) {
 		return true;
 	}
 
-	public Position c() {
+	public Position getEntityPosition() {
 		return this.b.position;
 	}
 
-	public Vec3D d() {
+	public Vec3D getCenter() {
 		return new Vec3D((double) this.b.position.getX() + 0.5D, (double) this.b.position.getY() + 0.5D, (double) this.b.position.getZ() + 0.5D);
 	}
 
-	public World e() {
-		return this.a.e();
+	public World getWorld() {
+		return this.a.getWorld();
 	}
 
-	public Entity f() {
+	public Entity getEntity() {
 		return this.a;
 	}
 

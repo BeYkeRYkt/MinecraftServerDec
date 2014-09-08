@@ -87,8 +87,8 @@ public class WorldServer extends World implements vn {
 
 	public void c() {
 		super.c();
-		if (this.P().isHardcore() && this.getDifficulty() != Difficulty.HARD) {
-			this.P().a(Difficulty.HARD);
+		if (this.getWorldData().isHardcore() && this.getDifficulty() != Difficulty.HARD) {
+			this.getWorldData().a(Difficulty.HARD);
 		}
 
 		this.worldProvider.m().b();
@@ -152,7 +152,7 @@ public class WorldServer extends World implements vn {
 
 			while (var3.hasNext()) {
 				EntityHuman var4 = (EntityHuman) var3.next();
-				if (var4.v()) {
+				if (var4.isSpectator()) {
 					++var1;
 				} else if (var4.bI()) {
 					++var2;
@@ -196,7 +196,7 @@ public class WorldServer extends World implements vn {
 				}
 
 				var2 = (EntityHuman) var1.next();
-			} while (!var2.v() && var2.ce());
+			} while (!var2.isSpectator() && var2.ce());
 
 			return false;
 		} else {
@@ -246,15 +246,15 @@ public class WorldServer extends World implements vn {
 					var9 = this.q(new Position(var5 + (var8 & 15), 0, var6 + (var8 >> 8 & 15)));
 					Position var10 = var9.b();
 					if (this.w(var10)) {
-						this.a(var10, Blocks.ICE.P());
+						this.a(var10, Blocks.ICE.getBlockState());
 					}
 
 					if (this.S() && this.f(var9, true)) {
-						this.a(var9, Blocks.SNOW_LAYER.P());
+						this.a(var9, Blocks.SNOW_LAYER.getBlockState());
 					}
 
 					if (this.S() && this.b(var10).e()) {
-						this.p(var10).getBlock().k(this, var10);
+						this.getBlockState(var10).getBlock().k(this, var10);
 					}
 				}
 
@@ -275,7 +275,7 @@ public class WorldServer extends World implements vn {
 								int var17 = var14 >> 16 & 15;
 								++var2;
 								Position var18 = new Position(var15 + var5, var17 + var12.d(), var16 + var6);
-								bec var19 = var12.a(var15, var17, var16);
+								BlockState var19 = var12.a(var15, var17, var16);
 								Block var20 = var19.getBlock();
 								if (var20.w()) {
 									++var1;
@@ -294,7 +294,7 @@ public class WorldServer extends World implements vn {
 		Position var2 = this.q(var1);
 		AxisAlignedBB var3 = (new AxisAlignedBB(var2, new Position(var2.getX(), this.U(), var2.getZ()))).b(3.0D, 3.0D, 3.0D);
 		List var4 = this.a(EntityLiving.class, var3, new qu(this));
-		return !var4.isEmpty() ? ((EntityLiving) var4.get(this.s.nextInt(var4.size()))).c() : var2;
+		return !var4.isEmpty() ? ((EntityLiving) var4.get(this.s.nextInt(var4.size()))).getEntityPosition() : var2;
 	}
 
 	public boolean a(Position var1, Block var2) {
@@ -309,12 +309,12 @@ public class WorldServer extends World implements vn {
 	public void a(Position var1, Block var2, int var3, int var4) {
 		ark var5 = new ark(var1, var2);
 		byte var6 = 0;
-		if (this.e && var2.r() != Material.AIR) {
+		if (this.e && var2.getMaterial() != Material.AIR) {
 			if (var2.M()) {
 				var6 = 8;
 				if (this.a(var5.a.a(-var6, -var6, -var6), var5.a.a(var6, var6, var6))) {
-					bec var7 = this.p(var5.a);
-					if (var7.getBlock().r() != Material.AIR && var7.getBlock() == var5.a()) {
+					BlockState var7 = this.getBlockState(var5.a);
+					if (var7.getBlock().getMaterial() != Material.AIR && var7.getBlock() == var5.a()) {
 						var7.getBlock().b((World) this, var5.a, var7, this.s);
 					}
 				}
@@ -326,7 +326,7 @@ public class WorldServer extends World implements vn {
 		}
 
 		if (this.a(var1.a(-var6, -var6, -var6), var1.a(var6, var6, var6))) {
-			if (var2.r() != Material.AIR) {
+			if (var2.getMaterial() != Material.AIR) {
 				var5.a((long) var3 + this.worldData.f());
 				var5.a(var4);
 			}
@@ -342,7 +342,7 @@ public class WorldServer extends World implements vn {
 	public void b(Position var1, Block var2, int var3, int var4) {
 		ark var5 = new ark(var1, var2);
 		var5.a(var4);
-		if (var2.r() != Material.AIR) {
+		if (var2.getMaterial() != Material.AIR) {
 			var5.a((long) var3 + this.worldData.f());
 		}
 
@@ -404,8 +404,8 @@ public class WorldServer extends World implements vn {
 					var11.remove();
 					byte var5 = 0;
 					if (this.a(var4.a.a(-var5, -var5, -var5), var4.a.a(var5, var5, var5))) {
-						bec var6 = this.p(var4.a);
-						if (var6.getBlock().r() != Material.AIR && Block.a(var6.getBlock(), var4.a())) {
+						BlockState var6 = this.getBlockState(var4.a);
+						if (var6.getBlock().getMaterial() != Material.AIR && Block.a(var6.getBlock(), var4.a())) {
 							try {
 								var6.getBlock().b((World) this, var4.a, var6, this.s);
 							} catch (Throwable var10) {
@@ -473,11 +473,11 @@ public class WorldServer extends World implements vn {
 
 	public void a(Entity var1, boolean var2) {
 		if (!this.ai() && (var1 instanceof abq || var1 instanceof act)) {
-			var1.J();
+			var1.die();
 		}
 
 		if (!this.ah() && var1 instanceof ago) {
-			var1.J();
+			var1.die();
 		}
 
 		super.a(var1, var2);
@@ -512,7 +512,7 @@ public class WorldServer extends World implements vn {
 	}
 
 	public boolean a(EntityHuman var1, Position var2) {
-		return !this.I.a((World) this, var2, var1) && this.getWorldBorder().isInside(var2);
+		return !this.I.isProtected((World) this, var2, var1) && this.getWorldBorder().isInside(var2);
 	}
 
 	public void a(arb var1) {
@@ -711,7 +711,7 @@ public class WorldServer extends World implements vn {
 
 		while (var12.hasNext()) {
 			EntityHuman var13 = (EntityHuman) var12.next();
-			if (var13.e(var2, var4, var6) < 4096.0D) {
+			if (var13.getDistanceSquared(var2, var4, var6) < 4096.0D) {
 				((EntityPlayer) var13).playerConncetion.sendPacket((Packet) (new PacketPlayOutExplosion(var2, var4, var6, var8, var11.e(), (Vec3D) var11.b().get(var13))));
 			}
 		}
@@ -754,7 +754,7 @@ public class WorldServer extends World implements vn {
 	}
 
 	private boolean a(aqk var1) {
-		bec var2 = this.p(var1.a());
+		BlockState var2 = this.getBlockState(var1.a());
 		return var2.getBlock() == var1.d() ? var2.getBlock().a(this, var1.a(), var2, var1.b(), var1.c()) : false;
 	}
 
@@ -815,7 +815,7 @@ public class WorldServer extends World implements vn {
 
 		for (int var20 = 0; var20 < this.j.size(); ++var20) {
 			EntityPlayer var21 = (EntityPlayer) this.j.get(var20);
-			Position var22 = var21.c();
+			Position var22 = var21.getEntityPosition();
 			double var23 = var22.c(var3, var5, var7);
 			if (var23 <= 256.0D || var2 && var23 <= 65536.0D) {
 				var21.playerConncetion.sendPacket((Packet) var19);

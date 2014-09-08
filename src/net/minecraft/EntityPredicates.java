@@ -7,25 +7,25 @@ public final class EntityPredicates {
 	public static final Predicate<Entity> a = new Predicate<Entity>() {
 		@Override
 		public boolean apply(Entity entity) {
-			return entity.ai();
+			return entity.isAlive();
 		}
 	};
 	public static final Predicate<Entity> b = new Predicate<Entity>() {
 		@Override
 		public boolean apply(Entity entity) {
-			return entity.ai() && entity.l == null && entity.m == null;
+			return entity.isAlive() && entity.l == null && entity.vehicle == null;
 		}
 	};
 	public static final Predicate<Entity> c = new Predicate<Entity>() {
 		@Override
 		public boolean apply(Entity entity) {
-			return entity instanceof IInventory && entity.ai();
+			return entity instanceof IInventory && entity.isAlive();
 		}
 	};
 	public static final Predicate<Entity> d = new Predicate<Entity>() {
 		@Override
 		public boolean apply(Entity entity) {
-			return !(entity instanceof EntityHuman) || !((EntityHuman) entity).v();
+			return !(entity instanceof EntityHuman) || !((EntityHuman) entity).isSpectator();
 		}
 	};
 

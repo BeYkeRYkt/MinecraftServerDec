@@ -46,7 +46,7 @@ public class blv extends bmk {
 			this.a(var1, var3, 0, 0, 0, 4, 4, 6, true, var2, blr.c());
 			this.a(var1, var2, var3, this.d, 1, 1, 0);
 			this.a(var1, var2, var3, bml.a, 1, 1, 6);
-			this.a(var1, var3, 3, 1, 2, 3, 1, 4, Blocks.STONEBRICK.P(), Blocks.STONEBRICK.P(), false);
+			this.a(var1, var3, 3, 1, 2, 3, 1, 4, Blocks.STONEBRICK.getBlockState(), Blocks.STONEBRICK.getBlockState(), false);
 			this.a(var1, Blocks.STONE_SLAB.a(bbg.f.a()), 3, 1, 1, var3);
 			this.a(var1, Blocks.STONE_SLAB.a(bbg.f.a()), 3, 1, 5, var3);
 			this.a(var1, Blocks.STONE_SLAB.a(bbg.f.a()), 3, 2, 2, var3);

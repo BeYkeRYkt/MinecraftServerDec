@@ -14,13 +14,13 @@ public class ItemFireball extends Item {
 			if (!var2.a(var4, var5, var1)) {
 				return false;
 			} else {
-				if (var3.p(var4).getBlock().r() == Material.AIR) {
+				if (var3.getBlockState(var4).getBlock().getMaterial() == Material.AIR) {
 					var3.makeSound((double) var4.getX() + 0.5D, (double) var4.getY() + 0.5D, (double) var4.getZ() + 0.5D, "item.fireCharge.use", 1.0F, (rnd.nextFloat() - rnd.nextFloat()) * 0.2F + 1.0F);
-					var3.a(var4, Blocks.FIRE.P());
+					var3.a(var4, Blocks.FIRE.getBlockState());
 				}
 
-				if (!var2.by.instabuild) {
-					--var1.b;
+				if (!var2.playerProperties.instabuild) {
+					--var1.amount;
 				}
 
 				return true;

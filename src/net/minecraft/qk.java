@@ -14,7 +14,7 @@ public class qk extends PlayerInteractManager {
 	public void a() {
 		super.a();
 		++this.f;
-		long var1 = this.a.K();
+		long var1 = this.worldServer.K();
 		long var3 = var1 / 24000L + 1L;
 		if (!this.c && this.f > 20) {
 			this.c = true;
@@ -70,21 +70,21 @@ public class qk extends PlayerInteractManager {
 		return this.d ? false : super.b(var1);
 	}
 
-	public boolean a(EntityHuman var1, World var2, ItemStack var3) {
+	public boolean useItem(EntityHuman var1, World var2, ItemStack var3) {
 		if (this.d) {
 			this.f();
 			return false;
 		} else {
-			return super.a(var1, var2, var3);
+			return super.useItem(var1, var2, var3);
 		}
 	}
 
-	public boolean a(EntityHuman var1, World var2, ItemStack var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(EntityHuman var1, World var2, ItemStack var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
 		if (this.d) {
 			this.f();
 			return false;
 		} else {
-			return super.a(var1, var2, var3, var4, var5, var6, var7, var8);
+			return super.interact(var1, var2, var3, var4, var5, var6, var7, var8);
 		}
 	}
 }

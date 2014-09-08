@@ -72,10 +72,10 @@ public abstract class adj extends Entity {
 		this.p = this.locationX;
 		this.q = this.locationY;
 		this.r = this.locationZ;
-		if (this.c++ == 100 && !this.o.D) {
+		if (this.c++ == 100 && !this.world.D) {
 			this.c = 0;
-			if (!this.I && !this.j()) {
-				this.J();
+			if (!this.dead && !this.j()) {
+				this.die();
 				this.b((Entity) null);
 			}
 		}
@@ -83,7 +83,7 @@ public abstract class adj extends Entity {
 	}
 
 	public boolean j() {
-		if (!this.o.a((Entity) this, this.aQ()).isEmpty()) {
+		if (!this.world.a((Entity) this, this.aQ()).isEmpty()) {
 			return false;
 		} else {
 			int var1 = Math.max(1, this.l() / 16);
@@ -94,14 +94,14 @@ public abstract class adj extends Entity {
 			for (int var5 = 0; var5 < var1; ++var5) {
 				for (int var6 = 0; var6 < var2; ++var6) {
 					Position var7 = var3.a(var4, var5).b(var6);
-					Block var8 = this.o.p(var7).getBlock();
-					if (!var8.r().isBuildable() && !ava.d(var8)) {
+					Block var8 = this.world.getBlockState(var7).getBlock();
+					if (!var8.getMaterial().isBuildable() && !ava.d(var8)) {
 						return false;
 					}
 				}
 			}
 
-			List var9 = this.o.b((Entity) this, this.aQ());
+			List var9 = this.world.b((Entity) this, this.aQ());
 			Iterator var10 = var9.iterator();
 
 			Entity var11;
@@ -133,8 +133,8 @@ public abstract class adj extends Entity {
 		if (this.b(var1)) {
 			return false;
 		} else {
-			if (!this.I && !this.o.D) {
-				this.J();
+			if (!this.dead && !this.world.D) {
+				this.die();
 				this.ac();
 				this.b(var1.j());
 			}
@@ -144,16 +144,16 @@ public abstract class adj extends Entity {
 	}
 
 	public void d(double var1, double var3, double var5) {
-		if (!this.o.D && !this.I && var1 * var1 + var3 * var3 + var5 * var5 > 0.0D) {
-			this.J();
+		if (!this.world.D && !this.dead && var1 * var1 + var3 * var3 + var5 * var5 > 0.0D) {
+			this.die();
 			this.b((Entity) null);
 		}
 
 	}
 
 	public void g(double var1, double var3, double var5) {
-		if (!this.o.D && !this.I && var1 * var1 + var3 * var3 + var5 * var5 > 0.0D) {
-			this.J();
+		if (!this.world.D && !this.dead && var1 * var1 + var3 * var3 + var5 * var5 > 0.0D) {
+			this.die();
 			this.b((Entity) null);
 		}
 

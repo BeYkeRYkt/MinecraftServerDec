@@ -103,10 +103,10 @@ public class aqc {
 
 	public NBTCompoundTag k() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
-		var1.put("buy", (NBTTag) this.a.b(new NBTCompoundTag()));
-		var1.put("sell", (NBTTag) this.c.b(new NBTCompoundTag()));
+		var1.put("buy", (NBTTag) this.a.write(new NBTCompoundTag()));
+		var1.put("sell", (NBTTag) this.c.write(new NBTCompoundTag()));
 		if (this.b != null) {
-			var1.put("buyB", (NBTTag) this.b.b(new NBTCompoundTag()));
+			var1.put("buyB", (NBTTag) this.b.write(new NBTCompoundTag()));
 		}
 
 		var1.put("uses", this.d);

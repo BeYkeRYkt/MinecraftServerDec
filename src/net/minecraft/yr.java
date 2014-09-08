@@ -10,7 +10,7 @@ public class yr extends zb {
 
 	public yr(EntityWolf var1, float var2) {
 		this.a = var1;
-		this.c = var1.o;
+		this.c = var1.world;
 		this.d = var2;
 		this.a(2);
 	}
@@ -21,7 +21,7 @@ public class yr extends zb {
 	}
 
 	public boolean b() {
-		return !this.b.ai() ? false : (this.a.h(this.b) > (double) (this.d * this.d) ? false : this.e > 0 && this.a(this.b));
+		return !this.b.isAlive() ? false : (this.a.getDistanceSquared(this.b) > (double) (this.d * this.d) ? false : this.e > 0 && this.a(this.b));
 	}
 
 	public void c() {

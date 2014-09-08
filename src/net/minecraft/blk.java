@@ -34,19 +34,19 @@ public class blk extends bln {
 	}
 
 	public boolean a(World var1, Random var2, bjb var3) {
-		this.a(var1, var3, 0, -4, 0, this.a - 1, 0, this.c - 1, Blocks.SANDSTONE.P(), Blocks.SANDSTONE.P(), false);
+		this.a(var1, var3, 0, -4, 0, this.a - 1, 0, this.c - 1, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
 
 		int var4;
 		for (var4 = 1; var4 <= 9; ++var4) {
-			this.a(var1, var3, var4, var4, var4, this.a - 1 - var4, var4, this.c - 1 - var4, Blocks.SANDSTONE.P(), Blocks.SANDSTONE.P(), false);
-			this.a(var1, var3, var4 + 1, var4, var4 + 1, this.a - 2 - var4, var4, this.c - 2 - var4, Blocks.AIR.P(), Blocks.AIR.P(), false);
+			this.a(var1, var3, var4, var4, var4, this.a - 1 - var4, var4, this.c - 1 - var4, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
+			this.a(var1, var3, var4 + 1, var4, var4 + 1, this.a - 2 - var4, var4, this.c - 2 - var4, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 		}
 
 		int var5;
 		for (var4 = 0; var4 < this.a; ++var4) {
 			for (var5 = 0; var5 < this.c; ++var5) {
 				byte var6 = -5;
-				this.b(var1, Blocks.SANDSTONE.P(), var4, var6, var5, var3);
+				this.b(var1, Blocks.SANDSTONE.getBlockState(), var4, var6, var5, var3);
 			}
 		}
 
@@ -56,20 +56,20 @@ public class blk extends bln {
 		int var7 = this.a(Blocks.SANDSTONE_STAIRS, 1);
 		int var8 = ~akv.b.b() & 15;
 		int var9 = ~akv.l.b() & 15;
-		this.a(var1, var3, 0, 0, 0, 4, 9, 4, Blocks.SANDSTONE.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, 1, 10, 1, 3, 10, 3, Blocks.SANDSTONE.P(), Blocks.SANDSTONE.P(), false);
+		this.a(var1, var3, 0, 0, 0, 4, 9, 4, Blocks.SANDSTONE.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, 1, 10, 1, 3, 10, 3, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
 		this.a(var1, Blocks.SANDSTONE_STAIRS.a(var4), 2, 10, 0, var3);
 		this.a(var1, Blocks.SANDSTONE_STAIRS.a(var5), 2, 10, 4, var3);
 		this.a(var1, Blocks.SANDSTONE_STAIRS.a(var14), 0, 10, 2, var3);
 		this.a(var1, Blocks.SANDSTONE_STAIRS.a(var7), 4, 10, 2, var3);
-		this.a(var1, var3, this.a - 5, 0, 0, this.a - 1, 9, 4, Blocks.SANDSTONE.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, this.a - 4, 10, 1, this.a - 2, 10, 3, Blocks.SANDSTONE.P(), Blocks.SANDSTONE.P(), false);
+		this.a(var1, var3, this.a - 5, 0, 0, this.a - 1, 9, 4, Blocks.SANDSTONE.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, this.a - 4, 10, 1, this.a - 2, 10, 3, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
 		this.a(var1, Blocks.SANDSTONE_STAIRS.a(var4), this.a - 3, 10, 0, var3);
 		this.a(var1, Blocks.SANDSTONE_STAIRS.a(var5), this.a - 3, 10, 4, var3);
 		this.a(var1, Blocks.SANDSTONE_STAIRS.a(var14), this.a - 5, 10, 2, var3);
 		this.a(var1, Blocks.SANDSTONE_STAIRS.a(var7), this.a - 1, 10, 2, var3);
-		this.a(var1, var3, 8, 0, 0, 12, 4, 4, Blocks.SANDSTONE.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, 9, 1, 0, 11, 3, 4, Blocks.AIR.P(), Blocks.AIR.P(), false);
+		this.a(var1, var3, 8, 0, 0, 12, 4, 4, Blocks.SANDSTONE.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, 9, 1, 0, 11, 3, 4, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 		this.a(var1, Blocks.SANDSTONE.a(bae.c.a()), 9, 1, 1, var3);
 		this.a(var1, Blocks.SANDSTONE.a(bae.c.a()), 9, 2, 1, var3);
 		this.a(var1, Blocks.SANDSTONE.a(bae.c.a()), 9, 3, 1, var3);
@@ -77,46 +77,46 @@ public class blk extends bln {
 		this.a(var1, Blocks.SANDSTONE.a(bae.c.a()), 11, 3, 1, var3);
 		this.a(var1, Blocks.SANDSTONE.a(bae.c.a()), 11, 2, 1, var3);
 		this.a(var1, Blocks.SANDSTONE.a(bae.c.a()), 11, 1, 1, var3);
-		this.a(var1, var3, 4, 1, 1, 8, 3, 3, Blocks.SANDSTONE.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, 4, 1, 2, 8, 2, 2, Blocks.AIR.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, 12, 1, 1, 16, 3, 3, Blocks.SANDSTONE.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, 12, 1, 2, 16, 2, 2, Blocks.AIR.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, 5, 4, 5, this.a - 6, 4, this.c - 6, Blocks.SANDSTONE.P(), Blocks.SANDSTONE.P(), false);
-		this.a(var1, var3, 9, 4, 9, 11, 4, 11, Blocks.AIR.P(), Blocks.AIR.P(), false);
+		this.a(var1, var3, 4, 1, 1, 8, 3, 3, Blocks.SANDSTONE.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, 4, 1, 2, 8, 2, 2, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, 12, 1, 1, 16, 3, 3, Blocks.SANDSTONE.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, 12, 1, 2, 16, 2, 2, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, 5, 4, 5, this.a - 6, 4, this.c - 6, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
+		this.a(var1, var3, 9, 4, 9, 11, 4, 11, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 		this.a(var1, var3, 8, 1, 8, 8, 3, 8, Blocks.SANDSTONE.a(bae.c.a()), Blocks.SANDSTONE.a(bae.c.a()), false);
 		this.a(var1, var3, 12, 1, 8, 12, 3, 8, Blocks.SANDSTONE.a(bae.c.a()), Blocks.SANDSTONE.a(bae.c.a()), false);
 		this.a(var1, var3, 8, 1, 12, 8, 3, 12, Blocks.SANDSTONE.a(bae.c.a()), Blocks.SANDSTONE.a(bae.c.a()), false);
 		this.a(var1, var3, 12, 1, 12, 12, 3, 12, Blocks.SANDSTONE.a(bae.c.a()), Blocks.SANDSTONE.a(bae.c.a()), false);
-		this.a(var1, var3, 1, 1, 5, 4, 4, 11, Blocks.SANDSTONE.P(), Blocks.SANDSTONE.P(), false);
-		this.a(var1, var3, this.a - 5, 1, 5, this.a - 2, 4, 11, Blocks.SANDSTONE.P(), Blocks.SANDSTONE.P(), false);
-		this.a(var1, var3, 6, 7, 9, 6, 7, 11, Blocks.SANDSTONE.P(), Blocks.SANDSTONE.P(), false);
-		this.a(var1, var3, this.a - 7, 7, 9, this.a - 7, 7, 11, Blocks.SANDSTONE.P(), Blocks.SANDSTONE.P(), false);
+		this.a(var1, var3, 1, 1, 5, 4, 4, 11, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
+		this.a(var1, var3, this.a - 5, 1, 5, this.a - 2, 4, 11, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
+		this.a(var1, var3, 6, 7, 9, 6, 7, 11, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
+		this.a(var1, var3, this.a - 7, 7, 9, this.a - 7, 7, 11, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
 		this.a(var1, var3, 5, 5, 9, 5, 7, 11, Blocks.SANDSTONE.a(bae.c.a()), Blocks.SANDSTONE.a(bae.c.a()), false);
 		this.a(var1, var3, this.a - 6, 5, 9, this.a - 6, 7, 11, Blocks.SANDSTONE.a(bae.c.a()), Blocks.SANDSTONE.a(bae.c.a()), false);
-		this.a(var1, Blocks.AIR.P(), 5, 5, 10, var3);
-		this.a(var1, Blocks.AIR.P(), 5, 6, 10, var3);
-		this.a(var1, Blocks.AIR.P(), 6, 6, 10, var3);
-		this.a(var1, Blocks.AIR.P(), this.a - 6, 5, 10, var3);
-		this.a(var1, Blocks.AIR.P(), this.a - 6, 6, 10, var3);
-		this.a(var1, Blocks.AIR.P(), this.a - 7, 6, 10, var3);
-		this.a(var1, var3, 2, 4, 4, 2, 6, 4, Blocks.AIR.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, this.a - 3, 4, 4, this.a - 3, 6, 4, Blocks.AIR.P(), Blocks.AIR.P(), false);
+		this.a(var1, Blocks.AIR.getBlockState(), 5, 5, 10, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), 5, 6, 10, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), 6, 6, 10, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), this.a - 6, 5, 10, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), this.a - 6, 6, 10, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), this.a - 7, 6, 10, var3);
+		this.a(var1, var3, 2, 4, 4, 2, 6, 4, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, this.a - 3, 4, 4, this.a - 3, 6, 4, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 		this.a(var1, Blocks.SANDSTONE_STAIRS.a(var4), 2, 4, 5, var3);
 		this.a(var1, Blocks.SANDSTONE_STAIRS.a(var4), 2, 3, 4, var3);
 		this.a(var1, Blocks.SANDSTONE_STAIRS.a(var4), this.a - 3, 4, 5, var3);
 		this.a(var1, Blocks.SANDSTONE_STAIRS.a(var4), this.a - 3, 3, 4, var3);
-		this.a(var1, var3, 1, 1, 3, 2, 2, 3, Blocks.SANDSTONE.P(), Blocks.SANDSTONE.P(), false);
-		this.a(var1, var3, this.a - 3, 1, 3, this.a - 2, 2, 3, Blocks.SANDSTONE.P(), Blocks.SANDSTONE.P(), false);
-		this.a(var1, Blocks.SANDSTONE_STAIRS.P(), 1, 1, 2, var3);
-		this.a(var1, Blocks.SANDSTONE_STAIRS.P(), this.a - 2, 1, 2, var3);
+		this.a(var1, var3, 1, 1, 3, 2, 2, 3, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
+		this.a(var1, var3, this.a - 3, 1, 3, this.a - 2, 2, 3, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
+		this.a(var1, Blocks.SANDSTONE_STAIRS.getBlockState(), 1, 1, 2, var3);
+		this.a(var1, Blocks.SANDSTONE_STAIRS.getBlockState(), this.a - 2, 1, 2, var3);
 		this.a(var1, Blocks.STONE_SLAB.a(bbg.b.a()), 1, 2, 2, var3);
 		this.a(var1, Blocks.STONE_SLAB.a(bbg.b.a()), this.a - 2, 2, 2, var3);
 		this.a(var1, Blocks.SANDSTONE_STAIRS.a(var7), 2, 1, 2, var3);
 		this.a(var1, Blocks.SANDSTONE_STAIRS.a(var14), this.a - 3, 1, 2, var3);
-		this.a(var1, var3, 4, 3, 5, 4, 3, 18, Blocks.SANDSTONE.P(), Blocks.SANDSTONE.P(), false);
-		this.a(var1, var3, this.a - 5, 3, 5, this.a - 5, 3, 17, Blocks.SANDSTONE.P(), Blocks.SANDSTONE.P(), false);
-		this.a(var1, var3, 3, 1, 5, 4, 2, 16, Blocks.AIR.P(), Blocks.AIR.P(), false);
-		this.a(var1, var3, this.a - 6, 1, 5, this.a - 5, 2, 16, Blocks.AIR.P(), Blocks.AIR.P(), false);
+		this.a(var1, var3, 4, 3, 5, 4, 3, 18, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
+		this.a(var1, var3, this.a - 5, 3, 5, this.a - 5, 3, 17, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
+		this.a(var1, var3, 3, 1, 5, 4, 2, 16, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, this.a - 6, 1, 5, this.a - 5, 2, 16, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 
 		int var10;
 		for (var10 = 5; var10 <= 17; var10 += 2) {
@@ -189,32 +189,32 @@ public class blk extends bln {
 		}
 
 		this.a(var1, var3, 8, 4, 0, 12, 6, 0, Blocks.SANDSTONE.a(bae.c.a()), Blocks.SANDSTONE.a(bae.c.a()), false);
-		this.a(var1, Blocks.AIR.P(), 8, 6, 0, var3);
-		this.a(var1, Blocks.AIR.P(), 12, 6, 0, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), 8, 6, 0, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), 12, 6, 0, var3);
 		this.a(var1, Blocks.STAINDED_HARDENED_CLAY.a(var8), 9, 5, 0, var3);
 		this.a(var1, Blocks.SANDSTONE.a(bae.b.a()), 10, 5, 0, var3);
 		this.a(var1, Blocks.STAINDED_HARDENED_CLAY.a(var8), 11, 5, 0, var3);
 		this.a(var1, var3, 8, -14, 8, 12, -11, 12, Blocks.SANDSTONE.a(bae.c.a()), Blocks.SANDSTONE.a(bae.c.a()), false);
 		this.a(var1, var3, 8, -10, 8, 12, -10, 12, Blocks.SANDSTONE.a(bae.b.a()), Blocks.SANDSTONE.a(bae.b.a()), false);
 		this.a(var1, var3, 8, -9, 8, 12, -9, 12, Blocks.SANDSTONE.a(bae.c.a()), Blocks.SANDSTONE.a(bae.c.a()), false);
-		this.a(var1, var3, 8, -8, 8, 12, -1, 12, Blocks.SANDSTONE.P(), Blocks.SANDSTONE.P(), false);
-		this.a(var1, var3, 9, -11, 9, 11, -1, 11, Blocks.AIR.P(), Blocks.AIR.P(), false);
-		this.a(var1, Blocks.STONE_PRESSURE_PLATE.P(), 10, -11, 10, var3);
-		this.a(var1, var3, 9, -13, 9, 11, -13, 11, Blocks.TNT.P(), Blocks.AIR.P(), false);
-		this.a(var1, Blocks.AIR.P(), 8, -11, 10, var3);
-		this.a(var1, Blocks.AIR.P(), 8, -10, 10, var3);
+		this.a(var1, var3, 8, -8, 8, 12, -1, 12, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
+		this.a(var1, var3, 9, -11, 9, 11, -1, 11, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, Blocks.STONE_PRESSURE_PLATE.getBlockState(), 10, -11, 10, var3);
+		this.a(var1, var3, 9, -13, 9, 11, -13, 11, Blocks.TNT.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, Blocks.AIR.getBlockState(), 8, -11, 10, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), 8, -10, 10, var3);
 		this.a(var1, Blocks.SANDSTONE.a(bae.b.a()), 7, -10, 10, var3);
 		this.a(var1, Blocks.SANDSTONE.a(bae.c.a()), 7, -11, 10, var3);
-		this.a(var1, Blocks.AIR.P(), 12, -11, 10, var3);
-		this.a(var1, Blocks.AIR.P(), 12, -10, 10, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), 12, -11, 10, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), 12, -10, 10, var3);
 		this.a(var1, Blocks.SANDSTONE.a(bae.b.a()), 13, -10, 10, var3);
 		this.a(var1, Blocks.SANDSTONE.a(bae.c.a()), 13, -11, 10, var3);
-		this.a(var1, Blocks.AIR.P(), 10, -11, 8, var3);
-		this.a(var1, Blocks.AIR.P(), 10, -10, 8, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), 10, -11, 8, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), 10, -10, 8, var3);
 		this.a(var1, Blocks.SANDSTONE.a(bae.b.a()), 10, -10, 7, var3);
 		this.a(var1, Blocks.SANDSTONE.a(bae.c.a()), 10, -11, 7, var3);
-		this.a(var1, Blocks.AIR.P(), 10, -11, 12, var3);
-		this.a(var1, Blocks.AIR.P(), 10, -10, 12, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), 10, -11, 12, var3);
+		this.a(var1, Blocks.AIR.getBlockState(), 10, -10, 12, var3);
 		this.a(var1, Blocks.SANDSTONE.a(bae.b.a()), 10, -10, 13, var3);
 		this.a(var1, Blocks.SANDSTONE.a(bae.c.a()), 10, -11, 13, var3);
 		Iterator var15 = en.a.iterator();

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-class aja extends ajk {
+class aja extends Slot {
 
 	// $FF: synthetic field
 	final EntityHorse a;

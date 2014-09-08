@@ -144,7 +144,7 @@ public class bjg extends bms {
 
 	protected boolean a(World var1, bjb var2, Random var3, int var4, int var5, int var6, List var7, int var8) {
 		Position var9 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
-		if (var2.b((fd) var9) && var1.p(var9).getBlock().r() == Material.AIR) {
+		if (var2.b((fd) var9) && var1.getBlockState(var9).getBlock().getMaterial() == Material.AIR) {
 			int var10 = var3.nextBoolean() ? 1 : 0;
 			var1.a(var9, Blocks.RAIL.a(this.a(Blocks.RAIL, var10)), 2);
 			EntityMinecartChest var11 = new EntityMinecartChest(var1, (double) ((float) var9.getX() + 0.5F), (double) ((float) var9.getY() + 0.5F), (double) ((float) var9.getZ() + 0.5F));
@@ -165,33 +165,33 @@ public class bjg extends bms {
 			boolean var6 = false;
 			boolean var7 = true;
 			int var8 = this.d * 5 - 1;
-			this.a(var1, var3, 0, 0, 0, 2, 1, var8, Blocks.AIR.P(), Blocks.AIR.P(), false);
-			this.a(var1, var3, var2, 0.8F, 0, 2, 0, 2, 2, var8, Blocks.AIR.P(), Blocks.AIR.P(), false);
+			this.a(var1, var3, 0, 0, 0, 2, 1, var8, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+			this.a(var1, var3, var2, 0.8F, 0, 2, 0, 2, 2, var8, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 			if (this.b) {
-				this.a(var1, var3, var2, 0.6F, 0, 0, 0, 2, 1, var8, Blocks.WEB.P(), Blocks.AIR.P(), false);
+				this.a(var1, var3, var2, 0.6F, 0, 0, 0, 2, 1, var8, Blocks.WEB.getBlockState(), Blocks.AIR.getBlockState(), false);
 			}
 
 			int var9;
 			int var10;
 			for (var9 = 0; var9 < this.d; ++var9) {
 				var10 = 2 + var9 * 5;
-				this.a(var1, var3, 0, 0, var10, 0, 1, var10, Blocks.FENCE.P(), Blocks.AIR.P(), false);
-				this.a(var1, var3, 2, 0, var10, 2, 1, var10, Blocks.FENCE.P(), Blocks.AIR.P(), false);
+				this.a(var1, var3, 0, 0, var10, 0, 1, var10, Blocks.FENCE.getBlockState(), Blocks.AIR.getBlockState(), false);
+				this.a(var1, var3, 2, 0, var10, 2, 1, var10, Blocks.FENCE.getBlockState(), Blocks.AIR.getBlockState(), false);
 				if (var2.nextInt(4) == 0) {
-					this.a(var1, var3, 0, 2, var10, 0, 2, var10, Blocks.PLANKS.P(), Blocks.AIR.P(), false);
-					this.a(var1, var3, 2, 2, var10, 2, 2, var10, Blocks.PLANKS.P(), Blocks.AIR.P(), false);
+					this.a(var1, var3, 0, 2, var10, 0, 2, var10, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
+					this.a(var1, var3, 2, 2, var10, 2, 2, var10, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
 				} else {
-					this.a(var1, var3, 0, 2, var10, 2, 2, var10, Blocks.PLANKS.P(), Blocks.AIR.P(), false);
+					this.a(var1, var3, 0, 2, var10, 2, 2, var10, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
 				}
 
-				this.a(var1, var3, var2, 0.1F, 0, 2, var10 - 1, Blocks.WEB.P());
-				this.a(var1, var3, var2, 0.1F, 2, 2, var10 - 1, Blocks.WEB.P());
-				this.a(var1, var3, var2, 0.1F, 0, 2, var10 + 1, Blocks.WEB.P());
-				this.a(var1, var3, var2, 0.1F, 2, 2, var10 + 1, Blocks.WEB.P());
-				this.a(var1, var3, var2, 0.05F, 0, 2, var10 - 2, Blocks.WEB.P());
-				this.a(var1, var3, var2, 0.05F, 2, 2, var10 - 2, Blocks.WEB.P());
-				this.a(var1, var3, var2, 0.05F, 0, 2, var10 + 2, Blocks.WEB.P());
-				this.a(var1, var3, var2, 0.05F, 2, 2, var10 + 2, Blocks.WEB.P());
+				this.a(var1, var3, var2, 0.1F, 0, 2, var10 - 1, Blocks.WEB.getBlockState());
+				this.a(var1, var3, var2, 0.1F, 2, 2, var10 - 1, Blocks.WEB.getBlockState());
+				this.a(var1, var3, var2, 0.1F, 0, 2, var10 + 1, Blocks.WEB.getBlockState());
+				this.a(var1, var3, var2, 0.1F, 2, 2, var10 + 1, Blocks.WEB.getBlockState());
+				this.a(var1, var3, var2, 0.05F, 0, 2, var10 - 2, Blocks.WEB.getBlockState());
+				this.a(var1, var3, var2, 0.05F, 2, 2, var10 - 2, Blocks.WEB.getBlockState());
+				this.a(var1, var3, var2, 0.05F, 0, 2, var10 + 2, Blocks.WEB.getBlockState());
+				this.a(var1, var3, var2, 0.05F, 2, 2, var10 + 2, Blocks.WEB.getBlockState());
 				this.a(var1, var3, var2, 0.05F, 1, 2, var10 - 1, Blocks.TORCH.a(BlockFace.UP.getId()));
 				this.a(var1, var3, var2, 0.05F, 1, 2, var10 + 1, Blocks.TORCH.a(BlockFace.UP.getId()));
 				if (var2.nextInt(100) == 0) {
@@ -210,8 +210,8 @@ public class bjg extends bms {
 					Position var14 = new Position(var13, var11, var12);
 					if (var3.b((fd) var14)) {
 						this.c = true;
-						var1.a(var14, Blocks.MOB_SPAWNER.P(), 2);
-						TileEntity var15 = var1.s(var14);
+						var1.a(var14, Blocks.MOB_SPAWNER.getBlockState(), 2);
+						TileEntity var15 = var1.getTileEntity(var14);
 						if (var15 instanceof TileEntityMobSpawner) {
 							((TileEntityMobSpawner) var15).b().a("CaveSpider");
 						}
@@ -222,18 +222,18 @@ public class bjg extends bms {
 			for (var9 = 0; var9 <= 2; ++var9) {
 				for (var10 = 0; var10 <= var8; ++var10) {
 					byte var17 = -1;
-					bec var18 = this.a(var1, var9, var17, var10, var3);
-					if (var18.getBlock().r() == Material.AIR) {
+					BlockState var18 = this.a(var1, var9, var17, var10, var3);
+					if (var18.getBlock().getMaterial() == Material.AIR) {
 						byte var19 = -1;
-						this.a(var1, Blocks.PLANKS.P(), var9, var19, var10, var3);
+						this.a(var1, Blocks.PLANKS.getBlockState(), var9, var19, var10, var3);
 					}
 				}
 			}
 
 			if (this.a) {
 				for (var9 = 0; var9 <= var8; ++var9) {
-					bec var16 = this.a(var1, 1, -1, var9, var3);
-					if (var16.getBlock().r() != Material.AIR && var16.getBlock().m()) {
+					BlockState var16 = this.a(var1, 1, -1, var9, var3);
+					if (var16.getBlock().getMaterial() != Material.AIR && var16.getBlock().m()) {
 						this.a(var1, var3, var2, 0.7F, 1, 0, var9, Blocks.RAIL.a(this.a(Blocks.RAIL, 0)));
 					}
 				}

@@ -4,15 +4,15 @@ import java.util.Random;
 
 public class biq extends bhp {
 
-	private final bec a;
+	private final BlockState a;
 
 	public biq(bbi var1) {
-		this.a = Blocks.TALLGRASS.P().a(BlockLongGrass.a, var1);
+		this.a = Blocks.TALLGRASS.getBlockState().a(BlockLongGrass.a, var1);
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
 		Block var4;
-		while (((var4 = var1.p(var3).getBlock()).r() == Material.AIR || var4.r() == Material.LEAVES) && var3.getY() > 0) {
+		while (((var4 = var1.getBlockState(var3).getBlock()).getMaterial() == Material.AIR || var4.getMaterial() == Material.LEAVES) && var3.getY() > 0) {
 			var3 = var3.b();
 		}
 

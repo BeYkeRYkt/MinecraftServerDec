@@ -66,7 +66,7 @@ class cs {
 			}
 
 			var2 = var2.b();
-		} while (var1.p(var2).getBlock().r() == Material.AIR);
+		} while (var1.getBlockState(var2).getBlock().getMaterial() == Material.AIR);
 
 		return var2.getY() + 1;
 	}
@@ -81,7 +81,7 @@ class cs {
 			}
 
 			var2 = var2.b();
-			var3 = var1.p(var2).getBlock().r();
+			var3 = var1.getBlockState(var2).getBlock().getMaterial();
 		} while (var3 == Material.AIR);
 
 		return !var3.isLiquid() && var3 != Material.FIRE;

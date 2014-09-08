@@ -29,7 +29,7 @@ public class BlockRedstoneOre extends Block {
 		super.a(var1, var2, var3);
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		this.d(var1, var2);
 		return super.a(var1, var2, var3, var4, var5, var6, var7, var8);
 	}
@@ -37,19 +37,19 @@ public class BlockRedstoneOre extends Block {
 	private void d(World var1, Position var2) {
 		this.e(var1, var2);
 		if (this == Blocks.REDSTONE_ORE) {
-			var1.a(var2, Blocks.LIT_REDSTONE_ORE.P());
+			var1.a(var2, Blocks.LIT_REDSTONE_ORE.getBlockState());
 		}
 
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, BlockState var3, Random var4) {
 		if (this == Blocks.LIT_REDSTONE_ORE) {
-			var1.a(var2, Blocks.REDSTONE_ORE.P());
+			var1.a(var2, Blocks.REDSTONE_ORE.getBlockState());
 		}
 
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
+	public Item a(BlockState var1, Random var2, int var3) {
 		return Items.REDSTONE;
 	}
 
@@ -61,7 +61,7 @@ public class BlockRedstoneOre extends Block {
 		return 4 + var1.nextInt(2);
 	}
 
-	public void a(World var1, Position var2, bec var3, float var4, int var5) {
+	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
 		super.a(var1, var2, var3, var4, var5);
 		if (this.a(var3, var1.s, var5) != Item.getItemOf((Block) this)) {
 			int var6 = 1 + var1.s.nextInt(5);
@@ -78,27 +78,27 @@ public class BlockRedstoneOre extends Block {
 			double var7 = (double) ((float) var2.getX() + var3.nextFloat());
 			double var9 = (double) ((float) var2.getY() + var3.nextFloat());
 			double var11 = (double) ((float) var2.getZ() + var3.nextFloat());
-			if (var6 == 0 && !var1.p(var2.a()).getBlock().c()) {
+			if (var6 == 0 && !var1.getBlockState(var2.a()).getBlock().c()) {
 				var9 = (double) var2.getY() + var4 + 1.0D;
 			}
 
-			if (var6 == 1 && !var1.p(var2.b()).getBlock().c()) {
+			if (var6 == 1 && !var1.getBlockState(var2.b()).getBlock().c()) {
 				var9 = (double) var2.getY() - var4;
 			}
 
-			if (var6 == 2 && !var1.p(var2.d()).getBlock().c()) {
+			if (var6 == 2 && !var1.getBlockState(var2.d()).getBlock().c()) {
 				var11 = (double) var2.getZ() + var4 + 1.0D;
 			}
 
-			if (var6 == 3 && !var1.p(var2.c()).getBlock().c()) {
+			if (var6 == 3 && !var1.getBlockState(var2.c()).getBlock().c()) {
 				var11 = (double) var2.getZ() - var4;
 			}
 
-			if (var6 == 4 && !var1.p(var2.f()).getBlock().c()) {
+			if (var6 == 4 && !var1.getBlockState(var2.f()).getBlock().c()) {
 				var7 = (double) var2.getX() + var4 + 1.0D;
 			}
 
-			if (var6 == 5 && !var1.p(var2.e()).getBlock().c()) {
+			if (var6 == 5 && !var1.getBlockState(var2.e()).getBlock().c()) {
 				var7 = (double) var2.getX() - var4;
 			}
 
@@ -109,7 +109,7 @@ public class BlockRedstoneOre extends Block {
 
 	}
 
-	protected ItemStack i(bec var1) {
+	protected ItemStack i(BlockState var1) {
 		return new ItemStack(Blocks.REDSTONE_ORE);
 	}
 }

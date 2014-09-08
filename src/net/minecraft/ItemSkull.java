@@ -17,11 +17,11 @@ public class ItemSkull extends Item {
 		if (var5 == BlockFace.DOWN) {
 			return false;
 		} else {
-			bec var9 = var3.p(var4);
+			BlockState var9 = var3.getBlockState(var4);
 			Block var10 = var9.getBlock();
 			boolean var11 = var10.f(var3, var4);
 			if (!var11) {
-				if (!var3.p(var4).getBlock().r().isBuildable()) {
+				if (!var3.getBlockState(var4).getBlock().getMaterial().isBuildable()) {
 					return false;
 				}
 
@@ -34,16 +34,16 @@ public class ItemSkull extends Item {
 				return false;
 			} else {
 				if (!var3.D) {
-					var3.a(var4, Blocks.SKULL.P().a(BlockSkull.a, var5), 3);
+					var3.a(var4, Blocks.SKULL.getBlockState().a(BlockSkull.a, var5), 3);
 					int var12 = 0;
 					if (var5 == BlockFace.UP) {
 						var12 = DataTypesConverter.toFixedPointInt((double) (var2.yaw * 16.0F / 360.0F) + 0.5D) & 15;
 					}
 
-					TileEntity var13 = var3.s(var4);
+					TileEntity var13 = var3.getTileEntity(var4);
 					if (var13 instanceof TileEntitySkull) {
 						TileEntitySkull var14 = (TileEntitySkull) var13;
-						if (var1.i() == 3) {
+						if (var1.getDurability() == 3) {
 							GameProfile var15 = null;
 							if (var1.hasTag()) {
 								NBTCompoundTag var16 = var1.getTag();
@@ -56,14 +56,14 @@ public class ItemSkull extends Item {
 
 							var14.a(var15);
 						} else {
-							var14.a(var1.i());
+							var14.a(var1.getDurability());
 						}
 
 						var14.b(var12);
 						Blocks.SKULL.a(var3, var4, var14);
 					}
 
-					--var1.b;
+					--var1.amount;
 				}
 
 				return true;
@@ -76,7 +76,7 @@ public class ItemSkull extends Item {
 	}
 
 	public String getName(ItemStack var1) {
-		int var2 = var1.i();
+		int var2 = var1.getDurability();
 		if (var2 < 0 || var2 >= a.length) {
 			var2 = 0;
 		}
@@ -85,7 +85,7 @@ public class ItemSkull extends Item {
 	}
 
 	public String a(ItemStack var1) {
-		if (var1.i() == 3 && var1.hasTag()) {
+		if (var1.getDurability() == 3 && var1.hasTag()) {
 			if (var1.getTag().isTagAssignableFrom("SkullOwner", 8)) {
 				return LocaleI18n.a("item.skull.player.name", new Object[] { var1.getTag().getString("SkullOwner") });
 			}

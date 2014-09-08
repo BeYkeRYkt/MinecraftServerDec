@@ -30,7 +30,7 @@ public abstract class zn extends zb {
 	}
 
 	public boolean b() {
-		return this.e >= -this.f && this.e <= 1200 && this.a(this.c.o, this.b);
+		return this.e >= -this.f && this.e <= 1200 && this.a(this.c.world, this.b);
 	}
 
 	public void c() {
@@ -70,7 +70,7 @@ public abstract class zn extends zb {
 				for (int var6 = 0; var6 <= var5; var6 = var6 > 0 ? -var6 : 1 - var6) {
 					for (int var7 = var6 < var5 && var6 > -var5 ? var5 : 0; var7 <= var5; var7 = var7 > 0 ? -var7 : 1 - var7) {
 						Position var8 = var3.a(var6, var4 - 1, var7);
-						if (this.c.d(var8) && this.a(this.c.o, var8)) {
+						if (this.c.d(var8) && this.a(this.c.world, var8)) {
 							this.b = var8;
 							return true;
 						}

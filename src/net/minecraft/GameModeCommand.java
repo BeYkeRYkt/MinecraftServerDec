@@ -25,13 +25,13 @@ public class GameModeCommand extends AbstractCommand {
 			EntityPlayer var4 = var2.length >= 2 ? a(var1, var2[1]) : b(var1);
 			var4.a(var3);
 			var4.O = 0.0F;
-			if (var1.e().Q().b("sendCommandFeedback")) {
+			if (var1.getWorld().Q().b("sendCommandFeedback")) {
 				var4.sendChatMessage((IChatBaseComponent) (new ChatMessage("gameMode.changed", new Object[0])));
 			}
 
 			ChatMessage var5 = new ChatMessage("gameMode." + var3.getName(), new Object[0]);
 			if (var4 != var1) {
-				a(var1, this, 1, "commands.gamemode.success.other", new Object[] { var4.d_(), var5 });
+				a(var1, this, 1, "commands.gamemode.success.other", new Object[] { var4.getName(), var5 });
 			} else {
 				a(var1, this, 1, "commands.gamemode.success.self", new Object[] { var5 });
 			}

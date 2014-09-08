@@ -11,7 +11,7 @@ public class BlockMushroom extends auc implements atz {
 		this.a(true);
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, BlockState var3, Random var4) {
 		if (var4.nextInt(25) == 0) {
 			int var5 = 5;
 			boolean var6 = true;
@@ -19,7 +19,7 @@ public class BlockMushroom extends auc implements atz {
 
 			while (var7.hasNext()) {
 				Position var8 = (Position) var7.next();
-				if (var1.p(var8).getBlock() == this) {
+				if (var1.getBlockState(var8).getBlock() == this) {
 					--var5;
 					if (var5 <= 0) {
 						return;
@@ -30,38 +30,38 @@ public class BlockMushroom extends auc implements atz {
 			Position var9 = var2.a(var4.nextInt(3) - 1, var4.nextInt(2) - var4.nextInt(2), var4.nextInt(3) - 1);
 
 			for (int var10 = 0; var10 < 4; ++var10) {
-				if (var1.d(var9) && this.f(var1, var9, this.P())) {
+				if (var1.d(var9) && this.f(var1, var9, this.getBlockState())) {
 					var2 = var9;
 				}
 
 				var9 = var2.a(var4.nextInt(3) - 1, var4.nextInt(2) - var4.nextInt(2), var4.nextInt(3) - 1);
 			}
 
-			if (var1.d(var9) && this.f(var1, var9, this.P())) {
-				var1.a(var9, this.P(), 2);
+			if (var1.d(var9) && this.f(var1, var9, this.getBlockState())) {
+				var1.a(var9, this.getBlockState(), 2);
 			}
 		}
 
 	}
 
 	public boolean c(World var1, Position var2) {
-		return super.c(var1, var2) && this.f(var1, var2, this.P());
+		return super.c(var1, var2) && this.f(var1, var2, this.getBlockState());
 	}
 
 	protected boolean c(Block var1) {
 		return var1.m();
 	}
 
-	public boolean f(World var1, Position var2, bec var3) {
+	public boolean f(World var1, Position var2, BlockState var3) {
 		if (var2.getY() >= 0 && var2.getY() < 256) {
-			bec var4 = var1.p(var2.b());
+			BlockState var4 = var1.getBlockState(var2.b());
 			return var4.getBlock() == Blocks.MYCELIUM ? true : (var4.getBlock() == Blocks.DIRT && var4.b(BlockDirt.a) == avd.c ? true : var1.k(var2) < 13 && this.c(var4.getBlock()));
 		} else {
 			return false;
 		}
 	}
 
-	public boolean d(World var1, Position var2, bec var3, Random var4) {
+	public boolean d(World var1, Position var2, BlockState var3, Random var4) {
 		var1.g(var2);
 		bhv var5 = null;
 		if (this == Blocks.BRWON_MUSHROOM) {
@@ -78,15 +78,15 @@ public class BlockMushroom extends auc implements atz {
 		}
 	}
 
-	public boolean a(World var1, Position var2, bec var3, boolean var4) {
+	public boolean a(World var1, Position var2, BlockState var3, boolean var4) {
 		return true;
 	}
 
-	public boolean a(World var1, Random var2, Position var3, bec var4) {
+	public boolean a(World var1, Random var2, Position var3, BlockState var4) {
 		return (double) var2.nextFloat() < 0.4D;
 	}
 
-	public void b(World var1, Random var2, Position var3, bec var4) {
+	public void b(World var1, Random var2, Position var3, BlockState var4) {
 		this.d(var1, var3, var4, var2);
 	}
 }

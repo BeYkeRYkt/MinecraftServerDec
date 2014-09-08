@@ -11,7 +11,7 @@ public class BlockIce extends awt {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
+	public void a(World var1, EntityHuman var2, Position var3, BlockState var4, TileEntity var5) {
 		var2.b(StatisticList.MINE_BLOCK_COUNT[Block.getBlockId((Block) this)]);
 		var2.a(0.025F);
 		if (this.G() && aph.e(var2)) {
@@ -27,9 +27,9 @@ public class BlockIce extends awt {
 
 			int var6 = aph.f(var2);
 			this.b(var1, var3, var4, var6);
-			Material var7 = var1.p(var3.b()).getBlock().r();
+			Material var7 = var1.getBlockState(var3.b()).getBlock().getMaterial();
 			if (var7.isSolid() || var7.isLiquid()) {
-				var1.a(var3, Blocks.FLOWING_WATER.P());
+				var1.a(var3, Blocks.FLOWING_WATER.getBlockState());
 			}
 		}
 
@@ -39,13 +39,13 @@ public class BlockIce extends awt {
 		return 0;
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, BlockState var3, Random var4) {
 		if (var1.b(arf.b, var2) > 11 - this.n()) {
 			if (var1.worldProvider.n()) {
 				var1.g(var2);
 			} else {
-				this.b(var1, var2, var1.p(var2), 0);
-				var1.a(var2, Blocks.WATER.P());
+				this.b(var1, var2, var1.getBlockState(var2), 0);
+				var1.a(var2, Blocks.WATER.getBlockState());
 			}
 		}
 	}

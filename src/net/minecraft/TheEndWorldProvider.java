@@ -25,7 +25,7 @@ public class TheEndWorldProvider extends WorldProvider {
 	}
 
 	public boolean a(int var1, int var2) {
-		return this.b.c(new Position(var1, 0, var2)).r().isSolid();
+		return this.b.c(new Position(var1, 0, var2)).getMaterial().isSolid();
 	}
 
 	public Position h() {

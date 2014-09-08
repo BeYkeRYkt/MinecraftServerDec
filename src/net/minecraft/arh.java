@@ -37,12 +37,12 @@ public class arh {
 						int var12 = var4 + var10;
 						int var13 = var5 + var9 * var7 - var8 * var6;
 						boolean var14 = var10 < 0;
-						this.a.a(new Position(var11, var12, var13), var14 ? Blocks.OBSIDIAN.P() : Blocks.AIR.P());
+						this.a.a(new Position(var11, var12, var13), var14 ? Blocks.OBSIDIAN.getBlockState() : Blocks.AIR.getBlockState());
 					}
 				}
 			}
 
-			var1.b((double) var3, (double) var4, (double) var5, var1.yaw, 0.0F);
+			var1.setPositionRotation((double) var3, (double) var4, (double) var5, var1.yaw, 0.0F);
 			var1.motionX = var1.motionY = var1.motionZ = 0.0D;
 		}
 	}
@@ -69,8 +69,8 @@ public class arh {
 				for (int var14 = -128; var14 <= 128; ++var14) {
 					for (Position var15 = var34.a(var13, this.a.V() - 1 - var34.getY(), var14); var15.getY() >= 0; var15 = var16) {
 						var16 = var15.b();
-						if (this.a.p(var15).getBlock() == Blocks.PORTAL) {
-							while (this.a.p(var16 = var15.b()).getBlock() == Blocks.PORTAL) {
+						if (this.a.getBlockState(var15).getBlock() == Blocks.PORTAL) {
+							while (this.a.getBlockState(var16 = var15.b()).getBlock() == Blocks.PORTAL) {
 								var15 = var16;
 							}
 
@@ -95,19 +95,19 @@ public class arh {
 			double var36 = (double) ((Position) var9).getY() + 0.5D;
 			double var37 = (double) ((Position) var9).getZ() + 0.5D;
 			BlockFace var18 = null;
-			if (this.a.p(((Position) var9).e()).getBlock() == Blocks.PORTAL) {
+			if (this.a.getBlockState(((Position) var9).e()).getBlock() == Blocks.PORTAL) {
 				var18 = BlockFace.NORTH;
 			}
 
-			if (this.a.p(((Position) var9).f()).getBlock() == Blocks.PORTAL) {
+			if (this.a.getBlockState(((Position) var9).f()).getBlock() == Blocks.PORTAL) {
 				var18 = BlockFace.SOUTH;
 			}
 
-			if (this.a.p(((Position) var9).c()).getBlock() == Blocks.PORTAL) {
+			if (this.a.getBlockState(((Position) var9).c()).getBlock() == Blocks.PORTAL) {
 				var18 = BlockFace.EAST;
 			}
 
-			if (this.a.p(((Position) var9).d()).getBlock() == Blocks.PORTAL) {
+			if (this.a.getBlockState(((Position) var9).d()).getBlock() == Blocks.PORTAL) {
 				var18 = BlockFace.WEST;
 			}
 
@@ -168,7 +168,7 @@ public class arh {
 				var1.motionX = var1.motionY = var1.motionZ = 0.0D;
 			}
 
-			var1.b(var35, var36, var37, var1.yaw, var1.pitch);
+			var1.setPositionRotation(var35, var36, var37, var1.yaw, var1.pitch);
 			return true;
 		} else {
 			return false;
@@ -232,7 +232,7 @@ public class arh {
 										var26 = var13 + (var24 - 1) * var21 + var23 * var22;
 										var27 = var19 + var25;
 										int var28 = var16 + (var24 - 1) * var22 - var23 * var21;
-										if (var25 < 0 && !this.a.p(new Position(var26, var27, var28)).getBlock().r().isBuildable() || var25 >= 0 && !this.a.d(new Position(var26, var27, var28))) {
+										if (var25 < 0 && !this.a.getBlockState(new Position(var26, var27, var28)).getBlock().getMaterial().isBuildable() || var25 >= 0 && !this.a.d(new Position(var26, var27, var28))) {
 											continue label271;
 										}
 									}
@@ -276,7 +276,7 @@ public class arh {
 										var25 = var13 + (var23 - 1) * var21;
 										var26 = var19 + var24;
 										var27 = var16 + (var23 - 1) * var22;
-										if (var24 < 0 && !this.a.p(new Position(var25, var26, var27)).getBlock().r().isBuildable() || var24 >= 0 && !this.a.d(new Position(var25, var26, var27))) {
+										if (var24 < 0 && !this.a.getBlockState(new Position(var25, var26, var27)).getBlock().getMaterial().isBuildable() || var24 >= 0 && !this.a.d(new Position(var25, var26, var27))) {
 											continue label219;
 										}
 									}
@@ -319,13 +319,13 @@ public class arh {
 						var23 = var15 + var21;
 						var24 = var16 + (var20 - 1) * var18 - var19 * var30;
 						boolean var34 = var21 < 0;
-						this.a.a(new Position(var22, var23, var24), var34 ? Blocks.OBSIDIAN.P() : Blocks.AIR.P());
+						this.a.a(new Position(var22, var23, var24), var34 ? Blocks.OBSIDIAN.getBlockState() : Blocks.AIR.getBlockState());
 					}
 				}
 			}
 		}
 
-		bec var31 = Blocks.PORTAL.P().a(BlockPortal.a, var30 != 0 ? el.a : el.c);
+		BlockState var31 = Blocks.PORTAL.getBlockState().a(BlockPortal.a, var30 != 0 ? el.a : el.c);
 
 		for (var20 = 0; var20 < 4; ++var20) {
 			for (var21 = 0; var21 < 4; ++var21) {
@@ -334,7 +334,7 @@ public class arh {
 					var24 = var15 + var22;
 					var25 = var16 + (var21 - 1) * var18;
 					boolean var35 = var21 == 0 || var21 == 3 || var22 == -1 || var22 == 3;
-					this.a.a(new Position(var23, var24, var25), var35 ? Blocks.OBSIDIAN.P() : var31, 2);
+					this.a.a(new Position(var23, var24, var25), var35 ? Blocks.OBSIDIAN.getBlockState() : var31, 2);
 				}
 			}
 
@@ -343,7 +343,7 @@ public class arh {
 					var23 = var29 + (var21 - 1) * var30;
 					var24 = var15 + var22;
 					var25 = var16 + (var21 - 1) * var18;
-					this.a.c(new Position(var23, var24, var25), this.a.p(new Position(var23, var24, var25)).getBlock());
+					this.a.c(new Position(var23, var24, var25), this.a.getBlockState(new Position(var23, var24, var25)).getBlock());
 				}
 			}
 		}

@@ -45,7 +45,7 @@ public class aac extends zb {
 				int var2 = this.a.cG();
 				if (var2 > 0 && this.a.bb().nextInt(var2) < var1) {
 					this.a.h((EntityHuman) this.a.l);
-					this.a.o.a((Entity) this.a, (byte) 7);
+					this.a.world.a((Entity) this.a, (byte) 7);
 					return;
 				}
 
@@ -55,7 +55,7 @@ public class aac extends zb {
 			this.a.l.a((Entity) null);
 			this.a.l = null;
 			this.a.cU();
-			this.a.o.a((Entity) this.a, (byte) 6);
+			this.a.world.a((Entity) this.a, (byte) 6);
 		}
 
 	}

@@ -66,7 +66,7 @@ public class ary {
 			throw new RuntimeException("Already decorating");
 		} else {
 			this.a = var1;
-			String var5 = var1.P().B();
+			String var5 = var1.getWorldData().B();
 			if (var5 != null) {
 				this.d = bgn.a(var5).b();
 			} else {
@@ -75,17 +75,17 @@ public class ary {
 
 			this.b = var2;
 			this.c = var4;
-			this.h = new bif(Blocks.DIRT.P(), this.d.I);
-			this.i = new bif(Blocks.GRAVEL.P(), this.d.M);
-			this.j = new bif(Blocks.STONE.P().a(BlockStone.a, bbb.b), this.d.Q);
-			this.k = new bif(Blocks.STONE.P().a(BlockStone.a, bbb.d), this.d.U);
-			this.l = new bif(Blocks.STONE.P().a(BlockStone.a, bbb.f), this.d.Y);
-			this.m = new bif(Blocks.COAL_ORE.P(), this.d.ac);
-			this.n = new bif(Blocks.IRON_ORE.P(), this.d.ag);
-			this.o = new bif(Blocks.GOLD_ORE.P(), this.d.ak);
-			this.p = new bif(Blocks.REDSTONE_ORE.P(), this.d.ao);
-			this.q = new bif(Blocks.DIAMOND_ORE.P(), this.d.as);
-			this.r = new bif(Blocks.LAPIS_ORE.P(), this.d.aw);
+			this.h = new bif(Blocks.DIRT.getBlockState(), this.d.I);
+			this.i = new bif(Blocks.GRAVEL.getBlockState(), this.d.M);
+			this.j = new bif(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.b), this.d.Q);
+			this.k = new bif(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.d), this.d.U);
+			this.l = new bif(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.f), this.d.Y);
+			this.m = new bif(Blocks.COAL_ORE.getBlockState(), this.d.ac);
+			this.n = new bif(Blocks.IRON_ORE.getBlockState(), this.d.ag);
+			this.o = new bif(Blocks.GOLD_ORE.getBlockState(), this.d.ak);
+			this.p = new bif(Blocks.REDSTONE_ORE.getBlockState(), this.d.ao);
+			this.q = new bif(Blocks.DIAMOND_ORE.getBlockState(), this.d.as);
+			this.r = new bif(Blocks.LAPIS_ORE.getBlockState(), this.d.aw);
 			this.a(var3);
 			this.a = null;
 			this.b = null;
@@ -148,7 +148,7 @@ public class ary {
 			var7 = this.c.a(var4, var11, var5);
 			awa var8 = var1.a(this.b, var7);
 			BlockFlowers var9 = var8.a().a();
-			if (var9.r() != Material.AIR) {
+			if (var9.getMaterial() != Material.AIR) {
 				this.s.a(var9, var8);
 				this.s.b(this.a, this.b, var7);
 			}

@@ -9,7 +9,7 @@ public class ask extends arm {
 		this.as.C = -100;
 		this.as.E = 1;
 		this.as.K = 1;
-		this.ak = Blocks.MYCELIUM.P();
+		this.ak = Blocks.MYCELIUM.getBlockState();
 		this.at.clear();
 		this.au.clear();
 		this.av.clear();

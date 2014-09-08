@@ -76,7 +76,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 		int var7;
 		for (var7 = var3 + 1; var7 < this.world.V(); ++var7) {
 			Position var8 = new Position(var2, var7, var4);
-			bec var9 = this.world.p(var8);
+			BlockState var9 = this.world.getBlockState(var8);
 			float[] var10;
 			if (var9.getBlock() == Blocks.STAINED_GLASS) {
 				var10 = EntitySheep.a((akv) var9.b(BlockStainedGlass.a));
@@ -120,7 +120,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 
 				for (int var17 = var2 - var7; var17 <= var2 + var7 && var16; ++var17) {
 					for (int var11 = var4 - var7; var11 <= var4 + var7; ++var11) {
-						Block var12 = this.world.p(new Position(var17, var14, var11)).getBlock();
+						Block var12 = this.world.getBlockState(new Position(var17, var14, var11)).getBlock();
 						if (var12 != Blocks.EMERALD_BLOCK && var12 != Blocks.GOLD_BLOCK && var12 != Blocks.DIAMOND_BLOCK && var12 != Blocks.IRON_BLOCK) {
 							var16 = false;
 							break;
@@ -179,13 +179,13 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 
 	public ItemStack a(int var1, int var2) {
 		if (var1 == 0 && this.m != null) {
-			if (var2 >= this.m.b) {
+			if (var2 >= this.m.amount) {
 				ItemStack var3 = this.m;
 				this.m = null;
 				return var3;
 			} else {
-				this.m.b -= var2;
-				return new ItemStack(this.m.getItem(), var2, this.m.i());
+				this.m.amount -= var2;
+				return new ItemStack(this.m.getItem(), var2, this.m.getDurability());
 			}
 		} else {
 			return null;
@@ -209,7 +209,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 
 	}
 
-	public String d_() {
+	public String getName() {
 		return this.k_() ? this.n : "container.beacon";
 	}
 
@@ -226,7 +226,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.world.s(this.position) != this ? false : var1.e((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
+		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public void b(EntityHuman var1) {
@@ -244,7 +244,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {
-		return new aig(var1, this);
+		return new ContainerBeacon(var1, this);
 	}
 
 	public int a_(int var1) {

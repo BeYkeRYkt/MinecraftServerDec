@@ -54,7 +54,7 @@ public class ss {
 		return this.c;
 	}
 
-	public void a(sr var1) {
+	public void add(sr var1) {
 		this.d.put(this.a(var1.f()), var1);
 
 		try {

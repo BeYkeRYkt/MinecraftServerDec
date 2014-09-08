@@ -33,25 +33,25 @@ public class aai extends zf {
 					if (var3 != null) {
 						Item var5 = var3.getItem();
 						int var6;
-						if ((var5 == Items.BREAD || var5 == Items.POTATO || var5 == Items.CARROT) && var3.b > 3) {
-							var6 = var3.b / 2;
-							var3.b -= var6;
-							var4 = new ItemStack(var5, var6, var3.i());
-						} else if (var5 == Items.WHEAT && var3.b > 5) {
-							var6 = var3.b / 2 / 3 * 3;
+						if ((var5 == Items.BREAD || var5 == Items.POTATO || var5 == Items.CARROT) && var3.amount > 3) {
+							var6 = var3.amount / 2;
+							var3.amount -= var6;
+							var4 = new ItemStack(var5, var6, var3.getDurability());
+						} else if (var5 == Items.WHEAT && var3.amount > 5) {
+							var6 = var3.amount / 2 / 3 * 3;
 							int var7 = var6 / 3;
-							var3.b -= var6;
+							var3.amount -= var6;
 							var4 = new ItemStack(Items.BREAD, var7, 0);
 						}
 
-						if (var3.b <= 0) {
+						if (var3.amount <= 0) {
 							var1.a(var2, (ItemStack) null);
 						}
 					}
 
 					if (var4 != null) {
 						double var11 = this.f.locationY - 0.30000001192092896D + (double) this.f.aR();
-						EntityItem var12 = new EntityItem(this.f.o, this.f.locationX, var11, this.f.locationZ, var4);
+						EntityItem var12 = new EntityItem(this.f.world, this.f.locationX, var11, this.f.locationZ, var4);
 						float var8 = 0.3F;
 						float var9 = this.f.headPitch;
 						float var10 = this.f.pitch;
@@ -59,7 +59,7 @@ public class aai extends zf {
 						var12.motionZ = (double) (DataTypesConverter.b(var9 / 180.0F * 3.1415927F) * DataTypesConverter.b(var10 / 180.0F * 3.1415927F) * var8);
 						var12.motionY = (double) (-DataTypesConverter.a(var10 / 180.0F * 3.1415927F) * var8 + 0.1F);
 						var12.p();
-						this.f.o.d((Entity) var12);
+						this.f.world.d((Entity) var12);
 						break;
 					}
 				}

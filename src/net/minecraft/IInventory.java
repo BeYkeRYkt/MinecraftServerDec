@@ -14,7 +14,7 @@ public interface IInventory extends vz {
 
 	int p_();
 
-	void o_();
+	void update();
 
 	boolean a(EntityHuman var1);
 

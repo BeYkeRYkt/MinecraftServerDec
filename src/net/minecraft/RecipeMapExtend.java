@@ -39,9 +39,9 @@ public class RecipeMapExtend extends ShapedRecipes {
 		}
 
 		var2 = var2.getCopy();
-		var2.b = 1;
+		var2.amount = 1;
 		if (var2.getTag() == null) {
-			var2.d(new NBTCompoundTag());
+			var2.setTag(new NBTCompoundTag());
 		}
 
 		var2.getTag().put("map_is_scaling", true);

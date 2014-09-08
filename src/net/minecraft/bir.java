@@ -40,7 +40,7 @@ public class bir extends bhc {
 				for (int var8 = var3.getX() - var7; var8 <= var3.getX() + var7 && var5; ++var8) {
 					for (var9 = var3.getZ() - var7; var9 <= var3.getZ() + var7 && var5; ++var9) {
 						if (var6 >= 0 && var6 < 256) {
-							if (!this.a(var1.p(new Position(var8, var6, var9)).getBlock())) {
+							if (!this.a(var1.getBlockState(new Position(var8, var6, var9)).getBlock())) {
 								var5 = false;
 							}
 						} else {
@@ -53,7 +53,7 @@ public class bir extends bhc {
 			if (!var5) {
 				return false;
 			} else {
-				Block var19 = var1.p(var3.b()).getBlock();
+				Block var19 = var1.getBlockState(var3.b()).getBlock();
 				if ((var19 == Blocks.GRASS || var19 == Blocks.DIRT || var19 == Blocks.FARMLAND) && var3.getY() < 256 - var4 - 1) {
 					this.a(var1, var3.b());
 					var7 = 3;
@@ -75,8 +75,8 @@ public class bir extends bhc {
 								int var15 = var14 - var3.getZ();
 								if (Math.abs(var13) != var11 || Math.abs(var15) != var11 || var2.nextInt(2) != 0 && var10 != 0) {
 									var16 = new Position(var12, var9, var14);
-									Block var17 = var1.p(var16).getBlock();
-									if (var17.r() == Material.AIR || var17.r() == Material.LEAVES || var17.r() == Material.REPLACEABLE_PLANT) {
+									Block var17 = var1.getBlockState(var16).getBlock();
+									if (var17.getMaterial() == Material.AIR || var17.getMaterial() == Material.LEAVES || var17.getMaterial() == Material.REPLACEABLE_PLANT) {
 										this.a(var1, var16, Blocks.LEAVES, this.d);
 									}
 								}
@@ -85,8 +85,8 @@ public class bir extends bhc {
 					}
 
 					for (var9 = 0; var9 < var4; ++var9) {
-						Block var21 = var1.p(var3.b(var9)).getBlock();
-						if (var21.r() == Material.AIR || var21.r() == Material.LEAVES || var21.r() == Material.REPLACEABLE_PLANT) {
+						Block var21 = var1.getBlockState(var3.b(var9)).getBlock();
+						if (var21.getMaterial() == Material.AIR || var21.getMaterial() == Material.LEAVES || var21.getMaterial() == Material.REPLACEABLE_PLANT) {
 							this.a(var1, var3.b(var9), Blocks.LOG, this.c);
 							if (this.b && var9 > 0) {
 								if (var2.nextInt(3) > 0 && var1.d(var3.a(-1, var9, 0))) {
@@ -116,24 +116,24 @@ public class bir extends bhc {
 							for (var12 = var3.getX() - var11; var12 <= var3.getX() + var11; ++var12) {
 								for (var13 = var3.getZ() - var11; var13 <= var3.getZ() + var11; ++var13) {
 									Position var23 = new Position(var12, var9, var13);
-									if (var1.p(var23).getBlock().r() == Material.LEAVES) {
+									if (var1.getBlockState(var23).getBlock().getMaterial() == Material.LEAVES) {
 										Position var24 = var23.e();
 										var16 = var23.f();
 										Position var25 = var23.c();
 										Position var18 = var23.d();
-										if (var2.nextInt(4) == 0 && var1.p(var24).getBlock().r() == Material.AIR) {
+										if (var2.nextInt(4) == 0 && var1.getBlockState(var24).getBlock().getMaterial() == Material.AIR) {
 											this.a(var1, var24, BlockVine.S);
 										}
 
-										if (var2.nextInt(4) == 0 && var1.p(var16).getBlock().r() == Material.AIR) {
+										if (var2.nextInt(4) == 0 && var1.getBlockState(var16).getBlock().getMaterial() == Material.AIR) {
 											this.a(var1, var16, BlockVine.T);
 										}
 
-										if (var2.nextInt(4) == 0 && var1.p(var25).getBlock().r() == Material.AIR) {
+										if (var2.nextInt(4) == 0 && var1.getBlockState(var25).getBlock().getMaterial() == Material.AIR) {
 											this.a(var1, var25, BlockVine.Q);
 										}
 
-										if (var2.nextInt(4) == 0 && var1.p(var18).getBlock().r() == Material.AIR) {
+										if (var2.nextInt(4) == 0 && var1.getBlockState(var18).getBlock().getMaterial() == Material.AIR) {
 											this.a(var1, var18, BlockVine.R);
 										}
 									}
@@ -168,7 +168,7 @@ public class bir extends bhc {
 		this.a(var1, var2, Blocks.VINE, var3);
 		int var4 = 4;
 
-		for (var2 = var2.b(); var1.p(var2).getBlock().r() == Material.AIR && var4 > 0; --var4) {
+		for (var2 = var2.b(); var1.getBlockState(var2).getBlock().getMaterial() == Material.AIR && var4 > 0; --var4) {
 			this.a(var1, var2, Blocks.VINE, var3);
 			var2 = var2.b();
 		}

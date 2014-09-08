@@ -50,7 +50,7 @@ public class EntityChicken extends abq {
 		}
 
 		this.bk += this.bp * 2.0F;
-		if (!this.o.D && !this.i_() && !this.cj() && --this.bq <= 0) {
+		if (!this.world.D && !this.i_() && !this.cj() && --this.bq <= 0) {
 			this.a("mob.chicken.plop", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
 			this.a(Items.EGG, 1);
 			this.bq = this.V.nextInt(6000) + 6000;
@@ -97,7 +97,7 @@ public class EntityChicken extends abq {
 	}
 
 	public EntityChicken b(ws var1) {
-		return new EntityChicken(this.o);
+		return new EntityChicken(this.world);
 	}
 
 	public boolean d(ItemStack var1) {

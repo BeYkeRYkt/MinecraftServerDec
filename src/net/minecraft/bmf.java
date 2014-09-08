@@ -17,10 +17,10 @@ class bmf extends bmu {
 			} else if (var6 < 0.55F) {
 				this.a = Blocks.MONSTER_EGG.a(axu.c.a());
 			} else {
-				this.a = Blocks.STONEBRICK.P();
+				this.a = Blocks.STONEBRICK.getBlockState();
 			}
 		} else {
-			this.a = Blocks.AIR.P();
+			this.a = Blocks.AIR.getBlockState();
 		}
 
 	}

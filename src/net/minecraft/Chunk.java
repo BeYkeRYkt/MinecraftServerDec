@@ -71,8 +71,8 @@ public class Chunk {
 			for (int var8 = 0; var8 < 16; ++var8) {
 				for (int var9 = 0; var9 < var5; ++var9) {
 					int var10 = var7 * var5 * 16 | var8 * var5 | var9;
-					bec var11 = var2.a(var10);
-					if (var11.getBlock().r() != Material.AIR) {
+					BlockState var11 = var2.a(var10);
+					if (var11.getBlock().getMaterial() != Material.AIR) {
 						int var12 = var9 >> 4;
 						if (this.chunkSections[var12] == null) {
 							this.chunkSections[var12] = new ChunkSection(var12 << 4, var6);
@@ -365,18 +365,18 @@ public class Chunk {
 		}
 	}
 
-	public bec g(Position var1) {
+	public BlockState getBlockState(Position var1) {
 		if (this.i.G() == LevelType.DEBUG) {
-			bec var7 = null;
+			BlockState var7 = null;
 			if (var1.getY() == 60) {
-				var7 = Blocks.BARRIER.P();
+				var7 = Blocks.BARRIER.getBlockState();
 			}
 
 			if (var1.getY() == 70) {
 				var7 = bgp.b(var1.getX(), var1.getZ());
 			}
 
-			return var7 == null ? Blocks.AIR.P() : var7;
+			return var7 == null ? Blocks.AIR.getBlockState() : var7;
 		} else {
 			try {
 				if (var1.getY() >= 0 && var1.getY() >> 4 < this.chunkSections.length) {
@@ -389,7 +389,7 @@ public class Chunk {
 					}
 				}
 
-				return Blocks.AIR.P();
+				return Blocks.AIR.getBlockState();
 			} catch (Throwable var6) {
 				CrashReport var3 = CrashReport.generateCrashReport(var6, "Getting block state");
 				CrashReportSystemDetails var4 = var3.generateSystemDetails("Block being got");
@@ -412,7 +412,7 @@ public class Chunk {
 		return this.g(var1.getX() & 15, var1.getY(), var1.getZ() & 15);
 	}
 
-	public bec a(Position var1, bec var2) {
+	public BlockState a(Position var1, BlockState var2) {
 		int var3 = var1.getX() & 15;
 		int var4 = var1.getY();
 		int var5 = var1.getZ() & 15;
@@ -422,7 +422,7 @@ public class Chunk {
 		}
 
 		int var7 = this.j[var6];
-		bec var8 = this.g(var1);
+		BlockState var8 = this.getBlockState(var1);
 		if (var8 == var2) {
 			return null;
 		} else {
@@ -553,7 +553,7 @@ public class Chunk {
 		int var3 = DataTypesConverter.toFixedPointInt(var1.locationZ / 16.0D);
 		if (var2 != this.x || var3 != this.y) {
 			c.warn("Wrong location! (" + var2 + ", " + var3 + ") should be (" + this.x + ", " + this.y + "), " + var1, new Object[] { var1 });
-			var1.J();
+			var1.die();
 		}
 
 		int var4 = DataTypesConverter.toFixedPointInt(var1.locationY / 16.0D);
@@ -810,7 +810,7 @@ public class Chunk {
 
 			while (var5.getY() > 0 && var7 == -1) {
 				Block var8 = this.a(var5);
-				Material var9 = var8.r();
+				Material var9 = var8.getMaterial();
 				if (!var9.isSolid() && !var9.isLiquid()) {
 					var5 = var5.b();
 				} else {
@@ -933,14 +933,14 @@ public class Chunk {
 			for (int var6 = 0; var6 < 16; ++var6) {
 				Position var7 = var1.a(var4, (var3 << 4) + var6, var5);
 				boolean var8 = var6 == 0 || var6 == 15 || var4 == 0 || var4 == 15 || var5 == 0 || var5 == 15;
-				if (this.chunkSections[var3] == null && var8 || this.chunkSections[var3] != null && this.chunkSections[var3].b(var4, var6, var5).r() == Material.AIR) {
+				if (this.chunkSections[var3] == null && var8 || this.chunkSections[var3] != null && this.chunkSections[var3].b(var4, var6, var5).getMaterial() == Material.AIR) {
 					BlockFace[] var9 = BlockFace.values();
 					int var10 = var9.length;
 
 					for (int var11 = 0; var11 < var10; ++var11) {
 						BlockFace var12 = var9[var11];
 						Position var13 = var7.a(var12);
-						if (this.i.p(var13).getBlock().p() > 0) {
+						if (this.i.getBlockState(var13).getBlock().p() > 0) {
 							this.i.x(var13);
 						}
 					}
@@ -973,7 +973,7 @@ public class Chunk {
 					while (var5.hasNext()) {
 						BlockFace var6 = (BlockFace) var5.next();
 						int var4 = var6.c() == em.a ? 16 : 1;
-						this.i.f(var1.a(var6, var4)).a(var6.getOpposite());
+						this.i.getChunk(var1.a(var6, var4)).a(var6.getOpposite());
 					}
 
 					this.y();

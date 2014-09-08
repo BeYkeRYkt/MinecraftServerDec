@@ -82,7 +82,7 @@ public class bhd extends bhc {
 			for (int var6 = -var4; var6 <= var4; ++var6) {
 				if (Math.pow((double) Math.abs(var5) + 0.5D, 2.0D) + Math.pow((double) Math.abs(var6) + 0.5D, 2.0D) <= (double) (var2 * var2)) {
 					Position var7 = var1.a(var5, 0, var6);
-					Material var8 = this.l.p(var7).getBlock().r();
+					Material var8 = this.l.getBlockState(var7).getBlock().getMaterial();
 					if (var8 == Material.AIR || var8 == Material.LEAVES) {
 						this.a(this.l, var7, var3, 0);
 					}
@@ -130,7 +130,7 @@ public class bhd extends bhc {
 		for (int var9 = 0; var9 <= var5; ++var9) {
 			Position var10 = var1.a((double) (0.5F + (float) var9 * var6), (double) (0.5F + (float) var9 * var7), (double) (0.5F + (float) var9 * var8));
 			axo var11 = this.b(var1, var10);
-			this.a(this.l, var10, var3.P().a(axm.a, var11));
+			this.a(this.l, var10, var3.getBlockState().a(axm.a, var11));
 		}
 
 	}
@@ -210,7 +210,7 @@ public class bhd extends bhc {
 		} else {
 			for (int var8 = 0; var8 <= var4; ++var8) {
 				Position var9 = var1.a((double) (0.5F + (float) var8 * var5), (double) (0.5F + (float) var8 * var6), (double) (0.5F + (float) var8 * var7));
-				if (!this.a(this.l.p(var9).getBlock())) {
+				if (!this.a(this.l.getBlockState(var9).getBlock())) {
 					return var8;
 				}
 			}
@@ -243,7 +243,7 @@ public class bhd extends bhc {
 	}
 
 	private boolean f() {
-		Block var1 = this.l.p(this.m.b()).getBlock();
+		Block var1 = this.l.getBlockState(this.m.b()).getBlock();
 		if (var1 != Blocks.DIRT && var1 != Blocks.GRASS && var1 != Blocks.FARMLAND) {
 			return false;
 		} else {

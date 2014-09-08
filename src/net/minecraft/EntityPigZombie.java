@@ -56,7 +56,7 @@ public class EntityPigZombie extends EntityZombie {
 		}
 
 		if (this.bl > 0 && this.bn != null && this.bc() == null) {
-			EntityHuman var2 = this.o.b(this.bn);
+			EntityHuman var2 = this.world.b(this.bn);
 			this.b((EntityLiving) var2);
 			this.aL = var2;
 			this.aM = this.bd();
@@ -66,11 +66,11 @@ public class EntityPigZombie extends EntityZombie {
 	}
 
 	public boolean bQ() {
-		return this.o.getDifficulty() != Difficulty.PEACEFUL;
+		return this.world.getDifficulty() != Difficulty.PEACEFUL;
 	}
 
 	public boolean bR() {
-		return this.o.a(this.aQ(), (Entity) this) && this.o.a((Entity) this, this.aQ()).isEmpty() && !this.o.d(this.aQ());
+		return this.world.a(this.aQ(), (Entity) this) && this.world.a((Entity) this, this.aQ()).isEmpty() && !this.world.d(this.aQ());
 	}
 
 	public void b(NBTCompoundTag var1) {
@@ -90,7 +90,7 @@ public class EntityPigZombie extends EntityZombie {
 		String var2 = var1.getString("HurtBy");
 		if (var2.length() > 0) {
 			this.bn = UUID.fromString(var2);
-			EntityHuman var3 = this.o.b(this.bn);
+			EntityHuman var3 = this.world.b(this.bn);
 			this.b((EntityLiving) var3);
 			if (var3 != null) {
 				this.aL = var3;
@@ -163,7 +163,7 @@ public class EntityPigZombie extends EntityZombie {
 	}
 
 	protected void a(vu var1) {
-		this.c(0, new ItemStack(Items.GOLDEN_SWORD));
+		this.setArmor(0, new ItemStack(Items.GOLDEN_SWORD));
 	}
 
 	public xq a(vu var1, xq var2) {

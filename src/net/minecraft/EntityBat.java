@@ -82,21 +82,21 @@ public class EntityBat extends abn {
 		Position var1 = new Position(this);
 		Position var2 = var1.a();
 		if (this.n()) {
-			if (!this.o.p(var2).getBlock().t()) {
+			if (!this.world.getBlockState(var2).getBlock().t()) {
 				this.a(false);
-				this.o.a((EntityHuman) null, 1015, var1, 0);
+				this.world.a((EntityHuman) null, 1015, var1, 0);
 			} else {
 				if (this.V.nextInt(200) == 0) {
 					this.headPitch = (float) this.V.nextInt(360);
 				}
 
-				if (this.o.a(this, 4.0D) != null) {
+				if (this.world.a(this, 4.0D) != null) {
 					this.a(false);
-					this.o.a((EntityHuman) null, 1015, var1, 0);
+					this.world.a((EntityHuman) null, 1015, var1, 0);
 				}
 			}
 		} else {
-			if (this.a != null && (!this.o.d(this.a) || this.a.getY() < 1)) {
+			if (this.a != null && (!this.world.d(this.a) || this.a.getY() < 1)) {
 				this.a = null;
 			}
 
@@ -114,7 +114,7 @@ public class EntityBat extends abn {
 			float var10 = DataTypesConverter.g(var9 - this.yaw);
 			this.aY = 0.5F;
 			this.yaw += var10;
-			if (this.V.nextInt(100) == 0 && this.o.p(var2).getBlock().t()) {
+			if (this.V.nextInt(100) == 0 && this.world.getBlockState(var2).getBlock().t()) {
 				this.a(true);
 			}
 		}
@@ -139,7 +139,7 @@ public class EntityBat extends abn {
 		if (this.b(var1)) {
 			return false;
 		} else {
-			if (!this.o.D && this.n()) {
+			if (!this.world.D && this.n()) {
 				this.a(false);
 			}
 
@@ -162,9 +162,9 @@ public class EntityBat extends abn {
 		if (var1.getY() >= 63) {
 			return false;
 		} else {
-			int var2 = this.o.l(var1);
+			int var2 = this.world.l(var1);
 			byte var3 = 4;
-			if (this.a(this.o.Y())) {
+			if (this.a(this.world.Y())) {
 				var3 = 7;
 			} else if (this.V.nextBoolean()) {
 				return false;

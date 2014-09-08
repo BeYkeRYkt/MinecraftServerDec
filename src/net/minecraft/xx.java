@@ -57,7 +57,7 @@ public abstract class xx extends abq implements xt {
 			double var4 = this.V.nextGaussian() * 0.02D;
 			double var6 = this.V.nextGaussian() * 0.02D;
 			double var8 = this.V.nextGaussian() * 0.02D;
-			this.o.a(var2, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var4, var6, var8, new int[0]);
+			this.world.a(var2, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var4, var6, var8, new int[0]);
 		}
 
 	}
@@ -105,7 +105,7 @@ public abstract class xx extends abq implements xt {
 	public EntityLiving cm() {
 		try {
 			UUID var1 = UUID.fromString(this.b());
-			return var1 == null ? null : this.o.b(var1);
+			return var1 == null ? null : this.world.b(var1);
 		} catch (IllegalArgumentException var2) {
 			return null;
 		}
@@ -150,7 +150,7 @@ public abstract class xx extends abq implements xt {
 	}
 
 	public void a(DamageSource var1) {
-		if (!this.o.D && this.o.Q().b("showDeathMessages") && this.k_() && this.cm() instanceof EntityPlayer) {
+		if (!this.world.D && this.world.Q().b("showDeathMessages") && this.k_() && this.cm() instanceof EntityPlayer) {
 			((EntityPlayer) this.cm()).sendChatMessage(this.br().getMessage());
 		}
 

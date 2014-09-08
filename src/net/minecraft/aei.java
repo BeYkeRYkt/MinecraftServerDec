@@ -10,11 +10,11 @@ class aei extends aqi {
 	}
 
 	public void a(int var1) {
-		this.a.o.a((Entity) this.a, (byte) var1);
+		this.a.world.a((Entity) this.a, (byte) var1);
 	}
 
 	public World a() {
-		return this.a.o;
+		return this.a.world;
 	}
 
 	public Position b() {

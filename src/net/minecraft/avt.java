@@ -15,15 +15,15 @@ public class avt extends Block {
 		super(var1);
 	}
 
-	public void c(World var1, Position var2, bec var3) {
+	public void c(World var1, Position var2, BlockState var3) {
 		var1.a(var2, (Block) this, this.a(var1));
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, BlockState var3, Block var4) {
 		var1.a(var2, (Block) this, this.a(var1));
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, BlockState var3, Random var4) {
 		if (!var1.D) {
 			this.e(var1, var2);
 		}
@@ -35,7 +35,7 @@ public class avt extends Block {
 			byte var3 = 32;
 			if (!M && var1.a(var2.a(-var3, -var3, -var3), var2.a(var3, var3, var3))) {
 				if (!var1.D) {
-					EntityFallingBlock var5 = new EntityFallingBlock(var1, (double) var2.getX() + 0.5D, (double) var2.getY(), (double) var2.getZ() + 0.5D, var1.p(var2));
+					EntityFallingBlock var5 = new EntityFallingBlock(var1, (double) var2.getX() + 0.5D, (double) var2.getY(), (double) var2.getZ() + 0.5D, var1.getBlockState(var2));
 					this.a(var5);
 					var1.d((Entity) var5);
 				}
@@ -48,7 +48,7 @@ public class avt extends Block {
 				}
 
 				if (var4.getY() > 0) {
-					var1.a(var4.a(), this.P());
+					var1.a(var4.a(), this.getBlockState());
 				}
 			}
 
@@ -63,7 +63,7 @@ public class avt extends Block {
 	}
 
 	public static boolean d(World var0, Position var1) {
-		Block var2 = var0.p(var1).getBlock();
+		Block var2 = var0.getBlockState(var1).getBlock();
 		Material var3 = var2.material;
 		return var2 == Blocks.FIRE || var3 == Material.AIR || var3 == Material.WATER || var3 == Material.LAVA;
 	}

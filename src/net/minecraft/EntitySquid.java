@@ -68,7 +68,7 @@ public class EntitySquid extends act {
 	}
 
 	public boolean V() {
-		return this.o.a(this.aQ().b(0.0D, -0.6000000238418579D, 0.0D), Material.WATER, (Entity) this);
+		return this.world.a(this.aQ().b(0.0D, -0.6000000238418579D, 0.0D), Material.WATER, (Entity) this);
 	}
 
 	public void m() {
@@ -79,7 +79,7 @@ public class EntitySquid extends act {
 		this.bm = this.bl;
 		this.bj += this.bo;
 		if ((double) this.bj > 6.283185307179586D) {
-			if (this.o.D) {
+			if (this.world.D) {
 				this.bj = 6.2831855F;
 			} else {
 				this.bj = (float) ((double) this.bj - 6.283185307179586D);
@@ -87,7 +87,7 @@ public class EntitySquid extends act {
 					this.bo = 1.0F / (this.V.nextFloat() + 1.0F) * 0.2F;
 				}
 
-				this.o.a((Entity) this, (byte) 19);
+				this.world.a((Entity) this, (byte) 19);
 			}
 		}
 
@@ -108,7 +108,7 @@ public class EntitySquid extends act {
 				this.bp *= 0.99F;
 			}
 
-			if (!this.o.D) {
+			if (!this.world.D) {
 				this.motionX = (double) (this.bq * this.bn);
 				this.motionY = (double) (this.br * this.bn);
 				this.motionZ = (double) (this.bs * this.bn);
@@ -121,7 +121,7 @@ public class EntitySquid extends act {
 			this.a += (-((float) Math.atan2((double) var1, this.motionY)) * 180.0F / 3.1415927F - this.a) * 0.1F;
 		} else {
 			this.bl = DataTypesConverter.e(DataTypesConverter.a(this.bj)) * 3.1415927F * 0.25F;
-			if (!this.o.D) {
+			if (!this.world.D) {
 				this.motionX = 0.0D;
 				this.motionY -= 0.08D;
 				this.motionY *= 0.9800000190734863D;

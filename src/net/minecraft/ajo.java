@@ -17,13 +17,13 @@ final class ajo extends eg {
 			int var10 = var9 instanceof EntityHuman ? 1 : 0;
 			int var11 = EntityInsentient.c(var2);
 			ItemStack var12 = var2.getCopy();
-			var12.b = 1;
-			var9.c(var11 - var10, var12);
+			var12.amount = 1;
+			var9.setArmor(var11 - var10, var12);
 			if (var9 instanceof EntityInsentient) {
 				((EntityInsentient) var9).a(var11, 2.0F);
 			}
 
-			--var2.b;
+			--var2.amount;
 			return var2;
 		} else {
 			return super.b(var1, var2);

@@ -15,8 +15,8 @@ public abstract class WorldProvider {
 
 	public final void a(World var1) {
 		this.b = var1;
-		this.h = var1.P().getLevelType();
-		this.i = var1.P().B();
+		this.h = var1.getWorldData().getLevelType();
+		this.i = var1.getWorldData().B();
 		this.b();
 		this.a();
 	}
@@ -32,9 +32,9 @@ public abstract class WorldProvider {
 	}
 
 	protected void b() {
-		LevelType var1 = this.b.P().getLevelType();
+		LevelType var1 = this.b.getWorldData().getLevelType();
 		if (var1 == LevelType.FLAT) {
-			biv var2 = biv.a(this.b.P().B());
+			biv var2 = biv.a(this.b.getWorldData().B());
 			this.c = new asc(arm.a(var2.a(), arm.ad), 0.5F);
 		} else if (var1 == LevelType.DEBUG) {
 			this.c = new asc(arm.q, 0.0F);
@@ -45,7 +45,7 @@ public abstract class WorldProvider {
 	}
 
 	public IChunkProvider c() {
-		return (IChunkProvider) (this.h == LevelType.FLAT ? new bgq(this.b, this.b.J(), this.b.P().s(), this.i) : (this.h == LevelType.DEBUG ? new bgp(this.b) : (this.h == LevelType.CUSTOM ? new bgv(this.b, this.b.J(), this.b.P().s(), this.i) : new bgv(this.b, this.b.J(), this.b.P().s(), this.i))));
+		return (IChunkProvider) (this.h == LevelType.FLAT ? new bgq(this.b, this.b.J(), this.b.getWorldData().s(), this.i) : (this.h == LevelType.DEBUG ? new bgp(this.b) : (this.h == LevelType.CUSTOM ? new bgv(this.b, this.b.J(), this.b.getWorldData().s(), this.i) : new bgv(this.b, this.b.J(), this.b.getWorldData().s(), this.i))));
 	}
 
 	public boolean a(int var1, int var2) {

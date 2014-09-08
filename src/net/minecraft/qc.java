@@ -19,7 +19,7 @@ public class qc extends JList implements PacketTickable {
 			Vector var1 = new Vector();
 
 			for (int var2 = 0; var2 < this.a.getPlayerList().players.size(); ++var2) {
-				var1.add(((EntityPlayer) this.a.getPlayerList().players.get(var2)).d_());
+				var1.add(((EntityPlayer) this.a.getPlayerList().players.get(var2)).getName());
 			}
 
 			this.setListData(var1);

@@ -2,29 +2,30 @@ package net.minecraft;
 
 public class TileEntityCommand extends TileEntity {
 
-	private final aqf a = new bcu(this);
+	private final CommandBlockListenerAbstract listener = new TileEntityCommandListener(this);
 
-	public void write(NBTCompoundTag var1) {
-		super.write(var1);
-		this.a.a(var1);
+	public void write(NBTCompoundTag tag) {
+		super.write(tag);
+		this.listener.write(tag);
 	}
 
-	public void read(NBTCompoundTag var1) {
-		super.read(var1);
-		this.a.b(var1);
+	public void read(NBTCompoundTag tag) {
+		super.read(tag);
+		this.listener.read(tag);
 	}
 
-	public Packet getUpdatePacket() {
-		NBTCompoundTag var1 = new NBTCompoundTag();
-		this.write(var1);
-		return new PacketPlayOutUpdateBlockEntity(this.position, 2, var1);
+	public Packet<? extends PacketListener> getUpdatePacket() {
+		NBTCompoundTag tag = new NBTCompoundTag();
+		this.write(tag);
+		return new PacketPlayOutUpdateBlockEntity(this.position, 2, tag);
 	}
 
-	public aqf b() {
-		return this.a;
+	public CommandBlockListenerAbstract getListener() {
+		return this.listener;
 	}
 
-	public af c() {
-		return this.a.n();
+	public CommandBlockStatistic getStatistic() {
+		return this.listener.getStatistic();
 	}
+
 }

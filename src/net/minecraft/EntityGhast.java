@@ -26,8 +26,8 @@ public class EntityGhast extends xl implements aex {
 
 	public void s_() {
 		super.s_();
-		if (!this.o.D && this.o.getDifficulty() == Difficulty.PEACEFUL) {
-			this.J();
+		if (!this.world.D && this.world.getDifficulty() == Difficulty.PEACEFUL) {
+			this.die();
 		}
 
 	}
@@ -92,7 +92,7 @@ public class EntityGhast extends xl implements aex {
 	}
 
 	public boolean bQ() {
-		return this.V.nextInt(20) == 0 && super.bQ() && this.o.getDifficulty() != Difficulty.PEACEFUL;
+		return this.V.nextInt(20) == 0 && super.bQ() && this.world.getDifficulty() != Difficulty.PEACEFUL;
 	}
 
 	public int bU() {

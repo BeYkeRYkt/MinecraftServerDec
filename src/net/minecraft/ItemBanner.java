@@ -13,7 +13,7 @@ public class ItemBanner extends ItemBlock {
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var5 == BlockFace.DOWN) {
 			return false;
-		} else if (!var3.p(var4).getBlock().r().isBuildable()) {
+		} else if (!var3.getBlockState(var4).getBlock().getMaterial().isBuildable()) {
 			return false;
 		} else {
 			var4 = var4.a(var5);
@@ -26,13 +26,13 @@ public class ItemBanner extends ItemBlock {
 			} else {
 				if (var5 == BlockFace.UP) {
 					int var9 = DataTypesConverter.toFixedPointInt((double) ((var2.yaw + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
-					var3.a(var4, Blocks.STANDING_BANNER.P().a(BlockStandingSign.a, Integer.valueOf(var9)), 3);
+					var3.a(var4, Blocks.STANDING_BANNER.getBlockState().a(BlockStandingSign.a, Integer.valueOf(var9)), 3);
 				} else {
-					var3.a(var4, Blocks.WALL_BANNER.P().a(BlockWallSign.a, var5), 3);
+					var3.a(var4, Blocks.WALL_BANNER.getBlockState().a(BlockWallSign.a, var5), 3);
 				}
 
-				--var1.b;
-				TileEntity var10 = var3.s(var4);
+				--var1.amount;
+				TileEntity var10 = var3.getTileEntity(var4);
 				if (var10 instanceof TileEntityBanner) {
 					((TileEntityBanner) var10).a(var1);
 				}
@@ -55,7 +55,7 @@ public class ItemBanner extends ItemBlock {
 		if (var2 != null && var2.hasKey("Base")) {
 			var3 = akv.a(var2.getInt("Base"));
 		} else {
-			var3 = akv.a(var1.i());
+			var3 = akv.a(var1.getDurability());
 		}
 
 		return var3;

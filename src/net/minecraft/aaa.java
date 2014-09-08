@@ -13,11 +13,11 @@ public class aaa extends zb {
 	}
 
 	public boolean a() {
-		if (this.a.o.w()) {
+		if (this.a.world.w()) {
 			return false;
 		} else {
 			Position var1 = new Position(this.a);
-			abi var2 = this.a.o.ae().a(var1, 16);
+			abi var2 = this.a.world.ae().a(var1, 16);
 			if (var2 == null) {
 				return false;
 			} else {
@@ -28,7 +28,7 @@ public class aaa extends zb {
 	}
 
 	public boolean b() {
-		return this.a.o.w() ? false : !this.b.i() && this.b.c(new Position(this.a));
+		return this.a.world.w() ? false : !this.b.i() && this.b.c(new Position(this.a));
 	}
 
 	public void c() {

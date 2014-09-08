@@ -38,11 +38,11 @@ public class FillCommand extends AbstractCommand {
 			if (var9 > '\u8000') {
 				throw new di("commands.fill.tooManyBlocks", new Object[] { Integer.valueOf(var9), Integer.valueOf('\u8000') });
 			} else if (var7.getY() >= 0 && var8.getY() < 256) {
-				World var10 = var1.e();
+				World var10 = var1.getWorld();
 
 				for (int var11 = var7.getZ(); var11 < var8.getZ() + 16; var11 += 16) {
 					for (int var12 = var7.getX(); var12 < var8.getX() + 16; var12 += 16) {
-						if (!var10.e(new Position(var12, var8.getY() - var7.getY(), var11))) {
+						if (!var10.isLoaded(new Position(var12, var8.getY() - var7.getY(), var11))) {
 							throw new di("commands.fill.outOfWorld", new Object[0]);
 						}
 					}
@@ -68,7 +68,7 @@ public class FillCommand extends AbstractCommand {
 					for (int var15 = var7.getY(); var15 <= var8.getY(); ++var15) {
 						for (int var16 = var7.getX(); var16 <= var8.getX(); ++var16) {
 							Position var17 = new Position(var16, var15, var14);
-							bec var19;
+							BlockState var19;
 							if (var2.length >= 9) {
 								if (!var2[8].equals("outline") && !var2[8].equals("hollow")) {
 									if (var2[8].equals("destroy")) {
@@ -80,14 +80,14 @@ public class FillCommand extends AbstractCommand {
 									} else if (var2[8].equals("replace") && !var5.x()) {
 										if (var2.length > 9) {
 											Block var18 = AbstractCommand.g(var1, var2[9]);
-											if (var10.p(var17).getBlock() != var18) {
+											if (var10.getBlockState(var17).getBlock() != var18) {
 												continue;
 											}
 										}
 
 										if (var2.length > 10) {
 											int var28 = AbstractCommand.a(var2[10]);
-											var19 = var10.p(var17);
+											var19 = var10.getBlockState(var17);
 											if (var19.getBlock().c(var19) != var28) {
 												continue;
 											}
@@ -95,20 +95,20 @@ public class FillCommand extends AbstractCommand {
 									}
 								} else if (var16 != var7.getX() && var16 != var8.getX() && var15 != var7.getY() && var15 != var8.getY() && var14 != var7.getZ() && var14 != var8.getZ()) {
 									if (var2[8].equals("hollow")) {
-										var10.a(var17, Blocks.AIR.P(), 2);
+										var10.a(var17, Blocks.AIR.getBlockState(), 2);
 										var24.add(var17);
 									}
 									continue;
 								}
 							}
 
-							TileEntity var29 = var10.s(var17);
+							TileEntity var29 = var10.getTileEntity(var17);
 							if (var29 != null) {
 								if (var29 instanceof IInventory) {
 									((IInventory) var29).l();
 								}
 
-								var10.a(var17, Blocks.BARRIER.P(), var5 == Blocks.BARRIER ? 2 : 4);
+								var10.a(var17, Blocks.BARRIER.getBlockState(), var5 == Blocks.BARRIER ? 2 : 4);
 							}
 
 							var19 = var5.a(var6);
@@ -116,7 +116,7 @@ public class FillCommand extends AbstractCommand {
 								var24.add(var17);
 								++var9;
 								if (var23) {
-									TileEntity var20 = var10.s(var17);
+									TileEntity var20 = var10.getTileEntity(var17);
 									if (var20 != null) {
 										var22.put("x", var17.getX());
 										var22.put("y", var17.getY());
@@ -133,7 +133,7 @@ public class FillCommand extends AbstractCommand {
 
 				while (var25.hasNext()) {
 					Position var26 = (Position) var25.next();
-					Block var27 = var10.p(var26).getBlock();
+					Block var27 = var10.getBlockState(var26).getBlock();
 					var10.b(var26, var27);
 				}
 

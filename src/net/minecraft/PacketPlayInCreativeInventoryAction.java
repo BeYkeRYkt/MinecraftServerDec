@@ -4,16 +4,16 @@ import java.io.IOException;
 
 public class PacketPlayInCreativeInventoryAction implements Packet<PlayInPacketListener> {
 
-	private int windowId;
+	private int slot;
 	private ItemStack item;
 
 	public void readData(PacketDataSerializer serializer) throws IOException {
-		this.windowId = serializer.readShort();
+		this.slot = serializer.readShort();
 		this.item = serializer.readItemStack();
 	}
 
 	public void writeData(PacketDataSerializer serializer) {
-		serializer.writeShort(this.windowId);
+		serializer.writeShort(this.slot);
 		serializer.writeItemStack(this.item);
 	}
 
@@ -21,8 +21,8 @@ public class PacketPlayInCreativeInventoryAction implements Packet<PlayInPacketL
 		listener.handle(this);
 	}
 
-	public int getWindowId() {
-		return this.windowId;
+	public int getSlot() {
+		return this.slot;
 	}
 
 	public ItemStack getItem() {

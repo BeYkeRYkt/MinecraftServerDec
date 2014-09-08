@@ -68,7 +68,7 @@ public class RecipeFireworks implements IRecipe {
 					var19.put("Explosions", (NBTTag) var23);
 					var19.put("Flight", (byte) var4);
 					var16.put("Fireworks", (NBTTag) var19);
-					this.a.d(var16);
+					this.a.setTag(var16);
 				}
 
 				return true;
@@ -83,7 +83,7 @@ public class RecipeFireworks implements IRecipe {
 					ItemStack var14 = var1.a(var13);
 					if (var14 != null) {
 						if (var14.getItem() == Items.DYE) {
-							var12.add(Integer.valueOf(ItemDye.a[var14.i() & 15]));
+							var12.add(Integer.valueOf(ItemDye.a[var14.getDurability() & 15]));
 						} else if (var14.getItem() == Items.GLOWSTONE_DUST) {
 							var19.put("Flicker", true);
 						} else if (var14.getItem() == Items.DIAMOND) {
@@ -109,7 +109,7 @@ public class RecipeFireworks implements IRecipe {
 				var19.put("Colors", var25);
 				var19.put("Type", var22);
 				var16.put("Explosion", (NBTTag) var19);
-				this.a.d(var16);
+				this.a.setTag(var16);
 				return true;
 			} else if (var4 == 0 && var3 == 0 && var6 == 1 && var5 > 0 && var5 == var7) {
 				ArrayList var15 = Lists.newArrayList();
@@ -118,10 +118,10 @@ public class RecipeFireworks implements IRecipe {
 					ItemStack var11 = var1.a(var17);
 					if (var11 != null) {
 						if (var11.getItem() == Items.DYE) {
-							var15.add(Integer.valueOf(ItemDye.a[var11.i() & 15]));
+							var15.add(Integer.valueOf(ItemDye.a[var11.getDurability() & 15]));
 						} else if (var11.getItem() == Items.FIREWORK_CHARGE) {
 							this.a = var11.getCopy();
-							this.a.b = 1;
+							this.a.amount = 1;
 						}
 					}
 				}

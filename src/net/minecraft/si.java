@@ -19,7 +19,7 @@ final class si implements ProfileLookupCallback {
 
 	public void onProfileLookupSucceeded(GameProfile var1) {
 		this.a.getUserCache().saveProfile(var1);
-		this.b.a((sr) (new sq(var1, this.a.getOpPermissionLevel())));
+		this.b.add((sr) (new sq(var1, this.a.getOpPermissionLevel())));
 	}
 
 	public void onProfileLookupFailed(GameProfile var1, Exception var2) {

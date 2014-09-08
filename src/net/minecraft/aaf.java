@@ -18,10 +18,10 @@ public class aaf extends zb {
 	public boolean a() {
 		if (this.a.l() >= 0) {
 			return false;
-		} else if (!this.a.o.w()) {
+		} else if (!this.a.world.w()) {
 			return false;
 		} else {
-			List var1 = this.a.o.a(EntityIronGolem.class, this.a.aQ().b(6.0D, 2.0D, 6.0D));
+			List var1 = this.a.world.a(EntityIronGolem.class, this.a.aQ().b(6.0D, 2.0D, 6.0D));
 			if (var1.isEmpty()) {
 				return false;
 			} else {
@@ -62,7 +62,7 @@ public class aaf extends zb {
 			this.d = true;
 		}
 
-		if (this.d && this.a.h(this.b) < 4.0D) {
+		if (this.d && this.a.getDistanceSquared(this.b) < 4.0D) {
 			this.b.a(false);
 			this.a.s().n();
 		}

@@ -30,8 +30,8 @@ public class EntityEnderCrystal extends Entity {
 		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
 		int var2 = DataTypesConverter.toFixedPointInt(this.locationY);
 		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
-		if (this.o.worldProvider instanceof TheEndWorldProvider && this.o.p(new Position(var1, var2, var3)).getBlock() != Blocks.FIRE) {
-			this.o.a(new Position(var1, var2, var3), Blocks.FIRE.P());
+		if (this.world.worldProvider instanceof TheEndWorldProvider && this.world.getBlockState(new Position(var1, var2, var3)).getBlock() != Blocks.FIRE) {
+			this.world.a(new Position(var1, var2, var3), Blocks.FIRE.getBlockState());
 		}
 
 	}
@@ -50,12 +50,12 @@ public class EntityEnderCrystal extends Entity {
 		if (this.b(var1)) {
 			return false;
 		} else {
-			if (!this.I && !this.o.D) {
+			if (!this.dead && !this.world.D) {
 				this.b = 0;
 				if (this.b <= 0) {
-					this.J();
-					if (!this.o.D) {
-						this.o.a((Entity) null, this.locationX, this.locationY, this.locationZ, 6.0F, true);
+					this.die();
+					if (!this.world.D) {
+						this.world.a((Entity) null, this.locationX, this.locationY, this.locationZ, 6.0F, true);
 					}
 				}
 			}

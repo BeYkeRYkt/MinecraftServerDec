@@ -73,7 +73,7 @@ public class aph {
 
 		if (var2.getSize() > 0) {
 			if (var1.getItem() != Items.ENCHANTED_BOOK) {
-				var1.a("ench", (NBTTag) var2);
+				var1.addTag("ench", (NBTTag) var2);
 			}
 		} else if (var1.hasTag()) {
 			var1.getTag().remove("ench");
@@ -150,11 +150,11 @@ public class aph {
 		d.b = var1;
 		d.a = var0;
 		if (var0 != null) {
-			a((apl) d, var0.at());
+			a((apl) d, var0.getArmorContents());
 		}
 
 		if (var1 instanceof EntityHuman) {
-			a((apl) d, var0.bz());
+			a((apl) d, var0.getItemInHand());
 		}
 
 	}
@@ -163,61 +163,61 @@ public class aph {
 		e.a = var0;
 		e.b = var1;
 		if (var0 != null) {
-			a((apl) e, var0.at());
+			a((apl) e, var0.getArmorContents());
 		}
 
 		if (var0 instanceof EntityHuman) {
-			a((apl) e, var0.bz());
+			a((apl) e, var0.getItemInHand());
 		}
 
 	}
 
 	public static int a(EntityLiving var0) {
-		return a(Enchantment.KNOCKBACK.id, var0.bz());
+		return a(Enchantment.KNOCKBACK.id, var0.getItemInHand());
 	}
 
 	public static int b(EntityLiving var0) {
-		return a(Enchantment.FIRE_ASPECT.id, var0.bz());
+		return a(Enchantment.FIRE_ASPECT.id, var0.getItemInHand());
 	}
 
 	public static int a(Entity var0) {
-		return a(Enchantment.OXYGEN.id, var0.at());
+		return a(Enchantment.OXYGEN.id, var0.getArmorContents());
 	}
 
 	public static int b(Entity var0) {
-		return a(Enchantment.DEPTH_STRIDER.id, var0.at());
+		return a(Enchantment.DEPTH_STRIDER.id, var0.getArmorContents());
 	}
 
 	public static int c(EntityLiving var0) {
-		return a(Enchantment.DIG_SPEED.id, var0.bz());
+		return a(Enchantment.DIG_SPEED.id, var0.getItemInHand());
 	}
 
 	public static boolean e(EntityLiving var0) {
-		return a(Enchantment.SILK_TOUCH.id, var0.bz()) > 0;
+		return a(Enchantment.SILK_TOUCH.id, var0.getItemInHand()) > 0;
 	}
 
 	public static int f(EntityLiving var0) {
-		return a(Enchantment.LOOT_BONUS_BLOCKS.id, var0.bz());
+		return a(Enchantment.LOOT_BONUS_BLOCKS.id, var0.getItemInHand());
 	}
 
 	public static int g(EntityLiving var0) {
-		return a(Enchantment.LUCK.id, var0.bz());
+		return a(Enchantment.LUCK.id, var0.getItemInHand());
 	}
 
 	public static int h(EntityLiving var0) {
-		return a(Enchantment.LURE.id, var0.bz());
+		return a(Enchantment.LURE.id, var0.getItemInHand());
 	}
 
 	public static int i(EntityLiving var0) {
-		return a(Enchantment.LOOT_BONUS_MOBS.id, var0.bz());
+		return a(Enchantment.LOOT_BONUS_MOBS.id, var0.getItemInHand());
 	}
 
 	public static boolean j(EntityLiving var0) {
-		return a(Enchantment.WATER_WORKER.id, var0.at()) > 0;
+		return a(Enchantment.WATER_WORKER.id, var0.getArmorContents()) > 0;
 	}
 
 	public static ItemStack a(Enchantment var0, EntityLiving var1) {
-		ItemStack[] var2 = var1.at();
+		ItemStack[] var2 = var1.getArmorContents();
 		int var3 = var2.length;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
@@ -249,7 +249,7 @@ public class aph {
 		List var3 = b(var0, var1, var2);
 		boolean var4 = var1.getItem() == Items.BOOK;
 		if (var4) {
-			var1.a((Item) Items.ENCHANTED_BOOK);
+			var1.setItem((Item) Items.ENCHANTED_BOOK);
 		}
 
 		if (var3 != null) {

@@ -21,7 +21,7 @@ public class EntitySnowman extends abw implements afr {
 
 	public void m() {
 		super.m();
-		if (!this.o.D) {
+		if (!this.world.D) {
 			int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
 			int var2 = DataTypesConverter.toFixedPointInt(this.locationY);
 			int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
@@ -29,7 +29,7 @@ public class EntitySnowman extends abw implements afr {
 				this.a(DamageSource.f, 1.0F);
 			}
 
-			if (this.o.b(new Position(var1, 0, var3)).a(new Position(var1, var2, var3)) > 1.0F) {
+			if (this.world.b(new Position(var1, 0, var3)).a(new Position(var1, var2, var3)) > 1.0F) {
 				this.a(DamageSource.c, 1.0F);
 			}
 
@@ -37,8 +37,8 @@ public class EntitySnowman extends abw implements afr {
 				var1 = DataTypesConverter.toFixedPointInt(this.locationX + (double) ((float) (var4 % 2 * 2 - 1) * 0.25F));
 				var2 = DataTypesConverter.toFixedPointInt(this.locationY);
 				var3 = DataTypesConverter.toFixedPointInt(this.locationZ + (double) ((float) (var4 / 2 % 2 * 2 - 1) * 0.25F));
-				if (this.o.p(new Position(var1, var2, var3)).getBlock().r() == Material.AIR && this.o.b(new Position(var1, 0, var3)).a(new Position(var1, var2, var3)) < 0.8F && Blocks.SNOW_LAYER.c(this.o, new Position(var1, var2, var3))) {
-					this.o.a(new Position(var1, var2, var3), Blocks.SNOW_LAYER.P());
+				if (this.world.getBlockState(new Position(var1, var2, var3)).getBlock().getMaterial() == Material.AIR && this.world.b(new Position(var1, 0, var3)).a(new Position(var1, var2, var3)) < 0.8F && Blocks.SNOW_LAYER.c(this.world, new Position(var1, var2, var3))) {
+					this.world.a(new Position(var1, var2, var3), Blocks.SNOW_LAYER.getBlockState());
 				}
 			}
 		}
@@ -59,7 +59,7 @@ public class EntitySnowman extends abw implements afr {
 	}
 
 	public void a(EntityLiving var1, float var2) {
-		EntitySnowball var3 = new EntitySnowball(this.o, this);
+		EntitySnowball var3 = new EntitySnowball(this.world, this);
 		double var4 = var1.locationY + (double) var1.aR() - 1.100000023841858D;
 		double var6 = var1.locationX - this.locationX;
 		double var8 = var4 - var3.locationY;
@@ -67,7 +67,7 @@ public class EntitySnowman extends abw implements afr {
 		float var12 = DataTypesConverter.a(var6 * var6 + var10 * var10) * 0.2F;
 		var3.c(var6, var8 + (double) var12, var10, 1.6F, 12.0F);
 		this.a("random.bow", 1.0F, 1.0F / (this.bb().nextFloat() * 0.4F + 0.8F));
-		this.o.d((Entity) var3);
+		this.world.d((Entity) var3);
 	}
 
 	public float aR() {

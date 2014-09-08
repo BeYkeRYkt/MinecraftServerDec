@@ -113,7 +113,7 @@ public class qn {
 			var7.addDetails("Update interval", (Callable) (new qo(this, var3)));
 			var1.a(var7);
 			CrashReportSystemDetails var8 = var6.generateSystemDetails("Entity That Is Already Tracked");
-			((qy) this.d.a(var1.getId())).a.a(var8);
+			((qy) this.d.get(var1.getId())).a.a(var8);
 
 			try {
 				throw new ReportedException(var6);
@@ -184,7 +184,7 @@ public class qn {
 	}
 
 	public void a(Entity var1, Packet var2) {
-		qy var3 = (qy) this.d.a(var1.getId());
+		qy var3 = (qy) this.d.get(var1.getId());
 		if (var3 != null) {
 			var3.a(var2);
 		}
@@ -192,7 +192,7 @@ public class qn {
 	}
 
 	public void b(Entity var1, Packet var2) {
-		qy var3 = (qy) this.d.a(var1.getId());
+		qy var3 = (qy) this.d.get(var1.getId());
 		if (var3 != null) {
 			var3.b(var2);
 		}

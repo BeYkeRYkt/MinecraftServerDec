@@ -10,19 +10,19 @@ public class BlockSmoothBrick extends Block {
 
 	public BlockSmoothBrick() {
 		super(Material.STONE);
-		this.j(this.L.b().a(a, bbd.a));
+		this.setBlockState(this.L.b().a(a, bbd.a));
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(bec var1) {
+	public int a(BlockState var1) {
 		return ((bbd) var1.b(a)).a();
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, bbd.a(var1));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(a, bbd.a(var1));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((bbd) var1.b(a)).a();
 	}
 

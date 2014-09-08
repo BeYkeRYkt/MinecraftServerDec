@@ -29,16 +29,16 @@ public class bnd extends bnn {
 			this.l.a(0, this.h - this.l.e + 4 - 1, 0);
 		}
 
-		this.a(var1, var3, 0, 0, 0, 2, 3, 1, Blocks.AIR.P(), Blocks.AIR.P(), false);
-		this.a(var1, Blocks.FENCE.P(), 1, 0, 0, var3);
-		this.a(var1, Blocks.FENCE.P(), 1, 1, 0, var3);
-		this.a(var1, Blocks.FENCE.P(), 1, 2, 0, var3);
+		this.a(var1, var3, 0, 0, 0, 2, 3, 1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, Blocks.FENCE.getBlockState(), 1, 0, 0, var3);
+		this.a(var1, Blocks.FENCE.getBlockState(), 1, 1, 0, var3);
+		this.a(var1, Blocks.FENCE.getBlockState(), 1, 2, 0, var3);
 		this.a(var1, Blocks.WOOL.a(akv.a.b()), 1, 3, 0, var3);
 		boolean var4 = this.m == BlockFace.EAST || this.m == BlockFace.NORTH;
-		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m.e()), var4 ? 2 : 0, 3, 0, var3);
-		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m), 1, 3, 1, var3);
-		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m.f()), var4 ? 0 : 2, 3, 0, var3);
-		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m.getOpposite()), 1, 3, -1, var3);
+		this.a(var1, Blocks.TORCH.getBlockState().a(BlockTorch.a, this.m.e()), var4 ? 2 : 0, 3, 0, var3);
+		this.a(var1, Blocks.TORCH.getBlockState().a(BlockTorch.a, this.m), 1, 3, 1, var3);
+		this.a(var1, Blocks.TORCH.getBlockState().a(BlockTorch.a, this.m.f()), var4 ? 0 : 2, 3, 0, var3);
+		this.a(var1, Blocks.TORCH.getBlockState().a(BlockTorch.a, this.m.getOpposite()), 1, 3, -1, var3);
 		return true;
 	}
 }

@@ -34,7 +34,7 @@ public class bie extends bhp {
 			for (var15 = -1; var15 <= 4; ++var15) {
 				for (var16 = var11; var16 <= var12; ++var16) {
 					var17 = var3.a(var14, var15, var16);
-					Material var18 = var1.p(var17).getBlock().r();
+					Material var18 = var1.getBlockState(var17).getBlock().getMaterial();
 					boolean var19 = var18.isBuildable();
 					if (var15 == -1 && !var19) {
 						return false;
@@ -57,16 +57,16 @@ public class bie extends bhp {
 					for (var16 = var11; var16 <= var12; ++var16) {
 						var17 = var3.a(var14, var15, var16);
 						if (var14 != var6 && var15 != -1 && var16 != var11 && var14 != var7 && var15 != 4 && var16 != var12) {
-							if (var1.p(var17).getBlock() != Blocks.CHEST) {
+							if (var1.getBlockState(var17).getBlock() != Blocks.CHEST) {
 								var1.g(var17);
 							}
-						} else if (var17.getY() >= 0 && !var1.p(var17.b()).getBlock().r().isBuildable()) {
+						} else if (var17.getY() >= 0 && !var1.getBlockState(var17.b()).getBlock().getMaterial().isBuildable()) {
 							var1.g(var17);
-						} else if (var1.p(var17).getBlock().r().isBuildable() && var1.p(var17).getBlock() != Blocks.CHEST) {
+						} else if (var1.getBlockState(var17).getBlock().getMaterial().isBuildable() && var1.getBlockState(var17).getBlock() != Blocks.CHEST) {
 							if (var15 == -1 && var2.nextInt(4) != 0) {
-								var1.a(var17, Blocks.MOSSY_COBBLESTONE.P(), 2);
+								var1.a(var17, Blocks.MOSSY_COBBLESTONE.getBlockState(), 2);
 							} else {
-								var1.a(var17, Blocks.COBBLESTONE.P(), 2);
+								var1.a(var17, Blocks.COBBLESTONE.getBlockState(), 2);
 							}
 						}
 					}
@@ -91,15 +91,15 @@ public class bie extends bhp {
 
 								while (var21.hasNext()) {
 									BlockFace var22 = (BlockFace) var21.next();
-									if (var1.p(var26.a(var22)).getBlock().r().isBuildable()) {
+									if (var1.getBlockState(var26.a(var22)).getBlock().getMaterial().isBuildable()) {
 										++var20;
 									}
 								}
 
 								if (var20 == 1) {
-									var1.a(var26, Blocks.CHEST.f(var1, var26, Blocks.CHEST.P()), 2);
+									var1.a(var26, Blocks.CHEST.f(var1, var26, Blocks.CHEST.getBlockState()), 2);
 									List var27 = vl.a(c, new vl[] { Items.ENCHANTED_BOOK.b(var2) });
-									TileEntity var28 = var1.s(var26);
+									TileEntity var28 = var1.getTileEntity(var26);
 									if (var28 instanceof TileEntityChest) {
 										vl.a(var2, var27, (IInventory) ((TileEntityChest) var28), 8);
 									}
@@ -117,8 +117,8 @@ public class bie extends bhp {
 				}
 			}
 
-			var1.a(var3, Blocks.MOB_SPAWNER.P(), 2);
-			TileEntity var23 = var1.s(var3);
+			var1.a(var3, Blocks.MOB_SPAWNER.getBlockState(), 2);
+			TileEntity var23 = var1.getTileEntity(var3);
 			if (var23 instanceof TileEntityMobSpawner) {
 				((TileEntityMobSpawner) var23).b().a(this.a(var2));
 			} else {

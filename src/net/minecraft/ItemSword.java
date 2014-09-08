@@ -23,7 +23,7 @@ public class ItemSword extends Item {
 		if (var2 == Blocks.WEB) {
 			return 15.0F;
 		} else {
-			Material var3 = var2.r();
+			Material var3 = var2.getMaterial();
 			return var3 != Material.PLANT && var3 != Material.REPLACEABLE_PLANT && var3 != Material.CORAL && var3 != Material.LEAVES && var3 != Material.PUMPKIN ? 1.0F : 1.5F;
 		}
 	}

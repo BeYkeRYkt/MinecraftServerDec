@@ -8,10 +8,10 @@ public class ItemEnderPearl extends Item {
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
-		if (var3.by.instabuild) {
+		if (var3.playerProperties.instabuild) {
 			return var1;
 		} else {
-			--var1.b;
+			--var1.amount;
 			var2.a((Entity) var3, "random.bow", 0.5F, 0.4F / (rnd.nextFloat() * 0.4F + 0.8F));
 			if (!var2.D) {
 				var2.d((Entity) (new EntityEnderPearl(var2, var3)));

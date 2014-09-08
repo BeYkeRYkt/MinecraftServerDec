@@ -31,7 +31,7 @@ public abstract class abq extends ws implements wt {
 				double var1 = this.V.nextGaussian() * 0.02D;
 				double var3 = this.V.nextGaussian() * 0.02D;
 				double var5 = this.V.nextGaussian() * 0.02D;
-				this.o.a(Particle.I, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var1, var3, var5, new int[0]);
+				this.world.a(Particle.I, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var1, var3, var5, new int[0]);
 			}
 		}
 
@@ -47,7 +47,7 @@ public abstract class abq extends ws implements wt {
 	}
 
 	public float a(Position var1) {
-		return this.o.p(var1.b()).getBlock() == Blocks.GRASS ? 10.0F : this.o.o(var1) - 0.5F;
+		return this.world.getBlockState(var1.b()).getBlock() == Blocks.GRASS ? 10.0F : this.world.o(var1) - 0.5F;
 	}
 
 	public void b(NBTCompoundTag var1) {
@@ -65,7 +65,7 @@ public abstract class abq extends ws implements wt {
 		int var2 = DataTypesConverter.toFixedPointInt(this.aQ().minY);
 		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
 		Position var4 = new Position(var1, var2, var3);
-		return this.o.p(var4.b()).getBlock() == this.bl && this.o.k(var4) > 8 && super.bQ();
+		return this.world.getBlockState(var4.b()).getBlock() == this.bl && this.world.k(var4) > 8 && super.bQ();
 	}
 
 	public int w() {
@@ -77,7 +77,7 @@ public abstract class abq extends ws implements wt {
 	}
 
 	protected int b(EntityHuman var1) {
-		return 1 + this.o.s.nextInt(3);
+		return 1 + this.world.s.nextInt(3);
 	}
 
 	public boolean d(ItemStack var1) {
@@ -104,10 +104,10 @@ public abstract class abq extends ws implements wt {
 	}
 
 	protected void a(EntityHuman var1, ItemStack var2) {
-		if (!var1.by.instabuild) {
-			--var2.b;
-			if (var2.b <= 0) {
-				var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
+		if (!var1.playerProperties.instabuild) {
+			--var2.amount;
+			if (var2.amount <= 0) {
+				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 		}
 
@@ -116,7 +116,7 @@ public abstract class abq extends ws implements wt {
 	public void c(EntityHuman var1) {
 		this.bk = 600;
 		this.bm = var1;
-		this.o.a((Entity) this, (byte) 18);
+		this.world.a((Entity) this, (byte) 18);
 	}
 
 	public EntityHuman co() {

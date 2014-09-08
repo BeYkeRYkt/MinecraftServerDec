@@ -50,7 +50,7 @@ public class ItemBoat extends Item {
 			} else {
 				if (var24.type == EnumMovingObjectType.BLOCK) {
 					Position var33 = var24.getPosition();
-					if (var2.p(var33).getBlock() == Blocks.SNOW_LAYER) {
+					if (var2.getBlockState(var33).getBlock() == Blocks.SNOW_LAYER) {
 						var33 = var33.b();
 					}
 
@@ -64,8 +64,8 @@ public class ItemBoat extends Item {
 						var2.d((Entity) var34);
 					}
 
-					if (!var3.by.instabuild) {
-						--var1.b;
+					if (!var3.playerProperties.instabuild) {
+						--var1.amount;
 					}
 
 					var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);

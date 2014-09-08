@@ -17,7 +17,7 @@ public abstract class BlockLeaves extends BlockTransparent {
 		this.a(h);
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, BlockState var3) {
 		byte var4 = 1;
 		int var5 = var4 + 1;
 		int var6 = var2.getX();
@@ -28,8 +28,8 @@ public abstract class BlockLeaves extends BlockTransparent {
 				for (int var10 = -var4; var10 <= var4; ++var10) {
 					for (int var11 = -var4; var11 <= var4; ++var11) {
 						Position var12 = var2.a(var9, var10, var11);
-						bec var13 = var1.p(var12);
-						if (var13.getBlock().r() == Material.LEAVES && !((Boolean) var13.b(b)).booleanValue()) {
+						BlockState var13 = var1.getBlockState(var12);
+						if (var13.getBlock().getMaterial() == Material.LEAVES && !((Boolean) var13.b(b)).booleanValue()) {
 							var1.a(var12, var13.a(b, Boolean.valueOf(true)), 4);
 						}
 					}
@@ -39,7 +39,7 @@ public abstract class BlockLeaves extends BlockTransparent {
 
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, BlockState var3, Random var4) {
 		if (!var1.D) {
 			if (((Boolean) var3.b(b)).booleanValue() && ((Boolean) var3.b(a)).booleanValue()) {
 				byte var5 = 4;
@@ -61,9 +61,9 @@ public abstract class BlockLeaves extends BlockTransparent {
 					for (var13 = -var5; var13 <= var5; ++var13) {
 						for (var14 = -var5; var14 <= var5; ++var14) {
 							for (var15 = -var5; var15 <= var5; ++var15) {
-								Block var16 = var1.p(new Position(var7 + var13, var8 + var14, var9 + var15)).getBlock();
+								Block var16 = var1.getBlockState(new Position(var7 + var13, var8 + var14, var9 + var15)).getBlock();
 								if (var16 != Blocks.LOG && var16 != Blocks.LOG2) {
-									if (var16.r() == Material.LEAVES) {
+									if (var16.getMaterial() == Material.LEAVES) {
 										this.M[(var13 + var12) * var11 + (var14 + var12) * var10 + var15 + var12] = -2;
 									} else {
 										this.M[(var13 + var12) * var11 + (var14 + var12) * var10 + var15 + var12] = -1;
@@ -122,7 +122,7 @@ public abstract class BlockLeaves extends BlockTransparent {
 	}
 
 	private void d(World var1, Position var2) {
-		this.b(var1, var2, var1.p(var2), 0);
+		this.b(var1, var2, var1.getBlockState(var2), 0);
 		var1.g(var2);
 	}
 
@@ -130,11 +130,11 @@ public abstract class BlockLeaves extends BlockTransparent {
 		return var1.nextInt(20) == 0 ? 1 : 0;
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
+	public Item a(BlockState var1, Random var2, int var3) {
 		return Item.getItemOf(Blocks.SAPLING);
 	}
 
-	public void a(World var1, Position var2, bec var3, float var4, int var5) {
+	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
 		if (!var1.D) {
 			int var6 = this.d(var3);
 			if (var5 > 0) {
@@ -162,10 +162,10 @@ public abstract class BlockLeaves extends BlockTransparent {
 
 	}
 
-	protected void a(World var1, Position var2, bec var3, int var4) {
+	protected void a(World var1, Position var2, BlockState var3, int var4) {
 	}
 
-	protected int d(bec var1) {
+	protected int d(BlockState var1) {
 		return 20;
 	}
 

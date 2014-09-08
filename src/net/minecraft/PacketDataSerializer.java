@@ -57,11 +57,11 @@ public class PacketDataSerializer extends ByteBuf {
 	}
 
 	public IChatBaseComponent readJSONComponent() {
-		return ChatSerializer.a(this.readString(32767));
+		return ChatSerializer.fromJsonString(this.readString(32767));
 	}
 
 	public void writeJSONComponent(IChatBaseComponent var1) {
-		this.writeString(ChatSerializer.a(var1));
+		this.writeString(ChatSerializer.toJsonString(var1));
 	}
 
 	public <T extends Enum<T>> Enum<T> readEnum(Class<T> enumClass) {
@@ -160,8 +160,8 @@ public class PacketDataSerializer extends ByteBuf {
 			this.writeShort(-1);
 		} else {
 			this.writeShort(Item.getId(item.getItem()));
-			this.writeByte(item.b);
-			this.writeShort(item.i());
+			this.writeByte(item.amount);
+			this.writeShort(item.getDurability());
 			NBTCompoundTag compund = null;
 			if (item.getItem().usesDurability() || item.getItem().p()) {
 				compund = item.getTag();
@@ -179,7 +179,7 @@ public class PacketDataSerializer extends ByteBuf {
 			byte var3 = this.readByte();
 			short var4 = this.readShort();
 			itemstack = new ItemStack(Item.getById(var2), var3, var4);
-			itemstack.d(this.readCompound());
+			itemstack.setTag(this.readCompound());
 		}
 		return itemstack;
 	}

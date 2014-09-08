@@ -30,7 +30,7 @@ public class TestforBlocksCommand extends AbstractCommand {
 			if (var8 > 524288) {
 				throw new di("commands.compare.tooManyBlocks", new Object[] { Integer.valueOf(var8), Integer.valueOf(524288) });
 			} else if (var6.b >= 0 && var6.e < 256 && var7.b >= 0 && var7.e < 256) {
-				World var9 = var1.e();
+				World var9 = var1.getWorld();
 				if (var9.a(var6) && var9.a(var7)) {
 					boolean var10 = false;
 					if (var2.length > 9 && var2[9].equals("masked")) {
@@ -46,11 +46,11 @@ public class TestforBlocksCommand extends AbstractCommand {
 								Position var15 = new Position(var14, var13, var12);
 								Position var16 = var15.a((fd) var11);
 								boolean var17 = false;
-								bec var18 = var9.p(var15);
+								BlockState var18 = var9.getBlockState(var15);
 								if (!var10 || var18.getBlock() != Blocks.AIR) {
-									if (var18 == var9.p(var16)) {
-										TileEntity var19 = var9.s(var15);
-										TileEntity var20 = var9.s(var16);
+									if (var18 == var9.getBlockState(var16)) {
+										TileEntity var19 = var9.getTileEntity(var15);
+										TileEntity var20 = var9.getTileEntity(var16);
 										if (var19 != null && var20 != null) {
 											NBTCompoundTag var21 = new NBTCompoundTag();
 											var19.write(var21);

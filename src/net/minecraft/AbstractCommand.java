@@ -26,7 +26,7 @@ public abstract class AbstractCommand implements CommandInterface {
 	}
 
 	public boolean a(CommandSenderInterface var1) {
-		return var1.a(this.a(), this.getName());
+		return var1.canExecuteCommand(this.a(), this.getName());
 	}
 
 	public List<String> getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
@@ -76,7 +76,7 @@ public abstract class AbstractCommand implements CommandInterface {
 	}
 
 	public static Position a(CommandSenderInterface var0, String[] var1, int var2, boolean var3) throws dk {
-		Position var4 = var0.c();
+		Position var4 = var0.getEntityPosition();
 		return new Position(b((double) var4.getX(), var1[var2], -30000000, 30000000, var3), b((double) var4.getY(), var1[var2 + 1], 0, 256, false), b((double) var4.getZ(), var1[var2 + 2], -30000000, 30000000, var3));
 	}
 
@@ -185,7 +185,7 @@ public abstract class AbstractCommand implements CommandInterface {
 
 	public static String d(CommandSenderInterface var0, String var1) throws dm {
 		try {
-			return a(var0, var1).d_();
+			return a(var0, var1).getName();
 		} catch (dm var3) {
 			if (ah.b(var1)) {
 				throw var3;
@@ -197,7 +197,7 @@ public abstract class AbstractCommand implements CommandInterface {
 
 	public static String e(CommandSenderInterface var0, String var1) throws dj {
 		try {
-			return a(var0, var1).d_();
+			return a(var0, var1).getName();
 		} catch (dm var5) {
 			try {
 				return b(var0, var1).aJ().toString();

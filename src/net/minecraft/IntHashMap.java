@@ -16,7 +16,7 @@ public class IntHashMap {
 		return var0 & var1 - 1;
 	}
 
-	public Object a(int var1) {
+	public Object get(int var1) {
 		int var2 = g(var1);
 
 		for (un var3 = this.a[a(var2, this.a.length)]; var3 != null; var3 = var3.c) {

@@ -8,13 +8,13 @@ public class BlockFenceGate extends avb {
 
 	public BlockFenceGate() {
 		super(Material.WOOD);
-		this.j(this.L.b().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)));
+		this.setBlockState(this.L.b().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)));
 		this.a(CreativeModeTab.REDSTONE);
 	}
 
-	public bec a(bec var1, ard var2, Position var3) {
+	public BlockState a(BlockState var1, ard var2, Position var3) {
 		el var4 = ((BlockFace) var1.b(N)).k();
-		if (var4 == el.c && (var2.p(var3.e()).getBlock() == Blocks.COBBLESTONE_WALL || var2.p(var3.f()).getBlock() == Blocks.COBBLESTONE_WALL) || var4 == el.a && (var2.p(var3.c()).getBlock() == Blocks.COBBLESTONE_WALL || var2.p(var3.d()).getBlock() == Blocks.COBBLESTONE_WALL)) {
+		if (var4 == el.c && (var2.getBlockState(var3.e()).getBlock() == Blocks.COBBLESTONE_WALL || var2.getBlockState(var3.f()).getBlock() == Blocks.COBBLESTONE_WALL) || var4 == el.a && (var2.getBlockState(var3.c()).getBlock() == Blocks.COBBLESTONE_WALL || var2.getBlockState(var3.d()).getBlock() == Blocks.COBBLESTONE_WALL)) {
 			var1 = var1.a(M, Boolean.valueOf(true));
 		}
 
@@ -22,10 +22,10 @@ public class BlockFenceGate extends avb {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return var1.p(var2.b()).getBlock().r().isBuildable() ? super.c(var1, var2) : false;
+		return var1.getBlockState(var2.b()).getBlock().getMaterial().isBuildable() ? super.c(var1, var2) : false;
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
 		if (((Boolean) var3.b(a)).booleanValue()) {
 			return null;
 		} else {
@@ -35,7 +35,7 @@ public class BlockFenceGate extends avb {
 	}
 
 	public void a(ard var1, Position var2) {
-		el var3 = ((BlockFace) var1.p(var2).b(N)).k();
+		el var3 = ((BlockFace) var1.getBlockState(var2).b(N)).k();
 		if (var3 == el.c) {
 			this.a(0.0F, 0.0F, 0.375F, 1.0F, 1.0F, 0.625F);
 		} else {
@@ -53,14 +53,14 @@ public class BlockFenceGate extends avb {
 	}
 
 	public boolean b(ard var1, Position var2) {
-		return ((Boolean) var1.p(var2).b(a)).booleanValue();
+		return ((Boolean) var1.getBlockState(var2).b(a)).booleanValue();
 	}
 
-	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return this.P().a(N, var8.aO()).a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false));
+	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		return this.getBlockState().a(N, var8.aO()).a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false));
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (((Boolean) var3.b(a)).booleanValue()) {
 			var3 = var3.a(a, Boolean.valueOf(false));
 			var1.a(var2, var3, 2);
@@ -78,7 +78,7 @@ public class BlockFenceGate extends avb {
 		return true;
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, BlockState var3, Block var4) {
 		if (!var1.D) {
 			boolean var5 = var1.z(var2);
 			if (var5 || var4.g()) {
@@ -96,11 +96,11 @@ public class BlockFenceGate extends avb {
 		}
 	}
 
-	public bec a(int var1) {
-		return this.P().a(N, BlockFace.fromDirection(var1)).a(a, Boolean.valueOf((var1 & 4) != 0)).a(b, Boolean.valueOf((var1 & 8) != 0));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(N, BlockFace.fromDirection(var1)).a(a, Boolean.valueOf((var1 & 4) != 0)).a(b, Boolean.valueOf((var1 & 8) != 0));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((BlockFace) var1.b(N)).toDirection();
 		if (((Boolean) var1.b(b)).booleanValue()) {

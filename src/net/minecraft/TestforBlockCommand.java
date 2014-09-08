@@ -32,8 +32,8 @@ public class TestforBlockCommand extends AbstractCommand {
 					var5 = a(var2[4], -1, 15);
 				}
 
-				World var6 = var1.e();
-				if (!var6.e(var3)) {
+				World var6 = var1.getWorld();
+				if (!var6.isLoaded(var3)) {
 					throw new di("commands.testforblock.outOfWorld", new Object[0]);
 				} else {
 					NBTCompoundTag var7 = new NBTCompoundTag();
@@ -49,7 +49,7 @@ public class TestforBlockCommand extends AbstractCommand {
 						}
 					}
 
-					bec var14 = var6.p(var3);
+					BlockState var14 = var6.getBlockState(var3);
 					Block var10 = var14.getBlock();
 					if (var10 != var4) {
 						throw new di("commands.testforblock.failed.tile", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()), var10.getLocalizedName(), var4.getLocalizedName() });
@@ -62,7 +62,7 @@ public class TestforBlockCommand extends AbstractCommand {
 						}
 
 						if (var8) {
-							TileEntity var15 = var6.s(var3);
+							TileEntity var15 = var6.getTileEntity(var3);
 							if (var15 == null) {
 								throw new di("commands.testforblock.failed.tileEntity", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()) });
 							}

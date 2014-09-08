@@ -46,7 +46,7 @@ public class bgv implements IChunkProvider {
 		this.A = new bkg();
 		this.m = var1;
 		this.n = var4;
-		this.o = var1.P().getLevelType();
+		this.o = var1.getWorldData().getLevelType();
 		this.h = new Random(var2);
 		this.i = new bnv(this.h, 16);
 		this.j = new bnv(this.h, 16);
@@ -111,9 +111,9 @@ public class bgv implements IChunkProvider {
 
 							for (int var49 = 0; var49 < 4; ++var49) {
 								if ((var45 += var47) > 0.0D) {
-									var3.a(var4 * 4 + var42, var12 * 8 + var31, var7 * 4 + var49, Blocks.STONE.P());
+									var3.a(var4 * 4 + var42, var12 * 8 + var31, var7 * 4 + var49, Blocks.STONE.getBlockState());
 								} else if (var12 * 8 + var31 < this.r.q) {
-									var3.a(var4 * 4 + var42, var12 * 8 + var31, var7 * 4 + var49, this.s.P());
+									var3.a(var4 * 4 + var42, var12 * 8 + var31, var7 * 4 + var49, this.s.getBlockState());
 								}
 							}
 
@@ -360,11 +360,11 @@ public class bgv implements IChunkProvider {
 				Position var18 = this.m.q(var6.a(var14, 0, var15));
 				Position var19 = var18.b();
 				if (this.m.v(var19)) {
-					this.m.a(var19, Blocks.ICE.P(), 2);
+					this.m.a(var19, Blocks.ICE.getBlockState(), 2);
 				}
 
 				if (this.m.f(var18, true)) {
-					this.m.a(var18, Blocks.SNOW_LAYER.P(), 2);
+					this.m.a(var18, Blocks.SNOW_LAYER.getBlockState(), 2);
 				}
 			}
 		}

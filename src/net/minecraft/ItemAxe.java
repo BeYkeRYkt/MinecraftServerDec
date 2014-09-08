@@ -12,7 +12,7 @@ public class ItemAxe extends ItemTool {
 	}
 
 	public float a(ItemStack var1, Block var2) {
-		return var2.r() != Material.WOOD && var2.r() != Material.PLANT && var2.r() != Material.REPLACEABLE_PLANT ? super.a(var1, var2) : this.a;
+		return var2.getMaterial() != Material.WOOD && var2.getMaterial() != Material.PLANT && var2.getMaterial() != Material.REPLACEABLE_PLANT ? super.a(var1, var2) : this.a;
 	}
 
 }

@@ -27,10 +27,10 @@ class agv implements agw {
 		ItemStack var5;
 		if (var3 < 0) {
 			var4 = new ItemStack(Items.EMERALD, 1, 0);
-			var5 = new ItemStack(this.a.getItem(), -var3, this.a.i());
+			var5 = new ItemStack(this.a.getItem(), -var3, this.a.getDurability());
 		} else {
 			var4 = new ItemStack(Items.EMERALD, var3, 0);
-			var5 = new ItemStack(this.a.getItem(), 1, this.a.i());
+			var5 = new ItemStack(this.a.getItem(), 1, this.a.getDurability());
 		}
 
 		var1.add(new aqc(var4, var5));

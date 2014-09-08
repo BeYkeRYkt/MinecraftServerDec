@@ -10,7 +10,7 @@ public class BlockTrapdoor extends Block {
 
 	protected BlockTrapdoor(Material var1) {
 		super(var1);
-		this.j(this.L.b().a(a, BlockFace.NORTH).a(b, Boolean.valueOf(false)).a(M, bbr.b));
+		this.setBlockState(this.L.b().a(a, BlockFace.NORTH).a(b, Boolean.valueOf(false)).a(M, bbr.b));
 		float var2 = 0.5F;
 		float var3 = 1.0F;
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
@@ -26,16 +26,16 @@ public class BlockTrapdoor extends Block {
 	}
 
 	public boolean b(ard var1, Position var2) {
-		return !((Boolean) var1.p(var2).b(b)).booleanValue();
+		return !((Boolean) var1.getBlockState(var2).b(b)).booleanValue();
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3);
 	}
 
 	public void a(ard var1, Position var2) {
-		this.d(var1.p(var2));
+		this.d(var1.getBlockState(var2));
 	}
 
 	public void h() {
@@ -43,7 +43,7 @@ public class BlockTrapdoor extends Block {
 		this.a(0.0F, 0.40625F, 0.0F, 1.0F, 0.59375F, 1.0F);
 	}
 
-	public void d(bec var1) {
+	public void d(BlockState var1) {
 		if (var1.getBlock() == this) {
 			boolean var2 = var1.b(M) == bbr.a;
 			Boolean var3 = (Boolean) var1.b(b);
@@ -76,7 +76,7 @@ public class BlockTrapdoor extends Block {
 		}
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (this.material == Material.ORE) {
 			return true;
 		} else {
@@ -87,10 +87,10 @@ public class BlockTrapdoor extends Block {
 		}
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, BlockState var3, Block var4) {
 		if (!var1.D) {
 			Position var5 = var2.a(((BlockFace) var3.b(a)).getOpposite());
-			if (!c(var1.p(var5).getBlock())) {
+			if (!c(var1.getBlockState(var5).getBlock())) {
 				var1.g(var2);
 				this.b(var1, var2, var3, 0);
 			} else {
@@ -112,8 +112,8 @@ public class BlockTrapdoor extends Block {
 		return super.a(var1, var2, var3, var4);
 	}
 
-	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		bec var9 = this.P();
+	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		BlockState var9 = this.getBlockState();
 		if (var3.k().c()) {
 			var9 = var9.a(a, var3).a(b, Boolean.valueOf(false));
 			var9 = var9.a(M, var5 > 0.5F ? bbr.a : bbr.b);
@@ -123,7 +123,7 @@ public class BlockTrapdoor extends Block {
 	}
 
 	public boolean a(World var1, Position var2, BlockFace var3) {
-		return !var3.k().b() && c(var1.p(var2.a(var3.getOpposite())).getBlock());
+		return !var3.k().b() && c(var1.getBlockState(var2.a(var3.getOpposite())).getBlock());
 	}
 
 	protected static BlockFace b(int var0) {
@@ -158,11 +158,11 @@ public class BlockTrapdoor extends Block {
 		return var0.material.k() && var0.d() || var0 == Blocks.GLOWSTONE || var0 instanceof BlockStepAbstract || var0 instanceof BlockStairs;
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, b(var1)).a(b, Boolean.valueOf((var1 & 4) != 0)).a(M, (var1 & 8) == 0 ? bbr.b : bbr.a);
+	public BlockState a(int var1) {
+		return this.getBlockState().a(a, b(var1)).a(b, Boolean.valueOf((var1 & 4) != 0)).a(M, (var1 & 8) == 0 ? bbr.b : bbr.a);
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | a((BlockFace) var1.b(a));
 		if (((Boolean) var1.b(b)).booleanValue()) {

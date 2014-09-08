@@ -28,39 +28,39 @@ abstract class bmk extends bms {
 		switch (blu.a[var4.ordinal()]) {
 			case 1:
 			default:
-				this.a(var1, var3, var5, var6, var7, var5 + 3 - 1, var6 + 3 - 1, var7, Blocks.AIR.P(), Blocks.AIR.P(), false);
+				this.a(var1, var3, var5, var6, var7, var5 + 3 - 1, var6 + 3 - 1, var7, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 				break;
 			case 2:
-				this.a(var1, Blocks.STONEBRICK.P(), var5, var6, var7, var3);
-				this.a(var1, Blocks.STONEBRICK.P(), var5, var6 + 1, var7, var3);
-				this.a(var1, Blocks.STONEBRICK.P(), var5, var6 + 2, var7, var3);
-				this.a(var1, Blocks.STONEBRICK.P(), var5 + 1, var6 + 2, var7, var3);
-				this.a(var1, Blocks.STONEBRICK.P(), var5 + 2, var6 + 2, var7, var3);
-				this.a(var1, Blocks.STONEBRICK.P(), var5 + 2, var6 + 1, var7, var3);
-				this.a(var1, Blocks.STONEBRICK.P(), var5 + 2, var6, var7, var3);
-				this.a(var1, Blocks.WOODEN_DOOR.P(), var5 + 1, var6, var7, var3);
+				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5, var6, var7, var3);
+				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5, var6 + 1, var7, var3);
+				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5, var6 + 2, var7, var3);
+				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5 + 1, var6 + 2, var7, var3);
+				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5 + 2, var6 + 2, var7, var3);
+				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5 + 2, var6 + 1, var7, var3);
+				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5 + 2, var6, var7, var3);
+				this.a(var1, Blocks.WOODEN_DOOR.getBlockState(), var5 + 1, var6, var7, var3);
 				this.a(var1, Blocks.WOODEN_DOOR.a(8), var5 + 1, var6 + 1, var7, var3);
 				break;
 			case 3:
-				this.a(var1, Blocks.AIR.P(), var5 + 1, var6, var7, var3);
-				this.a(var1, Blocks.AIR.P(), var5 + 1, var6 + 1, var7, var3);
-				this.a(var1, Blocks.IRON_BARS.P(), var5, var6, var7, var3);
-				this.a(var1, Blocks.IRON_BARS.P(), var5, var6 + 1, var7, var3);
-				this.a(var1, Blocks.IRON_BARS.P(), var5, var6 + 2, var7, var3);
-				this.a(var1, Blocks.IRON_BARS.P(), var5 + 1, var6 + 2, var7, var3);
-				this.a(var1, Blocks.IRON_BARS.P(), var5 + 2, var6 + 2, var7, var3);
-				this.a(var1, Blocks.IRON_BARS.P(), var5 + 2, var6 + 1, var7, var3);
-				this.a(var1, Blocks.IRON_BARS.P(), var5 + 2, var6, var7, var3);
+				this.a(var1, Blocks.AIR.getBlockState(), var5 + 1, var6, var7, var3);
+				this.a(var1, Blocks.AIR.getBlockState(), var5 + 1, var6 + 1, var7, var3);
+				this.a(var1, Blocks.IRON_BARS.getBlockState(), var5, var6, var7, var3);
+				this.a(var1, Blocks.IRON_BARS.getBlockState(), var5, var6 + 1, var7, var3);
+				this.a(var1, Blocks.IRON_BARS.getBlockState(), var5, var6 + 2, var7, var3);
+				this.a(var1, Blocks.IRON_BARS.getBlockState(), var5 + 1, var6 + 2, var7, var3);
+				this.a(var1, Blocks.IRON_BARS.getBlockState(), var5 + 2, var6 + 2, var7, var3);
+				this.a(var1, Blocks.IRON_BARS.getBlockState(), var5 + 2, var6 + 1, var7, var3);
+				this.a(var1, Blocks.IRON_BARS.getBlockState(), var5 + 2, var6, var7, var3);
 				break;
 			case 4:
-				this.a(var1, Blocks.STONEBRICK.P(), var5, var6, var7, var3);
-				this.a(var1, Blocks.STONEBRICK.P(), var5, var6 + 1, var7, var3);
-				this.a(var1, Blocks.STONEBRICK.P(), var5, var6 + 2, var7, var3);
-				this.a(var1, Blocks.STONEBRICK.P(), var5 + 1, var6 + 2, var7, var3);
-				this.a(var1, Blocks.STONEBRICK.P(), var5 + 2, var6 + 2, var7, var3);
-				this.a(var1, Blocks.STONEBRICK.P(), var5 + 2, var6 + 1, var7, var3);
-				this.a(var1, Blocks.STONEBRICK.P(), var5 + 2, var6, var7, var3);
-				this.a(var1, Blocks.IRON_DOOR.P(), var5 + 1, var6, var7, var3);
+				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5, var6, var7, var3);
+				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5, var6 + 1, var7, var3);
+				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5, var6 + 2, var7, var3);
+				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5 + 1, var6 + 2, var7, var3);
+				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5 + 2, var6 + 2, var7, var3);
+				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5 + 2, var6 + 1, var7, var3);
+				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5 + 2, var6, var7, var3);
+				this.a(var1, Blocks.IRON_DOOR.getBlockState(), var5 + 1, var6, var7, var3);
 				this.a(var1, Blocks.IRON_DOOR.a(8), var5 + 1, var6 + 1, var7, var3);
 				this.a(var1, Blocks.STONE_BUTTON.a(this.a(Blocks.STONE_BUTTON, 4)), var5 + 2, var6 + 1, var7 + 1, var3);
 				this.a(var1, Blocks.STONE_BUTTON.a(this.a(Blocks.STONE_BUTTON, 3)), var5 + 2, var6 + 1, var7 - 1, var3);

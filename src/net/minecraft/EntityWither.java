@@ -67,8 +67,8 @@ public class EntityWither extends EntityMonster implements afr {
 		double var4;
 		double var6;
 		double var8;
-		if (!this.o.D && this.s(0) > 0) {
-			Entity var1 = this.o.getEntity(this.s(0));
+		if (!this.world.D && this.s(0) > 0) {
+			Entity var1 = this.world.getEntity(this.s(0));
 			if (var1 != null) {
 				if (this.locationY < var1.locationY || !this.ck() && this.locationY < var1.locationY + 5.0D) {
 					if (this.motionY < 0.0D) {
@@ -106,7 +106,7 @@ public class EntityWither extends EntityMonster implements afr {
 			var22 = this.s(var20 + 1);
 			Entity var3 = null;
 			if (var22 > 0) {
-				var3 = this.o.getEntity(var22);
+				var3 = this.world.getEntity(var22);
 			}
 
 			if (var3 != null) {
@@ -132,15 +132,15 @@ public class EntityWither extends EntityMonster implements afr {
 			double var23 = this.t(var22);
 			double var5 = this.u(var22);
 			double var7 = this.v(var22);
-			this.o.a(Particle.l, var23 + this.V.nextGaussian() * 0.30000001192092896D, var5 + this.V.nextGaussian() * 0.30000001192092896D, var7 + this.V.nextGaussian() * 0.30000001192092896D, 0.0D, 0.0D, 0.0D, new int[0]);
-			if (var21 && this.o.s.nextInt(4) == 0) {
-				this.o.a(Particle.p, var23 + this.V.nextGaussian() * 0.30000001192092896D, var5 + this.V.nextGaussian() * 0.30000001192092896D, var7 + this.V.nextGaussian() * 0.30000001192092896D, 0.699999988079071D, 0.699999988079071D, 0.5D, new int[0]);
+			this.world.a(Particle.l, var23 + this.V.nextGaussian() * 0.30000001192092896D, var5 + this.V.nextGaussian() * 0.30000001192092896D, var7 + this.V.nextGaussian() * 0.30000001192092896D, 0.0D, 0.0D, 0.0D, new int[0]);
+			if (var21 && this.world.s.nextInt(4) == 0) {
+				this.world.a(Particle.p, var23 + this.V.nextGaussian() * 0.30000001192092896D, var5 + this.V.nextGaussian() * 0.30000001192092896D, var7 + this.V.nextGaussian() * 0.30000001192092896D, 0.699999988079071D, 0.699999988079071D, 0.5D, new int[0]);
 			}
 		}
 
 		if (this.cj() > 0) {
 			for (var22 = 0; var22 < 3; ++var22) {
-				this.o.a(Particle.p, this.locationX + this.V.nextGaussian() * 1.0D, this.locationY + (double) (this.V.nextFloat() * 3.3F), this.locationZ + this.V.nextGaussian() * 1.0D, 0.699999988079071D, 0.699999988079071D, 0.8999999761581421D, new int[0]);
+				this.world.a(Particle.p, this.locationX + this.V.nextGaussian() * 1.0D, this.locationY + (double) (this.V.nextFloat() * 3.3F), this.locationZ + this.V.nextGaussian() * 1.0D, 0.699999988079071D, 0.699999988079071D, 0.8999999761581421D, new int[0]);
 			}
 		}
 
@@ -151,8 +151,8 @@ public class EntityWither extends EntityMonster implements afr {
 		if (this.cj() > 0) {
 			var1 = this.cj() - 1;
 			if (var1 <= 0) {
-				this.o.a(this, this.locationX, this.locationY + (double) this.aR(), this.locationZ, 7.0F, false, this.o.Q().b("mobGriefing"));
-				this.o.a(1013, new Position(this), 0);
+				this.world.a(this, this.locationX, this.locationY + (double) this.aR(), this.locationZ, 7.0F, false, this.world.Q().b("mobGriefing"));
+				this.world.a(1013, new Position(this), 0);
 			}
 
 			this.r(var1);
@@ -167,7 +167,7 @@ public class EntityWither extends EntityMonster implements afr {
 			for (var1 = 1; var1 < 3; ++var1) {
 				if (this.W >= this.bm[var1 - 1]) {
 					this.bm[var1 - 1] = this.W + 10 + this.V.nextInt(10);
-					if (this.o.getDifficulty() == Difficulty.NORMAL || this.o.getDifficulty() == Difficulty.HARD) {
+					if (this.world.getDifficulty() == Difficulty.NORMAL || this.world.getDifficulty() == Difficulty.HARD) {
 						int var10001 = var1 - 1;
 						int var10003 = this.bn[var1 - 1];
 						this.bn[var10001] = this.bn[var1 - 1] + 1;
@@ -184,8 +184,8 @@ public class EntityWither extends EntityMonster implements afr {
 
 					var12 = this.s(var1);
 					if (var12 > 0) {
-						Entity var14 = this.o.getEntity(var12);
-						if (var14 != null && var14.ai() && this.h(var14) <= 900.0D && this.t(var14)) {
+						Entity var14 = this.world.getEntity(var12);
+						if (var14 != null && var14.isAlive() && this.getDistanceSquared(var14) <= 900.0D && this.t(var14)) {
 							this.a(var1 + 1, (EntityLiving) var14);
 							this.bm[var1 - 1] = this.W + 40 + this.V.nextInt(20);
 							this.bn[var1 - 1] = 0;
@@ -193,13 +193,13 @@ public class EntityWither extends EntityMonster implements afr {
 							this.b(var1, 0);
 						}
 					} else {
-						List var13 = this.o.a(EntityLiving.class, this.aQ().b(20.0D, 8.0D, 20.0D), Predicates.and(bp, EntityPredicates.d));
+						List var13 = this.world.a(EntityLiving.class, this.aQ().b(20.0D, 8.0D, 20.0D), Predicates.and(bp, EntityPredicates.d));
 
 						for (int var16 = 0; var16 < 10 && !var13.isEmpty(); ++var16) {
 							EntityLiving var5 = (EntityLiving) var13.get(this.V.nextInt(var13.size()));
-							if (var5 != this && var5.ai() && this.t(var5)) {
+							if (var5 != this && var5.isAlive() && this.t(var5)) {
 								if (var5 instanceof EntityHuman) {
-									if (!((EntityHuman) var5).by.invulnerable) {
+									if (!((EntityHuman) var5).playerProperties.invulnerable) {
 										this.b(var1, var5.getId());
 									}
 								} else {
@@ -222,7 +222,7 @@ public class EntityWither extends EntityMonster implements afr {
 
 			if (this.bo > 0) {
 				--this.bo;
-				if (this.bo == 0 && this.o.Q().b("mobGriefing")) {
+				if (this.bo == 0 && this.world.Q().b("mobGriefing")) {
 					var1 = DataTypesConverter.toFixedPointInt(this.locationY);
 					var12 = DataTypesConverter.toFixedPointInt(this.locationX);
 					int var15 = DataTypesConverter.toFixedPointInt(this.locationZ);
@@ -234,16 +234,16 @@ public class EntityWither extends EntityMonster implements afr {
 								int var20 = var12 + var18;
 								int var9 = var1 + var7;
 								int var10 = var15 + var19;
-								Block var11 = this.o.p(new Position(var20, var9, var10)).getBlock();
-								if (var11.r() != Material.AIR && var11 != Blocks.BEDROCK && var11 != Blocks.END_PORTAL && var11 != Blocks.END_PORTAL_FRAME && var11 != Blocks.COMMAND_BLOCK && var11 != Blocks.BARRIER) {
-									var17 = this.o.b(new Position(var20, var9, var10), true) || var17;
+								Block var11 = this.world.getBlockState(new Position(var20, var9, var10)).getBlock();
+								if (var11.getMaterial() != Material.AIR && var11 != Blocks.BEDROCK && var11 != Blocks.END_PORTAL && var11 != Blocks.END_PORTAL_FRAME && var11 != Blocks.COMMAND_BLOCK && var11 != Blocks.BARRIER) {
+									var17 = this.world.b(new Position(var20, var9, var10), true) || var17;
 								}
 							}
 						}
 					}
 
 					if (var17) {
-						this.o.a((EntityHuman) null, 1012, new Position(this), 0);
+						this.world.a((EntityHuman) null, 1012, new Position(this), 0);
 					}
 				}
 			}
@@ -309,14 +309,14 @@ public class EntityWither extends EntityMonster implements afr {
 	}
 
 	private void a(int var1, double var2, double var4, double var6, boolean var8) {
-		this.o.a((EntityHuman) null, 1014, new Position(this), 0);
+		this.world.a((EntityHuman) null, 1014, new Position(this), 0);
 		double var9 = this.t(var1);
 		double var11 = this.u(var1);
 		double var13 = this.v(var1);
 		double var15 = var2 - var9;
 		double var17 = var4 - var11;
 		double var19 = var6 - var13;
-		EntityWitherSkull var21 = new EntityWitherSkull(this.o, this, var15, var17, var19);
+		EntityWitherSkull var21 = new EntityWitherSkull(this.world, this, var15, var17, var19);
 		if (var8) {
 			var21.a(true);
 		}
@@ -324,7 +324,7 @@ public class EntityWither extends EntityMonster implements afr {
 		var21.locationY = var11;
 		var21.locationX = var9;
 		var21.locationZ = var13;
-		this.o.d((Entity) var21);
+		this.world.d((Entity) var21);
 	}
 
 	public void a(EntityLiving var1, float var2) {
@@ -372,8 +372,8 @@ public class EntityWither extends EntityMonster implements afr {
 			var3.u();
 		}
 
-		if (!this.o.D) {
-			Iterator var4 = this.o.a(EntityHuman.class, this.aQ().b(50.0D, 100.0D, 50.0D)).iterator();
+		if (!this.world.D) {
+			Iterator var4 = this.world.a(EntityHuman.class, this.aQ().b(50.0D, 100.0D, 50.0D)).iterator();
 
 			while (var4.hasNext()) {
 				EntityHuman var5 = (EntityHuman) var4.next();
@@ -417,7 +417,7 @@ public class EntityWither extends EntityMonster implements afr {
 	}
 
 	public boolean ck() {
-		return this.bm() <= this.bt() / 2.0F;
+		return this.getHealth() <= this.bt() / 2.0F;
 	}
 
 	public EnumMonsterType by() {
@@ -425,7 +425,7 @@ public class EntityWither extends EntityMonster implements afr {
 	}
 
 	public void a(Entity var1) {
-		this.m = null;
+		this.vehicle = null;
 	}
 
 }

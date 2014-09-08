@@ -38,10 +38,10 @@ public class XPCommand extends AbstractCommand {
 				var1.a(ag.e, var7.bz);
 				if (var6) {
 					var7.a(-var5);
-					a(var1, this, "commands.xp.success.negative.levels", new Object[] { Integer.valueOf(var5), var7.d_() });
+					a(var1, this, "commands.xp.success.negative.levels", new Object[] { Integer.valueOf(var5), var7.getName() });
 				} else {
 					var7.a(var5);
-					a(var1, this, "commands.xp.success.levels", new Object[] { Integer.valueOf(var5), var7.d_() });
+					a(var1, this, "commands.xp.success.levels", new Object[] { Integer.valueOf(var5), var7.getName() });
 				}
 			} else {
 				var1.a(ag.e, var7.bA);
@@ -50,7 +50,7 @@ public class XPCommand extends AbstractCommand {
 				}
 
 				var7.u(var5);
-				a(var1, this, "commands.xp.success", new Object[] { Integer.valueOf(var5), var7.d_() });
+				a(var1, this, "commands.xp.success", new Object[] { Integer.valueOf(var5), var7.getName() });
 			}
 
 		}

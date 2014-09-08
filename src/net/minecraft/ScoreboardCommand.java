@@ -207,7 +207,7 @@ public class ScoreboardCommand extends AbstractCommand {
 					var6.add(var8);
 				} catch (di var11) {
 					ChatMessage var10 = new ChatMessage(var11.getMessage(), var11.a());
-					var10.b().a(EnumChatFormat.RED);
+					var10.getChatModifier().setColor(EnumChatFormat.RED);
 					var1.sendChatMessage(var10);
 				}
 			}
@@ -399,7 +399,7 @@ public class ScoreboardCommand extends AbstractCommand {
 			}
 
 			ChatMessage var7 = new ChatMessage("commands.scoreboard.teams.list.player.count", new Object[] { Integer.valueOf(var6.size()), var5.getName() });
-			var7.b().a(EnumChatFormat.DARK_GREEN);
+			var7.getChatModifier().setColor(EnumChatFormat.DARK_GREEN);
 			var1.sendChatMessage(var7);
 			var1.sendChatMessage(new ChatComponentText(a(var6.toArray())));
 		} else {
@@ -410,7 +410,7 @@ public class ScoreboardCommand extends AbstractCommand {
 			}
 
 			ChatMessage var10 = new ChatMessage("commands.scoreboard.teams.list.count", new Object[] { Integer.valueOf(var9.size()) });
-			var10.b().a(EnumChatFormat.DARK_GREEN);
+			var10.getChatModifier().setColor(EnumChatFormat.DARK_GREEN);
 			var1.sendChatMessage(var10);
 			Iterator var11 = var9.iterator();
 
@@ -429,7 +429,7 @@ public class ScoreboardCommand extends AbstractCommand {
 		HashSet var7 = Sets.newHashSet();
 		String var8;
 		if (var1 instanceof EntityHuman && var3 == var2.length) {
-			var8 = b(var1).d_();
+			var8 = b(var1).getName();
 			if (var4.a(var8, var5)) {
 				var6.add(var8);
 			} else {
@@ -478,7 +478,7 @@ public class ScoreboardCommand extends AbstractCommand {
 		HashSet var6 = Sets.newHashSet();
 		String var7;
 		if (var1 instanceof EntityHuman && var3 == var2.length) {
-			var7 = b(var1).d_();
+			var7 = b(var1).getName();
 			if (var4.f(var7)) {
 				var5.add(var7);
 			} else {
@@ -556,7 +556,7 @@ public class ScoreboardCommand extends AbstractCommand {
 			throw new di("commands.scoreboard.objectives.list.empty", new Object[0]);
 		} else {
 			ChatMessage var4 = new ChatMessage("commands.scoreboard.objectives.list.count", new Object[] { Integer.valueOf(var3.size()) });
-			var4.b().a(EnumChatFormat.DARK_GREEN);
+			var4.getChatModifier().setColor(EnumChatFormat.DARK_GREEN);
 			var1.sendChatMessage(var4);
 			Iterator var5 = var3.iterator();
 
@@ -601,7 +601,7 @@ public class ScoreboardCommand extends AbstractCommand {
 			}
 
 			ChatMessage var7 = new ChatMessage("commands.scoreboard.players.list.player.count", new Object[] { Integer.valueOf(var6.size()), var5 });
-			var7.b().a(EnumChatFormat.DARK_GREEN);
+			var7.getChatModifier().setColor(EnumChatFormat.DARK_GREEN);
 			var1.sendChatMessage(var7);
 			Iterator var8 = var6.values().iterator();
 
@@ -617,7 +617,7 @@ public class ScoreboardCommand extends AbstractCommand {
 			}
 
 			ChatMessage var11 = new ChatMessage("commands.scoreboard.players.list.count", new Object[] { Integer.valueOf(var10.size()) });
-			var11.b().a(EnumChatFormat.DARK_GREEN);
+			var11.getChatModifier().setColor(EnumChatFormat.DARK_GREEN);
 			var1.sendChatMessage(var11);
 			var1.sendChatMessage(new ChatComponentText(a(var10.toArray())));
 		}

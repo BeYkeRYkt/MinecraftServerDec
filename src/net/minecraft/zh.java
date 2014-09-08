@@ -34,9 +34,9 @@ public class zh extends zb {
 			}
 
 			if (this.d == EntityHuman.class) {
-				this.b = this.a.o.a(this.a, (double) this.c);
+				this.b = this.a.world.a(this.a, (double) this.c);
 			} else {
-				this.b = this.a.o.a(this.d, this.a.aQ().b((double) this.c, 3.0D, (double) this.c), (Entity) this.a);
+				this.b = this.a.world.a(this.d, this.a.aQ().b((double) this.c, 3.0D, (double) this.c), (Entity) this.a);
 			}
 
 			return this.b != null;
@@ -44,7 +44,7 @@ public class zh extends zb {
 	}
 
 	public boolean b() {
-		return !this.b.ai() ? false : (this.a.h(this.b) > (double) (this.c * this.c) ? false : this.e > 0);
+		return !this.b.isAlive() ? false : (this.a.getDistanceSquared(this.b) > (double) (this.c * this.c) ? false : this.e > 0);
 	}
 
 	public void c() {

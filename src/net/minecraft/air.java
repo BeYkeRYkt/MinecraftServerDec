@@ -14,8 +14,8 @@ class air extends wa {
 		return 64;
 	}
 
-	public void o_() {
-		super.o_();
+	public void update() {
+		super.update();
 		this.a.a((IInventory) this);
 	}
 }

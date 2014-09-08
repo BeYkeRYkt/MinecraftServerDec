@@ -12,46 +12,46 @@ public class BlockRedstoneComparator extends ava implements avs {
 
 	public BlockRedstoneComparator(boolean var1) {
 		super(var1);
-		this.j(this.L.b().a(N, BlockFace.NORTH).a(a, Boolean.valueOf(false)).a(b, aur.a));
+		this.setBlockState(this.L.b().a(N, BlockFace.NORTH).a(a, Boolean.valueOf(false)).a(b, aur.a));
 		this.A = true;
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
+	public Item a(BlockState var1, Random var2, int var3) {
 		return Items.COMPARATOR;
 	}
 
-	protected int d(bec var1) {
+	protected int d(BlockState var1) {
 		return 2;
 	}
 
-	protected bec e(bec var1) {
+	protected BlockState e(BlockState var1) {
 		Boolean var2 = (Boolean) var1.b(a);
 		aur var3 = (aur) var1.b(b);
 		BlockFace var4 = (BlockFace) var1.b(N);
-		return Blocks.POWERED_COMPARATOR.P().a(N, var4).a(a, var2).a(b, var3);
+		return Blocks.POWERED_COMPARATOR.getBlockState().a(N, var4).a(a, var2).a(b, var3);
 	}
 
-	protected bec k(bec var1) {
+	protected BlockState k(BlockState var1) {
 		Boolean var2 = (Boolean) var1.b(a);
 		aur var3 = (aur) var1.b(b);
 		BlockFace var4 = (BlockFace) var1.b(N);
-		return Blocks.UNPOWERED_COMPARATOR.P().a(N, var4).a(a, var2).a(b, var3);
+		return Blocks.UNPOWERED_COMPARATOR.getBlockState().a(N, var4).a(a, var2).a(b, var3);
 	}
 
-	protected boolean l(bec var1) {
+	protected boolean l(BlockState var1) {
 		return this.M || ((Boolean) var1.b(a)).booleanValue();
 	}
 
-	protected int a(ard var1, Position var2, bec var3) {
-		TileEntity var4 = var1.s(var2);
+	protected int a(ard var1, Position var2, BlockState var3) {
+		TileEntity var4 = var1.getTileEntity(var2);
 		return var4 instanceof TileEntityComparator ? ((TileEntityComparator) var4).b() : 0;
 	}
 
-	private int j(World var1, Position var2, bec var3) {
+	private int j(World var1, Position var2, BlockState var3) {
 		return var3.b(b) == aur.b ? Math.max(this.f(var1, var2, var3) - this.c((ard) var1, var2, var3), 0) : this.f(var1, var2, var3);
 	}
 
-	protected boolean e(World var1, Position var2, bec var3) {
+	protected boolean e(World var1, Position var2, BlockState var3) {
 		int var4 = this.f(var1, var2, var3);
 		if (var4 >= 15) {
 			return true;
@@ -63,19 +63,19 @@ public class BlockRedstoneComparator extends ava implements avs {
 		}
 	}
 
-	protected int f(World var1, Position var2, bec var3) {
+	protected int f(World var1, Position var2, BlockState var3) {
 		int var4 = super.f(var1, var2, var3);
 		BlockFace var5 = (BlockFace) var3.b(N);
 		Position var6 = var2.a(var5);
-		Block var7 = var1.p(var6).getBlock();
+		Block var7 = var1.getBlockState(var6).getBlock();
 		if (var7.N()) {
 			var4 = var7.l(var1, var6);
 		} else if (var4 < 15 && var7.t()) {
 			var6 = var6.a(var5);
-			var7 = var1.p(var6).getBlock();
+			var7 = var1.getBlockState(var6).getBlock();
 			if (var7.N()) {
 				var4 = var7.l(var1, var6);
-			} else if (var7.r() == Material.AIR) {
+			} else if (var7.getMaterial() == Material.AIR) {
 				EntityItemFrame var8 = this.a(var1, var5, var6);
 				if (var8 != null) {
 					var4 = var8.q();
@@ -91,8 +91,8 @@ public class BlockRedstoneComparator extends ava implements avs {
 		return var4.size() == 1 ? (EntityItemFrame) var4.get(0) : null;
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
-		if (!var4.by.maybuild) {
+	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+		if (!var4.playerProperties.maybuild) {
 			return false;
 		} else {
 			var3 = var3.a(b);
@@ -103,10 +103,10 @@ public class BlockRedstoneComparator extends ava implements avs {
 		}
 	}
 
-	protected void g(World var1, Position var2, bec var3) {
+	protected void g(World var1, Position var2, BlockState var3) {
 		if (!var1.a(var2, (Block) this)) {
 			int var4 = this.j(var1, var2, var3);
-			TileEntity var5 = var1.s(var2);
+			TileEntity var5 = var1.getTileEntity(var2);
 			int var6 = var5 instanceof TileEntityComparator ? ((TileEntityComparator) var5).b() : 0;
 			if (var4 != var6 || this.l(var3) != this.e(var1, var2, var3)) {
 				if (this.i(var1, var2, var3)) {
@@ -119,9 +119,9 @@ public class BlockRedstoneComparator extends ava implements avs {
 		}
 	}
 
-	private void k(World var1, Position var2, bec var3) {
+	private void k(World var1, Position var2, BlockState var3) {
 		int var4 = this.j(var1, var2, var3);
-		TileEntity var5 = var1.s(var2);
+		TileEntity var5 = var1.getTileEntity(var2);
 		int var6 = 0;
 		if (var5 instanceof TileEntityComparator) {
 			TileEntityComparator var7 = (TileEntityComparator) var5;
@@ -143,7 +143,7 @@ public class BlockRedstoneComparator extends ava implements avs {
 
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, BlockState var3, Random var4) {
 		if (this.M) {
 			var1.a(var2, this.k(var3).a(a, Boolean.valueOf(true)), 4);
 		}
@@ -151,20 +151,20 @@ public class BlockRedstoneComparator extends ava implements avs {
 		this.k(var1, var2, var3);
 	}
 
-	public void c(World var1, Position var2, bec var3) {
+	public void c(World var1, Position var2, BlockState var3) {
 		super.c(var1, var2, var3);
 		var1.a(var2, this.a(var1, 0));
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, BlockState var3) {
 		super.b(var1, var2, var3);
 		var1.t(var2);
 		this.h(var1, var2, var3);
 	}
 
-	public boolean a(World var1, Position var2, bec var3, int var4, int var5) {
+	public boolean a(World var1, Position var2, BlockState var3, int var4, int var5) {
 		super.a(var1, var2, var3, var4, var5);
-		TileEntity var6 = var1.s(var2);
+		TileEntity var6 = var1.getTileEntity(var2);
 		return var6 == null ? false : var6.c(var4, var5);
 	}
 
@@ -172,11 +172,11 @@ public class BlockRedstoneComparator extends ava implements avs {
 		return new TileEntityComparator();
 	}
 
-	public bec a(int var1) {
-		return this.P().a(N, BlockFace.fromDirection(var1)).a(a, Boolean.valueOf((var1 & 8) > 0)).a(b, (var1 & 4) > 0 ? aur.b : aur.a);
+	public BlockState a(int var1) {
+		return this.getBlockState().a(N, BlockFace.fromDirection(var1)).a(a, Boolean.valueOf((var1 & 8) > 0)).a(b, (var1 & 4) > 0 ? aur.b : aur.a);
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((BlockFace) var1.b(N)).toDirection();
 		if (((Boolean) var1.b(a)).booleanValue()) {
@@ -194,8 +194,8 @@ public class BlockRedstoneComparator extends ava implements avs {
 		return new bed(this, new bex[] { N, b, a });
 	}
 
-	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return this.P().a(N, var8.aO().getOpposite()).a(a, Boolean.valueOf(false)).a(b, aur.a);
+	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		return this.getBlockState().a(N, var8.aO().getOpposite()).a(a, Boolean.valueOf(false)).a(b, aur.a);
 	}
 
 }

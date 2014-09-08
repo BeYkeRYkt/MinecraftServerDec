@@ -14,13 +14,13 @@ public class zl extends zb {
 
 	public boolean a() {
 		Position var1 = new Position(this.a);
-		if ((!this.a.o.w() || this.a.o.S() && !this.a.o.b(var1).e()) && !this.a.o.worldProvider.noSkyLight()) {
+		if ((!this.a.world.w() || this.a.world.S() && !this.a.world.b(var1).e()) && !this.a.world.worldProvider.noSkyLight()) {
 			if (this.a.bb().nextInt(50) != 0) {
 				return false;
-			} else if (this.c != -1 && this.a.e((double) this.c, this.a.locationY, (double) this.d) < 4.0D) {
+			} else if (this.c != -1 && this.a.getDistanceSquared((double) this.c, this.a.locationY, (double) this.d) < 4.0D) {
 				return false;
 			} else {
-				abi var2 = this.a.o.ae().a(var1, 14);
+				abi var2 = this.a.world.ae().a(var1, 14);
 				if (var2 == null) {
 					return false;
 				} else {

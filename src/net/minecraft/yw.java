@@ -12,7 +12,7 @@ public class yw extends zb {
 
 	public yw(EntityInsentient var1) {
 		this.c = var1;
-		this.d = var1.o;
+		this.d = var1.world;
 		this.a(7);
 	}
 
@@ -21,7 +21,7 @@ public class yw extends zb {
 			return false;
 		} else {
 			Position var1 = new Position(this.c.locationX, this.c.locationY, this.c.locationZ);
-			return b.apply(this.d.p(var1)) ? true : this.d.p(var1.b()).getBlock() == Blocks.GRASS;
+			return b.apply(this.d.getBlockState(var1)) ? true : this.d.getBlockState(var1.b()).getBlock() == Blocks.GRASS;
 		}
 	}
 
@@ -47,7 +47,7 @@ public class yw extends zb {
 		this.a = Math.max(0, this.a - 1);
 		if (this.a == 4) {
 			Position var1 = new Position(this.c.locationX, this.c.locationY, this.c.locationZ);
-			if (b.apply(this.d.p(var1))) {
+			if (b.apply(this.d.getBlockState(var1))) {
 				if (this.d.Q().b("mobGriefing")) {
 					this.d.b(var1, false);
 				}
@@ -55,10 +55,10 @@ public class yw extends zb {
 				this.c.v();
 			} else {
 				Position var2 = var1.b();
-				if (this.d.p(var2).getBlock() == Blocks.GRASS) {
+				if (this.d.getBlockState(var2).getBlock() == Blocks.GRASS) {
 					if (this.d.Q().b("mobGriefing")) {
 						this.d.b(2001, var2, Block.getBlockId((Block) Blocks.GRASS));
-						this.d.a(var2, Blocks.DIRT.P(), 2);
+						this.d.a(var2, Blocks.DIRT.getBlockState(), 2);
 					}
 
 					this.c.v();

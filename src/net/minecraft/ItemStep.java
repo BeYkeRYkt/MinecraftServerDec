@@ -18,26 +18,26 @@ public class ItemStep extends ItemBlock {
 	}
 
 	public String getName(ItemStack var1) {
-		return this.b.b(var1.i());
+		return this.b.b(var1.getDurability());
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		if (var1.b == 0) {
+		if (var1.amount == 0) {
 			return false;
 		} else if (!var2.a(var4.a(var5), var5, var1)) {
 			return false;
 		} else {
 			Object var9 = this.b.a(var1);
-			bec var10 = var3.p(var4);
+			BlockState var10 = var3.getBlockState(var4);
 			if (var10.getBlock() == this.b) {
 				bex var11 = this.b.l();
 				Comparable var12 = var10.b(var11);
 				awr var13 = (awr) var10.b(BlockStepAbstract.a);
 				if ((var5 == BlockFace.UP && var13 == awr.b || var5 == BlockFace.DOWN && var13 == awr.a) && var12 == var9) {
-					bec var14 = this.c.P().a(var11, var12);
+					BlockState var14 = this.c.getBlockState().a(var11, var12);
 					if (var3.b(this.c.a(var3, var4, var14)) && var3.a(var4, var14, 3)) {
 						var3.makeSound((double) ((float) var4.getX() + 0.5F), (double) ((float) var4.getY() + 0.5F), (double) ((float) var4.getZ() + 0.5F), this.c.H.b(), (this.c.H.d() + 1.0F) / 2.0F, this.c.H.e() * 0.8F);
-						--var1.b;
+						--var1.amount;
 					}
 
 					return true;
@@ -49,14 +49,14 @@ public class ItemStep extends ItemBlock {
 	}
 
 	private boolean a(ItemStack var1, World var2, Position var3, Object var4) {
-		bec var5 = var2.p(var3);
+		BlockState var5 = var2.getBlockState(var3);
 		if (var5.getBlock() == this.b) {
 			Comparable var6 = var5.b(this.b.l());
 			if (var6 == var4) {
-				bec var7 = this.c.P().a(this.b.l(), var6);
+				BlockState var7 = this.c.getBlockState().a(this.b.l(), var6);
 				if (var2.b(this.c.a(var2, var3, var7)) && var2.a(var3, var7, 3)) {
 					var2.makeSound((double) ((float) var3.getX() + 0.5F), (double) ((float) var3.getY() + 0.5F), (double) ((float) var3.getZ() + 0.5F), this.c.H.b(), (this.c.H.d() + 1.0F) / 2.0F, this.c.H.e() * 0.8F);
-					--var1.b;
+					--var1.amount;
 				}
 
 				return true;

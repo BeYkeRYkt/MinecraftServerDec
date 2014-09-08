@@ -8,15 +8,15 @@ public class BlockStainedGlass extends awt {
 
 	public BlockStainedGlass(Material var1) {
 		super(var1, false);
-		this.j(this.L.b().a(a, akv.a));
+		this.setBlockState(this.L.b().a(a, akv.a));
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(bec var1) {
+	public int a(BlockState var1) {
 		return ((akv) var1.b(a)).a();
 	}
 
-	public MaterialMapColor g(bec var1) {
+	public MaterialMapColor g(BlockState var1) {
 		return ((akv) var1.b(a)).e();
 	}
 
@@ -32,25 +32,25 @@ public class BlockStainedGlass extends awt {
 		return false;
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, akv.b(var1));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(a, akv.b(var1));
 	}
 
-	public void c(World var1, Position var2, bec var3) {
+	public void c(World var1, Position var2, BlockState var3) {
 		if (!var1.D) {
 			BlockBeacon.d(var1, var2);
 		}
 
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, BlockState var3) {
 		if (!var1.D) {
 			BlockBeacon.d(var1, var2);
 		}
 
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((akv) var1.b(a)).a();
 	}
 

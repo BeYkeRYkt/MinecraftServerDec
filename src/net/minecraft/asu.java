@@ -65,12 +65,12 @@ public class asu extends arm {
 
 	public void a(World var1, Random var2, bgk var3, int var4, int var5, double var6) {
 		if (this.aI == 1 || this.aI == 2) {
-			this.ak = Blocks.GRASS.P();
-			this.al = Blocks.DIRT.P();
+			this.ak = Blocks.GRASS.getBlockState();
+			this.al = Blocks.DIRT.getBlockState();
 			if (var6 > 1.75D) {
-				this.ak = Blocks.DIRT.P().a(BlockDirt.a, avd.b);
+				this.ak = Blocks.DIRT.getBlockState().a(BlockDirt.a, avd.b);
 			} else if (var6 > -0.95D) {
-				this.ak = Blocks.DIRT.P().a(BlockDirt.a, avd.c);
+				this.ak = Blocks.DIRT.getBlockState().a(BlockDirt.a, avd.c);
 			}
 		}
 

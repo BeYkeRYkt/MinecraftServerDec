@@ -16,7 +16,7 @@ public class DedicatedPlayerList extends PlayerList {
 		this.maxPlayers = var1.getIntProperty("max-players", 20);
 		this.a(var1.getBooleanProperty("white-list", false));
 		if (!var1.isSinglePlayer()) {
-			this.i().a(true);
+			this.getProfileBans().a(true);
 			this.j().a(true);
 		}
 
@@ -74,7 +74,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void x() {
 		try {
-			this.i().f();
+			this.getProfileBans().f();
 		} catch (IOException var2) {
 			h.warn("Failed to save user banlist: ", (Throwable) var2);
 		}
@@ -92,7 +92,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void z() {
 		try {
-			this.i().g();
+			this.getProfileBans().g();
 		} catch (IOException var2) {
 			h.warn("Failed to load user banlist: ", (Throwable) var2);
 		}
@@ -136,7 +136,7 @@ public class DedicatedPlayerList extends PlayerList {
 	}
 
 	public boolean e(GameProfile var1) {
-		return !this.s() || this.g(var1) || this.l().a(var1);
+		return !this.s() || this.isOp(var1) || this.l().a(var1);
 	}
 
 	public DedicatedMinecraftServer b() {

@@ -11,7 +11,7 @@ public class ItemDye extends Item {
 	}
 
 	public String getName(ItemStack var1) {
-		int var2 = var1.i();
+		int var2 = var1.getDurability();
 		return super.getName() + "." + akv.a(var2).d();
 	}
 
@@ -19,7 +19,7 @@ public class ItemDye extends Item {
 		if (!var2.a(var4.a(var5), var5, var1)) {
 			return false;
 		} else {
-			akv var9 = akv.a(var1.i());
+			akv var9 = akv.a(var1.getDurability());
 			if (var9 == akv.a) {
 				if (a(var1, var3, var4)) {
 					if (!var3.D) {
@@ -29,7 +29,7 @@ public class ItemDye extends Item {
 					return true;
 				}
 			} else if (var9 == akv.m) {
-				bec var10 = var3.p(var4);
+				BlockState var10 = var3.getBlockState(var4);
 				Block var11 = var10.getBlock();
 				if (var11 == Blocks.LOG && var10.b(BlockWood.a) == ayx.d) {
 					if (var5 == BlockFace.DOWN) {
@@ -42,10 +42,10 @@ public class ItemDye extends Item {
 
 					var4 = var4.a(var5);
 					if (var3.d(var4)) {
-						bec var12 = Blocks.COCOA.a(var3, var4, var5, var6, var7, var8, 0, var2);
+						BlockState var12 = Blocks.COCOA.a(var3, var4, var5, var6, var7, var8, 0, var2);
 						var3.a(var4, var12, 2);
-						if (!var2.by.instabuild) {
-							--var1.b;
+						if (!var2.playerProperties.instabuild) {
+							--var1.amount;
 						}
 					}
 
@@ -58,7 +58,7 @@ public class ItemDye extends Item {
 	}
 
 	public static boolean a(ItemStack var0, World var1, Position var2) {
-		bec var3 = var1.p(var2);
+		BlockState var3 = var1.getBlockState(var2);
 		if (var3.getBlock() instanceof atz) {
 			atz var4 = (atz) var3.getBlock();
 			if (var4.a(var1, var2, var3, var1.D)) {
@@ -67,7 +67,7 @@ public class ItemDye extends Item {
 						var4.b(var1, var1.s, var2, var3);
 					}
 
-					--var0.b;
+					--var0.amount;
 				}
 
 				return true;
@@ -80,10 +80,10 @@ public class ItemDye extends Item {
 	public boolean a(ItemStack var1, EntityHuman var2, EntityLiving var3) {
 		if (var3 instanceof EntitySheep) {
 			EntitySheep var4 = (EntitySheep) var3;
-			akv var5 = akv.a(var1.i());
+			akv var5 = akv.a(var1.getDurability());
 			if (!var4.ck() && var4.cj() != var5) {
 				var4.b(var5);
-				--var1.b;
+				--var1.amount;
 			}
 
 			return true;

@@ -49,7 +49,7 @@ public class EntityItem extends Entity {
 
 	public void s_() {
 		if (this.l() == null) {
-			this.J();
+			this.die();
 		} else {
 			super.s_();
 			if (this.d > 0 && this.d != 32767) {
@@ -64,21 +64,21 @@ public class EntityItem extends Entity {
 			this.d(this.motionX, this.motionY, this.motionZ);
 			boolean var1 = (int) this.p != (int) this.locationX || (int) this.q != (int) this.locationY || (int) this.r != (int) this.locationZ;
 			if (var1 || this.W % 25 == 0) {
-				if (this.o.p(new Position(this)).getBlock().r() == Material.LAVA) {
+				if (this.world.getBlockState(new Position(this)).getBlock().getMaterial() == Material.LAVA) {
 					this.motionY = 0.20000000298023224D;
 					this.motionX = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
 					this.motionZ = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
 					this.a("random.fizz", 0.4F, 2.0F + this.V.nextFloat() * 0.4F);
 				}
 
-				if (!this.o.D) {
+				if (!this.world.D) {
 					this.w();
 				}
 			}
 
 			float var2 = 0.98F;
 			if (this.onGround) {
-				var2 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
+				var2 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
 			}
 
 			this.motionX *= (double) var2;
@@ -93,15 +93,15 @@ public class EntityItem extends Entity {
 			}
 
 			this.W();
-			if (!this.o.D && this.c >= 6000) {
-				this.J();
+			if (!this.world.D && this.c >= 6000) {
+				this.die();
 			}
 
 		}
 	}
 
 	private void w() {
-		Iterator var1 = this.o.a(EntityItem.class, this.aQ().b(0.5D, 0.0D, 0.5D)).iterator();
+		Iterator var1 = this.world.a(EntityItem.class, this.aQ().b(0.5D, 0.0D, 0.5D)).iterator();
 
 		while (var1.hasNext()) {
 			EntityItem var2 = (EntityItem) var1.next();
@@ -113,7 +113,7 @@ public class EntityItem extends Entity {
 	private boolean a(EntityItem var1) {
 		if (var1 == this) {
 			return false;
-		} else if (var1.ai() && this.ai()) {
+		} else if (var1.isAlive() && this.isAlive()) {
 			ItemStack var2 = this.l();
 			ItemStack var3 = var1.l();
 			if (this.d != 32767 && var1.d != 32767) {
@@ -126,18 +126,18 @@ public class EntityItem extends Entity {
 						return false;
 					} else if (var3.getItem() == null) {
 						return false;
-					} else if (var3.getItem().k() && var3.i() != var2.i()) {
+					} else if (var3.getItem().k() && var3.getDurability() != var2.getDurability()) {
 						return false;
-					} else if (var3.b < var2.b) {
+					} else if (var3.amount < var2.amount) {
 						return var1.a(this);
-					} else if (var3.b + var2.b > var3.c()) {
+					} else if (var3.amount + var2.amount > var3.getMaxStackSize()) {
 						return false;
 					} else {
-						var3.b += var2.b;
+						var3.amount += var2.amount;
 						var1.d = Math.max(var1.d, this.d);
 						var1.c = Math.min(var1.c, this.c);
 						var1.a(var3);
-						this.J();
+						this.die();
 						return true;
 					}
 				} else {
@@ -156,7 +156,7 @@ public class EntityItem extends Entity {
 	}
 
 	public boolean W() {
-		if (this.o.a(this.aQ(), Material.WATER, (Entity) this)) {
+		if (this.world.a(this.aQ(), Material.WATER, (Entity) this)) {
 			if (!this.Y && !this.aa) {
 				this.X();
 			}
@@ -182,7 +182,7 @@ public class EntityItem extends Entity {
 			this.ac();
 			this.e = (int) ((float) this.e - var2);
 			if (this.e <= 0) {
-				this.J();
+				this.die();
 			}
 
 			return false;
@@ -202,7 +202,7 @@ public class EntityItem extends Entity {
 		}
 
 		if (this.l() != null) {
-			var1.put("Item", (NBTTag) this.l().b(new NBTCompoundTag()));
+			var1.put("Item", (NBTTag) this.l().write(new NBTCompoundTag()));
 		}
 
 	}
@@ -225,16 +225,16 @@ public class EntityItem extends Entity {
 		NBTCompoundTag var2 = var1.getCompound("Item");
 		this.a(ItemStack.a(var2));
 		if (this.l() == null) {
-			this.J();
+			this.die();
 		}
 
 	}
 
 	public void d(EntityHuman var1) {
-		if (!this.o.D) {
+		if (!this.world.D) {
 			ItemStack var2 = this.l();
-			int var3 = var2.b;
-			if (this.d == 0 && (this.g == null || 6000 - this.c <= 200 || this.g.equals(var1.d_())) && var1.playerInventory.a(var2)) {
+			int var3 = var2.amount;
+			if (this.d == 0 && (this.g == null || 6000 - this.c <= 200 || this.g.equals(var1.getName())) && var1.playerInventory.a(var2)) {
 				if (var2.getItem() == Item.getItemOf(Blocks.LOG)) {
 					var1.b((Statistic) AchievementList.g);
 				}
@@ -256,26 +256,26 @@ public class EntityItem extends Entity {
 				}
 
 				if (var2.getItem() == Items.DIAMOND && this.n() != null) {
-					EntityHuman var4 = this.o.a(this.n());
+					EntityHuman var4 = this.world.a(this.n());
 					if (var4 != null && var4 != var1) {
 						var4.b((Statistic) AchievementList.x);
 					}
 				}
 
 				if (!this.R()) {
-					this.o.a((Entity) var1, "random.pop", 0.2F, ((this.V.nextFloat() - this.V.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+					this.world.a((Entity) var1, "random.pop", 0.2F, ((this.V.nextFloat() - this.V.nextFloat()) * 0.7F + 1.0F) * 2.0F);
 				}
 
 				var1.a((Entity) this, var3);
-				if (var2.b <= 0) {
-					this.J();
+				if (var2.amount <= 0) {
+					this.die();
 				}
 			}
 
 		}
 	}
 
-	public String d_() {
+	public String getName() {
 		return this.k_() ? this.aL() : LocaleI18n.get("item." + this.l().a());
 	}
 
@@ -285,7 +285,7 @@ public class EntityItem extends Entity {
 
 	public void c(int var1) {
 		super.c(var1);
-		if (!this.o.D) {
+		if (!this.world.D) {
 			this.w();
 		}
 
@@ -294,7 +294,7 @@ public class EntityItem extends Entity {
 	public ItemStack l() {
 		ItemStack var1 = this.getDataWatcher().f(10);
 		if (var1 == null) {
-			if (this.o != null) {
+			if (this.world != null) {
 				b.error("Item entity " + this.getId() + " has no item?!");
 			}
 

@@ -9,52 +9,52 @@ import java.util.Set;
 
 public abstract class Container {
 
-	public List b = Lists.newArrayList();
-	public List c = Lists.newArrayList();
-	public int d;
+	public List<ItemStack> itemStacks = Lists.newArrayList();
+	public List<Slot> slots = Lists.newArrayList();
+	public int windowId;
 	private int f = -1;
 	private int g;
 	private final Set h = Sets.newHashSet();
-	protected List e = Lists.newArrayList();
-	private Set i = Sets.newHashSet();
+	protected List<ICrafting> listeners = Lists.newArrayList();
+	private Set<EntityHuman> unConfirmedTransactions = Sets.newHashSet();
 
-	protected ajk a(ajk var1) {
-		var1.e = this.c.size();
-		this.c.add(var1);
-		this.b.add((Object) null);
-		return var1;
+	protected Slot addSlot(Slot slot) {
+		slot.index = this.slots.size();
+		this.slots.add(slot);
+		this.itemStacks.add(null);
+		return slot;
 	}
 
-	public void a(ICrafting var1) {
-		if (this.e.contains(var1)) {
+	public void addSlotListener(ICrafting icrafting) {
+		if (this.listeners.contains(icrafting)) {
 			throw new IllegalArgumentException("Listener already listening");
 		} else {
-			this.e.add(var1);
-			var1.a(this, this.a());
+			this.listeners.add(icrafting);
+			icrafting.setContainerData(this, this.getContents());
 			this.b();
 		}
 	}
 
-	public List a() {
-		ArrayList var1 = Lists.newArrayList();
+	public List<ItemStack> getContents() {
+		ArrayList<ItemStack> items = Lists.newArrayList();
 
-		for (int var2 = 0; var2 < this.c.size(); ++var2) {
-			var1.add(((ajk) this.c.get(var2)).d());
+		for (int i = 0; i < this.slots.size(); ++i) {
+			items.add(this.slots.get(i).getItemStack());
 		}
 
-		return var1;
+		return items;
 	}
 
 	public void b() {
-		for (int var1 = 0; var1 < this.c.size(); ++var1) {
-			ItemStack var2 = ((ajk) this.c.get(var1)).d();
-			ItemStack var3 = (ItemStack) this.b.get(var1);
-			if (!ItemStack.b(var3, var2)) {
+		for (int var1 = 0; var1 < this.slots.size(); ++var1) {
+			ItemStack var2 = ((Slot) this.slots.get(var1)).getItemStack();
+			ItemStack var3 = (ItemStack) this.itemStacks.get(var1);
+			if (!ItemStack.matches(var3, var2)) {
 				var3 = var2 == null ? null : var2.getCopy();
-				this.b.set(var1, var3);
+				this.itemStacks.set(var1, var3);
 
-				for (int var4 = 0; var4 < this.e.size(); ++var4) {
-					((ICrafting) this.e.get(var4)).a(this, var1, var3);
+				for (int var4 = 0; var4 < this.listeners.size(); ++var4) {
+					((ICrafting) this.listeners.get(var4)).setContainerData(this, var1, var3);
 				}
 			}
 		}
@@ -65,9 +65,9 @@ public abstract class Container {
 		return false;
 	}
 
-	public ajk a(IInventory var1, int var2) {
-		for (int var3 = 0; var3 < this.c.size(); ++var3) {
-			ajk var4 = (ajk) this.c.get(var3);
+	public Slot a(IInventory var1, int var2) {
+		for (int var3 = 0; var3 < this.slots.size(); ++var3) {
+			Slot var4 = (Slot) this.slots.get(var3);
 			if (var4.a(var1, var2)) {
 				return var4;
 			}
@@ -76,13 +76,13 @@ public abstract class Container {
 		return null;
 	}
 
-	public ajk a(int var1) {
-		return (ajk) this.c.get(var1);
+	public Slot getSlot(int var1) {
+		return (Slot) this.slots.get(var1);
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {
-		ajk var3 = (ajk) this.c.get(var2);
-		return var3 != null ? var3.d() : null;
+		Slot var3 = (Slot) this.slots.get(var2);
+		return var3 != null ? var3.getItemStack() : null;
 	}
 
 	public ItemStack a(int var1, int var2, int var3, EntityHuman var4) {
@@ -106,37 +106,37 @@ public abstract class Container {
 					this.d();
 				}
 			} else if (this.g == 1) {
-				ajk var8 = (ajk) this.c.get(var1);
-				if (var8 != null && a(var8, var6.p(), true) && var8.a(var6.p()) && var6.p().b > this.h.size() && this.b(var8)) {
+				Slot var8 = (Slot) this.slots.get(var1);
+				if (var8 != null && a(var8, var6.p(), true) && var8.a(var6.p()) && var6.p().amount > this.h.size() && this.b(var8)) {
 					this.h.add(var8);
 				}
 			} else if (this.g == 2) {
 				if (!this.h.isEmpty()) {
 					var17 = var6.p().getCopy();
-					var9 = var6.p().b;
+					var9 = var6.p().amount;
 					Iterator var10 = this.h.iterator();
 
 					while (var10.hasNext()) {
-						ajk var11 = (ajk) var10.next();
-						if (var11 != null && a(var11, var6.p(), true) && var11.a(var6.p()) && var6.p().b >= this.h.size() && this.b(var11)) {
+						Slot var11 = (Slot) var10.next();
+						if (var11 != null && a(var11, var6.p(), true) && var11.a(var6.p()) && var6.p().amount >= this.h.size() && this.b(var11)) {
 							ItemStack var12 = var17.getCopy();
-							int var13 = var11.e() ? var11.d().b : 0;
+							int var13 = var11.hasItem() ? var11.getItemStack().amount : 0;
 							a(this.h, this.f, var12, var13);
-							if (var12.b > var12.c()) {
-								var12.b = var12.c();
+							if (var12.amount > var12.getMaxStackSize()) {
+								var12.amount = var12.getMaxStackSize();
 							}
 
-							if (var12.b > var11.b(var12)) {
-								var12.b = var11.b(var12);
+							if (var12.amount > var11.b(var12)) {
+								var12.amount = var11.b(var12);
 							}
 
-							var9 -= var12.b - var13;
+							var9 -= var12.amount - var13;
 							var11.d(var12);
 						}
 					}
 
-					var17.b = var9;
-					if (var17.b <= 0) {
+					var17.amount = var9;
+					if (var17.amount <= 0) {
 						var17 = null;
 					}
 
@@ -150,20 +150,20 @@ public abstract class Container {
 		} else if (this.g != 0) {
 			this.d();
 		} else {
-			ajk var16;
+			Slot var16;
 			int var21;
 			ItemStack var23;
 			if ((var3 == 0 || var3 == 1) && (var2 == 0 || var2 == 1)) {
 				if (var1 == -999) {
 					if (var6.p() != null) {
 						if (var2 == 0) {
-							var4.a(var6.p(), true);
+							var4.dropItem(var6.p(), true);
 							var6.b((ItemStack) null);
 						}
 
 						if (var2 == 1) {
-							var4.a(var6.p().a(1), true);
-							if (var6.p().b == 0) {
+							var4.dropItem(var6.p().a(1), true);
+							if (var6.p().amount == 0) {
 								var6.b((ItemStack) null);
 							}
 						}
@@ -173,13 +173,13 @@ public abstract class Container {
 						return null;
 					}
 
-					var16 = (ajk) this.c.get(var1);
+					var16 = (Slot) this.slots.get(var1);
 					if (var16 != null && var16.a(var4)) {
 						var17 = this.b(var4, var1);
 						if (var17 != null) {
 							Item var19 = var17.getItem();
 							var5 = var17.getCopy();
-							if (var16.d() != null && var16.d().getItem() == var19) {
+							if (var16.getItemStack() != null && var16.getItemStack().getItem() == var19) {
 								this.a(var1, var2, true, var4);
 							}
 						}
@@ -189,9 +189,9 @@ public abstract class Container {
 						return null;
 					}
 
-					var16 = (ajk) this.c.get(var1);
+					var16 = (Slot) this.slots.get(var1);
 					if (var16 != null) {
-						var17 = var16.d();
+						var17 = var16.getItemStack();
 						ItemStack var20 = var6.p();
 						if (var17 != null) {
 							var5 = var17.getCopy();
@@ -199,56 +199,56 @@ public abstract class Container {
 
 						if (var17 == null) {
 							if (var20 != null && var16.a(var20)) {
-								var21 = var2 == 0 ? var20.b : 1;
+								var21 = var2 == 0 ? var20.amount : 1;
 								if (var21 > var16.b(var20)) {
 									var21 = var16.b(var20);
 								}
 
-								if (var20.b >= var21) {
+								if (var20.amount >= var21) {
 									var16.d(var20.a(var21));
 								}
 
-								if (var20.b == 0) {
+								if (var20.amount == 0) {
 									var6.b((ItemStack) null);
 								}
 							}
 						} else if (var16.a(var4)) {
 							if (var20 == null) {
-								var21 = var2 == 0 ? var17.b : (var17.b + 1) / 2;
+								var21 = var2 == 0 ? var17.amount : (var17.amount + 1) / 2;
 								var23 = var16.a(var21);
 								var6.b(var23);
-								if (var17.b == 0) {
+								if (var17.amount == 0) {
 									var16.d((ItemStack) null);
 								}
 
 								var16.a(var4, var6.p());
 							} else if (var16.a(var20)) {
-								if (var17.getItem() == var20.getItem() && var17.i() == var20.i() && ItemStack.a(var17, var20)) {
-									var21 = var2 == 0 ? var20.b : 1;
-									if (var21 > var16.b(var20) - var17.b) {
-										var21 = var16.b(var20) - var17.b;
+								if (var17.getItem() == var20.getItem() && var17.getDurability() == var20.getDurability() && ItemStack.a(var17, var20)) {
+									var21 = var2 == 0 ? var20.amount : 1;
+									if (var21 > var16.b(var20) - var17.amount) {
+										var21 = var16.b(var20) - var17.amount;
 									}
 
-									if (var21 > var20.c() - var17.b) {
-										var21 = var20.c() - var17.b;
+									if (var21 > var20.getMaxStackSize() - var17.amount) {
+										var21 = var20.getMaxStackSize() - var17.amount;
 									}
 
 									var20.a(var21);
-									if (var20.b == 0) {
+									if (var20.amount == 0) {
 										var6.b((ItemStack) null);
 									}
 
-									var17.b += var21;
-								} else if (var20.b <= var16.b(var20)) {
+									var17.amount += var21;
+								} else if (var20.amount <= var16.b(var20)) {
 									var16.d(var20);
 									var6.b(var17);
 								}
-							} else if (var17.getItem() == var20.getItem() && var20.c() > 1 && (!var17.f() || var17.i() == var20.i()) && ItemStack.a(var17, var20)) {
-								var21 = var17.b;
-								if (var21 > 0 && var21 + var20.b <= var20.c()) {
-									var20.b += var21;
+							} else if (var17.getItem() == var20.getItem() && var20.getMaxStackSize() > 1 && (!var17.f() || var17.getDurability() == var20.getDurability()) && ItemStack.a(var17, var20)) {
+								var21 = var17.amount;
+								if (var21 > 0 && var21 + var20.amount <= var20.getMaxStackSize()) {
+									var20.amount += var21;
 									var17 = var16.a(var21);
-									if (var17.b == 0) {
+									if (var17.amount == 0) {
 										var16.d((ItemStack) null);
 									}
 
@@ -257,69 +257,69 @@ public abstract class Container {
 							}
 						}
 
-						var16.f();
+						var16.update();
 					}
 				}
 			} else if (var3 == 2 && var2 >= 0 && var2 < 9) {
-				var16 = (ajk) this.c.get(var1);
+				var16 = (Slot) this.slots.get(var1);
 				if (var16.a(var4)) {
 					var17 = var6.a(var2);
-					boolean var18 = var17 == null || var16.d == var6 && var16.a(var17);
+					boolean var18 = var17 == null || var16.inventory == var6 && var16.a(var17);
 					var21 = -1;
 					if (!var18) {
 						var21 = var6.j();
 						var18 |= var21 > -1;
 					}
 
-					if (var16.e() && var18) {
-						var23 = var16.d();
+					if (var16.hasItem() && var18) {
+						var23 = var16.getItemStack();
 						var6.a(var2, var23.getCopy());
-						if ((var16.d != var6 || !var16.a(var17)) && var17 != null) {
+						if ((var16.inventory != var6 || !var16.a(var17)) && var17 != null) {
 							if (var21 > -1) {
 								var6.a(var17);
-								var16.a(var23.b);
+								var16.a(var23.amount);
 								var16.d((ItemStack) null);
 								var16.a(var4, var23);
 							}
 						} else {
-							var16.a(var23.b);
+							var16.a(var23.amount);
 							var16.d(var17);
 							var16.a(var4, var23);
 						}
-					} else if (!var16.e() && var17 != null && var16.a(var17)) {
+					} else if (!var16.hasItem() && var17 != null && var16.a(var17)) {
 						var6.a(var2, (ItemStack) null);
 						var16.d(var17);
 					}
 				}
-			} else if (var3 == 3 && var4.by.instabuild && var6.p() == null && var1 >= 0) {
-				var16 = (ajk) this.c.get(var1);
-				if (var16 != null && var16.e()) {
-					var17 = var16.d().getCopy();
-					var17.b = var17.c();
+			} else if (var3 == 3 && var4.playerProperties.instabuild && var6.p() == null && var1 >= 0) {
+				var16 = (Slot) this.slots.get(var1);
+				if (var16 != null && var16.hasItem()) {
+					var17 = var16.getItemStack().getCopy();
+					var17.amount = var17.getMaxStackSize();
 					var6.b(var17);
 				}
 			} else if (var3 == 4 && var6.p() == null && var1 >= 0) {
-				var16 = (ajk) this.c.get(var1);
-				if (var16 != null && var16.e() && var16.a(var4)) {
-					var17 = var16.a(var2 == 0 ? 1 : var16.d().b);
+				var16 = (Slot) this.slots.get(var1);
+				if (var16 != null && var16.hasItem() && var16.a(var4)) {
+					var17 = var16.a(var2 == 0 ? 1 : var16.getItemStack().amount);
 					var16.a(var4, var17);
-					var4.a(var17, true);
+					var4.dropItem(var17, true);
 				}
 			} else if (var3 == 6 && var1 >= 0) {
-				var16 = (ajk) this.c.get(var1);
+				var16 = (Slot) this.slots.get(var1);
 				var17 = var6.p();
-				if (var17 != null && (var16 == null || !var16.e() || !var16.a(var4))) {
-					var9 = var2 == 0 ? 0 : this.c.size() - 1;
+				if (var17 != null && (var16 == null || !var16.hasItem() || !var16.a(var4))) {
+					var9 = var2 == 0 ? 0 : this.slots.size() - 1;
 					var21 = var2 == 0 ? 1 : -1;
 
 					for (int var22 = 0; var22 < 2; ++var22) {
-						for (int var24 = var9; var24 >= 0 && var24 < this.c.size() && var17.b < var17.c(); var24 += var21) {
-							ajk var25 = (ajk) this.c.get(var24);
-							if (var25.e() && a(var25, var17, true) && var25.a(var4) && this.a(var17, var25) && (var22 != 0 || var25.d().b != var25.d().c())) {
-								int var14 = Math.min(var17.c() - var17.b, var25.d().b);
+						for (int var24 = var9; var24 >= 0 && var24 < this.slots.size() && var17.amount < var17.getMaxStackSize(); var24 += var21) {
+							Slot var25 = (Slot) this.slots.get(var24);
+							if (var25.hasItem() && a(var25, var17, true) && var25.a(var4) && this.a(var17, var25) && (var22 != 0 || var25.getItemStack().amount != var25.getItemStack().getMaxStackSize())) {
+								int var14 = Math.min(var17.getMaxStackSize() - var17.amount, var25.getItemStack().amount);
 								ItemStack var15 = var25.a(var14);
-								var17.b += var14;
-								if (var15.b <= 0) {
+								var17.amount += var14;
+								if (var15.amount <= 0) {
 									var25.d((ItemStack) null);
 								}
 
@@ -336,7 +336,7 @@ public abstract class Container {
 		return var5;
 	}
 
-	public boolean a(ItemStack var1, ajk var2) {
+	public boolean a(ItemStack var1, Slot var2) {
 		return true;
 	}
 
@@ -344,34 +344,32 @@ public abstract class Container {
 		this.a(var1, var2, 1, var4);
 	}
 
-	public void b(EntityHuman var1) {
+	public void onClose(EntityHuman var1) {
 		PlayerInventory var2 = var1.playerInventory;
 		if (var2.p() != null) {
-			var1.a(var2.p(), false);
+			var1.dropItem(var2.p(), false);
 			var2.b((ItemStack) null);
 		}
-
 	}
 
 	public void a(IInventory var1) {
 		this.b();
 	}
 
-	public void a(int var1, ItemStack var2) {
-		this.a(var1).d(var2);
+	public void setItem(int var1, ItemStack var2) {
+		this.getSlot(var1).d(var2);
 	}
 
-	public boolean c(EntityHuman var1) {
-		return !this.i.contains(var1);
+	public boolean isTransactionsConfirmed(EntityHuman human) {
+		return !this.unConfirmedTransactions.contains(human);
 	}
 
-	public void a(EntityHuman var1, boolean var2) {
-		if (var2) {
-			this.i.remove(var1);
+	public void notifyTransactionStatus(EntityHuman human, boolean flag) {
+		if (flag) {
+			this.unConfirmedTransactions.remove(human);
 		} else {
-			this.i.add(var1);
+			this.unConfirmedTransactions.add(human);
 		}
-
 	}
 
 	public abstract boolean a(EntityHuman var1);
@@ -383,23 +381,23 @@ public abstract class Container {
 			var6 = var3 - 1;
 		}
 
-		ajk var7;
+		Slot var7;
 		ItemStack var8;
 		if (var1.d()) {
-			while (var1.b > 0 && (!var4 && var6 < var3 || var4 && var6 >= var2)) {
-				var7 = (ajk) this.c.get(var6);
-				var8 = var7.d();
-				if (var8 != null && var8.getItem() == var1.getItem() && (!var1.f() || var1.i() == var8.i()) && ItemStack.a(var1, var8)) {
-					int var9 = var8.b + var1.b;
-					if (var9 <= var1.c()) {
-						var1.b = 0;
-						var8.b = var9;
-						var7.f();
+			while (var1.amount > 0 && (!var4 && var6 < var3 || var4 && var6 >= var2)) {
+				var7 = (Slot) this.slots.get(var6);
+				var8 = var7.getItemStack();
+				if (var8 != null && var8.getItem() == var1.getItem() && (!var1.f() || var1.getDurability() == var8.getDurability()) && ItemStack.a(var1, var8)) {
+					int var9 = var8.amount + var1.amount;
+					if (var9 <= var1.getMaxStackSize()) {
+						var1.amount = 0;
+						var8.amount = var9;
+						var7.update();
 						var5 = true;
-					} else if (var8.b < var1.c()) {
-						var1.b -= var1.c() - var8.b;
-						var8.b = var1.c();
-						var7.f();
+					} else if (var8.amount < var1.getMaxStackSize()) {
+						var1.amount -= var1.getMaxStackSize() - var8.amount;
+						var8.amount = var1.getMaxStackSize();
+						var7.update();
 						var5 = true;
 					}
 				}
@@ -412,7 +410,7 @@ public abstract class Container {
 			}
 		}
 
-		if (var1.b > 0) {
+		if (var1.amount > 0) {
 			if (var4) {
 				var6 = var3 - 1;
 			} else {
@@ -420,12 +418,12 @@ public abstract class Container {
 			}
 
 			while (!var4 && var6 < var3 || var4 && var6 >= var2) {
-				var7 = (ajk) this.c.get(var6);
-				var8 = var7.d();
+				var7 = (Slot) this.slots.get(var6);
+				var8 = var7.getItemStack();
 				if (var8 == null) {
 					var7.d(var1.getCopy());
-					var7.f();
-					var1.b = 0;
+					var7.update();
+					var1.amount = 0;
 					var5 = true;
 					break;
 				}
@@ -450,7 +448,7 @@ public abstract class Container {
 	}
 
 	public static boolean a(int var0, EntityHuman var1) {
-		return var0 == 0 ? true : (var0 == 1 ? true : var0 == 2 && var1.by.instabuild);
+		return var0 == 0 ? true : (var0 == 1 ? true : var0 == 2 && var1.playerProperties.instabuild);
 	}
 
 	protected void d() {
@@ -458,11 +456,11 @@ public abstract class Container {
 		this.h.clear();
 	}
 
-	public static boolean a(ajk var0, ItemStack var1, boolean var2) {
-		boolean var3 = var0 == null || !var0.e();
-		if (var0 != null && var0.e() && var1 != null && var1.a(var0.d()) && ItemStack.a(var0.d(), var1)) {
-			int var10002 = var2 ? 0 : var1.b;
-			var3 |= var0.d().b + var10002 <= var1.c();
+	public static boolean a(Slot var0, ItemStack var1, boolean var2) {
+		boolean var3 = var0 == null || !var0.hasItem();
+		if (var0 != null && var0.hasItem() && var1 != null && var1.a(var0.getItemStack()) && ItemStack.a(var0.getItemStack(), var1)) {
+			int var10002 = var2 ? 0 : var1.amount;
+			var3 |= var0.getItemStack().amount + var10002 <= var1.getMaxStackSize();
 		}
 
 		return var3;
@@ -471,19 +469,19 @@ public abstract class Container {
 	public static void a(Set var0, int var1, ItemStack var2, int var3) {
 		switch (var1) {
 			case 0:
-				var2.b = DataTypesConverter.d((float) var2.b / (float) var0.size());
+				var2.amount = DataTypesConverter.d((float) var2.amount / (float) var0.size());
 				break;
 			case 1:
-				var2.b = 1;
+				var2.amount = 1;
 				break;
 			case 2:
-				var2.b = var2.getItem().getMaxStackSize();
+				var2.amount = var2.getItem().getMaxStackSize();
 		}
 
-		var2.b += var3;
+		var2.amount += var3;
 	}
 
-	public boolean b(ajk var1) {
+	public boolean b(Slot var1) {
 		return true;
 	}
 
@@ -501,7 +499,7 @@ public abstract class Container {
 			for (int var3 = 0; var3 < var0.n_(); ++var3) {
 				ItemStack var4 = var0.a(var3);
 				if (var4 != null) {
-					var2 += (float) var4.b / (float) Math.min(var0.p_(), var4.c());
+					var2 += (float) var4.amount / (float) Math.min(var0.p_(), var4.getMaxStackSize());
 					++var1;
 				}
 			}

@@ -10,20 +10,20 @@ public class EntityLightning extends EntityWeather {
 
 	public EntityLightning(World var1, double var2, double var4, double var6) {
 		super(var1);
-		this.b(var2, var4, var6, 0.0F, 0.0F);
+		this.setPositionRotation(var2, var4, var6, 0.0F, 0.0F);
 		this.b = 2;
 		this.a = this.V.nextLong();
 		this.c = this.V.nextInt(3) + 1;
 		if (!var1.D && var1.Q().b("doFireTick") && (var1.getDifficulty() == Difficulty.NORMAL || var1.getDifficulty() == Difficulty.HARD) && var1.a(new Position(this), (int) 10)) {
 			Position var8 = new Position(this);
-			if (var1.p(var8).getBlock().r() == Material.AIR && Blocks.FIRE.c(var1, var8)) {
-				var1.a(var8, Blocks.FIRE.P());
+			if (var1.getBlockState(var8).getBlock().getMaterial() == Material.AIR && Blocks.FIRE.c(var1, var8)) {
+				var1.a(var8, Blocks.FIRE.getBlockState());
 			}
 
 			for (int var9 = 0; var9 < 4; ++var9) {
 				Position var10 = var8.a(this.V.nextInt(3) - 1, this.V.nextInt(3) - 1, this.V.nextInt(3) - 1);
-				if (var1.p(var10).getBlock().r() == Material.AIR && Blocks.FIRE.c(var1, var10)) {
-					var1.a(var10, Blocks.FIRE.P());
+				if (var1.getBlockState(var10).getBlock().getMaterial() == Material.AIR && Blocks.FIRE.c(var1, var10)) {
+					var1.a(var10, Blocks.FIRE.getBlockState());
 				}
 			}
 		}
@@ -33,31 +33,31 @@ public class EntityLightning extends EntityWeather {
 	public void s_() {
 		super.s_();
 		if (this.b == 2) {
-			this.o.makeSound(this.locationX, this.locationY, this.locationZ, "ambient.weather.thunder", 10000.0F, 0.8F + this.V.nextFloat() * 0.2F);
-			this.o.makeSound(this.locationX, this.locationY, this.locationZ, "random.explode", 2.0F, 0.5F + this.V.nextFloat() * 0.2F);
+			this.world.makeSound(this.locationX, this.locationY, this.locationZ, "ambient.weather.thunder", 10000.0F, 0.8F + this.V.nextFloat() * 0.2F);
+			this.world.makeSound(this.locationX, this.locationY, this.locationZ, "random.explode", 2.0F, 0.5F + this.V.nextFloat() * 0.2F);
 		}
 
 		--this.b;
 		if (this.b < 0) {
 			if (this.c == 0) {
-				this.J();
+				this.die();
 			} else if (this.b < -this.V.nextInt(10)) {
 				--this.c;
 				this.b = 1;
 				this.a = this.V.nextLong();
 				Position var1 = new Position(this);
-				if (!this.o.D && this.o.Q().b("doFireTick") && this.o.a(var1, (int) 10) && this.o.p(var1).getBlock().r() == Material.AIR && Blocks.FIRE.c(this.o, var1)) {
-					this.o.a(var1, Blocks.FIRE.P());
+				if (!this.world.D && this.world.Q().b("doFireTick") && this.world.a(var1, (int) 10) && this.world.getBlockState(var1).getBlock().getMaterial() == Material.AIR && Blocks.FIRE.c(this.world, var1)) {
+					this.world.a(var1, Blocks.FIRE.getBlockState());
 				}
 			}
 		}
 
 		if (this.b >= 0) {
-			if (this.o.D) {
-				this.o.c(2);
+			if (this.world.D) {
+				this.world.c(2);
 			} else {
 				double var6 = 3.0D;
-				List var3 = this.o.b((Entity) this, new AxisAlignedBB(this.locationX - var6, this.locationY - var6, this.locationZ - var6, this.locationX + var6, this.locationY + 6.0D + var6, this.locationZ + var6));
+				List var3 = this.world.b((Entity) this, new AxisAlignedBB(this.locationX - var6, this.locationY - var6, this.locationZ - var6, this.locationX + var6, this.locationY + 6.0D + var6, this.locationZ + var6));
 
 				for (int var4 = 0; var4 < var3.size(); ++var4) {
 					Entity var5 = (Entity) var3.get(var4);

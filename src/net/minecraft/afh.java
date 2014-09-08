@@ -12,7 +12,7 @@ class afh implements Predicate {
 	}
 
 	public boolean a(EntityPlayer var1) {
-		return this.a.h(var1) < 2500.0D && var1.playerInteractManager.c();
+		return this.a.getDistanceSquared(var1) < 2500.0D && var1.playerInteractManager.isSurvivalOrAdventure();
 	}
 
 	// $FF: synthetic method

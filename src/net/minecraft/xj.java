@@ -11,7 +11,7 @@ public class xj implements Predicate {
 	}
 
 	public boolean a(Entity var1) {
-		if (!var1.ai()) {
+		if (!var1.isAlive()) {
 			return false;
 		} else if (!(var1 instanceof EntityLiving)) {
 			return false;

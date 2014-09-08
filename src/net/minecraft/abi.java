@@ -85,7 +85,7 @@ public class abi {
 			for (int var5 = var3; var5 < var3 + var1.getX(); ++var5) {
 				for (int var6 = var2.getY(); var6 < var2.getY() + var1.getY(); ++var6) {
 					for (int var7 = var4; var7 < var4 + var1.getZ(); ++var7) {
-						if (this.a.p(new Position(var5, var6, var7)).getBlock().t()) {
+						if (this.a.getBlockState(new Position(var5, var6, var7)).getBlock().t()) {
 							return false;
 						}
 					}
@@ -230,7 +230,7 @@ public class abi {
 
 		for (int var5 = 0; var5 < this.k.size(); ++var5) {
 			abj var6 = (abj) this.k.get(var5);
-			double var7 = var6.a.h(var1);
+			double var7 = var6.a.getDistanceSquared(var1);
 			if (var7 <= var2) {
 				var4 = var6;
 				var2 = var7;
@@ -250,7 +250,7 @@ public class abi {
 			if (this.d(var6)) {
 				EntityHuman var7 = this.a.a(var6);
 				if (var7 != null) {
-					double var8 = var7.h(var1);
+					double var8 = var7.getDistanceSquared(var1);
 					if (var8 <= var2) {
 						var4 = var7;
 						var2 = var8;
@@ -267,7 +267,7 @@ public class abi {
 
 		while (var1.hasNext()) {
 			abj var2 = (abj) var1.next();
-			if (!var2.a.ai() || Math.abs(this.g - var2.b) > 300) {
+			if (!var2.a.isAlive() || Math.abs(this.g - var2.b) > 300) {
 				var1.remove();
 			}
 		}
@@ -300,8 +300,8 @@ public class abi {
 	}
 
 	private boolean f(Position var1) {
-		Block var2 = this.a.p(var1).getBlock();
-		return var2 instanceof BlockDoor ? var2.r() == Material.WOOD : false;
+		Block var2 = this.a.getBlockState(var1).getBlock();
+		return var2 instanceof BlockDoor ? var2.getMaterial() == Material.WOOD : false;
 	}
 
 	private void n() {

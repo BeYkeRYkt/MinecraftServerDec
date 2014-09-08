@@ -21,7 +21,7 @@ public abstract class bpu {
 
 	protected bpt a(int var1, int var2, int var3) {
 		int var4 = bpt.a(var1, var2, var3);
-		bpt var5 = (bpt) this.b.a(var4);
+		bpt var5 = (bpt) this.b.get(var4);
 		if (var5 == null) {
 			var5 = new bpt(var1, var2, var3);
 			this.b.a(var4, var5);

@@ -7,7 +7,7 @@ public class BlockPressurePlateWeighted extends ath {
 
 	protected BlockPressurePlateWeighted(String var1, Material var2, int var3) {
 		super(var2);
-		this.j(this.L.b().a(a, Integer.valueOf(0)));
+		this.setBlockState(this.L.b().a(a, Integer.valueOf(0)));
 		this.b = var3;
 	}
 
@@ -21,11 +21,11 @@ public class BlockPressurePlateWeighted extends ath {
 		}
 	}
 
-	protected int e(bec var1) {
+	protected int e(BlockState var1) {
 		return ((Integer) var1.b(a)).intValue();
 	}
 
-	protected bec a(bec var1, int var2) {
+	protected BlockState a(BlockState var1, int var2) {
 		return var1.a(a, Integer.valueOf(var2));
 	}
 
@@ -33,11 +33,11 @@ public class BlockPressurePlateWeighted extends ath {
 		return 10;
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, Integer.valueOf(var1));
+	public BlockState a(int var1) {
+		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 
-	public int c(bec var1) {
+	public int c(BlockState var1) {
 		return ((Integer) var1.b(a)).intValue();
 	}
 

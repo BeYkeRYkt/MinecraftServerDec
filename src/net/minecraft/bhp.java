@@ -27,7 +27,7 @@ public abstract class bhp {
 		this.a(var1, var2, var3.a(var4));
 	}
 
-	protected void a(World var1, Position var2, bec var3) {
+	protected void a(World var1, Position var2, BlockState var3) {
 		if (this.a) {
 			var1.a(var2, var3, 3);
 		} else {
