@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.Arrays;
 import java.util.List;
 
-public class TileEntityBrewingStand extends bdf implements pm, we {
+public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 
 	private static final int[] a = new int[] { 3 };
 	private static final int[] f = new int[] { 0, 1, 2 };
@@ -29,7 +29,7 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 		return this.g.length;
 	}
 
-	public void c() {
+	public void doTick() {
 		if (this.h > 0) {
 			--this.h;
 			if (this.h == 0) {

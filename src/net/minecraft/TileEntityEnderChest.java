@@ -1,13 +1,13 @@
 package net.minecraft;
 
-public class TileEntityEnderChest extends TileEntity implements pm {
+public class TileEntityEnderChest extends TileEntity implements PacketTickable {
 
 	public float a;
 	public float f;
 	public int g;
 	private int h;
 
-	public void c() {
+	public void doTick() {
 		if (++this.h % 20 * 4 == 0) {
 			this.world.c(this.position, Blocks.ENDER_CHEST, 1, this.g);
 		}

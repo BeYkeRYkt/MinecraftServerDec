@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class TileEntityFurnace extends bdf implements pm, we {
+public class TileEntityFurnace extends bdf implements PacketTickable, we {
 
 	private static final int[] a = new int[] { 0 };
 	private static final int[] f = new int[] { 2, 1 };
@@ -131,7 +131,7 @@ public class TileEntityFurnace extends bdf implements pm, we {
 		return this.i > 0;
 	}
 
-	public void c() {
+	public void doTick() {
 		boolean var1 = this.m();
 		boolean var2 = false;
 		if (this.m()) {

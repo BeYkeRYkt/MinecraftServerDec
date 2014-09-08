@@ -54,7 +54,7 @@ public abstract class hj implements IChatBaseComponent {
 		return Iterators.concat(Iterators.forArray(new hj[] { this }), a((Iterable) this.a));
 	}
 
-	public final String c() {
+	public final String getStrippedMessage() {
 		StringBuilder var1 = new StringBuilder();
 		Iterator var2 = this.iterator();
 

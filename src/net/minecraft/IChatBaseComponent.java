@@ -14,7 +14,7 @@ public interface IChatBaseComponent extends Iterable {
 
 	String e();
 
-	String c();
+	String getStrippedMessage();
 
 	List a();
 

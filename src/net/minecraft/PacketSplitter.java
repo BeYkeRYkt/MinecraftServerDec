@@ -9,30 +9,30 @@ import java.util.List;
 
 public class PacketSplitter extends ByteToMessageDecoder {
 
-	protected void decode(ChannelHandlerContext var1, ByteBuf var2, List var3) {
-		var2.markReaderIndex();
-		byte[] var4 = new byte[3];
+	protected void decode(ChannelHandlerContext ctx, ByteBuf byteBuf, List<Object> list) {
+		byteBuf.markReaderIndex();
+		byte[] abyte = new byte[3];
 
-		for (int var5 = 0; var5 < var4.length; ++var5) {
-			if (!var2.isReadable()) {
-				var2.resetReaderIndex();
+		for (int i = 0; i < abyte.length; ++i) {
+			if (!byteBuf.isReadable()) {
+				byteBuf.resetReaderIndex();
 				return;
 			}
 
-			var4[var5] = var2.readByte();
-			if (var4[var5] >= 0) {
-				PacketDataSerializer var6 = new PacketDataSerializer(Unpooled.wrappedBuffer(var4));
+			abyte[i] = byteBuf.readByte();
+			if (abyte[i] >= 0) {
+				PacketDataSerializer serializer = new PacketDataSerializer(Unpooled.wrappedBuffer(abyte));
 
 				try {
-					int var7 = var6.readVarInt();
-					if (var2.readableBytes() < var7) {
-						var2.resetReaderIndex();
+					int j = serializer.readVarInt();
+					if (byteBuf.readableBytes() < j) {
+						byteBuf.resetReaderIndex();
 						return;
 					}
 
-					var3.add(var2.readBytes(var7));
+					list.add(byteBuf.readBytes(j));
 				} finally {
-					var6.release();
+					serializer.release();
 				}
 
 				return;
@@ -41,4 +41,5 @@ public class PacketSplitter extends ByteToMessageDecoder {
 
 		throw new CorruptedFrameException("length wider than 21-bit");
 	}
+
 }

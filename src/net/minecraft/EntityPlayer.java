@@ -39,12 +39,12 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	private int bO = 60;
 	private EnumChatFlag bP;
 	private boolean bQ = true;
-	private long bR = System.currentTimeMillis();
+	private long lastActiveTime = System.currentTimeMillis();
 	private Entity bS = null;
 	private int bT;
 	public boolean g;
 	public int ping;
-	public boolean i;
+	public boolean viewingCredits;
 
 	public EntityPlayer(MinecraftServer var1, WorldServer var2, GameProfile var3, PlayerInteractManager var4) {
 		super(var2, var3);
@@ -184,7 +184,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 				while (var11.hasNext()) {
 					var5 = (Chunk) var11.next();
-					this.u().s().a(this, var5);
+					this.getWorldServer().s().a(this, var5);
 				}
 			}
 		}
@@ -370,12 +370,12 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		if (this.dimensionId == 1 && var1 == 1) {
 			this.b((Statistic) AchievementList.D);
 			this.o.e((Entity) this);
-			this.i = true;
+			this.viewingCredits = true;
 			this.playerConncetion.sendPacket((Packet) (new PacketPlayOutChangeGameState(4, 0.0F)));
 		} else {
 			if (this.dimensionId == 0 && var1 == 1) {
 				this.b((Statistic) AchievementList.C);
-				Position var2 = this.minecraftserver.a(var1).m();
+				Position var2 = this.minecraftserver.getWorldServer(var1).m();
 				if (var2 != null) {
 					this.playerConncetion.a((double) var2.getX(), (double) var2.getY(), (double) var2.getZ(), 0.0F, 0.0F);
 				}
@@ -416,7 +416,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		ahf var2 = super.a(var1);
 		if (var2 == ahf.a) {
 			PacketPlayOutUseBed var3 = new PacketPlayOutUseBed(this, var1);
-			this.u().s().a((Entity) this, (Packet) var3);
+			this.getWorldServer().s().a((Entity) this, (Packet) var3);
 			this.playerConncetion.a(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 			this.playerConncetion.sendPacket((Packet) var3);
 		}
@@ -426,7 +426,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void a(boolean var1, boolean var2, boolean var3) {
 		if (this.bI()) {
-			this.u().s().b(this, new PacketPlayOutAnimation(this, 2));
+			this.getWorldServer().s().b(this, new PacketPlayOutAnimation(this, 2));
 		}
 
 		super.a(var1, var2, var3);
@@ -592,7 +592,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		this.activeContainer = this.defaultContainer;
 	}
 
-	public void a(float var1, float var2, boolean var3, boolean var4) {
+	public void handleSteerVehicle(float var1, float var2, boolean var3, boolean var4) {
 		if (this.m != null) {
 			if (var1 >= -1.0F && var1 <= 1.0F) {
 				this.aX = var1;
@@ -669,7 +669,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	public void a(ItemStack var1, int var2) {
 		super.a(var1, var2);
 		if (var1 != null && var1.getItem() != null && var1.getItem().e(var1) == ano.b) {
-			this.u().s().b(this, new PacketPlayOutAnimation(this, 3));
+			this.getWorldServer().s().b(this, new PacketPlayOutAnimation(this, 3));
 		}
 
 	}
@@ -702,11 +702,11 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public void b(Entity var1) {
-		this.u().s().b(this, new PacketPlayOutAnimation(var1, 4));
+		this.getWorldServer().s().b(this, new PacketPlayOutAnimation(var1, 4));
 	}
 
 	public void c(Entity var1) {
-		this.u().s().b(this, new PacketPlayOutAnimation(var1, 5));
+		this.getWorldServer().s().b(this, new PacketPlayOutAnimation(var1, 5));
 	}
 
 	public void t() {
@@ -716,7 +716,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		}
 	}
 
-	public WorldServer u() {
+	public WorldServer getWorldServer() {
 		return (WorldServer) this.o;
 	}
 
@@ -782,8 +782,8 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		return new Position(this.locationX, this.locationY + 0.5D, this.locationZ);
 	}
 
-	public void z() {
-		this.bR = MinecraftServer.getCurrentMillis();
+	public void updateLastActiveTime() {
+		this.lastActiveTime = MinecraftServer.getCurrentMillis();
 	}
 
 	public PlayerStatisticFile A() {
@@ -807,7 +807,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			super.B();
 		}
 
-		this.u().s().a(this);
+		this.getWorldServer().s().a(this);
 	}
 
 	public Entity C() {
@@ -833,8 +833,8 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	}
 
-	public long D() {
-		return this.bR;
+	public long getLastActiveTime() {
+		return this.lastActiveTime;
 	}
 
 	public IChatBaseComponent getPlayerListName() {

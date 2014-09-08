@@ -31,7 +31,7 @@ public class EntityDataCommand extends AbstractCommand {
 
 				NBTCompoundTag var6;
 				try {
-					var6 = gg.a(a(var1, var2, 1).c());
+					var6 = gg.a(a(var1, var2, 1).getStrippedMessage());
 				} catch (gf var8) {
 					throw new di("commands.entitydata.tagError", new Object[] { var8.getMessage() });
 				}

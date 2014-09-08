@@ -50,7 +50,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private final Convertable convertable;
 	private final Snooper snooper = new Snooper("server", this, getCurrentMillis());
 	private final File universe;
-	private final List<pm> o = Lists.newArrayList();
+	private final List<PacketTickable> o = Lists.newArrayList();
 	private final CommandHandlerInterface commandHandler;
 	public final MethodProfiler profiler = new MethodProfiler();
 	private final ServerConnection serverConnection;
@@ -71,7 +71,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private boolean flightAllowed;
 	private String motd;
 	private int F;
-	private int G = 0;
+	private int idleTimeOut = 0;
 	public final long[] g = new long[100];
 	public long[][] h;
 	private KeyPair keyPair;
@@ -84,7 +84,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private String P = "";
 	private long R;
 	private boolean T;
-	private boolean U;
+	private boolean forceGameMode;
 	private final YggdrasilAuthenticationService authService;
 	private final MinecraftSessionService minecraftSessionService;
 	private long lastServerPingUpdate = 0L;
@@ -510,7 +510,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.profiler.c("tickables");
 
 		for (i = 0; i < this.o.size(); ++i) {
-			((pm) this.o.get(i)).c();
+			((PacketTickable) this.o.get(i)).doTick();
 		}
 
 		this.profiler.b();
@@ -520,7 +520,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return true;
 	}
 
-	public void a(pm var1) {
+	public void a(PacketTickable var1) {
 		this.o.add(var1);
 	}
 
@@ -622,7 +622,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		logger.warn(var1);
 	}
 
-	public WorldServer a(int var1) {
+	public WorldServer getWorldServer(int var1) {
 		return var1 == -1 ? this.worlds[1] : (var1 == 1 ? this.worlds[2] : this.worlds[0]);
 	}
 
@@ -746,7 +746,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public void sendChatMessage(IChatBaseComponent var1) {
-		logger.info(var1.c());
+		logger.info(var1.getStrippedMessage());
 	}
 
 	public boolean a(int var1, String var2) {
@@ -757,7 +757,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return this.commandHandler;
 	}
 
-	public KeyPair P() {
+	public KeyPair getKeyPair() {
 		return this.keyPair;
 	}
 
@@ -1023,12 +1023,12 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return false;
 	}
 
-	public void setForceGameModeEnabled(boolean var1) {
-		this.U = var1;
+	public void setForceGameModeEnabled(boolean forceGameMode) {
+		this.forceGameMode = forceGameMode;
 	}
 
 	public boolean av() {
-		return this.U;
+		return this.forceGameMode;
 	}
 
 	public Proxy getProxy() {
@@ -1039,12 +1039,12 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return System.currentTimeMillis();
 	}
 
-	public int ay() {
-		return this.G;
+	public int getIdleTimeOut() {
+		return this.idleTimeOut;
 	}
 
-	public void setIdleTimeout(int var1) {
-		this.G = var1;
+	public void setIdleTimeout(int idleTimeOut) {
+		this.idleTimeOut = idleTimeOut;
 	}
 
 	public IChatBaseComponent e_() {
@@ -1103,26 +1103,26 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return 29999984;
 	}
 
-	public ListenableFuture<?> a(Callable<?> var1) {
-		Validate.notNull(var1);
+	public ListenableFuture<?> scheduleSyncTask(Callable<?> callable) {
+		Validate.notNull(callable);
 		if (!this.isMainThread()) {
-			ListenableFutureTask<?> var2 = ListenableFutureTask.create(var1);
+			ListenableFutureTask<?> future = ListenableFutureTask.create(callable);
 			synchronized (this.tasks) {
-				this.tasks.add(var2);
-				return var2;
+				this.tasks.add(future);
+				return future;
 			}
 		} else {
 			try {
-				return Futures.immediateFuture(var1.call());
-			} catch (Exception var6) {
-				return Futures.immediateFailedCheckedFuture(var6);
+				return Futures.immediateFuture(callable.call());
+			} catch (Exception ex) {
+				return Futures.immediateFailedCheckedFuture(ex);
 			}
 		}
 	}
 
-	public ListenableFuture<?> a(Runnable var1) {
-		Validate.notNull(var1);
-		return this.a(Executors.callable(var1));
+	public ListenableFuture<?> scheduleSyncTask(Runnable runnable) {
+		Validate.notNull(runnable);
+		return this.scheduleSyncTask(Executors.callable(runnable));
 	}
 
 	public boolean isMainThread() {

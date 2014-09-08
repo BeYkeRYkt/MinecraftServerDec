@@ -23,7 +23,7 @@ final class atn implements Runnable {
 
 			bec var4 = this.a.p(var3);
 			if (var4.getBlock() == Blocks.BEACON) {
-				((WorldServer) this.a).a((Runnable) (new ato(this, var3)));
+				((WorldServer) this.a).scheduleSyncTask((Runnable) (new ato(this, var3)));
 			}
 		}
 

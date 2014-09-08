@@ -46,7 +46,7 @@ public class SummonCommand extends AbstractCommand {
 					IChatBaseComponent var15 = a(var1, var2, 4);
 
 					try {
-						var13 = gg.a(var15.c());
+						var13 = gg.a(var15.getStrippedMessage());
 						var14 = true;
 					} catch (gf var20) {
 						throw new di("commands.summon.tagError", new Object[] { var20.getMessage() });

@@ -326,7 +326,7 @@ public class qy {
 	}
 
 	private boolean e(EntityPlayer var1) {
-		return var1.u().t().a(var1, this.a.ae, this.a.ag);
+		return var1.getWorldServer().t().a(var1, this.a.ae, this.a.ag);
 	}
 
 	public void b(List var1) {

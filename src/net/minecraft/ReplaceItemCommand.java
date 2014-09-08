@@ -70,7 +70,7 @@ public class ReplaceItemCommand extends AbstractCommand {
 			int var8 = var2.length > var16 ? a(var2[var16++]) : 0;
 			ItemStack var9 = new ItemStack(var6, var7, var8);
 			if (var2.length > var16) {
-				String var10 = a(var1, var2, var16).c();
+				String var10 = a(var1, var2, var16).getStrippedMessage();
 
 				try {
 					var9.d(gg.a(var10));

@@ -26,11 +26,11 @@ public class KickCommand extends AbstractCommand {
 				throw new dm();
 			} else {
 				if (var2.length >= 2) {
-					var4 = a(var1, var2, 1).c();
+					var4 = a(var1, var2, 1).getStrippedMessage();
 					var5 = true;
 				}
 
-				var3.playerConncetion.c(var4);
+				var3.playerConncetion.disconnect(var4);
 				if (var5) {
 					a(var1, this, "commands.kick.success.reason", new Object[] { var3.d_(), var4 });
 				} else {

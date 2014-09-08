@@ -16,7 +16,7 @@ final class aq implements Predicate {
 	}
 
 	public boolean a(Entity var1) {
-		Scoreboard var2 = MinecraftServer.getInstance().a(0).Z();
+		Scoreboard var2 = MinecraftServer.getInstance().getWorldServer(0).Z();
 		Iterator var3 = this.a.entrySet().iterator();
 
 		Entry var4;

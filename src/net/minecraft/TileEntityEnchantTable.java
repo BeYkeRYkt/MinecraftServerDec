@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class TileEntityEnchantTable extends TileEntity implements pm, vv {
+public class TileEntityEnchantTable extends TileEntity implements PacketTickable, vv {
 
 	public int a;
 	public float f;
@@ -33,7 +33,7 @@ public class TileEntityEnchantTable extends TileEntity implements pm, vv {
 
 	}
 
-	public void c() {
+	public void doTick() {
 		this.k = this.j;
 		this.m = this.l;
 		EntityHuman var1 = this.world.a((double) ((float) this.position.getX() + 0.5F), (double) ((float) this.position.getY() + 0.5F), (double) ((float) this.position.getZ() + 0.5F), 3.0D);

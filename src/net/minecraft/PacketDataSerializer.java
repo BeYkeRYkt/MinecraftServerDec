@@ -27,10 +27,10 @@ public class PacketDataSerializer extends ByteBuf {
 		this.byteBuf = byteBuf;
 	}
 
-	public static int a(int var0) {
-		for (int var1 = 1; var1 < 5; ++var1) {
-			if ((var0 & -1 << var1 * 7) == 0) {
-				return var1;
+	public static int getPrependLength(int input) {
+		for (int i = 1; i < 5; ++i) {
+			if ((input & -1 << i * 7) == 0) {
+				return i;
 			}
 		}
 

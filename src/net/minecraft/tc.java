@@ -28,7 +28,7 @@ public class tc implements CommandSenderInterface {
 	}
 
 	public void sendChatMessage(IChatBaseComponent var1) {
-		this.b.append(var1.c());
+		this.b.append(var1.getStrippedMessage());
 	}
 
 	public boolean a(int var1, String var2) {

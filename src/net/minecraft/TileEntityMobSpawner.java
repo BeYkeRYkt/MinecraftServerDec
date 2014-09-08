@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class TileEntityMobSpawner extends TileEntity implements pm {
+public class TileEntityMobSpawner extends TileEntity implements PacketTickable {
 
 	private final aqi a = new bdh(this);
 
@@ -14,7 +14,7 @@ public class TileEntityMobSpawner extends TileEntity implements pm {
 		this.a.b(var1);
 	}
 
-	public void c() {
+	public void doTick() {
 		this.a.c();
 	}
 

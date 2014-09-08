@@ -9,44 +9,35 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 
-public class PacketEncoder extends MessageToByteEncoder {
+public class PacketEncoder extends MessageToByteEncoder<Packet<? extends PacketListener>> {
 
-	private static final Logger a = LogManager.getLogger();
-	private static final Marker b = MarkerManager.getMarker("PACKET_SENT", NetworkManager.markerNetworkPackets);
-	private final PacketDirection c;
+	private static final Logger logger = LogManager.getLogger();
+	private static final Marker marker = MarkerManager.getMarker("PACKET_SENT", NetworkManager.markerNetworkPackets);
+	private final PacketDirection direction;
 
-	public PacketEncoder(PacketDirection var1) {
-		this.c = var1;
+	public PacketEncoder(PacketDirection direction) {
+		this.direction = direction;
 	}
 
-	protected void a(ChannelHandlerContext var1, Packet var2, ByteBuf var3) throws IOException {
-		Integer var4 = ((EnumProtocol) var1.channel().attr(NetworkManager.attributeKey).get()).getPacketId(this.c, var2);
-		if (a.isDebugEnabled()) {
-			a.debug(b, "OUT: [{}:{}] {}", new Object[] { var1.channel().attr(NetworkManager.attributeKey).get(), var4, var2.getClass().getName() });
+	protected void encode(ChannelHandlerContext ctx, Packet<? extends PacketListener> packet, ByteBuf byteBuf) throws IOException {
+		Integer packetId = ((EnumProtocol) ctx.channel().attr(NetworkManager.attributeKey).get()).getPacketId(this.direction, packet);
+		if (logger.isDebugEnabled()) {
+			logger.debug(marker, "OUT: [{}:{}] {}", new Object[] { ctx.channel().attr(NetworkManager.attributeKey).get(), packetId, packet.getClass().getName() });
 		}
 
-		if (var4 == null) {
+		if (packetId == null) {
 			throw new IOException("Can\'t serialize unregistered packet");
 		} else {
-			PacketDataSerializer var5 = new PacketDataSerializer(var3);
-			var5.writeVarInt(var4.intValue());
+			PacketDataSerializer serializer = new PacketDataSerializer(byteBuf);
+			serializer.writeVarInt(packetId.intValue());
 
 			try {
-				if (var2 instanceof PacketPlayOutSpawnPlayer) {
-					var2 = var2;
-				}
-
-				var2.writeData(var5);
-			} catch (Throwable var7) {
-				a.error((Object) var7);
+				packet.writeData(serializer);
+			} catch (Throwable t) {
+				logger.error(t);
 			}
 
 		}
-	}
-
-	// $FF: synthetic method
-	protected void encode(ChannelHandlerContext var1, Object var2, ByteBuf var3) throws IOException {
-		this.a(var1, (Packet) var2, var3);
 	}
 
 }

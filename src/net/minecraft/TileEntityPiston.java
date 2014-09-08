@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
 
-public class TileEntityPiston extends TileEntity implements pm {
+public class TileEntityPiston extends TileEntity implements PacketTickable {
 
 	private bec a;
 	private BlockFace f;
@@ -99,7 +99,7 @@ public class TileEntityPiston extends TileEntity implements pm {
 
 	}
 
-	public void c() {
+	public void doTick() {
 		this.j = this.i;
 		if (this.j >= 1.0F) {
 			this.a(1.0F, 0.25F);

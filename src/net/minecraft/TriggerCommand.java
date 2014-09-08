@@ -36,7 +36,7 @@ public class TriggerCommand extends AbstractCommand {
 				var3 = (EntityPlayer) var4;
 			}
 
-			Scoreboard var8 = MinecraftServer.getInstance().a(0).Z();
+			Scoreboard var8 = MinecraftServer.getInstance().getWorldServer(0).Z();
 			ScoreboardObjective var5 = var8.b(var2[0]);
 			if (var5 != null && var5.getCriteria() == IScoreboardCriteria.trigger) {
 				int var6 = a(var2[2]);
@@ -72,7 +72,7 @@ public class TriggerCommand extends AbstractCommand {
 
 	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		if (var2.length == 1) {
-			Scoreboard var4 = MinecraftServer.getInstance().a(0).Z();
+			Scoreboard var4 = MinecraftServer.getInstance().getWorldServer(0).Z();
 			ArrayList var5 = Lists.newArrayList();
 			Iterator var6 = var4.c().iterator();
 

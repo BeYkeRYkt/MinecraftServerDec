@@ -1487,11 +1487,11 @@ public abstract class Entity implements CommandSenderInterface {
 			this.o.B.a("changeDimension");
 			MinecraftServer var2 = MinecraftServer.getInstance();
 			int var3 = this.dimensionId;
-			WorldServer var4 = var2.a(var3);
-			WorldServer var5 = var2.a(var1);
+			WorldServer var4 = var2.getWorldServer(var3);
+			WorldServer var5 = var2.getWorldServer(var1);
 			this.dimensionId = var1;
 			if (var3 == 1 && var1 == 1) {
-				var5 = var2.a(0);
+				var5 = var2.getWorldServer(0);
 				this.dimensionId = 0;
 			}
 

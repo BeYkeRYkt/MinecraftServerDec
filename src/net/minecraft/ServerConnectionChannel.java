@@ -35,7 +35,7 @@ class ServerConnectionChannel extends ChannelInitializer<Channel> {
 		NetworkManager networkManager = new NetworkManager(PacketDirection.SERVERBOUND);
 		serverConnection.getNetworkManagers().add(networkManager);
 		channel.pipeline().addLast("packet_handler", networkManager);
-		networkManager.setPacketListener((PacketListener) (new ro(serverConnection.getMinecraftServer(), networkManager)));
+		networkManager.setPacketListener(new HandshakeListener(serverConnection.getMinecraftServer(), networkManager));
 	}
 
 }

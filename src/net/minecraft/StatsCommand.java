@@ -138,7 +138,7 @@ public class StatsCommand extends AbstractCommand {
 	}
 
 	protected List e() {
-		Collection var1 = MinecraftServer.getInstance().a(0).Z().c();
+		Collection var1 = MinecraftServer.getInstance().getWorldServer(0).Z().c();
 		ArrayList var2 = Lists.newArrayList();
 		Iterator var3 = var1.iterator();
 

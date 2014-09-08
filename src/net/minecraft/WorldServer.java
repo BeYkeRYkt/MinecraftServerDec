@@ -828,8 +828,8 @@ public class WorldServer extends World implements vn {
 		return (Entity) this.N.get(var1);
 	}
 
-	public ListenableFuture a(Runnable var1) {
-		return this.I.a(var1);
+	public ListenableFuture scheduleSyncTask(Runnable var1) {
+		return this.I.scheduleSyncTask(var1);
 	}
 
 	public boolean isMainThread() {

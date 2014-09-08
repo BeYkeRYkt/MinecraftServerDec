@@ -1017,7 +1017,7 @@ public abstract class World implements ard {
 				Position var13 = var11.v();
 				if (this.e(var13) && this.worldborder.isInside(var13)) {
 					try {
-						((pm) var11).c();
+						((PacketTickable) var11).doTick();
 					} catch (Throwable var7) {
 						CrashReport var16 = CrashReport.generateCrashReport(var7, "Ticking block entity");
 						CrashReportSystemDetails var6 = var16.generateSystemDetails("Block entity being ticked");
@@ -1069,7 +1069,7 @@ public abstract class World implements ard {
 
 	public boolean a(TileEntity var1) {
 		boolean var2 = this.h.add(var1);
-		if (var2 && var1 instanceof pm) {
+		if (var2 && var1 instanceof PacketTickable) {
 			this.i.add(var1);
 		}
 
@@ -1085,7 +1085,7 @@ public abstract class World implements ard {
 			while (var2.hasNext()) {
 				TileEntity var3 = (TileEntity) var2.next();
 				this.h.add(var3);
-				if (var3 instanceof pm) {
+				if (var3 instanceof PacketTickable) {
 					this.i.add(var3);
 				}
 			}

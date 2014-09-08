@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.List;
 
-public class TileEntityHopper extends bdf implements bdd, pm {
+public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 
 	private ItemStack[] a = new ItemStack[5];
 	private String f;
@@ -129,7 +129,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 		return true;
 	}
 
-	public void c() {
+	public void doTick() {
 		if (this.world != null && !this.world.D) {
 			--this.g;
 			if (!this.n()) {

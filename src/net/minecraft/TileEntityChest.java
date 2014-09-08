@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.Iterator;
 import java.util.List;
 
-public class TileEntityChest extends bdf implements pm, IInventory {
+public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 
 	private ItemStack[] m = new ItemStack[27];
 	public boolean a;
@@ -192,7 +192,7 @@ public class TileEntityChest extends bdf implements pm, IInventory {
 		}
 	}
 
-	public void c() {
+	public void doTick() {
 		this.m();
 		int var1 = this.position.getX();
 		int var2 = this.position.getY();

@@ -14,29 +14,29 @@ import org.apache.logging.log4j.MarkerManager;
 
 public class PacketDecoder extends ByteToMessageDecoder {
 
-	private static final Logger a = LogManager.getLogger();
-	private static final Marker b = MarkerManager.getMarker("PACKET_RECEIVED", NetworkManager.markerNetworkPackets);
-	private final PacketDirection c;
+	private static final Logger logger = LogManager.getLogger();
+	private static final Marker marker = MarkerManager.getMarker("PACKET_RECEIVED", NetworkManager.markerNetworkPackets);
+	private final PacketDirection direction;
 
-	public PacketDecoder(PacketDirection var1) {
-		this.c = var1;
+	public PacketDecoder(PacketDirection direction) {
+		this.direction = direction;
 	}
 
-	protected void decode(ChannelHandlerContext var1, ByteBuf var2, List var3) throws InstantiationException, IllegalAccessException, IOException {
-		if (var2.readableBytes() != 0) {
-			PacketDataSerializer var4 = new PacketDataSerializer(var2);
-			int var5 = var4.readVarInt();
-			Packet var6 = ((EnumProtocol) var1.channel().attr(NetworkManager.attributeKey).get()).createPacket(this.c, var5);
-			if (var6 == null) {
-				throw new IOException("Bad packet id " + var5);
+	protected void decode(ChannelHandlerContext ctx, ByteBuf byteBuf, List<Object> list) throws InstantiationException, IllegalAccessException, IOException {
+		if (byteBuf.readableBytes() != 0) {
+			PacketDataSerializer serializer = new PacketDataSerializer(byteBuf);
+			int packetId = serializer.readVarInt();
+			Packet<? extends PacketListener> packet = (ctx.channel().attr(NetworkManager.attributeKey).get()).createPacket(this.direction, packetId);
+			if (packet == null) {
+				throw new IOException("Bad packet id " + packetId);
 			} else {
-				var6.readData(var4);
-				if (var4.readableBytes() > 0) {
-					throw new IOException("Packet " + ((EnumProtocol) var1.channel().attr(NetworkManager.attributeKey).get()).getStateId() + "/" + var5 + " (" + var6.getClass().getSimpleName() + ") was larger than I expected, found " + var4.readableBytes() + " bytes extra whilst reading packet " + var5);
+				packet.readData(serializer);
+				if (serializer.readableBytes() > 0) {
+					throw new IOException("Packet " + (ctx.channel().attr(NetworkManager.attributeKey).get()).getStateId() + "/" + packetId + " (" + packet.getClass().getSimpleName() + ") was larger than I expected, found " + serializer.readableBytes() + " bytes extra whilst reading packet " + packetId);
 				} else {
-					var3.add(var6);
-					if (a.isDebugEnabled()) {
-						a.debug(b, " IN: [{}:{}] {}", new Object[] { var1.channel().attr(NetworkManager.attributeKey).get(), Integer.valueOf(var5), var6.getClass().getName() });
+					list.add(packet);
+					if (logger.isDebugEnabled()) {
+						logger.debug(marker, " IN: [{}:{}] {}", new Object[] { ctx.channel().attr(NetworkManager.attributeKey).get(), Integer.valueOf(packetId), packet.getClass().getName() });
 					}
 
 				}

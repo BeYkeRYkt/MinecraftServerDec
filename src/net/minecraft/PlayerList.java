@@ -60,32 +60,32 @@ public abstract class PlayerList {
 		this.maxPlayers = 8;
 	}
 
-	public void a(NetworkManager var1, EntityPlayer player) {
+	public void join(NetworkManager networkManager, EntityPlayer player) {
 		GameProfile var3 = player.getGameProfile();
 		UserCache var4 = this.minecraftserver.getUserCache();
 		GameProfile var5 = var4.getProfile(var3.getId());
 		String var6 = var5 == null ? var3.getName() : var5.getName();
 		var4.saveProfile(var3);
 		NBTCompoundTag var7 = this.a(player);
-		player.a((World) this.minecraftserver.a(player.dimensionId));
+		player.a((World) this.minecraftserver.getWorldServer(player.dimensionId));
 		player.playerInteractManager.a((WorldServer) player.o);
 		String var8 = "local";
-		if (var1.getAddress() != null) {
-			var8 = var1.getAddress().toString();
+		if (networkManager.getAddress() != null) {
+			var8 = networkManager.getAddress().toString();
 		}
 
 		logger.info(player.d_() + "[" + var8 + "] logged in with entity id " + player.getId() + " at (" + player.locationX + ", " + player.locationY + ", " + player.locationZ + ")");
-		WorldServer worldServer = this.minecraftserver.a(player.dimensionId);
+		WorldServer worldServer = this.minecraftserver.getWorldServer(player.dimensionId);
 		WorldData worldData = worldServer.P();
 		Position var11 = worldServer.M();
 		this.a(player, (EntityPlayer) null, worldServer);
-		PlayerConnection var12 = new PlayerConnection(this.minecraftserver, var1, player);
-		var12.sendPacket((Packet) (new PacketPlayOutJoinGame(player.getId(), player.playerInteractManager.getGameMode(), worldData.isHardcore(), worldServer.worldProvider.getDimensionId(), worldServer.getDifficulty(), this.getMaxPlayers(), worldData.getLevelType(), worldServer.Q().b("reducedDebugInfo"))));
-		var12.sendPacket((Packet) (new PacketPlayOutPluginMessage("MC|Brand", (new PacketDataSerializer(Unpooled.buffer())).writeString(this.c().getServerModName()))));
-		var12.sendPacket((Packet) (new PacketPlayOutServerDifficulty(worldData.getDifficulty(), worldData.z())));
-		var12.sendPacket((Packet) (new PacketPlayOutSpawnPosition(var11)));
-		var12.sendPacket((Packet) (new PacketPlayOutPlayerAbilities(player.by)));
-		var12.sendPacket((Packet) (new PacketPlayOutHeldItemChange(player.playerInventory.c)));
+		PlayerConnection var12 = new PlayerConnection(this.minecraftserver, networkManager, player);
+		var12.sendPacket((new PacketPlayOutJoinGame(player.getId(), player.playerInteractManager.getGameMode(), worldData.isHardcore(), worldServer.worldProvider.getDimensionId(), worldServer.getDifficulty(), this.getMaxPlayers(), worldData.getLevelType(), worldServer.Q().b("reducedDebugInfo"))));
+		var12.sendPacket((new PacketPlayOutPluginMessage("MC|Brand", (new PacketDataSerializer(Unpooled.buffer())).writeString(this.c().getServerModName()))));
+		var12.sendPacket((new PacketPlayOutServerDifficulty(worldData.getDifficulty(), worldData.z())));
+		var12.sendPacket((new PacketPlayOutSpawnPosition(var11)));
+		var12.sendPacket((new PacketPlayOutPlayerAbilities(player.by)));
+		var12.sendPacket((new PacketPlayOutHeldItemChange(player.playerInventory.c)));
 		player.A().d();
 		player.A().b(player);
 		this.a((pk) worldServer.Z(), player);
@@ -110,7 +110,7 @@ public abstract class PlayerList {
 
 		while (var14.hasNext()) {
 			MobEffect var15 = (MobEffect) var14.next();
-			var12.sendPacket((Packet) (new PacketPlayOutEntityEffect(player.getId(), var15)));
+			var12.sendPacket((new PacketPlayOutEntityEffect(player.getId(), var15)));
 		}
 
 		player.f_();
@@ -158,7 +158,7 @@ public abstract class PlayerList {
 	}
 
 	public void a(EntityPlayer var1, WorldServer var2) {
-		WorldServer var3 = var1.u();
+		WorldServer var3 = var1.getWorldServer();
 		if (var2 != null) {
 			var2.t().c(var1);
 		}
@@ -198,7 +198,7 @@ public abstract class PlayerList {
 		this.players.add(var1);
 		this.uuidToPlayerMap.put(var1.aJ(), var1);
 		this.sendPacket((Packet) (new PacketPlayOutListItem(ListItemAction.ADD_PLAYER, new EntityPlayer[] { var1 })));
-		WorldServer var2 = this.minecraftserver.a(var1.dimensionId);
+		WorldServer var2 = this.minecraftserver.getWorldServer(var1.dimensionId);
 		var2.d(var1);
 		this.a(var1, (WorldServer) null);
 
@@ -210,13 +210,13 @@ public abstract class PlayerList {
 	}
 
 	public void d(EntityPlayer var1) {
-		var1.u().t().d(var1);
+		var1.getWorldServer().t().d(var1);
 	}
 
 	public void e(EntityPlayer var1) {
 		var1.b(StatisticList.f);
 		this.b(var1);
-		WorldServer var2 = var1.u();
+		WorldServer var2 = var1.getWorldServer();
 		if (var1.m != null) {
 			var2.f(var1.m);
 			logger.debug("removing player mount");
@@ -230,20 +230,20 @@ public abstract class PlayerList {
 		this.sendPacket((Packet) (new PacketPlayOutListItem(ListItemAction.REMOVE_PLAYER, new EntityPlayer[] { var1 })));
 	}
 
-	public String a(SocketAddress var1, GameProfile var2) {
+	public String getLoginKickMessage(SocketAddress address, GameProfile profile) {
 		String var4;
-		if (this.k.a(var2)) {
-			sw var5 = (sw) this.k.b((Object) var2);
+		if (this.k.a(profile)) {
+			sw var5 = (sw) this.k.b((Object) profile);
 			var4 = "You are banned from this server!\nReason: " + var5.d();
 			if (var5.c() != null) {
 				var4 = var4 + "\nYour ban will be removed on " + dateFormat.format(var5.c());
 			}
 
 			return var4;
-		} else if (!this.e(var2)) {
+		} else if (!this.e(profile)) {
 			return "You are not white-listed on this server!";
-		} else if (this.l.a(var1)) {
-			se var3 = this.l.b(var1);
+		} else if (this.l.a(address)) {
+			se var3 = this.l.b(address);
 			var4 = "Your IP address is banned from this server!\nReason: " + var3.d();
 			if (var3.c() != null) {
 				var4 = var4 + "\nYour ban will be removed on " + dateFormat.format(var3.c());
@@ -255,7 +255,7 @@ public abstract class PlayerList {
 		}
 	}
 
-	public EntityPlayer f(GameProfile var1) {
+	public EntityPlayer processLogin(GameProfile var1) {
 		UUID var2 = EntityHuman.a(var1);
 		ArrayList var3 = Lists.newArrayList();
 
@@ -271,45 +271,45 @@ public abstract class PlayerList {
 
 		while (var6.hasNext()) {
 			var5 = (EntityPlayer) var6.next();
-			var5.playerConncetion.c("You logged in from another location");
+			var5.playerConncetion.disconnect("You logged in from another location");
 		}
 
 		Object var7;
 		if (this.minecraftserver.W()) {
-			var7 = new qk(this.minecraftserver.a(0));
+			var7 = new qk(this.minecraftserver.getWorldServer(0));
 		} else {
-			var7 = new PlayerInteractManager(this.minecraftserver.a(0));
+			var7 = new PlayerInteractManager(this.minecraftserver.getWorldServer(0));
 		}
 
-		return new EntityPlayer(this.minecraftserver, this.minecraftserver.a(0), var1, (PlayerInteractManager) var7);
+		return new EntityPlayer(this.minecraftserver, this.minecraftserver.getWorldServer(0), var1, (PlayerInteractManager) var7);
 	}
 
 	public EntityPlayer a(EntityPlayer var1, int var2, boolean var3) {
-		var1.u().s().b(var1);
-		var1.u().s().b((Entity) var1);
-		var1.u().t().c(var1);
+		var1.getWorldServer().s().b(var1);
+		var1.getWorldServer().s().b((Entity) var1);
+		var1.getWorldServer().t().c(var1);
 		this.players.remove(var1);
-		this.minecraftserver.a(var1.dimensionId).f(var1);
+		this.minecraftserver.getWorldServer(var1.dimensionId).f(var1);
 		Position var4 = var1.cg();
 		boolean var5 = var1.ch();
 		var1.dimensionId = var2;
 		Object var6;
 		if (this.minecraftserver.W()) {
-			var6 = new qk(this.minecraftserver.a(var1.dimensionId));
+			var6 = new qk(this.minecraftserver.getWorldServer(var1.dimensionId));
 		} else {
-			var6 = new PlayerInteractManager(this.minecraftserver.a(var1.dimensionId));
+			var6 = new PlayerInteractManager(this.minecraftserver.getWorldServer(var1.dimensionId));
 		}
 
-		EntityPlayer var7 = new EntityPlayer(this.minecraftserver, this.minecraftserver.a(var1.dimensionId), var1.getGameProfile(), (PlayerInteractManager) var6);
+		EntityPlayer var7 = new EntityPlayer(this.minecraftserver, this.minecraftserver.getWorldServer(var1.dimensionId), var1.getGameProfile(), (PlayerInteractManager) var6);
 		var7.playerConncetion = var1.playerConncetion;
 		var7.a((EntityHuman) var1, var3);
 		var7.d(var1.getId());
 		var7.o(var1);
-		WorldServer var8 = this.minecraftserver.a(var1.dimensionId);
+		WorldServer var8 = this.minecraftserver.getWorldServer(var1.dimensionId);
 		this.a(var7, var1, var8);
 		Position var9;
 		if (var4 != null) {
-			var9 = EntityHuman.a(this.minecraftserver.a(var1.dimensionId), var4, var5);
+			var9 = EntityHuman.a(this.minecraftserver.getWorldServer(var1.dimensionId), var4, var5);
 			if (var9 != null) {
 				var7.b((double) ((float) var9.getX() + 0.5F), (double) ((float) var9.getY() + 0.1F), (double) ((float) var9.getZ() + 0.5F), 0.0F, 0.0F);
 				var7.a(var4, var5);
@@ -341,9 +341,9 @@ public abstract class PlayerList {
 
 	public void a(EntityPlayer var1, int var2) {
 		int var3 = var1.dimensionId;
-		WorldServer var4 = this.minecraftserver.a(var1.dimensionId);
+		WorldServer var4 = this.minecraftserver.getWorldServer(var1.dimensionId);
 		var1.dimensionId = var2;
-		WorldServer var5 = this.minecraftserver.a(var1.dimensionId);
+		WorldServer var5 = this.minecraftserver.getWorldServer(var1.dimensionId);
 		var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutRespawn(var1.dimensionId, var1.o.getDifficulty(), var1.o.P().getLevelType(), var1.playerInteractManager.getGameMode())));
 		var4.f(var1);
 		var1.I = false;
@@ -674,7 +674,7 @@ public abstract class PlayerList {
 
 	public void v() {
 		for (int var1 = 0; var1 < this.players.size(); ++var1) {
-			((EntityPlayer) this.players.get(var1)).playerConncetion.c("Server closed");
+			((EntityPlayer) this.players.get(var1)).playerConncetion.disconnect("Server closed");
 		}
 
 	}
@@ -693,7 +693,7 @@ public abstract class PlayerList {
 		UUID var2 = var1.aJ();
 		PlayerStatisticFile var3 = var2 == null ? null : (PlayerStatisticFile) this.playersStatistic.get(var2);
 		if (var3 == null) {
-			File var4 = new File(this.minecraftserver.a(0).O().b(), "stats");
+			File var4 = new File(this.minecraftserver.getWorldServer(0).O().b(), "stats");
 			File var5 = new File(var4, var2.toString() + ".json");
 			if (!var5.exists()) {
 				File var6 = new File(var4, var1.d_() + ".json");

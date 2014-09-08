@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class TileEntityBeacon extends bdf implements pm, IInventory {
+public class TileEntityBeacon extends bdf implements PacketTickable, IInventory {
 
 	public static final MobEffectList[][] a = new MobEffectList[][] { { MobEffectList.c, MobEffectList.e }, { MobEffectList.m, MobEffectList.j }, { MobEffectList.g }, { MobEffectList.l } };
 	private final List f = Lists.newArrayList();
@@ -16,7 +16,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 	private ItemStack m;
 	private String n;
 
-	public void c() {
+	public void doTick() {
 		if (this.world.K() % 80L == 0L) {
 			this.m();
 		}

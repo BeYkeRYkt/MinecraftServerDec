@@ -29,7 +29,7 @@ public class ht extends hj {
 	public String e() {
 		MinecraftServer var1 = MinecraftServer.getInstance();
 		if (var1 != null && var1.hasUniverse() && vb.b(this.d)) {
-			Scoreboard var2 = var1.a(0).Z();
+			Scoreboard var2 = var1.getWorldServer(0).Z();
 			ScoreboardObjective var3 = var2.b(this.c);
 			if (var2.b(this.b, var3)) {
 				ScoreboardScore var4 = var2.c(this.b, var3);
