@@ -16,13 +16,13 @@ public interface pj {
 
 	int D();
 
-	String E();
+	String getMotd();
 
-	String F();
+	String getGameVersion();
 
-	int G();
+	int getOnlinePlayersCount();
 
-	int H();
+	int getMaxPlayers();
 
 	String[] I();
 

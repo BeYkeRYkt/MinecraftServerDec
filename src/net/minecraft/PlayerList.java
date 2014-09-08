@@ -616,7 +616,7 @@ public abstract class PlayerList {
 		var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutHeldItemChange(var1.playerInventory.c)));
 	}
 
-	public int p() {
+	public int getPlayersCount() {
 		return this.players.size();
 	}
 

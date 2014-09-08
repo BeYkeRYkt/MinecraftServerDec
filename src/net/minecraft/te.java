@@ -55,7 +55,7 @@ public abstract class te implements Runnable {
 	}
 
 	protected int d() {
-		return this.b.G();
+		return this.b.getOnlinePlayersCount();
 	}
 
 	protected void a(DatagramSocket var1) {

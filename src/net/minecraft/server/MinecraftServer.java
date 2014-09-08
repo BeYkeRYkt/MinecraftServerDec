@@ -69,7 +69,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private boolean spawnNPCs;
 	private boolean pvp;
 	private boolean flightAllowed;
-	private String E;
+	private String motd;
 	private int F;
 	private int G = 0;
 	public final long[] g = new long[100];
@@ -302,7 +302,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			if (this.startServer()) {
 				this.lastTickTime = getCurrentMillis();
 				long var1 = 0L;
-				this.serverPing.a((IChatBaseComponent) (new ChatComponentText(this.E)));
+				this.serverPing.a((IChatBaseComponent) (new ChatComponentText(this.motd)));
 				this.serverPing.a(new ServerPingServerData("1.8", 47));
 				this.a(this.serverPing);
 
@@ -411,9 +411,9 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.doTick();
 		if (var1 - this.lastServerPingUpdate >= 5000000000L) {
 			this.lastServerPingUpdate = var1;
-			this.serverPing.a(new ServerPingPlayerSample(this.H(), this.G()));
-			GameProfile[] var3 = new GameProfile[Math.min(this.G(), 12)];
-			int var4 = DataTypesConverter.a(this.rnd, 0, this.G() - var3.length);
+			this.serverPing.a(new ServerPingPlayerSample(this.getMaxPlayers(), this.getOnlinePlayersCount()));
+			GameProfile[] var3 = new GameProfile[Math.min(this.getOnlinePlayersCount(), 12)];
+			int var4 = DataTypesConverter.a(this.rnd, 0, this.getOnlinePlayersCount() - var3.length);
 
 			for (int var5 = 0; var5 < var3.length; ++var5) {
 				var3[var5] = ((EntityPlayer) this.playerList.players.get(var4 + var5)).getGameProfile();
@@ -634,19 +634,19 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return this.u;
 	}
 
-	public String E() {
-		return this.E;
+	public String getMotd() {
+		return this.motd;
 	}
 
-	public String F() {
+	public String getGameVersion() {
 		return "1.8";
 	}
 
-	public int G() {
-		return this.playerList.p();
+	public int getOnlinePlayersCount() {
+		return this.playerList.getPlayersCount();
 	}
 
-	public int H() {
+	public int getMaxPlayers() {
 		return this.playerList.getMaxPlayers();
 	}
 
@@ -864,8 +864,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		var1.a("whitelist_enabled", Boolean.valueOf(false));
 		var1.a("whitelist_count", Integer.valueOf(0));
 		if (this.playerList != null) {
-			var1.a("players_current", Integer.valueOf(this.G()));
-			var1.a("players_max", Integer.valueOf(this.H()));
+			var1.a("players_current", Integer.valueOf(this.getOnlinePlayersCount()));
+			var1.a("players_max", Integer.valueOf(this.getMaxPlayers()));
 			var1.a("players_seen", Integer.valueOf(this.playerList.r().length));
 		}
 
@@ -950,12 +950,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 	public abstract boolean isCommandBlockEnabled();
 
-	public String ak() {
-		return this.E;
-	}
-
-	public void setMotd(String var1) {
-		this.E = var1;
+	public void setMotd(String motd) {
+		this.motd = motd;
 	}
 
 	public int al() {
