@@ -10,6 +10,6 @@ class rl implements Runnable {
 	}
 
 	public void run() {
-		this.a.a.l();
+		this.a.networkManager.closeChannel();
 	}
 }

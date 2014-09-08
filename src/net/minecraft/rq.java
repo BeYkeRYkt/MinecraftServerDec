@@ -21,14 +21,14 @@ public class rq implements LoginServerboundPacketListener, pm {
 	private static final Random d = new Random();
 	private final byte[] e = new byte[4];
 	private final MinecraftServer f;
-	public final gr a;
+	public final NetworkManager a;
 	private rt g;
 	private int h;
 	private GameProfile i;
 	private String j;
 	private SecretKey k;
 
-	public rq(MinecraftServer var1, gr var2) {
+	public rq(MinecraftServer var1, NetworkManager var2) {
 		this.g = rt.a;
 		this.j = "";
 		this.f = var1;
@@ -51,8 +51,8 @@ public class rq implements LoginServerboundPacketListener, pm {
 		try {
 			c.info("Disconnecting " + this.d() + ": " + var1);
 			ChatComponentText var2 = new ChatComponentText(var1);
-			this.a.a((Packet) (new PacketLoginOutDisconnect(var2)));
-			this.a.a((IChatBaseComponent) var2);
+			this.a.handleSendPacket((Packet) (new PacketLoginOutDisconnect(var2)));
+			this.a.disconnect((IChatBaseComponent) var2);
 		} catch (Exception var3) {
 			c.error("Error whilst disconnecting player", (Throwable) var3);
 		}
@@ -64,16 +64,16 @@ public class rq implements LoginServerboundPacketListener, pm {
 			this.i = this.a(this.i);
 		}
 
-		String var1 = this.f.getPlayerList().a(this.a.b(), this.i);
+		String var1 = this.f.getPlayerList().a(this.a.getAddress(), this.i);
 		if (var1 != null) {
 			this.a(var1);
 		} else {
 			this.g = rt.e;
-			if (this.f.getCompressionThreshold() >= 0 && !this.a.c()) {
-				this.a.a(new PacketLoginOutSetCompression(this.f.getCompressionThreshold()), new rr(this), new GenericFutureListener[0]);
+			if (this.f.getCompressionThreshold() >= 0 && !this.a.isLocal()) {
+				this.a.handleSendPacket(new PacketLoginOutSetCompression(this.f.getCompressionThreshold()), new rr(this));
 			}
 
-			this.a.a((Packet) (new PacketLoginOutLoginSuccess(this.i)));
+			this.a.handleSendPacket((Packet) (new PacketLoginOutLoginSuccess(this.i)));
 			this.f.getPlayerList().a(this.a, this.f.getPlayerList().f(this.i));
 		}
 
@@ -84,15 +84,15 @@ public class rq implements LoginServerboundPacketListener, pm {
 	}
 
 	public String d() {
-		return this.i != null ? this.i.toString() + " (" + this.a.b().toString() + ")" : String.valueOf(this.a.b());
+		return this.i != null ? this.i.toString() + " (" + this.a.getAddress().toString() + ")" : String.valueOf(this.a.getAddress());
 	}
 
 	public void handle(PacketLoginInLoginStart var1) {
 		Validate.validState(this.g == rt.a, "Unexpected hello packet", new Object[0]);
 		this.i = var1.getProfile();
-		if (this.f.isOnlineMode() && !this.a.c()) {
+		if (this.f.isOnlineMode() && !this.a.isLocal()) {
 			this.g = rt.b;
-			this.a.a((Packet) (new PacketLoginOutEncryptionRequest(this.j, this.f.P().getPublic(), this.e)));
+			this.a.handleSendPacket((Packet) (new PacketLoginOutEncryptionRequest(this.j, this.f.P().getPublic(), this.e)));
 		} else {
 			this.g = rt.d;
 		}
@@ -107,7 +107,7 @@ public class rq implements LoginServerboundPacketListener, pm {
 		} else {
 			this.k = var1.getSharedKey(var2);
 			this.g = rt.c;
-			this.a.a(this.k);
+			this.a.setEncryption(this.k);
 			(new rs(this, "User Authenticator #" + b.incrementAndGet())).start();
 		}
 	}

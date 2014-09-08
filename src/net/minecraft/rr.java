@@ -14,7 +14,7 @@ class rr implements ChannelFutureListener {
 	}
 
 	public void a(ChannelFuture var1) {
-		this.a.a.a(rq.a(this.a).getCompressionThreshold());
+		this.a.a.setCompression(rq.a(this.a).getCompressionThreshold());
 	}
 
 	// $FF: synthetic method

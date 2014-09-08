@@ -60,7 +60,7 @@ public abstract class PlayerList {
 		this.maxPlayers = 8;
 	}
 
-	public void a(gr var1, EntityPlayer player) {
+	public void a(NetworkManager var1, EntityPlayer player) {
 		GameProfile var3 = player.getGameProfile();
 		UserCache var4 = this.minecraftserver.getUserCache();
 		GameProfile var5 = var4.getProfile(var3.getId());
@@ -70,8 +70,8 @@ public abstract class PlayerList {
 		player.a((World) this.minecraftserver.a(player.dimensionId));
 		player.playerInteractManager.a((WorldServer) player.o);
 		String var8 = "local";
-		if (var1.b() != null) {
-			var8 = var1.b().toString();
+		if (var1.getAddress() != null) {
+			var8 = var1.getAddress().toString();
 		}
 
 		logger.info(player.d_() + "[" + var8 + "] logged in with entity id " + player.getId() + " at (" + player.locationX + ", " + player.locationY + ", " + player.locationZ + ")");
@@ -425,14 +425,14 @@ public abstract class PlayerList {
 
 	}
 
-	public void sendPacket(Packet var1) {
+	public void sendPacket(Packet<? extends PacketListener> var1) {
 		for (EntityPlayer entity : this.players) {
 			entity.playerConncetion.sendPacket(var1);
 		}
 
 	}
 
-	public void sendPacket(Packet<?> var1, int dimensionId) {
+	public void sendPacket(Packet<? extends PacketListener> var1, int dimensionId) {
 		for (EntityPlayer entity : this.players) {
 			if (entity.dimensionId == dimensionId) {
 				entity.playerConncetion.sendPacket(var1);

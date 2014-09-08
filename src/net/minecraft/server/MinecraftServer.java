@@ -252,7 +252,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		if (!this.N) {
 			logger.info("Stopping server");
 			if (this.getServerConnection() != null) {
-				this.getServerConnection().b();
+				this.getServerConnection().closeChannels();
 			}
 
 			if (this.playerList != null) {
@@ -470,7 +470,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 				if (this.ticks % 20 == 0) {
 					this.profiler.a("timeSync");
-					this.playerList.sendPacket((Packet<?>) (new PacketPlayOutTimeUpdate(world.K(), world.L(), world.Q().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
+					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.K(), world.L(), world.Q().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
 					this.profiler.b();
 				}
 
@@ -504,7 +504,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		}
 
 		this.profiler.c("connection");
-		this.getServerConnection().c();
+		this.getServerConnection().doTick();
 		this.profiler.c("players");
 		this.playerList.e();
 		this.profiler.c("tickables");

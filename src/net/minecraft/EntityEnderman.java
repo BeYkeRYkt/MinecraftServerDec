@@ -177,7 +177,7 @@ public class EntityEnderman extends EntityMonster {
 				this.o.a(Particle.y, var22, var24, var26, (double) var19, (double) var20, (double) var21, new int[0]);
 			}
 
-			this.o.a(var7, var9, var11, "mob.endermen.portal", 1.0F, 1.0F);
+			this.o.makeSound(var7, var9, var11, "mob.endermen.portal", 1.0F, 1.0F);
 			this.a("mob.endermen.portal", 1.0F, 1.0F);
 			return true;
 		}

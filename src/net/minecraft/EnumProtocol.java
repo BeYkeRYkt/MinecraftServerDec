@@ -164,6 +164,14 @@ public enum EnumProtocol {
 		}
 	}
 
+	public static EnumProtocol getState(int stateId) {
+		return stateIdMap.get(stateId);
+	}
+
+	public static EnumProtocol getByPacket(Packet<?> packet) {
+		return packetMap.get(packet.getClass());
+	}
+
 	private final int stateId;
 	private final Map<PacketDirection, BiMap<Integer,Class<? extends Packet<? extends PacketListener>>>> directionPacketMap;
 
@@ -200,14 +208,6 @@ public enum EnumProtocol {
 
 	public int getStateId() {
 		return this.stateId;
-	}
-
-	public static EnumProtocol getState(int stateId) {
-		return stateIdMap.get(stateId);
-	}
-
-	public static EnumProtocol a(Packet<?> packet) {
-		return packetMap.get(packet.getClass());
 	}
 
 }

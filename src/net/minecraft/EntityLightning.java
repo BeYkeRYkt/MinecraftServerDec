@@ -33,8 +33,8 @@ public class EntityLightning extends EntityWeather {
 	public void s_() {
 		super.s_();
 		if (this.b == 2) {
-			this.o.a(this.locationX, this.locationY, this.locationZ, "ambient.weather.thunder", 10000.0F, 0.8F + this.V.nextFloat() * 0.2F);
-			this.o.a(this.locationX, this.locationY, this.locationZ, "random.explode", 2.0F, 0.5F + this.V.nextFloat() * 0.2F);
+			this.o.makeSound(this.locationX, this.locationY, this.locationZ, "ambient.weather.thunder", 10000.0F, 0.8F + this.V.nextFloat() * 0.2F);
+			this.o.makeSound(this.locationX, this.locationY, this.locationZ, "random.explode", 2.0F, 0.5F + this.V.nextFloat() * 0.2F);
 		}
 
 		--this.b;

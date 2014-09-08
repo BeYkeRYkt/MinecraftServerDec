@@ -132,7 +132,7 @@ public class BlockLever extends Block {
 		} else {
 			var3 = var3.a(b);
 			var1.a(var2, var3, 3);
-			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, ((Boolean) var3.b(b)).booleanValue() ? 0.6F : 0.5F);
+			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, ((Boolean) var3.b(b)).booleanValue() ? 0.6F : 0.5F);
 			var1.c(var2, (Block) this);
 			BlockFace var9 = ((axk) var3.b(a)).c();
 			var1.c(var2.a(var9.getOpposite()), (Block) this);

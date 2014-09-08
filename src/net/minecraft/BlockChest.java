@@ -335,9 +335,9 @@ public class BlockChest extends atg {
 						TileEntity var9 = var1.s(var7);
 						if (var9 instanceof TileEntityChest) {
 							if (var6 != BlockFace.WEST && var6 != BlockFace.NORTH) {
-								var4 = new vp("container.chestDouble", (vy) var4, (TileEntityChest) var9);
+								var4 = new InventoryLargeChest("container.chestDouble", (vy) var4, (TileEntityChest) var9);
 							} else {
-								var4 = new vp("container.chestDouble", (TileEntityChest) var9, (vy) var4);
+								var4 = new InventoryLargeChest("container.chestDouble", (TileEntityChest) var9, (vy) var4);
 							}
 						}
 					}

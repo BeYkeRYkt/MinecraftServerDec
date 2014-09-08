@@ -14,7 +14,7 @@ public class qn {
 	private static final Logger a = LogManager.getLogger();
 	private final WorldServer b;
 	private Set c = Sets.newHashSet();
-	private um d = new um();
+	private IntHashMap d = new IntHashMap();
 	private int e;
 
 	public qn(WorldServer var1) {

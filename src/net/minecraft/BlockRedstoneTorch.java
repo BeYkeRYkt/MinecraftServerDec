@@ -96,7 +96,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 			if (var5) {
 				var1.a(var2, Blocks.UNLIT_REDSTONE_TORCH.P().a(a, var3.b(a)), 3);
 				if (this.a(var1, var2, true)) {
-					var1.a((double) ((float) var2.getX() + 0.5F), (double) ((float) var2.getY() + 0.5F), (double) ((float) var2.getZ() + 0.5F), "random.fizz", 0.5F, 2.6F + (var1.s.nextFloat() - var1.s.nextFloat()) * 0.8F);
+					var1.makeSound((double) ((float) var2.getX() + 0.5F), (double) ((float) var2.getY() + 0.5F), (double) ((float) var2.getZ() + 0.5F), "random.fizz", 0.5F, 2.6F + (var1.s.nextFloat() - var1.s.nextFloat()) * 0.8F);
 
 					for (int var7 = 0; var7 < 5; ++var7) {
 						double var8 = (double) var2.getX() + var4.nextDouble() * 0.6D + 0.2D;

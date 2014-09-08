@@ -36,6 +36,6 @@ public class EntityMinecartChest extends aed {
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {
-		return new aim(var1, this, var2);
+		return new ContainerChest(var1, this, var2);
 	}
 }

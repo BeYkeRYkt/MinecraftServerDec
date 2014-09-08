@@ -38,7 +38,7 @@ public class ItemBlock extends Item {
 					this.block.a(var3, var4, var12, (EntityLiving) var2, var1);
 				}
 
-				var3.a((double) ((float) var4.getX() + 0.5F), (double) ((float) var4.getY() + 0.5F), (double) ((float) var4.getZ() + 0.5F), this.block.H.b(), (this.block.H.d() + 1.0F) / 2.0F, this.block.H.e() * 0.8F);
+				var3.makeSound((double) ((float) var4.getX() + 0.5F), (double) ((float) var4.getY() + 0.5F), (double) ((float) var4.getZ() + 0.5F), this.block.H.b(), (this.block.H.d() + 1.0F) / 2.0F, this.block.H.e() * 0.8F);
 				--var1.b;
 			}
 

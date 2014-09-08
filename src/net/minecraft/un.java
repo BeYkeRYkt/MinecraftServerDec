@@ -42,7 +42,7 @@ class un {
 	}
 
 	public final int hashCode() {
-		return um.f(this.a);
+		return IntHashMap.f(this.a);
 	}
 
 	public final String toString() {

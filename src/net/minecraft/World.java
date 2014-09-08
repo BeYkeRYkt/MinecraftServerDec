@@ -25,7 +25,7 @@ public abstract class World implements ard {
 	private final List b = Lists.newArrayList();
 	public final List<Entity> j = Lists.newArrayList();
 	public final List k = Lists.newArrayList();
-	protected final um l = new um();
+	protected final IntHashMap l = new IntHashMap();
 	private long c = 16777215L;
 	private int d;
 	protected int m = (new Random()).nextInt();
@@ -648,7 +648,7 @@ public abstract class World implements ard {
 
 	}
 
-	public void a(double var1, double var3, double var5, String var7, float var8, float var9) {
+	public void makeSound(double var1, double var3, double var5, String var7, float var8, float var9) {
 		for (int var10 = 0; var10 < this.u.size(); ++var10) {
 			((ara) this.u.get(var10)).a(var7, var1, var3, var5, var8, var9);
 		}
@@ -1646,7 +1646,7 @@ public abstract class World implements ard {
 			if (var9.r() == Material.AIR && this.k(var8) <= this.s.nextInt(8) && this.b(arf.a, var8) <= 0) {
 				EntityHuman var10 = this.a((double) var5 + 0.5D, (double) var7 + 0.5D, (double) var6 + 0.5D, 8.0D);
 				if (var10 != null && var10.e((double) var5 + 0.5D, (double) var7 + 0.5D, (double) var6 + 0.5D) > 4.0D) {
-					this.a((double) var5 + 0.5D, (double) var7 + 0.5D, (double) var6 + 0.5D, "ambient.cave.cave", 0.7F, 0.8F + this.s.nextFloat() * 0.2F);
+					this.makeSound((double) var5 + 0.5D, (double) var7 + 0.5D, (double) var6 + 0.5D, "ambient.cave.cave", 0.7F, 0.8F + this.s.nextFloat() * 0.2F);
 					this.K = this.s.nextInt(12000) + 6000;
 				}
 			}

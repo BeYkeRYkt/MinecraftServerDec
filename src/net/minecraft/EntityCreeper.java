@@ -151,7 +151,7 @@ public class EntityCreeper extends EntityMonster {
 	protected boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (var2 != null && var2.getItem() == Items.FLINT_AND_STEEL) {
-			this.o.a(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.ignite", 1.0F, this.V.nextFloat() * 0.4F + 0.8F);
+			this.o.makeSound(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.ignite", 1.0F, this.V.nextFloat() * 0.4F + 0.8F);
 			var1.bv();
 			if (!this.o.D) {
 				this.cm();

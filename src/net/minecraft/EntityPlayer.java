@@ -503,7 +503,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			this.activeContainer = ((vv) var1).a(this.playerInventory, this);
 		} else {
 			this.playerConncetion.sendPacket((Packet) (new PacketPlayOutOpenWindow(this.bT, "minecraft:container", var1.e_(), var1.n_())));
-			this.activeContainer = new aim(this.playerInventory, var1, this);
+			this.activeContainer = new ContainerChest(this.playerInventory, var1, this);
 		}
 
 		this.activeContainer.d = this.bT;
@@ -757,7 +757,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public String w() {
-		String var1 = this.playerConncetion.a.b().toString();
+		String var1 = this.playerConncetion.networkManager.getAddress().toString();
 		var1 = var1.substring(var1.indexOf("/") + 1);
 		var1 = var1.substring(0, var1.indexOf(":"));
 		return var1;

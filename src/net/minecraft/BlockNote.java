@@ -67,7 +67,7 @@ public class BlockNote extends atg {
 
 	public boolean a(World var1, Position var2, bec var3, int var4, int var5) {
 		float var6 = (float) Math.pow(2.0D, (double) (var5 - 12) / 12.0D);
-		var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "note." + this.b(var4), 3.0F, var6);
+		var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "note." + this.b(var4), 3.0F, var6);
 		var1.a(Particle.x, (double) var2.getX() + 0.5D, (double) var2.getY() + 1.2D, (double) var2.getZ() + 0.5D, (double) var5 / 24.0D, 0.0D, 0.0D, new int[0]);
 		return true;
 	}

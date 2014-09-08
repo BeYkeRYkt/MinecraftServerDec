@@ -27,7 +27,7 @@ public class ItemSnow extends ItemBlock {
 				if (var11 <= 7) {
 					bec var12 = var9.a(BlockSnow.a, Integer.valueOf(var11 + 1));
 					if (var3.b(this.block.a(var3, var4, var12)) && var3.a(var4, var12, 2)) {
-						var3.a((double) ((float) var4.getX() + 0.5F), (double) ((float) var4.getY() + 0.5F), (double) ((float) var4.getZ() + 0.5F), this.block.H.b(), (this.block.H.d() + 1.0F) / 2.0F, this.block.H.e() * 0.8F);
+						var3.makeSound((double) ((float) var4.getX() + 0.5F), (double) ((float) var4.getY() + 0.5F), (double) ((float) var4.getZ() + 0.5F), this.block.H.b(), (this.block.H.d() + 1.0F) / 2.0F, this.block.H.e() * 0.8F);
 						--var1.b;
 						return true;
 					}

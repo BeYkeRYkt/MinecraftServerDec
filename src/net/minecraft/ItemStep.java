@@ -36,7 +36,7 @@ public class ItemStep extends ItemBlock {
 				if ((var5 == BlockFace.UP && var13 == awr.b || var5 == BlockFace.DOWN && var13 == awr.a) && var12 == var9) {
 					bec var14 = this.c.P().a(var11, var12);
 					if (var3.b(this.c.a(var3, var4, var14)) && var3.a(var4, var14, 3)) {
-						var3.a((double) ((float) var4.getX() + 0.5F), (double) ((float) var4.getY() + 0.5F), (double) ((float) var4.getZ() + 0.5F), this.c.H.b(), (this.c.H.d() + 1.0F) / 2.0F, this.c.H.e() * 0.8F);
+						var3.makeSound((double) ((float) var4.getX() + 0.5F), (double) ((float) var4.getY() + 0.5F), (double) ((float) var4.getZ() + 0.5F), this.c.H.b(), (this.c.H.d() + 1.0F) / 2.0F, this.c.H.e() * 0.8F);
 						--var1.b;
 					}
 
@@ -55,7 +55,7 @@ public class ItemStep extends ItemBlock {
 			if (var6 == var4) {
 				bec var7 = this.c.P().a(this.b.l(), var6);
 				if (var2.b(this.c.a(var2, var3, var7)) && var2.a(var3, var7, 3)) {
-					var2.a((double) ((float) var3.getX() + 0.5F), (double) ((float) var3.getY() + 0.5F), (double) ((float) var3.getZ() + 0.5F), this.c.H.b(), (this.c.H.d() + 1.0F) / 2.0F, this.c.H.e() * 0.8F);
+					var2.makeSound((double) ((float) var3.getX() + 0.5F), (double) ((float) var3.getY() + 0.5F), (double) ((float) var3.getZ() + 0.5F), this.c.H.b(), (this.c.H.d() + 1.0F) / 2.0F, this.c.H.e() * 0.8F);
 					--var1.b;
 				}
 

@@ -116,7 +116,7 @@ public abstract class aud extends Block {
 		} else {
 			var1.a(var2, var3.a(b, Boolean.valueOf(true)), 3);
 			var1.b(var2, var2);
-			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
+			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
 			this.b(var1, var2, (BlockFace) var3.b(a));
 			var1.a(var2, (Block) this, this.a(var1));
 			return true;
@@ -154,7 +154,7 @@ public abstract class aud extends Block {
 				} else {
 					var1.a(var2, var3.a(b, Boolean.valueOf(false)));
 					this.b(var1, var2, (BlockFace) var3.b(a));
-					var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.5F);
+					var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.5F);
 					var1.b(var2, var2);
 				}
 
@@ -188,14 +188,14 @@ public abstract class aud extends Block {
 			var1.a(var2, var3.a(b, Boolean.valueOf(true)));
 			this.b(var1, var2, (BlockFace) var3.b(a));
 			var1.b(var2, var2);
-			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
+			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
 		}
 
 		if (!var5 && var6) {
 			var1.a(var2, var3.a(b, Boolean.valueOf(false)));
 			this.b(var1, var2, (BlockFace) var3.b(a));
 			var1.b(var2, var2);
-			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.5F);
+			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.5F);
 		}
 
 		if (var5) {

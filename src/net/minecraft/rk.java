@@ -16,6 +16,6 @@ class rk implements GenericFutureListener {
 	}
 
 	public void operationComplete(Future var1) {
-		this.b.a.a((IChatBaseComponent) this.a);
+		this.b.networkManager.disconnect((IChatBaseComponent) this.a);
 	}
 }

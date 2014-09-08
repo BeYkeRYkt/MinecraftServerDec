@@ -207,9 +207,9 @@ public class TileEntityChest extends bdf implements pm, IInventory {
 
 			while (var6.hasNext()) {
 				EntityHuman var7 = (EntityHuman) var6.next();
-				if (var7.activeContainer instanceof aim) {
-					IInventory var8 = ((aim) var7.activeContainer).e();
-					if (var8 == this || var8 instanceof vp && ((vp) var8).a((IInventory) this)) {
+				if (var7.activeContainer instanceof ContainerChest) {
+					IInventory var8 = ((ContainerChest) var7.activeContainer).e();
+					if (var8 == this || var8 instanceof InventoryLargeChest && ((InventoryLargeChest) var8).a((IInventory) this)) {
 						++this.l;
 					}
 				}
@@ -230,7 +230,7 @@ public class TileEntityChest extends bdf implements pm, IInventory {
 				var11 += 0.5D;
 			}
 
-			this.world.a(var11, (double) var2 + 0.5D, var14, "random.chestopen", 0.5F, this.world.s.nextFloat() * 0.1F + 0.9F);
+			this.world.makeSound(var11, (double) var2 + 0.5D, var14, "random.chestopen", 0.5F, this.world.s.nextFloat() * 0.1F + 0.9F);
 		}
 
 		if (this.l == 0 && this.j > 0.0F || this.l > 0 && this.j < 1.0F) {
@@ -257,7 +257,7 @@ public class TileEntityChest extends bdf implements pm, IInventory {
 					var14 += 0.5D;
 				}
 
-				this.world.a(var14, (double) var2 + 0.5D, var9, "random.chestclosed", 0.5F, this.world.s.nextFloat() * 0.1F + 0.9F);
+				this.world.makeSound(var14, (double) var2 + 0.5D, var9, "random.chestclosed", 0.5F, this.world.s.nextFloat() * 0.1F + 0.9F);
 			}
 
 			if (this.j < 0.0F) {
@@ -327,7 +327,7 @@ public class TileEntityChest extends bdf implements pm, IInventory {
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {
-		return new aim(var1, this, var2);
+		return new ContainerChest(var1, this, var2);
 	}
 
 	public int a_(int var1) {

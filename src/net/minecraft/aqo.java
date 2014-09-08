@@ -119,7 +119,7 @@ public class aqo {
 	}
 
 	public void a(boolean var1) {
-		this.d.a(this.e, this.f, this.g, "random.explode", 4.0F, (1.0F + (this.d.s.nextFloat() - this.d.s.nextFloat()) * 0.2F) * 0.7F);
+		this.d.makeSound(this.e, this.f, this.g, "random.explode", 4.0F, (1.0F + (this.d.s.nextFloat() - this.d.s.nextFloat()) * 0.2F) * 0.7F);
 		if (this.i >= 2.0F && this.b) {
 			this.d.a(Particle.c, this.e, this.f, this.g, 1.0D, 0.0D, 0.0D, new int[0]);
 		} else {
