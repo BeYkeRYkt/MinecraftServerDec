@@ -824,7 +824,7 @@ public class WorldServer extends World implements vn {
 
 	}
 
-	public Entity a(UUID var1) {
+	public Entity getEntity(UUID var1) {
 		return (Entity) this.N.get(var1);
 	}
 

@@ -37,7 +37,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	private boolean bM = true;
 	private int bN = -99999999;
 	private int bO = 60;
-	private ahg bP;
+	private EnumChatFlag bP;
 	private boolean bQ = true;
 	private long bR = System.currentTimeMillis();
 	private Entity bS = null;
@@ -219,7 +219,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			}
 
 			if (this.bm() != this.bK || this.bL != this.fooddata.a() || this.fooddata.e() == 0.0F != this.bM) {
-				this.playerConncetion.sendPacket((Packet) (new PacketPlayPlayOutUpdateHealth(this.bm(), this.fooddata.a(), this.fooddata.e())));
+				this.playerConncetion.sendPacket((Packet) (new PacketPlayOutUpdateHealth(this.bm(), this.fooddata.a(), this.fooddata.e())));
 				this.bK = this.bm();
 				this.bL = this.fooddata.a();
 				this.bM = this.fooddata.e() == 0.0F;
@@ -763,14 +763,14 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		return var1;
 	}
 
-	public void a(lx var1) {
-		this.locale = var1.a();
-		this.bP = var1.c();
-		this.bQ = var1.d();
-		this.getDataWatcher().b(10, Byte.valueOf((byte) var1.e()));
+	public void a(PacketPlayInClientSettings var1) {
+		this.locale = var1.getLocale();
+		this.bP = var1.getChatFlag();
+		this.bQ = var1.isChatColorsEnabled();
+		this.getDataWatcher().b(10, Byte.valueOf((byte) var1.getDisplayedSkinParts()));
 	}
 
-	public ahg y() {
+	public EnumChatFlag y() {
 		return this.bP;
 	}
 

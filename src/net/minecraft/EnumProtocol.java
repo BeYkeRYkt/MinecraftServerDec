@@ -27,7 +27,7 @@ public enum EnumProtocol {
 			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutTimeUpdate.class);
 			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutEntityEquipment.class);
 			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutSpawnPosition.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayPlayOutUpdateHealth.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutUpdateHealth.class);
 			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutRespawn.class);
 			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutPlayerPositionAndLook.class);
 			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutHeldItemChange.class);
@@ -104,23 +104,23 @@ public enum EnumProtocol {
 			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInPositionLook.class);
 			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInPlayerDigging.class);
 			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInBlockPlace.class);
-			registerPacket(PacketDirection.SERVERBOUND, ms.class);
-			registerPacket(PacketDirection.SERVERBOUND, mv.class);
-			registerPacket(PacketDirection.SERVERBOUND, mn.class);
-			registerPacket(PacketDirection.SERVERBOUND, mp.class);
-			registerPacket(PacketDirection.SERVERBOUND, mb.class);
-			registerPacket(PacketDirection.SERVERBOUND, ma.class);
-			registerPacket(PacketDirection.SERVERBOUND, ly.class);
-			registerPacket(PacketDirection.SERVERBOUND, mt.class);
-			registerPacket(PacketDirection.SERVERBOUND, lz.class);
-			registerPacket(PacketDirection.SERVERBOUND, mu.class);
-			registerPacket(PacketDirection.SERVERBOUND, mk.class);
-			registerPacket(PacketDirection.SERVERBOUND, lt.class);
-			registerPacket(PacketDirection.SERVERBOUND, lx.class);
-			registerPacket(PacketDirection.SERVERBOUND, lv.class);
-			registerPacket(PacketDirection.SERVERBOUND, mc.class);
-			registerPacket(PacketDirection.SERVERBOUND, mw.class);
-			registerPacket(PacketDirection.SERVERBOUND, mq.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInHeldItemChange.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInAnimation.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInEntityAction.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInSteerVehicle.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInCloseWindow.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInClickWindow.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInConfirmTransaction.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInCreativeInventoryAction.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInEnchantItem.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInUpdateSign.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInPlayAbilities.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInTabComplete.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInClientSettings.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInClientStatus.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInPluginMessage.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInSpectate.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInResourcePackStatus.class);
 		}
 	},
 	STATUS(1) {

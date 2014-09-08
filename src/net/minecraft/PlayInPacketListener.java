@@ -2,25 +2,25 @@ package net.minecraft;
 
 public interface PlayInPacketListener extends PacketListener {
 
-	void a(mv packet);
+	void handle(PacketPlayInAnimation packet);
 
 	void handle(PacketPlayInChatMessage packet);
 
-	void a(lt packet);
+	void handle(PacketPlayInTabComplete packet);
 
-	void a(lv packet);
+	void handle(PacketPlayInClientStatus packet);
 
-	void a(lx packet);
+	void handle(PacketPlayInClientSettings packet);
 
-	void a(ly packet);
+	void handle(PacketPlayInConfirmTransaction packet);
 
-	void a(lz packet);
+	void handle(PacketPlayInEnchantItem packet);
 
-	void a(ma packet);
+	void handle(PacketPlayInClickWindow packet);
 
-	void a(mb packet);
+	void handle(PacketPlayInCloseWindow packet);
 
-	void a(mc packet);
+	void handle(PacketPlayInPluginMessage packet);
 
 	void handle(PacketPlayInUseEntity packet);
 
@@ -28,24 +28,24 @@ public interface PlayInPacketListener extends PacketListener {
 
 	void handle(PacketPlayInPlayer packet);
 
-	void a(mk packet);
+	void handle(PacketPlayInPlayAbilities packet);
 
 	void handle(PacketPlayInPlayerDigging packet);
 
-	void a(mn packet);
+	void handle(PacketPlayInEntityAction packet);
 
-	void a(mp packet);
+	void handle(PacketPlayInSteerVehicle packet);
 
-	void a(ms packet);
+	void handle(PacketPlayInHeldItemChange packet);
 
-	void a(mt packet);
+	void a(PacketPlayInCreativeInventoryAction packet);
 
-	void a(mu packet);
+	void handle(PacketPlayInUpdateSign packet);
 
 	void handle(PacketPlayInBlockPlace packet);
 
-	void a(mw packet);
+	void handle(PacketPlayInSpectate packet);
 
-	void a(mq packet);
+	void handle(PacketPlayInResourcePackStatus packet);
 
 }

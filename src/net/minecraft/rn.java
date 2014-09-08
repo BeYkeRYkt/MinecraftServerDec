@@ -8,67 +8,67 @@ class rn {
 	// $FF: synthetic field
 	static final int[] b;
 	// $FF: synthetic field
-	static final int[] c = new int[lw.values().length];
+	static final int[] c = new int[PacketPlayInClientStatus.ClientStatusAction.values().length];
 
 	static {
 		try {
-			c[lw.a.ordinal()] = 1;
+			c[PacketPlayInClientStatus.ClientStatusAction.PERFORM_RESPAWN.ordinal()] = 1;
 		} catch (NoSuchFieldError var16) {
 			;
 		}
 
 		try {
-			c[lw.b.ordinal()] = 2;
+			c[PacketPlayInClientStatus.ClientStatusAction.REQUEST_STATS.ordinal()] = 2;
 		} catch (NoSuchFieldError var15) {
 			;
 		}
 
 		try {
-			c[lw.c.ordinal()] = 3;
+			c[PacketPlayInClientStatus.ClientStatusAction.OPEN_INVENTORY_ACHIEVEMENT.ordinal()] = 3;
 		} catch (NoSuchFieldError var14) {
 			;
 		}
 
-		b = new int[mo.values().length];
+		b = new int[PacketPlayInEntityAction.EntityActionAction.values().length];
 
 		try {
-			b[mo.a.ordinal()] = 1;
+			b[PacketPlayInEntityAction.EntityActionAction.START_SNEAKING.ordinal()] = 1;
 		} catch (NoSuchFieldError var13) {
 			;
 		}
 
 		try {
-			b[mo.b.ordinal()] = 2;
+			b[PacketPlayInEntityAction.EntityActionAction.STOP_SNEAKING.ordinal()] = 2;
 		} catch (NoSuchFieldError var12) {
 			;
 		}
 
 		try {
-			b[mo.d.ordinal()] = 3;
+			b[PacketPlayInEntityAction.EntityActionAction.START_SPRINTING.ordinal()] = 3;
 		} catch (NoSuchFieldError var11) {
 			;
 		}
 
 		try {
-			b[mo.e.ordinal()] = 4;
+			b[PacketPlayInEntityAction.EntityActionAction.STOP_SPRINTING.ordinal()] = 4;
 		} catch (NoSuchFieldError var10) {
 			;
 		}
 
 		try {
-			b[mo.c.ordinal()] = 5;
+			b[PacketPlayInEntityAction.EntityActionAction.STOP_SLEEPING.ordinal()] = 5;
 		} catch (NoSuchFieldError var9) {
 			;
 		}
 
 		try {
-			b[mo.f.ordinal()] = 6;
+			b[PacketPlayInEntityAction.EntityActionAction.RIDING_JUMP.ordinal()] = 6;
 		} catch (NoSuchFieldError var8) {
 			;
 		}
 
 		try {
-			b[mo.g.ordinal()] = 7;
+			b[PacketPlayInEntityAction.EntityActionAction.OPEN_INVENTORY.ordinal()] = 7;
 		} catch (NoSuchFieldError var7) {
 			;
 		}

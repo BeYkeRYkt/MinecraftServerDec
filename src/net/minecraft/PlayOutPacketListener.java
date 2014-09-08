@@ -104,7 +104,7 @@ public interface PlayOutPacketListener extends PacketListener {
 
 	void handle(PacketPlayOutSetExpirience packet);
 
-	void handle(PacketPlayPlayOutUpdateHealth packet);
+	void handle(PacketPlayOutUpdateHealth packet);
 
 	void handle(PacketPlayOutScoreboardTeam packet);
 

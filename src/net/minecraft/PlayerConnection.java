@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
+import net.minecraft.PacketPlayInClientStatus.ClientStatusAction;
 import net.minecraft.PacketPlayInPlayerDigging.PlayerDiggingAction;
 import net.minecraft.PacketPlayInUseEntity.UseEntityAction;
 import net.minecraft.server.MinecraftServer;
@@ -90,9 +91,9 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 		Futures.getUnchecked(this.d.a((Runnable) (new rl(this))));
 	}
 
-	public void a(mp var1) {
+	public void handle(PacketPlayInSteerVehicle var1) {
 		ig.a(var1, this, this.b.u());
-		this.b.a(var1.a(), var1.b(), var1.c(), var1.d());
+		this.b.a(var1.getSidewaysSpeed(), var1.getForwardSpeed(), var1.isJump(), var1.isUnmount());
 	}
 
 	public void handle(PacketPlayInPlayer var1) {
@@ -414,7 +415,7 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 
 	}
 
-	public void a(mw var1) {
+	public void handle(PacketPlayInSpectate var1) {
 		ig.a(var1, this, this.b.u());
 		if (this.b.v()) {
 			Entity var2 = null;
@@ -424,7 +425,7 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 			for (int var5 = 0; var5 < var4; ++var5) {
 				WorldServer var6 = var3[var5];
 				if (var6 != null) {
-					var2 = var1.a(var6);
+					var2 = var1.getEntity(var6);
 					if (var2 != null) {
 						break;
 					}
@@ -462,7 +463,7 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 
 	}
 
-	public void a(mq var1) {
+	public void handle(PacketPlayInResourcePackStatus var1) {
 	}
 
 	public void handle(IChatBaseComponent var1) {
@@ -483,12 +484,12 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 	public void sendPacket(Packet var1) {
 		if (var1 instanceof PacketPlayOutChatMessage) {
 			PacketPlayOutChatMessage var2 = (PacketPlayOutChatMessage) var1;
-			ahg var3 = this.b.y();
-			if (var3 == ahg.c) {
+			EnumChatFlag var3 = this.b.y();
+			if (var3 == EnumChatFlag.HIDDEN) {
 				return;
 			}
 
-			if (var3 == ahg.b && !var2.isChatMessage()) {
+			if (var3 == EnumChatFlag.SYSTEM && !var2.isChatMessage()) {
 				return;
 			}
 		}
@@ -503,10 +504,10 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 		}
 	}
 
-	public void a(ms var1) {
+	public void handle(PacketPlayInHeldItemChange var1) {
 		ig.a(var1, this, this.b.u());
-		if (var1.a() >= 0 && var1.a() < PlayerInventory.i()) {
-			this.b.playerInventory.c = var1.a();
+		if (var1.getSlot() >= 0 && var1.getSlot() < PlayerInventory.i()) {
+			this.b.playerInventory.c = var1.getSlot();
 			this.b.z();
 		} else {
 			c.warn(this.b.d_() + " tried to set an invalid carried item");
@@ -515,7 +516,7 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 
 	public void handle(PacketPlayInChatMessage var1) {
 		ig.a(var1, this, this.b.u());
-		if (this.b.y() == ahg.c) {
+		if (this.b.y() == EnumChatFlag.HIDDEN) {
 			ChatMessage var4 = new ChatMessage("chat.cannotSend", new Object[0]);
 			var4.b().a(EnumChatFormat.RED);
 			this.sendPacket((Packet) (new PacketPlayOutChatMessage(var4)));
@@ -550,16 +551,16 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 		this.d.getCommandHandler().a(this.b, var1);
 	}
 
-	public void a(mv var1) {
+	public void handle(PacketPlayInAnimation var1) {
 		ig.a(var1, this, this.b.u());
 		this.b.z();
 		this.b.bv();
 	}
 
-	public void a(mn var1) {
+	public void handle(PacketPlayInEntityAction var1) {
 		ig.a(var1, this, this.b.u());
 		this.b.z();
-		switch (rn.b[var1.b().ordinal()]) {
+		switch (rn.b[var1.getAction().ordinal()]) {
 			case 1:
 				this.b.c(true);
 				break;
@@ -578,7 +579,7 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 				break;
 			case 6:
 				if (this.b.m instanceof EntityHorse) {
-					((EntityHorse) this.b.m).v(var1.c());
+					((EntityHorse) this.b.m).v(var1.getHorseJumpBoost());
 				}
 				break;
 			case 7:
@@ -623,10 +624,10 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 
 	}
 
-	public void a(lv var1) {
+	public void handle(PacketPlayInClientStatus var1) {
 		ig.a(var1, this, this.b.u());
 		this.b.z();
-		lw var2 = var1.a();
+		ClientStatusAction var2 = var1.getAction();
 		switch (rn.c[var2.ordinal()]) {
 			case 1:
 				if (this.b.i) {
@@ -657,15 +658,15 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 
 	}
 
-	public void a(mb var1) {
+	public void handle(PacketPlayInCloseWindow var1) {
 		ig.a(var1, this, this.b.u());
 		this.b.p();
 	}
 
-	public void a(ma var1) {
+	public void handle(PacketPlayInClickWindow var1) {
 		ig.a(var1, this, this.b.u());
 		this.b.z();
-		if (this.b.activeContainer.d == var1.a() && this.b.activeContainer.c(this.b)) {
+		if (this.b.activeContainer.d == var1.getWindowId() && this.b.activeContainer.c(this.b)) {
 			if (this.b.v()) {
 				ArrayList var2 = Lists.newArrayList();
 
@@ -675,16 +676,16 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 
 				this.b.a(this.b.activeContainer, (List) var2);
 			} else {
-				ItemStack var5 = this.b.activeContainer.a(var1.b(), var1.c(), var1.f(), this.b);
-				if (ItemStack.b(var1.e(), var5)) {
-					this.b.playerConncetion.sendPacket((Packet) (new PacketPlayOutConfirmTransaction(var1.a(), var1.d(), true)));
+				ItemStack var5 = this.b.activeContainer.a(var1.getSlot(), var1.getButton(), var1.getMode(), this.b);
+				if (ItemStack.b(var1.getItem(), var5)) {
+					this.b.playerConncetion.sendPacket((Packet) (new PacketPlayOutConfirmTransaction(var1.getWindowId(), var1.getAction(), true)));
 					this.b.g = true;
 					this.b.activeContainer.b();
 					this.b.o();
 					this.b.g = false;
 				} else {
-					this.n.a(this.b.activeContainer.d, Short.valueOf(var1.d()));
-					this.b.playerConncetion.sendPacket((Packet) (new PacketPlayOutConfirmTransaction(var1.a(), var1.d(), false)));
+					this.n.a(this.b.activeContainer.d, Short.valueOf(var1.getAction()));
+					this.b.playerConncetion.sendPacket((Packet) (new PacketPlayOutConfirmTransaction(var1.getWindowId(), var1.getAction(), false)));
 					this.b.activeContainer.a(this.b, false);
 					ArrayList var6 = Lists.newArrayList();
 
@@ -699,21 +700,21 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 
 	}
 
-	public void a(lz var1) {
+	public void handle(PacketPlayInEnchantItem var1) {
 		ig.a(var1, this, this.b.u());
 		this.b.z();
-		if (this.b.activeContainer.d == var1.a() && this.b.activeContainer.c(this.b) && !this.b.v()) {
-			this.b.activeContainer.a((EntityHuman) this.b, var1.b());
+		if (this.b.activeContainer.d == var1.getWindowId() && this.b.activeContainer.c(this.b) && !this.b.v()) {
+			this.b.activeContainer.a((EntityHuman) this.b, var1.getEnchantment());
 			this.b.activeContainer.b();
 		}
 
 	}
 
-	public void a(mt var1) {
+	public void a(PacketPlayInCreativeInventoryAction var1) {
 		ig.a(var1, this, this.b.u());
 		if (this.b.playerInteractManager.d()) {
-			boolean var2 = var1.a() < 0;
-			ItemStack var3 = var1.b();
+			boolean var2 = var1.getWindowId() < 0;
+			ItemStack var3 = var1.getItem();
 			if (var3 != null && var3.hasTag() && var3.getTag().isTagAssignableFrom("BlockEntityTag", 10)) {
 				NBTCompoundTag var4 = var3.getTag().getCompound("BlockEntityTag");
 				if (var4.hasKey("x") && var4.hasKey("y") && var4.hasKey("z")) {
@@ -730,14 +731,14 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 				}
 			}
 
-			boolean var8 = var1.a() >= 1 && var1.a() < 36 + PlayerInventory.i();
+			boolean var8 = var1.getWindowId() >= 1 && var1.getWindowId() < 36 + PlayerInventory.i();
 			boolean var9 = var3 == null || var3.getItem() != null;
 			boolean var10 = var3 == null || var3.i() >= 0 && var3.b <= 64 && var3.b > 0;
 			if (var8 && var9 && var10) {
 				if (var3 == null) {
-					this.b.defaultContainer.a(var1.a(), (ItemStack) null);
+					this.b.defaultContainer.a(var1.getWindowId(), (ItemStack) null);
 				} else {
-					this.b.defaultContainer.a(var1.a(), var3);
+					this.b.defaultContainer.a(var1.getWindowId(), var3);
 				}
 
 				this.b.defaultContainer.a(this.b, true);
@@ -752,20 +753,20 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 
 	}
 
-	public void a(ly var1) {
+	public void handle(PacketPlayInConfirmTransaction var1) {
 		ig.a(var1, this, this.b.u());
 		Short var2 = (Short) this.n.a(this.b.activeContainer.d);
-		if (var2 != null && var1.b() == var2.shortValue() && this.b.activeContainer.d == var1.a() && !this.b.activeContainer.c(this.b) && !this.b.v()) {
+		if (var2 != null && var1.getAction() == var2.shortValue() && this.b.activeContainer.d == var1.getWindowId() && !this.b.activeContainer.c(this.b) && !this.b.v()) {
 			this.b.activeContainer.a(this.b, true);
 		}
 
 	}
 
-	public void a(mu var1) {
+	public void handle(PacketPlayInUpdateSign var1) {
 		ig.a(var1, this, this.b.u());
 		this.b.z();
 		WorldServer var2 = this.d.a(this.b.dimensionId);
-		Position var3 = var1.a();
+		Position var3 = var1.getPosition();
 		if (var2.e(var3)) {
 			TileEntity var4 = var2.s(var3);
 			if (!(var4 instanceof TileEntitySign)) {
@@ -778,7 +779,7 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 				return;
 			}
 
-			System.arraycopy(var1.b(), 0, var5.a, 0, 4);
+			System.arraycopy(var1.getLines(), 0, var5.a, 0, 4);
 			var5.o_();
 			var2.h(var3);
 		}
@@ -797,15 +798,15 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 		return System.nanoTime() / 1000000L;
 	}
 
-	public void a(mk var1) {
+	public void handle(PacketPlayInPlayAbilities var1) {
 		ig.a(var1, this, this.b.u());
-		this.b.by.flying = var1.b() && this.b.by.mayfly;
+		this.b.by.flying = var1.isFlying() && this.b.by.mayfly;
 	}
 
-	public void a(lt var1) {
+	public void handle(PacketPlayInTabComplete var1) {
 		ig.a(var1, this, this.b.u());
 		ArrayList var2 = Lists.newArrayList();
-		Iterator var3 = this.d.getTabCompleteList((CommandSenderInterface) this.b, var1.a(), var1.b()).iterator();
+		Iterator var3 = this.d.getTabCompleteList((CommandSenderInterface) this.b, var1.getText(), var1.getPosition()).iterator();
 
 		while (var3.hasNext()) {
 			String var4 = (String) var3.next();
@@ -815,18 +816,18 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 		this.b.playerConncetion.sendPacket((Packet) (new PacketPlayOutTabComplete((String[]) var2.toArray(new String[var2.size()]))));
 	}
 
-	public void a(lx var1) {
+	public void handle(PacketPlayInClientSettings var1) {
 		ig.a(var1, this, this.b.u());
 		this.b.a(var1);
 	}
 
-	public void a(mc var1) {
+	public void handle(PacketPlayInPluginMessage var1) {
 		ig.a(var1, this, this.b.u());
 		PacketDataSerializer var2;
 		ItemStack var3;
 		ItemStack var4;
-		if ("MC|BEdit".equals(var1.a())) {
-			var2 = new PacketDataSerializer(Unpooled.wrappedBuffer((ByteBuf) var1.b()));
+		if ("MC|BEdit".equals(var1.getChannelName())) {
+			var2 = new PacketDataSerializer(Unpooled.wrappedBuffer((ByteBuf) var1.getMessage()));
 
 			try {
 				var3 = var2.readItemStack();
@@ -854,8 +855,8 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 			}
 
 			return;
-		} else if ("MC|BSign".equals(var1.a())) {
-			var2 = new PacketDataSerializer(Unpooled.wrappedBuffer((ByteBuf) var1.b()));
+		} else if ("MC|BSign".equals(var1.getChannelName())) {
+			var2 = new PacketDataSerializer(Unpooled.wrappedBuffer((ByteBuf) var1.getMessage()));
 
 			try {
 				var3 = var2.readItemStack();
@@ -886,9 +887,9 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 			}
 
 			return;
-		} else if ("MC|TrSel".equals(var1.a())) {
+		} else if ("MC|TrSel".equals(var1.getChannelName())) {
 			try {
-				int var40 = var1.b().readInt();
+				int var40 = var1.getMessage().readInt();
 				Container var42 = this.b.activeContainer;
 				if (var42 instanceof ajf) {
 					((ajf) var42).d(var40);
@@ -896,11 +897,11 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 			} catch (Exception var35) {
 				c.error("Couldn\'t select trade", (Throwable) var35);
 			}
-		} else if ("MC|AdvCdm".equals(var1.a())) {
+		} else if ("MC|AdvCdm".equals(var1.getChannelName())) {
 			if (!this.d.isCommandBlockEnabled()) {
 				this.b.sendChatMessage((IChatBaseComponent) (new ChatMessage("advMode.notEnabled", new Object[0])));
 			} else if (this.b.a(2, "") && this.b.by.instabuild) {
-				var2 = var1.b();
+				var2 = var1.getMessage();
 
 				try {
 					byte var43 = var2.readByte();
@@ -937,10 +938,10 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 			} else {
 				this.b.sendChatMessage((IChatBaseComponent) (new ChatMessage("advMode.notAllowed", new Object[0])));
 			}
-		} else if ("MC|Beacon".equals(var1.a())) {
+		} else if ("MC|Beacon".equals(var1.getChannelName())) {
 			if (this.b.activeContainer instanceof aig) {
 				try {
-					var2 = var1.b();
+					var2 = var1.getMessage();
 					int var44 = var2.readInt();
 					int var47 = var2.readInt();
 					aig var50 = (aig) this.b.activeContainer;
@@ -956,10 +957,10 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 					c.error("Couldn\'t set beacon", (Throwable) var32);
 				}
 			}
-		} else if ("MC|ItemName".equals(var1.a()) && this.b.activeContainer instanceof aid) {
+		} else if ("MC|ItemName".equals(var1.getChannelName()) && this.b.activeContainer instanceof aid) {
 			aid var41 = (aid) this.b.activeContainer;
-			if (var1.b() != null && var1.b().readableBytes() >= 1) {
-				String var45 = v.a(var1.b().readString(32767));
+			if (var1.getMessage() != null && var1.getMessage().readableBytes() >= 1) {
+				String var45 = v.a(var1.getMessage().readString(32767));
 				if (var45.length() <= 30) {
 					var41.a(var45);
 				}

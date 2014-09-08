@@ -1086,7 +1086,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		for (int var4 = 0; var4 < var3; ++var4) {
 			WorldServer var5 = var2[var4];
 			if (var5 != null) {
-				Entity var6 = var5.a(var1);
+				Entity var6 = var5.getEntity(var1);
 				if (var6 != null) {
 					return var6;
 				}
