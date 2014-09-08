@@ -11,7 +11,7 @@ class aec extends aqf {
 
 	public void h() {
 		this.a.getDataWatcher().b(23, this.l());
-		this.a.getDataWatcher().b(24, JSONComponentFormat.a(this.k()));
+		this.a.getDataWatcher().b(24, ChatSerializer.a(this.k()));
 	}
 
 	public Position c() {

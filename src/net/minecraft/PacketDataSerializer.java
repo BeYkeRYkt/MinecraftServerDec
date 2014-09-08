@@ -57,11 +57,11 @@ public class PacketDataSerializer extends ByteBuf {
 	}
 
 	public IChatBaseComponent readJSONComponent() {
-		return JSONComponentFormat.a(this.readString(32767));
+		return ChatSerializer.a(this.readString(32767));
 	}
 
 	public void writeJSONComponent(IChatBaseComponent var1) {
-		this.writeString(JSONComponentFormat.a(var1));
+		this.writeString(ChatSerializer.a(var1));
 	}
 
 	public <T extends Enum<T>> Enum<T> readEnum(Class<T> enumClass) {

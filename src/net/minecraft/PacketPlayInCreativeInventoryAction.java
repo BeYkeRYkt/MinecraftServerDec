@@ -18,7 +18,7 @@ public class PacketPlayInCreativeInventoryAction implements Packet<PlayInPacketL
 	}
 
 	public void handlePacket(PlayInPacketListener listener) {
-		listener.a(this);
+		listener.handle(this);
 	}
 
 	public int getWindowId() {

@@ -710,7 +710,7 @@ public class PlayerConnection implements PlayInPacketListener, pm {
 
 	}
 
-	public void a(PacketPlayInCreativeInventoryAction var1) {
+	public void handle(PacketPlayInCreativeInventoryAction var1) {
 		ig.a(var1, this, this.b.u());
 		if (this.b.playerInteractManager.d()) {
 			boolean var2 = var1.getWindowId() < 0;

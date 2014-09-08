@@ -29,7 +29,7 @@ public abstract class aqf implements CommandSenderInterface {
 		var1.put("CustomName", this.f);
 		var1.put("TrackOutput", this.c);
 		if (this.d != null && this.c) {
-			var1.put("LastOutput", JSONComponentFormat.a(this.d));
+			var1.put("LastOutput", ChatSerializer.a(this.d));
 		}
 
 		this.g.b(var1);
@@ -47,7 +47,7 @@ public abstract class aqf implements CommandSenderInterface {
 		}
 
 		if (var1.isTagAssignableFrom("LastOutput", 8) && this.c) {
-			this.d = JSONComponentFormat.a(var1.getString("LastOutput"));
+			this.d = ChatSerializer.a(var1.getString("LastOutput"));
 		}
 
 		this.g.a(var1);

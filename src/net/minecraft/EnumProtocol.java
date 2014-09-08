@@ -125,10 +125,10 @@ public enum EnumProtocol {
 	},
 	STATUS(1) {
 		{
-			registerPacket(PacketDirection.SERVERBOUND, nx.class);
-			registerPacket(PacketDirection.CLIENTBOUND, no.class);
-			registerPacket(PacketDirection.SERVERBOUND, nw.class);
-			registerPacket(PacketDirection.CLIENTBOUND, nn.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketStatusInRequest.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketStatusOutResponse.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketStatusInPing.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketStatusOutPing.class);
 		}
 	},
 	LOGIN(2) {

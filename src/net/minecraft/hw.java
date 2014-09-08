@@ -1,6 +1,6 @@
 package net.minecraft;
 
-final class hw extends hv {
+final class hw extends ChatModifier {
 
 	public EnumChatFormat a() {
 		return null;
@@ -38,39 +38,39 @@ final class hw extends hv {
 		return null;
 	}
 
-	public hv a(EnumChatFormat var1) {
+	public ChatModifier a(EnumChatFormat var1) {
 		throw new UnsupportedOperationException();
 	}
 
-	public hv a(Boolean var1) {
+	public ChatModifier a(Boolean var1) {
 		throw new UnsupportedOperationException();
 	}
 
-	public hv b(Boolean var1) {
+	public ChatModifier b(Boolean var1) {
 		throw new UnsupportedOperationException();
 	}
 
-	public hv c(Boolean var1) {
+	public ChatModifier c(Boolean var1) {
 		throw new UnsupportedOperationException();
 	}
 
-	public hv d(Boolean var1) {
+	public ChatModifier d(Boolean var1) {
 		throw new UnsupportedOperationException();
 	}
 
-	public hv e(Boolean var1) {
+	public ChatModifier e(Boolean var1) {
 		throw new UnsupportedOperationException();
 	}
 
-	public hv a(hm var1) {
+	public ChatModifier a(hm var1) {
 		throw new UnsupportedOperationException();
 	}
 
-	public hv a(ChatHoverable var1) {
+	public ChatModifier a(ChatHoverable var1) {
 		throw new UnsupportedOperationException();
 	}
 
-	public hv a(hv var1) {
+	public ChatModifier a(ChatModifier var1) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -78,11 +78,11 @@ final class hw extends hv {
 		return "Style.ROOT";
 	}
 
-	public hv m() {
+	public ChatModifier m() {
 		return this;
 	}
 
-	public hv n() {
+	public ChatModifier n() {
 		return this;
 	}
 }

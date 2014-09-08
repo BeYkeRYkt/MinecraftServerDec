@@ -123,7 +123,7 @@ public class ChatMessage extends hj {
 		}
 	}
 
-	public IChatBaseComponent a(hv var1) {
+	public IChatBaseComponent a(ChatModifier var1) {
 		super.a(var1);
 		Object[] var2 = this.e;
 		int var3 = var2.length;

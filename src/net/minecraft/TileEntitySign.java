@@ -15,7 +15,7 @@ public class TileEntitySign extends TileEntity {
 		super.write(var1);
 
 		for (int var2 = 0; var2 < 4; ++var2) {
-			String var3 = JSONComponentFormat.a(this.a[var2]);
+			String var3 = ChatSerializer.a(this.a[var2]);
 			var1.put("Text" + (var2 + 1), var3);
 		}
 
@@ -31,7 +31,7 @@ public class TileEntitySign extends TileEntity {
 			String var4 = var1.getString("Text" + (var3 + 1));
 
 			try {
-				IChatBaseComponent var5 = JSONComponentFormat.a(var4);
+				IChatBaseComponent var5 = ChatSerializer.a(var4);
 
 				try {
 					this.a[var3] = hq.a(var2, var5, (Entity) null);
@@ -68,7 +68,7 @@ public class TileEntitySign extends TileEntity {
 		bdl var2 = new bdl(this, var1);
 
 		for (int var3 = 0; var3 < this.a.length; ++var3) {
-			hv var4 = this.a[var3] == null ? null : this.a[var3].b();
+			ChatModifier var4 = this.a[var3] == null ? null : this.a[var3].b();
 			if (var4 != null && var4.h() != null) {
 				hm var5 = var4.h();
 				if (var5.a() == hn.c) {

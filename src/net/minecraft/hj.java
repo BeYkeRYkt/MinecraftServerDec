@@ -8,7 +8,7 @@ import java.util.List;
 public abstract class hj implements IChatBaseComponent {
 
 	protected List a = Lists.newArrayList();
-	private hv b;
+	private ChatModifier b;
 
 	public IChatBaseComponent a(IChatBaseComponent var1) {
 		var1.b().a(this.b());
@@ -24,7 +24,7 @@ public abstract class hj implements IChatBaseComponent {
 		return this.a((IChatBaseComponent) (new ChatComponentText(var1)));
 	}
 
-	public IChatBaseComponent a(hv var1) {
+	public IChatBaseComponent a(ChatModifier var1) {
 		this.b = var1;
 		Iterator var2 = this.a.iterator();
 
@@ -36,9 +36,9 @@ public abstract class hj implements IChatBaseComponent {
 		return this;
 	}
 
-	public hv b() {
+	public ChatModifier b() {
 		if (this.b == null) {
-			this.b = new hv();
+			this.b = new ChatModifier();
 			Iterator var1 = this.a.iterator();
 
 			while (var1.hasNext()) {

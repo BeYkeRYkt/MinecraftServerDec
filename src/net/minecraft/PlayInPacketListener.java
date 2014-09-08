@@ -38,7 +38,7 @@ public interface PlayInPacketListener extends PacketListener {
 
 	void handle(PacketPlayInHeldItemChange packet);
 
-	void a(PacketPlayInCreativeInventoryAction packet);
+	void handle(PacketPlayInCreativeInventoryAction packet);
 
 	void handle(PacketPlayInUpdateSign packet);
 

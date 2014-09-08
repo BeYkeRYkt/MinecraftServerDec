@@ -27,7 +27,7 @@ public class TellRawCommand extends AbstractCommand {
 			String var4 = a(var2, 1);
 
 			try {
-				IChatBaseComponent var5 = JSONComponentFormat.a(var4);
+				IChatBaseComponent var5 = ChatSerializer.a(var4);
 				var3.sendChatMessage(hq.a(var1, var5, var3));
 			} catch (JsonParseException var7) {
 				Throwable var6 = ExceptionUtils.getRootCause(var7);

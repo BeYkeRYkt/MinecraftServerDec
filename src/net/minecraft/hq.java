@@ -46,7 +46,7 @@ public class hq {
 			var3 = new ChatMessage(((ChatMessage) var1).i(), var8);
 		}
 
-		hv var9 = var1.b();
+		ChatModifier var9 = var1.b();
 		if (var9 != null) {
 			((IChatBaseComponent) var3).a(var9.m());
 		}

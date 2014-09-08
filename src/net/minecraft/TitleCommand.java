@@ -62,7 +62,7 @@ public class TitleCommand extends AbstractCommand {
 
 					IChatBaseComponent var6;
 					try {
-						var6 = JSONComponentFormat.a(var10);
+						var6 = ChatSerializer.a(var10);
 					} catch (JsonParseException var9) {
 						Throwable var8 = ExceptionUtils.getRootCause(var9);
 						throw new dl("commands.tellraw.jsonException", new Object[] { var8 == null ? "" : var8.getMessage() });

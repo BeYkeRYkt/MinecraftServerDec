@@ -303,7 +303,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				this.lastTickTime = getCurrentMillis();
 				long var1 = 0L;
 				this.serverPing.a((IChatBaseComponent) (new ChatComponentText(this.E)));
-				this.serverPing.a(new nt("1.8", 47));
+				this.serverPing.a(new ServerPingServerData("1.8", 47));
 				this.a(this.serverPing);
 
 				while (this.running) {
@@ -411,7 +411,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.doTick();
 		if (var1 - this.lastServerPingUpdate >= 5000000000L) {
 			this.lastServerPingUpdate = var1;
-			this.serverPing.a(new nq(this.H(), this.G()));
+			this.serverPing.a(new ServerPingPlayerSample(this.H(), this.G()));
 			GameProfile[] var3 = new GameProfile[Math.min(this.G(), 12)];
 			int var4 = DataTypesConverter.a(this.rnd, 0, this.G() - var3.length);
 

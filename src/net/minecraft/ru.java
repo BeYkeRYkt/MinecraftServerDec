@@ -2,7 +2,7 @@ package net.minecraft;
 
 import net.minecraft.server.MinecraftServer;
 
-public class ru implements nv {
+public class ru implements StatusInPacketListener {
 
 	private final MinecraftServer a;
 	private final gr b;
@@ -15,11 +15,11 @@ public class ru implements nv {
 	public void handle(IChatBaseComponent var1) {
 	}
 
-	public void a(nx var1) {
-		this.b.a((Packet) (new no(this.a.getServerPing())));
+	public void handle(PacketStatusInRequest var1) {
+		this.b.a((Packet) (new PacketStatusOutResponse(this.a.getServerPing())));
 	}
 
-	public void a(nw var1) {
-		this.b.a((Packet) (new nn(var1.a())));
+	public void handle(PacketStatusInPing var1) {
+		this.b.a((Packet) (new PacketStatusOutPing(var1.getTime())));
 	}
 }

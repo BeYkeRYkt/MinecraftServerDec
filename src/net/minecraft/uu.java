@@ -13,9 +13,9 @@ class uu extends TypeAdapter {
 	// $FF: synthetic field
 	final Map a;
 	// $FF: synthetic field
-	final ut b;
+	final ChatTypeAdapterFactory b;
 
-	uu(ut var1, Map var2) {
+	uu(ChatTypeAdapterFactory var1, Map var2) {
 		this.b = var1;
 		this.a = var2;
 	}
@@ -24,7 +24,7 @@ class uu extends TypeAdapter {
 		if (var2 == null) {
 			var1.nullValue();
 		} else {
-			var1.value(ut.a(this.b, var2));
+			var1.value(ChatTypeAdapterFactory.a(this.b, var2));
 		}
 
 	}

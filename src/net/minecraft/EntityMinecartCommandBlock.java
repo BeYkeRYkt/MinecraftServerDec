@@ -23,7 +23,7 @@ public class EntityMinecartCommandBlock extends adx {
 		super.a(var1);
 		this.a.b(var1);
 		this.getDataWatcher().b(23, this.j().l());
-		this.getDataWatcher().b(24, JSONComponentFormat.a(this.j().k()));
+		this.getDataWatcher().b(24, ChatSerializer.a(this.j().k()));
 	}
 
 	protected void b(NBTCompoundTag var1) {
@@ -60,7 +60,7 @@ public class EntityMinecartCommandBlock extends adx {
 		super.i(var1);
 		if (var1 == 24) {
 			try {
-				this.a.b(JSONComponentFormat.a(this.getDataWatcher().e(24)));
+				this.a.b(ChatSerializer.a(this.getDataWatcher().e(24)));
 			} catch (Throwable var3) {
 				;
 			}
