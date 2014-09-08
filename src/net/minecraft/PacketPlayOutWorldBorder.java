@@ -110,7 +110,7 @@ public class PacketPlayOutWorldBorder implements Packet<PlayOutPacketListener> {
 	}
 
 	public enum WorldBorderAction {
-		SET_SIZE, LERP_SIZE, SET_CENTER, SET_WARNING_BLOCKS, SET_WARNING_TIME, INITIALIZE;
+		SET_SIZE, LERP_SIZE, SET_CENTER, INITIALIZE, SET_WARNING_TIME, SET_WARNING_BLOCKS;
 	}
 
 }
