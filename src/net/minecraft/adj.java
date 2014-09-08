@@ -27,7 +27,7 @@ public abstract class adj extends Entity {
 		Validate.notNull(var1);
 		Validate.isTrue(var1.k().c());
 		this.direction = var1;
-		this.A = this.yaw = (float) (this.direction.toByte() * 90);
+		this.A = this.yaw = (float) (this.direction.toDirection() * 90);
 		this.o();
 	}
 
@@ -88,7 +88,7 @@ public abstract class adj extends Entity {
 		} else {
 			int var1 = Math.max(1, this.l() / 16);
 			int var2 = Math.max(1, this.m() / 16);
-			Position var3 = this.a.a(this.direction.d());
+			Position var3 = this.a.a(this.direction.getOpposite());
 			BlockFace var4 = this.direction.f();
 
 			for (int var5 = 0; var5 < var1; ++var5) {
@@ -160,7 +160,7 @@ public abstract class adj extends Entity {
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.put("Facing", (byte) this.direction.toByte());
+		var1.put("Facing", (byte) this.direction.toDirection());
 		var1.put("TileX", this.getPosition().getX());
 		var1.put("TileY", this.getPosition().getY());
 		var1.put("TileZ", this.getPosition().getZ());
@@ -170,12 +170,12 @@ public abstract class adj extends Entity {
 		this.a = new Position(var1.getInt("TileX"), var1.getInt("TileY"), var1.getInt("TileZ"));
 		BlockFace var2;
 		if (var1.isTagAssignableFrom("Direction", 99)) {
-			var2 = BlockFace.fromByte(var1.getByte("Direction"));
+			var2 = BlockFace.fromDirection(var1.getByte("Direction"));
 			this.a = this.a.a(var2);
 		} else if (var1.isTagAssignableFrom("Facing", 99)) {
-			var2 = BlockFace.fromByte(var1.getByte("Facing"));
+			var2 = BlockFace.fromDirection(var1.getByte("Facing"));
 		} else {
-			var2 = BlockFace.fromByte(var1.getByte("Dir"));
+			var2 = BlockFace.fromDirection(var1.getByte("Dir"));
 		}
 
 		this.a(var2);

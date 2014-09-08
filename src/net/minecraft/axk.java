@@ -2,7 +2,7 @@ package net.minecraft;
 
 public enum axk implements va {
 
-	a("DOWN_X", 0, 0, "down_x", BlockFace.a), b("EAST", 1, 1, "east", BlockFace.f), c("WEST", 2, 2, "west", BlockFace.e), d("SOUTH", 3, 3, "south", BlockFace.d), e("NORTH", 4, 4, "north", BlockFace.c), f("UP_Z", 5, 5, "up_z", BlockFace.b), g("UP_X", 6, 6, "up_x", BlockFace.b), h("DOWN_Z", 7, 7, "down_z", BlockFace.a);
+	a("DOWN_X", 0, 0, "down_x", BlockFace.DOWN), b("EAST", 1, 1, "east", BlockFace.EAST), c("WEST", 2, 2, "west", BlockFace.WEST), d("SOUTH", 3, 3, "south", BlockFace.SOUTH), e("NORTH", 4, 4, "north", BlockFace.NORTH), f("UP_Z", 5, 5, "up_z", BlockFace.UP), g("UP_X", 6, 6, "up_x", BlockFace.UP), h("DOWN_Z", 7, 7, "down_z", BlockFace.DOWN);
 	private static final axk[] i = new axk[values().length];
 	private final int j;
 	private final String k;

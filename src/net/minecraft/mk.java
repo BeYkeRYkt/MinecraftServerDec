@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class mk implements Packet<ls> {
+public class mk implements Packet<PlayInPacketListener> {
 
 	private boolean a;
 	private boolean b;
@@ -54,7 +54,7 @@ public class mk implements Packet<ls> {
 		var1.writeFloat(this.f);
 	}
 
-	public void handlePacket(ls var1) {
+	public void handlePacket(PlayInPacketListener var1) {
 		var1.a(this);
 	}
 

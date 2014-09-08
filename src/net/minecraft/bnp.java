@@ -23,10 +23,10 @@ public class bnp extends bnn {
 	}
 
 	public void a(bms var1, List var2, Random var3) {
-		bmy.b((bnk) var1, var2, var3, this.l.a - 1, this.l.e - 4, this.l.c + 1, BlockFace.e, this.d());
-		bmy.b((bnk) var1, var2, var3, this.l.d + 1, this.l.e - 4, this.l.c + 1, BlockFace.f, this.d());
-		bmy.b((bnk) var1, var2, var3, this.l.a + 1, this.l.e - 4, this.l.c - 1, BlockFace.c, this.d());
-		bmy.b((bnk) var1, var2, var3, this.l.a + 1, this.l.e - 4, this.l.f + 1, BlockFace.d, this.d());
+		bmy.b((bnk) var1, var2, var3, this.l.a - 1, this.l.e - 4, this.l.c + 1, BlockFace.WEST, this.d());
+		bmy.b((bnk) var1, var2, var3, this.l.d + 1, this.l.e - 4, this.l.c + 1, BlockFace.EAST, this.d());
+		bmy.b((bnk) var1, var2, var3, this.l.a + 1, this.l.e - 4, this.l.c - 1, BlockFace.NORTH, this.d());
+		bmy.b((bnk) var1, var2, var3, this.l.a + 1, this.l.e - 4, this.l.f + 1, BlockFace.SOUTH, this.d());
 	}
 
 	public boolean a(World var1, Random var2, bjb var3) {

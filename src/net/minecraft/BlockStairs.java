@@ -18,7 +18,7 @@ public class BlockStairs extends Block {
 
 	protected BlockStairs(bec var1) {
 		super(var1.getBlock().material);
-		this.j(this.L.b().a(a, BlockFace.c).a(b, bau.b).a(M, bav.a));
+		this.j(this.L.b().a(a, BlockFace.NORTH).a(b, bau.b).a(M, bav.a));
 		this.O = var1.getBlock();
 		this.P = var1;
 		this.c(this.O.w);
@@ -72,55 +72,55 @@ public class BlockStairs extends Block {
 		bec var7;
 		Block var8;
 		BlockFace var9;
-		if (var4 == BlockFace.f) {
+		if (var4 == BlockFace.EAST) {
 			var7 = var1.p(var2.f());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
-				if (var9 == BlockFace.c && !a(var1, var2.d(), var3)) {
+				if (var9 == BlockFace.NORTH && !a(var1, var2.d(), var3)) {
 					return var6 ? 1 : 2;
 				}
 
-				if (var9 == BlockFace.d && !a(var1, var2.c(), var3)) {
+				if (var9 == BlockFace.SOUTH && !a(var1, var2.c(), var3)) {
 					return var6 ? 2 : 1;
 				}
 			}
-		} else if (var4 == BlockFace.e) {
+		} else if (var4 == BlockFace.WEST) {
 			var7 = var1.p(var2.e());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
-				if (var9 == BlockFace.c && !a(var1, var2.d(), var3)) {
+				if (var9 == BlockFace.NORTH && !a(var1, var2.d(), var3)) {
 					return var6 ? 2 : 1;
 				}
 
-				if (var9 == BlockFace.d && !a(var1, var2.c(), var3)) {
+				if (var9 == BlockFace.SOUTH && !a(var1, var2.c(), var3)) {
 					return var6 ? 1 : 2;
 				}
 			}
-		} else if (var4 == BlockFace.d) {
+		} else if (var4 == BlockFace.SOUTH) {
 			var7 = var1.p(var2.d());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
-				if (var9 == BlockFace.e && !a(var1, var2.f(), var3)) {
+				if (var9 == BlockFace.WEST && !a(var1, var2.f(), var3)) {
 					return var6 ? 2 : 1;
 				}
 
-				if (var9 == BlockFace.f && !a(var1, var2.e(), var3)) {
+				if (var9 == BlockFace.EAST && !a(var1, var2.e(), var3)) {
 					return var6 ? 1 : 2;
 				}
 			}
-		} else if (var4 == BlockFace.c) {
+		} else if (var4 == BlockFace.NORTH) {
 			var7 = var1.p(var2.c());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
-				if (var9 == BlockFace.e && !a(var1, var2.f(), var3)) {
+				if (var9 == BlockFace.WEST && !a(var1, var2.f(), var3)) {
 					return var6 ? 1 : 2;
 				}
 
-				if (var9 == BlockFace.f && !a(var1, var2.e(), var3)) {
+				if (var9 == BlockFace.EAST && !a(var1, var2.e(), var3)) {
 					return var6 ? 2 : 1;
 				}
 			}
@@ -137,55 +137,55 @@ public class BlockStairs extends Block {
 		bec var7;
 		Block var8;
 		BlockFace var9;
-		if (var4 == BlockFace.f) {
+		if (var4 == BlockFace.EAST) {
 			var7 = var1.p(var2.e());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
-				if (var9 == BlockFace.c && !a(var1, var2.c(), var3)) {
+				if (var9 == BlockFace.NORTH && !a(var1, var2.c(), var3)) {
 					return var6 ? 1 : 2;
 				}
 
-				if (var9 == BlockFace.d && !a(var1, var2.d(), var3)) {
+				if (var9 == BlockFace.SOUTH && !a(var1, var2.d(), var3)) {
 					return var6 ? 2 : 1;
 				}
 			}
-		} else if (var4 == BlockFace.e) {
+		} else if (var4 == BlockFace.WEST) {
 			var7 = var1.p(var2.f());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
-				if (var9 == BlockFace.c && !a(var1, var2.c(), var3)) {
+				if (var9 == BlockFace.NORTH && !a(var1, var2.c(), var3)) {
 					return var6 ? 2 : 1;
 				}
 
-				if (var9 == BlockFace.d && !a(var1, var2.d(), var3)) {
+				if (var9 == BlockFace.SOUTH && !a(var1, var2.d(), var3)) {
 					return var6 ? 1 : 2;
 				}
 			}
-		} else if (var4 == BlockFace.d) {
+		} else if (var4 == BlockFace.SOUTH) {
 			var7 = var1.p(var2.c());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
-				if (var9 == BlockFace.e && !a(var1, var2.e(), var3)) {
+				if (var9 == BlockFace.WEST && !a(var1, var2.e(), var3)) {
 					return var6 ? 2 : 1;
 				}
 
-				if (var9 == BlockFace.f && !a(var1, var2.f(), var3)) {
+				if (var9 == BlockFace.EAST && !a(var1, var2.f(), var3)) {
 					return var6 ? 1 : 2;
 				}
 			}
-		} else if (var4 == BlockFace.c) {
+		} else if (var4 == BlockFace.NORTH) {
 			var7 = var1.p(var2.d());
 			var8 = var7.getBlock();
 			if (c(var8) && var5 == var7.b(b)) {
 				var9 = (BlockFace) var7.b(a);
-				if (var9 == BlockFace.e && !a(var1, var2.e(), var3)) {
+				if (var9 == BlockFace.WEST && !a(var1, var2.e(), var3)) {
 					return var6 ? 1 : 2;
 				}
 
-				if (var9 == BlockFace.f && !a(var1, var2.f(), var3)) {
+				if (var9 == BlockFace.EAST && !a(var1, var2.f(), var3)) {
 					return var6 ? 2 : 1;
 				}
 			}
@@ -214,60 +214,60 @@ public class BlockStairs extends Block {
 		bec var14;
 		Block var15;
 		BlockFace var16;
-		if (var4 == BlockFace.f) {
+		if (var4 == BlockFace.EAST) {
 			var9 = 0.5F;
 			var12 = 1.0F;
 			var14 = var1.p(var2.f());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (BlockFace) var14.b(a);
-				if (var16 == BlockFace.c && !a(var1, var2.d(), var3)) {
+				if (var16 == BlockFace.NORTH && !a(var1, var2.d(), var3)) {
 					var12 = 0.5F;
 					var13 = false;
-				} else if (var16 == BlockFace.d && !a(var1, var2.c(), var3)) {
+				} else if (var16 == BlockFace.SOUTH && !a(var1, var2.c(), var3)) {
 					var11 = 0.5F;
 					var13 = false;
 				}
 			}
-		} else if (var4 == BlockFace.e) {
+		} else if (var4 == BlockFace.WEST) {
 			var10 = 0.5F;
 			var12 = 1.0F;
 			var14 = var1.p(var2.e());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (BlockFace) var14.b(a);
-				if (var16 == BlockFace.c && !a(var1, var2.d(), var3)) {
+				if (var16 == BlockFace.NORTH && !a(var1, var2.d(), var3)) {
 					var12 = 0.5F;
 					var13 = false;
-				} else if (var16 == BlockFace.d && !a(var1, var2.c(), var3)) {
+				} else if (var16 == BlockFace.SOUTH && !a(var1, var2.c(), var3)) {
 					var11 = 0.5F;
 					var13 = false;
 				}
 			}
-		} else if (var4 == BlockFace.d) {
+		} else if (var4 == BlockFace.SOUTH) {
 			var11 = 0.5F;
 			var12 = 1.0F;
 			var14 = var1.p(var2.d());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (BlockFace) var14.b(a);
-				if (var16 == BlockFace.e && !a(var1, var2.f(), var3)) {
+				if (var16 == BlockFace.WEST && !a(var1, var2.f(), var3)) {
 					var10 = 0.5F;
 					var13 = false;
-				} else if (var16 == BlockFace.f && !a(var1, var2.e(), var3)) {
+				} else if (var16 == BlockFace.EAST && !a(var1, var2.e(), var3)) {
 					var9 = 0.5F;
 					var13 = false;
 				}
 			}
-		} else if (var4 == BlockFace.c) {
+		} else if (var4 == BlockFace.NORTH) {
 			var14 = var1.p(var2.c());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (BlockFace) var14.b(a);
-				if (var16 == BlockFace.e && !a(var1, var2.f(), var3)) {
+				if (var16 == BlockFace.WEST && !a(var1, var2.f(), var3)) {
 					var10 = 0.5F;
 					var13 = false;
-				} else if (var16 == BlockFace.f && !a(var1, var2.e(), var3)) {
+				} else if (var16 == BlockFace.EAST && !a(var1, var2.e(), var3)) {
 					var9 = 0.5F;
 					var13 = false;
 				}
@@ -298,61 +298,61 @@ public class BlockStairs extends Block {
 		bec var14;
 		Block var15;
 		BlockFace var16;
-		if (var4 == BlockFace.f) {
+		if (var4 == BlockFace.EAST) {
 			var14 = var1.p(var2.e());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (BlockFace) var14.b(a);
-				if (var16 == BlockFace.c && !a(var1, var2.c(), var3)) {
+				if (var16 == BlockFace.NORTH && !a(var1, var2.c(), var3)) {
 					var11 = 0.0F;
 					var12 = 0.5F;
 					var13 = true;
-				} else if (var16 == BlockFace.d && !a(var1, var2.d(), var3)) {
+				} else if (var16 == BlockFace.SOUTH && !a(var1, var2.d(), var3)) {
 					var11 = 0.5F;
 					var12 = 1.0F;
 					var13 = true;
 				}
 			}
-		} else if (var4 == BlockFace.e) {
+		} else if (var4 == BlockFace.WEST) {
 			var14 = var1.p(var2.f());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var9 = 0.5F;
 				var10 = 1.0F;
 				var16 = (BlockFace) var14.b(a);
-				if (var16 == BlockFace.c && !a(var1, var2.c(), var3)) {
+				if (var16 == BlockFace.NORTH && !a(var1, var2.c(), var3)) {
 					var11 = 0.0F;
 					var12 = 0.5F;
 					var13 = true;
-				} else if (var16 == BlockFace.d && !a(var1, var2.d(), var3)) {
+				} else if (var16 == BlockFace.SOUTH && !a(var1, var2.d(), var3)) {
 					var11 = 0.5F;
 					var12 = 1.0F;
 					var13 = true;
 				}
 			}
-		} else if (var4 == BlockFace.d) {
+		} else if (var4 == BlockFace.SOUTH) {
 			var14 = var1.p(var2.c());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var11 = 0.0F;
 				var12 = 0.5F;
 				var16 = (BlockFace) var14.b(a);
-				if (var16 == BlockFace.e && !a(var1, var2.e(), var3)) {
+				if (var16 == BlockFace.WEST && !a(var1, var2.e(), var3)) {
 					var13 = true;
-				} else if (var16 == BlockFace.f && !a(var1, var2.f(), var3)) {
+				} else if (var16 == BlockFace.EAST && !a(var1, var2.f(), var3)) {
 					var9 = 0.5F;
 					var10 = 1.0F;
 					var13 = true;
 				}
 			}
-		} else if (var4 == BlockFace.c) {
+		} else if (var4 == BlockFace.NORTH) {
 			var14 = var1.p(var2.d());
 			var15 = var14.getBlock();
 			if (c(var15) && var5 == var14.b(b)) {
 				var16 = (BlockFace) var14.b(a);
-				if (var16 == BlockFace.e && !a(var1, var2.e(), var3)) {
+				if (var16 == BlockFace.WEST && !a(var1, var2.e(), var3)) {
 					var13 = true;
-				} else if (var16 == BlockFace.f && !a(var1, var2.f(), var3)) {
+				} else if (var16 == BlockFace.EAST && !a(var1, var2.f(), var3)) {
 					var9 = 0.5F;
 					var10 = 1.0F;
 					var13 = true;
@@ -429,7 +429,7 @@ public class BlockStairs extends Block {
 	}
 
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
-		return this.O.a(var1, var2, this.P, var4, BlockFace.a, 0.0F, 0.0F, 0.0F);
+		return this.O.a(var1, var2, this.P, var4, BlockFace.DOWN, 0.0F, 0.0F, 0.0F);
 	}
 
 	public void a(World var1, Position var2, aqo var3) {
@@ -443,13 +443,13 @@ public class BlockStairs extends Block {
 	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		bec var9 = super.a(var1, var2, var3, var4, var5, var6, var7, var8);
 		var9 = var9.a(a, var8.aO()).a(M, bav.a);
-		return var3 != BlockFace.a && (var3 == BlockFace.b || (double) var5 <= 0.5D) ? var9.a(b, bau.b) : var9.a(b, bau.a);
+		return var3 != BlockFace.DOWN && (var3 == BlockFace.UP || (double) var5 <= 0.5D) ? var9.a(b, bau.b) : var9.a(b, bau.a);
 	}
 
 	public MovingObjectPosition a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		MovingObjectPosition[] var5 = new MovingObjectPosition[8];
 		bec var6 = var1.p(var2);
-		int var7 = ((BlockFace) var6.b(a)).toByte();
+		int var7 = ((BlockFace) var6.b(a)).toDirection();
 		boolean var8 = var6.b(b) == bau.a;
 		int[] var9 = N[var7 + (var8 ? 4 : 0)];
 		this.Q = true;
@@ -490,7 +490,7 @@ public class BlockStairs extends Block {
 
 	public bec a(int var1) {
 		bec var2 = this.P().a(b, (var1 & 4) > 0 ? bau.a : bau.b);
-		var2 = var2.a(a, BlockFace.a(5 - (var1 & 3)));
+		var2 = var2.a(a, BlockFace.getById(5 - (var1 & 3)));
 		return var2;
 	}
 
@@ -500,7 +500,7 @@ public class BlockStairs extends Block {
 			var2 |= 4;
 		}
 
-		var2 |= 5 - ((BlockFace) var1.b(a)).a();
+		var2 |= 5 - ((BlockFace) var1.b(a)).getId();
 		return var2;
 	}
 

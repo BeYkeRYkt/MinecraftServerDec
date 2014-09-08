@@ -11,7 +11,7 @@ public class BlockDispenser extends atg {
 
 	protected BlockDispenser() {
 		super(Material.STONE);
-		this.j(this.L.b().a(a, BlockFace.c).a(b, Boolean.valueOf(false)));
+		this.j(this.L.b().a(a, BlockFace.NORTH).a(b, Boolean.valueOf(false)));
 		this.a(CreativeModeTab.REDSTONE);
 	}
 
@@ -29,17 +29,17 @@ public class BlockDispenser extends atg {
 			BlockFace var4 = (BlockFace) var3.b(a);
 			boolean var5 = var1.p(var2.c()).getBlock().m();
 			boolean var6 = var1.p(var2.d()).getBlock().m();
-			if (var4 == BlockFace.c && var5 && !var6) {
-				var4 = BlockFace.d;
-			} else if (var4 == BlockFace.d && var6 && !var5) {
-				var4 = BlockFace.c;
+			if (var4 == BlockFace.NORTH && var5 && !var6) {
+				var4 = BlockFace.SOUTH;
+			} else if (var4 == BlockFace.SOUTH && var6 && !var5) {
+				var4 = BlockFace.NORTH;
 			} else {
 				boolean var7 = var1.p(var2.e()).getBlock().m();
 				boolean var8 = var1.p(var2.f()).getBlock().m();
-				if (var4 == BlockFace.e && var7 && !var8) {
-					var4 = BlockFace.f;
-				} else if (var4 == BlockFace.f && var8 && !var7) {
-					var4 = BlockFace.e;
+				if (var4 == BlockFace.WEST && var7 && !var8) {
+					var4 = BlockFace.EAST;
+				} else if (var4 == BlockFace.EAST && var8 && !var7) {
+					var4 = BlockFace.WEST;
 				}
 			}
 
@@ -140,7 +140,7 @@ public class BlockDispenser extends atg {
 	}
 
 	public static BlockFace b(int var0) {
-		return BlockFace.a(var0 & 7);
+		return BlockFace.getById(var0 & 7);
 	}
 
 	public boolean N() {
@@ -161,7 +161,7 @@ public class BlockDispenser extends atg {
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((BlockFace) var1.b(a)).a();
+		int var3 = var2 | ((BlockFace) var1.b(a)).getId();
 		if (((Boolean) var1.b(b)).booleanValue()) {
 			var3 |= 8;
 		}

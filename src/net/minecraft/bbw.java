@@ -8,31 +8,31 @@ class bbw {
 
 	static {
 		try {
-			a[BlockFace.b.ordinal()] = 1;
+			a[BlockFace.UP.ordinal()] = 1;
 		} catch (NoSuchFieldError var5) {
 			;
 		}
 
 		try {
-			a[BlockFace.c.ordinal()] = 2;
+			a[BlockFace.NORTH.ordinal()] = 2;
 		} catch (NoSuchFieldError var4) {
 			;
 		}
 
 		try {
-			a[BlockFace.d.ordinal()] = 3;
+			a[BlockFace.SOUTH.ordinal()] = 3;
 		} catch (NoSuchFieldError var3) {
 			;
 		}
 
 		try {
-			a[BlockFace.f.ordinal()] = 4;
+			a[BlockFace.EAST.ordinal()] = 4;
 		} catch (NoSuchFieldError var2) {
 			;
 		}
 
 		try {
-			a[BlockFace.e.ordinal()] = 5;
+			a[BlockFace.WEST.ordinal()] = 5;
 		} catch (NoSuchFieldError var1) {
 			;
 		}

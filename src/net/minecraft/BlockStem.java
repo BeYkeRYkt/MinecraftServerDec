@@ -11,7 +11,7 @@ public class BlockStem extends auc implements atz {
 	private final Block M;
 
 	protected BlockStem(Block var1) {
-		this.j(this.L.b().a(a, Integer.valueOf(0)).a(b, BlockFace.b));
+		this.j(this.L.b().a(a, Integer.valueOf(0)).a(b, BlockFace.UP));
 		this.M = var1;
 		this.a(true);
 		float var2 = 0.125F;
@@ -20,7 +20,7 @@ public class BlockStem extends auc implements atz {
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
-		var1 = var1.a(b, BlockFace.b);
+		var1 = var1.a(b, BlockFace.UP);
 		Iterator var4 = en.a.iterator();
 
 		while (var4.hasNext()) {

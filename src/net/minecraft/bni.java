@@ -71,7 +71,7 @@ public class bni extends bnn {
 		this.a(var1, Blocks.GLASS_PANE.P(), 0, 3, 6, var3);
 		this.a(var1, Blocks.GLASS_PANE.P(), 4, 3, 6, var3);
 		this.a(var1, Blocks.GLASS_PANE.P(), 2, 3, 8, var3);
-		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m.d()), 2, 4, 7, var3);
+		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m.getOpposite()), 2, 4, 7, var3);
 		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m.e()), 1, 4, 6, var3);
 		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m.f()), 3, 4, 6, var3);
 		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m), 2, 4, 5, var3);
@@ -84,7 +84,7 @@ public class bni extends bnn {
 
 		this.a(var1, Blocks.AIR.P(), 2, 1, 0, var3);
 		this.a(var1, Blocks.AIR.P(), 2, 2, 0, var3);
-		this.a(var1, var3, var2, 2, 1, 0, BlockFace.fromByte(this.a(Blocks.WOODEN_DOOR, 1)));
+		this.a(var1, var3, var2, 2, 1, 0, BlockFace.fromDirection(this.a(Blocks.WOODEN_DOOR, 1)));
 		if (this.a(var1, 2, 0, -1, var3).getBlock().r() == Material.AIR && this.a(var1, 2, -1, -1, var3).getBlock().r() != Material.AIR) {
 			this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 2, 0, -1, var3);
 		}

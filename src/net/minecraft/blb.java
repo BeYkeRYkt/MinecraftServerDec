@@ -40,7 +40,7 @@ public abstract class blb extends bms {
 		int var8 = var7 % 5;
 		int var9 = var7 / 5 % 5;
 		int var10 = var7 / 25;
-		if (var2 != BlockFace.c && var2 != BlockFace.d) {
+		if (var2 != BlockFace.NORTH && var2 != BlockFace.SOUTH) {
 			this.l = new bjb(0, 0, 0, var6 * 8 - 1, var5 * 4 - 1, var4 * 8 - 1);
 		} else {
 			this.l = new bjb(0, 0, 0, var4 * 8 - 1, var5 * 4 - 1, var6 * 8 - 1);

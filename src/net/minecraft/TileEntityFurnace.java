@@ -260,7 +260,7 @@ public class TileEntityFurnace extends bdf implements pm, we {
 	}
 
 	public int[] a(BlockFace var1) {
-		return var1 == BlockFace.a ? f : (var1 == BlockFace.b ? a : g);
+		return var1 == BlockFace.DOWN ? f : (var1 == BlockFace.UP ? a : g);
 	}
 
 	public boolean a(int var1, ItemStack var2, BlockFace var3) {
@@ -268,7 +268,7 @@ public class TileEntityFurnace extends bdf implements pm, we {
 	}
 
 	public boolean b(int var1, ItemStack var2, BlockFace var3) {
-		if (var3 == BlockFace.a && var1 == 1) {
+		if (var3 == BlockFace.DOWN && var1 == 1) {
 			Item var4 = var2.getItem();
 			if (var4 != Items.WATER_BUCKET && var4 != Items.BUCKET) {
 				return false;

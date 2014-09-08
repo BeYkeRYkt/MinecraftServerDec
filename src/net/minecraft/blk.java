@@ -221,10 +221,10 @@ public class blk extends bln {
 
 		while (var15.hasNext()) {
 			BlockFace var11 = (BlockFace) var15.next();
-			if (!this.e[var11.toByte()]) {
+			if (!this.e[var11.toDirection()]) {
 				int var12 = var11.g() * 2;
 				int var13 = var11.i() * 2;
-				this.e[var11.toByte()] = this.a(var1, var3, var2, 10 + var12, -11, 10 + var13, vl.a(f, new vl[] { Items.ENCHANTED_BOOK.b(var2) }), 2 + var2.nextInt(5));
+				this.e[var11.toDirection()] = this.a(var1, var3, var2, 10 + var12, -11, 10 + var13, vl.a(f, new vl[] { Items.ENCHANTED_BOOK.b(var2) }), 2 + var2.nextInt(5));
 			}
 		}
 

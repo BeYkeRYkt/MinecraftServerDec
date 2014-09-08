@@ -1266,9 +1266,9 @@ public abstract class Entity implements CommandSenderInterface {
 			if (!this.o.D && !this.ak) {
 				int var5;
 				if (DataTypesConverter.e((float) var1) > DataTypesConverter.e((float) var3)) {
-					var5 = var1 > 0.0D ? BlockFace.e.toByte() : BlockFace.f.toByte();
+					var5 = var1 > 0.0D ? BlockFace.WEST.toDirection() : BlockFace.EAST.toDirection();
 				} else {
-					var5 = var3 > 0.0D ? BlockFace.c.toByte() : BlockFace.d.toByte();
+					var5 = var3 > 0.0D ? BlockFace.NORTH.toDirection() : BlockFace.SOUTH.toDirection();
 				}
 
 				this.an = var5;
@@ -1593,7 +1593,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public BlockFace aO() {
-		return BlockFace.fromByte(DataTypesConverter.toFixedPointInt((double) (this.yaw * 4.0F / 360.0F) + 0.5D) & 3);
+		return BlockFace.fromDirection(DataTypesConverter.toFixedPointInt((double) (this.yaw * 4.0F / 360.0F) + 0.5D) & 3);
 	}
 
 	protected ChatHoverable aP() {

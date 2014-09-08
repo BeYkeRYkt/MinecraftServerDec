@@ -9,7 +9,7 @@ public class BlockEnderChest extends atg {
 
 	protected BlockEnderChest() {
 		super(Material.STONE);
-		this.j(this.L.b().a(a, BlockFace.c));
+		this.j(this.L.b().a(a, BlockFace.NORTH));
 		this.a(CreativeModeTab.DECORATIONS);
 		this.a(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 	}
@@ -39,11 +39,11 @@ public class BlockEnderChest extends atg {
 	}
 
 	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return this.P().a(a, var8.aO().d());
+		return this.P().a(a, var8.aO().getOpposite());
 	}
 
 	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
-		var1.a(var2, var3.a(a, var4.aO().d()), 2);
+		var1.a(var2, var3.a(a, var4.aO().getOpposite()), 2);
 	}
 
 	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
@@ -69,16 +69,16 @@ public class BlockEnderChest extends atg {
 	}
 
 	public bec a(int var1) {
-		BlockFace var2 = BlockFace.a(var1);
+		BlockFace var2 = BlockFace.getById(var1);
 		if (var2.k() == el.b) {
-			var2 = BlockFace.c;
+			var2 = BlockFace.NORTH;
 		}
 
 		return this.P().a(a, var2);
 	}
 
 	public int c(bec var1) {
-		return ((BlockFace) var1.b(a)).a();
+		return ((BlockFace) var1.b(a)).getId();
 	}
 
 	protected bed e() {

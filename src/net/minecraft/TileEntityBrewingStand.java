@@ -238,7 +238,7 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 	}
 
 	public int[] a(BlockFace var1) {
-		return var1 == BlockFace.b ? a : f;
+		return var1 == BlockFace.UP ? a : f;
 	}
 
 	public boolean a(int var1, ItemStack var2, BlockFace var3) {

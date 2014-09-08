@@ -9,7 +9,7 @@ public class BlockTorch extends Block {
 
 	protected BlockTorch() {
 		super(Material.ORIENTABLE);
-		this.j(this.L.b().a(a, BlockFace.b));
+		this.j(this.L.b().a(a, BlockFace.UP));
 		this.a(true);
 		this.a(CreativeModeTab.DECORATIONS);
 	}
@@ -51,9 +51,9 @@ public class BlockTorch extends Block {
 	}
 
 	private boolean b(World var1, Position var2, BlockFace var3) {
-		Position var4 = var2.a(var3.d());
+		Position var4 = var2.a(var3.getOpposite());
 		boolean var5 = var3.k().c();
-		return var5 && var1.d(var4, true) || var3.equals(BlockFace.b) && this.d(var1, var4);
+		return var5 && var1.d(var4, true) || var3.equals(BlockFace.UP) && this.d(var1, var4);
 	}
 
 	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
@@ -69,7 +69,7 @@ public class BlockTorch extends Block {
 				}
 
 				var10 = (BlockFace) var9.next();
-			} while (!var1.d(var2.a(var10.d()), true));
+			} while (!var1.d(var2.a(var10.getOpposite()), true));
 
 			return this.P().a(a, var10);
 		}
@@ -89,7 +89,7 @@ public class BlockTorch extends Block {
 		} else {
 			BlockFace var4 = (BlockFace) var3.b(a);
 			el var5 = var4.k();
-			BlockFace var6 = var4.d();
+			BlockFace var6 = var4.getOpposite();
 			boolean var7 = false;
 			if (var5.c() && !var1.d(var2.a(var6), true)) {
 				var7 = true;
@@ -123,13 +123,13 @@ public class BlockTorch extends Block {
 	public MovingObjectPosition a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		BlockFace var5 = (BlockFace) var1.p(var2).b(a);
 		float var6 = 0.15F;
-		if (var5 == BlockFace.f) {
+		if (var5 == BlockFace.EAST) {
 			this.a(0.0F, 0.2F, 0.5F - var6, var6 * 2.0F, 0.8F, 0.5F + var6);
-		} else if (var5 == BlockFace.e) {
+		} else if (var5 == BlockFace.WEST) {
 			this.a(1.0F - var6 * 2.0F, 0.2F, 0.5F - var6, 1.0F, 0.8F, 0.5F + var6);
-		} else if (var5 == BlockFace.d) {
+		} else if (var5 == BlockFace.SOUTH) {
 			this.a(0.5F - var6, 0.2F, 0.0F, 0.5F + var6, 0.8F, var6 * 2.0F);
-		} else if (var5 == BlockFace.c) {
+		} else if (var5 == BlockFace.NORTH) {
 			this.a(0.5F - var6, 0.2F, 1.0F - var6 * 2.0F, 0.5F + var6, 0.8F, 1.0F);
 		} else {
 			var6 = 0.1F;
@@ -143,20 +143,20 @@ public class BlockTorch extends Block {
 		bec var2 = this.P();
 		switch (var1) {
 			case 1:
-				var2 = var2.a(a, BlockFace.f);
+				var2 = var2.a(a, BlockFace.EAST);
 				break;
 			case 2:
-				var2 = var2.a(a, BlockFace.e);
+				var2 = var2.a(a, BlockFace.WEST);
 				break;
 			case 3:
-				var2 = var2.a(a, BlockFace.d);
+				var2 = var2.a(a, BlockFace.SOUTH);
 				break;
 			case 4:
-				var2 = var2.a(a, BlockFace.c);
+				var2 = var2.a(a, BlockFace.NORTH);
 				break;
 			case 5:
 			default:
-				var2 = var2.a(a, BlockFace.b);
+				var2 = var2.a(a, BlockFace.UP);
 		}
 
 		return var2;

@@ -51,32 +51,32 @@ public class bnl extends bno {
 		if (var4 && var3.nextInt(3) > 0 && this.m != null) {
 			switch (bmz.a[this.m.ordinal()]) {
 				case 1:
-					bmy.b((bnk) var1, var2, var3, this.l.a - 1, this.l.b, this.l.c, BlockFace.e, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.a - 1, this.l.b, this.l.c, BlockFace.WEST, this.d());
 					break;
 				case 2:
-					bmy.b((bnk) var1, var2, var3, this.l.a - 1, this.l.b, this.l.f - 2, BlockFace.e, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.a - 1, this.l.b, this.l.f - 2, BlockFace.WEST, this.d());
 					break;
 				case 3:
-					bmy.b((bnk) var1, var2, var3, this.l.a, this.l.b, this.l.c - 1, BlockFace.c, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.a, this.l.b, this.l.c - 1, BlockFace.NORTH, this.d());
 					break;
 				case 4:
-					bmy.b((bnk) var1, var2, var3, this.l.d - 2, this.l.b, this.l.c - 1, BlockFace.c, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.d - 2, this.l.b, this.l.c - 1, BlockFace.NORTH, this.d());
 			}
 		}
 
 		if (var4 && var3.nextInt(3) > 0 && this.m != null) {
 			switch (bmz.a[this.m.ordinal()]) {
 				case 1:
-					bmy.b((bnk) var1, var2, var3, this.l.d + 1, this.l.b, this.l.c, BlockFace.f, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.d + 1, this.l.b, this.l.c, BlockFace.EAST, this.d());
 					break;
 				case 2:
-					bmy.b((bnk) var1, var2, var3, this.l.d + 1, this.l.b, this.l.f - 2, BlockFace.f, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.d + 1, this.l.b, this.l.f - 2, BlockFace.EAST, this.d());
 					break;
 				case 3:
-					bmy.b((bnk) var1, var2, var3, this.l.a, this.l.b, this.l.f + 1, BlockFace.d, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.a, this.l.b, this.l.f + 1, BlockFace.SOUTH, this.d());
 					break;
 				case 4:
-					bmy.b((bnk) var1, var2, var3, this.l.d - 2, this.l.b, this.l.f + 1, BlockFace.d, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.d - 2, this.l.b, this.l.f + 1, BlockFace.SOUTH, this.d());
 			}
 		}
 

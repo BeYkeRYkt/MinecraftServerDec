@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class mu implements Packet<ls> {
+public class mu implements Packet<PlayInPacketListener> {
 
 	private Position a;
 	private IChatBaseComponent[] b;
@@ -24,7 +24,7 @@ public class mu implements Packet<ls> {
 
 	}
 
-	public void handlePacket(ls var1) {
+	public void handlePacket(PlayInPacketListener var1) {
 		var1.a(this);
 	}
 

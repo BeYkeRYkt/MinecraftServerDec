@@ -43,7 +43,7 @@ public class blx extends bmk {
 	public void a(bms var1, List var2, Random var3) {
 		int var4 = 3;
 		int var5 = 5;
-		if (this.m == BlockFace.e || this.m == BlockFace.c) {
+		if (this.m == BlockFace.WEST || this.m == BlockFace.NORTH) {
 			var4 = 8 - var4;
 			var5 = 8 - var5;
 		}

@@ -15,11 +15,11 @@ public class ayz {
 		this.a = var1;
 		this.b = var3;
 		if (var3 == el.a) {
-			this.d = BlockFace.f;
-			this.c = BlockFace.e;
+			this.d = BlockFace.EAST;
+			this.c = BlockFace.WEST;
 		} else {
-			this.d = BlockFace.c;
-			this.c = BlockFace.d;
+			this.d = BlockFace.NORTH;
+			this.c = BlockFace.SOUTH;
 		}
 
 		for (Position var4 = var2; var2.getY() > var4.getY() - 21 && var2.getY() > 0 && this.a(var1.p(var2.b()).getBlock()); var2 = var2.b()) {

@@ -8,12 +8,12 @@ class bkk implements bks {
 	}
 
 	public boolean a(blf var1) {
-		return var1.c[BlockFace.f.a()] && !var1.b[BlockFace.f.a()].d;
+		return var1.c[BlockFace.EAST.getId()] && !var1.b[BlockFace.EAST.getId()].d;
 	}
 
 	public blb a(BlockFace var1, blf var2, Random var3) {
 		var2.d = true;
-		var2.b[BlockFace.f.a()].d = true;
+		var2.b[BlockFace.EAST.getId()].d = true;
 		return new bku(var1, var2, var3);
 	}
 

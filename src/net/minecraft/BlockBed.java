@@ -54,7 +54,7 @@ public class BlockBed extends avb {
 				}
 			} else {
 				var1.g(var2);
-				Position var9 = var2.a(((BlockFace) var3.b(N)).d());
+				Position var9 = var2.a(((BlockFace) var3.b(N)).getOpposite());
 				if (var1.p(var9).getBlock() == this) {
 					var1.g(var9);
 				}
@@ -95,7 +95,7 @@ public class BlockBed extends avb {
 	public void a(World var1, Position var2, bec var3, Block var4) {
 		BlockFace var5 = (BlockFace) var3.b(N);
 		if (var3.b(a) == atq.a) {
-			if (var1.p(var2.a(var5.d())).getBlock() != this) {
+			if (var1.p(var2.a(var5.getOpposite())).getBlock() != this) {
 				var1.g(var2);
 			}
 		} else if (var1.p(var2.a(var5)).getBlock() != this) {
@@ -161,7 +161,7 @@ public class BlockBed extends avb {
 
 	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
 		if (var4.by.instabuild && var3.b(a) == atq.a) {
-			Position var5 = var2.a(((BlockFace) var3.b(N)).d());
+			Position var5 = var2.a(((BlockFace) var3.b(N)).getOpposite());
 			if (var1.p(var5).getBlock() == this) {
 				var1.g(var5);
 			}
@@ -170,7 +170,7 @@ public class BlockBed extends avb {
 	}
 
 	public bec a(int var1) {
-		BlockFace var2 = BlockFace.fromByte(var1);
+		BlockFace var2 = BlockFace.fromDirection(var1);
 		return (var1 & 8) > 0 ? this.P().a(a, atq.a).a(N, var2).a(b, Boolean.valueOf((var1 & 4) > 0)) : this.P().a(a, atq.b).a(N, var2);
 	}
 
@@ -187,7 +187,7 @@ public class BlockBed extends avb {
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((BlockFace) var1.b(N)).toByte();
+		int var3 = var2 | ((BlockFace) var1.b(N)).toDirection();
 		if (var1.b(a) == atq.a) {
 			var3 |= 8;
 			if (((Boolean) var1.b(b)).booleanValue()) {

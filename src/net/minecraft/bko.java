@@ -8,17 +8,17 @@ class bko implements bks {
 	}
 
 	public boolean a(blf var1) {
-		return var1.c[BlockFace.c.a()] && !var1.b[BlockFace.c.a()].d;
+		return var1.c[BlockFace.NORTH.getId()] && !var1.b[BlockFace.NORTH.getId()].d;
 	}
 
 	public blb a(BlockFace var1, blf var2, Random var3) {
 		blf var4 = var2;
-		if (!var2.c[BlockFace.c.a()] || var2.b[BlockFace.c.a()].d) {
-			var4 = var2.b[BlockFace.d.a()];
+		if (!var2.c[BlockFace.NORTH.getId()] || var2.b[BlockFace.NORTH.getId()].d) {
+			var4 = var2.b[BlockFace.SOUTH.getId()];
 		}
 
 		var4.d = true;
-		var4.b[BlockFace.c.a()].d = true;
+		var4.b[BlockFace.NORTH.getId()].d = true;
 		return new bky(var1, var4, var3);
 	}
 

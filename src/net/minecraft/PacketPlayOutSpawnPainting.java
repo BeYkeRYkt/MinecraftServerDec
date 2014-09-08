@@ -21,14 +21,14 @@ public class PacketPlayOutSpawnPainting implements Packet<PlayOutPacketListener>
 		this.entityId = serializer.readVarInt();
 		this.title = serializer.readString(PaintingType.maxNameLength);
 		this.position = serializer.readPosition();
-		this.direction = BlockFace.fromByte(serializer.readUnsignedByte());
+		this.direction = BlockFace.fromDirection(serializer.readUnsignedByte());
 	}
 
 	public void writeData(PacketDataSerializer serializer) {
 		serializer.writeVarInt(this.entityId);
 		serializer.writeString(this.title);
 		serializer.writePosition(this.position);
-		serializer.writeByte(this.direction.toByte());
+		serializer.writeByte(this.direction.toDirection());
 	}
 
 	public void handlePacket(PlayOutPacketListener listener) {

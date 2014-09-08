@@ -58,7 +58,7 @@ public class PacketPlayOutTitle implements Packet<PlayOutPacketListener> {
 		listener.handle(this);
 	}
 
-	public enum TitleAction {
+	public static enum TitleAction {
 
 		TITLE, SUBTITLE, TIMES, CLEAR, RESET;
 

@@ -32,7 +32,7 @@ public class BlockDropper extends BlockDispenser {
 							var10 = null;
 						}
 					} else {
-						var10 = TileEntityHopper.a(var9, var6.getCopy().a(1), var7.d());
+						var10 = TileEntityHopper.a(var9, var6.getCopy().a(1), var7.getOpposite());
 						if (var10 == null) {
 							var10 = var6.getCopy();
 							if (--var10.b == 0) {

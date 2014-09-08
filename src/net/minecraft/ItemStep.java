@@ -33,7 +33,7 @@ public class ItemStep extends ItemBlock {
 				bex var11 = this.b.l();
 				Comparable var12 = var10.b(var11);
 				awr var13 = (awr) var10.b(BlockStepAbstract.a);
-				if ((var5 == BlockFace.b && var13 == awr.b || var5 == BlockFace.a && var13 == awr.a) && var12 == var9) {
+				if ((var5 == BlockFace.UP && var13 == awr.b || var5 == BlockFace.DOWN && var13 == awr.a) && var12 == var9) {
 					bec var14 = this.c.P().a(var11, var12);
 					if (var3.b(this.c.a(var3, var4, var14)) && var3.a(var4, var14, 3)) {
 						var3.a((double) ((float) var4.getX() + 0.5F), (double) ((float) var4.getY() + 0.5F), (double) ((float) var4.getZ() + 0.5F), this.c.H.b(), (this.c.H.d() + 1.0F) / 2.0F, this.c.H.e() * 0.8F);

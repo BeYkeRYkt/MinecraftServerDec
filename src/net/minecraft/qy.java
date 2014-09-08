@@ -410,7 +410,7 @@ public class qy {
 				Position var3;
 				if (this.a instanceof EntityItemFrame) {
 					EntityItemFrame var4 = (EntityItemFrame) this.a;
-					var2 = new PacketPlayOutSpawnObject(this.a, 71, var4.direction.toByte());
+					var2 = new PacketPlayOutSpawnObject(this.a, 71, var4.direction.toDirection());
 					var3 = var4.getPosition();
 					var2.setX(DataTypesConverter.d((float) (var3.getX() * 32)));
 					var2.setY(DataTypesConverter.d((float) (var3.getY() * 32)));

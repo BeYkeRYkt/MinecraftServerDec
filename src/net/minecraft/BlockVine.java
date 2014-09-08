@@ -11,10 +11,10 @@ public class BlockVine extends Block {
 	public static final bet N = bet.a("south");
 	public static final bet O = bet.a("west");
 	public static final bet[] P = new bet[] { a, b, N, O, M };
-	public static final int Q = b(BlockFace.d);
-	public static final int R = b(BlockFace.c);
-	public static final int S = b(BlockFace.f);
-	public static final int T = b(BlockFace.e);
+	public static final int Q = b(BlockFace.SOUTH);
+	public static final int R = b(BlockFace.NORTH);
+	public static final int S = b(BlockFace.EAST);
+	public static final int T = b(BlockFace.WEST);
 
 	public BlockVine() {
 		super(Material.REPLACEABLE_PLANT);
@@ -116,7 +116,7 @@ public class BlockVine extends Block {
 			case 3:
 			case 4:
 			case 5:
-				return this.c(var1.p(var2.a(var3.d())).getBlock());
+				return this.c(var1.p(var2.a(var3.getOpposite())).getBlock());
 			default:
 				return false;
 		}
@@ -181,9 +181,9 @@ public class BlockVine extends Block {
 					}
 				}
 
-				BlockFace var17 = BlockFace.a(var4);
+				BlockFace var17 = BlockFace.getRandom(var4);
 				BlockFace var23;
-				if (var17 == BlockFace.b && var2.getY() < 255 && var1.d(var2.a())) {
+				if (var17 == BlockFace.UP && var2.getY() < 255 && var1.d(var2.a())) {
 					if (!var7) {
 						bec var19 = var3;
 						Iterator var22 = en.a.iterator();
@@ -218,9 +218,9 @@ public class BlockVine extends Block {
 								} else if (var26 && this.c(var1.p(var16).getBlock())) {
 									var1.a(var18, this.P().a(a(var24), Boolean.valueOf(true)), 2);
 								} else if (var25 && var1.d(var27) && this.c(var1.p(var2.a(var23)).getBlock())) {
-									var1.a(var27, this.P().a(a(var17.d()), Boolean.valueOf(true)), 2);
+									var1.a(var27, this.P().a(a(var17.getOpposite()), Boolean.valueOf(true)), 2);
 								} else if (var26 && var1.d(var16) && this.c(var1.p(var2.a(var24)).getBlock())) {
-									var1.a(var16, this.P().a(a(var17.d()), Boolean.valueOf(true)), 2);
+									var1.a(var16, this.P().a(a(var17.getOpposite()), Boolean.valueOf(true)), 2);
 								} else if (this.c(var1.p(var18.a()).getBlock())) {
 									var1.a(var18, this.P(), 2);
 								}
@@ -276,12 +276,12 @@ public class BlockVine extends Block {
 	}
 
 	private static int b(BlockFace var0) {
-		return 1 << var0.toByte();
+		return 1 << var0.toDirection();
 	}
 
 	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		bec var9 = this.P().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false));
-		return var3.k().c() ? var9.a(a(var3.d()), Boolean.valueOf(true)) : var9;
+		return var3.k().c() ? var9.a(a(var3.getOpposite()), Boolean.valueOf(true)) : var9;
 	}
 
 	public Item a(bec var1, Random var2, int var3) {

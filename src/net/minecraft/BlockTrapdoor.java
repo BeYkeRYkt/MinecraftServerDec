@@ -10,7 +10,7 @@ public class BlockTrapdoor extends Block {
 
 	protected BlockTrapdoor(Material var1) {
 		super(var1);
-		this.j(this.L.b().a(a, BlockFace.c).a(b, Boolean.valueOf(false)).a(M, bbr.b));
+		this.j(this.L.b().a(a, BlockFace.NORTH).a(b, Boolean.valueOf(false)).a(M, bbr.b));
 		float var2 = 0.5F;
 		float var3 = 1.0F;
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
@@ -56,19 +56,19 @@ public class BlockTrapdoor extends Block {
 			}
 
 			if (var3.booleanValue()) {
-				if (var4 == BlockFace.c) {
+				if (var4 == BlockFace.NORTH) {
 					this.a(0.0F, 0.0F, 0.8125F, 1.0F, 1.0F, 1.0F);
 				}
 
-				if (var4 == BlockFace.d) {
+				if (var4 == BlockFace.SOUTH) {
 					this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.1875F);
 				}
 
-				if (var4 == BlockFace.e) {
+				if (var4 == BlockFace.WEST) {
 					this.a(0.8125F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 				}
 
-				if (var4 == BlockFace.f) {
+				if (var4 == BlockFace.EAST) {
 					this.a(0.0F, 0.0F, 0.0F, 0.1875F, 1.0F, 1.0F);
 				}
 			}
@@ -89,7 +89,7 @@ public class BlockTrapdoor extends Block {
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (!var1.D) {
-			Position var5 = var2.a(((BlockFace) var3.b(a)).d());
+			Position var5 = var2.a(((BlockFace) var3.b(a)).getOpposite());
 			if (!c(var1.p(var5).getBlock())) {
 				var1.g(var2);
 				this.b(var1, var2, var3, 0);
@@ -123,20 +123,20 @@ public class BlockTrapdoor extends Block {
 	}
 
 	public boolean a(World var1, Position var2, BlockFace var3) {
-		return !var3.k().b() && c(var1.p(var2.a(var3.d())).getBlock());
+		return !var3.k().b() && c(var1.p(var2.a(var3.getOpposite())).getBlock());
 	}
 
 	protected static BlockFace b(int var0) {
 		switch (var0 & 3) {
 			case 0:
-				return BlockFace.c;
+				return BlockFace.NORTH;
 			case 1:
-				return BlockFace.d;
+				return BlockFace.SOUTH;
 			case 2:
-				return BlockFace.e;
+				return BlockFace.WEST;
 			case 3:
 			default:
-				return BlockFace.f;
+				return BlockFace.EAST;
 		}
 	}
 

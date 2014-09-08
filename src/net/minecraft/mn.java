@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class mn implements Packet<ls> {
+public class mn implements Packet<PlayInPacketListener> {
 
 	private int a;
 	private mo b;
@@ -18,7 +18,7 @@ public class mn implements Packet<ls> {
 		var1.writeVarInt(this.c);
 	}
 
-	public void handlePacket(ls var1) {
+	public void handlePacket(PlayInPacketListener var1) {
 		var1.a(this);
 	}
 

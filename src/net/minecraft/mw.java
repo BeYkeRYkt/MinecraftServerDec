@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.UUID;
 
-public class mw implements Packet<ls> {
+public class mw implements Packet<PlayInPacketListener> {
 
 	private UUID a;
 
@@ -21,7 +21,7 @@ public class mw implements Packet<ls> {
 		var1.writeUUID(this.a);
 	}
 
-	public void handlePacket(ls var1) {
+	public void handlePacket(PlayInPacketListener var1) {
 		var1.a(this);
 	}
 

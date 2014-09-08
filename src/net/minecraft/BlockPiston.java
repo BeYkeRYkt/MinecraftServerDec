@@ -10,7 +10,7 @@ public class BlockPiston extends Block {
 
 	public BlockPiston(boolean var1) {
 		super(Material.PISTON);
-		this.j(this.L.b().a(a, BlockFace.c).a(b, Boolean.valueOf(false)));
+		this.j(this.L.b().a(a, BlockFace.NORTH).a(b, Boolean.valueOf(false)));
 		this.M = var1;
 		this.a(i);
 		this.c(0.5F);
@@ -52,11 +52,11 @@ public class BlockPiston extends Block {
 		boolean var5 = this.b(var1, var2, var4);
 		if (var5 && !((Boolean) var3.b(b)).booleanValue()) {
 			if ((new bdy(var1, var2, var4, true)).a()) {
-				var1.c(var2, this, 0, var4.a());
+				var1.c(var2, this, 0, var4.getId());
 			}
 		} else if (!var5 && ((Boolean) var3.b(b)).booleanValue()) {
 			var1.a(var2, var3.a(b, Boolean.valueOf(false)), 2);
-			var1.c(var2, this, 1, var4.a());
+			var1.c(var2, this, 1, var4.getId());
 		}
 
 	}
@@ -73,7 +73,7 @@ public class BlockPiston extends Block {
 			}
 		}
 
-		if (var1.b(var2, BlockFace.c)) {
+		if (var1.b(var2, BlockFace.NORTH)) {
 			return true;
 		} else {
 			Position var9 = var2.a();
@@ -82,7 +82,7 @@ public class BlockPiston extends Block {
 
 			for (int var11 = 0; var11 < var6; ++var11) {
 				BlockFace var8 = var10[var11];
-				if (var8 != BlockFace.a && var1.b(var9.a(var8), var8)) {
+				if (var8 != BlockFace.DOWN && var1.b(var9.a(var8), var8)) {
 					return true;
 				}
 			}
@@ -135,7 +135,7 @@ public class BlockPiston extends Block {
 					}
 				}
 
-				if (!var10 && var9.r() != Material.AIR && a(var9, var1, var8, var6.d(), false) && (var9.i() == 0 || var9 == Blocks.PISTON || var9 == Blocks.STICKY_PISTON)) {
+				if (!var10 && var9.r() != Material.AIR && a(var9, var1, var8, var6.getOpposite(), false) && (var9.i() == 0 || var9 == Blocks.PISTON || var9 == Blocks.STICKY_PISTON)) {
 					this.a(var1, var2, var6, false);
 				}
 			} else {
@@ -200,22 +200,22 @@ public class BlockPiston extends Block {
 
 	public static BlockFace b(int var0) {
 		int var1 = var0 & 7;
-		return var1 > 5 ? null : BlockFace.a(var1);
+		return var1 > 5 ? null : BlockFace.getById(var1);
 	}
 
 	public static BlockFace a(World var0, Position var1, EntityLiving var2) {
 		if (DataTypesConverter.e((float) var2.locationX - (float) var1.getX()) < 2.0F && DataTypesConverter.e((float) var2.locationZ - (float) var1.getZ()) < 2.0F) {
 			double var3 = var2.locationY + (double) var2.aR();
 			if (var3 - (double) var1.getY() > 2.0D) {
-				return BlockFace.b;
+				return BlockFace.UP;
 			}
 
 			if ((double) var1.getY() - var3 > 0.0D) {
-				return BlockFace.a;
+				return BlockFace.DOWN;
 			}
 		}
 
-		return var2.aO().d();
+		return var2.aO().getOpposite();
 	}
 
 	public static boolean a(Block var0, World var1, Position var2, BlockFace var3, boolean var4) {
@@ -223,8 +223,8 @@ public class BlockPiston extends Block {
 			return false;
 		} else if (!var1.getWorldBorder().isInside(var2)) {
 			return false;
-		} else if (var2.getY() >= 0 && (var3 != BlockFace.a || var2.getY() != 0)) {
-			if (var2.getY() <= var1.U() - 1 && (var3 != BlockFace.b || var2.getY() != var1.U() - 1)) {
+		} else if (var2.getY() >= 0 && (var3 != BlockFace.DOWN || var2.getY() != 0)) {
+			if (var2.getY() <= var1.U() - 1 && (var3 != BlockFace.UP || var2.getY() != var1.U() - 1)) {
 				if (var0 != Blocks.PISTON && var0 != Blocks.STICKY_PISTON) {
 					if (var0.g(var1, var2) == -1.0F) {
 						return false;
@@ -267,7 +267,7 @@ public class BlockPiston extends Block {
 		} else {
 			int var8 = var6.size() + var7.size();
 			Block[] var9 = new Block[var8];
-			BlockFace var10 = var4 ? var3 : var3.d();
+			BlockFace var10 = var4 ? var3 : var3.getOpposite();
 
 			int var11;
 			Position var12;
@@ -327,7 +327,7 @@ public class BlockPiston extends Block {
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((BlockFace) var1.b(a)).a();
+		int var3 = var2 | ((BlockFace) var1.b(a)).getId();
 		if (((Boolean) var1.b(b)).booleanValue()) {
 			var3 |= 8;
 		}

@@ -68,7 +68,7 @@ public class bek {
 
 				for (int var13 = 0; var13 < var12; ++var13) {
 					BlockFace var14 = var11[var13];
-					if (var14 != var10 && var14 != var10.d()) {
+					if (var14 != var10 && var14 != var10.getOpposite()) {
 						bem var15 = this.a(var6, var10, var14, var3);
 						if (var15 != null) {
 							return var15;
@@ -82,7 +82,7 @@ public class bek {
 	}
 
 	protected static Position a(Position var0, BlockFace var1, BlockFace var2, int var3, int var4, int var5) {
-		if (var1 != var2 && var1 != var2.d()) {
+		if (var1 != var2 && var1 != var2.getOpposite()) {
 			fd var6 = new fd(var1.g(), var1.h(), var1.i());
 			fd var7 = new fd(var2.g(), var2.h(), var2.i());
 			fd var8 = var6.d(var7);

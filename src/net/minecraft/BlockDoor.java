@@ -13,7 +13,7 @@ public class BlockDoor extends Block {
 
 	protected BlockDoor(Material var1) {
 		super(var1);
-		this.j(this.L.b().a(a, BlockFace.c).a(b, Boolean.valueOf(false)).a(M, avh.a).a(N, Boolean.valueOf(false)).a(O, avg.b));
+		this.j(this.L.b().a(a, BlockFace.NORTH).a(b, Boolean.valueOf(false)).a(M, avh.a).a(N, Boolean.valueOf(false)).a(O, avg.b));
 	}
 
 	public boolean c() {
@@ -44,38 +44,38 @@ public class BlockDoor extends Block {
 		boolean var4 = g(var1);
 		boolean var5 = j(var1);
 		if (var4) {
-			if (var3 == BlockFace.f) {
+			if (var3 == BlockFace.EAST) {
 				if (!var5) {
 					this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var2);
 				} else {
 					this.a(0.0F, 0.0F, 1.0F - var2, 1.0F, 1.0F, 1.0F);
 				}
-			} else if (var3 == BlockFace.d) {
+			} else if (var3 == BlockFace.SOUTH) {
 				if (!var5) {
 					this.a(1.0F - var2, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 				} else {
 					this.a(0.0F, 0.0F, 0.0F, var2, 1.0F, 1.0F);
 				}
-			} else if (var3 == BlockFace.e) {
+			} else if (var3 == BlockFace.WEST) {
 				if (!var5) {
 					this.a(0.0F, 0.0F, 1.0F - var2, 1.0F, 1.0F, 1.0F);
 				} else {
 					this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var2);
 				}
-			} else if (var3 == BlockFace.c) {
+			} else if (var3 == BlockFace.NORTH) {
 				if (!var5) {
 					this.a(0.0F, 0.0F, 0.0F, var2, 1.0F, 1.0F);
 				} else {
 					this.a(1.0F - var2, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 				}
 			}
-		} else if (var3 == BlockFace.f) {
+		} else if (var3 == BlockFace.EAST) {
 			this.a(0.0F, 0.0F, 0.0F, var2, 1.0F, 1.0F);
-		} else if (var3 == BlockFace.d) {
+		} else if (var3 == BlockFace.SOUTH) {
 			this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var2);
-		} else if (var3 == BlockFace.e) {
+		} else if (var3 == BlockFace.WEST) {
 			this.a(1.0F - var2, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-		} else if (var3 == BlockFace.c) {
+		} else if (var3 == BlockFace.NORTH) {
 			this.a(0.0F, 0.0F, 1.0F - var2, 1.0F, 1.0F, 1.0F);
 		}
 
@@ -220,7 +220,7 @@ public class BlockDoor extends Block {
 	}
 
 	public bec a(int var1) {
-		return (var1 & 8) > 0 ? this.P().a(O, avg.a).a(M, (var1 & 1) > 0 ? avh.b : avh.a).a(N, Boolean.valueOf((var1 & 2) > 0)) : this.P().a(O, avg.b).a(a, BlockFace.fromByte(var1 & 3).f()).a(b, Boolean.valueOf((var1 & 4) > 0));
+		return (var1 & 8) > 0 ? this.P().a(O, avg.a).a(M, (var1 & 1) > 0 ? avh.b : avh.a).a(N, Boolean.valueOf((var1 & 2) > 0)) : this.P().a(O, avg.b).a(a, BlockFace.fromDirection(var1 & 3).f()).a(b, Boolean.valueOf((var1 & 4) > 0));
 	}
 
 	public int c(bec var1) {
@@ -236,7 +236,7 @@ public class BlockDoor extends Block {
 				var3 |= 2;
 			}
 		} else {
-			var3 = var2 | ((BlockFace) var1.b(a)).e().toByte();
+			var3 = var2 | ((BlockFace) var1.b(a)).e().toDirection();
 			if (((Boolean) var1.b(b)).booleanValue()) {
 				var3 |= 4;
 			}
@@ -258,7 +258,7 @@ public class BlockDoor extends Block {
 	}
 
 	public static BlockFace f(int var0) {
-		return BlockFace.fromByte(var0 & 3).f();
+		return BlockFace.fromDirection(var0 & 3).f();
 	}
 
 	protected static boolean g(int var0) {

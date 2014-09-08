@@ -10,9 +10,9 @@ public class ItemHanging extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		if (var5 == BlockFace.a) {
+		if (var5 == BlockFace.DOWN) {
 			return false;
-		} else if (var5 == BlockFace.b) {
+		} else if (var5 == BlockFace.UP) {
 			return false;
 		} else {
 			Position var9 = var4.a(var5);

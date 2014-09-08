@@ -10,25 +10,25 @@ class blu {
 
 	static {
 		try {
-			b[BlockFace.c.ordinal()] = 1;
+			b[BlockFace.NORTH.ordinal()] = 1;
 		} catch (NoSuchFieldError var8) {
 			;
 		}
 
 		try {
-			b[BlockFace.d.ordinal()] = 2;
+			b[BlockFace.SOUTH.ordinal()] = 2;
 		} catch (NoSuchFieldError var7) {
 			;
 		}
 
 		try {
-			b[BlockFace.e.ordinal()] = 3;
+			b[BlockFace.WEST.ordinal()] = 3;
 		} catch (NoSuchFieldError var6) {
 			;
 		}
 
 		try {
-			b[BlockFace.f.ordinal()] = 4;
+			b[BlockFace.EAST.ordinal()] = 4;
 		} catch (NoSuchFieldError var5) {
 			;
 		}

@@ -73,40 +73,40 @@ class rn {
 			;
 		}
 
-		a = new int[mm.values().length];
+		a = new int[PacketPlayInPlayerDigging.PlayerDiggingAction.values().length];
 
 		try {
-			a[mm.e.ordinal()] = 1;
+			a[PacketPlayInPlayerDigging.PlayerDiggingAction.DROP_ITEM.ordinal()] = 1;
 		} catch (NoSuchFieldError var6) {
 			;
 		}
 
 		try {
-			a[mm.d.ordinal()] = 2;
+			a[PacketPlayInPlayerDigging.PlayerDiggingAction.DROP_ALL_ITEMS.ordinal()] = 2;
 		} catch (NoSuchFieldError var5) {
 			;
 		}
 
 		try {
-			a[mm.f.ordinal()] = 3;
+			a[PacketPlayInPlayerDigging.PlayerDiggingAction.RELEASE_USE_ITEM.ordinal()] = 3;
 		} catch (NoSuchFieldError var4) {
 			;
 		}
 
 		try {
-			a[mm.a.ordinal()] = 4;
+			a[PacketPlayInPlayerDigging.PlayerDiggingAction.START_DESTROY_BLOCK.ordinal()] = 4;
 		} catch (NoSuchFieldError var3) {
 			;
 		}
 
 		try {
-			a[mm.b.ordinal()] = 5;
+			a[PacketPlayInPlayerDigging.PlayerDiggingAction.ABORT_DESTROY_BLOCK.ordinal()] = 5;
 		} catch (NoSuchFieldError var2) {
 			;
 		}
 
 		try {
-			a[mm.c.ordinal()] = 6;
+			a[PacketPlayInPlayerDigging.PlayerDiggingAction.STOP_DESTROY_BLOCK.ordinal()] = 6;
 		} catch (NoSuchFieldError var1) {
 			;
 		}

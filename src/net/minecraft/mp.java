@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class mp implements Packet<ls> {
+public class mp implements Packet<PlayInPacketListener> {
 
 	private float a;
 	private float b;
@@ -30,7 +30,7 @@ public class mp implements Packet<ls> {
 		var1.writeByte(var2);
 	}
 
-	public void handlePacket(ls var1) {
+	public void handlePacket(PlayInPacketListener var1) {
 		var1.a(this);
 	}
 

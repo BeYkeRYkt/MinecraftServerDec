@@ -973,7 +973,7 @@ public class Chunk {
 					while (var5.hasNext()) {
 						BlockFace var6 = (BlockFace) var5.next();
 						int var4 = var6.c() == em.a ? 16 : 1;
-						this.i.f(var1.a(var6, var4)).a(var6.d());
+						this.i.f(var1.a(var6, var4)).a(var6.getOpposite());
 					}
 
 					this.y();
@@ -996,19 +996,19 @@ public class Chunk {
 	private void a(BlockFace var1) {
 		if (this.n) {
 			int var2;
-			if (var1 == BlockFace.f) {
+			if (var1 == BlockFace.EAST) {
 				for (var2 = 0; var2 < 16; ++var2) {
 					this.e(15, var2);
 				}
-			} else if (var1 == BlockFace.e) {
+			} else if (var1 == BlockFace.WEST) {
 				for (var2 = 0; var2 < 16; ++var2) {
 					this.e(0, var2);
 				}
-			} else if (var1 == BlockFace.d) {
+			} else if (var1 == BlockFace.SOUTH) {
 				for (var2 = 0; var2 < 16; ++var2) {
 					this.e(var2, 15);
 				}
-			} else if (var1 == BlockFace.c) {
+			} else if (var1 == BlockFace.NORTH) {
 				for (var2 = 0; var2 < 16; ++var2) {
 					this.e(var2, 0);
 				}

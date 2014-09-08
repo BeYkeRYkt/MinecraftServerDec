@@ -12,7 +12,7 @@ public class BlockChest extends atg {
 
 	protected BlockChest(int var1) {
 		super(Material.WOOD);
-		this.j(this.L.b().a(a, BlockFace.c));
+		this.j(this.L.b().a(a, BlockFace.NORTH));
 		this.b = var1;
 		this.a(CreativeModeTab.DECORATIONS);
 		this.a(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
@@ -65,7 +65,7 @@ public class BlockChest extends atg {
 	}
 
 	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
-		BlockFace var6 = BlockFace.fromByte(DataTypesConverter.toFixedPointInt((double) (var4.yaw * 4.0F / 360.0F) + 0.5D) & 3).d();
+		BlockFace var6 = BlockFace.fromDirection(DataTypesConverter.toFixedPointInt((double) (var4.yaw * 4.0F / 360.0F) + 0.5D) & 3).getOpposite();
 		var3 = var3.a(a, var6);
 		Position var7 = var2.c();
 		Position var8 = var2.d();
@@ -124,7 +124,7 @@ public class BlockChest extends atg {
 					Position var23 = var11 == this ? var2.e() : var2.f();
 					bec var24 = var1.p(var23.c());
 					bec var25 = var1.p(var23.d());
-					var8 = BlockFace.d;
+					var8 = BlockFace.SOUTH;
 					BlockFace var26;
 					if (var11 == this) {
 						var26 = (BlockFace) var6.b(a);
@@ -132,25 +132,25 @@ public class BlockChest extends atg {
 						var26 = (BlockFace) var7.b(a);
 					}
 
-					if (var26 == BlockFace.c) {
-						var8 = BlockFace.c;
+					if (var26 == BlockFace.NORTH) {
+						var8 = BlockFace.NORTH;
 					}
 
 					Block var19 = var24.getBlock();
 					Block var20 = var25.getBlock();
 					if ((var21 || var19.m()) && !var22 && !var20.m()) {
-						var8 = BlockFace.d;
+						var8 = BlockFace.SOUTH;
 					}
 
 					if ((var22 || var20.m()) && !var21 && !var19.m()) {
-						var8 = BlockFace.c;
+						var8 = BlockFace.NORTH;
 					}
 				}
 			} else {
 				Position var13 = var9 == this ? var2.c() : var2.d();
 				bec var14 = var1.p(var13.e());
 				bec var15 = var1.p(var13.f());
-				var8 = BlockFace.f;
+				var8 = BlockFace.EAST;
 				BlockFace var16;
 				if (var9 == this) {
 					var16 = (BlockFace) var4.b(a);
@@ -158,18 +158,18 @@ public class BlockChest extends atg {
 					var16 = (BlockFace) var5.b(a);
 				}
 
-				if (var16 == BlockFace.e) {
-					var8 = BlockFace.e;
+				if (var16 == BlockFace.WEST) {
+					var8 = BlockFace.WEST;
 				}
 
 				Block var17 = var14.getBlock();
 				Block var18 = var15.getBlock();
 				if ((var11.m() || var17.m()) && !var12.m() && !var18.m()) {
-					var8 = BlockFace.f;
+					var8 = BlockFace.EAST;
 				}
 
 				if ((var12.m() || var18.m()) && !var11.m() && !var17.m()) {
-					var8 = BlockFace.e;
+					var8 = BlockFace.WEST;
 				}
 			}
 
@@ -201,11 +201,11 @@ public class BlockChest extends atg {
 		}
 
 		if (var4 != null) {
-			return var3.a(a, var4.d());
+			return var3.a(a, var4.getOpposite());
 		} else {
 			BlockFace var8 = (BlockFace) var3.b(a);
 			if (var1.p(var2.a(var8)).getBlock().m()) {
-				var8 = var8.d();
+				var8 = var8.getOpposite();
 			}
 
 			if (var1.p(var2.a(var8)).getBlock().m()) {
@@ -213,7 +213,7 @@ public class BlockChest extends atg {
 			}
 
 			if (var1.p(var2.a(var8)).getBlock().m()) {
-				var8 = var8.d();
+				var8 = var8.getOpposite();
 			}
 
 			return var3.a(a, var8);
@@ -334,7 +334,7 @@ public class BlockChest extends atg {
 
 						TileEntity var9 = var1.s(var7);
 						if (var9 instanceof TileEntityChest) {
-							if (var6 != BlockFace.e && var6 != BlockFace.c) {
+							if (var6 != BlockFace.WEST && var6 != BlockFace.NORTH) {
 								var4 = new vp("container.chestDouble", (vy) var4, (TileEntityChest) var9);
 							} else {
 								var4 = new vp("container.chestDouble", (TileEntityChest) var9, (vy) var4);
@@ -371,7 +371,7 @@ public class BlockChest extends atg {
 	}
 
 	public int b(ard var1, Position var2, bec var3, BlockFace var4) {
-		return var4 == BlockFace.b ? this.a(var1, var2, var3, var4) : 0;
+		return var4 == BlockFace.UP ? this.a(var1, var2, var3, var4) : 0;
 	}
 
 	private boolean m(World var1, Position var2) {
@@ -407,16 +407,16 @@ public class BlockChest extends atg {
 	}
 
 	public bec a(int var1) {
-		BlockFace var2 = BlockFace.a(var1);
+		BlockFace var2 = BlockFace.getById(var1);
 		if (var2.k() == el.b) {
-			var2 = BlockFace.c;
+			var2 = BlockFace.NORTH;
 		}
 
 		return this.P().a(a, var2);
 	}
 
 	public int c(bec var1) {
-		return ((BlockFace) var1.b(a)).a();
+		return ((BlockFace) var1.b(a)).getId();
 	}
 
 	protected bed e() {

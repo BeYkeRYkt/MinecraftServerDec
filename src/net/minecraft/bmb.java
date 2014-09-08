@@ -75,27 +75,27 @@ public class bmb extends bmk {
 			this.a(var1, Blocks.STONE_BROCK_STAIRS.a(var5), var6, 3, 6, var3);
 		}
 
-		var6 = BlockFace.c.toByte();
-		int var7 = BlockFace.d.toByte();
-		int var8 = BlockFace.f.toByte();
-		int var9 = BlockFace.e.toByte();
+		var6 = BlockFace.NORTH.toDirection();
+		int var7 = BlockFace.SOUTH.toDirection();
+		int var8 = BlockFace.EAST.toDirection();
+		int var9 = BlockFace.WEST.toDirection();
 		if (this.m != null) {
 			switch (blu.b[this.m.ordinal()]) {
 				case 2:
-					var6 = BlockFace.d.toByte();
-					var7 = BlockFace.c.toByte();
+					var6 = BlockFace.SOUTH.toDirection();
+					var7 = BlockFace.NORTH.toDirection();
 					break;
 				case 3:
-					var6 = BlockFace.e.toByte();
-					var7 = BlockFace.f.toByte();
-					var8 = BlockFace.d.toByte();
-					var9 = BlockFace.c.toByte();
+					var6 = BlockFace.WEST.toDirection();
+					var7 = BlockFace.EAST.toDirection();
+					var8 = BlockFace.SOUTH.toDirection();
+					var9 = BlockFace.NORTH.toDirection();
 					break;
 				case 4:
-					var6 = BlockFace.f.toByte();
-					var7 = BlockFace.e.toByte();
-					var8 = BlockFace.d.toByte();
-					var9 = BlockFace.c.toByte();
+					var6 = BlockFace.EAST.toDirection();
+					var7 = BlockFace.WEST.toDirection();
+					var8 = BlockFace.SOUTH.toDirection();
+					var9 = BlockFace.NORTH.toDirection();
 			}
 		}
 

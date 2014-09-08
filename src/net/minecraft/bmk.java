@@ -105,13 +105,13 @@ abstract class bmk extends bms {
 		if (this.m != null) {
 			switch (blu.b[this.m.ordinal()]) {
 				case 1:
-					return blr.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, BlockFace.e, this.d());
+					return blr.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, BlockFace.WEST, this.d());
 				case 2:
-					return blr.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, BlockFace.e, this.d());
+					return blr.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, BlockFace.WEST, this.d());
 				case 3:
-					return blr.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, BlockFace.c, this.d());
+					return blr.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, BlockFace.NORTH, this.d());
 				case 4:
-					return blr.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, BlockFace.c, this.d());
+					return blr.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, BlockFace.NORTH, this.d());
 			}
 		}
 
@@ -122,13 +122,13 @@ abstract class bmk extends bms {
 		if (this.m != null) {
 			switch (blu.b[this.m.ordinal()]) {
 				case 1:
-					return blr.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, BlockFace.f, this.d());
+					return blr.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, BlockFace.EAST, this.d());
 				case 2:
-					return blr.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, BlockFace.f, this.d());
+					return blr.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, BlockFace.EAST, this.d());
 				case 3:
-					return blr.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, BlockFace.d, this.d());
+					return blr.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, BlockFace.SOUTH, this.d());
 				case 4:
-					return blr.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, BlockFace.d, this.d());
+					return blr.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, BlockFace.SOUTH, this.d());
 			}
 		}
 

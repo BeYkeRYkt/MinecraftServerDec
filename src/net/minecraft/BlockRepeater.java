@@ -9,7 +9,7 @@ public class BlockRepeater extends ava {
 
 	protected BlockRepeater(boolean var1) {
 		super(var1);
-		this.j(this.L.b().a(N, BlockFace.c).a(b, Integer.valueOf(1)).a(a, Boolean.valueOf(false)));
+		this.j(this.L.b().a(N, BlockFace.NORTH).a(b, Integer.valueOf(1)).a(a, Boolean.valueOf(false)));
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
@@ -61,12 +61,12 @@ public class BlockRepeater extends ava {
 	}
 
 	public bec a(int var1) {
-		return this.P().a(N, BlockFace.fromByte(var1)).a(a, Boolean.valueOf(false)).a(b, Integer.valueOf(1 + (var1 >> 2)));
+		return this.P().a(N, BlockFace.fromDirection(var1)).a(a, Boolean.valueOf(false)).a(b, Integer.valueOf(1 + (var1 >> 2)));
 	}
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((BlockFace) var1.b(N)).toByte();
+		int var3 = var2 | ((BlockFace) var1.b(N)).toDirection();
 		var3 |= ((Integer) var1.b(b)).intValue() - 1 << 2;
 		return var3;
 	}

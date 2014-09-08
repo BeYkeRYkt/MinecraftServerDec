@@ -14,7 +14,7 @@ public class blw extends bmk {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
-		this.a = var4 != BlockFace.c && var4 != BlockFace.d ? var3.c() : var3.e();
+		this.a = var4 != BlockFace.NORTH && var4 != BlockFace.SOUTH ? var3.c() : var3.e();
 	}
 
 	protected void a(NBTCompoundTag var1) {

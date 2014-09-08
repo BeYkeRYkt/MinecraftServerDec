@@ -130,7 +130,7 @@ public abstract class ath extends Block {
 	}
 
 	public int b(ard var1, Position var2, bec var3, BlockFace var4) {
-		return var4 == BlockFace.b ? this.e(var3) : 0;
+		return var4 == BlockFace.UP ? this.e(var3) : 0;
 	}
 
 	public boolean g() {

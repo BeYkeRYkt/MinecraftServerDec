@@ -96,22 +96,22 @@ public class arh {
 			double var37 = (double) ((Position) var9).getZ() + 0.5D;
 			BlockFace var18 = null;
 			if (this.a.p(((Position) var9).e()).getBlock() == Blocks.PORTAL) {
-				var18 = BlockFace.c;
+				var18 = BlockFace.NORTH;
 			}
 
 			if (this.a.p(((Position) var9).f()).getBlock() == Blocks.PORTAL) {
-				var18 = BlockFace.d;
+				var18 = BlockFace.SOUTH;
 			}
 
 			if (this.a.p(((Position) var9).c()).getBlock() == Blocks.PORTAL) {
-				var18 = BlockFace.f;
+				var18 = BlockFace.EAST;
 			}
 
 			if (this.a.p(((Position) var9).d()).getBlock() == Blocks.PORTAL) {
-				var18 = BlockFace.e;
+				var18 = BlockFace.WEST;
 			}
 
-			BlockFace var19 = BlockFace.fromByte(var1.aG());
+			BlockFace var19 = BlockFace.fromDirection(var1.aG());
 			if (var18 != null) {
 				BlockFace var20 = var18.f();
 				Position var21 = ((Position) var9).a(var18);
@@ -119,8 +119,8 @@ public class arh {
 				boolean var23 = this.a(var21.a(var20));
 				if (var23 && var22) {
 					var9 = ((Position) var9).a(var20);
-					var18 = var18.d();
-					var20 = var20.d();
+					var18 = var18.getOpposite();
+					var20 = var20.getOpposite();
 					Position var24 = ((Position) var9).a(var18);
 					var22 = this.a(var24);
 					var23 = this.a(var24.a(var20));
@@ -148,7 +148,7 @@ public class arh {
 				if (var18 == var19) {
 					var26 = 1.0F;
 					var27 = 1.0F;
-				} else if (var18 == var19.d()) {
+				} else if (var18 == var19.getOpposite()) {
 					var26 = -1.0F;
 					var27 = -1.0F;
 				} else if (var18 == var19.e()) {
@@ -163,7 +163,7 @@ public class arh {
 				double var32 = var1.motionZ;
 				var1.motionX = var30 * (double) var26 + var32 * (double) var29;
 				var1.motionZ = var30 * (double) var28 + var32 * (double) var27;
-				var1.yaw = var2 - (float) (var19.toByte() * 90) + (float) (var18.toByte() * 90);
+				var1.yaw = var2 - (float) (var19.toDirection() * 90) + (float) (var18.toDirection() * 90);
 			} else {
 				var1.motionX = var1.motionY = var1.motionZ = 0.0D;
 			}

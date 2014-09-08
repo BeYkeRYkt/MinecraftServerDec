@@ -14,7 +14,7 @@ public class BlockSkull extends atg {
 
 	protected BlockSkull() {
 		super(Material.ORIENTABLE);
-		this.j(this.L.b().a(a, BlockFace.c).a(b, Boolean.valueOf(false)));
+		this.j(this.L.b().a(a, BlockFace.NORTH).a(b, Boolean.valueOf(false)));
 		this.a(0.25F, 0.0F, 0.25F, 0.75F, 0.5F, 0.75F);
 	}
 
@@ -157,12 +157,12 @@ public class BlockSkull extends atg {
 	}
 
 	public bec a(int var1) {
-		return this.P().a(a, BlockFace.a(var1 & 7)).a(b, Boolean.valueOf((var1 & 8) > 0));
+		return this.P().a(a, BlockFace.getById(var1 & 7)).a(b, Boolean.valueOf((var1 & 8) > 0));
 	}
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((BlockFace) var1.b(a)).a();
+		int var3 = var2 | ((BlockFace) var1.b(a)).getId();
 		if (((Boolean) var1.b(b)).booleanValue()) {
 			var3 |= 8;
 		}

@@ -238,17 +238,17 @@ public class AxisAlignedBB {
 		} else {
 			BlockFace var10 = null;
 			if (var9 == var3) {
-				var10 = BlockFace.e;
+				var10 = BlockFace.WEST;
 			} else if (var9 == var4) {
-				var10 = BlockFace.f;
+				var10 = BlockFace.EAST;
 			} else if (var9 == var5) {
-				var10 = BlockFace.a;
+				var10 = BlockFace.DOWN;
 			} else if (var9 == var6) {
-				var10 = BlockFace.b;
+				var10 = BlockFace.UP;
 			} else if (var9 == var7) {
-				var10 = BlockFace.c;
+				var10 = BlockFace.NORTH;
 			} else {
-				var10 = BlockFace.d;
+				var10 = BlockFace.SOUTH;
 			}
 
 			return new MovingObjectPosition(var9, var10);

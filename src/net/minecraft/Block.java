@@ -649,27 +649,27 @@ public class Block {
 		} else {
 			BlockFace var12 = null;
 			if (var11 == var5) {
-				var12 = BlockFace.e;
+				var12 = BlockFace.WEST;
 			}
 
 			if (var11 == var6) {
-				var12 = BlockFace.f;
+				var12 = BlockFace.EAST;
 			}
 
 			if (var11 == var7) {
-				var12 = BlockFace.a;
+				var12 = BlockFace.DOWN;
 			}
 
 			if (var11 == var8) {
-				var12 = BlockFace.b;
+				var12 = BlockFace.UP;
 			}
 
 			if (var11 == var9) {
-				var12 = BlockFace.c;
+				var12 = BlockFace.NORTH;
 			}
 
 			if (var11 == var10) {
-				var12 = BlockFace.d;
+				var12 = BlockFace.SOUTH;
 			}
 
 			return new MovingObjectPosition(var11.b((double) var2.getX(), (double) var2.getY(), (double) var2.getZ()), var12, var2);

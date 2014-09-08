@@ -292,27 +292,27 @@ public abstract class World implements ard {
 	}
 
 	public void a(Position var1, Block var2, BlockFace var3) {
-		if (var3 != BlockFace.e) {
+		if (var3 != BlockFace.WEST) {
 			this.d(var1.e(), var2);
 		}
 
-		if (var3 != BlockFace.f) {
+		if (var3 != BlockFace.EAST) {
 			this.d(var1.f(), var2);
 		}
 
-		if (var3 != BlockFace.a) {
+		if (var3 != BlockFace.DOWN) {
 			this.d(var1.b(), var2);
 		}
 
-		if (var3 != BlockFace.b) {
+		if (var3 != BlockFace.UP) {
 			this.d(var1.a(), var2);
 		}
 
-		if (var3 != BlockFace.c) {
+		if (var3 != BlockFace.NORTH) {
 			this.d(var1.c(), var2);
 		}
 
-		if (var3 != BlockFace.d) {
+		if (var3 != BlockFace.SOUTH) {
 			this.d(var1.d(), var2);
 		}
 
@@ -597,19 +597,19 @@ public abstract class World implements ard {
 
 					BlockFace var37;
 					if (var25 < var27 && var25 < var29) {
-						var37 = var6 > var9 ? BlockFace.e : BlockFace.f;
+						var37 = var6 > var9 ? BlockFace.WEST : BlockFace.EAST;
 						var1 = new Vec3D(var19, var1.y + var33 * var25, var1.z + var35 * var25);
 					} else if (var27 < var29) {
-						var37 = var7 > var10 ? BlockFace.a : BlockFace.b;
+						var37 = var7 > var10 ? BlockFace.DOWN : BlockFace.UP;
 						var1 = new Vec3D(var1.x + var31 * var27, var21, var1.z + var35 * var27);
 					} else {
-						var37 = var8 > var11 ? BlockFace.c : BlockFace.d;
+						var37 = var8 > var11 ? BlockFace.NORTH : BlockFace.SOUTH;
 						var1 = new Vec3D(var1.x + var31 * var29, var1.y + var33 * var29, var23);
 					}
 
-					var9 = DataTypesConverter.toFixedPointInt(var1.x) - (var37 == BlockFace.f ? 1 : 0);
-					var10 = DataTypesConverter.toFixedPointInt(var1.y) - (var37 == BlockFace.b ? 1 : 0);
-					var11 = DataTypesConverter.toFixedPointInt(var1.z) - (var37 == BlockFace.d ? 1 : 0);
+					var9 = DataTypesConverter.toFixedPointInt(var1.x) - (var37 == BlockFace.EAST ? 1 : 0);
+					var10 = DataTypesConverter.toFixedPointInt(var1.y) - (var37 == BlockFace.UP ? 1 : 0);
+					var11 = DataTypesConverter.toFixedPointInt(var1.z) - (var37 == BlockFace.SOUTH ? 1 : 0);
 					var12 = new Position(var9, var10, var11);
 					bec var38 = this.p(var12);
 					Block var39 = var38.getBlock();
@@ -1991,7 +1991,7 @@ public abstract class World implements ard {
 		return var5;
 	}
 
-	public Entity a(int var1) {
+	public Entity getEntity(int var1) {
 		return (Entity) this.l.a(var1);
 	}
 
@@ -2048,27 +2048,27 @@ public abstract class World implements ard {
 
 	public int y(Position var1) {
 		byte var2 = 0;
-		int var3 = Math.max(var2, this.a(var1.b(), BlockFace.a));
+		int var3 = Math.max(var2, this.a(var1.b(), BlockFace.DOWN));
 		if (var3 >= 15) {
 			return var3;
 		} else {
-			var3 = Math.max(var3, this.a(var1.a(), BlockFace.b));
+			var3 = Math.max(var3, this.a(var1.a(), BlockFace.UP));
 			if (var3 >= 15) {
 				return var3;
 			} else {
-				var3 = Math.max(var3, this.a(var1.c(), BlockFace.c));
+				var3 = Math.max(var3, this.a(var1.c(), BlockFace.NORTH));
 				if (var3 >= 15) {
 					return var3;
 				} else {
-					var3 = Math.max(var3, this.a(var1.d(), BlockFace.d));
+					var3 = Math.max(var3, this.a(var1.d(), BlockFace.SOUTH));
 					if (var3 >= 15) {
 						return var3;
 					} else {
-						var3 = Math.max(var3, this.a(var1.e(), BlockFace.e));
+						var3 = Math.max(var3, this.a(var1.e(), BlockFace.WEST));
 						if (var3 >= 15) {
 							return var3;
 						} else {
-							var3 = Math.max(var3, this.a(var1.f(), BlockFace.f));
+							var3 = Math.max(var3, this.a(var1.f(), BlockFace.EAST));
 							return var3 >= 15 ? var3 : var3;
 						}
 					}
@@ -2088,7 +2088,7 @@ public abstract class World implements ard {
 	}
 
 	public boolean z(Position var1) {
-		return this.c(var1.b(), BlockFace.a) > 0 ? true : (this.c(var1.a(), BlockFace.b) > 0 ? true : (this.c(var1.c(), BlockFace.c) > 0 ? true : (this.c(var1.d(), BlockFace.d) > 0 ? true : (this.c(var1.e(), BlockFace.e) > 0 ? true : this.c(var1.f(), BlockFace.f) > 0))));
+		return this.c(var1.b(), BlockFace.DOWN) > 0 ? true : (this.c(var1.a(), BlockFace.UP) > 0 ? true : (this.c(var1.c(), BlockFace.NORTH) > 0 ? true : (this.c(var1.d(), BlockFace.SOUTH) > 0 ? true : (this.c(var1.e(), BlockFace.WEST) > 0 ? true : this.c(var1.f(), BlockFace.EAST) > 0))));
 	}
 
 	public int A(Position var1) {

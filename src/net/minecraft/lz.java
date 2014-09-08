@@ -1,11 +1,11 @@
 package net.minecraft;
 
-public class lz implements Packet<ls> {
+public class lz implements Packet<PlayInPacketListener> {
 
 	private int a;
 	private int b;
 
-	public void handlePacket(ls var1) {
+	public void handlePacket(PlayInPacketListener var1) {
 		var1.a(this);
 	}
 

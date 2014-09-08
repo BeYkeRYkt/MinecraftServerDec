@@ -143,7 +143,7 @@ public class BlockFlowing extends axl {
 					}
 
 					if (var3 < 4) {
-						int var10 = this.a(var1, var8, var3 + 1, var7.d());
+						int var10 = this.a(var1, var8, var3 + 1, var7.getOpposite());
 						if (var10 < var5) {
 							var5 = var10;
 						}
@@ -167,7 +167,7 @@ public class BlockFlowing extends axl {
 			if (!this.g(var1, var7, var8) && (var8.getBlock().r() != this.material || ((Integer) var8.b(b)).intValue() > 0)) {
 				int var9;
 				if (this.g(var1, var7.b(), var1.p(var7.b()))) {
-					var9 = this.a(var1, var7, 1, var6.d());
+					var9 = this.a(var1, var7, 1, var6.getOpposite());
 				} else {
 					var9 = 0;
 				}

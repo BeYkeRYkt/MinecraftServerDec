@@ -24,7 +24,7 @@ public class EntityMinecartChest extends aed {
 	}
 
 	public bec u() {
-		return Blocks.CHEST.P().a(BlockChest.a, BlockFace.c);
+		return Blocks.CHEST.P().a(BlockChest.a, BlockFace.NORTH);
 	}
 
 	public int w() {

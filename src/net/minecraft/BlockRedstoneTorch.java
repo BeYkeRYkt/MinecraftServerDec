@@ -77,7 +77,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 	}
 
 	private boolean g(World var1, Position var2, bec var3) {
-		BlockFace var4 = ((BlockFace) var3.b(a)).d();
+		BlockFace var4 = ((BlockFace) var3.b(a)).getOpposite();
 		return var1.b(var2.a(var4), var4);
 	}
 
@@ -124,7 +124,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 	}
 
 	public int b(ard var1, Position var2, bec var3, BlockFace var4) {
-		return var4 == BlockFace.a ? this.a(var1, var2, var3, var4) : 0;
+		return var4 == BlockFace.DOWN ? this.a(var1, var2, var3, var4) : 0;
 	}
 
 	public Item a(bec var1, Random var2, int var3) {

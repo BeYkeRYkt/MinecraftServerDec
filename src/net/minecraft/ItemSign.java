@@ -8,7 +8,7 @@ public class ItemSign extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		if (var5 == BlockFace.a) {
+		if (var5 == BlockFace.DOWN) {
 			return false;
 		} else if (!var3.p(var4).getBlock().r().isBuildable()) {
 			return false;
@@ -21,7 +21,7 @@ public class ItemSign extends Item {
 			} else if (var3.D) {
 				return true;
 			} else {
-				if (var5 == BlockFace.b) {
+				if (var5 == BlockFace.UP) {
 					int var9 = DataTypesConverter.toFixedPointInt((double) ((var2.yaw + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
 					var3.a(var4, Blocks.STANDING_SIGN.P().a(BlockStandingSign.a, Integer.valueOf(var9)), 3);
 				} else {

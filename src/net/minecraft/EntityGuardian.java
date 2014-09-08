@@ -120,7 +120,7 @@ public class EntityGuardian extends EntityMonster {
 			if (this.bn != null) {
 				return this.bn;
 			} else {
-				Entity var1 = this.o.a(this.dataWatcher.c(17));
+				Entity var1 = this.o.getEntity(this.dataWatcher.c(17));
 				if (var1 instanceof EntityLiving) {
 					this.bn = (EntityLiving) var1;
 					return this.bn;

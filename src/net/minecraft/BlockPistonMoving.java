@@ -9,7 +9,7 @@ public class BlockPistonMoving extends atg {
 
 	public BlockPistonMoving() {
 		super(Material.PISTON);
-		this.j(this.L.b().a(a, BlockFace.c).a(b, bdu.a));
+		this.j(this.L.b().a(a, BlockFace.NORTH).a(b, bdu.a));
 		this.c(-1.0F);
 	}
 
@@ -40,7 +40,7 @@ public class BlockPistonMoving extends atg {
 	}
 
 	public void d(World var1, Position var2, bec var3) {
-		Position var4 = var2.a(((BlockFace) var3.b(a)).d());
+		Position var4 = var2.a(((BlockFace) var3.b(a)).getOpposite());
 		bec var5 = var1.p(var4);
 		if (var5.getBlock() instanceof BlockPiston && ((Boolean) var5.b(BlockPiston.b)).booleanValue()) {
 			var1.g(var4);
@@ -182,7 +182,7 @@ public class BlockPistonMoving extends atg {
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((BlockFace) var1.b(a)).a();
+		int var3 = var2 | ((BlockFace) var1.b(a)).getId();
 		if (var1.b(b) == bdu.b) {
 			var3 |= 8;
 		}

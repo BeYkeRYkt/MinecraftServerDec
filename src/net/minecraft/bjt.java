@@ -16,7 +16,7 @@ public class bjt extends bkb {
 
 	public void a(bms var1, List var2, Random var3) {
 		byte var4 = 1;
-		if (this.m == BlockFace.e || this.m == BlockFace.c) {
+		if (this.m == BlockFace.WEST || this.m == BlockFace.NORTH) {
 			var4 = 5;
 		}
 

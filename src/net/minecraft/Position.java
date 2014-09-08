@@ -53,7 +53,7 @@ public class Position extends fd {
 	}
 
 	public Position b(int var1) {
-		return this.a(BlockFace.b, var1);
+		return this.a(BlockFace.UP, var1);
 	}
 
 	public Position b() {
@@ -61,7 +61,7 @@ public class Position extends fd {
 	}
 
 	public Position c(int var1) {
-		return this.a(BlockFace.a, var1);
+		return this.a(BlockFace.DOWN, var1);
 	}
 
 	public Position c() {
@@ -69,7 +69,7 @@ public class Position extends fd {
 	}
 
 	public Position d(int var1) {
-		return this.a(BlockFace.c, var1);
+		return this.a(BlockFace.NORTH, var1);
 	}
 
 	public Position d() {
@@ -77,7 +77,7 @@ public class Position extends fd {
 	}
 
 	public Position e(int var1) {
-		return this.a(BlockFace.d, var1);
+		return this.a(BlockFace.SOUTH, var1);
 	}
 
 	public Position e() {
@@ -85,7 +85,7 @@ public class Position extends fd {
 	}
 
 	public Position f(int var1) {
-		return this.a(BlockFace.e, var1);
+		return this.a(BlockFace.WEST, var1);
 	}
 
 	public Position f() {
@@ -93,7 +93,7 @@ public class Position extends fd {
 	}
 
 	public Position g(int var1) {
-		return this.a(BlockFace.f, var1);
+		return this.a(BlockFace.EAST, var1);
 	}
 
 	public Position a(BlockFace var1) {

@@ -8,25 +8,25 @@ class bcs {
 
 	static {
 		try {
-			a[BlockFace.c.ordinal()] = 1;
+			a[BlockFace.NORTH.ordinal()] = 1;
 		} catch (NoSuchFieldError var4) {
 			;
 		}
 
 		try {
-			a[BlockFace.d.ordinal()] = 2;
+			a[BlockFace.SOUTH.ordinal()] = 2;
 		} catch (NoSuchFieldError var3) {
 			;
 		}
 
 		try {
-			a[BlockFace.f.ordinal()] = 3;
+			a[BlockFace.EAST.ordinal()] = 3;
 		} catch (NoSuchFieldError var2) {
 			;
 		}
 
 		try {
-			a[BlockFace.e.ordinal()] = 4;
+			a[BlockFace.WEST.ordinal()] = 4;
 		} catch (NoSuchFieldError var1) {
 			;
 		}

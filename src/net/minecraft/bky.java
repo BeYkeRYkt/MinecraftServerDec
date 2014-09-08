@@ -12,18 +12,18 @@ public class bky extends blb {
 	}
 
 	public boolean a(World var1, Random var2, bjb var3) {
-		blf var4 = this.k.b[BlockFace.c.a()];
+		blf var4 = this.k.b[BlockFace.NORTH.getId()];
 		blf var5 = this.k;
 		if (this.k.a / 25 > 0) {
-			this.a(var1, var3, 0, 8, var4.c[BlockFace.a.a()]);
-			this.a(var1, var3, 0, 0, var5.c[BlockFace.a.a()]);
+			this.a(var1, var3, 0, 8, var4.c[BlockFace.DOWN.getId()]);
+			this.a(var1, var3, 0, 0, var5.c[BlockFace.DOWN.getId()]);
 		}
 
-		if (var5.b[BlockFace.b.a()] == null) {
+		if (var5.b[BlockFace.UP.getId()] == null) {
 			this.a(var1, var3, 1, 4, 1, 6, 4, 7, a);
 		}
 
-		if (var4.b[BlockFace.b.a()] == null) {
+		if (var4.b[BlockFace.UP.getId()] == null) {
 			this.a(var1, var3, 1, 4, 8, 6, 4, 14, a);
 		}
 
@@ -63,27 +63,27 @@ public class bky extends blb {
 		this.a(var1, b, 5, 3, 5, var3);
 		this.a(var1, b, 2, 3, 10, var3);
 		this.a(var1, b, 5, 3, 10, var3);
-		if (var5.c[BlockFace.d.a()]) {
+		if (var5.c[BlockFace.SOUTH.getId()]) {
 			this.a(var1, var3, 3, 1, 0, 4, 2, 0, f, f, false);
 		}
 
-		if (var5.c[BlockFace.f.a()]) {
+		if (var5.c[BlockFace.EAST.getId()]) {
 			this.a(var1, var3, 7, 1, 3, 7, 2, 4, f, f, false);
 		}
 
-		if (var5.c[BlockFace.e.a()]) {
+		if (var5.c[BlockFace.WEST.getId()]) {
 			this.a(var1, var3, 0, 1, 3, 0, 2, 4, f, f, false);
 		}
 
-		if (var4.c[BlockFace.c.a()]) {
+		if (var4.c[BlockFace.NORTH.getId()]) {
 			this.a(var1, var3, 3, 1, 15, 4, 2, 15, f, f, false);
 		}
 
-		if (var4.c[BlockFace.e.a()]) {
+		if (var4.c[BlockFace.WEST.getId()]) {
 			this.a(var1, var3, 0, 1, 11, 0, 2, 12, f, f, false);
 		}
 
-		if (var4.c[BlockFace.f.a()]) {
+		if (var4.c[BlockFace.EAST.getId()]) {
 			this.a(var1, var3, 7, 1, 11, 7, 2, 12, f, f, false);
 		}
 

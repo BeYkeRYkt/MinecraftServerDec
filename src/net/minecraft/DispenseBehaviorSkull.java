@@ -14,7 +14,7 @@ final class DispenseBehaviorSkull extends eg {
 		BlockSkull var6 = Blocks.SKULL;
 		if (var3.d(var5) && var6.b(var3, var5, var2)) {
 			if (!var3.D) {
-				var3.a(var5, var6.P().a(BlockSkull.a, BlockFace.b), 3);
+				var3.a(var5, var6.P().a(BlockSkull.a, BlockFace.UP), 3);
 				TileEntity var7 = var3.s(var5);
 				if (var7 instanceof TileEntitySkull) {
 					if (var2.i() == 3) {
@@ -33,7 +33,7 @@ final class DispenseBehaviorSkull extends eg {
 						((TileEntitySkull) var7).a(var2.i());
 					}
 
-					((TileEntitySkull) var7).b(var4.d().toByte() * 4);
+					((TileEntitySkull) var7).b(var4.getOpposite().toDirection() * 4);
 					Blocks.SKULL.a(var3, var5, (TileEntitySkull) var7);
 				}
 

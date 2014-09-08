@@ -9,7 +9,7 @@ public class BlockLadder extends Block {
 
 	protected BlockLadder() {
 		super(Material.ORIENTABLE);
-		this.j(this.L.b().a(a, BlockFace.c));
+		this.j(this.L.b().a(a, BlockFace.NORTH));
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
@@ -82,20 +82,20 @@ public class BlockLadder extends Block {
 	}
 
 	protected boolean b(World var1, Position var2, BlockFace var3) {
-		return var1.p(var2.a(var3.d())).getBlock().t();
+		return var1.p(var2.a(var3.getOpposite())).getBlock().t();
 	}
 
 	public bec a(int var1) {
-		BlockFace var2 = BlockFace.a(var1);
+		BlockFace var2 = BlockFace.getById(var1);
 		if (var2.k() == el.b) {
-			var2 = BlockFace.c;
+			var2 = BlockFace.NORTH;
 		}
 
 		return this.P().a(a, var2);
 	}
 
 	public int c(bec var1) {
-		return ((BlockFace) var1.b(a)).a();
+		return ((BlockFace) var1.b(a)).getId();
 	}
 
 	protected bed e() {

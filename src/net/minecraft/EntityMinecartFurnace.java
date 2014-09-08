@@ -135,6 +135,6 @@ public class EntityMinecartFurnace extends adx {
 	}
 
 	public bec u() {
-		return (this.j() ? Blocks.LIT_FURNACE : Blocks.FURNACE).P().a(BlockFurnace.a, BlockFace.c);
+		return (this.j() ? Blocks.LIT_FURNACE : Blocks.FURNACE).P().a(BlockFurnace.a, BlockFace.NORTH);
 	}
 }

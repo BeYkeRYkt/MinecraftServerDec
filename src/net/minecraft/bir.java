@@ -146,8 +146,8 @@ public class bir extends bhc {
 								for (var10 = 0; var10 < 4; ++var10) {
 									if (var2.nextInt(4 - var9) == 0) {
 										var11 = var2.nextInt(3);
-										BlockFace var22 = BlockFace.fromByte(var10).d();
-										this.a(var1, var3.a(var22.g(), var4 - 5 + var9, var22.i()), Blocks.COCOA, var11 << 2 | BlockFace.fromByte(var10).toByte());
+										BlockFace var22 = BlockFace.fromDirection(var10).getOpposite();
+										this.a(var1, var3.a(var22.g(), var4 - 5 + var9, var22.i()), Blocks.COCOA, var11 << 2 | BlockFace.fromDirection(var10).toDirection());
 									}
 								}
 							}

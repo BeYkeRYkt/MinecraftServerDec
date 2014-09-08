@@ -171,7 +171,7 @@ public class PersistentVillage extends bqc {
 
 	private void d(Position var1) {
 		BlockFace var2 = BlockDoor.h(this.b, var1);
-		BlockFace var3 = var2.d();
+		BlockFace var3 = var2.getOpposite();
 		int var4 = this.a(var1, var2, 5);
 		int var5 = this.a(var1, var3, var4 + 1);
 		if (var4 != var5) {

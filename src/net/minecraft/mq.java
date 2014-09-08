@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class mq implements Packet<ls> {
+public class mq implements Packet<PlayInPacketListener> {
 
 	private String a;
 	private mr b;
@@ -15,7 +15,7 @@ public class mq implements Packet<ls> {
 		var1.writeEnum((Enum) this.b);
 	}
 
-	public void handlePacket(ls var1) {
+	public void handlePacket(PlayInPacketListener var1) {
 		var1.a(this);
 	}
 }

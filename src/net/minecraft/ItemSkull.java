@@ -14,7 +14,7 @@ public class ItemSkull extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		if (var5 == BlockFace.a) {
+		if (var5 == BlockFace.DOWN) {
 			return false;
 		} else {
 			bec var9 = var3.p(var4);
@@ -36,7 +36,7 @@ public class ItemSkull extends Item {
 				if (!var3.D) {
 					var3.a(var4, Blocks.SKULL.P().a(BlockSkull.a, var5), 3);
 					int var12 = 0;
-					if (var5 == BlockFace.b) {
+					if (var5 == BlockFace.UP) {
 						var12 = DataTypesConverter.toFixedPointInt((double) (var2.yaw * 16.0F / 360.0F) + 0.5D) & 15;
 					}
 

@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.io.IOException;
 
-public class ma implements Packet<ls> {
+public class ma implements Packet<PlayInPacketListener> {
 
 	private int a;
 	private int b;
@@ -11,7 +11,7 @@ public class ma implements Packet<ls> {
 	private ItemStack e;
 	private int f;
 
-	public void handlePacket(ls var1) {
+	public void handlePacket(PlayInPacketListener var1) {
 		var1.a(this);
 	}
 

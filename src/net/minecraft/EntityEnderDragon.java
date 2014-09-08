@@ -512,10 +512,10 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 		this.o.a(var1.a(), Blocks.BEDROCK.P());
 		Position var13 = var1.b(2);
 		this.o.a(var13, Blocks.BEDROCK.P());
-		this.o.a(var13.e(), Blocks.TORCH.P().a(BlockTorch.a, BlockFace.f));
-		this.o.a(var13.f(), Blocks.TORCH.P().a(BlockTorch.a, BlockFace.e));
-		this.o.a(var13.c(), Blocks.TORCH.P().a(BlockTorch.a, BlockFace.d));
-		this.o.a(var13.d(), Blocks.TORCH.P().a(BlockTorch.a, BlockFace.c));
+		this.o.a(var13.e(), Blocks.TORCH.P().a(BlockTorch.a, BlockFace.EAST));
+		this.o.a(var13.f(), Blocks.TORCH.P().a(BlockTorch.a, BlockFace.WEST));
+		this.o.a(var13.c(), Blocks.TORCH.P().a(BlockTorch.a, BlockFace.SOUTH));
+		this.o.a(var13.d(), Blocks.TORCH.P().a(BlockTorch.a, BlockFace.NORTH));
 		this.o.a(var1.b(3), Blocks.BEDROCK.P());
 		this.o.a(var1.b(4), Blocks.DRAGON_EGG.P());
 	}

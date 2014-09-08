@@ -41,7 +41,7 @@ public class ItemMonsterEgg extends Item {
 
 			var4 = var4.a(var5);
 			double var13 = 0.0D;
-			if (var5 == BlockFace.b && var9 instanceof BlockFence) {
+			if (var5 == BlockFace.UP && var9 instanceof BlockFence) {
 				var13 = 0.5D;
 			}
 

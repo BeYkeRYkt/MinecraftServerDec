@@ -2,9 +2,11 @@ package net.minecraft;
 
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.Futures;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.util.concurrent.GenericFutureListener;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,12 +15,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
+
+import net.minecraft.PacketPlayInPlayerDigging.PlayerDiggingAction;
+import net.minecraft.PacketPlayInUseEntity.UseEntityAction;
 import net.minecraft.server.MinecraftServer;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class PlayerConnection implements ls, pm {
+public class PlayerConnection implements PlayInPacketListener, pm {
 
 	private static final Logger c = LogManager.getLogger();
 	public final gr a;
@@ -89,7 +95,7 @@ public class PlayerConnection implements ls, pm {
 		this.b.a(var1.a(), var1.b(), var1.c(), var1.d());
 	}
 
-	public void a(mg var1) {
+	public void handle(PacketPlayInPlayer var1) {
 		ig.a(var1, this, this.b.u());
 		WorldServer var2 = this.d.a(this.b.dimensionId);
 		this.h = true;
@@ -98,10 +104,10 @@ public class PlayerConnection implements ls, pm {
 			double var5 = this.b.locationY;
 			double var7 = this.b.locationZ;
 			double var9 = 0.0D;
-			double var11 = var1.a() - this.o;
-			double var13 = var1.b() - this.p;
-			double var15 = var1.c() - this.q;
-			if (var1.g()) {
+			double var11 = var1.getX() - this.o;
+			double var13 = var1.getFeetY() - this.p;
+			double var15 = var1.getZ() - this.q;
+			if (var1.hasPosition()) {
 				var9 = var11 * var11 + var13 * var13 + var15 * var15;
 				if (!this.r && var9 < 0.25D) {
 					this.r = true;
@@ -120,12 +126,12 @@ public class PlayerConnection implements ls, pm {
 					var19 = this.b.locationX;
 					var21 = this.b.locationY;
 					var23 = this.b.locationZ;
-					if (var1.h()) {
-						var47 = var1.d();
-						var18 = var1.e();
+					if (var1.hasLook()) {
+						var47 = var1.getYaw();
+						var18 = var1.getPitch();
 					}
 
-					this.b.onGround = var1.f();
+					this.b.onGround = var1.isOnGround();
 					this.b.l();
 					this.b.a(var19, var21, var23, var47, var18);
 					if (this.b.m != null) {
@@ -169,23 +175,23 @@ public class PlayerConnection implements ls, pm {
 				var23 = this.b.locationZ;
 				float var25 = this.b.yaw;
 				float var26 = this.b.pitch;
-				if (var1.g() && var1.b() == -999.0D) {
-					var1.a(false);
+				if (var1.hasPosition() && var1.getFeetY() == -999.0D) {
+					var1.setHasPosition(false);
 				}
 
-				if (var1.g()) {
-					var19 = var1.a();
-					var21 = var1.b();
-					var23 = var1.c();
-					if (Math.abs(var1.a()) > 3.0E7D || Math.abs(var1.c()) > 3.0E7D) {
+				if (var1.hasPosition()) {
+					var19 = var1.getX();
+					var21 = var1.getFeetY();
+					var23 = var1.getZ();
+					if (Math.abs(var1.getX()) > 3.0E7D || Math.abs(var1.getZ()) > 3.0E7D) {
 						this.c("Illegal position");
 						return;
 					}
 				}
 
-				if (var1.h()) {
-					var25 = var1.d();
-					var26 = var1.e();
+				if (var1.hasLook()) {
+					var25 = var1.getYaw();
+					var26 = var1.getPitch();
 				}
 
 				this.b.l();
@@ -209,12 +215,12 @@ public class PlayerConnection implements ls, pm {
 
 				float var41 = 0.0625F;
 				boolean var42 = var2.a((Entity) this.b, this.b.aQ().d((double) var41, (double) var41, (double) var41)).isEmpty();
-				if (this.b.onGround && !var1.f() && var29 > 0.0D) {
+				if (this.b.onGround && !var1.isOnGround() && var29 > 0.0D) {
 					this.b.bE();
 				}
 
 				this.b.d(var27, var29, var31);
-				this.b.onGround = var1.f();
+				this.b.onGround = var1.isOnGround();
 				double var43 = var29;
 				var27 = var19 - this.b.locationX;
 				var29 = var21 - this.b.locationY;
@@ -254,9 +260,9 @@ public class PlayerConnection implements ls, pm {
 					this.g = 0;
 				}
 
-				this.b.onGround = var1.f();
+				this.b.onGround = var1.isOnGround();
 				this.d.getPlayerList().d(this.b);
-				this.b.a(this.b.locationY - var17, var1.f());
+				this.b.a(this.b.locationY - var17, var1.isOnGround());
 			} else if (this.e - this.f > 20) {
 				this.a(this.o, this.p, this.q, this.b.yaw, this.b.pitch);
 			}
@@ -299,12 +305,12 @@ public class PlayerConnection implements ls, pm {
 		this.b.playerConncetion.sendPacket((Packet) (new PacketPlayOutPlayerPositionAndLook(var1, var3, var5, var7, var8, var9)));
 	}
 
-	public void a(ml var1) {
+	public void handle(PacketPlayInPlayerDigging var1) {
 		ig.a(var1, this, this.b.u());
 		WorldServer var2 = this.d.a(this.b.dimensionId);
-		Position var3 = var1.a();
+		Position var3 = var1.getPosition();
 		this.b.z();
-		switch (rn.a[var1.c().ordinal()]) {
+		switch (rn.a[var1.getAction().ordinal()]) {
 			case 1:
 				if (!this.b.v()) {
 					this.b.a(false);
@@ -332,16 +338,16 @@ public class PlayerConnection implements ls, pm {
 				} else if (var3.getY() >= this.d.al()) {
 					return;
 				} else {
-					if (var1.c() == mm.a) {
+					if (var1.getAction() == PlayerDiggingAction.START_DESTROY_BLOCK) {
 						if (!this.d.a((World) var2, var3, (EntityHuman) this.b) && var2.getWorldBorder().isInside(var3)) {
-							this.b.playerInteractManager.a(var3, var1.b());
+							this.b.playerInteractManager.a(var3, var1.getFace());
 						} else {
 							this.b.playerConncetion.sendPacket((Packet) (new PacketPlayOutBlockChange(var2, var3)));
 						}
 					} else {
-						if (var1.c() == mm.c) {
+						if (var1.getAction() == PlayerDiggingAction.STOP_DESTROY_BLOCK) {
 							this.b.playerInteractManager.a(var3);
-						} else if (var1.c() == mm.b) {
+						} else if (var1.getAction() == PlayerDiggingAction.ABORT_DESTROY_BLOCK) {
 							this.b.playerInteractManager.e();
 						}
 
@@ -357,28 +363,28 @@ public class PlayerConnection implements ls, pm {
 		}
 	}
 
-	public void a(mx var1) {
+	public void handle(PacketPlayInBlockPlace var1) {
 		ig.a(var1, this, this.b.u());
 		WorldServer var2 = this.d.a(this.b.dimensionId);
 		ItemStack var3 = this.b.playerInventory.getItemInHand();
 		boolean var4 = false;
-		Position var5 = var1.a();
-		BlockFace var6 = BlockFace.a(var1.b());
+		Position var5 = var1.getPosition();
+		BlockFace var6 = BlockFace.getById(var1.getDirection());
 		this.b.z();
-		if (var1.b() == 255) {
+		if (var1.getDirection() == 255) {
 			if (var3 == null) {
 				return;
 			}
 
 			this.b.playerInteractManager.a(this.b, var2, var3);
-		} else if (var5.getY() >= this.d.al() - 1 && (var6 == BlockFace.b || var5.getY() >= this.d.al())) {
+		} else if (var5.getY() >= this.d.al() - 1 && (var6 == BlockFace.UP || var5.getY() >= this.d.al())) {
 			ChatMessage var7 = new ChatMessage("build.tooHigh", new Object[] { Integer.valueOf(this.d.al()) });
 			var7.b().a(EnumChatFormat.RED);
 			this.b.playerConncetion.sendPacket((Packet) (new PacketPlayOutChatMessage(var7)));
 			var4 = true;
 		} else {
 			if (this.r && this.b.e((double) var5.getX() + 0.5D, (double) var5.getY() + 0.5D, (double) var5.getZ() + 0.5D) < 64.0D && !this.d.a((World) var2, var5, (EntityHuman) this.b) && var2.getWorldBorder().isInside(var5)) {
-				this.b.playerInteractManager.a(this.b, var2, var3, var5, var6, var1.d(), var1.e(), var1.f());
+				this.b.playerInteractManager.a(this.b, var2, var3, var5, var6, var1.getCursorX(), var1.getCursorY(), var1.getCursorZ());
 			}
 
 			var4 = true;
@@ -401,7 +407,7 @@ public class PlayerConnection implements ls, pm {
 			ajk var8 = this.b.activeContainer.a((IInventory) this.b.playerInventory, this.b.playerInventory.c);
 			this.b.activeContainer.b();
 			this.b.g = false;
-			if (!ItemStack.b(this.b.playerInventory.getItemInHand(), var1.c())) {
+			if (!ItemStack.b(this.b.playerInventory.getItemInHand(), var1.getItem())) {
 				this.sendPacket((Packet) (new PacketPlayOutSetSlot(this.b.activeContainer.d, var8.e, this.b.playerInventory.getItemInHand())));
 			}
 		}
@@ -507,7 +513,7 @@ public class PlayerConnection implements ls, pm {
 		}
 	}
 
-	public void a(lu var1) {
+	public void handle(PacketPlayInChatMessage var1) {
 		ig.a(var1, this, this.b.u());
 		if (this.b.y() == ahg.c) {
 			ChatMessage var4 = new ChatMessage("chat.cannotSend", new Object[0]);
@@ -515,7 +521,7 @@ public class PlayerConnection implements ls, pm {
 			this.sendPacket((Packet) (new PacketPlayOutChatMessage(var4)));
 		} else {
 			this.b.z();
-			String var2 = var1.a();
+			String var2 = var1.getMessage();
 			var2 = StringUtils.normalizeSpace(var2);
 
 			for (int var3 = 0; var3 < var2.length(); ++var3) {
@@ -586,10 +592,10 @@ public class PlayerConnection implements ls, pm {
 
 	}
 
-	public void a(md var1) {
+	public void handle(PacketPlayInUseEntity var1) {
 		ig.a(var1, this, this.b.u());
 		WorldServer var2 = this.d.a(this.b.dimensionId);
-		Entity var3 = var1.a((World) var2);
+		Entity var3 = var1.getEntity((World) var2);
 		this.b.z();
 		if (var3 != null) {
 			boolean var4 = this.b.t(var3);
@@ -599,11 +605,11 @@ public class PlayerConnection implements ls, pm {
 			}
 
 			if (this.b.h(var3) < var5) {
-				if (var1.a() == me.a) {
+				if (var1.getAction() == UseEntityAction.INTERACT) {
 					this.b.u(var3);
-				} else if (var1.a() == me.c) {
-					var3.a((EntityHuman) this.b, var1.b());
-				} else if (var1.a() == me.b) {
+				} else if (var1.getAction() == UseEntityAction.INTERACT_AT) {
+					var3.a((EntityHuman) this.b, var1.getInteractedAt());
+				} else if (var1.getAction() == UseEntityAction.ATTACK) {
 					if (var3 instanceof EntityItem || var3 instanceof EntityExpirienceOrb || var3 instanceof EntityArrow || var3 == this.b) {
 						this.c("Attempting to attack an invalid entity");
 						this.d.f("Player " + this.b.d_() + " tried to attack an invalid entity");
@@ -779,8 +785,8 @@ public class PlayerConnection implements ls, pm {
 
 	}
 
-	public void a(mf var1) {
-		if (var1.a() == this.i) {
+	public void handle(PacketPlayInKeepAlive var1) {
+		if (var1.getKeepAliveId() == this.i) {
 			int var2 = (int) (this.d() - this.j);
 			this.b.ping = (this.b.ping * 3 + var2) / 4;
 		}
@@ -905,7 +911,7 @@ public class PlayerConnection implements ls, pm {
 							var46 = ((TileEntityCommand) var5).b();
 						}
 					} else if (var43 == 1) {
-						Entity var48 = this.b.o.a(var2.readInt());
+						Entity var48 = this.b.o.getEntity(var2.readInt());
 						if (var48 instanceof EntityMinecartCommandBlock) {
 							var46 = ((EntityMinecartCommandBlock) var48).j();
 						}

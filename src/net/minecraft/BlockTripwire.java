@@ -23,7 +23,7 @@ public class BlockTripwire extends Block {
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
-		return var1.a(O, Boolean.valueOf(c(var2, var3, var1, BlockFace.c))).a(P, Boolean.valueOf(c(var2, var3, var1, BlockFace.f))).a(Q, Boolean.valueOf(c(var2, var3, var1, BlockFace.d))).a(R, Boolean.valueOf(c(var2, var3, var1, BlockFace.e)));
+		return var1.a(O, Boolean.valueOf(c(var2, var3, var1, BlockFace.NORTH))).a(P, Boolean.valueOf(c(var2, var3, var1, BlockFace.EAST))).a(Q, Boolean.valueOf(c(var2, var3, var1, BlockFace.SOUTH))).a(R, Boolean.valueOf(c(var2, var3, var1, BlockFace.WEST)));
 	}
 
 	public AxisAlignedBB a(World var1, Position var2, bec var3) {
@@ -86,7 +86,7 @@ public class BlockTripwire extends Block {
 	}
 
 	private void e(World var1, Position var2, bec var3) {
-		BlockFace[] var4 = new BlockFace[] { BlockFace.d, BlockFace.e };
+		BlockFace[] var4 = new BlockFace[] { BlockFace.SOUTH, BlockFace.WEST };
 		int var5 = var4.length;
 		int var6 = 0;
 
@@ -99,7 +99,7 @@ public class BlockTripwire extends Block {
 					Position var9 = var2.a(var7, var8);
 					bec var10 = var1.p(var9);
 					if (var10.getBlock() == Blocks.TRIPWIRE_HOOK) {
-						if (var10.b(BlockTripwireHook.a) == var7.d()) {
+						if (var10.b(BlockTripwireHook.a) == var7.getOpposite()) {
 							Blocks.TRIPWIRE_HOOK.a(var1, var9, var10, false, true, var8, var3);
 						}
 					} else if (var10.getBlock() == Blocks.TRIPWIRE) {
@@ -168,7 +168,7 @@ public class BlockTripwire extends Block {
 		bec var5 = var0.p(var4);
 		Block var6 = var5.getBlock();
 		if (var6 == Blocks.TRIPWIRE_HOOK) {
-			BlockFace var9 = var3.d();
+			BlockFace var9 = var3.getOpposite();
 			return var5.b(BlockTripwireHook.a) == var9;
 		} else if (var6 == Blocks.TRIPWIRE) {
 			boolean var7 = ((Boolean) var2.b(b)).booleanValue();

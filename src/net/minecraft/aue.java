@@ -8,37 +8,37 @@ class aue {
 
 	static {
 		try {
-			a[BlockFace.f.ordinal()] = 1;
+			a[BlockFace.EAST.ordinal()] = 1;
 		} catch (NoSuchFieldError var6) {
 			;
 		}
 
 		try {
-			a[BlockFace.e.ordinal()] = 2;
+			a[BlockFace.WEST.ordinal()] = 2;
 		} catch (NoSuchFieldError var5) {
 			;
 		}
 
 		try {
-			a[BlockFace.d.ordinal()] = 3;
+			a[BlockFace.SOUTH.ordinal()] = 3;
 		} catch (NoSuchFieldError var4) {
 			;
 		}
 
 		try {
-			a[BlockFace.c.ordinal()] = 4;
+			a[BlockFace.NORTH.ordinal()] = 4;
 		} catch (NoSuchFieldError var3) {
 			;
 		}
 
 		try {
-			a[BlockFace.b.ordinal()] = 5;
+			a[BlockFace.UP.ordinal()] = 5;
 		} catch (NoSuchFieldError var2) {
 			;
 		}
 
 		try {
-			a[BlockFace.a.ordinal()] = 6;
+			a[BlockFace.DOWN.ordinal()] = 6;
 		} catch (NoSuchFieldError var1) {
 			;
 		}

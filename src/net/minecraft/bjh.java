@@ -13,12 +13,12 @@ public class bjh extends bms {
 
 	protected void a(NBTCompoundTag var1) {
 		var1.put("tf", this.b);
-		var1.put("D", this.a.toByte());
+		var1.put("D", this.a.toDirection());
 	}
 
 	protected void b(NBTCompoundTag var1) {
 		this.b = var1.getBoolean("tf");
-		this.a = BlockFace.fromByte(var1.getInt("D"));
+		this.a = BlockFace.fromDirection(var1.getInt("D"));
 	}
 
 	public bjh(int var1, Random var2, bjb var3, BlockFace var4) {
@@ -63,41 +63,41 @@ public class bjh extends bms {
 		int var4 = this.d();
 		switch (bjf.a[this.a.ordinal()]) {
 			case 1:
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.c - 1, BlockFace.c, var4);
-				bje.a(var1, var2, var3, this.l.a - 1, this.l.b, this.l.c + 1, BlockFace.e, var4);
-				bje.a(var1, var2, var3, this.l.d + 1, this.l.b, this.l.c + 1, BlockFace.f, var4);
+				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.c - 1, BlockFace.NORTH, var4);
+				bje.a(var1, var2, var3, this.l.a - 1, this.l.b, this.l.c + 1, BlockFace.WEST, var4);
+				bje.a(var1, var2, var3, this.l.d + 1, this.l.b, this.l.c + 1, BlockFace.EAST, var4);
 				break;
 			case 2:
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.f + 1, BlockFace.d, var4);
-				bje.a(var1, var2, var3, this.l.a - 1, this.l.b, this.l.c + 1, BlockFace.e, var4);
-				bje.a(var1, var2, var3, this.l.d + 1, this.l.b, this.l.c + 1, BlockFace.f, var4);
+				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.f + 1, BlockFace.SOUTH, var4);
+				bje.a(var1, var2, var3, this.l.a - 1, this.l.b, this.l.c + 1, BlockFace.WEST, var4);
+				bje.a(var1, var2, var3, this.l.d + 1, this.l.b, this.l.c + 1, BlockFace.EAST, var4);
 				break;
 			case 3:
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.c - 1, BlockFace.c, var4);
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.f + 1, BlockFace.d, var4);
-				bje.a(var1, var2, var3, this.l.a - 1, this.l.b, this.l.c + 1, BlockFace.e, var4);
+				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.c - 1, BlockFace.NORTH, var4);
+				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.f + 1, BlockFace.SOUTH, var4);
+				bje.a(var1, var2, var3, this.l.a - 1, this.l.b, this.l.c + 1, BlockFace.WEST, var4);
 				break;
 			case 4:
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.c - 1, BlockFace.c, var4);
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.f + 1, BlockFace.d, var4);
-				bje.a(var1, var2, var3, this.l.d + 1, this.l.b, this.l.c + 1, BlockFace.f, var4);
+				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.c - 1, BlockFace.NORTH, var4);
+				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.f + 1, BlockFace.SOUTH, var4);
+				bje.a(var1, var2, var3, this.l.d + 1, this.l.b, this.l.c + 1, BlockFace.EAST, var4);
 		}
 
 		if (this.b) {
 			if (var3.nextBoolean()) {
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b + 3 + 1, this.l.c - 1, BlockFace.c, var4);
+				bje.a(var1, var2, var3, this.l.a + 1, this.l.b + 3 + 1, this.l.c - 1, BlockFace.NORTH, var4);
 			}
 
 			if (var3.nextBoolean()) {
-				bje.a(var1, var2, var3, this.l.a - 1, this.l.b + 3 + 1, this.l.c + 1, BlockFace.e, var4);
+				bje.a(var1, var2, var3, this.l.a - 1, this.l.b + 3 + 1, this.l.c + 1, BlockFace.WEST, var4);
 			}
 
 			if (var3.nextBoolean()) {
-				bje.a(var1, var2, var3, this.l.d + 1, this.l.b + 3 + 1, this.l.c + 1, BlockFace.f, var4);
+				bje.a(var1, var2, var3, this.l.d + 1, this.l.b + 3 + 1, this.l.c + 1, BlockFace.EAST, var4);
 			}
 
 			if (var3.nextBoolean()) {
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b + 3 + 1, this.l.f + 1, BlockFace.d, var4);
+				bje.a(var1, var2, var3, this.l.a + 1, this.l.b + 3 + 1, this.l.f + 1, BlockFace.SOUTH, var4);
 			}
 		}
 

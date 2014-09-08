@@ -27,7 +27,7 @@ final class amq extends eg {
 
 			bec var16 = var4.p(var11.b());
 			atl var17 = var16.getBlock() instanceof ati ? (atl) var16.b(((ati) var16.getBlock()).l()) : atl.a;
-			if (var3 != BlockFace.a && var17.c()) {
+			if (var3 != BlockFace.DOWN && var17.c()) {
 				var14 = -0.4D;
 			} else {
 				var14 = -0.9D;

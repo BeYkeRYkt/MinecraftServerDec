@@ -32,11 +32,11 @@ public class ItemDye extends Item {
 				bec var10 = var3.p(var4);
 				Block var11 = var10.getBlock();
 				if (var11 == Blocks.LOG && var10.b(BlockWood.a) == ayx.d) {
-					if (var5 == BlockFace.a) {
+					if (var5 == BlockFace.DOWN) {
 						return false;
 					}
 
-					if (var5 == BlockFace.b) {
+					if (var5 == BlockFace.UP) {
 						return false;
 					}
 

@@ -3,7 +3,7 @@ package net.minecraft;
 import io.netty.buffer.ByteBuf;
 import java.io.IOException;
 
-public class mc implements Packet<ls> {
+public class mc implements Packet<PlayInPacketListener> {
 
 	private String a;
 	private PacketDataSerializer b;
@@ -23,7 +23,7 @@ public class mc implements Packet<ls> {
 		var1.writeBytes((ByteBuf) this.b);
 	}
 
-	public void handlePacket(ls var1) {
+	public void handlePacket(PlayInPacketListener var1) {
 		var1.a(this);
 	}
 

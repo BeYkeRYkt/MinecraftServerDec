@@ -13,11 +13,11 @@ public class bkw extends blb {
 
 	public boolean a(World var1, Random var2, bjb var3) {
 		if (this.k.a / 25 > 0) {
-			this.a(var1, var3, 0, 0, this.k.c[BlockFace.a.a()]);
+			this.a(var1, var3, 0, 0, this.k.c[BlockFace.DOWN.getId()]);
 		}
 
-		blf var4 = this.k.b[BlockFace.b.a()];
-		if (var4.b[BlockFace.b.a()] == null) {
+		blf var4 = this.k.b[BlockFace.UP.getId()];
+		if (var4.b[BlockFace.UP.getId()] == null) {
 			this.a(var1, var3, 1, 8, 1, 6, 8, 6, a);
 		}
 
@@ -37,7 +37,7 @@ public class bkw extends blb {
 
 		for (int var6 = 1; var6 <= 5; var6 += 4) {
 			byte var7 = 0;
-			if (var5.c[BlockFace.d.a()]) {
+			if (var5.c[BlockFace.SOUTH.getId()]) {
 				this.a(var1, var3, 2, var6, var7, 2, var6 + 2, var7, b, b, false);
 				this.a(var1, var3, 5, var6, var7, 5, var6 + 2, var7, b, b, false);
 				this.a(var1, var3, 3, var6 + 2, var7, 4, var6 + 2, var7, b, b, false);
@@ -47,7 +47,7 @@ public class bkw extends blb {
 			}
 
 			var7 = 7;
-			if (var5.c[BlockFace.c.a()]) {
+			if (var5.c[BlockFace.NORTH.getId()]) {
 				this.a(var1, var3, 2, var6, var7, 2, var6 + 2, var7, b, b, false);
 				this.a(var1, var3, 5, var6, var7, 5, var6 + 2, var7, b, b, false);
 				this.a(var1, var3, 3, var6 + 2, var7, 4, var6 + 2, var7, b, b, false);
@@ -57,7 +57,7 @@ public class bkw extends blb {
 			}
 
 			byte var8 = 0;
-			if (var5.c[BlockFace.e.a()]) {
+			if (var5.c[BlockFace.WEST.getId()]) {
 				this.a(var1, var3, var8, var6, 2, var8, var6 + 2, 2, b, b, false);
 				this.a(var1, var3, var8, var6, 5, var8, var6 + 2, 5, b, b, false);
 				this.a(var1, var3, var8, var6 + 2, 3, var8, var6 + 2, 4, b, b, false);
@@ -67,7 +67,7 @@ public class bkw extends blb {
 			}
 
 			var8 = 7;
-			if (var5.c[BlockFace.f.a()]) {
+			if (var5.c[BlockFace.EAST.getId()]) {
 				this.a(var1, var3, var8, var6, 2, var8, var6 + 2, 2, b, b, false);
 				this.a(var1, var3, var8, var6, 5, var8, var6 + 2, 5, b, b, false);
 				this.a(var1, var3, var8, var6 + 2, 3, var8, var6 + 2, 4, b, b, false);

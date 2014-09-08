@@ -131,7 +131,7 @@ public class bkr extends blb {
 								int var14 = a(var11, var12, var13);
 								if (var2[var14] != null) {
 									if (var13 != var4) {
-										var2[var6].a(var10.d(), var2[var14]);
+										var2[var6].a(var10.getOpposite(), var2[var14]);
 									} else {
 										var2[var6].a(var10, var2[var14]);
 									}
@@ -146,22 +146,22 @@ public class bkr extends blb {
 		blf var15;
 		blf var16;
 		blf var18;
-		var2[h].a(BlockFace.b, var15 = new blf(1003));
-		var2[i].a(BlockFace.d, var16 = new blf(1001));
-		var2[j].a(BlockFace.d, var18 = new blf(1002));
+		var2[h].a(BlockFace.UP, var15 = new blf(1003));
+		var2[i].a(BlockFace.SOUTH, var16 = new blf(1001));
+		var2[j].a(BlockFace.SOUTH, var18 = new blf(1002));
 		var15.d = true;
 		var16.d = true;
 		var18.d = true;
 		this.o.e = true;
 		this.p = var2[a(var1.nextInt(4), 0, 2)];
 		this.p.d = true;
-		this.p.b[BlockFace.f.a()].d = true;
-		this.p.b[BlockFace.c.a()].d = true;
-		this.p.b[BlockFace.f.a()].b[BlockFace.c.a()].d = true;
-		this.p.b[BlockFace.b.a()].d = true;
-		this.p.b[BlockFace.f.a()].b[BlockFace.b.a()].d = true;
-		this.p.b[BlockFace.c.a()].b[BlockFace.b.a()].d = true;
-		this.p.b[BlockFace.f.a()].b[BlockFace.c.a()].b[BlockFace.b.a()].d = true;
+		this.p.b[BlockFace.EAST.getId()].d = true;
+		this.p.b[BlockFace.NORTH.getId()].d = true;
+		this.p.b[BlockFace.EAST.getId()].b[BlockFace.NORTH.getId()].d = true;
+		this.p.b[BlockFace.UP.getId()].d = true;
+		this.p.b[BlockFace.EAST.getId()].b[BlockFace.UP.getId()].d = true;
+		this.p.b[BlockFace.NORTH.getId()].b[BlockFace.UP.getId()].d = true;
+		this.p.b[BlockFace.EAST.getId()].b[BlockFace.NORTH.getId()].b[BlockFace.UP.getId()].d = true;
 		ArrayList var19 = Lists.newArrayList();
 		blf[] var20 = var2;
 		var8 = var2.length;
@@ -188,7 +188,7 @@ public class bkr extends blb {
 				++var11;
 				var12 = var1.nextInt(6);
 				if (var23.c[var12]) {
-					var13 = BlockFace.a(var12).d().a();
+					var13 = BlockFace.getById(var12).getOpposite().getId();
 					var23.c[var12] = false;
 					var23.b[var12].c[var13] = false;
 					if (var23.a(var21++) && var23.b[var12].a(var21++)) {

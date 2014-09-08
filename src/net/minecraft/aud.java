@@ -11,7 +11,7 @@ public abstract class aud extends Block {
 
 	protected aud(boolean var1) {
 		super(Material.ORIENTABLE);
-		this.j(this.L.b().a(a, BlockFace.c).a(b, Boolean.valueOf(false)));
+		this.j(this.L.b().a(a, BlockFace.NORTH).a(b, Boolean.valueOf(false)));
 		this.a(true);
 		this.a(CreativeModeTab.REDSTONE);
 		this.M = var1;
@@ -34,7 +34,7 @@ public abstract class aud extends Block {
 	}
 
 	public boolean a(World var1, Position var2, BlockFace var3) {
-		return var1.p(var2.a(var3.d())).getBlock().t();
+		return var1.p(var2.a(var3.getOpposite())).getBlock().t();
 	}
 
 	public boolean c(World var1, Position var2) {
@@ -52,13 +52,13 @@ public abstract class aud extends Block {
 	}
 
 	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return var1.p(var2.a(var3.d())).getBlock().t() ? this.P().a(a, var3).a(b, Boolean.valueOf(false)) : this.P().a(a, BlockFace.a).a(b, Boolean.valueOf(false));
+		return var1.p(var2.a(var3.getOpposite())).getBlock().t() ? this.P().a(a, var3).a(b, Boolean.valueOf(false)) : this.P().a(a, BlockFace.DOWN).a(b, Boolean.valueOf(false));
 	}
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
 		if (this.e(var1, var2, var3)) {
 			BlockFace var5 = (BlockFace) var3.b(a);
-			if (!var1.p(var2.a(var5.d())).getBlock().t()) {
+			if (!var1.p(var2.a(var5.getOpposite())).getBlock().t()) {
 				this.b(var1, var2, var3, 0);
 				var1.g(var2);
 			}
@@ -206,30 +206,30 @@ public abstract class aud extends Block {
 
 	private void b(World var1, Position var2, BlockFace var3) {
 		var1.c(var2, (Block) this);
-		var1.c(var2.a(var3.d()), (Block) this);
+		var1.c(var2.a(var3.getOpposite()), (Block) this);
 	}
 
 	public bec a(int var1) {
 		BlockFace var2;
 		switch (var1 & 7) {
 			case 0:
-				var2 = BlockFace.a;
+				var2 = BlockFace.DOWN;
 				break;
 			case 1:
-				var2 = BlockFace.f;
+				var2 = BlockFace.EAST;
 				break;
 			case 2:
-				var2 = BlockFace.e;
+				var2 = BlockFace.WEST;
 				break;
 			case 3:
-				var2 = BlockFace.d;
+				var2 = BlockFace.SOUTH;
 				break;
 			case 4:
-				var2 = BlockFace.c;
+				var2 = BlockFace.NORTH;
 				break;
 			case 5:
 			default:
-				var2 = BlockFace.b;
+				var2 = BlockFace.UP;
 		}
 
 		return this.P().a(a, var2).a(b, Boolean.valueOf((var1 & 8) > 0));

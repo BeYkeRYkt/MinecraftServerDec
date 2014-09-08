@@ -17,9 +17,9 @@ public enum en implements Predicate, Iterable {
 	public BlockFace[] a() {
 		switch (ek.c[this.ordinal()]) {
 			case 1:
-				return new BlockFace[] { BlockFace.c, BlockFace.f, BlockFace.d, BlockFace.e };
+				return new BlockFace[] { BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST };
 			case 2:
-				return new BlockFace[] { BlockFace.b, BlockFace.a };
+				return new BlockFace[] { BlockFace.UP, BlockFace.DOWN };
 			default:
 				throw new Error("Someone\'s been tampering with the universe!");
 		}

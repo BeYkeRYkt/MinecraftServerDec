@@ -126,7 +126,7 @@ public class TileEntityPiston extends TileEntity implements pm {
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
 		this.a = Block.c(var1.getInt("blockId")).a(var1.getInt("blockData"));
-		this.f = BlockFace.a(var1.getInt("facing"));
+		this.f = BlockFace.getById(var1.getInt("facing"));
 		this.j = this.i = var1.getFloat("progress");
 		this.g = var1.getBoolean("extending");
 	}
@@ -135,7 +135,7 @@ public class TileEntityPiston extends TileEntity implements pm {
 		super.write(var1);
 		var1.put("blockId", Block.getBlockId(this.a.getBlock()));
 		var1.put("blockData", this.a.getBlock().c(this.a));
-		var1.put("facing", this.f.a());
+		var1.put("facing", this.f.getId());
 		var1.put("progress", this.j);
 		var1.put("extending", this.g);
 	}

@@ -10,7 +10,7 @@ public class BlockHopper extends atg {
 
 	public BlockHopper() {
 		super(Material.ORE);
-		this.j(this.L.b().a(a, BlockFace.a).a(b, Boolean.valueOf(true)));
+		this.j(this.L.b().a(a, BlockFace.DOWN).a(b, Boolean.valueOf(true)));
 		this.a(CreativeModeTab.REDSTONE);
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
@@ -35,9 +35,9 @@ public class BlockHopper extends atg {
 	}
 
 	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		BlockFace var9 = var3.d();
-		if (var9 == BlockFace.b) {
-			var9 = BlockFace.a;
+		BlockFace var9 = var3.getOpposite();
+		if (var9 == BlockFace.UP) {
+			var9 = BlockFace.DOWN;
 		}
 
 		return this.P().a(a, var9).a(b, Boolean.valueOf(true));
@@ -110,7 +110,7 @@ public class BlockHopper extends atg {
 	}
 
 	public static BlockFace b(int var0) {
-		return BlockFace.a(var0 & 7);
+		return BlockFace.getById(var0 & 7);
 	}
 
 	public static boolean f(int var0) {
@@ -131,7 +131,7 @@ public class BlockHopper extends atg {
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((BlockFace) var1.b(a)).a();
+		int var3 = var2 | ((BlockFace) var1.b(a)).getId();
 		if (!((Boolean) var1.b(b)).booleanValue()) {
 			var3 |= 8;
 		}

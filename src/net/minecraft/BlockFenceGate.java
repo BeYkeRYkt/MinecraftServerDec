@@ -65,8 +65,8 @@ public class BlockFenceGate extends avb {
 			var3 = var3.a(a, Boolean.valueOf(false));
 			var1.a(var2, var3, 2);
 		} else {
-			BlockFace var9 = BlockFace.a((double) var4.yaw);
-			if (var3.b(N) == var9.d()) {
+			BlockFace var9 = BlockFace.fromDirection((double) var4.yaw);
+			if (var3.b(N) == var9.getOpposite()) {
 				var3 = var3.a(N, var9);
 			}
 
@@ -97,12 +97,12 @@ public class BlockFenceGate extends avb {
 	}
 
 	public bec a(int var1) {
-		return this.P().a(N, BlockFace.fromByte(var1)).a(a, Boolean.valueOf((var1 & 4) != 0)).a(b, Boolean.valueOf((var1 & 8) != 0));
+		return this.P().a(N, BlockFace.fromDirection(var1)).a(a, Boolean.valueOf((var1 & 4) != 0)).a(b, Boolean.valueOf((var1 & 8) != 0));
 	}
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((BlockFace) var1.b(N)).toByte();
+		int var3 = var2 | ((BlockFace) var1.b(N)).toDirection();
 		if (((Boolean) var1.b(b)).booleanValue()) {
 			var3 |= 8;
 		}

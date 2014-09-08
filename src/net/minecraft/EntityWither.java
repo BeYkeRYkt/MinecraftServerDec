@@ -68,7 +68,7 @@ public class EntityWither extends EntityMonster implements afr {
 		double var6;
 		double var8;
 		if (!this.o.D && this.s(0) > 0) {
-			Entity var1 = this.o.a(this.s(0));
+			Entity var1 = this.o.getEntity(this.s(0));
 			if (var1 != null) {
 				if (this.locationY < var1.locationY || !this.ck() && this.locationY < var1.locationY + 5.0D) {
 					if (this.motionY < 0.0D) {
@@ -106,7 +106,7 @@ public class EntityWither extends EntityMonster implements afr {
 			var22 = this.s(var20 + 1);
 			Entity var3 = null;
 			if (var22 > 0) {
-				var3 = this.o.a(var22);
+				var3 = this.o.getEntity(var22);
 			}
 
 			if (var3 != null) {
@@ -184,7 +184,7 @@ public class EntityWither extends EntityMonster implements afr {
 
 					var12 = this.s(var1);
 					if (var12 > 0) {
-						Entity var14 = this.o.a(var12);
+						Entity var14 = this.o.getEntity(var12);
 						if (var14 != null && var14.ai() && this.h(var14) <= 900.0D && this.t(var14)) {
 							this.a(var1 + 1, (EntityLiving) var14);
 							this.bm[var1 - 1] = this.W + 40 + this.V.nextInt(20);

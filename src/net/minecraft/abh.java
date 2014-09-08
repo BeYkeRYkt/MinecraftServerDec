@@ -14,7 +14,7 @@ public class abh {
 	}
 
 	private static BlockFace a(int var0, int var1) {
-		return var0 < 0 ? BlockFace.e : (var0 > 0 ? BlockFace.f : (var1 < 0 ? BlockFace.c : BlockFace.d));
+		return var0 < 0 ? BlockFace.WEST : (var0 > 0 ? BlockFace.EAST : (var1 < 0 ? BlockFace.NORTH : BlockFace.SOUTH));
 	}
 
 	public abh(Position var1, BlockFace var2, int var3) {

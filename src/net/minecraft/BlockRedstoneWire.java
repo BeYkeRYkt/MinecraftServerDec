@@ -25,10 +25,10 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	public bec a(bec var1, ard var2, Position var3) {
-		var1 = var1.a(N, this.c(var2, var3, BlockFace.e));
-		var1 = var1.a(b, this.c(var2, var3, BlockFace.f));
-		var1 = var1.a(a, this.c(var2, var3, BlockFace.c));
-		var1 = var1.a(M, this.c(var2, var3, BlockFace.d));
+		var1 = var1.a(N, this.c(var2, var3, BlockFace.WEST));
+		var1 = var1.a(b, this.c(var2, var3, BlockFace.EAST));
+		var1 = var1.a(a, this.c(var2, var3, BlockFace.NORTH));
+		var1 = var1.a(M, this.c(var2, var3, BlockFace.SOUTH));
 		return var1;
 	}
 
@@ -254,7 +254,7 @@ public class BlockRedstoneWire extends Block {
 			int var5 = ((Integer) var3.b(O)).intValue();
 			if (var5 == 0) {
 				return 0;
-			} else if (var4 == BlockFace.b) {
+			} else if (var4 == BlockFace.UP) {
 				return var5;
 			} else {
 				EnumSet var6 = EnumSet.noneOf(BlockFace.class);
@@ -301,7 +301,7 @@ public class BlockRedstoneWire extends Block {
 			return true;
 		} else if (Blocks.UNPOWERED_REPEATER.e(var2)) {
 			BlockFace var3 = (BlockFace) var0.b(BlockRepeater.N);
-			return var3 == var1 || var3.d() == var1;
+			return var3 == var1 || var3.getOpposite() == var1;
 		} else {
 			return var2.g() && var1 != null;
 		}

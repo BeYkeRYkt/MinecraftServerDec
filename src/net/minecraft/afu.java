@@ -22,7 +22,7 @@ class afu extends zy {
 		} else {
 			Random var1 = this.a.bb();
 			if (var1.nextInt(10) == 0) {
-				this.b = BlockFace.a(var1);
+				this.b = BlockFace.getRandom(var1);
 				Position var2 = (new Position(this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ)).a(this.b);
 				bec var3 = this.a.o.p(var2);
 				if (BlockMonsterEggs.d(var3)) {

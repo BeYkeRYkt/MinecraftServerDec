@@ -12,7 +12,7 @@ public class BlockRedstoneComparator extends ava implements avs {
 
 	public BlockRedstoneComparator(boolean var1) {
 		super(var1);
-		this.j(this.L.b().a(N, BlockFace.c).a(a, Boolean.valueOf(false)).a(b, aur.a));
+		this.j(this.L.b().a(N, BlockFace.NORTH).a(a, Boolean.valueOf(false)).a(b, aur.a));
 		this.A = true;
 	}
 
@@ -173,12 +173,12 @@ public class BlockRedstoneComparator extends ava implements avs {
 	}
 
 	public bec a(int var1) {
-		return this.P().a(N, BlockFace.fromByte(var1)).a(a, Boolean.valueOf((var1 & 8) > 0)).a(b, (var1 & 4) > 0 ? aur.b : aur.a);
+		return this.P().a(N, BlockFace.fromDirection(var1)).a(a, Boolean.valueOf((var1 & 8) > 0)).a(b, (var1 & 4) > 0 ? aur.b : aur.a);
 	}
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((BlockFace) var1.b(N)).toByte();
+		int var3 = var2 | ((BlockFace) var1.b(N)).toDirection();
 		if (((Boolean) var1.b(a)).booleanValue()) {
 			var3 |= 8;
 		}
@@ -195,7 +195,7 @@ public class BlockRedstoneComparator extends ava implements avs {
 	}
 
 	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return this.P().a(N, var8.aO().d()).a(a, Boolean.valueOf(false)).a(b, aur.a);
+		return this.P().a(N, var8.aO().getOpposite()).a(a, Boolean.valueOf(false)).a(b, aur.a);
 	}
 
 }

@@ -33,7 +33,7 @@ public class bjg extends bms {
 		this.l = var3;
 		this.a = var2.nextInt(3) == 0;
 		this.b = !this.a && var2.nextInt(23) == 0;
-		if (this.m != BlockFace.c && this.m != BlockFace.d) {
+		if (this.m != BlockFace.NORTH && this.m != BlockFace.SOUTH) {
 			this.d = var3.c() / 5;
 		} else {
 			this.d = var3.e() / 5;
@@ -82,36 +82,36 @@ public class bjg extends bms {
 					if (var5 <= 1) {
 						bje.a(var1, var2, var3, this.l.a, this.l.b - 1 + var3.nextInt(3), this.l.c - 1, this.m, var4);
 					} else if (var5 == 2) {
-						bje.a(var1, var2, var3, this.l.a - 1, this.l.b - 1 + var3.nextInt(3), this.l.c, BlockFace.e, var4);
+						bje.a(var1, var2, var3, this.l.a - 1, this.l.b - 1 + var3.nextInt(3), this.l.c, BlockFace.WEST, var4);
 					} else {
-						bje.a(var1, var2, var3, this.l.d + 1, this.l.b - 1 + var3.nextInt(3), this.l.c, BlockFace.f, var4);
+						bje.a(var1, var2, var3, this.l.d + 1, this.l.b - 1 + var3.nextInt(3), this.l.c, BlockFace.EAST, var4);
 					}
 					break;
 				case 2:
 					if (var5 <= 1) {
 						bje.a(var1, var2, var3, this.l.a, this.l.b - 1 + var3.nextInt(3), this.l.f + 1, this.m, var4);
 					} else if (var5 == 2) {
-						bje.a(var1, var2, var3, this.l.a - 1, this.l.b - 1 + var3.nextInt(3), this.l.f - 3, BlockFace.e, var4);
+						bje.a(var1, var2, var3, this.l.a - 1, this.l.b - 1 + var3.nextInt(3), this.l.f - 3, BlockFace.WEST, var4);
 					} else {
-						bje.a(var1, var2, var3, this.l.d + 1, this.l.b - 1 + var3.nextInt(3), this.l.f - 3, BlockFace.f, var4);
+						bje.a(var1, var2, var3, this.l.d + 1, this.l.b - 1 + var3.nextInt(3), this.l.f - 3, BlockFace.EAST, var4);
 					}
 					break;
 				case 3:
 					if (var5 <= 1) {
 						bje.a(var1, var2, var3, this.l.a - 1, this.l.b - 1 + var3.nextInt(3), this.l.c, this.m, var4);
 					} else if (var5 == 2) {
-						bje.a(var1, var2, var3, this.l.a, this.l.b - 1 + var3.nextInt(3), this.l.c - 1, BlockFace.c, var4);
+						bje.a(var1, var2, var3, this.l.a, this.l.b - 1 + var3.nextInt(3), this.l.c - 1, BlockFace.NORTH, var4);
 					} else {
-						bje.a(var1, var2, var3, this.l.a, this.l.b - 1 + var3.nextInt(3), this.l.f + 1, BlockFace.d, var4);
+						bje.a(var1, var2, var3, this.l.a, this.l.b - 1 + var3.nextInt(3), this.l.f + 1, BlockFace.SOUTH, var4);
 					}
 					break;
 				case 4:
 					if (var5 <= 1) {
 						bje.a(var1, var2, var3, this.l.d + 1, this.l.b - 1 + var3.nextInt(3), this.l.c, this.m, var4);
 					} else if (var5 == 2) {
-						bje.a(var1, var2, var3, this.l.d - 3, this.l.b - 1 + var3.nextInt(3), this.l.c - 1, BlockFace.c, var4);
+						bje.a(var1, var2, var3, this.l.d - 3, this.l.b - 1 + var3.nextInt(3), this.l.c - 1, BlockFace.NORTH, var4);
 					} else {
-						bje.a(var1, var2, var3, this.l.d - 3, this.l.b - 1 + var3.nextInt(3), this.l.f + 1, BlockFace.d, var4);
+						bje.a(var1, var2, var3, this.l.d - 3, this.l.b - 1 + var3.nextInt(3), this.l.f + 1, BlockFace.SOUTH, var4);
 					}
 			}
 		}
@@ -119,22 +119,22 @@ public class bjg extends bms {
 		if (var4 < 8) {
 			int var6;
 			int var7;
-			if (this.m != BlockFace.c && this.m != BlockFace.d) {
+			if (this.m != BlockFace.NORTH && this.m != BlockFace.SOUTH) {
 				for (var6 = this.l.a + 3; var6 + 3 <= this.l.d; var6 += 5) {
 					var7 = var3.nextInt(5);
 					if (var7 == 0) {
-						bje.a(var1, var2, var3, var6, this.l.b, this.l.c - 1, BlockFace.c, var4 + 1);
+						bje.a(var1, var2, var3, var6, this.l.b, this.l.c - 1, BlockFace.NORTH, var4 + 1);
 					} else if (var7 == 1) {
-						bje.a(var1, var2, var3, var6, this.l.b, this.l.f + 1, BlockFace.d, var4 + 1);
+						bje.a(var1, var2, var3, var6, this.l.b, this.l.f + 1, BlockFace.SOUTH, var4 + 1);
 					}
 				}
 			} else {
 				for (var6 = this.l.c + 3; var6 + 3 <= this.l.f; var6 += 5) {
 					var7 = var3.nextInt(5);
 					if (var7 == 0) {
-						bje.a(var1, var2, var3, this.l.a - 1, this.l.b, var6, BlockFace.e, var4 + 1);
+						bje.a(var1, var2, var3, this.l.a - 1, this.l.b, var6, BlockFace.WEST, var4 + 1);
 					} else if (var7 == 1) {
-						bje.a(var1, var2, var3, this.l.d + 1, this.l.b, var6, BlockFace.f, var4 + 1);
+						bje.a(var1, var2, var3, this.l.d + 1, this.l.b, var6, BlockFace.EAST, var4 + 1);
 					}
 				}
 			}
@@ -192,8 +192,8 @@ public class bjg extends bms {
 				this.a(var1, var3, var2, 0.05F, 2, 2, var10 - 2, Blocks.WEB.P());
 				this.a(var1, var3, var2, 0.05F, 0, 2, var10 + 2, Blocks.WEB.P());
 				this.a(var1, var3, var2, 0.05F, 2, 2, var10 + 2, Blocks.WEB.P());
-				this.a(var1, var3, var2, 0.05F, 1, 2, var10 - 1, Blocks.TORCH.a(BlockFace.b.a()));
-				this.a(var1, var3, var2, 0.05F, 1, 2, var10 + 1, Blocks.TORCH.a(BlockFace.b.a()));
+				this.a(var1, var3, var2, 0.05F, 1, 2, var10 - 1, Blocks.TORCH.a(BlockFace.UP.getId()));
+				this.a(var1, var3, var2, 0.05F, 1, 2, var10 + 1, Blocks.TORCH.a(BlockFace.UP.getId()));
 				if (var2.nextInt(100) == 0) {
 					this.a(var1, var3, var2, 2, 0, var10 - 1, vl.a(bje.b(), new vl[] { Items.ENCHANTED_BOOK.b(var2) }), 3 + var2.nextInt(4));
 				}

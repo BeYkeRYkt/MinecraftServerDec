@@ -9,7 +9,7 @@ public class BlockAnvil extends avt {
 
 	protected BlockAnvil() {
 		super(Material.HEAVY);
-		this.j(this.L.b().a(a, BlockFace.c).a(b, Integer.valueOf(0)));
+		this.j(this.L.b().a(a, BlockFace.NORTH).a(b, Integer.valueOf(0)));
 		this.e(0);
 		this.a(CreativeModeTab.DECORATIONS);
 	}
@@ -58,12 +58,12 @@ public class BlockAnvil extends avt {
 	}
 
 	public bec a(int var1) {
-		return this.P().a(a, BlockFace.fromByte(var1 & 3)).a(b, Integer.valueOf((var1 & 15) >> 2));
+		return this.P().a(a, BlockFace.fromDirection(var1 & 3)).a(b, Integer.valueOf((var1 & 15) >> 2));
 	}
 
 	public int c(bec var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((BlockFace) var1.b(a)).toByte();
+		int var3 = var2 | ((BlockFace) var1.b(a)).toDirection();
 		var3 |= ((Integer) var1.b(b)).intValue() << 2;
 		return var3;
 	}

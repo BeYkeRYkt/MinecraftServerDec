@@ -1,10 +1,10 @@
 package net.minecraft;
 
-public class mb implements Packet<ls> {
+public class mb implements Packet<PlayInPacketListener> {
 
 	private int a;
 
-	public void handlePacket(ls var1) {
+	public void handlePacket(PlayInPacketListener var1) {
 		var1.a(this);
 	}
 

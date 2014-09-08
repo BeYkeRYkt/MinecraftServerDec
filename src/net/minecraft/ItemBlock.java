@@ -17,7 +17,7 @@ public class ItemBlock extends Item {
 		bec var9 = var3.p(var4);
 		Block var10 = var9.getBlock();
 		if (var10 == Blocks.SNOW_LAYER && ((Integer) var9.b(BlockSnow.a)).intValue() < 1) {
-			var5 = BlockFace.b;
+			var5 = BlockFace.UP;
 		} else if (!var10.f(var3, var4)) {
 			var4 = var4.a(var5);
 		}

@@ -17,7 +17,7 @@ public class ItemHoe extends Item {
 		} else {
 			bec var9 = var3.p(var4);
 			Block var10 = var9.getBlock();
-			if (var5 != BlockFace.a && var3.p(var4.a()).getBlock().r() == Material.AIR) {
+			if (var5 != BlockFace.DOWN && var3.p(var4.a()).getBlock().r() == Material.AIR) {
 				if (var10 == Blocks.GRASS) {
 					return this.a(var1, var2, var3, var4, Blocks.FARMLAND.P());
 				}

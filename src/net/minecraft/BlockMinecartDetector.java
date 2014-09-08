@@ -45,7 +45,7 @@ public class BlockMinecartDetector extends ati {
 	}
 
 	public int b(ard var1, Position var2, bec var3, BlockFace var4) {
-		return !((Boolean) var3.b(M)).booleanValue() ? 0 : (var4 == BlockFace.b ? 15 : 0);
+		return !((Boolean) var3.b(M)).booleanValue() ? 0 : (var4 == BlockFace.UP ? 15 : 0);
 	}
 
 	private void e(World var1, Position var2, bec var3) {

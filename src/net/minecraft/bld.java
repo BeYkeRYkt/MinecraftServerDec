@@ -13,10 +13,10 @@ public class bld extends blb {
 
 	public boolean a(World var1, Random var2, bjb var3) {
 		if (this.k.a / 25 > 0) {
-			this.a(var1, var3, 0, 0, this.k.c[BlockFace.a.a()]);
+			this.a(var1, var3, 0, 0, this.k.c[BlockFace.DOWN.getId()]);
 		}
 
-		if (this.k.b[BlockFace.b.a()] == null) {
+		if (this.k.b[BlockFace.UP.getId()] == null) {
 			this.a(var1, var3, 1, 4, 1, 6, 4, 6, a);
 		}
 
@@ -45,7 +45,7 @@ public class bld extends blb {
 		this.a(var1, var3, 7, 1, 3, 7, 2, 4, c, c, false);
 		this.a(var1, var3, 3, 1, 0, 4, 2, 0, c, c, false);
 		this.a(var1, var3, 3, 1, 7, 4, 2, 7, c, c, false);
-		if (this.k.c[BlockFace.d.a()]) {
+		if (this.k.c[BlockFace.SOUTH.getId()]) {
 			this.a(var1, var3, 3, 1, 0, 4, 2, 0, f, f, false);
 		}
 

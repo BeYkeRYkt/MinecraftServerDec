@@ -49,7 +49,7 @@ public abstract class axl extends Block {
 
 	public boolean b(ard var1, Position var2, BlockFace var3) {
 		Material var4 = var1.p(var2).getBlock().r();
-		return var4 == this.material ? false : (var3 == BlockFace.b ? true : (var4 == Material.ICE ? false : super.b(var1, var2, var3)));
+		return var4 == this.material ? false : (var3 == BlockFace.UP ? true : (var4 == Material.ICE ? false : super.b(var1, var2, var3)));
 	}
 
 	public AxisAlignedBB a(World var1, Position var2, bec var3) {
@@ -134,7 +134,7 @@ public abstract class axl extends Block {
 
 			for (int var7 = 0; var7 < var6; ++var7) {
 				BlockFace var8 = var5[var7];
-				if (var8 != BlockFace.a && var1.p(var2.a(var8)).getBlock().r() == Material.WATER) {
+				if (var8 != BlockFace.DOWN && var1.p(var2.a(var8)).getBlock().r() == Material.WATER) {
 					var4 = true;
 					break;
 				}

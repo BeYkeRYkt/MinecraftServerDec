@@ -162,10 +162,10 @@ public class TileEntityChest extends bdf implements pm, IInventory {
 	public void m() {
 		if (!this.a) {
 			this.a = true;
-			this.h = this.a(BlockFace.e);
-			this.g = this.a(BlockFace.f);
-			this.f = this.a(BlockFace.c);
-			this.i = this.a(BlockFace.d);
+			this.h = this.a(BlockFace.WEST);
+			this.g = this.a(BlockFace.EAST);
+			this.f = this.a(BlockFace.NORTH);
+			this.i = this.a(BlockFace.SOUTH);
 		}
 	}
 
@@ -175,7 +175,7 @@ public class TileEntityChest extends bdf implements pm, IInventory {
 			TileEntity var3 = this.world.s(var2);
 			if (var3 instanceof TileEntityChest) {
 				TileEntityChest var4 = (TileEntityChest) var3;
-				var4.a(this, var1.d());
+				var4.a(this, var1.getOpposite());
 				return var4;
 			}
 		}

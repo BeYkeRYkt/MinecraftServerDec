@@ -3,7 +3,7 @@ package net.minecraft;
 public class BlockWallBanner extends atb {
 
 	public BlockWallBanner() {
-		this.j(this.L.b().a(a, BlockFace.c));
+		this.j(this.L.b().a(a, BlockFace.NORTH));
 	}
 
 	public void a(ard var1, Position var2) {
@@ -33,7 +33,7 @@ public class BlockWallBanner extends atb {
 
 	public void a(World var1, Position var2, bec var3, Block var4) {
 		BlockFace var5 = (BlockFace) var3.b(a);
-		if (!var1.p(var2.a(var5.d())).getBlock().r().isBuildable()) {
+		if (!var1.p(var2.a(var5.getOpposite())).getBlock().r().isBuildable()) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
 		}
@@ -42,16 +42,16 @@ public class BlockWallBanner extends atb {
 	}
 
 	public bec a(int var1) {
-		BlockFace var2 = BlockFace.a(var1);
+		BlockFace var2 = BlockFace.getById(var1);
 		if (var2.k() == el.b) {
-			var2 = BlockFace.c;
+			var2 = BlockFace.NORTH;
 		}
 
 		return this.P().a(a, var2);
 	}
 
 	public int c(bec var1) {
-		return ((BlockFace) var1.b(a)).a();
+		return ((BlockFace) var1.b(a)).getId();
 	}
 
 	protected bed e() {

@@ -198,7 +198,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 		if (var1 == null) {
 			return false;
 		} else {
-			BlockFace var2 = BlockHopper.b(this.u()).d();
+			BlockFace var2 = BlockHopper.b(this.u()).getOpposite();
 			if (this.a(var1, var2)) {
 				return false;
 			} else {
@@ -271,7 +271,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 	public static boolean a(bdd var0) {
 		IInventory var1 = b(var0);
 		if (var1 != null) {
-			BlockFace var2 = BlockFace.a;
+			BlockFace var2 = BlockFace.DOWN;
 			if (b(var1, var2)) {
 				return false;
 			}

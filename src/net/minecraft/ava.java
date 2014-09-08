@@ -126,7 +126,7 @@ public abstract class ava extends avb {
 	}
 
 	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return this.P().a(N, var8.aO().d());
+		return this.P().a(N, var8.aO().getOpposite());
 	}
 
 	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
@@ -142,7 +142,7 @@ public abstract class ava extends avb {
 
 	protected void h(World var1, Position var2, bec var3) {
 		BlockFace var4 = (BlockFace) var3.b(N);
-		Position var5 = var2.a(var4.d());
+		Position var5 = var2.a(var4.getOpposite());
 		var1.d(var5, this);
 		var1.a(var5, (Block) this, var4);
 	}
@@ -182,7 +182,7 @@ public abstract class ava extends avb {
 	}
 
 	public boolean i(World var1, Position var2, bec var3) {
-		BlockFace var4 = ((BlockFace) var3.b(N)).d();
+		BlockFace var4 = ((BlockFace) var3.b(N)).getOpposite();
 		Position var5 = var2.a(var4);
 		return d(var1.p(var5).getBlock()) ? var1.p(var5).b(N) != var4 : false;
 	}

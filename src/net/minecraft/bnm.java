@@ -118,7 +118,7 @@ public class bnm extends bnn {
 		this.a(var1, Blocks.AIR.P(), 2, 1, 0, var3);
 		this.a(var1, Blocks.AIR.P(), 2, 2, 0, var3);
 		this.a(var1, Blocks.TORCH.P().a(BlockTorch.a, this.m), 2, 3, 1, var3);
-		this.a(var1, var3, var2, 2, 1, 0, BlockFace.fromByte(this.a(Blocks.WOODEN_DOOR, 1)));
+		this.a(var1, var3, var2, 2, 1, 0, BlockFace.fromDirection(this.a(Blocks.WOODEN_DOOR, 1)));
 		this.a(var1, var3, 1, 0, -1, 3, 2, -1, Blocks.AIR.P(), Blocks.AIR.P(), false);
 		if (this.a(var1, 2, 0, -1, var3).getBlock().r() == Material.AIR && this.a(var1, 2, -1, -1, var3).getBlock().r() != Material.AIR) {
 			this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 2, 0, -1, var3);

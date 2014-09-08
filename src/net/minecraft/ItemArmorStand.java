@@ -10,7 +10,7 @@ public class ItemArmorStand extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		if (var5 == BlockFace.a) {
+		if (var5 == BlockFace.DOWN) {
 			return false;
 		} else {
 			boolean var9 = var3.p(var4).getBlock().f(var3, var4);

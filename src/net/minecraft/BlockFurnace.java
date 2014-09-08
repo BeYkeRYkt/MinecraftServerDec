@@ -11,7 +11,7 @@ public class BlockFurnace extends atg {
 
 	protected BlockFurnace(boolean var1) {
 		super(Material.STONE);
-		this.j(this.L.b().a(a, BlockFace.c));
+		this.j(this.L.b().a(a, BlockFace.NORTH));
 		this.b = var1;
 	}
 
@@ -30,14 +30,14 @@ public class BlockFurnace extends atg {
 			Block var6 = var1.p(var2.e()).getBlock();
 			Block var7 = var1.p(var2.f()).getBlock();
 			BlockFace var8 = (BlockFace) var3.b(a);
-			if (var8 == BlockFace.c && var4.m() && !var5.m()) {
-				var8 = BlockFace.d;
-			} else if (var8 == BlockFace.d && var5.m() && !var4.m()) {
-				var8 = BlockFace.c;
-			} else if (var8 == BlockFace.e && var6.m() && !var7.m()) {
-				var8 = BlockFace.f;
-			} else if (var8 == BlockFace.f && var7.m() && !var6.m()) {
-				var8 = BlockFace.e;
+			if (var8 == BlockFace.NORTH && var4.m() && !var5.m()) {
+				var8 = BlockFace.SOUTH;
+			} else if (var8 == BlockFace.SOUTH && var5.m() && !var4.m()) {
+				var8 = BlockFace.NORTH;
+			} else if (var8 == BlockFace.WEST && var6.m() && !var7.m()) {
+				var8 = BlockFace.EAST;
+			} else if (var8 == BlockFace.EAST && var7.m() && !var6.m()) {
+				var8 = BlockFace.WEST;
 			}
 
 			var1.a(var2, var3.a(a, var8), 2);
@@ -82,11 +82,11 @@ public class BlockFurnace extends atg {
 	}
 
 	public bec a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return this.P().a(a, var8.aO().d());
+		return this.P().a(a, var8.aO().getOpposite());
 	}
 
 	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
-		var1.a(var2, var3.a(a, var4.aO().d()), 2);
+		var1.a(var2, var3.a(a, var4.aO().getOpposite()), 2);
 		if (var5.s()) {
 			TileEntity var6 = var1.s(var2);
 			if (var6 instanceof TileEntityFurnace) {
@@ -121,16 +121,16 @@ public class BlockFurnace extends atg {
 	}
 
 	public bec a(int var1) {
-		BlockFace var2 = BlockFace.a(var1);
+		BlockFace var2 = BlockFace.getById(var1);
 		if (var2.k() == el.b) {
-			var2 = BlockFace.c;
+			var2 = BlockFace.NORTH;
 		}
 
 		return this.P().a(a, var2);
 	}
 
 	public int c(bec var1) {
-		return ((BlockFace) var1.b(a)).a();
+		return ((BlockFace) var1.b(a)).getId();
 	}
 
 	protected bed e() {
