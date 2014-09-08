@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class PacketStatusInRequest implements Packet<StatusInPacketListener> {
+public class PacketStatusInRequest implements Packet<StatusServerboundPacketListener> {
 
 	public void readData(PacketDataSerializer serializer) {
 	}
@@ -8,7 +8,7 @@ public class PacketStatusInRequest implements Packet<StatusInPacketListener> {
 	public void writeData(PacketDataSerializer serializer) {
 	}
 
-	public void handlePacket(StatusInPacketListener listener) {
+	public void handlePacket(StatusServerboundPacketListener listener) {
 		listener.handle(this);
 	}
 

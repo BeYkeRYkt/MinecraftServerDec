@@ -2,7 +2,7 @@ package net.minecraft;
 
 import net.minecraft.server.MinecraftServer;
 
-public class ru implements StatusInPacketListener {
+public class ru implements StatusServerboundPacketListener {
 
 	private final MinecraftServer a;
 	private final gr b;

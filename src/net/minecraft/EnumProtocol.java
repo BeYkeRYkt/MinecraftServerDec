@@ -133,12 +133,12 @@ public enum EnumProtocol {
 	},
 	LOGIN(2) {
 		{
-			registerPacket(PacketDirection.CLIENTBOUND, ng.class);
-			registerPacket(PacketDirection.CLIENTBOUND, ne.class);
-			registerPacket(PacketDirection.CLIENTBOUND, nd.class);
-			registerPacket(PacketDirection.CLIENTBOUND, nf.class);
-			registerPacket(PacketDirection.SERVERBOUND, ni.class);
-			registerPacket(PacketDirection.SERVERBOUND, nj.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketLoginOutDisconnect.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketLoginOutEncryptionRequest.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketLoginOutLoginSuccess.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketLoginOutSetCompression.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketLoginInLoginStart.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketLoginInEncryptionResponse.class);
 		}
 	};
 

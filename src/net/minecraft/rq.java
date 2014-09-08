@@ -14,7 +14,7 @@ import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class rq implements nh, pm {
+public class rq implements LoginServerboundPacketListener, pm {
 
 	private static final AtomicInteger b = new AtomicInteger(0);
 	private static final Logger c = LogManager.getLogger();
@@ -51,7 +51,7 @@ public class rq implements nh, pm {
 		try {
 			c.info("Disconnecting " + this.d() + ": " + var1);
 			ChatComponentText var2 = new ChatComponentText(var1);
-			this.a.a((Packet) (new ng(var2)));
+			this.a.a((Packet) (new PacketLoginOutDisconnect(var2)));
 			this.a.a((IChatBaseComponent) var2);
 		} catch (Exception var3) {
 			c.error("Error whilst disconnecting player", (Throwable) var3);
@@ -70,10 +70,10 @@ public class rq implements nh, pm {
 		} else {
 			this.g = rt.e;
 			if (this.f.getCompressionThreshold() >= 0 && !this.a.c()) {
-				this.a.a(new nf(this.f.getCompressionThreshold()), new rr(this), new GenericFutureListener[0]);
+				this.a.a(new PacketLoginOutSetCompression(this.f.getCompressionThreshold()), new rr(this), new GenericFutureListener[0]);
 			}
 
-			this.a.a((Packet) (new nd(this.i)));
+			this.a.a((Packet) (new PacketLoginOutLoginSuccess(this.i)));
 			this.f.getPlayerList().a(this.a, this.f.getPlayerList().f(this.i));
 		}
 
@@ -87,25 +87,25 @@ public class rq implements nh, pm {
 		return this.i != null ? this.i.toString() + " (" + this.a.b().toString() + ")" : String.valueOf(this.a.b());
 	}
 
-	public void a(ni var1) {
+	public void handle(PacketLoginInLoginStart var1) {
 		Validate.validState(this.g == rt.a, "Unexpected hello packet", new Object[0]);
-		this.i = var1.a();
+		this.i = var1.getProfile();
 		if (this.f.isOnlineMode() && !this.a.c()) {
 			this.g = rt.b;
-			this.a.a((Packet) (new ne(this.j, this.f.P().getPublic(), this.e)));
+			this.a.a((Packet) (new PacketLoginOutEncryptionRequest(this.j, this.f.P().getPublic(), this.e)));
 		} else {
 			this.g = rt.d;
 		}
 
 	}
 
-	public void a(nj var1) {
+	public void handle(PacketLoginInEncryptionResponse var1) {
 		Validate.validState(this.g == rt.b, "Unexpected key packet", new Object[0]);
 		PrivateKey var2 = this.f.P().getPrivate();
-		if (!Arrays.equals(this.e, var1.b(var2))) {
+		if (!Arrays.equals(this.e, var1.getVerifyToken(var2))) {
 			throw new IllegalStateException("Invalid nonce!");
 		} else {
-			this.k = var1.a(var2);
+			this.k = var1.getSharedKey(var2);
 			this.g = rt.c;
 			this.a.a(this.k);
 			(new rs(this, "User Authenticator #" + b.incrementAndGet())).start();

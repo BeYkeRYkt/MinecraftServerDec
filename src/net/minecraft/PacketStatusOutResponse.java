@@ -3,7 +3,7 @@ package net.minecraft;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class PacketStatusOutResponse implements Packet<StatusOutPacketListener> {
+public class PacketStatusOutResponse implements Packet<StatusClientboundPacketListener> {
 
 	private static final Gson response = 
 		new GsonBuilder()
@@ -31,7 +31,7 @@ public class PacketStatusOutResponse implements Packet<StatusOutPacketListener> 
 		serializer.writeString(response.toJson(this.serverPing));
 	}
 
-	public void handlePacket(StatusOutPacketListener listener) {
+	public void handlePacket(StatusClientboundPacketListener listener) {
 		listener.handle(this);
 	}
 

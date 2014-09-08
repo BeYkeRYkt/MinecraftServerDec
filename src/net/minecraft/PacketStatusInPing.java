@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class PacketStatusInPing implements Packet<StatusInPacketListener> {
+public class PacketStatusInPing implements Packet<StatusServerboundPacketListener> {
 
 	private long time;
 
@@ -12,7 +12,7 @@ public class PacketStatusInPing implements Packet<StatusInPacketListener> {
 		serializer.writeLong(this.time);
 	}
 
-	public void handlePacket(StatusInPacketListener listener) {
+	public void handlePacket(StatusServerboundPacketListener listener) {
 		listener.handle(this);
 	}
 

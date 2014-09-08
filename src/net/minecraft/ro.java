@@ -19,11 +19,11 @@ public class ro implements HandshakingServerboundPacketListener {
 				ChatComponentText var2;
 				if (var1.getProtocolVersion() > 47) {
 					var2 = new ChatComponentText("Outdated server! I\'m still on 1.8");
-					this.b.a((Packet) (new ng(var2)));
+					this.b.a((Packet) (new PacketLoginOutDisconnect(var2)));
 					this.b.a((IChatBaseComponent) var2);
 				} else if (var1.getProtocolVersion() < 47) {
 					var2 = new ChatComponentText("Outdated client! Please use 1.8");
-					this.b.a((Packet) (new ng(var2)));
+					this.b.a((Packet) (new PacketLoginOutDisconnect(var2)));
 					this.b.a((IChatBaseComponent) var2);
 				} else {
 					this.b.a((PacketListener) (new rq(this.a, this.b)));
