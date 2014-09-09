@@ -54,7 +54,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public AxisAlignedBB j(Entity var1) {
-		return var1.ae() ? var1.aQ() : null;
+		return var1.ae() ? var1.getBoundingBox() : null;
 	}
 
 	public AxisAlignedBB S() {
@@ -236,7 +236,7 @@ public abstract class adx extends Entity implements vz {
 			}
 
 			this.b(this.yaw, this.pitch);
-			Iterator var12 = this.world.b((Entity) this, this.aQ().b(0.20000000298023224D, 0.0D, 0.20000000298023224D)).iterator();
+			Iterator var12 = this.world.b((Entity) this, this.getBoundingBox().grow(0.20000000298023224D, 0.0D, 0.20000000298023224D)).iterator();
 
 			while (var12.hasNext()) {
 				Entity var13 = (Entity) var12.next();
@@ -274,7 +274,7 @@ public abstract class adx extends Entity implements vz {
 			this.motionZ *= 0.5D;
 		}
 
-		this.d(this.motionX, this.motionY, this.motionZ);
+		this.move(this.motionX, this.motionY, this.motionZ);
 		if (!this.onGround) {
 			this.motionX *= 0.949999988079071D;
 			this.motionY *= 0.949999988079071D;
@@ -397,7 +397,7 @@ public abstract class adx extends Entity implements vz {
 		double var35 = this.m();
 		var31 = DataTypesConverter.a(var31, -var35, var35);
 		var33 = DataTypesConverter.a(var33, -var35, var35);
-		this.d(var31, 0.0D, var33);
+		this.move(var31, 0.0D, var33);
 		if (var10[0][1] != 0 && DataTypesConverter.toFixedPointInt(this.locationX) - var1.getX() == var10[0][0] && DataTypesConverter.toFixedPointInt(this.locationZ) - var1.getZ() == var10[0][2]) {
 			this.b(this.locationX, this.locationY + (double) var10[0][1], this.locationZ);
 		} else if (var10[1][1] != 0 && DataTypesConverter.toFixedPointInt(this.locationX) - var1.getX() == var10[1][0] && DataTypesConverter.toFixedPointInt(this.locationZ) - var1.getZ() == var10[1][2]) {

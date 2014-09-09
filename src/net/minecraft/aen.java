@@ -37,7 +37,7 @@ class aen extends zb {
 			this.a.q().a(var1.locationX, var1.locationY, var1.locationZ, 1.0D);
 		} else if (var2 < 256.0D) {
 			double var4 = var1.locationX - this.a.locationX;
-			double var6 = var1.aQ().minY + (double) (var1.K / 2.0F) - (this.a.locationY + (double) (this.a.K / 2.0F));
+			double var6 = var1.getBoundingBox().minY + (double) (var1.K / 2.0F) - (this.a.locationY + (double) (this.a.K / 2.0F));
 			double var8 = var1.locationZ - this.a.locationZ;
 			if (this.c <= 0) {
 				++this.b;

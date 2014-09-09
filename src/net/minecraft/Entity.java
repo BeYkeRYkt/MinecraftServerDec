@@ -141,9 +141,9 @@ public abstract class Entity implements CommandSenderInterface {
 			float var3 = this.J;
 			this.J = var1;
 			this.K = var2;
-			this.a(new AxisAlignedBB(this.aQ().minX, this.aQ().minY, this.aQ().minZ, this.aQ().minX + (double) this.J, this.aQ().minY + (double) this.K, this.aQ().minZ + (double) this.J));
+			this.a(new AxisAlignedBB(this.getBoundingBox().minX, this.getBoundingBox().minY, this.getBoundingBox().minZ, this.getBoundingBox().minX + (double) this.J, this.getBoundingBox().minY + (double) this.K, this.getBoundingBox().minZ + (double) this.J));
 			if (this.J > var3 && !this.aa && !this.world.D) {
-				this.d((double) (var3 - this.J), 0.0D, (double) (var3 - this.J));
+				this.move((double) (var3 - this.J), 0.0D, (double) (var3 - this.J));
 			}
 		}
 
@@ -282,17 +282,17 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public boolean c(double var1, double var3, double var5) {
-		AxisAlignedBB var7 = this.aQ().c(var1, var3, var5);
+		AxisAlignedBB var7 = this.getBoundingBox().c(var1, var3, var5);
 		return this.b(var7);
 	}
 
 	private boolean b(AxisAlignedBB var1) {
-		return this.world.a(this, var1).isEmpty() && !this.world.d(var1);
+		return this.world.getCubes(this, var1).isEmpty() && !this.world.d(var1);
 	}
 
-	public void d(double var1, double var3, double var5) {
+	public void move(double var1, double var3, double var5) {
 		if (this.T) {
-			this.a(this.aQ().c(var1, var3, var5));
+			this.a(this.getBoundingBox().c(var1, var3, var5));
 			this.m();
 		} else {
 			this.world.B.a("move");
@@ -315,7 +315,7 @@ public abstract class Entity implements CommandSenderInterface {
 			boolean var19 = this.onGround && this.aw() && this instanceof EntityHuman;
 			if (var19) {
 				double var20;
-				for (var20 = 0.05D; var1 != 0.0D && this.world.a(this, this.aQ().c(var1, -1.0D, 0.0D)).isEmpty(); var13 = var1) {
+				for (var20 = 0.05D; var1 != 0.0D && this.world.getCubes(this, this.getBoundingBox().c(var1, -1.0D, 0.0D)).isEmpty(); var13 = var1) {
 					if (var1 < var20 && var1 >= -var20) {
 						var1 = 0.0D;
 					} else if (var1 > 0.0D) {
@@ -325,7 +325,7 @@ public abstract class Entity implements CommandSenderInterface {
 					}
 				}
 
-				for (; var5 != 0.0D && this.world.a(this, this.aQ().c(0.0D, -1.0D, var5)).isEmpty(); var17 = var5) {
+				for (; var5 != 0.0D && this.world.getCubes(this, this.getBoundingBox().c(0.0D, -1.0D, var5)).isEmpty(); var17 = var5) {
 					if (var5 < var20 && var5 >= -var20) {
 						var5 = 0.0D;
 					} else if (var5 > 0.0D) {
@@ -335,7 +335,7 @@ public abstract class Entity implements CommandSenderInterface {
 					}
 				}
 
-				for (; var1 != 0.0D && var5 != 0.0D && this.world.a(this, this.aQ().c(var1, -1.0D, var5)).isEmpty(); var17 = var5) {
+				for (; var1 != 0.0D && var5 != 0.0D && this.world.getCubes(this, this.getBoundingBox().c(var1, -1.0D, var5)).isEmpty(); var17 = var5) {
 					if (var1 < var20 && var1 >= -var20) {
 						var1 = 0.0D;
 					} else if (var1 > 0.0D) {
@@ -355,39 +355,39 @@ public abstract class Entity implements CommandSenderInterface {
 				}
 			}
 
-			List var53 = this.world.a(this, this.aQ().a(var1, var3, var5));
-			AxisAlignedBB var21 = this.aQ();
+			List var53 = this.world.getCubes(this, this.getBoundingBox().a(var1, var3, var5));
+			AxisAlignedBB var21 = this.getBoundingBox();
 
 			AxisAlignedBB var23;
-			for (Iterator var22 = var53.iterator(); var22.hasNext(); var3 = var23.b(this.aQ(), var3)) {
+			for (Iterator var22 = var53.iterator(); var22.hasNext(); var3 = var23.b(this.getBoundingBox(), var3)) {
 				var23 = (AxisAlignedBB) var22.next();
 			}
 
-			this.a(this.aQ().c(0.0D, var3, 0.0D));
+			this.a(this.getBoundingBox().c(0.0D, var3, 0.0D));
 			boolean var54 = this.onGround || var15 != var3 && var15 < 0.0D;
 
 			AxisAlignedBB var24;
 			Iterator var55;
-			for (var55 = var53.iterator(); var55.hasNext(); var1 = var24.a(this.aQ(), var1)) {
+			for (var55 = var53.iterator(); var55.hasNext(); var1 = var24.a(this.getBoundingBox(), var1)) {
 				var24 = (AxisAlignedBB) var55.next();
 			}
 
-			this.a(this.aQ().c(var1, 0.0D, 0.0D));
+			this.a(this.getBoundingBox().c(var1, 0.0D, 0.0D));
 
-			for (var55 = var53.iterator(); var55.hasNext(); var5 = var24.c(this.aQ(), var5)) {
+			for (var55 = var53.iterator(); var55.hasNext(); var5 = var24.c(this.getBoundingBox(), var5)) {
 				var24 = (AxisAlignedBB) var55.next();
 			}
 
-			this.a(this.aQ().c(0.0D, 0.0D, var5));
+			this.a(this.getBoundingBox().c(0.0D, 0.0D, var5));
 			if (this.S > 0.0F && var54 && (var13 != var1 || var17 != var5)) {
 				double var56 = var1;
 				double var25 = var3;
 				double var27 = var5;
-				AxisAlignedBB var29 = this.aQ();
+				AxisAlignedBB var29 = this.getBoundingBox();
 				this.a(var21);
 				var3 = (double) this.S;
-				List var30 = this.world.a(this, this.aQ().a(var13, var3, var17));
-				AxisAlignedBB var31 = this.aQ();
+				List var30 = this.world.getCubes(this, this.getBoundingBox().a(var13, var3, var17));
+				AxisAlignedBB var31 = this.getBoundingBox();
 				AxisAlignedBB var32 = var31.a(var13, 0.0D, var17);
 				double var33 = var3;
 
@@ -413,7 +413,7 @@ public abstract class Entity implements CommandSenderInterface {
 				}
 
 				var31 = var31.c(0.0D, 0.0D, var68);
-				AxisAlignedBB var69 = this.aQ();
+				AxisAlignedBB var69 = this.getBoundingBox();
 				double var70 = var3;
 
 				AxisAlignedBB var43;
@@ -453,11 +453,11 @@ public abstract class Entity implements CommandSenderInterface {
 				var3 = (double) (-this.S);
 
 				AxisAlignedBB var51;
-				for (Iterator var50 = var30.iterator(); var50.hasNext(); var3 = var51.b(this.aQ(), var3)) {
+				for (Iterator var50 = var30.iterator(); var50.hasNext(); var3 = var51.b(this.getBoundingBox(), var3)) {
 					var51 = (AxisAlignedBB) var50.next();
 				}
 
-				this.a(this.aQ().c(0.0D, var3, 0.0D));
+				this.a(this.getBoundingBox().c(0.0D, var3, 0.0D));
 				if (var56 * var56 + var27 * var27 >= var1 * var1 + var5 * var5) {
 					var1 = var56;
 					var3 = var25;
@@ -538,7 +538,7 @@ public abstract class Entity implements CommandSenderInterface {
 			}
 
 			boolean var62 = this.U();
-			if (this.world.e(this.aQ().d(0.001D, 0.001D, 0.001D))) {
+			if (this.world.e(this.getBoundingBox().shrink(0.001D, 0.001D, 0.001D))) {
 				this.f(1);
 				if (!var62) {
 					++this.i;
@@ -560,9 +560,9 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	private void m() {
-		this.locationX = (this.aQ().minX + this.aQ().maxX) / 2.0D;
-		this.locationY = this.aQ().minY;
-		this.locationZ = (this.aQ().minZ + this.aQ().maxZ) / 2.0D;
+		this.locationX = (this.getBoundingBox().minX + this.getBoundingBox().maxX) / 2.0D;
+		this.locationY = this.getBoundingBox().minY;
+		this.locationZ = (this.getBoundingBox().minZ + this.getBoundingBox().maxZ) / 2.0D;
 	}
 
 	protected String P() {
@@ -570,8 +570,8 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected void Q() {
-		Position var1 = new Position(this.aQ().minX + 0.001D, this.aQ().minY + 0.001D, this.aQ().minZ + 0.001D);
-		Position var2 = new Position(this.aQ().maxX - 0.001D, this.aQ().maxY - 0.001D, this.aQ().maxZ - 0.001D);
+		Position var1 = new Position(this.getBoundingBox().minX + 0.001D, this.getBoundingBox().minY + 0.001D, this.getBoundingBox().minZ + 0.001D);
+		Position var2 = new Position(this.getBoundingBox().maxX - 0.001D, this.getBoundingBox().maxY - 0.001D, this.getBoundingBox().maxZ - 0.001D);
 		if (this.world.a(var1, var2)) {
 			for (int var3 = var1.getX(); var3 <= var2.getX(); ++var3) {
 				for (int var4 = var1.getY(); var4 <= var2.getY(); ++var4) {
@@ -672,7 +672,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public boolean W() {
-		if (this.world.a(this.aQ().b(0.0D, -0.4000000059604645D, 0.0D).d(0.001D, 0.001D, 0.001D), Material.WATER, this)) {
+		if (this.world.a(this.getBoundingBox().grow(0.0D, -0.4000000059604645D, 0.0D).shrink(0.001D, 0.001D, 0.001D), Material.WATER, this)) {
 			if (!this.Y && !this.aa) {
 				this.X();
 			}
@@ -694,7 +694,7 @@ public abstract class Entity implements CommandSenderInterface {
 		}
 
 		this.a(this.aa(), var1, 1.0F + (this.V.nextFloat() - this.V.nextFloat()) * 0.4F);
-		float var2 = (float) DataTypesConverter.toFixedPointInt(this.aQ().minY);
+		float var2 = (float) DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY);
 
 		int var3;
 		float var4;
@@ -728,7 +728,7 @@ public abstract class Entity implements CommandSenderInterface {
 		BlockState var5 = this.world.getBlockState(var4);
 		Block var6 = var5.getBlock();
 		if (var6.b() != -1) {
-			this.world.a(Particle.L, this.locationX + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, this.aQ().minY + 0.1D, this.locationZ + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, -this.motionX * 4.0D, 1.5D, -this.motionZ * 4.0D, new int[] { Block.f(var5) });
+			this.world.a(Particle.L, this.locationX + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, this.getBoundingBox().minY + 0.1D, this.locationZ + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, -this.motionX * 4.0D, 1.5D, -this.motionZ * 4.0D, new int[] { Block.f(var5) });
 		}
 
 	}
@@ -753,7 +753,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public boolean ab() {
-		return this.world.a(this.aQ().b(-0.10000000149011612D, -0.4000000059604645D, -0.10000000149011612D), Material.LAVA);
+		return this.world.a(this.getBoundingBox().grow(-0.10000000149011612D, -0.4000000059604645D, -0.10000000149011612D), Material.LAVA);
 	}
 
 	public void a(float var1, float var2, float var3) {
@@ -777,7 +777,7 @@ public abstract class Entity implements CommandSenderInterface {
 	public float c(float var1) {
 		Position var2 = new Position(this.locationX, 0.0D, this.locationZ);
 		if (this.world.isLoaded(var2)) {
-			double var3 = (this.aQ().maxY - this.aQ().minY) * 0.66D;
+			double var3 = (this.getBoundingBox().maxY - this.getBoundingBox().minY) * 0.66D;
 			int var5 = DataTypesConverter.toFixedPointInt(this.locationY + var3);
 			return this.world.o(var2.b(var5));
 		} else {
@@ -789,7 +789,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.world = world;
 	}
 
-	public void a(double var1, double var3, double var5, float var7, float var8) {
+	public void setLocation(double var1, double var3, double var5, float var7, float var8) {
 		this.p = this.locationX = var1;
 		this.q = this.locationY = var3;
 		this.r = this.locationZ = var5;
@@ -1226,7 +1226,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.aq = 0.0D;
 		if (var1 == null) {
 			if (this.vehicle != null) {
-				this.setPositionRotation(this.vehicle.locationX, this.vehicle.aQ().minY + (double) this.vehicle.K, this.vehicle.locationZ, this.yaw, this.pitch);
+				this.setPositionRotation(this.vehicle.locationX, this.vehicle.getBoundingBox().minY + (double) this.vehicle.K, this.vehicle.locationZ, this.yaw, this.pitch);
 				this.vehicle.l = null;
 			}
 
@@ -1365,7 +1365,7 @@ public abstract class Entity implements CommandSenderInterface {
 		double var8 = var1 - (double) var7.getX();
 		double var10 = var3 - (double) var7.getY();
 		double var12 = var5 - (double) var7.getZ();
-		List var14 = this.world.a(this.aQ());
+		List var14 = this.world.a(this.getBoundingBox());
 		if (var14.isEmpty() && !this.world.u(var7)) {
 			return false;
 		} else {
@@ -1612,7 +1612,7 @@ public abstract class Entity implements CommandSenderInterface {
 		return true;
 	}
 
-	public AxisAlignedBB aQ() {
+	public AxisAlignedBB getBoundingBox() {
 		return this.f;
 	}
 

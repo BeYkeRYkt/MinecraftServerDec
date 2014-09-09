@@ -76,7 +76,7 @@ public class TileEntityPiston extends TileEntity implements PacketTickable {
 								var6.motionZ = (double) this.f.i();
 						}
 					} else {
-						var6.d((double) (var2 * (float) this.f.g()), (double) (var2 * (float) this.f.h()), (double) (var2 * (float) this.f.i()));
+						var6.move((double) (var2 * (float) this.f.g()), (double) (var2 * (float) this.f.h()), (double) (var2 * (float) this.f.i()));
 					}
 				}
 

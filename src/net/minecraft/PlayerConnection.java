@@ -31,7 +31,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	public EntityPlayer player;
 	private int currentTick;
 	private int lastMoveTick;
-	private int g;
+	private int flyTime;
 	private int packetKeepAliveMilliseconds;
 	private long lastKeepAliveMilliseconds;
 	private long lastKeepAliveTick;
@@ -87,17 +87,17 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInSteerVehicle packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		this.player.handleSteerVehicle(packet.getSidewaysSpeed(), packet.getForwardSpeed(), packet.isJump(), packet.isUnmount());
 	}
 
 	public void handle(PacketPlayInPlayer packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		WorldServer worldServer = this.minecraftserver.getWorldServer(this.player.dimensionId);
 		if (!this.player.viewingCredits) {
-			double locX = this.player.locationX;
-			double locY = this.player.locationY;
-			double locZ = this.player.locationZ;
+			double playerLocX = this.player.locationX;
+			double playerLocY = this.player.locationY;
+			double playerLocZ = this.player.locationZ;
 			double distance = 0.0D;
 			double changeX = packet.getX() - this.lastX;
 			double changeY = packet.getFeetY() - this.lastY;
@@ -111,24 +111,24 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 
 			if (this.checkMovement) {
 				this.lastMoveTick = this.currentTick;
-				double var19;
-				double var21;
-				double var23;
+				double locX;
+				double locY;
+				double locZ;
 				if (this.player.vehicle != null) {
-					float var47 = this.player.yaw;
-					float var18 = this.player.pitch;
+					float yaw = this.player.yaw;
+					float pitch = this.player.pitch;
 					this.player.vehicle.al();
-					var19 = this.player.locationX;
-					var21 = this.player.locationY;
-					var23 = this.player.locationZ;
+					locX = this.player.locationX;
+					locY = this.player.locationY;
+					locZ = this.player.locationZ;
 					if (packet.hasLook()) {
-						var47 = packet.getYaw();
-						var18 = packet.getPitch();
+						yaw = packet.getYaw();
+						pitch = packet.getPitch();
 					}
 
 					this.player.onGround = packet.isOnGround();
 					this.player.l();
-					this.player.a(var19, var21, var23, var47, var18);
+					this.player.setLocation(locX, locY, locZ, yaw, pitch);
 					if (this.player.vehicle != null) {
 						this.player.vehicle.al();
 					}
@@ -136,9 +136,9 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 					this.minecraftserver.getPlayerList().d(this.player);
 					if (this.player.vehicle != null) {
 						if (distance > 4.0D) {
-							Entity var48 = this.player.vehicle;
-							this.player.playerConncetion.sendPacket(new PacketPlayOutEntityTeleport(var48));
-							this.a(this.player.locationX, this.player.locationY, this.player.locationZ, this.player.yaw, this.player.pitch);
+							Entity vehicle = this.player.vehicle;
+							this.player.playerConncetion.sendPacket(new PacketPlayOutEntityTeleport(vehicle));
+							this.movePlayer(this.player.locationX, this.player.locationY, this.player.locationZ, this.player.yaw, this.player.pitch);
 						}
 
 						this.player.vehicle.ai = true;
@@ -150,34 +150,34 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 						this.lastZ = this.player.locationZ;
 					}
 
-					worldServer.g(this.player);
+					worldServer.playerJoinedWorld(this.player);
 					return;
 				}
 
-				if (this.player.bI()) {
+				if (this.player.isSleeping()) {
 					this.player.l();
-					this.player.a(this.lastX, this.lastY, this.lastZ, this.player.yaw, this.player.pitch);
-					worldServer.g(this.player);
+					this.player.setLocation(this.lastX, this.lastY, this.lastZ, this.player.yaw, this.player.pitch);
+					worldServer.playerJoinedWorld(this.player);
 					return;
 				}
 
-				double var17 = this.player.locationY;
+				double y = this.player.locationY;
 				this.lastX = this.player.locationX;
 				this.lastY = this.player.locationY;
 				this.lastZ = this.player.locationZ;
-				var19 = this.player.locationX;
-				var21 = this.player.locationY;
-				var23 = this.player.locationZ;
-				float var25 = this.player.yaw;
-				float var26 = this.player.pitch;
+				locX = this.player.locationX;
+				locY = this.player.locationY;
+				locZ = this.player.locationZ;
+				float yaw = this.player.yaw;
+				float pitch = this.player.pitch;
 				if (packet.hasPosition() && packet.getFeetY() == -999.0D) {
 					packet.setHasPosition(false);
 				}
 
 				if (packet.hasPosition()) {
-					var19 = packet.getX();
-					var21 = packet.getFeetY();
-					var23 = packet.getZ();
+					locX = packet.getX();
+					locY = packet.getFeetY();
+					locZ = packet.getZ();
 					if (Math.abs(packet.getX()) > 3.0E7D || Math.abs(packet.getZ()) > 3.0E7D) {
 						this.disconnect("Illegal position");
 						return;
@@ -185,119 +185,117 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 				}
 
 				if (packet.hasLook()) {
-					var25 = packet.getYaw();
-					var26 = packet.getPitch();
+					yaw = packet.getYaw();
+					pitch = packet.getPitch();
 				}
 
 				this.player.l();
-				this.player.a(this.lastX, this.lastY, this.lastZ, var25, var26);
+				this.player.setLocation(this.lastX, this.lastY, this.lastZ, yaw, pitch);
 				if (!this.checkMovement) {
 					return;
 				}
 
-				double var27 = var19 - this.player.locationX;
-				double var29 = var21 - this.player.locationY;
-				double var31 = var23 - this.player.locationZ;
-				double var33 = Math.min(Math.abs(var27), Math.abs(this.player.motionX));
-				double var35 = Math.min(Math.abs(var29), Math.abs(this.player.motionY));
-				double var37 = Math.min(Math.abs(var31), Math.abs(this.player.motionZ));
-				double var39 = var33 * var33 + var35 * var35 + var37 * var37;
-				if (var39 > 100.0D && (!this.minecraftserver.isSinglePlayer() || !this.minecraftserver.getSinglePlayerName().equals(this.player.getName()))) {
-					logger.warn(this.player.getName() + " moved too quickly! " + var27 + "," + var29 + "," + var31 + " (" + var33 + ", " + var35 + ", " + var37 + ")");
-					this.a(this.lastX, this.lastY, this.lastZ, this.player.yaw, this.player.pitch);
+				double diffX = locX - this.player.locationX;
+				double diffY = locY - this.player.locationY;
+				double diffZ = locZ - this.player.locationZ;
+				double realDiffX = Math.min(Math.abs(diffX), Math.abs(this.player.motionX));
+				double realDiifY = Math.min(Math.abs(diffY), Math.abs(this.player.motionY));
+				double realDiffZ = Math.min(Math.abs(diffZ), Math.abs(this.player.motionZ));
+				double realDistance = realDiffX * realDiffX + realDiifY * realDiifY + realDiffZ * realDiffZ;
+				if (realDistance > 100.0D && (!this.minecraftserver.isSinglePlayer() || !this.minecraftserver.getSinglePlayerName().equals(this.player.getName()))) {
+					logger.warn(this.player.getName() + " moved too quickly! " + diffX + "," + diffY + "," + diffZ + " (" + realDiffX + ", " + realDiifY + ", " + realDiffZ + ")");
+					this.movePlayer(this.lastX, this.lastY, this.lastZ, this.player.yaw, this.player.pitch);
 					return;
 				}
 
-				float var41 = 0.0625F;
-				boolean var42 = worldServer.a((Entity) this.player, this.player.aQ().d((double) var41, (double) var41, (double) var41)).isEmpty();
-				if (this.player.onGround && !packet.isOnGround() && var29 > 0.0D) {
-					this.player.bE();
+				float shrinkSize = 0.0625F;
+				boolean noCollisionDetected = worldServer.getCubes(this.player, this.player.getBoundingBox().shrink(shrinkSize, shrinkSize, shrinkSize)).isEmpty();
+				if (this.player.onGround && !packet.isOnGround() && diffY > 0.0D) {
+					this.player.jump();
 				}
 
-				this.player.d(var27, var29, var31);
+				this.player.move(diffX, diffY, diffZ);
 				this.player.onGround = packet.isOnGround();
-				double var43 = var29;
-				var27 = var19 - this.player.locationX;
-				var29 = var21 - this.player.locationY;
-				if (var29 > -0.5D || var29 < 0.5D) {
-					var29 = 0.0D;
+				double prevDiffY = diffY;
+				diffX = locX - this.player.locationX;
+				diffY = locY - this.player.locationY;
+				if (diffY > -0.5D || diffY < 0.5D) {
+					diffY = 0.0D;
 				}
-
-				var31 = var23 - this.player.locationZ;
-				var39 = var27 * var27 + var29 * var29 + var31 * var31;
-				boolean var45 = false;
-				if (var39 > 0.0625D && !this.player.bI() && !this.player.playerInteractManager.isCreative()) {
-					var45 = true;
+				diffZ = locZ - this.player.locationZ;
+				realDistance = diffX * diffX + diffY * diffY + diffZ * diffZ;
+				boolean movedWrongly = false;
+				if (realDistance > 0.0625D && !this.player.isSleeping() && !this.player.playerInteractManager.isCreative()) {
+					movedWrongly = true;
 					logger.warn(this.player.getName() + " moved wrongly!");
 				}
 
-				this.player.a(var19, var21, var23, var25, var26);
-				this.player.k(this.player.locationX - locX, this.player.locationY - locY, this.player.locationZ - locZ);
+				this.player.setLocation(locX, locY, locZ, yaw, pitch);
+				this.player.k(this.player.locationX - playerLocX, this.player.locationY - playerLocY, this.player.locationZ - playerLocZ);
 				if (!this.player.T) {
-					boolean var46 = worldServer.a((Entity) this.player, this.player.aQ().d((double) var41, (double) var41, (double) var41)).isEmpty();
-					if (var42 && (var45 || !var46) && !this.player.bI()) {
-						this.a(this.lastX, this.lastY, this.lastZ, var25, var26);
+					if (noCollisionDetected && (movedWrongly || !worldServer.getCubes(this.player, this.player.getBoundingBox().shrink(shrinkSize, shrinkSize, shrinkSize)).isEmpty()) && !this.player.isSleeping()) {
+						this.movePlayer(this.lastX, this.lastY, this.lastZ, yaw, pitch);
 						return;
 					}
 				}
 
-				AxisAlignedBB var49 = this.player.aQ().b((double) var41, (double) var41, (double) var41).a(0.0D, -0.55D, 0.0D);
-				if (!this.minecraftserver.isFlightAllowed() && !this.player.playerProperties.mayfly && !worldServer.c(var49)) {
-					if (var43 >= -0.03125D) {
-						++this.g;
-						if (this.g > 80) {
+				AxisAlignedBB axisAligned = this.player.getBoundingBox().grow(shrinkSize, shrinkSize, shrinkSize).a(0.0D, -0.55D, 0.0D);
+				if (!this.minecraftserver.isFlightAllowed() && !this.player.playerProperties.mayfly && !worldServer.isOnGround(axisAligned)) {
+					if (prevDiffY >= -0.03125D) {
+						++this.flyTime;
+						if (this.flyTime > 80) {
 							logger.warn(this.player.getName() + " was kicked for floating too long!");
 							this.disconnect("Flying is not enabled on this server");
 							return;
 						}
 					}
 				} else {
-					this.g = 0;
+					this.flyTime = 0;
 				}
 
 				this.player.onGround = packet.isOnGround();
 				this.minecraftserver.getPlayerList().d(this.player);
-				this.player.a(this.player.locationY - var17, packet.isOnGround());
+				this.player.a(this.player.locationY - y, packet.isOnGround());
 			} else if (this.currentTick - this.lastMoveTick > 20) {
-				this.a(this.lastX, this.lastY, this.lastZ, this.player.yaw, this.player.pitch);
+				this.movePlayer(this.lastX, this.lastY, this.lastZ, this.player.yaw, this.player.pitch);
 			}
 
 		}
 	}
 
-	public void a(double var1, double var3, double var5, float var7, float var8) {
-		this.a(var1, var3, var5, var7, var8, new HashSet<PositionFlag>());
+	public void movePlayer(double x, double y, double z, float yaw, float pitch) {
+		this.movePlayer(x, y, z, yaw, pitch, new HashSet<PositionFlag>());
 	}
 
-	public void a(double var1, double var3, double var5, float var7, float var8, Set<PositionFlag> var9) {
+	public void movePlayer(double x, double y, double z, float yaw, float pitch, Set<PositionFlag> flags) {
 		this.checkMovement = false;
-		this.lastX = var1;
-		this.lastY = var3;
-		this.lastZ = var5;
-		if (var9.contains(PositionFlag.X)) {
+		this.lastX = x;
+		this.lastY = y;
+		this.lastZ = z;
+		if (flags.contains(PositionFlag.X)) {
 			this.lastX += this.player.locationX;
 		}
 
-		if (var9.contains(PositionFlag.Y)) {
+		if (flags.contains(PositionFlag.Y)) {
 			this.lastY += this.player.locationY;
 		}
 
-		if (var9.contains(PositionFlag.Z)) {
+		if (flags.contains(PositionFlag.Z)) {
 			this.lastZ += this.player.locationZ;
 		}
 
-		float var10 = var7;
-		float var11 = var8;
-		if (var9.contains(PositionFlag.PITCH)) {
-			var10 = var7 + this.player.yaw;
+		float newYaw = yaw;
+		float newPitch = pitch;
+		if (flags.contains(PositionFlag.PITCH)) {
+			newYaw = yaw + this.player.yaw;
 		}
 
-		if (var9.contains(PositionFlag.YAW)) {
-			var11 = var8 + this.player.pitch;
+		if (flags.contains(PositionFlag.YAW)) {
+			newPitch = pitch + this.player.pitch;
 		}
 
-		this.player.a(this.lastX, this.lastY, this.lastZ, var10, var11);
-		this.player.playerConncetion.sendPacket(new PacketPlayOutPlayerPositionAndLook(var1, var3, var5, var7, var8, var9));
+		this.player.setLocation(this.lastX, this.lastY, this.lastZ, newYaw, newPitch);
+		this.player.playerConncetion.sendPacket(new PacketPlayOutPlayerPositionAndLook(x, y, z, yaw, pitch, flags));
 	}
 
 	private long getCurrentMillis() {
@@ -305,7 +303,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInPlayerDigging packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		WorldServer worldServer = this.minecraftserver.getWorldServer(this.player.dimensionId);
 		Position position = packet.getPosition();
 		this.player.updateLastActiveTime();
@@ -363,7 +361,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInBlockPlace packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		WorldServer worldServer = this.minecraftserver.getWorldServer(this.player.dimensionId);
 		ItemStack packetItemStack = this.player.playerInventory.getItemInHand();
 		boolean update = false;
@@ -414,7 +412,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInSpectate packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		if (this.player.isSpectator()) {
 			Entity entity = null;
 
@@ -475,7 +473,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInHeldItemChange packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		if (packet.getSlot() >= 0 && packet.getSlot() < PlayerInventory.getHotbarSize()) {
 			this.player.playerInventory.itemInHandIndex = packet.getSlot();
 			this.player.updateLastActiveTime();
@@ -485,7 +483,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInChatMessage packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		if (this.player.getChatFlag() == EnumChatFlag.HIDDEN) {
 			ChatMessage response = new ChatMessage("chat.cannotSend", new Object[0]);
 			response.getChatModifier().setColor(EnumChatFormat.RED);
@@ -522,13 +520,13 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInAnimation packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		this.player.updateLastActiveTime();
 		this.player.performHandAnimation();
 	}
 
 	public void handle(PacketPlayInEntityAction packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		this.player.updateLastActiveTime();
 		switch (packet.getAction()) {
 			case START_SNEAKING: {
@@ -572,7 +570,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInUseEntity packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		WorldServer worldServer = this.minecraftserver.getWorldServer(this.player.dimensionId);
 		Entity entity = packet.getEntity(worldServer);
 		this.player.updateLastActiveTime();
@@ -601,7 +599,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInClientStatus packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		this.player.updateLastActiveTime();
 		ClientStatusAction action = packet.getAction();
 		switch (action) {
@@ -637,12 +635,12 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInCloseWindow packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		this.player.closeWindow();
 	}
 
 	public void handle(PacketPlayInClickWindow packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		this.player.updateLastActiveTime();
 		if (this.player.activeContainer.windowId == packet.getWindowId() && this.player.activeContainer.isTransactionsConfirmed(this.player)) {
 			if (this.player.isSpectator()) {
@@ -674,7 +672,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInEnchantItem packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		this.player.updateLastActiveTime();
 		if (this.player.activeContainer.windowId == packet.getWindowId() && this.player.activeContainer.isTransactionsConfirmed(this.player) && !this.player.isSpectator()) {
 			this.player.activeContainer.a((EntityHuman) this.player, packet.getEnchantment());
@@ -683,7 +681,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInCreativeInventoryAction packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		if (this.player.playerInteractManager.isCreative()) {
 			boolean dropItem = packet.getSlot() < 0;
 			ItemStack item = packet.getItem();
@@ -725,7 +723,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInConfirmTransaction packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		Short action = (Short) this.intHashMap.get(this.player.activeContainer.windowId);
 		if (action != null && packet.getAction() == action.shortValue() && this.player.activeContainer.windowId == packet.getWindowId() && !this.player.activeContainer.isTransactionsConfirmed(this.player) && !this.player.isSpectator()) {
 			this.player.activeContainer.notifyTransactionStatus(this.player, true);
@@ -733,7 +731,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInUpdateSign packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		this.player.updateLastActiveTime();
 		WorldServer worlServer = this.minecraftserver.getWorldServer(this.player.dimensionId);
 		Position position = packet.getPosition();
@@ -763,23 +761,23 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	public void handle(PacketPlayInPlayAbilities packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		this.player.playerProperties.flying = packet.isFlying() && this.player.playerProperties.mayfly;
 	}
 
 	public void handle(PacketPlayInTabComplete packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		String[] data = minecraftserver.getTabCompleteList((CommandSenderInterface) this.player, packet.getText(), packet.getPosition()).toArray(new String[0]);
 		this.player.playerConncetion.sendPacket(new PacketPlayOutTabComplete(data));
 	}
 
 	public void handle(PacketPlayInClientSettings packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		this.player.setClientSettings(packet);
 	}
 
 	public void handle(PacketPlayInPluginMessage packet) {
-		ig.a(packet, this, this.player.getWorldServer());
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		PacketDataSerializer serializer;
 		ItemStack packetItemStack;
 		ItemStack itemInHand;

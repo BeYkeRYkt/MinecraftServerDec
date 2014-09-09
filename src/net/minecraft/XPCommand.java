@@ -35,7 +35,7 @@ public class XPCommand extends AbstractCommand {
 
 			EntityPlayer var7 = var2.length > 1 ? a(var1, var2[1]) : b(var1);
 			if (var4) {
-				var1.a(ag.e, var7.bz);
+				var1.a(ag.e, var7.xpLevel);
 				if (var6) {
 					var7.a(-var5);
 					a(var1, this, "commands.xp.success.negative.levels", new Object[] { Integer.valueOf(var5), var7.getName() });
@@ -44,7 +44,7 @@ public class XPCommand extends AbstractCommand {
 					a(var1, this, "commands.xp.success.levels", new Object[] { Integer.valueOf(var5), var7.getName() });
 				}
 			} else {
-				var1.a(ag.e, var7.bA);
+				var1.a(ag.e, var7.xpTotal);
 				if (var6) {
 					throw new di("commands.xp.failure.widthdrawXp", new Object[0]);
 				}

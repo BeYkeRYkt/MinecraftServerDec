@@ -114,7 +114,7 @@ public abstract class ahr extends Entity implements aho {
 
 		if (!this.world.D) {
 			Entity var4 = null;
-			List var5 = this.world.b((Entity) this, this.aQ().a(this.motionX, this.motionY, this.motionZ).b(1.0D, 1.0D, 1.0D));
+			List var5 = this.world.b((Entity) this, this.getBoundingBox().a(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
 			double var6 = 0.0D;
 			EntityLiving var8 = this.n();
 
@@ -122,7 +122,7 @@ public abstract class ahr extends Entity implements aho {
 				Entity var10 = (Entity) var5.get(var9);
 				if (var10.ad() && (var10 != var8 || this.ap >= 5)) {
 					float var11 = 0.3F;
-					AxisAlignedBB var12 = var10.aQ().b((double) var11, (double) var11, (double) var11);
+					AxisAlignedBB var12 = var10.getBoundingBox().grow((double) var11, (double) var11, (double) var11);
 					MovingObjectPosition var13 = var12.a(var1, var2);
 					if (var13 != null) {
 						double var14 = var1.f(var13.vec);

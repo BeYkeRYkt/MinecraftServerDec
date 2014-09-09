@@ -36,7 +36,7 @@ public class zh extends zb {
 			if (this.d == EntityHuman.class) {
 				this.b = this.a.world.a(this.a, (double) this.c);
 			} else {
-				this.b = this.a.world.a(this.d, this.a.aQ().b((double) this.c, 3.0D, (double) this.c), (Entity) this.a);
+				this.b = this.a.world.a(this.d, this.a.getBoundingBox().grow((double) this.c, 3.0D, (double) this.c), (Entity) this.a);
 			}
 
 			return this.b != null;

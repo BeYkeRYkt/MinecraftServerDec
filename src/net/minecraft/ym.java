@@ -19,7 +19,7 @@ public class ym {
 		if (var1 instanceof EntityLiving) {
 			this.f = var1.locationY + (double) var1.aR();
 		} else {
-			this.f = (var1.aQ().minY + var1.aQ().maxY) / 2.0D;
+			this.f = (var1.getBoundingBox().minY + var1.getBoundingBox().maxY) / 2.0D;
 		}
 
 		this.g = var1.locationZ;

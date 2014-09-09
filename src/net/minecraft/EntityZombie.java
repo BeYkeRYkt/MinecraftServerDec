@@ -163,7 +163,7 @@ public class EntityZombie extends EntityMonster {
 					int var11 = var6 + DataTypesConverter.a(this.V, 7, 40) * DataTypesConverter.a(this.V, -1, 1);
 					if (World.a((ard) this.world, new Position(var9, var10 - 1, var11)) && this.world.l(new Position(var9, var10, var11)) < 10) {
 						var7.b((double) var9, (double) var10, (double) var11);
-						if (!this.world.b((double) var9, (double) var10, (double) var11, 7.0D) && this.world.a(var7.aQ(), (Entity) var7) && this.world.a((Entity) var7, var7.aQ()).isEmpty() && !this.world.d(var7.aQ())) {
+						if (!this.world.b((double) var9, (double) var10, (double) var11, 7.0D) && this.world.a(var7.getBoundingBox(), (Entity) var7) && this.world.getCubes((Entity) var7, var7.getBoundingBox()).isEmpty() && !this.world.d(var7.getBoundingBox())) {
 							this.world.d((Entity) var7);
 							var7.d(var3);
 							var7.a(this.world.E(new Position(var7)), (xq) null);
@@ -339,7 +339,7 @@ public class EntityZombie extends EntityMonster {
 			if (var4.a) {
 				this.l(true);
 				if ((double) this.world.s.nextFloat() < 0.05D) {
-					List var5 = this.world.a(EntityChicken.class, this.aQ().b(5.0D, 3.0D, 5.0D), EntityPredicates.b);
+					List var5 = this.world.a(EntityChicken.class, this.getBoundingBox().grow(5.0D, 3.0D, 5.0D), EntityPredicates.b);
 					if (!var5.isEmpty()) {
 						EntityChicken var6 = (EntityChicken) var5.get(0);
 						var6.l(true);

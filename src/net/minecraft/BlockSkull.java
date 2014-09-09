@@ -131,7 +131,7 @@ public class BlockSkull extends atg {
 				var14.setPositionRotation((double) var15.getX() + 0.5D, (double) var15.getY() + 0.55D, (double) var15.getZ() + 0.5D, var5.b().k() == el.a ? 0.0F : 90.0F, 0.0F);
 				var14.aG = var5.b().k() == el.a ? 0.0F : 90.0F;
 				var14.n();
-				Iterator var9 = var1.a(EntityHuman.class, var14.aQ().b(50.0D, 50.0D, 50.0D)).iterator();
+				Iterator var9 = var1.a(EntityHuman.class, var14.getBoundingBox().grow(50.0D, 50.0D, 50.0D)).iterator();
 
 				while (var9.hasNext()) {
 					EntityHuman var10 = (EntityHuman) var9.next();

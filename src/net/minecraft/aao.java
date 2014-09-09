@@ -36,7 +36,7 @@ public class aao extends zb {
 
 	public boolean a() {
 		double var1 = this.f();
-		List var3 = this.b.world.a(EntityHuman.class, this.b.aQ().b(var1, 4.0D, var1), this.c);
+		List var3 = this.b.world.a(EntityHuman.class, this.b.getBoundingBox().grow(var1, 4.0D, var1), this.c);
 		Collections.sort(var3, this.d);
 		if (var3.isEmpty()) {
 			return false;

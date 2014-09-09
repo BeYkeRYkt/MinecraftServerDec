@@ -296,7 +296,7 @@ public class qy {
 
 					if (this.a instanceof EntityHuman) {
 						EntityHuman var8 = (EntityHuman) this.a;
-						if (var8.bI()) {
+						if (var8.isSleeping()) {
 							var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutUseBed(var8, new Position(this.a))));
 						}
 					}

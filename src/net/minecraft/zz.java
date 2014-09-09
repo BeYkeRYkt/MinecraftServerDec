@@ -54,7 +54,7 @@ public class zz extends zb {
 	}
 
 	public void e() {
-		double var1 = this.a.getDistanceSquared(this.c.locationX, this.c.aQ().minY, this.c.locationZ);
+		double var1 = this.a.getDistanceSquared(this.c.locationX, this.c.getBoundingBox().minY, this.c.locationZ);
 		boolean var3 = this.a.t().a(this.c);
 		if (var3) {
 			++this.f;

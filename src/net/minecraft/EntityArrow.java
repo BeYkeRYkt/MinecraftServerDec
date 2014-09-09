@@ -41,7 +41,7 @@ public class EntityArrow extends Entity implements aho {
 
 		this.locationY = var2.locationY + (double) var2.aR() - 0.10000000149011612D;
 		double var6 = var3.locationX - var2.locationX;
-		double var8 = var3.aQ().minY + (double) (var3.K / 3.0F) - this.locationY;
+		double var8 = var3.getBoundingBox().minY + (double) (var3.K / 3.0F) - this.locationY;
 		double var10 = var3.locationZ - var2.locationZ;
 		double var12 = (double) DataTypesConverter.a(var6 * var6 + var10 * var10);
 		if (var12 >= 1.0E-7D) {
@@ -150,7 +150,7 @@ public class EntityArrow extends Entity implements aho {
 			}
 
 			Entity var7 = null;
-			List var8 = this.world.b((Entity) this, this.aQ().a(this.motionX, this.motionY, this.motionZ).b(1.0D, 1.0D, 1.0D));
+			List var8 = this.world.b((Entity) this, this.getBoundingBox().a(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
 			double var9 = 0.0D;
 
 			int var11;
@@ -159,7 +159,7 @@ public class EntityArrow extends Entity implements aho {
 				Entity var12 = (Entity) var8.get(var11);
 				if (var12.ad() && (var12 != this.c || this.aq >= 5)) {
 					var13 = 0.3F;
-					AxisAlignedBB var14 = var12.aQ().b((double) var13, (double) var13, (double) var13);
+					AxisAlignedBB var14 = var12.getBoundingBox().grow((double) var13, (double) var13, (double) var13);
 					MovingObjectPosition var15 = var14.a(var19, var5);
 					if (var15 != null) {
 						double var16 = var19.f(var15.vec);

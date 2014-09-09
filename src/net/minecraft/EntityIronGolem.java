@@ -79,7 +79,7 @@ public class EntityIronGolem extends abw {
 			BlockState var4 = this.world.getBlockState(new Position(var1, var2, var3));
 			Block var5 = var4.getBlock();
 			if (var5.getMaterial() != Material.AIR) {
-				this.world.a(Particle.L, this.locationX + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, this.aQ().minY + 0.1D, this.locationZ + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, 4.0D * ((double) this.V.nextFloat() - 0.5D), 0.5D, ((double) this.V.nextFloat() - 0.5D) * 4.0D, new int[] { Block.f(var4) });
+				this.world.a(Particle.L, this.locationX + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, this.getBoundingBox().minY + 0.1D, this.locationZ + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, 4.0D * ((double) this.V.nextFloat() - 0.5D), 0.5D, ((double) this.V.nextFloat() - 0.5D) * 4.0D, new int[] { Block.f(var4) });
 			}
 		}
 

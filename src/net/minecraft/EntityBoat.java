@@ -32,11 +32,11 @@ public class EntityBoat extends Entity {
 	}
 
 	public AxisAlignedBB j(Entity var1) {
-		return var1.aQ();
+		return var1.getBoundingBox();
 	}
 
 	public AxisAlignedBB S() {
-		return this.aQ();
+		return this.getBoundingBox();
 	}
 
 	public boolean ae() {
@@ -110,9 +110,9 @@ public class EntityBoat extends Entity {
 		double var2 = 0.0D;
 
 		for (int var4 = 0; var4 < var1; ++var4) {
-			double var5 = this.aQ().minY + (this.aQ().maxY - this.aQ().minY) * (double) (var4 + 0) / (double) var1 - 0.125D;
-			double var7 = this.aQ().minY + (this.aQ().maxY - this.aQ().minY) * (double) (var4 + 1) / (double) var1 - 0.125D;
-			AxisAlignedBB var9 = new AxisAlignedBB(this.aQ().minX, var5, this.aQ().minZ, this.aQ().maxX, var7, this.aQ().maxZ);
+			double var5 = this.getBoundingBox().minY + (this.getBoundingBox().maxY - this.getBoundingBox().minY) * (double) (var4 + 0) / (double) var1 - 0.125D;
+			double var7 = this.getBoundingBox().minY + (this.getBoundingBox().maxY - this.getBoundingBox().minY) * (double) (var4 + 1) / (double) var1 - 0.125D;
+			AxisAlignedBB var9 = new AxisAlignedBB(this.getBoundingBox().minX, var5, this.getBoundingBox().minZ, this.getBoundingBox().maxX, var7, this.getBoundingBox().maxZ);
 			if (this.world.b(var9, Material.WATER)) {
 				var2 += 1.0D / (double) var1;
 			}
@@ -236,7 +236,7 @@ public class EntityBoat extends Entity {
 				this.motionZ *= 0.5D;
 			}
 
-			this.d(this.motionX, this.motionY, this.motionZ);
+			this.move(this.motionX, this.motionY, this.motionZ);
 			if (this.D && var19 > 0.2D) {
 				if (!this.world.D && !this.dead) {
 					this.die();
@@ -275,7 +275,7 @@ public class EntityBoat extends Entity {
 			this.yaw = (float) ((double) this.yaw + var28);
 			this.b(this.yaw, this.pitch);
 			if (!this.world.D) {
-				List var16 = this.world.b((Entity) this, this.aQ().b(0.20000000298023224D, 0.0D, 0.20000000298023224D));
+				List var16 = this.world.b((Entity) this, this.getBoundingBox().grow(0.20000000298023224D, 0.0D, 0.20000000298023224D));
 				if (var16 != null && !var16.isEmpty()) {
 					for (int var29 = 0; var29 < var16.size(); ++var29) {
 						Entity var18 = (Entity) var16.get(var29);

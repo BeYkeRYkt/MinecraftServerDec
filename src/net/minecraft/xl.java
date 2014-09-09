@@ -15,30 +15,30 @@ public abstract class xl extends EntityInsentient {
 	public void g(float var1, float var2) {
 		if (this.V()) {
 			this.a(var1, var2, 0.02F);
-			this.d(this.motionX, this.motionY, this.motionZ);
+			this.move(this.motionX, this.motionY, this.motionZ);
 			this.motionX *= 0.800000011920929D;
 			this.motionY *= 0.800000011920929D;
 			this.motionZ *= 0.800000011920929D;
 		} else if (this.ab()) {
 			this.a(var1, var2, 0.02F);
-			this.d(this.motionX, this.motionY, this.motionZ);
+			this.move(this.motionX, this.motionY, this.motionZ);
 			this.motionX *= 0.5D;
 			this.motionY *= 0.5D;
 			this.motionZ *= 0.5D;
 		} else {
 			float var3 = 0.91F;
 			if (this.onGround) {
-				var3 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
+				var3 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
 			}
 
 			float var4 = 0.16277136F / (var3 * var3 * var3);
 			this.a(var1, var2, this.onGround ? 0.1F * var4 : 0.02F);
 			var3 = 0.91F;
 			if (this.onGround) {
-				var3 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
+				var3 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
 			}
 
-			this.d(this.motionX, this.motionY, this.motionZ);
+			this.move(this.motionX, this.motionY, this.motionZ);
 			this.motionX *= (double) var3;
 			this.motionY *= (double) var3;
 			this.motionZ *= (double) var3;

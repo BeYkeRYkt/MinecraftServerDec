@@ -695,13 +695,13 @@ public class Chunk {
 
 			while (var8.hasNext()) {
 				Entity var9 = (Entity) var8.next();
-				if (var9 != var1 && var9.aQ().b(var2) && (var4 == null || var4.apply(var9))) {
+				if (var9 != var1 && var9.getBoundingBox().b(var2) && (var4 == null || var4.apply(var9))) {
 					var3.add(var9);
 					Entity[] var10 = var9.aC();
 					if (var10 != null) {
 						for (int var11 = 0; var11 < var10.length; ++var11) {
 							var9 = var10[var11];
-							if (var9 != var1 && var9.aQ().b(var2) && (var4 == null || var4.apply(var9))) {
+							if (var9 != var1 && var9.getBoundingBox().b(var2) && (var4 == null || var4.apply(var9))) {
 								var3.add(var9);
 							}
 						}
@@ -723,7 +723,7 @@ public class Chunk {
 
 			while (var8.hasNext()) {
 				Entity var9 = (Entity) var8.next();
-				if (var9.aQ().b(var2) && (var4 == null || var4.apply(var9))) {
+				if (var9.getBoundingBox().b(var2) && (var4 == null || var4.apply(var9))) {
 					var3.add(var9);
 				}
 			}

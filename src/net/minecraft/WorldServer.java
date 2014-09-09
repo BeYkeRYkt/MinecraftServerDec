@@ -16,10 +16,10 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class WorldServer extends World implements vn {
+public class WorldServer extends World implements ITaskScheduler {
 
 	private static final Logger a = LogManager.getLogger();
-	private final MinecraftServer I;
+	private final MinecraftServer minecraftserver;
 	private final qn J;
 	private final qq K;
 	private final Set L = Sets.newHashSet();
@@ -39,7 +39,7 @@ public class WorldServer extends World implements vn {
 
 	public WorldServer(MinecraftServer var1, IDataManager var2, WorldData var3, int var4, MethodProfiler var5) {
 		super(var2, var3, WorldProvider.a(var4), var5, false);
-		this.I = var1;
+		this.minecraftserver = var1;
 		this.J = new qn(this);
 		this.K = new qq(this);
 		this.worldProvider.a(this);
@@ -62,7 +62,7 @@ public class WorldServer extends World implements vn {
 			this.A.a((World) this);
 		}
 
-		this.C = new pk(this.I);
+		this.C = new pk(this.minecraftserver);
 		bse var3 = (bse) this.z.a(bse.class, "scoreboard");
 		if (var3 == null) {
 			var3 = new bse();
@@ -154,7 +154,7 @@ public class WorldServer extends World implements vn {
 				EntityHuman var4 = (EntityHuman) var3.next();
 				if (var4.isSpectator()) {
 					++var1;
-				} else if (var4.bI()) {
+				} else if (var4.isSleeping()) {
 					++var2;
 				}
 			}
@@ -170,7 +170,7 @@ public class WorldServer extends World implements vn {
 
 		while (var1.hasNext()) {
 			EntityHuman var2 = (EntityHuman) var1.next();
-			if (var2.bI()) {
+			if (var2.isSleeping()) {
 				var2.a(false, false, true);
 			}
 		}
@@ -292,7 +292,7 @@ public class WorldServer extends World implements vn {
 
 	protected Position a(Position var1) {
 		Position var2 = this.q(var1);
-		AxisAlignedBB var3 = (new AxisAlignedBB(var2, new Position(var2.getX(), this.U(), var2.getZ()))).b(3.0D, 3.0D, 3.0D);
+		AxisAlignedBB var3 = (new AxisAlignedBB(var2, new Position(var2.getX(), this.U(), var2.getZ()))).grow(3.0D, 3.0D, 3.0D);
 		List var4 = this.a(EntityLiving.class, var3, new qu(this));
 		return !var4.isEmpty() ? ((EntityLiving) var4.get(this.s.nextInt(var4.size()))).getEntityPosition() : var2;
 	}
@@ -484,11 +484,11 @@ public class WorldServer extends World implements vn {
 	}
 
 	private boolean ah() {
-		return this.I.isNPCSpawnEnabled();
+		return this.minecraftserver.isNPCSpawnEnabled();
 	}
 
 	private boolean ai() {
-		return this.I.isAnimalSpawnEnabled();
+		return this.minecraftserver.isAnimalSpawnEnabled();
 	}
 
 	protected IChunkProvider k() {
@@ -512,7 +512,7 @@ public class WorldServer extends World implements vn {
 	}
 
 	public boolean a(EntityHuman var1, Position var2) {
-		return !this.I.isProtected((World) this, var2, var1) && this.getWorldBorder().isInside(var2);
+		return !this.minecraftserver.isProtected((World) this, var2, var1) && this.getWorldBorder().isInside(var2);
 	}
 
 	public void a(arb var1) {
@@ -656,7 +656,7 @@ public class WorldServer extends World implements vn {
 		this.worldData.k(this.getWorldBorder().getWarningTime());
 		this.worldData.b(this.getWorldBorder().getCurrentRadius());
 		this.worldData.e(this.getWorldBorder().getSpeed());
-		this.dataManager.a(this.worldData, this.I.getPlayerList().u());
+		this.dataManager.a(this.worldData, this.minecraftserver.getPlayerList().u());
 		this.z.a();
 	}
 
@@ -688,7 +688,7 @@ public class WorldServer extends World implements vn {
 
 	public boolean c(Entity var1) {
 		if (super.c(var1)) {
-			this.I.getPlayerList().a(var1.locationX, var1.locationY, var1.locationZ, 512.0D, this.worldProvider.getDimensionId(), new PacketPlayOutSpawnGlobalEntity(var1));
+			this.minecraftserver.getPlayerList().a(var1.locationX, var1.locationY, var1.locationZ, 512.0D, this.worldProvider.getDimensionId(), new PacketPlayOutSpawnGlobalEntity(var1));
 			return true;
 		} else {
 			return false;
@@ -744,7 +744,7 @@ public class WorldServer extends World implements vn {
 			while (var2.hasNext()) {
 				aqk var3 = (aqk) var2.next();
 				if (this.a(var3)) {
-					this.I.getPlayerList().a((double) var3.a().getX(), (double) var3.a().getY(), (double) var3.a().getZ(), 64.0D, this.worldProvider.getDimensionId(), new PacketPlayOutBlockAction(var3.a(), var3.d(), var3.b(), var3.c()));
+					this.minecraftserver.getPlayerList().a((double) var3.a().getX(), (double) var3.a().getY(), (double) var3.a().getZ(), 64.0D, this.worldProvider.getDimensionId(), new PacketPlayOutBlockAction(var3.a(), var3.d(), var3.b(), var3.c()));
 				}
 			}
 
@@ -766,32 +766,32 @@ public class WorldServer extends World implements vn {
 		boolean var1 = this.S();
 		super.p();
 		if (this.o != this.p) {
-			this.I.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(7, this.p)), this.worldProvider.getDimensionId());
+			this.minecraftserver.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(7, this.p)), this.worldProvider.getDimensionId());
 		}
 
 		if (this.q != this.r) {
-			this.I.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(8, this.r)), this.worldProvider.getDimensionId());
+			this.minecraftserver.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(8, this.r)), this.worldProvider.getDimensionId());
 		}
 
 		if (var1 != this.S()) {
 			if (var1) {
-				this.I.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(2, 0.0F)));
+				this.minecraftserver.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(2, 0.0F)));
 			} else {
-				this.I.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(1, 0.0F)));
+				this.minecraftserver.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(1, 0.0F)));
 			}
 
-			this.I.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(7, this.p)));
-			this.I.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(8, this.r)));
+			this.minecraftserver.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(7, this.p)));
+			this.minecraftserver.getPlayerList().sendPacket((Packet) (new PacketPlayOutChangeGameState(8, this.r)));
 		}
 
 	}
 
 	protected int q() {
-		return this.I.getPlayerList().t();
+		return this.minecraftserver.getPlayerList().t();
 	}
 
 	public MinecraftServer r() {
-		return this.I;
+		return this.minecraftserver;
 	}
 
 	public qn s() {
@@ -828,12 +828,12 @@ public class WorldServer extends World implements vn {
 		return (Entity) this.N.get(var1);
 	}
 
-	public ListenableFuture scheduleSyncTask(Runnable var1) {
-		return this.I.scheduleSyncTask(var1);
+	public ListenableFuture<?> scheduleSyncTask(Runnable var1) {
+		return this.minecraftserver.scheduleSyncTask(var1);
 	}
 
 	public boolean isMainThread() {
-		return this.I.isMainThread();
+		return this.minecraftserver.isMainThread();
 	}
 
 }

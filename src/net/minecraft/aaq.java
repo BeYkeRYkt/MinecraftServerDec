@@ -44,7 +44,7 @@ public class aaq extends aaw {
 			return false;
 		} else {
 			double var1 = this.f();
-			List var3 = this.e.world.a(this.a, this.e.aQ().b(var1, 4.0D, var1), Predicates.and(this.c, EntityPredicates.d));
+			List var3 = this.e.world.a(this.a, this.e.getBoundingBox().grow(var1, 4.0D, var1), Predicates.and(this.c, EntityPredicates.d));
 			Collections.sort(var3, this.b);
 			if (var3.isEmpty()) {
 				return false;

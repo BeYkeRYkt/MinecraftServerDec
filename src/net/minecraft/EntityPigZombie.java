@@ -70,7 +70,7 @@ public class EntityPigZombie extends EntityZombie {
 	}
 
 	public boolean bR() {
-		return this.world.a(this.aQ(), (Entity) this) && this.world.a((Entity) this, this.aQ()).isEmpty() && !this.world.d(this.aQ());
+		return this.world.a(this.getBoundingBox(), (Entity) this) && this.world.getCubes((Entity) this, this.getBoundingBox()).isEmpty() && !this.world.d(this.getBoundingBox());
 	}
 
 	public void b(NBTCompoundTag var1) {

@@ -15,7 +15,7 @@ public abstract class act extends EntityInsentient implements wt {
 	}
 
 	public boolean bR() {
-		return this.world.a(this.aQ(), (Entity) this);
+		return this.world.a(this.getBoundingBox(), (Entity) this);
 	}
 
 	public int w() {

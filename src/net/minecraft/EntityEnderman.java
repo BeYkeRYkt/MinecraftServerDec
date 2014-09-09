@@ -67,7 +67,7 @@ public class EntityEnderman extends EntityMonster {
 			return false;
 		} else {
 			Vec3D var3 = var1.d(1.0F).a();
-			Vec3D var4 = new Vec3D(this.locationX - var1.locationX, this.aQ().minY + (double) (this.K / 2.0F) - (var1.locationY + (double) var1.aR()), this.locationZ - var1.locationZ);
+			Vec3D var4 = new Vec3D(this.locationX - var1.locationX, this.getBoundingBox().minY + (double) (this.K / 2.0F) - (var1.locationY + (double) var1.aR()), this.locationZ - var1.locationZ);
 			double var5 = var4.b();
 			var4 = var4.a();
 			double var7 = var3.b(var4);
@@ -120,7 +120,7 @@ public class EntityEnderman extends EntityMonster {
 	}
 
 	protected boolean b(Entity var1) {
-		Vec3D var2 = new Vec3D(this.locationX - var1.locationX, this.aQ().minY + (double) (this.K / 2.0F) - var1.locationY + (double) var1.aR(), this.locationZ - var1.locationZ);
+		Vec3D var2 = new Vec3D(this.locationX - var1.locationX, this.getBoundingBox().minY + (double) (this.K / 2.0F) - var1.locationY + (double) var1.aR(), this.locationZ - var1.locationZ);
 		var2 = var2.a();
 		double var3 = 16.0D;
 		double var5 = this.locationX + (this.V.nextDouble() - 0.5D) * 8.0D - var2.x * var3;
@@ -154,7 +154,7 @@ public class EntityEnderman extends EntityMonster {
 
 			if (var15) {
 				super.updatePosition(this.locationX, this.locationY, this.locationZ);
-				if (this.world.a((Entity) this, this.aQ()).isEmpty() && !this.world.d(this.aQ())) {
+				if (this.world.getCubes((Entity) this, this.getBoundingBox()).isEmpty() && !this.world.d(this.getBoundingBox())) {
 					var13 = true;
 				}
 			}

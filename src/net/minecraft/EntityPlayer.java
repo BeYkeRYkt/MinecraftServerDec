@@ -70,7 +70,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		this.S = 0.0F;
 		this.a(var5, 0.0F, 0.0F);
 
-		while (!var2.a((Entity) this, this.aQ()).isEmpty() && this.locationY < 255.0D) {
+		while (!var2.getCubes((Entity) this, this.getBoundingBox()).isEmpty() && this.locationY < 255.0D) {
 			this.b(this.locationX, this.locationY + 1.0D, this.locationZ);
 		}
 
@@ -194,7 +194,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			if (!var7.isAlive()) {
 				this.e(this);
 			} else {
-				this.a(var7.locationX, var7.locationY, var7.locationZ, var7.yaw, var7.pitch);
+				this.setLocation(var7.locationX, var7.locationY, var7.locationZ, var7.yaw, var7.pitch);
 				this.minecraftserver.getPlayerList().d(this);
 				if (this.aw()) {
 					this.e(this);
@@ -236,9 +236,9 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 				}
 			}
 
-			if (this.bA != this.bN) {
-				this.bN = this.bA;
-				this.playerConncetion.sendPacket((Packet) (new PacketPlayOutSetExpirience(this.bB, this.bA, this.bz)));
+			if (this.xpTotal != this.bN) {
+				this.bN = this.xpTotal;
+				this.playerConncetion.sendPacket((Packet) (new PacketPlayOutSetExpirience(this.xp, this.xpTotal, this.xpLevel)));
 			}
 
 			if (this.W % 20 * 5 == 0 && !this.getStatisticManager().a(AchievementList.L)) {
@@ -377,7 +377,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 				this.b((Statistic) AchievementList.C);
 				Position var2 = this.minecraftserver.getWorldServer(var1).m();
 				if (var2 != null) {
-					this.playerConncetion.a((double) var2.getX(), (double) var2.getY(), (double) var2.getZ(), 0.0F, 0.0F);
+					this.playerConncetion.movePlayer((double) var2.getX(), (double) var2.getY(), (double) var2.getZ(), 0.0F, 0.0F);
 				}
 
 				var1 = 1;
@@ -417,7 +417,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		if (var2 == ahf.a) {
 			PacketPlayOutUseBed var3 = new PacketPlayOutUseBed(this, var1);
 			this.getWorldServer().s().a((Entity) this, (Packet) var3);
-			this.playerConncetion.a(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
+			this.playerConncetion.movePlayer(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 			this.playerConncetion.sendPacket((Packet) var3);
 		}
 
@@ -425,13 +425,13 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public void a(boolean var1, boolean var2, boolean var3) {
-		if (this.bI()) {
+		if (this.isSleeping()) {
 			this.getWorldServer().s().b(this, new PacketPlayOutAnimation(this, 2));
 		}
 
 		super.a(var1, var2, var3);
 		if (this.playerConncetion != null) {
-			this.playerConncetion.a(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
+			this.playerConncetion.movePlayer(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 		}
 
 	}
@@ -441,7 +441,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		super.a(var1);
 		if (var1 != var2) {
 			this.playerConncetion.sendPacket((Packet) (new PacketPlayOutAttachEntity(0, this, this.vehicle)));
-			this.playerConncetion.a(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
+			this.playerConncetion.movePlayer(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 		}
 
 	}
@@ -647,7 +647,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			this.l.a((Entity) this);
 		}
 
-		if (this.bu) {
+		if (this.isSleeping) {
 			this.a(true, false, false);
 		}
 
@@ -698,7 +698,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public void updatePosition(double var1, double var3, double var5) {
-		this.playerConncetion.a(var1, var3, var5, this.yaw, this.pitch);
+		this.playerConncetion.movePlayer(var1, var3, var5, this.yaw, this.pitch);
 	}
 
 	public void b(Entity var1) {

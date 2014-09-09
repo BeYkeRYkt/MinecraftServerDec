@@ -21,7 +21,7 @@ public class aaf extends zb {
 		} else if (!this.a.world.w()) {
 			return false;
 		} else {
-			List var1 = this.a.world.a(EntityIronGolem.class, this.a.aQ().b(6.0D, 2.0D, 6.0D));
+			List var1 = this.a.world.a(EntityIronGolem.class, this.a.getBoundingBox().grow(6.0D, 2.0D, 6.0D));
 			if (var1.isEmpty()) {
 				return false;
 			} else {

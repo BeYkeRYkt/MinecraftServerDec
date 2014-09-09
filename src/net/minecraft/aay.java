@@ -27,7 +27,7 @@ public class aay extends aaz {
 
 	private int p() {
 		if (this.b.V() && this.h()) {
-			int var1 = (int) this.b.aQ().minY;
+			int var1 = (int) this.b.getBoundingBox().minY;
 			Block var2 = this.c.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).getBlock();
 			int var3 = 0;
 
@@ -41,16 +41,16 @@ public class aay extends aaz {
 				++var3;
 			} while (var3 <= 16);
 
-			return (int) this.b.aQ().minY;
+			return (int) this.b.getBoundingBox().minY;
 		} else {
-			return (int) (this.b.aQ().minY + 0.5D);
+			return (int) (this.b.getBoundingBox().minY + 0.5D);
 		}
 	}
 
 	protected void d() {
 		super.d();
 		if (this.f) {
-			if (this.c.i(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), (int) (this.b.aQ().minY + 0.5D), DataTypesConverter.toFixedPointInt(this.b.locationZ)))) {
+			if (this.c.i(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), (int) (this.b.getBoundingBox().minY + 0.5D), DataTypesConverter.toFixedPointInt(this.b.locationZ)))) {
 				return;
 			}
 

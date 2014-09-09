@@ -317,7 +317,7 @@ public class EntityGuardian extends EntityMonster {
 	}
 
 	public boolean bR() {
-		return this.world.a(this.aQ(), (Entity) this) && this.world.a((Entity) this, this.aQ()).isEmpty();
+		return this.world.a(this.getBoundingBox(), (Entity) this) && this.world.getCubes((Entity) this, this.getBoundingBox()).isEmpty();
 	}
 
 	public boolean bQ() {
@@ -345,7 +345,7 @@ public class EntityGuardian extends EntityMonster {
 		if (this.bL()) {
 			if (this.V()) {
 				this.a(var1, var2, 0.1F);
-				this.d(this.motionX, this.motionY, this.motionZ);
+				this.move(this.motionX, this.motionY, this.motionZ);
 				this.motionX *= 0.8999999761581421D;
 				this.motionY *= 0.8999999761581421D;
 				this.motionZ *= 0.8999999761581421D;

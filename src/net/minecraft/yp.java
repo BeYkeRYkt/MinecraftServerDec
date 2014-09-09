@@ -27,7 +27,7 @@ public class yp extends zb {
 	}
 
 	public boolean a() {
-		List var1 = this.b.world.a((Entity) this.b, this.b.aQ().b((double) this.f, 3.0D, (double) this.f), Predicates.and(new Predicate[] { EntityPredicates.d, this.a, this.i }));
+		List var1 = this.b.world.a((Entity) this.b, this.b.getBoundingBox().grow((double) this.f, 3.0D, (double) this.f), Predicates.and(new Predicate[] { EntityPredicates.d, this.a, this.i }));
 		if (var1.isEmpty()) {
 			return false;
 		} else {

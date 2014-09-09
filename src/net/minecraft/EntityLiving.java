@@ -133,7 +133,7 @@ public abstract class EntityLiving extends Entity {
 		if (this.isAlive()) {
 			if (this.aj()) {
 				this.a(DamageSource.e, 1.0F);
-			} else if (var1 && !this.world.getWorldBorder().isInside(this.aQ())) {
+			} else if (var1 && !this.world.getWorldBorder().isInside(this.getBoundingBox())) {
 				double var2 = this.world.getWorldBorder().getDistance((Entity) this) + this.world.getWorldBorder().getDamageBuffer();
 				if (var2 < 0.0D) {
 					this.a(DamageSource.e, (float) Math.max(1, DataTypesConverter.toFixedPointInt(-var2 * this.world.getWorldBorder().getDamageAmount())));
@@ -732,7 +732,7 @@ public abstract class EntityLiving extends Entity {
 
 	public boolean j_() {
 		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
-		int var2 = DataTypesConverter.toFixedPointInt(this.aQ().minY);
+		int var2 = DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY);
 		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
 		Block var4 = this.world.getBlockState(new Position(var1, var2, var3)).getBlock();
 		return (var4 == Blocks.LADDER || var4 == Blocks.VINE) && (!(this instanceof EntityHuman) || !((EntityHuman) this).isSpectator());
@@ -949,7 +949,7 @@ public abstract class EntityLiving extends Entity {
 
 	public void q(Entity var1) {
 		double var3 = var1.locationX;
-		double var5 = var1.aQ().minY + (double) var1.K;
+		double var5 = var1.getBoundingBox().minY + (double) var1.K;
 		double var7 = var1.locationZ;
 		byte var9 = 1;
 
@@ -958,7 +958,7 @@ public abstract class EntityLiving extends Entity {
 				if (var10 != 0 || var11 != 0) {
 					int var12 = (int) (this.locationX + (double) var10);
 					int var13 = (int) (this.locationZ + (double) var11);
-					AxisAlignedBB var2 = this.aQ().c((double) var10, 1.0D, (double) var11);
+					AxisAlignedBB var2 = this.getBoundingBox().c((double) var10, 1.0D, (double) var11);
 					if (this.world.a(var2).isEmpty()) {
 						if (World.a((ard) this.world, new Position(var12, (int) this.locationY, var13))) {
 							this.updatePosition(this.locationX + (double) var10, this.locationY + 1.0D, this.locationZ + (double) var11);
@@ -982,7 +982,7 @@ public abstract class EntityLiving extends Entity {
 		return 0.42F;
 	}
 
-	protected void bE() {
+	protected void jump() {
 		this.motionY = (double) this.bD();
 		if (this.a(MobEffectList.j)) {
 			this.motionY += (double) ((float) (this.b(MobEffectList.j).getAmplifier() + 1) * 0.1F);
@@ -1030,7 +1030,7 @@ public abstract class EntityLiving extends Entity {
 				}
 
 				this.a(var1, var2, var6);
-				this.d(this.motionX, this.motionY, this.motionZ);
+				this.move(this.motionX, this.motionY, this.motionZ);
 				this.motionX *= (double) var5;
 				this.motionY *= 0.800000011920929D;
 				this.motionZ *= (double) var5;
@@ -1041,7 +1041,7 @@ public abstract class EntityLiving extends Entity {
 			} else if (this.ab() && (!(this instanceof EntityHuman) || !((EntityHuman) this).playerProperties.flying)) {
 				var8 = this.locationY;
 				this.a(var1, var2, 0.02F);
-				this.d(this.motionX, this.motionY, this.motionZ);
+				this.move(this.motionX, this.motionY, this.motionZ);
 				this.motionX *= 0.5D;
 				this.motionY *= 0.5D;
 				this.motionZ *= 0.5D;
@@ -1052,7 +1052,7 @@ public abstract class EntityLiving extends Entity {
 			} else {
 				float var3 = 0.91F;
 				if (this.onGround) {
-					var3 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
+					var3 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
 				}
 
 				float var4 = 0.16277136F / (var3 * var3 * var3);
@@ -1065,7 +1065,7 @@ public abstract class EntityLiving extends Entity {
 				this.a(var1, var2, var5);
 				var3 = 0.91F;
 				if (this.onGround) {
-					var3 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
+					var3 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
 				}
 
 				if (this.j_()) {
@@ -1083,7 +1083,7 @@ public abstract class EntityLiving extends Entity {
 					}
 				}
 
-				this.d(this.motionX, this.motionY, this.motionZ);
+				this.move(this.motionX, this.motionY, this.motionZ);
 				if (this.D && this.j_()) {
 					this.motionY = 0.2D;
 				}
@@ -1129,7 +1129,7 @@ public abstract class EntityLiving extends Entity {
 		return false;
 	}
 
-	public boolean bI() {
+	public boolean isSleeping() {
 		return false;
 	}
 
@@ -1312,7 +1312,7 @@ public abstract class EntityLiving extends Entity {
 			} else if (this.ab()) {
 				this.bG();
 			} else if (this.onGround && this.bl == 0) {
-				this.bE();
+				this.jump();
 				this.bl = 10;
 			}
 		} else {
@@ -1338,7 +1338,7 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	protected void bK() {
-		List var1 = this.world.b((Entity) this, this.aQ().b(0.20000000298023224D, 0.0D, 0.20000000298023224D));
+		List var1 = this.world.b((Entity) this, this.getBoundingBox().grow(0.20000000298023224D, 0.0D, 0.20000000298023224D));
 		if (var1 != null && !var1.isEmpty()) {
 			for (int var2 = 0; var2 < var1.size(); ++var2) {
 				Entity var3 = (Entity) var1.get(var2);

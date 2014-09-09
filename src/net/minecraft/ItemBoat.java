@@ -32,13 +32,13 @@ public class ItemBoat extends Item {
 			Vec3D var25 = var3.d(var4);
 			boolean var26 = false;
 			float var27 = 1.0F;
-			List var28 = var2.b((Entity) var3, var3.aQ().a(var25.x * var21, var25.y * var21, var25.z * var21).b((double) var27, (double) var27, (double) var27));
+			List var28 = var2.b((Entity) var3, var3.getBoundingBox().a(var25.x * var21, var25.y * var21, var25.z * var21).grow((double) var27, (double) var27, (double) var27));
 
 			for (int var29 = 0; var29 < var28.size(); ++var29) {
 				Entity var30 = (Entity) var28.get(var29);
 				if (var30.ad()) {
 					float var31 = var30.ao();
-					AxisAlignedBB var32 = var30.aQ().b((double) var31, (double) var31, (double) var31);
+					AxisAlignedBB var32 = var30.getBoundingBox().grow((double) var31, (double) var31, (double) var31);
 					if (var32.a(var13)) {
 						var26 = true;
 					}
@@ -56,7 +56,7 @@ public class ItemBoat extends Item {
 
 					EntityBoat var34 = new EntityBoat(var2, (double) ((float) var33.getX() + 0.5F), (double) ((float) var33.getY() + 1.0F), (double) ((float) var33.getZ() + 0.5F));
 					var34.yaw = (float) (((DataTypesConverter.toFixedPointInt((double) (var3.yaw * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
-					if (!var2.a((Entity) var34, var34.aQ().b(-0.1D, -0.1D, -0.1D)).isEmpty()) {
+					if (!var2.getCubes((Entity) var34, var34.getBoundingBox().grow(-0.1D, -0.1D, -0.1D)).isEmpty()) {
 						return var1;
 					}
 

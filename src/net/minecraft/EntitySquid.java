@@ -68,7 +68,7 @@ public class EntitySquid extends act {
 	}
 
 	public boolean V() {
-		return this.world.a(this.aQ().b(0.0D, -0.6000000238418579D, 0.0D), Material.WATER, (Entity) this);
+		return this.world.a(this.getBoundingBox().grow(0.0D, -0.6000000238418579D, 0.0D), Material.WATER, (Entity) this);
 	}
 
 	public void m() {
@@ -134,7 +134,7 @@ public class EntitySquid extends act {
 	}
 
 	public void g(float var1, float var2) {
-		this.d(this.motionX, this.motionY, this.motionZ);
+		this.move(this.motionX, this.motionY, this.motionZ);
 	}
 
 	public boolean bQ() {

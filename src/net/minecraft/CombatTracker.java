@@ -22,7 +22,7 @@ public class CombatTracker {
 	public void a() {
 		this.j();
 		if (this.b.j_()) {
-			Block var1 = this.b.world.getBlockState(new Position(this.b.locationX, this.b.aQ().minY, this.b.locationZ)).getBlock();
+			Block var1 = this.b.world.getBlockState(new Position(this.b.locationX, this.b.getBoundingBox().minY, this.b.locationZ)).getBlock();
 			if (var1 == Blocks.LADDER) {
 				this.h = "ladder";
 			} else if (var1 == Blocks.VINE) {

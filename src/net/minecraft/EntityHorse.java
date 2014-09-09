@@ -358,7 +358,7 @@ public class EntityHorse extends abq implements vr {
 	protected EntityHorse a(Entity var1, double var2) {
 		double var4 = Double.MAX_VALUE;
 		Entity var6 = null;
-		List var7 = this.world.a(var1, var1.aQ().a(var2, var2, var2), bq);
+		List var7 = this.world.a(var1, var1.getBoundingBox().a(var2, var2, var2), bq);
 		Iterator var8 = var7.iterator();
 
 		while (var8.hasNext()) {

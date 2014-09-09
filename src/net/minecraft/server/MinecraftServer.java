@@ -42,7 +42,7 @@ import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public abstract class MinecraftServer implements CommandSenderInterface, Runnable, vn, wd {
+public abstract class MinecraftServer implements CommandSenderInterface, Runnable, ITaskScheduler, wd {
 
 	private static final Logger logger = LogManager.getLogger();
 	public static final File usercache = new File("usercache.json");

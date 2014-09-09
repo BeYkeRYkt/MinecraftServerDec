@@ -60,8 +60,8 @@ public class EntityItem extends Entity {
 			this.q = this.locationY;
 			this.r = this.locationZ;
 			this.motionY -= 0.03999999910593033D;
-			this.T = this.j(this.locationX, (this.aQ().minY + this.aQ().maxY) / 2.0D, this.locationZ);
-			this.d(this.motionX, this.motionY, this.motionZ);
+			this.T = this.j(this.locationX, (this.getBoundingBox().minY + this.getBoundingBox().maxY) / 2.0D, this.locationZ);
+			this.move(this.motionX, this.motionY, this.motionZ);
 			boolean var1 = (int) this.p != (int) this.locationX || (int) this.q != (int) this.locationY || (int) this.r != (int) this.locationZ;
 			if (var1 || this.W % 25 == 0) {
 				if (this.world.getBlockState(new Position(this)).getBlock().getMaterial() == Material.LAVA) {
@@ -78,7 +78,7 @@ public class EntityItem extends Entity {
 
 			float var2 = 0.98F;
 			if (this.onGround) {
-				var2 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
+				var2 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
 			}
 
 			this.motionX *= (double) var2;
@@ -101,7 +101,7 @@ public class EntityItem extends Entity {
 	}
 
 	private void w() {
-		Iterator var1 = this.world.a(EntityItem.class, this.aQ().b(0.5D, 0.0D, 0.5D)).iterator();
+		Iterator var1 = this.world.a(EntityItem.class, this.getBoundingBox().grow(0.5D, 0.0D, 0.5D)).iterator();
 
 		while (var1.hasNext()) {
 			EntityItem var2 = (EntityItem) var1.next();
@@ -156,7 +156,7 @@ public class EntityItem extends Entity {
 	}
 
 	public boolean W() {
-		if (this.world.a(this.aQ(), Material.WATER, (Entity) this)) {
+		if (this.world.a(this.getBoundingBox(), Material.WATER, (Entity) this)) {
 			if (!this.Y && !this.aa) {
 				this.X();
 			}

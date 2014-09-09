@@ -49,7 +49,7 @@ public class yt extends zb {
 
 	private abq f() {
 		float var1 = 8.0F;
-		List var2 = this.a.a(this.d.getClass(), this.d.aQ().b((double) var1, (double) var1, (double) var1));
+		List var2 = this.a.a(this.d.getClass(), this.d.getBoundingBox().grow((double) var1, (double) var1, (double) var1));
 		double var3 = Double.MAX_VALUE;
 		abq var5 = null;
 		Iterator var6 = var2.iterator();

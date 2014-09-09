@@ -41,7 +41,7 @@ public class EntityTNTPrimed extends Entity {
 		this.q = this.locationY;
 		this.r = this.locationZ;
 		this.motionY -= 0.03999999910593033D;
-		this.d(this.motionX, this.motionY, this.motionZ);
+		this.move(this.motionX, this.motionY, this.motionZ);
 		this.motionX *= 0.9800000190734863D;
 		this.motionY *= 0.9800000190734863D;
 		this.motionZ *= 0.9800000190734863D;

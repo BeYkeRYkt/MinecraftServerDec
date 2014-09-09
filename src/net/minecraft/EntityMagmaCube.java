@@ -17,7 +17,7 @@ public class EntityMagmaCube extends EntitySlime {
 	}
 
 	public boolean bR() {
-		return this.world.a(this.aQ(), (Entity) this) && this.world.a((Entity) this, this.aQ()).isEmpty() && !this.world.d(this.aQ());
+		return this.world.a(this.getBoundingBox(), (Entity) this) && this.world.getCubes((Entity) this, this.getBoundingBox()).isEmpty() && !this.world.d(this.getBoundingBox());
 	}
 
 	public int bq() {
@@ -67,7 +67,7 @@ public class EntityMagmaCube extends EntitySlime {
 		this.a *= 0.9F;
 	}
 
-	protected void bE() {
+	protected void jump() {
 		this.motionY = (double) (0.42F + (float) this.ck() * 0.1F);
 		this.ai = true;
 	}

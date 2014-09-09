@@ -274,7 +274,7 @@ public abstract class EntityInsentient extends EntityLiving {
 		super.m();
 		this.world.B.a("looting");
 		if (!this.world.D && this.bX() && !this.aN && this.world.Q().b("mobGriefing")) {
-			List var1 = this.world.a(EntityItem.class, this.aQ().b(1.0D, 0.0D, 1.0D));
+			List var1 = this.world.a(EntityItem.class, this.getBoundingBox().grow(1.0D, 0.0D, 1.0D));
 			Iterator var2 = var1.iterator();
 
 			while (var2.hasNext()) {
@@ -426,7 +426,7 @@ public abstract class EntityInsentient extends EntityLiving {
 			EntityLiving var10 = (EntityLiving) var1;
 			var6 = var10.locationY + (double) var10.aR() - (this.locationY + (double) this.aR());
 		} else {
-			var6 = (var1.aQ().minY + var1.aQ().maxY) / 2.0D - (this.locationY + (double) this.aR());
+			var6 = (var1.getBoundingBox().minY + var1.getBoundingBox().maxY) / 2.0D - (this.locationY + (double) this.aR());
 		}
 
 		double var14 = (double) DataTypesConverter.a(var4 * var4 + var8 * var8);
@@ -454,7 +454,7 @@ public abstract class EntityInsentient extends EntityLiving {
 	}
 
 	public boolean bR() {
-		return this.world.a(this.aQ(), (Entity) this) && this.world.a((Entity) this, this.aQ()).isEmpty() && !this.world.d(this.aQ());
+		return this.world.a(this.getBoundingBox(), (Entity) this) && this.world.getCubes((Entity) this, this.getBoundingBox()).isEmpty() && !this.world.d(this.getBoundingBox());
 	}
 
 	public int bU() {
@@ -757,7 +757,7 @@ public abstract class EntityInsentient extends EntityLiving {
 		if (this.bm && this.bo != null) {
 			if (this.bo.isTagAssignableFrom("UUIDMost", 4) && this.bo.isTagAssignableFrom("UUIDLeast", 4)) {
 				UUID var5 = new UUID(this.bo.getLong("UUIDMost"), this.bo.getLong("UUIDLeast"));
-				List var6 = this.world.a(EntityLiving.class, this.aQ().b(10.0D, 10.0D, 10.0D));
+				List var6 = this.world.a(EntityLiving.class, this.getBoundingBox().grow(10.0D, 10.0D, 10.0D));
 				Iterator var3 = var6.iterator();
 
 				while (var3.hasNext()) {

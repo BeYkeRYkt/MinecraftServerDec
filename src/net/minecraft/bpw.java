@@ -11,7 +11,7 @@ public class bpw {
 	}
 
 	public bpv a(ard var1, Entity var2, Entity var3, float var4) {
-		return this.a(var1, var2, var3.locationX, var3.aQ().minY, var3.locationZ, var4);
+		return this.a(var1, var2, var3.locationX, var3.getBoundingBox().minY, var3.locationZ, var4);
 	}
 
 	public bpv a(ard var1, Entity var2, Position var3, float var4) {

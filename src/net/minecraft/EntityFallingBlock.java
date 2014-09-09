@@ -64,7 +64,7 @@ public class EntityFallingBlock extends Entity {
 			}
 
 			this.motionY -= 0.03999999910593033D;
-			this.d(this.motionX, this.motionY, this.motionZ);
+			this.move(this.motionX, this.motionY, this.motionZ);
 			this.motionX *= 0.9800000190734863D;
 			this.motionY *= 0.9800000190734863D;
 			this.motionZ *= 0.9800000190734863D;
@@ -121,7 +121,7 @@ public class EntityFallingBlock extends Entity {
 		if (this.f) {
 			int var4 = DataTypesConverter.f(var1 - 1.0F);
 			if (var4 > 0) {
-				ArrayList var5 = Lists.newArrayList((Iterable) this.world.b((Entity) this, this.aQ()));
+				ArrayList var5 = Lists.newArrayList((Iterable) this.world.b((Entity) this, this.getBoundingBox()));
 				boolean var6 = var3 == Blocks.ANVIL;
 				DamageSource var7 = var6 ? DamageSource.n : DamageSource.o;
 				Iterator var8 = var5.iterator();

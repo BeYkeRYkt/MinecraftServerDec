@@ -57,7 +57,7 @@ public class EntityPotion extends ahr {
 		if (!this.world.D) {
 			List var2 = Items.POTION.h(this.c);
 			if (var2 != null && !var2.isEmpty()) {
-				AxisAlignedBB var3 = this.aQ().b(4.0D, 2.0D, 4.0D);
+				AxisAlignedBB var3 = this.getBoundingBox().grow(4.0D, 2.0D, 4.0D);
 				List var4 = this.world.a(EntityLiving.class, var3);
 				if (!var4.isEmpty()) {
 					Iterator var5 = var4.iterator();

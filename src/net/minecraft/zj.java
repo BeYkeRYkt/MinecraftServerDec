@@ -24,7 +24,7 @@ public class zj extends zb {
 			if (this.a == null) {
 				return false;
 			} else if (this.f() && this.b.n(true)) {
-				Entity var1 = this.d.a(EntityVillager.class, this.b.aQ().b(8.0D, 3.0D, 8.0D), (Entity) this.b);
+				Entity var1 = this.d.a(EntityVillager.class, this.b.getBoundingBox().grow(8.0D, 3.0D, 8.0D), (Entity) this.b);
 				if (var1 == null) {
 					return false;
 				} else {

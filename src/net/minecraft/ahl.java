@@ -87,14 +87,14 @@ public abstract class ahl extends Entity {
 			}
 
 			Entity var4 = null;
-			List var5 = this.world.b((Entity) this, this.aQ().a(this.motionX, this.motionY, this.motionZ).b(1.0D, 1.0D, 1.0D));
+			List var5 = this.world.b((Entity) this, this.getBoundingBox().a(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
 			double var6 = 0.0D;
 
 			for (int var8 = 0; var8 < var5.size(); ++var8) {
 				Entity var9 = (Entity) var5.get(var8);
 				if (var9.ad() && (!var9.k(this.a) || this.aq >= 25)) {
 					float var10 = 0.3F;
-					AxisAlignedBB var11 = var9.aQ().b((double) var10, (double) var10, (double) var10);
+					AxisAlignedBB var11 = var9.getBoundingBox().grow((double) var10, (double) var10, (double) var10);
 					MovingObjectPosition var12 = var11.a(var1, var2);
 					if (var12 != null) {
 						double var13 = var1.f(var12.vec);

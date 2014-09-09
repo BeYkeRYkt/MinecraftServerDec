@@ -184,8 +184,8 @@ public class EntityOcelot extends xx {
 	}
 
 	public boolean bR() {
-		if (this.world.a(this.aQ(), (Entity) this) && this.world.a((Entity) this, this.aQ()).isEmpty() && !this.world.d(this.aQ())) {
-			Position var1 = new Position(this.locationX, this.aQ().minY, this.locationZ);
+		if (this.world.a(this.getBoundingBox(), (Entity) this) && this.world.getCubes((Entity) this, this.getBoundingBox()).isEmpty() && !this.world.d(this.getBoundingBox())) {
+			Position var1 = new Position(this.locationX, this.getBoundingBox().minY, this.locationZ);
 			if (var1.getY() < 63) {
 				return false;
 			}

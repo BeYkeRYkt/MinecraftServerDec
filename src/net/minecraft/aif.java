@@ -21,7 +21,7 @@ class aif extends Slot {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return (var1.playerProperties.instabuild || var1.bz >= this.c.a) && this.c.a > 0 && this.hasItem();
+		return (var1.playerProperties.instabuild || var1.xpLevel >= this.c.a) && this.c.a > 0 && this.hasItem();
 	}
 
 	public void a(EntityHuman var1, ItemStack var2) {

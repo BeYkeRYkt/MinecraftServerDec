@@ -23,7 +23,7 @@ public abstract class EntityCreature extends EntityInsentient {
 	}
 
 	public boolean bQ() {
-		return super.bQ() && this.a(new Position(this.locationX, this.aQ().minY, this.locationZ)) >= 0.0F;
+		return super.bQ() && this.a(new Position(this.locationX, this.getBoundingBox().minY, this.locationZ)) >= 0.0F;
 	}
 
 	public boolean cd() {

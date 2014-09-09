@@ -143,7 +143,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 						var16 = 10.0D;
 					}
 
-					this.b = this.by.aQ().minY + var16;
+					this.b = this.by.getBoundingBox().minY + var16;
 				} else {
 					this.a += this.V.nextGaussian() * 2.0D;
 					this.c += this.V.nextGaussian() * 2.0D;
@@ -189,9 +189,9 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 				float var24 = 0.06F;
 				this.a(0.0F, -1.0F, var24 * (var19 * var23 + (1.0F - var23)));
 				if (this.bv) {
-					this.d(this.motionX * 0.800000011920929D, this.motionY * 0.800000011920929D, this.motionZ * 0.800000011920929D);
+					this.move(this.motionX * 0.800000011920929D, this.motionY * 0.800000011920929D, this.motionZ * 0.800000011920929D);
 				} else {
-					this.d(this.motionX, this.motionY, this.motionZ);
+					this.move(this.motionX, this.motionY, this.motionZ);
 				}
 
 				Vec3D var25 = (new Vec3D(this.motionX, this.motionY, this.motionZ)).a();
@@ -226,9 +226,9 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 			this.br.s_();
 			this.br.setPositionRotation(this.locationX - (double) (var7 * 4.5F), this.locationY + 2.0D, this.locationZ - (double) (var30 * 4.5F), 0.0F, 0.0F);
 			if (!this.world.D && this.as == 0) {
-				this.a(this.world.b((Entity) this, this.bq.aQ().b(4.0D, 2.0D, 4.0D).c(0.0D, -2.0D, 0.0D)));
-				this.a(this.world.b((Entity) this, this.br.aQ().b(4.0D, 2.0D, 4.0D).c(0.0D, -2.0D, 0.0D)));
-				this.b(this.world.b((Entity) this, this.bl.aQ().b(1.0D, 1.0D, 1.0D)));
+				this.a(this.world.b((Entity) this, this.bq.getBoundingBox().grow(4.0D, 2.0D, 4.0D).c(0.0D, -2.0D, 0.0D)));
+				this.a(this.world.b((Entity) this, this.br.getBoundingBox().grow(4.0D, 2.0D, 4.0D).c(0.0D, -2.0D, 0.0D)));
+				this.b(this.world.b((Entity) this, this.bl.getBoundingBox().grow(1.0D, 1.0D, 1.0D)));
 			}
 
 			double[] var31 = this.b(5, 1.0F);
@@ -263,7 +263,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 			}
 
 			if (!this.world.D) {
-				this.bv = this.b(this.bl.aQ()) | this.b(this.bm.aQ());
+				this.bv = this.b(this.bl.getBoundingBox()) | this.b(this.bm.getBoundingBox());
 			}
 
 		}
@@ -284,7 +284,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 
 		if (this.V.nextInt(10) == 0) {
 			float var1 = 32.0F;
-			List var2 = this.world.a(EntityEnderCrystal.class, this.aQ().b((double) var1, (double) var1, (double) var1));
+			List var2 = this.world.a(EntityEnderCrystal.class, this.getBoundingBox().grow((double) var1, (double) var1, (double) var1));
 			EntityEnderCrystal var3 = null;
 			double var4 = Double.MAX_VALUE;
 			Iterator var6 = var2.iterator();
@@ -304,8 +304,8 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 	}
 
 	private void a(List var1) {
-		double var2 = (this.bm.aQ().minX + this.bm.aQ().maxX) / 2.0D;
-		double var4 = (this.bm.aQ().minZ + this.bm.aQ().maxZ) / 2.0D;
+		double var2 = (this.bm.getBoundingBox().minX + this.bm.getBoundingBox().maxX) / 2.0D;
+		double var4 = (this.bm.getBoundingBox().minZ + this.bm.getBoundingBox().maxZ) / 2.0D;
 		Iterator var6 = var1.iterator();
 
 		while (var6.hasNext()) {
@@ -464,7 +464,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 			}
 		}
 
-		this.d(0.0D, 0.10000000149011612D, 0.0D);
+		this.move(0.0D, 0.10000000149011612D, 0.0D);
 		this.aG = this.yaw += 20.0F;
 		if (this.bw == 200 && !this.world.D) {
 			var4 = 2000;

@@ -50,7 +50,7 @@ public class EntityExpirienceOrb extends Entity {
 			this.a("random.fizz", 0.4F, 2.0F + this.V.nextFloat() * 0.4F);
 		}
 
-		this.j(this.locationX, (this.aQ().minY + this.aQ().maxY) / 2.0D, this.locationZ);
+		this.j(this.locationX, (this.getBoundingBox().minY + this.getBoundingBox().maxY) / 2.0D, this.locationZ);
 		double var1 = 8.0D;
 		if (this.g < this.a - 20 + this.getId() % 100) {
 			if (this.f == null || this.f.getDistanceSquared(this) > var1 * var1) {
@@ -78,10 +78,10 @@ public class EntityExpirienceOrb extends Entity {
 			}
 		}
 
-		this.d(this.motionX, this.motionY, this.motionZ);
+		this.move(this.motionX, this.motionY, this.motionZ);
 		float var13 = 0.98F;
 		if (this.onGround) {
-			var13 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
+			var13 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
 		}
 
 		this.motionX *= (double) var13;
@@ -100,7 +100,7 @@ public class EntityExpirienceOrb extends Entity {
 	}
 
 	public boolean W() {
-		return this.world.a(this.aQ(), Material.WATER, (Entity) this);
+		return this.world.a(this.getBoundingBox(), Material.WATER, (Entity) this);
 	}
 
 	protected void f(int var1) {

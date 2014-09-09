@@ -48,7 +48,7 @@ public class aam extends zb {
 
 	public boolean a() {
 		double var1 = this.f();
-		List<EntityLiving> list = this.b.world.a(this.f, this.b.aQ().b(var1, 4.0D, var1), this.predicate);
+		List<EntityLiving> list = this.b.world.a(this.f, this.b.getBoundingBox().grow(var1, 4.0D, var1), this.predicate);
 		Collections.sort(list, this.comparator);
 		if (list.isEmpty()) {
 			return false;

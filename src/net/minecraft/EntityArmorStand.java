@@ -220,7 +220,7 @@ public class EntityArmorStand extends EntityLiving {
 	}
 
 	protected void bK() {
-		List var1 = this.world.b((Entity) this, this.aQ());
+		List var1 = this.world.b((Entity) this, this.getBoundingBox());
 		if (var1 != null && !var1.isEmpty()) {
 			for (int var2 = 0; var2 < var1.size(); ++var2) {
 				Entity var3 = (Entity) var1.get(var2);

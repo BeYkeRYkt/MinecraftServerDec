@@ -19,7 +19,7 @@ final class an implements Predicate {
 			return false;
 		} else {
 			EntityPlayer var2 = (EntityPlayer) var1;
-			return (this.a <= -1 || var2.bz >= this.a) && (this.b <= -1 || var2.bz <= this.b);
+			return (this.a <= -1 || var2.xpLevel >= this.a) && (this.b <= -1 || var2.xpLevel <= this.b);
 		}
 	}
 

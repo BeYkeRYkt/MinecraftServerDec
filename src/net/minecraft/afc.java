@@ -35,11 +35,11 @@ class afc extends yn {
 		double var9 = (var1 - this.g.locationX) / var7;
 		double var11 = (var3 - this.g.locationY) / var7;
 		double var13 = (var5 - this.g.locationZ) / var7;
-		AxisAlignedBB var15 = this.g.aQ();
+		AxisAlignedBB var15 = this.g.getBoundingBox();
 
 		for (int var16 = 1; (double) var16 < var7; ++var16) {
 			var15 = var15.c(var9, var11, var13);
-			if (!this.g.world.a((Entity) this.g, var15).isEmpty()) {
+			if (!this.g.world.getCubes((Entity) this.g, var15).isEmpty()) {
 				return false;
 			}
 		}

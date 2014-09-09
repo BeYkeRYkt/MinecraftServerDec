@@ -23,7 +23,7 @@ public class yx extends zb {
 			return false;
 		} else if (!this.a.au()) {
 			return false;
-		} else if (!this.f.i(new Position(this.a.locationX, this.a.aQ().minY, this.a.locationZ))) {
+		} else if (!this.f.i(new Position(this.a.locationX, this.a.getBoundingBox().minY, this.a.locationZ))) {
 			return false;
 		} else {
 			Vec3D var1 = this.f();
@@ -48,7 +48,7 @@ public class yx extends zb {
 
 	private Vec3D f() {
 		Random var1 = this.a.bb();
-		Position var2 = new Position(this.a.locationX, this.a.aQ().minY, this.a.locationZ);
+		Position var2 = new Position(this.a.locationX, this.a.getBoundingBox().minY, this.a.locationZ);
 
 		for (int var3 = 0; var3 < 10; ++var3) {
 			Position var4 = var2.a(var1.nextInt(20) - 10, var1.nextInt(6) - 3, var1.nextInt(20) - 10);

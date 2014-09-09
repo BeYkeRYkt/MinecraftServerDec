@@ -55,7 +55,7 @@ public class AxisAlignedBB {
 		return new AxisAlignedBB(var7, var9, var11, var13, var15, var17);
 	}
 
-	public AxisAlignedBB b(double var1, double var3, double var5) {
+	public AxisAlignedBB grow(double var1, double var3, double var5) {
 		double var7 = this.minX - var1;
 		double var9 = this.minY - var3;
 		double var11 = this.minZ - var5;
@@ -167,7 +167,7 @@ public class AxisAlignedBB {
 		return (var1 + var3 + var5) / 3.0D;
 	}
 
-	public AxisAlignedBB d(double var1, double var3, double var5) {
+	public AxisAlignedBB shrink(double var1, double var3, double var5) {
 		double var7 = this.minX + var1;
 		double var9 = this.minY + var3;
 		double var11 = this.minZ + var5;

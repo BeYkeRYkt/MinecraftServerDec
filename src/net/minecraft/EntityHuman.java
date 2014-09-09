@@ -26,19 +26,19 @@ public abstract class EntityHuman extends EntityLiving {
 	public double br;
 	public double bs;
 	public double bt;
-	protected boolean bu;
+	protected boolean isSleeping;
 	public Position bv;
-	private int b;
+	private int sleepTimer;
 	public float bw;
 	public float bx;
 	private Position c;
-	private boolean d;
+	private boolean isSpawnForced;
 	private Position e;
 	public PlayerProperties playerProperties = new PlayerProperties();
-	public int bz;
-	public int bA;
-	public float bB;
-	private int f;
+	public int xpLevel;
+	public int xpTotal;
+	public float xp;
+	private int xpSeed;
 	private ItemStack g;
 	private int h;
 	protected float bC = 0.1F;
@@ -124,10 +124,10 @@ public abstract class EntityHuman extends EntityLiving {
 			--this.bn;
 		}
 
-		if (this.bI()) {
-			++this.b;
-			if (this.b > 100) {
-				this.b = 100;
+		if (this.isSleeping()) {
+			++this.sleepTimer;
+			if (this.sleepTimer > 100) {
+				this.sleepTimer = 100;
 			}
 
 			if (!this.world.D) {
@@ -137,10 +137,10 @@ public abstract class EntityHuman extends EntityLiving {
 					this.a(false, true, true);
 				}
 			}
-		} else if (this.b > 0) {
-			++this.b;
-			if (this.b >= 110) {
-				this.b = 0;
+		} else if (this.sleepTimer > 0) {
+			++this.sleepTimer;
+			if (this.sleepTimer >= 110) {
+				this.sleepTimer = 0;
 			}
 		}
 
@@ -274,7 +274,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	protected boolean bC() {
-		return this.getHealth() <= 0.0F || this.bI();
+		return this.getHealth() <= 0.0F || this.isSleeping();
 	}
 
 	protected void n() {
@@ -358,9 +358,9 @@ public abstract class EntityHuman extends EntityLiving {
 		if (this.getHealth() > 0.0F && !this.isSpectator()) {
 			AxisAlignedBB var4 = null;
 			if (this.vehicle != null && !this.vehicle.dead) {
-				var4 = this.aQ().a(this.vehicle.aQ()).b(1.0D, 0.0D, 1.0D);
+				var4 = this.getBoundingBox().a(this.vehicle.getBoundingBox()).grow(1.0D, 0.0D, 1.0D);
 			} else {
-				var4 = this.aQ().b(1.0D, 0.5D, 1.0D);
+				var4 = this.getBoundingBox().grow(1.0D, 0.5D, 1.0D);
 			}
 
 			List var5 = this.world.b((Entity) this, var4);
@@ -580,25 +580,25 @@ public abstract class EntityHuman extends EntityLiving {
 		NBTListTag var2 = var1.getList("Inventory", 10);
 		this.playerInventory.b(var2);
 		this.playerInventory.itemInHandIndex = var1.getInt("SelectedItemSlot");
-		this.bu = var1.getBoolean("Sleeping");
-		this.b = var1.getShort("SleepTimer");
-		this.bB = var1.getFloat("XpP");
-		this.bz = var1.getInt("XpLevel");
-		this.bA = var1.getInt("XpTotal");
-		this.f = var1.getInt("XpSeed");
-		if (this.f == 0) {
-			this.f = this.V.nextInt();
+		this.isSleeping = var1.getBoolean("Sleeping");
+		this.sleepTimer = var1.getShort("SleepTimer");
+		this.xp = var1.getFloat("XpP");
+		this.xpLevel = var1.getInt("XpLevel");
+		this.xpTotal = var1.getInt("XpTotal");
+		this.xpSeed = var1.getInt("XpSeed");
+		if (this.xpSeed == 0) {
+			this.xpSeed = this.V.nextInt();
 		}
 
 		this.r(var1.getInt("Score"));
-		if (this.bu) {
+		if (this.isSleeping) {
 			this.bv = new Position(this);
 			this.a(true, true, false);
 		}
 
 		if (var1.isTagAssignableFrom("SpawnX", 99) && var1.isTagAssignableFrom("SpawnY", 99) && var1.isTagAssignableFrom("SpawnZ", 99)) {
 			this.c = new Position(var1.getInt("SpawnX"), var1.getInt("SpawnY"), var1.getInt("SpawnZ"));
-			this.d = var1.getBoolean("SpawnForced");
+			this.isSpawnForced = var1.getBoolean("SpawnForced");
 		}
 
 		this.fooddata.a(var1);
@@ -610,32 +610,31 @@ public abstract class EntityHuman extends EntityLiving {
 
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
-		var1.put("Inventory", (NBTTag) this.playerInventory.a(new NBTListTag()));
-		var1.put("SelectedItemSlot", this.playerInventory.itemInHandIndex);
-		var1.put("Sleeping", this.bu);
-		var1.put("SleepTimer", (short) this.b);
-		var1.put("XpP", this.bB);
-		var1.put("XpLevel", this.bz);
-		var1.put("XpTotal", this.bA);
-		var1.put("XpSeed", this.f);
-		var1.put("Score", this.bW());
+	public void b(NBTCompoundTag tag) {
+		super.b(tag);
+		tag.put("Inventory", (NBTTag) this.playerInventory.a(new NBTListTag()));
+		tag.put("SelectedItemSlot", this.playerInventory.itemInHandIndex);
+		tag.put("Sleeping", this.isSleeping);
+		tag.put("SleepTimer", (short) this.sleepTimer);
+		tag.put("XpP", this.xp);
+		tag.put("XpLevel", this.xpLevel);
+		tag.put("XpTotal", this.xpTotal);
+		tag.put("XpSeed", this.xpSeed);
+		tag.put("Score", this.bW());
 		if (this.c != null) {
-			var1.put("SpawnX", this.c.getX());
-			var1.put("SpawnY", this.c.getY());
-			var1.put("SpawnZ", this.c.getZ());
-			var1.put("SpawnForced", this.d);
+			tag.put("SpawnX", this.c.getX());
+			tag.put("SpawnY", this.c.getY());
+			tag.put("SpawnZ", this.c.getZ());
+			tag.put("SpawnForced", this.isSpawnForced);
 		}
 
-		this.fooddata.b(var1);
-		this.playerProperties.write(var1);
-		var1.put("EnderItems", (NBTTag) this.enderChest.h());
-		ItemStack var2 = this.playerInventory.getItemInHand();
-		if (var2 != null && var2.getItem() != null) {
-			var1.put("SelectedItem", (NBTTag) var2.write(new NBTCompoundTag()));
+		this.fooddata.b(tag);
+		this.playerProperties.write(tag);
+		tag.put("EnderItems", (NBTTag) this.enderChest.h());
+		ItemStack item = this.playerInventory.getItemInHand();
+		if (item != null && item.getItem() != null) {
+			tag.put("SelectedItem", (NBTTag) item.write(new NBTCompoundTag()));
 		}
-
 	}
 
 	public boolean a(DamageSource var1, float var2) {
@@ -648,7 +647,7 @@ public abstract class EntityHuman extends EntityLiving {
 			if (this.getHealth() <= 0.0F) {
 				return false;
 			} else {
-				if (this.bI() && !this.world.D) {
+				if (this.isSleeping() && !this.world.D) {
 					this.a(true, true, false);
 				}
 
@@ -924,7 +923,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public boolean aj() {
-		return !this.bu && super.aj();
+		return !this.isSleeping && super.aj();
 	}
 
 	public GameProfile getGameProfile() {
@@ -933,7 +932,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public ahf a(Position var1) {
 		if (!this.world.D) {
-			if (this.bI() || !this.isAlive()) {
+			if (this.isSleeping() || !this.isAlive()) {
 				return ahf.e;
 			}
 
@@ -986,8 +985,8 @@ public abstract class EntityHuman extends EntityLiving {
 			this.b((double) ((float) var1.getX() + 0.5F), (double) ((float) var1.getY() + 0.6875F), (double) ((float) var1.getZ() + 0.5F));
 		}
 
-		this.bu = true;
-		this.b = 0;
+		this.isSleeping = true;
+		this.sleepTimer = 0;
 		this.bv = var1;
 		this.motionX = this.motionZ = this.motionY = 0.0D;
 		if (!this.world.D) {
@@ -1029,12 +1028,12 @@ public abstract class EntityHuman extends EntityLiving {
 			this.b((double) ((float) var5.getX() + 0.5F), (double) ((float) var5.getY() + 0.1F), (double) ((float) var5.getZ() + 0.5F));
 		}
 
-		this.bu = false;
+		this.isSleeping = false;
 		if (!this.world.D && var2) {
 			this.world.d();
 		}
 
-		this.b = var1 ? 0 : 100;
+		this.sleepTimer = var1 ? 0 : 100;
 		if (var3) {
 			this.a(this.bv, false);
 		}
@@ -1061,12 +1060,12 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 	}
 
-	public boolean bI() {
-		return this.bu;
+	public boolean isSleeping() {
+		return this.isSleeping;
 	}
 
 	public boolean ce() {
-		return this.bu && this.b >= 100;
+		return this.isSleeping && this.sleepTimer >= 100;
 	}
 
 	public void b(IChatBaseComponent var1) {
@@ -1077,16 +1076,16 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public boolean ch() {
-		return this.d;
+		return this.isSpawnForced;
 	}
 
 	public void a(Position var1, boolean var2) {
 		if (var1 != null) {
 			this.c = var1;
-			this.d = var2;
+			this.isSpawnForced = var2;
 		} else {
 			this.c = null;
-			this.d = false;
+			this.isSpawnForced = false;
 		}
 
 	}
@@ -1101,8 +1100,8 @@ public abstract class EntityHuman extends EntityLiving {
 	public void a(Statistic var1) {
 	}
 
-	public void bE() {
-		super.bE();
+	public void jump() {
+		super.jump();
 		this.b(StatisticList.u);
 		if (this.ax()) {
 			this.a(0.8F);
@@ -1247,45 +1246,45 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public void u(int var1) {
 		this.s(var1);
-		int var2 = Integer.MAX_VALUE - this.bA;
+		int var2 = Integer.MAX_VALUE - this.xpTotal;
 		if (var1 > var2) {
 			var1 = var2;
 		}
 
-		this.bB += (float) var1 / (float) this.cj();
+		this.xp += (float) var1 / (float) this.cj();
 
-		for (this.bA += var1; this.bB >= 1.0F; this.bB /= (float) this.cj()) {
-			this.bB = (this.bB - 1.0F) * (float) this.cj();
+		for (this.xpTotal += var1; this.xp >= 1.0F; this.xp /= (float) this.cj()) {
+			this.xp = (this.xp - 1.0F) * (float) this.cj();
 			this.a(1);
 		}
 
 	}
 
 	public int ci() {
-		return this.f;
+		return this.xpSeed;
 	}
 
 	public void b(int var1) {
-		this.bz -= var1;
-		if (this.bz < 0) {
-			this.bz = 0;
-			this.bB = 0.0F;
-			this.bA = 0;
+		this.xpLevel -= var1;
+		if (this.xpLevel < 0) {
+			this.xpLevel = 0;
+			this.xp = 0.0F;
+			this.xpTotal = 0;
 		}
 
-		this.f = this.V.nextInt();
+		this.xpSeed = this.V.nextInt();
 	}
 
 	public void a(int var1) {
-		this.bz += var1;
-		if (this.bz < 0) {
-			this.bz = 0;
-			this.bB = 0.0F;
-			this.bA = 0;
+		this.xpLevel += var1;
+		if (this.xpLevel < 0) {
+			this.xpLevel = 0;
+			this.xp = 0.0F;
+			this.xpTotal = 0;
 		}
 
-		if (var1 > 0 && this.bz % 5 == 0 && (float) this.i < (float) this.W - 100.0F) {
-			float var2 = this.bz > 30 ? 1.0F : (float) this.bz / 30.0F;
+		if (var1 > 0 && this.xpLevel % 5 == 0 && (float) this.i < (float) this.W - 100.0F) {
+			float var2 = this.xpLevel > 30 ? 1.0F : (float) this.xpLevel / 30.0F;
 			this.world.a((Entity) this, "random.levelup", var2 * 0.75F, 1.0F);
 			this.i = this.W;
 		}
@@ -1293,7 +1292,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public int cj() {
-		return this.bz >= 30 ? 112 + (this.bz - 30) * 9 : (this.bz >= 15 ? 37 + (this.bz - 15) * 5 : 7 + this.bz * 2);
+		return this.xpLevel >= 30 ? 112 + (this.xpLevel - 30) * 9 : (this.xpLevel >= 15 ? 37 + (this.xpLevel - 15) * 5 : 7 + this.xpLevel * 2);
 	}
 
 	public void a(float var1) {
@@ -1348,7 +1347,7 @@ public abstract class EntityHuman extends EntityLiving {
 		if (this.world.Q().b("keepInventory")) {
 			return 0;
 		} else {
-			int var2 = this.bz * 7;
+			int var2 = this.xpLevel * 7;
 			return var2 > 100 ? 100 : var2;
 		}
 	}
@@ -1362,16 +1361,16 @@ public abstract class EntityHuman extends EntityLiving {
 			this.playerInventory.b(var1.playerInventory);
 			this.h(var1.getHealth());
 			this.fooddata = var1.fooddata;
-			this.bz = var1.bz;
-			this.bA = var1.bA;
-			this.bB = var1.bB;
+			this.xpLevel = var1.xpLevel;
+			this.xpTotal = var1.xpTotal;
+			this.xp = var1.xp;
 			this.r(var1.bW());
 			this.an = var1.an;
 		} else if (this.world.Q().b("keepInventory")) {
 			this.playerInventory.b(var1.playerInventory);
-			this.bz = var1.bz;
-			this.bA = var1.bA;
-			this.bB = var1.bB;
+			this.xpLevel = var1.xpLevel;
+			this.xpTotal = var1.xpTotal;
+			this.xp = var1.xp;
 			this.r(var1.bW());
 		}
 
@@ -1437,7 +1436,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public float aR() {
 		float var1 = 1.62F;
-		if (this.bI()) {
+		if (this.isSleeping()) {
 			var1 = 0.2F;
 		}
 

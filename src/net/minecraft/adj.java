@@ -83,7 +83,7 @@ public abstract class adj extends Entity {
 	}
 
 	public boolean j() {
-		if (!this.world.a((Entity) this, this.aQ()).isEmpty()) {
+		if (!this.world.getCubes((Entity) this, this.getBoundingBox()).isEmpty()) {
 			return false;
 		} else {
 			int var1 = Math.max(1, this.l() / 16);
@@ -101,7 +101,7 @@ public abstract class adj extends Entity {
 				}
 			}
 
-			List var9 = this.world.b((Entity) this, this.aQ());
+			List var9 = this.world.b((Entity) this, this.getBoundingBox());
 			Iterator var10 = var9.iterator();
 
 			Entity var11;
@@ -143,7 +143,7 @@ public abstract class adj extends Entity {
 		}
 	}
 
-	public void d(double var1, double var3, double var5) {
+	public void move(double var1, double var3, double var5) {
 		if (!this.world.D && !this.dead && var1 * var1 + var3 * var3 + var5 * var5 > 0.0D) {
 			this.die();
 			this.b((Entity) null);

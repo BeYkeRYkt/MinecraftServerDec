@@ -193,7 +193,7 @@ public class EntityWither extends EntityMonster implements afr {
 							this.b(var1, 0);
 						}
 					} else {
-						List var13 = this.world.a(EntityLiving.class, this.aQ().b(20.0D, 8.0D, 20.0D), Predicates.and(bp, EntityPredicates.d));
+						List var13 = this.world.a(EntityLiving.class, this.getBoundingBox().grow(20.0D, 8.0D, 20.0D), Predicates.and(bp, EntityPredicates.d));
 
 						for (int var16 = 0; var16 < 10 && !var13.isEmpty(); ++var16) {
 							EntityLiving var5 = (EntityLiving) var13.get(this.V.nextInt(var13.size()));
@@ -373,7 +373,7 @@ public class EntityWither extends EntityMonster implements afr {
 		}
 
 		if (!this.world.D) {
-			Iterator var4 = this.world.a(EntityHuman.class, this.aQ().b(50.0D, 100.0D, 50.0D)).iterator();
+			Iterator var4 = this.world.a(EntityHuman.class, this.getBoundingBox().grow(50.0D, 100.0D, 50.0D)).iterator();
 
 			while (var4.hasNext()) {
 				EntityHuman var5 = (EntityHuman) var4.next();

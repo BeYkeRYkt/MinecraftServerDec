@@ -139,7 +139,7 @@ public class aiq extends Container {
 		int var5 = var2 + 1;
 		if ((var4 == null || var4.amount < var5) && !var1.playerProperties.instabuild) {
 			return false;
-		} else if (this.g[var2] > 0 && var3 != null && (var1.bz >= var5 && var1.bz >= this.g[var2] || var1.playerProperties.instabuild)) {
+		} else if (this.g[var2] > 0 && var3 != null && (var1.xpLevel >= var5 && var1.xpLevel >= this.g[var2] || var1.playerProperties.instabuild)) {
 			if (!this.i.D) {
 				List var6 = this.a(var3, var2, this.g[var2]);
 				boolean var7 = var3.getItem() == Items.BOOK;

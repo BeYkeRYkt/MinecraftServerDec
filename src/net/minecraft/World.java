@@ -758,7 +758,7 @@ public abstract class World implements ard {
 		this.u.add(var1);
 	}
 
-	public List a(Entity var1, AxisAlignedBB var2) {
+	public List getCubes(Entity var1, AxisAlignedBB var2) {
 		ArrayList var3 = Lists.newArrayList();
 		int var4 = DataTypesConverter.toFixedPointInt(var2.minX);
 		int var5 = DataTypesConverter.toFixedPointInt(var2.maxX + 1.0D);
@@ -794,7 +794,7 @@ public abstract class World implements ard {
 		}
 
 		double var17 = 0.25D;
-		List var18 = this.b(var1, var2.b(var17, var17, var17));
+		List var18 = this.b(var1, var2.grow(var17, var17, var17));
 
 		for (int var19 = 0; var19 < var18.size(); ++var19) {
 			if (var1.l != var18 && var1.vehicle != var18) {
@@ -982,7 +982,7 @@ public abstract class World implements ard {
 			this.B.a("tick");
 			if (!var2.dead) {
 				try {
-					this.g(var2);
+					this.playerJoinedWorld(var2);
 				} catch (Throwable var8) {
 					var4 = CrashReport.generateCrashReport(var8, "Ticking entity");
 					var5 = var4.generateSystemDetails("Entity being ticked");
@@ -1093,7 +1093,7 @@ public abstract class World implements ard {
 
 	}
 
-	public void g(Entity var1) {
+	public void playerJoinedWorld(Entity var1) {
 		this.a(var1, true);
 	}
 
@@ -1156,7 +1156,7 @@ public abstract class World implements ard {
 			this.B.b();
 			if (var2 && var1.ad && var1.l != null) {
 				if (!var1.l.dead && var1.l.vehicle == var1) {
-					this.g(var1.l);
+					this.playerJoinedWorld(var1.l);
 				} else {
 					var1.l.vehicle = null;
 					var1.l = null;
@@ -1183,7 +1183,7 @@ public abstract class World implements ard {
 		return true;
 	}
 
-	public boolean c(AxisAlignedBB var1) {
+	public boolean isOnGround(AxisAlignedBB var1) {
 		int var2 = DataTypesConverter.toFixedPointInt(var1.minX);
 		int var3 = DataTypesConverter.toFixedPointInt(var1.maxX);
 		int var4 = DataTypesConverter.toFixedPointInt(var1.minY);

@@ -100,7 +100,7 @@ public abstract class PlayerList {
 		var13.getChatModifier().setColor(EnumChatFormat.YELLOW);
 		this.sendMessage((IChatBaseComponent) var13);
 		this.c(player);
-		var12.a(player.locationX, player.locationY, player.locationZ, player.yaw, player.pitch);
+		var12.movePlayer(player.locationX, player.locationY, player.locationZ, player.yaw, player.pitch);
 		this.updateWorldData(player, worldServer);
 		if (this.minecraftserver.aa().length() > 0) {
 			player.a(this.minecraftserver.aa(), this.minecraftserver.ab());
@@ -320,15 +320,15 @@ public abstract class PlayerList {
 
 		var8.b.c((int) var7.locationX >> 4, (int) var7.locationZ >> 4);
 
-		while (!var8.a((Entity) var7, var7.aQ()).isEmpty() && var7.locationY < 256.0D) {
+		while (!var8.getCubes((Entity) var7, var7.getBoundingBox()).isEmpty() && var7.locationY < 256.0D) {
 			var7.b(var7.locationX, var7.locationY + 1.0D, var7.locationZ);
 		}
 
 		var7.playerConncetion.sendPacket((Packet) (new PacketPlayOutRespawn(var7.dimensionId, var7.world.getDifficulty(), var7.world.getWorldData().getLevelType(), var7.playerInteractManager.getGameMode())));
 		var9 = var8.M();
-		var7.playerConncetion.a(var7.locationX, var7.locationY, var7.locationZ, var7.yaw, var7.pitch);
+		var7.playerConncetion.movePlayer(var7.locationX, var7.locationY, var7.locationZ, var7.yaw, var7.pitch);
 		var7.playerConncetion.sendPacket((Packet) (new PacketPlayOutSpawnPosition(var9)));
-		var7.playerConncetion.sendPacket((Packet) (new PacketPlayOutSetExpirience(var7.bB, var7.bA, var7.bz)));
+		var7.playerConncetion.sendPacket((Packet) (new PacketPlayOutSetExpirience(var7.xp, var7.xpTotal, var7.xpLevel)));
 		this.updateWorldData(var7, var8);
 		var8.t().a(var7);
 		var8.d(var7);
@@ -349,7 +349,7 @@ public abstract class PlayerList {
 		var1.dead = false;
 		this.a(var1, var3, var4, var5);
 		this.a(var1, var4);
-		var1.playerConncetion.a(var1.locationX, var1.locationY, var1.locationZ, var1.yaw, var1.pitch);
+		var1.playerConncetion.movePlayer(var1.locationX, var1.locationY, var1.locationZ, var1.yaw, var1.pitch);
 		var1.playerInteractManager.setWorldServer(var5);
 		this.updateWorldData(var1, var5);
 		this.f(var1);

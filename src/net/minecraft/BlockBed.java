@@ -75,7 +75,7 @@ public class BlockBed extends avb {
 			}
 
 			var4 = (EntityHuman) var3.next();
-		} while (!var4.bI() || !var4.bv.equals(var2));
+		} while (!var4.isSleeping() || !var4.bv.equals(var2));
 
 		return var4;
 	}
