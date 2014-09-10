@@ -56,7 +56,7 @@ public class EntityWitch extends EntityMonster implements afr {
 	}
 
 	public void m() {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			if (this.n()) {
 				if (this.bl-- <= 0) {
 					this.a(false);

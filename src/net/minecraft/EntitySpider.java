@@ -29,7 +29,7 @@ public class EntitySpider extends EntityMonster {
 
 	public void s_() {
 		super.s_();
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.a(this.D);
 		}
 

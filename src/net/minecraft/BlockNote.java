@@ -29,7 +29,7 @@ public class BlockNote extends atg {
 	}
 
 	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
-		if (var1.D) {
+		if (var1.isStatic) {
 			return true;
 		} else {
 			TileEntity var9 = var1.getTileEntity(var2);
@@ -44,7 +44,7 @@ public class BlockNote extends atg {
 	}
 
 	public void a(World var1, Position var2, EntityHuman var3) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			TileEntity var4 = var1.getTileEntity(var2);
 			if (var4 instanceof TileEntityNote) {
 				((TileEntityNote) var4).a(var1, var2);

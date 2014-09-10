@@ -71,7 +71,7 @@ public class EntityItem extends Entity {
 					this.a("random.fizz", 0.4F, 2.0F + this.V.nextFloat() * 0.4F);
 				}
 
-				if (!this.world.D) {
+				if (!this.world.isStatic) {
 					this.w();
 				}
 			}
@@ -93,7 +93,7 @@ public class EntityItem extends Entity {
 			}
 
 			this.W();
-			if (!this.world.D && this.c >= 6000) {
+			if (!this.world.isStatic && this.c >= 6000) {
 				this.die();
 			}
 
@@ -231,7 +231,7 @@ public class EntityItem extends Entity {
 	}
 
 	public void d(EntityHuman var1) {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			ItemStack var2 = this.l();
 			int var3 = var2.amount;
 			if (this.d == 0 && (this.g == null || 6000 - this.c <= 200 || this.g.equals(var1.getName())) && var1.playerInventory.a(var2)) {
@@ -285,7 +285,7 @@ public class EntityItem extends Entity {
 
 	public void c(int var1) {
 		super.c(var1);
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.w();
 		}
 

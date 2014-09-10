@@ -138,7 +138,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 			--this.i;
 		}
 
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			if (!this.m() && (this.h[1] == null || this.h[0] == null)) {
 				if (!this.m() && this.k > 0) {
 					this.k = DataTypesConverter.a(this.k - 2, 0, this.l);

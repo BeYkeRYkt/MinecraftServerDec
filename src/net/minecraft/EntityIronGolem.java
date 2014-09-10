@@ -21,7 +21,7 @@ public class EntityIronGolem extends abw {
 		this.i.a(8, new zx(this));
 		this.bg.a(1, new aak(this));
 		this.bg.a(2, new aal(this, false, new Class[0]));
-		this.bg.a(3, new acr(this, EntityInsentient.class, 10, false, true, aex.e));
+		this.bg.a(3, new acr(this, EntityInsentient.class, 10, false, true, IMonster.e));
 	}
 
 	protected void h() {
@@ -55,7 +55,7 @@ public class EntityIronGolem extends abw {
 	}
 
 	protected void s(Entity var1) {
-		if (var1 instanceof aex && this.bb().nextInt(20) == 0) {
+		if (var1 instanceof IMonster && this.bb().nextInt(20) == 0) {
 			this.d((EntityLiving) var1);
 		}
 

@@ -45,7 +45,7 @@ public abstract class aqi {
 		if (this.g()) {
 			Position var1 = this.b();
 			double var6;
-			if (this.a().D) {
+			if (this.a().isStatic) {
 				double var2 = (double) ((float) var1.getX() + this.a().s.nextFloat());
 				double var4 = (double) ((float) var1.getY() + this.a().s.nextFloat());
 				var6 = (double) ((float) var1.getZ() + this.a().s.nextFloat());
@@ -242,7 +242,7 @@ public abstract class aqi {
 	}
 
 	public boolean b(int var1) {
-		if (var1 == 1 && this.a().D) {
+		if (var1 == 1 && this.a().isStatic) {
 			this.a = this.g;
 			return true;
 		} else {

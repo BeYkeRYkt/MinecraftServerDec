@@ -40,7 +40,7 @@ public abstract class BlockLeaves extends BlockTransparent {
 	}
 
 	public void b(World var1, Position var2, BlockState var3, Random var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (((Boolean) var3.b(b)).booleanValue() && ((Boolean) var3.b(a)).booleanValue()) {
 				byte var5 = 4;
 				int var6 = var5 + 1;
@@ -135,7 +135,7 @@ public abstract class BlockLeaves extends BlockTransparent {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			int var6 = this.d(var3);
 			if (var5 > 0) {
 				var6 -= 2 << var5;

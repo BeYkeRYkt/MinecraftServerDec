@@ -14,17 +14,17 @@ import java.util.UUID;
 public class ServerPingPlayerSampleSerializer implements JsonDeserializer, JsonSerializer {
 
 	public ServerPingPlayerSample a(JsonElement var1, Type var2, JsonDeserializationContext var3) {
-		JsonObject var4 = uh.l(var1, "players");
-		ServerPingPlayerSample var5 = new ServerPingPlayerSample(uh.m(var4, "max"), uh.m(var4, "online"));
-		if (uh.d(var4, "sample")) {
-			JsonArray var6 = uh.t(var4, "sample");
+		JsonObject var4 = JSONParser.getJsonObject(var1, "players");
+		ServerPingPlayerSample var5 = new ServerPingPlayerSample(JSONParser.getInt(var4, "max"), JSONParser.getInt(var4, "online"));
+		if (JSONParser.isArray(var4, "sample")) {
+			JsonArray var6 = JSONParser.getArray(var4, "sample");
 			if (var6.size() > 0) {
 				GameProfile[] var7 = new GameProfile[var6.size()];
 
 				for (int var8 = 0; var8 < var7.length; ++var8) {
-					JsonObject var9 = uh.l(var6.get(var8), "player[" + var8 + "]");
-					String var10 = uh.h(var9, "id");
-					var7[var8] = new GameProfile(UUID.fromString(var10), uh.h(var9, "name"));
+					JsonObject var9 = JSONParser.getJsonObject(var6.get(var8), "player[" + var8 + "]");
+					String var10 = JSONParser.getString(var9, "id");
+					var7[var8] = new GameProfile(UUID.fromString(var10), JSONParser.getString(var9, "name"));
 				}
 
 				var5.a(var7);

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public abstract class EntityMonster extends EntityCreature implements aex {
+public abstract class EntityMonster extends EntityCreature implements IMonster {
 
 	protected final zb a = new yp(this, new afn(this), 4.0F, 1.0D, 2.0D);
 
@@ -21,7 +21,7 @@ public abstract class EntityMonster extends EntityCreature implements aex {
 
 	public void s_() {
 		super.s_();
-		if (!this.world.D && this.world.getDifficulty() == Difficulty.PEACEFUL) {
+		if (!this.world.isStatic && this.world.getDifficulty() == Difficulty.PEACEFUL) {
 			this.die();
 		}
 

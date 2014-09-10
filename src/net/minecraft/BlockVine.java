@@ -153,7 +153,7 @@ public class BlockVine extends Block {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Block var4) {
-		if (!var1.D && !this.e(var1, var2, var3)) {
+		if (!var1.isStatic && !this.e(var1, var2, var3)) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
 		}
@@ -161,7 +161,7 @@ public class BlockVine extends Block {
 	}
 
 	public void b(World var1, Position var2, BlockState var3, Random var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (var1.s.nextInt(4) == 0) {
 				byte var5 = 4;
 				int var6 = 5;
@@ -293,7 +293,7 @@ public class BlockVine extends Block {
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, BlockState var4, TileEntity var5) {
-		if (!var1.D && var2.bY() != null && var2.bY().getItem() == Items.SHEARS) {
+		if (!var1.isStatic && var2.bY() != null && var2.bY().getItem() == Items.SHEARS) {
 			var2.b(StatisticList.MINE_BLOCK_COUNT[Block.getBlockId((Block) this)]);
 			a(var1, var3, new ItemStack(Blocks.VINE, 1, 0));
 		} else {

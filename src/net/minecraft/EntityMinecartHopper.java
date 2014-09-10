@@ -35,7 +35,7 @@ public class EntityMinecartHopper extends aed implements bdd {
 	}
 
 	public boolean e(EntityHuman var1) {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			var1.a((IInventory) this);
 		}
 
@@ -76,7 +76,7 @@ public class EntityMinecartHopper extends aed implements bdd {
 
 	public void s_() {
 		super.s_();
-		if (!this.world.D && this.isAlive() && this.y()) {
+		if (!this.world.isStatic && this.isAlive() && this.y()) {
 			Position var1 = new Position(this);
 			if (var1.equals(this.c)) {
 				--this.b;

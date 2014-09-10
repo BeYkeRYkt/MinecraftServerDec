@@ -47,7 +47,7 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 			this.j = this.g[3].getItem();
 		}
 
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			boolean[] var1 = this.m();
 			if (!Arrays.equals(var1, this.i)) {
 				this.i = var1;

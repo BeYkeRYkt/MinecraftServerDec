@@ -33,7 +33,7 @@ public class ItemSkull extends Item {
 			} else if (!Blocks.SKULL.c(var3, var4)) {
 				return false;
 			} else {
-				if (!var3.D) {
+				if (!var3.isStatic) {
 					var3.a(var4, Blocks.SKULL.getBlockState().a(BlockSkull.a, var5), 3);
 					int var12 = 0;
 					if (var5 == BlockFace.UP) {

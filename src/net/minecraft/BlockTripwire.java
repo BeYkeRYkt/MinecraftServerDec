@@ -77,7 +77,7 @@ public class BlockTripwire extends Block {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, EntityHuman var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (var4.bY() != null && var4.bY().getItem() == Items.SHEARS) {
 				var1.a(var2, var3.a(N, Boolean.valueOf(true)), 4);
 			}
@@ -116,7 +116,7 @@ public class BlockTripwire extends Block {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Entity var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (!((Boolean) var3.b(a)).booleanValue()) {
 				this.d(var1, var2);
 			}
@@ -127,7 +127,7 @@ public class BlockTripwire extends Block {
 	}
 
 	public void b(World var1, Position var2, BlockState var3, Random var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (((Boolean) var1.getBlockState(var2).b(a)).booleanValue()) {
 				this.d(var1, var2);
 			}

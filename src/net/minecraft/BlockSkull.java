@@ -78,7 +78,7 @@ public class BlockSkull extends atg {
 	}
 
 	public void b(World var1, Position var2, BlockState var3) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (!((Boolean) var3.b(b)).booleanValue()) {
 				TileEntity var4 = var1.getTileEntity(var2);
 				if (var4 instanceof TileEntitySkull) {
@@ -104,11 +104,11 @@ public class BlockSkull extends atg {
 	}
 
 	public boolean b(World var1, Position var2, ItemStack var3) {
-		return var3.getDurability() == 1 && var2.getY() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.D ? this.j().a(var1, var2) != null : false;
+		return var3.getDurability() == 1 && var2.getY() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.isStatic ? this.j().a(var1, var2) != null : false;
 	}
 
 	public void a(World var1, Position var2, TileEntitySkull var3) {
-		if (var3.c() == 1 && var2.getY() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.D) {
+		if (var3.c() == 1 && var2.getY() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.isStatic) {
 			bek var4 = this.l();
 			bem var5 = var4.a(var1, var2);
 			if (var5 != null) {

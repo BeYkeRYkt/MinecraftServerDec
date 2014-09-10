@@ -34,7 +34,7 @@ public class ItemFood extends Item {
 	}
 
 	protected void c(ItemStack var1, World var2, EntityHuman var3) {
-		if (!var2.D && this.l > 0 && var2.s.nextFloat() < this.o) {
+		if (!var2.isStatic && this.l > 0 && var2.s.nextFloat() < this.o) {
 			var3.c(new MobEffect(this.l, this.m * 20, this.n));
 		}
 

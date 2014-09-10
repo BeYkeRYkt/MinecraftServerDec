@@ -32,7 +32,7 @@ public class ChunkProviderDebug implements IChunkProvider {
 
 		Chunk var9 = new Chunk(this.c, var3, var1, var2);
 		var9.b();
-		arm[] var10 = this.c.v().b((arm[]) null, var1 * 16, var2 * 16, 16, 16);
+		BiomeBase[] var10 = this.c.v().b((BiomeBase[]) null, var1 * 16, var2 * 16, 16, 16);
 		byte[] var11 = var9.getBiomes();
 
 		for (var7 = 0; var7 < var11.length; ++var7) {
@@ -90,7 +90,7 @@ public class ChunkProviderDebug implements IChunkProvider {
 	}
 
 	public List getMobsFor(EnumCreatureType var1, Position var2) {
-		arm var3 = this.c.b(var2);
+		BiomeBase var3 = this.c.b(var2);
 		return var3.a(var1);
 	}
 

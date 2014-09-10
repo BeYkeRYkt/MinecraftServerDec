@@ -53,7 +53,7 @@ public class EntityTNTPrimed extends Entity {
 
 		if (this.a-- <= 0) {
 			this.die();
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				this.l();
 			}
 		} else {

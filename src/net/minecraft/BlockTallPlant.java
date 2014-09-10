@@ -96,7 +96,7 @@ public class BlockTallPlant extends auc implements atz {
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, BlockState var4, TileEntity var5) {
-		if (var1.D || var2.bY() == null || var2.bY().getItem() != Items.SHEARS || var4.b(b) != avj.b || !this.b(var1, var3, var4, var2)) {
+		if (var1.isStatic || var2.bY() == null || var2.bY().getItem() != Items.SHEARS || var4.b(b) != avj.b || !this.b(var1, var3, var4, var2)) {
 			super.a(var1, var2, var3, var4, var5);
 		}
 	}
@@ -109,7 +109,7 @@ public class BlockTallPlant extends auc implements atz {
 					avk var6 = (avk) var5.b(a);
 					if (var6 != avk.d && var6 != avk.c) {
 						var1.b(var2.b(), true);
-					} else if (!var1.D) {
+					} else if (!var1.isStatic) {
 						if (var4.bY() != null && var4.bY().getItem() == Items.SHEARS) {
 							this.b(var1, var2, var5, var4);
 							var1.g(var2.b());

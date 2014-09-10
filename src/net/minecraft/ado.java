@@ -93,7 +93,7 @@ public class ado extends Entity {
 			this.b(var28, var29, var30);
 			this.b(this.yaw, this.pitch);
 		} else {
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				ItemStack var1 = this.b.bY();
 				if (this.b.dead || !this.b.isAlive() || var1 == null || var1.getItem() != Items.FISHING_ROD || this.getDistanceSquared(this.b) > 1024.0D) {
 					this.die();
@@ -225,7 +225,7 @@ public class ado extends Entity {
 					}
 				}
 
-				if (!this.world.D && var34 > 0.0D) {
+				if (!this.world.isStatic && var34 > 0.0D) {
 					WorldServer var36 = (WorldServer) this.world;
 					int var37 = 1;
 					Position var38 = (new Position(this)).a();
@@ -350,7 +350,7 @@ public class ado extends Entity {
 	}
 
 	public int l() {
-		if (this.world.D) {
+		if (this.world.isStatic) {
 			return 0;
 		} else {
 			byte var1 = 0;

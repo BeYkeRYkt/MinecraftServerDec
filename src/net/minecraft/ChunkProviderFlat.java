@@ -30,23 +30,23 @@ public class ChunkProviderFlat implements IChunkProvider {
 					var7.put("size", "1");
 				}
 
-				this.e.add(new bmw(var7));
+				this.e.add(new WorldGenVillage(var7));
 			}
 
 			if (var6.containsKey("biome_1")) {
-				this.e.add(new blg((Map) var6.get("biome_1")));
+				this.e.add(new WorldGenLargeFeature((Map) var6.get("biome_1")));
 			}
 
 			if (var6.containsKey("mineshaft")) {
-				this.e.add(new bjd((Map) var6.get("mineshaft")));
+				this.e.add(new WorldGenMineshaft((Map) var6.get("mineshaft")));
 			}
 
 			if (var6.containsKey("stronghold")) {
-				this.e.add(new blp((Map) var6.get("stronghold")));
+				this.e.add(new WorldGenStronghold((Map) var6.get("stronghold")));
 			}
 
 			if (var6.containsKey("oceanmonument")) {
-				this.e.add(new bkg((Map) var6.get("oceanmonument")));
+				this.e.add(new WorldGenMonument((Map) var6.get("oceanmonument")));
 			}
 		}
 
@@ -95,12 +95,12 @@ public class ChunkProviderFlat implements IChunkProvider {
 		Iterator var8 = this.e.iterator();
 
 		while (var8.hasNext()) {
-			bgt var10 = (bgt) var8.next();
+			WorldGenBase var10 = (WorldGenBase) var8.next();
 			var10.a(this, this.a, var1, var2, var3);
 		}
 
 		Chunk var9 = new Chunk(this.a, var3, var1, var2);
-		arm[] var11 = this.a.v().b((arm[]) null, var1 * 16, var2 * 16, 16, 16);
+		BiomeBase[] var11 = this.a.v().b((BiomeBase[]) null, var1 * 16, var2 * 16, 16, 16);
 		byte[] var12 = var9.getBiomes();
 
 		for (var7 = 0; var7 < var12.length; ++var7) {
@@ -119,7 +119,7 @@ public class ChunkProviderFlat implements IChunkProvider {
 		int var4 = var2 * 16;
 		int var5 = var3 * 16;
 		Position var6 = new Position(var4, 0, var5);
-		arm var7 = this.a.b(new Position(var4 + 16, 0, var5 + 16));
+		BiomeBase var7 = this.a.b(new Position(var4 + 16, 0, var5 + 16));
 		boolean var8 = false;
 		this.b.setSeed(this.a.J());
 		long var9 = this.b.nextLong() / 2L * 2L + 1L;
@@ -129,9 +129,9 @@ public class ChunkProviderFlat implements IChunkProvider {
 		Iterator var14 = this.e.iterator();
 
 		while (var14.hasNext()) {
-			bmm var15 = (bmm) var14.next();
+			StructureGenerator var15 = (StructureGenerator) var14.next();
 			boolean var16 = var15.a(this.a, this.b, var13);
-			if (var15 instanceof bmw) {
+			if (var15 instanceof WorldGenVillage) {
 				var8 |= var16;
 			}
 		}
@@ -183,7 +183,7 @@ public class ChunkProviderFlat implements IChunkProvider {
 	}
 
 	public List getMobsFor(EnumCreatureType var1, Position var2) {
-		arm var3 = this.a.b(var2);
+		BiomeBase var3 = this.a.b(var2);
 		return var3.a(var1);
 	}
 
@@ -192,8 +192,8 @@ public class ChunkProviderFlat implements IChunkProvider {
 			Iterator var4 = this.e.iterator();
 
 			while (var4.hasNext()) {
-				bmm var5 = (bmm) var4.next();
-				if (var5 instanceof blp) {
+				StructureGenerator var5 = (StructureGenerator) var4.next();
+				if (var5 instanceof WorldGenStronghold) {
 					return var5.b(var1, var3);
 				}
 			}
@@ -210,7 +210,7 @@ public class ChunkProviderFlat implements IChunkProvider {
 		Iterator var4 = this.e.iterator();
 
 		while (var4.hasNext()) {
-			bmm var5 = (bmm) var4.next();
+			StructureGenerator var5 = (StructureGenerator) var4.next();
 			var5.a(this, this.a, var2, var3, (bgk) null);
 		}
 

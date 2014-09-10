@@ -140,7 +140,7 @@ public class BlockDoor extends Block {
 			}
 
 			if (var9) {
-				if (!var1.D) {
+				if (!var1.isStatic) {
 					this.b(var1, var2, var3, 0);
 				}
 			} else {

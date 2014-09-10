@@ -57,7 +57,7 @@ public class BlockDragonEgg extends Block {
 			for (int var4 = 0; var4 < 1000; ++var4) {
 				Position var5 = var2.a(var1.s.nextInt(16) - var1.s.nextInt(16), var1.s.nextInt(8) - var1.s.nextInt(8), var1.s.nextInt(16) - var1.s.nextInt(16));
 				if (var1.getBlockState(var5).getBlock().material == Material.AIR) {
-					if (var1.D) {
+					if (var1.isStatic) {
 						for (int var6 = 0; var6 < 128; ++var6) {
 							double var7 = var1.s.nextDouble();
 							float var9 = (var1.s.nextFloat() - 0.5F) * 0.2F;

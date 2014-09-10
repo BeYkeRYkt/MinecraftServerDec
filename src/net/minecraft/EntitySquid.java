@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntitySquid extends act {
+public class EntitySquid extends EntityWaterAnimal {
 
 	public float a;
 	public float b;
@@ -79,7 +79,7 @@ public class EntitySquid extends act {
 		this.bm = this.bl;
 		this.bj += this.bo;
 		if ((double) this.bj > 6.283185307179586D) {
-			if (this.world.D) {
+			if (this.world.isStatic) {
 				this.bj = 6.2831855F;
 			} else {
 				this.bj = (float) ((double) this.bj - 6.283185307179586D);
@@ -108,7 +108,7 @@ public class EntitySquid extends act {
 				this.bp *= 0.99F;
 			}
 
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				this.motionX = (double) (this.bq * this.bn);
 				this.motionY = (double) (this.br * this.bn);
 				this.motionZ = (double) (this.bs * this.bn);
@@ -121,7 +121,7 @@ public class EntitySquid extends act {
 			this.a += (-((float) Math.atan2((double) var1, this.motionY)) * 180.0F / 3.1415927F - this.a) * 0.1F;
 		} else {
 			this.bl = DataTypesConverter.e(DataTypesConverter.a(this.bj)) * 3.1415927F * 0.25F;
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				this.motionX = 0.0D;
 				this.motionY -= 0.08D;
 				this.motionY *= 0.9800000190734863D;

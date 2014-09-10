@@ -68,7 +68,7 @@ public abstract class CommandBlockListenerAbstract implements CommandSenderInter
 	}
 
 	public void executeCommand(World world) {
-		if (world.D) {
+		if (world.isStatic) {
 			this.succCount = 0;
 		}
 
@@ -105,7 +105,7 @@ public abstract class CommandBlockListenerAbstract implements CommandSenderInter
 	}
 
 	public void sendChatMessage(IChatBaseComponent message) {
-		if (this.trackOutput && this.getWorld() != null && !this.getWorld().D) {
+		if (this.trackOutput && this.getWorld() != null && !this.getWorld().isStatic) {
 			this.lastOutput = (new ChatComponentText("[" + format.format(new Date()) + "] ")).a(message);
 			this.updateEntity();
 		}
@@ -138,7 +138,7 @@ public abstract class CommandBlockListenerAbstract implements CommandSenderInter
 		if (!var1.playerProperties.instabuild) {
 			return false;
 		} else {
-			if (var1.getWorld().D) {
+			if (var1.getWorld().isStatic) {
 				var1.a(this);
 			}
 

@@ -88,7 +88,7 @@ public class BlockTrapdoor extends Block {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Block var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			Position var5 = var2.a(((BlockFace) var3.b(a)).getOpposite());
 			if (!c(var1.getBlockState(var5).getBlock())) {
 				var1.g(var2);

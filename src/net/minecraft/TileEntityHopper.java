@@ -130,7 +130,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 	}
 
 	public void doTick() {
-		if (this.world != null && !this.world.D) {
+		if (this.world != null && !this.world.isStatic) {
 			--this.g;
 			if (!this.n()) {
 				this.d(0);
@@ -141,7 +141,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 	}
 
 	public boolean m() {
-		if (this.world != null && !this.world.D) {
+		if (this.world != null && !this.world.isStatic) {
 			if (!this.n() && BlockHopper.f(this.u())) {
 				boolean var1 = false;
 				if (!this.p()) {

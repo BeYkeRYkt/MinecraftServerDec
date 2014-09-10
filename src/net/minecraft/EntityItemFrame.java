@@ -26,7 +26,7 @@ public class EntityItemFrame extends adj {
 		if (this.b(var1)) {
 			return false;
 		} else if (!var1.c() && this.o() != null) {
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				this.a(var1.j(), false);
 				this.a((ItemStack) null);
 			}
@@ -153,13 +153,13 @@ public class EntityItemFrame extends adj {
 	public boolean e(EntityHuman var1) {
 		if (this.o() == null) {
 			ItemStack var2 = var1.getItemInHand();
-			if (var2 != null && !this.world.D) {
+			if (var2 != null && !this.world.isStatic) {
 				this.a(var2);
 				if (!var1.playerProperties.instabuild && --var2.amount <= 0) {
 					var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 				}
 			}
-		} else if (!this.world.D) {
+		} else if (!this.world.isStatic) {
 			this.a(this.p() + 1);
 		}
 

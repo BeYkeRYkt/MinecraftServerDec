@@ -73,7 +73,7 @@ public class EntityEnderSignal extends Entity {
 
 		this.pitch = this.B + (this.pitch - this.B) * 0.2F;
 		this.yaw = this.A + (this.yaw - this.A) * 0.2F;
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			double var2 = this.a - this.locationX;
 			double var4 = this.c - this.locationZ;
 			float var6 = (float) Math.sqrt(var2 * var2 + var4 * var4);
@@ -102,10 +102,10 @@ public class EntityEnderSignal extends Entity {
 			this.world.a(Particle.y, this.locationX - this.motionX * (double) var10 + this.V.nextDouble() * 0.6D - 0.3D, this.locationY - this.motionY * (double) var10 - 0.5D, this.locationZ - this.motionZ * (double) var10 + this.V.nextDouble() * 0.6D - 0.3D, this.motionX, this.motionY, this.motionZ, new int[0]);
 		}
 
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.b(this.locationX, this.locationY, this.locationZ);
 			++this.d;
-			if (this.d > 80 && !this.world.D) {
+			if (this.d > 80 && !this.world.isStatic) {
 				this.die();
 				if (this.e) {
 					this.world.d((Entity) (new EntityItem(this.world, this.locationX, this.locationY, this.locationZ, new ItemStack(Items.ENDER_EYE))));

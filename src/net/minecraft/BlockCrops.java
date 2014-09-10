@@ -99,7 +99,7 @@ public class BlockCrops extends auc implements atz {
 
 	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
 		super.a(var1, var2, var3, var4, 0);
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			int var6 = ((Integer) var3.b(a)).intValue();
 			if (var6 >= 7) {
 				int var7 = 3 + var5;

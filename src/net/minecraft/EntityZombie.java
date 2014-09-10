@@ -93,7 +93,7 @@ public class EntityZombie extends EntityMonster {
 
 	public void l(boolean var1) {
 		this.getDataWatcher().b(12, Byte.valueOf((byte) (var1 ? 1 : 0)));
-		if (this.world != null && !this.world.D) {
+		if (this.world != null && !this.world.isStatic) {
 			AttributeInstance var2 = this.a(afs.d);
 			var2.c(bk);
 			if (var1) {
@@ -113,7 +113,7 @@ public class EntityZombie extends EntityMonster {
 	}
 
 	public void m() {
-		if (this.world.w() && !this.world.D && !this.i_()) {
+		if (this.world.w() && !this.world.isStatic && !this.i_()) {
 			float var1 = this.c(1.0F);
 			Position var2 = new Position(this.locationX, (double) Math.round(this.locationY), this.locationZ);
 			if (var1 > 0.5F && this.V.nextFloat() * 30.0F < (var1 - 0.4F) * 2.0F && this.world.i(var2)) {
@@ -182,7 +182,7 @@ public class EntityZombie extends EntityMonster {
 	}
 
 	public void s_() {
-		if (!this.world.D && this.cn()) {
+		if (!this.world.isStatic && this.cn()) {
 			int var1 = this.cp();
 			this.bm -= var1;
 			if (this.bm <= 0) {
@@ -393,7 +393,7 @@ public class EntityZombie extends EntityMonster {
 				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				this.a(this.V.nextInt(2401) + 3600);
 			}
 

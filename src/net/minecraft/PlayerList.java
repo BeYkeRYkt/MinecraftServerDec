@@ -82,7 +82,7 @@ public abstract class PlayerList {
 		PlayerConnection var12 = new PlayerConnection(this.minecraftserver, networkManager, player);
 		var12.sendPacket((new PacketPlayOutJoinGame(player.getId(), player.playerInteractManager.getGameMode(), worldData.isHardcore(), worldServer.worldProvider.getDimensionId(), worldServer.getDifficulty(), this.getMaxPlayers(), worldData.getLevelType(), worldServer.Q().b("reducedDebugInfo"))));
 		var12.sendPacket((new PacketPlayOutPluginMessage("MC|Brand", (new PacketDataSerializer(Unpooled.buffer())).writeString(this.c().getServerModName()))));
-		var12.sendPacket((new PacketPlayOutServerDifficulty(worldData.getDifficulty(), worldData.z())));
+		var12.sendPacket((new PacketPlayOutServerDifficulty(worldData.getDifficulty(), worldData.isDifficultyLocked())));
 		var12.sendPacket((new PacketPlayOutSpawnPosition(var11)));
 		var12.sendPacket((new PacketPlayOutPlayerAbilities(player.playerProperties)));
 		var12.sendPacket((new PacketPlayOutHeldItemChange(player.playerInventory.itemInHandIndex)));
@@ -172,7 +172,7 @@ public abstract class PlayerList {
 	}
 
 	public NBTCompoundTag a(EntityPlayer var1) {
-		NBTCompoundTag var2 = this.minecraftserver.worlds[0].getWorldData().i();
+		NBTCompoundTag var2 = this.minecraftserver.worlds[0].getWorldData().getPlayerData();
 		NBTCompoundTag var3;
 		if (var1.getName().equals(this.minecraftserver.getSinglePlayerName()) && var2 != null) {
 			var1.load(var2);
@@ -527,7 +527,7 @@ public abstract class PlayerList {
 	}
 
 	public boolean isOp(GameProfile var1) {
-		return this.m.d(var1) || this.minecraftserver.isSinglePlayer() && this.minecraftserver.worlds[0].getWorldData().v() && this.minecraftserver.getSinglePlayerName().equalsIgnoreCase(var1.getName()) || this.t;
+		return this.m.d(var1) || this.minecraftserver.isSinglePlayer() && this.minecraftserver.worlds[0].getWorldData().areCommandsAllowed() && this.minecraftserver.getSinglePlayerName().equalsIgnoreCase(var1.getName()) || this.t;
 	}
 
 	public EntityPlayer a(String var1) {
@@ -669,7 +669,7 @@ public abstract class PlayerList {
 			var1.playerInteractManager.a(this.s);
 		}
 
-		var1.playerInteractManager.b(var3.getWorldData().r());
+		var1.playerInteractManager.b(var3.getWorldData().getGameMode());
 	}
 
 	public void v() {

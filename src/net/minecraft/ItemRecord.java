@@ -18,7 +18,7 @@ public class ItemRecord extends Item {
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
 		BlockState var9 = var3.getBlockState(var4);
 		if (var9.getBlock() == Blocks.JUKEBOX && !((Boolean) var9.b(BlockJukeBox.a)).booleanValue()) {
-			if (var3.D) {
+			if (var3.isStatic) {
 				return true;
 			} else {
 				((BlockJukeBox) Blocks.JUKEBOX).a(var3, var4, var9, var1);

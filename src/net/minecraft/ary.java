@@ -7,7 +7,7 @@ public class ary {
 	protected World a;
 	protected Random b;
 	protected Position c;
-	protected bgl d;
+	protected ChunkProviderGenerateProperties d;
 	protected bhp e = new bhl(4);
 	protected bhp f;
 	protected bhp g;
@@ -61,38 +61,38 @@ public class ary {
 		this.L = true;
 	}
 
-	public void a(World var1, Random var2, arm var3, Position var4) {
+	public void a(World var1, Random var2, BiomeBase var3, Position var4) {
 		if (this.a != null) {
 			throw new RuntimeException("Already decorating");
 		} else {
 			this.a = var1;
-			String var5 = var1.getWorldData().B();
+			String var5 = var1.getWorldData().getGeneratorOptions();
 			if (var5 != null) {
-				this.d = bgn.a(var5).b();
+				this.d = ChunkProviderGeneratePropertiesHolder.fromJSON(var5).getPropertiesHolder();
 			} else {
-				this.d = bgn.a("").b();
+				this.d = ChunkProviderGeneratePropertiesHolder.fromJSON("").getPropertiesHolder();
 			}
 
 			this.b = var2;
 			this.c = var4;
-			this.h = new bif(Blocks.DIRT.getBlockState(), this.d.I);
-			this.i = new bif(Blocks.GRAVEL.getBlockState(), this.d.M);
-			this.j = new bif(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.b), this.d.Q);
-			this.k = new bif(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.d), this.d.U);
-			this.l = new bif(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.f), this.d.Y);
-			this.m = new bif(Blocks.COAL_ORE.getBlockState(), this.d.ac);
-			this.n = new bif(Blocks.IRON_ORE.getBlockState(), this.d.ag);
-			this.o = new bif(Blocks.GOLD_ORE.getBlockState(), this.d.ak);
-			this.p = new bif(Blocks.REDSTONE_ORE.getBlockState(), this.d.ao);
-			this.q = new bif(Blocks.DIAMOND_ORE.getBlockState(), this.d.as);
-			this.r = new bif(Blocks.LAPIS_ORE.getBlockState(), this.d.aw);
+			this.h = new bif(Blocks.DIRT.getBlockState(), this.d.dirtSize);
+			this.i = new bif(Blocks.GRAVEL.getBlockState(), this.d.gravelSize);
+			this.j = new bif(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.b), this.d.graniteSize);
+			this.k = new bif(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.d), this.d.dioriteSize);
+			this.l = new bif(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.f), this.d.andesiteSize);
+			this.m = new bif(Blocks.COAL_ORE.getBlockState(), this.d.coalSize);
+			this.n = new bif(Blocks.IRON_ORE.getBlockState(), this.d.ironSize);
+			this.o = new bif(Blocks.GOLD_ORE.getBlockState(), this.d.goldSize);
+			this.p = new bif(Blocks.REDSTONE_ORE.getBlockState(), this.d.redstoneSize);
+			this.q = new bif(Blocks.DIAMOND_ORE.getBlockState(), this.d.diamondSize);
+			this.r = new bif(Blocks.LAPIS_ORE.getBlockState(), this.d.lapisSize);
 			this.a(var3);
 			this.a = null;
 			this.b = null;
 		}
 	}
 
-	protected void a(arm var1) {
+	protected void a(BiomeBase var1) {
 		this.a();
 
 		int var2;
@@ -295,16 +295,16 @@ public class ary {
 	}
 
 	protected void a() {
-		this.a(this.d.J, this.h, this.d.K, this.d.L);
-		this.a(this.d.N, this.i, this.d.O, this.d.P);
-		this.a(this.d.V, this.k, this.d.W, this.d.X);
-		this.a(this.d.R, this.j, this.d.S, this.d.T);
-		this.a(this.d.Z, this.l, this.d.aa, this.d.ab);
-		this.a(this.d.ad, this.m, this.d.ae, this.d.af);
-		this.a(this.d.ah, this.n, this.d.ai, this.d.aj);
-		this.a(this.d.al, this.o, this.d.am, this.d.an);
-		this.a(this.d.ap, this.p, this.d.aq, this.d.ar);
-		this.a(this.d.at, this.q, this.d.au, this.d.av);
-		this.b(this.d.ax, this.r, this.d.ay, this.d.az);
+		this.a(this.d.dirtCount, this.h, this.d.dirtMinHeight, this.d.dirtMaxHeight);
+		this.a(this.d.gravelCount, this.i, this.d.gravelMinHeight, this.d.gravelMaxHeight);
+		this.a(this.d.dioriteCount, this.k, this.d.dioriteMinHeight, this.d.dioriteMaxHeight);
+		this.a(this.d.graniteCount, this.j, this.d.graniteMinHeight, this.d.graniteMaxHeight);
+		this.a(this.d.andesiteCount, this.l, this.d.andesiteMinHeight, this.d.andesiteMaxHeight);
+		this.a(this.d.coalCount, this.m, this.d.coalMinHeight, this.d.coalMaxHeight);
+		this.a(this.d.ironCount, this.n, this.d.ironMinHeight, this.d.ironMaxHeight);
+		this.a(this.d.goldCount, this.o, this.d.goldMinHeight, this.d.goldMaxHeight);
+		this.a(this.d.redstoneCount, this.p, this.d.redstoneMinHeight, this.d.redstoneMaxHeight);
+		this.a(this.d.diamondCount, this.q, this.d.diamondMinHeight, this.d.diamondMaxHeight);
+		this.b(this.d.lapisCount, this.r, this.d.lapisCenterHeight, this.d.lapisSpread);
 	}
 }

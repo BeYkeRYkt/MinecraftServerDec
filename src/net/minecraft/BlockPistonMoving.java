@@ -57,7 +57,7 @@ public class BlockPistonMoving extends atg {
 	}
 
 	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
-		if (!var1.D && var1.getTileEntity(var2) == null) {
+		if (!var1.isStatic && var1.getTileEntity(var2) == null) {
 			var1.g(var2);
 			return true;
 		} else {
@@ -70,7 +70,7 @@ public class BlockPistonMoving extends atg {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			TileEntityPiston var6 = this.e(var1, var2);
 			if (var6 != null) {
 				BlockState var7 = var6.b();
@@ -84,7 +84,7 @@ public class BlockPistonMoving extends atg {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Block var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			var1.getTileEntity(var2);
 		}
 

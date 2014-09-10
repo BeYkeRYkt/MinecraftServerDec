@@ -13,7 +13,7 @@ final class DispenseBehaviorSkull extends eg {
 		Position var5 = var1.d().a(var4);
 		BlockSkull var6 = Blocks.SKULL;
 		if (var3.d(var5) && var6.b(var3, var5, var2)) {
-			if (!var3.D) {
+			if (!var3.isStatic) {
 				var3.a(var5, var6.getBlockState().a(BlockSkull.a, BlockFace.UP), 3);
 				TileEntity var7 = var3.getTileEntity(var5);
 				if (var7 instanceof TileEntitySkull) {

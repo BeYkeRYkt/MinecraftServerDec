@@ -22,7 +22,7 @@ public class ItemDye extends Item {
 			akv var9 = akv.a(var1.getDurability());
 			if (var9 == akv.a) {
 				if (a(var1, var3, var4)) {
-					if (!var3.D) {
+					if (!var3.isStatic) {
 						var3.b(2005, var4, 0);
 					}
 
@@ -61,8 +61,8 @@ public class ItemDye extends Item {
 		BlockState var3 = var1.getBlockState(var2);
 		if (var3.getBlock() instanceof atz) {
 			atz var4 = (atz) var3.getBlock();
-			if (var4.a(var1, var2, var3, var1.D)) {
-				if (!var1.D) {
+			if (var4.a(var1, var2, var3, var1.isStatic)) {
+				if (!var1.isStatic) {
 					if (var4.a(var1, var1.s, var2, var3)) {
 						var4.b(var1, var1.s, var2, var3);
 					}

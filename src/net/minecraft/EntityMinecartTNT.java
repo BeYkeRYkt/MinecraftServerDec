@@ -64,7 +64,7 @@ public class EntityMinecartTNT extends adx {
 	}
 
 	protected void b(double var1) {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			double var3 = Math.sqrt(var1);
 			if (var3 > 5.0D) {
 				var3 = 5.0D;
@@ -94,7 +94,7 @@ public class EntityMinecartTNT extends adx {
 
 	public void j() {
 		this.a = 80;
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.world.a((Entity) this, (byte) 10);
 			if (!this.R()) {
 				this.world.a((Entity) this, "game.tnt.primed", 1.0F, 1.0F);

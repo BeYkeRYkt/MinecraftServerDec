@@ -16,7 +16,7 @@ public class BlockRedstoneLamp extends Block {
 	}
 
 	public void c(World var1, Position var2, BlockState var3) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (this.a && !var1.z(var2)) {
 				var1.a(var2, Blocks.REDSTONE_LAMP.getBlockState(), 2);
 			} else if (!this.a && var1.z(var2)) {
@@ -27,7 +27,7 @@ public class BlockRedstoneLamp extends Block {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Block var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (this.a && !var1.z(var2)) {
 				var1.a(var2, (Block) this, 4);
 			} else if (!this.a && var1.z(var2)) {
@@ -38,7 +38,7 @@ public class BlockRedstoneLamp extends Block {
 	}
 
 	public void b(World var1, Position var2, BlockState var3, Random var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (this.a && !var1.z(var2)) {
 				var1.a(var2, Blocks.REDSTONE_LAMP.getBlockState(), 2);
 			}

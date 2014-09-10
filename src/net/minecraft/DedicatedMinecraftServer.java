@@ -72,7 +72,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 
 			this.generateStructures = this.serverProperties.getBoolean("generate-structures", true);
 			int gameMode = this.serverProperties.getInt("gamemode", GameMode.SURVIVAL.getId());
-			this.serverGameMode = arb.a(gameMode);
+			this.serverGameMode = GameMode.getById(gameMode);
 			logger.info("Default game type: " + this.serverGameMode);
 			InetAddress address = null;
 			if (this.getIp().length() > 0) {
@@ -131,7 +131,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 					}
 				}
 
-				LevelType var18 = LevelType.byName(type);
+				LevelType var18 = LevelType.getByName(type);
 				if (var18 == null) {
 					var18 = LevelType.DEFAULT;
 				}

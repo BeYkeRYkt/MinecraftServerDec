@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntityRabbit extends abq {
+public class EntityRabbit extends EntityAnimal {
 
 	private acf bk;
 	private int bm = 0;
@@ -157,7 +157,7 @@ public class EntityRabbit extends abq {
 	public void m() {
 		super.m();
 		if (this.bm != this.bn) {
-			if (this.bm == 0 && !this.world.D) {
+			if (this.bm == 0 && !this.world.isStatic) {
 				this.world.a((Entity) this, (byte) 1);
 			}
 
@@ -248,7 +248,7 @@ public class EntityRabbit extends abq {
 		return var1 == Items.CARROT || var1 == Items.GOLDEN_CARROT || var1 == Item.getItemOf((Block) Blocks.YELLOW_FLOWER);
 	}
 
-	public EntityRabbit b(ws var1) {
+	public EntityRabbit b(EntityAgeable var1) {
 		EntityRabbit var2 = new EntityRabbit(this.world);
 		if (var1 instanceof EntityRabbit) {
 			var2.r(this.V.nextBoolean() ? this.cl() : ((EntityRabbit) var1).cl());
@@ -313,7 +313,7 @@ public class EntityRabbit extends abq {
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.b(var1);
 	}
 

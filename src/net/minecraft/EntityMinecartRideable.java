@@ -16,7 +16,7 @@ public class EntityMinecartRideable extends adx {
 		} else if (this.l != null && this.l != var1) {
 			return false;
 		} else {
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				var1.mount((Entity) this);
 			}
 

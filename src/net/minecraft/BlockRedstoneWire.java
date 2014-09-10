@@ -151,7 +151,7 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	public void c(World var1, Position var2, BlockState var3) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			this.e(var1, var2, var3);
 			Iterator var4 = en.b.iterator();
 
@@ -185,7 +185,7 @@ public class BlockRedstoneWire extends Block {
 
 	public void b(World var1, Position var2, BlockState var3) {
 		super.b(var1, var2, var3);
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			BlockFace[] var4 = BlockFace.values();
 			int var5 = var4.length;
 
@@ -228,7 +228,7 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Block var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (this.c(var1, var2)) {
 				this.e(var1, var2, var3);
 			} else {

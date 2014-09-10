@@ -33,7 +33,7 @@ public class BlockNetherWart extends auc {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			int var6 = 1;
 			if (((Integer) var3.b(a)).intValue() >= 3) {
 				var6 = 2 + var1.s.nextInt(3);

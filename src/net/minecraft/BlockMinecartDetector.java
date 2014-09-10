@@ -24,7 +24,7 @@ public class BlockMinecartDetector extends ati {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Entity var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (!((Boolean) var3.b(M)).booleanValue()) {
 				this.e(var1, var2, var3);
 			}
@@ -35,7 +35,7 @@ public class BlockMinecartDetector extends ati {
 	}
 
 	public void b(World var1, Position var2, BlockState var3, Random var4) {
-		if (!var1.D && ((Boolean) var3.b(M)).booleanValue()) {
+		if (!var1.isStatic && ((Boolean) var3.b(M)).booleanValue()) {
 			this.e(var1, var2, var3);
 		}
 	}

@@ -5,56 +5,49 @@ import java.util.Random;
 
 public class ChunkProviderGenerate implements IChunkProvider {
 
-	private Random h;
-	private bnv i;
-	private bnv j;
-	private bnv k;
-	private bnw l;
-	public bnv a;
-	public bnv b;
-	public bnv c;
-	private World m;
-	private final boolean n;
-	private LevelType o;
+	private Random rnd;
+	private NoiseGeneratorOctaves i;
+	private NoiseGeneratorOctaves j;
+	private NoiseGeneratorOctaves k;
+	private NoiseGenerator3 l;
+	public NoiseGeneratorOctaves a;
+	public NoiseGeneratorOctaves b;
+	public NoiseGeneratorOctaves c;
+	private World world;
+	private final boolean mapFeaturesEnabled;
+	private LevelType levelType;
 	private final double[] p;
 	private final float[] q;
-	private bgl r;
-	private Block s;
+	private ChunkProviderGenerateProperties properties;
+	private Block seablock;
 	private double[] t;
-	private bgt u;
-	private blp v;
-	private bmw w;
-	private bjd x;
-	private blg y;
-	private bgt z;
-	private bkg A;
-	private arm[] B;
+	private WorldGenBase cavesGenerator = new WorldGenCaves();
+	private WorldGenStronghold strongholdGenerator = new WorldGenStronghold();
+	private WorldGenVillage villageGenerator = new WorldGenVillage();
+	private WorldGenMineshaft mineshaftGenerator = new WorldGenMineshaft();
+	private WorldGenLargeFeature largeFeautureGenerator = new WorldGenLargeFeature();
+	private WorldGenBase canyonGenerator = new WorldGenCanyon();
+	private WorldGenMonument monumentGenerator = new WorldGenMonument();
+	private BiomeBase[] biomeBase;
 	double[] d;
 	double[] e;
 	double[] f;
 	double[] g;
 
-	public ChunkProviderGenerate(World var1, long var2, boolean var4, String var5) {
-		this.s = Blocks.WATER;
+	public ChunkProviderGenerate(World world, long seed, boolean mapFeaturesEnabled, String var5) {
+		this.seablock = Blocks.WATER;
 		this.t = new double[256];
-		this.u = new bgs();
-		this.v = new blp();
-		this.w = new bmw();
-		this.x = new bjd();
-		this.y = new blg();
-		this.z = new bgj();
-		this.A = new bkg();
-		this.m = var1;
-		this.n = var4;
-		this.o = var1.getWorldData().getLevelType();
-		this.h = new Random(var2);
-		this.i = new bnv(this.h, 16);
-		this.j = new bnv(this.h, 16);
-		this.k = new bnv(this.h, 8);
-		this.l = new bnw(this.h, 4);
-		this.a = new bnv(this.h, 10);
-		this.b = new bnv(this.h, 16);
-		this.c = new bnv(this.h, 8);
+		this.world = world;
+		this.mapFeaturesEnabled = mapFeaturesEnabled;
+		this.levelType = world.getWorldData().getLevelType();
+		this.rnd = new Random(seed);
+		this.i = new NoiseGeneratorOctaves(this.rnd, 16);
+		this.j = new NoiseGeneratorOctaves(this.rnd, 16);
+		this.k = new NoiseGeneratorOctaves(this.rnd, 8);
+		this.l = new NoiseGenerator3(this.rnd, 4);
+		this.a = new NoiseGeneratorOctaves(this.rnd, 10);
+		this.b = new NoiseGeneratorOctaves(this.rnd, 16);
+		this.c = new NoiseGeneratorOctaves(this.rnd, 8);
 		this.p = new double[825];
 		this.q = new float[25];
 
@@ -66,14 +59,14 @@ public class ChunkProviderGenerate implements IChunkProvider {
 		}
 
 		if (var5 != null) {
-			this.r = bgn.a(var5).b();
-			this.s = this.r.E ? Blocks.LAVA : Blocks.WATER;
+			this.properties = ChunkProviderGeneratePropertiesHolder.fromJSON(var5).getPropertiesHolder();
+			this.seablock = this.properties.useLavaOceans ? Blocks.LAVA : Blocks.WATER;
 		}
 
 	}
 
 	public void a(int var1, int var2, bgk var3) {
-		this.B = this.m.v().a(this.B, var1 * 4 - 2, var2 * 4 - 2, 10, 10);
+		this.biomeBase = this.world.v().a(this.biomeBase, var1 * 4 - 2, var2 * 4 - 2, 10, 10);
 		this.a(var1 * 4, 0, var2 * 4);
 
 		for (int var4 = 0; var4 < 4; ++var4) {
@@ -112,8 +105,8 @@ public class ChunkProviderGenerate implements IChunkProvider {
 							for (int var49 = 0; var49 < 4; ++var49) {
 								if ((var45 += var47) > 0.0D) {
 									var3.a(var4 * 4 + var42, var12 * 8 + var31, var7 * 4 + var49, Blocks.STONE.getBlockState());
-								} else if (var12 * 8 + var31 < this.r.q) {
-									var3.a(var4 * 4 + var42, var12 * 8 + var31, var7 * 4 + var49, this.s.getBlockState());
+								} else if (var12 * 8 + var31 < this.properties.seaLevel) {
+									var3.a(var4 * 4 + var42, var12 * 8 + var31, var7 * 4 + var49, this.seablock.getBlockState());
 								}
 							}
 
@@ -132,58 +125,58 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
 	}
 
-	public void a(int var1, int var2, bgk var3, arm[] var4) {
+	public void a(int var1, int var2, bgk var3, BiomeBase[] var4) {
 		double var5 = 0.03125D;
 		this.t = this.l.a(this.t, (double) (var1 * 16), (double) (var2 * 16), 16, 16, var5 * 2.0D, var5 * 2.0D, 1.0D);
 
 		for (int var7 = 0; var7 < 16; ++var7) {
 			for (int var8 = 0; var8 < 16; ++var8) {
-				arm var9 = var4[var8 + var7 * 16];
-				var9.a(this.m, this.h, var3, var1 * 16 + var7, var2 * 16 + var8, this.t[var8 + var7 * 16]);
+				BiomeBase var9 = var4[var8 + var7 * 16];
+				var9.a(this.world, this.rnd, var3, var1 * 16 + var7, var2 * 16 + var8, this.t[var8 + var7 * 16]);
 			}
 		}
 
 	}
 
 	public Chunk getOrCreateChunk(int var1, int var2) {
-		this.h.setSeed((long) var1 * 341873128712L + (long) var2 * 132897987541L);
+		this.rnd.setSeed((long) var1 * 341873128712L + (long) var2 * 132897987541L);
 		bgk var3 = new bgk();
 		this.a(var1, var2, var3);
-		this.B = this.m.v().b(this.B, var1 * 16, var2 * 16, 16, 16);
-		this.a(var1, var2, var3, this.B);
-		if (this.r.r) {
-			this.u.a(this, this.m, var1, var2, var3);
+		this.biomeBase = this.world.v().b(this.biomeBase, var1 * 16, var2 * 16, 16, 16);
+		this.a(var1, var2, var3, this.biomeBase);
+		if (this.properties.useCaves) {
+			this.cavesGenerator.a(this, this.world, var1, var2, var3);
 		}
 
-		if (this.r.z) {
-			this.z.a(this, this.m, var1, var2, var3);
+		if (this.properties.useRavines) {
+			this.canyonGenerator.a(this, this.world, var1, var2, var3);
 		}
 
-		if (this.r.w && this.n) {
-			this.x.a(this, this.m, var1, var2, var3);
+		if (this.properties.useMineShafts && this.mapFeaturesEnabled) {
+			this.mineshaftGenerator.a(this, this.world, var1, var2, var3);
 		}
 
-		if (this.r.v && this.n) {
-			this.w.a(this, this.m, var1, var2, var3);
+		if (this.properties.useVillages && this.mapFeaturesEnabled) {
+			this.villageGenerator.a(this, this.world, var1, var2, var3);
 		}
 
-		if (this.r.u && this.n) {
-			this.v.a(this, this.m, var1, var2, var3);
+		if (this.properties.useStrongholds && this.mapFeaturesEnabled) {
+			this.strongholdGenerator.a(this, this.world, var1, var2, var3);
 		}
 
-		if (this.r.x && this.n) {
-			this.y.a(this, this.m, var1, var2, var3);
+		if (this.properties.useTemples && this.mapFeaturesEnabled) {
+			this.largeFeautureGenerator.a(this, this.world, var1, var2, var3);
 		}
 
-		if (this.r.y && this.n) {
-			this.A.a(this, this.m, var1, var2, var3);
+		if (this.properties.useMonuments && this.mapFeaturesEnabled) {
+			this.monumentGenerator.a(this, this.world, var1, var2, var3);
 		}
 
-		Chunk var4 = new Chunk(this.m, var3, var1, var2);
+		Chunk var4 = new Chunk(this.world, var3, var1, var2);
 		byte[] var5 = var4.getBiomes();
 
 		for (int var6 = 0; var6 < var5.length; ++var6) {
-			var5[var6] = (byte) this.B[var6].az;
+			var5[var6] = (byte) this.biomeBase[var6].az;
 		}
 
 		var4.b();
@@ -191,10 +184,10 @@ public class ChunkProviderGenerate implements IChunkProvider {
 	}
 
 	private void a(int var1, int var2, int var3) {
-		this.g = this.b.a(this.g, var1, var3, 5, 5, (double) this.r.e, (double) this.r.f, (double) this.r.g);
-		float var4 = this.r.a;
-		float var5 = this.r.b;
-		this.d = this.k.a(this.d, var1, var2, var3, 5, 33, 5, (double) (var4 / this.r.h), (double) (var5 / this.r.i), (double) (var4 / this.r.j));
+		this.g = this.b.a(this.g, var1, var3, 5, 5, (double) this.properties.depthNoiseScaleX, (double) this.properties.depthNoiseScaleZ, (double) this.properties.depthNoiseScaleExponent);
+		float var4 = this.properties.coordinateScale;
+		float var5 = this.properties.heightScale;
+		this.d = this.k.a(this.d, var1, var2, var3, 5, 33, 5, (double) (var4 / this.properties.mainNoiseScaleX), (double) (var5 / this.properties.mainNoiseScaleY), (double) (var4 / this.properties.mainNoiseScaleZ));
 		this.e = this.i.a(this.e, var1, var2, var3, 5, 33, 5, (double) var4, (double) var5, (double) var4);
 		this.f = this.j.a(this.f, var1, var2, var3, 5, 33, 5, (double) var4, (double) var5, (double) var4);
 		boolean var37 = false;
@@ -208,14 +201,14 @@ public class ChunkProviderGenerate implements IChunkProvider {
 				float var11 = 0.0F;
 				float var12 = 0.0F;
 				byte var13 = 2;
-				arm var14 = this.B[var8 + 2 + (var9 + 2) * 10];
+				BiomeBase var14 = this.biomeBase[var8 + 2 + (var9 + 2) * 10];
 
 				for (int var15 = -var13; var15 <= var13; ++var15) {
 					for (int var16 = -var13; var16 <= var13; ++var16) {
-						arm var17 = this.B[var8 + var15 + 2 + (var9 + var16 + 2) * 10];
-						float var18 = this.r.n + var17.an * this.r.m;
-						float var19 = this.r.p + var17.ao * this.r.o;
-						if (this.o == LevelType.AMPLIFIED && var18 > 0.0F) {
+						BiomeBase var17 = this.biomeBase[var8 + var15 + 2 + (var9 + var16 + 2) * 10];
+						float var18 = this.properties.biomeDepthOffset + var17.an * this.properties.biomeDepthWeight;
+						float var19 = this.properties.biomeScaleOffset + var17.ao * this.properties.biomeScaleWeight;
+						if (this.levelType == LevelType.AMPLIFIED && var18 > 0.0F) {
 							var18 = 1.0F + var18 * 2.0F;
 							var19 = 1.0F + var19 * 4.0F;
 						}
@@ -261,17 +254,17 @@ public class ChunkProviderGenerate implements IChunkProvider {
 				double var39 = (double) var11;
 				double var40 = (double) var10;
 				var39 += var38 * 0.2D;
-				var39 = var39 * (double) this.r.k / 8.0D;
-				double var21 = (double) this.r.k + var39 * 4.0D;
+				var39 = var39 * (double) this.properties.baseSize / 8.0D;
+				double var21 = (double) this.properties.baseSize + var39 * 4.0D;
 
 				for (int var23 = 0; var23 < 33; ++var23) {
-					double var24 = ((double) var23 - var21) * (double) this.r.l * 128.0D / 256.0D / var40;
+					double var24 = ((double) var23 - var21) * (double) this.properties.stretchY * 128.0D / 256.0D / var40;
 					if (var24 < 0.0D) {
 						var24 *= 4.0D;
 					}
 
-					double var26 = this.e[var6] / (double) this.r.d;
-					double var28 = this.f[var6] / (double) this.r.c;
+					double var26 = this.e[var6] / (double) this.properties.lowerLimitScale;
+					double var28 = this.f[var6] / (double) this.properties.upperLimitScale;
 					double var30 = (this.d[var6] / 10.0D + 1.0D) / 2.0D;
 					double var32 = DataTypesConverter.b(var26, var28, var30) - var24;
 					if (var23 > 29) {
@@ -296,75 +289,75 @@ public class ChunkProviderGenerate implements IChunkProvider {
 		int var4 = var2 * 16;
 		int var5 = var3 * 16;
 		Position var6 = new Position(var4, 0, var5);
-		arm var7 = this.m.b(var6.a(16, 0, 16));
-		this.h.setSeed(this.m.J());
-		long var8 = this.h.nextLong() / 2L * 2L + 1L;
-		long var10 = this.h.nextLong() / 2L * 2L + 1L;
-		this.h.setSeed((long) var2 * var8 + (long) var3 * var10 ^ this.m.J());
+		BiomeBase var7 = this.world.b(var6.a(16, 0, 16));
+		this.rnd.setSeed(this.world.J());
+		long var8 = this.rnd.nextLong() / 2L * 2L + 1L;
+		long var10 = this.rnd.nextLong() / 2L * 2L + 1L;
+		this.rnd.setSeed((long) var2 * var8 + (long) var3 * var10 ^ this.world.J());
 		boolean var12 = false;
 		ChunkCoordIntPair var13 = new ChunkCoordIntPair(var2, var3);
-		if (this.r.w && this.n) {
-			this.x.a(this.m, this.h, var13);
+		if (this.properties.useMineShafts && this.mapFeaturesEnabled) {
+			this.mineshaftGenerator.a(this.world, this.rnd, var13);
 		}
 
-		if (this.r.v && this.n) {
-			var12 = this.w.a(this.m, this.h, var13);
+		if (this.properties.useVillages && this.mapFeaturesEnabled) {
+			var12 = this.villageGenerator.a(this.world, this.rnd, var13);
 		}
 
-		if (this.r.u && this.n) {
-			this.v.a(this.m, this.h, var13);
+		if (this.properties.useStrongholds && this.mapFeaturesEnabled) {
+			this.strongholdGenerator.a(this.world, this.rnd, var13);
 		}
 
-		if (this.r.x && this.n) {
-			this.y.a(this.m, this.h, var13);
+		if (this.properties.useTemples && this.mapFeaturesEnabled) {
+			this.largeFeautureGenerator.a(this.world, this.rnd, var13);
 		}
 
-		if (this.r.y && this.n) {
-			this.A.a(this.m, this.h, var13);
+		if (this.properties.useMonuments && this.mapFeaturesEnabled) {
+			this.monumentGenerator.a(this.world, this.rnd, var13);
 		}
 
 		int var14;
 		int var15;
 		int var16;
-		if (var7 != arm.r && var7 != arm.G && this.r.A && !var12 && this.h.nextInt(this.r.B) == 0) {
-			var14 = this.h.nextInt(16) + 8;
-			var15 = this.h.nextInt(256);
-			var16 = this.h.nextInt(16) + 8;
-			(new bhy(Blocks.WATER)).b(this.m, this.h, var6.a(var14, var15, var16));
+		if (var7 != BiomeBase.r && var7 != BiomeBase.G && this.properties.useWaterLakes && !var12 && this.rnd.nextInt(this.properties.waterLakeChance) == 0) {
+			var14 = this.rnd.nextInt(16) + 8;
+			var15 = this.rnd.nextInt(256);
+			var16 = this.rnd.nextInt(16) + 8;
+			(new bhy(Blocks.WATER)).b(this.world, this.rnd, var6.a(var14, var15, var16));
 		}
 
-		if (!var12 && this.h.nextInt(this.r.D / 10) == 0 && this.r.C) {
-			var14 = this.h.nextInt(16) + 8;
-			var15 = this.h.nextInt(this.h.nextInt(248) + 8);
-			var16 = this.h.nextInt(16) + 8;
-			if (var15 < 63 || this.h.nextInt(this.r.D / 8) == 0) {
-				(new bhy(Blocks.LAVA)).b(this.m, this.h, var6.a(var14, var15, var16));
+		if (!var12 && this.rnd.nextInt(this.properties.lavaLakeChance / 10) == 0 && this.properties.useLavaLakes) {
+			var14 = this.rnd.nextInt(16) + 8;
+			var15 = this.rnd.nextInt(this.rnd.nextInt(248) + 8);
+			var16 = this.rnd.nextInt(16) + 8;
+			if (var15 < 63 || this.rnd.nextInt(this.properties.lavaLakeChance / 8) == 0) {
+				(new bhy(Blocks.LAVA)).b(this.world, this.rnd, var6.a(var14, var15, var16));
 			}
 		}
 
-		if (this.r.s) {
-			for (var14 = 0; var14 < this.r.t; ++var14) {
-				var15 = this.h.nextInt(16) + 8;
-				var16 = this.h.nextInt(256);
-				int var17 = this.h.nextInt(16) + 8;
-				(new bie()).b(this.m, this.h, var6.a(var15, var16, var17));
+		if (this.properties.useDungeons) {
+			for (var14 = 0; var14 < this.properties.dungeonChance; ++var14) {
+				var15 = this.rnd.nextInt(16) + 8;
+				var16 = this.rnd.nextInt(256);
+				int var17 = this.rnd.nextInt(16) + 8;
+				(new bie()).b(this.world, this.rnd, var6.a(var15, var16, var17));
 			}
 		}
 
-		var7.a(this.m, this.h, new Position(var4, 0, var5));
-		arg.a(this.m, var7, var4 + 8, var5 + 8, 16, 16, this.h);
+		var7.a(this.world, this.rnd, new Position(var4, 0, var5));
+		arg.a(this.world, var7, var4 + 8, var5 + 8, 16, 16, this.rnd);
 		var6 = var6.a(8, 0, 8);
 
 		for (var14 = 0; var14 < 16; ++var14) {
 			for (var15 = 0; var15 < 16; ++var15) {
-				Position var18 = this.m.q(var6.a(var14, 0, var15));
+				Position var18 = this.world.q(var6.a(var14, 0, var15));
 				Position var19 = var18.b();
-				if (this.m.v(var19)) {
-					this.m.a(var19, Blocks.ICE.getBlockState(), 2);
+				if (this.world.v(var19)) {
+					this.world.a(var19, Blocks.ICE.getBlockState(), 2);
 				}
 
-				if (this.m.f(var18, true)) {
-					this.m.a(var18, Blocks.SNOW_LAYER.getBlockState(), 2);
+				if (this.world.f(var18, true)) {
+					this.world.a(var18, Blocks.SNOW_LAYER.getBlockState(), 2);
 				}
 			}
 		}
@@ -374,8 +367,8 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
 	public boolean ae(IChunkProvider var1, Chunk var2, int var3, int var4) {
 		boolean var5 = false;
-		if (this.r.y && this.n && var2.getInhabitedTime() < 3600L) {
-			var5 |= this.A.a(this.m, this.h, new ChunkCoordIntPair(var3, var4));
+		if (this.properties.useMonuments && this.mapFeaturesEnabled && var2.getInhabitedTime() < 3600L) {
+			var5 |= this.monumentGenerator.a(this.world, this.rnd, new ChunkCoordIntPair(var3, var4));
 		}
 
 		return var5;
@@ -401,14 +394,14 @@ public class ChunkProviderGenerate implements IChunkProvider {
 	}
 
 	public List getMobsFor(EnumCreatureType var1, Position var2) {
-		arm var3 = this.m.b(var2);
-		if (this.n) {
-			if (var1 == EnumCreatureType.a && this.y.a(var2)) {
-				return this.y.b();
+		BiomeBase var3 = this.world.b(var2);
+		if (this.mapFeaturesEnabled) {
+			if (var1 == EnumCreatureType.MONSTER && this.largeFeautureGenerator.a(var2)) {
+				return this.largeFeautureGenerator.b();
 			}
 
-			if (var1 == EnumCreatureType.a && this.r.y && this.A.a(this.m, var2)) {
-				return this.A.b();
+			if (var1 == EnumCreatureType.MONSTER && this.properties.useMonuments && this.monumentGenerator.a(this.world, var2)) {
+				return this.monumentGenerator.b();
 			}
 		}
 
@@ -416,7 +409,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 	}
 
 	public Position findNearestMapFeature(World var1, String var2, Position var3) {
-		return "Stronghold".equals(var2) && this.v != null ? this.v.b(var1, var3) : null;
+		return "Stronghold".equals(var2) && this.strongholdGenerator != null ? this.strongholdGenerator.b(var1, var3) : null;
 	}
 
 	public int getLoadedChunks() {
@@ -424,29 +417,30 @@ public class ChunkProviderGenerate implements IChunkProvider {
 	}
 
 	public void recreateStructures(Chunk var1, int var2, int var3) {
-		if (this.r.w && this.n) {
-			this.x.a(this, this.m, var2, var3, (bgk) null);
+		if (this.properties.useMineShafts && this.mapFeaturesEnabled) {
+			this.mineshaftGenerator.a(this, this.world, var2, var3, (bgk) null);
 		}
 
-		if (this.r.v && this.n) {
-			this.w.a(this, this.m, var2, var3, (bgk) null);
+		if (this.properties.useVillages && this.mapFeaturesEnabled) {
+			this.villageGenerator.a(this, this.world, var2, var3, (bgk) null);
 		}
 
-		if (this.r.u && this.n) {
-			this.v.a(this, this.m, var2, var3, (bgk) null);
+		if (this.properties.useStrongholds && this.mapFeaturesEnabled) {
+			this.strongholdGenerator.a(this, this.world, var2, var3, (bgk) null);
 		}
 
-		if (this.r.x && this.n) {
-			this.y.a(this, this.m, var2, var3, (bgk) null);
+		if (this.properties.useTemples && this.mapFeaturesEnabled) {
+			this.largeFeautureGenerator.a(this, this.world, var2, var3, (bgk) null);
 		}
 
-		if (this.r.y && this.n) {
-			this.A.a(this, this.m, var2, var3, (bgk) null);
+		if (this.properties.useMonuments && this.mapFeaturesEnabled) {
+			this.monumentGenerator.a(this, this.world, var2, var3, (bgk) null);
 		}
 
 	}
 
-	public Chunk getChunkAtWorldCoords(Position var1) {
-		return this.getOrCreateChunk(var1.getX() >> 4, var1.getZ() >> 4);
+	public Chunk getChunkAtWorldCoords(Position position) {
+		return this.getOrCreateChunk(position.getX() >> 4, position.getZ() >> 4);
 	}
+
 }

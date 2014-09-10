@@ -30,7 +30,7 @@ public class EntityWitherSkull extends ahl {
 	}
 
 	protected void a(MovingObjectPosition var1) {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			if (var1.entity != null) {
 				if (this.a != null) {
 					if (var1.entity.a(DamageSource.a(this.a), 8.0F)) {

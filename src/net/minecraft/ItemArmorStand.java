@@ -31,7 +31,7 @@ public class ItemArmorStand extends Item {
 					if (var19.size() > 0) {
 						return false;
 					} else {
-						if (!var3.D) {
+						if (!var3.isStatic) {
 							var3.g(var10);
 							var3.g(var11);
 							EntityArmorStand var20 = new EntityArmorStand(var3, var13 + 0.5D, var15, var17 + 0.5D);

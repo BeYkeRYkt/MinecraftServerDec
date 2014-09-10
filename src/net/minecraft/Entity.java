@@ -142,7 +142,7 @@ public abstract class Entity implements CommandSenderInterface {
 			this.J = var1;
 			this.K = var2;
 			this.a(new AxisAlignedBB(this.getBoundingBox().minX, this.getBoundingBox().minY, this.getBoundingBox().minZ, this.getBoundingBox().minX + (double) this.J, this.getBoundingBox().minY + (double) this.K, this.getBoundingBox().minZ + (double) this.J));
-			if (this.J > var3 && !this.aa && !this.world.D) {
+			if (this.J > var3 && !this.aa && !this.world.isStatic) {
 				this.move((double) (var3 - this.J), 0.0D, (double) (var3 - this.J));
 			}
 		}
@@ -179,7 +179,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.r = this.locationZ;
 		this.B = this.pitch;
 		this.A = this.yaw;
-		if (!this.world.D && this.world instanceof WorldServer) {
+		if (!this.world.isStatic && this.world instanceof WorldServer) {
 			this.world.B.a("portal");
 			MinecraftServer var1 = ((WorldServer) this.world).r();
 			int var2 = this.L();
@@ -219,7 +219,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 		this.Y();
 		this.W();
-		if (this.world.D) {
+		if (this.world.isStatic) {
 			this.i = 0;
 		} else if (this.i > 0) {
 			if (this.ab) {
@@ -245,7 +245,7 @@ public abstract class Entity implements CommandSenderInterface {
 			this.O();
 		}
 
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.b(0, this.i > 0);
 		}
 
@@ -1263,7 +1263,7 @@ public abstract class Entity implements CommandSenderInterface {
 		} else {
 			double var1 = this.p - this.locationX;
 			double var3 = this.r - this.locationZ;
-			if (!this.world.D && !this.ak) {
+			if (!this.world.isStatic && !this.ak) {
 				int var5;
 				if (DataTypesConverter.e((float) var1) > DataTypesConverter.e((float) var3)) {
 					var5 = var1 > 0.0D ? BlockFace.WEST.toDirection() : BlockFace.EAST.toDirection();
@@ -1290,7 +1290,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public boolean au() {
-		boolean var1 = this.world != null && this.world.D;
+		boolean var1 = this.world != null && this.world.isStatic;
 		return !this.ab && (this.i > 0 || var1 && this.g(0));
 	}
 
@@ -1463,7 +1463,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public String toString() {
-		return String.format("%s[\'%s\'/%d, l=\'%s\', x=%.2f, y=%.2f, z=%.2f]", new Object[] { this.getClass().getSimpleName(), this.getName(), Integer.valueOf(this.entityId), this.world == null ? "~NULL~" : this.world.getWorldData().k(), Double.valueOf(this.locationX), Double.valueOf(this.locationY), Double.valueOf(this.locationZ) });
+		return String.format("%s[\'%s\'/%d, l=\'%s\', x=%.2f, y=%.2f, z=%.2f]", new Object[] { this.getClass().getSimpleName(), this.getName(), Integer.valueOf(this.entityId), this.world == null ? "~NULL~" : this.world.getWorldData().getLevelName(), Double.valueOf(this.locationX), Double.valueOf(this.locationY), Double.valueOf(this.locationZ) });
 	}
 
 	public boolean b(DamageSource var1) {
@@ -1483,7 +1483,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public void c(int var1) {
-		if (!this.world.D && !this.dead) {
+		if (!this.world.isStatic && !this.dead) {
 			this.world.B.a("changeDimension");
 			MinecraftServer var2 = MinecraftServer.getInstance();
 			int var3 = this.dimensionId;

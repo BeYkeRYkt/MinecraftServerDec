@@ -18,7 +18,7 @@ public class ItemMonsterEgg extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		if (var3.D) {
+		if (var3.isStatic) {
 			return true;
 		} else if (!var2.a(var4.a(var5), var5, var1)) {
 			return false;
@@ -61,7 +61,7 @@ public class ItemMonsterEgg extends Item {
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
-		if (var2.D) {
+		if (var2.isStatic) {
 			return var1;
 		} else {
 			MovingObjectPosition var4 = this.a(var2, var3, true);

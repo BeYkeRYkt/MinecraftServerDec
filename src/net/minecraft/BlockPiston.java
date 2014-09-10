@@ -23,21 +23,21 @@ public class BlockPiston extends Block {
 
 	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
 		var1.a(var2, var3.a(a, a(var1, var2, var4)), 2);
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			this.e(var1, var2, var3);
 		}
 
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Block var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			this.e(var1, var2, var3);
 		}
 
 	}
 
 	public void c(World var1, Position var2, BlockState var3) {
-		if (!var1.D && var1.getTileEntity(var2) == null) {
+		if (!var1.isStatic && var1.getTileEntity(var2) == null) {
 			this.e(var1, var2, var3);
 		}
 
@@ -93,7 +93,7 @@ public class BlockPiston extends Block {
 
 	public boolean a(World var1, Position var2, BlockState var3, int var4, int var5) {
 		BlockFace var6 = (BlockFace) var3.b(a);
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			boolean var7 = this.b(var1, var2, var6);
 			if (var7 && var4 == 1) {
 				var1.a(var2, var3.a(b, Boolean.valueOf(true)), 2);

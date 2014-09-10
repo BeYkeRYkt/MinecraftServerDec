@@ -111,7 +111,7 @@ public class EntityOcelot extends xx {
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (this.cj()) {
-			if (this.e(var1) && !this.world.D && !this.d(var2)) {
+			if (this.e(var1) && !this.world.isStatic && !this.d(var2)) {
 				this.bk.a(!this.cl());
 			}
 		} else if (this.bn.f() && var2 != null && var2.getItem() == Items.FISH && var1.getDistanceSquared(this) < 9.0D) {
@@ -123,7 +123,7 @@ public class EntityOcelot extends xx {
 				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				if (this.V.nextInt(3) == 0) {
 					this.m(true);
 					this.r(1 + this.world.s.nextInt(3));
@@ -143,7 +143,7 @@ public class EntityOcelot extends xx {
 		return super.a(var1);
 	}
 
-	public EntityOcelot b(ws var1) {
+	public EntityOcelot b(EntityAgeable var1) {
 		EntityOcelot var2 = new EntityOcelot(this.world);
 		if (this.cj()) {
 			var2.b(this.b());
@@ -158,7 +158,7 @@ public class EntityOcelot extends xx {
 		return var1 != null && var1.getItem() == Items.FISH;
 	}
 
-	public boolean a(abq var1) {
+	public boolean a(EntityAnimal var1) {
 		if (var1 == this) {
 			return false;
 		} else if (!this.cj()) {
@@ -234,7 +234,7 @@ public class EntityOcelot extends xx {
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.b(var1);
 	}
 }

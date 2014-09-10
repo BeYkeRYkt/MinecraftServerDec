@@ -132,7 +132,7 @@ public abstract class EntityInsentient extends EntityLiving {
 	}
 
 	public void y() {
-		if (this.world.D) {
+		if (this.world.isStatic) {
 			for (int var1 = 0; var1 < 20; ++var1) {
 				double var2 = this.V.nextGaussian() * 0.02D;
 				double var4 = this.V.nextGaussian() * 0.02D;
@@ -148,7 +148,7 @@ public abstract class EntityInsentient extends EntityLiving {
 
 	public void s_() {
 		super.s_();
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.bZ();
 		}
 
@@ -273,7 +273,7 @@ public abstract class EntityInsentient extends EntityLiving {
 	public void m() {
 		super.m();
 		this.world.B.a("looting");
-		if (!this.world.D && this.bX() && !this.aN && this.world.Q().b("mobGriefing")) {
+		if (!this.world.isStatic && this.bX() && !this.aN && this.world.Q().b("mobGriefing")) {
 			List var1 = this.world.a(EntityItem.class, this.getBoundingBox().grow(1.0D, 0.0D, 1.0D));
 			Iterator var2 = var1.iterator();
 
@@ -721,11 +721,11 @@ public abstract class EntityInsentient extends EntityLiving {
 		if (this.bm) {
 			this.bm = false;
 			this.bn = null;
-			if (!this.world.D && var2) {
+			if (!this.world.isStatic && var2) {
 				this.a(Items.LEAD, 1);
 			}
 
-			if (!this.world.D && var1 && this.world instanceof WorldServer) {
+			if (!this.world.isStatic && var1 && this.world instanceof WorldServer) {
 				((WorldServer) this.world).s().a((Entity) this, (Packet) (new PacketPlayOutAttachEntity(1, this, (Entity) null)));
 			}
 		}
@@ -733,7 +733,7 @@ public abstract class EntityInsentient extends EntityLiving {
 	}
 
 	public boolean ca() {
-		return !this.cb() && !(this instanceof aex);
+		return !this.cb() && !(this instanceof IMonster);
 	}
 
 	public boolean cb() {
@@ -747,7 +747,7 @@ public abstract class EntityInsentient extends EntityLiving {
 	public void a(Entity var1, boolean var2) {
 		this.bm = true;
 		this.bn = var1;
-		if (!this.world.D && var2 && this.world instanceof WorldServer) {
+		if (!this.world.isStatic && var2 && this.world instanceof WorldServer) {
 			((WorldServer) this.world).s().a((Entity) this, (Packet) (new PacketPlayOutAttachEntity(1, this, this.bn)));
 		}
 

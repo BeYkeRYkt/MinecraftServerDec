@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class arl extends arm {
+public class arl extends BiomeBase {
 
 	public arl(int var1) {
 		super(var1);

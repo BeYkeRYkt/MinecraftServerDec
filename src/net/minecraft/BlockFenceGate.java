@@ -79,7 +79,7 @@ public class BlockFenceGate extends avb {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Block var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			boolean var5 = var1.z(var2);
 			if (var5 || var4.g()) {
 				if (var5 && !((Boolean) var3.b(a)).booleanValue() && !((Boolean) var3.b(b)).booleanValue()) {

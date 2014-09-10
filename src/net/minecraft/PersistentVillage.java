@@ -244,6 +244,6 @@ public class PersistentVillage extends bqc {
 	}
 
 	public static String a(WorldProvider var0) {
-		return "villages" + var0.l();
+		return "villages" + var0.getWorldSuffix();
 	}
 }

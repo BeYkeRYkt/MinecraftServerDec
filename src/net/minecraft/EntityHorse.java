@@ -4,7 +4,7 @@ import com.google.common.base.Predicate;
 import java.util.Iterator;
 import java.util.List;
 
-public class EntityHorse extends abq implements vr {
+public class EntityHorse extends EntityAnimal implements vr {
 
 	private static final Predicate bq = new abu();
 	private static final xy br = (new yg((xy) null, "horse.jumpStrength", 0.7D, 0.0D, 2.0D)).a("Jump Strength").a(true);
@@ -262,7 +262,7 @@ public class EntityHorse extends abq implements vr {
 	}
 
 	public void cC() {
-		if (!this.world.D && this.cu()) {
+		if (!this.world.isStatic && this.cu()) {
 			this.a(Item.getItemOf((Block) Blocks.CHEST), 1);
 			this.o(false);
 		}
@@ -323,7 +323,7 @@ public class EntityHorse extends abq implements vr {
 	}
 
 	private void cZ() {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.q(this.bC.a(0) != null);
 			if (this.cM()) {
 				this.e(this.bC.a(1));
@@ -475,7 +475,7 @@ public class EntityHorse extends abq implements vr {
 	}
 
 	public void openChest(EntityHuman human) {
-		if (!this.world.D && (this.l == null || this.l == human) && this.cm()) {
+		if (!this.world.isStatic && (this.l == null || this.l == human) && this.cm()) {
 			this.bC.a(this.getName());
 			human.a(this, this.bC);
 		}
@@ -622,7 +622,7 @@ public class EntityHorse extends abq implements vr {
 		var1.pitch = this.pitch;
 		this.r(false);
 		this.s(false);
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			var1.mount((Entity) this);
 		}
 
@@ -660,7 +660,7 @@ public class EntityHorse extends abq implements vr {
 
 	public void a(DamageSource var1) {
 		super.a(var1);
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.cV();
 		}
 
@@ -672,7 +672,7 @@ public class EntityHorse extends abq implements vr {
 		}
 
 		super.m();
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			if (this.V.nextInt(900) == 0 && this.av == 0) {
 				this.g(1.0F);
 			}
@@ -698,7 +698,7 @@ public class EntityHorse extends abq implements vr {
 
 	public void s_() {
 		super.s_();
-		if (this.world.D && this.dataWatcher.a()) {
+		if (this.world.isStatic && this.dataWatcher.a()) {
 			this.dataWatcher.e();
 			this.da();
 		}
@@ -708,7 +708,7 @@ public class EntityHorse extends abq implements vr {
 			this.c(128, false);
 		}
 
-		if (!this.world.D && this.bB > 0 && ++this.bB > 20) {
+		if (!this.world.isStatic && this.bB > 0 && ++this.bB > 20) {
 			this.bB = 0;
 			this.s(false);
 		}
@@ -768,7 +768,7 @@ public class EntityHorse extends abq implements vr {
 	}
 
 	private void dd() {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.bA = 1;
 			this.c(128, true);
 		}
@@ -796,7 +796,7 @@ public class EntityHorse extends abq implements vr {
 	}
 
 	private void df() {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.bB = 1;
 			this.s(true);
 		}
@@ -818,7 +818,7 @@ public class EntityHorse extends abq implements vr {
 	}
 
 	private void a(Entity var1, aic var2) {
-		if (var2 != null && !this.world.D) {
+		if (var2 != null && !this.world.isStatic) {
 			for (int var3 = 0; var3 < var2.n_(); ++var3) {
 				ItemStack var4 = var2.a(var3);
 				if (var4 != null) {
@@ -874,7 +874,7 @@ public class EntityHorse extends abq implements vr {
 
 			this.S = 1.0F;
 			this.aK = this.bH() * 0.1F;
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				this.j((float) this.a(afs.d).e());
 				super.g(var1, var2);
 			}
@@ -998,7 +998,7 @@ public class EntityHorse extends abq implements vr {
 		this.cZ();
 	}
 
-	public boolean a(abq var1) {
+	public boolean a(EntityAnimal var1) {
 		if (var1 == this) {
 			return false;
 		} else if (var1.getClass() != this.getClass()) {
@@ -1015,7 +1015,7 @@ public class EntityHorse extends abq implements vr {
 		}
 	}
 
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		EntityHorse var2 = (EntityHorse) var1;
 		EntityHorse var3 = new EntityHorse(this.world);
 		int var4 = this.cj();

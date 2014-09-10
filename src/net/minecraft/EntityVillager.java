@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Iterator;
 
-public class EntityVillager extends ws implements ago, aqb {
+public class EntityVillager extends EntityAgeable implements ago, aqb {
 
 	private int bl;
 	private boolean bm;
@@ -138,7 +138,7 @@ public class EntityVillager extends ws implements ago, aqb {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		boolean var3 = var2 != null && var2.getItem() == Items.SPAWNEGG;
 		if (!var3 && this.isAlive() && !this.cm() && !this.i_()) {
-			if (!this.world.D && (this.bp == null || this.bp.size() > 0)) {
+			if (!this.world.isStatic && (this.bp == null || this.bp.size() > 0)) {
 				this.a_(var1);
 				var1.a((aqb) this);
 			}
@@ -268,7 +268,7 @@ public class EntityVillager extends ws implements ago, aqb {
 			if (var2 != null) {
 				if (var2 instanceof EntityHuman) {
 					this.bk.a(var2.getName(), -2);
-				} else if (var2 instanceof aex) {
+				} else if (var2 instanceof IMonster) {
 					this.bk.h();
 				}
 			} else {
@@ -354,7 +354,7 @@ public class EntityVillager extends ws implements ago, aqb {
 	}
 
 	public void a_(ItemStack var1) {
-		if (!this.world.D && this.a_ > -this.w() + 20) {
+		if (!this.world.isStatic && this.a_ > -this.w() + 20) {
 			this.a_ = -this.w();
 			if (var1 != null) {
 				this.a("mob.villager.yes", this.bA(), this.bB());
@@ -478,7 +478,7 @@ public class EntityVillager extends ws implements ago, aqb {
 		this.bx = true;
 	}
 
-	public EntityVillager b(ws var1) {
+	public EntityVillager b(EntityAgeable var1) {
 		EntityVillager var2 = new EntityVillager(this.world);
 		var2.a(this.world.E(new Position(var2)), (xq) null);
 		return var2;
@@ -489,7 +489,7 @@ public class EntityVillager extends ws implements ago, aqb {
 	}
 
 	public void a(EntityLightning var1) {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			EntityWitch var2 = new EntityWitch(this.world);
 			var2.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 			var2.a(this.world.E(new Position(var2)), (xq) null);
@@ -578,7 +578,7 @@ public class EntityVillager extends ws implements ago, aqb {
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.b(var1);
 	}
 

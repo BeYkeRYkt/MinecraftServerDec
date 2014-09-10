@@ -40,7 +40,7 @@ public class GameModeCommand extends AbstractCommand {
 	}
 
 	protected GameMode h(CommandSenderInterface var1, String var2) throws dk {
-		return !var2.equalsIgnoreCase(GameMode.SURVIVAL.getName()) && !var2.equalsIgnoreCase("s") ? (!var2.equalsIgnoreCase(GameMode.CREATIVE.getName()) && !var2.equalsIgnoreCase("c") ? (!var2.equalsIgnoreCase(GameMode.ADVENTURE.getName()) && !var2.equalsIgnoreCase("a") ? (!var2.equalsIgnoreCase(GameMode.SPECTATOR.getName()) && !var2.equalsIgnoreCase("sp") ? arb.a(a(var2, 0, GameMode.values().length - 2)) : GameMode.SPECTATOR) : GameMode.ADVENTURE) : GameMode.CREATIVE) : GameMode.SURVIVAL;
+		return !var2.equalsIgnoreCase(GameMode.SURVIVAL.getName()) && !var2.equalsIgnoreCase("s") ? (!var2.equalsIgnoreCase(GameMode.CREATIVE.getName()) && !var2.equalsIgnoreCase("c") ? (!var2.equalsIgnoreCase(GameMode.ADVENTURE.getName()) && !var2.equalsIgnoreCase("a") ? (!var2.equalsIgnoreCase(GameMode.SPECTATOR.getName()) && !var2.equalsIgnoreCase("sp") ? GameMode.getById(a(var2, 0, GameMode.values().length - 2)) : GameMode.SPECTATOR) : GameMode.ADVENTURE) : GameMode.CREATIVE) : GameMode.SURVIVAL;
 	}
 
 	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {

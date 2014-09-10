@@ -6,12 +6,12 @@ import net.minecraft.server.MinecraftServer;
 
 public class arr {
 
-	private final arz a;
+	private final WorldChunkManager a;
 	private long b;
 	private LongHashMap c = new LongHashMap();
 	private List d = Lists.newArrayList();
 
-	public arr(arz var1) {
+	public arr(WorldChunkManager var1) {
 		this.a = var1;
 	}
 
@@ -30,8 +30,8 @@ public class arr {
 		return var5;
 	}
 
-	public arm a(int var1, int var2, arm var3) {
-		arm var4 = this.a(var1, var2).a(var1, var2);
+	public BiomeBase a(int var1, int var2, BiomeBase var3) {
+		BiomeBase var4 = this.a(var1, var2).a(var1, var2);
 		return var4 == null ? var3 : var4;
 	}
 
@@ -54,12 +54,12 @@ public class arr {
 
 	}
 
-	public arm[] c(int var1, int var2) {
+	public BiomeBase[] c(int var1, int var2) {
 		return this.a(var1, var2).b;
 	}
 
 	// $FF: synthetic method
-	static arz a(arr var0) {
+	static WorldChunkManager a(arr var0) {
 		return var0.a;
 	}
 }

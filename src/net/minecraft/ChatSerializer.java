@@ -80,16 +80,16 @@ public class ChatSerializer implements JsonDeserializer, JsonSerializer {
 					throw new JsonParseException("A score component needs a least a name and an objective");
 				}
 
-				var5 = new ht(uh.h(var13, "name"), uh.h(var13, "objective"));
+				var5 = new ht(JSONParser.getString(var13, "name"), JSONParser.getString(var13, "objective"));
 				if (var13.has("value")) {
-					((ht) var5).b(uh.h(var13, "value"));
+					((ht) var5).b(JSONParser.getString(var13, "value"));
 				}
 			} else {
 				if (!var4.has("selector")) {
 					throw new JsonParseException("Don\'t know how to turn " + var1.toString() + " into a Component");
 				}
 
-				var5 = new hu(uh.h(var4, "selector"));
+				var5 = new hu(JSONParser.getString(var4, "selector"));
 			}
 
 			if (var4.has("extra")) {

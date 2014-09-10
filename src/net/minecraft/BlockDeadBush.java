@@ -23,7 +23,7 @@ public class BlockDeadBush extends auc {
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, BlockState var4, TileEntity var5) {
-		if (!var1.D && var2.bY() != null && var2.bY().getItem() == Items.SHEARS) {
+		if (!var1.isStatic && var2.bY() != null && var2.bY().getItem() == Items.SHEARS) {
 			var2.b(StatisticList.MINE_BLOCK_COUNT[Block.getBlockId((Block) this)]);
 			a(var1, var3, new ItemStack(Blocks.DEADBUSH, 1, 0));
 		} else {

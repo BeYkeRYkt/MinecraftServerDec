@@ -72,7 +72,7 @@ public abstract class adj extends Entity {
 		this.p = this.locationX;
 		this.q = this.locationY;
 		this.r = this.locationZ;
-		if (this.c++ == 100 && !this.world.D) {
+		if (this.c++ == 100 && !this.world.isStatic) {
 			this.c = 0;
 			if (!this.dead && !this.j()) {
 				this.die();
@@ -133,7 +133,7 @@ public abstract class adj extends Entity {
 		if (this.b(var1)) {
 			return false;
 		} else {
-			if (!this.dead && !this.world.D) {
+			if (!this.dead && !this.world.isStatic) {
 				this.die();
 				this.ac();
 				this.b(var1.j());
@@ -144,7 +144,7 @@ public abstract class adj extends Entity {
 	}
 
 	public void move(double var1, double var3, double var5) {
-		if (!this.world.D && !this.dead && var1 * var1 + var3 * var3 + var5 * var5 > 0.0D) {
+		if (!this.world.isStatic && !this.dead && var1 * var1 + var3 * var3 + var5 * var5 > 0.0D) {
 			this.die();
 			this.b((Entity) null);
 		}
@@ -152,7 +152,7 @@ public abstract class adj extends Entity {
 	}
 
 	public void g(double var1, double var3, double var5) {
-		if (!this.world.D && !this.dead && var1 * var1 + var3 * var3 + var5 * var5 > 0.0D) {
+		if (!this.world.isStatic && !this.dead && var1 * var1 + var3 * var3 + var5 * var5 > 0.0D) {
 			this.die();
 			this.b((Entity) null);
 		}

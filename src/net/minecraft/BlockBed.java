@@ -15,7 +15,7 @@ public class BlockBed extends avb {
 	}
 
 	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
-		if (var1.D) {
+		if (var1.isStatic) {
 			return true;
 		} else {
 			if (var3.b(a) != atq.a) {
@@ -26,7 +26,7 @@ public class BlockBed extends avb {
 				}
 			}
 
-			if (var1.worldProvider.isPrimaryWorld() && var1.b(var2) != arm.x) {
+			if (var1.worldProvider.isPrimaryWorld() && var1.b(var2) != BiomeBase.x) {
 				if (((Boolean) var3.b(b)).booleanValue()) {
 					EntityHuman var10 = this.e(var1, var2);
 					if (var10 != null) {
@@ -38,15 +38,15 @@ public class BlockBed extends avb {
 					var1.a(var2, var3, 4);
 				}
 
-				ahf var11 = var4.a(var2);
-				if (var11 == ahf.a) {
+				EnumBedResult var11 = var4.a(var2);
+				if (var11 == EnumBedResult.OK) {
 					var3 = var3.a(b, Boolean.valueOf(true));
 					var1.a(var2, var3, 4);
 					return true;
 				} else {
-					if (var11 == ahf.c) {
+					if (var11 == EnumBedResult.NOT_POSSIBLE_NOW) {
 						var4.b((IChatBaseComponent) (new ChatMessage("tile.bed.noSleep", new Object[0])));
-					} else if (var11 == ahf.f) {
+					} else if (var11 == EnumBedResult.NOT_SAFE) {
 						var4.b((IChatBaseComponent) (new ChatMessage("tile.bed.notSafe", new Object[0])));
 					}
 
@@ -100,7 +100,7 @@ public class BlockBed extends avb {
 			}
 		} else if (var1.getBlockState(var2.a(var5)).getBlock() != this) {
 			var1.g(var2);
-			if (!var1.D) {
+			if (!var1.isStatic) {
 				this.b(var1, var2, var3, 0);
 			}
 		}

@@ -60,7 +60,7 @@ public class ItemBoat extends Item {
 						return var1;
 					}
 
-					if (!var2.D) {
+					if (!var2.isStatic) {
 						var2.d((Entity) var34);
 					}
 

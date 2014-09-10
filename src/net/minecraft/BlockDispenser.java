@@ -25,7 +25,7 @@ public class BlockDispenser extends atg {
 	}
 
 	private void e(World var1, Position var2, BlockState var3) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			BlockFace var4 = (BlockFace) var3.b(a);
 			boolean var5 = var1.getBlockState(var2.c()).getBlock().m();
 			boolean var6 = var1.getBlockState(var2.d()).getBlock().m();
@@ -48,7 +48,7 @@ public class BlockDispenser extends atg {
 	}
 
 	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
-		if (var1.D) {
+		if (var1.isStatic) {
 			return true;
 		} else {
 			TileEntity var9 = var1.getTileEntity(var2);
@@ -96,7 +96,7 @@ public class BlockDispenser extends atg {
 	}
 
 	public void b(World var1, Position var2, BlockState var3, Random var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			this.d(var1, var2);
 		}
 

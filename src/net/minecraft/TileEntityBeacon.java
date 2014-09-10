@@ -29,7 +29,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 	}
 
 	private void A() {
-		if (this.i && this.j > 0 && !this.world.D && this.k > 0) {
+		if (this.i && this.j > 0 && !this.world.isStatic && this.k > 0) {
 			double var1 = (double) (this.j * 10 + 10);
 			byte var3 = 0;
 			if (this.j >= 4 && this.k == this.l) {
@@ -138,7 +138,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 			}
 		}
 
-		if (!this.world.D && this.j == 4 && var1 < this.j) {
+		if (!this.world.isStatic && this.j == 4 && var1 < this.j) {
 			Iterator var13 = this.world.a(EntityHuman.class, (new AxisAlignedBB((double) var2, (double) var3, (double) var4, (double) var2, (double) (var3 - 4), (double) var4)).grow(10.0D, 5.0D, 10.0D)).iterator();
 
 			while (var13.hasNext()) {

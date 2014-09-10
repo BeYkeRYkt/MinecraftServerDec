@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntitySlime extends EntityInsentient implements aex {
+public class EntitySlime extends EntityInsentient implements IMonster {
 
 	public float a;
 	public float b;
@@ -63,7 +63,7 @@ public class EntitySlime extends EntityInsentient implements aex {
 	}
 
 	public void s_() {
-		if (!this.world.D && this.world.getDifficulty() == Difficulty.PEACEFUL && this.ck() > 0) {
+		if (!this.world.isStatic && this.world.getDifficulty() == Difficulty.PEACEFUL && this.ck() > 0) {
 			this.dead = true;
 		}
 
@@ -126,7 +126,7 @@ public class EntitySlime extends EntityInsentient implements aex {
 
 	public void die() {
 		int var1 = this.ck();
-		if (!this.world.D && var1 > 1 && this.getHealth() <= 0.0F) {
+		if (!this.world.isStatic && var1 > 1 && this.getHealth() <= 0.0F) {
 			int var2 = 2 + this.V.nextInt(3);
 
 			for (int var3 = 0; var3 < var2; ++var3) {
@@ -204,8 +204,8 @@ public class EntitySlime extends EntityInsentient implements aex {
 			return false;
 		} else {
 			if (this.world.getDifficulty() != Difficulty.PEACEFUL) {
-				arm var2 = this.world.b(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
-				if (var2 == arm.v && this.locationY > 50.0D && this.locationY < 70.0D && this.V.nextFloat() < 0.5F && this.V.nextFloat() < this.world.y() && this.world.l(new Position(this)) <= this.V.nextInt(8)) {
+				BiomeBase var2 = this.world.b(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
+				if (var2 == BiomeBase.v && this.locationY > 50.0D && this.locationY < 70.0D && this.V.nextFloat() < 0.5F && this.V.nextFloat() < this.world.y() && this.world.l(new Position(this)) <= this.V.nextInt(8)) {
 					return super.bQ();
 				}
 

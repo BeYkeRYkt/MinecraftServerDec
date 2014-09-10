@@ -52,7 +52,7 @@ public abstract class ahl extends Entity {
 	}
 
 	public void s_() {
-		if (!this.world.D && (this.a != null && this.a.dead || !this.world.isLoaded(new Position(this)))) {
+		if (!this.world.isStatic && (this.a != null && this.a.dead || !this.world.isLoaded(new Position(this)))) {
 			this.die();
 		} else {
 			super.s_();

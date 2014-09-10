@@ -109,7 +109,7 @@ public class BlockFence extends Block {
 	}
 
 	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
-		return var1.D ? true : ItemLeash.a(var4, var1, var2);
+		return var1.isStatic ? true : ItemLeash.a(var4, var1, var2);
 	}
 
 	public int c(BlockState var1) {

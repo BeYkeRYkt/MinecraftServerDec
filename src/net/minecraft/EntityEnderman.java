@@ -80,7 +80,7 @@ public class EntityEnderman extends EntityMonster {
 	}
 
 	public void m() {
-		if (this.world.D) {
+		if (this.world.isStatic) {
 			for (int var1 = 0; var1 < 2; ++var1) {
 				this.world.a(Particle.y, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K - 0.25D, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, (this.V.nextDouble() - 0.5D) * 2.0D, -this.V.nextDouble(), (this.V.nextDouble() - 0.5D) * 2.0D, new int[0]);
 			}
@@ -224,7 +224,7 @@ public class EntityEnderman extends EntityMonster {
 			return false;
 		} else {
 			if (var1.j() == null || !(var1.j() instanceof EntityEndermite)) {
-				if (!this.world.D) {
+				if (!this.world.isStatic) {
 					this.a(true);
 				}
 

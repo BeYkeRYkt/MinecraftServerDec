@@ -104,7 +104,7 @@ public class MobEffectList {
 		} else if (this.H == s.H && var1 instanceof EntityHuman) {
 			((EntityHuman) var1).a(0.025F * (float) (var2 + 1));
 		} else if (this.H == y.H && var1 instanceof EntityHuman) {
-			if (!var1.world.D) {
+			if (!var1.world.isStatic) {
 				((EntityHuman) var1).ck().a(var2 + 1, 1.0F);
 			}
 		} else if ((this.H != h.H || var1.bl()) && (this.H != i.H || !var1.bl())) {

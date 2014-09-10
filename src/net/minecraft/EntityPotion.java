@@ -54,7 +54,7 @@ public class EntityPotion extends ahr {
 	}
 
 	protected void a(MovingObjectPosition var1) {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			List var2 = Items.POTION.h(this.c);
 			if (var2 != null && !var2.isEmpty()) {
 				AxisAlignedBB var3 = this.getBoundingBox().grow(4.0D, 2.0D, 4.0D);

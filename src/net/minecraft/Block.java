@@ -539,7 +539,7 @@ public class Block {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			int var6 = this.a(var5, var1.s);
 
 			for (int var7 = 0; var7 < var6; ++var7) {
@@ -555,7 +555,7 @@ public class Block {
 	}
 
 	public static void a(World var0, Position var1, ItemStack var2) {
-		if (!var0.D && var0.Q().b("doTileDrops")) {
+		if (!var0.isStatic && var0.Q().b("doTileDrops")) {
 			float var3 = 0.5F;
 			double var4 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
 			double var6 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
@@ -567,7 +567,7 @@ public class Block {
 	}
 
 	protected void b(World var1, Position var2, int var3) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			while (var3 > 0) {
 				int var4 = EntityExpirienceOrb.a(var3);
 				var3 -= var4;

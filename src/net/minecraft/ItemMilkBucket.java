@@ -12,7 +12,7 @@ public class ItemMilkBucket extends Item {
 			--var1.amount;
 		}
 
-		if (!var2.D) {
+		if (!var2.isStatic) {
 			var3.bj();
 		}
 

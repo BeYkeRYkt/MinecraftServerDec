@@ -65,7 +65,7 @@ public class aiq extends Container {
 			ItemStack var2 = var1.a(0);
 			int var3;
 			if (var2 != null && var2.v()) {
-				if (!this.i.D) {
+				if (!this.i.isStatic) {
 					var3 = 0;
 
 					int var4;
@@ -140,7 +140,7 @@ public class aiq extends Container {
 		if ((var4 == null || var4.amount < var5) && !var1.playerProperties.instabuild) {
 			return false;
 		} else if (this.g[var2] > 0 && var3 != null && (var1.xpLevel >= var5 && var1.xpLevel >= this.g[var2] || var1.playerProperties.instabuild)) {
-			if (!this.i.D) {
+			if (!this.i.isStatic) {
 				List var6 = this.a(var3, var2, this.g[var2]);
 				boolean var7 = var3.getItem() == Items.BOOK;
 				if (var6 != null) {
@@ -189,7 +189,7 @@ public class aiq extends Container {
 
 	public void onClose(EntityHuman var1) {
 		super.onClose(var1);
-		if (!this.i.D) {
+		if (!this.i.isStatic) {
 			for (int var2 = 0; var2 < this.a.n_(); ++var2) {
 				ItemStack var3 = this.a.b(var2);
 				if (var3 != null) {

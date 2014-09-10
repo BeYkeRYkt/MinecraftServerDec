@@ -51,7 +51,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		var4.b = this;
 		this.playerInteractManager = var4;
 		Position var5 = var2.getSpawnPosition();
-		if (!var2.worldProvider.noSkyLight() && var2.getWorldData().r() != GameMode.ADVENTURE) {
+		if (!var2.worldProvider.noSkyLight() && var2.getWorldData().getGameMode() != GameMode.ADVENTURE) {
 			int var6 = Math.max(5, var1.isSpawnProtectionEnabled() - 6);
 			int var7 = DataTypesConverter.toFixedPointInt(var2.getWorldBorder().getDistance((double) var5.getX(), (double) var5.getZ()));
 			if (var7 < var6) {
@@ -125,7 +125,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		}
 
 		this.activeContainer.b();
-		if (!this.world.D && !this.activeContainer.a((EntityHuman) this)) {
+		if (!this.world.isStatic && !this.activeContainer.a((EntityHuman) this)) {
 			this.n();
 			this.activeContainer = this.defaultContainer;
 		}
@@ -254,7 +254,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	protected void h_() {
-		arm var1 = this.world.b(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
+		BiomeBase var1 = this.world.b(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
 		String var2 = var1.ah;
 		AchievmentSet var3 = (AchievmentSet) this.getStatisticManager().b((Statistic) AchievementList.L);
 		if (var3 == null) {
@@ -262,8 +262,8 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		}
 
 		var3.add(var2);
-		if (this.getStatisticManager().b(AchievementList.L) && var3.size() >= arm.n.size()) {
-			HashSet var4 = Sets.newHashSet((Iterable) arm.n);
+		if (this.getStatisticManager().b(AchievementList.L) && var3.size() >= BiomeBase.n.size()) {
+			HashSet var4 = Sets.newHashSet((Iterable) BiomeBase.n);
 			Iterator var5 = var3.iterator();
 
 			while (var5.hasNext()) {
@@ -271,7 +271,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 				Iterator var7 = var4.iterator();
 
 				while (var7.hasNext()) {
-					arm var8 = (arm) var7.next();
+					BiomeBase var8 = (BiomeBase) var7.next();
 					if (var8.ah.equals(var6)) {
 						var7.remove();
 					}
@@ -412,9 +412,9 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		this.activeContainer.b();
 	}
 
-	public ahf a(Position var1) {
-		ahf var2 = super.a(var1);
-		if (var2 == ahf.a) {
+	public EnumBedResult a(Position var1) {
+		EnumBedResult var2 = super.a(var1);
+		if (var2 == EnumBedResult.OK) {
 			PacketPlayOutUseBed var3 = new PacketPlayOutUseBed(this, var1);
 			this.getWorldServer().s().a((Entity) this, (Packet) var3);
 			this.playerConncetion.movePlayer(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntityGhast extends xl implements aex {
+public class EntityGhast extends xl implements IMonster {
 
 	private int a = 1;
 
@@ -26,7 +26,7 @@ public class EntityGhast extends xl implements aex {
 
 	public void s_() {
 		super.s_();
-		if (!this.world.D && this.world.getDifficulty() == Difficulty.PEACEFUL) {
+		if (!this.world.isStatic && this.world.getDifficulty() == Difficulty.PEACEFUL) {
 			this.die();
 		}
 

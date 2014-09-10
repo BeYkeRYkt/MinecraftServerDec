@@ -6,14 +6,14 @@ import java.util.Random;
 public class ChunkProviderTheEnd implements IChunkProvider {
 
 	private Random h;
-	private bnv i;
-	private bnv j;
-	private bnv k;
-	public bnv a;
-	public bnv b;
+	private NoiseGeneratorOctaves i;
+	private NoiseGeneratorOctaves j;
+	private NoiseGeneratorOctaves k;
+	public NoiseGeneratorOctaves a;
+	public NoiseGeneratorOctaves b;
 	private World l;
 	private double[] m;
-	private arm[] n;
+	private BiomeBase[] n;
 	double[] c;
 	double[] d;
 	double[] e;
@@ -23,11 +23,11 @@ public class ChunkProviderTheEnd implements IChunkProvider {
 	public ChunkProviderTheEnd(World var1, long var2) {
 		this.l = var1;
 		this.h = new Random(var2);
-		this.i = new bnv(this.h, 16);
-		this.j = new bnv(this.h, 16);
-		this.k = new bnv(this.h, 8);
-		this.a = new bnv(this.h, 10);
-		this.b = new bnv(this.h, 16);
+		this.i = new NoiseGeneratorOctaves(this.h, 16);
+		this.j = new NoiseGeneratorOctaves(this.h, 16);
+		this.k = new NoiseGeneratorOctaves(this.h, 8);
+		this.a = new NoiseGeneratorOctaves(this.h, 10);
+		this.b = new NoiseGeneratorOctaves(this.h, 16);
 	}
 
 	public void a(int var1, int var2, bgk var3) {

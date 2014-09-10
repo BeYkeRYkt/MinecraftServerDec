@@ -153,7 +153,7 @@ public class EntityCreeper extends EntityMonster {
 		if (var2 != null && var2.getItem() == Items.FLINT_AND_STEEL) {
 			this.world.makeSound(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.ignite", 1.0F, this.V.nextFloat() * 0.4F + 0.8F);
 			var1.performHandAnimation();
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				this.cm();
 				var2.a(1, (EntityLiving) var1);
 				return true;
@@ -164,7 +164,7 @@ public class EntityCreeper extends EntityMonster {
 	}
 
 	private void cp() {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			boolean var1 = this.world.Q().b("mobGriefing");
 			float var2 = this.n() ? 2.0F : 1.0F;
 			this.world.a(this, this.locationX, this.locationY, this.locationZ, (float) this.bl * var2, var1);

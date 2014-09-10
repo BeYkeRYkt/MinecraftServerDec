@@ -4,12 +4,12 @@ import net.minecraft.server.MinecraftServer;
 
 public class DemoWorldServer extends WorldServer {
 
-	private static final long I = (long) "North Carolina".hashCode();
-	public static final arb a = (new arb(I, GameMode.SURVIVAL, true, false, LevelType.DEFAULT)).a();
+	private static final long DEMO_SEED = (long) "North Carolina".hashCode();
+	public static final WorldSettings DEMO_WORLD_SETTINGS = (new WorldSettings(DEMO_SEED, GameMode.SURVIVAL, true, false, LevelType.DEFAULT)).enableBonusChest();
 
-	public DemoWorldServer(MinecraftServer var1, IDataManager var2, WorldData var3, int var4, MethodProfiler var5) {
-		super(var1, var2, var3, var4, var5);
-		this.worldData.a(a);
+	public DemoWorldServer(MinecraftServer minecraftServer, IDataManager dataManager, WorldData worldData, int dimension, MethodProfiler methodProfiler) {
+		super(minecraftServer, dataManager, worldData, dimension, methodProfiler);
+		this.worldData.applySettings(DEMO_WORLD_SETTINGS);
 	}
 
 }

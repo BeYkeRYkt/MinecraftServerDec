@@ -103,7 +103,7 @@ public abstract class EntityLiving extends Entity {
 			this.W();
 		}
 
-		if (!this.world.D && this.O > 3.0F && var3) {
+		if (!this.world.isStatic && this.O > 3.0F && var3) {
 			BlockState var6 = this.world.getBlockState(var5);
 			Block var7 = var6.getBlock();
 			float var8 = (float) DataTypesConverter.f(this.O - 3.0F);
@@ -141,7 +141,7 @@ public abstract class EntityLiving extends Entity {
 			}
 		}
 
-		if (this.T() || this.world.D) {
+		if (this.T() || this.world.isStatic) {
 			this.N();
 		}
 
@@ -163,7 +163,7 @@ public abstract class EntityLiving extends Entity {
 				}
 			}
 
-			if (!this.world.D && this.av() && this.vehicle instanceof EntityLiving) {
+			if (!this.world.isStatic && this.av() && this.vehicle instanceof EntityLiving) {
 				this.mount((Entity) null);
 			}
 		} else {
@@ -222,7 +222,7 @@ public abstract class EntityLiving extends Entity {
 		++this.av;
 		if (this.av == 20) {
 			int var1;
-			if (!this.world.D && (this.aM > 0 || this.ba()) && this.aZ() && this.world.Q().b("doMobLoot")) {
+			if (!this.world.isStatic && (this.aM > 0 || this.ba()) && this.aZ() && this.world.Q().b("doMobLoot")) {
 				var1 = this.b(this.aL);
 
 				while (var1 > 0) {
@@ -346,7 +346,7 @@ public abstract class EntityLiving extends Entity {
 
 	public void a(NBTCompoundTag var1) {
 		this.l(var1.getFloat("AbsorptionAmount"));
-		if (var1.isTagAssignableFrom("Attributes", 9) && this.world != null && !this.world.D) {
+		if (var1.isTagAssignableFrom("Attributes", 9) && this.world != null && !this.world.isStatic) {
 			afs.a(this.bx(), var1.getList("Attributes", 10));
 		}
 
@@ -387,7 +387,7 @@ public abstract class EntityLiving extends Entity {
 			Integer var2 = (Integer) var1.next();
 			MobEffect var3 = (MobEffect) this.g.get(var2);
 			if (!var3.tick(this)) {
-				if (!this.world.D) {
+				if (!this.world.isStatic) {
 					var1.remove();
 					this.b(var3);
 				}
@@ -397,7 +397,7 @@ public abstract class EntityLiving extends Entity {
 		}
 
 		if (this.i) {
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				this.B();
 			}
 
@@ -452,7 +452,7 @@ public abstract class EntityLiving extends Entity {
 		while (var1.hasNext()) {
 			Integer var2 = (Integer) var1.next();
 			MobEffect var3 = (MobEffect) this.g.get(var2);
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				var1.remove();
 				this.b(var3);
 			}
@@ -514,7 +514,7 @@ public abstract class EntityLiving extends Entity {
 
 	protected void a(MobEffect var1) {
 		this.i = true;
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			MobEffectList.byId[var1.getId()].b(this, this.bx(), var1.getAmplifier());
 		}
 
@@ -522,7 +522,7 @@ public abstract class EntityLiving extends Entity {
 
 	protected void a(MobEffect var1, boolean var2) {
 		this.i = true;
-		if (var2 && !this.world.D) {
+		if (var2 && !this.world.isStatic) {
 			MobEffectList.byId[var1.getId()].a(this, this.bx(), var1.getAmplifier());
 			MobEffectList.byId[var1.getId()].b(this, this.bx(), var1.getAmplifier());
 		}
@@ -531,7 +531,7 @@ public abstract class EntityLiving extends Entity {
 
 	protected void b(MobEffect var1) {
 		this.i = true;
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			MobEffectList.byId[var1.getId()].a(this, this.bx(), var1.getAmplifier());
 		}
 
@@ -556,7 +556,7 @@ public abstract class EntityLiving extends Entity {
 	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
-		} else if (this.world.D) {
+		} else if (this.world.isStatic) {
 			return false;
 		} else {
 			this.aO = 0;
@@ -677,7 +677,7 @@ public abstract class EntityLiving extends Entity {
 
 		this.aN = true;
 		this.br().g();
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			int var4 = 0;
 			if (var2 instanceof EntityHuman) {
 				var4 = aph.i((EntityLiving) var2);
@@ -1088,7 +1088,7 @@ public abstract class EntityLiving extends Entity {
 					this.motionY = 0.2D;
 				}
 
-				if (this.world.D && (!this.world.isLoaded(new Position((int) this.locationX, 0, (int) this.locationZ)) || !this.world.getChunk(new Position((int) this.locationX, 0, (int) this.locationZ)).o())) {
+				if (this.world.isStatic && (!this.world.isLoaded(new Position((int) this.locationX, 0, (int) this.locationZ)) || !this.world.getChunk(new Position((int) this.locationX, 0, (int) this.locationZ)).o())) {
 					if (this.locationY > 0.0D) {
 						this.motionY = -0.1D;
 					} else {
@@ -1135,7 +1135,7 @@ public abstract class EntityLiving extends Entity {
 
 	public void s_() {
 		super.s_();
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			int var1 = this.bu();
 			if (var1 > 0) {
 				if (this.ar <= 0) {
@@ -1327,7 +1327,7 @@ public abstract class EntityLiving extends Entity {
 		this.g(this.aX, this.aY);
 		this.world.B.b();
 		this.world.B.a("push");
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.bK();
 		}
 
@@ -1356,7 +1356,7 @@ public abstract class EntityLiving extends Entity {
 
 	public void mount(Entity var1) {
 		if (this.vehicle != null && var1 == null) {
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				this.q(this.vehicle);
 			}
 
@@ -1382,7 +1382,7 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public void a(Entity var1, int var2) {
-		if (!var1.dead && !this.world.D) {
+		if (!var1.dead && !this.world.isStatic) {
 			qn var3 = ((WorldServer) this.world).s();
 			if (var1 instanceof EntityItem) {
 				var3.a(var1, (Packet) (new PacketPlayOutCollectItem(var1.getId(), this.getId())));
@@ -1418,7 +1418,7 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public boolean bL() {
-		return !this.world.D;
+		return !this.world.isStatic;
 	}
 
 	public boolean ad() {

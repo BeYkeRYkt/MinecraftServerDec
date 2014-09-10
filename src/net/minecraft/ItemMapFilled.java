@@ -13,7 +13,7 @@ public class ItemMapFilled extends ItemMap {
 	public bqe a(ItemStack var1, World var2) {
 		String var3 = "map_" + var1.getDurability();
 		bqe var4 = (bqe) var2.a(bqe.class, var3);
-		if (var4 == null && !var2.D) {
+		if (var4 == null && !var2.isStatic) {
 			var1.setDurability(var2.b("map"));
 			var3 = "map_" + var1.getDurability();
 			var4 = new bqe(var3);
@@ -145,7 +145,7 @@ public class ItemMapFilled extends ItemMap {
 	}
 
 	public void a(ItemStack var1, World var2, Entity var3, int var4, boolean var5) {
-		if (!var2.D) {
+		if (!var2.isStatic) {
 			bqe var6 = this.a(var1, var2);
 			if (var3 instanceof EntityHuman) {
 				EntityHuman var7 = (EntityHuman) var3;

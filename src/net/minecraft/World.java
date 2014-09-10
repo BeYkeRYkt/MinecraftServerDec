@@ -47,7 +47,7 @@ public abstract class World implements ard {
 	public final MethodProfiler B;
 	private final Calendar J = Calendar.getInstance();
 	protected Scoreboard C = new Scoreboard();
-	public final boolean D;
+	public final boolean isStatic;
 	protected Set E = Sets.newHashSet();
 	private int K;
 	protected boolean F;
@@ -65,15 +65,15 @@ public abstract class World implements ard {
 		this.B = var4;
 		this.worldData = var2;
 		this.worldProvider = var3;
-		this.D = var5;
-		this.worldborder = var3.r();
+		this.isStatic = var5;
+		this.worldborder = var3.getWorldBorder();
 	}
 
 	public World b() {
 		return this;
 	}
 
-	public arm b(Position var1) {
+	public BiomeBase b(Position var1) {
 		if (this.isLoaded(var1)) {
 			Chunk var2 = this.getChunk(var1);
 
@@ -86,18 +86,18 @@ public abstract class World implements ard {
 				throw new ReportedException(var4);
 			}
 		} else {
-			return this.worldProvider.m().a(var1, arm.q);
+			return this.worldProvider.m().a(var1, BiomeBase.q);
 		}
 	}
 
-	public arz v() {
+	public WorldChunkManager v() {
 		return this.worldProvider.m();
 	}
 
 	protected abstract IChunkProvider k();
 
-	public void a(arb var1) {
-		this.worldData.d(true);
+	public void a(WorldSettings var1) {
+		this.worldData.setInitialized(true);
 	}
 
 	public Block c(Position var1) {
@@ -185,7 +185,7 @@ public abstract class World implements ard {
 	public boolean a(Position var1, BlockState var2, int var3) {
 		if (!this.a(var1)) {
 			return false;
-		} else if (!this.D && this.worldData.getLevelType() == LevelType.DEBUG) {
+		} else if (!this.isStatic && this.worldData.getLevelType() == LevelType.DEBUG) {
 			return false;
 		} else {
 			Chunk var4 = this.getChunk(var1);
@@ -201,11 +201,11 @@ public abstract class World implements ard {
 					this.B.b();
 				}
 
-				if ((var3 & 2) != 0 && (!this.D || (var3 & 4) == 0) && var4.i()) {
+				if ((var3 & 2) != 0 && (!this.isStatic || (var3 & 4) == 0) && var4.i()) {
 					this.notify(var1);
 				}
 
-				if (!this.D && (var3 & 1) != 0) {
+				if (!this.isStatic && (var3 & 1) != 0) {
 					this.b(var1, var6.getBlock());
 					if (var5.N()) {
 						this.e(var1, var5);
@@ -319,7 +319,7 @@ public abstract class World implements ard {
 	}
 
 	public void d(Position var1, Block var2) {
-		if (!this.D) {
+		if (!this.isStatic) {
 			BlockState var3 = this.getBlockState(var1);
 
 			try {
@@ -875,11 +875,11 @@ public abstract class World implements ard {
 	}
 
 	public float c(float var1) {
-		return this.worldProvider.a(this.worldData.g(), var1);
+		return this.worldProvider.a(this.worldData.getDayTime(), var1);
 	}
 
 	public float y() {
-		return WorldProvider.a[this.worldProvider.a(this.worldData.g())];
+		return WorldProvider.a[this.worldProvider.a(this.worldData.getDayTime())];
 	}
 
 	public float d(float var1) {
@@ -1519,9 +1519,9 @@ public abstract class World implements ard {
 	}
 
 	protected void C() {
-		if (this.worldData.p()) {
+		if (this.worldData.isRaining()) {
 			this.p = 1.0F;
-			if (this.worldData.n()) {
+			if (this.worldData.isThundering()) {
 				this.r = 1.0F;
 			}
 		}
@@ -1530,55 +1530,55 @@ public abstract class World implements ard {
 
 	protected void p() {
 		if (!this.worldProvider.noSkyLight()) {
-			if (!this.D) {
-				int var1 = this.worldData.A();
+			if (!this.isStatic) {
+				int var1 = this.worldData.getClearWeatherTime();
 				if (var1 > 0) {
 					--var1;
-					this.worldData.i(var1);
-					this.worldData.f(this.worldData.n() ? 1 : 2);
-					this.worldData.g(this.worldData.p() ? 1 : 2);
+					this.worldData.setClearWeatherTime(var1);
+					this.worldData.setThunderTime(this.worldData.isThundering() ? 1 : 2);
+					this.worldData.setRainTime(this.worldData.isRaining() ? 1 : 2);
 				}
 
-				int var2 = this.worldData.o();
+				int var2 = this.worldData.getThunderTime();
 				if (var2 <= 0) {
-					if (this.worldData.n()) {
-						this.worldData.f(this.s.nextInt(12000) + 3600);
+					if (this.worldData.isThundering()) {
+						this.worldData.setThunderTime(this.s.nextInt(12000) + 3600);
 					} else {
-						this.worldData.f(this.s.nextInt(168000) + 12000);
+						this.worldData.setThunderTime(this.s.nextInt(168000) + 12000);
 					}
 				} else {
 					--var2;
-					this.worldData.f(var2);
+					this.worldData.setThunderTime(var2);
 					if (var2 <= 0) {
-						this.worldData.a(!this.worldData.n());
+						this.worldData.setThundering(!this.worldData.isThundering());
 					}
 				}
 
 				this.q = this.r;
-				if (this.worldData.n()) {
+				if (this.worldData.isThundering()) {
 					this.r = (float) ((double) this.r + 0.01D);
 				} else {
 					this.r = (float) ((double) this.r - 0.01D);
 				}
 
 				this.r = DataTypesConverter.a(this.r, 0.0F, 1.0F);
-				int var3 = this.worldData.q();
+				int var3 = this.worldData.getRainTime();
 				if (var3 <= 0) {
-					if (this.worldData.p()) {
-						this.worldData.g(this.s.nextInt(12000) + 12000);
+					if (this.worldData.isRaining()) {
+						this.worldData.setRainTime(this.s.nextInt(12000) + 12000);
 					} else {
-						this.worldData.g(this.s.nextInt(168000) + 12000);
+						this.worldData.setRainTime(this.s.nextInt(168000) + 12000);
 					}
 				} else {
 					--var3;
-					this.worldData.g(var3);
+					this.worldData.setRainTime(var3);
 					if (var3 <= 0) {
-						this.worldData.b(!this.worldData.p());
+						this.worldData.setRaining(!this.worldData.isRaining());
 					}
 				}
 
 				this.o = this.p;
-				if (this.worldData.p()) {
+				if (this.worldData.isRaining()) {
 					this.p = (float) ((double) this.p + 0.01D);
 				} else {
 					this.p = (float) ((double) this.p - 0.01D);
@@ -1633,7 +1633,7 @@ public abstract class World implements ard {
 
 	protected void a(int var1, int var2, Chunk var3) {
 		this.B.c("moodSound");
-		if (this.K == 0 && !this.D) {
+		if (this.K == 0 && !this.isStatic) {
 			this.m = this.m * 3 + 1013904223;
 			int var4 = this.m >> 2;
 			int var5 = var4 & 15;
@@ -1675,7 +1675,7 @@ public abstract class World implements ard {
 	}
 
 	public boolean e(Position var1, boolean var2) {
-		arm var3 = this.b(var1);
+		BiomeBase var3 = this.b(var1);
 		float var4 = var3.a(var1);
 		if (var4 > 0.15F) {
 			return false;
@@ -1704,7 +1704,7 @@ public abstract class World implements ard {
 	}
 
 	public boolean f(Position var1, boolean var2) {
-		arm var3 = this.b(var1);
+		BiomeBase var3 = this.b(var1);
 		float var4 = var3.a(var1);
 		if (var4 > 0.15F) {
 			return false;
@@ -2174,19 +2174,19 @@ public abstract class World implements ard {
 	}
 
 	public long J() {
-		return this.worldData.b();
+		return this.worldData.getSeed();
 	}
 
 	public long getTime() {
-		return this.worldData.f();
+		return this.worldData.getTime();
 	}
 
 	public long L() {
-		return this.worldData.g();
+		return this.worldData.getDayTime();
 	}
 
 	public void b(long var1) {
-		this.worldData.c(var1);
+		this.worldData.setDayTime(var1);
 	}
 
 	public Position getSpawnPosition() {
@@ -2199,7 +2199,7 @@ public abstract class World implements ard {
 	}
 
 	public void B(Position var1) {
-		this.worldData.a(var1);
+		this.worldData.setSpawn(var1);
 	}
 
 	public boolean a(EntityHuman var1, Position var2) {
@@ -2226,7 +2226,7 @@ public abstract class World implements ard {
 	}
 
 	public GameRuleRegistry Q() {
-		return this.worldData.x();
+		return this.worldData.getGameRules();
 	}
 
 	public void d() {
@@ -2256,13 +2256,13 @@ public abstract class World implements ard {
 		} else if (this.q(var1).getY() > var1.getY()) {
 			return false;
 		} else {
-			arm var2 = this.b(var1);
+			BiomeBase var2 = this.b(var1);
 			return var2.d() ? false : (this.f(var1, false) ? false : var2.e());
 		}
 	}
 
 	public boolean D(Position var1) {
-		arm var2 = this.b(var1);
+		BiomeBase var2 = this.b(var1);
 		return var2.f();
 	}
 
@@ -2319,7 +2319,7 @@ public abstract class World implements ard {
 	}
 
 	public Random a(int var1, int var2, int var3) {
-		long var4 = (long) var1 * 341873128712L + (long) var2 * 132897987541L + this.getWorldData().b() + (long) var3;
+		long var4 = (long) var1 * 341873128712L + (long) var2 * 132897987541L + this.getWorldData().getSeed() + (long) var3;
 		this.s.setSeed(var4);
 		return this.s;
 	}
@@ -2330,12 +2330,12 @@ public abstract class World implements ard {
 
 	public CrashReportSystemDetails a(CrashReport var1) {
 		CrashReportSystemDetails var2 = var1.generateSystemDetails("Affected level", 1);
-		var2.addDetails("Level name", (Object) (this.worldData == null ? "????" : this.worldData.k()));
+		var2.addDetails("Level name", (Object) (this.worldData == null ? "????" : this.worldData.getLevelName()));
 		var2.addDetails("All players", (Callable) (new aqx(this)));
 		var2.addDetails("Chunk stats", (Callable) (new aqy(this)));
 
 		try {
-			this.worldData.a(var2);
+			this.worldData.addCrashReportDetails(var2);
 		} catch (Throwable var4) {
 			var2.a("Level Data Unobtainable", var4);
 		}

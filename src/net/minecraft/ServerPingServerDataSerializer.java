@@ -11,8 +11,8 @@ import java.lang.reflect.Type;
 public class ServerPingServerDataSerializer implements JsonDeserializer, JsonSerializer {
 
 	public ServerPingServerData a(JsonElement var1, Type var2, JsonDeserializationContext var3) {
-		JsonObject var4 = uh.l(var1, "version");
-		return new ServerPingServerData(uh.h(var4, "name"), uh.m(var4, "protocol"));
+		JsonObject var4 = JSONParser.getJsonObject(var1, "version");
+		return new ServerPingServerData(JSONParser.getString(var4, "name"), JSONParser.getInt(var4, "protocol"));
 	}
 
 	public JsonElement a(ServerPingServerData var1, Type var2, JsonSerializationContext var3) {

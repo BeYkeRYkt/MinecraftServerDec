@@ -38,7 +38,7 @@ public class ItemHoe extends Item {
 
 	protected boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockState var5) {
 		var3.makeSound((double) ((float) var4.getX() + 0.5F), (double) ((float) var4.getY() + 0.5F), (double) ((float) var4.getZ() + 0.5F), var5.getBlock().H.c(), (var5.getBlock().H.d() + 1.0F) / 2.0F, var5.getBlock().H.e() * 0.8F);
-		if (var3.D) {
+		if (var3.isStatic) {
 			return true;
 		} else {
 			var3.a(var4, var5);

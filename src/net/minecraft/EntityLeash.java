@@ -57,7 +57,7 @@ public class EntityLeash extends adj {
 		List var6;
 		Iterator var7;
 		EntityInsentient var8;
-		if (var2 != null && var2.getItem() == Items.LEAD && !this.world.D) {
+		if (var2 != null && var2.getItem() == Items.LEAD && !this.world.isStatic) {
 			var4 = 7.0D;
 			var6 = this.world.a(EntityInsentient.class, new AxisAlignedBB(this.locationX - var4, this.locationY - var4, this.locationZ - var4, this.locationX + var4, this.locationY + var4, this.locationZ + var4));
 			var7 = var6.iterator();
@@ -71,7 +71,7 @@ public class EntityLeash extends adj {
 			}
 		}
 
-		if (!this.world.D && !var3) {
+		if (!this.world.isStatic && !var3) {
 			this.die();
 			if (var1.playerProperties.instabuild) {
 				var4 = 7.0D;

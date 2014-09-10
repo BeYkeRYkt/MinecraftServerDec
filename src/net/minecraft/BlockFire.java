@@ -112,7 +112,7 @@ public class BlockFire extends Block {
 
 			Block var5 = var1.getBlockState(var2.b()).getBlock();
 			boolean var6 = var5 == Blocks.NETHERRACK;
-			if (var1.worldProvider instanceof TheEndWorldProvider && var5 == Blocks.BEDROCK) {
+			if (var1.worldProvider instanceof WorldProviderTheEnd && var5 == Blocks.BEDROCK) {
 				var6 = true;
 			}
 

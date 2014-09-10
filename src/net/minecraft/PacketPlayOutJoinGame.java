@@ -33,7 +33,7 @@ public class PacketPlayOutJoinGame implements Packet<PlayOutPacketListener> {
 		this.dimensionId = serializer.readByte();
 		this.difficulty = Difficulty.clampAndGetById(serializer.readUnsignedByte());
 		this.maxPlayers = serializer.readUnsignedByte();
-		this.levelType = LevelType.byName(serializer.readString(16));
+		this.levelType = LevelType.getByName(serializer.readString(16));
 		if (this.levelType == null) {
 			this.levelType = LevelType.DEFAULT;
 		}
@@ -52,7 +52,7 @@ public class PacketPlayOutJoinGame implements Packet<PlayOutPacketListener> {
 		serializer.writeByte(this.dimensionId);
 		serializer.writeByte(this.difficulty.getId());
 		serializer.writeByte(this.maxPlayers);
-		serializer.writeString(this.levelType.a());
+		serializer.writeString(this.levelType.getName());
 		serializer.writeBoolean(this.debugInfo);
 	}
 

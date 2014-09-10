@@ -15,7 +15,7 @@ public class ItemFishingRod extends Item {
 			var3.performHandAnimation();
 		} else {
 			var2.a((Entity) var3, "random.bow", 0.5F, 0.4F / (rnd.nextFloat() * 0.4F + 0.8F));
-			if (!var2.D) {
+			if (!var2.isStatic) {
 				var2.d((Entity) (new ado(var2, var3)));
 			}
 

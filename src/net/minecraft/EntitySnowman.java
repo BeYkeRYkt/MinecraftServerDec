@@ -10,7 +10,7 @@ public class EntitySnowman extends abw implements afr {
 		this.i.a(2, new zy(this, 1.0D));
 		this.i.a(3, new zh(this, EntityHuman.class, 6.0F));
 		this.i.a(4, new zx(this));
-		this.bg.a(1, new aaq(this, EntityInsentient.class, 10, true, false, aex.d));
+		this.bg.a(1, new aaq(this, EntityInsentient.class, 10, true, false, IMonster.d));
 	}
 
 	protected void aW() {
@@ -21,7 +21,7 @@ public class EntitySnowman extends abw implements afr {
 
 	public void m() {
 		super.m();
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
 			int var2 = DataTypesConverter.toFixedPointInt(this.locationY);
 			int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);

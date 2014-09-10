@@ -20,7 +20,7 @@ public class EntitySkeleton extends EntityMonster implements afr {
 		this.bg.a(1, new aal(this, false, new Class[0]));
 		this.bg.a(2, new aaq(this, EntityHuman.class, true));
 		this.bg.a(3, new aaq(this, EntityIronGolem.class, true));
-		if (var1 != null && !var1.D) {
+		if (var1 != null && !var1.isStatic) {
 			this.n();
 		}
 
@@ -69,7 +69,7 @@ public class EntitySkeleton extends EntityMonster implements afr {
 	}
 
 	public void m() {
-		if (this.world.w() && !this.world.D) {
+		if (this.world.w() && !this.world.isStatic) {
 			float var1 = this.c(1.0F);
 			Position var2 = new Position(this.locationX, (double) Math.round(this.locationY), this.locationZ);
 			if (var1 > 0.5F && this.V.nextFloat() * 30.0F < (var1 - 0.4F) * 2.0F && this.world.i(var2)) {
@@ -93,7 +93,7 @@ public class EntitySkeleton extends EntityMonster implements afr {
 			}
 		}
 
-		if (this.world.D && this.ck() == 1) {
+		if (this.world.isStatic && this.ck() == 1) {
 			this.a(0.72F, 2.535F);
 		}
 
@@ -168,7 +168,7 @@ public class EntitySkeleton extends EntityMonster implements afr {
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		if (this.world.worldProvider instanceof NetherWorldProvider && this.bb().nextInt(5) > 0) {
+		if (this.world.worldProvider instanceof WorldProviderHell && this.bb().nextInt(5) > 0) {
 			this.i.a(4, this.c);
 			this.a(1);
 			this.setArmor(0, new ItemStack(Items.STONE_SWORD));
@@ -256,7 +256,7 @@ public class EntitySkeleton extends EntityMonster implements afr {
 
 	public void setArmor(int var1, ItemStack var2) {
 		super.setArmor(var1, var2);
-		if (!this.world.D && var1 == 0) {
+		if (!this.world.isStatic && var1 == 0) {
 			this.n();
 		}
 

@@ -22,7 +22,7 @@ public class BlockJukeBox extends atg {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, ItemStack var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			TileEntity var5 = var1.getTileEntity(var2);
 			if (var5 instanceof TileEntityRecordPlayer) {
 				((TileEntityRecordPlayer) var5).a(new ItemStack(var4.getItem(), 1, var4.getDurability()));
@@ -32,7 +32,7 @@ public class BlockJukeBox extends atg {
 	}
 
 	private void e(World var1, Position var2, BlockState var3) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			TileEntity var4 = var1.getTileEntity(var2);
 			if (var4 instanceof TileEntityRecordPlayer) {
 				TileEntityRecordPlayer var5 = (TileEntityRecordPlayer) var4;
@@ -60,7 +60,7 @@ public class BlockJukeBox extends atg {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			super.a(var1, var2, var3, var4, 0);
 		}
 	}

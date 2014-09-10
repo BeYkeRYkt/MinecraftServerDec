@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class EntityEnderDragon extends EntityInsentient implements acy, aex {
+public class EntityEnderDragon extends EntityInsentient implements acy, IMonster {
 
 	public double a;
 	public double b;
@@ -70,7 +70,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 	public void m() {
 		float var1;
 		float var2;
-		if (this.world.D) {
+		if (this.world.isStatic) {
 			var1 = DataTypesConverter.b(this.bt * 3.1415927F * 2.0F);
 			var2 = DataTypesConverter.b(this.bs * 3.1415927F * 2.0F);
 			if (var2 <= -0.3F && var1 >= -0.3F && !this.R()) {
@@ -114,7 +114,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 			double var8;
 			double var28;
 			float var33;
-			if (this.world.D) {
+			if (this.world.isStatic) {
 				if (this.ba > 0) {
 					var28 = this.locationX + (this.bb - this.locationX) / (double) this.ba;
 					var4 = this.locationY + (this.bc - this.locationY) / (double) this.ba;
@@ -225,7 +225,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 			this.bq.setPositionRotation(this.locationX + (double) (var7 * 4.5F), this.locationY + 2.0D, this.locationZ + (double) (var30 * 4.5F), 0.0F, 0.0F);
 			this.br.s_();
 			this.br.setPositionRotation(this.locationX - (double) (var7 * 4.5F), this.locationY + 2.0D, this.locationZ - (double) (var30 * 4.5F), 0.0F, 0.0F);
-			if (!this.world.D && this.as == 0) {
+			if (!this.world.isStatic && this.as == 0) {
 				this.a(this.world.b((Entity) this, this.bq.getBoundingBox().grow(4.0D, 2.0D, 4.0D).c(0.0D, -2.0D, 0.0D)));
 				this.a(this.world.b((Entity) this, this.br.getBoundingBox().grow(4.0D, 2.0D, 4.0D).c(0.0D, -2.0D, 0.0D)));
 				this.b(this.world.b((Entity) this, this.bl.getBoundingBox().grow(1.0D, 1.0D, 1.0D)));
@@ -262,7 +262,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 				var34.setPositionRotation(this.locationX - (double) ((var30 * var40 + var38 * var41) * var3), this.locationY + (var36[1] - var31[1]) * 1.0D - (double) ((var41 + var40) * var29) + 1.5D, this.locationZ + (double) ((var7 * var40 + var39 * var41) * var3), 0.0F, 0.0F);
 			}
 
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				this.bv = this.b(this.bl.getBoundingBox()) | this.b(this.bm.getBoundingBox());
 			}
 
@@ -272,7 +272,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 	private void n() {
 		if (this.bx != null) {
 			if (this.bx.dead) {
-				if (!this.world.D) {
+				if (!this.world.isStatic) {
 					this.a(this.bl, DamageSource.a((aqo) null), 10.0F);
 				}
 
@@ -448,7 +448,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 
 		int var4;
 		int var5;
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			if (this.bw > 150 && this.bw % 5 == 0 && this.world.Q().b("doMobLoot")) {
 				var4 = 1000;
 
@@ -466,7 +466,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, aex {
 
 		this.move(0.0D, 0.10000000149011612D, 0.0D);
 		this.aG = this.yaw += 20.0F;
-		if (this.bw == 200 && !this.world.D) {
+		if (this.bw == 200 && !this.world.isStatic) {
 			var4 = 2000;
 
 			while (var4 > 0) {

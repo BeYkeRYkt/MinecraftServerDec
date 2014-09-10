@@ -50,9 +50,9 @@ public final class arg {
 
 			for (int var39 = 0; var39 < var9; ++var39) {
 				EnumCreatureType var40 = var38[var39];
-				if ((!var40.d() || var3) && (var40.d() || var2) && (!var40.e() || var4)) {
-					var12 = var1.a(var40.a());
-					int var41 = var40.b() * var5 / a;
+				if ((!var40.doesNotAttackPlayer() || var3) && (var40.doesNotAttackPlayer() || var2) && (!var40.isFriendlyAnimal() || var4)) {
+					var12 = var1.a(var40.getCreatureClass());
+					int var41 = var40.getSpawnLimit() * var5 / a;
 					if (var12 <= var41) {
 						Iterator var42 = this.b.iterator();
 
@@ -167,8 +167,8 @@ public final class arg {
 		}
 	}
 
-	public static void a(World var0, arm var1, int var2, int var3, int var4, int var5, Random var6) {
-		List var7 = var1.a(EnumCreatureType.b);
+	public static void a(World var0, BiomeBase var1, int var2, int var3, int var4, int var5, Random var6) {
+		List var7 = var1.a(EnumCreatureType.CREATURE);
 		if (!var7.isEmpty()) {
 			while (var6.nextFloat() < var1.g()) {
 				arq var8 = (arq) vj.a(var0.s, var7);

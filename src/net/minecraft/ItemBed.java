@@ -7,7 +7,7 @@ public class ItemBed extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		if (var3.D) {
+		if (var3.isStatic) {
 			return true;
 		} else if (var5 != BlockFace.UP) {
 			return false;

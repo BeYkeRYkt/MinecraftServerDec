@@ -235,7 +235,7 @@ public class ContainerAnvil extends Container {
 
 	public void onClose(EntityHuman var1) {
 		super.onClose(var1);
-		if (!this.i.D) {
+		if (!this.i.isStatic) {
 			for (int var2 = 0; var2 < this.h.n_(); ++var2) {
 				ItemStack var3 = this.h.b(var2);
 				if (var3 != null) {

@@ -81,7 +81,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public boolean a(DamageSource var1, float var2) {
-		if (!this.world.D && !this.dead) {
+		if (!this.world.isStatic && !this.dead) {
 			if (this.b(var1)) {
 				return false;
 			} else {
@@ -141,7 +141,7 @@ public abstract class adx extends Entity implements vz {
 		}
 
 		int var2;
-		if (!this.world.D && this.world instanceof WorldServer) {
+		if (!this.world.isStatic && this.world instanceof WorldServer) {
 			this.world.B.a("portal");
 			MinecraftServer var1 = ((WorldServer) this.world).r();
 			var2 = this.L();
@@ -179,7 +179,7 @@ public abstract class adx extends Entity implements vz {
 			this.world.B.b();
 		}
 
-		if (this.world.D) {
+		if (this.world.isStatic) {
 			if (this.d > 0) {
 				double var15 = this.locationX + (this.e - this.locationX) / (double) this.d;
 				double var17 = this.locationY + (this.f - this.locationY) / (double) this.d;
@@ -567,7 +567,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public void i(Entity var1) {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			if (!var1.T && !this.T) {
 				if (var1 != this.l) {
 					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof EntityIronGolem) && this.s() == MinecartType.RIDEABLE && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.l == null && var1.vehicle == null) {

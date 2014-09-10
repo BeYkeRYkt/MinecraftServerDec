@@ -26,7 +26,7 @@ public class EntityWolf extends xx {
 		this.bg.a(1, new aau(this));
 		this.bg.a(2, new aav(this));
 		this.bg.a(3, new aal(this, true, new Class[0]));
-		this.bg.a(4, new aat(this, abq.class, false, new acv(this)));
+		this.bg.a(4, new aat(this, EntityAnimal.class, false, new acv(this)));
 		this.bg.a(5, new aaq(this, EntitySkeleton.class, false));
 		this.m(false);
 	}
@@ -106,14 +106,14 @@ public class EntityWolf extends xx {
 
 	public void m() {
 		super.m();
-		if (!this.world.D && this.bo && !this.bp && !this.cd() && this.onGround) {
+		if (!this.world.isStatic && this.bo && !this.bp && !this.cd() && this.onGround) {
 			this.bp = true;
 			this.bq = 0.0F;
 			this.br = 0.0F;
 			this.world.a((Entity) this, (byte) 8);
 		}
 
-		if (!this.world.D && this.u() == null && this.ct()) {
+		if (!this.world.isStatic && this.u() == null && this.ct()) {
 			this.o(false);
 		}
 
@@ -234,7 +234,7 @@ public class EntityWolf extends xx {
 				}
 			}
 
-			if (this.e(var1) && !this.world.D && !this.d(var2)) {
+			if (this.e(var1) && !this.world.isStatic && !this.d(var2)) {
 				this.bk.a(!this.cl());
 				this.aW = false;
 				this.h.n();
@@ -249,7 +249,7 @@ public class EntityWolf extends xx {
 				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				if (this.V.nextInt(3) == 0) {
 					this.m(true);
 					this.h.n();
@@ -301,7 +301,7 @@ public class EntityWolf extends xx {
 		this.dataWatcher.b(20, Byte.valueOf((byte) (var1.b() & 15)));
 	}
 
-	public EntityWolf b(ws var1) {
+	public EntityWolf b(EntityAgeable var1) {
 		EntityWolf var2 = new EntityWolf(this.world);
 		String var3 = this.b();
 		if (var3 != null && var3.trim().length() > 0) {
@@ -321,7 +321,7 @@ public class EntityWolf extends xx {
 
 	}
 
-	public boolean a(abq var1) {
+	public boolean a(EntityAnimal var1) {
 		if (var1 == this) {
 			return false;
 		} else if (!this.cj()) {
@@ -362,7 +362,7 @@ public class EntityWolf extends xx {
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.b(var1);
 	}
 }

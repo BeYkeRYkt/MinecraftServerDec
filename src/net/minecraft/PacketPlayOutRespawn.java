@@ -21,7 +21,7 @@ public class PacketPlayOutRespawn implements Packet<PlayOutPacketListener> {
 		this.dimensionId = serializer.readInt();
 		this.difficulty = Difficulty.clampAndGetById(serializer.readUnsignedByte());
 		this.gameMode = GameMode.getById(serializer.readUnsignedByte());
-		this.levelType = LevelType.byName(serializer.readString(16));
+		this.levelType = LevelType.getByName(serializer.readString(16));
 		if (this.levelType == null) {
 			this.levelType = LevelType.DEFAULT;
 		}
@@ -31,7 +31,7 @@ public class PacketPlayOutRespawn implements Packet<PlayOutPacketListener> {
 		var1.writeInt(this.dimensionId);
 		var1.writeByte(this.difficulty.getId());
 		var1.writeByte(this.gameMode.getId());
-		var1.writeString(this.levelType.a());
+		var1.writeString(this.levelType.getName());
 	}
 
 	public void handlePacket(PlayOutPacketListener listener) {

@@ -67,7 +67,7 @@ public class EntityWither extends EntityMonster implements afr {
 		double var4;
 		double var6;
 		double var8;
-		if (!this.world.D && this.s(0) > 0) {
+		if (!this.world.isStatic && this.s(0) > 0) {
 			Entity var1 = this.world.getEntity(this.s(0));
 			if (var1 != null) {
 				if (this.locationY < var1.locationY || !this.ck() && this.locationY < var1.locationY + 5.0D) {
@@ -372,7 +372,7 @@ public class EntityWither extends EntityMonster implements afr {
 			var3.u();
 		}
 
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			Iterator var4 = this.world.a(EntityHuman.class, this.getBoundingBox().grow(50.0D, 100.0D, 50.0D)).iterator();
 
 			while (var4.hasNext()) {

@@ -9,7 +9,7 @@ public class ItemEnderEye extends Item {
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
 		BlockState var9 = var3.getBlockState(var4);
 		if (var2.a(var4.a(var5), var5, var1) && var9.getBlock() == Blocks.END_PORTAL_FRAME && !((Boolean) var9.b(BlockEnderPortalFrame.b)).booleanValue()) {
-			if (var3.D) {
+			if (var3.isStatic) {
 				return true;
 			} else {
 				var3.a(var4, var9.a(BlockEnderPortalFrame.b, Boolean.valueOf(true)), 2);
@@ -102,7 +102,7 @@ public class ItemEnderEye extends Item {
 		if (var4 != null && var4.type == EnumMovingObjectType.BLOCK && var2.getBlockState(var4.getPosition()).getBlock() == Blocks.END_PORTAL_FRAME) {
 			return var1;
 		} else {
-			if (!var2.D) {
+			if (!var2.isStatic) {
 				Position var5 = var2.a("Stronghold", new Position(var3));
 				if (var5 != null) {
 					EntityEnderSignal var6 = new EntityEnderSignal(var2, var3.locationX, var3.locationY, var3.locationZ);

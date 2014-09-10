@@ -1,4 +1,4 @@
 package net.minecraft;
 
-public interface ago extends wt {
+public interface ago extends IAnimal {
 }

@@ -3,20 +3,24 @@ package net.minecraft;
 public abstract class WorldProvider {
 
 	public static final float[] a = new float[] { 1.0F, 0.75F, 0.5F, 0.25F, 0.0F, 0.25F, 0.5F, 0.75F };
-	protected World b;
-	private LevelType h;
-	private String i;
-	protected arz c;
+
+	public static WorldProvider getById(int id) {
+		return (WorldProvider) (id == -1 ? new WorldProviderHell() : (id == 0 ? new WorldProviderNormal() : (id == 1 ? new WorldProviderTheEnd() : null)));
+	}
+
+	protected World world;
+	private LevelType levelType;
+	private String generatorOptions;
+	protected WorldChunkManager chunkManager;
 	protected boolean d;
 	protected boolean noSkyLight;
 	protected final float[] f = new float[16];
 	protected int dimensionId;
-	private final float[] j = new float[4];
 
-	public final void a(World var1) {
-		this.b = var1;
-		this.h = var1.getWorldData().getLevelType();
-		this.i = var1.getWorldData().B();
+	public final void setWorld(World world) {
+		this.world = world;
+		this.levelType = world.getWorldData().getLevelType();
+		this.generatorOptions = world.getWorldData().getGeneratorOptions();
 		this.b();
 		this.a();
 	}
@@ -32,24 +36,24 @@ public abstract class WorldProvider {
 	}
 
 	protected void b() {
-		LevelType var1 = this.b.getWorldData().getLevelType();
+		LevelType var1 = this.world.getWorldData().getLevelType();
 		if (var1 == LevelType.FLAT) {
-			biv var2 = biv.a(this.b.getWorldData().B());
-			this.c = new asc(arm.a(var2.a(), arm.ad), 0.5F);
+			biv var2 = biv.a(this.world.getWorldData().getGeneratorOptions());
+			this.chunkManager = new WorldChunkManagerHell(BiomeBase.a(var2.a(), BiomeBase.ad), 0.5F);
 		} else if (var1 == LevelType.DEBUG) {
-			this.c = new asc(arm.q, 0.0F);
+			this.chunkManager = new WorldChunkManagerHell(BiomeBase.q, 0.0F);
 		} else {
-			this.c = new arz(this.b);
+			this.chunkManager = new WorldChunkManager(this.world);
 		}
 
 	}
 
-	public IChunkProvider c() {
-		return (IChunkProvider) (this.h == LevelType.FLAT ? new ChunkProviderFlat(this.b, this.b.J(), this.b.getWorldData().s(), this.i) : (this.h == LevelType.DEBUG ? new ChunkProviderDebug(this.b) : (this.h == LevelType.CUSTOM ? new ChunkProviderGenerate(this.b, this.b.J(), this.b.getWorldData().s(), this.i) : new ChunkProviderGenerate(this.b, this.b.J(), this.b.getWorldData().s(), this.i))));
+	public IChunkProvider getChunkProvider() {
+		return (IChunkProvider) (this.levelType == LevelType.FLAT ? new ChunkProviderFlat(this.world, this.world.J(), this.world.getWorldData().isMapFeauturesEnabled(), this.generatorOptions) : (this.levelType == LevelType.DEBUG ? new ChunkProviderDebug(this.world) : (this.levelType == LevelType.CUSTOM ? new ChunkProviderGenerate(this.world, this.world.J(), this.world.getWorldData().isMapFeauturesEnabled(), this.generatorOptions) : new ChunkProviderGenerate(this.world, this.world.J(), this.world.getWorldData().isMapFeauturesEnabled(), this.generatorOptions))));
 	}
 
-	public boolean a(int var1, int var2) {
-		return this.b.c(new Position(var1, 0, var2)) == Blocks.GRASS;
+	public boolean canSpawn(int x, int y) {
+		return this.world.c(new Position(x, 0, y)) == Blocks.GRASS;
 	}
 
 	public float a(long var1, float var3) {
@@ -73,7 +77,7 @@ public abstract class WorldProvider {
 		return (int) (var1 / 24000L % 8L + 8L) % 8;
 	}
 
-	public boolean d() {
+	public boolean isSleepAllowed() {
 		return true;
 	}
 
@@ -81,24 +85,20 @@ public abstract class WorldProvider {
 		return true;
 	}
 
-	public static WorldProvider a(int var0) {
-		return (WorldProvider) (var0 == -1 ? new NetherWorldProvider() : (var0 == 0 ? new NormalWorldProvider() : (var0 == 1 ? new TheEndWorldProvider() : null)));
-	}
-
 	public Position h() {
 		return null;
 	}
 
 	public int i() {
-		return this.h == LevelType.FLAT ? 4 : 64;
+		return this.levelType == LevelType.FLAT ? 4 : 64;
 	}
 
-	public abstract String k();
+	public abstract String getWorldName();
 
-	public abstract String l();
+	public abstract String getWorldSuffix();
 
-	public arz m() {
-		return this.c;
+	public WorldChunkManager m() {
+		return this.chunkManager;
 	}
 
 	public boolean n() {
@@ -117,7 +117,7 @@ public abstract class WorldProvider {
 		return this.dimensionId;
 	}
 
-	public WorldBorder r() {
+	public WorldBorder getWorldBorder() {
 		return new WorldBorder();
 	}
 

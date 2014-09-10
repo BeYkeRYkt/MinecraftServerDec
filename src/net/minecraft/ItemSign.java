@@ -18,7 +18,7 @@ public class ItemSign extends Item {
 				return false;
 			} else if (!Blocks.STANDING_SIGN.c(var3, var4)) {
 				return false;
-			} else if (var3.D) {
+			} else if (var3.isStatic) {
 				return true;
 			} else {
 				if (var5 == BlockFace.UP) {

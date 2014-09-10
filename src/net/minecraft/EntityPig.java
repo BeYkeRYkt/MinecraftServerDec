@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntityPig extends abq {
+public class EntityPig extends EntityAnimal {
 
 	private final yu bk;
 
@@ -65,7 +65,7 @@ public class EntityPig extends abq {
 	public boolean a(EntityHuman var1) {
 		if (super.a(var1)) {
 			return true;
-		} else if (this.cj() && !this.world.D && (this.l == null || this.l == var1)) {
+		} else if (this.cj() && !this.world.isStatic && (this.l == null || this.l == var1)) {
 			var1.mount((Entity) this);
 			return true;
 		} else {
@@ -108,7 +108,7 @@ public class EntityPig extends abq {
 	}
 
 	public void a(EntityLightning var1) {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			EntityPigZombie var2 = new EntityPigZombie(this.world);
 			var2.setArmor(0, new ItemStack(Items.GOLDEN_SWORD));
 			var2.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
@@ -125,7 +125,7 @@ public class EntityPig extends abq {
 
 	}
 
-	public EntityPig b(ws var1) {
+	public EntityPig b(EntityAgeable var1) {
 		return new EntityPig(this.world);
 	}
 
@@ -138,7 +138,7 @@ public class EntityPig extends abq {
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.b(var1);
 	}
 }

@@ -28,7 +28,7 @@ public class BlockTNT extends Block {
 	}
 
 	public void a(World var1, Position var2, aqo var3) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			EntityTNTPrimed var4 = new EntityTNTPrimed(var1, (double) ((float) var2.getX() + 0.5F), (double) ((float) var2.getY() + 0.5F), (double) ((float) var2.getZ() + 0.5F), var3.c());
 			var4.a = var1.s.nextInt(var4.a / 4) + var4.a / 8;
 			var1.d((Entity) var4);
@@ -40,7 +40,7 @@ public class BlockTNT extends Block {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, EntityLiving var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (((Boolean) var3.b(a)).booleanValue()) {
 				EntityTNTPrimed var5 = new EntityTNTPrimed(var1, (double) ((float) var2.getX() + 0.5F), (double) ((float) var2.getY() + 0.5F), (double) ((float) var2.getZ() + 0.5F), var4);
 				var1.d((Entity) var5);
@@ -70,7 +70,7 @@ public class BlockTNT extends Block {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Entity var4) {
-		if (!var1.D && var4 instanceof EntityArrow) {
+		if (!var1.isStatic && var4 instanceof EntityArrow) {
 			EntityArrow var5 = (EntityArrow) var4;
 			if (var5.au()) {
 				this.a(var1, var2, var1.getBlockState(var2).a(a, Boolean.valueOf(true)), var5.c instanceof EntityLiving ? (EntityLiving) var5.c : null);

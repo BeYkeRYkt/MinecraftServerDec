@@ -12,12 +12,12 @@ public class ItemGoldenApple extends ItemFood {
 	}
 
 	protected void c(ItemStack var1, World var2, EntityHuman var3) {
-		if (!var2.D) {
+		if (!var2.isStatic) {
 			var3.c(new MobEffect(MobEffectList.x.H, 2400, 0));
 		}
 
 		if (var1.getDurability() > 0) {
-			if (!var2.D) {
+			if (!var2.isStatic) {
 				var3.c(new MobEffect(MobEffectList.l.H, 600, 4));
 				var3.c(new MobEffect(MobEffectList.m.H, 6000, 0));
 				var3.c(new MobEffect(MobEffectList.n.H, 6000, 0));

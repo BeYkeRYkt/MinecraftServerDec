@@ -37,17 +37,17 @@ public class WorldServer extends World implements ITaskScheduler {
 	private static final List U = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.STICK, 0, 1, 3, 10), new vl(Item.getItemOf(Blocks.PLANKS), 0, 1, 3, 10), new vl(Item.getItemOf(Blocks.LOG), 0, 1, 3, 10), new vl(Items.STONE_AXE, 0, 1, 1, 3), new vl(Items.WOODEN_AXE, 0, 1, 1, 5), new vl(Items.STONE_PICKAXE, 0, 1, 1, 3), new vl(Items.WOODEN_PICKAXE, 0, 1, 1, 5), new vl(Items.APPLE, 0, 2, 3, 5), new vl(Items.BREAD, 0, 2, 3, 3), new vl(Item.getItemOf(Blocks.LOG2), 0, 1, 3, 10) }));
 	private List V = Lists.newArrayList();
 
-	public WorldServer(MinecraftServer var1, IDataManager var2, WorldData var3, int var4, MethodProfiler var5) {
-		super(var2, var3, WorldProvider.a(var4), var5, false);
-		this.minecraftserver = var1;
+	public WorldServer(MinecraftServer minecraftserver, IDataManager dataManager, WorldData worldData, int dimension, MethodProfiler methodProfiler) {
+		super(dataManager, worldData, WorldProvider.getById(dimension), methodProfiler, false);
+		this.minecraftserver = minecraftserver;
 		this.J = new qn(this);
 		this.K = new qq(this);
-		this.worldProvider.a(this);
+		this.worldProvider.setWorld(this);
 		this.chunkProvider = this.k();
 		this.Q = new arh(this);
 		this.B();
 		this.C();
-		this.getWorldBorder().setPortalTeleportBoundary(var1.getMaxWorldSize());
+		this.getWorldBorder().setPortalTeleportBoundary(minecraftserver.getMaxWorldSize());
 	}
 
 	public World b() {
@@ -71,15 +71,15 @@ public class WorldServer extends World implements ITaskScheduler {
 
 		var3.a(this.C);
 		((pk) this.C).a(var3);
-		this.getWorldBorder().setCenter(this.worldData.C(), this.worldData.D());
-		this.getWorldBorder().setDamageAmount(this.worldData.I());
-		this.getWorldBorder().setDamageBuffer(this.worldData.H());
-		this.getWorldBorder().setWarningBlocks(this.worldData.J());
-		this.getWorldBorder().setWarningTime(this.worldData.K());
-		if (this.worldData.F() > 0L) {
-			this.getWorldBorder().changeSize(this.worldData.E(), this.worldData.G(), this.worldData.F());
+		this.getWorldBorder().setCenter(this.worldData.getBorderX(), this.worldData.getBorderZ());
+		this.getWorldBorder().setDamageAmount(this.worldData.getBorderDamagePerBlock());
+		this.getWorldBorder().setDamageBuffer(this.worldData.getBorderSafeZone());
+		this.getWorldBorder().setWarningBlocks(this.worldData.getBorderWarningBlocks());
+		this.getWorldBorder().setWarningTime(this.worldData.getBorderWarningTime());
+		if (this.worldData.getBorderLerpTime() > 0L) {
+			this.getWorldBorder().changeSize(this.worldData.getBorderSize(), this.worldData.getBorderSizeLerpTarget(), this.worldData.getBorderLerpTime());
 		} else {
-			this.getWorldBorder().setSize(this.worldData.E());
+			this.getWorldBorder().setSize(this.worldData.getBorderSize());
 		}
 
 		return this;
@@ -88,14 +88,14 @@ public class WorldServer extends World implements ITaskScheduler {
 	public void c() {
 		super.c();
 		if (this.getWorldData().isHardcore() && this.getDifficulty() != Difficulty.HARD) {
-			this.getWorldData().a(Difficulty.HARD);
+			this.getWorldData().setDifficulty(Difficulty.HARD);
 		}
 
 		this.worldProvider.m().b();
 		if (this.f()) {
 			if (this.Q().b("doDaylightCycle")) {
-				long var1 = this.worldData.g() + 24000L;
-				this.worldData.c(var1 - var1 % 24000L);
+				long var1 = this.worldData.getDayTime() + 24000L;
+				this.worldData.setDayTime(var1 - var1 % 24000L);
 			}
 
 			this.e();
@@ -103,7 +103,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 		this.B.a("mobSpawner");
 		if (this.Q().b("doMobSpawning") && this.worldData.getLevelType() != LevelType.DEBUG) {
-			this.R.a(this, this.F, this.G, this.worldData.f() % 400L == 0L);
+			this.R.a(this, this.F, this.G, this.worldData.getTime() % 400L == 0L);
 		}
 
 		this.B.c("chunkSource");
@@ -113,9 +113,9 @@ public class WorldServer extends World implements ITaskScheduler {
 			this.b(var3);
 		}
 
-		this.worldData.b(this.worldData.f() + 1L);
+		this.worldData.setTime(this.worldData.getTime() + 1L);
 		if (this.Q().b("doDaylightCycle")) {
-			this.worldData.c(this.worldData.g() + 1L);
+			this.worldData.setDayTime(this.worldData.getDayTime() + 1L);
 		}
 
 		this.B.c("tickPending");
@@ -179,14 +179,14 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	private void ag() {
-		this.worldData.g(0);
-		this.worldData.b(false);
-		this.worldData.f(0);
-		this.worldData.a(false);
+		this.worldData.setRainTime(0);
+		this.worldData.setRaining(false);
+		this.worldData.setThunderTime(0);
+		this.worldData.setThundering(false);
 	}
 
 	public boolean f() {
-		if (this.O && !this.D) {
+		if (this.O && !this.isStatic) {
 			Iterator var1 = this.j.iterator();
 
 			EntityHuman var2;
@@ -327,7 +327,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 		if (this.a(var1.a(-var6, -var6, -var6), var1.a(var6, var6, var6))) {
 			if (var2.getMaterial() != Material.AIR) {
-				var5.a((long) var3 + this.worldData.f());
+				var5.a((long) var3 + this.worldData.getTime());
 				var5.a(var4);
 			}
 
@@ -343,7 +343,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		NextTickListEntry var5 = new NextTickListEntry(var1, var2);
 		var5.a(var4);
 		if (var2.getMaterial() != Material.AIR) {
-			var5.a((long) var3 + this.worldData.f());
+			var5.a((long) var3 + this.worldData.getTime());
 		}
 
 		if (!this.L.contains(var5)) {
@@ -386,7 +386,7 @@ public class WorldServer extends World implements ITaskScheduler {
 				NextTickListEntry var4;
 				for (int var3 = 0; var3 < var2; ++var3) {
 					var4 = (NextTickListEntry) this.M.first();
-					if (!var1 && var4.b > this.worldData.f()) {
+					if (!var1 && var4.b > this.worldData.getTime()) {
 						break;
 					}
 
@@ -472,7 +472,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	public void a(Entity var1, boolean var2) {
-		if (!this.ai() && (var1 instanceof abq || var1 instanceof act)) {
+		if (!this.ai() && (var1 instanceof EntityAnimal || var1 instanceof EntityWaterAnimal)) {
 			var1.die();
 		}
 
@@ -493,7 +493,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	protected IChunkProvider k() {
 		IChunkLoader var1 = this.dataManager.a(this.worldProvider);
-		this.b = new ChunkProviderServer(this, var1, this.worldProvider.c());
+		this.b = new ChunkProviderServer(this, var1, this.worldProvider.getChunkProvider());
 		return this.b;
 	}
 
@@ -515,8 +515,8 @@ public class WorldServer extends World implements ITaskScheduler {
 		return !this.minecraftserver.isProtected((World) this, var2, var1) && this.getWorldBorder().isInside(var2);
 	}
 
-	public void a(arb var1) {
-		if (!this.worldData.w()) {
+	public void a(WorldSettings var1) {
+		if (!this.worldData.isInitialized()) {
 			try {
 				this.b(var1);
 				if (this.worldData.getLevelType() == LevelType.DEBUG) {
@@ -536,33 +536,33 @@ public class WorldServer extends World implements ITaskScheduler {
 				throw new ReportedException(var3);
 			}
 
-			this.worldData.d(true);
+			this.worldData.setInitialized(true);
 		}
 
 	}
 
 	private void aj() {
-		this.worldData.f(false);
-		this.worldData.c(true);
-		this.worldData.b(false);
-		this.worldData.a(false);
-		this.worldData.i(1000000000);
-		this.worldData.c(6000L);
-		this.worldData.a(GameMode.SPECTATOR);
-		this.worldData.g(false);
-		this.worldData.a(Difficulty.PEACEFUL);
-		this.worldData.e(true);
+		this.worldData.setMapFeaturesEnabled(false);
+		this.worldData.setCommandsAllowed(true);
+		this.worldData.setRaining(false);
+		this.worldData.setThundering(false);
+		this.worldData.setClearWeatherTime(1000000000);
+		this.worldData.setDayTime(6000L);
+		this.worldData.setGameMode(GameMode.SPECTATOR);
+		this.worldData.setIsHardcore(false);
+		this.worldData.setDifficulty(Difficulty.PEACEFUL);
+		this.worldData.setDifficultyLocked(true);
 		this.Q().a("doDaylightCycle", "false");
 	}
 
-	private void b(arb var1) {
+	private void b(WorldSettings var1) {
 		if (!this.worldProvider.isPrimaryWorld()) {
-			this.worldData.a(Position.ZERO.b(this.worldProvider.i()));
+			this.worldData.setSpawn(Position.ZERO.b(this.worldProvider.i()));
 		} else if (this.worldData.getLevelType() == LevelType.DEBUG) {
-			this.worldData.a(Position.ZERO.a());
+			this.worldData.setSpawn(Position.ZERO.a());
 		} else {
 			this.isLoading = true;
-			arz var2 = this.worldProvider.m();
+			WorldChunkManager var2 = this.worldProvider.m();
 			List var3 = var2.a();
 			Random var4 = new Random(this.J());
 			Position var5 = var2.a(0, 0, 256, var3, var4);
@@ -578,7 +578,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 			int var9 = 0;
 
-			while (!this.worldProvider.a(var6, var8)) {
+			while (!this.worldProvider.canSpawn(var6, var8)) {
 				var6 += var4.nextInt(64) - var4.nextInt(64);
 				var8 += var4.nextInt(64) - var4.nextInt(64);
 				++var9;
@@ -587,9 +587,9 @@ public class WorldServer extends World implements ITaskScheduler {
 				}
 			}
 
-			this.worldData.a(new Position(var6, var7, var8));
+			this.worldData.setSpawn(new Position(var6, var7, var8));
 			this.isLoading = false;
-			if (var1.c()) {
+			if (var1.isBonusChestEnabled()) {
 				this.l();
 			}
 
@@ -647,15 +647,15 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	protected void a() throws ExceptionWorldConflict {
 		this.checkSessionLock();
-		this.worldData.a(this.getWorldBorder().getOldRadius());
-		this.worldData.d(this.getWorldBorder().getX());
-		this.worldData.c(this.getWorldBorder().getZ());
-		this.worldData.e(this.getWorldBorder().getDamageBuffer());
-		this.worldData.f(this.getWorldBorder().getDamageAmount());
-		this.worldData.j(this.getWorldBorder().getWarningBlocks());
-		this.worldData.k(this.getWorldBorder().getWarningTime());
-		this.worldData.b(this.getWorldBorder().getCurrentRadius());
-		this.worldData.e(this.getWorldBorder().getSpeed());
+		this.worldData.setBorderSize(this.getWorldBorder().getOldRadius());
+		this.worldData.setBorderX(this.getWorldBorder().getX());
+		this.worldData.setBorderZ(this.getWorldBorder().getZ());
+		this.worldData.setBorderSafeZone(this.getWorldBorder().getDamageBuffer());
+		this.worldData.setBorderDamagePerBlock(this.getWorldBorder().getDamageAmount());
+		this.worldData.setBorderWarningBlocks(this.getWorldBorder().getWarningBlocks());
+		this.worldData.setBorderWarningTime(this.getWorldBorder().getWarningTime());
+		this.worldData.setBorderSizeLerpTarget(this.getWorldBorder().getCurrentRadius());
+		this.worldData.setBorderLerpTime(this.getWorldBorder().getSpeed());
 		this.dataManager.a(this.worldData, this.minecraftserver.getPlayerList().u());
 		this.z.a();
 	}

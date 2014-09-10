@@ -34,7 +34,7 @@ public class ItemWrittenBook extends Item {
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
-		if (!var2.D) {
+		if (!var2.isStatic) {
 			this.a(var1, var3);
 		}
 

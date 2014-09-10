@@ -94,7 +94,7 @@ public class ItemBucket extends Item {
 						var1.a(Particle.m, (double) var5 + Math.random(), (double) var6 + Math.random(), (double) var7 + Math.random(), 0.0D, 0.0D, 0.0D, new int[0]);
 					}
 				} else {
-					if (!var1.D && var4 && !var3.isLiquid()) {
+					if (!var1.isStatic && var4 && !var3.isLiquid()) {
 						var1.b(var2, true);
 					}
 

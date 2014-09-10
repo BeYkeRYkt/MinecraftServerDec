@@ -167,7 +167,7 @@ public class CloneCommand extends AbstractCommand {
 									NextTickListEntry var37 = (NextTickListEntry) var35.next();
 									if (var6.b((fd) var37.position)) {
 										Position var38 = var37.position.a((fd) var18);
-										var12.addNextTickEntry(var38, var37.getBlock(), (int) (var37.b - var12.getWorldData().f()), var37.c);
+										var12.addNextTickEntry(var38, var37.getBlock(), (int) (var37.b - var12.getWorldData().getTime()), var37.c);
 									}
 								}
 							}

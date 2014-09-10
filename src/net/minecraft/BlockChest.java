@@ -105,7 +105,7 @@ public class BlockChest extends atg {
 	}
 
 	public BlockState e(World var1, Position var2, BlockState var3) {
-		if (var1.D) {
+		if (var1.isStatic) {
 			return var3;
 		} else {
 			BlockState var4 = var1.getBlockState(var2.c());
@@ -300,7 +300,7 @@ public class BlockChest extends atg {
 	}
 
 	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
-		if (var1.D) {
+		if (var1.isStatic) {
 			return true;
 		} else {
 			vy var9 = this.d(var1, var2);

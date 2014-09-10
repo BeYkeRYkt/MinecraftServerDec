@@ -134,7 +134,7 @@ public class EntityExpirienceOrb extends Entity {
 	}
 
 	public void d(EntityHuman var1) {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			if (this.c == 0 && var1.bn == 0) {
 				var1.bn = 2;
 				this.world.a((Entity) var1, "random.orb", 0.1F, 0.5F * ((this.V.nextFloat() - this.V.nextFloat()) * 0.7F + 1.8F));

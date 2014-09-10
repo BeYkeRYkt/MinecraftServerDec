@@ -18,7 +18,7 @@ public class EntitySmallFireball extends ahl {
 	}
 
 	protected void a(MovingObjectPosition var1) {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			boolean var2;
 			if (var1.entity != null) {
 				var2 = var1.entity.a(DamageSource.a((ahl) this, this.a), 5.0F);

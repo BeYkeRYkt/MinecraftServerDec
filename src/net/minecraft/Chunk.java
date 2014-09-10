@@ -441,7 +441,7 @@ public class Chunk {
 
 			var11.setBlockState(var3, var4 & 15, var5, var2);
 			if (var10 != var9) {
-				if (!this.i.D) {
+				if (!this.i.isStatic) {
 					var10.b(this.i, var1, var8);
 				} else if (var10 instanceof avs) {
 					this.i.t(var1);
@@ -477,7 +477,7 @@ public class Chunk {
 					}
 				}
 
-				if (!this.i.D && var10 != var9) {
+				if (!this.i.isStatic && var10 != var9) {
 					var9.c(this.i, var1, var2);
 				}
 
@@ -826,7 +826,7 @@ public class Chunk {
 
 	public void b(boolean var1) {
 		if (this.k && !this.i.worldProvider.noSkyLight() && !var1) {
-			this.h(this.i.D);
+			this.h(this.i.isStatic);
 		}
 
 		this.p = true;
@@ -882,19 +882,19 @@ public class Chunk {
 		}
 	}
 
-	public arm a(Position var1, arz var2) {
+	public BiomeBase a(Position var1, WorldChunkManager var2) {
 		int var3 = var1.getX() & 15;
 		int var4 = var1.getZ() & 15;
 		int var5 = this.biomes[var4 << 4 | var3] & 255;
-		arm var6;
+		BiomeBase var6;
 		if (var5 == 255) {
-			var6 = var2.a(var1, arm.q);
+			var6 = var2.a(var1, BiomeBase.q);
 			var5 = var6.az;
 			this.biomes[var4 << 4 | var3] = (byte) (var5 & 255);
 		}
 
-		var6 = arm.e(var5);
-		return var6 == null ? arm.q : var6;
+		var6 = BiomeBase.e(var5);
+		return var6 == null ? BiomeBase.q : var6;
 	}
 
 	public byte[] getBiomes() {

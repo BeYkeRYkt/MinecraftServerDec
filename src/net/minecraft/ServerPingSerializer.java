@@ -11,7 +11,7 @@ import java.lang.reflect.Type;
 public class ServerPingSerializer implements JsonDeserializer, JsonSerializer {
 
 	public ServerPing a(JsonElement var1, Type var2, JsonDeserializationContext var3) {
-		JsonObject var4 = uh.l(var1, "status");
+		JsonObject var4 = JSONParser.getJsonObject(var1, "status");
 		ServerPing var5 = new ServerPing();
 		if (var4.has("description")) {
 			var5.a((IChatBaseComponent) var3.deserialize(var4.get("description"), IChatBaseComponent.class));
@@ -26,7 +26,7 @@ public class ServerPingSerializer implements JsonDeserializer, JsonSerializer {
 		}
 
 		if (var4.has("favicon")) {
-			var5.a(uh.h(var4, "favicon"));
+			var5.a(JSONParser.getString(var4, "favicon"));
 		}
 
 		return var5;

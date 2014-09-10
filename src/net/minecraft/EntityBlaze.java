@@ -51,7 +51,7 @@ public class EntityBlaze extends EntityMonster {
 			this.motionY *= 0.6D;
 		}
 
-		if (this.world.D) {
+		if (this.world.isStatic) {
 			if (this.V.nextInt(24) == 0 && !this.R()) {
 				this.world.a(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.fire", 1.0F + this.V.nextFloat(), this.V.nextFloat() * 0.7F + 0.3F, false);
 			}

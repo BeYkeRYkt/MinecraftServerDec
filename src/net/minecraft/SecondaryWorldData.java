@@ -8,16 +8,16 @@ public class SecondaryWorldData extends WorldData {
 		this.b = var1;
 	}
 
-	public NBTCompoundTag a() {
-		return this.b.a();
+	public NBTCompoundTag getDataTag() {
+		return this.b.getDataTag();
 	}
 
-	public NBTCompoundTag a(NBTCompoundTag var1) {
-		return this.b.a(var1);
+	public NBTCompoundTag getDataTag(NBTCompoundTag var1) {
+		return this.b.getDataTag(var1);
 	}
 
-	public long b() {
-		return this.b.b();
+	public long getSeed() {
+		return this.b.getSeed();
 	}
 
 	public int getSpawnX() {
@@ -32,75 +32,75 @@ public class SecondaryWorldData extends WorldData {
 		return this.b.getSpawnZ();
 	}
 
-	public long f() {
-		return this.b.f();
+	public long getTime() {
+		return this.b.getTime();
 	}
 
-	public long g() {
-		return this.b.g();
+	public long getDayTime() {
+		return this.b.getDayTime();
 	}
 
-	public NBTCompoundTag i() {
-		return this.b.i();
+	public NBTCompoundTag getPlayerData() {
+		return this.b.getPlayerData();
 	}
 
-	public String k() {
-		return this.b.k();
+	public String getLevelName() {
+		return this.b.getLevelName();
 	}
 
-	public int l() {
-		return this.b.l();
+	public int getVersion() {
+		return this.b.getVersion();
 	}
 
-	public boolean n() {
-		return this.b.n();
+	public boolean isThundering() {
+		return this.b.isThundering();
 	}
 
-	public int o() {
-		return this.b.o();
+	public int getThunderTime() {
+		return this.b.getThunderTime();
 	}
 
-	public boolean p() {
-		return this.b.p();
+	public boolean isRaining() {
+		return this.b.isRaining();
 	}
 
-	public int q() {
-		return this.b.q();
+	public int getRainTime() {
+		return this.b.getRainTime();
 	}
 
-	public GameMode r() {
-		return this.b.r();
+	public GameMode getGameMode() {
+		return this.b.getGameMode();
 	}
 
-	public void b(long var1) {
+	public void setTime(long var1) {
 	}
 
-	public void c(long var1) {
+	public void setDayTime(long var1) {
 	}
 
-	public void a(Position var1) {
+	public void setSpawn(Position var1) {
 	}
 
-	public void a(String var1) {
+	public void setLevelName(String var1) {
 	}
 
-	public void e(int var1) {
+	public void setVersion(int var1) {
 	}
 
-	public void a(boolean var1) {
+	public void setThundering(boolean var1) {
 	}
 
-	public void f(int var1) {
+	public void setThunderTime(int var1) {
 	}
 
-	public void b(boolean var1) {
+	public void setRaining(boolean var1) {
 	}
 
-	public void g(int var1) {
+	public void setRainTime(int var1) {
 	}
 
-	public boolean s() {
-		return this.b.s();
+	public boolean isMapFeauturesEnabled() {
+		return this.b.isMapFeauturesEnabled();
 	}
 
 	public boolean isHardcore() {
@@ -111,38 +111,38 @@ public class SecondaryWorldData extends WorldData {
 		return this.b.getLevelType();
 	}
 
-	public void a(LevelType var1) {
+	public void setLevelType(LevelType var1) {
 	}
 
-	public boolean v() {
-		return this.b.v();
+	public boolean areCommandsAllowed() {
+		return this.b.areCommandsAllowed();
 	}
 
-	public void c(boolean var1) {
+	public void setCommandsAllowed(boolean var1) {
 	}
 
-	public boolean w() {
-		return this.b.w();
+	public boolean isInitialized() {
+		return this.b.isInitialized();
 	}
 
-	public void d(boolean var1) {
+	public void setInitialized(boolean var1) {
 	}
 
-	public GameRuleRegistry x() {
-		return this.b.x();
+	public GameRuleRegistry getGameRules() {
+		return this.b.getGameRules();
 	}
 
 	public Difficulty getDifficulty() {
 		return this.b.getDifficulty();
 	}
 
-	public void a(Difficulty var1) {
+	public void setDifficulty(Difficulty var1) {
 	}
 
-	public boolean z() {
-		return this.b.z();
+	public boolean isDifficultyLocked() {
+		return this.b.isDifficultyLocked();
 	}
 
-	public void e(boolean var1) {
+	public void setDifficultyLocked(boolean var1) {
 	}
 }

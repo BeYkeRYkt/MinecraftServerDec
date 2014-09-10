@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.Random;
 
-public class EntitySheep extends abq {
+public class EntitySheep extends EntityAnimal {
 
 	private final InventoryCrafting bk = new InventoryCrafting(new acm(this), 2, 1);
 	private static final Map bm = Maps.newEnumMap(akv.class);
@@ -38,7 +38,7 @@ public class EntitySheep extends abq {
 	}
 
 	public void m() {
-		if (this.world.D) {
+		if (this.world.isStatic) {
 			this.bn = Math.max(0, this.bn - 1);
 		}
 
@@ -80,7 +80,7 @@ public class EntitySheep extends abq {
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (var2 != null && var2.getItem() == Items.SHEARS && !this.ck() && !this.i_()) {
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				this.l(true);
 				int var3 = 1 + this.V.nextInt(3);
 
@@ -155,10 +155,10 @@ public class EntitySheep extends abq {
 		return var1 < 5 ? akv.p : (var1 < 10 ? akv.h : (var1 < 15 ? akv.i : (var1 < 18 ? akv.m : (var0.nextInt(500) == 0 ? akv.g : akv.a))));
 	}
 
-	public EntitySheep b(ws var1) {
+	public EntitySheep b(EntityAgeable var1) {
 		EntitySheep var2 = (EntitySheep) var1;
 		EntitySheep var3 = new EntitySheep(this.world);
-		var3.b(this.a((abq) this, (abq) var2));
+		var3.b(this.a((EntityAnimal) this, (EntityAnimal) var2));
 		return var3;
 	}
 
@@ -176,7 +176,7 @@ public class EntitySheep extends abq {
 		return var2;
 	}
 
-	private akv a(abq var1, abq var2) {
+	private akv a(EntityAnimal var1, EntityAnimal var2) {
 		int var3 = ((EntitySheep) var1).cj().b();
 		int var4 = ((EntitySheep) var2).cj().b();
 		this.bk.a(0).setDurability(var3);
@@ -197,7 +197,7 @@ public class EntitySheep extends abq {
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.b(var1);
 	}
 

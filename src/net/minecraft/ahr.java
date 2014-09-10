@@ -112,7 +112,7 @@ public abstract class ahr extends Entity implements aho {
 			var2 = new Vec3D(var3.vec.x, var3.vec.y, var3.vec.z);
 		}
 
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			Entity var4 = null;
 			List var5 = this.world.b((Entity) this, this.getBoundingBox().a(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
 			double var6 = 0.0D;

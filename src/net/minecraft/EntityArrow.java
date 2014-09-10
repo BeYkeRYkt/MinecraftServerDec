@@ -207,7 +207,7 @@ public class EntityArrow extends Entity implements aho {
 					if (var6.entity.a(var26, (float) var24)) {
 						if (var6.entity instanceof EntityLiving) {
 							EntityLiving var27 = (EntityLiving) var6.entity;
-							if (!this.world.D) {
+							if (!this.world.isStatic) {
 								var27.o(var27.bu() + 1);
 							}
 
@@ -360,7 +360,7 @@ public class EntityArrow extends Entity implements aho {
 	}
 
 	public void d(EntityHuman var1) {
-		if (!this.world.D && this.i && this.b <= 0) {
+		if (!this.world.isStatic && this.i && this.b <= 0) {
 			boolean var2 = this.a == 1 || this.a == 2 && var1.playerProperties.instabuild;
 			if (this.a == 1 && !var1.playerInventory.a(new ItemStack(Items.ARROW, 1))) {
 				var2 = false;

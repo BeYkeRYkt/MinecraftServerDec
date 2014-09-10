@@ -12,13 +12,13 @@ public class ChunkProviderNether implements IChunkProvider {
 	private double[] l = new double[256];
 	private double[] m = new double[256];
 	private double[] n;
-	private final bnv o;
-	private final bnv p;
-	private final bnv q;
-	private final bnv r;
-	private final bnv s;
-	public final bnv a;
-	public final bnv b;
+	private final NoiseGeneratorOctaves o;
+	private final NoiseGeneratorOctaves p;
+	private final NoiseGeneratorOctaves q;
+	private final NoiseGeneratorOctaves r;
+	private final NoiseGeneratorOctaves s;
+	public final NoiseGeneratorOctaves a;
+	public final NoiseGeneratorOctaves b;
 	private final bhs t = new bhs();
 	private final bhz u = new bhz();
 	private final bht v = new bht();
@@ -28,7 +28,7 @@ public class ChunkProviderNether implements IChunkProvider {
 	private final bhi z;
 	private final bhi A;
 	private final bjl B;
-	private final bgt C;
+	private final WorldGenBase C;
 	double[] c;
 	double[] d;
 	double[] e;
@@ -46,13 +46,13 @@ public class ChunkProviderNether implements IChunkProvider {
 		this.h = var1;
 		this.i = var2;
 		this.j = new Random(var3);
-		this.o = new bnv(this.j, 16);
-		this.p = new bnv(this.j, 16);
-		this.q = new bnv(this.j, 8);
-		this.r = new bnv(this.j, 4);
-		this.s = new bnv(this.j, 4);
-		this.a = new bnv(this.j, 10);
-		this.b = new bnv(this.j, 16);
+		this.o = new NoiseGeneratorOctaves(this.j, 16);
+		this.p = new NoiseGeneratorOctaves(this.j, 16);
+		this.q = new NoiseGeneratorOctaves(this.j, 8);
+		this.r = new NoiseGeneratorOctaves(this.j, 4);
+		this.s = new NoiseGeneratorOctaves(this.j, 4);
+		this.a = new NoiseGeneratorOctaves(this.j, 10);
+		this.b = new NoiseGeneratorOctaves(this.j, 16);
 	}
 
 	public void a(int var1, int var2, bgk var3) {
@@ -197,7 +197,7 @@ public class ChunkProviderNether implements IChunkProvider {
 		}
 
 		Chunk var4 = new Chunk(this.h, var3, var1, var2);
-		arm[] var5 = this.h.v().b((arm[]) null, var1 * 16, var2 * 16, 16, 16);
+		BiomeBase[] var5 = this.h.v().b((BiomeBase[]) null, var1 * 16, var2 * 16, 16, 16);
 		byte[] var6 = var4.getBiomes();
 
 		for (int var7 = 0; var7 < var6.length; ++var7) {
@@ -347,7 +347,7 @@ public class ChunkProviderNether implements IChunkProvider {
 	}
 
 	public List getMobsFor(EnumCreatureType var1, Position var2) {
-		if (var1 == EnumCreatureType.a) {
+		if (var1 == EnumCreatureType.MONSTER) {
 			if (this.B.b(var2)) {
 				return this.B.b();
 			}
@@ -357,7 +357,7 @@ public class ChunkProviderNether implements IChunkProvider {
 			}
 		}
 
-		arm var3 = this.h.b(var2);
+		BiomeBase var3 = this.h.b(var2);
 		return var3.a(var1);
 	}
 

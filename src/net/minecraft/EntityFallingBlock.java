@@ -57,7 +57,7 @@ public class EntityFallingBlock extends Entity {
 				var2 = new Position(this);
 				if (this.world.getBlockState(var2).getBlock() == var1) {
 					this.world.g(var2);
-				} else if (!this.world.D) {
+				} else if (!this.world.isStatic) {
 					this.die();
 					return;
 				}
@@ -68,7 +68,7 @@ public class EntityFallingBlock extends Entity {
 			this.motionX *= 0.9800000190734863D;
 			this.motionY *= 0.9800000190734863D;
 			this.motionZ *= 0.9800000190734863D;
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				var2 = new Position(this);
 				if (this.onGround) {
 					this.motionX *= 0.699999988079071D;
@@ -104,7 +104,7 @@ public class EntityFallingBlock extends Entity {
 							this.a(new ItemStack(var1, 1, var1.a(this.d)), 0.0F);
 						}
 					}
-				} else if (this.a > 100 && !this.world.D && (var2.getY() < 1 || var2.getY() > 256) || this.a > 600) {
+				} else if (this.a > 100 && !this.world.isStatic && (var2.getY() < 1 || var2.getY() > 256) || this.a > 600) {
 					if (this.b && this.world.Q().b("doTileDrops")) {
 						this.a(new ItemStack(var1, 1, var1.a(this.d)), 0.0F);
 					}

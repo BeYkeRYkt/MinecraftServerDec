@@ -52,7 +52,7 @@ public class ItemBow extends Item {
 			}
 
 			var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
-			if (!var2.D) {
+			if (!var2.isStatic) {
 				var2.d((Entity) var8);
 			}
 		}

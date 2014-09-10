@@ -9,7 +9,7 @@ final class DispenseBehaviorPumpkin extends eg {
 		Position var4 = var1.d().a(BlockDispenser.b(var1.f()));
 		BlockPumpkin var5 = (BlockPumpkin) Blocks.PUMPKIN;
 		if (var3.d(var4) && var5.d(var3, var4)) {
-			if (!var3.D) {
+			if (!var3.isStatic) {
 				var3.a(var4, var5.getBlockState(), 3);
 			}
 

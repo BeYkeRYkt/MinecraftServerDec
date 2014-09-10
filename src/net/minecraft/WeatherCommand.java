@@ -28,29 +28,29 @@ public class WeatherCommand extends AbstractCommand {
 			WorldServer var4 = MinecraftServer.getInstance().worlds[0];
 			WorldData var5 = var4.getWorldData();
 			if ("clear".equalsIgnoreCase(var2[0])) {
-				var5.i(var3);
-				var5.g(0);
-				var5.f(0);
-				var5.b(false);
-				var5.a(false);
+				var5.setClearWeatherTime(var3);
+				var5.setRainTime(0);
+				var5.setThunderTime(0);
+				var5.setRaining(false);
+				var5.setThundering(false);
 				a(var1, this, "commands.weather.clear", new Object[0]);
 			} else if ("rain".equalsIgnoreCase(var2[0])) {
-				var5.i(0);
-				var5.g(var3);
-				var5.f(var3);
-				var5.b(true);
-				var5.a(false);
+				var5.setClearWeatherTime(0);
+				var5.setRainTime(var3);
+				var5.setThunderTime(var3);
+				var5.setRaining(true);
+				var5.setThundering(false);
 				a(var1, this, "commands.weather.rain", new Object[0]);
 			} else {
 				if (!"thunder".equalsIgnoreCase(var2[0])) {
 					throw new dp("commands.weather.usage", new Object[0]);
 				}
 
-				var5.i(0);
-				var5.g(var3);
-				var5.f(var3);
-				var5.b(true);
-				var5.a(true);
+				var5.setClearWeatherTime(0);
+				var5.setRainTime(var3);
+				var5.setThunderTime(var3);
+				var5.setRaining(true);
+				var5.setThundering(true);
 				a(var1, this, "commands.weather.thunder", new Object[0]);
 			}
 

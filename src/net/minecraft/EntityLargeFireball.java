@@ -13,7 +13,7 @@ public class EntityLargeFireball extends ahl {
 	}
 
 	protected void a(MovingObjectPosition var1) {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			if (var1.entity != null) {
 				var1.entity.a(DamageSource.a((ahl) this, this.a), 6.0F);
 				this.a(this.a, var1.entity);

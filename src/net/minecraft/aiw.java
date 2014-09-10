@@ -34,7 +34,7 @@ public class aiw extends Slot {
 
 	protected void c(ItemStack var1) {
 		var1.a(this.a.world, this.a, this.b);
-		if (!this.a.world.D) {
+		if (!this.a.world.isStatic) {
 			int var2 = this.b;
 			float var3 = RecipesFurnace.getInstance().b(var1);
 			int var4;

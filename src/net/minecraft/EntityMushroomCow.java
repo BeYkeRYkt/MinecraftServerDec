@@ -25,7 +25,7 @@ public class EntityMushroomCow extends EntityCow {
 		if (var2 != null && var2.getItem() == Items.SHEARS && this.l() >= 0) {
 			this.die();
 			this.world.a(Particle.b, this.locationX, this.locationY + (double) (this.K / 2.0F), this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				EntityCow var3 = new EntityCow(this.world);
 				var3.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 				var3.h(this.getHealth());
@@ -50,17 +50,17 @@ public class EntityMushroomCow extends EntityCow {
 		}
 	}
 
-	public EntityMushroomCow c(ws var1) {
+	public EntityMushroomCow c(EntityAgeable var1) {
 		return new EntityMushroomCow(this.world);
 	}
 
 	// $FF: synthetic method
-	public EntityCow b(ws var1) {
+	public EntityCow b(EntityAgeable var1) {
 		return this.c(var1);
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.c(var1);
 	}
 }

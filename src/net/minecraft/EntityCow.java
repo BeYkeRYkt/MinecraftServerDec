@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntityCow extends abq {
+public class EntityCow extends EntityAnimal {
 
 	public EntityCow(World var1) {
 		super(var1);
@@ -81,7 +81,7 @@ public class EntityCow extends abq {
 		}
 	}
 
-	public EntityCow b(ws var1) {
+	public EntityCow b(EntityAgeable var1) {
 		return new EntityCow(this.world);
 	}
 
@@ -90,7 +90,7 @@ public class EntityCow extends abq {
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.b(var1);
 	}
 }

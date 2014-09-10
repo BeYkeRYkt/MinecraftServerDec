@@ -96,7 +96,7 @@ public class ContainerMerchant extends Container {
 		super.onClose(var1);
 		this.a.a_((EntityHuman) null);
 		super.onClose(var1);
-		if (!this.g.D) {
+		if (!this.g.isStatic) {
 			ItemStack var2 = this.f.b(0);
 			if (var2 != null) {
 				var1.dropItem(var2, false);

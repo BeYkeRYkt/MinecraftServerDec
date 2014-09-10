@@ -61,7 +61,7 @@ public class EntityBoat extends Entity {
 	public boolean a(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
-		} else if (!this.world.D && !this.dead) {
+		} else if (!this.world.isStatic && !this.dead) {
 			if (this.l != null && this.l == var1.j() && var1 instanceof wj) {
 				return false;
 			} else {
@@ -145,7 +145,7 @@ public class EntityBoat extends Entity {
 
 		double var24;
 		double var26;
-		if (this.world.D && this.a) {
+		if (this.world.isStatic && this.a) {
 			if (this.c > 0) {
 				var6 = this.locationX + (this.d - this.locationX) / (double) this.c;
 				var8 = this.locationY + (this.e - this.locationY) / (double) this.c;
@@ -238,7 +238,7 @@ public class EntityBoat extends Entity {
 
 			this.move(this.motionX, this.motionY, this.motionZ);
 			if (this.D && var19 > 0.2D) {
-				if (!this.world.D && !this.dead) {
+				if (!this.world.isStatic && !this.dead) {
 					this.die();
 
 					for (var22 = 0; var22 < 3; ++var22) {
@@ -274,7 +274,7 @@ public class EntityBoat extends Entity {
 
 			this.yaw = (float) ((double) this.yaw + var28);
 			this.b(this.yaw, this.pitch);
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				List var16 = this.world.b((Entity) this, this.getBoundingBox().grow(0.20000000298023224D, 0.0D, 0.20000000298023224D));
 				if (var16 != null && !var16.isEmpty()) {
 					for (int var29 = 0; var29 < var16.size(); ++var29) {
@@ -311,7 +311,7 @@ public class EntityBoat extends Entity {
 		if (this.l != null && this.l instanceof EntityHuman && this.l != var1) {
 			return true;
 		} else {
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				var1.mount((Entity) this);
 			}
 
@@ -323,7 +323,7 @@ public class EntityBoat extends Entity {
 		if (var3) {
 			if (this.O > 3.0F) {
 				this.e(this.O, 1.0F);
-				if (!this.world.D && !this.dead) {
+				if (!this.world.isStatic && !this.dead) {
 					this.die();
 
 					int var6;

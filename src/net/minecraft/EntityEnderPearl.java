@@ -16,7 +16,7 @@ public class EntityEnderPearl extends ahr {
 			this.world.a(Particle.y, this.locationX, this.locationY + this.V.nextDouble() * 2.0D, this.locationZ, this.V.nextGaussian(), 0.0D, this.V.nextGaussian(), new int[0]);
 		}
 
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			if (var2 instanceof EntityPlayer) {
 				EntityPlayer var5 = (EntityPlayer) var2;
 				if (var5.playerConncetion.getNetworkManager().isConnected() && var5.world == this.world && !var5.isSleeping()) {

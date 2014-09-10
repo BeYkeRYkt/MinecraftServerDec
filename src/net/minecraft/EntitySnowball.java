@@ -28,7 +28,7 @@ public class EntitySnowball extends ahr {
 			this.world.a(Particle.F, this.locationX, this.locationY, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.die();
 		}
 

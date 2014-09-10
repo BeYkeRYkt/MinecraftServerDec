@@ -44,7 +44,7 @@ class aif extends Slot {
 
 		this.c.a = 0;
 		BlockState var5 = this.a.getBlockState(this.b);
-		if (!var1.playerProperties.instabuild && !this.a.D && var5.getBlock() == Blocks.ANVIL && var1.bb().nextFloat() < 0.12F) {
+		if (!var1.playerProperties.instabuild && !this.a.isStatic && var5.getBlock() == Blocks.ANVIL && var1.bb().nextFloat() < 0.12F) {
 			int var4 = ((Integer) var5.b(BlockAnvil.b)).intValue();
 			++var4;
 			if (var4 > 2) {
@@ -54,7 +54,7 @@ class aif extends Slot {
 				this.a.a(this.b, var5.a(BlockAnvil.b, Integer.valueOf(var4)), 2);
 				this.a.b(1021, this.b, 0);
 			}
-		} else if (!this.a.D) {
+		} else if (!this.a.isStatic) {
 			this.a.b(1021, this.b, 0);
 		}
 

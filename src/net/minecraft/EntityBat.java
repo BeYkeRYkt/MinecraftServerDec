@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Calendar;
 
-public class EntityBat extends abn {
+public class EntityBat extends EntityAmbient {
 
 	private Position a;
 
@@ -139,7 +139,7 @@ public class EntityBat extends abn {
 		if (this.b(var1)) {
 			return false;
 		} else {
-			if (!this.world.D && this.n()) {
+			if (!this.world.isStatic && this.n()) {
 				this.a(false);
 			}
 

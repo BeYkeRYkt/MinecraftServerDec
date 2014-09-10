@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class asa extends arm {
+public class asa extends BiomeBase {
 
 	public asa(int var1) {
 		super(var1);

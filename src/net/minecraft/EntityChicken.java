@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntityChicken extends abq {
+public class EntityChicken extends EntityAnimal {
 
 	public float bk;
 	public float bm;
@@ -50,7 +50,7 @@ public class EntityChicken extends abq {
 		}
 
 		this.bk += this.bp * 2.0F;
-		if (!this.world.D && !this.i_() && !this.cj() && --this.bq <= 0) {
+		if (!this.world.isStatic && !this.i_() && !this.cj() && --this.bq <= 0) {
 			this.a("mob.chicken.plop", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
 			this.a(Items.EGG, 1);
 			this.bq = this.V.nextInt(6000) + 6000;
@@ -96,7 +96,7 @@ public class EntityChicken extends abq {
 
 	}
 
-	public EntityChicken b(ws var1) {
+	public EntityChicken b(EntityAgeable var1) {
 		return new EntityChicken(this.world);
 	}
 
@@ -149,7 +149,7 @@ public class EntityChicken extends abq {
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.b(var1);
 	}
 }

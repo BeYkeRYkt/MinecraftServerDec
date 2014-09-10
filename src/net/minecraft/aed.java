@@ -130,7 +130,7 @@ public abstract class aed extends adx implements vy {
 	}
 
 	public boolean e(EntityHuman var1) {
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			var1.a((IInventory) this);
 		}
 

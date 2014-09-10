@@ -19,7 +19,7 @@ public class BlockGrass extends Block implements atz {
 	}
 
 	public void b(World var1, Position var2, BlockState var3, Random var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (var1.l(var2.a()) < 4 && var1.getBlockState(var2.a()).getBlock().n() > 2) {
 				var1.a(var2, Blocks.DIRT.getBlockState());
 			} else {

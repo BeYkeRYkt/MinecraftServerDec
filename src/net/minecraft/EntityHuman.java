@@ -52,7 +52,7 @@ public abstract class EntityHuman extends EntityLiving {
 		super(var1);
 		this.ao = a(var2);
 		this.gameProfile = var2;
-		this.defaultContainer = new ajb(this.playerInventory, !var1.D, this);
+		this.defaultContainer = new ajb(this.playerInventory, !var1.isStatic, this);
 		this.activeContainer = this.defaultContainer;
 		Position var3 = var1.getSpawnPosition();
 		this.setPositionRotation((double) var3.getX() + 0.5D, (double) (var3.getY() + 1), (double) var3.getZ() + 0.5D, 0.0F, 0.0F);
@@ -89,7 +89,7 @@ public abstract class EntityHuman extends EntityLiving {
 	public void bU() {
 		this.g = null;
 		this.h = 0;
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.f(false);
 		}
 
@@ -112,7 +112,7 @@ public abstract class EntityHuman extends EntityLiving {
 					this.b(var1, 5);
 				}
 
-				if (--this.h == 0 && !this.world.D) {
+				if (--this.h == 0 && !this.world.isStatic) {
 					this.s();
 				}
 			} else {
@@ -130,7 +130,7 @@ public abstract class EntityHuman extends EntityLiving {
 				this.sleepTimer = 100;
 			}
 
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				if (!this.p()) {
 					this.a(true, true, false);
 				} else if (this.world.w()) {
@@ -145,7 +145,7 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 
 		super.s_();
-		if (!this.world.D && this.activeContainer != null && !this.activeContainer.a(this)) {
+		if (!this.world.isStatic && this.activeContainer != null && !this.activeContainer.a(this)) {
 			this.n();
 			this.activeContainer = this.defaultContainer;
 		}
@@ -192,7 +192,7 @@ public abstract class EntityHuman extends EntityLiving {
 			this.e = null;
 		}
 
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.fooddata.a(this);
 			this.b(StatisticList.g);
 			if (this.isAlive()) {
@@ -282,7 +282,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public void ak() {
-		if (!this.world.D && this.aw()) {
+		if (!this.world.isStatic && this.aw()) {
 			this.mount((Entity) null);
 			this.setSneaking(false);
 		} else {
@@ -329,7 +329,7 @@ public abstract class EntityHuman extends EntityLiving {
 		this.bl = this.bm;
 		super.m();
 		AttributeInstance var1 = this.a(afs.d);
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			var1.a((double) this.playerProperties.getWalkSpeed());
 		}
 
@@ -647,7 +647,7 @@ public abstract class EntityHuman extends EntityLiving {
 			if (this.getHealth() <= 0.0F) {
 				return false;
 			} else {
-				if (this.isSleeping() && !this.world.D) {
+				if (this.isSleeping() && !this.world.isStatic) {
 					this.a(true, true, false);
 				}
 
@@ -930,29 +930,29 @@ public abstract class EntityHuman extends EntityLiving {
 		return this.gameProfile;
 	}
 
-	public ahf a(Position var1) {
-		if (!this.world.D) {
+	public EnumBedResult a(Position position) {
+		if (!this.world.isStatic) {
 			if (this.isSleeping() || !this.isAlive()) {
-				return ahf.e;
+				return EnumBedResult.OTHER_PROBLEM;
 			}
 
-			if (!this.world.worldProvider.d()) {
-				return ahf.b;
+			if (!this.world.worldProvider.isSleepAllowed()) {
+				return EnumBedResult.NOT_POSSIBLE_HERE;
 			}
 
 			if (this.world.w()) {
-				return ahf.c;
+				return EnumBedResult.NOT_POSSIBLE_NOW;
 			}
 
-			if (Math.abs(this.locationX - (double) var1.getX()) > 3.0D || Math.abs(this.locationY - (double) var1.getY()) > 2.0D || Math.abs(this.locationZ - (double) var1.getZ()) > 3.0D) {
-				return ahf.d;
+			if (Math.abs(this.locationX - (double) position.getX()) > 3.0D || Math.abs(this.locationY - (double) position.getY()) > 2.0D || Math.abs(this.locationZ - (double) position.getZ()) > 3.0D) {
+				return EnumBedResult.TOO_FAR_AWAY;
 			}
 
 			double var2 = 8.0D;
 			double var4 = 5.0D;
-			List var6 = this.world.a(EntityMonster.class, new AxisAlignedBB((double) var1.getX() - var2, (double) var1.getY() - var4, (double) var1.getZ() - var2, (double) var1.getX() + var2, (double) var1.getY() + var4, (double) var1.getZ() + var2));
+			List var6 = this.world.a(EntityMonster.class, new AxisAlignedBB((double) position.getX() - var2, (double) position.getY() - var4, (double) position.getZ() - var2, (double) position.getX() + var2, (double) position.getY() + var4, (double) position.getZ() + var2));
 			if (!var6.isEmpty()) {
-				return ahf.f;
+				return EnumBedResult.NOT_SAFE;
 			}
 		}
 
@@ -961,8 +961,8 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 
 		this.a(0.2F, 0.2F);
-		if (this.world.isLoaded(var1)) {
-			BlockFace var7 = (BlockFace) this.world.getBlockState(var1).b(avb.N);
+		if (this.world.isLoaded(position)) {
+			BlockFace var7 = (BlockFace) this.world.getBlockState(position).b(avb.N);
 			float var3 = 0.5F;
 			float var8 = 0.5F;
 			switch (ahe.a[var7.ordinal()]) {
@@ -980,20 +980,20 @@ public abstract class EntityHuman extends EntityLiving {
 			}
 
 			this.a(var7);
-			this.b((double) ((float) var1.getX() + var3), (double) ((float) var1.getY() + 0.6875F), (double) ((float) var1.getZ() + var8));
+			this.b((double) ((float) position.getX() + var3), (double) ((float) position.getY() + 0.6875F), (double) ((float) position.getZ() + var8));
 		} else {
-			this.b((double) ((float) var1.getX() + 0.5F), (double) ((float) var1.getY() + 0.6875F), (double) ((float) var1.getZ() + 0.5F));
+			this.b((double) ((float) position.getX() + 0.5F), (double) ((float) position.getY() + 0.6875F), (double) ((float) position.getZ() + 0.5F));
 		}
 
 		this.isSleeping = true;
 		this.sleepTimer = 0;
-		this.bv = var1;
+		this.bv = position;
 		this.motionX = this.motionZ = this.motionY = 0.0D;
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			this.world.d();
 		}
 
-		return ahf.a;
+		return EnumBedResult.OK;
 	}
 
 	private void a(BlockFace var1) {
@@ -1029,7 +1029,7 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 
 		this.isSleeping = false;
-		if (!this.world.D && var2) {
+		if (!this.world.isStatic && var2) {
 			this.world.d();
 		}
 
@@ -1222,7 +1222,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public void a(EntityLiving var1) {
-		if (var1 instanceof aex) {
+		if (var1 instanceof IMonster) {
 			this.b((Statistic) AchievementList.s);
 		}
 
@@ -1297,7 +1297,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public void a(float var1) {
 		if (!this.playerProperties.invulnerable) {
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				this.fooddata.a(var1);
 			}
 
@@ -1320,7 +1320,7 @@ public abstract class EntityHuman extends EntityLiving {
 		if (var1 != this.g) {
 			this.g = var1;
 			this.h = var2;
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				this.f(true);
 			}
 
