@@ -1,16 +1,14 @@
 package net.minecraft;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-
 import java.io.DataInputStream;
 import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+import java.util.Map.Entry;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,8 +18,7 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 	private static final Logger logger = LogManager.getLogger();
 
 	private Object lock = new Object();
-	private List<PendingChunkToSave> chunksToSave = Lists.newArrayList();
-	private Set<ChunkCoordIntPair> coords = Sets.newHashSet();
+	private HashMap<ChunkCoordIntPair, NBTCompoundTag> chunksToSave = new HashMap<ChunkCoordIntPair, NBTCompoundTag>();
 	private final File file;
 
 	public ChunkRegionLoader(File file) {
@@ -31,14 +28,10 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 	public Chunk loadChunk(World world, int chunkX, int chunkZ) throws IOException {
 		NBTCompoundTag tag = null;
 		ChunkCoordIntPair pair = new ChunkCoordIntPair(chunkX, chunkZ);
+
 		synchronized (this.lock) {
-			if (this.coords.contains(pair)) {
-				for (int i = 0; i < this.chunksToSave.size(); ++i) {
-					if (this.chunksToSave.get(i).coorPair.equals(pair)) {
-						tag = (this.chunksToSave.get(i)).tag;
-						break;
-					}
-				}
+			if (chunksToSave.containsKey(pair)) {
+				tag = chunksToSave.get(pair);
 			}
 		}
 
@@ -90,36 +83,28 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 
 	protected void requestChunkSave(ChunkCoordIntPair coordPair, NBTCompoundTag tag) {
 		synchronized (this.lock) {
-			if (this.coords.contains(coordPair)) {
-				for (int i = 0; i < this.chunksToSave.size(); ++i) {
-					if (this.chunksToSave.get(i).coorPair.equals(coordPair)) {
-						this.chunksToSave.set(i, new PendingChunkToSave(coordPair, tag));
-						return;
-					}
-				}
-			}
+			chunksToSave.put(coordPair, tag);
 
-			this.chunksToSave.add(new PendingChunkToSave(coordPair, tag));
-			this.coords.add(coordPair);
 			FileIOThread.getInstance().addChunkSaver(this);
 		}
 	}
 
 	public boolean saveChunks() {
-		PendingChunkToSave chunkToSave = null;
+		Entry<ChunkCoordIntPair, NBTCompoundTag> entry = null;
 
 		synchronized (this.lock) {
 			if (this.chunksToSave.isEmpty()) {
 				return false;
 			}
 
-			chunkToSave = this.chunksToSave.remove(0);
-			this.coords.remove(chunkToSave.coorPair);
+			Iterator<Entry<ChunkCoordIntPair, NBTCompoundTag>> iterator = chunksToSave.entrySet().iterator();
+			entry = iterator.next();
+			iterator.remove();
 		}
 
-		if (chunkToSave != null) {
+		if (entry != null) {
 			try {
-				this.saveChunk(chunkToSave);
+				this.saveChunk(entry);
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
@@ -128,9 +113,9 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 		return true;
 	}
 
-	private void saveChunk(PendingChunkToSave chunkToSave) throws IOException {
-		DataOutputStream outputStream = RegionFileCache.getOutputStream(this.file, chunkToSave.coorPair.chunkX, chunkToSave.coorPair.chunkZ);
-		NBTCompressedStreamTools.writeTag(chunkToSave.tag, (DataOutput) outputStream);
+	private void saveChunk(Entry<ChunkCoordIntPair, NBTCompoundTag> entry) throws IOException {
+		DataOutputStream outputStream = RegionFileCache.getOutputStream(this.file, entry.getKey().chunkX, entry.getKey().chunkZ);
+		NBTCompressedStreamTools.writeTag(entry.getValue(), (DataOutput) outputStream);
 		outputStream.close();
 	}
 
