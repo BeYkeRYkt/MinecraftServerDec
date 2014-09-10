@@ -40,7 +40,7 @@ public class EntityLeash extends adj {
 	public void b(Entity var1) {
 	}
 
-	public boolean d(NBTCompoundTag var1) {
+	public boolean writeIfNoPassenger(NBTCompoundTag var1) {
 		return false;
 	}
 

@@ -427,7 +427,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 
 			if (entity != null) {
 				this.player.e(this.player);
-				this.player.a((Entity) null);
+				this.player.mount((Entity) null);
 				if (entity.world != this.player.world) {
 					WorldServer playerWorldServer = this.player.getWorldServer();
 					WorldServer entityWorldServer = (WorldServer) entity.world;

@@ -108,7 +108,7 @@ public abstract class aqi {
 	private Entity a(Entity var1, boolean var2) {
 		if (this.i() != null) {
 			NBTCompoundTag var3 = new NBTCompoundTag();
-			var1.d(var3);
+			var1.writeIfNoPassenger(var3);
 			Iterator var4 = aqj.b(this.i()).getKeys().iterator();
 
 			while (var4.hasNext()) {
@@ -128,7 +128,7 @@ public abstract class aqi {
 				Entity var13 = EntityTypes.createEntity(var12.getString("id"), var1.world);
 				if (var13 != null) {
 					NBTCompoundTag var7 = new NBTCompoundTag();
-					var13.d(var7);
+					var13.writeIfNoPassenger(var7);
 					Iterator var8 = var12.getKeys().iterator();
 
 					while (var8.hasNext()) {
@@ -143,7 +143,7 @@ public abstract class aqi {
 						var1.world.d(var13);
 					}
 
-					var11.a(var13);
+					var11.mount(var13);
 				}
 
 				var11 = var13;

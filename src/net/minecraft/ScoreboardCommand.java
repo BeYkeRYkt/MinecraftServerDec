@@ -636,7 +636,7 @@ public class ScoreboardCommand extends AbstractCommand {
 			try {
 				NBTCompoundTag var10 = gg.a(a(var2, var3));
 				NBTCompoundTag var11 = new NBTCompoundTag();
-				var9.e(var11);
+				var9.write(var11);
 				if (!TestforBlockCommand.a(var10, var11, true)) {
 					throw new di("commands.scoreboard.players.set.tagMismatch", new Object[] { var6 });
 				}

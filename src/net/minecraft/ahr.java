@@ -215,9 +215,9 @@ public abstract class ahr extends Entity implements aho {
 		this.d = var1.getShort("yTile");
 		this.e = var1.getShort("zTile");
 		if (var1.isTagAssignableFrom("inTile", 8)) {
-			this.f = Block.b(var1.getString("inTile"));
+			this.f = Block.getByName(var1.getString("inTile"));
 		} else {
-			this.f = Block.c(var1.getByte("inTile") & 255);
+			this.f = Block.getById(var1.getByte("inTile") & 255);
 		}
 
 		this.b = var1.getByte("shake") & 255;

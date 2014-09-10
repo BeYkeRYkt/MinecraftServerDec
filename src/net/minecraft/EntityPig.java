@@ -66,7 +66,7 @@ public class EntityPig extends abq {
 		if (super.a(var1)) {
 			return true;
 		} else if (this.cj() && !this.world.D && (this.l == null || this.l == var1)) {
-			var1.a((Entity) this);
+			var1.mount((Entity) this);
 			return true;
 		} else {
 			return false;

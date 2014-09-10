@@ -78,7 +78,7 @@ public class SummonCommand extends AbstractCommand {
 						if (var18 != null) {
 							var18.setPositionRotation(var6, var8, var10, var18.yaw, var18.pitch);
 							var12.d(var18);
-							var16.a(var18);
+							var16.mount(var18);
 						}
 
 						var16 = var18;

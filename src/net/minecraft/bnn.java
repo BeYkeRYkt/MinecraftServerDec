@@ -36,13 +36,13 @@ abstract class bnn extends bms {
 		if (this.m != null) {
 			switch (bmz.a[this.m.ordinal()]) {
 				case 1:
-					return bmy.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, BlockFace.WEST, this.d());
+					return bmy.a(var1, var2, var3, this.l.minX - 1, this.l.minY + var4, this.l.minZ + var5, BlockFace.WEST, this.d());
 				case 2:
-					return bmy.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, BlockFace.WEST, this.d());
+					return bmy.a(var1, var2, var3, this.l.minX - 1, this.l.minY + var4, this.l.minZ + var5, BlockFace.WEST, this.d());
 				case 3:
-					return bmy.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, BlockFace.NORTH, this.d());
+					return bmy.a(var1, var2, var3, this.l.minX + var5, this.l.minY + var4, this.l.minZ - 1, BlockFace.NORTH, this.d());
 				case 4:
-					return bmy.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, BlockFace.NORTH, this.d());
+					return bmy.a(var1, var2, var3, this.l.minX + var5, this.l.minY + var4, this.l.minZ - 1, BlockFace.NORTH, this.d());
 			}
 		}
 
@@ -53,25 +53,25 @@ abstract class bnn extends bms {
 		if (this.m != null) {
 			switch (bmz.a[this.m.ordinal()]) {
 				case 1:
-					return bmy.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, BlockFace.EAST, this.d());
+					return bmy.a(var1, var2, var3, this.l.maxX + 1, this.l.minY + var4, this.l.minZ + var5, BlockFace.EAST, this.d());
 				case 2:
-					return bmy.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, BlockFace.EAST, this.d());
+					return bmy.a(var1, var2, var3, this.l.maxX + 1, this.l.minY + var4, this.l.minZ + var5, BlockFace.EAST, this.d());
 				case 3:
-					return bmy.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, BlockFace.SOUTH, this.d());
+					return bmy.a(var1, var2, var3, this.l.minX + var5, this.l.minY + var4, this.l.maxZ + 1, BlockFace.SOUTH, this.d());
 				case 4:
-					return bmy.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, BlockFace.SOUTH, this.d());
+					return bmy.a(var1, var2, var3, this.l.minX + var5, this.l.minY + var4, this.l.maxZ + 1, BlockFace.SOUTH, this.d());
 			}
 		}
 
 		return null;
 	}
 
-	protected int b(World var1, bjb var2) {
+	protected int b(World var1, CuboidArea var2) {
 		int var3 = 0;
 		int var4 = 0;
 
-		for (int var5 = this.l.c; var5 <= this.l.f; ++var5) {
-			for (int var6 = this.l.a; var6 <= this.l.d; ++var6) {
+		for (int var5 = this.l.minZ; var5 <= this.l.maxZ; ++var5) {
+			for (int var6 = this.l.minX; var6 <= this.l.maxX; ++var6) {
 				Position var7 = new Position(var6, 64, var5);
 				if (var2.b((fd) var7)) {
 					var3 += Math.max(var1.r(var7).getY(), var1.worldProvider.i());
@@ -87,11 +87,11 @@ abstract class bnn extends bms {
 		}
 	}
 
-	protected static boolean a(bjb var0) {
-		return var0 != null && var0.b > 10;
+	protected static boolean a(CuboidArea var0) {
+		return var0 != null && var0.minY > 10;
 	}
 
-	protected void a(World var1, bjb var2, int var3, int var4, int var5, int var6) {
+	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6) {
 		if (this.a < var6) {
 			for (int var7 = this.a; var7 < var6; ++var7) {
 				int var8 = this.a(var3 + var7, var5);
@@ -146,18 +146,18 @@ abstract class bnn extends bms {
 		return var1;
 	}
 
-	protected void a(World var1, BlockState var2, int var3, int var4, int var5, bjb var6) {
+	protected void a(World var1, BlockState var2, int var3, int var4, int var5, CuboidArea var6) {
 		BlockState var7 = this.a(var2);
 		super.a(var1, var7, var3, var4, var5, var6);
 	}
 
-	protected void a(World var1, bjb var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockState var9, BlockState var10, boolean var11) {
+	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockState var9, BlockState var10, boolean var11) {
 		BlockState var12 = this.a(var9);
 		BlockState var13 = this.a(var10);
 		super.a(var1, var2, var3, var4, var5, var6, var7, var8, var12, var13, var11);
 	}
 
-	protected void b(World var1, BlockState var2, int var3, int var4, int var5, bjb var6) {
+	protected void b(World var1, BlockState var2, int var3, int var4, int var5, CuboidArea var6) {
 		BlockState var7 = this.a(var2);
 		super.b(var1, var7, var3, var4, var5, var6);
 	}

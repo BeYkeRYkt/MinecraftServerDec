@@ -364,7 +364,7 @@ public class EntityArmorStand extends EntityLiving {
 						this.die();
 						return false;
 					} else {
-						long var5 = this.world.getLastUpdate();
+						long var5 = this.world.getTime();
 						if (var5 - this.i > 5L && !var3) {
 							this.i = var5;
 						} else {

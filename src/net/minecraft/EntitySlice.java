@@ -1,5 +1,6 @@
 package net.minecraft;
 
+import com.google.common.collect.AbstractIterator;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Multimap;
@@ -23,36 +24,37 @@ public class EntitySlice<T> extends AbstractSet<T> {
 		this.registeredClasses.add(mainClass);
 	}
 
-	public void a(Class<T> clazz) {
-		Iterator<T> it = this.values.get(this.a(clazz, false)).iterator();
+	public void registerClass(Class<T> clazz) {
+		Iterator<T> it = this.values.get(this.serachSuperClass(clazz, false)).iterator();
 
 		while (it.hasNext()) {
-			T var3 = it.next();
-			if (clazz.isAssignableFrom(var3.getClass())) {
-				this.values.put(clazz, var3);
+			T value = it.next();
+			if (clazz.isAssignableFrom(value.getClass())) {
+				this.values.put(clazz, value);
 			}
 		}
 
 		this.registeredClasses.add(clazz);
 	}
 
-	protected Class a(Class var1, boolean var2) {
-		Iterator var3 = ClassUtils.hierarchy(var1, ClassUtils.Interfaces.INCLUDE).iterator();
+	@SuppressWarnings("unchecked")
+	protected Class<T> serachSuperClass(Class<T> var1, boolean registerIfNotFound) {
+		Iterator<Class<?>> classes = ClassUtils.hierarchy(var1, ClassUtils.Interfaces.INCLUDE).iterator();
 
-		Class var4;
+		Class<?> clazz;
 		do {
-			if (!var3.hasNext()) {
+			if (!classes.hasNext()) {
 				throw new IllegalArgumentException("Don\'t know how to search for " + var1);
 			}
 
-			var4 = (Class) var3.next();
-		} while (!this.registeredClasses.contains(var4));
+			clazz = classes.next();
+		} while (!this.registeredClasses.contains(clazz));
 
-		if (var4 == this.mainClazz && var2) {
-			this.a(var1);
+		if (clazz == this.mainClazz && registerIfNotFound) {
+			this.registerClass(var1);
 		}
 
-		return var4;
+		return (Class<T>) clazz;
 	}
 
 	public boolean add(T value) {
@@ -78,15 +80,19 @@ public class EntitySlice<T> extends AbstractSet<T> {
 		return new Iterable<T>() {
 			@Override
 			public Iterator<T> iterator() {
-				Iterator<T> iterators = values.get(a(clazz, true)).iterator();
+				Iterator<T> iterators = values.get(serachSuperClass(clazz, true)).iterator();
 				return Iterators.filter(iterators, clazz);
 			}
 		};
 	}
 
-	public Iterator iterator() {
-		Iterator var1 = this.values.get(this.mainClazz).iterator();
-		return new ue(this, var1);
+	public Iterator<T> iterator() {
+		final Iterator<T> iterator = this.values.get(this.mainClazz).iterator();
+		return new AbstractIterator<T>() {
+			protected T computeNext() {
+				return !iterator.hasNext() ? endOfData() : iterator.next();
+			}
+		};
 	}
 
 	public int size() {

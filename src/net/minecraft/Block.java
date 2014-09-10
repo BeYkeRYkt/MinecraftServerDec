@@ -302,27 +302,27 @@ public class Block {
 		return getBlockId(var0.getBlock()) + (var0.getBlock().c(var0) << 12);
 	}
 
-	public static Block c(int var0) {
-		return (Block) BLOCKREGISTRY.getById(var0);
+	public static Block getById(int id) {
+		return (Block) BLOCKREGISTRY.getById(id);
 	}
 
 	public static BlockState d(int var0) {
 		int var1 = var0 & 4095;
 		int var2 = var0 >> 12 & 15;
-		return c(var1).a(var2);
+		return getById(var1).a(var2);
 	}
 
 	public static Block a(Item var0) {
 		return var0 instanceof ItemBlock ? ((ItemBlock) var0).getBlock() : null;
 	}
 
-	public static Block b(String var0) {
-		RegistryObjectName var1 = new RegistryObjectName(var0);
+	public static Block getByName(String name) {
+		RegistryObjectName var1 = new RegistryObjectName(name);
 		if (BLOCKREGISTRY.d(var1)) {
 			return (Block) BLOCKREGISTRY.getByName(var1);
 		} else {
 			try {
-				return (Block) BLOCKREGISTRY.getById(Integer.parseInt(var0));
+				return (Block) BLOCKREGISTRY.getById(Integer.parseInt(name));
 			} catch (NumberFormatException var3) {
 				return null;
 			}

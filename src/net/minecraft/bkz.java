@@ -11,7 +11,7 @@ public class bkz extends blb {
 		super(1, var1, var2, 1, 1, 1);
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		this.a(var1, var3, 0, 3, 0, 2, 3, 7, b, b, false);
 		this.a(var1, var3, 5, 3, 0, 7, 3, 7, b, b, false);
 		this.a(var1, var3, 0, 2, 0, 1, 2, 7, b, b, false);

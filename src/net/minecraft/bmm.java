@@ -48,7 +48,7 @@ public abstract class bmm extends bgt {
 		while (var7.hasNext()) {
 			bmv var8 = (bmv) var7.next();
 			if (var8.d() && var8.a(var3) && var8.a().a(var4, var5, var4 + 15, var5 + 15)) {
-				var8.a(var1, var2, new bjb(var4, var5, var4 + 15, var5 + 15));
+				var8.a(var1, var2, new CuboidArea(var4, var5, var4 + 15, var5 + 15));
 				var8.b(var3);
 				var6 = true;
 				this.a(var8.e(), var8.f(), var8);

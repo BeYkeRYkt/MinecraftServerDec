@@ -28,7 +28,7 @@ public class EntityEnderPearl extends ahr {
 					}
 
 					if (var2.av()) {
-						var2.a((Entity) null);
+						var2.mount((Entity) null);
 					}
 
 					var2.updatePosition(this.locationX, this.locationY, this.locationZ);

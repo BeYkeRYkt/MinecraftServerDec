@@ -623,7 +623,7 @@ public class EntityHorse extends abq implements vr {
 		this.r(false);
 		this.s(false);
 		if (!this.world.D) {
-			var1.a((Entity) this);
+			var1.mount((Entity) this);
 		}
 
 	}

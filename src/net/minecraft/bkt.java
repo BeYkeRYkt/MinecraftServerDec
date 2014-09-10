@@ -11,7 +11,7 @@ public class bkt extends blb {
 		super(1, var1, var2, 2, 2, 2);
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		this.a(var1, var3, 1, 8, 0, 14, 8, 14, a);
 		byte var4 = 7;
 		BlockState var5 = b;

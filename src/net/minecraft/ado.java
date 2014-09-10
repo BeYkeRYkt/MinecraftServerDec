@@ -340,9 +340,9 @@ public class ado extends Entity {
 		this.h = var1.getShort("yTile");
 		this.i = var1.getShort("zTile");
 		if (var1.isTagAssignableFrom("inTile", 8)) {
-			this.ap = Block.b(var1.getString("inTile"));
+			this.ap = Block.getByName(var1.getString("inTile"));
 		} else {
-			this.ap = Block.c(var1.getByte("inTile") & 255);
+			this.ap = Block.getById(var1.getByte("inTile") & 255);
 		}
 
 		this.a = var1.getByte("shake") & 255;

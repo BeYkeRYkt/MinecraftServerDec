@@ -14,7 +14,7 @@ public class bmd extends bly {
 
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		if (this.a(var1, var3)) {
 			return false;
 		} else {

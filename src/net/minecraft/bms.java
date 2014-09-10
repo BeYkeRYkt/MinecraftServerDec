@@ -6,7 +6,7 @@ import java.util.Random;
 
 public abstract class bms {
 
-	protected bjb l;
+	protected CuboidArea l;
 	protected BlockFace m;
 	protected int n;
 
@@ -31,7 +31,7 @@ public abstract class bms {
 
 	public void a(World var1, NBTCompoundTag var2) {
 		if (var2.hasKey("BB")) {
-			this.l = new bjb(var2.getIntArray("BB"));
+			this.l = new CuboidArea(var2.getIntArray("BB"));
 		}
 
 		int var3 = var2.getInt("O");
@@ -45,9 +45,9 @@ public abstract class bms {
 	public void a(bms var1, List var2, Random var3) {
 	}
 
-	public abstract boolean a(World var1, Random var2, bjb var3);
+	public abstract boolean a(World var1, Random var2, CuboidArea var3);
 
-	public bjb c() {
+	public CuboidArea c() {
 		return this.l;
 	}
 
@@ -55,7 +55,7 @@ public abstract class bms {
 		return this.n;
 	}
 
-	public static bms a(List var0, bjb var1) {
+	public static bms a(List var0, CuboidArea var1) {
 		Iterator var2 = var0.iterator();
 
 		bms var3;
@@ -74,13 +74,13 @@ public abstract class bms {
 		return new Position(this.l.f());
 	}
 
-	protected boolean a(World var1, bjb var2) {
-		int var3 = Math.max(this.l.a - 1, var2.a);
-		int var4 = Math.max(this.l.b - 1, var2.b);
-		int var5 = Math.max(this.l.c - 1, var2.c);
-		int var6 = Math.min(this.l.d + 1, var2.d);
-		int var7 = Math.min(this.l.e + 1, var2.e);
-		int var8 = Math.min(this.l.f + 1, var2.f);
+	protected boolean a(World var1, CuboidArea var2) {
+		int var3 = Math.max(this.l.minX - 1, var2.minX);
+		int var4 = Math.max(this.l.minY - 1, var2.minY);
+		int var5 = Math.max(this.l.minZ - 1, var2.minZ);
+		int var6 = Math.min(this.l.maxX + 1, var2.maxX);
+		int var7 = Math.min(this.l.maxY + 1, var2.maxY);
+		int var8 = Math.min(this.l.maxZ + 1, var2.maxZ);
 
 		int var9;
 		int var10;
@@ -130,11 +130,11 @@ public abstract class bms {
 			switch (bmt.a[this.m.ordinal()]) {
 				case 1:
 				case 2:
-					return this.l.a + var1;
+					return this.l.minX + var1;
 				case 3:
-					return this.l.d - var2;
+					return this.l.maxX - var2;
 				case 4:
-					return this.l.a + var2;
+					return this.l.minX + var2;
 				default:
 					return var1;
 			}
@@ -142,7 +142,7 @@ public abstract class bms {
 	}
 
 	protected int d(int var1) {
-		return this.m == null ? var1 : var1 + this.l.b;
+		return this.m == null ? var1 : var1 + this.l.minY;
 	}
 
 	protected int b(int var1, int var2) {
@@ -151,12 +151,12 @@ public abstract class bms {
 		} else {
 			switch (bmt.a[this.m.ordinal()]) {
 				case 1:
-					return this.l.f - var2;
+					return this.l.maxZ - var2;
 				case 2:
-					return this.l.c + var2;
+					return this.l.minZ + var2;
 				case 3:
 				case 4:
-					return this.l.c + var1;
+					return this.l.minZ + var1;
 				default:
 					return var2;
 			}
@@ -400,21 +400,21 @@ public abstract class bms {
 		return var2;
 	}
 
-	protected void a(World var1, BlockState var2, int var3, int var4, int var5, bjb var6) {
+	protected void a(World var1, BlockState var2, int var3, int var4, int var5, CuboidArea var6) {
 		Position var7 = new Position(this.a(var3, var5), this.d(var4), this.b(var3, var5));
 		if (var6.b((fd) var7)) {
 			var1.a(var7, var2, 2);
 		}
 	}
 
-	protected BlockState a(World var1, int var2, int var3, int var4, bjb var5) {
+	protected BlockState a(World var1, int var2, int var3, int var4, CuboidArea var5) {
 		int var6 = this.a(var2, var4);
 		int var7 = this.d(var3);
 		int var8 = this.b(var2, var4);
 		return !var5.b((fd) (new Position(var6, var7, var8))) ? Blocks.AIR.getBlockState() : var1.getBlockState(new Position(var6, var7, var8));
 	}
 
-	protected void a(World var1, bjb var2, int var3, int var4, int var5, int var6, int var7, int var8) {
+	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6, int var7, int var8) {
 		for (int var9 = var4; var9 <= var7; ++var9) {
 			for (int var10 = var3; var10 <= var6; ++var10) {
 				for (int var11 = var5; var11 <= var8; ++var11) {
@@ -425,7 +425,7 @@ public abstract class bms {
 
 	}
 
-	protected void a(World var1, bjb var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockState var9, BlockState var10, boolean var11) {
+	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockState var9, BlockState var10, boolean var11) {
 		for (int var12 = var4; var12 <= var7; ++var12) {
 			for (int var13 = var3; var13 <= var6; ++var13) {
 				for (int var14 = var5; var14 <= var8; ++var14) {
@@ -442,7 +442,7 @@ public abstract class bms {
 
 	}
 
-	protected void a(World var1, bjb var2, int var3, int var4, int var5, int var6, int var7, int var8, boolean var9, Random var10, bmu var11) {
+	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6, int var7, int var8, boolean var9, Random var10, bmu var11) {
 		for (int var12 = var4; var12 <= var7; ++var12) {
 			for (int var13 = var3; var13 <= var6; ++var13) {
 				for (int var14 = var5; var14 <= var8; ++var14) {
@@ -456,7 +456,7 @@ public abstract class bms {
 
 	}
 
-	protected void a(World var1, bjb var2, Random var3, float var4, int var5, int var6, int var7, int var8, int var9, int var10, BlockState var11, BlockState var12, boolean var13) {
+	protected void a(World var1, CuboidArea var2, Random var3, float var4, int var5, int var6, int var7, int var8, int var9, int var10, BlockState var11, BlockState var12, boolean var13) {
 		for (int var14 = var6; var14 <= var9; ++var14) {
 			for (int var15 = var5; var15 <= var8; ++var15) {
 				for (int var16 = var7; var16 <= var10; ++var16) {
@@ -473,14 +473,14 @@ public abstract class bms {
 
 	}
 
-	protected void a(World var1, bjb var2, Random var3, float var4, int var5, int var6, int var7, BlockState var8) {
+	protected void a(World var1, CuboidArea var2, Random var3, float var4, int var5, int var6, int var7, BlockState var8) {
 		if (var3.nextFloat() < var4) {
 			this.a(var1, var8, var5, var6, var7, var2);
 		}
 
 	}
 
-	protected void a(World var1, bjb var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockState var9, boolean var10) {
+	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockState var9, boolean var10) {
 		float var11 = (float) (var6 - var3 + 1);
 		float var12 = (float) (var7 - var4 + 1);
 		float var13 = (float) (var8 - var5 + 1);
@@ -507,7 +507,7 @@ public abstract class bms {
 
 	}
 
-	protected void b(World var1, int var2, int var3, int var4, bjb var5) {
+	protected void b(World var1, int var2, int var3, int var4, CuboidArea var5) {
 		Position var6 = new Position(this.a(var2, var4), this.d(var3), this.b(var2, var4));
 		if (var5.b((fd) var6)) {
 			while (!var1.d(var6) && var6.getY() < 255) {
@@ -518,7 +518,7 @@ public abstract class bms {
 		}
 	}
 
-	protected void b(World var1, BlockState var2, int var3, int var4, int var5, bjb var6) {
+	protected void b(World var1, BlockState var2, int var3, int var4, int var5, CuboidArea var6) {
 		int var7 = this.a(var3, var5);
 		int var8 = this.d(var4);
 		int var9 = this.b(var3, var5);
@@ -531,7 +531,7 @@ public abstract class bms {
 		}
 	}
 
-	protected boolean a(World var1, bjb var2, Random var3, int var4, int var5, int var6, List var7, int var8) {
+	protected boolean a(World var1, CuboidArea var2, Random var3, int var4, int var5, int var6, List var7, int var8) {
 		Position var9 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
 		if (var2.b((fd) var9) && var1.getBlockState(var9).getBlock() != Blocks.CHEST) {
 			BlockState var10 = Blocks.CHEST.getBlockState();
@@ -547,7 +547,7 @@ public abstract class bms {
 		}
 	}
 
-	protected boolean a(World var1, bjb var2, Random var3, int var4, int var5, int var6, int var7, List var8, int var9) {
+	protected boolean a(World var1, CuboidArea var2, Random var3, int var4, int var5, int var6, int var7, List var8, int var9) {
 		Position var10 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
 		if (var2.b((fd) var10) && var1.getBlockState(var10).getBlock() != Blocks.DISPENSER) {
 			var1.a(var10, Blocks.DISPENSER.a(this.a(Blocks.DISPENSER, var7)), 2);
@@ -562,7 +562,7 @@ public abstract class bms {
 		}
 	}
 
-	protected void a(World var1, bjb var2, Random var3, int var4, int var5, int var6, BlockFace var7) {
+	protected void a(World var1, CuboidArea var2, Random var3, int var4, int var5, int var6, BlockFace var7) {
 		Position var8 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
 		if (var2.b((fd) var8)) {
 			ItemDoor.a(var1, var8, var7.f(), Blocks.WOODEN_DOOR);

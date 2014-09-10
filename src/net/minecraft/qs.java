@@ -102,7 +102,7 @@ public class qs implements IChunkProvider {
 			try {
 				Chunk var3 = this.f.loadChunk(this.i, var1, var2);
 				if (var3 != null) {
-					var3.b(this.i.getLastUpdate());
+					var3.b(this.i.getTime());
 					if (this.e != null) {
 						this.e.a(var3, var1, var2);
 					}
@@ -130,7 +130,7 @@ public class qs implements IChunkProvider {
 	private void b(Chunk var1) {
 		if (this.f != null) {
 			try {
-				var1.b(this.i.getLastUpdate());
+				var1.b(this.i.getTime());
 				this.f.requestChunkSave(this.i, var1);
 			} catch (aqz var4) {
 				b.error("Couldn\'t save chunk; already in use by another instance of Minecraft?", (Throwable) var4);

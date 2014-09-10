@@ -14,7 +14,7 @@ public class bji extends bms {
 
 	public bji(int var1, Random var2, int var3, int var4) {
 		super(var1);
-		this.l = new bjb(var3, 50, var4, var3 + 7 + var2.nextInt(6), 54 + var2.nextInt(6), var4 + 7 + var2.nextInt(6));
+		this.l = new CuboidArea(var3, 50, var4, var3 + 7 + var2.nextInt(6), 54 + var2.nextInt(6), var4 + 7 + var2.nextInt(6));
 	}
 
 	public void a(bms var1, List var2, Random var3) {
@@ -26,17 +26,17 @@ public class bji extends bms {
 
 		int var5;
 		bms var7;
-		bjb var8;
+		CuboidArea var8;
 		for (var5 = 0; var5 < this.l.c(); var5 += 4) {
 			var5 += var3.nextInt(this.l.c());
 			if (var5 + 3 > this.l.c()) {
 				break;
 			}
 
-			var7 = bje.a(var1, var2, var3, this.l.a + var5, this.l.b + var3.nextInt(var6) + 1, this.l.c - 1, BlockFace.NORTH, var4);
+			var7 = bje.a(var1, var2, var3, this.l.minX + var5, this.l.minY + var3.nextInt(var6) + 1, this.l.minZ - 1, BlockFace.NORTH, var4);
 			if (var7 != null) {
 				var8 = var7.c();
-				this.a.add(new bjb(var8.a, var8.b, this.l.c, var8.d, var8.e, this.l.c + 1));
+				this.a.add(new CuboidArea(var8.minX, var8.minY, this.l.minZ, var8.maxX, var8.maxY, this.l.minZ + 1));
 			}
 		}
 
@@ -46,10 +46,10 @@ public class bji extends bms {
 				break;
 			}
 
-			var7 = bje.a(var1, var2, var3, this.l.a + var5, this.l.b + var3.nextInt(var6) + 1, this.l.f + 1, BlockFace.SOUTH, var4);
+			var7 = bje.a(var1, var2, var3, this.l.minX + var5, this.l.minY + var3.nextInt(var6) + 1, this.l.maxZ + 1, BlockFace.SOUTH, var4);
 			if (var7 != null) {
 				var8 = var7.c();
-				this.a.add(new bjb(var8.a, var8.b, this.l.f - 1, var8.d, var8.e, this.l.f));
+				this.a.add(new CuboidArea(var8.minX, var8.minY, this.l.maxZ - 1, var8.maxX, var8.maxY, this.l.maxZ));
 			}
 		}
 
@@ -59,10 +59,10 @@ public class bji extends bms {
 				break;
 			}
 
-			var7 = bje.a(var1, var2, var3, this.l.a - 1, this.l.b + var3.nextInt(var6) + 1, this.l.c + var5, BlockFace.WEST, var4);
+			var7 = bje.a(var1, var2, var3, this.l.minX - 1, this.l.minY + var3.nextInt(var6) + 1, this.l.minZ + var5, BlockFace.WEST, var4);
 			if (var7 != null) {
 				var8 = var7.c();
-				this.a.add(new bjb(this.l.a, var8.b, var8.c, this.l.a + 1, var8.e, var8.f));
+				this.a.add(new CuboidArea(this.l.minX, var8.minY, var8.minZ, this.l.minX + 1, var8.maxY, var8.maxZ));
 			}
 		}
 
@@ -72,29 +72,29 @@ public class bji extends bms {
 				break;
 			}
 
-			var7 = bje.a(var1, var2, var3, this.l.d + 1, this.l.b + var3.nextInt(var6) + 1, this.l.c + var5, BlockFace.EAST, var4);
+			var7 = bje.a(var1, var2, var3, this.l.maxX + 1, this.l.minY + var3.nextInt(var6) + 1, this.l.minZ + var5, BlockFace.EAST, var4);
 			if (var7 != null) {
 				var8 = var7.c();
-				this.a.add(new bjb(this.l.d - 1, var8.b, var8.c, this.l.d, var8.e, var8.f));
+				this.a.add(new CuboidArea(this.l.maxX - 1, var8.minY, var8.minZ, this.l.maxX, var8.maxY, var8.maxZ));
 			}
 		}
 
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		if (this.a(var1, var3)) {
 			return false;
 		} else {
-			this.a(var1, var3, this.l.a, this.l.b, this.l.c, this.l.d, this.l.b, this.l.f, Blocks.DIRT.getBlockState(), Blocks.AIR.getBlockState(), true);
-			this.a(var1, var3, this.l.a, this.l.b + 1, this.l.c, this.l.d, Math.min(this.l.b + 3, this.l.e), this.l.f, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+			this.a(var1, var3, this.l.minX, this.l.minY, this.l.minZ, this.l.maxX, this.l.minY, this.l.maxZ, Blocks.DIRT.getBlockState(), Blocks.AIR.getBlockState(), true);
+			this.a(var1, var3, this.l.minX, this.l.minY + 1, this.l.minZ, this.l.maxX, Math.min(this.l.minY + 3, this.l.maxY), this.l.maxZ, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 			Iterator var4 = this.a.iterator();
 
 			while (var4.hasNext()) {
-				bjb var5 = (bjb) var4.next();
-				this.a(var1, var3, var5.a, var5.e - 2, var5.c, var5.d, var5.e, var5.f, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+				CuboidArea var5 = (CuboidArea) var4.next();
+				this.a(var1, var3, var5.minX, var5.maxY - 2, var5.minZ, var5.maxX, var5.maxY, var5.maxZ, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 			}
 
-			this.a(var1, var3, this.l.a, this.l.b + 4, this.l.c, this.l.d, this.l.e, this.l.f, Blocks.AIR.getBlockState(), false);
+			this.a(var1, var3, this.l.minX, this.l.minY + 4, this.l.minZ, this.l.maxX, this.l.maxY, this.l.maxZ, Blocks.AIR.getBlockState(), false);
 			return true;
 		}
 	}
@@ -104,7 +104,7 @@ public class bji extends bms {
 		Iterator var3 = this.a.iterator();
 
 		while (var3.hasNext()) {
-			bjb var4 = (bjb) var3.next();
+			CuboidArea var4 = (CuboidArea) var3.next();
 			var2.addTag((NBTTag) var4.g());
 		}
 
@@ -115,7 +115,7 @@ public class bji extends bms {
 		NBTListTag var2 = var1.getList("Entrances", 11);
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
-			this.a.add(new bjb(var2.getIntArray(var3)));
+			this.a.add(new CuboidArea(var2.getIntArray(var3)));
 		}
 
 	}

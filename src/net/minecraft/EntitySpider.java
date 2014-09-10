@@ -106,7 +106,7 @@ public class EntitySpider extends EntityMonster {
 			var3.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
 			var3.a(var1, (xq) null);
 			this.world.d((Entity) var3);
-			var3.a((Entity) this);
+			var3.mount((Entity) this);
 		}
 
 		if (var4 == null) {

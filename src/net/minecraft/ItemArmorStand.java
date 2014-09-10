@@ -41,7 +41,7 @@ public class ItemArmorStand extends Item {
 							NBTCompoundTag var22 = var1.getTag();
 							if (var22 != null && var22.isTagAssignableFrom("EntityTag", 10)) {
 								NBTCompoundTag var23 = new NBTCompoundTag();
-								var20.d(var23);
+								var20.writeIfNoPassenger(var23);
 								var23.copyFrom(var22.getCompound("EntityTag"));
 								var20.load(var23);
 							}

@@ -16,21 +16,21 @@ import org.apache.logging.log4j.Logger;
 
 public class Chunk {
 
-	private static final Logger c = LogManager.getLogger();
+	private static final Logger logger = LogManager.getLogger();
 	private final ChunkSection[] chunkSections;
 	private final byte[] biomes;
 	private final int[] f;
 	private final boolean[] g;
 	private boolean h;
 	private final World i;
-	private final int[] j;
+	private final int[] heightMap;
 	public final int x;
 	public final int y;
 	private boolean k;
-	private final Map l;
+	private final Map<Position, TileEntity> tileEntities;
 	private final EntitySlice<Entity>[] entitySlices;
-	private boolean n;
-	private boolean o;
+	private boolean terrainPopulated;
+	private boolean loghtPopulated;
 	private boolean p;
 	private boolean q;
 	private boolean r;
@@ -45,14 +45,14 @@ public class Chunk {
 		this.biomes = new byte[256];
 		this.f = new int[256];
 		this.g = new boolean[256];
-		this.l = Maps.newHashMap();
+		this.tileEntities = Maps.newHashMap();
 		this.v = 4096;
 		this.w = Queues.newConcurrentLinkedQueue();
 		this.entitySlices = new EntitySlice[16];
 		this.i = var1;
 		this.x = var2;
 		this.y = var3;
-		this.j = new int[256];
+		this.heightMap = new int[256];
 
 		for (int i = 0; i < this.entitySlices.length; ++i) {
 			this.entitySlices[i] = new EntitySlice<Entity>(Entity.class);
@@ -95,7 +95,7 @@ public class Chunk {
 	}
 
 	public int b(int var1, int var2) {
-		return this.j[var2 << 4 | var1];
+		return this.heightMap[var2 << 4 | var1];
 	}
 
 	public int g() {
@@ -130,7 +130,7 @@ public class Chunk {
 							continue;
 						}
 
-						this.j[var3 << 4 | var2] = var4;
+						this.heightMap[var3 << 4 | var2] = var4;
 						if (var4 < this.t) {
 							this.t = var4;
 						}
@@ -235,7 +235,7 @@ public class Chunk {
 	}
 
 	private void d(int var1, int var2, int var3) {
-		int var4 = this.j[var3 << 4 | var1] & 255;
+		int var4 = this.heightMap[var3 << 4 | var1] & 255;
 		int var5 = var4;
 		if (var2 > var4) {
 			var5 = var2;
@@ -247,7 +247,7 @@ public class Chunk {
 
 		if (var5 != var4) {
 			this.i.a(var1 + this.x * 16, var3 + this.y * 16, var5, var4);
-			this.j[var3 << 4 | var1] = var5;
+			this.heightMap[var3 << 4 | var1] = var5;
 			int var6 = this.x * 16 + var1;
 			int var7 = this.y * 16 + var3;
 			int var8;
@@ -293,7 +293,7 @@ public class Chunk {
 				}
 			}
 
-			var8 = this.j[var3 << 4 | var1];
+			var8 = this.heightMap[var3 << 4 | var1];
 			var13 = var4;
 			int var14 = var8;
 			if (var8 < var4) {
@@ -421,7 +421,7 @@ public class Chunk {
 			this.f[var6] = -999;
 		}
 
-		int var7 = this.j[var6];
+		int var7 = this.heightMap[var6];
 		BlockState var8 = this.getBlockState(var1);
 		if (var8 == var2) {
 			return null;
@@ -552,7 +552,7 @@ public class Chunk {
 		int var2 = DataTypesConverter.toFixedPointInt(entity.locationX / 16.0D);
 		int var3 = DataTypesConverter.toFixedPointInt(entity.locationZ / 16.0D);
 		if (var2 != this.x || var3 != this.y) {
-			c.warn("Wrong location! (" + var2 + ", " + var3 + ") should be (" + this.x + ", " + this.y + "), " + entity, new Object[] { entity });
+			logger.warn("Wrong location! (" + var2 + ", " + var3 + ") should be (" + this.x + ", " + this.y + "), " + entity, new Object[] { entity });
 			entity.die();
 		}
 
@@ -592,7 +592,7 @@ public class Chunk {
 		int var2 = var1.getX() & 15;
 		int var3 = var1.getY();
 		int var4 = var1.getZ() & 15;
-		return var3 >= this.j[var4 << 4 | var2];
+		return var3 >= this.heightMap[var4 << 4 | var2];
 	}
 
 	private TileEntity i(Position var1) {
@@ -601,7 +601,7 @@ public class Chunk {
 	}
 
 	public TileEntity a(Position var1, bfl var2) {
-		TileEntity var3 = (TileEntity) this.l.get(var1);
+		TileEntity var3 = (TileEntity) this.tileEntities.get(var1);
 		if (var3 == null) {
 			if (var2 == bfl.a) {
 				var3 = this.i(var1);
@@ -610,7 +610,7 @@ public class Chunk {
 				this.w.add(var1);
 			}
 		} else if (var3.x()) {
-			this.l.remove(var1);
+			this.tileEntities.remove(var1);
 			return null;
 		}
 
@@ -629,18 +629,18 @@ public class Chunk {
 		var2.a(this.i);
 		var2.a(var1);
 		if (this.a(var1) instanceof avs) {
-			if (this.l.containsKey(var1)) {
-				((TileEntity) this.l.get(var1)).y();
+			if (this.tileEntities.containsKey(var1)) {
+				((TileEntity) this.tileEntities.get(var1)).y();
 			}
 
 			var2.D();
-			this.l.put(var1, var2);
+			this.tileEntities.put(var1, var2);
 		}
 	}
 
 	public void e(Position var1) {
 		if (this.h) {
-			TileEntity var2 = (TileEntity) this.l.remove(var1);
+			TileEntity var2 = (TileEntity) this.tileEntities.remove(var1);
 			if (var2 != null) {
 				var2.y();
 			}
@@ -650,7 +650,7 @@ public class Chunk {
 
 	public void c() {
 		this.h = true;
-		this.i.a(this.l.values());
+		this.i.a(this.tileEntities.values());
 
 		for (int var1 = 0; var1 < this.entitySlices.length; ++var1) {
 			Iterator var2 = this.entitySlices[var1].iterator();
@@ -667,7 +667,7 @@ public class Chunk {
 
 	public void d() {
 		this.h = false;
-		Iterator var1 = this.l.values().iterator();
+		Iterator var1 = this.tileEntities.values().iterator();
 
 		while (var1.hasNext()) {
 			TileEntity var2 = (TileEntity) var1.next();
@@ -733,10 +733,10 @@ public class Chunk {
 
 	public boolean a(boolean var1) {
 		if (var1) {
-			if (this.r && this.i.getLastUpdate() != this.s || this.q) {
+			if (this.r && this.i.getTime() != this.s || this.q) {
 				return true;
 			}
-		} else if (this.r && this.i.getLastUpdate() >= this.s + 600L) {
+		} else if (this.r && this.i.getTime() >= this.s + 600L) {
 			return true;
 		}
 
@@ -761,7 +761,7 @@ public class Chunk {
 		boolean var11 = var1.a(var3 - 1, var4 + 1);
 		boolean var12 = var1.a(var3 + 1, var4 - 1);
 		if (var6 && var7 && var10) {
-			if (!this.n) {
+			if (!this.terrainPopulated) {
 				var1.a(var2, var3, var4);
 			} else {
 				var1.a(var2, this, var3, var4);
@@ -771,7 +771,7 @@ public class Chunk {
 		Chunk var13;
 		if (var8 && var7 && var11) {
 			var13 = var1.d(var3 - 1, var4);
-			if (!var13.n) {
+			if (!var13.terrainPopulated) {
 				var1.a(var2, var3 - 1, var4);
 			} else {
 				var1.a(var2, var13, var3 - 1, var4);
@@ -780,7 +780,7 @@ public class Chunk {
 
 		if (var5 && var6 && var12) {
 			var13 = var1.d(var3, var4 - 1);
-			if (!var13.n) {
+			if (!var13.terrainPopulated) {
 				var1.a(var2, var3, var4 - 1);
 			} else {
 				var1.a(var2, var13, var3, var4 - 1);
@@ -789,7 +789,7 @@ public class Chunk {
 
 		if (var9 && var5 && var8) {
 			var13 = var1.d(var3 - 1, var4 - 1);
-			if (!var13.n) {
+			if (!var13.terrainPopulated) {
 				var1.a(var2, var3 - 1, var4 - 1);
 			} else {
 				var1.a(var2, var13, var3 - 1, var4 - 1);
@@ -830,7 +830,7 @@ public class Chunk {
 		}
 
 		this.p = true;
-		if (!this.o && this.n) {
+		if (!this.loghtPopulated && this.terrainPopulated) {
 			this.n();
 		}
 
@@ -846,7 +846,7 @@ public class Chunk {
 	}
 
 	public boolean i() {
-		return this.p && this.n && this.o;
+		return this.p && this.terrainPopulated && this.loghtPopulated;
 	}
 
 	public ChunkCoordIntPair getCoords() {
@@ -872,14 +872,13 @@ public class Chunk {
 		return true;
 	}
 
-	public void a(ChunkSection[] var1) {
-		if (this.chunkSections.length != var1.length) {
-			c.warn("Could not set level chunk sections, array length is " + var1.length + " instead of " + this.chunkSections.length);
+	public void setSections(ChunkSection[] sections) {
+		if (this.chunkSections.length != sections.length) {
+			logger.warn("Could not set level chunk sections, array length is " + sections.length + " instead of " + this.chunkSections.length);
 		} else {
-			for (int var2 = 0; var2 < this.chunkSections.length; ++var2) {
-				this.chunkSections[var2] = var1[var2];
+			for (int i = 0; i < this.chunkSections.length; ++i) {
+				this.chunkSections[i] = sections[i];
 			}
-
 		}
 	}
 
@@ -902,12 +901,12 @@ public class Chunk {
 		return this.biomes;
 	}
 
-	public void a(byte[] var1) {
-		if (this.biomes.length != var1.length) {
-			c.warn("Could not set level chunk biomes, array length is " + var1.length + " instead of " + this.biomes.length);
+	public void setBiomes(byte[] biomes) {
+		if (this.biomes.length != biomes.length) {
+			logger.warn("Could not set level chunk biomes, array length is " + biomes.length + " instead of " + this.biomes.length);
 		} else {
-			for (int var2 = 0; var2 < this.biomes.length; ++var2) {
-				this.biomes[var2] = var1[var2];
+			for (int i = 0; i < this.biomes.length; ++i) {
+				this.biomes[i] = biomes[i];
 			}
 
 		}
@@ -953,21 +952,21 @@ public class Chunk {
 	}
 
 	public void n() {
-		this.n = true;
-		this.o = true;
+		this.terrainPopulated = true;
+		this.loghtPopulated = true;
 		Position var1 = new Position(this.x << 4, 0, this.y << 4);
 		if (!this.i.worldProvider.noSkyLight()) {
 			if (this.i.a(var1.a(-1, 0, -1), var1.a(16, 63, 16))) {
 				label42: for (int var2 = 0; var2 < 16; ++var2) {
 					for (int var3 = 0; var3 < 16; ++var3) {
 						if (!this.e(var2, var3)) {
-							this.o = false;
+							this.loghtPopulated = false;
 							break label42;
 						}
 					}
 				}
 
-				if (this.o) {
+				if (this.loghtPopulated) {
 					Iterator var5 = en.a.iterator();
 
 					while (var5.hasNext()) {
@@ -979,7 +978,7 @@ public class Chunk {
 					this.y();
 				}
 			} else {
-				this.o = false;
+				this.loghtPopulated = false;
 			}
 		}
 
@@ -994,7 +993,7 @@ public class Chunk {
 	}
 
 	private void a(BlockFace var1) {
-		if (this.n) {
+		if (this.terrainPopulated) {
 			int var2;
 			if (var1 == BlockFace.EAST) {
 				for (var2 = 0; var2 < 16; ++var2) {
@@ -1058,42 +1057,42 @@ public class Chunk {
 	}
 
 	public int[] getHeightMap() {
-		return this.j;
+		return this.heightMap;
 	}
 
-	public void a(int[] var1) {
-		if (this.j.length != var1.length) {
-			c.warn("Could not set level chunk heightmap, array length is " + var1.length + " instead of " + this.j.length);
+	public void setHeightMap(int[] var1) {
+		if (this.heightMap.length != var1.length) {
+			logger.warn("Could not set level chunk heightmap, array length is " + var1.length + " instead of " + this.heightMap.length);
 		} else {
-			for (int var2 = 0; var2 < this.j.length; ++var2) {
-				this.j[var2] = var1[var2];
+			for (int var2 = 0; var2 < this.heightMap.length; ++var2) {
+				this.heightMap[var2] = var1[var2];
 			}
 
 		}
 	}
 
-	public Map r() {
-		return this.l;
+	public Map<Position, TileEntity> getTileEntites() {
+		return this.tileEntities;
 	}
 
-	public EntitySlice[] getEntitySlices() {
+	public EntitySlice<Entity>[] getEntitySlices() {
 		return this.entitySlices;
 	}
 
 	public boolean isTerrainPopulated() {
-		return this.n;
+		return this.terrainPopulated;
 	}
 
-	public void d(boolean var1) {
-		this.n = var1;
+	public void setTerrainPopulated(boolean terrainPopulated) {
+		this.terrainPopulated = terrainPopulated;
 	}
 
 	public boolean isLightPopulated() {
-		return this.o;
+		return this.loghtPopulated;
 	}
 
-	public void e(boolean var1) {
-		this.o = var1;
+	public void setLightPopulated(boolean loghtPopulated) {
+		this.loghtPopulated = loghtPopulated;
 	}
 
 	public void f(boolean var1) {
@@ -1116,7 +1115,7 @@ public class Chunk {
 		return this.u;
 	}
 
-	public void c(long var1) {
+	public void setInhabitedTime(long var1) {
 		this.u = var1;
 	}
 

@@ -424,7 +424,7 @@ public class EntityWither extends EntityMonster implements afr {
 		return EnumMonsterType.b;
 	}
 
-	public void a(Entity var1) {
+	public void mount(Entity var1) {
 		this.vehicle = null;
 	}
 

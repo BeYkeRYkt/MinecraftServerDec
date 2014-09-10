@@ -26,7 +26,7 @@ public abstract class blb extends bms {
 		super(var1);
 	}
 
-	public blb(BlockFace var1, bjb var2) {
+	public blb(BlockFace var1, CuboidArea var2) {
 		super(1);
 		this.m = var1;
 		this.l = var2;
@@ -41,9 +41,9 @@ public abstract class blb extends bms {
 		int var9 = var7 / 5 % 5;
 		int var10 = var7 / 25;
 		if (var2 != BlockFace.NORTH && var2 != BlockFace.SOUTH) {
-			this.l = new bjb(0, 0, 0, var6 * 8 - 1, var5 * 4 - 1, var4 * 8 - 1);
+			this.l = new CuboidArea(0, 0, 0, var6 * 8 - 1, var5 * 4 - 1, var4 * 8 - 1);
 		} else {
-			this.l = new bjb(0, 0, 0, var4 * 8 - 1, var5 * 4 - 1, var6 * 8 - 1);
+			this.l = new CuboidArea(0, 0, 0, var4 * 8 - 1, var5 * 4 - 1, var6 * 8 - 1);
 		}
 
 		switch (bkj.a[var2.ordinal()]) {
@@ -68,7 +68,7 @@ public abstract class blb extends bms {
 	protected void b(NBTCompoundTag var1) {
 	}
 
-	protected void a(World var1, bjb var2, int var3, int var4, boolean var5) {
+	protected void a(World var1, CuboidArea var2, int var3, int var4, boolean var5) {
 		if (var5) {
 			this.a(var1, var2, var3 + 0, 0, var4 + 0, var3 + 2, 0, var4 + 8 - 1, a, a, false);
 			this.a(var1, var2, var3 + 5, 0, var4 + 0, var3 + 8 - 1, 0, var4 + 8 - 1, a, a, false);
@@ -84,7 +84,7 @@ public abstract class blb extends bms {
 
 	}
 
-	protected void a(World var1, bjb var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockState var9) {
+	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockState var9) {
 		for (int var10 = var4; var10 <= var7; ++var10) {
 			for (int var11 = var3; var11 <= var6; ++var11) {
 				for (int var12 = var5; var12 <= var8; ++var12) {
@@ -97,7 +97,7 @@ public abstract class blb extends bms {
 
 	}
 
-	protected boolean a(bjb var1, int var2, int var3, int var4, int var5) {
+	protected boolean a(CuboidArea var1, int var2, int var3, int var4, int var5) {
 		int var6 = this.a(var2, var3);
 		int var7 = this.b(var2, var3);
 		int var8 = this.a(var4, var5);
@@ -105,7 +105,7 @@ public abstract class blb extends bms {
 		return var1.a(Math.min(var6, var8), Math.min(var7, var9), Math.max(var6, var8), Math.max(var7, var9));
 	}
 
-	protected boolean a(World var1, bjb var2, int var3, int var4, int var5) {
+	protected boolean a(World var1, CuboidArea var2, int var3, int var4, int var5) {
 		int var6 = this.a(var3, var5);
 		int var7 = this.d(var4);
 		int var8 = this.b(var3, var5);

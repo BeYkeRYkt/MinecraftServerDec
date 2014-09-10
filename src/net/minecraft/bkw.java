@@ -11,7 +11,7 @@ public class bkw extends blb {
 		super(1, var1, var2, 1, 2, 1);
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		if (this.k.a / 25 > 0) {
 			this.a(var1, var3, 0, 0, this.k.c[BlockFace.DOWN.getId()]);
 		}

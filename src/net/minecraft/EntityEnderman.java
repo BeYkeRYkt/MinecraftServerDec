@@ -53,9 +53,9 @@ public class EntityEnderman extends EntityMonster {
 		super.a(var1);
 		BlockState var2;
 		if (var1.isTagAssignableFrom("carried", 8)) {
-			var2 = Block.b(var1.getString("carried")).a(var1.getShort("carriedData") & '\uffff');
+			var2 = Block.getByName(var1.getString("carried")).a(var1.getShort("carriedData") & '\uffff');
 		} else {
-			var2 = Block.c(var1.getShort("carried")).a(var1.getShort("carriedData") & '\uffff');
+			var2 = Block.getById(var1.getShort("carried")).a(var1.getShort("carriedData") & '\uffff');
 		}
 
 		this.a(var2);

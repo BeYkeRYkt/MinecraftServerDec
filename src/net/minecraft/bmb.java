@@ -10,7 +10,7 @@ public class bmb extends bmk {
 	public bmb() {
 	}
 
-	public bmb(int var1, Random var2, bjb var3, BlockFace var4) {
+	public bmb(int var1, Random var2, CuboidArea var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
@@ -34,11 +34,11 @@ public class bmb extends bmk {
 	}
 
 	public static bmb a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5, int var6) {
-		bjb var7 = bjb.a(var2, var3, var4, -4, -1, 0, 11, 8, 16, var5);
+		CuboidArea var7 = CuboidArea.a(var2, var3, var4, -4, -1, 0, 11, 8, 16, var5);
 		return a(var7) && bms.a(var0, var7) == null ? new bmb(var6, var1, var7, var5) : null;
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		this.a(var1, var3, 0, 0, 0, 10, 7, 15, false, var2, blr.c());
 		this.a(var1, var2, var3, bml.c, 4, 1, 0);
 		byte var4 = 6;

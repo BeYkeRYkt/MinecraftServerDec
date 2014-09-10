@@ -8,7 +8,7 @@ public class bjp extends bkb {
 	public bjp() {
 	}
 
-	public bjp(int var1, Random var2, bjb var3, BlockFace var4) {
+	public bjp(int var1, Random var2, CuboidArea var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
@@ -20,10 +20,10 @@ public class bjp extends bkb {
 		switch (bjo.a[this.m.ordinal()]) {
 			case 1:
 			case 2:
-				this.l = new bjb(var2, 64, var3, var2 + 19 - 1, 73, var3 + 19 - 1);
+				this.l = new CuboidArea(var2, 64, var3, var2 + 19 - 1, 73, var3 + 19 - 1);
 				break;
 			default:
-				this.l = new bjb(var2, 64, var3, var2 + 19 - 1, 73, var3 + 19 - 1);
+				this.l = new CuboidArea(var2, 64, var3, var2 + 19 - 1, 73, var3 + 19 - 1);
 		}
 
 	}
@@ -35,11 +35,11 @@ public class bjp extends bkb {
 	}
 
 	public static bjp a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5, int var6) {
-		bjb var7 = bjb.a(var2, var3, var4, -8, -3, 0, 19, 10, 19, var5);
+		CuboidArea var7 = CuboidArea.a(var2, var3, var4, -8, -3, 0, 19, 10, 19, var5);
 		return a(var7) && bms.a(var0, var7) == null ? new bjp(var6, var1, var7, var5) : null;
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		this.a(var1, var3, 7, 3, 0, 11, 4, 18, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
 		this.a(var1, var3, 0, 3, 7, 18, 4, 11, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
 		this.a(var1, var3, 8, 5, 0, 10, 7, 18, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);

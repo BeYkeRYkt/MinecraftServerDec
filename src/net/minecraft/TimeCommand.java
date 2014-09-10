@@ -50,7 +50,7 @@ public class TimeCommand extends AbstractCommand {
 				}
 
 				if (var2[1].equals("gametime")) {
-					var3 = (int) (var1.getWorld().getLastUpdate() % 2147483647L);
+					var3 = (int) (var1.getWorld().getTime() % 2147483647L);
 					var1.a(ag.e, var3);
 					a(var1, this, "commands.time.query", new Object[] { Integer.valueOf(var3) });
 					return;

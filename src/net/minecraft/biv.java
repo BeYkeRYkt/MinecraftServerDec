@@ -126,14 +126,14 @@ public class biv {
 					var5 = Integer.parseInt(var3[1]);
 				}
 
-				var6 = Block.c(Integer.parseInt(var3[0]));
+				var6 = Block.getById(Integer.parseInt(var3[0]));
 			} else {
 				var3 = var7.split(":", 3);
-				var6 = var3.length > 1 ? Block.b(var3[0] + ":" + var3[1]) : null;
+				var6 = var3.length > 1 ? Block.getByName(var3[0] + ":" + var3[1]) : null;
 				if (var6 != null) {
 					var5 = var3.length > 2 ? Integer.parseInt(var3[2]) : 0;
 				} else {
-					var6 = Block.b(var3[0]);
+					var6 = Block.getByName(var3[0]);
 					if (var6 != null) {
 						var5 = var3.length > 1 ? Integer.parseInt(var3[1]) : 0;
 					}

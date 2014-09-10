@@ -283,7 +283,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public void ak() {
 		if (!this.world.D && this.aw()) {
-			this.a((Entity) null);
+			this.mount((Entity) null);
 			this.setSneaking(false);
 		} else {
 			double var1 = this.locationX;
@@ -957,7 +957,7 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 
 		if (this.av()) {
-			this.a((Entity) null);
+			this.mount((Entity) null);
 		}
 
 		this.a(0.2F, 0.2F);

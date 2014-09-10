@@ -125,7 +125,7 @@ public class TileEntityPiston extends TileEntity implements PacketTickable {
 
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
-		this.a = Block.c(var1.getInt("blockId")).a(var1.getInt("blockData"));
+		this.a = Block.getById(var1.getInt("blockId")).a(var1.getInt("blockData"));
 		this.f = BlockFace.getById(var1.getInt("facing"));
 		this.j = this.i = var1.getFloat("progress");
 		this.g = var1.getBoolean("extending");

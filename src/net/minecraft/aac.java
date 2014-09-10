@@ -52,7 +52,7 @@ public class aac extends zb {
 				this.a.u(5);
 			}
 
-			this.a.l.a((Entity) null);
+			this.a.l.mount((Entity) null);
 			this.a.l = null;
 			this.a.cU();
 			this.a.world.a((Entity) this.a, (byte) 6);

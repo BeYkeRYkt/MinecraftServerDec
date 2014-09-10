@@ -33,7 +33,7 @@ public class blk extends bln {
 		this.e[3] = var1.getBoolean("hasPlacedChest3");
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		this.a(var1, var3, 0, -4, 0, this.a - 1, 0, this.c - 1, Blocks.SANDSTONE.getBlockState(), Blocks.SANDSTONE.getBlockState(), false);
 
 		int var4;

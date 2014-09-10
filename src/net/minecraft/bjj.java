@@ -8,7 +8,7 @@ public class bjj extends bms {
 	public bjj() {
 	}
 
-	public bjj(int var1, Random var2, bjb var3, BlockFace var4) {
+	public bjj(int var1, Random var2, CuboidArea var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
@@ -20,24 +20,24 @@ public class bjj extends bms {
 	protected void b(NBTCompoundTag var1) {
 	}
 
-	public static bjb a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5) {
-		bjb var6 = new bjb(var2, var3 - 5, var4, var2, var3 + 2, var4);
+	public static CuboidArea a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5) {
+		CuboidArea var6 = new CuboidArea(var2, var3 - 5, var4, var2, var3 + 2, var4);
 		switch (bjf.a[var5.ordinal()]) {
 			case 1:
-				var6.d = var2 + 2;
-				var6.c = var4 - 8;
+				var6.maxX = var2 + 2;
+				var6.minZ = var4 - 8;
 				break;
 			case 2:
-				var6.d = var2 + 2;
-				var6.f = var4 + 8;
+				var6.maxX = var2 + 2;
+				var6.maxZ = var4 + 8;
 				break;
 			case 3:
-				var6.a = var2 - 8;
-				var6.f = var4 + 2;
+				var6.minX = var2 - 8;
+				var6.maxZ = var4 + 2;
 				break;
 			case 4:
-				var6.d = var2 + 8;
-				var6.f = var4 + 2;
+				var6.maxX = var2 + 8;
+				var6.maxZ = var4 + 2;
 		}
 
 		return bms.a(var0, var6) != null ? null : var6;
@@ -48,22 +48,22 @@ public class bjj extends bms {
 		if (this.m != null) {
 			switch (bjf.a[this.m.ordinal()]) {
 				case 1:
-					bje.a(var1, var2, var3, this.l.a, this.l.b, this.l.c - 1, BlockFace.NORTH, var4);
+					bje.a(var1, var2, var3, this.l.minX, this.l.minY, this.l.minZ - 1, BlockFace.NORTH, var4);
 					break;
 				case 2:
-					bje.a(var1, var2, var3, this.l.a, this.l.b, this.l.f + 1, BlockFace.SOUTH, var4);
+					bje.a(var1, var2, var3, this.l.minX, this.l.minY, this.l.maxZ + 1, BlockFace.SOUTH, var4);
 					break;
 				case 3:
-					bje.a(var1, var2, var3, this.l.a - 1, this.l.b, this.l.c, BlockFace.WEST, var4);
+					bje.a(var1, var2, var3, this.l.minX - 1, this.l.minY, this.l.minZ, BlockFace.WEST, var4);
 					break;
 				case 4:
-					bje.a(var1, var2, var3, this.l.d + 1, this.l.b, this.l.c, BlockFace.EAST, var4);
+					bje.a(var1, var2, var3, this.l.maxX + 1, this.l.minY, this.l.minZ, BlockFace.EAST, var4);
 			}
 		}
 
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		if (this.a(var1, var3)) {
 			return false;
 		} else {

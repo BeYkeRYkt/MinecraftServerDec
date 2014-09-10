@@ -33,7 +33,7 @@ public class bkh extends bmv {
 		this.d = true;
 	}
 
-	public void a(World var1, Random var2, bjb var3) {
+	public void a(World var1, Random var2, CuboidArea var3) {
 		if (!this.d) {
 			this.a.clear();
 			this.b(var1, var2, this.e(), this.f());

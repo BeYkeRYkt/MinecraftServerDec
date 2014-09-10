@@ -11,7 +11,7 @@ public class bkx extends blb {
 		super(1, var1, var2, 1, 2, 2);
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		blf var4 = this.k.b[BlockFace.NORTH.getId()];
 		blf var5 = this.k;
 		blf var6 = var4.b[BlockFace.UP.getId()];

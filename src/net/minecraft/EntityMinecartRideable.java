@@ -17,7 +17,7 @@ public class EntityMinecartRideable extends adx {
 			return false;
 		} else {
 			if (!this.world.D) {
-				var1.a((Entity) this);
+				var1.mount((Entity) this);
 			}
 
 			return true;
@@ -27,7 +27,7 @@ public class EntityMinecartRideable extends adx {
 	public void a(int var1, int var2, int var3, boolean var4) {
 		if (var4) {
 			if (this.l != null) {
-				this.l.a((Entity) null);
+				this.l.mount((Entity) null);
 			}
 
 			if (this.q() == 0) {

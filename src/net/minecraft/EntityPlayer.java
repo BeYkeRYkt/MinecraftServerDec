@@ -436,9 +436,9 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	}
 
-	public void a(Entity var1) {
+	public void mount(Entity var1) {
 		Entity var2 = this.vehicle;
-		super.a(var1);
+		super.mount(var1);
 		if (var1 != var2) {
 			this.playerConncetion.sendPacket((Packet) (new PacketPlayOutAttachEntity(0, this, this.vehicle)));
 			this.playerConncetion.movePlayer(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
@@ -644,7 +644,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void q() {
 		if (this.l != null) {
-			this.l.a((Entity) this);
+			this.l.mount((Entity) this);
 		}
 
 		if (this.isSleeping) {
@@ -724,7 +724,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		this.playerInteractManager.a(var1);
 		this.playerConncetion.sendPacket((Packet) (new PacketPlayOutChangeGameState(3, (float) var1.getId())));
 		if (var1 == GameMode.SPECTATOR) {
-			this.a((Entity) null);
+			this.mount((Entity) null);
 		} else {
 			this.e(this);
 		}

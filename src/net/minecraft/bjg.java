@@ -27,7 +27,7 @@ public class bjg extends bms {
 		this.d = var1.getInt("Num");
 	}
 
-	public bjg(int var1, Random var2, bjb var3, BlockFace var4) {
+	public bjg(int var1, Random var2, CuboidArea var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
@@ -41,28 +41,28 @@ public class bjg extends bms {
 
 	}
 
-	public static bjb a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5) {
-		bjb var6 = new bjb(var2, var3, var4, var2, var3 + 2, var4);
+	public static CuboidArea a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5) {
+		CuboidArea var6 = new CuboidArea(var2, var3, var4, var2, var3 + 2, var4);
 
 		int var7;
 		for (var7 = var1.nextInt(3) + 2; var7 > 0; --var7) {
 			int var8 = var7 * 5;
 			switch (bjf.a[var5.ordinal()]) {
 				case 1:
-					var6.d = var2 + 2;
-					var6.c = var4 - (var8 - 1);
+					var6.maxX = var2 + 2;
+					var6.minZ = var4 - (var8 - 1);
 					break;
 				case 2:
-					var6.d = var2 + 2;
-					var6.f = var4 + (var8 - 1);
+					var6.maxX = var2 + 2;
+					var6.maxZ = var4 + (var8 - 1);
 					break;
 				case 3:
-					var6.a = var2 - (var8 - 1);
-					var6.f = var4 + 2;
+					var6.minX = var2 - (var8 - 1);
+					var6.maxZ = var4 + 2;
 					break;
 				case 4:
-					var6.d = var2 + (var8 - 1);
-					var6.f = var4 + 2;
+					var6.maxX = var2 + (var8 - 1);
+					var6.maxZ = var4 + 2;
 			}
 
 			if (bms.a(var0, var6) == null) {
@@ -80,38 +80,38 @@ public class bjg extends bms {
 			switch (bjf.a[this.m.ordinal()]) {
 				case 1:
 					if (var5 <= 1) {
-						bje.a(var1, var2, var3, this.l.a, this.l.b - 1 + var3.nextInt(3), this.l.c - 1, this.m, var4);
+						bje.a(var1, var2, var3, this.l.minX, this.l.minY - 1 + var3.nextInt(3), this.l.minZ - 1, this.m, var4);
 					} else if (var5 == 2) {
-						bje.a(var1, var2, var3, this.l.a - 1, this.l.b - 1 + var3.nextInt(3), this.l.c, BlockFace.WEST, var4);
+						bje.a(var1, var2, var3, this.l.minX - 1, this.l.minY - 1 + var3.nextInt(3), this.l.minZ, BlockFace.WEST, var4);
 					} else {
-						bje.a(var1, var2, var3, this.l.d + 1, this.l.b - 1 + var3.nextInt(3), this.l.c, BlockFace.EAST, var4);
+						bje.a(var1, var2, var3, this.l.maxX + 1, this.l.minY - 1 + var3.nextInt(3), this.l.minZ, BlockFace.EAST, var4);
 					}
 					break;
 				case 2:
 					if (var5 <= 1) {
-						bje.a(var1, var2, var3, this.l.a, this.l.b - 1 + var3.nextInt(3), this.l.f + 1, this.m, var4);
+						bje.a(var1, var2, var3, this.l.minX, this.l.minY - 1 + var3.nextInt(3), this.l.maxZ + 1, this.m, var4);
 					} else if (var5 == 2) {
-						bje.a(var1, var2, var3, this.l.a - 1, this.l.b - 1 + var3.nextInt(3), this.l.f - 3, BlockFace.WEST, var4);
+						bje.a(var1, var2, var3, this.l.minX - 1, this.l.minY - 1 + var3.nextInt(3), this.l.maxZ - 3, BlockFace.WEST, var4);
 					} else {
-						bje.a(var1, var2, var3, this.l.d + 1, this.l.b - 1 + var3.nextInt(3), this.l.f - 3, BlockFace.EAST, var4);
+						bje.a(var1, var2, var3, this.l.maxX + 1, this.l.minY - 1 + var3.nextInt(3), this.l.maxZ - 3, BlockFace.EAST, var4);
 					}
 					break;
 				case 3:
 					if (var5 <= 1) {
-						bje.a(var1, var2, var3, this.l.a - 1, this.l.b - 1 + var3.nextInt(3), this.l.c, this.m, var4);
+						bje.a(var1, var2, var3, this.l.minX - 1, this.l.minY - 1 + var3.nextInt(3), this.l.minZ, this.m, var4);
 					} else if (var5 == 2) {
-						bje.a(var1, var2, var3, this.l.a, this.l.b - 1 + var3.nextInt(3), this.l.c - 1, BlockFace.NORTH, var4);
+						bje.a(var1, var2, var3, this.l.minX, this.l.minY - 1 + var3.nextInt(3), this.l.minZ - 1, BlockFace.NORTH, var4);
 					} else {
-						bje.a(var1, var2, var3, this.l.a, this.l.b - 1 + var3.nextInt(3), this.l.f + 1, BlockFace.SOUTH, var4);
+						bje.a(var1, var2, var3, this.l.minX, this.l.minY - 1 + var3.nextInt(3), this.l.maxZ + 1, BlockFace.SOUTH, var4);
 					}
 					break;
 				case 4:
 					if (var5 <= 1) {
-						bje.a(var1, var2, var3, this.l.d + 1, this.l.b - 1 + var3.nextInt(3), this.l.c, this.m, var4);
+						bje.a(var1, var2, var3, this.l.maxX + 1, this.l.minY - 1 + var3.nextInt(3), this.l.minZ, this.m, var4);
 					} else if (var5 == 2) {
-						bje.a(var1, var2, var3, this.l.d - 3, this.l.b - 1 + var3.nextInt(3), this.l.c - 1, BlockFace.NORTH, var4);
+						bje.a(var1, var2, var3, this.l.maxX - 3, this.l.minY - 1 + var3.nextInt(3), this.l.minZ - 1, BlockFace.NORTH, var4);
 					} else {
-						bje.a(var1, var2, var3, this.l.d - 3, this.l.b - 1 + var3.nextInt(3), this.l.f + 1, BlockFace.SOUTH, var4);
+						bje.a(var1, var2, var3, this.l.maxX - 3, this.l.minY - 1 + var3.nextInt(3), this.l.maxZ + 1, BlockFace.SOUTH, var4);
 					}
 			}
 		}
@@ -120,21 +120,21 @@ public class bjg extends bms {
 			int var6;
 			int var7;
 			if (this.m != BlockFace.NORTH && this.m != BlockFace.SOUTH) {
-				for (var6 = this.l.a + 3; var6 + 3 <= this.l.d; var6 += 5) {
+				for (var6 = this.l.minX + 3; var6 + 3 <= this.l.maxX; var6 += 5) {
 					var7 = var3.nextInt(5);
 					if (var7 == 0) {
-						bje.a(var1, var2, var3, var6, this.l.b, this.l.c - 1, BlockFace.NORTH, var4 + 1);
+						bje.a(var1, var2, var3, var6, this.l.minY, this.l.minZ - 1, BlockFace.NORTH, var4 + 1);
 					} else if (var7 == 1) {
-						bje.a(var1, var2, var3, var6, this.l.b, this.l.f + 1, BlockFace.SOUTH, var4 + 1);
+						bje.a(var1, var2, var3, var6, this.l.minY, this.l.maxZ + 1, BlockFace.SOUTH, var4 + 1);
 					}
 				}
 			} else {
-				for (var6 = this.l.c + 3; var6 + 3 <= this.l.f; var6 += 5) {
+				for (var6 = this.l.minZ + 3; var6 + 3 <= this.l.maxZ; var6 += 5) {
 					var7 = var3.nextInt(5);
 					if (var7 == 0) {
-						bje.a(var1, var2, var3, this.l.a - 1, this.l.b, var6, BlockFace.WEST, var4 + 1);
+						bje.a(var1, var2, var3, this.l.minX - 1, this.l.minY, var6, BlockFace.WEST, var4 + 1);
 					} else if (var7 == 1) {
-						bje.a(var1, var2, var3, this.l.d + 1, this.l.b, var6, BlockFace.EAST, var4 + 1);
+						bje.a(var1, var2, var3, this.l.maxX + 1, this.l.minY, var6, BlockFace.EAST, var4 + 1);
 					}
 				}
 			}
@@ -142,7 +142,7 @@ public class bjg extends bms {
 
 	}
 
-	protected boolean a(World var1, bjb var2, Random var3, int var4, int var5, int var6, List var7, int var8) {
+	protected boolean a(World var1, CuboidArea var2, Random var3, int var4, int var5, int var6, List var7, int var8) {
 		Position var9 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
 		if (var2.b((fd) var9) && var1.getBlockState(var9).getBlock().getMaterial() == Material.AIR) {
 			int var10 = var3.nextBoolean() ? 1 : 0;
@@ -156,7 +156,7 @@ public class bjg extends bms {
 		}
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		if (this.a(var1, var3)) {
 			return false;
 		} else {

@@ -17,7 +17,7 @@ public class bje {
 
 	private static bms a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5, int var6) {
 		int var7 = var1.nextInt(100);
-		bjb var8;
+		CuboidArea var8;
 		if (var7 >= 80) {
 			var8 = bjh.a(var0, var1, var2, var3, var4, var5);
 			if (var8 != null) {
@@ -41,7 +41,7 @@ public class bje {
 	private static bms b(bms var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6, int var7) {
 		if (var7 > 8) {
 			return null;
-		} else if (Math.abs(var3 - var0.c().a) <= 80 && Math.abs(var5 - var0.c().c) <= 80) {
+		} else if (Math.abs(var3 - var0.c().minX) <= 80 && Math.abs(var5 - var0.c().minZ) <= 80) {
 			bms var8 = a(var1, var2, var3, var4, var5, var6, var7 + 1);
 			if (var8 != null) {
 				var1.add(var8);

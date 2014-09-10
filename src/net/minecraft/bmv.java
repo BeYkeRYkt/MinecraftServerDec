@@ -7,7 +7,7 @@ import java.util.Random;
 public abstract class bmv {
 
 	protected LinkedList a = new LinkedList();
-	protected bjb b;
+	protected CuboidArea b;
 	private int c;
 	private int d;
 
@@ -19,7 +19,7 @@ public abstract class bmv {
 		this.d = var2;
 	}
 
-	public bjb a() {
+	public CuboidArea a() {
 		return this.b;
 	}
 
@@ -27,7 +27,7 @@ public abstract class bmv {
 		return this.a;
 	}
 
-	public void a(World var1, Random var2, bjb var3) {
+	public void a(World var1, Random var2, CuboidArea var3) {
 		Iterator var4 = this.a.iterator();
 
 		while (var4.hasNext()) {
@@ -40,7 +40,7 @@ public abstract class bmv {
 	}
 
 	protected void c() {
-		this.b = bjb.a();
+		this.b = CuboidArea.getMaximumArea();
 		Iterator var1 = this.a.iterator();
 
 		while (var1.hasNext()) {
@@ -76,7 +76,7 @@ public abstract class bmv {
 		this.c = var2.getInt("ChunkX");
 		this.d = var2.getInt("ChunkZ");
 		if (var2.hasKey("BB")) {
-			this.b = new bjb(var2.getIntArray("BB"));
+			this.b = new CuboidArea(var2.getIntArray("BB"));
 		}
 
 		NBTListTag var3 = var2.getList("Children", 10);
@@ -98,7 +98,7 @@ public abstract class bmv {
 			var5 += var2.nextInt(var4 - var5);
 		}
 
-		int var6 = var5 - this.b.e;
+		int var6 = var5 - this.b.maxY;
 		this.b.a(0, var6, 0);
 		Iterator var7 = this.a.iterator();
 
@@ -119,7 +119,7 @@ public abstract class bmv {
 			var10 = var3;
 		}
 
-		int var7 = var10 - this.b.b;
+		int var7 = var10 - this.b.minY;
 		this.b.a(0, var7, 0);
 		Iterator var8 = this.a.iterator();
 

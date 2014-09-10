@@ -62,12 +62,12 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 			logger.error("Chunk file at " + chunkX + "," + chunkZ + " is missing block data, skipping");
 			return null;
 		} else {
-			Chunk chunk = this.a(world, tag.getCompound("Level"));
+			Chunk chunk = this.readChunkInfo(world, tag.getCompound("Level"));
 			if (!chunk.a(chunkX, chunkZ)) {
 				logger.error("Chunk file at " + chunkX + "," + chunkZ + " is in the wrong location; relocating. (Expected " + chunkX + ", " + chunkZ + ", got " + chunk.x + ", " + chunk.y + ")");
 				tag.put("xPos", chunkX);
 				tag.put("zPos", chunkZ);
-				chunk = this.a(world, tag.getCompound("Level"));
+				chunk = this.readChunkInfo(world, tag.getCompound("Level"));
 			}
 
 			return chunk;
@@ -149,7 +149,7 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 		tag.put("V", (byte) 1);
 		tag.put("xPos", chunk.x);
 		tag.put("zPos", chunk.y);
-		tag.put("LastUpdate", world.getLastUpdate());
+		tag.put("LastUpdate", world.getTime());
 		tag.put("HeightMap", chunk.getHeightMap());
 		tag.put("TerrainPopulated", chunk.isTerrainPopulated());
 		tag.put("LightPopulated", chunk.isLightPopulated());
@@ -194,162 +194,150 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 					sectionTag.put("SkyLight", new byte[chunkSection.getEmittedLight().getArray().length]);
 				}
 
-				sectionsTag.addTag((NBTTag) sectionTag);
+				sectionsTag.addTag(sectionTag);
 			}
 		}
-		tag.put("Sections", (NBTTag) sectionsTag);
+		tag.put("Sections", sectionsTag);
 
 		tag.put("Biomes", chunk.getBiomes());
+
 		chunk.g(false);
-		NBTListTag var20 = new NBTListTag();
-
-		Iterator var22;
-		for (int var8 = 0; var8 < chunk.getEntitySlices().length; ++var8) {
-			var22 = chunk.getEntitySlices()[var8].iterator();
-
-			while (var22.hasNext()) {
-				Entity var24 = (Entity) var22.next();
+		NBTListTag entitesTag = new NBTListTag();
+		for (EntitySlice<Entity> ecititySlice : chunk.getEntitySlices()) {
+			Iterator<Entity> sliceIt = ecititySlice.iterator();
+			while (sliceIt.hasNext()) {
+				Entity entity = sliceIt.next();
 				NBTCompoundTag sectionTag = new NBTCompoundTag();
-				if (var24.d(sectionTag)) {
+				if (entity.writeIfNoPassenger(sectionTag)) {
 					chunk.g(true);
-					var20.addTag((NBTTag) sectionTag);
+					entitesTag.addTag(sectionTag);
 				}
 			}
 		}
+		tag.put("Entities", entitesTag);
 
-		tag.put("Entities", (NBTTag) var20);
-		NBTListTag var21 = new NBTListTag();
-		var22 = chunk.r().values().iterator();
-
-		while (var22.hasNext()) {
-			TileEntity var25 = (TileEntity) var22.next();
+		NBTListTag tileEntiesTag = new NBTListTag();
+		for (TileEntity tileEntity : chunk.getTileEntites().values()) {
 			NBTCompoundTag sectionTag = new NBTCompoundTag();
-			var25.write(sectionTag);
-			var21.addTag((NBTTag) sectionTag);
+			tileEntity.write(sectionTag);
+			tileEntiesTag.addTag((NBTTag) sectionTag);
 		}
+		tag.put("TileEntities", tileEntiesTag);
 
-		tag.put("TileEntities", (NBTTag) var21);
-		List var23 = world.a(chunk, false);
-		if (var23 != null) {
-			long var26 = world.getLastUpdate();
-			NBTListTag var27 = new NBTListTag();
-			Iterator var28 = var23.iterator();
-
-			while (var28.hasNext()) {
-				ark var29 = (ark) var28.next();
-				NBTCompoundTag var30 = new NBTCompoundTag();
-				RegistryObjectName var31 = (RegistryObjectName) Block.BLOCKREGISTRY.c(var29.a());
-				var30.put("i", var31 == null ? "" : var31.toString());
-				var30.put("x", var29.a.getX());
-				var30.put("y", var29.a.getY());
-				var30.put("z", var29.a.getZ());
-				var30.put("t", (int) (var29.b - var26));
-				var30.put("p", var29.c);
-				var27.addTag((NBTTag) var30);
+		List<NextTickListEntry> nextTickList = world.getNextTickList(chunk, false);
+		if (nextTickList != null) {
+			long lastUpdate = world.getTime();
+			NBTListTag nextTickListTag = new NBTListTag();
+			for (NextTickListEntry listEntry : nextTickList) {
+				NBTCompoundTag entryTag = new NBTCompoundTag();
+				RegistryObjectName objectName = (RegistryObjectName) Block.BLOCKREGISTRY.c(listEntry.getBlock());
+				entryTag.put("i", objectName == null ? "" : objectName.toString());
+				entryTag.put("x", listEntry.position.getX());
+				entryTag.put("y", listEntry.position.getY());
+				entryTag.put("z", listEntry.position.getZ());
+				entryTag.put("t", (int) (listEntry.b - lastUpdate));
+				entryTag.put("p", listEntry.c);
+				nextTickListTag.addTag(entryTag);
 			}
-
-			tag.put("TileTicks", (NBTTag) var27);
+			tag.put("TileTicks", nextTickListTag);
 		}
 
 	}
 
-	private Chunk a(World var1, NBTCompoundTag var2) {
-		int var3 = var2.getInt("xPos");
-		int var4 = var2.getInt("zPos");
-		Chunk var5 = new Chunk(var1, var3, var4);
-		var5.a(var2.getIntArray("HeightMap"));
-		var5.d(var2.getBoolean("TerrainPopulated"));
-		var5.e(var2.getBoolean("LightPopulated"));
-		var5.c(var2.getLong("InhabitedTime"));
-		NBTListTag var6 = var2.getList("Sections", 10);
-		byte var7 = 16;
-		ChunkSection[] var8 = new ChunkSection[var7];
-		boolean var9 = !var1.worldProvider.noSkyLight();
+	private Chunk readChunkInfo(World world, NBTCompoundTag tag) {
+		int chunkX = tag.getInt("xPos");
+		int chunkZ = tag.getInt("zPos");
+		Chunk chunk = new Chunk(world, chunkX, chunkZ);
+		chunk.setHeightMap(tag.getIntArray("HeightMap"));
+		chunk.setTerrainPopulated(tag.getBoolean("TerrainPopulated"));
+		chunk.setLightPopulated(tag.getBoolean("LightPopulated"));
+		chunk.setInhabitedTime(tag.getLong("InhabitedTime"));
 
-		for (int var10 = 0; var10 < var6.getSize(); ++var10) {
-			NBTCompoundTag var11 = var6.getCompound(var10);
-			byte var12 = var11.getByte("Y");
-			ChunkSection var13 = new ChunkSection(var12 << 4, var9);
-			byte[] var14 = var11.getByteArray("Blocks");
-			ChunkNibbleArray var15 = new ChunkNibbleArray(var11.getByteArray("Data"));
-			ChunkNibbleArray var16 = var11.isTagAssignableFrom("Add", 7) ? new ChunkNibbleArray(var11.getByteArray("Add")) : null;
-			char[] var17 = new char[var14.length];
+		NBTListTag sectionsTag = tag.getList("Sections", 10);
+		ChunkSection[] chunkSections = new ChunkSection[16];
+		for (int sectionNumber = 0; sectionNumber < sectionsTag.getSize(); ++sectionNumber) {
+			NBTCompoundTag sectionTag = sectionsTag.getCompound(sectionNumber);
+			byte sectionYPos = sectionTag.getByte("Y");
+			ChunkSection section = new ChunkSection(sectionYPos << 4, !world.worldProvider.noSkyLight());
+			byte[] blockIds = sectionTag.getByteArray("Blocks");
+			ChunkNibbleArray dataIds = new ChunkNibbleArray(sectionTag.getByteArray("Data"));
+			ChunkNibbleArray addBlockIds = sectionTag.isTagAssignableFrom("Add", 7) ? new ChunkNibbleArray(sectionTag.getByteArray("Add")) : null;
+			char[] packedBlockIds = new char[blockIds.length];
 
-			for (int var18 = 0; var18 < var17.length; ++var18) {
-				int var19 = var18 & 15;
-				int var20 = var18 >> 8 & 15;
-				int var21 = var18 >> 4 & 15;
-				int var22 = var16 != null ? var16.getValue(var19, var20, var21) : 0;
-				var17[var18] = (char) (var22 << 12 | (var14[var18] & 255) << 4 | var15.getValue(var19, var20, var21));
+			for (int i = 0; i < packedBlockIds.length; ++i) {
+				int x = i & 15;
+				int y = i >> 8 & 15;
+				int z = i >> 4 & 15;
+				int addBlockId = addBlockIds != null ? addBlockIds.getValue(x, y, z) : 0;
+				packedBlockIds[i] = (char) (addBlockId << 12 | (blockIds[i] & 255) << 4 | dataIds.getValue(x, y, z));
 			}
 
-			var13.setBlockIds(var17);
-			var13.setEmittedLight(new ChunkNibbleArray(var11.getByteArray("BlockLight")));
-			if (var9) {
-				var13.setSkyLight(new ChunkNibbleArray(var11.getByteArray("SkyLight")));
+			section.setBlockIds(packedBlockIds);
+			section.setEmittedLight(new ChunkNibbleArray(sectionTag.getByteArray("BlockLight")));
+			if (!world.worldProvider.noSkyLight()) {
+				section.setSkyLight(new ChunkNibbleArray(sectionTag.getByteArray("SkyLight")));
 			}
+			section.recalcBlockCounts();
+			chunkSections[sectionYPos] = section;
+		}
+		chunk.setSections(chunkSections);
 
-			var13.e();
-			var8[var12] = var13;
+		if (tag.isTagAssignableFrom("Biomes", 7)) {
+			chunk.setBiomes(tag.getByteArray("Biomes"));
 		}
 
-		var5.a(var8);
-		if (var2.isTagAssignableFrom("Biomes", 7)) {
-			var5.a(var2.getByteArray("Biomes"));
-		}
+		NBTListTag entitesTag = tag.getList("Entities", 10);
+		if (entitesTag != null) {
+			for (int i = 0; i < entitesTag.getSize(); ++i) {
+				NBTCompoundTag entityTag = entitesTag.getCompound(i);
+				Entity entity = EntityTypes.loadEntity(entityTag, world);
+				chunk.g(true);
+				if (entity != null) {
+					chunk.addEntity(entity);
+					Entity passenger = entity;
 
-		NBTListTag var23 = var2.getList("Entities", 10);
-		if (var23 != null) {
-			for (int var24 = 0; var24 < var23.getSize(); ++var24) {
-				NBTCompoundTag var26 = var23.getCompound(var24);
-				Entity var29 = EntityTypes.loadEntity(var26, var1);
-				var5.g(true);
-				if (var29 != null) {
-					var5.addEntity(var29);
-					Entity var32 = var29;
-
-					for (NBTCompoundTag var35 = var26; var35.isTagAssignableFrom("Riding", 10); var35 = var35.getCompound("Riding")) {
-						Entity var37 = EntityTypes.loadEntity(var35.getCompound("Riding"), var1);
-						if (var37 != null) {
-							var5.addEntity(var37);
-							var32.a(var37);
+					for (NBTCompoundTag vehicleTag = entityTag; vehicleTag.isTagAssignableFrom("Riding", 10); vehicleTag = vehicleTag.getCompound("Riding")) {
+						Entity vehicle = EntityTypes.loadEntity(vehicleTag.getCompound("Riding"), world);
+						if (vehicle != null) {
+							chunk.addEntity(vehicle);
+							passenger.mount(vehicle);
 						}
 
-						var32 = var37;
+						passenger = vehicle;
 					}
 				}
 			}
 		}
 
-		NBTListTag var25 = var2.getList("TileEntities", 10);
-		if (var25 != null) {
-			for (int var27 = 0; var27 < var25.getSize(); ++var27) {
-				NBTCompoundTag var30 = var25.getCompound(var27);
-				TileEntity var33 = TileEntity.fromNBT(var30);
-				if (var33 != null) {
-					var5.a(var33);
+		NBTListTag tileEntiesTag = tag.getList("TileEntities", 10);
+		if (tileEntiesTag != null) {
+			for (int i = 0; i < tileEntiesTag.getSize(); ++i) {
+				NBTCompoundTag tileEntityTag = tileEntiesTag.getCompound(i);
+				TileEntity tileEntity = TileEntity.fromNBT(tileEntityTag);
+				if (tileEntity != null) {
+					chunk.a(tileEntity);
 				}
 			}
 		}
 
-		if (var2.isTagAssignableFrom("TileTicks", 9)) {
-			NBTListTag var28 = var2.getList("TileTicks", 10);
-			if (var28 != null) {
-				for (int var31 = 0; var31 < var28.getSize(); ++var31) {
-					NBTCompoundTag var34 = var28.getCompound(var31);
-					Block var36;
-					if (var34.isTagAssignableFrom("i", 8)) {
-						var36 = Block.b(var34.getString("i"));
+		if (tag.isTagAssignableFrom("TileTicks", 9)) {
+			NBTListTag nextTickListTag = tag.getList("TileTicks", 10);
+			if (nextTickListTag != null) {
+				for (int i = 0; i < nextTickListTag.getSize(); ++i) {
+					NBTCompoundTag entryTag = nextTickListTag.getCompound(i);
+					Block block;
+					if (entryTag.isTagAssignableFrom("i", 8)) {
+						block = Block.getByName(entryTag.getString("i"));
 					} else {
-						var36 = Block.c(var34.getInt("i"));
+						block = Block.getById(entryTag.getInt("i"));
 					}
 
-					var1.b(new Position(var34.getInt("x"), var34.getInt("y"), var34.getInt("z")), var36, var34.getInt("t"), var34.getInt("p"));
+					world.addNextTickEntry(new Position(entryTag.getInt("x"), entryTag.getInt("y"), entryTag.getInt("z")), block, entryTag.getInt("t"), entryTag.getInt("p"));
 				}
 			}
 		}
 
-		return var5;
+		return chunk;
 	}
 
 }

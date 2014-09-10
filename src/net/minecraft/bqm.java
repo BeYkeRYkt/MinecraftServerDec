@@ -167,7 +167,7 @@ public class bqm implements IDataManager, brl {
 	public void a(EntityHuman var1) {
 		try {
 			NBTCompoundTag var2 = new NBTCompoundTag();
-			var1.e(var2);
+			var1.write(var2);
 			File var3 = new File(this.c, var1.aJ().toString() + ".dat.tmp");
 			File var4 = new File(this.c, var1.aJ().toString() + ".dat");
 			NBTCompressedStreamTools.writeTag(var2, (OutputStream) (new FileOutputStream(var3)));

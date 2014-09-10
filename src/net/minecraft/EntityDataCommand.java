@@ -26,7 +26,7 @@ public class EntityDataCommand extends AbstractCommand {
 				throw new di("commands.entitydata.noPlayers", new Object[] { var3.getComponentName() });
 			} else {
 				NBTCompoundTag var4 = new NBTCompoundTag();
-				var3.e(var4);
+				var3.write(var4);
 				NBTCompoundTag var5 = (NBTCompoundTag) var4.getCopy();
 
 				NBTCompoundTag var6;

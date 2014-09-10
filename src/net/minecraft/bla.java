@@ -7,11 +7,11 @@ public class bla extends blb {
 	public bla() {
 	}
 
-	public bla(BlockFace var1, bjb var2) {
+	public bla(BlockFace var1, CuboidArea var2) {
 		super(var1, var2);
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		this.a(var1, var3, 2, -1, 2, 11, -1, 11, b, b, false);
 		this.a(var1, var3, 0, -1, 0, 1, -1, 11, a, a, false);
 		this.a(var1, var3, 12, -1, 0, 13, -1, 11, a, a, false);

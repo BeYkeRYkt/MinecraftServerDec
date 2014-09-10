@@ -501,7 +501,7 @@ public final class ItemStack {
 				NBTListTag var2 = this.tag.getList("CanDestroy", 8);
 
 				for (int var3 = 0; var3 < var2.getSize(); ++var3) {
-					Block var4 = Block.b(var2.getString(var3));
+					Block var4 = Block.getByName(var2.getString(var3));
 					if (var4 == var1) {
 						this.i = true;
 						return true;
@@ -523,7 +523,7 @@ public final class ItemStack {
 				NBTListTag var2 = this.tag.getList("CanPlaceOn", 8);
 
 				for (int var3 = 0; var3 < var2.getSize(); ++var3) {
-					Block var4 = Block.b(var2.getString(var3));
+					Block var4 = Block.getByName(var2.getString(var3));
 					if (var4 == var1) {
 						this.k = true;
 						return true;

@@ -37,7 +37,7 @@ public class bll extends bln {
 		this.h = var1.getBoolean("placedTrap2");
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		if (!this.a(var1, var3, 0)) {
 			return false;
 		} else {

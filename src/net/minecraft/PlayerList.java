@@ -119,7 +119,7 @@ public abstract class PlayerList {
 			if (var16 != null) {
 				var16.n = true;
 				worldServer.d(var16);
-				player.a(var16);
+				player.mount(var16);
 				var16.n = false;
 			}
 		}
@@ -601,7 +601,7 @@ public abstract class PlayerList {
 	public void updateWorldData(EntityPlayer var1, WorldServer var2) {
 		WorldBorder var3 = this.minecraftserver.worlds[0].getWorldBorder();
 		var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutWorldBorder(var3, WorldBorderAction.INITIALIZE)));
-		var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutTimeUpdate(var2.getLastUpdate(), var2.L(), var2.Q().b("doDaylightCycle"))));
+		var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutTimeUpdate(var2.getTime(), var2.L(), var2.Q().b("doDaylightCycle"))));
 		if (var2.S()) {
 			var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutChangeGameState(1, 0.0F)));
 			var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutChangeGameState(7, var2.j(1.0F))));

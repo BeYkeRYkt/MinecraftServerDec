@@ -8,7 +8,7 @@ public class bke extends bkb {
 	public bke() {
 	}
 
-	public bke(int var1, Random var2, bjb var3, BlockFace var4) {
+	public bke(int var1, Random var2, CuboidArea var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
@@ -19,11 +19,11 @@ public class bke extends bkb {
 	}
 
 	public static bke a(List var0, Random var1, int var2, int var3, int var4, int var5, BlockFace var6) {
-		bjb var7 = bjb.a(var2, var3, var4, -2, 0, 0, 7, 11, 7, var6);
+		CuboidArea var7 = CuboidArea.a(var2, var3, var4, -2, 0, 0, 7, 11, 7, var6);
 		return a(var7) && bms.a(var0, var7) == null ? new bke(var5, var1, var7, var6) : null;
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		this.a(var1, var3, 0, 0, 0, 6, 1, 6, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
 		this.a(var1, var3, 0, 2, 0, 6, 10, 6, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 		this.a(var1, var3, 0, 2, 0, 1, 8, 0, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);

@@ -72,7 +72,7 @@ public class EntityBoat extends Entity {
 				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).playerProperties.instabuild;
 				if (var3 || this.j() > 40.0F) {
 					if (this.l != null) {
-						this.l.a((Entity) this);
+						this.l.mount((Entity) this);
 					}
 
 					if (!var3) {
@@ -312,7 +312,7 @@ public class EntityBoat extends Entity {
 			return true;
 		} else {
 			if (!this.world.D) {
-				var1.a((Entity) this);
+				var1.mount((Entity) this);
 			}
 
 			return true;

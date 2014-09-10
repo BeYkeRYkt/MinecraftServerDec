@@ -10,7 +10,7 @@ public class bjq extends bkb {
 	public bjq() {
 	}
 
-	public bjq(int var1, Random var2, bjb var3, BlockFace var4) {
+	public bjq(int var1, Random var2, CuboidArea var3, BlockFace var4) {
 		super(var1);
 		this.m = var4;
 		this.l = var3;
@@ -18,7 +18,7 @@ public class bjq extends bkb {
 	}
 
 	public static bjq a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5, int var6) {
-		bjb var7 = bjb.a(var2, var3, var4, -1, -3, 0, 5, 10, 8, var5);
+		CuboidArea var7 = CuboidArea.a(var2, var3, var4, -1, -3, 0, 5, 10, 8, var5);
 		return a(var7) && bms.a(var0, var7) == null ? new bjq(var6, var1, var7, var5) : null;
 	}
 
@@ -32,7 +32,7 @@ public class bjq extends bkb {
 		var1.put("Seed", this.b);
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		Random var4 = new Random((long) this.b);
 
 		int var5;

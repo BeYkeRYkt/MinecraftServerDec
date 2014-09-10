@@ -164,11 +164,11 @@ public class EntityFallingBlock extends Entity {
 	protected void a(NBTCompoundTag var1) {
 		int var2 = var1.getByte("Data") & 255;
 		if (var1.isTagAssignableFrom("Block", 8)) {
-			this.d = Block.b(var1.getString("Block")).a(var2);
+			this.d = Block.getByName(var1.getString("Block")).a(var2);
 		} else if (var1.isTagAssignableFrom("TileID", 99)) {
-			this.d = Block.c(var1.getInt("TileID")).a(var2);
+			this.d = Block.getById(var1.getInt("TileID")).a(var2);
 		} else {
-			this.d = Block.c(var1.getByte("Tile") & 255).a(var2);
+			this.d = Block.getById(var1.getByte("Tile") & 255).a(var2);
 		}
 
 		this.a = var1.getByte("Time") & 255;

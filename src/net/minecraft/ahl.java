@@ -180,9 +180,9 @@ public abstract class ahl extends Entity {
 		this.f = var1.getShort("yTile");
 		this.g = var1.getShort("zTile");
 		if (var1.isTagAssignableFrom("inTile", 8)) {
-			this.h = Block.b(var1.getString("inTile"));
+			this.h = Block.getByName(var1.getString("inTile"));
 		} else {
-			this.h = Block.c(var1.getByte("inTile") & 255);
+			this.h = Block.getById(var1.getByte("inTile") & 255);
 		}
 
 		this.i = var1.getByte("inGround") == 1;

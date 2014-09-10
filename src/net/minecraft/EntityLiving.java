@@ -164,7 +164,7 @@ public abstract class EntityLiving extends Entity {
 			}
 
 			if (!this.world.D && this.av() && this.vehicle instanceof EntityLiving) {
-				this.a((Entity) null);
+				this.mount((Entity) null);
 			}
 		} else {
 			this.h(300);
@@ -1354,7 +1354,7 @@ public abstract class EntityLiving extends Entity {
 		var1.i(this);
 	}
 
-	public void a(Entity var1) {
+	public void mount(Entity var1) {
 		if (this.vehicle != null && var1 == null) {
 			if (!this.world.D) {
 				this.q(this.vehicle);
@@ -1366,7 +1366,7 @@ public abstract class EntityLiving extends Entity {
 
 			this.vehicle = null;
 		} else {
-			super.a(var1);
+			super.mount(var1);
 		}
 	}
 

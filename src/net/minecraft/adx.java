@@ -92,7 +92,7 @@ public abstract class adx extends Entity implements vz {
 				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).playerProperties.instabuild;
 				if (var3 || this.p() > 40.0F) {
 					if (this.l != null) {
-						this.l.a((Entity) null);
+						this.l.mount((Entity) null);
 					}
 
 					if (var3 && !this.k_()) {
@@ -526,14 +526,14 @@ public abstract class adx extends Entity implements vz {
 			int var2 = var1.getInt("DisplayData");
 			Block var3;
 			if (var1.isTagAssignableFrom("DisplayTile", 8)) {
-				var3 = Block.b(var1.getString("DisplayTile"));
+				var3 = Block.getByName(var1.getString("DisplayTile"));
 				if (var3 == null) {
 					this.a(Blocks.AIR.getBlockState());
 				} else {
 					this.a(var3.a(var2));
 				}
 			} else {
-				var3 = Block.c(var1.getInt("DisplayTile"));
+				var3 = Block.getById(var1.getInt("DisplayTile"));
 				if (var3 == null) {
 					this.a(Blocks.AIR.getBlockState());
 				} else {
@@ -571,7 +571,7 @@ public abstract class adx extends Entity implements vz {
 			if (!var1.T && !this.T) {
 				if (var1 != this.l) {
 					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof EntityIronGolem) && this.s() == MinecartType.RIDEABLE && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.l == null && var1.vehicle == null) {
-						var1.a((Entity) this);
+						var1.mount((Entity) this);
 					}
 
 					double var2 = var1.locationX - this.locationX;

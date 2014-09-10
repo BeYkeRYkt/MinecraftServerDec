@@ -121,7 +121,7 @@ public class bmy {
 				}
 			}
 
-			bjb var14 = bnd.a(var0, var1, var2, var3, var4, var5, var6);
+			CuboidArea var14 = bnd.a(var0, var1, var2, var3, var4, var5, var6);
 			if (var14 != null) {
 				return new bnd(var0, var7, var2, var14, var6);
 			} else {
@@ -133,13 +133,13 @@ public class bmy {
 	private static bms d(bnk var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6, int var7) {
 		if (var7 > 50) {
 			return null;
-		} else if (Math.abs(var3 - var0.c().a) <= 112 && Math.abs(var5 - var0.c().c) <= 112) {
+		} else if (Math.abs(var3 - var0.c().minX) <= 112 && Math.abs(var5 - var0.c().minZ) <= 112) {
 			bnn var8 = c(var0, var1, var2, var3, var4, var5, var6, var7 + 1);
 			if (var8 != null) {
-				int var9 = (var8.l.a + var8.l.d) / 2;
-				int var10 = (var8.l.c + var8.l.f) / 2;
-				int var11 = var8.l.d - var8.l.a;
-				int var12 = var8.l.f - var8.l.c;
+				int var9 = (var8.l.minX + var8.l.maxX) / 2;
+				int var10 = (var8.l.minZ + var8.l.maxZ) / 2;
+				int var11 = var8.l.maxX - var8.l.minX;
+				int var12 = var8.l.maxZ - var8.l.minZ;
 				int var13 = var11 > var12 ? var11 : var12;
 				if (var0.e().a(var9, var10, var13 / 2 + 4, bmw.d)) {
 					var1.add(var8);
@@ -157,14 +157,14 @@ public class bmy {
 	private static bms e(bnk var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6, int var7) {
 		if (var7 > 3 + var0.c) {
 			return null;
-		} else if (Math.abs(var3 - var0.c().a) <= 112 && Math.abs(var5 - var0.c().c) <= 112) {
-			bjb var8 = bnl.a(var0, var1, var2, var3, var4, var5, var6);
-			if (var8 != null && var8.b > 10) {
+		} else if (Math.abs(var3 - var0.c().minX) <= 112 && Math.abs(var5 - var0.c().minZ) <= 112) {
+			CuboidArea var8 = bnl.a(var0, var1, var2, var3, var4, var5, var6);
+			if (var8 != null && var8.minY > 10) {
 				bnl var9 = new bnl(var0, var7, var2, var8, var6);
-				int var10 = (var9.l.a + var9.l.d) / 2;
-				int var11 = (var9.l.c + var9.l.f) / 2;
-				int var12 = var9.l.d - var9.l.a;
-				int var13 = var9.l.f - var9.l.c;
+				int var10 = (var9.l.minX + var9.l.maxX) / 2;
+				int var11 = (var9.l.minZ + var9.l.maxZ) / 2;
+				int var12 = var9.l.maxX - var9.l.minX;
+				int var13 = var9.l.maxZ - var9.l.minZ;
 				int var14 = var12 > var13 ? var12 : var13;
 				if (var0.e().a(var10, var11, var14 / 2 + 4, bmw.d)) {
 					var1.add(var9);

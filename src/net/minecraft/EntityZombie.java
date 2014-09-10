@@ -343,7 +343,7 @@ public class EntityZombie extends EntityMonster {
 					if (!var5.isEmpty()) {
 						EntityChicken var6 = (EntityChicken) var5.get(0);
 						var6.l(true);
-						this.a((Entity) var6);
+						this.mount((Entity) var6);
 					}
 				} else if ((double) this.world.s.nextFloat() < 0.05D) {
 					EntityChicken var10 = new EntityChicken(this.world);
@@ -351,7 +351,7 @@ public class EntityZombie extends EntityMonster {
 					var10.a(var1, (xq) null);
 					var10.l(true);
 					this.world.d((Entity) var10);
-					this.a((Entity) var10);
+					this.mount((Entity) var10);
 				}
 			}
 		}

@@ -21,10 +21,10 @@ abstract class bln extends bms {
 		switch (blj.a[this.m.ordinal()]) {
 			case 1:
 			case 2:
-				this.l = new bjb(var2, var3, var4, var2 + var5 - 1, var3 + var6 - 1, var4 + var7 - 1);
+				this.l = new CuboidArea(var2, var3, var4, var2 + var5 - 1, var3 + var6 - 1, var4 + var7 - 1);
 				break;
 			default:
-				this.l = new bjb(var2, var3, var4, var2 + var7 - 1, var3 + var6 - 1, var4 + var5 - 1);
+				this.l = new CuboidArea(var2, var3, var4, var2 + var7 - 1, var3 + var6 - 1, var4 + var5 - 1);
 		}
 
 	}
@@ -43,15 +43,15 @@ abstract class bln extends bms {
 		this.d = var1.getInt("HPos");
 	}
 
-	protected boolean a(World var1, bjb var2, int var3) {
+	protected boolean a(World var1, CuboidArea var2, int var3) {
 		if (this.d >= 0) {
 			return true;
 		} else {
 			int var4 = 0;
 			int var5 = 0;
 
-			for (int var6 = this.l.c; var6 <= this.l.f; ++var6) {
-				for (int var7 = this.l.a; var7 <= this.l.d; ++var7) {
+			for (int var6 = this.l.minZ; var6 <= this.l.maxZ; ++var6) {
+				for (int var7 = this.l.minX; var7 <= this.l.maxX; ++var7) {
 					Position var8 = new Position(var7, 64, var6);
 					if (var2.b((fd) var8)) {
 						var4 += Math.max(var1.r(var8).getY(), var1.worldProvider.i());
@@ -64,7 +64,7 @@ abstract class bln extends bms {
 				return false;
 			} else {
 				this.d = var4 / var5;
-				this.l.a(0, this.d - this.l.b + var3, 0);
+				this.l.a(0, this.d - this.l.minY + var3, 0);
 				return true;
 			}
 		}

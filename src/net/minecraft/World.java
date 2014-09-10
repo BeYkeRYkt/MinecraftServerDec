@@ -141,12 +141,12 @@ public abstract class World implements ard {
 		return this.a(var1.getX(), var1.getY(), var1.getZ(), var2.getX(), var2.getY(), var2.getZ(), var3);
 	}
 
-	public boolean a(bjb var1) {
+	public boolean a(CuboidArea var1) {
 		return this.b(var1, true);
 	}
 
-	public boolean b(bjb var1, boolean var2) {
-		return this.a(var1.a, var1.b, var1.c, var1.d, var1.e, var1.f, var2);
+	public boolean b(CuboidArea var1, boolean var2) {
+		return this.a(var1.minX, var1.minY, var1.minZ, var1.maxX, var1.maxY, var1.maxZ, var2);
 	}
 
 	private boolean a(int var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {
@@ -721,11 +721,11 @@ public abstract class World implements ard {
 
 	public void e(Entity var1) {
 		if (var1.l != null) {
-			var1.l.a((Entity) null);
+			var1.l.mount((Entity) null);
 		}
 
 		if (var1.vehicle != null) {
-			var1.a((Entity) null);
+			var1.mount((Entity) null);
 		}
 
 		var1.die();
@@ -913,7 +913,7 @@ public abstract class World implements ard {
 	public void a(Position var1, Block var2, int var3, int var4) {
 	}
 
-	public void b(Position var1, Block var2, int var3, int var4) {
+	public void addNextTickEntry(Position var1, Block var2, int var3, int var4) {
 	}
 
 	public void i() {
@@ -1892,11 +1892,11 @@ public abstract class World implements ard {
 		return false;
 	}
 
-	public List a(Chunk var1, boolean var2) {
+	public List<NextTickListEntry> getNextTickList(Chunk chunk, boolean var2) {
 		return null;
 	}
 
-	public List a(bjb var1, boolean var2) {
+	public List<NextTickListEntry> getNextTickList(CuboidArea cuboidArea, boolean var2) {
 		return null;
 	}
 
@@ -2177,7 +2177,7 @@ public abstract class World implements ard {
 		return this.worldData.b();
 	}
 
-	public long getLastUpdate() {
+	public long getTime() {
 		return this.worldData.f();
 	}
 
@@ -2352,7 +2352,7 @@ public abstract class World implements ard {
 	}
 
 	public Calendar Y() {
-		if (this.getLastUpdate() % 600L == 0L) {
+		if (this.getTime() % 600L == 0L) {
 			this.J.setTimeInMillis(MinecraftServer.getCurrentMillis());
 		}
 

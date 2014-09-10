@@ -24,7 +24,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	private final qq K;
 	private final Set L = Sets.newHashSet();
 	private final TreeSet M = new TreeSet();
-	private final Map N = Maps.newHashMap();
+	private final Map<UUID, Entity> entities = Maps.newHashMap();
 	public qs b;
 	public boolean c;
 	private boolean O;
@@ -128,7 +128,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.A.a();
 		this.d.a();
 		this.B.c("portalForcer");
-		this.Q.a(this.getLastUpdate());
+		this.Q.a(this.getTime());
 		this.B.b();
 		this.ak();
 	}
@@ -298,7 +298,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	public boolean a(Position var1, Block var2) {
-		ark var3 = new ark(var1, var2);
+		NextTickListEntry var3 = new NextTickListEntry(var1, var2);
 		return this.V.contains(var3);
 	}
 
@@ -307,15 +307,15 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	public void a(Position var1, Block var2, int var3, int var4) {
-		ark var5 = new ark(var1, var2);
+		NextTickListEntry var5 = new NextTickListEntry(var1, var2);
 		byte var6 = 0;
 		if (this.e && var2.getMaterial() != Material.AIR) {
 			if (var2.M()) {
 				var6 = 8;
-				if (this.a(var5.a.a(-var6, -var6, -var6), var5.a.a(var6, var6, var6))) {
-					BlockState var7 = this.getBlockState(var5.a);
-					if (var7.getBlock().getMaterial() != Material.AIR && var7.getBlock() == var5.a()) {
-						var7.getBlock().b((World) this, var5.a, var7, this.s);
+				if (this.a(var5.position.a(-var6, -var6, -var6), var5.position.a(var6, var6, var6))) {
+					BlockState var7 = this.getBlockState(var5.position);
+					if (var7.getBlock().getMaterial() != Material.AIR && var7.getBlock() == var5.getBlock()) {
+						var7.getBlock().b((World) this, var5.position, var7, this.s);
 					}
 				}
 
@@ -339,8 +339,8 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	}
 
-	public void b(Position var1, Block var2, int var3, int var4) {
-		ark var5 = new ark(var1, var2);
+	public void addNextTickEntry(Position var1, Block var2, int var3, int var4) {
+		NextTickListEntry var5 = new NextTickListEntry(var1, var2);
 		var5.a(var4);
 		if (var2.getMaterial() != Material.AIR) {
 			var5.a((long) var3 + this.worldData.f());
@@ -383,9 +383,9 @@ public class WorldServer extends World implements ITaskScheduler {
 
 				this.B.a("cleaning");
 
-				ark var4;
+				NextTickListEntry var4;
 				for (int var3 = 0; var3 < var2; ++var3) {
-					var4 = (ark) this.M.first();
+					var4 = (NextTickListEntry) this.M.first();
 					if (!var1 && var4.b > this.worldData.f()) {
 						break;
 					}
@@ -400,23 +400,23 @@ public class WorldServer extends World implements ITaskScheduler {
 				Iterator var11 = this.V.iterator();
 
 				while (var11.hasNext()) {
-					var4 = (ark) var11.next();
+					var4 = (NextTickListEntry) var11.next();
 					var11.remove();
 					byte var5 = 0;
-					if (this.a(var4.a.a(-var5, -var5, -var5), var4.a.a(var5, var5, var5))) {
-						BlockState var6 = this.getBlockState(var4.a);
-						if (var6.getBlock().getMaterial() != Material.AIR && Block.a(var6.getBlock(), var4.a())) {
+					if (this.a(var4.position.a(-var5, -var5, -var5), var4.position.a(var5, var5, var5))) {
+						BlockState var6 = this.getBlockState(var4.position);
+						if (var6.getBlock().getMaterial() != Material.AIR && Block.a(var6.getBlock(), var4.getBlock())) {
 							try {
-								var6.getBlock().b((World) this, var4.a, var6, this.s);
+								var6.getBlock().b((World) this, var4.position, var6, this.s);
 							} catch (Throwable var10) {
 								CrashReport var8 = CrashReport.generateCrashReport(var10, "Exception while ticking a block");
 								CrashReportSystemDetails var9 = var8.generateSystemDetails("Block being ticked");
-								net.minecraft.CrashReportSystemDetails.a(var9, var4.a, var6);
+								net.minecraft.CrashReportSystemDetails.a(var9, var4.position, var6);
 								throw new ReportedException(var8);
 							}
 						}
 					} else {
-						this.a(var4.a, var4.a(), 0);
+						this.a(var4.position, var4.getBlock(), 0);
 					}
 				}
 
@@ -427,16 +427,16 @@ public class WorldServer extends World implements ITaskScheduler {
 		}
 	}
 
-	public List a(Chunk var1, boolean var2) {
-		ChunkCoordIntPair var3 = var1.getCoords();
-		int var4 = (var3.chunkX << 4) - 2;
-		int var5 = var4 + 16 + 2;
-		int var6 = (var3.chunkZ << 4) - 2;
-		int var7 = var6 + 16 + 2;
-		return this.a(new bjb(var4, 0, var6, var5, 256, var7), var2);
+	public List<NextTickListEntry> getNextTickList(Chunk chunk, boolean var2) {
+		ChunkCoordIntPair chunkCoords = chunk.getCoords();
+		int minX = (chunkCoords.chunkX << 4) - 2;
+		int maxX = minX + 16 + 2;
+		int minZ = (chunkCoords.chunkZ << 4) - 2;
+		int maxZ = minZ + 16 + 2;
+		return this.getNextTickList(new CuboidArea(minX, 0, minZ, maxX, 256, maxZ), var2);
 	}
 
-	public List a(bjb var1, boolean var2) {
+	public List<NextTickListEntry> getNextTickList(CuboidArea cuboidArea, boolean var2) {
 		ArrayList var3 = null;
 
 		for (int var4 = 0; var4 < 2; ++var4) {
@@ -451,9 +451,9 @@ public class WorldServer extends World implements ITaskScheduler {
 			}
 
 			while (var5.hasNext()) {
-				ark var6 = (ark) var5.next();
-				Position var7 = var6.a;
-				if (var7.getX() >= var1.a && var7.getX() < var1.d && var7.getZ() >= var1.c && var7.getZ() < var1.f) {
+				NextTickListEntry var6 = (NextTickListEntry) var5.next();
+				Position var7 = var6.position;
+				if (var7.getX() >= cuboidArea.minX && var7.getX() < cuboidArea.maxX && var7.getZ() >= cuboidArea.minZ && var7.getZ() < cuboidArea.maxZ) {
 					if (var2) {
 						this.L.remove(var6);
 						var5.remove();
@@ -663,7 +663,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	protected void a(Entity var1) {
 		super.a(var1);
 		this.l.a(var1.getId(), var1);
-		this.N.put(var1.aJ(), var1);
+		this.entities.put(var1.aJ(), var1);
 		Entity[] var2 = var1.aC();
 		if (var2 != null) {
 			for (int var3 = 0; var3 < var2.length; ++var3) {
@@ -676,7 +676,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	protected void b(Entity var1) {
 		super.b(var1);
 		this.l.d(var1.getId());
-		this.N.remove(var1.aJ());
+		this.entities.remove(var1.aJ());
 		Entity[] var2 = var1.aC();
 		if (var2 != null) {
 			for (int var3 = 0; var3 < var2.length; ++var3) {
@@ -825,7 +825,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	public Entity getEntity(UUID var1) {
-		return (Entity) this.N.get(var1);
+		return (Entity) this.entities.get(var1);
 	}
 
 	public ListenableFuture<?> scheduleSyncTask(Runnable var1) {

@@ -24,7 +24,7 @@ abstract class bmk extends bms {
 		this.d = bml.valueOf(var1.getString("EntryDoor"));
 	}
 
-	protected void a(World var1, Random var2, bjb var3, bml var4, int var5, int var6, int var7) {
+	protected void a(World var1, Random var2, CuboidArea var3, bml var4, int var5, int var6, int var7) {
 		switch (blu.a[var4.ordinal()]) {
 			case 1:
 			default:
@@ -88,13 +88,13 @@ abstract class bmk extends bms {
 		if (this.m != null) {
 			switch (blu.b[this.m.ordinal()]) {
 				case 1:
-					return blr.a(var1, var2, var3, this.l.a + var4, this.l.b + var5, this.l.c - 1, this.m, this.d());
+					return blr.a(var1, var2, var3, this.l.minX + var4, this.l.minY + var5, this.l.minZ - 1, this.m, this.d());
 				case 2:
-					return blr.a(var1, var2, var3, this.l.a + var4, this.l.b + var5, this.l.f + 1, this.m, this.d());
+					return blr.a(var1, var2, var3, this.l.minX + var4, this.l.minY + var5, this.l.maxZ + 1, this.m, this.d());
 				case 3:
-					return blr.a(var1, var2, var3, this.l.a - 1, this.l.b + var5, this.l.c + var4, this.m, this.d());
+					return blr.a(var1, var2, var3, this.l.minX - 1, this.l.minY + var5, this.l.minZ + var4, this.m, this.d());
 				case 4:
-					return blr.a(var1, var2, var3, this.l.d + 1, this.l.b + var5, this.l.c + var4, this.m, this.d());
+					return blr.a(var1, var2, var3, this.l.maxX + 1, this.l.minY + var5, this.l.minZ + var4, this.m, this.d());
 			}
 		}
 
@@ -105,13 +105,13 @@ abstract class bmk extends bms {
 		if (this.m != null) {
 			switch (blu.b[this.m.ordinal()]) {
 				case 1:
-					return blr.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, BlockFace.WEST, this.d());
+					return blr.a(var1, var2, var3, this.l.minX - 1, this.l.minY + var4, this.l.minZ + var5, BlockFace.WEST, this.d());
 				case 2:
-					return blr.a(var1, var2, var3, this.l.a - 1, this.l.b + var4, this.l.c + var5, BlockFace.WEST, this.d());
+					return blr.a(var1, var2, var3, this.l.minX - 1, this.l.minY + var4, this.l.minZ + var5, BlockFace.WEST, this.d());
 				case 3:
-					return blr.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, BlockFace.NORTH, this.d());
+					return blr.a(var1, var2, var3, this.l.minX + var5, this.l.minY + var4, this.l.minZ - 1, BlockFace.NORTH, this.d());
 				case 4:
-					return blr.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.c - 1, BlockFace.NORTH, this.d());
+					return blr.a(var1, var2, var3, this.l.minX + var5, this.l.minY + var4, this.l.minZ - 1, BlockFace.NORTH, this.d());
 			}
 		}
 
@@ -122,20 +122,20 @@ abstract class bmk extends bms {
 		if (this.m != null) {
 			switch (blu.b[this.m.ordinal()]) {
 				case 1:
-					return blr.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, BlockFace.EAST, this.d());
+					return blr.a(var1, var2, var3, this.l.maxX + 1, this.l.minY + var4, this.l.minZ + var5, BlockFace.EAST, this.d());
 				case 2:
-					return blr.a(var1, var2, var3, this.l.d + 1, this.l.b + var4, this.l.c + var5, BlockFace.EAST, this.d());
+					return blr.a(var1, var2, var3, this.l.maxX + 1, this.l.minY + var4, this.l.minZ + var5, BlockFace.EAST, this.d());
 				case 3:
-					return blr.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, BlockFace.SOUTH, this.d());
+					return blr.a(var1, var2, var3, this.l.minX + var5, this.l.minY + var4, this.l.maxZ + 1, BlockFace.SOUTH, this.d());
 				case 4:
-					return blr.a(var1, var2, var3, this.l.a + var5, this.l.b + var4, this.l.f + 1, BlockFace.SOUTH, this.d());
+					return blr.a(var1, var2, var3, this.l.minX + var5, this.l.minY + var4, this.l.maxZ + 1, BlockFace.SOUTH, this.d());
 			}
 		}
 
 		return null;
 	}
 
-	protected static boolean a(bjb var0) {
-		return var0 != null && var0.b > 10;
+	protected static boolean a(CuboidArea var0) {
+		return var0 != null && var0.minY > 10;
 	}
 }

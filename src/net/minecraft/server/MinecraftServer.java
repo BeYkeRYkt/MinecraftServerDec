@@ -476,7 +476,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 				if (this.ticks % 20 == 0) {
 					this.profiler.a("timeSync");
-					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.getLastUpdate(), world.L(), world.Q().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
+					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.getTime(), world.L(), world.Q().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
 					this.profiler.b();
 				}
 

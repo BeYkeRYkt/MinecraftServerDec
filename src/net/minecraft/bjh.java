@@ -21,39 +21,39 @@ public class bjh extends bms {
 		this.a = BlockFace.fromDirection(var1.getInt("D"));
 	}
 
-	public bjh(int var1, Random var2, bjb var3, BlockFace var4) {
+	public bjh(int var1, Random var2, CuboidArea var3, BlockFace var4) {
 		super(var1);
 		this.a = var4;
 		this.l = var3;
 		this.b = var3.d() > 3;
 	}
 
-	public static bjb a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5) {
-		bjb var6 = new bjb(var2, var3, var4, var2, var3 + 2, var4);
+	public static CuboidArea a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5) {
+		CuboidArea var6 = new CuboidArea(var2, var3, var4, var2, var3 + 2, var4);
 		if (var1.nextInt(4) == 0) {
-			var6.e += 4;
+			var6.maxY += 4;
 		}
 
 		switch (bjf.a[var5.ordinal()]) {
 			case 1:
-				var6.a = var2 - 1;
-				var6.d = var2 + 3;
-				var6.c = var4 - 4;
+				var6.minX = var2 - 1;
+				var6.maxX = var2 + 3;
+				var6.minZ = var4 - 4;
 				break;
 			case 2:
-				var6.a = var2 - 1;
-				var6.d = var2 + 3;
-				var6.f = var4 + 4;
+				var6.minX = var2 - 1;
+				var6.maxX = var2 + 3;
+				var6.maxZ = var4 + 4;
 				break;
 			case 3:
-				var6.a = var2 - 4;
-				var6.c = var4 - 1;
-				var6.f = var4 + 3;
+				var6.minX = var2 - 4;
+				var6.minZ = var4 - 1;
+				var6.maxZ = var4 + 3;
 				break;
 			case 4:
-				var6.d = var2 + 4;
-				var6.c = var4 - 1;
-				var6.f = var4 + 3;
+				var6.maxX = var2 + 4;
+				var6.minZ = var4 - 1;
+				var6.maxZ = var4 + 3;
 		}
 
 		return bms.a(var0, var6) != null ? null : var6;
@@ -63,70 +63,70 @@ public class bjh extends bms {
 		int var4 = this.d();
 		switch (bjf.a[this.a.ordinal()]) {
 			case 1:
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.c - 1, BlockFace.NORTH, var4);
-				bje.a(var1, var2, var3, this.l.a - 1, this.l.b, this.l.c + 1, BlockFace.WEST, var4);
-				bje.a(var1, var2, var3, this.l.d + 1, this.l.b, this.l.c + 1, BlockFace.EAST, var4);
+				bje.a(var1, var2, var3, this.l.minX + 1, this.l.minY, this.l.minZ - 1, BlockFace.NORTH, var4);
+				bje.a(var1, var2, var3, this.l.minX - 1, this.l.minY, this.l.minZ + 1, BlockFace.WEST, var4);
+				bje.a(var1, var2, var3, this.l.maxX + 1, this.l.minY, this.l.minZ + 1, BlockFace.EAST, var4);
 				break;
 			case 2:
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.f + 1, BlockFace.SOUTH, var4);
-				bje.a(var1, var2, var3, this.l.a - 1, this.l.b, this.l.c + 1, BlockFace.WEST, var4);
-				bje.a(var1, var2, var3, this.l.d + 1, this.l.b, this.l.c + 1, BlockFace.EAST, var4);
+				bje.a(var1, var2, var3, this.l.minX + 1, this.l.minY, this.l.maxZ + 1, BlockFace.SOUTH, var4);
+				bje.a(var1, var2, var3, this.l.minX - 1, this.l.minY, this.l.minZ + 1, BlockFace.WEST, var4);
+				bje.a(var1, var2, var3, this.l.maxX + 1, this.l.minY, this.l.minZ + 1, BlockFace.EAST, var4);
 				break;
 			case 3:
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.c - 1, BlockFace.NORTH, var4);
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.f + 1, BlockFace.SOUTH, var4);
-				bje.a(var1, var2, var3, this.l.a - 1, this.l.b, this.l.c + 1, BlockFace.WEST, var4);
+				bje.a(var1, var2, var3, this.l.minX + 1, this.l.minY, this.l.minZ - 1, BlockFace.NORTH, var4);
+				bje.a(var1, var2, var3, this.l.minX + 1, this.l.minY, this.l.maxZ + 1, BlockFace.SOUTH, var4);
+				bje.a(var1, var2, var3, this.l.minX - 1, this.l.minY, this.l.minZ + 1, BlockFace.WEST, var4);
 				break;
 			case 4:
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.c - 1, BlockFace.NORTH, var4);
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b, this.l.f + 1, BlockFace.SOUTH, var4);
-				bje.a(var1, var2, var3, this.l.d + 1, this.l.b, this.l.c + 1, BlockFace.EAST, var4);
+				bje.a(var1, var2, var3, this.l.minX + 1, this.l.minY, this.l.minZ - 1, BlockFace.NORTH, var4);
+				bje.a(var1, var2, var3, this.l.minX + 1, this.l.minY, this.l.maxZ + 1, BlockFace.SOUTH, var4);
+				bje.a(var1, var2, var3, this.l.maxX + 1, this.l.minY, this.l.minZ + 1, BlockFace.EAST, var4);
 		}
 
 		if (this.b) {
 			if (var3.nextBoolean()) {
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b + 3 + 1, this.l.c - 1, BlockFace.NORTH, var4);
+				bje.a(var1, var2, var3, this.l.minX + 1, this.l.minY + 3 + 1, this.l.minZ - 1, BlockFace.NORTH, var4);
 			}
 
 			if (var3.nextBoolean()) {
-				bje.a(var1, var2, var3, this.l.a - 1, this.l.b + 3 + 1, this.l.c + 1, BlockFace.WEST, var4);
+				bje.a(var1, var2, var3, this.l.minX - 1, this.l.minY + 3 + 1, this.l.minZ + 1, BlockFace.WEST, var4);
 			}
 
 			if (var3.nextBoolean()) {
-				bje.a(var1, var2, var3, this.l.d + 1, this.l.b + 3 + 1, this.l.c + 1, BlockFace.EAST, var4);
+				bje.a(var1, var2, var3, this.l.maxX + 1, this.l.minY + 3 + 1, this.l.minZ + 1, BlockFace.EAST, var4);
 			}
 
 			if (var3.nextBoolean()) {
-				bje.a(var1, var2, var3, this.l.a + 1, this.l.b + 3 + 1, this.l.f + 1, BlockFace.SOUTH, var4);
+				bje.a(var1, var2, var3, this.l.minX + 1, this.l.minY + 3 + 1, this.l.maxZ + 1, BlockFace.SOUTH, var4);
 			}
 		}
 
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		if (this.a(var1, var3)) {
 			return false;
 		} else {
 			if (this.b) {
-				this.a(var1, var3, this.l.a + 1, this.l.b, this.l.c, this.l.d - 1, this.l.b + 3 - 1, this.l.f, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
-				this.a(var1, var3, this.l.a, this.l.b, this.l.c + 1, this.l.d, this.l.b + 3 - 1, this.l.f - 1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
-				this.a(var1, var3, this.l.a + 1, this.l.e - 2, this.l.c, this.l.d - 1, this.l.e, this.l.f, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
-				this.a(var1, var3, this.l.a, this.l.e - 2, this.l.c + 1, this.l.d, this.l.e, this.l.f - 1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
-				this.a(var1, var3, this.l.a + 1, this.l.b + 3, this.l.c + 1, this.l.d - 1, this.l.b + 3, this.l.f - 1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+				this.a(var1, var3, this.l.minX + 1, this.l.minY, this.l.minZ, this.l.maxX - 1, this.l.minY + 3 - 1, this.l.maxZ, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+				this.a(var1, var3, this.l.minX, this.l.minY, this.l.minZ + 1, this.l.maxX, this.l.minY + 3 - 1, this.l.maxZ - 1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+				this.a(var1, var3, this.l.minX + 1, this.l.maxY - 2, this.l.minZ, this.l.maxX - 1, this.l.maxY, this.l.maxZ, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+				this.a(var1, var3, this.l.minX, this.l.maxY - 2, this.l.minZ + 1, this.l.maxX, this.l.maxY, this.l.maxZ - 1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+				this.a(var1, var3, this.l.minX + 1, this.l.minY + 3, this.l.minZ + 1, this.l.maxX - 1, this.l.minY + 3, this.l.maxZ - 1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 			} else {
-				this.a(var1, var3, this.l.a + 1, this.l.b, this.l.c, this.l.d - 1, this.l.e, this.l.f, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
-				this.a(var1, var3, this.l.a, this.l.b, this.l.c + 1, this.l.d, this.l.e, this.l.f - 1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+				this.a(var1, var3, this.l.minX + 1, this.l.minY, this.l.minZ, this.l.maxX - 1, this.l.maxY, this.l.maxZ, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+				this.a(var1, var3, this.l.minX, this.l.minY, this.l.minZ + 1, this.l.maxX, this.l.maxY, this.l.maxZ - 1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 			}
 
-			this.a(var1, var3, this.l.a + 1, this.l.b, this.l.c + 1, this.l.a + 1, this.l.e, this.l.c + 1, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
-			this.a(var1, var3, this.l.a + 1, this.l.b, this.l.f - 1, this.l.a + 1, this.l.e, this.l.f - 1, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
-			this.a(var1, var3, this.l.d - 1, this.l.b, this.l.c + 1, this.l.d - 1, this.l.e, this.l.c + 1, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
-			this.a(var1, var3, this.l.d - 1, this.l.b, this.l.f - 1, this.l.d - 1, this.l.e, this.l.f - 1, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
+			this.a(var1, var3, this.l.minX + 1, this.l.minY, this.l.minZ + 1, this.l.minX + 1, this.l.maxY, this.l.minZ + 1, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
+			this.a(var1, var3, this.l.minX + 1, this.l.minY, this.l.maxZ - 1, this.l.minX + 1, this.l.maxY, this.l.maxZ - 1, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
+			this.a(var1, var3, this.l.maxX - 1, this.l.minY, this.l.minZ + 1, this.l.maxX - 1, this.l.maxY, this.l.minZ + 1, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
+			this.a(var1, var3, this.l.maxX - 1, this.l.minY, this.l.maxZ - 1, this.l.maxX - 1, this.l.maxY, this.l.maxZ - 1, Blocks.PLANKS.getBlockState(), Blocks.AIR.getBlockState(), false);
 
-			for (int var4 = this.l.a; var4 <= this.l.d; ++var4) {
-				for (int var5 = this.l.c; var5 <= this.l.f; ++var5) {
-					if (this.a(var1, var4, this.l.b - 1, var5, var3).getBlock().getMaterial() == Material.AIR) {
-						this.a(var1, Blocks.PLANKS.getBlockState(), var4, this.l.b - 1, var5, var3);
+			for (int var4 = this.l.minX; var4 <= this.l.maxX; ++var4) {
+				for (int var5 = this.l.minZ; var5 <= this.l.maxZ; ++var5) {
+					if (this.a(var1, var4, this.l.minY - 1, var5, var3).getBlock().getMaterial() == Material.AIR) {
+						this.a(var1, Blocks.PLANKS.getBlockState(), var4, this.l.minY - 1, var5, var3);
 					}
 				}
 			}

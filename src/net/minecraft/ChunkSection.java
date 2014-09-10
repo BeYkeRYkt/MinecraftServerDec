@@ -82,7 +82,7 @@ public class ChunkSection {
 		return this.emittedLight.getValue(var1, var2, var3);
 	}
 
-	public void e() {
+	public void recalcBlockCounts() {
 		this.nonEmptyBlockCount = 0;
 		this.c = 0;
 
