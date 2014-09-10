@@ -9,14 +9,14 @@ public class TheEndWorldProvider extends WorldProvider {
 	}
 
 	public IChunkProvider c() {
-		return new bgw(this.b, this.b.J());
+		return new ChunkProviderTheEnd(this.b, this.b.J());
 	}
 
 	public float a(long var1, float var3) {
 		return 0.0F;
 	}
 
-	public boolean e() {
+	public boolean isPrimaryWorld() {
 		return false;
 	}
 

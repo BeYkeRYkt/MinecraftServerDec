@@ -45,7 +45,7 @@ public abstract class WorldProvider {
 	}
 
 	public IChunkProvider c() {
-		return (IChunkProvider) (this.h == LevelType.FLAT ? new bgq(this.b, this.b.J(), this.b.getWorldData().s(), this.i) : (this.h == LevelType.DEBUG ? new bgp(this.b) : (this.h == LevelType.CUSTOM ? new bgv(this.b, this.b.J(), this.b.getWorldData().s(), this.i) : new bgv(this.b, this.b.J(), this.b.getWorldData().s(), this.i))));
+		return (IChunkProvider) (this.h == LevelType.FLAT ? new ChunkProviderFlat(this.b, this.b.J(), this.b.getWorldData().s(), this.i) : (this.h == LevelType.DEBUG ? new ChunkProviderDebug(this.b) : (this.h == LevelType.CUSTOM ? new ChunkProviderGenerate(this.b, this.b.J(), this.b.getWorldData().s(), this.i) : new ChunkProviderGenerate(this.b, this.b.J(), this.b.getWorldData().s(), this.i))));
 	}
 
 	public boolean a(int var1, int var2) {
@@ -77,7 +77,7 @@ public abstract class WorldProvider {
 		return true;
 	}
 
-	public boolean e() {
+	public boolean isPrimaryWorld() {
 		return true;
 	}
 

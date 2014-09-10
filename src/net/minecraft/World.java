@@ -41,7 +41,7 @@ public abstract class World implements ard {
 	protected IChunkProvider chunkProvider;
 	protected final IDataManager dataManager;
 	protected WorldData worldData;
-	protected boolean y;
+	protected boolean isLoading;
 	protected brn z;
 	protected PersistentVillage A;
 	public final MethodProfiler B;
@@ -171,7 +171,7 @@ public abstract class World implements ard {
 	}
 
 	protected boolean a(int var1, int var2, boolean var3) {
-		return this.chunkProvider.a(var1, var2) && (var3 || !this.chunkProvider.d(var1, var2).f());
+		return this.chunkProvider.isChunkLoaded(var1, var2) && (var3 || !this.chunkProvider.getOrCreateChunk(var1, var2).f());
 	}
 
 	public Chunk getChunk(Position var1) {
@@ -179,7 +179,7 @@ public abstract class World implements ard {
 	}
 
 	public Chunk a(int var1, int var2) {
-		return this.chunkProvider.d(var1, var2);
+		return this.chunkProvider.getOrCreateChunk(var1, var2);
 	}
 
 	public boolean a(Position var1, BlockState var2, int var3) {
@@ -1491,7 +1491,7 @@ public abstract class World implements ard {
 		if (!this.a(var1)) {
 			return var2;
 		} else {
-			Chunk var3 = this.chunkProvider.a(var1);
+			Chunk var3 = this.chunkProvider.getChunkAtWorldCoords(var1);
 			if (var3.f()) {
 				return var2;
 			} else {
@@ -2169,7 +2169,7 @@ public abstract class World implements ard {
 		return null;
 	}
 
-	public void checkSessionLock() throws aqz {
+	public void checkSessionLock() throws ExceptionWorldConflict {
 		this.dataManager.checkSessionLock();
 	}
 
@@ -2189,13 +2189,13 @@ public abstract class World implements ard {
 		this.worldData.c(var1);
 	}
 
-	public Position M() {
-		Position var1 = new Position(this.worldData.c(), this.worldData.d(), this.worldData.e());
-		if (!this.getWorldBorder().isInside(var1)) {
-			var1 = this.m(new Position(this.getWorldBorder().getX(), 0.0D, this.getWorldBorder().getZ()));
+	public Position getSpawnPosition() {
+		Position spawnPosition = new Position(this.worldData.getSpawnX(), this.worldData.getSpawnY(), this.worldData.getSpawnZ());
+		if (!this.getWorldBorder().isInside(spawnPosition)) {
+			spawnPosition = this.m(new Position(this.getWorldBorder().getX(), 0.0D, this.getWorldBorder().getZ()));
 		}
 
-		return var1;
+		return spawnPosition;
 	}
 
 	public void B(Position var1) {
@@ -2325,7 +2325,7 @@ public abstract class World implements ard {
 	}
 
 	public Position a(String var1, Position var2) {
-		return this.N().a(this, var1, var2);
+		return this.N().findNearestMapFeature(this, var1, var2);
 	}
 
 	public CrashReportSystemDetails a(CrashReport var1) {
@@ -2412,8 +2412,8 @@ public abstract class World implements ard {
 		this.I = var1;
 	}
 
-	public boolean ad() {
-		return this.y;
+	public boolean isLoading() {
+		return this.isLoading;
 	}
 
 	public PersistentVillage ae() {
@@ -2424,11 +2424,12 @@ public abstract class World implements ard {
 		return this.worldborder;
 	}
 
-	public boolean c(int var1, int var2) {
-		Position var3 = this.M();
-		int var4 = var1 * 16 + 8 - var3.getX();
-		int var5 = var2 * 16 + 8 - var3.getZ();
-		short var6 = 128;
-		return var4 >= -var6 && var4 <= var6 && var5 >= -var6 && var5 <= var6;
+	public boolean isSpawnChunk(int chunkX, int chunkZ) {
+		Position position = this.getSpawnPosition();
+		int xDistToSpawn = chunkX * 16 + 8 - position.getX();
+		int zDistToSpawn = chunkZ * 16 + 8 - position.getZ();
+		short minDist = 128;
+		return xDistToSpawn >= -minDist && xDistToSpawn <= minDist && zDistToSpawn >= -minDist && zDistToSpawn <= minDist;
 	}
+
 }

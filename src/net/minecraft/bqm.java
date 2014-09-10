@@ -56,21 +56,21 @@ public class bqm implements IDataManager, brl {
 		return this.b;
 	}
 
-	public void checkSessionLock() throws aqz {
+	public void checkSessionLock() throws ExceptionWorldConflict {
 		try {
 			File var1 = new File(this.b, "session.lock");
 			DataInputStream var2 = new DataInputStream(new FileInputStream(var1));
 
 			try {
 				if (var2.readLong() != this.e) {
-					throw new aqz("The save is being accessed from another location, aborting");
+					throw new ExceptionWorldConflict("The save is being accessed from another location, aborting");
 				}
 			} finally {
 				var2.close();
 			}
 
 		} catch (IOException var7) {
-			throw new aqz("Failed to check session lock, aborting");
+			throw new ExceptionWorldConflict("Failed to check session lock, aborting");
 		}
 	}
 

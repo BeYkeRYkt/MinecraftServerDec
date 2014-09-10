@@ -6,7 +6,7 @@ public interface IDataManager {
 
 	WorldData d();
 
-	void checkSessionLock() throws aqz;
+	void checkSessionLock() throws ExceptionWorldConflict;
 
 	IChunkLoader a(WorldProvider var1);
 

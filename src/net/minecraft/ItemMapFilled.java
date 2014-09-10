@@ -18,7 +18,7 @@ public class ItemMapFilled extends ItemMap {
 			var3 = "map_" + var1.getDurability();
 			var4 = new bqe(var3);
 			var4.e = 3;
-			var4.a((double) var2.getWorldData().c(), (double) var2.getWorldData().e(), var4.e);
+			var4.a((double) var2.getWorldData().getSpawnX(), (double) var2.getWorldData().getSpawnZ(), var4.e);
 			var4.d = (byte) var2.worldProvider.getDimensionId();
 			var4.c();
 			var2.a(var3, (bqc) var4);

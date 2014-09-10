@@ -1504,7 +1504,7 @@ public abstract class Entity implements CommandSenderInterface {
 			if (var6 != null) {
 				var6.n(this);
 				if (var3 == 1 && var1 == 1) {
-					Position var7 = this.world.r(var5.M());
+					Position var7 = this.world.r(var5.getSpawnPosition());
 					var6.a(var7, var6.yaw, var6.pitch);
 				}
 

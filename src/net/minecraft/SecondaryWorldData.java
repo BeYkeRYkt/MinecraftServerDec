@@ -20,16 +20,16 @@ public class SecondaryWorldData extends WorldData {
 		return this.b.b();
 	}
 
-	public int c() {
-		return this.b.c();
+	public int getSpawnX() {
+		return this.b.getSpawnX();
 	}
 
-	public int d() {
-		return this.b.d();
+	public int getSpawnY() {
+		return this.b.getSpawnY();
 	}
 
-	public int e() {
-		return this.b.e();
+	public int getSpawnZ() {
+		return this.b.getSpawnZ();
 	}
 
 	public long f() {

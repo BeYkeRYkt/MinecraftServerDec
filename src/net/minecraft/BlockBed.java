@@ -26,7 +26,7 @@ public class BlockBed extends avb {
 				}
 			}
 
-			if (var1.worldProvider.e() && var1.b(var2) != arm.x) {
+			if (var1.worldProvider.isPrimaryWorld() && var1.b(var2) != arm.x) {
 				if (((Boolean) var3.b(b)).booleanValue()) {
 					EntityHuman var10 = this.e(var1, var2);
 					if (var10 != null) {

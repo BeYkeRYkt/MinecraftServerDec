@@ -67,7 +67,7 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 		}
 	}
 
-	public void requestChunkSave(World world, Chunk chunk) throws aqz {
+	public void requestChunkSave(World world, Chunk chunk) throws ExceptionWorldConflict {
 		world.checkSessionLock();
 
 		try {
@@ -117,12 +117,6 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 		DataOutputStream outputStream = RegionFileCache.getOutputStream(this.file, entry.getKey().chunkX, entry.getKey().chunkZ);
 		NBTCompressedStreamTools.writeTag(entry.getValue(), (DataOutput) outputStream);
 		outputStream.close();
-	}
-
-	public void b(World var1, Chunk var2) {
-	}
-
-	public void a() {
 	}
 
 	public void saveAllChunks() {

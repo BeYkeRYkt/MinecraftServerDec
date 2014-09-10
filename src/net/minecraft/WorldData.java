@@ -9,9 +9,9 @@ public class WorldData {
 	private long b;
 	private LevelType c;
 	private String d;
-	private int e;
-	private int f;
-	private int g;
+	private int spawnX;
+	private int spawnY;
+	private int spawnZ;
 	private long h;
 	private long i;
 	private long j;
@@ -98,9 +98,9 @@ public class WorldData {
 			this.v = true;
 		}
 
-		this.e = var1.getInt("SpawnX");
-		this.f = var1.getInt("SpawnY");
-		this.g = var1.getInt("SpawnZ");
+		this.spawnX = var1.getInt("SpawnX");
+		this.spawnY = var1.getInt("SpawnY");
+		this.spawnZ = var1.getInt("SpawnZ");
 		this.h = var1.getLong("Time");
 		if (var1.isTagAssignableFrom("DayTime", 99)) {
 			this.i = var1.getLong("DayTime");
@@ -232,9 +232,9 @@ public class WorldData {
 		this.d = var1.d;
 		this.u = var1.u;
 		this.v = var1.v;
-		this.e = var1.e;
-		this.f = var1.f;
-		this.g = var1.g;
+		this.spawnX = var1.spawnX;
+		this.spawnY = var1.spawnY;
+		this.spawnZ = var1.spawnZ;
 		this.h = var1.h;
 		this.i = var1.i;
 		this.j = var1.j;
@@ -283,9 +283,9 @@ public class WorldData {
 		var1.put("generatorOptions", this.d);
 		var1.put("GameType", this.u.getId());
 		var1.put("MapFeatures", this.v);
-		var1.put("SpawnX", this.e);
-		var1.put("SpawnY", this.f);
-		var1.put("SpawnZ", this.g);
+		var1.put("SpawnX", this.spawnX);
+		var1.put("SpawnY", this.spawnY);
+		var1.put("SpawnZ", this.spawnZ);
 		var1.put("Time", this.h);
 		var1.put("DayTime", this.i);
 		var1.put("SizeOnDisk", this.k);
@@ -325,16 +325,16 @@ public class WorldData {
 		return this.b;
 	}
 
-	public int c() {
-		return this.e;
+	public int getSpawnX() {
+		return this.spawnX;
 	}
 
-	public int d() {
-		return this.f;
+	public int getSpawnY() {
+		return this.spawnY;
 	}
 
-	public int e() {
-		return this.g;
+	public int getSpawnZ() {
+		return this.spawnZ;
 	}
 
 	public long f() {
@@ -358,9 +358,9 @@ public class WorldData {
 	}
 
 	public void a(Position var1) {
-		this.e = var1.getX();
-		this.f = var1.getY();
-		this.g = var1.getZ();
+		this.spawnX = var1.getX();
+		this.spawnY = var1.getY();
+		this.spawnZ = var1.getZ();
 	}
 
 	public String k() {
@@ -592,17 +592,17 @@ public class WorldData {
 
 	// $FF: synthetic method
 	static int d(WorldData var0) {
-		return var0.e;
+		return var0.spawnX;
 	}
 
 	// $FF: synthetic method
 	static int e(WorldData var0) {
-		return var0.f;
+		return var0.spawnY;
 	}
 
 	// $FF: synthetic method
 	static int f(WorldData var0) {
-		return var0.g;
+		return var0.spawnZ;
 	}
 
 	// $FF: synthetic method

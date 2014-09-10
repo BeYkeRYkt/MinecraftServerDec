@@ -9,7 +9,7 @@ public class arh {
 
 	private final WorldServer a;
 	private final Random b;
-	private final ur c = new ur();
+	private final LongHashMap c = new LongHashMap();
 	private final List d = Lists.newArrayList();
 
 	public arh(WorldServer var1) {
@@ -55,8 +55,8 @@ public class arh {
 		boolean var8 = true;
 		Object var9 = Position.ZERO;
 		long var10 = ChunkCoordIntPair.toLongHash(var6, var7);
-		if (this.c.b(var10)) {
-			ari var12 = (ari) this.c.a(var10);
+		if (this.c.contains(var10)) {
+			ari var12 = (ari) this.c.getEntry(var10);
 			var4 = 0.0D;
 			var9 = var12;
 			var12.b = this.a.getTime();
@@ -87,7 +87,7 @@ public class arh {
 
 		if (var4 >= 0.0D) {
 			if (var8) {
-				this.c.a(var10, new ari(this, (Position) var9, this.a.getTime()));
+				this.c.put(var10, new ari(this, (Position) var9, this.a.getTime()));
 				this.d.add(Long.valueOf(var10));
 			}
 
@@ -358,10 +358,10 @@ public class arh {
 
 			while (var3.hasNext()) {
 				Long var6 = (Long) var3.next();
-				ari var7 = (ari) this.c.a(var6.longValue());
+				ari var7 = (ari) this.c.getEntry(var6.longValue());
 				if (var7 == null || var7.b < var4) {
 					var3.remove();
-					this.c.d(var6.longValue());
+					this.c.remove(var6.longValue());
 				}
 			}
 		}

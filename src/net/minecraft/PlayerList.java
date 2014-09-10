@@ -77,7 +77,7 @@ public abstract class PlayerList {
 		logger.info(player.getName() + "[" + var8 + "] logged in with entity id " + player.getId() + " at (" + player.locationX + ", " + player.locationY + ", " + player.locationZ + ")");
 		WorldServer worldServer = this.minecraftserver.getWorldServer(player.dimensionId);
 		WorldData worldData = worldServer.getWorldData();
-		Position var11 = worldServer.M();
+		Position var11 = worldServer.getSpawnPosition();
 		this.a(player, (EntityPlayer) null, worldServer);
 		PlayerConnection var12 = new PlayerConnection(this.minecraftserver, networkManager, player);
 		var12.sendPacket((new PacketPlayOutJoinGame(player.getId(), player.playerInteractManager.getGameMode(), worldData.isHardcore(), worldServer.worldProvider.getDimensionId(), worldServer.getDifficulty(), this.getMaxPlayers(), worldData.getLevelType(), worldServer.Q().b("reducedDebugInfo"))));
@@ -164,7 +164,7 @@ public abstract class PlayerList {
 		}
 
 		var3.t().a(var1);
-		var3.b.c((int) var1.locationX >> 4, (int) var1.locationZ >> 4);
+		var3.b.getChunkAt((int) var1.locationX >> 4, (int) var1.locationZ >> 4);
 	}
 
 	public int d() {
@@ -318,14 +318,14 @@ public abstract class PlayerList {
 			}
 		}
 
-		var8.b.c((int) var7.locationX >> 4, (int) var7.locationZ >> 4);
+		var8.b.getChunkAt((int) var7.locationX >> 4, (int) var7.locationZ >> 4);
 
 		while (!var8.getCubes((Entity) var7, var7.getBoundingBox()).isEmpty() && var7.locationY < 256.0D) {
 			var7.b(var7.locationX, var7.locationY + 1.0D, var7.locationZ);
 		}
 
 		var7.playerConncetion.sendPacket((Packet) (new PacketPlayOutRespawn(var7.dimensionId, var7.world.getDifficulty(), var7.world.getWorldData().getLevelType(), var7.playerInteractManager.getGameMode())));
-		var9 = var8.M();
+		var9 = var8.getSpawnPosition();
 		var7.playerConncetion.movePlayer(var7.locationX, var7.locationY, var7.locationZ, var7.yaw, var7.pitch);
 		var7.playerConncetion.sendPacket((Packet) (new PacketPlayOutSpawnPosition(var9)));
 		var7.playerConncetion.sendPacket((Packet) (new PacketPlayOutSetExpirience(var7.xp, var7.xpTotal, var7.xpLevel)));
@@ -385,7 +385,7 @@ public abstract class PlayerList {
 		} else {
 			Position var12;
 			if (var2 == 1) {
-				var12 = var4.M();
+				var12 = var4.getSpawnPosition();
 			} else {
 				var12 = var4.m();
 			}

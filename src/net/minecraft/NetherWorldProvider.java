@@ -20,7 +20,7 @@ public class NetherWorldProvider extends WorldProvider {
 	}
 
 	public IChunkProvider c() {
-		return new bgr(this.b, this.b.getWorldData().s(), this.b.J());
+		return new ChunkProviderNether(this.b, this.b.getWorldData().s(), this.b.J());
 	}
 
 	public boolean d() {
@@ -35,7 +35,7 @@ public class NetherWorldProvider extends WorldProvider {
 		return 0.5F;
 	}
 
-	public boolean e() {
+	public boolean isPrimaryWorld() {
 		return false;
 	}
 

@@ -19,7 +19,7 @@ class qr {
 		this.b = Lists.newArrayList();
 		this.d = new short[64];
 		this.c = new ChunkCoordIntPair(var2, var3);
-		var1.a().b.c(var2, var3);
+		var1.a().b.getChunkAt(var2, var3);
 	}
 
 	public void a(EntityPlayer var1) {
@@ -47,13 +47,13 @@ class qr {
 			if (this.b.isEmpty()) {
 				long var3 = (long) this.c.chunkX + 2147483647L | (long) this.c.chunkZ + 2147483647L << 32;
 				this.a(var2);
-				qq.b(this.a).d(var3);
+				qq.b(this.a).remove(var3);
 				qq.c(this.a).remove(this);
 				if (this.e > 0) {
 					qq.d(this.a).remove(this);
 				}
 
-				this.a.a().b.b(this.c.chunkX, this.c.chunkZ);
+				this.a.a().b.queueUnload(this.c.chunkX, this.c.chunkZ);
 			}
 
 		}

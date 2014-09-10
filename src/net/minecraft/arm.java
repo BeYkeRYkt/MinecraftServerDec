@@ -206,7 +206,7 @@ public abstract class arm {
 		return this;
 	}
 
-	public List a(xp var1) {
+	public List a(EnumCreatureType var1) {
 		switch (arn.a[var1.ordinal()]) {
 			case 1:
 				return this.at;

@@ -317,7 +317,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		} else if (this.isSpawnProtectionEnabled() <= 0) {
 			return false;
 		} else {
-			Position var4 = var1.M();
+			Position var4 = var1.getSpawnPosition();
 			int var5 = DataTypesConverter.a(var2.getX() - var4.getX());
 			int var6 = DataTypesConverter.a(var2.getZ() - var4.getZ());
 			int var7 = Math.max(var5, var6);

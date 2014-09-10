@@ -44,12 +44,12 @@ public final class arg {
 			}
 
 			int var36 = 0;
-			Position var37 = var1.M();
-			xp[] var38 = xp.values();
+			Position var37 = var1.getSpawnPosition();
+			EnumCreatureType[] var38 = EnumCreatureType.values();
 			var9 = var38.length;
 
 			for (int var39 = 0; var39 < var9; ++var39) {
-				xp var40 = var38[var39];
+				EnumCreatureType var40 = var38[var39];
 				if ((!var40.d() || var3) && (var40.d() || var2) && (!var40.e() || var4)) {
 					var12 = var1.a(var40.a());
 					int var41 = var40.b() * var5 / a;
@@ -168,7 +168,7 @@ public final class arg {
 	}
 
 	public static void a(World var0, arm var1, int var2, int var3, int var4, int var5, Random var6) {
-		List var7 = var1.a(xp.b);
+		List var7 = var1.a(EnumCreatureType.b);
 		if (!var7.isEmpty()) {
 			while (var6.nextFloat() < var1.g()) {
 				arq var8 = (arq) vj.a(var0.s, var7);

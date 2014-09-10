@@ -25,14 +25,14 @@ public class ServerSaveCommand extends AbstractCommand {
 		for (var4 = 0; var4 < var3.worlds.length; ++var4) {
 			if (var3.worlds[var4] != null) {
 				var5 = var3.worlds[var4];
-				var6 = var5.c;
-				var5.c = false;
+				var6 = var5.savingDisabled;
+				var5.savingDisabled = false;
 				try {
-					var5.save(true, (uy) null);
-				} catch (aqz e) {
+					var5.save(true, (IProgressUpdate) null);
+				} catch (ExceptionWorldConflict e) {
 					e.printStackTrace();
 				}
-				var5.c = var6;
+				var5.savingDisabled = var6;
 			}
 		}
 
@@ -42,10 +42,10 @@ public class ServerSaveCommand extends AbstractCommand {
 			for (var4 = 0; var4 < var3.worlds.length; ++var4) {
 				if (var3.worlds[var4] != null) {
 					var5 = var3.worlds[var4];
-					var6 = var5.c;
-					var5.c = false;
+					var6 = var5.savingDisabled;
+					var5.savingDisabled = false;
 					var5.n();
-					var5.c = var6;
+					var5.savingDisabled = var6;
 				}
 			}
 

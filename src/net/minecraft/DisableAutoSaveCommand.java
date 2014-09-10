@@ -19,8 +19,8 @@ public class DisableAutoSaveCommand extends AbstractCommand {
 		for (int var5 = 0; var5 < var3.worlds.length; ++var5) {
 			if (var3.worlds[var5] != null) {
 				WorldServer var6 = var3.worlds[var5];
-				if (!var6.c) {
-					var6.c = true;
+				if (!var6.savingDisabled) {
+					var6.savingDisabled = true;
 					var4 = true;
 				}
 			}

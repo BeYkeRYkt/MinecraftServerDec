@@ -10,8 +10,8 @@ public class ChunkCoordIntPair {
 		this.chunkZ = chunkZ;
 	}
 
-	public static long toLongHash(int chunkX, int сргтлЯ) {
-		return (long) chunkX & 4294967295L | ((long) сргтлЯ & 4294967295L) << 32;
+	public static long toLongHash(int chunkX, int chunkZ) {
+		return (long) chunkX & 4294967295L | ((long) chunkZ & 4294967295L) << 32;
 	}
 
 	public int hashCode() {

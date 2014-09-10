@@ -191,7 +191,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		byte var6 = 0;
 		logger.info("Preparing start region for level " + var6);
 		WorldServer var7 = this.worlds[var6];
-		Position var8 = var7.M();
+		Position var8 = var7.getSpawnPosition();
 		long var9 = getCurrentMillis();
 
 		for (int var11 = -192; var11 <= 192 && this.isTicking(); var11 += 16) {
@@ -203,7 +203,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				}
 
 				++var5;
-				var7.b.c(var8.getX() + var11 >> 4, var8.getZ() + var12 >> 4);
+				var7.b.getChunkAt(var8.getX() + var11 >> 4, var8.getZ() + var12 >> 4);
 			}
 		}
 	}
@@ -239,8 +239,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 					}
 
 					try {
-						world.save(true, (uy) null);
-					} catch (aqz ex) {
+						world.save(true, (IProgressUpdate) null);
+					} catch (ExceptionWorldConflict ex) {
 						logger.warn(ex.getMessage());
 					}
 
@@ -892,7 +892,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 					var1.a("world[" + var2 + "][generator_name]", var5.getLevelType().a());
 					var1.a("world[" + var2 + "][generator_version]", Integer.valueOf(var5.getLevelType().d()));
 					var1.a("world[" + var2 + "][height]", Integer.valueOf(this.maxBuildHeight));
-					var1.a("world[" + var2 + "][chunks_loaded]", Integer.valueOf(var4.N().g()));
+					var1.a("world[" + var2 + "][chunks_loaded]", Integer.valueOf(var4.N().getLoadedChunks()));
 					++var2;
 				}
 			}

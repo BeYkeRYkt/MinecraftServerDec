@@ -12,7 +12,7 @@ public class qq {
 	private static final Logger a = LogManager.getLogger();
 	private final WorldServer b;
 	private final List c = Lists.newArrayList();
-	private final ur d = new ur();
+	private final LongHashMap d = new LongHashMap();
 	private final List e = Lists.newArrayList();
 	private final List f = Lists.newArrayList();
 	private int g;
@@ -50,8 +50,8 @@ public class qq {
 		this.e.clear();
 		if (this.c.isEmpty()) {
 			WorldProvider var5 = this.b.worldProvider;
-			if (!var5.e()) {
-				this.b.b.b();
+			if (!var5.isPrimaryWorld()) {
+				this.b.b.queueUnloadAllChunks();
 			}
 		}
 
@@ -59,15 +59,15 @@ public class qq {
 
 	public boolean a(int var1, int var2) {
 		long var3 = (long) var1 + 2147483647L | (long) var2 + 2147483647L << 32;
-		return this.d.a(var3) != null;
+		return this.d.getEntry(var3) != null;
 	}
 
 	private qr a(int var1, int var2, boolean var3) {
 		long var4 = (long) var1 + 2147483647L | (long) var2 + 2147483647L << 32;
-		qr var6 = (qr) this.d.a(var4);
+		qr var6 = (qr) this.d.getEntry(var4);
 		if (var6 == null && var3) {
 			var6 = new qr(this, var1, var2);
-			this.d.a(var4, var6);
+			this.d.put(var4, var6);
 			this.f.add(var6);
 		}
 
@@ -257,7 +257,7 @@ public class qq {
 	}
 
 	// $FF: synthetic method
-	static ur b(qq var0) {
+	static LongHashMap b(qq var0) {
 		return var0.d;
 	}
 

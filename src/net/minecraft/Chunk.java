@@ -30,7 +30,7 @@ public class Chunk {
 	private final Map<Position, TileEntity> tileEntities;
 	private final EntitySlice<Entity>[] entitySlices;
 	private boolean terrainPopulated;
-	private boolean loghtPopulated;
+	private boolean lightPopulated;
 	private boolean p;
 	private boolean q;
 	private boolean r;
@@ -373,7 +373,7 @@ public class Chunk {
 			}
 
 			if (var1.getY() == 70) {
-				var7 = bgp.b(var1.getX(), var1.getZ());
+				var7 = ChunkProviderDebug.b(var1.getX(), var1.getZ());
 			}
 
 			return var7 == null ? Blocks.AIR.getBlockState() : var7;
@@ -648,7 +648,7 @@ public class Chunk {
 
 	}
 
-	public void c() {
+	public void addEntities() {
 		this.h = true;
 		this.i.a(this.tileEntities.values());
 
@@ -665,7 +665,7 @@ public class Chunk {
 
 	}
 
-	public void d() {
+	public void removeEntities() {
 		this.h = false;
 		Iterator var1 = this.tileEntities.values().iterator();
 
@@ -752,47 +752,47 @@ public class Chunk {
 	}
 
 	public void a(IChunkProvider var1, IChunkProvider var2, int var3, int var4) {
-		boolean var5 = var1.a(var3, var4 - 1);
-		boolean var6 = var1.a(var3 + 1, var4);
-		boolean var7 = var1.a(var3, var4 + 1);
-		boolean var8 = var1.a(var3 - 1, var4);
-		boolean var9 = var1.a(var3 - 1, var4 - 1);
-		boolean var10 = var1.a(var3 + 1, var4 + 1);
-		boolean var11 = var1.a(var3 - 1, var4 + 1);
-		boolean var12 = var1.a(var3 + 1, var4 - 1);
+		boolean var5 = var1.isChunkLoaded(var3, var4 - 1);
+		boolean var6 = var1.isChunkLoaded(var3 + 1, var4);
+		boolean var7 = var1.isChunkLoaded(var3, var4 + 1);
+		boolean var8 = var1.isChunkLoaded(var3 - 1, var4);
+		boolean var9 = var1.isChunkLoaded(var3 - 1, var4 - 1);
+		boolean var10 = var1.isChunkLoaded(var3 + 1, var4 + 1);
+		boolean var11 = var1.isChunkLoaded(var3 - 1, var4 + 1);
+		boolean var12 = var1.isChunkLoaded(var3 + 1, var4 - 1);
 		if (var6 && var7 && var10) {
 			if (!this.terrainPopulated) {
-				var1.a(var2, var3, var4);
+				var1.getChunkAt(var2, var3, var4);
 			} else {
-				var1.a(var2, this, var3, var4);
+				var1.ae(var2, this, var3, var4);
 			}
 		}
 
 		Chunk var13;
 		if (var8 && var7 && var11) {
-			var13 = var1.d(var3 - 1, var4);
+			var13 = var1.getOrCreateChunk(var3 - 1, var4);
 			if (!var13.terrainPopulated) {
-				var1.a(var2, var3 - 1, var4);
+				var1.getChunkAt(var2, var3 - 1, var4);
 			} else {
-				var1.a(var2, var13, var3 - 1, var4);
+				var1.ae(var2, var13, var3 - 1, var4);
 			}
 		}
 
 		if (var5 && var6 && var12) {
-			var13 = var1.d(var3, var4 - 1);
+			var13 = var1.getOrCreateChunk(var3, var4 - 1);
 			if (!var13.terrainPopulated) {
-				var1.a(var2, var3, var4 - 1);
+				var1.getChunkAt(var2, var3, var4 - 1);
 			} else {
-				var1.a(var2, var13, var3, var4 - 1);
+				var1.ae(var2, var13, var3, var4 - 1);
 			}
 		}
 
 		if (var9 && var5 && var8) {
-			var13 = var1.d(var3 - 1, var4 - 1);
+			var13 = var1.getOrCreateChunk(var3 - 1, var4 - 1);
 			if (!var13.terrainPopulated) {
-				var1.a(var2, var3 - 1, var4 - 1);
+				var1.getChunkAt(var2, var3 - 1, var4 - 1);
 			} else {
-				var1.a(var2, var13, var3 - 1, var4 - 1);
+				var1.ae(var2, var13, var3 - 1, var4 - 1);
 			}
 		}
 
@@ -830,7 +830,7 @@ public class Chunk {
 		}
 
 		this.p = true;
-		if (!this.loghtPopulated && this.terrainPopulated) {
+		if (!this.lightPopulated && this.terrainPopulated) {
 			this.n();
 		}
 
@@ -846,7 +846,7 @@ public class Chunk {
 	}
 
 	public boolean i() {
-		return this.p && this.terrainPopulated && this.loghtPopulated;
+		return this.p && this.terrainPopulated && this.lightPopulated;
 	}
 
 	public ChunkCoordIntPair getCoords() {
@@ -953,20 +953,20 @@ public class Chunk {
 
 	public void n() {
 		this.terrainPopulated = true;
-		this.loghtPopulated = true;
+		this.lightPopulated = true;
 		Position var1 = new Position(this.x << 4, 0, this.y << 4);
 		if (!this.i.worldProvider.noSkyLight()) {
 			if (this.i.a(var1.a(-1, 0, -1), var1.a(16, 63, 16))) {
 				label42: for (int var2 = 0; var2 < 16; ++var2) {
 					for (int var3 = 0; var3 < 16; ++var3) {
 						if (!this.e(var2, var3)) {
-							this.loghtPopulated = false;
+							this.lightPopulated = false;
 							break label42;
 						}
 					}
 				}
 
-				if (this.loghtPopulated) {
+				if (this.lightPopulated) {
 					Iterator var5 = en.a.iterator();
 
 					while (var5.hasNext()) {
@@ -978,10 +978,9 @@ public class Chunk {
 					this.y();
 				}
 			} else {
-				this.loghtPopulated = false;
+				this.lightPopulated = false;
 			}
 		}
-
 	}
 
 	private void y() {
@@ -1088,11 +1087,11 @@ public class Chunk {
 	}
 
 	public boolean isLightPopulated() {
-		return this.loghtPopulated;
+		return this.lightPopulated;
 	}
 
 	public void setLightPopulated(boolean loghtPopulated) {
-		this.loghtPopulated = loghtPopulated;
+		this.lightPopulated = loghtPopulated;
 	}
 
 	public void f(boolean var1) {

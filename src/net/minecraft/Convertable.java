@@ -10,5 +10,5 @@ public interface Convertable {
 
 	boolean b(String var1);
 
-	boolean a(String var1, uy var2);
+	boolean a(String var1, IProgressUpdate var2);
 }

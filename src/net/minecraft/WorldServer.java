@@ -25,8 +25,8 @@ public class WorldServer extends World implements ITaskScheduler {
 	private final Set L = Sets.newHashSet();
 	private final TreeSet M = new TreeSet();
 	private final Map<UUID, Entity> entities = Maps.newHashMap();
-	public qs b;
-	public boolean c;
+	public ChunkProviderServer b;
+	public boolean savingDisabled;
 	private boolean O;
 	private int P;
 	private final arh Q;
@@ -107,7 +107,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		}
 
 		this.B.c("chunkSource");
-		this.chunkProvider.d();
+		this.chunkProvider.unloadChunks();
 		int var3 = this.a(1.0F);
 		if (var3 != this.ab()) {
 			this.b(var3);
@@ -133,13 +133,13 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.ak();
 	}
 
-	public arq a(xp var1, Position var2) {
-		List var3 = this.N().a(var1, var2);
+	public arq a(EnumCreatureType var1, Position var2) {
+		List var3 = this.N().getMobsFor(var1, var2);
 		return var3 != null && !var3.isEmpty() ? (arq) vj.a(this.s, var3) : null;
 	}
 
-	public boolean a(xp var1, arq var2, Position var3) {
-		List var4 = this.N().a(var1, var3);
+	public boolean a(EnumCreatureType var1, arq var2, Position var3) {
+		List var4 = this.N().getMobsFor(var1, var3);
 		return var4 != null && !var4.isEmpty() ? var4.contains(var2) : false;
 	}
 
@@ -493,7 +493,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	protected IChunkProvider k() {
 		IChunkLoader var1 = this.dataManager.a(this.worldProvider);
-		this.b = new qs(this, var1, this.worldProvider.c());
+		this.b = new ChunkProviderServer(this, var1, this.worldProvider.c());
 		return this.b;
 	}
 
@@ -556,12 +556,12 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	private void b(arb var1) {
-		if (!this.worldProvider.e()) {
+		if (!this.worldProvider.isPrimaryWorld()) {
 			this.worldData.a(Position.ZERO.b(this.worldProvider.i()));
 		} else if (this.worldData.getLevelType() == LevelType.DEBUG) {
 			this.worldData.a(Position.ZERO.a());
 		} else {
-			this.y = true;
+			this.isLoading = true;
 			arz var2 = this.worldProvider.m();
 			List var3 = var2.a();
 			Random var4 = new Random(this.J());
@@ -588,7 +588,7 @@ public class WorldServer extends World implements ITaskScheduler {
 			}
 
 			this.worldData.a(new Position(var6, var7, var8));
-			this.y = false;
+			this.isLoading = false;
 			if (var1.c()) {
 				this.l();
 			}
@@ -600,8 +600,8 @@ public class WorldServer extends World implements ITaskScheduler {
 		bhh var1 = new bhh(U, 10);
 
 		for (int var2 = 0; var2 < 10; ++var2) {
-			int var3 = this.worldData.c() + this.s.nextInt(6) - this.s.nextInt(6);
-			int var4 = this.worldData.e() + this.s.nextInt(6) - this.s.nextInt(6);
+			int var3 = this.worldData.getSpawnX() + this.s.nextInt(6) - this.s.nextInt(6);
+			int var4 = this.worldData.getSpawnZ() + this.s.nextInt(6) - this.s.nextInt(6);
 			Position var5 = this.r(new Position(var3, 0, var4)).a();
 			if (var1.b(this, this.s, var5)) {
 				break;
@@ -614,8 +614,8 @@ public class WorldServer extends World implements ITaskScheduler {
 		return this.worldProvider.h();
 	}
 
-	public void save(boolean var1, uy var2) throws aqz {
-		if (this.chunkProvider.e()) {
+	public void save(boolean var1, IProgressUpdate var2) throws ExceptionWorldConflict {
+		if (this.chunkProvider.canSave()) {
 			if (var2 != null) {
 				var2.a("Saving level");
 			}
@@ -625,14 +625,14 @@ public class WorldServer extends World implements ITaskScheduler {
 				var2.c("Saving chunks");
 			}
 
-			this.chunkProvider.a(var1, var2);
-			List var3 = this.b.a();
+			this.chunkProvider.requestChunksSave(var1, var2);
+			List var3 = this.b.getChunkList();
 			Iterator var4 = var3.iterator();
 
 			while (var4.hasNext()) {
 				Chunk var5 = (Chunk) var4.next();
 				if (!this.K.a(var5.x, var5.y)) {
-					this.b.b(var5.x, var5.y);
+					this.b.queueUnload(var5.x, var5.y);
 				}
 			}
 
@@ -640,12 +640,12 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	public void n() {
-		if (this.chunkProvider.e()) {
-			this.chunkProvider.c();
+		if (this.chunkProvider.canSave()) {
+			this.chunkProvider.saveChunks();
 		}
 	}
 
-	protected void a() throws aqz {
+	protected void a() throws ExceptionWorldConflict {
 		this.checkSessionLock();
 		this.worldData.a(this.getWorldBorder().getOldRadius());
 		this.worldData.d(this.getWorldBorder().getX());

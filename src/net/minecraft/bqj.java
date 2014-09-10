@@ -38,7 +38,7 @@ public class bqj extends bqn {
 		return var2 != null && var2.l() != this.c();
 	}
 
-	public boolean a(String var1, uy var2) {
+	public boolean a(String var1, IProgressUpdate var2) {
 		var2.a(0);
 		ArrayList var3 = Lists.newArrayList();
 		ArrayList var4 = Lists.newArrayList();
@@ -98,7 +98,7 @@ public class bqj extends bqn {
 		}
 	}
 
-	private void a(File var1, Iterable var2, arz var3, int var4, int var5, uy var6) {
+	private void a(File var1, Iterable var2, arz var3, int var4, int var5, IProgressUpdate var6) {
 		Iterator var7 = var2.iterator();
 
 		while (var7.hasNext()) {
@@ -111,7 +111,7 @@ public class bqj extends bqn {
 
 	}
 
-	private void a(File var1, File var2, arz var3, int var4, int var5, uy var6) {
+	private void a(File var1, File var2, arz var3, int var4, int var5, IProgressUpdate var6) {
 		try {
 			String var7 = var2.getName();
 			RegionFile var8 = new RegionFile(var2);
