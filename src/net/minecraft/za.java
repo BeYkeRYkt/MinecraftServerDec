@@ -5,12 +5,12 @@ import java.util.List;
 
 public class za extends zb {
 
-	abq a;
-	abq b;
+	EntityAnimal a;
+	EntityAnimal b;
 	double c;
 	private int d;
 
-	public za(abq var1, double var2) {
+	public za(EntityAnimal var1, double var2) {
 		this.a = var1;
 		this.c = var2;
 	}
@@ -20,12 +20,12 @@ public class za extends zb {
 			return false;
 		} else {
 			List var1 = this.a.world.a(this.a.getClass(), this.a.getBoundingBox().grow(8.0D, 4.0D, 8.0D));
-			abq var2 = null;
+			EntityAnimal var2 = null;
 			double var3 = Double.MAX_VALUE;
 			Iterator var5 = var1.iterator();
 
 			while (var5.hasNext()) {
-				abq var6 = (abq) var5.next();
+				EntityAnimal var6 = (EntityAnimal) var5.next();
 				if (var6.l() >= 0) {
 					double var7 = this.a.getDistanceSquared(var6);
 					if (var7 <= var3) {

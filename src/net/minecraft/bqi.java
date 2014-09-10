@@ -11,11 +11,11 @@ public class bqi extends bqm {
 	public IChunkLoader a(WorldProvider var1) {
 		File var2 = this.b();
 		File var3;
-		if (var1 instanceof NetherWorldProvider) {
+		if (var1 instanceof WorldProviderHell) {
 			var3 = new File(var2, "DIM-1");
 			var3.mkdirs();
 			return new ChunkRegionLoader(var3);
-		} else if (var1 instanceof TheEndWorldProvider) {
+		} else if (var1 instanceof WorldProviderTheEnd) {
 			var3 = new File(var2, "DIM1");
 			var3.mkdirs();
 			return new ChunkRegionLoader(var3);
@@ -25,7 +25,7 @@ public class bqi extends bqm {
 	}
 
 	public void a(WorldData var1, NBTCompoundTag var2) {
-		var1.e(19133);
+		var1.setVersion(19133);
 		super.a(var1, var2);
 	}
 

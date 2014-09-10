@@ -124,7 +124,7 @@ public class bqe extends bqc {
 			var8 += var8 < 0.0D ? -8.0D : 8.0D;
 			var15 = (byte) ((int) (var8 * 16.0D / 360.0D));
 			if (this.d < 0) {
-				int var17 = (int) (var2.getWorldData().g() / 10L);
+				int var17 = (int) (var2.getWorldData().getDayTime() / 10L);
 				var15 = (byte) (var17 * var17 * 34187121 + var17 * 121 >> 15 & 15);
 			}
 		} else {

@@ -3,7 +3,7 @@ package net.minecraft;
 import com.google.common.collect.Lists;
 import java.util.List;
 
-public class bjl extends bmm {
+public class bjl extends StructureGenerator {
 
 	private List d = Lists.newArrayList();
 
@@ -14,7 +14,7 @@ public class bjl extends bmm {
 		this.d.add(new arq(EntityMagmaCube.class, 3, 4, 4));
 	}
 
-	public String a() {
+	public String getName() {
 		return "Fortress";
 	}
 

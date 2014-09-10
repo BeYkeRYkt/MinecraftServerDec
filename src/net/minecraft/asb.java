@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class asb extends arm {
+public class asb extends BiomeBase {
 
 	private bhp aD;
 	private bio aE;
@@ -70,7 +70,7 @@ public class asb extends arm {
 		this.b(var1, var2, var3, var4, var5, var6);
 	}
 
-	private asb b(arm var1) {
+	private asb b(BiomeBase var1) {
 		this.aI = this.aH;
 		this.a(var1.ai, true);
 		this.a(var1.ah + " M");
@@ -79,7 +79,7 @@ public class asb extends arm {
 		return this;
 	}
 
-	protected arm d(int var1) {
+	protected BiomeBase d(int var1) {
 		return (new asb(var1, false)).b(this);
 	}
 }

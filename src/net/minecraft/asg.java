@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class asg extends arm {
+public class asg extends BiomeBase {
 
 	public asg(int var1) {
 		super(var1);

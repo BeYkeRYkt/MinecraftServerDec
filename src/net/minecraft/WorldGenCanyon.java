@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class bgj extends bgt {
+public class WorldGenCanyon extends WorldGenBase {
 
 	private float[] d = new float[1024];
 

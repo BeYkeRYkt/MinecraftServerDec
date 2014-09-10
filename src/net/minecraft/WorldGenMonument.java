@@ -8,19 +8,19 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Map.Entry;
 
-public class bkg extends bmm {
+public class WorldGenMonument extends StructureGenerator {
 
 	private int f;
 	private int g;
-	public static final List d = Arrays.asList(new arm[] { arm.p, arm.N, arm.w, arm.z, arm.A });
+	public static final List d = Arrays.asList(new BiomeBase[] { BiomeBase.p, BiomeBase.N, BiomeBase.w, BiomeBase.z, BiomeBase.A });
 	private static final List h = Lists.newArrayList();
 
-	public bkg() {
+	public WorldGenMonument() {
 		this.f = 32;
 		this.g = 5;
 	}
 
-	public bkg(Map var1) {
+	public WorldGenMonument(Map var1) {
 		this();
 		Iterator var2 = var1.entrySet().iterator();
 
@@ -35,7 +35,7 @@ public class bkg extends bmm {
 
 	}
 
-	public String a() {
+	public String getName() {
 		return "Monument";
 	}
 
@@ -58,7 +58,7 @@ public class bkg extends bmm {
 		var5 += (var7.nextInt(this.f - this.g) + var7.nextInt(this.f - this.g)) / 2;
 		var6 += (var7.nextInt(this.f - this.g) + var7.nextInt(this.f - this.g)) / 2;
 		if (var3 == var5 && var4 == var6) {
-			if (this.c.v().a(new Position(var3 * 16 + 8, 64, var4 * 16 + 8), (arm) null) != arm.N) {
+			if (this.c.v().a(new Position(var3 * 16 + 8, 64, var4 * 16 + 8), (BiomeBase) null) != BiomeBase.N) {
 				return false;
 			}
 

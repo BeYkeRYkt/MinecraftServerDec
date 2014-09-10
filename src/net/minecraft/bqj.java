@@ -35,7 +35,7 @@ public class bqj extends bqn {
 
 	public boolean b(String var1) {
 		WorldData var2 = this.c(var1);
-		return var2 != null && var2.l() != this.c();
+		return var2 != null && var2.getVersion() != this.c();
 	}
 
 	public boolean a(String var1, IProgressUpdate var2) {
@@ -61,17 +61,17 @@ public class bqj extends bqn {
 		WorldData var10 = this.c(var1);
 		Object var11 = null;
 		if (var10.getLevelType() == LevelType.FLAT) {
-			var11 = new asc(arm.q, 0.5F);
+			var11 = new WorldChunkManagerHell(BiomeBase.q, 0.5F);
 		} else {
-			var11 = new arz(var10.b(), var10.getLevelType(), var10.B());
+			var11 = new WorldChunkManager(var10.getSeed(), var10.getLevelType(), var10.getGeneratorOptions());
 		}
 
-		this.a(new File(var6, "region"), (Iterable) var3, (arz) var11, 0, var9, var2);
-		this.a(new File(var7, "region"), (Iterable) var4, new asc(arm.x, 0.0F), var3.size(), var9, var2);
-		this.a(new File(var8, "region"), (Iterable) var5, new asc(arm.y, 0.0F), var3.size() + var4.size(), var9, var2);
-		var10.e(19133);
+		this.a(new File(var6, "region"), (Iterable) var3, (WorldChunkManager) var11, 0, var9, var2);
+		this.a(new File(var7, "region"), (Iterable) var4, new WorldChunkManagerHell(BiomeBase.x, 0.0F), var3.size(), var9, var2);
+		this.a(new File(var8, "region"), (Iterable) var5, new WorldChunkManagerHell(BiomeBase.y, 0.0F), var3.size() + var4.size(), var9, var2);
+		var10.setVersion(19133);
 		if (var10.getLevelType() == LevelType.DEFAULT_1_1) {
-			var10.a(LevelType.DEFAULT);
+			var10.setLevelType(LevelType.DEFAULT);
 		}
 
 		this.g(var1);
@@ -98,7 +98,7 @@ public class bqj extends bqn {
 		}
 	}
 
-	private void a(File var1, Iterable var2, arz var3, int var4, int var5, IProgressUpdate var6) {
+	private void a(File var1, Iterable var2, WorldChunkManager var3, int var4, int var5, IProgressUpdate var6) {
 		Iterator var7 = var2.iterator();
 
 		while (var7.hasNext()) {
@@ -111,7 +111,7 @@ public class bqj extends bqn {
 
 	}
 
-	private void a(File var1, File var2, arz var3, int var4, int var5, IProgressUpdate var6) {
+	private void a(File var1, File var2, WorldChunkManager var3, int var4, int var5, IProgressUpdate var6) {
 		try {
 			String var7 = var2.getName();
 			RegionFile var8 = new RegionFile(var2);

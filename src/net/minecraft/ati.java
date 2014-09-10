@@ -53,7 +53,7 @@ public abstract class ati extends Block {
 	}
 
 	public void c(World var1, Position var2, BlockState var3) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			var3 = this.a(var1, var2, var3, true);
 			if (this.a) {
 				this.a(var1, var2, var3, (Block) this);
@@ -63,7 +63,7 @@ public abstract class ati extends Block {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Block var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			atl var5 = (atl) var3.b(this.l());
 			boolean var6 = false;
 			if (!World.a((ard) var1, var2.b())) {
@@ -94,7 +94,7 @@ public abstract class ati extends Block {
 	}
 
 	protected BlockState a(World var1, Position var2, BlockState var3, boolean var4) {
-		return var1.D ? var3 : (new atk(this, var1, var2, var3)).a(var1.z(var2), var4).b();
+		return var1.isStatic ? var3 : (new atk(this, var1, var2, var3)).a(var1.z(var2), var4).b();
 	}
 
 	public int i() {

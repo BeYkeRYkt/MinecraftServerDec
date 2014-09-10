@@ -198,7 +198,7 @@ public class biv {
 				if (var5 != null && !var5.isEmpty()) {
 					var3.c().addAll(var5);
 					var3.d();
-					int var6 = arm.q.az;
+					int var6 = BiomeBase.q.az;
 					if (var2 > 0 && var1.length > var4) {
 						var6 = DataTypesConverter.a(var1[var4++], var6);
 					}
@@ -243,7 +243,7 @@ public class biv {
 
 	public static biv e() {
 		biv var0 = new biv();
-		var0.a(arm.q.az);
+		var0.a(BiomeBase.q.az);
 		var0.c().add(new biw(1, Blocks.BEDROCK));
 		var0.c().add(new biw(2, Blocks.DIRT));
 		var0.c().add(new biw(1, Blocks.GRASS));

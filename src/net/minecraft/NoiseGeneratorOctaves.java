@@ -2,17 +2,17 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class bnv extends boa {
+public class NoiseGeneratorOctaves extends NoiseGenerator {
 
-	private bnu[] a;
+	private NoiseGeneratorPerlin[] a;
 	private int b;
 
-	public bnv(Random var1, int var2) {
+	public NoiseGeneratorOctaves(Random var1, int var2) {
 		this.b = var2;
-		this.a = new bnu[var2];
+		this.a = new NoiseGeneratorPerlin[var2];
 
-		for (int var3 = 0; var3 < var2; ++var3) {
-			this.a[var3] = new bnu(var1);
+		for (int i = 0; i < var2; ++i) {
+			this.a[i] = new NoiseGeneratorPerlin(var1);
 		}
 
 	}
@@ -28,7 +28,7 @@ public class bnv extends boa {
 
 		double var27 = 1.0D;
 
-		for (int var16 = 0; var16 < this.b; ++var16) {
+		for (int i = 0; i < this.b; ++i) {
 			double var17 = (double) var2 * var27 * var8;
 			double var19 = (double) var3 * var27 * var10;
 			double var21 = (double) var4 * var27 * var12;
@@ -40,7 +40,7 @@ public class bnv extends boa {
 			var25 %= 16777216L;
 			var17 += (double) var23;
 			var21 += (double) var25;
-			this.a[var16].a(var1, var17, var19, var21, var5, var6, var7, var8 * var27, var10 * var27, var12 * var27, var27);
+			this.a[i].a(var1, var17, var19, var21, var5, var6, var7, var8 * var27, var10 * var27, var12 * var27, var27);
 			var27 /= 2.0D;
 		}
 

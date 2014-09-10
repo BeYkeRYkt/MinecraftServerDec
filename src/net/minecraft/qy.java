@@ -350,7 +350,7 @@ public class qy {
 			return new PacketPlayOutSpawnObject(this.a, 10, var9.s().getId());
 		} else if (this.a instanceof EntityBoat) {
 			return new PacketPlayOutSpawnObject(this.a, 1);
-		} else if (this.a instanceof wt) {
+		} else if (this.a instanceof IAnimal) {
 			this.i = DataTypesConverter.d(this.a.aD() * 256.0F / 360.0F);
 			return new PacketPlayOutSpawnMob((EntityLiving) this.a);
 		} else if (this.a instanceof ado) {

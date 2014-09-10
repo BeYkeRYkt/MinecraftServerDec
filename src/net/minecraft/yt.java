@@ -6,13 +6,13 @@ import java.util.Random;
 
 public class yt extends zb {
 
-	private abq d;
+	private EntityAnimal d;
 	World a;
-	private abq e;
+	private EntityAnimal e;
 	int b;
 	double c;
 
-	public yt(abq var1, double var2) {
+	public yt(EntityAnimal var1, double var2) {
 		this.d = var1;
 		this.a = var1.world;
 		this.c = var2;
@@ -47,15 +47,15 @@ public class yt extends zb {
 
 	}
 
-	private abq f() {
+	private EntityAnimal f() {
 		float var1 = 8.0F;
 		List var2 = this.a.a(this.d.getClass(), this.d.getBoundingBox().grow((double) var1, (double) var1, (double) var1));
 		double var3 = Double.MAX_VALUE;
-		abq var5 = null;
+		EntityAnimal var5 = null;
 		Iterator var6 = var2.iterator();
 
 		while (var6.hasNext()) {
-			abq var7 = (abq) var6.next();
+			EntityAnimal var7 = (EntityAnimal) var6.next();
 			if (this.d.a(var7) && this.d.getDistanceSquared(var7) < var3) {
 				var5 = var7;
 				var3 = this.d.getDistanceSquared(var7);
@@ -66,7 +66,7 @@ public class yt extends zb {
 	}
 
 	private void g() {
-		ws var1 = this.d.a((ws) this.e);
+		EntityAgeable var1 = this.d.a((EntityAgeable) this.e);
 		if (var1 != null) {
 			EntityHuman var2 = this.d.co();
 			if (var2 == null && this.e.co() != null) {

@@ -8,7 +8,7 @@ public class asw extends ary {
 		this.M = new bim(Blocks.END_STONE);
 	}
 
-	protected void a(arm var1) {
+	protected void a(BiomeBase var1) {
 		this.a();
 		if (this.b.nextInt(5) == 0) {
 			int var2 = this.b.nextInt(16) + 8;

@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class ast extends arm {
+public class ast extends BiomeBase {
 
 	protected ast(int var1) {
 		super(var1);

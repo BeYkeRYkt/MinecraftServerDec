@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class asr extends asl {
 
-	public asr(int var1, arm var2) {
+	public asr(int var1, BiomeBase var2) {
 		super(var1, var2);
 		this.as.A = 2;
 		this.as.B = 2;

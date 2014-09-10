@@ -65,7 +65,7 @@ public abstract class ath extends Block {
 	}
 
 	public void b(World var1, Position var2, BlockState var3, Random var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			int var5 = this.e(var3);
 			if (var5 > 0) {
 				this.a(var1, var2, var3, var5);
@@ -75,7 +75,7 @@ public abstract class ath extends Block {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Entity var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			int var5 = this.e(var3);
 			if (var5 == 0) {
 				this.a(var1, var2, var3, var5);

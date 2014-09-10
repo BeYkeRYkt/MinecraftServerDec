@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class asu extends arm {
+public class asu extends BiomeBase {
 
 	private static final big aD = new big();
 	private static final bio aE = new bio(false);
@@ -77,8 +77,8 @@ public class asu extends arm {
 		this.b(var1, var2, var3, var4, var5, var6);
 	}
 
-	protected arm d(int var1) {
-		return this.az == arm.V.az ? (new asu(var1, 2)).a(5858897, true).a("Mega Spruce Taiga").a(5159473).a(0.25F, 0.8F).a(new aro(this.an, this.ao)) : super.d(var1);
+	protected BiomeBase d(int var1) {
+		return this.az == BiomeBase.V.az ? (new asu(var1, 2)).a(5858897, true).a("Mega Spruce Taiga").a(5159473).a(0.25F, 0.8F).a(new aro(this.an, this.ao)) : super.d(var1);
 	}
 
 }

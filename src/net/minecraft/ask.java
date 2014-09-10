@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class ask extends arm {
+public class ask extends BiomeBase {
 
 	public ask(int var1) {
 		super(var1);

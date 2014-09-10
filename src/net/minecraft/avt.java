@@ -24,7 +24,7 @@ public class avt extends Block {
 	}
 
 	public void b(World var1, Position var2, BlockState var3, Random var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			this.e(var1, var2);
 		}
 
@@ -34,7 +34,7 @@ public class avt extends Block {
 		if (d(var1, var2.b()) && var2.getY() >= 0) {
 			byte var3 = 32;
 			if (!M && var1.a(var2.a(-var3, -var3, -var3), var2.a(var3, var3, var3))) {
-				if (!var1.D) {
+				if (!var1.isStatic) {
 					EntityFallingBlock var5 = new EntityFallingBlock(var1, (double) var2.getX() + 0.5D, (double) var2.getY(), (double) var2.getZ() + 0.5D, var1.getBlockState(var2));
 					this.a(var5);
 					var1.d((Entity) var5);

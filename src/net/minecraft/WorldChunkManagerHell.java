@@ -4,23 +4,23 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class asc extends arz {
+public class WorldChunkManagerHell extends WorldChunkManager {
 
-	private arm b;
+	private BiomeBase b;
 	private float c;
 
-	public asc(arm var1, float var2) {
+	public WorldChunkManagerHell(BiomeBase var1, float var2) {
 		this.b = var1;
 		this.c = var2;
 	}
 
-	public arm a(Position var1) {
+	public BiomeBase a(Position var1) {
 		return this.b;
 	}
 
-	public arm[] a(arm[] var1, int var2, int var3, int var4, int var5) {
+	public BiomeBase[] a(BiomeBase[] var1, int var2, int var3, int var4, int var5) {
 		if (var1 == null || var1.length < var4 * var5) {
-			var1 = new arm[var4 * var5];
+			var1 = new BiomeBase[var4 * var5];
 		}
 
 		Arrays.fill(var1, 0, var4 * var5, this.b);
@@ -36,16 +36,16 @@ public class asc extends arz {
 		return var1;
 	}
 
-	public arm[] b(arm[] var1, int var2, int var3, int var4, int var5) {
+	public BiomeBase[] b(BiomeBase[] var1, int var2, int var3, int var4, int var5) {
 		if (var1 == null || var1.length < var4 * var5) {
-			var1 = new arm[var4 * var5];
+			var1 = new BiomeBase[var4 * var5];
 		}
 
 		Arrays.fill(var1, 0, var4 * var5, this.b);
 		return var1;
 	}
 
-	public arm[] a(arm[] var1, int var2, int var3, int var4, int var5, boolean var6) {
+	public BiomeBase[] a(BiomeBase[] var1, int var2, int var3, int var4, int var5, boolean var6) {
 		return this.b(var1, var2, var3, var4, var5);
 	}
 

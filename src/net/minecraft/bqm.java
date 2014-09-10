@@ -107,7 +107,7 @@ public class bqm implements IDataManager, brl {
 	}
 
 	public void a(WorldData var1, NBTCompoundTag var2) {
-		NBTCompoundTag var3 = var1.a(var2);
+		NBTCompoundTag var3 = var1.getDataTag(var2);
 		NBTCompoundTag var4 = new NBTCompoundTag();
 		var4.put("Data", (NBTTag) var3);
 
@@ -136,7 +136,7 @@ public class bqm implements IDataManager, brl {
 	}
 
 	public void a(WorldData var1) {
-		NBTCompoundTag var2 = var1.a();
+		NBTCompoundTag var2 = var1.getDataTag();
 		NBTCompoundTag var3 = new NBTCompoundTag();
 		var3.put("Data", (NBTTag) var2);
 

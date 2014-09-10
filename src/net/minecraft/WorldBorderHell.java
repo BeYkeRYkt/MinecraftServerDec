@@ -1,13 +1,6 @@
 package net.minecraft;
 
-class bgf extends WorldBorder {
-
-	// $FF: synthetic field
-	final NetherWorldProvider a;
-
-	bgf(NetherWorldProvider var1) {
-		this.a = var1;
-	}
+class WorldBorderHell extends WorldBorder {
 
 	public double getX() {
 		return super.getX() / 8.0D;
@@ -16,4 +9,5 @@ class bgf extends WorldBorder {
 	public double getZ() {
 		return super.getZ() / 8.0D;
 	}
+
 }

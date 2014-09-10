@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class bnu extends boa {
+public class NoiseGeneratorPerlin extends NoiseGenerator {
 
 	private int[] d;
 	public double a;
@@ -14,11 +14,11 @@ public class bnu extends boa {
 	private static final double[] h = new double[] { 1.0D, -1.0D, 1.0D, -1.0D, 1.0D, -1.0D, 1.0D, -1.0D, 0.0D, 0.0D, 0.0D, 0.0D, 1.0D, 0.0D, -1.0D, 0.0D };
 	private static final double[] i = new double[] { 0.0D, 0.0D, 0.0D, 0.0D, 1.0D, 1.0D, -1.0D, -1.0D, 1.0D, 1.0D, -1.0D, -1.0D, 0.0D, 1.0D, 0.0D, -1.0D };
 
-	public bnu() {
+	public NoiseGeneratorPerlin() {
 		this(new Random());
 	}
 
-	public bnu(Random var1) {
+	public NoiseGeneratorPerlin(Random var1) {
 		this.d = new int[512];
 		this.a = var1.nextDouble() * 256.0D;
 		this.b = var1.nextDouble() * 256.0D;

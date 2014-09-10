@@ -4,18 +4,18 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class bjd extends bmm {
+public class WorldGenMineshaft extends StructureGenerator {
 
 	private double d = 0.004D;
 
-	public bjd() {
+	public WorldGenMineshaft() {
 	}
 
-	public String a() {
+	public String getName() {
 		return "Mineshaft";
 	}
 
-	public bjd(Map var1) {
+	public WorldGenMineshaft(Map var1) {
 		Iterator var2 = var1.entrySet().iterator();
 
 		while (var2.hasNext()) {

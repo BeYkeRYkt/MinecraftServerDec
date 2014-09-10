@@ -147,7 +147,7 @@ public abstract class aud extends Block {
 	}
 
 	public void b(World var1, Position var2, BlockState var3, Random var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (((Boolean) var3.b(b)).booleanValue()) {
 				if (this.M) {
 					this.f(var1, var2, var3);
@@ -170,7 +170,7 @@ public abstract class aud extends Block {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Entity var4) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			if (this.M) {
 				if (!((Boolean) var3.b(b)).booleanValue()) {
 					this.f(var1, var2, var3);

@@ -3,7 +3,7 @@ package net.minecraft;
 import com.google.common.base.Objects;
 import java.util.Random;
 
-public class bgs extends bgt {
+public class WorldGenCaves extends WorldGenBase {
 
 	protected void a(long var1, int var3, int var4, bgk var5, double var6, double var8, double var10) {
 		this.a(var1, var3, var4, var5, var6, var8, var10, 1.0F + this.b.nextFloat() * 6.0F, 0.0F, 0.0F, -1, -1, 0.5D);

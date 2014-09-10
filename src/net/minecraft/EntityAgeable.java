@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public abstract class ws extends EntityCreature {
+public abstract class EntityAgeable extends EntityCreature {
 
 	protected int a;
 	protected int b;
@@ -8,19 +8,19 @@ public abstract class ws extends EntityCreature {
 	private float bk = -1.0F;
 	private float bl;
 
-	public ws(World var1) {
+	public EntityAgeable(World var1) {
 		super(var1);
 	}
 
-	public abstract ws a(ws var1);
+	public abstract EntityAgeable a(EntityAgeable var1);
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (var2 != null && var2.getItem() == Items.SPAWNEGG) {
-			if (!this.world.D) {
+			if (!this.world.isStatic) {
 				Class var3 = EntityTypes.getClassById(var2.getDurability());
 				if (var3 != null && this.getClass() == var3) {
-					ws var4 = this.a(this);
+					EntityAgeable var4 = this.a(this);
 					if (var4 != null) {
 						var4.b(-24000);
 						var4.setPositionRotation(this.locationX, this.locationY, this.locationZ, 0.0F, 0.0F);
@@ -51,7 +51,7 @@ public abstract class ws extends EntityCreature {
 	}
 
 	public int l() {
-		return this.world.D ? this.dataWatcher.a(12) : this.a;
+		return this.world.isStatic ? this.dataWatcher.a(12) : this.a;
 	}
 
 	public void a(int var1, boolean var2) {
@@ -104,7 +104,7 @@ public abstract class ws extends EntityCreature {
 
 	public void m() {
 		super.m();
-		if (this.world.D) {
+		if (this.world.isStatic) {
 			if (this.c > 0) {
 				if (this.c % 4 == 0) {
 					this.world.a(Particle.v, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[0]);

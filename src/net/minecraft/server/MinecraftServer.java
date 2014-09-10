@@ -134,22 +134,22 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		IDataManager var7 = this.convertable.a(var1, true);
 		this.a(this.getLevelName(), var7);
 		WorldData var9 = var7.d();
-		arb var8;
+		WorldSettings var8;
 		if (var9 == null) {
 			if (this.W()) {
-				var8 = DemoWorldServer.a;
+				var8 = DemoWorldServer.DEMO_WORLD_SETTINGS;
 			} else {
-				var8 = new arb(var3, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), var5);
-				var8.a(var6);
+				var8 = new WorldSettings(var3, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), var5);
+				var8.setGeneratorOptions(var6);
 				if (this.M) {
-					var8.a();
+					var8.enableBonusChest();
 				}
 			}
 
 			var9 = new WorldData(var8, var2);
 		} else {
-			var9.a(var2);
-			var8 = new arb(var9);
+			var9.setLevelName(var2);
+			var8 = new WorldSettings(var9);
 		}
 
 		for (int var10 = 0; var10 < this.worlds.length; ++var10) {
@@ -176,7 +176,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 			this.worlds[var10].a((ara) (new qp(this, this.worlds[var10])));
 			if (!this.isSinglePlayer()) {
-				this.worlds[var10].getWorldData().a(this.getServerGameMode());
+				this.worlds[var10].getWorldData().setGameMode(this.getServerGameMode());
 			}
 		}
 
@@ -235,7 +235,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			for (WorldServer world : worlds) {
 				if (world != null) {
 					if (!silenced) {
-						logger.info("Saving chunks for level \'" + world.getWorldData().k() + "\'/" + world.worldProvider.k());
+						logger.info("Saving chunks for level \'" + world.getWorldData().getLevelName() + "\'/" + world.worldProvider.getWorldName());
 					}
 
 					try {
@@ -245,7 +245,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 					}
 
 					if (!silenced) {
-						logger.info("Saved chunks for level \'" + world.getWorldData().k() + "\'/" + world.worldProvider.k());
+						logger.info("Saved chunks for level \'" + world.getWorldData().getLevelName() + "\'/" + world.worldProvider.getWorldName());
 					}
 				}
 			}
@@ -472,7 +472,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			long var2 = System.nanoTime();
 			if (i == 0 || this.isNetherAllowed()) {
 				WorldServer world = this.worlds[i];
-				this.profiler.a(world.getWorldData().k());
+				this.profiler.a(world.getWorldData().getLevelName());
 
 				if (this.ticks % 20 == 0) {
 					this.profiler.a("timeSync");
@@ -804,13 +804,13 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			WorldServer var3 = this.worlds[var2];
 			if (var3 != null) {
 				if (var3.getWorldData().isHardcore()) {
-					var3.getWorldData().a(Difficulty.HARD);
+					var3.getWorldData().setDifficulty(Difficulty.HARD);
 					var3.a(true, true);
 				} else if (this.isSinglePlayer()) {
-					var3.getWorldData().a(var1);
+					var3.getWorldData().setDifficulty(var1);
 					var3.a(var3.getDifficulty() != Difficulty.PEACEFUL, true);
 				} else {
-					var3.getWorldData().a(var1);
+					var3.getWorldData().setDifficulty(var1);
 					var3.a(this.isMonsterSpawnEnabled(), this.spawnAnimals);
 				}
 			}
@@ -886,11 +886,11 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 					WorldServer var4 = this.worlds[var3];
 					WorldData var5 = var4.getWorldData();
 					var1.a("world[" + var2 + "][dimension]", Integer.valueOf(var4.worldProvider.getDimensionId()));
-					var1.a("world[" + var2 + "][mode]", var5.r());
+					var1.a("world[" + var2 + "][mode]", var5.getGameMode());
 					var1.a("world[" + var2 + "][difficulty]", var4.getDifficulty());
 					var1.a("world[" + var2 + "][hardcore]", Boolean.valueOf(var5.isHardcore()));
-					var1.a("world[" + var2 + "][generator_name]", var5.getLevelType().a());
-					var1.a("world[" + var2 + "][generator_version]", Integer.valueOf(var5.getLevelType().d()));
+					var1.a("world[" + var2 + "][generator_name]", var5.getLevelType().getName());
+					var1.a("world[" + var2 + "][generator_version]", Integer.valueOf(var5.getLevelType().getVersion()));
 					var1.a("world[" + var2 + "][height]", Integer.valueOf(this.maxBuildHeight));
 					var1.a("world[" + var2 + "][chunks_loaded]", Integer.valueOf(var4.N().getLoadedChunks()));
 					++var2;
@@ -982,7 +982,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 	public void setServerGameMode(GameMode var1) {
 		for (int i = 0; i < this.worlds.length; ++i) {
-			getInstance().worlds[i].getWorldData().a(var1);
+			getInstance().worlds[i].getWorldData().setGameMode(var1);
 		}
 	}
 

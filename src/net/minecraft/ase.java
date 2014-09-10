@@ -7,7 +7,7 @@ class ase extends asl {
 	// $FF: synthetic field
 	final asd aD;
 
-	ase(asd var1, int var2, arm var3) {
+	ase(asd var1, int var2, BiomeBase var3) {
 		super(var2, var3);
 		this.aD = var1;
 	}

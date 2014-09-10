@@ -77,7 +77,7 @@ public class zj extends zb {
 	}
 
 	private void g() {
-		EntityVillager var1 = this.b.b((ws) this.c);
+		EntityVillager var1 = this.b.b((EntityAgeable) this.c);
 		this.c.b(6000);
 		this.b.b(6000);
 		this.c.o(false);

@@ -23,14 +23,14 @@ public class bpi extends bpa {
 		int[] var7 = boy.a(var3 * var4);
 
 		for (int var8 = 0; var8 < var3 * var4; ++var8) {
-			if (var5[var8] != arm.p.az && var5[var8] != arm.N.az) {
-				if (var6[var8] == arm.w.az) {
-					if (var5[var8] == arm.B.az) {
-						var7[var8] = arm.A.az;
-					} else if (var5[var8] != arm.D.az && var5[var8] != arm.E.az) {
+			if (var5[var8] != BiomeBase.p.az && var5[var8] != BiomeBase.N.az) {
+				if (var6[var8] == BiomeBase.w.az) {
+					if (var5[var8] == BiomeBase.B.az) {
+						var7[var8] = BiomeBase.A.az;
+					} else if (var5[var8] != BiomeBase.D.az && var5[var8] != BiomeBase.E.az) {
 						var7[var8] = var6[var8] & 255;
 					} else {
-						var7[var8] = arm.E.az;
+						var7[var8] = BiomeBase.E.az;
 					}
 				} else {
 					var7[var8] = var5[var8];

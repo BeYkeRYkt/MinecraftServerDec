@@ -15,20 +15,20 @@ public class bpj extends bpa {
 			for (int var8 = 0; var8 < var3; ++var8) {
 				this.a((long) (var8 + var1), (long) (var7 + var2));
 				int var9 = var5[var8 + 1 + (var7 + 1) * (var3 + 2)];
-				arm var10 = arm.e(var9);
+				BiomeBase var10 = BiomeBase.e(var9);
 				int var11;
 				int var12;
 				int var13;
 				int var14;
-				if (var9 == arm.D.az) {
+				if (var9 == BiomeBase.D.az) {
 					var11 = var5[var8 + 1 + (var7 + 1 - 1) * (var3 + 2)];
 					var12 = var5[var8 + 1 + 1 + (var7 + 1) * (var3 + 2)];
 					var13 = var5[var8 + 1 - 1 + (var7 + 1) * (var3 + 2)];
 					var14 = var5[var8 + 1 + (var7 + 1 + 1) * (var3 + 2)];
-					if (var11 != arm.p.az && var12 != arm.p.az && var13 != arm.p.az && var14 != arm.p.az) {
+					if (var11 != BiomeBase.p.az && var12 != BiomeBase.p.az && var13 != BiomeBase.p.az && var14 != BiomeBase.p.az) {
 						var6[var8 + var7 * var3] = var9;
 					} else {
-						var6[var8 + var7 * var3] = arm.E.az;
+						var6[var8 + var7 * var3] = BiomeBase.E.az;
 					}
 				} else if (var10 != null && var10.l() == asi.class) {
 					var11 = var5[var8 + 1 + (var7 + 1 - 1) * (var3 + 2)];
@@ -39,16 +39,16 @@ public class bpj extends bpa {
 						if (!b(var11) && !b(var12) && !b(var13) && !b(var14)) {
 							var6[var8 + var7 * var3] = var9;
 						} else {
-							var6[var8 + var7 * var3] = arm.F.az;
+							var6[var8 + var7 * var3] = BiomeBase.F.az;
 						}
 					} else {
-						var6[var8 + var7 * var3] = arm.M.az;
+						var6[var8 + var7 * var3] = BiomeBase.M.az;
 					}
-				} else if (var9 != arm.s.az && var9 != arm.X.az && var9 != arm.J.az) {
+				} else if (var9 != BiomeBase.s.az && var9 != BiomeBase.X.az && var9 != BiomeBase.J.az) {
 					if (var10 != null && var10.j()) {
-						this.a(var5, var6, var8, var7, var3, var9, arm.P.az);
-					} else if (var9 != arm.aa.az && var9 != arm.ab.az) {
-						if (var9 != arm.p.az && var9 != arm.N.az && var9 != arm.w.az && var9 != arm.v.az) {
+						this.a(var5, var6, var8, var7, var3, var9, BiomeBase.P.az);
+					} else if (var9 != BiomeBase.aa.az && var9 != BiomeBase.ab.az) {
+						if (var9 != BiomeBase.p.az && var9 != BiomeBase.N.az && var9 != BiomeBase.w.az && var9 != BiomeBase.v.az) {
 							var11 = var5[var8 + 1 + (var7 + 1 - 1) * (var3 + 2)];
 							var12 = var5[var8 + 1 + 1 + (var7 + 1) * (var3 + 2)];
 							var13 = var5[var8 + 1 - 1 + (var7 + 1) * (var3 + 2)];
@@ -56,7 +56,7 @@ public class bpj extends bpa {
 							if (!b(var11) && !b(var12) && !b(var13) && !b(var14)) {
 								var6[var8 + var7 * var3] = var9;
 							} else {
-								var6[var8 + var7 * var3] = arm.F.az;
+								var6[var8 + var7 * var3] = BiomeBase.F.az;
 							}
 						} else {
 							var6[var8 + var7 * var3] = var9;
@@ -70,14 +70,14 @@ public class bpj extends bpa {
 							if (this.d(var11) && this.d(var12) && this.d(var13) && this.d(var14)) {
 								var6[var8 + var7 * var3] = var9;
 							} else {
-								var6[var8 + var7 * var3] = arm.r.az;
+								var6[var8 + var7 * var3] = BiomeBase.r.az;
 							}
 						} else {
 							var6[var8 + var7 * var3] = var9;
 						}
 					}
 				} else {
-					this.a(var5, var6, var8, var7, var3, var9, arm.O.az);
+					this.a(var5, var6, var8, var7, var3, var9, BiomeBase.O.az);
 				}
 			}
 		}
@@ -103,10 +103,10 @@ public class bpj extends bpa {
 	}
 
 	private boolean c(int var1) {
-		return arm.e(var1) != null && arm.e(var1).l() == asi.class ? true : var1 == arm.M.az || var1 == arm.K.az || var1 == arm.L.az || var1 == arm.t.az || var1 == arm.u.az || b(var1);
+		return BiomeBase.e(var1) != null && BiomeBase.e(var1).l() == asi.class ? true : var1 == BiomeBase.M.az || var1 == BiomeBase.K.az || var1 == BiomeBase.L.az || var1 == BiomeBase.t.az || var1 == BiomeBase.u.az || b(var1);
 	}
 
 	private boolean d(int var1) {
-		return arm.e(var1) instanceof asj;
+		return BiomeBase.e(var1) instanceof asj;
 	}
 }

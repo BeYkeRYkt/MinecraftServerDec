@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class ash extends arm {
+public class ash extends BiomeBase {
 
 	private boolean aD;
 	private bhx aE = new bhx();
@@ -43,8 +43,8 @@ public class ash extends arm {
 		return new bio(false);
 	}
 
-	protected arm d(int var1) {
-		arm var2 = (new ash(var1, true)).a(13828095, true).a(this.ah + " Spikes").c().a(0.0F, 0.5F).a(new aro(this.an + 0.1F, this.ao + 0.1F));
+	protected BiomeBase d(int var1) {
+		BiomeBase var2 = (new ash(var1, true)).a(13828095, true).a(this.ah + " Spikes").c().a(0.0F, 0.5F).a(new aro(this.an + 0.1F, this.ao + 0.1F));
 		var2.an = this.an + 0.3F;
 		var2.ao = this.ao + 0.4F;
 		return var2;

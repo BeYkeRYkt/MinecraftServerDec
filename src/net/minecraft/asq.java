@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class asq extends arm {
+public class asq extends BiomeBase {
 
 	private static final bil aD = new bil(false);
 
@@ -18,7 +18,7 @@ public class asq extends arm {
 		return (bhc) (var1.nextInt(5) > 0 ? aD : this.aA);
 	}
 
-	protected arm d(int var1) {
+	protected BiomeBase d(int var1) {
 		asr var2 = new asr(var1, this);
 		var2.ap = (this.ap + 1.0F) * 0.5F;
 		var2.an = this.an * 0.5F + 0.3F;

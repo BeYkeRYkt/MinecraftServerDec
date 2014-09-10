@@ -30,7 +30,7 @@ public class bpe extends bpa {
 				}
 
 				if (var10 != 0 && var11 >= 2 && (var11 - 2) % 29 == 1 && var10 < 128) {
-					if (arm.e(var10 + 128) != null) {
+					if (BiomeBase.e(var10 + 128) != null) {
 						var7[var9 + var8 * var3] = var10 + 128;
 					} else {
 						var7[var9 + var8 * var3] = var10;
@@ -40,49 +40,49 @@ public class bpe extends bpa {
 				} else {
 					int var13 = var10;
 					int var14;
-					if (var10 == arm.r.az) {
-						var13 = arm.G.az;
-					} else if (var10 == arm.t.az) {
-						var13 = arm.H.az;
-					} else if (var10 == arm.Q.az) {
-						var13 = arm.R.az;
-					} else if (var10 == arm.S.az) {
-						var13 = arm.q.az;
-					} else if (var10 == arm.u.az) {
-						var13 = arm.I.az;
-					} else if (var10 == arm.V.az) {
-						var13 = arm.W.az;
-					} else if (var10 == arm.T.az) {
-						var13 = arm.U.az;
-					} else if (var10 == arm.q.az) {
+					if (var10 == BiomeBase.r.az) {
+						var13 = BiomeBase.G.az;
+					} else if (var10 == BiomeBase.t.az) {
+						var13 = BiomeBase.H.az;
+					} else if (var10 == BiomeBase.Q.az) {
+						var13 = BiomeBase.R.az;
+					} else if (var10 == BiomeBase.S.az) {
+						var13 = BiomeBase.q.az;
+					} else if (var10 == BiomeBase.u.az) {
+						var13 = BiomeBase.I.az;
+					} else if (var10 == BiomeBase.V.az) {
+						var13 = BiomeBase.W.az;
+					} else if (var10 == BiomeBase.T.az) {
+						var13 = BiomeBase.U.az;
+					} else if (var10 == BiomeBase.q.az) {
 						if (this.a(3) == 0) {
-							var13 = arm.H.az;
+							var13 = BiomeBase.H.az;
 						} else {
-							var13 = arm.t.az;
+							var13 = BiomeBase.t.az;
 						}
-					} else if (var10 == arm.B.az) {
-						var13 = arm.C.az;
-					} else if (var10 == arm.K.az) {
-						var13 = arm.L.az;
-					} else if (var10 == arm.p.az) {
-						var13 = arm.N.az;
-					} else if (var10 == arm.s.az) {
-						var13 = arm.X.az;
-					} else if (var10 == arm.Y.az) {
-						var13 = arm.Z.az;
-					} else if (a(var10, arm.ab.az)) {
-						var13 = arm.aa.az;
-					} else if (var10 == arm.N.az && this.a(3) == 0) {
+					} else if (var10 == BiomeBase.B.az) {
+						var13 = BiomeBase.C.az;
+					} else if (var10 == BiomeBase.K.az) {
+						var13 = BiomeBase.L.az;
+					} else if (var10 == BiomeBase.p.az) {
+						var13 = BiomeBase.N.az;
+					} else if (var10 == BiomeBase.s.az) {
+						var13 = BiomeBase.X.az;
+					} else if (var10 == BiomeBase.Y.az) {
+						var13 = BiomeBase.Z.az;
+					} else if (a(var10, BiomeBase.ab.az)) {
+						var13 = BiomeBase.aa.az;
+					} else if (var10 == BiomeBase.N.az && this.a(3) == 0) {
 						var14 = this.a(2);
 						if (var14 == 0) {
-							var13 = arm.q.az;
+							var13 = BiomeBase.q.az;
 						} else {
-							var13 = arm.t.az;
+							var13 = BiomeBase.t.az;
 						}
 					}
 
 					if (var12 && var13 != var10) {
-						if (arm.e(var13 + 128) != null) {
+						if (BiomeBase.e(var13 + 128) != null) {
 							var13 += 128;
 						} else {
 							var13 = var10;

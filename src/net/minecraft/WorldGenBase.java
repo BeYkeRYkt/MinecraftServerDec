@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class bgt {
+public class WorldGenBase {
 
 	protected int a = 8;
 	protected Random b = new Random();

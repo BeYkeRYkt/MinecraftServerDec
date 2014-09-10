@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class asi extends arm {
+public class asi extends BiomeBase {
 
 	private boolean aD;
 

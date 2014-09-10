@@ -83,7 +83,7 @@ public class bhy extends bhp {
 						if (var4[(var6 * 16 + var30) * 8 + var8]) {
 							Position var33 = var3.a(var6, var8 - 1, var30);
 							if (var1.getBlockState(var33).getBlock() == Blocks.DIRT && var1.b(arf.a, var3.a(var6, var8, var30)) > 0) {
-								arm var34 = var1.b(var33);
+								BiomeBase var34 = var1.b(var33);
 								if (var34.ak.getBlock() == Blocks.MYCELIUM) {
 									var1.a(var33, Blocks.MYCELIUM.getBlockState(), 2);
 								} else {

@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Map.Entry;
 
-public class blp extends bmm {
+public class WorldGenStronghold extends StructureGenerator {
 
 	private List d;
 	private boolean f;
@@ -16,16 +16,16 @@ public class blp extends bmm {
 	private double h;
 	private int i;
 
-	public blp() {
+	public WorldGenStronghold() {
 		this.g = new ChunkCoordIntPair[3];
 		this.h = 32.0D;
 		this.i = 3;
 		this.d = Lists.newArrayList();
-		arm[] var1 = arm.n();
+		BiomeBase[] var1 = BiomeBase.n();
 		int var2 = var1.length;
 
 		for (int var3 = 0; var3 < var2; ++var3) {
-			arm var4 = var1[var3];
+			BiomeBase var4 = var1[var3];
 			if (var4 != null && var4.an > 0.0F) {
 				this.d.add(var4);
 			}
@@ -33,7 +33,7 @@ public class blp extends bmm {
 
 	}
 
-	public blp(Map var1) {
+	public WorldGenStronghold(Map var1) {
 		this();
 		Iterator var2 = var1.entrySet().iterator();
 
@@ -50,7 +50,7 @@ public class blp extends bmm {
 
 	}
 
-	public String a() {
+	public String getName() {
 		return "Stronghold";
 	}
 

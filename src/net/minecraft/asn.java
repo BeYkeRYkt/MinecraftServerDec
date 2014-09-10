@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class asn extends arm {
+public class asn extends BiomeBase {
 
 	protected boolean aD;
 
@@ -76,7 +76,7 @@ public class asn extends arm {
 		super.a(var1, var2, var3);
 	}
 
-	protected arm d(int var1) {
+	protected BiomeBase d(int var1) {
 		asn var2 = new asn(var1);
 		var2.a("Sunflower Plains");
 		var2.aD = true;

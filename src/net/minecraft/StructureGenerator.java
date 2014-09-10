@@ -7,12 +7,12 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.Callable;
 
-public abstract class bmm extends bgt {
+public abstract class StructureGenerator extends WorldGenBase {
 
 	private bmr d;
 	protected Map e = Maps.newHashMap();
 
-	public abstract String a();
+	public abstract String getName();
 
 	protected final void a(World var1, int var2, int var3, int var4, int var5, bgk var6) {
 		this.a(var1);
@@ -158,10 +158,10 @@ public abstract class bmm extends bgt {
 
 	private void a(World var1) {
 		if (this.d == null) {
-			this.d = (bmr) var1.a(bmr.class, this.a());
+			this.d = (bmr) var1.a(bmr.class, this.getName());
 			if (this.d == null) {
-				this.d = new bmr(this.a());
-				var1.a(this.a(), (bqc) this.d);
+				this.d = new bmr(this.getName());
+				var1.a(this.getName(), (bqc) this.d);
 			} else {
 				NBTCompoundTag var2 = this.d.a();
 				Iterator var3 = var2.getKeys().iterator();

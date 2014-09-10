@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.UUID;
 
-public abstract class xx extends abq implements xt {
+public abstract class xx extends EntityAnimal implements xt {
 
 	protected aad bk = new aad(this);
 
@@ -150,7 +150,7 @@ public abstract class xx extends abq implements xt {
 	}
 
 	public void a(DamageSource var1) {
-		if (!this.world.D && this.world.Q().b("showDeathMessages") && this.k_() && this.cm() instanceof EntityPlayer) {
+		if (!this.world.isStatic && this.world.Q().b("showDeathMessages") && this.k_() && this.cm() instanceof EntityPlayer) {
 			((EntityPlayer) this.cm()).sendChatMessage(this.br().getMessage());
 		}
 

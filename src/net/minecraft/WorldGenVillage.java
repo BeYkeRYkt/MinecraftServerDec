@@ -7,19 +7,19 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Map.Entry;
 
-public class bmw extends bmm {
+public class WorldGenVillage extends StructureGenerator {
 
-	public static final List d = Arrays.asList(new arm[] { arm.q, arm.r, arm.Y });
+	public static final List d = Arrays.asList(new BiomeBase[] { BiomeBase.q, BiomeBase.r, BiomeBase.Y });
 	private int f;
 	private int g;
 	private int h;
 
-	public bmw() {
+	public WorldGenVillage() {
 		this.g = 32;
 		this.h = 8;
 	}
 
-	public bmw(Map var1) {
+	public WorldGenVillage(Map var1) {
 		this();
 		Iterator var2 = var1.entrySet().iterator();
 
@@ -34,7 +34,7 @@ public class bmw extends bmm {
 
 	}
 
-	public String a() {
+	public String getName() {
 		return "Village";
 	}
 

@@ -3,13 +3,13 @@ package net.minecraft;
 import java.util.Arrays;
 import java.util.Random;
 
-public class asj extends arm {
+public class asj extends BiomeBase {
 
 	private BlockState[] aD;
 	private long aE;
-	private bnw aF;
-	private bnw aG;
-	private bnw aH;
+	private NoiseGenerator3 aF;
+	private NoiseGenerator3 aG;
+	private NoiseGenerator3 aH;
 	private boolean aI;
 	private boolean aJ;
 
@@ -49,8 +49,8 @@ public class asj extends arm {
 
 		if (this.aF == null || this.aG == null || this.aE != var1.J()) {
 			Random var8 = new Random(this.aE);
-			this.aF = new bnw(var8, 4);
-			this.aG = new bnw(var8, 1);
+			this.aF = new NoiseGenerator3(var8, 4);
+			this.aG = new NoiseGenerator3(var8, 1);
 		}
 
 		this.aE = var1.J();
@@ -160,7 +160,7 @@ public class asj extends arm {
 		this.aD = new BlockState[64];
 		Arrays.fill(this.aD, Blocks.HARDENED_CLAY.getBlockState());
 		Random var3 = new Random(var1);
-		this.aH = new bnw(var3, 1);
+		this.aH = new NoiseGenerator3(var3, 1);
 
 		int var4;
 		for (var4 = 0; var4 < 64; ++var4) {
@@ -234,8 +234,8 @@ public class asj extends arm {
 		return this.aD[(var2 + var4 + 64) % 64];
 	}
 
-	protected arm d(int var1) {
-		boolean var2 = this.az == arm.aa.az;
+	protected BiomeBase d(int var1) {
+		boolean var2 = this.az == BiomeBase.aa.az;
 		asj var3 = new asj(var1, var2, this.aJ);
 		if (!var2) {
 			var3.a(g);

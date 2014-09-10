@@ -2,12 +2,12 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class bnw extends boa {
+public class NoiseGenerator3 extends NoiseGenerator {
 
 	private bnz[] a;
 	private int b;
 
-	public bnw(Random var1, int var2) {
+	public NoiseGenerator3(Random var1, int var2) {
 		this.b = var2;
 		this.a = new bnz[var2];
 

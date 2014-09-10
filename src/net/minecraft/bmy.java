@@ -141,7 +141,7 @@ public class bmy {
 				int var11 = var8.l.maxX - var8.l.minX;
 				int var12 = var8.l.maxZ - var8.l.minZ;
 				int var13 = var11 > var12 ? var11 : var12;
-				if (var0.e().a(var9, var10, var13 / 2 + 4, bmw.d)) {
+				if (var0.e().a(var9, var10, var13 / 2 + 4, WorldGenVillage.d)) {
 					var1.add(var8);
 					var0.f.add(var8);
 					return var8;
@@ -166,7 +166,7 @@ public class bmy {
 				int var12 = var9.l.maxX - var9.l.minX;
 				int var13 = var9.l.maxZ - var9.l.minZ;
 				int var14 = var12 > var13 ? var12 : var13;
-				if (var0.e().a(var10, var11, var14 / 2 + 4, bmw.d)) {
+				if (var0.e().a(var10, var11, var14 / 2 + 4, WorldGenVillage.d)) {
 					var1.add(var9);
 					var0.g.add(var9);
 					return var9;
