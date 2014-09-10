@@ -86,14 +86,13 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-
 	}
 
 	protected void requestChunkSave(ChunkCoordIntPair coordPair, NBTCompoundTag tag) {
 		synchronized (this.lock) {
 			if (this.coords.contains(coordPair)) {
 				for (int i = 0; i < this.chunksToSave.size(); ++i) {
-					if (((PendingChunkToSave) this.chunksToSave.get(i)).coorPair.equals(coordPair)) {
+					if (this.chunksToSave.get(i).coorPair.equals(coordPair)) {
 						this.chunksToSave.set(i, new PendingChunkToSave(coordPair, tag));
 						return;
 					}
@@ -108,20 +107,21 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 
 	public boolean saveChunks() {
 		PendingChunkToSave chunkToSave = null;
+
 		synchronized (this.lock) {
 			if (this.chunksToSave.isEmpty()) {
 				return false;
 			}
 
-			chunkToSave = (PendingChunkToSave) this.chunksToSave.remove(0);
+			chunkToSave = this.chunksToSave.remove(0);
 			this.coords.remove(chunkToSave.coorPair);
 		}
 
 		if (chunkToSave != null) {
 			try {
 				this.saveChunk(chunkToSave);
-			} catch (Exception var4) {
-				var4.printStackTrace();
+			} catch (Exception ex) {
+				ex.printStackTrace();
 			}
 		}
 
