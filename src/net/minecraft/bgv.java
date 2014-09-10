@@ -374,7 +374,7 @@ public class bgv implements IChunkProvider {
 
 	public boolean a(IChunkProvider var1, Chunk var2, int var3, int var4) {
 		boolean var5 = false;
-		if (this.r.y && this.n && var2.w() < 3600L) {
+		if (this.r.y && this.n && var2.getInhabitedTime() < 3600L) {
 			var5 |= this.A.a(this.m, this.h, new ChunkCoordIntPair(var3, var4));
 		}
 

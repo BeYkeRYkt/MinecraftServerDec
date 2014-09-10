@@ -6,66 +6,63 @@ import java.util.List;
 
 public class FileIOThread implements Runnable {
 
-	private static final FileIOThread a = new FileIOThread();
-	private List<brq> b = Collections.synchronizedList(new ArrayList<brq>());
-	private volatile long c;
-	private volatile long d;
-	private volatile boolean e;
+	private static final FileIOThread instance = new FileIOThread();
+
+	public static FileIOThread getInstance() {
+		return instance;
+	}
+
+	private List<IAsyncChunkSaver> chunkSavers = Collections.synchronizedList(new ArrayList<IAsyncChunkSaver>());
+	private volatile long chunksToSave;
+	private volatile long savedChunks;
+	private volatile boolean savingAllFiles;
 
 	private FileIOThread() {
 		Thread thread = new Thread(this, "File IO Thread");
 		thread.start();
 	}
 
-	public static FileIOThread getInstance() {
-		return a;
-	}
-
 	public void run() {
-		this.c();
-	}
+		for (int i = 0; i < this.chunkSavers.size(); ++i) {
+			IAsyncChunkSaver chunkSaver = this.chunkSavers.get(i);
+			boolean flag = chunkSaver.saveChunks();
 
-	private void c() {
-		for (int var1 = 0; var1 < this.b.size(); ++var1) {
-			brq var2 = (brq) this.b.get(var1);
-			boolean var3 = var2.c();
-			if (!var3) {
-				this.b.remove(var1--);
-				++this.d;
+			if (!flag) {
+				this.chunkSavers.remove(i--);
+				++this.savedChunks;
 			}
 
 			try {
-				Thread.sleep(this.e ? 0L : 10L);
-			} catch (InterruptedException var6) {
-				var6.printStackTrace();
+				Thread.sleep(this.savingAllFiles ? 0L : 10L);
+			} catch (InterruptedException ex) {
+				ex.printStackTrace();
 			}
 		}
 
-		if (this.b.isEmpty()) {
+		if (this.chunkSavers.isEmpty()) {
 			try {
 				Thread.sleep(25L);
-			} catch (InterruptedException var5) {
-				var5.printStackTrace();
+			} catch (InterruptedException ex) {
+				ex.printStackTrace();
 			}
 		}
-
 	}
 
-	public void a(brq var1) {
-		if (!this.b.contains(var1)) {
-			++this.c;
-			this.b.add(var1);
+	public void addChunkSaver(IAsyncChunkSaver chunkSaver) {
+		if (!this.chunkSavers.contains(chunkSaver)) {
+			++this.chunksToSave;
+			this.chunkSavers.add(chunkSaver);
 		}
 	}
 
-	public void b() throws InterruptedException {
-		this.e = true;
+	public void saveAllChunks() throws InterruptedException {
+		this.savingAllFiles = true;
 
-		while (this.c != this.d) {
+		while (this.chunksToSave != this.savedChunks) {
 			Thread.sleep(10L);
 		}
 
-		this.e = false;
+		this.savingAllFiles = false;
 	}
 
 }

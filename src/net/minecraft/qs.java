@@ -16,13 +16,13 @@ public class qs implements IChunkProvider {
 	private Set c = Collections.newSetFromMap(new ConcurrentHashMap());
 	private Chunk d;
 	private IChunkProvider e;
-	private bfq f;
+	private IChunkLoader f;
 	public boolean a = true;
 	private ur g = new ur();
 	private List h = Lists.newArrayList();
 	private WorldServer i;
 
-	public qs(WorldServer var1, bfq var2, IChunkProvider var3) {
+	public qs(WorldServer var1, IChunkLoader var2, IChunkProvider var3) {
 		this.d = new bfg(var1, 0, 0);
 		this.i = var1;
 		this.f = var2;
@@ -100,9 +100,9 @@ public class qs implements IChunkProvider {
 			return null;
 		} else {
 			try {
-				Chunk var3 = this.f.a(this.i, var1, var2);
+				Chunk var3 = this.f.loadChunk(this.i, var1, var2);
 				if (var3 != null) {
-					var3.b(this.i.K());
+					var3.b(this.i.getLastUpdate());
 					if (this.e != null) {
 						this.e.a(var3, var1, var2);
 					}
@@ -130,8 +130,8 @@ public class qs implements IChunkProvider {
 	private void b(Chunk var1) {
 		if (this.f != null) {
 			try {
-				var1.b(this.i.K());
-				this.f.a(this.i, var1);
+				var1.b(this.i.getLastUpdate());
+				this.f.requestChunkSave(this.i, var1);
 			} catch (aqz var4) {
 				b.error("Couldn\'t save chunk; already in use by another instance of Minecraft?", (Throwable) var4);
 			}
@@ -141,7 +141,7 @@ public class qs implements IChunkProvider {
 
 	public void a(IChunkProvider var1, int var2, int var3) {
 		Chunk var4 = this.d(var2, var3);
-		if (!var4.t()) {
+		if (!var4.isTerrainPopulated()) {
 			var4.n();
 			if (this.e != null) {
 				this.e.a(var1, var2, var3);
@@ -185,7 +185,7 @@ public class qs implements IChunkProvider {
 
 	public void c() {
 		if (this.f != null) {
-			this.f.b();
+			this.f.saveAllChunks();
 		}
 
 	}

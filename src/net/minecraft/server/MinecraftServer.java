@@ -36,6 +36,7 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
+
 import javax.imageio.ImageIO;
 
 import org.apache.commons.lang3.Validate;
@@ -239,12 +240,15 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 					try {
 						world.save(true, (uy) null);
-					} catch (aqz var7) {
-						logger.warn(var7.getMessage());
+					} catch (aqz ex) {
+						logger.warn(ex.getMessage());
+					}
+
+					if (!silenced) {
+						logger.info("Saved chunks for level \'" + world.getWorldData().k() + "\'/" + world.worldProvider.k());
 					}
 				}
 			}
-
 		}
 	}
 
@@ -259,6 +263,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				logger.info("Saving players");
 				this.playerList.k();
 				this.playerList.v();
+				logger.info("Saved players");
 			}
 
 			if (this.worlds != null) {
@@ -266,8 +271,9 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				this.saveChunks(false);
 
 				for (WorldServer world : worlds) {
-					world.saveData();
+					world.saveLevel();
 				}
+				logger.info("Saved worlds");
 			}
 
 			if (this.snooper.d()) {
@@ -470,7 +476,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 				if (this.ticks % 20 == 0) {
 					this.profiler.a("timeSync");
-					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.K(), world.L(), world.Q().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
+					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.getLastUpdate(), world.L(), world.Q().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
 					this.profiler.b();
 				}
 
@@ -572,40 +578,40 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				}
 			}
 
-			DedicatedMinecraftServer var15 = new DedicatedMinecraftServer(new File(var3));
+			DedicatedMinecraftServer dedicatedMinecraftServer = new DedicatedMinecraftServer(new File(var3));
 			if (var2 != null) {
-				var15.setSinglePlayerName(var2);
+				dedicatedMinecraftServer.setSinglePlayerName(var2);
 			}
 
 			if (var4 != null) {
-				var15.setLevelName(var4);
+				dedicatedMinecraftServer.setLevelName(var4);
 			}
 
 			if (var7 >= 0) {
-				var15.setPort(var7);
+				dedicatedMinecraftServer.setPort(var7);
 			}
 
 			if (var5) {
-				var15.b(true);
+				dedicatedMinecraftServer.b(true);
 			}
 
 			if (var6) {
-				var15.c(true);
+				dedicatedMinecraftServer.c(true);
 			}
 
 			if (var1 && !GraphicsEnvironment.isHeadless()) {
-				var15.enableGui();
+				dedicatedMinecraftServer.enableGui();
 			}
 
-			var15.B();
-			Runtime.getRuntime().addShutdownHook(new ServerShutdownHook("Server Shutdown Thread", var15));
+			dedicatedMinecraftServer.startMainThread();
+			Runtime.getRuntime().addShutdownHook(new ServerShutdownHook("Server Shutdown Thread", dedicatedMinecraftServer));
 		} catch (Exception var14) {
 			logger.fatal("Failed to start the minecraft server", (Throwable) var14);
 		}
 
 	}
 
-	public void B() {
+	public void startMainThread() {
 		this.mainThread = new Thread(this, "Server thread");
 		this.mainThread.start();
 	}
@@ -839,7 +845,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		for (int var1 = 0; var1 < this.worlds.length; ++var1) {
 			WorldServer var2 = this.worlds[var1];
 			if (var2 != null) {
-				var2.saveData();
+				var2.saveLevel();
 			}
 		}
 

@@ -29,7 +29,7 @@ public class qq {
 	}
 
 	public void b() {
-		long var1 = this.b.K();
+		long var1 = this.b.getLastUpdate();
 		int var3;
 		qr var4;
 		if (var1 - this.h > 8000L) {

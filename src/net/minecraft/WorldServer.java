@@ -128,7 +128,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.A.a();
 		this.d.a();
 		this.B.c("portalForcer");
-		this.Q.a(this.K());
+		this.Q.a(this.getLastUpdate());
 		this.B.b();
 		this.ak();
 	}
@@ -274,8 +274,8 @@ public class WorldServer extends World implements ITaskScheduler {
 								int var16 = var14 >> 8 & 15;
 								int var17 = var14 >> 16 & 15;
 								++var2;
-								Position var18 = new Position(var15 + var5, var17 + var12.d(), var16 + var6);
-								BlockState var19 = var12.a(var15, var17, var16);
+								Position var18 = new Position(var15 + var5, var17 + var12.getYPos(), var16 + var6);
+								BlockState var19 = var12.getBlockState(var15, var17, var16);
 								Block var20 = var19.getBlock();
 								if (var20.w()) {
 									++var1;
@@ -428,7 +428,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	public List a(Chunk var1, boolean var2) {
-		ChunkCoordIntPair var3 = var1.j();
+		ChunkCoordIntPair var3 = var1.getCoords();
 		int var4 = (var3.chunkX << 4) - 2;
 		int var5 = var4 + 16 + 2;
 		int var6 = (var3.chunkZ << 4) - 2;
@@ -492,7 +492,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	protected IChunkProvider k() {
-		bfq var1 = this.dataManager.a(this.worldProvider);
+		IChunkLoader var1 = this.dataManager.a(this.worldProvider);
 		this.b = new qs(this, var1, this.worldProvider.c());
 		return this.b;
 	}
@@ -646,7 +646,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	protected void a() throws aqz {
-		this.I();
+		this.checkSessionLock();
 		this.worldData.a(this.getWorldBorder().getOldRadius());
 		this.worldData.d(this.getWorldBorder().getX());
 		this.worldData.c(this.getWorldBorder().getZ());
@@ -758,8 +758,8 @@ public class WorldServer extends World implements ITaskScheduler {
 		return var2.getBlock() == var1.d() ? var2.getBlock().a(this, var1.a(), var2, var1.b(), var1.c()) : false;
 	}
 
-	public void saveData() {
-		this.dataManager.a();
+	public void saveLevel() {
+		this.dataManager.saveData();
 	}
 
 	protected void p() {

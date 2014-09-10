@@ -698,7 +698,7 @@ public abstract class World implements ard {
 				this.d();
 			}
 
-			this.a(var2, var3).a(var1);
+			this.a(var2, var3).addEntity(var1);
 			this.f.add(var1);
 			this.a(var1);
 			return true;
@@ -1147,7 +1147,7 @@ public abstract class World implements ard {
 
 				if (this.a(var6, var8, true)) {
 					var1.ad = true;
-					this.a(var6, var8).a(var1);
+					this.a(var6, var8).addEntity(var1);
 				} else {
 					var1.ad = false;
 				}
@@ -2169,15 +2169,15 @@ public abstract class World implements ard {
 		return null;
 	}
 
-	public void I() throws aqz {
-		this.dataManager.c();
+	public void checkSessionLock() throws aqz {
+		this.dataManager.checkSessionLock();
 	}
 
 	public long J() {
 		return this.worldData.b();
 	}
 
-	public long K() {
+	public long getLastUpdate() {
 		return this.worldData.f();
 	}
 
@@ -2352,7 +2352,7 @@ public abstract class World implements ard {
 	}
 
 	public Calendar Y() {
-		if (this.K() % 600L == 0L) {
+		if (this.getLastUpdate() % 600L == 0L) {
 			this.J.setTimeInMillis(MinecraftServer.getCurrentMillis());
 		}
 
@@ -2390,7 +2390,7 @@ public abstract class World implements ard {
 		float var4 = 0.0F;
 		if (this.isLoaded(var1)) {
 			var4 = this.y();
-			var2 = this.getChunk(var1).w();
+			var2 = this.getChunk(var1).getInhabitedTime();
 		}
 
 		return new vu(this.getDifficulty(), this.L(), var2, var4);

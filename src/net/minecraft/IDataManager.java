@@ -6,9 +6,9 @@ public interface IDataManager {
 
 	WorldData d();
 
-	void c() throws aqz;
+	void checkSessionLock() throws aqz;
 
-	bfq a(WorldProvider var1);
+	IChunkLoader a(WorldProvider var1);
 
 	void a(WorldData var1, NBTCompoundTag var2);
 
@@ -16,7 +16,7 @@ public interface IDataManager {
 
 	brl e();
 
-	void a();
+	void saveData();
 
 	File b();
 

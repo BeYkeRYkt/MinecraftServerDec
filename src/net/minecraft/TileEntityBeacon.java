@@ -17,7 +17,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 	private String n;
 
 	public void doTick() {
-		if (this.world.K() % 80L == 0L) {
+		if (this.world.getLastUpdate() % 80L == 0L) {
 			this.m();
 		}
 

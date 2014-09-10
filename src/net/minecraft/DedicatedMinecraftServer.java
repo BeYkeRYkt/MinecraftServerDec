@@ -28,9 +28,8 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 	private boolean generateStructures;
 	private boolean guiEnabled;
 
-	public DedicatedMinecraftServer(File var1) {
-		super(var1, Proxy.NO_PROXY, usercache);
-		new ServerInfiSleeper(this, "Server Infinisleeper");
+	public DedicatedMinecraftServer(File file) {
+		super(file, Proxy.NO_PROXY, usercache);
 	}
 
 	protected boolean startServer() throws UnknownHostException {

@@ -59,7 +59,7 @@ public class arh {
 			ari var12 = (ari) this.c.a(var10);
 			var4 = 0.0D;
 			var9 = var12;
-			var12.b = this.a.K();
+			var12.b = this.a.getLastUpdate();
 			var8 = false;
 		} else {
 			Position var34 = new Position(var1);
@@ -87,7 +87,7 @@ public class arh {
 
 		if (var4 >= 0.0D) {
 			if (var8) {
-				this.c.a(var10, new ari(this, (Position) var9, this.a.K()));
+				this.c.a(var10, new ari(this, (Position) var9, this.a.getLastUpdate()));
 				this.d.add(Long.valueOf(var10));
 			}
 

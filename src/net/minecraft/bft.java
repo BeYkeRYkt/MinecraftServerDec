@@ -69,9 +69,9 @@ public class bft {
 
 			if (!var6) {
 				byte[] var19 = new byte[4096];
-				NibbleArray var20 = new NibbleArray();
-				NibbleArray var21 = new NibbleArray();
-				NibbleArray var22 = new NibbleArray();
+				ChunkNibbleArray var20 = new ChunkNibbleArray();
+				ChunkNibbleArray var21 = new ChunkNibbleArray();
+				ChunkNibbleArray var22 = new ChunkNibbleArray();
 
 				for (int var23 = 0; var23 < 16; ++var23) {
 					for (int var12 = 0; var12 < 16; ++var12) {
@@ -79,9 +79,9 @@ public class bft {
 							int var14 = var23 << 11 | var13 << 7 | var12 + (var5 << 4);
 							byte var15 = var0.g[var14];
 							var19[var12 << 8 | var13 << 4 | var23] = (byte) (var15 & 255);
-							var20.a(var23, var12, var13, var0.f.a(var23, var12 + (var5 << 4), var13));
-							var21.a(var23, var12, var13, var0.e.a(var23, var12 + (var5 << 4), var13));
-							var22.a(var23, var12, var13, var0.d.a(var23, var12 + (var5 << 4), var13));
+							var20.setValue(var23, var12, var13, var0.f.a(var23, var12 + (var5 << 4), var13));
+							var21.setValue(var23, var12, var13, var0.e.a(var23, var12 + (var5 << 4), var13));
+							var22.setValue(var23, var12, var13, var0.d.a(var23, var12 + (var5 << 4), var13));
 						}
 					}
 				}

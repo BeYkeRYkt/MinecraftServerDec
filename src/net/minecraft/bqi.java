@@ -8,19 +8,19 @@ public class bqi extends bqm {
 		super(var1, var2, var3);
 	}
 
-	public bfq a(WorldProvider var1) {
+	public IChunkLoader a(WorldProvider var1) {
 		File var2 = this.b();
 		File var3;
 		if (var1 instanceof NetherWorldProvider) {
 			var3 = new File(var2, "DIM-1");
 			var3.mkdirs();
-			return new bfy(var3);
+			return new ChunkRegionLoader(var3);
 		} else if (var1 instanceof TheEndWorldProvider) {
 			var3 = new File(var2, "DIM1");
 			var3.mkdirs();
-			return new bfy(var3);
+			return new ChunkRegionLoader(var3);
 		} else {
-			return new bfy(var2);
+			return new ChunkRegionLoader(var2);
 		}
 	}
 
@@ -29,13 +29,14 @@ public class bqi extends bqm {
 		super.a(var1, var2);
 	}
 
-	public void a() {
+	public void saveData() {
 		try {
-			FileIOThread.getInstance().b();
-		} catch (InterruptedException var2) {
-			var2.printStackTrace();
+			FileIOThread.getInstance().saveAllChunks();
+		} catch (InterruptedException ex) {
+			ex.printStackTrace();
 		}
 
 		RegionFileCache.dumpCache();
 	}
+
 }

@@ -27,7 +27,7 @@ class qr {
 			qq.c().debug("Failed to add player. {} already is in chunk {}, {}", new Object[] { var1, Integer.valueOf(this.c.chunkX), Integer.valueOf(this.c.chunkZ) });
 		} else {
 			if (this.b.isEmpty()) {
-				this.g = qq.a(this.a).K();
+				this.g = qq.a(this.a).getLastUpdate();
 			}
 
 			this.b.add(var1);
@@ -64,8 +64,8 @@ class qr {
 	}
 
 	private void a(Chunk var1) {
-		var1.c(var1.w() + qq.a(this.a).K() - this.g);
-		this.g = qq.a(this.a).K();
+		var1.c(var1.getInhabitedTime() + qq.a(this.a).getLastUpdate() - this.g);
+		this.g = qq.a(this.a).getLastUpdate();
 	}
 
 	public void a(int var1, int var2, int var3) {

@@ -8,9 +8,9 @@ class ue extends AbstractIterator {
 	// $FF: synthetic field
 	final Iterator a;
 	// $FF: synthetic field
-	final uc b;
+	final EntitySlice b;
 
-	ue(uc var1, Iterator var2) {
+	ue(EntitySlice var1, Iterator var2) {
 		this.b = var1;
 		this.a = var2;
 	}

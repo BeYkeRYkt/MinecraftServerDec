@@ -14,7 +14,7 @@ public class qk extends PlayerInteractManager {
 	public void a() {
 		super.a();
 		++this.f;
-		long var1 = this.worldServer.K();
+		long var1 = this.worldServer.getLastUpdate();
 		long var3 = var1 / 24000L + 1L;
 		if (!this.c && this.f > 20) {
 			this.c = true;

@@ -18,7 +18,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 
 		List var4 = (List) b.get(var1);
 		if (var3) {
-			var4.add(new azx(var2, var1.K()));
+			var4.add(new azx(var2, var1.getLastUpdate()));
 		}
 
 		int var5 = 0;
@@ -88,7 +88,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 		boolean var5 = this.g(var1, var2, var3);
 		List var6 = (List) b.get(var1);
 
-		while (var6 != null && !var6.isEmpty() && var1.K() - ((azx) var6.get(0)).b > 60L) {
+		while (var6 != null && !var6.isEmpty() && var1.getLastUpdate() - ((azx) var6.get(0)).b > 60L) {
 			var6.remove(0);
 		}
 

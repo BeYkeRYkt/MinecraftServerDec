@@ -6,26 +6,26 @@ public class ChunkSection {
 	private int nonEmptyBlockCount;
 	private int c;
 	private char[] blockIs;
-	private NibbleArray emittedLight;
-	private NibbleArray skyLight;
+	private ChunkNibbleArray emittedLight;
+	private ChunkNibbleArray skyLight;
 
 	public ChunkSection(int yPos, boolean hasSkyLight) {
 		this.yPos = yPos;
 		this.blockIs = new char[4096];
-		this.emittedLight = new NibbleArray();
+		this.emittedLight = new ChunkNibbleArray();
 		if (hasSkyLight) {
-			this.skyLight = new NibbleArray();
+			this.skyLight = new ChunkNibbleArray();
 		}
 
 	}
 
-	public BlockState a(int var1, int var2, int var3) {
-		BlockState var4 = (BlockState) Block.IDREGISTRY.getObject(this.blockIs[var2 << 8 | var3 << 4 | var1]);
+	public BlockState getBlockState(int x, int y, int z) {
+		BlockState var4 = (BlockState) Block.IDREGISTRY.getObject(this.blockIs[y << 8 | z << 4 | x]);
 		return var4 != null ? var4 : Blocks.AIR.getBlockState();
 	}
 
-	public void a(int var1, int var2, int var3, BlockState var4) {
-		BlockState var5 = this.a(var1, var2, var3);
+	public void setBlockState(int var1, int var2, int var3, BlockState var4) {
+		BlockState var5 = this.getBlockState(var1, var2, var3);
 		Block var6 = var5.getBlock();
 		Block var7 = var4.getBlock();
 		if (var6 != Blocks.AIR) {
@@ -46,11 +46,11 @@ public class ChunkSection {
 	}
 
 	public Block b(int var1, int var2, int var3) {
-		return this.a(var1, var2, var3).getBlock();
+		return this.getBlockState(var1, var2, var3).getBlock();
 	}
 
 	public int c(int var1, int var2, int var3) {
-		BlockState var4 = this.a(var1, var2, var3);
+		BlockState var4 = this.getBlockState(var1, var2, var3);
 		return var4.getBlock().c(var4);
 	}
 
@@ -62,24 +62,24 @@ public class ChunkSection {
 		return this.c > 0;
 	}
 
-	public int d() {
+	public int getYPos() {
 		return this.yPos;
 	}
 
 	public void a(int var1, int var2, int var3, int var4) {
-		this.skyLight.a(var1, var2, var3, var4);
+		this.skyLight.setValue(var1, var2, var3, var4);
 	}
 
 	public int d(int var1, int var2, int var3) {
-		return this.skyLight.a(var1, var2, var3);
+		return this.skyLight.getValue(var1, var2, var3);
 	}
 
 	public void b(int var1, int var2, int var3, int var4) {
-		this.emittedLight.a(var1, var2, var3, var4);
+		this.emittedLight.setValue(var1, var2, var3, var4);
 	}
 
 	public int e(int var1, int var2, int var3) {
-		return this.emittedLight.a(var1, var2, var3);
+		return this.emittedLight.getValue(var1, var2, var3);
 	}
 
 	public void e() {
@@ -110,19 +110,19 @@ public class ChunkSection {
 		this.blockIs = var1;
 	}
 
-	public NibbleArray getEmittedLight() {
+	public ChunkNibbleArray getEmittedLight() {
 		return this.emittedLight;
 	}
 
-	public NibbleArray getSkyLight() {
+	public ChunkNibbleArray getSkyLight() {
 		return this.skyLight;
 	}
 
-	public void setEmittedLight(NibbleArray emittedLight) {
+	public void setEmittedLight(ChunkNibbleArray emittedLight) {
 		this.emittedLight = emittedLight;
 	}
 
-	public void setSkyLight(NibbleArray skyLight) {
+	public void setSkyLight(ChunkNibbleArray skyLight) {
 		this.skyLight = skyLight;
 	}
 

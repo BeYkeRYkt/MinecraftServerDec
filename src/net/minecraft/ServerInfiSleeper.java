@@ -14,9 +14,7 @@ class ServerInfiSleeper extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				while (true) {
-					Thread.sleep(Integer.MAX_VALUE);
-				}
+				Thread.sleep(Integer.MAX_VALUE);
 			} catch (InterruptedException e) {
 			}
 		}

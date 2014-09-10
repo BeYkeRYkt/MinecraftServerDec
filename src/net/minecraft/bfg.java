@@ -44,7 +44,7 @@ public class bfg extends Chunk {
 		return 0;
 	}
 
-	public void a(Entity var1) {
+	public void addEntity(Entity var1) {
 	}
 
 	public void b(Entity var1) {

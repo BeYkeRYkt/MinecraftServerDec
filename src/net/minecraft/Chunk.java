@@ -28,7 +28,7 @@ public class Chunk {
 	public final int y;
 	private boolean k;
 	private final Map l;
-	private final uc[] m;
+	private final EntitySlice<Entity>[] entitySlices;
 	private boolean n;
 	private boolean o;
 	private boolean p;
@@ -48,14 +48,14 @@ public class Chunk {
 		this.l = Maps.newHashMap();
 		this.v = 4096;
 		this.w = Queues.newConcurrentLinkedQueue();
-		this.m = (uc[]) (new uc[16]);
+		this.entitySlices = new EntitySlice[16];
 		this.i = var1;
 		this.x = var2;
 		this.y = var3;
 		this.j = new int[256];
 
-		for (int var4 = 0; var4 < this.m.length; ++var4) {
-			this.m[var4] = new uc(Entity.class);
+		for (int i = 0; i < this.entitySlices.length; ++i) {
+			this.entitySlices[i] = new EntitySlice<Entity>(Entity.class);
 		}
 
 		Arrays.fill(this.f, -999);
@@ -78,7 +78,7 @@ public class Chunk {
 							this.chunkSections[var12] = new ChunkSection(var12 << 4, var6);
 						}
 
-						this.chunkSections[var12].a(var7, var9 & 15, var8, var11);
+						this.chunkSections[var12].setBlockState(var7, var9 & 15, var8, var11);
 					}
 				}
 			}
@@ -101,7 +101,7 @@ public class Chunk {
 	public int g() {
 		for (int var1 = this.chunkSections.length - 1; var1 >= 0; --var1) {
 			if (this.chunkSections[var1] != null) {
-				return this.chunkSections[var1].d();
+				return this.chunkSections[var1].getYPos();
 			}
 		}
 
@@ -385,7 +385,7 @@ public class Chunk {
 						int var8 = var1.getX() & 15;
 						int var9 = var1.getY() & 15;
 						int var5 = var1.getZ() & 15;
-						return var2.a(var8, var9, var5);
+						return var2.getBlockState(var8, var9, var5);
 					}
 				}
 
@@ -439,7 +439,7 @@ public class Chunk {
 				var12 = var4 >= var7;
 			}
 
-			var11.a(var3, var4 & 15, var5, var2);
+			var11.setBlockState(var3, var4 & 15, var5, var2);
 			if (var10 != var9) {
 				if (!this.i.D) {
 					var10.b(this.i, var1, var8);
@@ -547,29 +547,29 @@ public class Chunk {
 		}
 	}
 
-	public void a(Entity var1) {
+	public void addEntity(Entity entity) {
 		this.r = true;
-		int var2 = DataTypesConverter.toFixedPointInt(var1.locationX / 16.0D);
-		int var3 = DataTypesConverter.toFixedPointInt(var1.locationZ / 16.0D);
+		int var2 = DataTypesConverter.toFixedPointInt(entity.locationX / 16.0D);
+		int var3 = DataTypesConverter.toFixedPointInt(entity.locationZ / 16.0D);
 		if (var2 != this.x || var3 != this.y) {
-			c.warn("Wrong location! (" + var2 + ", " + var3 + ") should be (" + this.x + ", " + this.y + "), " + var1, new Object[] { var1 });
-			var1.die();
+			c.warn("Wrong location! (" + var2 + ", " + var3 + ") should be (" + this.x + ", " + this.y + "), " + entity, new Object[] { entity });
+			entity.die();
 		}
 
-		int var4 = DataTypesConverter.toFixedPointInt(var1.locationY / 16.0D);
-		if (var4 < 0) {
-			var4 = 0;
+		int chunkColumnNumber = DataTypesConverter.toFixedPointInt(entity.locationY / 16.0D);
+		if (chunkColumnNumber < 0) {
+			chunkColumnNumber = 0;
 		}
 
-		if (var4 >= this.m.length) {
-			var4 = this.m.length - 1;
+		if (chunkColumnNumber >= this.entitySlices.length) {
+			chunkColumnNumber = this.entitySlices.length - 1;
 		}
 
-		var1.ad = true;
-		var1.ae = this.x;
-		var1.af = var4;
-		var1.ag = this.y;
-		this.m[var4].add(var1);
+		entity.ad = true;
+		entity.ae = this.x;
+		entity.af = chunkColumnNumber;
+		entity.ag = this.y;
+		this.entitySlices[chunkColumnNumber].add(entity);
 	}
 
 	public void b(Entity var1) {
@@ -581,11 +581,11 @@ public class Chunk {
 			var2 = 0;
 		}
 
-		if (var2 >= this.m.length) {
-			var2 = this.m.length - 1;
+		if (var2 >= this.entitySlices.length) {
+			var2 = this.entitySlices.length - 1;
 		}
 
-		this.m[var2].remove(var1);
+		this.entitySlices[var2].remove(var1);
 	}
 
 	public boolean d(Position var1) {
@@ -652,15 +652,15 @@ public class Chunk {
 		this.h = true;
 		this.i.a(this.l.values());
 
-		for (int var1 = 0; var1 < this.m.length; ++var1) {
-			Iterator var2 = this.m[var1].iterator();
+		for (int var1 = 0; var1 < this.entitySlices.length; ++var1) {
+			Iterator var2 = this.entitySlices[var1].iterator();
 
 			while (var2.hasNext()) {
 				Entity var3 = (Entity) var2.next();
 				var3.ah();
 			}
 
-			this.i.b((Collection) this.m[var1]);
+			this.i.b((Collection) this.entitySlices[var1]);
 		}
 
 	}
@@ -674,8 +674,8 @@ public class Chunk {
 			this.i.b(var2);
 		}
 
-		for (int var3 = 0; var3 < this.m.length; ++var3) {
-			this.i.c((Collection) this.m[var3]);
+		for (int var3 = 0; var3 < this.entitySlices.length; ++var3) {
+			this.i.c((Collection) this.entitySlices[var3]);
 		}
 
 	}
@@ -687,11 +687,11 @@ public class Chunk {
 	public void a(Entity var1, AxisAlignedBB var2, List var3, Predicate var4) {
 		int var5 = DataTypesConverter.toFixedPointInt((var2.minY - 2.0D) / 16.0D);
 		int var6 = DataTypesConverter.toFixedPointInt((var2.maxY + 2.0D) / 16.0D);
-		var5 = DataTypesConverter.a(var5, 0, this.m.length - 1);
-		var6 = DataTypesConverter.a(var6, 0, this.m.length - 1);
+		var5 = DataTypesConverter.a(var5, 0, this.entitySlices.length - 1);
+		var6 = DataTypesConverter.a(var6, 0, this.entitySlices.length - 1);
 
 		for (int var7 = var5; var7 <= var6; ++var7) {
-			Iterator var8 = this.m[var7].iterator();
+			Iterator var8 = this.entitySlices[var7].iterator();
 
 			while (var8.hasNext()) {
 				Entity var9 = (Entity) var8.next();
@@ -715,11 +715,11 @@ public class Chunk {
 	public void a(Class var1, AxisAlignedBB var2, List var3, Predicate var4) {
 		int var5 = DataTypesConverter.toFixedPointInt((var2.minY - 2.0D) / 16.0D);
 		int var6 = DataTypesConverter.toFixedPointInt((var2.maxY + 2.0D) / 16.0D);
-		var5 = DataTypesConverter.a(var5, 0, this.m.length - 1);
-		var6 = DataTypesConverter.a(var6, 0, this.m.length - 1);
+		var5 = DataTypesConverter.a(var5, 0, this.entitySlices.length - 1);
+		var6 = DataTypesConverter.a(var6, 0, this.entitySlices.length - 1);
 
 		for (int var7 = var5; var7 <= var6; ++var7) {
-			Iterator var8 = this.m[var7].b(var1).iterator();
+			Iterator var8 = this.entitySlices[var7].getValues(var1).iterator();
 
 			while (var8.hasNext()) {
 				Entity var9 = (Entity) var8.next();
@@ -733,10 +733,10 @@ public class Chunk {
 
 	public boolean a(boolean var1) {
 		if (var1) {
-			if (this.r && this.i.K() != this.s || this.q) {
+			if (this.r && this.i.getLastUpdate() != this.s || this.q) {
 				return true;
 			}
-		} else if (this.r && this.i.K() >= this.s + 600L) {
+		} else if (this.r && this.i.getLastUpdate() >= this.s + 600L) {
 			return true;
 		}
 
@@ -849,7 +849,7 @@ public class Chunk {
 		return this.p && this.n && this.o;
 	}
 
-	public ChunkCoordIntPair j() {
+	public ChunkCoordIntPair getCoords() {
 		return new ChunkCoordIntPair(this.x, this.y);
 	}
 
@@ -1057,7 +1057,7 @@ public class Chunk {
 		return this.i;
 	}
 
-	public int[] q() {
+	public int[] getHeightMap() {
 		return this.j;
 	}
 
@@ -1076,11 +1076,11 @@ public class Chunk {
 		return this.l;
 	}
 
-	public uc[] s() {
-		return this.m;
+	public EntitySlice[] getEntitySlices() {
+		return this.entitySlices;
 	}
 
-	public boolean t() {
+	public boolean isTerrainPopulated() {
 		return this.n;
 	}
 
@@ -1088,7 +1088,7 @@ public class Chunk {
 		this.n = var1;
 	}
 
-	public boolean u() {
+	public boolean isLightPopulated() {
 		return this.o;
 	}
 
@@ -1112,7 +1112,7 @@ public class Chunk {
 		return this.t;
 	}
 
-	public long w() {
+	public long getInhabitedTime() {
 		return this.u;
 	}
 

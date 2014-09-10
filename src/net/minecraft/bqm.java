@@ -56,7 +56,7 @@ public class bqm implements IDataManager, brl {
 		return this.b;
 	}
 
-	public void c() throws aqz {
+	public void checkSessionLock() throws aqz {
 		try {
 			File var1 = new File(this.b, "session.lock");
 			DataInputStream var2 = new DataInputStream(new FileInputStream(var1));
@@ -74,7 +74,7 @@ public class bqm implements IDataManager, brl {
 		}
 	}
 
-	public bfq a(WorldProvider var1) {
+	public IChunkLoader a(WorldProvider var1) {
 		throw new RuntimeException("Old Chunk Storage is no longer supported.");
 	}
 
@@ -220,7 +220,7 @@ public class bqm implements IDataManager, brl {
 		return var1;
 	}
 
-	public void a() {
+	public void saveData() {
 	}
 
 	public File a(String var1) {

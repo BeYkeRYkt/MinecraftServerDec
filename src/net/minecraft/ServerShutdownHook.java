@@ -4,9 +4,9 @@ public final class ServerShutdownHook extends Thread {
 
 	final DedicatedMinecraftServer mcserver;
 
-	public ServerShutdownHook(String var1, DedicatedMinecraftServer var2) {
-		super(var1);
-		this.mcserver = var2;
+	public ServerShutdownHook(String name, DedicatedMinecraftServer mcserver) {
+		super(name);
+		this.mcserver = mcserver;
 	}
 
 	public void run() {
@@ -14,4 +14,5 @@ public final class ServerShutdownHook extends Thread {
 			this.mcserver.stop();
 		}
 	}
+
 }
