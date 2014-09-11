@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class BiomeTaiga extends BiomeBase {
 
-	private static final big aD = new big();
-	private static final bio aE = new bio(false);
-	private static final bib aF = new bib(false, false);
-	private static final bib aG = new bib(false, true);
-	private static final bhg aH = new bhg(Blocks.MOSSY_COBBLESTONE, 0);
+	private static final WorldGenTaiga1 aD = new WorldGenTaiga1();
+	private static final WorldGenTaiga2 aE = new WorldGenTaiga2(false);
+	private static final WorldGenMegaTree aF = new WorldGenMegaTree(false, false);
+	private static final WorldGenMegaTree aG = new WorldGenMegaTree(false, true);
+	private static final WorldGenTaigaStructure aH = new WorldGenTaigaStructure(Blocks.MOSSY_COBBLESTONE, 0);
 	private int aI;
 
 	public BiomeTaiga(int var1, int var2) {

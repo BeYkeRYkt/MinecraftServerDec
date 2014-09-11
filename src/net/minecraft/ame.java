@@ -5,7 +5,7 @@ import com.google.common.base.Function;
 final class ame implements Function {
 
 	public String a(ItemStack var1) {
-		return ayx.a(var1.getDurability()).c();
+		return EnumWoodType.a(var1.getDurability()).c();
 	}
 
 	// $FF: synthetic method

@@ -22,15 +22,15 @@ public class BlockDragonEgg extends Block {
 	}
 
 	private void d(World var1, Position var2) {
-		if (avt.d(var1, var2.b()) && var2.getY() >= 0) {
+		if (BlockFalling.d(var1, var2.b()) && var2.getY() >= 0) {
 			byte var3 = 32;
-			if (!avt.M && var1.a(var2.a(-var3, -var3, -var3), var2.a(var3, var3, var3))) {
+			if (!BlockFalling.instafall && var1.a(var2.a(-var3, -var3, -var3), var2.a(var3, var3, var3))) {
 				var1.d((Entity) (new EntityFallingBlock(var1, (double) ((float) var2.getX() + 0.5F), (double) var2.getY(), (double) ((float) var2.getZ() + 0.5F), this.getBlockState())));
 			} else {
 				var1.g(var2);
 
 				Position var4;
-				for (var4 = var2; avt.d(var1, var4) && var4.getY() > 0; var4 = var4.b()) {
+				for (var4 = var2; BlockFalling.d(var1, var4) && var4.getY() > 0; var4 = var4.b()) {
 					;
 				}
 

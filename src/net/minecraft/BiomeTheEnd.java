@@ -11,6 +11,6 @@ public class BiomeTheEnd extends BiomeBase {
 		this.at.add(new BiomeMeta(EntityEnderman.class, 10, 4, 4));
 		this.ak = Blocks.DIRT.getBlockState();
 		this.al = Blocks.DIRT.getBlockState();
-		this.as = new asw();
+		this.as = new BiomeTheEndDecorator();
 	}
 }

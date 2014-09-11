@@ -5,7 +5,7 @@ import java.util.Random;
 public class BiomeBigHills extends BiomeBase {
 
 	private WorldGenerator aD;
-	private bio aE;
+	private WorldGenTaiga2 aE;
 	private int aF;
 	private int aG;
 	private int aH;
@@ -13,8 +13,8 @@ public class BiomeBigHills extends BiomeBase {
 
 	protected BiomeBigHills(int var1, boolean var2) {
 		super(var1);
-		this.aD = new bif(Blocks.MONSTER_EGG.getBlockState().a(BlockMonsterEggs.a, axu.a), 9);
-		this.aE = new bio(false);
+		this.aD = new WorldGenMinable(Blocks.MONSTER_EGG.getBlockState().a(BlockMonsterEggs.a, axu.a), 9);
+		this.aE = new WorldGenTaiga2(false);
 		this.aF = 0;
 		this.aG = 1;
 		this.aH = 2;

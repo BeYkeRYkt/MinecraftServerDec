@@ -4,7 +4,7 @@ import java.util.Random;
 
 public abstract class bcf extends BlockStepAbstract {
 
-	public static final bev b = bev.a("variant", ayx.class);
+	public static final bev b = bev.a("variant", EnumWoodType.class);
 
 	public bcf() {
 		super(Material.WOOD);
@@ -13,7 +13,7 @@ public abstract class bcf extends BlockStepAbstract {
 			var1 = var1.a(a, awr.b);
 		}
 
-		this.setBlockState(var1.a(b, ayx.a));
+		this.setBlockState(var1.a(b, EnumWoodType.a));
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
@@ -22,7 +22,7 @@ public abstract class bcf extends BlockStepAbstract {
 	}
 
 	public String b(int var1) {
-		return super.getName() + "." + ayx.a(var1).c();
+		return super.getName() + "." + EnumWoodType.a(var1).c();
 	}
 
 	public bex l() {
@@ -30,11 +30,11 @@ public abstract class bcf extends BlockStepAbstract {
 	}
 
 	public Object a(ItemStack var1) {
-		return ayx.a(var1.getDurability() & 7);
+		return EnumWoodType.a(var1.getDurability() & 7);
 	}
 
 	public BlockState a(int var1) {
-		BlockState var2 = this.getBlockState().a(b, ayx.a(var1 & 7));
+		BlockState var2 = this.getBlockState().a(b, EnumWoodType.a(var1 & 7));
 		if (!this.j()) {
 			var2 = var2.a(a, (var1 & 8) == 0 ? awr.b : awr.a);
 		}
@@ -44,7 +44,7 @@ public abstract class bcf extends BlockStepAbstract {
 
 	public int c(BlockState var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((ayx) var1.b(b)).a();
+		int var3 = var2 | ((EnumWoodType) var1.b(b)).a();
 		if (!this.j() && var1.b(a) == awr.a) {
 			var3 |= 8;
 		}
@@ -57,7 +57,7 @@ public abstract class bcf extends BlockStepAbstract {
 	}
 
 	public int a(BlockState var1) {
-		return ((ayx) var1.b(b)).a();
+		return ((EnumWoodType) var1.b(b)).a();
 	}
 
 }

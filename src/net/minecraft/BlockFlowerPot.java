@@ -122,19 +122,19 @@ public class BlockFlowerPot extends atg {
 				break;
 			case 3:
 				var3 = Blocks.SAPLING;
-				var4 = ayx.a.a();
+				var4 = EnumWoodType.a.a();
 				break;
 			case 4:
 				var3 = Blocks.SAPLING;
-				var4 = ayx.b.a();
+				var4 = EnumWoodType.b.a();
 				break;
 			case 5:
 				var3 = Blocks.SAPLING;
-				var4 = ayx.c.a();
+				var4 = EnumWoodType.c.a();
 				break;
 			case 6:
 				var3 = Blocks.SAPLING;
-				var4 = ayx.d.a();
+				var4 = EnumWoodType.d.a();
 				break;
 			case 7:
 				var3 = Blocks.RED_MUSHROOM;
@@ -154,11 +154,11 @@ public class BlockFlowerPot extends atg {
 				break;
 			case 12:
 				var3 = Blocks.SAPLING;
-				var4 = ayx.e.a();
+				var4 = EnumWoodType.e.a();
 				break;
 			case 13:
 				var3 = Blocks.SAPLING;
-				var4 = ayx.f.a();
+				var4 = EnumWoodType.f.a();
 		}
 
 		return new TileEntityFlowerPot(Item.getItemOf((Block) var3), var4);
@@ -182,7 +182,7 @@ public class BlockFlowerPot extends atg {
 				int var8 = var6.c();
 				Block var9 = Block.a(var7);
 				if (var9 == Blocks.SAPLING) {
-					switch (awe.a[ayx.a(var8).ordinal()]) {
+					switch (awe.a[EnumWoodType.a(var8).ordinal()]) {
 						case 1:
 							var4 = awf.l;
 							break;

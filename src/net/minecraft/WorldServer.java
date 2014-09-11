@@ -597,7 +597,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	protected void l() {
-		bhh var1 = new bhh(U, 10);
+		WorldGenBonusChest var1 = new WorldGenBonusChest(U, 10);
 
 		for (int var2 = 0; var2 < 10; ++var2) {
 			int var3 = this.worldData.getSpawnX() + this.s.nextInt(6) - this.s.nextInt(6);
@@ -610,7 +610,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	}
 
-	public Position m() {
+	public Position getDimensionSpawn() {
 		return this.worldProvider.h();
 	}
 

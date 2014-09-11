@@ -5,8 +5,8 @@ import java.util.Random;
 public class BiomeIcePlains extends BiomeBase {
 
 	private boolean aD;
-	private bhx aE = new bhx();
-	private bhw aF = new bhw(4);
+	private WorldGenPackedIce2 aE = new WorldGenPackedIce2();
+	private WorldGenPackedIce1 aF = new WorldGenPackedIce1(4);
 
 	public BiomeIcePlains(int var1, boolean var2) {
 		super(var1);
@@ -40,7 +40,7 @@ public class BiomeIcePlains extends BiomeBase {
 	}
 
 	public WorldGenTreeAbstract a(Random var1) {
-		return new bio(false);
+		return new WorldGenTaiga2(false);
 	}
 
 	protected BiomeBase d(int var1) {

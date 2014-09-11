@@ -177,6 +177,6 @@ public abstract class BlockLeaves extends BlockTransparent {
 		return false;
 	}
 
-	public abstract ayx b(int var1);
+	public abstract EnumWoodType b(int var1);
 
 }

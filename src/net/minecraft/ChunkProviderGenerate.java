@@ -285,7 +285,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 	}
 
 	public void getChunkAt(IChunkProvider var1, int var2, int var3) {
-		avt.M = true;
+		BlockFalling.instafall = true;
 		int var4 = var2 * 16;
 		int var5 = var3 * 16;
 		Position var6 = new Position(var4, 0, var5);
@@ -362,7 +362,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			}
 		}
 
-		avt.M = false;
+		BlockFalling.instafall = false;
 	}
 
 	public boolean ae(IChunkProvider var1, Chunk var2, int var3, int var4) {

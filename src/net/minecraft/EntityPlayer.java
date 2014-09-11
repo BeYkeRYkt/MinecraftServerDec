@@ -375,7 +375,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		} else {
 			if (this.dimensionId == 0 && var1 == 1) {
 				this.b((Statistic) AchievementList.C);
-				Position var2 = this.minecraftserver.getWorldServer(var1).m();
+				Position var2 = this.minecraftserver.getWorldServer(var1).getDimensionSpawn();
 				if (var2 != null) {
 					this.playerConncetion.movePlayer((double) var2.getX(), (double) var2.getY(), (double) var2.getZ(), 0.0F, 0.0F);
 				}

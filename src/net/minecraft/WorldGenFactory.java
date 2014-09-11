@@ -78,13 +78,13 @@ public class WorldGenFactory {
 	static {
 		b(WorldGenMineshaftStart.class, "Mineshaft");
 		b(bmx.class, "Village");
-		b(bjm.class, "Fortress");
+		b(WorldGenNetherStart.class, "Fortress");
 		b(WorldGenStronghold2Start.class, "Stronghold");
 		b(blh.class, "Temple");
 		b(bkh.class, "Monument");
-		bje.a();
+		WorldGenMineshaftPieces.a();
 		bmy.a();
-		bjn.a();
+		WorldGenNetherPieces.a();
 		WorldGenStrongholdPieces.a();
 		bli.a();
 		bki.a();

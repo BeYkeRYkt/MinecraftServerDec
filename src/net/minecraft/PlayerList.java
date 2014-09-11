@@ -387,7 +387,7 @@ public abstract class PlayerList {
 			if (var2 == 1) {
 				var12 = var4.getSpawnPosition();
 			} else {
-				var12 = var4.m();
+				var12 = var4.getDimensionSpawn();
 			}
 
 			var5 = (double) var12.getX();

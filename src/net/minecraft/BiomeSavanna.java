@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class BiomeSavanna extends BiomeBase {
 
-	private static final bil aD = new bil(false);
+	private static final WorldGenAcaciaTree aD = new WorldGenAcaciaTree(false);
 
 	protected BiomeSavanna(int var1) {
 		super(var1);

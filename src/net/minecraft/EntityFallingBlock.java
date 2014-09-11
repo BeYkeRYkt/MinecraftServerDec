@@ -76,9 +76,9 @@ public class EntityFallingBlock extends Entity {
 					this.motionY *= -0.5D;
 					if (this.world.getBlockState(var2).getBlock() != Blocks.PISTON_EXTENSION) {
 						this.die();
-						if (!this.e && this.world.a(var1, var2, true, BlockFace.UP, (Entity) null, (ItemStack) null) && !avt.d(this.world, var2.b()) && this.world.a(var2, this.d, 3)) {
-							if (var1 instanceof avt) {
-								((avt) var1).a_(this.world, var2);
+						if (!this.e && this.world.a(var1, var2, true, BlockFace.UP, (Entity) null, (ItemStack) null) && !BlockFalling.d(this.world, var2.b()) && this.world.a(var2, this.d, 3)) {
+							if (var1 instanceof BlockFalling) {
+								((BlockFalling) var1).a_(this.world, var2);
 							}
 
 							if (this.c != null && var1 instanceof avs) {

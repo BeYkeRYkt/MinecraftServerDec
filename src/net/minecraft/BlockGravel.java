@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class BlockGravel extends avt {
+public class BlockGravel extends BlockFalling {
 
 	public Item a(BlockState var1, Random var2, int var3) {
 		if (var3 > 3) {

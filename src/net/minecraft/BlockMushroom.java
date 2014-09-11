@@ -63,11 +63,11 @@ public class BlockMushroom extends auc implements atz {
 
 	public boolean d(World var1, Position var2, BlockState var3, Random var4) {
 		var1.g(var2);
-		bhv var5 = null;
+		WorldGenHugeMushroom var5 = null;
 		if (this == Blocks.BRWON_MUSHROOM) {
-			var5 = new bhv(0);
+			var5 = new WorldGenHugeMushroom(0);
 		} else if (this == Blocks.RED_MUSHROOM) {
-			var5 = new bhv(1);
+			var5 = new WorldGenHugeMushroom(1);
 		}
 
 		if (var5 != null && var5.b(var1, var4, var2)) {

@@ -33,7 +33,7 @@ public class WorldGenMineshaftRoom extends StructurePiece {
 				break;
 			}
 
-			var7 = bje.a(var1, var2, var3, this.l.minX + var5, this.l.minY + var3.nextInt(var6) + 1, this.l.minZ - 1, BlockFace.NORTH, var4);
+			var7 = WorldGenMineshaftPieces.a(var1, var2, var3, this.l.minX + var5, this.l.minY + var3.nextInt(var6) + 1, this.l.minZ - 1, BlockFace.NORTH, var4);
 			if (var7 != null) {
 				var8 = var7.c();
 				this.a.add(new CuboidArea(var8.minX, var8.minY, this.l.minZ, var8.maxX, var8.maxY, this.l.minZ + 1));
@@ -46,7 +46,7 @@ public class WorldGenMineshaftRoom extends StructurePiece {
 				break;
 			}
 
-			var7 = bje.a(var1, var2, var3, this.l.minX + var5, this.l.minY + var3.nextInt(var6) + 1, this.l.maxZ + 1, BlockFace.SOUTH, var4);
+			var7 = WorldGenMineshaftPieces.a(var1, var2, var3, this.l.minX + var5, this.l.minY + var3.nextInt(var6) + 1, this.l.maxZ + 1, BlockFace.SOUTH, var4);
 			if (var7 != null) {
 				var8 = var7.c();
 				this.a.add(new CuboidArea(var8.minX, var8.minY, this.l.maxZ - 1, var8.maxX, var8.maxY, this.l.maxZ));
@@ -59,7 +59,7 @@ public class WorldGenMineshaftRoom extends StructurePiece {
 				break;
 			}
 
-			var7 = bje.a(var1, var2, var3, this.l.minX - 1, this.l.minY + var3.nextInt(var6) + 1, this.l.minZ + var5, BlockFace.WEST, var4);
+			var7 = WorldGenMineshaftPieces.a(var1, var2, var3, this.l.minX - 1, this.l.minY + var3.nextInt(var6) + 1, this.l.minZ + var5, BlockFace.WEST, var4);
 			if (var7 != null) {
 				var8 = var7.c();
 				this.a.add(new CuboidArea(this.l.minX, var8.minY, var8.minZ, this.l.minX + 1, var8.maxY, var8.maxZ));
@@ -72,7 +72,7 @@ public class WorldGenMineshaftRoom extends StructurePiece {
 				break;
 			}
 
-			var7 = bje.a(var1, var2, var3, this.l.maxX + 1, this.l.minY + var3.nextInt(var6) + 1, this.l.minZ + var5, BlockFace.EAST, var4);
+			var7 = WorldGenMineshaftPieces.a(var1, var2, var3, this.l.maxX + 1, this.l.minY + var3.nextInt(var6) + 1, this.l.minZ + var5, BlockFace.EAST, var4);
 			if (var7 != null) {
 				var8 = var7.c();
 				this.a.add(new CuboidArea(this.l.maxX - 1, var8.minY, var8.minZ, this.l.maxX, var8.maxY, var8.maxZ));

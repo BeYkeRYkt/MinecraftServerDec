@@ -83,7 +83,7 @@ public class Block {
 		registerBlock(50, "torch", (new BlockTorch()).c(0.0F).a(0.9375F).a(f).setName("torch"));
 		registerBlock(51, "fire", (new BlockFire()).c(0.0F).a(1.0F).a(l).setName("fire").J());
 		registerBlock(52, "mob_spawner", (new BlockMobSpawner()).c(5.0F).a(j).setName("mobSpawner").J());
-		registerBlock(53, "oak_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, ayx.a))).setName("stairsWood"));
+		registerBlock(53, "oak_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, EnumWoodType.a))).setName("stairsWood"));
 		registerBlock(54, "chest", (new BlockChest(0)).c(2.5F).a(f).setName("chest"));
 		registerBlock(55, "redstone_wire", (new BlockRedstoneWire()).c(0.0F).a(e).setName("redstoneDust").J());
 		registerBlock(56, "diamond_ore", (new BlockOre()).c(3.0F).b(5.0F).a(i).setName("oreDiamond"));
@@ -169,9 +169,9 @@ public class Block {
 		registerBlock(131, "tripwire_hook", (new BlockTripwireHook()).setName("tripWireSource"));
 		registerBlock(132, "tripwire", (new BlockTripwire()).setName("tripWire"));
 		registerBlock(133, "emerald_block", (new BlockOreBlock(MaterialMapColor.I)).c(5.0F).b(10.0F).a(j).setName("blockEmerald"));
-		registerBlock(134, "spruce_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, ayx.b))).setName("stairsWoodSpruce"));
-		registerBlock(135, "birch_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, ayx.c))).setName("stairsWoodBirch"));
-		registerBlock(136, "jungle_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, ayx.d))).setName("stairsWoodJungle"));
+		registerBlock(134, "spruce_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, EnumWoodType.b))).setName("stairsWoodSpruce"));
+		registerBlock(135, "birch_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, EnumWoodType.c))).setName("stairsWoodBirch"));
+		registerBlock(136, "jungle_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, EnumWoodType.d))).setName("stairsWoodJungle"));
 		registerBlock(137, "command_block", (new BlockCommand()).v().b(6000000.0F).setName("commandBlock"));
 		registerBlock(138, "beacon", (new BlockBeacon()).setName("beacon").a(1.0F));
 		registerBlock(139, "cobblestone_wall", (new BlockCobbleWall(stoneBrick)).setName("cobbleWall"));
@@ -199,8 +199,8 @@ public class Block {
 		registerBlock(160, "stained_glass_pane", (new BlockStainedGlassPane()).c(0.3F).a(k).setName("thinStainedGlass"));
 		registerBlock(161, "leaves2", (new BlockLeaves2()).setName("leaves"));
 		registerBlock(162, "log2", (new BlockLog2()).setName("log"));
-		registerBlock(163, "acacia_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, ayx.e))).setName("stairsWoodAcacia"));
-		registerBlock(164, "dark_oak_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, ayx.f))).setName("stairsWoodDarkOak"));
+		registerBlock(163, "acacia_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, EnumWoodType.e))).setName("stairsWoodAcacia"));
+		registerBlock(164, "dark_oak_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, EnumWoodType.f))).setName("stairsWoodDarkOak"));
 		registerBlock(165, "slime", (new BlockSlime()).setName("slime").a(q));
 		registerBlock(166, "barrier", (new BlockBarrier()).setName("barrier"));
 		registerBlock(167, "iron_trapdoor", (new BlockTrapdoor(Material.ORE)).c(5.0F).a(j).setName("ironTrapdoor").J());

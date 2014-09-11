@@ -25,7 +25,7 @@ public class BiomeJungle extends BiomeBase {
 	}
 
 	public WorldGenTreeAbstract a(Random var1) {
-		return (WorldGenTreeAbstract) (var1.nextInt(10) == 0 ? this.aB : (var1.nextInt(2) == 0 ? new bhr(ayx.d.a(), ayx.a.a()) : (!this.aD && var1.nextInt(3) == 0 ? new bia(false, 10, 20, ayx.d.a(), ayx.d.a()) : new WorldGenTrees(false, 4 + var1.nextInt(7), ayx.d.a(), ayx.d.a(), true))));
+		return (WorldGenTreeAbstract) (var1.nextInt(10) == 0 ? this.aB : (var1.nextInt(2) == 0 ? new WorldGenGroundBush(EnumWoodType.d.a(), EnumWoodType.a.a()) : (!this.aD && var1.nextInt(3) == 0 ? new WorldGenJungleTree(false, 10, 20, EnumWoodType.d.a(), EnumWoodType.d.a()) : new WorldGenTrees(false, 4 + var1.nextInt(7), EnumWoodType.d.a(), EnumWoodType.d.a(), true))));
 	}
 
 	public WorldGenerator b(Random var1) {
@@ -37,8 +37,8 @@ public class BiomeJungle extends BiomeBase {
 		int var4 = var2.nextInt(16) + 8;
 		int var5 = var2.nextInt(16) + 8;
 		int var6 = var2.nextInt(var1.m(var3.a(var4, 0, var5)).getY() * 2);
-		(new bid()).b(var1, var2, var3.a(var4, var6, var5));
-		bis var9 = new bis();
+		(new WorldGenMelon()).b(var1, var2, var3.a(var4, var6, var5));
+		WorldGenVines var9 = new WorldGenVines();
 
 		for (var5 = 0; var5 < 50; ++var5) {
 			var6 = var2.nextInt(16) + 8;

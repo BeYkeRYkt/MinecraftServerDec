@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class BlockSand extends avt {
+public class BlockSand extends BlockFalling {
 
 	public static final bev a = bev.a("variant", bac.class);
 

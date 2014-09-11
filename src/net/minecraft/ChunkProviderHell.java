@@ -19,15 +19,15 @@ public class ChunkProviderHell implements IChunkProvider {
 	private final NoiseGeneratorOctaves s;
 	public final NoiseGeneratorOctaves a;
 	public final NoiseGeneratorOctaves b;
-	private final bhs t = new bhs();
-	private final bhz u = new bhz();
-	private final bht v = new bht();
+	private final WorldGenFire t = new WorldGenFire();
+	private final WorldGenLightStone1 u = new WorldGenLightStone1();
+	private final WorldGenLightStone2 v = new WorldGenLightStone2();
 	private final WorldGenerator w;
-	private final bhu x;
-	private final bhu y;
-	private final bhi z;
-	private final bhi A;
-	private final bjl B;
+	private final WorldGenHellLava x;
+	private final WorldGenHellLava y;
+	private final WorldGenMushroom z;
+	private final WorldGenMushroom A;
+	private final WorldGenNether B;
 	private final WorldGenBase C;
 	double[] c;
 	double[] d;
@@ -36,13 +36,13 @@ public class ChunkProviderHell implements IChunkProvider {
 	double[] g;
 
 	public ChunkProviderHell(World var1, boolean var2, long var3) {
-		this.w = new bif(Blocks.QUARTZ_ORE.getBlockState(), 14, bep.a(Blocks.NETHERRACK));
-		this.x = new bhu(Blocks.FLOWING_LAVA, true);
-		this.y = new bhu(Blocks.FLOWING_LAVA, false);
-		this.z = new bhi(Blocks.BRWON_MUSHROOM);
-		this.A = new bhi(Blocks.RED_MUSHROOM);
-		this.B = new bjl();
-		this.C = new bgu();
+		this.w = new WorldGenMinable(Blocks.QUARTZ_ORE.getBlockState(), 14, WorldGenNetherBlockEqualityPredicate.create(Blocks.NETHERRACK));
+		this.x = new WorldGenHellLava(Blocks.FLOWING_LAVA, true);
+		this.y = new WorldGenHellLava(Blocks.FLOWING_LAVA, false);
+		this.z = new WorldGenMushroom(Blocks.BRWON_MUSHROOM);
+		this.A = new WorldGenMushroom(Blocks.RED_MUSHROOM);
+		this.B = new WorldGenNether();
+		this.C = new WorldGenCavesHell();
 		this.h = var1;
 		this.i = var2;
 		this.j = new Random(var3);
@@ -282,7 +282,7 @@ public class ChunkProviderHell implements IChunkProvider {
 	}
 
 	public void getChunkAt(IChunkProvider var1, int var2, int var3) {
-		avt.M = true;
+		BlockFalling.instafall = true;
 		Position var4 = new Position(var2 * 16, 0, var3 * 16);
 		ChunkCoordIntPair var5 = new ChunkCoordIntPair(var2, var3);
 		this.B.a(this.h, this.j, var5);
@@ -320,7 +320,7 @@ public class ChunkProviderHell implements IChunkProvider {
 			this.x.b(this.h, this.j, var4.a(this.j.nextInt(16), this.j.nextInt(108) + 10, this.j.nextInt(16)));
 		}
 
-		avt.M = false;
+		BlockFalling.instafall = false;
 	}
 
 	public boolean ae(IChunkProvider var1, Chunk var2, int var3, int var4) {

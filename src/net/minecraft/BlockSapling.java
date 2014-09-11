@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class BlockSapling extends auc implements atz {
 
-	public static final bev a = bev.a("type", ayx.class);
+	public static final bev a = bev.a("type", EnumWoodType.class);
 	public static final bew b = bew.a("stage", 0, 1);
 
 	protected BlockSapling() {
-		this.setBlockState(this.L.b().a(a, ayx.a).a(b, Integer.valueOf(0)));
+		this.setBlockState(this.L.b().a(a, EnumWoodType.a).a(b, Integer.valueOf(0)));
 		float var1 = 0.4F;
 		this.a(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, var1 * 2.0F, 0.5F + var1);
 		this.a(CreativeModeTab.DECORATIONS);
@@ -38,12 +38,12 @@ public class BlockSapling extends auc implements atz {
 		int var6 = 0;
 		int var7 = 0;
 		boolean var8 = false;
-		switch (bag.a[((ayx) var3.b(a)).ordinal()]) {
+		switch (bag.a[((EnumWoodType) var3.b(a)).ordinal()]) {
 			case 1:
 				label78: for (var6 = 0; var6 >= -1; --var6) {
 					for (var7 = 0; var7 >= -1; --var7) {
-						if (this.a(var1, var2.a(var6, 0, var7), ayx.b) && this.a(var1, var2.a(var6 + 1, 0, var7), ayx.b) && this.a(var1, var2.a(var6, 0, var7 + 1), ayx.b) && this.a(var1, var2.a(var6 + 1, 0, var7 + 1), ayx.b)) {
-							var5 = new bib(false, var4.nextBoolean());
+						if (this.a(var1, var2.a(var6, 0, var7), EnumWoodType.b) && this.a(var1, var2.a(var6 + 1, 0, var7), EnumWoodType.b) && this.a(var1, var2.a(var6, 0, var7 + 1), EnumWoodType.b) && this.a(var1, var2.a(var6 + 1, 0, var7 + 1), EnumWoodType.b)) {
+							var5 = new WorldGenMegaTree(false, var4.nextBoolean());
 							var8 = true;
 							break label78;
 						}
@@ -53,17 +53,17 @@ public class BlockSapling extends auc implements atz {
 				if (!var8) {
 					var7 = 0;
 					var6 = 0;
-					var5 = new bio(true);
+					var5 = new WorldGenTaiga2(true);
 				}
 				break;
 			case 2:
-				var5 = new bhf(true, false);
+				var5 = new WorldGenForest(true, false);
 				break;
 			case 3:
 				label93: for (var6 = 0; var6 >= -1; --var6) {
 					for (var7 = 0; var7 >= -1; --var7) {
-						if (this.a(var1, var2.a(var6, 0, var7), ayx.d) && this.a(var1, var2.a(var6 + 1, 0, var7), ayx.d) && this.a(var1, var2.a(var6, 0, var7 + 1), ayx.d) && this.a(var1, var2.a(var6 + 1, 0, var7 + 1), ayx.d)) {
-							var5 = new bia(true, 10, 20, ayx.d.a(), ayx.d.a());
+						if (this.a(var1, var2.a(var6, 0, var7), EnumWoodType.d) && this.a(var1, var2.a(var6 + 1, 0, var7), EnumWoodType.d) && this.a(var1, var2.a(var6, 0, var7 + 1), EnumWoodType.d) && this.a(var1, var2.a(var6 + 1, 0, var7 + 1), EnumWoodType.d)) {
+							var5 = new WorldGenJungleTree(true, 10, 20, EnumWoodType.d.a(), EnumWoodType.d.a());
 							var8 = true;
 							break label93;
 						}
@@ -73,17 +73,17 @@ public class BlockSapling extends auc implements atz {
 				if (!var8) {
 					var7 = 0;
 					var6 = 0;
-					var5 = new WorldGenTrees(true, 4 + var4.nextInt(7), ayx.d.a(), ayx.d.a(), false);
+					var5 = new WorldGenTrees(true, 4 + var4.nextInt(7), EnumWoodType.d.a(), EnumWoodType.d.a(), false);
 				}
 				break;
 			case 4:
-				var5 = new bil(true);
+				var5 = new WorldGenAcaciaTree(true);
 				break;
 			case 5:
 				label108: for (var6 = 0; var6 >= -1; --var6) {
 					for (var7 = 0; var7 >= -1; --var7) {
-						if (this.a(var1, var2.a(var6, 0, var7), ayx.f) && this.a(var1, var2.a(var6 + 1, 0, var7), ayx.f) && this.a(var1, var2.a(var6, 0, var7 + 1), ayx.f) && this.a(var1, var2.a(var6 + 1, 0, var7 + 1), ayx.f)) {
-							var5 = new bij(true);
+						if (this.a(var1, var2.a(var6, 0, var7), EnumWoodType.f) && this.a(var1, var2.a(var6 + 1, 0, var7), EnumWoodType.f) && this.a(var1, var2.a(var6, 0, var7 + 1), EnumWoodType.f) && this.a(var1, var2.a(var6 + 1, 0, var7 + 1), EnumWoodType.f)) {
+							var5 = new WorldGenForestTree(true);
 							var8 = true;
 							break label108;
 						}
@@ -119,13 +119,13 @@ public class BlockSapling extends auc implements atz {
 
 	}
 
-	public boolean a(World var1, Position var2, ayx var3) {
+	public boolean a(World var1, Position var2, EnumWoodType var3) {
 		BlockState var4 = var1.getBlockState(var2);
 		return var4.getBlock() == this && var4.b(a) == var3;
 	}
 
 	public int a(BlockState var1) {
-		return ((ayx) var1.b(a)).a();
+		return ((EnumWoodType) var1.b(a)).a();
 	}
 
 	public boolean a(World var1, Position var2, BlockState var3, boolean var4) {
@@ -141,12 +141,12 @@ public class BlockSapling extends auc implements atz {
 	}
 
 	public BlockState a(int var1) {
-		return this.getBlockState().a(a, ayx.a(var1 & 7)).a(b, Integer.valueOf((var1 & 8) >> 3));
+		return this.getBlockState().a(a, EnumWoodType.a(var1 & 7)).a(b, Integer.valueOf((var1 & 8) >> 3));
 	}
 
 	public int c(BlockState var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((ayx) var1.b(a)).a();
+		int var3 = var2 | ((EnumWoodType) var1.b(a)).a();
 		var3 |= ((Integer) var1.b(b)).intValue() << 3;
 		return var3;
 	}

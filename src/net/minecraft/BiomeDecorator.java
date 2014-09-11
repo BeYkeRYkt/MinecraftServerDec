@@ -8,7 +8,7 @@ public class BiomeDecorator {
 	protected Random b;
 	protected Position c;
 	protected ChunkProviderGenerateProperties d;
-	protected WorldGenerator e = new bhl(4);
+	protected WorldGenerator e = new WorldGenClay(4);
 	protected WorldGenerator f;
 	protected WorldGenerator g;
 	protected WorldGenerator h;
@@ -22,7 +22,7 @@ public class BiomeDecorator {
 	protected WorldGenerator p;
 	protected WorldGenerator q;
 	protected WorldGenerator r;
-	protected bhq s;
+	protected WorldGenFlowers s;
 	protected WorldGenerator t;
 	protected WorldGenerator u;
 	protected WorldGenerator v;
@@ -44,15 +44,15 @@ public class BiomeDecorator {
 	public boolean L;
 
 	public BiomeDecorator() {
-		this.f = new bik(Blocks.SAND, 7);
-		this.g = new bik(Blocks.GRAVEL, 6);
-		this.s = new bhq(Blocks.YELLOW_FLOWER, EnumFlowerType.a);
-		this.t = new bhi(Blocks.BRWON_MUSHROOM);
-		this.u = new bhi(Blocks.RED_MUSHROOM);
-		this.v = new bhv();
-		this.w = new bii();
-		this.x = new bhj();
-		this.y = new bit();
+		this.f = new WorldGenSand(Blocks.SAND, 7);
+		this.g = new WorldGenSand(Blocks.GRAVEL, 6);
+		this.s = new WorldGenFlowers(Blocks.YELLOW_FLOWER, EnumFlowerType.a);
+		this.t = new WorldGenMushroom(Blocks.BRWON_MUSHROOM);
+		this.u = new WorldGenMushroom(Blocks.RED_MUSHROOM);
+		this.v = new WorldGenHugeMushroom();
+		this.w = new WorldGenReed();
+		this.x = new WorldGenCactus();
+		this.y = new WorldGenWaterLily();
 		this.B = 2;
 		this.C = 1;
 		this.H = 1;
@@ -75,17 +75,17 @@ public class BiomeDecorator {
 
 			this.b = var2;
 			this.c = var4;
-			this.h = new bif(Blocks.DIRT.getBlockState(), this.d.dirtSize);
-			this.i = new bif(Blocks.GRAVEL.getBlockState(), this.d.gravelSize);
-			this.j = new bif(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.b), this.d.graniteSize);
-			this.k = new bif(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.d), this.d.dioriteSize);
-			this.l = new bif(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.f), this.d.andesiteSize);
-			this.m = new bif(Blocks.COAL_ORE.getBlockState(), this.d.coalSize);
-			this.n = new bif(Blocks.IRON_ORE.getBlockState(), this.d.ironSize);
-			this.o = new bif(Blocks.GOLD_ORE.getBlockState(), this.d.goldSize);
-			this.p = new bif(Blocks.REDSTONE_ORE.getBlockState(), this.d.redstoneSize);
-			this.q = new bif(Blocks.DIAMOND_ORE.getBlockState(), this.d.diamondSize);
-			this.r = new bif(Blocks.LAPIS_ORE.getBlockState(), this.d.lapisSize);
+			this.h = new WorldGenMinable(Blocks.DIRT.getBlockState(), this.d.dirtSize);
+			this.i = new WorldGenMinable(Blocks.GRAVEL.getBlockState(), this.d.gravelSize);
+			this.j = new WorldGenMinable(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.b), this.d.graniteSize);
+			this.k = new WorldGenMinable(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.d), this.d.dioriteSize);
+			this.l = new WorldGenMinable(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.f), this.d.andesiteSize);
+			this.m = new WorldGenMinable(Blocks.COAL_ORE.getBlockState(), this.d.coalSize);
+			this.n = new WorldGenMinable(Blocks.IRON_ORE.getBlockState(), this.d.ironSize);
+			this.o = new WorldGenMinable(Blocks.GOLD_ORE.getBlockState(), this.d.goldSize);
+			this.p = new WorldGenMinable(Blocks.REDSTONE_ORE.getBlockState(), this.d.redstoneSize);
+			this.q = new WorldGenMinable(Blocks.DIAMOND_ORE.getBlockState(), this.d.diamondSize);
+			this.r = new WorldGenMinable(Blocks.LAPIS_ORE.getBlockState(), this.d.lapisSize);
 			this.a(var3);
 			this.a = null;
 			this.b = null;
@@ -165,7 +165,7 @@ public class BiomeDecorator {
 			var4 = this.b.nextInt(16) + 8;
 			var5 = this.b.nextInt(16) + 8;
 			var11 = this.b.nextInt(this.a.m(this.c.a(var4, 0, var5)).getY() * 2);
-			(new bhm()).b(this.a, this.b, this.c.a(var4, var11, var5));
+			(new WorldGenDeadBush()).b(this.a, this.b, this.c.a(var4, var11, var5));
 		}
 
 		var3 = 0;
@@ -240,7 +240,7 @@ public class BiomeDecorator {
 			var3 = this.b.nextInt(16) + 8;
 			var4 = this.b.nextInt(16) + 8;
 			var5 = this.b.nextInt(this.a.m(this.c.a(var3, 0, var4)).getY() * 2);
-			(new bih()).b(this.a, this.b, this.c.a(var3, var5, var4));
+			(new WorldGenPumpkin()).b(this.a, this.b, this.c.a(var3, var5, var4));
 		}
 
 		for (var3 = 0; var3 < this.G; ++var3) {
@@ -254,12 +254,12 @@ public class BiomeDecorator {
 			Position var10;
 			for (var3 = 0; var3 < 50; ++var3) {
 				var10 = this.c.a(this.b.nextInt(16) + 8, this.b.nextInt(this.b.nextInt(248) + 8), this.b.nextInt(16) + 8);
-				(new bin(Blocks.FLOWING_WATER)).b(this.a, this.b, var10);
+				(new WorldGenLiquids(Blocks.FLOWING_WATER)).b(this.a, this.b, var10);
 			}
 
 			for (var3 = 0; var3 < 20; ++var3) {
 				var10 = this.c.a(this.b.nextInt(16) + 8, this.b.nextInt(this.b.nextInt(this.b.nextInt(240) + 8) + 8), this.b.nextInt(16) + 8);
-				(new bin(Blocks.FLOWING_LAVA)).b(this.a, this.b, var10);
+				(new WorldGenLiquids(Blocks.FLOWING_LAVA)).b(this.a, this.b, var10);
 			}
 		}
 

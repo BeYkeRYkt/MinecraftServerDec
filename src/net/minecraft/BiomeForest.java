@@ -5,9 +5,9 @@ import java.util.Random;
 public class BiomeForest extends BiomeBase {
 
 	private int aG;
-	protected static final bhf aD = new bhf(false, true);
-	protected static final bhf aE = new bhf(false, false);
-	protected static final bij aF = new bij(false);
+	protected static final WorldGenForest aD = new WorldGenForest(false, true);
+	protected static final WorldGenForest aE = new WorldGenForest(false, false);
+	protected static final WorldGenForestTree aF = new WorldGenForestTree(false);
 
 	public BiomeForest(int var1, int var2) {
 		super(var1);
@@ -78,7 +78,7 @@ public class BiomeForest extends BiomeBase {
 					var7 = var5 * 4 + 1 + 8 + var2.nextInt(3);
 					Position var8 = var1.m(var3.a(var6, 0, var7));
 					if (var2.nextInt(20) == 0) {
-						bhv var9 = new bhv();
+						WorldGenHugeMushroom var9 = new WorldGenHugeMushroom();
 						var9.b(var1, var2, var8);
 					} else {
 						WorldGenTreeAbstract var12 = this.a(var2);

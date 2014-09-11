@@ -27,7 +27,7 @@ public class BlockCocoa extends avb implements atz {
 	public boolean e(World var1, Position var2, BlockState var3) {
 		var2 = var2.a((BlockFace) var3.b(N));
 		BlockState var4 = var1.getBlockState(var2);
-		return var4.getBlock() == Blocks.LOG && var4.b(BlockWood.a) == ayx.d;
+		return var4.getBlock() == Blocks.LOG && var4.b(BlockWood.a) == EnumWoodType.d;
 	}
 
 	public boolean d() {

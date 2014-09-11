@@ -31,7 +31,7 @@ public class ItemDye extends Item {
 			} else if (var9 == akv.m) {
 				BlockState var10 = var3.getBlockState(var4);
 				Block var11 = var10.getBlock();
-				if (var11 == Blocks.LOG && var10.b(BlockWood.a) == ayx.d) {
+				if (var11 == Blocks.LOG && var10.b(BlockWood.a) == EnumWoodType.d) {
 					if (var5 == BlockFace.DOWN) {
 						return false;
 					}
