@@ -14,7 +14,7 @@ public class bjv extends bkb {
 		this.l = var3;
 	}
 
-	public void a(bms var1, List var2, Random var3) {
+	public void a(StructurePiece var1, List var2, Random var3) {
 		this.a((bkf) var1, var2, var3, 1, 0, true);
 		this.b((bkf) var1, var2, var3, 0, 1, true);
 		this.c((bkf) var1, var2, var3, 0, 1, true);
@@ -22,7 +22,7 @@ public class bjv extends bkb {
 
 	public static bjv a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5, int var6) {
 		CuboidArea var7 = CuboidArea.a(var2, var3, var4, -1, 0, 0, 5, 7, 5, var5);
-		return a(var7) && bms.a(var0, var7) == null ? new bjv(var6, var1, var7, var5) : null;
+		return a(var7) && StructurePiece.a(var0, var7) == null ? new bjv(var6, var1, var7, var5) : null;
 	}
 
 	public boolean a(World var1, Random var2, CuboidArea var3) {

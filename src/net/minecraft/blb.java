@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public abstract class blb extends bms {
+public abstract class blb extends StructurePiece {
 
 	protected static final BlockState a = Blocks.PRISMARINE.a(BlockPrismarine.b);
 	protected static final BlockState b = Blocks.PRISMARINE.a(BlockPrismarine.M);

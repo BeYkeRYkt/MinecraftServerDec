@@ -22,9 +22,9 @@ public class PacketPlayOutSpawnMob implements Packet<PlayOutPacketListener> {
 	public PacketPlayOutSpawnMob(EntityLiving entityLiving) {
 		this.entityId = entityLiving.getId();
 		this.fixedId = (byte) EntityTypes.getFixedId(entityLiving);
-		this.x = DataTypesConverter.toFixedPointInt(entityLiving.locationX * 32.0D);
-		this.y = DataTypesConverter.toFixedPointInt(entityLiving.locationY * 32.0D);
-		this.z = DataTypesConverter.toFixedPointInt(entityLiving.locationZ * 32.0D);
+		this.x = MathHelper.toFixedPointInt(entityLiving.locationX * 32.0D);
+		this.y = MathHelper.toFixedPointInt(entityLiving.locationY * 32.0D);
+		this.z = MathHelper.toFixedPointInt(entityLiving.locationZ * 32.0D);
 		this.yaw = (byte) ((int) (entityLiving.yaw * 256.0F / 360.0F));
 		this.pitch = (byte) ((int) (entityLiving.pitch * 256.0F / 360.0F));
 		this.headPitch = (byte) ((int) (entityLiving.headPitch * 256.0F / 360.0F));

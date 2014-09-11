@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 
-public class bkh extends bmv {
+public class bkh extends StructureStart {
 
 	private Set c = Sets.newHashSet();
 	private boolean d;

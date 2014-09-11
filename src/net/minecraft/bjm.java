@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.List;
 import java.util.Random;
 
-public class bjm extends bmv {
+public class bjm extends StructureStart {
 
 	public bjm() {
 	}
@@ -17,8 +17,8 @@ public class bjm extends bmv {
 
 		while (!var6.isEmpty()) {
 			int var7 = var2.nextInt(var6.size());
-			bms var8 = (bms) var6.remove(var7);
-			var8.a((bms) var5, (List) this.a, var2);
+			StructurePiece var8 = (StructurePiece) var6.remove(var7);
+			var8.a((StructurePiece) var5, (List) this.a, var2);
 		}
 
 		this.c();

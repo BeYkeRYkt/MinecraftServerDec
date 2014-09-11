@@ -17,10 +17,10 @@ public class ItemBoat extends Item {
 		double var9 = var3.q + (var3.locationY - var3.q) * (double) var4 + (double) var3.aR();
 		double var11 = var3.r + (var3.locationZ - var3.r) * (double) var4;
 		Vec3D var13 = new Vec3D(var7, var9, var11);
-		float var14 = DataTypesConverter.b(-var6 * 0.017453292F - 3.1415927F);
-		float var15 = DataTypesConverter.a(-var6 * 0.017453292F - 3.1415927F);
-		float var16 = -DataTypesConverter.b(-var5 * 0.017453292F);
-		float var17 = DataTypesConverter.a(-var5 * 0.017453292F);
+		float var14 = MathHelper.b(-var6 * 0.017453292F - 3.1415927F);
+		float var15 = MathHelper.a(-var6 * 0.017453292F - 3.1415927F);
+		float var16 = -MathHelper.b(-var5 * 0.017453292F);
+		float var17 = MathHelper.a(-var5 * 0.017453292F);
 		float var18 = var15 * var16;
 		float var20 = var14 * var16;
 		double var21 = 5.0D;
@@ -55,7 +55,7 @@ public class ItemBoat extends Item {
 					}
 
 					EntityBoat var34 = new EntityBoat(var2, (double) ((float) var33.getX() + 0.5F), (double) ((float) var33.getY() + 1.0F), (double) ((float) var33.getZ() + 0.5F));
-					var34.yaw = (float) (((DataTypesConverter.toFixedPointInt((double) (var3.yaw * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
+					var34.yaw = (float) (((MathHelper.toFixedPointInt((double) (var3.yaw * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
 					if (!var2.getCubes((Entity) var34, var34.getBoundingBox().grow(-0.1D, -0.1D, -0.1D)).isEmpty()) {
 						return var1;
 					}

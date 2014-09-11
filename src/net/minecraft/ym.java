@@ -44,7 +44,7 @@ public class ym {
 			double var1 = this.e - this.a.locationX;
 			double var3 = this.f - (this.a.locationY + (double) this.a.aR());
 			double var5 = this.g - this.a.locationZ;
-			double var7 = (double) DataTypesConverter.a(var1 * var1 + var5 * var5);
+			double var7 = (double) MathHelper.a(var1 * var1 + var5 * var5);
 			float var9 = (float) (Math.atan2(var5, var1) * 180.0D / 3.1415927410125732D) - 90.0F;
 			float var10 = (float) (-(Math.atan2(var3, var7) * 180.0D / 3.1415927410125732D));
 			this.a.pitch = this.a(this.a.pitch, var10, this.c);
@@ -53,7 +53,7 @@ public class ym {
 			this.a.headPitch = this.a(this.a.headPitch, this.a.aG, 10.0F);
 		}
 
-		float var11 = DataTypesConverter.g(this.a.headPitch - this.a.aG);
+		float var11 = MathHelper.g(this.a.headPitch - this.a.aG);
 		if (!this.a.s().m()) {
 			if (var11 < -75.0F) {
 				this.a.headPitch = this.a.aG - 75.0F;
@@ -67,7 +67,7 @@ public class ym {
 	}
 
 	private float a(float var1, float var2, float var3) {
-		float var4 = DataTypesConverter.g(var2 - var1);
+		float var4 = MathHelper.g(var2 - var1);
 		if (var4 > var3) {
 			var4 = var3;
 		}

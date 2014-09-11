@@ -30,15 +30,15 @@ public enum BlockFace implements va {
 	}
 
 	public static BlockFace getById(int id) {
-		return byId[DataTypesConverter.a(id % byId.length)];
+		return byId[MathHelper.a(id % byId.length)];
 	}
 
 	public static BlockFace fromDirection(int directionId) {
-		return directionById[DataTypesConverter.a(directionId % directionById.length)];
+		return directionById[MathHelper.a(directionId % directionById.length)];
 	}
 
 	public static BlockFace fromDirection(double entityYaw) {
-		return fromDirection(DataTypesConverter.toFixedPointInt(entityYaw / 90.0D + 0.5D) & 3);
+		return fromDirection(MathHelper.toFixedPointInt(entityYaw / 90.0D + 0.5D) & 3);
 	}
 
 	public static BlockFace getRandom(Random random) {

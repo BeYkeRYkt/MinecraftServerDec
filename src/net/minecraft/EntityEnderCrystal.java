@@ -27,9 +27,9 @@ public class EntityEnderCrystal extends Entity {
 		this.r = this.locationZ;
 		++this.a;
 		this.dataWatcher.b(8, Integer.valueOf(this.b));
-		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
-		int var2 = DataTypesConverter.toFixedPointInt(this.locationY);
-		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
+		int var1 = MathHelper.toFixedPointInt(this.locationX);
+		int var2 = MathHelper.toFixedPointInt(this.locationY);
+		int var3 = MathHelper.toFixedPointInt(this.locationZ);
 		if (this.world.worldProvider instanceof WorldProviderTheEnd && this.world.getBlockState(new Position(var1, var2, var3)).getBlock() != Blocks.FIRE) {
 			this.world.a(new Position(var1, var2, var3), Blocks.FIRE.getBlockState());
 		}

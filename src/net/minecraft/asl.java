@@ -44,7 +44,7 @@ public class asl extends BiomeBase {
 		return this.aE.g();
 	}
 
-	public bhc a(Random var1) {
+	public WorldGenTreeAbstract a(Random var1) {
 		return this.aE.a(var1);
 	}
 
@@ -56,7 +56,7 @@ public class asl extends BiomeBase {
 		return this.aE.a(var1);
 	}
 
-	public arp m() {
+	public EnumBiomeTemperature m() {
 		return this.aE.m();
 	}
 }

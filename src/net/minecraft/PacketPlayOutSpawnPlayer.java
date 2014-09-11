@@ -21,9 +21,9 @@ public class PacketPlayOutSpawnPlayer implements Packet<PlayOutPacketListener> {
 	public PacketPlayOutSpawnPlayer(EntityHuman human) {
 		this.entityId = human.getId();
 		this.uuid = human.getGameProfile().getId();
-		this.x = DataTypesConverter.toFixedPointInt(human.locationX * 32.0D);
-		this.y = DataTypesConverter.toFixedPointInt(human.locationY * 32.0D);
-		this.z = DataTypesConverter.toFixedPointInt(human.locationZ * 32.0D);
+		this.x = MathHelper.toFixedPointInt(human.locationX * 32.0D);
+		this.y = MathHelper.toFixedPointInt(human.locationY * 32.0D);
+		this.z = MathHelper.toFixedPointInt(human.locationZ * 32.0D);
 		this.yaw = (byte) ((int) (human.yaw * 256.0F / 360.0F));
 		this.pitch = (byte) ((int) (human.pitch * 256.0F / 360.0F));
 		ItemStack itemStack = human.playerInventory.getItemInHand();

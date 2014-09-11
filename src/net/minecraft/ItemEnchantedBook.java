@@ -53,13 +53,13 @@ public class ItemEnchantedBook extends Item {
 		return var2;
 	}
 
-	public vl b(Random var1) {
+	public StructurePieceTreasure b(Random var1) {
 		return this.a(var1, 1, 1, 1);
 	}
 
-	public vl a(Random var1, int var2, int var3, int var4) {
+	public StructurePieceTreasure a(Random var1, int var2, int var3, int var4) {
 		ItemStack var5 = new ItemStack(Items.BOOK, 1, 0);
 		aph.a(var1, var5, 30);
-		return new vl(var5, var2, var3, var4);
+		return new StructurePieceTreasure(var5, var2, var3, var4);
 	}
 }

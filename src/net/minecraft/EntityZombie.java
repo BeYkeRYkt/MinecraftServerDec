@@ -152,15 +152,15 @@ public class EntityZombie extends EntityMonster {
 			}
 
 			if (var3 != null && this.world.getDifficulty() == Difficulty.HARD && (double) this.V.nextFloat() < this.a(b).e()) {
-				int var4 = DataTypesConverter.toFixedPointInt(this.locationX);
-				int var5 = DataTypesConverter.toFixedPointInt(this.locationY);
-				int var6 = DataTypesConverter.toFixedPointInt(this.locationZ);
+				int var4 = MathHelper.toFixedPointInt(this.locationX);
+				int var5 = MathHelper.toFixedPointInt(this.locationY);
+				int var6 = MathHelper.toFixedPointInt(this.locationZ);
 				EntityZombie var7 = new EntityZombie(this.world);
 
 				for (int var8 = 0; var8 < 50; ++var8) {
-					int var9 = var4 + DataTypesConverter.a(this.V, 7, 40) * DataTypesConverter.a(this.V, -1, 1);
-					int var10 = var5 + DataTypesConverter.a(this.V, 7, 40) * DataTypesConverter.a(this.V, -1, 1);
-					int var11 = var6 + DataTypesConverter.a(this.V, 7, 40) * DataTypesConverter.a(this.V, -1, 1);
+					int var9 = var4 + MathHelper.a(this.V, 7, 40) * MathHelper.a(this.V, -1, 1);
+					int var10 = var5 + MathHelper.a(this.V, 7, 40) * MathHelper.a(this.V, -1, 1);
+					int var11 = var6 + MathHelper.a(this.V, 7, 40) * MathHelper.a(this.V, -1, 1);
 					if (World.a((ard) this.world, new Position(var9, var10 - 1, var11)) && this.world.l(new Position(var9, var10, var11)) < 10) {
 						var7.b((double) var9, (double) var10, (double) var11);
 						if (!this.world.b((double) var9, (double) var10, (double) var11, 7.0D) && this.world.a(var7.getBoundingBox(), (Entity) var7) && this.world.getCubes((Entity) var7, var7.getBoundingBox()).isEmpty() && !this.world.d(var7.getBoundingBox())) {

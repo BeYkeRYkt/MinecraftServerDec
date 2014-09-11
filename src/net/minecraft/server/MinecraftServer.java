@@ -419,7 +419,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			this.lastServerPingUpdate = var1;
 			this.serverPing.a(new ServerPingPlayerSample(this.getMaxPlayers(), this.getOnlinePlayersCount()));
 			GameProfile[] var3 = new GameProfile[Math.min(this.getOnlinePlayersCount(), 12)];
-			int var4 = DataTypesConverter.a(this.rnd, 0, this.getOnlinePlayersCount() - var3.length);
+			int var4 = MathHelper.a(this.rnd, 0, this.getOnlinePlayersCount() - var3.length);
 
 			for (int var5 = 0; var5 < var3.length; ++var5) {
 				var3[var5] = ((EntityPlayer) this.playerList.players.get(var4 + var5)).getGameProfile();
@@ -878,7 +878,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		var1.a("uses_auth", Boolean.valueOf(this.onlineMode));
 		var1.a("gui_state", this.isGuiEnabled() ? "enabled" : "disabled");
 		var1.a("run_time", Long.valueOf((getCurrentMillis() - var1.g()) / 60L * 1000L));
-		var1.a("avg_tick_ms", Integer.valueOf((int) (DataTypesConverter.a(this.g) * 1.0E-6D)));
+		var1.a("avg_tick_ms", Integer.valueOf((int) (MathHelper.a(this.g) * 1.0E-6D)));
 		int var2 = 0;
 		if (this.worlds != null) {
 			for (int var3 = 0; var3 < this.worlds.length; ++var3) {

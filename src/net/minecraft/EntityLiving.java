@@ -106,7 +106,7 @@ public abstract class EntityLiving extends Entity {
 		if (!this.world.isStatic && this.O > 3.0F && var3) {
 			BlockState var6 = this.world.getBlockState(var5);
 			Block var7 = var6.getBlock();
-			float var8 = (float) DataTypesConverter.f(this.O - 3.0F);
+			float var8 = (float) MathHelper.f(this.O - 3.0F);
 			if (var7.getMaterial() != Material.AIR) {
 				double var9 = (double) Math.min(0.2F + var8 / 15.0F, 10.0F);
 				if (var9 > 2.5D) {
@@ -136,7 +136,7 @@ public abstract class EntityLiving extends Entity {
 			} else if (var1 && !this.world.getWorldBorder().isInside(this.getBoundingBox())) {
 				double var2 = this.world.getWorldBorder().getDistance((Entity) this) + this.world.getWorldBorder().getDamageBuffer();
 				if (var2 < 0.0D) {
-					this.a(DamageSource.e, (float) Math.max(1, DataTypesConverter.toFixedPointInt(-var2 * this.world.getWorldBorder().getDamageAmount())));
+					this.a(DamageSource.e, (float) Math.max(1, MathHelper.toFixedPointInt(-var2 * this.world.getWorldBorder().getDamageAmount())));
 				}
 			}
 		}
@@ -550,7 +550,7 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public void h(float var1) {
-		this.dataWatcher.b(6, Float.valueOf(DataTypesConverter.a(var1, 0.0F, this.bt())));
+		this.dataWatcher.b(6, Float.valueOf(MathHelper.a(var1, 0.0F, this.bt())));
 	}
 
 	public boolean a(DamageSource var1, float var2) {
@@ -701,7 +701,7 @@ public abstract class EntityLiving extends Entity {
 	public void a(Entity var1, float var2, double var3, double var5) {
 		if (this.V.nextDouble() >= this.a(afs.c).e()) {
 			this.ai = true;
-			float var7 = DataTypesConverter.a(var3 * var3 + var5 * var5);
+			float var7 = MathHelper.a(var3 * var3 + var5 * var5);
 			float var8 = 0.4F;
 			this.motionX /= 2.0D;
 			this.motionY /= 2.0D;
@@ -731,9 +731,9 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public boolean j_() {
-		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
-		int var2 = DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY);
-		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
+		int var1 = MathHelper.toFixedPointInt(this.locationX);
+		int var2 = MathHelper.toFixedPointInt(this.getBoundingBox().minY);
+		int var3 = MathHelper.toFixedPointInt(this.locationZ);
 		Block var4 = this.world.getBlockState(new Position(var1, var2, var3)).getBlock();
 		return (var4 == Blocks.LADDER || var4 == Blocks.VINE) && (!(this instanceof EntityHuman) || !((EntityHuman) this).isSpectator());
 	}
@@ -746,13 +746,13 @@ public abstract class EntityLiving extends Entity {
 		super.e(var1, var2);
 		MobEffect var3 = this.b(MobEffectList.j);
 		float var4 = var3 != null ? (float) (var3.getAmplifier() + 1) : 0.0F;
-		int var5 = DataTypesConverter.f((var1 - 3.0F - var4) * var2);
+		int var5 = MathHelper.f((var1 - 3.0F - var4) * var2);
 		if (var5 > 0) {
 			this.a(this.n(var5), 1.0F, 1.0F);
 			this.a(DamageSource.i, (float) var5);
-			int var6 = DataTypesConverter.toFixedPointInt(this.locationX);
-			int var7 = DataTypesConverter.toFixedPointInt(this.locationY - 0.20000000298023224D);
-			int var8 = DataTypesConverter.toFixedPointInt(this.locationZ);
+			int var6 = MathHelper.toFixedPointInt(this.locationX);
+			int var7 = MathHelper.toFixedPointInt(this.locationY - 0.20000000298023224D);
+			int var8 = MathHelper.toFixedPointInt(this.locationZ);
 			Block var9 = this.world.getBlockState(new Position(var6, var7, var8)).getBlock();
 			if (var9.getMaterial() != Material.AIR) {
 				BlockSound var10 = var9.H;
@@ -990,8 +990,8 @@ public abstract class EntityLiving extends Entity {
 
 		if (this.ax()) {
 			float var1 = this.yaw * 0.017453292F;
-			this.motionX -= (double) (DataTypesConverter.a(var1) * 0.2F);
-			this.motionZ += (double) (DataTypesConverter.b(var1) * 0.2F);
+			this.motionX -= (double) (MathHelper.a(var1) * 0.2F);
+			this.motionZ += (double) (MathHelper.b(var1) * 0.2F);
 		}
 
 		this.ai = true;
@@ -1052,7 +1052,7 @@ public abstract class EntityLiving extends Entity {
 			} else {
 				float var3 = 0.91F;
 				if (this.onGround) {
-					var3 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
+					var3 = this.world.getBlockState(new Position(MathHelper.toFixedPointInt(this.locationX), MathHelper.toFixedPointInt(this.getBoundingBox().minY) - 1, MathHelper.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
 				}
 
 				float var4 = 0.16277136F / (var3 * var3 * var3);
@@ -1065,13 +1065,13 @@ public abstract class EntityLiving extends Entity {
 				this.a(var1, var2, var5);
 				var3 = 0.91F;
 				if (this.onGround) {
-					var3 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
+					var3 = this.world.getBlockState(new Position(MathHelper.toFixedPointInt(this.locationX), MathHelper.toFixedPointInt(this.getBoundingBox().minY) - 1, MathHelper.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
 				}
 
 				if (this.j_()) {
 					var6 = 0.15F;
-					this.motionX = DataTypesConverter.a(this.motionX, (double) (-var6), (double) var6);
-					this.motionZ = DataTypesConverter.a(this.motionZ, (double) (-var6), (double) var6);
+					this.motionX = MathHelper.a(this.motionX, (double) (-var6), (double) var6);
+					this.motionZ = MathHelper.a(this.motionZ, (double) (-var6), (double) var6);
 					this.O = 0.0F;
 					if (this.motionY < -0.15D) {
 						this.motionY = -0.15D;
@@ -1107,7 +1107,7 @@ public abstract class EntityLiving extends Entity {
 		this.ay = this.az;
 		var8 = this.locationX - this.p;
 		double var9 = this.locationZ - this.r;
-		var10 = DataTypesConverter.a(var8 * var8 + var9 * var9) * 4.0F;
+		var10 = MathHelper.a(var8 * var8 + var9 * var9) * 4.0F;
 		if (var10 > 1.0F) {
 			var10 = 1.0F;
 		}
@@ -1235,9 +1235,9 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	protected float h(float var1, float var2) {
-		float var3 = DataTypesConverter.g(var1 - this.aG);
+		float var3 = MathHelper.g(var1 - this.aG);
 		this.aG += var3 * 0.3F;
-		float var4 = DataTypesConverter.g(this.yaw - this.aG);
+		float var4 = MathHelper.g(this.yaw - this.aG);
 		boolean var5 = var4 < -90.0F || var4 >= 90.0F;
 		if (var4 < -75.0F) {
 			var4 = -75.0F;
@@ -1268,7 +1268,7 @@ public abstract class EntityLiving extends Entity {
 			double var1 = this.locationX + (this.bb - this.locationX) / (double) this.ba;
 			double var3 = this.locationY + (this.bc - this.locationY) / (double) this.ba;
 			double var5 = this.locationZ + (this.bd - this.locationZ) / (double) this.ba;
-			double var7 = DataTypesConverter.g(this.be - (double) this.yaw);
+			double var7 = MathHelper.g(this.be - (double) this.yaw);
 			this.yaw = (float) ((double) this.yaw + var7 / (double) this.ba);
 			this.pitch = (float) ((double) this.pitch + (this.bf - (double) this.pitch) / (double) this.ba);
 			--this.ba;

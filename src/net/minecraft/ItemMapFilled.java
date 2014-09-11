@@ -32,8 +32,8 @@ public class ItemMapFilled extends ItemMap {
 			int var4 = 1 << var3.e;
 			int var5 = var3.b;
 			int var6 = var3.c;
-			int var7 = DataTypesConverter.toFixedPointInt(var2.locationX - (double) var5) / var4 + 64;
-			int var8 = DataTypesConverter.toFixedPointInt(var2.locationZ - (double) var6) / var4 + 64;
+			int var7 = MathHelper.toFixedPointInt(var2.locationX - (double) var5) / var4 + 64;
+			int var8 = MathHelper.toFixedPointInt(var2.locationZ - (double) var6) / var4 + 64;
 			int var9 = 128 / var4;
 			if (var1.worldProvider.noSkyLight()) {
 				var9 /= 2;

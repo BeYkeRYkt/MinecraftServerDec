@@ -34,7 +34,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	protected final abk d = new abk(this);
 	private qv[] S = new qv[] { new qv((qu) null), new qv((qu) null) };
 	private int T;
-	private static final List U = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.STICK, 0, 1, 3, 10), new vl(Item.getItemOf(Blocks.PLANKS), 0, 1, 3, 10), new vl(Item.getItemOf(Blocks.LOG), 0, 1, 3, 10), new vl(Items.STONE_AXE, 0, 1, 1, 3), new vl(Items.WOODEN_AXE, 0, 1, 1, 5), new vl(Items.STONE_PICKAXE, 0, 1, 1, 3), new vl(Items.WOODEN_PICKAXE, 0, 1, 1, 5), new vl(Items.APPLE, 0, 2, 3, 5), new vl(Items.BREAD, 0, 2, 3, 3), new vl(Item.getItemOf(Blocks.LOG2), 0, 1, 3, 10) }));
+	private static final List U = Lists.newArrayList((Object[]) (new StructurePieceTreasure[] { new StructurePieceTreasure(Items.STICK, 0, 1, 3, 10), new StructurePieceTreasure(Item.getItemOf(Blocks.PLANKS), 0, 1, 3, 10), new StructurePieceTreasure(Item.getItemOf(Blocks.LOG), 0, 1, 3, 10), new StructurePieceTreasure(Items.STONE_AXE, 0, 1, 1, 3), new StructurePieceTreasure(Items.WOODEN_AXE, 0, 1, 1, 5), new StructurePieceTreasure(Items.STONE_PICKAXE, 0, 1, 1, 3), new StructurePieceTreasure(Items.WOODEN_PICKAXE, 0, 1, 1, 5), new StructurePieceTreasure(Items.APPLE, 0, 2, 3, 5), new StructurePieceTreasure(Items.BREAD, 0, 2, 3, 3), new StructurePieceTreasure(Item.getItemOf(Blocks.LOG2), 0, 1, 3, 10) }));
 	private List V = Lists.newArrayList();
 
 	public WorldServer(MinecraftServer minecraftserver, IDataManager dataManager, WorldData worldData, int dimension, MethodProfiler methodProfiler) {
@@ -133,12 +133,12 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.ak();
 	}
 
-	public arq a(EnumCreatureType var1, Position var2) {
+	public BiomeMeta a(EnumCreatureType var1, Position var2) {
 		List var3 = this.N().getMobsFor(var1, var2);
-		return var3 != null && !var3.isEmpty() ? (arq) vj.a(this.s, var3) : null;
+		return var3 != null && !var3.isEmpty() ? (BiomeMeta) vj.a(this.s, var3) : null;
 	}
 
-	public boolean a(EnumCreatureType var1, arq var2, Position var3) {
+	public boolean a(EnumCreatureType var1, BiomeMeta var2, Position var3) {
 		List var4 = this.N().getMobsFor(var1, var3);
 		return var4 != null && !var4.isEmpty() ? var4.contains(var2) : false;
 	}

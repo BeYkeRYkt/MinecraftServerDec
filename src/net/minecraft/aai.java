@@ -55,9 +55,9 @@ public class aai extends zf {
 						float var8 = 0.3F;
 						float var9 = this.f.headPitch;
 						float var10 = this.f.pitch;
-						var12.motionX = (double) (-DataTypesConverter.a(var9 / 180.0F * 3.1415927F) * DataTypesConverter.b(var10 / 180.0F * 3.1415927F) * var8);
-						var12.motionZ = (double) (DataTypesConverter.b(var9 / 180.0F * 3.1415927F) * DataTypesConverter.b(var10 / 180.0F * 3.1415927F) * var8);
-						var12.motionY = (double) (-DataTypesConverter.a(var10 / 180.0F * 3.1415927F) * var8 + 0.1F);
+						var12.motionX = (double) (-MathHelper.a(var9 / 180.0F * 3.1415927F) * MathHelper.b(var10 / 180.0F * 3.1415927F) * var8);
+						var12.motionZ = (double) (MathHelper.b(var9 / 180.0F * 3.1415927F) * MathHelper.b(var10 / 180.0F * 3.1415927F) * var8);
+						var12.motionY = (double) (-MathHelper.a(var10 / 180.0F * 3.1415927F) * var8 + 0.1F);
 						var12.p();
 						this.f.world.d((Entity) var12);
 						break;

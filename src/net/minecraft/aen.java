@@ -53,7 +53,7 @@ class aen extends zb {
 				}
 
 				if (this.b > 1) {
-					float var10 = DataTypesConverter.c(DataTypesConverter.a(var2)) * 0.5F;
+					float var10 = MathHelper.c(MathHelper.a(var2)) * 0.5F;
 					this.a.world.a((EntityHuman) null, 1009, new Position((int) this.a.locationX, (int) this.a.locationY, (int) this.a.locationZ), 0);
 
 					for (int var11 = 0; var11 < 1; ++var11) {

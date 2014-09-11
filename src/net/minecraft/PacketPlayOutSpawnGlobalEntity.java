@@ -13,9 +13,9 @@ public class PacketPlayOutSpawnGlobalEntity implements Packet<PlayOutPacketListe
 
 	public PacketPlayOutSpawnGlobalEntity(Entity entity1) {
 		this.entityId = entity1.getId();
-		this.x = DataTypesConverter.toFixedPointInt(entity1.locationX * 32.0D);
-		this.y = DataTypesConverter.toFixedPointInt(entity1.locationY * 32.0D);
-		this.z = DataTypesConverter.toFixedPointInt(entity1.locationZ * 32.0D);
+		this.x = MathHelper.toFixedPointInt(entity1.locationX * 32.0D);
+		this.y = MathHelper.toFixedPointInt(entity1.locationY * 32.0D);
+		this.z = MathHelper.toFixedPointInt(entity1.locationZ * 32.0D);
 		if (entity1 instanceof EntityLightning) {
 			this.type = 1;
 		}

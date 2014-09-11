@@ -14,7 +14,7 @@ public class AttributeModifier {
 	private boolean serialize;
 
 	public AttributeModifier(String var1, double var2, int var4) {
-		this(DataTypesConverter.a((Random) ThreadLocalRandom.current()), var1, var2, var4);
+		this(MathHelper.a((Random) ThreadLocalRandom.current()), var1, var2, var4);
 	}
 
 	public AttributeModifier(UUID uuid, String name, double var3, int operation) {

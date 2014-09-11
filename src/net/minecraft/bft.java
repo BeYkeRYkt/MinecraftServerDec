@@ -101,7 +101,7 @@ public class bft {
 
 		for (int var18 = 0; var18 < 16; ++var18) {
 			for (var7 = 0; var7 < 16; ++var7) {
-				var17[var7 << 4 | var18] = (byte) (var2.a(new Position(var0.k << 4 | var18, 0, var0.l << 4 | var7), BiomeBase.ad).az & 255);
+				var17[var7 << 4 | var18] = (byte) (var2.a(new Position(var0.k << 4 | var18, 0, var0.l << 4 | var7), BiomeBase.OCEAN).az & 255);
 			}
 		}
 

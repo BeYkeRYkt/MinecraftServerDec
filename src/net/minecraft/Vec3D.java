@@ -25,7 +25,7 @@ public class Vec3D {
 	}
 
 	public Vec3D a() {
-		double var1 = (double) DataTypesConverter.a(this.x * this.x + this.y * this.y + this.z * this.z);
+		double var1 = (double) MathHelper.a(this.x * this.x + this.y * this.y + this.z * this.z);
 		return var1 < 1.0E-4D ? new Vec3D(0.0D, 0.0D, 0.0D) : new Vec3D(this.x / var1, this.y / var1, this.z / var1);
 	}
 
@@ -53,7 +53,7 @@ public class Vec3D {
 		double var2 = var1.x - this.x;
 		double var4 = var1.y - this.y;
 		double var6 = var1.z - this.z;
-		return (double) DataTypesConverter.a(var2 * var2 + var4 * var4 + var6 * var6);
+		return (double) MathHelper.a(var2 * var2 + var4 * var4 + var6 * var6);
 	}
 
 	public double g(Vec3D var1) {
@@ -64,7 +64,7 @@ public class Vec3D {
 	}
 
 	public double b() {
-		return (double) DataTypesConverter.a(this.x * this.x + this.y * this.y + this.z * this.z);
+		return (double) MathHelper.a(this.x * this.x + this.y * this.y + this.z * this.z);
 	}
 
 	public Vec3D a(Vec3D var1, double var2) {
@@ -108,8 +108,8 @@ public class Vec3D {
 	}
 
 	public Vec3D a(float var1) {
-		float var2 = DataTypesConverter.b(var1);
-		float var3 = DataTypesConverter.a(var1);
+		float var2 = MathHelper.b(var1);
+		float var3 = MathHelper.a(var1);
 		double var4 = this.x;
 		double var6 = this.y * (double) var2 + this.z * (double) var3;
 		double var8 = this.z * (double) var2 - this.y * (double) var3;
@@ -117,8 +117,8 @@ public class Vec3D {
 	}
 
 	public Vec3D b(float var1) {
-		float var2 = DataTypesConverter.b(var1);
-		float var3 = DataTypesConverter.a(var1);
+		float var2 = MathHelper.b(var1);
+		float var3 = MathHelper.a(var1);
 		double var4 = this.x * (double) var2 + this.z * (double) var3;
 		double var6 = this.y;
 		double var8 = this.z * (double) var2 - this.x * (double) var3;

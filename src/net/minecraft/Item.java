@@ -209,10 +209,10 @@ public class Item {
 		double var8 = var2.q + (var2.locationY - var2.q) + (double) var2.aR();
 		double var10 = var2.r + (var2.locationZ - var2.r);
 		Vec3D var12 = new Vec3D(var6, var8, var10);
-		float var13 = DataTypesConverter.b(-var5 * 0.017453292F - 3.1415927F);
-		float var14 = DataTypesConverter.a(-var5 * 0.017453292F - 3.1415927F);
-		float var15 = -DataTypesConverter.b(-var4 * 0.017453292F);
-		float var16 = DataTypesConverter.a(-var4 * 0.017453292F);
+		float var13 = MathHelper.b(-var5 * 0.017453292F - 3.1415927F);
+		float var14 = MathHelper.a(-var5 * 0.017453292F - 3.1415927F);
+		float var15 = -MathHelper.b(-var4 * 0.017453292F);
+		float var16 = MathHelper.a(-var4 * 0.017453292F);
 		float var17 = var14 * var15;
 		float var19 = var13 * var15;
 		double var20 = 5.0D;

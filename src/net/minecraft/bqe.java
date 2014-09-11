@@ -23,8 +23,8 @@ public class bqe extends bqc {
 
 	public void a(double var1, double var3, int var5) {
 		int var6 = 128 * (1 << var5);
-		int var7 = DataTypesConverter.toFixedPointInt((var1 + 64.0D) / (double) var6);
-		int var8 = DataTypesConverter.toFixedPointInt((var3 + 64.0D) / (double) var6);
+		int var7 = MathHelper.toFixedPointInt((var1 + 64.0D) / (double) var6);
+		int var8 = MathHelper.toFixedPointInt((var3 + 64.0D) / (double) var6);
 		this.b = var7 * var6 + var6 / 2 - 64;
 		this.c = var8 * var6 + var6 / 2 - 64;
 	}
@@ -34,7 +34,7 @@ public class bqe extends bqc {
 		this.b = var1.getInt("xCenter");
 		this.c = var1.getInt("zCenter");
 		this.e = var1.getByte("scale");
-		this.e = (byte) DataTypesConverter.a(this.e, 0, 4);
+		this.e = (byte) MathHelper.a(this.e, 0, 4);
 		short var2 = var1.getShort("width");
 		short var3 = var1.getShort("height");
 		if (var2 == 128 && var3 == 128) {

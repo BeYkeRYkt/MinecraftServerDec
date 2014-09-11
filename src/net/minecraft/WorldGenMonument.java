@@ -12,7 +12,7 @@ public class WorldGenMonument extends StructureGenerator {
 
 	private int f;
 	private int g;
-	public static final List d = Arrays.asList(new BiomeBase[] { BiomeBase.p, BiomeBase.N, BiomeBase.w, BiomeBase.z, BiomeBase.A });
+	public static final List d = Arrays.asList(new BiomeBase[] { BiomeBase.OCEAN, BiomeBase.DEEP_OCEAN, BiomeBase.RIVER, BiomeBase.FROZEN_OCEAN, BiomeBase.FROZEN_RIVER });
 	private static final List h = Lists.newArrayList();
 
 	public WorldGenMonument() {
@@ -27,9 +27,9 @@ public class WorldGenMonument extends StructureGenerator {
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
 			if (((String) var3.getKey()).equals("spacing")) {
-				this.f = DataTypesConverter.a((String) var3.getValue(), this.f, 1);
+				this.f = MathHelper.a((String) var3.getValue(), this.f, 1);
 			} else if (((String) var3.getKey()).equals("separation")) {
-				this.g = DataTypesConverter.a((String) var3.getValue(), this.g, 1);
+				this.g = MathHelper.a((String) var3.getValue(), this.g, 1);
 			}
 		}
 
@@ -58,7 +58,7 @@ public class WorldGenMonument extends StructureGenerator {
 		var5 += (var7.nextInt(this.f - this.g) + var7.nextInt(this.f - this.g)) / 2;
 		var6 += (var7.nextInt(this.f - this.g) + var7.nextInt(this.f - this.g)) / 2;
 		if (var3 == var5 && var4 == var6) {
-			if (this.c.v().a(new Position(var3 * 16 + 8, 64, var4 * 16 + 8), (BiomeBase) null) != BiomeBase.N) {
+			if (this.c.v().a(new Position(var3 * 16 + 8, 64, var4 * 16 + 8), (BiomeBase) null) != BiomeBase.DEEP_OCEAN) {
 				return false;
 			}
 
@@ -71,7 +71,7 @@ public class WorldGenMonument extends StructureGenerator {
 		return false;
 	}
 
-	protected bmv b(int var1, int var2) {
+	protected StructureStart b(int var1, int var2) {
 		return new bkh(this.c, this.b, var1, var2);
 	}
 
@@ -80,6 +80,6 @@ public class WorldGenMonument extends StructureGenerator {
 	}
 
 	static {
-		h.add(new arq(EntityGuardian.class, 1, 2, 4));
+		h.add(new BiomeMeta(EntityGuardian.class, 1, 2, 4));
 	}
 }

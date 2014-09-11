@@ -1,8 +1,8 @@
 package net.minecraft;
 
-public class asw extends ary {
+public class asw extends BiomeDecorator {
 
-	protected bhp M;
+	protected WorldGenerator M;
 
 	public asw() {
 		this.M = new bim(Blocks.END_STONE);

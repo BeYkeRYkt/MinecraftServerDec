@@ -132,8 +132,8 @@ public abstract class aaw extends zb {
 			if (var3 == null) {
 				return false;
 			} else {
-				int var4 = var3.a - DataTypesConverter.toFixedPointInt(var1.locationX);
-				int var5 = var3.c - DataTypesConverter.toFixedPointInt(var1.locationZ);
+				int var4 = var3.a - MathHelper.toFixedPointInt(var1.locationX);
+				int var5 = var3.c - MathHelper.toFixedPointInt(var1.locationZ);
 				return (double) (var4 * var4 + var5 * var5) <= 2.25D;
 			}
 		}

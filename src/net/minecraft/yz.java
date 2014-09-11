@@ -63,9 +63,9 @@ public class yz extends zb {
 				if (!this.g.a((Entity) this.e, this.f)) {
 					if (!this.d.cb()) {
 						if (this.d.getDistanceSquared(this.e) >= 144.0D) {
-							int var1 = DataTypesConverter.toFixedPointInt(this.e.locationX) - 2;
-							int var2 = DataTypesConverter.toFixedPointInt(this.e.locationZ) - 2;
-							int var3 = DataTypesConverter.toFixedPointInt(this.e.getBoundingBox().minY);
+							int var1 = MathHelper.toFixedPointInt(this.e.locationX) - 2;
+							int var2 = MathHelper.toFixedPointInt(this.e.locationZ) - 2;
+							int var3 = MathHelper.toFixedPointInt(this.e.getBoundingBox().minY);
 
 							for (int var4 = 0; var4 <= 4; ++var4) {
 								for (int var5 = 0; var5 <= 4; ++var5) {

@@ -15,7 +15,7 @@ class afk extends yn {
 			double var3 = this.c - this.g.locationY;
 			double var5 = this.d - this.g.locationZ;
 			double var7 = var1 * var1 + var3 * var3 + var5 * var5;
-			var7 = (double) DataTypesConverter.a(var7);
+			var7 = (double) MathHelper.a(var7);
 			var3 /= var7;
 			float var9 = (float) (Math.atan2(var5, var1) * 180.0D / 3.1415927410125732D) - 90.0F;
 			this.g.yaw = this.a(this.g.yaw, var9, 30.0F);

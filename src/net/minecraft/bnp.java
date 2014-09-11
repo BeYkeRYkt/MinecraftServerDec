@@ -22,7 +22,7 @@ public class bnp extends bnn {
 
 	}
 
-	public void a(bms var1, List var2, Random var3) {
+	public void a(StructurePiece var1, List var2, Random var3) {
 		bmy.b((bnk) var1, var2, var3, this.l.minX - 1, this.l.maxY - 4, this.l.minZ + 1, BlockFace.WEST, this.d());
 		bmy.b((bnk) var1, var2, var3, this.l.maxX + 1, this.l.maxY - 4, this.l.minZ + 1, BlockFace.EAST, this.d());
 		bmy.b((bnk) var1, var2, var3, this.l.minX + 1, this.l.maxY - 4, this.l.minZ - 1, BlockFace.NORTH, this.d());

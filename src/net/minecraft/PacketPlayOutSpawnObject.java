@@ -23,11 +23,11 @@ public class PacketPlayOutSpawnObject implements Packet<PlayOutPacketListener> {
 
 	public PacketPlayOutSpawnObject(Entity entity, int type, int contentsLength) {
 		this.entityId = entity.getId();
-		this.x = DataTypesConverter.toFixedPointInt(entity.locationX * 32.0D);
-		this.y = DataTypesConverter.toFixedPointInt(entity.locationY * 32.0D);
-		this.z = DataTypesConverter.toFixedPointInt(entity.locationZ * 32.0D);
-		this.pitch = DataTypesConverter.d(entity.pitch * 256.0F / 360.0F);
-		this.yaw = DataTypesConverter.d(entity.yaw * 256.0F / 360.0F);
+		this.x = MathHelper.toFixedPointInt(entity.locationX * 32.0D);
+		this.y = MathHelper.toFixedPointInt(entity.locationY * 32.0D);
+		this.z = MathHelper.toFixedPointInt(entity.locationZ * 32.0D);
+		this.pitch = MathHelper.d(entity.pitch * 256.0F / 360.0F);
+		this.yaw = MathHelper.d(entity.yaw * 256.0F / 360.0F);
 		this.type = type;
 		this.contentsLength = contentsLength;
 		if (contentsLength > 0) {

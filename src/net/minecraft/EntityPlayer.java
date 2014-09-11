@@ -53,7 +53,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		Position var5 = var2.getSpawnPosition();
 		if (!var2.worldProvider.noSkyLight() && var2.getWorldData().getGameMode() != GameMode.ADVENTURE) {
 			int var6 = Math.max(5, var1.isSpawnProtectionEnabled() - 6);
-			int var7 = DataTypesConverter.toFixedPointInt(var2.getWorldBorder().getDistance((double) var5.getX(), (double) var5.getZ()));
+			int var7 = MathHelper.toFixedPointInt(var2.getWorldBorder().getDistance((double) var5.getX(), (double) var5.getZ()));
 			if (var7 < var6) {
 				var6 = var7;
 			}
@@ -254,7 +254,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	protected void h_() {
-		BiomeBase var1 = this.world.b(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
+		BiomeBase var1 = this.world.b(new Position(MathHelper.toFixedPointInt(this.locationX), 0, MathHelper.toFixedPointInt(this.locationZ)));
 		String var2 = var1.ah;
 		AchievmentSet var3 = (AchievmentSet) this.getStatisticManager().b((Statistic) AchievementList.L);
 		if (var3 == null) {
@@ -450,9 +450,9 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public void a(double var1, boolean var3) {
-		int var4 = DataTypesConverter.toFixedPointInt(this.locationX);
-		int var5 = DataTypesConverter.toFixedPointInt(this.locationY - 0.20000000298023224D);
-		int var6 = DataTypesConverter.toFixedPointInt(this.locationZ);
+		int var4 = MathHelper.toFixedPointInt(this.locationX);
+		int var5 = MathHelper.toFixedPointInt(this.locationY - 0.20000000298023224D);
+		int var6 = MathHelper.toFixedPointInt(this.locationZ);
 		Position var7 = new Position(var4, var5, var6);
 		Block var8 = this.world.getBlockState(var7).getBlock();
 		if (var8.getMaterial() == Material.AIR) {

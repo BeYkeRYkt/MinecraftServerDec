@@ -418,9 +418,9 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 
 	public static IInventory b(World var0, double var1, double var3, double var5) {
 		Object var7 = null;
-		int var8 = DataTypesConverter.toFixedPointInt(var1);
-		int var9 = DataTypesConverter.toFixedPointInt(var3);
-		int var10 = DataTypesConverter.toFixedPointInt(var5);
+		int var8 = MathHelper.toFixedPointInt(var1);
+		int var9 = MathHelper.toFixedPointInt(var3);
+		int var10 = MathHelper.toFixedPointInt(var5);
 		Position var11 = new Position(var8, var9, var10);
 		TileEntity var12 = var0.getTileEntity(new Position(var8, var9, var10));
 		if (var12 instanceof IInventory) {

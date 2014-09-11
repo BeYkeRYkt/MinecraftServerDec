@@ -150,7 +150,7 @@ public class EntityBoat extends Entity {
 				var6 = this.locationX + (this.d - this.locationX) / (double) this.c;
 				var8 = this.locationY + (this.e - this.locationY) / (double) this.c;
 				var24 = this.locationZ + (this.f - this.locationZ) / (double) this.c;
-				var26 = DataTypesConverter.g(this.g - (double) this.yaw);
+				var26 = MathHelper.g(this.g - (double) this.yaw);
 				this.yaw = (float) ((double) this.yaw + var26 / (double) this.c);
 				this.pitch = (float) ((double) this.pitch + (this.h - (double) this.pitch) / (double) this.c);
 				--this.c;
@@ -213,11 +213,11 @@ public class EntityBoat extends Entity {
 
 			int var22;
 			for (var22 = 0; var22 < 4; ++var22) {
-				int var23 = DataTypesConverter.toFixedPointInt(this.locationX + ((double) (var22 % 2) - 0.5D) * 0.8D);
-				var10 = DataTypesConverter.toFixedPointInt(this.locationZ + ((double) (var22 / 2) - 0.5D) * 0.8D);
+				int var23 = MathHelper.toFixedPointInt(this.locationX + ((double) (var22 % 2) - 0.5D) * 0.8D);
+				var10 = MathHelper.toFixedPointInt(this.locationZ + ((double) (var22 / 2) - 0.5D) * 0.8D);
 
 				for (int var25 = 0; var25 < 2; ++var25) {
-					int var12 = DataTypesConverter.toFixedPointInt(this.locationY) + var25;
+					int var12 = MathHelper.toFixedPointInt(this.locationY) + var25;
 					Position var27 = new Position(var23, var12, var10);
 					Block var14 = this.world.getBlockState(var27).getBlock();
 					if (var14 == Blocks.SNOW_LAYER) {
@@ -263,7 +263,7 @@ public class EntityBoat extends Entity {
 				var8 = (double) ((float) (Math.atan2(var26, var24) * 180.0D / 3.141592653589793D));
 			}
 
-			double var28 = DataTypesConverter.g(var8 - (double) this.yaw);
+			double var28 = MathHelper.g(var8 - (double) this.yaw);
 			if (var28 > 20.0D) {
 				var28 = 20.0D;
 			}

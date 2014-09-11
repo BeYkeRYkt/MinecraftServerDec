@@ -101,7 +101,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.V = new Random();
 		this.X = 1;
 		this.aa = true;
-		this.ao = DataTypesConverter.a(this.V);
+		this.ao = MathHelper.a(this.V);
 		this.as = new CommandBlockStatistic();
 		this.world = var1;
 		this.b(0.0D, 0.0D, 0.0D);
@@ -473,9 +473,9 @@ public abstract class Entity implements CommandSenderInterface {
 			this.E = var15 != var3;
 			this.onGround = this.E && var15 < 0.0D;
 			this.F = this.D || this.E;
-			int var57 = DataTypesConverter.toFixedPointInt(this.locationX);
-			int var58 = DataTypesConverter.toFixedPointInt(this.locationY - 0.20000000298023224D);
-			int var59 = DataTypesConverter.toFixedPointInt(this.locationZ);
+			int var57 = MathHelper.toFixedPointInt(this.locationX);
+			int var58 = MathHelper.toFixedPointInt(this.locationY - 0.20000000298023224D);
+			int var59 = MathHelper.toFixedPointInt(this.locationZ);
 			Position var26 = new Position(var57, var58, var59);
 			Block var60 = this.world.getBlockState(var26).getBlock();
 			if (var60.getMaterial() == Material.AIR) {
@@ -511,12 +511,12 @@ public abstract class Entity implements CommandSenderInterface {
 					var60.a(this.world, var26, this);
 				}
 
-				this.M = (float) ((double) this.M + (double) DataTypesConverter.a(var61 * var61 + var66 * var66) * 0.6D);
-				this.N = (float) ((double) this.N + (double) DataTypesConverter.a(var61 * var61 + var64 * var64 + var66 * var66) * 0.6D);
+				this.M = (float) ((double) this.M + (double) MathHelper.a(var61 * var61 + var66 * var66) * 0.6D);
+				this.N = (float) ((double) this.N + (double) MathHelper.a(var61 * var61 + var64 * var64 + var66 * var66) * 0.6D);
 				if (this.N > (float) this.h && var60.getMaterial() != Material.AIR) {
 					this.h = (int) this.N + 1;
 					if (this.V()) {
-						float var34 = DataTypesConverter.a(this.motionX * this.motionX * 0.20000000298023224D + this.motionY * this.motionY + this.motionZ * this.motionZ * 0.20000000298023224D) * 0.35F;
+						float var34 = MathHelper.a(this.motionX * this.motionX * 0.20000000298023224D + this.motionY * this.motionY + this.motionZ * this.motionZ * 0.20000000298023224D) * 0.35F;
 						if (var34 > 1.0F) {
 							var34 = 1.0F;
 						}
@@ -688,13 +688,13 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected void X() {
-		float var1 = DataTypesConverter.a(this.motionX * this.motionX * 0.20000000298023224D + this.motionY * this.motionY + this.motionZ * this.motionZ * 0.20000000298023224D) * 0.2F;
+		float var1 = MathHelper.a(this.motionX * this.motionX * 0.20000000298023224D + this.motionY * this.motionY + this.motionZ * this.motionZ * 0.20000000298023224D) * 0.2F;
 		if (var1 > 1.0F) {
 			var1 = 1.0F;
 		}
 
 		this.a(this.aa(), var1, 1.0F + (this.V.nextFloat() - this.V.nextFloat()) * 0.4F);
-		float var2 = (float) DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY);
+		float var2 = (float) MathHelper.toFixedPointInt(this.getBoundingBox().minY);
 
 		int var3;
 		float var4;
@@ -721,9 +721,9 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected void Z() {
-		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
-		int var2 = DataTypesConverter.toFixedPointInt(this.locationY - 0.20000000298023224D);
-		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
+		int var1 = MathHelper.toFixedPointInt(this.locationX);
+		int var2 = MathHelper.toFixedPointInt(this.locationY - 0.20000000298023224D);
+		int var3 = MathHelper.toFixedPointInt(this.locationZ);
 		Position var4 = new Position(var1, var2, var3);
 		BlockState var5 = this.world.getBlockState(var4);
 		Block var6 = var5.getBlock();
@@ -759,7 +759,7 @@ public abstract class Entity implements CommandSenderInterface {
 	public void a(float var1, float var2, float var3) {
 		float var4 = var1 * var1 + var2 * var2;
 		if (var4 >= 1.0E-4F) {
-			var4 = DataTypesConverter.c(var4);
+			var4 = MathHelper.c(var4);
 			if (var4 < 1.0F) {
 				var4 = 1.0F;
 			}
@@ -767,8 +767,8 @@ public abstract class Entity implements CommandSenderInterface {
 			var4 = var3 / var4;
 			var1 *= var4;
 			var2 *= var4;
-			float var5 = DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F);
-			float var6 = DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F);
+			float var5 = MathHelper.a(this.yaw * 3.1415927F / 180.0F);
+			float var6 = MathHelper.b(this.yaw * 3.1415927F / 180.0F);
 			this.motionX += (double) (var1 * var6 - var2 * var5);
 			this.motionZ += (double) (var2 * var6 + var1 * var5);
 		}
@@ -778,7 +778,7 @@ public abstract class Entity implements CommandSenderInterface {
 		Position var2 = new Position(this.locationX, 0.0D, this.locationZ);
 		if (this.world.isLoaded(var2)) {
 			double var3 = (this.getBoundingBox().maxY - this.getBoundingBox().minY) * 0.66D;
-			int var5 = DataTypesConverter.toFixedPointInt(this.locationY + var3);
+			int var5 = MathHelper.toFixedPointInt(this.locationY + var3);
 			return this.world.o(var2.b(var5));
 		} else {
 			return 0.0F;
@@ -825,7 +825,7 @@ public abstract class Entity implements CommandSenderInterface {
 		float var2 = (float) (this.locationX - var1.locationX);
 		float var3 = (float) (this.locationY - var1.locationY);
 		float var4 = (float) (this.locationZ - var1.locationZ);
-		return DataTypesConverter.c(var2 * var2 + var3 * var3 + var4 * var4);
+		return MathHelper.c(var2 * var2 + var3 * var3 + var4 * var4);
 	}
 
 	public double getDistanceSquared(double var1, double var3, double var5) {
@@ -847,7 +847,7 @@ public abstract class Entity implements CommandSenderInterface {
 		double var7 = this.locationX - var1;
 		double var9 = this.locationY - var3;
 		double var11 = this.locationZ - var5;
-		return (double) DataTypesConverter.a(var7 * var7 + var9 * var9 + var11 * var11);
+		return (double) MathHelper.a(var7 * var7 + var9 * var9 + var11 * var11);
 	}
 
 	public double getDistanceSquared(Entity var1) {
@@ -865,9 +865,9 @@ public abstract class Entity implements CommandSenderInterface {
 			if (!var1.T && !this.T) {
 				double var2 = var1.locationX - this.locationX;
 				double var4 = var1.locationZ - this.locationZ;
-				double var6 = DataTypesConverter.a(var2, var4);
+				double var6 = MathHelper.a(var2, var4);
 				if (var6 >= 0.009999999776482582D) {
-					var6 = (double) DataTypesConverter.a(var6);
+					var6 = (double) MathHelper.a(var6);
 					var2 /= var6;
 					var4 /= var6;
 					double var8 = 1.0D / var6;
@@ -925,10 +925,10 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected final Vec3D f(float var1, float var2) {
-		float var3 = DataTypesConverter.b(-var2 * 0.017453292F - 3.1415927F);
-		float var4 = DataTypesConverter.a(-var2 * 0.017453292F - 3.1415927F);
-		float var5 = -DataTypesConverter.b(-var1 * 0.017453292F);
-		float var6 = DataTypesConverter.a(-var1 * 0.017453292F);
+		float var3 = MathHelper.b(-var2 * 0.017453292F - 3.1415927F);
+		float var4 = MathHelper.a(-var2 * 0.017453292F - 3.1415927F);
+		float var5 = -MathHelper.b(-var1 * 0.017453292F);
+		float var6 = MathHelper.a(-var1 * 0.017453292F);
 		return new Vec3D((double) (var4 * var5), (double) var6, (double) (var3 * var5));
 	}
 
@@ -1265,7 +1265,7 @@ public abstract class Entity implements CommandSenderInterface {
 			double var3 = this.r - this.locationZ;
 			if (!this.world.isStatic && !this.ak) {
 				int var5;
-				if (DataTypesConverter.e((float) var1) > DataTypesConverter.e((float) var3)) {
+				if (MathHelper.e((float) var1) > MathHelper.e((float) var3)) {
 					var5 = var1 > 0.0D ? BlockFace.WEST.toDirection() : BlockFace.EAST.toDirection();
 				} else {
 					var5 = var3 > 0.0D ? BlockFace.NORTH.toDirection() : BlockFace.SOUTH.toDirection();
@@ -1544,7 +1544,7 @@ public abstract class Entity implements CommandSenderInterface {
 		var1.addDetails("Entity ID", (Object) Integer.valueOf(this.entityId));
 		var1.addDetails("Entity Name", (Callable) (new wx(this)));
 		var1.addDetails("Entity\'s Exact location", (Object) String.format("%.2f, %.2f, %.2f", new Object[] { Double.valueOf(this.locationX), Double.valueOf(this.locationY), Double.valueOf(this.locationZ) }));
-		var1.addDetails("Entity\'s Block location", (Object) net.minecraft.CrashReportSystemDetails.a((double) DataTypesConverter.toFixedPointInt(this.locationX), (double) DataTypesConverter.toFixedPointInt(this.locationY), (double) DataTypesConverter.toFixedPointInt(this.locationZ)));
+		var1.addDetails("Entity\'s Block location", (Object) net.minecraft.CrashReportSystemDetails.a((double) MathHelper.toFixedPointInt(this.locationX), (double) MathHelper.toFixedPointInt(this.locationY), (double) MathHelper.toFixedPointInt(this.locationZ)));
 		var1.addDetails("Entity\'s Momentum", (Object) String.format("%.2f, %.2f, %.2f", new Object[] { Double.valueOf(this.motionX), Double.valueOf(this.motionY), Double.valueOf(this.motionZ) }));
 		var1.addDetails("Entity\'s Rider", (Callable) (new wy(this)));
 		var1.addDetails("Entity\'s Vehicle", (Callable) (new wz(this)));
@@ -1593,7 +1593,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public BlockFace aO() {
-		return BlockFace.fromDirection(DataTypesConverter.toFixedPointInt((double) (this.yaw * 4.0F / 360.0F) + 0.5D) & 3);
+		return BlockFace.fromDirection(MathHelper.toFixedPointInt((double) (this.yaw * 4.0F / 360.0F) + 0.5D) & 3);
 	}
 
 	protected ChatHoverable aP() {

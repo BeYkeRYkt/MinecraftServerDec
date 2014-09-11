@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.List;
 import java.util.Random;
 
-public class bjh extends bms {
+public class bjh extends StructurePiece {
 
 	private BlockFace a;
 	private boolean b;
@@ -56,10 +56,10 @@ public class bjh extends bms {
 				var6.maxZ = var4 + 3;
 		}
 
-		return bms.a(var0, var6) != null ? null : var6;
+		return StructurePiece.a(var0, var6) != null ? null : var6;
 	}
 
-	public void a(bms var1, List var2, Random var3) {
+	public void a(StructurePiece var1, List var2, Random var3) {
 		int var4 = this.d();
 		switch (bjf.a[this.a.ordinal()]) {
 			case 1:

@@ -53,7 +53,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
 		for (int var6 = -2; var6 <= 2; ++var6) {
 			for (int var7 = -2; var7 <= 2; ++var7) {
-				float var8 = 10.0F / DataTypesConverter.c((float) (var6 * var6 + var7 * var7) + 0.2F);
+				float var8 = 10.0F / MathHelper.c((float) (var6 * var6 + var7 * var7) + 0.2F);
 				this.q[var6 + 2 + (var7 + 2) * 5] = var8;
 			}
 		}
@@ -266,7 +266,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 					double var26 = this.e[var6] / (double) this.properties.lowerLimitScale;
 					double var28 = this.f[var6] / (double) this.properties.upperLimitScale;
 					double var30 = (this.d[var6] / 10.0D + 1.0D) / 2.0D;
-					double var32 = DataTypesConverter.b(var26, var28, var30) - var24;
+					double var32 = MathHelper.b(var26, var28, var30) - var24;
 					if (var23 > 29) {
 						double var34 = (double) ((float) (var23 - 29) / 3.0F);
 						var32 = var32 * (1.0D - var34) + -10.0D * var34;
@@ -319,11 +319,11 @@ public class ChunkProviderGenerate implements IChunkProvider {
 		int var14;
 		int var15;
 		int var16;
-		if (var7 != BiomeBase.r && var7 != BiomeBase.G && this.properties.useWaterLakes && !var12 && this.rnd.nextInt(this.properties.waterLakeChance) == 0) {
+		if (var7 != BiomeBase.DESERT && var7 != BiomeBase.DESERT_HILLS && this.properties.useWaterLakes && !var12 && this.rnd.nextInt(this.properties.waterLakeChance) == 0) {
 			var14 = this.rnd.nextInt(16) + 8;
 			var15 = this.rnd.nextInt(256);
 			var16 = this.rnd.nextInt(16) + 8;
-			(new bhy(Blocks.WATER)).b(this.world, this.rnd, var6.a(var14, var15, var16));
+			(new WorldGenLakes(Blocks.WATER)).b(this.world, this.rnd, var6.a(var14, var15, var16));
 		}
 
 		if (!var12 && this.rnd.nextInt(this.properties.lavaLakeChance / 10) == 0 && this.properties.useLavaLakes) {
@@ -331,7 +331,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			var15 = this.rnd.nextInt(this.rnd.nextInt(248) + 8);
 			var16 = this.rnd.nextInt(16) + 8;
 			if (var15 < 63 || this.rnd.nextInt(this.properties.lavaLakeChance / 8) == 0) {
-				(new bhy(Blocks.LAVA)).b(this.world, this.rnd, var6.a(var14, var15, var16));
+				(new WorldGenLakes(Blocks.LAVA)).b(this.world, this.rnd, var6.a(var14, var15, var16));
 			}
 		}
 
@@ -340,7 +340,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 				var15 = this.rnd.nextInt(16) + 8;
 				var16 = this.rnd.nextInt(256);
 				int var17 = this.rnd.nextInt(16) + 8;
-				(new bie()).b(this.world, this.rnd, var6.a(var15, var16, var17));
+				(new WorldGenDungeons()).b(this.world, this.rnd, var6.a(var15, var16, var17));
 			}
 		}
 

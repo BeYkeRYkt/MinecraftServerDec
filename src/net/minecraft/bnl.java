@@ -27,11 +27,11 @@ public class bnl extends bno {
 		this.a = var1.getInt("Length");
 	}
 
-	public void a(bms var1, List var2, Random var3) {
+	public void a(StructurePiece var1, List var2, Random var3) {
 		boolean var4 = false;
 
 		int var5;
-		bms var6;
+		StructurePiece var6;
 		for (var5 = var3.nextInt(5); var5 < this.a - 8; var5 += 2 + var3.nextInt(5)) {
 			var6 = this.a((bnk) var1, var2, var3, 0, var5);
 			if (var6 != null) {
@@ -83,9 +83,9 @@ public class bnl extends bno {
 	}
 
 	public static CuboidArea a(bnk var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6) {
-		for (int var7 = 7 * DataTypesConverter.a(var2, 3, 5); var7 >= 7; var7 -= 7) {
+		for (int var7 = 7 * MathHelper.a(var2, 3, 5); var7 >= 7; var7 -= 7) {
 			CuboidArea var8 = CuboidArea.a(var3, var4, var5, 0, 0, 0, 3, 3, var7, var6);
-			if (bms.a(var1, var8) == null) {
+			if (StructurePiece.a(var1, var8) == null) {
 				return var8;
 			}
 		}

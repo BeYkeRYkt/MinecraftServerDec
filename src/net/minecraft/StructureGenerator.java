@@ -9,7 +9,7 @@ import java.util.concurrent.Callable;
 
 public abstract class StructureGenerator extends WorldGenBase {
 
-	private bmr d;
+	private PersistentStructure d;
 	protected Map e = Maps.newHashMap();
 
 	public abstract String getName();
@@ -21,7 +21,7 @@ public abstract class StructureGenerator extends WorldGenBase {
 
 			try {
 				if (this.a(var2, var3)) {
-					bmv var7 = this.b(var2, var3);
+					StructureStart var7 = this.b(var2, var3);
 					this.e.put(Long.valueOf(ChunkCoordIntPair.toLongHash(var2, var3)), var7);
 					this.a(var2, var3, var7);
 				}
@@ -46,7 +46,7 @@ public abstract class StructureGenerator extends WorldGenBase {
 		Iterator var7 = this.e.values().iterator();
 
 		while (var7.hasNext()) {
-			bmv var8 = (bmv) var7.next();
+			StructureStart var8 = (StructureStart) var7.next();
 			if (var8.d() && var8.a(var3) && var8.a().a(var4, var5, var4 + 15, var5 + 15)) {
 				var8.a(var1, var2, new CuboidArea(var4, var5, var4 + 15, var5 + 15));
 				var8.b(var3);
@@ -63,16 +63,16 @@ public abstract class StructureGenerator extends WorldGenBase {
 		return this.c(var1) != null;
 	}
 
-	protected bmv c(Position var1) {
+	protected StructureStart c(Position var1) {
 		Iterator var2 = this.e.values().iterator();
 
 		while (var2.hasNext()) {
-			bmv var3 = (bmv) var2.next();
+			StructureStart var3 = (StructureStart) var2.next();
 			if (var3.d() && var3.a().b((fd) var1)) {
 				Iterator var4 = var3.b().iterator();
 
 				while (var4.hasNext()) {
-					bms var5 = (bms) var4.next();
+					StructurePiece var5 = (StructurePiece) var4.next();
 					if (var5.c().b((fd) var1)) {
 						return var3;
 					}
@@ -87,13 +87,13 @@ public abstract class StructureGenerator extends WorldGenBase {
 		this.a(var1);
 		Iterator var3 = this.e.values().iterator();
 
-		bmv var4;
+		StructureStart var4;
 		do {
 			if (!var3.hasNext()) {
 				return false;
 			}
 
-			var4 = (bmv) var3.next();
+			var4 = (StructureStart) var3.next();
 		} while (!var4.d() || !var4.a().b((fd) var2));
 
 		return true;
@@ -116,9 +116,9 @@ public abstract class StructureGenerator extends WorldGenBase {
 		Position var17;
 		double var18;
 		while (var14.hasNext()) {
-			bmv var15 = (bmv) var14.next();
+			StructureStart var15 = (StructureStart) var14.next();
 			if (var15.d()) {
-				bms var16 = (bms) var15.b().get(0);
+				StructurePiece var16 = (StructurePiece) var15.b().get(0);
 				var17 = var16.a();
 				var18 = var17.i(var2);
 				if (var18 < var11) {
@@ -158,9 +158,9 @@ public abstract class StructureGenerator extends WorldGenBase {
 
 	private void a(World var1) {
 		if (this.d == null) {
-			this.d = (bmr) var1.a(bmr.class, this.getName());
+			this.d = (PersistentStructure) var1.a(PersistentStructure.class, this.getName());
 			if (this.d == null) {
-				this.d = new bmr(this.getName());
+				this.d = new PersistentStructure(this.getName());
 				var1.a(this.getName(), (bqc) this.d);
 			} else {
 				NBTCompoundTag var2 = this.d.a();
@@ -174,7 +174,7 @@ public abstract class StructureGenerator extends WorldGenBase {
 						if (var6.hasKey("ChunkX") && var6.hasKey("ChunkZ")) {
 							int var7 = var6.getInt("ChunkX");
 							int var8 = var6.getInt("ChunkZ");
-							bmv var9 = bmq.a(var6, var1);
+							StructureStart var9 = WorldGenFactory.a(var6, var1);
 							if (var9 != null) {
 								this.e.put(Long.valueOf(ChunkCoordIntPair.toLongHash(var7, var8)), var9);
 							}
@@ -186,12 +186,12 @@ public abstract class StructureGenerator extends WorldGenBase {
 
 	}
 
-	private void a(int var1, int var2, bmv var3) {
+	private void a(int var1, int var2, StructureStart var3) {
 		this.d.a(var3.a(var1, var2), var1, var2);
 		this.d.c();
 	}
 
 	protected abstract boolean a(int var1, int var2);
 
-	protected abstract bmv b(int var1, int var2);
+	protected abstract StructureStart b(int var1, int var2);
 }

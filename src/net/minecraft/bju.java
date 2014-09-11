@@ -14,13 +14,13 @@ public class bju extends bkb {
 		this.l = var3;
 	}
 
-	public void a(bms var1, List var2, Random var3) {
+	public void a(StructurePiece var1, List var2, Random var3) {
 		this.a((bkf) var1, var2, var3, 5, 3, true);
 	}
 
 	public static bju a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5, int var6) {
 		CuboidArea var7 = CuboidArea.a(var2, var3, var4, -5, -3, 0, 13, 14, 13, var5);
-		return a(var7) && bms.a(var0, var7) == null ? new bju(var6, var1, var7, var5) : null;
+		return a(var7) && StructurePiece.a(var0, var7) == null ? new bju(var6, var1, var7, var5) : null;
 	}
 
 	public boolean a(World var1, Random var2, CuboidArea var3) {

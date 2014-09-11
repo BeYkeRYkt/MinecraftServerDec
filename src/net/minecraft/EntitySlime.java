@@ -76,8 +76,8 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 			for (int var2 = 0; var2 < var1 * 8; ++var2) {
 				float var3 = this.V.nextFloat() * 3.1415927F * 2.0F;
 				float var4 = this.V.nextFloat() * 0.5F + 0.5F;
-				float var5 = DataTypesConverter.a(var3) * (float) var1 * 0.5F * var4;
-				float var6 = DataTypesConverter.b(var3) * (float) var1 * 0.5F * var4;
+				float var5 = MathHelper.a(var3) * (float) var1 * 0.5F * var4;
+				float var6 = MathHelper.b(var3) * (float) var1 * 0.5F * var4;
 				World var10000 = this.world;
 				Particle var10001 = this.n();
 				double var10002 = this.locationX + (double) var5;
@@ -199,13 +199,13 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 	}
 
 	public boolean bQ() {
-		Chunk var1 = this.world.getChunk(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
+		Chunk var1 = this.world.getChunk(new Position(MathHelper.toFixedPointInt(this.locationX), 0, MathHelper.toFixedPointInt(this.locationZ)));
 		if (this.world.getWorldData().getLevelType() == LevelType.FLAT && this.V.nextInt(4) != 1) {
 			return false;
 		} else {
 			if (this.world.getDifficulty() != Difficulty.PEACEFUL) {
-				BiomeBase var2 = this.world.b(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
-				if (var2 == BiomeBase.v && this.locationY > 50.0D && this.locationY < 70.0D && this.V.nextFloat() < 0.5F && this.V.nextFloat() < this.world.y() && this.world.l(new Position(this)) <= this.V.nextInt(8)) {
+				BiomeBase var2 = this.world.b(new Position(MathHelper.toFixedPointInt(this.locationX), 0, MathHelper.toFixedPointInt(this.locationZ)));
+				if (var2 == BiomeBase.SWAMPLAND && this.locationY > 50.0D && this.locationY < 70.0D && this.V.nextFloat() < 0.5F && this.V.nextFloat() < this.world.y() && this.world.l(new Position(this)) <= this.V.nextInt(8)) {
 					return super.bQ();
 				}
 

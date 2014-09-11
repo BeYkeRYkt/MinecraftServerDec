@@ -23,20 +23,20 @@ public class bpy extends bpu {
 		if (this.i && var1.V()) {
 			var2 = (int) var1.getBoundingBox().minY;
 
-			for (Block var3 = this.a.getBlockState(new Position(DataTypesConverter.toFixedPointInt(var1.locationX), var2, DataTypesConverter.toFixedPointInt(var1.locationZ))).getBlock(); var3 == Blocks.FLOWING_WATER || var3 == Blocks.WATER; var3 = this.a.getBlockState(new Position(DataTypesConverter.toFixedPointInt(var1.locationX), var2, DataTypesConverter.toFixedPointInt(var1.locationZ))).getBlock()) {
+			for (Block var3 = this.a.getBlockState(new Position(MathHelper.toFixedPointInt(var1.locationX), var2, MathHelper.toFixedPointInt(var1.locationZ))).getBlock(); var3 == Blocks.FLOWING_WATER || var3 == Blocks.WATER; var3 = this.a.getBlockState(new Position(MathHelper.toFixedPointInt(var1.locationX), var2, MathHelper.toFixedPointInt(var1.locationZ))).getBlock()) {
 				++var2;
 			}
 
 			this.h = false;
 		} else {
-			var2 = DataTypesConverter.toFixedPointInt(var1.getBoundingBox().minY + 0.5D);
+			var2 = MathHelper.toFixedPointInt(var1.getBoundingBox().minY + 0.5D);
 		}
 
-		return this.a(DataTypesConverter.toFixedPointInt(var1.getBoundingBox().minX), var2, DataTypesConverter.toFixedPointInt(var1.getBoundingBox().minZ));
+		return this.a(MathHelper.toFixedPointInt(var1.getBoundingBox().minX), var2, MathHelper.toFixedPointInt(var1.getBoundingBox().minZ));
 	}
 
 	public bpt a(Entity var1, double var2, double var4, double var6) {
-		return this.a(DataTypesConverter.toFixedPointInt(var2 - (double) (var1.J / 2.0F)), DataTypesConverter.toFixedPointInt(var4), DataTypesConverter.toFixedPointInt(var6 - (double) (var1.J / 2.0F)));
+		return this.a(MathHelper.toFixedPointInt(var2 - (double) (var1.J / 2.0F)), MathHelper.toFixedPointInt(var4), MathHelper.toFixedPointInt(var6 - (double) (var1.J / 2.0F)));
 	}
 
 	public int a(bpt[] var1, Entity var2, bpt var3, bpt var4, float var5) {

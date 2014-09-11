@@ -21,7 +21,7 @@ public class ScoreboardHealthCriteria extends ScoreboardBaseCriteria {
 			var2 /= (float) var1.size();
 		}
 
-		return DataTypesConverter.f(var2);
+		return MathHelper.f(var2);
 	}
 
 	public boolean isReadOnly() {

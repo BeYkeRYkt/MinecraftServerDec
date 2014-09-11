@@ -11,8 +11,8 @@ public class RecipesDyes {
 			var1.registerShapedRecipe(new ItemStack(Blocks.STAINED_GLASS_PANE, 16, var2), new Object[] { "###", "###", Character.valueOf('#'), new ItemStack(Blocks.STAINED_GLASS, 1, var2) });
 		}
 
-		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.e.b()), new Object[] { new ItemStack(Blocks.YELLOW_FLOWER, 1, awa.a.b()) });
-		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.o.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, awa.b.b()) });
+		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.e.b()), new Object[] { new ItemStack(Blocks.YELLOW_FLOWER, 1, EnumFlowerType.a.b()) });
+		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.o.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.b.b()) });
 		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 3, akv.a.b()), new Object[] { Items.BONE });
 		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 2, akv.g.b()), new Object[] { new ItemStack(Items.DYE, 1, akv.o.b()), new ItemStack(Items.DYE, 1, akv.a.b()) });
 		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 2, akv.b.b()), new Object[] { new ItemStack(Items.DYE, 1, akv.o.b()), new ItemStack(Items.DYE, 1, akv.e.b()) });
@@ -26,14 +26,14 @@ public class RecipesDyes {
 		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 2, akv.c.b()), new Object[] { new ItemStack(Items.DYE, 1, akv.k.b()), new ItemStack(Items.DYE, 1, akv.g.b()) });
 		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 3, akv.c.b()), new Object[] { new ItemStack(Items.DYE, 1, akv.l.b()), new ItemStack(Items.DYE, 1, akv.o.b()), new ItemStack(Items.DYE, 1, akv.g.b()) });
 		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 4, akv.c.b()), new Object[] { new ItemStack(Items.DYE, 1, akv.l.b()), new ItemStack(Items.DYE, 1, akv.o.b()), new ItemStack(Items.DYE, 1, akv.o.b()), new ItemStack(Items.DYE, 1, akv.a.b()) });
-		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.d.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, awa.c.b()) });
-		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.c.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, awa.d.b()) });
-		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.i.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, awa.e.b()) });
-		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.o.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, awa.f.b()) });
-		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.b.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, awa.g.b()) });
-		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.i.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, awa.h.b()) });
-		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.g.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, awa.i.b()) });
-		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.i.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, awa.j.b()) });
+		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.d.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.c.b()) });
+		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.c.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.d.b()) });
+		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.i.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.e.b()) });
+		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.o.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.f.b()) });
+		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.b.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.g.b()) });
+		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.i.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.h.b()) });
+		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.g.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.i.b()) });
+		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 1, akv.i.b()), new Object[] { new ItemStack(Blocks.RED_FLOWER, 1, EnumFlowerType.j.b()) });
 		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 2, akv.e.b()), new Object[] { new ItemStack(Blocks.DOUBLE_PLANT, 1, avk.a.a()) });
 		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 2, akv.c.b()), new Object[] { new ItemStack(Blocks.DOUBLE_PLANT, 1, avk.b.a()) });
 		var1.registerShapelessRecipe(new ItemStack(Items.DYE, 2, akv.o.b()), new Object[] { new ItemStack(Blocks.DOUBLE_PLANT, 1, avk.e.a()) });

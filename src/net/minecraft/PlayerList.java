@@ -369,15 +369,15 @@ public abstract class PlayerList {
 		float var11 = var1.yaw;
 		var3.B.a("moving");
 		if (var1.dimensionId == -1) {
-			var5 = DataTypesConverter.a(var5 / var9, var4.getWorldBorder().getMinX() + 16.0D, var4.getWorldBorder().getMaxX() - 16.0D);
-			var7 = DataTypesConverter.a(var7 / var9, var4.getWorldBorder().getMinZ() + 16.0D, var4.getWorldBorder().getMaxZ() - 16.0D);
+			var5 = MathHelper.a(var5 / var9, var4.getWorldBorder().getMinX() + 16.0D, var4.getWorldBorder().getMaxX() - 16.0D);
+			var7 = MathHelper.a(var7 / var9, var4.getWorldBorder().getMinZ() + 16.0D, var4.getWorldBorder().getMaxZ() - 16.0D);
 			var1.setPositionRotation(var5, var1.locationY, var7, var1.yaw, var1.pitch);
 			if (var1.isAlive()) {
 				var3.a(var1, false);
 			}
 		} else if (var1.dimensionId == 0) {
-			var5 = DataTypesConverter.a(var5 * var9, var4.getWorldBorder().getMinX() + 16.0D, var4.getWorldBorder().getMaxX() - 16.0D);
-			var7 = DataTypesConverter.a(var7 * var9, var4.getWorldBorder().getMinZ() + 16.0D, var4.getWorldBorder().getMaxZ() - 16.0D);
+			var5 = MathHelper.a(var5 * var9, var4.getWorldBorder().getMinX() + 16.0D, var4.getWorldBorder().getMaxX() - 16.0D);
+			var7 = MathHelper.a(var7 * var9, var4.getWorldBorder().getMinZ() + 16.0D, var4.getWorldBorder().getMaxZ() - 16.0D);
 			var1.setPositionRotation(var5, var1.locationY, var7, var1.yaw, var1.pitch);
 			if (var1.isAlive()) {
 				var3.a(var1, false);
@@ -402,8 +402,8 @@ public abstract class PlayerList {
 		var3.B.b();
 		if (var2 != 1) {
 			var3.B.a("placing");
-			var5 = (double) DataTypesConverter.a((int) var5, -29999872, 29999872);
-			var7 = (double) DataTypesConverter.a((int) var7, -29999872, 29999872);
+			var5 = (double) MathHelper.a((int) var5, -29999872, 29999872);
+			var7 = (double) MathHelper.a((int) var7, -29999872, 29999872);
 			if (var1.isAlive()) {
 				var1.setPositionRotation(var5, var1.locationY, var7, var1.yaw, var1.pitch);
 				var4.u().a(var1, var11);

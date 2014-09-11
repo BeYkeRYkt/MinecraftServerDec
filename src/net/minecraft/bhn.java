@@ -4,7 +4,7 @@ import com.google.common.base.Predicates;
 import java.util.Iterator;
 import java.util.Random;
 
-public class bhn extends bhp {
+public class bhn extends WorldGenerator {
 
 	private static final beq a = beq.a((Block) Blocks.SAND).a(BlockSand.a, Predicates.equalTo(bac.a));
 	private final BlockState b;

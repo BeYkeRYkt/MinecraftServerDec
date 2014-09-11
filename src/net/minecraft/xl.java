@@ -28,14 +28,14 @@ public abstract class xl extends EntityInsentient {
 		} else {
 			float var3 = 0.91F;
 			if (this.onGround) {
-				var3 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
+				var3 = this.world.getBlockState(new Position(MathHelper.toFixedPointInt(this.locationX), MathHelper.toFixedPointInt(this.getBoundingBox().minY) - 1, MathHelper.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
 			}
 
 			float var4 = 0.16277136F / (var3 * var3 * var3);
 			this.a(var1, var2, this.onGround ? 0.1F * var4 : 0.02F);
 			var3 = 0.91F;
 			if (this.onGround) {
-				var3 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
+				var3 = this.world.getBlockState(new Position(MathHelper.toFixedPointInt(this.locationX), MathHelper.toFixedPointInt(this.getBoundingBox().minY) - 1, MathHelper.toFixedPointInt(this.locationZ))).getBlock().K * 0.91F;
 			}
 
 			this.move(this.motionX, this.motionY, this.motionZ);
@@ -47,7 +47,7 @@ public abstract class xl extends EntityInsentient {
 		this.ay = this.az;
 		double var8 = this.locationX - this.p;
 		double var5 = this.locationZ - this.r;
-		float var7 = DataTypesConverter.a(var8 * var8 + var5 * var5) * 4.0F;
+		float var7 = MathHelper.a(var8 * var8 + var5 * var5) * 4.0F;
 		if (var7 > 1.0F) {
 			var7 = 1.0F;
 		}

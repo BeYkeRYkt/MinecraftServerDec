@@ -87,7 +87,7 @@ public class zm extends zb {
 
 		while (var5.hasNext()) {
 			abh var6 = (abh) var5.next();
-			int var7 = var6.b(DataTypesConverter.toFixedPointInt(this.a.locationX), DataTypesConverter.toFixedPointInt(this.a.locationY), DataTypesConverter.toFixedPointInt(this.a.locationZ));
+			int var7 = var6.b(MathHelper.toFixedPointInt(this.a.locationX), MathHelper.toFixedPointInt(this.a.locationY), MathHelper.toFixedPointInt(this.a.locationZ));
 			if (var7 < var3 && !this.a(var6)) {
 				var2 = var6;
 				var3 = var7;

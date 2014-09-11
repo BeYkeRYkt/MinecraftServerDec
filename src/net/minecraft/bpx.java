@@ -11,11 +11,11 @@ public class bpx extends bpu {
 	}
 
 	public bpt a(Entity var1) {
-		return this.a(DataTypesConverter.toFixedPointInt(var1.getBoundingBox().minX), DataTypesConverter.toFixedPointInt(var1.getBoundingBox().minY + 0.5D), DataTypesConverter.toFixedPointInt(var1.getBoundingBox().minZ));
+		return this.a(MathHelper.toFixedPointInt(var1.getBoundingBox().minX), MathHelper.toFixedPointInt(var1.getBoundingBox().minY + 0.5D), MathHelper.toFixedPointInt(var1.getBoundingBox().minZ));
 	}
 
 	public bpt a(Entity var1, double var2, double var4, double var6) {
-		return this.a(DataTypesConverter.toFixedPointInt(var2 - (double) (var1.J / 2.0F)), DataTypesConverter.toFixedPointInt(var4 + 0.5D), DataTypesConverter.toFixedPointInt(var6 - (double) (var1.J / 2.0F)));
+		return this.a(MathHelper.toFixedPointInt(var2 - (double) (var1.J / 2.0F)), MathHelper.toFixedPointInt(var4 + 0.5D), MathHelper.toFixedPointInt(var6 - (double) (var1.J / 2.0F)));
 	}
 
 	public int a(bpt[] var1, Entity var2, bpt var3, bpt var4, float var5) {

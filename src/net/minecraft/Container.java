@@ -469,7 +469,7 @@ public abstract class Container {
 	public static void a(Set var0, int var1, ItemStack var2, int var3) {
 		switch (var1) {
 			case 0:
-				var2.amount = DataTypesConverter.d((float) var2.amount / (float) var0.size());
+				var2.amount = MathHelper.d((float) var2.amount / (float) var0.size());
 				break;
 			case 1:
 				var2.amount = 1;
@@ -505,7 +505,7 @@ public abstract class Container {
 			}
 
 			var2 /= (float) var0.n_();
-			return DataTypesConverter.d(var2 * 14.0F) + (var1 > 0 ? 1 : 0);
+			return MathHelper.d(var2 * 14.0F) + (var1 > 0 ? 1 : 0);
 		}
 	}
 }

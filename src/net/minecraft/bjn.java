@@ -9,21 +9,21 @@ public class bjn {
 	private static final bkc[] b = new bkc[] { new bkc(bjx.class, 25, 0, true), new bkc(bjv.class, 15, 5), new bkc(bjy.class, 5, 10), new bkc(bjw.class, 5, 10), new bkc(bjs.class, 10, 3, true), new bkc(bjt.class, 7, 2), new bkc(bjz.class, 5, 2) };
 
 	public static void a() {
-		bmq.a(bjp.class, "NeBCr");
-		bmq.a(bjq.class, "NeBEF");
-		bmq.a(bjr.class, "NeBS");
-		bmq.a(bjs.class, "NeCCS");
-		bmq.a(bjt.class, "NeCTB");
-		bmq.a(bju.class, "NeCE");
-		bmq.a(bjv.class, "NeSCSC");
-		bmq.a(bjw.class, "NeSCLT");
-		bmq.a(bjx.class, "NeSC");
-		bmq.a(bjy.class, "NeSCRT");
-		bmq.a(bjz.class, "NeCSR");
-		bmq.a(bka.class, "NeMT");
-		bmq.a(bkd.class, "NeRC");
-		bmq.a(bke.class, "NeSR");
-		bmq.a(bkf.class, "NeStart");
+		WorldGenFactory.a(bjp.class, "NeBCr");
+		WorldGenFactory.a(bjq.class, "NeBEF");
+		WorldGenFactory.a(bjr.class, "NeBS");
+		WorldGenFactory.a(bjs.class, "NeCCS");
+		WorldGenFactory.a(bjt.class, "NeCTB");
+		WorldGenFactory.a(bju.class, "NeCE");
+		WorldGenFactory.a(bjv.class, "NeSCSC");
+		WorldGenFactory.a(bjw.class, "NeSCLT");
+		WorldGenFactory.a(bjx.class, "NeSC");
+		WorldGenFactory.a(bjy.class, "NeSCRT");
+		WorldGenFactory.a(bjz.class, "NeCSR");
+		WorldGenFactory.a(bka.class, "NeMT");
+		WorldGenFactory.a(bkd.class, "NeRC");
+		WorldGenFactory.a(bke.class, "NeSR");
+		WorldGenFactory.a(bkf.class, "NeStart");
 	}
 
 	private static bkb b(bkc var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6, int var7) {

@@ -119,7 +119,7 @@ public class EntityFallingBlock extends Entity {
 	public void e(float var1, float var2) {
 		Block var3 = this.d.getBlock();
 		if (this.f) {
-			int var4 = DataTypesConverter.f(var1 - 1.0F);
+			int var4 = MathHelper.f(var1 - 1.0F);
 			if (var4 > 0) {
 				ArrayList var5 = Lists.newArrayList((Iterable) this.world.b((Entity) this, this.getBoundingBox()));
 				boolean var6 = var3 == Blocks.ANVIL;
@@ -128,7 +128,7 @@ public class EntityFallingBlock extends Entity {
 
 				while (var8.hasNext()) {
 					Entity var9 = (Entity) var8.next();
-					var9.a(var7, (float) Math.min(DataTypesConverter.d((float) var4 * this.h), this.g));
+					var9.a(var7, (float) Math.min(MathHelper.d((float) var4 * this.h), this.g));
 				}
 
 				if (var6 && (double) this.V.nextFloat() < 0.05000000074505806D + (double) var4 * 0.05D) {

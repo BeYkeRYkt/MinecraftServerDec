@@ -41,8 +41,8 @@ public class aiw extends Slot {
 			if (var3 == 0.0F) {
 				var2 = 0;
 			} else if (var3 < 1.0F) {
-				var4 = DataTypesConverter.d((float) var2 * var3);
-				if (var4 < DataTypesConverter.f((float) var2 * var3) && Math.random() < (double) ((float) var2 * var3 - (float) var4)) {
+				var4 = MathHelper.d((float) var2 * var3);
+				if (var4 < MathHelper.f((float) var2 * var3) && Math.random() < (double) ((float) var2 * var3 - (float) var4)) {
 					++var4;
 				}
 

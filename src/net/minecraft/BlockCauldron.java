@@ -134,7 +134,7 @@ public class BlockCauldron extends Block {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, int var4) {
-		var1.a(var2, var3.a(a, Integer.valueOf(DataTypesConverter.a(var4, 0, 3))), 2);
+		var1.a(var2, var3.a(a, Integer.valueOf(MathHelper.a(var4, 0, 3))), 2);
 		var1.e(var2, this);
 	}
 

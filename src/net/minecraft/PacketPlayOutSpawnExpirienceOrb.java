@@ -13,9 +13,9 @@ public class PacketPlayOutSpawnExpirienceOrb implements Packet<PlayOutPacketList
 
 	public PacketPlayOutSpawnExpirienceOrb(EntityExpirienceOrb orb) {
 		this.entityId = orb.getId();
-		this.x = DataTypesConverter.toFixedPointInt(orb.locationX * 32.0D);
-		this.y = DataTypesConverter.toFixedPointInt(orb.locationY * 32.0D);
-		this.z = DataTypesConverter.toFixedPointInt(orb.locationZ * 32.0D);
+		this.x = MathHelper.toFixedPointInt(orb.locationX * 32.0D);
+		this.y = MathHelper.toFixedPointInt(orb.locationY * 32.0D);
+		this.z = MathHelper.toFixedPointInt(orb.locationZ * 32.0D);
 		this.expcount = orb.getExp();
 	}
 

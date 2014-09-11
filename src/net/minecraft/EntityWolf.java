@@ -149,7 +149,7 @@ public class EntityWolf extends xx {
 
 			if (this.bq > 0.4F) {
 				float var1 = (float) this.getBoundingBox().minY;
-				int var2 = (int) (DataTypesConverter.a((this.bq - 0.4F) * 3.1415927F) * 7.0F);
+				int var2 = (int) (MathHelper.a((this.bq - 0.4F) * 3.1415927F) * 7.0F);
 
 				for (int var3 = 0; var3 < var2; ++var3) {
 					float var4 = (this.V.nextFloat() * 2.0F - 1.0F) * this.J * 0.5F;

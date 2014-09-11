@@ -16,13 +16,13 @@ public class WorldChunkManager {
 		this.d = new arr(this);
 		this.f = "";
 		this.e = Lists.newArrayList();
-		this.e.add(BiomeBase.t);
-		this.e.add(BiomeBase.q);
-		this.e.add(BiomeBase.u);
-		this.e.add(BiomeBase.I);
-		this.e.add(BiomeBase.H);
-		this.e.add(BiomeBase.K);
-		this.e.add(BiomeBase.L);
+		this.e.add(BiomeBase.FOREST);
+		this.e.add(BiomeBase.PLAINS);
+		this.e.add(BiomeBase.TAIGA);
+		this.e.add(BiomeBase.TAIGA_HILLS);
+		this.e.add(BiomeBase.FOREST_HILLS);
+		this.e.add(BiomeBase.JUNGLE);
+		this.e.add(BiomeBase.JUNGLE_HILLS);
 	}
 
 	public WorldChunkManager(long var1, LevelType var3, String var4) {
@@ -59,7 +59,7 @@ public class WorldChunkManager {
 
 		for (int var7 = 0; var7 < var4 * var5; ++var7) {
 			try {
-				float var8 = (float) BiomeBase.a(var6[var7], BiomeBase.ad).h() / 65536.0F;
+				float var8 = (float) BiomeBase.a(var6[var7], BiomeBase.OCEAN).h() / 65536.0F;
 				if (var8 > 1.0F) {
 					var8 = 1.0F;
 				}
@@ -91,7 +91,7 @@ public class WorldChunkManager {
 
 		try {
 			for (int var7 = 0; var7 < var4 * var5; ++var7) {
-				var1[var7] = BiomeBase.a(var6[var7], BiomeBase.ad);
+				var1[var7] = BiomeBase.a(var6[var7], BiomeBase.OCEAN);
 			}
 
 			return var1;
@@ -125,7 +125,7 @@ public class WorldChunkManager {
 			int[] var7 = this.c.a(var2, var3, var4, var5);
 
 			for (int var8 = 0; var8 < var4 * var5; ++var8) {
-				var1[var8] = BiomeBase.a(var7[var8], BiomeBase.ad);
+				var1[var8] = BiomeBase.a(var7[var8], BiomeBase.OCEAN);
 			}
 
 			return var1;

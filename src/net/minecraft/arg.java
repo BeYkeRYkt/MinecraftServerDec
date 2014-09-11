@@ -24,8 +24,8 @@ public final class arg {
 			while (var6.hasNext()) {
 				EntityHuman var7 = (EntityHuman) var6.next();
 				if (!var7.isSpectator()) {
-					int var8 = DataTypesConverter.toFixedPointInt(var7.locationX / 16.0D);
-					var9 = DataTypesConverter.toFixedPointInt(var7.locationZ / 16.0D);
+					int var8 = MathHelper.toFixedPointInt(var7.locationX / 16.0D);
+					var9 = MathHelper.toFixedPointInt(var7.locationZ / 16.0D);
 					byte var10 = 8;
 
 					for (int var11 = -var10; var11 <= var10; ++var11) {
@@ -72,7 +72,7 @@ public final class arg {
 									int var24 = var18;
 									int var25 = var19;
 									byte var26 = 6;
-									arq var27 = null;
+									BiomeMeta var27 = null;
 									xq var28 = null;
 									int var29 = 0;
 
@@ -142,7 +142,7 @@ public final class arg {
 		Chunk var3 = var0.a(var1, var2);
 		int var4 = var1 * 16 + var0.s.nextInt(16);
 		int var5 = var2 * 16 + var0.s.nextInt(16);
-		int var6 = DataTypesConverter.c(var3.f(new Position(var4, 0, var5)) + 1, 16);
+		int var6 = MathHelper.c(var3.f(new Position(var4, 0, var5)) + 1, 16);
 		int var7 = var0.s.nextInt(var6 > 0 ? var6 : var3.g() + 16 - 1);
 		return new Position(var4, var7, var5);
 	}
@@ -171,7 +171,7 @@ public final class arg {
 		List var7 = var1.a(EnumCreatureType.CREATURE);
 		if (!var7.isEmpty()) {
 			while (var6.nextFloat() < var1.g()) {
-				arq var8 = (arq) vj.a(var0.s, var7);
+				BiomeMeta var8 = (BiomeMeta) vj.a(var0.s, var7);
 				int var9 = var8.c + var6.nextInt(1 + var8.d - var8.c);
 				xq var10 = null;
 				int var11 = var2 + var6.nextInt(var4);

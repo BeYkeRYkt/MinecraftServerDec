@@ -44,7 +44,7 @@ public class EntityFireworks extends Entity {
 		this.motionZ *= 1.15D;
 		this.motionY += 0.04D;
 		this.move(this.motionX, this.motionY, this.motionZ);
-		float var1 = DataTypesConverter.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
+		float var1 = MathHelper.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		this.yaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / 3.1415927410125732D);
 
 		for (this.pitch = (float) (Math.atan2(this.motionY, (double) var1) * 180.0D / 3.1415927410125732D); this.pitch - this.B < -180.0F; this.B -= 360.0F) {

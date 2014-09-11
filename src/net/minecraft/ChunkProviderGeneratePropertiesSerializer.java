@@ -49,7 +49,7 @@ public class ChunkProviderGeneratePropertiesSerializer implements JsonDeserializ
 			properties.useLavaOceans = JSONParser.getBoolean(jsonObject, "useLavaOceans", properties.useLavaOceans);
 			properties.fixedBiome = JSONParser.getInt(jsonObject, "fixedBiome", properties.fixedBiome);
 			if (properties.fixedBiome < 38 && properties.fixedBiome >= -1) {
-				if (properties.fixedBiome >= BiomeBase.x.az) {
+				if (properties.fixedBiome >= BiomeBase.HELL.az) {
 					properties.fixedBiome += 2;
 				}
 			} else {

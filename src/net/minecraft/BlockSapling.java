@@ -34,7 +34,7 @@ public class BlockSapling extends auc implements atz {
 	}
 
 	public void e(World var1, Position var2, BlockState var3, Random var4) {
-		Object var5 = var4.nextInt(10) == 0 ? new bhd(true) : new bir(true);
+		Object var5 = var4.nextInt(10) == 0 ? new WorldGenBigTree(true) : new WorldGenTrees(true);
 		int var6 = 0;
 		int var7 = 0;
 		boolean var8 = false;
@@ -73,7 +73,7 @@ public class BlockSapling extends auc implements atz {
 				if (!var8) {
 					var7 = 0;
 					var6 = 0;
-					var5 = new bir(true, 4 + var4.nextInt(7), ayx.d.a(), ayx.d.a(), false);
+					var5 = new WorldGenTrees(true, 4 + var4.nextInt(7), ayx.d.a(), ayx.d.a(), false);
 				}
 				break;
 			case 4:
@@ -106,7 +106,7 @@ public class BlockSapling extends auc implements atz {
 			var1.a(var2, var9, 4);
 		}
 
-		if (!((bhp) var5).b(var1, var4, var2.a(var6, 0, var7))) {
+		if (!((WorldGenerator) var5).b(var1, var4, var2.a(var6, 0, var7))) {
 			if (var8) {
 				var1.a(var2.a(var6, 0, var7), var3, 4);
 				var1.a(var2.a(var6 + 1, 0, var7), var3, 4);

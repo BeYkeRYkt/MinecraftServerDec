@@ -162,7 +162,7 @@ public class ChunkProviderTheEnd implements IChunkProvider {
 			for (int var14 = 0; var14 < var7; ++var14) {
 				float var15 = (float) (var13 + var2) / 1.0F;
 				float var16 = (float) (var14 + var4) / 1.0F;
-				float var17 = 100.0F - DataTypesConverter.c(var15 * var15 + var16 * var16) * 8.0F;
+				float var17 = 100.0F - MathHelper.c(var15 * var15 + var16 * var16) * 8.0F;
 				if (var17 > 80.0F) {
 					var17 = 80.0F;
 				}
@@ -190,7 +190,7 @@ public class ChunkProviderTheEnd implements IChunkProvider {
 					double var28;
 					if (var18 > var6 / 2 - var27) {
 						var28 = (double) ((float) (var18 - (var6 / 2 - var27)) / 64.0F);
-						var28 = DataTypesConverter.a(var28, 0.0D, 1.0D);
+						var28 = MathHelper.a(var28, 0.0D, 1.0D);
 						var19 = var19 * (1.0D - var28) + -3000.0D * var28;
 					}
 

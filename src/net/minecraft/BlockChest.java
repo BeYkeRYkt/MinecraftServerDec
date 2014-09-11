@@ -65,7 +65,7 @@ public class BlockChest extends atg {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
-		BlockFace var6 = BlockFace.fromDirection(DataTypesConverter.toFixedPointInt((double) (var4.yaw * 4.0F / 360.0F) + 0.5D) & 3).getOpposite();
+		BlockFace var6 = BlockFace.fromDirection(MathHelper.toFixedPointInt((double) (var4.yaw * 4.0F / 360.0F) + 0.5D) & 3).getOpposite();
 		var3 = var3.a(a, var6);
 		Position var7 = var2.c();
 		Position var8 = var2.d();
@@ -366,7 +366,7 @@ public class BlockChest extends atg {
 				var5 = ((TileEntityChest) var6).l;
 			}
 
-			return DataTypesConverter.a(var5, 0, 15);
+			return MathHelper.a(var5, 0, 15);
 		}
 	}
 

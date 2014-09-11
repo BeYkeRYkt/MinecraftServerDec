@@ -29,7 +29,7 @@ public class abf {
 		float var9 = -99999.0F;
 		boolean var10;
 		if (var0.ci()) {
-			double var11 = var0.cf().c((double) DataTypesConverter.toFixedPointInt(var0.locationX), (double) DataTypesConverter.toFixedPointInt(var0.locationY), (double) DataTypesConverter.toFixedPointInt(var0.locationZ)) + 4.0D;
+			double var11 = var0.cf().c((double) MathHelper.toFixedPointInt(var0.locationX), (double) MathHelper.toFixedPointInt(var0.locationY), (double) MathHelper.toFixedPointInt(var0.locationZ)) + 4.0D;
 			double var13 = (double) (var0.cg() + (float) var1);
 			var10 = var11 < var13 * var13;
 		} else {
@@ -57,9 +57,9 @@ public class abf {
 					}
 				}
 
-				var12 += DataTypesConverter.toFixedPointInt(var0.locationX);
-				var18 += DataTypesConverter.toFixedPointInt(var0.locationY);
-				var14 += DataTypesConverter.toFixedPointInt(var0.locationZ);
+				var12 += MathHelper.toFixedPointInt(var0.locationX);
+				var18 += MathHelper.toFixedPointInt(var0.locationY);
+				var14 += MathHelper.toFixedPointInt(var0.locationZ);
 				var15 = new Position(var12, var18, var14);
 				if (!var10 || var0.d(var15)) {
 					float var16 = var0.a(var15);

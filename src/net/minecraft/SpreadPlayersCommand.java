@@ -189,7 +189,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 				var11 = var3[var7++];
 			}
 
-			var10.updatePosition((double) ((float) DataTypesConverter.toFixedPointInt(var11.a) + 0.5F), (double) var11.a(var2), (double) DataTypesConverter.toFixedPointInt(var11.b) + 0.5D);
+			var10.updatePosition((double) ((float) MathHelper.toFixedPointInt(var11.a) + 0.5F), (double) var11.a(var2), (double) MathHelper.toFixedPointInt(var11.b) + 0.5D);
 			double var17 = Double.MAX_VALUE;
 
 			for (int var14 = 0; var14 < var3.length; ++var14) {

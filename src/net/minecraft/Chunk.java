@@ -549,14 +549,14 @@ public class Chunk {
 
 	public void addEntity(Entity entity) {
 		this.r = true;
-		int var2 = DataTypesConverter.toFixedPointInt(entity.locationX / 16.0D);
-		int var3 = DataTypesConverter.toFixedPointInt(entity.locationZ / 16.0D);
+		int var2 = MathHelper.toFixedPointInt(entity.locationX / 16.0D);
+		int var3 = MathHelper.toFixedPointInt(entity.locationZ / 16.0D);
 		if (var2 != this.x || var3 != this.y) {
 			logger.warn("Wrong location! (" + var2 + ", " + var3 + ") should be (" + this.x + ", " + this.y + "), " + entity, new Object[] { entity });
 			entity.die();
 		}
 
-		int chunkColumnNumber = DataTypesConverter.toFixedPointInt(entity.locationY / 16.0D);
+		int chunkColumnNumber = MathHelper.toFixedPointInt(entity.locationY / 16.0D);
 		if (chunkColumnNumber < 0) {
 			chunkColumnNumber = 0;
 		}
@@ -685,10 +685,10 @@ public class Chunk {
 	}
 
 	public void a(Entity var1, AxisAlignedBB var2, List var3, Predicate var4) {
-		int var5 = DataTypesConverter.toFixedPointInt((var2.minY - 2.0D) / 16.0D);
-		int var6 = DataTypesConverter.toFixedPointInt((var2.maxY + 2.0D) / 16.0D);
-		var5 = DataTypesConverter.a(var5, 0, this.entitySlices.length - 1);
-		var6 = DataTypesConverter.a(var6, 0, this.entitySlices.length - 1);
+		int var5 = MathHelper.toFixedPointInt((var2.minY - 2.0D) / 16.0D);
+		int var6 = MathHelper.toFixedPointInt((var2.maxY + 2.0D) / 16.0D);
+		var5 = MathHelper.a(var5, 0, this.entitySlices.length - 1);
+		var6 = MathHelper.a(var6, 0, this.entitySlices.length - 1);
 
 		for (int var7 = var5; var7 <= var6; ++var7) {
 			Iterator var8 = this.entitySlices[var7].iterator();
@@ -713,10 +713,10 @@ public class Chunk {
 	}
 
 	public void a(Class var1, AxisAlignedBB var2, List var3, Predicate var4) {
-		int var5 = DataTypesConverter.toFixedPointInt((var2.minY - 2.0D) / 16.0D);
-		int var6 = DataTypesConverter.toFixedPointInt((var2.maxY + 2.0D) / 16.0D);
-		var5 = DataTypesConverter.a(var5, 0, this.entitySlices.length - 1);
-		var6 = DataTypesConverter.a(var6, 0, this.entitySlices.length - 1);
+		int var5 = MathHelper.toFixedPointInt((var2.minY - 2.0D) / 16.0D);
+		int var6 = MathHelper.toFixedPointInt((var2.maxY + 2.0D) / 16.0D);
+		var5 = MathHelper.a(var5, 0, this.entitySlices.length - 1);
+		var6 = MathHelper.a(var6, 0, this.entitySlices.length - 1);
 
 		for (int var7 = var5; var7 <= var6; ++var7) {
 			Iterator var8 = this.entitySlices[var7].getValues(var1).iterator();
@@ -888,13 +888,13 @@ public class Chunk {
 		int var5 = this.biomes[var4 << 4 | var3] & 255;
 		BiomeBase var6;
 		if (var5 == 255) {
-			var6 = var2.a(var1, BiomeBase.q);
+			var6 = var2.a(var1, BiomeBase.PLAINS);
 			var5 = var6.az;
 			this.biomes[var4 << 4 | var3] = (byte) (var5 & 255);
 		}
 
 		var6 = BiomeBase.e(var5);
-		return var6 == null ? BiomeBase.q : var6;
+		return var6 == null ? BiomeBase.PLAINS : var6;
 	}
 
 	public byte[] getBiomes() {

@@ -56,7 +56,7 @@ public class EntityMinecartFurnace extends adx {
 		super.a(var1, var2);
 		double var3 = this.a * this.a + this.b * this.b;
 		if (var3 > 1.0E-4D && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.001D) {
-			var3 = (double) DataTypesConverter.a(var3);
+			var3 = (double) MathHelper.a(var3);
 			this.a /= var3;
 			this.b /= var3;
 			if (this.a * this.motionX + this.b * this.motionZ < 0.0D) {
@@ -74,7 +74,7 @@ public class EntityMinecartFurnace extends adx {
 	protected void o() {
 		double var1 = this.a * this.a + this.b * this.b;
 		if (var1 > 1.0E-4D) {
-			var1 = (double) DataTypesConverter.a(var1);
+			var1 = (double) MathHelper.a(var1);
 			this.a /= var1;
 			this.b /= var1;
 			double var3 = 1.0D;

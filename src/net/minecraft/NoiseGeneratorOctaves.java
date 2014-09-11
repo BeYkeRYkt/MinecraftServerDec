@@ -32,8 +32,8 @@ public class NoiseGeneratorOctaves extends NoiseGenerator {
 			double var17 = (double) var2 * var27 * var8;
 			double var19 = (double) var3 * var27 * var10;
 			double var21 = (double) var4 * var27 * var12;
-			long var23 = DataTypesConverter.d(var17);
-			long var25 = DataTypesConverter.d(var21);
+			long var23 = MathHelper.d(var17);
+			long var25 = MathHelper.d(var21);
 			var17 -= (double) var23;
 			var21 -= (double) var25;
 			var23 %= 16777216L;

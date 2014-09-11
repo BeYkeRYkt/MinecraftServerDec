@@ -13,7 +13,7 @@ public class TileEntityNote extends TileEntity {
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
 		this.a = var1.getByte("note");
-		this.a = (byte) DataTypesConverter.a(this.a, 0, 24);
+		this.a = (byte) MathHelper.a(this.a, 0, 24);
 	}
 
 	public void b() {

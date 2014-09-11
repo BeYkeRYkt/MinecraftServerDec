@@ -22,8 +22,8 @@ public class bnk extends bnp {
 		this.a = var1;
 		this.e = var6;
 		this.c = var7;
-		BiomeBase var8 = var1.a(new Position(var4, 0, var5), BiomeBase.ad);
-		this.b = var8 == BiomeBase.r || var8 == BiomeBase.G;
+		BiomeBase var8 = var1.a(new Position(var4, 0, var5), BiomeBase.OCEAN);
+		this.b = var8 == BiomeBase.DESERT || var8 == BiomeBase.DESERT_HILLS;
 		this.a(this.b);
 	}
 

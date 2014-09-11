@@ -16,7 +16,7 @@ public class bnd extends bnn {
 
 	public static CuboidArea a(bnk var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6) {
 		CuboidArea var7 = CuboidArea.a(var3, var4, var5, 0, 0, 0, 3, 4, 2, var6);
-		return bms.a(var1, var7) != null ? null : var7;
+		return StructurePiece.a(var1, var7) != null ? null : var7;
 	}
 
 	public boolean a(World var1, Random var2, CuboidArea var3) {

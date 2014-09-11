@@ -39,9 +39,9 @@ public abstract class WorldProvider {
 		LevelType var1 = this.world.getWorldData().getLevelType();
 		if (var1 == LevelType.FLAT) {
 			biv var2 = biv.a(this.world.getWorldData().getGeneratorOptions());
-			this.chunkManager = new WorldChunkManagerHell(BiomeBase.a(var2.a(), BiomeBase.ad), 0.5F);
+			this.chunkManager = new WorldChunkManagerHell(BiomeBase.a(var2.a(), BiomeBase.OCEAN), 0.5F);
 		} else if (var1 == LevelType.DEBUG) {
-			this.chunkManager = new WorldChunkManagerHell(BiomeBase.q, 0.0F);
+			this.chunkManager = new WorldChunkManagerHell(BiomeBase.PLAINS, 0.0F);
 		} else {
 			this.chunkManager = new WorldChunkManager(this.world);
 		}

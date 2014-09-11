@@ -44,7 +44,7 @@ public class bnc extends bnn {
 
 	public static bnc a(bnk var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6, int var7) {
 		CuboidArea var8 = CuboidArea.a(var3, var4, var5, 0, 0, 0, 7, 4, 9, var6);
-		return a(var8) && bms.a(var1, var8) == null ? new bnc(var0, var7, var2, var8, var6) : null;
+		return a(var8) && StructurePiece.a(var1, var8) == null ? new bnc(var0, var7, var2, var8, var6) : null;
 	}
 
 	public boolean a(World var1, Random var2, CuboidArea var3) {
@@ -68,10 +68,10 @@ public class bnc extends bnn {
 
 		int var4;
 		for (var4 = 1; var4 <= 7; ++var4) {
-			this.a(var1, this.a.a(DataTypesConverter.a(var2, 2, 7)), 1, 1, var4, var3);
-			this.a(var1, this.a.a(DataTypesConverter.a(var2, 2, 7)), 2, 1, var4, var3);
-			this.a(var1, this.b.a(DataTypesConverter.a(var2, 2, 7)), 4, 1, var4, var3);
-			this.a(var1, this.b.a(DataTypesConverter.a(var2, 2, 7)), 5, 1, var4, var3);
+			this.a(var1, this.a.a(MathHelper.a(var2, 2, 7)), 1, 1, var4, var3);
+			this.a(var1, this.a.a(MathHelper.a(var2, 2, 7)), 2, 1, var4, var3);
+			this.a(var1, this.b.a(MathHelper.a(var2, 2, 7)), 4, 1, var4, var3);
+			this.a(var1, this.b.a(MathHelper.a(var2, 2, 7)), 5, 1, var4, var3);
 		}
 
 		for (var4 = 0; var4 < 9; ++var4) {

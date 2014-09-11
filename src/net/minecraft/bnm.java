@@ -16,7 +16,7 @@ public class bnm extends bnn {
 
 	public static bnm a(bnk var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6, int var7) {
 		CuboidArea var8 = CuboidArea.a(var3, var4, var5, 0, 0, 0, 9, 7, 12, var6);
-		return a(var8) && bms.a(var1, var8) == null ? new bnm(var0, var7, var2, var8, var6) : null;
+		return a(var8) && StructurePiece.a(var1, var8) == null ? new bnm(var0, var7, var2, var8, var6) : null;
 	}
 
 	public boolean a(World var1, Random var2, CuboidArea var3) {

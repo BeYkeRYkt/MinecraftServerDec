@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.List;
 import java.util.Random;
 
-public class bhh extends bhp {
+public class bhh extends WorldGenerator {
 
 	private final List a;
 	private final int b;
@@ -30,7 +30,7 @@ public class bhh extends bhp {
 					var1.a(var6, Blocks.CHEST.getBlockState(), 2);
 					TileEntity var7 = var1.getTileEntity(var6);
 					if (var7 instanceof TileEntityChest) {
-						vl.a(var2, this.a, (IInventory) ((TileEntityChest) var7), this.b);
+						StructurePieceTreasure.a(var2, this.a, (IInventory) ((TileEntityChest) var7), this.b);
 					}
 
 					Position var8 = var6.f();

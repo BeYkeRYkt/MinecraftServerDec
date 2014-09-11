@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 
 public class WorldGenLargeFeature extends StructureGenerator {
 
-	private static final List d = Arrays.asList(new BiomeBase[] { BiomeBase.r, BiomeBase.G, BiomeBase.K, BiomeBase.L, BiomeBase.v });
+	private static final List d = Arrays.asList(new BiomeBase[] { BiomeBase.DESERT, BiomeBase.DESERT_HILLS, BiomeBase.JUNGLE, BiomeBase.JUNGLE_HILLS, BiomeBase.SWAMPLAND });
 	private List f;
 	private int g;
 	private int h;
@@ -19,7 +19,7 @@ public class WorldGenLargeFeature extends StructureGenerator {
 		this.f = Lists.newArrayList();
 		this.g = 32;
 		this.h = 8;
-		this.f.add(new arq(EntityWitch.class, 1, 1, 1));
+		this.f.add(new BiomeMeta(EntityWitch.class, 1, 1, 1));
 	}
 
 	public WorldGenLargeFeature(Map var1) {
@@ -29,7 +29,7 @@ public class WorldGenLargeFeature extends StructureGenerator {
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
 			if (((String) var3.getKey()).equals("distance")) {
-				this.g = DataTypesConverter.a((String) var3.getValue(), this.g, this.h + 1);
+				this.g = MathHelper.a((String) var3.getValue(), this.g, this.h + 1);
 			}
 		}
 
@@ -76,14 +76,14 @@ public class WorldGenLargeFeature extends StructureGenerator {
 		return false;
 	}
 
-	protected bmv b(int var1, int var2) {
+	protected StructureStart b(int var1, int var2) {
 		return new blh(this.c, this.b, var1, var2);
 	}
 
 	public boolean a(Position var1) {
-		bmv var2 = this.c(var1);
+		StructureStart var2 = this.c(var1);
 		if (var2 != null && var2 instanceof blh && !var2.a.isEmpty()) {
-			bms var3 = (bms) var2.a.getFirst();
+			StructurePiece var3 = (StructurePiece) var2.a.getFirst();
 			return var3 instanceof blo;
 		} else {
 			return false;

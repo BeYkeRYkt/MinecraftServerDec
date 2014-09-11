@@ -20,17 +20,17 @@ public class bpj extends bpa {
 				int var12;
 				int var13;
 				int var14;
-				if (var9 == BiomeBase.D.az) {
+				if (var9 == BiomeBase.MUSHROOM_ISLAND.az) {
 					var11 = var5[var8 + 1 + (var7 + 1 - 1) * (var3 + 2)];
 					var12 = var5[var8 + 1 + 1 + (var7 + 1) * (var3 + 2)];
 					var13 = var5[var8 + 1 - 1 + (var7 + 1) * (var3 + 2)];
 					var14 = var5[var8 + 1 + (var7 + 1 + 1) * (var3 + 2)];
-					if (var11 != BiomeBase.p.az && var12 != BiomeBase.p.az && var13 != BiomeBase.p.az && var14 != BiomeBase.p.az) {
+					if (var11 != BiomeBase.OCEAN.az && var12 != BiomeBase.OCEAN.az && var13 != BiomeBase.OCEAN.az && var14 != BiomeBase.OCEAN.az) {
 						var6[var8 + var7 * var3] = var9;
 					} else {
-						var6[var8 + var7 * var3] = BiomeBase.E.az;
+						var6[var8 + var7 * var3] = BiomeBase.MUSHROOM_SHORE.az;
 					}
-				} else if (var10 != null && var10.l() == asi.class) {
+				} else if (var10 != null && var10.l() == BiomeJungle.class) {
 					var11 = var5[var8 + 1 + (var7 + 1 - 1) * (var3 + 2)];
 					var12 = var5[var8 + 1 + 1 + (var7 + 1) * (var3 + 2)];
 					var13 = var5[var8 + 1 - 1 + (var7 + 1) * (var3 + 2)];
@@ -39,16 +39,16 @@ public class bpj extends bpa {
 						if (!b(var11) && !b(var12) && !b(var13) && !b(var14)) {
 							var6[var8 + var7 * var3] = var9;
 						} else {
-							var6[var8 + var7 * var3] = BiomeBase.F.az;
+							var6[var8 + var7 * var3] = BiomeBase.BEACH.az;
 						}
 					} else {
-						var6[var8 + var7 * var3] = BiomeBase.M.az;
+						var6[var8 + var7 * var3] = BiomeBase.JUNGLE_EDGE.az;
 					}
-				} else if (var9 != BiomeBase.s.az && var9 != BiomeBase.X.az && var9 != BiomeBase.J.az) {
+				} else if (var9 != BiomeBase.EXTREME_HILLS.az && var9 != BiomeBase.EXTREME_HILLS_PLUS.az && var9 != BiomeBase.SMALL_MOUNTAINS.az) {
 					if (var10 != null && var10.j()) {
-						this.a(var5, var6, var8, var7, var3, var9, BiomeBase.P.az);
-					} else if (var9 != BiomeBase.aa.az && var9 != BiomeBase.ab.az) {
-						if (var9 != BiomeBase.p.az && var9 != BiomeBase.N.az && var9 != BiomeBase.w.az && var9 != BiomeBase.v.az) {
+						this.a(var5, var6, var8, var7, var3, var9, BiomeBase.COLD_BEACH.az);
+					} else if (var9 != BiomeBase.MESA.az && var9 != BiomeBase.MESA_PLATEAU_F.az) {
+						if (var9 != BiomeBase.OCEAN.az && var9 != BiomeBase.DEEP_OCEAN.az && var9 != BiomeBase.RIVER.az && var9 != BiomeBase.SWAMPLAND.az) {
 							var11 = var5[var8 + 1 + (var7 + 1 - 1) * (var3 + 2)];
 							var12 = var5[var8 + 1 + 1 + (var7 + 1) * (var3 + 2)];
 							var13 = var5[var8 + 1 - 1 + (var7 + 1) * (var3 + 2)];
@@ -56,7 +56,7 @@ public class bpj extends bpa {
 							if (!b(var11) && !b(var12) && !b(var13) && !b(var14)) {
 								var6[var8 + var7 * var3] = var9;
 							} else {
-								var6[var8 + var7 * var3] = BiomeBase.F.az;
+								var6[var8 + var7 * var3] = BiomeBase.BEACH.az;
 							}
 						} else {
 							var6[var8 + var7 * var3] = var9;
@@ -70,14 +70,14 @@ public class bpj extends bpa {
 							if (this.d(var11) && this.d(var12) && this.d(var13) && this.d(var14)) {
 								var6[var8 + var7 * var3] = var9;
 							} else {
-								var6[var8 + var7 * var3] = BiomeBase.r.az;
+								var6[var8 + var7 * var3] = BiomeBase.DESERT.az;
 							}
 						} else {
 							var6[var8 + var7 * var3] = var9;
 						}
 					}
 				} else {
-					this.a(var5, var6, var8, var7, var3, var9, BiomeBase.O.az);
+					this.a(var5, var6, var8, var7, var3, var9, BiomeBase.STONE_BEACH.az);
 				}
 			}
 		}
@@ -103,10 +103,10 @@ public class bpj extends bpa {
 	}
 
 	private boolean c(int var1) {
-		return BiomeBase.e(var1) != null && BiomeBase.e(var1).l() == asi.class ? true : var1 == BiomeBase.M.az || var1 == BiomeBase.K.az || var1 == BiomeBase.L.az || var1 == BiomeBase.t.az || var1 == BiomeBase.u.az || b(var1);
+		return BiomeBase.e(var1) != null && BiomeBase.e(var1).l() == BiomeJungle.class ? true : var1 == BiomeBase.JUNGLE_EDGE.az || var1 == BiomeBase.JUNGLE.az || var1 == BiomeBase.JUNGLE_HILLS.az || var1 == BiomeBase.FOREST.az || var1 == BiomeBase.TAIGA.az || b(var1);
 	}
 
 	private boolean d(int var1) {
-		return BiomeBase.e(var1) instanceof asj;
+		return BiomeBase.e(var1) instanceof BiomeMesa;
 	}
 }

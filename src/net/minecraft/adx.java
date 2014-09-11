@@ -184,7 +184,7 @@ public abstract class adx extends Entity implements vz {
 				double var15 = this.locationX + (this.e - this.locationX) / (double) this.d;
 				double var17 = this.locationY + (this.f - this.locationY) / (double) this.d;
 				double var18 = this.locationZ + (this.g - this.locationZ) / (double) this.d;
-				double var7 = DataTypesConverter.g(this.h - (double) this.yaw);
+				double var7 = MathHelper.g(this.h - (double) this.yaw);
 				this.yaw = (float) ((double) this.yaw + var7 / (double) this.d);
 				this.pitch = (float) ((double) this.pitch + (this.i - (double) this.pitch) / (double) this.d);
 				--this.d;
@@ -200,9 +200,9 @@ public abstract class adx extends Entity implements vz {
 			this.q = this.locationY;
 			this.r = this.locationZ;
 			this.motionY -= 0.03999999910593033D;
-			int var14 = DataTypesConverter.toFixedPointInt(this.locationX);
-			var2 = DataTypesConverter.toFixedPointInt(this.locationY);
-			int var16 = DataTypesConverter.toFixedPointInt(this.locationZ);
+			int var14 = MathHelper.toFixedPointInt(this.locationX);
+			var2 = MathHelper.toFixedPointInt(this.locationY);
+			int var16 = MathHelper.toFixedPointInt(this.locationZ);
 			if (ati.d(this.world, new Position(var14, var2 - 1, var16))) {
 				--var2;
 			}
@@ -229,7 +229,7 @@ public abstract class adx extends Entity implements vz {
 				}
 			}
 
-			double var10 = (double) DataTypesConverter.g(this.yaw - this.A);
+			double var10 = (double) MathHelper.g(this.yaw - this.A);
 			if (var10 < -170.0D || var10 >= 170.0D) {
 				this.yaw += 180.0F;
 				this.a = !this.a;
@@ -266,8 +266,8 @@ public abstract class adx extends Entity implements vz {
 
 	protected void n() {
 		double var1 = this.m();
-		this.motionX = DataTypesConverter.a(this.motionX, -var1, var1);
-		this.motionZ = DataTypesConverter.a(this.motionZ, -var1, var1);
+		this.motionX = MathHelper.a(this.motionX, -var1, var1);
+		this.motionZ = MathHelper.a(this.motionZ, -var1, var1);
 		if (this.onGround) {
 			this.motionX *= 0.5D;
 			this.motionY *= 0.5D;
@@ -395,12 +395,12 @@ public abstract class adx extends Entity implements vz {
 		}
 
 		double var35 = this.m();
-		var31 = DataTypesConverter.a(var31, -var35, var35);
-		var33 = DataTypesConverter.a(var33, -var35, var35);
+		var31 = MathHelper.a(var31, -var35, var35);
+		var33 = MathHelper.a(var33, -var35, var35);
 		this.move(var31, 0.0D, var33);
-		if (var10[0][1] != 0 && DataTypesConverter.toFixedPointInt(this.locationX) - var1.getX() == var10[0][0] && DataTypesConverter.toFixedPointInt(this.locationZ) - var1.getZ() == var10[0][2]) {
+		if (var10[0][1] != 0 && MathHelper.toFixedPointInt(this.locationX) - var1.getX() == var10[0][0] && MathHelper.toFixedPointInt(this.locationZ) - var1.getZ() == var10[0][2]) {
 			this.b(this.locationX, this.locationY + (double) var10[0][1], this.locationZ);
-		} else if (var10[1][1] != 0 && DataTypesConverter.toFixedPointInt(this.locationX) - var1.getX() == var10[1][0] && DataTypesConverter.toFixedPointInt(this.locationZ) - var1.getZ() == var10[1][2]) {
+		} else if (var10[1][1] != 0 && MathHelper.toFixedPointInt(this.locationX) - var1.getX() == var10[1][0] && MathHelper.toFixedPointInt(this.locationZ) - var1.getZ() == var10[1][2]) {
 			this.b(this.locationX, this.locationY + (double) var10[1][1], this.locationZ);
 		}
 
@@ -417,8 +417,8 @@ public abstract class adx extends Entity implements vz {
 			this.b(this.locationX, var37.y, this.locationZ);
 		}
 
-		int var44 = DataTypesConverter.toFixedPointInt(this.locationX);
-		int var39 = DataTypesConverter.toFixedPointInt(this.locationZ);
+		int var44 = MathHelper.toFixedPointInt(this.locationX);
+		int var39 = MathHelper.toFixedPointInt(this.locationZ);
 		if (var44 != var1.getX() || var39 != var1.getZ()) {
 			var19 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.motionX = var19 * (double) (var44 - var1.getX());
@@ -471,9 +471,9 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public Vec3D k(double var1, double var3, double var5) {
-		int var7 = DataTypesConverter.toFixedPointInt(var1);
-		int var8 = DataTypesConverter.toFixedPointInt(var3);
-		int var9 = DataTypesConverter.toFixedPointInt(var5);
+		int var7 = MathHelper.toFixedPointInt(var1);
+		int var8 = MathHelper.toFixedPointInt(var3);
+		int var9 = MathHelper.toFixedPointInt(var5);
 		if (ati.d(this.world, new Position(var7, var8 - 1, var9))) {
 			--var8;
 		}
@@ -578,7 +578,7 @@ public abstract class adx extends Entity implements vz {
 					double var4 = var1.locationZ - this.locationZ;
 					double var6 = var2 * var2 + var4 * var4;
 					if (var6 >= 9.999999747378752E-5D) {
-						var6 = (double) DataTypesConverter.a(var6);
+						var6 = (double) MathHelper.a(var6);
 						var2 /= var6;
 						var4 /= var6;
 						double var8 = 1.0D / var6;
@@ -598,7 +598,7 @@ public abstract class adx extends Entity implements vz {
 							double var10 = var1.locationX - this.locationX;
 							double var12 = var1.locationZ - this.locationZ;
 							Vec3D var14 = (new Vec3D(var10, 0.0D, var12)).a();
-							Vec3D var15 = (new Vec3D((double) DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F), 0.0D, (double) DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F))).a();
+							Vec3D var15 = (new Vec3D((double) MathHelper.b(this.yaw * 3.1415927F / 180.0F), 0.0D, (double) MathHelper.a(this.yaw * 3.1415927F / 180.0F))).a();
 							double var16 = Math.abs(var14.b(var15));
 							if (var16 < 0.800000011920929D) {
 								return;

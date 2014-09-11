@@ -10,8 +10,8 @@ public class bll extends bln {
 	private boolean f;
 	private boolean g;
 	private boolean h;
-	private static final List i = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.DIAMOND, 0, 1, 3, 3), new vl(Items.IRON_INGOT, 0, 1, 5, 10), new vl(Items.GOLD_INGOT, 0, 2, 7, 15), new vl(Items.EMERALD, 0, 1, 3, 2), new vl(Items.BONE, 0, 4, 6, 20), new vl(Items.ROTTEN_FLESH, 0, 3, 7, 16), new vl(Items.SADDLE, 0, 1, 1, 3), new vl(Items.IRON_HORSE_ARMOR, 0, 1, 1, 1), new vl(Items.GOLDEN_HORSE_ARMOR, 0, 1, 1, 1), new vl(Items.DIAMOND_HORSE_ARMOR, 0, 1, 1, 1) }));
-	private static final List j = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.ARROW, 0, 2, 7, 30) }));
+	private static final List i = Lists.newArrayList((Object[]) (new StructurePieceTreasure[] { new StructurePieceTreasure(Items.DIAMOND, 0, 1, 3, 3), new StructurePieceTreasure(Items.IRON_INGOT, 0, 1, 5, 10), new StructurePieceTreasure(Items.GOLD_INGOT, 0, 2, 7, 15), new StructurePieceTreasure(Items.EMERALD, 0, 1, 3, 2), new StructurePieceTreasure(Items.BONE, 0, 4, 6, 20), new StructurePieceTreasure(Items.ROTTEN_FLESH, 0, 3, 7, 16), new StructurePieceTreasure(Items.SADDLE, 0, 1, 1, 3), new StructurePieceTreasure(Items.IRON_HORSE_ARMOR, 0, 1, 1, 1), new StructurePieceTreasure(Items.GOLDEN_HORSE_ARMOR, 0, 1, 1, 1), new StructurePieceTreasure(Items.DIAMOND_HORSE_ARMOR, 0, 1, 1, 1) }));
+	private static final List j = Lists.newArrayList((Object[]) (new StructurePieceTreasure[] { new StructurePieceTreasure(Items.ARROW, 0, 2, 7, 30) }));
 	private static blm k = new blm((blj) null);
 
 	public bll() {
@@ -178,7 +178,7 @@ public class bll extends bln {
 			this.a(var1, Blocks.VINE.a(15), 8, -1, 3, var3);
 			this.a(var1, Blocks.VINE.a(15), 8, -2, 3, var3);
 			if (!this.e) {
-				this.e = this.a(var1, var3, var2, 8, -3, 3, vl.a(i, new vl[] { Items.ENCHANTED_BOOK.b(var2) }), 2 + var2.nextInt(5));
+				this.e = this.a(var1, var3, var2, 8, -3, 3, StructurePieceTreasure.a(i, new StructurePieceTreasure[] { Items.ENCHANTED_BOOK.b(var2) }), 2 + var2.nextInt(5));
 			}
 
 			this.a(var1, Blocks.MOSSY_COBBLESTONE.getBlockState(), 9, -3, 2, var3);
@@ -209,7 +209,7 @@ public class bll extends bln {
 			this.a(var1, Blocks.STICKY_PISTON.a(this.a(Blocks.STICKY_PISTON, BlockFace.WEST.getId())), 10, -1, 8, var3);
 			this.a(var1, Blocks.UNPOWERED_REPEATER.a(this.a(Blocks.UNPOWERED_REPEATER, BlockFace.NORTH.toDirection())), 10, -2, 10, var3);
 			if (!this.f) {
-				this.f = this.a(var1, var3, var2, 9, -3, 10, vl.a(i, new vl[] { Items.ENCHANTED_BOOK.b(var2) }), 2 + var2.nextInt(5));
+				this.f = this.a(var1, var3, var2, 9, -3, 10, StructurePieceTreasure.a(i, new StructurePieceTreasure[] { Items.ENCHANTED_BOOK.b(var2) }), 2 + var2.nextInt(5));
 			}
 
 			return true;

@@ -17,9 +17,9 @@ class aev extends zb {
 	public void e() {
 		Random var1 = this.a.bb();
 		World var2 = this.a.world;
-		int var3 = DataTypesConverter.toFixedPointInt(this.a.locationX - 2.0D + var1.nextDouble() * 4.0D);
-		int var4 = DataTypesConverter.toFixedPointInt(this.a.locationY + var1.nextDouble() * 3.0D);
-		int var5 = DataTypesConverter.toFixedPointInt(this.a.locationZ - 2.0D + var1.nextDouble() * 4.0D);
+		int var3 = MathHelper.toFixedPointInt(this.a.locationX - 2.0D + var1.nextDouble() * 4.0D);
+		int var4 = MathHelper.toFixedPointInt(this.a.locationY + var1.nextDouble() * 3.0D);
+		int var5 = MathHelper.toFixedPointInt(this.a.locationZ - 2.0D + var1.nextDouble() * 4.0D);
 		Position var6 = new Position(var3, var4, var5);
 		BlockState var7 = var2.getBlockState(var6);
 		Block var8 = var7.getBlock();

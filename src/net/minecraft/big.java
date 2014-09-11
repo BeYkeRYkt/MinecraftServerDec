@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class big extends bhc {
+public class big extends WorldGenTreeAbstract {
 
 	public big() {
 		super(false);

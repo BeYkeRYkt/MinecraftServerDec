@@ -29,7 +29,7 @@ public abstract class ahl extends Entity {
 		this.a(1.0F, 1.0F);
 		this.setPositionRotation(var2, var4, var6, this.yaw, this.pitch);
 		this.b(var2, var4, var6);
-		double var14 = (double) DataTypesConverter.a(var8 * var8 + var10 * var10 + var12 * var12);
+		double var14 = (double) MathHelper.a(var8 * var8 + var10 * var10 + var12 * var12);
 		this.b = var8 / var14 * 0.1D;
 		this.c = var10 / var14 * 0.1D;
 		this.d = var12 / var14 * 0.1D;
@@ -45,7 +45,7 @@ public abstract class ahl extends Entity {
 		var3 += this.V.nextGaussian() * 0.4D;
 		var5 += this.V.nextGaussian() * 0.4D;
 		var7 += this.V.nextGaussian() * 0.4D;
-		double var9 = (double) DataTypesConverter.a(var3 * var3 + var5 * var5 + var7 * var7);
+		double var9 = (double) MathHelper.a(var3 * var3 + var5 * var5 + var7 * var7);
 		this.b = var3 / var9 * 0.1D;
 		this.c = var5 / var9 * 0.1D;
 		this.d = var7 / var9 * 0.1D;
@@ -117,7 +117,7 @@ public abstract class ahl extends Entity {
 			this.locationX += this.motionX;
 			this.locationY += this.motionY;
 			this.locationZ += this.motionZ;
-			float var15 = DataTypesConverter.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			float var15 = MathHelper.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.yaw = (float) (Math.atan2(this.motionZ, this.motionX) * 180.0D / 3.1415927410125732D) + 90.0F;
 
 			for (this.pitch = (float) (Math.atan2((double) var15, this.motionY) * 180.0D / 3.1415927410125732D) - 90.0F; this.pitch - this.B < -180.0F; this.B -= 360.0F) {

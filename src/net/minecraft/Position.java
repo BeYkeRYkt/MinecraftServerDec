@@ -3,7 +3,7 @@ package net.minecraft;
 public class Position extends fd {
 
 	public static final Position ZERO = new Position(0, 0, 0);
-	private static final int b = 1 + DataTypesConverter.c(DataTypesConverter.b(30000000));
+	private static final int b = 1 + MathHelper.c(MathHelper.b(30000000));
 	private static final int c = b;
 	private static final int d = 64 - b - c;
 	private static final int f = 0 + c;

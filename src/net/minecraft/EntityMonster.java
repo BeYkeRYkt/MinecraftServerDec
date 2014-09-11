@@ -69,7 +69,7 @@ public abstract class EntityMonster extends EntityCreature implements IMonster {
 		boolean var4 = var1.a(DamageSource.a((EntityLiving) this), var2);
 		if (var4) {
 			if (var3 > 0) {
-				var1.g((double) (-DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F) * (float) var3 * 0.5F), 0.1D, (double) (DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F) * (float) var3 * 0.5F));
+				var1.g((double) (-MathHelper.a(this.yaw * 3.1415927F / 180.0F) * (float) var3 * 0.5F), 0.1D, (double) (MathHelper.b(this.yaw * 3.1415927F / 180.0F) * (float) var3 * 0.5F));
 				this.motionX *= 0.6D;
 				this.motionZ *= 0.6D;
 			}

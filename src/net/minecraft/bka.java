@@ -28,7 +28,7 @@ public class bka extends bkb {
 
 	public static bka a(List var0, Random var1, int var2, int var3, int var4, int var5, BlockFace var6) {
 		CuboidArea var7 = CuboidArea.a(var2, var3, var4, -2, 0, 0, 7, 8, 9, var6);
-		return a(var7) && bms.a(var0, var7) == null ? new bka(var5, var1, var7, var6) : null;
+		return a(var7) && StructurePiece.a(var0, var7) == null ? new bka(var5, var1, var7, var6) : null;
 	}
 
 	public boolean a(World var1, Random var2, CuboidArea var3) {

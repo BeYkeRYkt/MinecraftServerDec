@@ -67,14 +67,14 @@ public class BlockGrass extends Block implements atz {
 					}
 				} else if (var1.getBlockState(var7).getBlock().material == Material.AIR) {
 					if (var2.nextInt(8) == 0) {
-						awa var11 = var1.b(var7).a(var2, var7);
+						EnumFlowerType var11 = var1.b(var7).a(var2, var7);
 						BlockFlowers var9 = var11.a().a();
 						BlockState var10 = var9.getBlockState().a(var9.l(), var11);
 						if (var9.f(var1, var7, var10)) {
 							var1.a(var7, var10, 3);
 						}
 					} else {
-						BlockState var12 = Blocks.TALLGRASS.getBlockState().a(BlockLongGrass.a, bbi.b);
+						BlockState var12 = Blocks.TALLGRASS.getBlockState().a(BlockLongGrass.a, EnumGrassType.b);
 						if (Blocks.TALLGRASS.f(var1, var7, var12)) {
 							var1.a(var7, var12, 3);
 						}

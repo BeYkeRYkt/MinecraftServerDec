@@ -61,9 +61,9 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimal {
 	}
 
 	public boolean bQ() {
-		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
-		int var2 = DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY);
-		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
+		int var1 = MathHelper.toFixedPointInt(this.locationX);
+		int var2 = MathHelper.toFixedPointInt(this.getBoundingBox().minY);
+		int var3 = MathHelper.toFixedPointInt(this.locationZ);
 		Position var4 = new Position(var1, var2, var3);
 		return this.world.getBlockState(var4.b()).getBlock() == this.bl && this.world.k(var4) > 8 && super.bQ();
 	}

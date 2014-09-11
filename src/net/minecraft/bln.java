@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-abstract class bln extends bms {
+abstract class bln extends StructurePiece {
 
 	protected int a;
 	protected int b;

@@ -109,7 +109,7 @@ public class ItemMonsterEgg extends Item {
 				var8 = EntityTypes.createEntity(var1, var0);
 				if (var8 instanceof EntityLiving) {
 					EntityInsentient var10 = (EntityInsentient) var8;
-					var8.setPositionRotation(var2, var4, var6, DataTypesConverter.g(var0.s.nextFloat() * 360.0F), 0.0F);
+					var8.setPositionRotation(var2, var4, var6, MathHelper.g(var0.s.nextFloat() * 360.0F), 0.0F);
 					var10.headPitch = var10.yaw;
 					var10.aG = var10.yaw;
 					var10.a(var0.E(new Position(var10)), (xq) null);

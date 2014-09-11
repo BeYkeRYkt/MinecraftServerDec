@@ -429,7 +429,7 @@ public abstract class EntityInsentient extends EntityLiving {
 			var6 = (var1.getBoundingBox().minY + var1.getBoundingBox().maxY) / 2.0D - (this.locationY + (double) this.aR());
 		}
 
-		double var14 = (double) DataTypesConverter.a(var4 * var4 + var8 * var8);
+		double var14 = (double) MathHelper.a(var4 * var4 + var8 * var8);
 		float var12 = (float) (Math.atan2(var8, var4) * 180.0D / 3.1415927410125732D) - 90.0F;
 		float var13 = (float) (-(Math.atan2(var6, var14) * 180.0D / 3.1415927410125732D));
 		this.pitch = this.b(this.pitch, var13, var3);
@@ -437,7 +437,7 @@ public abstract class EntityInsentient extends EntityLiving {
 	}
 
 	private float b(float var1, float var2, float var3) {
-		float var4 = DataTypesConverter.g(var2 - var1);
+		float var4 = MathHelper.g(var2 - var1);
 		if (var4 > var3) {
 			var4 = var3;
 		}

@@ -26,7 +26,7 @@ public class BlockBed extends avb {
 				}
 			}
 
-			if (var1.worldProvider.isPrimaryWorld() && var1.b(var2) != BiomeBase.x) {
+			if (var1.worldProvider.isPrimaryWorld() && var1.b(var2) != BiomeBase.HELL) {
 				if (((Boolean) var3.b(b)).booleanValue()) {
 					EntityHuman var10 = this.e(var1, var2);
 					if (var10 != null) {

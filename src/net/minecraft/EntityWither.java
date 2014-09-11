@@ -82,7 +82,7 @@ public class EntityWither extends EntityMonster implements afr {
 				var4 = var1.locationZ - this.locationZ;
 				var6 = var2 * var2 + var4 * var4;
 				if (var6 > 9.0D) {
-					var8 = (double) DataTypesConverter.a(var6);
+					var8 = (double) MathHelper.a(var6);
 					this.motionX += (var2 / var8 * 0.5D - this.motionX) * 0.6000000238418579D;
 					this.motionZ += (var4 / var8 * 0.5D - this.motionZ) * 0.6000000238418579D;
 				}
@@ -116,7 +116,7 @@ public class EntityWither extends EntityMonster implements afr {
 				double var10 = var3.locationX - var4;
 				double var12 = var3.locationY + (double) var3.aR() - var6;
 				double var14 = var3.locationZ - var8;
-				double var16 = (double) DataTypesConverter.a(var10 * var10 + var14 * var14);
+				double var16 = (double) MathHelper.a(var10 * var10 + var14 * var14);
 				float var18 = (float) (Math.atan2(var14, var10) * 180.0D / 3.1415927410125732D) - 90.0F;
 				float var19 = (float) (-(Math.atan2(var12, var16) * 180.0D / 3.1415927410125732D));
 				this.b[var20] = this.b(this.b[var20], var19, 40.0F);
@@ -174,9 +174,9 @@ public class EntityWither extends EntityMonster implements afr {
 						if (var10003 > 15) {
 							float var2 = 10.0F;
 							float var3 = 5.0F;
-							double var4 = DataTypesConverter.a(this.V, this.locationX - (double) var2, this.locationX + (double) var2);
-							double var6 = DataTypesConverter.a(this.V, this.locationY - (double) var3, this.locationY + (double) var3);
-							double var8 = DataTypesConverter.a(this.V, this.locationZ - (double) var2, this.locationZ + (double) var2);
+							double var4 = MathHelper.a(this.V, this.locationX - (double) var2, this.locationX + (double) var2);
+							double var6 = MathHelper.a(this.V, this.locationY - (double) var3, this.locationY + (double) var3);
+							double var8 = MathHelper.a(this.V, this.locationZ - (double) var2, this.locationZ + (double) var2);
 							this.a(var1 + 1, var4, var6, var8, true);
 							this.bn[var1 - 1] = 0;
 						}
@@ -223,9 +223,9 @@ public class EntityWither extends EntityMonster implements afr {
 			if (this.bo > 0) {
 				--this.bo;
 				if (this.bo == 0 && this.world.Q().b("mobGriefing")) {
-					var1 = DataTypesConverter.toFixedPointInt(this.locationY);
-					var12 = DataTypesConverter.toFixedPointInt(this.locationX);
-					int var15 = DataTypesConverter.toFixedPointInt(this.locationZ);
+					var1 = MathHelper.toFixedPointInt(this.locationY);
+					var12 = MathHelper.toFixedPointInt(this.locationX);
+					int var15 = MathHelper.toFixedPointInt(this.locationZ);
 					boolean var17 = false;
 
 					for (int var18 = -1; var18 <= 1; ++var18) {
@@ -272,7 +272,7 @@ public class EntityWither extends EntityMonster implements afr {
 			return this.locationX;
 		} else {
 			float var2 = (this.aG + (float) (180 * (var1 - 1))) / 180.0F * 3.1415927F;
-			float var3 = DataTypesConverter.b(var2);
+			float var3 = MathHelper.b(var2);
 			return this.locationX + (double) var3 * 1.3D;
 		}
 	}
@@ -286,13 +286,13 @@ public class EntityWither extends EntityMonster implements afr {
 			return this.locationZ;
 		} else {
 			float var2 = (this.aG + (float) (180 * (var1 - 1))) / 180.0F * 3.1415927F;
-			float var3 = DataTypesConverter.a(var2);
+			float var3 = MathHelper.a(var2);
 			return this.locationZ + (double) var3 * 1.3D;
 		}
 	}
 
 	private float b(float var1, float var2, float var3) {
-		float var4 = DataTypesConverter.g(var2 - var1);
+		float var4 = MathHelper.g(var2 - var1);
 		if (var4 > var3) {
 			var4 = var3;
 		}

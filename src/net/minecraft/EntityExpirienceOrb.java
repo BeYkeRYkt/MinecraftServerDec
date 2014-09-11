@@ -81,7 +81,7 @@ public class EntityExpirienceOrb extends Entity {
 		this.move(this.motionX, this.motionY, this.motionZ);
 		float var13 = 0.98F;
 		if (this.onGround) {
-			var13 = this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.getBoundingBox().minY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
+			var13 = this.world.getBlockState(new Position(MathHelper.toFixedPointInt(this.locationX), MathHelper.toFixedPointInt(this.getBoundingBox().minY) - 1, MathHelper.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
 		}
 
 		this.motionX *= (double) var13;

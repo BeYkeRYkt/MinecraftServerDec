@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class bhs extends bhp {
+public class bhs extends WorldGenerator {
 
 	public boolean b(World var1, Random var2, Position var3) {
 		for (int var4 = 0; var4 < 64; ++var4) {

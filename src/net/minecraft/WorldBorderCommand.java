@@ -123,7 +123,7 @@ public class WorldBorderCommand extends AbstractCommand {
 				}
 			} else if (var2[0].equals("get")) {
 				var4 = var3.getOldRadius();
-				var1.a(ag.e, DataTypesConverter.toFixedPointInt(var4 + 0.5D));
+				var1.a(ag.e, MathHelper.toFixedPointInt(var4 + 0.5D));
 				var1.sendChatMessage(new ChatMessage("commands.worldborder.get.success", new Object[] { String.format("%.0f", new Object[] { Double.valueOf(var4) }) }));
 			}
 

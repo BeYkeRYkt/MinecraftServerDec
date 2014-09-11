@@ -60,7 +60,7 @@ public class BlockFlowerPot extends atg {
 	}
 
 	private boolean a(Block var1, int var2) {
-		return var1 != Blocks.YELLOW_FLOWER && var1 != Blocks.RED_FLOWER && var1 != Blocks.CACTUS && var1 != Blocks.BRWON_MUSHROOM && var1 != Blocks.RED_MUSHROOM && var1 != Blocks.SAPLING && var1 != Blocks.DEADBUSH ? var1 == Blocks.TALLGRASS && var2 == bbi.c.a() : true;
+		return var1 != Blocks.YELLOW_FLOWER && var1 != Blocks.RED_FLOWER && var1 != Blocks.CACTUS && var1 != Blocks.BRWON_MUSHROOM && var1 != Blocks.RED_MUSHROOM && var1 != Blocks.SAPLING && var1 != Blocks.DEADBUSH ? var1 == Blocks.TALLGRASS && var2 == EnumGrassType.c.a() : true;
 	}
 
 	public int j(World var1, Position var2) {
@@ -115,7 +115,7 @@ public class BlockFlowerPot extends atg {
 		switch (var2) {
 			case 1:
 				var3 = Blocks.RED_FLOWER;
-				var4 = awa.b.b();
+				var4 = EnumFlowerType.b.b();
 				break;
 			case 2:
 				var3 = Blocks.YELLOW_FLOWER;
@@ -150,7 +150,7 @@ public class BlockFlowerPot extends atg {
 				break;
 			case 11:
 				var3 = Blocks.TALLGRASS;
-				var4 = bbi.c.a();
+				var4 = EnumGrassType.c.a();
 				break;
 			case 12:
 				var3 = Blocks.SAPLING;
@@ -218,7 +218,7 @@ public class BlockFlowerPot extends atg {
 				} else if (var9 == Blocks.YELLOW_FLOWER) {
 					var4 = awf.k;
 				} else if (var9 == Blocks.RED_FLOWER) {
-					switch (awe.b[awa.a(awc.b, var8).ordinal()]) {
+					switch (awe.b[EnumFlowerType.a(EnumFlowerColor.b, var8).ordinal()]) {
 						case 1:
 							var4 = awf.b;
 							break;

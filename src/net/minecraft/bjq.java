@@ -19,7 +19,7 @@ public class bjq extends bkb {
 
 	public static bjq a(List var0, Random var1, int var2, int var3, int var4, BlockFace var5, int var6) {
 		CuboidArea var7 = CuboidArea.a(var2, var3, var4, -1, -3, 0, 5, 10, 8, var5);
-		return a(var7) && bms.a(var0, var7) == null ? new bjq(var6, var1, var7, var5) : null;
+		return a(var7) && StructurePiece.a(var0, var7) == null ? new bjq(var6, var1, var7, var5) : null;
 	}
 
 	protected void b(NBTCompoundTag var1) {

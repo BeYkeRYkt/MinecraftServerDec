@@ -24,9 +24,9 @@ public class arh {
 				this.b(var1, var2);
 			}
 		} else {
-			int var3 = DataTypesConverter.toFixedPointInt(var1.locationX);
-			int var4 = DataTypesConverter.toFixedPointInt(var1.locationY) - 1;
-			int var5 = DataTypesConverter.toFixedPointInt(var1.locationZ);
+			int var3 = MathHelper.toFixedPointInt(var1.locationX);
+			int var4 = MathHelper.toFixedPointInt(var1.locationY) - 1;
+			int var5 = MathHelper.toFixedPointInt(var1.locationZ);
 			byte var6 = 1;
 			byte var7 = 0;
 
@@ -50,8 +50,8 @@ public class arh {
 	public boolean b(Entity var1, float var2) {
 		boolean var3 = true;
 		double var4 = -1.0D;
-		int var6 = DataTypesConverter.toFixedPointInt(var1.locationX);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.locationZ);
+		int var6 = MathHelper.toFixedPointInt(var1.locationX);
+		int var7 = MathHelper.toFixedPointInt(var1.locationZ);
 		boolean var8 = true;
 		Object var9 = Position.ZERO;
 		long var10 = ChunkCoordIntPair.toLongHash(var6, var7);
@@ -182,9 +182,9 @@ public class arh {
 	public boolean a(Entity var1) {
 		byte var2 = 16;
 		double var3 = -1.0D;
-		int var5 = DataTypesConverter.toFixedPointInt(var1.locationX);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.locationY);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.locationZ);
+		int var5 = MathHelper.toFixedPointInt(var1.locationX);
+		int var6 = MathHelper.toFixedPointInt(var1.locationY);
+		int var7 = MathHelper.toFixedPointInt(var1.locationZ);
 		int var8 = var5;
 		int var9 = var6;
 		int var10 = var7;
@@ -309,7 +309,7 @@ public class arh {
 		}
 
 		if (var3 < 0.0D) {
-			var9 = DataTypesConverter.a(var9, 70, this.a.V() - 10);
+			var9 = MathHelper.a(var9, 70, this.a.V() - 10);
 			var15 = var9;
 
 			for (var19 = -1; var19 <= 1; ++var19) {

@@ -22,7 +22,7 @@ public class ItemSign extends Item {
 				return true;
 			} else {
 				if (var5 == BlockFace.UP) {
-					int var9 = DataTypesConverter.toFixedPointInt((double) ((var2.yaw + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
+					int var9 = MathHelper.toFixedPointInt((double) ((var2.yaw + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
 					var3.a(var4, Blocks.STANDING_SIGN.getBlockState().a(BlockStandingSign.a, Integer.valueOf(var9)), 3);
 				} else {
 					var3.a(var4, Blocks.WALL_SIGN.getBlockState().a(BlockWallSign.a, var5), 3);

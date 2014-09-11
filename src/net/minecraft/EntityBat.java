@@ -70,7 +70,7 @@ public class EntityBat extends EntityAmbient {
 		super.s_();
 		if (this.n()) {
 			this.motionX = this.motionY = this.motionZ = 0.0D;
-			this.locationY = (double) DataTypesConverter.toFixedPointInt(this.locationY) + 1.0D - (double) this.K;
+			this.locationY = (double) MathHelper.toFixedPointInt(this.locationY) + 1.0D - (double) this.K;
 		} else {
 			this.motionY *= 0.6000000238418579D;
 		}
@@ -111,7 +111,7 @@ public class EntityBat extends EntityAmbient {
 			this.motionY += (Math.signum(var5) * 0.699999988079071D - this.motionY) * 0.10000000149011612D;
 			this.motionZ += (Math.signum(var7) * 0.5D - this.motionZ) * 0.10000000149011612D;
 			float var9 = (float) (Math.atan2(this.motionZ, this.motionX) * 180.0D / 3.1415927410125732D) - 90.0F;
-			float var10 = DataTypesConverter.g(var9 - this.yaw);
+			float var10 = MathHelper.g(var9 - this.yaw);
 			this.aY = 0.5F;
 			this.yaw += var10;
 			if (this.V.nextInt(100) == 0 && this.world.getBlockState(var2).getBlock().t()) {

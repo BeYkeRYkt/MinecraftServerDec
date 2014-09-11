@@ -10,13 +10,13 @@ public class bos extends bpa {
 
 	public bos(long var1, bpa var3, LevelType var4, String var5) {
 		super(var1);
-		this.c = new BiomeBase[] { BiomeBase.r, BiomeBase.r, BiomeBase.r, BiomeBase.Y, BiomeBase.Y, BiomeBase.q };
-		this.d = new BiomeBase[] { BiomeBase.t, BiomeBase.S, BiomeBase.s, BiomeBase.q, BiomeBase.Q, BiomeBase.v };
-		this.e = new BiomeBase[] { BiomeBase.t, BiomeBase.s, BiomeBase.u, BiomeBase.q };
-		this.f = new BiomeBase[] { BiomeBase.B, BiomeBase.B, BiomeBase.B, BiomeBase.T };
+		this.c = new BiomeBase[] { BiomeBase.DESERT, BiomeBase.DESERT, BiomeBase.DESERT, BiomeBase.SAVANNA, BiomeBase.SAVANNA, BiomeBase.PLAINS };
+		this.d = new BiomeBase[] { BiomeBase.FOREST, BiomeBase.ROOFED_FOREST, BiomeBase.EXTREME_HILLS, BiomeBase.PLAINS, BiomeBase.BIRCH_FOREST, BiomeBase.SWAMPLAND };
+		this.e = new BiomeBase[] { BiomeBase.FOREST, BiomeBase.EXTREME_HILLS, BiomeBase.TAIGA, BiomeBase.PLAINS };
+		this.f = new BiomeBase[] { BiomeBase.ICE_PLAINS, BiomeBase.ICE_PLAINS, BiomeBase.ICE_PLAINS, BiomeBase.COLD_TAIGA };
 		this.a = var3;
 		if (var4 == LevelType.DEFAULT_1_1) {
-			this.c = new BiomeBase[] { BiomeBase.r, BiomeBase.t, BiomeBase.s, BiomeBase.v, BiomeBase.q, BiomeBase.u };
+			this.c = new BiomeBase[] { BiomeBase.DESERT, BiomeBase.FOREST, BiomeBase.EXTREME_HILLS, BiomeBase.SWAMPLAND, BiomeBase.PLAINS, BiomeBase.TAIGA };
 			this.g = null;
 		} else if (var4 == LevelType.CUSTOM) {
 			this.g = ChunkProviderGeneratePropertiesHolder.fromJSON(var5).getPropertiesHolder();
@@ -40,34 +40,34 @@ public class bos extends bpa {
 					var6[var8 + var7 * var3] = this.g.fixedBiome;
 				} else if (b(var9)) {
 					var6[var8 + var7 * var3] = var9;
-				} else if (var9 == BiomeBase.D.az) {
+				} else if (var9 == BiomeBase.MUSHROOM_ISLAND.az) {
 					var6[var8 + var7 * var3] = var9;
 				} else if (var9 == 1) {
 					if (var10 > 0) {
 						if (this.a(3) == 0) {
-							var6[var8 + var7 * var3] = BiomeBase.ac.az;
+							var6[var8 + var7 * var3] = BiomeBase.MESA_PLATEAU.az;
 						} else {
-							var6[var8 + var7 * var3] = BiomeBase.ab.az;
+							var6[var8 + var7 * var3] = BiomeBase.MESA_PLATEAU_F.az;
 						}
 					} else {
 						var6[var8 + var7 * var3] = this.c[this.a(this.c.length)].az;
 					}
 				} else if (var9 == 2) {
 					if (var10 > 0) {
-						var6[var8 + var7 * var3] = BiomeBase.K.az;
+						var6[var8 + var7 * var3] = BiomeBase.JUNGLE.az;
 					} else {
 						var6[var8 + var7 * var3] = this.d[this.a(this.d.length)].az;
 					}
 				} else if (var9 == 3) {
 					if (var10 > 0) {
-						var6[var8 + var7 * var3] = BiomeBase.V.az;
+						var6[var8 + var7 * var3] = BiomeBase.MEGA_TAIGA.az;
 					} else {
 						var6[var8 + var7 * var3] = this.e[this.a(this.e.length)].az;
 					}
 				} else if (var9 == 4) {
 					var6[var8 + var7 * var3] = this.f[this.a(this.f.length)].az;
 				} else {
-					var6[var8 + var7 * var3] = BiomeBase.D.az;
+					var6[var8 + var7 * var3] = BiomeBase.MUSHROOM_ISLAND.az;
 				}
 			}
 		}

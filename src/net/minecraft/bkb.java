@@ -5,9 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-abstract class bkb extends bms {
+abstract class bkb extends StructurePiece {
 
-	protected static final List a = Lists.newArrayList((Object[]) (new vl[] { new vl(Items.DIAMOND, 0, 1, 3, 5), new vl(Items.IRON_INGOT, 0, 1, 5, 5), new vl(Items.GOLD_INGOT, 0, 1, 3, 15), new vl(Items.GOLDEN_SWORD, 0, 1, 1, 5), new vl(Items.GOLD_CHESTPLATE, 0, 1, 1, 5), new vl(Items.FLINT_AND_STEEL, 0, 1, 1, 5), new vl(Items.NETHER_WART, 0, 3, 7, 5), new vl(Items.SADDLE, 0, 1, 1, 10), new vl(Items.GOLDEN_HORSE_ARMOR, 0, 1, 1, 8), new vl(Items.IRON_HORSE_ARMOR, 0, 1, 1, 5), new vl(Items.DIAMOND_HORSE_ARMOR, 0, 1, 1, 3), new vl(Item.getItemOf(Blocks.OBSIDIAN), 0, 2, 4, 2) }));
+	protected static final List a = Lists.newArrayList((Object[]) (new StructurePieceTreasure[] { new StructurePieceTreasure(Items.DIAMOND, 0, 1, 3, 5), new StructurePieceTreasure(Items.IRON_INGOT, 0, 1, 5, 5), new StructurePieceTreasure(Items.GOLD_INGOT, 0, 1, 3, 15), new StructurePieceTreasure(Items.GOLDEN_SWORD, 0, 1, 1, 5), new StructurePieceTreasure(Items.GOLD_CHESTPLATE, 0, 1, 1, 5), new StructurePieceTreasure(Items.FLINT_AND_STEEL, 0, 1, 1, 5), new StructurePieceTreasure(Items.NETHER_WART, 0, 3, 7, 5), new StructurePieceTreasure(Items.SADDLE, 0, 1, 1, 10), new StructurePieceTreasure(Items.GOLDEN_HORSE_ARMOR, 0, 1, 1, 8), new StructurePieceTreasure(Items.IRON_HORSE_ARMOR, 0, 1, 1, 5), new StructurePieceTreasure(Items.DIAMOND_HORSE_ARMOR, 0, 1, 1, 3), new StructurePieceTreasure(Item.getItemOf(Blocks.OBSIDIAN), 0, 2, 4, 2) }));
 
 	public bkb() {
 	}
@@ -72,7 +72,7 @@ abstract class bkb extends bms {
 		return bjq.a(var3, var4, var5, var6, var7, var8, var9);
 	}
 
-	private bms a(bkf var1, List var2, Random var3, int var4, int var5, int var6, BlockFace var7, int var8, boolean var9) {
+	private StructurePiece a(bkf var1, List var2, Random var3, int var4, int var5, int var6, BlockFace var7, int var8, boolean var9) {
 		if (Math.abs(var4 - var1.c().minX) <= 112 && Math.abs(var6 - var1.c().minZ) <= 112) {
 			List var10 = var1.c;
 			if (var9) {
@@ -91,7 +91,7 @@ abstract class bkb extends bms {
 		}
 	}
 
-	protected bms a(bkf var1, List var2, Random var3, int var4, int var5, boolean var6) {
+	protected StructurePiece a(bkf var1, List var2, Random var3, int var4, int var5, boolean var6) {
 		if (this.m != null) {
 			switch (bjo.a[this.m.ordinal()]) {
 				case 1:
@@ -108,7 +108,7 @@ abstract class bkb extends bms {
 		return null;
 	}
 
-	protected bms b(bkf var1, List var2, Random var3, int var4, int var5, boolean var6) {
+	protected StructurePiece b(bkf var1, List var2, Random var3, int var4, int var5, boolean var6) {
 		if (this.m != null) {
 			switch (bjo.a[this.m.ordinal()]) {
 				case 1:
@@ -125,7 +125,7 @@ abstract class bkb extends bms {
 		return null;
 	}
 
-	protected bms c(bkf var1, List var2, Random var3, int var4, int var5, boolean var6) {
+	protected StructurePiece c(bkf var1, List var2, Random var3, int var4, int var5, boolean var6) {
 		if (this.m != null) {
 			switch (bjo.a[this.m.ordinal()]) {
 				case 1:

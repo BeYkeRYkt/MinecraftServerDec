@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class bhr extends bir {
+public class bhr extends WorldGenTrees {
 
 	private int a;
 	private int b;

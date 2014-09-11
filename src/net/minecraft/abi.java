@@ -329,7 +329,7 @@ public class abi {
 
 	public int a(String var1, int var2) {
 		int var3 = this.a(var1);
-		int var4 = DataTypesConverter.a(var3 + var2, -30, 10);
+		int var4 = MathHelper.a(var3 + var2, -30, 10);
 		this.j.put(var1, Integer.valueOf(var4));
 		return var4;
 	}

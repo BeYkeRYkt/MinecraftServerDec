@@ -78,9 +78,9 @@ public class abk {
 					while (true) {
 						if (var7 < 10) {
 							float var8 = this.a.s.nextFloat() * 3.1415927F * 2.0F;
-							this.g = var4.getX() + (int) ((double) (DataTypesConverter.b(var8) * var5) * 0.9D);
+							this.g = var4.getX() + (int) ((double) (MathHelper.b(var8) * var5) * 0.9D);
 							this.h = var4.getY();
-							this.i = var4.getZ() + (int) ((double) (DataTypesConverter.a(var8) * var5) * 0.9D);
+							this.i = var4.getZ() + (int) ((double) (MathHelper.a(var8) * var5) * 0.9D);
 							var6 = false;
 							Iterator var9 = this.a.ae().b().iterator();
 

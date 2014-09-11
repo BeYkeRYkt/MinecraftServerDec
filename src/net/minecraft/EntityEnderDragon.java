@@ -58,7 +58,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 		int var4 = this.bj - var1 * 1 - 1 & 63;
 		double[] var5 = new double[3];
 		double var6 = this.bi[var3][0];
-		double var8 = DataTypesConverter.g(this.bi[var4][0] - var6);
+		double var8 = MathHelper.g(this.bi[var4][0] - var6);
 		var5[0] = var6 + var8 * (double) var2;
 		var6 = this.bi[var3][1];
 		var8 = this.bi[var4][1] - var6;
@@ -71,8 +71,8 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 		float var1;
 		float var2;
 		if (this.world.isStatic) {
-			var1 = DataTypesConverter.b(this.bt * 3.1415927F * 2.0F);
-			var2 = DataTypesConverter.b(this.bs * 3.1415927F * 2.0F);
+			var1 = MathHelper.b(this.bt * 3.1415927F * 2.0F);
+			var2 = MathHelper.b(this.bs * 3.1415927F * 2.0F);
 			if (var2 <= -0.3F && var1 >= -0.3F && !this.R()) {
 				this.world.a(this.locationX, this.locationY, this.locationZ, "mob.enderdragon.wings", 5.0F, 0.8F + this.V.nextFloat() * 0.3F, false);
 			}
@@ -87,7 +87,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 			this.world.a(Particle.b, this.locationX + (double) var1, this.locationY + 2.0D + (double) var2, this.locationZ + (double) var3, 0.0D, 0.0D, 0.0D, new int[0]);
 		} else {
 			this.n();
-			var1 = 0.2F / (DataTypesConverter.a(this.motionX * this.motionX + this.motionZ * this.motionZ) * 10.0F + 1.0F);
+			var1 = 0.2F / (MathHelper.a(this.motionX * this.motionX + this.motionZ * this.motionZ) * 10.0F + 1.0F);
 			var1 *= (float) Math.pow(2.0D, this.motionY);
 			if (this.bv) {
 				this.bt += var1 * 0.5F;
@@ -95,7 +95,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 				this.bt += var1;
 			}
 
-			this.yaw = DataTypesConverter.g(this.yaw);
+			this.yaw = MathHelper.g(this.yaw);
 			if (this.bj < 0) {
 				for (int var27 = 0; var27 < this.bi.length; ++var27) {
 					this.bi[var27][0] = (double) this.yaw;
@@ -119,7 +119,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 					var28 = this.locationX + (this.bb - this.locationX) / (double) this.ba;
 					var4 = this.locationY + (this.bc - this.locationY) / (double) this.ba;
 					var6 = this.locationZ + (this.bd - this.locationZ) / (double) this.ba;
-					var8 = DataTypesConverter.g(this.be - (double) this.yaw);
+					var8 = MathHelper.g(this.be - (double) this.yaw);
 					this.yaw = (float) ((double) this.yaw + var8 / (double) this.ba);
 					this.pitch = (float) ((double) this.pitch + (this.bf - (double) this.pitch) / (double) this.ba);
 					--this.ba;
@@ -153,13 +153,13 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 					this.cd();
 				}
 
-				var4 /= (double) DataTypesConverter.a(var28 * var28 + var6 * var6);
+				var4 /= (double) MathHelper.a(var28 * var28 + var6 * var6);
 				var33 = 0.6F;
-				var4 = DataTypesConverter.a(var4, (double) (-var33), (double) var33);
+				var4 = MathHelper.a(var4, (double) (-var33), (double) var33);
 				this.motionY += var4 * 0.10000000149011612D;
-				this.yaw = DataTypesConverter.g(this.yaw);
+				this.yaw = MathHelper.g(this.yaw);
 				double var11 = 180.0D - Math.atan2(var28, var6) * 180.0D / 3.1415927410125732D;
-				double var13 = DataTypesConverter.g(var11 - (double) this.yaw);
+				double var13 = MathHelper.g(var11 - (double) this.yaw);
 				if (var13 > 50.0D) {
 					var13 = 50.0D;
 				}
@@ -169,15 +169,15 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 				}
 
 				Vec3D var15 = (new Vec3D(this.a - this.locationX, this.b - this.locationY, this.c - this.locationZ)).a();
-				var16 = (double) (-DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F));
-				Vec3D var18 = (new Vec3D((double) DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F), this.motionY, var16)).a();
+				var16 = (double) (-MathHelper.b(this.yaw * 3.1415927F / 180.0F));
+				Vec3D var18 = (new Vec3D((double) MathHelper.a(this.yaw * 3.1415927F / 180.0F), this.motionY, var16)).a();
 				float var19 = ((float) var18.b(var15) + 0.5F) / 1.5F;
 				if (var19 < 0.0F) {
 					var19 = 0.0F;
 				}
 
 				this.aZ *= 0.8F;
-				float var20 = DataTypesConverter.a(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0F + 1.0F;
+				float var20 = MathHelper.a(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0F + 1.0F;
 				double var21 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0D + 1.0D;
 				if (var21 > 40.0D) {
 					var21 = 40.0D;
@@ -214,11 +214,11 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 			this.br.K = 3.0F;
 			this.br.J = 4.0F;
 			var2 = (float) (this.b(5, 1.0F)[1] - this.b(10, 1.0F)[1]) * 10.0F / 180.0F * 3.1415927F;
-			var3 = DataTypesConverter.b(var2);
-			float var29 = -DataTypesConverter.a(var2);
+			var3 = MathHelper.b(var2);
+			float var29 = -MathHelper.a(var2);
 			float var5 = this.yaw * 3.1415927F / 180.0F;
-			float var30 = DataTypesConverter.a(var5);
-			float var7 = DataTypesConverter.b(var5);
+			float var30 = MathHelper.a(var5);
+			float var7 = MathHelper.b(var5);
 			this.bm.s_();
 			this.bm.setPositionRotation(this.locationX + (double) (var30 * 0.5F), this.locationY, this.locationZ - (double) (var7 * 0.5F), 0.0F, 0.0F);
 			this.bq.s_();
@@ -233,8 +233,8 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 
 			double[] var31 = this.b(5, 1.0F);
 			double[] var9 = this.b(0, 1.0F);
-			var33 = DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F - this.aZ * 0.01F);
-			float var35 = DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F - this.aZ * 0.01F);
+			var33 = MathHelper.a(this.yaw * 3.1415927F / 180.0F - this.aZ * 0.01F);
+			float var35 = MathHelper.b(this.yaw * 3.1415927F / 180.0F - this.aZ * 0.01F);
 			this.bl.s_();
 			this.bl.setPositionRotation(this.locationX + (double) (var33 * 5.5F * var3), this.locationY + (var9[1] - var31[1]) * 1.0D + (double) (var29 * 5.5F), this.locationZ - (double) (var35 * 5.5F * var3), 0.0F, 0.0F);
 
@@ -254,8 +254,8 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 
 				double[] var36 = this.b(12 + var32 * 2, 1.0F);
 				float var37 = this.yaw * 3.1415927F / 180.0F + this.b(var36[0] - var31[0]) * 3.1415927F / 180.0F * 1.0F;
-				float var38 = DataTypesConverter.a(var37);
-				float var39 = DataTypesConverter.b(var37);
+				float var38 = MathHelper.a(var37);
+				float var39 = MathHelper.b(var37);
 				float var40 = 1.5F;
 				float var41 = (float) (var32 + 1) * 2.0F;
 				var34.s_();
@@ -364,16 +364,16 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 	}
 
 	private float b(double var1) {
-		return (float) DataTypesConverter.g(var1);
+		return (float) MathHelper.g(var1);
 	}
 
 	private boolean b(AxisAlignedBB var1) {
-		int var2 = DataTypesConverter.toFixedPointInt(var1.minX);
-		int var3 = DataTypesConverter.toFixedPointInt(var1.minY);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.minZ);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.maxX);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.maxY);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.maxZ);
+		int var2 = MathHelper.toFixedPointInt(var1.minX);
+		int var3 = MathHelper.toFixedPointInt(var1.minY);
+		int var4 = MathHelper.toFixedPointInt(var1.minZ);
+		int var5 = MathHelper.toFixedPointInt(var1.maxX);
+		int var6 = MathHelper.toFixedPointInt(var1.maxY);
+		int var7 = MathHelper.toFixedPointInt(var1.maxZ);
 		boolean var8 = false;
 		boolean var9 = false;
 
@@ -408,8 +408,8 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 		}
 
 		float var4 = this.yaw * 3.1415927F / 180.0F;
-		float var5 = DataTypesConverter.a(var4);
-		float var6 = DataTypesConverter.b(var4);
+		float var5 = MathHelper.a(var4);
+		float var6 = MathHelper.b(var4);
 		this.a = this.locationX + (double) (var5 * 5.0F) + (double) ((this.V.nextFloat() - 0.5F) * 2.0F);
 		this.b = this.locationY + (double) (this.V.nextFloat() * 3.0F) + 1.0D;
 		this.c = this.locationZ - (double) (var6 * 5.0F) + (double) ((this.V.nextFloat() - 0.5F) * 2.0F);

@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.List;
 import java.util.Random;
 
-abstract class bnn extends bms {
+abstract class bnn extends StructurePiece {
 
 	protected int h = -1;
 	private int a;
@@ -32,7 +32,7 @@ abstract class bnn extends bms {
 		this.b = var1.getBoolean("Desert");
 	}
 
-	protected bms a(bnk var1, List var2, Random var3, int var4, int var5) {
+	protected StructurePiece a(bnk var1, List var2, Random var3, int var4, int var5) {
 		if (this.m != null) {
 			switch (bmz.a[this.m.ordinal()]) {
 				case 1:
@@ -49,7 +49,7 @@ abstract class bnn extends bms {
 		return null;
 	}
 
-	protected bms b(bnk var1, List var2, Random var3, int var4, int var5) {
+	protected StructurePiece b(bnk var1, List var2, Random var3, int var4, int var5) {
 		if (this.m != null) {
 			switch (bmz.a[this.m.ordinal()]) {
 				case 1:

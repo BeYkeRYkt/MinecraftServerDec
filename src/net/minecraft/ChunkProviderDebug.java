@@ -49,7 +49,7 @@ public class ChunkProviderDebug implements IChunkProvider {
 			var0 /= 2;
 			var1 /= 2;
 			if (var0 <= b && var1 <= b) {
-				int var3 = DataTypesConverter.a(var0 * b + var1);
+				int var3 = MathHelper.a(var0 * b + var1);
 				if (var3 < a.size()) {
 					var2 = (BlockState) a.get(var3);
 				}
@@ -117,6 +117,6 @@ public class ChunkProviderDebug implements IChunkProvider {
 			a.addAll(var1.O().a());
 		}
 
-		b = DataTypesConverter.f(DataTypesConverter.c((float) a.size()));
+		b = MathHelper.f(MathHelper.c((float) a.size()));
 	}
 }

@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class bhz extends bhp {
+public class bhz extends WorldGenerator {
 
 	public boolean b(World var1, Random var2, Position var3) {
 		if (!var1.d(var3)) {

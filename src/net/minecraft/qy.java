@@ -41,12 +41,12 @@ public class qy {
 		this.b = var2;
 		this.c = var3;
 		this.u = var4;
-		this.d = DataTypesConverter.toFixedPointInt(var1.locationX * 32.0D);
-		this.e = DataTypesConverter.toFixedPointInt(var1.locationY * 32.0D);
-		this.f = DataTypesConverter.toFixedPointInt(var1.locationZ * 32.0D);
-		this.g = DataTypesConverter.d(var1.yaw * 256.0F / 360.0F);
-		this.h = DataTypesConverter.d(var1.pitch * 256.0F / 360.0F);
-		this.i = DataTypesConverter.d(var1.aD() * 256.0F / 360.0F);
+		this.d = MathHelper.toFixedPointInt(var1.locationX * 32.0D);
+		this.e = MathHelper.toFixedPointInt(var1.locationY * 32.0D);
+		this.f = MathHelper.toFixedPointInt(var1.locationZ * 32.0D);
+		this.g = MathHelper.d(var1.yaw * 256.0F / 360.0F);
+		this.h = MathHelper.d(var1.pitch * 256.0F / 360.0F);
+		this.i = MathHelper.d(var1.aD() * 256.0F / 360.0F);
 		this.y = var1.onGround;
 	}
 
@@ -100,11 +100,11 @@ public class qy {
 			int var24;
 			if (this.a.vehicle == null) {
 				++this.v;
-				var23 = DataTypesConverter.toFixedPointInt(this.a.locationX * 32.0D);
-				var24 = DataTypesConverter.toFixedPointInt(this.a.locationY * 32.0D);
-				int var25 = DataTypesConverter.toFixedPointInt(this.a.locationZ * 32.0D);
-				int var27 = DataTypesConverter.d(this.a.yaw * 256.0F / 360.0F);
-				int var28 = DataTypesConverter.d(this.a.pitch * 256.0F / 360.0F);
+				var23 = MathHelper.toFixedPointInt(this.a.locationX * 32.0D);
+				var24 = MathHelper.toFixedPointInt(this.a.locationY * 32.0D);
+				int var25 = MathHelper.toFixedPointInt(this.a.locationZ * 32.0D);
+				int var27 = MathHelper.d(this.a.yaw * 256.0F / 360.0F);
+				int var28 = MathHelper.d(this.a.pitch * 256.0F / 360.0F);
 				int var29 = var23 - this.d;
 				int var30 = var24 - this.e;
 				int var9 = var25 - this.f;
@@ -159,8 +159,8 @@ public class qy {
 
 				this.x = false;
 			} else {
-				var23 = DataTypesConverter.d(this.a.yaw * 256.0F / 360.0F);
-				var24 = DataTypesConverter.d(this.a.pitch * 256.0F / 360.0F);
+				var23 = MathHelper.d(this.a.yaw * 256.0F / 360.0F);
+				var24 = MathHelper.d(this.a.pitch * 256.0F / 360.0F);
 				boolean var26 = Math.abs(var23 - this.g) >= 4 || Math.abs(var24 - this.h) >= 4;
 				if (var26) {
 					this.a((Packet) (new PacketPlayOutEntityLook(this.a.getId(), (byte) var23, (byte) var24, this.a.onGround)));
@@ -168,14 +168,14 @@ public class qy {
 					this.h = var24;
 				}
 
-				this.d = DataTypesConverter.toFixedPointInt(this.a.locationX * 32.0D);
-				this.e = DataTypesConverter.toFixedPointInt(this.a.locationY * 32.0D);
-				this.f = DataTypesConverter.toFixedPointInt(this.a.locationZ * 32.0D);
+				this.d = MathHelper.toFixedPointInt(this.a.locationX * 32.0D);
+				this.e = MathHelper.toFixedPointInt(this.a.locationY * 32.0D);
+				this.f = MathHelper.toFixedPointInt(this.a.locationZ * 32.0D);
 				this.b();
 				this.x = true;
 			}
 
-			var23 = DataTypesConverter.d(this.a.aD() * 256.0F / 360.0F);
+			var23 = MathHelper.d(this.a.aD() * 256.0F / 360.0F);
 			if (Math.abs(var23 - this.i) >= 4) {
 				this.a((Packet) (new PacketPlayOutEntityHeadLook(this.a, (byte) var23)));
 				this.i = var23;
@@ -351,7 +351,7 @@ public class qy {
 		} else if (this.a instanceof EntityBoat) {
 			return new PacketPlayOutSpawnObject(this.a, 1);
 		} else if (this.a instanceof IAnimal) {
-			this.i = DataTypesConverter.d(this.a.aD() * 256.0F / 360.0F);
+			this.i = MathHelper.d(this.a.aD() * 256.0F / 360.0F);
 			return new PacketPlayOutSpawnMob((EntityLiving) this.a);
 		} else if (this.a instanceof ado) {
 			EntityHuman var8 = ((ado) this.a).b;
@@ -412,17 +412,17 @@ public class qy {
 					EntityItemFrame var4 = (EntityItemFrame) this.a;
 					var2 = new PacketPlayOutSpawnObject(this.a, 71, var4.direction.toDirection());
 					var3 = var4.getPosition();
-					var2.setX(DataTypesConverter.d((float) (var3.getX() * 32)));
-					var2.setY(DataTypesConverter.d((float) (var3.getY() * 32)));
-					var2.setZ(DataTypesConverter.d((float) (var3.getZ() * 32)));
+					var2.setX(MathHelper.d((float) (var3.getX() * 32)));
+					var2.setY(MathHelper.d((float) (var3.getY() * 32)));
+					var2.setZ(MathHelper.d((float) (var3.getZ() * 32)));
 					return var2;
 				} else if (this.a instanceof EntityLeash) {
 					EntityLeash var1 = (EntityLeash) this.a;
 					var2 = new PacketPlayOutSpawnObject(this.a, 77);
 					var3 = var1.getPosition();
-					var2.setX(DataTypesConverter.d((float) (var3.getX() * 32)));
-					var2.setY(DataTypesConverter.d((float) (var3.getY() * 32)));
-					var2.setZ(DataTypesConverter.d((float) (var3.getZ() * 32)));
+					var2.setX(MathHelper.d((float) (var3.getX() * 32)));
+					var2.setY(MathHelper.d((float) (var3.getY() * 32)));
+					var2.setZ(MathHelper.d((float) (var3.getZ() * 32)));
 					return var2;
 				} else if (this.a instanceof EntityExpirienceOrb) {
 					return new PacketPlayOutSpawnExpirienceOrb((EntityExpirienceOrb) this.a);

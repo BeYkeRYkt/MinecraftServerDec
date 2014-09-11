@@ -52,7 +52,7 @@ public class bib extends bic {
 
 		for (int var9 = var4 - var7; var9 <= var4; ++var9) {
 			int var10 = var4 - var9;
-			int var11 = var5 + DataTypesConverter.d((float) var10 / (float) var7 * 3.5F);
+			int var11 = var5 + MathHelper.d((float) var10 / (float) var7 * 3.5F);
 			this.a(var1, new Position(var2, var9, var3), var11 + (var10 > 0 && var11 == var8 && (var9 & 1) == 0 ? 1 : 0));
 			var8 = var11;
 		}

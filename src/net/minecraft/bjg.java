@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.List;
 import java.util.Random;
 
-public class bjg extends bms {
+public class bjg extends StructurePiece {
 
 	private boolean a;
 	private boolean b;
@@ -65,7 +65,7 @@ public class bjg extends bms {
 					var6.maxZ = var4 + 2;
 			}
 
-			if (bms.a(var0, var6) == null) {
+			if (StructurePiece.a(var0, var6) == null) {
 				break;
 			}
 		}
@@ -73,7 +73,7 @@ public class bjg extends bms {
 		return var7 > 0 ? var6 : null;
 	}
 
-	public void a(bms var1, List var2, Random var3) {
+	public void a(StructurePiece var1, List var2, Random var3) {
 		int var4 = this.d();
 		int var5 = var3.nextInt(4);
 		if (this.m != null) {
@@ -148,7 +148,7 @@ public class bjg extends bms {
 			int var10 = var3.nextBoolean() ? 1 : 0;
 			var1.a(var9, Blocks.RAIL.a(this.a(Blocks.RAIL, var10)), 2);
 			EntityMinecartChest var11 = new EntityMinecartChest(var1, (double) ((float) var9.getX() + 0.5F), (double) ((float) var9.getY() + 0.5F), (double) ((float) var9.getZ() + 0.5F));
-			vl.a(var3, var7, (IInventory) var11, var8);
+			StructurePieceTreasure.a(var3, var7, (IInventory) var11, var8);
 			var1.d((Entity) var11);
 			return true;
 		} else {
@@ -195,11 +195,11 @@ public class bjg extends bms {
 				this.a(var1, var3, var2, 0.05F, 1, 2, var10 - 1, Blocks.TORCH.a(BlockFace.UP.getId()));
 				this.a(var1, var3, var2, 0.05F, 1, 2, var10 + 1, Blocks.TORCH.a(BlockFace.UP.getId()));
 				if (var2.nextInt(100) == 0) {
-					this.a(var1, var3, var2, 2, 0, var10 - 1, vl.a(bje.b(), new vl[] { Items.ENCHANTED_BOOK.b(var2) }), 3 + var2.nextInt(4));
+					this.a(var1, var3, var2, 2, 0, var10 - 1, StructurePieceTreasure.a(bje.b(), new StructurePieceTreasure[] { Items.ENCHANTED_BOOK.b(var2) }), 3 + var2.nextInt(4));
 				}
 
 				if (var2.nextInt(100) == 0) {
-					this.a(var1, var3, var2, 0, 0, var10 + 1, vl.a(bje.b(), new vl[] { Items.ENCHANTED_BOOK.b(var2) }), 3 + var2.nextInt(4));
+					this.a(var1, var3, var2, 0, 0, var10 + 1, StructurePieceTreasure.a(bje.b(), new StructurePieceTreasure[] { Items.ENCHANTED_BOOK.b(var2) }), 3 + var2.nextInt(4));
 				}
 
 				if (this.b && !this.c) {

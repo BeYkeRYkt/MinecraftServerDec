@@ -85,7 +85,7 @@ public abstract class EntityAgeable extends EntityCreature {
 	}
 
 	public void b(int var1) {
-		this.dataWatcher.b(12, Byte.valueOf((byte) DataTypesConverter.a(var1, -1, 1)));
+		this.dataWatcher.b(12, Byte.valueOf((byte) MathHelper.a(var1, -1, 1)));
 		this.a = var1;
 		this.a(this.i_());
 	}

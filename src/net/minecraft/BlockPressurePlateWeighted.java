@@ -15,7 +15,7 @@ public class BlockPressurePlateWeighted extends ath {
 		int var3 = Math.min(var1.a(Entity.class, this.a(var2)).size(), this.b);
 		if (var3 > 0) {
 			float var4 = (float) Math.min(this.b, var3) / (float) this.b;
-			return DataTypesConverter.f(var4 * 15.0F);
+			return MathHelper.f(var4 * 15.0F);
 		} else {
 			return 0;
 		}

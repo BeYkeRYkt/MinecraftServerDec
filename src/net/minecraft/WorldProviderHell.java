@@ -3,7 +3,7 @@ package net.minecraft;
 public class WorldProviderHell extends WorldProvider {
 
 	public void b() {
-		this.chunkManager = new WorldChunkManagerHell(BiomeBase.x, 0.0F);
+		this.chunkManager = new WorldChunkManagerHell(BiomeBase.HELL, 0.0F);
 		this.d = true;
 		this.noSkyLight = true;
 		this.dimensionId = -1;
@@ -20,7 +20,7 @@ public class WorldProviderHell extends WorldProvider {
 	}
 
 	public IChunkProvider getChunkProvider() {
-		return new ChunkProviderNether(this.world, this.world.getWorldData().isMapFeauturesEnabled(), this.world.J());
+		return new ChunkProviderHell(this.world, this.world.getWorldData().isMapFeauturesEnabled(), this.world.J());
 	}
 
 	public boolean canSpawn(int x, int z) {

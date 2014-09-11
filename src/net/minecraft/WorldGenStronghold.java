@@ -40,11 +40,11 @@ public class WorldGenStronghold extends StructureGenerator {
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
 			if (((String) var3.getKey()).equals("distance")) {
-				this.h = DataTypesConverter.a((String) var3.getValue(), this.h, 1.0D);
+				this.h = MathHelper.a((String) var3.getValue(), this.h, 1.0D);
 			} else if (((String) var3.getKey()).equals("count")) {
-				this.g = new ChunkCoordIntPair[DataTypesConverter.a((String) var3.getValue(), this.g.length, 1)];
+				this.g = new ChunkCoordIntPair[MathHelper.a((String) var3.getValue(), this.g.length, 1)];
 			} else if (((String) var3.getKey()).equals("spread")) {
-				this.i = DataTypesConverter.a((String) var3.getValue(), this.i, 1);
+				this.i = MathHelper.a((String) var3.getValue(), this.i, 1);
 			}
 		}
 
@@ -110,9 +110,9 @@ public class WorldGenStronghold extends StructureGenerator {
 		return var1;
 	}
 
-	protected bmv b(int var1, int var2) {
-		blq var3;
-		for (var3 = new blq(this.c, this.b, var1, var2); var3.b().isEmpty() || ((bmh) var3.b().get(0)).b == null; var3 = new blq(this.c, this.b, var1, var2)) {
+	protected StructureStart b(int var1, int var2) {
+		WorldGenStronghold2Start var3;
+		for (var3 = new WorldGenStronghold2Start(this.c, this.b, var1, var2); var3.b().isEmpty() || ((WorldGenStrongholdStart) var3.b().get(0)).b == null; var3 = new WorldGenStronghold2Start(this.c, this.b, var1, var2)) {
 			;
 		}
 

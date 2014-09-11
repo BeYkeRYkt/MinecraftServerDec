@@ -8,10 +8,10 @@ public class bjl extends StructureGenerator {
 	private List d = Lists.newArrayList();
 
 	public bjl() {
-		this.d.add(new arq(EntityBlaze.class, 10, 2, 3));
-		this.d.add(new arq(EntityPigZombie.class, 5, 4, 4));
-		this.d.add(new arq(EntitySkeleton.class, 10, 4, 4));
-		this.d.add(new arq(EntityMagmaCube.class, 3, 4, 4));
+		this.d.add(new BiomeMeta(EntityBlaze.class, 10, 2, 3));
+		this.d.add(new BiomeMeta(EntityPigZombie.class, 5, 4, 4));
+		this.d.add(new BiomeMeta(EntitySkeleton.class, 10, 4, 4));
+		this.d.add(new BiomeMeta(EntityMagmaCube.class, 3, 4, 4));
 	}
 
 	public String getName() {
@@ -30,7 +30,7 @@ public class bjl extends StructureGenerator {
 		return this.b.nextInt(3) != 0 ? false : (var1 != (var3 << 4) + 4 + this.b.nextInt(8) ? false : var2 == (var4 << 4) + 4 + this.b.nextInt(8));
 	}
 
-	protected bmv b(int var1, int var2) {
+	protected StructureStart b(int var1, int var2) {
 		return new bjm(this.c, this.b, var1, var2);
 	}
 }

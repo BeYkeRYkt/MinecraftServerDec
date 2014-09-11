@@ -39,7 +39,7 @@ public class EntityChicken extends EntityAnimal {
 		this.bo = this.bk;
 		this.bn = this.bm;
 		this.bm = (float) ((double) this.bm + (double) (this.onGround ? -1 : 4) * 0.3D);
-		this.bm = DataTypesConverter.a(this.bm, 0.0F, 1.0F);
+		this.bm = MathHelper.a(this.bm, 0.0F, 1.0F);
 		if (!this.onGround && this.bp < 1.0F) {
 			this.bp = 1.0F;
 		}
@@ -129,8 +129,8 @@ public class EntityChicken extends EntityAnimal {
 
 	public void al() {
 		super.al();
-		float var1 = DataTypesConverter.a(this.aG * 3.1415927F / 180.0F);
-		float var2 = DataTypesConverter.b(this.aG * 3.1415927F / 180.0F);
+		float var1 = MathHelper.a(this.aG * 3.1415927F / 180.0F);
+		float var2 = MathHelper.b(this.aG * 3.1415927F / 180.0F);
 		float var3 = 0.1F;
 		float var4 = 0.0F;
 		this.l.b(this.locationX + (double) (var3 * var1), this.locationY + (double) (this.K * 0.5F) + this.l.am() + (double) var4, this.locationZ - (double) (var3 * var2));

@@ -2,16 +2,16 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class bhq extends bhp {
+public class bhq extends WorldGenerator {
 
 	private BlockFlowers a;
 	private BlockState b;
 
-	public bhq(BlockFlowers var1, awa var2) {
+	public bhq(BlockFlowers var1, EnumFlowerType var2) {
 		this.a(var1, var2);
 	}
 
-	public void a(BlockFlowers var1, awa var2) {
+	public void a(BlockFlowers var1, EnumFlowerType var2) {
 		this.a = var1;
 		this.b = var1.getBlockState().a(var1.l(), var2);
 	}

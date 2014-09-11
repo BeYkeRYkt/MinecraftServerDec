@@ -126,7 +126,7 @@ public abstract class bpa {
 	protected static boolean a(int var0, int var1) {
 		if (var0 == var1) {
 			return true;
-		} else if (var0 != BiomeBase.ab.az && var0 != BiomeBase.ac.az) {
+		} else if (var0 != BiomeBase.MESA_PLATEAU_F.az && var0 != BiomeBase.MESA_PLATEAU.az) {
 			BiomeBase var2 = BiomeBase.e(var0);
 			BiomeBase var3 = BiomeBase.e(var1);
 
@@ -142,12 +142,12 @@ public abstract class bpa {
 				throw new ReportedException(var5);
 			}
 		} else {
-			return var1 == BiomeBase.ab.az || var1 == BiomeBase.ac.az;
+			return var1 == BiomeBase.MESA_PLATEAU_F.az || var1 == BiomeBase.MESA_PLATEAU.az;
 		}
 	}
 
 	protected static boolean b(int var0) {
-		return var0 == BiomeBase.p.az || var0 == BiomeBase.N.az || var0 == BiomeBase.z.az;
+		return var0 == BiomeBase.OCEAN.az || var0 == BiomeBase.DEEP_OCEAN.az || var0 == BiomeBase.FROZEN_OCEAN.az;
 	}
 
 	protected int a(int... var1) {

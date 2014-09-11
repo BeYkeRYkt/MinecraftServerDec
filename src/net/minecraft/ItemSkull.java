@@ -37,7 +37,7 @@ public class ItemSkull extends Item {
 					var3.a(var4, Blocks.SKULL.getBlockState().a(BlockSkull.a, var5), 3);
 					int var12 = 0;
 					if (var5 == BlockFace.UP) {
-						var12 = DataTypesConverter.toFixedPointInt((double) (var2.yaw * 16.0F / 360.0F) + 0.5D) & 15;
+						var12 = MathHelper.toFixedPointInt((double) (var2.yaw * 16.0F / 360.0F) + 0.5D) & 15;
 					}
 
 					TileEntity var13 = var3.getTileEntity(var4);

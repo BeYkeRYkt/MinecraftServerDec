@@ -143,7 +143,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 				this.getCompressionThreshold();
 				this.setMaxBuildHeight(this.serverProperties.getInt("max-build-height", 256));
 				this.setMaxBuildHeight((this.getMaxBuildHeight() + 8) / 16 * 16);
-				this.setMaxBuildHeight(DataTypesConverter.a(this.getMaxBuildHeight(), 64, 256));
+				this.setMaxBuildHeight(MathHelper.a(this.getMaxBuildHeight(), 64, 256));
 				this.serverProperties.setProperty("max-build-height", (Object) Integer.valueOf(this.getMaxBuildHeight()));
 				logger.info("Preparing level \"" + this.getLevelName() + "\"");
 				this.a(this.getLevelName(), this.getLevelName(), randomLong, var18, gensettings);
@@ -318,8 +318,8 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 			return false;
 		} else {
 			Position var4 = var1.getSpawnPosition();
-			int var5 = DataTypesConverter.a(var2.getX() - var4.getX());
-			int var6 = DataTypesConverter.a(var2.getZ() - var4.getZ());
+			int var5 = MathHelper.a(var2.getX() - var4.getX());
+			int var6 = MathHelper.a(var2.getZ() - var4.getZ());
 			int var7 = Math.max(var5, var6);
 			return var7 <= this.isSpawnProtectionEnabled();
 		}

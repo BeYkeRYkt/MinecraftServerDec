@@ -146,7 +146,7 @@ public class EntityWitch extends EntityMonster implements afr {
 			double var6 = var1.locationX + var1.motionX - this.locationX;
 			double var8 = var4 - this.locationY;
 			double var10 = var1.locationZ + var1.motionZ - this.locationZ;
-			float var12 = DataTypesConverter.a(var6 * var6 + var10 * var10);
+			float var12 = MathHelper.a(var6 * var6 + var10 * var10);
 			if (var12 >= 8.0F && !var1.a(MobEffectList.d)) {
 				var3.a(32698);
 			} else if (var1.getHealth() >= 8.0F && !var1.a(MobEffectList.u)) {

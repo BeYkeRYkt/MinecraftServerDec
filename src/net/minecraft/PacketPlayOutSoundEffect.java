@@ -22,7 +22,7 @@ public class PacketPlayOutSoundEffect implements Packet<PlayOutPacketListener> {
 		this.z = (int) (z * 8.0D);
 		this.volume = volume;
 		this.pitch = (int) (pitch * 63.0F);
-		pitch = DataTypesConverter.a(pitch, 0.0F, 255.0F);
+		pitch = MathHelper.a(pitch, 0.0F, 255.0F);
 	}
 
 	public void readData(PacketDataSerializer serializer) {

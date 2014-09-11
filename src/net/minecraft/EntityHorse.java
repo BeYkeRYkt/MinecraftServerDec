@@ -236,7 +236,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 	}
 
 	public int u(int var1) {
-		int var2 = DataTypesConverter.a(this.cA() + var1, 0, this.cG());
+		int var2 = MathHelper.a(this.cA() + var1, 0, this.cG());
 		this.t(var2);
 		return var2;
 	}
@@ -255,8 +255,8 @@ public class EntityHorse extends EntityAnimal implements vr {
 	}
 
 	public boolean cB() {
-		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
-		int var2 = DataTypesConverter.toFixedPointInt(this.locationZ);
+		int var1 = MathHelper.toFixedPointInt(this.locationX);
+		int var2 = MathHelper.toFixedPointInt(this.locationZ);
 		this.world.b(new Position(var1, 0, var2));
 		return true;
 	}
@@ -281,7 +281,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 			this.a("mob.horse.land", 0.4F, 1.0F);
 		}
 
-		int var3 = DataTypesConverter.f((var1 * 0.5F - 3.0F) * var2);
+		int var3 = MathHelper.f((var1 * 0.5F - 3.0F) * var2);
 		if (var3 > 0) {
 			this.a(DamageSource.i, (float) var3);
 			if (this.l != null) {
@@ -677,7 +677,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 				this.g(1.0F);
 			}
 
-			if (!this.cw() && this.l == null && this.V.nextInt(300) == 0 && this.world.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.locationY) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock() == Blocks.GRASS) {
+			if (!this.cw() && this.l == null && this.V.nextInt(300) == 0 && this.world.getBlockState(new Position(MathHelper.toFixedPointInt(this.locationX), MathHelper.toFixedPointInt(this.locationY) - 1, MathHelper.toFixedPointInt(this.locationZ))).getBlock() == Blocks.GRASS) {
 				this.r(true);
 			}
 
@@ -862,8 +862,8 @@ public class EntityHorse extends EntityAnimal implements vr {
 				this.m(true);
 				this.ai = true;
 				if (var2 > 0.0F) {
-					float var3 = DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F);
-					float var4 = DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F);
+					float var3 = MathHelper.a(this.yaw * 3.1415927F / 180.0F);
+					float var4 = MathHelper.b(this.yaw * 3.1415927F / 180.0F);
 					this.motionX += (double) (-0.4F * var3 * this.bp);
 					this.motionZ += (double) (0.4F * var4 * this.bp);
 					this.a("mob.horse.jump", 0.4F, 1.0F);
@@ -887,7 +887,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 			this.ay = this.az;
 			double var8 = this.locationX - this.p;
 			double var5 = this.locationZ - this.r;
-			float var7 = DataTypesConverter.a(var8 * var8 + var5 * var5) * 4.0F;
+			float var7 = MathHelper.a(var8 * var8 + var5 * var5) * 4.0F;
 			if (var7 > 1.0F) {
 				var7 = 1.0F;
 			}
@@ -1130,8 +1130,8 @@ public class EntityHorse extends EntityAnimal implements vr {
 	public void al() {
 		super.al();
 		if (this.bI > 0.0F) {
-			float var1 = DataTypesConverter.a(this.aG * 3.1415927F / 180.0F);
-			float var2 = DataTypesConverter.b(this.aG * 3.1415927F / 180.0F);
+			float var1 = MathHelper.a(this.aG * 3.1415927F / 180.0F);
+			float var2 = MathHelper.b(this.aG * 3.1415927F / 180.0F);
 			float var3 = 0.7F * this.bI;
 			float var4 = 0.15F * this.bI;
 			this.l.b(this.locationX + (double) (var3 * var1), this.locationY + this.an() + this.l.am() + (double) var4, this.locationZ - (double) (var3 * var2));

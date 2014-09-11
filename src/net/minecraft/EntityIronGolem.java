@@ -73,9 +73,9 @@ public class EntityIronGolem extends abw {
 		}
 
 		if (this.motionX * this.motionX + this.motionZ * this.motionZ > 2.500000277905201E-7D && this.V.nextInt(5) == 0) {
-			int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
-			int var2 = DataTypesConverter.toFixedPointInt(this.locationY - 0.20000000298023224D);
-			int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
+			int var1 = MathHelper.toFixedPointInt(this.locationX);
+			int var2 = MathHelper.toFixedPointInt(this.locationY - 0.20000000298023224D);
+			int var3 = MathHelper.toFixedPointInt(this.locationZ);
 			BlockState var4 = this.world.getBlockState(new Position(var1, var2, var3));
 			Block var5 = var4.getBlock();
 			if (var5.getMaterial() != Material.AIR) {
@@ -138,7 +138,7 @@ public class EntityIronGolem extends abw {
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(Item.getItemOf((Block) Blocks.RED_FLOWER), 1, (float) awa.b.b());
+			this.a(Item.getItemOf((Block) Blocks.RED_FLOWER), 1, (float) EnumFlowerType.b.b());
 		}
 
 		var4 = 3 + this.V.nextInt(3);

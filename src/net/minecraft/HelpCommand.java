@@ -41,7 +41,7 @@ public class HelpCommand extends AbstractCommand {
 				throw new dp(var9.getUsage(var1), new Object[0]);
 			}
 
-			if (DataTypesConverter.a(var2[0], -1) != -1) {
+			if (MathHelper.a(var2[0], -1) != -1) {
 				throw var12;
 			}
 

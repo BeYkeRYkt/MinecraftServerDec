@@ -22,9 +22,9 @@ public class EntitySnowman extends abw implements afr {
 	public void m() {
 		super.m();
 		if (!this.world.isStatic) {
-			int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
-			int var2 = DataTypesConverter.toFixedPointInt(this.locationY);
-			int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
+			int var1 = MathHelper.toFixedPointInt(this.locationX);
+			int var2 = MathHelper.toFixedPointInt(this.locationY);
+			int var3 = MathHelper.toFixedPointInt(this.locationZ);
 			if (this.U()) {
 				this.a(DamageSource.f, 1.0F);
 			}
@@ -34,9 +34,9 @@ public class EntitySnowman extends abw implements afr {
 			}
 
 			for (int var4 = 0; var4 < 4; ++var4) {
-				var1 = DataTypesConverter.toFixedPointInt(this.locationX + (double) ((float) (var4 % 2 * 2 - 1) * 0.25F));
-				var2 = DataTypesConverter.toFixedPointInt(this.locationY);
-				var3 = DataTypesConverter.toFixedPointInt(this.locationZ + (double) ((float) (var4 / 2 % 2 * 2 - 1) * 0.25F));
+				var1 = MathHelper.toFixedPointInt(this.locationX + (double) ((float) (var4 % 2 * 2 - 1) * 0.25F));
+				var2 = MathHelper.toFixedPointInt(this.locationY);
+				var3 = MathHelper.toFixedPointInt(this.locationZ + (double) ((float) (var4 / 2 % 2 * 2 - 1) * 0.25F));
 				if (this.world.getBlockState(new Position(var1, var2, var3)).getBlock().getMaterial() == Material.AIR && this.world.b(new Position(var1, 0, var3)).a(new Position(var1, var2, var3)) < 0.8F && Blocks.SNOW_LAYER.c(this.world, new Position(var1, var2, var3))) {
 					this.world.a(new Position(var1, var2, var3), Blocks.SNOW_LAYER.getBlockState());
 				}
@@ -64,7 +64,7 @@ public class EntitySnowman extends abw implements afr {
 		double var6 = var1.locationX - this.locationX;
 		double var8 = var4 - var3.locationY;
 		double var10 = var1.locationZ - this.locationZ;
-		float var12 = DataTypesConverter.a(var6 * var6 + var10 * var10) * 0.2F;
+		float var12 = MathHelper.a(var6 * var6 + var10 * var10) * 0.2F;
 		var3.c(var6, var8 + (double) var12, var10, 1.6F, 12.0F);
 		this.a("random.bow", 1.0F, 1.0F / (this.bb().nextFloat() * 0.4F + 0.8F));
 		this.world.d((Entity) var3);

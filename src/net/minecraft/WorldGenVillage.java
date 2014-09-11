@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 
 public class WorldGenVillage extends StructureGenerator {
 
-	public static final List d = Arrays.asList(new BiomeBase[] { BiomeBase.q, BiomeBase.r, BiomeBase.Y });
+	public static final List d = Arrays.asList(new BiomeBase[] { BiomeBase.PLAINS, BiomeBase.DESERT, BiomeBase.SAVANNA });
 	private int f;
 	private int g;
 	private int h;
@@ -26,9 +26,9 @@ public class WorldGenVillage extends StructureGenerator {
 		while (var2.hasNext()) {
 			Entry var3 = (Entry) var2.next();
 			if (((String) var3.getKey()).equals("size")) {
-				this.f = DataTypesConverter.a((String) var3.getValue(), this.f, 0);
+				this.f = MathHelper.a((String) var3.getValue(), this.f, 0);
 			} else if (((String) var3.getKey()).equals("distance")) {
-				this.g = DataTypesConverter.a((String) var3.getValue(), this.g, this.h + 1);
+				this.g = MathHelper.a((String) var3.getValue(), this.g, this.h + 1);
 			}
 		}
 
@@ -66,7 +66,7 @@ public class WorldGenVillage extends StructureGenerator {
 		return false;
 	}
 
-	protected bmv b(int var1, int var2) {
+	protected StructureStart b(int var1, int var2) {
 		return new bmx(this.c, this.b, var1, var2, this.f);
 	}
 

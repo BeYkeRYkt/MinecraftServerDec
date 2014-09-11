@@ -3,7 +3,7 @@ package net.minecraft;
 public class WorldProviderTheEnd extends WorldProvider {
 
 	public void b() {
-		this.chunkManager = new WorldChunkManagerHell(BiomeBase.y, 0.0F);
+		this.chunkManager = new WorldChunkManagerHell(BiomeBase.SKY, 0.0F);
 		this.dimensionId = 1;
 		this.noSkyLight = true;
 	}

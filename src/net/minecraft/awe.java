@@ -6,59 +6,59 @@ class awe {
 	// $FF: synthetic field
 	static final int[] a;
 	// $FF: synthetic field
-	static final int[] b = new int[awa.values().length];
+	static final int[] b = new int[EnumFlowerType.values().length];
 
 	static {
 		try {
-			b[awa.b.ordinal()] = 1;
+			b[EnumFlowerType.b.ordinal()] = 1;
 		} catch (NoSuchFieldError var15) {
 			;
 		}
 
 		try {
-			b[awa.c.ordinal()] = 2;
+			b[EnumFlowerType.c.ordinal()] = 2;
 		} catch (NoSuchFieldError var14) {
 			;
 		}
 
 		try {
-			b[awa.d.ordinal()] = 3;
+			b[EnumFlowerType.d.ordinal()] = 3;
 		} catch (NoSuchFieldError var13) {
 			;
 		}
 
 		try {
-			b[awa.e.ordinal()] = 4;
+			b[EnumFlowerType.e.ordinal()] = 4;
 		} catch (NoSuchFieldError var12) {
 			;
 		}
 
 		try {
-			b[awa.f.ordinal()] = 5;
+			b[EnumFlowerType.f.ordinal()] = 5;
 		} catch (NoSuchFieldError var11) {
 			;
 		}
 
 		try {
-			b[awa.g.ordinal()] = 6;
+			b[EnumFlowerType.g.ordinal()] = 6;
 		} catch (NoSuchFieldError var10) {
 			;
 		}
 
 		try {
-			b[awa.h.ordinal()] = 7;
+			b[EnumFlowerType.h.ordinal()] = 7;
 		} catch (NoSuchFieldError var9) {
 			;
 		}
 
 		try {
-			b[awa.i.ordinal()] = 8;
+			b[EnumFlowerType.i.ordinal()] = 8;
 		} catch (NoSuchFieldError var8) {
 			;
 		}
 
 		try {
-			b[awa.j.ordinal()] = 9;
+			b[EnumFlowerType.j.ordinal()] = 9;
 		} catch (NoSuchFieldError var7) {
 			;
 		}

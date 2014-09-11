@@ -86,7 +86,7 @@ public abstract class World implements ard {
 				throw new ReportedException(var4);
 			}
 		} else {
-			return this.worldProvider.m().a(var1, BiomeBase.q);
+			return this.worldProvider.m().a(var1, BiomeBase.PLAINS);
 		}
 	}
 
@@ -506,12 +506,12 @@ public abstract class World implements ard {
 	public MovingObjectPosition a(Vec3D var1, Vec3D var2, boolean var3, boolean var4, boolean var5) {
 		if (!Double.isNaN(var1.x) && !Double.isNaN(var1.y) && !Double.isNaN(var1.z)) {
 			if (!Double.isNaN(var2.x) && !Double.isNaN(var2.y) && !Double.isNaN(var2.z)) {
-				int var6 = DataTypesConverter.toFixedPointInt(var2.x);
-				int var7 = DataTypesConverter.toFixedPointInt(var2.y);
-				int var8 = DataTypesConverter.toFixedPointInt(var2.z);
-				int var9 = DataTypesConverter.toFixedPointInt(var1.x);
-				int var10 = DataTypesConverter.toFixedPointInt(var1.y);
-				int var11 = DataTypesConverter.toFixedPointInt(var1.z);
+				int var6 = MathHelper.toFixedPointInt(var2.x);
+				int var7 = MathHelper.toFixedPointInt(var2.y);
+				int var8 = MathHelper.toFixedPointInt(var2.z);
+				int var9 = MathHelper.toFixedPointInt(var1.x);
+				int var10 = MathHelper.toFixedPointInt(var1.y);
+				int var11 = MathHelper.toFixedPointInt(var1.z);
 				Position var12 = new Position(var9, var10, var11);
 				new Position(var6, var7, var8);
 				BlockState var14 = this.getBlockState(var12);
@@ -607,9 +607,9 @@ public abstract class World implements ard {
 						var1 = new Vec3D(var1.x + var31 * var29, var1.y + var33 * var29, var23);
 					}
 
-					var9 = DataTypesConverter.toFixedPointInt(var1.x) - (var37 == BlockFace.EAST ? 1 : 0);
-					var10 = DataTypesConverter.toFixedPointInt(var1.y) - (var37 == BlockFace.UP ? 1 : 0);
-					var11 = DataTypesConverter.toFixedPointInt(var1.z) - (var37 == BlockFace.SOUTH ? 1 : 0);
+					var9 = MathHelper.toFixedPointInt(var1.x) - (var37 == BlockFace.EAST ? 1 : 0);
+					var10 = MathHelper.toFixedPointInt(var1.y) - (var37 == BlockFace.UP ? 1 : 0);
+					var11 = MathHelper.toFixedPointInt(var1.z) - (var37 == BlockFace.SOUTH ? 1 : 0);
 					var12 = new Position(var9, var10, var11);
 					BlockState var38 = this.getBlockState(var12);
 					Block var39 = var38.getBlock();
@@ -682,8 +682,8 @@ public abstract class World implements ard {
 	}
 
 	public boolean d(Entity var1) {
-		int var2 = DataTypesConverter.toFixedPointInt(var1.locationX / 16.0D);
-		int var3 = DataTypesConverter.toFixedPointInt(var1.locationZ / 16.0D);
+		int var2 = MathHelper.toFixedPointInt(var1.locationX / 16.0D);
+		int var3 = MathHelper.toFixedPointInt(var1.locationZ / 16.0D);
 		boolean var4 = var1.n;
 		if (var1 instanceof EntityHuman) {
 			var4 = true;
@@ -760,12 +760,12 @@ public abstract class World implements ard {
 
 	public List getCubes(Entity var1, AxisAlignedBB var2) {
 		ArrayList var3 = Lists.newArrayList();
-		int var4 = DataTypesConverter.toFixedPointInt(var2.minX);
-		int var5 = DataTypesConverter.toFixedPointInt(var2.maxX + 1.0D);
-		int var6 = DataTypesConverter.toFixedPointInt(var2.minY);
-		int var7 = DataTypesConverter.toFixedPointInt(var2.maxY + 1.0D);
-		int var8 = DataTypesConverter.toFixedPointInt(var2.minZ);
-		int var9 = DataTypesConverter.toFixedPointInt(var2.maxZ + 1.0D);
+		int var4 = MathHelper.toFixedPointInt(var2.minX);
+		int var5 = MathHelper.toFixedPointInt(var2.maxX + 1.0D);
+		int var6 = MathHelper.toFixedPointInt(var2.minY);
+		int var7 = MathHelper.toFixedPointInt(var2.maxY + 1.0D);
+		int var8 = MathHelper.toFixedPointInt(var2.minZ);
+		int var9 = MathHelper.toFixedPointInt(var2.maxZ + 1.0D);
 
 		for (int var10 = var4; var10 < var5; ++var10) {
 			for (int var11 = var8; var11 < var9; ++var11) {
@@ -835,12 +835,12 @@ public abstract class World implements ard {
 
 	public List a(AxisAlignedBB var1) {
 		ArrayList var2 = Lists.newArrayList();
-		int var3 = DataTypesConverter.toFixedPointInt(var1.minX);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.maxX + 1.0D);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.minY);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.maxY + 1.0D);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.minZ);
-		int var8 = DataTypesConverter.toFixedPointInt(var1.maxZ + 1.0D);
+		int var3 = MathHelper.toFixedPointInt(var1.minX);
+		int var4 = MathHelper.toFixedPointInt(var1.maxX + 1.0D);
+		int var5 = MathHelper.toFixedPointInt(var1.minY);
+		int var6 = MathHelper.toFixedPointInt(var1.maxY + 1.0D);
+		int var7 = MathHelper.toFixedPointInt(var1.minZ);
+		int var8 = MathHelper.toFixedPointInt(var1.maxZ + 1.0D);
 
 		for (int var9 = var3; var9 < var4; ++var9) {
 			for (int var10 = var7; var10 < var8; ++var10) {
@@ -865,8 +865,8 @@ public abstract class World implements ard {
 
 	public int a(float var1) {
 		float var2 = this.c(var1);
-		float var3 = 1.0F - (DataTypesConverter.b(var2 * 3.1415927F * 2.0F) * 2.0F + 0.5F);
-		var3 = DataTypesConverter.a(var3, 0.0F, 1.0F);
+		float var3 = 1.0F - (MathHelper.b(var2 * 3.1415927F * 2.0F) * 2.0F + 0.5F);
+		var3 = MathHelper.a(var3, 0.0F, 1.0F);
 		var3 = 1.0F - var3;
 		var3 = (float) ((double) var3 * (1.0D - (double) (this.j(var1) * 5.0F) / 16.0D));
 		var3 = (float) ((double) var3 * (1.0D - (double) (this.h(var1) * 5.0F) / 16.0D));
@@ -1098,8 +1098,8 @@ public abstract class World implements ard {
 	}
 
 	public void a(Entity var1, boolean var2) {
-		int var3 = DataTypesConverter.toFixedPointInt(var1.locationX);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.locationZ);
+		int var3 = MathHelper.toFixedPointInt(var1.locationX);
+		int var4 = MathHelper.toFixedPointInt(var1.locationZ);
 		byte var5 = 32;
 		if (!var2 || this.a(var3 - var5, 0, var4 - var5, var3 + var5, 0, var4 + var5, true)) {
 			var1.P = var1.locationX;
@@ -1137,9 +1137,9 @@ public abstract class World implements ard {
 				var1.yaw = var1.A;
 			}
 
-			int var6 = DataTypesConverter.toFixedPointInt(var1.locationX / 16.0D);
-			int var7 = DataTypesConverter.toFixedPointInt(var1.locationY / 16.0D);
-			int var8 = DataTypesConverter.toFixedPointInt(var1.locationZ / 16.0D);
+			int var6 = MathHelper.toFixedPointInt(var1.locationX / 16.0D);
+			int var7 = MathHelper.toFixedPointInt(var1.locationY / 16.0D);
+			int var8 = MathHelper.toFixedPointInt(var1.locationZ / 16.0D);
 			if (!var1.ad || var1.ae != var6 || var1.af != var7 || var1.ag != var8) {
 				if (var1.ad && this.a(var1.ae, var1.ag, true)) {
 					this.a(var1.ae, var1.ag).a(var1, var1.af);
@@ -1184,12 +1184,12 @@ public abstract class World implements ard {
 	}
 
 	public boolean isOnGround(AxisAlignedBB var1) {
-		int var2 = DataTypesConverter.toFixedPointInt(var1.minX);
-		int var3 = DataTypesConverter.toFixedPointInt(var1.maxX);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.minY);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.maxY);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.minZ);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.maxZ);
+		int var2 = MathHelper.toFixedPointInt(var1.minX);
+		int var3 = MathHelper.toFixedPointInt(var1.maxX);
+		int var4 = MathHelper.toFixedPointInt(var1.minY);
+		int var5 = MathHelper.toFixedPointInt(var1.maxY);
+		int var6 = MathHelper.toFixedPointInt(var1.minZ);
+		int var7 = MathHelper.toFixedPointInt(var1.maxZ);
 
 		for (int var8 = var2; var8 <= var3; ++var8) {
 			for (int var9 = var4; var9 <= var5; ++var9) {
@@ -1206,12 +1206,12 @@ public abstract class World implements ard {
 	}
 
 	public boolean d(AxisAlignedBB var1) {
-		int var2 = DataTypesConverter.toFixedPointInt(var1.minX);
-		int var3 = DataTypesConverter.toFixedPointInt(var1.maxX);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.minY);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.maxY);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.minZ);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.maxZ);
+		int var2 = MathHelper.toFixedPointInt(var1.minX);
+		int var3 = MathHelper.toFixedPointInt(var1.maxX);
+		int var4 = MathHelper.toFixedPointInt(var1.minY);
+		int var5 = MathHelper.toFixedPointInt(var1.maxY);
+		int var6 = MathHelper.toFixedPointInt(var1.minZ);
+		int var7 = MathHelper.toFixedPointInt(var1.maxZ);
 
 		for (int var8 = var2; var8 <= var3; ++var8) {
 			for (int var9 = var4; var9 <= var5; ++var9) {
@@ -1228,12 +1228,12 @@ public abstract class World implements ard {
 	}
 
 	public boolean e(AxisAlignedBB var1) {
-		int var2 = DataTypesConverter.toFixedPointInt(var1.minX);
-		int var3 = DataTypesConverter.toFixedPointInt(var1.maxX + 1.0D);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.minY);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.maxY + 1.0D);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.minZ);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.maxZ + 1.0D);
+		int var2 = MathHelper.toFixedPointInt(var1.minX);
+		int var3 = MathHelper.toFixedPointInt(var1.maxX + 1.0D);
+		int var4 = MathHelper.toFixedPointInt(var1.minY);
+		int var5 = MathHelper.toFixedPointInt(var1.maxY + 1.0D);
+		int var6 = MathHelper.toFixedPointInt(var1.minZ);
+		int var7 = MathHelper.toFixedPointInt(var1.maxZ + 1.0D);
 		if (this.a(var2, var4, var6, var3, var5, var7, true)) {
 			for (int var8 = var2; var8 < var3; ++var8) {
 				for (int var9 = var4; var9 < var5; ++var9) {
@@ -1251,12 +1251,12 @@ public abstract class World implements ard {
 	}
 
 	public boolean a(AxisAlignedBB var1, Material var2, Entity var3) {
-		int var4 = DataTypesConverter.toFixedPointInt(var1.minX);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.maxX + 1.0D);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.minY);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.maxY + 1.0D);
-		int var8 = DataTypesConverter.toFixedPointInt(var1.minZ);
-		int var9 = DataTypesConverter.toFixedPointInt(var1.maxZ + 1.0D);
+		int var4 = MathHelper.toFixedPointInt(var1.minX);
+		int var5 = MathHelper.toFixedPointInt(var1.maxX + 1.0D);
+		int var6 = MathHelper.toFixedPointInt(var1.minY);
+		int var7 = MathHelper.toFixedPointInt(var1.maxY + 1.0D);
+		int var8 = MathHelper.toFixedPointInt(var1.minZ);
+		int var9 = MathHelper.toFixedPointInt(var1.maxZ + 1.0D);
 		if (!this.a(var4, var6, var8, var5, var7, var9, true)) {
 			return false;
 		} else {
@@ -1293,12 +1293,12 @@ public abstract class World implements ard {
 	}
 
 	public boolean a(AxisAlignedBB var1, Material var2) {
-		int var3 = DataTypesConverter.toFixedPointInt(var1.minX);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.maxX + 1.0D);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.minY);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.maxY + 1.0D);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.minZ);
-		int var8 = DataTypesConverter.toFixedPointInt(var1.maxZ + 1.0D);
+		int var3 = MathHelper.toFixedPointInt(var1.minX);
+		int var4 = MathHelper.toFixedPointInt(var1.maxX + 1.0D);
+		int var5 = MathHelper.toFixedPointInt(var1.minY);
+		int var6 = MathHelper.toFixedPointInt(var1.maxY + 1.0D);
+		int var7 = MathHelper.toFixedPointInt(var1.minZ);
+		int var8 = MathHelper.toFixedPointInt(var1.maxZ + 1.0D);
 
 		for (int var9 = var3; var9 < var4; ++var9) {
 			for (int var10 = var5; var10 < var6; ++var10) {
@@ -1314,12 +1314,12 @@ public abstract class World implements ard {
 	}
 
 	public boolean b(AxisAlignedBB var1, Material var2) {
-		int var3 = DataTypesConverter.toFixedPointInt(var1.minX);
-		int var4 = DataTypesConverter.toFixedPointInt(var1.maxX + 1.0D);
-		int var5 = DataTypesConverter.toFixedPointInt(var1.minY);
-		int var6 = DataTypesConverter.toFixedPointInt(var1.maxY + 1.0D);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.minZ);
-		int var8 = DataTypesConverter.toFixedPointInt(var1.maxZ + 1.0D);
+		int var3 = MathHelper.toFixedPointInt(var1.minX);
+		int var4 = MathHelper.toFixedPointInt(var1.maxX + 1.0D);
+		int var5 = MathHelper.toFixedPointInt(var1.minY);
+		int var6 = MathHelper.toFixedPointInt(var1.maxY + 1.0D);
+		int var7 = MathHelper.toFixedPointInt(var1.minZ);
+		int var8 = MathHelper.toFixedPointInt(var1.maxZ + 1.0D);
 
 		for (int var9 = var3; var9 < var4; ++var9) {
 			for (int var10 = var5; var10 < var6; ++var10) {
@@ -1561,7 +1561,7 @@ public abstract class World implements ard {
 					this.r = (float) ((double) this.r - 0.01D);
 				}
 
-				this.r = DataTypesConverter.a(this.r, 0.0F, 1.0F);
+				this.r = MathHelper.a(this.r, 0.0F, 1.0F);
 				int var3 = this.worldData.getRainTime();
 				if (var3 <= 0) {
 					if (this.worldData.isRaining()) {
@@ -1584,7 +1584,7 @@ public abstract class World implements ard {
 					this.p = (float) ((double) this.p - 0.01D);
 				}
 
-				this.p = DataTypesConverter.a(this.p, 0.0F, 1.0F);
+				this.p = MathHelper.a(this.p, 0.0F, 1.0F);
 			}
 		}
 	}
@@ -1600,8 +1600,8 @@ public abstract class World implements ard {
 		int var5;
 		for (var1 = 0; var1 < this.j.size(); ++var1) {
 			var2 = (EntityHuman) this.j.get(var1);
-			var3 = DataTypesConverter.toFixedPointInt(var2.locationX / 16.0D);
-			var4 = DataTypesConverter.toFixedPointInt(var2.locationZ / 16.0D);
+			var3 = MathHelper.toFixedPointInt(var2.locationX / 16.0D);
+			var4 = MathHelper.toFixedPointInt(var2.locationZ / 16.0D);
 			var5 = this.q();
 
 			for (int var6 = -var5; var6 <= var5; ++var6) {
@@ -1620,9 +1620,9 @@ public abstract class World implements ard {
 		if (!this.j.isEmpty()) {
 			var1 = this.s.nextInt(this.j.size());
 			var2 = (EntityHuman) this.j.get(var1);
-			var3 = DataTypesConverter.toFixedPointInt(var2.locationX) + this.s.nextInt(11) - 5;
-			var4 = DataTypesConverter.toFixedPointInt(var2.locationY) + this.s.nextInt(11) - 5;
-			var5 = DataTypesConverter.toFixedPointInt(var2.locationZ) + this.s.nextInt(11) - 5;
+			var3 = MathHelper.toFixedPointInt(var2.locationX) + this.s.nextInt(11) - 5;
+			var4 = MathHelper.toFixedPointInt(var2.locationY) + this.s.nextInt(11) - 5;
+			var5 = MathHelper.toFixedPointInt(var2.locationZ) + this.s.nextInt(11) - 5;
 			this.x(new Position(var3, var4, var5));
 		}
 
@@ -1809,9 +1809,9 @@ public abstract class World implements ard {
 					if (var16 == var14) {
 						this.a(var1, var15, 0);
 						if (var14 > 0) {
-							var17 = DataTypesConverter.a(var11 - var7);
-							var18 = DataTypesConverter.a(var12 - var8);
-							var19 = DataTypesConverter.a(var13 - var9);
+							var17 = MathHelper.a(var11 - var7);
+							var18 = MathHelper.a(var12 - var8);
+							var19 = MathHelper.a(var13 - var9);
 							if (var17 + var18 + var19 < 17) {
 								BlockFace[] var20 = BlockFace.values();
 								int var21 = var20.length;
@@ -1906,10 +1906,10 @@ public abstract class World implements ard {
 
 	public List a(Entity var1, AxisAlignedBB var2, Predicate var3) {
 		ArrayList var4 = Lists.newArrayList();
-		int var5 = DataTypesConverter.toFixedPointInt((var2.minX - 2.0D) / 16.0D);
-		int var6 = DataTypesConverter.toFixedPointInt((var2.maxX + 2.0D) / 16.0D);
-		int var7 = DataTypesConverter.toFixedPointInt((var2.minZ - 2.0D) / 16.0D);
-		int var8 = DataTypesConverter.toFixedPointInt((var2.maxZ + 2.0D) / 16.0D);
+		int var5 = MathHelper.toFixedPointInt((var2.minX - 2.0D) / 16.0D);
+		int var6 = MathHelper.toFixedPointInt((var2.maxX + 2.0D) / 16.0D);
+		int var7 = MathHelper.toFixedPointInt((var2.minZ - 2.0D) / 16.0D);
+		int var8 = MathHelper.toFixedPointInt((var2.maxZ + 2.0D) / 16.0D);
 
 		for (int var9 = var5; var9 <= var6; ++var9) {
 			for (int var10 = var7; var10 <= var8; ++var10) {
@@ -1955,10 +1955,10 @@ public abstract class World implements ard {
 	}
 
 	public <T> List<T> a(Class<T> var1, AxisAlignedBB var2, Predicate<?> var3) {
-		int var4 = DataTypesConverter.toFixedPointInt((var2.minX - 2.0D) / 16.0D);
-		int var5 = DataTypesConverter.toFixedPointInt((var2.maxX + 2.0D) / 16.0D);
-		int var6 = DataTypesConverter.toFixedPointInt((var2.minZ - 2.0D) / 16.0D);
-		int var7 = DataTypesConverter.toFixedPointInt((var2.maxZ + 2.0D) / 16.0D);
+		int var4 = MathHelper.toFixedPointInt((var2.minX - 2.0D) / 16.0D);
+		int var5 = MathHelper.toFixedPointInt((var2.maxX + 2.0D) / 16.0D);
+		int var6 = MathHelper.toFixedPointInt((var2.minZ - 2.0D) / 16.0D);
+		int var7 = MathHelper.toFixedPointInt((var2.maxZ + 2.0D) / 16.0D);
 		ArrayList<T> var8 = Lists.newArrayList();
 
 		for (int var9 = var4; var9 <= var5; ++var9) {

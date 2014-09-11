@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class bhf extends bhc {
+public class bhf extends WorldGenTreeAbstract {
 
 	private boolean a;
 

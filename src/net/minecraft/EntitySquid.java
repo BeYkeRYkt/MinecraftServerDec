@@ -95,7 +95,7 @@ public class EntitySquid extends EntityWaterAnimal {
 			float var1;
 			if (this.bj < 3.1415927F) {
 				var1 = this.bj / 3.1415927F;
-				this.bl = DataTypesConverter.a(var1 * var1 * 3.1415927F) * 3.1415927F * 0.25F;
+				this.bl = MathHelper.a(var1 * var1 * 3.1415927F) * 3.1415927F * 0.25F;
 				if ((double) var1 > 0.75D) {
 					this.bn = 1.0F;
 					this.bp = 1.0F;
@@ -114,13 +114,13 @@ public class EntitySquid extends EntityWaterAnimal {
 				this.motionZ = (double) (this.bs * this.bn);
 			}
 
-			var1 = DataTypesConverter.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			var1 = MathHelper.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.aG += (-((float) Math.atan2(this.motionX, this.motionZ)) * 180.0F / 3.1415927F - this.aG) * 0.1F;
 			this.yaw = this.aG;
 			this.c = (float) ((double) this.c + 3.141592653589793D * (double) this.bp * 1.5D);
 			this.a += (-((float) Math.atan2((double) var1, this.motionY)) * 180.0F / 3.1415927F - this.a) * 0.1F;
 		} else {
-			this.bl = DataTypesConverter.e(DataTypesConverter.a(this.bj)) * 3.1415927F * 0.25F;
+			this.bl = MathHelper.e(MathHelper.a(this.bj)) * 3.1415927F * 0.25F;
 			if (!this.world.isStatic) {
 				this.motionX = 0.0D;
 				this.motionY -= 0.08D;

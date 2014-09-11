@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public abstract class bic extends bhc {
+public abstract class bic extends WorldGenTreeAbstract {
 
 	protected final int a;
 	protected final int b;

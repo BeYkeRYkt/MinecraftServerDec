@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class bio extends bhc {
+public class bio extends WorldGenTreeAbstract {
 
 	public bio(boolean var1) {
 		super(var1);

@@ -15,9 +15,9 @@ public class PacketPlayOutEntityTeleport implements Packet<PlayOutPacketListener
 
 	public PacketPlayOutEntityTeleport(Entity entity) {
 		this.entityId = entity.getId();
-		this.x = DataTypesConverter.toFixedPointInt(entity.locationX * 32.0D);
-		this.y = DataTypesConverter.toFixedPointInt(entity.locationY * 32.0D);
-		this.z = DataTypesConverter.toFixedPointInt(entity.locationZ * 32.0D);
+		this.x = MathHelper.toFixedPointInt(entity.locationX * 32.0D);
+		this.y = MathHelper.toFixedPointInt(entity.locationY * 32.0D);
+		this.z = MathHelper.toFixedPointInt(entity.locationZ * 32.0D);
 		this.yaw = (byte) ((int) (entity.yaw * 256.0F / 360.0F));
 		this.pitch = (byte) ((int) (entity.pitch * 256.0F / 360.0F));
 		this.onGround = entity.onGround;

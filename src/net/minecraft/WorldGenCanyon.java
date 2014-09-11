@@ -34,15 +34,15 @@ public class WorldGenCanyon extends WorldGenBase {
 		}
 
 		for (; var15 < var16; ++var15) {
-			double var53 = 1.5D + (double) (DataTypesConverter.a((float) var15 * 3.1415927F / (float) var16) * var12 * 1.0F);
+			double var53 = 1.5D + (double) (MathHelper.a((float) var15 * 3.1415927F / (float) var16) * var12 * 1.0F);
 			double var30 = var53 * var17;
 			var53 *= (double) var19.nextFloat() * 0.25D + 0.75D;
 			var30 *= (double) var19.nextFloat() * 0.25D + 0.75D;
-			float var32 = DataTypesConverter.b(var14);
-			float var33 = DataTypesConverter.a(var14);
-			var6 += (double) (DataTypesConverter.b(var13) * var32);
+			float var32 = MathHelper.b(var14);
+			float var33 = MathHelper.a(var14);
+			var6 += (double) (MathHelper.b(var13) * var32);
 			var8 += (double) var33;
-			var10 += (double) (DataTypesConverter.a(var13) * var32);
+			var10 += (double) (MathHelper.a(var13) * var32);
 			var14 *= 0.7F;
 			var14 += var25 * 0.05F;
 			var13 += var24 * 0.05F;
@@ -60,12 +60,12 @@ public class WorldGenCanyon extends WorldGenBase {
 				}
 
 				if (var6 >= var20 - 16.0D - var53 * 2.0D && var10 >= var22 - 16.0D - var53 * 2.0D && var6 <= var20 + 16.0D + var53 * 2.0D && var10 <= var22 + 16.0D + var53 * 2.0D) {
-					int var54 = DataTypesConverter.toFixedPointInt(var6 - var53) - var3 * 16 - 1;
-					int var35 = DataTypesConverter.toFixedPointInt(var6 + var53) - var3 * 16 + 1;
-					int var55 = DataTypesConverter.toFixedPointInt(var8 - var30) - 1;
-					int var37 = DataTypesConverter.toFixedPointInt(var8 + var30) + 1;
-					int var56 = DataTypesConverter.toFixedPointInt(var10 - var53) - var4 * 16 - 1;
-					int var39 = DataTypesConverter.toFixedPointInt(var10 + var53) - var4 * 16 + 1;
+					int var54 = MathHelper.toFixedPointInt(var6 - var53) - var3 * 16 - 1;
+					int var35 = MathHelper.toFixedPointInt(var6 + var53) - var3 * 16 + 1;
+					int var55 = MathHelper.toFixedPointInt(var8 - var30) - 1;
+					int var37 = MathHelper.toFixedPointInt(var8 + var30) + 1;
+					int var56 = MathHelper.toFixedPointInt(var10 - var53) - var4 * 16 - 1;
+					int var39 = MathHelper.toFixedPointInt(var10 + var53) - var4 * 16 + 1;
 					if (var54 < 0) {
 						var54 = 0;
 					}

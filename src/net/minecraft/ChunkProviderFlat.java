@@ -15,8 +15,8 @@ public class ChunkProviderFlat implements IChunkProvider {
 	private final List e = Lists.newArrayList();
 	private final boolean f;
 	private final boolean g;
-	private bhy h;
-	private bhy i;
+	private WorldGenLakes h;
+	private WorldGenLakes i;
 
 	public ChunkProviderFlat(World var1, long var2, boolean var4, String var5) {
 		this.a = var1;
@@ -51,11 +51,11 @@ public class ChunkProviderFlat implements IChunkProvider {
 		}
 
 		if (this.d.b().containsKey("lake")) {
-			this.h = new bhy(Blocks.WATER);
+			this.h = new WorldGenLakes(Blocks.WATER);
 		}
 
 		if (this.d.b().containsKey("lava_lake")) {
-			this.i = new bhy(Blocks.LAVA);
+			this.i = new WorldGenLakes(Blocks.LAVA);
 		}
 
 		this.g = this.d.b().containsKey("dungeon");
@@ -63,7 +63,7 @@ public class ChunkProviderFlat implements IChunkProvider {
 		Iterator var12 = this.d.c().iterator();
 
 		while (var12.hasNext()) {
-			biw var8 = (biw) var12.next();
+			WorldGenFlatLayerInfo var8 = (WorldGenFlatLayerInfo) var12.next();
 
 			for (int var9 = var8.d(); var9 < var8.d() + var8.b(); ++var9) {
 				BlockState var10 = var8.c();
@@ -149,7 +149,7 @@ public class ChunkProviderFlat implements IChunkProvider {
 
 		if (this.g) {
 			for (int var18 = 0; var18 < 8; ++var18) {
-				(new bie()).b(this.a, this.b, var6.a(this.b.nextInt(16) + 8, this.b.nextInt(256), this.b.nextInt(16) + 8));
+				(new WorldGenDungeons()).b(this.a, this.b, var6.a(this.b.nextInt(16) + 8, this.b.nextInt(256), this.b.nextInt(16) + 8));
 			}
 		}
 

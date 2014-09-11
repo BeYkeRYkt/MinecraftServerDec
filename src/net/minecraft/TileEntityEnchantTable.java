@@ -80,12 +80,12 @@ public class TileEntityEnchantTable extends TileEntity implements PacketTickable
 		}
 
 		this.l += var7 * 0.4F;
-		this.j = DataTypesConverter.a(this.j, 0.0F, 1.0F);
+		this.j = MathHelper.a(this.j, 0.0F, 1.0F);
 		++this.a;
 		this.g = this.f;
 		float var3 = (this.h - this.f) * 0.4F;
 		float var8 = 0.2F;
-		var3 = DataTypesConverter.a(var3, -var8, var8);
+		var3 = MathHelper.a(var3, -var8, var8);
 		this.i += (var3 - this.i) * 0.9F;
 		this.f += this.i;
 	}

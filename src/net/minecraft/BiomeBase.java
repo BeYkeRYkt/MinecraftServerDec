@@ -14,66 +14,65 @@ import org.apache.logging.log4j.Logger;
 public abstract class BiomeBase {
 
 	private static final Logger aD = LogManager.getLogger();
-	protected static final aro a = new aro(0.1F, 0.2F);
-	protected static final aro b = new aro(-0.5F, 0.0F);
-	protected static final aro c = new aro(-1.0F, 0.1F);
-	protected static final aro d = new aro(-1.8F, 0.1F);
-	protected static final aro e = new aro(0.125F, 0.05F);
-	protected static final aro f = new aro(0.2F, 0.2F);
-	protected static final aro g = new aro(0.45F, 0.3F);
-	protected static final aro h = new aro(1.5F, 0.025F);
-	protected static final aro i = new aro(1.0F, 0.5F);
-	protected static final aro j = new aro(0.0F, 0.025F);
-	protected static final aro k = new aro(0.1F, 0.8F);
-	protected static final aro l = new aro(0.2F, 0.3F);
-	protected static final aro m = new aro(-0.2F, 0.1F);
+	protected static final BiomeTemperature a = new BiomeTemperature(0.1F, 0.2F);
+	protected static final BiomeTemperature b = new BiomeTemperature(-0.5F, 0.0F);
+	protected static final BiomeTemperature c = new BiomeTemperature(-1.0F, 0.1F);
+	protected static final BiomeTemperature d = new BiomeTemperature(-1.8F, 0.1F);
+	protected static final BiomeTemperature e = new BiomeTemperature(0.125F, 0.05F);
+	protected static final BiomeTemperature f = new BiomeTemperature(0.2F, 0.2F);
+	protected static final BiomeTemperature g = new BiomeTemperature(0.45F, 0.3F);
+	protected static final BiomeTemperature h = new BiomeTemperature(1.5F, 0.025F);
+	protected static final BiomeTemperature i = new BiomeTemperature(1.0F, 0.5F);
+	protected static final BiomeTemperature j = new BiomeTemperature(0.0F, 0.025F);
+	protected static final BiomeTemperature k = new BiomeTemperature(0.1F, 0.8F);
+	protected static final BiomeTemperature l = new BiomeTemperature(0.2F, 0.3F);
+	protected static final BiomeTemperature m = new BiomeTemperature(-0.2F, 0.1F);
 	private static final BiomeBase[] aE = new BiomeBase[256];
 	public static final Set n = Sets.newHashSet();
 	public static final Map o = Maps.newHashMap();
-	public static final BiomeBase p = (new asm(0)).b(112).a("Ocean").a(c);
-	public static final BiomeBase q = (new asn(1)).b(9286496).a("Plains");
-	public static final BiomeBase r = (new asa(2)).b(16421912).a("Desert").b().a(2.0F, 0.0F).a(e);
-	public static final BiomeBase s = (new asb(3, false)).b(6316128).a("Extreme Hills").a(i).a(0.2F, 0.3F);
-	public static final BiomeBase t = (new asd(4, 0)).b(353825).a("Forest");
-	public static final BiomeBase u = (new asu(5, 0)).b(747097).a("Taiga").a(5159473).a(0.25F, 0.8F).a(f);
-	public static final BiomeBase v = (new ast(6)).b(522674).a("Swampland").a(9154376).a(m).a(0.8F, 0.9F);
-	public static final BiomeBase w = (new asp(7)).b(255).a("River").a(b);
-	public static final BiomeBase x = (new asg(8)).b(16711680).a("Hell").b().a(2.0F, 0.0F);
-	public static final BiomeBase y = (new asv(9)).b(8421631).a("The End").b();
-	public static final BiomeBase z = (new asm(10)).b(9474208).a("FrozenOcean").c().a(c).a(0.0F, 0.5F);
-	public static final BiomeBase A = (new asp(11)).b(10526975).a("FrozenRiver").c().a(b).a(0.0F, 0.5F);
-	public static final BiomeBase B = (new ash(12, false)).b(16777215).a("Ice Plains").c().a(0.0F, 0.5F).a(e);
-	public static final BiomeBase C = (new ash(13, false)).b(10526880).a("Ice Mountains").c().a(g).a(0.0F, 0.5F);
-	public static final BiomeBase D = (new ask(14)).b(16711935).a("MushroomIsland").a(0.9F, 1.0F).a(l);
-	public static final BiomeBase E = (new ask(15)).b(10486015).a("MushroomIslandShore").a(0.9F, 1.0F).a(j);
-	public static final BiomeBase F = (new arl(16)).b(16440917).a("Beach").a(0.8F, 0.4F).a(j);
-	public static final BiomeBase G = (new asa(17)).b(13786898).a("DesertHills").b().a(2.0F, 0.0F).a(g);
-	public static final BiomeBase H = (new asd(18, 0)).b(2250012).a("ForestHills").a(g);
-	public static final BiomeBase I = (new asu(19, 0)).b(1456435).a("TaigaHills").a(5159473).a(0.25F, 0.8F).a(g);
-	public static final BiomeBase J = (new asb(20, true)).b(7501978).a("Extreme Hills Edge").a(i.a()).a(0.2F, 0.3F);
-	public static final BiomeBase K = (new asi(21, false)).b(5470985).a("Jungle").a(5470985).a(0.95F, 0.9F);
-	public static final BiomeBase L = (new asi(22, false)).b(2900485).a("JungleHills").a(5470985).a(0.95F, 0.9F).a(g);
-	public static final BiomeBase M = (new asi(23, true)).b(6458135).a("JungleEdge").a(5470985).a(0.95F, 0.8F);
-	public static final BiomeBase N = (new asm(24)).b(48).a("Deep Ocean").a(d);
-	public static final BiomeBase O = (new ass(25)).b(10658436).a("Stone Beach").a(0.2F, 0.3F).a(k);
-	public static final BiomeBase P = (new arl(26)).b(16445632).a("Cold Beach").a(0.05F, 0.3F).a(j).c();
-	public static final BiomeBase Q = (new asd(27, 2)).a("Birch Forest").b(3175492);
-	public static final BiomeBase R = (new asd(28, 2)).a("Birch Forest Hills").b(2055986).a(g);
-	public static final BiomeBase S = (new asd(29, 3)).b(4215066).a("Roofed Forest");
-	public static final BiomeBase T = (new asu(30, 0)).b(3233098).a("Cold Taiga").a(5159473).c().a(-0.5F, 0.4F).a(f).c(16777215);
-	public static final BiomeBase U = (new asu(31, 0)).b(2375478).a("Cold Taiga Hills").a(5159473).c().a(-0.5F, 0.4F).a(g).c(16777215);
-	public static final BiomeBase V = (new asu(32, 1)).b(5858897).a("Mega Taiga").a(5159473).a(0.3F, 0.8F).a(f);
-	public static final BiomeBase W = (new asu(33, 1)).b(4542270).a("Mega Taiga Hills").a(5159473).a(0.3F, 0.8F).a(g);
-	public static final BiomeBase X = (new asb(34, true)).b(5271632).a("Extreme Hills+").a(i).a(0.2F, 0.3F);
-	public static final BiomeBase Y = (new asq(35)).b(12431967).a("Savanna").a(1.2F, 0.0F).b().a(e);
-	public static final BiomeBase Z = (new asq(36)).b(10984804).a("Savanna Plateau").a(1.0F, 0.0F).b().a(h);
-	public static final BiomeBase aa = (new asj(37, false, false)).b(14238997).a("Mesa");
-	public static final BiomeBase ab = (new asj(38, false, true)).b(11573093).a("Mesa Plateau F").a(h);
-	public static final BiomeBase ac = (new asj(39, false, false)).b(13274213).a("Mesa Plateau").a(h);
-	public static final BiomeBase ad = p;
+	public static final BiomeBase OCEAN = (new BiomeOcean(0)).b(112).a("Ocean").a(c);
+	public static final BiomeBase PLAINS = (new BiomePlains(1)).b(9286496).a("Plains");
+	public static final BiomeBase DESERT = (new BiomeDesert(2)).b(16421912).a("Desert").b().a(2.0F, 0.0F).a(e);
+	public static final BiomeBase EXTREME_HILLS = (new BiomeBigHills(3, false)).b(6316128).a("Extreme Hills").a(i).a(0.2F, 0.3F);
+	public static final BiomeBase FOREST = (new BiomeForest(4, 0)).b(353825).a("Forest");
+	public static final BiomeBase TAIGA = (new BiomeTaiga(5, 0)).b(747097).a("Taiga").a(5159473).a(0.25F, 0.8F).a(f);
+	public static final BiomeBase SWAMPLAND = (new BiomeSwamp(6)).b(522674).a("Swampland").a(9154376).a(m).a(0.8F, 0.9F);
+	public static final BiomeBase RIVER = (new BiomeRiver(7)).b(255).a("River").a(b);
+	public static final BiomeBase HELL = (new BiomeHell(8)).b(16711680).a("Hell").b().a(2.0F, 0.0F);
+	public static final BiomeBase SKY = (new BiomeTheEnd(9)).b(8421631).a("The End").b();
+	public static final BiomeBase FROZEN_OCEAN = (new BiomeOcean(10)).b(9474208).a("FrozenOcean").c().a(c).a(0.0F, 0.5F);
+	public static final BiomeBase FROZEN_RIVER = (new BiomeRiver(11)).b(10526975).a("FrozenRiver").c().a(b).a(0.0F, 0.5F);
+	public static final BiomeBase ICE_PLAINS = (new BiomeIcePlains(12, false)).b(16777215).a("Ice Plains").c().a(0.0F, 0.5F).a(e);
+	public static final BiomeBase ICE_MOUNTAINS = (new BiomeIcePlains(13, false)).b(10526880).a("Ice Mountains").c().a(g).a(0.0F, 0.5F);
+	public static final BiomeBase MUSHROOM_ISLAND = (new BiomeMushrooms(14)).b(16711935).a("MushroomIsland").a(0.9F, 1.0F).a(l);
+	public static final BiomeBase MUSHROOM_SHORE = (new BiomeMushrooms(15)).b(10486015).a("MushroomIslandShore").a(0.9F, 1.0F).a(j);
+	public static final BiomeBase BEACH = (new BiomeBeach(16)).b(16440917).a("Beach").a(0.8F, 0.4F).a(j);
+	public static final BiomeBase DESERT_HILLS = (new BiomeDesert(17)).b(13786898).a("DesertHills").b().a(2.0F, 0.0F).a(g);
+	public static final BiomeBase FOREST_HILLS = (new BiomeForest(18, 0)).b(2250012).a("ForestHills").a(g);
+	public static final BiomeBase TAIGA_HILLS = (new BiomeTaiga(19, 0)).b(1456435).a("TaigaHills").a(5159473).a(0.25F, 0.8F).a(g);
+	public static final BiomeBase SMALL_MOUNTAINS = (new BiomeBigHills(20, true)).b(7501978).a("Extreme Hills Edge").a(i.a()).a(0.2F, 0.3F);
+	public static final BiomeBase JUNGLE = (new BiomeJungle(21, false)).b(5470985).a("Jungle").a(5470985).a(0.95F, 0.9F);
+	public static final BiomeBase JUNGLE_HILLS = (new BiomeJungle(22, false)).b(2900485).a("JungleHills").a(5470985).a(0.95F, 0.9F).a(g);
+	public static final BiomeBase JUNGLE_EDGE = (new BiomeJungle(23, true)).b(6458135).a("JungleEdge").a(5470985).a(0.95F, 0.8F);
+	public static final BiomeBase DEEP_OCEAN = (new BiomeOcean(24)).b(48).a("Deep Ocean").a(d);
+	public static final BiomeBase STONE_BEACH = (new BiomeStoneBeach(25)).b(10658436).a("Stone Beach").a(0.2F, 0.3F).a(k);
+	public static final BiomeBase COLD_BEACH = (new BiomeBeach(26)).b(16445632).a("Cold Beach").a(0.05F, 0.3F).a(j).c();
+	public static final BiomeBase BIRCH_FOREST = (new BiomeForest(27, 2)).a("Birch Forest").b(3175492);
+	public static final BiomeBase BIRCH_FOREST_HILLS = (new BiomeForest(28, 2)).a("Birch Forest Hills").b(2055986).a(g);
+	public static final BiomeBase ROOFED_FOREST = (new BiomeForest(29, 3)).b(4215066).a("Roofed Forest");
+	public static final BiomeBase COLD_TAIGA = (new BiomeTaiga(30, 0)).b(3233098).a("Cold Taiga").a(5159473).c().a(-0.5F, 0.4F).a(f).c(16777215);
+	public static final BiomeBase COLD_TAIGA_HILLS = (new BiomeTaiga(31, 0)).b(2375478).a("Cold Taiga Hills").a(5159473).c().a(-0.5F, 0.4F).a(g).c(16777215);
+	public static final BiomeBase MEGA_TAIGA = (new BiomeTaiga(32, 1)).b(5858897).a("Mega Taiga").a(5159473).a(0.3F, 0.8F).a(f);
+	public static final BiomeBase MEGA_TAIGA_HILLS = (new BiomeTaiga(33, 1)).b(4542270).a("Mega Taiga Hills").a(5159473).a(0.3F, 0.8F).a(g);
+	public static final BiomeBase EXTREME_HILLS_PLUS = (new BiomeBigHills(34, true)).b(5271632).a("Extreme Hills+").a(i).a(0.2F, 0.3F);
+	public static final BiomeBase SAVANNA = (new BiomeSavanna(35)).b(12431967).a("Savanna").a(1.2F, 0.0F).b().a(e);
+	public static final BiomeBase SAVANNA_PLATEAU = (new BiomeSavanna(36)).b(10984804).a("Savanna Plateau").a(1.0F, 0.0F).b().a(h);
+	public static final BiomeBase MESA = (new BiomeMesa(37, false, false)).b(14238997).a("Mesa");
+	public static final BiomeBase MESA_PLATEAU_F = (new BiomeMesa(38, false, true)).b(11573093).a("Mesa Plateau F").a(h);
+	public static final BiomeBase MESA_PLATEAU = (new BiomeMesa(39, false, false)).b(13274213).a("Mesa Plateau").a(h);
 	protected static final NoiseGenerator3 ae;
 	protected static final NoiseGenerator3 af;
-	protected static final bho ag;
+	protected static final WorldGenTallPlant ag;
 	public String ah;
 	public int ai;
 	public int aj;
@@ -85,17 +84,17 @@ public abstract class BiomeBase {
 	public float ap;
 	public float aq;
 	public int ar;
-	public ary as;
-	protected List at;
-	protected List au;
-	protected List av;
-	protected List aw;
+	public BiomeDecorator as;
+	protected List<BiomeMeta> at;
+	protected List<BiomeMeta> au;
+	protected List<BiomeMeta> av;
+	protected List<BiomeMeta> aw;
 	protected boolean ax;
 	protected boolean ay;
 	public final int az;
-	protected bir aA;
-	protected bhd aB;
-	protected bip aC;
+	protected WorldGenTrees aA;
+	protected WorldGenBigTree aB;
+	protected WorldGenSwampTree aC;
 
 	protected BiomeBase(int var1) {
 		this.ak = Blocks.GRASS.getBlockState();
@@ -111,30 +110,30 @@ public abstract class BiomeBase {
 		this.av = Lists.newArrayList();
 		this.aw = Lists.newArrayList();
 		this.ay = true;
-		this.aA = new bir(false);
-		this.aB = new bhd(false);
-		this.aC = new bip();
+		this.aA = new WorldGenTrees(false);
+		this.aB = new WorldGenBigTree(false);
+		this.aC = new WorldGenSwampTree();
 		this.az = var1;
 		aE[var1] = this;
 		this.as = this.a();
-		this.au.add(new arq(EntitySheep.class, 12, 4, 4));
-		this.au.add(new arq(EntityRabbit.class, 10, 3, 3));
-		this.au.add(new arq(EntityPig.class, 10, 4, 4));
-		this.au.add(new arq(EntityChicken.class, 10, 4, 4));
-		this.au.add(new arq(EntityCow.class, 8, 4, 4));
-		this.at.add(new arq(EntitySpider.class, 100, 4, 4));
-		this.at.add(new arq(EntityZombie.class, 100, 4, 4));
-		this.at.add(new arq(EntitySkeleton.class, 100, 4, 4));
-		this.at.add(new arq(EntityCreeper.class, 100, 4, 4));
-		this.at.add(new arq(EntitySlime.class, 100, 4, 4));
-		this.at.add(new arq(EntityEnderman.class, 10, 1, 4));
-		this.at.add(new arq(EntityWitch.class, 5, 1, 1));
-		this.av.add(new arq(EntitySquid.class, 10, 4, 4));
-		this.aw.add(new arq(EntityBat.class, 10, 8, 8));
+		this.au.add(new BiomeMeta(EntitySheep.class, 12, 4, 4));
+		this.au.add(new BiomeMeta(EntityRabbit.class, 10, 3, 3));
+		this.au.add(new BiomeMeta(EntityPig.class, 10, 4, 4));
+		this.au.add(new BiomeMeta(EntityChicken.class, 10, 4, 4));
+		this.au.add(new BiomeMeta(EntityCow.class, 8, 4, 4));
+		this.at.add(new BiomeMeta(EntitySpider.class, 100, 4, 4));
+		this.at.add(new BiomeMeta(EntityZombie.class, 100, 4, 4));
+		this.at.add(new BiomeMeta(EntitySkeleton.class, 100, 4, 4));
+		this.at.add(new BiomeMeta(EntityCreeper.class, 100, 4, 4));
+		this.at.add(new BiomeMeta(EntitySlime.class, 100, 4, 4));
+		this.at.add(new BiomeMeta(EntityEnderman.class, 10, 1, 4));
+		this.at.add(new BiomeMeta(EntityWitch.class, 5, 1, 1));
+		this.av.add(new BiomeMeta(EntitySquid.class, 10, 4, 4));
+		this.aw.add(new BiomeMeta(EntityBat.class, 10, 8, 8));
 	}
 
-	protected ary a() {
-		return new ary();
+	protected BiomeDecorator a() {
+		return new BiomeDecorator();
 	}
 
 	protected BiomeBase a(float var1, float var2) {
@@ -147,7 +146,7 @@ public abstract class BiomeBase {
 		}
 	}
 
-	protected final BiomeBase a(aro var1) {
+	protected final BiomeBase a(BiomeTemperature var1) {
 		this.an = var1.a;
 		this.ao = var1.b;
 		return this;
@@ -158,16 +157,16 @@ public abstract class BiomeBase {
 		return this;
 	}
 
-	public bhc a(Random var1) {
-		return (bhc) (var1.nextInt(10) == 0 ? this.aB : this.aA);
+	public WorldGenTreeAbstract a(Random var1) {
+		return (WorldGenTreeAbstract) (var1.nextInt(10) == 0 ? this.aB : this.aA);
 	}
 
-	public bhp b(Random var1) {
-		return new biq(bbi.b);
+	public WorldGenerator b(Random var1) {
+		return new WorldGenGrass(EnumGrassType.b);
 	}
 
-	public awa a(Random var1, Position var2) {
-		return var1.nextInt(3) > 0 ? awa.a : awa.b;
+	public EnumFlowerType a(Random var1, Position var2) {
+		return var1.nextInt(3) > 0 ? EnumFlowerType.a : EnumFlowerType.b;
 	}
 
 	protected BiomeBase c() {
@@ -336,8 +335,8 @@ public abstract class BiomeBase {
 		return var1 == this ? true : (var1 == null ? false : this.l() == var1.l());
 	}
 
-	public arp m() {
-		return (double) this.ap < 0.2D ? arp.b : ((double) this.ap < 1.0D ? arp.c : arp.d);
+	public EnumBiomeTemperature m() {
+		return (double) this.ap < 0.2D ? EnumBiomeTemperature.b : ((double) this.ap < 1.0D ? EnumBiomeTemperature.c : EnumBiomeTemperature.d);
 	}
 
 	public static BiomeBase[] n() {
@@ -354,32 +353,32 @@ public abstract class BiomeBase {
 			return var2 == null ? var1 : var2;
 		} else {
 			aD.warn("Biome ID is out of bounds: " + var0 + ", defaulting to 0 (Ocean)");
-			return p;
+			return OCEAN;
 		}
 	}
 
 	static {
-		q.k();
-		r.k();
-		t.k();
-		u.k();
-		v.k();
-		B.k();
-		K.k();
-		M.k();
-		T.k();
-		Y.k();
-		Z.k();
-		aa.k();
-		ab.k();
-		ac.k();
-		Q.k();
-		R.k();
-		S.k();
-		V.k();
-		s.k();
-		X.k();
-		V.d(W.az + 128).a("Redwood Taiga Hills M");
+		PLAINS.k();
+		DESERT.k();
+		FOREST.k();
+		TAIGA.k();
+		SWAMPLAND.k();
+		ICE_PLAINS.k();
+		JUNGLE.k();
+		JUNGLE_EDGE.k();
+		COLD_TAIGA.k();
+		SAVANNA.k();
+		SAVANNA_PLATEAU.k();
+		MESA.k();
+		MESA_PLATEAU_F.k();
+		MESA_PLATEAU.k();
+		BIRCH_FOREST.k();
+		BIRCH_FOREST_HILLS.k();
+		ROOFED_FOREST.k();
+		MEGA_TAIGA.k();
+		EXTREME_HILLS.k();
+		EXTREME_HILLS_PLUS.k();
+		MEGA_TAIGA.d(MEGA_TAIGA_HILLS.az + 128).a("Redwood Taiga Hills M");
 		BiomeBase[] var0 = aE;
 		int var1 = var0.length;
 
@@ -397,12 +396,12 @@ public abstract class BiomeBase {
 			}
 		}
 
-		n.remove(x);
-		n.remove(y);
-		n.remove(z);
-		n.remove(J);
+		n.remove(HELL);
+		n.remove(SKY);
+		n.remove(FROZEN_OCEAN);
+		n.remove(SMALL_MOUNTAINS);
 		ae = new NoiseGenerator3(new Random(1234L), 1);
 		af = new NoiseGenerator3(new Random(2345L), 1);
-		ag = new bho();
+		ag = new WorldGenTallPlant();
 	}
 }

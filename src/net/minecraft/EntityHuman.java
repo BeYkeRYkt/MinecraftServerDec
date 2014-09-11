@@ -201,8 +201,8 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 
 		int var9 = 29999999;
-		double var10 = DataTypesConverter.a(this.locationX, -2.9999999E7D, 2.9999999E7D);
-		double var12 = DataTypesConverter.a(this.locationZ, -2.9999999E7D, 2.9999999E7D);
+		double var10 = MathHelper.a(this.locationX, -2.9999999E7D, 2.9999999E7D);
+		double var12 = MathHelper.a(this.locationZ, -2.9999999E7D, 2.9999999E7D);
 		if (var10 != this.locationX || var12 != this.locationZ) {
 			this.b(var10, this.locationY, var12);
 		}
@@ -339,7 +339,7 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 
 		this.j((float) var1.e());
-		float var2 = DataTypesConverter.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
+		float var2 = MathHelper.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		float var3 = (float) (Math.atan(-this.motionY * 0.20000000298023224D) * 15.0D);
 		if (var2 > 0.1F) {
 			var2 = 0.1F;
@@ -406,8 +406,8 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 
 		if (var1 != null) {
-			this.motionX = (double) (-DataTypesConverter.b((this.au + this.yaw) * 3.1415927F / 180.0F) * 0.1F);
-			this.motionZ = (double) (-DataTypesConverter.a((this.au + this.yaw) * 3.1415927F / 180.0F) * 0.1F);
+			this.motionX = (double) (-MathHelper.b((this.au + this.yaw) * 3.1415927F / 180.0F) * 0.1F);
+			this.motionZ = (double) (-MathHelper.a((this.au + this.yaw) * 3.1415927F / 180.0F) * 0.1F);
 		} else {
 			this.motionX = this.motionZ = 0.0D;
 		}
@@ -497,14 +497,14 @@ public abstract class EntityHuman extends EntityLiving {
 			if (var2) {
 				var7 = this.V.nextFloat() * 0.5F;
 				var8 = this.V.nextFloat() * 3.1415927F * 2.0F;
-				var6.motionX = (double) (-DataTypesConverter.a(var8) * var7);
-				var6.motionZ = (double) (DataTypesConverter.b(var8) * var7);
+				var6.motionX = (double) (-MathHelper.a(var8) * var7);
+				var6.motionZ = (double) (MathHelper.b(var8) * var7);
 				var6.motionY = 0.20000000298023224D;
 			} else {
 				var7 = 0.3F;
-				var6.motionX = (double) (-DataTypesConverter.a(this.yaw / 180.0F * 3.1415927F) * DataTypesConverter.b(this.pitch / 180.0F * 3.1415927F) * var7);
-				var6.motionZ = (double) (DataTypesConverter.b(this.yaw / 180.0F * 3.1415927F) * DataTypesConverter.b(this.pitch / 180.0F * 3.1415927F) * var7);
-				var6.motionY = (double) (-DataTypesConverter.a(this.pitch / 180.0F * 3.1415927F) * var7 + 0.1F);
+				var6.motionX = (double) (-MathHelper.a(this.yaw / 180.0F * 3.1415927F) * MathHelper.b(this.pitch / 180.0F * 3.1415927F) * var7);
+				var6.motionZ = (double) (MathHelper.b(this.yaw / 180.0F * 3.1415927F) * MathHelper.b(this.pitch / 180.0F * 3.1415927F) * var7);
+				var6.motionY = (double) (-MathHelper.a(this.pitch / 180.0F * 3.1415927F) * var7 + 0.1F);
 				var8 = this.V.nextFloat() * 3.1415927F * 2.0F;
 				var7 = 0.02F * this.V.nextFloat();
 				var6.motionX += Math.cos((double) var8) * (double) var7;
@@ -842,7 +842,7 @@ public abstract class EntityHuman extends EntityLiving {
 					boolean var14 = var1.a(DamageSource.a(this), var2);
 					if (var14) {
 						if (var18 > 0) {
-							var1.g((double) (-DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F) * (float) var18 * 0.5F), 0.1D, (double) (DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F) * (float) var18 * 0.5F));
+							var1.g((double) (-MathHelper.a(this.yaw * 3.1415927F / 180.0F) * (float) var18 * 0.5F), 0.1D, (double) (MathHelper.b(this.yaw * 3.1415927F / 180.0F) * (float) var18 * 0.5F));
 							this.motionX *= 0.6D;
 							this.motionZ *= 0.6D;
 							this.setSprinting(false);
@@ -1137,13 +1137,13 @@ public abstract class EntityHuman extends EntityLiving {
 		if (this.vehicle == null) {
 			int var7;
 			if (this.a(Material.WATER)) {
-				var7 = Math.round(DataTypesConverter.a(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
+				var7 = Math.round(MathHelper.a(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
 				if (var7 > 0) {
 					this.a(StatisticList.p, var7);
 					this.a(0.015F * (float) var7 * 0.01F);
 				}
 			} else if (this.V()) {
-				var7 = Math.round(DataTypesConverter.a(var1 * var1 + var5 * var5) * 100.0F);
+				var7 = Math.round(MathHelper.a(var1 * var1 + var5 * var5) * 100.0F);
 				if (var7 > 0) {
 					this.a(StatisticList.l, var7);
 					this.a(0.015F * (float) var7 * 0.01F);
@@ -1153,7 +1153,7 @@ public abstract class EntityHuman extends EntityLiving {
 					this.a(StatisticList.n, (int) Math.round(var3 * 100.0D));
 				}
 			} else if (this.onGround) {
-				var7 = Math.round(DataTypesConverter.a(var1 * var1 + var5 * var5) * 100.0F);
+				var7 = Math.round(MathHelper.a(var1 * var1 + var5 * var5) * 100.0F);
 				if (var7 > 0) {
 					this.a(StatisticList.i, var7);
 					if (this.ax()) {
@@ -1168,7 +1168,7 @@ public abstract class EntityHuman extends EntityLiving {
 					}
 				}
 			} else {
-				var7 = Math.round(DataTypesConverter.a(var1 * var1 + var5 * var5) * 100.0F);
+				var7 = Math.round(MathHelper.a(var1 * var1 + var5 * var5) * 100.0F);
 				if (var7 > 25) {
 					this.a(StatisticList.o, var7);
 				}
@@ -1179,13 +1179,13 @@ public abstract class EntityHuman extends EntityLiving {
 
 	private void l(double var1, double var3, double var5) {
 		if (this.vehicle != null) {
-			int var7 = Math.round(DataTypesConverter.a(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
+			int var7 = Math.round(MathHelper.a(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
 			if (var7 > 0) {
 				if (this.vehicle instanceof adx) {
 					this.a(StatisticList.q, var7);
 					if (this.e == null) {
 						this.e = new Position(this);
-					} else if (this.e.c((double) DataTypesConverter.toFixedPointInt(this.locationX), (double) DataTypesConverter.toFixedPointInt(this.locationY), (double) DataTypesConverter.toFixedPointInt(this.locationZ)) >= 1000000.0D) {
+					} else if (this.e.c((double) MathHelper.toFixedPointInt(this.locationX), (double) MathHelper.toFixedPointInt(this.locationY), (double) MathHelper.toFixedPointInt(this.locationZ)) >= 1000000.0D) {
 						this.b((Statistic) AchievementList.q);
 					}
 				} else if (this.vehicle instanceof EntityBoat) {

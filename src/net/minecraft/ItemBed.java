@@ -19,7 +19,7 @@ public class ItemBed extends Item {
 				var4 = var4.a();
 			}
 
-			int var12 = DataTypesConverter.toFixedPointInt((double) (var2.yaw * 4.0F / 360.0F) + 0.5D) & 3;
+			int var12 = MathHelper.toFixedPointInt((double) (var2.yaw * 4.0F / 360.0F) + 0.5D) & 3;
 			BlockFace var13 = BlockFace.fromDirection(var12);
 			Position var14 = var4.a(var13);
 			boolean var15 = var10.f(var3, var14);

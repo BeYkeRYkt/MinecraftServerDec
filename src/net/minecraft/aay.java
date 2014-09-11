@@ -28,7 +28,7 @@ public class aay extends aaz {
 	private int p() {
 		if (this.b.V() && this.h()) {
 			int var1 = (int) this.b.getBoundingBox().minY;
-			Block var2 = this.c.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).getBlock();
+			Block var2 = this.c.getBlockState(new Position(MathHelper.toFixedPointInt(this.b.locationX), var1, MathHelper.toFixedPointInt(this.b.locationZ))).getBlock();
 			int var3 = 0;
 
 			do {
@@ -37,7 +37,7 @@ public class aay extends aaz {
 				}
 
 				++var1;
-				var2 = this.c.getBlockState(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).getBlock();
+				var2 = this.c.getBlockState(new Position(MathHelper.toFixedPointInt(this.b.locationX), var1, MathHelper.toFixedPointInt(this.b.locationZ))).getBlock();
 				++var3;
 			} while (var3 <= 16);
 
@@ -50,7 +50,7 @@ public class aay extends aaz {
 	protected void d() {
 		super.d();
 		if (this.f) {
-			if (this.c.i(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), (int) (this.b.getBoundingBox().minY + 0.5D), DataTypesConverter.toFixedPointInt(this.b.locationZ)))) {
+			if (this.c.i(new Position(MathHelper.toFixedPointInt(this.b.locationX), (int) (this.b.getBoundingBox().minY + 0.5D), MathHelper.toFixedPointInt(this.b.locationZ)))) {
 				return;
 			}
 
@@ -66,8 +66,8 @@ public class aay extends aaz {
 	}
 
 	protected boolean a(Vec3D var1, Vec3D var2, int var3, int var4, int var5) {
-		int var6 = DataTypesConverter.toFixedPointInt(var1.x);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.z);
+		int var6 = MathHelper.toFixedPointInt(var1.x);
+		int var7 = MathHelper.toFixedPointInt(var1.z);
 		double var8 = var2.x - var1.x;
 		double var10 = var2.z - var1.z;
 		double var12 = var8 * var8 + var10 * var10;
@@ -100,8 +100,8 @@ public class aay extends aaz {
 				var22 /= var10;
 				int var24 = var8 < 0.0D ? -1 : 1;
 				int var25 = var10 < 0.0D ? -1 : 1;
-				int var26 = DataTypesConverter.toFixedPointInt(var2.x);
-				int var27 = DataTypesConverter.toFixedPointInt(var2.z);
+				int var26 = MathHelper.toFixedPointInt(var2.x);
+				int var27 = MathHelper.toFixedPointInt(var2.z);
 				int var28 = var26 - var6;
 				int var29 = var27 - var7;
 
