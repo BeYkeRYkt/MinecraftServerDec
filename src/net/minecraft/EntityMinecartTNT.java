@@ -38,7 +38,7 @@ public class EntityMinecartTNT extends adx {
 
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		Entity var3 = var1.i();
 		if (var3 instanceof EntityArrow) {
 			EntityArrow var4 = (EntityArrow) var3;
@@ -47,7 +47,7 @@ public class EntityMinecartTNT extends adx {
 			}
 		}
 
-		return super.a(var1, var2);
+		return super.damageEntity(var1, var2);
 	}
 
 	public void a(DamageSource var1) {
@@ -107,11 +107,11 @@ public class EntityMinecartTNT extends adx {
 		return this.a > -1;
 	}
 
-	public float a(aqo var1, World var2, Position var3, BlockState var4) {
+	public float a(Explosion var1, World var2, Position var3, BlockState var4) {
 		return this.y() && (ati.d(var4) || ati.d(var2, var3.a())) ? 0.0F : super.a(var1, var2, var3, var4);
 	}
 
-	public boolean a(aqo var1, World var2, Position var3, BlockState var4, float var5) {
+	public boolean a(Explosion var1, World var2, Position var3, BlockState var4, float var5) {
 		return this.y() && (ati.d(var4) || ati.d(var2, var3.a())) ? false : super.a(var1, var2, var3, var4, var5);
 	}
 

@@ -9,7 +9,7 @@ public class EntityEnderPearl extends ahr {
 	protected void a(MovingObjectPosition var1) {
 		EntityLiving var2 = this.n();
 		if (var1.entity != null) {
-			var1.entity.a(DamageSource.a((Entity) this, var2), 0.0F);
+			var1.entity.damageEntity(DamageSource.projectile((Entity) this, var2), 0.0F);
 		}
 
 		for (int var3 = 0; var3 < 32; ++var3) {
@@ -24,7 +24,7 @@ public class EntityEnderPearl extends ahr {
 						EntityEndermite var4 = new EntityEndermite(this.world);
 						var4.a(true);
 						var4.setPositionRotation(var2.locationX, var2.locationY, var2.locationZ, var2.yaw, var2.pitch);
-						this.world.d((Entity) var4);
+						this.world.addEntity((Entity) var4);
 					}
 
 					if (var2.av()) {
@@ -33,7 +33,7 @@ public class EntityEnderPearl extends ahr {
 
 					var2.updatePosition(this.locationX, this.locationY, this.locationZ);
 					var2.O = 0.0F;
-					var2.a(DamageSource.i, 5.0F);
+					var2.damageEntity(DamageSource.FALL, 5.0F);
 				}
 			}
 

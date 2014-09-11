@@ -28,7 +28,7 @@ class cs {
 	}
 
 	float b() {
-		return MathHelper.a(this.a * this.a + this.b * this.b);
+		return MathHelper.sqrt(this.a * this.a + this.b * this.b);
 	}
 
 	public void b(cs var1) {

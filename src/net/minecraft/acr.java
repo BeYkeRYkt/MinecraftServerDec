@@ -2,7 +2,7 @@ package net.minecraft;
 
 import com.google.common.base.Predicate;
 
-class acr extends aaq {
+class acr extends PathfinderGoalNearestAttackableTarget {
 
 	public acr(EntityCreature var1, Class var2, int var3, boolean var4, boolean var5, Predicate var6) {
 		super(var1, var2, var3, var4, var5, var6);

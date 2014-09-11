@@ -6,14 +6,14 @@ public class EntityCow extends EntityAnimal {
 		super(var1);
 		this.a(0.9F, 1.3F);
 		((aay) this.s()).a(true);
-		this.i.a(0, new yy(this));
+		this.i.a(0, new PathfinderGoalFloat(this));
 		this.i.a(1, new zu(this, 2.0D));
 		this.i.a(2, new yt(this, 1.0D));
 		this.i.a(3, new aag(this, 1.25D, Items.WHEAT, false));
 		this.i.a(4, new za(this, 1.25D));
-		this.i.a(5, new zy(this, 1.0D));
-		this.i.a(6, new zh(this, EntityHuman.class, 6.0F));
-		this.i.a(7, new zx(this));
+		this.i.a(5, new PathfinderGoalRandomStroll(this, 1.0D));
+		this.i.a(6, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 6.0F));
+		this.i.a(7, new PathfinderGoalRandomLookaround(this));
 	}
 
 	protected void aW() {
@@ -42,11 +42,11 @@ public class EntityCow extends EntityAnimal {
 		return 0.4F;
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return Items.LEATHER;
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		int var3 = this.V.nextInt(3) + this.V.nextInt(1 + var2);
 
 		int var4;
@@ -85,7 +85,7 @@ public class EntityCow extends EntityAnimal {
 		return new EntityCow(this.world);
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return this.K;
 	}
 

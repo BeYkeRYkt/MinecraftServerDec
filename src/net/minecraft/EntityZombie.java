@@ -18,13 +18,13 @@ public class EntityZombie extends EntityMonster {
 	public EntityZombie(World var1) {
 		super(var1);
 		((aay) this.s()).b(true);
-		this.i.a(0, new yy(this));
+		this.i.a(0, new PathfinderGoalFloat(this));
 		this.i.a(2, new zk(this, EntityHuman.class, 1.0D, false));
 		this.i.a(2, this.a);
-		this.i.a(5, new zo(this, 1.0D));
-		this.i.a(7, new zy(this, 1.0D));
-		this.i.a(8, new zh(this, EntityHuman.class, 8.0F));
-		this.i.a(8, new zx(this));
+		this.i.a(5, new PathfinderGoalMoveTowardsRestriction(this, 1.0D));
+		this.i.a(7, new PathfinderGoalRandomStroll(this, 1.0D));
+		this.i.a(8, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+		this.i.a(8, new PathfinderGoalRandomLookaround(this));
 		this.n();
 		this.a(0.6F, 1.95F);
 	}
@@ -34,9 +34,9 @@ public class EntityZombie extends EntityMonster {
 		this.i.a(4, new zk(this, EntityIronGolem.class, 1.0D, true));
 		this.i.a(6, new zm(this, 1.0D, false));
 		this.bg.a(1, new aal(this, true, new Class[] { EntityPigZombie.class }));
-		this.bg.a(2, new aaq(this, EntityHuman.class, true));
-		this.bg.a(2, new aaq(this, EntityVillager.class, false));
-		this.bg.a(2, new aaq(this, EntityIronGolem.class, true));
+		this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
+		this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityVillager.class, false));
+		this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityIronGolem.class, true));
 	}
 
 	protected void aW() {
@@ -73,7 +73,7 @@ public class EntityZombie extends EntityMonster {
 			if (var1) {
 				this.i.a(1, this.bl);
 			} else {
-				this.i.a((zb) this.bl);
+				this.i.a((PathfinderGoal) this.bl);
 			}
 		}
 
@@ -144,8 +144,8 @@ public class EntityZombie extends EntityMonster {
 		super.m();
 	}
 
-	public boolean a(DamageSource var1, float var2) {
-		if (super.a(var1, var2)) {
+	public boolean damageEntity(DamageSource var1, float var2) {
+		if (super.damageEntity(var1, var2)) {
 			EntityLiving var3 = this.u();
 			if (var3 == null && var1.j() instanceof EntityLiving) {
 				var3 = (EntityLiving) var1.j();
@@ -164,7 +164,7 @@ public class EntityZombie extends EntityMonster {
 					if (World.a((ard) this.world, new Position(var9, var10 - 1, var11)) && this.world.l(new Position(var9, var10, var11)) < 10) {
 						var7.b((double) var9, (double) var10, (double) var11);
 						if (!this.world.b((double) var9, (double) var10, (double) var11, 7.0D) && this.world.a(var7.getBoundingBox(), (Entity) var7) && this.world.getCubes((Entity) var7, var7.getBoundingBox()).isEmpty() && !this.world.d(var7.getBoundingBox())) {
-							this.world.d((Entity) var7);
+							this.world.addEntity((Entity) var7);
 							var7.d(var3);
 							var7.a(this.world.E(new Position(var7)), (xq) null);
 							this.a(b).b(new AttributeModifier("Zombie reinforcement caller charge", -0.05000000074505806D, 0));
@@ -221,7 +221,7 @@ public class EntityZombie extends EntityMonster {
 		this.a("mob.zombie.step", 0.15F, 1.0F);
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return Items.ROTTEN_FLESH;
 	}
 
@@ -303,13 +303,13 @@ public class EntityZombie extends EntityMonster {
 				var2.l(true);
 			}
 
-			this.world.d((Entity) var2);
+			this.world.addEntity((Entity) var2);
 			this.world.a((EntityHuman) null, 1016, new Position((int) this.locationX, (int) this.locationY, (int) this.locationZ), 0);
 		}
 
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		float var1 = 1.74F;
 		if (this.i_()) {
 			var1 = (float) ((double) var1 - 0.81D);
@@ -350,7 +350,7 @@ public class EntityZombie extends EntityMonster {
 					var10.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
 					var10.a(var1, (xq) null);
 					var10.l(true);
-					this.world.d((Entity) var10);
+					this.world.addEntity((Entity) var10);
 					this.mount((Entity) var10);
 				}
 			}
@@ -384,7 +384,7 @@ public class EntityZombie extends EntityMonster {
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.bY();
-		if (var2 != null && var2.getItem() == Items.GOLDEN_APPLE && var2.getDurability() == 0 && this.cm() && this.a(MobEffectList.t)) {
+		if (var2 != null && var2.getItem() == Items.GOLDEN_APPLE && var2.getDurability() == 0 && this.cm() && this.a(MobEffectList.WEAKNESS)) {
 			if (!var1.playerProperties.instabuild) {
 				--var2.amount;
 			}
@@ -406,8 +406,8 @@ public class EntityZombie extends EntityMonster {
 	protected void a(int var1) {
 		this.bm = var1;
 		this.getDataWatcher().b(14, Byte.valueOf((byte) 1));
-		this.m(MobEffectList.t.H);
-		this.c(new MobEffect(MobEffectList.g.H, var1, Math.min(this.world.getDifficulty().getId() - 1, 0)));
+		this.m(MobEffectList.WEAKNESS.id);
+		this.c(new MobEffect(MobEffectList.INCREASE_DAMAGE.id, var1, Math.min(this.world.getDifficulty().getId() - 1, 0)));
 		this.world.a((Entity) this, (byte) 16);
 	}
 
@@ -429,8 +429,8 @@ public class EntityZombie extends EntityMonster {
 		}
 
 		this.world.e((Entity) this);
-		this.world.d((Entity) var1);
-		var1.c(new MobEffect(MobEffectList.k.H, 200, 0));
+		this.world.addEntity((Entity) var1);
+		var1.c(new MobEffect(MobEffectList.CONFUSION.id, 200, 0));
 		this.world.a((EntityHuman) null, 1017, new Position((int) this.locationX, (int) this.locationY, (int) this.locationZ), 0);
 	}
 

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class yu extends zb {
+public class yu extends PathfinderGoal {
 
 	private final EntityInsentient a;
 	private final float b;
@@ -25,11 +25,11 @@ public class yu extends zb {
 	}
 
 	public boolean a() {
-		return this.a.isAlive() && this.a.l != null && this.a.l instanceof EntityHuman && (this.d || this.a.bV());
+		return this.a.isAlive() && this.a.passenger != null && this.a.passenger instanceof EntityHuman && (this.d || this.a.bV());
 	}
 
 	public void e() {
-		EntityHuman var1 = (EntityHuman) this.a.l;
+		EntityHuman var1 = (EntityHuman) this.a.passenger;
 		EntityCreature var2 = (EntityCreature) this.a;
 		float var3 = MathHelper.g(var1.yaw - this.a.yaw) * 0.5F;
 		if (var3 > 5.0F) {

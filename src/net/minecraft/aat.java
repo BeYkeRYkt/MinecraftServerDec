@@ -2,7 +2,7 @@ package net.minecraft;
 
 import com.google.common.base.Predicate;
 
-public class aat extends aaq {
+public class aat extends PathfinderGoalNearestAttackableTarget {
 
 	private xx g;
 

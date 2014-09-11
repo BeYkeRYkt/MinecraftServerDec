@@ -32,15 +32,15 @@ public class EntityGhast extends xl implements IMonster {
 
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else if ("fireball".equals(var1.p()) && var1.j() instanceof EntityHuman) {
-			super.a(var1, 1000.0F);
+			super.damageEntity(var1, 1000.0F);
 			((EntityHuman) var1.j()).b((Statistic) AchievementList.z);
 			return true;
 		} else {
-			return super.a(var1, var2);
+			return super.damageEntity(var1, var2);
 		}
 	}
 
@@ -67,11 +67,11 @@ public class EntityGhast extends xl implements IMonster {
 		return "mob.ghast.death";
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return Items.GUNPOWDER;
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		int var3 = this.V.nextInt(2) + this.V.nextInt(1 + var2);
 
 		int var4;
@@ -112,7 +112,7 @@ public class EntityGhast extends xl implements IMonster {
 
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return 2.6F;
 	}
 }

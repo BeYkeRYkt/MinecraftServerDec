@@ -5,14 +5,14 @@ public class EntitySpider extends EntityMonster {
 	public EntitySpider(World var1) {
 		super(var1);
 		this.a(1.4F, 0.9F);
-		this.i.a(1, new yy(this));
+		this.i.a(1, new PathfinderGoalFloat(this));
 		this.i.a(2, this.a);
 		this.i.a(3, new zg(this, 0.4F));
 		this.i.a(4, new agf(this, EntityHuman.class));
 		this.i.a(4, new agf(this, EntityIronGolem.class));
-		this.i.a(5, new zy(this, 0.8D));
-		this.i.a(6, new zh(this, EntityHuman.class, 8.0F));
-		this.i.a(6, new zx(this));
+		this.i.a(5, new PathfinderGoalRandomStroll(this, 0.8D));
+		this.i.a(6, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+		this.i.a(6, new PathfinderGoalRandomLookaround(this));
 		this.bg.a(1, new aal(this, false, new Class[0]));
 		this.bg.a(2, new agh(this, EntityHuman.class));
 		this.bg.a(3, new agh(this, EntityIronGolem.class));
@@ -57,12 +57,12 @@ public class EntitySpider extends EntityMonster {
 		this.a("mob.spider.step", 0.15F, 1.0F);
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return Items.STRING;
 	}
 
-	protected void b(boolean var1, int var2) {
-		super.b(var1, var2);
+	protected void dropDeathLoot(boolean var1, int var2) {
+		super.dropDeathLoot(var1, var2);
 		if (var1 && (this.V.nextInt(3) == 0 || this.V.nextInt(1 + var2) > 0)) {
 			this.a(Items.SPIDER_EYE, 1);
 		}
@@ -81,7 +81,7 @@ public class EntitySpider extends EntityMonster {
 	}
 
 	public boolean d(MobEffect var1) {
-		return var1.getId() == MobEffectList.u.H ? false : super.d(var1);
+		return var1.getId() == MobEffectList.POISON.id ? false : super.d(var1);
 	}
 
 	public boolean n() {
@@ -105,7 +105,7 @@ public class EntitySpider extends EntityMonster {
 			EntitySkeleton var3 = new EntitySkeleton(this.world);
 			var3.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
 			var3.a(var1, (xq) null);
-			this.world.d((Entity) var3);
+			this.world.addEntity((Entity) var3);
 			var3.mount((Entity) this);
 		}
 
@@ -126,7 +126,7 @@ public class EntitySpider extends EntityMonster {
 		return (xq) var4;
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return 0.65F;
 	}
 }

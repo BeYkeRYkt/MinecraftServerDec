@@ -27,7 +27,7 @@ public abstract class ahr extends Entity implements aho {
 		super(var1);
 		this.g = var2;
 		this.a(0.25F, 0.25F);
-		this.setPositionRotation(var2.locationX, var2.locationY + (double) var2.aR(), var2.locationZ, var2.yaw, var2.pitch);
+		this.setPositionRotation(var2.locationX, var2.locationY + (double) var2.getHeadHeight(), var2.locationZ, var2.yaw, var2.pitch);
 		this.locationX -= (double) (MathHelper.b(this.yaw / 180.0F * 3.1415927F) * 0.16F);
 		this.locationY -= 0.10000000149011612D;
 		this.locationZ -= (double) (MathHelper.a(this.yaw / 180.0F * 3.1415927F) * 0.16F);
@@ -36,7 +36,7 @@ public abstract class ahr extends Entity implements aho {
 		this.motionX = (double) (-MathHelper.a(this.yaw / 180.0F * 3.1415927F) * MathHelper.b(this.pitch / 180.0F * 3.1415927F) * var3);
 		this.motionZ = (double) (MathHelper.b(this.yaw / 180.0F * 3.1415927F) * MathHelper.b(this.pitch / 180.0F * 3.1415927F) * var3);
 		this.motionY = (double) (-MathHelper.a((this.pitch + this.l()) / 180.0F * 3.1415927F) * var3);
-		this.c(this.motionX, this.motionY, this.motionZ, this.j(), 1.0F);
+		this.shoot(this.motionX, this.motionY, this.motionZ, this.j(), 1.0F);
 	}
 
 	public ahr(World var1, double var2, double var4, double var6) {
@@ -54,8 +54,8 @@ public abstract class ahr extends Entity implements aho {
 		return 0.0F;
 	}
 
-	public void c(double var1, double var3, double var5, float var7, float var8) {
-		float var9 = MathHelper.a(var1 * var1 + var3 * var3 + var5 * var5);
+	public void shoot(double var1, double var3, double var5, float var7, float var8) {
+		float var9 = MathHelper.sqrt(var1 * var1 + var3 * var3 + var5 * var5);
 		var1 /= (double) var9;
 		var3 /= (double) var9;
 		var5 /= (double) var9;
@@ -68,7 +68,7 @@ public abstract class ahr extends Entity implements aho {
 		this.motionX = var1;
 		this.motionY = var3;
 		this.motionZ = var5;
-		float var10 = MathHelper.a(var1 * var1 + var5 * var5);
+		float var10 = MathHelper.sqrt(var1 * var1 + var5 * var5);
 		this.A = this.yaw = (float) (Math.atan2(var1, var5) * 180.0D / 3.1415927410125732D);
 		this.B = this.pitch = (float) (Math.atan2(var3, (double) var10) * 180.0D / 3.1415927410125732D);
 		this.i = 0;
@@ -150,7 +150,7 @@ public abstract class ahr extends Entity implements aho {
 		this.locationX += this.motionX;
 		this.locationY += this.motionY;
 		this.locationZ += this.motionZ;
-		float var16 = MathHelper.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
+		float var16 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		this.yaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / 3.1415927410125732D);
 
 		for (this.pitch = (float) (Math.atan2(this.motionY, (double) var16) * 180.0D / 3.1415927410125732D); this.pitch - this.B < -180.0F; this.B -= 360.0F) {

@@ -19,15 +19,15 @@ public class EntitySheep extends EntityAnimal {
 		super(var1);
 		this.a(0.9F, 1.3F);
 		((aay) this.s()).a(true);
-		this.i.a(0, new yy(this));
+		this.i.a(0, new PathfinderGoalFloat(this));
 		this.i.a(1, new zu(this, 1.25D));
 		this.i.a(2, new yt(this, 1.0D));
 		this.i.a(3, new aag(this, 1.1D, Items.WHEAT, false));
 		this.i.a(4, new za(this, 1.1D));
 		this.i.a(5, this.bo);
-		this.i.a(6, new zy(this, 1.0D));
-		this.i.a(7, new zh(this, EntityHuman.class, 6.0F));
-		this.i.a(8, new zx(this));
+		this.i.a(6, new PathfinderGoalRandomStroll(this, 1.0D));
+		this.i.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 6.0F));
+		this.i.a(8, new PathfinderGoalRandomLookaround(this));
 		this.bk.a(0, new ItemStack(Items.DYE, 1, 0));
 		this.bk.a(1, new ItemStack(Items.DYE, 1, 0));
 	}
@@ -56,7 +56,7 @@ public class EntitySheep extends EntityAnimal {
 		this.dataWatcher.a(16, new Byte((byte) 0));
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		if (!this.ck()) {
 			this.a(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, this.cj().a()), 0.0F);
 		}
@@ -73,7 +73,7 @@ public class EntitySheep extends EntityAnimal {
 
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return Item.getItemOf(Blocks.WOOL);
 	}
 
@@ -192,7 +192,7 @@ public class EntitySheep extends EntityAnimal {
 		return akv.a(var6);
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return 0.95F * this.K;
 	}
 

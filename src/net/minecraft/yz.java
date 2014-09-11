@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class yz extends zb {
+public class yz extends PathfinderGoal {
 
 	private xx d;
 	private EntityLiving e;

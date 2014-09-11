@@ -4,7 +4,7 @@ public class ItemArmor extends Item {
 
 	private static final int[] k = new int[] { 11, 16, 15, 13 };
 	public static final String[] a = new String[] { "minecraft:items/empty_armor_slot_helmet", "minecraft:items/empty_armor_slot_chestplate", "minecraft:items/empty_armor_slot_leggings", "minecraft:items/empty_armor_slot_boots" };
-	private static final eo l = new ajo();
+	private static final IDispenseBehavior l = new DispenseBehaviorArmor();
 	public final int b;
 	public final int c;
 	public final int d;

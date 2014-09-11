@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntityLargeFireball extends ahl {
+public class EntityLargeFireball extends EntityFireball {
 
 	public int e = 1;
 
@@ -15,7 +15,7 @@ public class EntityLargeFireball extends ahl {
 	protected void a(MovingObjectPosition var1) {
 		if (!this.world.isStatic) {
 			if (var1.entity != null) {
-				var1.entity.a(DamageSource.a((ahl) this, this.a), 6.0F);
+				var1.entity.damageEntity(DamageSource.fireball((EntityFireball) this, this.a), 6.0F);
 				this.a(this.a, var1.entity);
 			}
 

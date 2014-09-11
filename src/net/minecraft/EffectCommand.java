@@ -34,12 +34,12 @@ public class EffectCommand extends AbstractCommand {
 				try {
 					var4 = a(var2[1], 1);
 				} catch (dk var11) {
-					MobEffectList var6 = MobEffectList.b(var2[1]);
+					MobEffectList var6 = MobEffectList.getByName(var2[1]);
 					if (var6 == null) {
 						throw var11;
 					}
 
-					var4 = var6.H;
+					var4 = var6.id;
 				}
 
 				int var5 = 600;

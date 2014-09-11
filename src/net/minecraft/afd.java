@@ -1,6 +1,6 @@
 package net.minecraft;
 
-class afd extends zb {
+class afd extends PathfinderGoal {
 
 	private EntityGhast b;
 	public int a;
@@ -43,7 +43,7 @@ class afd extends zb {
 				var14.locationX = this.b.locationX + var7.x * var5;
 				var14.locationY = this.b.locationY + (double) (this.b.K / 2.0F) + 0.5D;
 				var14.locationZ = this.b.locationZ + var7.z * var5;
-				var4.d((Entity) var14);
+				var4.addEntity((Entity) var14);
 				this.a = -40;
 			}
 		} else if (this.a > 0) {

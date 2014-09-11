@@ -16,7 +16,7 @@ class agu implements agw {
 		this.d = var4;
 	}
 
-	public void a(aqd var1, Random var2) {
+	public void a(MerchantRecipeList var1, Random var2) {
 		int var3 = 1;
 		if (this.b != null) {
 			var3 = this.b.a(var2);

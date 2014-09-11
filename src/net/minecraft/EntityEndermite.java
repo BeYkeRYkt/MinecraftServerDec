@@ -9,16 +9,16 @@ public class EntityEndermite extends EntityMonster {
 		super(var1);
 		this.b_ = 3;
 		this.a(0.4F, 0.3F);
-		this.i.a(1, new yy(this));
+		this.i.a(1, new PathfinderGoalFloat(this));
 		this.i.a(2, new zk(this, EntityHuman.class, 1.0D, false));
-		this.i.a(3, new zy(this, 1.0D));
-		this.i.a(7, new zh(this, EntityHuman.class, 8.0F));
-		this.i.a(8, new zx(this));
+		this.i.a(3, new PathfinderGoalRandomStroll(this, 1.0D));
+		this.i.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+		this.i.a(8, new PathfinderGoalRandomLookaround(this));
 		this.bg.a(1, new aal(this, true, new Class[0]));
-		this.bg.a(2, new aaq(this, EntityHuman.class, true));
+		this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return 0.1F;
 	}
 
@@ -49,7 +49,7 @@ public class EntityEndermite extends EntityMonster {
 		this.a("mob.silverfish.step", 0.15F, 1.0F);
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return null;
 	}
 

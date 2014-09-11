@@ -33,7 +33,7 @@ public class EntityLeash extends adj {
 		return 9;
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return -0.0625F;
 	}
 
@@ -97,7 +97,7 @@ public class EntityLeash extends adj {
 	public static EntityLeash a(World var0, Position var1) {
 		EntityLeash var2 = new EntityLeash(var0, var1);
 		var2.n = true;
-		var0.d((Entity) var2);
+		var0.addEntity((Entity) var2);
 		return var2;
 	}
 

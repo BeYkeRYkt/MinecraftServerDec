@@ -243,7 +243,7 @@ public abstract class EntityHuman extends EntityLiving {
 				Vec3D var7 = new Vec3D(((double) this.V.nextFloat() - 0.5D) * 0.3D, var5, 0.6D);
 				var7 = var7.a(-this.pitch * 3.1415927F / 180.0F);
 				var7 = var7.b(-this.yaw * 3.1415927F / 180.0F);
-				var7 = var7.b(this.locationX, this.locationY + (double) this.aR(), this.locationZ);
+				var7 = var7.b(this.locationX, this.locationY + (double) this.getHeadHeight(), this.locationZ);
 				if (var1.f()) {
 					this.world.a(Particle.K, var7.x, var7.y, var7.z, var4.x, var4.y + 0.05D, var4.z, new int[] { Item.getId(var1.getItem()), var1.getDurability() });
 				} else {
@@ -339,7 +339,7 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 
 		this.j((float) var1.e());
-		float var2 = MathHelper.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
+		float var2 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		float var3 = (float) (Math.atan(-this.motionY * 0.20000000298023224D) * 15.0D);
 		if (var2 > 0.1F) {
 			var2 = 0.1F;
@@ -485,7 +485,7 @@ public abstract class EntityHuman extends EntityLiving {
 		} else if (var1.amount == 0) {
 			return null;
 		} else {
-			double var4 = this.locationY - 0.30000001192092896D + (double) this.aR();
+			double var4 = this.locationY - 0.30000001192092896D + (double) this.getHeadHeight();
 			EntityItem var6 = new EntityItem(this.world, this.locationX, var4, this.locationZ, var1);
 			var6.a(40);
 			if (var3) {
@@ -522,7 +522,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	protected void a(EntityItem var1) {
-		this.world.d((Entity) var1);
+		this.world.addEntity((Entity) var1);
 	}
 
 	public float a(Block var1) {
@@ -535,13 +535,13 @@ public abstract class EntityHuman extends EntityLiving {
 			}
 		}
 
-		if (this.a(MobEffectList.e)) {
-			var2 *= 1.0F + (float) (this.b(MobEffectList.e).getAmplifier() + 1) * 0.2F;
+		if (this.a(MobEffectList.FASTER_DIG)) {
+			var2 *= 1.0F + (float) (this.b(MobEffectList.FASTER_DIG).getAmplifier() + 1) * 0.2F;
 		}
 
-		if (this.a(MobEffectList.f)) {
+		if (this.a(MobEffectList.SLOWER_DIG)) {
 			float var5 = 1.0F;
-			switch (this.b(MobEffectList.f).getAmplifier()) {
+			switch (this.b(MobEffectList.SLOWER_DIG).getAmplifier()) {
 				case 0:
 					var5 = 0.3F;
 					break;
@@ -637,7 +637,7 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else if (this.playerProperties.invulnerable && !var1.g()) {
@@ -673,7 +673,7 @@ public abstract class EntityHuman extends EntityLiving {
 						var3 = ((EntityArrow) var3).c;
 					}
 
-					return super.a(var1, var2);
+					return super.damageEntity(var1, var2);
 				}
 			}
 		}
@@ -738,7 +738,7 @@ public abstract class EntityHuman extends EntityLiving {
 	public void a(CommandBlockListenerAbstract var1) {
 	}
 
-	public void a(aqb var1) {
+	public void a(IMerchant var1) {
 	}
 
 	public void a(IInventory var1) {
@@ -823,7 +823,7 @@ public abstract class EntityHuman extends EntityLiving {
 				}
 
 				if (var2 > 0.0F || var4 > 0.0F) {
-					boolean var5 = this.O > 0.0F && !this.onGround && !this.j_() && !this.V() && !this.a(MobEffectList.q) && this.vehicle == null && var1 instanceof EntityLiving;
+					boolean var5 = this.O > 0.0F && !this.onGround && !this.j_() && !this.V() && !this.a(MobEffectList.BLINDNESS) && this.vehicle == null && var1 instanceof EntityLiving;
 					if (var5 && var2 > 0.0F) {
 						var2 *= 1.5F;
 					}
@@ -839,7 +839,7 @@ public abstract class EntityHuman extends EntityLiving {
 					double var8 = var1.motionX;
 					double var10 = var1.motionY;
 					double var12 = var1.motionZ;
-					boolean var14 = var1.a(DamageSource.a(this), var2);
+					boolean var14 = var1.damageEntity(DamageSource.playerAttack(this), var2);
 					if (var14) {
 						if (var18 > 0) {
 							var1.g((double) (-MathHelper.a(this.yaw * 3.1415927F / 180.0F) * (float) var18 * 0.5F), 0.1D, (double) (MathHelper.b(this.yaw * 3.1415927F / 180.0F) * (float) var18 * 0.5F));
@@ -1137,13 +1137,13 @@ public abstract class EntityHuman extends EntityLiving {
 		if (this.vehicle == null) {
 			int var7;
 			if (this.a(Material.WATER)) {
-				var7 = Math.round(MathHelper.a(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
+				var7 = Math.round(MathHelper.sqrt(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
 				if (var7 > 0) {
 					this.a(StatisticList.p, var7);
 					this.a(0.015F * (float) var7 * 0.01F);
 				}
 			} else if (this.V()) {
-				var7 = Math.round(MathHelper.a(var1 * var1 + var5 * var5) * 100.0F);
+				var7 = Math.round(MathHelper.sqrt(var1 * var1 + var5 * var5) * 100.0F);
 				if (var7 > 0) {
 					this.a(StatisticList.l, var7);
 					this.a(0.015F * (float) var7 * 0.01F);
@@ -1153,7 +1153,7 @@ public abstract class EntityHuman extends EntityLiving {
 					this.a(StatisticList.n, (int) Math.round(var3 * 100.0D));
 				}
 			} else if (this.onGround) {
-				var7 = Math.round(MathHelper.a(var1 * var1 + var5 * var5) * 100.0F);
+				var7 = Math.round(MathHelper.sqrt(var1 * var1 + var5 * var5) * 100.0F);
 				if (var7 > 0) {
 					this.a(StatisticList.i, var7);
 					if (this.ax()) {
@@ -1168,7 +1168,7 @@ public abstract class EntityHuman extends EntityLiving {
 					}
 				}
 			} else {
-				var7 = Math.round(MathHelper.a(var1 * var1 + var5 * var5) * 100.0F);
+				var7 = Math.round(MathHelper.sqrt(var1 * var1 + var5 * var5) * 100.0F);
 				if (var7 > 25) {
 					this.a(StatisticList.o, var7);
 				}
@@ -1179,7 +1179,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 	private void l(double var1, double var3, double var5) {
 		if (this.vehicle != null) {
-			int var7 = Math.round(MathHelper.a(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
+			int var7 = Math.round(MathHelper.sqrt(var1 * var1 + var3 * var3 + var5 * var5) * 100.0F);
 			if (var7 > 0) {
 				if (this.vehicle instanceof adx) {
 					this.a(StatisticList.q, var7);
@@ -1434,7 +1434,7 @@ public abstract class EntityHuman extends EntityLiving {
 		return var1;
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		float var1 = 1.62F;
 		if (this.isSleeping()) {
 			var1 = 0.2F;

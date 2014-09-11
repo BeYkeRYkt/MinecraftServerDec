@@ -48,7 +48,7 @@ public class BlockJukeBox extends atg {
 					ItemStack var14 = var6.getCopy();
 					EntityItem var15 = new EntityItem(var1, (double) var2.getX() + var8, (double) var2.getY() + var10, (double) var2.getZ() + var12, var14);
 					var15.p();
-					var1.d((Entity) var15);
+					var1.addEntity((Entity) var15);
 				}
 			}
 		}

@@ -8,16 +8,16 @@ public class EntityPig extends EntityAnimal {
 		super(var1);
 		this.a(0.9F, 0.9F);
 		((aay) this.s()).a(true);
-		this.i.a(0, new yy(this));
+		this.i.a(0, new PathfinderGoalFloat(this));
 		this.i.a(1, new zu(this, 1.25D));
 		this.i.a(2, this.bk = new yu(this, 0.3F));
 		this.i.a(3, new yt(this, 1.0D));
 		this.i.a(4, new aag(this, 1.2D, Items.CARROT_ON_A_STICK, false));
 		this.i.a(4, new aag(this, 1.2D, Items.CARROT, false));
 		this.i.a(5, new za(this, 1.1D));
-		this.i.a(6, new zy(this, 1.0D));
-		this.i.a(7, new zh(this, EntityHuman.class, 6.0F));
-		this.i.a(8, new zx(this));
+		this.i.a(6, new PathfinderGoalRandomStroll(this, 1.0D));
+		this.i.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 6.0F));
+		this.i.a(8, new PathfinderGoalRandomLookaround(this));
 	}
 
 	protected void aW() {
@@ -27,7 +27,7 @@ public class EntityPig extends EntityAnimal {
 	}
 
 	public boolean bV() {
-		ItemStack var1 = ((EntityHuman) this.l).getItemInHand();
+		ItemStack var1 = ((EntityHuman) this.passenger).getItemInHand();
 		return var1 != null && var1.getItem() == Items.CARROT_ON_A_STICK;
 	}
 
@@ -65,7 +65,7 @@ public class EntityPig extends EntityAnimal {
 	public boolean a(EntityHuman var1) {
 		if (super.a(var1)) {
 			return true;
-		} else if (this.cj() && !this.world.isStatic && (this.l == null || this.l == var1)) {
+		} else if (this.cj() && !this.world.isStatic && (this.passenger == null || this.passenger == var1)) {
 			var1.mount((Entity) this);
 			return true;
 		} else {
@@ -73,11 +73,11 @@ public class EntityPig extends EntityAnimal {
 		}
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return this.au() ? Items.COOCKED_PORKCHOP : Items.PORKCHOP;
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		int var3 = this.V.nextInt(3) + 1 + this.V.nextInt(1 + var2);
 
 		for (int var4 = 0; var4 < var3; ++var4) {
@@ -112,15 +112,15 @@ public class EntityPig extends EntityAnimal {
 			EntityPigZombie var2 = new EntityPigZombie(this.world);
 			var2.setArmor(0, new ItemStack(Items.GOLDEN_SWORD));
 			var2.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
-			this.world.d((Entity) var2);
+			this.world.addEntity((Entity) var2);
 			this.die();
 		}
 	}
 
 	public void e(float var1, float var2) {
 		super.e(var1, var2);
-		if (var1 > 5.0F && this.l instanceof EntityHuman) {
-			((EntityHuman) this.l).b((Statistic) AchievementList.u);
+		if (var1 > 5.0F && this.passenger instanceof EntityHuman) {
+			((EntityHuman) this.passenger).b((Statistic) AchievementList.u);
 		}
 
 	}

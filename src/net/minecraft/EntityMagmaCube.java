@@ -36,12 +36,12 @@ public class EntityMagmaCube extends EntitySlime {
 		return new EntityMagmaCube(this.world);
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return Items.MAGMA_CREAM;
 	}
 
-	protected void b(boolean var1, int var2) {
-		Item var3 = this.A();
+	protected void dropDeathLoot(boolean var1, int var2) {
+		Item var3 = this.getLoot();
 		if (var3 != null && this.ck() > 1) {
 			int var4 = this.V.nextInt(4) - 2;
 			if (var2 > 0) {

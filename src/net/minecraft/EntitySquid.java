@@ -30,7 +30,7 @@ public class EntitySquid extends EntityWaterAnimal {
 		this.a(afs.a).a(10.0D);
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return this.K * 0.5F;
 	}
 
@@ -50,7 +50,7 @@ public class EntitySquid extends EntityWaterAnimal {
 		return 0.4F;
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return null;
 	}
 
@@ -58,7 +58,7 @@ public class EntitySquid extends EntityWaterAnimal {
 		return false;
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		int var3 = this.V.nextInt(3 + var2) + 1;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
@@ -114,7 +114,7 @@ public class EntitySquid extends EntityWaterAnimal {
 				this.motionZ = (double) (this.bs * this.bn);
 			}
 
-			var1 = MathHelper.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			var1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.aG += (-((float) Math.atan2(this.motionX, this.motionZ)) * 180.0F / 3.1415927F - this.aG) * 0.1F;
 			this.yaw = this.aG;
 			this.c = (float) ((double) this.c + 3.141592653589793D * (double) this.bp * 1.5D);

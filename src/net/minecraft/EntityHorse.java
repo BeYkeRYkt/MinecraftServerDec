@@ -43,14 +43,14 @@ public class EntityHorse extends EntityAnimal implements vr {
 		this.ab = false;
 		this.o(false);
 		((aay) this.s()).a(true);
-		this.i.a(0, new yy(this));
+		this.i.a(0, new PathfinderGoalFloat(this));
 		this.i.a(1, new zu(this, 1.2D));
 		this.i.a(1, new aac(this, 1.2D));
 		this.i.a(2, new yt(this, 1.0D));
 		this.i.a(4, new za(this, 1.0D));
-		this.i.a(6, new zy(this, 0.7D));
-		this.i.a(7, new zh(this, EntityHuman.class, 6.0F));
-		this.i.a(8, new zx(this));
+		this.i.a(6, new PathfinderGoalRandomStroll(this, 0.7D));
+		this.i.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 6.0F));
+		this.i.a(8, new PathfinderGoalRandomLookaround(this));
 		this.cY();
 	}
 
@@ -241,9 +241,9 @@ public class EntityHorse extends EntityAnimal implements vr {
 		return var2;
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		Entity var3 = var1.j();
-		return this.l != null && this.l.equals(var3) ? false : super.a(var1, var2);
+		return this.passenger != null && this.passenger.equals(var3) ? false : super.damageEntity(var1, var2);
 	}
 
 	public int bq() {
@@ -251,7 +251,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 	}
 
 	public boolean ae() {
-		return this.l == null;
+		return this.passenger == null;
 	}
 
 	public boolean cB() {
@@ -283,9 +283,9 @@ public class EntityHorse extends EntityAnimal implements vr {
 
 		int var3 = MathHelper.f((var1 * 0.5F - 3.0F) * var2);
 		if (var3 > 0) {
-			this.a(DamageSource.i, (float) var3);
-			if (this.l != null) {
-				this.l.a(DamageSource.i, (float) var3);
+			this.damageEntity(DamageSource.FALL, (float) var3);
+			if (this.passenger != null) {
+				this.passenger.damageEntity(DamageSource.FALL, (float) var3);
 			}
 
 			Block var4 = this.world.getBlockState(new Position(this.locationX, this.locationY - 0.2D - (double) this.A, this.locationZ)).getBlock();
@@ -383,7 +383,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 		return var1 == 3 ? "mob.horse.zombie.death" : (var1 == 4 ? "mob.horse.skeleton.death" : (var1 != 1 && var1 != 2 ? "mob.horse.death" : "mob.horse.donkey.death"));
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		boolean var1 = this.V.nextInt(4) == 0;
 		int var2 = this.cj();
 		return var2 == 4 ? Items.BONE : (var2 == 3 ? (var1 ? null : Items.ROTTEN_FLESH) : Items.LEATHER);
@@ -428,7 +428,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 
 		if (!var2.getMaterial().isLiquid()) {
 			int var4 = this.cj();
-			if (this.l != null && var4 != 1 && var4 != 2) {
+			if (this.passenger != null && var4 != 1 && var4 != 2) {
 				++this.bL;
 				if (this.bL > 5 && this.bL % 3 == 0) {
 					this.a("mob.horse.gallop", var3.d() * 0.15F, var3.e());
@@ -475,7 +475,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 	}
 
 	public void openChest(EntityHuman human) {
-		if (!this.world.isStatic && (this.l == null || this.l == human) && this.cm()) {
+		if (!this.world.isStatic && (this.passenger == null || this.passenger == human) && this.cm()) {
 			this.bC.a(this.getName());
 			human.a(this, this.bC);
 		}
@@ -491,7 +491,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 		} else if (this.cm() && this.cl() && var1.aw()) {
 			this.openChest(var1);
 			return true;
-		} else if (this.cn() && this.l != null) {
+		} else if (this.cn() && this.passenger != null) {
 			return super.a(var1);
 		} else {
 			if (var2 != null) {
@@ -604,7 +604,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 				}
 			}
 
-			if (this.cn() && this.l == null) {
+			if (this.cn() && this.passenger == null) {
 				if (var2 != null && var2.a(var1, (EntityLiving) this)) {
 					return true;
 				} else {
@@ -638,7 +638,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 	}
 
 	protected boolean bC() {
-		return this.l != null && this.cE() ? true : this.cw() || this.cx();
+		return this.passenger != null && this.cE() ? true : this.cw() || this.cx();
 	}
 
 	public boolean cP() {
@@ -677,7 +677,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 				this.g(1.0F);
 			}
 
-			if (!this.cw() && this.l == null && this.V.nextInt(300) == 0 && this.world.getBlockState(new Position(MathHelper.toFixedPointInt(this.locationX), MathHelper.toFixedPointInt(this.locationY) - 1, MathHelper.toFixedPointInt(this.locationZ))).getBlock() == Blocks.GRASS) {
+			if (!this.cw() && this.passenger == null && this.V.nextInt(300) == 0 && this.world.getBlockState(new Position(MathHelper.toFixedPointInt(this.locationX), MathHelper.toFixedPointInt(this.locationY) - 1, MathHelper.toFixedPointInt(this.locationZ))).getBlock() == Blocks.GRASS) {
 				this.r(true);
 			}
 
@@ -776,7 +776,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 	}
 
 	private boolean de() {
-		return this.l == null && this.vehicle == null && this.cm() && this.cl() && !this.cQ() && this.getHealth() >= this.bt() && this.cp();
+		return this.passenger == null && this.vehicle == null && this.cm() && this.cl() && !this.cQ() && this.getHealth() >= this.bt() && this.cp();
 	}
 
 	public void f(boolean var1) {
@@ -836,13 +836,13 @@ public class EntityHorse extends EntityAnimal implements vr {
 	}
 
 	public void g(float var1, float var2) {
-		if (this.l != null && this.l instanceof EntityLiving && this.cE()) {
-			this.A = this.yaw = this.l.yaw;
-			this.pitch = this.l.pitch * 0.5F;
+		if (this.passenger != null && this.passenger instanceof EntityLiving && this.cE()) {
+			this.A = this.yaw = this.passenger.yaw;
+			this.pitch = this.passenger.pitch * 0.5F;
 			this.b(this.yaw, this.pitch);
 			this.headPitch = this.aG = this.yaw;
-			var1 = ((EntityLiving) this.l).aX * 0.5F;
-			var2 = ((EntityLiving) this.l).aY;
+			var1 = ((EntityLiving) this.passenger).aX * 0.5F;
+			var2 = ((EntityLiving) this.passenger).aY;
 			if (var2 <= 0.0F) {
 				var2 *= 0.25F;
 				this.bL = 0;
@@ -855,8 +855,8 @@ public class EntityHorse extends EntityAnimal implements vr {
 
 			if (this.bp > 0.0F && !this.ct() && this.onGround) {
 				this.motionY = this.cD() * (double) this.bp;
-				if (this.a(MobEffectList.j)) {
-					this.motionY += (double) ((float) (this.b(MobEffectList.j).getAmplifier() + 1) * 0.1F);
+				if (this.a(MobEffectList.JUMP)) {
+					this.motionY += (double) ((float) (this.b(MobEffectList.JUMP).getAmplifier() + 1) * 0.1F);
 				}
 
 				this.m(true);
@@ -887,7 +887,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 			this.ay = this.az;
 			double var8 = this.locationX - this.p;
 			double var5 = this.locationZ - this.r;
-			float var7 = MathHelper.a(var8 * var8 + var5 * var5) * 4.0F;
+			float var7 = MathHelper.sqrt(var8 * var8 + var5 * var5) * 4.0F;
 			if (var7 > 1.0F) {
 				var7 = 1.0F;
 			}
@@ -1134,9 +1134,9 @@ public class EntityHorse extends EntityAnimal implements vr {
 			float var2 = MathHelper.b(this.aG * 3.1415927F / 180.0F);
 			float var3 = 0.7F * this.bI;
 			float var4 = 0.15F * this.bI;
-			this.l.b(this.locationX + (double) (var3 * var1), this.locationY + this.an() + this.l.am() + (double) var4, this.locationZ - (double) (var3 * var2));
-			if (this.l instanceof EntityLiving) {
-				((EntityLiving) this.l).aG = this.aG;
+			this.passenger.b(this.locationX + (double) (var3 * var1), this.locationY + this.an() + this.passenger.am() + (double) var4, this.locationZ - (double) (var3 * var2));
+			if (this.passenger instanceof EntityLiving) {
+				((EntityLiving) this.passenger).aG = this.aG;
 			}
 		}
 
@@ -1162,7 +1162,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 		return false;
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return this.K;
 	}
 

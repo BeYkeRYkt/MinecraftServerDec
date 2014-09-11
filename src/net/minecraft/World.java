@@ -681,7 +681,7 @@ public abstract class World implements ard {
 		return true;
 	}
 
-	public boolean d(Entity var1) {
+	public boolean addEntity(Entity var1) {
 		int var2 = MathHelper.toFixedPointInt(var1.locationX / 16.0D);
 		int var3 = MathHelper.toFixedPointInt(var1.locationZ / 16.0D);
 		boolean var4 = var1.n;
@@ -720,8 +720,8 @@ public abstract class World implements ard {
 	}
 
 	public void e(Entity var1) {
-		if (var1.l != null) {
-			var1.l.mount((Entity) null);
+		if (var1.passenger != null) {
+			var1.passenger.mount((Entity) null);
 		}
 
 		if (var1.vehicle != null) {
@@ -797,7 +797,7 @@ public abstract class World implements ard {
 		List var18 = this.b(var1, var2.grow(var17, var17, var17));
 
 		for (int var19 = 0; var19 < var18.size(); ++var19) {
-			if (var1.l != var18 && var1.vehicle != var18) {
+			if (var1.passenger != var18 && var1.vehicle != var18) {
 				AxisAlignedBB var20 = ((Entity) var18.get(var19)).S();
 				if (var20 != null && var20.b(var2)) {
 					var3.add(var20);
@@ -971,11 +971,11 @@ public abstract class World implements ard {
 		for (var1 = 0; var1 < this.f.size(); ++var1) {
 			var2 = (Entity) this.f.get(var1);
 			if (var2.vehicle != null) {
-				if (!var2.vehicle.dead && var2.vehicle.l == var2) {
+				if (!var2.vehicle.dead && var2.vehicle.passenger == var2) {
 					continue;
 				}
 
-				var2.vehicle.l = null;
+				var2.vehicle.passenger = null;
 				var2.vehicle = null;
 			}
 
@@ -1154,12 +1154,12 @@ public abstract class World implements ard {
 			}
 
 			this.B.b();
-			if (var2 && var1.ad && var1.l != null) {
-				if (!var1.l.dead && var1.l.vehicle == var1) {
-					this.playerJoinedWorld(var1.l);
+			if (var2 && var1.ad && var1.passenger != null) {
+				if (!var1.passenger.dead && var1.passenger.vehicle == var1) {
+					this.playerJoinedWorld(var1.passenger);
 				} else {
-					var1.l.vehicle = null;
-					var1.l = null;
+					var1.passenger.vehicle = null;
+					var1.passenger = null;
 				}
 			}
 
@@ -1175,7 +1175,7 @@ public abstract class World implements ard {
 
 		for (int var4 = 0; var4 < var3.size(); ++var4) {
 			Entity var5 = (Entity) var3.get(var4);
-			if (!var5.dead && var5.k && var5 != var2 && (var2 == null || var2.vehicle != var5 && var2.l != var5)) {
+			if (!var5.dead && var5.k && var5 != var2 && (var2 == null || var2.vehicle != var5 && var2.passenger != var5)) {
 				return false;
 			}
 		}
@@ -1345,12 +1345,12 @@ public abstract class World implements ard {
 		return false;
 	}
 
-	public aqo a(Entity var1, double var2, double var4, double var6, float var8, boolean var9) {
+	public Explosion a(Entity var1, double var2, double var4, double var6, float var8, boolean var9) {
 		return this.a(var1, var2, var4, var6, var8, false, var9);
 	}
 
-	public aqo a(Entity var1, double var2, double var4, double var6, float var8, boolean var9, boolean var10) {
-		aqo var11 = new aqo(this, var1, var2, var4, var6, var8, var9, var10);
+	public Explosion a(Entity var1, double var2, double var4, double var6, float var8, boolean var9, boolean var10) {
+		Explosion var11 = new Explosion(this, var1, var2, var4, var6, var8, var9, var10);
 		var11.a();
 		var11.a(true);
 		return var11;

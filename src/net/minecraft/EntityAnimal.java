@@ -37,12 +37,12 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimal {
 
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
 			this.bk = 0;
-			return super.a(var1, var2);
+			return super.damageEntity(var1, var2);
 		}
 	}
 

@@ -1,16 +1,16 @@
 package net.minecraft;
 
-public class EntitySnowman extends abw implements afr {
+public class EntitySnowman extends EntityGolem implements IRangedEntity {
 
 	public EntitySnowman(World var1) {
 		super(var1);
 		this.a(0.7F, 1.9F);
 		((aay) this.s()).a(true);
-		this.i.a(1, new zz(this, 1.25D, 20, 10.0F));
-		this.i.a(2, new zy(this, 1.0D));
-		this.i.a(3, new zh(this, EntityHuman.class, 6.0F));
-		this.i.a(4, new zx(this));
-		this.bg.a(1, new aaq(this, EntityInsentient.class, 10, true, false, IMonster.d));
+		this.i.a(1, new PathfinderGoalArrowAttack(this, 1.25D, 20, 10.0F));
+		this.i.a(2, new PathfinderGoalRandomStroll(this, 1.0D));
+		this.i.a(3, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 6.0F));
+		this.i.a(4, new PathfinderGoalRandomLookaround(this));
+		this.bg.a(1, new PathfinderGoalNearestAttackableTarget(this, EntityInsentient.class, 10, true, false, IMonster.d));
 	}
 
 	protected void aW() {
@@ -26,11 +26,11 @@ public class EntitySnowman extends abw implements afr {
 			int var2 = MathHelper.toFixedPointInt(this.locationY);
 			int var3 = MathHelper.toFixedPointInt(this.locationZ);
 			if (this.U()) {
-				this.a(DamageSource.f, 1.0F);
+				this.damageEntity(DamageSource.DROWN, 1.0F);
 			}
 
 			if (this.world.b(new Position(var1, 0, var3)).a(new Position(var1, var2, var3)) > 1.0F) {
-				this.a(DamageSource.c, 1.0F);
+				this.damageEntity(DamageSource.BURN, 1.0F);
 			}
 
 			for (int var4 = 0; var4 < 4; ++var4) {
@@ -45,11 +45,11 @@ public class EntitySnowman extends abw implements afr {
 
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return Items.SNOWBALL;
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		int var3 = this.V.nextInt(16);
 
 		for (int var4 = 0; var4 < var3; ++var4) {
@@ -60,17 +60,17 @@ public class EntitySnowman extends abw implements afr {
 
 	public void a(EntityLiving var1, float var2) {
 		EntitySnowball var3 = new EntitySnowball(this.world, this);
-		double var4 = var1.locationY + (double) var1.aR() - 1.100000023841858D;
+		double var4 = var1.locationY + (double) var1.getHeadHeight() - 1.100000023841858D;
 		double var6 = var1.locationX - this.locationX;
 		double var8 = var4 - var3.locationY;
 		double var10 = var1.locationZ - this.locationZ;
-		float var12 = MathHelper.a(var6 * var6 + var10 * var10) * 0.2F;
-		var3.c(var6, var8 + (double) var12, var10, 1.6F, 12.0F);
+		float var12 = MathHelper.sqrt(var6 * var6 + var10 * var10) * 0.2F;
+		var3.shoot(var6, var8 + (double) var12, var10, 1.6F, 12.0F);
 		this.a("random.bow", 1.0F, 1.0F / (this.bb().nextFloat() * 0.4F + 0.8F));
-		this.world.d((Entity) var3);
+		this.world.addEntity((Entity) var3);
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return 1.7F;
 	}
 }

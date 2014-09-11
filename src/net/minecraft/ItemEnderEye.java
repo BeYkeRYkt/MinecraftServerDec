@@ -107,7 +107,7 @@ public class ItemEnderEye extends Item {
 				if (var5 != null) {
 					EntityEnderSignal var6 = new EntityEnderSignal(var2, var3.locationX, var3.locationY, var3.locationZ);
 					var6.a(var5);
-					var2.d((Entity) var6);
+					var2.addEntity((Entity) var6);
 					var2.a((Entity) var3, "random.bow", 0.5F, 0.4F / (rnd.nextFloat() * 0.4F + 0.8F));
 					var2.a((EntityHuman) null, 1002, new Position(var3), 0);
 					if (!var3.playerProperties.instabuild) {

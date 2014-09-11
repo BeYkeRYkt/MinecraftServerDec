@@ -46,7 +46,7 @@ public class ItemArmorStand extends Item {
 								var20.load(var23);
 							}
 
-							var3.d((Entity) var20);
+							var3.addEntity((Entity) var20);
 						}
 
 						--var1.amount;

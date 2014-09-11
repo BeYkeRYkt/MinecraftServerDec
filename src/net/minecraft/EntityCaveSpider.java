@@ -23,7 +23,7 @@ public class EntityCaveSpider extends EntitySpider {
 				}
 
 				if (var2 > 0) {
-					((EntityLiving) var1).c(new MobEffect(MobEffectList.u.H, var2 * 20, 0));
+					((EntityLiving) var1).c(new MobEffect(MobEffectList.POISON.id, var2 * 20, 0));
 				}
 			}
 
@@ -37,7 +37,7 @@ public class EntityCaveSpider extends EntitySpider {
 		return var2;
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return 0.45F;
 	}
 }

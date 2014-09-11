@@ -45,7 +45,7 @@ public class vs {
 			var12.motionX = a.nextGaussian() * (double) var13;
 			var12.motionY = a.nextGaussian() * (double) var13 + 0.20000000298023224D;
 			var12.motionZ = a.nextGaussian() * (double) var13;
-			var0.d((Entity) var12);
+			var0.addEntity((Entity) var12);
 		}
 
 	}

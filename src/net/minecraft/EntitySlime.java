@@ -143,7 +143,7 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 
 				var6.a(var1 / 2);
 				var6.setPositionRotation(this.locationX + (double) var4, this.locationY + 0.5D, this.locationZ + (double) var5, this.V.nextFloat() * 360.0F, 0.0F);
-				this.world.d((Entity) var6);
+				this.world.addEntity((Entity) var6);
 			}
 		}
 
@@ -167,14 +167,14 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 
 	protected void e(EntityLiving var1) {
 		int var2 = this.ck();
-		if (this.t(var1) && this.getDistanceSquared(var1) < 0.6D * (double) var2 * 0.6D * (double) var2 && var1.a(DamageSource.a((EntityLiving) this), (float) this.ch())) {
+		if (this.t(var1) && this.getDistanceSquared(var1) < 0.6D * (double) var2 * 0.6D * (double) var2 && var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), (float) this.ch())) {
 			this.a("mob.attack", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
 			this.a(this, var1);
 		}
 
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return 0.625F * this.K;
 	}
 
@@ -194,7 +194,7 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 		return "mob.slime." + (this.ck() > 1 ? "big" : "small");
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return this.ck() == 1 ? Items.SLIME_BALL : null;
 	}
 

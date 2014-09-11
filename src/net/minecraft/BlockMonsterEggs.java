@@ -43,7 +43,7 @@ public class BlockMonsterEggs extends Block {
 		if (!var1.isStatic && var1.Q().b("doTileDrops")) {
 			EntitySilverfish var6 = new EntitySilverfish(var1);
 			var6.setPositionRotation((double) var2.getX() + 0.5D, (double) var2.getY(), (double) var2.getZ() + 0.5D, 0.0F, 0.0F);
-			var1.d((Entity) var6);
+			var1.addEntity((Entity) var6);
 			var6.y();
 		}
 

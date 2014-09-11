@@ -3,7 +3,7 @@ package net.minecraft;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
-public class yw extends zb {
+public class yw extends PathfinderGoal {
 
 	private static final Predicate b = beq.a((Block) Blocks.TALLGRASS).a(BlockLongGrass.a, Predicates.equalTo(EnumGrassType.b));
 	private EntityInsentient c;

@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-class afu extends zy {
+class afu extends PathfinderGoalRandomStroll {
 
 	private final EntitySilverfish a;
 	private BlockFace b;

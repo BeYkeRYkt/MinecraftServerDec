@@ -29,7 +29,7 @@ public class EntityEnderSignal extends Entity {
 		double var5 = (double) var1.getZ();
 		double var7 = var2 - this.locationX;
 		double var9 = var5 - this.locationZ;
-		float var11 = MathHelper.a(var7 * var7 + var9 * var9);
+		float var11 = MathHelper.sqrt(var7 * var7 + var9 * var9);
 		if (var11 > 12.0F) {
 			this.a = this.locationX + var7 / (double) var11 * 12.0D;
 			this.c = this.locationZ + var9 / (double) var11 * 12.0D;
@@ -52,7 +52,7 @@ public class EntityEnderSignal extends Entity {
 		this.locationX += this.motionX;
 		this.locationY += this.motionY;
 		this.locationZ += this.motionZ;
-		float var1 = MathHelper.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
+		float var1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		this.yaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / 3.1415927410125732D);
 
 		for (this.pitch = (float) (Math.atan2(this.motionY, (double) var1) * 180.0D / 3.1415927410125732D); this.pitch - this.B < -180.0F; this.B -= 360.0F) {
@@ -108,7 +108,7 @@ public class EntityEnderSignal extends Entity {
 			if (this.d > 80 && !this.world.isStatic) {
 				this.die();
 				if (this.e) {
-					this.world.d((Entity) (new EntityItem(this.world, this.locationX, this.locationY, this.locationZ, new ItemStack(Items.ENDER_EYE))));
+					this.world.addEntity((Entity) (new EntityItem(this.world, this.locationX, this.locationY, this.locationZ, new ItemStack(Items.ENDER_EYE))));
 				} else {
 					this.world.b(2003, new Position(this), 0);
 				}

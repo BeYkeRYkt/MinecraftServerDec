@@ -34,7 +34,7 @@ public class EntityThrownExpBottle extends ahr {
 			while (var2 > 0) {
 				int var3 = EntityExpirienceOrb.a(var2);
 				var2 -= var3;
-				this.world.d((Entity) (new EntityExpirienceOrb(this.world, this.locationX, this.locationY, this.locationZ, var3)));
+				this.world.addEntity((Entity) (new EntityExpirienceOrb(this.world, this.locationX, this.locationY, this.locationZ, var3)));
 			}
 
 			this.die();

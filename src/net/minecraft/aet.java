@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-class aet extends zb {
+class aet extends PathfinderGoal {
 
 	private EntityEnderman a;
 

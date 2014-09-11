@@ -5,7 +5,7 @@ import com.google.common.base.Predicates;
 import java.util.Iterator;
 import java.util.List;
 
-public class EntityWither extends EntityMonster implements afr {
+public class EntityWither extends EntityMonster implements IRangedEntity {
 
 	private float[] b = new float[2];
 	private float[] c = new float[2];
@@ -22,13 +22,13 @@ public class EntityWither extends EntityMonster implements afr {
 		this.a(0.9F, 3.5F);
 		this.ab = true;
 		((aay) this.s()).d(true);
-		this.i.a(0, new yy(this));
-		this.i.a(2, new zz(this, 1.0D, 40, 20.0F));
-		this.i.a(5, new zy(this, 1.0D));
-		this.i.a(6, new zh(this, EntityHuman.class, 8.0F));
-		this.i.a(7, new zx(this));
+		this.i.a(0, new PathfinderGoalFloat(this));
+		this.i.a(2, new PathfinderGoalArrowAttack(this, 1.0D, 40, 20.0F));
+		this.i.a(5, new PathfinderGoalRandomStroll(this, 1.0D));
+		this.i.a(6, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+		this.i.a(7, new PathfinderGoalRandomLookaround(this));
 		this.bg.a(1, new aal(this, false, new Class[0]));
-		this.bg.a(2, new aaq(this, EntityInsentient.class, 0, false, false, bp));
+		this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityInsentient.class, 0, false, false, bp));
 		this.b_ = 50;
 	}
 
@@ -82,7 +82,7 @@ public class EntityWither extends EntityMonster implements afr {
 				var4 = var1.locationZ - this.locationZ;
 				var6 = var2 * var2 + var4 * var4;
 				if (var6 > 9.0D) {
-					var8 = (double) MathHelper.a(var6);
+					var8 = (double) MathHelper.sqrt(var6);
 					this.motionX += (var2 / var8 * 0.5D - this.motionX) * 0.6000000238418579D;
 					this.motionZ += (var4 / var8 * 0.5D - this.motionZ) * 0.6000000238418579D;
 				}
@@ -114,9 +114,9 @@ public class EntityWither extends EntityMonster implements afr {
 				var6 = this.u(var20 + 1);
 				var8 = this.v(var20 + 1);
 				double var10 = var3.locationX - var4;
-				double var12 = var3.locationY + (double) var3.aR() - var6;
+				double var12 = var3.locationY + (double) var3.getHeadHeight() - var6;
 				double var14 = var3.locationZ - var8;
-				double var16 = (double) MathHelper.a(var10 * var10 + var14 * var14);
+				double var16 = (double) MathHelper.sqrt(var10 * var10 + var14 * var14);
 				float var18 = (float) (Math.atan2(var14, var10) * 180.0D / 3.1415927410125732D) - 90.0F;
 				float var19 = (float) (-(Math.atan2(var12, var16) * 180.0D / 3.1415927410125732D));
 				this.b[var20] = this.b(this.b[var20], var19, 40.0F);
@@ -151,7 +151,7 @@ public class EntityWither extends EntityMonster implements afr {
 		if (this.cj() > 0) {
 			var1 = this.cj() - 1;
 			if (var1 <= 0) {
-				this.world.a(this, this.locationX, this.locationY + (double) this.aR(), this.locationZ, 7.0F, false, this.world.Q().b("mobGriefing"));
+				this.world.a(this, this.locationX, this.locationY + (double) this.getHeadHeight(), this.locationZ, 7.0F, false, this.world.Q().b("mobGriefing"));
 				this.world.a(1013, new Position(this), 0);
 			}
 
@@ -305,7 +305,7 @@ public class EntityWither extends EntityMonster implements afr {
 	}
 
 	private void a(int var1, EntityLiving var2) {
-		this.a(var1, var2.locationX, var2.locationY + (double) var2.aR() * 0.5D, var2.locationZ, var1 == 0 && this.V.nextFloat() < 0.001F);
+		this.a(var1, var2.locationX, var2.locationY + (double) var2.getHeadHeight() * 0.5D, var2.locationZ, var1 == 0 && this.V.nextFloat() < 0.001F);
 	}
 
 	private void a(int var1, double var2, double var4, double var6, boolean var8) {
@@ -324,18 +324,18 @@ public class EntityWither extends EntityMonster implements afr {
 		var21.locationY = var11;
 		var21.locationX = var9;
 		var21.locationZ = var13;
-		this.world.d((Entity) var21);
+		this.world.addEntity((Entity) var21);
 	}
 
 	public void a(EntityLiving var1, float var2) {
 		this.a(0, var1);
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
-		} else if (var1 != DamageSource.f && !(var1.j() instanceof EntityWither)) {
-			if (this.cj() > 0 && var1 != DamageSource.j) {
+		} else if (var1 != DamageSource.DROWN && !(var1.j() instanceof EntityWither)) {
+			if (this.cj() > 0 && var1 != DamageSource.OUT_OF_WORLD) {
 				return false;
 			} else {
 				Entity var3;
@@ -358,7 +358,7 @@ public class EntityWither extends EntityMonster implements afr {
 						this.bn[var4] += 3;
 					}
 
-					return super.a(var1, var2);
+					return super.damageEntity(var1, var2);
 				}
 			}
 		} else {
@@ -366,7 +366,7 @@ public class EntityWither extends EntityMonster implements afr {
 		}
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		EntityItem var3 = this.a(Items.NETHER_STAR, 1);
 		if (var3 != null) {
 			var3.u();

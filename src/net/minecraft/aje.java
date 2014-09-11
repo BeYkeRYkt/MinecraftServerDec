@@ -2,13 +2,13 @@ package net.minecraft;
 
 public class aje implements IInventory {
 
-	private final aqb a;
+	private final IMerchant a;
 	private ItemStack[] b = new ItemStack[3];
 	private final EntityHuman c;
 	private aqc d;
 	private int e;
 
-	public aje(EntityHuman var1, aqb var2) {
+	public aje(EntityHuman var1, IMerchant var2) {
 		this.c = var1;
 		this.a = var2;
 	}
@@ -125,7 +125,7 @@ public class aje implements IInventory {
 		if (var1 == null) {
 			this.a(2, (ItemStack) null);
 		} else {
-			aqd var3 = this.a.b_(this.c);
+			MerchantRecipeList var3 = this.a.b_(this.c);
 			if (var3 != null) {
 				aqc var4 = var3.a(var1, var2, this.e);
 				if (var4 != null && !var4.h()) {

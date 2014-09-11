@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public abstract class yv extends zb {
+public abstract class yv extends PathfinderGoal {
 
 	protected EntityInsentient a;
 	protected Position b;

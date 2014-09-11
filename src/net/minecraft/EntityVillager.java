@@ -2,21 +2,23 @@ package net.minecraft;
 
 import java.util.Iterator;
 
-public class EntityVillager extends EntityAgeable implements ago, aqb {
+import com.google.common.base.Predicate;
 
-	private int bl;
+public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
+
+	private int profession;
 	private boolean bm;
 	private boolean bn;
-	abi bk;
-	private EntityHuman bo;
-	private aqd bp;
+	Village village;
+	private EntityHuman tradingPlayer;
+	private MerchantRecipeList bp;
 	private int bq;
 	private boolean br;
-	private boolean bs;
-	private int bt;
+	private boolean willing;
+	private int riches;
 	private String bu;
-	private int bv;
-	private int bw;
+	private int career;
+	private int careerLevel;
 	private boolean bx;
 	private boolean by;
 	private wa bz;
@@ -42,24 +44,29 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 	public EntityVillager(World var1, int var2) {
 		super(var1);
 		this.bz = new wa("Items", false, 8);
-		this.r(var2);
+		this.setProfession(var2);
 		this.a(0.6F, 1.8F);
 		((aay) this.s()).b(true);
 		((aay) this.s()).a(true);
-		this.i.a(0, new yy(this));
-		this.i.a(1, new yp(this, new agq(this), 8.0F, 0.6D, 0.6D));
-		this.i.a(1, new aah(this));
-		this.i.a(1, new zi(this));
-		this.i.a(2, new zl(this));
-		this.i.a(3, new aaa(this));
-		this.i.a(4, new zt(this, true));
-		this.i.a(5, new zo(this, 0.6D));
-		this.i.a(6, new zj(this));
-		this.i.a(7, new aaf(this));
-		this.i.a(9, new zf(this, EntityHuman.class, 3.0F, 1.0F));
-		this.i.a(9, new aai(this));
-		this.i.a(9, new zy(this, 0.6D));
-		this.i.a(10, new zh(this, EntityInsentient.class, 8.0F));
+		this.i.a(0, new PathfinderGoalFloat(this));
+		this.i.a(1, new PathfinderGoalAvoidEntity(this, new Predicate<Entity>() {
+			@Override
+			public boolean apply(Entity entity) {
+				return entity instanceof EntityZombie;
+			}
+		}, 8.0F, 0.6D, 0.6D));
+		this.i.a(1, new PathfinderGoalTradeWithPlayer(this));
+		this.i.a(1, new PathfinderGoalLookAtTradingPlayer(this));
+		this.i.a(2, new PathfinderGoalMoveIndoors(this));
+		this.i.a(3, new PathfinderGoalRestrictOpenDoor(this));
+		this.i.a(4, new PathfinderGoalOpenDoor(this, true));
+		this.i.a(5, new PathfinderGoalMoveTowardsRestriction(this, 0.6D));
+		this.i.a(6, new PathfinderGoalMakeLove(this));
+		this.i.a(7, new PathfinderGoalTakeFlower(this));
+		this.i.a(9, new PathfinderGoalInteract(this, EntityHuman.class, 3.0F, 1.0F));
+		this.i.a(9, new PathfinderGoalVillagerInteract(this));
+		this.i.a(9, new PathfinderGoalRandomStroll(this, 0.6D));
+		this.i.a(10, new PathfinderGoalLookAtPlayer(this, EntityInsentient.class, 8.0F));
 		this.j(true);
 	}
 
@@ -89,19 +96,19 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 	}
 
 	protected void E() {
-		if (--this.bl <= 0) {
+		if (--this.profession <= 0) {
 			Position var1 = new Position(this);
 			this.world.ae().a(var1);
-			this.bl = 70 + this.V.nextInt(50);
-			this.bk = this.world.ae().a(var1, 32);
-			if (this.bk == null) {
+			this.profession = 70 + this.V.nextInt(50);
+			this.village = this.world.ae().a(var1, 32);
+			if (this.village == null) {
 				this.ch();
 			} else {
-				Position var2 = this.bk.a();
-				this.a(var2, (int) ((float) this.bk.b() * 1.0F));
+				Position var2 = this.village.a();
+				this.a(var2, (int) ((float) this.village.b() * 1.0F));
 				if (this.bx) {
 					this.bx = false;
-					this.bk.b(5);
+					this.village.b(5);
 				}
 			}
 		}
@@ -121,13 +128,13 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 
 					this.cu();
 					this.br = false;
-					if (this.bk != null && this.bu != null) {
+					if (this.village != null && this.bu != null) {
 						this.world.a((Entity) this, (byte) 14);
-						this.bk.a(this.bu, 1);
+						this.village.a(this.bu, 1);
 					}
 				}
 
-				this.c(new MobEffect(MobEffectList.l.H, 200, 0));
+				this.c(new MobEffect(MobEffectList.REGENERATION.id, 200, 0));
 			}
 		}
 
@@ -140,7 +147,7 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 		if (!var3 && this.isAlive() && !this.cm() && !this.i_()) {
 			if (!this.world.isStatic && (this.bp == null || this.bp.size() > 0)) {
 				this.a_(var1);
-				var1.a((aqb) this);
+				var1.a((IMerchant) this);
 			}
 
 			var1.b(StatisticList.F);
@@ -158,10 +165,10 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
 		var1.put("Profession", this.cj());
-		var1.put("Riches", this.bt);
-		var1.put("Career", this.bv);
-		var1.put("CareerLevel", this.bw);
-		var1.put("Willing", this.bs);
+		var1.put("Riches", this.riches);
+		var1.put("Career", this.career);
+		var1.put("CareerLevel", this.careerLevel);
+		var1.put("Willing", this.willing);
 		if (this.bp != null) {
 			var1.put("Offers", (NBTTag) this.bp.a());
 		}
@@ -180,14 +187,14 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.r(var1.getInt("Profession"));
-		this.bt = var1.getInt("Riches");
-		this.bv = var1.getInt("Career");
-		this.bw = var1.getInt("CareerLevel");
-		this.bs = var1.getBoolean("Willing");
+		this.setProfession(var1.getInt("Profession"));
+		this.riches = var1.getInt("Riches");
+		this.career = var1.getInt("Career");
+		this.careerLevel = var1.getInt("CareerLevel");
+		this.willing = var1.getBoolean("Willing");
 		if (var1.isTagAssignableFrom("Offers", 10)) {
 			NBTCompoundTag var2 = var1.getCompound("Offers");
-			this.bp = new aqd(var2);
+			this.bp = new MerchantRecipeList(var2);
 		}
 
 		NBTListTag var5 = var1.getList("Inventory", 10);
@@ -219,7 +226,7 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 		return "mob.villager.death";
 	}
 
-	public void r(int var1) {
+	public void setProfession(int var1) {
 		this.dataWatcher.b(16, Integer.valueOf(var1));
 	}
 
@@ -245,15 +252,15 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 
 	public void b(EntityLiving var1) {
 		super.b(var1);
-		if (this.bk != null && var1 != null) {
-			this.bk.a(var1);
+		if (this.village != null && var1 != null) {
+			this.village.a(var1);
 			if (var1 instanceof EntityHuman) {
 				byte var2 = -1;
 				if (this.i_()) {
 					var2 = -3;
 				}
 
-				this.bk.a(var1.getName(), var2);
+				this.village.a(var1.getName(), var2);
 				if (this.isAlive()) {
 					this.world.a((Entity) this, (byte) 13);
 				}
@@ -263,18 +270,18 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 	}
 
 	public void a(DamageSource var1) {
-		if (this.bk != null) {
+		if (this.village != null) {
 			Entity var2 = var1.j();
 			if (var2 != null) {
 				if (var2 instanceof EntityHuman) {
-					this.bk.a(var2.getName(), -2);
+					this.village.a(var2.getName(), -2);
 				} else if (var2 instanceof IMonster) {
-					this.bk.h();
+					this.village.h();
 				}
 			} else {
 				EntityHuman var3 = this.world.a(this, 16.0D);
 				if (var3 != null) {
-					this.bk.h();
+					this.village.h();
 				}
 			}
 		}
@@ -283,19 +290,19 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 	}
 
 	public void a_(EntityHuman var1) {
-		this.bo = var1;
+		this.tradingPlayer = var1;
 	}
 
 	public EntityHuman u_() {
-		return this.bo;
+		return this.tradingPlayer;
 	}
 
 	public boolean cm() {
-		return this.bo != null;
+		return this.tradingPlayer != null;
 	}
 
 	public boolean n(boolean var1) {
-		if (!this.bs && var1 && this.cp()) {
+		if (!this.willing && var1 && this.cp()) {
 			boolean var2 = false;
 
 			for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
@@ -312,17 +319,17 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 
 				if (var2) {
 					this.world.a((Entity) this, (byte) 18);
-					this.bs = true;
+					this.willing = true;
 					break;
 				}
 			}
 		}
 
-		return this.bs;
+		return this.willing;
 	}
 
 	public void o(boolean var1) {
-		this.bs = var1;
+		this.willing = var1;
 	}
 
 	public void a(aqc var1) {
@@ -333,9 +340,9 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 		if (var1.e() == 1 || this.V.nextInt(5) == 0) {
 			this.bq = 40;
 			this.br = true;
-			this.bs = true;
-			if (this.bo != null) {
-				this.bu = this.bo.getName();
+			this.willing = true;
+			if (this.tradingPlayer != null) {
+				this.bu = this.tradingPlayer.getName();
 			} else {
 				this.bu = null;
 			}
@@ -344,11 +351,11 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 		}
 
 		if (var1.a().getItem() == Items.EMERALD) {
-			this.bt += var1.a().amount;
+			this.riches += var1.a().amount;
 		}
 
 		if (var1.j()) {
-			this.world.d((Entity) (new EntityExpirienceOrb(this.world, this.locationX, this.locationY + 0.5D, this.locationZ, var2)));
+			this.world.addEntity((Entity) (new EntityExpirienceOrb(this.world, this.locationX, this.locationY + 0.5D, this.locationZ, var2)));
 		}
 
 	}
@@ -365,7 +372,7 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 
 	}
 
-	public aqd b_(EntityHuman var1) {
+	public MerchantRecipeList b_(EntityHuman var1) {
 		if (this.bp == null) {
 			this.cu();
 		}
@@ -375,19 +382,19 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 
 	private void cu() {
 		agw[][][] var1 = bA[this.cj()];
-		if (this.bv != 0 && this.bw != 0) {
-			++this.bw;
+		if (this.career != 0 && this.careerLevel != 0) {
+			++this.careerLevel;
 		} else {
-			this.bv = this.V.nextInt(var1.length) + 1;
-			this.bw = 1;
+			this.career = this.V.nextInt(var1.length) + 1;
+			this.careerLevel = 1;
 		}
 
 		if (this.bp == null) {
-			this.bp = new aqd();
+			this.bp = new MerchantRecipeList();
 		}
 
-		int var2 = this.bv - 1;
-		int var3 = this.bw - 1;
+		int var2 = this.career - 1;
+		int var3 = this.careerLevel - 1;
 		agw[][] var4 = var1[var2];
 		if (var3 < var4.length) {
 			agw[] var5 = var4[var3];
@@ -414,13 +421,13 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 			String var2 = null;
 			switch (this.cj()) {
 				case 0:
-					if (this.bv == 1) {
+					if (this.career == 1) {
 						var2 = "farmer";
-					} else if (this.bv == 2) {
+					} else if (this.career == 2) {
 						var2 = "fisherman";
-					} else if (this.bv == 3) {
+					} else if (this.career == 3) {
 						var2 = "shepherd";
-					} else if (this.bv == 4) {
+					} else if (this.career == 4) {
 						var2 = "fletcher";
 					}
 					break;
@@ -431,18 +438,18 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 					var2 = "cleric";
 					break;
 				case 3:
-					if (this.bv == 1) {
+					if (this.career == 1) {
 						var2 = "armor";
-					} else if (this.bv == 2) {
+					} else if (this.career == 2) {
 						var2 = "weapon";
-					} else if (this.bv == 3) {
+					} else if (this.career == 3) {
 						var2 = "tool";
 					}
 					break;
 				case 4:
-					if (this.bv == 1) {
+					if (this.career == 1) {
 						var2 = "butcher";
-					} else if (this.bv == 2) {
+					} else if (this.career == 2) {
 						var2 = "leather";
 					}
 			}
@@ -458,7 +465,7 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 		}
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		float var1 = 1.62F;
 		if (this.i_()) {
 			var1 = (float) ((double) var1 - 0.81D);
@@ -469,7 +476,7 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		this.r(this.world.s.nextInt(5));
+		this.setProfession(this.world.s.nextInt(5));
 		this.ct();
 		return var2;
 	}
@@ -493,7 +500,7 @@ public class EntityVillager extends EntityAgeable implements ago, aqb {
 			EntityWitch var2 = new EntityWitch(this.world);
 			var2.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 			var2.a(this.world.E(new Position(var2)), (xq) null);
-			this.world.d((Entity) var2);
+			this.world.addEntity((Entity) var2);
 			this.die();
 		}
 	}

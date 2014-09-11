@@ -1,10 +1,10 @@
 package net.minecraft;
 
-final class DispenseBehaviorEmptyBucket extends eg {
+final class DispenseBehaviorEmptyBucket extends DispenseBehaviorItem {
 
-	private final eg b = new eg();
+	private final DispenseBehaviorItem b = new DispenseBehaviorItem();
 
-	public ItemStack b(dz var1, ItemStack var2) {
+	public ItemStack b(ISourceBlock var1, ItemStack var2) {
 		World var3 = var1.i();
 		Position var4 = var1.d().a(BlockDispenser.b(var1.f()));
 		BlockState var5 = var3.getBlockState(var4);

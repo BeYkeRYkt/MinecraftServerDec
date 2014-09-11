@@ -123,12 +123,12 @@ public class EntityFallingBlock extends Entity {
 			if (var4 > 0) {
 				ArrayList var5 = Lists.newArrayList((Iterable) this.world.b((Entity) this, this.getBoundingBox()));
 				boolean var6 = var3 == Blocks.ANVIL;
-				DamageSource var7 = var6 ? DamageSource.n : DamageSource.o;
+				DamageSource var7 = var6 ? DamageSource.ANVIL : DamageSource.FALLING_BLOCK;
 				Iterator var8 = var5.iterator();
 
 				while (var8.hasNext()) {
 					Entity var9 = (Entity) var8.next();
-					var9.a(var7, (float) Math.min(MathHelper.d((float) var4 * this.h), this.g));
+					var9.damageEntity(var7, (float) Math.min(MathHelper.d((float) var4 * this.h), this.g));
 				}
 
 				if (var6 && (double) this.V.nextFloat() < 0.05000000074505806D + (double) var4 * 0.05D) {

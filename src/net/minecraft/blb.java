@@ -115,7 +115,7 @@ public abstract class blb extends StructurePiece {
 			var9.g(var9.bt());
 			var9.setPositionRotation((double) var6 + 0.5D, (double) var7, (double) var8 + 0.5D, 0.0F, 0.0F);
 			var9.a(var1.E(new Position(var9)), (xq) null);
-			var1.d((Entity) var9);
+			var1.addEntity((Entity) var9);
 			return true;
 		} else {
 			return false;

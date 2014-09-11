@@ -25,7 +25,7 @@ public class acz extends Entity {
 		return true;
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		return this.b(var1) ? false : this.a.a(this, var1, var2);
 	}
 

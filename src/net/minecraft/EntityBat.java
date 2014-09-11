@@ -135,7 +135,7 @@ public class EntityBat extends EntityAmbient {
 		return true;
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
@@ -143,7 +143,7 @@ public class EntityBat extends EntityAmbient {
 				this.a(false);
 			}
 
-			return super.a(var1, var2);
+			return super.damageEntity(var1, var2);
 		}
 	}
 
@@ -178,7 +178,7 @@ public class EntityBat extends EntityAmbient {
 		return var1.get(2) + 1 == 10 && var1.get(5) >= 20 || var1.get(2) + 1 == 11 && var1.get(5) <= 3;
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return this.K / 2.0F;
 	}
 }

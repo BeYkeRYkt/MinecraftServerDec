@@ -2,11 +2,11 @@ package net.minecraft;
 
 public class ContainerMerchant extends Container {
 
-	private aqb a;
+	private IMerchant a;
 	private aje f;
 	private final World g;
 
-	public ContainerMerchant(PlayerInventory var1, aqb var2, World var3) {
+	public ContainerMerchant(PlayerInventory var1, IMerchant var2, World var3) {
 		this.a = var2;
 		this.g = var3;
 		this.f = new aje(var1.d, var2);

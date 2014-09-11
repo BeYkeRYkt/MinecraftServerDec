@@ -66,7 +66,7 @@ public class EntityExpirienceOrb extends Entity {
 
 		if (this.f != null) {
 			double var3 = (this.f.locationX - this.locationX) / var1;
-			double var5 = (this.f.locationY + (double) this.f.aR() - this.locationY) / var1;
+			double var5 = (this.f.locationY + (double) this.f.getHeadHeight() - this.locationY) / var1;
 			double var7 = (this.f.locationZ - this.locationZ) / var1;
 			double var9 = Math.sqrt(var3 * var3 + var5 * var5 + var7 * var7);
 			double var11 = 1.0D - var9;
@@ -104,10 +104,10 @@ public class EntityExpirienceOrb extends Entity {
 	}
 
 	protected void f(int var1) {
-		this.a(DamageSource.a, (float) var1);
+		this.damageEntity(DamageSource.FIRE, (float) var1);
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {

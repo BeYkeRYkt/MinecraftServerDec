@@ -8,14 +8,14 @@ public abstract class EntityCreature extends EntityInsentient {
 	public static final AttributeModifier bj = (new AttributeModifier(bi, "Fleeing speed bonus", 2.0D, 2)).setSerializable(false);
 	private Position a;
 	private float b;
-	private zb c;
+	private PathfinderGoal c;
 	private boolean bk;
 
 	public EntityCreature(World var1) {
 		super(var1);
 		this.a = Position.ZERO;
 		this.b = -1.0F;
-		this.c = new zo(this, 1.0D);
+		this.c = new PathfinderGoalMoveTowardsRestriction(this, 1.0D);
 	}
 
 	public float a(Position var1) {

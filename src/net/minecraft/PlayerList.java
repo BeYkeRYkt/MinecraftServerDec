@@ -118,7 +118,7 @@ public abstract class PlayerList {
 			Entity var16 = EntityTypes.loadEntity(var7.getCompound("Riding"), (World) worldServer);
 			if (var16 != null) {
 				var16.n = true;
-				worldServer.d(var16);
+				worldServer.addEntity(var16);
 				player.mount(var16);
 				var16.n = false;
 			}
@@ -199,7 +199,7 @@ public abstract class PlayerList {
 		this.uuidToPlayerMap.put(var1.aJ(), var1);
 		this.sendPacket((Packet) (new PacketPlayOutListItem(ListItemAction.ADD_PLAYER, new EntityPlayer[] { var1 })));
 		WorldServer var2 = this.minecraftserver.getWorldServer(var1.dimensionId);
-		var2.d(var1);
+		var2.addEntity(var1);
 		this.a(var1, (WorldServer) null);
 
 		for (int var3 = 0; var3 < this.players.size(); ++var3) {
@@ -331,7 +331,7 @@ public abstract class PlayerList {
 		var7.playerConncetion.sendPacket((Packet) (new PacketPlayOutSetExpirience(var7.xp, var7.xpTotal, var7.xpLevel)));
 		this.updateWorldData(var7, var8);
 		var8.t().a(var7);
-		var8.d(var7);
+		var8.addEntity(var7);
 		this.players.add(var7);
 		this.uuidToPlayerMap.put(var7.aJ(), var7);
 		var7.f_();
@@ -407,7 +407,7 @@ public abstract class PlayerList {
 			if (var1.isAlive()) {
 				var1.setPositionRotation(var5, var1.locationY, var7, var1.yaw, var1.pitch);
 				var4.u().a(var1, var11);
-				var4.d(var1);
+				var4.addEntity(var1);
 				var4.a(var1, false);
 			}
 

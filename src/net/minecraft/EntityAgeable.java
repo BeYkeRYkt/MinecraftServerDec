@@ -24,7 +24,7 @@ public abstract class EntityAgeable extends EntityCreature {
 					if (var4 != null) {
 						var4.b(-24000);
 						var4.setPositionRotation(this.locationX, this.locationY, this.locationZ, 0.0F, 0.0F);
-						this.world.d((Entity) var4);
+						this.world.addEntity((Entity) var4);
 						if (var2.s()) {
 							var4.a(var2.q());
 						}

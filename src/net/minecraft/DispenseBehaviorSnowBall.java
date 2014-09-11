@@ -1,8 +1,8 @@
 package net.minecraft;
 
-final class DispenseBehaviorSnowBall extends oc {
+final class DispenseBehaviorSnowBall extends DispenseBehaviorProjectile {
 
-	protected aho a(World var1, ex var2) {
-		return new EntitySnowball(var1, var2.a(), var2.b(), var2.c());
+	protected aho a(World var1, IPosition var2) {
+		return new EntitySnowball(var1, var2.getX(), var2.getY(), var2.getZ());
 	}
 }

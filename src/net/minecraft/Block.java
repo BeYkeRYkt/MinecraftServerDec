@@ -562,7 +562,7 @@ public class Block {
 			double var8 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
 			EntityItem var10 = new EntityItem(var0, (double) var1.getX() + var4, (double) var1.getY() + var6, (double) var1.getZ() + var8, var2);
 			var10.p();
-			var0.d((Entity) var10);
+			var0.addEntity((Entity) var10);
 		}
 	}
 
@@ -571,7 +571,7 @@ public class Block {
 			while (var3 > 0) {
 				int var4 = EntityExpirienceOrb.a(var3);
 				var3 -= var4;
-				var1.d((Entity) (new EntityExpirienceOrb(var1, (double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, var4)));
+				var1.addEntity((Entity) (new EntityExpirienceOrb(var1, (double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, var4)));
 			}
 		}
 
@@ -688,7 +688,7 @@ public class Block {
 		return var1 == null ? false : var1.x >= this.B && var1.x <= this.E && var1.y >= this.C && var1.y <= this.F;
 	}
 
-	public void a(World var1, Position var2, aqo var3) {
+	public void a(World var1, Position var2, Explosion var3) {
 	}
 
 	public boolean a(World var1, Position var2, BlockFace var3, ItemStack var4) {
@@ -858,7 +858,7 @@ public class Block {
 		return true;
 	}
 
-	public boolean a(aqo var1) {
+	public boolean a(Explosion var1) {
 		return true;
 	}
 

@@ -99,7 +99,7 @@ public class ItemPotion extends Item {
 
 			var2.a((Entity) var3, "random.bow", 0.5F, 0.4F / (rnd.nextFloat() * 0.4F + 0.8F));
 			if (!var2.isStatic) {
-				var2.d((Entity) (new EntityPotion(var2, var3, var1)));
+				var2.addEntity((Entity) (new EntityPotion(var2, var3, var1)));
 			}
 
 			var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);

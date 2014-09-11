@@ -10,7 +10,7 @@ public class abk {
 	private int c = -1;
 	private int d;
 	private int e;
-	private abi f;
+	private Village f;
 	private int g;
 	private int h;
 	private int i;
@@ -85,7 +85,7 @@ public class abk {
 							Iterator var9 = this.a.ae().b().iterator();
 
 							while (var9.hasNext()) {
-								abi var10 = (abi) var9.next();
+								Village var10 = (Village) var9.next();
 								if (var10 != this.f && var10.a(new Position(this.g, this.h, this.i))) {
 									var6 = true;
 									break;
@@ -133,7 +133,7 @@ public class abk {
 			}
 
 			var2.setPositionRotation(var1.x, var1.y, var1.z, this.a.s.nextFloat() * 360.0F, 0.0F);
-			this.a.d((Entity) var2);
+			this.a.addEntity((Entity) var2);
 			Position var3 = this.f.a();
 			var2.a(var3, this.f.b());
 			return true;

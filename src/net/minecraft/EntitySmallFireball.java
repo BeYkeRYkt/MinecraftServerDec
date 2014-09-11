@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntitySmallFireball extends ahl {
+public class EntitySmallFireball extends EntityFireball {
 
 	public EntitySmallFireball(World var1) {
 		super(var1);
@@ -21,7 +21,7 @@ public class EntitySmallFireball extends ahl {
 		if (!this.world.isStatic) {
 			boolean var2;
 			if (var1.entity != null) {
-				var2 = var1.entity.a(DamageSource.a((ahl) this, this.a), 5.0F);
+				var2 = var1.entity.damageEntity(DamageSource.fireball((EntityFireball) this, this.a), 5.0F);
 				if (var2) {
 					this.a(this.a, var1.entity);
 					if (!var1.entity.T()) {
@@ -51,7 +51,7 @@ public class EntitySmallFireball extends ahl {
 		return false;
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		return false;
 	}
 }

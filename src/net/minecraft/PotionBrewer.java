@@ -267,12 +267,12 @@ public class PotionBrewer {
 		for (int var5 = 0; var5 < var4; ++var5) {
 			MobEffectList var6 = var3[var5];
 			if (var6 != null && (!var6.j() || var1)) {
-				String var7 = (String) o.get(Integer.valueOf(var6.d()));
+				String var7 = (String) o.get(Integer.valueOf(var6.getId()));
 				if (var7 != null) {
 					int var8 = a(var7, 0, var7.length(), var0);
 					if (var8 > 0) {
 						int var9 = 0;
-						String var10 = (String) p.get(Integer.valueOf(var6.d()));
+						String var10 = (String) p.get(Integer.valueOf(var6.getId()));
 						if (var10 != null) {
 							var9 = a(var10, 0, var10.length(), var0);
 							if (var9 < 0) {
@@ -295,7 +295,7 @@ public class PotionBrewer {
 							var2 = Lists.newArrayList();
 						}
 
-						MobEffect var11 = new MobEffect(var6.d(), var8, var9);
+						MobEffect var11 = new MobEffect(var6.getId(), var8, var9);
 						if ((var0 & 16384) != 0) {
 							var11.setSplash(true);
 						}
@@ -401,38 +401,38 @@ public class PotionBrewer {
 	}
 
 	static {
-		o.put(Integer.valueOf(MobEffectList.l.d()), "0 & !1 & !2 & !3 & 0+6");
+		o.put(Integer.valueOf(MobEffectList.REGENERATION.getId()), "0 & !1 & !2 & !3 & 0+6");
 		b = "-0+1-2-3&4-4+13";
-		o.put(Integer.valueOf(MobEffectList.c.d()), "!0 & 1 & !2 & !3 & 1+6");
+		o.put(Integer.valueOf(MobEffectList.FASTER_MOVEMENT.getId()), "!0 & 1 & !2 & !3 & 1+6");
 		h = "+0+1-2-3&4-4+13";
-		o.put(Integer.valueOf(MobEffectList.n.d()), "0 & 1 & !2 & !3 & 0+6");
+		o.put(Integer.valueOf(MobEffectList.FIRE_RESISTANCE.getId()), "0 & 1 & !2 & !3 & 0+6");
 		f = "+0-1+2-3&4-4+13";
-		o.put(Integer.valueOf(MobEffectList.h.d()), "0 & !1 & 2 & !3");
+		o.put(Integer.valueOf(MobEffectList.HEAL.getId()), "0 & !1 & 2 & !3");
 		d = "-0-1+2-3&4-4+13";
-		o.put(Integer.valueOf(MobEffectList.u.d()), "!0 & !1 & 2 & !3 & 2+6");
+		o.put(Integer.valueOf(MobEffectList.POISON.getId()), "!0 & !1 & 2 & !3 & 2+6");
 		e = "-0+3-4+13";
-		o.put(Integer.valueOf(MobEffectList.t.d()), "!0 & !1 & !2 & 3 & 3+6");
-		o.put(Integer.valueOf(MobEffectList.i.d()), "!0 & !1 & 2 & 3");
-		o.put(Integer.valueOf(MobEffectList.d.d()), "!0 & 1 & !2 & 3 & 3+6");
+		o.put(Integer.valueOf(MobEffectList.WEAKNESS.getId()), "!0 & !1 & !2 & 3 & 3+6");
+		o.put(Integer.valueOf(MobEffectList.HARM.getId()), "!0 & !1 & 2 & 3");
+		o.put(Integer.valueOf(MobEffectList.SLOWER_MOVEMENT.getId()), "!0 & 1 & !2 & 3 & 3+6");
 		g = "+0-1-2+3&4-4+13";
-		o.put(Integer.valueOf(MobEffectList.g.d()), "0 & !1 & !2 & 3 & 3+6");
+		o.put(Integer.valueOf(MobEffectList.INCREASE_DAMAGE.getId()), "0 & !1 & !2 & 3 & 3+6");
 		l = "-0+1+2-3+13&4-4";
-		o.put(Integer.valueOf(MobEffectList.r.d()), "!0 & 1 & 2 & !3 & 2+6");
-		o.put(Integer.valueOf(MobEffectList.p.d()), "!0 & 1 & 2 & 3 & 2+6");
+		o.put(Integer.valueOf(MobEffectList.NIGHT_VISION.getId()), "!0 & 1 & 2 & !3 & 2+6");
+		o.put(Integer.valueOf(MobEffectList.INVISIBILITY.getId()), "!0 & 1 & 2 & 3 & 2+6");
 		m = "+0-1+2+3+13&4-4";
-		o.put(Integer.valueOf(MobEffectList.o.d()), "0 & !1 & 2 & 3 & 2+6");
+		o.put(Integer.valueOf(MobEffectList.WATER_BREATHING.getId()), "0 & !1 & 2 & 3 & 2+6");
 		n = "+0+1-2+3&4-4+13";
-		o.put(Integer.valueOf(MobEffectList.j.d()), "0 & 1 & !2 & 3");
+		o.put(Integer.valueOf(MobEffectList.JUMP.getId()), "0 & 1 & !2 & 3");
 		j = "+5-6-7";
-		p.put(Integer.valueOf(MobEffectList.c.d()), "5");
-		p.put(Integer.valueOf(MobEffectList.e.d()), "5");
-		p.put(Integer.valueOf(MobEffectList.g.d()), "5");
-		p.put(Integer.valueOf(MobEffectList.l.d()), "5");
-		p.put(Integer.valueOf(MobEffectList.i.d()), "5");
-		p.put(Integer.valueOf(MobEffectList.h.d()), "5");
-		p.put(Integer.valueOf(MobEffectList.m.d()), "5");
-		p.put(Integer.valueOf(MobEffectList.u.d()), "5");
-		p.put(Integer.valueOf(MobEffectList.j.d()), "5");
+		p.put(Integer.valueOf(MobEffectList.FASTER_MOVEMENT.getId()), "5");
+		p.put(Integer.valueOf(MobEffectList.FASTER_DIG.getId()), "5");
+		p.put(Integer.valueOf(MobEffectList.INCREASE_DAMAGE.getId()), "5");
+		p.put(Integer.valueOf(MobEffectList.REGENERATION.getId()), "5");
+		p.put(Integer.valueOf(MobEffectList.HARM.getId()), "5");
+		p.put(Integer.valueOf(MobEffectList.HEAL.getId()), "5");
+		p.put(Integer.valueOf(MobEffectList.RESISTANCE.getId()), "5");
+		p.put(Integer.valueOf(MobEffectList.POISON.getId()), "5");
+		p.put(Integer.valueOf(MobEffectList.JUMP.getId()), "5");
 		i = "-5+6-7";
 		k = "+14&13-13";
 		Maps.newHashMap();

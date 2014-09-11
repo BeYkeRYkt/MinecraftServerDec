@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class ItemMinecart extends Item {
 
-	private static final eo a = new amq();
+	private static final IDispenseBehavior a = new DispenseBehaviorMinecart();
 	private final MinecartType b;
 
 	public ItemMinecart(MinecartType var1) {
@@ -27,7 +27,7 @@ public class ItemMinecart extends Item {
 					var13.a(var1.q());
 				}
 
-				var3.d((Entity) var13);
+				var3.addEntity((Entity) var13);
 			}
 
 			--var1.amount;

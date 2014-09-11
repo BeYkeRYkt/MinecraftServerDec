@@ -59,9 +59,9 @@ public class CombatTracker {
 			IChatBaseComponent var4 = var2.h();
 			Entity var5 = var2.a().j();
 			Object var3;
-			if (var1 != null && var2.a() == DamageSource.i) {
+			if (var1 != null && var2.a() == DamageSource.FALL) {
 				IChatBaseComponent var6 = var1.h();
-				if (var1.a() != DamageSource.i && var1.a() != DamageSource.j) {
+				if (var1.a() != DamageSource.FALL && var1.a() != DamageSource.OUT_OF_WORLD) {
 					if (var6 != null && (var4 == null || !var6.equals(var4))) {
 						Entity var9 = var1.a().j();
 						ItemStack var8 = var9 instanceof EntityLiving ? ((EntityLiving) var9).getItemInHand() : null;
@@ -84,7 +84,7 @@ public class CombatTracker {
 					var3 = new ChatMessage("death.fell.accident." + this.a(var1), new Object[] { this.b.getComponentName() });
 				}
 			} else {
-				var3 = var2.a().b(this.b);
+				var3 = var2.a().getLocalizedDeathMessage(this.b);
 			}
 
 			return (IChatBaseComponent) var3;
@@ -127,7 +127,7 @@ public class CombatTracker {
 		for (int var5 = 0; var5 < this.a.size(); ++var5) {
 			wf var6 = (wf) this.a.get(var5);
 			wf var7 = var5 > 0 ? (wf) this.a.get(var5 - 1) : null;
-			if ((var6.a() == DamageSource.i || var6.a() == DamageSource.j) && var6.i() > 0.0F && (var1 == null || var6.i() > var4)) {
+			if ((var6.a() == DamageSource.FALL || var6.a() == DamageSource.OUT_OF_WORLD) && var6.i() > 0.0F && (var1 == null || var6.i() > var4)) {
 				if (var5 > 0) {
 					var1 = var7;
 				} else {

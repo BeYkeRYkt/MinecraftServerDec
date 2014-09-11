@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.Collections;
 import java.util.List;
 
-class aeu extends aaq {
+class aeu extends PathfinderGoalNearestAttackableTarget {
 
 	private EntityHuman g;
 	private int h;

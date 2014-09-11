@@ -19,7 +19,7 @@ public class BiomeTheEndDecorator extends BiomeDecorator {
 		if (this.c.getX() == 0 && this.c.getZ() == 0) {
 			EntityEnderDragon var4 = new EntityEnderDragon(this.a);
 			var4.setPositionRotation(0.0D, 128.0D, 0.0D, this.b.nextFloat() * 360.0F, 0.0F);
-			this.a.d((Entity) var4);
+			this.a.addEntity((Entity) var4);
 		}
 
 	}

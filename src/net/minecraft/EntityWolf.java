@@ -13,21 +13,21 @@ public class EntityWolf extends xx {
 		super(var1);
 		this.a(0.6F, 0.8F);
 		((aay) this.s()).a(true);
-		this.i.a(1, new yy(this));
+		this.i.a(1, new PathfinderGoalFloat(this));
 		this.i.a(2, this.bk);
 		this.i.a(3, new zg(this, 0.4F));
 		this.i.a(4, new zk(this, 1.0D, true));
 		this.i.a(5, new yz(this, 1.0D, 10.0F, 2.0F));
 		this.i.a(6, new yt(this, 1.0D));
-		this.i.a(7, new zy(this, 1.0D));
+		this.i.a(7, new PathfinderGoalRandomStroll(this, 1.0D));
 		this.i.a(8, new yr(this, 8.0F));
-		this.i.a(9, new zh(this, EntityHuman.class, 8.0F));
-		this.i.a(9, new zx(this));
+		this.i.a(9, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+		this.i.a(9, new PathfinderGoalRandomLookaround(this));
 		this.bg.a(1, new aau(this));
 		this.bg.a(2, new aav(this));
 		this.bg.a(3, new aal(this, true, new Class[0]));
 		this.bg.a(4, new aat(this, EntityAnimal.class, false, new acv(this)));
-		this.bg.a(5, new aaq(this, EntitySkeleton.class, false));
+		this.bg.a(5, new PathfinderGoalNearestAttackableTarget(this, EntitySkeleton.class, false));
 		this.m(false);
 	}
 
@@ -100,7 +100,7 @@ public class EntityWolf extends xx {
 		return 0.4F;
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return Item.getById(-1);
 	}
 
@@ -161,7 +161,7 @@ public class EntityWolf extends xx {
 
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return this.K * 0.8F;
 	}
 
@@ -169,7 +169,7 @@ public class EntityWolf extends xx {
 		return this.cl() ? 20 : super.bP();
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
@@ -179,12 +179,12 @@ public class EntityWolf extends xx {
 				var2 = (var2 + 1.0F) / 2.0F;
 			}
 
-			return super.a(var1, var2);
+			return super.damageEntity(var1, var2);
 		}
 	}
 
 	public boolean r(Entity var1) {
-		boolean var2 = var1.a(DamageSource.a((EntityLiving) this), (float) ((int) this.a(afs.e).e()));
+		boolean var2 = var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), (float) ((int) this.a(afs.e).e()));
 		if (var2) {
 			this.a((EntityLiving) this, var1);
 		}

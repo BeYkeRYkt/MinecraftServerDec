@@ -373,8 +373,8 @@ public class qy {
 			return new PacketPlayOutSpawnObject(this.a, 76);
 		} else {
 			PacketPlayOutSpawnObject var2;
-			if (this.a instanceof ahl) {
-				ahl var6 = (ahl) this.a;
+			if (this.a instanceof EntityFireball) {
+				EntityFireball var6 = (EntityFireball) this.a;
 				var2 = null;
 				byte var10 = 63;
 				if (this.a instanceof EntitySmallFireball) {
@@ -384,7 +384,7 @@ public class qy {
 				}
 
 				if (var6.a != null) {
-					var2 = new PacketPlayOutSpawnObject(this.a, var10, ((ahl) this.a).a.getId());
+					var2 = new PacketPlayOutSpawnObject(this.a, var10, ((EntityFireball) this.a).a.getId());
 				} else {
 					var2 = new PacketPlayOutSpawnObject(this.a, var10, 0);
 				}

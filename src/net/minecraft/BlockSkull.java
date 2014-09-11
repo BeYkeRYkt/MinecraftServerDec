@@ -138,7 +138,7 @@ public class BlockSkull extends atg {
 					var10.b((Statistic) AchievementList.I);
 				}
 
-				var1.d((Entity) var14);
+				var1.addEntity((Entity) var14);
 
 				int var16;
 				for (var16 = 0; var16 < 120; ++var16) {

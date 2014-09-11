@@ -119,7 +119,7 @@ public abstract class aqi {
 
 			var1.load(var3);
 			if (var1.world != null && var2) {
-				var1.world.d(var1);
+				var1.world.addEntity(var1);
 			}
 
 			NBTCompoundTag var12;
@@ -140,7 +140,7 @@ public abstract class aqi {
 					var13.load(var7);
 					var13.setPositionRotation(var11.locationX, var11.locationY, var11.locationZ, var11.yaw, var11.pitch);
 					if (var1.world != null && var2) {
-						var1.world.d(var13);
+						var1.world.addEntity(var13);
 					}
 
 					var11.mount(var13);
@@ -150,7 +150,7 @@ public abstract class aqi {
 			}
 		} else if (var1 instanceof EntityLiving && var1.world != null && var2) {
 			((EntityInsentient) var1).a(var1.world.E(new Position(var1)), (xq) null);
-			var1.world.d(var1);
+			var1.world.addEntity(var1);
 		}
 
 		return var1;

@@ -100,7 +100,7 @@ public class EntityPigZombie extends EntityZombie {
 
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
@@ -109,7 +109,7 @@ public class EntityPigZombie extends EntityZombie {
 				this.b(var3);
 			}
 
-			return super.a(var1, var2);
+			return super.damageEntity(var1, var2);
 		}
 	}
 
@@ -138,7 +138,7 @@ public class EntityPigZombie extends EntityZombie {
 		return "mob.zombiepig.zpigdeath";
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		int var3 = this.V.nextInt(2 + var2);
 
 		int var4;

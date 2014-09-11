@@ -325,9 +325,9 @@ public class EntityArmorStand extends EntityLiving {
 		}
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (!this.world.isStatic && !this.h) {
-			if (DamageSource.j.equals(var1)) {
+			if (DamageSource.OUT_OF_WORLD.equals(var1)) {
 				this.die();
 				return false;
 			} else if (this.b(var1)) {
@@ -336,7 +336,7 @@ public class EntityArmorStand extends EntityLiving {
 				this.C();
 				this.die();
 				return false;
-			} else if (DamageSource.a.equals(var1)) {
+			} else if (DamageSource.FIRE.equals(var1)) {
 				if (!this.au()) {
 					this.e(5);
 				} else {
@@ -344,7 +344,7 @@ public class EntityArmorStand extends EntityLiving {
 				}
 
 				return false;
-			} else if (DamageSource.c.equals(var1) && this.getHealth() > 0.5F) {
+			} else if (DamageSource.BURN.equals(var1) && this.getHealth() > 0.5F) {
 				this.a(4.0F);
 				return false;
 			} else {
@@ -425,7 +425,7 @@ public class EntityArmorStand extends EntityLiving {
 		return 0.0F;
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return this.i_() ? this.K * 0.5F : this.K * 0.9F;
 	}
 

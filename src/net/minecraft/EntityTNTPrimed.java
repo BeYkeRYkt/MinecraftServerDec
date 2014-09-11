@@ -80,7 +80,7 @@ public class EntityTNTPrimed extends Entity {
 		return this.b;
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return 0.0F;
 	}
 }

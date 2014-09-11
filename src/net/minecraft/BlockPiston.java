@@ -205,7 +205,7 @@ public class BlockPiston extends Block {
 
 	public static BlockFace a(World var0, Position var1, EntityLiving var2) {
 		if (MathHelper.e((float) var2.locationX - (float) var1.getX()) < 2.0F && MathHelper.e((float) var2.locationZ - (float) var1.getZ()) < 2.0F) {
-			double var3 = var2.locationY + (double) var2.aR();
+			double var3 = var2.locationY + (double) var2.getHeadHeight();
 			if (var3 - (double) var1.getY() > 2.0D) {
 				return BlockFace.UP;
 			}

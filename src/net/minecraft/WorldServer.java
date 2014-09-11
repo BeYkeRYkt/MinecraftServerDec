@@ -476,7 +476,7 @@ public class WorldServer extends World implements ITaskScheduler {
 			var1.die();
 		}
 
-		if (!this.ah() && var1 instanceof ago) {
+		if (!this.ah() && var1 instanceof NPC) {
 			var1.die();
 		}
 
@@ -694,8 +694,8 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.s().b(var1, new PacketPlayOutEntityStatus(var1, var2));
 	}
 
-	public aqo a(Entity var1, double var2, double var4, double var6, float var8, boolean var9, boolean var10) {
-		aqo var11 = new aqo(this, var1, var2, var4, var6, var8, var9, var10);
+	public Explosion a(Entity var1, double var2, double var4, double var6, float var8, boolean var9, boolean var10) {
+		Explosion var11 = new Explosion(this, var1, var2, var4, var6, var8, var9, var10);
 		var11.a();
 		var11.a(false);
 		if (!var10) {

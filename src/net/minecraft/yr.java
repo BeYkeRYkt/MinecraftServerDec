@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class yr extends zb {
+public class yr extends PathfinderGoal {
 
 	private EntityWolf a;
 	private EntityHuman b;
@@ -35,7 +35,7 @@ public class yr extends zb {
 	}
 
 	public void e() {
-		this.a.p().a(this.b.locationX, this.b.locationY + (double) this.b.aR(), this.b.locationZ, 10.0F, (float) this.a.bP());
+		this.a.p().a(this.b.locationX, this.b.locationY + (double) this.b.getHeadHeight(), this.b.locationZ, 10.0F, (float) this.a.bP());
 		--this.e;
 	}
 

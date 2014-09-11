@@ -7,9 +7,9 @@ class aar implements Predicate {
 	// $FF: synthetic field
 	final Predicate a;
 	// $FF: synthetic field
-	final aaq b;
+	final PathfinderGoalNearestAttackableTarget b;
 
-	aar(aaq var1, Predicate var2) {
+	aar(PathfinderGoalNearestAttackableTarget var1, Predicate var2) {
 		this.b = var1;
 		this.a = var2;
 	}

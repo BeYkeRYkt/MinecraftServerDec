@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class aad extends zb {
+public class aad extends PathfinderGoal {
 
 	private xx a;
 	private boolean b;

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-class afb extends zb {
+class afb extends PathfinderGoal {
 
 	private EntityGhast a;
 

@@ -76,7 +76,7 @@ public class BlockCactus extends Block {
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Entity var4) {
-		var4.a(DamageSource.h, 1.0F);
+		var4.damageEntity(DamageSource.CACTUS, 1.0F);
 	}
 
 	public BlockState a(int var1) {

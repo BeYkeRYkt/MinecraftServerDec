@@ -163,12 +163,12 @@ public abstract class EntityInsentient extends EntityLiving {
 		return null;
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return null;
 	}
 
-	protected void b(boolean var1, int var2) {
-		Item var3 = this.A();
+	protected void dropDeathLoot(boolean var1, int var2) {
+		Item var3 = this.getLoot();
 		if (var3 != null) {
 			int var4 = this.V.nextInt(3);
 			if (var2 > 0) {
@@ -424,12 +424,12 @@ public abstract class EntityInsentient extends EntityLiving {
 		double var6;
 		if (var1 instanceof EntityLiving) {
 			EntityLiving var10 = (EntityLiving) var1;
-			var6 = var10.locationY + (double) var10.aR() - (this.locationY + (double) this.aR());
+			var6 = var10.locationY + (double) var10.getHeadHeight() - (this.locationY + (double) this.getHeadHeight());
 		} else {
-			var6 = (var1.getBoundingBox().minY + var1.getBoundingBox().maxY) / 2.0D - (this.locationY + (double) this.aR());
+			var6 = (var1.getBoundingBox().minY + var1.getBoundingBox().maxY) / 2.0D - (this.locationY + (double) this.getHeadHeight());
 		}
 
-		double var14 = (double) MathHelper.a(var4 * var4 + var8 * var8);
+		double var14 = (double) MathHelper.sqrt(var4 * var4 + var8 * var8);
 		float var12 = (float) (Math.atan2(var8, var4) * 180.0D / 3.1415927410125732D) - 90.0F;
 		float var13 = (float) (-(Math.atan2(var6, var14) * 180.0D / 3.1415927410125732D));
 		this.pitch = this.b(this.pitch, var13, var3);

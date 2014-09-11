@@ -7,7 +7,7 @@ import java.util.List;
 
 public class TileEntityBeacon extends bdf implements PacketTickable, IInventory {
 
-	public static final MobEffectList[][] a = new MobEffectList[][] { { MobEffectList.c, MobEffectList.e }, { MobEffectList.m, MobEffectList.j }, { MobEffectList.g }, { MobEffectList.l } };
+	public static final MobEffectList[][] a = new MobEffectList[][] { { MobEffectList.FASTER_MOVEMENT, MobEffectList.FASTER_DIG }, { MobEffectList.RESISTANCE, MobEffectList.JUMP }, { MobEffectList.INCREASE_DAMAGE }, { MobEffectList.REGENERATION } };
 	private final List f = Lists.newArrayList();
 	private boolean i;
 	private int j = -1;

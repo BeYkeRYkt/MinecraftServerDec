@@ -1,6 +1,6 @@
 package net.minecraft;
 
-class agd extends zb {
+class agd extends PathfinderGoal {
 
 	private EntitySlime a;
 	private float b;

@@ -9,7 +9,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class aao extends zb {
+public class aao extends PathfinderGoal {
 
 	private static final Logger a = LogManager.getLogger();
 	private EntityInsentient b;

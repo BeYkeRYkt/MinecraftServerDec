@@ -25,7 +25,7 @@ public class BlockDragonEgg extends Block {
 		if (BlockFalling.d(var1, var2.b()) && var2.getY() >= 0) {
 			byte var3 = 32;
 			if (!BlockFalling.instafall && var1.a(var2.a(-var3, -var3, -var3), var2.a(var3, var3, var3))) {
-				var1.d((Entity) (new EntityFallingBlock(var1, (double) ((float) var2.getX() + 0.5F), (double) var2.getY(), (double) ((float) var2.getZ() + 0.5F), this.getBlockState())));
+				var1.addEntity((Entity) (new EntityFallingBlock(var1, (double) ((float) var2.getX() + 0.5F), (double) var2.getY(), (double) ((float) var2.getZ() + 0.5F), this.getBlockState())));
 			} else {
 				var1.g(var2);
 

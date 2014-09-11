@@ -70,14 +70,14 @@ public class SummonCommand extends AbstractCommand {
 						((EntityInsentient) var21).a(var12.E(new Position(var21)), (xq) null);
 					}
 
-					var12.d(var21);
+					var12.addEntity(var21);
 					Entity var16 = var21;
 
 					for (NBTCompoundTag var17 = var13; var16 != null && var17.isTagAssignableFrom("Riding", 10); var17 = var17.getCompound("Riding")) {
 						Entity var18 = EntityTypes.loadEntity(var17.getCompound("Riding"), var12);
 						if (var18 != null) {
 							var18.setPositionRotation(var6, var8, var10, var18.yaw, var18.pitch);
-							var12.d(var18);
+							var12.addEntity(var18);
 							var16.mount(var18);
 						}
 

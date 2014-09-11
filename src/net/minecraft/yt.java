@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-public class yt extends zb {
+public class yt extends PathfinderGoal {
 
 	private EntityAnimal d;
 	World a;
@@ -86,7 +86,7 @@ public class yt extends zb {
 			this.e.cq();
 			var1.b(-24000);
 			var1.setPositionRotation(this.d.locationX, this.d.locationY, this.d.locationZ, 0.0F, 0.0F);
-			this.a.d((Entity) var1);
+			this.a.addEntity((Entity) var1);
 			Random var3 = this.d.bb();
 
 			for (int var4 = 0; var4 < 7; ++var4) {
@@ -97,7 +97,7 @@ public class yt extends zb {
 			}
 
 			if (this.a.Q().b("doMobLoot")) {
-				this.a.d((Entity) (new EntityExpirienceOrb(this.a, this.d.locationX, this.d.locationY, this.d.locationZ, var3.nextInt(7) + 1)));
+				this.a.addEntity((Entity) (new EntityExpirienceOrb(this.a, this.d.locationX, this.d.locationY, this.d.locationZ, var3.nextInt(7) + 1)));
 			}
 
 		}

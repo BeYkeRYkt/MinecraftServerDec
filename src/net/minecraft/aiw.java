@@ -52,7 +52,7 @@ public class aiw extends Slot {
 			while (var2 > 0) {
 				var4 = EntityExpirienceOrb.a(var2);
 				var2 -= var4;
-				this.a.world.d((Entity) (new EntityExpirienceOrb(this.a.world, this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ + 0.5D, var4)));
+				this.a.world.addEntity((Entity) (new EntityExpirienceOrb(this.a.world, this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ + 0.5D, var4)));
 			}
 		}
 

@@ -5,9 +5,9 @@ public class ajg extends Slot {
 	private final aje a;
 	private EntityHuman b;
 	private int c;
-	private final aqb h;
+	private final IMerchant h;
 
-	public ajg(EntityHuman var1, aqb var2, aje var3, int var4, int var5, int var6) {
+	public ajg(EntityHuman var1, IMerchant var2, aje var3, int var4, int var5, int var6) {
 		super(var3, var4, var5, var6);
 		this.b = var1;
 		this.h = var2;

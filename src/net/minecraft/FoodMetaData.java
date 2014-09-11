@@ -40,7 +40,7 @@ public class FoodMetaData {
 			++this.d;
 			if (this.d >= 80) {
 				if (var1.getHealth() > 10.0F || var2 == Difficulty.HARD || var1.getHealth() > 1.0F && var2 == Difficulty.NORMAL) {
-					var1.a(DamageSource.g, 1.0F);
+					var1.damageEntity(DamageSource.STARVE, 1.0F);
 				}
 
 				this.d = 0;

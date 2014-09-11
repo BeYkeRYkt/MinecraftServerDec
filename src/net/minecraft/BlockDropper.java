@@ -2,9 +2,9 @@ package net.minecraft;
 
 public class BlockDropper extends BlockDispenser {
 
-	private final eo O = new eg();
+	private final IDispenseBehavior O = new DispenseBehaviorItem();
 
-	protected eo a(ItemStack var1) {
+	protected IDispenseBehavior a(ItemStack var1) {
 		return this.O;
 	}
 

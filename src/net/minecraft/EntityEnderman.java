@@ -15,16 +15,16 @@ public class EntityEnderman extends EntityMonster {
 		super(var1);
 		this.a(0.6F, 2.9F);
 		this.S = 1.0F;
-		this.i.a(0, new yy(this));
+		this.i.a(0, new PathfinderGoalFloat(this));
 		this.i.a(2, new zk(this, 1.0D, false));
-		this.i.a(7, new zy(this, 1.0D));
-		this.i.a(8, new zh(this, EntityHuman.class, 8.0F));
-		this.i.a(8, new zx(this));
+		this.i.a(7, new PathfinderGoalRandomStroll(this, 1.0D));
+		this.i.a(8, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+		this.i.a(8, new PathfinderGoalRandomLookaround(this));
 		this.i.a(10, new aet(this));
 		this.i.a(11, new aev(this));
 		this.bg.a(1, new aal(this, false, new Class[0]));
 		this.bg.a(2, new aeu(this));
-		this.bg.a(3, new aaq(this, EntityEndermite.class, 10, true, false, new aes(this)));
+		this.bg.a(3, new PathfinderGoalNearestAttackableTarget(this, EntityEndermite.class, 10, true, false, new aes(this)));
 	}
 
 	protected void aW() {
@@ -67,7 +67,7 @@ public class EntityEnderman extends EntityMonster {
 			return false;
 		} else {
 			Vec3D var3 = var1.d(1.0F).a();
-			Vec3D var4 = new Vec3D(this.locationX - var1.locationX, this.getBoundingBox().minY + (double) (this.K / 2.0F) - (var1.locationY + (double) var1.aR()), this.locationZ - var1.locationZ);
+			Vec3D var4 = new Vec3D(this.locationX - var1.locationX, this.getBoundingBox().minY + (double) (this.K / 2.0F) - (var1.locationY + (double) var1.getHeadHeight()), this.locationZ - var1.locationZ);
 			double var5 = var4.b();
 			var4 = var4.a();
 			double var7 = var3.b(var4);
@@ -75,7 +75,7 @@ public class EntityEnderman extends EntityMonster {
 		}
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return 2.55F;
 	}
 
@@ -92,7 +92,7 @@ public class EntityEnderman extends EntityMonster {
 
 	protected void E() {
 		if (this.U()) {
-			this.a(DamageSource.f, 1.0F);
+			this.damageEntity(DamageSource.DROWN, 1.0F);
 		}
 
 		if (this.cm() && !this.bl && this.V.nextInt(100) == 0) {
@@ -120,7 +120,7 @@ public class EntityEnderman extends EntityMonster {
 	}
 
 	protected boolean b(Entity var1) {
-		Vec3D var2 = new Vec3D(this.locationX - var1.locationX, this.getBoundingBox().minY + (double) (this.K / 2.0F) - var1.locationY + (double) var1.aR(), this.locationZ - var1.locationZ);
+		Vec3D var2 = new Vec3D(this.locationX - var1.locationX, this.getBoundingBox().minY + (double) (this.K / 2.0F) - var1.locationY + (double) var1.getHeadHeight(), this.locationZ - var1.locationZ);
 		var2 = var2.a();
 		double var3 = 16.0D;
 		double var5 = this.locationX + (this.V.nextDouble() - 0.5D) * 8.0D - var2.x * var3;
@@ -195,12 +195,12 @@ public class EntityEnderman extends EntityMonster {
 		return "mob.endermen.death";
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return Items.ENDER_PEARL;
 	}
 
-	protected void b(boolean var1, int var2) {
-		Item var3 = this.A();
+	protected void dropDeathLoot(boolean var1, int var2) {
+		Item var3 = this.getLoot();
 		if (var3 != null) {
 			int var4 = this.V.nextInt(2 + var2);
 
@@ -219,7 +219,7 @@ public class EntityEnderman extends EntityMonster {
 		return Block.d(this.dataWatcher.b(16) & '\uffff');
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
@@ -228,7 +228,7 @@ public class EntityEnderman extends EntityMonster {
 					this.a(true);
 				}
 
-				if (var1 instanceof wi && var1.j() instanceof EntityHuman) {
+				if (var1 instanceof EntityDamageSource && var1.j() instanceof EntityHuman) {
 					if (var1.j() instanceof EntityPlayer && ((EntityPlayer) var1.j()).playerInteractManager.isCreative()) {
 						this.a(false);
 					} else {
@@ -236,7 +236,7 @@ public class EntityEnderman extends EntityMonster {
 					}
 				}
 
-				if (var1 instanceof wj) {
+				if (var1 instanceof EntityDamageSourceIndirect) {
 					this.bl = false;
 
 					for (int var4 = 0; var4 < 64; ++var4) {
@@ -249,7 +249,7 @@ public class EntityEnderman extends EntityMonster {
 				}
 			}
 
-			boolean var3 = super.a(var1, var2);
+			boolean var3 = super.damageEntity(var1, var2);
 			if (var1.e() && this.V.nextInt(10) != 0) {
 				this.n();
 			}

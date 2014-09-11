@@ -12,7 +12,7 @@ public class aak extends aaw {
 	}
 
 	public boolean a() {
-		abi var1 = this.a.n();
+		Village var1 = this.a.n();
 		if (var1 == null) {
 			return false;
 		} else {

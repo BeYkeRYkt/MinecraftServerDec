@@ -14,22 +14,22 @@ public class EntityGuardian extends EntityMonster {
 	private EntityLiving bn;
 	private int bo;
 	private boolean bp;
-	private zy bq;
+	private PathfinderGoalRandomStroll bq;
 
 	public EntityGuardian(World var1) {
 		super(var1);
 		this.b_ = 10;
 		this.a(0.85F, 0.85F);
 		this.i.a(4, new afi(this));
-		zo var2;
-		this.i.a(5, var2 = new zo(this, 1.0D));
-		this.i.a(7, this.bq = new zy(this, 1.0D, 80));
-		this.i.a(8, new zh(this, EntityHuman.class, 8.0F));
-		this.i.a(8, new zh(this, EntityGuardian.class, 12.0F, 0.01F));
-		this.i.a(9, new zx(this));
+		PathfinderGoalMoveTowardsRestriction var2;
+		this.i.a(5, var2 = new PathfinderGoalMoveTowardsRestriction(this, 1.0D));
+		this.i.a(7, this.bq = new PathfinderGoalRandomStroll(this, 1.0D, 80));
+		this.i.a(8, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+		this.i.a(8, new PathfinderGoalLookAtPlayer(this, EntityGuardian.class, 12.0F, 0.01F));
+		this.i.a(9, new PathfinderGoalRandomLookaround(this));
 		this.bq.a(3);
 		var2.a(3);
-		this.bg.a(1, new aaq(this, EntityLiving.class, 10, true, false, new afj(this)));
+		this.bg.a(1, new PathfinderGoalNearestAttackableTarget(this, EntityLiving.class, 10, true, false, new afj(this)));
 		this.f = new afk(this);
 		this.c = this.b = this.V.nextFloat();
 	}
@@ -166,7 +166,7 @@ public class EntityGuardian extends EntityMonster {
 		return false;
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return this.K * 0.5F;
 	}
 
@@ -223,7 +223,7 @@ public class EntityGuardian extends EntityMonster {
 					this.p().a();
 					double var15 = (double) this.p(0.0F);
 					double var4 = var14.locationX - this.locationX;
-					double var6 = var14.locationY + (double) (var14.K * 0.5F) - (this.locationY + (double) this.aR());
+					double var6 = var14.locationY + (double) (var14.K * 0.5F) - (this.locationY + (double) this.getHeadHeight());
 					double var8 = var14.locationZ - this.locationZ;
 					double var10 = Math.sqrt(var4 * var4 + var6 * var6 + var8 * var8);
 					var4 /= var10;
@@ -233,7 +233,7 @@ public class EntityGuardian extends EntityMonster {
 
 					while (var12 < var10) {
 						var12 += 1.8D - var15 + this.V.nextDouble() * (1.7D - var15);
-						this.world.a(Particle.e, this.locationX + var4 * var12, this.locationY + var6 * var12 + (double) this.aR(), this.locationZ + var8 * var12, 0.0D, 0.0D, 0.0D, new int[0]);
+						this.world.a(Particle.e, this.locationX + var4 * var12, this.locationY + var6 * var12 + (double) this.getHeadHeight(), this.locationZ + var8 * var12, 0.0D, 0.0D, 0.0D, new int[0]);
 					}
 				}
 			}
@@ -269,7 +269,7 @@ public class EntityGuardian extends EntityMonster {
 			boolean var3 = true;
 			boolean var4 = true;
 			if ((this.W + this.getId()) % 1200 == 0) {
-				MobEffectList var5 = MobEffectList.f;
+				MobEffectList var5 = MobEffectList.SLOWER_DIG;
 				List var6 = this.world.b(EntityPlayer.class, (Predicate) (new afh(this)));
 				Iterator var7 = var6.iterator();
 
@@ -277,7 +277,7 @@ public class EntityGuardian extends EntityMonster {
 					EntityPlayer var8 = (EntityPlayer) var7.next();
 					if (!var8.a(var5) || var8.b(var5).getAmplifier() < 2 || var8.b(var5).getDuration() < 1200) {
 						var8.playerConncetion.sendPacket((Packet) (new PacketPlayOutChangeGameState(10, 0.0F)));
-						var8.c(new MobEffect(var5.H, 6000, 2));
+						var8.c(new MobEffect(var5.id, 6000, 2));
 					}
 				}
 			}
@@ -289,7 +289,7 @@ public class EntityGuardian extends EntityMonster {
 
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		int var3 = this.V.nextInt(3) + this.V.nextInt(var2 + 1);
 		if (var3 > 0) {
 			this.a(new ItemStack(Items.PRISMARINE_SHARD, var3, 0), 1.0F);
@@ -324,17 +324,17 @@ public class EntityGuardian extends EntityMonster {
 		return (this.V.nextInt(20) == 0 || !this.world.j(new Position(this))) && super.bQ();
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (!this.n() && !var1.s() && var1.i() instanceof EntityLiving) {
 			EntityLiving var3 = (EntityLiving) var1.i();
 			if (!var1.c()) {
-				var3.a(DamageSource.a((Entity) this), 2.0F);
+				var3.damageEntity(DamageSource.thorns((Entity) this), 2.0F);
 				var3.a("damage.thorns", 0.5F, 1.0F);
 			}
 		}
 
 		this.bq.f();
-		return super.a(var1, var2);
+		return super.damageEntity(var1, var2);
 	}
 
 	public int bP() {
@@ -367,7 +367,7 @@ public class EntityGuardian extends EntityMonster {
 	}
 
 	// $FF: synthetic method
-	static zy a(EntityGuardian var0) {
+	static PathfinderGoalRandomStroll a(EntityGuardian var0) {
 		return var0.bq;
 	}
 

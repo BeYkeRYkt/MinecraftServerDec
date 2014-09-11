@@ -10,15 +10,15 @@ public class EntityCreeper extends EntityMonster {
 
 	public EntityCreeper(World var1) {
 		super(var1);
-		this.i.a(1, new yy(this));
+		this.i.a(1, new PathfinderGoalFloat(this));
 		this.i.a(2, new aae(this));
 		this.i.a(2, this.a);
-		this.i.a(3, new yp(this, new aeq(this), 6.0F, 1.0D, 1.2D));
+		this.i.a(3, new PathfinderGoalAvoidEntity(this, new aeq(this), 6.0F, 1.0D, 1.2D));
 		this.i.a(4, new zk(this, 1.0D, false));
-		this.i.a(5, new zy(this, 0.8D));
-		this.i.a(6, new zh(this, EntityHuman.class, 8.0F));
-		this.i.a(6, new zx(this));
-		this.bg.a(1, new aaq(this, EntityHuman.class, true));
+		this.i.a(5, new PathfinderGoalRandomStroll(this, 0.8D));
+		this.i.a(6, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+		this.i.a(6, new PathfinderGoalRandomLookaround(this));
+		this.bg.a(1, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
 		this.bg.a(2, new aal(this, false, new Class[0]));
 	}
 
@@ -131,7 +131,7 @@ public class EntityCreeper extends EntityMonster {
 		return this.dataWatcher.a(17) == 1;
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return Items.GUNPOWDER;
 	}
 

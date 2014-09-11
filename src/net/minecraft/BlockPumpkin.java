@@ -36,7 +36,7 @@ public class BlockPumpkin extends avb {
 			EntitySnowman var9 = new EntitySnowman(var1);
 			Position var11 = var3.a(0, 2, 0).d();
 			var9.setPositionRotation((double) var11.getX() + 0.5D, (double) var11.getY() + 0.05D, (double) var11.getZ() + 0.5D, 0.0F, 0.0F);
-			var1.d((Entity) var9);
+			var1.addEntity((Entity) var9);
 
 			for (var6 = 0; var6 < 120; ++var6) {
 				var1.a(Particle.G, (double) var11.getX() + var1.s.nextDouble(), (double) var11.getY() + var1.s.nextDouble() * 2.5D, (double) var11.getZ() + var1.s.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
@@ -57,7 +57,7 @@ public class BlockPumpkin extends avb {
 			EntityIronGolem var13 = new EntityIronGolem(var1);
 			var13.l(true);
 			var13.setPositionRotation((double) var10.getX() + 0.5D, (double) var10.getY() + 0.05D, (double) var10.getZ() + 0.5D, 0.0F, 0.0F);
-			var1.d((Entity) var13);
+			var1.addEntity((Entity) var13);
 
 			for (var6 = 0; var6 < 120; ++var6) {
 				var1.a(Particle.F, (double) var10.getX() + var1.s.nextDouble(), (double) var10.getY() + var1.s.nextDouble() * 3.9D, (double) var10.getZ() + var1.s.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);

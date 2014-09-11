@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-public class EntityWitch extends EntityMonster implements afr {
+public class EntityWitch extends EntityMonster implements IRangedEntity {
 
 	private static final UUID b = UUID.fromString("5CD17E52-A79A-43D3-A529-90FDE04B181E");
 	private static final AttributeModifier c = (new AttributeModifier(b, "Drinking speed penalty", -0.25D, 0)).setSerializable(false);
@@ -14,14 +14,14 @@ public class EntityWitch extends EntityMonster implements afr {
 	public EntityWitch(World var1) {
 		super(var1);
 		this.a(0.6F, 1.95F);
-		this.i.a(1, new yy(this));
-		this.i.a(2, new zz(this, 1.0D, 60, 10.0F));
-		this.i.a(2, new zy(this, 1.0D));
+		this.i.a(1, new PathfinderGoalFloat(this));
+		this.i.a(2, new PathfinderGoalArrowAttack(this, 1.0D, 60, 10.0F));
+		this.i.a(2, new PathfinderGoalRandomStroll(this, 1.0D));
 		this.i.a(2, this.a);
-		this.i.a(3, new zh(this, EntityHuman.class, 8.0F));
-		this.i.a(3, new zx(this));
+		this.i.a(3, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+		this.i.a(3, new PathfinderGoalRandomLookaround(this));
 		this.bg.a(1, new aal(this, false, new Class[0]));
-		this.bg.a(2, new aaq(this, EntityHuman.class, true));
+		this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
 	}
 
 	protected void h() {
@@ -78,15 +78,15 @@ public class EntityWitch extends EntityMonster implements afr {
 				}
 			} else {
 				short var5 = -1;
-				if (this.V.nextFloat() < 0.15F && this.a(Material.WATER) && !this.a(MobEffectList.o)) {
+				if (this.V.nextFloat() < 0.15F && this.a(Material.WATER) && !this.a(MobEffectList.WATER_BREATHING)) {
 					var5 = 8237;
-				} else if (this.V.nextFloat() < 0.15F && this.au() && !this.a(MobEffectList.n)) {
+				} else if (this.V.nextFloat() < 0.15F && this.au() && !this.a(MobEffectList.FIRE_RESISTANCE)) {
 					var5 = 16307;
 				} else if (this.V.nextFloat() < 0.05F && this.getHealth() < this.bt()) {
 					var5 = 16341;
-				} else if (this.V.nextFloat() < 0.25F && this.u() != null && !this.a(MobEffectList.c) && this.u().getDistanceSquared(this) > 121.0D) {
+				} else if (this.V.nextFloat() < 0.25F && this.u() != null && !this.a(MobEffectList.FASTER_MOVEMENT) && this.u().getDistanceSquared(this) > 121.0D) {
 					var5 = 16274;
-				} else if (this.V.nextFloat() < 0.25F && this.u() != null && !this.a(MobEffectList.c) && this.u().getDistanceSquared(this) > 121.0D) {
+				} else if (this.V.nextFloat() < 0.25F && this.u() != null && !this.a(MobEffectList.FASTER_MOVEMENT) && this.u().getDistanceSquared(this) > 121.0D) {
 					var5 = 16274;
 				}
 
@@ -121,7 +121,7 @@ public class EntityWitch extends EntityMonster implements afr {
 		return var2;
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		int var3 = this.V.nextInt(3) + 1;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
@@ -141,26 +141,26 @@ public class EntityWitch extends EntityMonster implements afr {
 	public void a(EntityLiving var1, float var2) {
 		if (!this.n()) {
 			EntityPotion var3 = new EntityPotion(this.world, this, 32732);
-			double var4 = var1.locationY + (double) var1.aR() - 1.100000023841858D;
+			double var4 = var1.locationY + (double) var1.getHeadHeight() - 1.100000023841858D;
 			var3.pitch -= -20.0F;
 			double var6 = var1.locationX + var1.motionX - this.locationX;
 			double var8 = var4 - this.locationY;
 			double var10 = var1.locationZ + var1.motionZ - this.locationZ;
-			float var12 = MathHelper.a(var6 * var6 + var10 * var10);
-			if (var12 >= 8.0F && !var1.a(MobEffectList.d)) {
+			float var12 = MathHelper.sqrt(var6 * var6 + var10 * var10);
+			if (var12 >= 8.0F && !var1.a(MobEffectList.SLOWER_MOVEMENT)) {
 				var3.a(32698);
-			} else if (var1.getHealth() >= 8.0F && !var1.a(MobEffectList.u)) {
+			} else if (var1.getHealth() >= 8.0F && !var1.a(MobEffectList.POISON)) {
 				var3.a(32660);
-			} else if (var12 <= 3.0F && !var1.a(MobEffectList.t) && this.V.nextFloat() < 0.25F) {
+			} else if (var12 <= 3.0F && !var1.a(MobEffectList.WEAKNESS) && this.V.nextFloat() < 0.25F) {
 				var3.a(32696);
 			}
 
-			var3.c(var6, var8 + (double) (var12 * 0.2F), var10, 0.75F, 8.0F);
-			this.world.d((Entity) var3);
+			var3.shoot(var6, var8 + (double) (var12 * 0.2F), var10, 0.75F, 8.0F);
+			this.world.addEntity((Entity) var3);
 		}
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return 1.62F;
 	}
 

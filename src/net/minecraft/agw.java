@@ -4,5 +4,5 @@ import java.util.Random;
 
 interface agw {
 
-	void a(aqd var1, Random var2);
+	void a(MerchantRecipeList var1, Random var2);
 }

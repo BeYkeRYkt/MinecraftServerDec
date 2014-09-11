@@ -4,7 +4,7 @@ import java.util.Random;
 
 class ags implements agw {
 
-	public void a(aqd var1, Random var2) {
+	public void a(MerchantRecipeList var1, Random var2) {
 		Enchantment var3 = Enchantment.enchants[var2.nextInt(Enchantment.enchants.length)];
 		int var4 = MathHelper.a(var2, var3.getStartLevel(), var3.getMaxLevel());
 		ItemStack var5 = Items.ENCHANTED_BOOK.a(new apo(var3, var4));

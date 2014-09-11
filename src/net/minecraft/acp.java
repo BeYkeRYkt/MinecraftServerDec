@@ -1,6 +1,6 @@
 package net.minecraft;
 
-class acp extends zb {
+class acp extends PathfinderGoal {
 
 	private EntitySquid a;
 

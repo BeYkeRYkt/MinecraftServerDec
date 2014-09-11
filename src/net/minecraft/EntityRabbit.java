@@ -22,13 +22,13 @@ public class EntityRabbit extends EntityAnimal {
 		this.f = new aci(this);
 		((aay) this.s()).a(true);
 		this.h.a(2.5F);
-		this.i.a(1, new yy(this));
+		this.i.a(1, new PathfinderGoalFloat(this));
 		this.i.a(1, new acj(this, 1.33D));
 		this.i.a(2, new aag(this, 1.0D, Items.CARROT, false));
 		this.i.a(3, new yt(this, 0.8D));
 		this.i.a(5, new ack(this));
-		this.i.a(5, new zy(this, 0.6D));
-		this.i.a(11, new zh(this, EntityHuman.class, 10.0F));
+		this.i.a(5, new PathfinderGoalRandomStroll(this, 0.6D));
+		this.i.a(11, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 10.0F));
 		this.bk = new acf(this, new acc(this), 16.0F, 1.33D, 1.33D);
 		this.i.a(4, this.bk);
 		this.b(0.0D);
@@ -206,9 +206,9 @@ public class EntityRabbit extends EntityAnimal {
 	public boolean r(Entity var1) {
 		if (this.cl() == 99) {
 			this.a("mob.attack", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
-			return var1.a(DamageSource.a((EntityLiving) this), 8.0F);
+			return var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), 8.0F);
 		} else {
-			return var1.a(DamageSource.a((EntityLiving) this), 3.0F);
+			return var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), 3.0F);
 		}
 	}
 
@@ -216,15 +216,15 @@ public class EntityRabbit extends EntityAnimal {
 		return this.cl() == 99 ? 8 : super.bq();
 	}
 
-	public boolean a(DamageSource var1, float var2) {
-		return this.b(var1) ? false : super.a(var1, var2);
+	public boolean damageEntity(DamageSource var1, float var2) {
+		return this.b(var1) ? false : super.damageEntity(var1, var2);
 	}
 
 	protected void bp() {
 		this.a(new ItemStack(Items.RABBIT_FOOT, 1), 0.0F);
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		int var3 = this.V.nextInt(2) + this.V.nextInt(1 + var2);
 
 		int var4;
@@ -267,11 +267,11 @@ public class EntityRabbit extends EntityAnimal {
 
 	public void r(int var1) {
 		if (var1 == 99) {
-			this.i.a((zb) this.bk);
+			this.i.a((PathfinderGoal) this.bk);
 			this.i.a(4, new acd(this));
 			this.bg.a(1, new aal(this, false, new Class[0]));
-			this.bg.a(2, new aaq(this, EntityHuman.class, true));
-			this.bg.a(2, new aaq(this, EntityWolf.class, true));
+			this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
+			this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityWolf.class, true));
 			if (!this.k_()) {
 				this.a(LocaleI18n.get("entity.KillerBunny.name"));
 			}

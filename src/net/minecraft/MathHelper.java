@@ -21,7 +21,7 @@ public class MathHelper {
 		return (float) Math.sqrt((double) var0);
 	}
 
-	public static float a(double var0) {
+	public static float sqrt(double var0) {
 		return (float) Math.sqrt(var0);
 	}
 

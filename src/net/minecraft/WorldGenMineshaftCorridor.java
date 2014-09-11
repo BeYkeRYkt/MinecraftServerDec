@@ -149,7 +149,7 @@ public class WorldGenMineshaftCorridor extends StructurePiece {
 			var1.a(var9, Blocks.RAIL.a(this.a(Blocks.RAIL, var10)), 2);
 			EntityMinecartChest var11 = new EntityMinecartChest(var1, (double) ((float) var9.getX() + 0.5F), (double) ((float) var9.getY() + 0.5F), (double) ((float) var9.getZ() + 0.5F));
 			StructurePieceTreasure.a(var3, var7, (IInventory) var11, var8);
-			var1.d((Entity) var11);
+			var1.addEntity((Entity) var11);
 			return true;
 		} else {
 			return false;

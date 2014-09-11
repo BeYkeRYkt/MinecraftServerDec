@@ -3,11 +3,11 @@ package net.minecraft;
 import com.mojang.authlib.GameProfile;
 import java.util.UUID;
 
-final class DispenseBehaviorSkull extends eg {
+final class DispenseBehaviorSkull extends DispenseBehaviorItem {
 
 	private boolean b = true;
 
-	protected ItemStack b(dz var1, ItemStack var2) {
+	protected ItemStack b(ISourceBlock var1, ItemStack var2) {
 		World var3 = var1.i();
 		BlockFace var4 = BlockDispenser.b(var1.f());
 		Position var5 = var1.d().a(var4);
@@ -46,7 +46,7 @@ final class DispenseBehaviorSkull extends eg {
 		return var2;
 	}
 
-	protected void a(dz var1) {
+	protected void a(ISourceBlock var1) {
 		if (this.b) {
 			var1.i().b(1000, var1.d(), 0);
 		} else {

@@ -47,7 +47,7 @@ public abstract class xl extends EntityInsentient {
 		this.ay = this.az;
 		double var8 = this.locationX - this.p;
 		double var5 = this.locationZ - this.r;
-		float var7 = MathHelper.a(var8 * var8 + var5 * var5) * 4.0F;
+		float var7 = MathHelper.sqrt(var8 * var8 + var5 * var5) * 4.0F;
 		if (var7 > 1.0F) {
 			var7 = 1.0F;
 		}

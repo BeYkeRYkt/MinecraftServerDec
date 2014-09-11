@@ -432,7 +432,7 @@ public class BlockStairs extends Block {
 		return this.O.a(var1, var2, this.P, var4, BlockFace.DOWN, 0.0F, 0.0F, 0.0F);
 	}
 
-	public void a(World var1, Position var2, aqo var3) {
+	public void a(World var1, Position var2, Explosion var3) {
 		this.O.a(var1, var2, var3);
 	}
 

@@ -80,7 +80,7 @@ public abstract class adx extends Entity implements vz {
 		return (double) this.K * 0.5D - 0.20000000298023224D;
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (!this.world.isStatic && !this.dead) {
 			if (this.b(var1)) {
 				return false;
@@ -91,8 +91,8 @@ public abstract class adx extends Entity implements vz {
 				this.a(this.p() + var2 * 10.0F);
 				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).playerProperties.instabuild;
 				if (var3 || this.p() > 40.0F) {
-					if (this.l != null) {
-						this.l.mount((Entity) null);
+					if (this.passenger != null) {
+						this.passenger.mount((Entity) null);
 					}
 
 					if (var3 && !this.k_()) {
@@ -240,17 +240,17 @@ public abstract class adx extends Entity implements vz {
 
 			while (var12.hasNext()) {
 				Entity var13 = (Entity) var12.next();
-				if (var13 != this.l && var13.ae() && var13 instanceof adx) {
+				if (var13 != this.passenger && var13.ae() && var13 instanceof adx) {
 					var13.i(this);
 				}
 			}
 
-			if (this.l != null && this.l.dead) {
-				if (this.l.vehicle == this) {
-					this.l.vehicle = null;
+			if (this.passenger != null && this.passenger.dead) {
+				if (this.passenger.vehicle == this) {
+					this.passenger.vehicle = null;
 				}
 
-				this.l = null;
+				this.passenger = null;
 			}
 
 			this.W();
@@ -336,11 +336,11 @@ public abstract class adx extends Entity implements vz {
 		double var23;
 		double var25;
 		double var27;
-		if (this.l instanceof EntityLiving) {
-			var21 = (double) ((EntityLiving) this.l).aY;
+		if (this.passenger instanceof EntityLiving) {
+			var21 = (double) ((EntityLiving) this.passenger).aY;
 			if (var21 > 0.0D) {
-				var23 = -Math.sin((double) (this.l.yaw * 3.1415927F / 180.0F));
-				var25 = Math.cos((double) (this.l.yaw * 3.1415927F / 180.0F));
+				var23 = -Math.sin((double) (this.passenger.yaw * 3.1415927F / 180.0F));
+				var25 = Math.cos((double) (this.passenger.yaw * 3.1415927F / 180.0F));
 				var27 = this.motionX * this.motionX + this.motionZ * this.motionZ;
 				if (var27 < 0.01D) {
 					this.motionX += var23 * 0.1D;
@@ -389,7 +389,7 @@ public abstract class adx extends Entity implements vz {
 		this.b(this.locationX, this.locationY, this.locationZ);
 		var31 = this.motionX;
 		var33 = this.motionZ;
-		if (this.l != null) {
+		if (this.passenger != null) {
 			var31 *= 0.75D;
 			var33 *= 0.75D;
 		}
@@ -449,7 +449,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	protected void o() {
-		if (this.l != null) {
+		if (this.passenger != null) {
 			this.motionX *= 0.996999979019165D;
 			this.motionY *= 0.0D;
 			this.motionZ *= 0.996999979019165D;
@@ -569,8 +569,8 @@ public abstract class adx extends Entity implements vz {
 	public void i(Entity var1) {
 		if (!this.world.isStatic) {
 			if (!var1.T && !this.T) {
-				if (var1 != this.l) {
-					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof EntityIronGolem) && this.s() == MinecartType.RIDEABLE && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.l == null && var1.vehicle == null) {
+				if (var1 != this.passenger) {
+					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof EntityIronGolem) && this.s() == MinecartType.RIDEABLE && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.passenger == null && var1.vehicle == null) {
 						var1.mount((Entity) this);
 					}
 
@@ -578,7 +578,7 @@ public abstract class adx extends Entity implements vz {
 					double var4 = var1.locationZ - this.locationZ;
 					double var6 = var2 * var2 + var4 * var4;
 					if (var6 >= 9.999999747378752E-5D) {
-						var6 = (double) MathHelper.a(var6);
+						var6 = (double) MathHelper.sqrt(var6);
 						var2 /= var6;
 						var4 /= var6;
 						double var8 = 1.0D / var6;

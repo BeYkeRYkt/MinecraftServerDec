@@ -5,9 +5,9 @@ class abj {
 	public EntityLiving a;
 	public int b;
 	// $FF: synthetic field
-	final abi c;
+	final Village c;
 
-	abj(abi var1, EntityLiving var2, int var3) {
+	abj(Village var1, EntityLiving var2, int var3) {
 		this.c = var1;
 		this.a = var2;
 		this.b = var3;

@@ -26,9 +26,9 @@ public class ItemFish extends ItemFood {
 	protected void c(ItemStack var1, World var2, EntityHuman var3) {
 		ali var4 = ali.a(var1);
 		if (var4 == ali.d) {
-			var3.c(new MobEffect(MobEffectList.u.H, 1200, 3));
-			var3.c(new MobEffect(MobEffectList.s.H, 300, 2));
-			var3.c(new MobEffect(MobEffectList.k.H, 300, 1));
+			var3.c(new MobEffect(MobEffectList.POISON.id, 1200, 3));
+			var3.c(new MobEffect(MobEffectList.HUNGER.id, 300, 2));
+			var3.c(new MobEffect(MobEffectList.CONFUSION.id, 300, 1));
 		}
 
 		super.c(var1, var2, var3);

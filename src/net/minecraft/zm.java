@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
 
-public class zm extends zb {
+public class zm extends PathfinderGoal {
 
 	private EntityCreature a;
 	private double b;
@@ -28,7 +28,7 @@ public class zm extends zb {
 		if (this.e && this.a.world.w()) {
 			return false;
 		} else {
-			abi var1 = this.a.world.ae().a(new Position(this.a), 0);
+			Village var1 = this.a.world.ae().a(new Position(this.a), 0);
 			if (var1 == null) {
 				return false;
 			} else {
@@ -79,7 +79,7 @@ public class zm extends zb {
 
 	}
 
-	private abh a(abi var1) {
+	private abh a(Village var1) {
 		abh var2 = null;
 		int var3 = Integer.MAX_VALUE;
 		List var4 = var1.f();

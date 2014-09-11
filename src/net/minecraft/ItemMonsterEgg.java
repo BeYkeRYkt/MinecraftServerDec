@@ -113,7 +113,7 @@ public class ItemMonsterEgg extends Item {
 					var10.headPitch = var10.yaw;
 					var10.aG = var10.yaw;
 					var10.a(var0.E(new Position(var10)), (xq) null);
-					var0.d(var8);
+					var0.addEntity(var8);
 					var10.x();
 				}
 			}

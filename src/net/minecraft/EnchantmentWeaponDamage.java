@@ -46,7 +46,7 @@ public class EnchantmentWeaponDamage extends Enchantment {
 			EntityLiving var4 = (EntityLiving) var2;
 			if (this.a == 2 && var4.by() == EnumMonsterType.c) {
 				int var5 = 20 + var1.bb().nextInt(10 * var3);
-				var4.c(new MobEffect(MobEffectList.d.H, var5, 3));
+				var4.c(new MobEffect(MobEffectList.SLOWER_MOVEMENT.id, var5, 3));
 			}
 		}
 

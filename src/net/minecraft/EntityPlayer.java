@@ -316,7 +316,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			var5.incrementScore();
 		}
 
-		EntityLiving var7 = this.bs();
+		EntityLiving var7 = this.getKiller();
 		if (var7 != null) {
 			MonsterEggInfo var8 = (MonsterEggInfo) EntityTypes.eggInfo.get(Integer.valueOf(EntityTypes.getFixedId(var7)));
 			if (var8 != null) {
@@ -331,15 +331,15 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		this.br().g();
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
-			boolean var3 = this.minecraftserver.isDedicated() && this.cq() && "fall".equals(var1.p);
-			if (!var3 && this.bO > 0 && var1 != DamageSource.j) {
+			boolean var3 = this.minecraftserver.isDedicated() && this.cq() && "fall".equals(var1.translationIndex);
+			if (!var3 && this.bO > 0 && var1 != DamageSource.OUT_OF_WORLD) {
 				return false;
 			} else {
-				if (var1 instanceof wi) {
+				if (var1 instanceof EntityDamageSource) {
 					Entity var4 = var1.j();
 					if (var4 instanceof EntityHuman && !this.a((EntityHuman) var4)) {
 						return false;
@@ -353,7 +353,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 					}
 				}
 
-				return super.a(var1, var2);
+				return super.damageEntity(var1, var2);
 			}
 		}
 	}
@@ -510,7 +510,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		this.activeContainer.addSlotListener((ICrafting) this);
 	}
 
-	public void a(aqb var1) {
+	public void a(IMerchant var1) {
 		this.cr();
 		this.activeContainer = new ContainerMerchant(this.playerInventory, var1, this.world);
 		this.activeContainer.windowId = this.bT;
@@ -518,7 +518,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		aje var2 = ((ContainerMerchant) this.activeContainer).e();
 		IChatBaseComponent var3 = var1.getComponentName();
 		this.playerConncetion.sendPacket((Packet) (new PacketPlayOutOpenWindow(this.bT, "minecraft:villager", var3, var2.n_())));
-		aqd var4 = var1.b_(this);
+		MerchantRecipeList var4 = var1.b_(this);
 		if (var4 != null) {
 			PacketDataSerializer var5 = new PacketDataSerializer(Unpooled.buffer());
 			var5.writeInt(this.bT);
@@ -643,8 +643,8 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public void q() {
-		if (this.l != null) {
-			this.l.mount((Entity) this);
+		if (this.passenger != null) {
+			this.passenger.mount((Entity) this);
 		}
 
 		if (this.isSleeping) {

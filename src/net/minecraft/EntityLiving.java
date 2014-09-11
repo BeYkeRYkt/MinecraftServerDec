@@ -69,7 +69,7 @@ public abstract class EntityLiving extends Entity {
 	private float bm;
 
 	public void G() {
-		this.a(DamageSource.j, Float.MAX_VALUE);
+		this.damageEntity(DamageSource.OUT_OF_WORLD, Float.MAX_VALUE);
 	}
 
 	public EntityLiving(World var1) {
@@ -132,11 +132,11 @@ public abstract class EntityLiving extends Entity {
 		boolean var1 = this instanceof EntityHuman;
 		if (this.isAlive()) {
 			if (this.aj()) {
-				this.a(DamageSource.e, 1.0F);
+				this.damageEntity(DamageSource.STUCK, 1.0F);
 			} else if (var1 && !this.world.getWorldBorder().isInside(this.getBoundingBox())) {
 				double var2 = this.world.getWorldBorder().getDistance((Entity) this) + this.world.getWorldBorder().getDamageBuffer();
 				if (var2 < 0.0D) {
-					this.a(DamageSource.e, (float) Math.max(1, MathHelper.toFixedPointInt(-var2 * this.world.getWorldBorder().getDamageAmount())));
+					this.damageEntity(DamageSource.STUCK, (float) Math.max(1, MathHelper.toFixedPointInt(-var2 * this.world.getWorldBorder().getDamageAmount())));
 				}
 			}
 		}
@@ -147,7 +147,7 @@ public abstract class EntityLiving extends Entity {
 
 		boolean var7 = var1 && ((EntityHuman) this).playerProperties.invulnerable;
 		if (this.isAlive() && this.a(Material.WATER)) {
-			if (!this.aX() && !this.k(MobEffectList.o.H) && !var7) {
+			if (!this.aX() && !this.k(MobEffectList.WATER_BREATHING.id) && !var7) {
 				this.h(this.j(this.aA()));
 				if (this.aA() == -20) {
 					this.h(0);
@@ -159,7 +159,7 @@ public abstract class EntityLiving extends Entity {
 						this.world.a(Particle.e, this.locationX + (double) var4, this.locationY + (double) var5, this.locationZ + (double) var6, this.motionX, this.motionY, this.motionZ, new int[0]);
 					}
 
-					this.a(DamageSource.f, 2.0F);
+					this.damageEntity(DamageSource.DROWN, 2.0F);
 				}
 			}
 
@@ -228,7 +228,7 @@ public abstract class EntityLiving extends Entity {
 				while (var1 > 0) {
 					int var2 = EntityExpirienceOrb.a(var1);
 					var1 -= var2;
-					this.world.d((Entity) (new EntityExpirienceOrb(this.world, this.locationX, this.locationY, this.locationZ, var2)));
+					this.world.addEntity((Entity) (new EntityExpirienceOrb(this.world, this.locationX, this.locationY, this.locationZ, var2)));
 				}
 			}
 
@@ -436,7 +436,7 @@ public abstract class EntityLiving extends Entity {
 			int var1 = PotionBrewer.a(this.g.values());
 			this.dataWatcher.b(8, Byte.valueOf((byte) (PotionBrewer.b(this.g.values()) ? 1 : 0)));
 			this.dataWatcher.b(7, Integer.valueOf(var1));
-			this.e(this.k(MobEffectList.p.H));
+			this.e(this.k(MobEffectList.INVISIBILITY.id));
 		}
 
 	}
@@ -469,11 +469,11 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public boolean a(MobEffectList var1) {
-		return this.g.containsKey(Integer.valueOf(var1.H));
+		return this.g.containsKey(Integer.valueOf(var1.id));
 	}
 
 	public MobEffect b(MobEffectList var1) {
-		return (MobEffect) this.g.get(Integer.valueOf(var1.H));
+		return (MobEffect) this.g.get(Integer.valueOf(var1.id));
 	}
 
 	public void c(MobEffect var1) {
@@ -492,7 +492,7 @@ public abstract class EntityLiving extends Entity {
 	public boolean d(MobEffect var1) {
 		if (this.by() == EnumMonsterType.b) {
 			int var2 = var1.getId();
-			if (var2 == MobEffectList.l.H || var2 == MobEffectList.u.H) {
+			if (var2 == MobEffectList.REGENERATION.id || var2 == MobEffectList.POISON.id) {
 				return false;
 			}
 		}
@@ -553,7 +553,7 @@ public abstract class EntityLiving extends Entity {
 		this.dataWatcher.b(6, Float.valueOf(MathHelper.a(var1, 0.0F, this.bt())));
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else if (this.world.isStatic) {
@@ -562,10 +562,10 @@ public abstract class EntityLiving extends Entity {
 			this.aO = 0;
 			if (this.getHealth() <= 0.0F) {
 				return false;
-			} else if (var1.o() && this.a(MobEffectList.n)) {
+			} else if (var1.o() && this.a(MobEffectList.FIRE_RESISTANCE)) {
 				return false;
 			} else {
-				if ((var1 == DamageSource.n || var1 == DamageSource.o) && this.p(4) != null) {
+				if ((var1 == DamageSource.ANVIL || var1 == DamageSource.FALLING_BLOCK) && this.p(4) != null) {
 					this.p(4).a((int) (var2 * 4.0F + this.V.nextFloat() * var2 * 2.0F), this);
 					var2 *= 0.75F;
 				}
@@ -608,7 +608,7 @@ public abstract class EntityLiving extends Entity {
 
 				if (var3) {
 					this.world.a((Entity) this, (byte) 2);
-					if (var1 != DamageSource.f) {
+					if (var1 != DamageSource.DROWN) {
 						this.ac();
 					}
 
@@ -658,7 +658,7 @@ public abstract class EntityLiving extends Entity {
 			Vec3D var6 = new Vec3D(((double) this.V.nextFloat() - 0.5D) * 0.3D, var4, 0.6D);
 			var6 = var6.a(-this.pitch * 3.1415927F / 180.0F);
 			var6 = var6.b(-this.yaw * 3.1415927F / 180.0F);
-			var6 = var6.b(this.locationX, this.locationY + (double) this.aR(), this.locationZ);
+			var6 = var6.b(this.locationX, this.locationY + (double) this.getHeadHeight(), this.locationZ);
 			this.world.a(Particle.K, var6.x, var6.y, var6.z, var3.x, var3.y + 0.05D, var3.z, new int[] { Item.getId(var1.getItem()) });
 		}
 
@@ -666,7 +666,7 @@ public abstract class EntityLiving extends Entity {
 
 	public void a(DamageSource var1) {
 		Entity var2 = var1.j();
-		EntityLiving var3 = this.bs();
+		EntityLiving var3 = this.getKiller();
 		if (this.aU >= 0 && var3 != null) {
 			var3.b(this, this.aU);
 		}
@@ -684,7 +684,7 @@ public abstract class EntityLiving extends Entity {
 			}
 
 			if (this.aZ() && this.world.Q().b("doMobLoot")) {
-				this.b(this.aM > 0, var4);
+				this.dropDeathLoot(this.aM > 0, var4);
 				this.a(this.aM > 0, var4);
 				if (this.aM > 0 && this.V.nextFloat() < 0.025F + (float) var4 * 0.01F) {
 					this.bp();
@@ -701,7 +701,7 @@ public abstract class EntityLiving extends Entity {
 	public void a(Entity var1, float var2, double var3, double var5) {
 		if (this.V.nextDouble() >= this.a(afs.c).e()) {
 			this.ai = true;
-			float var7 = MathHelper.a(var3 * var3 + var5 * var5);
+			float var7 = MathHelper.sqrt(var3 * var3 + var5 * var5);
 			float var8 = 0.4F;
 			this.motionX /= 2.0D;
 			this.motionY /= 2.0D;
@@ -727,7 +727,7 @@ public abstract class EntityLiving extends Entity {
 	protected void bp() {
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 	}
 
 	public boolean j_() {
@@ -744,12 +744,12 @@ public abstract class EntityLiving extends Entity {
 
 	public void e(float var1, float var2) {
 		super.e(var1, var2);
-		MobEffect var3 = this.b(MobEffectList.j);
+		MobEffect var3 = this.b(MobEffectList.JUMP);
 		float var4 = var3 != null ? (float) (var3.getAmplifier() + 1) : 0.0F;
 		int var5 = MathHelper.f((var1 - 3.0F - var4) * var2);
 		if (var5 > 0) {
 			this.a(this.n(var5), 1.0F, 1.0F);
-			this.a(DamageSource.i, (float) var5);
+			this.damageEntity(DamageSource.FALL, (float) var5);
 			int var6 = MathHelper.toFixedPointInt(this.locationX);
 			int var7 = MathHelper.toFixedPointInt(this.locationY - 0.20000000298023224D);
 			int var8 = MathHelper.toFixedPointInt(this.locationZ);
@@ -803,8 +803,8 @@ public abstract class EntityLiving extends Entity {
 			int var3;
 			int var4;
 			float var5;
-			if (this.a(MobEffectList.m) && var1 != DamageSource.j) {
-				var3 = (this.b(MobEffectList.m).getAmplifier() + 1) * 5;
+			if (this.a(MobEffectList.RESISTANCE) && var1 != DamageSource.OUT_OF_WORLD) {
+				var3 = (this.b(MobEffectList.RESISTANCE).getAmplifier() + 1) * 5;
 				var4 = 25 - var3;
 				var5 = var2 * (float) var4;
 				var2 = var5 / 25.0F;
@@ -849,7 +849,7 @@ public abstract class EntityLiving extends Entity {
 		return this.f;
 	}
 
-	public EntityLiving bs() {
+	public EntityLiving getKiller() {
 		return (EntityLiving) (this.f.getEntity() != null ? this.f.getEntity() : (this.aL != null ? this.aL : (this.bg != null ? this.bg : null)));
 	}
 
@@ -866,7 +866,7 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	private int n() {
-		return this.a(MobEffectList.e) ? 6 - (1 + this.b(MobEffectList.e).getAmplifier()) * 1 : (this.a(MobEffectList.f) ? 6 + (1 + this.b(MobEffectList.f).getAmplifier()) * 2 : 6);
+		return this.a(MobEffectList.FASTER_DIG) ? 6 - (1 + this.b(MobEffectList.FASTER_DIG).getAmplifier()) * 1 : (this.a(MobEffectList.SLOWER_DIG) ? 6 + (1 + this.b(MobEffectList.SLOWER_DIG).getAmplifier()) * 2 : 6);
 	}
 
 	public void performHandAnimation() {
@@ -881,7 +881,7 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	protected void O() {
-		this.a(DamageSource.j, 4.0F);
+		this.damageEntity(DamageSource.OUT_OF_WORLD, 4.0F);
 	}
 
 	protected void bw() {
@@ -984,8 +984,8 @@ public abstract class EntityLiving extends Entity {
 
 	protected void jump() {
 		this.motionY = (double) this.bD();
-		if (this.a(MobEffectList.j)) {
-			this.motionY += (double) ((float) (this.b(MobEffectList.j).getAmplifier() + 1) * 0.1F);
+		if (this.a(MobEffectList.JUMP)) {
+			this.motionY += (double) ((float) (this.b(MobEffectList.JUMP).getAmplifier() + 1) * 0.1F);
 		}
 
 		if (this.ax()) {
@@ -1107,7 +1107,7 @@ public abstract class EntityLiving extends Entity {
 		this.ay = this.az;
 		var8 = this.locationX - this.p;
 		double var9 = this.locationZ - this.r;
-		var10 = MathHelper.a(var8 * var8 + var9 * var9) * 4.0F;
+		var10 = MathHelper.sqrt(var8 * var8 + var9 * var9) * 4.0F;
 		if (var10 > 1.0F) {
 			var10 = 1.0F;
 		}
@@ -1361,7 +1361,7 @@ public abstract class EntityLiving extends Entity {
 			}
 
 			if (this.vehicle != null) {
-				this.vehicle.l = null;
+				this.vehicle.passenger = null;
 			}
 
 			this.vehicle = null;
@@ -1400,7 +1400,7 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public boolean t(Entity var1) {
-		return this.world.a(new Vec3D(this.locationX, this.locationY + (double) this.aR(), this.locationZ), new Vec3D(var1.locationX, var1.locationY + (double) var1.aR(), var1.locationZ)) == null;
+		return this.world.a(new Vec3D(this.locationX, this.locationY + (double) this.getHeadHeight(), this.locationZ), new Vec3D(var1.locationX, var1.locationY + (double) var1.getHeadHeight(), var1.locationZ)) == null;
 	}
 
 	public Vec3D ap() {

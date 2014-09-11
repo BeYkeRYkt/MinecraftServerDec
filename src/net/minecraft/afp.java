@@ -1,6 +1,6 @@
 package net.minecraft;
 
-class afp extends aaq {
+class afp extends PathfinderGoalNearestAttackableTarget {
 
 	public afp(EntityPigZombie var1) {
 		super(var1, EntityHuman.class, true);

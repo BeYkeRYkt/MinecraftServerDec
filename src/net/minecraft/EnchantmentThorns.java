@@ -29,7 +29,7 @@ public class EnchantmentThorns extends Enchantment {
 		Random var4 = var1.bb();
 		ItemStack var5 = aph.a(Enchantment.THORNS, var1);
 		if (a(var3, var4)) {
-			var2.a(DamageSource.a((Entity) var1), (float) b(var3, var4));
+			var2.damageEntity(DamageSource.thorns((Entity) var1), (float) b(var3, var4));
 			var2.a("damage.thorns", 0.5F, 1.0F);
 			if (var5 != null) {
 				var5.a(3, var1);

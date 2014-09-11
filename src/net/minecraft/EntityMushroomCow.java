@@ -34,10 +34,10 @@ public class EntityMushroomCow extends EntityCow {
 					var3.a(this.aL());
 				}
 
-				this.world.d((Entity) var3);
+				this.world.addEntity((Entity) var3);
 
 				for (int var4 = 0; var4 < 5; ++var4) {
-					this.world.d((Entity) (new EntityItem(this.world, this.locationX, this.locationY + (double) this.K, this.locationZ, new ItemStack(Blocks.RED_MUSHROOM))));
+					this.world.addEntity((Entity) (new EntityItem(this.world, this.locationX, this.locationY + (double) this.K, this.locationZ, new ItemStack(Blocks.RED_MUSHROOM))));
 				}
 
 				var2.a(1, (EntityLiving) var1);

@@ -16,7 +16,7 @@ public class ahs extends ahr {
 
 	protected void a(MovingObjectPosition var1) {
 		if (var1.entity != null) {
-			var1.entity.a(DamageSource.a((Entity) this, this.n()), 0.0F);
+			var1.entity.damageEntity(DamageSource.projectile((Entity) this, this.n()), 0.0F);
 		}
 
 		if (!this.world.isStatic && this.V.nextInt(8) == 0) {
@@ -29,7 +29,7 @@ public class ahs extends ahr {
 				EntityChicken var4 = new EntityChicken(this.world);
 				var4.b(-24000);
 				var4.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
-				this.world.d((Entity) var4);
+				this.world.addEntity((Entity) var4);
 			}
 		}
 

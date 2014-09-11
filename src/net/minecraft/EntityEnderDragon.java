@@ -87,7 +87,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 			this.world.a(Particle.b, this.locationX + (double) var1, this.locationY + 2.0D + (double) var2, this.locationZ + (double) var3, 0.0D, 0.0D, 0.0D, new int[0]);
 		} else {
 			this.n();
-			var1 = 0.2F / (MathHelper.a(this.motionX * this.motionX + this.motionZ * this.motionZ) * 10.0F + 1.0F);
+			var1 = 0.2F / (MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ) * 10.0F + 1.0F);
 			var1 *= (float) Math.pow(2.0D, this.motionY);
 			if (this.bv) {
 				this.bt += var1 * 0.5F;
@@ -153,7 +153,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 					this.cd();
 				}
 
-				var4 /= (double) MathHelper.a(var28 * var28 + var6 * var6);
+				var4 /= (double) MathHelper.sqrt(var28 * var28 + var6 * var6);
 				var33 = 0.6F;
 				var4 = MathHelper.a(var4, (double) (-var33), (double) var33);
 				this.motionY += var4 * 0.10000000149011612D;
@@ -177,7 +177,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 				}
 
 				this.aZ *= 0.8F;
-				float var20 = MathHelper.a(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0F + 1.0F;
+				float var20 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0F + 1.0F;
 				double var21 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ) * 1.0D + 1.0D;
 				if (var21 > 40.0D) {
 					var21 = 40.0D;
@@ -273,7 +273,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 		if (this.bx != null) {
 			if (this.bx.dead) {
 				if (!this.world.isStatic) {
-					this.a(this.bl, DamageSource.a((aqo) null), 10.0F);
+					this.a(this.bl, DamageSource.explosion((Explosion) null), 10.0F);
 				}
 
 				this.bx = null;
@@ -324,7 +324,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 		for (int var2 = 0; var2 < var1.size(); ++var2) {
 			Entity var3 = (Entity) var1.get(var2);
 			if (var3 instanceof EntityLiving) {
-				var3.a(DamageSource.a((EntityLiving) this), 10.0F);
+				var3.damageEntity(DamageSource.mobAttack((EntityLiving) this), 10.0F);
 				this.a(this, var3);
 			}
 		}
@@ -421,8 +421,8 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 		return true;
 	}
 
-	public boolean a(DamageSource var1, float var2) {
-		if (var1 instanceof wi && ((wi) var1).w()) {
+	public boolean damageEntity(DamageSource var1, float var2) {
+		if (var1 instanceof EntityDamageSource && ((EntityDamageSource) var1).w()) {
 			this.e(var1, var2);
 		}
 
@@ -430,7 +430,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 	}
 
 	protected boolean e(DamageSource var1, float var2) {
-		return super.a(var1, var2);
+		return super.damageEntity(var1, var2);
 	}
 
 	public void G() {
@@ -455,7 +455,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 				while (var4 > 0) {
 					var5 = EntityExpirienceOrb.a(var4);
 					var4 -= var5;
-					this.world.d((Entity) (new EntityExpirienceOrb(this.world, this.locationX, this.locationY, this.locationZ, var5)));
+					this.world.addEntity((Entity) (new EntityExpirienceOrb(this.world, this.locationX, this.locationY, this.locationZ, var5)));
 				}
 			}
 
@@ -472,7 +472,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 			while (var4 > 0) {
 				var5 = EntityExpirienceOrb.a(var4);
 				var4 -= var5;
-				this.world.d((Entity) (new EntityExpirienceOrb(this.world, this.locationX, this.locationY, this.locationZ, var5)));
+				this.world.addEntity((Entity) (new EntityExpirienceOrb(this.world, this.locationX, this.locationY, this.locationZ, var5)));
 			}
 
 			this.a(new Position(this.locationX, 64.0D, this.locationZ));

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class ea implements dz {
+public class ea implements ISourceBlock {
 
 	private final World a;
 	private final Position b;
@@ -14,15 +14,15 @@ public class ea implements dz {
 		return this.a;
 	}
 
-	public double a() {
+	public double getX() {
 		return (double) this.b.getX() + 0.5D;
 	}
 
-	public double b() {
+	public double getY() {
 		return (double) this.b.getY() + 0.5D;
 	}
 
-	public double c() {
+	public double getZ() {
 		return (double) this.b.getZ() + 0.5D;
 	}
 

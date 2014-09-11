@@ -22,7 +22,7 @@ public class EntityItemFrame extends adj {
 		return 0.0F;
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else if (!var1.c() && this.o() != null) {
@@ -33,7 +33,7 @@ public class EntityItemFrame extends adj {
 
 			return true;
 		} else {
-			return super.a(var1, var2);
+			return super.damageEntity(var1, var2);
 		}
 	}
 

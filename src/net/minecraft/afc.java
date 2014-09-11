@@ -18,7 +18,7 @@ class afc extends yn {
 			double var7 = var1 * var1 + var3 * var3 + var5 * var5;
 			if (this.h-- <= 0) {
 				this.h += this.g.bb().nextInt(5) + 2;
-				var7 = (double) MathHelper.a(var7);
+				var7 = (double) MathHelper.sqrt(var7);
 				if (this.b(this.b, this.c, this.d, var7)) {
 					this.g.motionX += var1 / var7 * 0.1D;
 					this.g.motionY += var3 / var7 * 0.1D;

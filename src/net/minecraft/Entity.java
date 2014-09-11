@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.Callable;
+
 import net.minecraft.server.MinecraftServer;
 
 public abstract class Entity implements CommandSenderInterface {
@@ -14,7 +15,7 @@ public abstract class Entity implements CommandSenderInterface {
 	private int entityId;
 	public double j;
 	public boolean k;
-	public Entity l;
+	public Entity passenger;
 	public Entity vehicle;
 	public boolean n;
 	public World world;
@@ -229,7 +230,7 @@ public abstract class Entity implements CommandSenderInterface {
 				}
 			} else {
 				if (this.i % 20 == 0) {
-					this.a(DamageSource.c, 1.0F);
+					this.damageEntity(DamageSource.BURN, 1.0F);
 				}
 
 				--this.i;
@@ -259,7 +260,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 	protected void M() {
 		if (!this.ab) {
-			this.a(DamageSource.d, 4.0F);
+			this.damageEntity(DamageSource.LAVA, 4.0F);
 			this.e(15);
 		}
 	}
@@ -511,12 +512,12 @@ public abstract class Entity implements CommandSenderInterface {
 					var60.a(this.world, var26, this);
 				}
 
-				this.M = (float) ((double) this.M + (double) MathHelper.a(var61 * var61 + var66 * var66) * 0.6D);
-				this.N = (float) ((double) this.N + (double) MathHelper.a(var61 * var61 + var64 * var64 + var66 * var66) * 0.6D);
+				this.M = (float) ((double) this.M + (double) MathHelper.sqrt(var61 * var61 + var66 * var66) * 0.6D);
+				this.N = (float) ((double) this.N + (double) MathHelper.sqrt(var61 * var61 + var64 * var64 + var66 * var66) * 0.6D);
 				if (this.N > (float) this.h && var60.getMaterial() != Material.AIR) {
 					this.h = (int) this.N + 1;
 					if (this.V()) {
-						float var34 = MathHelper.a(this.motionX * this.motionX * 0.20000000298023224D + this.motionY * this.motionY + this.motionZ * this.motionZ * 0.20000000298023224D) * 0.35F;
+						float var34 = MathHelper.sqrt(this.motionX * this.motionX * 0.20000000298023224D + this.motionY * this.motionY + this.motionZ * this.motionZ * 0.20000000298023224D) * 0.35F;
 						if (var34 > 1.0F) {
 							var34 = 1.0F;
 						}
@@ -647,7 +648,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 	protected void f(int var1) {
 		if (!this.ab) {
-			this.a(DamageSource.a, (float) var1);
+			this.damageEntity(DamageSource.FIRE, (float) var1);
 		}
 
 	}
@@ -657,8 +658,8 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public void e(float var1, float var2) {
-		if (this.l != null) {
-			this.l.e(var1, var2);
+		if (this.passenger != null) {
+			this.passenger.e(var1, var2);
 		}
 
 	}
@@ -688,7 +689,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected void X() {
-		float var1 = MathHelper.a(this.motionX * this.motionX * 0.20000000298023224D + this.motionY * this.motionY + this.motionZ * this.motionZ * 0.20000000298023224D) * 0.2F;
+		float var1 = MathHelper.sqrt(this.motionX * this.motionX * 0.20000000298023224D + this.motionY * this.motionY + this.motionZ * this.motionZ * 0.20000000298023224D) * 0.2F;
 		if (var1 > 1.0F) {
 			var1 = 1.0F;
 		}
@@ -738,7 +739,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public boolean a(Material var1) {
-		double var2 = this.locationY + (double) this.aR();
+		double var2 = this.locationY + (double) this.getHeadHeight();
 		Position var4 = new Position(this.locationX, var2, this.locationZ);
 		BlockState var5 = this.world.getBlockState(var4);
 		Block var6 = var5.getBlock();
@@ -847,7 +848,7 @@ public abstract class Entity implements CommandSenderInterface {
 		double var7 = this.locationX - var1;
 		double var9 = this.locationY - var3;
 		double var11 = this.locationZ - var5;
-		return (double) MathHelper.a(var7 * var7 + var9 * var9 + var11 * var11);
+		return (double) MathHelper.sqrt(var7 * var7 + var9 * var9 + var11 * var11);
 	}
 
 	public double getDistanceSquared(Entity var1) {
@@ -861,13 +862,13 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public void i(Entity var1) {
-		if (var1.l != this && var1.vehicle != this) {
+		if (var1.passenger != this && var1.vehicle != this) {
 			if (!var1.T && !this.T) {
 				double var2 = var1.locationX - this.locationX;
 				double var4 = var1.locationZ - this.locationZ;
 				double var6 = MathHelper.a(var2, var4);
 				if (var6 >= 0.009999999776482582D) {
-					var6 = (double) MathHelper.a(var6);
+					var6 = (double) MathHelper.sqrt(var6);
 					var2 /= var6;
 					var4 /= var6;
 					double var8 = 1.0D / var6;
@@ -881,11 +882,11 @@ public abstract class Entity implements CommandSenderInterface {
 					var4 *= 0.05000000074505806D;
 					var2 *= (double) (1.0F - this.U);
 					var4 *= (double) (1.0F - this.U);
-					if (this.l == null) {
+					if (this.passenger == null) {
 						this.g(-var2, 0.0D, -var4);
 					}
 
-					if (var1.l == null) {
+					if (var1.passenger == null) {
 						var1.g(var2, 0.0D, var4);
 					}
 				}
@@ -905,7 +906,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.G = true;
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
@@ -956,7 +957,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 	public boolean writeIfNoPassenger(NBTCompoundTag var1) {
 		String var2 = this.ag();
-		if (!this.dead && var2 != null && this.l == null) {
+		if (!this.dead && var2 != null && this.passenger == null) {
 			var1.put("id", var2);
 			this.write(var1);
 			return true;
@@ -1118,7 +1119,7 @@ public abstract class Entity implements CommandSenderInterface {
 		if (var1.amount != 0 && var1.getItem() != null) {
 			EntityItem var3 = new EntityItem(this.world, this.locationX, this.locationY + (double) var2, this.locationZ, var1);
 			var3.p();
-			this.world.d((Entity) var3);
+			this.world.addEntity((Entity) var3);
 			return var3;
 		} else {
 			return null;
@@ -1137,7 +1138,7 @@ public abstract class Entity implements CommandSenderInterface {
 				double var2 = this.locationX + (double) (((float) ((var1 >> 0) % 2) - 0.5F) * this.J * 0.8F);
 				double var4 = this.locationY + (double) (((float) ((var1 >> 1) % 2) - 0.5F) * 0.1F);
 				double var6 = this.locationZ + (double) (((float) ((var1 >> 2) % 2) - 0.5F) * this.J * 0.8F);
-				if (this.world.getBlockState(new Position(var2, var4 + (double) this.aR(), var6)).getBlock().u()) {
+				if (this.world.getBlockState(new Position(var2, var4 + (double) this.getHeadHeight(), var6)).getBlock().u()) {
 					return true;
 				}
 			}
@@ -1208,8 +1209,8 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public void al() {
-		if (this.l != null) {
-			this.l.b(this.locationX, this.locationY + this.an() + this.l.am(), this.locationZ);
+		if (this.passenger != null) {
+			this.passenger.b(this.locationX, this.locationY + this.an() + this.passenger.am(), this.locationZ);
 		}
 	}
 
@@ -1227,13 +1228,13 @@ public abstract class Entity implements CommandSenderInterface {
 		if (var1 == null) {
 			if (this.vehicle != null) {
 				this.setPositionRotation(this.vehicle.locationX, this.vehicle.getBoundingBox().minY + (double) this.vehicle.K, this.vehicle.locationZ, this.yaw, this.pitch);
-				this.vehicle.l = null;
+				this.vehicle.passenger = null;
 			}
 
 			this.vehicle = null;
 		} else {
 			if (this.vehicle != null) {
-				this.vehicle.l = null;
+				this.vehicle.passenger = null;
 			}
 
 			if (var1 != null) {
@@ -1245,7 +1246,7 @@ public abstract class Entity implements CommandSenderInterface {
 			}
 
 			this.vehicle = var1;
-			var1.l = this;
+			var1.passenger = this;
 		}
 	}
 
@@ -1349,7 +1350,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public void a(EntityLightning var1) {
-		this.a(DamageSource.b, 5.0F);
+		this.damageEntity(DamageSource.LIGHTNING, 5.0F);
 		++this.i;
 		if (this.i == 0) {
 			this.e(8);
@@ -1467,7 +1468,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public boolean b(DamageSource var1) {
-		return this.ar && var1 != DamageSource.j && !var1.u();
+		return this.ar && var1 != DamageSource.OUT_OF_WORLD && !var1.u();
 	}
 
 	public void m(Entity var1) {
@@ -1508,7 +1509,7 @@ public abstract class Entity implements CommandSenderInterface {
 					var6.a(var7, var6.yaw, var6.pitch);
 				}
 
-				var5.d(var6);
+				var5.addEntity(var6);
 			}
 
 			this.dead = true;
@@ -1519,11 +1520,11 @@ public abstract class Entity implements CommandSenderInterface {
 		}
 	}
 
-	public float a(aqo var1, World var2, Position var3, BlockState var4) {
+	public float a(Explosion var1, World var2, Position var3, BlockState var4) {
 		return var4.getBlock().a(this);
 	}
 
-	public boolean a(aqo var1, World var2, Position var3, BlockState var4, float var5) {
+	public boolean a(Explosion var1, World var2, Position var3, BlockState var4, float var5) {
 		return true;
 	}
 
@@ -1540,14 +1541,14 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public void a(CrashReportSystemDetails var1) {
-		var1.addDetails("Entity Type", (Callable) (new ww(this)));
+		var1.addDetails("Entity Type", EntityTypes.getNameByClass(Entity.this) + " (" + getClass().getCanonicalName() + ")");
 		var1.addDetails("Entity ID", (Object) Integer.valueOf(this.entityId));
-		var1.addDetails("Entity Name", (Callable) (new wx(this)));
+		var1.addDetails("Entity Name", this.getName());
 		var1.addDetails("Entity\'s Exact location", (Object) String.format("%.2f, %.2f, %.2f", new Object[] { Double.valueOf(this.locationX), Double.valueOf(this.locationY), Double.valueOf(this.locationZ) }));
 		var1.addDetails("Entity\'s Block location", (Object) net.minecraft.CrashReportSystemDetails.a((double) MathHelper.toFixedPointInt(this.locationX), (double) MathHelper.toFixedPointInt(this.locationY), (double) MathHelper.toFixedPointInt(this.locationZ)));
 		var1.addDetails("Entity\'s Momentum", (Object) String.format("%.2f, %.2f, %.2f", new Object[] { Double.valueOf(this.motionX), Double.valueOf(this.motionY), Double.valueOf(this.motionZ) }));
-		var1.addDetails("Entity\'s Rider", (Callable) (new wy(this)));
-		var1.addDetails("Entity\'s Vehicle", (Callable) (new wz(this)));
+		var1.addDetails("Entity\'s Rider", passenger.toString());
+		var1.addDetails("Entity\'s Vehicle", vehicle.toString());
 	}
 
 	public UUID aJ() {
@@ -1620,7 +1621,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.f = var1;
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return this.K * 0.85F;
 	}
 

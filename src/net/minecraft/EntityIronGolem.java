@@ -1,9 +1,9 @@
 package net.minecraft;
 
-public class EntityIronGolem extends abw {
+public class EntityIronGolem extends EntityGolem {
 
 	private int b;
-	abi a;
+	Village a;
 	private int c;
 	private int bk;
 
@@ -14,11 +14,11 @@ public class EntityIronGolem extends abw {
 		this.i.a(1, new zk(this, 1.0D, true));
 		this.i.a(2, new zp(this, 0.9D, 32.0F));
 		this.i.a(3, new zm(this, 0.6D, true));
-		this.i.a(4, new zo(this, 1.0D));
+		this.i.a(4, new PathfinderGoalMoveTowardsRestriction(this, 1.0D));
 		this.i.a(5, new zs(this));
-		this.i.a(6, new zy(this, 0.6D));
-		this.i.a(7, new zh(this, EntityHuman.class, 6.0F));
-		this.i.a(8, new zx(this));
+		this.i.a(6, new PathfinderGoalRandomStroll(this, 0.6D));
+		this.i.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 6.0F));
+		this.i.a(8, new PathfinderGoalRandomLookaround(this));
 		this.bg.a(1, new aak(this));
 		this.bg.a(2, new aal(this, false, new Class[0]));
 		this.bg.a(3, new acr(this, EntityInsentient.class, 10, false, true, IMonster.e));
@@ -102,7 +102,7 @@ public class EntityIronGolem extends abw {
 	public boolean r(Entity var1) {
 		this.c = 10;
 		this.world.a((Entity) this, (byte) 4);
-		boolean var2 = var1.a(DamageSource.a((EntityLiving) this), (float) (7 + this.V.nextInt(15)));
+		boolean var2 = var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), (float) (7 + this.V.nextInt(15)));
 		if (var2) {
 			var1.motionY += 0.4000000059604645D;
 			this.a(this, var1);
@@ -112,7 +112,7 @@ public class EntityIronGolem extends abw {
 		return var2;
 	}
 
-	public abi n() {
+	public Village n() {
 		return this.a;
 	}
 
@@ -133,7 +133,7 @@ public class EntityIronGolem extends abw {
 		this.a("mob.irongolem.walk", 1.0F, 1.0F);
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		int var3 = this.V.nextInt(3);
 
 		int var4;

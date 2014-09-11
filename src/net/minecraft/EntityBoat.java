@@ -58,11 +58,11 @@ public class EntityBoat extends Entity {
 		return (double) this.K * 0.0D - 0.30000001192092896D;
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else if (!this.world.isStatic && !this.dead) {
-			if (this.l != null && this.l == var1.j() && var1 instanceof wj) {
+			if (this.passenger != null && this.passenger == var1.j() && var1 instanceof EntityDamageSourceIndirect) {
 				return false;
 			} else {
 				this.b(-this.m());
@@ -71,8 +71,8 @@ public class EntityBoat extends Entity {
 				this.ac();
 				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).playerProperties.instabuild;
 				if (var3 || this.j() > 40.0F) {
-					if (this.l != null) {
-						this.l.mount((Entity) this);
+					if (this.passenger != null) {
+						this.passenger.mount((Entity) this);
 					}
 
 					if (!var3) {
@@ -184,9 +184,9 @@ public class EntityBoat extends Entity {
 				this.motionY += 0.007000000216066837D;
 			}
 
-			if (this.l instanceof EntityLiving) {
-				EntityLiving var20 = (EntityLiving) this.l;
-				float var21 = this.l.yaw + -var20.aX * 90.0F;
+			if (this.passenger instanceof EntityLiving) {
+				EntityLiving var20 = (EntityLiving) this.passenger;
+				float var21 = this.passenger.yaw + -var20.aX * 90.0F;
 				this.motionX += -Math.sin((double) (var21 * 3.1415927F / 180.0F)) * this.b * (double) var20.aY * 0.05000000074505806D;
 				this.motionZ += Math.cos((double) (var21 * 3.1415927F / 180.0F)) * this.b * (double) var20.aY * 0.05000000074505806D;
 			}
@@ -279,14 +279,14 @@ public class EntityBoat extends Entity {
 				if (var16 != null && !var16.isEmpty()) {
 					for (int var29 = 0; var29 < var16.size(); ++var29) {
 						Entity var18 = (Entity) var16.get(var29);
-						if (var18 != this.l && var18.ae() && var18 instanceof EntityBoat) {
+						if (var18 != this.passenger && var18.ae() && var18 instanceof EntityBoat) {
 							var18.i(this);
 						}
 					}
 				}
 
-				if (this.l != null && this.l.dead) {
-					this.l = null;
+				if (this.passenger != null && this.passenger.dead) {
+					this.passenger = null;
 				}
 
 			}
@@ -294,10 +294,10 @@ public class EntityBoat extends Entity {
 	}
 
 	public void al() {
-		if (this.l != null) {
+		if (this.passenger != null) {
 			double var1 = Math.cos((double) this.yaw * 3.141592653589793D / 180.0D) * 0.4D;
 			double var3 = Math.sin((double) this.yaw * 3.141592653589793D / 180.0D) * 0.4D;
-			this.l.b(this.locationX + var1, this.locationY + this.an() + this.l.am(), this.locationZ + var3);
+			this.passenger.b(this.locationX + var1, this.locationY + this.an() + this.passenger.am(), this.locationZ + var3);
 		}
 	}
 
@@ -308,7 +308,7 @@ public class EntityBoat extends Entity {
 	}
 
 	public boolean e(EntityHuman var1) {
-		if (this.l != null && this.l instanceof EntityHuman && this.l != var1) {
+		if (this.passenger != null && this.passenger instanceof EntityHuman && this.passenger != var1) {
 			return true;
 		} else {
 			if (!this.world.isStatic) {

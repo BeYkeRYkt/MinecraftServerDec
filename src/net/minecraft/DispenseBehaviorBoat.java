@@ -1,15 +1,15 @@
 package net.minecraft;
 
-final class DispenseBehaviorBoat extends eg {
+final class DispenseBehaviorBoat extends DispenseBehaviorItem {
 
-	private final eg b = new eg();
+	private final DispenseBehaviorItem b = new DispenseBehaviorItem();
 
-	public ItemStack b(dz var1, ItemStack var2) {
+	public ItemStack b(ISourceBlock var1, ItemStack var2) {
 		BlockFace var3 = BlockDispenser.b(var1.f());
 		World var4 = var1.i();
-		double var5 = var1.a() + (double) ((float) var3.g() * 1.125F);
-		double var7 = var1.b() + (double) ((float) var3.h() * 1.125F);
-		double var9 = var1.c() + (double) ((float) var3.i() * 1.125F);
+		double var5 = var1.getX() + (double) ((float) var3.g() * 1.125F);
+		double var7 = var1.getY() + (double) ((float) var3.h() * 1.125F);
+		double var9 = var1.getZ() + (double) ((float) var3.i() * 1.125F);
 		Position var11 = var1.d().a(var3);
 		Material var12 = var4.getBlockState(var11).getBlock().getMaterial();
 		double var13;
@@ -24,12 +24,12 @@ final class DispenseBehaviorBoat extends eg {
 		}
 
 		EntityBoat var15 = new EntityBoat(var4, var5, var7 + var13, var9);
-		var4.d((Entity) var15);
+		var4.addEntity((Entity) var15);
 		var2.a(1);
 		return var2;
 	}
 
-	protected void a(dz var1) {
+	protected void a(ISourceBlock var1) {
 		var1.i().b(1000, var1.d(), 0);
 	}
 }

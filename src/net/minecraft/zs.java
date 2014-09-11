@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class zs extends zb {
+public class zs extends PathfinderGoal {
 
 	private EntityIronGolem a;
 	private EntityVillager b;

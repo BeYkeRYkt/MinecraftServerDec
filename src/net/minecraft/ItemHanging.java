@@ -22,7 +22,7 @@ public class ItemHanging extends Item {
 				adj var10 = this.a(var3, var9, var5);
 				if (var10 != null && var10.j()) {
 					if (!var3.isStatic) {
-						var3.d((Entity) var10);
+						var3.addEntity((Entity) var10);
 					}
 
 					--var1.amount;

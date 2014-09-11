@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.Iterator;
 import java.util.List;
 
-public class za extends zb {
+public class za extends PathfinderGoal {
 
 	EntityAnimal a;
 	EntityAnimal b;

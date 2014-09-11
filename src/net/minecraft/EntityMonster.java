@@ -2,7 +2,7 @@ package net.minecraft;
 
 public abstract class EntityMonster extends EntityCreature implements IMonster {
 
-	protected final zb a = new yp(this, new afn(this), 4.0F, 1.0D, 2.0D);
+	protected final PathfinderGoal a = new PathfinderGoalAvoidEntity(this, new afn(this), 4.0F, 1.0D, 2.0D);
 
 	public EntityMonster(World var1) {
 		super(var1);
@@ -35,12 +35,12 @@ public abstract class EntityMonster extends EntityCreature implements IMonster {
 		return "game.hostile.swim.splash";
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
-		} else if (super.a(var1, var2)) {
+		} else if (super.damageEntity(var1, var2)) {
 			Entity var3 = var1.j();
-			return this.l != var3 && this.vehicle != var3 ? true : true;
+			return this.passenger != var3 && this.vehicle != var3 ? true : true;
 		} else {
 			return false;
 		}
@@ -66,7 +66,7 @@ public abstract class EntityMonster extends EntityCreature implements IMonster {
 			var3 += aph.a((EntityLiving) this);
 		}
 
-		boolean var4 = var1.a(DamageSource.a((EntityLiving) this), var2);
+		boolean var4 = var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), var2);
 		if (var4) {
 			if (var3 > 0) {
 				var1.g((double) (-MathHelper.a(this.yaw * 3.1415927F / 180.0F) * (float) var3 * 0.5F), 0.1D, (double) (MathHelper.b(this.yaw * 3.1415927F / 180.0F) * (float) var3 * 0.5F));

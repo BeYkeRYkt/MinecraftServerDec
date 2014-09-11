@@ -6,7 +6,7 @@ public class BlockDispenser extends atg {
 
 	public static final beu a = beu.a("facing");
 	public static final bet b = bet.a("triggered");
-	public static final ei M = new ei(new eg());
+	public static final ei M = new ei(new DispenseBehaviorItem());
 	protected Random N = new Random();
 
 	protected BlockDispenser() {
@@ -69,8 +69,8 @@ public class BlockDispenser extends atg {
 				var1.b(1001, var2, 0);
 			} else {
 				ItemStack var6 = var4.a(var5);
-				eo var7 = this.a(var6);
-				if (var7 != eo.a) {
+				IDispenseBehavior var7 = this.a(var6);
+				if (var7 != IDispenseBehavior.a) {
 					ItemStack var8 = var7.a(var3, var6);
 					var4.a(var5, var8.amount == 0 ? null : var8);
 				}
@@ -79,8 +79,8 @@ public class BlockDispenser extends atg {
 		}
 	}
 
-	protected eo a(ItemStack var1) {
-		return (eo) M.getByName(var1 == null ? null : var1.getItem());
+	protected IDispenseBehavior a(ItemStack var1) {
+		return (IDispenseBehavior) M.getByName(var1 == null ? null : var1.getItem());
 	}
 
 	public void a(World var1, Position var2, BlockState var3, Block var4) {
@@ -131,12 +131,12 @@ public class BlockDispenser extends atg {
 		super.b(var1, var2, var3);
 	}
 
-	public static ex a(dz var0) {
+	public static IPosition a(ISourceBlock var0) {
 		BlockFace var1 = b(var0.f());
-		double var2 = var0.a() + 0.7D * (double) var1.g();
-		double var4 = var0.b() + 0.7D * (double) var1.h();
-		double var6 = var0.c() + 0.7D * (double) var1.i();
-		return new ey(var2, var4, var6);
+		double var2 = var0.getX() + 0.7D * (double) var1.g();
+		double var4 = var0.getY() + 0.7D * (double) var1.h();
+		double var6 = var0.getZ() + 0.7D * (double) var1.i();
+		return new PositionVector(var2, var4, var6);
 	}
 
 	public static BlockFace b(int var0) {

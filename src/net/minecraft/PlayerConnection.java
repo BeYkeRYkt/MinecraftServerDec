@@ -438,7 +438,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 					this.player.setPositionRotation(entity.locationX, entity.locationY, entity.locationZ, entity.yaw, entity.pitch);
 					if (this.player.isAlive()) {
 						playerWorldServer.a((Entity) this.player, false);
-						entityWorldServer.d(this.player);
+						entityWorldServer.addEntity(this.player);
 						entityWorldServer.a((Entity) this.player, false);
 					}
 

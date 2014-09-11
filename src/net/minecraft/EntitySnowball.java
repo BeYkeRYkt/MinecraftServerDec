@@ -21,7 +21,7 @@ public class EntitySnowball extends ahr {
 				var2 = 3;
 			}
 
-			var1.entity.a(DamageSource.a((Entity) this, this.n()), (float) var2);
+			var1.entity.damageEntity(DamageSource.projectile((Entity) this, this.n()), (float) var2);
 		}
 
 		for (int var3 = 0; var3 < 8; ++var3) {

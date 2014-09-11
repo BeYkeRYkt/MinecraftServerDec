@@ -4,14 +4,14 @@ import com.google.common.base.Predicate;
 
 public class EntityOcelot extends xx {
 
-	private yp bm;
+	private PathfinderGoalAvoidEntity bm;
 	private aag bn;
 
 	public EntityOcelot(World var1) {
 		super(var1);
 		this.a(0.6F, 0.7F);
 		((aay) this.s()).a(true);
-		this.i.a(1, new yy(this));
+		this.i.a(1, new PathfinderGoalFloat(this));
 		this.i.a(2, this.bk);
 		this.i.a(3, this.bn = new aag(this, 0.6D, Items.FISH, true));
 		this.i.a(5, new yz(this, 1.0D, 10.0F, 5.0F));
@@ -19,8 +19,8 @@ public class EntityOcelot extends xx {
 		this.i.a(7, new zg(this, 0.3F));
 		this.i.a(8, new zq(this));
 		this.i.a(9, new yt(this, 0.8D));
-		this.i.a(10, new zy(this, 0.8D));
-		this.i.a(11, new zh(this, EntityHuman.class, 10.0F));
+		this.i.a(10, new PathfinderGoalRandomStroll(this, 0.8D));
+		this.i.a(11, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 10.0F));
 		this.bg.a(1, new aat(this, EntityChicken.class, false, (Predicate) null));
 	}
 
@@ -88,24 +88,24 @@ public class EntityOcelot extends xx {
 		return 0.4F;
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return Items.LEATHER;
 	}
 
 	public boolean r(Entity var1) {
-		return var1.a(DamageSource.a((EntityLiving) this), 3.0F);
+		return var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), 3.0F);
 	}
 
-	public boolean a(DamageSource var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
 			this.bk.a(false);
-			return super.a(var1, var2);
+			return super.damageEntity(var1, var2);
 		}
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 	}
 
 	public boolean a(EntityHuman var1) {
@@ -209,10 +209,10 @@ public class EntityOcelot extends xx {
 
 	protected void ck() {
 		if (this.bm == null) {
-			this.bm = new yp(this, new abz(this), 16.0F, 0.8D, 1.33D);
+			this.bm = new PathfinderGoalAvoidEntity(this, new abz(this), 16.0F, 0.8D, 1.33D);
 		}
 
-		this.i.a((zb) this.bm);
+		this.i.a((PathfinderGoal) this.bm);
 		if (!this.cj()) {
 			this.i.a(4, this.bm);
 		}
@@ -226,7 +226,7 @@ public class EntityOcelot extends xx {
 				EntityOcelot var4 = new EntityOcelot(this.world);
 				var4.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
 				var4.b(-24000);
-				this.world.d((Entity) var4);
+				this.world.addEntity((Entity) var4);
 			}
 		}
 

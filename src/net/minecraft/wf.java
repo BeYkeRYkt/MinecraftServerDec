@@ -39,6 +39,6 @@ public class wf {
 	}
 
 	public float i() {
-		return this.a == DamageSource.j ? Float.MAX_VALUE : this.f;
+		return this.a == DamageSource.OUT_OF_WORLD ? Float.MAX_VALUE : this.f;
 	}
 }

@@ -2,24 +2,24 @@ package net.minecraft;
 
 import java.util.Calendar;
 
-public class EntitySkeleton extends EntityMonster implements afr {
+public class EntitySkeleton extends EntityMonster implements IRangedEntity {
 
-	private zz b = new zz(this, 1.0D, 20, 60, 15.0F);
+	private PathfinderGoalArrowAttack b = new PathfinderGoalArrowAttack(this, 1.0D, 20, 60, 15.0F);
 	private zk c = new zk(this, EntityHuman.class, 1.2D, false);
 
 	public EntitySkeleton(World var1) {
 		super(var1);
-		this.i.a(1, new yy(this));
+		this.i.a(1, new PathfinderGoalFloat(this));
 		this.i.a(2, new aab(this));
 		this.i.a(2, this.a);
 		this.i.a(3, new yx(this, 1.0D));
-		this.i.a(3, new yp(this, new afx(this), 6.0F, 1.0D, 1.2D));
-		this.i.a(4, new zy(this, 1.0D));
-		this.i.a(6, new zh(this, EntityHuman.class, 8.0F));
-		this.i.a(6, new zx(this));
+		this.i.a(3, new PathfinderGoalAvoidEntity(this, new afx(this), 6.0F, 1.0D, 1.2D));
+		this.i.a(4, new PathfinderGoalRandomStroll(this, 1.0D));
+		this.i.a(6, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+		this.i.a(6, new PathfinderGoalRandomLookaround(this));
 		this.bg.a(1, new aal(this, false, new Class[0]));
-		this.bg.a(2, new aaq(this, EntityHuman.class, true));
-		this.bg.a(3, new aaq(this, EntityIronGolem.class, true));
+		this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
+		this.bg.a(3, new PathfinderGoalNearestAttackableTarget(this, EntityIronGolem.class, true));
 		if (var1 != null && !var1.isStatic) {
 			this.n();
 		}
@@ -55,7 +55,7 @@ public class EntitySkeleton extends EntityMonster implements afr {
 	public boolean r(Entity var1) {
 		if (super.r(var1)) {
 			if (this.ck() == 1 && var1 instanceof EntityLiving) {
-				((EntityLiving) var1).c(new MobEffect(MobEffectList.v.H, 200));
+				((EntityLiving) var1).c(new MobEffect(MobEffectList.WITHER.id, 200));
 			}
 
 			return true;
@@ -125,11 +125,11 @@ public class EntitySkeleton extends EntityMonster implements afr {
 
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return Items.ARROW;
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		int var3;
 		int var4;
 		if (this.ck() == 1) {
@@ -192,8 +192,8 @@ public class EntitySkeleton extends EntityMonster implements afr {
 	}
 
 	public void n() {
-		this.i.a((zb) this.c);
-		this.i.a((zb) this.b);
+		this.i.a((PathfinderGoal) this.c);
+		this.i.a((PathfinderGoal) this.b);
 		ItemStack var1 = this.getItemInHand();
 		if (var1 != null && var1.getItem() == Items.BOW) {
 			this.i.a(4, this.b);
@@ -221,7 +221,7 @@ public class EntitySkeleton extends EntityMonster implements afr {
 		}
 
 		this.a("random.bow", 1.0F, 1.0F / (this.bb().nextFloat() * 0.4F + 0.8F));
-		this.world.d((Entity) var3);
+		this.world.addEntity((Entity) var3);
 	}
 
 	public int ck() {
@@ -262,8 +262,8 @@ public class EntitySkeleton extends EntityMonster implements afr {
 
 	}
 
-	public float aR() {
-		return this.ck() == 1 ? super.aR() : 1.74F;
+	public float getHeadHeight() {
+		return this.ck() == 1 ? super.getHeadHeight() : 1.74F;
 	}
 
 	public double am() {

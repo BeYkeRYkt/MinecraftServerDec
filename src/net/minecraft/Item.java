@@ -206,7 +206,7 @@ public class Item {
 		float var4 = var2.B + (var2.pitch - var2.B);
 		float var5 = var2.A + (var2.yaw - var2.A);
 		double var6 = var2.p + (var2.locationX - var2.p);
-		double var8 = var2.q + (var2.locationY - var2.q) + (double) var2.aR();
+		double var8 = var2.q + (var2.locationY - var2.q) + (double) var2.getHeadHeight();
 		double var10 = var2.r + (var2.locationZ - var2.r);
 		Vec3D var12 = new Vec3D(var6, var8, var10);
 		float var13 = MathHelper.b(-var5 * 0.017453292F - 3.1415927F);
@@ -457,7 +457,7 @@ public class Item {
 		register(319, "porkchop", (new ItemFood(3, 0.3F, true)).setName("porkchopRaw"));
 		register(320, "cooked_porkchop", (new ItemFood(8, 0.8F, true)).setName("porkchopCooked"));
 		register(321, "painting", (new ItemHanging(EntityPainting.class)).setName("painting"));
-		register(322, "golden_apple", (new ItemGoldenApple(4, 1.2F, false)).h().a(MobEffectList.l.H, 5, 1, 1.0F).setName("appleGold"));
+		register(322, "golden_apple", (new ItemGoldenApple(4, 1.2F, false)).h().a(MobEffectList.REGENERATION.id, 5, 1, 1.0F).setName("appleGold"));
 		register(323, "sign", (new ItemSign()).setName("sign"));
 		register(324, "wooden_door", (new ItemDoor(Blocks.WOODEN_DOOR)).setName("doorOak"));
 		Item bucket = (new ItemBucket(Blocks.AIR)).setName("bucket").setMaxStackSize(16);
@@ -501,9 +501,9 @@ public class Item {
 		register(362, "melon_seeds", (new ItemSeeds(Blocks.MELON_STEM, Blocks.FARMLAND)).setName("seeds_melon"));
 		register(363, "beef", (new ItemFood(3, 0.3F, true)).setName("beefRaw"));
 		register(364, "cooked_beef", (new ItemFood(8, 0.8F, true)).setName("beefCooked"));
-		register(365, "chicken", (new ItemFood(2, 0.3F, true)).a(MobEffectList.s.H, 30, 0, 0.3F).setName("chickenRaw"));
+		register(365, "chicken", (new ItemFood(2, 0.3F, true)).a(MobEffectList.HUNGER.id, 30, 0, 0.3F).setName("chickenRaw"));
 		register(366, "cooked_chicken", (new ItemFood(6, 0.6F, true)).setName("chickenCooked"));
-		register(367, "rotten_flesh", (new ItemFood(4, 0.1F, true)).a(MobEffectList.s.H, 30, 0, 0.8F).setName("rottenFlesh"));
+		register(367, "rotten_flesh", (new ItemFood(4, 0.1F, true)).a(MobEffectList.HUNGER.id, 30, 0, 0.8F).setName("rottenFlesh"));
 		register(368, "ender_pearl", (new ItemEnderPearl()).setName("enderPearl"));
 		register(369, "blaze_rod", (new Item()).setName("blazeRod").setCreativeModeTab(CreativeModeTab.MATERIALS).n());
 		register(370, "ghast_tear", (new Item()).setName("ghastTear").e(PotionBrewer.c).setCreativeModeTab(CreativeModeTab.BREWING));
@@ -511,7 +511,7 @@ public class Item {
 		register(372, "nether_wart", (new ItemSeeds(Blocks.NETHER_WART, Blocks.SOUL_SAND)).setName("netherStalkSeeds").e("+4"));
 		register(373, "potion", (new ItemPotion()).setName("potion"));
 		register(374, "glass_bottle", (new ItemGlassBottle()).setName("glassBottle"));
-		register(375, "spider_eye", (new ItemFood(2, 0.8F, false)).a(MobEffectList.u.H, 5, 0, 1.0F).setName("spiderEye").e(PotionBrewer.d));
+		register(375, "spider_eye", (new ItemFood(2, 0.8F, false)).a(MobEffectList.POISON.id, 5, 0, 1.0F).setName("spiderEye").e(PotionBrewer.d));
 		register(376, "fermented_spider_eye", (new Item()).setName("fermentedSpiderEye").e(PotionBrewer.e).setCreativeModeTab(CreativeModeTab.BREWING));
 		register(377, "blaze_powder", (new Item()).setName("blazePowder").e(PotionBrewer.g).setCreativeModeTab(CreativeModeTab.BREWING));
 		register(378, "magma_cream", (new Item()).setName("magmaCream").e(PotionBrewer.h).setCreativeModeTab(CreativeModeTab.BREWING));
@@ -530,7 +530,7 @@ public class Item {
 		register(391, "carrot", (new ItemSeedFood(3, 0.6F, Blocks.CARROTS, Blocks.FARMLAND)).setName("carrots"));
 		register(392, "potato", (new ItemSeedFood(1, 0.3F, Blocks.POTATOES, Blocks.FARMLAND)).setName("potato"));
 		register(393, "baked_potato", (new ItemFood(5, 0.6F, false)).setName("potatoBaked"));
-		register(394, "poisonous_potato", (new ItemFood(2, 0.3F, false)).a(MobEffectList.u.H, 5, 0, 0.6F).setName("potatoPoisonous"));
+		register(394, "poisonous_potato", (new ItemFood(2, 0.3F, false)).a(MobEffectList.POISON.id, 5, 0, 0.6F).setName("potatoPoisonous"));
 		register(395, "map", (new ItemMapEmpty()).setName("emptyMap"));
 		register(396, "golden_carrot", (new ItemFood(6, 1.2F, false)).setName("carrotGolden").e(PotionBrewer.l).setCreativeModeTab(CreativeModeTab.BREWING));
 		register(397, "skull", (new ItemSkull()).setName("skull"));

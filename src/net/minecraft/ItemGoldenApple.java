@@ -13,14 +13,14 @@ public class ItemGoldenApple extends ItemFood {
 
 	protected void c(ItemStack var1, World var2, EntityHuman var3) {
 		if (!var2.isStatic) {
-			var3.c(new MobEffect(MobEffectList.x.H, 2400, 0));
+			var3.c(new MobEffect(MobEffectList.ABSORPTION.id, 2400, 0));
 		}
 
 		if (var1.getDurability() > 0) {
 			if (!var2.isStatic) {
-				var3.c(new MobEffect(MobEffectList.l.H, 600, 4));
-				var3.c(new MobEffect(MobEffectList.m.H, 6000, 0));
-				var3.c(new MobEffect(MobEffectList.n.H, 6000, 0));
+				var3.c(new MobEffect(MobEffectList.REGENERATION.id, 600, 4));
+				var3.c(new MobEffect(MobEffectList.RESISTANCE.id, 6000, 0));
+				var3.c(new MobEffect(MobEffectList.FIRE_RESISTANCE.id, 6000, 0));
 			}
 		} else {
 			super.c(var1, var2, var3);

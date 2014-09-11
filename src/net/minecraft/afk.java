@@ -15,7 +15,7 @@ class afk extends yn {
 			double var3 = this.c - this.g.locationY;
 			double var5 = this.d - this.g.locationZ;
 			double var7 = var1 * var1 + var3 * var3 + var5 * var5;
-			var7 = (double) MathHelper.a(var7);
+			var7 = (double) MathHelper.sqrt(var7);
 			var3 /= var7;
 			float var9 = (float) (Math.atan2(var5, var1) * 180.0D / 3.1415927410125732D) - 90.0F;
 			this.g.yaw = this.a(this.g.yaw, var9, 30.0F);
@@ -32,7 +32,7 @@ class afk extends yn {
 			this.g.motionY += (double) this.g.bH() * var3 * 0.1D;
 			ym var17 = this.g.p();
 			double var18 = this.g.locationX + var1 / var7 * 2.0D;
-			double var20 = (double) this.g.aR() + this.g.locationY + var3 / var7 * 1.0D;
+			double var20 = (double) this.g.getHeadHeight() + this.g.locationY + var3 / var7 * 1.0D;
 			double var22 = this.g.locationZ + var5 / var7 * 2.0D;
 			double var24 = var17.e();
 			double var26 = var17.f();
