@@ -9,7 +9,7 @@ public class PacketPlayOutMultiBlockChange implements Packet<PlayOutPacketListen
 	}
 
 	public PacketPlayOutMultiBlockChange(int count, short[] data, Chunk chunk) {
-		this.coordPair = new ChunkCoordIntPair(chunk.x, chunk.y);
+		this.coordPair = new ChunkCoordIntPair(chunk.x, chunk.z);
 		this.packetData = new BlockChangeRecord[count];
 
 		for (int i = 0; i < this.packetData.length; ++i) {

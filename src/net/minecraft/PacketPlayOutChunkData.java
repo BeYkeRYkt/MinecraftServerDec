@@ -15,7 +15,7 @@ public class PacketPlayOutChunkData implements Packet<PlayOutPacketListener> {
 
 	public PacketPlayOutChunkData(Chunk chunk, boolean allSections, int inputBitMap) {
 		this.chunkX = chunk.x;
-		this.chunkY = chunk.y;
+		this.chunkY = chunk.z;
 		this.allSections = allSections;
 		this.data = getChunkData(chunk, allSections, !chunk.getWorld().worldProvider.noSkyLight(), inputBitMap);
 	}

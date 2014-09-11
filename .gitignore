@@ -2,6 +2,7 @@
 ## Eclipse
 #################
 
+crash-reports/
 world/
 logs/
 banned-ips.json

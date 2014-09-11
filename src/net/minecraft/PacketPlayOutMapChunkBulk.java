@@ -23,7 +23,7 @@ public class PacketPlayOutMapChunkBulk implements Packet<PlayOutPacketListener> 
 			Chunk chunk = chunkList.get(i);
 			ChunkPacketData var5 = PacketPlayOutChunkData.getChunkData(chunk, true, this.hasLight, '\uffff');
 			this.xCoords[i] = chunk.x;
-			this.zCoords[i] = chunk.y;
+			this.zCoords[i] = chunk.z;
 			this.packetData[i] = var5;
 		}
 

@@ -25,7 +25,7 @@ public class Chunk {
 	private final World i;
 	private final int[] heightMap;
 	public final int x;
-	public final int y;
+	public final int z;
 	private boolean k;
 	private final Map<Position, TileEntity> tileEntities;
 	private final EntitySlice<Entity>[] entitySlices;
@@ -51,7 +51,7 @@ public class Chunk {
 		this.entitySlices = new EntitySlice[16];
 		this.i = var1;
 		this.x = var2;
-		this.y = var3;
+		this.z = var3;
 		this.heightMap = new int[256];
 
 		for (int i = 0; i < this.entitySlices.length; ++i) {
@@ -87,7 +87,7 @@ public class Chunk {
 	}
 
 	public boolean a(int var1, int var2) {
-		return var1 == this.x && var2 == this.y;
+		return var1 == this.x && var2 == this.z;
 	}
 
 	public int f(Position var1) {
@@ -151,7 +151,7 @@ public class Chunk {
 								ChunkSection var7 = this.chunkSections[var5 >> 4];
 								if (var7 != null) {
 									var7.a(var2, var5 & 15, var3, var4);
-									this.i.n(new Position((this.x << 4) + var2, var5, (this.y << 4) + var3));
+									this.i.n(new Position((this.x << 4) + var2, var5, (this.z << 4) + var3));
 								}
 							}
 
@@ -175,14 +175,14 @@ public class Chunk {
 
 	private void h(boolean var1) {
 		this.i.B.a("recheckGaps");
-		if (this.i.a(new Position(this.x * 16 + 8, 0, this.y * 16 + 8), (int) 16)) {
+		if (this.i.a(new Position(this.x * 16 + 8, 0, this.z * 16 + 8), (int) 16)) {
 			for (int var2 = 0; var2 < 16; ++var2) {
 				for (int var3 = 0; var3 < 16; ++var3) {
 					if (this.g[var2 + var3 * 16]) {
 						this.g[var2 + var3 * 16] = false;
 						int var4 = this.b(var2, var3);
 						int var5 = this.x * 16 + var2;
-						int var6 = this.y * 16 + var3;
+						int var6 = this.z * 16 + var3;
 						int var7 = Integer.MAX_VALUE;
 
 						Iterator var8;
@@ -246,10 +246,10 @@ public class Chunk {
 		}
 
 		if (var5 != var4) {
-			this.i.a(var1 + this.x * 16, var3 + this.y * 16, var5, var4);
+			this.i.a(var1 + this.x * 16, var3 + this.z * 16, var5, var4);
 			this.heightMap[var3 << 4 | var1] = var5;
 			int var6 = this.x * 16 + var1;
-			int var7 = this.y * 16 + var3;
+			int var7 = this.z * 16 + var3;
 			int var8;
 			int var13;
 			if (!this.i.worldProvider.noSkyLight()) {
@@ -259,7 +259,7 @@ public class Chunk {
 						var9 = this.chunkSections[var8 >> 4];
 						if (var9 != null) {
 							var9.a(var1, var8 & 15, var3, 15);
-							this.i.n(new Position((this.x << 4) + var1, var8, (this.y << 4) + var3));
+							this.i.n(new Position((this.x << 4) + var1, var8, (this.z << 4) + var3));
 						}
 					}
 				} else {
@@ -267,7 +267,7 @@ public class Chunk {
 						var9 = this.chunkSections[var8 >> 4];
 						if (var9 != null) {
 							var9.a(var1, var8 & 15, var3, 0);
-							this.i.n(new Position((this.x << 4) + var1, var8, (this.y << 4) + var3));
+							this.i.n(new Position((this.x << 4) + var1, var8, (this.z << 4) + var3));
 						}
 					}
 				}
@@ -551,8 +551,8 @@ public class Chunk {
 		this.r = true;
 		int var2 = MathHelper.toFixedPointInt(entity.locationX / 16.0D);
 		int var3 = MathHelper.toFixedPointInt(entity.locationZ / 16.0D);
-		if (var2 != this.x || var3 != this.y) {
-			logger.warn("Wrong location! (" + var2 + ", " + var3 + ") should be (" + this.x + ", " + this.y + "), " + entity, new Object[] { entity });
+		if (var2 != this.x || var3 != this.z) {
+			logger.warn("Wrong location! (" + var2 + ", " + var3 + ") should be (" + this.x + ", " + this.z + "), " + entity, new Object[] { entity });
 			entity.die();
 		}
 
@@ -568,7 +568,7 @@ public class Chunk {
 		entity.ad = true;
 		entity.ae = this.x;
 		entity.af = chunkColumnNumber;
-		entity.ag = this.y;
+		entity.ag = this.z;
 		this.entitySlices[chunkColumnNumber].add(entity);
 	}
 
@@ -744,7 +744,7 @@ public class Chunk {
 	}
 
 	public Random a(long var1) {
-		return new Random(this.i.J() + (long) (this.x * this.x * 4987142) + (long) (this.x * 5947611) + (long) (this.y * this.y) * 4392871L + (long) (this.y * 389711) ^ var1);
+		return new Random(this.i.J() + (long) (this.x * this.x * 4987142) + (long) (this.x * 5947611) + (long) (this.z * this.z) * 4392871L + (long) (this.z * 389711) ^ var1);
 	}
 
 	public boolean f() {
@@ -850,7 +850,7 @@ public class Chunk {
 	}
 
 	public ChunkCoordIntPair getCoords() {
-		return new ChunkCoordIntPair(this.x, this.y);
+		return new ChunkCoordIntPair(this.x, this.z);
 	}
 
 	public boolean c(int var1, int var2) {
@@ -917,7 +917,7 @@ public class Chunk {
 	}
 
 	public void m() {
-		Position var1 = new Position(this.x << 4, 0, this.y << 4);
+		Position var1 = new Position(this.x << 4, 0, this.z << 4);
 
 		for (int var2 = 0; var2 < 8; ++var2) {
 			if (this.v >= 4096) {
@@ -954,7 +954,7 @@ public class Chunk {
 	public void n() {
 		this.terrainPopulated = true;
 		this.lightPopulated = true;
-		Position var1 = new Position(this.x << 4, 0, this.y << 4);
+		Position var1 = new Position(this.x << 4, 0, this.z << 4);
 		if (!this.i.worldProvider.noSkyLight()) {
 			if (this.i.a(var1.a(-1, 0, -1), var1.a(16, 63, 16))) {
 				label42: for (int var2 = 0; var2 < 16; ++var2) {
@@ -1016,7 +1016,7 @@ public class Chunk {
 	}
 
 	private boolean e(int var1, int var2) {
-		Position var3 = new Position(this.x << 4, 0, this.y << 4);
+		Position var3 = new Position(this.x << 4, 0, this.z << 4);
 		int var4 = this.g();
 		boolean var5 = false;
 		boolean var6 = false;

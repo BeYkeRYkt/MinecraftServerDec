@@ -214,7 +214,7 @@ public class qn {
 
 		while (var3.hasNext()) {
 			qy var4 = (qy) var3.next();
-			if (var4.a != var1 && var4.a.ae == var2.x && var4.a.ag == var2.y) {
+			if (var4.a != var1 && var4.a.ae == var2.x && var4.a.ag == var2.z) {
 				var4.b(var1);
 			}
 		}

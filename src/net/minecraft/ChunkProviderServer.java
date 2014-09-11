@@ -1,15 +1,14 @@
 package net.minecraft;
 
-import com.google.common.collect.Lists;
-
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import pipebukkit.util.LongObjectHashMap;
 
 public class ChunkProviderServer implements IChunkProvider {
 
@@ -20,8 +19,7 @@ public class ChunkProviderServer implements IChunkProvider {
 	private IChunkProvider chunkGenerator;
 	private IChunkLoader chunkLoader;
 	public boolean forceChunkLoad = true;
-	private LongHashMap chunks = new LongHashMap();
-	private List<Chunk> chunkList = Lists.newArrayList();
+	private LongObjectHashMap<Chunk> chunks = new LongObjectHashMap<Chunk>();
 	private WorldServer worldServer;
 
 	public ChunkProviderServer(WorldServer worldServer, IChunkLoader chunkLoader, IChunkProvider chunkGenerator) {
@@ -35,8 +33,8 @@ public class ChunkProviderServer implements IChunkProvider {
 		return this.chunks.contains(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
 	}
 
-	public List<Chunk> getChunkList() {
-		return this.chunkList;
+	public Iterable<Chunk> getChunkList() {
+		return chunks;
 	}
 
 	public Chunk getChunkAtWorldCoords(Position position) {
@@ -46,7 +44,7 @@ public class ChunkProviderServer implements IChunkProvider {
 	public Chunk getChunkAt(int chunkX, int chunkZ) {
 		long longHash = ChunkCoordIntPair.toLongHash(chunkX, chunkZ);
 		this.unloadQueue.remove(Long.valueOf(longHash));
-		Chunk chunk = (Chunk) this.chunks.getEntry(longHash);
+		Chunk chunk = this.chunks.get(longHash);
 		if (chunk == null) {
 			chunk = this.loadChunk(chunkX, chunkZ);
 			if (chunk == null) {
@@ -67,7 +65,6 @@ public class ChunkProviderServer implements IChunkProvider {
 			}
 
 			this.chunks.put(longHash, chunk);
-			this.chunkList.add(chunk);
 			chunk.addEntities();
 			chunk.a(this, this, chunkX, chunkZ);
 		}
@@ -87,7 +84,7 @@ public class ChunkProviderServer implements IChunkProvider {
 	}
 
 	public Chunk getOrCreateChunk(int chunkX, int chunkZ) {
-		Chunk chunk = (Chunk) this.chunks.getEntry(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
+		Chunk chunk = (Chunk) this.chunks.get(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
 		return chunk == null ? (!this.worldServer.isLoading() && !this.forceChunkLoad ? this.emptyChunk : this.getChunkAt(chunkX, chunkZ)) : chunk;
 	}
 
@@ -123,10 +120,8 @@ public class ChunkProviderServer implements IChunkProvider {
 	}
 
 	public void queueUnloadAllChunks() {
-		Iterator<Chunk> iterator = this.chunkList.iterator();
-		while (iterator.hasNext()) {
-			Chunk chunk = iterator.next();
-			this.queueUnload(chunk.x, chunk.y);
+		for (Chunk chunk : chunks) {
+			queueUnload(chunk.x, chunk.z);
 		}
 	}
 
@@ -135,12 +130,11 @@ public class ChunkProviderServer implements IChunkProvider {
 			for (int i = 0; i < 100; ++i) {
 				if (!this.unloadQueue.isEmpty()) {
 					Long longHash = this.unloadQueue.iterator().next();
-					Chunk chunk = (Chunk) this.chunks.getEntry(longHash.longValue());
+					Chunk chunk = (Chunk) this.chunks.get(longHash.longValue());
 					if (chunk != null) {
 						chunk.removeEntities();
 						this.requestChunkSave(chunk);
-						this.chunks.remove(longHash.longValue());
-						this.chunkList.remove(chunk);
+						this.chunks.remove(longHash);
 					}
 
 					this.unloadQueue.remove(longHash);
@@ -166,8 +160,7 @@ public class ChunkProviderServer implements IChunkProvider {
 	public boolean requestChunksSave(boolean flag, IProgressUpdate progressUpdate) {
 		int savedChunks = 0;
 
-		for (int i = 0; i < this.chunkList.size(); ++i) {
-			Chunk chunk = this.chunkList.get(i);
+		for (Chunk chunk : chunks) {
 			if (chunk.a(flag)) {
 				this.requestChunkSave(chunk);
 				chunk.f(false);

@@ -57,7 +57,7 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 		} else {
 			Chunk chunk = this.readChunkInfo(world, tag.getCompound("Level"));
 			if (!chunk.a(chunkX, chunkZ)) {
-				logger.error("Chunk file at " + chunkX + "," + chunkZ + " is in the wrong location; relocating. (Expected " + chunkX + ", " + chunkZ + ", got " + chunk.x + ", " + chunk.y + ")");
+				logger.error("Chunk file at " + chunkX + "," + chunkZ + " is in the wrong location; relocating. (Expected " + chunkX + ", " + chunkZ + ", got " + chunk.x + ", " + chunk.z + ")");
 				tag.put("xPos", chunkX);
 				tag.put("zPos", chunkZ);
 				chunk = this.readChunkInfo(world, tag.getCompound("Level"));
@@ -127,7 +127,7 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 	private void writeChunkInfo(Chunk chunk, World world, NBTCompoundTag tag) {
 		tag.put("V", (byte) 1);
 		tag.put("xPos", chunk.x);
-		tag.put("zPos", chunk.y);
+		tag.put("zPos", chunk.z);
 		tag.put("LastUpdate", world.getTime());
 		tag.put("HeightMap", chunk.getHeightMap());
 		tag.put("TerrainPopulated", chunk.isTerrainPopulated());

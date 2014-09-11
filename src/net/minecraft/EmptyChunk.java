@@ -11,7 +11,7 @@ public class EmptyChunk extends Chunk {
 	}
 
 	public boolean a(int var1, int var2) {
-		return var1 == this.x && var2 == this.y;
+		return var1 == this.x && var2 == this.z;
 	}
 
 	public int b(int var1, int var2) {
@@ -90,7 +90,7 @@ public class EmptyChunk extends Chunk {
 	}
 
 	public Random a(long var1) {
-		return new Random(this.getWorld().J() + (long) (this.x * this.x * 4987142) + (long) (this.x * 5947611) + (long) (this.y * this.y) * 4392871L + (long) (this.y * 389711) ^ var1);
+		return new Random(this.getWorld().J() + (long) (this.x * this.x * 4987142) + (long) (this.x * 5947611) + (long) (this.z * this.z) * 4392871L + (long) (this.z * 389711) ^ var1);
 	}
 
 	public boolean f() {

@@ -626,16 +626,11 @@ public class WorldServer extends World implements ITaskScheduler {
 			}
 
 			this.chunkProvider.requestChunksSave(var1, var2);
-			List var3 = this.b.getChunkList();
-			Iterator var4 = var3.iterator();
-
-			while (var4.hasNext()) {
-				Chunk var5 = (Chunk) var4.next();
-				if (!this.K.a(var5.x, var5.y)) {
-					this.b.queueUnload(var5.x, var5.y);
+			for (Chunk chunk : b.getChunkList()) {
+				if (!this.K.a(chunk.x, chunk.z)) {
+					this.b.queueUnload(chunk.x, chunk.z);
 				}
 			}
-
 		}
 	}
 
