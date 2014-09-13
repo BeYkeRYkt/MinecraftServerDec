@@ -332,12 +332,12 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 					var1 += var5;
 					this.lastTickTime = var48;
 					if (this.worlds[0].f()) {
-						this.y();
+						this.doTick();
 						var1 = 0L;
 					} else {
 						while (var1 > 50L) {
 							var1 -= 50L;
-							this.y();
+							this.doTick();
 						}
 					}
 
@@ -407,7 +407,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	protected void exit() {
 	}
 
-	protected void y() {
+	public void doTick() {
 		long var1 = System.nanoTime();
 		++this.ticks;
 		if (this.T) {
@@ -417,45 +417,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		}
 
 		this.profiler.a("root");
-		this.doTick();
-		if (var1 - this.lastServerPingUpdate >= 5000000000L) {
-			this.lastServerPingUpdate = var1;
-			this.serverPing.a(new ServerPingPlayerSample(this.getMaxPlayers(), this.getOnlinePlayersCount()));
-			GameProfile[] var3 = new GameProfile[Math.min(this.getOnlinePlayersCount(), 12)];
-			int var4 = MathHelper.a(this.rnd, 0, this.getOnlinePlayersCount() - var3.length);
-
-			for (int var5 = 0; var5 < var3.length; ++var5) {
-				var3[var5] = ((EntityPlayer) this.playerList.players.get(var4 + var5)).getGameProfile();
-			}
-
-			Collections.shuffle(Arrays.asList(var3));
-			this.serverPing.b().a(var3);
-		}
-
-		if (this.ticks % 900 == 0) {
-			this.profiler.a("save");
-			this.playerList.k();
-			this.saveChunks(true);
-			this.profiler.b();
-		}
-
-		this.profiler.a("tallying");
-		this.g[this.ticks % 100] = System.nanoTime() - var1;
-		this.profiler.b();
-		this.profiler.a("snooper");
-		if (!this.snooper.d() && this.ticks > 100) {
-			this.snooper.a();
-		}
-
-		if (this.ticks % 6000 == 0) {
-			this.snooper.b();
-		}
-
-		this.profiler.b();
-		this.profiler.b();
-	}
-
-	public void doTick() {
 		this.profiler.a("jobs");
 
 		synchronized (this.tasks) {
@@ -522,6 +483,41 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			((PacketTickable) this.o.get(i)).doTick();
 		}
 
+		this.profiler.b();
+		if (var1 - this.lastServerPingUpdate >= 5000000000L) {
+			this.lastServerPingUpdate = var1;
+			this.serverPing.a(new ServerPingPlayerSample(this.getMaxPlayers(), this.getOnlinePlayersCount()));
+			GameProfile[] var3 = new GameProfile[Math.min(this.getOnlinePlayersCount(), 12)];
+			int var4 = MathHelper.a(this.rnd, 0, this.getOnlinePlayersCount() - var3.length);
+
+			for (int var5 = 0; var5 < var3.length; ++var5) {
+				var3[var5] = ((EntityPlayer) this.playerList.players.get(var4 + var5)).getGameProfile();
+			}
+
+			Collections.shuffle(Arrays.asList(var3));
+			this.serverPing.b().a(var3);
+		}
+
+		if (this.ticks % 900 == 0) {
+			this.profiler.a("save");
+			this.playerList.k();
+			this.saveChunks(true);
+			this.profiler.b();
+		}
+
+		this.profiler.a("tallying");
+		this.g[this.ticks % 100] = System.nanoTime() - var1;
+		this.profiler.b();
+		this.profiler.a("snooper");
+		if (!this.snooper.d() && this.ticks > 100) {
+			this.snooper.a();
+		}
+
+		if (this.ticks % 6000 == 0) {
+			this.snooper.b();
+		}
+
+		this.profiler.b();
 		this.profiler.b();
 	}
 
