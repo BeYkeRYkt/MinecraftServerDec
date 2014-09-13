@@ -38,7 +38,7 @@ public class FillCommand extends AbstractCommand {
 			if (var9 > '\u8000') {
 				throw new di("commands.fill.tooManyBlocks", new Object[] { Integer.valueOf(var9), Integer.valueOf('\u8000') });
 			} else if (var7.getY() >= 0 && var8.getY() < 256) {
-				World var10 = var1.getWorld();
+				World var10 = var1.getPrimaryWorld();
 
 				for (int var11 = var7.getZ(); var11 < var8.getZ() + 16; var11 += 16) {
 					for (int var12 = var7.getX(); var12 < var8.getX() + 16; var12 += 16) {

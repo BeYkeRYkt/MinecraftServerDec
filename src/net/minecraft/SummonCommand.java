@@ -33,7 +33,7 @@ public class SummonCommand extends AbstractCommand {
 				var4 = new Position(var6, var8, var10);
 			}
 
-			World var12 = var1.getWorld();
+			World var12 = var1.getPrimaryWorld();
 			if (!var12.isLoaded(var4)) {
 				throw new di("commands.summon.outOfWorld", new Object[0]);
 			} else if ("LightningBolt".equals(var3)) {

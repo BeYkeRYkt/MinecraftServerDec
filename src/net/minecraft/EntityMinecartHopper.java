@@ -58,7 +58,7 @@ public class EntityMinecartHopper extends aed implements bdd {
 		this.a = var1;
 	}
 
-	public World getWorld() {
+	public World getPrimaryWorld() {
 		return this.world;
 	}
 

@@ -63,7 +63,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private final Random rnd = new Random();
 	private String ip;
 	private int port = -1;
-	public WorldServer[] worlds;
+	public ArrayList<WorldServer> worlds;
 	private PlayerList playerList;
 	private boolean running = true;
 	private boolean stopped;
@@ -78,12 +78,11 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private int maxBuildHeight;
 	private int idleTimeOut = 0;
 	public final long[] g = new long[100];
-	public long[][] h;
 	private KeyPair keyPair;
 	private String singlePlayerName;
 	private String levelName;
 	private boolean L;
-	private boolean M;
+	private boolean bonusChestEnabled;
 	private boolean N;
 	private String O = "";
 	private String P = "";
@@ -229,7 +228,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 					var1 += var5;
 					this.lastTickTime = var48;
-					if (this.worlds[0].f()) {
+					if (getPrimaryWorld().f()) {
 						this.doTick();
 						var1 = 0L;
 					} else {
@@ -299,10 +298,9 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.profiler.c("levels");
 
 		int i;
-		for (i = 0; i < this.worlds.length; ++i) {
-			long var2 = System.nanoTime();
+		for (i = 0; i < this.worlds.size(); ++i) {
 			if (i == 0 || this.isNetherAllowed()) {
-				WorldServer world = this.worlds[i];
+				WorldServer world = worlds.get(i);
 				this.profiler.a(world.getWorldData().getLevelName());
 
 				if (this.ticks % 20 == 0) {
@@ -336,8 +334,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				this.profiler.b();
 				this.profiler.b();
 			}
-
-			this.h[i][this.ticks % 100] = System.nanoTime() - var2;
 		}
 
 		this.profiler.c("connection");
@@ -406,71 +402,70 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	protected synchronized void b(String var1) {
 	}
 
-	protected void a(String var1, String var2, long var3, LevelType var5, String var6) {
-		this.a(var1);
+	protected void loadWorlds(String levelname1, String levelname2, long var3, LevelType levelType, String settings) {
+		this.a(levelname1);
 		this.b("menu.loadingLevel");
-		this.worlds = new WorldServer[3];
-		this.h = new long[this.worlds.length][100];
-		IDataManager var7 = this.convertable.a(var1, true);
-		this.a(this.getLevelName(), var7);
-		WorldData var9 = var7.getWorldData();
-		WorldSettings var8;
-		if (var9 == null) {
-			if (this.W()) {
-				var8 = DemoWorldServer.DEMO_WORLD_SETTINGS;
+		this.worlds = new ArrayList<WorldServer>();
+		IDataManager dataManager = this.convertable.a(levelname1, true);
+		this.a(this.getLevelName(), dataManager);
+		WorldData worldData = dataManager.getWorldData();
+		WorldSettings worldSettings;
+		if (worldData == null) {
+			if (this.isDemo()) {
+				worldSettings = DemoWorldServer.DEMO_WORLD_SETTINGS;
 			} else {
-				var8 = new WorldSettings(var3, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), var5);
-				var8.setGeneratorOptions(var6);
-				if (this.M) {
-					var8.enableBonusChest();
+				worldSettings = new WorldSettings(var3, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), levelType);
+				worldSettings.setGeneratorOptions(settings);
+				if (this.bonusChestEnabled) {
+					worldSettings.enableBonusChest();
 				}
 			}
 
-			var9 = new WorldData(var8, var2);
+			worldData = new WorldData(worldSettings, levelname2);
 		} else {
-			var9.setLevelName(var2);
-			var8 = new WorldSettings(var9);
+			worldData.setLevelName(levelname2);
+			worldSettings = new WorldSettings(worldData);
 		}
 
-		for (int var10 = 0; var10 < this.worlds.length; ++var10) {
-			byte var11 = 0;
-			if (var10 == 1) {
-				var11 = -1;
+		for (int i = 0; i < 3; ++i) {
+			byte worldId = 0;
+			if (i == 1) {
+				worldId = -1;
 			}
 
-			if (var10 == 2) {
-				var11 = 1;
+			if (i == 2) {
+				worldId = 1;
 			}
 
-			if (var10 == 0) {
-				if (this.W()) {
-					this.worlds[var10] = (WorldServer) (new DemoWorldServer(this, var7, var9, var11, this.profiler)).b();
+			if (i == 0) {
+				if (this.isDemo()) {
+					worlds.add((WorldServer) (new DemoWorldServer(this, dataManager, worldData, worldId, this.profiler)).b());
 				} else {
-					this.worlds[var10] = (WorldServer) (new WorldServer(this, var7, var9, var11, this.profiler)).b();
+					worlds.add((WorldServer) (new WorldServer(this, dataManager, worldData, worldId, this.profiler)).b());
 				}
 
-				this.worlds[var10].a(var8);
+				worlds.get(i).a(worldSettings);
 			} else {
-				this.worlds[var10] = (WorldServer) (new SecondaryWorldServer(this, var7, var11, this.worlds[0], this.profiler)).b();
+				worlds.add((WorldServer) (new SecondaryWorldServer(this, dataManager, worldId, this.worlds.get(0), this.profiler)).b());
 			}
 
-			this.worlds[var10].a((ara) (new qp(this, this.worlds[var10])));
+			this.worlds.get(i).a((ara) (new qp(this, this.worlds.get(i))));
 			if (!this.isSinglePlayer()) {
-				this.worlds[var10].getWorldData().setGameMode(this.getServerGameMode());
+				this.worlds.get(i).getWorldData().setGameMode(this.getServerGameMode());
 			}
 		}
 
-		this.playerList.a(this.worlds);
+		this.playerList.a(this.worlds.toArray(new WorldServer[0]));
 		this.a(this.getDifficulty());
-		this.k();
+		this.generateTerrain();
 	}
 
-	protected void k() {
+	protected void generateTerrain() {
 		int var5 = 0;
 		this.b("menu.generatingTerrain");
 		byte var6 = 0;
 		logger.info("Preparing start region for level " + var6);
-		WorldServer var7 = this.worlds[var6];
+		WorldServer var7 = this.worlds.get(0);
 		Position var8 = var7.getSpawnPosition();
 		long var9 = getCurrentMillis();
 
@@ -638,8 +633,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		logger.warn(message);
 	}
 
-	public WorldServer getWorldServer(int var1) {
-		return var1 == -1 ? this.worlds[1] : (var1 == 1 ? this.worlds[2] : this.worlds[0]);
+	public WorldServer getWorldServer(int dimensionId) {
+		return dimensionId == -1 ? this.worlds.get(1) : (dimensionId == 1 ? this.worlds.get(2) : this.worlds.get(0));
 	}
 
 	public String C() {
@@ -810,18 +805,18 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public void a(Difficulty var1) {
-		for (int var2 = 0; var2 < this.worlds.length; ++var2) {
-			WorldServer var3 = this.worlds[var2];
-			if (var3 != null) {
-				if (var3.getWorldData().isHardcore()) {
-					var3.getWorldData().setDifficulty(Difficulty.HARD);
-					var3.a(true, true);
+		for (int i = 0; i < this.worlds.size(); ++i) {
+			WorldServer worldServer = worlds.get(i);
+			if (worldServer != null) {
+				if (worldServer.getWorldData().isHardcore()) {
+					worldServer.getWorldData().setDifficulty(Difficulty.HARD);
+					worldServer.a(true, true);
 				} else if (this.isSinglePlayer()) {
-					var3.getWorldData().setDifficulty(var1);
-					var3.a(var3.getDifficulty() != Difficulty.PEACEFUL, true);
+					worldServer.getWorldData().setDifficulty(var1);
+					worldServer.a(worldServer.getDifficulty() != Difficulty.PEACEFUL, true);
 				} else {
-					var3.getWorldData().setDifficulty(var1);
-					var3.a(this.isMonsterSpawnEnabled(), this.spawnAnimals);
+					worldServer.getWorldData().setDifficulty(var1);
+					worldServer.a(this.isMonsterSpawnEnabled(), this.spawnAnimals);
 				}
 			}
 		}
@@ -832,7 +827,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return true;
 	}
 
-	public boolean W() {
+	public boolean isDemo() {
 		return this.L;
 	}
 
@@ -841,7 +836,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public void c(boolean var1) {
-		this.M = var1;
+		this.bonusChestEnabled = var1;
 	}
 
 	public Convertable X() {
@@ -852,14 +847,14 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.N = true;
 		this.X().d();
 
-		for (int var1 = 0; var1 < this.worlds.length; ++var1) {
-			WorldServer var2 = this.worlds[var1];
+		for (int var1 = 0; var1 < this.worlds.size(); ++var1) {
+			WorldServer var2 = this.worlds.get(var1);
 			if (var2 != null) {
 				var2.saveLevel();
 			}
 		}
 
-		this.X().e(this.worlds[0].getDataManager().g());
+		this.X().e(this.worlds.get(0).getDataManager().g());
 		this.stopTicking();
 	}
 
@@ -891,9 +886,9 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		var1.a("avg_tick_ms", Integer.valueOf((int) (MathHelper.a(this.g) * 1.0E-6D)));
 		int var2 = 0;
 		if (this.worlds != null) {
-			for (int var3 = 0; var3 < this.worlds.length; ++var3) {
-				if (this.worlds[var3] != null) {
-					WorldServer var4 = this.worlds[var3];
+			for (int var3 = 0; var3 < this.worlds.size(); ++var3) {
+				if (this.worlds.get(var3) != null) {
+					WorldServer var4 = this.worlds.get(var3);
 					WorldData var5 = var4.getWorldData();
 					var1.a("world[" + var2 + "][dimension]", Integer.valueOf(var4.worldProvider.getDimensionId()));
 					var1.a("world[" + var2 + "][mode]", var5.getGameMode());
@@ -993,8 +988,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public void setServerGameMode(EnumGameMode var1) {
-		for (int i = 0; i < this.worlds.length; ++i) {
-			getInstance().worlds[i].getWorldData().setGameMode(var1);
+		for (int i = 0; i < this.worlds.size(); ++i) {
+			getInstance().worlds.get(i).getWorldData().setGameMode(var1);
 		}
 	}
 
@@ -1024,8 +1019,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return new Vec3D(0.0D, 0.0D, 0.0D);
 	}
 
-	public World getWorld() {
-		return this.worlds[0];
+	public WorldServer getPrimaryWorld() {
+		return this.worlds.get(0);
 	}
 
 	public Entity getEntity() {
@@ -1093,7 +1088,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public Entity a(UUID var1) {
-		WorldServer[] var2 = this.worlds;
+		WorldServer[] var2 = this.worlds.toArray(new WorldServer[0]);
 		int var3 = var2.length;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
@@ -1110,7 +1105,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public boolean t_() {
-		return getInstance().worlds[0].getGameRules().b("sendCommandFeedback");
+		return getInstance().worlds.get(0).getGameRules().b("sendCommandFeedback");
 	}
 
 	public void a(ag var1, int var2) {

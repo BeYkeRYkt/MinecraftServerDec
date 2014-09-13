@@ -79,7 +79,7 @@ public class StatsCommand extends AbstractCommand {
 			if (var6 == null) {
 				throw new di("commands.stats.failed", new Object[0]);
 			} else {
-				World var7 = var1.getWorld();
+				World var7 = var1.getPrimaryWorld();
 				CommandBlockStatistic var8;
 				Position var9;
 				TileEntity var10;

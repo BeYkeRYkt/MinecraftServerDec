@@ -146,7 +146,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 				this.setMaxBuildHeight(MathHelper.a(this.getMaxBuildHeight(), 64, 256));
 				this.serverProperties.setProperty("max-build-height", (Object) Integer.valueOf(this.getMaxBuildHeight()));
 				logger.info("Preparing level \"" + this.getLevelName() + "\"");
-				this.a(this.getLevelName(), this.getLevelName(), randomLong, var18, gensettings);
+				this.loadWorlds(this.getLevelName(), this.getLevelName(), randomLong, var18, gensettings);
 				long var12 = System.nanoTime() - nanoTime;
 				String var14 = String.format("%.3fs", new Object[] { Double.valueOf((double) var12 / 1.0E9D) });
 				logger.info("Done (" + var14 + ")! For help, type \"help\" or \"?\"");

@@ -14,7 +14,7 @@ public interface CommandSenderInterface {
 
 	Vec3D getCenter();
 
-	World getWorld();
+	World getPrimaryWorld();
 
 	boolean t_();
 

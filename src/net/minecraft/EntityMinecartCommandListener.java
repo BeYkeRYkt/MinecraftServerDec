@@ -21,7 +21,7 @@ class EntityMinecartCommandListener extends CommandBlockListenerAbstract {
 		return new Vec3D(this.minecart.locationX, this.minecart.locationY, this.minecart.locationZ);
 	}
 
-	public World getWorld() {
+	public World getPrimaryWorld() {
 		return this.minecart.world;
 	}
 

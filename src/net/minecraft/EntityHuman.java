@@ -1482,7 +1482,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public boolean t_() {
-		return MinecraftServer.getInstance().worlds[0].getGameRules().b("sendCommandFeedback");
+		return MinecraftServer.getInstance().getPrimaryWorld().getGameRules().b("sendCommandFeedback");
 	}
 
 	public boolean d(int var1, ItemStack var2) {

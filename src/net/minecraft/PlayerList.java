@@ -174,7 +174,7 @@ public abstract class PlayerList {
 	}
 
 	public NBTCompoundTag a(EntityPlayer var1) {
-		NBTCompoundTag var2 = this.minecraftserver.worlds[0].getWorldData().getPlayerData();
+		NBTCompoundTag var2 = this.minecraftserver.getPrimaryWorld().getWorldData().getPlayerData();
 		NBTCompoundTag var3;
 		if (var1.getName().equals(this.minecraftserver.getSinglePlayerName()) && var2 != null) {
 			var1.load(var2);
@@ -277,7 +277,7 @@ public abstract class PlayerList {
 		}
 
 		Object var7;
-		if (this.minecraftserver.W()) {
+		if (this.minecraftserver.isDemo()) {
 			var7 = new qk(this.minecraftserver.getWorldServer(0));
 		} else {
 			var7 = new PlayerInteractManager(this.minecraftserver.getWorldServer(0));
@@ -296,7 +296,7 @@ public abstract class PlayerList {
 		boolean var5 = var1.ch();
 		var1.dimensionId = var2;
 		Object var6;
-		if (this.minecraftserver.W()) {
+		if (this.minecraftserver.isDemo()) {
 			var6 = new qk(this.minecraftserver.getWorldServer(var1.dimensionId));
 		} else {
 			var6 = new PlayerInteractManager(this.minecraftserver.getWorldServer(var1.dimensionId));
@@ -538,7 +538,7 @@ public abstract class PlayerList {
 	}
 
 	public void updateWorldData(EntityPlayer var1, WorldServer var2) {
-		WorldBorder var3 = this.minecraftserver.worlds[0].getWorldBorder();
+		WorldBorder var3 = this.minecraftserver.getPrimaryWorld().getWorldBorder();
 		var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutWorldBorder(var3, WorldBorderAction.INITIALIZE)));
 		var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutTimeUpdate(var2.getTime(), var2.L(), var2.getGameRules().b("doDaylightCycle"))));
 		if (var2.S()) {
@@ -556,7 +556,7 @@ public abstract class PlayerList {
 	}
 
 	public String[] r() {
-		return this.minecraftserver.worlds[0].getDataManager().getPlayerFileData().getSeenPlayers();
+		return this.minecraftserver.getPrimaryWorld().getDataManager().getPlayerFileData().getSeenPlayers();
 	}
 
 	public boolean s() {
@@ -644,7 +644,7 @@ public abstract class PlayerList {
 	public void a(int var1) {
 		this.r = var1;
 		if (this.minecraftserver.worlds != null) {
-			WorldServer[] var2 = this.minecraftserver.worlds;
+			WorldServer[] var2 = this.minecraftserver.worlds.toArray(new WorldServer[0]);
 			int var3 = var2.length;
 
 			for (int var4 = 0; var4 < var3; ++var4) {
@@ -687,7 +687,7 @@ public abstract class PlayerList {
 	}
 
 	public boolean isOp(GameProfile profile) {
-		return this.opList.contains(profile) || (this.minecraftserver.isSinglePlayer() && this.minecraftserver.worlds[0].getWorldData().areCommandsAllowed() && this.minecraftserver.getSinglePlayerName().equalsIgnoreCase(profile.getName())) || this.everyoneIsOp;
+		return this.opList.contains(profile) || (this.minecraftserver.isSinglePlayer() && this.minecraftserver.getPrimaryWorld().getWorldData().areCommandsAllowed() && this.minecraftserver.getSinglePlayerName().equalsIgnoreCase(profile.getName())) || this.everyoneIsOp;
 	}
 
 	public WhiteList getWhitelist() {

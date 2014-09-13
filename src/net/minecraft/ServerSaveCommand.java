@@ -22,9 +22,9 @@ public class ServerSaveCommand extends AbstractCommand {
 		int var4;
 		WorldServer var5;
 		boolean var6;
-		for (var4 = 0; var4 < var3.worlds.length; ++var4) {
-			if (var3.worlds[var4] != null) {
-				var5 = var3.worlds[var4];
+		for (var4 = 0; var4 < var3.worlds.size(); ++var4) {
+			if (var3.worlds.get(var4) != null) {
+				var5 = var3.worlds.get(var4);
 				var6 = var5.savingDisabled;
 				var5.savingDisabled = false;
 				try {
@@ -39,9 +39,9 @@ public class ServerSaveCommand extends AbstractCommand {
 		if (var2.length > 0 && "flush".equals(var2[0])) {
 			var1.sendChatMessage(new ChatMessage("commands.save.flushStart", new Object[0]));
 
-			for (var4 = 0; var4 < var3.worlds.length; ++var4) {
-				if (var3.worlds[var4] != null) {
-					var5 = var3.worlds[var4];
+			for (var4 = 0; var4 < var3.worlds.size(); ++var4) {
+				if (var3.worlds.get(var4) != null) {
+					var5 = var3.worlds.get(var4);
 					var6 = var5.savingDisabled;
 					var5.savingDisabled = false;
 					var5.n();

@@ -16,8 +16,8 @@ class TileEntityCommandListener extends CommandBlockListenerAbstract {
 		return new Vec3D((double) this.tileEntity.position.getX() + 0.5D, (double) this.tileEntity.position.getY() + 0.5D, (double) this.tileEntity.position.getZ() + 0.5D);
 	}
 
-	public World getWorld() {
-		return this.tileEntity.getWorld();
+	public World getPrimaryWorld() {
+		return this.tileEntity.getPrimaryWorld();
 	}
 
 	public void setCommand(String var1) {
@@ -26,7 +26,7 @@ class TileEntityCommandListener extends CommandBlockListenerAbstract {
 	}
 
 	public void updateEntity() {
-		this.tileEntity.getWorld().notify(this.tileEntity.position);
+		this.tileEntity.getPrimaryWorld().notify(this.tileEntity.position);
 	}
 
 	public Entity getEntity() {

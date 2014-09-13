@@ -374,7 +374,7 @@ public class PipeServer implements Server {
 	@SuppressWarnings("deprecation")
 	@Override
 	public GameMode getDefaultGameMode() {
-		return GameMode.getByValue(MinecraftServer.getInstance().worlds[0].getWorldData().getGameMode().getId());
+		return GameMode.getByValue(MinecraftServer.getInstance().getPrimaryWorld().getWorldData().getGameMode().getId());
 	}
 
 	@Override
@@ -507,7 +507,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public OfflinePlayer[] getOfflinePlayers() {
-		WorldNBTStorage storage = (WorldNBTStorage) MinecraftServer.getInstance().worlds[0].getDataManager();
+		WorldNBTStorage storage = (WorldNBTStorage) MinecraftServer.getInstance().getPrimaryWorld().getDataManager();
 		String[] files = storage.getPlayerDir().list(new FilenameFilter() {
 			@Override
 			public boolean accept(File dir, String name) {
@@ -645,7 +645,7 @@ public class PipeServer implements Server {
 	@Override
 	public void setDefaultGameMode(GameMode mode) {
 		Validate.notNull(mode, "Mode cannot be null");
-		MinecraftServer.getInstance().worlds[0].getWorldData().setGameMode(EnumGameMode.getById(mode.getValue()));
+		MinecraftServer.getInstance().getPrimaryWorld().getWorldData().setGameMode(EnumGameMode.getById(mode.getValue()));
 	}
 
 	@Override

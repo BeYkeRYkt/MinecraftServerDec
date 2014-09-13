@@ -93,11 +93,11 @@ public class cl extends ab implements y {
 			}
 		}
 
-		if (var1 != var7 && var7.worlds[0].getGameRules().b("logAdminCommands")) {
+		if (var1 != var7 && var7.getPrimaryWorld().getGameRules().b("logAdminCommands")) {
 			var7.sendChatMessage((IChatBaseComponent) var8);
 		}
 
-		boolean var11 = var7.worlds[0].getGameRules().b("sendCommandFeedback");
+		boolean var11 = var7.getPrimaryWorld().getGameRules().b("sendCommandFeedback");
 		if (var1 instanceof CommandBlockListenerAbstract) {
 			var11 = ((CommandBlockListenerAbstract) var1).isTrackOutputEnabled();
 		}

@@ -1653,7 +1653,7 @@ public abstract class Entity implements CommandSenderInterface {
 		return new Vec3D(this.locationX, this.locationY, this.locationZ);
 	}
 
-	public World getWorld() {
+	public World getPrimaryWorld() {
 		return this.world;
 	}
 

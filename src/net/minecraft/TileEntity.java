@@ -79,7 +79,7 @@ public abstract class TileEntity {
 		this.h = -1;
 	}
 
-	public World getWorld() {
+	public World getPrimaryWorld() {
 		return this.world;
 	}
 

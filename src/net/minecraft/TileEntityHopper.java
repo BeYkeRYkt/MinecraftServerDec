@@ -295,7 +295,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 				}
 			}
 		} else {
-			EntityItem var6 = a(var0.getWorld(), var0.A(), var0.B() + 1.0D, var0.C());
+			EntityItem var6 = a(var0.getPrimaryWorld(), var0.A(), var0.B() + 1.0D, var0.C());
 			if (var6 != null) {
 				return a((IInventory) var0, var6);
 			}
@@ -404,11 +404,11 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 
 	private IInventory G() {
 		BlockFace var1 = BlockHopper.b(this.u());
-		return b(this.getWorld(), (double) (this.position.getX() + var1.g()), (double) (this.position.getY() + var1.h()), (double) (this.position.getZ() + var1.i()));
+		return b(this.getPrimaryWorld(), (double) (this.position.getX() + var1.g()), (double) (this.position.getY() + var1.h()), (double) (this.position.getZ() + var1.i()));
 	}
 
 	public static IInventory b(bdd var0) {
-		return b(var0.getWorld(), var0.A(), var0.B() + 1.0D, var0.C());
+		return b(var0.getPrimaryWorld(), var0.A(), var0.B() + 1.0D, var0.C());
 	}
 
 	public static EntityItem a(World var0, double var1, double var3, double var5) {

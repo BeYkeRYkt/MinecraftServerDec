@@ -105,7 +105,7 @@ public abstract class CommandBlockListenerAbstract implements CommandSenderInter
 	}
 
 	public void sendChatMessage(IChatBaseComponent message) {
-		if (this.trackOutput && this.getWorld() != null && !this.getWorld().isStatic) {
+		if (this.trackOutput && this.getPrimaryWorld() != null && !this.getPrimaryWorld().isStatic) {
 			this.lastOutput = (new ChatComponentText("[" + format.format(new Date()) + "] ")).a(message);
 			this.updateEntity();
 		}
@@ -113,7 +113,7 @@ public abstract class CommandBlockListenerAbstract implements CommandSenderInter
 
 	public boolean t_() {
 		MinecraftServer var1 = MinecraftServer.getInstance();
-		return var1 == null || !var1.hasUniverse() || var1.worlds[0].getGameRules().b("commandBlockOutput");
+		return var1 == null || !var1.hasUniverse() || var1.getPrimaryWorld().getGameRules().b("commandBlockOutput");
 	}
 
 	public void a(ag var1, int var2) {
@@ -138,7 +138,7 @@ public abstract class CommandBlockListenerAbstract implements CommandSenderInter
 		if (!var1.playerProperties.instabuild) {
 			return false;
 		} else {
-			if (var1.getWorld().isStatic) {
+			if (var1.getPrimaryWorld().isStatic) {
 				var1.a(this);
 			}
 
