@@ -102,18 +102,17 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return pipeServer;
 	}
 
-	public MinecraftServer(File universe, Proxy var2, File usercache) {
-		this.proxy = var2;
+	public MinecraftServer(File universe, Proxy proxy, File usercache) {
 		instance = this;
+		this.proxy = proxy;
 		this.universe = universe;
 		this.serverConnection = new ServerConnection(this);
 		this.userCache = new UserCache(this, usercache);
 		this.commandHandler = this.h();
 		this.convertable = new bqj(universe);
-		this.authService = new YggdrasilAuthenticationService(var2, UUID.randomUUID().toString());
+		this.authService = new YggdrasilAuthenticationService(proxy, UUID.randomUUID().toString());
 		this.minecraftSessionService = this.authService.createMinecraftSessionService();
 		this.gameProflieRepository = this.authService.createProfileRepository();
-		pipeServer = new PipeServer();
 	}
 
 	protected cl h() {
@@ -308,10 +307,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public void run() {
-		tick();
-	}
-
-	private void tick() {
 		try {
 			if (this.startServer()) {
 				this.lastTickTime = getCurrentMillis();
@@ -986,6 +981,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 	public void setPlayerList(PlayerList playerList) {
 		this.playerList = playerList;
+		pipeServer = new PipeServer();
 	}
 
 	public void setServerGameMode(GameMode var1) {

@@ -4,7 +4,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -14,6 +16,7 @@ import java.util.logging.Logger;
 import net.minecraft.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 
+import org.apache.commons.lang.Validate;
 import org.bukkit.BanList;
 import org.bukkit.BanList.Type;
 import org.bukkit.Bukkit;
@@ -24,10 +27,13 @@ import org.bukkit.UnsafeValues;
 import org.bukkit.Warning.WarningState;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.command.SimpleCommandMap;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.help.HelpMap;
@@ -37,22 +43,40 @@ import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.map.MapView;
+import org.bukkit.permissions.Permissible;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.ServicesManager;
+import org.bukkit.plugin.SimplePluginManager;
+import org.bukkit.plugin.SimpleServicesManager;
 import org.bukkit.plugin.messaging.Messenger;
+import org.bukkit.plugin.messaging.StandardMessenger;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.SafeConstructor;
 
 import pipebukkit.server.entity.PipePlayer;
 import pipebukkit.server.metadata.EntityMetadataStorage;
 
+import com.avaje.ebean.config.DataSourceConfig;
 import com.avaje.ebean.config.ServerConfig;
+import com.avaje.ebean.config.dbplatform.SQLitePlatform;
+import com.avaje.ebeaninternal.server.lib.sql.TransactionIsolation;
 
 public class PipeServer implements Server {
 
 	private List<Player> players;
+	private LinkedHashMap<String, World> worlds = new LinkedHashMap<String, World>();
+
+	private final Yaml yaml = new Yaml(new SafeConstructor());
+	private YamlConfiguration bukkitConfiguration;
+
+	private SimpleCommandMap commandMap = new SimpleCommandMap(this);
+	private StandardMessenger messenger = new StandardMessenger();
+	private PluginManager pluginManager = new SimplePluginManager(this, commandMap);
+	private ServicesManager servicesManager = new SimpleServicesManager();
 
 	private EntityMetadataStorage entityMetadata = new EntityMetadataStorage();
 
@@ -64,6 +88,7 @@ public class PipeServer implements Server {
 				return player.getBukkitEntity(Player.class);
 			}
 		}));
+		bukkitConfiguration = YamlConfiguration.loadConfiguration(new File("bukkit.yml"));
 	}
 
 	public EntityMetadataStorage getEntityMetadataStorage() {
@@ -72,14 +97,19 @@ public class PipeServer implements Server {
 
 	@Override
 	public Set<String> getListeningPluginChannels() {
-		// TODO Auto-generated method stub
-		return null;
+		Set<String> channels = new HashSet<String>();
+		for (Player player : getOnlinePlayers()) {
+			channels.addAll(player.getListeningPluginChannels());
+		}
+		return channels;
 	}
 
 	@Override
-	public void sendPluginMessage(Plugin arg0, String arg1, byte[] arg2) {
-		// TODO Auto-generated method stub
-		
+	public void sendPluginMessage(Plugin plugin, String channelName, byte[] message) {
+		StandardMessenger.validatePluginMessage(getMessenger(), plugin, channelName, message);
+		for (Player player : getOnlinePlayers()) {
+			player.sendPluginMessage(plugin, channelName, message);
+		}
 	}
 
 	@Override
@@ -89,30 +119,55 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public void banIP(String arg0) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public int broadcast(String arg0, String arg1) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int broadcastMessage(String arg0) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public void clearRecipes() {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public void configureDbConfig(ServerConfig arg0) {
+	public Iterator<Recipe> recipeIterator() {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Recipe> getRecipesFor(ItemStack arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int broadcast(String message, String permission) {
+		int count = 0;
+		Set<Permissible> permissibles = getPluginManager().getPermissionSubscriptions(permission);
+		for (Permissible permissible : permissibles) {
+			if (permissible instanceof CommandSender && permissible.hasPermission(permission)) {
+				CommandSender user = (CommandSender) permissible;
+				user.sendMessage(message);
+				count++;
+			}
+		}
+		return count;
+	}
+
+	@Override
+	public int broadcastMessage(String message) {
+		return broadcast(message, BROADCAST_CHANNEL_USERS);
+	}
+
+	@Override
+	public void configureDbConfig(ServerConfig config) {
+		Validate.notNull(config, "Config cannot be null");
+		DataSourceConfig ds = new DataSourceConfig();
+		ds.setDriver(bukkitConfiguration.getString("database.driver"));
+		ds.setUrl(bukkitConfiguration.getString("database.url"));
+		ds.setUsername(bukkitConfiguration.getString("database.username"));
+		ds.setPassword(bukkitConfiguration.getString("database.password"));
+		ds.setIsolationLevel(TransactionIsolation.getLevel(bukkitConfiguration.getString("database.isolation")));
+		if (ds.getDriver().contains("sqlite")) {
+			config.setDatabasePlatform(new SQLitePlatform());
+			config.getDatabasePlatform().getDbDdlSyntax().setIdentity("");
+		}
+		config.setDataSourceConfig(ds);
 	}
 
 	@Override
@@ -152,21 +207,28 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public boolean dispatchCommand(CommandSender arg0, String arg1) throws CommandException {
-		// TODO Auto-generated method stub
+	public boolean dispatchCommand(CommandSender sender, String command) throws CommandException {
+		Validate.notNull(sender, "Sender cannot be null");
+		Validate.notNull(command, "Command cannot be null");
+		if (commandMap.dispatch(sender, command)) {
+			return true;
+		}
+		if (sender instanceof Player) {
+			sender.sendMessage("Unknown command. Type \"/help\" for help.");
+		} else {
+			sender.sendMessage("Unknown command. Type \"help\" for help.");
+		}
 		return false;
 	}
 
 	@Override
 	public boolean getAllowEnd() {
-		// TODO Auto-generated method stub
-		return false;
+		return bukkitConfiguration.getBoolean("settings.allow-end");
 	}
 
 	@Override
 	public boolean getAllowFlight() {
-		// TODO Auto-generated method stub
-		return false;
+		return MinecraftServer.getInstance().isFlightAllowed();
 	}
 
 	@Override
@@ -187,6 +249,11 @@ public class PipeServer implements Server {
 	}
 
 	@Override
+	public void banIP(String arg0) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
 	public BanList getBanList(Type arg0) {
 		// TODO Auto-generated method stub
 		return null;
@@ -200,8 +267,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public String getBukkitVersion() {
-		// TODO Auto-generated method stub
-		return null;
+		return "1.7.10";
 	}
 
 	@Override
@@ -266,8 +332,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public Logger getLogger() {
-		// TODO Auto-generated method stub
-		return null;
+		return Logger.getLogger("Minecraft");
 	}
 
 	@Override
@@ -283,8 +348,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public Messenger getMessenger() {
-		// TODO Auto-generated method stub
-		return null;
+		return messenger;
 	}
 
 	@Override
@@ -300,8 +364,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "PipeBukkit";
 	}
 
 	@Override
@@ -324,8 +387,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public boolean getOnlineMode() {
-		// TODO Auto-generated method stub
-		return false;
+		return MinecraftServer.getInstance().isOnlineMode();
 	}
 
 	@Override
@@ -365,26 +427,22 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public PluginCommand getPluginCommand(String arg0) {
-		// TODO Auto-generated method stub
+	public PluginCommand getPluginCommand(String commandName) {
+		Command command = commandMap.getCommand(commandName);
+		if (command instanceof PluginCommand) {
+			return (PluginCommand) command;
+		}
 		return null;
 	}
 
 	@Override
 	public PluginManager getPluginManager() {
-		// TODO Auto-generated method stub
-		return null;
+		return pluginManager;
 	}
 
 	@Override
 	public int getPort() {
 		return MinecraftServer.getInstance().getPort();
-	}
-
-	@Override
-	public List<Recipe> getRecipesFor(ItemStack arg0) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -419,8 +477,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public ServicesManager getServicesManager() {
-		// TODO Auto-generated method stub
-		return null;
+		return servicesManager;
 	}
 
 	@Override
@@ -467,8 +524,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public String getVersion() {
-		// TODO Auto-generated method stub
-		return null;
+		return "indev (MC: 1.8)";
 	}
 
 	@Override
@@ -556,12 +612,6 @@ public class PipeServer implements Server {
 
 	@Override
 	public List<Player> matchPlayer(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Iterator<Recipe> recipeIterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
