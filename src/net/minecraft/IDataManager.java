@@ -4,21 +4,21 @@ import java.io.File;
 
 public interface IDataManager {
 
-	WorldData d();
+	WorldData getWorldData();
 
 	void checkSessionLock() throws ExceptionWorldConflict;
 
-	IChunkLoader a(WorldProvider var1);
+	IChunkLoader createChunkLoader(WorldProvider var1);
 
-	void a(WorldData var1, NBTCompoundTag var2);
+	void saveWorldData(WorldData var1, NBTCompoundTag var2);
 
-	void a(WorldData var1);
+	void saveWorldData(WorldData var1);
 
-	brl e();
+	IPlayerFileData getPlayerFileData();
 
 	void saveData();
 
-	File b();
+	File getDirectory();
 
 	File a(String var1);
 

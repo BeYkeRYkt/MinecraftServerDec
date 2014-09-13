@@ -15,9 +15,9 @@ final class sh implements ProfileLookupCallback {
 	// $FF: synthetic field
 	final Map b;
 	// $FF: synthetic field
-	final sv c;
+	final GameProfileBanList c;
 
-	sh(MinecraftServer var1, Map var2, sv var3) {
+	sh(MinecraftServer var1, Map var2, GameProfileBanList var3) {
 		this.a = var1;
 		this.b = var2;
 		this.c = var3;

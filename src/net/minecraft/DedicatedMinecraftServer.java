@@ -310,7 +310,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 	public boolean isProtected(World var1, Position var2, EntityHuman var3) {
 		if (var1.worldProvider.getDimensionId() != 0) {
 			return false;
-		} else if (this.getDedicatedPlayerList().n().d()) {
+		} else if (this.getDedicatedPlayerList().getOpList().d()) {
 			return false;
 		} else if (this.getDedicatedPlayerList().isOp(var3.getGameProfile())) {
 			return false;

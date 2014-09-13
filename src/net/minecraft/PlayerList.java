@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import net.minecraft.PacketPlayOutListItem.ListItemAction;
 import net.minecraft.PacketPlayOutWorldBorder.WorldBorderAction;
@@ -31,32 +32,32 @@ public abstract class PlayerList {
 	public static final File bannedIPsFile = new File("banned-ips.json");
 	public static final File opsFile = new File("ops.json");
 	public static final File whitelistFile = new File("whitelist.json");
-	private final sv k;
-	private final sd l;
-	private final sp m;
-	private final sx n;
+	private final GameProfileBanList playerBanList;
+	private final IpBanList ipBanList;
+	private final OpList opList;
+	private final WhiteList whiteList;
 	private static final Logger logger = LogManager.getLogger();
 	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd \'at\' HH:mm:ss z");
 	private final MinecraftServer minecraftserver;
-	public final List<EntityPlayer> players = Lists.newArrayList();
+	public final List<EntityPlayer> players = new CopyOnWriteArrayList<EntityPlayer>();
 	public final Map<UUID, EntityPlayer> uuidToPlayerMap = Maps.newHashMap();
 	private final Map<UUID, StatisticManager> playersStatistic = Maps.newHashMap();
-	private brl p;
-	private boolean q;
+	public IPlayerFileData playerFileData;
+	public boolean hasWhiteList;
 	protected int maxPlayers;
 	private int r;
 	private GameMode s;
-	private boolean t;
-	private int u;
+	private boolean everyoneIsOp;
+	private int pingUpdateCounter;
 
 	public PlayerList(MinecraftServer minecraftserver) {
 		this.minecraftserver = minecraftserver;
-		this.k = new sv(bannedPlayersFile);
-		this.l = new sd(bannedIPsFile);
-		this.m = new sp(opsFile);
-		this.n = new sx(whitelistFile);
-		this.k.a(false);
-		this.l.a(false);
+		this.playerBanList = new GameProfileBanList(bannedPlayersFile);
+		this.ipBanList = new IpBanList(bannedIPsFile);
+		this.opList = new OpList(opsFile);
+		this.whiteList = new WhiteList(whitelistFile);
+		this.playerBanList.a(false);
+		this.ipBanList.a(false);
 		this.maxPlayers = 8;
 	}
 
@@ -153,7 +154,7 @@ public abstract class PlayerList {
 	}
 
 	public void a(WorldServer[] var1) {
-		this.p = var1[0].getDataManager().e();
+		this.playerFileData = var1[0].getDataManager().getPlayerFileData();
 		var1[0].getWorldBorder().addChangeListener((WorldBorderChangeListener) (new PlayerUpdaterWorldBorderChangeListener(this)));
 	}
 
@@ -179,14 +180,14 @@ public abstract class PlayerList {
 			var3 = var2;
 			logger.debug("loading single player");
 		} else {
-			var3 = this.p.b(var1);
+			var3 = this.playerFileData.load(var1);
 		}
 
 		return var3;
 	}
 
 	protected void b(EntityPlayer var1) {
-		this.p.a(var1);
+		this.playerFileData.save(var1);
 		StatisticManager var2 = (StatisticManager) this.playersStatistic.get(var1.getUUID());
 		if (var2 != null) {
 			var2.write();
@@ -232,8 +233,8 @@ public abstract class PlayerList {
 
 	public String getLoginKickMessage(SocketAddress address, GameProfile profile) {
 		String var4;
-		if (this.k.a(profile)) {
-			GameProfileBanEntry var5 = (GameProfileBanEntry) this.k.b((Object) profile);
+		if (this.playerBanList.a(profile)) {
+			GameProfileBanEntry var5 = (GameProfileBanEntry) this.playerBanList.b((Object) profile);
 			var4 = "You are banned from this server!\nReason: " + var5.d();
 			if (var5.c() != null) {
 				var4 = var4 + "\nYour ban will be removed on " + dateFormat.format(var5.c());
@@ -242,8 +243,8 @@ public abstract class PlayerList {
 			return var4;
 		} else if (!this.e(profile)) {
 			return "You are not white-listed on this server!";
-		} else if (this.l.a(address)) {
-			se var3 = this.l.b(address);
+		} else if (this.ipBanList.a(address)) {
+			se var3 = this.ipBanList.b(address);
 			var4 = "Your IP address is banned from this server!\nReason: " + var3.d();
 			if (var3.c() != null) {
 				var4 = var4 + "\nYour ban will be removed on " + dateFormat.format(var3.c());
@@ -418,9 +419,9 @@ public abstract class PlayerList {
 	}
 
 	public void e() {
-		if (++this.u > 600) {
+		if (++this.pingUpdateCounter > 600) {
 			this.sendPacket((Packet) (new PacketPlayOutListItem(ListItemAction.UPDATE_LATENCY, this.players)));
-			this.u = 0;
+			this.pingUpdateCounter = 0;
 		}
 
 	}
@@ -506,28 +507,28 @@ public abstract class PlayerList {
 		return var1;
 	}
 
-	public sv getProfileBans() {
-		return this.k;
+	public GameProfileBanList getProfileBans() {
+		return this.playerBanList;
 	}
 
-	public sd j() {
-		return this.l;
+	public IpBanList j() {
+		return this.ipBanList;
 	}
 
-	public void a(GameProfile var1) {
-		this.m.add((sr) (new sq(var1, this.minecraftserver.getOpPermissionLevel())));
+	public void addOp(GameProfile profile) {
+		this.opList.add((sr) (new sq(profile, this.minecraftserver.getOpPermissionLevel())));
 	}
 
-	public void b(GameProfile var1) {
-		this.m.c(var1);
+	public void removeOp(GameProfile profile) {
+		this.opList.c(profile);
 	}
 
 	public boolean e(GameProfile var1) {
-		return !this.q || this.m.d(var1) || this.n.d(var1);
+		return !this.hasWhiteList || this.opList.d(var1) || this.whiteList.d(var1);
 	}
 
-	public boolean isOp(GameProfile var1) {
-		return this.m.d(var1) || this.minecraftserver.isSinglePlayer() && this.minecraftserver.worlds[0].getWorldData().areCommandsAllowed() && this.minecraftserver.getSinglePlayerName().equalsIgnoreCase(var1.getName()) || this.t;
+	public boolean isOp(GameProfile profile) {
+		return this.opList.d(profile) || (this.minecraftserver.isSinglePlayer() && this.minecraftserver.worlds[0].getWorldData().areCommandsAllowed() && this.minecraftserver.getSinglePlayerName().equalsIgnoreCase(profile.getName())) || this.everyoneIsOp;
 	}
 
 	public EntityPlayer a(String var1) {
@@ -571,28 +572,28 @@ public abstract class PlayerList {
 
 	}
 
-	public void d(GameProfile var1) {
-		this.n.add((sr) (new sy(var1)));
+	public void addWhitelist(GameProfile profile) {
+		this.whiteList.add((sr) (new sy(profile)));
 	}
 
-	public void c(GameProfile var1) {
-		this.n.c(var1);
+	public void removeWhitelist(GameProfile profile) {
+		this.whiteList.c(profile);
 	}
 
-	public sx l() {
-		return this.n;
+	public WhiteList getWhitelist() {
+		return this.whiteList;
 	}
 
 	public String[] m() {
-		return this.n.a();
+		return this.whiteList.a();
 	}
 
-	public sp n() {
-		return this.m;
+	public OpList getOpList() {
+		return this.opList;
 	}
 
 	public String[] o() {
-		return this.m.a();
+		return this.opList.a();
 	}
 
 	public void a() {
@@ -625,15 +626,15 @@ public abstract class PlayerList {
 	}
 
 	public String[] r() {
-		return this.minecraftserver.worlds[0].getDataManager().e().f();
+		return this.minecraftserver.worlds[0].getDataManager().getPlayerFileData().getSeenPlayers();
 	}
 
 	public boolean s() {
-		return this.q;
+		return this.hasWhiteList;
 	}
 
 	public void a(boolean var1) {
-		this.q = var1;
+		this.hasWhiteList = var1;
 	}
 
 	public List b(String var1) {
@@ -693,7 +694,7 @@ public abstract class PlayerList {
 		UUID var2 = var1.getUUID();
 		StatisticManager var3 = var2 == null ? null : (StatisticManager) this.playersStatistic.get(var2);
 		if (var3 == null) {
-			File var4 = new File(this.minecraftserver.getWorldServer(0).getDataManager().b(), "stats");
+			File var4 = new File(this.minecraftserver.getWorldServer(0).getDataManager().getDirectory(), "stats");
 			File var5 = new File(var4, var2.toString() + ".json");
 			if (!var5.exists()) {
 				File var6 = new File(var4, var1.getName() + ".json");

@@ -101,7 +101,7 @@ public class bqn implements Convertable {
 	}
 
 	public IDataManager a(String var1, boolean var2) {
-		return new bqm(this.a, var1, var2);
+		return new WorldNBTStorage(this.a, var1, var2);
 	}
 
 	public boolean b(String var1) {

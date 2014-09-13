@@ -27,7 +27,7 @@ public class OpCommand extends AbstractCommand {
 			if (var4 == null) {
 				throw new di("commands.op.failed", new Object[] { var2[0] });
 			} else {
-				var3.getPlayerList().a(var4);
+				var3.getPlayerList().addOp(var4);
 				a(var1, this, "commands.op.success", new Object[] { var2[0] });
 			}
 		} else {

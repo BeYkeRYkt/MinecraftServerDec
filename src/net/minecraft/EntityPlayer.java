@@ -749,7 +749,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			return true;
 		} else if (!"tell".equals(command) && !"help".equals(command) && !"me".equals(command) && !"trigger".equals(command)) {
 			if (this.minecraftserver.getPlayerList().isOp(this.getGameProfile())) {
-				sq var3 = (sq) this.minecraftserver.getPlayerList().n().b((Object) this.getGameProfile());
+				sq var3 = (sq) this.minecraftserver.getPlayerList().getOpList().b((Object) this.getGameProfile());
 				return var3 != null ? var3.a() >= permLevel : this.minecraftserver.getOpPermissionLevel() >= permLevel;
 			} else {
 				return false;

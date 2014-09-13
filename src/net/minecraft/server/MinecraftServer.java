@@ -140,7 +140,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.h = new long[this.worlds.length][100];
 		IDataManager var7 = this.convertable.a(var1, true);
 		this.a(this.getLevelName(), var7);
-		WorldData var9 = var7.d();
+		WorldData var9 = var7.getWorldData();
 		WorldSettings var8;
 		if (var9 == null) {
 			if (this.W()) {
@@ -216,7 +216,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	protected void a(String var1, IDataManager var2) {
-		File var3 = new File(var2.b(), "resources.zip");
+		File var3 = new File(var2.getDirectory(), "resources.zip");
 		if (var3.isFile()) {
 			this.setResourcePack("level://" + var1 + "/" + var3.getName(), "");
 		}

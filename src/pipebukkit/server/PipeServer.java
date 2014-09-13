@@ -2,8 +2,10 @@ package pipebukkit.server;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -36,6 +38,7 @@ import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.help.HelpMap;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -59,6 +62,7 @@ import org.yaml.snakeyaml.constructor.SafeConstructor;
 
 import pipebukkit.server.entity.PipePlayer;
 import pipebukkit.server.metadata.EntityMetadataStorage;
+import pipebukkit.server.metadata.PlayerMetadataStorage;
 
 import com.avaje.ebean.config.DataSourceConfig;
 import com.avaje.ebean.config.ServerConfig;
@@ -69,8 +73,11 @@ public class PipeServer implements Server {
 
 	private List<Player> players;
 	private LinkedHashMap<String, World> worlds = new LinkedHashMap<String, World>();
+	private int monsterSpawn = -1;
+	private int animalSpawn = -1;
+	private int waterAnimalSpawn = -1;
+	private int ambientSpawn = -1;
 
-	private final Yaml yaml = new Yaml(new SafeConstructor());
 	private YamlConfiguration bukkitConfiguration;
 
 	private SimpleCommandMap commandMap = new SimpleCommandMap(this);
@@ -79,6 +86,7 @@ public class PipeServer implements Server {
 	private ServicesManager servicesManager = new SimpleServicesManager();
 
 	private EntityMetadataStorage entityMetadata = new EntityMetadataStorage();
+	private PlayerMetadataStorage playerMetadata = new PlayerMetadataStorage();
 
 	public PipeServer() {
 		Bukkit.setServer(this);
@@ -93,6 +101,10 @@ public class PipeServer implements Server {
 
 	public EntityMetadataStorage getEntityMetadataStorage() {
 		return entityMetadata;
+	}
+
+	public PlayerMetadataStorage getPlayerMetadataStorage() {
+		return playerMetadata;
 	}
 
 	@Override
@@ -133,6 +145,12 @@ public class PipeServer implements Server {
 	public List<Recipe> getRecipesFor(ItemStack arg0) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void resetRecipes() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -201,7 +219,7 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public World createWorld(WorldCreator arg0) {
+	public World createWorld(WorldCreator creator) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -238,14 +256,17 @@ public class PipeServer implements Server {
 
 	@Override
 	public int getAmbientSpawnLimit() {
-		// TODO Auto-generated method stub
-		return 15;
+		return ambientSpawn;
 	}
 
 	@Override
 	public int getAnimalSpawnLimit() {
-		// TODO Auto-generated method stub
-		return 30;
+		return animalSpawn;
+	}
+
+	@Override
+	public int getMonsterSpawnLimit() {
+		return monsterSpawn;
 	}
 
 	@Override
@@ -266,20 +287,25 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public String getBukkitVersion() {
-		return "1.7.10";
-	}
-
-	@Override
-	public Map<String, String[]> getCommandAliases() {
+	public Set<String> getIPBans() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public long getConnectionThrottle() {
+	public void unbanIP(String arg0) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+	}
+
+	@Override
+	public Map<String, String[]> getCommandAliases() {
+		return new HashMap<String, String[]>();
+	}
+
+	@Override
+	public long getConnectionThrottle() {
+		return -1;
 	}
 
 	@Override
@@ -296,18 +322,11 @@ public class PipeServer implements Server {
 
 	@Override
 	public boolean getGenerateStructures() {
-		// TODO Auto-generated method stub
-		return false;
+		return MinecraftServer.getInstance().isStructureGenerationEnabled();
 	}
 
 	@Override
 	public HelpMap getHelpMap() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Set<String> getIPBans() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -352,19 +371,23 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public int getMonsterSpawnLimit() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public String getMotd() {
 		return MinecraftServer.getInstance().getMotd();
 	}
 
 	@Override
+	public String getBukkitVersion() {
+		return "1.7.10";
+	}
+
+	@Override
 	public String getName() {
 		return "PipeBukkit";
+	}
+
+	@Override
+	public String getVersion() {
+		return "indev (MC: 1.8)";
 	}
 
 	@Override
@@ -523,11 +546,6 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public String getVersion() {
-		return "indev (MC: 1.8)";
-	}
-
-	@Override
 	public int getViewDistance() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -577,20 +595,17 @@ public class PipeServer implements Server {
 
 	@Override
 	public List<World> getWorlds() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<World>(worlds.values());
 	}
 
 	@Override
 	public boolean hasWhitelist() {
-		// TODO Auto-generated method stub
-		return false;
+		return MinecraftServer.getInstance().getPlayerList().hasWhiteList;
 	}
 
 	@Override
 	public boolean isHardcore() {
-		// TODO Auto-generated method stub
-		return false;
+		return MinecraftServer.getInstance().isHardcore();
 	}
 
 	@Override
@@ -628,12 +643,6 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public void resetRecipes() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void savePlayers() {
 		// TODO Auto-generated method stub
 		
@@ -666,12 +675,6 @@ public class PipeServer implements Server {
 	@Override
 	public void shutdown() {
 		MinecraftServer.getInstance().stopTicking();
-	}
-
-	@Override
-	public void unbanIP(String arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

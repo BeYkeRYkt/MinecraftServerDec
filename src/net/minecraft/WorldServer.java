@@ -497,7 +497,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	protected IChunkProvider k() {
-		IChunkLoader var1 = this.dataManager.a(this.worldProvider);
+		IChunkLoader var1 = this.dataManager.createChunkLoader(this.worldProvider);
 		this.b = new ChunkProviderServer(this, var1, this.worldProvider.getChunkProvider());
 		return this.b;
 	}
@@ -656,7 +656,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.worldData.setBorderWarningTime(this.getWorldBorder().getWarningTime());
 		this.worldData.setBorderSizeLerpTarget(this.getWorldBorder().getCurrentRadius());
 		this.worldData.setBorderLerpTime(this.getWorldBorder().getSpeed());
-		this.dataManager.a(this.worldData, this.minecraftserver.getPlayerList().u());
+		this.dataManager.saveWorldData(this.worldData, this.minecraftserver.getPlayerList().u());
 		this.z.a();
 	}
 
