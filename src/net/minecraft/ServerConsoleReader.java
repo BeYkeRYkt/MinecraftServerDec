@@ -22,7 +22,7 @@ class ServerConsoleReader extends Thread {
 				this.minecraftserver.addPendingCommand(line, (CommandSenderInterface) this.minecraftserver);
 			}
 		} catch (IOException var4) {
-			DedicatedMinecraftServer.aR().error("Exception handling console input", (Throwable) var4);
+			DedicatedMinecraftServer.getLogger().error("Exception handling console input", (Throwable) var4);
 		}
 
 	}
