@@ -1,8 +1,14 @@
 package pipebukkit.server;
 
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufOutputStream;
+import io.netty.buffer.Unpooled;
+import io.netty.handler.codec.base64.Base64;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -14,7 +20,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.imageio.ImageIO;
 
 import net.minecraft.EntityPlayer;
 import net.minecraft.EnumGameMode;
@@ -67,11 +76,13 @@ import pipebukkit.server.banlists.PipeProfileBanList;
 import pipebukkit.server.entity.PipePlayer;
 import pipebukkit.server.metadata.EntityMetadataStorage;
 import pipebukkit.server.metadata.PlayerMetadataStorage;
+import pipebukkit.util.PipeCachedServerIcon;
 
 import com.avaje.ebean.config.DataSourceConfig;
 import com.avaje.ebean.config.ServerConfig;
 import com.avaje.ebean.config.dbplatform.SQLitePlatform;
 import com.avaje.ebeaninternal.server.lib.sql.TransactionIsolation;
+import com.google.common.base.Charsets;
 import com.mojang.authlib.GameProfile;
 
 public class PipeServer implements Server {
@@ -82,6 +93,8 @@ public class PipeServer implements Server {
 	private int animalSpawn = -1;
 	private int waterAnimalSpawn = -1;
 	private int ambientSpawn = -1;
+
+	private CachedServerIcon icon;
 
 	private File bukkitConfigurationFile = new File("bukkit.yml");
 	private YamlConfiguration bukkitConfiguration;
@@ -111,6 +124,21 @@ public class PipeServer implements Server {
 
 	public PlayerMetadataStorage getPlayerMetadataStorage() {
 		return playerMetadata;
+	}
+
+	@Override
+	public String getBukkitVersion() {
+		return "1.7.10";
+	}
+
+	@Override
+	public String getName() {
+		return "PipeBukkit";
+	}
+
+	@Override
+	public String getVersion() {
+		return "indev (MC: 1.8)";
 	}
 
 	@Override
@@ -219,15 +247,21 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public MapView createMap(World arg0) {
+	public World createWorld(WorldCreator creator) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public World createWorld(WorldCreator creator) {
+	public boolean unloadWorld(String arg0, boolean arg1) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
+	}
+
+	@Override
+	public boolean unloadWorld(World arg0, boolean arg1) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
@@ -243,41 +277,6 @@ public class PipeServer implements Server {
 			sender.sendMessage("Unknown command. Type \"help\" for help.");
 		}
 		return false;
-	}
-
-	@Override
-	public boolean getAllowEnd() {
-		return bukkitConfiguration.getBoolean("settings.allow-end");
-	}
-
-	@Override
-	public boolean getAllowFlight() {
-		return MinecraftServer.getInstance().isFlightAllowed();
-	}
-
-	@Override
-	public boolean getAllowNether() {
-		return MinecraftServer.getInstance().isNetherAllowed();
-	}
-
-	@Override
-	public int getAmbientSpawnLimit() {
-		return ambientSpawn;
-	}
-
-	@Override
-	public int getAnimalSpawnLimit() {
-		return animalSpawn;
-	}
-
-	@Override
-	public int getMonsterSpawnLimit() {
-		return monsterSpawn;
-	}
-
-	@Override
-	public int getWaterAnimalSpawnLimit() {
-		return waterAnimalSpawn;
 	}
 
 	@Override
@@ -369,8 +368,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public ConsoleCommandSender getConsoleSender() {
-		// TODO Auto-generated method stub
-		return null;
+		return MinecraftServer.getInstance().getConsoleCommandSender();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -381,22 +379,11 @@ public class PipeServer implements Server {
 
 	@Override
 	public boolean getGenerateStructures() {
-		return MinecraftServer.getInstance().isStructureGenerationEnabled();
+		return this.getConfigBoolean("generate-structures", true);
 	}
 
 	@Override
 	public HelpMap getHelpMap() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getIdleTimeout() {
-		return MinecraftServer.getInstance().getIdleTimeOut();
-	}
-
-	@Override
-	public String getIp() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -413,6 +400,12 @@ public class PipeServer implements Server {
 	}
 
 	@Override
+	public MapView createMap(World arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public MapView getMap(short arg0) {
 		// TODO Auto-generated method stub
 		return null;
@@ -426,31 +419,6 @@ public class PipeServer implements Server {
 	@Override
 	public Messenger getMessenger() {
 		return messenger;
-	}
-
-	@Override
-	public String getMotd() {
-		return MinecraftServer.getInstance().getMotd();
-	}
-
-	@Override
-	public String getBukkitVersion() {
-		return "1.7.10";
-	}
-
-	@Override
-	public String getName() {
-		return "PipeBukkit";
-	}
-
-	@Override
-	public String getVersion() {
-		return "indev (MC: 1.8)";
-	}
-
-	@Override
-	public boolean getOnlineMode() {
-		return MinecraftServer.getInstance().isOnlineMode();
 	}
 
 	@Override
@@ -572,11 +540,6 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public int getPort() {
-		return MinecraftServer.getInstance().getPort();
-	}
-
-	@Override
 	public BukkitScheduler getScheduler() {
 		// TODO Auto-generated method stub
 		return null;
@@ -589,72 +552,9 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public CachedServerIcon getServerIcon() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getServerId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getServerName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ServicesManager getServicesManager() {
-		return servicesManager;
-	}
-
-	@Override
-	public String getShutdownMessage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getSpawnRadius() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getTicksPerAnimalSpawns() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getTicksPerMonsterSpawns() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public UnsafeValues getUnsafe() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public String getUpdateFolder() {
-		return bukkitConfiguration.getString("settings.update-folder", "update");
-	}
-
-	@Override
-	public File getUpdateFolderFile() {
-		return new File(getUpdateFolder());
-	}
-
-	@Override
-	public int getViewDistance() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
@@ -683,12 +583,6 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public String getWorldType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<World> getWorlds() {
 		return new ArrayList<World>(worlds.values());
 	}
@@ -704,21 +598,47 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public CachedServerIcon loadServerIcon(File arg0) throws IllegalArgumentException, Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public CachedServerIcon getServerIcon() {
+		return icon;
 	}
 
 	@Override
-	public CachedServerIcon loadServerIcon(BufferedImage arg0) throws IllegalArgumentException, Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public CachedServerIcon loadServerIcon(File file) throws IllegalArgumentException, Exception {
+		Validate.notNull(file, "File cannot be null");
+		if (!file.isFile()) {
+			throw new IllegalArgumentException(file + " is not a file");
+		}
+		return loadServerIcon(ImageIO.read(file));
+	}
+
+	@Override
+	public CachedServerIcon loadServerIcon(BufferedImage image) throws IllegalArgumentException, Exception {
+		Validate.notNull(image, "Image cannot be null");
+		return loadServerIcon0(image);
+	}
+
+	private CachedServerIcon loadServerIcon0(BufferedImage image) throws Exception {
+		ByteBuf bytebuf = Unpooled.buffer();
+		Validate.isTrue(image.getWidth() == 64, "Must be 64 pixels wide");
+		Validate.isTrue(image.getHeight() == 64, "Must be 64 pixels high");
+		ImageIO.write(image, "PNG", new ByteBufOutputStream(bytebuf));
+		ByteBuf bytebuf1 = Base64.encode(bytebuf);
+		return new PipeCachedServerIcon("data:image/png;base64," + bytebuf1.toString(Charsets.UTF_8));
 	}
 
 	@Override
 	public void savePlayers() {
-		// TODO Auto-generated method stub
-		
+		MinecraftServer.getInstance().getPlayerList().savePlayers();
+	}
+
+	@Override
+	public void shutdown() {
+		MinecraftServer.getInstance().stopTicking();
+	}
+
+	@Override
+	public void reload() {
+		// lol NOPE :D
 	}
 
 	@SuppressWarnings("deprecation")
@@ -734,37 +654,143 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public void setSpawnRadius(int arg0) {
-		// TODO Auto-generated method stub
-		
+	public String getMotd() {
+		return MinecraftServer.getInstance().getMotd();
 	}
 
 	@Override
-	public void shutdown() {
-		MinecraftServer.getInstance().stopTicking();
+	public boolean getOnlineMode() {
+		return MinecraftServer.getInstance().isOnlineMode();
 	}
 
 	@Override
-	public boolean unloadWorld(String arg0, boolean arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public int getIdleTimeout() {
+		return MinecraftServer.getInstance().getIdleTimeOut();
 	}
 
 	@Override
-	public boolean unloadWorld(World arg0, boolean arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public String getIp() {
+		return getConfigString("server-ip", "");
+	}
+
+	@Override
+	public int getPort() {
+		return MinecraftServer.getInstance().getPort();
+	}
+
+	@Override
+	public boolean getAllowEnd() {
+		return bukkitConfiguration.getBoolean("settings.allow-end");
+	}
+
+	@Override
+	public boolean getAllowFlight() {
+		return MinecraftServer.getInstance().isFlightAllowed();
+	}
+
+	@Override
+	public boolean getAllowNether() {
+		return MinecraftServer.getInstance().isNetherAllowed();
+	}
+
+	@Override
+	public int getAmbientSpawnLimit() {
+		return ambientSpawn;
+	}
+
+	@Override
+	public int getAnimalSpawnLimit() {
+		return animalSpawn;
+	}
+
+	@Override
+	public int getMonsterSpawnLimit() {
+		return monsterSpawn;
+	}
+
+	@Override
+	public int getWaterAnimalSpawnLimit() {
+		return waterAnimalSpawn;
+	}
+
+	@Override
+	public String getServerId() {
+		return getConfigString("server-id", "unnamed");
+	}
+
+	@Override
+	public String getServerName() {
+		return getConfigString("server-name", "Unknown Server");
+	}
+
+	@Override
+	public ServicesManager getServicesManager() {
+		return servicesManager;
+	}
+
+	@Override
+	public String getShutdownMessage() {
+		return bukkitConfiguration.getString("settings.shutdown-message");
+	}
+
+	@Override
+	public int getSpawnRadius() {
+		return getConfigInt("spawn-protection", 16);
+	}
+
+	@Override
+	public int getTicksPerAnimalSpawns() {
+		return bukkitConfiguration.getInt("ticks-per.animal-spawns");
+	}
+
+	@Override
+	public int getTicksPerMonsterSpawns() {
+		return bukkitConfiguration.getInt("ticks-per.monster-spawns");
 	}
 
 	@Override
 	public boolean useExactLoginLocation() {
-		// TODO Auto-generated method stub
-		return false;
+		return bukkitConfiguration.getBoolean("settings.use-exact-login-location");
 	}
 
 	@Override
-	public void reload() {
-		// lol NOPE :D
+	public String getWorldType() {
+		return getConfigString("level-type", "DEFAULT");
+	}
+
+	@Override
+	public String getUpdateFolder() {
+		return bukkitConfiguration.getString("settings.update-folder", "update");
+	}
+
+	@Override
+	public File getUpdateFolderFile() {
+		return new File(getUpdateFolder());
+	}
+
+	@Override
+	public void setSpawnRadius(int radius) {
+		bukkitConfiguration.set("settings.spawn-radius", radius);
+		try {
+			bukkitConfiguration.save(bukkitConfigurationFile);
+		} catch (IOException ex) {
+			 Logger.getLogger(PipeServer.class.getName()).log(Level.SEVERE, "Could not save " + bukkitConfigurationFile, ex);
+		}
+	}
+
+	@Override
+	public int getViewDistance() {
+		return this.getConfigInt("view-distance", 10);
+	}
+
+	private String getConfigString(String variable, String defaultValue) {
+		return MinecraftServer.getInstance().getServerProperties().getString(variable, defaultValue);
+	}
+	private int getConfigInt(String variable, int defaultValue) {
+		return MinecraftServer.getInstance().getServerProperties().getInt(variable, defaultValue);
+	}
+	private boolean getConfigBoolean(String variable, boolean defaultValue) {
+		return MinecraftServer.getInstance().getServerProperties().getBoolean(variable, defaultValue);
 	}
 
 }

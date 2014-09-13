@@ -16,7 +16,7 @@ public class ServerSaveCommand extends AbstractCommand {
 		MinecraftServer var3 = MinecraftServer.getInstance();
 		var1.sendChatMessage(new ChatMessage("commands.save.start", new Object[0]));
 		if (var3.getPlayerList() != null) {
-			var3.getPlayerList().k();
+			var3.getPlayerList().savePlayers();
 		}
 
 		int var4;

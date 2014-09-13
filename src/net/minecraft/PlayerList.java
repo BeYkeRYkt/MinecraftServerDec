@@ -25,6 +25,7 @@ import net.minecraft.server.MinecraftServer;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bukkit.Bukkit;
 
 public abstract class PlayerList {
 
@@ -526,7 +527,7 @@ public abstract class PlayerList {
 
 	}
 
-	public void k() {
+	public void savePlayers() {
 		for (int var1 = 0; var1 < this.players.size(); ++var1) {
 			this.b((EntityPlayer) this.players.get(var1));
 		}
@@ -602,9 +603,9 @@ public abstract class PlayerList {
 		var1.playerInteractManager.b(var3.getWorldData().getGameMode());
 	}
 
-	public void v() {
-		for (int var1 = 0; var1 < this.players.size(); ++var1) {
-			((EntityPlayer) this.players.get(var1)).playerConncetion.disconnect("Server closed");
+	public void kickAll() {
+		for (int i = 0; i < this.players.size(); ++i) {
+			(this.players.get(i)).playerConncetion.disconnect(Bukkit.getShutdownMessage());
 		}
 
 	}

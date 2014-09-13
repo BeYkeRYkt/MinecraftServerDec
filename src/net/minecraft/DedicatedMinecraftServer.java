@@ -174,6 +174,10 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		}
 	}
 
+	public ServerProperties getServerProperties() {
+		return serverProperties;
+	}
+
 	public void setServerGameMode(EnumGameMode mode) {
 		super.setServerGameMode(mode);
 		this.serverGameMode = mode;
@@ -425,14 +429,8 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		return this.serverProperties.getLong("max-tick-time", TimeUnit.MINUTES.toMillis(1L));
 	}
 
-	// $FF: synthetic method
 	public PlayerList getPlayerList() {
 		return this.getDedicatedPlayerList();
-	}
-
-	// $FF: synthetic method
-	static Logger aR() {
-		return logger;
 	}
 
 }

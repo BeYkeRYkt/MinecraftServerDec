@@ -42,8 +42,10 @@ import javax.imageio.ImageIO;
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bukkit.command.ConsoleCommandSender;
 
 import pipebukkit.server.PipeServer;
+import pipebukkit.server.command.PipeServerCommandSender;
 
 public abstract class MinecraftServer implements CommandSenderInterface, Runnable, ITaskScheduler, wd {
 
@@ -101,6 +103,10 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	public PipeServer getPipeServer() {
 		return pipeServer;
 	}
+	private ConsoleCommandSender console;
+	public ConsoleCommandSender getConsoleCommandSender() {
+		return console;
+	}
 
 	public MinecraftServer(File universe, Proxy proxy, File usercache) {
 		instance = this;
@@ -115,11 +121,278 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.gameProflieRepository = this.authService.createProfileRepository();
 	}
 
-	protected cl h() {
-		return new cl();
+	public static void main(String[] var0) {
+		Bootstrap.load();
+
+		try {
+			boolean var1 = true;
+			String var2 = null;
+			String var3 = ".";
+			String var4 = null;
+			boolean var5 = false;
+			boolean var6 = false;
+			int var7 = -1;
+
+			for (int var8 = 0; var8 < var0.length; ++var8) {
+				String var9 = var0[var8];
+				String var10 = var8 == var0.length - 1 ? null : var0[var8 + 1];
+				boolean var11 = false;
+				if (!var9.equals("nogui") && !var9.equals("--nogui")) {
+					if (var9.equals("--port") && var10 != null) {
+						var11 = true;
+
+						try {
+							var7 = Integer.parseInt(var10);
+						} catch (NumberFormatException var13) {
+							;
+						}
+					} else if (var9.equals("--singleplayer") && var10 != null) {
+						var11 = true;
+						var2 = var10;
+					} else if (var9.equals("--universe") && var10 != null) {
+						var11 = true;
+						var3 = var10;
+					} else if (var9.equals("--world") && var10 != null) {
+						var11 = true;
+						var4 = var10;
+					} else if (var9.equals("--demo")) {
+						var5 = true;
+					} else if (var9.equals("--bonusChest")) {
+						var6 = true;
+					}
+				} else {
+					var1 = false;
+				}
+
+				if (var11) {
+					++var8;
+				}
+			}
+
+			DedicatedMinecraftServer dedicatedMinecraftServer = new DedicatedMinecraftServer(new File(var3));
+			if (var2 != null) {
+				dedicatedMinecraftServer.setSinglePlayerName(var2);
+			}
+
+			if (var4 != null) {
+				dedicatedMinecraftServer.setLevelName(var4);
+			}
+
+			if (var7 >= 0) {
+				dedicatedMinecraftServer.setPort(var7);
+			}
+
+			if (var5) {
+				dedicatedMinecraftServer.b(true);
+			}
+
+			if (var6) {
+				dedicatedMinecraftServer.c(true);
+			}
+
+			if (var1 && !GraphicsEnvironment.isHeadless()) {
+				dedicatedMinecraftServer.enableGui();
+			}
+
+			dedicatedMinecraftServer.startMainThread();
+			Runtime.getRuntime().addShutdownHook(new ServerShutdownHook("Server Shutdown Thread", dedicatedMinecraftServer));
+		} catch (Exception var14) {
+			logger.fatal("Failed to start the minecraft server", (Throwable) var14);
+		}
+
 	}
 
 	protected abstract boolean startServer() throws UnknownHostException;
+
+	public void run() {
+		try {
+			if (this.startServer()) {
+				this.lastTickTime = getCurrentMillis();
+				long var1 = 0L;
+				this.serverPing.a((IChatBaseComponent) (new ChatComponentText(this.motd)));
+				this.serverPing.a(new ServerPingServerData("1.8", 47));
+				this.a(this.serverPing);
+
+				while (this.running) {
+					long var48 = getCurrentMillis();
+					long var5 = var48 - this.lastTickTime;
+					if (var5 > 2000L && this.lastTickTime - this.R >= 15000L) {
+						logger.warn("Can\'t keep up! Did the system time change, or is the server overloaded? Running {}ms behind, skipping {} tick(s)", new Object[] { Long.valueOf(var5), Long.valueOf(var5 / 50L) });
+						var5 = 2000L;
+						this.R = this.lastTickTime;
+					}
+
+					if (var5 < 0L) {
+						logger.warn("Time ran backwards! Did the system time change?");
+						var5 = 0L;
+					}
+
+					var1 += var5;
+					this.lastTickTime = var48;
+					if (this.worlds[0].f()) {
+						this.doTick();
+						var1 = 0L;
+					} else {
+						while (var1 > 50L) {
+							var1 -= 50L;
+							this.doTick();
+						}
+					}
+
+					Thread.sleep(Math.max(1L, 50L - var1));
+				}
+			} else {
+				this.handleCommandsBecausePortBindingFailed(null);
+			}
+		} catch (Throwable var46) {
+			logger.error("Encountered an unexpected exception", var46);
+			CrashReport var2 = null;
+			if (var46 instanceof ReportedException) {
+				var2 = this.b(((ReportedException) var46).getCrashReport());
+			} else {
+				var2 = this.b(new CrashReport("Exception in server tick loop", var46));
+			}
+
+			File var3 = new File(new File(this.w(), "crash-reports"), "crash-" + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-server.txt");
+			if (var2.write(var3)) {
+				logger.error("This crash report has been saved to: " + var3.getAbsolutePath());
+			} else {
+				logger.error("We were unable to save this crash report to disk.");
+			}
+
+			this.handleCommandsBecausePortBindingFailed(var2);
+		} finally {
+			try {
+				this.stop();
+				this.stopped = true;
+			} catch (Throwable var44) {
+				logger.error("Exception stopping the server", var44);
+			} finally {
+				this.exit();
+			}
+
+		}
+	}
+
+	public void doTick() {
+		long var1 = System.nanoTime();
+		++this.ticks;
+		if (this.T) {
+			this.T = false;
+			this.profiler.a = true;
+			this.profiler.a();
+		}
+
+		this.profiler.a("root");
+		this.profiler.a("jobs");
+
+		synchronized (this.tasks) {
+			while (!this.tasks.isEmpty()) {
+				try {
+					this.tasks.poll().run();
+				} catch (Throwable t) {
+					logger.fatal((Object) t);
+				}
+			}
+		}
+
+		this.profiler.c("levels");
+
+		int i;
+		for (i = 0; i < this.worlds.length; ++i) {
+			long var2 = System.nanoTime();
+			if (i == 0 || this.isNetherAllowed()) {
+				WorldServer world = this.worlds[i];
+				this.profiler.a(world.getWorldData().getLevelName());
+
+				if (this.ticks % 20 == 0) {
+					this.profiler.a("timeSync");
+					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.getTime(), world.L(), world.getGameRules().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
+					this.profiler.b();
+				}
+
+				this.profiler.a("tick");
+
+				CrashReport var6;
+				try {
+					world.c();
+				} catch (Throwable var8) {
+					var6 = CrashReport.generateCrashReport(var8, "Exception ticking world");
+					world.a(var6);
+					throw new ReportedException(var6);
+				}
+
+				try {
+					world.i();
+				} catch (Throwable var7) {
+					var6 = CrashReport.generateCrashReport(var7, "Exception ticking world entities");
+					world.a(var6);
+					throw new ReportedException(var6);
+				}
+
+				this.profiler.b();
+				this.profiler.a("tracker");
+				world.s().a();
+				this.profiler.b();
+				this.profiler.b();
+			}
+
+			this.h[i][this.ticks % 100] = System.nanoTime() - var2;
+		}
+
+		this.profiler.c("connection");
+		this.getServerConnection().doTick();
+		this.profiler.c("players");
+		this.playerList.e();
+		this.profiler.c("tickables");
+
+		for (i = 0; i < this.o.size(); ++i) {
+			((PacketTickable) this.o.get(i)).doTick();
+		}
+
+		this.profiler.b();
+		if (var1 - this.lastServerPingUpdate >= 5000000000L) {
+			this.lastServerPingUpdate = var1;
+			this.serverPing.a(new ServerPingPlayerSample(this.getMaxPlayers(), this.getOnlinePlayersCount()));
+			GameProfile[] var3 = new GameProfile[Math.min(this.getOnlinePlayersCount(), 12)];
+			int var4 = MathHelper.a(this.rnd, 0, this.getOnlinePlayersCount() - var3.length);
+
+			for (int var5 = 0; var5 < var3.length; ++var5) {
+				var3[var5] = ((EntityPlayer) this.playerList.players.get(var4 + var5)).getGameProfile();
+			}
+
+			Collections.shuffle(Arrays.asList(var3));
+			this.serverPing.b().a(var3);
+		}
+
+		if (this.ticks % 900 == 0) {
+			this.profiler.a("save");
+			this.playerList.savePlayers();
+			this.saveChunks(true);
+			this.profiler.b();
+		}
+
+		this.profiler.a("tallying");
+		this.g[this.ticks % 100] = System.nanoTime() - var1;
+		this.profiler.b();
+		this.profiler.a("snooper");
+		if (!this.snooper.d() && this.ticks > 100) {
+			this.snooper.a();
+		}
+
+		if (this.ticks % 6000 == 0) {
+			this.snooper.b();
+		}
+
+		this.profiler.b();
+		this.profiler.b();
+	}
+
+	public abstract ServerProperties getServerProperties();
+
+	protected cl h() {
+		return new cl();
+	}
 
 	protected void a(String var1) {
 		if (this.X().b(var1)) {
@@ -268,8 +541,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 			if (this.playerList != null) {
 				logger.info("Saving players");
-				this.playerList.k();
-				this.playerList.v();
+				this.playerList.savePlayers();
+				this.playerList.kickAll();
 				logger.info("Saved players");
 			}
 
@@ -306,75 +579,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.running = false;
 	}
 
-	public void run() {
-		try {
-			if (this.startServer()) {
-				this.lastTickTime = getCurrentMillis();
-				long var1 = 0L;
-				this.serverPing.a((IChatBaseComponent) (new ChatComponentText(this.motd)));
-				this.serverPing.a(new ServerPingServerData("1.8", 47));
-				this.a(this.serverPing);
-
-				while (this.running) {
-					long var48 = getCurrentMillis();
-					long var5 = var48 - this.lastTickTime;
-					if (var5 > 2000L && this.lastTickTime - this.R >= 15000L) {
-						logger.warn("Can\'t keep up! Did the system time change, or is the server overloaded? Running {}ms behind, skipping {} tick(s)", new Object[] { Long.valueOf(var5), Long.valueOf(var5 / 50L) });
-						var5 = 2000L;
-						this.R = this.lastTickTime;
-					}
-
-					if (var5 < 0L) {
-						logger.warn("Time ran backwards! Did the system time change?");
-						var5 = 0L;
-					}
-
-					var1 += var5;
-					this.lastTickTime = var48;
-					if (this.worlds[0].f()) {
-						this.doTick();
-						var1 = 0L;
-					} else {
-						while (var1 > 50L) {
-							var1 -= 50L;
-							this.doTick();
-						}
-					}
-
-					Thread.sleep(Math.max(1L, 50L - var1));
-				}
-			} else {
-				this.handleCommandsBecausePortBindingFailed(null);
-			}
-		} catch (Throwable var46) {
-			logger.error("Encountered an unexpected exception", var46);
-			CrashReport var2 = null;
-			if (var46 instanceof ReportedException) {
-				var2 = this.b(((ReportedException) var46).getCrashReport());
-			} else {
-				var2 = this.b(new CrashReport("Exception in server tick loop", var46));
-			}
-
-			File var3 = new File(new File(this.w(), "crash-reports"), "crash-" + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-server.txt");
-			if (var2.write(var3)) {
-				logger.error("This crash report has been saved to: " + var3.getAbsolutePath());
-			} else {
-				logger.error("We were unable to save this crash report to disk.");
-			}
-
-			this.handleCommandsBecausePortBindingFailed(var2);
-		} finally {
-			try {
-				this.stop();
-				this.stopped = true;
-			} catch (Throwable var44) {
-				logger.error("Exception stopping the server", var44);
-			} finally {
-				this.exit();
-			}
-
-		}
-	}
+	
 
 	private void a(ServerPing var1) {
 		File var2 = this.d("server-icon.png");
@@ -407,119 +612,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	protected void exit() {
 	}
 
-	public void doTick() {
-		long var1 = System.nanoTime();
-		++this.ticks;
-		if (this.T) {
-			this.T = false;
-			this.profiler.a = true;
-			this.profiler.a();
-		}
-
-		this.profiler.a("root");
-		this.profiler.a("jobs");
-
-		synchronized (this.tasks) {
-			while (!this.tasks.isEmpty()) {
-				try {
-					this.tasks.poll().run();
-				} catch (Throwable t) {
-					logger.fatal((Object) t);
-				}
-			}
-		}
-
-		this.profiler.c("levels");
-
-		int i;
-		for (i = 0; i < this.worlds.length; ++i) {
-			long var2 = System.nanoTime();
-			if (i == 0 || this.isNetherAllowed()) {
-				WorldServer world = this.worlds[i];
-				this.profiler.a(world.getWorldData().getLevelName());
-
-				if (this.ticks % 20 == 0) {
-					this.profiler.a("timeSync");
-					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.getTime(), world.L(), world.getGameRules().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
-					this.profiler.b();
-				}
-
-				this.profiler.a("tick");
-
-				CrashReport var6;
-				try {
-					world.c();
-				} catch (Throwable var8) {
-					var6 = CrashReport.generateCrashReport(var8, "Exception ticking world");
-					world.a(var6);
-					throw new ReportedException(var6);
-				}
-
-				try {
-					world.i();
-				} catch (Throwable var7) {
-					var6 = CrashReport.generateCrashReport(var7, "Exception ticking world entities");
-					world.a(var6);
-					throw new ReportedException(var6);
-				}
-
-				this.profiler.b();
-				this.profiler.a("tracker");
-				world.s().a();
-				this.profiler.b();
-				this.profiler.b();
-			}
-
-			this.h[i][this.ticks % 100] = System.nanoTime() - var2;
-		}
-
-		this.profiler.c("connection");
-		this.getServerConnection().doTick();
-		this.profiler.c("players");
-		this.playerList.e();
-		this.profiler.c("tickables");
-
-		for (i = 0; i < this.o.size(); ++i) {
-			((PacketTickable) this.o.get(i)).doTick();
-		}
-
-		this.profiler.b();
-		if (var1 - this.lastServerPingUpdate >= 5000000000L) {
-			this.lastServerPingUpdate = var1;
-			this.serverPing.a(new ServerPingPlayerSample(this.getMaxPlayers(), this.getOnlinePlayersCount()));
-			GameProfile[] var3 = new GameProfile[Math.min(this.getOnlinePlayersCount(), 12)];
-			int var4 = MathHelper.a(this.rnd, 0, this.getOnlinePlayersCount() - var3.length);
-
-			for (int var5 = 0; var5 < var3.length; ++var5) {
-				var3[var5] = ((EntityPlayer) this.playerList.players.get(var4 + var5)).getGameProfile();
-			}
-
-			Collections.shuffle(Arrays.asList(var3));
-			this.serverPing.b().a(var3);
-		}
-
-		if (this.ticks % 900 == 0) {
-			this.profiler.a("save");
-			this.playerList.k();
-			this.saveChunks(true);
-			this.profiler.b();
-		}
-
-		this.profiler.a("tallying");
-		this.g[this.ticks % 100] = System.nanoTime() - var1;
-		this.profiler.b();
-		this.profiler.a("snooper");
-		if (!this.snooper.d() && this.ticks > 100) {
-			this.snooper.a();
-		}
-
-		if (this.ticks % 6000 == 0) {
-			this.snooper.b();
-		}
-
-		this.profiler.b();
-		this.profiler.b();
-	}
 
 	public boolean isNetherAllowed() {
 		return true;
@@ -527,87 +619,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 	public void a(PacketTickable var1) {
 		this.o.add(var1);
-	}
-
-	public static void main(String[] var0) {
-		Bootstrap.load();
-
-		try {
-			boolean var1 = true;
-			String var2 = null;
-			String var3 = ".";
-			String var4 = null;
-			boolean var5 = false;
-			boolean var6 = false;
-			int var7 = -1;
-
-			for (int var8 = 0; var8 < var0.length; ++var8) {
-				String var9 = var0[var8];
-				String var10 = var8 == var0.length - 1 ? null : var0[var8 + 1];
-				boolean var11 = false;
-				if (!var9.equals("nogui") && !var9.equals("--nogui")) {
-					if (var9.equals("--port") && var10 != null) {
-						var11 = true;
-
-						try {
-							var7 = Integer.parseInt(var10);
-						} catch (NumberFormatException var13) {
-							;
-						}
-					} else if (var9.equals("--singleplayer") && var10 != null) {
-						var11 = true;
-						var2 = var10;
-					} else if (var9.equals("--universe") && var10 != null) {
-						var11 = true;
-						var3 = var10;
-					} else if (var9.equals("--world") && var10 != null) {
-						var11 = true;
-						var4 = var10;
-					} else if (var9.equals("--demo")) {
-						var5 = true;
-					} else if (var9.equals("--bonusChest")) {
-						var6 = true;
-					}
-				} else {
-					var1 = false;
-				}
-
-				if (var11) {
-					++var8;
-				}
-			}
-
-			DedicatedMinecraftServer dedicatedMinecraftServer = new DedicatedMinecraftServer(new File(var3));
-			if (var2 != null) {
-				dedicatedMinecraftServer.setSinglePlayerName(var2);
-			}
-
-			if (var4 != null) {
-				dedicatedMinecraftServer.setLevelName(var4);
-			}
-
-			if (var7 >= 0) {
-				dedicatedMinecraftServer.setPort(var7);
-			}
-
-			if (var5) {
-				dedicatedMinecraftServer.b(true);
-			}
-
-			if (var6) {
-				dedicatedMinecraftServer.c(true);
-			}
-
-			if (var1 && !GraphicsEnvironment.isHeadless()) {
-				dedicatedMinecraftServer.enableGui();
-			}
-
-			dedicatedMinecraftServer.startMainThread();
-			Runtime.getRuntime().addShutdownHook(new ServerShutdownHook("Server Shutdown Thread", dedicatedMinecraftServer));
-		} catch (Exception var14) {
-			logger.fatal("Failed to start the minecraft server", (Throwable) var14);
-		}
-
 	}
 
 	public void startMainThread() {
@@ -978,6 +989,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	public void setPlayerList(PlayerList playerList) {
 		this.playerList = playerList;
 		pipeServer = new PipeServer();
+		console = new PipeServerCommandSender();
 	}
 
 	public void setServerGameMode(EnumGameMode var1) {
