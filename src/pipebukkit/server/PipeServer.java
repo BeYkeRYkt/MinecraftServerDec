@@ -63,6 +63,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
 
 import pipebukkit.server.banlists.PipeIpBanList;
+import pipebukkit.server.banlists.PipeProfileBanList;
 import pipebukkit.server.entity.PipePlayer;
 import pipebukkit.server.metadata.EntityMetadataStorage;
 import pipebukkit.server.metadata.PlayerMetadataStorage;
@@ -284,6 +285,9 @@ public class PipeServer implements Server {
 		switch (type) {
 			case IP: {
 				return new PipeIpBanList(MinecraftServer.getInstance().getPlayerList().getIpBanList());
+			}
+			case NAME: {
+				return new PipeProfileBanList(MinecraftServer.getInstance().getPlayerList().getProfileBans());
 			}
 			default: {
 				return null;
