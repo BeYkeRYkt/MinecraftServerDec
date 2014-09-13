@@ -46,7 +46,7 @@ public abstract class PlayerList {
 	public boolean hasWhiteList;
 	protected int maxPlayers;
 	private int r;
-	private GameMode s;
+	private EnumGameMode s;
 	private boolean everyoneIsOp;
 	private int pingUpdateCounter;
 
@@ -56,8 +56,8 @@ public abstract class PlayerList {
 		this.ipBanList = new IpBanList(bannedIPsFile);
 		this.opList = new OpList(opsFile);
 		this.whiteList = new WhiteList(whitelistFile);
-		this.playerBanList.a(false);
-		this.ipBanList.a(false);
+		this.playerBanList.setEnabled(false);
+		this.ipBanList.setEnabled(false);
 		this.maxPlayers = 8;
 	}
 
@@ -233,21 +233,21 @@ public abstract class PlayerList {
 
 	public String getLoginKickMessage(SocketAddress address, GameProfile profile) {
 		String var4;
-		if (this.playerBanList.a(profile)) {
-			GameProfileBanEntry var5 = (GameProfileBanEntry) this.playerBanList.b((Object) profile);
-			var4 = "You are banned from this server!\nReason: " + var5.d();
-			if (var5.c() != null) {
-				var4 = var4 + "\nYour ban will be removed on " + dateFormat.format(var5.c());
+		if (this.playerBanList.isBanned(profile)) {
+			GameProfileBanEntry var5 = (GameProfileBanEntry) this.playerBanList.get(profile);
+			var4 = "You are banned from this server!\nReason: " + var5.getSource();
+			if (var5.getExpires() != null) {
+				var4 = var4 + "\nYour ban will be removed on " + dateFormat.format(var5.getExpires());
 			}
 
 			return var4;
-		} else if (!this.e(profile)) {
+		} else if (!this.canJoin(profile)) {
 			return "You are not white-listed on this server!";
-		} else if (this.ipBanList.a(address)) {
-			se var3 = this.ipBanList.b(address);
-			var4 = "Your IP address is banned from this server!\nReason: " + var3.d();
-			if (var3.c() != null) {
-				var4 = var4 + "\nYour ban will be removed on " + dateFormat.format(var3.c());
+		} else if (this.ipBanList.isBanned(address)) {
+			IpBanEntry var3 = this.ipBanList.getBanEntry(address);
+			var4 = "Your IP address is banned from this server!\nReason: " + var3.getSource();
+			if (var3.getExpires() != null) {
+				var4 = var4 + "\nYour ban will be removed on " + dateFormat.format(var3.getExpires());
 			}
 
 			return var4;
@@ -449,7 +449,7 @@ public abstract class PlayerList {
 
 			while (var5.hasNext()) {
 				String var6 = (String) var5.next();
-				EntityPlayer var7 = this.a(var6);
+				EntityPlayer var7 = this.getPlayer(var6);
 				if (var7 != null && var7 != var1) {
 					var7.sendChatMessage(var2);
 				}
@@ -507,45 +507,6 @@ public abstract class PlayerList {
 		return var1;
 	}
 
-	public GameProfileBanList getProfileBans() {
-		return this.playerBanList;
-	}
-
-	public IpBanList j() {
-		return this.ipBanList;
-	}
-
-	public void addOp(GameProfile profile) {
-		this.opList.add((sr) (new sq(profile, this.minecraftserver.getOpPermissionLevel())));
-	}
-
-	public void removeOp(GameProfile profile) {
-		this.opList.c(profile);
-	}
-
-	public boolean e(GameProfile var1) {
-		return !this.hasWhiteList || this.opList.d(var1) || this.whiteList.d(var1);
-	}
-
-	public boolean isOp(GameProfile profile) {
-		return this.opList.d(profile) || (this.minecraftserver.isSinglePlayer() && this.minecraftserver.worlds[0].getWorldData().areCommandsAllowed() && this.minecraftserver.getSinglePlayerName().equalsIgnoreCase(profile.getName())) || this.everyoneIsOp;
-	}
-
-	public EntityPlayer a(String var1) {
-		Iterator var2 = this.players.iterator();
-
-		EntityPlayer var3;
-		do {
-			if (!var2.hasNext()) {
-				return null;
-			}
-
-			var3 = (EntityPlayer) var2.next();
-		} while (!var3.getName().equalsIgnoreCase(var1));
-
-		return var3;
-	}
-
 	public void a(double var1, double var3, double var5, double var7, int var9, Packet var10) {
 		this.a((EntityHuman) null, var1, var3, var5, var7, var9, var10);
 	}
@@ -572,30 +533,6 @@ public abstract class PlayerList {
 
 	}
 
-	public void addWhitelist(GameProfile profile) {
-		this.whiteList.add((sr) (new sy(profile)));
-	}
-
-	public void removeWhitelist(GameProfile profile) {
-		this.whiteList.c(profile);
-	}
-
-	public WhiteList getWhitelist() {
-		return this.whiteList;
-	}
-
-	public String[] m() {
-		return this.whiteList.a();
-	}
-
-	public OpList getOpList() {
-		return this.opList;
-	}
-
-	public String[] o() {
-		return this.opList.a();
-	}
-
 	public void a() {
 	}
 
@@ -615,14 +552,6 @@ public abstract class PlayerList {
 		var1.a(var1.defaultContainer);
 		var1.r();
 		var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutHeldItemChange(var1.playerInventory.itemInHandIndex)));
-	}
-
-	public int getPlayersCount() {
-		return this.players.size();
-	}
-
-	public int getMaxPlayers() {
-		return this.maxPlayers;
 	}
 
 	public String[] r() {
@@ -729,6 +658,71 @@ public abstract class PlayerList {
 
 	public EntityPlayer getPlayer(UUID uuid) {
 		return uuidToPlayerMap.get(uuid);
+	}
+
+	public EntityPlayer getPlayer(String name) {
+		for (EntityPlayer player : players) {
+			if (player.getName().equalsIgnoreCase(name)) {
+				return player;
+			}
+		}
+		return null;
+	}
+
+	public OpList getOpList() {
+		return this.opList;
+	}
+
+	public String[] getOps() {
+		return this.opList.getEntries();
+	}
+
+	public void addOp(GameProfile profile) {
+		this.opList.add(new OpListEntry(profile, this.minecraftserver.getOpPermissionLevel()));
+	}
+
+	public void removeOp(GameProfile profile) {
+		this.opList.remove(profile);
+	}
+
+	public boolean isOp(GameProfile profile) {
+		return this.opList.contains(profile) || (this.minecraftserver.isSinglePlayer() && this.minecraftserver.worlds[0].getWorldData().areCommandsAllowed() && this.minecraftserver.getSinglePlayerName().equalsIgnoreCase(profile.getName())) || this.everyoneIsOp;
+	}
+
+	public WhiteList getWhitelist() {
+		return this.whiteList;
+	}
+
+	public String[] getWhitelisted() {
+		return this.whiteList.getEntries();
+	}
+
+	public void addWhitelist(GameProfile profile) {
+		this.whiteList.add(new WhiteListEntry(profile));
+	}
+
+	public void removeWhitelist(GameProfile profile) {
+		this.whiteList.remove(profile);
+	}
+
+	public IpBanList getIpBanList() {
+		return this.ipBanList;
+	}
+
+	public GameProfileBanList getProfileBans() {
+		return this.playerBanList;
+	}
+
+	public boolean canJoin(GameProfile profile) {
+		return !this.hasWhiteList || this.opList.contains(profile) || this.whiteList.contains(profile);
+	}
+
+	public int getPlayersCount() {
+		return this.players.size();
+	}
+
+	public int getMaxPlayers() {
+		return this.maxPlayers;
 	}
 
 }

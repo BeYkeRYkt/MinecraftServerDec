@@ -27,7 +27,7 @@ public class WorldData {
 	private int rainTime;
 	private boolean isThundering;
 	private int thunderTime;
-	private GameMode gameMode;
+	private EnumGameMode gameMode;
 	private boolean mapFeaturesEnabled;
 	private boolean isHardcore;
 	private boolean allowCommands;
@@ -93,7 +93,7 @@ public class WorldData {
 			}
 		}
 
-		this.gameMode = GameMode.getById(tag.getInt("GameType"));
+		this.gameMode = EnumGameMode.getById(tag.getInt("GameType"));
 		if (tag.isTagAssignableFrom("MapFeatures", 99)) {
 			this.mapFeaturesEnabled = tag.getBoolean("MapFeatures");
 		} else {
@@ -129,7 +129,7 @@ public class WorldData {
 		if (tag.isTagAssignableFrom("allowCommands", 99)) {
 			this.allowCommands = tag.getBoolean("allowCommands");
 		} else {
-			this.allowCommands = this.gameMode == GameMode.CREATIVE;
+			this.allowCommands = this.gameMode == EnumGameMode.CREATIVE;
 		}
 
 		if (tag.isTagAssignableFrom("Player", 10)) {
@@ -420,7 +420,7 @@ public class WorldData {
 		this.rainTime = rainTime;
 	}
 
-	public GameMode getGameMode() {
+	public EnumGameMode getGameMode() {
 		return this.gameMode;
 	}
 
@@ -432,7 +432,7 @@ public class WorldData {
 		this.mapFeaturesEnabled = mapFeaturesEnabled;
 	}
 
-	public void setGameMode(GameMode gameMode) {
+	public void setGameMode(EnumGameMode gameMode) {
 		this.gameMode = gameMode;
 	}
 

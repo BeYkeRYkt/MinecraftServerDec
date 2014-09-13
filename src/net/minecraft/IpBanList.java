@@ -4,36 +4,37 @@ import com.google.gson.JsonObject;
 import java.io.File;
 import java.net.SocketAddress;
 
-public class IpBanList extends ss {
+public class IpBanList extends JsonList<String> {
 
-	public IpBanList(File var1) {
-		super(var1);
+	public IpBanList(File file) {
+		super(file);
 	}
 
-	protected sr a(JsonObject var1) {
-		return new se(var1);
+	protected JsonListEntry<String> toListEntry(JsonObject jsonObject) {
+		return new IpBanEntry(jsonObject);
 	}
 
-	public boolean a(SocketAddress var1) {
-		String var2 = this.c(var1);
-		return this.d(var2);
+	public boolean isBanned(SocketAddress saddress) {
+		String var2 = this.addressToString(saddress);
+		return this.contains(var2);
 	}
 
-	public se b(SocketAddress var1) {
-		String var2 = this.c(var1);
-		return (se) this.b(var2);
+	public IpBanEntry getBanEntry(SocketAddress saddress) {
+		String address = this.addressToString(saddress);
+		return (IpBanEntry) this.get(address);
 	}
 
-	private String c(SocketAddress var1) {
-		String var2 = var1.toString();
-		if (var2.contains("/")) {
-			var2 = var2.substring(var2.indexOf(47) + 1);
+	private String addressToString(SocketAddress address) {
+		String addressString = address.toString();
+		if (addressString.contains("/")) {
+			addressString = addressString.substring(addressString.indexOf(47) + 1);
 		}
 
-		if (var2.contains(":")) {
-			var2 = var2.substring(0, var2.indexOf(58));
+		if (addressString.contains(":")) {
+			addressString = addressString.substring(0, addressString.indexOf(58));
 		}
 
-		return var2;
+		return addressString;
 	}
+
 }

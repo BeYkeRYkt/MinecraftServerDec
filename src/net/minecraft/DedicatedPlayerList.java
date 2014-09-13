@@ -16,8 +16,8 @@ public class DedicatedPlayerList extends PlayerList {
 		this.maxPlayers = var1.getIntProperty("max-players", 20);
 		this.a(var1.getBooleanProperty("white-list", false));
 		if (!var1.isSinglePlayer()) {
-			this.getProfileBans().a(true);
-			this.j().a(true);
+			this.getProfileBans().setEnabled(true);
+			this.getIpBanList().setEnabled(true);
 		}
 
 		this.z();
@@ -27,7 +27,7 @@ public class DedicatedPlayerList extends PlayerList {
 		this.A();
 		this.C();
 		this.B();
-		if (!this.getWhitelist().c().exists()) {
+		if (!this.getWhitelist().getFile().exists()) {
 			this.D();
 		}
 
@@ -65,7 +65,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void w() {
 		try {
-			this.j().f();
+			this.getIpBanList().save();
 		} catch (IOException var2) {
 			h.warn("Failed to save ip banlist: ", (Throwable) var2);
 		}
@@ -74,7 +74,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void x() {
 		try {
-			this.getProfileBans().f();
+			this.getProfileBans().save();
 		} catch (IOException var2) {
 			h.warn("Failed to save user banlist: ", (Throwable) var2);
 		}
@@ -83,7 +83,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void y() {
 		try {
-			this.j().g();
+			this.getIpBanList().load();
 		} catch (IOException var2) {
 			h.warn("Failed to load ip banlist: ", (Throwable) var2);
 		}
@@ -92,7 +92,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void z() {
 		try {
-			this.getProfileBans().g();
+			this.getProfileBans().load();
 		} catch (IOException var2) {
 			h.warn("Failed to load user banlist: ", (Throwable) var2);
 		}
@@ -101,7 +101,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void A() {
 		try {
-			this.getOpList().g();
+			this.getOpList().load();
 		} catch (Exception var2) {
 			h.warn("Failed to load operators list: ", (Throwable) var2);
 		}
@@ -110,7 +110,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void B() {
 		try {
-			this.getOpList().f();
+			this.getOpList().save();
 		} catch (Exception var2) {
 			h.warn("Failed to save operators list: ", (Throwable) var2);
 		}
@@ -119,7 +119,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void C() {
 		try {
-			this.getWhitelist().g();
+			this.getWhitelist().load();
 		} catch (Exception var2) {
 			h.warn("Failed to load white-list: ", (Throwable) var2);
 		}
@@ -128,14 +128,14 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void D() {
 		try {
-			this.getWhitelist().f();
+			this.getWhitelist().save();
 		} catch (Exception var2) {
 			h.warn("Failed to save white-list: ", (Throwable) var2);
 		}
 
 	}
 
-	public boolean e(GameProfile var1) {
+	public boolean canJoin(GameProfile var1) {
 		return !this.s() || this.isOp(var1) || this.getWhitelist().isWhitelisted(var1);
 	}
 

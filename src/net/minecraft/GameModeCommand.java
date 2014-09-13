@@ -21,7 +21,7 @@ public class GameModeCommand extends AbstractCommand {
 		if (var2.length <= 0) {
 			throw new dp("commands.gamemode.usage", new Object[0]);
 		} else {
-			GameMode var3 = this.h(var1, var2[0]);
+			EnumGameMode var3 = this.h(var1, var2[0]);
 			EntityPlayer var4 = var2.length >= 2 ? a(var1, var2[1]) : b(var1);
 			var4.a(var3);
 			var4.fallDistance = 0.0F;
@@ -39,8 +39,8 @@ public class GameModeCommand extends AbstractCommand {
 		}
 	}
 
-	protected GameMode h(CommandSenderInterface var1, String var2) throws dk {
-		return !var2.equalsIgnoreCase(GameMode.SURVIVAL.getName()) && !var2.equalsIgnoreCase("s") ? (!var2.equalsIgnoreCase(GameMode.CREATIVE.getName()) && !var2.equalsIgnoreCase("c") ? (!var2.equalsIgnoreCase(GameMode.ADVENTURE.getName()) && !var2.equalsIgnoreCase("a") ? (!var2.equalsIgnoreCase(GameMode.SPECTATOR.getName()) && !var2.equalsIgnoreCase("sp") ? GameMode.getById(a(var2, 0, GameMode.values().length - 2)) : GameMode.SPECTATOR) : GameMode.ADVENTURE) : GameMode.CREATIVE) : GameMode.SURVIVAL;
+	protected EnumGameMode h(CommandSenderInterface var1, String var2) throws dk {
+		return !var2.equalsIgnoreCase(EnumGameMode.SURVIVAL.getName()) && !var2.equalsIgnoreCase("s") ? (!var2.equalsIgnoreCase(EnumGameMode.CREATIVE.getName()) && !var2.equalsIgnoreCase("c") ? (!var2.equalsIgnoreCase(EnumGameMode.ADVENTURE.getName()) && !var2.equalsIgnoreCase("a") ? (!var2.equalsIgnoreCase(EnumGameMode.SPECTATOR.getName()) && !var2.equalsIgnoreCase("sp") ? EnumGameMode.getById(a(var2, 0, EnumGameMode.values().length - 2)) : EnumGameMode.SPECTATOR) : EnumGameMode.ADVENTURE) : EnumGameMode.CREATIVE) : EnumGameMode.SURVIVAL;
 	}
 
 	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {

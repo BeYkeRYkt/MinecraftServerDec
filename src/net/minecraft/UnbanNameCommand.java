@@ -19,17 +19,17 @@ public class UnbanNameCommand extends AbstractCommand {
 	}
 
 	public boolean a(CommandSenderInterface var1) {
-		return MinecraftServer.getInstance().getPlayerList().getProfileBans().b() && super.a(var1);
+		return MinecraftServer.getInstance().getPlayerList().getProfileBans().isEnabled() && super.a(var1);
 	}
 
 	public void executeCommand(CommandSenderInterface var1, String[] var2) throws di {
 		if (var2.length == 1 && var2[0].length() > 0) {
 			MinecraftServer var3 = MinecraftServer.getInstance();
-			GameProfile var4 = var3.getPlayerList().getProfileBans().a(var2[0]);
+			GameProfile var4 = var3.getPlayerList().getProfileBans().getByName(var2[0]);
 			if (var4 == null) {
 				throw new di("commands.unban.failed", new Object[] { var2[0] });
 			} else {
-				var3.getPlayerList().getProfileBans().c(var4);
+				var3.getPlayerList().getProfileBans().remove(var4);
 				a(var1, this, "commands.unban.success", new Object[] { var2[0] });
 			}
 		} else {
@@ -38,6 +38,6 @@ public class UnbanNameCommand extends AbstractCommand {
 	}
 
 	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
-		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().getPlayerList().getProfileBans().a()) : null;
+		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().getPlayerList().getProfileBans().getEntries()) : null;
 	}
 }

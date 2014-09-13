@@ -2,56 +2,48 @@ package net.minecraft;
 
 import com.google.gson.JsonObject;
 import com.mojang.authlib.GameProfile;
-import java.io.File;
-import java.util.Iterator;
 
-public class GameProfileBanList extends ss {
+import java.io.File;
+import java.util.Collection;
+
+public class GameProfileBanList extends JsonList<GameProfile> {
 
 	public GameProfileBanList(File file) {
 		super(file);
 	}
 
-	protected sr a(JsonObject var1) {
-		return new GameProfileBanEntry(var1);
+	protected JsonListEntry<GameProfile> toListEntry(JsonObject jsonObject) {
+		return new GameProfileBanEntry(jsonObject);
 	}
 
-	public boolean a(GameProfile var1) {
-		return this.d(var1);
+	public boolean isBanned(GameProfile profile) {
+		return this.contains(profile);
 	}
 
-	public String[] a() {
-		String[] var1 = new String[this.e().size()];
-		int var2 = 0;
-
-		GameProfileBanEntry var4;
-		for (Iterator var3 = this.e().values().iterator(); var3.hasNext(); var1[var2++] = ((GameProfile) var4.f()).getName()) {
-			var4 = (GameProfileBanEntry) var3.next();
+	public String[] getEntries() {
+		String[] entries = new String[this.getMap().size()];
+		int i = 0;
+		for (JsonListEntry<GameProfile> entry : getMap().values()) {
+			entries[i++] = entry.getObject().getName();
 		}
-
-		return var1;
+		return entries;
 	}
 
-	protected String b(GameProfile var1) {
-		return var1.getId().toString();
+	public Collection<JsonListEntry<GameProfile>> getProfiles() {
+		return getMap().values();
 	}
 
-	public GameProfile a(String var1) {
-		Iterator var2 = this.e().values().iterator();
-
-		GameProfileBanEntry var3;
-		do {
-			if (!var2.hasNext()) {
-				return null;
+	public GameProfile getByName(String name) {
+		for (JsonListEntry<GameProfile> entry : getMap().values()) {
+			if (entry.getObject().getName().equalsIgnoreCase(name)) {
+				return entry.getObject();
 			}
-
-			var3 = (GameProfileBanEntry) var2.next();
-		} while (!var1.equalsIgnoreCase(((GameProfile) var3.f()).getName()));
-
-		return (GameProfile) var3.f();
+		}
+		return null;
 	}
 
-	// $FF: synthetic method
-	protected String a(Object var1) {
-		return this.b((GameProfile) var1);
+	protected String toString(GameProfile profile) {
+		return profile.getId().toString();
 	}
+
 }

@@ -54,7 +54,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		var4.b = this;
 		this.playerInteractManager = var4;
 		Position var5 = var2.getSpawnPosition();
-		if (!var2.worldProvider.noSkyLight() && var2.getWorldData().getGameMode() != GameMode.ADVENTURE) {
+		if (!var2.worldProvider.noSkyLight() && var2.getWorldData().getGameMode() != EnumGameMode.ADVENTURE) {
 			int var6 = Math.max(5, var1.isSpawnProtectionEnabled() - 6);
 			int var7 = MathHelper.toFixedPointInt(var2.getWorldBorder().getDistance((double) var5.getX(), (double) var5.getZ()));
 			if (var7 < var6) {
@@ -85,7 +85,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			if (MinecraftServer.getInstance().av()) {
 				this.playerInteractManager.a(MinecraftServer.getInstance().getServerGameMode());
 			} else {
-				this.playerInteractManager.a(GameMode.getById(var1.getInt("playerGameType")));
+				this.playerInteractManager.a(EnumGameMode.getById(var1.getInt("playerGameType")));
 			}
 		}
 
@@ -723,10 +723,10 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		return (WorldServer) this.world;
 	}
 
-	public void a(GameMode var1) {
+	public void a(EnumGameMode var1) {
 		this.playerInteractManager.a(var1);
 		this.playerConncetion.sendPacket((Packet) (new PacketPlayOutChangeGameState(3, (float) var1.getId())));
-		if (var1 == GameMode.SPECTATOR) {
+		if (var1 == EnumGameMode.SPECTATOR) {
 			this.mount((Entity) null);
 		} else {
 			this.e(this);
@@ -737,7 +737,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public boolean isSpectator() {
-		return this.playerInteractManager.getGameMode() == GameMode.SPECTATOR;
+		return this.playerInteractManager.getGameMode() == EnumGameMode.SPECTATOR;
 	}
 
 	public void sendChatMessage(IChatBaseComponent json) {
@@ -749,8 +749,8 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			return true;
 		} else if (!"tell".equals(command) && !"help".equals(command) && !"me".equals(command) && !"trigger".equals(command)) {
 			if (this.minecraftserver.getPlayerList().isOp(this.getGameProfile())) {
-				sq var3 = (sq) this.minecraftserver.getPlayerList().getOpList().b((Object) this.getGameProfile());
-				return var3 != null ? var3.a() >= permLevel : this.minecraftserver.getOpPermissionLevel() >= permLevel;
+				OpListEntry var3 = (OpListEntry) this.minecraftserver.getPlayerList().getOpList().get(this.getGameProfile());
+				return var3 != null ? var3.getPermissionLevel() >= permLevel : this.minecraftserver.getOpPermissionLevel() >= permLevel;
 			} else {
 				return false;
 			}
@@ -828,7 +828,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public void attackEntity(Entity entity) {
-		if (this.playerInteractManager.getGameMode() == GameMode.SPECTATOR) {
+		if (this.playerInteractManager.getGameMode() == EnumGameMode.SPECTATOR) {
 			this.e(entity);
 		} else {
 			super.attackEntity(entity);

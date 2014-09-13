@@ -19,7 +19,7 @@ final class sj implements ProfileLookupCallback {
 
 	public void onProfileLookupSucceeded(GameProfile var1) {
 		this.a.getUserCache().saveProfile(var1);
-		this.b.add((sr) (new sy(var1)));
+		this.b.add((JsonListEntry) (new WhiteListEntry(var1)));
 	}
 
 	public void onProfileLookupFailed(GameProfile var1, Exception var2) {

@@ -52,7 +52,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private static MinecraftServer instance;
 	private final Convertable convertable;
 	private final Snooper snooper = new Snooper("server", this, getCurrentMillis());
-	private final File universe;
+	public final File universe;
 	private final List<PacketTickable> o = Lists.newArrayList();
 	private final ICommandHandler commandHandler;
 	public final MethodProfiler profiler = new MethodProfiler();
@@ -225,7 +225,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 	public abstract boolean isStructureGenerationEnabled();
 
-	public abstract GameMode getServerGameMode();
+	public abstract EnumGameMode getServerGameMode();
 
 	public abstract Difficulty getDifficulty();
 
@@ -980,7 +980,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		pipeServer = new PipeServer();
 	}
 
-	public void setServerGameMode(GameMode var1) {
+	public void setServerGameMode(EnumGameMode var1) {
 		for (int i = 0; i < this.worlds.length; ++i) {
 			getInstance().worlds[i].getWorldData().setGameMode(var1);
 		}
@@ -994,7 +994,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return false;
 	}
 
-	public abstract String a(GameMode var1, boolean var2);
+	public abstract String a(EnumGameMode var1, boolean var2);
 
 	public int getTicks() {
 		return this.ticks;

@@ -6,7 +6,7 @@ public class PlayerInteractManager {
 
 	public World worldServer;
 	public EntityPlayer b;
-	private GameMode gameMode;
+	private EnumGameMode gameMode;
 	private boolean d;
 	private int e;
 	private Position f;
@@ -17,21 +17,21 @@ public class PlayerInteractManager {
 	private int k;
 
 	public PlayerInteractManager(World var1) {
-		this.gameMode = GameMode.NOT_SET;
+		this.gameMode = EnumGameMode.NOT_SET;
 		this.f = Position.ZERO;
 		this.i = Position.ZERO;
 		this.k = -1;
 		this.worldServer = var1;
 	}
 
-	public void a(GameMode var1) {
+	public void a(EnumGameMode var1) {
 		this.gameMode = var1;
 		var1.setGameModeProperties(this.b.playerProperties);
 		this.b.t();
 		this.b.minecraftserver.getPlayerList().sendPacket((Packet) (new PacketPlayOutListItem(ListItemAction.UPDATE_GAME_MODE, new EntityPlayer[] { this.b })));
 	}
 
-	public GameMode getGameMode() {
+	public EnumGameMode getGameMode() {
 		return this.gameMode;
 	}
 
@@ -43,8 +43,8 @@ public class PlayerInteractManager {
 		return this.gameMode.isCreative();
 	}
 
-	public void b(GameMode var1) {
-		if (this.gameMode == GameMode.NOT_SET) {
+	public void b(EnumGameMode var1) {
+		if (this.gameMode == EnumGameMode.NOT_SET) {
 			this.gameMode = var1;
 		}
 
@@ -101,7 +101,7 @@ public class PlayerInteractManager {
 		} else {
 			Block var3 = this.worldServer.getBlockState(var1).getBlock();
 			if (this.gameMode.buildDisallowed()) {
-				if (this.gameMode == GameMode.SPECTATOR) {
+				if (this.gameMode == EnumGameMode.SPECTATOR) {
 					return;
 				}
 
@@ -182,7 +182,7 @@ public class PlayerInteractManager {
 			BlockState var2 = this.worldServer.getBlockState(var1);
 			TileEntity var3 = this.worldServer.getTileEntity(var1);
 			if (this.gameMode.buildDisallowed()) {
-				if (this.gameMode == GameMode.SPECTATOR) {
+				if (this.gameMode == EnumGameMode.SPECTATOR) {
 					return false;
 				}
 
@@ -222,7 +222,7 @@ public class PlayerInteractManager {
 	}
 
 	public boolean useItem(EntityHuman var1, World var2, ItemStack var3) {
-		if (this.gameMode == GameMode.SPECTATOR) {
+		if (this.gameMode == EnumGameMode.SPECTATOR) {
 			return false;
 		} else {
 			int var4 = var3.amount;
@@ -253,7 +253,7 @@ public class PlayerInteractManager {
 	}
 
 	public boolean interact(EntityHuman var1, World var2, ItemStack var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		if (this.gameMode == GameMode.SPECTATOR) {
+		if (this.gameMode == EnumGameMode.SPECTATOR) {
 			TileEntity var13 = var2.getTileEntity(var4);
 			if (var13 instanceof vy) {
 				Block var14 = var2.getBlockState(var4).getBlock();

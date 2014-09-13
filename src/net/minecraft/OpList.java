@@ -2,52 +2,44 @@ package net.minecraft;
 
 import com.google.gson.JsonObject;
 import com.mojang.authlib.GameProfile;
+
 import java.io.File;
-import java.util.Iterator;
+import java.util.Collection;
 
-public class OpList extends ss {
+public class OpList extends JsonList<GameProfile> {
 
-	public OpList(File var1) {
-		super(var1);
+	public OpList(File file) {
+		super(file);
 	}
 
-	protected sr a(JsonObject var1) {
-		return new sq(var1);
+	protected JsonListEntry<GameProfile> toListEntry(JsonObject var1) {
+		return new OpListEntry(var1);
 	}
 
-	public String[] a() {
-		String[] var1 = new String[this.e().size()];
-		int var2 = 0;
-
-		sq var4;
-		for (Iterator var3 = this.e().values().iterator(); var3.hasNext(); var1[var2++] = ((GameProfile) var4.f()).getName()) {
-			var4 = (sq) var3.next();
+	public String[] getEntries() {
+		String[] entries = new String[this.getMap().size()];
+		int i = 0;
+		for (JsonListEntry<GameProfile> entry : getMap().values()) {
+			entries[i++] = entry.getObject().getName();
 		}
-
-		return var1;
+		return entries;
 	}
 
-	protected String b(GameProfile var1) {
-		return var1.getId().toString();
+	public Collection<JsonListEntry<GameProfile>> getProfiles() {
+		return getMap().values();
 	}
 
-	public GameProfile a(String var1) {
-		Iterator var2 = this.e().values().iterator();
-
-		sq var3;
-		do {
-			if (!var2.hasNext()) {
-				return null;
+	public GameProfile getByName(String name) {
+		for (JsonListEntry<GameProfile> entry : getMap().values()) {
+			if (entry.getObject().getName().equalsIgnoreCase(name)) {
+				return entry.getObject();
 			}
-
-			var3 = (sq) var2.next();
-		} while (!var1.equalsIgnoreCase(((GameProfile) var3.f()).getName()));
-
-		return (GameProfile) var3.f();
+		}
+		return null;
 	}
 
-	// $FF: synthetic method
-	protected String a(Object var1) {
-		return this.b((GameProfile) var1);
+	protected String toString(GameProfile profile) {
+		return profile.getId().toString();
 	}
+
 }

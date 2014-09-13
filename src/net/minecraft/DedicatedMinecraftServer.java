@@ -24,7 +24,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 	private RconListener rcon;
 	private ServerProperties serverProperties;
 	private EulaAgreementChecker tehDramaDocument;
-	private GameMode serverGameMode;
+	private EnumGameMode serverGameMode;
 	private boolean generateStructures;
 	private boolean guiEnabled;
 
@@ -71,8 +71,8 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 			}
 
 			this.generateStructures = this.serverProperties.getBoolean("generate-structures", true);
-			int gameMode = this.serverProperties.getInt("gamemode", GameMode.SURVIVAL.getId());
-			this.serverGameMode = GameMode.getById(gameMode);
+			int gameMode = this.serverProperties.getInt("gamemode", EnumGameMode.SURVIVAL.getId());
+			this.serverGameMode = EnumGameMode.getById(gameMode);
 			logger.info("Default game type: " + this.serverGameMode);
 			InetAddress address = null;
 			if (this.getIp().length() > 0) {
@@ -174,7 +174,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		}
 	}
 
-	public void setServerGameMode(GameMode mode) {
+	public void setServerGameMode(EnumGameMode mode) {
 		super.setServerGameMode(mode);
 		this.serverGameMode = mode;
 	}
@@ -183,7 +183,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		return this.generateStructures;
 	}
 
-	public GameMode getServerGameMode() {
+	public EnumGameMode getServerGameMode() {
 		return this.serverGameMode;
 	}
 
@@ -233,7 +233,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 
 	public void a(Snooper var1) {
 		var1.a("whitelist_enabled", Boolean.valueOf(this.getDedicatedPlayerList().s()));
-		var1.a("whitelist_count", Integer.valueOf(this.getDedicatedPlayerList().m().length));
+		var1.a("whitelist_count", Integer.valueOf(this.getDedicatedPlayerList().getWhitelisted().length));
 		super.a(var1);
 	}
 
@@ -295,7 +295,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		return this.guiEnabled;
 	}
 
-	public String a(GameMode var1, boolean var2) {
+	public String a(EnumGameMode var1, boolean var2) {
 		return "";
 	}
 
@@ -310,7 +310,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 	public boolean isProtected(World var1, Position var2, EntityHuman var3) {
 		if (var1.worldProvider.getDimensionId() != 0) {
 			return false;
-		} else if (this.getDedicatedPlayerList().getOpList().d()) {
+		} else if (this.getDedicatedPlayerList().getOpList().isEmpty()) {
 			return false;
 		} else if (this.getDedicatedPlayerList().isOp(var3.getGameProfile())) {
 			return false;

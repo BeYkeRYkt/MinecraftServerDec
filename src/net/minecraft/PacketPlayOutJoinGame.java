@@ -4,7 +4,7 @@ public class PacketPlayOutJoinGame implements Packet<PlayOutPacketListener> {
 
 	private int entityId;
 	private boolean isHardcore;
-	private GameMode playerGameMode;
+	private EnumGameMode playerGameMode;
 	private int dimensionId;
 	private Difficulty difficulty;
 	private int maxPlayers;
@@ -14,7 +14,7 @@ public class PacketPlayOutJoinGame implements Packet<PlayOutPacketListener> {
 	public PacketPlayOutJoinGame() {
 	}
 
-	public PacketPlayOutJoinGame(int entityId, GameMode playerGameMode, boolean isHardcore, int dimensionId, Difficulty difficulty, int maxPlayers, LevelType levelType, boolean debugInfo) {
+	public PacketPlayOutJoinGame(int entityId, EnumGameMode playerGameMode, boolean isHardcore, int dimensionId, Difficulty difficulty, int maxPlayers, LevelType levelType, boolean debugInfo) {
 		this.entityId = entityId;
 		this.dimensionId = dimensionId;
 		this.difficulty = difficulty;
@@ -29,7 +29,7 @@ public class PacketPlayOutJoinGame implements Packet<PlayOutPacketListener> {
 		this.entityId = serializer.readInt();
 		short playerGameModeId = serializer.readUnsignedByte();
 		this.isHardcore = (playerGameModeId & 8) == 8;
-		this.playerGameMode = GameMode.getById(playerGameModeId & -9);
+		this.playerGameMode = EnumGameMode.getById(playerGameModeId & -9);
 		this.dimensionId = serializer.readByte();
 		this.difficulty = Difficulty.clampAndGetById(serializer.readUnsignedByte());
 		this.maxPlayers = serializer.readUnsignedByte();

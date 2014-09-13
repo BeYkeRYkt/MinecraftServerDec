@@ -71,11 +71,11 @@ public class sf {
 	public static boolean a(MinecraftServer var0) {
 		GameProfileBanList var1 = new GameProfileBanList(PlayerList.bannedPlayersFile);
 		if (b.exists() && b.isFile()) {
-			if (var1.c().exists()) {
+			if (var1.getFile().exists()) {
 				try {
-					var1.g();
+					var1.load();
 				} catch (FileNotFoundException var6) {
-					e.warn("Could not load existing file " + var1.c().getName(), (Throwable) var6);
+					e.warn("Could not load existing file " + var1.getFile().getName(), (Throwable) var6);
 				}
 			}
 
@@ -84,7 +84,7 @@ public class sf {
 				a(b, (Map) var2);
 				sh var3 = new sh(var0, var2, var1);
 				a(var0, var2.keySet(), var3);
-				var1.f();
+				var1.save();
 				c(b);
 				return true;
 			} catch (IOException var4) {
@@ -102,11 +102,11 @@ public class sf {
 	public static boolean b(MinecraftServer var0) {
 		IpBanList var1 = new IpBanList(PlayerList.bannedIPsFile);
 		if (a.exists() && a.isFile()) {
-			if (var1.c().exists()) {
+			if (var1.getFile().exists()) {
 				try {
-					var1.g();
+					var1.load();
 				} catch (FileNotFoundException var11) {
-					e.warn("Could not load existing file " + var1.c().getName(), (Throwable) var11);
+					e.warn("Could not load existing file " + var1.getFile().getName(), (Throwable) var11);
 				}
 			}
 
@@ -122,10 +122,10 @@ public class sf {
 					String var7 = var5.length > 2 ? var5[2] : null;
 					Date var8 = var5.length > 3 ? b(var5[3], (Date) null) : null;
 					String var9 = var5.length > 4 ? var5[4] : null;
-					var1.add((sr) (new se(var4, var6, var7, var8, var9)));
+					var1.add((JsonListEntry) (new IpBanEntry(var4, var6, var7, var8, var9)));
 				}
 
-				var1.f();
+				var1.save();
 				c(a);
 				return true;
 			} catch (IOException var10) {
@@ -140,11 +140,11 @@ public class sf {
 	public static boolean c(MinecraftServer var0) {
 		OpList var1 = new OpList(PlayerList.opsFile);
 		if (c.exists() && c.isFile()) {
-			if (var1.c().exists()) {
+			if (var1.getFile().exists()) {
 				try {
-					var1.g();
+					var1.load();
 				} catch (FileNotFoundException var6) {
-					e.warn("Could not load existing file " + var1.c().getName(), (Throwable) var6);
+					e.warn("Could not load existing file " + var1.getFile().getName(), (Throwable) var6);
 				}
 			}
 
@@ -152,7 +152,7 @@ public class sf {
 				List var2 = Files.readLines(c, Charsets.UTF_8);
 				si var3 = new si(var0, var1);
 				a(var0, var2, var3);
-				var1.f();
+				var1.save();
 				c(c);
 				return true;
 			} catch (IOException var4) {
@@ -170,11 +170,11 @@ public class sf {
 	public static boolean d(MinecraftServer var0) {
 		WhiteList var1 = new WhiteList(PlayerList.whitelistFile);
 		if (d.exists() && d.isFile()) {
-			if (var1.c().exists()) {
+			if (var1.getFile().exists()) {
 				try {
-					var1.g();
+					var1.load();
 				} catch (FileNotFoundException var6) {
-					e.warn("Could not load existing file " + var1.c().getName(), (Throwable) var6);
+					e.warn("Could not load existing file " + var1.getFile().getName(), (Throwable) var6);
 				}
 			}
 
@@ -182,7 +182,7 @@ public class sf {
 				List var2 = Files.readLines(d, Charsets.UTF_8);
 				sj var3 = new sj(var0, var1);
 				a(var0, var2, var3);
-				var1.f();
+				var1.save();
 				c(d);
 				return true;
 			} catch (IOException var4) {
@@ -339,7 +339,7 @@ public class sf {
 	private static Date b(String var0, Date var1) {
 		Date var2;
 		try {
-			var2 = rx.a.parse(var0);
+			var2 = BanEntry.dateFormat.parse(var0);
 		} catch (ParseException var4) {
 			var2 = var1;
 		}

@@ -553,7 +553,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.worldData.setThundering(false);
 		this.worldData.setClearWeatherTime(1000000000);
 		this.worldData.setDayTime(6000L);
-		this.worldData.setGameMode(GameMode.SPECTATOR);
+		this.worldData.setGameMode(EnumGameMode.SPECTATOR);
 		this.worldData.setIsHardcore(false);
 		this.worldData.setDifficulty(Difficulty.PEACEFUL);
 		this.worldData.setDifficultyLocked(true);

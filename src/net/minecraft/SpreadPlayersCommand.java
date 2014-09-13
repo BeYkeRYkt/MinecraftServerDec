@@ -50,7 +50,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 
 					var14.addAll(var16);
 				} else {
-					EntityPlayer var18 = MinecraftServer.getInstance().getPlayerList().a(var15);
+					EntityPlayer var18 = MinecraftServer.getInstance().getPlayerList().getPlayer(var15);
 					if (var18 == null) {
 						throw new dm();
 					}

@@ -17,13 +17,13 @@ public class DefaultGameModeCommand extends GameModeCommand {
 		if (var2.length <= 0) {
 			throw new dp("commands.defaultgamemode.usage", new Object[0]);
 		} else {
-			GameMode var3 = this.h(var1, var2[0]);
+			EnumGameMode var3 = this.h(var1, var2[0]);
 			this.a(var3);
 			a(var1, this, "commands.defaultgamemode.success", new Object[] { new ChatMessage("gameMode." + var3.getName(), new Object[0]) });
 		}
 	}
 
-	protected void a(GameMode var1) {
+	protected void a(EnumGameMode var1) {
 		MinecraftServer var2 = MinecraftServer.getInstance();
 		var2.setServerGameMode(var1);
 		EntityPlayer var4;

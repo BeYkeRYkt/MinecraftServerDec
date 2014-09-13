@@ -3,6 +3,7 @@ package pipebukkit.server.entity;
 import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.Set;
+
 import net.minecraft.EntityPlayer;
 
 import org.bukkit.Achievement;
@@ -14,6 +15,7 @@ import org.bukkit.Note;
 import org.bukkit.Sound;
 import org.bukkit.Statistic;
 import org.bukkit.WeatherType;
+import org.bukkit.configuration.serialization.DelegateDeserialization;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.conversations.ConversationAbandonedEvent;
 import org.bukkit.entity.EntityType;
@@ -22,6 +24,9 @@ import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.Scoreboard;
 
+import pipebukkit.server.PipeOfflinePlayer;
+
+@DelegateDeserialization(PipeOfflinePlayer.class)
 public class PipePlayer extends PipeHumanEntity implements Player {
 
 	private EntityPlayer nmsPlayer;

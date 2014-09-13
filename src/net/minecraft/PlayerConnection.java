@@ -612,7 +612,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 						this.minecraftserver.stopSinglePlayerServer();
 					} else {
 						GameProfileBanEntry banEntry = new GameProfileBanEntry(this.player.getGameProfile(), (Date) null, "(You just lost the game)", (Date) null, "Death in Hardcore");
-						this.minecraftserver.getPlayerList().getProfileBans().add((sr) banEntry);
+						this.minecraftserver.getPlayerList().getProfileBans().add((JsonListEntry) banEntry);
 						this.player.playerConncetion.disconnect("You have died. Game over, man, it\'s game over!");
 					}
 				} else {

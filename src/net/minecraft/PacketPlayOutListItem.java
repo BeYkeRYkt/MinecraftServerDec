@@ -35,7 +35,7 @@ public class PacketPlayOutListItem implements Packet<PlayOutPacketListener> {
 		for (int i = 0; i < count; ++i) {
 			GameProfile profile = null;
 			int ping = 0;
-			GameMode gameMode = null;
+			EnumGameMode gameMode = null;
 			IChatBaseComponent listName = null;
 			switch (action) {
 				case ADD_PLAYER: {
@@ -52,7 +52,7 @@ public class PacketPlayOutListItem implements Packet<PlayOutPacketListener> {
 						}
 					}
 
-					gameMode = GameMode.getById(serializer.readVarInt());
+					gameMode = EnumGameMode.getById(serializer.readVarInt());
 					ping = serializer.readVarInt();
 					if (serializer.readBoolean()) {
 						listName = serializer.readJSONComponent();
@@ -61,7 +61,7 @@ public class PacketPlayOutListItem implements Packet<PlayOutPacketListener> {
 				}
 				case UPDATE_GAME_MODE: {
 					profile = new GameProfile(serializer.readUUID(), (String) null);
-					gameMode = GameMode.getById(serializer.readVarInt());
+					gameMode = EnumGameMode.getById(serializer.readVarInt());
 					break;
 				}
 				case UPDATE_LATENCY: {
@@ -158,11 +158,11 @@ public class PacketPlayOutListItem implements Packet<PlayOutPacketListener> {
 	private static class ListEntry {
 
 		private final int ping;
-		private final GameMode gameMode;
+		private final EnumGameMode gameMode;
 		private final GameProfile gameProfile;
 		private final IChatBaseComponent listname;
 
-		public ListEntry(GameProfile gameProfile, int ping, GameMode gameMode, IChatBaseComponent listname) {
+		public ListEntry(GameProfile gameProfile, int ping, EnumGameMode gameMode, IChatBaseComponent listname) {
 			this.gameProfile = gameProfile;
 			this.ping = ping;
 			this.gameMode = gameMode;
@@ -177,7 +177,7 @@ public class PacketPlayOutListItem implements Packet<PlayOutPacketListener> {
 			return this.ping;
 		}
 
-		public GameMode getGameMode() {
+		public EnumGameMode getGameMode() {
 			return this.gameMode;
 		}
 

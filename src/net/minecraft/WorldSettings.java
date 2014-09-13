@@ -3,7 +3,7 @@ package net.minecraft;
 public final class WorldSettings {
 
 	private final long seed;
-	private final GameMode gameMode;
+	private final EnumGameMode gameMode;
 	private final boolean mapFeaturesEnabled;
 	private final boolean isHardcore;
 	private final LevelType levelType;
@@ -11,7 +11,7 @@ public final class WorldSettings {
 	private boolean bonusChestEnabled;
 	private String generatorOptions;
 
-	public WorldSettings(long seed, GameMode gameMode, boolean mapFeaturesEnabled, boolean isHardcore, LevelType levelType) {
+	public WorldSettings(long seed, EnumGameMode gameMode, boolean mapFeaturesEnabled, boolean isHardcore, LevelType levelType) {
 		this.generatorOptions = "";
 		this.seed = seed;
 		this.gameMode = gameMode;
@@ -42,7 +42,7 @@ public final class WorldSettings {
 		return this.seed;
 	}
 
-	public GameMode getGameMode() {
+	public EnumGameMode getGameMode() {
 		return this.gameMode;
 	}
 

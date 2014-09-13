@@ -1385,7 +1385,7 @@ public abstract class EntityHuman extends EntityLiving {
 	public void t() {
 	}
 
-	public void a(GameMode var1) {
+	public void a(EnumGameMode var1) {
 	}
 
 	public String getName() {

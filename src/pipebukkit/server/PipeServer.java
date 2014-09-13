@@ -2,6 +2,7 @@ package pipebukkit.server;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -16,9 +17,13 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 import net.minecraft.EntityPlayer;
+import net.minecraft.EnumGameMode;
+import net.minecraft.JsonListEntry;
+import net.minecraft.WorldNBTStorage;
 import net.minecraft.server.MinecraftServer;
 
 import org.apache.commons.lang.Validate;
+import org.bukkit.BanEntry;
 import org.bukkit.BanList;
 import org.bukkit.BanList.Type;
 import org.bukkit.Bukkit;
@@ -38,7 +43,6 @@ import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.help.HelpMap;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -57,8 +61,6 @@ import org.bukkit.plugin.messaging.StandardMessenger;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.SafeConstructor;
 
 import pipebukkit.server.entity.PipePlayer;
 import pipebukkit.server.metadata.EntityMetadataStorage;
@@ -68,6 +70,7 @@ import com.avaje.ebean.config.DataSourceConfig;
 import com.avaje.ebean.config.ServerConfig;
 import com.avaje.ebean.config.dbplatform.SQLitePlatform;
 import com.avaje.ebeaninternal.server.lib.sql.TransactionIsolation;
+import com.mojang.authlib.GameProfile;
 
 public class PipeServer implements Server {
 
@@ -78,6 +81,7 @@ public class PipeServer implements Server {
 	private int waterAnimalSpawn = -1;
 	private int ambientSpawn = -1;
 
+	private File bukkitConfigurationFile = new File("bukkit.yml");
 	private YamlConfiguration bukkitConfiguration;
 
 	private SimpleCommandMap commandMap = new SimpleCommandMap(this);
@@ -96,7 +100,7 @@ public class PipeServer implements Server {
 				return player.getBukkitEntity(Player.class);
 			}
 		}));
-		bukkitConfiguration = YamlConfiguration.loadConfiguration(new File("bukkit.yml"));
+		bukkitConfiguration = YamlConfiguration.loadConfiguration(bukkitConfigurationFile);
 	}
 
 	public EntityMetadataStorage getEntityMetadataStorage() {
@@ -270,32 +274,76 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public void banIP(String arg0) {
-		// TODO Auto-generated method stub
+	public int getWaterAnimalSpawnLimit() {
+		return waterAnimalSpawn;
 	}
 
 	@Override
-	public BanList getBanList(Type arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Set<OfflinePlayer> getBannedPlayers() {
+	public BanList getBanList(Type type) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Set<String> getIPBans() {
-		// TODO Auto-generated method stub
-		return null;
+		Set<String> ips = new HashSet<String>();
+		for (BanEntry entry : getBanList(Type.IP).getBanEntries()) {
+			ips.add(entry.getTarget());
+		}
+		return ips;
 	}
 
 	@Override
-	public void unbanIP(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public void banIP(String ip) {
+		Validate.notNull(ip, "Address cannot be null.");
+		getBanList(Type.IP).addBan(ip, null, null, null);
+	}
+
+	@Override
+	public void unbanIP(String ip) {
+		Validate.notNull(ip, "Address cannot be null.");
+		getBanList(Type.IP).pardon(ip);
+	}
+
+	@Override
+	public Set<OfflinePlayer> getBannedPlayers() {
+		Set<OfflinePlayer> players = new HashSet<OfflinePlayer>();
+		for (JsonListEntry<GameProfile> banned : MinecraftServer.getInstance().getPlayerList().getProfileBans().getProfiles()) {
+			players.add(new PipeOfflinePlayer(banned.getObject()));
+		}
+		return players;
+	}
+
+	@Override
+	public Set<OfflinePlayer> getOperators() {
+		Set<OfflinePlayer> players = new HashSet<OfflinePlayer>();
+		for (JsonListEntry<GameProfile> banned : MinecraftServer.getInstance().getPlayerList().getOpList().getProfiles()) {
+			players.add(new PipeOfflinePlayer(banned.getObject()));
+		}
+		return players;
+	}
+
+	@Override
+	public Set<OfflinePlayer> getWhitelistedPlayers() {
+		Set<OfflinePlayer> players = new HashSet<OfflinePlayer>();
+		for (JsonListEntry<GameProfile> whitelisted : MinecraftServer.getInstance().getPlayerList().getWhitelist().getProfiles()) {
+			players.add(new PipeOfflinePlayer(whitelisted.getObject()));
+		}
+		return players;
+	}
+
+	@Override
+	public boolean hasWhitelist() {
+		return MinecraftServer.getInstance().getPlayerList().hasWhiteList;
+	}
+
+	@Override
+	public void setWhitelist(boolean whitelist) {
+		MinecraftServer.getInstance().getPlayerList().hasWhiteList = whitelist;
+	}
+
+	@Override
+	public void reloadWhitelist() {
 	}
 
 	@Override
@@ -314,10 +362,10 @@ public class PipeServer implements Server {
 		return null;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public GameMode getDefaultGameMode() {
-		// TODO Auto-generated method stub
-		return null;
+		return GameMode.getByValue(MinecraftServer.getInstance().worlds[0].getWorldData().getGameMode().getId());
 	}
 
 	@Override
@@ -333,8 +381,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public int getIdleTimeout() {
-		// TODO Auto-generated method stub
-		return 0;
+		return MinecraftServer.getInstance().getIdleTimeOut();
 	}
 
 	@Override
@@ -391,24 +438,6 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public OfflinePlayer getOfflinePlayer(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public OfflinePlayer getOfflinePlayer(UUID arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public OfflinePlayer[] getOfflinePlayers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean getOnlineMode() {
 		return MinecraftServer.getInstance().isOnlineMode();
 	}
@@ -419,34 +448,107 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public Set<OfflinePlayer> getOperators() {
-		// TODO Auto-generated method stub
-		return null;
+	public Player[] _INVALID_getOnlinePlayers() {
+		return players.toArray(new PipePlayer[0]);
 	}
 
 	@Override
 	public Player getPlayer(String name) {
-		for (Player player : players) {
-			if (player.getName().equalsIgnoreCase(name)) {
-				return player;
-			} 
+		Validate.notNull(name, "Name cannot be null");
+		Player found = null;
+		String lowerName = name.toLowerCase();
+		int delta = Integer.MAX_VALUE;
+		for (Player player : getOnlinePlayers()) {
+			if (player.getName().toLowerCase().startsWith(lowerName)) {
+				int curDelta = player.getName().length() - lowerName.length();
+				if (curDelta < delta) {
+					found = player;
+					delta = curDelta;
+				}
+				if (curDelta == 0) break;
+			}
 		}
-		return null; 
+		return found;
 	}
 
 	@Override
 	public Player getPlayer(UUID uuid) {
+		Validate.notNull(uuid, "UUID cannot be null");
 		return MinecraftServer.getInstance().getPlayerList().getPlayer(uuid).getBukkitEntity(PipePlayer.class);
 	}
 
 	@Override
 	public Player getPlayerExact(String name) {
+		Validate.notNull(name, "Name cannot be null");
 		for (Player player : players) {
 			if (player.getName().equalsIgnoreCase(name)) {
 				return player;
 			} 
 		}
 		return null; 
+	}
+
+	@Override
+	public List<Player> matchPlayer(String partialName) {
+		Validate.notNull(partialName, "PartialName cannot be null");
+		List<Player> matchedPlayers = new ArrayList<Player>();
+		for (Player player : getOnlinePlayers()) {
+			String playerName = player.getName();
+			if (partialName.equalsIgnoreCase(playerName)) {
+				matchedPlayers.clear();
+				matchedPlayers.add(player);
+				break;
+			}
+			if (playerName.toLowerCase().contains(partialName.toLowerCase())) {
+				matchedPlayers.add(player);
+			}
+		}
+		return matchedPlayers;
+	}
+
+	@Override
+	public OfflinePlayer getOfflinePlayer(String name) {
+		Validate.notNull(name, "Name cannot be null");
+		OfflinePlayer result = getPlayerExact(name);
+		if (result == null) {
+			result = new PipeOfflinePlayer(MinecraftServer.getInstance().getUserCache().getProfile(name));
+		}
+		return result;
+	}
+
+	@Override
+	public OfflinePlayer getOfflinePlayer(UUID uuid) {
+		Validate.notNull(uuid, "UUID cannot be null");
+		OfflinePlayer result = getPlayer(uuid);
+		if (result == null) {
+			result = new PipeOfflinePlayer(new GameProfile(uuid, null));
+		}
+		return result;
+	}
+
+	@Override
+	public OfflinePlayer[] getOfflinePlayers() {
+		WorldNBTStorage storage = (WorldNBTStorage) MinecraftServer.getInstance().worlds[0].getDataManager();
+		String[] files = storage.getPlayerDir().list(new FilenameFilter() {
+			@Override
+			public boolean accept(File dir, String name) {
+				return name.endsWith(".dat");
+			}
+		});
+		Set<OfflinePlayer> players = new HashSet<OfflinePlayer>();
+		for (String file : files) {
+			try {
+				players.add(getOfflinePlayer(UUID.fromString(file.substring(0, file.length() - 4))));
+			} catch (IllegalArgumentException ex) {
+			}
+		}
+		players.addAll(getOnlinePlayers());
+		return players.toArray(new OfflinePlayer[players.size()]);
+	}
+
+	@Override
+	public PluginManager getPluginManager() {
+		return pluginManager;
 	}
 
 	@Override
@@ -456,11 +558,6 @@ public class PipeServer implements Server {
 			return (PluginCommand) command;
 		}
 		return null;
-	}
-
-	@Override
-	public PluginManager getPluginManager() {
-		return pluginManager;
 	}
 
 	@Override
@@ -535,14 +632,12 @@ public class PipeServer implements Server {
 
 	@Override
 	public String getUpdateFolder() {
-		// TODO Auto-generated method stub
-		return null;
+		return bukkitConfiguration.getString("settings.update-folder", "update");
 	}
 
 	@Override
 	public File getUpdateFolderFile() {
-		// TODO Auto-generated method stub
-		return null;
+		return new File(getUpdateFolder());
 	}
 
 	@Override
@@ -553,38 +648,27 @@ public class PipeServer implements Server {
 
 	@Override
 	public WarningState getWarningState() {
-		// TODO Auto-generated method stub
-		return null;
+		return WarningState.DEFAULT;
 	}
 
 	@Override
-	public int getWaterAnimalSpawnLimit() {
-		// TODO Auto-generated method stub
-		return 0;
+	public World getWorld(String name) {
+		return worlds.get(name);
 	}
 
 	@Override
-	public Set<OfflinePlayer> getWhitelistedPlayers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public World getWorld(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public World getWorld(UUID arg0) {
-		// TODO Auto-generated method stub
+	public World getWorld(UUID uuid) {
+		for (World world : worlds.values()) {
+			if (world.getUID().equals(uuid)) {
+				return world;
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public File getWorldContainer() {
-		// TODO Auto-generated method stub
-		return null;
+		return MinecraftServer.getInstance().universe;
 	}
 
 	@Override
@@ -596,11 +680,6 @@ public class PipeServer implements Server {
 	@Override
 	public List<World> getWorlds() {
 		return new ArrayList<World>(worlds.values());
-	}
-
-	@Override
-	public boolean hasWhitelist() {
-		return MinecraftServer.getInstance().getPlayerList().hasWhiteList;
 	}
 
 	@Override
@@ -626,48 +705,25 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public List<Player> matchPlayer(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void reload() {
-		// lol NOPE :D
-	}
-
-	@Override
-	public void reloadWhitelist() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void savePlayers() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
-	public void setDefaultGameMode(GameMode arg0) {
-		// TODO Auto-generated method stub
-		
+	public void setDefaultGameMode(GameMode mode) {
+		Validate.notNull(mode, "Mode cannot be null");
+		MinecraftServer.getInstance().worlds[0].getWorldData().setGameMode(EnumGameMode.getById(mode.getValue()));
 	}
 
 	@Override
-	public void setIdleTimeout(int arg0) {
-		// TODO Auto-generated method stub
-		
+	public void setIdleTimeout(int timeout) {
+		MinecraftServer.getInstance().setIdleTimeout(timeout);
 	}
 
 	@Override
 	public void setSpawnRadius(int arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setWhitelist(boolean arg0) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -696,8 +752,8 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public Player[] _INVALID_getOnlinePlayers() {
-		return players.toArray(new PipePlayer[0]);
+	public void reload() {
+		// lol NOPE :D
 	}
 
 }

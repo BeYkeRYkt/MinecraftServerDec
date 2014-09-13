@@ -139,7 +139,7 @@ public abstract class AbstractCommand implements CommandInterface {
 		}
 
 		if (var2 == null) {
-			var2 = MinecraftServer.getInstance().getPlayerList().a(var1);
+			var2 = MinecraftServer.getInstance().getPlayerList().getPlayer(var1);
 		}
 
 		if (var2 == null) {
@@ -157,7 +157,7 @@ public abstract class AbstractCommand implements CommandInterface {
 		Object var3 = ah.a(var0, var1, var2);
 		MinecraftServer var4 = MinecraftServer.getInstance();
 		if (var3 == null) {
-			var3 = var4.getPlayerList().a(var1);
+			var3 = var4.getPlayerList().getPlayer(var1);
 		}
 
 		if (var3 == null) {
