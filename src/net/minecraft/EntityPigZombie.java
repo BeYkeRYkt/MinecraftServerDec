@@ -12,13 +12,13 @@ public class EntityPigZombie extends EntityZombie {
 
 	public EntityPigZombie(World var1) {
 		super(var1);
-		this.ab = true;
+		this.fireProof = true;
 	}
 
 	public void b(EntityLiving var1) {
 		super.b(var1);
 		if (var1 != null) {
-			this.bn = var1.aJ();
+			this.bn = var1.getUUID();
 		}
 
 	}
@@ -52,7 +52,7 @@ public class EntityPigZombie extends EntityZombie {
 		}
 
 		if (this.bm > 0 && --this.bm == 0) {
-			this.a("mob.zombiepig.zpigangry", this.bA() * 2.0F, ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+			this.a("mob.zombiepig.zpigangry", this.bA() * 2.0F, ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
 		}
 
 		if (this.bl > 0 && this.bn != null && this.bc() == null) {
@@ -114,8 +114,8 @@ public class EntityPigZombie extends EntityZombie {
 	}
 
 	private void b(Entity var1) {
-		this.bl = 400 + this.V.nextInt(400);
-		this.bm = this.V.nextInt(40);
+		this.bl = 400 + this.random.nextInt(400);
+		this.bm = this.random.nextInt(40);
 		if (var1 instanceof EntityLiving) {
 			this.b((EntityLiving) var1);
 		}
@@ -139,14 +139,14 @@ public class EntityPigZombie extends EntityZombie {
 	}
 
 	protected void dropDeathLoot(boolean var1, int var2) {
-		int var3 = this.V.nextInt(2 + var2);
+		int var3 = this.random.nextInt(2 + var2);
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
 			this.a(Items.ROTTEN_FLESH, 1);
 		}
 
-		var3 = this.V.nextInt(2 + var2);
+		var3 = this.random.nextInt(2 + var2);
 
 		for (var4 = 0; var4 < var3; ++var4) {
 			this.a(Items.GOLD_NUGGET, 1);

@@ -12,7 +12,7 @@ public class ys extends yv {
 	public boolean a() {
 		if (!super.a()) {
 			return false;
-		} else if (!this.a.world.Q().b("mobGriefing")) {
+		} else if (!this.a.world.getGameRules().b("mobGriefing")) {
 			return false;
 		} else {
 			return !c.f(this.a.world, this.b);

@@ -78,15 +78,15 @@ public class EntityWitch extends EntityMonster implements IRangedEntity {
 				}
 			} else {
 				short var5 = -1;
-				if (this.V.nextFloat() < 0.15F && this.a(Material.WATER) && !this.a(MobEffectList.WATER_BREATHING)) {
+				if (this.random.nextFloat() < 0.15F && this.a(Material.WATER) && !this.a(MobEffectList.WATER_BREATHING)) {
 					var5 = 8237;
-				} else if (this.V.nextFloat() < 0.15F && this.au() && !this.a(MobEffectList.FIRE_RESISTANCE)) {
+				} else if (this.random.nextFloat() < 0.15F && this.au() && !this.a(MobEffectList.FIRE_RESISTANCE)) {
 					var5 = 16307;
-				} else if (this.V.nextFloat() < 0.05F && this.getHealth() < this.bt()) {
+				} else if (this.random.nextFloat() < 0.05F && this.getHealth() < this.bt()) {
 					var5 = 16341;
-				} else if (this.V.nextFloat() < 0.25F && this.u() != null && !this.a(MobEffectList.FASTER_MOVEMENT) && this.u().getDistanceSquared(this) > 121.0D) {
+				} else if (this.random.nextFloat() < 0.25F && this.u() != null && !this.a(MobEffectList.FASTER_MOVEMENT) && this.u().getDistanceSquared(this) > 121.0D) {
 					var5 = 16274;
-				} else if (this.V.nextFloat() < 0.25F && this.u() != null && !this.a(MobEffectList.FASTER_MOVEMENT) && this.u().getDistanceSquared(this) > 121.0D) {
+				} else if (this.random.nextFloat() < 0.25F && this.u() != null && !this.a(MobEffectList.FASTER_MOVEMENT) && this.u().getDistanceSquared(this) > 121.0D) {
 					var5 = 16274;
 				}
 
@@ -100,8 +100,8 @@ public class EntityWitch extends EntityMonster implements IRangedEntity {
 				}
 			}
 
-			if (this.V.nextFloat() < 7.5E-4F) {
-				this.world.a((Entity) this, (byte) 15);
+			if (this.random.nextFloat() < 7.5E-4F) {
+				this.world.broadcastEntityEffect((Entity) this, (byte) 15);
 			}
 		}
 
@@ -122,13 +122,13 @@ public class EntityWitch extends EntityMonster implements IRangedEntity {
 	}
 
 	protected void dropDeathLoot(boolean var1, int var2) {
-		int var3 = this.V.nextInt(3) + 1;
+		int var3 = this.random.nextInt(3) + 1;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			int var5 = this.V.nextInt(3);
-			Item var6 = bk[this.V.nextInt(bk.length)];
+			int var5 = this.random.nextInt(3);
+			Item var6 = bk[this.random.nextInt(bk.length)];
 			if (var2 > 0) {
-				var5 += this.V.nextInt(var2 + 1);
+				var5 += this.random.nextInt(var2 + 1);
 			}
 
 			for (int var7 = 0; var7 < var5; ++var7) {
@@ -151,7 +151,7 @@ public class EntityWitch extends EntityMonster implements IRangedEntity {
 				var3.a(32698);
 			} else if (var1.getHealth() >= 8.0F && !var1.a(MobEffectList.POISON)) {
 				var3.a(32660);
-			} else if (var12 <= 3.0F && !var1.a(MobEffectList.WEAKNESS) && this.V.nextFloat() < 0.25F) {
+			} else if (var12 <= 3.0F && !var1.a(MobEffectList.WEAKNESS) && this.random.nextFloat() < 0.25F) {
 				var3.a(32696);
 			}
 

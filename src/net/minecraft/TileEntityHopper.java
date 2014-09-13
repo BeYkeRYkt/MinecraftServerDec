@@ -434,7 +434,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 		}
 
 		if (var7 == null) {
-			List var14 = var0.a((Entity) null, new AxisAlignedBB(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.c);
+			List var14 = var0.getEntities((Entity) null, new AxisAlignedBB(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.c);
 			if (var14.size() > 0) {
 				var7 = (IInventory) var14.get(var0.s.nextInt(var14.size()));
 			}

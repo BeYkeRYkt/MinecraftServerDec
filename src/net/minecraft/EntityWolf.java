@@ -85,7 +85,7 @@ public class EntityWolf extends xx {
 	}
 
 	protected String z() {
-		return this.ct() ? "mob.wolf.growl" : (this.V.nextInt(3) == 0 ? (this.cj() && this.dataWatcher.getData(18) < 10.0F ? "mob.wolf.whine" : "mob.wolf.panting") : "mob.wolf.bark");
+		return this.ct() ? "mob.wolf.growl" : (this.random.nextInt(3) == 0 ? (this.cj() && this.dataWatcher.getData(18) < 10.0F ? "mob.wolf.whine" : "mob.wolf.panting") : "mob.wolf.bark");
 	}
 
 	protected String bn() {
@@ -110,7 +110,7 @@ public class EntityWolf extends xx {
 			this.bp = true;
 			this.bq = 0.0F;
 			this.br = 0.0F;
-			this.world.a((Entity) this, (byte) 8);
+			this.world.broadcastEntityEffect((Entity) this, (byte) 8);
 		}
 
 		if (!this.world.isStatic && this.u() == null && this.ct()) {
@@ -135,7 +135,7 @@ public class EntityWolf extends xx {
 			this.br = 0.0F;
 		} else if ((this.bo || this.bp) && this.bp) {
 			if (this.bq == 0.0F) {
-				this.a("mob.wolf.shake", this.bA(), (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
+				this.a("mob.wolf.shake", this.bA(), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			}
 
 			this.br = this.bq;
@@ -152,8 +152,8 @@ public class EntityWolf extends xx {
 				int var2 = (int) (MathHelper.a((this.bq - 0.4F) * 3.1415927F) * 7.0F);
 
 				for (int var3 = 0; var3 < var2; ++var3) {
-					float var4 = (this.V.nextFloat() * 2.0F - 1.0F) * this.J * 0.5F;
-					float var5 = (this.V.nextFloat() * 2.0F - 1.0F) * this.J * 0.5F;
+					float var4 = (this.random.nextFloat() * 2.0F - 1.0F) * this.height * 0.5F;
+					float var5 = (this.random.nextFloat() * 2.0F - 1.0F) * this.height * 0.5F;
 					this.world.a(Particle.f, this.locationX + (double) var4, (double) (var1 + 0.8F), this.locationZ + (double) var5, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 			}
@@ -162,7 +162,7 @@ public class EntityWolf extends xx {
 	}
 
 	public float getHeadHeight() {
-		return this.K * 0.8F;
+		return this.width * 0.8F;
 	}
 
 	public int bP() {
@@ -250,18 +250,18 @@ public class EntityWolf extends xx {
 			}
 
 			if (!this.world.isStatic) {
-				if (this.V.nextInt(3) == 0) {
+				if (this.random.nextInt(3) == 0) {
 					this.m(true);
 					this.h.n();
 					this.d((EntityLiving) null);
 					this.bk.a(true);
 					this.h(20.0F);
-					this.b(var1.aJ().toString());
+					this.b(var1.getUUID().toString());
 					this.l(true);
-					this.world.a((Entity) this, (byte) 7);
+					this.world.broadcastEntityEffect((Entity) this, (byte) 7);
 				} else {
 					this.l(false);
-					this.world.a((Entity) this, (byte) 6);
+					this.world.broadcastEntityEffect((Entity) this, (byte) 6);
 				}
 			}
 
@@ -339,7 +339,7 @@ public class EntityWolf extends xx {
 	}
 
 	protected boolean C() {
-		return !this.cj() && this.W > 2400;
+		return !this.cj() && this.ticksLived > 2400;
 	}
 
 	public boolean a(EntityLiving var1, EntityLiving var2) {

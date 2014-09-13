@@ -31,12 +31,12 @@ public abstract class EntityWaterAnimal extends EntityInsentient implements IAni
 	}
 
 	public void K() {
-		int var1 = this.aA();
+		int var1 = this.getAirTicks();
 		super.K();
 		if (this.isAlive() && !this.V()) {
 			--var1;
 			this.h(var1);
-			if (this.aA() == -20) {
+			if (this.getAirTicks() == -20) {
 				this.h(0);
 				this.damageEntity(DamageSource.DROWN, 2.0F);
 			}

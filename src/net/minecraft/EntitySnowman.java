@@ -50,7 +50,7 @@ public class EntitySnowman extends EntityGolem implements IRangedEntity {
 	}
 
 	protected void dropDeathLoot(boolean var1, int var2) {
-		int var3 = this.V.nextInt(16);
+		int var3 = this.random.nextInt(16);
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			this.a(Items.SNOWBALL, 1);

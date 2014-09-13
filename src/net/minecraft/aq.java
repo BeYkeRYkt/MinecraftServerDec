@@ -40,7 +40,7 @@ final class aq implements Predicate {
 				return false;
 			}
 
-			String var8 = var1 instanceof EntityPlayer ? var1.getName() : var1.aJ().toString();
+			String var8 = var1 instanceof EntityPlayer ? var1.getName() : var1.getUUID().toString();
 			if (!var2.b(var8, var7)) {
 				return false;
 			}

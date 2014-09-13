@@ -200,7 +200,7 @@ public abstract class AbstractCommand implements CommandInterface {
 			return a(var0, var1).getName();
 		} catch (dm var5) {
 			try {
-				return b(var0, var1).aJ().toString();
+				return b(var0, var1).getUUID().toString();
 			} catch (dj var4) {
 				if (ah.b(var1)) {
 					throw var4;

@@ -57,7 +57,7 @@ public class TileEntityPiston extends TileEntity implements PacketTickable {
 
 		AxisAlignedBB var3 = Blocks.PISTON_EXTENSION.a(this.world, this.position, this.a, var1, this.f);
 		if (var3 != null) {
-			List var4 = this.world.b((Entity) null, var3);
+			List var4 = this.world.getEntities((Entity) null, var3);
 			if (!var4.isEmpty()) {
 				this.k.addAll(var4);
 				Iterator var5 = this.k.iterator();

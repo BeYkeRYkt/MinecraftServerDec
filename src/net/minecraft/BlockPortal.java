@@ -14,7 +14,7 @@ public class BlockPortal extends awt {
 
 	public void b(World var1, Position var2, BlockState var3, Random var4) {
 		super.b(var1, var2, var3, var4);
-		if (var1.worldProvider.isSleepAllowed() && var1.Q().b("doMobSpawning") && var4.nextInt(2000) < var1.getDifficulty().getId()) {
+		if (var1.worldProvider.isSleepAllowed() && var1.getGameRules().b("doMobSpawning") && var4.nextInt(2000) < var1.getDifficulty().getId()) {
 			int var5 = var2.getY();
 
 			Position var6;
@@ -25,7 +25,7 @@ public class BlockPortal extends awt {
 			if (var5 > 0 && !var1.getBlockState(var6.a()).getBlock().t()) {
 				Entity var7 = ItemMonsterEgg.a(var1, 57, (double) var6.getX() + 0.5D, (double) var6.getY() + 1.1D, (double) var6.getZ() + 0.5D);
 				if (var7 != null) {
-					var7.aj = var7.ar();
+					var7.portalCooldown = var7.ar();
 				}
 			}
 		}

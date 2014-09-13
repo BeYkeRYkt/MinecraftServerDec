@@ -168,8 +168,8 @@ public class bqm implements IDataManager, brl {
 		try {
 			NBTCompoundTag var2 = new NBTCompoundTag();
 			var1.write(var2);
-			File var3 = new File(this.c, var1.aJ().toString() + ".dat.tmp");
-			File var4 = new File(this.c, var1.aJ().toString() + ".dat");
+			File var3 = new File(this.c, var1.getUUID().toString() + ".dat.tmp");
+			File var4 = new File(this.c, var1.getUUID().toString() + ".dat");
 			NBTCompressedStreamTools.writeTag(var2, (OutputStream) (new FileOutputStream(var3)));
 			if (var4.exists()) {
 				var4.delete();
@@ -186,7 +186,7 @@ public class bqm implements IDataManager, brl {
 		NBTCompoundTag var2 = null;
 
 		try {
-			File var3 = new File(this.c, var1.aJ().toString() + ".dat");
+			File var3 = new File(this.c, var1.getUUID().toString() + ".dat");
 			if (var3.exists() && var3.isFile()) {
 				var2 = NBTCompressedStreamTools.readTag((InputStream) (new FileInputStream(var3)));
 			}

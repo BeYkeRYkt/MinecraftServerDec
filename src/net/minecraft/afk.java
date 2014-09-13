@@ -22,12 +22,12 @@ class afk extends yn {
 			this.g.aG = this.g.yaw;
 			float var10 = (float) (this.e * this.g.a(afs.d).e());
 			this.g.j(this.g.bH() + (var10 - this.g.bH()) * 0.125F);
-			double var11 = Math.sin((double) (this.g.W + this.g.getId()) * 0.5D) * 0.05D;
+			double var11 = Math.sin((double) (this.g.ticksLived + this.g.getId()) * 0.5D) * 0.05D;
 			double var13 = Math.cos((double) (this.g.yaw * 3.1415927F / 180.0F));
 			double var15 = Math.sin((double) (this.g.yaw * 3.1415927F / 180.0F));
 			this.g.motionX += var11 * var13;
 			this.g.motionZ += var11 * var15;
-			var11 = Math.sin((double) (this.g.W + this.g.getId()) * 0.75D) * 0.05D;
+			var11 = Math.sin((double) (this.g.ticksLived + this.g.getId()) * 0.75D) * 0.05D;
 			this.g.motionY += var11 * (var15 + var13) * 0.25D;
 			this.g.motionY += (double) this.g.bH() * var3 * 0.1D;
 			ym var17 = this.g.p();

@@ -39,15 +39,15 @@ public class EntityExpirienceOrb extends Entity {
 			--this.c;
 		}
 
-		this.p = this.locationX;
-		this.q = this.locationY;
-		this.r = this.locationZ;
+		this.previousX = this.locationX;
+		this.previousY = this.locationY;
+		this.previousZ = this.locationZ;
 		this.motionY -= 0.029999999329447746D;
 		if (this.world.getBlockState(new Position(this)).getBlock().getMaterial() == Material.LAVA) {
 			this.motionY = 0.20000000298023224D;
-			this.motionX = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
-			this.motionZ = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
-			this.a("random.fizz", 0.4F, 2.0F + this.V.nextFloat() * 0.4F);
+			this.motionX = (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+			this.motionZ = (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+			this.a("random.fizz", 0.4F, 2.0F + this.random.nextFloat() * 0.4F);
 		}
 
 		this.j(this.locationX, (this.getBoundingBox().minY + this.getBoundingBox().maxY) / 2.0D, this.locationZ);
@@ -137,7 +137,7 @@ public class EntityExpirienceOrb extends Entity {
 		if (!this.world.isStatic) {
 			if (this.c == 0 && var1.bn == 0) {
 				var1.bn = 2;
-				this.world.a((Entity) var1, "random.orb", 0.1F, 0.5F * ((this.V.nextFloat() - this.V.nextFloat()) * 0.7F + 1.8F));
+				this.world.a((Entity) var1, "random.orb", 0.1F, 0.5F * ((this.random.nextFloat() - this.random.nextFloat()) * 0.7F + 1.8F));
 				var1.a((Entity) this, 1);
 				var1.u(this.e);
 				this.die();

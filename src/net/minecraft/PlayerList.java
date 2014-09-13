@@ -80,7 +80,7 @@ public abstract class PlayerList {
 		Position var11 = worldServer.getSpawnPosition();
 		this.a(player, (EntityPlayer) null, worldServer);
 		PlayerConnection var12 = new PlayerConnection(this.minecraftserver, networkManager, player);
-		var12.sendPacket((new PacketPlayOutJoinGame(player.getId(), player.playerInteractManager.getGameMode(), worldData.isHardcore(), worldServer.worldProvider.getDimensionId(), worldServer.getDifficulty(), this.getMaxPlayers(), worldData.getLevelType(), worldServer.Q().b("reducedDebugInfo"))));
+		var12.sendPacket((new PacketPlayOutJoinGame(player.getId(), player.playerInteractManager.getGameMode(), worldData.isHardcore(), worldServer.worldProvider.getDimensionId(), worldServer.getDifficulty(), this.getMaxPlayers(), worldData.getLevelType(), worldServer.getGameRules().b("reducedDebugInfo"))));
 		var12.sendPacket((new PacketPlayOutPluginMessage("MC|Brand", (new PacketDataSerializer(Unpooled.buffer())).writeString(this.c().getServerModName()))));
 		var12.sendPacket((new PacketPlayOutServerDifficulty(worldData.getDifficulty(), worldData.isDifficultyLocked())));
 		var12.sendPacket((new PacketPlayOutSpawnPosition(var11)));
@@ -153,7 +153,7 @@ public abstract class PlayerList {
 	}
 
 	public void a(WorldServer[] var1) {
-		this.p = var1[0].O().e();
+		this.p = var1[0].getDataManager().e();
 		var1[0].getWorldBorder().addChangeListener((WorldBorderChangeListener) (new PlayerUpdaterWorldBorderChangeListener(this)));
 	}
 
@@ -187,7 +187,7 @@ public abstract class PlayerList {
 
 	protected void b(EntityPlayer var1) {
 		this.p.a(var1);
-		StatisticManager var2 = (StatisticManager) this.playersStatistic.get(var1.aJ());
+		StatisticManager var2 = (StatisticManager) this.playersStatistic.get(var1.getUUID());
 		if (var2 != null) {
 			var2.write();
 		}
@@ -196,7 +196,7 @@ public abstract class PlayerList {
 
 	public void c(EntityPlayer var1) {
 		this.players.add(var1);
-		this.uuidToPlayerMap.put(var1.aJ(), var1);
+		this.uuidToPlayerMap.put(var1.getUUID(), var1);
 		this.sendPacket((Packet) (new PacketPlayOutListItem(ListItemAction.ADD_PLAYER, new EntityPlayer[] { var1 })));
 		WorldServer var2 = this.minecraftserver.getWorldServer(var1.dimensionId);
 		var2.addEntity(var1);
@@ -225,8 +225,8 @@ public abstract class PlayerList {
 		var2.e(var1);
 		var2.t().c(var1);
 		this.players.remove(var1);
-		this.uuidToPlayerMap.remove(var1.aJ());
-		this.playersStatistic.remove(var1.aJ());
+		this.uuidToPlayerMap.remove(var1.getUUID());
+		this.playersStatistic.remove(var1.getUUID());
 		this.sendPacket((Packet) (new PacketPlayOutListItem(ListItemAction.REMOVE_PLAYER, new EntityPlayer[] { var1 })));
 	}
 
@@ -262,7 +262,7 @@ public abstract class PlayerList {
 		EntityPlayer var5;
 		for (int var4 = 0; var4 < this.players.size(); ++var4) {
 			var5 = (EntityPlayer) this.players.get(var4);
-			if (var5.aJ().equals(var2)) {
+			if (var5.getUUID().equals(var2)) {
 				var3.add(var5);
 			}
 		}
@@ -303,7 +303,7 @@ public abstract class PlayerList {
 		EntityPlayer var7 = new EntityPlayer(this.minecraftserver, this.minecraftserver.getWorldServer(var1.dimensionId), var1.getGameProfile(), (PlayerInteractManager) var6);
 		var7.playerConncetion = var1.playerConncetion;
 		var7.a((EntityHuman) var1, var3);
-		var7.d(var1.getId());
+		var7.setId(var1.getId());
 		var7.o(var1);
 		WorldServer var8 = this.minecraftserver.getWorldServer(var1.dimensionId);
 		this.a(var7, var1, var8);
@@ -333,7 +333,7 @@ public abstract class PlayerList {
 		var8.t().a(var7);
 		var8.addEntity(var7);
 		this.players.add(var7);
-		this.uuidToPlayerMap.put(var7.aJ(), var7);
+		this.uuidToPlayerMap.put(var7.getUUID(), var7);
 		var7.f_();
 		var7.h(var7.getHealth());
 		return var7;
@@ -601,7 +601,7 @@ public abstract class PlayerList {
 	public void updateWorldData(EntityPlayer var1, WorldServer var2) {
 		WorldBorder var3 = this.minecraftserver.worlds[0].getWorldBorder();
 		var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutWorldBorder(var3, WorldBorderAction.INITIALIZE)));
-		var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutTimeUpdate(var2.getTime(), var2.L(), var2.Q().b("doDaylightCycle"))));
+		var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutTimeUpdate(var2.getTime(), var2.L(), var2.getGameRules().b("doDaylightCycle"))));
 		if (var2.S()) {
 			var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutChangeGameState(1, 0.0F)));
 			var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutChangeGameState(7, var2.j(1.0F))));
@@ -625,7 +625,7 @@ public abstract class PlayerList {
 	}
 
 	public String[] r() {
-		return this.minecraftserver.worlds[0].O().e().f();
+		return this.minecraftserver.worlds[0].getDataManager().e().f();
 	}
 
 	public boolean s() {
@@ -690,10 +690,10 @@ public abstract class PlayerList {
 	}
 
 	public StatisticManager getPLayerStatistic(EntityHuman var1) {
-		UUID var2 = var1.aJ();
+		UUID var2 = var1.getUUID();
 		StatisticManager var3 = var2 == null ? null : (StatisticManager) this.playersStatistic.get(var2);
 		if (var3 == null) {
-			File var4 = new File(this.minecraftserver.getWorldServer(0).O().b(), "stats");
+			File var4 = new File(this.minecraftserver.getWorldServer(0).getDataManager().b(), "stats");
 			File var5 = new File(var4, var2.toString() + ".json");
 			if (!var5.exists()) {
 				File var6 = new File(var4, var1.getName() + ".json");

@@ -19,9 +19,9 @@ public class ahs extends ahr {
 			var1.entity.damageEntity(DamageSource.projectile((Entity) this, this.n()), 0.0F);
 		}
 
-		if (!this.world.isStatic && this.V.nextInt(8) == 0) {
+		if (!this.world.isStatic && this.random.nextInt(8) == 0) {
 			byte var2 = 1;
-			if (this.V.nextInt(32) == 0) {
+			if (this.random.nextInt(32) == 0) {
 				var2 = 4;
 			}
 
@@ -36,7 +36,7 @@ public class ahs extends ahr {
 		double var5 = 0.08D;
 
 		for (int var6 = 0; var6 < 8; ++var6) {
-			this.world.a(Particle.K, this.locationX, this.locationY, this.locationZ, ((double) this.V.nextFloat() - 0.5D) * 0.08D, ((double) this.V.nextFloat() - 0.5D) * 0.08D, ((double) this.V.nextFloat() - 0.5D) * 0.08D, new int[] { Item.getId(Items.EGG) });
+			this.world.a(Particle.K, this.locationX, this.locationY, this.locationZ, ((double) this.random.nextFloat() - 0.5D) * 0.08D, ((double) this.random.nextFloat() - 0.5D) * 0.08D, ((double) this.random.nextFloat() - 0.5D) * 0.08D, new int[] { Item.getId(Items.EGG) });
 		}
 
 		if (!this.world.isStatic) {

@@ -4,7 +4,7 @@ public class EntityGiantZombie extends EntityMonster {
 
 	public EntityGiantZombie(World var1) {
 		super(var1);
-		this.a(this.J * 6.0F, this.K * 6.0F);
+		this.a(this.height * 6.0F, this.width * 6.0F);
 	}
 
 	public float getHeadHeight() {

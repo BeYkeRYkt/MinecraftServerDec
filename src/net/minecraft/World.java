@@ -3,6 +3,7 @@ package net.minecraft;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -12,6 +13,8 @@ import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.Callable;
+
+import pipebukkit.server.PipeWorld;
 import net.minecraft.server.MinecraftServer;
 
 public abstract class World implements ard {
@@ -37,7 +40,7 @@ public abstract class World implements ard {
 	private int I;
 	public final Random s = new Random();
 	public final WorldProvider worldProvider;
-	protected List u = Lists.newArrayList();
+	protected List<ara> u = Lists.newArrayList();
 	protected IChunkProvider chunkProvider;
 	protected final IDataManager dataManager;
 	protected WorldData worldData;
@@ -705,18 +708,18 @@ public abstract class World implements ard {
 		}
 	}
 
-	protected void a(Entity var1) {
+	protected void a(Entity entity) {
 		for (int var2 = 0; var2 < this.u.size(); ++var2) {
-			((ara) this.u.get(var2)).a(var1);
+			((ara) this.u.get(var2)).a(entity);
 		}
-
+		entity.valid = true;
 	}
 
-	protected void b(Entity var1) {
+	protected void b(Entity entity) {
 		for (int var2 = 0; var2 < this.u.size(); ++var2) {
-			((ara) this.u.get(var2)).b(var1);
+			((ara) this.u.get(var2)).b(entity);
 		}
-
+		entity.valid = false;
 	}
 
 	public void e(Entity var1) {
@@ -794,7 +797,7 @@ public abstract class World implements ard {
 		}
 
 		double var17 = 0.25D;
-		List var18 = this.b(var1, var2.grow(var17, var17, var17));
+		List var18 = this.getEntities(var1, var2.grow(var17, var17, var17));
 
 		for (int var19 = 0; var19 < var18.size(); ++var19) {
 			if (var1.passenger != var18 && var1.vehicle != var18) {
@@ -928,7 +931,7 @@ public abstract class World implements ard {
 			var2 = (Entity) this.k.get(var1);
 
 			try {
-				++var2.W;
+				++var2.ticksLived;
 				var2.s_();
 			} catch (Throwable var9) {
 				var4 = CrashReport.generateCrashReport(var9, "Ticking entity");
@@ -1105,10 +1108,10 @@ public abstract class World implements ard {
 			var1.P = var1.locationX;
 			var1.Q = var1.locationY;
 			var1.R = var1.locationZ;
-			var1.A = var1.yaw;
-			var1.B = var1.pitch;
+			var1.lastYaw = var1.yaw;
+			var1.lastPitch = var1.pitch;
 			if (var2 && var1.ad) {
-				++var1.W;
+				++var1.ticksLived;
 				if (var1.vehicle != null) {
 					var1.ak();
 				} else {
@@ -1130,11 +1133,11 @@ public abstract class World implements ard {
 			}
 
 			if (Double.isNaN((double) var1.pitch) || Double.isInfinite((double) var1.pitch)) {
-				var1.pitch = var1.B;
+				var1.pitch = var1.lastPitch;
 			}
 
 			if (Double.isNaN((double) var1.yaw) || Double.isInfinite((double) var1.yaw)) {
-				var1.yaw = var1.A;
+				var1.yaw = var1.lastYaw;
 			}
 
 			int var6 = MathHelper.toFixedPointInt(var1.locationX / 16.0D);
@@ -1171,7 +1174,7 @@ public abstract class World implements ard {
 	}
 
 	public boolean a(AxisAlignedBB var1, Entity var2) {
-		List var3 = this.b((Entity) null, var1);
+		List var3 = this.getEntities((Entity) null, var1);
 
 		for (int var4 = 0; var4 < var3.size(); ++var4) {
 			Entity var5 = (Entity) var3.get(var4);
@@ -1900,26 +1903,26 @@ public abstract class World implements ard {
 		return null;
 	}
 
-	public List b(Entity var1, AxisAlignedBB var2) {
-		return this.a(var1, var2, EntityPredicates.d);
+	public List<Entity> getEntities(Entity entity, AxisAlignedBB boundingBox) {
+		return this.getEntities(entity, boundingBox, EntityPredicates.notSpectators);
 	}
 
-	public List a(Entity var1, AxisAlignedBB var2, Predicate var3) {
-		ArrayList var4 = Lists.newArrayList();
-		int var5 = MathHelper.toFixedPointInt((var2.minX - 2.0D) / 16.0D);
-		int var6 = MathHelper.toFixedPointInt((var2.maxX + 2.0D) / 16.0D);
-		int var7 = MathHelper.toFixedPointInt((var2.minZ - 2.0D) / 16.0D);
-		int var8 = MathHelper.toFixedPointInt((var2.maxZ + 2.0D) / 16.0D);
+	public List<Entity> getEntities(Entity entity, AxisAlignedBB boundingBox, Predicate<Entity> predicate) {
+		ArrayList<Entity> list = Lists.newArrayList();
+		int var5 = MathHelper.toFixedPointInt((boundingBox.minX - 2.0D) / 16.0D);
+		int var6 = MathHelper.toFixedPointInt((boundingBox.maxX + 2.0D) / 16.0D);
+		int var7 = MathHelper.toFixedPointInt((boundingBox.minZ - 2.0D) / 16.0D);
+		int var8 = MathHelper.toFixedPointInt((boundingBox.maxZ + 2.0D) / 16.0D);
 
-		for (int var9 = var5; var9 <= var6; ++var9) {
-			for (int var10 = var7; var10 <= var8; ++var10) {
-				if (this.a(var9, var10, true)) {
-					this.a(var9, var10).a(var1, var2, var4, var3);
+		for (int i = var5; i <= var6; ++i) {
+			for (int j = var7; j <= var8; ++j) {
+				if (this.a(i, j, true)) {
+					this.a(i, j).a(entity, boundingBox, list, predicate);
 				}
 			}
 		}
 
-		return var4;
+		return list;
 	}
 
 	public List a(Class var1, Predicate var2) {
@@ -1951,7 +1954,7 @@ public abstract class World implements ard {
 	}
 
 	public <T> List<T> a(Class<T> var1, AxisAlignedBB var2) {
-		return this.a(var1, var2, EntityPredicates.d);
+		return this.a(var1, var2, EntityPredicates.notSpectators);
 	}
 
 	public <T> List<T> a(Class<T> var1, AxisAlignedBB var2, Predicate<?> var3) {
@@ -1979,7 +1982,7 @@ public abstract class World implements ard {
 
 		for (int var8 = 0; var8 < var4.size(); ++var8) {
 			Entity var9 = (Entity) var4.get(var8);
-			if (var9 != var3 && EntityPredicates.d.apply(var9)) {
+			if (var9 != var3 && EntityPredicates.notSpectators.apply(var9)) {
 				double var10 = var3.getDistanceSquared(var9);
 				if (var10 <= var6) {
 					var5 = var9;
@@ -2121,7 +2124,7 @@ public abstract class World implements ard {
 
 		for (int var12 = 0; var12 < this.j.size(); ++var12) {
 			EntityHuman var13 = (EntityHuman) this.j.get(var12);
-			if (EntityPredicates.d.apply(var13)) {
+			if (EntityPredicates.notSpectators.apply(var13)) {
 				double var14 = var13.getDistanceSquared(var1, var3, var5);
 				if ((var7 < 0.0D || var14 < var7 * var7) && (var9 == -1.0D || var14 < var9)) {
 					var9 = var14;
@@ -2136,7 +2139,7 @@ public abstract class World implements ard {
 	public boolean b(double var1, double var3, double var5, double var7) {
 		for (int var9 = 0; var9 < this.j.size(); ++var9) {
 			EntityHuman var10 = (EntityHuman) this.j.get(var9);
-			if (EntityPredicates.d.apply(var10)) {
+			if (EntityPredicates.notSpectators.apply(var10)) {
 				double var11 = var10.getDistanceSquared(var1, var3, var5);
 				if (var7 < 0.0D || var11 < var7 * var7) {
 					return true;
@@ -2161,7 +2164,7 @@ public abstract class World implements ard {
 	public EntityHuman b(UUID var1) {
 		for (int var2 = 0; var2 < this.j.size(); ++var2) {
 			EntityHuman var3 = (EntityHuman) this.j.get(var2);
-			if (var1.equals(var3.aJ())) {
+			if (var1.equals(var3.getUUID())) {
 				return var3;
 			}
 		}
@@ -2198,18 +2201,18 @@ public abstract class World implements ard {
 		return spawnPosition;
 	}
 
-	public void B(Position var1) {
-		this.worldData.setSpawn(var1);
+	public void setSpawn(Position position) {
+		this.worldData.setSpawn(position);
 	}
 
 	public boolean a(EntityHuman var1, Position var2) {
 		return true;
 	}
 
-	public void a(Entity var1, byte var2) {
+	public void broadcastEntityEffect(Entity entity, byte effect) {
 	}
 
-	public IChunkProvider N() {
+	public IChunkProvider getChunkProvider() {
 		return this.chunkProvider;
 	}
 
@@ -2217,7 +2220,7 @@ public abstract class World implements ard {
 		var2.a(this, var1, this.getBlockState(var1), var3, var4);
 	}
 
-	public IDataManager O() {
+	public IDataManager getDataManager() {
 		return this.dataManager;
 	}
 
@@ -2225,7 +2228,7 @@ public abstract class World implements ard {
 		return this.worldData;
 	}
 
-	public GameRuleRegistry Q() {
+	public GameRuleRegistry getGameRules() {
 		return this.worldData.getGameRules();
 	}
 
@@ -2325,7 +2328,7 @@ public abstract class World implements ard {
 	}
 
 	public Position a(String var1, Position var2) {
-		return this.N().findNearestMapFeature(this, var1, var2);
+		return this.getChunkProvider().findNearestMapFeature(this, var1, var2);
 	}
 
 	public CrashReportSystemDetails a(CrashReport var1) {
@@ -2430,6 +2433,14 @@ public abstract class World implements ard {
 		int zDistToSpawn = chunkZ * 16 + 8 - position.getZ();
 		short minDist = 128;
 		return xDistToSpawn >= -minDist && xDistToSpawn <= minDist && zDistToSpawn >= -minDist && zDistToSpawn <= minDist;
+	}
+
+	private org.bukkit.World bukkitworld;
+	public org.bukkit.World getBukkitWorld() {
+		if (bukkitworld == null) {
+			bukkitworld = new PipeWorld((WorldServer) this);
+		}
+		return bukkitworld;
 	}
 
 }

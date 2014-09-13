@@ -16,7 +16,7 @@ public class PathfinderGoalTradeWithPlayer extends PathfinderGoal {
 			return false;
 		} else if (!this.a.onGround) {
 			return false;
-		} else if (this.a.G) {
+		} else if (this.a.velocityChanged) {
 			return false;
 		} else {
 			EntityHuman var1 = this.a.u_();

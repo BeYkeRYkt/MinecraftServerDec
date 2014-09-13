@@ -106,7 +106,7 @@ public abstract class EntityInsentient extends EntityLiving {
 	public void K() {
 		super.K();
 		this.world.B.a("mobBaseTick");
-		if (this.isAlive() && this.V.nextInt(1000) < this.a_++) {
+		if (this.isAlive() && this.random.nextInt(1000) < this.a_++) {
 			this.a_ = -this.w();
 			this.x();
 		}
@@ -121,7 +121,7 @@ public abstract class EntityInsentient extends EntityLiving {
 
 			for (int var4 = 0; var4 < var3.length; ++var4) {
 				if (var3[var4] != null && this.bh[var4] <= 1.0F) {
-					var2 += 1 + this.V.nextInt(3);
+					var2 += 1 + this.random.nextInt(3);
 				}
 			}
 
@@ -134,14 +134,14 @@ public abstract class EntityInsentient extends EntityLiving {
 	public void y() {
 		if (this.world.isStatic) {
 			for (int var1 = 0; var1 < 20; ++var1) {
-				double var2 = this.V.nextGaussian() * 0.02D;
-				double var4 = this.V.nextGaussian() * 0.02D;
-				double var6 = this.V.nextGaussian() * 0.02D;
+				double var2 = this.random.nextGaussian() * 0.02D;
+				double var4 = this.random.nextGaussian() * 0.02D;
+				double var6 = this.random.nextGaussian() * 0.02D;
 				double var8 = 10.0D;
-				this.world.a(Particle.a, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J - var2 * var8, this.locationY + (double) (this.V.nextFloat() * this.K) - var4 * var8, this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J - var6 * var8, var2, var4, var6, new int[0]);
+				this.world.a(Particle.a, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height - var2 * var8, this.locationY + (double) (this.random.nextFloat() * this.width) - var4 * var8, this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height - var6 * var8, var2, var4, var6, new int[0]);
 			}
 		} else {
-			this.world.a((Entity) this, (byte) 20);
+			this.world.broadcastEntityEffect((Entity) this, (byte) 20);
 		}
 
 	}
@@ -170,9 +170,9 @@ public abstract class EntityInsentient extends EntityLiving {
 	protected void dropDeathLoot(boolean var1, int var2) {
 		Item var3 = this.getLoot();
 		if (var3 != null) {
-			int var4 = this.V.nextInt(3);
+			int var4 = this.random.nextInt(3);
 			if (var2 > 0) {
-				var4 += this.V.nextInt(var2 + 1);
+				var4 += this.random.nextInt(var2 + 1);
 			}
 
 			for (int var5 = 0; var5 < var4; ++var5) {
@@ -210,8 +210,8 @@ public abstract class EntityInsentient extends EntityLiving {
 		if (this.bn != null) {
 			var4 = new NBTCompoundTag();
 			if (this.bn instanceof EntityLiving) {
-				var4.put("UUIDMost", this.bn.aJ().getMostSignificantBits());
-				var4.put("UUIDLeast", this.bn.aJ().getLeastSignificantBits());
+				var4.put("UUIDMost", this.bn.getUUID().getMostSignificantBits());
+				var4.put("UUIDLeast", this.bn.getUUID().getLeastSignificantBits());
 			} else if (this.bn instanceof adj) {
 				Position var5 = ((adj) this.bn).getPosition();
 				var4.put("X", var5.getX());
@@ -273,7 +273,7 @@ public abstract class EntityInsentient extends EntityLiving {
 	public void m() {
 		super.m();
 		this.world.B.a("looting");
-		if (!this.world.isStatic && this.bX() && !this.aN && this.world.Q().b("mobGriefing")) {
+		if (!this.world.isStatic && this.bX() && !this.aN && this.world.getGameRules().b("mobGriefing")) {
 			List var1 = this.world.a(EntityItem.class, this.getBoundingBox().grow(1.0D, 0.0D, 1.0D));
 			Iterator var2 = var1.iterator();
 
@@ -327,7 +327,7 @@ public abstract class EntityInsentient extends EntityLiving {
 			}
 
 			if (var4 && this.a(var2)) {
-				if (var5 != null && this.V.nextFloat() - 0.1F < this.bh[var3]) {
+				if (var5 != null && this.random.nextFloat() - 0.1F < this.bh[var3]) {
 					this.a(var5, 0.0F);
 				}
 
@@ -370,7 +370,7 @@ public abstract class EntityInsentient extends EntityLiving {
 					this.die();
 				}
 
-				if (this.aO > 600 && this.V.nextInt(800) == 0 && var8 > 1024.0D && this.C()) {
+				if (this.aO > 600 && this.random.nextInt(800) == 0 && var8 > 1024.0D && this.C()) {
 					this.die();
 				} else if (var8 < 1024.0D) {
 					this.aO = 0;
@@ -499,10 +499,10 @@ public abstract class EntityInsentient extends EntityLiving {
 		for (int var3 = 0; var3 < this.getArmorContents().length; ++var3) {
 			ItemStack var4 = this.p(var3);
 			boolean var5 = this.bh[var3] > 1.0F;
-			if (var4 != null && (var1 || var5) && this.V.nextFloat() - (float) var2 * 0.01F < this.bh[var3]) {
+			if (var4 != null && (var1 || var5) && this.random.nextFloat() - (float) var2 * 0.01F < this.bh[var3]) {
 				if (!var5 && var4.e()) {
 					int var6 = Math.max(var4.j() - 25, 1);
-					int var7 = var4.j() - this.V.nextInt(this.V.nextInt(var6) + 1);
+					int var7 = var4.j() - this.random.nextInt(this.random.nextInt(var6) + 1);
 					if (var7 > var6) {
 						var7 = var6;
 					}
@@ -521,24 +521,24 @@ public abstract class EntityInsentient extends EntityLiving {
 	}
 
 	protected void a(vu var1) {
-		if (this.V.nextFloat() < 0.15F * var1.c()) {
-			int var2 = this.V.nextInt(2);
+		if (this.random.nextFloat() < 0.15F * var1.c()) {
+			int var2 = this.random.nextInt(2);
 			float var3 = this.world.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
-			if (this.V.nextFloat() < 0.095F) {
+			if (this.random.nextFloat() < 0.095F) {
 				++var2;
 			}
 
-			if (this.V.nextFloat() < 0.095F) {
+			if (this.random.nextFloat() < 0.095F) {
 				++var2;
 			}
 
-			if (this.V.nextFloat() < 0.095F) {
+			if (this.random.nextFloat() < 0.095F) {
 				++var2;
 			}
 
 			for (int var4 = 3; var4 >= 0; --var4) {
 				ItemStack var5 = this.q(var4);
-				if (var4 < 3 && this.V.nextFloat() < var3) {
+				if (var4 < 3 && this.random.nextFloat() < var3) {
 					break;
 				}
 
@@ -631,21 +631,21 @@ public abstract class EntityInsentient extends EntityLiving {
 
 	protected void b(vu var1) {
 		float var2 = var1.c();
-		if (this.getItemInHand() != null && this.V.nextFloat() < 0.25F * var2) {
-			aph.a(this.V, this.getItemInHand(), (int) (5.0F + var2 * (float) this.V.nextInt(18)));
+		if (this.getItemInHand() != null && this.random.nextFloat() < 0.25F * var2) {
+			aph.a(this.random, this.getItemInHand(), (int) (5.0F + var2 * (float) this.random.nextInt(18)));
 		}
 
 		for (int var3 = 0; var3 < 4; ++var3) {
 			ItemStack var4 = this.q(var3);
-			if (var4 != null && this.V.nextFloat() < 0.5F * var2) {
-				aph.a(this.V, var4, (int) (5.0F + var2 * (float) this.V.nextInt(18)));
+			if (var4 != null && this.random.nextFloat() < 0.5F * var2) {
+				aph.a(this.random, var4, (int) (5.0F + var2 * (float) this.random.nextInt(18)));
 			}
 		}
 
 	}
 
 	public xq a(vu var1, xq var2) {
-		this.a(afs.b).b(new AttributeModifier("Random spawn bonus", this.V.nextGaussian() * 0.05D, 1));
+		this.a(afs.b).b(new AttributeModifier("Random spawn bonus", this.random.nextGaussian() * 0.05D, 1));
 		return var2;
 	}
 
@@ -762,7 +762,7 @@ public abstract class EntityInsentient extends EntityLiving {
 
 				while (var3.hasNext()) {
 					EntityLiving var4 = (EntityLiving) var3.next();
-					if (var4.aJ().equals(var5)) {
+					if (var4.getUUID().equals(var5)) {
 						this.bn = var4;
 						break;
 					}

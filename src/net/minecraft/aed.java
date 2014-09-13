@@ -78,7 +78,7 @@ public abstract class aed extends adx implements vy {
 	}
 
 	public String getName() {
-		return this.k_() ? this.aL() : "container.minecart";
+		return this.k_() ? this.getCustomName() : "container.minecart";
 	}
 
 	public int p_() {

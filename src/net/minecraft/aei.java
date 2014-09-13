@@ -10,7 +10,7 @@ class aei extends aqi {
 	}
 
 	public void a(int var1) {
-		this.a.world.a((Entity) this.a, (byte) var1);
+		this.a.world.broadcastEntityEffect((Entity) this.a, (byte) var1);
 	}
 
 	public World a() {

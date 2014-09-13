@@ -61,7 +61,7 @@ public class EntitySheep extends EntityAnimal {
 			this.a(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, this.cj().a()), 0.0F);
 		}
 
-		int var3 = this.V.nextInt(2) + 1 + this.V.nextInt(1 + var2);
+		int var3 = this.random.nextInt(2) + 1 + this.random.nextInt(1 + var2);
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			if (this.au()) {
@@ -82,13 +82,13 @@ public class EntitySheep extends EntityAnimal {
 		if (var2 != null && var2.getItem() == Items.SHEARS && !this.ck() && !this.i_()) {
 			if (!this.world.isStatic) {
 				this.l(true);
-				int var3 = 1 + this.V.nextInt(3);
+				int var3 = 1 + this.random.nextInt(3);
 
 				for (int var4 = 0; var4 < var3; ++var4) {
 					EntityItem var5 = this.a(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, this.cj().a()), 1.0F);
-					var5.motionY += (double) (this.V.nextFloat() * 0.05F);
-					var5.motionX += (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.1F);
-					var5.motionZ += (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.1F);
+					var5.motionY += (double) (this.random.nextFloat() * 0.05F);
+					var5.motionX += (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.1F);
+					var5.motionZ += (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.1F);
 				}
 			}
 
@@ -193,7 +193,7 @@ public class EntitySheep extends EntityAnimal {
 	}
 
 	public float getHeadHeight() {
-		return 0.95F * this.K;
+		return 0.95F * this.width;
 	}
 
 	// $FF: synthetic method

@@ -18,6 +18,9 @@ import net.minecraft.server.MinecraftServer;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bukkit.entity.Player;
+
+import pipebukkit.server.entity.PipePlayer;
 
 public class EntityPlayer extends EntityHuman implements ICrafting {
 
@@ -62,7 +65,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 				var6 = 1;
 			}
 
-			var5 = var2.r(var5.a(this.V.nextInt(var6 * 2) - var6, 0, this.V.nextInt(var6 * 2) - var6));
+			var5 = var2.r(var5.a(this.random.nextInt(var6 * 2) - var6, 0, this.random.nextInt(var6 * 2) - var6));
 		}
 
 		this.minecraftserver = var1;
@@ -120,8 +123,8 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	public void s_() {
 		this.playerInteractManager.a();
 		--this.bO;
-		if (this.Z > 0) {
-			--this.Z;
+		if (this.noDamageTicks > 0) {
+			--this.noDamageTicks;
 		}
 
 		this.activeContainer.b();
@@ -241,7 +244,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 				this.playerConncetion.sendPacket((Packet) (new PacketPlayOutSetExpirience(this.xp, this.xpTotal, this.xpLevel)));
 			}
 
-			if (this.W % 20 * 5 == 0 && !this.getStatisticManager().a(AchievementList.L)) {
+			if (this.ticksLived % 20 * 5 == 0 && !this.getStatisticManager().a(AchievementList.L)) {
 				this.h_();
 			}
 
@@ -290,7 +293,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public void a(DamageSource var1) {
-		if (this.world.Q().b("showDeathMessages")) {
+		if (this.world.getGameRules().b("showDeathMessages")) {
 			ScoreboardTeamBase var2 = this.bN();
 			if (var2 != null && var2.getDeathMessageVisibility() != ScoreboardTeamNameTagVisibility.ALWAYS) {
 				if (var2.getDeathMessageVisibility() == ScoreboardTeamNameTagVisibility.HIDE_FOR_OTHER_TEAMS) {
@@ -303,7 +306,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			}
 		}
 
-		if (!this.world.Q().b("keepInventory")) {
+		if (!this.world.getGameRules().b("keepInventory")) {
 			this.playerInventory.n();
 		}
 
@@ -839,6 +842,14 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public IChatBaseComponent getPlayerListName() {
 		return null;
+	}
+
+	private Player bukkitplayer;
+	public <T> T getBukkitEntity(Class<T> returnType) {
+		if (bukkitplayer == null) {
+			bukkitplayer = new PipePlayer(this);
+		}
+		return (T) bukkitplayer;
 	}
 
 }

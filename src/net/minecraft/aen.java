@@ -37,7 +37,7 @@ class aen extends PathfinderGoal {
 			this.a.q().a(var1.locationX, var1.locationY, var1.locationZ, 1.0D);
 		} else if (var2 < 256.0D) {
 			double var4 = var1.locationX - this.a.locationX;
-			double var6 = var1.getBoundingBox().minY + (double) (var1.K / 2.0F) - (this.a.locationY + (double) (this.a.K / 2.0F));
+			double var6 = var1.getBoundingBox().minY + (double) (var1.width / 2.0F) - (this.a.locationY + (double) (this.a.width / 2.0F));
 			double var8 = var1.locationZ - this.a.locationZ;
 			if (this.c <= 0) {
 				++this.b;
@@ -58,7 +58,7 @@ class aen extends PathfinderGoal {
 
 					for (int var11 = 0; var11 < 1; ++var11) {
 						EntitySmallFireball var12 = new EntitySmallFireball(this.a.world, this.a, var4 + this.a.bb().nextGaussian() * (double) var10, var6, var8 + this.a.bb().nextGaussian() * (double) var10);
-						var12.locationY = this.a.locationY + (double) (this.a.K / 2.0F) + 0.5D;
+						var12.locationY = this.a.locationY + (double) (this.a.width / 2.0F) + 0.5D;
 						this.a.world.addEntity((Entity) var12);
 					}
 				}

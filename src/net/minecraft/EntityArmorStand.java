@@ -104,8 +104,8 @@ public class EntityArmorStand extends EntityLiving {
 		}
 
 		var1.put("Equipment", (NBTTag) var2);
-		if (this.aM() && (this.aL() == null || this.aL().length() == 0)) {
-			var1.put("CustomNameVisible", this.aM());
+		if (this.isCustomNameVisible() && (this.getCustomName() == null || this.getCustomName().length() == 0)) {
+			var1.put("CustomNameVisible", this.isCustomNameVisible());
 		}
 
 		var1.put("Invisible", this.ay());
@@ -220,7 +220,7 @@ public class EntityArmorStand extends EntityLiving {
 	}
 
 	protected void bK() {
-		List var1 = this.world.b((Entity) this, this.getBoundingBox());
+		List var1 = this.world.getEntities((Entity) this, this.getBoundingBox());
 		if (var1 != null && !var1.isEmpty()) {
 			for (int var2 = 0; var2 < var1.size(); ++var2) {
 				Entity var3 = (Entity) var1.get(var2);
@@ -384,7 +384,7 @@ public class EntityArmorStand extends EntityLiving {
 
 	private void z() {
 		if (this.world instanceof WorldServer) {
-			((WorldServer) this.world).a(Particle.M, this.locationX, this.locationY + (double) this.K / 1.5D, this.locationZ, 10, (double) (this.J / 4.0F), (double) (this.K / 4.0F), (double) (this.J / 4.0F), 0.05D, new int[] { Block.f(Blocks.PLANKS.getBlockState()) });
+			((WorldServer) this.world).a(Particle.M, this.locationX, this.locationY + (double) this.width / 1.5D, this.locationZ, 10, (double) (this.height / 4.0F), (double) (this.width / 4.0F), (double) (this.height / 4.0F), 0.05D, new int[] { Block.f(Blocks.PLANKS.getBlockState()) });
 		}
 
 	}
@@ -420,13 +420,13 @@ public class EntityArmorStand extends EntityLiving {
 	}
 
 	protected float h(float var1, float var2) {
-		this.aH = this.A;
+		this.aH = this.lastYaw;
 		this.aG = this.yaw;
 		return 0.0F;
 	}
 
 	public float getHeadHeight() {
-		return this.i_() ? this.K * 0.5F : this.K * 0.9F;
+		return this.i_() ? this.width * 0.5F : this.width * 0.9F;
 	}
 
 	public void g(float var1, float var2) {
@@ -482,7 +482,7 @@ public class EntityArmorStand extends EntityLiving {
 		return this.n();
 	}
 
-	public void G() {
+	public void setDead() {
 		this.die();
 	}
 

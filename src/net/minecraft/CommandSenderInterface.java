@@ -16,8 +16,6 @@ public interface CommandSenderInterface {
 
 	World getWorld();
 
-	Entity getEntity();
-
 	boolean t_();
 
 	void a(ag var1, int var2);

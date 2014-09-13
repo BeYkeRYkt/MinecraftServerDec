@@ -99,7 +99,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		if (--this.profession <= 0) {
 			Position var1 = new Position(this);
 			this.world.ae().a(var1);
-			this.profession = 70 + this.V.nextInt(50);
+			this.profession = 70 + this.random.nextInt(50);
 			this.village = this.world.ae().a(var1, 32);
 			if (this.village == null) {
 				this.ch();
@@ -122,14 +122,14 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 					while (var3.hasNext()) {
 						aqc var4 = (aqc) var3.next();
 						if (var4.h()) {
-							var4.a(this.V.nextInt(6) + this.V.nextInt(6) + 2);
+							var4.a(this.random.nextInt(6) + this.random.nextInt(6) + 2);
 						}
 					}
 
 					this.cu();
 					this.br = false;
 					if (this.village != null && this.bu != null) {
-						this.world.a((Entity) this, (byte) 14);
+						this.world.broadcastEntityEffect((Entity) this, (byte) 14);
 						this.village.a(this.bu, 1);
 					}
 				}
@@ -262,7 +262,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 
 				this.village.a(var1.getName(), var2);
 				if (this.isAlive()) {
-					this.world.a((Entity) this, (byte) 13);
+					this.world.broadcastEntityEffect((Entity) this, (byte) 13);
 				}
 			}
 		}
@@ -318,7 +318,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 				}
 
 				if (var2) {
-					this.world.a((Entity) this, (byte) 18);
+					this.world.broadcastEntityEffect((Entity) this, (byte) 18);
 					this.willing = true;
 					break;
 				}
@@ -336,8 +336,8 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		var1.g();
 		this.a_ = -this.w();
 		this.a("mob.villager.yes", this.bA(), this.bB());
-		int var2 = 3 + this.V.nextInt(4);
-		if (var1.e() == 1 || this.V.nextInt(5) == 0) {
+		int var2 = 3 + this.random.nextInt(4);
+		if (var1.e() == 1 || this.random.nextInt(5) == 0) {
 			this.bq = 40;
 			this.br = true;
 			this.willing = true;
@@ -385,7 +385,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		if (this.career != 0 && this.careerLevel != 0) {
 			++this.careerLevel;
 		} else {
-			this.career = this.V.nextInt(var1.length) + 1;
+			this.career = this.random.nextInt(var1.length) + 1;
 			this.careerLevel = 1;
 		}
 
@@ -403,14 +403,14 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 
 			for (int var8 = 0; var8 < var7; ++var8) {
 				agw var9 = var6[var8];
-				var9.a(this.bp, this.V);
+				var9.a(this.bp, this.random);
 			}
 		}
 
 	}
 
 	public IChatBaseComponent getComponentName() {
-		String var1 = this.aL();
+		String var1 = this.getCustomName();
 		if (var1 != null && var1.length() > 0) {
 			return new ChatComponentText(var1);
 		} else {
@@ -457,7 +457,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 			if (var2 != null) {
 				ChatMessage var3 = new ChatMessage("entity.Villager." + var2, new Object[0]);
 				var3.getChatModifier().a(this.aP());
-				var3.getChatModifier().a(this.aJ().toString());
+				var3.getChatModifier().a(this.getUUID().toString());
 				return var3;
 			} else {
 				return super.getComponentName();

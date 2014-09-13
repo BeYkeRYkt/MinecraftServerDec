@@ -59,9 +59,9 @@ public abstract class ahr extends Entity implements aho {
 		var1 /= (double) var9;
 		var3 /= (double) var9;
 		var5 /= (double) var9;
-		var1 += this.V.nextGaussian() * 0.007499999832361937D * (double) var8;
-		var3 += this.V.nextGaussian() * 0.007499999832361937D * (double) var8;
-		var5 += this.V.nextGaussian() * 0.007499999832361937D * (double) var8;
+		var1 += this.random.nextGaussian() * 0.007499999832361937D * (double) var8;
+		var3 += this.random.nextGaussian() * 0.007499999832361937D * (double) var8;
+		var5 += this.random.nextGaussian() * 0.007499999832361937D * (double) var8;
 		var1 *= (double) var7;
 		var3 *= (double) var7;
 		var5 *= (double) var7;
@@ -69,8 +69,8 @@ public abstract class ahr extends Entity implements aho {
 		this.motionY = var3;
 		this.motionZ = var5;
 		float var10 = MathHelper.sqrt(var1 * var1 + var5 * var5);
-		this.A = this.yaw = (float) (Math.atan2(var1, var5) * 180.0D / 3.1415927410125732D);
-		this.B = this.pitch = (float) (Math.atan2(var3, (double) var10) * 180.0D / 3.1415927410125732D);
+		this.lastYaw = this.yaw = (float) (Math.atan2(var1, var5) * 180.0D / 3.1415927410125732D);
+		this.lastPitch = this.pitch = (float) (Math.atan2(var3, (double) var10) * 180.0D / 3.1415927410125732D);
 		this.i = 0;
 	}
 
@@ -94,9 +94,9 @@ public abstract class ahr extends Entity implements aho {
 			}
 
 			this.a = false;
-			this.motionX *= (double) (this.V.nextFloat() * 0.2F);
-			this.motionY *= (double) (this.V.nextFloat() * 0.2F);
-			this.motionZ *= (double) (this.V.nextFloat() * 0.2F);
+			this.motionX *= (double) (this.random.nextFloat() * 0.2F);
+			this.motionY *= (double) (this.random.nextFloat() * 0.2F);
+			this.motionZ *= (double) (this.random.nextFloat() * 0.2F);
 			this.i = 0;
 			this.ap = 0;
 		} else {
@@ -114,7 +114,7 @@ public abstract class ahr extends Entity implements aho {
 
 		if (!this.world.isStatic) {
 			Entity var4 = null;
-			List var5 = this.world.b((Entity) this, this.getBoundingBox().a(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
+			List var5 = this.world.getEntities((Entity) this, this.getBoundingBox().a(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
 			double var6 = 0.0D;
 			EntityLiving var8 = this.n();
 
@@ -153,24 +153,24 @@ public abstract class ahr extends Entity implements aho {
 		float var16 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		this.yaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / 3.1415927410125732D);
 
-		for (this.pitch = (float) (Math.atan2(this.motionY, (double) var16) * 180.0D / 3.1415927410125732D); this.pitch - this.B < -180.0F; this.B -= 360.0F) {
+		for (this.pitch = (float) (Math.atan2(this.motionY, (double) var16) * 180.0D / 3.1415927410125732D); this.pitch - this.lastPitch < -180.0F; this.lastPitch -= 360.0F) {
 			;
 		}
 
-		while (this.pitch - this.B >= 180.0F) {
-			this.B += 360.0F;
+		while (this.pitch - this.lastPitch >= 180.0F) {
+			this.lastPitch += 360.0F;
 		}
 
-		while (this.yaw - this.A < -180.0F) {
-			this.A -= 360.0F;
+		while (this.yaw - this.lastYaw < -180.0F) {
+			this.lastYaw -= 360.0F;
 		}
 
-		while (this.yaw - this.A >= 180.0F) {
-			this.A += 360.0F;
+		while (this.yaw - this.lastYaw >= 180.0F) {
+			this.lastYaw += 360.0F;
 		}
 
-		this.pitch = this.B + (this.pitch - this.B) * 0.2F;
-		this.yaw = this.A + (this.yaw - this.A) * 0.2F;
+		this.pitch = this.lastPitch + (this.pitch - this.lastPitch) * 0.2F;
+		this.yaw = this.lastYaw + (this.yaw - this.lastYaw) * 0.2F;
 		float var17 = 0.99F;
 		float var18 = this.m();
 		if (this.V()) {

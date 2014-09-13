@@ -7,7 +7,7 @@ public class EntityGhast extends xl implements IMonster {
 	public EntityGhast(World var1) {
 		super(var1);
 		this.a(4.0F, 4.0F);
-		this.ab = true;
+		this.fireProof = true;
 		this.b_ = 5;
 		this.f = new afc(this);
 		this.i.a(5, new afe(this));
@@ -72,14 +72,14 @@ public class EntityGhast extends xl implements IMonster {
 	}
 
 	protected void dropDeathLoot(boolean var1, int var2) {
-		int var3 = this.V.nextInt(2) + this.V.nextInt(1 + var2);
+		int var3 = this.random.nextInt(2) + this.random.nextInt(1 + var2);
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
 			this.a(Items.GHAST_TEAR, 1);
 		}
 
-		var3 = this.V.nextInt(3) + this.V.nextInt(1 + var2);
+		var3 = this.random.nextInt(3) + this.random.nextInt(1 + var2);
 
 		for (var4 = 0; var4 < var3; ++var4) {
 			this.a(Items.GUNPOWDER, 1);
@@ -92,7 +92,7 @@ public class EntityGhast extends xl implements IMonster {
 	}
 
 	public boolean bQ() {
-		return this.V.nextInt(20) == 0 && super.bQ() && this.world.getDifficulty() != Difficulty.PEACEFUL;
+		return this.random.nextInt(20) == 0 && super.bQ() && this.world.getDifficulty() != Difficulty.PEACEFUL;
 	}
 
 	public int bU() {

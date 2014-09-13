@@ -43,6 +43,8 @@ import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import pipebukkit.server.PipeServer;
+
 public abstract class MinecraftServer implements CommandSenderInterface, Runnable, ITaskScheduler, wd {
 
 	private static final Logger logger = LogManager.getLogger();
@@ -95,6 +97,11 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private Thread mainThread;
 	private long lastTickTime = getCurrentMillis();
 
+	private PipeServer pipeServer;
+	public PipeServer getPipeServer() {
+		return pipeServer;
+	}
+
 	public MinecraftServer(File universe, Proxy var2, File usercache) {
 		this.proxy = var2;
 		instance = this;
@@ -106,6 +113,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.authService = new YggdrasilAuthenticationService(var2, UUID.randomUUID().toString());
 		this.minecraftSessionService = this.authService.createMinecraftSessionService();
 		this.gameProflieRepository = this.authService.createProfileRepository();
+		pipeServer = new PipeServer();
 	}
 
 	protected cl h() {
@@ -476,7 +484,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 				if (this.ticks % 20 == 0) {
 					this.profiler.a("timeSync");
-					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.getTime(), world.L(), world.Q().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
+					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.getTime(), world.L(), world.getGameRules().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
 					this.profiler.b();
 				}
 
@@ -849,7 +857,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			}
 		}
 
-		this.X().e(this.worlds[0].O().g());
+		this.X().e(this.worlds[0].getDataManager().g());
 		this.stopTicking();
 	}
 
@@ -892,7 +900,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 					var1.a("world[" + var2 + "][generator_name]", var5.getLevelType().getName());
 					var1.a("world[" + var2 + "][generator_version]", Integer.valueOf(var5.getLevelType().getVersion()));
 					var1.a("world[" + var2 + "][height]", Integer.valueOf(this.maxBuildHeight));
-					var1.a("world[" + var2 + "][chunks_loaded]", Integer.valueOf(var4.N().getLoadedChunks()));
+					var1.a("world[" + var2 + "][chunks_loaded]", Integer.valueOf(var4.getChunkProvider().getLoadedChunks()));
 					++var2;
 				}
 			}
@@ -1098,7 +1106,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public boolean t_() {
-		return getInstance().worlds[0].Q().b("sendCommandFeedback");
+		return getInstance().worlds[0].getGameRules().b("sendCommandFeedback");
 	}
 
 	public void a(ag var1, int var2) {

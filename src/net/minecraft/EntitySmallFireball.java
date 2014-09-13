@@ -31,7 +31,7 @@ public class EntitySmallFireball extends EntityFireball {
 			} else {
 				var2 = true;
 				if (this.a != null && this.a instanceof EntityInsentient) {
-					var2 = this.world.Q().b("mobGriefing");
+					var2 = this.world.getGameRules().b("mobGriefing");
 				}
 
 				if (var2) {

@@ -13,7 +13,7 @@ public class EntityChicken extends EntityAnimal {
 	public EntityChicken(World var1) {
 		super(var1);
 		this.a(0.4F, 0.7F);
-		this.bq = this.V.nextInt(6000) + 6000;
+		this.bq = this.random.nextInt(6000) + 6000;
 		this.i.a(0, new PathfinderGoalFloat(this));
 		this.i.a(1, new zu(this, 1.4D));
 		this.i.a(2, new yt(this, 1.0D));
@@ -25,7 +25,7 @@ public class EntityChicken extends EntityAnimal {
 	}
 
 	public float getHeadHeight() {
-		return this.K;
+		return this.width;
 	}
 
 	protected void aW() {
@@ -51,9 +51,9 @@ public class EntityChicken extends EntityAnimal {
 
 		this.bk += this.bp * 2.0F;
 		if (!this.world.isStatic && !this.i_() && !this.cj() && --this.bq <= 0) {
-			this.a("mob.chicken.plop", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
+			this.a("mob.chicken.plop", 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.a(Items.EGG, 1);
-			this.bq = this.V.nextInt(6000) + 6000;
+			this.bq = this.random.nextInt(6000) + 6000;
 		}
 
 	}
@@ -82,7 +82,7 @@ public class EntityChicken extends EntityAnimal {
 	}
 
 	protected void dropDeathLoot(boolean var1, int var2) {
-		int var3 = this.V.nextInt(3) + this.V.nextInt(1 + var2);
+		int var3 = this.random.nextInt(3) + this.random.nextInt(1 + var2);
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			this.a(Items.FEATHER, 1);
@@ -133,7 +133,7 @@ public class EntityChicken extends EntityAnimal {
 		float var2 = MathHelper.b(this.aG * 3.1415927F / 180.0F);
 		float var3 = 0.1F;
 		float var4 = 0.0F;
-		this.passenger.b(this.locationX + (double) (var3 * var1), this.locationY + (double) (this.K * 0.5F) + this.passenger.am() + (double) var4, this.locationZ - (double) (var3 * var2));
+		this.passenger.b(this.locationX + (double) (var3 * var1), this.locationY + (double) (this.width * 0.5F) + this.passenger.am() + (double) var4, this.locationZ - (double) (var3 * var2));
 		if (this.passenger instanceof EntityLiving) {
 			((EntityLiving) this.passenger).aG = this.aG;
 		}

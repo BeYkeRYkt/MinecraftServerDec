@@ -77,30 +77,30 @@ public class yu extends PathfinderGoal {
 		float var16 = var14 * var11;
 		if (MathHelper.e(var15) > MathHelper.e(var16)) {
 			if (var15 < 0.0F) {
-				var15 -= this.a.J / 2.0F;
+				var15 -= this.a.height / 2.0F;
 			}
 
 			if (var15 > 0.0F) {
-				var15 += this.a.J / 2.0F;
+				var15 += this.a.height / 2.0F;
 			}
 
 			var16 = 0.0F;
 		} else {
 			var15 = 0.0F;
 			if (var16 < 0.0F) {
-				var16 -= this.a.J / 2.0F;
+				var16 -= this.a.height / 2.0F;
 			}
 
 			if (var16 > 0.0F) {
-				var16 += this.a.J / 2.0F;
+				var16 += this.a.height / 2.0F;
 			}
 		}
 
 		int var17 = MathHelper.toFixedPointInt(this.a.locationX + (double) var15);
 		int var18 = MathHelper.toFixedPointInt(this.a.locationZ + (double) var16);
-		int var19 = MathHelper.d(this.a.J + 1.0F);
-		int var20 = MathHelper.d(this.a.K + var1.K + 1.0F);
-		int var21 = MathHelper.d(this.a.J + 1.0F);
+		int var19 = MathHelper.d(this.a.height + 1.0F);
+		int var20 = MathHelper.d(this.a.width + var1.width + 1.0F);
+		int var21 = MathHelper.d(this.a.height + 1.0F);
 		if (var4 != var17 || var6 != var18) {
 			Block var22 = this.a.world.getBlockState(new Position(var4, var5, var6)).getBlock();
 			boolean var23 = !this.a(var22) && (var22.getMaterial() != Material.AIR || !this.a(this.a.world.getBlockState(new Position(var4, var5 - 1, var6)).getBlock()));

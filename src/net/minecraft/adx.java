@@ -71,13 +71,13 @@ public abstract class adx extends Entity implements vz {
 		this.motionX = 0.0D;
 		this.motionY = 0.0D;
 		this.motionZ = 0.0D;
-		this.p = var2;
-		this.q = var4;
-		this.r = var6;
+		this.previousX = var2;
+		this.previousY = var4;
+		this.previousZ = var6;
 	}
 
 	public double an() {
-		return (double) this.K * 0.5D - 0.20000000298023224D;
+		return (double) this.width * 0.5D - 0.20000000298023224D;
 	}
 
 	public boolean damageEntity(DamageSource var1, float var2) {
@@ -149,7 +149,7 @@ public abstract class adx extends Entity implements vz {
 				if (var1.isNetherAllowed()) {
 					if (this.vehicle == null && this.al++ >= var2) {
 						this.al = var2;
-						this.aj = this.ar();
+						this.portalCooldown = this.ar();
 						byte var3;
 						if (this.world.worldProvider.getDimensionId() == -1) {
 							var3 = 0;
@@ -172,8 +172,8 @@ public abstract class adx extends Entity implements vz {
 				}
 			}
 
-			if (this.aj > 0) {
-				--this.aj;
+			if (this.portalCooldown > 0) {
+				--this.portalCooldown;
 			}
 
 			this.world.B.b();
@@ -196,9 +196,9 @@ public abstract class adx extends Entity implements vz {
 			}
 
 		} else {
-			this.p = this.locationX;
-			this.q = this.locationY;
-			this.r = this.locationZ;
+			this.previousX = this.locationX;
+			this.previousY = this.locationY;
+			this.previousZ = this.locationZ;
 			this.motionY -= 0.03999999910593033D;
 			int var14 = MathHelper.toFixedPointInt(this.locationX);
 			var2 = MathHelper.toFixedPointInt(this.locationY);
@@ -220,8 +220,8 @@ public abstract class adx extends Entity implements vz {
 
 			this.Q();
 			this.pitch = 0.0F;
-			double var6 = this.p - this.locationX;
-			double var8 = this.r - this.locationZ;
+			double var6 = this.previousX - this.locationX;
+			double var8 = this.previousZ - this.locationZ;
 			if (var6 * var6 + var8 * var8 > 0.001D) {
 				this.yaw = (float) (Math.atan2(var8, var6) * 180.0D / 3.141592653589793D);
 				if (this.a) {
@@ -229,14 +229,14 @@ public abstract class adx extends Entity implements vz {
 				}
 			}
 
-			double var10 = (double) MathHelper.g(this.yaw - this.A);
+			double var10 = (double) MathHelper.g(this.yaw - this.lastYaw);
 			if (var10 < -170.0D || var10 >= 170.0D) {
 				this.yaw += 180.0F;
 				this.a = !this.a;
 			}
 
 			this.b(this.yaw, this.pitch);
-			Iterator var12 = this.world.b((Entity) this, this.getBoundingBox().grow(0.20000000298023224D, 0.0D, 0.20000000298023224D)).iterator();
+			Iterator var12 = this.world.getEntities((Entity) this, this.getBoundingBox().grow(0.20000000298023224D, 0.0D, 0.20000000298023224D)).iterator();
 
 			while (var12.hasNext()) {
 				Entity var13 = (Entity) var12.next();
@@ -284,7 +284,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	protected void a(Position var1, BlockState var2) {
-		this.O = 0.0F;
+		this.fallDistance = 0.0F;
 		Vec3D var3 = this.k(this.locationX, this.locationY, this.locationZ);
 		this.locationY = (double) var1.getY();
 		boolean var4 = false;
@@ -465,9 +465,9 @@ public abstract class adx extends Entity implements vz {
 		this.locationX = var1;
 		this.locationY = var3;
 		this.locationZ = var5;
-		float var7 = this.J / 2.0F;
-		float var8 = this.K;
-		this.a(new AxisAlignedBB(var1 - (double) var7, var3, var5 - (double) var7, var1 + (double) var7, var3 + (double) var8, var5 + (double) var7));
+		float var7 = this.height / 2.0F;
+		float var8 = this.width;
+		this.setBoundingBox(new AxisAlignedBB(var1 - (double) var7, var3, var5 - (double) var7, var1 + (double) var7, var3 + (double) var8, var5 + (double) var7));
 	}
 
 	public Vec3D k(double var1, double var3, double var5) {
@@ -711,7 +711,7 @@ public abstract class adx extends Entity implements vz {
 		return this.b != null;
 	}
 
-	public String aL() {
+	public String getCustomName() {
 		return this.b;
 	}
 
@@ -719,12 +719,12 @@ public abstract class adx extends Entity implements vz {
 		if (this.k_()) {
 			ChatComponentText var2 = new ChatComponentText(this.b);
 			var2.getChatModifier().a(this.aP());
-			var2.getChatModifier().a(this.aJ().toString());
+			var2.getChatModifier().a(this.getUUID().toString());
 			return var2;
 		} else {
 			ChatMessage var1 = new ChatMessage(this.getName(), new Object[0]);
 			var1.getChatModifier().a(this.aP());
-			var1.getChatModifier().a(this.aJ().toString());
+			var1.getChatModifier().a(this.getUUID().toString());
 			return var1;
 		}
 	}

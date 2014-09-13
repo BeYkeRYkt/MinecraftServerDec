@@ -105,7 +105,7 @@ public class BlockFire extends Block {
 	}
 
 	public void b(World var1, Position var2, BlockState var3, Random var4) {
-		if (var1.Q().b("doFireTick")) {
+		if (var1.getGameRules().b("doFireTick")) {
 			if (!this.c(var1, var2)) {
 				var1.g(var2);
 			}

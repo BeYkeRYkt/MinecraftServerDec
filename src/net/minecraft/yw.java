@@ -27,7 +27,7 @@ public class yw extends PathfinderGoal {
 
 	public void c() {
 		this.a = 40;
-		this.d.a((Entity) this.c, (byte) 10);
+		this.d.broadcastEntityEffect((Entity) this.c, (byte) 10);
 		this.c.s().n();
 	}
 
@@ -48,7 +48,7 @@ public class yw extends PathfinderGoal {
 		if (this.a == 4) {
 			Position var1 = new Position(this.c.locationX, this.c.locationY, this.c.locationZ);
 			if (b.apply(this.d.getBlockState(var1))) {
-				if (this.d.Q().b("mobGriefing")) {
+				if (this.d.getGameRules().b("mobGriefing")) {
 					this.d.b(var1, false);
 				}
 
@@ -56,7 +56,7 @@ public class yw extends PathfinderGoal {
 			} else {
 				Position var2 = var1.b();
 				if (this.d.getBlockState(var2).getBlock() == Blocks.GRASS) {
-					if (this.d.Q().b("mobGriefing")) {
+					if (this.d.getGameRules().b("mobGriefing")) {
 						this.d.b(2001, var2, Block.getBlockId((Block) Blocks.GRASS));
 						this.d.a(var2, Blocks.DIRT.getBlockState(), 2);
 					}

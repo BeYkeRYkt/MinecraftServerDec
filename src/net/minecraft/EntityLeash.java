@@ -15,7 +15,7 @@ public class EntityLeash extends adj {
 		float var3 = 0.125F;
 		float var4 = 0.1875F;
 		float var5 = 0.25F;
-		this.a(new AxisAlignedBB(this.locationX - 0.1875D, this.locationY - 0.25D + 0.125D, this.locationZ - 0.1875D, this.locationX + 0.1875D, this.locationY + 0.25D + 0.125D, this.locationZ + 0.1875D));
+		this.setBoundingBox(new AxisAlignedBB(this.locationX - 0.1875D, this.locationY - 0.25D + 0.125D, this.locationZ - 0.1875D, this.locationX + 0.1875D, this.locationY + 0.25D + 0.125D, this.locationZ + 0.1875D));
 	}
 
 	protected void h() {

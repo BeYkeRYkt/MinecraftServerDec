@@ -684,7 +684,7 @@ public class Chunk {
 		this.q = true;
 	}
 
-	public void a(Entity var1, AxisAlignedBB var2, List var3, Predicate var4) {
+	public void a(Entity var1, AxisAlignedBB var2, List<Entity> var3, Predicate<Entity> var4) {
 		int var5 = MathHelper.toFixedPointInt((var2.minY - 2.0D) / 16.0D);
 		int var6 = MathHelper.toFixedPointInt((var2.maxY + 2.0D) / 16.0D);
 		var5 = MathHelper.a(var5, 0, this.entitySlices.length - 1);

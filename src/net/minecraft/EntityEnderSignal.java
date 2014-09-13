@@ -41,7 +41,7 @@ public class EntityEnderSignal extends Entity {
 		}
 
 		this.d = 0;
-		this.e = this.V.nextInt(5) > 0;
+		this.e = this.random.nextInt(5) > 0;
 	}
 
 	public void s_() {
@@ -55,24 +55,24 @@ public class EntityEnderSignal extends Entity {
 		float var1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		this.yaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / 3.1415927410125732D);
 
-		for (this.pitch = (float) (Math.atan2(this.motionY, (double) var1) * 180.0D / 3.1415927410125732D); this.pitch - this.B < -180.0F; this.B -= 360.0F) {
+		for (this.pitch = (float) (Math.atan2(this.motionY, (double) var1) * 180.0D / 3.1415927410125732D); this.pitch - this.lastPitch < -180.0F; this.lastPitch -= 360.0F) {
 			;
 		}
 
-		while (this.pitch - this.B >= 180.0F) {
-			this.B += 360.0F;
+		while (this.pitch - this.lastPitch >= 180.0F) {
+			this.lastPitch += 360.0F;
 		}
 
-		while (this.yaw - this.A < -180.0F) {
-			this.A -= 360.0F;
+		while (this.yaw - this.lastYaw < -180.0F) {
+			this.lastYaw -= 360.0F;
 		}
 
-		while (this.yaw - this.A >= 180.0F) {
-			this.A += 360.0F;
+		while (this.yaw - this.lastYaw >= 180.0F) {
+			this.lastYaw += 360.0F;
 		}
 
-		this.pitch = this.B + (this.pitch - this.B) * 0.2F;
-		this.yaw = this.A + (this.yaw - this.A) * 0.2F;
+		this.pitch = this.lastPitch + (this.pitch - this.lastPitch) * 0.2F;
+		this.yaw = this.lastYaw + (this.yaw - this.lastYaw) * 0.2F;
 		if (!this.world.isStatic) {
 			double var2 = this.a - this.locationX;
 			double var4 = this.c - this.locationZ;
@@ -99,7 +99,7 @@ public class EntityEnderSignal extends Entity {
 				this.world.a(Particle.e, this.locationX - this.motionX * (double) var10, this.locationY - this.motionY * (double) var10, this.locationZ - this.motionZ * (double) var10, this.motionX, this.motionY, this.motionZ, new int[0]);
 			}
 		} else {
-			this.world.a(Particle.y, this.locationX - this.motionX * (double) var10 + this.V.nextDouble() * 0.6D - 0.3D, this.locationY - this.motionY * (double) var10 - 0.5D, this.locationZ - this.motionZ * (double) var10 + this.V.nextDouble() * 0.6D - 0.3D, this.motionX, this.motionY, this.motionZ, new int[0]);
+			this.world.a(Particle.y, this.locationX - this.motionX * (double) var10 + this.random.nextDouble() * 0.6D - 0.3D, this.locationY - this.motionY * (double) var10 - 0.5D, this.locationZ - this.motionZ * (double) var10 + this.random.nextDouble() * 0.6D - 0.3D, this.motionX, this.motionY, this.motionZ, new int[0]);
 		}
 
 		if (!this.world.isStatic) {

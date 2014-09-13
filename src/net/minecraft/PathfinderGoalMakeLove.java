@@ -62,7 +62,7 @@ public class PathfinderGoalMakeLove extends PathfinderGoal {
 		}
 
 		if (this.b.bb().nextInt(35) == 0) {
-			this.d.a((Entity) this.b, (byte) 12);
+			this.d.broadcastEntityEffect((Entity) this.b, (byte) 12);
 		}
 
 	}
@@ -85,6 +85,6 @@ public class PathfinderGoalMakeLove extends PathfinderGoal {
 		var1.b(-24000);
 		var1.setPositionRotation(this.b.locationX, this.b.locationY, this.b.locationZ, 0.0F, 0.0F);
 		this.d.addEntity((Entity) var1);
-		this.d.a((Entity) var1, (byte) 12);
+		this.d.broadcastEntityEffect((Entity) var1, (byte) 12);
 	}
 }

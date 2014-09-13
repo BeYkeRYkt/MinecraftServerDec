@@ -28,10 +28,10 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimal {
 		if (this.bk > 0) {
 			--this.bk;
 			if (this.bk % 10 == 0) {
-				double var1 = this.V.nextGaussian() * 0.02D;
-				double var3 = this.V.nextGaussian() * 0.02D;
-				double var5 = this.V.nextGaussian() * 0.02D;
-				this.world.a(Particle.I, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var1, var3, var5, new int[0]);
+				double var1 = this.random.nextGaussian() * 0.02D;
+				double var3 = this.random.nextGaussian() * 0.02D;
+				double var5 = this.random.nextGaussian() * 0.02D;
+				this.world.a(Particle.I, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, var1, var3, var5, new int[0]);
 			}
 		}
 
@@ -116,7 +116,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimal {
 	public void c(EntityHuman var1) {
 		this.bk = 600;
 		this.bm = var1;
-		this.world.a((Entity) this, (byte) 18);
+		this.world.broadcastEntityEffect((Entity) this, (byte) 18);
 	}
 
 	public EntityHuman co() {

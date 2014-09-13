@@ -50,7 +50,7 @@ public class EntityItemFrame extends adj {
 	}
 
 	public void a(Entity var1, boolean var2) {
-		if (this.world.Q().b("doTileDrops")) {
+		if (this.world.getGameRules().b("doTileDrops")) {
 			ItemStack var3 = this.o();
 			if (var1 instanceof EntityHuman) {
 				EntityHuman var4 = (EntityHuman) var1;
@@ -64,7 +64,7 @@ public class EntityItemFrame extends adj {
 				this.a(new ItemStack(Items.ITEM_FRAME), 0.0F);
 			}
 
-			if (var3 != null && this.V.nextFloat() < this.c) {
+			if (var3 != null && this.random.nextFloat() < this.c) {
 				var3 = var3.getCopy();
 				this.b(var3);
 				this.a(var3, 0.0F);

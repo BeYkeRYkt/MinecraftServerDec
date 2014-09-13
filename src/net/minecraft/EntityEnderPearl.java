@@ -13,14 +13,14 @@ public class EntityEnderPearl extends ahr {
 		}
 
 		for (int var3 = 0; var3 < 32; ++var3) {
-			this.world.a(Particle.y, this.locationX, this.locationY + this.V.nextDouble() * 2.0D, this.locationZ, this.V.nextGaussian(), 0.0D, this.V.nextGaussian(), new int[0]);
+			this.world.a(Particle.y, this.locationX, this.locationY + this.random.nextDouble() * 2.0D, this.locationZ, this.random.nextGaussian(), 0.0D, this.random.nextGaussian(), new int[0]);
 		}
 
 		if (!this.world.isStatic) {
 			if (var2 instanceof EntityPlayer) {
 				EntityPlayer var5 = (EntityPlayer) var2;
 				if (var5.playerConncetion.getNetworkManager().isConnected() && var5.world == this.world && !var5.isSleeping()) {
-					if (this.V.nextFloat() < 0.05F && this.world.Q().b("doMobSpawning")) {
+					if (this.random.nextFloat() < 0.05F && this.world.getGameRules().b("doMobSpawning")) {
 						EntityEndermite var4 = new EntityEndermite(this.world);
 						var4.a(true);
 						var4.setPositionRotation(var2.locationX, var2.locationY, var2.locationZ, var2.yaw, var2.pitch);
@@ -32,7 +32,7 @@ public class EntityEnderPearl extends ahr {
 					}
 
 					var2.updatePosition(this.locationX, this.locationY, this.locationZ);
-					var2.O = 0.0F;
+					var2.fallDistance = 0.0F;
 					var2.damageEntity(DamageSource.FALL, 5.0F);
 				}
 			}

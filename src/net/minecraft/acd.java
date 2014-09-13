@@ -7,6 +7,6 @@ class acd extends zk {
 	}
 
 	protected double a(EntityLiving var1) {
-		return (double) (4.0F + var1.J);
+		return (double) (4.0F + var1.height);
 	}
 }

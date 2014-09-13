@@ -49,13 +49,13 @@ public class EntityBoat extends Entity {
 		this.motionX = 0.0D;
 		this.motionY = 0.0D;
 		this.motionZ = 0.0D;
-		this.p = var2;
-		this.q = var4;
-		this.r = var6;
+		this.previousX = var2;
+		this.previousY = var4;
+		this.previousZ = var6;
 	}
 
 	public double an() {
-		return (double) this.K * 0.0D - 0.30000001192092896D;
+		return (double) this.width * 0.0D - 0.30000001192092896D;
 	}
 
 	public boolean damageEntity(DamageSource var1, float var2) {
@@ -103,9 +103,9 @@ public class EntityBoat extends Entity {
 			this.a(this.j() - 1.0F);
 		}
 
-		this.p = this.locationX;
-		this.q = this.locationY;
-		this.r = this.locationZ;
+		this.previousX = this.locationX;
+		this.previousY = this.locationY;
+		this.previousZ = this.locationZ;
 		byte var1 = 5;
 		double var2 = 0.0D;
 
@@ -127,11 +127,11 @@ public class EntityBoat extends Entity {
 			var8 = Math.sin((double) this.yaw * 3.141592653589793D / 180.0D);
 
 			for (var10 = 0; (double) var10 < 1.0D + var19 * 60.0D; ++var10) {
-				double var11 = (double) (this.V.nextFloat() * 2.0F - 1.0F);
-				double var13 = (double) (this.V.nextInt(2) * 2 - 1) * 0.7D;
+				double var11 = (double) (this.random.nextFloat() * 2.0F - 1.0F);
+				double var13 = (double) (this.random.nextInt(2) * 2 - 1) * 0.7D;
 				double var15;
 				double var17;
-				if (this.V.nextBoolean()) {
+				if (this.random.nextBoolean()) {
 					var15 = this.locationX - var6 * var11 * 0.8D + var8 * var13;
 					var17 = this.locationZ - var8 * var11 * 0.8D - var6 * var13;
 					this.world.a(Particle.f, var15, this.locationY - 0.125D, var17, this.motionX, this.motionY, this.motionZ, new int[0]);
@@ -222,10 +222,10 @@ public class EntityBoat extends Entity {
 					Block var14 = this.world.getBlockState(var27).getBlock();
 					if (var14 == Blocks.SNOW_LAYER) {
 						this.world.g(var27);
-						this.D = false;
+						this.positionChanged = false;
 					} else if (var14 == Blocks.WATER_LILY) {
 						this.world.b(var27, true);
-						this.D = false;
+						this.positionChanged = false;
 					}
 				}
 			}
@@ -237,7 +237,7 @@ public class EntityBoat extends Entity {
 			}
 
 			this.move(this.motionX, this.motionY, this.motionZ);
-			if (this.D && var19 > 0.2D) {
+			if (this.positionChanged && var19 > 0.2D) {
 				if (!this.world.isStatic && !this.dead) {
 					this.die();
 
@@ -257,8 +257,8 @@ public class EntityBoat extends Entity {
 
 			this.pitch = 0.0F;
 			var8 = (double) this.yaw;
-			var24 = this.p - this.locationX;
-			var26 = this.r - this.locationZ;
+			var24 = this.previousX - this.locationX;
+			var26 = this.previousZ - this.locationZ;
 			if (var24 * var24 + var26 * var26 > 0.001D) {
 				var8 = (double) ((float) (Math.atan2(var26, var24) * 180.0D / 3.141592653589793D));
 			}
@@ -275,7 +275,7 @@ public class EntityBoat extends Entity {
 			this.yaw = (float) ((double) this.yaw + var28);
 			this.b(this.yaw, this.pitch);
 			if (!this.world.isStatic) {
-				List var16 = this.world.b((Entity) this, this.getBoundingBox().grow(0.20000000298023224D, 0.0D, 0.20000000298023224D));
+				List var16 = this.world.getEntities((Entity) this, this.getBoundingBox().grow(0.20000000298023224D, 0.0D, 0.20000000298023224D));
 				if (var16 != null && !var16.isEmpty()) {
 					for (int var29 = 0; var29 < var16.size(); ++var29) {
 						Entity var18 = (Entity) var16.get(var29);
@@ -321,8 +321,8 @@ public class EntityBoat extends Entity {
 
 	protected void a(double var1, boolean var3, Block var4, Position var5) {
 		if (var3) {
-			if (this.O > 3.0F) {
-				this.e(this.O, 1.0F);
+			if (this.fallDistance > 3.0F) {
+				this.e(this.fallDistance, 1.0F);
 				if (!this.world.isStatic && !this.dead) {
 					this.die();
 
@@ -336,10 +336,10 @@ public class EntityBoat extends Entity {
 					}
 				}
 
-				this.O = 0.0F;
+				this.fallDistance = 0.0F;
 			}
 		} else if (this.world.getBlockState((new Position(this)).b()).getBlock().getMaterial() != Material.WATER && var1 < 0.0D) {
-			this.O = (float) ((double) this.O - var1);
+			this.fallDistance = (float) ((double) this.fallDistance - var1);
 		}
 
 	}

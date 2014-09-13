@@ -555,7 +555,7 @@ public class Block {
 	}
 
 	public static void a(World var0, Position var1, ItemStack var2) {
-		if (!var0.isStatic && var0.Q().b("doTileDrops")) {
+		if (!var0.isStatic && var0.getGameRules().b("doTileDrops")) {
 			float var3 = 0.5F;
 			double var4 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
 			double var6 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;

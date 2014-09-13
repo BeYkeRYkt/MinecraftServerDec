@@ -9,7 +9,7 @@ public class EntityArrow extends Entity implements aho {
 	private int f = -1;
 	private Block g;
 	private int h;
-	private boolean i;
+	private boolean isInGround;
 	public int a;
 	public int b;
 	public Entity c;
@@ -41,7 +41,7 @@ public class EntityArrow extends Entity implements aho {
 
 		this.locationY = var2.locationY + (double) var2.getHeadHeight() - 0.10000000149011612D;
 		double var6 = var3.locationX - var2.locationX;
-		double var8 = var3.getBoundingBox().minY + (double) (var3.K / 3.0F) - this.locationY;
+		double var8 = var3.getBoundingBox().minY + (double) (var3.width / 3.0F) - this.locationY;
 		double var10 = var3.locationZ - var2.locationZ;
 		double var12 = (double) MathHelper.sqrt(var6 * var6 + var10 * var10);
 		if (var12 >= 1.0E-7D) {
@@ -84,9 +84,9 @@ public class EntityArrow extends Entity implements aho {
 		var1 /= (double) var9;
 		var3 /= (double) var9;
 		var5 /= (double) var9;
-		var1 += this.V.nextGaussian() * (double) (this.V.nextBoolean() ? -1 : 1) * 0.007499999832361937D * (double) var8;
-		var3 += this.V.nextGaussian() * (double) (this.V.nextBoolean() ? -1 : 1) * 0.007499999832361937D * (double) var8;
-		var5 += this.V.nextGaussian() * (double) (this.V.nextBoolean() ? -1 : 1) * 0.007499999832361937D * (double) var8;
+		var1 += this.random.nextGaussian() * (double) (this.random.nextBoolean() ? -1 : 1) * 0.007499999832361937D * (double) var8;
+		var3 += this.random.nextGaussian() * (double) (this.random.nextBoolean() ? -1 : 1) * 0.007499999832361937D * (double) var8;
+		var5 += this.random.nextGaussian() * (double) (this.random.nextBoolean() ? -1 : 1) * 0.007499999832361937D * (double) var8;
 		var1 *= (double) var7;
 		var3 *= (double) var7;
 		var5 *= (double) var7;
@@ -94,17 +94,17 @@ public class EntityArrow extends Entity implements aho {
 		this.motionY = var3;
 		this.motionZ = var5;
 		float var10 = MathHelper.sqrt(var1 * var1 + var5 * var5);
-		this.A = this.yaw = (float) (Math.atan2(var1, var5) * 180.0D / 3.1415927410125732D);
-		this.B = this.pitch = (float) (Math.atan2(var3, (double) var10) * 180.0D / 3.1415927410125732D);
+		this.lastYaw = this.yaw = (float) (Math.atan2(var1, var5) * 180.0D / 3.1415927410125732D);
+		this.lastPitch = this.pitch = (float) (Math.atan2(var3, (double) var10) * 180.0D / 3.1415927410125732D);
 		this.ap = 0;
 	}
 
 	public void s_() {
 		super.s_();
-		if (this.B == 0.0F && this.A == 0.0F) {
+		if (this.lastPitch == 0.0F && this.lastYaw == 0.0F) {
 			float var1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			this.A = this.yaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / 3.1415927410125732D);
-			this.B = this.pitch = (float) (Math.atan2(this.motionY, (double) var1) * 180.0D / 3.1415927410125732D);
+			this.lastYaw = this.yaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / 3.1415927410125732D);
+			this.lastPitch = this.pitch = (float) (Math.atan2(this.motionY, (double) var1) * 180.0D / 3.1415927410125732D);
 		}
 
 		Position var18 = new Position(this.d, this.e, this.f);
@@ -114,7 +114,7 @@ public class EntityArrow extends Entity implements aho {
 			var3.a((ard) this.world, var18);
 			AxisAlignedBB var4 = var3.a(this.world, var18, var2);
 			if (var4 != null && var4.a(new Vec3D(this.locationX, this.locationY, this.locationZ))) {
-				this.i = true;
+				this.isInGround = true;
 			}
 		}
 
@@ -122,7 +122,7 @@ public class EntityArrow extends Entity implements aho {
 			--this.b;
 		}
 
-		if (this.i) {
+		if (this.isInGround) {
 			int var20 = var3.c(var2);
 			if (var3 == this.g && var20 == this.h) {
 				++this.ap;
@@ -131,10 +131,10 @@ public class EntityArrow extends Entity implements aho {
 				}
 
 			} else {
-				this.i = false;
-				this.motionX *= (double) (this.V.nextFloat() * 0.2F);
-				this.motionY *= (double) (this.V.nextFloat() * 0.2F);
-				this.motionZ *= (double) (this.V.nextFloat() * 0.2F);
+				this.isInGround = false;
+				this.motionX *= (double) (this.random.nextFloat() * 0.2F);
+				this.motionY *= (double) (this.random.nextFloat() * 0.2F);
+				this.motionZ *= (double) (this.random.nextFloat() * 0.2F);
 				this.ap = 0;
 				this.aq = 0;
 			}
@@ -150,7 +150,7 @@ public class EntityArrow extends Entity implements aho {
 			}
 
 			Entity var7 = null;
-			List var8 = this.world.b((Entity) this, this.getBoundingBox().a(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
+			List var8 = this.world.getEntities((Entity) this, this.getBoundingBox().a(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
 			double var9 = 0.0D;
 
 			int var11;
@@ -190,7 +190,7 @@ public class EntityArrow extends Entity implements aho {
 					var22 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
 					int var24 = MathHelper.f((double) var22 * this.ar);
 					if (this.l()) {
-						var24 += this.V.nextInt(var24 / 2 + 2);
+						var24 += this.random.nextInt(var24 / 2 + 2);
 					}
 
 					DamageSource var26;
@@ -228,7 +228,7 @@ public class EntityArrow extends Entity implements aho {
 							}
 						}
 
-						this.a("random.bowhit", 1.0F, 1.2F / (this.V.nextFloat() * 0.2F + 0.9F));
+						this.a("random.bowhit", 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
 						if (!(var6.entity instanceof EntityEnderman)) {
 							this.die();
 						}
@@ -237,7 +237,7 @@ public class EntityArrow extends Entity implements aho {
 						this.motionY *= -0.10000000149011612D;
 						this.motionZ *= -0.10000000149011612D;
 						this.yaw += 180.0F;
-						this.A += 180.0F;
+						this.lastYaw += 180.0F;
 						this.aq = 0;
 					}
 				} else {
@@ -255,8 +255,8 @@ public class EntityArrow extends Entity implements aho {
 					this.locationX -= this.motionX / (double) var25 * 0.05000000074505806D;
 					this.locationY -= this.motionY / (double) var25 * 0.05000000074505806D;
 					this.locationZ -= this.motionZ / (double) var25 * 0.05000000074505806D;
-					this.a("random.bowhit", 1.0F, 1.2F / (this.V.nextFloat() * 0.2F + 0.9F));
-					this.i = true;
+					this.a("random.bowhit", 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
+					this.isInGround = true;
 					this.b = 7;
 					this.a(false);
 					if (this.g.getMaterial() != Material.AIR) {
@@ -277,24 +277,24 @@ public class EntityArrow extends Entity implements aho {
 			var22 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.yaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / 3.1415927410125732D);
 
-			for (this.pitch = (float) (Math.atan2(this.motionY, (double) var22) * 180.0D / 3.1415927410125732D); this.pitch - this.B < -180.0F; this.B -= 360.0F) {
+			for (this.pitch = (float) (Math.atan2(this.motionY, (double) var22) * 180.0D / 3.1415927410125732D); this.pitch - this.lastPitch < -180.0F; this.lastPitch -= 360.0F) {
 				;
 			}
 
-			while (this.pitch - this.B >= 180.0F) {
-				this.B += 360.0F;
+			while (this.pitch - this.lastPitch >= 180.0F) {
+				this.lastPitch += 360.0F;
 			}
 
-			while (this.yaw - this.A < -180.0F) {
-				this.A -= 360.0F;
+			while (this.yaw - this.lastYaw < -180.0F) {
+				this.lastYaw -= 360.0F;
 			}
 
-			while (this.yaw - this.A >= 180.0F) {
-				this.A += 360.0F;
+			while (this.yaw - this.lastYaw >= 180.0F) {
+				this.lastYaw += 360.0F;
 			}
 
-			this.pitch = this.B + (this.pitch - this.B) * 0.2F;
-			this.yaw = this.A + (this.yaw - this.A) * 0.2F;
+			this.pitch = this.lastPitch + (this.pitch - this.lastPitch) * 0.2F;
+			this.yaw = this.lastYaw + (this.yaw - this.lastYaw) * 0.2F;
 			var25 = 0.99F;
 			var13 = 0.05F;
 			if (this.V()) {
@@ -328,7 +328,7 @@ public class EntityArrow extends Entity implements aho {
 		var1.put("inTile", var2 == null ? "" : var2.toString());
 		var1.put("inData", (byte) this.h);
 		var1.put("shake", (byte) this.b);
-		var1.put("inGround", (byte) (this.i ? 1 : 0));
+		var1.put("inGround", (byte) (this.isInGround ? 1 : 0));
 		var1.put("pickup", (byte) this.a);
 		var1.put("damage", this.ar);
 	}
@@ -346,7 +346,7 @@ public class EntityArrow extends Entity implements aho {
 
 		this.h = var1.getByte("inData") & 255;
 		this.b = var1.getByte("shake") & 255;
-		this.i = var1.getByte("inGround") == 1;
+		this.isInGround = var1.getByte("inGround") == 1;
 		if (var1.isTagAssignableFrom("damage", 99)) {
 			this.ar = var1.getDouble("damage");
 		}
@@ -360,14 +360,14 @@ public class EntityArrow extends Entity implements aho {
 	}
 
 	public void d(EntityHuman var1) {
-		if (!this.world.isStatic && this.i && this.b <= 0) {
+		if (!this.world.isStatic && this.isInGround && this.b <= 0) {
 			boolean var2 = this.a == 1 || this.a == 2 && var1.playerProperties.instabuild;
 			if (this.a == 1 && !var1.playerInventory.a(new ItemStack(Items.ARROW, 1))) {
 				var2 = false;
 			}
 
 			if (var2) {
-				this.a("random.pop", 0.2F, ((this.V.nextFloat() - this.V.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+				this.a("random.pop", 0.2F, ((this.random.nextFloat() - this.random.nextFloat()) * 0.7F + 1.0F) * 2.0F);
 				var1.a((Entity) this, 1);
 				this.die();
 			}
@@ -409,4 +409,9 @@ public class EntityArrow extends Entity implements aho {
 		byte var1 = this.dataWatcher.a(16);
 		return (var1 & 1) != 0;
 	}
+
+	public boolean isInGround() {
+		return isInGround;
+	}
+
 }

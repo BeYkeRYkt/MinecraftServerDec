@@ -90,6 +90,6 @@ public class zk extends PathfinderGoal {
 	}
 
 	protected double a(EntityLiving var1) {
-		return (double) (this.b.J * 2.0F * this.b.J * 2.0F + var1.J);
+		return (double) (this.b.height * 2.0F * this.b.height * 2.0F + var1.height);
 	}
 }

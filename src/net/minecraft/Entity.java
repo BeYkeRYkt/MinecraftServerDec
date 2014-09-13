@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-import java.util.concurrent.Callable;
 
 import net.minecraft.server.MinecraftServer;
 
@@ -12,6 +11,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 	private static final AxisAlignedBB a = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 	private static int b;
+
 	private int entityId;
 	public double j;
 	public boolean k;
@@ -19,9 +19,9 @@ public abstract class Entity implements CommandSenderInterface {
 	public Entity vehicle;
 	public boolean n;
 	public World world;
-	public double p;
-	public double q;
-	public double r;
+	public double previousX;
+	public double previousY;
+	public double previousZ;
 	public double locationX;
 	public double locationY;
 	public double locationZ;
@@ -30,38 +30,38 @@ public abstract class Entity implements CommandSenderInterface {
 	public double motionZ;
 	public float yaw;
 	public float pitch;
-	public float A;
-	public float B;
-	private AxisAlignedBB f;
+	public float lastYaw;
+	public float lastPitch;
+	private AxisAlignedBB boundingBox;
 	public boolean onGround;
-	public boolean D;
+	public boolean positionChanged;
 	public boolean E;
 	public boolean F;
-	public boolean G;
+	public boolean velocityChanged;
 	protected boolean H;
 	private boolean g;
 	public boolean dead;
-	public float J;
-	public float K;
-	public float L;
+	public float height;
+	public float width;
+	public float length;
 	public float M;
 	public float N;
-	public float O;
-	private int h;
+	public float fallDistance;
+	public int ttt;
 	public double P;
 	public double Q;
 	public double R;
 	public float S;
 	public boolean T;
 	public float U;
-	protected Random V;
-	public int W;
-	public int X;
-	private int i;
-	protected boolean Y;
-	public int Z;
-	protected boolean aa;
-	protected boolean ab;
+	protected Random random;
+	public int ticksLived;
+	public int maxFireTicks;
+	public int fireTicks;
+	protected boolean inWater;
+	public int noDamageTicks;
+	protected boolean justCreated;
+	protected boolean fireProof;
 	protected DataWatcher dataWatcher;
 	private double ap;
 	private double aq;
@@ -71,39 +71,40 @@ public abstract class Entity implements CommandSenderInterface {
 	public int ag;
 	public boolean ah;
 	public boolean ai;
-	public int aj;
+	public int portalCooldown;
 	protected boolean ak;
 	protected int al;
 	public int dimensionId;
 	protected int an;
-	private boolean ar;
-	protected UUID ao;
-	private final CommandBlockStatistic as;
+	private boolean invulnerable;
+	protected UUID uuid;
+	private final CommandBlockStatistic commandBlockStat;
+	public boolean valid;
 
 	public int getId() {
 		return this.entityId;
 	}
 
-	public void d(int var1) {
-		this.entityId = var1;
+	public void setId(int entityId) {
+		this.entityId = entityId;
 	}
 
-	public void G() {
+	public void setDead() {
 		this.die();
 	}
 
 	public Entity(World var1) {
 		this.entityId = b++;
 		this.j = 1.0D;
-		this.f = a;
-		this.J = 0.6F;
-		this.K = 1.8F;
-		this.h = 1;
-		this.V = new Random();
-		this.X = 1;
-		this.aa = true;
-		this.ao = MathHelper.a(this.V);
-		this.as = new CommandBlockStatistic();
+		this.boundingBox = a;
+		this.height = 0.6F;
+		this.width = 1.8F;
+		this.ttt = 1;
+		this.random = new Random();
+		this.maxFireTicks = 1;
+		this.justCreated = true;
+		this.uuid = MathHelper.a(this.random);
+		this.commandBlockStat = new CommandBlockStatistic();
 		this.world = var1;
 		this.b(0.0D, 0.0D, 0.0D);
 		if (var1 != null) {
@@ -138,13 +139,13 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected void a(float var1, float var2) {
-		if (var1 != this.J || var2 != this.K) {
-			float var3 = this.J;
-			this.J = var1;
-			this.K = var2;
-			this.a(new AxisAlignedBB(this.getBoundingBox().minX, this.getBoundingBox().minY, this.getBoundingBox().minZ, this.getBoundingBox().minX + (double) this.J, this.getBoundingBox().minY + (double) this.K, this.getBoundingBox().minZ + (double) this.J));
-			if (this.J > var3 && !this.aa && !this.world.isStatic) {
-				this.move((double) (var3 - this.J), 0.0D, (double) (var3 - this.J));
+		if (var1 != this.height || var2 != this.width) {
+			float var3 = this.height;
+			this.height = var1;
+			this.width = var2;
+			this.setBoundingBox(new AxisAlignedBB(this.getBoundingBox().minX, this.getBoundingBox().minY, this.getBoundingBox().minZ, this.getBoundingBox().minX + (double) this.height, this.getBoundingBox().minY + (double) this.width, this.getBoundingBox().minZ + (double) this.height));
+			if (this.height > var3 && !this.justCreated && !this.world.isStatic) {
+				this.move((double) (var3 - this.height), 0.0D, (double) (var3 - this.height));
 			}
 		}
 
@@ -159,9 +160,9 @@ public abstract class Entity implements CommandSenderInterface {
 		this.locationX = var1;
 		this.locationY = var3;
 		this.locationZ = var5;
-		float var7 = this.J / 2.0F;
-		float var8 = this.K;
-		this.a(new AxisAlignedBB(var1 - (double) var7, var3, var5 - (double) var7, var1 + (double) var7, var3 + (double) var8, var5 + (double) var7));
+		float var7 = this.height / 2.0F;
+		float var8 = this.width;
+		this.setBoundingBox(new AxisAlignedBB(var1 - (double) var7, var3, var5 - (double) var7, var1 + (double) var7, var3 + (double) var8, var5 + (double) var7));
 	}
 
 	public void s_() {
@@ -174,12 +175,12 @@ public abstract class Entity implements CommandSenderInterface {
 			this.vehicle = null;
 		}
 
-		this.L = this.M;
-		this.p = this.locationX;
-		this.q = this.locationY;
-		this.r = this.locationZ;
-		this.B = this.pitch;
-		this.A = this.yaw;
+		this.length = this.M;
+		this.previousX = this.locationX;
+		this.previousY = this.locationY;
+		this.previousZ = this.locationZ;
+		this.lastPitch = this.pitch;
+		this.lastYaw = this.yaw;
 		if (!this.world.isStatic && this.world instanceof WorldServer) {
 			this.world.B.a("portal");
 			MinecraftServer var1 = ((WorldServer) this.world).r();
@@ -188,7 +189,7 @@ public abstract class Entity implements CommandSenderInterface {
 				if (var1.isNetherAllowed()) {
 					if (this.vehicle == null && this.al++ >= var2) {
 						this.al = var2;
-						this.aj = this.ar();
+						this.portalCooldown = this.ar();
 						byte var3;
 						if (this.world.worldProvider.getDimensionId() == -1) {
 							var3 = 0;
@@ -211,8 +212,8 @@ public abstract class Entity implements CommandSenderInterface {
 				}
 			}
 
-			if (this.aj > 0) {
-				--this.aj;
+			if (this.portalCooldown > 0) {
+				--this.portalCooldown;
 			}
 
 			this.world.B.b();
@@ -221,25 +222,25 @@ public abstract class Entity implements CommandSenderInterface {
 		this.Y();
 		this.W();
 		if (this.world.isStatic) {
-			this.i = 0;
-		} else if (this.i > 0) {
-			if (this.ab) {
-				this.i -= 4;
-				if (this.i < 0) {
-					this.i = 0;
+			this.fireTicks = 0;
+		} else if (this.fireTicks > 0) {
+			if (this.fireProof) {
+				this.fireTicks -= 4;
+				if (this.fireTicks < 0) {
+					this.fireTicks = 0;
 				}
 			} else {
-				if (this.i % 20 == 0) {
+				if (this.fireTicks % 20 == 0) {
 					this.damageEntity(DamageSource.BURN, 1.0F);
 				}
 
-				--this.i;
+				--this.fireTicks;
 			}
 		}
 
 		if (this.ab()) {
 			this.M();
-			this.O *= 0.5F;
+			this.fallDistance *= 0.5F;
 		}
 
 		if (this.locationY < -64.0D) {
@@ -247,10 +248,10 @@ public abstract class Entity implements CommandSenderInterface {
 		}
 
 		if (!this.world.isStatic) {
-			this.b(0, this.i > 0);
+			this.b(0, this.fireTicks > 0);
 		}
 
-		this.aa = false;
+		this.justCreated = false;
 		this.world.B.b();
 	}
 
@@ -259,7 +260,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected void M() {
-		if (!this.ab) {
+		if (!this.fireProof) {
 			this.damageEntity(DamageSource.LAVA, 4.0F);
 			this.e(15);
 		}
@@ -268,14 +269,14 @@ public abstract class Entity implements CommandSenderInterface {
 	public void e(int var1) {
 		int var2 = var1 * 20;
 		var2 = EnchantmentProtection.a(this, var2);
-		if (this.i < var2) {
-			this.i = var2;
+		if (this.fireTicks < var2) {
+			this.fireTicks = var2;
 		}
 
 	}
 
 	public void N() {
-		this.i = 0;
+		this.fireTicks = 0;
 	}
 
 	protected void O() {
@@ -293,7 +294,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 	public void move(double var1, double var3, double var5) {
 		if (this.T) {
-			this.a(this.getBoundingBox().c(var1, var3, var5));
+			this.setBoundingBox(this.getBoundingBox().c(var1, var3, var5));
 			this.m();
 		} else {
 			this.world.B.a("move");
@@ -364,7 +365,7 @@ public abstract class Entity implements CommandSenderInterface {
 				var23 = (AxisAlignedBB) var22.next();
 			}
 
-			this.a(this.getBoundingBox().c(0.0D, var3, 0.0D));
+			this.setBoundingBox(this.getBoundingBox().c(0.0D, var3, 0.0D));
 			boolean var54 = this.onGround || var15 != var3 && var15 < 0.0D;
 
 			AxisAlignedBB var24;
@@ -373,19 +374,19 @@ public abstract class Entity implements CommandSenderInterface {
 				var24 = (AxisAlignedBB) var55.next();
 			}
 
-			this.a(this.getBoundingBox().c(var1, 0.0D, 0.0D));
+			this.setBoundingBox(this.getBoundingBox().c(var1, 0.0D, 0.0D));
 
 			for (var55 = var53.iterator(); var55.hasNext(); var5 = var24.c(this.getBoundingBox(), var5)) {
 				var24 = (AxisAlignedBB) var55.next();
 			}
 
-			this.a(this.getBoundingBox().c(0.0D, 0.0D, var5));
+			this.setBoundingBox(this.getBoundingBox().c(0.0D, 0.0D, var5));
 			if (this.S > 0.0F && var54 && (var13 != var1 || var17 != var5)) {
 				double var56 = var1;
 				double var25 = var3;
 				double var27 = var5;
 				AxisAlignedBB var29 = this.getBoundingBox();
-				this.a(var21);
+				this.setBoundingBox(var21);
 				var3 = (double) this.S;
 				List var30 = this.world.getCubes(this, this.getBoundingBox().a(var13, var3, var17));
 				AxisAlignedBB var31 = this.getBoundingBox();
@@ -444,11 +445,11 @@ public abstract class Entity implements CommandSenderInterface {
 				if (var73 > var48) {
 					var1 = var67;
 					var5 = var68;
-					this.a(var31);
+					this.setBoundingBox(var31);
 				} else {
 					var1 = var71;
 					var5 = var72;
-					this.a(var69);
+					this.setBoundingBox(var69);
 				}
 
 				var3 = (double) (-this.S);
@@ -458,22 +459,22 @@ public abstract class Entity implements CommandSenderInterface {
 					var51 = (AxisAlignedBB) var50.next();
 				}
 
-				this.a(this.getBoundingBox().c(0.0D, var3, 0.0D));
+				this.setBoundingBox(this.getBoundingBox().c(0.0D, var3, 0.0D));
 				if (var56 * var56 + var27 * var27 >= var1 * var1 + var5 * var5) {
 					var1 = var56;
 					var3 = var25;
 					var5 = var27;
-					this.a(var29);
+					this.setBoundingBox(var29);
 				}
 			}
 
 			this.world.B.b();
 			this.world.B.a("rest");
 			this.m();
-			this.D = var13 != var1 || var17 != var5;
+			this.positionChanged = var13 != var1 || var17 != var5;
 			this.E = var15 != var3;
 			this.onGround = this.E && var15 < 0.0D;
-			this.F = this.D || this.E;
+			this.F = this.positionChanged || this.E;
 			int var57 = MathHelper.toFixedPointInt(this.locationX);
 			int var58 = MathHelper.toFixedPointInt(this.locationY - 0.20000000298023224D);
 			int var59 = MathHelper.toFixedPointInt(this.locationZ);
@@ -514,15 +515,15 @@ public abstract class Entity implements CommandSenderInterface {
 
 				this.M = (float) ((double) this.M + (double) MathHelper.sqrt(var61 * var61 + var66 * var66) * 0.6D);
 				this.N = (float) ((double) this.N + (double) MathHelper.sqrt(var61 * var61 + var64 * var64 + var66 * var66) * 0.6D);
-				if (this.N > (float) this.h && var60.getMaterial() != Material.AIR) {
-					this.h = (int) this.N + 1;
+				if (this.N > (float) this.ttt && var60.getMaterial() != Material.AIR) {
+					this.ttt = (int) this.N + 1;
 					if (this.V()) {
 						float var34 = MathHelper.sqrt(this.motionX * this.motionX * 0.20000000298023224D + this.motionY * this.motionY + this.motionZ * this.motionZ * 0.20000000298023224D) * 0.35F;
 						if (var34 > 1.0F) {
 							var34 = 1.0F;
 						}
 
-						this.a(this.P(), var34, 1.0F + (this.V.nextFloat() - this.V.nextFloat()) * 0.4F);
+						this.a(this.P(), var34, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
 					}
 
 					this.a(var26, var60);
@@ -542,18 +543,18 @@ public abstract class Entity implements CommandSenderInterface {
 			if (this.world.e(this.getBoundingBox().shrink(0.001D, 0.001D, 0.001D))) {
 				this.f(1);
 				if (!var62) {
-					++this.i;
-					if (this.i == 0) {
+					++this.fireTicks;
+					if (this.fireTicks == 0) {
 						this.e(8);
 					}
 				}
-			} else if (this.i <= 0) {
-				this.i = -this.X;
+			} else if (this.fireTicks <= 0) {
+				this.fireTicks = -this.maxFireTicks;
 			}
 
-			if (var62 && this.i > 0) {
-				this.a("random.fizz", 0.7F, 1.6F + (this.V.nextFloat() - this.V.nextFloat()) * 0.4F);
-				this.i = -this.X;
+			if (var62 && this.fireTicks > 0) {
+				this.a("random.fizz", 0.7F, 1.6F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
+				this.fireTicks = -this.maxFireTicks;
 			}
 
 			this.world.B.b();
@@ -607,13 +608,13 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public void a(String var1, float var2, float var3) {
-		if (!this.R()) {
+		if (!this.isSilent()) {
 			this.world.a(this, var1, var2, var3);
 		}
 
 	}
 
-	public boolean R() {
+	public boolean isSilent() {
 		return this.dataWatcher.a(4) == 1;
 	}
 
@@ -627,17 +628,17 @@ public abstract class Entity implements CommandSenderInterface {
 
 	protected void a(double var1, boolean var3, Block var4, Position var5) {
 		if (var3) {
-			if (this.O > 0.0F) {
+			if (this.fallDistance > 0.0F) {
 				if (var4 != null) {
-					var4.a(this.world, var5, this, this.O);
+					var4.a(this.world, var5, this, this.fallDistance);
 				} else {
-					this.e(this.O, 1.0F);
+					this.e(this.fallDistance, 1.0F);
 				}
 
-				this.O = 0.0F;
+				this.fallDistance = 0.0F;
 			}
 		} else if (var1 < 0.0D) {
-			this.O = (float) ((double) this.O - var1);
+			this.fallDistance = (float) ((double) this.fallDistance - var1);
 		}
 
 	}
@@ -647,14 +648,14 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected void f(int var1) {
-		if (!this.ab) {
+		if (!this.fireProof) {
 			this.damageEntity(DamageSource.FIRE, (float) var1);
 		}
 
 	}
 
 	public final boolean T() {
-		return this.ab;
+		return this.fireProof;
 	}
 
 	public void e(float var1, float var2) {
@@ -665,27 +666,27 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public boolean U() {
-		return this.Y || this.world.C(new Position(this.locationX, this.locationY, this.locationZ)) || this.world.C(new Position(this.locationX, this.locationY + (double) this.K, this.locationZ));
+		return this.inWater || this.world.C(new Position(this.locationX, this.locationY, this.locationZ)) || this.world.C(new Position(this.locationX, this.locationY + (double) this.width, this.locationZ));
 	}
 
 	public boolean V() {
-		return this.Y;
+		return this.inWater;
 	}
 
 	public boolean W() {
 		if (this.world.a(this.getBoundingBox().grow(0.0D, -0.4000000059604645D, 0.0D).shrink(0.001D, 0.001D, 0.001D), Material.WATER, this)) {
-			if (!this.Y && !this.aa) {
+			if (!this.inWater && !this.justCreated) {
 				this.X();
 			}
 
-			this.O = 0.0F;
-			this.Y = true;
-			this.i = 0;
+			this.fallDistance = 0.0F;
+			this.inWater = true;
+			this.fireTicks = 0;
 		} else {
-			this.Y = false;
+			this.inWater = false;
 		}
 
-		return this.Y;
+		return this.inWater;
 	}
 
 	protected void X() {
@@ -694,21 +695,21 @@ public abstract class Entity implements CommandSenderInterface {
 			var1 = 1.0F;
 		}
 
-		this.a(this.aa(), var1, 1.0F + (this.V.nextFloat() - this.V.nextFloat()) * 0.4F);
+		this.a(this.aa(), var1, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
 		float var2 = (float) MathHelper.toFixedPointInt(this.getBoundingBox().minY);
 
 		int var3;
 		float var4;
 		float var5;
-		for (var3 = 0; (float) var3 < 1.0F + this.J * 20.0F; ++var3) {
-			var4 = (this.V.nextFloat() * 2.0F - 1.0F) * this.J;
-			var5 = (this.V.nextFloat() * 2.0F - 1.0F) * this.J;
-			this.world.a(Particle.e, this.locationX + (double) var4, (double) (var2 + 1.0F), this.locationZ + (double) var5, this.motionX, this.motionY - (double) (this.V.nextFloat() * 0.2F), this.motionZ, new int[0]);
+		for (var3 = 0; (float) var3 < 1.0F + this.height * 20.0F; ++var3) {
+			var4 = (this.random.nextFloat() * 2.0F - 1.0F) * this.height;
+			var5 = (this.random.nextFloat() * 2.0F - 1.0F) * this.height;
+			this.world.a(Particle.e, this.locationX + (double) var4, (double) (var2 + 1.0F), this.locationZ + (double) var5, this.motionX, this.motionY - (double) (this.random.nextFloat() * 0.2F), this.motionZ, new int[0]);
 		}
 
-		for (var3 = 0; (float) var3 < 1.0F + this.J * 20.0F; ++var3) {
-			var4 = (this.V.nextFloat() * 2.0F - 1.0F) * this.J;
-			var5 = (this.V.nextFloat() * 2.0F - 1.0F) * this.J;
+		for (var3 = 0; (float) var3 < 1.0F + this.height * 20.0F; ++var3) {
+			var4 = (this.random.nextFloat() * 2.0F - 1.0F) * this.height;
+			var5 = (this.random.nextFloat() * 2.0F - 1.0F) * this.height;
 			this.world.a(Particle.f, this.locationX + (double) var4, (double) (var2 + 1.0F), this.locationZ + (double) var5, this.motionX, this.motionY, this.motionZ, new int[0]);
 		}
 
@@ -729,7 +730,7 @@ public abstract class Entity implements CommandSenderInterface {
 		BlockState var5 = this.world.getBlockState(var4);
 		Block var6 = var5.getBlock();
 		if (var6.b() != -1) {
-			this.world.a(Particle.L, this.locationX + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, this.getBoundingBox().minY + 0.1D, this.locationZ + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, -this.motionX * 4.0D, 1.5D, -this.motionZ * 4.0D, new int[] { Block.f(var5) });
+			this.world.a(Particle.L, this.locationX + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, this.getBoundingBox().minY + 0.1D, this.locationZ + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, -this.motionX * 4.0D, 1.5D, -this.motionZ * 4.0D, new int[] { Block.f(var5) });
 		}
 
 	}
@@ -791,18 +792,18 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public void setLocation(double var1, double var3, double var5, float var7, float var8) {
-		this.p = this.locationX = var1;
-		this.q = this.locationY = var3;
-		this.r = this.locationZ = var5;
-		this.A = this.yaw = var7;
-		this.B = this.pitch = var8;
-		double var9 = (double) (this.A - var7);
+		this.previousX = this.locationX = var1;
+		this.previousY = this.locationY = var3;
+		this.previousZ = this.locationZ = var5;
+		this.lastYaw = this.yaw = var7;
+		this.lastPitch = this.pitch = var8;
+		double var9 = (double) (this.lastYaw - var7);
 		if (var9 < -180.0D) {
-			this.A += 360.0F;
+			this.lastYaw += 360.0F;
 		}
 
 		if (var9 >= 180.0D) {
-			this.A -= 360.0F;
+			this.lastYaw -= 360.0F;
 		}
 
 		this.b(this.locationX, this.locationY, this.locationZ);
@@ -814,9 +815,9 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public void setPositionRotation(double var1, double var3, double var5, float var7, float var8) {
-		this.P = this.p = this.locationX = var1;
-		this.Q = this.q = this.locationY = var3;
-		this.R = this.r = this.locationZ = var5;
+		this.P = this.previousX = this.locationX = var1;
+		this.Q = this.previousY = this.locationY = var3;
+		this.R = this.previousZ = this.locationZ = var5;
 		this.yaw = var7;
 		this.pitch = var8;
 		this.b(this.locationX, this.locationY, this.locationZ);
@@ -903,7 +904,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	protected void ac() {
-		this.G = true;
+		this.velocityChanged = true;
 	}
 
 	public boolean damageEntity(DamageSource var1, float var2) {
@@ -919,8 +920,8 @@ public abstract class Entity implements CommandSenderInterface {
 		if (var1 == 1.0F) {
 			return this.f(this.pitch, this.yaw);
 		} else {
-			float var2 = this.B + (this.pitch - this.B) * var1;
-			float var3 = this.A + (this.yaw - this.A) * var1;
+			float var2 = this.lastPitch + (this.pitch - this.lastPitch) * var1;
+			float var3 = this.lastYaw + (this.yaw - this.lastYaw) * var1;
 			return this.f(var2, var3);
 		}
 	}
@@ -968,26 +969,26 @@ public abstract class Entity implements CommandSenderInterface {
 
 	public void write(NBTCompoundTag tag) {
 		try {
-			tag.put("Pos", (NBTTag) this.a(new double[] { this.locationX, this.locationY, this.locationZ }));
-			tag.put("Motion", (NBTTag) this.a(new double[] { this.motionX, this.motionY, this.motionZ }));
-			tag.put("Rotation", (NBTTag) this.a(new float[] { this.yaw, this.pitch }));
-			tag.put("FallDistance", this.O);
-			tag.put("Fire", (short) this.i);
-			tag.put("Air", (short) this.aA());
+			tag.put("Pos", this.createDoubleListTag(new double[] { this.locationX, this.locationY, this.locationZ }));
+			tag.put("Motion", this.createDoubleListTag(new double[] { this.motionX, this.motionY, this.motionZ }));
+			tag.put("Rotation", this.createFloatListTag(new float[] { this.yaw, this.pitch }));
+			tag.put("FallDistance", this.fallDistance);
+			tag.put("Fire", (short) this.fireTicks);
+			tag.put("Air", (short) this.getAirTicks());
 			tag.put("OnGround", this.onGround);
 			tag.put("Dimension", this.dimensionId);
-			tag.put("Invulnerable", this.ar);
-			tag.put("PortalCooldown", this.aj);
-			tag.put("UUIDMost", this.aJ().getMostSignificantBits());
-			tag.put("UUIDLeast", this.aJ().getLeastSignificantBits());
-			if (this.aL() != null && this.aL().length() > 0) {
-				tag.put("CustomName", this.aL());
-				tag.put("CustomNameVisible", this.aM());
+			tag.put("Invulnerable", this.invulnerable);
+			tag.put("PortalCooldown", this.portalCooldown);
+			tag.put("UUIDMost", this.getUUID().getMostSignificantBits());
+			tag.put("UUIDLeast", this.getUUID().getLeastSignificantBits());
+			if (this.getCustomName() != null && this.getCustomName().length() > 0) {
+				tag.put("CustomName", this.getCustomName());
+				tag.put("CustomNameVisible", this.isCustomNameVisible());
 			}
 
-			this.as.write(tag);
-			if (this.R()) {
-				tag.put("Silent", this.R());
+			this.commandBlockStat.write(tag);
+			if (this.isSilent()) {
+				tag.put("Silent", this.isSilent());
 			}
 
 			this.b(tag);
@@ -1026,22 +1027,22 @@ public abstract class Entity implements CommandSenderInterface {
 				this.motionZ = 0.0D;
 			}
 
-			this.p = this.P = this.locationX = var2.getDouble(0);
-			this.q = this.Q = this.locationY = var2.getDouble(1);
-			this.r = this.R = this.locationZ = var2.getDouble(2);
-			this.A = this.yaw = var7.getFloat(0);
-			this.B = this.pitch = var7.getFloat(1);
-			this.O = var1.getFloat("FallDistance");
-			this.i = var1.getShort("Fire");
+			this.previousX = this.P = this.locationX = var2.getDouble(0);
+			this.previousY = this.Q = this.locationY = var2.getDouble(1);
+			this.previousZ = this.R = this.locationZ = var2.getDouble(2);
+			this.lastYaw = this.yaw = var7.getFloat(0);
+			this.lastPitch = this.pitch = var7.getFloat(1);
+			this.fallDistance = var1.getFloat("FallDistance");
+			this.fireTicks = var1.getShort("Fire");
 			this.h(var1.getShort("Air"));
 			this.onGround = var1.getBoolean("OnGround");
 			this.dimensionId = var1.getInt("Dimension");
-			this.ar = var1.getBoolean("Invulnerable");
-			this.aj = var1.getInt("PortalCooldown");
+			this.invulnerable = var1.getBoolean("Invulnerable");
+			this.portalCooldown = var1.getInt("PortalCooldown");
 			if (var1.isTagAssignableFrom("UUIDMost", 4) && var1.isTagAssignableFrom("UUIDLeast", 4)) {
-				this.ao = new UUID(var1.getLong("UUIDMost"), var1.getLong("UUIDLeast"));
+				this.uuid = new UUID(var1.getLong("UUIDMost"), var1.getLong("UUIDLeast"));
 			} else if (var1.isTagAssignableFrom("UUID", 8)) {
-				this.ao = UUID.fromString(var1.getString("UUID"));
+				this.uuid = UUID.fromString(var1.getString("UUID"));
 			}
 
 			this.b(this.locationX, this.locationY, this.locationZ);
@@ -1051,7 +1052,7 @@ public abstract class Entity implements CommandSenderInterface {
 			}
 
 			this.g(var1.getBoolean("CustomNameVisible"));
-			this.as.read(var1);
+			this.commandBlockStat.read(var1);
 			this.b(var1.getBoolean("Silent"));
 			this.a(var1);
 			if (this.af()) {
@@ -1081,7 +1082,7 @@ public abstract class Entity implements CommandSenderInterface {
 	public void ah() {
 	}
 
-	protected NBTListTag a(double... var1) {
+	protected NBTListTag createDoubleListTag(double... var1) {
 		NBTListTag var2 = new NBTListTag();
 		double[] var3 = var1;
 		int var4 = var1.length;
@@ -1094,7 +1095,7 @@ public abstract class Entity implements CommandSenderInterface {
 		return var2;
 	}
 
-	protected NBTListTag a(float... var1) {
+	protected NBTListTag createFloatListTag(float... var1) {
 		NBTListTag var2 = new NBTListTag();
 		float[] var3 = var1;
 		int var4 = var1.length;
@@ -1135,9 +1136,9 @@ public abstract class Entity implements CommandSenderInterface {
 			return false;
 		} else {
 			for (int var1 = 0; var1 < 8; ++var1) {
-				double var2 = this.locationX + (double) (((float) ((var1 >> 0) % 2) - 0.5F) * this.J * 0.8F);
+				double var2 = this.locationX + (double) (((float) ((var1 >> 0) % 2) - 0.5F) * this.height * 0.8F);
 				double var4 = this.locationY + (double) (((float) ((var1 >> 1) % 2) - 0.5F) * 0.1F);
-				double var6 = this.locationZ + (double) (((float) ((var1 >> 2) % 2) - 0.5F) * this.J * 0.8F);
+				double var6 = this.locationZ + (double) (((float) ((var1 >> 2) % 2) - 0.5F) * this.height * 0.8F);
 				if (this.world.getBlockState(new Position(var2, var4 + (double) this.getHeadHeight(), var6)).getBlock().u()) {
 					return true;
 				}
@@ -1165,9 +1166,9 @@ public abstract class Entity implements CommandSenderInterface {
 			this.s_();
 			if (this.vehicle != null) {
 				this.vehicle.al();
-				this.aq += (double) (this.vehicle.yaw - this.vehicle.A);
+				this.aq += (double) (this.vehicle.yaw - this.vehicle.lastYaw);
 
-				for (this.ap += (double) (this.vehicle.pitch - this.vehicle.B); this.aq >= 180.0D; this.aq -= 360.0D) {
+				for (this.ap += (double) (this.vehicle.pitch - this.vehicle.lastPitch); this.aq >= 180.0D; this.aq -= 360.0D) {
 					;
 				}
 
@@ -1219,15 +1220,15 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public double an() {
-		return (double) this.K * 0.75D;
+		return (double) this.width * 0.75D;
 	}
 
-	public void mount(Entity var1) {
+	public void mount(Entity vehicleEntity) {
 		this.ap = 0.0D;
 		this.aq = 0.0D;
-		if (var1 == null) {
+		if (vehicleEntity == null) {
 			if (this.vehicle != null) {
-				this.setPositionRotation(this.vehicle.locationX, this.vehicle.getBoundingBox().minY + (double) this.vehicle.K, this.vehicle.locationZ, this.yaw, this.pitch);
+				this.setPositionRotation(this.vehicle.locationX, this.vehicle.getBoundingBox().minY + (double) this.vehicle.width, this.vehicle.locationZ, this.yaw, this.pitch);
 				this.vehicle.passenger = null;
 			}
 
@@ -1237,16 +1238,16 @@ public abstract class Entity implements CommandSenderInterface {
 				this.vehicle.passenger = null;
 			}
 
-			if (var1 != null) {
-				for (Entity var2 = var1.vehicle; var2 != null; var2 = var2.vehicle) {
+			if (vehicleEntity != null) {
+				for (Entity var2 = vehicleEntity.vehicle; var2 != null; var2 = var2.vehicle) {
 					if (var2 == this) {
 						return;
 					}
 				}
 			}
 
-			this.vehicle = var1;
-			var1.passenger = this;
+			this.vehicle = vehicleEntity;
+			vehicleEntity.passenger = this;
 		}
 	}
 
@@ -1259,11 +1260,11 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public void aq() {
-		if (this.aj > 0) {
-			this.aj = this.ar();
+		if (this.portalCooldown > 0) {
+			this.portalCooldown = this.ar();
 		} else {
-			double var1 = this.p - this.locationX;
-			double var3 = this.r - this.locationZ;
+			double var1 = this.previousX - this.locationX;
+			double var3 = this.previousZ - this.locationZ;
 			if (!this.world.isStatic && !this.ak) {
 				int var5;
 				if (MathHelper.e((float) var1) > MathHelper.e((float) var3)) {
@@ -1292,7 +1293,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 	public boolean au() {
 		boolean var1 = this.world != null && this.world.isStatic;
-		return !this.ab && (this.i > 0 || var1 && this.g(0));
+		return !this.fireProof && (this.fireTicks > 0 || var1 && this.g(0));
 	}
 
 	public boolean av() {
@@ -1341,7 +1342,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 	}
 
-	public int aA() {
+	public int getAirTicks() {
 		return this.dataWatcher.b(1);
 	}
 
@@ -1351,8 +1352,8 @@ public abstract class Entity implements CommandSenderInterface {
 
 	public void a(EntityLightning var1) {
 		this.damageEntity(DamageSource.LIGHTNING, 5.0F);
-		++this.i;
-		if (this.i == 0) {
+		++this.fireTicks;
+		if (this.fireTicks == 0) {
 			this.e(8);
 		}
 
@@ -1397,7 +1398,7 @@ public abstract class Entity implements CommandSenderInterface {
 				var15 = 5;
 			}
 
-			float var18 = this.V.nextFloat() * 0.2F + 0.1F;
+			float var18 = this.random.nextFloat() * 0.2F + 0.1F;
 			if (var15 == 0) {
 				this.motionX = (double) (-var18);
 			}
@@ -1424,12 +1425,12 @@ public abstract class Entity implements CommandSenderInterface {
 
 	public void aB() {
 		this.H = true;
-		this.O = 0.0F;
+		this.fallDistance = 0.0F;
 	}
 
 	public String getName() {
 		if (this.k_()) {
-			return this.aL();
+			return this.getCustomName();
 		} else {
 			String var1 = EntityTypes.getNameByClass(this);
 			if (var1 == null) {
@@ -1468,7 +1469,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public boolean b(DamageSource var1) {
-		return this.ar && var1 != DamageSource.OUT_OF_WORLD && !var1.u();
+		return this.invulnerable && var1 != DamageSource.OUT_OF_WORLD && !var1.u();
 	}
 
 	public void m(Entity var1) {
@@ -1479,7 +1480,7 @@ public abstract class Entity implements CommandSenderInterface {
 		NBTCompoundTag var2 = new NBTCompoundTag();
 		var1.write(var2);
 		this.load(var2);
-		this.aj = var1.aj;
+		this.portalCooldown = var1.portalCooldown;
 		this.an = var1.an;
 	}
 
@@ -1551,8 +1552,8 @@ public abstract class Entity implements CommandSenderInterface {
 		var1.addDetails("Entity\'s Vehicle", vehicle.toString());
 	}
 
-	public UUID aJ() {
-		return this.ao;
+	public UUID getUUID() {
+		return this.uuid;
 	}
 
 	public boolean aK() {
@@ -1562,7 +1563,7 @@ public abstract class Entity implements CommandSenderInterface {
 	public IChatBaseComponent getComponentName() {
 		ChatComponentText var1 = new ChatComponentText(this.getName());
 		var1.getChatModifier().a(this.aP());
-		var1.getChatModifier().a(this.aJ().toString());
+		var1.getChatModifier().a(this.getUUID().toString());
 		return var1;
 	}
 
@@ -1570,7 +1571,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.dataWatcher.b(2, var1);
 	}
 
-	public String aL() {
+	public String getCustomName() {
 		return this.dataWatcher.e(2);
 	}
 
@@ -1582,7 +1583,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.dataWatcher.b(3, Byte.valueOf((byte) (var1 ? 1 : 0)));
 	}
 
-	public boolean aM() {
+	public boolean isCustomNameVisible() {
 		return this.dataWatcher.a(3) == 1;
 	}
 
@@ -1600,7 +1601,7 @@ public abstract class Entity implements CommandSenderInterface {
 	protected ChatHoverable aP() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		String var2 = EntityTypes.getNameByClass(this);
-		var1.put("id", this.aJ().toString());
+		var1.put("id", this.getUUID().toString());
 		if (var2 != null) {
 			var1.put("type", var2);
 		}
@@ -1614,15 +1615,15 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public AxisAlignedBB getBoundingBox() {
-		return this.f;
+		return this.boundingBox;
 	}
 
-	public void a(AxisAlignedBB var1) {
-		this.f = var1;
+	public void setBoundingBox(AxisAlignedBB boundingBox) {
+		this.boundingBox = boundingBox;
 	}
 
 	public float getHeadHeight() {
-		return this.K * 0.85F;
+		return this.width * 0.85F;
 	}
 
 	public boolean aS() {
@@ -1656,24 +1657,20 @@ public abstract class Entity implements CommandSenderInterface {
 		return this.world;
 	}
 
-	public Entity getEntity() {
-		return this;
-	}
-
 	public boolean t_() {
 		return false;
 	}
 
 	public void a(ag var1, int var2) {
-		this.as.a(this, var1, var2);
+		this.commandBlockStat.a(this, var1, var2);
 	}
 
 	public CommandBlockStatistic aT() {
-		return this.as;
+		return this.commandBlockStat;
 	}
 
 	public void o(Entity var1) {
-		this.as.a(var1.aT());
+		this.commandBlockStat.a(var1.aT());
 	}
 
 	public NBTCompoundTag aU() {
@@ -1694,6 +1691,10 @@ public abstract class Entity implements CommandSenderInterface {
 		}
 
 		aph.b(var1, var2);
+	}
+
+	public <T> T getBukkitEntity(Class<T> returnType) {
+		throw new AssertionError("Unknown entity " + getClass());
 	}
 
 }

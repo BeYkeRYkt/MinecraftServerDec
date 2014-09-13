@@ -27,7 +27,7 @@ public class BlockPressurePlateBinary extends ath {
 		List var4;
 		switch (azg.a[this.b.ordinal()]) {
 			case 1:
-				var4 = var1.b((Entity) null, var3);
+				var4 = var1.getEntities((Entity) null, var3);
 				break;
 			case 2:
 				var4 = var1.a(EntityLiving.class, var3);

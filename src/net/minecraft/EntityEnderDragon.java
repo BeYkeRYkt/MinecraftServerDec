@@ -34,7 +34,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 		this.h(this.bt());
 		this.a(16.0F, 8.0F);
 		this.T = true;
-		this.ab = true;
+		this.fireProof = true;
 		this.b = 100.0D;
 		this.ah = true;
 	}
@@ -73,17 +73,17 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 		if (this.world.isStatic) {
 			var1 = MathHelper.b(this.bt * 3.1415927F * 2.0F);
 			var2 = MathHelper.b(this.bs * 3.1415927F * 2.0F);
-			if (var2 <= -0.3F && var1 >= -0.3F && !this.R()) {
-				this.world.a(this.locationX, this.locationY, this.locationZ, "mob.enderdragon.wings", 5.0F, 0.8F + this.V.nextFloat() * 0.3F, false);
+			if (var2 <= -0.3F && var1 >= -0.3F && !this.isSilent()) {
+				this.world.a(this.locationX, this.locationY, this.locationZ, "mob.enderdragon.wings", 5.0F, 0.8F + this.random.nextFloat() * 0.3F, false);
 			}
 		}
 
 		this.bs = this.bt;
 		float var3;
 		if (this.getHealth() <= 0.0F) {
-			var1 = (this.V.nextFloat() - 0.5F) * 8.0F;
-			var2 = (this.V.nextFloat() - 0.5F) * 4.0F;
-			var3 = (this.V.nextFloat() - 0.5F) * 8.0F;
+			var1 = (this.random.nextFloat() - 0.5F) * 8.0F;
+			var2 = (this.random.nextFloat() - 0.5F) * 4.0F;
+			var3 = (this.random.nextFloat() - 0.5F) * 8.0F;
 			this.world.a(Particle.b, this.locationX + (double) var1, this.locationY + 2.0D + (double) var2, this.locationZ + (double) var3, 0.0D, 0.0D, 0.0D, new int[0]);
 		} else {
 			this.n();
@@ -145,11 +145,11 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 
 					this.b = this.by.getBoundingBox().minY + var16;
 				} else {
-					this.a += this.V.nextGaussian() * 2.0D;
-					this.c += this.V.nextGaussian() * 2.0D;
+					this.a += this.random.nextGaussian() * 2.0D;
+					this.c += this.random.nextGaussian() * 2.0D;
 				}
 
-				if (this.bu || var8 < 100.0D || var8 > 22500.0D || this.D || this.E) {
+				if (this.bu || var8 < 100.0D || var8 > 22500.0D || this.positionChanged || this.E) {
 					this.cd();
 				}
 
@@ -203,16 +203,16 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 			}
 
 			this.aG = this.yaw;
-			this.bl.J = this.bl.K = 3.0F;
-			this.bn.J = this.bn.K = 2.0F;
-			this.bo.J = this.bo.K = 2.0F;
-			this.bp.J = this.bp.K = 2.0F;
-			this.bm.K = 3.0F;
-			this.bm.J = 5.0F;
-			this.bq.K = 2.0F;
-			this.bq.J = 4.0F;
-			this.br.K = 3.0F;
-			this.br.J = 4.0F;
+			this.bl.height = this.bl.width = 3.0F;
+			this.bn.height = this.bn.width = 2.0F;
+			this.bo.height = this.bo.width = 2.0F;
+			this.bp.height = this.bp.width = 2.0F;
+			this.bm.width = 3.0F;
+			this.bm.height = 5.0F;
+			this.bq.width = 2.0F;
+			this.bq.height = 4.0F;
+			this.br.width = 3.0F;
+			this.br.height = 4.0F;
 			var2 = (float) (this.b(5, 1.0F)[1] - this.b(10, 1.0F)[1]) * 10.0F / 180.0F * 3.1415927F;
 			var3 = MathHelper.b(var2);
 			float var29 = -MathHelper.a(var2);
@@ -226,9 +226,9 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 			this.br.s_();
 			this.br.setPositionRotation(this.locationX - (double) (var7 * 4.5F), this.locationY + 2.0D, this.locationZ - (double) (var30 * 4.5F), 0.0F, 0.0F);
 			if (!this.world.isStatic && this.as == 0) {
-				this.a(this.world.b((Entity) this, this.bq.getBoundingBox().grow(4.0D, 2.0D, 4.0D).c(0.0D, -2.0D, 0.0D)));
-				this.a(this.world.b((Entity) this, this.br.getBoundingBox().grow(4.0D, 2.0D, 4.0D).c(0.0D, -2.0D, 0.0D)));
-				this.b(this.world.b((Entity) this, this.bl.getBoundingBox().grow(1.0D, 1.0D, 1.0D)));
+				this.a(this.world.getEntities((Entity) this, this.bq.getBoundingBox().grow(4.0D, 2.0D, 4.0D).c(0.0D, -2.0D, 0.0D)));
+				this.a(this.world.getEntities((Entity) this, this.br.getBoundingBox().grow(4.0D, 2.0D, 4.0D).c(0.0D, -2.0D, 0.0D)));
+				this.b(this.world.getEntities((Entity) this, this.bl.getBoundingBox().grow(1.0D, 1.0D, 1.0D)));
 			}
 
 			double[] var31 = this.b(5, 1.0F);
@@ -277,12 +277,12 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 				}
 
 				this.bx = null;
-			} else if (this.W % 10 == 0 && this.getHealth() < this.bt()) {
+			} else if (this.ticksLived % 10 == 0 && this.getHealth() < this.bt()) {
 				this.h(this.getHealth() + 1.0F);
 			}
 		}
 
-		if (this.V.nextInt(10) == 0) {
+		if (this.random.nextInt(10) == 0) {
 			float var1 = 32.0F;
 			List var2 = this.world.a(EntityEnderCrystal.class, this.getBoundingBox().grow((double) var1, (double) var1, (double) var1));
 			EntityEnderCrystal var3 = null;
@@ -342,16 +342,16 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 			}
 		}
 
-		if (this.V.nextInt(2) == 0 && !var1.isEmpty()) {
-			this.by = (Entity) var1.get(this.V.nextInt(var1.size()));
+		if (this.random.nextInt(2) == 0 && !var1.isEmpty()) {
+			this.by = (Entity) var1.get(this.random.nextInt(var1.size()));
 		} else {
 			boolean var3;
 			do {
 				this.a = 0.0D;
-				this.b = (double) (70.0F + this.V.nextFloat() * 50.0F);
+				this.b = (double) (70.0F + this.random.nextFloat() * 50.0F);
 				this.c = 0.0D;
-				this.a += (double) (this.V.nextFloat() * 120.0F - 60.0F);
-				this.c += (double) (this.V.nextFloat() * 120.0F - 60.0F);
+				this.a += (double) (this.random.nextFloat() * 120.0F - 60.0F);
+				this.c += (double) (this.random.nextFloat() * 120.0F - 60.0F);
 				double var4 = this.locationX - this.a;
 				double var6 = this.locationY - this.b;
 				double var8 = this.locationZ - this.c;
@@ -382,7 +382,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 				for (int var12 = var4; var12 <= var7; ++var12) {
 					Block var13 = this.world.getBlockState(new Position(var10, var11, var12)).getBlock();
 					if (var13.getMaterial() != Material.AIR) {
-						if (var13 != Blocks.BARRIER && var13 != Blocks.OBSIDIAN && var13 != Blocks.END_STONE && var13 != Blocks.BEDROCK && var13 != Blocks.COMMAND_BLOCK && this.world.Q().b("mobGriefing")) {
+						if (var13 != Blocks.BARRIER && var13 != Blocks.OBSIDIAN && var13 != Blocks.END_STONE && var13 != Blocks.BEDROCK && var13 != Blocks.COMMAND_BLOCK && this.world.getGameRules().b("mobGriefing")) {
 							var9 = this.world.g(new Position(var10, var11, var12)) || var9;
 						} else {
 							var8 = true;
@@ -393,9 +393,9 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 		}
 
 		if (var9) {
-			double var16 = var1.minX + (var1.maxX - var1.minX) * (double) this.V.nextFloat();
-			double var17 = var1.minY + (var1.maxY - var1.minY) * (double) this.V.nextFloat();
-			double var14 = var1.minZ + (var1.maxZ - var1.minZ) * (double) this.V.nextFloat();
+			double var16 = var1.minX + (var1.maxX - var1.minX) * (double) this.random.nextFloat();
+			double var17 = var1.minY + (var1.maxY - var1.minY) * (double) this.random.nextFloat();
+			double var14 = var1.minZ + (var1.maxZ - var1.minZ) * (double) this.random.nextFloat();
 			this.world.a(Particle.b, var16, var17, var14, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
@@ -410,9 +410,9 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 		float var4 = this.yaw * 3.1415927F / 180.0F;
 		float var5 = MathHelper.a(var4);
 		float var6 = MathHelper.b(var4);
-		this.a = this.locationX + (double) (var5 * 5.0F) + (double) ((this.V.nextFloat() - 0.5F) * 2.0F);
-		this.b = this.locationY + (double) (this.V.nextFloat() * 3.0F) + 1.0D;
-		this.c = this.locationZ - (double) (var6 * 5.0F) + (double) ((this.V.nextFloat() - 0.5F) * 2.0F);
+		this.a = this.locationX + (double) (var5 * 5.0F) + (double) ((this.random.nextFloat() - 0.5F) * 2.0F);
+		this.b = this.locationY + (double) (this.random.nextFloat() * 3.0F) + 1.0D;
+		this.c = this.locationZ - (double) (var6 * 5.0F) + (double) ((this.random.nextFloat() - 0.5F) * 2.0F);
 		this.by = null;
 		if (var2.j() instanceof EntityHuman || var2.c()) {
 			this.e(var2, var3);
@@ -433,23 +433,23 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 		return super.damageEntity(var1, var2);
 	}
 
-	public void G() {
+	public void setDead() {
 		this.die();
 	}
 
 	protected void aY() {
 		++this.bw;
 		if (this.bw >= 180 && this.bw <= 200) {
-			float var1 = (this.V.nextFloat() - 0.5F) * 8.0F;
-			float var2 = (this.V.nextFloat() - 0.5F) * 4.0F;
-			float var3 = (this.V.nextFloat() - 0.5F) * 8.0F;
+			float var1 = (this.random.nextFloat() - 0.5F) * 8.0F;
+			float var2 = (this.random.nextFloat() - 0.5F) * 4.0F;
+			float var3 = (this.random.nextFloat() - 0.5F) * 8.0F;
 			this.world.a(Particle.c, this.locationX + (double) var1, this.locationY + 2.0D + (double) var2, this.locationZ + (double) var3, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 		int var4;
 		int var5;
 		if (!this.world.isStatic) {
-			if (this.bw > 150 && this.bw % 5 == 0 && this.world.Q().b("doMobLoot")) {
+			if (this.bw > 150 && this.bw % 5 == 0 && this.world.getGameRules().b("doMobLoot")) {
 				var4 = 1000;
 
 				while (var4 > 0) {

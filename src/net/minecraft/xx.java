@@ -54,10 +54,10 @@ public abstract class xx extends EntityAnimal implements xt {
 		}
 
 		for (int var3 = 0; var3 < 7; ++var3) {
-			double var4 = this.V.nextGaussian() * 0.02D;
-			double var6 = this.V.nextGaussian() * 0.02D;
-			double var8 = this.V.nextGaussian() * 0.02D;
-			this.world.a(var2, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var4, var6, var8, new int[0]);
+			double var4 = this.random.nextGaussian() * 0.02D;
+			double var6 = this.random.nextGaussian() * 0.02D;
+			double var8 = this.random.nextGaussian() * 0.02D;
+			this.world.a(var2, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, var4, var6, var8, new int[0]);
 		}
 
 	}
@@ -150,7 +150,7 @@ public abstract class xx extends EntityAnimal implements xt {
 	}
 
 	public void a(DamageSource var1) {
-		if (!this.world.isStatic && this.world.Q().b("showDeathMessages") && this.k_() && this.cm() instanceof EntityPlayer) {
+		if (!this.world.isStatic && this.world.getGameRules().b("showDeathMessages") && this.k_() && this.cm() instanceof EntityPlayer) {
 			((EntityPlayer) this.cm()).sendChatMessage(this.br().getMessage());
 		}
 

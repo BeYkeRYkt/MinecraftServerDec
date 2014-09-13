@@ -10,7 +10,7 @@ public class EntityEnderCrystal extends Entity {
 		this.k = true;
 		this.a(2.0F, 2.0F);
 		this.b = 5;
-		this.a = this.V.nextInt(100000);
+		this.a = this.random.nextInt(100000);
 	}
 
 	protected boolean r_() {
@@ -22,9 +22,9 @@ public class EntityEnderCrystal extends Entity {
 	}
 
 	public void s_() {
-		this.p = this.locationX;
-		this.q = this.locationY;
-		this.r = this.locationZ;
+		this.previousX = this.locationX;
+		this.previousY = this.locationY;
+		this.previousZ = this.locationZ;
 		++this.a;
 		this.dataWatcher.b(8, Integer.valueOf(this.b));
 		int var1 = MathHelper.toFixedPointInt(this.locationX);

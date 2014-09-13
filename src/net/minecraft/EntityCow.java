@@ -47,14 +47,14 @@ public class EntityCow extends EntityAnimal {
 	}
 
 	protected void dropDeathLoot(boolean var1, int var2) {
-		int var3 = this.V.nextInt(3) + this.V.nextInt(1 + var2);
+		int var3 = this.random.nextInt(3) + this.random.nextInt(1 + var2);
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
 			this.a(Items.LEATHER, 1);
 		}
 
-		var3 = this.V.nextInt(3) + 1 + this.V.nextInt(1 + var2);
+		var3 = this.random.nextInt(3) + 1 + this.random.nextInt(1 + var2);
 
 		for (var4 = 0; var4 < var3; ++var4) {
 			if (this.au()) {
@@ -86,7 +86,7 @@ public class EntityCow extends EntityAnimal {
 	}
 
 	public float getHeadHeight() {
-		return this.K;
+		return this.width;
 	}
 
 	// $FF: synthetic method

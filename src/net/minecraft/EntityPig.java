@@ -78,7 +78,7 @@ public class EntityPig extends EntityAnimal {
 	}
 
 	protected void dropDeathLoot(boolean var1, int var2) {
-		int var3 = this.V.nextInt(3) + 1 + this.V.nextInt(1 + var2);
+		int var3 = this.random.nextInt(3) + 1 + this.random.nextInt(1 + var2);
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			if (this.au()) {

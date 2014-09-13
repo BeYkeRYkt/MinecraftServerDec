@@ -55,7 +55,7 @@ public class EntityRabbit extends EntityAnimal {
 			}
 		} else {
 			this.b(1.5D * (double) var2.a());
-			this.a(this.ck(), this.bA(), ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F) * 0.8F);
+			this.a(this.ck(), this.bA(), ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F) * 0.8F);
 		}
 
 		this.bo = var1;
@@ -88,7 +88,7 @@ public class EntityRabbit extends EntityAnimal {
 		}
 
 		if (this.bs > 0) {
-			this.bs -= this.V.nextInt(3);
+			this.bs -= this.random.nextInt(3);
 			if (this.bs < 0) {
 				this.bs = 0;
 			}
@@ -158,7 +158,7 @@ public class EntityRabbit extends EntityAnimal {
 		super.m();
 		if (this.bm != this.bn) {
 			if (this.bm == 0 && !this.world.isStatic) {
-				this.world.a((Entity) this, (byte) 1);
+				this.world.broadcastEntityEffect((Entity) this, (byte) 1);
 			}
 
 			++this.bm;
@@ -205,7 +205,7 @@ public class EntityRabbit extends EntityAnimal {
 
 	public boolean r(Entity var1) {
 		if (this.cl() == 99) {
-			this.a("mob.attack", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
+			this.a("mob.attack", 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			return var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), 8.0F);
 		} else {
 			return var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), 3.0F);
@@ -225,14 +225,14 @@ public class EntityRabbit extends EntityAnimal {
 	}
 
 	protected void dropDeathLoot(boolean var1, int var2) {
-		int var3 = this.V.nextInt(2) + this.V.nextInt(1 + var2);
+		int var3 = this.random.nextInt(2) + this.random.nextInt(1 + var2);
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
 			this.a(Items.RABBIT_HIDE, 1);
 		}
 
-		var3 = this.V.nextInt(2);
+		var3 = this.random.nextInt(2);
 
 		for (var4 = 0; var4 < var3; ++var4) {
 			if (this.au()) {
@@ -251,7 +251,7 @@ public class EntityRabbit extends EntityAnimal {
 	public EntityRabbit b(EntityAgeable var1) {
 		EntityRabbit var2 = new EntityRabbit(this.world);
 		if (var1 instanceof EntityRabbit) {
-			var2.r(this.V.nextBoolean() ? this.cl() : ((EntityRabbit) var1).cl());
+			var2.r(this.random.nextBoolean() ? this.cl() : ((EntityRabbit) var1).cl());
 		}
 
 		return var2;
@@ -282,7 +282,7 @@ public class EntityRabbit extends EntityAnimal {
 
 	public xq a(vu var1, xq var2) {
 		Object var5 = super.a(var1, var2);
-		int var3 = this.V.nextInt(6);
+		int var3 = this.random.nextInt(6);
 		boolean var4 = false;
 		if (var5 instanceof acg) {
 			var3 = ((acg) var5).a;
@@ -308,7 +308,7 @@ public class EntityRabbit extends EntityAnimal {
 	}
 
 	protected void cn() {
-		this.world.a(Particle.M, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[] { Block.f(Blocks.CARROTS.a(7)) });
+		this.world.a(Particle.M, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, 0.0D, 0.0D, 0.0D, new int[] { Block.f(Blocks.CARROTS.a(7)) });
 		this.bs = 100;
 	}
 

@@ -44,9 +44,9 @@ public class EntityMinecartCommandBlock extends adx {
 	}
 
 	public void a(int var1, int var2, int var3, boolean var4) {
-		if (var4 && this.W - this.b >= 4) {
+		if (var4 && this.ticksLived - this.b >= 4) {
 			this.getListener().executeCommand(this.world);
-			this.b = this.W;
+			this.b = this.ticksLived;
 		}
 
 	}

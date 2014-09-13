@@ -20,8 +20,8 @@ public class EntitySquid extends EntityWaterAnimal {
 	public EntitySquid(World var1) {
 		super(var1);
 		this.a(0.95F, 0.95F);
-		this.V.setSeed((long) (1 + this.getId()));
-		this.bo = 1.0F / (this.V.nextFloat() + 1.0F) * 0.2F;
+		this.random.setSeed((long) (1 + this.getId()));
+		this.bo = 1.0F / (this.random.nextFloat() + 1.0F) * 0.2F;
 		this.i.a(0, new acp(this));
 	}
 
@@ -31,7 +31,7 @@ public class EntitySquid extends EntityWaterAnimal {
 	}
 
 	public float getHeadHeight() {
-		return this.K * 0.5F;
+		return this.width * 0.5F;
 	}
 
 	protected String z() {
@@ -59,7 +59,7 @@ public class EntitySquid extends EntityWaterAnimal {
 	}
 
 	protected void dropDeathLoot(boolean var1, int var2) {
-		int var3 = this.V.nextInt(3 + var2) + 1;
+		int var3 = this.random.nextInt(3 + var2) + 1;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			this.a(new ItemStack(Items.DYE, 1, akv.p.b()), 0.0F);
@@ -83,15 +83,15 @@ public class EntitySquid extends EntityWaterAnimal {
 				this.bj = 6.2831855F;
 			} else {
 				this.bj = (float) ((double) this.bj - 6.283185307179586D);
-				if (this.V.nextInt(10) == 0) {
-					this.bo = 1.0F / (this.V.nextFloat() + 1.0F) * 0.2F;
+				if (this.random.nextInt(10) == 0) {
+					this.bo = 1.0F / (this.random.nextFloat() + 1.0F) * 0.2F;
 				}
 
-				this.world.a((Entity) this, (byte) 19);
+				this.world.broadcastEntityEffect((Entity) this, (byte) 19);
 			}
 		}
 
-		if (this.Y) {
+		if (this.inWater) {
 			float var1;
 			if (this.bj < 3.1415927F) {
 				var1 = this.bj / 3.1415927F;
@@ -153,6 +153,6 @@ public class EntitySquid extends EntityWaterAnimal {
 
 	// $FF: synthetic method
 	static boolean a(EntitySquid var0) {
-		return var0.Y;
+		return var0.inWater;
 	}
 }

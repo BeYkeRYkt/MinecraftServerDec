@@ -444,7 +444,7 @@ public class ScoreboardCommand extends AbstractCommand {
 
 					while (var10.hasNext()) {
 						Entity var11 = (Entity) var10.next();
-						String var12 = e(var1, var11.aJ().toString());
+						String var12 = e(var1, var11.getUUID().toString());
 						if (var4.a(var12, var5)) {
 							var6.add(var12);
 						} else {
@@ -493,7 +493,7 @@ public class ScoreboardCommand extends AbstractCommand {
 
 					while (var9.hasNext()) {
 						Entity var10 = (Entity) var9.next();
-						String var11 = e(var1, var10.aJ().toString());
+						String var11 = e(var1, var10.getUUID().toString());
 						if (var4.f(var11)) {
 							var5.add(var11);
 						} else {

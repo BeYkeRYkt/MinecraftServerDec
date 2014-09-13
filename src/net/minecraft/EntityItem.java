@@ -56,19 +56,19 @@ public class EntityItem extends Entity {
 				--this.d;
 			}
 
-			this.p = this.locationX;
-			this.q = this.locationY;
-			this.r = this.locationZ;
+			this.previousX = this.locationX;
+			this.previousY = this.locationY;
+			this.previousZ = this.locationZ;
 			this.motionY -= 0.03999999910593033D;
 			this.T = this.j(this.locationX, (this.getBoundingBox().minY + this.getBoundingBox().maxY) / 2.0D, this.locationZ);
 			this.move(this.motionX, this.motionY, this.motionZ);
-			boolean var1 = (int) this.p != (int) this.locationX || (int) this.q != (int) this.locationY || (int) this.r != (int) this.locationZ;
-			if (var1 || this.W % 25 == 0) {
+			boolean var1 = (int) this.previousX != (int) this.locationX || (int) this.previousY != (int) this.locationY || (int) this.previousZ != (int) this.locationZ;
+			if (var1 || this.ticksLived % 25 == 0) {
 				if (this.world.getBlockState(new Position(this)).getBlock().getMaterial() == Material.LAVA) {
 					this.motionY = 0.20000000298023224D;
-					this.motionX = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
-					this.motionZ = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
-					this.a("random.fizz", 0.4F, 2.0F + this.V.nextFloat() * 0.4F);
+					this.motionX = (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+					this.motionZ = (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+					this.a("random.fizz", 0.4F, 2.0F + this.random.nextFloat() * 0.4F);
 				}
 
 				if (!this.world.isStatic) {
@@ -157,16 +157,16 @@ public class EntityItem extends Entity {
 
 	public boolean W() {
 		if (this.world.a(this.getBoundingBox(), Material.WATER, (Entity) this)) {
-			if (!this.Y && !this.aa) {
+			if (!this.inWater && !this.justCreated) {
 				this.X();
 			}
 
-			this.Y = true;
+			this.inWater = true;
 		} else {
-			this.Y = false;
+			this.inWater = false;
 		}
 
-		return this.Y;
+		return this.inWater;
 	}
 
 	protected void f(int var1) {
@@ -262,8 +262,8 @@ public class EntityItem extends Entity {
 					}
 				}
 
-				if (!this.R()) {
-					this.world.a((Entity) var1, "random.pop", 0.2F, ((this.V.nextFloat() - this.V.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+				if (!this.isSilent()) {
+					this.world.a((Entity) var1, "random.pop", 0.2F, ((this.random.nextFloat() - this.random.nextFloat()) * 0.7F + 1.0F) * 2.0F);
 				}
 
 				var1.a((Entity) this, var3);
@@ -276,7 +276,7 @@ public class EntityItem extends Entity {
 	}
 
 	public String getName() {
-		return this.k_() ? this.aL() : LocaleI18n.get("item." + this.l().a());
+		return this.k_() ? this.getCustomName() : LocaleI18n.get("item." + this.l().a());
 	}
 
 	public boolean aE() {

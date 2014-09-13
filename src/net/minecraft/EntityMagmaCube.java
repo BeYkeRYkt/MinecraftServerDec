@@ -4,7 +4,7 @@ public class EntityMagmaCube extends EntitySlime {
 
 	public EntityMagmaCube(World var1) {
 		super(var1);
-		this.ab = true;
+		this.fireProof = true;
 	}
 
 	protected void aW() {
@@ -43,9 +43,9 @@ public class EntityMagmaCube extends EntitySlime {
 	protected void dropDeathLoot(boolean var1, int var2) {
 		Item var3 = this.getLoot();
 		if (var3 != null && this.ck() > 1) {
-			int var4 = this.V.nextInt(4) - 2;
+			int var4 = this.random.nextInt(4) - 2;
 			if (var2 > 0) {
-				var4 += this.V.nextInt(var2 + 1);
+				var4 += this.random.nextInt(var2 + 1);
 			}
 
 			for (int var5 = 0; var5 < var4; ++var5) {

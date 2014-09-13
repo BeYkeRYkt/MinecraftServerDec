@@ -44,7 +44,7 @@ public class EntityZombie extends EntityMonster {
 		this.a(afs.b).a(35.0D);
 		this.a(afs.d).a(0.23000000417232513D);
 		this.a(afs.e).a(3.0D);
-		this.bx().b(b).a(this.V.nextDouble() * 0.10000000149011612D);
+		this.bx().b(b).a(this.random.nextDouble() * 0.10000000149011612D);
 	}
 
 	protected void h() {
@@ -116,12 +116,12 @@ public class EntityZombie extends EntityMonster {
 		if (this.world.w() && !this.world.isStatic && !this.i_()) {
 			float var1 = this.c(1.0F);
 			Position var2 = new Position(this.locationX, (double) Math.round(this.locationY), this.locationZ);
-			if (var1 > 0.5F && this.V.nextFloat() * 30.0F < (var1 - 0.4F) * 2.0F && this.world.i(var2)) {
+			if (var1 > 0.5F && this.random.nextFloat() * 30.0F < (var1 - 0.4F) * 2.0F && this.world.i(var2)) {
 				boolean var3 = true;
 				ItemStack var4 = this.p(4);
 				if (var4 != null) {
 					if (var4.e()) {
-						var4.setDurability(var4.h() + this.V.nextInt(2));
+						var4.setDurability(var4.h() + this.random.nextInt(2));
 						if (var4.h() >= var4.j()) {
 							this.b(var4);
 							this.setArmor(4, (ItemStack) null);
@@ -151,16 +151,16 @@ public class EntityZombie extends EntityMonster {
 				var3 = (EntityLiving) var1.j();
 			}
 
-			if (var3 != null && this.world.getDifficulty() == Difficulty.HARD && (double) this.V.nextFloat() < this.a(b).e()) {
+			if (var3 != null && this.world.getDifficulty() == Difficulty.HARD && (double) this.random.nextFloat() < this.a(b).e()) {
 				int var4 = MathHelper.toFixedPointInt(this.locationX);
 				int var5 = MathHelper.toFixedPointInt(this.locationY);
 				int var6 = MathHelper.toFixedPointInt(this.locationZ);
 				EntityZombie var7 = new EntityZombie(this.world);
 
 				for (int var8 = 0; var8 < 50; ++var8) {
-					int var9 = var4 + MathHelper.a(this.V, 7, 40) * MathHelper.a(this.V, -1, 1);
-					int var10 = var5 + MathHelper.a(this.V, 7, 40) * MathHelper.a(this.V, -1, 1);
-					int var11 = var6 + MathHelper.a(this.V, 7, 40) * MathHelper.a(this.V, -1, 1);
+					int var9 = var4 + MathHelper.a(this.random, 7, 40) * MathHelper.a(this.random, -1, 1);
+					int var10 = var5 + MathHelper.a(this.random, 7, 40) * MathHelper.a(this.random, -1, 1);
+					int var11 = var6 + MathHelper.a(this.random, 7, 40) * MathHelper.a(this.random, -1, 1);
 					if (World.a((ard) this.world, new Position(var9, var10 - 1, var11)) && this.world.l(new Position(var9, var10, var11)) < 10) {
 						var7.b((double) var9, (double) var10, (double) var11);
 						if (!this.world.b((double) var9, (double) var10, (double) var11, 7.0D) && this.world.a(var7.getBoundingBox(), (Entity) var7) && this.world.getCubes((Entity) var7, var7.getBoundingBox()).isEmpty() && !this.world.d(var7.getBoundingBox())) {
@@ -197,7 +197,7 @@ public class EntityZombie extends EntityMonster {
 		boolean var2 = super.r(var1);
 		if (var2) {
 			int var3 = this.world.getDifficulty().getId();
-			if (this.getItemInHand() == null && this.au() && this.V.nextFloat() < (float) var3 * 0.3F) {
+			if (this.getItemInHand() == null && this.au() && this.random.nextFloat() < (float) var3 * 0.3F) {
 				var1.e(2 * var3);
 			}
 		}
@@ -230,7 +230,7 @@ public class EntityZombie extends EntityMonster {
 	}
 
 	protected void bp() {
-		switch (this.V.nextInt(3)) {
+		switch (this.random.nextInt(3)) {
 			case 0:
 				this.a(Items.IRON_INGOT, 1);
 				break;
@@ -245,8 +245,8 @@ public class EntityZombie extends EntityMonster {
 
 	protected void a(vu var1) {
 		super.a(var1);
-		if (this.V.nextFloat() < (this.world.getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
-			int var2 = this.V.nextInt(3);
+		if (this.random.nextFloat() < (this.world.getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
+			int var2 = this.random.nextInt(3);
 			if (var2 == 0) {
 				this.setArmor(0, new ItemStack(Items.IRON_SWORD));
 			} else {
@@ -290,7 +290,7 @@ public class EntityZombie extends EntityMonster {
 	public void a(EntityLiving var1) {
 		super.a(var1);
 		if ((this.world.getDifficulty() == Difficulty.NORMAL || this.world.getDifficulty() == Difficulty.HARD) && var1 instanceof EntityVillager) {
-			if (this.world.getDifficulty() != Difficulty.HARD && this.V.nextBoolean()) {
+			if (this.world.getDifficulty() != Difficulty.HARD && this.random.nextBoolean()) {
 				return;
 			}
 
@@ -325,7 +325,7 @@ public class EntityZombie extends EntityMonster {
 	public xq a(vu var1, xq var2) {
 		Object var7 = super.a(var1, var2);
 		float var3 = var1.c();
-		this.j(this.V.nextFloat() < 0.55F * var3);
+		this.j(this.random.nextFloat() < 0.55F * var3);
 		if (var7 == null) {
 			var7 = new agl(this, this.world.s.nextFloat() < 0.05F, this.world.s.nextFloat() < 0.05F, (agk) null);
 		}
@@ -356,26 +356,26 @@ public class EntityZombie extends EntityMonster {
 			}
 		}
 
-		this.a(this.V.nextFloat() < var3 * 0.1F);
+		this.a(this.random.nextFloat() < var3 * 0.1F);
 		this.a(var1);
 		this.b(var1);
 		if (this.p(4) == null) {
 			Calendar var8 = this.world.Y();
-			if (var8.get(2) + 1 == 10 && var8.get(5) == 31 && this.V.nextFloat() < 0.25F) {
-				this.setArmor(4, new ItemStack(this.V.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
+			if (var8.get(2) + 1 == 10 && var8.get(5) == 31 && this.random.nextFloat() < 0.25F) {
+				this.setArmor(4, new ItemStack(this.random.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
 				this.bh[4] = 0.0F;
 			}
 		}
 
-		this.a(afs.c).b(new AttributeModifier("Random spawn bonus", this.V.nextDouble() * 0.05000000074505806D, 0));
-		double var9 = this.V.nextDouble() * 1.5D * (double) var3;
+		this.a(afs.c).b(new AttributeModifier("Random spawn bonus", this.random.nextDouble() * 0.05000000074505806D, 0));
+		double var9 = this.random.nextDouble() * 1.5D * (double) var3;
 		if (var9 > 1.0D) {
 			this.a(afs.b).b(new AttributeModifier("Random zombie-spawn bonus", var9, 2));
 		}
 
-		if (this.V.nextFloat() < var3 * 0.05F) {
-			this.a(b).b(new AttributeModifier("Leader zombie bonus", this.V.nextDouble() * 0.25D + 0.5D, 0));
-			this.a(afs.a).b(new AttributeModifier("Leader zombie bonus", this.V.nextDouble() * 3.0D + 1.0D, 2));
+		if (this.random.nextFloat() < var3 * 0.05F) {
+			this.a(b).b(new AttributeModifier("Leader zombie bonus", this.random.nextDouble() * 0.25D + 0.5D, 0));
+			this.a(afs.a).b(new AttributeModifier("Leader zombie bonus", this.random.nextDouble() * 3.0D + 1.0D, 2));
 			this.a(true);
 		}
 
@@ -394,7 +394,7 @@ public class EntityZombie extends EntityMonster {
 			}
 
 			if (!this.world.isStatic) {
-				this.a(this.V.nextInt(2401) + 3600);
+				this.a(this.random.nextInt(2401) + 3600);
 			}
 
 			return true;
@@ -408,7 +408,7 @@ public class EntityZombie extends EntityMonster {
 		this.getDataWatcher().b(14, Byte.valueOf((byte) 1));
 		this.m(MobEffectList.WEAKNESS.id);
 		this.c(new MobEffect(MobEffectList.INCREASE_DAMAGE.id, var1, Math.min(this.world.getDifficulty().getId() - 1, 0)));
-		this.world.a((Entity) this, (byte) 16);
+		this.world.broadcastEntityEffect((Entity) this, (byte) 16);
 	}
 
 	protected boolean C() {
@@ -436,7 +436,7 @@ public class EntityZombie extends EntityMonster {
 
 	protected int cp() {
 		int var1 = 1;
-		if (this.V.nextFloat() < 0.01F) {
+		if (this.random.nextFloat() < 0.01F) {
 			int var2 = 0;
 
 			for (int var3 = (int) this.locationX - 4; var3 < (int) this.locationX + 4 && var2 < 14; ++var3) {
@@ -444,7 +444,7 @@ public class EntityZombie extends EntityMonster {
 					for (int var5 = (int) this.locationZ - 4; var5 < (int) this.locationZ + 4 && var2 < 14; ++var5) {
 						Block var6 = this.world.getBlockState(new Position(var3, var4, var5)).getBlock();
 						if (var6 == Blocks.IRON_BARS || var6 == Blocks.BED) {
-							if (this.V.nextFloat() < 0.3F) {
+							if (this.random.nextFloat() < 0.3F) {
 								++var1;
 							}
 

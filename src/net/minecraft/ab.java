@@ -44,7 +44,7 @@ public class ab implements ICommandHandler {
 
 				while (var10.hasNext()) {
 					Entity var11 = (Entity) var10.next();
-					var3[var6] = var11.aJ().toString();
+					var3[var6] = var11.getUUID().toString();
 					if (this.a(var1, var3, var5, var2)) {
 						++var7;
 					}

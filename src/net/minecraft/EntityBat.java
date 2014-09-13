@@ -26,7 +26,7 @@ public class EntityBat extends EntityAmbient {
 	}
 
 	protected String z() {
-		return this.n() && this.V.nextInt(4) != 0 ? null : "mob.bat.idle";
+		return this.n() && this.random.nextInt(4) != 0 ? null : "mob.bat.idle";
 	}
 
 	protected String bn() {
@@ -70,7 +70,7 @@ public class EntityBat extends EntityAmbient {
 		super.s_();
 		if (this.n()) {
 			this.motionX = this.motionY = this.motionZ = 0.0D;
-			this.locationY = (double) MathHelper.toFixedPointInt(this.locationY) + 1.0D - (double) this.K;
+			this.locationY = (double) MathHelper.toFixedPointInt(this.locationY) + 1.0D - (double) this.width;
 		} else {
 			this.motionY *= 0.6000000238418579D;
 		}
@@ -86,8 +86,8 @@ public class EntityBat extends EntityAmbient {
 				this.a(false);
 				this.world.a((EntityHuman) null, 1015, var1, 0);
 			} else {
-				if (this.V.nextInt(200) == 0) {
-					this.headPitch = (float) this.V.nextInt(360);
+				if (this.random.nextInt(200) == 0) {
+					this.headPitch = (float) this.random.nextInt(360);
 				}
 
 				if (this.world.a(this, 4.0D) != null) {
@@ -100,8 +100,8 @@ public class EntityBat extends EntityAmbient {
 				this.a = null;
 			}
 
-			if (this.a == null || this.V.nextInt(30) == 0 || this.a.c((double) ((int) this.locationX), (double) ((int) this.locationY), (double) ((int) this.locationZ)) < 4.0D) {
-				this.a = new Position((int) this.locationX + this.V.nextInt(7) - this.V.nextInt(7), (int) this.locationY + this.V.nextInt(6) - 2, (int) this.locationZ + this.V.nextInt(7) - this.V.nextInt(7));
+			if (this.a == null || this.random.nextInt(30) == 0 || this.a.c((double) ((int) this.locationX), (double) ((int) this.locationY), (double) ((int) this.locationZ)) < 4.0D) {
+				this.a = new Position((int) this.locationX + this.random.nextInt(7) - this.random.nextInt(7), (int) this.locationY + this.random.nextInt(6) - 2, (int) this.locationZ + this.random.nextInt(7) - this.random.nextInt(7));
 			}
 
 			double var3 = (double) this.a.getX() + 0.5D - this.locationX;
@@ -114,7 +114,7 @@ public class EntityBat extends EntityAmbient {
 			float var10 = MathHelper.g(var9 - this.yaw);
 			this.aY = 0.5F;
 			this.yaw += var10;
-			if (this.V.nextInt(100) == 0 && this.world.getBlockState(var2).getBlock().t()) {
+			if (this.random.nextInt(100) == 0 && this.world.getBlockState(var2).getBlock().t()) {
 				this.a(true);
 			}
 		}
@@ -166,11 +166,11 @@ public class EntityBat extends EntityAmbient {
 			byte var3 = 4;
 			if (this.a(this.world.Y())) {
 				var3 = 7;
-			} else if (this.V.nextBoolean()) {
+			} else if (this.random.nextBoolean()) {
 				return false;
 			}
 
-			return var2 > this.V.nextInt(var3) ? false : super.bQ();
+			return var2 > this.random.nextInt(var3) ? false : super.bQ();
 		}
 	}
 
@@ -179,6 +179,6 @@ public class EntityBat extends EntityAmbient {
 	}
 
 	public float getHeadHeight() {
-		return this.K / 2.0F;
+		return this.width / 2.0F;
 	}
 }

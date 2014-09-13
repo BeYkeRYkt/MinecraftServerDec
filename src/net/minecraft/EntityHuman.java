@@ -50,14 +50,14 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public EntityHuman(World var1, GameProfile var2) {
 		super(var1);
-		this.ao = a(var2);
+		this.uuid = a(var2);
 		this.gameProfile = var2;
 		this.defaultContainer = new ajb(this.playerInventory, !var1.isStatic, this);
 		this.activeContainer = this.defaultContainer;
 		Position var3 = var1.getSpawnPosition();
 		this.setPositionRotation((double) var3.getX() + 0.5D, (double) (var3.getY() + 1), (double) var3.getZ() + 0.5D, 0.0F, 0.0F);
 		this.aT = 180.0F;
-		this.X = 20;
+		this.maxFireTicks = 20;
 	}
 
 	protected void aW() {
@@ -236,11 +236,11 @@ public abstract class EntityHuman extends EntityLiving {
 
 		if (var1.m() == ano.b) {
 			for (int var3 = 0; var3 < var2; ++var3) {
-				Vec3D var4 = new Vec3D(((double) this.V.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D);
+				Vec3D var4 = new Vec3D(((double) this.random.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D);
 				var4 = var4.a(-this.pitch * 3.1415927F / 180.0F);
 				var4 = var4.b(-this.yaw * 3.1415927F / 180.0F);
-				double var5 = (double) (-this.V.nextFloat()) * 0.6D - 0.3D;
-				Vec3D var7 = new Vec3D(((double) this.V.nextFloat() - 0.5D) * 0.3D, var5, 0.6D);
+				double var5 = (double) (-this.random.nextFloat()) * 0.6D - 0.3D;
+				Vec3D var7 = new Vec3D(((double) this.random.nextFloat() - 0.5D) * 0.3D, var5, 0.6D);
 				var7 = var7.a(-this.pitch * 3.1415927F / 180.0F);
 				var7 = var7.b(-this.yaw * 3.1415927F / 180.0F);
 				var7 = var7.b(this.locationX, this.locationY + (double) this.getHeadHeight(), this.locationZ);
@@ -251,7 +251,7 @@ public abstract class EntityHuman extends EntityLiving {
 				}
 			}
 
-			this.a("random.eat", 0.5F + 0.5F * (float) this.V.nextInt(2), (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
+			this.a("random.eat", 0.5F + 0.5F * (float) this.random.nextInt(2), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 		}
 
 	}
@@ -315,12 +315,12 @@ public abstract class EntityHuman extends EntityLiving {
 			--this.bk;
 		}
 
-		if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.Q().b("naturalRegeneration")) {
-			if (this.getHealth() < this.bt() && this.W % 20 == 0) {
+		if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().b("naturalRegeneration")) {
+			if (this.getHealth() < this.bt() && this.ticksLived % 20 == 0) {
 				this.g(1.0F);
 			}
 
-			if (this.fooddata.c() && this.W % 10 == 0) {
+			if (this.fooddata.c() && this.ticksLived % 10 == 0) {
 				this.fooddata.a(this.fooddata.a() + 1);
 			}
 		}
@@ -363,7 +363,7 @@ public abstract class EntityHuman extends EntityLiving {
 				var4 = this.getBoundingBox().grow(1.0D, 0.5D, 1.0D);
 			}
 
-			List var5 = this.world.b((Entity) this, var4);
+			List var5 = this.world.getEntities((Entity) this, var4);
 
 			for (int var6 = 0; var6 < var5.size(); ++var6) {
 				Entity var7 = (Entity) var5.get(var6);
@@ -401,7 +401,7 @@ public abstract class EntityHuman extends EntityLiving {
 			this.a(new ItemStack(Items.APPLE, 1), true, false);
 		}
 
-		if (!this.world.Q().b("keepInventory")) {
+		if (!this.world.getGameRules().b("keepInventory")) {
 			this.playerInventory.n();
 		}
 
@@ -495,8 +495,8 @@ public abstract class EntityHuman extends EntityLiving {
 			float var7;
 			float var8;
 			if (var2) {
-				var7 = this.V.nextFloat() * 0.5F;
-				var8 = this.V.nextFloat() * 3.1415927F * 2.0F;
+				var7 = this.random.nextFloat() * 0.5F;
+				var8 = this.random.nextFloat() * 3.1415927F * 2.0F;
 				var6.motionX = (double) (-MathHelper.a(var8) * var7);
 				var6.motionZ = (double) (MathHelper.b(var8) * var7);
 				var6.motionY = 0.20000000298023224D;
@@ -505,10 +505,10 @@ public abstract class EntityHuman extends EntityLiving {
 				var6.motionX = (double) (-MathHelper.a(this.yaw / 180.0F * 3.1415927F) * MathHelper.b(this.pitch / 180.0F * 3.1415927F) * var7);
 				var6.motionZ = (double) (MathHelper.b(this.yaw / 180.0F * 3.1415927F) * MathHelper.b(this.pitch / 180.0F * 3.1415927F) * var7);
 				var6.motionY = (double) (-MathHelper.a(this.pitch / 180.0F * 3.1415927F) * var7 + 0.1F);
-				var8 = this.V.nextFloat() * 3.1415927F * 2.0F;
-				var7 = 0.02F * this.V.nextFloat();
+				var8 = this.random.nextFloat() * 3.1415927F * 2.0F;
+				var7 = 0.02F * this.random.nextFloat();
 				var6.motionX += Math.cos((double) var8) * (double) var7;
-				var6.motionY += (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.1F);
+				var6.motionY += (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.1F);
 				var6.motionZ += Math.sin((double) var8) * (double) var7;
 			}
 
@@ -576,7 +576,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.ao = a(this.gameProfile);
+		this.uuid = a(this.gameProfile);
 		NBTListTag var2 = var1.getList("Inventory", 10);
 		this.playerInventory.b(var2);
 		this.playerInventory.itemInHandIndex = var1.getInt("SelectedItemSlot");
@@ -587,7 +587,7 @@ public abstract class EntityHuman extends EntityLiving {
 		this.xpTotal = var1.getInt("XpTotal");
 		this.xpSeed = var1.getInt("XpSeed");
 		if (this.xpSeed == 0) {
-			this.xpSeed = this.V.nextInt();
+			this.xpSeed = this.random.nextInt();
 		}
 
 		this.r(var1.getInt("Score"));
@@ -823,7 +823,7 @@ public abstract class EntityHuman extends EntityLiving {
 				}
 
 				if (var2 > 0.0F || var4 > 0.0F) {
-					boolean var5 = this.O > 0.0F && !this.onGround && !this.j_() && !this.V() && !this.a(MobEffectList.BLINDNESS) && this.vehicle == null && var1 instanceof EntityLiving;
+					boolean var5 = this.fallDistance > 0.0F && !this.onGround && !this.j_() && !this.V() && !this.a(MobEffectList.BLINDNESS) && this.vehicle == null && var1 instanceof EntityLiving;
 					if (var5 && var2 > 0.0F) {
 						var2 *= 1.5F;
 					}
@@ -848,9 +848,9 @@ public abstract class EntityHuman extends EntityLiving {
 							this.setSprinting(false);
 						}
 
-						if (var1 instanceof EntityPlayer && var1.G) {
+						if (var1 instanceof EntityPlayer && var1.velocityChanged) {
 							((EntityPlayer) var1).playerConncetion.sendPacket((Packet) (new PacketPlayOutEntityVelocity(var1)));
-							var1.G = false;
+							var1.velocityChanged = false;
 							var1.motionX = var8;
 							var1.motionY = var10;
 							var1.motionZ = var12;
@@ -1272,7 +1272,7 @@ public abstract class EntityHuman extends EntityLiving {
 			this.xpTotal = 0;
 		}
 
-		this.xpSeed = this.V.nextInt();
+		this.xpSeed = this.random.nextInt();
 	}
 
 	public void a(int var1) {
@@ -1283,10 +1283,10 @@ public abstract class EntityHuman extends EntityLiving {
 			this.xpTotal = 0;
 		}
 
-		if (var1 > 0 && this.xpLevel % 5 == 0 && (float) this.i < (float) this.W - 100.0F) {
+		if (var1 > 0 && this.xpLevel % 5 == 0 && (float) this.i < (float) this.ticksLived - 100.0F) {
 			float var2 = this.xpLevel > 30 ? 1.0F : (float) this.xpLevel / 30.0F;
 			this.world.a((Entity) this, "random.levelup", var2 * 0.75F, 1.0F);
-			this.i = this.W;
+			this.i = this.ticksLived;
 		}
 
 	}
@@ -1344,7 +1344,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	protected int b(EntityHuman var1) {
-		if (this.world.Q().b("keepInventory")) {
+		if (this.world.getGameRules().b("keepInventory")) {
 			return 0;
 		} else {
 			int var2 = this.xpLevel * 7;
@@ -1366,7 +1366,7 @@ public abstract class EntityHuman extends EntityLiving {
 			this.xp = var1.xp;
 			this.r(var1.bW());
 			this.an = var1.an;
-		} else if (this.world.Q().b("keepInventory")) {
+		} else if (this.world.getGameRules().b("keepInventory")) {
 			this.playerInventory.b(var1.playerInventory);
 			this.xpLevel = var1.xpLevel;
 			this.xpTotal = var1.xpTotal;
@@ -1482,7 +1482,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public boolean t_() {
-		return MinecraftServer.getInstance().worlds[0].Q().b("sendCommandFeedback");
+		return MinecraftServer.getInstance().worlds[0].getGameRules().b("sendCommandFeedback");
 	}
 
 	public boolean d(int var1, ItemStack var2) {

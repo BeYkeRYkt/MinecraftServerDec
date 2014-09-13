@@ -34,7 +34,7 @@ public class zq extends PathfinderGoal {
 
 	public void e() {
 		this.b.p().a(this.c, 30.0F, 30.0F);
-		double var1 = (double) (this.b.J * 2.0F * this.b.J * 2.0F);
+		double var1 = (double) (this.b.height * 2.0F * this.b.height * 2.0F);
 		double var3 = this.b.getDistanceSquared(this.c.locationX, this.c.getBoundingBox().minY, this.c.locationZ);
 		double var5 = 0.8D;
 		if (var3 > var1 && var3 < 16.0D) {

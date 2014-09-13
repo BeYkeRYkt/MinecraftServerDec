@@ -67,7 +67,7 @@ public class EntityEnderman extends EntityMonster {
 			return false;
 		} else {
 			Vec3D var3 = var1.d(1.0F).a();
-			Vec3D var4 = new Vec3D(this.locationX - var1.locationX, this.getBoundingBox().minY + (double) (this.K / 2.0F) - (var1.locationY + (double) var1.getHeadHeight()), this.locationZ - var1.locationZ);
+			Vec3D var4 = new Vec3D(this.locationX - var1.locationX, this.getBoundingBox().minY + (double) (this.width / 2.0F) - (var1.locationY + (double) var1.getHeadHeight()), this.locationZ - var1.locationZ);
 			double var5 = var4.b();
 			var4 = var4.a();
 			double var7 = var3.b(var4);
@@ -82,7 +82,7 @@ public class EntityEnderman extends EntityMonster {
 	public void m() {
 		if (this.world.isStatic) {
 			for (int var1 = 0; var1 < 2; ++var1) {
-				this.world.a(Particle.y, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K - 0.25D, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, (this.V.nextDouble() - 0.5D) * 2.0D, -this.V.nextDouble(), (this.V.nextDouble() - 0.5D) * 2.0D, new int[0]);
+				this.world.a(Particle.y, this.locationX + (this.random.nextDouble() - 0.5D) * (double) this.height, this.locationY + this.random.nextDouble() * (double) this.width - 0.25D, this.locationZ + (this.random.nextDouble() - 0.5D) * (double) this.height, (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D, new int[0]);
 			}
 		}
 
@@ -95,13 +95,13 @@ public class EntityEnderman extends EntityMonster {
 			this.damageEntity(DamageSource.DROWN, 1.0F);
 		}
 
-		if (this.cm() && !this.bl && this.V.nextInt(100) == 0) {
+		if (this.cm() && !this.bl && this.random.nextInt(100) == 0) {
 			this.a(false);
 		}
 
 		if (this.world.w()) {
 			float var1 = this.c(1.0F);
-			if (var1 > 0.5F && this.world.i(new Position(this)) && this.V.nextFloat() * 30.0F < (var1 - 0.4F) * 2.0F) {
+			if (var1 > 0.5F && this.world.i(new Position(this)) && this.random.nextFloat() * 30.0F < (var1 - 0.4F) * 2.0F) {
 				this.d((EntityLiving) null);
 				this.a(false);
 				this.bl = false;
@@ -113,19 +113,19 @@ public class EntityEnderman extends EntityMonster {
 	}
 
 	protected boolean n() {
-		double var1 = this.locationX + (this.V.nextDouble() - 0.5D) * 64.0D;
-		double var3 = this.locationY + (double) (this.V.nextInt(64) - 32);
-		double var5 = this.locationZ + (this.V.nextDouble() - 0.5D) * 64.0D;
+		double var1 = this.locationX + (this.random.nextDouble() - 0.5D) * 64.0D;
+		double var3 = this.locationY + (double) (this.random.nextInt(64) - 32);
+		double var5 = this.locationZ + (this.random.nextDouble() - 0.5D) * 64.0D;
 		return this.k(var1, var3, var5);
 	}
 
 	protected boolean b(Entity var1) {
-		Vec3D var2 = new Vec3D(this.locationX - var1.locationX, this.getBoundingBox().minY + (double) (this.K / 2.0F) - var1.locationY + (double) var1.getHeadHeight(), this.locationZ - var1.locationZ);
+		Vec3D var2 = new Vec3D(this.locationX - var1.locationX, this.getBoundingBox().minY + (double) (this.width / 2.0F) - var1.locationY + (double) var1.getHeadHeight(), this.locationZ - var1.locationZ);
 		var2 = var2.a();
 		double var3 = 16.0D;
-		double var5 = this.locationX + (this.V.nextDouble() - 0.5D) * 8.0D - var2.x * var3;
-		double var7 = this.locationY + (double) (this.V.nextInt(16) - 8) - var2.y * var3;
-		double var9 = this.locationZ + (this.V.nextDouble() - 0.5D) * 8.0D - var2.z * var3;
+		double var5 = this.locationX + (this.random.nextDouble() - 0.5D) * 8.0D - var2.x * var3;
+		double var7 = this.locationY + (double) (this.random.nextInt(16) - 8) - var2.y * var3;
+		double var9 = this.locationZ + (this.random.nextDouble() - 0.5D) * 8.0D - var2.z * var3;
 		return this.k(var5, var7, var9);
 	}
 
@@ -168,12 +168,12 @@ public class EntityEnderman extends EntityMonster {
 
 			for (int var29 = 0; var29 < var28; ++var29) {
 				double var30 = (double) var29 / ((double) var28 - 1.0D);
-				float var19 = (this.V.nextFloat() - 0.5F) * 0.2F;
-				float var20 = (this.V.nextFloat() - 0.5F) * 0.2F;
-				float var21 = (this.V.nextFloat() - 0.5F) * 0.2F;
-				double var22 = var7 + (this.locationX - var7) * var30 + (this.V.nextDouble() - 0.5D) * (double) this.J * 2.0D;
-				double var24 = var9 + (this.locationY - var9) * var30 + this.V.nextDouble() * (double) this.K;
-				double var26 = var11 + (this.locationZ - var11) * var30 + (this.V.nextDouble() - 0.5D) * (double) this.J * 2.0D;
+				float var19 = (this.random.nextFloat() - 0.5F) * 0.2F;
+				float var20 = (this.random.nextFloat() - 0.5F) * 0.2F;
+				float var21 = (this.random.nextFloat() - 0.5F) * 0.2F;
+				double var22 = var7 + (this.locationX - var7) * var30 + (this.random.nextDouble() - 0.5D) * (double) this.height * 2.0D;
+				double var24 = var9 + (this.locationY - var9) * var30 + this.random.nextDouble() * (double) this.width;
+				double var26 = var11 + (this.locationZ - var11) * var30 + (this.random.nextDouble() - 0.5D) * (double) this.height * 2.0D;
 				this.world.a(Particle.y, var22, var24, var26, (double) var19, (double) var20, (double) var21, new int[0]);
 			}
 
@@ -202,7 +202,7 @@ public class EntityEnderman extends EntityMonster {
 	protected void dropDeathLoot(boolean var1, int var2) {
 		Item var3 = this.getLoot();
 		if (var3 != null) {
-			int var4 = this.V.nextInt(2 + var2);
+			int var4 = this.random.nextInt(2 + var2);
 
 			for (int var5 = 0; var5 < var4; ++var5) {
 				this.a(var3, 1);
@@ -250,7 +250,7 @@ public class EntityEnderman extends EntityMonster {
 			}
 
 			boolean var3 = super.damageEntity(var1, var2);
-			if (var1.e() && this.V.nextInt(10) != 0) {
+			if (var1.e() && this.random.nextInt(10) != 0) {
 				this.n();
 			}
 

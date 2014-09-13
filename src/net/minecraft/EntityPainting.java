@@ -27,7 +27,7 @@ public class EntityPainting extends adj {
 		}
 
 		if (!var4.isEmpty()) {
-			this.type = (PaintingType) var4.get(this.V.nextInt(var4.size()));
+			this.type = (PaintingType) var4.get(this.random.nextInt(var4.size()));
 		}
 
 		this.a(var3);
@@ -66,7 +66,7 @@ public class EntityPainting extends adj {
 	}
 
 	public void b(Entity var1) {
-		if (this.world.Q().b("doTileDrops")) {
+		if (this.world.getGameRules().b("doTileDrops")) {
 			if (var1 instanceof EntityHuman) {
 				EntityHuman var2 = (EntityHuman) var1;
 				if (var2.playerProperties.instabuild) {

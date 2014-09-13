@@ -63,7 +63,7 @@ public class zm extends PathfinderGoal {
 		if (this.a.s().m()) {
 			return false;
 		} else {
-			float var1 = this.a.J + 4.0F;
+			float var1 = this.a.height + 4.0F;
 			return this.a.b(this.d.d()) > (double) (var1 * var1);
 		}
 	}

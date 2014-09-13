@@ -76,6 +76,6 @@ public class GameRuleCommand extends AbstractCommand {
 	}
 
 	private GameRuleRegistry d() {
-		return MinecraftServer.getInstance().getWorldServer(0).Q();
+		return MinecraftServer.getInstance().getWorldServer(0).getGameRules();
 	}
 }

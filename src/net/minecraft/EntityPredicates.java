@@ -22,7 +22,7 @@ public final class EntityPredicates {
 			return entity instanceof IInventory && entity.isAlive();
 		}
 	};
-	public static final Predicate<Entity> d = new Predicate<Entity>() {
+	public static final Predicate<Entity> notSpectators = new Predicate<Entity>() {
 		@Override
 		public boolean apply(Entity entity) {
 			return !(entity instanceof EntityHuman) || !((EntityHuman) entity).isSpectator();

@@ -40,7 +40,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 	public EntityHorse(World var1) {
 		super(var1);
 		this.a(1.4F, 1.6F);
-		this.ab = false;
+		this.fireProof = false;
 		this.o(false);
 		((aay) this.s()).a(true);
 		this.i.a(0, new PathfinderGoalFloat(this));
@@ -83,7 +83,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 
 	public String getName() {
 		if (this.k_()) {
-			return this.aL();
+			return this.getCustomName();
 		} else {
 			int var1 = this.cj();
 			switch (var1) {
@@ -270,8 +270,8 @@ public class EntityHorse extends EntityAnimal implements vr {
 
 	private void cW() {
 		this.dd();
-		if (!this.R()) {
-			this.world.a((Entity) this, "eating", 1.0F, 1.0F + (this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
+		if (!this.isSilent()) {
+			this.world.a((Entity) this, "eating", 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
 		}
 
 	}
@@ -288,8 +288,8 @@ public class EntityHorse extends EntityAnimal implements vr {
 				this.passenger.damageEntity(DamageSource.FALL, (float) var3);
 			}
 
-			Block var4 = this.world.getBlockState(new Position(this.locationX, this.locationY - 0.2D - (double) this.A, this.locationZ)).getBlock();
-			if (var4.getMaterial() != Material.AIR && !this.R()) {
+			Block var4 = this.world.getBlockState(new Position(this.locationX, this.locationY - 0.2D - (double) this.lastYaw, this.locationZ)).getBlock();
+			if (var4.getMaterial() != Material.AIR && !this.isSilent()) {
 				BlockSound var5 = var4.H;
 				this.world.a((Entity) this, var5.c(), var5.d() * 0.5F, var5.e() * 0.75F);
 			}
@@ -336,7 +336,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 		int var2 = this.cv();
 		boolean var3 = this.cE();
 		this.cZ();
-		if (this.W > 20) {
+		if (this.ticksLived > 20) {
 			if (var2 == 0 && var2 != this.cv()) {
 				this.a("mob.horse.armor", 0.5F, 1.0F);
 			} else if (var2 != this.cv()) {
@@ -358,7 +358,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 	protected EntityHorse a(Entity var1, double var2) {
 		double var4 = Double.MAX_VALUE;
 		Entity var6 = null;
-		List var7 = this.world.a(var1, var1.getBoundingBox().a(var2, var2, var2), bq);
+		List var7 = this.world.getEntities(var1, var1.getBoundingBox().a(var2, var2, var2), bq);
 		Iterator var8 = var7.iterator();
 
 		while (var8.hasNext()) {
@@ -384,14 +384,14 @@ public class EntityHorse extends EntityAnimal implements vr {
 	}
 
 	protected Item getLoot() {
-		boolean var1 = this.V.nextInt(4) == 0;
+		boolean var1 = this.random.nextInt(4) == 0;
 		int var2 = this.cj();
 		return var2 == 4 ? Items.BONE : (var2 == 3 ? (var1 ? null : Items.ROTTEN_FLESH) : Items.LEATHER);
 	}
 
 	protected String bn() {
 		this.dd();
-		if (this.V.nextInt(3) == 0) {
+		if (this.random.nextInt(3) == 0) {
 			this.df();
 		}
 
@@ -405,7 +405,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 
 	protected String z() {
 		this.dd();
-		if (this.V.nextInt(10) == 0 && !this.bC()) {
+		if (this.random.nextInt(10) == 0 && !this.bC()) {
 			this.df();
 		}
 
@@ -432,7 +432,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 				++this.bL;
 				if (this.bL > 5 && this.bL % 3 == 0) {
 					this.a("mob.horse.gallop", var3.d() * 0.15F, var3.e());
-					if (var4 == 0 && this.V.nextInt(10) == 0) {
+					if (var4 == 0 && this.random.nextInt(10) == 0) {
 						this.a("mob.horse.breathe", var3.d() * 0.6F, var3.e());
 					}
 				} else if (this.bL <= 5) {
@@ -585,7 +585,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 
 				if (!var3 && this.cN() && !this.cu() && var2.getItem() == Item.getItemOf((Block) Blocks.CHEST)) {
 					this.o(true);
-					this.a("mob.chickenplop", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
+					this.a("mob.chickenplop", 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 					var3 = true;
 					this.cY();
 				}
@@ -667,17 +667,17 @@ public class EntityHorse extends EntityAnimal implements vr {
 	}
 
 	public void m() {
-		if (this.V.nextInt(200) == 0) {
+		if (this.random.nextInt(200) == 0) {
 			this.dc();
 		}
 
 		super.m();
 		if (!this.world.isStatic) {
-			if (this.V.nextInt(900) == 0 && this.av == 0) {
+			if (this.random.nextInt(900) == 0 && this.av == 0) {
 				this.g(1.0F);
 			}
 
-			if (!this.cw() && this.passenger == null && this.V.nextInt(300) == 0 && this.world.getBlockState(new Position(MathHelper.toFixedPointInt(this.locationX), MathHelper.toFixedPointInt(this.locationY) - 1, MathHelper.toFixedPointInt(this.locationZ))).getBlock() == Blocks.GRASS) {
+			if (!this.cw() && this.passenger == null && this.random.nextInt(300) == 0 && this.world.getBlockState(new Position(MathHelper.toFixedPointInt(this.locationX), MathHelper.toFixedPointInt(this.locationY) - 1, MathHelper.toFixedPointInt(this.locationZ))).getBlock() == Blocks.GRASS) {
 				this.r(true);
 			}
 
@@ -830,14 +830,14 @@ public class EntityHorse extends EntityAnimal implements vr {
 	}
 
 	public boolean h(EntityHuman var1) {
-		this.b(var1.aJ().toString());
+		this.b(var1.getUUID().toString());
 		this.l(true);
 		return true;
 	}
 
 	public void g(float var1, float var2) {
 		if (this.passenger != null && this.passenger instanceof EntityLiving && this.cE()) {
-			this.A = this.yaw = this.passenger.yaw;
+			this.lastYaw = this.yaw = this.passenger.yaw;
 			this.pitch = this.passenger.pitch * 0.5F;
 			this.b(this.yaw, this.pitch);
 			this.headPitch = this.aG = this.yaw;
@@ -885,8 +885,8 @@ public class EntityHorse extends EntityAnimal implements vr {
 			}
 
 			this.ay = this.az;
-			double var8 = this.locationX - this.p;
-			double var5 = this.locationZ - this.r;
+			double var8 = this.locationX - this.previousX;
+			double var5 = this.locationZ - this.previousZ;
 			float var7 = MathHelper.sqrt(var8 * var8 + var5 * var5) * 4.0F;
 			if (var7 > 1.0F) {
 				var7 = 1.0F;
@@ -1028,23 +1028,23 @@ public class EntityHorse extends EntityAnimal implements vr {
 		}
 
 		if (var6 == 0) {
-			int var8 = this.V.nextInt(9);
+			int var8 = this.random.nextInt(9);
 			int var7;
 			if (var8 < 4) {
 				var7 = this.ck() & 255;
 			} else if (var8 < 8) {
 				var7 = var2.ck() & 255;
 			} else {
-				var7 = this.V.nextInt(7);
+				var7 = this.random.nextInt(7);
 			}
 
-			int var9 = this.V.nextInt(5);
+			int var9 = this.random.nextInt(5);
 			if (var9 < 2) {
 				var7 |= this.ck() & '\uff00';
 			} else if (var9 < 4) {
 				var7 |= var2.ck() & '\uff00';
 			} else {
-				var7 |= this.V.nextInt(5) << 8 & '\uff00';
+				var7 |= this.random.nextInt(5) << 8 & '\uff00';
 			}
 
 			var3.s(var7);
@@ -1067,13 +1067,13 @@ public class EntityHorse extends EntityAnimal implements vr {
 		int var8;
 		if (var7 instanceof abv) {
 			var8 = ((abv) var7).a;
-			var4 = ((abv) var7).b & 255 | this.V.nextInt(5) << 8;
+			var4 = ((abv) var7).b & 255 | this.random.nextInt(5) << 8;
 		} else {
-			if (this.V.nextInt(10) == 0) {
+			if (this.random.nextInt(10) == 0) {
 				var8 = 1;
 			} else {
-				int var5 = this.V.nextInt(7);
-				int var6 = this.V.nextInt(5);
+				int var5 = this.random.nextInt(7);
+				int var6 = this.random.nextInt(5);
 				var8 = 0;
 				var4 = var5 | var6 << 8;
 			}
@@ -1083,7 +1083,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 
 		this.r(var8);
 		this.s(var4);
-		if (this.V.nextInt(5) == 0) {
+		if (this.random.nextInt(5) == 0) {
 			this.b(-24000);
 		}
 
@@ -1143,15 +1143,15 @@ public class EntityHorse extends EntityAnimal implements vr {
 	}
 
 	private float dg() {
-		return 15.0F + (float) this.V.nextInt(8) + (float) this.V.nextInt(9);
+		return 15.0F + (float) this.random.nextInt(8) + (float) this.random.nextInt(9);
 	}
 
 	private double dh() {
-		return 0.4000000059604645D + this.V.nextDouble() * 0.2D + this.V.nextDouble() * 0.2D + this.V.nextDouble() * 0.2D;
+		return 0.4000000059604645D + this.random.nextDouble() * 0.2D + this.random.nextDouble() * 0.2D + this.random.nextDouble() * 0.2D;
 	}
 
 	private double di() {
-		return (0.44999998807907104D + this.V.nextDouble() * 0.3D + this.V.nextDouble() * 0.3D + this.V.nextDouble() * 0.3D) * 0.25D;
+		return (0.44999998807907104D + this.random.nextDouble() * 0.3D + this.random.nextDouble() * 0.3D + this.random.nextDouble() * 0.3D) * 0.25D;
 	}
 
 	public static boolean a(Item var0) {
@@ -1163,7 +1163,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 	}
 
 	public float getHeadHeight() {
-		return this.K;
+		return this.width;
 	}
 
 	public boolean d(int var1, ItemStack var2) {

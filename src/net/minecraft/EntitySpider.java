@@ -30,7 +30,7 @@ public class EntitySpider extends EntityMonster {
 	public void s_() {
 		super.s_();
 		if (!this.world.isStatic) {
-			this.a(this.D);
+			this.a(this.positionChanged);
 		}
 
 	}
@@ -63,7 +63,7 @@ public class EntitySpider extends EntityMonster {
 
 	protected void dropDeathLoot(boolean var1, int var2) {
 		super.dropDeathLoot(var1, var2);
-		if (var1 && (this.V.nextInt(3) == 0 || this.V.nextInt(1 + var2) > 0)) {
+		if (var1 && (this.random.nextInt(3) == 0 || this.random.nextInt(1 + var2) > 0)) {
 			this.a(Items.SPIDER_EYE, 1);
 		}
 

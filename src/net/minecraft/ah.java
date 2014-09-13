@@ -285,7 +285,7 @@ public class ah {
 			Collections.sort((List) var0, new al(var5));
 		}
 
-		Entity var7 = var2.getEntity();
+		Entity var7 = (Entity) var2;
 		if (var7 != null && var3.isAssignableFrom(var7.getClass()) && var6 == 1 && ((List) var0).contains(var7) && !"r".equals(var4)) {
 			var0 = Lists.newArrayList((Object[]) (new Entity[] { var7 }));
 		}

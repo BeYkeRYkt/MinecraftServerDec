@@ -29,7 +29,7 @@ public class EntityMinecartTNT extends adx {
 			this.b(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		}
 
-		if (this.D) {
+		if (this.positionChanged) {
 			double var1 = this.motionX * this.motionX + this.motionZ * this.motionZ;
 			if (var1 >= 0.009999999776482582D) {
 				this.b(var1);
@@ -70,7 +70,7 @@ public class EntityMinecartTNT extends adx {
 				var3 = 5.0D;
 			}
 
-			this.world.a(this, this.locationX, this.locationY, this.locationZ, (float) (4.0D + this.V.nextDouble() * 1.5D * var3), true);
+			this.world.a(this, this.locationX, this.locationY, this.locationZ, (float) (4.0D + this.random.nextDouble() * 1.5D * var3), true);
 			this.die();
 		}
 
@@ -95,8 +95,8 @@ public class EntityMinecartTNT extends adx {
 	public void j() {
 		this.a = 80;
 		if (!this.world.isStatic) {
-			this.world.a((Entity) this, (byte) 10);
-			if (!this.R()) {
+			this.world.broadcastEntityEffect((Entity) this, (byte) 10);
+			if (!this.isSilent()) {
 				this.world.a((Entity) this, "game.tnt.primed", 1.0F, 1.0F);
 			}
 		}

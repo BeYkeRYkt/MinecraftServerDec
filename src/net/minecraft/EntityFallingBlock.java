@@ -28,9 +28,9 @@ public class EntityFallingBlock extends Entity {
 		this.motionX = 0.0D;
 		this.motionY = 0.0D;
 		this.motionZ = 0.0D;
-		this.p = var2;
-		this.q = var4;
-		this.r = var6;
+		this.previousX = var2;
+		this.previousY = var4;
+		this.previousZ = var6;
 	}
 
 	protected boolean r_() {
@@ -49,9 +49,9 @@ public class EntityFallingBlock extends Entity {
 		if (var1.getMaterial() == Material.AIR) {
 			this.die();
 		} else {
-			this.p = this.locationX;
-			this.q = this.locationY;
-			this.r = this.locationZ;
+			this.previousX = this.locationX;
+			this.previousY = this.locationY;
+			this.previousZ = this.locationZ;
 			Position var2;
 			if (this.a++ == 0) {
 				var2 = new Position(this);
@@ -100,12 +100,12 @@ public class EntityFallingBlock extends Entity {
 									var3.update();
 								}
 							}
-						} else if (this.b && !this.e && this.world.Q().b("doTileDrops")) {
+						} else if (this.b && !this.e && this.world.getGameRules().b("doTileDrops")) {
 							this.a(new ItemStack(var1, 1, var1.a(this.d)), 0.0F);
 						}
 					}
 				} else if (this.a > 100 && !this.world.isStatic && (var2.getY() < 1 || var2.getY() > 256) || this.a > 600) {
-					if (this.b && this.world.Q().b("doTileDrops")) {
+					if (this.b && this.world.getGameRules().b("doTileDrops")) {
 						this.a(new ItemStack(var1, 1, var1.a(this.d)), 0.0F);
 					}
 
@@ -121,7 +121,7 @@ public class EntityFallingBlock extends Entity {
 		if (this.f) {
 			int var4 = MathHelper.f(var1 - 1.0F);
 			if (var4 > 0) {
-				ArrayList var5 = Lists.newArrayList((Iterable) this.world.b((Entity) this, this.getBoundingBox()));
+				ArrayList var5 = Lists.newArrayList((Iterable) this.world.getEntities((Entity) this, this.getBoundingBox()));
 				boolean var6 = var3 == Blocks.ANVIL;
 				DamageSource var7 = var6 ? DamageSource.ANVIL : DamageSource.FALLING_BLOCK;
 				Iterator var8 = var5.iterator();
@@ -131,7 +131,7 @@ public class EntityFallingBlock extends Entity {
 					var9.damageEntity(var7, (float) Math.min(MathHelper.d((float) var4 * this.h), this.g));
 				}
 
-				if (var6 && (double) this.V.nextFloat() < 0.05000000074505806D + (double) var4 * 0.05D) {
+				if (var6 && (double) this.random.nextFloat() < 0.05000000074505806D + (double) var4 * 0.05D) {
 					int var10 = ((Integer) this.d.b(BlockAnvil.b)).intValue();
 					++var10;
 					if (var10 > 2) {

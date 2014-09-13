@@ -50,7 +50,7 @@ public class EntityOcelot extends xx {
 	}
 
 	protected boolean C() {
-		return !this.cj() && this.W > 2400;
+		return !this.cj() && this.ticksLived > 2400;
 	}
 
 	protected void aW() {
@@ -73,7 +73,7 @@ public class EntityOcelot extends xx {
 	}
 
 	protected String z() {
-		return this.cj() ? (this.cp() ? "mob.cat.purr" : (this.V.nextInt(4) == 0 ? "mob.cat.purreow" : "mob.cat.meow")) : "";
+		return this.cj() ? (this.cp() ? "mob.cat.purr" : (this.random.nextInt(4) == 0 ? "mob.cat.purreow" : "mob.cat.meow")) : "";
 	}
 
 	protected String bn() {
@@ -124,16 +124,16 @@ public class EntityOcelot extends xx {
 			}
 
 			if (!this.world.isStatic) {
-				if (this.V.nextInt(3) == 0) {
+				if (this.random.nextInt(3) == 0) {
 					this.m(true);
 					this.r(1 + this.world.s.nextInt(3));
-					this.b(var1.aJ().toString());
+					this.b(var1.getUUID().toString());
 					this.l(true);
 					this.bk.a(true);
-					this.world.a((Entity) this, (byte) 7);
+					this.world.broadcastEntityEffect((Entity) this, (byte) 7);
 				} else {
 					this.l(false);
-					this.world.a((Entity) this, (byte) 6);
+					this.world.broadcastEntityEffect((Entity) this, (byte) 6);
 				}
 			}
 
@@ -200,7 +200,7 @@ public class EntityOcelot extends xx {
 	}
 
 	public String getName() {
-		return this.k_() ? this.aL() : (this.cj() ? LocaleI18n.get("entity.Cat.name") : super.getName());
+		return this.k_() ? this.getCustomName() : (this.cj() ? LocaleI18n.get("entity.Cat.name") : super.getName());
 	}
 
 	public void m(boolean var1) {

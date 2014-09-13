@@ -203,11 +203,11 @@ public class Item {
 	}
 
 	protected MovingObjectPosition a(World var1, EntityHuman var2, boolean var3) {
-		float var4 = var2.B + (var2.pitch - var2.B);
-		float var5 = var2.A + (var2.yaw - var2.A);
-		double var6 = var2.p + (var2.locationX - var2.p);
-		double var8 = var2.q + (var2.locationY - var2.q) + (double) var2.getHeadHeight();
-		double var10 = var2.r + (var2.locationZ - var2.r);
+		float var4 = var2.lastPitch + (var2.pitch - var2.lastPitch);
+		float var5 = var2.lastYaw + (var2.yaw - var2.lastYaw);
+		double var6 = var2.previousX + (var2.locationX - var2.previousX);
+		double var8 = var2.previousY + (var2.locationY - var2.previousY) + (double) var2.getHeadHeight();
+		double var10 = var2.previousZ + (var2.locationZ - var2.previousZ);
 		Vec3D var12 = new Vec3D(var6, var8, var10);
 		float var13 = MathHelper.b(-var5 * 0.017453292F - 3.1415927F);
 		float var14 = MathHelper.a(-var5 * 0.017453292F - 3.1415927F);

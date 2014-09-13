@@ -72,12 +72,12 @@ public class EntitySkeleton extends EntityMonster implements IRangedEntity {
 		if (this.world.w() && !this.world.isStatic) {
 			float var1 = this.c(1.0F);
 			Position var2 = new Position(this.locationX, (double) Math.round(this.locationY), this.locationZ);
-			if (var1 > 0.5F && this.V.nextFloat() * 30.0F < (var1 - 0.4F) * 2.0F && this.world.i(var2)) {
+			if (var1 > 0.5F && this.random.nextFloat() * 30.0F < (var1 - 0.4F) * 2.0F && this.world.i(var2)) {
 				boolean var3 = true;
 				ItemStack var4 = this.p(4);
 				if (var4 != null) {
 					if (var4.e()) {
-						var4.setDurability(var4.h() + this.V.nextInt(2));
+						var4.setDurability(var4.h() + this.random.nextInt(2));
 						if (var4.h() >= var4.j()) {
 							this.b(var4);
 							this.setArmor(4, (ItemStack) null);
@@ -133,20 +133,20 @@ public class EntitySkeleton extends EntityMonster implements IRangedEntity {
 		int var3;
 		int var4;
 		if (this.ck() == 1) {
-			var3 = this.V.nextInt(3 + var2) - 1;
+			var3 = this.random.nextInt(3 + var2) - 1;
 
 			for (var4 = 0; var4 < var3; ++var4) {
 				this.a(Items.COAL, 1);
 			}
 		} else {
-			var3 = this.V.nextInt(3 + var2);
+			var3 = this.random.nextInt(3 + var2);
 
 			for (var4 = 0; var4 < var3; ++var4) {
 				this.a(Items.ARROW, 1);
 			}
 		}
 
-		var3 = this.V.nextInt(3 + var2);
+		var3 = this.random.nextInt(3 + var2);
 
 		for (var4 = 0; var4 < var3; ++var4) {
 			this.a(Items.BONE, 1);
@@ -179,11 +179,11 @@ public class EntitySkeleton extends EntityMonster implements IRangedEntity {
 			this.b(var1);
 		}
 
-		this.j(this.V.nextFloat() < 0.55F * var1.c());
+		this.j(this.random.nextFloat() < 0.55F * var1.c());
 		if (this.p(4) == null) {
 			Calendar var3 = this.world.Y();
-			if (var3.get(2) + 1 == 10 && var3.get(5) == 31 && this.V.nextFloat() < 0.25F) {
-				this.setArmor(4, new ItemStack(this.V.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
+			if (var3.get(2) + 1 == 10 && var3.get(5) == 31 && this.random.nextFloat() < 0.25F) {
+				this.setArmor(4, new ItemStack(this.random.nextFloat() < 0.1F ? Blocks.LIT_PUMPKIN : Blocks.PUMPKIN));
 				this.bh[4] = 0.0F;
 			}
 		}
@@ -207,7 +207,7 @@ public class EntitySkeleton extends EntityMonster implements IRangedEntity {
 		EntityArrow var3 = new EntityArrow(this.world, this, var1, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
 		int var4 = aph.a(Enchantment.ARROW_DAMAGE.id, this.getItemInHand());
 		int var5 = aph.a(Enchantment.ARROW_KNOCKBACK.id, this.getItemInHand());
-		var3.b((double) (var2 * 2.0F) + this.V.nextGaussian() * 0.25D + (double) ((float) this.world.getDifficulty().getId() * 0.11F));
+		var3.b((double) (var2 * 2.0F) + this.random.nextGaussian() * 0.25D + (double) ((float) this.world.getDifficulty().getId() * 0.11F));
 		if (var4 > 0) {
 			var3.b(var3.j() + (double) var4 * 0.5D + 0.5D);
 		}
@@ -230,7 +230,7 @@ public class EntitySkeleton extends EntityMonster implements IRangedEntity {
 
 	public void a(int var1) {
 		this.dataWatcher.b(13, Byte.valueOf((byte) var1));
-		this.ab = var1 == 1;
+		this.fireProof = var1 == 1;
 		if (var1 == 1) {
 			this.a(0.72F, 2.535F);
 		} else {

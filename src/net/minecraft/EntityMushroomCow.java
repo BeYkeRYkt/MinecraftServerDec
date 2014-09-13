@@ -24,20 +24,20 @@ public class EntityMushroomCow extends EntityCow {
 
 		if (var2 != null && var2.getItem() == Items.SHEARS && this.l() >= 0) {
 			this.die();
-			this.world.a(Particle.b, this.locationX, this.locationY + (double) (this.K / 2.0F), this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.world.a(Particle.b, this.locationX, this.locationY + (double) (this.width / 2.0F), this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 			if (!this.world.isStatic) {
 				EntityCow var3 = new EntityCow(this.world);
 				var3.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 				var3.h(this.getHealth());
 				var3.aG = this.aG;
 				if (this.k_()) {
-					var3.a(this.aL());
+					var3.a(this.getCustomName());
 				}
 
 				this.world.addEntity((Entity) var3);
 
 				for (int var4 = 0; var4 < 5; ++var4) {
-					this.world.addEntity((Entity) (new EntityItem(this.world, this.locationX, this.locationY + (double) this.K, this.locationZ, new ItemStack(Blocks.RED_MUSHROOM))));
+					this.world.addEntity((Entity) (new EntityItem(this.world, this.locationX, this.locationY + (double) this.width, this.locationZ, new ItemStack(Blocks.RED_MUSHROOM))));
 				}
 
 				var2.a(1, (EntityLiving) var1);

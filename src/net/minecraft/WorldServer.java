@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.ListenableFuture;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -12,9 +13,13 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.UUID;
+
 import net.minecraft.server.MinecraftServer;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import pipebukkit.server.PipeWorld;
 
 public class WorldServer extends World implements ITaskScheduler {
 
@@ -24,7 +29,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	private final qq K;
 	private final Set L = Sets.newHashSet();
 	private final TreeSet M = new TreeSet();
-	private final Map<UUID, Entity> entities = Maps.newHashMap();
+	public final Map<UUID, Entity> entities = Maps.newHashMap();
 	public ChunkProviderServer b;
 	public boolean savingDisabled;
 	private boolean O;
@@ -93,7 +98,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 		this.worldProvider.m().b();
 		if (this.f()) {
-			if (this.Q().b("doDaylightCycle")) {
+			if (this.getGameRules().b("doDaylightCycle")) {
 				long var1 = this.worldData.getDayTime() + 24000L;
 				this.worldData.setDayTime(var1 - var1 % 24000L);
 			}
@@ -102,7 +107,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		}
 
 		this.B.a("mobSpawner");
-		if (this.Q().b("doMobSpawning") && this.worldData.getLevelType() != LevelType.DEBUG) {
+		if (this.getGameRules().b("doMobSpawning") && this.worldData.getLevelType() != LevelType.DEBUG) {
 			this.R.a(this, this.F, this.G, this.worldData.getTime() % 400L == 0L);
 		}
 
@@ -114,7 +119,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		}
 
 		this.worldData.setTime(this.worldData.getTime() + 1L);
-		if (this.Q().b("doDaylightCycle")) {
+		if (this.getGameRules().b("doDaylightCycle")) {
 			this.worldData.setDayTime(this.worldData.getDayTime() + 1L);
 		}
 
@@ -134,12 +139,12 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	public BiomeMeta a(EnumCreatureType var1, Position var2) {
-		List var3 = this.N().getMobsFor(var1, var2);
+		List var3 = this.getChunkProvider().getMobsFor(var1, var2);
 		return var3 != null && !var3.isEmpty() ? (BiomeMeta) vj.a(this.s, var3) : null;
 	}
 
 	public boolean a(EnumCreatureType var1, BiomeMeta var2, Position var3) {
-		List var4 = this.N().getMobsFor(var1, var3);
+		List var4 = this.getChunkProvider().getMobsFor(var1, var3);
 		return var4 != null && !var4.isEmpty() ? var4.contains(var2) : false;
 	}
 
@@ -259,7 +264,7 @@ public class WorldServer extends World implements ITaskScheduler {
 				}
 
 				this.B.c("tickBlocks");
-				var8 = this.Q().c("randomTickSpeed");
+				var8 = this.getGameRules().c("randomTickSpeed");
 				if (var8 > 0) {
 					ChunkSection[] var23 = var7.getChunkSections();
 					int var24 = var23.length;
@@ -552,7 +557,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.worldData.setIsHardcore(false);
 		this.worldData.setDifficulty(Difficulty.PEACEFUL);
 		this.worldData.setDifficultyLocked(true);
-		this.Q().a("doDaylightCycle", "false");
+		this.getGameRules().a("doDaylightCycle", "false");
 	}
 
 	private void b(WorldSettings var1) {
@@ -658,7 +663,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	protected void a(Entity var1) {
 		super.a(var1);
 		this.l.a(var1.getId(), var1);
-		this.entities.put(var1.aJ(), var1);
+		this.entities.put(var1.getUUID(), var1);
 		Entity[] var2 = var1.aC();
 		if (var2 != null) {
 			for (int var3 = 0; var3 < var2.length; ++var3) {
@@ -671,7 +676,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	protected void b(Entity var1) {
 		super.b(var1);
 		this.l.d(var1.getId());
-		this.entities.remove(var1.aJ());
+		this.entities.remove(var1.getUUID());
 		Entity[] var2 = var1.aC();
 		if (var2 != null) {
 			for (int var3 = 0; var3 < var2.length; ++var3) {
@@ -690,7 +695,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		}
 	}
 
-	public void a(Entity var1, byte var2) {
+	public void broadcastEntityEffect(Entity var1, byte var2) {
 		this.s().b(var1, new PacketPlayOutEntityStatus(var1, var2));
 	}
 

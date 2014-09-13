@@ -29,7 +29,7 @@ public class FoodMetaData {
 			}
 		}
 
-		if (var1.world.Q().b("naturalRegeneration") && this.a >= 18 && var1.cl()) {
+		if (var1.world.getGameRules().b("naturalRegeneration") && this.a >= 18 && var1.cl()) {
 			++this.d;
 			if (this.d >= 80) {
 				var1.g(1.0F);

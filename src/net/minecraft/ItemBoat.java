@@ -11,11 +11,11 @@ public class ItemBoat extends Item {
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
 		float var4 = 1.0F;
-		float var5 = var3.B + (var3.pitch - var3.B) * var4;
-		float var6 = var3.A + (var3.yaw - var3.A) * var4;
-		double var7 = var3.p + (var3.locationX - var3.p) * (double) var4;
-		double var9 = var3.q + (var3.locationY - var3.q) * (double) var4 + (double) var3.getHeadHeight();
-		double var11 = var3.r + (var3.locationZ - var3.r) * (double) var4;
+		float var5 = var3.lastPitch + (var3.pitch - var3.lastPitch) * var4;
+		float var6 = var3.lastYaw + (var3.yaw - var3.lastYaw) * var4;
+		double var7 = var3.previousX + (var3.locationX - var3.previousX) * (double) var4;
+		double var9 = var3.previousY + (var3.locationY - var3.previousY) * (double) var4 + (double) var3.getHeadHeight();
+		double var11 = var3.previousZ + (var3.locationZ - var3.previousZ) * (double) var4;
 		Vec3D var13 = new Vec3D(var7, var9, var11);
 		float var14 = MathHelper.b(-var6 * 0.017453292F - 3.1415927F);
 		float var15 = MathHelper.a(-var6 * 0.017453292F - 3.1415927F);
@@ -32,7 +32,7 @@ public class ItemBoat extends Item {
 			Vec3D var25 = var3.d(var4);
 			boolean var26 = false;
 			float var27 = 1.0F;
-			List var28 = var2.b((Entity) var3, var3.getBoundingBox().a(var25.x * var21, var25.y * var21, var25.z * var21).grow((double) var27, (double) var27, (double) var27));
+			List var28 = var2.getEntities((Entity) var3, var3.getBoundingBox().a(var25.x * var21, var25.y * var21, var25.z * var21).grow((double) var27, (double) var27, (double) var27));
 
 			for (int var29 = 0; var29 < var28.size(); ++var29) {
 				Entity var30 = (Entity) var28.get(var29);

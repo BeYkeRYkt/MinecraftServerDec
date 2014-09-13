@@ -29,7 +29,7 @@ public class SetWorldSpawnCommand extends AbstractCommand {
 			var3 = a(var1, var2, 0, true);
 		}
 
-		var1.getWorld().B(var3);
+		var1.getWorld().setSpawn(var3);
 		MinecraftServer.getInstance().getPlayerList().sendPacket((Packet) (new PacketPlayOutSpawnPosition(var3)));
 		a(var1, this, "commands.setworldspawn.success", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()) });
 	}

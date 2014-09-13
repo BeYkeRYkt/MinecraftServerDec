@@ -11,7 +11,7 @@ class aet extends PathfinderGoal {
 	}
 
 	public boolean a() {
-		return !this.a.world.Q().b("mobGriefing") ? false : (this.a.ck().getBlock().getMaterial() == Material.AIR ? false : this.a.bb().nextInt(2000) == 0);
+		return !this.a.world.getGameRules().b("mobGriefing") ? false : (this.a.ck().getBlock().getMaterial() == Material.AIR ? false : this.a.bb().nextInt(2000) == 0);
 	}
 
 	public void e() {

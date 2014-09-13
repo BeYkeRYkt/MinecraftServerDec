@@ -42,9 +42,9 @@ public abstract class EntityFireball extends Entity {
 		this.setPositionRotation(var2.locationX, var2.locationY, var2.locationZ, var2.yaw, var2.pitch);
 		this.b(this.locationX, this.locationY, this.locationZ);
 		this.motionX = this.motionY = this.motionZ = 0.0D;
-		var3 += this.V.nextGaussian() * 0.4D;
-		var5 += this.V.nextGaussian() * 0.4D;
-		var7 += this.V.nextGaussian() * 0.4D;
+		var3 += this.random.nextGaussian() * 0.4D;
+		var5 += this.random.nextGaussian() * 0.4D;
+		var7 += this.random.nextGaussian() * 0.4D;
 		double var9 = (double) MathHelper.sqrt(var3 * var3 + var5 * var5 + var7 * var7);
 		this.b = var3 / var9 * 0.1D;
 		this.c = var5 / var9 * 0.1D;
@@ -68,9 +68,9 @@ public abstract class EntityFireball extends Entity {
 				}
 
 				this.i = false;
-				this.motionX *= (double) (this.V.nextFloat() * 0.2F);
-				this.motionY *= (double) (this.V.nextFloat() * 0.2F);
-				this.motionZ *= (double) (this.V.nextFloat() * 0.2F);
+				this.motionX *= (double) (this.random.nextFloat() * 0.2F);
+				this.motionY *= (double) (this.random.nextFloat() * 0.2F);
+				this.motionZ *= (double) (this.random.nextFloat() * 0.2F);
 				this.ap = 0;
 				this.aq = 0;
 			} else {
@@ -87,7 +87,7 @@ public abstract class EntityFireball extends Entity {
 			}
 
 			Entity var4 = null;
-			List var5 = this.world.b((Entity) this, this.getBoundingBox().a(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
+			List var5 = this.world.getEntities((Entity) this, this.getBoundingBox().a(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
 			double var6 = 0.0D;
 
 			for (int var8 = 0; var8 < var5.size(); ++var8) {
@@ -120,24 +120,24 @@ public abstract class EntityFireball extends Entity {
 			float var15 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.yaw = (float) (Math.atan2(this.motionZ, this.motionX) * 180.0D / 3.1415927410125732D) + 90.0F;
 
-			for (this.pitch = (float) (Math.atan2((double) var15, this.motionY) * 180.0D / 3.1415927410125732D) - 90.0F; this.pitch - this.B < -180.0F; this.B -= 360.0F) {
+			for (this.pitch = (float) (Math.atan2((double) var15, this.motionY) * 180.0D / 3.1415927410125732D) - 90.0F; this.pitch - this.lastPitch < -180.0F; this.lastPitch -= 360.0F) {
 				;
 			}
 
-			while (this.pitch - this.B >= 180.0F) {
-				this.B += 360.0F;
+			while (this.pitch - this.lastPitch >= 180.0F) {
+				this.lastPitch += 360.0F;
 			}
 
-			while (this.yaw - this.A < -180.0F) {
-				this.A -= 360.0F;
+			while (this.yaw - this.lastYaw < -180.0F) {
+				this.lastYaw -= 360.0F;
 			}
 
-			while (this.yaw - this.A >= 180.0F) {
-				this.A += 360.0F;
+			while (this.yaw - this.lastYaw >= 180.0F) {
+				this.lastYaw += 360.0F;
 			}
 
-			this.pitch = this.B + (this.pitch - this.B) * 0.2F;
-			this.yaw = this.A + (this.yaw - this.A) * 0.2F;
+			this.pitch = this.lastPitch + (this.pitch - this.lastPitch) * 0.2F;
+			this.yaw = this.lastYaw + (this.yaw - this.lastYaw) * 0.2F;
 			float var16 = this.j();
 			if (this.V()) {
 				for (int var17 = 0; var17 < 4; ++var17) {
@@ -172,7 +172,7 @@ public abstract class EntityFireball extends Entity {
 		RegistryObjectName var2 = (RegistryObjectName) Block.BLOCKREGISTRY.c(this.h);
 		var1.put("inTile", var2 == null ? "" : var2.toString());
 		var1.put("inGround", (byte) (this.i ? 1 : 0));
-		var1.put("direction", (NBTTag) this.a(new double[] { this.motionX, this.motionY, this.motionZ }));
+		var1.put("direction", (NBTTag) this.createDoubleListTag(new double[] { this.motionX, this.motionY, this.motionZ }));
 	}
 
 	public void a(NBTCompoundTag var1) {

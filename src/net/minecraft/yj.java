@@ -11,8 +11,8 @@ public class yj {
 	}
 
 	public void a() {
-		double var1 = this.a.locationX - this.a.p;
-		double var3 = this.a.locationZ - this.a.r;
+		double var1 = this.a.locationX - this.a.previousX;
+		double var3 = this.a.locationZ - this.a.previousZ;
 		if (var1 * var1 + var3 * var3 > 2.500000277905201E-7D) {
 			this.a.aG = this.a.yaw;
 			this.a.headPitch = this.a(this.a.aG, this.a.headPitch, 75.0F);

@@ -65,9 +65,9 @@ public class ado extends Entity {
 		var1 /= (double) var9;
 		var3 /= (double) var9;
 		var5 /= (double) var9;
-		var1 += this.V.nextGaussian() * 0.007499999832361937D * (double) var8;
-		var3 += this.V.nextGaussian() * 0.007499999832361937D * (double) var8;
-		var5 += this.V.nextGaussian() * 0.007499999832361937D * (double) var8;
+		var1 += this.random.nextGaussian() * 0.007499999832361937D * (double) var8;
+		var3 += this.random.nextGaussian() * 0.007499999832361937D * (double) var8;
+		var5 += this.random.nextGaussian() * 0.007499999832361937D * (double) var8;
 		var1 *= (double) var7;
 		var3 *= (double) var7;
 		var5 *= (double) var7;
@@ -75,8 +75,8 @@ public class ado extends Entity {
 		this.motionY = var3;
 		this.motionZ = var5;
 		float var10 = MathHelper.sqrt(var1 * var1 + var5 * var5);
-		this.A = this.yaw = (float) (Math.atan2(var1, var5) * 180.0D / 3.1415927410125732D);
-		this.B = this.pitch = (float) (Math.atan2(var3, (double) var10) * 180.0D / 3.1415927410125732D);
+		this.lastYaw = this.yaw = (float) (Math.atan2(var1, var5) * 180.0D / 3.1415927410125732D);
+		this.lastPitch = this.pitch = (float) (Math.atan2(var3, (double) var10) * 180.0D / 3.1415927410125732D);
 		this.ar = 0;
 	}
 
@@ -104,7 +104,7 @@ public class ado extends Entity {
 				if (this.c != null) {
 					if (!this.c.dead) {
 						this.locationX = this.c.locationX;
-						double var10002 = (double) this.c.K;
+						double var10002 = (double) this.c.width;
 						this.locationY = this.c.getBoundingBox().minY + var10002 * 0.8D;
 						this.locationZ = this.c.locationZ;
 						return;
@@ -129,9 +129,9 @@ public class ado extends Entity {
 				}
 
 				this.aq = false;
-				this.motionX *= (double) (this.V.nextFloat() * 0.2F);
-				this.motionY *= (double) (this.V.nextFloat() * 0.2F);
-				this.motionZ *= (double) (this.V.nextFloat() * 0.2F);
+				this.motionX *= (double) (this.random.nextFloat() * 0.2F);
+				this.motionY *= (double) (this.random.nextFloat() * 0.2F);
+				this.motionZ *= (double) (this.random.nextFloat() * 0.2F);
 				this.ar = 0;
 				this.as = 0;
 			} else {
@@ -148,7 +148,7 @@ public class ado extends Entity {
 			}
 
 			Entity var4 = null;
-			List var5 = this.world.b((Entity) this, this.getBoundingBox().a(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
+			List var5 = this.world.getEntities((Entity) this, this.getBoundingBox().a(this.motionX, this.motionY, this.motionZ).grow(1.0D, 1.0D, 1.0D));
 			double var6 = 0.0D;
 
 			double var13;
@@ -187,26 +187,26 @@ public class ado extends Entity {
 				float var31 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 				this.yaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / 3.1415927410125732D);
 
-				for (this.pitch = (float) (Math.atan2(this.motionY, (double) var31) * 180.0D / 3.1415927410125732D); this.pitch - this.B < -180.0F; this.B -= 360.0F) {
+				for (this.pitch = (float) (Math.atan2(this.motionY, (double) var31) * 180.0D / 3.1415927410125732D); this.pitch - this.lastPitch < -180.0F; this.lastPitch -= 360.0F) {
 					;
 				}
 
-				while (this.pitch - this.B >= 180.0F) {
-					this.B += 360.0F;
+				while (this.pitch - this.lastPitch >= 180.0F) {
+					this.lastPitch += 360.0F;
 				}
 
-				while (this.yaw - this.A < -180.0F) {
-					this.A -= 360.0F;
+				while (this.yaw - this.lastYaw < -180.0F) {
+					this.lastYaw -= 360.0F;
 				}
 
-				while (this.yaw - this.A >= 180.0F) {
-					this.A += 360.0F;
+				while (this.yaw - this.lastYaw >= 180.0F) {
+					this.lastYaw += 360.0F;
 				}
 
-				this.pitch = this.B + (this.pitch - this.B) * 0.2F;
-				this.yaw = this.A + (this.yaw - this.A) * 0.2F;
+				this.pitch = this.lastPitch + (this.pitch - this.lastPitch) * 0.2F;
+				this.yaw = this.lastYaw + (this.yaw - this.lastYaw) * 0.2F;
 				float var32 = 0.92F;
-				if (this.onGround || this.D) {
+				if (this.onGround || this.positionChanged) {
 					var32 = 0.5F;
 				}
 
@@ -229,11 +229,11 @@ public class ado extends Entity {
 					WorldServer var36 = (WorldServer) this.world;
 					int var37 = 1;
 					Position var38 = (new Position(this)).a();
-					if (this.V.nextFloat() < 0.25F && this.world.C(var38)) {
+					if (this.random.nextFloat() < 0.25F && this.world.C(var38)) {
 						var37 = 2;
 					}
 
-					if (this.V.nextFloat() < 0.5F && !this.world.i(var38)) {
+					if (this.random.nextFloat() < 0.5F && !this.world.i(var38)) {
 						--var37;
 					}
 
@@ -253,20 +253,20 @@ public class ado extends Entity {
 							this.av -= var37;
 							if (this.av <= 0) {
 								this.motionY -= 0.20000000298023224D;
-								this.a("random.splash", 0.25F, 1.0F + (this.V.nextFloat() - this.V.nextFloat()) * 0.4F);
+								this.a("random.splash", 0.25F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
 								var16 = (float) MathHelper.toFixedPointInt(this.getBoundingBox().minY);
-								var36.a(Particle.e, this.locationX, (double) (var16 + 1.0F), this.locationZ, (int) (1.0F + this.J * 20.0F), (double) this.J, 0.0D, (double) this.J, 0.20000000298023224D, new int[0]);
-								var36.a(Particle.g, this.locationX, (double) (var16 + 1.0F), this.locationZ, (int) (1.0F + this.J * 20.0F), (double) this.J, 0.0D, (double) this.J, 0.20000000298023224D, new int[0]);
-								this.at = MathHelper.a(this.V, 10, 30);
+								var36.a(Particle.e, this.locationX, (double) (var16 + 1.0F), this.locationZ, (int) (1.0F + this.height * 20.0F), (double) this.height, 0.0D, (double) this.height, 0.20000000298023224D, new int[0]);
+								var36.a(Particle.g, this.locationX, (double) (var16 + 1.0F), this.locationZ, (int) (1.0F + this.height * 20.0F), (double) this.height, 0.0D, (double) this.height, 0.20000000298023224D, new int[0]);
+								this.at = MathHelper.a(this.random, 10, 30);
 							} else {
-								this.aw = (float) ((double) this.aw + this.V.nextGaussian() * 4.0D);
+								this.aw = (float) ((double) this.aw + this.random.nextGaussian() * 4.0D);
 								var16 = this.aw * 0.017453292F;
 								var39 = MathHelper.a(var16);
 								var18 = MathHelper.b(var16);
 								var19 = this.locationX + (double) (var39 * (float) this.av * 0.1F);
 								var40 = (double) ((float) MathHelper.toFixedPointInt(this.getBoundingBox().minY) + 1.0F);
 								var23 = this.locationZ + (double) (var18 * (float) this.av * 0.1F);
-								if (this.V.nextFloat() < 0.15F) {
+								if (this.random.nextFloat() < 0.15F) {
 									var36.a(Particle.e, var19, var40 - 0.10000000149011612D, var23, 1, (double) var39, 0.1D, (double) var18, 0.0D, new int[0]);
 								}
 
@@ -286,27 +286,27 @@ public class ado extends Entity {
 								var16 = (float) ((double) var16 + (double) (60 - this.au) * 0.01D);
 							}
 
-							if (this.V.nextFloat() < var16) {
-								var39 = MathHelper.a(this.V, 0.0F, 360.0F) * 0.017453292F;
-								var18 = MathHelper.a(this.V, 25.0F, 60.0F);
+							if (this.random.nextFloat() < var16) {
+								var39 = MathHelper.a(this.random, 0.0F, 360.0F) * 0.017453292F;
+								var18 = MathHelper.a(this.random, 25.0F, 60.0F);
 								var19 = this.locationX + (double) (MathHelper.a(var39) * var18 * 0.1F);
 								var40 = (double) ((float) MathHelper.toFixedPointInt(this.getBoundingBox().minY) + 1.0F);
 								var23 = this.locationZ + (double) (MathHelper.b(var39) * var18 * 0.1F);
-								var36.a(Particle.f, var19, var40, var23, 2 + this.V.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D, new int[0]);
+								var36.a(Particle.f, var19, var40, var23, 2 + this.random.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D, new int[0]);
 							}
 
 							if (this.au <= 0) {
-								this.aw = MathHelper.a(this.V, 0.0F, 360.0F);
-								this.av = MathHelper.a(this.V, 20, 80);
+								this.aw = MathHelper.a(this.random, 0.0F, 360.0F);
+								this.av = MathHelper.a(this.random, 20, 80);
 							}
 						} else {
-							this.au = MathHelper.a(this.V, 100, 900);
+							this.au = MathHelper.a(this.random, 100, 900);
 							this.au -= aph.h(this.b) * 20 * 5;
 						}
 					}
 
 					if (this.at > 0) {
-						this.motionY -= (double) (this.V.nextFloat() * this.V.nextFloat() * this.V.nextFloat()) * 0.2D;
+						this.motionY -= (double) (this.random.nextFloat() * this.random.nextFloat() * this.random.nextFloat()) * 0.2D;
 					}
 				}
 
@@ -375,7 +375,7 @@ public class ado extends Entity {
 				var13.motionY = var5 * var11 + (double) MathHelper.sqrt(var9) * 0.08D;
 				var13.motionZ = var7 * var11;
 				this.world.addEntity((Entity) var13);
-				this.b.world.addEntity((Entity) (new EntityExpirienceOrb(this.b.world, this.b.locationX, this.b.locationY + 0.5D, this.b.locationZ + 0.5D, this.V.nextInt(6) + 1)));
+				this.b.world.addEntity((Entity) (new EntityExpirienceOrb(this.b.world, this.b.locationX, this.b.locationY + 0.5D, this.b.locationZ + 0.5D, this.random.nextInt(6) + 1)));
 				var1 = 1;
 			}
 
@@ -399,16 +399,16 @@ public class ado extends Entity {
 		var5 = MathHelper.a(var5, 0.0F, 1.0F);
 		if (var1 < var4) {
 			this.b.b(StatisticList.D);
-			return ((adp) vj.a(this.V, d)).a(this.V);
+			return ((adp) vj.a(this.random, d)).a(this.random);
 		} else {
 			var1 -= var4;
 			if (var1 < var5) {
 				this.b.b(StatisticList.E);
-				return ((adp) vj.a(this.V, e)).a(this.V);
+				return ((adp) vj.a(this.random, e)).a(this.random);
 			} else {
 				float var10000 = var1 - var5;
 				this.b.b(StatisticList.C);
-				return ((adp) vj.a(this.V, f)).a(this.V);
+				return ((adp) vj.a(this.random, f)).a(this.random);
 			}
 		}
 	}

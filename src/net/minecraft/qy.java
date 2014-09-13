@@ -185,9 +185,9 @@ public class qy {
 		}
 
 		++this.m;
-		if (this.a.G) {
+		if (this.a.velocityChanged) {
 			this.b((Packet) (new PacketPlayOutEntityVelocity(this.a)));
-			this.a.G = false;
+			this.a.velocityChanged = false;
 		}
 
 	}

@@ -28,7 +28,7 @@ public class TriggerCommand extends AbstractCommand {
 			if (var1 instanceof EntityPlayer) {
 				var3 = (EntityPlayer) var1;
 			} else {
-				Entity var4 = var1.getEntity();
+				Entity var4 = (Entity) var1;
 				if (!(var4 instanceof EntityPlayer)) {
 					throw new di("commands.trigger.invalidPlayer", new Object[0]);
 				}

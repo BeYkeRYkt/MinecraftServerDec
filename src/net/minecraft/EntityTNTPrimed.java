@@ -19,9 +19,9 @@ public class EntityTNTPrimed extends Entity {
 		this.motionY = 0.20000000298023224D;
 		this.motionZ = (double) (-((float) Math.cos((double) var9)) * 0.02F);
 		this.a = 80;
-		this.p = var2;
-		this.q = var4;
-		this.r = var6;
+		this.previousX = var2;
+		this.previousY = var4;
+		this.previousZ = var6;
 		this.b = var8;
 	}
 
@@ -37,9 +37,9 @@ public class EntityTNTPrimed extends Entity {
 	}
 
 	public void s_() {
-		this.p = this.locationX;
-		this.q = this.locationY;
-		this.r = this.locationZ;
+		this.previousX = this.locationX;
+		this.previousY = this.locationY;
+		this.previousZ = this.locationZ;
 		this.motionY -= 0.03999999910593033D;
 		this.move(this.motionX, this.motionY, this.motionZ);
 		this.motionX *= 0.9800000190734863D;
@@ -65,7 +65,7 @@ public class EntityTNTPrimed extends Entity {
 
 	private void l() {
 		float var1 = 4.0F;
-		this.world.a(this, this.locationX, this.locationY + (double) (this.K / 2.0F), this.locationZ, var1, true);
+		this.world.a(this, this.locationX, this.locationY + (double) (this.width / 2.0F), this.locationZ, var1, true);
 	}
 
 	protected void b(NBTCompoundTag var1) {

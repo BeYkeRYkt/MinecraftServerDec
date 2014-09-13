@@ -17,11 +17,11 @@ public class KillCommand extends AbstractCommand {
 	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dj, dm {
 		if (var2.length == 0) {
 			EntityPlayer var4 = b(var1);
-			var4.G();
+			var4.setDead();
 			a(var1, this, "commands.kill.successful", new Object[] { var4.getComponentName() });
 		} else {
 			Entity var3 = b(var1, var2[0]);
-			var3.G();
+			var3.setDead();
 			a(var1, this, "commands.kill.successful", new Object[] { var3.getComponentName() });
 		}
 	}

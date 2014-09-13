@@ -138,7 +138,7 @@ public abstract class aaz {
 			}
 		}
 
-		float var8 = this.b.J * this.b.J * this.i;
+		float var8 = this.b.height * this.b.height * this.i;
 
 		int var4;
 		for (var4 = this.d.e(); var4 < var2; ++var4) {
@@ -148,8 +148,8 @@ public abstract class aaz {
 			}
 		}
 
-		var4 = MathHelper.f(this.b.J);
-		int var9 = (int) this.b.K + 1;
+		var4 = MathHelper.f(this.b.height);
+		int var9 = (int) this.b.width + 1;
 		int var6 = var4;
 
 		for (int var7 = var2 - 1; var7 >= this.d.e(); --var7) {

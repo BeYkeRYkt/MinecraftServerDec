@@ -27,7 +27,7 @@ public abstract class adj extends Entity {
 		Validate.notNull(var1);
 		Validate.isTrue(var1.k().c());
 		this.direction = var1;
-		this.A = this.yaw = (float) (this.direction.toDirection() * 90);
+		this.lastYaw = this.yaw = (float) (this.direction.toDirection() * 90);
 		this.o();
 	}
 
@@ -60,7 +60,7 @@ public abstract class adj extends Entity {
 			var14 /= 32.0D;
 			var16 /= 32.0D;
 			var18 /= 32.0D;
-			this.a(new AxisAlignedBB(var1 - var14, var3 - var16, var5 - var18, var1 + var14, var3 + var16, var5 + var18));
+			this.setBoundingBox(new AxisAlignedBB(var1 - var14, var3 - var16, var5 - var18, var1 + var14, var3 + var16, var5 + var18));
 		}
 	}
 
@@ -69,9 +69,9 @@ public abstract class adj extends Entity {
 	}
 
 	public void s_() {
-		this.p = this.locationX;
-		this.q = this.locationY;
-		this.r = this.locationZ;
+		this.previousX = this.locationX;
+		this.previousY = this.locationY;
+		this.previousZ = this.locationZ;
 		if (this.c++ == 100 && !this.world.isStatic) {
 			this.c = 0;
 			if (!this.dead && !this.j()) {
@@ -101,7 +101,7 @@ public abstract class adj extends Entity {
 				}
 			}
 
-			List var9 = this.world.b((Entity) this, this.getBoundingBox());
+			List var9 = this.world.getEntities((Entity) this, this.getBoundingBox());
 			Iterator var10 = var9.iterator();
 
 			Entity var11;

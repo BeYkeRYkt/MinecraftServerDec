@@ -114,7 +114,7 @@ public class EntityCreeper extends EntityMonster {
 		if (var1.j() instanceof EntitySkeleton) {
 			int var2 = Item.getId(Items.RECORD_13);
 			int var3 = Item.getId(Items.RECORD_WAIT);
-			int var4 = var2 + this.V.nextInt(var3 - var2 + 1);
+			int var4 = var2 + this.random.nextInt(var3 - var2 + 1);
 			this.a(Item.getById(var4), 1);
 		} else if (var1.j() instanceof EntityCreeper && var1.j() != this && ((EntityCreeper) var1.j()).n() && ((EntityCreeper) var1.j()).cn()) {
 			((EntityCreeper) var1.j()).co();
@@ -151,7 +151,7 @@ public class EntityCreeper extends EntityMonster {
 	protected boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (var2 != null && var2.getItem() == Items.FLINT_AND_STEEL) {
-			this.world.makeSound(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.ignite", 1.0F, this.V.nextFloat() * 0.4F + 0.8F);
+			this.world.makeSound(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.ignite", 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
 			var1.performHandAnimation();
 			if (!this.world.isStatic) {
 				this.cm();
@@ -165,7 +165,7 @@ public class EntityCreeper extends EntityMonster {
 
 	private void cp() {
 		if (!this.world.isStatic) {
-			boolean var1 = this.world.Q().b("mobGriefing");
+			boolean var1 = this.world.getGameRules().b("mobGriefing");
 			float var2 = this.n() ? 2.0F : 1.0F;
 			this.world.a(this, this.locationX, this.locationY, this.locationZ, (float) this.bl * var2, var1);
 			this.die();
@@ -182,7 +182,7 @@ public class EntityCreeper extends EntityMonster {
 	}
 
 	public boolean cn() {
-		return this.bm < 1 && this.world.Q().b("doMobLoot");
+		return this.bm < 1 && this.world.getGameRules().b("doMobLoot");
 	}
 
 	public void co() {

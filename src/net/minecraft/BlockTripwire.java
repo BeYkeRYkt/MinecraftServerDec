@@ -138,7 +138,7 @@ public class BlockTripwire extends Block {
 		BlockState var3 = var1.getBlockState(var2);
 		boolean var4 = ((Boolean) var3.b(a)).booleanValue();
 		boolean var5 = false;
-		List var6 = var1.b((Entity) null, new AxisAlignedBB((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G));
+		List var6 = var1.getEntities((Entity) null, new AxisAlignedBB((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G));
 		if (!var6.isEmpty()) {
 			Iterator var7 = var6.iterator();
 

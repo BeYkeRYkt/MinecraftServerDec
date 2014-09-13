@@ -15,12 +15,12 @@ public class abb extends aaz {
 	}
 
 	protected Vec3D c() {
-		return new Vec3D(this.b.locationX, this.b.locationY + (double) this.b.K * 0.5D, this.b.locationZ);
+		return new Vec3D(this.b.locationX, this.b.locationY + (double) this.b.width * 0.5D, this.b.locationZ);
 	}
 
 	protected void l() {
 		Vec3D var1 = this.c();
-		float var2 = this.b.J * this.b.J;
+		float var2 = this.b.height * this.b.height;
 		byte var3 = 6;
 		if (var1.g(this.d.a(this.b, this.d.e())) < (double) var2) {
 			this.d.a();
@@ -42,7 +42,7 @@ public class abb extends aaz {
 	}
 
 	protected boolean a(Vec3D var1, Vec3D var2, int var3, int var4, int var5) {
-		MovingObjectPosition var6 = this.c.a(var1, new Vec3D(var2.x, var2.y + (double) this.b.K * 0.5D, var2.z), false, true, false);
+		MovingObjectPosition var6 = this.c.a(var1, new Vec3D(var2.x, var2.y + (double) this.b.width * 0.5D, var2.z), false, true, false);
 		return var6 == null || var6.type == EnumMovingObjectType.MISS;
 	}
 }

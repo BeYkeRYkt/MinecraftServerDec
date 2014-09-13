@@ -7,7 +7,7 @@ public class EntityBlaze extends EntityMonster {
 
 	public EntityBlaze(World var1) {
 		super(var1);
-		this.ab = true;
+		this.fireProof = true;
 		this.b_ = 10;
 		this.i.a(4, new aen(this));
 		this.i.a(5, new PathfinderGoalMoveTowardsRestriction(this, 1.0D));
@@ -52,12 +52,12 @@ public class EntityBlaze extends EntityMonster {
 		}
 
 		if (this.world.isStatic) {
-			if (this.V.nextInt(24) == 0 && !this.R()) {
-				this.world.a(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.fire", 1.0F + this.V.nextFloat(), this.V.nextFloat() * 0.7F + 0.3F, false);
+			if (this.random.nextInt(24) == 0 && !this.isSilent()) {
+				this.world.a(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.fire", 1.0F + this.random.nextFloat(), this.random.nextFloat() * 0.7F + 0.3F, false);
 			}
 
 			for (int var1 = 0; var1 < 2; ++var1) {
-				this.world.a(Particle.m, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, 0.0D, 0.0D, 0.0D, new int[0]);
+				this.world.a(Particle.m, this.locationX + (this.random.nextDouble() - 0.5D) * (double) this.height, this.locationY + this.random.nextDouble() * (double) this.width, this.locationZ + (this.random.nextDouble() - 0.5D) * (double) this.height, 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 		}
 
@@ -72,7 +72,7 @@ public class EntityBlaze extends EntityMonster {
 		--this.c;
 		if (this.c <= 0) {
 			this.c = 100;
-			this.b = 0.5F + (float) this.V.nextGaussian() * 3.0F;
+			this.b = 0.5F + (float) this.random.nextGaussian() * 3.0F;
 		}
 
 		EntityLiving var1 = this.u();
@@ -97,7 +97,7 @@ public class EntityBlaze extends EntityMonster {
 
 	protected void dropDeathLoot(boolean var1, int var2) {
 		if (var1) {
-			int var3 = this.V.nextInt(2 + var2);
+			int var3 = this.random.nextInt(2 + var2);
 
 			for (int var4 = 0; var4 < var3; ++var4) {
 				this.a(Items.BLAZE_ROD, 1);

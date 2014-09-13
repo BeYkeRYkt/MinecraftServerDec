@@ -18,7 +18,7 @@ public abstract class yv extends PathfinderGoal {
 	}
 
 	public boolean a() {
-		if (!this.a.D) {
+		if (!this.a.positionChanged) {
 			return false;
 		} else {
 			aay var1 = (aay) this.a.s();
