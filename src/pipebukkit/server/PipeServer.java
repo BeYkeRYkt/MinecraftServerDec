@@ -62,6 +62,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
 
+import pipebukkit.server.banlists.PipeIpBanList;
 import pipebukkit.server.entity.PipePlayer;
 import pipebukkit.server.metadata.EntityMetadataStorage;
 import pipebukkit.server.metadata.PlayerMetadataStorage;
@@ -280,8 +281,14 @@ public class PipeServer implements Server {
 
 	@Override
 	public BanList getBanList(Type type) {
-		// TODO Auto-generated method stub
-		return null;
+		switch (type) {
+			case IP: {
+				return new PipeIpBanList(MinecraftServer.getInstance().getPlayerList().getIpBanList());
+			}
+			default: {
+				return null;
+			}
+		}
 	}
 
 	@Override

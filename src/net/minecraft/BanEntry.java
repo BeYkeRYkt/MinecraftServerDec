@@ -22,8 +22,8 @@ public abstract class BanEntry<T> extends JsonListEntry<T> {
 		this.source = source == null ? "Banned by an operator." : source;
 	}
 
-	protected BanEntry(T var1, JsonObject jsonObject) {
-		super(var1, jsonObject);
+	protected BanEntry(T object, JsonObject jsonObject) {
+		super(object, jsonObject);
 
 		Date created;
 		try {
@@ -52,6 +52,14 @@ public abstract class BanEntry<T> extends JsonListEntry<T> {
 
 	public String getSource() {
 		return this.source;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public String getReason() {
+		return reason;
 	}
 
 	boolean hasExpired() {
