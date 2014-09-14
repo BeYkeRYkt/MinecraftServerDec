@@ -31,7 +31,7 @@ public class Statistic {
 		return this;
 	}
 
-	public Statistic h() {
+	public Statistic register() {
 		if (StatisticList.list.containsKey(this.name)) {
 			throw new RuntimeException("Duplicate stat id: \"" + ((Statistic) StatisticList.list.get(this.name)).nameId + "\" and \"" + this.nameId + "\" at id " + this.name);
 		} else {

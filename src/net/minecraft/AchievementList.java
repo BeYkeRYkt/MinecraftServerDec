@@ -45,4 +45,6 @@ public class AchievementList {
 	public static Achievement L = (new Achievement("achievement.exploreAllBiomes", "exploreAllBiomes", 4, 8, Items.DIAMOND_BOOTS, C)).a(AchievmentSet.class).b().c();
 	public static Achievement M = (new Achievement("achievement.overpowered", "overpowered", 6, 4, Items.GOLDEN_APPLE, o)).b().c();
 
+	public static void init() {}
+
 }

@@ -33,7 +33,7 @@ public class PacketPlayOutStatistics implements Packet<PlayOutPacketListener> {
 		serializer.writeVarInt(this.map.size());
 		for (Entry<Statistic, Integer> entry : map.entrySet()) {
 			serializer.writeString(entry.getKey().name);
-			serializer.writeInt(entry.getValue());
+			serializer.writeVarInt(entry.getValue());
 		}
 	}
 

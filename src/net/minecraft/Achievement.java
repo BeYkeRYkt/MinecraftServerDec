@@ -53,7 +53,7 @@ public class Achievement extends Statistic {
 	}
 
 	public Achievement c() {
-		super.h();
+		super.register();
 		AchievementList.list.add(this);
 		return this;
 	}
@@ -82,7 +82,7 @@ public class Achievement extends Statistic {
 	}
 
 	// $FF: synthetic method
-	public Statistic h() {
+	public Statistic register() {
 		return this.c();
 	}
 

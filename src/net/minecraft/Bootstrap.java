@@ -47,6 +47,7 @@ public class Bootstrap {
 			BlockFire.registerBurnableBlocks();
 			Item.registerItems();
 			StatisticList.register();
+			AchievementList.init();
 			registerDispensers();
 		}
 	}
