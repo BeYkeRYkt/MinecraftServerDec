@@ -544,7 +544,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 			logger.info("Disabling plugins");
 			Plugin[] plugins = Bukkit.getPluginManager().getPlugins();
-			for (int i = plugins.length-1; i >=0; i++) {
+			for (int i = plugins.length-1; i >=0; i--) {
 				try {
 					Bukkit.getPluginManager().disablePlugin(plugins[i]);
 				} catch (Throwable t) {

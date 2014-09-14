@@ -127,14 +127,14 @@ public class PipeServer implements Server {
 
 		pluginManager.registerInterface(JavaPluginLoader.class);
 		if (pluginsFolder.exists() && pluginsFolder.isDirectory()) {
-			for (File pluginFile : pluginsFolder.listFiles()) {
+			Plugin[] plugins = pluginManager.loadPlugins(pluginsFolder);
+			for (Plugin plugin : plugins) {
 				try {
-					Plugin plugin = pluginManager.loadPlugin(pluginFile);
 					String message = String.format("Loading %s", plugin.getDescription().getFullName());
 					plugin.getLogger().info(message);
 					plugin.onLoad();
 				} catch (Throwable ex) {
-					Logger.getLogger(PipeServer.class.getName()).log(Level.SEVERE, ex.getMessage() + " initializing " + pluginFile.getName() , ex);
+					Logger.getLogger(PipeServer.class.getName()).log(Level.SEVERE, ex.getMessage() + " initializing " + plugin.getDescription().getFullName() , ex);
 				}
 			}
 		} else {
