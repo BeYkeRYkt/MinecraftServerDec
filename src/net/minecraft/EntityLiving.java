@@ -874,7 +874,7 @@ public abstract class EntityLiving extends Entity {
 			this.aq = -1;
 			this.ap = true;
 			if (this.world instanceof WorldServer) {
-				((WorldServer) this.world).s().a((Entity) this, (new PacketPlayOutAnimation(this, 0)));
+				((WorldServer) this.world).getEntityTracker().a((Entity) this, (new PacketPlayOutAnimation(this, 0)));
 			}
 		}
 
@@ -1152,7 +1152,7 @@ public abstract class EntityLiving extends Entity {
 				ItemStack var3 = this.h[var2];
 				ItemStack var4 = this.p(var2);
 				if (!ItemStack.matches(var4, var3)) {
-					((WorldServer) this.world).s().a((Entity) this, (Packet) (new PacketPlayOutEntityEquipment(this.getId(), var2, var4)));
+					((WorldServer) this.world).getEntityTracker().a((Entity) this, (Packet) (new PacketPlayOutEntityEquipment(this.getId(), var2, var4)));
 					if (var3 != null) {
 						this.c.a(var3.B());
 					}
@@ -1383,7 +1383,7 @@ public abstract class EntityLiving extends Entity {
 
 	public void a(Entity var1, int var2) {
 		if (!var1.dead && !this.world.isStatic) {
-			EntityTracker var3 = ((WorldServer) this.world).s();
+			EntityTracker var3 = ((WorldServer) this.world).getEntityTracker();
 			if (var1 instanceof EntityItem) {
 				var3.a(var1, (Packet) (new PacketPlayOutCollectItem(var1.getId(), this.getId())));
 			}

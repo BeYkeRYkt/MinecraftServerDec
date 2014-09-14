@@ -320,7 +320,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 				CrashReport var6;
 				try {
-					world.c();
+					world.doTick();
 				} catch (Throwable var8) {
 					var6 = CrashReport.generateCrashReport(var8, "Exception ticking world");
 					world.a(var6);
@@ -337,7 +337,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 				this.profiler.b();
 				this.profiler.a("tracker");
-				world.s().a();
+				world.getEntityTracker().a();
 				this.profiler.b();
 				this.profiler.b();
 			}

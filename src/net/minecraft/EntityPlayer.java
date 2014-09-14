@@ -187,7 +187,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 				while (var11.hasNext()) {
 					var5 = (Chunk) var11.next();
-					this.getWorldServer().s().a(this, var5);
+					this.getWorldServer().getEntityTracker().a(this, var5);
 				}
 			}
 		}
@@ -419,7 +419,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		EnumBedResult var2 = super.a(var1);
 		if (var2 == EnumBedResult.OK) {
 			PacketPlayOutUseBed var3 = new PacketPlayOutUseBed(this, var1);
-			this.getWorldServer().s().a((Entity) this, (Packet) var3);
+			this.getWorldServer().getEntityTracker().a((Entity) this, (Packet) var3);
 			this.playerConncetion.movePlayer(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
 			this.playerConncetion.sendPacket((Packet) var3);
 		}
@@ -429,7 +429,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void a(boolean var1, boolean var2, boolean var3) {
 		if (this.isSleeping()) {
-			this.getWorldServer().s().b(this, new PacketPlayOutAnimation(this, 2));
+			this.getWorldServer().getEntityTracker().b(this, new PacketPlayOutAnimation(this, 2));
 		}
 
 		super.a(var1, var2, var3);
@@ -672,7 +672,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	public void a(ItemStack var1, int var2) {
 		super.a(var1, var2);
 		if (var1 != null && var1.getItem() != null && var1.getItem().e(var1) == ano.b) {
-			this.getWorldServer().s().b(this, new PacketPlayOutAnimation(this, 3));
+			this.getWorldServer().getEntityTracker().b(this, new PacketPlayOutAnimation(this, 3));
 		}
 
 	}
@@ -705,11 +705,11 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public void b(Entity var1) {
-		this.getWorldServer().s().b(this, new PacketPlayOutAnimation(var1, 4));
+		this.getWorldServer().getEntityTracker().b(this, new PacketPlayOutAnimation(var1, 4));
 	}
 
 	public void c(Entity var1) {
-		this.getWorldServer().s().b(this, new PacketPlayOutAnimation(var1, 5));
+		this.getWorldServer().getEntityTracker().b(this, new PacketPlayOutAnimation(var1, 5));
 	}
 
 	public void t() {
@@ -810,7 +810,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			super.B();
 		}
 
-		this.getWorldServer().s().a(this);
+		this.getWorldServer().getEntityTracker().a(this);
 	}
 
 	public Entity C() {

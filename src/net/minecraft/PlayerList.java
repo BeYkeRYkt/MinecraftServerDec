@@ -162,10 +162,10 @@ public abstract class PlayerList {
 	public void a(EntityPlayer var1, WorldServer var2) {
 		WorldServer var3 = var1.getWorldServer();
 		if (var2 != null) {
-			var2.t().c(var1);
+			var2.getPlayerChunkMap().c(var1);
 		}
 
-		var3.t().a(var1);
+		var3.getPlayerChunkMap().a(var1);
 		var3.chunkProviderServer.getChunkAt((int) var1.locationX >> 4, (int) var1.locationZ >> 4);
 	}
 
@@ -212,7 +212,7 @@ public abstract class PlayerList {
 	}
 
 	public void d(EntityPlayer var1) {
-		var1.getWorldServer().t().d(var1);
+		var1.getWorldServer().getPlayerChunkMap().d(var1);
 	}
 
 	public void disconnect(EntityPlayer var1) {
@@ -225,7 +225,7 @@ public abstract class PlayerList {
 		}
 
 		var2.e(var1);
-		var2.t().c(var1);
+		var2.getPlayerChunkMap().c(var1);
 		this.players.remove(var1);
 		this.uuidToPlayerMap.remove(var1.getUUID());
 		this.playersStatistic.remove(var1.getUUID());
@@ -287,9 +287,9 @@ public abstract class PlayerList {
 	}
 
 	public EntityPlayer moveToWorld(EntityPlayer var1, int var2, boolean var3) {
-		var1.getWorldServer().s().b(var1);
-		var1.getWorldServer().s().b((Entity) var1);
-		var1.getWorldServer().t().c(var1);
+		var1.getWorldServer().getEntityTracker().b(var1);
+		var1.getWorldServer().getEntityTracker().b((Entity) var1);
+		var1.getWorldServer().getPlayerChunkMap().c(var1);
 		this.players.remove(var1);
 		this.minecraftserver.getWorldServer(var1.dimensionId).f(var1);
 		Position var4 = var1.cg();
@@ -332,7 +332,7 @@ public abstract class PlayerList {
 		var7.playerConncetion.sendPacket((Packet) (new PacketPlayOutSpawnPosition(var9)));
 		var7.playerConncetion.sendPacket((Packet) (new PacketPlayOutSetExpirience(var7.xp, var7.xpTotal, var7.xpLevel)));
 		this.updateWorldData(var7, var8);
-		var8.t().a(var7);
+		var8.getPlayerChunkMap().a(var7);
 		var8.addEntity(var7);
 		this.players.add(var7);
 		this.uuidToPlayerMap.put(var7.getUUID(), var7);
@@ -408,7 +408,7 @@ public abstract class PlayerList {
 			var7 = (double) MathHelper.a((int) var7, -29999872, 29999872);
 			if (var1.isAlive()) {
 				var1.setPositionRotation(var5, var1.locationY, var7, var1.yaw, var1.pitch);
-				var4.u().a(var1, var11);
+				var4.getPortalTravelAgent().a(var1, var11);
 				var4.addEntity(var1);
 				var4.a(var1, false);
 			}
@@ -650,7 +650,7 @@ public abstract class PlayerList {
 			for (int var4 = 0; var4 < var3; ++var4) {
 				WorldServer var5 = var2[var4];
 				if (var5 != null) {
-					var5.t().a(var1);
+					var5.getPlayerChunkMap().a(var1);
 				}
 			}
 

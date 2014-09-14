@@ -17,11 +17,11 @@ public class WorldManager implements IWorldAccess {
 	}
 
 	public void a(Entity var1) {
-		this.b.s().a(var1);
+		this.b.getEntityTracker().a(var1);
 	}
 
 	public void b(Entity var1) {
-		this.b.s().b(var1);
+		this.b.getEntityTracker().b(var1);
 	}
 
 	public void a(String var1, double var2, double var4, double var6, float var8, float var9) {
@@ -36,7 +36,7 @@ public class WorldManager implements IWorldAccess {
 	}
 
 	public void a(Position var1) {
-		this.b.t().a(var1);
+		this.b.getPlayerChunkMap().a(var1);
 	}
 
 	public void b(Position var1) {

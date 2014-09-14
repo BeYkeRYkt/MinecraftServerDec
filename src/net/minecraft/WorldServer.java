@@ -46,7 +46,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.entityTracker = new EntityTracker(this);
 		this.playerChunkMap = new PlayerChunkMap(this);
 		this.worldProvider.setWorld(this);
-		this.chunkProvider = this.k();
+		this.chunkProvider = this.getServerChunkProvider();
 		this.portalTravelAgent = new PortalTravelAgent(this);
 		this.B();
 		this.C();
@@ -88,8 +88,8 @@ public class WorldServer extends World implements ITaskScheduler {
 		return this;
 	}
 
-	public void c() {
-		super.c();
+	public void doTick() {
+		super.doTick();
 		if (this.getWorldData().isHardcore() && this.getDifficulty() != Difficulty.HARD) {
 			this.getWorldData().setDifficulty(Difficulty.HARD);
 		}
@@ -475,28 +475,28 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	public void a(Entity var1, boolean var2) {
-		if (!this.ai() && (var1 instanceof EntityAnimal || var1 instanceof EntityWaterAnimal)) {
+		if (!this.isAnimalSpawnEnabled() && (var1 instanceof EntityAnimal || var1 instanceof EntityWaterAnimal)) {
 			var1.die();
 		}
 
-		if (!this.ah() && var1 instanceof NPC) {
+		if (!this.isNpcSpawnEnabled() && var1 instanceof NPC) {
 			var1.die();
 		}
 
 		super.a(var1, var2);
 	}
 
-	private boolean ah() {
+	private boolean isNpcSpawnEnabled() {
 		return this.minecraftserver.isNPCSpawnEnabled();
 	}
 
-	private boolean ai() {
+	private boolean isAnimalSpawnEnabled() {
 		return this.minecraftserver.isAnimalSpawnEnabled();
 	}
 
-	protected IChunkProvider k() {
-		IChunkLoader var1 = this.dataManager.createChunkLoader(this.worldProvider);
-		this.chunkProviderServer = new ChunkProviderServer(this, var1, this.worldProvider.getChunkProvider());
+	protected IChunkProvider getServerChunkProvider() {
+		IChunkLoader loader = this.dataManager.createChunkLoader(this.worldProvider);
+		this.chunkProviderServer = new ChunkProviderServer(this, loader, this.worldProvider.getChunkProvider());
 		return this.chunkProviderServer;
 	}
 
@@ -694,7 +694,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	public void broadcastEntityEffect(Entity var1, byte var2) {
-		this.s().b(var1, new PacketPlayOutEntityStatus(var1, var2));
+		this.getEntityTracker().b(var1, new PacketPlayOutEntityStatus(var1, var2));
 	}
 
 	public Explosion a(Entity var1, double var2, double var4, double var6, float var8, boolean var9, boolean var10) {
@@ -792,15 +792,15 @@ public class WorldServer extends World implements ITaskScheduler {
 		return this.minecraftserver;
 	}
 
-	public EntityTracker s() {
+	public EntityTracker getEntityTracker() {
 		return this.entityTracker;
 	}
 
-	public PlayerChunkMap t() {
+	public PlayerChunkMap getPlayerChunkMap() {
 		return this.playerChunkMap;
 	}
 
-	public PortalTravelAgent u() {
+	public PortalTravelAgent getPortalTravelAgent() {
 		return this.portalTravelAgent;
 	}
 
@@ -822,8 +822,8 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	}
 
-	public Entity getEntity(UUID var1) {
-		return (Entity) this.entities.get(var1);
+	public Entity getEntity(UUID uuid) {
+		return this.entities.get(uuid);
 	}
 
 	public ListenableFuture<?> scheduleSyncTask(Runnable var1) {

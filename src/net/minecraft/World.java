@@ -97,7 +97,7 @@ public abstract class World implements ard {
 		return this.worldProvider.m();
 	}
 
-	protected abstract IChunkProvider k();
+	protected abstract IChunkProvider getServerChunkProvider();
 
 	public void a(WorldSettings var1) {
 		this.worldData.setInitialized(true);
@@ -1517,7 +1517,7 @@ public abstract class World implements ard {
 		this.G = var2;
 	}
 
-	public void c() {
+	public void doTick() {
 		this.p();
 	}
 

@@ -726,7 +726,7 @@ public abstract class EntityInsentient extends EntityLiving {
 			}
 
 			if (!this.world.isStatic && var1 && this.world instanceof WorldServer) {
-				((WorldServer) this.world).s().a((Entity) this, (Packet) (new PacketPlayOutAttachEntity(1, this, (Entity) null)));
+				((WorldServer) this.world).getEntityTracker().a((Entity) this, (Packet) (new PacketPlayOutAttachEntity(1, this, (Entity) null)));
 			}
 		}
 
@@ -748,7 +748,7 @@ public abstract class EntityInsentient extends EntityLiving {
 		this.bm = true;
 		this.bn = var1;
 		if (!this.world.isStatic && var2 && this.world instanceof WorldServer) {
-			((WorldServer) this.world).s().a((Entity) this, (Packet) (new PacketPlayOutAttachEntity(1, this, this.bn)));
+			((WorldServer) this.world).getEntityTracker().a((Entity) this, (Packet) (new PacketPlayOutAttachEntity(1, this, this.bn)));
 		}
 
 	}
