@@ -170,7 +170,7 @@ public abstract class PlayerList {
 	}
 
 	public int d() {
-		return qq.b(this.t());
+		return PlayerChunkMap.b(this.t());
 	}
 
 	public NBTCompoundTag a(EntityPlayer var1) {

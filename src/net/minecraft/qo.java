@@ -7,9 +7,9 @@ class qo implements Callable {
 	// $FF: synthetic field
 	final int a;
 	// $FF: synthetic field
-	final qn b;
+	final EntityTracker b;
 
-	qo(qn var1, int var2) {
+	qo(EntityTracker var1, int var2) {
 		this.b = var1;
 		this.a = var2;
 	}

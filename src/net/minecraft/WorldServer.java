@@ -19,37 +19,35 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import pipebukkit.server.PipeWorld;
-
 public class WorldServer extends World implements ITaskScheduler {
 
 	private static final Logger logger = LogManager.getLogger();
 	private final MinecraftServer minecraftserver;
-	private final qn J;
-	private final qq K;
-	private final Set L = Sets.newHashSet();
-	private final TreeSet M = new TreeSet();
+	private final EntityTracker entityTracker;
+	private final PlayerChunkMap playerChunkMap;
+	private final Set<NextTickListEntry> nextTickHashSet = Sets.newHashSet();
+	private final TreeSet<NextTickListEntry> nextTickTreeSet = new TreeSet<NextTickListEntry>();
+	private List<NextTickListEntry> V = Lists.newArrayList();
 	public final Map<UUID, Entity> entities = Maps.newHashMap();
 	public ChunkProviderServer chunkProviderServer;
 	public boolean savingDisabled;
 	private boolean O;
-	private int P;
-	private final arh Q;
-	private final arg R = new arg();
+	private int emptyTime;
+	private final PortalTravelAgent portalTravelAgent;
+	private final SpawnerCreature spawnerCreature = new SpawnerCreature();
 	protected final abk d = new abk(this);
-	private qv[] S = new qv[] { new qv((qu) null), new qv((qu) null) };
+	private BlockActionDataList[] S = new BlockActionDataList[] { new BlockActionDataList((qu) null), new BlockActionDataList((qu) null) };
 	private int T;
 	private static final List U = Lists.newArrayList((Object[]) (new StructurePieceTreasure[] { new StructurePieceTreasure(Items.STICK, 0, 1, 3, 10), new StructurePieceTreasure(Item.getItemOf(Blocks.PLANKS), 0, 1, 3, 10), new StructurePieceTreasure(Item.getItemOf(Blocks.LOG), 0, 1, 3, 10), new StructurePieceTreasure(Items.STONE_AXE, 0, 1, 1, 3), new StructurePieceTreasure(Items.WOODEN_AXE, 0, 1, 1, 5), new StructurePieceTreasure(Items.STONE_PICKAXE, 0, 1, 1, 3), new StructurePieceTreasure(Items.WOODEN_PICKAXE, 0, 1, 1, 5), new StructurePieceTreasure(Items.APPLE, 0, 2, 3, 5), new StructurePieceTreasure(Items.BREAD, 0, 2, 3, 3), new StructurePieceTreasure(Item.getItemOf(Blocks.LOG2), 0, 1, 3, 10) }));
-	private List V = Lists.newArrayList();
 
 	public WorldServer(MinecraftServer minecraftserver, IDataManager dataManager, WorldData worldData, int dimension, MethodProfiler methodProfiler) {
 		super(dataManager, worldData, WorldProvider.getById(dimension), methodProfiler, false);
 		this.minecraftserver = minecraftserver;
-		this.J = new qn(this);
-		this.K = new qq(this);
+		this.entityTracker = new EntityTracker(this);
+		this.playerChunkMap = new PlayerChunkMap(this);
 		this.worldProvider.setWorld(this);
 		this.chunkProvider = this.k();
-		this.Q = new arh(this);
+		this.portalTravelAgent = new PortalTravelAgent(this);
 		this.B();
 		this.C();
 		this.getWorldBorder().setPortalTeleportBoundary(minecraftserver.getMaxWorldSize());
@@ -108,7 +106,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 		this.B.a("mobSpawner");
 		if (this.getGameRules().b("doMobSpawning") && this.worldData.getLevelType() != LevelType.DEBUG) {
-			this.R.a(this, this.F, this.G, this.worldData.getTime() % 400L == 0L);
+			this.spawnerCreature.a(this, this.F, this.G, this.worldData.getTime() % 400L == 0L);
 		}
 
 		this.B.c("chunkSource");
@@ -128,12 +126,12 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.B.c("tickBlocks");
 		this.h();
 		this.B.c("chunkMap");
-		this.K.b();
+		this.playerChunkMap.b();
 		this.B.c("village");
 		this.A.a();
 		this.d.a();
 		this.B.c("portalForcer");
-		this.Q.a(this.getTime());
+		this.portalTravelAgent.a(this.getTime());
 		this.B.b();
 		this.ak();
 	}
@@ -336,9 +334,9 @@ public class WorldServer extends World implements ITaskScheduler {
 				var5.a(var4);
 			}
 
-			if (!this.L.contains(var5)) {
-				this.L.add(var5);
-				this.M.add(var5);
+			if (!this.nextTickHashSet.contains(var5)) {
+				this.nextTickHashSet.add(var5);
+				this.nextTickTreeSet.add(var5);
 			}
 		}
 
@@ -351,16 +349,16 @@ public class WorldServer extends World implements ITaskScheduler {
 			var5.a((long) var3 + this.worldData.getTime());
 		}
 
-		if (!this.L.contains(var5)) {
-			this.L.add(var5);
-			this.M.add(var5);
+		if (!this.nextTickHashSet.contains(var5)) {
+			this.nextTickHashSet.add(var5);
+			this.nextTickTreeSet.add(var5);
 		}
 
 	}
 
 	public void i() {
 		if (this.j.isEmpty()) {
-			if (this.P++ >= 1200) {
+			if (this.emptyTime++ >= 1200) {
 				return;
 			}
 		} else {
@@ -371,15 +369,15 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	public void j() {
-		this.P = 0;
+		this.emptyTime = 0;
 	}
 
 	public boolean a(boolean var1) {
 		if (this.worldData.getLevelType() == LevelType.DEBUG) {
 			return false;
 		} else {
-			int var2 = this.M.size();
-			if (var2 != this.L.size()) {
+			int var2 = this.nextTickTreeSet.size();
+			if (var2 != this.nextTickHashSet.size()) {
 				throw new IllegalStateException("TickNextTick list out of synch");
 			} else {
 				if (var2 > 1000) {
@@ -390,13 +388,13 @@ public class WorldServer extends World implements ITaskScheduler {
 
 				NextTickListEntry var4;
 				for (int var3 = 0; var3 < var2; ++var3) {
-					var4 = (NextTickListEntry) this.M.first();
+					var4 = (NextTickListEntry) this.nextTickTreeSet.first();
 					if (!var1 && var4.b > this.worldData.getTime()) {
 						break;
 					}
 
-					this.M.remove(var4);
-					this.L.remove(var4);
+					this.nextTickTreeSet.remove(var4);
+					this.nextTickHashSet.remove(var4);
 					this.V.add(var4);
 				}
 
@@ -427,7 +425,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 				this.B.b();
 				this.V.clear();
-				return !this.M.isEmpty();
+				return !this.nextTickTreeSet.isEmpty();
 			}
 		}
 	}
@@ -447,7 +445,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		for (int var4 = 0; var4 < 2; ++var4) {
 			Iterator var5;
 			if (var4 == 0) {
-				var5 = this.M.iterator();
+				var5 = this.nextTickTreeSet.iterator();
 			} else {
 				var5 = this.V.iterator();
 				if (!this.V.isEmpty()) {
@@ -460,7 +458,7 @@ public class WorldServer extends World implements ITaskScheduler {
 				Position var7 = var6.position;
 				if (var7.getX() >= cuboidArea.minX && var7.getX() < cuboidArea.maxX && var7.getZ() >= cuboidArea.minZ && var7.getZ() < cuboidArea.maxZ) {
 					if (var2) {
-						this.L.remove(var6);
+						this.nextTickHashSet.remove(var6);
 						var5.remove();
 					}
 
@@ -632,7 +630,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 			this.chunkProvider.requestChunksSave(var1, var2);
 			for (Chunk chunk : chunkProviderServer.getChunkList()) {
-				if (!this.K.a(chunk.x, chunk.z)) {
+				if (!this.playerChunkMap.a(chunk.x, chunk.z)) {
 					this.chunkProviderServer.queueUnload(chunk.x, chunk.z);
 				}
 			}
@@ -794,16 +792,16 @@ public class WorldServer extends World implements ITaskScheduler {
 		return this.minecraftserver;
 	}
 
-	public qn s() {
-		return this.J;
+	public EntityTracker s() {
+		return this.entityTracker;
 	}
 
-	public qq t() {
-		return this.K;
+	public PlayerChunkMap t() {
+		return this.playerChunkMap;
 	}
 
-	public arh u() {
-		return this.Q;
+	public PortalTravelAgent u() {
+		return this.portalTravelAgent;
 	}
 
 	public void a(Particle var1, double var2, double var4, double var6, int var8, double var9, double var11, double var13, double var15, int... var17) {

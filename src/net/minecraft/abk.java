@@ -143,7 +143,7 @@ public class abk {
 	private Vec3D a(Position var1) {
 		for (int var2 = 0; var2 < 10; ++var2) {
 			Position var3 = var1.a(this.a.s.nextInt(16) - 8, this.a.s.nextInt(6) - 3, this.a.s.nextInt(16) - 8);
-			if (this.f.a(var3) && arg.a(xo.a, this.a, var3)) {
+			if (this.f.a(var3) && SpawnerCreature.a(xo.a, this.a, var3)) {
 				return new Vec3D((double) var3.getX(), (double) var3.getY(), (double) var3.getZ());
 			}
 		}

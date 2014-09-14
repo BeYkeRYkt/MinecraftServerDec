@@ -1383,7 +1383,7 @@ public abstract class EntityLiving extends Entity {
 
 	public void a(Entity var1, int var2) {
 		if (!var1.dead && !this.world.isStatic) {
-			qn var3 = ((WorldServer) this.world).s();
+			EntityTracker var3 = ((WorldServer) this.world).s();
 			if (var1 instanceof EntityItem) {
 				var3.a(var1, (Packet) (new PacketPlayOutCollectItem(var1.getId(), this.getId())));
 			}

@@ -12,9 +12,9 @@ class qr {
 	private int f;
 	private long g;
 	// $FF: synthetic field
-	final qq a;
+	final PlayerChunkMap a;
 
-	public qr(qq var1, int var2, int var3) {
+	public qr(PlayerChunkMap var1, int var2, int var3) {
 		this.a = var1;
 		this.b = Lists.newArrayList();
 		this.d = new short[64];
@@ -24,10 +24,10 @@ class qr {
 
 	public void a(EntityPlayer var1) {
 		if (this.b.contains(var1)) {
-			qq.c().debug("Failed to add player. {} already is in chunk {}, {}", new Object[] { var1, Integer.valueOf(this.c.chunkX), Integer.valueOf(this.c.chunkZ) });
+			PlayerChunkMap.c().debug("Failed to add player. {} already is in chunk {}, {}", new Object[] { var1, Integer.valueOf(this.c.chunkX), Integer.valueOf(this.c.chunkZ) });
 		} else {
 			if (this.b.isEmpty()) {
-				this.g = qq.a(this.a).getTime();
+				this.g = PlayerChunkMap.a(this.a).getTime();
 			}
 
 			this.b.add(var1);
@@ -37,7 +37,7 @@ class qr {
 
 	public void b(EntityPlayer var1) {
 		if (this.b.contains(var1)) {
-			Chunk var2 = qq.a(this.a).a(this.c.chunkX, this.c.chunkZ);
+			Chunk var2 = PlayerChunkMap.a(this.a).a(this.c.chunkX, this.c.chunkZ);
 			if (var2.i()) {
 				var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutChunkData(var2, true, 0)));
 			}
@@ -47,10 +47,10 @@ class qr {
 			if (this.b.isEmpty()) {
 				long var3 = (long) this.c.chunkX + 2147483647L | (long) this.c.chunkZ + 2147483647L << 32;
 				this.a(var2);
-				qq.b(this.a).remove(var3);
-				qq.c(this.a).remove(this);
+				PlayerChunkMap.b(this.a).remove(var3);
+				PlayerChunkMap.c(this.a).remove(this);
 				if (this.e > 0) {
-					qq.d(this.a).remove(this);
+					PlayerChunkMap.d(this.a).remove(this);
 				}
 
 				this.a.a().chunkProviderServer.queueUnload(this.c.chunkX, this.c.chunkZ);
@@ -60,17 +60,17 @@ class qr {
 	}
 
 	public void a() {
-		this.a(qq.a(this.a).a(this.c.chunkX, this.c.chunkZ));
+		this.a(PlayerChunkMap.a(this.a).a(this.c.chunkX, this.c.chunkZ));
 	}
 
 	private void a(Chunk var1) {
-		var1.setInhabitedTime(var1.getInhabitedTime() + qq.a(this.a).getTime() - this.g);
-		this.g = qq.a(this.a).getTime();
+		var1.setInhabitedTime(var1.getInhabitedTime() + PlayerChunkMap.a(this.a).getTime() - this.g);
+		this.g = PlayerChunkMap.a(this.a).getTime();
 	}
 
 	public void a(int var1, int var2, int var3) {
 		if (this.e == 0) {
-			qq.d(this.a).add(this);
+			PlayerChunkMap.d(this.a).add(this);
 		}
 
 		this.f |= 1 << (var2 >> 4);
@@ -108,21 +108,21 @@ class qr {
 				var2 = this.d[0] & 255;
 				var3 = (this.d[0] >> 8 & 15) + this.c.chunkZ * 16;
 				Position var4 = new Position(var1, var2, var3);
-				this.a((Packet) (new PacketPlayOutBlockChange(qq.a(this.a), var4)));
-				if (qq.a(this.a).getBlockState(var4).getBlock().x()) {
-					this.a(qq.a(this.a).getTileEntity(var4));
+				this.a((Packet) (new PacketPlayOutBlockChange(PlayerChunkMap.a(this.a), var4)));
+				if (PlayerChunkMap.a(this.a).getBlockState(var4).getBlock().x()) {
+					this.a(PlayerChunkMap.a(this.a).getTileEntity(var4));
 				}
 			} else {
 				int var7;
 				if (this.e == 64) {
 					var1 = this.c.chunkX * 16;
 					var2 = this.c.chunkZ * 16;
-					this.a((Packet) (new PacketPlayOutChunkData(qq.a(this.a).a(this.c.chunkX, this.c.chunkZ), false, this.f)));
+					this.a((Packet) (new PacketPlayOutChunkData(PlayerChunkMap.a(this.a).a(this.c.chunkX, this.c.chunkZ), false, this.f)));
 
 					for (var3 = 0; var3 < 16; ++var3) {
 						if ((this.f & 1 << var3) != 0) {
 							var7 = var3 << 4;
-							List var5 = qq.a(this.a).a(var1, var7, var2, var1 + 16, var7 + 16, var2 + 16);
+							List var5 = PlayerChunkMap.a(this.a).a(var1, var7, var2, var1 + 16, var7 + 16, var2 + 16);
 
 							for (int var6 = 0; var6 < var5.size(); ++var6) {
 								this.a((TileEntity) var5.get(var6));
@@ -130,15 +130,15 @@ class qr {
 						}
 					}
 				} else {
-					this.a((Packet) (new PacketPlayOutMultiBlockChange(this.e, this.d, qq.a(this.a).a(this.c.chunkX, this.c.chunkZ))));
+					this.a((Packet) (new PacketPlayOutMultiBlockChange(this.e, this.d, PlayerChunkMap.a(this.a).a(this.c.chunkX, this.c.chunkZ))));
 
 					for (var1 = 0; var1 < this.e; ++var1) {
 						var2 = (this.d[var1] >> 12 & 15) + this.c.chunkX * 16;
 						var3 = this.d[var1] & 255;
 						var7 = (this.d[var1] >> 8 & 15) + this.c.chunkZ * 16;
 						Position var8 = new Position(var2, var3, var7);
-						if (qq.a(this.a).getBlockState(var8).getBlock().x()) {
-							this.a(qq.a(this.a).getTileEntity(var8));
+						if (PlayerChunkMap.a(this.a).getBlockState(var8).getBlock().x()) {
+							this.a(PlayerChunkMap.a(this.a).getTileEntity(var8));
 						}
 					}
 				}

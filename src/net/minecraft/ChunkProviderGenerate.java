@@ -345,7 +345,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 		}
 
 		var7.a(this.world, this.rnd, new Position(var4, 0, var5));
-		arg.a(this.world, var7, var4 + 8, var5 + 8, 16, 16, this.rnd);
+		SpawnerCreature.a(this.world, var7, var4 + 8, var5 + 8, 16, 16, this.rnd);
 		var6 = var6.a(8, 0, 8);
 
 		for (var14 = 0; var14 < 16; ++var14) {
