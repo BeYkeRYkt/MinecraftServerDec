@@ -18,7 +18,6 @@ public class ChunkProviderServer implements IChunkProvider {
 	private Chunk emptyChunk;
 	private IChunkProvider chunkGenerator;
 	private IChunkLoader chunkLoader;
-	public boolean forceChunkLoad = true;
 	private LongObjectHashMap<Chunk> chunks = new LongObjectHashMap<Chunk>();
 	private WorldServer worldServer;
 
@@ -63,10 +62,7 @@ public class ChunkProviderServer implements IChunkProvider {
 					}
 				}
 			}
-
-			this.chunks.put(longHash, chunk);
-			chunk.addEntities();
-			chunk.a(this, this, chunkX, chunkZ);
+			chunkLoadPostProcess(chunk);
 		}
 
 		return chunk;
@@ -84,11 +80,11 @@ public class ChunkProviderServer implements IChunkProvider {
 	}
 
 	public Chunk getOrCreateChunk(int chunkX, int chunkZ) {
-		Chunk chunk = (Chunk) this.chunks.get(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
-		return chunk == null ? (!this.worldServer.isLoading() && !this.forceChunkLoad ? this.emptyChunk : this.getChunkAt(chunkX, chunkZ)) : chunk;
+		Chunk chunk = this.chunks.get(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
+		return chunk == null ? this.getChunkAt(chunkX, chunkZ) : chunk;
 	}
 
-	private Chunk loadChunk(int chunkX, int chunkZ) {
+	public Chunk loadChunk(int chunkX, int chunkZ) {
 		if (this.chunkLoader == null) {
 			return null;
 		} else {
@@ -107,6 +103,12 @@ public class ChunkProviderServer implements IChunkProvider {
 				return null;
 			}
 		}
+	}
+
+	public void chunkLoadPostProcess(Chunk chunk) {
+		this.chunks.put(ChunkCoordIntPair.toLongHash(chunk.x, chunk.z), chunk);
+		chunk.addEntities();
+		chunk.a(this, this, chunk.x, chunk.z);
 	}
 
 	public void queueUnload(int chunkX, int chunkZ) {
@@ -130,7 +132,7 @@ public class ChunkProviderServer implements IChunkProvider {
 			for (int i = 0; i < 100; ++i) {
 				if (!this.unloadQueue.isEmpty()) {
 					Long longHash = this.unloadQueue.iterator().next();
-					Chunk chunk = (Chunk) this.chunks.get(longHash.longValue());
+					Chunk chunk = this.chunks.get(longHash.longValue());
 					if (chunk != null) {
 						chunk.removeEntities();
 						this.requestChunkSave(chunk);
@@ -143,6 +145,14 @@ public class ChunkProviderServer implements IChunkProvider {
 		}
 
 		return this.chunkGenerator.unloadChunks();
+	}
+
+	public void cancelChunkUnload(int chunkX, int chunkZ) {
+		unloadQueue.remove(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
+	}
+
+	public Chunk getChunkIfLoaded(int chunkX, int chunkZ) {
+		return chunks.get(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
 	}
 
 	private void requestChunkSave(Chunk chunk) {

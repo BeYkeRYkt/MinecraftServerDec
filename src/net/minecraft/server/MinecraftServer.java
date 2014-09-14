@@ -485,7 +485,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				}
 
 				++var5;
-				var7.b.getChunkAt(var8.getX() + var11 >> 4, var8.getZ() + var12 >> 4);
+				var7.chunkProviderServer.getChunkAt(var8.getX() + var11 >> 4, var8.getZ() + var12 >> 4);
 			}
 		}
 	}

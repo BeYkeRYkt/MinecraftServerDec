@@ -26,9 +26,9 @@ public class RegionFileCache {
 				dumpCache();
 			}
 
-			RegionFile var6 = new RegionFile(file);
-			cache.put(file, var6);
-			return var6;
+			RegionFile newRegionFile = new RegionFile(file);
+			cache.put(file, newRegionFile);
+			return newRegionFile;
 		}
 	}
 

@@ -25,7 +25,7 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 		this.file = file;
 	}
 
-	public Chunk loadChunk(World world, int chunkX, int chunkZ) throws IOException {
+	public Chunk loadChunk(WorldServer world, int chunkX, int chunkZ) throws IOException {
 		NBTCompoundTag tag = null;
 		ChunkCoordIntPair pair = new ChunkCoordIntPair(chunkX, chunkZ);
 
@@ -47,7 +47,7 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 		return this.loadChunk(world, chunkX, chunkZ, tag);
 	}
 
-	protected Chunk loadChunk(World world, int chunkX, int chunkZ, NBTCompoundTag tag) {
+	protected Chunk loadChunk(WorldServer world, int chunkX, int chunkZ, NBTCompoundTag tag) {
 		if (!tag.isTagAssignableFrom("Level", 10)) {
 			logger.error("Chunk file at " + chunkX + "," + chunkZ + " is missing level data, skipping");
 			return null;
@@ -67,7 +67,7 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 		}
 	}
 
-	public void requestChunkSave(World world, Chunk chunk) throws ExceptionWorldConflict {
+	public void requestChunkSave(WorldServer world, Chunk chunk) throws ExceptionWorldConflict {
 		world.checkSessionLock();
 
 		try {
@@ -124,7 +124,7 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 		}
 	}
 
-	private void writeChunkInfo(Chunk chunk, World world, NBTCompoundTag tag) {
+	private void writeChunkInfo(Chunk chunk, WorldServer world, NBTCompoundTag tag) {
 		tag.put("V", (byte) 1);
 		tag.put("xPos", chunk.x);
 		tag.put("zPos", chunk.z);
@@ -223,7 +223,7 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 
 	}
 
-	private Chunk readChunkInfo(World world, NBTCompoundTag tag) {
+	private Chunk readChunkInfo(WorldServer world, NBTCompoundTag tag) {
 		int chunkX = tag.getInt("xPos");
 		int chunkZ = tag.getInt("zPos");
 		Chunk chunk = new Chunk(world, chunkX, chunkZ);

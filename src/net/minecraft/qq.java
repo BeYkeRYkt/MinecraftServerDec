@@ -51,7 +51,7 @@ public class qq {
 		if (this.c.isEmpty()) {
 			WorldProvider var5 = this.b.worldProvider;
 			if (!var5.isPrimaryWorld()) {
-				this.b.b.queueUnloadAllChunks();
+				this.b.chunkProviderServer.queueUnloadAllChunks();
 			}
 		}
 

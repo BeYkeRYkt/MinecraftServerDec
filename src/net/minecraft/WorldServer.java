@@ -23,14 +23,14 @@ import pipebukkit.server.PipeWorld;
 
 public class WorldServer extends World implements ITaskScheduler {
 
-	private static final Logger a = LogManager.getLogger();
+	private static final Logger logger = LogManager.getLogger();
 	private final MinecraftServer minecraftserver;
 	private final qn J;
 	private final qq K;
 	private final Set L = Sets.newHashSet();
 	private final TreeSet M = new TreeSet();
 	public final Map<UUID, Entity> entities = Maps.newHashMap();
-	public ChunkProviderServer b;
+	public ChunkProviderServer chunkProviderServer;
 	public boolean savingDisabled;
 	private boolean O;
 	private int P;
@@ -451,7 +451,7 @@ public class WorldServer extends World implements ITaskScheduler {
 			} else {
 				var5 = this.V.iterator();
 				if (!this.V.isEmpty()) {
-					a.debug("toBeTicked = " + this.V.size());
+					logger.debug("toBeTicked = " + this.V.size());
 				}
 			}
 
@@ -498,8 +498,8 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	protected IChunkProvider k() {
 		IChunkLoader var1 = this.dataManager.createChunkLoader(this.worldProvider);
-		this.b = new ChunkProviderServer(this, var1, this.worldProvider.getChunkProvider());
-		return this.b;
+		this.chunkProviderServer = new ChunkProviderServer(this, var1, this.worldProvider.getChunkProvider());
+		return this.chunkProviderServer;
 	}
 
 	public List a(int var1, int var2, int var3, int var4, int var5, int var6) {
@@ -578,7 +578,7 @@ public class WorldServer extends World implements ITaskScheduler {
 				var6 = var5.getX();
 				var8 = var5.getZ();
 			} else {
-				a.warn("Unable to find spawn biome");
+				logger.warn("Unable to find spawn biome");
 			}
 
 			int var9 = 0;
@@ -631,9 +631,9 @@ public class WorldServer extends World implements ITaskScheduler {
 			}
 
 			this.chunkProvider.requestChunksSave(var1, var2);
-			for (Chunk chunk : b.getChunkList()) {
+			for (Chunk chunk : chunkProviderServer.getChunkList()) {
 				if (!this.K.a(chunk.x, chunk.z)) {
-					this.b.queueUnload(chunk.x, chunk.z);
+					this.chunkProviderServer.queueUnload(chunk.x, chunk.z);
 				}
 			}
 		}

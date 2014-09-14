@@ -8,9 +8,9 @@ public class ChunkProviderDebug implements IChunkProvider {
 
 	private static final List a = Lists.newArrayList();
 	private static final int b;
-	private final World c;
+	private final WorldServer c;
 
-	public ChunkProviderDebug(World var1) {
+	public ChunkProviderDebug(WorldServer var1) {
 		this.c = var1;
 	}
 

@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class ChunkProviderHell implements IChunkProvider {
 
-	private final World h;
+	private final WorldServer h;
 	private final boolean i;
 	private final Random j;
 	private double[] k = new double[256];
@@ -35,7 +35,7 @@ public class ChunkProviderHell implements IChunkProvider {
 	double[] f;
 	double[] g;
 
-	public ChunkProviderHell(World var1, boolean var2, long var3) {
+	public ChunkProviderHell(WorldServer var1, boolean var2, long var3) {
 		this.w = new WorldGenMinable(Blocks.QUARTZ_ORE.getBlockState(), 14, WorldGenNetherBlockEqualityPredicate.create(Blocks.NETHERRACK));
 		this.x = new WorldGenHellLava(Blocks.FLOWING_LAVA, true);
 		this.y = new WorldGenHellLava(Blocks.FLOWING_LAVA, false);

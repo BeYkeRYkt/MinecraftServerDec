@@ -11,7 +11,7 @@ public class ChunkProviderTheEnd implements IChunkProvider {
 	private NoiseGeneratorOctaves k;
 	public NoiseGeneratorOctaves a;
 	public NoiseGeneratorOctaves b;
-	private World l;
+	private WorldServer l;
 	private double[] m;
 	private BiomeBase[] n;
 	double[] c;
@@ -20,7 +20,7 @@ public class ChunkProviderTheEnd implements IChunkProvider {
 	double[] f;
 	double[] g;
 
-	public ChunkProviderTheEnd(World var1, long var2) {
+	public ChunkProviderTheEnd(WorldServer var1, long var2) {
 		this.l = var1;
 		this.h = new Random(var2);
 		this.i = new NoiseGeneratorOctaves(this.h, 16);

@@ -3,6 +3,7 @@ package net.minecraft;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Queues;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -11,8 +12,11 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import pipebukkit.server.PipeChunk;
 
 public class Chunk {
 
@@ -22,7 +26,7 @@ public class Chunk {
 	private final int[] f;
 	private final boolean[] g;
 	private boolean h;
-	private final World i;
+	private final WorldServer worldServer;
 	private final int[] heightMap;
 	public final int x;
 	public final int z;
@@ -40,7 +44,7 @@ public class Chunk {
 	private int v;
 	private ConcurrentLinkedQueue w;
 
-	public Chunk(World var1, int var2, int var3) {
+	public Chunk(WorldServer world, int var2, int var3) {
 		this.chunkSections = new ChunkSection[16];
 		this.biomes = new byte[256];
 		this.f = new int[256];
@@ -49,7 +53,7 @@ public class Chunk {
 		this.v = 4096;
 		this.w = Queues.newConcurrentLinkedQueue();
 		this.entitySlices = new EntitySlice[16];
-		this.i = var1;
+		this.worldServer = world;
 		this.x = var2;
 		this.z = var3;
 		this.heightMap = new int[256];
@@ -62,7 +66,7 @@ public class Chunk {
 		Arrays.fill(this.biomes, (byte) -1);
 	}
 
-	public Chunk(World var1, bgk var2, int var3, int var4) {
+	public Chunk(WorldServer var1, bgk var2, int var3, int var4) {
 		this(var1, var3, var4);
 		short var5 = 256;
 		boolean var6 = !var1.worldProvider.noSkyLight();
@@ -136,7 +140,7 @@ public class Chunk {
 						}
 					}
 
-					if (!this.i.worldProvider.noSkyLight()) {
+					if (!this.worldServer.worldProvider.noSkyLight()) {
 						var4 = 15;
 						int var5 = var1 + 16 - 1;
 
@@ -151,7 +155,7 @@ public class Chunk {
 								ChunkSection var7 = this.chunkSections[var5 >> 4];
 								if (var7 != null) {
 									var7.a(var2, var5 & 15, var3, var4);
-									this.i.n(new Position((this.x << 4) + var2, var5, (this.z << 4) + var3));
+									this.worldServer.n(new Position((this.x << 4) + var2, var5, (this.z << 4) + var3));
 								}
 							}
 
@@ -174,8 +178,8 @@ public class Chunk {
 	}
 
 	private void h(boolean var1) {
-		this.i.B.a("recheckGaps");
-		if (this.i.a(new Position(this.x * 16 + 8, 0, this.z * 16 + 8), (int) 16)) {
+		this.worldServer.B.a("recheckGaps");
+		if (this.worldServer.a(new Position(this.x * 16 + 8, 0, this.z * 16 + 8), (int) 16)) {
 			for (int var2 = 0; var2 < 16; ++var2) {
 				for (int var3 = 0; var3 < 16; ++var3) {
 					if (this.g[var2 + var3 * 16]) {
@@ -187,7 +191,7 @@ public class Chunk {
 
 						Iterator var8;
 						BlockFace var9;
-						for (var8 = en.a.iterator(); var8.hasNext(); var7 = Math.min(var7, this.i.b(var5 + var9.g(), var6 + var9.i()))) {
+						for (var8 = en.a.iterator(); var8.hasNext(); var7 = Math.min(var7, this.worldServer.b(var5 + var9.g(), var6 + var9.i()))) {
 							var9 = (BlockFace) var8.next();
 						}
 
@@ -200,7 +204,7 @@ public class Chunk {
 						}
 
 						if (var1) {
-							this.i.B.b();
+							this.worldServer.B.b();
 							return;
 						}
 					}
@@ -210,11 +214,11 @@ public class Chunk {
 			this.k = false;
 		}
 
-		this.i.B.b();
+		this.worldServer.B.b();
 	}
 
 	private void c(int var1, int var2, int var3) {
-		int var4 = this.i.m(new Position(var1, 0, var2)).getY();
+		int var4 = this.worldServer.m(new Position(var1, 0, var2)).getY();
 		if (var4 > var3) {
 			this.a(var1, var2, var3, var4 + 1);
 		} else if (var4 < var3) {
@@ -224,9 +228,9 @@ public class Chunk {
 	}
 
 	private void a(int var1, int var2, int var3, int var4) {
-		if (var4 > var3 && this.i.a(new Position(var1, 0, var2), (int) 16)) {
+		if (var4 > var3 && this.worldServer.a(new Position(var1, 0, var2), (int) 16)) {
 			for (int var5 = var3; var5 < var4; ++var5) {
-				this.i.c(arf.a, new Position(var1, var5, var2));
+				this.worldServer.c(arf.a, new Position(var1, var5, var2));
 			}
 
 			this.q = true;
@@ -246,20 +250,20 @@ public class Chunk {
 		}
 
 		if (var5 != var4) {
-			this.i.a(var1 + this.x * 16, var3 + this.z * 16, var5, var4);
+			this.worldServer.a(var1 + this.x * 16, var3 + this.z * 16, var5, var4);
 			this.heightMap[var3 << 4 | var1] = var5;
 			int var6 = this.x * 16 + var1;
 			int var7 = this.z * 16 + var3;
 			int var8;
 			int var13;
-			if (!this.i.worldProvider.noSkyLight()) {
+			if (!this.worldServer.worldProvider.noSkyLight()) {
 				ChunkSection var9;
 				if (var5 < var4) {
 					for (var8 = var5; var8 < var4; ++var8) {
 						var9 = this.chunkSections[var8 >> 4];
 						if (var9 != null) {
 							var9.a(var1, var8 & 15, var3, 15);
-							this.i.n(new Position((this.x << 4) + var1, var8, (this.z << 4) + var3));
+							this.worldServer.n(new Position((this.x << 4) + var1, var8, (this.z << 4) + var3));
 						}
 					}
 				} else {
@@ -267,7 +271,7 @@ public class Chunk {
 						var9 = this.chunkSections[var8 >> 4];
 						if (var9 != null) {
 							var9.a(var1, var8 & 15, var3, 0);
-							this.i.n(new Position((this.x << 4) + var1, var8, (this.z << 4) + var3));
+							this.worldServer.n(new Position((this.x << 4) + var1, var8, (this.z << 4) + var3));
 						}
 					}
 				}
@@ -305,7 +309,7 @@ public class Chunk {
 				this.t = var8;
 			}
 
-			if (!this.i.worldProvider.noSkyLight()) {
+			if (!this.worldServer.worldProvider.noSkyLight()) {
 				Iterator var11 = en.a.iterator();
 
 				while (var11.hasNext()) {
@@ -366,7 +370,7 @@ public class Chunk {
 	}
 
 	public BlockState getBlockState(Position var1) {
-		if (this.i.G() == LevelType.DEBUG) {
+		if (this.worldServer.G() == LevelType.DEBUG) {
 			BlockState var7 = null;
 			if (var1.getY() == 60) {
 				var7 = Blocks.BARRIER.getBlockState();
@@ -435,16 +439,16 @@ public class Chunk {
 					return null;
 				}
 
-				var11 = this.chunkSections[var4 >> 4] = new ChunkSection(var4 >> 4 << 4, !this.i.worldProvider.noSkyLight());
+				var11 = this.chunkSections[var4 >> 4] = new ChunkSection(var4 >> 4 << 4, !this.worldServer.worldProvider.noSkyLight());
 				var12 = var4 >= var7;
 			}
 
 			var11.setBlockState(var3, var4 & 15, var5, var2);
 			if (var10 != var9) {
-				if (!this.i.isStatic) {
-					var10.b(this.i, var1, var8);
+				if (!this.worldServer.isStatic) {
+					var10.b(this.worldServer, var1, var8);
 				} else if (var10 instanceof avs) {
-					this.i.t(var1);
+					this.worldServer.t(var1);
 				}
 			}
 
@@ -477,15 +481,15 @@ public class Chunk {
 					}
 				}
 
-				if (!this.i.isStatic && var10 != var9) {
-					var9.c(this.i, var1, var2);
+				if (!this.worldServer.isStatic && var10 != var9) {
+					var9.c(this.worldServer, var1, var2);
 				}
 
 				if (var9 instanceof avs) {
 					var15 = this.a(var1, bfl.c);
 					if (var15 == null) {
-						var15 = ((avs) var9).a(this.i, var9.c(var2));
-						this.i.a(var1, var15);
+						var15 = ((avs) var9).a(this.worldServer, var9.c(var2));
+						this.worldServer.a(var1, var15);
 					}
 
 					if (var15 != null) {
@@ -504,7 +508,7 @@ public class Chunk {
 		int var4 = var2.getY();
 		int var5 = var2.getZ() & 15;
 		ChunkSection var6 = this.chunkSections[var4 >> 4];
-		return var6 == null ? (this.d(var2) ? var1.c : 0) : (var1 == arf.a ? (this.i.worldProvider.noSkyLight() ? 0 : var6.d(var3, var4 & 15, var5)) : (var1 == arf.b ? var6.e(var3, var4 & 15, var5) : var1.c));
+		return var6 == null ? (this.d(var2) ? var1.c : 0) : (var1 == arf.a ? (this.worldServer.worldProvider.noSkyLight() ? 0 : var6.d(var3, var4 & 15, var5)) : (var1 == arf.b ? var6.e(var3, var4 & 15, var5) : var1.c));
 	}
 
 	public void a(arf var1, Position var2, int var3) {
@@ -513,13 +517,13 @@ public class Chunk {
 		int var6 = var2.getZ() & 15;
 		ChunkSection var7 = this.chunkSections[var5 >> 4];
 		if (var7 == null) {
-			var7 = this.chunkSections[var5 >> 4] = new ChunkSection(var5 >> 4 << 4, !this.i.worldProvider.noSkyLight());
+			var7 = this.chunkSections[var5 >> 4] = new ChunkSection(var5 >> 4 << 4, !this.worldServer.worldProvider.noSkyLight());
 			this.b();
 		}
 
 		this.q = true;
 		if (var1 == arf.a) {
-			if (!this.i.worldProvider.noSkyLight()) {
+			if (!this.worldServer.worldProvider.noSkyLight()) {
 				var7.a(var4, var5 & 15, var6, var3);
 			}
 		} else if (var1 == arf.b) {
@@ -534,9 +538,9 @@ public class Chunk {
 		int var5 = var1.getZ() & 15;
 		ChunkSection var6 = this.chunkSections[var4 >> 4];
 		if (var6 == null) {
-			return !this.i.worldProvider.noSkyLight() && var2 < arf.a.c ? arf.a.c - var2 : 0;
+			return !this.worldServer.worldProvider.noSkyLight() && var2 < arf.a.c ? arf.a.c - var2 : 0;
 		} else {
-			int var7 = this.i.worldProvider.noSkyLight() ? 0 : var6.d(var3, var4 & 15, var5);
+			int var7 = this.worldServer.worldProvider.noSkyLight() ? 0 : var6.d(var3, var4 & 15, var5);
 			var7 -= var2;
 			int var8 = var6.e(var3, var4 & 15, var5);
 			if (var8 > var7) {
@@ -597,7 +601,7 @@ public class Chunk {
 
 	private TileEntity i(Position var1) {
 		Block var2 = this.a(var1);
-		return !var2.x() ? null : ((avs) var2).a(this.i, this.c(var1));
+		return !var2.x() ? null : ((avs) var2).a(this.worldServer, this.c(var1));
 	}
 
 	public TileEntity a(Position var1, bfl var2) {
@@ -605,7 +609,7 @@ public class Chunk {
 		if (var3 == null) {
 			if (var2 == bfl.a) {
 				var3 = this.i(var1);
-				this.i.a(var1, var3);
+				this.worldServer.a(var1, var3);
 			} else if (var2 == bfl.b) {
 				this.w.add(var1);
 			}
@@ -620,13 +624,13 @@ public class Chunk {
 	public void a(TileEntity var1) {
 		this.a(var1.v(), var1);
 		if (this.h) {
-			this.i.a(var1);
+			this.worldServer.a(var1);
 		}
 
 	}
 
 	public void a(Position var1, TileEntity var2) {
-		var2.a(this.i);
+		var2.a(this.worldServer);
 		var2.a(var1);
 		if (this.a(var1) instanceof avs) {
 			if (this.tileEntities.containsKey(var1)) {
@@ -650,7 +654,7 @@ public class Chunk {
 
 	public void addEntities() {
 		this.h = true;
-		this.i.a(this.tileEntities.values());
+		this.worldServer.a(this.tileEntities.values());
 
 		for (int var1 = 0; var1 < this.entitySlices.length; ++var1) {
 			Iterator var2 = this.entitySlices[var1].iterator();
@@ -660,7 +664,7 @@ public class Chunk {
 				var3.ah();
 			}
 
-			this.i.b((Collection) this.entitySlices[var1]);
+			this.worldServer.b((Collection) this.entitySlices[var1]);
 		}
 
 	}
@@ -671,11 +675,11 @@ public class Chunk {
 
 		while (var1.hasNext()) {
 			TileEntity var2 = (TileEntity) var1.next();
-			this.i.b(var2);
+			this.worldServer.b(var2);
 		}
 
 		for (int var3 = 0; var3 < this.entitySlices.length; ++var3) {
-			this.i.c((Collection) this.entitySlices[var3]);
+			this.worldServer.c((Collection) this.entitySlices[var3]);
 		}
 
 	}
@@ -733,10 +737,10 @@ public class Chunk {
 
 	public boolean a(boolean var1) {
 		if (var1) {
-			if (this.r && this.i.getTime() != this.s || this.q) {
+			if (this.r && this.worldServer.getTime() != this.s || this.q) {
 				return true;
 			}
-		} else if (this.r && this.i.getTime() >= this.s + 600L) {
+		} else if (this.r && this.worldServer.getTime() >= this.s + 600L) {
 			return true;
 		}
 
@@ -744,7 +748,7 @@ public class Chunk {
 	}
 
 	public Random a(long var1) {
-		return new Random(this.i.J() + (long) (this.x * this.x * 4987142) + (long) (this.x * 5947611) + (long) (this.z * this.z) * 4392871L + (long) (this.z * 389711) ^ var1);
+		return new Random(this.worldServer.J() + (long) (this.x * this.x * 4987142) + (long) (this.x * 5947611) + (long) (this.z * this.z) * 4392871L + (long) (this.z * 389711) ^ var1);
 	}
 
 	public boolean f() {
@@ -825,8 +829,8 @@ public class Chunk {
 	}
 
 	public void b(boolean var1) {
-		if (this.k && !this.i.worldProvider.noSkyLight() && !var1) {
-			this.h(this.i.isStatic);
+		if (this.k && !this.worldServer.worldProvider.noSkyLight() && !var1) {
+			this.h(this.worldServer.isStatic);
 		}
 
 		this.p = true;
@@ -838,8 +842,8 @@ public class Chunk {
 			Position var2 = (Position) this.w.poll();
 			if (this.a(var2, bfl.c) == null && this.a(var2).x()) {
 				TileEntity var3 = this.i(var2);
-				this.i.a(var2, var3);
-				this.i.b(var2, var2);
+				this.worldServer.a(var2, var3);
+				this.worldServer.b(var2, var2);
 			}
 		}
 
@@ -939,12 +943,12 @@ public class Chunk {
 					for (int var11 = 0; var11 < var10; ++var11) {
 						BlockFace var12 = var9[var11];
 						Position var13 = var7.a(var12);
-						if (this.i.getBlockState(var13).getBlock().p() > 0) {
-							this.i.x(var13);
+						if (this.worldServer.getBlockState(var13).getBlock().p() > 0) {
+							this.worldServer.x(var13);
 						}
 					}
 
-					this.i.x(var7);
+					this.worldServer.x(var7);
 				}
 			}
 		}
@@ -955,8 +959,8 @@ public class Chunk {
 		this.terrainPopulated = true;
 		this.lightPopulated = true;
 		Position var1 = new Position(this.x << 4, 0, this.z << 4);
-		if (!this.i.worldProvider.noSkyLight()) {
-			if (this.i.a(var1.a(-1, 0, -1), var1.a(16, 63, 16))) {
+		if (!this.worldServer.worldProvider.noSkyLight()) {
+			if (this.worldServer.a(var1.a(-1, 0, -1), var1.a(16, 63, 16))) {
 				label42: for (int var2 = 0; var2 < 16; ++var2) {
 					for (int var3 = 0; var3 < 16; ++var3) {
 						if (!this.e(var2, var3)) {
@@ -972,7 +976,7 @@ public class Chunk {
 					while (var5.hasNext()) {
 						BlockFace var6 = (BlockFace) var5.next();
 						int var4 = var6.c() == em.a ? 16 : 1;
-						this.i.getChunk(var1.a(var6, var4)).a(var6.getOpposite());
+						this.worldServer.getChunk(var1.a(var6, var4)).a(var6.getOpposite());
 					}
 
 					this.y();
@@ -1032,7 +1036,7 @@ public class Chunk {
 
 			if (!var5 && var9 > 0) {
 				var5 = true;
-			} else if (var5 && var9 == 0 && !this.i.x(var8)) {
+			} else if (var5 && var9 == 0 && !this.worldServer.x(var8)) {
 				return false;
 			}
 		}
@@ -1040,7 +1044,7 @@ public class Chunk {
 		for (; var7 > 0; --var7) {
 			var8 = var3.a(var1, var7, var2);
 			if (this.a(var8).p() > 0) {
-				this.i.x(var8);
+				this.worldServer.x(var8);
 			}
 		}
 
@@ -1052,7 +1056,7 @@ public class Chunk {
 	}
 
 	public World getWorld() {
-		return this.i;
+		return this.worldServer;
 	}
 
 	public int[] getHeightMap() {
@@ -1116,6 +1120,14 @@ public class Chunk {
 
 	public void setInhabitedTime(long var1) {
 		this.u = var1;
+	}
+
+	private org.bukkit.Chunk bukkitChunk;
+	public org.bukkit.Chunk getBukkitChunk() {
+		if (bukkitChunk == null) {
+			bukkitChunk = new PipeChunk(worldServer, x, z);
+		}
+		return bukkitChunk;
 	}
 
 }

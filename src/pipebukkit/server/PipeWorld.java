@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import net.minecraft.ExceptionWorldConflict;
+import net.minecraft.Position;
+import net.minecraft.WorldNBTStorage;
 import net.minecraft.WorldServer;
 import net.minecraft.server.MinecraftServer;
 
@@ -39,6 +42,7 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
+@SuppressWarnings("deprecation")
 public class PipeWorld implements World {
 	
 	private final WorldServer nmsWorld;
@@ -172,51 +176,43 @@ public class PipeWorld implements World {
 	}
 
 	@Override
-	public Block getBlockAt(Location arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public int getBlockTypeIdAt(Location loc) {
+		return getBlockTypeIdAt(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
 	}
 
 	@Override
-	public Block getBlockAt(int arg0, int arg1, int arg2) {
-		// TODO Auto-generated method stub
-		return null;
+	public int getBlockTypeIdAt(int x, int y, int z) {
+		return getBlockAt(x, y, z).getTypeId();
 	}
 
 	@Override
-	public int getBlockTypeIdAt(Location arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Block getBlockAt(Location loc) {
+		return getBlockAt(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
 	}
 
 	@Override
-	public int getBlockTypeIdAt(int arg0, int arg1, int arg2) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Block getBlockAt(int x, int y, int z) {
+		return getChunkAt(x >> 4, y >> 4).getBlock(x & 0xF, y & 0xFF, z & 0xF);
 	}
 
 	@Override
-	public Chunk getChunkAt(Location arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public Chunk getChunkAt(Location loc) {
+		return getChunkAt(loc.getBlock());
 	}
 
 	@Override
-	public Chunk getChunkAt(Block arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public Chunk getChunkAt(Block block) {
+		return getChunkAt(block.getX() >> 4, block.getZ() >> 4);
 	}
 
 	@Override
-	public Chunk getChunkAt(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	public Chunk getChunkAt(int chunkX, int chunkZ) {
+		return nmsWorld.chunkProviderServer.getChunkAt(chunkX, chunkZ).getBukkitChunk();
 	}
 
 	@Override
 	public Difficulty getDifficulty() {
-		// TODO Auto-generated method stub
-		return null;
+		return Difficulty.getByValue(nmsWorld.getWorldData().getDifficulty().getId());
 	}
 
 	@Override
@@ -234,22 +230,30 @@ public class PipeWorld implements World {
 		return entites;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends Entity> Collection<T> getEntitiesByClass(Class<T>... arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public <T extends Entity> Collection<T> getEntitiesByClass(Class<T>... classes) {
+		return (Collection<T>) getEntitiesByClasses(classes);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends Entity> Collection<T> getEntitiesByClass(Class<T> clazz) {
+		return (Collection<T>) getEntitiesByClasses(clazz);
 	}
 
 	@Override
-	public <T extends Entity> Collection<T> getEntitiesByClass(Class<T> arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Collection<Entity> getEntitiesByClasses(Class<?>... arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<Entity> getEntitiesByClasses(Class<?>... classes) {
+		ArrayList<Entity> entites = new ArrayList<Entity>();
+		for (net.minecraft.Entity nmsEntity : nmsWorld.entities.values()) {
+			Entity bukkitEntity = nmsEntity.getBukkitEntity(Entity.class);
+			for (Class<?> clazz : classes) {
+				if (clazz.isInstance(bukkitEntity)) {
+					entites.add(bukkitEntity);
+				}
+			}
+		}
+		return entites;
 	}
 
 	@Override
@@ -260,8 +264,7 @@ public class PipeWorld implements World {
 
 	@Override
 	public long getFullTime() {
-		// TODO Auto-generated method stub
-		return 0;
+		return nmsWorld.getWorldData().getTime();
 	}
 
 	@Override
@@ -320,8 +323,7 @@ public class PipeWorld implements World {
 
 	@Override
 	public List<LivingEntity> getLivingEntities() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<LivingEntity>(getEntitiesByClass(LivingEntity.class));
 	}
 
 	@Override
@@ -344,8 +346,7 @@ public class PipeWorld implements World {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return nmsWorld.getWorldData().getLevelName();
 	}
 
 	@Override
@@ -356,8 +357,7 @@ public class PipeWorld implements World {
 
 	@Override
 	public List<Player> getPlayers() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList<Player>(getEntitiesByClass(Player.class));
 	}
 
 	@Override
@@ -374,24 +374,17 @@ public class PipeWorld implements World {
 
 	@Override
 	public long getSeed() {
-		// TODO Auto-generated method stub
-		return 0;
+		return nmsWorld.getWorldData().getSeed();
 	}
 
 	@Override
 	public Location getSpawnLocation() {
-		// TODO Auto-generated method stub
-		return null;
+		Position position = nmsWorld.getSpawnPosition(); 
+		return new Location(this, position.getX(), position.getY(), position.getZ());
 	}
 
 	@Override
 	public double getTemperature(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getThunderDuration() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -410,8 +403,7 @@ public class PipeWorld implements World {
 
 	@Override
 	public long getTime() {
-		// TODO Auto-generated method stub
-		return 0;
+		return nmsWorld.getWorldData().getDayTime();
 	}
 
 	@Override
@@ -434,8 +426,7 @@ public class PipeWorld implements World {
 
 	@Override
 	public File getWorldFolder() {
-		// TODO Auto-generated method stub
-		return null;
+		return ((WorldNBTStorage) nmsWorld.getDataManager()).getDirectory();
 	}
 
 	@Override
@@ -446,14 +437,37 @@ public class PipeWorld implements World {
 
 	@Override
 	public boolean hasStorm() {
-		// TODO Auto-generated method stub
-		return false;
+		return nmsWorld.getWorldData().isRaining();
+	}
+
+	@Override
+	public void setStorm(boolean storm) {
+		nmsWorld.getWorldData().setRaining(storm);
+	}
+
+	@Override
+	public boolean isThundering() {
+		return nmsWorld.getWorldData().isThundering();
+	}
+
+	@Override
+	public void setThunderDuration(int thunderTime) {
+		nmsWorld.getWorldData().setThunderTime(thunderTime);
+	}
+
+	@Override
+	public int getThunderDuration() {
+		return nmsWorld.getWorldData().getThunderTime();
+	}
+
+	@Override
+	public void setThundering(boolean thunder) {
+		nmsWorld.getWorldData().setThundering(thunder);
 	}
 
 	@Override
 	public boolean isAutoSave() {
-		// TODO Auto-generated method stub
-		return false;
+		return !nmsWorld.savingDisabled;
 	}
 
 	@Override
@@ -463,15 +477,13 @@ public class PipeWorld implements World {
 	}
 
 	@Override
-	public boolean isChunkLoaded(Chunk arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isChunkLoaded(Chunk chunk) {
+		return isChunkLoaded(chunk.getX(), chunk.getZ());
 	}
 
 	@Override
-	public boolean isChunkLoaded(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isChunkLoaded(int chunkX, int chunkZ) {
+		return nmsWorld.chunkProviderServer.isChunkLoaded(chunkX, chunkZ);
 	}
 
 	@Override
@@ -481,27 +493,31 @@ public class PipeWorld implements World {
 	}
 
 	@Override
-	public boolean isThundering() {
-		// TODO Auto-generated method stub
-		return false;
+	public void loadChunk(Chunk chunk) {
+		loadChunk(chunk.getX(), chunk.getZ());;
 	}
 
 	@Override
-	public void loadChunk(Chunk arg0) {
-		// TODO Auto-generated method stub
-		
+	public void loadChunk(int chunkX, int chunkZ) {
+		loadChunk(chunkX, chunkZ, true);
 	}
 
 	@Override
-	public void loadChunk(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		
-	}
+	public boolean loadChunk(int chunkX, int chunkZ, boolean generate) {
+		if (generate) {
+			getChunkAt(chunkX, chunkZ);
+			return true;
+		}
 
-	@Override
-	public boolean loadChunk(int arg0, int arg1, boolean arg2) {
-		// TODO Auto-generated method stub
-		return false;
+		nmsWorld.chunkProviderServer.cancelChunkUnload(chunkX, chunkZ);
+
+		net.minecraft.Chunk chunk = nmsWorld.chunkProviderServer.getChunkIfLoaded(chunkX, chunkZ);
+
+		if (chunk == null) {
+			chunk = nmsWorld.chunkProviderServer.loadChunk(chunkX, chunkZ);
+			nmsWorld.chunkProviderServer.chunkLoadPostProcess(chunk);
+		}
+		return chunk != null;
 	}
 
 	@Override
@@ -548,8 +564,14 @@ public class PipeWorld implements World {
 
 	@Override
 	public void save() {
-		// TODO Auto-generated method stub
-		
+		try {
+			boolean oldSave = nmsWorld.savingDisabled;
+			nmsWorld.savingDisabled = false;
+			nmsWorld.save(true, null);
+			nmsWorld.savingDisabled = oldSave;
+		} catch (ExceptionWorldConflict ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
@@ -565,9 +587,8 @@ public class PipeWorld implements World {
 	}
 
 	@Override
-	public void setAutoSave(boolean arg0) {
-		// TODO Auto-generated method stub
-		
+	public void setAutoSave(boolean autosave) {
+		nmsWorld.savingDisabled = !autosave;
 	}
 
 	@Override
@@ -577,15 +598,13 @@ public class PipeWorld implements World {
 	}
 
 	@Override
-	public void setDifficulty(Difficulty arg0) {
-		// TODO Auto-generated method stub
-		
+	public void setDifficulty(Difficulty difficulty) {
+		nmsWorld.getWorldData().setDifficulty(net.minecraft.Difficulty.clampAndGetById(difficulty.getValue()));
 	}
 
 	@Override
-	public void setFullTime(long arg0) {
-		// TODO Auto-generated method stub
-		
+	public void setFullTime(long time) {
+		nmsWorld.getWorldData().setTime(time);
 	}
 
 	@Override
@@ -595,7 +614,7 @@ public class PipeWorld implements World {
 	}
 
 	@Override
-	public void setKeepSpawnInMemory(boolean arg0) {
+	public void setKeepSpawnInMemory(boolean keep) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -619,27 +638,9 @@ public class PipeWorld implements World {
 	}
 
 	@Override
-	public boolean setSpawnLocation(int arg0, int arg1, int arg2) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void setStorm(boolean arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setThunderDuration(int arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setThundering(boolean arg0) {
-		// TODO Auto-generated method stub
-		
+	public boolean setSpawnLocation(int x, int y, int z) {
+		nmsWorld.setSpawn(new Position(x, y, z));
+		return true;
 	}
 
 	@Override
@@ -655,9 +656,8 @@ public class PipeWorld implements World {
 	}
 
 	@Override
-	public void setTime(long arg0) {
-		// TODO Auto-generated method stub
-		
+	public void setTime(long dayTime) {
+		nmsWorld.getWorldData().setDayTime(dayTime);
 	}
 
 	@Override

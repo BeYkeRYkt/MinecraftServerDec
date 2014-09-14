@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class EmptyChunk extends Chunk {
 
-	public EmptyChunk(World var1, int var2, int var3) {
+	public EmptyChunk(WorldServer var1, int var2, int var3) {
 		super(var1, var2, var3);
 	}
 

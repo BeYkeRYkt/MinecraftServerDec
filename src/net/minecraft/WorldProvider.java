@@ -8,7 +8,7 @@ public abstract class WorldProvider {
 		return (WorldProvider) (id == -1 ? new WorldProviderHell() : (id == 0 ? new WorldProviderNormal() : (id == 1 ? new WorldProviderTheEnd() : null)));
 	}
 
-	protected World world;
+	protected WorldServer world;
 	private LevelType levelType;
 	private String generatorOptions;
 	protected WorldChunkManager chunkManager;
@@ -17,7 +17,7 @@ public abstract class WorldProvider {
 	protected final float[] f = new float[16];
 	protected int dimensionId;
 
-	public final void setWorld(World world) {
+	public final void setWorld(WorldServer world) {
 		this.world = world;
 		this.levelType = world.getWorldData().getLevelType();
 		this.generatorOptions = world.getWorldData().getGeneratorOptions();

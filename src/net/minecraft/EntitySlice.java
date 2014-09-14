@@ -25,7 +25,7 @@ public class EntitySlice<T> extends AbstractSet<T> {
 	}
 
 	public void registerClass(Class<T> clazz) {
-		Iterator<T> it = this.values.get(this.serachSuperClass(clazz, false)).iterator();
+		Iterator<T> it = this.values.get(this.searchSuperClass(clazz, false)).iterator();
 
 		while (it.hasNext()) {
 			T value = it.next();
@@ -38,7 +38,7 @@ public class EntitySlice<T> extends AbstractSet<T> {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected Class<T> serachSuperClass(Class<T> var1, boolean registerIfNotFound) {
+	protected Class<T> searchSuperClass(Class<T> var1, boolean registerIfNotFound) {
 		Iterator<Class<?>> classes = ClassUtils.hierarchy(var1, ClassUtils.Interfaces.INCLUDE).iterator();
 
 		Class<?> clazz;
@@ -80,7 +80,7 @@ public class EntitySlice<T> extends AbstractSet<T> {
 		return new Iterable<T>() {
 			@Override
 			public Iterator<T> iterator() {
-				Iterator<T> iterators = values.get(serachSuperClass(clazz, true)).iterator();
+				Iterator<T> iterators = values.get(searchSuperClass(clazz, true)).iterator();
 				return Iterators.filter(iterators, clazz);
 			}
 		};
@@ -97,6 +97,10 @@ public class EntitySlice<T> extends AbstractSet<T> {
 
 	public int size() {
 		return this.values.get(this.mainClazz).size();
+	}
+
+	public Set<Class<T>> getRegisteredClasses() {
+		return registeredClasses;
 	}
 
 }

@@ -19,7 +19,7 @@ class qr {
 		this.b = Lists.newArrayList();
 		this.d = new short[64];
 		this.c = new ChunkCoordIntPair(var2, var3);
-		var1.a().b.getChunkAt(var2, var3);
+		var1.a().chunkProviderServer.getChunkAt(var2, var3);
 	}
 
 	public void a(EntityPlayer var1) {
@@ -53,7 +53,7 @@ class qr {
 					qq.d(this.a).remove(this);
 				}
 
-				this.a.a().b.queueUnload(this.c.chunkX, this.c.chunkZ);
+				this.a.a().chunkProviderServer.queueUnload(this.c.chunkX, this.c.chunkZ);
 			}
 
 		}

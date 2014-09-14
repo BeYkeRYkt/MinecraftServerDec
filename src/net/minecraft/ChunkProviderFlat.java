@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class ChunkProviderFlat implements IChunkProvider {
 
-	private World a;
+	private WorldServer a;
 	private Random b;
 	private final BlockState[] c = new BlockState[256];
 	private final biv d;
@@ -18,7 +18,7 @@ public class ChunkProviderFlat implements IChunkProvider {
 	private WorldGenLakes h;
 	private WorldGenLakes i;
 
-	public ChunkProviderFlat(World var1, long var2, boolean var4, String var5) {
+	public ChunkProviderFlat(WorldServer var1, long var2, boolean var4, String var5) {
 		this.a = var1;
 		this.b = new Random(var2);
 		this.d = biv.a(var5);

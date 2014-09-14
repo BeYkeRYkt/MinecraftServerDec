@@ -166,7 +166,7 @@ public abstract class PlayerList {
 		}
 
 		var3.t().a(var1);
-		var3.b.getChunkAt((int) var1.locationX >> 4, (int) var1.locationZ >> 4);
+		var3.chunkProviderServer.getChunkAt((int) var1.locationX >> 4, (int) var1.locationZ >> 4);
 	}
 
 	public int d() {
@@ -320,7 +320,7 @@ public abstract class PlayerList {
 			}
 		}
 
-		var8.b.getChunkAt((int) var7.locationX >> 4, (int) var7.locationZ >> 4);
+		var8.chunkProviderServer.getChunkAt((int) var7.locationX >> 4, (int) var7.locationZ >> 4);
 
 		while (!var8.getCubes((Entity) var7, var7.getBoundingBox()).isEmpty() && var7.locationY < 256.0D) {
 			var7.b(var7.locationX, var7.locationY + 1.0D, var7.locationZ);

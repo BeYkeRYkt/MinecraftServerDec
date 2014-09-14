@@ -13,7 +13,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 	public NoiseGeneratorOctaves a;
 	public NoiseGeneratorOctaves b;
 	public NoiseGeneratorOctaves c;
-	private World world;
+	private WorldServer world;
 	private final boolean mapFeaturesEnabled;
 	private LevelType levelType;
 	private final double[] p;
@@ -34,7 +34,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 	double[] f;
 	double[] g;
 
-	public ChunkProviderGenerate(World world, long seed, boolean mapFeaturesEnabled, String var5) {
+	public ChunkProviderGenerate(WorldServer world, long seed, boolean mapFeaturesEnabled, String var5) {
 		this.seablock = Blocks.WATER;
 		this.t = new double[256];
 		this.world = world;
