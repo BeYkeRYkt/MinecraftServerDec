@@ -337,13 +337,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			this.serverPing.b().a(var3);
 		}
 
-		if (this.currentTick % 900 == 0) {
-			this.profiler.a("save");
-			this.playerList.savePlayers();
-			this.saveChunks(true);
-			this.profiler.b();
-		}
-
 		this.profiler.a("tallying");
 		this.g[this.currentTick % 100] = System.nanoTime() - var1;
 		this.profiler.b();
