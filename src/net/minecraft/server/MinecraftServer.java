@@ -42,10 +42,12 @@ import javax.imageio.ImageIO;
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 
 import pipebukkit.server.PipeServer;
 import pipebukkit.server.command.PipeServerCommandSender;
+import pipebukkit.server.scheduler.PipeScheduler;
 
 public abstract class MinecraftServer implements CommandSenderInterface, Runnable, ITaskScheduler, wd {
 
@@ -67,7 +69,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private PlayerList playerList;
 	private boolean running = true;
 	private boolean stopped;
-	private int ticks;
+	private int currentTick;
 	protected final Proxy proxy;
 	private boolean onlineMode;
 	private boolean spawnAnimals;
@@ -114,7 +116,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.serverConnection = new ServerConnection(this);
 		this.userCache = new UserCache(this, usercache);
 		this.commandHandler = this.h();
-		this.convertable = new bqj(universe);
+		this.convertable = new WorldLoaderServer(universe);
 		this.authService = new YggdrasilAuthenticationService(proxy, UUID.randomUUID().toString());
 		this.minecraftSessionService = this.authService.createMinecraftSessionService();
 		this.gameProflieRepository = this.authService.createProfileRepository();
@@ -228,6 +230,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 					var1 += var5;
 					this.lastTickTime = var48;
+
 					if (getPrimaryWorld().f()) {
 						this.doTick();
 						var1 = 0L;
@@ -275,7 +278,10 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 	public void doTick() {
 		long var1 = System.nanoTime();
-		++this.ticks;
+		++this.currentTick;
+
+		((PipeScheduler) Bukkit.getScheduler()).doTick(currentTick);
+
 		if (this.T) {
 			this.T = false;
 			this.profiler.a = true;
@@ -299,11 +305,12 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 		int i;
 		for (i = 0; i < this.worlds.size(); ++i) {
+			long var2 = System.nanoTime();
 			if (i == 0 || this.isNetherAllowed()) {
 				WorldServer world = worlds.get(i);
 				this.profiler.a(world.getWorldData().getLevelName());
 
-				if (this.ticks % 20 == 0) {
+				if (this.currentTick % 20 == 0) {
 					this.profiler.a("timeSync");
 					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.getTime(), world.L(), world.getGameRules().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
 					this.profiler.b();
@@ -361,7 +368,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			this.serverPing.b().a(var3);
 		}
 
-		if (this.ticks % 900 == 0) {
+		if (this.currentTick % 900 == 0) {
 			this.profiler.a("save");
 			this.playerList.savePlayers();
 			this.saveChunks(true);
@@ -369,14 +376,14 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		}
 
 		this.profiler.a("tallying");
-		this.g[this.ticks % 100] = System.nanoTime() - var1;
+		this.g[this.currentTick % 100] = System.nanoTime() - var1;
 		this.profiler.b();
 		this.profiler.a("snooper");
-		if (!this.snooper.d() && this.ticks > 100) {
+		if (!this.snooper.d() && this.currentTick > 100) {
 			this.snooper.a();
 		}
 
-		if (this.ticks % 6000 == 0) {
+		if (this.currentTick % 6000 == 0) {
 			this.snooper.b();
 		}
 
@@ -449,7 +456,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				worlds.add((WorldServer) (new SecondaryWorldServer(this, dataManager, worldId, this.worlds.get(0), this.profiler)).b());
 			}
 
-			this.worlds.get(i).a((ara) (new qp(this, this.worlds.get(i))));
+			this.worlds.get(i).addIWorldAccess((IWorldAccess) (new WorldManager(this, this.worlds.get(i))));
 			if (!this.isSinglePlayer()) {
 				this.worlds.get(i).getWorldData().setGameMode(this.getServerGameMode());
 			}
@@ -1004,7 +1011,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	public abstract String a(EnumGameMode var1, boolean var2);
 
 	public int getTicks() {
-		return this.ticks;
+		return this.currentTick;
 	}
 
 	public void as() {

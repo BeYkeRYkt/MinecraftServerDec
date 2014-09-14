@@ -76,6 +76,7 @@ import pipebukkit.server.banlists.PipeProfileBanList;
 import pipebukkit.server.entity.PipePlayer;
 import pipebukkit.server.metadata.EntityMetadataStorage;
 import pipebukkit.server.metadata.PlayerMetadataStorage;
+import pipebukkit.server.scheduler.PipeScheduler;
 import pipebukkit.util.PipeCachedServerIcon;
 
 import com.avaje.ebean.config.DataSourceConfig;
@@ -103,6 +104,7 @@ public class PipeServer implements Server {
 	private StandardMessenger messenger = new StandardMessenger();
 	private PluginManager pluginManager = new SimplePluginManager(this, commandMap);
 	private ServicesManager servicesManager = new SimpleServicesManager();
+	private PipeScheduler scheduler = new PipeScheduler();
 
 	private EntityMetadataStorage entityMetadata = new EntityMetadataStorage();
 	private PlayerMetadataStorage playerMetadata = new PlayerMetadataStorage();
@@ -541,8 +543,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public BukkitScheduler getScheduler() {
-		// TODO Auto-generated method stub
-		return null;
+		return scheduler;
 	}
 
 	@Override

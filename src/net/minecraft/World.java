@@ -40,7 +40,7 @@ public abstract class World implements ard {
 	private int I;
 	public final Random s = new Random();
 	public final WorldProvider worldProvider;
-	protected List<ara> u = Lists.newArrayList();
+	protected List<IWorldAccess> u = Lists.newArrayList();
 	protected IChunkProvider chunkProvider;
 	protected final IDataManager dataManager;
 	protected WorldData worldData;
@@ -245,7 +245,7 @@ public abstract class World implements ard {
 
 	public void notify(Position var1) {
 		for (int var2 = 0; var2 < this.u.size(); ++var2) {
-			((ara) this.u.get(var2)).a(var1);
+			((IWorldAccess) this.u.get(var2)).a(var1);
 		}
 
 	}
@@ -280,7 +280,7 @@ public abstract class World implements ard {
 
 	public void b(int var1, int var2, int var3, int var4, int var5, int var6) {
 		for (int var7 = 0; var7 < this.u.size(); ++var7) {
-			((ara) this.u.get(var7)).a(var1, var2, var3, var4, var5, var6);
+			((IWorldAccess) this.u.get(var7)).a(var1, var2, var3, var4, var5, var6);
 		}
 
 	}
@@ -476,7 +476,7 @@ public abstract class World implements ard {
 
 	public void n(Position var1) {
 		for (int var2 = 0; var2 < this.u.size(); ++var2) {
-			((ara) this.u.get(var2)).b(var1);
+			((IWorldAccess) this.u.get(var2)).b(var1);
 		}
 
 	}
@@ -639,21 +639,21 @@ public abstract class World implements ard {
 
 	public void a(Entity var1, String var2, float var3, float var4) {
 		for (int var5 = 0; var5 < this.u.size(); ++var5) {
-			((ara) this.u.get(var5)).a(var2, var1.locationX, var1.locationY, var1.locationZ, var3, var4);
+			((IWorldAccess) this.u.get(var5)).a(var2, var1.locationX, var1.locationY, var1.locationZ, var3, var4);
 		}
 
 	}
 
 	public void a(EntityHuman var1, String var2, float var3, float var4) {
 		for (int var5 = 0; var5 < this.u.size(); ++var5) {
-			((ara) this.u.get(var5)).a(var1, var2, var1.locationX, var1.locationY, var1.locationZ, var3, var4);
+			((IWorldAccess) this.u.get(var5)).a(var1, var2, var1.locationX, var1.locationY, var1.locationZ, var3, var4);
 		}
 
 	}
 
 	public void makeSound(double var1, double var3, double var5, String var7, float var8, float var9) {
 		for (int var10 = 0; var10 < this.u.size(); ++var10) {
-			((ara) this.u.get(var10)).a(var7, var1, var3, var5, var8, var9);
+			((IWorldAccess) this.u.get(var10)).a(var7, var1, var3, var5, var8, var9);
 		}
 
 	}
@@ -663,7 +663,7 @@ public abstract class World implements ard {
 
 	public void a(Position var1, String var2) {
 		for (int var3 = 0; var3 < this.u.size(); ++var3) {
-			((ara) this.u.get(var3)).a(var2, var1);
+			((IWorldAccess) this.u.get(var3)).a(var2, var1);
 		}
 
 	}
@@ -674,7 +674,7 @@ public abstract class World implements ard {
 
 	private void a(int var1, boolean var2, double var3, double var5, double var7, double var9, double var11, double var13, int... var15) {
 		for (int var16 = 0; var16 < this.u.size(); ++var16) {
-			((ara) this.u.get(var16)).a(var1, var2, var3, var5, var7, var9, var11, var13, var15);
+			((IWorldAccess) this.u.get(var16)).a(var1, var2, var3, var5, var7, var9, var11, var13, var15);
 		}
 
 	}
@@ -710,14 +710,14 @@ public abstract class World implements ard {
 
 	protected void a(Entity entity) {
 		for (int var2 = 0; var2 < this.u.size(); ++var2) {
-			((ara) this.u.get(var2)).a(entity);
+			((IWorldAccess) this.u.get(var2)).a(entity);
 		}
 		entity.valid = true;
 	}
 
 	protected void b(Entity entity) {
 		for (int var2 = 0; var2 < this.u.size(); ++var2) {
-			((ara) this.u.get(var2)).b(entity);
+			((IWorldAccess) this.u.get(var2)).b(entity);
 		}
 		entity.valid = false;
 	}
@@ -757,7 +757,7 @@ public abstract class World implements ard {
 		this.b(var1);
 	}
 
-	public void a(ara var1) {
+	public void addIWorldAccess(IWorldAccess var1) {
 		this.u.add(var1);
 	}
 
@@ -2287,7 +2287,7 @@ public abstract class World implements ard {
 
 	public void a(int var1, Position var2, int var3) {
 		for (int var4 = 0; var4 < this.u.size(); ++var4) {
-			((ara) this.u.get(var4)).a(var1, var2, var3);
+			((IWorldAccess) this.u.get(var4)).a(var1, var2, var3);
 		}
 
 	}
@@ -2299,7 +2299,7 @@ public abstract class World implements ard {
 	public void a(EntityHuman var1, int var2, Position var3, int var4) {
 		try {
 			for (int var5 = 0; var5 < this.u.size(); ++var5) {
-				((ara) this.u.get(var5)).a(var1, var2, var3, var4);
+				((IWorldAccess) this.u.get(var5)).a(var1, var2, var3, var4);
 			}
 
 		} catch (Throwable var8) {
@@ -2348,7 +2348,7 @@ public abstract class World implements ard {
 
 	public void c(int var1, Position var2, int var3) {
 		for (int var4 = 0; var4 < this.u.size(); ++var4) {
-			ara var5 = (ara) this.u.get(var4);
+			IWorldAccess var5 = (IWorldAccess) this.u.get(var4);
 			var5.b(var1, var2, var3);
 		}
 
