@@ -72,7 +72,7 @@ public class TileEntitySign extends TileEntity {
 			if (var4 != null && var4.h() != null) {
 				hm var5 = var4.h();
 				if (var5.a() == hn.c) {
-					MinecraftServer.getInstance().getCommandHandler().a(var2, var5.b());
+					MinecraftServer.getInstance().getCommandHandler().handleCommand(var2, var5.b());
 				}
 			}
 		}

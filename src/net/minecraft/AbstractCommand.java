@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 import net.minecraft.server.MinecraftServer;
 
-public abstract class AbstractCommand implements CommandInterface {
+public abstract class AbstractCommand implements ICommand {
 
 	private static y a;
 
@@ -454,11 +454,11 @@ public abstract class AbstractCommand implements CommandInterface {
 		return false;
 	}
 
-	public static void a(CommandSenderInterface var0, CommandInterface var1, String var2, Object... var3) {
+	public static void a(CommandSenderInterface var0, ICommand var1, String var2, Object... var3) {
 		a(var0, var1, 0, var2, var3);
 	}
 
-	public static void a(CommandSenderInterface var0, CommandInterface var1, int var2, String var3, Object... var4) {
+	public static void a(CommandSenderInterface var0, ICommand var1, int var2, String var3, Object... var4) {
 		if (a != null) {
 			a.a(var0, var1, var2, var3, var4);
 		}
@@ -469,7 +469,7 @@ public abstract class AbstractCommand implements CommandInterface {
 		a = var0;
 	}
 
-	public int compareTo(CommandInterface var1) {
+	public int compareTo(ICommand var1) {
 		return this.getName().compareTo(var1.getName());
 	}
 

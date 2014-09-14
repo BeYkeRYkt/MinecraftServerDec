@@ -78,7 +78,7 @@ public abstract class CommandBlockListenerAbstract implements CommandSenderInter
 
 			try {
 				this.lastOutput = null;
-				this.succCount = var3.a(this, this.command);
+				this.succCount = var3.handleCommand(this, this.command);
 			} catch (Throwable var7) {
 				CrashReport var5 = CrashReport.generateCrashReport(var7, "Executing command block");
 				CrashReportSystemDetails var6 = var5.generateSystemDetails("Command to be executed");

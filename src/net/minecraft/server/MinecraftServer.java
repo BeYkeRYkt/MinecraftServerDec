@@ -116,7 +116,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.universe = universe;
 		this.serverConnection = new ServerConnection(this);
 		this.userCache = new UserCache(this, usercache);
-		this.commandHandler = this.h();
+		this.commandHandler = this.createCommandsHandler();
 		this.convertable = new WorldLoaderServer(universe);
 		this.authService = new YggdrasilAuthenticationService(proxy, UUID.randomUUID().toString());
 		this.minecraftSessionService = this.authService.createMinecraftSessionService();
@@ -394,8 +394,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 	public abstract ServerProperties getServerProperties();
 
-	protected cl h() {
-		return new cl();
+	protected DedicatedServerCommandHandler createCommandsHandler() {
+		return new DedicatedServerCommandHandler();
 	}
 
 	protected void a(String var1) {
@@ -693,7 +693,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 	public String g(String var1) {
 		tc.h().i();
-		this.commandHandler.a(tc.h(), var1);
+		this.commandHandler.handleCommand(tc.h(), var1);
 		return tc.h().j();
 	}
 

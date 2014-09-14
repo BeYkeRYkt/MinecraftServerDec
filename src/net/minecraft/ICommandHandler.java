@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface ICommandHandler {
 
-	int a(CommandSenderInterface var1, String var2);
+	int handleCommand(CommandSenderInterface var1, String var2);
 
 	List a(CommandSenderInterface var1, String var2, Position var3);
 

@@ -762,4 +762,8 @@ public class PipeWorld implements World {
 		return false;
 	}
 
+	public WorldServer getHandle() {
+		return nmsWorld;
+	}
+
 }

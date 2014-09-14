@@ -254,10 +254,12 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 
 	public void handlePendingCommands() {
 		while (!this.pendingCommands.isEmpty()) {
-			PendingServerCommand var1 = (PendingServerCommand) this.pendingCommands.remove(0);
-			this.getCommandHandler().a(var1.sender, var1.command);
+			PendingServerCommand pendingCommand = this.pendingCommands.remove(0);
+			boolean pipeCommandHandled = getPipeServer().handleServerCommand(pendingCommand.command);
+			if (!pipeCommandHandled) {
+				this.getCommandHandler().handleCommand(pendingCommand.sender, pendingCommand.command);
+			}
 		}
-
 	}
 
 	public boolean isDedicated() {

@@ -48,7 +48,7 @@ public class ExecuteCommand extends AbstractCommand {
 			ICommandHandler var25 = MinecraftServer.getInstance().getCommandHandler();
 
 			try {
-				int var16 = var25.a(var14, var24);
+				int var16 = var25.handleCommand(var14, var24);
 				if (var16 < 1) {
 					throw new di("commands.execute.allInvocationsFailed", new Object[] { var24 });
 				}

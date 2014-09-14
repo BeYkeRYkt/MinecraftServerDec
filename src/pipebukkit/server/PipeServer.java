@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -157,6 +158,21 @@ public class PipeServer implements Server {
 				pluginManager.enablePlugin(plugin);
 			}
 		}
+	}
+
+	public boolean handleServerCommand(String commandString) {
+		String[] split = commandString.split("\\s+");
+		String commandName = split[0];
+		String[] args = new String[0];
+		if (split.length > 1) {
+			args = Arrays.copyOfRange(split, 1, split.length);
+		}
+		Command command = commandMap.getCommand(commandName);
+		if (command != null) {
+			command.execute(getConsoleSender(), commandName, args);
+			return true;
+		}
+		return false;
 	}
 
 	public EntityMetadataStorage getEntityMetadataStorage() {

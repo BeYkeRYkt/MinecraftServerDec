@@ -516,7 +516,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	}
 
 	private void handleCommand(String command) {
-		this.minecraftserver.getCommandHandler().a(this.player, command);
+		this.minecraftserver.getCommandHandler().handleCommand(this.player, command);
 	}
 
 	public void handle(PacketPlayInAnimation packet) {
