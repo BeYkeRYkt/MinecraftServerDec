@@ -19,7 +19,7 @@ public class EntityEnderPearl extends ahr {
 		if (!this.world.isStatic) {
 			if (var2 instanceof EntityPlayer) {
 				EntityPlayer var5 = (EntityPlayer) var2;
-				if (var5.playerConncetion.getNetworkManager().isConnected() && var5.world == this.world && !var5.isSleeping()) {
+				if (var5.playerConnection.getNetworkManager().isConnected() && var5.world == this.world && !var5.isSleeping()) {
 					if (this.random.nextFloat() < 0.05F && this.world.getGameRules().b("doMobSpawning")) {
 						EntityEndermite var4 = new EntityEndermite(this.world);
 						var4.a(true);

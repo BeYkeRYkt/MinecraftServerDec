@@ -48,7 +48,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 		this.networkManager = networkManager;
 		networkManager.setPacketListener((PacketListener) this);
 		this.player = player;
-		player.playerConncetion = this;
+		player.playerConnection = this;
 	}
 
 	public void doTick() {
@@ -137,7 +137,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 					if (this.player.vehicle != null) {
 						if (distance > 4.0D) {
 							Entity vehicle = this.player.vehicle;
-							this.player.playerConncetion.sendPacket(new PacketPlayOutEntityTeleport(vehicle));
+							this.player.playerConnection.sendPacket(new PacketPlayOutEntityTeleport(vehicle));
 							this.movePlayer(this.player.locationX, this.player.locationY, this.player.locationZ, this.player.yaw, this.player.pitch);
 						}
 
@@ -295,7 +295,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 		}
 
 		this.player.setLocation(this.lastX, this.lastY, this.lastZ, newYaw, newPitch);
-		this.player.playerConncetion.sendPacket(new PacketPlayOutPlayerPositionAndLook(x, y, z, yaw, pitch, flags));
+		this.player.playerConnection.sendPacket(new PacketPlayOutPlayerPositionAndLook(x, y, z, yaw, pitch, flags));
 	}
 
 	private long getCurrentMillis() {
@@ -339,7 +339,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 						if (!this.minecraftserver.isProtected((World) worldServer, position, (EntityHuman) this.player) && worldServer.getWorldBorder().isInside(position)) {
 							this.player.playerInteractManager.a(position, packet.getFace());
 						} else {
-							this.player.playerConncetion.sendPacket(new PacketPlayOutBlockChange(worldServer, position));
+							this.player.playerConnection.sendPacket(new PacketPlayOutBlockChange(worldServer, position));
 						}
 					} else {
 						if (packet.getAction() == PlayerDiggingAction.STOP_DESTROY_BLOCK) {
@@ -349,7 +349,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 						}
 
 						if (worldServer.getBlockState(position).getBlock().getMaterial() != Material.AIR) {
-							this.player.playerConncetion.sendPacket(new PacketPlayOutBlockChange(worldServer, position));
+							this.player.playerConnection.sendPacket(new PacketPlayOutBlockChange(worldServer, position));
 						}
 					}
 
@@ -377,7 +377,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 		} else if (position.getY() >= this.minecraftserver.getMaxBuildHeight() - 1 && (blockFace == BlockFace.UP || position.getY() >= this.minecraftserver.getMaxBuildHeight())) {
 			ChatMessage chatMessage = new ChatMessage("build.tooHigh", new Object[] { Integer.valueOf(this.minecraftserver.getMaxBuildHeight()) });
 			chatMessage.getChatModifier().setColor(EnumChatFormat.RED);
-			this.player.playerConncetion.sendPacket(new PacketPlayOutChatMessage(chatMessage));
+			this.player.playerConnection.sendPacket(new PacketPlayOutChatMessage(chatMessage));
 			update = true;
 		} else {
 			if (this.checkMovement && this.player.getDistanceSquared(position.getX() + 0.5D, position.getY() + 0.5D, position.getZ() + 0.5D) < 64.0D && !this.minecraftserver.isProtected(worldServer, position, this.player) && worldServer.getWorldBorder().isInside(position)) {
@@ -388,8 +388,8 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 		}
 
 		if (update) {
-			this.player.playerConncetion.sendPacket(new PacketPlayOutBlockChange(worldServer, position));
-			this.player.playerConncetion.sendPacket(new PacketPlayOutBlockChange(worldServer, position.a(blockFace)));
+			this.player.playerConnection.sendPacket(new PacketPlayOutBlockChange(worldServer, position));
+			this.player.playerConnection.sendPacket(new PacketPlayOutBlockChange(worldServer, position.a(blockFace)));
 		}
 
 		packetItemStack = this.player.playerInventory.getItemInHand();
@@ -605,7 +605,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 				} else if (this.player.getWorldServer().getWorldData().isHardcore()) {
 					GameProfileBanEntry banEntry = new GameProfileBanEntry(this.player.getGameProfile(), (Date) null, "(You just lost the game)", (Date) null, "Death in Hardcore");
 					this.minecraftserver.getPlayerList().getProfileBans().add((JsonListEntry) banEntry);
-					this.player.playerConncetion.disconnect("You have died. Game over, man, it\'s game over!");
+					this.player.playerConnection.disconnect("You have died. Game over, man, it\'s game over!");
 				} else {
 					if (this.player.getHealth() > 0.0F) {
 						return;
@@ -643,14 +643,14 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 			} else {
 				ItemStack item = this.player.activeContainer.a(packet.getSlot(), packet.getButton(), packet.getMode(), this.player);
 				if (ItemStack.matches(packet.getItem(), item)) {
-					this.player.playerConncetion.sendPacket(new PacketPlayOutConfirmTransaction(packet.getWindowId(), packet.getAction(), true));
+					this.player.playerConnection.sendPacket(new PacketPlayOutConfirmTransaction(packet.getWindowId(), packet.getAction(), true));
 					this.player.g = true;
 					this.player.activeContainer.b();
 					this.player.broadcastCarriedItem();
 					this.player.g = false;
 				} else {
 					this.intHashMap.a(this.player.activeContainer.windowId, Short.valueOf(packet.getAction()));
-					this.player.playerConncetion.sendPacket(new PacketPlayOutConfirmTransaction(packet.getWindowId(), packet.getAction(), false));
+					this.player.playerConnection.sendPacket(new PacketPlayOutConfirmTransaction(packet.getWindowId(), packet.getAction(), false));
 					this.player.activeContainer.notifyTransactionStatus(this.player, false);
 					ArrayList<ItemStack> items = Lists.newArrayList();
 					for (int i = 0; i < this.player.activeContainer.slots.size(); ++i) {
@@ -759,7 +759,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	public void handle(PacketPlayInTabComplete packet) {
 		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
 		String[] data = minecraftserver.getTabCompleteList((CommandSenderInterface) this.player, packet.getText(), packet.getPosition()).toArray(new String[0]);
-		this.player.playerConncetion.sendPacket(new PacketPlayOutTabComplete(data));
+		this.player.playerConnection.sendPacket(new PacketPlayOutTabComplete(data));
 	}
 
 	public void handle(PacketPlayInClientSettings packet) {

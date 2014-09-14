@@ -52,7 +52,7 @@ public class TitleCommand extends AbstractCommand {
 						int var12 = a(var2[3]);
 						int var13 = a(var2[4]);
 						PacketPlayOutTitle var14 = new PacketPlayOutTitle(var11, var12, var13);
-						var3.playerConncetion.sendPacket((Packet) var14);
+						var3.playerConnection.sendPacket((Packet) var14);
 						a(var1, this, "commands.title.success", new Object[0]);
 					}
 				} else if (var2.length < 3) {
@@ -69,14 +69,14 @@ public class TitleCommand extends AbstractCommand {
 					}
 
 					PacketPlayOutTitle var7 = new PacketPlayOutTitle(var4, hq.a(var1, var6, var3));
-					var3.playerConncetion.sendPacket((Packet) var7);
+					var3.playerConnection.sendPacket((Packet) var7);
 					a(var1, this, "commands.title.success", new Object[0]);
 				}
 			} else if (var2.length != 2) {
 				throw new dp("commands.title.usage", new Object[0]);
 			} else {
 				PacketPlayOutTitle var5 = new PacketPlayOutTitle(var4, (IChatBaseComponent) null);
-				var3.playerConncetion.sendPacket((Packet) var5);
+				var3.playerConnection.sendPacket((Packet) var5);
 				a(var1, this, "commands.title.success", new Object[0]);
 			}
 		}

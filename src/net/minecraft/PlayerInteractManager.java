@@ -201,7 +201,7 @@ public class PlayerInteractManager {
 			this.worldServer.a(this.b, 2001, var1, Block.getStateId(var2));
 			boolean var7 = this.c(var1);
 			if (this.isCreative()) {
-				this.b.playerConncetion.sendPacket((Packet) (new PacketPlayOutBlockChange(this.worldServer, var1)));
+				this.b.playerConnection.sendPacket((Packet) (new PacketPlayOutBlockChange(this.worldServer, var1)));
 			} else {
 				ItemStack var5 = this.b.bY();
 				boolean var6 = this.b.b(var2.getBlock());

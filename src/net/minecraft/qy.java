@@ -87,7 +87,7 @@ public class qy {
 					var4.a(var7, var3);
 					Packet var8 = Items.FILLED_MAP.c(var3, this.a.world, var7);
 					if (var8 != null) {
-						var7.playerConncetion.sendPacket(var8);
+						var7.playerConnection.sendPacket(var8);
 					}
 				}
 			}
@@ -215,7 +215,7 @@ public class qy {
 
 		while (var2.hasNext()) {
 			EntityPlayer var3 = (EntityPlayer) var2.next();
-			var3.playerConncetion.sendPacket(var1);
+			var3.playerConnection.sendPacket(var1);
 		}
 
 	}
@@ -223,7 +223,7 @@ public class qy {
 	public void b(Packet var1) {
 		this.a(var1);
 		if (this.a instanceof EntityPlayer) {
-			((EntityPlayer) this.a).playerConncetion.sendPacket(var1);
+			((EntityPlayer) this.a).playerConnection.sendPacket(var1);
 		}
 
 	}
@@ -252,21 +252,21 @@ public class qy {
 				if (!this.o.contains(var1) && (this.e(var1) || this.a.n)) {
 					this.o.add(var1);
 					Packet var2 = this.c();
-					var1.playerConncetion.sendPacket(var2);
+					var1.playerConnection.sendPacket(var2);
 					if (!this.a.getDataWatcher().d()) {
-						var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutEntityMetadata(this.a.getId(), this.a.getDataWatcher(), true)));
+						var1.playerConnection.sendPacket((Packet) (new PacketPlayOutEntityMetadata(this.a.getId(), this.a.getDataWatcher(), true)));
 					}
 
 					NBTCompoundTag var3 = this.a.aU();
 					if (var3 != null) {
-						var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutUpdateEntityNBT(this.a.getId(), var3)));
+						var1.playerConnection.sendPacket((Packet) (new PacketPlayOutUpdateEntityNBT(this.a.getId(), var3)));
 					}
 
 					if (this.a instanceof EntityLiving) {
 						yf var4 = (yf) ((EntityLiving) this.a).bx();
 						Collection var5 = var4.c();
 						if (!var5.isEmpty()) {
-							var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutEntityProperties(this.a.getId(), var5)));
+							var1.playerConnection.sendPacket((Packet) (new PacketPlayOutEntityProperties(this.a.getId(), var5)));
 						}
 					}
 
@@ -274,22 +274,22 @@ public class qy {
 					this.k = this.a.motionY;
 					this.l = this.a.motionZ;
 					if (this.u && !(var2 instanceof PacketPlayOutSpawnMob)) {
-						var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutEntityVelocity(this.a.getId(), this.a.motionX, this.a.motionY, this.a.motionZ)));
+						var1.playerConnection.sendPacket((Packet) (new PacketPlayOutEntityVelocity(this.a.getId(), this.a.motionX, this.a.motionY, this.a.motionZ)));
 					}
 
 					if (this.a.vehicle != null) {
-						var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutAttachEntity(0, this.a, this.a.vehicle)));
+						var1.playerConnection.sendPacket((Packet) (new PacketPlayOutAttachEntity(0, this.a, this.a.vehicle)));
 					}
 
 					if (this.a instanceof EntityInsentient && ((EntityInsentient) this.a).cc() != null) {
-						var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutAttachEntity(1, this.a, ((EntityInsentient) this.a).cc())));
+						var1.playerConnection.sendPacket((Packet) (new PacketPlayOutAttachEntity(1, this.a, ((EntityInsentient) this.a).cc())));
 					}
 
 					if (this.a instanceof EntityLiving) {
 						for (int var7 = 0; var7 < 5; ++var7) {
 							ItemStack var10 = ((EntityLiving) this.a).p(var7);
 							if (var10 != null) {
-								var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutEntityEquipment(this.a.getId(), var7, var10)));
+								var1.playerConnection.sendPacket((Packet) (new PacketPlayOutEntityEquipment(this.a.getId(), var7, var10)));
 							}
 						}
 					}
@@ -297,7 +297,7 @@ public class qy {
 					if (this.a instanceof EntityHuman) {
 						EntityHuman var8 = (EntityHuman) this.a;
 						if (var8.isSleeping()) {
-							var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutUseBed(var8, new Position(this.a))));
+							var1.playerConnection.sendPacket((Packet) (new PacketPlayOutUseBed(var8, new Position(this.a))));
 						}
 					}
 
@@ -307,7 +307,7 @@ public class qy {
 
 						while (var11.hasNext()) {
 							MobEffect var6 = (MobEffect) var11.next();
-							var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutEntityEffect(this.a.getId(), var6)));
+							var1.playerConnection.sendPacket((Packet) (new PacketPlayOutEntityEffect(this.a.getId(), var6)));
 						}
 					}
 				}

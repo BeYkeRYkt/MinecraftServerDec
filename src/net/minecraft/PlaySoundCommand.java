@@ -76,7 +76,7 @@ public class PlaySoundCommand extends AbstractCommand {
 				var13 = var17;
 			}
 
-			var5.playerConncetion.sendPacket((Packet) (new PacketPlayOutSoundEffect(var4, var7, var9, var11, (float) var13, (float) var15)));
+			var5.playerConnection.sendPacket((Packet) (new PacketPlayOutSoundEffect(var4, var7, var9, var11, (float) var13, (float) var15)));
 			a(var1, this, "commands.playsound.success", new Object[] { var4, var5.getName() });
 		}
 	}

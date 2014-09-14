@@ -178,7 +178,7 @@ public class StatisticManager extends tz {
 			}
 		}
 
-		player.playerConncetion.sendPacket(new PacketPlayOutStatistics(statMap));
+		player.playerConnection.sendPacket(new PacketPlayOutStatistics(statMap));
 	}
 
 	public void b(EntityPlayer var1) {
@@ -193,7 +193,7 @@ public class StatisticManager extends tz {
 			}
 		}
 
-		var1.playerConncetion.sendPacket(new PacketPlayOutStatistics(var2));
+		var1.playerConnection.sendPacket(new PacketPlayOutStatistics(var2));
 	}
 
 	public boolean e() {

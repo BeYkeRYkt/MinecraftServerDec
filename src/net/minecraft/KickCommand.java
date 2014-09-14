@@ -30,7 +30,7 @@ public class KickCommand extends AbstractCommand {
 					var5 = true;
 				}
 
-				var3.playerConncetion.disconnect(var4);
+				var3.playerConnection.disconnect(var4);
 				if (var5) {
 					a(var1, this, "commands.kick.success.reason", new Object[] { var3.getName(), var4 });
 				} else {

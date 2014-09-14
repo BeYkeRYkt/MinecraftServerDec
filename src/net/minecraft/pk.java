@@ -161,7 +161,7 @@ public class pk extends Scoreboard {
 
 			while (var5.hasNext()) {
 				Packet var6 = (Packet) var5.next();
-				var4.playerConncetion.sendPacket(var6);
+				var4.playerConnection.sendPacket(var6);
 			}
 		}
 
@@ -191,7 +191,7 @@ public class pk extends Scoreboard {
 
 			while (var5.hasNext()) {
 				Packet var6 = (Packet) var5.next();
-				var4.playerConncetion.sendPacket(var6);
+				var4.playerConnection.sendPacket(var6);
 			}
 		}
 

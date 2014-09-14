@@ -39,7 +39,7 @@ class qr {
 		if (this.b.contains(var1)) {
 			Chunk var2 = PlayerChunkMap.a(this.a).a(this.c.chunkX, this.c.chunkZ);
 			if (var2.i()) {
-				var1.playerConncetion.sendPacket((Packet) (new PacketPlayOutChunkData(var2, true, 0)));
+				var1.playerConnection.sendPacket((Packet) (new PacketPlayOutChunkData(var2, true, 0)));
 			}
 
 			this.b.remove(var1);
@@ -92,7 +92,7 @@ class qr {
 		for (int var2 = 0; var2 < this.b.size(); ++var2) {
 			EntityPlayer var3 = (EntityPlayer) this.b.get(var2);
 			if (!var3.f.contains(this.c)) {
-				var3.playerConncetion.sendPacket(var1);
+				var3.playerConnection.sendPacket(var1);
 			}
 		}
 

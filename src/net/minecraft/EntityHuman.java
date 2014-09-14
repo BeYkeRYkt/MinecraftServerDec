@@ -849,7 +849,7 @@ public abstract class EntityHuman extends EntityLiving {
 						}
 
 						if (var1 instanceof EntityPlayer && var1.velocityChanged) {
-							((EntityPlayer) var1).playerConncetion.sendPacket((Packet) (new PacketPlayOutEntityVelocity(var1)));
+							((EntityPlayer) var1).playerConnection.sendPacket((Packet) (new PacketPlayOutEntityVelocity(var1)));
 							var1.velocityChanged = false;
 							var1.motionX = var8;
 							var1.motionY = var10;
