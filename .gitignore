@@ -5,6 +5,8 @@
 crash-reports/
 plugins/
 world/
+world_nether/
+world_the_end/
 logs/
 banned-ips.json
 banned-players.json

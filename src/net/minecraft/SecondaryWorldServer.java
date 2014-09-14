@@ -15,7 +15,7 @@ public class SecondaryWorldServer extends WorldServer {
 	protected void a() {
 	}
 
-	public World b() {
+	public WorldServer b() {
 		this.z = this.a.T();
 		this.C = this.a.Z();
 		String var1 = PersistentVillage.a(this.worldProvider);

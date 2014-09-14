@@ -53,7 +53,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.getWorldBorder().setPortalTeleportBoundary(minecraftserver.getMaxWorldSize());
 	}
 
-	public World b() {
+	public WorldServer b() {
 		this.z = new brn(this.dataManager);
 		String var1 = PersistentVillage.a(this.worldProvider);
 		PersistentVillage var2 = (PersistentVillage) this.z.a(PersistentVillage.class, var1);
@@ -518,7 +518,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		return !this.minecraftserver.isProtected((World) this, var2, var1) && this.getWorldBorder().isInside(var2);
 	}
 
-	public void a(WorldSettings var1) {
+	public void applyWorldSettings(WorldSettings var1) {
 		if (!this.worldData.isInitialized()) {
 			try {
 				this.b(var1);
@@ -526,7 +526,7 @@ public class WorldServer extends World implements ITaskScheduler {
 					this.aj();
 				}
 
-				super.a(var1);
+				super.applyWorldSettings(var1);
 			} catch (Throwable var6) {
 				CrashReport var3 = CrashReport.generateCrashReport(var6, "Exception initializing level");
 

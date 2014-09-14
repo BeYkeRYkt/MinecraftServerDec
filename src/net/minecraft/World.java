@@ -99,7 +99,7 @@ public abstract class World implements ard {
 
 	protected abstract IChunkProvider getServerChunkProvider();
 
-	public void a(WorldSettings var1) {
+	public void applyWorldSettings(WorldSettings var1) {
 		this.worldData.setInitialized(true);
 	}
 

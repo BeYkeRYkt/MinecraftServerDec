@@ -44,6 +44,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.event.world.WorldInitEvent;
+import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.plugin.Plugin;
 
 import pipebukkit.server.PipeServer;
@@ -364,92 +366,69 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return new DedicatedServerCommandHandler();
 	}
 
-	protected void a(String var1) {
-		if (this.X().b(var1)) {
-			logger.info("Converting map!");
-			this.b("menu.convertingLevel");
-			this.X().a(var1, new pd(this));
-		}
-
-	}
-
-	protected synchronized void b(String var1) {
-	}
-
 	protected void loadWorlds(String levelname, long seed, LevelType levelType, String settings) {
-		this.a(levelname);
-		this.b("menu.loadingLevel");
 		this.worlds = new ArrayList<WorldServer>();
-		IDataManager dataManager = this.convertable.a(levelname, true);
-		this.a(this.getLevelName(), dataManager);
-		WorldData worldData = dataManager.getWorldData();
-		WorldSettings worldSettings;
-		if (worldData == null) {
-			worldSettings = new WorldSettings(seed, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), levelType);
-			worldSettings.setGeneratorOptions(settings);
 
-			worldData = new WorldData(worldSettings, levelname);
-		} else {
-			worldData.setLevelName(levelname);
-			worldSettings = new WorldSettings(worldData);
-		}
+		WorldSettings worldSettings = new WorldSettings(seed, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), levelType);
+		WorldData worldData = new WorldData(worldSettings, levelname);
 
 		for (int i = 0; i < 3; ++i) {
-			byte worldId = 0;
+			byte dimension = 0;
 			if (i == 1) {
-				worldId = -1;
+				dimension = -1;
 			}
 
 			if (i == 2) {
-				worldId = 1;
+				dimension = 1;
 			}
 
+			WorldServer worldServer = null;
 			if (i == 0) {
-				worlds.add((WorldServer) (new WorldServer(this, dataManager, worldData, worldId, this.profiler)).b());
-
-				worlds.get(i).a(worldSettings);
+				IDataManager datamanager = new ServerNBTManager(Bukkit.getWorldContainer(), levelname, true);
+				worldServer = new WorldServer(this, datamanager, worldData, dimension, this.profiler).b();
+				worldServer.applyWorldSettings(worldSettings);
 			} else {
-				worlds.add((WorldServer) (new SecondaryWorldServer(this, dataManager, worldId, this.worlds.get(0), this.profiler)).b());
+				IDataManager datamanager = new ServerNBTManager(Bukkit.getWorldContainer(), dimension == -1 ? levelname+"_nether" : levelname+"_the_end", true);
+				worldServer = new SecondaryWorldServer(this, datamanager, dimension, this.worlds.get(0), this.profiler).b();
 			}
 
-			this.worlds.get(i).addIWorldAccess(new WorldManager(this, this.worlds.get(i)));
-			this.worlds.get(i).getWorldData().setGameMode(this.getServerGameMode());
+			Bukkit.getPluginManager().callEvent(new WorldInitEvent(worldServer.getBukkitWorld()));
+
+			worldServer.addIWorldAccess(new WorldManager(this, worldServer));
+			worldServer.getWorldData().setGameMode(this.getServerGameMode());
+
+			worlds.add(worldServer);
 		}
 
-		this.playerList.a(this.worlds.toArray(new WorldServer[0]));
-		this.a(this.getDifficulty());
+		this.playerList.setPlayerFileData(this.worlds.toArray(new WorldServer[0]));
+		this.setWorldsDifficulty(this.getDifficulty());
 		this.generateTerrain();
 	}
 
 	protected void generateTerrain() {
-		int var5 = 0;
-		this.b("menu.generatingTerrain");
-		byte var6 = 0;
-		logger.info("Preparing start region for level " + var6);
-		WorldServer var7 = this.worlds.get(0);
-		Position var8 = var7.getSpawnPosition();
-		long var9 = getCurrentMillis();
-
-		for (int var11 = -192; var11 <= 192 && this.isTicking(); var11 += 16) {
-			for (int var12 = -192; var12 <= 192 && this.isTicking(); var12 += 16) {
-				long var13 = getCurrentMillis();
-				if (var13 - var9 > 1000L) {
-					this.a_("Preparing spawn area", var5 * 100 / 625);
-					var9 = var13;
+		for (int level = 0; level < worlds.size(); level++) {
+			logger.info("Preparing start region for level " + level);
+			WorldServer worldServer = this.worlds.get(level);
+			Position spawnPosition = worldServer.getSpawnPosition();
+			long timeA = getCurrentMillis();
+			int chunksLoaded = 0;
+			for (int x = -192; x <= 192 && this.isTicking(); x += 16) {
+				for (int z = -192; z <= 192 && this.isTicking(); z += 16) {
+					long timeB = getCurrentMillis();
+					if (timeB - timeA > 1000L) {
+						this.a_("Preparing spawn area", chunksLoaded * 100 / 625);
+						timeA = timeB;
+					}
+	
+					++chunksLoaded;
+					worldServer.chunkProviderServer.getChunkAt(spawnPosition.getX() + x >> 4, spawnPosition.getZ() + z >> 4);
 				}
-
-				++var5;
-				var7.chunkProviderServer.getChunkAt(var8.getX() + var11 >> 4, var8.getZ() + var12 >> 4);
 			}
 		}
-	}
 
-	protected void a(String var1, IDataManager var2) {
-		File var3 = new File(var2.getDirectory(), "resources.zip");
-		if (var3.isFile()) {
-			this.setResourcePack("level://" + var1 + "/" + var3.getName(), "");
+		for (WorldServer worldServer : worlds) {
+			Bukkit.getPluginManager().callEvent(new WorldLoadEvent(worldServer.getBukkitWorld()));
 		}
-
 	}
 
 	public abstract boolean isStructureGenerationEnabled();
@@ -763,7 +742,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.keyPair = keyPair;
 	}
 
-	public void a(Difficulty var1) {
+	public void setWorldsDifficulty(Difficulty var1) {
 		for (int i = 0; i < this.worlds.size(); ++i) {
 			WorldServer worldServer = worlds.get(i);
 			if (worldServer != null) {

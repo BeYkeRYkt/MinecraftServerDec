@@ -22,7 +22,7 @@ public class DifficultyCommand extends AbstractCommand {
 			throw new dp("commands.difficulty.usage", new Object[0]);
 		} else {
 			Difficulty var3 = this.e(var2[0]);
-			MinecraftServer.getInstance().a(var3);
+			MinecraftServer.getInstance().setWorldsDifficulty(var3);
 			a(var1, this, "commands.difficulty.success", new Object[] { new ChatMessage(var3.getName(), new Object[0]) });
 		}
 	}

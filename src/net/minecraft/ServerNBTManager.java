@@ -9,19 +9,7 @@ public class ServerNBTManager extends WorldNBTStorage {
 	}
 
 	public IChunkLoader createChunkLoader(WorldProvider provider) {
-		File baseDir = this.getDirectory();
-		File worldDir;
-		if (provider instanceof WorldProviderHell) {
-			worldDir = new File(baseDir, "DIM-1");
-			worldDir.mkdirs();
-			return new ChunkRegionLoader(worldDir);
-		} else if (provider instanceof WorldProviderTheEnd) {
-			worldDir = new File(baseDir, "DIM1");
-			worldDir.mkdirs();
-			return new ChunkRegionLoader(worldDir);
-		} else {
-			return new ChunkRegionLoader(baseDir);
-		}
+		return new ChunkRegionLoader(getDirectory());
 	}
 
 	public void saveWorldData(WorldData worldData, NBTCompoundTag tag) {

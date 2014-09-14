@@ -154,9 +154,9 @@ public abstract class PlayerList {
 
 	}
 
-	public void a(WorldServer[] var1) {
-		this.playerFileData = var1[0].getDataManager().getPlayerFileData();
-		var1[0].getWorldBorder().addChangeListener((WorldBorderChangeListener) (new PlayerUpdaterWorldBorderChangeListener(this)));
+	public void setPlayerFileData(WorldServer[] worlds) {
+		this.playerFileData = worlds[0].getDataManager().getPlayerFileData();
+		worlds[0].getWorldBorder().addChangeListener(new PlayerUpdaterWorldBorderChangeListener(this));
 	}
 
 	public void a(EntityPlayer var1, WorldServer var2) {
@@ -583,9 +583,8 @@ public abstract class PlayerList {
 
 	public void kickAll() {
 		for (int i = 0; i < this.players.size(); ++i) {
-			(this.players.get(i)).playerConnection.disconnect(Bukkit.getShutdownMessage());
+			(this.players.get(i)).playerConnection.disconnect(Bukkit.getShutdownMessage() != null ? Bukkit.getShutdownMessage() : "Server closed");
 		}
-
 	}
 
 	public void sendMessage(IChatBaseComponent var1, boolean var2) {
