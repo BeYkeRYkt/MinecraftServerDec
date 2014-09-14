@@ -15,10 +15,8 @@ public class DedicatedPlayerList extends PlayerList {
 		this.a(var1.getIntProperty("view-distance", 10));
 		this.maxPlayers = var1.getIntProperty("max-players", 20);
 		this.a(var1.getBooleanProperty("white-list", false));
-		if (!var1.isSinglePlayer()) {
-			this.getProfileBans().setEnabled(true);
-			this.getIpBanList().setEnabled(true);
-		}
+		this.getProfileBans().setEnabled(true);
+		this.getIpBanList().setEnabled(true);
 
 		this.z();
 		this.x();

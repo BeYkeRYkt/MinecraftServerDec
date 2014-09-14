@@ -18,8 +18,6 @@ public class WorldData {
 	private long dayTime;
 	private long lastPlayed;
 	private long sizeOnDisk;
-	private NBTCompoundTag playerData;
-	private int dimension;
 	private String levelName;
 	private int version;
 	private int clearWeatherTime;
@@ -132,11 +130,6 @@ public class WorldData {
 			this.allowCommands = this.gameMode == EnumGameMode.CREATIVE;
 		}
 
-		if (tag.isTagAssignableFrom("Player", 10)) {
-			this.playerData = tag.getCompound("Player");
-			this.dimension = this.playerData.getInt("Dimension");
-		}
-
 		if (tag.isTagAssignableFrom("GameRules", 10)) {
 			this.gameRules.a(tag.getCompound("GameRules"));
 		}
@@ -241,8 +234,6 @@ public class WorldData {
 		this.dayTime = var1.dayTime;
 		this.lastPlayed = var1.lastPlayed;
 		this.sizeOnDisk = var1.sizeOnDisk;
-		this.playerData = var1.playerData;
-		this.dimension = var1.dimension;
 		this.levelName = var1.levelName;
 		this.version = var1.version;
 		this.rainTime = var1.rainTime;
@@ -268,7 +259,7 @@ public class WorldData {
 
 	public NBTCompoundTag getDataTag() {
 		NBTCompoundTag dataTag = new NBTCompoundTag();
-		this.write(dataTag, this.playerData);
+		this.write(dataTag, null);
 		return dataTag;
 	}
 
@@ -344,10 +335,6 @@ public class WorldData {
 
 	public long getDayTime() {
 		return this.dayTime;
-	}
-
-	public NBTCompoundTag getPlayerData() {
-		return this.playerData;
 	}
 
 	public void setTime(long time) {
@@ -593,12 +580,6 @@ public class WorldData {
 			@Override
 			public String call() throws Exception {
 				return String.format("%d game time, %d day time", new Object[] { getTime(), getDayTime() });
-			}
-		});
-		details.addDetails("Level dimension", new Callable<String>() {
-			@Override
-			public String call() throws Exception {
-				return String.valueOf(dimension);
 			}
 		});
 		details.addDetails("Level storage version", new Callable<String>() {

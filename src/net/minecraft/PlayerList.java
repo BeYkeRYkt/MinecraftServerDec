@@ -174,16 +174,7 @@ public abstract class PlayerList {
 	}
 
 	public NBTCompoundTag a(EntityPlayer var1) {
-		NBTCompoundTag var2 = this.minecraftserver.getPrimaryWorld().getWorldData().getPlayerData();
-		NBTCompoundTag var3;
-		if (var1.getName().equals(this.minecraftserver.getSinglePlayerName()) && var2 != null) {
-			var1.load(var2);
-			var3 = var2;
-			logger.debug("loading single player");
-		} else {
-			var3 = this.playerFileData.load(var1);
-		}
-
+		NBTCompoundTag var3 = this.playerFileData.load(var1);
 		return var3;
 	}
 
@@ -257,8 +248,8 @@ public abstract class PlayerList {
 		}
 	}
 
-	public EntityPlayer processLogin(GameProfile var1) {
-		UUID var2 = EntityHuman.a(var1);
+	public EntityPlayer processLogin(GameProfile gameProfile) {
+		UUID var2 = EntityHuman.a(gameProfile);
 		ArrayList var3 = Lists.newArrayList();
 
 		EntityPlayer var5;
@@ -276,14 +267,7 @@ public abstract class PlayerList {
 			var5.playerConncetion.disconnect("You logged in from another location");
 		}
 
-		Object var7;
-		if (this.minecraftserver.isDemo()) {
-			var7 = new qk(this.minecraftserver.getWorldServer(0));
-		} else {
-			var7 = new PlayerInteractManager(this.minecraftserver.getWorldServer(0));
-		}
-
-		return new EntityPlayer(this.minecraftserver, this.minecraftserver.getWorldServer(0), var1, (PlayerInteractManager) var7);
+		return new EntityPlayer(this.minecraftserver, this.minecraftserver.getWorldServer(0), gameProfile, new PlayerInteractManager(this.minecraftserver.getWorldServer(0)));
 	}
 
 	public EntityPlayer moveToWorld(EntityPlayer var1, int var2, boolean var3) {
@@ -295,14 +279,8 @@ public abstract class PlayerList {
 		Position var4 = var1.cg();
 		boolean var5 = var1.ch();
 		var1.dimensionId = var2;
-		Object var6;
-		if (this.minecraftserver.isDemo()) {
-			var6 = new qk(this.minecraftserver.getWorldServer(var1.dimensionId));
-		} else {
-			var6 = new PlayerInteractManager(this.minecraftserver.getWorldServer(var1.dimensionId));
-		}
 
-		EntityPlayer var7 = new EntityPlayer(this.minecraftserver, this.minecraftserver.getWorldServer(var1.dimensionId), var1.getGameProfile(), (PlayerInteractManager) var6);
+		EntityPlayer var7 = new EntityPlayer(this.minecraftserver, this.minecraftserver.getWorldServer(var1.dimensionId), var1.getGameProfile(), new PlayerInteractManager(this.minecraftserver.getWorldServer(var1.dimensionId)));
 		var7.playerConncetion = var1.playerConncetion;
 		var7.a((EntityHuman) var1, var3);
 		var7.setId(var1.getId());
@@ -687,7 +665,7 @@ public abstract class PlayerList {
 	}
 
 	public boolean isOp(GameProfile profile) {
-		return this.opList.contains(profile) || (this.minecraftserver.isSinglePlayer() && this.minecraftserver.getPrimaryWorld().getWorldData().areCommandsAllowed() && this.minecraftserver.getSinglePlayerName().equalsIgnoreCase(profile.getName())) || this.everyoneIsOp;
+		return this.opList.contains(profile) || this.everyoneIsOp;
 	}
 
 	public WhiteList getWhitelist() {

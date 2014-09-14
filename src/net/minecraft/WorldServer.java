@@ -592,25 +592,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 			this.worldData.setSpawn(new Position(var6, var7, var8));
 			this.isLoading = false;
-			if (var1.isBonusChestEnabled()) {
-				this.l();
-			}
-
 		}
-	}
-
-	protected void l() {
-		WorldGenBonusChest var1 = new WorldGenBonusChest(U, 10);
-
-		for (int var2 = 0; var2 < 10; ++var2) {
-			int var3 = this.worldData.getSpawnX() + this.s.nextInt(6) - this.s.nextInt(6);
-			int var4 = this.worldData.getSpawnZ() + this.s.nextInt(6) - this.s.nextInt(6);
-			Position var5 = this.r(new Position(var3, 0, var4)).a();
-			if (var1.b(this, this.s, var5)) {
-				break;
-			}
-		}
-
 	}
 
 	public Position getDimensionSpawn() {

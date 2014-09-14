@@ -203,7 +203,7 @@ public class sf {
 			GameProfile var2 = var1.getUserCache().getProfile(var0);
 			if (var2 != null && var2.getId() != null) {
 				return var2.getId().toString();
-			} else if (!var1.isSinglePlayer() && var1.isOnlineMode()) {
+			} else if (var1.isOnlineMode()) {
 				ArrayList var3 = Lists.newArrayList();
 				sk var4 = new sk(var1, var3);
 				a(var1, Lists.newArrayList((Object[]) (new String[] { var0 })), var4);

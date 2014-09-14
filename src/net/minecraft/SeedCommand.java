@@ -5,7 +5,7 @@ import net.minecraft.server.MinecraftServer;
 public class SeedCommand extends AbstractCommand {
 
 	public boolean a(CommandSenderInterface var1) {
-		return MinecraftServer.getInstance().isSinglePlayer() || super.a(var1);
+		return super.a(var1);
 	}
 
 	public String getName() {

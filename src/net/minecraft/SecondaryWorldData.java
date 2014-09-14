@@ -40,10 +40,6 @@ public class SecondaryWorldData extends WorldData {
 		return this.b.getDayTime();
 	}
 
-	public NBTCompoundTag getPlayerData() {
-		return this.b.getPlayerData();
-	}
-
 	public String getLevelName() {
 		return this.b.getLevelName();
 	}

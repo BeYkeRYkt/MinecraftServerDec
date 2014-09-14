@@ -26,7 +26,6 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 	private EulaAgreementChecker tehDramaDocument;
 	private EnumGameMode serverGameMode;
 	private boolean generateStructures;
-	private boolean guiEnabled;
 
 	public DedicatedMinecraftServer(File file) {
 		super(file, Proxy.NO_PROXY, usercache);
@@ -49,12 +48,8 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 			this.tehDramaDocument.write();
 			return false;
 		} else {
-			if (this.isSinglePlayer()) {
-				this.setIp("127.0.0.1");
-			} else {
-				this.setOnlineMode(this.serverProperties.getBoolean("online-mode", true));
-				this.setIp(this.serverProperties.getString("server-ip", ""));
-			}
+			this.setOnlineMode(this.serverProperties.getBoolean("online-mode", true));
+			this.setIp(this.serverProperties.getString("server-ip", ""));
 
 			this.setAnimalSpawnEnabled(this.serverProperties.getBoolean("spawn-animals", true));
 			this.setNPCSpawnEnabled(this.serverProperties.getBoolean("spawn-npcs", true));
@@ -293,15 +288,6 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 	public String b() {
 		File var1 = this.serverProperties.getFile();
 		return var1 != null ? var1.getAbsolutePath() : "No settings file";
-	}
-
-	public void enableGui() {
-		ServerGUI.oper(this);
-		this.guiEnabled = true;
-	}
-
-	public boolean isGuiEnabled() {
-		return this.guiEnabled;
 	}
 
 	public String a(EnumGameMode var1, boolean var2) {

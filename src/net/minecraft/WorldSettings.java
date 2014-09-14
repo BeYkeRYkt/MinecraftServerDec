@@ -8,7 +8,6 @@ public final class WorldSettings {
 	private final boolean isHardcore;
 	private final LevelType levelType;
 	private boolean commandAllowed;
-	private boolean bonusChestEnabled;
 	private String generatorOptions;
 
 	public WorldSettings(long seed, EnumGameMode gameMode, boolean mapFeaturesEnabled, boolean isHardcore, LevelType levelType) {
@@ -24,18 +23,9 @@ public final class WorldSettings {
 		this(worldData.getSeed(), worldData.getGameMode(), worldData.isMapFeauturesEnabled(), worldData.isHardcore(), worldData.getLevelType());
 	}
 
-	public WorldSettings enableBonusChest() {
-		this.bonusChestEnabled = true;
-		return this;
-	}
-
 	public WorldSettings setGeneratorOptions(String generatorOptions) {
 		this.generatorOptions = generatorOptions;
 		return this;
-	}
-
-	public boolean isBonusChestEnabled() {
-		return this.bonusChestEnabled;
 	}
 
 	public long getSeed() {

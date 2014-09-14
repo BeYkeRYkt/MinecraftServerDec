@@ -82,10 +82,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private int idleTimeOut = 0;
 	public final long[] g = new long[100];
 	private KeyPair keyPair;
-	private String singlePlayerName;
 	private String levelName;
-	private boolean L;
-	private boolean bonusChestEnabled;
 	private boolean N;
 	private String O = "";
 	private String P = "";
@@ -123,85 +120,53 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.gameProflieRepository = this.authService.createProfileRepository();
 	}
 
-	public static void main(String[] var0) {
+	public static void main(String[] args) {
 		Bootstrap.load();
 
 		try {
-			boolean var1 = true;
-			String var2 = null;
-			String var3 = ".";
-			String var4 = null;
-			boolean var5 = false;
-			boolean var6 = false;
-			int var7 = -1;
+			String universe = ".";
+			String world = null;
+			int port = -1;
 
-			for (int var8 = 0; var8 < var0.length; ++var8) {
-				String var9 = var0[var8];
-				String var10 = var8 == var0.length - 1 ? null : var0[var8 + 1];
-				boolean var11 = false;
-				if (!var9.equals("nogui") && !var9.equals("--nogui")) {
-					if (var9.equals("--port") && var10 != null) {
-						var11 = true;
+			for (int i = 0; i < args.length; ++i) {
+				String argName = args[i];
+				String argsValue = i == args.length - 1 ? null : args[i + 1];
+				boolean hadArgValue = false;
+				if (argName.equals("--port") && argsValue != null) {
+					hadArgValue = true;
 
-						try {
-							var7 = Integer.parseInt(var10);
-						} catch (NumberFormatException var13) {
-							;
-						}
-					} else if (var9.equals("--singleplayer") && var10 != null) {
-						var11 = true;
-						var2 = var10;
-					} else if (var9.equals("--universe") && var10 != null) {
-						var11 = true;
-						var3 = var10;
-					} else if (var9.equals("--world") && var10 != null) {
-						var11 = true;
-						var4 = var10;
-					} else if (var9.equals("--demo")) {
-						var5 = true;
-					} else if (var9.equals("--bonusChest")) {
-						var6 = true;
+					try {
+						port = Integer.parseInt(argsValue);
+					} catch (NumberFormatException var13) {
 					}
-				} else {
-					var1 = false;
+				} else if (argName.equals("--universe") && argsValue != null) {
+					hadArgValue = true;
+					universe = argsValue;
+				} else if (argName.equals("--world") && argsValue != null) {
+					hadArgValue = true;
+					world = argsValue;
 				}
 
-				if (var11) {
-					++var8;
+				if (hadArgValue) {
+					++i;
 				}
 			}
 
-			DedicatedMinecraftServer dedicatedMinecraftServer = new DedicatedMinecraftServer(new File(var3));
-			if (var2 != null) {
-				dedicatedMinecraftServer.setSinglePlayerName(var2);
+			DedicatedMinecraftServer dedicatedMinecraftServer = new DedicatedMinecraftServer(new File(universe));
+
+			if (world != null) {
+				dedicatedMinecraftServer.setLevelName(world);
 			}
 
-			if (var4 != null) {
-				dedicatedMinecraftServer.setLevelName(var4);
-			}
-
-			if (var7 >= 0) {
-				dedicatedMinecraftServer.setPort(var7);
-			}
-
-			if (var5) {
-				dedicatedMinecraftServer.b(true);
-			}
-
-			if (var6) {
-				dedicatedMinecraftServer.c(true);
-			}
-
-			if (var1 && !GraphicsEnvironment.isHeadless()) {
-				dedicatedMinecraftServer.enableGui();
+			if (port >= 0) {
+				dedicatedMinecraftServer.setPort(port);
 			}
 
 			dedicatedMinecraftServer.startMainThread();
 			Runtime.getRuntime().addShutdownHook(new ServerShutdownHook("Server Shutdown Thread", dedicatedMinecraftServer));
-		} catch (Exception var14) {
-			logger.fatal("Failed to start the minecraft server", (Throwable) var14);
+		} catch (Exception ex) {
+			logger.fatal("Failed to start the minecraft server", ex);
 		}
-
 	}
 
 	protected abstract boolean startServer() throws UnknownHostException;
@@ -410,7 +375,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	protected synchronized void b(String var1) {
 	}
 
-	protected void loadWorlds(String levelname1, String levelname2, long var3, LevelType levelType, String settings) {
+	protected void loadWorlds(String levelname1, String levelname2, long seed, LevelType levelType, String settings) {
 		this.a(levelname1);
 		this.b("menu.loadingLevel");
 		this.worlds = new ArrayList<WorldServer>();
@@ -419,15 +384,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		WorldData worldData = dataManager.getWorldData();
 		WorldSettings worldSettings;
 		if (worldData == null) {
-			if (this.isDemo()) {
-				worldSettings = DemoWorldServer.DEMO_WORLD_SETTINGS;
-			} else {
-				worldSettings = new WorldSettings(var3, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), levelType);
-				worldSettings.setGeneratorOptions(settings);
-				if (this.bonusChestEnabled) {
-					worldSettings.enableBonusChest();
-				}
-			}
+			worldSettings = new WorldSettings(seed, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), levelType);
+			worldSettings.setGeneratorOptions(settings);
 
 			worldData = new WorldData(worldSettings, levelname2);
 		} else {
@@ -446,11 +404,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			}
 
 			if (i == 0) {
-				if (this.isDemo()) {
-					worlds.add((WorldServer) (new DemoWorldServer(this, dataManager, worldData, worldId, this.profiler)).b());
-				} else {
-					worlds.add((WorldServer) (new WorldServer(this, dataManager, worldData, worldId, this.profiler)).b());
-				}
+				worlds.add((WorldServer) (new WorldServer(this, dataManager, worldData, worldId, this.profiler)).b());
 
 				worlds.get(i).a(worldSettings);
 			} else {
@@ -458,9 +412,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			}
 
 			this.worlds.get(i).addIWorldAccess((IWorldAccess) (new WorldManager(this, this.worlds.get(i))));
-			if (!this.isSinglePlayer()) {
-				this.worlds.get(i).getWorldData().setGameMode(this.getServerGameMode());
-			}
+			this.worlds.get(i).getWorldData().setGameMode(this.getServerGameMode());
 		}
 
 		this.playerList.a(this.worlds.toArray(new WorldServer[0]));
@@ -798,18 +750,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.port = port;
 	}
 
-	public String getSinglePlayerName() {
-		return this.singlePlayerName;
-	}
-
-	public void setSinglePlayerName(String name) {
-		this.singlePlayerName = name;
-	}
-
-	public boolean isSinglePlayer() {
-		return this.singlePlayerName != null;
-	}
-
 	public String getLevelName() {
 		return this.levelName;
 	}
@@ -829,9 +769,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				if (worldServer.getWorldData().isHardcore()) {
 					worldServer.getWorldData().setDifficulty(Difficulty.HARD);
 					worldServer.a(true, true);
-				} else if (this.isSinglePlayer()) {
-					worldServer.getWorldData().setDifficulty(var1);
-					worldServer.a(worldServer.getDifficulty() != Difficulty.PEACEFUL, true);
 				} else {
 					worldServer.getWorldData().setDifficulty(var1);
 					worldServer.a(this.isMonsterSpawnEnabled(), this.spawnAnimals);
@@ -843,18 +780,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 	protected boolean isMonsterSpawnEnabled() {
 		return true;
-	}
-
-	public boolean isDemo() {
-		return this.L;
-	}
-
-	public void b(boolean var1) {
-		this.L = var1;
-	}
-
-	public void c(boolean var1) {
-		this.bonusChestEnabled = var1;
 	}
 
 	public Convertable X() {
@@ -925,7 +850,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public void b(Snooper var1) {
-		var1.b("singleplayer", Boolean.valueOf(this.isSinglePlayer()));
+		var1.b("singleplayer", false);
 		var1.b("server_brand", this.getServerModName());
 		var1.b("gui_supported", GraphicsEnvironment.isHeadless() ? "headless" : "supported");
 		var1.b("dedicated", Boolean.valueOf(this.isDedicated()));

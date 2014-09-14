@@ -25,23 +25,13 @@ class ThreadPlayerLookupUUID extends Thread {
 			if (loginListener.getGameProfile() != null) {
 				loginListener.getLogger().info("UUID of player " + loginListener.getGameProfile().getName() + " is " + loginListener.getGameProfile().getId());
 				loginListener.setState(EnumProtocolState.READY_TO_ACCEPT);
-			} else if (MinecraftServer.getInstance().isSinglePlayer()) {
-				loginListener.getLogger().warn("Failed to verify username but will let them in anyway!");
-				loginListener.setProfile(loginListener.generateOfflineModeUUID(gameProfile));
-				loginListener.setState(EnumProtocolState.READY_TO_ACCEPT);
 			} else {
 				loginListener.disconnect("Failed to verify username!");
 				loginListener.getLogger().error("Username \'" + loginListener.getGameProfile().getName() + "\' tried to join with an invalid session");
 			}
 		} catch (AuthenticationUnavailableException ex) {
-			if (MinecraftServer.getInstance().isSinglePlayer()) {
-				loginListener.getLogger().warn("Authentication servers are down but will let them in anyway!");
-				loginListener.setProfile(loginListener.generateOfflineModeUUID(gameProfile));
-				loginListener.setState(EnumProtocolState.READY_TO_ACCEPT);
-			} else {
-				loginListener.disconnect("Authentication servers are down. Please try again later, sorry!");
-				loginListener.getLogger().error("Couldn\'t verify username because servers are unavailable");
-			}
+			loginListener.disconnect("Authentication servers are down. Please try again later, sorry!");
+			loginListener.getLogger().error("Couldn\'t verify username because servers are unavailable");
 		}
 	}
 

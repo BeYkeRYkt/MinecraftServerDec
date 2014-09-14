@@ -202,7 +202,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 				double realDiifY = Math.min(Math.abs(diffY), Math.abs(this.player.motionY));
 				double realDiffZ = Math.min(Math.abs(diffZ), Math.abs(this.player.motionZ));
 				double realDistance = realDiffX * realDiffX + realDiifY * realDiifY + realDiffZ * realDiffZ;
-				if (realDistance > 100.0D && (!this.minecraftserver.isSinglePlayer() || !this.minecraftserver.getSinglePlayerName().equals(this.player.getName()))) {
+				if (realDistance > 100.0D) {
 					logger.warn(this.player.getName() + " moved too quickly! " + diffX + "," + diffY + "," + diffZ + " (" + realDiffX + ", " + realDiifY + ", " + realDiffZ + ")");
 					this.movePlayer(this.lastX, this.lastY, this.lastZ, this.player.yaw, this.player.pitch);
 					return;
@@ -466,10 +466,6 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 		this.minecraftserver.getPlayerList().sendMessage(chatMessage);
 		this.player.q();
 		this.minecraftserver.getPlayerList().disconnect(this.player);
-		if (this.minecraftserver.isSinglePlayer() && this.player.getName().equals(this.minecraftserver.getSinglePlayerName())) {
-			logger.info("Stopping singleplayer server as player logged out");
-			this.minecraftserver.stopTicking();
-		}
 	}
 
 	public void handle(PacketPlayInHeldItemChange packet) {
@@ -607,14 +603,9 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 				if (this.player.viewingCredits) {
 					this.player = this.minecraftserver.getPlayerList().moveToWorld(this.player, 0, true);
 				} else if (this.player.getWorldServer().getWorldData().isHardcore()) {
-					if (this.minecraftserver.isSinglePlayer() && this.player.getName().equals(this.minecraftserver.getSinglePlayerName())) {
-						this.player.playerConncetion.disconnect("You have died. Game over, man, it\'s game over!");
-						this.minecraftserver.stopSinglePlayerServer();
-					} else {
-						GameProfileBanEntry banEntry = new GameProfileBanEntry(this.player.getGameProfile(), (Date) null, "(You just lost the game)", (Date) null, "Death in Hardcore");
-						this.minecraftserver.getPlayerList().getProfileBans().add((JsonListEntry) banEntry);
-						this.player.playerConncetion.disconnect("You have died. Game over, man, it\'s game over!");
-					}
+					GameProfileBanEntry banEntry = new GameProfileBanEntry(this.player.getGameProfile(), (Date) null, "(You just lost the game)", (Date) null, "Death in Hardcore");
+					this.minecraftserver.getPlayerList().getProfileBans().add((JsonListEntry) banEntry);
+					this.player.playerConncetion.disconnect("You have died. Game over, man, it\'s game over!");
 				} else {
 					if (this.player.getHealth() > 0.0F) {
 						return;
