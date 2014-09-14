@@ -13,12 +13,12 @@ public class BlockMycel extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public BlockState a(BlockState var1, ard var2, Position var3) {
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		Block var4 = var2.getBlockState(var3.a()).getBlock();
 		return var1.a(a, Boolean.valueOf(var4 == Blocks.SNOW || var4 == Blocks.SNOW_LAYER));
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!var1.isStatic) {
 			if (var1.l(var2.a()) < 4 && var1.getBlockState(var2.a()).getBlock().n() > 2) {
 				var1.a(var2, Blocks.DIRT.getBlockState().a(BlockDirt.a, avd.a));
@@ -26,7 +26,7 @@ public class BlockMycel extends Block {
 				if (var1.l(var2.a()) >= 9) {
 					for (int var5 = 0; var5 < 4; ++var5) {
 						Position var6 = var2.a(var4.nextInt(3) - 1, var4.nextInt(5) - 3, var4.nextInt(3) - 1);
-						BlockState var7 = var1.getBlockState(var6);
+						IBlockState var7 = var1.getBlockState(var6);
 						Block var8 = var1.getBlockState(var6.a()).getBlock();
 						if (var7.getBlock() == Blocks.DIRT && var7.b(BlockDirt.a) == avd.a && var1.l(var6.a()) >= 4 && var8.n() <= 2) {
 							var1.a(var6, this.getBlockState());
@@ -38,11 +38,11 @@ public class BlockMycel extends Block {
 		}
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return Blocks.DIRT.a(Blocks.DIRT.getBlockState().a(BlockDirt.a, avd.a), var2, var3);
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return 0;
 	}
 

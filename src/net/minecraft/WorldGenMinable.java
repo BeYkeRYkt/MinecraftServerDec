@@ -5,15 +5,15 @@ import java.util.Random;
 
 public class WorldGenMinable extends WorldGenerator {
 
-	private final BlockState a;
+	private final IBlockState a;
 	private final int b;
-	private final Predicate<BlockState> c;
+	private final Predicate<IBlockState> c;
 
-	public WorldGenMinable(BlockState var1, int var2) {
+	public WorldGenMinable(IBlockState var1, int var2) {
 		this(var1, var2, WorldGenNetherBlockEqualityPredicate.create(Blocks.STONE));
 	}
 
-	public WorldGenMinable(BlockState var1, int var2, Predicate<BlockState> var3) {
+	public WorldGenMinable(IBlockState var1, int var2, Predicate<IBlockState> var3) {
 		this.a = var1;
 		this.b = var2;
 		this.c = var3;
@@ -54,7 +54,7 @@ public class WorldGenMinable extends WorldGenerator {
 								if (var38 * var38 + var41 * var41 + var44 * var44 < 1.0D) {
 									Position var46 = new Position(var37, var40, var43);
 									if (this.c.apply(var1.getBlockState(var46))) {
-										var1.a(var46, this.a, 2);
+										var1.setBlockAt(var46, this.a, 2);
 									}
 								}
 							}

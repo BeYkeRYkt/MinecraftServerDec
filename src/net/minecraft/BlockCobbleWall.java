@@ -69,7 +69,7 @@ public class BlockCobbleWall extends Block {
 		this.a(var7, 0.0F, var9, var8, var11, var10);
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		this.a(var1, var2);
 		this.F = 1.5D;
 		return super.a(var1, var2, var3);
@@ -80,19 +80,19 @@ public class BlockCobbleWall extends Block {
 		return var3 == Blocks.BARRIER ? false : (var3 != this && !(var3 instanceof BlockFenceGate) ? (var3.material.k() && var3.d() ? var3.material != Material.PUMPKIN : false) : true);
 	}
 
-	public int a(BlockState var1) {
+	public int a(IBlockState var1) {
 		return ((bby) var1.b(P)).a();
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(P, bby.a(var1));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((bby) var1.b(P)).a();
 	}
 
-	public BlockState a(BlockState var1, ard var2, Position var3) {
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		return var1.a(a, Boolean.valueOf(!var2.d(var3.a()))).a(b, Boolean.valueOf(this.e(var2, var3.c()))).a(M, Boolean.valueOf(this.e(var2, var3.f()))).a(N, Boolean.valueOf(this.e(var2, var3.d()))).a(O, Boolean.valueOf(this.e(var2, var3.e())));
 	}
 

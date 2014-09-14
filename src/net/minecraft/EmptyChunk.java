@@ -21,7 +21,7 @@ public class EmptyChunk extends Chunk {
 	public void b() {
 	}
 
-	public Block a(Position var1) {
+	public Block getBlockAtWorldCoords(Position var1) {
 		return Blocks.AIR;
 	}
 
@@ -29,15 +29,15 @@ public class EmptyChunk extends Chunk {
 		return 255;
 	}
 
-	public int c(Position var1) {
+	public int getBlockDataAt(Position var1) {
 		return 0;
 	}
 
-	public int a(arf var1, Position var2) {
-		return var1.c;
+	public int a(EnumSkyBlock var1, Position var2) {
+		return var1.lightLevel;
 	}
 
-	public void a(arf var1, Position var2, int var3) {
+	public void a(EnumSkyBlock var1, Position var2, int var3) {
 	}
 
 	public int a(Position var1, int var2) {

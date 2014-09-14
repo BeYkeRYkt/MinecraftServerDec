@@ -42,10 +42,10 @@ class ack extends zn {
 		if (this.f()) {
 			World var1 = this.c.world;
 			Position var2 = this.b.a();
-			BlockState var3 = var1.getBlockState(var2);
+			IBlockState var3 = var1.getBlockState(var2);
 			Block var4 = var3.getBlock();
 			if (this.e && var4 instanceof BlockCarrots && ((Integer) var3.b(BlockCarrots.a)).intValue() == 7) {
-				var1.a(var2, Blocks.AIR.getBlockState(), 2);
+				var1.setBlockAt(var2, Blocks.AIR.getBlockState(), 2);
 				var1.b(var2, true);
 				this.c.cn();
 			}
@@ -60,7 +60,7 @@ class ack extends zn {
 		Block var3 = var1.getBlockState(var2).getBlock();
 		if (var3 == Blocks.FARMLAND) {
 			var2 = var2.a();
-			BlockState var4 = var1.getBlockState(var2);
+			IBlockState var4 = var1.getBlockState(var2);
 			var3 = var4.getBlock();
 			if (var3 instanceof BlockCarrots && ((Integer) var4.b(BlockCarrots.a)).intValue() == 7 && this.d && !this.e) {
 				this.e = true;

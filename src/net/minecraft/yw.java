@@ -58,7 +58,7 @@ public class yw extends PathfinderGoal {
 				if (this.d.getBlockState(var2).getBlock() == Blocks.GRASS) {
 					if (this.d.getGameRules().b("mobGriefing")) {
 						this.d.b(2001, var2, Block.getBlockId((Block) Blocks.GRASS));
-						this.d.a(var2, Blocks.DIRT.getBlockState(), 2);
+						this.d.setBlockAt(var2, Blocks.DIRT.getBlockState(), 2);
 					}
 
 					this.c.v();

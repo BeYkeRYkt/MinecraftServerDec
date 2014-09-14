@@ -17,7 +17,7 @@ public abstract class aud extends Block {
 		this.M = var1;
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -51,11 +51,11 @@ public abstract class aud extends Block {
 		return false;
 	}
 
-	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return var1.getBlockState(var2.a(var3.getOpposite())).getBlock().t() ? this.getBlockState().a(a, var3).a(b, Boolean.valueOf(false)) : this.getBlockState().a(a, BlockFace.DOWN).a(b, Boolean.valueOf(false));
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (this.e(var1, var2, var3)) {
 			BlockFace var5 = (BlockFace) var3.b(a);
 			if (!var1.getBlockState(var2.a(var5.getOpposite())).getBlock().t()) {
@@ -66,7 +66,7 @@ public abstract class aud extends Block {
 
 	}
 
-	private boolean e(World var1, Position var2, BlockState var3) {
+	private boolean e(World var1, Position var2, IBlockState var3) {
 		if (!this.c(var1, var2)) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -80,7 +80,7 @@ public abstract class aud extends Block {
 		this.d(var1.getBlockState(var2));
 	}
 
-	private void d(BlockState var1) {
+	private void d(IBlockState var1) {
 		BlockFace var2 = (BlockFace) var1.b(a);
 		boolean var3 = ((Boolean) var1.b(b)).booleanValue();
 		float var4 = 0.25F;
@@ -110,11 +110,11 @@ public abstract class aud extends Block {
 
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (((Boolean) var3.b(b)).booleanValue()) {
 			return true;
 		} else {
-			var1.a(var2, var3.a(b, Boolean.valueOf(true)), 3);
+			var1.setBlockAt(var2, var3.a(b, Boolean.valueOf(true)), 3);
 			var1.b(var2, var2);
 			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
 			this.b(var1, var2, (BlockFace) var3.b(a));
@@ -123,7 +123,7 @@ public abstract class aud extends Block {
 		}
 	}
 
-	public void b(World var1, Position var2, BlockState var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		if (((Boolean) var3.b(b)).booleanValue()) {
 			this.b(var1, var2, (BlockFace) var3.b(a));
 		}
@@ -131,11 +131,11 @@ public abstract class aud extends Block {
 		super.b(var1, var2, var3);
 	}
 
-	public int a(ard var1, Position var2, BlockState var3, BlockFace var4) {
+	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return ((Boolean) var3.b(b)).booleanValue() ? 15 : 0;
 	}
 
-	public int b(ard var1, Position var2, BlockState var3, BlockFace var4) {
+	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return !((Boolean) var3.b(b)).booleanValue() ? 0 : (var3.b(a) == var4 ? 15 : 0);
 	}
 
@@ -143,10 +143,10 @@ public abstract class aud extends Block {
 		return true;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Random var4) {
+	public void a(World var1, Position var2, IBlockState var3, Random var4) {
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!var1.isStatic) {
 			if (((Boolean) var3.b(b)).booleanValue()) {
 				if (this.M) {
@@ -169,7 +169,7 @@ public abstract class aud extends Block {
 		this.a(0.5F - var1, 0.5F - var2, 0.5F - var3, 0.5F + var1, 0.5F + var2, 0.5F + var3);
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Entity var4) {
+	public void a(World var1, Position var2, IBlockState var3, Entity var4) {
 		if (!var1.isStatic) {
 			if (this.M) {
 				if (!((Boolean) var3.b(b)).booleanValue()) {
@@ -179,7 +179,7 @@ public abstract class aud extends Block {
 		}
 	}
 
-	private void f(World var1, Position var2, BlockState var3) {
+	private void f(World var1, Position var2, IBlockState var3) {
 		this.d(var3);
 		List var4 = var1.a(EntityArrow.class, new AxisAlignedBB((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G));
 		boolean var5 = !var4.isEmpty();
@@ -209,7 +209,7 @@ public abstract class aud extends Block {
 		var1.c(var2.a(var3.getOpposite()), (Block) this);
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		BlockFace var2;
 		switch (var1 & 7) {
 			case 0:
@@ -235,7 +235,7 @@ public abstract class aud extends Block {
 		return this.getBlockState().a(a, var2).a(b, Boolean.valueOf((var1 & 8) > 0));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		int var2;
 		switch (aue.a[((BlockFace) var1.b(a)).ordinal()]) {
 			case 1:

@@ -10,7 +10,7 @@ public class BlockOreBlock extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public MaterialMapColor g(BlockState var1) {
+	public MaterialMapColor g(IBlockState var1) {
 		return this.a;
 	}
 }

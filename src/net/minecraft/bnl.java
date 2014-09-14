@@ -94,16 +94,16 @@ public class bnl extends bno {
 	}
 
 	public boolean a(World var1, Random var2, CuboidArea var3) {
-		BlockState var4 = this.a(Blocks.GRAVEL.getBlockState());
-		BlockState var5 = this.a(Blocks.COBBLESTONE.getBlockState());
+		IBlockState var4 = this.a(Blocks.GRAVEL.getBlockState());
+		IBlockState var5 = this.a(Blocks.COBBLESTONE.getBlockState());
 
 		for (int var6 = this.l.minX; var6 <= this.l.maxX; ++var6) {
 			for (int var7 = this.l.minZ; var7 <= this.l.maxZ; ++var7) {
 				Position var8 = new Position(var6, 64, var7);
 				if (var3.b((fd) var8)) {
 					var8 = var1.r(var8).b();
-					var1.a(var8, var4, 2);
-					var1.a(var8.b(), var5, 2);
+					var1.setBlockAt(var8, var4, 2);
+					var1.setBlockAt(var8.b(), var5, 2);
 				}
 			}
 		}

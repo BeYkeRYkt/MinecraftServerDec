@@ -9,13 +9,13 @@ public class atk {
 	private final World b;
 	private final Position c;
 	private final ati d;
-	private BlockState e;
+	private IBlockState e;
 	private final boolean f;
 	private final List g;
 	// $FF: synthetic field
 	final ati a;
 
-	public atk(ati var1, World var2, Position var3, BlockState var4) {
+	public atk(ati var1, World var2, Position var3, IBlockState var4) {
 		this.a = var1;
 		this.g = Lists.newArrayList();
 		this.b = var2;
@@ -90,7 +90,7 @@ public class atk {
 	}
 
 	private atk b(Position var1) {
-		BlockState var3 = this.b.getBlockState(var1);
+		IBlockState var3 = this.b.getBlockState(var1);
 		if (ati.d(var3)) {
 			return new atk(this.a, this.b, var1, var3);
 		} else {
@@ -201,7 +201,7 @@ public class atk {
 		}
 
 		this.e = this.e.a(this.d.l(), var10);
-		this.b.a(this.c, this.e, 3);
+		this.b.setBlockAt(this.c, this.e, 3);
 	}
 
 	private boolean d(Position var1) {
@@ -323,7 +323,7 @@ public class atk {
 		this.a(var11);
 		this.e = this.e.a(this.d.l(), var11);
 		if (var2 || this.b.getBlockState(this.c) != this.e) {
-			this.b.a(this.c, this.e, 3);
+			this.b.setBlockAt(this.c, this.e, 3);
 
 			for (int var12 = 0; var12 < this.g.size(); ++var12) {
 				atk var13 = this.b((Position) this.g.get(var12));
@@ -339,7 +339,7 @@ public class atk {
 		return this;
 	}
 
-	public BlockState b() {
+	public IBlockState b() {
 		return this.e;
 	}
 }

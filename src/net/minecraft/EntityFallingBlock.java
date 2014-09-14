@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class EntityFallingBlock extends Entity {
 
-	private BlockState d;
+	private IBlockState d;
 	public int a;
 	public boolean b = true;
 	private boolean e;
@@ -19,7 +19,7 @@ public class EntityFallingBlock extends Entity {
 		super(var1);
 	}
 
-	public EntityFallingBlock(World var1, double var2, double var4, double var6, BlockState var8) {
+	public EntityFallingBlock(World var1, double var2, double var4, double var6, IBlockState var8) {
 		super(var1);
 		this.d = var8;
 		this.k = true;
@@ -76,7 +76,7 @@ public class EntityFallingBlock extends Entity {
 					this.motionY *= -0.5D;
 					if (this.world.getBlockState(var2).getBlock() != Blocks.PISTON_EXTENSION) {
 						this.die();
-						if (!this.e && this.world.a(var1, var2, true, BlockFace.UP, (Entity) null, (ItemStack) null) && !BlockFalling.d(this.world, var2.b()) && this.world.a(var2, this.d, 3)) {
+						if (!this.e && this.world.a(var1, var2, true, BlockFace.UP, (Entity) null, (ItemStack) null) && !BlockFalling.d(this.world, var2.b()) && this.world.setBlockAt(var2, this.d, 3)) {
 							if (var1 instanceof BlockFalling) {
 								((BlockFalling) var1).a_(this.world, var2);
 							}
@@ -149,7 +149,7 @@ public class EntityFallingBlock extends Entity {
 		Block var2 = this.d != null ? this.d.getBlock() : Blocks.AIR;
 		RegistryObjectName var3 = (RegistryObjectName) Block.BLOCKREGISTRY.c(var2);
 		var1.put("Block", var3 == null ? "" : var3.toString());
-		var1.put("Data", (byte) var2.c(this.d));
+		var1.put("Data", (byte) var2.getData(this.d));
 		var1.put("Time", (byte) this.a);
 		var1.put("DropItem", this.b);
 		var1.put("HurtEntities", this.f);
@@ -204,12 +204,12 @@ public class EntityFallingBlock extends Entity {
 		if (this.d != null) {
 			Block var2 = this.d.getBlock();
 			var1.addDetails("Immitating block ID", (Object) Integer.valueOf(Block.getBlockId(var2)));
-			var1.addDetails("Immitating block data", (Object) Integer.valueOf(var2.c(this.d)));
+			var1.addDetails("Immitating block data", (Object) Integer.valueOf(var2.getData(this.d)));
 		}
 
 	}
 
-	public BlockState l() {
+	public IBlockState l() {
 		return this.d;
 	}
 }

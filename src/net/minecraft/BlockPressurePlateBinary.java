@@ -14,11 +14,11 @@ public class BlockPressurePlateBinary extends ath {
 		this.b = var2;
 	}
 
-	protected int e(BlockState var1) {
+	protected int e(IBlockState var1) {
 		return ((Boolean) var1.b(a)).booleanValue() ? 15 : 0;
 	}
 
-	protected BlockState a(BlockState var1, int var2) {
+	protected IBlockState a(IBlockState var1, int var2) {
 		return var1.a(a, Boolean.valueOf(var2 > 0));
 	}
 
@@ -50,11 +50,11 @@ public class BlockPressurePlateBinary extends ath {
 		return 0;
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, Boolean.valueOf(var1 == 1));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((Boolean) var1.b(a)).booleanValue() ? 1 : 0;
 	}
 

@@ -23,7 +23,7 @@ public class BlockMinecartDetector extends ati {
 		return true;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Entity var4) {
+	public void a(World var1, Position var2, IBlockState var3, Entity var4) {
 		if (!var1.isStatic) {
 			if (!((Boolean) var3.b(M)).booleanValue()) {
 				this.e(var1, var2, var3);
@@ -31,24 +31,24 @@ public class BlockMinecartDetector extends ati {
 		}
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Random var4) {
+	public void a(World var1, Position var2, IBlockState var3, Random var4) {
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!var1.isStatic && ((Boolean) var3.b(M)).booleanValue()) {
 			this.e(var1, var2, var3);
 		}
 	}
 
-	public int a(ard var1, Position var2, BlockState var3, BlockFace var4) {
+	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return ((Boolean) var3.b(M)).booleanValue() ? 15 : 0;
 	}
 
-	public int b(ard var1, Position var2, BlockState var3, BlockFace var4) {
+	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return !((Boolean) var3.b(M)).booleanValue() ? 0 : (var4 == BlockFace.UP ? 15 : 0);
 	}
 
-	private void e(World var1, Position var2, BlockState var3) {
+	private void e(World var1, Position var2, IBlockState var3) {
 		boolean var4 = ((Boolean) var3.b(M)).booleanValue();
 		boolean var5 = false;
 		List var6 = this.a(var1, var2, adx.class, new Predicate[0]);
@@ -57,14 +57,14 @@ public class BlockMinecartDetector extends ati {
 		}
 
 		if (var5 && !var4) {
-			var1.a(var2, var3.a(M, Boolean.valueOf(true)), 3);
+			var1.setBlockAt(var2, var3.a(M, Boolean.valueOf(true)), 3);
 			var1.c(var2, (Block) this);
 			var1.c(var2.b(), (Block) this);
 			var1.b(var2, var2);
 		}
 
 		if (!var5 && var4) {
-			var1.a(var2, var3.a(M, Boolean.valueOf(false)), 3);
+			var1.setBlockAt(var2, var3.a(M, Boolean.valueOf(false)), 3);
 			var1.c(var2, (Block) this);
 			var1.c(var2.b(), (Block) this);
 			var1.b(var2, var2);
@@ -77,7 +77,7 @@ public class BlockMinecartDetector extends ati {
 		var1.e(var2, this);
 	}
 
-	public void c(World var1, Position var2, BlockState var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		super.c(var1, var2, var3);
 		this.e(var1, var2, var3);
 	}
@@ -116,11 +116,11 @@ public class BlockMinecartDetector extends ati {
 		return new AxisAlignedBB((double) ((float) var1.getX() + 0.2F), (double) var1.getY(), (double) ((float) var1.getZ() + 0.2F), (double) ((float) (var1.getX() + 1) - 0.2F), (double) ((float) (var1.getY() + 1) - 0.2F), (double) ((float) (var1.getZ() + 1) - 0.2F));
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(b, atl.a(var1 & 7)).a(M, Boolean.valueOf((var1 & 8) > 0));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((atl) var1.b(b)).a();
 		if (((Boolean) var1.b(M)).booleanValue()) {

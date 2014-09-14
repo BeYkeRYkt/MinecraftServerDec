@@ -76,7 +76,7 @@ public class EntityIronGolem extends EntityGolem {
 			int var1 = MathHelper.toFixedPointInt(this.locationX);
 			int var2 = MathHelper.toFixedPointInt(this.locationY - 0.20000000298023224D);
 			int var3 = MathHelper.toFixedPointInt(this.locationZ);
-			BlockState var4 = this.world.getBlockState(new Position(var1, var2, var3));
+			IBlockState var4 = this.world.getBlockState(new Position(var1, var2, var3));
 			Block var5 = var4.getBlock();
 			if (var5.getMaterial() != Material.AIR) {
 				this.world.a(Particle.L, this.locationX + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, this.getBoundingBox().minY + 0.1D, this.locationZ + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, 4.0D * ((double) this.random.nextFloat() - 0.5D), 0.5D, ((double) this.random.nextFloat() - 0.5D) * 4.0D, new int[] { Block.f(var4) });

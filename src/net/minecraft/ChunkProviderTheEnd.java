@@ -63,7 +63,7 @@ public class ChunkProviderTheEnd implements IChunkProvider {
 							double var45 = (var34 - var32) * var41;
 
 							for (int var47 = 0; var47 < 8; ++var47) {
-								BlockState var48 = null;
+								IBlockState var48 = null;
 								if (var43 > 0.0D) {
 									var48 = Blocks.END_STONE.getBlockState();
 								}
@@ -95,11 +95,11 @@ public class ChunkProviderTheEnd implements IChunkProvider {
 			for (int var3 = 0; var3 < 16; ++var3) {
 				byte var4 = 1;
 				int var5 = -1;
-				BlockState var6 = Blocks.END_STONE.getBlockState();
-				BlockState var7 = Blocks.END_STONE.getBlockState();
+				IBlockState var6 = Blocks.END_STONE.getBlockState();
+				IBlockState var7 = Blocks.END_STONE.getBlockState();
 
 				for (int var8 = 127; var8 >= 0; --var8) {
-					BlockState var9 = var1.a(var2, var8, var3);
+					IBlockState var9 = var1.a(var2, var8, var3);
 					if (var9.getBlock().getMaterial() == Material.AIR) {
 						var5 = -1;
 					} else if (var9.getBlock() == Blocks.STONE) {

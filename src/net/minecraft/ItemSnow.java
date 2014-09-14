@@ -14,7 +14,7 @@ public class ItemSnow extends ItemBlock {
 		} else if (!var2.a(var4, var5, var1)) {
 			return false;
 		} else {
-			BlockState var9 = var3.getBlockState(var4);
+			IBlockState var9 = var3.getBlockState(var4);
 			Block var10 = var9.getBlock();
 			if (var10 != this.block && var5 != BlockFace.UP) {
 				var4 = var4.a(var5);
@@ -25,8 +25,8 @@ public class ItemSnow extends ItemBlock {
 			if (var10 == this.block) {
 				int var11 = ((Integer) var9.b(BlockSnow.a)).intValue();
 				if (var11 <= 7) {
-					BlockState var12 = var9.a(BlockSnow.a, Integer.valueOf(var11 + 1));
-					if (var3.b(this.block.a(var3, var4, var12)) && var3.a(var4, var12, 2)) {
+					IBlockState var12 = var9.a(BlockSnow.a, Integer.valueOf(var11 + 1));
+					if (var3.b(this.block.a(var3, var4, var12)) && var3.setBlockAt(var4, var12, 2)) {
 						var3.makeSound((double) ((float) var4.getX() + 0.5F), (double) ((float) var4.getY() + 0.5F), (double) ((float) var4.getZ() + 0.5F), this.block.H.b(), (this.block.H.d() + 1.0F) / 2.0F, this.block.H.e() * 0.8F);
 						--var1.amount;
 						return true;

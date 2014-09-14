@@ -12,19 +12,19 @@ public class BlockStone extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return var1.b(a) == bbb.a ? Item.getItemOf(Blocks.COBBLESTONE) : Item.getItemOf(Blocks.STONE);
 	}
 
-	public int a(BlockState var1) {
+	public int a(IBlockState var1) {
 		return ((bbb) var1.b(a)).a();
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, bbb.a(var1));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((bbb) var1.b(a)).a();
 	}
 

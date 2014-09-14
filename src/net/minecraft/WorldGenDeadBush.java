@@ -13,7 +13,7 @@ public class WorldGenDeadBush extends WorldGenerator {
 		for (int var5 = 0; var5 < 4; ++var5) {
 			Position var6 = var3.a(var2.nextInt(8) - var2.nextInt(8), var2.nextInt(4) - var2.nextInt(4), var2.nextInt(8) - var2.nextInt(8));
 			if (var1.d(var6) && Blocks.DEADBUSH.f(var1, var6, Blocks.DEADBUSH.getBlockState())) {
-				var1.a(var6, Blocks.DEADBUSH.getBlockState(), 2);
+				var1.setBlockAt(var6, Blocks.DEADBUSH.getBlockState(), 2);
 			}
 		}
 

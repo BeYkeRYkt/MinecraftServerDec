@@ -109,8 +109,8 @@ public abstract class TileEntity {
 
 	public int u() {
 		if (this.h == -1) {
-			BlockState var1 = this.world.getBlockState(this.position);
-			this.h = var1.getBlock().c(var1);
+			IBlockState var1 = this.world.getBlockState(this.position);
+			this.h = var1.getBlock().getData(var1);
 		}
 
 		return this.h;
@@ -118,8 +118,8 @@ public abstract class TileEntity {
 
 	public void update() {
 		if (this.world != null) {
-			BlockState var1 = this.world.getBlockState(this.position);
-			this.h = var1.getBlock().c(var1);
+			IBlockState var1 = this.world.getBlockState(this.position);
+			this.h = var1.getBlock().getData(var1);
 			this.world.b(this.position, this);
 			if (this.getBlock() != Blocks.AIR) {
 				this.world.e(this.position, this.getBlock());

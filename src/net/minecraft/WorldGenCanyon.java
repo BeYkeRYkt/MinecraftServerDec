@@ -97,7 +97,7 @@ public class WorldGenCanyon extends WorldGenBase {
 						for (int var42 = var56; !var57 && var42 < var39; ++var42) {
 							for (int var43 = var37 + 1; !var57 && var43 >= var55 - 1; --var43) {
 								if (var43 >= 0 && var43 < 256) {
-									BlockState var44 = var5.a(var41, var43, var42);
+									IBlockState var44 = var5.a(var41, var43, var42);
 									if (var44.getBlock() == Blocks.FLOWING_WATER || var44.getBlock() == Blocks.WATER) {
 										var57 = true;
 									}
@@ -121,7 +121,7 @@ public class WorldGenCanyon extends WorldGenBase {
 									for (int var48 = var37; var48 > var55; --var48) {
 										double var49 = ((double) (var48 - 1) + 0.5D - var8) / var30;
 										if ((var58 * var58 + var45 * var45) * (double) this.d[var48 - 1] + var49 * var49 / 6.0D < 1.0D) {
-											BlockState var51 = var5.a(var41, var48, var59);
+											IBlockState var51 = var5.a(var41, var48, var59);
 											if (var51.getBlock() == Blocks.GRASS) {
 												var47 = true;
 											}

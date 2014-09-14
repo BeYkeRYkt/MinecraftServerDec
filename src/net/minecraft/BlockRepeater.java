@@ -12,42 +12,42 @@ public class BlockRepeater extends ava {
 		this.setBlockState(this.L.b().a(N, BlockFace.NORTH).a(b, Integer.valueOf(1)).a(a, Boolean.valueOf(false)));
 	}
 
-	public BlockState a(BlockState var1, ard var2, Position var3) {
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		return var1.a(a, Boolean.valueOf(this.b(var2, var3, var1)));
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (!var4.playerProperties.maybuild) {
 			return false;
 		} else {
-			var1.a(var2, var3.a(b), 3);
+			var1.setBlockAt(var2, var3.a(b), 3);
 			return true;
 		}
 	}
 
-	protected int d(BlockState var1) {
+	protected int d(IBlockState var1) {
 		return ((Integer) var1.b(b)).intValue() * 2;
 	}
 
-	protected BlockState e(BlockState var1) {
+	protected IBlockState e(IBlockState var1) {
 		Integer var2 = (Integer) var1.b(b);
 		Boolean var3 = (Boolean) var1.b(a);
 		BlockFace var4 = (BlockFace) var1.b(N);
 		return Blocks.POWERED_REPEATER.getBlockState().a(N, var4).a(b, var2).a(a, var3);
 	}
 
-	protected BlockState k(BlockState var1) {
+	protected IBlockState k(IBlockState var1) {
 		Integer var2 = (Integer) var1.b(b);
 		Boolean var3 = (Boolean) var1.b(a);
 		BlockFace var4 = (BlockFace) var1.b(N);
 		return Blocks.UNPOWERED_REPEATER.getBlockState().a(N, var4).a(b, var2).a(a, var3);
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return Items.REPEATER;
 	}
 
-	public boolean b(ard var1, Position var2, BlockState var3) {
+	public boolean b(ard var1, Position var2, IBlockState var3) {
 		return this.c(var1, var2, var3) > 0;
 	}
 
@@ -55,16 +55,16 @@ public class BlockRepeater extends ava {
 		return d(var1);
 	}
 
-	public void b(World var1, Position var2, BlockState var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		super.b(var1, var2, var3);
 		this.h(var1, var2, var3);
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(N, BlockFace.fromDirection(var1)).a(a, Boolean.valueOf(false)).a(b, Integer.valueOf(1 + (var1 >> 2)));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((BlockFace) var1.b(N)).toDirection();
 		var3 |= ((Integer) var1.b(b)).intValue() - 1 << 2;

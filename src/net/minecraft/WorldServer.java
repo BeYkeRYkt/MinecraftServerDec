@@ -269,7 +269,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 					for (int var11 = 0; var11 < var24; ++var11) {
 						ChunkSection var12 = var23[var11];
-						if (var12 != null && var12.b()) {
+						if (var12 != null && var12.shouldTick()) {
 							for (int var13 = 0; var13 < var8; ++var13) {
 								this.m = this.m * 3 + 1013904223;
 								int var14 = this.m >> 2;
@@ -278,9 +278,9 @@ public class WorldServer extends World implements ITaskScheduler {
 								int var17 = var14 >> 16 & 15;
 								++var2;
 								Position var18 = new Position(var15 + var5, var17 + var12.getYPos(), var16 + var6);
-								BlockState var19 = var12.getBlockState(var15, var17, var16);
+								IBlockState var19 = var12.getBlockState(var15, var17, var16);
 								Block var20 = var19.getBlock();
-								if (var20.w()) {
+								if (var20.isTicking()) {
 									++var1;
 									var20.a((World) this, var18, var19, this.s);
 								}
@@ -316,7 +316,7 @@ public class WorldServer extends World implements ITaskScheduler {
 			if (var2.M()) {
 				var6 = 8;
 				if (this.a(var5.position.a(-var6, -var6, -var6), var5.position.a(var6, var6, var6))) {
-					BlockState var7 = this.getBlockState(var5.position);
+					IBlockState var7 = this.getBlockState(var5.position);
 					if (var7.getBlock().getMaterial() != Material.AIR && var7.getBlock() == var5.getBlock()) {
 						var7.getBlock().b((World) this, var5.position, var7, this.s);
 					}
@@ -407,7 +407,7 @@ public class WorldServer extends World implements ITaskScheduler {
 					var11.remove();
 					byte var5 = 0;
 					if (this.a(var4.position.a(-var5, -var5, -var5), var4.position.a(var5, var5, var5))) {
-						BlockState var6 = this.getBlockState(var4.position);
+						IBlockState var6 = this.getBlockState(var4.position);
 						if (var6.getBlock().getMaterial() != Material.AIR && Block.a(var6.getBlock(), var4.getBlock())) {
 							try {
 								var6.getBlock().b((World) this, var4.position, var6, this.s);
@@ -752,7 +752,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	private boolean a(aqk var1) {
-		BlockState var2 = this.getBlockState(var1.a());
+		IBlockState var2 = this.getBlockState(var1.a());
 		return var2.getBlock() == var1.d() ? var2.getBlock().a(this, var1.a(), var2, var1.b(), var1.c()) : false;
 	}
 

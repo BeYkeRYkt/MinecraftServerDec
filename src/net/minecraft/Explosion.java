@@ -58,7 +58,7 @@ public class Explosion {
 
 						for (float var21 = 0.3F; var14 > 0.0F; var14 -= 0.22500001F) {
 							Position var22 = new Position(var15, var17, var19);
-							BlockState var23 = this.d.getBlockState(var22);
+							IBlockState var23 = this.d.getBlockState(var22);
 							if (var23.getBlock().getMaterial() != Material.AIR) {
 								float var24 = this.h != null ? this.h.a(this, this.d, var22, var23) : var23.getBlock().a((Entity) null);
 								var14 -= (var24 + 0.3F) * 0.3F;
@@ -159,7 +159,7 @@ public class Explosion {
 						var4.a(this.d, var3, this.d.getBlockState(var3), 1.0F / this.i, 0);
 					}
 
-					this.d.a(var3, Blocks.AIR.getBlockState(), 3);
+					this.d.setBlockAt(var3, Blocks.AIR.getBlockState(), 3);
 					var4.a(this.d, var3, this);
 				}
 			}

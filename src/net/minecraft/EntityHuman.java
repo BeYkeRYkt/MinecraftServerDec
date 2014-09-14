@@ -1017,9 +1017,9 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public void a(boolean var1, boolean var2, boolean var3) {
 		this.a(0.6F, 1.8F);
-		BlockState var4 = this.world.getBlockState(this.bv);
+		IBlockState var4 = this.world.getBlockState(this.bv);
 		if (this.bv != null && var4.getBlock() == Blocks.BED) {
-			this.world.a(this.bv, var4.a(BlockBed.b, Boolean.valueOf(false)), 4);
+			this.world.setBlockAt(this.bv, var4.a(BlockBed.b, Boolean.valueOf(false)), 4);
 			Position var5 = BlockBed.a(this.world, this.bv, 0);
 			if (var5 == null) {
 				var5 = this.bv.a();

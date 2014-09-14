@@ -21,7 +21,7 @@ class aev extends PathfinderGoal {
 		int var4 = MathHelper.toFixedPointInt(this.a.locationY + var1.nextDouble() * 3.0D);
 		int var5 = MathHelper.toFixedPointInt(this.a.locationZ - 2.0D + var1.nextDouble() * 4.0D);
 		Position var6 = new Position(var3, var4, var5);
-		BlockState var7 = var2.getBlockState(var6);
+		IBlockState var7 = var2.getBlockState(var6);
 		Block var8 = var7.getBlock();
 		if (EntityEnderman.co().contains(var8)) {
 			this.a.a(var7);

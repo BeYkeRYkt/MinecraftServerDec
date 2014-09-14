@@ -13,7 +13,7 @@ public class BlockLever extends Block {
 		this.a(CreativeModeTab.REDSTONE);
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -37,8 +37,8 @@ public class BlockLever extends Block {
 		return var1.getBlockState(var2).getBlock().t();
 	}
 
-	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		BlockState var9 = this.getBlockState().a(b, Boolean.valueOf(false));
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		IBlockState var9 = this.getBlockState().a(b, Boolean.valueOf(false));
 		if (this.d(var1, var2.a(var3.getOpposite()))) {
 			return var9.a(a, axk.a(var3, var8.aO()));
 		} else {
@@ -80,7 +80,7 @@ public class BlockLever extends Block {
 		}
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (this.e(var1, var2) && !this.d(var1, var2.a(((axk) var3.b(a)).c().getOpposite()))) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -126,12 +126,12 @@ public class BlockLever extends Block {
 
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {
 			var3 = var3.a(b);
-			var1.a(var2, var3, 3);
+			var1.setBlockAt(var2, var3, 3);
 			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, ((Boolean) var3.b(b)).booleanValue() ? 0.6F : 0.5F);
 			var1.c(var2, (Block) this);
 			BlockFace var9 = ((axk) var3.b(a)).c();
@@ -140,7 +140,7 @@ public class BlockLever extends Block {
 		}
 	}
 
-	public void b(World var1, Position var2, BlockState var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		if (((Boolean) var3.b(b)).booleanValue()) {
 			var1.c(var2, (Block) this);
 			BlockFace var4 = ((axk) var3.b(a)).c();
@@ -150,11 +150,11 @@ public class BlockLever extends Block {
 		super.b(var1, var2, var3);
 	}
 
-	public int a(ard var1, Position var2, BlockState var3, BlockFace var4) {
+	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return ((Boolean) var3.b(b)).booleanValue() ? 15 : 0;
 	}
 
-	public int b(ard var1, Position var2, BlockState var3, BlockFace var4) {
+	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return !((Boolean) var3.b(b)).booleanValue() ? 0 : (((axk) var3.b(a)).c() == var4 ? 15 : 0);
 	}
 
@@ -162,11 +162,11 @@ public class BlockLever extends Block {
 		return true;
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, axk.a(var1 & 7)).a(b, Boolean.valueOf((var1 & 8) > 0));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((axk) var1.b(a)).a();
 		if (((Boolean) var1.b(b)).booleanValue()) {

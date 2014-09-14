@@ -14,15 +14,15 @@ public class BlockSmoothBrick extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(BlockState var1) {
+	public int a(IBlockState var1) {
 		return ((bbd) var1.b(a)).a();
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, bbd.a(var1));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((bbd) var1.b(a)).a();
 	}
 

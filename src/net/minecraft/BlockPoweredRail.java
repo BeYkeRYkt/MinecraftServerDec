@@ -12,7 +12,7 @@ public class BlockPoweredRail extends ati {
 		this.setBlockState(this.L.b().a(b, atl.a).a(M, Boolean.valueOf(false)));
 	}
 
-	protected boolean a(World var1, Position var2, BlockState var3, boolean var4, int var5) {
+	protected boolean a(World var1, Position var2, IBlockState var3, boolean var4, int var5) {
 		if (var5 >= 8) {
 			return false;
 		} else {
@@ -86,7 +86,7 @@ public class BlockPoweredRail extends ati {
 	}
 
 	protected boolean a(World var1, Position var2, boolean var3, int var4, atl var5) {
-		BlockState var6 = var1.getBlockState(var2);
+		IBlockState var6 = var1.getBlockState(var2);
 		if (var6.getBlock() != this) {
 			return false;
 		} else {
@@ -95,11 +95,11 @@ public class BlockPoweredRail extends ati {
 		}
 	}
 
-	protected void b(World var1, Position var2, BlockState var3, Block var4) {
+	protected void b(World var1, Position var2, IBlockState var3, Block var4) {
 		boolean var5 = ((Boolean) var3.b(M)).booleanValue();
 		boolean var6 = var1.z(var2) || this.a(var1, var2, var3, true, 0) || this.a(var1, var2, var3, false, 0);
 		if (var6 != var5) {
-			var1.a(var2, var3.a(M, Boolean.valueOf(var6)), 3);
+			var1.setBlockAt(var2, var3.a(M, Boolean.valueOf(var6)), 3);
 			var1.c(var2.b(), (Block) this);
 			if (((atl) var3.b(b)).c()) {
 				var1.c(var2.a(), (Block) this);
@@ -112,11 +112,11 @@ public class BlockPoweredRail extends ati {
 		return b;
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(b, atl.a(var1 & 7)).a(M, Boolean.valueOf((var1 & 8) > 0));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((atl) var1.b(b)).a();
 		if (((Boolean) var1.b(M)).booleanValue()) {

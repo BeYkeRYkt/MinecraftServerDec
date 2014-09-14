@@ -18,11 +18,11 @@ public class BlockThin extends Block {
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public BlockState a(BlockState var1, ard var2, Position var3) {
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		return var1.a(b, Boolean.valueOf(this.c(var2.getBlockState(var3.c()).getBlock()))).a(N, Boolean.valueOf(this.c(var2.getBlockState(var3.d()).getBlock()))).a(O, Boolean.valueOf(this.c(var2.getBlockState(var3.e()).getBlock()))).a(M, Boolean.valueOf(this.c(var2.getBlockState(var3.f()).getBlock())));
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return !this.a ? null : super.a(var1, var2, var3);
 	}
 
@@ -34,7 +34,7 @@ public class BlockThin extends Block {
 		return false;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, IBlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
 		boolean var7 = this.c(var1.getBlockState(var2.c()).getBlock());
 		boolean var8 = this.c(var1.getBlockState(var2.d()).getBlock());
 		boolean var9 = this.c(var1.getBlockState(var2.e()).getBlock());
@@ -113,7 +113,7 @@ public class BlockThin extends Block {
 		return true;
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return 0;
 	}
 

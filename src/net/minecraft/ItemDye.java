@@ -29,7 +29,7 @@ public class ItemDye extends Item {
 					return true;
 				}
 			} else if (var9 == akv.m) {
-				BlockState var10 = var3.getBlockState(var4);
+				IBlockState var10 = var3.getBlockState(var4);
 				Block var11 = var10.getBlock();
 				if (var11 == Blocks.LOG && var10.b(BlockWood.a) == EnumWoodType.d) {
 					if (var5 == BlockFace.DOWN) {
@@ -42,8 +42,8 @@ public class ItemDye extends Item {
 
 					var4 = var4.a(var5);
 					if (var3.d(var4)) {
-						BlockState var12 = Blocks.COCOA.a(var3, var4, var5, var6, var7, var8, 0, var2);
-						var3.a(var4, var12, 2);
+						IBlockState var12 = Blocks.COCOA.a(var3, var4, var5, var6, var7, var8, 0, var2);
+						var3.setBlockAt(var4, var12, 2);
 						if (!var2.playerProperties.instabuild) {
 							--var1.amount;
 						}
@@ -58,7 +58,7 @@ public class ItemDye extends Item {
 	}
 
 	public static boolean a(ItemStack var0, World var1, Position var2) {
-		BlockState var3 = var1.getBlockState(var2);
+		IBlockState var3 = var1.getBlockState(var2);
 		if (var3.getBlock() instanceof atz) {
 			atz var4 = (atz) var3.getBlock();
 			if (var4.a(var1, var2, var3, var1.isStatic)) {

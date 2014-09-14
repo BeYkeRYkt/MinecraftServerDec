@@ -116,7 +116,7 @@ abstract class bnn extends StructurePiece {
 		return var2;
 	}
 
-	protected BlockState a(BlockState var1) {
+	protected IBlockState a(IBlockState var1) {
 		if (this.b) {
 			if (var1.getBlock() == Blocks.LOG || var1.getBlock() == Blocks.LOG2) {
 				return Blocks.SANDSTONE.getBlockState();
@@ -146,19 +146,19 @@ abstract class bnn extends StructurePiece {
 		return var1;
 	}
 
-	protected void a(World var1, BlockState var2, int var3, int var4, int var5, CuboidArea var6) {
-		BlockState var7 = this.a(var2);
+	protected void a(World var1, IBlockState var2, int var3, int var4, int var5, CuboidArea var6) {
+		IBlockState var7 = this.a(var2);
 		super.a(var1, var7, var3, var4, var5, var6);
 	}
 
-	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockState var9, BlockState var10, boolean var11) {
-		BlockState var12 = this.a(var9);
-		BlockState var13 = this.a(var10);
+	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6, int var7, int var8, IBlockState var9, IBlockState var10, boolean var11) {
+		IBlockState var12 = this.a(var9);
+		IBlockState var13 = this.a(var10);
 		super.a(var1, var2, var3, var4, var5, var6, var7, var8, var12, var13, var11);
 	}
 
-	protected void b(World var1, BlockState var2, int var3, int var4, int var5, CuboidArea var6) {
-		BlockState var7 = this.a(var2);
+	protected void b(World var1, IBlockState var2, int var3, int var4, int var5, CuboidArea var6) {
+		IBlockState var7 = this.a(var2);
 		super.b(var1, var7, var3, var4, var5, var6);
 	}
 

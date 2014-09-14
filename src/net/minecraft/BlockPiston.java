@@ -21,33 +21,33 @@ public class BlockPiston extends Block {
 		return false;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
-		var1.a(var2, var3.a(a, a(var1, var2, var4)), 2);
+	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
+		var1.setBlockAt(var2, var3.a(a, a(var1, var2, var4)), 2);
 		if (!var1.isStatic) {
 			this.e(var1, var2, var3);
 		}
 
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!var1.isStatic) {
 			this.e(var1, var2, var3);
 		}
 
 	}
 
-	public void c(World var1, Position var2, BlockState var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic && var1.getTileEntity(var2) == null) {
 			this.e(var1, var2, var3);
 		}
 
 	}
 
-	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.getBlockState().a(a, a(var1, var2, var8)).a(b, Boolean.valueOf(false));
 	}
 
-	private void e(World var1, Position var2, BlockState var3) {
+	private void e(World var1, Position var2, IBlockState var3) {
 		BlockFace var4 = (BlockFace) var3.b(a);
 		boolean var5 = this.b(var1, var2, var4);
 		if (var5 && !((Boolean) var3.b(b)).booleanValue()) {
@@ -55,7 +55,7 @@ public class BlockPiston extends Block {
 				var1.c(var2, this, 0, var4.getId());
 			}
 		} else if (!var5 && ((Boolean) var3.b(b)).booleanValue()) {
-			var1.a(var2, var3.a(b, Boolean.valueOf(false)), 2);
+			var1.setBlockAt(var2, var3.a(b, Boolean.valueOf(false)), 2);
 			var1.c(var2, this, 1, var4.getId());
 		}
 
@@ -91,12 +91,12 @@ public class BlockPiston extends Block {
 		}
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, int var4, int var5) {
+	public boolean a(World var1, Position var2, IBlockState var3, int var4, int var5) {
 		BlockFace var6 = (BlockFace) var3.b(a);
 		if (!var1.isStatic) {
 			boolean var7 = this.b(var1, var2, var6);
 			if (var7 && var4 == 1) {
-				var1.a(var2, var3.a(b, Boolean.valueOf(true)), 2);
+				var1.setBlockAt(var2, var3.a(b, Boolean.valueOf(true)), 2);
 				return false;
 			}
 
@@ -110,7 +110,7 @@ public class BlockPiston extends Block {
 				return false;
 			}
 
-			var1.a(var2, var3.a(b, Boolean.valueOf(true)), 2);
+			var1.setBlockAt(var2, var3.a(b, Boolean.valueOf(true)), 2);
 			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "tile.piston.out", 0.5F, var1.s.nextFloat() * 0.25F + 0.6F);
 		} else if (var4 == 1) {
 			TileEntity var13 = var1.getTileEntity(var2.a(var6));
@@ -118,7 +118,7 @@ public class BlockPiston extends Block {
 				((TileEntityPiston) var13).h();
 			}
 
-			var1.a(var2, Blocks.PISTON_EXTENSION.getBlockState().a(BlockPistonMoving.a, var6).a(BlockPistonMoving.b, this.M ? bdu.b : bdu.a), 3);
+			var1.setBlockAt(var2, Blocks.PISTON_EXTENSION.getBlockState().a(BlockPistonMoving.a, var6).a(BlockPistonMoving.b, this.M ? bdu.b : bdu.a), 3);
 			var1.a(var2, BlockPistonMoving.a(this.a(var5), var6, false, true));
 			if (this.M) {
 				Position var8 = var2.a(var6.g() * 2, var6.h() * 2, var6.i() * 2);
@@ -149,7 +149,7 @@ public class BlockPiston extends Block {
 	}
 
 	public void a(ard var1, Position var2) {
-		BlockState var3 = var1.getBlockState(var2);
+		IBlockState var3 = var1.getBlockState(var2);
 		if (var3.getBlock() == this && ((Boolean) var3.b(b)).booleanValue()) {
 			float var4 = 0.25F;
 			BlockFace var5 = (BlockFace) var3.b(a);
@@ -184,12 +184,12 @@ public class BlockPiston extends Block {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
-	public void a(World var1, Position var2, BlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, IBlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		super.a(var1, var2, var3, var4, var5, var6);
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3);
 	}
@@ -280,15 +280,15 @@ public class BlockPiston extends Block {
 				var9[var8] = var13;
 			}
 
-			BlockState var19;
+			IBlockState var19;
 			for (var11 = var6.size() - 1; var11 >= 0; --var11) {
 				var12 = (Position) var6.get(var11);
 				var19 = var1.getBlockState(var12);
 				Block var14 = var19.getBlock();
-				var14.c(var19);
+				var14.getData(var19);
 				var1.g(var12);
 				var12 = var12.a(var10);
-				var1.a(var12, Blocks.PISTON_EXTENSION.getBlockState().a(a, var3), 4);
+				var1.setBlockAt(var12, Blocks.PISTON_EXTENSION.getBlockState().a(a, var3), 4);
 				var1.a(var12, BlockPistonMoving.a(var19, var3, var4, false));
 				--var8;
 				var9[var8] = var14;
@@ -298,8 +298,8 @@ public class BlockPiston extends Block {
 			if (var4) {
 				bdu var17 = this.M ? bdu.b : bdu.a;
 				var19 = Blocks.PISTON_HEAD.getBlockState().a(BlockPistonExtension.a, var3).a(BlockPistonExtension.b, var17);
-				BlockState var20 = Blocks.PISTON_EXTENSION.getBlockState().a(BlockPistonMoving.a, var3).a(BlockPistonMoving.b, this.M ? bdu.b : bdu.a);
-				var1.a(var16, var20, 4);
+				IBlockState var20 = Blocks.PISTON_EXTENSION.getBlockState().a(BlockPistonMoving.a, var3).a(BlockPistonMoving.b, this.M ? bdu.b : bdu.a);
+				var1.setBlockAt(var16, var20, 4);
 				var1.a(var16, BlockPistonMoving.a(var19, var3, true, false));
 			}
 
@@ -321,11 +321,11 @@ public class BlockPiston extends Block {
 		}
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, b(var1)).a(b, Boolean.valueOf((var1 & 8) > 0));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((BlockFace) var1.b(a)).getId();
 		if (((Boolean) var1.b(b)).booleanValue()) {

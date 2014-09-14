@@ -146,7 +146,7 @@ public class WorldGenMineshaftCorridor extends StructurePiece {
 		Position var9 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
 		if (var2.b((fd) var9) && var1.getBlockState(var9).getBlock().getMaterial() == Material.AIR) {
 			int var10 = var3.nextBoolean() ? 1 : 0;
-			var1.a(var9, Blocks.RAIL.a(this.a(Blocks.RAIL, var10)), 2);
+			var1.setBlockAt(var9, Blocks.RAIL.a(this.a(Blocks.RAIL, var10)), 2);
 			EntityMinecartChest var11 = new EntityMinecartChest(var1, (double) ((float) var9.getX() + 0.5F), (double) ((float) var9.getY() + 0.5F), (double) ((float) var9.getZ() + 0.5F));
 			StructurePieceTreasure.a(var3, var7, (IInventory) var11, var8);
 			var1.addEntity((Entity) var11);
@@ -210,7 +210,7 @@ public class WorldGenMineshaftCorridor extends StructurePiece {
 					Position var14 = new Position(var13, var11, var12);
 					if (var3.b((fd) var14)) {
 						this.c = true;
-						var1.a(var14, Blocks.MOB_SPAWNER.getBlockState(), 2);
+						var1.setBlockAt(var14, Blocks.MOB_SPAWNER.getBlockState(), 2);
 						TileEntity var15 = var1.getTileEntity(var14);
 						if (var15 instanceof TileEntityMobSpawner) {
 							((TileEntityMobSpawner) var15).b().a("CaveSpider");
@@ -222,7 +222,7 @@ public class WorldGenMineshaftCorridor extends StructurePiece {
 			for (var9 = 0; var9 <= 2; ++var9) {
 				for (var10 = 0; var10 <= var8; ++var10) {
 					byte var17 = -1;
-					BlockState var18 = this.a(var1, var9, var17, var10, var3);
+					IBlockState var18 = this.a(var1, var9, var17, var10, var3);
 					if (var18.getBlock().getMaterial() == Material.AIR) {
 						byte var19 = -1;
 						this.a(var1, Blocks.PLANKS.getBlockState(), var9, var19, var10, var3);
@@ -232,7 +232,7 @@ public class WorldGenMineshaftCorridor extends StructurePiece {
 
 			if (this.a) {
 				for (var9 = 0; var9 <= var8; ++var9) {
-					BlockState var16 = this.a(var1, 1, -1, var9, var3);
+					IBlockState var16 = this.a(var1, 1, -1, var9, var3);
 					if (var16.getBlock().getMaterial() != Material.AIR && var16.getBlock().m()) {
 						this.a(var1, var3, var2, 0.7F, 1, 0, var9, Blocks.RAIL.a(this.a(Blocks.RAIL, 0)));
 					}

@@ -21,11 +21,11 @@ public class BlockPressurePlateWeighted extends ath {
 		}
 	}
 
-	protected int e(BlockState var1) {
+	protected int e(IBlockState var1) {
 		return ((Integer) var1.b(a)).intValue();
 	}
 
-	protected BlockState a(BlockState var1, int var2) {
+	protected IBlockState a(IBlockState var1, int var2) {
 		return var1.a(a, Integer.valueOf(var2));
 	}
 
@@ -33,11 +33,11 @@ public class BlockPressurePlateWeighted extends ath {
 		return 10;
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((Integer) var1.b(a)).intValue();
 	}
 

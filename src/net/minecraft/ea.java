@@ -35,8 +35,8 @@ public class ea implements ISourceBlock {
 	}
 
 	public int f() {
-		BlockState var1 = this.a.getBlockState(this.b);
-		return var1.getBlock().c(var1);
+		IBlockState var1 = this.a.getBlockState(this.b);
+		return var1.getBlock().getData(var1);
 	}
 
 	public TileEntity h() {

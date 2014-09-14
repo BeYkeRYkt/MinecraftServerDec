@@ -14,7 +14,7 @@ public class BlockPumpkin extends avb {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public void c(World var1, Position var2, BlockState var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		super.c(var1, var2, var3);
 		this.e(var1, var2);
 	}
@@ -30,7 +30,7 @@ public class BlockPumpkin extends avb {
 		if ((var3 = this.l().a(var1, var2)) != null) {
 			for (var4 = 0; var4 < this.l().b(); ++var4) {
 				bei var5 = var3.a(0, var4, 0);
-				var1.a(var5.d(), Blocks.AIR.getBlockState(), 2);
+				var1.setBlockAt(var5.d(), Blocks.AIR.getBlockState(), 2);
 			}
 
 			EntitySnowman var9 = new EntitySnowman(var1);
@@ -49,7 +49,7 @@ public class BlockPumpkin extends avb {
 		} else if ((var3 = this.T().a(var1, var2)) != null) {
 			for (var4 = 0; var4 < this.T().c(); ++var4) {
 				for (int var12 = 0; var12 < this.T().b(); ++var12) {
-					var1.a(var3.a(var4, var12, 0).d(), Blocks.AIR.getBlockState(), 2);
+					var1.setBlockAt(var3.a(var4, var12, 0).d(), Blocks.AIR.getBlockState(), 2);
 				}
 			}
 
@@ -77,15 +77,15 @@ public class BlockPumpkin extends avb {
 		return var1.getBlockState(var2).getBlock().material.j() && World.a((ard) var1, var2.b());
 	}
 
-	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.getBlockState().a(N, var8.aO().getOpposite());
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(N, BlockFace.fromDirection(var1));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((BlockFace) var1.b(N)).toDirection();
 	}
 

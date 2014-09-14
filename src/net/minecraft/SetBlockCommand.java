@@ -63,11 +63,11 @@ public class SetBlockCommand extends AbstractCommand {
 						((IInventory) var13).l();
 					}
 
-					var6.a(var3, Blocks.AIR.getBlockState(), var4 == Blocks.AIR ? 2 : 4);
+					var6.setBlockAt(var3, Blocks.AIR.getBlockState(), var4 == Blocks.AIR ? 2 : 4);
 				}
 
-				BlockState var10 = var4.a(var5);
-				if (!var6.a(var3, var10, 2)) {
+				IBlockState var10 = var4.a(var5);
+				if (!var6.setBlockAt(var3, var10, 2)) {
 					throw new di("commands.setblock.noChange", new Object[0]);
 				} else {
 					if (var8) {

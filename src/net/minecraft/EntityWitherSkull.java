@@ -20,7 +20,7 @@ public class EntityWitherSkull extends EntityFireball {
 		return false;
 	}
 
-	public float a(Explosion var1, World var2, Position var3, BlockState var4) {
+	public float a(Explosion var1, World var2, Position var3, IBlockState var4) {
 		float var5 = super.a(var1, var2, var3, var4);
 		if (this.l() && var4.getBlock() != Blocks.BEDROCK && var4.getBlock() != Blocks.END_PORTAL && var4.getBlock() != Blocks.END_PORTAL_FRAME && var4.getBlock() != Blocks.COMMAND_BLOCK) {
 			var5 = Math.min(0.8F, var5);

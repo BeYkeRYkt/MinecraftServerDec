@@ -6,7 +6,7 @@ import java.util.List;
 
 public class TileEntityPiston extends TileEntity implements PacketTickable {
 
-	private BlockState a;
+	private IBlockState a;
 	private BlockFace f;
 	private boolean g;
 	private boolean h;
@@ -17,14 +17,14 @@ public class TileEntityPiston extends TileEntity implements PacketTickable {
 	public TileEntityPiston() {
 	}
 
-	public TileEntityPiston(BlockState var1, BlockFace var2, boolean var3, boolean var4) {
+	public TileEntityPiston(IBlockState var1, BlockFace var2, boolean var3, boolean var4) {
 		this.a = var1;
 		this.f = var2;
 		this.g = var3;
 		this.h = var4;
 	}
 
-	public BlockState b() {
+	public IBlockState b() {
 		return this.a;
 	}
 
@@ -92,7 +92,7 @@ public class TileEntityPiston extends TileEntity implements PacketTickable {
 			this.world.t(this.position);
 			this.y();
 			if (this.world.getBlockState(this.position).getBlock() == Blocks.PISTON_EXTENSION) {
-				this.world.a(this.position, this.a, 3);
+				this.world.setBlockAt(this.position, this.a, 3);
 				this.world.d(this.position, this.a.getBlock());
 			}
 		}
@@ -106,7 +106,7 @@ public class TileEntityPiston extends TileEntity implements PacketTickable {
 			this.world.t(this.position);
 			this.y();
 			if (this.world.getBlockState(this.position).getBlock() == Blocks.PISTON_EXTENSION) {
-				this.world.a(this.position, this.a, 3);
+				this.world.setBlockAt(this.position, this.a, 3);
 				this.world.d(this.position, this.a.getBlock());
 			}
 
@@ -134,7 +134,7 @@ public class TileEntityPiston extends TileEntity implements PacketTickable {
 	public void write(NBTCompoundTag var1) {
 		super.write(var1);
 		var1.put("blockId", Block.getBlockId(this.a.getBlock()));
-		var1.put("blockData", this.a.getBlock().c(this.a));
+		var1.put("blockData", this.a.getBlock().getData(this.a));
 		var1.put("facing", this.f.getId());
 		var1.put("progress", this.j);
 		var1.put("extending", this.g);

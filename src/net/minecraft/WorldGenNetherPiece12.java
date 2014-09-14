@@ -54,7 +54,7 @@ public class WorldGenNetherPiece12 extends WorldGenNetherPiece {
 			Position var4 = new Position(this.a(3, 5), this.d(5), this.b(3, 5));
 			if (var3.b((fd) var4)) {
 				this.b = true;
-				var1.a(var4, Blocks.MOB_SPAWNER.getBlockState(), 2);
+				var1.setBlockAt(var4, Blocks.MOB_SPAWNER.getBlockState(), 2);
 				TileEntity var5 = var1.getTileEntity(var4);
 				if (var5 instanceof TileEntityMobSpawner) {
 					((TileEntityMobSpawner) var5).b().a("Blaze");

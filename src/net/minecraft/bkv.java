@@ -30,7 +30,7 @@ public class bkv extends blb {
 		}
 
 		for (int var8 = 1; var8 <= 7; ++var8) {
-			BlockState var9 = b;
+			IBlockState var9 = b;
 			if (var8 == 2 || var8 == 6) {
 				var9 = a;
 			}

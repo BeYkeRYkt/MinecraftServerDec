@@ -52,7 +52,7 @@ public class EntityMinecartFurnace extends adx {
 
 	}
 
-	protected void a(Position var1, BlockState var2) {
+	protected void a(Position var1, IBlockState var2) {
 		super.a(var1, var2);
 		double var3 = this.a * this.a + this.b * this.b;
 		if (var3 > 1.0E-4D && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.001D) {
@@ -134,7 +134,7 @@ public class EntityMinecartFurnace extends adx {
 
 	}
 
-	public BlockState u() {
+	public IBlockState u() {
 		return (this.j() ? Blocks.LIT_FURNACE : Blocks.FURNACE).getBlockState().a(BlockFurnace.a, BlockFace.NORTH);
 	}
 }

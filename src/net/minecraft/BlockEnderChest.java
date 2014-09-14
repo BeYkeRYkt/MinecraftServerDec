@@ -26,7 +26,7 @@ public class BlockEnderChest extends atg {
 		return 2;
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf(Blocks.OBSIDIAN);
 	}
 
@@ -38,15 +38,15 @@ public class BlockEnderChest extends atg {
 		return true;
 	}
 
-	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.getBlockState().a(a, var8.aO().getOpposite());
 	}
 
-	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
-		var1.a(var2, var3.a(a, var4.aO().getOpposite()), 2);
+	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
+		var1.setBlockAt(var2, var3.a(a, var4.aO().getOpposite()), 2);
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		InventoryEnderChest var9 = var4.getEnderChest();
 		TileEntity var10 = var1.getTileEntity(var2);
 		if (var9 != null && var10 instanceof TileEntityEnderChest) {
@@ -68,7 +68,7 @@ public class BlockEnderChest extends atg {
 		return new TileEntityEnderChest();
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		BlockFace var2 = BlockFace.getById(var1);
 		if (var2.k() == el.b) {
 			var2 = BlockFace.NORTH;
@@ -77,7 +77,7 @@ public class BlockEnderChest extends atg {
 		return this.getBlockState().a(a, var2);
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((BlockFace) var1.b(a)).getId();
 	}
 

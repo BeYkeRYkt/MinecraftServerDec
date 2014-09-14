@@ -14,7 +14,7 @@ public class ItemBlock extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		BlockState var9 = var3.getBlockState(var4);
+		IBlockState var9 = var3.getBlockState(var4);
 		Block var10 = var9.getBlock();
 		if (var10 == Blocks.SNOW_LAYER && ((Integer) var9.b(BlockSnow.a)).intValue() < 1) {
 			var5 = BlockFace.UP;
@@ -30,8 +30,8 @@ public class ItemBlock extends Item {
 			return false;
 		} else if (var3.a(this.block, var4, false, var5, (Entity) null, var1)) {
 			int var11 = this.a(var1.getDurability());
-			BlockState var12 = this.block.a(var3, var4, var5, var6, var7, var8, var11, var2);
-			if (var3.a(var4, var12, 3)) {
+			IBlockState var12 = this.block.a(var3, var4, var5, var6, var7, var8, var11, var2);
+			if (var3.setBlockAt(var4, var12, 3)) {
 				var12 = var3.getBlockState(var4);
 				if (var12.getBlock() == this.block) {
 					a(var3, var4, var1);

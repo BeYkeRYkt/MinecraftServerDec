@@ -21,27 +21,27 @@ public class BlockCrops extends auc implements atz {
 		return var1 == Blocks.FARMLAND;
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		super.b(var1, var2, var3, var4);
 		if (var1.l(var2.a()) >= 9) {
 			int var5 = ((Integer) var3.b(a)).intValue();
 			if (var5 < 7) {
 				float var6 = a(this, var1, var2);
 				if (var4.nextInt((int) (25.0F / var6) + 1) == 0) {
-					var1.a(var2, var3.a(a, Integer.valueOf(var5 + 1)), 2);
+					var1.setBlockAt(var2, var3.a(a, Integer.valueOf(var5 + 1)), 2);
 				}
 			}
 		}
 
 	}
 
-	public void g(World var1, Position var2, BlockState var3) {
+	public void g(World var1, Position var2, IBlockState var3) {
 		int var4 = ((Integer) var3.b(a)).intValue() + MathHelper.a(var1.s, 2, 5);
 		if (var4 > 7) {
 			var4 = 7;
 		}
 
-		var1.a(var2, var3.a(a, Integer.valueOf(var4)), 2);
+		var1.setBlockAt(var2, var3.a(a, Integer.valueOf(var4)), 2);
 	}
 
 	protected static float a(Block var0, World var1, Position var2) {
@@ -51,7 +51,7 @@ public class BlockCrops extends auc implements atz {
 		for (int var5 = -1; var5 <= 1; ++var5) {
 			for (int var6 = -1; var6 <= 1; ++var6) {
 				float var7 = 0.0F;
-				BlockState var8 = var1.getBlockState(var4.a(var5, 0, var6));
+				IBlockState var8 = var1.getBlockState(var4.a(var5, 0, var6));
 				if (var8.getBlock() == Blocks.FARMLAND) {
 					var7 = 1.0F;
 					if (((Integer) var8.b(BlockSoil.a)).intValue() > 0) {
@@ -85,7 +85,7 @@ public class BlockCrops extends auc implements atz {
 		return var3;
 	}
 
-	public boolean f(World var1, Position var2, BlockState var3) {
+	public boolean f(World var1, Position var2, IBlockState var3) {
 		return (var1.k(var2) >= 8 || var1.i(var2)) && this.c(var1.getBlockState(var2.b()).getBlock());
 	}
 
@@ -97,7 +97,7 @@ public class BlockCrops extends auc implements atz {
 		return Items.WHEAT;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
+	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		super.a(var1, var2, var3, var4, 0);
 		if (!var1.isStatic) {
 			int var6 = ((Integer) var3.b(a)).intValue();
@@ -114,27 +114,27 @@ public class BlockCrops extends auc implements atz {
 		}
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return ((Integer) var1.b(a)).intValue() == 7 ? this.l() : this.j();
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, boolean var4) {
+	public boolean a(World var1, Position var2, IBlockState var3, boolean var4) {
 		return ((Integer) var3.b(a)).intValue() < 7;
 	}
 
-	public boolean a(World var1, Random var2, Position var3, BlockState var4) {
+	public boolean a(World var1, Random var2, Position var3, IBlockState var4) {
 		return true;
 	}
 
-	public void b(World var1, Random var2, Position var3, BlockState var4) {
+	public void b(World var1, Random var2, Position var3, IBlockState var4) {
 		this.g(var1, var3, var4);
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((Integer) var1.b(a)).intValue();
 	}
 

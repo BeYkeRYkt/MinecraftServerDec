@@ -29,7 +29,7 @@ public class BlockBrewingStand extends atg {
 		return false;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, IBlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.a(0.4375F, 0.0F, 0.4375F, 0.5625F, 0.875F, 0.5625F);
 		super.a(var1, var2, var3, var4, var5, var6);
 		this.h();
@@ -40,7 +40,7 @@ public class BlockBrewingStand extends atg {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {
@@ -53,7 +53,7 @@ public class BlockBrewingStand extends atg {
 		}
 	}
 
-	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
+	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
 		if (var5.s()) {
 			TileEntity var6 = var1.getTileEntity(var2);
 			if (var6 instanceof TileEntityBrewingStand) {
@@ -63,7 +63,7 @@ public class BlockBrewingStand extends atg {
 
 	}
 
-	public void b(World var1, Position var2, BlockState var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		TileEntity var4 = var1.getTileEntity(var2);
 		if (var4 instanceof TileEntityBrewingStand) {
 			vs.a(var1, var2, (TileEntityBrewingStand) var4);
@@ -72,7 +72,7 @@ public class BlockBrewingStand extends atg {
 		super.b(var1, var2, var3);
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return Items.BREWING_STAND;
 	}
 
@@ -84,8 +84,8 @@ public class BlockBrewingStand extends atg {
 		return Container.a(var1.getTileEntity(var2));
 	}
 
-	public BlockState a(int var1) {
-		BlockState var2 = this.getBlockState();
+	public IBlockState a(int var1) {
+		IBlockState var2 = this.getBlockState();
 
 		for (int var3 = 0; var3 < 3; ++var3) {
 			var2 = var2.a(a[var3], Boolean.valueOf((var1 & 1 << var3) > 0));
@@ -94,7 +94,7 @@ public class BlockBrewingStand extends atg {
 		return var2;
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		int var2 = 0;
 
 		for (int var3 = 0; var3 < 3; ++var3) {

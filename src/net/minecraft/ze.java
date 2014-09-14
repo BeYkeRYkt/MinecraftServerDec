@@ -44,7 +44,7 @@ public class ze extends zn {
 		if (this.f()) {
 			World var1 = this.c.world;
 			Position var2 = this.b.a();
-			BlockState var3 = var1.getBlockState(var2);
+			IBlockState var3 = var1.getBlockState(var2);
 			Block var4 = var3.getBlock();
 			if (this.f == 0 && var4 instanceof BlockCrops && ((Integer) var3.b(BlockCrops.a)).intValue() == 7) {
 				var1.b(var2, true);
@@ -56,13 +56,13 @@ public class ze extends zn {
 					boolean var8 = false;
 					if (var7 != null) {
 						if (var7.getItem() == Items.WHEAT_SEEDS) {
-							var1.a(var2, Blocks.WHEAT.getBlockState(), 3);
+							var1.setBlockAt(var2, Blocks.WHEAT.getBlockState(), 3);
 							var8 = true;
 						} else if (var7.getItem() == Items.POTATO) {
-							var1.a(var2, Blocks.POTATOES.getBlockState(), 3);
+							var1.setBlockAt(var2, Blocks.POTATOES.getBlockState(), 3);
 							var8 = true;
 						} else if (var7.getItem() == Items.CARROT) {
-							var1.a(var2, Blocks.CARROTS.getBlockState(), 3);
+							var1.setBlockAt(var2, Blocks.CARROTS.getBlockState(), 3);
 							var8 = true;
 						}
 					}
@@ -87,7 +87,7 @@ public class ze extends zn {
 		Block var3 = var1.getBlockState(var2).getBlock();
 		if (var3 == Blocks.FARMLAND) {
 			var2 = var2.a();
-			BlockState var4 = var1.getBlockState(var2);
+			IBlockState var4 = var1.getBlockState(var2);
 			var3 = var4.getBlock();
 			if (var3 instanceof BlockCrops && ((Integer) var4.b(BlockCrops.a)).intValue() == 7 && this.e && (this.f == 0 || this.f < 0)) {
 				this.f = 0;

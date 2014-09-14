@@ -17,12 +17,12 @@ public class BlockMonsterEggs extends Block {
 		return 0;
 	}
 
-	public static boolean d(BlockState var0) {
+	public static boolean d(IBlockState var0) {
 		Block var1 = var0.getBlock();
 		return var0 == Blocks.STONE.getBlockState().a(BlockStone.a, bbb.a) || var1 == Blocks.COBBLESTONE || var1 == Blocks.STONEBRICK;
 	}
 
-	protected ItemStack i(BlockState var1) {
+	protected ItemStack i(IBlockState var1) {
 		switch (axt.a[((axu) var1.b(a)).ordinal()]) {
 			case 1:
 				return new ItemStack(Blocks.COBBLESTONE);
@@ -39,7 +39,7 @@ public class BlockMonsterEggs extends Block {
 		}
 	}
 
-	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
+	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		if (!var1.isStatic && var1.getGameRules().b("doTileDrops")) {
 			EntitySilverfish var6 = new EntitySilverfish(var1);
 			var6.setPositionRotation((double) var2.getX() + 0.5D, (double) var2.getY(), (double) var2.getZ() + 0.5D, 0.0F, 0.0F);
@@ -50,15 +50,15 @@ public class BlockMonsterEggs extends Block {
 	}
 
 	public int j(World var1, Position var2) {
-		BlockState var3 = var1.getBlockState(var2);
-		return var3.getBlock().c(var3);
+		IBlockState var3 = var1.getBlockState(var2);
+		return var3.getBlock().getData(var3);
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, axu.a(var1));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((axu) var1.b(a)).a();
 	}
 

@@ -91,7 +91,7 @@ public abstract class EntityMonster extends EntityCreature implements IMonster {
 
 	protected boolean m_() {
 		Position var1 = new Position(this.locationX, this.getBoundingBox().minY, this.locationZ);
-		if (this.world.b(arf.a, var1) > this.random.nextInt(32)) {
+		if (this.world.b(EnumSkyBlock.SKY, var1) > this.random.nextInt(32)) {
 			return false;
 		} else {
 			int var2 = this.world.l(var1);

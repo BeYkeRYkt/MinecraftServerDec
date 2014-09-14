@@ -17,11 +17,11 @@ public class BlockLightStone extends Block {
 		return 2 + var1.nextInt(3);
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return Items.GLOWSTONE_DUST;
 	}
 
-	public MaterialMapColor g(BlockState var1) {
+	public MaterialMapColor g(IBlockState var1) {
 		return MaterialMapColor.d;
 	}
 }

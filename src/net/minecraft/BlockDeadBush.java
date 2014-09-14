@@ -18,11 +18,11 @@ public class BlockDeadBush extends auc {
 		return true;
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, BlockState var4, TileEntity var5) {
+	public void a(World var1, EntityHuman var2, Position var3, IBlockState var4, TileEntity var5) {
 		if (!var1.isStatic && var2.bY() != null && var2.bY().getItem() == Items.SHEARS) {
 			var2.b(StatisticList.MINE_BLOCK_COUNT[Block.getBlockId((Block) this)]);
 			a(var1, var3, new ItemStack(Blocks.DEADBUSH, 1, 0));

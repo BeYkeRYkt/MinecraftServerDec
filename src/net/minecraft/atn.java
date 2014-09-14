@@ -21,7 +21,7 @@ final class atn implements Runnable {
 				break;
 			}
 
-			BlockState var4 = this.a.getBlockState(var3);
+			IBlockState var4 = this.a.getBlockState(var3);
 			if (var4.getBlock() == Blocks.BEACON) {
 				((WorldServer) this.a).scheduleSyncTask((Runnable) (new ato(this, var3)));
 			}

@@ -46,7 +46,7 @@ public class TestforBlocksCommand extends AbstractCommand {
 								Position var15 = new Position(var14, var13, var12);
 								Position var16 = var15.a((fd) var11);
 								boolean var17 = false;
-								BlockState var18 = var9.getBlockState(var15);
+								IBlockState var18 = var9.getBlockState(var15);
 								if (!var10 || var18.getBlock() != Blocks.AIR) {
 									if (var18 == var9.getBlockState(var16)) {
 										TileEntity var19 = var9.getTileEntity(var15);

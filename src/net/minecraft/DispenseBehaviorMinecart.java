@@ -11,7 +11,7 @@ final class DispenseBehaviorMinecart extends DispenseBehaviorItem {
 		double var7 = Math.floor(var1.getY()) + (double) var3.h();
 		double var9 = var1.getZ() + (double) var3.i() * 1.125D;
 		Position var11 = var1.d().a(var3);
-		BlockState var12 = var4.getBlockState(var11);
+		IBlockState var12 = var4.getBlockState(var11);
 		atl var13 = var12.getBlock() instanceof ati ? (atl) var12.b(((ati) var12.getBlock()).l()) : atl.a;
 		double var14;
 		if (ati.d(var12)) {
@@ -25,7 +25,7 @@ final class DispenseBehaviorMinecart extends DispenseBehaviorItem {
 				return this.b.a(var1, var2);
 			}
 
-			BlockState var16 = var4.getBlockState(var11.b());
+			IBlockState var16 = var4.getBlockState(var11.b());
 			atl var17 = var16.getBlock() instanceof ati ? (atl) var16.b(((ati) var16.getBlock()).l()) : atl.a;
 			if (var3 != BlockFace.DOWN && var17.c()) {
 				var14 = -0.4D;

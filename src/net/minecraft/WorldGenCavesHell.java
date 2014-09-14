@@ -100,7 +100,7 @@ public class WorldGenCavesHell extends WorldGenBase {
 						for (int var43 = var55; !var56 && var43 < var40; ++var43) {
 							for (int var44 = var38 + 1; !var56 && var44 >= var54 - 1; --var44) {
 								if (var44 >= 0 && var44 < 128) {
-									BlockState var45 = var5.a(var42, var44, var43);
+									IBlockState var45 = var5.a(var42, var44, var43);
 									if (var45.getBlock() == Blocks.FLOWING_LAVA || var45.getBlock() == Blocks.LAVA) {
 										var56 = true;
 									}
@@ -123,7 +123,7 @@ public class WorldGenCavesHell extends WorldGenBase {
 								for (int var48 = var38; var48 > var54; --var48) {
 									double var49 = ((double) (var48 - 1) + 0.5D - var8) / var31;
 									if (var49 > -0.7D && var57 * var57 + var49 * var49 + var46 * var46 < 1.0D) {
-										BlockState var51 = var5.a(var42, var48, var58);
+										IBlockState var51 = var5.a(var42, var48, var58);
 										if (var51.getBlock() == Blocks.NETHERRACK || var51.getBlock() == Blocks.DIRT || var51.getBlock() == Blocks.GRASS) {
 											var5.a(var42, var48, var58, Blocks.AIR.getBlockState());
 										}

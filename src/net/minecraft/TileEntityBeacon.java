@@ -76,7 +76,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 		int var7;
 		for (var7 = var3 + 1; var7 < this.world.V(); ++var7) {
 			Position var8 = new Position(var2, var7, var4);
-			BlockState var9 = this.world.getBlockState(var8);
+			IBlockState var9 = this.world.getBlockState(var8);
 			float[] var10;
 			if (var9.getBlock() == Blocks.STAINED_GLASS) {
 				var10 = EntitySheep.a((akv) var9.b(BlockStainedGlass.a));

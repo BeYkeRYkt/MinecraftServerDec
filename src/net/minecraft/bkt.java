@@ -14,7 +14,7 @@ public class bkt extends blb {
 	public boolean a(World var1, Random var2, CuboidArea var3) {
 		this.a(var1, var3, 1, 8, 0, 14, 8, 14, a);
 		byte var4 = 7;
-		BlockState var5 = b;
+		IBlockState var5 = b;
 		this.a(var1, var3, 0, var4, 0, 0, var4, 15, var5, var5, false);
 		this.a(var1, var3, 15, var4, 0, 15, var4, 15, var5, var5, false);
 		this.a(var1, var3, 1, var4, 0, 15, var4, 0, var5, var5, false);

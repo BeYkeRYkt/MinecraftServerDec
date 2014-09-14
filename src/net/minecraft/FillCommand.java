@@ -68,7 +68,7 @@ public class FillCommand extends AbstractCommand {
 					for (int var15 = var7.getY(); var15 <= var8.getY(); ++var15) {
 						for (int var16 = var7.getX(); var16 <= var8.getX(); ++var16) {
 							Position var17 = new Position(var16, var15, var14);
-							BlockState var19;
+							IBlockState var19;
 							if (var2.length >= 9) {
 								if (!var2[8].equals("outline") && !var2[8].equals("hollow")) {
 									if (var2[8].equals("destroy")) {
@@ -88,14 +88,14 @@ public class FillCommand extends AbstractCommand {
 										if (var2.length > 10) {
 											int var28 = AbstractCommand.a(var2[10]);
 											var19 = var10.getBlockState(var17);
-											if (var19.getBlock().c(var19) != var28) {
+											if (var19.getBlock().getData(var19) != var28) {
 												continue;
 											}
 										}
 									}
 								} else if (var16 != var7.getX() && var16 != var8.getX() && var15 != var7.getY() && var15 != var8.getY() && var14 != var7.getZ() && var14 != var8.getZ()) {
 									if (var2[8].equals("hollow")) {
-										var10.a(var17, Blocks.AIR.getBlockState(), 2);
+										var10.setBlockAt(var17, Blocks.AIR.getBlockState(), 2);
 										var24.add(var17);
 									}
 									continue;
@@ -108,11 +108,11 @@ public class FillCommand extends AbstractCommand {
 									((IInventory) var29).l();
 								}
 
-								var10.a(var17, Blocks.BARRIER.getBlockState(), var5 == Blocks.BARRIER ? 2 : 4);
+								var10.setBlockAt(var17, Blocks.BARRIER.getBlockState(), var5 == Blocks.BARRIER ? 2 : 4);
 							}
 
 							var19 = var5.a(var6);
-							if (var10.a(var17, var19, 2)) {
+							if (var10.setBlockAt(var17, var19, 2)) {
 								var24.add(var17);
 								++var9;
 								if (var23) {

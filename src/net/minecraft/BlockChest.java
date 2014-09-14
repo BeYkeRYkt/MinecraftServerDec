@@ -45,14 +45,14 @@ public class BlockChest extends atg {
 
 	}
 
-	public void c(World var1, Position var2, BlockState var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
 		Iterator var4 = en.a.iterator();
 
 		while (var4.hasNext()) {
 			BlockFace var5 = (BlockFace) var4.next();
 			Position var6 = var2.a(var5);
-			BlockState var7 = var1.getBlockState(var6);
+			IBlockState var7 = var1.getBlockState(var6);
 			if (var7.getBlock() == this) {
 				this.e(var1, var6, var7);
 			}
@@ -60,11 +60,11 @@ public class BlockChest extends atg {
 
 	}
 
-	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.getBlockState().a(a, var8.aO());
 	}
 
-	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
+	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
 		BlockFace var6 = BlockFace.fromDirection(MathHelper.toFixedPointInt((double) (var4.yaw * 4.0F / 360.0F) + 0.5D) & 3).getOpposite();
 		var3 = var3.a(a, var6);
 		Position var7 = var2.c();
@@ -76,23 +76,23 @@ public class BlockChest extends atg {
 		boolean var13 = this == var1.getBlockState(var9).getBlock();
 		boolean var14 = this == var1.getBlockState(var10).getBlock();
 		if (!var11 && !var12 && !var13 && !var14) {
-			var1.a(var2, var3, 3);
+			var1.setBlockAt(var2, var3, 3);
 		} else if (var6.k() == el.a && (var11 || var12)) {
 			if (var11) {
-				var1.a(var7, var3, 3);
+				var1.setBlockAt(var7, var3, 3);
 			} else {
-				var1.a(var8, var3, 3);
+				var1.setBlockAt(var8, var3, 3);
 			}
 
-			var1.a(var2, var3, 3);
+			var1.setBlockAt(var2, var3, 3);
 		} else if (var6.k() == el.c && (var13 || var14)) {
 			if (var13) {
-				var1.a(var9, var3, 3);
+				var1.setBlockAt(var9, var3, 3);
 			} else {
-				var1.a(var10, var3, 3);
+				var1.setBlockAt(var10, var3, 3);
 			}
 
-			var1.a(var2, var3, 3);
+			var1.setBlockAt(var2, var3, 3);
 		}
 
 		if (var5.s()) {
@@ -104,14 +104,14 @@ public class BlockChest extends atg {
 
 	}
 
-	public BlockState e(World var1, Position var2, BlockState var3) {
+	public IBlockState e(World var1, Position var2, IBlockState var3) {
 		if (var1.isStatic) {
 			return var3;
 		} else {
-			BlockState var4 = var1.getBlockState(var2.c());
-			BlockState var5 = var1.getBlockState(var2.d());
-			BlockState var6 = var1.getBlockState(var2.e());
-			BlockState var7 = var1.getBlockState(var2.f());
+			IBlockState var4 = var1.getBlockState(var2.c());
+			IBlockState var5 = var1.getBlockState(var2.d());
+			IBlockState var6 = var1.getBlockState(var2.e());
+			IBlockState var7 = var1.getBlockState(var2.f());
 			BlockFace var8 = (BlockFace) var3.b(a);
 			Block var9 = var4.getBlock();
 			Block var10 = var5.getBlock();
@@ -122,8 +122,8 @@ public class BlockChest extends atg {
 				boolean var22 = var10.m();
 				if (var11 == this || var12 == this) {
 					Position var23 = var11 == this ? var2.e() : var2.f();
-					BlockState var24 = var1.getBlockState(var23.c());
-					BlockState var25 = var1.getBlockState(var23.d());
+					IBlockState var24 = var1.getBlockState(var23.c());
+					IBlockState var25 = var1.getBlockState(var23.d());
 					var8 = BlockFace.SOUTH;
 					BlockFace var26;
 					if (var11 == this) {
@@ -148,8 +148,8 @@ public class BlockChest extends atg {
 				}
 			} else {
 				Position var13 = var9 == this ? var2.c() : var2.d();
-				BlockState var14 = var1.getBlockState(var13.e());
-				BlockState var15 = var1.getBlockState(var13.f());
+				IBlockState var14 = var1.getBlockState(var13.e());
+				IBlockState var15 = var1.getBlockState(var13.f());
 				var8 = BlockFace.EAST;
 				BlockFace var16;
 				if (var9 == this) {
@@ -174,18 +174,18 @@ public class BlockChest extends atg {
 			}
 
 			var3 = var3.a(a, var8);
-			var1.a(var2, var3, 3);
+			var1.setBlockAt(var2, var3, 3);
 			return var3;
 		}
 	}
 
-	public BlockState f(World var1, Position var2, BlockState var3) {
+	public IBlockState f(World var1, Position var2, IBlockState var3) {
 		BlockFace var4 = null;
 		Iterator var5 = en.a.iterator();
 
 		while (var5.hasNext()) {
 			BlockFace var6 = (BlockFace) var5.next();
-			BlockState var7 = var1.getBlockState(var2.a(var6));
+			IBlockState var7 = var1.getBlockState(var2.a(var6));
 			if (var7.getBlock() == this) {
 				return var3;
 			}
@@ -280,7 +280,7 @@ public class BlockChest extends atg {
 		}
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		super.a(var1, var2, var3, var4);
 		TileEntity var5 = var1.getTileEntity(var2);
 		if (var5 instanceof TileEntityChest) {
@@ -289,7 +289,7 @@ public class BlockChest extends atg {
 
 	}
 
-	public void b(World var1, Position var2, BlockState var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		TileEntity var4 = var1.getTileEntity(var2);
 		if (var4 instanceof IInventory) {
 			vs.a(var1, var2, (IInventory) var4);
@@ -299,7 +299,7 @@ public class BlockChest extends atg {
 		super.b(var1, var2, var3);
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {
@@ -356,7 +356,7 @@ public class BlockChest extends atg {
 		return this.b == 1;
 	}
 
-	public int a(ard var1, Position var2, BlockState var3, BlockFace var4) {
+	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		if (!this.g()) {
 			return 0;
 		} else {
@@ -370,7 +370,7 @@ public class BlockChest extends atg {
 		}
 	}
 
-	public int b(ard var1, Position var2, BlockState var3, BlockFace var4) {
+	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return var4 == BlockFace.UP ? this.a(var1, var2, var3, var4) : 0;
 	}
 
@@ -406,7 +406,7 @@ public class BlockChest extends atg {
 		return Container.b((IInventory) this.d(var1, var2));
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		BlockFace var2 = BlockFace.getById(var1);
 		if (var2.k() == el.b) {
 			var2 = BlockFace.NORTH;
@@ -415,7 +415,7 @@ public class BlockChest extends atg {
 		return this.getBlockState().a(a, var2);
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((BlockFace) var1.b(a)).getId();
 	}
 

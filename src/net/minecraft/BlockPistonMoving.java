@@ -17,11 +17,11 @@ public class BlockPistonMoving extends atg {
 		return null;
 	}
 
-	public static TileEntity a(BlockState var0, BlockFace var1, boolean var2, boolean var3) {
+	public static TileEntity a(IBlockState var0, BlockFace var1, boolean var2, boolean var3) {
 		return new TileEntityPiston(var0, var1, var2, var3);
 	}
 
-	public void b(World var1, Position var2, BlockState var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		TileEntity var4 = var1.getTileEntity(var2);
 		if (var4 instanceof TileEntityPiston) {
 			((TileEntityPiston) var4).h();
@@ -39,9 +39,9 @@ public class BlockPistonMoving extends atg {
 		return false;
 	}
 
-	public void d(World var1, Position var2, BlockState var3) {
+	public void d(World var1, Position var2, IBlockState var3) {
 		Position var4 = var2.a(((BlockFace) var3.b(a)).getOpposite());
-		BlockState var5 = var1.getBlockState(var4);
+		IBlockState var5 = var1.getBlockState(var4);
 		if (var5.getBlock() instanceof BlockPiston && ((Boolean) var5.b(BlockPiston.b)).booleanValue()) {
 			var1.g(var4);
 		}
@@ -56,7 +56,7 @@ public class BlockPistonMoving extends atg {
 		return false;
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (!var1.isStatic && var1.getTileEntity(var2) == null) {
 			var1.g(var2);
 			return true;
@@ -65,15 +65,15 @@ public class BlockPistonMoving extends atg {
 		}
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
+	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		if (!var1.isStatic) {
 			TileEntityPiston var6 = this.e(var1, var2);
 			if (var6 != null) {
-				BlockState var7 = var6.b();
+				IBlockState var7 = var6.b();
 				var7.getBlock().b(var1, var2, var7, 0);
 			}
 		}
@@ -83,14 +83,14 @@ public class BlockPistonMoving extends atg {
 		return null;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!var1.isStatic) {
 			var1.getTileEntity(var2);
 		}
 
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		TileEntityPiston var4 = this.e(var1, var2);
 		if (var4 == null) {
 			return null;
@@ -107,7 +107,7 @@ public class BlockPistonMoving extends atg {
 	public void a(ard var1, Position var2) {
 		TileEntityPiston var3 = this.e(var1, var2);
 		if (var3 != null) {
-			BlockState var4 = var3.b();
+			IBlockState var4 = var3.b();
 			Block var5 = var4.getBlock();
 			if (var5 == this || var5.getMaterial() == Material.AIR) {
 				return;
@@ -134,7 +134,7 @@ public class BlockPistonMoving extends atg {
 
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3, float var4, BlockFace var5) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3, float var4, BlockFace var5) {
 		if (var3.getBlock() != this && var3.getBlock().getMaterial() != Material.AIR) {
 			AxisAlignedBB var6 = var3.getBlock().a(var1, var2, var3);
 			if (var6 == null) {
@@ -176,11 +176,11 @@ public class BlockPistonMoving extends atg {
 		return var3 instanceof TileEntityPiston ? (TileEntityPiston) var3 : null;
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, BlockPistonExtension.b(var1)).a(b, (var1 & 8) > 0 ? bdu.b : bdu.a);
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((BlockFace) var1.b(a)).getId();
 		if (var1.b(b) == bdu.b) {

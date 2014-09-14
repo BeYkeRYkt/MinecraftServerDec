@@ -113,7 +113,7 @@ public class ayz {
 			Position var2 = this.f.a(this.c, var1);
 
 			for (int var3 = 0; var3 < this.g; ++var3) {
-				this.a.a(var2.b(var3), Blocks.PORTAL.getBlockState().a(BlockPortal.a, this.b), 2);
+				this.a.setBlockAt(var2.b(var3), Blocks.PORTAL.getBlockState().a(BlockPortal.a, this.b), 2);
 			}
 		}
 

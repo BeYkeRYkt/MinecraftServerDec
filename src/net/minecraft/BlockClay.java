@@ -9,7 +9,7 @@ public class BlockClay extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return Items.CLAY_BALL;
 	}
 

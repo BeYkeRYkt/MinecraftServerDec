@@ -262,8 +262,8 @@ public class Block {
 		for (Object obj : BLOCKREGISTRY) {
 			Block block = (Block) obj;
 			for (Object becObj : block.O().a()) {
-				BlockState bec = (BlockState) becObj;
-				int id = BLOCKREGISTRY.getBlockId(block) << 4 | block.c(bec);
+				IBlockState bec = (IBlockState) becObj;
+				int id = BLOCKREGISTRY.getBlockId(block) << 4 | block.getData(bec);
 				IDREGISTRY.register(bec, id);
 			}
 		}
@@ -291,22 +291,22 @@ public class Block {
 	protected final Material material;
 	public float K;
 	protected final bed L;
-	private BlockState blockState;
+	private IBlockState blockState;
 	private String name;
 
 	public static int getBlockId(Block block) {
 		return BLOCKREGISTRY.getBlockId(block);
 	}
 
-	public static int f(BlockState var0) {
-		return getBlockId(var0.getBlock()) + (var0.getBlock().c(var0) << 12);
+	public static int f(IBlockState var0) {
+		return getBlockId(var0.getBlock()) + (var0.getBlock().getData(var0) << 12);
 	}
 
 	public static Block getById(int id) {
 		return (Block) BLOCKREGISTRY.getById(id);
 	}
 
-	public static BlockState d(int var0) {
+	public static IBlockState d(int var0) {
 		int var1 = var0 & 4095;
 		int var2 = var0 >> 12 & 15;
 		return getById(var1).a(var2);
@@ -349,23 +349,23 @@ public class Block {
 		return this.material;
 	}
 
-	public MaterialMapColor g(BlockState var1) {
+	public MaterialMapColor g(IBlockState var1) {
 		return this.getMaterial().getMapColor();
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState();
 	}
 
-	public int c(BlockState var1) {
-		if (var1 != null && !var1.a().isEmpty()) {
-			throw new IllegalArgumentException("Don\'t know how to convert " + var1 + " back into data...");
+	public int getData(IBlockState blockState) {
+		if (blockState != null && !blockState.a().isEmpty()) {
+			throw new IllegalArgumentException("Don\'t know how to convert " + blockState + " back into data...");
 		} else {
 			return 0;
 		}
 	}
 
-	public BlockState a(BlockState var1, ard var2, Position var3) {
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		return var1;
 	}
 
@@ -453,7 +453,7 @@ public class Block {
 		return this;
 	}
 
-	public boolean w() {
+	public boolean isTicking() {
 		return this.z;
 	}
 
@@ -474,7 +474,7 @@ public class Block {
 		return var1.getBlockState(var2).getBlock().getMaterial().isBuildable();
 	}
 
-	public void a(World var1, Position var2, BlockState var3, AxisAlignedBB var4, List<AxisAlignedBB> var5, Entity var6) {
+	public void a(World var1, Position var2, IBlockState var3, AxisAlignedBB var4, List<AxisAlignedBB> var5, Entity var6) {
 		AxisAlignedBB var7 = this.a(var1, var2, var3);
 		if (var7 != null && var4.b(var7)) {
 			var5.add(var7);
@@ -482,7 +482,7 @@ public class Block {
 
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return new AxisAlignedBB((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G);
 	}
 
@@ -490,7 +490,7 @@ public class Block {
 		return true;
 	}
 
-	public boolean a(BlockState var1, boolean var2) {
+	public boolean a(IBlockState var1, boolean var2) {
 		return this.y();
 	}
 
@@ -498,34 +498,34 @@ public class Block {
 		return true;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Random var4) {
+	public void a(World var1, Position var2, IBlockState var3, Random var4) {
 		this.b(var1, var2, var3, var4);
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 	}
 
-	public void d(World var1, Position var2, BlockState var3) {
+	public void d(World var1, Position var2, IBlockState var3) {
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 	}
 
 	public int a(World var1) {
 		return 10;
 	}
 
-	public void c(World var1, Position var2, BlockState var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 	}
 
-	public void b(World var1, Position var2, BlockState var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 	}
 
 	public int a(Random var1) {
 		return 1;
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf(this);
 	}
 
@@ -534,11 +534,11 @@ public class Block {
 		return var4 < 0.0F ? 0.0F : (!var1.b(this) ? var1.a(this) / var4 / 100.0F : var1.a(this) / var4 / 30.0F);
 	}
 
-	public final void b(World var1, Position var2, BlockState var3, int var4) {
+	public final void b(World var1, Position var2, IBlockState var3, int var4) {
 		this.a(var1, var2, var3, 1.0F, var4);
 	}
 
-	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
+	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		if (!var1.isStatic) {
 			int var6 = this.a(var5, var1.s);
 
@@ -577,7 +577,7 @@ public class Block {
 
 	}
 
-	public int a(BlockState var1) {
+	public int a(IBlockState var1) {
 		return 0;
 	}
 
@@ -703,14 +703,14 @@ public class Block {
 		return var1.getBlockState(var2).getBlock().material.j();
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		return false;
 	}
 
 	public void a(World var1, Position var2, Entity var3) {
 	}
 
-	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.a(var7);
 	}
 
@@ -748,7 +748,7 @@ public class Block {
 		return this.G;
 	}
 
-	public int a(ard var1, Position var2, BlockState var3, BlockFace var4) {
+	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return 0;
 	}
 
@@ -756,17 +756,17 @@ public class Block {
 		return false;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Entity var4) {
+	public void a(World var1, Position var2, IBlockState var3, Entity var4) {
 	}
 
-	public int b(ard var1, Position var2, BlockState var3, BlockFace var4) {
+	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return 0;
 	}
 
 	public void h() {
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, BlockState var4, TileEntity var5) {
+	public void a(World var1, EntityHuman var2, Position var3, IBlockState var4, TileEntity var5) {
 		var2.b(StatisticList.MINE_BLOCK_COUNT[getBlockId(this)]);
 		var2.a(0.025F);
 		if (this.G() && aph.e(var2)) {
@@ -785,11 +785,11 @@ public class Block {
 		return this.d() && !this.A;
 	}
 
-	protected ItemStack i(BlockState var1) {
+	protected ItemStack i(IBlockState var1) {
 		int var2 = 0;
 		Item var3 = Item.getItemOf(this);
 		if (var3 != null && var3.k()) {
-			var2 = this.c(var1);
+			var2 = this.getData(var1);
 		}
 
 		return new ItemStack(var3, 1, var2);
@@ -799,7 +799,7 @@ public class Block {
 		return this.a(var2);
 	}
 
-	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
+	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
 	}
 
 	public Block setName(String name) {
@@ -815,7 +815,7 @@ public class Block {
 		return "tile." + this.name;
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, int var4, int var5) {
+	public boolean a(World var1, Position var2, IBlockState var3, int var4, int var5) {
 		return false;
 	}
 
@@ -848,7 +848,7 @@ public class Block {
 		return this;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, EntityHuman var4) {
+	public void a(World var1, Position var2, IBlockState var3, EntityHuman var4) {
 	}
 
 	public void k(World var1, Position var2) {
@@ -886,11 +886,11 @@ public class Block {
 		return this.L;
 	}
 
-	protected final void setBlockState(BlockState blockState) {
+	protected final void setBlockState(IBlockState blockState) {
 		this.blockState = blockState;
 	}
 
-	public final BlockState getBlockState() {
+	public final IBlockState getBlockState() {
 		return this.blockState;
 	}
 

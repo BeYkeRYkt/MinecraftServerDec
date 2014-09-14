@@ -9,7 +9,7 @@ public class ItemReed extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		BlockState var9 = var3.getBlockState(var4);
+		IBlockState var9 = var3.getBlockState(var4);
 		Block var10 = var9.getBlock();
 		if (var10 == Blocks.SNOW_LAYER && ((Integer) var9.b(BlockSnow.a)).intValue() < 1) {
 			var5 = BlockFace.UP;
@@ -23,8 +23,8 @@ public class ItemReed extends Item {
 			return false;
 		} else {
 			if (var3.a(this.a, var4, false, var5, (Entity) null, var1)) {
-				BlockState var11 = this.a.a(var3, var4, var5, var6, var7, var8, 0, var2);
-				if (var3.a(var4, var11, 3)) {
+				IBlockState var11 = this.a.a(var3, var4, var5, var6, var7, var8, 0, var2);
+				if (var3.setBlockAt(var4, var11, 3)) {
 					var11 = var3.getBlockState(var4);
 					if (var11.getBlock() == this.a) {
 						ItemBlock.a(var3, var4, var1);

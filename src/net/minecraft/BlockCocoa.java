@@ -12,21 +12,21 @@ public class BlockCocoa extends avb implements atz {
 		this.a(true);
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!this.e(var1, var2, var3)) {
 			this.f(var1, var2, var3);
 		} else if (var1.s.nextInt(5) == 0) {
 			int var5 = ((Integer) var3.b(a)).intValue();
 			if (var5 < 2) {
-				var1.a(var2, var3.a(a, Integer.valueOf(var5 + 1)), 2);
+				var1.setBlockAt(var2, var3.a(a, Integer.valueOf(var5 + 1)), 2);
 			}
 		}
 
 	}
 
-	public boolean e(World var1, Position var2, BlockState var3) {
+	public boolean e(World var1, Position var2, IBlockState var3) {
 		var2 = var2.a((BlockFace) var3.b(N));
-		BlockState var4 = var1.getBlockState(var2);
+		IBlockState var4 = var1.getBlockState(var2);
 		return var4.getBlock() == Blocks.LOG && var4.b(BlockWood.a) == EnumWoodType.d;
 	}
 
@@ -38,13 +38,13 @@ public class BlockCocoa extends avb implements atz {
 		return false;
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		this.a(var1, var2);
 		return super.a(var1, var2, var3);
 	}
 
 	public void a(ard var1, Position var2) {
-		BlockState var3 = var1.getBlockState(var2);
+		IBlockState var3 = var1.getBlockState(var2);
 		BlockFace var4 = (BlockFace) var3.b(N);
 		int var5 = ((Integer) var3.b(a)).intValue();
 		int var6 = 4 + var5 * 2;
@@ -66,12 +66,12 @@ public class BlockCocoa extends avb implements atz {
 
 	}
 
-	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
+	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
 		BlockFace var6 = BlockFace.fromDirection((double) var4.yaw);
-		var1.a(var2, var3.a(N, var6), 2);
+		var1.setBlockAt(var2, var3.a(N, var6), 2);
 	}
 
-	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		if (!var3.k().c()) {
 			var3 = BlockFace.NORTH;
 		}
@@ -79,19 +79,19 @@ public class BlockCocoa extends avb implements atz {
 		return this.getBlockState().a(N, var3.getOpposite()).a(a, Integer.valueOf(0));
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!this.e(var1, var2, var3)) {
 			this.f(var1, var2, var3);
 		}
 
 	}
 
-	private void f(World var1, Position var2, BlockState var3) {
-		var1.a(var2, Blocks.AIR.getBlockState(), 3);
+	private void f(World var1, Position var2, IBlockState var3) {
+		var1.setBlockAt(var2, Blocks.AIR.getBlockState(), 3);
 		this.b(var1, var2, var3, 0);
 	}
 
-	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
+	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		int var6 = ((Integer) var3.b(a)).intValue();
 		byte var7 = 1;
 		if (var6 >= 2) {
@@ -108,23 +108,23 @@ public class BlockCocoa extends avb implements atz {
 		return akv.m.b();
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, boolean var4) {
+	public boolean a(World var1, Position var2, IBlockState var3, boolean var4) {
 		return ((Integer) var3.b(a)).intValue() < 2;
 	}
 
-	public boolean a(World var1, Random var2, Position var3, BlockState var4) {
+	public boolean a(World var1, Random var2, Position var3, IBlockState var4) {
 		return true;
 	}
 
-	public void b(World var1, Random var2, Position var3, BlockState var4) {
-		var1.a(var3, var4.a(a, Integer.valueOf(((Integer) var4.b(a)).intValue() + 1)), 2);
+	public void b(World var1, Random var2, Position var3, IBlockState var4) {
+		var1.setBlockAt(var3, var4.a(a, Integer.valueOf(((Integer) var4.b(a)).intValue() + 1)), 2);
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(N, BlockFace.fromDirection(var1)).a(a, Integer.valueOf((var1 & 15) >> 2));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((BlockFace) var1.b(N)).toDirection();
 		var3 |= ((Integer) var1.b(a)).intValue() << 2;

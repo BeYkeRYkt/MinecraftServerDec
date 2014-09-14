@@ -8,7 +8,7 @@ public class BlockHay extends baa {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		el var2 = el.b;
 		int var3 = var1 & 12;
 		if (var3 == 4) {
@@ -20,7 +20,7 @@ public class BlockHay extends baa {
 		return this.getBlockState().a(M, var2);
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		int var2 = 0;
 		el var3 = (el) var1.b(M);
 		if (var3 == el.a) {
@@ -36,11 +36,11 @@ public class BlockHay extends baa {
 		return new bed(this, new bex[] { M });
 	}
 
-	protected ItemStack i(BlockState var1) {
+	protected ItemStack i(IBlockState var1) {
 		return new ItemStack(Item.getItemOf((Block) this), 1, 0);
 	}
 
-	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return super.a(var1, var2, var3, var4, var5, var6, var7, var8).a(M, var3.k());
 	}
 }

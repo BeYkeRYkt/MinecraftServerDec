@@ -16,7 +16,7 @@ public class BlockPistonExtension extends Block {
 		this.c(0.5F);
 	}
 
-	public void a(World var1, Position var2, BlockState var3, EntityHuman var4) {
+	public void a(World var1, Position var2, IBlockState var3, EntityHuman var4) {
 		if (var4.playerProperties.instabuild) {
 			BlockFace var5 = (BlockFace) var3.b(a);
 			if (var5 != null) {
@@ -31,11 +31,11 @@ public class BlockPistonExtension extends Block {
 		super.a(var1, var2, var3, var4);
 	}
 
-	public void b(World var1, Position var2, BlockState var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		super.b(var1, var2, var3);
 		BlockFace var4 = ((BlockFace) var3.b(a)).getOpposite();
 		var2 = var2.a(var4);
-		BlockState var5 = var1.getBlockState(var2);
+		IBlockState var5 = var1.getBlockState(var2);
 		if ((var5.getBlock() == Blocks.PISTON || var5.getBlock() == Blocks.STICKY_PISTON) && ((Boolean) var5.b(BlockPiston.b)).booleanValue()) {
 			var5.getBlock().b(var1, var2, var5, 0);
 			var1.g(var2);
@@ -63,7 +63,7 @@ public class BlockPistonExtension extends Block {
 		return 0;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, IBlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.d(var3);
 		super.a(var1, var2, var3, var4, var5, var6);
 		this.e(var3);
@@ -71,7 +71,7 @@ public class BlockPistonExtension extends Block {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 
-	private void e(BlockState var1) {
+	private void e(IBlockState var1) {
 		float var2 = 0.25F;
 		float var3 = 0.375F;
 		float var4 = 0.625F;
@@ -103,7 +103,7 @@ public class BlockPistonExtension extends Block {
 		this.d(var1.getBlockState(var2));
 	}
 
-	public void d(BlockState var1) {
+	public void d(IBlockState var1) {
 		float var2 = 0.25F;
 		BlockFace var3 = (BlockFace) var1.b(a);
 		if (var3 != null) {
@@ -130,10 +130,10 @@ public class BlockPistonExtension extends Block {
 		}
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		BlockFace var5 = (BlockFace) var3.b(a);
 		Position var6 = var2.a(var5.getOpposite());
-		BlockState var7 = var1.getBlockState(var6);
+		IBlockState var7 = var1.getBlockState(var6);
 		if (var7.getBlock() != Blocks.PISTON && var7.getBlock() != Blocks.STICKY_PISTON) {
 			var1.g(var2);
 		} else {
@@ -147,11 +147,11 @@ public class BlockPistonExtension extends Block {
 		return var1 > 5 ? null : BlockFace.getById(var1);
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, b(var1)).a(b, (var1 & 8) > 0 ? bdu.b : bdu.a);
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((BlockFace) var1.b(a)).getId();
 		if (var1.b(b) == bdu.b) {

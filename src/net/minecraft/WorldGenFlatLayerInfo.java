@@ -3,7 +3,7 @@ package net.minecraft;
 public class WorldGenFlatLayerInfo {
 
 	private final int a;
-	private BlockState b;
+	private IBlockState b;
 	private int c;
 	private int d;
 
@@ -27,7 +27,7 @@ public class WorldGenFlatLayerInfo {
 		return this.c;
 	}
 
-	public BlockState c() {
+	public IBlockState c() {
 		return this.b;
 	}
 
@@ -36,7 +36,7 @@ public class WorldGenFlatLayerInfo {
 	}
 
 	private int f() {
-		return this.b.getBlock().c(this.b);
+		return this.b.getBlock().getData(this.b);
 	}
 
 	public int d() {

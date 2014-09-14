@@ -12,7 +12,7 @@ public class BlockBeacon extends atg {
 		return new TileEntityBeacon();
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {
@@ -37,7 +37,7 @@ public class BlockBeacon extends atg {
 		return 3;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
+	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
 		super.a(var1, var2, var3, var4, var5);
 		if (var5.s()) {
 			TileEntity var6 = var1.getTileEntity(var2);
@@ -48,7 +48,7 @@ public class BlockBeacon extends atg {
 
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		TileEntity var5 = var1.getTileEntity(var2);
 		if (var5 instanceof TileEntityBeacon) {
 			((TileEntityBeacon) var5).m();

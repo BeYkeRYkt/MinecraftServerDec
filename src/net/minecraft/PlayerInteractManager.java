@@ -165,7 +165,7 @@ public class PlayerInteractManager {
 	}
 
 	private boolean c(Position var1) {
-		BlockState var2 = this.worldServer.getBlockState(var1);
+		IBlockState var2 = this.worldServer.getBlockState(var1);
 		var2.getBlock().a(this.worldServer, var1, var2, (EntityHuman) this.b);
 		boolean var3 = this.worldServer.g(var1);
 		if (var3) {
@@ -179,7 +179,7 @@ public class PlayerInteractManager {
 		if (this.gameMode.isCreative() && this.b.getItemInHand() != null && this.b.getItemInHand().getItem() instanceof ItemSword) {
 			return false;
 		} else {
-			BlockState var2 = this.worldServer.getBlockState(var1);
+			IBlockState var2 = this.worldServer.getBlockState(var1);
 			TileEntity var3 = this.worldServer.getTileEntity(var1);
 			if (this.gameMode.buildDisallowed()) {
 				if (this.gameMode == EnumGameMode.SPECTATOR) {
@@ -274,7 +274,7 @@ public class PlayerInteractManager {
 			return false;
 		} else {
 			if (!var1.aw() || var1.getItemInHand() == null) {
-				BlockState var9 = var2.getBlockState(var4);
+				IBlockState var9 = var2.getBlockState(var4);
 				if (var9.getBlock().a(var2, var4, var9, var1, var5, var6, var7, var8)) {
 					return true;
 				}

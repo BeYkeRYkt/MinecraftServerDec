@@ -64,9 +64,9 @@ public class WorldGenDungeons extends WorldGenerator {
 							var1.g(var17);
 						} else if (var1.getBlockState(var17).getBlock().getMaterial().isBuildable() && var1.getBlockState(var17).getBlock() != Blocks.CHEST) {
 							if (var15 == -1 && var2.nextInt(4) != 0) {
-								var1.a(var17, Blocks.MOSSY_COBBLESTONE.getBlockState(), 2);
+								var1.setBlockAt(var17, Blocks.MOSSY_COBBLESTONE.getBlockState(), 2);
 							} else {
-								var1.a(var17, Blocks.COBBLESTONE.getBlockState(), 2);
+								var1.setBlockAt(var17, Blocks.COBBLESTONE.getBlockState(), 2);
 							}
 						}
 					}
@@ -97,7 +97,7 @@ public class WorldGenDungeons extends WorldGenerator {
 								}
 
 								if (var20 == 1) {
-									var1.a(var26, Blocks.CHEST.f(var1, var26, Blocks.CHEST.getBlockState()), 2);
+									var1.setBlockAt(var26, Blocks.CHEST.f(var1, var26, Blocks.CHEST.getBlockState()), 2);
 									List var27 = StructurePieceTreasure.a(c, new StructurePieceTreasure[] { Items.ENCHANTED_BOOK.b(var2) });
 									TileEntity var28 = var1.getTileEntity(var26);
 									if (var28 instanceof TileEntityChest) {
@@ -117,7 +117,7 @@ public class WorldGenDungeons extends WorldGenerator {
 				}
 			}
 
-			var1.a(var3, Blocks.MOB_SPAWNER.getBlockState(), 2);
+			var1.setBlockAt(var3, Blocks.MOB_SPAWNER.getBlockState(), 2);
 			TileEntity var23 = var1.getTileEntity(var3);
 			if (var23 instanceof TileEntityMobSpawner) {
 				((TileEntityMobSpawner) var23).b().a(this.a(var2));

@@ -17,7 +17,7 @@ public class ItemSkull extends Item {
 		if (var5 == BlockFace.DOWN) {
 			return false;
 		} else {
-			BlockState var9 = var3.getBlockState(var4);
+			IBlockState var9 = var3.getBlockState(var4);
 			Block var10 = var9.getBlock();
 			boolean var11 = var10.f(var3, var4);
 			if (!var11) {
@@ -34,7 +34,7 @@ public class ItemSkull extends Item {
 				return false;
 			} else {
 				if (!var3.isStatic) {
-					var3.a(var4, Blocks.SKULL.getBlockState().a(BlockSkull.a, var5), 3);
+					var3.setBlockAt(var4, Blocks.SKULL.getBlockState().a(BlockSkull.a, var5), 3);
 					int var12 = 0;
 					if (var5 == BlockFace.UP) {
 						var12 = MathHelper.toFixedPointInt((double) (var2.yaw * 16.0F / 360.0F) + 0.5D) & 15;

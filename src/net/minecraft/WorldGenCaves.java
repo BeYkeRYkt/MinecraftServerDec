@@ -101,7 +101,7 @@ public class WorldGenCaves extends WorldGenBase {
 						for (int var43 = var57; !var58 && var43 < var40; ++var43) {
 							for (int var44 = var38 + 1; !var58 && var44 >= var56 - 1; --var44) {
 								if (var44 >= 0 && var44 < 256) {
-									BlockState var45 = var5.a(var42, var44, var43);
+									IBlockState var45 = var5.a(var42, var44, var43);
 									if (var45.getBlock() == Blocks.FLOWING_WATER || var45.getBlock() == Blocks.WATER) {
 										var58 = true;
 									}
@@ -125,8 +125,8 @@ public class WorldGenCaves extends WorldGenBase {
 									for (int var49 = var38; var49 > var56; --var49) {
 										double var50 = ((double) (var49 - 1) + 0.5D - var8) / var31;
 										if (var50 > -0.7D && var59 * var59 + var50 * var50 + var46 * var46 < 1.0D) {
-											BlockState var52 = var5.a(var42, var49, var60);
-											BlockState var53 = (BlockState) Objects.firstNonNull(var5.a(var42, var49 + 1, var60), Blocks.AIR.getBlockState());
+											IBlockState var52 = var5.a(var42, var49, var60);
+											IBlockState var53 = (IBlockState) Objects.firstNonNull(var5.a(var42, var49 + 1, var60), Blocks.AIR.getBlockState());
 											if (var52.getBlock() == Blocks.GRASS || var52.getBlock() == Blocks.MYCELIUM) {
 												var48 = true;
 											}
@@ -161,7 +161,7 @@ public class WorldGenCaves extends WorldGenBase {
 
 	}
 
-	protected boolean a(BlockState var1, BlockState var2) {
+	protected boolean a(IBlockState var1, IBlockState var2) {
 		return var1.getBlock() == Blocks.STONE ? true : (var1.getBlock() == Blocks.DIRT ? true : (var1.getBlock() == Blocks.GRASS ? true : (var1.getBlock() == Blocks.HARDENED_CLAY ? true : (var1.getBlock() == Blocks.STAINDED_HARDENED_CLAY ? true : (var1.getBlock() == Blocks.SANDSTONE ? true : (var1.getBlock() == Blocks.RED_SANDSTONE ? true : (var1.getBlock() == Blocks.MYCELIUM ? true : (var1.getBlock() == Blocks.SNOW_LAYER ? true : (var1.getBlock() == Blocks.SAND || var1.getBlock() == Blocks.GRAVEL) && var2.getBlock().getMaterial() != Material.WATER))))))));
 	}
 

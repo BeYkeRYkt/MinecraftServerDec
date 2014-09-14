@@ -10,7 +10,7 @@ public class ChunkProviderFlat implements IChunkProvider {
 
 	private WorldServer a;
 	private Random b;
-	private final BlockState[] c = new BlockState[256];
+	private final IBlockState[] c = new IBlockState[256];
 	private final biv d;
 	private final List e = Lists.newArrayList();
 	private final boolean f;
@@ -66,7 +66,7 @@ public class ChunkProviderFlat implements IChunkProvider {
 			WorldGenFlatLayerInfo var8 = (WorldGenFlatLayerInfo) var12.next();
 
 			for (int var9 = var8.d(); var9 < var8.d() + var8.b(); ++var9) {
-				BlockState var10 = var8.c();
+				IBlockState var10 = var8.c();
 				if (var10.getBlock() != Blocks.AIR) {
 					var11 = false;
 					this.c[var9] = var10;
@@ -82,7 +82,7 @@ public class ChunkProviderFlat implements IChunkProvider {
 
 		int var7;
 		for (int var4 = 0; var4 < this.c.length; ++var4) {
-			BlockState var5 = this.c[var4];
+			IBlockState var5 = this.c[var4];
 			if (var5 != null) {
 				for (int var6 = 0; var6 < 16; ++var6) {
 					for (var7 = 0; var7 < 16; ++var7) {

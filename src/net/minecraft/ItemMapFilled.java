@@ -77,7 +77,7 @@ public class ItemMapFilled extends ItemMap {
 									for (var28 = 0; var28 < var4; ++var28) {
 										for (int var29 = 0; var29 < var4; ++var29) {
 											int var30 = var22.b(var28 + var23, var29 + var24) + 1;
-											BlockState var31 = Blocks.AIR.getBlockState();
+											IBlockState var31 = Blocks.AIR.getBlockState();
 											if (var30 > 1) {
 												do {
 													--var30;
@@ -89,7 +89,7 @@ public class ItemMapFilled extends ItemMap {
 
 													Block var33;
 													do {
-														var33 = var22.a(var28 + var23, var32--, var29 + var24);
+														var33 = var22.getBlockAtWorldCoords(var28 + var23, var32--, var29 + var24);
 														++var25;
 													} while (var32 > 0 && var33.getMaterial().isLiquid());
 												}

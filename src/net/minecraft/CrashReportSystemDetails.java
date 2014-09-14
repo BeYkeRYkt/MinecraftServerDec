@@ -170,7 +170,7 @@ public class CrashReportSystemDetails {
 		var0.addDetails("Block location", (Callable) (new m(var1)));
 	}
 
-	public static void a(CrashReportSystemDetails var0, Position var1, BlockState var2) {
+	public static void a(CrashReportSystemDetails var0, Position var1, IBlockState var2) {
 		var0.addDetails("Block", (Callable) (new p(var2)));
 		var0.addDetails("Block location", (Callable) (new q(var1)));
 	}

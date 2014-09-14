@@ -108,7 +108,7 @@ public class EntityArrow extends Entity implements aho {
 		}
 
 		Position var18 = new Position(this.d, this.e, this.f);
-		BlockState var2 = this.world.getBlockState(var18);
+		IBlockState var2 = this.world.getBlockState(var18);
 		Block var3 = var2.getBlock();
 		if (var3.getMaterial() != Material.AIR) {
 			var3.a((ard) this.world, var18);
@@ -123,7 +123,7 @@ public class EntityArrow extends Entity implements aho {
 		}
 
 		if (this.isInGround) {
-			int var20 = var3.c(var2);
+			int var20 = var3.getData(var2);
 			if (var3 == this.g && var20 == this.h) {
 				++this.ap;
 				if (this.ap >= 1200) {
@@ -247,7 +247,7 @@ public class EntityArrow extends Entity implements aho {
 					this.f = var23.getZ();
 					var2 = this.world.getBlockState(var23);
 					this.g = var2.getBlock();
-					this.h = this.g.c(var2);
+					this.h = this.g.getData(var2);
 					this.motionX = (double) ((float) (var6.vec.x - this.locationX));
 					this.motionY = (double) ((float) (var6.vec.y - this.locationY));
 					this.motionZ = (double) ((float) (var6.vec.z - this.locationZ));

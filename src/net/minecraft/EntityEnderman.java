@@ -44,14 +44,14 @@ public class EntityEnderman extends EntityMonster {
 
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
-		BlockState var2 = this.ck();
+		IBlockState var2 = this.ck();
 		var1.put("carried", (short) Block.getBlockId(var2.getBlock()));
-		var1.put("carriedData", (short) var2.getBlock().c(var2));
+		var1.put("carriedData", (short) var2.getBlock().getData(var2));
 	}
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		BlockState var2;
+		IBlockState var2;
 		if (var1.isTagAssignableFrom("carried", 8)) {
 			var2 = Block.getByName(var1.getString("carried")).a(var1.getShort("carriedData") & '\uffff');
 		} else {
@@ -211,11 +211,11 @@ public class EntityEnderman extends EntityMonster {
 
 	}
 
-	public void a(BlockState var1) {
+	public void a(IBlockState var1) {
 		this.dataWatcher.b(16, Short.valueOf((short) (Block.f(var1) & '\uffff')));
 	}
 
-	public BlockState ck() {
+	public IBlockState ck() {
 		return Block.d(this.dataWatcher.b(16) & '\uffff');
 	}
 

@@ -12,7 +12,7 @@ public class BlockPortal extends awt {
 		this.a(true);
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		super.b(var1, var2, var3, var4);
 		if (var1.worldProvider.isSleepAllowed() && var1.getGameRules().b("doMobSpawning") && var4.nextInt(2000) < var1.getDifficulty().getId()) {
 			int var5 = var2.getY();
@@ -32,7 +32,7 @@ public class BlockPortal extends awt {
 
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -75,7 +75,7 @@ public class BlockPortal extends awt {
 		}
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		el var5 = (el) var3.b(a);
 		ayz var6;
 		if (var5 == el.a) {
@@ -96,18 +96,18 @@ public class BlockPortal extends awt {
 		return 0;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Entity var4) {
+	public void a(World var1, Position var2, IBlockState var3, Entity var4) {
 		if (var4.vehicle == null && var4.passenger == null) {
 			var4.aq();
 		}
 
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, (var1 & 3) == 2 ? el.c : el.a);
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return a((el) var1.b(a));
 	}
 

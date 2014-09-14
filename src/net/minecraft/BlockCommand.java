@@ -15,21 +15,21 @@ public class BlockCommand extends atg {
 		return new TileEntityCommand();
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!var1.isStatic) {
 			boolean var5 = var1.z(var2);
 			boolean var6 = ((Boolean) var3.b(a)).booleanValue();
 			if (var5 && !var6) {
-				var1.a(var2, var3.a(a, Boolean.valueOf(true)), 4);
+				var1.setBlockAt(var2, var3.a(a, Boolean.valueOf(true)), 4);
 				var1.a(var2, (Block) this, this.a(var1));
 			} else if (!var5 && var6) {
-				var1.a(var2, var3.a(a, Boolean.valueOf(false)), 4);
+				var1.setBlockAt(var2, var3.a(a, Boolean.valueOf(false)), 4);
 			}
 		}
 
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		TileEntity var5 = var1.getTileEntity(var2);
 		if (var5 instanceof TileEntityCommand) {
 			((TileEntityCommand) var5).getListener().executeCommand(var1);
@@ -42,7 +42,7 @@ public class BlockCommand extends atg {
 		return 1;
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		TileEntity var9 = var1.getTileEntity(var2);
 		return var9 instanceof TileEntityCommand ? ((TileEntityCommand) var9).getListener().a(var4) : false;
 	}
@@ -56,7 +56,7 @@ public class BlockCommand extends atg {
 		return var3 instanceof TileEntityCommand ? ((TileEntityCommand) var3).getListener().getSuccessCount() : 0;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
+	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
 		TileEntity var6 = var1.getTileEntity(var2);
 		if (var6 instanceof TileEntityCommand) {
 			CommandBlockListenerAbstract var7 = ((TileEntityCommand) var6).getListener();
@@ -79,11 +79,11 @@ public class BlockCommand extends atg {
 		return 3;
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, Boolean.valueOf((var1 & 1) > 0));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		int var2 = 0;
 		if (((Boolean) var1.b(a)).booleanValue()) {
 			var2 |= 1;
@@ -96,7 +96,7 @@ public class BlockCommand extends atg {
 		return new bed(this, new bex[] { a });
 	}
 
-	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.getBlockState().a(a, Boolean.valueOf(false));
 	}
 

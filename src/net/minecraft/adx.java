@@ -208,7 +208,7 @@ public abstract class adx extends Entity implements vz {
 			}
 
 			Position var4 = new Position(var14, var2, var16);
-			BlockState var5 = this.world.getBlockState(var4);
+			IBlockState var5 = this.world.getBlockState(var4);
 			if (ati.d(var5)) {
 				this.a(var4, var5);
 				if (var5.getBlock() == Blocks.ACTIVATOR_RAIL) {
@@ -283,7 +283,7 @@ public abstract class adx extends Entity implements vz {
 
 	}
 
-	protected void a(Position var1, BlockState var2) {
+	protected void a(Position var1, IBlockState var2) {
 		this.fallDistance = 0.0F;
 		Vec3D var3 = this.k(this.locationX, this.locationY, this.locationZ);
 		this.locationY = (double) var1.getY();
@@ -478,7 +478,7 @@ public abstract class adx extends Entity implements vz {
 			--var8;
 		}
 
-		BlockState var10 = this.world.getBlockState(new Position(var7, var8, var9));
+		IBlockState var10 = this.world.getBlockState(new Position(var7, var8, var9));
 		if (ati.d(var10)) {
 			atl var11 = (atl) var10.b(((ati) var10.getBlock()).l());
 			int[][] var12 = c[var11.a()];
@@ -553,10 +553,10 @@ public abstract class adx extends Entity implements vz {
 	protected void b(NBTCompoundTag var1) {
 		if (this.x()) {
 			var1.put("CustomDisplayTile", true);
-			BlockState var2 = this.t();
+			IBlockState var2 = this.t();
 			RegistryObjectName var3 = (RegistryObjectName) Block.BLOCKREGISTRY.c(var2.getBlock());
 			var1.put("DisplayTile", var3 == null ? "" : var3.toString());
-			var1.put("DisplayData", var2.getBlock().c(var2));
+			var1.put("DisplayData", var2.getBlock().getData(var2));
 			var1.put("DisplayOffset", this.v());
 		}
 
@@ -665,11 +665,11 @@ public abstract class adx extends Entity implements vz {
 
 	public abstract MinecartType s();
 
-	public BlockState t() {
+	public IBlockState t() {
 		return !this.x() ? this.u() : Block.d(this.getDataWatcher().c(20));
 	}
 
-	public BlockState u() {
+	public IBlockState u() {
 		return Blocks.AIR.getBlockState();
 	}
 
@@ -681,7 +681,7 @@ public abstract class adx extends Entity implements vz {
 		return 6;
 	}
 
-	public void a(BlockState var1) {
+	public void a(IBlockState var1) {
 		this.getDataWatcher().b(20, Integer.valueOf(Block.f(var1)));
 		this.a(true);
 	}

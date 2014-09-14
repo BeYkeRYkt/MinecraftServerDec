@@ -12,7 +12,7 @@ public class WorldGenCactus extends WorldGenerator {
 
 				for (int var7 = 0; var7 < var6; ++var7) {
 					if (Blocks.CACTUS.d(var1, var5)) {
-						var1.a(var5.b(var7), Blocks.CACTUS.getBlockState(), 2);
+						var1.setBlockAt(var5.b(var7), Blocks.CACTUS.getBlockState(), 2);
 					}
 				}
 			}

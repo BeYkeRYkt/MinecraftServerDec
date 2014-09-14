@@ -8,7 +8,7 @@ public abstract class ati extends Block {
 		return d(var0.getBlockState(var1));
 	}
 
-	public static boolean d(BlockState var0) {
+	public static boolean d(IBlockState var0) {
 		Block var1 = var0.getBlock();
 		return var1 == Blocks.RAIL || var1 == Blocks.GOLDEN_RAIL || var1 == Blocks.DETECTOR_RAIL || var1 == Blocks.ACTIVATOR_RAIL;
 	}
@@ -20,7 +20,7 @@ public abstract class ati extends Block {
 		this.a(CreativeModeTab.TRANSPORTATION);
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -34,7 +34,7 @@ public abstract class ati extends Block {
 	}
 
 	public void a(ard var1, Position var2) {
-		BlockState var3 = var1.getBlockState(var2);
+		IBlockState var3 = var1.getBlockState(var2);
 		atl var4 = var3.getBlock() == this ? (atl) var3.b(this.l()) : null;
 		if (var4 != null && var4.c()) {
 			this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.625F, 1.0F);
@@ -52,7 +52,7 @@ public abstract class ati extends Block {
 		return World.a((ard) var1, var2.b());
 	}
 
-	public void c(World var1, Position var2, BlockState var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			var3 = this.a(var1, var2, var3, true);
 			if (this.a) {
@@ -62,7 +62,7 @@ public abstract class ati extends Block {
 
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!var1.isStatic) {
 			atl var5 = (atl) var3.b(this.l());
 			boolean var6 = false;
@@ -90,10 +90,10 @@ public abstract class ati extends Block {
 		}
 	}
 
-	protected void b(World var1, Position var2, BlockState var3, Block var4) {
+	protected void b(World var1, Position var2, IBlockState var3, Block var4) {
 	}
 
-	protected BlockState a(World var1, Position var2, BlockState var3, boolean var4) {
+	protected IBlockState a(World var1, Position var2, IBlockState var3, boolean var4) {
 		return var1.isStatic ? var3 : (new atk(this, var1, var2, var3)).a(var1.z(var2), var4).b();
 	}
 
@@ -101,7 +101,7 @@ public abstract class ati extends Block {
 		return 0;
 	}
 
-	public void b(World var1, Position var2, BlockState var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		super.b(var1, var2, var3);
 		if (((atl) var3.b(this.l())).c()) {
 			var1.c(var2.a(), (Block) this);

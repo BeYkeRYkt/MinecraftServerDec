@@ -74,8 +74,8 @@ public class CloneCommand extends AbstractCommand {
 									for (int var21 = var6.minX; var21 <= var6.maxX; ++var21) {
 										Position var22 = new Position(var21, var20, var19);
 										Position var23 = var22.a((fd) var18);
-										BlockState var24 = var12.getBlockState(var22);
-										if ((!var13 || var24.getBlock() != Blocks.AIR) && (var10 == null || var24.getBlock() == var10 && (var11 < 0 || var24.getBlock().c(var24) == var11))) {
+										IBlockState var24 = var12.getBlockState(var22);
+										if ((!var13 || var24.getBlock() != Blocks.AIR) && (var10 == null || var24.getBlock() == var10 && (var11 < 0 || var24.getBlock().getData(var24) == var11))) {
 											TileEntity var25 = var12.getTileEntity(var22);
 											if (var25 != null) {
 												NBTCompoundTag var26 = new NBTCompoundTag();
@@ -97,7 +97,7 @@ public class CloneCommand extends AbstractCommand {
 							if (var9) {
 								Iterator var27;
 								Position var29;
-								for (var27 = var17.iterator(); var27.hasNext(); var12.a(var29, Blocks.BARRIER.getBlockState(), 2)) {
+								for (var27 = var17.iterator(); var27.hasNext(); var12.setBlockAt(var29, Blocks.BARRIER.getBlockState(), 2)) {
 									var29 = (Position) var27.next();
 									TileEntity var31 = var12.getTileEntity(var29);
 									if (var31 instanceof IInventory) {
@@ -109,7 +109,7 @@ public class CloneCommand extends AbstractCommand {
 
 								while (var27.hasNext()) {
 									var29 = (Position) var27.next();
-									var12.a(var29, Blocks.AIR.getBlockState(), 3);
+									var12.setBlockAt(var29, Blocks.AIR.getBlockState(), 3);
 								}
 							}
 
@@ -122,7 +122,7 @@ public class CloneCommand extends AbstractCommand {
 							Iterator var32;
 							bb var34;
 							TileEntity var36;
-							for (var32 = var30.iterator(); var32.hasNext(); var12.a(var34.a, Blocks.BARRIER.getBlockState(), 2)) {
+							for (var32 = var30.iterator(); var32.hasNext(); var12.setBlockAt(var34.a, Blocks.BARRIER.getBlockState(), 2)) {
 								var34 = (bb) var32.next();
 								var36 = var12.getTileEntity(var34.a);
 								if (var36 instanceof IInventory) {
@@ -135,12 +135,12 @@ public class CloneCommand extends AbstractCommand {
 
 							while (var32.hasNext()) {
 								var34 = (bb) var32.next();
-								if (var12.a(var34.a, var34.b, 2)) {
+								if (var12.setBlockAt(var34.a, var34.b, 2)) {
 									++var8;
 								}
 							}
 
-							for (var32 = var15.iterator(); var32.hasNext(); var12.a(var34.a, var34.b, 2)) {
+							for (var32 = var15.iterator(); var32.hasNext(); var12.setBlockAt(var34.a, var34.b, 2)) {
 								var34 = (bb) var32.next();
 								var36 = var12.getTileEntity(var34.a);
 								if (var34.c != null && var36 != null) {

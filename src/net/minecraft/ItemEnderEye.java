@@ -7,12 +7,12 @@ public class ItemEnderEye extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		BlockState var9 = var3.getBlockState(var4);
+		IBlockState var9 = var3.getBlockState(var4);
 		if (var2.a(var4.a(var5), var5, var1) && var9.getBlock() == Blocks.END_PORTAL_FRAME && !((Boolean) var9.b(BlockEnderPortalFrame.b)).booleanValue()) {
 			if (var3.isStatic) {
 				return true;
 			} else {
-				var3.a(var4, var9.a(BlockEnderPortalFrame.b, Boolean.valueOf(true)), 2);
+				var3.setBlockAt(var4, var9.a(BlockEnderPortalFrame.b, Boolean.valueOf(true)), 2);
 				var3.e(var4, Blocks.END_PORTAL_FRAME);
 				--var1.amount;
 
@@ -35,7 +35,7 @@ public class ItemEnderEye extends Item {
 
 				for (int var16 = -2; var16 <= 2; ++var16) {
 					Position var28 = var4.a(var26, var16);
-					BlockState var18 = var3.getBlockState(var28);
+					IBlockState var18 = var3.getBlockState(var28);
 					if (var18.getBlock() == Blocks.END_PORTAL_FRAME) {
 						if (!((Boolean) var18.b(BlockEnderPortalFrame.b)).booleanValue()) {
 							var14 = false;
@@ -56,7 +56,7 @@ public class ItemEnderEye extends Item {
 					int var29;
 					for (var29 = var24; var29 <= var12; ++var29) {
 						Position var30 = var27.a(var26, var29);
-						BlockState var32 = var3.getBlockState(var30);
+						IBlockState var32 = var3.getBlockState(var30);
 						if (var32.getBlock() != Blocks.END_PORTAL_FRAME || !((Boolean) var32.b(BlockEnderPortalFrame.b)).booleanValue()) {
 							var14 = false;
 							break;
@@ -70,7 +70,7 @@ public class ItemEnderEye extends Item {
 
 						for (var31 = 1; var31 <= 3; ++var31) {
 							var33 = var27.a(var23, var31);
-							BlockState var20 = var3.getBlockState(var33);
+							IBlockState var20 = var3.getBlockState(var33);
 							if (var20.getBlock() != Blocks.END_PORTAL_FRAME || !((Boolean) var20.b(BlockEnderPortalFrame.b)).booleanValue()) {
 								var14 = false;
 								break;
@@ -84,7 +84,7 @@ public class ItemEnderEye extends Item {
 
 							for (var31 = 1; var31 <= 3; ++var31) {
 								var33 = var27.a(var23, var31);
-								var3.a(var33, Blocks.END_PORTAL.getBlockState(), 2);
+								var3.setBlockAt(var33, Blocks.END_PORTAL.getBlockState(), 2);
 							}
 						}
 					}

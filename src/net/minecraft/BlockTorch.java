@@ -14,7 +14,7 @@ public class BlockTorch extends Block {
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -56,7 +56,7 @@ public class BlockTorch extends Block {
 		return var5 && var1.d(var4, true) || var3.equals(BlockFace.UP) && this.d(var1, var4);
 	}
 
-	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		if (this.b(var1, var2, var3)) {
 			return this.getBlockState().a(a, var3);
 		} else {
@@ -75,15 +75,15 @@ public class BlockTorch extends Block {
 		}
 	}
 
-	public void c(World var1, Position var2, BlockState var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		this.f(var1, var2, var3);
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		this.e(var1, var2, var3);
 	}
 
-	protected boolean e(World var1, Position var2, BlockState var3) {
+	protected boolean e(World var1, Position var2, IBlockState var3) {
 		if (!this.f(var1, var2, var3)) {
 			return true;
 		} else {
@@ -107,7 +107,7 @@ public class BlockTorch extends Block {
 		}
 	}
 
-	protected boolean f(World var1, Position var2, BlockState var3) {
+	protected boolean f(World var1, Position var2, IBlockState var3) {
 		if (var3.getBlock() == this && this.b(var1, var2, (BlockFace) var3.b(a))) {
 			return true;
 		} else {
@@ -139,8 +139,8 @@ public class BlockTorch extends Block {
 		return super.a(var1, var2, var3, var4);
 	}
 
-	public BlockState a(int var1) {
-		BlockState var2 = this.getBlockState();
+	public IBlockState a(int var1) {
+		IBlockState var2 = this.getBlockState();
 		switch (var1) {
 			case 1:
 				var2 = var2.a(a, BlockFace.EAST);
@@ -162,7 +162,7 @@ public class BlockTorch extends Block {
 		return var2;
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
 		int var3;
 		switch (bbn.a[((BlockFace) var1.b(a)).ordinal()]) {

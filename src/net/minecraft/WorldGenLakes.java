@@ -71,7 +71,7 @@ public class WorldGenLakes extends WorldGenerator {
 				for (var30 = 0; var30 < 16; ++var30) {
 					for (var8 = 0; var8 < 8; ++var8) {
 						if (var4[(var6 * 16 + var30) * 8 + var8]) {
-							var1.a(var3.a(var6, var8, var30), var8 >= 4 ? Blocks.AIR.getBlockState() : this.a.getBlockState(), 2);
+							var1.setBlockAt(var3.a(var6, var8, var30), var8 >= 4 ? Blocks.AIR.getBlockState() : this.a.getBlockState(), 2);
 						}
 					}
 				}
@@ -82,12 +82,12 @@ public class WorldGenLakes extends WorldGenerator {
 					for (var8 = 4; var8 < 8; ++var8) {
 						if (var4[(var6 * 16 + var30) * 8 + var8]) {
 							Position var33 = var3.a(var6, var8 - 1, var30);
-							if (var1.getBlockState(var33).getBlock() == Blocks.DIRT && var1.b(arf.a, var3.a(var6, var8, var30)) > 0) {
+							if (var1.getBlockState(var33).getBlock() == Blocks.DIRT && var1.b(EnumSkyBlock.SKY, var3.a(var6, var8, var30)) > 0) {
 								BiomeBase var34 = var1.b(var33);
 								if (var34.ak.getBlock() == Blocks.MYCELIUM) {
-									var1.a(var33, Blocks.MYCELIUM.getBlockState(), 2);
+									var1.setBlockAt(var33, Blocks.MYCELIUM.getBlockState(), 2);
 								} else {
-									var1.a(var33, Blocks.GRASS.getBlockState(), 2);
+									var1.setBlockAt(var33, Blocks.GRASS.getBlockState(), 2);
 								}
 							}
 						}
@@ -101,7 +101,7 @@ public class WorldGenLakes extends WorldGenerator {
 						for (var8 = 0; var8 < 8; ++var8) {
 							var32 = !var4[(var6 * 16 + var30) * 8 + var8] && (var6 < 15 && var4[((var6 + 1) * 16 + var30) * 8 + var8] || var6 > 0 && var4[((var6 - 1) * 16 + var30) * 8 + var8] || var30 < 15 && var4[(var6 * 16 + var30 + 1) * 8 + var8] || var30 > 0 && var4[(var6 * 16 + (var30 - 1)) * 8 + var8] || var8 < 7 && var4[(var6 * 16 + var30) * 8 + var8 + 1] || var8 > 0 && var4[(var6 * 16 + var30) * 8 + (var8 - 1)]);
 							if (var32 && (var8 < 4 || var2.nextInt(2) != 0) && var1.getBlockState(var3.a(var6, var8, var30)).getBlock().getMaterial().isBuildable()) {
-								var1.a(var3.a(var6, var8, var30), Blocks.STONE.getBlockState(), 2);
+								var1.setBlockAt(var3.a(var6, var8, var30), Blocks.STONE.getBlockState(), 2);
 							}
 						}
 					}
@@ -113,7 +113,7 @@ public class WorldGenLakes extends WorldGenerator {
 					for (var30 = 0; var30 < 16; ++var30) {
 						byte var31 = 4;
 						if (var1.v(var3.a(var6, var31, var30))) {
-							var1.a(var3.a(var6, var31, var30), Blocks.ICE.getBlockState(), 2);
+							var1.setBlockAt(var3.a(var6, var31, var30), Blocks.ICE.getBlockState(), 2);
 						}
 					}
 				}

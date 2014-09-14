@@ -23,7 +23,7 @@ public class ChunkProviderDebug implements IChunkProvider {
 				int var6 = var1 * 16 + var4;
 				var7 = var2 * 16 + var5;
 				var3.a(var4, 60, var5, Blocks.BARRIER.getBlockState());
-				BlockState var8 = b(var6, var7);
+				IBlockState var8 = b(var6, var7);
 				if (var8 != null) {
 					var3.a(var4, 70, var5, var8);
 				}
@@ -43,15 +43,15 @@ public class ChunkProviderDebug implements IChunkProvider {
 		return var9;
 	}
 
-	public static BlockState b(int var0, int var1) {
-		BlockState var2 = null;
+	public static IBlockState b(int var0, int var1) {
+		IBlockState var2 = null;
 		if (var0 > 0 && var1 > 0 && var0 % 2 != 0 && var1 % 2 != 0) {
 			var0 /= 2;
 			var1 /= 2;
 			if (var0 <= b && var1 <= b) {
 				int var3 = MathHelper.a(var0 * b + var1);
 				if (var3 < a.size()) {
-					var2 = (BlockState) a.get(var3);
+					var2 = (IBlockState) a.get(var3);
 				}
 			}
 		}

@@ -4,37 +4,37 @@ public enum axu implements va {
 
 	a("STONE", 0, 0, "stone") {
 		@Override
-		public BlockState d() {
+		public IBlockState d() {
 			return Blocks.STONE.getBlockState().a(BlockStone.a, bbb.a);
 		}
 	},
 	b("COBBLESTONE", 1, 1, "cobblestone", "cobble") {
 		@Override
-		public BlockState d() {
+		public IBlockState d() {
 			return Blocks.COBBLESTONE.getBlockState();
 		}
 	},
 	c("STONEBRICK", 2, 2, "stone_brick", "brick") {
 		@Override
-		public BlockState d() {
+		public IBlockState d() {
 			return Blocks.STONEBRICK.getBlockState().a(BlockSmoothBrick.a, bbd.a);
 		}
 	},
 	d("MOSSY_STONEBRICK", 3, 3, "mossy_brick", "mossybrick") {
 		@Override
-		public BlockState d() {
+		public IBlockState d() {
 			return Blocks.STONEBRICK.getBlockState().a(BlockSmoothBrick.a, bbd.b);
 		}
 	},
 	e("CRACKED_STONEBRICK", 4, 4, "cracked_brick", "crackedbrick") {
 		@Override
-		public BlockState d() {
+		public IBlockState d() {
 			return Blocks.STONEBRICK.getBlockState().a(BlockSmoothBrick.a, bbd.c);
 		}
 	},
 	f("CHISELED_STONEBRICK", 5, 5, "chiseled_brick", "chiseledbrick") {
 		@Override
-		public BlockState d() {
+		public IBlockState d() {
 			return Blocks.STONEBRICK.getBlockState().a(BlockSmoothBrick.a, bbd.d);
 		}
 	};
@@ -80,9 +80,9 @@ public enum axu implements va {
 		return this.j;
 	}
 
-	public abstract BlockState d();
+	public abstract IBlockState d();
 
-	public static axu a(BlockState var0) {
+	public static axu a(IBlockState var0) {
 		axu[] var1 = values();
 		int var2 = var1.length;
 

@@ -22,7 +22,7 @@ public class BlockEnderPortalFrame extends Block {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.8125F, 1.0F);
 	}
 
-	public void a(World var1, Position var2, BlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, IBlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.8125F, 1.0F);
 		super.a(var1, var2, var3, var4, var5, var6);
 		if (((Boolean) var1.getBlockState(var2).b(b)).booleanValue()) {
@@ -33,11 +33,11 @@ public class BlockEnderPortalFrame extends Block {
 		this.h();
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 
-	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.getBlockState().a(a, var8.aO().getOpposite()).a(b, Boolean.valueOf(false));
 	}
 
@@ -49,11 +49,11 @@ public class BlockEnderPortalFrame extends Block {
 		return ((Boolean) var1.getBlockState(var2).b(b)).booleanValue() ? 15 : 0;
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(b, Boolean.valueOf((var1 & 4) != 0)).a(a, BlockFace.fromDirection(var1 & 3));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((BlockFace) var1.b(a)).toDirection();
 		if (((Boolean) var1.b(b)).booleanValue()) {

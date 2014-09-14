@@ -9,7 +9,7 @@ public class BlockOre extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return this == Blocks.COAL_ORE ? Items.COAL : (this == Blocks.DIAMOND_ORE ? Items.DIAMOND : (this == Blocks.LAPIS_ORE ? Items.DYE : (this == Blocks.EMERALD_ORE ? Items.EMERALD : (this == Blocks.QUARTZ_ORE ? Items.QUARTZ : Item.getItemOf((Block) this)))));
 	}
 
@@ -18,7 +18,7 @@ public class BlockOre extends Block {
 	}
 
 	public int a(int var1, Random var2) {
-		if (var1 > 0 && Item.getItemOf((Block) this) != this.a((BlockState) this.O().a().iterator().next(), var2, var1)) {
+		if (var1 > 0 && Item.getItemOf((Block) this) != this.a((IBlockState) this.O().a().iterator().next(), var2, var1)) {
 			int var3 = var2.nextInt(var1 + 2) - 1;
 			if (var3 < 0) {
 				var3 = 0;
@@ -30,7 +30,7 @@ public class BlockOre extends Block {
 		}
 	}
 
-	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
+	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		super.a(var1, var2, var3, var4, var5);
 		if (this.a(var3, var1.s, var5) != Item.getItemOf((Block) this)) {
 			int var6 = 0;
@@ -55,7 +55,7 @@ public class BlockOre extends Block {
 		return 0;
 	}
 
-	public int a(BlockState var1) {
+	public int a(IBlockState var1) {
 		return this == Blocks.LAPIS_ORE ? akv.l.b() : 0;
 	}
 }

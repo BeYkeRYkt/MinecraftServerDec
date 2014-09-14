@@ -28,7 +28,7 @@ public class WorldGenSand extends WorldGenerator {
 							Position var11 = new Position(var6, var10, var7);
 							Block var12 = var1.getBlockState(var11).getBlock();
 							if (var12 == Blocks.DIRT || var12 == Blocks.GRASS) {
-								var1.a(var11, this.a.getBlockState(), 2);
+								var1.setBlockAt(var11, this.a.getBlockState(), 2);
 							}
 						}
 					}

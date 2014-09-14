@@ -53,7 +53,7 @@ public class WorldGenLiquids extends WorldGenerator {
 			}
 
 			if (var4 == 3 && var5 == 1) {
-				var1.a(var3, this.a.getBlockState(), 2);
+				var1.setBlockAt(var3, this.a.getBlockState(), 2);
 				var1.a(this.a, var3, var2);
 			}
 

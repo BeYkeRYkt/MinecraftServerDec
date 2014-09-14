@@ -22,7 +22,7 @@ public class ItemWaterLily extends ItemWithAuxData {
 				}
 
 				Position var6 = var5.a();
-				BlockState var7 = var2.getBlockState(var5);
+				IBlockState var7 = var2.getBlockState(var5);
 				if (var7.getBlock().getMaterial() == Material.WATER && ((Integer) var7.b(axl.b)).intValue() == 0 && var2.d(var6)) {
 					var2.a(var6, Blocks.WATER_LILY.getBlockState());
 					if (!var3.playerProperties.instabuild) {

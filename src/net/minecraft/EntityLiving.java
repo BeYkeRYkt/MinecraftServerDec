@@ -104,7 +104,7 @@ public abstract class EntityLiving extends Entity {
 		}
 
 		if (!this.world.isStatic && this.fallDistance > 3.0F && var3) {
-			BlockState var6 = this.world.getBlockState(var5);
+			IBlockState var6 = this.world.getBlockState(var5);
 			Block var7 = var6.getBlock();
 			float var8 = (float) MathHelper.f(this.fallDistance - 3.0F);
 			if (var7.getMaterial() != Material.AIR) {

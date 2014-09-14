@@ -14,7 +14,7 @@ public class BlockSapling extends auc implements atz {
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!var1.isStatic) {
 			super.b(var1, var2, var3, var4);
 			if (var1.l(var2.a()) >= 9 && var4.nextInt(7) == 0) {
@@ -24,16 +24,16 @@ public class BlockSapling extends auc implements atz {
 		}
 	}
 
-	public void d(World var1, Position var2, BlockState var3, Random var4) {
+	public void d(World var1, Position var2, IBlockState var3, Random var4) {
 		if (((Integer) var3.b(b)).intValue() == 0) {
-			var1.a(var2, var3.a(b), 4);
+			var1.setBlockAt(var2, var3.a(b), 4);
 		} else {
 			this.e(var1, var2, var3, var4);
 		}
 
 	}
 
-	public void e(World var1, Position var2, BlockState var3, Random var4) {
+	public void e(World var1, Position var2, IBlockState var3, Random var4) {
 		Object var5 = var4.nextInt(10) == 0 ? new WorldGenBigTree(true) : new WorldGenTrees(true);
 		int var6 = 0;
 		int var7 = 0;
@@ -96,55 +96,55 @@ public class BlockSapling extends auc implements atz {
 			case 6:
 		}
 
-		BlockState var9 = Blocks.AIR.getBlockState();
+		IBlockState var9 = Blocks.AIR.getBlockState();
 		if (var8) {
-			var1.a(var2.a(var6, 0, var7), var9, 4);
-			var1.a(var2.a(var6 + 1, 0, var7), var9, 4);
-			var1.a(var2.a(var6, 0, var7 + 1), var9, 4);
-			var1.a(var2.a(var6 + 1, 0, var7 + 1), var9, 4);
+			var1.setBlockAt(var2.a(var6, 0, var7), var9, 4);
+			var1.setBlockAt(var2.a(var6 + 1, 0, var7), var9, 4);
+			var1.setBlockAt(var2.a(var6, 0, var7 + 1), var9, 4);
+			var1.setBlockAt(var2.a(var6 + 1, 0, var7 + 1), var9, 4);
 		} else {
-			var1.a(var2, var9, 4);
+			var1.setBlockAt(var2, var9, 4);
 		}
 
 		if (!((WorldGenerator) var5).b(var1, var4, var2.a(var6, 0, var7))) {
 			if (var8) {
-				var1.a(var2.a(var6, 0, var7), var3, 4);
-				var1.a(var2.a(var6 + 1, 0, var7), var3, 4);
-				var1.a(var2.a(var6, 0, var7 + 1), var3, 4);
-				var1.a(var2.a(var6 + 1, 0, var7 + 1), var3, 4);
+				var1.setBlockAt(var2.a(var6, 0, var7), var3, 4);
+				var1.setBlockAt(var2.a(var6 + 1, 0, var7), var3, 4);
+				var1.setBlockAt(var2.a(var6, 0, var7 + 1), var3, 4);
+				var1.setBlockAt(var2.a(var6 + 1, 0, var7 + 1), var3, 4);
 			} else {
-				var1.a(var2, var3, 4);
+				var1.setBlockAt(var2, var3, 4);
 			}
 		}
 
 	}
 
 	public boolean a(World var1, Position var2, EnumWoodType var3) {
-		BlockState var4 = var1.getBlockState(var2);
+		IBlockState var4 = var1.getBlockState(var2);
 		return var4.getBlock() == this && var4.b(a) == var3;
 	}
 
-	public int a(BlockState var1) {
+	public int a(IBlockState var1) {
 		return ((EnumWoodType) var1.b(a)).a();
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, boolean var4) {
+	public boolean a(World var1, Position var2, IBlockState var3, boolean var4) {
 		return true;
 	}
 
-	public boolean a(World var1, Random var2, Position var3, BlockState var4) {
+	public boolean a(World var1, Random var2, Position var3, IBlockState var4) {
 		return (double) var1.s.nextFloat() < 0.45D;
 	}
 
-	public void b(World var1, Random var2, Position var3, BlockState var4) {
+	public void b(World var1, Random var2, Position var3, IBlockState var4) {
 		this.d(var1, var3, var4, var2);
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, EnumWoodType.a(var1 & 7)).a(b, Integer.valueOf((var1 & 8) >> 3));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((EnumWoodType) var1.b(a)).a();
 		var3 |= ((Integer) var1.b(b)).intValue() << 3;

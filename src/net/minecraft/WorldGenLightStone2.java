@@ -10,7 +10,7 @@ public class WorldGenLightStone2 extends WorldGenerator {
 		} else if (var1.getBlockState(var3.a()).getBlock() != Blocks.NETHERRACK) {
 			return false;
 		} else {
-			var1.a(var3, Blocks.GLOWSTONE.getBlockState(), 2);
+			var1.setBlockAt(var3, Blocks.GLOWSTONE.getBlockState(), 2);
 
 			for (int var4 = 0; var4 < 1500; ++var4) {
 				Position var5 = var3.a(var2.nextInt(8) - var2.nextInt(8), var2.nextInt(12), var2.nextInt(8) - var2.nextInt(8));
@@ -31,7 +31,7 @@ public class WorldGenLightStone2 extends WorldGenerator {
 					}
 
 					if (var6 == 1) {
-						var1.a(var5, Blocks.GLOWSTONE.getBlockState(), 2);
+						var1.setBlockAt(var5, Blocks.GLOWSTONE.getBlockState(), 2);
 					}
 				}
 			}

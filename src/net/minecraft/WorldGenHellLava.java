@@ -61,7 +61,7 @@ public class WorldGenHellLava extends WorldGenerator {
 			}
 
 			if (!this.b && var4 == 4 && var5 == 1 || var4 == 5) {
-				var1.a(var3, this.a.getBlockState(), 2);
+				var1.setBlockAt(var3, this.a.getBlockState(), 2);
 				var1.a(this.a, var3, var2);
 			}
 

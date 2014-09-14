@@ -35,7 +35,7 @@ public class EntityMinecartCommandBlock extends adx {
 		return MinecartType.COMMAND_BLOCK;
 	}
 
-	public BlockState u() {
+	public IBlockState u() {
 		return Blocks.COMMAND_BLOCK.getBlockState();
 	}
 

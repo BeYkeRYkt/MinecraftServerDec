@@ -11,11 +11,11 @@ public abstract class BlockFlowers extends auc {
 		this.setBlockState(this.L.b().a(this.l(), this.j() == EnumFlowerColor.b ? EnumFlowerType.b : EnumFlowerType.a));
 	}
 
-	public int a(BlockState var1) {
+	public int a(IBlockState var1) {
 		return ((EnumFlowerType) var1.b(this.l())).b();
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(this.l(), EnumFlowerType.a(this.j(), var1));
 	}
 
@@ -29,7 +29,7 @@ public abstract class BlockFlowers extends auc {
 		return this.a;
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((EnumFlowerType) var1.b(this.l())).b();
 	}
 

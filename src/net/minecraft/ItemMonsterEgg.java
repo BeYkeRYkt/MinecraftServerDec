@@ -23,7 +23,7 @@ public class ItemMonsterEgg extends Item {
 		} else if (!var2.a(var4.a(var5), var5, var1)) {
 			return false;
 		} else {
-			BlockState var9 = var3.getBlockState(var4);
+			IBlockState var9 = var3.getBlockState(var4);
 			if (var9.getBlock() == Blocks.MOB_SPAWNER) {
 				TileEntity var10 = var3.getTileEntity(var4);
 				if (var10 instanceof TileEntityMobSpawner) {

@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class BiomeMesa extends BiomeBase {
 
-	private BlockState[] aD;
+	private IBlockState[] aD;
 	private long aE;
 	private NoiseGenerator3 aF;
 	private NoiseGenerator3 aG;
@@ -77,8 +77,8 @@ public class BiomeMesa extends BiomeBase {
 		var10 = var4 & 15;
 		var11 = var5 & 15;
 		boolean var23 = true;
-		BlockState var13 = Blocks.STAINDED_HARDENED_CLAY.getBlockState();
-		BlockState var24 = this.al;
+		IBlockState var13 = Blocks.STAINDED_HARDENED_CLAY.getBlockState();
+		IBlockState var24 = this.al;
 		int var15 = (int) (var6 / 3.0D + 3.0D + var2.nextDouble() * 0.25D);
 		boolean var25 = Math.cos(var6 / 3.0D * 3.141592653589793D) > 0.0D;
 		int var17 = -1;
@@ -92,11 +92,11 @@ public class BiomeMesa extends BiomeBase {
 			if (var19 <= var2.nextInt(5)) {
 				var3.a(var11, var19, var10, Blocks.BEDROCK.getBlockState());
 			} else {
-				BlockState var20 = var3.a(var11, var19, var10);
+				IBlockState var20 = var3.a(var11, var19, var10);
 				if (var20.getBlock().getMaterial() == Material.AIR) {
 					var17 = -1;
 				} else if (var20.getBlock() == Blocks.STONE) {
-					BlockState var21;
+					IBlockState var21;
 					if (var17 == -1) {
 						var26 = false;
 						if (var15 <= 0) {
@@ -157,7 +157,7 @@ public class BiomeMesa extends BiomeBase {
 	}
 
 	private void a(long var1) {
-		this.aD = new BlockState[64];
+		this.aD = new IBlockState[64];
 		Arrays.fill(this.aD, Blocks.HARDENED_CLAY.getBlockState());
 		Random var3 = new Random(var1);
 		this.aH = new NoiseGenerator3(var3, 1);
@@ -229,7 +229,7 @@ public class BiomeMesa extends BiomeBase {
 
 	}
 
-	private BlockState a(int var1, int var2, int var3) {
+	private IBlockState a(int var1, int var2, int var3) {
 		int var4 = (int) Math.round(this.aH.a((double) var1 * 1.0D / 512.0D, (double) var1 * 1.0D / 512.0D) * 2.0D);
 		return this.aD[(var2 + var4 + 64) % 64];
 	}

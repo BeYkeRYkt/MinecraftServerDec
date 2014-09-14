@@ -15,7 +15,7 @@ public class atb extends atg {
 		this.a(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, var2, 0.5F + var1);
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -35,11 +35,11 @@ public class atb extends atg {
 		return new TileEntityBanner();
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return Items.BANNER;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, float var4, int var5) {
+	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		TileEntity var6 = var1.getTileEntity(var2);
 		if (var6 instanceof TileEntityBanner) {
 			ItemStack var7 = new ItemStack(Items.BANNER, 1, ((TileEntityBanner) var6).b());
@@ -57,7 +57,7 @@ public class atb extends atg {
 
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, BlockState var4, TileEntity var5) {
+	public void a(World var1, EntityHuman var2, Position var3, IBlockState var4, TileEntity var5) {
 		if (var5 instanceof TileEntityBanner) {
 			ItemStack var6 = new ItemStack(Items.BANNER, 1, ((TileEntityBanner) var5).b());
 			NBTCompoundTag var7 = new NBTCompoundTag();

@@ -2,7 +2,7 @@ package net.minecraft;
 
 import com.google.common.base.Predicate;
 
-public class WorldGenNetherBlockEqualityPredicate implements Predicate<BlockState> {
+public class WorldGenNetherBlockEqualityPredicate implements Predicate<IBlockState> {
 
 	public static WorldGenNetherBlockEqualityPredicate create(Block block) {
 		return new WorldGenNetherBlockEqualityPredicate(block);
@@ -14,7 +14,7 @@ public class WorldGenNetherBlockEqualityPredicate implements Predicate<BlockStat
 		this.block = block;
 	}
 
-	public boolean apply(BlockState blockState) {
+	public boolean apply(IBlockState blockState) {
 		return blockState != null && blockState.getBlock() == this.block;
 	}
 

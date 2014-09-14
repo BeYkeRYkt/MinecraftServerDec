@@ -13,7 +13,7 @@ public class ItemDoor extends Item {
 		if (var5 != BlockFace.UP) {
 			return false;
 		} else {
-			BlockState var9 = var3.getBlockState(var4);
+			IBlockState var9 = var3.getBlockState(var4);
 			Block var10 = var9.getBlock();
 			if (!var10.f(var3, var4)) {
 				var4 = var4.a(var5);
@@ -44,9 +44,9 @@ public class ItemDoor extends Item {
 		}
 
 		Position var11 = var1.a();
-		BlockState var12 = var3.getBlockState().a(BlockDoor.a, var2).a(BlockDoor.M, var10 ? avh.b : avh.a);
-		var0.a(var1, var12.a(BlockDoor.O, avg.b), 2);
-		var0.a(var11, var12.a(BlockDoor.O, avg.a), 2);
+		IBlockState var12 = var3.getBlockState().a(BlockDoor.a, var2).a(BlockDoor.M, var10 ? avh.b : avh.a);
+		var0.setBlockAt(var1, var12.a(BlockDoor.O, avg.b), 2);
+		var0.setBlockAt(var11, var12.a(BlockDoor.O, avg.a), 2);
 		var0.c(var1, var3);
 		var0.c(var11, var3);
 	}

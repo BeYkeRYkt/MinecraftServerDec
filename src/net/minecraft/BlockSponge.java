@@ -15,22 +15,22 @@ public class BlockSponge extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(BlockState var1) {
+	public int a(IBlockState var1) {
 		return ((Boolean) var1.b(a)).booleanValue() ? 1 : 0;
 	}
 
-	public void c(World var1, Position var2, BlockState var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		this.e(var1, var2, var3);
 		super.a(var1, var2, var3, var4);
 	}
 
-	protected void e(World var1, Position var2, BlockState var3) {
+	protected void e(World var1, Position var2, IBlockState var3) {
 		if (!((Boolean) var3.b(a)).booleanValue() && this.d(var1, var2)) {
-			var1.a(var2, var3.a(a, Boolean.valueOf(true)), 2);
+			var1.setBlockAt(var2, var3.a(a, Boolean.valueOf(true)), 2);
 			var1.b(2001, var2, Block.getBlockId((Block) Blocks.WATER));
 		}
 
@@ -54,7 +54,7 @@ public class BlockSponge extends Block {
 				BlockFace var12 = var9[var11];
 				Position var13 = var7.a(var12);
 				if (var1.getBlockState(var13).getBlock().getMaterial() == Material.WATER) {
-					var1.a(var13, Blocks.AIR.getBlockState(), 2);
+					var1.setBlockAt(var13, Blocks.AIR.getBlockState(), 2);
 					var4.add(var13);
 					++var5;
 					if (var8 < 6) {
@@ -78,11 +78,11 @@ public class BlockSponge extends Block {
 		return var5 > 0;
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, Boolean.valueOf((var1 & 1) == 1));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((Boolean) var1.b(a)).booleanValue() ? 1 : 0;
 	}
 

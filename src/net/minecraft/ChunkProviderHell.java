@@ -89,7 +89,7 @@ public class ChunkProviderHell implements IChunkProvider {
 							double var46 = (var35 - var33) * var42;
 
 							for (int var48 = 0; var48 < 4; ++var48) {
-								BlockState var49 = null;
+								IBlockState var49 = null;
 								if (var11 * 8 + var30 < var5) {
 									var49 = Blocks.LAVA.getBlockState();
 								}
@@ -133,12 +133,12 @@ public class ChunkProviderHell implements IChunkProvider {
 				boolean var10 = this.l[var7 + var8 * 16] + this.j.nextDouble() * 0.2D > 0.0D;
 				int var11 = (int) (this.m[var7 + var8 * 16] / 3.0D + 3.0D + this.j.nextDouble() * 0.25D);
 				int var12 = -1;
-				BlockState var13 = Blocks.NETHERRACK.getBlockState();
-				BlockState var14 = Blocks.NETHERRACK.getBlockState();
+				IBlockState var13 = Blocks.NETHERRACK.getBlockState();
+				IBlockState var14 = Blocks.NETHERRACK.getBlockState();
 
 				for (int var15 = 127; var15 >= 0; --var15) {
 					if (var15 < 127 - this.j.nextInt(5) && var15 > this.j.nextInt(5)) {
-						BlockState var16 = var3.a(var8, var15, var7);
+						IBlockState var16 = var3.a(var8, var15, var7);
 						if (var16.getBlock() != null && var16.getBlock().getMaterial() != Material.AIR) {
 							if (var16.getBlock() == Blocks.NETHERRACK) {
 								if (var12 == -1) {

@@ -46,7 +46,7 @@ public class WorldGenTaigaStructure extends WorldGenerator {
 				while (var10.hasNext()) {
 					Position var11 = (Position) var10.next();
 					if (var11.i(var3) <= (double) (var9 * var9)) {
-						var1.a(var11, this.a.getBlockState(), 4);
+						var1.setBlockAt(var11, this.a.getBlockState(), 4);
 					}
 				}
 

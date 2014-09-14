@@ -12,8 +12,8 @@ class bcp implements Callable {
 	}
 
 	public String a() {
-		BlockState var1 = this.a.world.getBlockState(this.a.position);
-		int var2 = var1.getBlock().c(var1);
+		IBlockState var1 = this.a.world.getBlockState(this.a.position);
+		int var2 = var1.getBlock().getData(var1);
 		if (var2 < 0) {
 			return "Unknown? (Got " + var2 + ")";
 		} else {

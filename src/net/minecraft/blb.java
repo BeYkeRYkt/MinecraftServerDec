@@ -2,12 +2,12 @@ package net.minecraft;
 
 public abstract class blb extends StructurePiece {
 
-	protected static final BlockState a = Blocks.PRISMARINE.a(BlockPrismarine.b);
-	protected static final BlockState b = Blocks.PRISMARINE.a(BlockPrismarine.M);
-	protected static final BlockState c = Blocks.PRISMARINE.a(BlockPrismarine.N);
-	protected static final BlockState d = b;
-	protected static final BlockState e = Blocks.SEA_LANTERN.getBlockState();
-	protected static final BlockState f = Blocks.WATER.getBlockState();
+	protected static final IBlockState a = Blocks.PRISMARINE.a(BlockPrismarine.b);
+	protected static final IBlockState b = Blocks.PRISMARINE.a(BlockPrismarine.M);
+	protected static final IBlockState c = Blocks.PRISMARINE.a(BlockPrismarine.N);
+	protected static final IBlockState d = b;
+	protected static final IBlockState e = Blocks.SEA_LANTERN.getBlockState();
+	protected static final IBlockState f = Blocks.WATER.getBlockState();
 	protected static final int g = a(2, 0, 0);
 	protected static final int h = a(2, 2, 0);
 	protected static final int i = a(0, 1, 0);
@@ -84,7 +84,7 @@ public abstract class blb extends StructurePiece {
 
 	}
 
-	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockState var9) {
+	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6, int var7, int var8, IBlockState var9) {
 		for (int var10 = var4; var10 <= var7; ++var10) {
 			for (int var11 = var3; var11 <= var6; ++var11) {
 				for (int var12 = var5; var12 <= var8; ++var12) {

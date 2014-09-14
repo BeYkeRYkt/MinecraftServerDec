@@ -12,6 +12,8 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 
+import pipebukkit.server.block.PipeBlock;
+
 public class PipeChunk implements Chunk {
 
 	private WorldServer nmsWorld;
@@ -26,8 +28,7 @@ public class PipeChunk implements Chunk {
 
 	@Override
 	public Block getBlock(int x, int y, int z) {
-		// TODO Auto-generated method stub
-		return null;
+		return new PipeBlock(this, this.x << 4 + x, y, this.z << 4 + z);
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class PipeChunk implements Chunk {
 	@Override
 	public Entity[] getEntities() {
 		ArrayList<Entity> entites = new ArrayList<Entity>();
-		for (EntitySlice<net.minecraft.Entity> entityslice : nmsWorld.chunkProviderServer.getChunkAt(x, z).getEntitySlices()) {
+		for (EntitySlice<net.minecraft.Entity> entityslice : getHandle().getEntitySlices()) {
 			for (Class<net.minecraft.Entity> clazz : entityslice.getRegisteredClasses()) {
 				for (net.minecraft.Entity entity : entityslice.getValues(clazz)) {
 					entites.add(entity.getBukkitEntity(Entity.class));
@@ -104,6 +105,10 @@ public class PipeChunk implements Chunk {
 	@Override
 	public boolean unload(boolean save, boolean safe) {
 		return getWorld().unloadChunk(x, z, save, safe);
+	}
+
+	public net.minecraft.Chunk getHandle() {
+		return nmsWorld.chunkProviderServer.getChunkAt(x, z);
 	}
 
 }

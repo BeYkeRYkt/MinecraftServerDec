@@ -35,8 +35,8 @@ public class ExecuteCommand extends AbstractCommand {
 				Block var19 = g(var1, var2[8]);
 				int var20 = a(var2[9], -1, 15);
 				Position var21 = new Position(var13, var15, var17);
-				BlockState var22 = var12.getBlockState(var21);
-				if (var22.getBlock() != var19 || var20 >= 0 && var22.getBlock().c(var22) != var20) {
+				IBlockState var22 = var12.getBlockState(var21);
+				if (var22.getBlock() != var19 || var20 >= 0 && var22.getBlock().getData(var22) != var20) {
 					throw new di("commands.execute.failed", new Object[] { "detect", var3.getName() });
 				}
 

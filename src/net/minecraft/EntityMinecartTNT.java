@@ -16,7 +16,7 @@ public class EntityMinecartTNT extends adx {
 		return MinecartType.TNT;
 	}
 
-	public BlockState u() {
+	public IBlockState u() {
 		return Blocks.TNT.getBlockState();
 	}
 
@@ -107,11 +107,11 @@ public class EntityMinecartTNT extends adx {
 		return this.a > -1;
 	}
 
-	public float a(Explosion var1, World var2, Position var3, BlockState var4) {
+	public float a(Explosion var1, World var2, Position var3, IBlockState var4) {
 		return this.y() && (ati.d(var4) || ati.d(var2, var3.a())) ? 0.0F : super.a(var1, var2, var3, var4);
 	}
 
-	public boolean a(Explosion var1, World var2, Position var3, BlockState var4, float var5) {
+	public boolean a(Explosion var1, World var2, Position var3, IBlockState var4, float var5) {
 		return this.y() && (ati.d(var4) || ati.d(var2, var3.a())) ? false : super.a(var1, var2, var3, var4, var5);
 	}
 

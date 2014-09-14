@@ -28,14 +28,14 @@ public class ItemStep extends ItemBlock {
 			return false;
 		} else {
 			Object var9 = this.b.a(var1);
-			BlockState var10 = var3.getBlockState(var4);
+			IBlockState var10 = var3.getBlockState(var4);
 			if (var10.getBlock() == this.b) {
 				bex var11 = this.b.l();
 				Comparable var12 = var10.b(var11);
 				awr var13 = (awr) var10.b(BlockStepAbstract.a);
 				if ((var5 == BlockFace.UP && var13 == awr.b || var5 == BlockFace.DOWN && var13 == awr.a) && var12 == var9) {
-					BlockState var14 = this.c.getBlockState().a(var11, var12);
-					if (var3.b(this.c.a(var3, var4, var14)) && var3.a(var4, var14, 3)) {
+					IBlockState var14 = this.c.getBlockState().a(var11, var12);
+					if (var3.b(this.c.a(var3, var4, var14)) && var3.setBlockAt(var4, var14, 3)) {
 						var3.makeSound((double) ((float) var4.getX() + 0.5F), (double) ((float) var4.getY() + 0.5F), (double) ((float) var4.getZ() + 0.5F), this.c.H.b(), (this.c.H.d() + 1.0F) / 2.0F, this.c.H.e() * 0.8F);
 						--var1.amount;
 					}
@@ -49,12 +49,12 @@ public class ItemStep extends ItemBlock {
 	}
 
 	private boolean a(ItemStack var1, World var2, Position var3, Object var4) {
-		BlockState var5 = var2.getBlockState(var3);
+		IBlockState var5 = var2.getBlockState(var3);
 		if (var5.getBlock() == this.b) {
 			Comparable var6 = var5.b(this.b.l());
 			if (var6 == var4) {
-				BlockState var7 = this.c.getBlockState().a(this.b.l(), var6);
-				if (var2.b(this.c.a(var2, var3, var7)) && var2.a(var3, var7, 3)) {
+				IBlockState var7 = this.c.getBlockState().a(this.b.l(), var6);
+				if (var2.b(this.c.a(var2, var3, var7)) && var2.setBlockAt(var3, var7, 3)) {
 					var2.makeSound((double) ((float) var3.getX() + 0.5F), (double) ((float) var3.getY() + 0.5F), (double) ((float) var3.getZ() + 0.5F), this.c.H.b(), (this.c.H.d() + 1.0F) / 2.0F, this.c.H.e() * 0.8F);
 					--var1.amount;
 				}

@@ -27,7 +27,7 @@ public class ItemBucket extends Item {
 						return var1;
 					}
 
-					BlockState var7 = var2.getBlockState(var6);
+					IBlockState var7 = var2.getBlockState(var6);
 					Material var8 = var7.getBlock().getMaterial();
 					if (var8 == Material.WATER && ((Integer) var7.b(axl.b)).intValue() == 0) {
 						var2.g(var6);
@@ -98,7 +98,7 @@ public class ItemBucket extends Item {
 						var1.b(var2, true);
 					}
 
-					var1.a(var2, this.a.getBlockState(), 3);
+					var1.setBlockAt(var2, this.a.getBlockState(), 3);
 				}
 
 				return true;

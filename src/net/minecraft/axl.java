@@ -43,7 +43,7 @@ public abstract class axl extends Block {
 		return false;
 	}
 
-	public boolean a(BlockState var1, boolean var2) {
+	public boolean a(IBlockState var1, boolean var2) {
 		return var2 && ((Integer) var1.b(b)).intValue() == 0;
 	}
 
@@ -52,7 +52,7 @@ public abstract class axl extends Block {
 		return var4 == this.material ? false : (var3 == BlockFace.UP ? true : (var4 == Material.ICE ? false : super.b(var1, var2, var3)));
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -60,7 +60,7 @@ public abstract class axl extends Block {
 		return 1;
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 
@@ -118,15 +118,15 @@ public abstract class axl extends Block {
 		return this.material == Material.WATER ? 5 : (this.material == Material.LAVA ? (var1.worldProvider.noSkyLight() ? 10 : 30) : 0);
 	}
 
-	public void c(World var1, Position var2, BlockState var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		this.e(var1, var2, var3);
 	}
 
-	public boolean e(World var1, Position var2, BlockState var3) {
+	public boolean e(World var1, Position var2, IBlockState var3) {
 		if (this.material == Material.LAVA) {
 			boolean var4 = false;
 			BlockFace[] var5 = BlockFace.values();
@@ -171,11 +171,11 @@ public abstract class axl extends Block {
 
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(b, Integer.valueOf(var1));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((Integer) var1.b(b)).intValue();
 	}
 

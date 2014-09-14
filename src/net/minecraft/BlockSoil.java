@@ -15,7 +15,7 @@ public class BlockSoil extends Block {
 		this.e(255);
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return new AxisAlignedBB((double) var2.getX(), (double) var2.getY(), (double) var2.getZ(), (double) (var2.getX() + 1), (double) (var2.getY() + 1), (double) (var2.getZ() + 1));
 	}
 
@@ -27,16 +27,16 @@ public class BlockSoil extends Block {
 		return false;
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		int var5 = ((Integer) var3.b(a)).intValue();
 		if (!this.e(var1, var2) && !var1.C(var2.a())) {
 			if (var5 > 0) {
-				var1.a(var2, var3.a(a, Integer.valueOf(var5 - 1)), 2);
+				var1.setBlockAt(var2, var3.a(a, Integer.valueOf(var5 - 1)), 2);
 			} else if (!this.d(var1, var2)) {
 				var1.a(var2, Blocks.DIRT.getBlockState());
 			}
 		} else if (var5 < 7) {
-			var1.a(var2, var3.a(a, Integer.valueOf(7)), 2);
+			var1.setBlockAt(var2, var3.a(a, Integer.valueOf(7)), 2);
 		}
 
 	}
@@ -75,7 +75,7 @@ public class BlockSoil extends Block {
 		return true;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		super.a(var1, var2, var3, var4);
 		if (var1.getBlockState(var2.a()).getBlock().getMaterial().isBuildable()) {
 			var1.a(var2, Blocks.DIRT.getBlockState());
@@ -83,15 +83,15 @@ public class BlockSoil extends Block {
 
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return Blocks.DIRT.a(Blocks.DIRT.getBlockState().a(BlockDirt.a, avd.a), var2, var3);
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, Integer.valueOf(var1 & 7));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((Integer) var1.b(a)).intValue();
 	}
 

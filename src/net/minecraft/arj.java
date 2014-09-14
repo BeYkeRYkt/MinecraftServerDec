@@ -42,7 +42,7 @@ public class arj implements ard {
 		return this.c[var2][var3].a(var1, bfl.a);
 	}
 
-	public BlockState getBlockState(Position var1) {
+	public IBlockState getBlockState(Position var1) {
 		if (var1.getY() >= 0 && var1.getY() < 256) {
 			int var2 = (var1.getX() >> 4) - this.a;
 			int var3 = (var1.getZ() >> 4) - this.b;
@@ -62,7 +62,7 @@ public class arj implements ard {
 	}
 
 	public int a(Position var1, BlockFace var2) {
-		BlockState var3 = this.getBlockState(var1);
+		IBlockState var3 = this.getBlockState(var1);
 		return var3.getBlock().b((ard) this, var1, var3, var2);
 	}
 }

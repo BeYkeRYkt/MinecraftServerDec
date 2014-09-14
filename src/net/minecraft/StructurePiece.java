@@ -400,14 +400,14 @@ public abstract class StructurePiece {
 		return var2;
 	}
 
-	protected void a(World var1, BlockState var2, int var3, int var4, int var5, CuboidArea var6) {
+	protected void a(World var1, IBlockState var2, int var3, int var4, int var5, CuboidArea var6) {
 		Position var7 = new Position(this.a(var3, var5), this.d(var4), this.b(var3, var5));
 		if (var6.b((fd) var7)) {
-			var1.a(var7, var2, 2);
+			var1.setBlockAt(var7, var2, 2);
 		}
 	}
 
-	protected BlockState a(World var1, int var2, int var3, int var4, CuboidArea var5) {
+	protected IBlockState a(World var1, int var2, int var3, int var4, CuboidArea var5) {
 		int var6 = this.a(var2, var4);
 		int var7 = this.d(var3);
 		int var8 = this.b(var2, var4);
@@ -425,7 +425,7 @@ public abstract class StructurePiece {
 
 	}
 
-	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockState var9, BlockState var10, boolean var11) {
+	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6, int var7, int var8, IBlockState var9, IBlockState var10, boolean var11) {
 		for (int var12 = var4; var12 <= var7; ++var12) {
 			for (int var13 = var3; var13 <= var6; ++var13) {
 				for (int var14 = var5; var14 <= var8; ++var14) {
@@ -456,7 +456,7 @@ public abstract class StructurePiece {
 
 	}
 
-	protected void a(World var1, CuboidArea var2, Random var3, float var4, int var5, int var6, int var7, int var8, int var9, int var10, BlockState var11, BlockState var12, boolean var13) {
+	protected void a(World var1, CuboidArea var2, Random var3, float var4, int var5, int var6, int var7, int var8, int var9, int var10, IBlockState var11, IBlockState var12, boolean var13) {
 		for (int var14 = var6; var14 <= var9; ++var14) {
 			for (int var15 = var5; var15 <= var8; ++var15) {
 				for (int var16 = var7; var16 <= var10; ++var16) {
@@ -473,14 +473,14 @@ public abstract class StructurePiece {
 
 	}
 
-	protected void a(World var1, CuboidArea var2, Random var3, float var4, int var5, int var6, int var7, BlockState var8) {
+	protected void a(World var1, CuboidArea var2, Random var3, float var4, int var5, int var6, int var7, IBlockState var8) {
 		if (var3.nextFloat() < var4) {
 			this.a(var1, var8, var5, var6, var7, var2);
 		}
 
 	}
 
-	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6, int var7, int var8, BlockState var9, boolean var10) {
+	protected void a(World var1, CuboidArea var2, int var3, int var4, int var5, int var6, int var7, int var8, IBlockState var9, boolean var10) {
 		float var11 = (float) (var6 - var3 + 1);
 		float var12 = (float) (var7 - var4 + 1);
 		float var13 = (float) (var8 - var5 + 1);
@@ -511,20 +511,20 @@ public abstract class StructurePiece {
 		Position var6 = new Position(this.a(var2, var4), this.d(var3), this.b(var2, var4));
 		if (var5.b((fd) var6)) {
 			while (!var1.d(var6) && var6.getY() < 255) {
-				var1.a(var6, Blocks.AIR.getBlockState(), 2);
+				var1.setBlockAt(var6, Blocks.AIR.getBlockState(), 2);
 				var6 = var6.a();
 			}
 
 		}
 	}
 
-	protected void b(World var1, BlockState var2, int var3, int var4, int var5, CuboidArea var6) {
+	protected void b(World var1, IBlockState var2, int var3, int var4, int var5, CuboidArea var6) {
 		int var7 = this.a(var3, var5);
 		int var8 = this.d(var4);
 		int var9 = this.b(var3, var5);
 		if (var6.b((fd) (new Position(var7, var8, var9)))) {
 			while ((var1.d(new Position(var7, var8, var9)) || var1.getBlockState(new Position(var7, var8, var9)).getBlock().getMaterial().isLiquid()) && var8 > 1) {
-				var1.a(new Position(var7, var8, var9), var2, 2);
+				var1.setBlockAt(new Position(var7, var8, var9), var2, 2);
 				--var8;
 			}
 
@@ -534,8 +534,8 @@ public abstract class StructurePiece {
 	protected boolean a(World var1, CuboidArea var2, Random var3, int var4, int var5, int var6, List var7, int var8) {
 		Position var9 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
 		if (var2.b((fd) var9) && var1.getBlockState(var9).getBlock() != Blocks.CHEST) {
-			BlockState var10 = Blocks.CHEST.getBlockState();
-			var1.a(var9, Blocks.CHEST.f(var1, var9, var10), 2);
+			IBlockState var10 = Blocks.CHEST.getBlockState();
+			var1.setBlockAt(var9, Blocks.CHEST.f(var1, var9, var10), 2);
 			TileEntity var11 = var1.getTileEntity(var9);
 			if (var11 instanceof TileEntityChest) {
 				StructurePieceTreasure.a(var3, var7, (IInventory) ((TileEntityChest) var11), var8);
@@ -550,7 +550,7 @@ public abstract class StructurePiece {
 	protected boolean a(World var1, CuboidArea var2, Random var3, int var4, int var5, int var6, int var7, List var8, int var9) {
 		Position var10 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
 		if (var2.b((fd) var10) && var1.getBlockState(var10).getBlock() != Blocks.DISPENSER) {
-			var1.a(var10, Blocks.DISPENSER.a(this.a(Blocks.DISPENSER, var7)), 2);
+			var1.setBlockAt(var10, Blocks.DISPENSER.a(this.a(Blocks.DISPENSER, var7)), 2);
 			TileEntity var11 = var1.getTileEntity(var10);
 			if (var11 instanceof TileEntityDispenser) {
 				StructurePieceTreasure.a(var3, var8, (TileEntityDispenser) var11, var9);

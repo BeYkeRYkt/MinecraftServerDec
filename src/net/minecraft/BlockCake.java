@@ -25,7 +25,7 @@ public class BlockCake extends Block {
 		this.a(var1, 0.0F, var1, 1.0F - var1, var2, 1.0F - var1);
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		float var4 = 0.0625F;
 		float var5 = (float) (1 + ((Integer) var3.b(a)).intValue() * 2) / 16.0F;
 		float var6 = 0.5F;
@@ -40,7 +40,7 @@ public class BlockCake extends Block {
 		return false;
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		this.b(var1, var2, var3, var4);
 		return true;
 	}
@@ -49,12 +49,12 @@ public class BlockCake extends Block {
 		this.b(var1, var2, var1.getBlockState(var2), var3);
 	}
 
-	private void b(World var1, Position var2, BlockState var3, EntityHuman var4) {
+	private void b(World var1, Position var2, IBlockState var3, EntityHuman var4) {
 		if (var4.j(false)) {
 			var4.ck().a(2, 0.1F);
 			int var5 = ((Integer) var3.b(a)).intValue();
 			if (var5 < 6) {
-				var1.a(var2, var3.a(a, Integer.valueOf(var5 + 1)), 3);
+				var1.setBlockAt(var2, var3.a(a, Integer.valueOf(var5 + 1)), 3);
 			} else {
 				var1.g(var2);
 			}
@@ -66,7 +66,7 @@ public class BlockCake extends Block {
 		return super.c(var1, var2) ? this.d(var1, var2) : false;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!this.d(var1, var2)) {
 			var1.g(var2);
 		}
@@ -81,15 +81,15 @@ public class BlockCake extends Block {
 		return 0;
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((Integer) var1.b(a)).intValue();
 	}
 

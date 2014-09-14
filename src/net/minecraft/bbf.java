@@ -9,7 +9,7 @@ public abstract class bbf extends BlockStepAbstract {
 
 	public bbf() {
 		super(Material.STONE);
-		BlockState var1 = this.L.b();
+		IBlockState var1 = this.L.b();
 		if (this.j()) {
 			var1 = var1.a(b, Boolean.valueOf(false));
 		} else {
@@ -20,7 +20,7 @@ public abstract class bbf extends BlockStepAbstract {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf((Block) Blocks.STONE_SLAB);
 	}
 
@@ -36,8 +36,8 @@ public abstract class bbf extends BlockStepAbstract {
 		return bbg.a(var1.getDurability() & 7);
 	}
 
-	public BlockState a(int var1) {
-		BlockState var2 = this.getBlockState().a(M, bbg.a(var1 & 7));
+	public IBlockState a(int var1) {
+		IBlockState var2 = this.getBlockState().a(M, bbg.a(var1 & 7));
 		if (this.j()) {
 			var2 = var2.a(b, Boolean.valueOf((var1 & 8) != 0));
 		} else {
@@ -47,7 +47,7 @@ public abstract class bbf extends BlockStepAbstract {
 		return var2;
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((bbg) var1.b(M)).a();
 		if (this.j()) {
@@ -65,7 +65,7 @@ public abstract class bbf extends BlockStepAbstract {
 		return this.j() ? new bed(this, new bex[] { b, M }) : new bed(this, new bex[] { a, M });
 	}
 
-	public int a(BlockState var1) {
+	public int a(IBlockState var1) {
 		return ((bbg) var1.b(M)).a();
 	}
 

@@ -3,7 +3,7 @@ package net.minecraft;
 public class PacketPlayOutBlockChange implements Packet<PlayOutPacketListener> {
 
 	private Position position;
-	private BlockState block;
+	private IBlockState block;
 
 	public PacketPlayOutBlockChange() {
 	}
@@ -15,7 +15,7 @@ public class PacketPlayOutBlockChange implements Packet<PlayOutPacketListener> {
 
 	public void readData(PacketDataSerializer serializer) {
 		this.position = serializer.readPosition();
-		this.block = (BlockState) Block.IDREGISTRY.getObject(serializer.readVarInt());
+		this.block = (IBlockState) Block.IDREGISTRY.getObject(serializer.readVarInt());
 	}
 
 	public void writeData(PacketDataSerializer serializer) {

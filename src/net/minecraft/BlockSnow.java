@@ -19,7 +19,7 @@ public class BlockSnow extends Block {
 		return ((Integer) var1.getBlockState(var2).b(a)).intValue() < 5;
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		int var4 = ((Integer) var3.b(a)).intValue() - 1;
 		float var5 = 0.125F;
 		return new AxisAlignedBB((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) ((float) var2.getY() + (float) var4 * var5), (double) var2.getZ() + this.G);
@@ -38,7 +38,7 @@ public class BlockSnow extends Block {
 	}
 
 	public void a(ard var1, Position var2) {
-		BlockState var3 = var1.getBlockState(var2);
+		IBlockState var3 = var1.getBlockState(var2);
 		this.b(((Integer) var3.b(a)).intValue());
 	}
 
@@ -47,16 +47,16 @@ public class BlockSnow extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		BlockState var3 = var1.getBlockState(var2.b());
+		IBlockState var3 = var1.getBlockState(var2.b());
 		Block var4 = var3.getBlock();
 		return var4 != Blocks.ICE && var4 != Blocks.PACKED_ICE ? (var4.getMaterial() == Material.LEAVES ? true : (var4 == this && ((Integer) var3.b(a)).intValue() == 7 ? true : var4.c() && var4.material.isSolid())) : false;
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		this.e(var1, var2, var3);
 	}
 
-	private boolean e(World var1, Position var2, BlockState var3) {
+	private boolean e(World var1, Position var2, IBlockState var3) {
 		if (!this.c(var1, var2)) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -66,13 +66,13 @@ public class BlockSnow extends Block {
 		}
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, BlockState var4, TileEntity var5) {
+	public void a(World var1, EntityHuman var2, Position var3, IBlockState var4, TileEntity var5) {
 		a(var1, var3, new ItemStack(Items.SNOWBALL, ((Integer) var4.b(a)).intValue() + 1, 0));
 		var1.g(var3);
 		var2.b(StatisticList.MINE_BLOCK_COUNT[Block.getBlockId((Block) this)]);
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return Items.SNOWBALL;
 	}
 
@@ -80,15 +80,15 @@ public class BlockSnow extends Block {
 		return 0;
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
-		if (var1.b(arf.b, var2) > 11) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
+		if (var1.b(EnumSkyBlock.BLOCK, var2) > 11) {
 			this.b(var1, var2, var1.getBlockState(var2), 0);
 			var1.g(var2);
 		}
 
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, Integer.valueOf((var1 & 7) + 1));
 	}
 
@@ -96,7 +96,7 @@ public class BlockSnow extends Block {
 		return ((Integer) var1.getBlockState(var2).b(a)).intValue() == 1;
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((Integer) var1.b(a)).intValue() - 1;
 	}
 

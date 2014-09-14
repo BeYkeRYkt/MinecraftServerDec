@@ -10,7 +10,7 @@ final class DispenseBehaviorPumpkin extends DispenseBehaviorItem {
 		BlockPumpkin var5 = (BlockPumpkin) Blocks.PUMPKIN;
 		if (var3.d(var4) && var5.d(var3, var4)) {
 			if (!var3.isStatic) {
-				var3.a(var4, var5.getBlockState(), 3);
+				var3.setBlockAt(var4, var5.getBlockState(), 3);
 			}
 
 			--var2.amount;

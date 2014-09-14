@@ -20,7 +20,7 @@ public class BlockTallPlant extends auc implements atz {
 	}
 
 	public avk e(ard var1, Position var2) {
-		BlockState var3 = var1.getBlockState(var2);
+		IBlockState var3 = var1.getBlockState(var2);
 		if (var3.getBlock() == this) {
 			var3 = this.a(var3, var1, var2);
 			return (avk) var3.b(a);
@@ -34,7 +34,7 @@ public class BlockTallPlant extends auc implements atz {
 	}
 
 	public boolean f(World var1, Position var2) {
-		BlockState var3 = var1.getBlockState(var2);
+		IBlockState var3 = var1.getBlockState(var2);
 		if (var3.getBlock() != this) {
 			return true;
 		} else {
@@ -43,7 +43,7 @@ public class BlockTallPlant extends auc implements atz {
 		}
 	}
 
-	protected void e(World var1, Position var2, BlockState var3) {
+	protected void e(World var1, Position var2, IBlockState var3) {
 		if (!this.f(var1, var2, var3)) {
 			boolean var4 = var3.b(b) == avj.a;
 			Position var5 = var4 ? var2 : var2.a();
@@ -51,11 +51,11 @@ public class BlockTallPlant extends auc implements atz {
 			Object var7 = var4 ? this : var1.getBlockState(var5).getBlock();
 			Object var8 = var4 ? var1.getBlockState(var6).getBlock() : this;
 			if (var7 == this) {
-				var1.a(var5, Blocks.AIR.getBlockState(), 3);
+				var1.setBlockAt(var5, Blocks.AIR.getBlockState(), 3);
 			}
 
 			if (var8 == this) {
-				var1.a(var6, Blocks.AIR.getBlockState(), 3);
+				var1.setBlockAt(var6, Blocks.AIR.getBlockState(), 3);
 				if (!var4) {
 					this.b(var1, var6, var3, 0);
 				}
@@ -64,16 +64,16 @@ public class BlockTallPlant extends auc implements atz {
 		}
 	}
 
-	public boolean f(World var1, Position var2, BlockState var3) {
+	public boolean f(World var1, Position var2, IBlockState var3) {
 		if (var3.b(b) == avj.a) {
 			return var1.getBlockState(var2.b()).getBlock() == this;
 		} else {
-			BlockState var4 = var1.getBlockState(var2.a());
+			IBlockState var4 = var1.getBlockState(var2.a());
 			return var4.getBlock() == this && super.f(var1, var2, var4);
 		}
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		if (var1.b(b) == avj.a) {
 			return null;
 		} else {
@@ -82,30 +82,30 @@ public class BlockTallPlant extends auc implements atz {
 		}
 	}
 
-	public int a(BlockState var1) {
+	public int a(IBlockState var1) {
 		return var1.b(b) != avj.a && var1.b(a) != avk.c ? ((avk) var1.b(a)).a() : 0;
 	}
 
 	public void a(World var1, Position var2, avk var3, int var4) {
-		var1.a(var2, this.getBlockState().a(b, avj.b).a(a, var3), var4);
-		var1.a(var2.a(), this.getBlockState().a(b, avj.a), var4);
+		var1.setBlockAt(var2, this.getBlockState().a(b, avj.b).a(a, var3), var4);
+		var1.setBlockAt(var2.a(), this.getBlockState().a(b, avj.a), var4);
 	}
 
-	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
-		var1.a(var2.a(), this.getBlockState().a(b, avj.a), 2);
+	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
+		var1.setBlockAt(var2.a(), this.getBlockState().a(b, avj.a), 2);
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, BlockState var4, TileEntity var5) {
+	public void a(World var1, EntityHuman var2, Position var3, IBlockState var4, TileEntity var5) {
 		if (var1.isStatic || var2.bY() == null || var2.bY().getItem() != Items.SHEARS || var4.b(b) != avj.b || !this.b(var1, var3, var4, var2)) {
 			super.a(var1, var2, var3, var4, var5);
 		}
 	}
 
-	public void a(World var1, Position var2, BlockState var3, EntityHuman var4) {
+	public void a(World var1, Position var2, IBlockState var3, EntityHuman var4) {
 		if (var3.b(b) == avj.a) {
 			if (var1.getBlockState(var2.b()).getBlock() == this) {
 				if (!var4.playerProperties.instabuild) {
-					BlockState var5 = var1.getBlockState(var2.b());
+					IBlockState var5 = var1.getBlockState(var2.b());
 					avk var6 = (avk) var5.b(a);
 					if (var6 != avk.d && var6 != avk.c) {
 						var1.b(var2.b(), true);
@@ -124,13 +124,13 @@ public class BlockTallPlant extends auc implements atz {
 				}
 			}
 		} else if (var4.playerProperties.instabuild && var1.getBlockState(var2.a()).getBlock() == this) {
-			var1.a(var2.a(), Blocks.AIR.getBlockState(), 2);
+			var1.setBlockAt(var2.a(), Blocks.AIR.getBlockState(), 2);
 		}
 
 		super.a(var1, var2, var3, var4);
 	}
 
-	private boolean b(World var1, Position var2, BlockState var3, EntityHuman var4) {
+	private boolean b(World var1, Position var2, IBlockState var3, EntityHuman var4) {
 		avk var5 = (avk) var3.b(a);
 		if (var5 != avk.d && var5 != avk.c) {
 			return false;
@@ -146,26 +146,26 @@ public class BlockTallPlant extends auc implements atz {
 		return this.e(var1, var2).a();
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, boolean var4) {
+	public boolean a(World var1, Position var2, IBlockState var3, boolean var4) {
 		avk var5 = this.e(var1, var2);
 		return var5 != avk.c && var5 != avk.d;
 	}
 
-	public boolean a(World var1, Random var2, Position var3, BlockState var4) {
+	public boolean a(World var1, Random var2, Position var3, IBlockState var4) {
 		return true;
 	}
 
-	public void b(World var1, Random var2, Position var3, BlockState var4) {
+	public void b(World var1, Random var2, Position var3, IBlockState var4) {
 		a(var1, var3, new ItemStack(this, 1, this.e(var1, var3).a()));
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return (var1 & 8) > 0 ? this.getBlockState().a(b, avj.a) : this.getBlockState().a(b, avj.b).a(a, avk.a(var1 & 7));
 	}
 
-	public BlockState a(BlockState var1, ard var2, Position var3) {
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		if (var1.b(b) == avj.a) {
-			BlockState var4 = var2.getBlockState(var3.b());
+			IBlockState var4 = var2.getBlockState(var3.b());
 			if (var4.getBlock() == this) {
 				var1 = var1.a(a, var4.b(a));
 			}
@@ -174,7 +174,7 @@ public class BlockTallPlant extends auc implements atz {
 		return var1;
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return var1.b(b) == avj.a ? 8 : ((avk) var1.b(a)).a();
 	}
 

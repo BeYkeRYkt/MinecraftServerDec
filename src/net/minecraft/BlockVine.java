@@ -23,7 +23,7 @@ public class BlockVine extends Block {
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public BlockState a(BlockState var1, ard var2, Position var3) {
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		return var1.a(a, Boolean.valueOf(var2.getBlockState(var3.a()).getBlock().s()));
 	}
 
@@ -104,7 +104,7 @@ public class BlockVine extends Block {
 		this.a(var4, var5, var6, var7, var8, var9);
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -126,15 +126,15 @@ public class BlockVine extends Block {
 		return var1.d() && var1.material.isSolid();
 	}
 
-	private boolean e(World var1, Position var2, BlockState var3) {
-		BlockState var4 = var3;
+	private boolean e(World var1, Position var2, IBlockState var3) {
+		IBlockState var4 = var3;
 		Iterator var5 = en.a.iterator();
 
 		while (var5.hasNext()) {
 			BlockFace var6 = (BlockFace) var5.next();
 			bet var7 = a(var6);
 			if (((Boolean) var3.b(var7)).booleanValue() && !this.c(var1.getBlockState(var2.a(var6)).getBlock())) {
-				BlockState var8 = var1.getBlockState(var2.a());
+				IBlockState var8 = var1.getBlockState(var2.a());
 				if (var8.getBlock() != this || !((Boolean) var8.b(var7)).booleanValue()) {
 					var3 = var3.a(var7, Boolean.valueOf(false));
 				}
@@ -145,14 +145,14 @@ public class BlockVine extends Block {
 			return false;
 		} else {
 			if (var4 != var3) {
-				var1.a(var2, var3, 2);
+				var1.setBlockAt(var2, var3, 2);
 			}
 
 			return true;
 		}
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!var1.isStatic && !this.e(var1, var2, var3)) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -160,7 +160,7 @@ public class BlockVine extends Block {
 
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!var1.isStatic) {
 			if (var1.s.nextInt(4) == 0) {
 				byte var5 = 4;
@@ -185,7 +185,7 @@ public class BlockVine extends Block {
 				BlockFace var23;
 				if (var17 == BlockFace.UP && var2.getY() < 255 && var1.d(var2.a())) {
 					if (!var7) {
-						BlockState var19 = var3;
+						IBlockState var19 = var3;
 						Iterator var22 = en.a.iterator();
 
 						while (var22.hasNext()) {
@@ -196,7 +196,7 @@ public class BlockVine extends Block {
 						}
 
 						if (((Boolean) var19.b(b)).booleanValue() || ((Boolean) var19.b(M)).booleanValue() || ((Boolean) var19.b(N)).booleanValue() || ((Boolean) var19.b(O)).booleanValue()) {
-							var1.a(var2.a(), var19, 2);
+							var1.setBlockAt(var2.a(), var19, 2);
 						}
 
 					}
@@ -214,27 +214,27 @@ public class BlockVine extends Block {
 								Position var27 = var18.a(var23);
 								Position var16 = var18.a(var24);
 								if (var25 && this.c(var1.getBlockState(var27).getBlock())) {
-									var1.a(var18, this.getBlockState().a(a(var23), Boolean.valueOf(true)), 2);
+									var1.setBlockAt(var18, this.getBlockState().a(a(var23), Boolean.valueOf(true)), 2);
 								} else if (var26 && this.c(var1.getBlockState(var16).getBlock())) {
-									var1.a(var18, this.getBlockState().a(a(var24), Boolean.valueOf(true)), 2);
+									var1.setBlockAt(var18, this.getBlockState().a(a(var24), Boolean.valueOf(true)), 2);
 								} else if (var25 && var1.d(var27) && this.c(var1.getBlockState(var2.a(var23)).getBlock())) {
-									var1.a(var27, this.getBlockState().a(a(var17.getOpposite()), Boolean.valueOf(true)), 2);
+									var1.setBlockAt(var27, this.getBlockState().a(a(var17.getOpposite()), Boolean.valueOf(true)), 2);
 								} else if (var26 && var1.d(var16) && this.c(var1.getBlockState(var2.a(var24)).getBlock())) {
-									var1.a(var16, this.getBlockState().a(a(var17.getOpposite()), Boolean.valueOf(true)), 2);
+									var1.setBlockAt(var16, this.getBlockState().a(a(var17.getOpposite()), Boolean.valueOf(true)), 2);
 								} else if (this.c(var1.getBlockState(var18.a()).getBlock())) {
-									var1.a(var18, this.getBlockState(), 2);
+									var1.setBlockAt(var18, this.getBlockState(), 2);
 								}
 							} else if (var21.material.k() && var21.d()) {
-								var1.a(var2, var3.a(a(var17), Boolean.valueOf(true)), 2);
+								var1.setBlockAt(var2, var3.a(a(var17), Boolean.valueOf(true)), 2);
 							}
 
 						}
 					} else {
 						if (var2.getY() > 1) {
 							var18 = var2.b();
-							BlockState var20 = var1.getBlockState(var18);
+							IBlockState var20 = var1.getBlockState(var18);
 							Block var11 = var20.getBlock();
-							BlockState var12;
+							IBlockState var12;
 							Iterator var13;
 							BlockFace var14;
 							if (var11.material == Material.AIR) {
@@ -249,7 +249,7 @@ public class BlockVine extends Block {
 								}
 
 								if (((Boolean) var12.b(b)).booleanValue() || ((Boolean) var12.b(M)).booleanValue() || ((Boolean) var12.b(N)).booleanValue() || ((Boolean) var12.b(O)).booleanValue()) {
-									var1.a(var18, var12, 2);
+									var1.setBlockAt(var18, var12, 2);
 								}
 							} else if (var11 == this) {
 								var12 = var20;
@@ -264,7 +264,7 @@ public class BlockVine extends Block {
 								}
 
 								if (((Boolean) var12.b(b)).booleanValue() || ((Boolean) var12.b(M)).booleanValue() || ((Boolean) var12.b(N)).booleanValue() || ((Boolean) var12.b(O)).booleanValue()) {
-									var1.a(var18, var12, 2);
+									var1.setBlockAt(var18, var12, 2);
 								}
 							}
 						}
@@ -279,12 +279,12 @@ public class BlockVine extends Block {
 		return 1 << var0.toDirection();
 	}
 
-	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		BlockState var9 = this.getBlockState().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false));
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		IBlockState var9 = this.getBlockState().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false));
 		return var3.k().c() ? var9.a(a(var3.getOpposite()), Boolean.valueOf(true)) : var9;
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 
@@ -292,7 +292,7 @@ public class BlockVine extends Block {
 		return 0;
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, BlockState var4, TileEntity var5) {
+	public void a(World var1, EntityHuman var2, Position var3, IBlockState var4, TileEntity var5) {
 		if (!var1.isStatic && var2.bY() != null && var2.bY().getItem() == Items.SHEARS) {
 			var2.b(StatisticList.MINE_BLOCK_COUNT[Block.getBlockId((Block) this)]);
 			a(var1, var3, new ItemStack(Blocks.VINE, 1, 0));
@@ -302,11 +302,11 @@ public class BlockVine extends Block {
 
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(b, Boolean.valueOf((var1 & R) > 0)).a(M, Boolean.valueOf((var1 & S) > 0)).a(N, Boolean.valueOf((var1 & Q) > 0)).a(O, Boolean.valueOf((var1 & T) > 0));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		int var2 = 0;
 		if (((Boolean) var1.b(b)).booleanValue()) {
 			var2 |= R;
@@ -348,7 +348,7 @@ public class BlockVine extends Block {
 		}
 	}
 
-	public static int d(BlockState var0) {
+	public static int d(IBlockState var0) {
 		int var1 = 0;
 		bet[] var2 = P;
 		int var3 = var2.length;

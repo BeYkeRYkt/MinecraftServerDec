@@ -16,7 +16,7 @@ public class EntityMinecartMobSpawner extends adx {
 		return MinecartType.SPAWNER;
 	}
 
-	public BlockState u() {
+	public IBlockState u() {
 		return Blocks.MOB_SPAWNER.getBlockState();
 	}
 

@@ -49,13 +49,13 @@ public class TestforBlockCommand extends AbstractCommand {
 						}
 					}
 
-					BlockState var14 = var6.getBlockState(var3);
+					IBlockState var14 = var6.getBlockState(var3);
 					Block var10 = var14.getBlock();
 					if (var10 != var4) {
 						throw new di("commands.testforblock.failed.tile", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()), var10.getLocalizedName(), var4.getLocalizedName() });
 					} else {
 						if (var5 > -1) {
-							int var11 = var14.getBlock().c(var14);
+							int var11 = var14.getBlock().getData(var14);
 							if (var11 != var5) {
 								throw new di("commands.testforblock.failed.data", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()), Integer.valueOf(var11), Integer.valueOf(var5) });
 							}

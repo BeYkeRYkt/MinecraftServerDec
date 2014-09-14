@@ -13,11 +13,11 @@ public class BlockPrismarine extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(BlockState var1) {
+	public int a(IBlockState var1) {
 		return ((azj) var1.b(a)).a();
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((azj) var1.b(a)).a();
 	}
 
@@ -25,7 +25,7 @@ public class BlockPrismarine extends Block {
 		return new bed(this, new bex[] { a });
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, azj.a(var1));
 	}
 

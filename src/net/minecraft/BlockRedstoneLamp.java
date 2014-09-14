@@ -15,42 +15,42 @@ public class BlockRedstoneLamp extends Block {
 
 	}
 
-	public void c(World var1, Position var2, BlockState var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			if (this.a && !var1.z(var2)) {
-				var1.a(var2, Blocks.REDSTONE_LAMP.getBlockState(), 2);
+				var1.setBlockAt(var2, Blocks.REDSTONE_LAMP.getBlockState(), 2);
 			} else if (!this.a && var1.z(var2)) {
-				var1.a(var2, Blocks.LIT_REDSTONE_LAMP.getBlockState(), 2);
+				var1.setBlockAt(var2, Blocks.LIT_REDSTONE_LAMP.getBlockState(), 2);
 			}
 
 		}
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!var1.isStatic) {
 			if (this.a && !var1.z(var2)) {
 				var1.a(var2, (Block) this, 4);
 			} else if (!this.a && var1.z(var2)) {
-				var1.a(var2, Blocks.LIT_REDSTONE_LAMP.getBlockState(), 2);
+				var1.setBlockAt(var2, Blocks.LIT_REDSTONE_LAMP.getBlockState(), 2);
 			}
 
 		}
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!var1.isStatic) {
 			if (this.a && !var1.z(var2)) {
-				var1.a(var2, Blocks.REDSTONE_LAMP.getBlockState(), 2);
+				var1.setBlockAt(var2, Blocks.REDSTONE_LAMP.getBlockState(), 2);
 			}
 
 		}
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf(Blocks.REDSTONE_LAMP);
 	}
 
-	protected ItemStack i(BlockState var1) {
+	protected ItemStack i(IBlockState var1) {
 		return new ItemStack(Blocks.REDSTONE_LAMP);
 	}
 }

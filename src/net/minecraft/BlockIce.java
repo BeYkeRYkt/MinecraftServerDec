@@ -11,7 +11,7 @@ public class BlockIce extends awt {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, BlockState var4, TileEntity var5) {
+	public void a(World var1, EntityHuman var2, Position var3, IBlockState var4, TileEntity var5) {
 		var2.b(StatisticList.MINE_BLOCK_COUNT[Block.getBlockId((Block) this)]);
 		var2.a(0.025F);
 		if (this.G() && aph.e(var2)) {
@@ -39,8 +39,8 @@ public class BlockIce extends awt {
 		return 0;
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
-		if (var1.b(arf.b, var2) > 11 - this.n()) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
+		if (var1.b(EnumSkyBlock.BLOCK, var2) > 11 - this.n()) {
 			if (var1.worldProvider.n()) {
 				var1.g(var2);
 			} else {

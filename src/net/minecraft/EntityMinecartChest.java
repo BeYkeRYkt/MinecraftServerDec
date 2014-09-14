@@ -23,7 +23,7 @@ public class EntityMinecartChest extends aed {
 		return MinecartType.CHEST;
 	}
 
-	public BlockState u() {
+	public IBlockState u() {
 		return Blocks.CHEST.getBlockState().a(BlockChest.a, BlockFace.NORTH);
 	}
 

@@ -13,8 +13,8 @@ public class WorldGenVines extends WorldGenerator {
 				for (int var6 = 0; var6 < var5; ++var6) {
 					BlockFace var7 = var4[var6];
 					if (Blocks.VINE.a(var1, var3, var7)) {
-						BlockState var8 = Blocks.VINE.getBlockState().a(BlockVine.b, Boolean.valueOf(var7 == BlockFace.NORTH)).a(BlockVine.M, Boolean.valueOf(var7 == BlockFace.EAST)).a(BlockVine.N, Boolean.valueOf(var7 == BlockFace.SOUTH)).a(BlockVine.O, Boolean.valueOf(var7 == BlockFace.WEST));
-						var1.a(var3, var8, 2);
+						IBlockState var8 = Blocks.VINE.getBlockState().a(BlockVine.b, Boolean.valueOf(var7 == BlockFace.NORTH)).a(BlockVine.M, Boolean.valueOf(var7 == BlockFace.EAST)).a(BlockVine.N, Boolean.valueOf(var7 == BlockFace.SOUTH)).a(BlockVine.O, Boolean.valueOf(var7 == BlockFace.WEST));
+						var1.setBlockAt(var3, var8, 2);
 						break;
 					}
 				}

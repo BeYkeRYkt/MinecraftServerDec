@@ -17,7 +17,7 @@ public class BlockFire extends Block {
 	private final Map S = Maps.newIdentityHashMap();
 	private final Map T = Maps.newIdentityHashMap();
 
-	public BlockState a(BlockState var1, ard var2, Position var3) {
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		int var4 = var3.getX();
 		int var5 = var3.getY();
 		int var6 = var3.getZ();
@@ -84,7 +84,7 @@ public class BlockFire extends Block {
 		this.T.put(var1, Integer.valueOf(var3));
 	}
 
-	public AxisAlignedBB a(World var1, Position var2, BlockState var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -104,7 +104,7 @@ public class BlockFire extends Block {
 		return 30;
 	}
 
-	public void b(World var1, Position var2, BlockState var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (var1.getGameRules().b("doFireTick")) {
 			if (!this.c(var1, var2)) {
 				var1.g(var2);
@@ -122,7 +122,7 @@ public class BlockFire extends Block {
 				int var7 = ((Integer) var3.b(a)).intValue();
 				if (var7 < 15) {
 					var3 = var3.a(a, Integer.valueOf(var7 + var4.nextInt(3) / 2));
-					var1.a(var2, var3, 4);
+					var1.setBlockAt(var2, var3, 4);
 				}
 
 				var1.a(var2, (Block) this, this.a(var1) + var4.nextInt(10));
@@ -177,7 +177,7 @@ public class BlockFire extends Block {
 											var17 = 15;
 										}
 
-										var1.a(var14, var3.a(a, Integer.valueOf(var17)), 3);
+										var1.setBlockAt(var14, var3.a(a, Integer.valueOf(var17)), 3);
 									}
 								}
 							}
@@ -210,14 +210,14 @@ public class BlockFire extends Block {
 	private void a(World var1, Position var2, int var3, Random var4, int var5) {
 		int var6 = this.c(var1.getBlockState(var2).getBlock());
 		if (var4.nextInt(var3) < var6) {
-			BlockState var7 = var1.getBlockState(var2);
+			IBlockState var7 = var1.getBlockState(var2);
 			if (var4.nextInt(var5 + 10) < 5 && !var1.C(var2)) {
 				int var8 = var5 + var4.nextInt(5) / 4;
 				if (var8 > 15) {
 					var8 = 15;
 				}
 
-				var1.a(var2, this.getBlockState().a(a, Integer.valueOf(var8)), 3);
+				var1.setBlockAt(var2, this.getBlockState().a(a, Integer.valueOf(var8)), 3);
 			} else {
 				var1.g(var2);
 			}
@@ -272,14 +272,14 @@ public class BlockFire extends Block {
 		return World.a((ard) var1, var2.b()) || this.e(var1, var2);
 	}
 
-	public void a(World var1, Position var2, BlockState var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!World.a((ard) var1, var2.b()) && !this.e(var1, var2)) {
 			var1.g(var2);
 		}
 
 	}
 
-	public void c(World var1, Position var2, BlockState var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		if (var1.worldProvider.getDimensionId() > 0 || !Blocks.PORTAL.d(var1, var2)) {
 			if (!World.a((ard) var1, var2.b()) && !this.e(var1, var2)) {
 				var1.g(var2);
@@ -289,15 +289,15 @@ public class BlockFire extends Block {
 		}
 	}
 
-	public MaterialMapColor g(BlockState var1) {
+	public MaterialMapColor g(IBlockState var1) {
 		return MaterialMapColor.f;
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((Integer) var1.b(a)).intValue();
 	}
 

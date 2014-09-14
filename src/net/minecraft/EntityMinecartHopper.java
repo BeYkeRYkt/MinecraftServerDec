@@ -22,7 +22,7 @@ public class EntityMinecartHopper extends aed implements bdd {
 		return MinecartType.HOPPER;
 	}
 
-	public BlockState u() {
+	public IBlockState u() {
 		return Blocks.HOPPER.getBlockState();
 	}
 

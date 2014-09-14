@@ -579,7 +579,7 @@ public abstract class Entity implements CommandSenderInterface {
 				for (int var4 = var1.getY(); var4 <= var2.getY(); ++var4) {
 					for (int var5 = var1.getZ(); var5 <= var2.getZ(); ++var5) {
 						Position var6 = new Position(var3, var4, var5);
-						BlockState var7 = this.world.getBlockState(var6);
+						IBlockState var7 = this.world.getBlockState(var6);
 
 						try {
 							var7.getBlock().a(this.world, var6, var7, this);
@@ -727,7 +727,7 @@ public abstract class Entity implements CommandSenderInterface {
 		int var2 = MathHelper.toFixedPointInt(this.locationY - 0.20000000298023224D);
 		int var3 = MathHelper.toFixedPointInt(this.locationZ);
 		Position var4 = new Position(var1, var2, var3);
-		BlockState var5 = this.world.getBlockState(var4);
+		IBlockState var5 = this.world.getBlockState(var4);
 		Block var6 = var5.getBlock();
 		if (var6.b() != -1) {
 			this.world.a(Particle.L, this.locationX + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, this.getBoundingBox().minY + 0.1D, this.locationZ + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, -this.motionX * 4.0D, 1.5D, -this.motionZ * 4.0D, new int[] { Block.f(var5) });
@@ -742,10 +742,10 @@ public abstract class Entity implements CommandSenderInterface {
 	public boolean a(Material var1) {
 		double var2 = this.locationY + (double) this.getHeadHeight();
 		Position var4 = new Position(this.locationX, var2, this.locationZ);
-		BlockState var5 = this.world.getBlockState(var4);
+		IBlockState var5 = this.world.getBlockState(var4);
 		Block var6 = var5.getBlock();
 		if (var6.getMaterial() == var1) {
-			float var7 = axl.b(var5.getBlock().c(var5)) - 0.11111111F;
+			float var7 = axl.b(var5.getBlock().getData(var5)) - 0.11111111F;
 			float var8 = (float) (var4.getY() + 1) - var7;
 			boolean var9 = var2 < (double) var8;
 			return !var9 && this instanceof EntityHuman ? false : var9;
@@ -1521,11 +1521,11 @@ public abstract class Entity implements CommandSenderInterface {
 		}
 	}
 
-	public float a(Explosion var1, World var2, Position var3, BlockState var4) {
+	public float a(Explosion var1, World var2, Position var3, IBlockState var4) {
 		return var4.getBlock().a(this);
 	}
 
-	public boolean a(Explosion var1, World var2, Position var3, BlockState var4, float var5) {
+	public boolean a(Explosion var1, World var2, Position var3, IBlockState var4, float var5) {
 		return true;
 	}
 

@@ -15,15 +15,15 @@ public class BlockFurnace extends atg {
 		this.b = var1;
 	}
 
-	public Item a(BlockState var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf(Blocks.FURNACE);
 	}
 
-	public void c(World var1, Position var2, BlockState var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
 	}
 
-	private void e(World var1, Position var2, BlockState var3) {
+	private void e(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			Block var4 = var1.getBlockState(var2.c()).getBlock();
 			Block var5 = var1.getBlockState(var2.d()).getBlock();
@@ -40,11 +40,11 @@ public class BlockFurnace extends atg {
 				var8 = BlockFace.WEST;
 			}
 
-			var1.a(var2, var3.a(a, var8), 2);
+			var1.setBlockAt(var2, var3.a(a, var8), 2);
 		}
 	}
 
-	public boolean a(World var1, Position var2, BlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {
@@ -58,15 +58,15 @@ public class BlockFurnace extends atg {
 	}
 
 	public static void a(boolean var0, World var1, Position var2) {
-		BlockState var3 = var1.getBlockState(var2);
+		IBlockState var3 = var1.getBlockState(var2);
 		TileEntity var4 = var1.getTileEntity(var2);
 		M = true;
 		if (var0) {
-			var1.a(var2, Blocks.LIT_FURNACE.getBlockState().a(a, var3.b(a)), 3);
-			var1.a(var2, Blocks.LIT_FURNACE.getBlockState().a(a, var3.b(a)), 3);
+			var1.setBlockAt(var2, Blocks.LIT_FURNACE.getBlockState().a(a, var3.b(a)), 3);
+			var1.setBlockAt(var2, Blocks.LIT_FURNACE.getBlockState().a(a, var3.b(a)), 3);
 		} else {
-			var1.a(var2, Blocks.FURNACE.getBlockState().a(a, var3.b(a)), 3);
-			var1.a(var2, Blocks.FURNACE.getBlockState().a(a, var3.b(a)), 3);
+			var1.setBlockAt(var2, Blocks.FURNACE.getBlockState().a(a, var3.b(a)), 3);
+			var1.setBlockAt(var2, Blocks.FURNACE.getBlockState().a(a, var3.b(a)), 3);
 		}
 
 		M = false;
@@ -81,12 +81,12 @@ public class BlockFurnace extends atg {
 		return new TileEntityFurnace();
 	}
 
-	public BlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		return this.getBlockState().a(a, var8.aO().getOpposite());
 	}
 
-	public void a(World var1, Position var2, BlockState var3, EntityLiving var4, ItemStack var5) {
-		var1.a(var2, var3.a(a, var4.aO().getOpposite()), 2);
+	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
+		var1.setBlockAt(var2, var3.a(a, var4.aO().getOpposite()), 2);
 		if (var5.s()) {
 			TileEntity var6 = var1.getTileEntity(var2);
 			if (var6 instanceof TileEntityFurnace) {
@@ -96,7 +96,7 @@ public class BlockFurnace extends atg {
 
 	}
 
-	public void b(World var1, Position var2, BlockState var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		if (!M) {
 			TileEntity var4 = var1.getTileEntity(var2);
 			if (var4 instanceof TileEntityFurnace) {
@@ -120,7 +120,7 @@ public class BlockFurnace extends atg {
 		return 3;
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		BlockFace var2 = BlockFace.getById(var1);
 		if (var2.k() == el.b) {
 			var2 = BlockFace.NORTH;
@@ -129,7 +129,7 @@ public class BlockFurnace extends atg {
 		return this.getBlockState().a(a, var2);
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((BlockFace) var1.b(a)).getId();
 	}
 

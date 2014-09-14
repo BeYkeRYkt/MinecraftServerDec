@@ -23,7 +23,7 @@ public class PacketPlayOutMultiBlockChange implements Packet<PlayOutPacketListen
 		this.packetData = new BlockChangeRecord[serializer.readVarInt()];
 
 		for (int i = 0; i < this.packetData.length; ++i) {
-			this.packetData[i] = new BlockChangeRecord(coordPair, serializer.readShort(), (BlockState) Block.IDREGISTRY.getObject(serializer.readVarInt()));
+			this.packetData[i] = new BlockChangeRecord(coordPair, serializer.readShort(), (IBlockState) Block.IDREGISTRY.getObject(serializer.readVarInt()));
 		}
 
 	}
@@ -47,9 +47,9 @@ public class PacketPlayOutMultiBlockChange implements Packet<PlayOutPacketListen
 
 		private ChunkCoordIntPair chunkCoords;
 		private final short position;
-		private final BlockState block;
+		private final IBlockState block;
 
-		public BlockChangeRecord(ChunkCoordIntPair chunkCoords, short localposition, BlockState block) {
+		public BlockChangeRecord(ChunkCoordIntPair chunkCoords, short localposition, IBlockState block) {
 			this.chunkCoords = chunkCoords;
 			this.position = localposition;
 			this.block = block;
@@ -69,7 +69,7 @@ public class PacketPlayOutMultiBlockChange implements Packet<PlayOutPacketListen
 			return this.position;
 		}
 
-		public BlockState getBlock() {
+		public IBlockState getBlock() {
 			return this.block;
 		}
 

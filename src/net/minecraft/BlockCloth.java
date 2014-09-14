@@ -10,19 +10,19 @@ public class BlockCloth extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(BlockState var1) {
+	public int a(IBlockState var1) {
 		return ((akv) var1.b(a)).a();
 	}
 
-	public MaterialMapColor g(BlockState var1) {
+	public MaterialMapColor g(IBlockState var1) {
 		return ((akv) var1.b(a)).e();
 	}
 
-	public BlockState a(int var1) {
+	public IBlockState a(int var1) {
 		return this.getBlockState().a(a, akv.b(var1));
 	}
 
-	public int c(BlockState var1) {
+	public int getData(IBlockState var1) {
 		return ((akv) var1.b(a)).a();
 	}
 

@@ -325,7 +325,7 @@ public class PortalTravelAgent {
 			}
 		}
 
-		BlockState var31 = Blocks.PORTAL.getBlockState().a(BlockPortal.a, var30 != 0 ? el.a : el.c);
+		IBlockState var31 = Blocks.PORTAL.getBlockState().a(BlockPortal.a, var30 != 0 ? el.a : el.c);
 
 		for (var20 = 0; var20 < 4; ++var20) {
 			for (var21 = 0; var21 < 4; ++var21) {
@@ -334,7 +334,7 @@ public class PortalTravelAgent {
 					var24 = var15 + var22;
 					var25 = var16 + (var21 - 1) * var18;
 					boolean var35 = var21 == 0 || var21 == 3 || var22 == -1 || var22 == 3;
-					this.a.a(new Position(var23, var24, var25), var35 ? Blocks.OBSIDIAN.getBlockState() : var31, 2);
+					this.a.setBlockAt(new Position(var23, var24, var25), var35 ? Blocks.OBSIDIAN.getBlockState() : var31, 2);
 				}
 			}
 

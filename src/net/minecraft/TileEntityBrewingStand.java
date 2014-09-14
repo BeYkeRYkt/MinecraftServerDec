@@ -51,7 +51,7 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 			boolean[] var1 = this.m();
 			if (!Arrays.equals(var1, this.i)) {
 				this.i = var1;
-				BlockState var2 = this.world.getBlockState(this.v());
+				IBlockState var2 = this.world.getBlockState(this.v());
 				if (!(var2.getBlock() instanceof BlockBrewingStand)) {
 					return;
 				}
@@ -60,7 +60,7 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 					var2 = var2.a(BlockBrewingStand.a[var3], Boolean.valueOf(var1[var3]));
 				}
 
-				this.world.a(this.position, var2, 2);
+				this.world.setBlockAt(this.position, var2, 2);
 			}
 		}
 
