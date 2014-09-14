@@ -46,6 +46,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
+import org.bukkit.event.world.WorldSaveEvent;
 import org.bukkit.plugin.Plugin;
 
 import pipebukkit.server.PipeServer;
@@ -455,6 +456,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 					if (!silenced) {
 						logger.info("Saved chunks for level \'" + world.getWorldData().getLevelName() + "\'/" + world.worldProvider.getWorldName());
 					}
+
+					Bukkit.getPluginManager().callEvent(new WorldSaveEvent(world.getBukkitWorld()));
 				}
 			}
 		}

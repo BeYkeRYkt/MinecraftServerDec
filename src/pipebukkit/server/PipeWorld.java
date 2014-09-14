@@ -14,6 +14,7 @@ import net.minecraft.WorldServer;
 import net.minecraft.server.MinecraftServer;
 
 import org.bukkit.BlockChangeDelegate;
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.ChunkSnapshot;
 import org.bukkit.Difficulty;
@@ -35,6 +36,7 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.world.WorldSaveEvent;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.inventory.ItemStack;
@@ -568,6 +570,7 @@ public class PipeWorld implements World {
 			boolean oldSave = nmsWorld.savingDisabled;
 			nmsWorld.savingDisabled = false;
 			nmsWorld.save(true, null);
+			Bukkit.getPluginManager().callEvent(new WorldSaveEvent(this));
 			nmsWorld.savingDisabled = oldSave;
 		} catch (ExceptionWorldConflict ex) {
 			ex.printStackTrace();
