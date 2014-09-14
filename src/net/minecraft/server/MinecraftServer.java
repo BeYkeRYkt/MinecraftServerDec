@@ -164,9 +164,10 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 			dedicatedMinecraftServer.startMainThread();
 			Runtime.getRuntime().addShutdownHook(new ServerShutdownHook("Server Shutdown Thread", dedicatedMinecraftServer));
-		} catch (Exception ex) {
-			logger.fatal("Failed to start the minecraft server", ex);
+		} catch (Exception var14) {
+			logger.fatal("Failed to start the minecraft server", var14);
 		}
+
 	}
 
 	protected abstract boolean startServer() throws UnknownHostException;
@@ -375,11 +376,11 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	protected synchronized void b(String var1) {
 	}
 
-	protected void loadWorlds(String levelname1, String levelname2, long seed, LevelType levelType, String settings) {
-		this.a(levelname1);
+	protected void loadWorlds(String levelname, long seed, LevelType levelType, String settings) {
+		this.a(levelname);
 		this.b("menu.loadingLevel");
 		this.worlds = new ArrayList<WorldServer>();
-		IDataManager dataManager = this.convertable.a(levelname1, true);
+		IDataManager dataManager = this.convertable.a(levelname, true);
 		this.a(this.getLevelName(), dataManager);
 		WorldData worldData = dataManager.getWorldData();
 		WorldSettings worldSettings;
@@ -387,9 +388,9 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			worldSettings = new WorldSettings(seed, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), levelType);
 			worldSettings.setGeneratorOptions(settings);
 
-			worldData = new WorldData(worldSettings, levelname2);
+			worldData = new WorldData(worldSettings, levelname);
 		} else {
-			worldData.setLevelName(levelname2);
+			worldData.setLevelName(levelname);
 			worldSettings = new WorldSettings(worldData);
 		}
 
@@ -411,7 +412,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				worlds.add((WorldServer) (new SecondaryWorldServer(this, dataManager, worldId, this.worlds.get(0), this.profiler)).b());
 			}
 
-			this.worlds.get(i).addIWorldAccess((IWorldAccess) (new WorldManager(this, this.worlds.get(i))));
+			this.worlds.get(i).addIWorldAccess(new WorldManager(this, this.worlds.get(i)));
 			this.worlds.get(i).getWorldData().setGameMode(this.getServerGameMode());
 		}
 

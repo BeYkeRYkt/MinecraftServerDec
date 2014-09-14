@@ -8,14 +8,14 @@ public class ServerNBTManager extends WorldNBTStorage {
 		super(l, var2, var3);
 	}
 
-	public IChunkLoader createChunkLoader(WorldProvider var1) {
+	public IChunkLoader createChunkLoader(WorldProvider provider) {
 		File baseDir = this.getDirectory();
 		File worldDir;
-		if (var1 instanceof WorldProviderHell) {
+		if (provider instanceof WorldProviderHell) {
 			worldDir = new File(baseDir, "DIM-1");
 			worldDir.mkdirs();
 			return new ChunkRegionLoader(worldDir);
-		} else if (var1 instanceof WorldProviderTheEnd) {
+		} else if (provider instanceof WorldProviderTheEnd) {
 			worldDir = new File(baseDir, "DIM1");
 			worldDir.mkdirs();
 			return new ChunkRegionLoader(worldDir);
@@ -24,9 +24,9 @@ public class ServerNBTManager extends WorldNBTStorage {
 		}
 	}
 
-	public void saveWorldData(WorldData var1, NBTCompoundTag var2) {
-		var1.setVersion(19133);
-		super.saveWorldData(var1, var2);
+	public void saveWorldData(WorldData worldData, NBTCompoundTag tag) {
+		worldData.setVersion(19133);
+		super.saveWorldData(worldData, tag);
 	}
 
 	public void saveData() {
