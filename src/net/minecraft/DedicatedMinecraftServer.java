@@ -150,6 +150,9 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 				long var12 = System.nanoTime() - nanoTime;
 				String var14 = String.format("%.3fs", new Object[] { Double.valueOf((double) var12 / 1.0E9D) });
 				logger.info("Done (" + var14 + ")! For help, type \"help\" or \"?\"");
+
+				getPipeServer().finishWorldsLoading();
+
 				if (this.serverProperties.getBoolean("enable-query", false)) {
 					logger.info("Starting GS4 status listener");
 					this.query = new QueryListener(this);

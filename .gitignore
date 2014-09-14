@@ -3,6 +3,7 @@
 #################
 
 crash-reports/
+plugins/
 world/
 logs/
 banned-ips.json

@@ -29,6 +29,7 @@ import net.minecraft.EntityPlayer;
 import net.minecraft.EnumGameMode;
 import net.minecraft.JsonListEntry;
 import net.minecraft.WorldNBTStorage;
+import net.minecraft.WorldServer;
 import net.minecraft.server.MinecraftServer;
 
 import org.apache.commons.lang.Validate;
@@ -61,10 +62,12 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.map.MapView;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginLoadOrder;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.SimplePluginManager;
 import org.bukkit.plugin.SimpleServicesManager;
+import org.bukkit.plugin.java.JavaPluginLoader;
 import org.bukkit.plugin.messaging.Messenger;
 import org.bukkit.plugin.messaging.StandardMessenger;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -99,6 +102,7 @@ public class PipeServer implements Server {
 
 	private File bukkitConfigurationFile = new File("bukkit.yml");
 	private YamlConfiguration bukkitConfiguration;
+	private File pluginsFolder = new File("plugins");
 
 	private SimpleCommandMap commandMap = new SimpleCommandMap(this);
 	private StandardMessenger messenger = new StandardMessenger();
@@ -111,13 +115,48 @@ public class PipeServer implements Server {
 
 	public PipeServer() {
 		Bukkit.setServer(this);
+
 		players = Collections.unmodifiableList(com.google.common.collect.Lists.transform(MinecraftServer.getInstance().getPlayerList().players, new com.google.common.base.Function<EntityPlayer, Player>() {
 			@Override
 			public Player apply(EntityPlayer player) {
 				return player.getBukkitEntity(Player.class);
 			}
 		}));
+
 		bukkitConfiguration = YamlConfiguration.loadConfiguration(bukkitConfigurationFile);
+
+		pluginManager.registerInterface(JavaPluginLoader.class);
+		if (pluginsFolder.exists() && pluginsFolder.isDirectory()) {
+			for (File pluginFile : pluginsFolder.listFiles()) {
+				try {
+					Plugin plugin = pluginManager.loadPlugin(pluginFile);
+					String message = String.format("Loading %s", plugin.getDescription().getFullName());
+					plugin.getLogger().info(message);
+					plugin.onLoad();
+				} catch (Throwable ex) {
+					Logger.getLogger(PipeServer.class.getName()).log(Level.SEVERE, ex.getMessage() + " initializing " + pluginFile.getName() , ex);
+				}
+			}
+		} else {
+			pluginsFolder.delete();
+			pluginsFolder.mkdirs();
+		}
+		enablePlugins(PluginLoadOrder.STARTUP);
+	}
+
+	public void finishWorldsLoading() {
+		for (WorldServer world : MinecraftServer.getInstance().worlds) {
+			worlds.put(world.getWorldData().getLevelName(), new PipeWorld(world));
+		}
+		enablePlugins(PluginLoadOrder.POSTWORLD);
+	}
+
+	private void enablePlugins(PluginLoadOrder order) {
+		for (Plugin plugin : pluginManager.getPlugins()) {
+			if ((!plugin.isEnabled()) && (plugin.getDescription().getLoad() == order)) {
+				pluginManager.enablePlugin(plugin);
+			}
+		}
 	}
 
 	public EntityMetadataStorage getEntityMetadataStorage() {
