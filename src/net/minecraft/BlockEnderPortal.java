@@ -41,7 +41,7 @@ public class BlockEnderPortal extends atg {
 
 	}
 
-	public MaterialMapColor g(IBlockState var1) {
+	public MaterialMapColor getMapColor(IBlockState var1) {
 		return MaterialMapColor.J;
 	}
 }

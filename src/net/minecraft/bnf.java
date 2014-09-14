@@ -57,8 +57,8 @@ public class bnf extends bnn {
 		int var7;
 		for (var6 = -1; var6 <= 2; ++var6) {
 			for (var7 = 0; var7 <= 8; ++var7) {
-				this.a(var1, Blocks.OAK_STAIRS.a(var4), var7, 4 + var6, var6, var3);
-				this.a(var1, Blocks.OAK_STAIRS.a(var5), var7, 4 + var6, 5 - var6, var3);
+				this.a(var1, Blocks.OAK_STAIRS.setData(var4), var7, 4 + var6, var6, var3);
+				this.a(var1, Blocks.OAK_STAIRS.setData(var5), var7, 4 + var6, 5 - var6, var3);
 			}
 		}
 
@@ -77,8 +77,8 @@ public class bnf extends bnn {
 		this.a(var1, Blocks.FENCE.getBlockState(), 2, 1, 3, var3);
 		this.a(var1, Blocks.WOODEN_PRESSURE_PLATE.getBlockState(), 2, 2, 3, var3);
 		this.a(var1, Blocks.PLANKS.getBlockState(), 1, 1, 4, var3);
-		this.a(var1, Blocks.OAK_STAIRS.a(this.a(Blocks.OAK_STAIRS, 3)), 2, 1, 4, var3);
-		this.a(var1, Blocks.OAK_STAIRS.a(this.a(Blocks.OAK_STAIRS, 1)), 1, 1, 3, var3);
+		this.a(var1, Blocks.OAK_STAIRS.setData(this.a(Blocks.OAK_STAIRS, 3)), 2, 1, 4, var3);
+		this.a(var1, Blocks.OAK_STAIRS.setData(this.a(Blocks.OAK_STAIRS, 1)), 1, 1, 3, var3);
 		this.a(var1, var3, 5, 0, 1, 7, 0, 3, Blocks.DOUBLE_STONE_SLAB.getBlockState(), Blocks.DOUBLE_STONE_SLAB.getBlockState(), false);
 		this.a(var1, Blocks.DOUBLE_STONE_SLAB.getBlockState(), 6, 1, 1, var3);
 		this.a(var1, Blocks.DOUBLE_STONE_SLAB.getBlockState(), 6, 1, 2, var3);
@@ -87,7 +87,7 @@ public class bnf extends bnn {
 		this.a(var1, Blocks.TORCH.getBlockState().a(BlockTorch.a, this.m), 2, 3, 1, var3);
 		this.a(var1, var3, var2, 2, 1, 0, BlockFace.fromDirection(this.a(Blocks.WOODEN_DOOR, 1)));
 		if (this.a(var1, 2, 0, -1, var3).getBlock().getMaterial() == Material.AIR && this.a(var1, 2, -1, -1, var3).getBlock().getMaterial() != Material.AIR) {
-			this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 2, 0, -1, var3);
+			this.a(var1, Blocks.STONE_STAIRS.setData(this.a(Blocks.STONE_STAIRS, 3)), 2, 0, -1, var3);
 		}
 
 		this.a(var1, Blocks.AIR.getBlockState(), 6, 1, 5, var3);

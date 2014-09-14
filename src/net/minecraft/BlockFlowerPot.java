@@ -40,7 +40,7 @@ public class BlockFlowerPot extends atg {
 			} else if (var10.b() != null) {
 				return false;
 			} else {
-				Block var11 = Block.a(var9.getItem());
+				Block var11 = Block.getBlockByItem(var9.getItem());
 				if (!this.a(var11, var9.getDurability())) {
 					return false;
 				} else {
@@ -180,7 +180,7 @@ public class BlockFlowerPot extends atg {
 			Item var7 = var6.b();
 			if (var7 instanceof ItemBlock) {
 				int var8 = var6.c();
-				Block var9 = Block.a(var7);
+				Block var9 = Block.getBlockByItem(var7);
 				if (var9 == Blocks.SAPLING) {
 					switch (awe.a[EnumWoodType.a(var8).ordinal()]) {
 						case 1:

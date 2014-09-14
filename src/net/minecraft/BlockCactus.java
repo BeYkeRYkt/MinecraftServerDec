@@ -79,7 +79,7 @@ public class BlockCactus extends Block {
 		var4.damageEntity(DamageSource.CACTUS, 1.0F);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 

@@ -730,7 +730,7 @@ public abstract class Entity implements CommandSenderInterface {
 		IBlockState var5 = this.world.getBlockState(var4);
 		Block var6 = var5.getBlock();
 		if (var6.b() != -1) {
-			this.world.a(Particle.L, this.locationX + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, this.getBoundingBox().minY + 0.1D, this.locationZ + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, -this.motionX * 4.0D, 1.5D, -this.motionZ * 4.0D, new int[] { Block.f(var5) });
+			this.world.a(Particle.L, this.locationX + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, this.getBoundingBox().minY + 0.1D, this.locationZ + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, -this.motionX * 4.0D, 1.5D, -this.motionZ * 4.0D, new int[] { Block.getStateId(var5) });
 		}
 
 	}

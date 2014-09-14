@@ -146,7 +146,7 @@ public class WorldGenMineshaftCorridor extends StructurePiece {
 		Position var9 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
 		if (var2.b((fd) var9) && var1.getBlockState(var9).getBlock().getMaterial() == Material.AIR) {
 			int var10 = var3.nextBoolean() ? 1 : 0;
-			var1.setBlockAt(var9, Blocks.RAIL.a(this.a(Blocks.RAIL, var10)), 2);
+			var1.setBlockAt(var9, Blocks.RAIL.setData(this.a(Blocks.RAIL, var10)), 2);
 			EntityMinecartChest var11 = new EntityMinecartChest(var1, (double) ((float) var9.getX() + 0.5F), (double) ((float) var9.getY() + 0.5F), (double) ((float) var9.getZ() + 0.5F));
 			StructurePieceTreasure.a(var3, var7, (IInventory) var11, var8);
 			var1.addEntity((Entity) var11);
@@ -192,8 +192,8 @@ public class WorldGenMineshaftCorridor extends StructurePiece {
 				this.a(var1, var3, var2, 0.05F, 2, 2, var10 - 2, Blocks.WEB.getBlockState());
 				this.a(var1, var3, var2, 0.05F, 0, 2, var10 + 2, Blocks.WEB.getBlockState());
 				this.a(var1, var3, var2, 0.05F, 2, 2, var10 + 2, Blocks.WEB.getBlockState());
-				this.a(var1, var3, var2, 0.05F, 1, 2, var10 - 1, Blocks.TORCH.a(BlockFace.UP.getId()));
-				this.a(var1, var3, var2, 0.05F, 1, 2, var10 + 1, Blocks.TORCH.a(BlockFace.UP.getId()));
+				this.a(var1, var3, var2, 0.05F, 1, 2, var10 - 1, Blocks.TORCH.setData(BlockFace.UP.getId()));
+				this.a(var1, var3, var2, 0.05F, 1, 2, var10 + 1, Blocks.TORCH.setData(BlockFace.UP.getId()));
 				if (var2.nextInt(100) == 0) {
 					this.a(var1, var3, var2, 2, 0, var10 - 1, StructurePieceTreasure.a(WorldGenMineshaftPieces.b(), new StructurePieceTreasure[] { Items.ENCHANTED_BOOK.b(var2) }), 3 + var2.nextInt(4));
 				}
@@ -234,7 +234,7 @@ public class WorldGenMineshaftCorridor extends StructurePiece {
 				for (var9 = 0; var9 <= var8; ++var9) {
 					IBlockState var16 = this.a(var1, 1, -1, var9, var3);
 					if (var16.getBlock().getMaterial() != Material.AIR && var16.getBlock().m()) {
-						this.a(var1, var3, var2, 0.7F, 1, 0, var9, Blocks.RAIL.a(this.a(Blocks.RAIL, 0)));
+						this.a(var1, var3, var2, 0.7F, 1, 0, var9, Blocks.RAIL.setData(this.a(Blocks.RAIL, 0)));
 					}
 				}
 			}

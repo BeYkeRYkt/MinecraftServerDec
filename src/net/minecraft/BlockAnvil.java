@@ -57,7 +57,7 @@ public class BlockAnvil extends BlockFalling {
 		var1.b(1022, var2, 0);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, BlockFace.fromDirection(var1 & 3)).a(b, Integer.valueOf((var1 & 15) >> 2));
 	}
 

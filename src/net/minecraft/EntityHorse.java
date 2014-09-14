@@ -529,7 +529,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 						var7 = 1.0F;
 						var5 = 30;
 						var6 = 3;
-					} else if (Block.a(var2.getItem()) == Blocks.HAY_BLOCK) {
+					} else if (Block.getBlockByItem(var2.getItem()) == Blocks.HAY_BLOCK) {
 						var7 = 20.0F;
 						var5 = 180;
 					} else if (var2.getItem() == Items.APPLE) {

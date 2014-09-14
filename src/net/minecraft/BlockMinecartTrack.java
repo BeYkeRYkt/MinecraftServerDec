@@ -20,7 +20,7 @@ public class BlockMinecartTrack extends ati {
 		return b;
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(b, atl.a(var1));
 	}
 

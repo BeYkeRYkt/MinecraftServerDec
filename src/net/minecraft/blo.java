@@ -27,13 +27,13 @@ public class blo extends bln {
 		if (!this.a(var1, var3, 0)) {
 			return false;
 		} else {
-			this.a(var1, var3, 1, 1, 1, 5, 1, 7, Blocks.PLANKS.a(EnumWoodType.b.a()), Blocks.PLANKS.a(EnumWoodType.b.a()), false);
-			this.a(var1, var3, 1, 4, 2, 5, 4, 7, Blocks.PLANKS.a(EnumWoodType.b.a()), Blocks.PLANKS.a(EnumWoodType.b.a()), false);
-			this.a(var1, var3, 2, 1, 0, 4, 1, 0, Blocks.PLANKS.a(EnumWoodType.b.a()), Blocks.PLANKS.a(EnumWoodType.b.a()), false);
-			this.a(var1, var3, 2, 2, 2, 3, 3, 2, Blocks.PLANKS.a(EnumWoodType.b.a()), Blocks.PLANKS.a(EnumWoodType.b.a()), false);
-			this.a(var1, var3, 1, 2, 3, 1, 3, 6, Blocks.PLANKS.a(EnumWoodType.b.a()), Blocks.PLANKS.a(EnumWoodType.b.a()), false);
-			this.a(var1, var3, 5, 2, 3, 5, 3, 6, Blocks.PLANKS.a(EnumWoodType.b.a()), Blocks.PLANKS.a(EnumWoodType.b.a()), false);
-			this.a(var1, var3, 2, 2, 7, 4, 3, 7, Blocks.PLANKS.a(EnumWoodType.b.a()), Blocks.PLANKS.a(EnumWoodType.b.a()), false);
+			this.a(var1, var3, 1, 1, 1, 5, 1, 7, Blocks.PLANKS.setData(EnumWoodType.b.a()), Blocks.PLANKS.setData(EnumWoodType.b.a()), false);
+			this.a(var1, var3, 1, 4, 2, 5, 4, 7, Blocks.PLANKS.setData(EnumWoodType.b.a()), Blocks.PLANKS.setData(EnumWoodType.b.a()), false);
+			this.a(var1, var3, 2, 1, 0, 4, 1, 0, Blocks.PLANKS.setData(EnumWoodType.b.a()), Blocks.PLANKS.setData(EnumWoodType.b.a()), false);
+			this.a(var1, var3, 2, 2, 2, 3, 3, 2, Blocks.PLANKS.setData(EnumWoodType.b.a()), Blocks.PLANKS.setData(EnumWoodType.b.a()), false);
+			this.a(var1, var3, 1, 2, 3, 1, 3, 6, Blocks.PLANKS.setData(EnumWoodType.b.a()), Blocks.PLANKS.setData(EnumWoodType.b.a()), false);
+			this.a(var1, var3, 5, 2, 3, 5, 3, 6, Blocks.PLANKS.setData(EnumWoodType.b.a()), Blocks.PLANKS.setData(EnumWoodType.b.a()), false);
+			this.a(var1, var3, 2, 2, 7, 4, 3, 7, Blocks.PLANKS.setData(EnumWoodType.b.a()), Blocks.PLANKS.setData(EnumWoodType.b.a()), false);
 			this.a(var1, var3, 1, 0, 2, 1, 3, 2, Blocks.LOG.getBlockState(), Blocks.LOG.getBlockState(), false);
 			this.a(var1, var3, 5, 0, 2, 5, 3, 2, Blocks.LOG.getBlockState(), Blocks.LOG.getBlockState(), false);
 			this.a(var1, var3, 1, 0, 7, 1, 3, 7, Blocks.LOG.getBlockState(), Blocks.LOG.getBlockState(), false);
@@ -52,10 +52,10 @@ public class blo extends bln {
 			int var5 = this.a(Blocks.OAK_STAIRS, 1);
 			int var6 = this.a(Blocks.OAK_STAIRS, 0);
 			int var7 = this.a(Blocks.OAK_STAIRS, 2);
-			this.a(var1, var3, 0, 4, 1, 6, 4, 1, Blocks.SPRUCE_STAIRS.a(var4), Blocks.SPRUCE_STAIRS.a(var4), false);
-			this.a(var1, var3, 0, 4, 2, 0, 4, 7, Blocks.SPRUCE_STAIRS.a(var6), Blocks.SPRUCE_STAIRS.a(var6), false);
-			this.a(var1, var3, 6, 4, 2, 6, 4, 7, Blocks.SPRUCE_STAIRS.a(var5), Blocks.SPRUCE_STAIRS.a(var5), false);
-			this.a(var1, var3, 0, 4, 8, 6, 4, 8, Blocks.SPRUCE_STAIRS.a(var7), Blocks.SPRUCE_STAIRS.a(var7), false);
+			this.a(var1, var3, 0, 4, 1, 6, 4, 1, Blocks.SPRUCE_STAIRS.setData(var4), Blocks.SPRUCE_STAIRS.setData(var4), false);
+			this.a(var1, var3, 0, 4, 2, 0, 4, 7, Blocks.SPRUCE_STAIRS.setData(var6), Blocks.SPRUCE_STAIRS.setData(var6), false);
+			this.a(var1, var3, 6, 4, 2, 6, 4, 7, Blocks.SPRUCE_STAIRS.setData(var5), Blocks.SPRUCE_STAIRS.setData(var5), false);
+			this.a(var1, var3, 0, 4, 8, 6, 4, 8, Blocks.SPRUCE_STAIRS.setData(var7), Blocks.SPRUCE_STAIRS.setData(var7), false);
 
 			int var8;
 			int var9;

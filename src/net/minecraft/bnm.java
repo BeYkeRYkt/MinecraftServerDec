@@ -56,9 +56,9 @@ public class bnm extends bnn {
 		int var7;
 		for (var6 = -1; var6 <= 2; ++var6) {
 			for (var7 = 0; var7 <= 8; ++var7) {
-				this.a(var1, Blocks.OAK_STAIRS.a(var4), var7, 4 + var6, var6, var3);
+				this.a(var1, Blocks.OAK_STAIRS.setData(var4), var7, 4 + var6, var6, var3);
 				if ((var6 > -1 || var7 <= 1) && (var6 > 0 || var7 <= 3) && (var6 > 1 || var7 <= 4 || var7 >= 6)) {
-					this.a(var1, Blocks.OAK_STAIRS.a(var5), var7, 4 + var6, 5 - var6, var3);
+					this.a(var1, Blocks.OAK_STAIRS.setData(var5), var7, 4 + var6, 5 - var6, var3);
 				}
 			}
 		}
@@ -75,19 +75,19 @@ public class bnm extends bnn {
 			this.a(var1, Blocks.PLANKS.getBlockState(), var7, 2 + var7, 7 - var7, var3);
 
 			for (var8 = 8 - var7; var8 <= 10; ++var8) {
-				this.a(var1, Blocks.OAK_STAIRS.a(var6), var7, 2 + var7, var8, var3);
+				this.a(var1, Blocks.OAK_STAIRS.setData(var6), var7, 2 + var7, var8, var3);
 			}
 		}
 
 		var7 = this.a(Blocks.OAK_STAIRS, 1);
 		this.a(var1, Blocks.PLANKS.getBlockState(), 6, 6, 3, var3);
 		this.a(var1, Blocks.PLANKS.getBlockState(), 7, 5, 4, var3);
-		this.a(var1, Blocks.OAK_STAIRS.a(var7), 6, 6, 4, var3);
+		this.a(var1, Blocks.OAK_STAIRS.setData(var7), 6, 6, 4, var3);
 
 		int var9;
 		for (var8 = 6; var8 <= 8; ++var8) {
 			for (var9 = 5; var9 <= 10; ++var9) {
-				this.a(var1, Blocks.OAK_STAIRS.a(var7), var8, 12 - var8, var9, var3);
+				this.a(var1, Blocks.OAK_STAIRS.setData(var7), var8, 12 - var8, var9, var3);
 			}
 		}
 
@@ -121,7 +121,7 @@ public class bnm extends bnn {
 		this.a(var1, var3, var2, 2, 1, 0, BlockFace.fromDirection(this.a(Blocks.WOODEN_DOOR, 1)));
 		this.a(var1, var3, 1, 0, -1, 3, 2, -1, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 		if (this.a(var1, 2, 0, -1, var3).getBlock().getMaterial() == Material.AIR && this.a(var1, 2, -1, -1, var3).getBlock().getMaterial() != Material.AIR) {
-			this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 2, 0, -1, var3);
+			this.a(var1, Blocks.STONE_STAIRS.setData(this.a(Blocks.STONE_STAIRS, 3)), 2, 0, -1, var3);
 		}
 
 		for (var8 = 0; var8 < 5; ++var8) {

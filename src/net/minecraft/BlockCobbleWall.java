@@ -84,7 +84,7 @@ public class BlockCobbleWall extends Block {
 		return ((bby) var1.b(P)).a();
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(P, bby.a(var1));
 	}
 

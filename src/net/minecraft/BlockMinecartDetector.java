@@ -116,7 +116,7 @@ public class BlockMinecartDetector extends ati {
 		return new AxisAlignedBB((double) ((float) var1.getX() + 0.2F), (double) var1.getY(), (double) ((float) var1.getZ() + 0.2F), (double) ((float) (var1.getX() + 1) - 0.2F), (double) ((float) (var1.getY() + 1) - 0.2F), (double) ((float) (var1.getZ() + 1) - 0.2F));
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(b, atl.a(var1 & 7)).a(M, Boolean.valueOf((var1 & 8) > 0));
 	}
 

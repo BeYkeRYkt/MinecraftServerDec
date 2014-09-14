@@ -12,12 +12,12 @@ import java.util.Map;
 
 class BlockState extends AbstractBlockState {
 
-	private final Block a;
+	private final Block block;
 	private final ImmutableMap b;
 	private ImmutableTable c;
 
 	private BlockState(Block var1, ImmutableMap var2) {
-		this.a = var1;
+		this.block = var1;
 		this.b = var2;
 	}
 
@@ -25,19 +25,19 @@ class BlockState extends AbstractBlockState {
 		return Collections.unmodifiableCollection(this.b.keySet());
 	}
 
-	public Comparable b(bex var1) {
-		if (!this.b.containsKey(var1)) {
-			throw new IllegalArgumentException("Cannot get property " + var1 + " as it does not exist in " + this.a.O());
+	public Comparable b(bex property) {
+		if (!this.b.containsKey(property)) {
+			throw new IllegalArgumentException("Cannot get property " + property + " as it does not exist in " + this.block.O());
 		} else {
-			return (Comparable) var1.b().cast(this.b.get(var1));
+			return (Comparable) property.getStateClass().cast(this.b.get(property));
 		}
 	}
 
 	public IBlockState a(bex var1, Comparable var2) {
 		if (!this.b.containsKey(var1)) {
-			throw new IllegalArgumentException("Cannot set property " + var1 + " as it does not exist in " + this.a.O());
+			throw new IllegalArgumentException("Cannot set property " + var1 + " as it does not exist in " + this.block.O());
 		} else if (!var1.c().contains(var2)) {
-			throw new IllegalArgumentException("Cannot set property " + var1 + " to " + var2 + " on block " + Block.BLOCKREGISTRY.c(this.a) + ", it is not an allowed value");
+			throw new IllegalArgumentException("Cannot set property " + var1 + " to " + var2 + " on block " + Block.BLOCKREGISTRY.c(this.block) + ", it is not an allowed value");
 		} else {
 			return (IBlockState) (this.b.get(var1) == var2 ? this : (IBlockState) this.c.get(var1, var2));
 		}
@@ -48,7 +48,7 @@ class BlockState extends AbstractBlockState {
 	}
 
 	public Block getBlock() {
-		return this.a;
+		return this.block;
 	}
 
 	public boolean equals(Object var1) {

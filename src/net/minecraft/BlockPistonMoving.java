@@ -176,7 +176,7 @@ public class BlockPistonMoving extends atg {
 		return var3 instanceof TileEntityPiston ? (TileEntityPiston) var3 : null;
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, BlockPistonExtension.b(var1)).a(b, (var1 & 8) > 0 ? bdu.b : bdu.a);
 	}
 

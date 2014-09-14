@@ -24,7 +24,7 @@ public class bld extends blb {
 			for (int var5 = 1; var5 <= 6; ++var5) {
 				if (var2.nextInt(3) != 0) {
 					int var6 = 2 + (var2.nextInt(4) == 0 ? 0 : 1);
-					this.a(var1, var3, var4, var6, var5, var4, 3, var5, Blocks.SPONGE.a(1), Blocks.SPONGE.a(1), false);
+					this.a(var1, var3, var4, var6, var5, var4, 3, var5, Blocks.SPONGE.setData(1), Blocks.SPONGE.setData(1), false);
 				}
 			}
 		}

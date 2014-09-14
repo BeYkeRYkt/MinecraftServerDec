@@ -20,7 +20,7 @@ public class WorldGenFlatLayerInfo {
 
 	public WorldGenFlatLayerInfo(int var1, int var2, Block var3, int var4) {
 		this(var1, var2, var3);
-		this.b = var3.a(var4);
+		this.b = var3.setData(var4);
 	}
 
 	public int b() {

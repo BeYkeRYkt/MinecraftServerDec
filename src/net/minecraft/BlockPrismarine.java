@@ -25,7 +25,7 @@ public class BlockPrismarine extends Block {
 		return new bed(this, new bex[] { a });
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, azj.a(var1));
 	}
 

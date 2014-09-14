@@ -209,7 +209,7 @@ public abstract class aud extends Block {
 		var1.c(var2.a(var3.getOpposite()), (Block) this);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		BlockFace var2;
 		switch (var1 & 7) {
 			case 0:

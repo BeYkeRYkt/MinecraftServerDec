@@ -121,7 +121,7 @@ public class BlockStem extends auc implements atz {
 		this.g(var1, var3, var4);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 

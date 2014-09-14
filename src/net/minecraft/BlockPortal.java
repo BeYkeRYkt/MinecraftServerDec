@@ -103,7 +103,7 @@ public class BlockPortal extends awt {
 
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, (var1 & 3) == 2 ? el.c : el.a);
 	}
 

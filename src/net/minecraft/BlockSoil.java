@@ -87,7 +87,7 @@ public class BlockSoil extends Block {
 		return Blocks.DIRT.a(Blocks.DIRT.getBlockState().a(BlockDirt.a, avd.a), var2, var3);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, Integer.valueOf(var1 & 7));
 	}
 

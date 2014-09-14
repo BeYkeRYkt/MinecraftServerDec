@@ -119,7 +119,7 @@ public class BlockPiston extends Block {
 			}
 
 			var1.setBlockAt(var2, Blocks.PISTON_EXTENSION.getBlockState().a(BlockPistonMoving.a, var6).a(BlockPistonMoving.b, this.M ? bdu.b : bdu.a), 3);
-			var1.a(var2, BlockPistonMoving.a(this.a(var5), var6, false, true));
+			var1.a(var2, BlockPistonMoving.a(this.setData(var5), var6, false, true));
 			if (this.M) {
 				Position var8 = var2.a(var6.g() * 2, var6.h() * 2, var6.i() * 2);
 				Block var9 = var1.getBlockState(var8).getBlock();
@@ -321,7 +321,7 @@ public class BlockPiston extends Block {
 		}
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, b(var1)).a(b, Boolean.valueOf((var1 & 8) > 0));
 	}
 

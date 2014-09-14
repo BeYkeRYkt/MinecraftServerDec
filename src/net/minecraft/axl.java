@@ -171,7 +171,7 @@ public abstract class axl extends Block {
 
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(b, Integer.valueOf(var1));
 	}
 

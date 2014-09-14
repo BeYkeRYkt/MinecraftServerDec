@@ -85,7 +85,7 @@ public class BlockLadder extends Block {
 		return var1.getBlockState(var2.a(var3.getOpposite())).getBlock().t();
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		BlockFace var2 = BlockFace.getById(var1);
 		if (var2.k() == el.b) {
 			var2 = BlockFace.NORTH;

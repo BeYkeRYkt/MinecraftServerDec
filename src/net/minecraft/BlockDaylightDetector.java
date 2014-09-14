@@ -90,7 +90,7 @@ public class BlockDaylightDetector extends atg {
 		return new TileEntityLightDetector();
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 

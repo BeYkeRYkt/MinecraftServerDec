@@ -230,7 +230,7 @@ public abstract class World implements ard {
 		if (var4.getMaterial() == Material.AIR) {
 			return false;
 		} else {
-			this.b(2001, var1, Block.f(var3));
+			this.b(2001, var1, Block.getStateId(var3));
 			if (var2) {
 				var4.b(this, var1, var3, 0);
 			}

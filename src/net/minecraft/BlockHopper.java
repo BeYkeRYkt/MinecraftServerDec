@@ -125,7 +125,7 @@ public class BlockHopper extends atg {
 		return Container.a(var1.getTileEntity(var2));
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, b(var1)).a(b, Boolean.valueOf(f(var1)));
 	}
 

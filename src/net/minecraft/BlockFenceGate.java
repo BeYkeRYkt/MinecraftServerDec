@@ -96,7 +96,7 @@ public class BlockFenceGate extends avb {
 		}
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(N, BlockFace.fromDirection(var1)).a(a, Boolean.valueOf((var1 & 4) != 0)).a(b, Boolean.valueOf((var1 & 8) != 0));
 	}
 

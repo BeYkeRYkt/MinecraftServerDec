@@ -33,7 +33,7 @@ public abstract class bcf extends BlockStepAbstract {
 		return EnumWoodType.a(var1.getDurability() & 7);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		IBlockState var2 = this.getBlockState().a(b, EnumWoodType.a(var1 & 7));
 		if (!this.j()) {
 			var2 = var2.a(a, (var1 & 8) == 0 ? awr.b : awr.a);

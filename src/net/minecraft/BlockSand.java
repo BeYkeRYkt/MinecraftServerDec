@@ -12,11 +12,11 @@ public class BlockSand extends BlockFalling {
 		return ((bac) var1.b(a)).a();
 	}
 
-	public MaterialMapColor g(IBlockState var1) {
+	public MaterialMapColor getMapColor(IBlockState var1) {
 		return ((bac) var1.b(a)).c();
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, bac.a(var1));
 	}
 

@@ -8,7 +8,7 @@ public interface bex<T> {
 
 	Collection<T> c();
 
-	Class<T> b();
+	Class<T> getStateClass();
 
 	String a(T var1);
 }

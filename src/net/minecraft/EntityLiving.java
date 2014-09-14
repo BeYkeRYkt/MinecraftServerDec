@@ -114,7 +114,7 @@ public abstract class EntityLiving extends Entity {
 				}
 
 				int var11 = (int) (150.0D * var9);
-				((WorldServer) this.world).a(Particle.M, this.locationX, this.locationY, this.locationZ, var11, 0.0D, 0.0D, 0.0D, 0.15000000596046448D, new int[] { Block.f(var6) });
+				((WorldServer) this.world).a(Particle.M, this.locationX, this.locationY, this.locationZ, var11, 0.0D, 0.0D, 0.0D, 0.15000000596046448D, new int[] { Block.getStateId(var6) });
 			}
 		}
 

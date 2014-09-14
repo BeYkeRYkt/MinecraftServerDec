@@ -70,9 +70,9 @@ public class WorldGenStrongholdPortalRoom extends WorldGenStrongholdPiece {
 
 		int var6;
 		for (var6 = 4; var6 <= 6; ++var6) {
-			this.a(var1, Blocks.STONE_BROCK_STAIRS.a(var5), var6, 1, 4, var3);
-			this.a(var1, Blocks.STONE_BROCK_STAIRS.a(var5), var6, 2, 5, var3);
-			this.a(var1, Blocks.STONE_BROCK_STAIRS.a(var5), var6, 3, 6, var3);
+			this.a(var1, Blocks.STONE_BROCK_STAIRS.setData(var5), var6, 1, 4, var3);
+			this.a(var1, Blocks.STONE_BROCK_STAIRS.setData(var5), var6, 2, 5, var3);
+			this.a(var1, Blocks.STONE_BROCK_STAIRS.setData(var5), var6, 3, 6, var3);
 		}
 
 		var6 = BlockFace.NORTH.toDirection();
@@ -99,18 +99,18 @@ public class WorldGenStrongholdPortalRoom extends WorldGenStrongholdPiece {
 			}
 		}
 
-		this.a(var1, Blocks.END_PORTAL_FRAME.a(var6).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 4, 3, 8, var3);
-		this.a(var1, Blocks.END_PORTAL_FRAME.a(var6).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 5, 3, 8, var3);
-		this.a(var1, Blocks.END_PORTAL_FRAME.a(var6).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 6, 3, 8, var3);
-		this.a(var1, Blocks.END_PORTAL_FRAME.a(var7).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 4, 3, 12, var3);
-		this.a(var1, Blocks.END_PORTAL_FRAME.a(var7).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 5, 3, 12, var3);
-		this.a(var1, Blocks.END_PORTAL_FRAME.a(var7).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 6, 3, 12, var3);
-		this.a(var1, Blocks.END_PORTAL_FRAME.a(var8).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 3, 3, 9, var3);
-		this.a(var1, Blocks.END_PORTAL_FRAME.a(var8).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 3, 3, 10, var3);
-		this.a(var1, Blocks.END_PORTAL_FRAME.a(var8).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 3, 3, 11, var3);
-		this.a(var1, Blocks.END_PORTAL_FRAME.a(var9).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 7, 3, 9, var3);
-		this.a(var1, Blocks.END_PORTAL_FRAME.a(var9).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 7, 3, 10, var3);
-		this.a(var1, Blocks.END_PORTAL_FRAME.a(var9).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 7, 3, 11, var3);
+		this.a(var1, Blocks.END_PORTAL_FRAME.setData(var6).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 4, 3, 8, var3);
+		this.a(var1, Blocks.END_PORTAL_FRAME.setData(var6).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 5, 3, 8, var3);
+		this.a(var1, Blocks.END_PORTAL_FRAME.setData(var6).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 6, 3, 8, var3);
+		this.a(var1, Blocks.END_PORTAL_FRAME.setData(var7).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 4, 3, 12, var3);
+		this.a(var1, Blocks.END_PORTAL_FRAME.setData(var7).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 5, 3, 12, var3);
+		this.a(var1, Blocks.END_PORTAL_FRAME.setData(var7).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 6, 3, 12, var3);
+		this.a(var1, Blocks.END_PORTAL_FRAME.setData(var8).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 3, 3, 9, var3);
+		this.a(var1, Blocks.END_PORTAL_FRAME.setData(var8).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 3, 3, 10, var3);
+		this.a(var1, Blocks.END_PORTAL_FRAME.setData(var8).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 3, 3, 11, var3);
+		this.a(var1, Blocks.END_PORTAL_FRAME.setData(var9).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 7, 3, 9, var3);
+		this.a(var1, Blocks.END_PORTAL_FRAME.setData(var9).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 7, 3, 10, var3);
+		this.a(var1, Blocks.END_PORTAL_FRAME.setData(var9).a(BlockEnderPortalFrame.b, Boolean.valueOf(var2.nextFloat() > 0.9F)), 7, 3, 11, var3);
 		if (!this.a) {
 			int var12 = this.d(3);
 			Position var10 = new Position(this.a(5, 6), var12, this.b(5, 6));

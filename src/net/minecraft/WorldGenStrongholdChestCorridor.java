@@ -47,13 +47,13 @@ public class WorldGenStrongholdChestCorridor extends WorldGenStrongholdPiece {
 			this.a(var1, var2, var3, this.d, 1, 1, 0);
 			this.a(var1, var2, var3, bml.a, 1, 1, 6);
 			this.a(var1, var3, 3, 1, 2, 3, 1, 4, Blocks.STONEBRICK.getBlockState(), Blocks.STONEBRICK.getBlockState(), false);
-			this.a(var1, Blocks.STONE_SLAB.a(bbg.f.a()), 3, 1, 1, var3);
-			this.a(var1, Blocks.STONE_SLAB.a(bbg.f.a()), 3, 1, 5, var3);
-			this.a(var1, Blocks.STONE_SLAB.a(bbg.f.a()), 3, 2, 2, var3);
-			this.a(var1, Blocks.STONE_SLAB.a(bbg.f.a()), 3, 2, 4, var3);
+			this.a(var1, Blocks.STONE_SLAB.setData(bbg.f.a()), 3, 1, 1, var3);
+			this.a(var1, Blocks.STONE_SLAB.setData(bbg.f.a()), 3, 1, 5, var3);
+			this.a(var1, Blocks.STONE_SLAB.setData(bbg.f.a()), 3, 2, 2, var3);
+			this.a(var1, Blocks.STONE_SLAB.setData(bbg.f.a()), 3, 2, 4, var3);
 
 			for (int var4 = 2; var4 <= 4; ++var4) {
-				this.a(var1, Blocks.STONE_SLAB.a(bbg.f.a()), 2, 1, var4, var3);
+				this.a(var1, Blocks.STONE_SLAB.setData(bbg.f.a()), 2, 1, var4, var3);
 			}
 
 			if (!this.b && var3.b((fd) (new Position(this.a(3, 3), this.d(2), this.b(3, 3))))) {

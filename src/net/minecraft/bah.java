@@ -21,7 +21,7 @@ public class bah extends Block {
 		return Items.PRISMARINE_CRYSTALS;
 	}
 
-	public MaterialMapColor g(IBlockState var1) {
+	public MaterialMapColor getMapColor(IBlockState var1) {
 		return MaterialMapColor.p;
 	}
 

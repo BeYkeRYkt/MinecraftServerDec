@@ -289,11 +289,11 @@ public class BlockFire extends Block {
 		}
 	}
 
-	public MaterialMapColor g(IBlockState var1) {
+	public MaterialMapColor getMapColor(IBlockState var1) {
 		return MaterialMapColor.f;
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 

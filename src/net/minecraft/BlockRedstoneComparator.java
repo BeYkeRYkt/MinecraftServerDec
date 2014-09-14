@@ -172,7 +172,7 @@ public class BlockRedstoneComparator extends ava implements avs {
 		return new TileEntityComparator();
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(N, BlockFace.fromDirection(var1)).a(a, Boolean.valueOf((var1 & 8) > 0)).a(b, (var1 & 4) > 0 ? aur.b : aur.a);
 	}
 

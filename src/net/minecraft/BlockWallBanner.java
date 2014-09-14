@@ -41,7 +41,7 @@ public class BlockWallBanner extends atb {
 		super.a(var1, var2, var3, var4);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		BlockFace var2 = BlockFace.getById(var1);
 		if (var2.k() == el.b) {
 			var2 = BlockFace.NORTH;

@@ -39,10 +39,10 @@ public class WorldGenStrongholdPrison extends WorldGenStrongholdPiece {
 			this.a(var1, var3, 5, 1, 5, 7, 3, 5, Blocks.IRON_BARS.getBlockState(), Blocks.IRON_BARS.getBlockState(), false);
 			this.a(var1, Blocks.IRON_BARS.getBlockState(), 4, 3, 2, var3);
 			this.a(var1, Blocks.IRON_BARS.getBlockState(), 4, 3, 8, var3);
-			this.a(var1, Blocks.IRON_DOOR.a(this.a(Blocks.IRON_DOOR, 3)), 4, 1, 2, var3);
-			this.a(var1, Blocks.IRON_DOOR.a(this.a(Blocks.IRON_DOOR, 3) + 8), 4, 2, 2, var3);
-			this.a(var1, Blocks.IRON_DOOR.a(this.a(Blocks.IRON_DOOR, 3)), 4, 1, 8, var3);
-			this.a(var1, Blocks.IRON_DOOR.a(this.a(Blocks.IRON_DOOR, 3) + 8), 4, 2, 8, var3);
+			this.a(var1, Blocks.IRON_DOOR.setData(this.a(Blocks.IRON_DOOR, 3)), 4, 1, 2, var3);
+			this.a(var1, Blocks.IRON_DOOR.setData(this.a(Blocks.IRON_DOOR, 3) + 8), 4, 2, 2, var3);
+			this.a(var1, Blocks.IRON_DOOR.setData(this.a(Blocks.IRON_DOOR, 3)), 4, 1, 8, var3);
+			this.a(var1, Blocks.IRON_DOOR.setData(this.a(Blocks.IRON_DOOR, 3) + 8), 4, 2, 8, var3);
 			return true;
 		}
 	}

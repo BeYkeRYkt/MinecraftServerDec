@@ -160,7 +160,7 @@ public class BlockCauldron extends Block {
 		return ((Integer) var1.getBlockState(var2).b(a)).intValue();
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 

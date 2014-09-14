@@ -81,7 +81,7 @@ public class BlockPumpkin extends avb {
 		return this.getBlockState().a(N, var8.aO().getOpposite());
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(N, BlockFace.fromDirection(var1));
 	}
 

@@ -111,7 +111,7 @@ public class FillCommand extends AbstractCommand {
 								var10.setBlockAt(var17, Blocks.BARRIER.getBlockState(), var5 == Blocks.BARRIER ? 2 : 4);
 							}
 
-							var19 = var5.a(var6);
+							var19 = var5.setData(var6);
 							if (var10.setBlockAt(var17, var19, 2)) {
 								var24.add(var17);
 								++var9;

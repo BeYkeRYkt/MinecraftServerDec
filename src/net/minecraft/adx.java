@@ -526,18 +526,18 @@ public abstract class adx extends Entity implements vz {
 			int var2 = var1.getInt("DisplayData");
 			Block var3;
 			if (var1.isTagAssignableFrom("DisplayTile", 8)) {
-				var3 = Block.getByName(var1.getString("DisplayTile"));
+				var3 = Block.getBlockByName(var1.getString("DisplayTile"));
 				if (var3 == null) {
 					this.a(Blocks.AIR.getBlockState());
 				} else {
-					this.a(var3.a(var2));
+					this.a(var3.setData(var2));
 				}
 			} else {
-				var3 = Block.getById(var1.getInt("DisplayTile"));
+				var3 = Block.getBlockById(var1.getInt("DisplayTile"));
 				if (var3 == null) {
 					this.a(Blocks.AIR.getBlockState());
 				} else {
-					this.a(var3.a(var2));
+					this.a(var3.setData(var2));
 				}
 			}
 
@@ -666,7 +666,7 @@ public abstract class adx extends Entity implements vz {
 	public abstract MinecartType s();
 
 	public IBlockState t() {
-		return !this.x() ? this.u() : Block.d(this.getDataWatcher().c(20));
+		return !this.x() ? this.u() : Block.getStateById(this.getDataWatcher().c(20));
 	}
 
 	public IBlockState u() {
@@ -682,7 +682,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public void a(IBlockState var1) {
-		this.getDataWatcher().b(20, Integer.valueOf(Block.f(var1)));
+		this.getDataWatcher().b(20, Integer.valueOf(Block.getStateId(var1)));
 		this.a(true);
 	}
 

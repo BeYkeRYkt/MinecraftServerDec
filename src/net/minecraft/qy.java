@@ -401,7 +401,7 @@ public class qy {
 				return new PacketPlayOutSpawnObject(this.a, 51);
 			} else if (this.a instanceof EntityFallingBlock) {
 				EntityFallingBlock var5 = (EntityFallingBlock) this.a;
-				return new PacketPlayOutSpawnObject(this.a, 70, Block.f(var5.l()));
+				return new PacketPlayOutSpawnObject(this.a, 70, Block.getStateId(var5.l()));
 			} else if (this.a instanceof EntityArmorStand) {
 				return new PacketPlayOutSpawnObject(this.a, 78);
 			} else if (this.a instanceof EntityPainting) {

@@ -71,7 +71,7 @@ public class bng extends bnn {
 		this.a(var1, Blocks.PLANKS.getBlockState(), 3, 2, 0, var3);
 		this.a(var1, Blocks.PLANKS.getBlockState(), 3, 1, 0, var3);
 		if (this.a(var1, 2, 0, -1, var3).getBlock().getMaterial() == Material.AIR && this.a(var1, 2, -1, -1, var3).getBlock().getMaterial() != Material.AIR) {
-			this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 2, 0, -1, var3);
+			this.a(var1, Blocks.STONE_STAIRS.setData(this.a(Blocks.STONE_STAIRS, 3)), 2, 0, -1, var3);
 		}
 
 		this.a(var1, var3, 1, 1, 1, 3, 3, 3, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
@@ -97,10 +97,10 @@ public class bng extends bnn {
 		int var4;
 		if (this.a) {
 			var4 = this.a(Blocks.LADDER, 3);
-			this.a(var1, Blocks.LADDER.a(var4), 3, 1, 3, var3);
-			this.a(var1, Blocks.LADDER.a(var4), 3, 2, 3, var3);
-			this.a(var1, Blocks.LADDER.a(var4), 3, 3, 3, var3);
-			this.a(var1, Blocks.LADDER.a(var4), 3, 4, 3, var3);
+			this.a(var1, Blocks.LADDER.setData(var4), 3, 1, 3, var3);
+			this.a(var1, Blocks.LADDER.setData(var4), 3, 2, 3, var3);
+			this.a(var1, Blocks.LADDER.setData(var4), 3, 3, 3, var3);
+			this.a(var1, Blocks.LADDER.setData(var4), 3, 4, 3, var3);
 		}
 
 		this.a(var1, Blocks.TORCH.getBlockState().a(BlockTorch.a, this.m), 2, 3, 1, var3);

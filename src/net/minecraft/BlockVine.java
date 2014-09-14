@@ -302,7 +302,7 @@ public class BlockVine extends Block {
 
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(b, Boolean.valueOf((var1 & R) > 0)).a(M, Boolean.valueOf((var1 & S) > 0)).a(N, Boolean.valueOf((var1 & Q) > 0)).a(O, Boolean.valueOf((var1 & T) > 0));
 	}
 

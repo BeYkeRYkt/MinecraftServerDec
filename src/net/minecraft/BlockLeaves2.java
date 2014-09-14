@@ -30,7 +30,7 @@ public class BlockLeaves2 extends BlockLeaves {
 		return new ItemStack(Item.getItemOf((Block) this), 1, ((EnumWoodType) var1.b(P)).a() - 4);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(P, this.b(var1)).a(a, Boolean.valueOf((var1 & 4) == 0)).a(b, Boolean.valueOf((var1 & 8) > 0));
 	}
 

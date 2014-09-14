@@ -550,7 +550,7 @@ public abstract class StructurePiece {
 	protected boolean a(World var1, CuboidArea var2, Random var3, int var4, int var5, int var6, int var7, List var8, int var9) {
 		Position var10 = new Position(this.a(var4, var6), this.d(var5), this.b(var4, var6));
 		if (var2.b((fd) var10) && var1.getBlockState(var10).getBlock() != Blocks.DISPENSER) {
-			var1.setBlockAt(var10, Blocks.DISPENSER.a(this.a(Blocks.DISPENSER, var7)), 2);
+			var1.setBlockAt(var10, Blocks.DISPENSER.setData(this.a(Blocks.DISPENSER, var7)), 2);
 			TileEntity var11 = var1.getTileEntity(var10);
 			if (var11 instanceof TileEntityDispenser) {
 				StructurePieceTreasure.a(var3, var8, (TileEntityDispenser) var11, var9);

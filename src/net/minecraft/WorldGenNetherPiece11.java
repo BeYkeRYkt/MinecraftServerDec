@@ -72,7 +72,7 @@ public class WorldGenNetherPiece11 extends WorldGenNetherPiece {
 			var6 = var5 + 4;
 
 			for (var7 = 5; var7 <= 7; ++var7) {
-				this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var4), var7, 5 + var5, var6, var3);
+				this.a(var1, Blocks.NETHER_BRICK_STAIRS.setData(var4), var7, 5 + var5, var6, var3);
 			}
 
 			if (var6 >= 5 && var6 <= 8) {
@@ -87,7 +87,7 @@ public class WorldGenNetherPiece11 extends WorldGenNetherPiece {
 		}
 
 		for (var5 = 5; var5 <= 7; ++var5) {
-			this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var4), var5, 12, 11, var3);
+			this.a(var1, Blocks.NETHER_BRICK_STAIRS.setData(var4), var5, 12, 11, var3);
 		}
 
 		this.a(var1, var3, 5, 6, 7, 5, 7, 7, Blocks.NETHER_BRICK_FENCE.getBlockState(), Blocks.NETHER_BRICK_FENCE.getBlockState(), false);
@@ -101,14 +101,14 @@ public class WorldGenNetherPiece11 extends WorldGenNetherPiece {
 		this.a(var1, var3, 10, 5, 4, 10, 5, 8, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
 		var5 = this.a(Blocks.NETHER_BRICK_STAIRS, 0);
 		var6 = this.a(Blocks.NETHER_BRICK_STAIRS, 1);
-		this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var6), 4, 5, 2, var3);
-		this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var6), 4, 5, 3, var3);
-		this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var6), 4, 5, 9, var3);
-		this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var6), 4, 5, 10, var3);
-		this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var5), 8, 5, 2, var3);
-		this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var5), 8, 5, 3, var3);
-		this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var5), 8, 5, 9, var3);
-		this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var5), 8, 5, 10, var3);
+		this.a(var1, Blocks.NETHER_BRICK_STAIRS.setData(var6), 4, 5, 2, var3);
+		this.a(var1, Blocks.NETHER_BRICK_STAIRS.setData(var6), 4, 5, 3, var3);
+		this.a(var1, Blocks.NETHER_BRICK_STAIRS.setData(var6), 4, 5, 9, var3);
+		this.a(var1, Blocks.NETHER_BRICK_STAIRS.setData(var6), 4, 5, 10, var3);
+		this.a(var1, Blocks.NETHER_BRICK_STAIRS.setData(var5), 8, 5, 2, var3);
+		this.a(var1, Blocks.NETHER_BRICK_STAIRS.setData(var5), 8, 5, 3, var3);
+		this.a(var1, Blocks.NETHER_BRICK_STAIRS.setData(var5), 8, 5, 9, var3);
+		this.a(var1, Blocks.NETHER_BRICK_STAIRS.setData(var5), 8, 5, 10, var3);
 		this.a(var1, var3, 3, 4, 4, 4, 4, 8, Blocks.SOUL_SAND.getBlockState(), Blocks.SOUL_SAND.getBlockState(), false);
 		this.a(var1, var3, 8, 4, 4, 9, 4, 8, Blocks.SOUL_SAND.getBlockState(), Blocks.SOUL_SAND.getBlockState(), false);
 		this.a(var1, var3, 3, 5, 4, 4, 5, 8, Blocks.NETHER_WART.getBlockState(), Blocks.NETHER_WART.getBlockState(), false);

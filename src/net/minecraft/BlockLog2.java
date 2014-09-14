@@ -10,7 +10,7 @@ public class BlockLog2 extends axm {
 		this.setBlockState(this.L.b().a(b, EnumWoodType.e).a(a, axo.b));
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		IBlockState var2 = this.getBlockState().a(b, EnumWoodType.a((var1 & 3) + 4));
 		switch (var1 & 12) {
 			case 0:

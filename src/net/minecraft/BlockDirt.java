@@ -25,7 +25,7 @@ public class BlockDirt extends Block {
 		return var3.getBlock() != this ? 0 : ((avd) var3.b(a)).a();
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, avd.a(var1));
 	}
 

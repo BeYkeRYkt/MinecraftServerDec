@@ -233,7 +233,7 @@ public class BlockTripwireHook extends Block {
 		return true;
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, BlockFace.fromDirection(var1 & 3)).a(b, Boolean.valueOf((var1 & 8) > 0)).a(M, Boolean.valueOf((var1 & 4) > 0));
 	}
 

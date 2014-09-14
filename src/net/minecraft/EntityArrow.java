@@ -339,9 +339,9 @@ public class EntityArrow extends Entity implements aho {
 		this.f = var1.getShort("zTile");
 		this.ap = var1.getShort("life");
 		if (var1.isTagAssignableFrom("inTile", 8)) {
-			this.g = Block.getByName(var1.getString("inTile"));
+			this.g = Block.getBlockByName(var1.getString("inTile"));
 		} else {
-			this.g = Block.getById(var1.getByte("inTile") & 255);
+			this.g = Block.getBlockById(var1.getByte("inTile") & 255);
 		}
 
 		this.h = var1.getByte("inData") & 255;

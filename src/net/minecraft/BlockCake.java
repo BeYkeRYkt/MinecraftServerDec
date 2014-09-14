@@ -85,7 +85,7 @@ public class BlockCake extends Block {
 		return null;
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 

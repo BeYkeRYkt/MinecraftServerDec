@@ -53,9 +53,9 @@ public class EntityEnderman extends EntityMonster {
 		super.a(var1);
 		IBlockState var2;
 		if (var1.isTagAssignableFrom("carried", 8)) {
-			var2 = Block.getByName(var1.getString("carried")).a(var1.getShort("carriedData") & '\uffff');
+			var2 = Block.getBlockByName(var1.getString("carried")).setData(var1.getShort("carriedData") & '\uffff');
 		} else {
-			var2 = Block.getById(var1.getShort("carried")).a(var1.getShort("carriedData") & '\uffff');
+			var2 = Block.getBlockById(var1.getShort("carried")).setData(var1.getShort("carriedData") & '\uffff');
 		}
 
 		this.a(var2);
@@ -212,11 +212,11 @@ public class EntityEnderman extends EntityMonster {
 	}
 
 	public void a(IBlockState var1) {
-		this.dataWatcher.b(16, Short.valueOf((short) (Block.f(var1) & '\uffff')));
+		this.dataWatcher.b(16, Short.valueOf((short) (Block.getStateId(var1) & '\uffff')));
 	}
 
 	public IBlockState ck() {
-		return Block.d(this.dataWatcher.b(16) & '\uffff');
+		return Block.getStateById(this.dataWatcher.b(16) & '\uffff');
 	}
 
 	public boolean damageEntity(DamageSource var1, float var2) {

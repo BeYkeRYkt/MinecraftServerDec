@@ -27,8 +27,8 @@ public class bnc extends bnn {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.a = Block.getById(var1.getInt("CA"));
-		this.b = Block.getById(var1.getInt("CB"));
+		this.a = Block.getBlockById(var1.getInt("CA"));
+		this.b = Block.getBlockById(var1.getInt("CB"));
 	}
 
 	private Block a(Random var1) {
@@ -68,10 +68,10 @@ public class bnc extends bnn {
 
 		int var4;
 		for (var4 = 1; var4 <= 7; ++var4) {
-			this.a(var1, this.a.a(MathHelper.a(var2, 2, 7)), 1, 1, var4, var3);
-			this.a(var1, this.a.a(MathHelper.a(var2, 2, 7)), 2, 1, var4, var3);
-			this.a(var1, this.b.a(MathHelper.a(var2, 2, 7)), 4, 1, var4, var3);
-			this.a(var1, this.b.a(MathHelper.a(var2, 2, 7)), 5, 1, var4, var3);
+			this.a(var1, this.a.setData(MathHelper.a(var2, 2, 7)), 1, 1, var4, var3);
+			this.a(var1, this.a.setData(MathHelper.a(var2, 2, 7)), 2, 1, var4, var3);
+			this.a(var1, this.b.setData(MathHelper.a(var2, 2, 7)), 4, 1, var4, var3);
+			this.a(var1, this.b.setData(MathHelper.a(var2, 2, 7)), 5, 1, var4, var3);
 		}
 
 		for (var4 = 0; var4 < 9; ++var4) {

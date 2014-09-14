@@ -36,11 +36,11 @@ public class BlockQuartz extends Block {
 		return var2 != azn.d && var2 != azn.e ? super.i(var1) : new ItemStack(Item.getItemOf((Block) this), 1, azn.c.a());
 	}
 
-	public MaterialMapColor g(IBlockState var1) {
+	public MaterialMapColor getMapColor(IBlockState var1) {
 		return MaterialMapColor.p;
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, azn.a(var1));
 	}
 

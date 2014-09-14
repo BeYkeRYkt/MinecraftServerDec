@@ -39,7 +39,7 @@ abstract class WorldGenStrongholdPiece extends StructurePiece {
 				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5 + 2, var6 + 1, var7, var3);
 				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5 + 2, var6, var7, var3);
 				this.a(var1, Blocks.WOODEN_DOOR.getBlockState(), var5 + 1, var6, var7, var3);
-				this.a(var1, Blocks.WOODEN_DOOR.a(8), var5 + 1, var6 + 1, var7, var3);
+				this.a(var1, Blocks.WOODEN_DOOR.setData(8), var5 + 1, var6 + 1, var7, var3);
 				break;
 			case 3:
 				this.a(var1, Blocks.AIR.getBlockState(), var5 + 1, var6, var7, var3);
@@ -61,9 +61,9 @@ abstract class WorldGenStrongholdPiece extends StructurePiece {
 				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5 + 2, var6 + 1, var7, var3);
 				this.a(var1, Blocks.STONEBRICK.getBlockState(), var5 + 2, var6, var7, var3);
 				this.a(var1, Blocks.IRON_DOOR.getBlockState(), var5 + 1, var6, var7, var3);
-				this.a(var1, Blocks.IRON_DOOR.a(8), var5 + 1, var6 + 1, var7, var3);
-				this.a(var1, Blocks.STONE_BUTTON.a(this.a(Blocks.STONE_BUTTON, 4)), var5 + 2, var6 + 1, var7 + 1, var3);
-				this.a(var1, Blocks.STONE_BUTTON.a(this.a(Blocks.STONE_BUTTON, 3)), var5 + 2, var6 + 1, var7 - 1, var3);
+				this.a(var1, Blocks.IRON_DOOR.setData(8), var5 + 1, var6 + 1, var7, var3);
+				this.a(var1, Blocks.STONE_BUTTON.setData(this.a(Blocks.STONE_BUTTON, 4)), var5 + 2, var6 + 1, var7 + 1, var3);
+				this.a(var1, Blocks.STONE_BUTTON.setData(this.a(Blocks.STONE_BUTTON, 3)), var5 + 2, var6 + 1, var7 - 1, var3);
 		}
 
 	}

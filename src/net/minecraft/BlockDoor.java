@@ -219,7 +219,7 @@ public class BlockDoor extends Block {
 		return var1;
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return (var1 & 8) > 0 ? this.getBlockState().a(O, avg.a).a(M, (var1 & 1) > 0 ? avh.b : avh.a).a(N, Boolean.valueOf((var1 & 2) > 0)) : this.getBlockState().a(O, avg.b).a(a, BlockFace.fromDirection(var1 & 3).f()).a(b, Boolean.valueOf((var1 & 4) > 0));
 	}
 

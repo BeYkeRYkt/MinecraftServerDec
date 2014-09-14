@@ -2,9 +2,9 @@ package net.minecraft;
 
 public abstract class blb extends StructurePiece {
 
-	protected static final IBlockState a = Blocks.PRISMARINE.a(BlockPrismarine.b);
-	protected static final IBlockState b = Blocks.PRISMARINE.a(BlockPrismarine.M);
-	protected static final IBlockState c = Blocks.PRISMARINE.a(BlockPrismarine.N);
+	protected static final IBlockState a = Blocks.PRISMARINE.setData(BlockPrismarine.b);
+	protected static final IBlockState b = Blocks.PRISMARINE.setData(BlockPrismarine.M);
+	protected static final IBlockState c = Blocks.PRISMARINE.setData(BlockPrismarine.N);
 	protected static final IBlockState d = b;
 	protected static final IBlockState e = Blocks.SEA_LANTERN.getBlockState();
 	protected static final IBlockState f = Blocks.WATER.getBlockState();

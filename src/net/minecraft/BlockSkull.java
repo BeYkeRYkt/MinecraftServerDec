@@ -156,7 +156,7 @@ public class BlockSkull extends atg {
 		}
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, BlockFace.getById(var1 & 7)).a(b, Boolean.valueOf((var1 & 8) > 0));
 	}
 

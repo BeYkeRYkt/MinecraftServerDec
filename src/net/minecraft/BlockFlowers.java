@@ -15,7 +15,7 @@ public abstract class BlockFlowers extends auc {
 		return ((EnumFlowerType) var1.b(this.l())).b();
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(this.l(), EnumFlowerType.a(this.j(), var1));
 	}
 

@@ -436,8 +436,8 @@ public class BlockStairs extends Block {
 		this.O.a(var1, var2, var3);
 	}
 
-	public MaterialMapColor g(IBlockState var1) {
-		return this.O.g(this.P);
+	public MaterialMapColor getMapColor(IBlockState var1) {
+		return this.O.getMapColor(this.P);
 	}
 
 	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
@@ -488,7 +488,7 @@ public class BlockStairs extends Block {
 		return var20;
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		IBlockState var2 = this.getBlockState().a(b, (var1 & 4) > 0 ? bau.a : bau.b);
 		var2 = var2.a(a, BlockFace.getById(5 - (var1 & 3)));
 		return var2;

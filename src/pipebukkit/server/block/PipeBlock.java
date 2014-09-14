@@ -3,6 +3,7 @@ package pipebukkit.server.block;
 import java.util.Collection;
 import java.util.List;
 
+import net.minecraft.IBlockState;
 import net.minecraft.Position;
 
 import org.bukkit.Chunk;
@@ -272,15 +273,13 @@ public class PipeBlock implements Block {
 	}
 
 	@Override
-	public void setData(byte arg0) {
-		// TODO Auto-generated method stub
-		
+	public void setData(byte data) {
+		setData(data, true);
 	}
 
 	@Override
-	public void setData(byte arg0, boolean arg1) {
-		// TODO Auto-generated method stub
-		
+	public void setData(byte data, boolean applyPhysics) {
+		setTypeIdAndData(getTypeId(), data, applyPhysics);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -301,8 +300,17 @@ public class PipeBlock implements Block {
 
 	@Override
 	public boolean setTypeIdAndData(int id, byte data, boolean applyPhysics) {
-		// TODO Auto-generated method stub
-		return false;
+		Position position = new Position(x, y, z);
+		IBlockState blockState = net.minecraft.Block.getStateById((data & 0xF) << 12 + (id & 0xF0));
+		if (applyPhysics) {
+			return chunk.getHandle().getWorld().setBlockAt(position, blockState, 3);
+		} else {
+			boolean success = chunk.getHandle().getWorld().setBlockAt(position, blockState, 2);
+			if (success) {
+				chunk.getHandle().getWorld().notify(new Position(x, y, z));
+			}
+			return success;
+		}
 	}
 
 }

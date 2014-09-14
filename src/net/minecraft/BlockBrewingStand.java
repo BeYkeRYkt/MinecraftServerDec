@@ -84,7 +84,7 @@ public class BlockBrewingStand extends atg {
 		return Container.a(var1.getTileEntity(var2));
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		IBlockState var2 = this.getBlockState();
 
 		for (int var3 = 0; var3 < 3; ++var3) {

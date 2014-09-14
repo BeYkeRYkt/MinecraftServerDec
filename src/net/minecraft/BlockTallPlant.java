@@ -159,7 +159,7 @@ public class BlockTallPlant extends auc implements atz {
 		a(var1, var3, new ItemStack(this, 1, this.e(var1, var3).a()));
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return (var1 & 8) > 0 ? this.getBlockState().a(b, avj.a) : this.getBlockState().a(b, avj.b).a(a, avk.a(var1 & 7));
 	}
 

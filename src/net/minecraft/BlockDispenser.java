@@ -155,7 +155,7 @@ public class BlockDispenser extends atg {
 		return 3;
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, b(var1)).a(b, Boolean.valueOf((var1 & 8) > 0));
 	}
 

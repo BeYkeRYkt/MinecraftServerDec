@@ -169,7 +169,7 @@ public class BlockBed extends avb {
 
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		BlockFace var2 = BlockFace.fromDirection(var1);
 		return (var1 & 8) > 0 ? this.getBlockState().a(a, atq.a).a(N, var2).a(b, Boolean.valueOf((var1 & 4) > 0)) : this.getBlockState().a(a, atq.b).a(N, var2);
 	}

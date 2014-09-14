@@ -67,9 +67,9 @@ public class ItemMapFilled extends ItemMap {
 									var28 = var19 + var20 * 231871;
 									var28 = var28 * var28 * 31287121 + var28 * 11;
 									if ((var28 >> 20 & 1) == 0) {
-										var21.add(Blocks.DIRT.g(Blocks.DIRT.getBlockState().a(BlockDirt.a, avd.a)), 10);
+										var21.add(Blocks.DIRT.getMapColor(Blocks.DIRT.getBlockState().a(BlockDirt.a, avd.a)), 10);
 									} else {
-										var21.add(Blocks.STONE.g(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.a)), 100);
+										var21.add(Blocks.STONE.getMapColor(Blocks.STONE.getBlockState().a(BlockStone.a, bbb.a)), 100);
 									}
 
 									var26 = 100.0D;
@@ -82,7 +82,7 @@ public class ItemMapFilled extends ItemMap {
 												do {
 													--var30;
 													var31 = var22.getBlockState(new Position(var28 + var23, var30, var29 + var24));
-												} while (var31.getBlock().g(var31) == MaterialMapColor.b && var30 > 0);
+												} while (var31.getBlock().getMapColor(var31) == MaterialMapColor.b && var30 > 0);
 
 												if (var30 > 0 && var31.getBlock().getMaterial().isLiquid()) {
 													int var32 = var30 - 1;
@@ -96,7 +96,7 @@ public class ItemMapFilled extends ItemMap {
 											}
 
 											var26 += (double) var30 / (double) (var4 * var4);
-											var21.add(var31.getBlock().g(var31));
+											var21.add(var31.getBlock().getMapColor(var31));
 										}
 									}
 								}

@@ -112,7 +112,7 @@ public class BlockPoweredRail extends ati {
 		return b;
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(b, atl.a(var1 & 7)).a(M, Boolean.valueOf((var1 & 8) > 0));
 	}
 

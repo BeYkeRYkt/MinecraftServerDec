@@ -36,7 +36,7 @@ public abstract class ayl extends BlockStepAbstract {
 		return aym.a(var1.getDurability() & 7);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		IBlockState var2 = this.getBlockState().a(M, aym.a(var1 & 7));
 		if (this.j()) {
 			var2 = var2.a(b, Boolean.valueOf((var1 & 8) != 0));

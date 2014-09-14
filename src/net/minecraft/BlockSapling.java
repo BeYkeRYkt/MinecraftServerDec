@@ -140,7 +140,7 @@ public class BlockSapling extends auc implements atz {
 		this.d(var1, var3, var4, var2);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, EnumWoodType.a(var1 & 7)).a(b, Integer.valueOf((var1 & 8) >> 3));
 	}
 

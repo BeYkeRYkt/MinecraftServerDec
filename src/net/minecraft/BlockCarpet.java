@@ -61,7 +61,7 @@ public class BlockCarpet extends Block {
 		return ((akv) var1.b(a)).a();
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, akv.b(var1));
 	}
 

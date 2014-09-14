@@ -77,8 +77,8 @@ public class bnj extends bnn {
 		this.a(var1, Blocks.FENCE.getBlockState(), 2, 1, 4, var3);
 		this.a(var1, Blocks.WOODEN_PRESSURE_PLATE.getBlockState(), 2, 2, 4, var3);
 		this.a(var1, Blocks.PLANKS.getBlockState(), 1, 1, 5, var3);
-		this.a(var1, Blocks.OAK_STAIRS.a(this.a(Blocks.OAK_STAIRS, 3)), 2, 1, 5, var3);
-		this.a(var1, Blocks.OAK_STAIRS.a(this.a(Blocks.OAK_STAIRS, 1)), 1, 1, 4, var3);
+		this.a(var1, Blocks.OAK_STAIRS.setData(this.a(Blocks.OAK_STAIRS, 3)), 2, 1, 5, var3);
+		this.a(var1, Blocks.OAK_STAIRS.setData(this.a(Blocks.OAK_STAIRS, 1)), 1, 1, 4, var3);
 		if (!this.b && var3.b((fd) (new Position(this.a(5, 5), this.d(1), this.b(5, 5))))) {
 			this.b = true;
 			this.a(var1, var3, var2, 5, 1, 5, a, 3 + var2.nextInt(6));
@@ -87,7 +87,7 @@ public class bnj extends bnn {
 		int var4;
 		for (var4 = 6; var4 <= 8; ++var4) {
 			if (this.a(var1, var4, 0, -1, var3).getBlock().getMaterial() == Material.AIR && this.a(var1, var4, -1, -1, var3).getBlock().getMaterial() != Material.AIR) {
-				this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), var4, 0, -1, var3);
+				this.a(var1, Blocks.STONE_STAIRS.setData(this.a(Blocks.STONE_STAIRS, 3)), var4, 0, -1, var3);
 			}
 		}
 

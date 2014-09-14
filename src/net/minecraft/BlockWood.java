@@ -14,7 +14,7 @@ public class BlockWood extends Block {
 		return ((EnumWoodType) var1.b(a)).a();
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, EnumWoodType.a(var1));
 	}
 

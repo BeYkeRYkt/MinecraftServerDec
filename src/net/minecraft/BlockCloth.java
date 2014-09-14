@@ -14,11 +14,11 @@ public class BlockCloth extends Block {
 		return ((akv) var1.b(a)).a();
 	}
 
-	public MaterialMapColor g(IBlockState var1) {
+	public MaterialMapColor getMapColor(IBlockState var1) {
 		return ((akv) var1.b(a)).e();
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, akv.b(var1));
 	}
 

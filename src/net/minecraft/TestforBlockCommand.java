@@ -23,7 +23,7 @@ public class TestforBlockCommand extends AbstractCommand {
 		} else {
 			var1.a(ag.b, 0);
 			Position var3 = a(var1, var2, 0, false);
-			Block var4 = Block.getByName(var2[3]);
+			Block var4 = Block.getBlockByName(var2[3]);
 			if (var4 == null) {
 				throw new dk("commands.setblock.notFound", new Object[] { var2[3] });
 			} else {

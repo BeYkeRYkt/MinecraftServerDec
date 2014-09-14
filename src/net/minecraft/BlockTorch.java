@@ -139,7 +139,7 @@ public class BlockTorch extends Block {
 		return super.a(var1, var2, var3, var4);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		IBlockState var2 = this.getBlockState();
 		switch (var1) {
 			case 1:

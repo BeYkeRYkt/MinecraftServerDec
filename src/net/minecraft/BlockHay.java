@@ -8,7 +8,7 @@ public class BlockHay extends baa {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		el var2 = el.b;
 		int var3 = var1 & 12;
 		if (var3 == 4) {

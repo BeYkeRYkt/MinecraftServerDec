@@ -54,7 +54,7 @@ public class BlockMonsterEggs extends Block {
 		return var3.getBlock().getData(var3);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, axu.a(var1));
 	}
 

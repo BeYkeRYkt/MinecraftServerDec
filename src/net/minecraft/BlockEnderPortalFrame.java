@@ -49,7 +49,7 @@ public class BlockEnderPortalFrame extends Block {
 		return ((Boolean) var1.getBlockState(var2).b(b)).booleanValue() ? 15 : 0;
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(b, Boolean.valueOf((var1 & 4) != 0)).a(a, BlockFace.fromDirection(var1 & 3));
 	}
 

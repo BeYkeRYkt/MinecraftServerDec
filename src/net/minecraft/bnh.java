@@ -84,7 +84,7 @@ public class bnh extends bnn {
 		this.a(var1, Blocks.AIR.getBlockState(), 1, 2, 0, var3);
 		this.a(var1, var3, var2, 1, 1, 0, BlockFace.fromDirection(this.a(Blocks.WOODEN_DOOR, 1)));
 		if (this.a(var1, 1, 0, -1, var3).getBlock().getMaterial() == Material.AIR && this.a(var1, 1, -1, -1, var3).getBlock().getMaterial() != Material.AIR) {
-			this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 1, 0, -1, var3);
+			this.a(var1, Blocks.STONE_STAIRS.setData(this.a(Blocks.STONE_STAIRS, 3)), 1, 0, -1, var3);
 		}
 
 		for (int var4 = 0; var4 < 5; ++var4) {

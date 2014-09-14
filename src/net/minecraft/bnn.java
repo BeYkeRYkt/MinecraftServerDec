@@ -123,11 +123,11 @@ abstract class bnn extends StructurePiece {
 			}
 
 			if (var1.getBlock() == Blocks.COBBLESTONE) {
-				return Blocks.SANDSTONE.a(bae.a.a());
+				return Blocks.SANDSTONE.setData(bae.a.a());
 			}
 
 			if (var1.getBlock() == Blocks.PLANKS) {
-				return Blocks.SANDSTONE.a(bae.c.a());
+				return Blocks.SANDSTONE.setData(bae.c.a());
 			}
 
 			if (var1.getBlock() == Blocks.OAK_STAIRS) {

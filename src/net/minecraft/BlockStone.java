@@ -20,7 +20,7 @@ public class BlockStone extends Block {
 		return ((bbb) var1.b(a)).a();
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, bbb.a(var1));
 	}
 

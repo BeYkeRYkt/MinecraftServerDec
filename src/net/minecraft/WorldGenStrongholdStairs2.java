@@ -66,21 +66,21 @@ public class WorldGenStrongholdStairs2 extends WorldGenStrongholdPiece {
 			this.a(var1, var2, var3, bml.a, 1, 1, 4);
 			this.a(var1, Blocks.STONEBRICK.getBlockState(), 2, 6, 1, var3);
 			this.a(var1, Blocks.STONEBRICK.getBlockState(), 1, 5, 1, var3);
-			this.a(var1, Blocks.STONE_SLAB.a(bbg.a.a()), 1, 6, 1, var3);
+			this.a(var1, Blocks.STONE_SLAB.setData(bbg.a.a()), 1, 6, 1, var3);
 			this.a(var1, Blocks.STONEBRICK.getBlockState(), 1, 5, 2, var3);
 			this.a(var1, Blocks.STONEBRICK.getBlockState(), 1, 4, 3, var3);
-			this.a(var1, Blocks.STONE_SLAB.a(bbg.a.a()), 1, 5, 3, var3);
+			this.a(var1, Blocks.STONE_SLAB.setData(bbg.a.a()), 1, 5, 3, var3);
 			this.a(var1, Blocks.STONEBRICK.getBlockState(), 2, 4, 3, var3);
 			this.a(var1, Blocks.STONEBRICK.getBlockState(), 3, 3, 3, var3);
-			this.a(var1, Blocks.STONE_SLAB.a(bbg.a.a()), 3, 4, 3, var3);
+			this.a(var1, Blocks.STONE_SLAB.setData(bbg.a.a()), 3, 4, 3, var3);
 			this.a(var1, Blocks.STONEBRICK.getBlockState(), 3, 3, 2, var3);
 			this.a(var1, Blocks.STONEBRICK.getBlockState(), 3, 2, 1, var3);
-			this.a(var1, Blocks.STONE_SLAB.a(bbg.a.a()), 3, 3, 1, var3);
+			this.a(var1, Blocks.STONE_SLAB.setData(bbg.a.a()), 3, 3, 1, var3);
 			this.a(var1, Blocks.STONEBRICK.getBlockState(), 2, 2, 1, var3);
 			this.a(var1, Blocks.STONEBRICK.getBlockState(), 1, 1, 1, var3);
-			this.a(var1, Blocks.STONE_SLAB.a(bbg.a.a()), 1, 2, 1, var3);
+			this.a(var1, Blocks.STONE_SLAB.setData(bbg.a.a()), 1, 2, 1, var3);
 			this.a(var1, Blocks.STONEBRICK.getBlockState(), 1, 1, 2, var3);
-			this.a(var1, Blocks.STONE_SLAB.a(bbg.a.a()), 1, 1, 3, var3);
+			this.a(var1, Blocks.STONE_SLAB.setData(bbg.a.a()), 1, 1, 3, var3);
 			return true;
 		}
 	}

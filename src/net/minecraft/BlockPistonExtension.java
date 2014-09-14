@@ -147,7 +147,7 @@ public class BlockPistonExtension extends Block {
 		return var1 > 5 ? null : BlockFace.getById(var1);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, b(var1)).a(b, (var1 & 8) > 0 ? bdu.b : bdu.a);
 	}
 

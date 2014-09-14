@@ -11,11 +11,11 @@ class WorldGenStrongholdStones extends bmu {
 		if (var5) {
 			float var6 = var1.nextFloat();
 			if (var6 < 0.2F) {
-				this.a = Blocks.STONEBRICK.a(BlockSmoothBrick.N);
+				this.a = Blocks.STONEBRICK.setData(BlockSmoothBrick.N);
 			} else if (var6 < 0.5F) {
-				this.a = Blocks.STONEBRICK.a(BlockSmoothBrick.M);
+				this.a = Blocks.STONEBRICK.setData(BlockSmoothBrick.M);
 			} else if (var6 < 0.55F) {
-				this.a = Blocks.MONSTER_EGG.a(axu.c.a());
+				this.a = Blocks.MONSTER_EGG.setData(axu.c.a());
 			} else {
 				this.a = Blocks.STONEBRICK.getBlockState();
 			}

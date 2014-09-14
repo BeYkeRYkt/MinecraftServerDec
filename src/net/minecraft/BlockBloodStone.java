@@ -7,7 +7,7 @@ public class BlockBloodStone extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public MaterialMapColor g(IBlockState var1) {
+	public MaterialMapColor getMapColor(IBlockState var1) {
 		return MaterialMapColor.K;
 	}
 }

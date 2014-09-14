@@ -33,9 +33,9 @@ public class WorldGenNetherPiece4 extends WorldGenNetherPiece {
 			this.a(var1, var3, 0, 0, var5, 4, var6, var5, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);
 			this.a(var1, var3, 1, var6 + 1, var5, 3, var7 - 1, var5, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
 			if (var5 <= 6) {
-				this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var4), 1, var6 + 1, var5, var3);
-				this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var4), 2, var6 + 1, var5, var3);
-				this.a(var1, Blocks.NETHER_BRICK_STAIRS.a(var4), 3, var6 + 1, var5, var3);
+				this.a(var1, Blocks.NETHER_BRICK_STAIRS.setData(var4), 1, var6 + 1, var5, var3);
+				this.a(var1, Blocks.NETHER_BRICK_STAIRS.setData(var4), 2, var6 + 1, var5, var3);
+				this.a(var1, Blocks.NETHER_BRICK_STAIRS.setData(var4), 3, var6 + 1, var5, var3);
 			}
 
 			this.a(var1, var3, 0, var7, var5, 4, var7, var5, Blocks.NETHER_BRICK.getBlockState(), Blocks.NETHER_BRICK.getBlockState(), false);

@@ -15,7 +15,7 @@ class bco implements Callable {
 		int var1 = Block.getBlockId(this.a.world.getBlockState(this.a.position).getBlock());
 
 		try {
-			return String.format("ID #%d (%s // %s)", new Object[] { Integer.valueOf(var1), Block.getById(var1).getName(), Block.getById(var1).getClass().getCanonicalName() });
+			return String.format("ID #%d (%s // %s)", new Object[] { Integer.valueOf(var1), Block.getBlockById(var1).getName(), Block.getBlockById(var1).getClass().getCanonicalName() });
 		} catch (Throwable var3) {
 			return "ID #" + var1;
 		}

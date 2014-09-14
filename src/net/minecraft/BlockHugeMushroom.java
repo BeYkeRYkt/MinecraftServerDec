@@ -25,7 +25,7 @@ public class BlockHugeMushroom extends Block {
 		return this.getBlockState();
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, axa.a(var1));
 	}
 

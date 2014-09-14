@@ -158,7 +158,7 @@ public class BlockTrapdoor extends Block {
 		return var0.material.k() && var0.d() || var0 == Blocks.GLOWSTONE || var0 instanceof BlockStepAbstract || var0 instanceof BlockStairs;
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, b(var1)).a(b, Boolean.valueOf((var1 & 4) != 0)).a(M, (var1 & 8) == 0 ? bbr.b : bbr.a);
 	}
 

@@ -17,7 +17,7 @@ public class BlockStandingSign extends bai {
 		super.a(var1, var2, var3, var4);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 

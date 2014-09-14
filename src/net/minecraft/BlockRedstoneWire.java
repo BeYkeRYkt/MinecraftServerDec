@@ -311,7 +311,7 @@ public class BlockRedstoneWire extends Block {
 		return this.P;
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(O, Integer.valueOf(var1));
 	}
 

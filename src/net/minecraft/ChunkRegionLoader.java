@@ -306,9 +306,9 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 					NBTCompoundTag entryTag = nextTickListTag.getCompound(i);
 					Block block;
 					if (entryTag.isTagAssignableFrom("i", 8)) {
-						block = Block.getByName(entryTag.getString("i"));
+						block = Block.getBlockByName(entryTag.getString("i"));
 					} else {
-						block = Block.getById(entryTag.getInt("i"));
+						block = Block.getBlockById(entryTag.getInt("i"));
 					}
 
 					world.addNextTickEntry(new Position(entryTag.getInt("x"), entryTag.getInt("y"), entryTag.getInt("z")), block, entryTag.getInt("t"), entryTag.getInt("p"));

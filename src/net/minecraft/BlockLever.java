@@ -162,7 +162,7 @@ public class BlockLever extends Block {
 		return true;
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, axk.a(var1 & 7)).a(b, Boolean.valueOf((var1 & 8) > 0));
 	}
 

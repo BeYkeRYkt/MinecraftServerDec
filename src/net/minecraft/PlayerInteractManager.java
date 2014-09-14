@@ -198,7 +198,7 @@ public class PlayerInteractManager {
 				}
 			}
 
-			this.worldServer.a(this.b, 2001, var1, Block.f(var2));
+			this.worldServer.a(this.b, 2001, var1, Block.getStateId(var2));
 			boolean var7 = this.c(var1);
 			if (this.isCreative()) {
 				this.b.playerConncetion.sendPacket((Packet) (new PacketPlayOutBlockChange(this.worldServer, var1)));

@@ -24,7 +24,7 @@ public abstract class WorldGenerator {
 	}
 
 	protected void a(World var1, Position var2, Block var3, int var4) {
-		this.a(var1, var2, var3.a(var4));
+		this.a(var1, var2, var3.setData(var4));
 	}
 
 	protected void a(World var1, Position var2, IBlockState var3) {

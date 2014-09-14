@@ -298,25 +298,25 @@ public class Block {
 		return BLOCKREGISTRY.getBlockId(block);
 	}
 
-	public static int f(IBlockState var0) {
-		return getBlockId(var0.getBlock()) + (var0.getBlock().getData(var0) << 12);
+	public static int getStateId(IBlockState blockState) {
+		return getBlockId(blockState.getBlock()) + (blockState.getBlock().getData(blockState) << 12);
 	}
 
-	public static Block getById(int id) {
-		return (Block) BLOCKREGISTRY.getById(id);
+	public static Block getBlockById(int blockId) {
+		return (Block) BLOCKREGISTRY.getById(blockId);
 	}
 
-	public static IBlockState d(int var0) {
-		int var1 = var0 & 4095;
-		int var2 = var0 >> 12 & 15;
-		return getById(var1).a(var2);
+	public static IBlockState getStateById(int stateId) {
+		int blockId = stateId & 4095;
+		int data = stateId >> 12 & 15;
+		return getBlockById(blockId).setData(data);
 	}
 
-	public static Block a(Item var0) {
-		return var0 instanceof ItemBlock ? ((ItemBlock) var0).getBlock() : null;
+	public static Block getBlockByItem(Item item) {
+		return item instanceof ItemBlock ? ((ItemBlock) item).getBlock() : null;
 	}
 
-	public static Block getByName(String name) {
+	public static Block getBlockByName(String name) {
 		RegistryObjectName var1 = new RegistryObjectName(name);
 		if (BLOCKREGISTRY.d(var1)) {
 			return (Block) BLOCKREGISTRY.getByName(var1);
@@ -349,11 +349,11 @@ public class Block {
 		return this.material;
 	}
 
-	public MaterialMapColor g(IBlockState var1) {
+	public MaterialMapColor getMapColor(IBlockState var1) {
 		return this.getMaterial().getMapColor();
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int data) {
 		return this.getBlockState();
 	}
 
@@ -711,7 +711,7 @@ public class Block {
 	}
 
 	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return this.a(var7);
+		return this.setData(var7);
 	}
 
 	public void a(World var1, Position var2, EntityHuman var3) {

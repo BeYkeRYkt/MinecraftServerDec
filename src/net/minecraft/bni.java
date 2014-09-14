@@ -51,11 +51,11 @@ public class bni extends bnn {
 		this.a(var1, Blocks.COBBLESTONE.getBlockState(), 2, 1, 7, var3);
 		this.a(var1, Blocks.COBBLESTONE.getBlockState(), 3, 1, 6, var3);
 		this.a(var1, Blocks.COBBLESTONE.getBlockState(), 3, 1, 7, var3);
-		this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 1, 1, 5, var3);
-		this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 2, 1, 6, var3);
-		this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 3, 1, 5, var3);
-		this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 1)), 1, 2, 7, var3);
-		this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 0)), 3, 2, 7, var3);
+		this.a(var1, Blocks.STONE_STAIRS.setData(this.a(Blocks.STONE_STAIRS, 3)), 1, 1, 5, var3);
+		this.a(var1, Blocks.STONE_STAIRS.setData(this.a(Blocks.STONE_STAIRS, 3)), 2, 1, 6, var3);
+		this.a(var1, Blocks.STONE_STAIRS.setData(this.a(Blocks.STONE_STAIRS, 3)), 3, 1, 5, var3);
+		this.a(var1, Blocks.STONE_STAIRS.setData(this.a(Blocks.STONE_STAIRS, 1)), 1, 2, 7, var3);
+		this.a(var1, Blocks.STONE_STAIRS.setData(this.a(Blocks.STONE_STAIRS, 0)), 3, 2, 7, var3);
 		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 0, 2, 2, var3);
 		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 0, 3, 2, var3);
 		this.a(var1, Blocks.GLASS_PANE.getBlockState(), 4, 2, 2, var3);
@@ -79,14 +79,14 @@ public class bni extends bnn {
 
 		int var5;
 		for (var5 = 1; var5 <= 9; ++var5) {
-			this.a(var1, Blocks.LADDER.a(var4), 3, var5, 3, var3);
+			this.a(var1, Blocks.LADDER.setData(var4), 3, var5, 3, var3);
 		}
 
 		this.a(var1, Blocks.AIR.getBlockState(), 2, 1, 0, var3);
 		this.a(var1, Blocks.AIR.getBlockState(), 2, 2, 0, var3);
 		this.a(var1, var3, var2, 2, 1, 0, BlockFace.fromDirection(this.a(Blocks.WOODEN_DOOR, 1)));
 		if (this.a(var1, 2, 0, -1, var3).getBlock().getMaterial() == Material.AIR && this.a(var1, 2, -1, -1, var3).getBlock().getMaterial() != Material.AIR) {
-			this.a(var1, Blocks.STONE_STAIRS.a(this.a(Blocks.STONE_STAIRS, 3)), 2, 0, -1, var3);
+			this.a(var1, Blocks.STONE_STAIRS.setData(this.a(Blocks.STONE_STAIRS, 3)), 2, 0, -1, var3);
 		}
 
 		for (var5 = 0; var5 < 9; ++var5) {

@@ -64,7 +64,7 @@ public class BlockLongGrass extends auc implements atz {
 
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(a, EnumGrassType.a(var1));
 	}
 

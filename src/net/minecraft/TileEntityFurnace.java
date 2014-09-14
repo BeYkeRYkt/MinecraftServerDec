@@ -222,8 +222,8 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 			return 0;
 		} else {
 			Item var1 = var0.getItem();
-			if (var1 instanceof ItemBlock && Block.a(var1) != Blocks.AIR) {
-				Block var2 = Block.a(var1);
+			if (var1 instanceof ItemBlock && Block.getBlockByItem(var1) != Blocks.AIR) {
+				Block var2 = Block.getBlockByItem(var1);
 				if (var2 == Blocks.WOODEN_SLAB) {
 					return 150;
 				}

@@ -120,7 +120,7 @@ public class BlockCocoa extends avb implements atz {
 		var1.setBlockAt(var3, var4.a(a, Integer.valueOf(((Integer) var4.b(a)).intValue() + 1)), 2);
 	}
 
-	public IBlockState a(int var1) {
+	public IBlockState setData(int var1) {
 		return this.getBlockState().a(N, BlockFace.fromDirection(var1)).a(a, Integer.valueOf((var1 & 15) >> 2));
 	}
 

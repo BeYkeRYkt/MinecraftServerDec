@@ -33,7 +33,7 @@ public class bnd extends bnn {
 		this.a(var1, Blocks.FENCE.getBlockState(), 1, 0, 0, var3);
 		this.a(var1, Blocks.FENCE.getBlockState(), 1, 1, 0, var3);
 		this.a(var1, Blocks.FENCE.getBlockState(), 1, 2, 0, var3);
-		this.a(var1, Blocks.WOOL.a(akv.a.b()), 1, 3, 0, var3);
+		this.a(var1, Blocks.WOOL.setData(akv.a.b()), 1, 3, 0, var3);
 		boolean var4 = this.m == BlockFace.EAST || this.m == BlockFace.NORTH;
 		this.a(var1, Blocks.TORCH.getBlockState().a(BlockTorch.a, this.m.e()), var4 ? 2 : 0, 3, 0, var3);
 		this.a(var1, Blocks.TORCH.getBlockState().a(BlockTorch.a, this.m), 1, 3, 1, var3);

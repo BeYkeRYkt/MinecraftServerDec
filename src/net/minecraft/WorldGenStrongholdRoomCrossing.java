@@ -124,9 +124,9 @@ public class WorldGenStrongholdRoomCrossing extends WorldGenStrongholdPiece {
 						this.a(var1, Blocks.PLANKS.getBlockState(), 8, 3, var4, var3);
 					}
 
-					this.a(var1, Blocks.LADDER.a(this.a(Blocks.LADDER, BlockFace.WEST.getId())), 9, 1, 3, var3);
-					this.a(var1, Blocks.LADDER.a(this.a(Blocks.LADDER, BlockFace.WEST.getId())), 9, 2, 3, var3);
-					this.a(var1, Blocks.LADDER.a(this.a(Blocks.LADDER, BlockFace.WEST.getId())), 9, 3, 3, var3);
+					this.a(var1, Blocks.LADDER.setData(this.a(Blocks.LADDER, BlockFace.WEST.getId())), 9, 1, 3, var3);
+					this.a(var1, Blocks.LADDER.setData(this.a(Blocks.LADDER, BlockFace.WEST.getId())), 9, 2, 3, var3);
+					this.a(var1, Blocks.LADDER.setData(this.a(Blocks.LADDER, BlockFace.WEST.getId())), 9, 3, 3, var3);
 					this.a(var1, var3, var2, 3, 4, 8, StructurePieceTreasure.a(b, new StructurePieceTreasure[] { Items.ENCHANTED_BOOK.b(var2) }), 1 + var2.nextInt(4));
 			}
 

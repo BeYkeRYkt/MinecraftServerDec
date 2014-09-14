@@ -132,7 +132,7 @@ public class WorldGenHugeMushroom extends WorldGenerator {
 								if (var13 != 0 || var3.getY() >= var3.getY() + var5 - 1) {
 									Position var14 = new Position(var18, var9, var12);
 									if (!var1.getBlockState(var14).getBlock().m()) {
-										this.a(var1, var14, Block.getById(Block.getBlockId(Blocks.BROWN_MUSHROOM_BLOCK) + var4), var13);
+										this.a(var1, var14, Block.getBlockById(Block.getBlockId(Blocks.BROWN_MUSHROOM_BLOCK) + var4), var13);
 									}
 								}
 							}
@@ -142,7 +142,7 @@ public class WorldGenHugeMushroom extends WorldGenerator {
 					for (var9 = 0; var9 < var5; ++var9) {
 						Block var17 = var1.getBlockState(var3.b(var9)).getBlock();
 						if (!var17.m()) {
-							this.a(var1, var3.b(var9), Block.getById(Block.getBlockId(Blocks.BROWN_MUSHROOM_BLOCK) + var4), 10);
+							this.a(var1, var3.b(var9), Block.getBlockById(Block.getBlockId(Blocks.BROWN_MUSHROOM_BLOCK) + var4), 10);
 						}
 					}
 
