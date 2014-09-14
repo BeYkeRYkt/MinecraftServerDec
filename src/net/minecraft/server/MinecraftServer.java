@@ -44,6 +44,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.plugin.Plugin;
 
 import pipebukkit.server.PipeServer;
 import pipebukkit.server.command.PipeServerCommandSender;
@@ -539,6 +540,16 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			logger.info("Stopping server");
 			if (this.getServerConnection() != null) {
 				this.getServerConnection().closeChannels();
+			}
+
+			logger.info("Disabling plugins");
+			Plugin[] plugins = Bukkit.getPluginManager().getPlugins();
+			for (int i = plugins.length-1; i >=0; i++) {
+				try {
+					Bukkit.getPluginManager().disablePlugin(plugins[i]);
+				} catch (Throwable t) {
+					t.printStackTrace();
+				}
 			}
 
 			if (this.playerList != null) {
