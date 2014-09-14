@@ -36,6 +36,10 @@ public class ChunkProviderServer implements IChunkProvider {
 		return chunks;
 	}
 
+	public Chunk getChunkIfLoaded(int chunkX, int chunkZ) {
+		return chunks.get(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
+	}
+
 	public Chunk getChunkAtWorldCoords(Position position) {
 		return this.getOrCreateChunk(position.getX() >> 4, position.getZ() >> 4);
 	}
@@ -149,10 +153,6 @@ public class ChunkProviderServer implements IChunkProvider {
 
 	public void cancelChunkUnload(int chunkX, int chunkZ) {
 		unloadQueue.remove(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
-	}
-
-	public Chunk getChunkIfLoaded(int chunkX, int chunkZ) {
-		return chunks.get(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
 	}
 
 	private void requestChunkSave(Chunk chunk) {
