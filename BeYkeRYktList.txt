@@ -132,6 +132,16 @@ aix - ContainerHopper
 aiy - ContainerHorse
 aiz - SlotHorseSaddle
 
+aj - Predicate (Integer ?) ???
+aja - SlotHorseArmor
+ajb - ContainerPlayer
+ajc - SlotArmor
+aje - InventoryMerchant
+ajg - SlotMerchantResult
+aji - InventoryCraftResult
+ajj - SlotResult
+
+
 **//CONTINUE//**
 
 
@@ -151,5 +161,20 @@ asl - BiomeBaseSub
 
 vk - WeightedRandomChoice
 xq - GroupDataEntity
+
+
+za - PathfinderGoalFollowParent
+zc - PathfinderGoalSelector
+zd - PathfinderGoalSelectorItem
 zf - PathfinderGoalInteract
-zh - PathfinderGoalLookAtPlayer
+ze - ???
+zg - PathfinderGoalLeapAtTarget
+zk - PathfinderGoalMeleeAttack
+zm - PathfinderGoalMoveThroughVillage
+zn - PathfinderGoalLookAtPlayer
+zp - PathfinderGoalMoveTowardsTarget
+zq - PathfinderGoalOcelotAttack
+zr - PathfinderGoalJumpOnBlock
+zs - PathfinderGoalOfferFlower
+zu - PathfinderGoalPanic
+zv - PathfinderGoalPlay
