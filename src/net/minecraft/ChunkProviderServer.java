@@ -1,6 +1,7 @@
 package net.minecraft;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -18,7 +19,7 @@ public class ChunkProviderServer implements IChunkProvider {
 	private Chunk emptyChunk;
 	private IChunkProvider chunkGenerator;
 	private IChunkLoader chunkLoader;
-	private LongObjectHashMap<Chunk> chunks = new LongObjectHashMap<Chunk>();
+	private HashMap<Long, Chunk> chunks = new HashMap<Long, Chunk>();
 	private WorldServer worldServer;
 
 	public ChunkProviderServer(WorldServer worldServer, IChunkLoader chunkLoader, IChunkProvider chunkGenerator) {
@@ -29,11 +30,11 @@ public class ChunkProviderServer implements IChunkProvider {
 	}
 
 	public boolean isChunkLoaded(int chunkX, int chunkZ) {
-		return this.chunks.contains(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
+		return this.chunks.containsKey(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
 	}
 
 	public Iterable<Chunk> getChunkList() {
-		return chunks;
+		return chunks.values();
 	}
 
 	public Chunk getChunkIfLoaded(int chunkX, int chunkZ) {
@@ -126,7 +127,7 @@ public class ChunkProviderServer implements IChunkProvider {
 	}
 
 	public void queueUnloadAllChunks() {
-		for (Chunk chunk : chunks) {
+		for (Chunk chunk : chunks.values()) {
 			queueUnload(chunk.x, chunk.z);
 		}
 	}
@@ -170,7 +171,7 @@ public class ChunkProviderServer implements IChunkProvider {
 	public boolean requestChunksSave(boolean flag, IProgressUpdate progressUpdate) {
 		int savedChunks = 0;
 
-		for (Chunk chunk : chunks) {
+		for (Chunk chunk : chunks.values()) {
 			if (chunk.a(flag)) {
 				this.requestChunkSave(chunk);
 				chunk.f(false);
@@ -205,7 +206,7 @@ public class ChunkProviderServer implements IChunkProvider {
 	}
 
 	public String getName() {
-		return "ServerChunkCache: " + this.chunks.count() + " Drop: " + this.unloadQueue.size();
+		return "ServerChunkCache: " + this.chunks.size() + " Drop: " + this.unloadQueue.size();
 	}
 
 	public List<?> getMobsFor(EnumCreatureType creatureType, Position position) {
@@ -217,7 +218,7 @@ public class ChunkProviderServer implements IChunkProvider {
 	}
 
 	public int getLoadedChunks() {
-		return this.chunks.count();
+		return this.chunks.size();
 	}
 
 	public void recreateStructures(Chunk var1, int var2, int var3) {
