@@ -28,8 +28,8 @@ public class EntitySheep extends EntityAnimal {
 		this.i.a(6, new PathfinderGoalRandomStroll(this, 1.0D));
 		this.i.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 6.0F));
 		this.i.a(8, new PathfinderGoalRandomLookaround(this));
-		this.bk.a(0, new ItemStack(Items.DYE, 1, 0));
-		this.bk.a(1, new ItemStack(Items.DYE, 1, 0));
+		this.bk.setItem(0, new ItemStack(Items.DYE, 1, 0));
+		this.bk.setItem(1, new ItemStack(Items.DYE, 1, 0));
 	}
 
 	protected void E() {
@@ -179,12 +179,12 @@ public class EntitySheep extends EntityAnimal {
 	private akv a(EntityAnimal var1, EntityAnimal var2) {
 		int var3 = ((EntitySheep) var1).cj().b();
 		int var4 = ((EntitySheep) var2).cj().b();
-		this.bk.a(0).setDurability(var3);
-		this.bk.a(1).setDurability(var4);
+		this.bk.getItem(0).setWearout(var3);
+		this.bk.getItem(1).setWearout(var4);
 		ItemStack var5 = CraftingManager.getInstance().a(this.bk, ((EntitySheep) var1).world);
 		int var6;
 		if (var5 != null && var5.getItem() == Items.DYE) {
-			var6 = var5.getDurability();
+			var6 = var5.getWearout();
 		} else {
 			var6 = this.world.s.nextBoolean() ? var3 : var4;
 		}

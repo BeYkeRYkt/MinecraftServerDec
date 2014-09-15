@@ -18,11 +18,11 @@ public abstract class aed extends adx implements vy {
 		vs.a(this.world, (Entity) this, this);
 	}
 
-	public ItemStack a(int var1) {
+	public ItemStack getItem(int var1) {
 		return this.a[var1];
 	}
 
-	public ItemStack a(int var1, int var2) {
+	public ItemStack splitStack(int var1, int var2) {
 		if (this.a[var1] != null) {
 			ItemStack var3;
 			if (this.a[var1].amount <= var2) {
@@ -42,7 +42,7 @@ public abstract class aed extends adx implements vy {
 		}
 	}
 
-	public ItemStack b(int var1) {
+	public ItemStack splitWithoutUpdate(int var1) {
 		if (this.a[var1] != null) {
 			ItemStack var2 = this.a[var1];
 			this.a[var1] = null;
@@ -52,10 +52,10 @@ public abstract class aed extends adx implements vy {
 		}
 	}
 
-	public void a(int var1, ItemStack var2) {
+	public void setItem(int var1, ItemStack var2) {
 		this.a[var1] = var2;
-		if (var2 != null && var2.amount > this.p_()) {
-			var2.amount = this.p_();
+		if (var2 != null && var2.amount > this.getMaxStackSize()) {
+			var2.amount = this.getMaxStackSize();
 		}
 
 	}
@@ -63,14 +63,14 @@ public abstract class aed extends adx implements vy {
 	public void update() {
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean canInteract(EntityHuman var1) {
 		return this.dead ? false : var1.getDistanceSquared(this) <= 64.0D;
 	}
 
-	public void b(EntityHuman var1) {
+	public void onContainerOpen(EntityHuman var1) {
 	}
 
-	public void c(EntityHuman var1) {
+	public void onContainerClose(EntityHuman var1) {
 	}
 
 	public boolean b(int var1, ItemStack var2) {
@@ -78,10 +78,10 @@ public abstract class aed extends adx implements vy {
 	}
 
 	public String getName() {
-		return this.k_() ? this.getCustomName() : "container.minecart";
+		return this.hasCustomName() ? this.getCustomName() : "container.minecart";
 	}
 
-	public int p_() {
+	public int getMaxStackSize() {
 		return 64;
 	}
 
@@ -117,7 +117,7 @@ public abstract class aed extends adx implements vy {
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
-		this.a = new ItemStack[this.n_()];
+		this.a = new ItemStack[this.getSize()];
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
@@ -145,14 +145,14 @@ public abstract class aed extends adx implements vy {
 		this.motionZ *= (double) var2;
 	}
 
-	public int a_(int var1) {
+	public int getProperty(int var1) {
 		return 0;
 	}
 
 	public void b(int var1, int var2) {
 	}
 
-	public int g() {
+	public int getPropertiesCount() {
 		return 0;
 	}
 
@@ -167,7 +167,7 @@ public abstract class aed extends adx implements vy {
 		return vx.a;
 	}
 
-	public void l() {
+	public void clearInventory() {
 		for (int var1 = 0; var1 < this.a.length; ++var1) {
 			this.a[var1] = null;
 		}

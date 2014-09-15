@@ -34,6 +34,6 @@ public abstract class bdf extends TileEntity implements vv, vy {
 	}
 
 	public IChatBaseComponent getComponentName() {
-		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
+		return (IChatBaseComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 }

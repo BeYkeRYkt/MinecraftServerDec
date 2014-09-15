@@ -133,7 +133,7 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 				float var4 = ((float) (var3 % 2) - 0.5F) * (float) var1 / 4.0F;
 				float var5 = ((float) (var3 / 2) - 0.5F) * (float) var1 / 4.0F;
 				EntitySlime var6 = this.cd();
-				if (this.k_()) {
+				if (this.hasCustomName()) {
 					var6.a(this.getCustomName());
 				}
 

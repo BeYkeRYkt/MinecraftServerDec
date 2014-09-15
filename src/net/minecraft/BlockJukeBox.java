@@ -25,7 +25,7 @@ public class BlockJukeBox extends atg {
 		if (!var1.isStatic) {
 			TileEntity var5 = var1.getTileEntity(var2);
 			if (var5 instanceof TileEntityRecordPlayer) {
-				((TileEntityRecordPlayer) var5).a(new ItemStack(var4.getItem(), 1, var4.getDurability()));
+				((TileEntityRecordPlayer) var5).a(new ItemStack(var4.getItem(), 1, var4.getWearout()));
 				var1.setBlockAt(var2, var3.a(a, Boolean.valueOf(true)), 2);
 			}
 		}

@@ -175,8 +175,8 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 
 		NBTListTag var2 = new NBTListTag();
 
-		for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
-			ItemStack var4 = this.bz.a(var3);
+		for (int var3 = 0; var3 < this.bz.getSize(); ++var3) {
+			ItemStack var4 = this.bz.getItem(var3);
 			if (var4 != null) {
 				var2.addTag((NBTTag) var4.write(new NBTCompoundTag()));
 			}
@@ -305,15 +305,15 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		if (!this.willing && var1 && this.cp()) {
 			boolean var2 = false;
 
-			for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
-				ItemStack var4 = this.bz.a(var3);
+			for (int var3 = 0; var3 < this.bz.getSize(); ++var3) {
+				ItemStack var4 = this.bz.getItem(var3);
 				if (var4 != null) {
 					if (var4.getItem() == Items.BREAD && var4.amount >= 3) {
 						var2 = true;
-						this.bz.a(var3, 3);
+						this.bz.splitStack(var3, 3);
 					} else if ((var4.getItem() == Items.POTATO || var4.getItem() == Items.CARROT) && var4.amount >= 12) {
 						var2 = true;
-						this.bz.a(var3, 12);
+						this.bz.splitStack(var3, 12);
 					}
 				}
 
@@ -543,8 +543,8 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 	private boolean s(int var1) {
 		boolean var2 = this.cj() == 0;
 
-		for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
-			ItemStack var4 = this.bz.a(var3);
+		for (int var3 = 0; var3 < this.bz.getSize(); ++var3) {
+			ItemStack var4 = this.bz.getItem(var3);
 			if (var4 != null) {
 				if (var4.getItem() == Items.BREAD && var4.amount >= 3 * var1 || var4.getItem() == Items.POTATO && var4.amount >= 12 * var1 || var4.getItem() == Items.CARROT && var4.amount >= 12 * var1) {
 					return true;
@@ -560,8 +560,8 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 	}
 
 	public boolean cs() {
-		for (int var1 = 0; var1 < this.bz.n_(); ++var1) {
-			ItemStack var2 = this.bz.a(var1);
+		for (int var1 = 0; var1 < this.bz.getSize(); ++var1) {
+			ItemStack var2 = this.bz.getItem(var1);
 			if (var2 != null && (var2.getItem() == Items.WHEAT_SEEDS || var2.getItem() == Items.POTATO || var2.getItem() == Items.CARROT)) {
 				return true;
 			}
@@ -575,8 +575,8 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 			return true;
 		} else {
 			int var3 = var1 - 300;
-			if (var3 >= 0 && var3 < this.bz.n_()) {
-				this.bz.a(var3, var2);
+			if (var3 >= 0 && var3 < this.bz.getSize()) {
+				this.bz.setItem(var3, var2);
 				return true;
 			} else {
 				return false;

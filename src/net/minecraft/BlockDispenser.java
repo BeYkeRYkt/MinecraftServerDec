@@ -68,11 +68,11 @@ public class BlockDispenser extends atg {
 			if (var5 < 0) {
 				var1.b(1001, var2, 0);
 			} else {
-				ItemStack var6 = var4.a(var5);
+				ItemStack var6 = var4.getItem(var5);
 				IDispenseBehavior var7 = this.a(var6);
 				if (var7 != IDispenseBehavior.a) {
 					ItemStack var8 = var7.a(var3, var6);
-					var4.a(var5, var8.amount == 0 ? null : var8);
+					var4.setItem(var5, var8.amount == 0 ? null : var8);
 				}
 
 			}

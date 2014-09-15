@@ -101,7 +101,7 @@ public class CloneCommand extends AbstractCommand {
 									var29 = (Position) var27.next();
 									TileEntity var31 = var12.getTileEntity(var29);
 									if (var31 instanceof IInventory) {
-										((IInventory) var31).l();
+										((IInventory) var31).clearInventory();
 									}
 								}
 
@@ -126,7 +126,7 @@ public class CloneCommand extends AbstractCommand {
 								var34 = (bb) var32.next();
 								var36 = var12.getTileEntity(var34.a);
 								if (var36 instanceof IInventory) {
-									((IInventory) var36).l();
+									((IInventory) var36).clearInventory();
 								}
 							}
 

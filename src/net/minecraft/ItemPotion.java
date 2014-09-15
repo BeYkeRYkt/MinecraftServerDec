@@ -34,10 +34,10 @@ public class ItemPotion extends Item {
 
 			return var7;
 		} else {
-			List var2 = (List) this.a.get(Integer.valueOf(var1.getDurability()));
+			List var2 = (List) this.a.get(Integer.valueOf(var1.getWearout()));
 			if (var2 == null) {
-				var2 = PotionBrewer.b(var1.getDurability(), false);
-				this.a.put(Integer.valueOf(var1.getDurability()), var2);
+				var2 = PotionBrewer.b(var1.getWearout(), false);
+				this.a.put(Integer.valueOf(var1.getWearout()), var2);
 			}
 
 			return var2;
@@ -77,7 +77,7 @@ public class ItemPotion extends Item {
 				return new ItemStack(Items.GLASS_BOTTLE);
 			}
 
-			var3.playerInventory.a(new ItemStack(Items.GLASS_BOTTLE));
+			var3.playerInventory.pickup(new ItemStack(Items.GLASS_BOTTLE));
 		}
 
 		return var1;
@@ -92,7 +92,7 @@ public class ItemPotion extends Item {
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
-		if (f(var1.getDurability())) {
+		if (f(var1.getWearout())) {
 			if (!var3.playerProperties.instabuild) {
 				--var1.amount;
 			}
@@ -115,11 +115,11 @@ public class ItemPotion extends Item {
 	}
 
 	public String a(ItemStack var1) {
-		if (var1.getDurability() == 0) {
+		if (var1.getWearout() == 0) {
 			return LocaleI18n.get("item.emptyPotion.name").trim();
 		} else {
 			String var2 = "";
-			if (f(var1.getDurability())) {
+			if (f(var1.getWearout())) {
 				var2 = LocaleI18n.get("potion.prefix.grenade").trim() + " ";
 			}
 
@@ -130,7 +130,7 @@ public class ItemPotion extends Item {
 				var4 = var4 + ".postfix";
 				return var2 + LocaleI18n.get(var4).trim();
 			} else {
-				var4 = PotionBrewer.c(var1.getDurability());
+				var4 = PotionBrewer.c(var1.getWearout());
 				return LocaleI18n.get(var4).trim() + " " + super.a(var1);
 			}
 		}

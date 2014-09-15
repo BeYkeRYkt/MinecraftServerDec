@@ -16,6 +16,6 @@ public class ItemLeaves extends ItemBlock {
 	}
 
 	public String getName(ItemStack var1) {
-		return super.getName() + "." + this.b.b(var1.getDurability()).c();
+		return super.getName() + "." + this.b.b(var1.getWearout()).c();
 	}
 }

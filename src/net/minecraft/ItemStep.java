@@ -18,7 +18,7 @@ public class ItemStep extends ItemBlock {
 	}
 
 	public String getName(ItemStack var1) {
-		return this.b.b(var1.getDurability());
+		return this.b.b(var1.getWearout());
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {

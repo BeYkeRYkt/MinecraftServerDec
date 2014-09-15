@@ -11,11 +11,11 @@ public class ItemMapFilled extends ItemMap {
 	}
 
 	public bqe a(ItemStack var1, World var2) {
-		String var3 = "map_" + var1.getDurability();
+		String var3 = "map_" + var1.getWearout();
 		bqe var4 = (bqe) var2.a(bqe.class, var3);
 		if (var4 == null && !var2.isStatic) {
-			var1.setDurability(var2.b("map"));
-			var3 = "map_" + var1.getDurability();
+			var1.setWearout(var2.b("map"));
+			var3 = "map_" + var1.getWearout();
 			var4 = new bqe(var3);
 			var4.e = 3;
 			var4.a((double) var2.getWorldData().getSpawnX(), (double) var2.getWorldData().getSpawnZ(), var4.e);
@@ -166,8 +166,8 @@ public class ItemMapFilled extends ItemMap {
 	public void d(ItemStack var1, World var2, EntityHuman var3) {
 		if (var1.hasTag() && var1.getTag().getBoolean("map_is_scaling")) {
 			bqe var4 = Items.FILLED_MAP.a(var1, var2);
-			var1.setDurability(var2.b("map"));
-			bqe var5 = new bqe("map_" + var1.getDurability());
+			var1.setWearout(var2.b("map"));
+			bqe var5 = new bqe("map_" + var1.getWearout());
 			var5.e = (byte) (var4.e + 1);
 			if (var5.e > 4) {
 				var5.e = 4;
@@ -176,7 +176,7 @@ public class ItemMapFilled extends ItemMap {
 			var5.a((double) var4.b, (double) var4.c, var5.e);
 			var5.d = var4.d;
 			var5.c();
-			var2.a("map_" + var1.getDurability(), (bqc) var5);
+			var2.a("map_" + var1.getWearout(), (bqc) var5);
 		}
 
 	}

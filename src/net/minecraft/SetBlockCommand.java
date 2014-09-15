@@ -60,7 +60,7 @@ public class SetBlockCommand extends AbstractCommand {
 				TileEntity var13 = var6.getTileEntity(var3);
 				if (var13 != null) {
 					if (var13 instanceof IInventory) {
-						((IInventory) var13).l();
+						((IInventory) var13).clearInventory();
 					}
 
 					var6.setBlockAt(var3, Blocks.AIR.getBlockState(), var4 == Blocks.AIR ? 2 : 4);

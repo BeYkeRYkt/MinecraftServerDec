@@ -29,7 +29,7 @@ public class ItemBlock extends Item {
 		} else if (var4.getY() == 255 && this.block.getMaterial().isBuildable()) {
 			return false;
 		} else if (var3.a(this.block, var4, false, var5, (Entity) null, var1)) {
-			int var11 = this.a(var1.getDurability());
+			int var11 = this.a(var1.getWearout());
 			IBlockState var12 = this.block.a(var3, var4, var5, var6, var7, var8, var11, var2);
 			if (var3.setBlockAt(var4, var12, 3)) {
 				var12 = var3.getBlockState(var4);

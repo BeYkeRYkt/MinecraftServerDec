@@ -30,7 +30,7 @@ public abstract class bcf extends BlockStepAbstract {
 	}
 
 	public Object a(ItemStack var1) {
-		return EnumWoodType.a(var1.getDurability() & 7);
+		return EnumWoodType.a(var1.getWearout() & 7);
 	}
 
 	public IBlockState setData(int var1) {

@@ -20,10 +20,10 @@ public class ShapelessRecipes implements IRecipe {
 	}
 
 	public ItemStack[] b(InventoryCrafting var1) {
-		ItemStack[] var2 = new ItemStack[var1.n_()];
+		ItemStack[] var2 = new ItemStack[var1.getSize()];
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {
-			ItemStack var4 = var1.a(var3);
+			ItemStack var4 = var1.getItem(var3);
 			if (var4 != null && var4.getItem().r()) {
 				var2[var3] = new ItemStack(var4.getItem().getCraftingResult());
 			}
@@ -44,7 +44,7 @@ public class ShapelessRecipes implements IRecipe {
 
 					while (var8.hasNext()) {
 						ItemStack var9 = (ItemStack) var8.next();
-						if (var6.getItem() == var9.getItem() && (var9.getDurability() == 32767 || var6.getDurability() == var9.getDurability())) {
+						if (var6.getItem() == var9.getItem() && (var9.getWearout() == 32767 || var6.getWearout() == var9.getWearout())) {
 							var7 = true;
 							var3.remove(var9);
 							break;

@@ -96,7 +96,7 @@ public class EntityMinecartFurnace extends adx {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (var2 != null && var2.getItem() == Items.COAL) {
 			if (!var1.playerProperties.instabuild && --var2.amount == 0) {
-				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
+				var1.playerInventory.setItem(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 
 			this.c += 3600;

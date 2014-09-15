@@ -30,7 +30,7 @@ public class EntityMinecartHopper extends aed implements bdd {
 		return 1;
 	}
 
-	public int n_() {
+	public int getSize() {
 		return 5;
 	}
 
@@ -131,7 +131,7 @@ public class EntityMinecartHopper extends aed implements bdd {
 		return this.b > 0;
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:hopper";
 	}
 

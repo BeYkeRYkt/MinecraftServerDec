@@ -95,7 +95,7 @@ public abstract class adx extends Entity implements vz {
 						this.passenger.mount((Entity) null);
 					}
 
-					if (var3 && !this.k_()) {
+					if (var3 && !this.hasCustomName()) {
 						this.die();
 					} else {
 						this.a(var1);
@@ -707,7 +707,7 @@ public abstract class adx extends Entity implements vz {
 		return this.b != null ? this.b : super.getName();
 	}
 
-	public boolean k_() {
+	public boolean hasCustomName() {
 		return this.b != null;
 	}
 
@@ -716,7 +716,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public IChatBaseComponent getComponentName() {
-		if (this.k_()) {
+		if (this.hasCustomName()) {
 			ChatComponentText var2 = new ChatComponentText(this.b);
 			var2.getChatModifier().a(this.aP());
 			var2.getChatModifier().a(this.getUUID().toString());

@@ -13,15 +13,15 @@ public class aje implements IInventory {
 		this.a = var2;
 	}
 
-	public int n_() {
+	public int getSize() {
 		return this.b.length;
 	}
 
-	public ItemStack a(int var1) {
+	public ItemStack getItem(int var1) {
 		return this.b[var1];
 	}
 
-	public ItemStack a(int var1, int var2) {
+	public ItemStack splitStack(int var1, int var2) {
 		if (this.b[var1] != null) {
 			ItemStack var3;
 			if (var1 == 2) {
@@ -57,7 +57,7 @@ public class aje implements IInventory {
 		return var1 == 0 || var1 == 1;
 	}
 
-	public ItemStack b(int var1) {
+	public ItemStack splitWithoutUpdate(int var1) {
 		if (this.b[var1] != null) {
 			ItemStack var2 = this.b[var1];
 			this.b[var1] = null;
@@ -67,10 +67,10 @@ public class aje implements IInventory {
 		}
 	}
 
-	public void a(int var1, ItemStack var2) {
+	public void setItem(int var1, ItemStack var2) {
 		this.b[var1] = var2;
-		if (var2 != null && var2.amount > this.p_()) {
-			var2.amount = this.p_();
+		if (var2 != null && var2.amount > this.getMaxStackSize()) {
+			var2.amount = this.getMaxStackSize();
 		}
 
 		if (this.e(var1)) {
@@ -83,26 +83,26 @@ public class aje implements IInventory {
 		return "mob.villager";
 	}
 
-	public boolean k_() {
+	public boolean hasCustomName() {
 		return false;
 	}
 
 	public IChatBaseComponent getComponentName() {
-		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
+		return (IChatBaseComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 
-	public int p_() {
+	public int getMaxStackSize() {
 		return 64;
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean canInteract(EntityHuman var1) {
 		return this.a.u_() == var1;
 	}
 
-	public void b(EntityHuman var1) {
+	public void onContainerOpen(EntityHuman var1) {
 	}
 
-	public void c(EntityHuman var1) {
+	public void onContainerClose(EntityHuman var1) {
 	}
 
 	public boolean b(int var1, ItemStack var2) {
@@ -123,29 +123,29 @@ public class aje implements IInventory {
 		}
 
 		if (var1 == null) {
-			this.a(2, (ItemStack) null);
+			this.setItem(2, (ItemStack) null);
 		} else {
 			MerchantRecipeList var3 = this.a.b_(this.c);
 			if (var3 != null) {
 				aqc var4 = var3.a(var1, var2, this.e);
 				if (var4 != null && !var4.h()) {
 					this.d = var4;
-					this.a(2, var4.d().getCopy());
+					this.setItem(2, var4.d().getCopy());
 				} else if (var2 != null) {
 					var4 = var3.a(var2, var1, this.e);
 					if (var4 != null && !var4.h()) {
 						this.d = var4;
-						this.a(2, var4.d().getCopy());
+						this.setItem(2, var4.d().getCopy());
 					} else {
-						this.a(2, (ItemStack) null);
+						this.setItem(2, (ItemStack) null);
 					}
 				} else {
-					this.a(2, (ItemStack) null);
+					this.setItem(2, (ItemStack) null);
 				}
 			}
 		}
 
-		this.a.a_(this.a(2));
+		this.a.a_(this.getItem(2));
 	}
 
 	public aqc i() {
@@ -157,18 +157,18 @@ public class aje implements IInventory {
 		this.h();
 	}
 
-	public int a_(int var1) {
+	public int getProperty(int var1) {
 		return 0;
 	}
 
 	public void b(int var1, int var2) {
 	}
 
-	public int g() {
+	public int getPropertiesCount() {
 		return 0;
 	}
 
-	public void l() {
+	public void clearInventory() {
 		for (int var1 = 0; var1 < this.b.length; ++var1) {
 			this.b[var1] = null;
 		}

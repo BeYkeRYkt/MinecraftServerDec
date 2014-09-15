@@ -82,7 +82,7 @@ public class RecipesFurnace {
 	}
 
 	private boolean a(ItemStack var1, ItemStack var2) {
-		return var2.getItem() == var1.getItem() && (var2.getDurability() == 32767 || var2.getDurability() == var1.getDurability());
+		return var2.getItem() == var1.getItem() && (var2.getWearout() == 32767 || var2.getWearout() == var1.getWearout());
 	}
 
 	public Map<ItemStack, ItemStack> getRecipes() {

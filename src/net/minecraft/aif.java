@@ -29,17 +29,17 @@ class aif extends Slot {
 			var1.a(-this.c.a);
 		}
 
-		ContainerAnvil.a(this.c).a(0, (ItemStack) null);
+		ContainerAnvil.a(this.c).setItem(0, (ItemStack) null);
 		if (ContainerAnvil.b(this.c) > 0) {
-			ItemStack var3 = ContainerAnvil.a(this.c).a(1);
+			ItemStack var3 = ContainerAnvil.a(this.c).getItem(1);
 			if (var3 != null && var3.amount > ContainerAnvil.b(this.c)) {
 				var3.amount -= ContainerAnvil.b(this.c);
-				ContainerAnvil.a(this.c).a(1, var3);
+				ContainerAnvil.a(this.c).setItem(1, var3);
 			} else {
-				ContainerAnvil.a(this.c).a(1, (ItemStack) null);
+				ContainerAnvil.a(this.c).setItem(1, (ItemStack) null);
 			}
 		} else {
-			ContainerAnvil.a(this.c).a(1, (ItemStack) null);
+			ContainerAnvil.a(this.c).setItem(1, (ItemStack) null);
 		}
 
 		this.c.a = 0;

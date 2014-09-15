@@ -62,7 +62,7 @@ public class BlockCauldron extends Block {
 				if (var11 == Items.WATER_BUCKET) {
 					if (var10 < 3) {
 						if (!var4.playerProperties.instabuild) {
-							var4.playerInventory.a(var4.playerInventory.itemInHandIndex, new ItemStack(Items.BUCKET));
+							var4.playerInventory.setItem(var4.playerInventory.itemInHandIndex, new ItemStack(Items.BUCKET));
 						}
 
 						this.a(var1, var2, var3, 3);
@@ -75,7 +75,7 @@ public class BlockCauldron extends Block {
 						if (var10 > 0) {
 							if (!var4.playerProperties.instabuild) {
 								var13 = new ItemStack(Items.POTION, 1, 0);
-								if (!var4.playerInventory.a(var13)) {
+								if (!var4.playerInventory.pickup(var13)) {
 									var1.addEntity((Entity) (new EntityItem(var1, (double) var2.getX() + 0.5D, (double) var2.getY() + 1.5D, (double) var2.getZ() + 0.5D, var13)));
 								} else if (var4 instanceof EntityPlayer) {
 									((EntityPlayer) var4).a(var4.defaultContainer);
@@ -83,7 +83,7 @@ public class BlockCauldron extends Block {
 
 								--var9.amount;
 								if (var9.amount <= 0) {
-									var4.playerInventory.a(var4.playerInventory.itemInHandIndex, (ItemStack) null);
+									var4.playerInventory.setItem(var4.playerInventory.itemInHandIndex, (ItemStack) null);
 								}
 							}
 
@@ -106,9 +106,9 @@ public class BlockCauldron extends Block {
 							var13.amount = 1;
 							TileEntityBanner.e(var13);
 							if (var9.amount <= 1 && !var4.playerProperties.instabuild) {
-								var4.playerInventory.a(var4.playerInventory.itemInHandIndex, var13);
+								var4.playerInventory.setItem(var4.playerInventory.itemInHandIndex, var13);
 							} else {
-								if (!var4.playerInventory.a(var13)) {
+								if (!var4.playerInventory.pickup(var13)) {
 									var1.addEntity((Entity) (new EntityItem(var1, (double) var2.getX() + 0.5D, (double) var2.getY() + 1.5D, (double) var2.getZ() + 0.5D, var13)));
 								} else if (var4 instanceof EntityPlayer) {
 									((EntityPlayer) var4).a(var4.defaultContainer);

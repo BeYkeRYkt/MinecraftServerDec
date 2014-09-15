@@ -362,7 +362,7 @@ public class EntityArrow extends Entity implements aho {
 	public void d(EntityHuman var1) {
 		if (!this.world.isStatic && this.isInGround && this.b <= 0) {
 			boolean var2 = this.a == 1 || this.a == 2 && var1.playerProperties.instabuild;
-			if (this.a == 1 && !var1.playerInventory.a(new ItemStack(Items.ARROW, 1))) {
+			if (this.a == 1 && !var1.playerInventory.pickup(new ItemStack(Items.ARROW, 1))) {
 				var2 = false;
 			}
 

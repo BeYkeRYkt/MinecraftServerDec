@@ -12,7 +12,7 @@ public final class ItemStack {
 	public int c;
 	private Item item;
 	private NBTCompoundTag tag;
-	private int durability;
+	private int wearout;
 	private EntityItemFrame g;
 	private Block h;
 	private boolean i;
@@ -46,9 +46,9 @@ public final class ItemStack {
 		this.k = false;
 		this.item = var1;
 		this.amount = var2;
-		this.durability = var3;
-		if (this.durability < 0) {
-			this.durability = 0;
+		this.wearout = var3;
+		if (this.wearout < 0) {
+			this.wearout = 0;
 		}
 
 	}
@@ -67,7 +67,7 @@ public final class ItemStack {
 	}
 
 	public ItemStack a(int var1) {
-		ItemStack var2 = new ItemStack(this.item, var1, this.durability);
+		ItemStack var2 = new ItemStack(this.item, var1, this.wearout);
 		if (this.tag != null) {
 			var2.tag = (NBTCompoundTag) this.tag.getCopy();
 		}
@@ -105,7 +105,7 @@ public final class ItemStack {
 		RegistryObjectName nameId = (RegistryObjectName) Item.REGISTRY.c(this.item);
 		tag.put("id", nameId == null ? "minecraft:air" : nameId.toString());
 		tag.put("Count", (byte) this.amount);
-		tag.put("Damage", (short) this.durability);
+		tag.put("Damage", (short) this.wearout);
 		if (this.tag != null) {
 			tag.put("tag", (NBTTag) this.tag);
 		}
@@ -121,9 +121,9 @@ public final class ItemStack {
 		}
 
 		this.amount = tag.getByte("Count");
-		this.durability = tag.getShort("Damage");
-		if (this.durability < 0) {
-			this.durability = 0;
+		this.wearout = tag.getShort("Damage");
+		if (this.wearout < 0) {
+			this.wearout = 0;
 		}
 
 		if (tag.isTagAssignableFrom("tag", 10)) {
@@ -143,7 +143,7 @@ public final class ItemStack {
 	}
 
 	public boolean e() {
-		return this.item == null ? false : (this.item.getDurability() <= 0 ? false : !this.hasTag() || !this.getTag().getBoolean("Unbreakable"));
+		return this.item == null ? false : (this.item.getMaxWearout() <= 0 ? false : !this.hasTag() || !this.getTag().getBoolean("Unbreakable"));
 	}
 
 	public boolean f() {
@@ -151,27 +151,31 @@ public final class ItemStack {
 	}
 
 	public boolean g() {
-		return this.e() && this.durability > 0;
+		return this.e() && this.wearout > 0;
 	}
 
-	public int h() {
-		return this.durability;
+	public int getAmount() {
+		return amount;
 	}
 
-	public int getDurability() {
-		return this.durability;
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
-	public void setDurability(int durability) {
-		this.durability = durability;
-		if (this.durability < 0) {
-			this.durability = 0;
+	public int getWearout() {
+		return this.wearout;
+	}
+
+	public void setWearout(int wearout) {
+		this.wearout = wearout;
+		if (this.wearout < 0) {
+			this.wearout = 0;
 		}
 
 	}
 
-	public int j() {
-		return this.item.getDurability();
+	public int getMaxWearout() {
+		return this.item.getMaxWearout();
 	}
 
 	public boolean a(int var1, Random var2) {
@@ -194,8 +198,8 @@ public final class ItemStack {
 				}
 			}
 
-			this.durability += var1;
-			return this.durability > this.j();
+			this.wearout += var1;
+			return this.wearout > this.getMaxWearout();
 		}
 	}
 
@@ -217,7 +221,7 @@ public final class ItemStack {
 						this.amount = 0;
 					}
 
-					this.durability = 0;
+					this.wearout = 0;
 				}
 
 			}
@@ -249,7 +253,7 @@ public final class ItemStack {
 	}
 
 	public ItemStack getCopy() {
-		ItemStack var1 = new ItemStack(this.item, this.amount, this.durability);
+		ItemStack var1 = new ItemStack(this.item, this.amount, this.wearout);
 		if (this.tag != null) {
 			var1.tag = (NBTCompoundTag) this.tag.getCopy();
 		}
@@ -266,7 +270,7 @@ public final class ItemStack {
 	}
 
 	private boolean d(ItemStack var1) {
-		return this.amount != var1.amount ? false : (this.item != var1.item ? false : (this.durability != var1.durability ? false : (this.tag == null && var1.tag != null ? false : this.tag == null || this.tag.equals(var1.tag))));
+		return this.amount != var1.amount ? false : (this.item != var1.item ? false : (this.wearout != var1.wearout ? false : (this.tag == null && var1.tag != null ? false : this.tag == null || this.tag.equals(var1.tag))));
 	}
 
 	public static boolean c(ItemStack var0, ItemStack var1) {
@@ -274,7 +278,7 @@ public final class ItemStack {
 	}
 
 	public boolean a(ItemStack var1) {
-		return var1 != null && this.item == var1.item && this.durability == var1.durability;
+		return var1 != null && this.item == var1.item && this.wearout == var1.wearout;
 	}
 
 	public String a() {
@@ -286,7 +290,7 @@ public final class ItemStack {
 	}
 
 	public String toString() {
-		return this.amount + "x" + this.item.getName() + "@" + this.durability;
+		return this.amount + "x" + this.item.getName() + "@" + this.wearout;
 	}
 
 	public void a(World var1, Entity var2, int var3, boolean var4) {

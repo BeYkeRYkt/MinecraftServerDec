@@ -42,7 +42,7 @@ public class EntityPotion extends ahr {
 			this.c = new ItemStack(Items.POTION, 1, 0);
 		}
 
-		this.c.setDurability(var1);
+		this.c.setWearout(var1);
 	}
 
 	public int o() {
@@ -50,7 +50,7 @@ public class EntityPotion extends ahr {
 			this.c = new ItemStack(Items.POTION, 1, 0);
 		}
 
-		return this.c.getDurability();
+		return this.c.getWearout();
 	}
 
 	protected void a(MovingObjectPosition var1) {

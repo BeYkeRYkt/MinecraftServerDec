@@ -1429,7 +1429,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public String getName() {
-		if (this.k_()) {
+		if (this.hasCustomName()) {
 			return this.getCustomName();
 		} else {
 			String var1 = EntityTypes.getNameByClass(this);
@@ -1575,7 +1575,7 @@ public abstract class Entity implements CommandSenderInterface {
 		return this.dataWatcher.e(2);
 	}
 
-	public boolean k_() {
+	public boolean hasCustomName() {
 		return this.dataWatcher.e(2).length() > 0;
 	}
 

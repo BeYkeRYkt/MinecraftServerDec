@@ -363,7 +363,7 @@ public class BlockChest extends atg {
 			int var5 = 0;
 			TileEntity var6 = var1.getTileEntity(var2);
 			if (var6 instanceof TileEntityChest) {
-				var5 = ((TileEntityChest) var6).l;
+				var5 = ((TileEntityChest) var6).viewersNumber;
 			}
 
 			return MathHelper.a(var5, 0, 15);

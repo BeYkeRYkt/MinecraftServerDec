@@ -90,6 +90,7 @@ import org.bukkit.util.CachedServerIcon;
 import pipebukkit.server.banlists.PipeIpBanList;
 import pipebukkit.server.banlists.PipeProfileBanList;
 import pipebukkit.server.entity.PipePlayer;
+import pipebukkit.server.entity.inventory.PipeUnownedInventory;
 import pipebukkit.server.metadata.EntityMetadataStorage;
 import pipebukkit.server.metadata.PlayerMetadataStorage;
 import pipebukkit.server.scheduler.PipeScheduler;
@@ -290,26 +291,30 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public Inventory createInventory(InventoryHolder arg0, InventoryType arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	public Inventory createInventory(InventoryHolder holder, InventoryType type) {
+		return createInventory(holder, type, type.getDefaultTitle());
 	}
 
 	@Override
-	public Inventory createInventory(InventoryHolder arg0, int arg1) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
+	public Inventory createInventory(InventoryHolder holder, InventoryType type, String title) {
+		return createInventory(holder, type, type.getDefaultSize(), title);
 	}
 
 	@Override
-	public Inventory createInventory(InventoryHolder arg0, InventoryType arg1, String arg2) {
-		// TODO Auto-generated method stub
-		return null;
+	public Inventory createInventory(InventoryHolder holder, int slots) throws IllegalArgumentException {
+		return createInventory(holder, slots, InventoryType.CHEST.getDefaultTitle());
 	}
 
 	@Override
-	public Inventory createInventory(InventoryHolder arg0, int arg1, String arg2) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
+	public Inventory createInventory(InventoryHolder holder, int slots, String title) throws IllegalArgumentException {
+		Validate.isTrue(slots % 9 == 0, "Chests must have a size that is a multiple of 9!");
+		return createInventory(holder, InventoryType.CHEST, slots, title);
+	}
+
+	private Inventory createInventory(InventoryHolder holder, InventoryType type, int slots, String title) {
+		if (holder == null) {
+			return new PipeUnownedInventory(type, slots, title);
+		}
 		return null;
 	}
 

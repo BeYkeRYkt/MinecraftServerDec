@@ -302,7 +302,7 @@ public abstract class EntityInsentient extends EntityLiving {
 						ItemSword var6 = (ItemSword) var2.getItem();
 						ItemSword var7 = (ItemSword) var5.getItem();
 						if (var6.g() == var7.g()) {
-							var4 = var2.getDurability() > var5.getDurability() || var2.hasTag() && !var5.hasTag();
+							var4 = var2.getWearout() > var5.getWearout() || var2.hasTag() && !var5.hasTag();
 						} else {
 							var4 = var6.g() > var7.g();
 						}
@@ -317,7 +317,7 @@ public abstract class EntityInsentient extends EntityLiving {
 					ItemArmor var8 = (ItemArmor) var2.getItem();
 					ItemArmor var10 = (ItemArmor) var5.getItem();
 					if (var8.c == var10.c) {
-						var4 = var2.getDurability() > var5.getDurability() || var2.hasTag() && !var5.hasTag();
+						var4 = var2.getWearout() > var5.getWearout() || var2.hasTag() && !var5.hasTag();
 					} else {
 						var4 = var8.c > var10.c;
 					}
@@ -501,8 +501,8 @@ public abstract class EntityInsentient extends EntityLiving {
 			boolean var5 = this.bh[var3] > 1.0F;
 			if (var4 != null && (var1 || var5) && this.random.nextFloat() - (float) var2 * 0.01F < this.bh[var3]) {
 				if (!var5 && var4.e()) {
-					int var6 = Math.max(var4.j() - 25, 1);
-					int var7 = var4.j() - this.random.nextInt(this.random.nextInt(var6) + 1);
+					int var6 = Math.max(var4.getMaxWearout() - 25, 1);
+					int var7 = var4.getMaxWearout() - this.random.nextInt(this.random.nextInt(var6) + 1);
 					if (var7 > var6) {
 						var7 = var6;
 					}
@@ -511,7 +511,7 @@ public abstract class EntityInsentient extends EntityLiving {
 						var7 = 1;
 					}
 
-					var4.setDurability(var7);
+					var4.setWearout(var7);
 				}
 
 				this.a(var4, 0.0F);

@@ -75,7 +75,7 @@ public class ajj extends Slot {
 			this.b.b((Statistic) AchievementList.G);
 		}
 
-		if (var1.getItem() == Items.GOLDEN_APPLE && var1.getDurability() == 1) {
+		if (var1.getItem() == Items.GOLDEN_APPLE && var1.getWearout() == 1) {
 			this.b.b((Statistic) AchievementList.M);
 		}
 
@@ -86,16 +86,16 @@ public class ajj extends Slot {
 		ItemStack[] var3 = CraftingManager.getInstance().b(this.a, var1.world);
 
 		for (int var4 = 0; var4 < var3.length; ++var4) {
-			ItemStack var5 = this.a.a(var4);
+			ItemStack var5 = this.a.getItem(var4);
 			ItemStack var6 = var3[var4];
 			if (var5 != null) {
-				this.a.a(var4, 1);
+				this.a.splitStack(var4, 1);
 			}
 
 			if (var6 != null) {
-				if (this.a.a(var4) == null) {
-					this.a.a(var4, var6);
-				} else if (!this.b.playerInventory.a(var6)) {
+				if (this.a.getItem(var4) == null) {
+					this.a.setItem(var4, var6);
+				} else if (!this.b.playerInventory.pickup(var6)) {
 					this.b.dropItem(var6, false);
 				}
 			}

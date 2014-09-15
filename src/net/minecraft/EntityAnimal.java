@@ -107,7 +107,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimal {
 		if (!var1.playerProperties.instabuild) {
 			--var2.amount;
 			if (var2.amount <= 0) {
-				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
+				var1.playerInventory.setItem(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 		}
 

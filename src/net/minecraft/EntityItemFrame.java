@@ -156,7 +156,7 @@ public class EntityItemFrame extends adj {
 			if (var2 != null && !this.world.isStatic) {
 				this.a(var2);
 				if (!var1.playerProperties.instabuild && --var2.amount <= 0) {
-					var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
+					var1.playerInventory.setItem(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 				}
 			}
 		} else if (!this.world.isStatic) {

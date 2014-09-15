@@ -2,33 +2,34 @@ package net.minecraft;
 
 public interface IInventory extends vz {
 
-	int n_();
+	int getSize();
 
-	ItemStack a(int var1);
+	ItemStack getItem(int slot);
 
-	ItemStack a(int var1, int var2);
+	ItemStack splitStack(int slot, int splitSize);
 
-	ItemStack b(int var1);
+	ItemStack splitWithoutUpdate(int slot);
 
-	void a(int var1, ItemStack var2);
+	void setItem(int slot, ItemStack itemStack);
 
-	int p_();
+	int getMaxStackSize();
 
 	void update();
 
-	boolean a(EntityHuman var1);
+	boolean canInteract(EntityHuman who);
 
-	void b(EntityHuman var1);
+	void onContainerOpen(EntityHuman who);
 
-	void c(EntityHuman var1);
+	void onContainerClose(EntityHuman who);
 
 	boolean b(int var1, ItemStack var2);
 
-	int a_(int var1);
+	int getProperty(int propertyNumber);
 
 	void b(int var1, int var2);
 
-	int g();
+	int getPropertiesCount();
 
-	void l();
+	void clearInventory();
+
 }

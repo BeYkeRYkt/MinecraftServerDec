@@ -169,15 +169,15 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 		var1.put("Levels", this.j);
 	}
 
-	public int n_() {
+	public int getSize() {
 		return 1;
 	}
 
-	public ItemStack a(int var1) {
+	public ItemStack getItem(int var1) {
 		return var1 == 0 ? this.m : null;
 	}
 
-	public ItemStack a(int var1, int var2) {
+	public ItemStack splitStack(int var1, int var2) {
 		if (var1 == 0 && this.m != null) {
 			if (var2 >= this.m.amount) {
 				ItemStack var3 = this.m;
@@ -185,14 +185,14 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 				return var3;
 			} else {
 				this.m.amount -= var2;
-				return new ItemStack(this.m.getItem(), var2, this.m.getDurability());
+				return new ItemStack(this.m.getItem(), var2, this.m.getWearout());
 			}
 		} else {
 			return null;
 		}
 	}
 
-	public ItemStack b(int var1) {
+	public ItemStack splitWithoutUpdate(int var1) {
 		if (var1 == 0 && this.m != null) {
 			ItemStack var2 = this.m;
 			this.m = null;
@@ -202,7 +202,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 		}
 	}
 
-	public void a(int var1, ItemStack var2) {
+	public void setItem(int var1, ItemStack var2) {
 		if (var1 == 0) {
 			this.m = var2;
 		}
@@ -210,10 +210,10 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 	}
 
 	public String getName() {
-		return this.k_() ? this.n : "container.beacon";
+		return this.hasCustomName() ? this.n : "container.beacon";
 	}
 
-	public boolean k_() {
+	public boolean hasCustomName() {
 		return this.n != null && this.n.length() > 0;
 	}
 
@@ -221,25 +221,25 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 		this.n = var1;
 	}
 
-	public int p_() {
+	public int getMaxStackSize() {
 		return 1;
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean canInteract(EntityHuman var1) {
 		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
-	public void b(EntityHuman var1) {
+	public void onContainerOpen(EntityHuman var1) {
 	}
 
-	public void c(EntityHuman var1) {
+	public void onContainerClose(EntityHuman var1) {
 	}
 
 	public boolean b(int var1, ItemStack var2) {
 		return var2.getItem() == Items.EMERALD || var2.getItem() == Items.DIAMOND || var2.getItem() == Items.GOLD_INGOT || var2.getItem() == Items.IRON_INGOT;
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:beacon";
 	}
 
@@ -247,7 +247,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 		return new ContainerBeacon(var1, this);
 	}
 
-	public int a_(int var1) {
+	public int getProperty(int var1) {
 		switch (var1) {
 			case 0:
 				return this.j;
@@ -274,11 +274,11 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 
 	}
 
-	public int g() {
+	public int getPropertiesCount() {
 		return 3;
 	}
 
-	public void l() {
+	public void clearInventory() {
 		this.m = null;
 	}
 

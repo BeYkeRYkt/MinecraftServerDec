@@ -105,7 +105,7 @@ public class FillCommand extends AbstractCommand {
 							TileEntity var29 = var10.getTileEntity(var17);
 							if (var29 != null) {
 								if (var29 instanceof IInventory) {
-									((IInventory) var29).l();
+									((IInventory) var29).clearInventory();
 								}
 
 								var10.setBlockAt(var17, Blocks.BARRIER.getBlockState(), var5 == Blocks.BARRIER ? 2 : 4);

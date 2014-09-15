@@ -67,7 +67,7 @@ public class ItemBucket extends Item {
 		} else if (--var1.amount <= 0) {
 			return new ItemStack(var3);
 		} else {
-			if (!var2.playerInventory.a(new ItemStack(var3))) {
+			if (!var2.playerInventory.pickup(new ItemStack(var3))) {
 				var2.dropItem(new ItemStack(var3, 1, 0), false);
 			}
 

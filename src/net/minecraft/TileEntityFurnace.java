@@ -12,15 +12,15 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 	private int l;
 	private String m;
 
-	public int n_() {
+	public int getSize() {
 		return this.h.length;
 	}
 
-	public ItemStack a(int var1) {
+	public ItemStack getItem(int var1) {
 		return this.h[var1];
 	}
 
-	public ItemStack a(int var1, int var2) {
+	public ItemStack splitStack(int var1, int var2) {
 		if (this.h[var1] != null) {
 			ItemStack var3;
 			if (this.h[var1].amount <= var2) {
@@ -40,7 +40,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 		}
 	}
 
-	public ItemStack b(int var1) {
+	public ItemStack splitWithoutUpdate(int var1) {
 		if (this.h[var1] != null) {
 			ItemStack var2 = this.h[var1];
 			this.h[var1] = null;
@@ -50,11 +50,11 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 		}
 	}
 
-	public void a(int var1, ItemStack var2) {
+	public void setItem(int var1, ItemStack var2) {
 		boolean var3 = var2 != null && var2.a(this.h[var1]) && ItemStack.a(var2, this.h[var1]);
 		this.h[var1] = var2;
-		if (var2 != null && var2.amount > this.p_()) {
-			var2.amount = this.p_();
+		if (var2 != null && var2.amount > this.getMaxStackSize()) {
+			var2.amount = this.getMaxStackSize();
 		}
 
 		if (var1 == 0 && !var3) {
@@ -66,10 +66,10 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 	}
 
 	public String getName() {
-		return this.k_() ? this.m : "container.furnace";
+		return this.hasCustomName() ? this.m : "container.furnace";
 	}
 
-	public boolean k_() {
+	public boolean hasCustomName() {
 		return this.m != null && this.m.length() > 0;
 	}
 
@@ -80,7 +80,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
-		this.h = new ItemStack[this.n_()];
+		this.h = new ItemStack[this.getSize()];
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
@@ -117,13 +117,13 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 		}
 
 		var1.put("Items", (NBTTag) var2);
-		if (this.k_()) {
+		if (this.hasCustomName()) {
 			var1.put("CustomName", this.m);
 		}
 
 	}
 
-	public int p_() {
+	public int getMaxStackSize() {
 		return 64;
 	}
 
@@ -192,7 +192,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 			return false;
 		} else {
 			ItemStack var1 = RecipesFurnace.getInstance().a(this.h[0]);
-			return var1 == null ? false : (this.h[2] == null ? true : (!this.h[2].a(var1) ? false : (this.h[2].amount < this.p_() && this.h[2].amount < this.h[2].getMaxStackSize() ? true : this.h[2].amount < var1.getMaxStackSize())));
+			return var1 == null ? false : (this.h[2] == null ? true : (!this.h[2].a(var1) ? false : (this.h[2].amount < this.getMaxStackSize() && this.h[2].amount < this.h[2].getMaxStackSize() ? true : this.h[2].amount < var1.getMaxStackSize())));
 		}
 	}
 
@@ -205,7 +205,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 				++this.h[2].amount;
 			}
 
-			if (this.h[0].getItem() == Item.getItemOf(Blocks.SPONGE) && this.h[0].getDurability() == 1 && this.h[1] != null && this.h[1].getItem() == Items.BUCKET) {
+			if (this.h[0].getItem() == Item.getItemOf(Blocks.SPONGE) && this.h[0].getWearout() == 1 && this.h[1] != null && this.h[1].getItem() == Items.BUCKET) {
 				this.h[1] = new ItemStack(Items.WATER_BUCKET);
 			}
 
@@ -245,14 +245,14 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 		return b(var0) > 0;
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean canInteract(EntityHuman var1) {
 		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
-	public void b(EntityHuman var1) {
+	public void onContainerOpen(EntityHuman var1) {
 	}
 
-	public void c(EntityHuman var1) {
+	public void onContainerClose(EntityHuman var1) {
 	}
 
 	public boolean b(int var1, ItemStack var2) {
@@ -278,7 +278,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 		return true;
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:furnace";
 	}
 
@@ -286,7 +286,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 		return new aiv(var1, this);
 	}
 
-	public int a_(int var1) {
+	public int getProperty(int var1) {
 		switch (var1) {
 			case 0:
 				return this.i;
@@ -318,11 +318,11 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 
 	}
 
-	public int g() {
+	public int getPropertiesCount() {
 		return 4;
 	}
 
-	public void l() {
+	public void clearInventory() {
 		for (int var1 = 0; var1 < this.h.length; ++var1) {
 			this.h[var1] = null;
 		}

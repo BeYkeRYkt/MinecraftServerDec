@@ -120,7 +120,7 @@ public class EntityOcelot extends xx {
 			}
 
 			if (var2.amount <= 0) {
-				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
+				var1.playerInventory.setItem(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 
 			if (!this.world.isStatic) {
@@ -200,7 +200,7 @@ public class EntityOcelot extends xx {
 	}
 
 	public String getName() {
-		return this.k_() ? this.getCustomName() : (this.cj() ? LocaleI18n.get("entity.Cat.name") : super.getName());
+		return this.hasCustomName() ? this.getCustomName() : (this.cj() ? LocaleI18n.get("entity.Cat.name") : super.getName());
 	}
 
 	public void m(boolean var1) {

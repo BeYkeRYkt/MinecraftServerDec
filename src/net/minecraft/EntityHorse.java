@@ -82,7 +82,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 	}
 
 	public String getName() {
-		if (this.k_()) {
+		if (this.hasCustomName()) {
 			return this.getCustomName();
 		} else {
 			int var1 = this.cj();
@@ -308,12 +308,12 @@ public class EntityHorse extends EntityAnimal implements vr {
 		this.bC.a(this.getName());
 		if (var1 != null) {
 			var1.b(this);
-			int var2 = Math.min(var1.n_(), this.bC.n_());
+			int var2 = Math.min(var1.getSize(), this.bC.getSize());
 
 			for (int var3 = 0; var3 < var2; ++var3) {
-				ItemStack var4 = var1.a(var3);
+				ItemStack var4 = var1.getItem(var3);
 				if (var4 != null) {
-					this.bC.a(var3, var4.getCopy());
+					this.bC.setItem(var3, var4.getCopy());
 				}
 			}
 		}
@@ -324,9 +324,9 @@ public class EntityHorse extends EntityAnimal implements vr {
 
 	private void cZ() {
 		if (!this.world.isStatic) {
-			this.q(this.bC.a(0) != null);
+			this.q(this.bC.getItem(0) != null);
 			if (this.cM()) {
-				this.e(this.bC.a(1));
+				this.e(this.bC.getItem(1));
 			}
 		}
 
@@ -597,7 +597,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 
 				if (var3) {
 					if (!var1.playerProperties.instabuild && --var2.amount == 0) {
-						var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
+						var1.playerInventory.setItem(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 					}
 
 					return true;
@@ -819,8 +819,8 @@ public class EntityHorse extends EntityAnimal implements vr {
 
 	private void a(Entity var1, aic var2) {
 		if (var2 != null && !this.world.isStatic) {
-			for (int var3 = 0; var3 < var2.n_(); ++var3) {
-				ItemStack var4 = var2.a(var3);
+			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
+				ItemStack var4 = var2.getItem(var3);
 				if (var4 != null) {
 					this.a(var4, 0.0F);
 				}
@@ -915,8 +915,8 @@ public class EntityHorse extends EntityAnimal implements vr {
 		if (this.cu()) {
 			NBTListTag var2 = new NBTListTag();
 
-			for (int var3 = 2; var3 < this.bC.n_(); ++var3) {
-				ItemStack var4 = this.bC.a(var3);
+			for (int var3 = 2; var3 < this.bC.getSize(); ++var3) {
+				ItemStack var4 = this.bC.getItem(var3);
 				if (var4 != null) {
 					NBTCompoundTag var5 = new NBTCompoundTag();
 					var5.put("Slot", (byte) var3);
@@ -928,12 +928,12 @@ public class EntityHorse extends EntityAnimal implements vr {
 			var1.put("Items", (NBTTag) var2);
 		}
 
-		if (this.bC.a(1) != null) {
-			var1.put("ArmorItem", (NBTTag) this.bC.a(1).write(new NBTCompoundTag()));
+		if (this.bC.getItem(1) != null) {
+			var1.put("ArmorItem", (NBTTag) this.bC.getItem(1).write(new NBTCompoundTag()));
 		}
 
-		if (this.bC.a(0) != null) {
-			var1.put("SaddleItem", (NBTTag) this.bC.a(0).write(new NBTCompoundTag()));
+		if (this.bC.getItem(0) != null) {
+			var1.put("SaddleItem", (NBTTag) this.bC.getItem(0).write(new NBTCompoundTag()));
 		}
 
 	}
@@ -972,8 +972,8 @@ public class EntityHorse extends EntityAnimal implements vr {
 			for (int var5 = 0; var5 < var4.getSize(); ++var5) {
 				NBTCompoundTag var6 = var4.getCompound(var5);
 				int var7 = var6.getByte("Slot") & 255;
-				if (var7 >= 2 && var7 < this.bC.n_()) {
-					this.bC.a(var7, ItemStack.a(var6));
+				if (var7 >= 2 && var7 < this.bC.getSize()) {
+					this.bC.setItem(var7, ItemStack.a(var6));
 				}
 			}
 		}
@@ -982,17 +982,17 @@ public class EntityHorse extends EntityAnimal implements vr {
 		if (var1.isTagAssignableFrom("ArmorItem", 10)) {
 			var9 = ItemStack.a(var1.getCompound("ArmorItem"));
 			if (var9 != null && a(var9.getItem())) {
-				this.bC.a(1, var9);
+				this.bC.setItem(1, var9);
 			}
 		}
 
 		if (var1.isTagAssignableFrom("SaddleItem", 10)) {
 			var9 = ItemStack.a(var1.getCompound("SaddleItem"));
 			if (var9 != null && var9.getItem() == Items.SADDLE) {
-				this.bC.a(0, var9);
+				this.bC.setItem(0, var9);
 			}
 		} else if (var1.getBoolean("Saddle")) {
-			this.bC.a(0, new ItemStack(Items.SADDLE));
+			this.bC.setItem(0, new ItemStack(Items.SADDLE));
 		}
 
 		this.cZ();
@@ -1182,20 +1182,20 @@ public class EntityHorse extends EntityAnimal implements vr {
 		}
 
 		int var3 = var1 - 400;
-		if (var3 >= 0 && var3 < 2 && var3 < this.bC.n_()) {
+		if (var3 >= 0 && var3 < 2 && var3 < this.bC.getSize()) {
 			if (var3 == 0 && var2 != null && var2.getItem() != Items.SADDLE) {
 				return false;
 			} else if (var3 == 1 && (var2 != null && !a(var2.getItem()) || !this.cM())) {
 				return false;
 			} else {
-				this.bC.a(var3, var2);
+				this.bC.setItem(var3, var2);
 				this.cZ();
 				return true;
 			}
 		} else {
 			int var4 = var1 - 500 + 2;
-			if (var4 >= 2 && var4 < this.bC.n_()) {
-				this.bC.a(var4, var2);
+			if (var4 >= 2 && var4 < this.bC.getSize()) {
+				this.bC.setItem(var4, var2);
 				return true;
 			} else {
 				return false;

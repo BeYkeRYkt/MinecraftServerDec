@@ -21,7 +21,7 @@ public class ajb extends Container {
 		}
 
 		for (var4 = 0; var4 < 4; ++var4) {
-			this.addSlot((Slot) (new ajc(this, var1, var1.n_() - 1 - var4, 8, 8 + var4 * 18, var4)));
+			this.addSlot((Slot) (new ajc(this, var1, var1.getSize() - 1 - var4, 8, 8 + var4 * 18, var4)));
 		}
 
 		for (var4 = 0; var4 < 3; ++var4) {
@@ -38,20 +38,20 @@ public class ajb extends Container {
 	}
 
 	public void a(IInventory var1) {
-		this.f.a(0, CraftingManager.getInstance().a(this.a, this.h.world));
+		this.f.setItem(0, CraftingManager.getInstance().a(this.a, this.h.world));
 	}
 
 	public void onClose(EntityHuman var1) {
 		super.onClose(var1);
 
 		for (int var2 = 0; var2 < 4; ++var2) {
-			ItemStack var3 = this.a.b(var2);
+			ItemStack var3 = this.a.splitWithoutUpdate(var2);
 			if (var3 != null) {
 				var1.dropItem(var3, false);
 			}
 		}
 
-		this.f.a(0, (ItemStack) null);
+		this.f.setItem(0, (ItemStack) null);
 	}
 
 	public boolean a(EntityHuman var1) {

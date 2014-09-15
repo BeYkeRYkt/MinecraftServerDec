@@ -42,7 +42,7 @@ public class Slot {
 	}
 
 	public ItemStack getItemStack() {
-		return this.inventory.a(this.a);
+		return this.inventory.getItem(this.a);
 	}
 
 	public boolean hasItem() {
@@ -50,7 +50,7 @@ public class Slot {
 	}
 
 	public void d(ItemStack var1) {
-		this.inventory.a(this.a, var1);
+		this.inventory.setItem(this.a, var1);
 		this.update();
 	}
 
@@ -59,7 +59,7 @@ public class Slot {
 	}
 
 	public int a() {
-		return this.inventory.p_();
+		return this.inventory.getMaxStackSize();
 	}
 
 	public int b(ItemStack var1) {
@@ -67,7 +67,7 @@ public class Slot {
 	}
 
 	public ItemStack a(int var1) {
-		return this.inventory.a(this.a, var1);
+		return this.inventory.splitStack(this.a, var1);
 	}
 
 	public boolean a(IInventory var1, int var2) {

@@ -28,7 +28,7 @@ public class aip extends Container {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.a.a(var1);
+		return this.a.canInteract(var1);
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {

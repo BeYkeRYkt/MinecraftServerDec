@@ -62,7 +62,7 @@ public class aiq extends Container {
 
 	public void a(IInventory var1) {
 		if (var1 == this.a) {
-			ItemStack var2 = var1.a(0);
+			ItemStack var2 = var1.getItem(0);
 			int var3;
 			if (var2 != null && var2.v()) {
 				if (!this.i.isStatic) {
@@ -134,8 +134,8 @@ public class aiq extends Container {
 	}
 
 	public boolean a(EntityHuman var1, int var2) {
-		ItemStack var3 = this.a.a(0);
-		ItemStack var4 = this.a.a(1);
+		ItemStack var3 = this.a.getItem(0);
+		ItemStack var4 = this.a.getItem(1);
 		int var5 = var2 + 1;
 		if ((var4 == null || var4.amount < var5) && !var1.playerProperties.instabuild) {
 			return false;
@@ -161,7 +161,7 @@ public class aiq extends Container {
 					if (!var1.playerProperties.instabuild) {
 						var4.amount -= var5;
 						if (var4.amount <= 0) {
-							this.a.a(1, (ItemStack) null);
+							this.a.setItem(1, (ItemStack) null);
 						}
 					}
 
@@ -190,8 +190,8 @@ public class aiq extends Container {
 	public void onClose(EntityHuman var1) {
 		super.onClose(var1);
 		if (!this.i.isStatic) {
-			for (int var2 = 0; var2 < this.a.n_(); ++var2) {
-				ItemStack var3 = this.a.b(var2);
+			for (int var2 = 0; var2 < this.a.getSize(); ++var2) {
+				ItemStack var3 = this.a.splitWithoutUpdate(var2);
 				if (var3 != null) {
 					var1.dropItem(var3, false);
 				}
@@ -218,7 +218,7 @@ public class aiq extends Container {
 				if (!this.a(var5, 2, 38, true)) {
 					return null;
 				}
-			} else if (var5.getItem() == Items.DYE && akv.a(var5.getDurability()) == akv.l) {
+			} else if (var5.getItem() == Items.DYE && akv.a(var5.getWearout()) == akv.l) {
 				if (!this.a(var5, 1, 2, true)) {
 					return null;
 				}
@@ -231,7 +231,7 @@ public class aiq extends Container {
 					((Slot) this.slots.get(0)).d(var5.getCopy());
 					var5.amount = 0;
 				} else if (var5.amount >= 1) {
-					((Slot) this.slots.get(0)).d(new ItemStack(var5.getItem(), 1, var5.getDurability()));
+					((Slot) this.slots.get(0)).d(new ItemStack(var5.getItem(), 1, var5.getWearout()));
 					--var5.amount;
 				}
 			}

@@ -43,7 +43,7 @@ public class ItemSkull extends Item {
 					TileEntity var13 = var3.getTileEntity(var4);
 					if (var13 instanceof TileEntitySkull) {
 						TileEntitySkull var14 = (TileEntitySkull) var13;
-						if (var1.getDurability() == 3) {
+						if (var1.getWearout() == 3) {
 							GameProfile var15 = null;
 							if (var1.hasTag()) {
 								NBTCompoundTag var16 = var1.getTag();
@@ -56,7 +56,7 @@ public class ItemSkull extends Item {
 
 							var14.a(var15);
 						} else {
-							var14.a(var1.getDurability());
+							var14.a(var1.getWearout());
 						}
 
 						var14.b(var12);
@@ -76,7 +76,7 @@ public class ItemSkull extends Item {
 	}
 
 	public String getName(ItemStack var1) {
-		int var2 = var1.getDurability();
+		int var2 = var1.getWearout();
 		if (var2 < 0 || var2 >= a.length) {
 			var2 = 0;
 		}
@@ -85,7 +85,7 @@ public class ItemSkull extends Item {
 	}
 
 	public String a(ItemStack var1) {
-		if (var1.getDurability() == 3 && var1.hasTag()) {
+		if (var1.getWearout() == 3 && var1.hasTag()) {
 			if (var1.getTag().isTagAssignableFrom("SkullOwner", 8)) {
 				return LocaleI18n.a("item.skull.player.name", new Object[] { var1.getTag().getString("SkullOwner") });
 			}

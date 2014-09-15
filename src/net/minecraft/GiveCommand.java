@@ -36,7 +36,7 @@ public class GiveCommand extends AbstractCommand {
 				}
 			}
 
-			boolean var11 = var3.playerInventory.a(var7);
+			boolean var11 = var3.playerInventory.pickup(var7);
 			if (var11) {
 				var3.world.a((Entity) var3, "random.pop", 0.2F, ((var3.bb().nextFloat() - var3.bb().nextFloat()) * 0.7F + 1.0F) * 2.0F);
 				var3.defaultContainer.b();

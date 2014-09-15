@@ -36,16 +36,16 @@ public class aii extends Container {
 
 		for (int var1 = 0; var1 < this.listeners.size(); ++var1) {
 			ICrafting var2 = (ICrafting) this.listeners.get(var1);
-			if (this.g != this.a.a_(0)) {
-				var2.setContainerData(this, 0, this.a.a_(0));
+			if (this.g != this.a.getProperty(0)) {
+				var2.setContainerData(this, 0, this.a.getProperty(0));
 			}
 		}
 
-		this.g = this.a.a_(0);
+		this.g = this.a.getProperty(0);
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.a.a(var1);
+		return this.a.canInteract(var1);
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {

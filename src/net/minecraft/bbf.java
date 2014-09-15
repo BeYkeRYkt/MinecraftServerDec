@@ -33,7 +33,7 @@ public abstract class bbf extends BlockStepAbstract {
 	}
 
 	public Object a(ItemStack var1) {
-		return bbg.a(var1.getDurability() & 7);
+		return bbg.a(var1.getWearout() & 7);
 	}
 
 	public IBlockState setData(int var1) {

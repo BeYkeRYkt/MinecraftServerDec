@@ -22,10 +22,10 @@ public class TileEntityBanner extends TileEntity {
 			if (var2.isTagAssignableFrom("Base", 99)) {
 				this.a = var2.getInt("Base");
 			} else {
-				this.a = var1.getDurability() & 15;
+				this.a = var1.getWearout() & 15;
 			}
 		} else {
-			this.a = var1.getDurability() & 15;
+			this.a = var1.getWearout() & 15;
 		}
 
 		this.h = null;
@@ -65,7 +65,7 @@ public class TileEntityBanner extends TileEntity {
 
 	public static int b(ItemStack var0) {
 		NBTCompoundTag var1 = var0.a("BlockEntityTag", false);
-		return var1 != null && var1.hasKey("Base") ? var1.getInt("Base") : var0.getDurability();
+		return var1 != null && var1.hasKey("Base") ? var1.getInt("Base") : var0.getWearout();
 	}
 
 	public static int c(ItemStack var0) {

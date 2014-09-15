@@ -33,7 +33,7 @@ public class ContainerBeacon extends Container {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.inventory.a(var1);
+		return this.inventory.canInteract(var1);
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {

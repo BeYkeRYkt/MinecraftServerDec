@@ -245,7 +245,7 @@ public abstract class EntityHuman extends EntityLiving {
 				var7 = var7.b(-this.yaw * 3.1415927F / 180.0F);
 				var7 = var7.b(this.locationX, this.locationY + (double) this.getHeadHeight(), this.locationZ);
 				if (var1.f()) {
-					this.world.a(Particle.K, var7.x, var7.y, var7.z, var4.x, var4.y + 0.05D, var4.z, new int[] { Item.getId(var1.getItem()), var1.getDurability() });
+					this.world.a(Particle.K, var7.x, var7.y, var7.z, var4.x, var4.y + 0.05D, var4.z, new int[] { Item.getId(var1.getItem()), var1.getWearout() });
 				} else {
 					this.world.a(Particle.K, var7.x, var7.y, var7.z, var4.x, var4.y + 0.05D, var4.z, new int[] { Item.getId(var1.getItem()) });
 				}
@@ -472,7 +472,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public EntityItem dropItemInHand(boolean all) {
-		return this.a(this.playerInventory.a(this.playerInventory.itemInHandIndex, all && this.playerInventory.getItemInHand() != null ? this.playerInventory.getItemInHand().amount : 1), false, true);
+		return this.a(this.playerInventory.splitStack(this.playerInventory.itemInHandIndex, all && this.playerInventory.getItemInHand() != null ? this.playerInventory.getItemInHand().amount : 1), false, true);
 	}
 
 	public EntityItem dropItem(ItemStack item, boolean var2) {
@@ -798,7 +798,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public void bZ() {
-		this.playerInventory.a(this.playerInventory.itemInHandIndex, (ItemStack) null);
+		this.playerInventory.setItem(this.playerInventory.itemInHandIndex, (ItemStack) null);
 	}
 
 	public double am() {
@@ -1487,7 +1487,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public boolean d(int var1, ItemStack var2) {
 		if (var1 >= 0 && var1 < this.playerInventory.contents.length) {
-			this.playerInventory.a(var1, var2);
+			this.playerInventory.setItem(var1, var2);
 			return true;
 		} else {
 			int var3 = var1 - 100;
@@ -1504,12 +1504,12 @@ public abstract class EntityHuman extends EntityLiving {
 					}
 				}
 
-				this.playerInventory.a(var3 + this.playerInventory.contents.length, var2);
+				this.playerInventory.setItem(var3 + this.playerInventory.contents.length, var2);
 				return true;
 			} else {
 				var4 = var1 - 200;
-				if (var4 >= 0 && var4 < this.enderChest.n_()) {
-					this.enderChest.a(var4, var2);
+				if (var4 >= 0 && var4 < this.enderChest.getSize()) {
+					this.enderChest.setItem(var4, var2);
 					return true;
 				} else {
 					return false;

@@ -55,17 +55,17 @@ public class ContainerAnvil extends Container {
 		boolean var5 = true;
 		boolean var6 = true;
 		boolean var7 = true;
-		ItemStack var8 = this.h.a(0);
+		ItemStack var8 = this.h.getItem(0);
 		this.a = 1;
 		int var9 = 0;
 		byte var10 = 0;
 		byte var11 = 0;
 		if (var8 == null) {
-			this.g.a(0, (ItemStack) null);
+			this.g.setItem(0, (ItemStack) null);
 			this.a = 0;
 		} else {
 			ItemStack var12 = var8.getCopy();
-			ItemStack var13 = this.h.a(1);
+			ItemStack var13 = this.h.getItem(1);
 			Map var14 = aph.a(var12);
 			boolean var15 = false;
 			int var25 = var10 + var8.A() + (var13 == null ? 0 : var13.A());
@@ -76,41 +76,41 @@ public class ContainerAnvil extends Container {
 				int var17;
 				int var18;
 				if (var12.e() && var12.getItem().a(var8, var13)) {
-					var16 = Math.min(var12.h(), var12.j() / 4);
+					var16 = Math.min(var12.getWearout(), var12.getMaxWearout() / 4);
 					if (var16 <= 0) {
-						this.g.a(0, (ItemStack) null);
+						this.g.setItem(0, (ItemStack) null);
 						this.a = 0;
 						return;
 					}
 
 					for (var17 = 0; var16 > 0 && var17 < var13.amount; ++var17) {
-						var18 = var12.h() - var16;
-						var12.setDurability(var18);
+						var18 = var12.getWearout() - var16;
+						var12.setWearout(var18);
 						++var9;
-						var16 = Math.min(var12.h(), var12.j() / 4);
+						var16 = Math.min(var12.getWearout(), var12.getMaxWearout() / 4);
 					}
 
 					this.k = var17;
 				} else {
 					if (!var15 && (var12.getItem() != var13.getItem() || !var12.e())) {
-						this.g.a(0, (ItemStack) null);
+						this.g.setItem(0, (ItemStack) null);
 						this.a = 0;
 						return;
 					}
 
 					int var20;
 					if (var12.e() && !var15) {
-						var16 = var8.j() - var8.h();
-						var17 = var13.j() - var13.h();
-						var18 = var17 + var12.j() * 12 / 100;
+						var16 = var8.getMaxWearout() - var8.getWearout();
+						var17 = var13.getMaxWearout() - var13.getWearout();
+						var18 = var17 + var12.getMaxWearout() * 12 / 100;
 						int var19 = var16 + var18;
-						var20 = var12.j() - var19;
+						var20 = var12.getMaxWearout() - var19;
 						if (var20 < 0) {
 							var20 = 0;
 						}
 
-						if (var20 < var12.getDurability()) {
-							var12.setDurability(var20);
+						if (var20 < var12.getWearout()) {
+							var12.setWearout(var20);
 							var9 += 2;
 						}
 					}
@@ -223,7 +223,7 @@ public class ContainerAnvil extends Container {
 				aph.a(var14, var12);
 			}
 
-			this.g.a(0, var12);
+			this.g.setItem(0, var12);
 			this.b();
 		}
 	}
@@ -236,8 +236,8 @@ public class ContainerAnvil extends Container {
 	public void onClose(EntityHuman var1) {
 		super.onClose(var1);
 		if (!this.i.isStatic) {
-			for (int var2 = 0; var2 < this.h.n_(); ++var2) {
-				ItemStack var3 = this.h.b(var2);
+			for (int var2 = 0; var2 < this.h.getSize(); ++var2) {
+				ItemStack var3 = this.h.splitWithoutUpdate(var2);
 				if (var3 != null) {
 					var1.dropItem(var3, false);
 				}

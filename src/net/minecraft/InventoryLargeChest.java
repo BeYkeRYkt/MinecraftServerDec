@@ -26,8 +26,8 @@ public class InventoryLargeChest implements vy {
 
 	}
 
-	public int n_() {
-		return this.b.n_() + this.c.n_();
+	public int getSize() {
+		return this.b.getSize() + this.c.getSize();
 	}
 
 	public boolean a(IInventory var1) {
@@ -35,40 +35,40 @@ public class InventoryLargeChest implements vy {
 	}
 
 	public String getName() {
-		return this.b.k_() ? this.b.getName() : (this.c.k_() ? this.c.getName() : this.a);
+		return this.b.hasCustomName() ? this.b.getName() : (this.c.hasCustomName() ? this.c.getName() : this.a);
 	}
 
-	public boolean k_() {
-		return this.b.k_() || this.c.k_();
+	public boolean hasCustomName() {
+		return this.b.hasCustomName() || this.c.hasCustomName();
 	}
 
 	public IChatBaseComponent getComponentName() {
-		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
+		return (IChatBaseComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 
-	public ItemStack a(int var1) {
-		return var1 >= this.b.n_() ? this.c.a(var1 - this.b.n_()) : this.b.a(var1);
+	public ItemStack getItem(int var1) {
+		return var1 >= this.b.getSize() ? this.c.getItem(var1 - this.b.getSize()) : this.b.getItem(var1);
 	}
 
-	public ItemStack a(int var1, int var2) {
-		return var1 >= this.b.n_() ? this.c.a(var1 - this.b.n_(), var2) : this.b.a(var1, var2);
+	public ItemStack splitStack(int var1, int var2) {
+		return var1 >= this.b.getSize() ? this.c.splitStack(var1 - this.b.getSize(), var2) : this.b.splitStack(var1, var2);
 	}
 
-	public ItemStack b(int var1) {
-		return var1 >= this.b.n_() ? this.c.b(var1 - this.b.n_()) : this.b.b(var1);
+	public ItemStack splitWithoutUpdate(int var1) {
+		return var1 >= this.b.getSize() ? this.c.splitWithoutUpdate(var1 - this.b.getSize()) : this.b.splitWithoutUpdate(var1);
 	}
 
-	public void a(int var1, ItemStack var2) {
-		if (var1 >= this.b.n_()) {
-			this.c.a(var1 - this.b.n_(), var2);
+	public void setItem(int var1, ItemStack var2) {
+		if (var1 >= this.b.getSize()) {
+			this.c.setItem(var1 - this.b.getSize(), var2);
 		} else {
-			this.b.a(var1, var2);
+			this.b.setItem(var1, var2);
 		}
 
 	}
 
-	public int p_() {
-		return this.b.p_();
+	public int getMaxStackSize() {
+		return this.b.getMaxStackSize();
 	}
 
 	public void update() {
@@ -76,32 +76,32 @@ public class InventoryLargeChest implements vy {
 		this.c.update();
 	}
 
-	public boolean a(EntityHuman var1) {
-		return this.b.a(var1) && this.c.a(var1);
+	public boolean canInteract(EntityHuman var1) {
+		return this.b.canInteract(var1) && this.c.canInteract(var1);
 	}
 
-	public void b(EntityHuman var1) {
-		this.b.b(var1);
-		this.c.b(var1);
+	public void onContainerOpen(EntityHuman var1) {
+		this.b.onContainerOpen(var1);
+		this.c.onContainerOpen(var1);
 	}
 
-	public void c(EntityHuman var1) {
-		this.b.c(var1);
-		this.c.c(var1);
+	public void onContainerClose(EntityHuman var1) {
+		this.b.onContainerClose(var1);
+		this.c.onContainerClose(var1);
 	}
 
 	public boolean b(int var1, ItemStack var2) {
 		return true;
 	}
 
-	public int a_(int var1) {
+	public int getProperty(int var1) {
 		return 0;
 	}
 
 	public void b(int var1, int var2) {
 	}
 
-	public int g() {
+	public int getPropertiesCount() {
 		return 0;
 	}
 
@@ -118,16 +118,16 @@ public class InventoryLargeChest implements vy {
 		return this.b.i();
 	}
 
-	public String k() {
-		return this.b.k();
+	public String getInventoryType() {
+		return this.b.getInventoryType();
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {
 		return new ContainerChest(var1, this, var2);
 	}
 
-	public void l() {
-		this.b.l();
-		this.c.l();
+	public void clearInventory() {
+		this.b.clearInventory();
+		this.c.clearInventory();
 	}
 }

@@ -41,14 +41,14 @@ public class BlockFlowerPot extends atg {
 				return false;
 			} else {
 				Block var11 = Block.getBlockByItem(var9.getItem());
-				if (!this.a(var11, var9.getDurability())) {
+				if (!this.a(var11, var9.getWearout())) {
 					return false;
 				} else {
-					var10.a(var9.getItem(), var9.getDurability());
+					var10.a(var9.getItem(), var9.getWearout());
 					var10.update();
 					var1.notify(var2);
 					if (!var4.playerProperties.instabuild && --var9.amount <= 0) {
-						var4.playerInventory.a(var4.playerInventory.itemInHandIndex, (ItemStack) null);
+						var4.playerInventory.setItem(var4.playerInventory.itemInHandIndex, (ItemStack) null);
 					}
 
 					return true;

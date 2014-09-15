@@ -93,8 +93,8 @@ public class ReplaceItemCommand extends AbstractCommand {
 				}
 
 				IInventory var13 = (IInventory) var12;
-				if (var5 >= 0 && var5 < var13.n_()) {
-					var13.a(var5, var9);
+				if (var5 >= 0 && var5 < var13.getSize()) {
+					var13.setItem(var5, var9);
 				}
 			} else {
 				Entity var18 = b(var1, var2[1]);

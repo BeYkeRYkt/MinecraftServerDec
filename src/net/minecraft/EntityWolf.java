@@ -216,17 +216,17 @@ public class EntityWolf extends xx {
 
 						this.g((float) var3.h(var2));
 						if (var2.amount <= 0) {
-							var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
+							var1.playerInventory.setItem(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 						}
 
 						return true;
 					}
 				} else if (var2.getItem() == Items.DYE) {
-					akv var4 = akv.a(var2.getDurability());
+					akv var4 = akv.a(var2.getWearout());
 					if (var4 != this.cu()) {
 						this.a(var4);
 						if (!var1.playerProperties.instabuild && --var2.amount <= 0) {
-							var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
+							var1.playerInventory.setItem(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 						}
 
 						return true;
@@ -246,7 +246,7 @@ public class EntityWolf extends xx {
 			}
 
 			if (var2.amount <= 0) {
-				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
+				var1.playerInventory.setItem(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 
 			if (!this.world.isStatic) {

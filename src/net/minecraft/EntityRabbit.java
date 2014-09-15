@@ -272,7 +272,7 @@ public class EntityRabbit extends EntityAnimal {
 			this.bg.a(1, new aal(this, false, new Class[0]));
 			this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
 			this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityWolf.class, true));
-			if (!this.k_()) {
+			if (!this.hasCustomName()) {
 				this.a(LocaleI18n.get("entity.KillerBunny.name"));
 			}
 		}

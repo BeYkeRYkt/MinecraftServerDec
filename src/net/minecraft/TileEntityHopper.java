@@ -11,7 +11,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
-		this.a = new ItemStack[this.n_()];
+		this.a = new ItemStack[this.getSize()];
 		if (var1.isTagAssignableFrom("CustomName", 8)) {
 			this.f = var1.getString("CustomName");
 		}
@@ -43,7 +43,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 
 		var1.put("Items", (NBTTag) var2);
 		var1.put("TransferCooldown", this.g);
-		if (this.k_()) {
+		if (this.hasCustomName()) {
 			var1.put("CustomName", this.f);
 		}
 
@@ -53,15 +53,15 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 		super.update();
 	}
 
-	public int n_() {
+	public int getSize() {
 		return this.a.length;
 	}
 
-	public ItemStack a(int var1) {
+	public ItemStack getItem(int var1) {
 		return this.a[var1];
 	}
 
-	public ItemStack a(int var1, int var2) {
+	public ItemStack splitStack(int var1, int var2) {
 		if (this.a[var1] != null) {
 			ItemStack var3;
 			if (this.a[var1].amount <= var2) {
@@ -81,7 +81,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 		}
 	}
 
-	public ItemStack b(int var1) {
+	public ItemStack splitWithoutUpdate(int var1) {
 		if (this.a[var1] != null) {
 			ItemStack var2 = this.a[var1];
 			this.a[var1] = null;
@@ -91,19 +91,19 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 		}
 	}
 
-	public void a(int var1, ItemStack var2) {
+	public void setItem(int var1, ItemStack var2) {
 		this.a[var1] = var2;
-		if (var2 != null && var2.amount > this.p_()) {
-			var2.amount = this.p_();
+		if (var2 != null && var2.amount > this.getMaxStackSize()) {
+			var2.amount = this.getMaxStackSize();
 		}
 
 	}
 
 	public String getName() {
-		return this.k_() ? this.f : "container.hopper";
+		return this.hasCustomName() ? this.f : "container.hopper";
 	}
 
-	public boolean k_() {
+	public boolean hasCustomName() {
 		return this.f != null && this.f.length() > 0;
 	}
 
@@ -111,18 +111,18 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 		this.f = var1;
 	}
 
-	public int p_() {
+	public int getMaxStackSize() {
 		return 64;
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean canInteract(EntityHuman var1) {
 		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
-	public void b(EntityHuman var1) {
+	public void onContainerOpen(EntityHuman var1) {
 	}
 
-	public void c(EntityHuman var1) {
+	public void onContainerClose(EntityHuman var1) {
 	}
 
 	public boolean b(int var1, ItemStack var2) {
@@ -202,16 +202,16 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 			if (this.a(var1, var2)) {
 				return false;
 			} else {
-				for (int var3 = 0; var3 < this.n_(); ++var3) {
-					if (this.a(var3) != null) {
-						ItemStack var4 = this.a(var3).getCopy();
-						ItemStack var5 = a(var1, this.a(var3, 1), var2);
+				for (int var3 = 0; var3 < this.getSize(); ++var3) {
+					if (this.getItem(var3) != null) {
+						ItemStack var4 = this.getItem(var3).getCopy();
+						ItemStack var5 = a(var1, this.splitStack(var3, 1), var2);
 						if (var5 == null || var5.amount == 0) {
 							var1.update();
 							return true;
 						}
 
-						this.a(var3, var4);
+						this.setItem(var3, var4);
 					}
 				}
 
@@ -226,16 +226,16 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 			int[] var4 = var3.a(var2);
 
 			for (int var5 = 0; var5 < var4.length; ++var5) {
-				ItemStack var6 = var3.a(var4[var5]);
+				ItemStack var6 = var3.getItem(var4[var5]);
 				if (var6 == null || var6.amount != var6.getMaxStackSize()) {
 					return false;
 				}
 			}
 		} else {
-			int var7 = var1.n_();
+			int var7 = var1.getSize();
 
 			for (int var8 = 0; var8 < var7; ++var8) {
-				ItemStack var9 = var1.a(var8);
+				ItemStack var9 = var1.getItem(var8);
 				if (var9 == null || var9.amount != var9.getMaxStackSize()) {
 					return false;
 				}
@@ -251,15 +251,15 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 			int[] var3 = var2.a(var1);
 
 			for (int var4 = 0; var4 < var3.length; ++var4) {
-				if (var2.a(var3[var4]) != null) {
+				if (var2.getItem(var3[var4]) != null) {
 					return false;
 				}
 			}
 		} else {
-			int var5 = var0.n_();
+			int var5 = var0.getSize();
 
 			for (int var6 = 0; var6 < var5; ++var6) {
-				if (var0.a(var6) != null) {
+				if (var0.getItem(var6) != null) {
 					return false;
 				}
 			}
@@ -286,7 +286,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 					}
 				}
 			} else {
-				int var7 = var1.n_();
+				int var7 = var1.getSize();
 
 				for (int var8 = 0; var8 < var7; ++var8) {
 					if (a(var0, var1, var8, var2)) {
@@ -305,16 +305,16 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 	}
 
 	private static boolean a(bdd var0, IInventory var1, int var2, BlockFace var3) {
-		ItemStack var4 = var1.a(var2);
+		ItemStack var4 = var1.getItem(var2);
 		if (var4 != null && b(var1, var4, var2, var3)) {
 			ItemStack var5 = var4.getCopy();
-			ItemStack var6 = a(var0, var1.a(var2, 1), (BlockFace) null);
+			ItemStack var6 = a(var0, var1.splitStack(var2, 1), (BlockFace) null);
 			if (var6 == null || var6.amount == 0) {
 				var1.update();
 				return true;
 			}
 
-			var1.a(var2, var5);
+			var1.setItem(var2, var5);
 		}
 
 		return false;
@@ -347,7 +347,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 				var1 = c(var0, var1, var7[var5], var2);
 			}
 		} else {
-			int var3 = var0.n_();
+			int var3 = var0.getSize();
 
 			for (int var4 = 0; var4 < var3 && var1 != null && var1.amount > 0; ++var4) {
 				var1 = c(var0, var1, var4, var2);
@@ -370,11 +370,11 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 	}
 
 	private static ItemStack c(IInventory var0, ItemStack var1, int var2, BlockFace var3) {
-		ItemStack var4 = var0.a(var2);
+		ItemStack var4 = var0.getItem(var2);
 		if (a(var0, var1, var2, var3)) {
 			boolean var5 = false;
 			if (var4 == null) {
-				var0.a(var2, var1);
+				var0.setItem(var2, var1);
 				var1 = null;
 				var5 = true;
 			} else if (a(var4, var1)) {
@@ -444,7 +444,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 	}
 
 	private static boolean a(ItemStack var0, ItemStack var1) {
-		return var0.getItem() != var1.getItem() ? false : (var0.getDurability() != var1.getDurability() ? false : (var0.amount > var0.getMaxStackSize() ? false : ItemStack.a(var0, var1)));
+		return var0.getItem() != var1.getItem() ? false : (var0.getWearout() != var1.getWearout() ? false : (var0.amount > var0.getMaxStackSize() ? false : ItemStack.a(var0, var1)));
 	}
 
 	public double A() {
@@ -471,7 +471,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 		return this.g <= 1;
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:hopper";
 	}
 
@@ -479,18 +479,18 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 		return new aix(var1, this, var2);
 	}
 
-	public int a_(int var1) {
+	public int getProperty(int var1) {
 		return 0;
 	}
 
 	public void b(int var1, int var2) {
 	}
 
-	public int g() {
+	public int getPropertiesCount() {
 		return 0;
 	}
 
-	public void l() {
+	public void clearInventory() {
 		for (int var1 = 0; var1 < this.a.length; ++var1) {
 			this.a[var1] = null;
 		}

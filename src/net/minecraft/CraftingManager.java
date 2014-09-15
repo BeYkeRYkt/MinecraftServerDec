@@ -273,10 +273,10 @@ public class CraftingManager {
 			}
 		}
 
-		ItemStack[] items = new ItemStack[inventoryCrafting.n_()];
+		ItemStack[] items = new ItemStack[inventoryCrafting.getSize()];
 
 		for (int i = 0; i < items.length; ++i) {
-			items[i] = inventoryCrafting.a(i);
+			items[i] = inventoryCrafting.getItem(i);
 		}
 
 		return items;

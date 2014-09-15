@@ -15,8 +15,8 @@ public class vs {
 	}
 
 	private static void a(World var0, double var1, double var3, double var5, IInventory var7) {
-		for (int var8 = 0; var8 < var7.n_(); ++var8) {
-			ItemStack var9 = var7.a(var8);
+		for (int var8 = 0; var8 < var7.getSize(); ++var8) {
+			ItemStack var9 = var7.getItem(var8);
 			if (var9 != null) {
 				a(var0, var1, var3, var5, var9);
 			}
@@ -36,7 +36,7 @@ public class vs {
 			}
 
 			var7.amount -= var11;
-			EntityItem var12 = new EntityItem(var0, var1 + (double) var8, var3 + (double) var9, var5 + (double) var10, new ItemStack(var7.getItem(), var11, var7.getDurability()));
+			EntityItem var12 = new EntityItem(var0, var1 + (double) var8, var3 + (double) var9, var5 + (double) var10, new ItemStack(var7.getItem(), var11, var7.getWearout()));
 			if (var7.hasTag()) {
 				var12.l().setTag((NBTCompoundTag) var7.getTag().getCopy());
 			}

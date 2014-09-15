@@ -87,7 +87,7 @@ public class Item {
 		return this;
 	}
 
-	public int getDurability() {
+	public int getMaxWearout() {
 		return this.durability;
 	}
 

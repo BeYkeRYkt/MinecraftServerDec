@@ -4,7 +4,7 @@ public interface vz {
 
 	String getName();
 
-	boolean k_();
+	boolean hasCustomName();
 
 	IChatBaseComponent getComponentName();
 }

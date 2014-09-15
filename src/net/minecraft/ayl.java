@@ -33,7 +33,7 @@ public abstract class ayl extends BlockStepAbstract {
 	}
 
 	public Object a(ItemStack var1) {
-		return aym.a(var1.getDurability() & 7);
+		return aym.a(var1.getWearout() & 7);
 	}
 
 	public IBlockState setData(int var1) {

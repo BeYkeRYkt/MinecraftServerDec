@@ -55,7 +55,7 @@ public class ItemBanner extends ItemBlock {
 		if (var2 != null && var2.hasKey("Base")) {
 			var3 = akv.a(var2.getInt("Base"));
 		} else {
-			var3 = akv.a(var1.getDurability());
+			var3 = akv.a(var1.getWearout());
 		}
 
 		return var3;

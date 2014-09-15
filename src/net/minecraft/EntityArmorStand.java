@@ -304,7 +304,7 @@ public class EntityArmorStand extends EntityLiving {
 		if (var3 == null || (this.bg & 1 << var2 + 8) == 0) {
 			if (var3 != null || (this.bg & 1 << var2 + 16) == 0) {
 				int var4 = var1.playerInventory.itemInHandIndex;
-				ItemStack var5 = var1.playerInventory.a(var4);
+				ItemStack var5 = var1.playerInventory.getItem(var4);
 				ItemStack var6;
 				if (var1.playerProperties.instabuild && (var3 == null || var3.getItem() == Item.getItemOf(Blocks.AIR)) && var5 != null) {
 					var6 = var5.getCopy();
@@ -319,7 +319,7 @@ public class EntityArmorStand extends EntityLiving {
 					}
 				} else {
 					this.setArmor(var2, var5);
-					var1.playerInventory.a(var4, var3);
+					var1.playerInventory.setItem(var4, var3);
 				}
 			}
 		}

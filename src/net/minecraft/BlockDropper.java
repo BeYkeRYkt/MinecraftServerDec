@@ -20,7 +20,7 @@ public class BlockDropper extends BlockDispenser {
 			if (var5 < 0) {
 				var1.b(1001, var2, 0);
 			} else {
-				ItemStack var6 = var4.a(var5);
+				ItemStack var6 = var4.getItem(var5);
 				if (var6 != null) {
 					BlockFace var7 = (BlockFace) var1.getBlockState(var2).b(a);
 					Position var8 = var2.a(var7);
@@ -43,7 +43,7 @@ public class BlockDropper extends BlockDispenser {
 						}
 					}
 
-					var4.a(var5, var10);
+					var4.setItem(var5, var10);
 				}
 			}
 		}

@@ -11,6 +11,6 @@ class ait extends Slot {
 	}
 
 	public boolean a(ItemStack var1) {
-		return var1.getItem() == Items.DYE && akv.a(var1.getDurability()) == akv.l;
+		return var1.getItem() == Items.DYE && akv.a(var1.getWearout()) == akv.l;
 	}
 }

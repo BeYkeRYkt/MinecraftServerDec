@@ -104,7 +104,7 @@ public class BlockSkull extends atg {
 	}
 
 	public boolean b(World var1, Position var2, ItemStack var3) {
-		return var3.getDurability() == 1 && var2.getY() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.isStatic ? this.j().a(var1, var2) != null : false;
+		return var3.getWearout() == 1 && var2.getY() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.isStatic ? this.j().a(var1, var2) != null : false;
 	}
 
 	public void a(World var1, Position var2, TileEntitySkull var3) {

@@ -33,12 +33,12 @@ public class StructurePieceTreasure extends vk {
 			if (var5.b.getMaxStackSize() >= var6) {
 				ItemStack var7 = var5.b.getCopy();
 				var7.amount = var6;
-				var2.a(var0.nextInt(var2.n_()), var7);
+				var2.setItem(var0.nextInt(var2.getSize()), var7);
 			} else {
 				for (int var9 = 0; var9 < var6; ++var9) {
 					ItemStack var8 = var5.b.getCopy();
 					var8.amount = 1;
-					var2.a(var0.nextInt(var2.n_()), var8);
+					var2.setItem(var0.nextInt(var2.getSize()), var8);
 				}
 			}
 		}
@@ -52,12 +52,12 @@ public class StructurePieceTreasure extends vk {
 			if (var5.b.getMaxStackSize() >= var6) {
 				ItemStack var7 = var5.b.getCopy();
 				var7.amount = var6;
-				var2.a(var0.nextInt(var2.n_()), var7);
+				var2.setItem(var0.nextInt(var2.getSize()), var7);
 			} else {
 				for (int var9 = 0; var9 < var6; ++var9) {
 					ItemStack var8 = var5.b.getCopy();
 					var8.amount = 1;
-					var2.a(var0.nextInt(var2.n_()), var8);
+					var2.setItem(var0.nextInt(var2.getSize()), var8);
 				}
 			}
 		}

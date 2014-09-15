@@ -30,11 +30,11 @@ public class wa implements IInventory {
 		this.d.remove(var1);
 	}
 
-	public ItemStack a(int var1) {
+	public ItemStack getItem(int var1) {
 		return var1 >= 0 && var1 < this.c.length ? this.c[var1] : null;
 	}
 
-	public ItemStack a(int var1, int var2) {
+	public ItemStack splitStack(int var1, int var2) {
 		if (this.c[var1] != null) {
 			ItemStack var3;
 			if (this.c[var1].amount <= var2) {
@@ -60,15 +60,15 @@ public class wa implements IInventory {
 		ItemStack var2 = var1.getCopy();
 
 		for (int var3 = 0; var3 < this.b; ++var3) {
-			ItemStack var4 = this.a(var3);
+			ItemStack var4 = this.getItem(var3);
 			if (var4 == null) {
-				this.a(var3, var2);
+				this.setItem(var3, var2);
 				this.update();
 				return null;
 			}
 
 			if (ItemStack.c(var4, var2)) {
-				int var5 = Math.min(this.p_(), var4.getMaxStackSize());
+				int var5 = Math.min(this.getMaxStackSize(), var4.getMaxStackSize());
 				int var6 = Math.min(var2.amount, var5 - var4.amount);
 				if (var6 > 0) {
 					var4.amount += var6;
@@ -88,7 +88,7 @@ public class wa implements IInventory {
 		return var2;
 	}
 
-	public ItemStack b(int var1) {
+	public ItemStack splitWithoutUpdate(int var1) {
 		if (this.c[var1] != null) {
 			ItemStack var2 = this.c[var1];
 			this.c[var1] = null;
@@ -98,16 +98,16 @@ public class wa implements IInventory {
 		}
 	}
 
-	public void a(int var1, ItemStack var2) {
+	public void setItem(int var1, ItemStack var2) {
 		this.c[var1] = var2;
-		if (var2 != null && var2.amount > this.p_()) {
-			var2.amount = this.p_();
+		if (var2 != null && var2.amount > this.getMaxStackSize()) {
+			var2.amount = this.getMaxStackSize();
 		}
 
 		this.update();
 	}
 
-	public int n_() {
+	public int getSize() {
 		return this.b;
 	}
 
@@ -115,7 +115,7 @@ public class wa implements IInventory {
 		return this.a;
 	}
 
-	public boolean k_() {
+	public boolean hasCustomName() {
 		return this.e;
 	}
 
@@ -125,10 +125,10 @@ public class wa implements IInventory {
 	}
 
 	public IChatBaseComponent getComponentName() {
-		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
+		return (IChatBaseComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 
-	public int p_() {
+	public int getMaxStackSize() {
 		return 64;
 	}
 
@@ -141,32 +141,32 @@ public class wa implements IInventory {
 
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean canInteract(EntityHuman var1) {
 		return true;
 	}
 
-	public void b(EntityHuman var1) {
+	public void onContainerOpen(EntityHuman var1) {
 	}
 
-	public void c(EntityHuman var1) {
+	public void onContainerClose(EntityHuman var1) {
 	}
 
 	public boolean b(int var1, ItemStack var2) {
 		return true;
 	}
 
-	public int a_(int var1) {
+	public int getProperty(int var1) {
 		return 0;
 	}
 
 	public void b(int var1, int var2) {
 	}
 
-	public int g() {
+	public int getPropertiesCount() {
 		return 0;
 	}
 
-	public void l() {
+	public void clearInventory() {
 		for (int var1 = 0; var1 < this.c.length; ++var1) {
 			this.c[var1] = null;
 		}

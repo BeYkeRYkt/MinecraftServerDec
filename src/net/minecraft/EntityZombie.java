@@ -121,8 +121,8 @@ public class EntityZombie extends EntityMonster {
 				ItemStack var4 = this.p(4);
 				if (var4 != null) {
 					if (var4.e()) {
-						var4.setDurability(var4.h() + this.random.nextInt(2));
-						if (var4.h() >= var4.j()) {
+						var4.setWearout(var4.getWearout() + this.random.nextInt(2));
+						if (var4.getWearout() >= var4.getMaxWearout()) {
 							this.b(var4);
 							this.setArmor(4, (ItemStack) null);
 						}
@@ -384,13 +384,13 @@ public class EntityZombie extends EntityMonster {
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.bY();
-		if (var2 != null && var2.getItem() == Items.GOLDEN_APPLE && var2.getDurability() == 0 && this.cm() && this.a(MobEffectList.WEAKNESS)) {
+		if (var2 != null && var2.getItem() == Items.GOLDEN_APPLE && var2.getWearout() == 0 && this.cm() && this.a(MobEffectList.WEAKNESS)) {
 			if (!var1.playerProperties.instabuild) {
 				--var2.amount;
 			}
 
 			if (var2.amount <= 0) {
-				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
+				var1.playerInventory.setItem(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 
 			if (!this.world.isStatic) {

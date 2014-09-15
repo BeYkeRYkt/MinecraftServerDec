@@ -694,7 +694,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 
 			boolean isInventoryClick = packet.getSlot() >= 1 && packet.getSlot() < 36 + PlayerInventory.getHotbarSize();
 			boolean isValidItemCheck1 = item == null || item.getItem() != null;
-			boolean isValidItemCheck2 = item == null || item.getDurability() >= 0 && item.amount <= 64 && item.amount > 0;
+			boolean isValidItemCheck2 = item == null || item.getWearout() >= 0 && item.amount <= 64 && item.amount > 0;
 			if (isInventoryClick && isValidItemCheck1 && isValidItemCheck2) {
 				if (item == null) {
 					this.player.defaultContainer.setItem(packet.getSlot(), (ItemStack) null);

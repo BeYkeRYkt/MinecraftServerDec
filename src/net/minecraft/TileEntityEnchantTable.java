@@ -19,7 +19,7 @@ public class TileEntityEnchantTable extends TileEntity implements PacketTickable
 
 	public void write(NBTCompoundTag var1) {
 		super.write(var1);
-		if (this.k_()) {
+		if (this.hasCustomName()) {
 			var1.put("CustomName", this.p);
 		}
 
@@ -91,10 +91,10 @@ public class TileEntityEnchantTable extends TileEntity implements PacketTickable
 	}
 
 	public String getName() {
-		return this.k_() ? this.p : "container.enchant";
+		return this.hasCustomName() ? this.p : "container.enchant";
 	}
 
-	public boolean k_() {
+	public boolean hasCustomName() {
 		return this.p != null && this.p.length() > 0;
 	}
 
@@ -103,14 +103,14 @@ public class TileEntityEnchantTable extends TileEntity implements PacketTickable
 	}
 
 	public IChatBaseComponent getComponentName() {
-		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
+		return (IChatBaseComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {
 		return new aiq(var1, this.world, this.position);
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:enchanting_table";
 	}
 

@@ -17,7 +17,7 @@ final class DispenseBehaviorSkull extends DispenseBehaviorItem {
 				var3.setBlockAt(var5, var6.getBlockState().a(BlockSkull.a, BlockFace.UP), 3);
 				TileEntity var7 = var3.getTileEntity(var5);
 				if (var7 instanceof TileEntitySkull) {
-					if (var2.getDurability() == 3) {
+					if (var2.getWearout() == 3) {
 						GameProfile var8 = null;
 						if (var2.hasTag()) {
 							NBTCompoundTag var9 = var2.getTag();
@@ -30,7 +30,7 @@ final class DispenseBehaviorSkull extends DispenseBehaviorItem {
 
 						((TileEntitySkull) var7).a(var8);
 					} else {
-						((TileEntitySkull) var7).a(var2.getDurability());
+						((TileEntitySkull) var7).a(var2.getWearout());
 					}
 
 					((TileEntitySkull) var7).b(var4.getOpposite().toDirection() * 4);

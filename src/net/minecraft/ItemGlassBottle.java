@@ -28,7 +28,7 @@ public class ItemGlassBottle extends Item {
 						return new ItemStack(Items.POTION);
 					}
 
-					if (!var3.playerInventory.a(new ItemStack(Items.POTION))) {
+					if (!var3.playerInventory.pickup(new ItemStack(Items.POTION))) {
 						var3.dropItem(new ItemStack(Items.POTION, 1, 0), false);
 					}
 				}

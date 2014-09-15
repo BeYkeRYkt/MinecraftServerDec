@@ -9,7 +9,7 @@ public class aiy extends Container {
 		this.a = var2;
 		this.f = var3;
 		byte var5 = 3;
-		var2.b(var4);
+		var2.onContainerOpen(var4);
 		int var6 = (var5 - 4) * 18;
 		this.addSlot(new aiz(this, var2, 0, 8, 18));
 		this.addSlot(new aja(this, var2, 1, 8, 36, var3));
@@ -36,7 +36,7 @@ public class aiy extends Container {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.a.a(var1) && this.f.isAlive() && this.f.g((Entity) var1) < 8.0F;
+		return this.a.canInteract(var1) && this.f.isAlive() && this.f.g((Entity) var1) < 8.0F;
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {
@@ -45,8 +45,8 @@ public class aiy extends Container {
 		if (var4 != null && var4.hasItem()) {
 			ItemStack var5 = var4.getItemStack();
 			var3 = var5.getCopy();
-			if (var2 < this.a.n_()) {
-				if (!this.a(var5, this.a.n_(), this.slots.size(), true)) {
+			if (var2 < this.a.getSize()) {
+				if (!this.a(var5, this.a.getSize(), this.slots.size(), true)) {
 					return null;
 				}
 			} else if (this.getSlot(1).a(var5) && !this.getSlot(1).hasItem()) {
@@ -57,7 +57,7 @@ public class aiy extends Container {
 				if (!this.a(var5, 0, 1, false)) {
 					return null;
 				}
-			} else if (this.a.n_() <= 2 || !this.a(var5, 2, this.a.n_(), false)) {
+			} else if (this.a.getSize() <= 2 || !this.a(var5, 2, this.a.getSize(), false)) {
 				return null;
 			}
 
@@ -73,6 +73,6 @@ public class aiy extends Container {
 
 	public void onClose(EntityHuman var1) {
 		super.onClose(var1);
-		this.a.c(var1);
+		this.a.onContainerClose(var1);
 	}
 }

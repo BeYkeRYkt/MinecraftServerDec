@@ -226,16 +226,16 @@ public class PlayerInteractManager {
 			return false;
 		} else {
 			int var4 = var3.amount;
-			int var5 = var3.getDurability();
+			int var5 = var3.getWearout();
 			ItemStack var6 = var3.a(var2, var1);
-			if (var6 == var3 && (var6 == null || var6.amount == var4 && var6.l() <= 0 && var6.getDurability() == var5)) {
+			if (var6 == var3 && (var6 == null || var6.amount == var4 && var6.l() <= 0 && var6.getWearout() == var5)) {
 				return false;
 			} else {
 				var1.playerInventory.contents[var1.playerInventory.itemInHandIndex] = var6;
 				if (this.isCreative()) {
 					var6.amount = var4;
 					if (var6.e()) {
-						var6.setDurability(var5);
+						var6.setWearout(var5);
 					}
 				}
 
@@ -283,10 +283,10 @@ public class PlayerInteractManager {
 			if (var3 == null) {
 				return false;
 			} else if (this.isCreative()) {
-				int var12 = var3.getDurability();
+				int var12 = var3.getWearout();
 				int var10 = var3.amount;
 				boolean var11 = var3.a(var1, var2, var4, var5, var6, var7, var8);
-				var3.setDurability(var12);
+				var3.setWearout(var12);
 				var3.amount = var10;
 				return var11;
 			} else {

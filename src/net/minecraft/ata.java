@@ -14,7 +14,7 @@ public class ata implements vv {
 		return "anvil";
 	}
 
-	public boolean k_() {
+	public boolean hasCustomName() {
 		return false;
 	}
 
@@ -26,7 +26,7 @@ public class ata implements vv {
 		return new ContainerAnvil(var1, this.a, this.b, var2);
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:anvil";
 	}
 }

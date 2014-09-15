@@ -97,12 +97,12 @@ public class ContainerMerchant extends Container {
 		this.a.a_((EntityHuman) null);
 		super.onClose(var1);
 		if (!this.g.isStatic) {
-			ItemStack var2 = this.f.b(0);
+			ItemStack var2 = this.f.splitWithoutUpdate(0);
 			if (var2 != null) {
 				var1.dropItem(var2, false);
 			}
 
-			var2 = this.f.b(1);
+			var2 = this.f.splitWithoutUpdate(1);
 			if (var2 != null) {
 				var1.dropItem(var2, false);
 			}

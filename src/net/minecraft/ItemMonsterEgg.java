@@ -9,7 +9,7 @@ public class ItemMonsterEgg extends Item {
 
 	public String a(ItemStack var1) {
 		String var2 = ("" + LocaleI18n.get(this.getName() + ".name")).trim();
-		String var3 = EntityTypes.getNameById(var1.getDurability());
+		String var3 = EntityTypes.getNameById(var1.getWearout());
 		if (var3 != null) {
 			var2 = var2 + " " + LocaleI18n.get("entity." + var3 + ".name");
 		}
@@ -28,7 +28,7 @@ public class ItemMonsterEgg extends Item {
 				TileEntity var10 = var3.getTileEntity(var4);
 				if (var10 instanceof TileEntityMobSpawner) {
 					aqi var11 = ((TileEntityMobSpawner) var10).b();
-					var11.a(EntityTypes.getNameById(var1.getDurability()));
+					var11.a(EntityTypes.getNameById(var1.getWearout()));
 					var10.update();
 					var3.notify(var4);
 					if (!var2.playerProperties.instabuild) {
@@ -45,7 +45,7 @@ public class ItemMonsterEgg extends Item {
 				var13 = 0.5D;
 			}
 
-			Entity var12 = a(var3, var1.getDurability(), (double) var4.getX() + 0.5D, (double) var4.getY() + var13, (double) var4.getZ() + 0.5D);
+			Entity var12 = a(var3, var1.getWearout(), (double) var4.getX() + 0.5D, (double) var4.getY() + var13, (double) var4.getZ() + 0.5D);
 			if (var12 != null) {
 				if (var12 instanceof EntityLiving && var1.s()) {
 					var12.a(var1.q());
@@ -79,7 +79,7 @@ public class ItemMonsterEgg extends Item {
 					}
 
 					if (var2.getBlockState(var5).getBlock() instanceof axl) {
-						Entity var6 = a(var2, var1.getDurability(), (double) var5.getX() + 0.5D, (double) var5.getY() + 0.5D, (double) var5.getZ() + 0.5D);
+						Entity var6 = a(var2, var1.getWearout(), (double) var5.getX() + 0.5D, (double) var5.getY() + 0.5D, (double) var5.getZ() + 0.5D);
 						if (var6 != null) {
 							if (var6 instanceof EntityLiving && var1.s()) {
 								((EntityInsentient) var6).a(var1.q());

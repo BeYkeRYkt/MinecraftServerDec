@@ -46,7 +46,7 @@ public class zr extends zn {
 			Block var4 = var3.getBlock();
 			if (var4 == Blocks.CHEST) {
 				TileEntity var5 = var1.getTileEntity(var2);
-				if (var5 instanceof TileEntityChest && ((TileEntityChest) var5).l < 1) {
+				if (var5 instanceof TileEntityChest && ((TileEntityChest) var5).viewersNumber < 1) {
 					return true;
 				}
 			} else {

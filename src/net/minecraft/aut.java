@@ -14,7 +14,7 @@ public class aut implements vv {
 		return null;
 	}
 
-	public boolean k_() {
+	public boolean hasCustomName() {
 		return false;
 	}
 
@@ -26,7 +26,7 @@ public class aut implements vv {
 		return new aio(var1, this.a, this.b);
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:crafting_table";
 	}
 }

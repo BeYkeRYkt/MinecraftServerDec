@@ -77,8 +77,8 @@ public class EntitySkeleton extends EntityMonster implements IRangedEntity {
 				ItemStack var4 = this.p(4);
 				if (var4 != null) {
 					if (var4.e()) {
-						var4.setDurability(var4.h() + this.random.nextInt(2));
-						if (var4.h() >= var4.j()) {
+						var4.setWearout(var4.getWearout() + this.random.nextInt(2));
+						if (var4.getWearout() >= var4.getMaxWearout()) {
 							this.b(var4);
 							this.setArmor(4, (ItemStack) null);
 						}

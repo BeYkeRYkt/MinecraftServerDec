@@ -5,7 +5,7 @@ final class DispenseBehaviorDye extends DispenseBehaviorItem {
 	private boolean b = true;
 
 	protected ItemStack b(ISourceBlock var1, ItemStack var2) {
-		if (akv.a == akv.a(var2.getDurability())) {
+		if (akv.a == akv.a(var2.getWearout())) {
 			World var3 = var1.i();
 			Position var4 = var1.d().a(BlockDispenser.b(var1.f()));
 			if (ItemDye.a(var2, var3, var4)) {

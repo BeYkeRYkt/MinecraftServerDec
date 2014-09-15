@@ -15,7 +15,7 @@ public class EntityMinecartChest extends aed {
 		this.a(Item.getItemOf((Block) Blocks.CHEST), 1, 0.0F);
 	}
 
-	public int n_() {
+	public int getSize() {
 		return 27;
 	}
 
@@ -31,7 +31,7 @@ public class EntityMinecartChest extends aed {
 		return 8;
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:chest";
 	}
 

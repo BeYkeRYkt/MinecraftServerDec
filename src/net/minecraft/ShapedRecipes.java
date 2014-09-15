@@ -20,10 +20,10 @@ public class ShapedRecipes implements IRecipe {
 	}
 
 	public ItemStack[] b(InventoryCrafting var1) {
-		ItemStack[] var2 = new ItemStack[var1.n_()];
+		ItemStack[] var2 = new ItemStack[var1.getSize()];
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {
-			ItemStack var4 = var1.a(var3);
+			ItemStack var4 = var1.getItem(var3);
 			if (var4 != null && var4.getItem().r()) {
 				var2[var3] = new ItemStack(var4.getItem().getCraftingResult());
 			}
@@ -72,7 +72,7 @@ public class ShapedRecipes implements IRecipe {
 						return false;
 					}
 
-					if (var9.getDurability() != 32767 && var9.getDurability() != var10.getDurability()) {
+					if (var9.getWearout() != 32767 && var9.getWearout() != var10.getWearout()) {
 						return false;
 					}
 				}
@@ -85,8 +85,8 @@ public class ShapedRecipes implements IRecipe {
 	public ItemStack a(InventoryCrafting var1) {
 		ItemStack var2 = this.getResult().getCopy();
 		if (this.e) {
-			for (int var3 = 0; var3 < var1.n_(); ++var3) {
-				ItemStack var4 = var1.a(var3);
+			for (int var3 = 0; var3 < var1.getSize(); ++var3) {
+				ItemStack var4 = var1.getItem(var3);
 				if (var4 != null && var4.hasTag()) {
 					var2.setTag((NBTCompoundTag) var4.getTag().getCopy());
 				}

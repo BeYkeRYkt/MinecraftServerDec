@@ -51,8 +51,8 @@ public class ze extends zn {
 			} else if (this.f == 1 && var4 == Blocks.AIR) {
 				wa var5 = this.c.co();
 
-				for (int var6 = 0; var6 < var5.n_(); ++var6) {
-					ItemStack var7 = var5.a(var6);
+				for (int var6 = 0; var6 < var5.getSize(); ++var6) {
+					ItemStack var7 = var5.getItem(var6);
 					boolean var8 = false;
 					if (var7 != null) {
 						if (var7.getItem() == Items.WHEAT_SEEDS) {
@@ -70,7 +70,7 @@ public class ze extends zn {
 					if (var8) {
 						--var7.amount;
 						if (var7.amount <= 0) {
-							var5.a(var6, (ItemStack) null);
+							var5.setItem(var6, (ItemStack) null);
 						}
 						break;
 					}

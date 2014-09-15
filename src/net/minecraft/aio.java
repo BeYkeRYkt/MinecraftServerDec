@@ -34,14 +34,14 @@ public class aio extends Container {
 	}
 
 	public void a(IInventory var1) {
-		this.f.a(0, CraftingManager.getInstance().a(this.a, this.g));
+		this.f.setItem(0, CraftingManager.getInstance().a(this.a, this.g));
 	}
 
 	public void onClose(EntityHuman var1) {
 		super.onClose(var1);
 		if (!this.g.isStatic) {
 			for (int var2 = 0; var2 < 9; ++var2) {
-				ItemStack var3 = this.a.b(var2);
+				ItemStack var3 = this.a.splitWithoutUpdate(var2);
 				if (var3 != null) {
 					var1.dropItem(var3, false);
 				}

@@ -13,20 +13,20 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 	public TileEntityChest i;
 	public float j;
 	public float k;
-	public int l;
+	public int viewersNumber;
 	private int n;
 	private int o = -1;
 	private String p;
 
-	public int n_() {
+	public int getSize() {
 		return 27;
 	}
 
-	public ItemStack a(int var1) {
+	public ItemStack getItem(int var1) {
 		return this.m[var1];
 	}
 
-	public ItemStack a(int var1, int var2) {
+	public ItemStack splitStack(int var1, int var2) {
 		if (this.m[var1] != null) {
 			ItemStack var3;
 			if (this.m[var1].amount <= var2) {
@@ -48,7 +48,7 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 		}
 	}
 
-	public ItemStack b(int var1) {
+	public ItemStack splitWithoutUpdate(int var1) {
 		if (this.m[var1] != null) {
 			ItemStack var2 = this.m[var1];
 			this.m[var1] = null;
@@ -58,20 +58,20 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 		}
 	}
 
-	public void a(int var1, ItemStack var2) {
+	public void setItem(int var1, ItemStack var2) {
 		this.m[var1] = var2;
-		if (var2 != null && var2.amount > this.p_()) {
-			var2.amount = this.p_();
+		if (var2 != null && var2.amount > this.getMaxStackSize()) {
+			var2.amount = this.getMaxStackSize();
 		}
 
 		this.update();
 	}
 
 	public String getName() {
-		return this.k_() ? this.p : "container.chest";
+		return this.hasCustomName() ? this.p : "container.chest";
 	}
 
-	public boolean k_() {
+	public boolean hasCustomName() {
 		return this.p != null && this.p.length() > 0;
 	}
 
@@ -82,7 +82,7 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
-		this.m = new ItemStack[this.n_()];
+		this.m = new ItemStack[this.getSize()];
 		if (var1.isTagAssignableFrom("CustomName", 8)) {
 			this.p = var1.getString("CustomName");
 		}
@@ -111,17 +111,17 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 		}
 
 		var1.put("Items", (NBTTag) var2);
-		if (this.k_()) {
+		if (this.hasCustomName()) {
 			var1.put("CustomName", this.p);
 		}
 
 	}
 
-	public int p_() {
+	public int getMaxStackSize() {
 		return 64;
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean canInteract(EntityHuman var1) {
 		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
@@ -199,8 +199,8 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 		int var3 = this.position.getZ();
 		++this.n;
 		float var4;
-		if (!this.world.isStatic && this.l != 0 && (this.n + var1 + var2 + var3) % 200 == 0) {
-			this.l = 0;
+		if (!this.world.isStatic && this.viewersNumber != 0 && (this.n + var1 + var2 + var3) % 200 == 0) {
+			this.viewersNumber = 0;
 			var4 = 5.0F;
 			List var5 = this.world.a(EntityHuman.class, new AxisAlignedBB((double) ((float) var1 - var4), (double) ((float) var2 - var4), (double) ((float) var3 - var4), (double) ((float) (var1 + 1) + var4), (double) ((float) (var2 + 1) + var4), (double) ((float) (var3 + 1) + var4)));
 			Iterator var6 = var5.iterator();
@@ -210,7 +210,7 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 				if (var7.activeContainer instanceof ContainerChest) {
 					IInventory var8 = ((ContainerChest) var7.activeContainer).e();
 					if (var8 == this || var8 instanceof InventoryLargeChest && ((InventoryLargeChest) var8).a((IInventory) this)) {
-						++this.l;
+						++this.viewersNumber;
 					}
 				}
 			}
@@ -219,7 +219,7 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 		this.k = this.j;
 		var4 = 0.1F;
 		double var14;
-		if (this.l > 0 && this.j == 0.0F && this.f == null && this.h == null) {
+		if (this.viewersNumber > 0 && this.j == 0.0F && this.f == null && this.h == null) {
 			double var11 = (double) var1 + 0.5D;
 			var14 = (double) var3 + 0.5D;
 			if (this.i != null) {
@@ -233,9 +233,9 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 			this.world.makeSound(var11, (double) var2 + 0.5D, var14, "random.chestopen", 0.5F, this.world.s.nextFloat() * 0.1F + 0.9F);
 		}
 
-		if (this.l == 0 && this.j > 0.0F || this.l > 0 && this.j < 1.0F) {
+		if (this.viewersNumber == 0 && this.j > 0.0F || this.viewersNumber > 0 && this.j < 1.0F) {
 			float var12 = this.j;
-			if (this.l > 0) {
+			if (this.viewersNumber > 0) {
 				this.j += var4;
 			} else {
 				this.j -= var4;
@@ -269,31 +269,31 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 
 	public boolean c(int var1, int var2) {
 		if (var1 == 1) {
-			this.l = var2;
+			this.viewersNumber = var2;
 			return true;
 		} else {
 			return super.c(var1, var2);
 		}
 	}
 
-	public void b(EntityHuman var1) {
-		if (!var1.isSpectator()) {
-			if (this.l < 0) {
-				this.l = 0;
+	public void onContainerOpen(EntityHuman who) {
+		if (!who.isSpectator()) {
+			if (this.viewersNumber < 0) {
+				this.viewersNumber = 0;
 			}
 
-			++this.l;
-			this.world.c(this.position, this.getBlock(), 1, this.l);
+			++this.viewersNumber;
+			this.world.c(this.position, this.getBlock(), 1, this.viewersNumber);
 			this.world.c(this.position, this.getBlock());
 			this.world.c(this.position.b(), this.getBlock());
 		}
 
 	}
 
-	public void c(EntityHuman var1) {
-		if (!var1.isSpectator() && this.getBlock() instanceof BlockChest) {
-			--this.l;
-			this.world.c(this.position, this.getBlock(), 1, this.l);
+	public void onContainerClose(EntityHuman who) {
+		if (!who.isSpectator() && this.getBlock() instanceof BlockChest) {
+			--this.viewersNumber;
+			this.world.c(this.position, this.getBlock(), 1, this.viewersNumber);
 			this.world.c(this.position, this.getBlock());
 			this.world.c(this.position.b(), this.getBlock());
 		}
@@ -322,7 +322,7 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 		return this.o;
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:chest";
 	}
 
@@ -330,18 +330,18 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 		return new ContainerChest(var1, this, var2);
 	}
 
-	public int a_(int var1) {
+	public int getProperty(int var1) {
 		return 0;
 	}
 
 	public void b(int var1, int var2) {
 	}
 
-	public int g() {
+	public int getPropertiesCount() {
 		return 0;
 	}
 
-	public void l() {
+	public void clearInventory() {
 		for (int var1 = 0; var1 < this.m.length; ++var1) {
 			this.m[var1] = null;
 		}

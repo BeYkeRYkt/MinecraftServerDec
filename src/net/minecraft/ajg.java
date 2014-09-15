@@ -40,8 +40,8 @@ public class ajg extends Slot {
 		this.c(var2);
 		aqc var3 = this.a.i();
 		if (var3 != null) {
-			ItemStack var4 = this.a.a(0);
-			ItemStack var5 = this.a.a(1);
+			ItemStack var4 = this.a.getItem(0);
+			ItemStack var5 = this.a.getItem(1);
 			if (this.a(var3, var4, var5) || this.a(var3, var5, var4)) {
 				this.h.a(var3);
 				var1.b(StatisticList.G);
@@ -53,8 +53,8 @@ public class ajg extends Slot {
 					var5 = null;
 				}
 
-				this.a.a(0, var4);
-				this.a.a(1, var5);
+				this.a.setItem(0, var4);
+				this.a.setItem(1, var5);
 			}
 		}
 

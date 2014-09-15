@@ -10,7 +10,7 @@ class air extends wa {
 		this.a = var1;
 	}
 
-	public int p_() {
+	public int getMaxStackSize() {
 		return 64;
 	}
 

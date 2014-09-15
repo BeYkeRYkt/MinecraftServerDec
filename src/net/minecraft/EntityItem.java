@@ -126,7 +126,7 @@ public class EntityItem extends Entity {
 						return false;
 					} else if (var3.getItem() == null) {
 						return false;
-					} else if (var3.getItem().k() && var3.getDurability() != var2.getDurability()) {
+					} else if (var3.getItem().k() && var3.getWearout() != var2.getWearout()) {
 						return false;
 					} else if (var3.amount < var2.amount) {
 						return var1.a(this);
@@ -234,7 +234,7 @@ public class EntityItem extends Entity {
 		if (!this.world.isStatic) {
 			ItemStack var2 = this.l();
 			int var3 = var2.amount;
-			if (this.d == 0 && (this.g == null || 6000 - this.c <= 200 || this.g.equals(var1.getName())) && var1.playerInventory.a(var2)) {
+			if (this.d == 0 && (this.g == null || 6000 - this.c <= 200 || this.g.equals(var1.getName())) && var1.playerInventory.pickup(var2)) {
 				if (var2.getItem() == Item.getItemOf(Blocks.LOG)) {
 					var1.b((Statistic) AchievementList.g);
 				}
@@ -276,7 +276,7 @@ public class EntityItem extends Entity {
 	}
 
 	public String getName() {
-		return this.k_() ? this.getCustomName() : LocaleI18n.get("item." + this.l().a());
+		return this.hasCustomName() ? this.getCustomName() : LocaleI18n.get("item." + this.l().a());
 	}
 
 	public boolean aE() {
