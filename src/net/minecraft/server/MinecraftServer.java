@@ -8,11 +8,11 @@ import com.google.common.collect.Queues;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListenableFutureTask;
+
 import net.minecraft.util.com.mojang.authlib.GameProfile;
 import net.minecraft.util.com.mojang.authlib.GameProfileRepository;
 import net.minecraft.util.com.mojang.authlib.minecraft.MinecraftSessionService;
 import net.minecraft.util.com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
-
 import net.minecraft.util.io.netty.buffer.ByteBuf;
 import net.minecraft.util.io.netty.buffer.ByteBufOutputStream;
 import net.minecraft.util.io.netty.buffer.Unpooled;
@@ -48,6 +48,7 @@ import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldSaveEvent;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginLoadOrder;
 
 import pipebukkit.server.PipeServer;
 import pipebukkit.server.command.PipeServerCommandSender;
@@ -386,42 +387,41 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 				worldServer = new SecondaryWorldServer(this, datamanager, name, worldSettings, dimension, this.worlds.get(0), this.profiler).b();
 			}
 
-			Bukkit.getPluginManager().callEvent(new WorldInitEvent(worldServer.getBukkitWorld()));
-
 			worldServer.addIWorldAccess(new WorldManager(this, worldServer));
 			worldServer.getWorldData().setGameMode(this.getServerGameMode());
 
+			Bukkit.getPluginManager().callEvent(new WorldInitEvent(worldServer.getBukkitWorld()));
+
 			worlds.add(worldServer);
+			getPipeServer().addWorld(worldServer);
+
+			generateTerrain(worldServer);
+
+			Bukkit.getPluginManager().callEvent(new WorldLoadEvent(worldServer.getBukkitWorld()));
 		}
 
 		this.playerList.setPlayerFileData(this.worlds.toArray(new WorldServer[0]));
 		this.setWorldsDifficulty(this.getDifficulty());
-		this.generateTerrain();
+
+		getPipeServer().enablePlugins(PluginLoadOrder.POSTWORLD);
 	}
 
-	protected void generateTerrain() {
-		for (int level = 0; level < worlds.size(); level++) {
-			logger.info("Preparing start region for level " + level);
-			WorldServer worldServer = this.worlds.get(level);
-			Position spawnPosition = worldServer.getSpawnPosition();
-			long timeA = getCurrentMillis();
-			int chunksLoaded = 0;
-			for (int x = -192; x <= 192 && this.isTicking(); x += 16) {
-				for (int z = -192; z <= 192 && this.isTicking(); z += 16) {
-					long timeB = getCurrentMillis();
-					if (timeB - timeA > 1000L) {
-						this.a_("Preparing spawn area", chunksLoaded * 100 / 625);
-						timeA = timeB;
-					}
-	
-					++chunksLoaded;
-					worldServer.chunkProviderServer.getChunkAt(spawnPosition.getX() + x >> 4, spawnPosition.getZ() + z >> 4);
+	public void generateTerrain(WorldServer worldServer) {
+		logger.info("Preparing start region for level " + worldServer.getWorldData().getLevelName());
+		Position spawnPosition = worldServer.getSpawnPosition();
+		long timeA = getCurrentMillis();
+		int chunksLoaded = 0;
+		for (int x = -192; x <= 192 && this.isTicking(); x += 16) {
+			for (int z = -192; z <= 192 && this.isTicking(); z += 16) {
+				long timeB = getCurrentMillis();
+				if (timeB - timeA > 1000L) {
+					logger.info("Preparing spawn area: " + chunksLoaded * 100 / 625+ "%");
+					timeA = timeB;
 				}
-			}
-		}
 
-		for (WorldServer worldServer : worlds) {
-			Bukkit.getPluginManager().callEvent(new WorldLoadEvent(worldServer.getBukkitWorld()));
+				++chunksLoaded;
+				worldServer.chunkProviderServer.getChunkAt(spawnPosition.getX() + x >> 4, spawnPosition.getZ() + z >> 4);
+			}
 		}
 	}
 
@@ -434,10 +434,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	public abstract boolean isHardcore();
 
 	public abstract int getOpPermissionLevel();
-
-	protected void a_(String var1, int var2) {
-		logger.info(var1 + ": " + var2 + "%");
-	}
 
 	protected void saveChunks(boolean silenced) {
 		if (!this.N) {

@@ -2442,12 +2442,4 @@ public abstract class World implements ard {
 		return worldProvider;
 	}
 
-	private org.bukkit.World bukkitworld;
-	public org.bukkit.World getBukkitWorld() {
-		if (bukkitworld == null) {
-			bukkitworld = new PipeWorld((WorldServer) this);
-		}
-		return bukkitworld;
-	}
-
 }

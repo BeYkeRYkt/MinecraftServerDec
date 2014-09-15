@@ -18,7 +18,7 @@ public abstract class Entity implements CommandSenderInterface {
 	public Entity passenger;
 	public Entity vehicle;
 	public boolean n;
-	public World world;
+	public WorldServer world;
 	public double previousX;
 	public double previousY;
 	public double previousZ;
@@ -105,7 +105,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.justCreated = true;
 		this.uuid = MathHelper.a(this.random);
 		this.commandBlockStat = new CommandBlockStatistic();
-		this.world = var1;
+		this.world = (WorldServer) var1;
 		this.b(0.0D, 0.0D, 0.0D);
 		if (var1 != null) {
 			this.dimensionId = var1.worldProvider.getDimensionId();
@@ -788,7 +788,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public void setWorld(World world) {
-		this.world = world;
+		this.world = (WorldServer) world;
 	}
 
 	public void setLocation(double var1, double var3, double var5, float var7, float var8) {

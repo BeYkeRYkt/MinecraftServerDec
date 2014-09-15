@@ -19,6 +19,8 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import pipebukkit.server.PipeWorld;
+
 public class WorldServer extends World implements ITaskScheduler {
 
 	private static final Logger logger = LogManager.getLogger();
@@ -814,6 +816,14 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	public boolean isMainThread() {
 		return this.minecraftserver.isMainThread();
+	}
+
+	private org.bukkit.World bukkitworld;
+	public org.bukkit.World getBukkitWorld() {
+		if (bukkitworld == null) {
+			bukkitworld = new PipeWorld(this);
+		}
+		return bukkitworld;
 	}
 
 }

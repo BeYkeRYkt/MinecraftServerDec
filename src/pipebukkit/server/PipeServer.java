@@ -26,12 +26,19 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
+import net.minecraft.Difficulty;
 import net.minecraft.EntityPlayer;
 import net.minecraft.EnumGameMode;
 import net.minecraft.ExceptionWorldConflict;
+import net.minecraft.IDataManager;
 import net.minecraft.JsonListEntry;
+import net.minecraft.LevelType;
+import net.minecraft.SecondaryWorldServer;
+import net.minecraft.ServerNBTManager;
+import net.minecraft.WorldManager;
 import net.minecraft.WorldNBTStorage;
 import net.minecraft.WorldServer;
+import net.minecraft.WorldSettings;
 import net.minecraft.server.MinecraftServer;
 
 import org.apache.commons.lang.Validate;
@@ -55,6 +62,8 @@ import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.world.WorldInitEvent;
+import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldSaveEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.help.HelpMap;
@@ -91,6 +100,7 @@ import com.avaje.ebean.config.ServerConfig;
 import com.avaje.ebean.config.dbplatform.SQLitePlatform;
 import com.avaje.ebeaninternal.server.lib.sql.TransactionIsolation;
 import com.google.common.base.Charsets;
+
 import net.minecraft.util.com.mojang.authlib.GameProfile;
 
 public class PipeServer implements Server {
@@ -148,14 +158,11 @@ public class PipeServer implements Server {
 		enablePlugins(PluginLoadOrder.STARTUP);
 	}
 
-	public void finishWorldsLoading() {
-		for (WorldServer world : MinecraftServer.getInstance().worlds) {
-			worlds.put(world.getBukkitWorld().getName().toLowerCase(), new PipeWorld(world));
-		}
-		enablePlugins(PluginLoadOrder.POSTWORLD);
+	public void addWorld(WorldServer worldServer) {
+		worlds.put(worldServer.getBukkitWorld().getName().toLowerCase(), worldServer.getBukkitWorld());
 	}
 
-	private void enablePlugins(PluginLoadOrder order) {
+	public void enablePlugins(PluginLoadOrder order) {
 		for (Plugin plugin : pluginManager.getPlugins()) {
 			if ((!plugin.isEnabled()) && (plugin.getDescription().getLoad() == order)) {
 				pluginManager.enablePlugin(plugin);
@@ -308,8 +315,34 @@ public class PipeServer implements Server {
 
 	@Override
 	public World createWorld(WorldCreator creator) {
-		// TODO Auto-generated method stub
-		return null;
+		if (worlds.containsKey(creator.name().toLowerCase())) {
+			return worlds.get(creator.name());
+		}
+
+		LevelType type = LevelType.getByName(creator.type().getName());
+		if (type == null) {
+			type = LevelType.DEFAULT;
+		}
+		WorldSettings worldSettings = new WorldSettings(creator.seed(), MinecraftServer.getInstance().getServerGameMode(), MinecraftServer.getInstance().isStructureGenerationEnabled(), MinecraftServer.getInstance().isHardcore(), type);
+		IDataManager datamanager = new ServerNBTManager(Bukkit.getWorldContainer(), creator.name(), true);
+		int dimension = 1337 + worlds.size();
+
+		WorldServer worldServer = new SecondaryWorldServer(MinecraftServer.getInstance(), datamanager, creator.name(), worldSettings, dimension, MinecraftServer.getInstance().getPrimaryWorld(), MinecraftServer.getInstance().profiler).b();
+		worldServer.addIWorldAccess(new WorldManager(MinecraftServer.getInstance(), worldServer));
+		worldServer.getWorldData().setGameMode(MinecraftServer.getInstance().getServerGameMode());
+
+		Bukkit.getPluginManager().callEvent(new WorldInitEvent(worldServer.getBukkitWorld()));
+
+		MinecraftServer.getInstance().worlds.add(worldServer);
+		addWorld(worldServer);
+
+		MinecraftServer.getInstance().generateTerrain(worldServer);
+
+		Bukkit.getPluginManager().callEvent(new WorldLoadEvent(worldServer.getBukkitWorld()));
+
+		worldServer.getWorldData().setDifficulty(Difficulty.EASY);
+
+		return worldServer.getBukkitWorld();
 	}
 
 	@Override
