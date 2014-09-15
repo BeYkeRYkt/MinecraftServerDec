@@ -28,6 +28,7 @@ import javax.imageio.ImageIO;
 
 import net.minecraft.EntityPlayer;
 import net.minecraft.EnumGameMode;
+import net.minecraft.ExceptionWorldConflict;
 import net.minecraft.JsonListEntry;
 import net.minecraft.WorldNBTStorage;
 import net.minecraft.WorldServer;
@@ -54,6 +55,8 @@ import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.world.WorldSaveEvent;
+import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.help.HelpMap;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -147,7 +150,7 @@ public class PipeServer implements Server {
 
 	public void finishWorldsLoading() {
 		for (WorldServer world : MinecraftServer.getInstance().worlds) {
-			worlds.put(world.getWorldData().getLevelName(), new PipeWorld(world));
+			worlds.put(world.getBukkitWorld().getName().toLowerCase(), new PipeWorld(world));
 		}
 		enablePlugins(PluginLoadOrder.POSTWORLD);
 	}
@@ -310,15 +313,56 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public boolean unloadWorld(String arg0, boolean arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean unloadWorld(String name, boolean save) {
+		return unloadWorld(getWorld(name), save);
 	}
 
 	@Override
-	public boolean unloadWorld(World arg0, boolean arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean unloadWorld(World world, boolean save) {
+		if (world == null) {
+			return false;
+		}
+
+		if (!(world instanceof PipeWorld)) {
+			return false;
+		}
+
+		PipeWorld pipeworld = (PipeWorld) world;
+
+		if (pipeworld.getHandle().getWorldProvider().getDimensionId() <= 1) {
+			return false;
+		}
+
+		if (!MinecraftServer.getInstance().worlds.contains(pipeworld.getHandle())) {
+			return false;
+		}
+
+		for (Player player : Bukkit.getOnlinePlayers()) {
+			if (player.getWorld() == world) {
+				return false;
+			}
+		}
+
+		WorldUnloadEvent worldUnloadEvent = new WorldUnloadEvent(world);
+		Bukkit.getPluginManager().callEvent(worldUnloadEvent);
+		if (worldUnloadEvent.isCancelled()) {
+			return false;
+		}
+
+		if (save) {
+			try {
+				pipeworld.getHandle().save(true, null);
+				pipeworld.getHandle().saveLevel();
+				getPluginManager().callEvent(new WorldSaveEvent(world));
+			} catch (ExceptionWorldConflict ex) {
+				getLogger().log(Level.SEVERE, null, ex);
+			}
+		}
+
+		worlds.remove(world.getName().toLowerCase());
+		MinecraftServer.getInstance().worlds.remove(pipeworld.getHandle());
+
+		return true;
 	}
 
 	@Override
@@ -620,7 +664,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public World getWorld(String name) {
-		return worlds.get(name);
+		return worlds.get(name.toLowerCase());
 	}
 
 	@Override

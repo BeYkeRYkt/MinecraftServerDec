@@ -40,8 +40,8 @@ public class WorldServer extends World implements ITaskScheduler {
 	private int T;
 	private static final List U = Lists.newArrayList((Object[]) (new StructurePieceTreasure[] { new StructurePieceTreasure(Items.STICK, 0, 1, 3, 10), new StructurePieceTreasure(Item.getItemOf(Blocks.PLANKS), 0, 1, 3, 10), new StructurePieceTreasure(Item.getItemOf(Blocks.LOG), 0, 1, 3, 10), new StructurePieceTreasure(Items.STONE_AXE, 0, 1, 1, 3), new StructurePieceTreasure(Items.WOODEN_AXE, 0, 1, 1, 5), new StructurePieceTreasure(Items.STONE_PICKAXE, 0, 1, 1, 3), new StructurePieceTreasure(Items.WOODEN_PICKAXE, 0, 1, 1, 5), new StructurePieceTreasure(Items.APPLE, 0, 2, 3, 5), new StructurePieceTreasure(Items.BREAD, 0, 2, 3, 3), new StructurePieceTreasure(Item.getItemOf(Blocks.LOG2), 0, 1, 3, 10) }));
 
-	public WorldServer(MinecraftServer minecraftserver, IDataManager dataManager, WorldData worldData, int dimension, MethodProfiler methodProfiler) {
-		super(dataManager, worldData, WorldProvider.getById(dimension), methodProfiler, false);
+	public WorldServer(MinecraftServer minecraftserver, IDataManager dataManager, String levelName, WorldSettings settings, int dimension, MethodProfiler methodProfiler) {
+		super(dataManager, levelName, settings, WorldProvider.getById(dimension), methodProfiler, false);
 		this.minecraftserver = minecraftserver;
 		this.entityTracker = new EntityTracker(this);
 		this.playerChunkMap = new PlayerChunkMap(this);

@@ -59,14 +59,17 @@ public abstract class World implements ard {
 	private final WorldBorder worldborder;
 	int[] H;
 
-	protected World(IDataManager var1, WorldData var2, WorldProvider var3, MethodProfiler var4, boolean var5) {
+	protected World(IDataManager var1, String levelName, WorldSettings settings, WorldProvider var3, MethodProfiler var4, boolean var5) {
 		this.K = this.s.nextInt(12000);
 		this.F = true;
 		this.G = true;
 		this.H = new int['\u8000'];
 		this.dataManager = var1;
 		this.B = var4;
-		this.worldData = var2;
+		this.worldData = var1.getWorldData();
+		if (worldData == null) {
+			worldData = new WorldData(settings, levelName);
+		}
 		this.worldProvider = var3;
 		this.isStatic = var5;
 		this.worldborder = var3.getWorldBorder();
@@ -2433,6 +2436,10 @@ public abstract class World implements ard {
 		int zDistToSpawn = chunkZ * 16 + 8 - position.getZ();
 		short minDist = 128;
 		return xDistToSpawn >= -minDist && xDistToSpawn <= minDist && zDistToSpawn >= -minDist && zDistToSpawn <= minDist;
+	}
+
+	public WorldProvider getWorldProvider() {
+		return worldProvider;
 	}
 
 	private org.bukkit.World bukkitworld;

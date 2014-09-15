@@ -364,7 +364,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.worlds = new ArrayList<WorldServer>();
 
 		WorldSettings worldSettings = new WorldSettings(seed, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), levelType);
-		WorldData worldData = new WorldData(worldSettings, levelname);
 
 		for (int i = 0; i < 3; ++i) {
 			byte dimension = 0;
@@ -379,11 +378,12 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			WorldServer worldServer = null;
 			if (i == 0) {
 				IDataManager datamanager = new ServerNBTManager(Bukkit.getWorldContainer(), levelname, true);
-				worldServer = new WorldServer(this, datamanager, worldData, dimension, this.profiler).b();
+				worldServer = new WorldServer(this, datamanager, levelName, worldSettings, dimension, this.profiler).b();
 				worldServer.applyWorldSettings(worldSettings);
 			} else {
-				IDataManager datamanager = new ServerNBTManager(Bukkit.getWorldContainer(), dimension == -1 ? levelname+"_nether" : levelname+"_the_end", true);
-				worldServer = new SecondaryWorldServer(this, datamanager, dimension, this.worlds.get(0), this.profiler).b();
+				String name = dimension == -1 ? levelname+"_nether" : levelname+"_the_end";
+				IDataManager datamanager = new ServerNBTManager(Bukkit.getWorldContainer(), name, true);
+				worldServer = new SecondaryWorldServer(this, datamanager, name, worldSettings, dimension, this.worlds.get(0), this.profiler).b();
 			}
 
 			Bukkit.getPluginManager().callEvent(new WorldInitEvent(worldServer.getBukkitWorld()));
