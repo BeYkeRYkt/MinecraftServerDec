@@ -112,6 +112,29 @@ aho - IProjectile
 ahr - EntityProjectile
 ahs - EntityEgg
 
+ai - Predicate (Again String ?)
+aic - ???
+aie - ContainerAnvilInventory
+aif - SlotAnvilResult
+aii - ContainerBrewingStand ???
+aij - SlotBrewing ???
+aik - SlotPotionBottle
+aio - ContainerWorkbench
+aip - ???
+aiq - ContainerEnchantTable
+air - ContainerEnchantTableInventory
+ais - SlotEnchant
+ait - ???
+aiu - ??? (https://github.com/Bukkit/mc-dev/blob/c1627dc9cc7505581993eb0fa15597cb36e94244/net/minecraft/server/TileEntityFurnace.java)
+aiv - ContainerFurnace
+aiw - SlotFurnaceResult
+aix - ContainerHopper
+aiy - ContainerHorse
+aiz - SlotHorseSaddle
+
+**//CONTINUE//**
+
+
 ar -  PredicateEmptyList  (String ?)
 ard - ??? (IBlockAccess ?)
 ari - ChunkCoordinatesPortal
