@@ -20,7 +20,7 @@ public class BanIPCommand extends AbstractCommand {
 	}
 
 	public boolean a(CommandSenderInterface var1) {
-		return MinecraftServer.getInstance().getPlayerList().j().b() && super.a(var1);
+		return MinecraftServer.getInstance().getPlayerList().getIpBanList().isEnabled() && super.a(var1);
 	}
 
 	public String getUsage(CommandSenderInterface var1) {
@@ -29,17 +29,17 @@ public class BanIPCommand extends AbstractCommand {
 
 	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dm, dp {
 		if (var2.length >= 1 && var2[0].length() > 1) {
-			IJSONComponent var3 = var2.length >= 2 ? a(var1, var2, 1) : null;
+			IChatBaseComponent var3 = var2.length >= 2 ? a(var1, var2, 1) : null;
 			Matcher var4 = a.matcher(var2[0]);
 			if (var4.matches()) {
-				this.a(var1, var2[0], var3 == null ? null : var3.c());
+				this.a(var1, var2[0], var3 == null ? null : var3.getStrippedMessage());
 			} else {
-				EntityPlayer var5 = MinecraftServer.getInstance().getPlayerList().a(var2[0]);
+				EntityPlayer var5 = MinecraftServer.getInstance().getPlayerList().getPlayer(var2[0]);
 				if (var5 == null) {
 					throw new dm("commands.banip.invalid", new Object[0]);
 				}
 
-				this.a(var1, var5.w(), var3 == null ? null : var3.c());
+				this.a(var1, var5.w(), var3 == null ? null : var3.getStrippedMessage());
 			}
 
 		} else {
@@ -52,16 +52,16 @@ public class BanIPCommand extends AbstractCommand {
 	}
 
 	protected void a(CommandSenderInterface var1, String var2, String var3) {
-		se var4 = new se(var2, (Date) null, var1.d_(), (Date) null, var3);
-		MinecraftServer.getInstance().getPlayerList().j().a((sr) var4);
+		IpBanEntry var4 = new IpBanEntry(var2, (Date) null, var1.getName(), (Date) null, var3);
+		MinecraftServer.getInstance().getPlayerList().getIpBanList().add((JsonListEntry) var4);
 		List var5 = MinecraftServer.getInstance().getPlayerList().b(var2);
 		String[] var6 = new String[var5.size()];
 		int var7 = 0;
 
 		EntityPlayer var9;
-		for (Iterator var8 = var5.iterator(); var8.hasNext(); var6[var7++] = var9.d_()) {
+		for (Iterator var8 = var5.iterator(); var8.hasNext(); var6[var7++] = var9.getName()) {
 			var9 = (EntityPlayer) var8.next();
-			var9.playerConncetion.c("You have been IP banned.");
+			var9.playerConnection.disconnect("You have been IP banned.");
 		}
 
 		if (var5.isEmpty()) {

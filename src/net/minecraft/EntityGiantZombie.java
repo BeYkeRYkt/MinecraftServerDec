@@ -4,10 +4,10 @@ public class EntityGiantZombie extends EntityMonster {
 
 	public EntityGiantZombie(World var1) {
 		super(var1);
-		this.a(this.J * 6.0F, this.K * 6.0F);
+		this.a(this.height * 6.0F, this.width * 6.0F);
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return 10.440001F;
 	}
 
@@ -19,6 +19,6 @@ public class EntityGiantZombie extends EntityMonster {
 	}
 
 	public float a(Position var1) {
-		return this.o.o(var1) - 0.5F;
+		return this.world.o(var1) - 0.5F;
 	}
 }

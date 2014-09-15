@@ -13,11 +13,11 @@ public class BlockFlowing extends axl {
 		super(var1);
 	}
 
-	private void f(World var1, Position var2, bec var3) {
-		var1.a(var2, b(this.material).P().a(b, var3.b(b)), 2);
+	private void f(World var1, Position var2, IBlockState var3) {
+		var1.setBlockAt(var2, b(this.material).getBlockState().a(b, var3.b(b)), 2);
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		int var5 = ((Integer) var3.b(b)).intValue();
 		byte var6 = 1;
 		if (this.material == Material.LAVA && !var1.worldProvider.n()) {
@@ -30,9 +30,9 @@ public class BlockFlowing extends axl {
 			int var8 = -100;
 			this.a = 0;
 
-			PaintingDirection var10;
+			BlockFace var10;
 			for (Iterator var9 = en.a.iterator(); var9.hasNext(); var8 = this.a(var1, var2.a(var10), var8)) {
-				var10 = (PaintingDirection) var9.next();
+				var10 = (BlockFace) var9.next();
 			}
 
 			int var14 = var8 + var6;
@@ -50,10 +50,10 @@ public class BlockFlowing extends axl {
 			}
 
 			if (this.a >= 2 && this.material == Material.WATER) {
-				bec var17 = var1.p(var2.b());
-				if (var17.getBlock().r().isBuildable()) {
+				IBlockState var17 = var1.getBlockState(var2.b());
+				if (var17.getBlock().getMaterial().isBuildable()) {
 					var14 = 0;
-				} else if (var17.getBlock().r() == this.material && ((Integer) var17.b(b)).intValue() == 0) {
+				} else if (var17.getBlock().getMaterial() == this.material && ((Integer) var17.b(b)).intValue() == 0) {
 					var14 = 0;
 				}
 			}
@@ -70,7 +70,7 @@ public class BlockFlowing extends axl {
 					var1.g(var2);
 				} else {
 					var3 = var3.a(b, Integer.valueOf(var14));
-					var1.a(var2, var3, 2);
+					var1.setBlockAt(var2, var3, 2);
 					var1.a(var2, (Block) this, var7);
 					var1.c(var2, (Block) this);
 				}
@@ -79,10 +79,10 @@ public class BlockFlowing extends axl {
 			this.f(var1, var2, var3);
 		}
 
-		bec var13 = var1.p(var2.b());
+		IBlockState var13 = var1.getBlockState(var2.b());
 		if (this.h(var1, var2.b(), var13)) {
-			if (this.material == Material.LAVA && var1.p(var2.b()).getBlock().r() == Material.WATER) {
-				var1.a(var2.b(), aty.b.P());
+			if (this.material == Material.LAVA && var1.getBlockState(var2.b()).getBlock().getMaterial() == Material.WATER) {
+				var1.a(var2.b(), Blocks.STONE.getBlockState());
 				this.d(var1, var2.b());
 				return;
 			}
@@ -106,16 +106,16 @@ public class BlockFlowing extends axl {
 			Iterator var11 = var15.iterator();
 
 			while (var11.hasNext()) {
-				PaintingDirection var12 = (PaintingDirection) var11.next();
-				this.a(var1, var2.a(var12), var1.p(var2.a(var12)), var16);
+				BlockFace var12 = (BlockFace) var11.next();
+				this.a(var1, var2.a(var12), var1.getBlockState(var2.a(var12)), var16);
 			}
 		}
 
 	}
 
-	private void a(World var1, Position var2, bec var3, int var4) {
+	private void a(World var1, Position var2, IBlockState var3, int var4) {
 		if (this.h(var1, var2, var3)) {
-			if (var3.getBlock() != aty.a) {
+			if (var3.getBlock() != Blocks.AIR) {
 				if (this.material == Material.LAVA) {
 					this.d(var1, var2);
 				} else {
@@ -123,27 +123,27 @@ public class BlockFlowing extends axl {
 				}
 			}
 
-			var1.a(var2, this.P().a(b, Integer.valueOf(var4)), 3);
+			var1.setBlockAt(var2, this.getBlockState().a(b, Integer.valueOf(var4)), 3);
 		}
 
 	}
 
-	private int a(World var1, Position var2, int var3, PaintingDirection var4) {
+	private int a(World var1, Position var2, int var3, BlockFace var4) {
 		int var5 = 1000;
 		Iterator var6 = en.a.iterator();
 
 		while (var6.hasNext()) {
-			PaintingDirection var7 = (PaintingDirection) var6.next();
+			BlockFace var7 = (BlockFace) var6.next();
 			if (var7 != var4) {
 				Position var8 = var2.a(var7);
-				bec var9 = var1.p(var8);
-				if (!this.g(var1, var8, var9) && (var9.getBlock().r() != this.material || ((Integer) var9.b(b)).intValue() > 0)) {
+				IBlockState var9 = var1.getBlockState(var8);
+				if (!this.g(var1, var8, var9) && (var9.getBlock().getMaterial() != this.material || ((Integer) var9.b(b)).intValue() > 0)) {
 					if (!this.g(var1, var8.b(), var9)) {
 						return var3;
 					}
 
 					if (var3 < 4) {
-						int var10 = this.a(var1, var8, var3 + 1, var7.d());
+						int var10 = this.a(var1, var8, var3 + 1, var7.getOpposite());
 						if (var10 < var5) {
 							var5 = var10;
 						}
@@ -157,17 +157,17 @@ public class BlockFlowing extends axl {
 
 	private Set e(World var1, Position var2) {
 		int var3 = 1000;
-		EnumSet var4 = EnumSet.noneOf(PaintingDirection.class);
+		EnumSet var4 = EnumSet.noneOf(BlockFace.class);
 		Iterator var5 = en.a.iterator();
 
 		while (var5.hasNext()) {
-			PaintingDirection var6 = (PaintingDirection) var5.next();
+			BlockFace var6 = (BlockFace) var5.next();
 			Position var7 = var2.a(var6);
-			bec var8 = var1.p(var7);
-			if (!this.g(var1, var7, var8) && (var8.getBlock().r() != this.material || ((Integer) var8.b(b)).intValue() > 0)) {
+			IBlockState var8 = var1.getBlockState(var7);
+			if (!this.g(var1, var7, var8) && (var8.getBlock().getMaterial() != this.material || ((Integer) var8.b(b)).intValue() > 0)) {
 				int var9;
-				if (this.g(var1, var7.b(), var1.p(var7.b()))) {
-					var9 = this.a(var1, var7, 1, var6.d());
+				if (this.g(var1, var7.b(), var1.getBlockState(var7.b()))) {
+					var9 = this.a(var1, var7, 1, var6.getOpposite());
 				} else {
 					var9 = 0;
 				}
@@ -186,9 +186,9 @@ public class BlockFlowing extends axl {
 		return var4;
 	}
 
-	private boolean g(World var1, Position var2, bec var3) {
-		Block var4 = var1.p(var2).getBlock();
-		return !(var4 instanceof BlockDoor) && var4 != aty.an && var4 != aty.au && var4 != aty.aM ? (var4.material == Material.PORTAL ? true : var4.material.isSolid()) : true;
+	private boolean g(World var1, Position var2, IBlockState var3) {
+		Block var4 = var1.getBlockState(var2).getBlock();
+		return !(var4 instanceof BlockDoor) && var4 != Blocks.STANDING_SIGN && var4 != Blocks.LADDER && var4 != Blocks.REEDS ? (var4.material == Material.PORTAL ? true : var4.material.isSolid()) : true;
 	}
 
 	protected int a(World var1, Position var2, int var3) {
@@ -208,12 +208,12 @@ public class BlockFlowing extends axl {
 		}
 	}
 
-	private boolean h(World var1, Position var2, bec var3) {
-		Material var4 = var3.getBlock().r();
+	private boolean h(World var1, Position var2, IBlockState var3) {
+		Material var4 = var3.getBlock().getMaterial();
 		return var4 != this.material && var4 != Material.LAVA && !this.g(var1, var2, var3);
 	}
 
-	public void c(World var1, Position var2, bec var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		if (!this.e(var1, var2, var3)) {
 			var1.a(var2, (Block) this, this.a(var1));
 		}

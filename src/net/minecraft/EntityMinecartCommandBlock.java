@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class EntityMinecartCommandBlock extends adx {
 
-	private final aqf a = new aec(this);
+	private final CommandBlockListenerAbstract listener = new EntityMinecartCommandListener(this);
 	private int b = 0;
 
 	public EntityMinecartCommandBlock(World var1) {
@@ -21,38 +21,38 @@ public class EntityMinecartCommandBlock extends adx {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.a.b(var1);
-		this.getDataWatcher().b(23, this.j().l());
-		this.getDataWatcher().b(24, JSONComponentFormat.a(this.j().k()));
+		this.listener.read(var1);
+		this.getDataWatcher().b(23, this.getListener().getCommand());
+		this.getDataWatcher().b(24, ChatSerializer.toJsonString(this.getListener().getLastOutput()));
 	}
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.a.a(var1);
+		this.listener.write(var1);
 	}
 
 	public MinecartType s() {
 		return MinecartType.COMMAND_BLOCK;
 	}
 
-	public bec u() {
-		return aty.bX.P();
+	public IBlockState u() {
+		return Blocks.COMMAND_BLOCK.getBlockState();
 	}
 
-	public aqf j() {
-		return this.a;
+	public CommandBlockListenerAbstract getListener() {
+		return this.listener;
 	}
 
 	public void a(int var1, int var2, int var3, boolean var4) {
-		if (var4 && this.W - this.b >= 4) {
-			this.j().a(this.o);
-			this.b = this.W;
+		if (var4 && this.ticksLived - this.b >= 4) {
+			this.getListener().executeCommand(this.world);
+			this.b = this.ticksLived;
 		}
 
 	}
 
 	public boolean e(EntityHuman var1) {
-		this.a.a(var1);
+		this.listener.a(var1);
 		return false;
 	}
 
@@ -60,13 +60,13 @@ public class EntityMinecartCommandBlock extends adx {
 		super.i(var1);
 		if (var1 == 24) {
 			try {
-				this.a.b(JSONComponentFormat.a(this.getDataWatcher().e(24)));
+				this.listener.setLastOutput(ChatSerializer.fromJsonString(this.getDataWatcher().e(24)));
 			} catch (Throwable var3) {
 				;
 			}
 		} else if (var1 == 23) {
-			this.a.a(this.getDataWatcher().e(23));
+			this.listener.setCommand(this.getDataWatcher().e(23));
 		}
-
 	}
+
 }

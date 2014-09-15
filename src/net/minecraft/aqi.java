@@ -45,7 +45,7 @@ public abstract class aqi {
 		if (this.g()) {
 			Position var1 = this.b();
 			double var6;
-			if (this.a().D) {
+			if (this.a().isStatic) {
 				double var2 = (double) ((float) var1.getX() + this.a().s.nextFloat());
 				double var4 = (double) ((float) var1.getY() + this.a().s.nextFloat());
 				var6 = (double) ((float) var1.getZ() + this.a().s.nextFloat());
@@ -75,7 +75,7 @@ public abstract class aqi {
 						return;
 					}
 
-					int var5 = this.a().a(var14.getClass(), (new brt((double) var1.getX(), (double) var1.getY(), (double) var1.getZ(), (double) (var1.getX() + 1), (double) (var1.getY() + 1), (double) (var1.getZ() + 1))).b((double) this.m, (double) this.m, (double) this.m)).size();
+					int var5 = this.a().a(var14.getClass(), (new AxisAlignedBB((double) var1.getX(), (double) var1.getY(), (double) var1.getZ(), (double) (var1.getX() + 1), (double) (var1.getY() + 1), (double) (var1.getZ() + 1))).grow((double) this.m, (double) this.m, (double) this.m)).size();
 					if (var5 >= this.k) {
 						this.h();
 						return;
@@ -85,7 +85,7 @@ public abstract class aqi {
 					double var8 = (double) (var1.getY() + this.a().s.nextInt(3) - 1);
 					double var10 = (double) var1.getZ() + (this.a().s.nextDouble() - this.a().s.nextDouble()) * (double) this.m + 0.5D;
 					EntityInsentient var12 = var14 instanceof EntityInsentient ? (EntityInsentient) var14 : null;
-					var14.b(var6, var8, var10, this.a().s.nextFloat() * 360.0F, 0.0F);
+					var14.setPositionRotation(var6, var8, var10, this.a().s.nextFloat() * 360.0F, 0.0F);
 					if (var12 == null || var12.bQ() && var12.bR()) {
 						this.a(var14, true);
 						this.a().b(2004, var1, 0);
@@ -108,7 +108,7 @@ public abstract class aqi {
 	private Entity a(Entity var1, boolean var2) {
 		if (this.i() != null) {
 			NBTCompoundTag var3 = new NBTCompoundTag();
-			var1.d(var3);
+			var1.writeIfNoPassenger(var3);
 			Iterator var4 = aqj.b(this.i()).getKeys().iterator();
 
 			while (var4.hasNext()) {
@@ -118,17 +118,17 @@ public abstract class aqi {
 			}
 
 			var1.load(var3);
-			if (var1.o != null && var2) {
-				var1.o.d(var1);
+			if (var1.world != null && var2) {
+				var1.world.addEntity(var1);
 			}
 
 			NBTCompoundTag var12;
 			for (Entity var11 = var1; var3.isTagAssignableFrom("Riding", 10); var3 = var12) {
 				var12 = var3.getCompound("Riding");
-				Entity var13 = EntityTypes.createEntity(var12.getString("id"), var1.o);
+				Entity var13 = EntityTypes.createEntity(var12.getString("id"), var1.world);
 				if (var13 != null) {
 					NBTCompoundTag var7 = new NBTCompoundTag();
-					var13.d(var7);
+					var13.writeIfNoPassenger(var7);
 					Iterator var8 = var12.getKeys().iterator();
 
 					while (var8.hasNext()) {
@@ -138,19 +138,19 @@ public abstract class aqi {
 					}
 
 					var13.load(var7);
-					var13.b(var11.locationX, var11.locationY, var11.locationZ, var11.yaw, var11.pitch);
-					if (var1.o != null && var2) {
-						var1.o.d(var13);
+					var13.setPositionRotation(var11.locationX, var11.locationY, var11.locationZ, var11.yaw, var11.pitch);
+					if (var1.world != null && var2) {
+						var1.world.addEntity(var13);
 					}
 
-					var11.a(var13);
+					var11.mount(var13);
 				}
 
 				var11 = var13;
 			}
-		} else if (var1 instanceof EntityLiving && var1.o != null && var2) {
-			((EntityInsentient) var1).a(var1.o.E(new Position(var1)), (xq) null);
-			var1.o.d(var1);
+		} else if (var1 instanceof EntityLiving && var1.world != null && var2) {
+			((EntityInsentient) var1).a(var1.world.E(new Position(var1)), (xq) null);
+			var1.world.addEntity(var1);
 		}
 
 		return var1;
@@ -242,7 +242,7 @@ public abstract class aqi {
 	}
 
 	public boolean b(int var1) {
-		if (var1 == 1 && this.a().D) {
+		if (var1 == 1 && this.a().isStatic) {
 			this.a = this.g;
 			return true;
 		} else {

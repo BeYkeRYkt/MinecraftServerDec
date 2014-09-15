@@ -18,7 +18,7 @@ public class aay extends aaz {
 	}
 
 	protected boolean b() {
-		return this.b.onGround || this.h() && this.o() || this.b.av() && this.b instanceof EntityZombie && this.b.m instanceof EntityChicken;
+		return this.b.onGround || this.h() && this.o() || this.b.av() && this.b instanceof EntityZombie && this.b.vehicle instanceof EntityChicken;
 	}
 
 	protected Vec3D c() {
@@ -27,30 +27,30 @@ public class aay extends aaz {
 
 	private int p() {
 		if (this.b.V() && this.h()) {
-			int var1 = (int) this.b.aQ().b;
-			Block var2 = this.c.p(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).getBlock();
+			int var1 = (int) this.b.getBoundingBox().minY;
+			Block var2 = this.c.getBlockState(new Position(MathHelper.toFixedPointInt(this.b.locationX), var1, MathHelper.toFixedPointInt(this.b.locationZ))).getBlock();
 			int var3 = 0;
 
 			do {
-				if (var2 != aty.i && var2 != aty.j) {
+				if (var2 != Blocks.FLOWING_WATER && var2 != Blocks.WATER) {
 					return var1;
 				}
 
 				++var1;
-				var2 = this.c.p(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), var1, DataTypesConverter.toFixedPointInt(this.b.locationZ))).getBlock();
+				var2 = this.c.getBlockState(new Position(MathHelper.toFixedPointInt(this.b.locationX), var1, MathHelper.toFixedPointInt(this.b.locationZ))).getBlock();
 				++var3;
 			} while (var3 <= 16);
 
-			return (int) this.b.aQ().b;
+			return (int) this.b.getBoundingBox().minY;
 		} else {
-			return (int) (this.b.aQ().b + 0.5D);
+			return (int) (this.b.getBoundingBox().minY + 0.5D);
 		}
 	}
 
 	protected void d() {
 		super.d();
 		if (this.f) {
-			if (this.c.i(new Position(DataTypesConverter.toFixedPointInt(this.b.locationX), (int) (this.b.aQ().b + 0.5D), DataTypesConverter.toFixedPointInt(this.b.locationZ)))) {
+			if (this.c.i(new Position(MathHelper.toFixedPointInt(this.b.locationX), (int) (this.b.getBoundingBox().minY + 0.5D), MathHelper.toFixedPointInt(this.b.locationZ)))) {
 				return;
 			}
 
@@ -66,8 +66,8 @@ public class aay extends aaz {
 	}
 
 	protected boolean a(Vec3D var1, Vec3D var2, int var3, int var4, int var5) {
-		int var6 = DataTypesConverter.toFixedPointInt(var1.x);
-		int var7 = DataTypesConverter.toFixedPointInt(var1.z);
+		int var6 = MathHelper.toFixedPointInt(var1.x);
+		int var7 = MathHelper.toFixedPointInt(var1.z);
 		double var8 = var2.x - var1.x;
 		double var10 = var2.z - var1.z;
 		double var12 = var8 * var8 + var10 * var10;
@@ -100,8 +100,8 @@ public class aay extends aaz {
 				var22 /= var10;
 				int var24 = var8 < 0.0D ? -1 : 1;
 				int var25 = var10 < 0.0D ? -1 : 1;
-				int var26 = DataTypesConverter.toFixedPointInt(var2.x);
-				int var27 = DataTypesConverter.toFixedPointInt(var2.z);
+				int var26 = MathHelper.toFixedPointInt(var2.x);
+				int var27 = MathHelper.toFixedPointInt(var2.z);
 				int var28 = var26 - var6;
 				int var29 = var27 - var7;
 
@@ -137,8 +137,8 @@ public class aay extends aaz {
 					double var16 = (double) var14 + 0.5D - var7.x;
 					double var18 = (double) var15 + 0.5D - var7.z;
 					if (var16 * var8 + var18 * var10 >= 0.0D) {
-						Block var20 = this.c.p(new Position(var14, var2 - 1, var15)).getBlock();
-						Material var21 = var20.r();
+						Block var20 = this.c.getBlockState(new Position(var14, var2 - 1, var15)).getBlock();
+						Material var21 = var20.getMaterial();
 						if (var21 == Material.AIR) {
 							return false;
 						}
@@ -166,7 +166,7 @@ public class aay extends aaz {
 			double var14 = (double) var13.getX() + 0.5D - var7.x;
 			double var16 = (double) var13.getZ() + 0.5D - var7.z;
 			if (var14 * var8 + var16 * var10 >= 0.0D) {
-				Block var18 = this.c.p(var13).getBlock();
+				Block var18 = this.c.getBlockState(var13).getBlock();
 				if (!var18.b(this.c, var13)) {
 					return false;
 				}

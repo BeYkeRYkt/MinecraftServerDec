@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.List;
 
-public class TileEntityHopper extends bdf implements bdd, pm {
+public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 
 	private ItemStack[] a = new ItemStack[5];
 	private String f;
@@ -36,7 +36,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 			if (this.a[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.put("Slot", (byte) var3);
-				this.a[var3].b(var4);
+				this.a[var3].write(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
@@ -49,8 +49,8 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 
 	}
 
-	public void o_() {
-		super.o_();
+	public void update() {
+		super.update();
 	}
 
 	public int n_() {
@@ -64,13 +64,13 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 	public ItemStack a(int var1, int var2) {
 		if (this.a[var1] != null) {
 			ItemStack var3;
-			if (this.a[var1].b <= var2) {
+			if (this.a[var1].amount <= var2) {
 				var3 = this.a[var1];
 				this.a[var1] = null;
 				return var3;
 			} else {
 				var3 = this.a[var1].a(var2);
-				if (this.a[var1].b == 0) {
+				if (this.a[var1].amount == 0) {
 					this.a[var1] = null;
 				}
 
@@ -93,13 +93,13 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 
 	public void a(int var1, ItemStack var2) {
 		this.a[var1] = var2;
-		if (var2 != null && var2.b > this.p_()) {
-			var2.b = this.p_();
+		if (var2 != null && var2.amount > this.p_()) {
+			var2.amount = this.p_();
 		}
 
 	}
 
-	public String d_() {
+	public String getName() {
 		return this.k_() ? this.f : "container.hopper";
 	}
 
@@ -116,7 +116,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.world.s(this.position) != this ? false : var1.e((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
+		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public void b(EntityHuman var1) {
@@ -129,8 +129,8 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 		return true;
 	}
 
-	public void c() {
-		if (this.world != null && !this.world.D) {
+	public void doTick() {
+		if (this.world != null && !this.world.isStatic) {
 			--this.g;
 			if (!this.n()) {
 				this.d(0);
@@ -141,7 +141,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 	}
 
 	public boolean m() {
-		if (this.world != null && !this.world.D) {
+		if (this.world != null && !this.world.isStatic) {
 			if (!this.n() && BlockHopper.f(this.u())) {
 				boolean var1 = false;
 				if (!this.p()) {
@@ -154,7 +154,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 
 				if (var1) {
 					this.d(8);
-					this.o_();
+					this.update();
 					return true;
 				}
 			}
@@ -185,7 +185,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 
 		for (int var3 = 0; var3 < var2; ++var3) {
 			ItemStack var4 = var1[var3];
-			if (var4 == null || var4.b != var4.c()) {
+			if (var4 == null || var4.amount != var4.getMaxStackSize()) {
 				return false;
 			}
 		}
@@ -198,7 +198,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 		if (var1 == null) {
 			return false;
 		} else {
-			PaintingDirection var2 = BlockHopper.b(this.u()).d();
+			BlockFace var2 = BlockHopper.b(this.u()).getOpposite();
 			if (this.a(var1, var2)) {
 				return false;
 			} else {
@@ -206,8 +206,8 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 					if (this.a(var3) != null) {
 						ItemStack var4 = this.a(var3).getCopy();
 						ItemStack var5 = a(var1, this.a(var3, 1), var2);
-						if (var5 == null || var5.b == 0) {
-							var1.o_();
+						if (var5 == null || var5.amount == 0) {
+							var1.update();
 							return true;
 						}
 
@@ -220,14 +220,14 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 		}
 	}
 
-	private boolean a(IInventory var1, PaintingDirection var2) {
+	private boolean a(IInventory var1, BlockFace var2) {
 		if (var1 instanceof we) {
 			we var3 = (we) var1;
 			int[] var4 = var3.a(var2);
 
 			for (int var5 = 0; var5 < var4.length; ++var5) {
 				ItemStack var6 = var3.a(var4[var5]);
-				if (var6 == null || var6.b != var6.c()) {
+				if (var6 == null || var6.amount != var6.getMaxStackSize()) {
 					return false;
 				}
 			}
@@ -236,7 +236,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 
 			for (int var8 = 0; var8 < var7; ++var8) {
 				ItemStack var9 = var1.a(var8);
-				if (var9 == null || var9.b != var9.c()) {
+				if (var9 == null || var9.amount != var9.getMaxStackSize()) {
 					return false;
 				}
 			}
@@ -245,7 +245,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 		return true;
 	}
 
-	private static boolean b(IInventory var0, PaintingDirection var1) {
+	private static boolean b(IInventory var0, BlockFace var1) {
 		if (var0 instanceof we) {
 			we var2 = (we) var0;
 			int[] var3 = var2.a(var1);
@@ -271,7 +271,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 	public static boolean a(bdd var0) {
 		IInventory var1 = b(var0);
 		if (var1 != null) {
-			PaintingDirection var2 = PaintingDirection.a;
+			BlockFace var2 = BlockFace.DOWN;
 			if (b(var1, var2)) {
 				return false;
 			}
@@ -295,7 +295,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 				}
 			}
 		} else {
-			EntityItem var6 = a(var0.z(), var0.A(), var0.B() + 1.0D, var0.C());
+			EntityItem var6 = a(var0.getPrimaryWorld(), var0.A(), var0.B() + 1.0D, var0.C());
 			if (var6 != null) {
 				return a((IInventory) var0, var6);
 			}
@@ -304,13 +304,13 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 		return false;
 	}
 
-	private static boolean a(bdd var0, IInventory var1, int var2, PaintingDirection var3) {
+	private static boolean a(bdd var0, IInventory var1, int var2, BlockFace var3) {
 		ItemStack var4 = var1.a(var2);
 		if (var4 != null && b(var1, var4, var2, var3)) {
 			ItemStack var5 = var4.getCopy();
-			ItemStack var6 = a(var0, var1.a(var2, 1), (PaintingDirection) null);
-			if (var6 == null || var6.b == 0) {
-				var1.o_();
+			ItemStack var6 = a(var0, var1.a(var2, 1), (BlockFace) null);
+			if (var6 == null || var6.amount == 0) {
+				var1.update();
 				return true;
 			}
 
@@ -326,50 +326,50 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 			return false;
 		} else {
 			ItemStack var3 = var1.l().getCopy();
-			ItemStack var4 = a(var0, var3, (PaintingDirection) null);
-			if (var4 != null && var4.b != 0) {
+			ItemStack var4 = a(var0, var3, (BlockFace) null);
+			if (var4 != null && var4.amount != 0) {
 				var1.a(var4);
 			} else {
 				var2 = true;
-				var1.J();
+				var1.die();
 			}
 
 			return var2;
 		}
 	}
 
-	public static ItemStack a(IInventory var0, ItemStack var1, PaintingDirection var2) {
+	public static ItemStack a(IInventory var0, ItemStack var1, BlockFace var2) {
 		if (var0 instanceof we && var2 != null) {
 			we var6 = (we) var0;
 			int[] var7 = var6.a(var2);
 
-			for (int var5 = 0; var5 < var7.length && var1 != null && var1.b > 0; ++var5) {
+			for (int var5 = 0; var5 < var7.length && var1 != null && var1.amount > 0; ++var5) {
 				var1 = c(var0, var1, var7[var5], var2);
 			}
 		} else {
 			int var3 = var0.n_();
 
-			for (int var4 = 0; var4 < var3 && var1 != null && var1.b > 0; ++var4) {
+			for (int var4 = 0; var4 < var3 && var1 != null && var1.amount > 0; ++var4) {
 				var1 = c(var0, var1, var4, var2);
 			}
 		}
 
-		if (var1 != null && var1.b == 0) {
+		if (var1 != null && var1.amount == 0) {
 			var1 = null;
 		}
 
 		return var1;
 	}
 
-	private static boolean a(IInventory var0, ItemStack var1, int var2, PaintingDirection var3) {
+	private static boolean a(IInventory var0, ItemStack var1, int var2, BlockFace var3) {
 		return !var0.b(var2, var1) ? false : !(var0 instanceof we) || ((we) var0).a(var2, var1, var3);
 	}
 
-	private static boolean b(IInventory var0, ItemStack var1, int var2, PaintingDirection var3) {
+	private static boolean b(IInventory var0, ItemStack var1, int var2, BlockFace var3) {
 		return !(var0 instanceof we) || ((we) var0).b(var2, var1, var3);
 	}
 
-	private static ItemStack c(IInventory var0, ItemStack var1, int var2, PaintingDirection var3) {
+	private static ItemStack c(IInventory var0, ItemStack var1, int var2, BlockFace var3) {
 		ItemStack var4 = var0.a(var2);
 		if (a(var0, var1, var2, var3)) {
 			boolean var5 = false;
@@ -378,10 +378,10 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 				var1 = null;
 				var5 = true;
 			} else if (a(var4, var1)) {
-				int var6 = var1.c() - var4.b;
-				int var7 = Math.min(var1.b, var6);
-				var1.b -= var7;
-				var4.b += var7;
+				int var6 = var1.getMaxStackSize() - var4.amount;
+				int var7 = Math.min(var1.amount, var6);
+				var1.amount -= var7;
+				var4.amount += var7;
 				var5 = var7 > 0;
 			}
 
@@ -392,10 +392,10 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 						var8.d(8);
 					}
 
-					var0.o_();
+					var0.update();
 				}
 
-				var0.o_();
+				var0.update();
 			}
 		}
 
@@ -403,30 +403,30 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 	}
 
 	private IInventory G() {
-		PaintingDirection var1 = BlockHopper.b(this.u());
-		return b(this.z(), (double) (this.position.getX() + var1.g()), (double) (this.position.getY() + var1.h()), (double) (this.position.getZ() + var1.i()));
+		BlockFace var1 = BlockHopper.b(this.u());
+		return b(this.getPrimaryWorld(), (double) (this.position.getX() + var1.g()), (double) (this.position.getY() + var1.h()), (double) (this.position.getZ() + var1.i()));
 	}
 
 	public static IInventory b(bdd var0) {
-		return b(var0.z(), var0.A(), var0.B() + 1.0D, var0.C());
+		return b(var0.getPrimaryWorld(), var0.A(), var0.B() + 1.0D, var0.C());
 	}
 
 	public static EntityItem a(World var0, double var1, double var3, double var5) {
-		List var7 = var0.a(EntityItem.class, new brt(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.a);
+		List var7 = var0.a(EntityItem.class, new AxisAlignedBB(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.a);
 		return var7.size() > 0 ? (EntityItem) var7.get(0) : null;
 	}
 
 	public static IInventory b(World var0, double var1, double var3, double var5) {
 		Object var7 = null;
-		int var8 = DataTypesConverter.toFixedPointInt(var1);
-		int var9 = DataTypesConverter.toFixedPointInt(var3);
-		int var10 = DataTypesConverter.toFixedPointInt(var5);
+		int var8 = MathHelper.toFixedPointInt(var1);
+		int var9 = MathHelper.toFixedPointInt(var3);
+		int var10 = MathHelper.toFixedPointInt(var5);
 		Position var11 = new Position(var8, var9, var10);
-		TileEntity var12 = var0.s(new Position(var8, var9, var10));
+		TileEntity var12 = var0.getTileEntity(new Position(var8, var9, var10));
 		if (var12 instanceof IInventory) {
 			var7 = (IInventory) var12;
 			if (var7 instanceof TileEntityChest) {
-				Block var13 = var0.p(new Position(var8, var9, var10)).getBlock();
+				Block var13 = var0.getBlockState(new Position(var8, var9, var10)).getBlock();
 				if (var13 instanceof BlockChest) {
 					var7 = ((BlockChest) var13).d(var0, var11);
 				}
@@ -434,7 +434,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 		}
 
 		if (var7 == null) {
-			List var14 = var0.a((Entity) null, new brt(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.c);
+			List var14 = var0.getEntities((Entity) null, new AxisAlignedBB(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.c);
 			if (var14.size() > 0) {
 				var7 = (IInventory) var14.get(var0.s.nextInt(var14.size()));
 			}
@@ -444,7 +444,7 @@ public class TileEntityHopper extends bdf implements bdd, pm {
 	}
 
 	private static boolean a(ItemStack var0, ItemStack var1) {
-		return var0.getItem() != var1.getItem() ? false : (var0.i() != var1.i() ? false : (var0.b > var0.c() ? false : ItemStack.a(var0, var1)));
+		return var0.getItem() != var1.getItem() ? false : (var0.getDurability() != var1.getDurability() ? false : (var0.amount > var0.getMaxStackSize() ? false : ItemStack.a(var0, var1)));
 	}
 
 	public double A() {

@@ -25,7 +25,7 @@ public class AchievmentCommand extends AbstractCommand {
 		if (var2.length < 2) {
 			throw new dp("commands.achievement.usage", new Object[0]);
 		} else {
-			Statistic var3 = StatisticList.a(var2[1]);
+			Statistic var3 = StatisticList.fromName(var2[1]);
 			if (var3 == null && !var2[1].equals("*")) {
 				throw new di("commands.achievement.unknownAchievement", new Object[] { var2[1] });
 			} else {
@@ -35,61 +35,61 @@ public class AchievmentCommand extends AbstractCommand {
 				if (var5 || var6) {
 					if (var3 == null) {
 						Iterator var11;
-						tk var12;
+						Achievement var12;
 						if (var5) {
-							var11 = tl.e.iterator();
+							var11 = AchievementList.list.iterator();
 
 							while (var11.hasNext()) {
-								var12 = (tk) var11.next();
+								var12 = (Achievement) var11.next();
 								var4.b((Statistic) var12);
 							}
 
-							a(var1, this, "commands.achievement.give.success.all", new Object[] { var4.d_() });
+							a(var1, this, "commands.achievement.give.success.all", new Object[] { var4.getName() });
 						} else if (var6) {
-							var11 = Lists.reverse(tl.e).iterator();
+							var11 = Lists.reverse(AchievementList.list).iterator();
 
 							while (var11.hasNext()) {
-								var12 = (tk) var11.next();
+								var12 = (Achievement) var11.next();
 								var4.a((Statistic) var12);
 							}
 
-							a(var1, this, "commands.achievement.take.success.all", new Object[] { var4.d_() });
+							a(var1, this, "commands.achievement.take.success.all", new Object[] { var4.getName() });
 						}
 
 					} else {
-						if (var3 instanceof tk) {
-							tk var7 = (tk) var3;
+						if (var3 instanceof Achievement) {
+							Achievement var7 = (Achievement) var3;
 							ArrayList var8;
 							Iterator var9;
-							tk var10;
+							Achievement var10;
 							if (var5) {
-								if (var4.A().a(var7)) {
-									throw new di("commands.achievement.alreadyHave", new Object[] { var4.d_(), var3.j() });
+								if (var4.getStatisticManager().a(var7)) {
+									throw new di("commands.achievement.alreadyHave", new Object[] { var4.getName(), var3.j() });
 								}
 
-								for (var8 = Lists.newArrayList(); var7.c != null && !var4.A().a(var7.c); var7 = var7.c) {
+								for (var8 = Lists.newArrayList(); var7.c != null && !var4.getStatisticManager().a(var7.c); var7 = var7.c) {
 									var8.add(var7.c);
 								}
 
 								var9 = Lists.reverse(var8).iterator();
 
 								while (var9.hasNext()) {
-									var10 = (tk) var9.next();
+									var10 = (Achievement) var9.next();
 									var4.b((Statistic) var10);
 								}
 							} else if (var6) {
-								if (!var4.A().a(var7)) {
-									throw new di("commands.achievement.dontHave", new Object[] { var4.d_(), var3.j() });
+								if (!var4.getStatisticManager().a(var7)) {
+									throw new di("commands.achievement.dontHave", new Object[] { var4.getName(), var3.j() });
 								}
 
-								for (var8 = Lists.newArrayList(Iterators.filter(tl.e.iterator(), new av(this, var4, var3))); var7.c != null && var4.A().a(var7.c); var7 = var7.c) {
+								for (var8 = Lists.newArrayList(Iterators.filter(AchievementList.list.iterator(), new av(this, var4, var3))); var7.c != null && var4.getStatisticManager().a(var7.c); var7 = var7.c) {
 									var8.remove(var7.c);
 								}
 
 								var9 = var8.iterator();
 
 								while (var9.hasNext()) {
-									var10 = (tk) var9.next();
+									var10 = (Achievement) var9.next();
 									var4.a((Statistic) var10);
 								}
 							}
@@ -97,10 +97,10 @@ public class AchievmentCommand extends AbstractCommand {
 
 						if (var5) {
 							var4.b(var3);
-							a(var1, this, "commands.achievement.give.success.one", new Object[] { var4.d_(), var3.j() });
+							a(var1, this, "commands.achievement.give.success.one", new Object[] { var4.getName(), var3.j() });
 						} else if (var6) {
 							var4.a(var3);
-							a(var1, this, "commands.achievement.take.success.one", new Object[] { var3.j(), var4.d_() });
+							a(var1, this, "commands.achievement.take.success.one", new Object[] { var3.j(), var4.getName() });
 						}
 
 					}
@@ -120,7 +120,7 @@ public class AchievmentCommand extends AbstractCommand {
 
 			while (var5.hasNext()) {
 				Statistic var6 = (Statistic) var5.next();
-				var4.add(var6.e);
+				var4.add(var6.name);
 			}
 
 			return a(var2, var4);

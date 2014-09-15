@@ -10,7 +10,7 @@ public class bnl extends bno {
 	public bnl() {
 	}
 
-	public bnl(bnk var1, int var2, Random var3, bjb var4, PaintingDirection var5) {
+	public bnl(bnk var1, int var2, Random var3, CuboidArea var4, BlockFace var5) {
 		super(var1, var2);
 		this.m = var5;
 		this.l = var4;
@@ -27,11 +27,11 @@ public class bnl extends bno {
 		this.a = var1.getInt("Length");
 	}
 
-	public void a(bms var1, List var2, Random var3) {
+	public void a(StructurePiece var1, List var2, Random var3) {
 		boolean var4 = false;
 
 		int var5;
-		bms var6;
+		StructurePiece var6;
 		for (var5 = var3.nextInt(5); var5 < this.a - 8; var5 += 2 + var3.nextInt(5)) {
 			var6 = this.a((bnk) var1, var2, var3, 0, var5);
 			if (var6 != null) {
@@ -51,41 +51,41 @@ public class bnl extends bno {
 		if (var4 && var3.nextInt(3) > 0 && this.m != null) {
 			switch (bmz.a[this.m.ordinal()]) {
 				case 1:
-					bmy.b((bnk) var1, var2, var3, this.l.a - 1, this.l.b, this.l.c, PaintingDirection.e, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.minX - 1, this.l.minY, this.l.minZ, BlockFace.WEST, this.d());
 					break;
 				case 2:
-					bmy.b((bnk) var1, var2, var3, this.l.a - 1, this.l.b, this.l.f - 2, PaintingDirection.e, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.minX - 1, this.l.minY, this.l.maxZ - 2, BlockFace.WEST, this.d());
 					break;
 				case 3:
-					bmy.b((bnk) var1, var2, var3, this.l.a, this.l.b, this.l.c - 1, PaintingDirection.c, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.minX, this.l.minY, this.l.minZ - 1, BlockFace.NORTH, this.d());
 					break;
 				case 4:
-					bmy.b((bnk) var1, var2, var3, this.l.d - 2, this.l.b, this.l.c - 1, PaintingDirection.c, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.maxX - 2, this.l.minY, this.l.minZ - 1, BlockFace.NORTH, this.d());
 			}
 		}
 
 		if (var4 && var3.nextInt(3) > 0 && this.m != null) {
 			switch (bmz.a[this.m.ordinal()]) {
 				case 1:
-					bmy.b((bnk) var1, var2, var3, this.l.d + 1, this.l.b, this.l.c, PaintingDirection.f, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.maxX + 1, this.l.minY, this.l.minZ, BlockFace.EAST, this.d());
 					break;
 				case 2:
-					bmy.b((bnk) var1, var2, var3, this.l.d + 1, this.l.b, this.l.f - 2, PaintingDirection.f, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.maxX + 1, this.l.minY, this.l.maxZ - 2, BlockFace.EAST, this.d());
 					break;
 				case 3:
-					bmy.b((bnk) var1, var2, var3, this.l.a, this.l.b, this.l.f + 1, PaintingDirection.d, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.minX, this.l.minY, this.l.maxZ + 1, BlockFace.SOUTH, this.d());
 					break;
 				case 4:
-					bmy.b((bnk) var1, var2, var3, this.l.d - 2, this.l.b, this.l.f + 1, PaintingDirection.d, this.d());
+					bmy.b((bnk) var1, var2, var3, this.l.maxX - 2, this.l.minY, this.l.maxZ + 1, BlockFace.SOUTH, this.d());
 			}
 		}
 
 	}
 
-	public static bjb a(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6) {
-		for (int var7 = 7 * DataTypesConverter.a(var2, 3, 5); var7 >= 7; var7 -= 7) {
-			bjb var8 = bjb.a(var3, var4, var5, 0, 0, 0, 3, 3, var7, var6);
-			if (bms.a(var1, var8) == null) {
+	public static CuboidArea a(bnk var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6) {
+		for (int var7 = 7 * MathHelper.a(var2, 3, 5); var7 >= 7; var7 -= 7) {
+			CuboidArea var8 = CuboidArea.a(var3, var4, var5, 0, 0, 0, 3, 3, var7, var6);
+			if (StructurePiece.a(var1, var8) == null) {
 				return var8;
 			}
 		}
@@ -93,17 +93,17 @@ public class bnl extends bno {
 		return null;
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
-		bec var4 = this.a(aty.n.P());
-		bec var5 = this.a(aty.e.P());
+	public boolean a(World var1, Random var2, CuboidArea var3) {
+		IBlockState var4 = this.a(Blocks.GRAVEL.getBlockState());
+		IBlockState var5 = this.a(Blocks.COBBLESTONE.getBlockState());
 
-		for (int var6 = this.l.a; var6 <= this.l.d; ++var6) {
-			for (int var7 = this.l.c; var7 <= this.l.f; ++var7) {
+		for (int var6 = this.l.minX; var6 <= this.l.maxX; ++var6) {
+			for (int var7 = this.l.minZ; var7 <= this.l.maxZ; ++var7) {
 				Position var8 = new Position(var6, 64, var7);
 				if (var3.b((fd) var8)) {
 					var8 = var1.r(var8).b();
-					var1.a(var8, var4, 2);
-					var1.a(var8.b(), var5, 2);
+					var1.setBlockAt(var8, var4, 2);
+					var1.setBlockAt(var8.b(), var5, 2);
 				}
 			}
 		}

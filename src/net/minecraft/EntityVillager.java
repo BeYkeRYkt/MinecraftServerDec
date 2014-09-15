@@ -2,38 +2,40 @@ package net.minecraft;
 
 import java.util.Iterator;
 
-public class EntityVillager extends ws implements ago, aqb {
+import com.google.common.base.Predicate;
 
-	private int bl;
+public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
+
+	private int profession;
 	private boolean bm;
 	private boolean bn;
-	abi bk;
-	private EntityHuman bo;
-	private aqd bp;
+	Village village;
+	private EntityHuman tradingPlayer;
+	private MerchantRecipeList bp;
 	private int bq;
 	private boolean br;
-	private boolean bs;
-	private int bt;
+	private boolean willing;
+	private int riches;
 	private String bu;
-	private int bv;
-	private int bw;
+	private int career;
+	private int careerLevel;
 	private boolean bx;
 	private boolean by;
 	private wa bz;
 	private static final agw[][][][] bA = new agw[][][][] {
 			{
-					{ { new agr(amk.O, new agx(18, 22)), new agr(amk.bS, new agx(15, 19)), new agr(amk.bR, new agx(15, 19)), new agv(amk.P, new agx(-4, -2)) }, { new agr(Item.getItemOf(aty.aU), new agx(8, 13)), new agv(amk.ca, new agx(-3, -2)) }, { new agr(Item.getItemOf(aty.bk), new agx(7, 12)), new agv(amk.e, new agx(-5, -7)) }, { new agv(amk.bc, new agx(-6, -10)), new agv(amk.aZ, new agx(1, 1)) } },
-					{ { new agr(amk.F, new agx(15, 20)), new agr(amk.h, new agx(16, 24)), new agu(amk.aU, new agx(6, 6), amk.aV, new agx(6, 6)) }, { new agt(amk.aR, new agx(7, 8)) } },
+					{ { new agr(Items.WHEAT, new agx(18, 22)), new agr(Items.POTATO, new agx(15, 19)), new agr(Items.CARROT, new agx(15, 19)), new agv(Items.BREAD, new agx(-4, -2)) }, { new agr(Item.getItemOf(Blocks.PUMPKIN), new agx(8, 13)), new agv(Items.PUMPKIN_PIE, new agx(-3, -2)) }, { new agr(Item.getItemOf(Blocks.MELON_BLOCK), new agx(7, 12)), new agv(Items.APPLE, new agx(-5, -7)) }, { new agv(Items.COOKIE, new agx(-6, -10)), new agv(Items.CAKE, new agx(1, 1)) } },
+					{ { new agr(Items.STRING, new agx(15, 20)), new agr(Items.COAL, new agx(16, 24)), new agu(Items.FISH, new agx(6, 6), Items.COOKED_FISH, new agx(6, 6)) }, { new agt(Items.FISHING_ROD, new agx(7, 8)) } },
 					{
-							{ new agr(Item.getItemOf(aty.L), new agx(16, 22)), new agv(amk.be, new agx(3, 4)) },
-							{ new agv(new ItemStack(Item.getItemOf(aty.L), 1, 0), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 1), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 2), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 3), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 4), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 5), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 6), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 7), new agx(1, 2)),
-									new agv(new ItemStack(Item.getItemOf(aty.L), 1, 8), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 9), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 10), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 11), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 12), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 13), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 14), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(aty.L), 1, 15), new agx(1, 2)) } },
-					{ { new agr(amk.F, new agx(15, 20)), new agv(amk.g, new agx(-12, -8)) }, { new agv(amk.f, new agx(2, 3)), new agu(Item.getItemOf(aty.n), new agx(10, 10), amk.ak, new agx(6, 10)) } } },
-			{ { { new agr(amk.aK, new agx(24, 36)), new ags() }, { new agr(amk.aL, new agx(8, 10)), new agv(amk.aQ, new agx(10, 12)), new agv(Item.getItemOf(aty.X), new agx(3, 4)) }, { new agr(amk.bN, new agx(2, 2)), new agv(amk.aS, new agx(10, 12)), new agv(Item.getItemOf(aty.w), new agx(-5, -3)) }, { new ags() }, { new ags() }, { new agv(amk.co, new agx(20, 22)) } } },
-			{ { { new agr(amk.bt, new agx(36, 40)), new agr(amk.k, new agx(8, 10)) }, { new agv(amk.aC, new agx(-4, -1)), new agv(new ItemStack(amk.aW, 1, akv.l.b()), new agx(-2, -1)) }, { new agv(amk.bH, new agx(7, 11)), new agv(Item.getItemOf(aty.aX), new agx(-3, -1)) }, { new agv(amk.bK, new agx(3, 11)) } } },
-			{ { { new agr(amk.h, new agx(16, 24)), new agv(amk.Y, new agx(4, 6)) }, { new agr(amk.j, new agx(7, 9)), new agv(amk.Z, new agx(10, 14)) }, { new agr(amk.i, new agx(3, 4)), new agt(amk.ad, new agx(16, 19)) }, { new agv(amk.X, new agx(5, 7)), new agv(amk.W, new agx(9, 11)), new agv(amk.U, new agx(5, 7)), new agv(amk.V, new agx(11, 15)) } },
-					{ { new agr(amk.h, new agx(16, 24)), new agv(amk.c, new agx(6, 8)) }, { new agr(amk.j, new agx(7, 9)), new agt(amk.l, new agx(9, 10)) }, { new agr(amk.i, new agx(3, 4)), new agt(amk.u, new agx(12, 15)), new agt(amk.x, new agx(9, 12)) } }, { { new agr(amk.h, new agx(16, 24)), new agt(amk.a, new agx(5, 7)) }, { new agr(amk.j, new agx(7, 9)), new agt(amk.b, new agx(9, 11)) }, { new agr(amk.i, new agx(3, 4)), new agt(amk.w, new agx(12, 15)) } } },
-			{ { { new agr(amk.al, new agx(14, 18)), new agr(amk.bk, new agx(14, 18)) }, { new agr(amk.h, new agx(16, 24)), new agv(amk.am, new agx(-7, -5)), new agv(amk.bl, new agx(-8, -6)) } }, { { new agr(amk.aF, new agx(9, 12)), new agv(amk.S, new agx(2, 4)) }, { new agt(amk.R, new agx(7, 12)) }, { new agv(amk.aA, new agx(8, 10)) } } } };
+							{ new agr(Item.getItemOf(Blocks.WOOL), new agx(16, 22)), new agv(Items.SHEARS, new agx(3, 4)) },
+							{ new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 0), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 1), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 2), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 3), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 4), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 5), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 6), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 7), new agx(1, 2)),
+									new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 8), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 9), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 10), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 11), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 12), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 13), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 14), new agx(1, 2)), new agv(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, 15), new agx(1, 2)) } },
+					{ { new agr(Items.STRING, new agx(15, 20)), new agv(Items.ARROW, new agx(-12, -8)) }, { new agv(Items.BOW, new agx(2, 3)), new agu(Item.getItemOf(Blocks.GRAVEL), new agx(10, 10), Items.FLINT, new agx(6, 10)) } } },
+			{ { { new agr(Items.PAPER, new agx(24, 36)), new ags() }, { new agr(Items.BOOK, new agx(8, 10)), new agv(Items.COMPASS, new agx(10, 12)), new agv(Item.getItemOf(Blocks.BOOKSHELF), new agx(3, 4)) }, { new agr(Items.WRITTEN_BOOK, new agx(2, 2)), new agv(Items.CLOCK, new agx(10, 12)), new agv(Item.getItemOf(Blocks.GLASS), new agx(-5, -3)) }, { new ags() }, { new ags() }, { new agv(Items.NAMETAG, new agx(20, 22)) } } },
+			{ { { new agr(Items.ROTTEN_FLESH, new agx(36, 40)), new agr(Items.GOLD_INGOT, new agx(8, 10)) }, { new agv(Items.REDSTONE, new agx(-4, -1)), new agv(new ItemStack(Items.DYE, 1, akv.l.b()), new agx(-2, -1)) }, { new agv(Items.ENDER_EYE, new agx(7, 11)), new agv(Item.getItemOf(Blocks.GLOWSTONE), new agx(-3, -1)) }, { new agv(Items.EXP_BOTTLE, new agx(3, 11)) } } },
+			{ { { new agr(Items.COAL, new agx(16, 24)), new agv(Items.IRON_HELMET, new agx(4, 6)) }, { new agr(Items.IRON_INGOT, new agx(7, 9)), new agv(Items.IRON_CHESTPLATE, new agx(10, 14)) }, { new agr(Items.DIAMOND, new agx(3, 4)), new agt(Items.DIAMOND_CHESTPLATE, new agx(16, 19)) }, { new agv(Items.CHAINMAIL_BOOTS, new agx(5, 7)), new agv(Items.CHAINMAIL_LEGGINS, new agx(9, 11)), new agv(Items.CHAINMAIL_HELMET, new agx(5, 7)), new agv(Items.CHAINMAIL_CHESTPLATE, new agx(11, 15)) } },
+					{ { new agr(Items.COAL, new agx(16, 24)), new agv(Items.IRON_AXE, new agx(6, 8)) }, { new agr(Items.IRON_INGOT, new agx(7, 9)), new agt(Items.IRON_SWORD, new agx(9, 10)) }, { new agr(Items.DIAMOND, new agx(3, 4)), new agt(Items.DIAMOND_SWORD, new agx(12, 15)), new agt(Items.DIAMOND_AXE, new agx(9, 12)) } }, { { new agr(Items.COAL, new agx(16, 24)), new agt(Items.IRON_SHOWEL, new agx(5, 7)) }, { new agr(Items.IRON_INGOT, new agx(7, 9)), new agt(Items.IRON_PICKAXE, new agx(9, 11)) }, { new agr(Items.DIAMOND, new agx(3, 4)), new agt(Items.DIAMOND_PICKAXE, new agx(12, 15)) } } },
+			{ { { new agr(Items.PORKCHOP, new agx(14, 18)), new agr(Items.CHICKEN, new agx(14, 18)) }, { new agr(Items.COAL, new agx(16, 24)), new agv(Items.COOCKED_PORKCHOP, new agx(-7, -5)), new agv(Items.COOKED_CHICKEN, new agx(-8, -6)) } }, { { new agr(Items.LEATHER, new agx(9, 12)), new agv(Items.LEATHER_LEGGINS, new agx(2, 4)) }, { new agt(Items.LEATHER_CHESTPLATE, new agx(7, 12)) }, { new agv(Items.SADDLE, new agx(8, 10)) } } } };
 
 	public EntityVillager(World var1) {
 		this(var1, 0);
@@ -42,24 +44,29 @@ public class EntityVillager extends ws implements ago, aqb {
 	public EntityVillager(World var1, int var2) {
 		super(var1);
 		this.bz = new wa("Items", false, 8);
-		this.r(var2);
+		this.setProfession(var2);
 		this.a(0.6F, 1.8F);
 		((aay) this.s()).b(true);
 		((aay) this.s()).a(true);
-		this.i.a(0, new yy(this));
-		this.i.a(1, new yp(this, new agq(this), 8.0F, 0.6D, 0.6D));
-		this.i.a(1, new aah(this));
-		this.i.a(1, new zi(this));
-		this.i.a(2, new zl(this));
-		this.i.a(3, new aaa(this));
-		this.i.a(4, new zt(this, true));
-		this.i.a(5, new zo(this, 0.6D));
-		this.i.a(6, new zj(this));
-		this.i.a(7, new aaf(this));
-		this.i.a(9, new zf(this, EntityHuman.class, 3.0F, 1.0F));
-		this.i.a(9, new aai(this));
-		this.i.a(9, new zy(this, 0.6D));
-		this.i.a(10, new zh(this, EntityInsentient.class, 8.0F));
+		this.i.a(0, new PathfinderGoalFloat(this));
+		this.i.a(1, new PathfinderGoalAvoidEntity(this, new Predicate<Entity>() {
+			@Override
+			public boolean apply(Entity entity) {
+				return entity instanceof EntityZombie;
+			}
+		}, 8.0F, 0.6D, 0.6D));
+		this.i.a(1, new PathfinderGoalTradeWithPlayer(this));
+		this.i.a(1, new PathfinderGoalLookAtTradingPlayer(this));
+		this.i.a(2, new PathfinderGoalMoveIndoors(this));
+		this.i.a(3, new PathfinderGoalRestrictOpenDoor(this));
+		this.i.a(4, new PathfinderGoalOpenDoor(this, true));
+		this.i.a(5, new PathfinderGoalMoveTowardsRestriction(this, 0.6D));
+		this.i.a(6, new PathfinderGoalMakeLove(this));
+		this.i.a(7, new PathfinderGoalTakeFlower(this));
+		this.i.a(9, new PathfinderGoalInteract(this, EntityHuman.class, 3.0F, 1.0F));
+		this.i.a(9, new PathfinderGoalVillagerInteract(this));
+		this.i.a(9, new PathfinderGoalRandomStroll(this, 0.6D));
+		this.i.a(10, new PathfinderGoalLookAtPlayer(this, EntityInsentient.class, 8.0F));
 		this.j(true);
 	}
 
@@ -89,19 +96,19 @@ public class EntityVillager extends ws implements ago, aqb {
 	}
 
 	protected void E() {
-		if (--this.bl <= 0) {
+		if (--this.profession <= 0) {
 			Position var1 = new Position(this);
-			this.o.ae().a(var1);
-			this.bl = 70 + this.V.nextInt(50);
-			this.bk = this.o.ae().a(var1, 32);
-			if (this.bk == null) {
+			this.world.ae().a(var1);
+			this.profession = 70 + this.random.nextInt(50);
+			this.village = this.world.ae().a(var1, 32);
+			if (this.village == null) {
 				this.ch();
 			} else {
-				Position var2 = this.bk.a();
-				this.a(var2, (int) ((float) this.bk.b() * 1.0F));
+				Position var2 = this.village.a();
+				this.a(var2, (int) ((float) this.village.b() * 1.0F));
 				if (this.bx) {
 					this.bx = false;
-					this.bk.b(5);
+					this.village.b(5);
 				}
 			}
 		}
@@ -115,19 +122,19 @@ public class EntityVillager extends ws implements ago, aqb {
 					while (var3.hasNext()) {
 						aqc var4 = (aqc) var3.next();
 						if (var4.h()) {
-							var4.a(this.V.nextInt(6) + this.V.nextInt(6) + 2);
+							var4.a(this.random.nextInt(6) + this.random.nextInt(6) + 2);
 						}
 					}
 
 					this.cu();
 					this.br = false;
-					if (this.bk != null && this.bu != null) {
-						this.o.a((Entity) this, (byte) 14);
-						this.bk.a(this.bu, 1);
+					if (this.village != null && this.bu != null) {
+						this.world.broadcastEntityEffect((Entity) this, (byte) 14);
+						this.village.a(this.bu, 1);
 					}
 				}
 
-				this.c(new MobEffect(MobEffectList.l.H, 200, 0));
+				this.c(new MobEffect(MobEffectList.REGENERATION.id, 200, 0));
 			}
 		}
 
@@ -136,11 +143,11 @@ public class EntityVillager extends ws implements ago, aqb {
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		boolean var3 = var2 != null && var2.getItem() == amk.bJ;
-		if (!var3 && this.ai() && !this.cm() && !this.i_()) {
-			if (!this.o.D && (this.bp == null || this.bp.size() > 0)) {
+		boolean var3 = var2 != null && var2.getItem() == Items.SPAWNEGG;
+		if (!var3 && this.isAlive() && !this.cm() && !this.i_()) {
+			if (!this.world.isStatic && (this.bp == null || this.bp.size() > 0)) {
 				this.a_(var1);
-				var1.a((aqb) this);
+				var1.a((IMerchant) this);
 			}
 
 			var1.b(StatisticList.F);
@@ -158,10 +165,10 @@ public class EntityVillager extends ws implements ago, aqb {
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
 		var1.put("Profession", this.cj());
-		var1.put("Riches", this.bt);
-		var1.put("Career", this.bv);
-		var1.put("CareerLevel", this.bw);
-		var1.put("Willing", this.bs);
+		var1.put("Riches", this.riches);
+		var1.put("Career", this.career);
+		var1.put("CareerLevel", this.careerLevel);
+		var1.put("Willing", this.willing);
 		if (this.bp != null) {
 			var1.put("Offers", (NBTTag) this.bp.a());
 		}
@@ -171,7 +178,7 @@ public class EntityVillager extends ws implements ago, aqb {
 		for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
 			ItemStack var4 = this.bz.a(var3);
 			if (var4 != null) {
-				var2.addTag((NBTTag) var4.b(new NBTCompoundTag()));
+				var2.addTag((NBTTag) var4.write(new NBTCompoundTag()));
 			}
 		}
 
@@ -180,14 +187,14 @@ public class EntityVillager extends ws implements ago, aqb {
 
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.r(var1.getInt("Profession"));
-		this.bt = var1.getInt("Riches");
-		this.bv = var1.getInt("Career");
-		this.bw = var1.getInt("CareerLevel");
-		this.bs = var1.getBoolean("Willing");
+		this.setProfession(var1.getInt("Profession"));
+		this.riches = var1.getInt("Riches");
+		this.career = var1.getInt("Career");
+		this.careerLevel = var1.getInt("CareerLevel");
+		this.willing = var1.getBoolean("Willing");
 		if (var1.isTagAssignableFrom("Offers", 10)) {
 			NBTCompoundTag var2 = var1.getCompound("Offers");
-			this.bp = new aqd(var2);
+			this.bp = new MerchantRecipeList(var2);
 		}
 
 		NBTListTag var5 = var1.getList("Inventory", 10);
@@ -219,7 +226,7 @@ public class EntityVillager extends ws implements ago, aqb {
 		return "mob.villager.death";
 	}
 
-	public void r(int var1) {
+	public void setProfession(int var1) {
 		this.dataWatcher.b(16, Integer.valueOf(var1));
 	}
 
@@ -245,36 +252,36 @@ public class EntityVillager extends ws implements ago, aqb {
 
 	public void b(EntityLiving var1) {
 		super.b(var1);
-		if (this.bk != null && var1 != null) {
-			this.bk.a(var1);
+		if (this.village != null && var1 != null) {
+			this.village.a(var1);
 			if (var1 instanceof EntityHuman) {
 				byte var2 = -1;
 				if (this.i_()) {
 					var2 = -3;
 				}
 
-				this.bk.a(var1.d_(), var2);
-				if (this.ai()) {
-					this.o.a((Entity) this, (byte) 13);
+				this.village.a(var1.getName(), var2);
+				if (this.isAlive()) {
+					this.world.broadcastEntityEffect((Entity) this, (byte) 13);
 				}
 			}
 		}
 
 	}
 
-	public void a(wh var1) {
-		if (this.bk != null) {
+	public void a(DamageSource var1) {
+		if (this.village != null) {
 			Entity var2 = var1.j();
 			if (var2 != null) {
 				if (var2 instanceof EntityHuman) {
-					this.bk.a(var2.d_(), -2);
-				} else if (var2 instanceof aex) {
-					this.bk.h();
+					this.village.a(var2.getName(), -2);
+				} else if (var2 instanceof IMonster) {
+					this.village.h();
 				}
 			} else {
-				EntityHuman var3 = this.o.a(this, 16.0D);
+				EntityHuman var3 = this.world.a(this, 16.0D);
 				if (var3 != null) {
-					this.bk.h();
+					this.village.h();
 				}
 			}
 		}
@@ -283,59 +290,59 @@ public class EntityVillager extends ws implements ago, aqb {
 	}
 
 	public void a_(EntityHuman var1) {
-		this.bo = var1;
+		this.tradingPlayer = var1;
 	}
 
 	public EntityHuman u_() {
-		return this.bo;
+		return this.tradingPlayer;
 	}
 
 	public boolean cm() {
-		return this.bo != null;
+		return this.tradingPlayer != null;
 	}
 
 	public boolean n(boolean var1) {
-		if (!this.bs && var1 && this.cp()) {
+		if (!this.willing && var1 && this.cp()) {
 			boolean var2 = false;
 
 			for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
 				ItemStack var4 = this.bz.a(var3);
 				if (var4 != null) {
-					if (var4.getItem() == amk.P && var4.b >= 3) {
+					if (var4.getItem() == Items.BREAD && var4.amount >= 3) {
 						var2 = true;
 						this.bz.a(var3, 3);
-					} else if ((var4.getItem() == amk.bS || var4.getItem() == amk.bR) && var4.b >= 12) {
+					} else if ((var4.getItem() == Items.POTATO || var4.getItem() == Items.CARROT) && var4.amount >= 12) {
 						var2 = true;
 						this.bz.a(var3, 12);
 					}
 				}
 
 				if (var2) {
-					this.o.a((Entity) this, (byte) 18);
-					this.bs = true;
+					this.world.broadcastEntityEffect((Entity) this, (byte) 18);
+					this.willing = true;
 					break;
 				}
 			}
 		}
 
-		return this.bs;
+		return this.willing;
 	}
 
 	public void o(boolean var1) {
-		this.bs = var1;
+		this.willing = var1;
 	}
 
 	public void a(aqc var1) {
 		var1.g();
 		this.a_ = -this.w();
 		this.a("mob.villager.yes", this.bA(), this.bB());
-		int var2 = 3 + this.V.nextInt(4);
-		if (var1.e() == 1 || this.V.nextInt(5) == 0) {
+		int var2 = 3 + this.random.nextInt(4);
+		if (var1.e() == 1 || this.random.nextInt(5) == 0) {
 			this.bq = 40;
 			this.br = true;
-			this.bs = true;
-			if (this.bo != null) {
-				this.bu = this.bo.d_();
+			this.willing = true;
+			if (this.tradingPlayer != null) {
+				this.bu = this.tradingPlayer.getName();
 			} else {
 				this.bu = null;
 			}
@@ -343,18 +350,18 @@ public class EntityVillager extends ws implements ago, aqb {
 			var2 += 5;
 		}
 
-		if (var1.a().getItem() == amk.bO) {
-			this.bt += var1.a().b;
+		if (var1.a().getItem() == Items.EMERALD) {
+			this.riches += var1.a().amount;
 		}
 
 		if (var1.j()) {
-			this.o.d((Entity) (new EntityExpirienceOrb(this.o, this.locationX, this.locationY + 0.5D, this.locationZ, var2)));
+			this.world.addEntity((Entity) (new EntityExpirienceOrb(this.world, this.locationX, this.locationY + 0.5D, this.locationZ, var2)));
 		}
 
 	}
 
 	public void a_(ItemStack var1) {
-		if (!this.o.D && this.a_ > -this.w() + 20) {
+		if (!this.world.isStatic && this.a_ > -this.w() + 20) {
 			this.a_ = -this.w();
 			if (var1 != null) {
 				this.a("mob.villager.yes", this.bA(), this.bB());
@@ -365,7 +372,7 @@ public class EntityVillager extends ws implements ago, aqb {
 
 	}
 
-	public aqd b_(EntityHuman var1) {
+	public MerchantRecipeList b_(EntityHuman var1) {
 		if (this.bp == null) {
 			this.cu();
 		}
@@ -375,19 +382,19 @@ public class EntityVillager extends ws implements ago, aqb {
 
 	private void cu() {
 		agw[][][] var1 = bA[this.cj()];
-		if (this.bv != 0 && this.bw != 0) {
-			++this.bw;
+		if (this.career != 0 && this.careerLevel != 0) {
+			++this.careerLevel;
 		} else {
-			this.bv = this.V.nextInt(var1.length) + 1;
-			this.bw = 1;
+			this.career = this.random.nextInt(var1.length) + 1;
+			this.careerLevel = 1;
 		}
 
 		if (this.bp == null) {
-			this.bp = new aqd();
+			this.bp = new MerchantRecipeList();
 		}
 
-		int var2 = this.bv - 1;
-		int var3 = this.bw - 1;
+		int var2 = this.career - 1;
+		int var3 = this.careerLevel - 1;
 		agw[][] var4 = var1[var2];
 		if (var3 < var4.length) {
 			agw[] var5 = var4[var3];
@@ -396,16 +403,16 @@ public class EntityVillager extends ws implements ago, aqb {
 
 			for (int var8 = 0; var8 < var7; ++var8) {
 				agw var9 = var6[var8];
-				var9.a(this.bp, this.V);
+				var9.a(this.bp, this.random);
 			}
 		}
 
 	}
 
-	public IJSONComponent e_() {
-		String var1 = this.aL();
+	public IChatBaseComponent getComponentName() {
+		String var1 = this.getCustomName();
 		if (var1 != null && var1.length() > 0) {
-			return new hy(var1);
+			return new ChatComponentText(var1);
 		} else {
 			if (this.bp == null) {
 				this.cu();
@@ -414,13 +421,13 @@ public class EntityVillager extends ws implements ago, aqb {
 			String var2 = null;
 			switch (this.cj()) {
 				case 0:
-					if (this.bv == 1) {
+					if (this.career == 1) {
 						var2 = "farmer";
-					} else if (this.bv == 2) {
+					} else if (this.career == 2) {
 						var2 = "fisherman";
-					} else if (this.bv == 3) {
+					} else if (this.career == 3) {
 						var2 = "shepherd";
-					} else if (this.bv == 4) {
+					} else if (this.career == 4) {
 						var2 = "fletcher";
 					}
 					break;
@@ -431,34 +438,34 @@ public class EntityVillager extends ws implements ago, aqb {
 					var2 = "cleric";
 					break;
 				case 3:
-					if (this.bv == 1) {
+					if (this.career == 1) {
 						var2 = "armor";
-					} else if (this.bv == 2) {
+					} else if (this.career == 2) {
 						var2 = "weapon";
-					} else if (this.bv == 3) {
+					} else if (this.career == 3) {
 						var2 = "tool";
 					}
 					break;
 				case 4:
-					if (this.bv == 1) {
+					if (this.career == 1) {
 						var2 = "butcher";
-					} else if (this.bv == 2) {
+					} else if (this.career == 2) {
 						var2 = "leather";
 					}
 			}
 
 			if (var2 != null) {
-				hz var3 = new hz("entity.Villager." + var2, new Object[0]);
-				var3.b().a(this.aP());
-				var3.b().a(this.aJ().toString());
+				ChatMessage var3 = new ChatMessage("entity.Villager." + var2, new Object[0]);
+				var3.getChatModifier().a(this.aP());
+				var3.getChatModifier().a(this.getUUID().toString());
 				return var3;
 			} else {
-				return super.e_();
+				return super.getComponentName();
 			}
 		}
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		float var1 = 1.62F;
 		if (this.i_()) {
 			var1 = (float) ((double) var1 - 0.81D);
@@ -469,7 +476,7 @@ public class EntityVillager extends ws implements ago, aqb {
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		this.r(this.o.s.nextInt(5));
+		this.setProfession(this.world.s.nextInt(5));
 		this.ct();
 		return var2;
 	}
@@ -478,9 +485,9 @@ public class EntityVillager extends ws implements ago, aqb {
 		this.bx = true;
 	}
 
-	public EntityVillager b(ws var1) {
-		EntityVillager var2 = new EntityVillager(this.o);
-		var2.a(this.o.E(new Position(var2)), (xq) null);
+	public EntityVillager b(EntityAgeable var1) {
+		EntityVillager var2 = new EntityVillager(this.world);
+		var2.a(this.world.E(new Position(var2)), (xq) null);
 		return var2;
 	}
 
@@ -489,12 +496,12 @@ public class EntityVillager extends ws implements ago, aqb {
 	}
 
 	public void a(EntityLightning var1) {
-		if (!this.o.D) {
-			EntityWitch var2 = new EntityWitch(this.o);
-			var2.b(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
-			var2.a(this.o.E(new Position(var2)), (xq) null);
-			this.o.d((Entity) var2);
-			this.J();
+		if (!this.world.isStatic) {
+			EntityWitch var2 = new EntityWitch(this.world);
+			var2.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, this.pitch);
+			var2.a(this.world.E(new Position(var2)), (xq) null);
+			this.world.addEntity((Entity) var2);
+			this.die();
 		}
 	}
 
@@ -508,16 +515,16 @@ public class EntityVillager extends ws implements ago, aqb {
 		if (this.a(var3)) {
 			ItemStack var4 = this.bz.a(var2);
 			if (var4 == null) {
-				var1.J();
+				var1.die();
 			} else {
-				var2.b = var4.b;
+				var2.amount = var4.amount;
 			}
 		}
 
 	}
 
 	private boolean a(Item var1) {
-		return var1 == amk.P || var1 == amk.bS || var1 == amk.bR || var1 == amk.O || var1 == amk.N;
+		return var1 == Items.BREAD || var1 == Items.POTATO || var1 == Items.CARROT || var1 == Items.WHEAT || var1 == Items.WHEAT_SEEDS;
 	}
 
 	public boolean cp() {
@@ -539,11 +546,11 @@ public class EntityVillager extends ws implements ago, aqb {
 		for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
 			ItemStack var4 = this.bz.a(var3);
 			if (var4 != null) {
-				if (var4.getItem() == amk.P && var4.b >= 3 * var1 || var4.getItem() == amk.bS && var4.b >= 12 * var1 || var4.getItem() == amk.bR && var4.b >= 12 * var1) {
+				if (var4.getItem() == Items.BREAD && var4.amount >= 3 * var1 || var4.getItem() == Items.POTATO && var4.amount >= 12 * var1 || var4.getItem() == Items.CARROT && var4.amount >= 12 * var1) {
 					return true;
 				}
 
-				if (var2 && var4.getItem() == amk.O && var4.b >= 9 * var1) {
+				if (var2 && var4.getItem() == Items.WHEAT && var4.amount >= 9 * var1) {
 					return true;
 				}
 			}
@@ -555,7 +562,7 @@ public class EntityVillager extends ws implements ago, aqb {
 	public boolean cs() {
 		for (int var1 = 0; var1 < this.bz.n_(); ++var1) {
 			ItemStack var2 = this.bz.a(var1);
-			if (var2 != null && (var2.getItem() == amk.N || var2.getItem() == amk.bS || var2.getItem() == amk.bR)) {
+			if (var2 != null && (var2.getItem() == Items.WHEAT_SEEDS || var2.getItem() == Items.POTATO || var2.getItem() == Items.CARROT)) {
 				return true;
 			}
 		}
@@ -578,7 +585,7 @@ public class EntityVillager extends ws implements ago, aqb {
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.b(var1);
 	}
 

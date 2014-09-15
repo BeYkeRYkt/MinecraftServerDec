@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntitySquid extends act {
+public class EntitySquid extends EntityWaterAnimal {
 
 	public float a;
 	public float b;
@@ -20,8 +20,8 @@ public class EntitySquid extends act {
 	public EntitySquid(World var1) {
 		super(var1);
 		this.a(0.95F, 0.95F);
-		this.V.setSeed((long) (1 + this.getId()));
-		this.bo = 1.0F / (this.V.nextFloat() + 1.0F) * 0.2F;
+		this.random.setSeed((long) (1 + this.getId()));
+		this.bo = 1.0F / (this.random.nextFloat() + 1.0F) * 0.2F;
 		this.i.a(0, new acp(this));
 	}
 
@@ -30,8 +30,8 @@ public class EntitySquid extends act {
 		this.a(afs.a).a(10.0D);
 	}
 
-	public float aR() {
-		return this.K * 0.5F;
+	public float getHeadHeight() {
+		return this.width * 0.5F;
 	}
 
 	protected String z() {
@@ -50,7 +50,7 @@ public class EntitySquid extends act {
 		return 0.4F;
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return null;
 	}
 
@@ -58,17 +58,17 @@ public class EntitySquid extends act {
 		return false;
 	}
 
-	protected void b(boolean var1, int var2) {
-		int var3 = this.V.nextInt(3 + var2) + 1;
+	protected void dropDeathLoot(boolean var1, int var2) {
+		int var3 = this.random.nextInt(3 + var2) + 1;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			this.a(new ItemStack(amk.aW, 1, akv.p.b()), 0.0F);
+			this.a(new ItemStack(Items.DYE, 1, akv.p.b()), 0.0F);
 		}
 
 	}
 
 	public boolean V() {
-		return this.o.a(this.aQ().b(0.0D, -0.6000000238418579D, 0.0D), Material.WATER, (Entity) this);
+		return this.world.a(this.getBoundingBox().grow(0.0D, -0.6000000238418579D, 0.0D), Material.WATER, (Entity) this);
 	}
 
 	public void m() {
@@ -79,23 +79,23 @@ public class EntitySquid extends act {
 		this.bm = this.bl;
 		this.bj += this.bo;
 		if ((double) this.bj > 6.283185307179586D) {
-			if (this.o.D) {
+			if (this.world.isStatic) {
 				this.bj = 6.2831855F;
 			} else {
 				this.bj = (float) ((double) this.bj - 6.283185307179586D);
-				if (this.V.nextInt(10) == 0) {
-					this.bo = 1.0F / (this.V.nextFloat() + 1.0F) * 0.2F;
+				if (this.random.nextInt(10) == 0) {
+					this.bo = 1.0F / (this.random.nextFloat() + 1.0F) * 0.2F;
 				}
 
-				this.o.a((Entity) this, (byte) 19);
+				this.world.broadcastEntityEffect((Entity) this, (byte) 19);
 			}
 		}
 
-		if (this.Y) {
+		if (this.inWater) {
 			float var1;
 			if (this.bj < 3.1415927F) {
 				var1 = this.bj / 3.1415927F;
-				this.bl = DataTypesConverter.a(var1 * var1 * 3.1415927F) * 3.1415927F * 0.25F;
+				this.bl = MathHelper.a(var1 * var1 * 3.1415927F) * 3.1415927F * 0.25F;
 				if ((double) var1 > 0.75D) {
 					this.bn = 1.0F;
 					this.bp = 1.0F;
@@ -108,20 +108,20 @@ public class EntitySquid extends act {
 				this.bp *= 0.99F;
 			}
 
-			if (!this.o.D) {
+			if (!this.world.isStatic) {
 				this.motionX = (double) (this.bq * this.bn);
 				this.motionY = (double) (this.br * this.bn);
 				this.motionZ = (double) (this.bs * this.bn);
 			}
 
-			var1 = DataTypesConverter.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			var1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.aG += (-((float) Math.atan2(this.motionX, this.motionZ)) * 180.0F / 3.1415927F - this.aG) * 0.1F;
 			this.yaw = this.aG;
 			this.c = (float) ((double) this.c + 3.141592653589793D * (double) this.bp * 1.5D);
 			this.a += (-((float) Math.atan2((double) var1, this.motionY)) * 180.0F / 3.1415927F - this.a) * 0.1F;
 		} else {
-			this.bl = DataTypesConverter.e(DataTypesConverter.a(this.bj)) * 3.1415927F * 0.25F;
-			if (!this.o.D) {
+			this.bl = MathHelper.e(MathHelper.a(this.bj)) * 3.1415927F * 0.25F;
+			if (!this.world.isStatic) {
 				this.motionX = 0.0D;
 				this.motionY -= 0.08D;
 				this.motionY *= 0.9800000190734863D;
@@ -134,7 +134,7 @@ public class EntitySquid extends act {
 	}
 
 	public void g(float var1, float var2) {
-		this.d(this.motionX, this.motionY, this.motionZ);
+		this.move(this.motionX, this.motionY, this.motionZ);
 	}
 
 	public boolean bQ() {
@@ -153,6 +153,6 @@ public class EntitySquid extends act {
 
 	// $FF: synthetic method
 	static boolean a(EntitySquid var0) {
-		return var0.Y;
+		return var0.inWater;
 	}
 }

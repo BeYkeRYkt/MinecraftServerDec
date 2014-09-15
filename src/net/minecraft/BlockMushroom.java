@@ -11,7 +11,7 @@ public class BlockMushroom extends auc implements atz {
 		this.a(true);
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (var4.nextInt(25) == 0) {
 			int var5 = 5;
 			boolean var6 = true;
@@ -19,7 +19,7 @@ public class BlockMushroom extends auc implements atz {
 
 			while (var7.hasNext()) {
 				Position var8 = (Position) var7.next();
-				if (var1.p(var8).getBlock() == this) {
+				if (var1.getBlockState(var8).getBlock() == this) {
 					--var5;
 					if (var5 <= 0) {
 						return;
@@ -30,63 +30,63 @@ public class BlockMushroom extends auc implements atz {
 			Position var9 = var2.a(var4.nextInt(3) - 1, var4.nextInt(2) - var4.nextInt(2), var4.nextInt(3) - 1);
 
 			for (int var10 = 0; var10 < 4; ++var10) {
-				if (var1.d(var9) && this.f(var1, var9, this.P())) {
+				if (var1.d(var9) && this.f(var1, var9, this.getBlockState())) {
 					var2 = var9;
 				}
 
 				var9 = var2.a(var4.nextInt(3) - 1, var4.nextInt(2) - var4.nextInt(2), var4.nextInt(3) - 1);
 			}
 
-			if (var1.d(var9) && this.f(var1, var9, this.P())) {
-				var1.a(var9, this.P(), 2);
+			if (var1.d(var9) && this.f(var1, var9, this.getBlockState())) {
+				var1.setBlockAt(var9, this.getBlockState(), 2);
 			}
 		}
 
 	}
 
 	public boolean c(World var1, Position var2) {
-		return super.c(var1, var2) && this.f(var1, var2, this.P());
+		return super.c(var1, var2) && this.f(var1, var2, this.getBlockState());
 	}
 
 	protected boolean c(Block var1) {
 		return var1.m();
 	}
 
-	public boolean f(World var1, Position var2, bec var3) {
+	public boolean f(World var1, Position var2, IBlockState var3) {
 		if (var2.getY() >= 0 && var2.getY() < 256) {
-			bec var4 = var1.p(var2.b());
-			return var4.getBlock() == aty.bw ? true : (var4.getBlock() == aty.d && var4.b(BlockDirt.a) == avd.c ? true : var1.k(var2) < 13 && this.c(var4.getBlock()));
+			IBlockState var4 = var1.getBlockState(var2.b());
+			return var4.getBlock() == Blocks.MYCELIUM ? true : (var4.getBlock() == Blocks.DIRT && var4.b(BlockDirt.a) == avd.c ? true : var1.k(var2) < 13 && this.c(var4.getBlock()));
 		} else {
 			return false;
 		}
 	}
 
-	public boolean d(World var1, Position var2, bec var3, Random var4) {
+	public boolean d(World var1, Position var2, IBlockState var3, Random var4) {
 		var1.g(var2);
-		bhv var5 = null;
-		if (this == aty.P) {
-			var5 = new bhv(0);
-		} else if (this == aty.Q) {
-			var5 = new bhv(1);
+		WorldGenHugeMushroom var5 = null;
+		if (this == Blocks.BRWON_MUSHROOM) {
+			var5 = new WorldGenHugeMushroom(0);
+		} else if (this == Blocks.RED_MUSHROOM) {
+			var5 = new WorldGenHugeMushroom(1);
 		}
 
 		if (var5 != null && var5.b(var1, var4, var2)) {
 			return true;
 		} else {
-			var1.a(var2, var3, 3);
+			var1.setBlockAt(var2, var3, 3);
 			return false;
 		}
 	}
 
-	public boolean a(World var1, Position var2, bec var3, boolean var4) {
+	public boolean a(World var1, Position var2, IBlockState var3, boolean var4) {
 		return true;
 	}
 
-	public boolean a(World var1, Random var2, Position var3, bec var4) {
+	public boolean a(World var1, Random var2, Position var3, IBlockState var4) {
 		return (double) var2.nextFloat() < 0.4D;
 	}
 
-	public void b(World var1, Random var2, Position var3, bec var4) {
+	public void b(World var1, Random var2, Position var3, IBlockState var4) {
 		this.d(var1, var3, var4, var2);
 	}
 }

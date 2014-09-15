@@ -9,15 +9,15 @@ public class BlockPrismarine extends Block {
 
 	public BlockPrismarine() {
 		super(Material.STONE);
-		this.j(this.L.b().a(a, azj.a));
-		this.a(CreativeModeTab.b);
+		this.setBlockState(this.L.b().a(a, azj.a));
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(bec var1) {
+	public int a(IBlockState var1) {
 		return ((azj) var1.b(a)).a();
 	}
 
-	public int c(bec var1) {
+	public int getData(IBlockState var1) {
 		return ((azj) var1.b(a)).a();
 	}
 
@@ -25,8 +25,8 @@ public class BlockPrismarine extends Block {
 		return new bed(this, new bex[] { a });
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, azj.a(var1));
+	public IBlockState setData(int var1) {
+		return this.getBlockState().a(a, azj.a(var1));
 	}
 
 }

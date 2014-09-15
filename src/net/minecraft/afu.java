@@ -2,10 +2,10 @@ package net.minecraft;
 
 import java.util.Random;
 
-class afu extends zy {
+class afu extends PathfinderGoalRandomStroll {
 
 	private final EntitySilverfish a;
-	private PaintingDirection b;
+	private BlockFace b;
 	private boolean c;
 
 	public afu(EntitySilverfish var1) {
@@ -22,9 +22,9 @@ class afu extends zy {
 		} else {
 			Random var1 = this.a.bb();
 			if (var1.nextInt(10) == 0) {
-				this.b = PaintingDirection.a(var1);
+				this.b = BlockFace.getRandom(var1);
 				Position var2 = (new Position(this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ)).a(this.b);
-				bec var3 = this.a.o.p(var2);
+				IBlockState var3 = this.a.world.getBlockState(var2);
 				if (BlockMonsterEggs.d(var3)) {
 					this.c = true;
 					return true;
@@ -44,13 +44,13 @@ class afu extends zy {
 		if (!this.c) {
 			super.c();
 		} else {
-			World var1 = this.a.o;
+			World var1 = this.a.world;
 			Position var2 = (new Position(this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ)).a(this.b);
-			bec var3 = var1.p(var2);
+			IBlockState var3 = var1.getBlockState(var2);
 			if (BlockMonsterEggs.d(var3)) {
-				var1.a(var2, aty.be.P().a(BlockMonsterEggs.a, axu.a(var3)), 3);
+				var1.setBlockAt(var2, Blocks.MONSTER_EGG.getBlockState().a(BlockMonsterEggs.a, axu.a(var3)), 3);
 				this.a.y();
-				this.a.J();
+				this.a.die();
 			}
 
 		}

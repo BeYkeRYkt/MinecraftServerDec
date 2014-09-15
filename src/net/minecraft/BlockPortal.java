@@ -8,13 +8,13 @@ public class BlockPortal extends awt {
 
 	public BlockPortal() {
 		super(Material.PORTAL, false);
-		this.j(this.L.b().a(a, el.a));
+		this.setBlockState(this.L.b().a(a, el.a));
 		this.a(true);
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		super.b(var1, var2, var3, var4);
-		if (var1.worldProvider.d() && var1.Q().b("doMobSpawning") && var4.nextInt(2000) < var1.getDifficulty().getId()) {
+		if (var1.worldProvider.isSleepAllowed() && var1.getGameRules().b("doMobSpawning") && var4.nextInt(2000) < var1.getDifficulty().getId()) {
 			int var5 = var2.getY();
 
 			Position var6;
@@ -22,22 +22,22 @@ public class BlockPortal extends awt {
 				;
 			}
 
-			if (var5 > 0 && !var1.p(var6.a()).getBlock().t()) {
-				Entity var7 = anl.a(var1, 57, (double) var6.getX() + 0.5D, (double) var6.getY() + 1.1D, (double) var6.getZ() + 0.5D);
+			if (var5 > 0 && !var1.getBlockState(var6.a()).getBlock().t()) {
+				Entity var7 = ItemMonsterEgg.a(var1, 57, (double) var6.getX() + 0.5D, (double) var6.getY() + 1.1D, (double) var6.getZ() + 0.5D);
 				if (var7 != null) {
-					var7.aj = var7.ar();
+					var7.portalCooldown = var7.ar();
 				}
 			}
 		}
 
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
 	public void a(ard var1, Position var2) {
-		el var3 = (el) var1.p(var2).b(a);
+		el var3 = (el) var1.getBlockState(var2).b(a);
 		float var4 = 0.125F;
 		float var5 = 0.125F;
 		if (var3 == el.a) {
@@ -75,18 +75,18 @@ public class BlockPortal extends awt {
 		}
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		el var5 = (el) var3.b(a);
 		ayz var6;
 		if (var5 == el.a) {
 			var6 = new ayz(var1, var2, el.a);
 			if (!var6.b() || ayz.a(var6) < ayz.b(var6) * ayz.c(var6)) {
-				var1.a(var2, aty.a.P());
+				var1.a(var2, Blocks.AIR.getBlockState());
 			}
 		} else if (var5 == el.c) {
 			var6 = new ayz(var1, var2, el.c);
 			if (!var6.b() || ayz.a(var6) < ayz.b(var6) * ayz.c(var6)) {
-				var1.a(var2, aty.a.P());
+				var1.a(var2, Blocks.AIR.getBlockState());
 			}
 		}
 
@@ -96,18 +96,18 @@ public class BlockPortal extends awt {
 		return 0;
 	}
 
-	public void a(World var1, Position var2, bec var3, Entity var4) {
-		if (var4.m == null && var4.l == null) {
+	public void a(World var1, Position var2, IBlockState var3, Entity var4) {
+		if (var4.vehicle == null && var4.passenger == null) {
 			var4.aq();
 		}
 
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, (var1 & 3) == 2 ? el.c : el.a);
+	public IBlockState setData(int var1) {
+		return this.getBlockState().a(a, (var1 & 3) == 2 ? el.c : el.a);
 	}
 
-	public int c(bec var1) {
+	public int getData(IBlockState var1) {
 		return a((el) var1.b(a));
 	}
 

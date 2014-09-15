@@ -16,7 +16,7 @@ final class k implements Callable {
 
 	public String a() {
 		try {
-			return String.format("ID #%d (%s // %s)", new Object[] { Integer.valueOf(this.a), this.b.a(), this.b.getClass().getCanonicalName() });
+			return String.format("ID #%d (%s // %s)", new Object[] { Integer.valueOf(this.a), this.b.getName(), this.b.getClass().getCanonicalName() });
 		} catch (Throwable var2) {
 			return "ID #" + this.a;
 		}

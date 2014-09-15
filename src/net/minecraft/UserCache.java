@@ -53,13 +53,13 @@ public class UserCache {
 	private static GameProfile lookupName(MinecraftServer minecraftserver, String name) {
 		GameProfile[] profileArray = new GameProfile[1];
 		UserProfileLookupCallback callback = new UserProfileLookupCallback(profileArray);
-		minecraftserver.getGameProfileRepository().findProfilesByNames(new String[] { name }, Agent.MINECRAFT, callback);
-		if (!minecraftserver.isOnlineMode() && profileArray[0] == null) {
-			UUID var4 = EntityHuman.a(new GameProfile((UUID) null, name));
-			GameProfile var5 = new GameProfile(var4, name);
-			callback.onProfileLookupSucceeded(var5);
+		if (!minecraftserver.isOnlineMode()) {
+			UUID uuid = EntityHuman.a(new GameProfile((UUID) null, name));
+			GameProfile profile = new GameProfile(uuid, name);
+			callback.onProfileLookupSucceeded(profile);
+		} else {
+			minecraftserver.getGameProfileRepository().findProfilesByNames(new String[] { name }, Agent.MINECRAFT, callback);
 		}
-
 		return profileArray[0];
 	}
 

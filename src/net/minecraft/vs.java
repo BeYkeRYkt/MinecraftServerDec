@@ -29,23 +29,23 @@ public class vs {
 		float var9 = a.nextFloat() * 0.8F + 0.1F;
 		float var10 = a.nextFloat() * 0.8F + 0.1F;
 
-		while (var7.b > 0) {
+		while (var7.amount > 0) {
 			int var11 = a.nextInt(21) + 10;
-			if (var11 > var7.b) {
-				var11 = var7.b;
+			if (var11 > var7.amount) {
+				var11 = var7.amount;
 			}
 
-			var7.b -= var11;
-			EntityItem var12 = new EntityItem(var0, var1 + (double) var8, var3 + (double) var9, var5 + (double) var10, new ItemStack(var7.getItem(), var11, var7.i()));
+			var7.amount -= var11;
+			EntityItem var12 = new EntityItem(var0, var1 + (double) var8, var3 + (double) var9, var5 + (double) var10, new ItemStack(var7.getItem(), var11, var7.getDurability()));
 			if (var7.hasTag()) {
-				var12.l().d((NBTCompoundTag) var7.getTag().getCopy());
+				var12.l().setTag((NBTCompoundTag) var7.getTag().getCopy());
 			}
 
 			float var13 = 0.05F;
 			var12.motionX = a.nextGaussian() * (double) var13;
 			var12.motionY = a.nextGaussian() * (double) var13 + 0.20000000298023224D;
 			var12.motionZ = a.nextGaussian() * (double) var13;
-			var0.d((Entity) var12);
+			var0.addEntity((Entity) var12);
 		}
 
 	}

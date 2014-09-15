@@ -29,7 +29,7 @@ public class EntityEnderSignal extends Entity {
 		double var5 = (double) var1.getZ();
 		double var7 = var2 - this.locationX;
 		double var9 = var5 - this.locationZ;
-		float var11 = DataTypesConverter.a(var7 * var7 + var9 * var9);
+		float var11 = MathHelper.sqrt(var7 * var7 + var9 * var9);
 		if (var11 > 12.0F) {
 			this.a = this.locationX + var7 / (double) var11 * 12.0D;
 			this.c = this.locationZ + var9 / (double) var11 * 12.0D;
@@ -41,7 +41,7 @@ public class EntityEnderSignal extends Entity {
 		}
 
 		this.d = 0;
-		this.e = this.V.nextInt(5) > 0;
+		this.e = this.random.nextInt(5) > 0;
 	}
 
 	public void s_() {
@@ -52,28 +52,28 @@ public class EntityEnderSignal extends Entity {
 		this.locationX += this.motionX;
 		this.locationY += this.motionY;
 		this.locationZ += this.motionZ;
-		float var1 = DataTypesConverter.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
+		float var1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		this.yaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / 3.1415927410125732D);
 
-		for (this.pitch = (float) (Math.atan2(this.motionY, (double) var1) * 180.0D / 3.1415927410125732D); this.pitch - this.B < -180.0F; this.B -= 360.0F) {
+		for (this.pitch = (float) (Math.atan2(this.motionY, (double) var1) * 180.0D / 3.1415927410125732D); this.pitch - this.lastPitch < -180.0F; this.lastPitch -= 360.0F) {
 			;
 		}
 
-		while (this.pitch - this.B >= 180.0F) {
-			this.B += 360.0F;
+		while (this.pitch - this.lastPitch >= 180.0F) {
+			this.lastPitch += 360.0F;
 		}
 
-		while (this.yaw - this.A < -180.0F) {
-			this.A -= 360.0F;
+		while (this.yaw - this.lastYaw < -180.0F) {
+			this.lastYaw -= 360.0F;
 		}
 
-		while (this.yaw - this.A >= 180.0F) {
-			this.A += 360.0F;
+		while (this.yaw - this.lastYaw >= 180.0F) {
+			this.lastYaw += 360.0F;
 		}
 
-		this.pitch = this.B + (this.pitch - this.B) * 0.2F;
-		this.yaw = this.A + (this.yaw - this.A) * 0.2F;
-		if (!this.o.D) {
+		this.pitch = this.lastPitch + (this.pitch - this.lastPitch) * 0.2F;
+		this.yaw = this.lastYaw + (this.yaw - this.lastYaw) * 0.2F;
+		if (!this.world.isStatic) {
 			double var2 = this.a - this.locationX;
 			double var4 = this.c - this.locationZ;
 			float var6 = (float) Math.sqrt(var2 * var2 + var4 * var4);
@@ -96,21 +96,21 @@ public class EntityEnderSignal extends Entity {
 		float var10 = 0.25F;
 		if (this.V()) {
 			for (int var3 = 0; var3 < 4; ++var3) {
-				this.o.a(Particle.e, this.locationX - this.motionX * (double) var10, this.locationY - this.motionY * (double) var10, this.locationZ - this.motionZ * (double) var10, this.motionX, this.motionY, this.motionZ, new int[0]);
+				this.world.a(Particle.e, this.locationX - this.motionX * (double) var10, this.locationY - this.motionY * (double) var10, this.locationZ - this.motionZ * (double) var10, this.motionX, this.motionY, this.motionZ, new int[0]);
 			}
 		} else {
-			this.o.a(Particle.y, this.locationX - this.motionX * (double) var10 + this.V.nextDouble() * 0.6D - 0.3D, this.locationY - this.motionY * (double) var10 - 0.5D, this.locationZ - this.motionZ * (double) var10 + this.V.nextDouble() * 0.6D - 0.3D, this.motionX, this.motionY, this.motionZ, new int[0]);
+			this.world.a(Particle.y, this.locationX - this.motionX * (double) var10 + this.random.nextDouble() * 0.6D - 0.3D, this.locationY - this.motionY * (double) var10 - 0.5D, this.locationZ - this.motionZ * (double) var10 + this.random.nextDouble() * 0.6D - 0.3D, this.motionX, this.motionY, this.motionZ, new int[0]);
 		}
 
-		if (!this.o.D) {
+		if (!this.world.isStatic) {
 			this.b(this.locationX, this.locationY, this.locationZ);
 			++this.d;
-			if (this.d > 80 && !this.o.D) {
-				this.J();
+			if (this.d > 80 && !this.world.isStatic) {
+				this.die();
 				if (this.e) {
-					this.o.d((Entity) (new EntityItem(this.o, this.locationX, this.locationY, this.locationZ, new ItemStack(amk.bH))));
+					this.world.addEntity((Entity) (new EntityItem(this.world, this.locationX, this.locationY, this.locationZ, new ItemStack(Items.ENDER_EYE))));
 				} else {
-					this.o.b(2003, new Position(this), 0);
+					this.world.b(2003, new Position(this), 0);
 				}
 			}
 		}

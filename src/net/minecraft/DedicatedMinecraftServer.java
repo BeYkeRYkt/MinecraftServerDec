@@ -24,13 +24,11 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 	private RconListener rcon;
 	private ServerProperties serverProperties;
 	private EulaAgreementChecker tehDramaDocument;
-	private GameMode serverGameMode;
+	private EnumGameMode serverGameMode;
 	private boolean generateStructures;
-	private boolean guiEnabled;
 
-	public DedicatedMinecraftServer(File var1) {
-		super(var1, Proxy.NO_PROXY, usercache);
-		new ServerInfiSleeper(this, "Server Infinisleeper");
+	public DedicatedMinecraftServer(File file) {
+		super(file, Proxy.NO_PROXY, usercache);
 	}
 
 	protected boolean startServer() throws UnknownHostException {
@@ -50,12 +48,8 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 			this.tehDramaDocument.write();
 			return false;
 		} else {
-			if (this.isSinglePlayer()) {
-				this.setIp("127.0.0.1");
-			} else {
-				this.setOnlineMode(this.serverProperties.getBoolean("online-mode", true));
-				this.setIp(this.serverProperties.getString("server-ip", ""));
-			}
+			this.setOnlineMode(this.serverProperties.getBoolean("online-mode", true));
+			this.setIp(this.serverProperties.getString("server-ip", ""));
 
 			this.setAnimalSpawnEnabled(this.serverProperties.getBoolean("spawn-animals", true));
 			this.setNPCSpawnEnabled(this.serverProperties.getBoolean("spawn-npcs", true));
@@ -72,8 +66,8 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 			}
 
 			this.generateStructures = this.serverProperties.getBoolean("generate-structures", true);
-			int gameMode = this.serverProperties.getInt("gamemode", GameMode.SURVIVAL.getId());
-			this.serverGameMode = arb.a(gameMode);
+			int gameMode = this.serverProperties.getInt("gamemode", EnumGameMode.SURVIVAL.getId());
+			this.serverGameMode = EnumGameMode.getById(gameMode);
 			logger.info("Default game type: " + this.serverGameMode);
 			InetAddress address = null;
 			if (this.getIp().length() > 0) {
@@ -132,7 +126,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 					}
 				}
 
-				LevelType var18 = LevelType.byName(type);
+				LevelType var18 = LevelType.getByName(type);
 				if (var18 == null) {
 					var18 = LevelType.DEFAULT;
 				}
@@ -142,15 +136,19 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 				this.getOpPermissionLevel();
 				this.isSnooperEnabled();
 				this.getCompressionThreshold();
-				this.c(this.serverProperties.getInt("max-build-height", 256));
-				this.c((this.al() + 8) / 16 * 16);
-				this.c(DataTypesConverter.a(this.al(), 64, 256));
-				this.serverProperties.setProperty("max-build-height", (Object) Integer.valueOf(this.al()));
+				this.setMaxBuildHeight(this.serverProperties.getInt("max-build-height", 256));
+				this.setMaxBuildHeight((this.getMaxBuildHeight() + 8) / 16 * 16);
+				this.setMaxBuildHeight(MathHelper.a(this.getMaxBuildHeight(), 64, 256));
+				this.serverProperties.setProperty("max-build-height", (Object) Integer.valueOf(this.getMaxBuildHeight()));
+
 				logger.info("Preparing level \"" + this.getLevelName() + "\"");
-				this.a(this.getLevelName(), this.getLevelName(), randomLong, var18, gensettings);
+				this.loadWorlds(this.getLevelName(), randomLong, var18, gensettings);
 				long var12 = System.nanoTime() - nanoTime;
 				String var14 = String.format("%.3fs", new Object[] { Double.valueOf((double) var12 / 1.0E9D) });
 				logger.info("Done (" + var14 + ")! For help, type \"help\" or \"?\"");
+
+				getPipeServer().finishWorldsLoading();
+
 				if (this.serverProperties.getBoolean("enable-query", false)) {
 					logger.info("Starting GS4 status listener");
 					this.query = new QueryListener(this);
@@ -175,7 +173,11 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		}
 	}
 
-	public void setServerGameMode(GameMode mode) {
+	public ServerProperties getServerProperties() {
+		return serverProperties;
+	}
+
+	public void setServerGameMode(EnumGameMode mode) {
 		super.setServerGameMode(mode);
 		this.serverGameMode = mode;
 	}
@@ -184,7 +186,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		return this.generateStructures;
 	}
 
-	public GameMode getServerGameMode() {
+	public EnumGameMode getServerGameMode() {
 		return this.serverGameMode;
 	}
 
@@ -234,7 +236,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 
 	public void a(Snooper var1) {
 		var1.a("whitelist_enabled", Boolean.valueOf(this.getDedicatedPlayerList().s()));
-		var1.a("whitelist_count", Integer.valueOf(this.getDedicatedPlayerList().m().length));
+		var1.a("whitelist_count", Integer.valueOf(this.getDedicatedPlayerList().getWhitelisted().length));
 		super.a(var1);
 	}
 
@@ -248,10 +250,12 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 
 	public void handlePendingCommands() {
 		while (!this.pendingCommands.isEmpty()) {
-			PendingServerCommand var1 = (PendingServerCommand) this.pendingCommands.remove(0);
-			this.getCommandHandler().a(var1.sender, var1.command);
+			PendingServerCommand pendingCommand = this.pendingCommands.remove(0);
+			boolean pipeCommandHandled = getPipeServer().handleServerCommand(pendingCommand.command);
+			if (!pipeCommandHandled) {
+				this.getCommandHandler().handleCommand(pendingCommand.sender, pendingCommand.command);
+			}
 		}
-
 	}
 
 	public boolean isDedicated() {
@@ -287,16 +291,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		return var1 != null ? var1.getAbsolutePath() : "No settings file";
 	}
 
-	public void enableGui() {
-		ServerGUI.oper(this);
-		this.guiEnabled = true;
-	}
-
-	public boolean isGuiEnabled() {
-		return this.guiEnabled;
-	}
-
-	public String a(GameMode var1, boolean var2) {
+	public String a(EnumGameMode var1, boolean var2) {
 		return "";
 	}
 
@@ -308,19 +303,19 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		return this.serverProperties.getInt("spawn-protection", super.isSpawnProtectionEnabled());
 	}
 
-	public boolean a(World var1, Position var2, EntityHuman var3) {
+	public boolean isProtected(World var1, Position var2, EntityHuman var3) {
 		if (var1.worldProvider.getDimensionId() != 0) {
 			return false;
-		} else if (this.getDedicatedPlayerList().n().d()) {
+		} else if (this.getDedicatedPlayerList().getOpList().isEmpty()) {
 			return false;
-		} else if (this.getDedicatedPlayerList().g(var3.getGameProfile())) {
+		} else if (this.getDedicatedPlayerList().isOp(var3.getGameProfile())) {
 			return false;
 		} else if (this.isSpawnProtectionEnabled() <= 0) {
 			return false;
 		} else {
-			Position var4 = var1.M();
-			int var5 = DataTypesConverter.a(var2.getX() - var4.getX());
-			int var6 = DataTypesConverter.a(var2.getZ() - var4.getZ());
+			Position var4 = var1.getSpawnPosition();
+			int var5 = MathHelper.a(var2.getX() - var4.getX());
+			int var6 = MathHelper.a(var2.getZ() - var4.getZ());
 			int var7 = Math.max(var5, var6);
 			return var7 <= this.isSpawnProtectionEnabled();
 		}
@@ -426,14 +421,8 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 		return this.serverProperties.getLong("max-tick-time", TimeUnit.MINUTES.toMillis(1L));
 	}
 
-	// $FF: synthetic method
 	public PlayerList getPlayerList() {
 		return this.getDedicatedPlayerList();
-	}
-
-	// $FF: synthetic method
-	static Logger aR() {
-		return logger;
 	}
 
 }

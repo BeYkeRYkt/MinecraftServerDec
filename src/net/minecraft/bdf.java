@@ -33,7 +33,7 @@ public abstract class bdf extends TileEntity implements vv, vy {
 		this.a = var1;
 	}
 
-	public IJSONComponent e_() {
-		return (IJSONComponent) (this.k_() ? new hy(this.d_()) : new hz(this.d_(), new Object[0]));
+	public IChatBaseComponent getComponentName() {
+		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 }

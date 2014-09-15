@@ -5,14 +5,14 @@ import java.util.concurrent.Callable;
 class aqg implements Callable {
 
 	// $FF: synthetic field
-	final aqf a;
+	final CommandBlockListenerAbstract a;
 
-	aqg(aqf var1) {
+	aqg(CommandBlockListenerAbstract var1) {
 		this.a = var1;
 	}
 
 	public String a() {
-		return this.a.l();
+		return this.a.getCommand();
 	}
 
 	// $FF: synthetic method

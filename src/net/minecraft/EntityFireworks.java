@@ -29,10 +29,10 @@ public class EntityFireworks extends Entity {
 			}
 		}
 
-		this.motionX = this.V.nextGaussian() * 0.001D;
-		this.motionZ = this.V.nextGaussian() * 0.001D;
+		this.motionX = this.random.nextGaussian() * 0.001D;
+		this.motionZ = this.random.nextGaussian() * 0.001D;
 		this.motionY = 0.05D;
-		this.b = 10 * var9 + this.V.nextInt(6) + this.V.nextInt(7);
+		this.b = 10 * var9 + this.random.nextInt(6) + this.random.nextInt(7);
 	}
 
 	public void s_() {
@@ -43,40 +43,40 @@ public class EntityFireworks extends Entity {
 		this.motionX *= 1.15D;
 		this.motionZ *= 1.15D;
 		this.motionY += 0.04D;
-		this.d(this.motionX, this.motionY, this.motionZ);
-		float var1 = DataTypesConverter.a(this.motionX * this.motionX + this.motionZ * this.motionZ);
+		this.move(this.motionX, this.motionY, this.motionZ);
+		float var1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		this.yaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / 3.1415927410125732D);
 
-		for (this.pitch = (float) (Math.atan2(this.motionY, (double) var1) * 180.0D / 3.1415927410125732D); this.pitch - this.B < -180.0F; this.B -= 360.0F) {
+		for (this.pitch = (float) (Math.atan2(this.motionY, (double) var1) * 180.0D / 3.1415927410125732D); this.pitch - this.lastPitch < -180.0F; this.lastPitch -= 360.0F) {
 			;
 		}
 
-		while (this.pitch - this.B >= 180.0F) {
-			this.B += 360.0F;
+		while (this.pitch - this.lastPitch >= 180.0F) {
+			this.lastPitch += 360.0F;
 		}
 
-		while (this.yaw - this.A < -180.0F) {
-			this.A -= 360.0F;
+		while (this.yaw - this.lastYaw < -180.0F) {
+			this.lastYaw -= 360.0F;
 		}
 
-		while (this.yaw - this.A >= 180.0F) {
-			this.A += 360.0F;
+		while (this.yaw - this.lastYaw >= 180.0F) {
+			this.lastYaw += 360.0F;
 		}
 
-		this.pitch = this.B + (this.pitch - this.B) * 0.2F;
-		this.yaw = this.A + (this.yaw - this.A) * 0.2F;
-		if (this.a == 0 && !this.R()) {
-			this.o.a((Entity) this, "fireworks.launch", 3.0F, 1.0F);
+		this.pitch = this.lastPitch + (this.pitch - this.lastPitch) * 0.2F;
+		this.yaw = this.lastYaw + (this.yaw - this.lastYaw) * 0.2F;
+		if (this.a == 0 && !this.isSilent()) {
+			this.world.a((Entity) this, "fireworks.launch", 3.0F, 1.0F);
 		}
 
 		++this.a;
-		if (this.o.D && this.a % 2 < 2) {
-			this.o.a(Particle.d, this.locationX, this.locationY - 0.3D, this.locationZ, this.V.nextGaussian() * 0.05D, -this.motionY * 0.5D, this.V.nextGaussian() * 0.05D, new int[0]);
+		if (this.world.isStatic && this.a % 2 < 2) {
+			this.world.a(Particle.d, this.locationX, this.locationY - 0.3D, this.locationZ, this.random.nextGaussian() * 0.05D, -this.motionY * 0.5D, this.random.nextGaussian() * 0.05D, new int[0]);
 		}
 
-		if (!this.o.D && this.a > this.b) {
-			this.o.a((Entity) this, (byte) 17);
-			this.J();
+		if (!this.world.isStatic && this.a > this.b) {
+			this.world.broadcastEntityEffect((Entity) this, (byte) 17);
+			this.die();
 		}
 
 	}
@@ -87,7 +87,7 @@ public class EntityFireworks extends Entity {
 		ItemStack var2 = this.dataWatcher.f(8);
 		if (var2 != null) {
 			NBTCompoundTag var3 = new NBTCompoundTag();
-			var2.b(var3);
+			var2.write(var3);
 			var1.put("FireworksItem", (NBTTag) var3);
 		}
 

@@ -7,7 +7,7 @@ public class BlockPackedIce extends Block {
 	public BlockPackedIce() {
 		super(Material.SNOW_LAYER);
 		this.K = 0.98F;
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public int a(Random var1) {

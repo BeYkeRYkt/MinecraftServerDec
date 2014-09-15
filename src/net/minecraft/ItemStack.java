@@ -8,11 +8,11 @@ import java.util.Random;
 public final class ItemStack {
 
 	public static final DecimalFormat a = new DecimalFormat("#.###");
-	public int b;
+	public int amount;
 	public int c;
 	private Item item;
 	private NBTCompoundTag tag;
-	private int f;
+	private int durability;
 	private EntityItemFrame g;
 	private Block h;
 	private boolean i;
@@ -45,17 +45,17 @@ public final class ItemStack {
 		this.j = null;
 		this.k = false;
 		this.item = var1;
-		this.b = var2;
-		this.f = var3;
-		if (this.f < 0) {
-			this.f = 0;
+		this.amount = var2;
+		this.durability = var3;
+		if (this.durability < 0) {
+			this.durability = 0;
 		}
 
 	}
 
 	public static ItemStack a(NBTCompoundTag var0) {
 		ItemStack var1 = new ItemStack();
-		var1.c(var0);
+		var1.real(var0);
 		return var1.getItem() != null ? var1 : null;
 	}
 
@@ -67,12 +67,12 @@ public final class ItemStack {
 	}
 
 	public ItemStack a(int var1) {
-		ItemStack var2 = new ItemStack(this.item, var1, this.f);
+		ItemStack var2 = new ItemStack(this.item, var1, this.durability);
 		if (this.tag != null) {
 			var2.tag = (NBTCompoundTag) this.tag.getCopy();
 		}
 
-		this.b -= var1;
+		this.amount -= var1;
 		return var2;
 	}
 
@@ -80,10 +80,10 @@ public final class ItemStack {
 		return this.item;
 	}
 
-	public boolean a(EntityHuman var1, World var2, Position var3, PaintingDirection var4, float var5, float var6, float var7) {
+	public boolean a(EntityHuman var1, World var2, Position var3, BlockFace var4, float var5, float var6, float var7) {
 		boolean var8 = this.getItem().a(this, var1, var2, var3, var4, var5, var6, var7);
 		if (var8) {
-			var1.b(StatisticList.J[Item.getId(this.item)]);
+			var1.b(StatisticList.USE_ITEM_COUNT[Item.getId(this.item)]);
 		}
 
 		return var8;
@@ -101,50 +101,49 @@ public final class ItemStack {
 		return this.getItem().b(this, var1, var2);
 	}
 
-	public NBTCompoundTag b(NBTCompoundTag var1) {
-		BlockNameInfo var2 = (BlockNameInfo) Item.REGISTRY.c(this.item);
-		var1.put("id", var2 == null ? "minecraft:air" : var2.toString());
-		var1.put("Count", (byte) this.b);
-		var1.put("Damage", (short) this.f);
+	public NBTCompoundTag write(NBTCompoundTag tag) {
+		RegistryObjectName nameId = (RegistryObjectName) Item.REGISTRY.c(this.item);
+		tag.put("id", nameId == null ? "minecraft:air" : nameId.toString());
+		tag.put("Count", (byte) this.amount);
+		tag.put("Damage", (short) this.durability);
 		if (this.tag != null) {
-			var1.put("tag", (NBTTag) this.tag);
+			tag.put("tag", (NBTTag) this.tag);
 		}
 
-		return var1;
+		return tag;
 	}
 
-	public void c(NBTCompoundTag var1) {
-		if (var1.isTagAssignableFrom("id", 8)) {
-			this.item = Item.d(var1.getString("id"));
+	public void real(NBTCompoundTag tag) {
+		if (tag.isTagAssignableFrom("id", 8)) {
+			this.item = Item.getByName(tag.getString("id"));
 		} else {
-			this.item = Item.getById(var1.getShort("id"));
+			this.item = Item.getById(tag.getShort("id"));
 		}
 
-		this.b = var1.getByte("Count");
-		this.f = var1.getShort("Damage");
-		if (this.f < 0) {
-			this.f = 0;
+		this.amount = tag.getByte("Count");
+		this.durability = tag.getShort("Damage");
+		if (this.durability < 0) {
+			this.durability = 0;
 		}
 
-		if (var1.isTagAssignableFrom("tag", 10)) {
-			this.tag = var1.getCompound("tag");
+		if (tag.isTagAssignableFrom("tag", 10)) {
+			this.tag = tag.getCompound("tag");
 			if (this.item != null) {
 				this.item.a(this.tag);
 			}
 		}
-
 	}
 
-	public int c() {
-		return this.getItem().j();
+	public int getMaxStackSize() {
+		return this.getItem().getMaxStackSize();
 	}
 
 	public boolean d() {
-		return this.c() > 1 && (!this.e() || !this.g());
+		return this.getMaxStackSize() > 1 && (!this.e() || !this.g());
 	}
 
 	public boolean e() {
-		return this.item == null ? false : (this.item.l() <= 0 ? false : !this.hasTag() || !this.getTag().getBoolean("Unbreakable"));
+		return this.item == null ? false : (this.item.getDurability() <= 0 ? false : !this.hasTag() || !this.getTag().getBoolean("Unbreakable"));
 	}
 
 	public boolean f() {
@@ -152,27 +151,27 @@ public final class ItemStack {
 	}
 
 	public boolean g() {
-		return this.e() && this.f > 0;
+		return this.e() && this.durability > 0;
 	}
 
 	public int h() {
-		return this.f;
+		return this.durability;
 	}
 
-	public int i() {
-		return this.f;
+	public int getDurability() {
+		return this.durability;
 	}
 
-	public void b(int var1) {
-		this.f = var1;
-		if (this.f < 0) {
-			this.f = 0;
+	public void setDurability(int durability) {
+		this.durability = durability;
+		if (this.durability < 0) {
+			this.durability = 0;
 		}
 
 	}
 
 	public int j() {
-		return this.item.l();
+		return this.item.getDurability();
 	}
 
 	public boolean a(int var1, Random var2) {
@@ -180,11 +179,11 @@ public final class ItemStack {
 			return false;
 		} else {
 			if (var1 > 0) {
-				int var3 = aph.a(apf.t.B, this);
+				int var3 = aph.a(Enchantment.DURABILITY.id, this);
 				int var4 = 0;
 
 				for (int var5 = 0; var3 > 0 && var5 < var1; ++var5) {
-					if (apd.a(this, var3, var2)) {
+					if (EnchantmentDurability.a(this, var3, var2)) {
 						++var4;
 					}
 				}
@@ -195,30 +194,30 @@ public final class ItemStack {
 				}
 			}
 
-			this.f += var1;
-			return this.f > this.j();
+			this.durability += var1;
+			return this.durability > this.j();
 		}
 	}
 
 	public void a(int var1, EntityLiving var2) {
-		if (!(var2 instanceof EntityHuman) || !((EntityHuman) var2).by.instabuild) {
+		if (!(var2 instanceof EntityHuman) || !((EntityHuman) var2).playerProperties.instabuild) {
 			if (this.e()) {
 				if (this.a(var1, var2.bb())) {
 					var2.b(this);
-					--this.b;
+					--this.amount;
 					if (var2 instanceof EntityHuman) {
 						EntityHuman var3 = (EntityHuman) var2;
-						var3.b(StatisticList.K[Item.getId(this.item)]);
-						if (this.b == 0 && this.getItem() instanceof ajz) {
+						var3.b(StatisticList.BREAK_ITEM_COUNT[Item.getId(this.item)]);
+						if (this.amount == 0 && this.getItem() instanceof ItemBow) {
 							var3.bZ();
 						}
 					}
 
-					if (this.b < 0) {
-						this.b = 0;
+					if (this.amount < 0) {
+						this.amount = 0;
 					}
 
-					this.f = 0;
+					this.durability = 0;
 				}
 
 			}
@@ -228,7 +227,7 @@ public final class ItemStack {
 	public void a(EntityLiving var1, EntityHuman var2) {
 		boolean var3 = this.item.a(this, var1, (EntityLiving) var2);
 		if (var3) {
-			var2.b(StatisticList.J[Item.getId(this.item)]);
+			var2.b(StatisticList.USE_ITEM_COUNT[Item.getId(this.item)]);
 		}
 
 	}
@@ -236,7 +235,7 @@ public final class ItemStack {
 	public void a(World var1, Block var2, Position var3, EntityHuman var4) {
 		boolean var5 = this.item.a(this, var1, var2, var3, var4);
 		if (var5) {
-			var4.b(StatisticList.J[Item.getId(this.item)]);
+			var4.b(StatisticList.USE_ITEM_COUNT[Item.getId(this.item)]);
 		}
 
 	}
@@ -250,7 +249,7 @@ public final class ItemStack {
 	}
 
 	public ItemStack getCopy() {
-		ItemStack var1 = new ItemStack(this.item, this.b, this.f);
+		ItemStack var1 = new ItemStack(this.item, this.amount, this.durability);
 		if (this.tag != null) {
 			var1.tag = (NBTCompoundTag) this.tag.getCopy();
 		}
@@ -262,12 +261,12 @@ public final class ItemStack {
 		return var0 == null && var1 == null ? true : (var0 != null && var1 != null ? (var0.tag == null && var1.tag != null ? false : var0.tag == null || var0.tag.equals(var1.tag)) : false);
 	}
 
-	public static boolean b(ItemStack var0, ItemStack var1) {
+	public static boolean matches(ItemStack var0, ItemStack var1) {
 		return var0 == null && var1 == null ? true : (var0 != null && var1 != null ? var0.d(var1) : false);
 	}
 
 	private boolean d(ItemStack var1) {
-		return this.b != var1.b ? false : (this.item != var1.item ? false : (this.f != var1.f ? false : (this.tag == null && var1.tag != null ? false : this.tag == null || this.tag.equals(var1.tag))));
+		return this.amount != var1.amount ? false : (this.item != var1.item ? false : (this.durability != var1.durability ? false : (this.tag == null && var1.tag != null ? false : this.tag == null || this.tag.equals(var1.tag))));
 	}
 
 	public static boolean c(ItemStack var0, ItemStack var1) {
@@ -275,11 +274,11 @@ public final class ItemStack {
 	}
 
 	public boolean a(ItemStack var1) {
-		return var1 != null && this.item == var1.item && this.f == var1.f;
+		return var1 != null && this.item == var1.item && this.durability == var1.durability;
 	}
 
 	public String a() {
-		return this.item.e_(this);
+		return this.item.getName(this);
 	}
 
 	public static ItemStack b(ItemStack var0) {
@@ -287,7 +286,7 @@ public final class ItemStack {
 	}
 
 	public String toString() {
-		return this.b + "x" + this.item.a() + "@" + this.f;
+		return this.amount + "x" + this.item.getName() + "@" + this.durability;
 	}
 
 	public void a(World var1, Entity var2, int var3, boolean var4) {
@@ -299,7 +298,7 @@ public final class ItemStack {
 	}
 
 	public void a(World var1, EntityHuman var2, int var3) {
-		var2.a(StatisticList.I[Item.getId(this.item)], var3);
+		var2.a(StatisticList.CRAFT_BLOCK_COUNT[Item.getId(this.item)], var3);
 		this.item.d(this, var1, var2);
 	}
 
@@ -328,7 +327,7 @@ public final class ItemStack {
 			return this.tag.getCompound(var1);
 		} else if (var2) {
 			NBTCompoundTag var3 = new NBTCompoundTag();
-			this.a(var1, (NBTTag) var3);
+			this.addTag(var1, (NBTTag) var3);
 			return var3;
 		} else {
 			return null;
@@ -339,8 +338,8 @@ public final class ItemStack {
 		return this.tag == null ? null : this.tag.getList("ench", 10);
 	}
 
-	public void d(NBTCompoundTag var1) {
-		this.tag = var1;
+	public void setTag(NBTCompoundTag tag) {
+		this.tag = tag;
 	}
 
 	public String q() {
@@ -376,7 +375,7 @@ public final class ItemStack {
 				if (var1.isEmpty()) {
 					this.tag.remove("display");
 					if (this.tag.isEmpty()) {
-						this.d((NBTCompoundTag) null);
+						this.setTag((NBTCompoundTag) null);
 					}
 				}
 
@@ -396,9 +395,9 @@ public final class ItemStack {
 		return !this.getItem().f_(this) ? false : !this.w();
 	}
 
-	public void a(apf var1, int var2) {
+	public void a(Enchantment var1, int var2) {
 		if (this.tag == null) {
-			this.d(new NBTCompoundTag());
+			this.setTag(new NBTCompoundTag());
 		}
 
 		if (!this.tag.isTagAssignableFrom("ench", 9)) {
@@ -407,7 +406,7 @@ public final class ItemStack {
 
 		NBTListTag var3 = this.tag.getList("ench", 10);
 		NBTCompoundTag var4 = new NBTCompoundTag();
-		var4.put("id", (short) var1.B);
+		var4.put("id", (short) var1.id);
 		var4.put("lvl", (short) ((byte) var2));
 		var3.addTag((NBTTag) var4);
 	}
@@ -416,12 +415,12 @@ public final class ItemStack {
 		return this.tag != null && this.tag.isTagAssignableFrom("ench", 9);
 	}
 
-	public void a(String var1, NBTTag var2) {
+	public void addTag(String tagName, NBTTag tag) {
 		if (this.tag == null) {
-			this.d(new NBTCompoundTag());
+			this.setTag(new NBTCompoundTag());
 		}
 
-		this.tag.put(var1, var2);
+		this.tag.put(tagName, tag);
 	}
 
 	public boolean x() {
@@ -472,22 +471,22 @@ public final class ItemStack {
 		return (Multimap) var1;
 	}
 
-	public void a(Item var1) {
-		this.item = var1;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
-	public IJSONComponent C() {
-		hy var1 = new hy(this.q());
+	public IChatBaseComponent C() {
+		ChatComponentText var1 = new ChatComponentText(this.q());
 		if (this.s()) {
-			var1.b().b(Boolean.valueOf(true));
+			var1.getChatModifier().b(Boolean.valueOf(true));
 		}
 
-		IJSONComponent var2 = (new hy("[")).a(var1).a("]");
+		IChatBaseComponent var2 = (new ChatComponentText("[")).a(var1).a("]");
 		if (this.item != null) {
 			NBTCompoundTag var3 = new NBTCompoundTag();
-			this.b(var3);
-			var2.b().a(new hr(hs.c, new hy(var3.toString())));
-			var2.b().a(this.u().e);
+			this.write(var3);
+			var2.getChatModifier().a(new ChatHoverable(EnumHoverAction.c, new ChatComponentText(var3.toString())));
+			var2.getChatModifier().setColor(this.u().e);
 		}
 
 		return var2;
@@ -502,7 +501,7 @@ public final class ItemStack {
 				NBTListTag var2 = this.tag.getList("CanDestroy", 8);
 
 				for (int var3 = 0; var3 < var2.getSize(); ++var3) {
-					Block var4 = Block.b(var2.getString(var3));
+					Block var4 = Block.getBlockByName(var2.getString(var3));
 					if (var4 == var1) {
 						this.i = true;
 						return true;
@@ -524,7 +523,7 @@ public final class ItemStack {
 				NBTListTag var2 = this.tag.getList("CanPlaceOn", 8);
 
 				for (int var3 = 0; var3 < var2.getSize(); ++var3) {
-					Block var4 = Block.b(var2.getString(var3));
+					Block var4 = Block.getBlockByName(var2.getString(var3));
 					if (var4 == var1) {
 						this.k = true;
 						return true;

@@ -18,7 +18,7 @@ class afc extends yn {
 			double var7 = var1 * var1 + var3 * var3 + var5 * var5;
 			if (this.h-- <= 0) {
 				this.h += this.g.bb().nextInt(5) + 2;
-				var7 = (double) DataTypesConverter.a(var7);
+				var7 = (double) MathHelper.sqrt(var7);
 				if (this.b(this.b, this.c, this.d, var7)) {
 					this.g.motionX += var1 / var7 * 0.1D;
 					this.g.motionY += var3 / var7 * 0.1D;
@@ -35,11 +35,11 @@ class afc extends yn {
 		double var9 = (var1 - this.g.locationX) / var7;
 		double var11 = (var3 - this.g.locationY) / var7;
 		double var13 = (var5 - this.g.locationZ) / var7;
-		brt var15 = this.g.aQ();
+		AxisAlignedBB var15 = this.g.getBoundingBox();
 
 		for (int var16 = 1; (double) var16 < var7; ++var16) {
 			var15 = var15.c(var9, var11, var13);
-			if (!this.g.o.a((Entity) this.g, var15).isEmpty()) {
+			if (!this.g.world.getCubes((Entity) this.g, var15).isEmpty()) {
 				return false;
 			}
 		}

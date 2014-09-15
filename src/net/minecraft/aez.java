@@ -5,7 +5,7 @@ import com.google.common.base.Predicate;
 final class aez implements Predicate {
 
 	public boolean a(Entity var1) {
-		return var1 instanceof aex && !var1.ay();
+		return var1 instanceof IMonster && !var1.ay();
 	}
 
 	// $FF: synthetic method

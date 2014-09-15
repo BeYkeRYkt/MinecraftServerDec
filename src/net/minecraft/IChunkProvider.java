@@ -4,31 +4,31 @@ import java.util.List;
 
 public interface IChunkProvider {
 
-	boolean a(int var1, int var2);
+	boolean isChunkLoaded(int var1, int var2);
 
-	Chunk d(int var1, int var2);
+	Chunk getOrCreateChunk(int var1, int var2);
 
-	Chunk a(Position var1);
+	Chunk getChunkAtWorldCoords(Position var1);
 
-	void a(IChunkProvider var1, int var2, int var3);
+	void getChunkAt(IChunkProvider var1, int var2, int var3);
 
-	boolean a(IChunkProvider var1, Chunk var2, int var3, int var4);
+	boolean ae(IChunkProvider var1, Chunk var2, int var3, int var4);
 
-	boolean a(boolean var1, uy var2);
+	boolean requestChunksSave(boolean var1, IProgressUpdate var2);
 
-	boolean d();
+	boolean unloadChunks();
 
-	boolean e();
+	boolean canSave();
 
-	String f();
+	String getName();
 
-	List a(xp var1, Position var2);
+	List getMobsFor(EnumCreatureType var1, Position var2);
 
-	Position a(World var1, String var2, Position var3);
+	Position findNearestMapFeature(World var1, String var2, Position var3);
 
-	int g();
+	int getLoadedChunks();
 
-	void a(Chunk var1, int var2, int var3);
+	void recreateStructures(Chunk var1, int var2, int var3);
 
-	void c();
+	void saveChunks();
 }

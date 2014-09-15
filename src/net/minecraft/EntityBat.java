@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Calendar;
 
-public class EntityBat extends abn {
+public class EntityBat extends EntityAmbient {
 
 	private Position a;
 
@@ -26,7 +26,7 @@ public class EntityBat extends abn {
 	}
 
 	protected String z() {
-		return this.n() && this.V.nextInt(4) != 0 ? null : "mob.bat.idle";
+		return this.n() && this.random.nextInt(4) != 0 ? null : "mob.bat.idle";
 	}
 
 	protected String bn() {
@@ -70,7 +70,7 @@ public class EntityBat extends abn {
 		super.s_();
 		if (this.n()) {
 			this.motionX = this.motionY = this.motionZ = 0.0D;
-			this.locationY = (double) DataTypesConverter.toFixedPointInt(this.locationY) + 1.0D - (double) this.K;
+			this.locationY = (double) MathHelper.toFixedPointInt(this.locationY) + 1.0D - (double) this.width;
 		} else {
 			this.motionY *= 0.6000000238418579D;
 		}
@@ -82,26 +82,26 @@ public class EntityBat extends abn {
 		Position var1 = new Position(this);
 		Position var2 = var1.a();
 		if (this.n()) {
-			if (!this.o.p(var2).getBlock().t()) {
+			if (!this.world.getBlockState(var2).getBlock().t()) {
 				this.a(false);
-				this.o.a((EntityHuman) null, 1015, var1, 0);
+				this.world.a((EntityHuman) null, 1015, var1, 0);
 			} else {
-				if (this.V.nextInt(200) == 0) {
-					this.headPitch = (float) this.V.nextInt(360);
+				if (this.random.nextInt(200) == 0) {
+					this.headPitch = (float) this.random.nextInt(360);
 				}
 
-				if (this.o.a(this, 4.0D) != null) {
+				if (this.world.a(this, 4.0D) != null) {
 					this.a(false);
-					this.o.a((EntityHuman) null, 1015, var1, 0);
+					this.world.a((EntityHuman) null, 1015, var1, 0);
 				}
 			}
 		} else {
-			if (this.a != null && (!this.o.d(this.a) || this.a.getY() < 1)) {
+			if (this.a != null && (!this.world.d(this.a) || this.a.getY() < 1)) {
 				this.a = null;
 			}
 
-			if (this.a == null || this.V.nextInt(30) == 0 || this.a.c((double) ((int) this.locationX), (double) ((int) this.locationY), (double) ((int) this.locationZ)) < 4.0D) {
-				this.a = new Position((int) this.locationX + this.V.nextInt(7) - this.V.nextInt(7), (int) this.locationY + this.V.nextInt(6) - 2, (int) this.locationZ + this.V.nextInt(7) - this.V.nextInt(7));
+			if (this.a == null || this.random.nextInt(30) == 0 || this.a.c((double) ((int) this.locationX), (double) ((int) this.locationY), (double) ((int) this.locationZ)) < 4.0D) {
+				this.a = new Position((int) this.locationX + this.random.nextInt(7) - this.random.nextInt(7), (int) this.locationY + this.random.nextInt(6) - 2, (int) this.locationZ + this.random.nextInt(7) - this.random.nextInt(7));
 			}
 
 			double var3 = (double) this.a.getX() + 0.5D - this.locationX;
@@ -111,10 +111,10 @@ public class EntityBat extends abn {
 			this.motionY += (Math.signum(var5) * 0.699999988079071D - this.motionY) * 0.10000000149011612D;
 			this.motionZ += (Math.signum(var7) * 0.5D - this.motionZ) * 0.10000000149011612D;
 			float var9 = (float) (Math.atan2(this.motionZ, this.motionX) * 180.0D / 3.1415927410125732D) - 90.0F;
-			float var10 = DataTypesConverter.g(var9 - this.yaw);
+			float var10 = MathHelper.g(var9 - this.yaw);
 			this.aY = 0.5F;
 			this.yaw += var10;
-			if (this.V.nextInt(100) == 0 && this.o.p(var2).getBlock().t()) {
+			if (this.random.nextInt(100) == 0 && this.world.getBlockState(var2).getBlock().t()) {
 				this.a(true);
 			}
 		}
@@ -135,15 +135,15 @@ public class EntityBat extends abn {
 		return true;
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
-			if (!this.o.D && this.n()) {
+			if (!this.world.isStatic && this.n()) {
 				this.a(false);
 			}
 
-			return super.a(var1, var2);
+			return super.damageEntity(var1, var2);
 		}
 	}
 
@@ -158,19 +158,19 @@ public class EntityBat extends abn {
 	}
 
 	public boolean bQ() {
-		Position var1 = new Position(this.locationX, this.aQ().b, this.locationZ);
+		Position var1 = new Position(this.locationX, this.getBoundingBox().minY, this.locationZ);
 		if (var1.getY() >= 63) {
 			return false;
 		} else {
-			int var2 = this.o.l(var1);
+			int var2 = this.world.l(var1);
 			byte var3 = 4;
-			if (this.a(this.o.Y())) {
+			if (this.a(this.world.Y())) {
 				var3 = 7;
-			} else if (this.V.nextBoolean()) {
+			} else if (this.random.nextBoolean()) {
 				return false;
 			}
 
-			return var2 > this.V.nextInt(var3) ? false : super.bQ();
+			return var2 > this.random.nextInt(var3) ? false : super.bQ();
 		}
 	}
 
@@ -178,7 +178,7 @@ public class EntityBat extends abn {
 		return var1.get(2) + 1 == 10 && var1.get(5) >= 20 || var1.get(2) + 1 == 11 && var1.get(5) <= 3;
 	}
 
-	public float aR() {
-		return this.K / 2.0F;
+	public float getHeadHeight() {
+		return this.width / 2.0F;
 	}
 }

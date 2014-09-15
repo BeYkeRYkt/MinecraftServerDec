@@ -13,12 +13,12 @@ public class FoodMetaData {
 		this.b = Math.min(this.b + (float) var1 * var2 * 2.0F, (float) this.a);
 	}
 
-	public void a(all var1, ItemStack var2) {
+	public void a(ItemFood var1, ItemStack var2) {
 		this.a(var1.h(var2), var1.i(var2));
 	}
 
 	public void a(EntityHuman var1) {
-		Difficulty var2 = var1.o.getDifficulty();
+		Difficulty var2 = var1.world.getDifficulty();
 		this.e = this.a;
 		if (this.c > 4.0F) {
 			this.c -= 4.0F;
@@ -29,7 +29,7 @@ public class FoodMetaData {
 			}
 		}
 
-		if (var1.o.Q().b("naturalRegeneration") && this.a >= 18 && var1.cl()) {
+		if (var1.world.getGameRules().b("naturalRegeneration") && this.a >= 18 && var1.cl()) {
 			++this.d;
 			if (this.d >= 80) {
 				var1.g(1.0F);
@@ -39,8 +39,8 @@ public class FoodMetaData {
 		} else if (this.a <= 0) {
 			++this.d;
 			if (this.d >= 80) {
-				if (var1.bm() > 10.0F || var2 == Difficulty.HARD || var1.bm() > 1.0F && var2 == Difficulty.NORMAL) {
-					var1.a(wh.g, 1.0F);
+				if (var1.getHealth() > 10.0F || var2 == Difficulty.HARD || var1.getHealth() > 1.0F && var2 == Difficulty.NORMAL) {
+					var1.damageEntity(DamageSource.STARVE, 1.0F);
 				}
 
 				this.d = 0;

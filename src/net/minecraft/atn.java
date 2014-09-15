@@ -13,7 +13,7 @@ final class atn implements Runnable {
 	}
 
 	public void run() {
-		Chunk var1 = this.a.f(this.b);
+		Chunk var1 = this.a.getChunk(this.b);
 
 		for (int var2 = this.b.getY() - 1; var2 >= 0; --var2) {
 			Position var3 = new Position(this.b.getX(), var2, this.b.getZ());
@@ -21,9 +21,9 @@ final class atn implements Runnable {
 				break;
 			}
 
-			bec var4 = this.a.p(var3);
-			if (var4.getBlock() == aty.bY) {
-				((WorldServer) this.a).a((Runnable) (new ato(this, var3)));
+			IBlockState var4 = this.a.getBlockState(var3);
+			if (var4.getBlock() == Blocks.BEACON) {
+				((WorldServer) this.a).scheduleSyncTask((Runnable) (new ato(this, var3)));
 			}
 		}
 

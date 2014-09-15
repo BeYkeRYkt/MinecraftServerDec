@@ -30,7 +30,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 			throw new dp("commands.spreadplayers.usage", new Object[0]);
 		} else {
 			byte var3 = 0;
-			Position var4 = var1.c();
+			Position var4 = var1.getEntityPosition();
 			double var10000 = (double) var4.getX();
 			int var17 = var3 + 1;
 			double var5 = b(var10000, var2[var3], true);
@@ -50,7 +50,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 
 					var14.addAll(var16);
 				} else {
-					EntityPlayer var18 = MinecraftServer.getInstance().getPlayerList().a(var15);
+					EntityPlayer var18 = MinecraftServer.getInstance().getPlayerList().getPlayer(var15);
 					if (var18 == null) {
 						throw new dm();
 					}
@@ -63,8 +63,8 @@ public class SpreadPlayersCommand extends AbstractCommand {
 			if (var14.isEmpty()) {
 				throw new dj();
 			} else {
-				var1.sendChatMessage(new hz("commands.spreadplayers.spreading." + (var13 ? "teams" : "players"), new Object[] { Integer.valueOf(var14.size()), Double.valueOf(var11), Double.valueOf(var5), Double.valueOf(var7), Double.valueOf(var9) }));
-				this.a(var1, var14, new cs(var5, var7), var9, var11, ((Entity) var14.get(0)).o, var13);
+				var1.sendChatMessage(new ChatMessage("commands.spreadplayers.spreading." + (var13 ? "teams" : "players"), new Object[] { Integer.valueOf(var14.size()), Double.valueOf(var11), Double.valueOf(var5), Double.valueOf(var7), Double.valueOf(var9) }));
+				this.a(var1, var14, new cs(var5, var7), var9, var11, ((Entity) var14.get(0)).world, var13);
 			}
 		}
 	}
@@ -80,7 +80,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 		double var21 = this.a(var2, var8, var19, var9);
 		a(var1, this, "commands.spreadplayers.success." + (var9 ? "teams" : "players"), new Object[] { Integer.valueOf(var19.length), Double.valueOf(var3.a), Double.valueOf(var3.b) });
 		if (var19.length > 1) {
-			var1.sendChatMessage(new hz("commands.spreadplayers.info." + (var9 ? "teams" : "players"), new Object[] { String.format("%.2f", new Object[] { Double.valueOf(var21) }), Integer.valueOf(var20) }));
+			var1.sendChatMessage(new ChatMessage("commands.spreadplayers.info." + (var9 ? "teams" : "players"), new Object[] { String.format("%.2f", new Object[] { Double.valueOf(var21) }), Integer.valueOf(var20) }));
 		}
 
 	}
@@ -179,7 +179,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 			Entity var10 = (Entity) var1.get(var9);
 			cs var11;
 			if (var4) {
-				bsf var12 = var10 instanceof EntityHuman ? ((EntityHuman) var10).bN() : null;
+				ScoreboardTeamBase var12 = var10 instanceof EntityHuman ? ((EntityHuman) var10).bN() : null;
 				if (!var8.containsKey(var12)) {
 					var8.put(var12, var3[var7++]);
 				}
@@ -189,7 +189,7 @@ public class SpreadPlayersCommand extends AbstractCommand {
 				var11 = var3[var7++];
 			}
 
-			var10.a((double) ((float) DataTypesConverter.toFixedPointInt(var11.a) + 0.5F), (double) var11.a(var2), (double) DataTypesConverter.toFixedPointInt(var11.b) + 0.5D);
+			var10.updatePosition((double) ((float) MathHelper.toFixedPointInt(var11.a) + 0.5F), (double) var11.a(var2), (double) MathHelper.toFixedPointInt(var11.b) + 0.5D);
 			double var17 = Double.MAX_VALUE;
 
 			for (int var14 = 0; var14 < var3.length; ++var14) {

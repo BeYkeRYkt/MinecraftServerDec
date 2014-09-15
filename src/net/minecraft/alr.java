@@ -5,7 +5,7 @@ import com.google.common.base.Function;
 final class alr implements Function {
 
 	public String a(ItemStack var1) {
-		return bbb.a(var1.i()).c();
+		return bbb.a(var1.getDurability()).c();
 	}
 
 	// $FF: synthetic method

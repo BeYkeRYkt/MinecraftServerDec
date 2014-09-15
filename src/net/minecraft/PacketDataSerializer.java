@@ -27,10 +27,10 @@ public class PacketDataSerializer extends ByteBuf {
 		this.byteBuf = byteBuf;
 	}
 
-	public static int a(int var0) {
-		for (int var1 = 1; var1 < 5; ++var1) {
-			if ((var0 & -1 << var1 * 7) == 0) {
-				return var1;
+	public static int getPrependLength(int input) {
+		for (int i = 1; i < 5; ++i) {
+			if ((input & -1 << i * 7) == 0) {
+				return i;
 			}
 		}
 
@@ -56,15 +56,15 @@ public class PacketDataSerializer extends ByteBuf {
 		this.writeLong(var1.g());
 	}
 
-	public IJSONComponent readJSONComponent() {
-		return JSONComponentFormat.a(this.readString(32767));
+	public IChatBaseComponent readJSONComponent() {
+		return ChatSerializer.fromJsonString(this.readString(32767));
 	}
 
-	public void writeJSONComponent(IJSONComponent var1) {
-		this.writeString(JSONComponentFormat.a(var1));
+	public void writeJSONComponent(IChatBaseComponent var1) {
+		this.writeString(ChatSerializer.toJsonString(var1));
 	}
 
-	public <T extends Enum<T>> Enum<T> a(Class<T> enumClass) {
+	public <T extends Enum<T>> Enum<T> readEnum(Class<T> enumClass) {
 		return enumClass.getEnumConstants()[readVarInt()];
 	}
 
@@ -160,10 +160,10 @@ public class PacketDataSerializer extends ByteBuf {
 			this.writeShort(-1);
 		} else {
 			this.writeShort(Item.getId(item.getItem()));
-			this.writeByte(item.b);
-			this.writeShort(item.i());
+			this.writeByte(item.amount);
+			this.writeShort(item.getDurability());
 			NBTCompoundTag compund = null;
-			if (item.getItem().m() || item.getItem().p()) {
+			if (item.getItem().usesDurability() || item.getItem().p()) {
 				compund = item.getTag();
 			}
 
@@ -179,7 +179,7 @@ public class PacketDataSerializer extends ByteBuf {
 			byte var3 = this.readByte();
 			short var4 = this.readShort();
 			itemstack = new ItemStack(Item.getById(var2), var3, var4);
-			itemstack.d(this.readCompound());
+			itemstack.setTag(this.readCompound());
 		}
 		return itemstack;
 	}

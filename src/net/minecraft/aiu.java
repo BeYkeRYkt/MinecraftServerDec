@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class aiu extends ajk {
+public class aiu extends Slot {
 
 	public aiu(IInventory var1, int var2, int var3, int var4) {
 		super(var1, var2, var3, var4);
@@ -15,6 +15,6 @@ public class aiu extends ajk {
 	}
 
 	public static boolean c_(ItemStack var0) {
-		return var0 != null && var0.getItem() != null && var0.getItem() == amk.aw;
+		return var0 != null && var0.getItem() != null && var0.getItem() == Items.BUCKET;
 	}
 }

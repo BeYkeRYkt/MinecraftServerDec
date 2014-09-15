@@ -22,11 +22,11 @@ public class BlockDataCommand extends AbstractCommand {
 		} else {
 			var1.a(ag.b, 0);
 			Position var3 = a(var1, var2, 0, false);
-			World var4 = var1.e();
-			if (!var4.e(var3)) {
+			World var4 = var1.getPrimaryWorld();
+			if (!var4.isLoaded(var3)) {
 				throw new di("commands.blockdata.outOfWorld", new Object[0]);
 			} else {
-				TileEntity var5 = var4.s(var3);
+				TileEntity var5 = var4.getTileEntity(var3);
 				if (var5 == null) {
 					throw new di("commands.blockdata.notValid", new Object[0]);
 				} else {
@@ -36,7 +36,7 @@ public class BlockDataCommand extends AbstractCommand {
 
 					NBTCompoundTag var8;
 					try {
-						var8 = gg.a(a(var1, var2, 3).c());
+						var8 = gg.a(a(var1, var2, 3).getStrippedMessage());
 					} catch (gf var10) {
 						throw new di("commands.blockdata.tagError", new Object[] { var10.getMessage() });
 					}
@@ -49,8 +49,8 @@ public class BlockDataCommand extends AbstractCommand {
 						throw new di("commands.blockdata.failed", new Object[] { var6.toString() });
 					} else {
 						var5.read(var6);
-						var5.o_();
-						var4.h(var3);
+						var5.update();
+						var4.notify(var3);
 						var1.a(ag.b, 1);
 						a(var1, this, "commands.blockdata.success", new Object[] { var6.toString() });
 					}

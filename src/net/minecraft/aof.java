@@ -1,18 +1,18 @@
 package net.minecraft;
 
-class aof implements aoo {
+class aof implements IRecipe {
 
 	private aof() {
 	}
 
-	public boolean a(ain var1, World var2) {
+	public boolean a(InventoryCrafting var1, World var2) {
 		ItemStack var3 = null;
 		ItemStack var4 = null;
 
 		for (int var5 = 0; var5 < var1.n_(); ++var5) {
 			ItemStack var6 = var1.a(var5);
 			if (var6 != null) {
-				if (var6.getItem() != amk.cE) {
+				if (var6.getItem() != Items.BANNER) {
 					return false;
 				}
 
@@ -53,12 +53,12 @@ class aof implements aoo {
 		return var3 != null && var4 != null;
 	}
 
-	public ItemStack a(ain var1) {
+	public ItemStack a(InventoryCrafting var1) {
 		for (int var2 = 0; var2 < var1.n_(); ++var2) {
 			ItemStack var3 = var1.a(var2);
 			if (var3 != null && TileEntityBanner.c(var3) > 0) {
 				ItemStack var4 = var3.getCopy();
-				var4.b = 1;
+				var4.amount = 1;
 				return var4;
 			}
 		}
@@ -70,21 +70,21 @@ class aof implements aoo {
 		return 2;
 	}
 
-	public ItemStack b() {
+	public ItemStack getResult() {
 		return null;
 	}
 
-	public ItemStack[] b(ain var1) {
+	public ItemStack[] b(InventoryCrafting var1) {
 		ItemStack[] var2 = new ItemStack[var1.n_()];
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {
 			ItemStack var4 = var1.a(var3);
 			if (var4 != null) {
 				if (var4.getItem().r()) {
-					var2[var3] = new ItemStack(var4.getItem().q());
+					var2[var3] = new ItemStack(var4.getItem().getCraftingResult());
 				} else if (var4.hasTag() && TileEntityBanner.c(var4) > 0) {
 					var2[var3] = var4.getCopy();
-					var2[var3].b = 1;
+					var2[var3].amount = 1;
 				}
 			}
 		}

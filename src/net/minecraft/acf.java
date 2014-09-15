@@ -2,7 +2,7 @@ package net.minecraft;
 
 import com.google.common.base.Predicate;
 
-class acf extends yp {
+class acf extends PathfinderGoalAvoidEntity {
 
 	private EntityRabbit d;
 

@@ -4,15 +4,15 @@ import java.util.Random;
 
 public abstract class bmu {
 
-	protected bec a;
+	protected IBlockState a;
 
 	protected bmu() {
-		this.a = aty.a.P();
+		this.a = Blocks.AIR.getBlockState();
 	}
 
 	public abstract void a(Random var1, int var2, int var3, int var4, boolean var5);
 
-	public bec a() {
+	public IBlockState a() {
 		return this.a;
 	}
 }

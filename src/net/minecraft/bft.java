@@ -25,7 +25,7 @@ public class bft {
 		return var3;
 	}
 
-	public static void a(bfu var0, NBTCompoundTag var1, arz var2) {
+	public static void a(bfu var0, NBTCompoundTag var1, WorldChunkManager var2) {
 		var1.put("xPos", var0.k);
 		var1.put("zPos", var0.l);
 		var1.put("LastUpdate", var0.a);
@@ -69,9 +69,9 @@ public class bft {
 
 			if (!var6) {
 				byte[] var19 = new byte[4096];
-				NibbleArray var20 = new NibbleArray();
-				NibbleArray var21 = new NibbleArray();
-				NibbleArray var22 = new NibbleArray();
+				ChunkNibbleArray var20 = new ChunkNibbleArray();
+				ChunkNibbleArray var21 = new ChunkNibbleArray();
+				ChunkNibbleArray var22 = new ChunkNibbleArray();
 
 				for (int var23 = 0; var23 < 16; ++var23) {
 					for (int var12 = 0; var12 < 16; ++var12) {
@@ -79,9 +79,9 @@ public class bft {
 							int var14 = var23 << 11 | var13 << 7 | var12 + (var5 << 4);
 							byte var15 = var0.g[var14];
 							var19[var12 << 8 | var13 << 4 | var23] = (byte) (var15 & 255);
-							var20.a(var23, var12, var13, var0.f.a(var23, var12 + (var5 << 4), var13));
-							var21.a(var23, var12, var13, var0.e.a(var23, var12 + (var5 << 4), var13));
-							var22.a(var23, var12, var13, var0.d.a(var23, var12 + (var5 << 4), var13));
+							var20.setValue(var23, var12, var13, var0.f.a(var23, var12 + (var5 << 4), var13));
+							var21.setValue(var23, var12, var13, var0.e.a(var23, var12 + (var5 << 4), var13));
+							var22.setValue(var23, var12, var13, var0.d.a(var23, var12 + (var5 << 4), var13));
 						}
 					}
 				}
@@ -101,7 +101,7 @@ public class bft {
 
 		for (int var18 = 0; var18 < 16; ++var18) {
 			for (var7 = 0; var7 < 16; ++var7) {
-				var17[var7 << 4 | var18] = (byte) (var2.a(new Position(var0.k << 4 | var18, 0, var0.l << 4 | var7), arm.ad).az & 255);
+				var17[var7 << 4 | var18] = (byte) (var2.a(new Position(var0.k << 4 | var18, 0, var0.l << 4 | var7), BiomeBase.OCEAN).az & 255);
 			}
 		}
 

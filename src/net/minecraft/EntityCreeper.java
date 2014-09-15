@@ -10,15 +10,15 @@ public class EntityCreeper extends EntityMonster {
 
 	public EntityCreeper(World var1) {
 		super(var1);
-		this.i.a(1, new yy(this));
+		this.i.a(1, new PathfinderGoalFloat(this));
 		this.i.a(2, new aae(this));
 		this.i.a(2, this.a);
-		this.i.a(3, new yp(this, new aeq(this), 6.0F, 1.0D, 1.2D));
+		this.i.a(3, new PathfinderGoalAvoidEntity(this, new aeq(this), 6.0F, 1.0D, 1.2D));
 		this.i.a(4, new zk(this, 1.0D, false));
-		this.i.a(5, new zy(this, 0.8D));
-		this.i.a(6, new zh(this, EntityHuman.class, 8.0F));
-		this.i.a(6, new zx(this));
-		this.bg.a(1, new aaq(this, EntityHuman.class, true));
+		this.i.a(5, new PathfinderGoalRandomStroll(this, 0.8D));
+		this.i.a(6, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+		this.i.a(6, new PathfinderGoalRandomLookaround(this));
+		this.bg.a(1, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
 		this.bg.a(2, new aal(this, false, new Class[0]));
 	}
 
@@ -28,7 +28,7 @@ public class EntityCreeper extends EntityMonster {
 	}
 
 	public int aF() {
-		return this.u() == null ? 3 : 3 + (int) (this.bm() - 1.0F);
+		return this.u() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
 	}
 
 	public void e(float var1, float var2) {
@@ -76,7 +76,7 @@ public class EntityCreeper extends EntityMonster {
 	}
 
 	public void s_() {
-		if (this.ai()) {
+		if (this.isAlive()) {
 			this.b = this.c;
 			if (this.cl()) {
 				this.a(1);
@@ -109,16 +109,16 @@ public class EntityCreeper extends EntityMonster {
 		return "mob.creeper.death";
 	}
 
-	public void a(wh var1) {
+	public void a(DamageSource var1) {
 		super.a(var1);
 		if (var1.j() instanceof EntitySkeleton) {
-			int var2 = Item.getId(amk.cq);
-			int var3 = Item.getId(amk.cB);
-			int var4 = var2 + this.V.nextInt(var3 - var2 + 1);
+			int var2 = Item.getId(Items.RECORD_13);
+			int var3 = Item.getId(Items.RECORD_WAIT);
+			int var4 = var2 + this.random.nextInt(var3 - var2 + 1);
 			this.a(Item.getById(var4), 1);
 		} else if (var1.j() instanceof EntityCreeper && var1.j() != this && ((EntityCreeper) var1.j()).n() && ((EntityCreeper) var1.j()).cn()) {
 			((EntityCreeper) var1.j()).co();
-			this.a(new ItemStack(amk.bX, 1, 4), 0.0F);
+			this.a(new ItemStack(Items.SKULL, 1, 4), 0.0F);
 		}
 
 	}
@@ -131,8 +131,8 @@ public class EntityCreeper extends EntityMonster {
 		return this.dataWatcher.a(17) == 1;
 	}
 
-	protected Item A() {
-		return amk.H;
+	protected Item getLoot() {
+		return Items.GUNPOWDER;
 	}
 
 	public int ck() {
@@ -150,10 +150,10 @@ public class EntityCreeper extends EntityMonster {
 
 	protected boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		if (var2 != null && var2.getItem() == amk.d) {
-			this.o.a(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.ignite", 1.0F, this.V.nextFloat() * 0.4F + 0.8F);
-			var1.bv();
-			if (!this.o.D) {
+		if (var2 != null && var2.getItem() == Items.FLINT_AND_STEEL) {
+			this.world.makeSound(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.ignite", 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
+			var1.performHandAnimation();
+			if (!this.world.isStatic) {
 				this.cm();
 				var2.a(1, (EntityLiving) var1);
 				return true;
@@ -164,11 +164,11 @@ public class EntityCreeper extends EntityMonster {
 	}
 
 	private void cp() {
-		if (!this.o.D) {
-			boolean var1 = this.o.Q().b("mobGriefing");
+		if (!this.world.isStatic) {
+			boolean var1 = this.world.getGameRules().b("mobGriefing");
 			float var2 = this.n() ? 2.0F : 1.0F;
-			this.o.a(this, this.locationX, this.locationY, this.locationZ, (float) this.bl * var2, var1);
-			this.J();
+			this.world.a(this, this.locationX, this.locationY, this.locationZ, (float) this.bl * var2, var1);
+			this.die();
 		}
 
 	}
@@ -182,7 +182,7 @@ public class EntityCreeper extends EntityMonster {
 	}
 
 	public boolean cn() {
-		return this.bm < 1 && this.o.Q().b("doMobLoot");
+		return this.bm < 1 && this.world.getGameRules().b("doMobLoot");
 	}
 
 	public void co() {

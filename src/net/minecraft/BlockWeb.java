@@ -6,10 +6,10 @@ public class BlockWeb extends Block {
 
 	public BlockWeb() {
 		super(Material.WEB);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public void a(World var1, Position var2, bec var3, Entity var4) {
+	public void a(World var1, Position var2, IBlockState var3, Entity var4) {
 		var4.aB();
 	}
 
@@ -17,7 +17,7 @@ public class BlockWeb extends Block {
 		return false;
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -25,8 +25,8 @@ public class BlockWeb extends Block {
 		return false;
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
-		return amk.F;
+	public Item a(IBlockState var1, Random var2, int var3) {
+		return Items.STRING;
 	}
 
 	protected boolean G() {

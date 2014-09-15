@@ -29,7 +29,7 @@ public class yg extends yb {
 	}
 
 	public double a(double var1) {
-		var1 = DataTypesConverter.a(var1, this.a, this.b);
+		var1 = MathHelper.a(var1, this.a, this.b);
 		return var1;
 	}
 }

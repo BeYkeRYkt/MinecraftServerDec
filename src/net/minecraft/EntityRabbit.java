@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntityRabbit extends abq {
+public class EntityRabbit extends EntityAnimal {
 
 	private acf bk;
 	private int bm = 0;
@@ -22,13 +22,13 @@ public class EntityRabbit extends abq {
 		this.f = new aci(this);
 		((aay) this.s()).a(true);
 		this.h.a(2.5F);
-		this.i.a(1, new yy(this));
+		this.i.a(1, new PathfinderGoalFloat(this));
 		this.i.a(1, new acj(this, 1.33D));
-		this.i.a(2, new aag(this, 1.0D, amk.bR, false));
+		this.i.a(2, new aag(this, 1.0D, Items.CARROT, false));
 		this.i.a(3, new yt(this, 0.8D));
 		this.i.a(5, new ack(this));
-		this.i.a(5, new zy(this, 0.6D));
-		this.i.a(11, new zh(this, EntityHuman.class, 10.0F));
+		this.i.a(5, new PathfinderGoalRandomStroll(this, 0.6D));
+		this.i.a(11, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 10.0F));
 		this.bk = new acf(this, new acc(this), 16.0F, 1.33D, 1.33D);
 		this.i.a(4, this.bk);
 		this.b(0.0D);
@@ -55,7 +55,7 @@ public class EntityRabbit extends abq {
 			}
 		} else {
 			this.b(1.5D * (double) var2.a());
-			this.a(this.ck(), this.bA(), ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F) * 0.8F);
+			this.a(this.ck(), this.bA(), ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F) * 0.8F);
 		}
 
 		this.bo = var1;
@@ -88,7 +88,7 @@ public class EntityRabbit extends abq {
 		}
 
 		if (this.bs > 0) {
-			this.bs -= this.V.nextInt(3);
+			this.bs -= this.random.nextInt(3);
 			if (this.bs < 0) {
 				this.bs = 0;
 			}
@@ -102,7 +102,7 @@ public class EntityRabbit extends abq {
 
 			if (this.cl() == 99 && this.bq == 0) {
 				EntityLiving var1 = this.u();
-				if (var1 != null && this.h(var1) < 16.0D) {
+				if (var1 != null && this.getDistanceSquared(var1) < 16.0D) {
 					this.a(var1.locationX, var1.locationZ);
 					this.f.a(var1.locationX, var1.locationY, var1.locationZ, this.f.b());
 					this.b(ace.e);
@@ -157,8 +157,8 @@ public class EntityRabbit extends abq {
 	public void m() {
 		super.m();
 		if (this.bm != this.bn) {
-			if (this.bm == 0 && !this.o.D) {
-				this.o.a((Entity) this, (byte) 1);
+			if (this.bm == 0 && !this.world.isStatic) {
+				this.world.broadcastEntityEffect((Entity) this, (byte) 1);
 			}
 
 			++this.bm;
@@ -205,10 +205,10 @@ public class EntityRabbit extends abq {
 
 	public boolean r(Entity var1) {
 		if (this.cl() == 99) {
-			this.a("mob.attack", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
-			return var1.a(wh.a((EntityLiving) this), 8.0F);
+			this.a("mob.attack", 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+			return var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), 8.0F);
 		} else {
-			return var1.a(wh.a((EntityLiving) this), 3.0F);
+			return var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), 3.0F);
 		}
 	}
 
@@ -216,42 +216,42 @@ public class EntityRabbit extends abq {
 		return this.cl() == 99 ? 8 : super.bq();
 	}
 
-	public boolean a(wh var1, float var2) {
-		return this.b(var1) ? false : super.a(var1, var2);
+	public boolean damageEntity(DamageSource var1, float var2) {
+		return this.b(var1) ? false : super.damageEntity(var1, var2);
 	}
 
 	protected void bp() {
-		this.a(new ItemStack(amk.br, 1), 0.0F);
+		this.a(new ItemStack(Items.RABBIT_FOOT, 1), 0.0F);
 	}
 
-	protected void b(boolean var1, int var2) {
-		int var3 = this.V.nextInt(2) + this.V.nextInt(1 + var2);
+	protected void dropDeathLoot(boolean var1, int var2) {
+		int var3 = this.random.nextInt(2) + this.random.nextInt(1 + var2);
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(amk.bs, 1);
+			this.a(Items.RABBIT_HIDE, 1);
 		}
 
-		var3 = this.V.nextInt(2);
+		var3 = this.random.nextInt(2);
 
 		for (var4 = 0; var4 < var3; ++var4) {
 			if (this.au()) {
-				this.a(amk.bp, 1);
+				this.a(Items.COOCKED_RABBIT, 1);
 			} else {
-				this.a(amk.bo, 1);
+				this.a(Items.RABBIT, 1);
 			}
 		}
 
 	}
 
 	private boolean a(Item var1) {
-		return var1 == amk.bR || var1 == amk.bW || var1 == Item.getItemOf((Block) aty.N);
+		return var1 == Items.CARROT || var1 == Items.GOLDEN_CARROT || var1 == Item.getItemOf((Block) Blocks.YELLOW_FLOWER);
 	}
 
-	public EntityRabbit b(ws var1) {
-		EntityRabbit var2 = new EntityRabbit(this.o);
+	public EntityRabbit b(EntityAgeable var1) {
+		EntityRabbit var2 = new EntityRabbit(this.world);
 		if (var1 instanceof EntityRabbit) {
-			var2.r(this.V.nextBoolean() ? this.cl() : ((EntityRabbit) var1).cl());
+			var2.r(this.random.nextBoolean() ? this.cl() : ((EntityRabbit) var1).cl());
 		}
 
 		return var2;
@@ -267,13 +267,13 @@ public class EntityRabbit extends abq {
 
 	public void r(int var1) {
 		if (var1 == 99) {
-			this.i.a((zb) this.bk);
+			this.i.a((PathfinderGoal) this.bk);
 			this.i.a(4, new acd(this));
 			this.bg.a(1, new aal(this, false, new Class[0]));
-			this.bg.a(2, new aaq(this, EntityHuman.class, true));
-			this.bg.a(2, new aaq(this, EntityWolf.class, true));
+			this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
+			this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityWolf.class, true));
 			if (!this.k_()) {
-				this.a(fi.a("entity.KillerBunny.name"));
+				this.a(LocaleI18n.get("entity.KillerBunny.name"));
 			}
 		}
 
@@ -282,7 +282,7 @@ public class EntityRabbit extends abq {
 
 	public xq a(vu var1, xq var2) {
 		Object var5 = super.a(var1, var2);
-		int var3 = this.V.nextInt(6);
+		int var3 = this.random.nextInt(6);
 		boolean var4 = false;
 		if (var5 instanceof acg) {
 			var3 = ((acg) var5).a;
@@ -308,12 +308,12 @@ public class EntityRabbit extends abq {
 	}
 
 	protected void cn() {
-		this.o.a(Particle.M, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, 0.0D, 0.0D, 0.0D, new int[] { Block.f(aty.cb.a(7)) });
+		this.world.a(Particle.M, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, 0.0D, 0.0D, 0.0D, new int[] { Block.getStateId(Blocks.CARROTS.setData(7)) });
 		this.bs = 100;
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.b(var1);
 	}
 

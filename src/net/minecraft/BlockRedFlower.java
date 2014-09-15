@@ -1,8 +1,8 @@
 package net.minecraft;
 
-public class BlockRedFlower extends avy {
+public class BlockRedFlower extends BlockFlowers {
 
-	public awc j() {
-		return awc.b;
+	public EnumFlowerColor j() {
+		return EnumFlowerColor.b;
 	}
 }

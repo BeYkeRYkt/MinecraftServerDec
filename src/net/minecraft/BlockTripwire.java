@@ -17,16 +17,16 @@ public class BlockTripwire extends Block {
 
 	public BlockTripwire() {
 		super(Material.ORIENTABLE);
-		this.j(this.L.b().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false)).a(P, Boolean.valueOf(false)).a(Q, Boolean.valueOf(false)).a(R, Boolean.valueOf(false)));
+		this.setBlockState(this.L.b().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false)).a(P, Boolean.valueOf(false)).a(Q, Boolean.valueOf(false)).a(R, Boolean.valueOf(false)));
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.15625F, 1.0F);
 		this.a(true);
 	}
 
-	public bec a(bec var1, ard var2, Position var3) {
-		return var1.a(O, Boolean.valueOf(c(var2, var3, var1, PaintingDirection.c))).a(P, Boolean.valueOf(c(var2, var3, var1, PaintingDirection.f))).a(Q, Boolean.valueOf(c(var2, var3, var1, PaintingDirection.d))).a(R, Boolean.valueOf(c(var2, var3, var1, PaintingDirection.e)));
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
+		return var1.a(O, Boolean.valueOf(c(var2, var3, var1, BlockFace.NORTH))).a(P, Boolean.valueOf(c(var2, var3, var1, BlockFace.EAST))).a(Q, Boolean.valueOf(c(var2, var3, var1, BlockFace.SOUTH))).a(R, Boolean.valueOf(c(var2, var3, var1, BlockFace.WEST)));
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -38,11 +38,11 @@ public class BlockTripwire extends Block {
 		return false;
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
-		return amk.F;
+	public Item a(IBlockState var1, Random var2, int var3) {
+		return Items.STRING;
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		boolean var5 = ((Boolean) var3.b(b)).booleanValue();
 		boolean var6 = !World.a((ard) var1, var2.b());
 		if (var5 != var6) {
@@ -53,7 +53,7 @@ public class BlockTripwire extends Block {
 	}
 
 	public void a(ard var1, Position var2) {
-		bec var3 = var1.p(var2);
+		IBlockState var3 = var1.getBlockState(var2);
 		boolean var4 = ((Boolean) var3.b(M)).booleanValue();
 		boolean var5 = ((Boolean) var3.b(b)).booleanValue();
 		if (!var5) {
@@ -66,43 +66,43 @@ public class BlockTripwire extends Block {
 
 	}
 
-	public void c(World var1, Position var2, bec var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		var3 = var3.a(b, Boolean.valueOf(!World.a((ard) var1, var2.b())));
-		var1.a(var2, var3, 3);
+		var1.setBlockAt(var2, var3, 3);
 		this.e(var1, var2, var3);
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3.a(a, Boolean.valueOf(true)));
 	}
 
-	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
-		if (!var1.D) {
-			if (var4.bY() != null && var4.bY().getItem() == amk.be) {
-				var1.a(var2, var3.a(N, Boolean.valueOf(true)), 4);
+	public void a(World var1, Position var2, IBlockState var3, EntityHuman var4) {
+		if (!var1.isStatic) {
+			if (var4.bY() != null && var4.bY().getItem() == Items.SHEARS) {
+				var1.setBlockAt(var2, var3.a(N, Boolean.valueOf(true)), 4);
 			}
 
 		}
 	}
 
-	private void e(World var1, Position var2, bec var3) {
-		PaintingDirection[] var4 = new PaintingDirection[] { PaintingDirection.d, PaintingDirection.e };
+	private void e(World var1, Position var2, IBlockState var3) {
+		BlockFace[] var4 = new BlockFace[] { BlockFace.SOUTH, BlockFace.WEST };
 		int var5 = var4.length;
 		int var6 = 0;
 
 		while (var6 < var5) {
-			PaintingDirection var7 = var4[var6];
+			BlockFace var7 = var4[var6];
 			int var8 = 1;
 
 			while (true) {
 				if (var8 < 42) {
 					Position var9 = var2.a(var7, var8);
-					bec var10 = var1.p(var9);
-					if (var10.getBlock() == aty.bR) {
-						if (var10.b(BlockTripwireHook.a) == var7.d()) {
-							aty.bR.a(var1, var9, var10, false, true, var8, var3);
+					IBlockState var10 = var1.getBlockState(var9);
+					if (var10.getBlock() == Blocks.TRIPWIRE_HOOK) {
+						if (var10.b(BlockTripwireHook.a) == var7.getOpposite()) {
+							Blocks.TRIPWIRE_HOOK.a(var1, var9, var10, false, true, var8, var3);
 						}
-					} else if (var10.getBlock() == aty.bS) {
+					} else if (var10.getBlock() == Blocks.TRIPWIRE) {
 						++var8;
 						continue;
 					}
@@ -115,30 +115,30 @@ public class BlockTripwire extends Block {
 
 	}
 
-	public void a(World var1, Position var2, bec var3, Entity var4) {
-		if (!var1.D) {
+	public void a(World var1, Position var2, IBlockState var3, Entity var4) {
+		if (!var1.isStatic) {
 			if (!((Boolean) var3.b(a)).booleanValue()) {
 				this.d(var1, var2);
 			}
 		}
 	}
 
-	public void a(World var1, Position var2, bec var3, Random var4) {
+	public void a(World var1, Position var2, IBlockState var3, Random var4) {
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
-		if (!var1.D) {
-			if (((Boolean) var1.p(var2).b(a)).booleanValue()) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
+		if (!var1.isStatic) {
+			if (((Boolean) var1.getBlockState(var2).b(a)).booleanValue()) {
 				this.d(var1, var2);
 			}
 		}
 	}
 
 	private void d(World var1, Position var2) {
-		bec var3 = var1.p(var2);
+		IBlockState var3 = var1.getBlockState(var2);
 		boolean var4 = ((Boolean) var3.b(a)).booleanValue();
 		boolean var5 = false;
-		List var6 = var1.b((Entity) null, new brt((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G));
+		List var6 = var1.getEntities((Entity) null, new AxisAlignedBB((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G));
 		if (!var6.isEmpty()) {
 			Iterator var7 = var6.iterator();
 
@@ -153,7 +153,7 @@ public class BlockTripwire extends Block {
 
 		if (var5 != var4) {
 			var3 = var3.a(a, Boolean.valueOf(var5));
-			var1.a(var2, var3, 3);
+			var1.setBlockAt(var2, var3, 3);
 			this.e(var1, var2, var3);
 		}
 
@@ -163,14 +163,14 @@ public class BlockTripwire extends Block {
 
 	}
 
-	public static boolean c(ard var0, Position var1, bec var2, PaintingDirection var3) {
+	public static boolean c(ard var0, Position var1, IBlockState var2, BlockFace var3) {
 		Position var4 = var1.a(var3);
-		bec var5 = var0.p(var4);
+		IBlockState var5 = var0.getBlockState(var4);
 		Block var6 = var5.getBlock();
-		if (var6 == aty.bR) {
-			PaintingDirection var9 = var3.d();
+		if (var6 == Blocks.TRIPWIRE_HOOK) {
+			BlockFace var9 = var3.getOpposite();
 			return var5.b(BlockTripwireHook.a) == var9;
-		} else if (var6 == aty.bS) {
+		} else if (var6 == Blocks.TRIPWIRE) {
 			boolean var7 = ((Boolean) var2.b(b)).booleanValue();
 			boolean var8 = ((Boolean) var5.b(b)).booleanValue();
 			return var7 == var8;
@@ -179,11 +179,11 @@ public class BlockTripwire extends Block {
 		}
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, Boolean.valueOf((var1 & 1) > 0)).a(b, Boolean.valueOf((var1 & 2) > 0)).a(M, Boolean.valueOf((var1 & 4) > 0)).a(N, Boolean.valueOf((var1 & 8) > 0));
+	public IBlockState setData(int var1) {
+		return this.getBlockState().a(a, Boolean.valueOf((var1 & 1) > 0)).a(b, Boolean.valueOf((var1 & 2) > 0)).a(M, Boolean.valueOf((var1 & 4) > 0)).a(N, Boolean.valueOf((var1 & 8) > 0));
 	}
 
-	public int c(bec var1) {
+	public int getData(IBlockState var1) {
 		int var2 = 0;
 		if (((Boolean) var1.b(a)).booleanValue()) {
 			var2 |= 1;

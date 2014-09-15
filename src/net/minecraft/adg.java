@@ -5,7 +5,7 @@ import com.google.common.base.Predicate;
 final class adg implements Predicate {
 
 	public boolean a(Entity var1) {
-		return var1 instanceof EntityLiving && ((EntityLiving) var1).by() != xs.b;
+		return var1 instanceof EntityLiving && ((EntityLiving) var1).by() != EnumMonsterType.b;
 	}
 
 	// $FF: synthetic method

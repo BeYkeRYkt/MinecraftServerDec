@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public abstract class yv extends zb {
+public abstract class yv extends PathfinderGoal {
 
 	protected EntityInsentient a;
 	protected Position b;
@@ -18,7 +18,7 @@ public abstract class yv extends zb {
 	}
 
 	public boolean a() {
-		if (!this.a.D) {
+		if (!this.a.positionChanged) {
 			return false;
 		} else {
 			aay var1 = (aay) this.a.s();
@@ -27,7 +27,7 @@ public abstract class yv extends zb {
 				for (int var3 = 0; var3 < Math.min(var2.e() + 2, var2.d()); ++var3) {
 					bpt var4 = var2.a(var3);
 					this.b = new Position(var4.a, var4.b + 1, var4.c);
-					if (this.a.e((double) this.b.getX(), this.a.locationY, (double) this.b.getZ()) <= 2.25D) {
+					if (this.a.getDistanceSquared((double) this.b.getX(), this.a.locationY, (double) this.b.getZ()) <= 2.25D) {
 						this.c = this.a(this.b);
 						if (this.c != null) {
 							return true;
@@ -65,7 +65,7 @@ public abstract class yv extends zb {
 	}
 
 	private BlockDoor a(Position var1) {
-		Block var2 = this.a.o.p(var1).getBlock();
-		return var2 instanceof BlockDoor && var2.r() == Material.WOOD ? (BlockDoor) var2 : null;
+		Block var2 = this.a.world.getBlockState(var1).getBlock();
+		return var2 instanceof BlockDoor && var2.getMaterial() == Material.WOOD ? (BlockDoor) var2 : null;
 	}
 }

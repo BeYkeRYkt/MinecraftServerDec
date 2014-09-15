@@ -12,7 +12,7 @@ public class BlockMobSpawner extends atg {
 		return new TileEntityMobSpawner();
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 
@@ -20,7 +20,7 @@ public class BlockMobSpawner extends atg {
 		return 0;
 	}
 
-	public void a(World var1, Position var2, bec var3, float var4, int var5) {
+	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		super.a(var1, var2, var3, var4, var5);
 		int var6 = 15 + var1.s.nextInt(15) + var1.s.nextInt(15);
 		this.b(var1, var2, var6);

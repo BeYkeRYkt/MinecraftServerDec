@@ -13,9 +13,9 @@ public abstract class aed extends adx implements vy {
 		super(var1, var2, var4, var6);
 	}
 
-	public void a(wh var1) {
+	public void a(DamageSource var1) {
 		super.a(var1);
-		vs.a(this.o, (Entity) this, this);
+		vs.a(this.world, (Entity) this, this);
 	}
 
 	public ItemStack a(int var1) {
@@ -25,13 +25,13 @@ public abstract class aed extends adx implements vy {
 	public ItemStack a(int var1, int var2) {
 		if (this.a[var1] != null) {
 			ItemStack var3;
-			if (this.a[var1].b <= var2) {
+			if (this.a[var1].amount <= var2) {
 				var3 = this.a[var1];
 				this.a[var1] = null;
 				return var3;
 			} else {
 				var3 = this.a[var1].a(var2);
-				if (this.a[var1].b == 0) {
+				if (this.a[var1].amount == 0) {
 					this.a[var1] = null;
 				}
 
@@ -54,17 +54,17 @@ public abstract class aed extends adx implements vy {
 
 	public void a(int var1, ItemStack var2) {
 		this.a[var1] = var2;
-		if (var2 != null && var2.b > this.p_()) {
-			var2.b = this.p_();
+		if (var2 != null && var2.amount > this.p_()) {
+			var2.amount = this.p_();
 		}
 
 	}
 
-	public void o_() {
+	public void update() {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.I ? false : var1.h(this) <= 64.0D;
+		return this.dead ? false : var1.getDistanceSquared(this) <= 64.0D;
 	}
 
 	public void b(EntityHuman var1) {
@@ -77,8 +77,8 @@ public abstract class aed extends adx implements vy {
 		return true;
 	}
 
-	public String d_() {
-		return this.k_() ? this.aL() : "container.minecart";
+	public String getName() {
+		return this.k_() ? this.getCustomName() : "container.minecart";
 	}
 
 	public int p_() {
@@ -90,12 +90,12 @@ public abstract class aed extends adx implements vy {
 		super.c(var1);
 	}
 
-	public void J() {
+	public void die() {
 		if (this.b) {
-			vs.a(this.o, (Entity) this, this);
+			vs.a(this.world, (Entity) this, this);
 		}
 
-		super.J();
+		super.die();
 	}
 
 	protected void b(NBTCompoundTag var1) {
@@ -106,7 +106,7 @@ public abstract class aed extends adx implements vy {
 			if (this.a[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.put("Slot", (byte) var3);
-				this.a[var3].b(var4);
+				this.a[var3].write(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
@@ -130,7 +130,7 @@ public abstract class aed extends adx implements vy {
 	}
 
 	public boolean e(EntityHuman var1) {
-		if (!this.o.D) {
+		if (!this.world.isStatic) {
 			var1.a((IInventory) this);
 		}
 

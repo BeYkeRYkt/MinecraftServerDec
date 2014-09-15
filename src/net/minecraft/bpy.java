@@ -21,22 +21,22 @@ public class bpy extends bpu {
 	public bpt a(Entity var1) {
 		int var2;
 		if (this.i && var1.V()) {
-			var2 = (int) var1.aQ().b;
+			var2 = (int) var1.getBoundingBox().minY;
 
-			for (Block var3 = this.a.p(new Position(DataTypesConverter.toFixedPointInt(var1.locationX), var2, DataTypesConverter.toFixedPointInt(var1.locationZ))).getBlock(); var3 == aty.i || var3 == aty.j; var3 = this.a.p(new Position(DataTypesConverter.toFixedPointInt(var1.locationX), var2, DataTypesConverter.toFixedPointInt(var1.locationZ))).getBlock()) {
+			for (Block var3 = this.a.getBlockState(new Position(MathHelper.toFixedPointInt(var1.locationX), var2, MathHelper.toFixedPointInt(var1.locationZ))).getBlock(); var3 == Blocks.FLOWING_WATER || var3 == Blocks.WATER; var3 = this.a.getBlockState(new Position(MathHelper.toFixedPointInt(var1.locationX), var2, MathHelper.toFixedPointInt(var1.locationZ))).getBlock()) {
 				++var2;
 			}
 
 			this.h = false;
 		} else {
-			var2 = DataTypesConverter.toFixedPointInt(var1.aQ().b + 0.5D);
+			var2 = MathHelper.toFixedPointInt(var1.getBoundingBox().minY + 0.5D);
 		}
 
-		return this.a(DataTypesConverter.toFixedPointInt(var1.aQ().a), var2, DataTypesConverter.toFixedPointInt(var1.aQ().c));
+		return this.a(MathHelper.toFixedPointInt(var1.getBoundingBox().minX), var2, MathHelper.toFixedPointInt(var1.getBoundingBox().minZ));
 	}
 
 	public bpt a(Entity var1, double var2, double var4, double var6) {
-		return this.a(DataTypesConverter.toFixedPointInt(var2 - (double) (var1.J / 2.0F)), DataTypesConverter.toFixedPointInt(var4), DataTypesConverter.toFixedPointInt(var6 - (double) (var1.J / 2.0F)));
+		return this.a(MathHelper.toFixedPointInt(var2 - (double) (var1.height / 2.0F)), MathHelper.toFixedPointInt(var4), MathHelper.toFixedPointInt(var6 - (double) (var1.height / 2.0F)));
 	}
 
 	public int a(bpt[] var1, Entity var2, bpt var3, bpt var4, float var5) {
@@ -129,11 +129,11 @@ public class bpy extends bpu {
 			for (int var14 = var3; var14 < var3 + var6; ++var14) {
 				for (int var15 = var4; var15 < var4 + var7; ++var15) {
 					Position var16 = new Position(var13, var14, var15);
-					Block var17 = var0.p(var16).getBlock();
-					if (var17.r() != Material.AIR) {
-						if (var17 != aty.bd && var17 != aty.cw) {
-							if (var17 != aty.i && var17 != aty.j) {
-								if (!var10 && var17 instanceof BlockDoor && var17.r() == Material.WOOD) {
+					Block var17 = var0.getBlockState(var16).getBlock();
+					if (var17.getMaterial() != Material.AIR) {
+						if (var17 != Blocks.TRAPDOOR && var17 != Blocks.IRON_TRAPDOOR) {
+							if (var17 != Blocks.FLOWING_WATER && var17 != Blocks.WATER) {
+								if (!var10 && var17 instanceof BlockDoor && var17.getMaterial() == Material.WOOD) {
 									return 0;
 								}
 							} else {
@@ -147,20 +147,20 @@ public class bpy extends bpu {
 							var11 = true;
 						}
 
-						if (var1.o.p(var16).getBlock() instanceof ati) {
-							if (!(var1.o.p(var12).getBlock() instanceof ati) && !(var1.o.p(var12.b()).getBlock() instanceof ati)) {
+						if (var1.world.getBlockState(var16).getBlock() instanceof ati) {
+							if (!(var1.world.getBlockState(var12).getBlock() instanceof ati) && !(var1.world.getBlockState(var12.b()).getBlock() instanceof ati)) {
 								return -3;
 							}
-						} else if (!var17.b(var0, var16) && (!var9 || !(var17 instanceof BlockDoor) || var17.r() != Material.WOOD)) {
+						} else if (!var17.b(var0, var16) && (!var9 || !(var17 instanceof BlockDoor) || var17.getMaterial() != Material.WOOD)) {
 							if (var17 instanceof BlockFence || var17 instanceof BlockFenceGate || var17 instanceof BlockCobbleWall) {
 								return -3;
 							}
 
-							if (var17 == aty.bd || var17 == aty.cw) {
+							if (var17 == Blocks.TRAPDOOR || var17 == Blocks.IRON_TRAPDOOR) {
 								return -4;
 							}
 
-							Material var18 = var17.r();
+							Material var18 = var17.getMaterial();
 							if (var18 != Material.LAVA) {
 								return 0;
 							}

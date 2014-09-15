@@ -37,18 +37,18 @@ public class wa implements IInventory {
 	public ItemStack a(int var1, int var2) {
 		if (this.c[var1] != null) {
 			ItemStack var3;
-			if (this.c[var1].b <= var2) {
+			if (this.c[var1].amount <= var2) {
 				var3 = this.c[var1];
 				this.c[var1] = null;
-				this.o_();
+				this.update();
 				return var3;
 			} else {
 				var3 = this.c[var1].a(var2);
-				if (this.c[var1].b == 0) {
+				if (this.c[var1].amount == 0) {
 					this.c[var1] = null;
 				}
 
-				this.o_();
+				this.update();
 				return var3;
 			}
 		} else {
@@ -63,26 +63,26 @@ public class wa implements IInventory {
 			ItemStack var4 = this.a(var3);
 			if (var4 == null) {
 				this.a(var3, var2);
-				this.o_();
+				this.update();
 				return null;
 			}
 
 			if (ItemStack.c(var4, var2)) {
-				int var5 = Math.min(this.p_(), var4.c());
-				int var6 = Math.min(var2.b, var5 - var4.b);
+				int var5 = Math.min(this.p_(), var4.getMaxStackSize());
+				int var6 = Math.min(var2.amount, var5 - var4.amount);
 				if (var6 > 0) {
-					var4.b += var6;
-					var2.b -= var6;
-					if (var2.b <= 0) {
-						this.o_();
+					var4.amount += var6;
+					var2.amount -= var6;
+					if (var2.amount <= 0) {
+						this.update();
 						return null;
 					}
 				}
 			}
 		}
 
-		if (var2.b != var1.b) {
-			this.o_();
+		if (var2.amount != var1.amount) {
+			this.update();
 		}
 
 		return var2;
@@ -100,18 +100,18 @@ public class wa implements IInventory {
 
 	public void a(int var1, ItemStack var2) {
 		this.c[var1] = var2;
-		if (var2 != null && var2.b > this.p_()) {
-			var2.b = this.p_();
+		if (var2 != null && var2.amount > this.p_()) {
+			var2.amount = this.p_();
 		}
 
-		this.o_();
+		this.update();
 	}
 
 	public int n_() {
 		return this.b;
 	}
 
-	public String d_() {
+	public String getName() {
 		return this.a;
 	}
 
@@ -124,15 +124,15 @@ public class wa implements IInventory {
 		this.a = var1;
 	}
 
-	public IJSONComponent e_() {
-		return (IJSONComponent) (this.k_() ? new hy(this.d_()) : new hz(this.d_(), new Object[0]));
+	public IChatBaseComponent getComponentName() {
+		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 
 	public int p_() {
 		return 64;
 	}
 
-	public void o_() {
+	public void update() {
 		if (this.d != null) {
 			for (int var1 = 0; var1 < this.d.size(); ++var1) {
 				((vr) this.d.get(var1)).a(this);

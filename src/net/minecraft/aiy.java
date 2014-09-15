@@ -11,49 +11,49 @@ public class aiy extends Container {
 		byte var5 = 3;
 		var2.b(var4);
 		int var6 = (var5 - 4) * 18;
-		this.a(new aiz(this, var2, 0, 8, 18));
-		this.a(new aja(this, var2, 1, 8, 36, var3));
+		this.addSlot(new aiz(this, var2, 0, 8, 18));
+		this.addSlot(new aja(this, var2, 1, 8, 36, var3));
 		int var7;
 		int var8;
 		if (var3.cu()) {
 			for (var7 = 0; var7 < var5; ++var7) {
 				for (var8 = 0; var8 < 5; ++var8) {
-					this.a(new ajk(var2, 2 + var8 + var7 * 5, 80 + var8 * 18, 18 + var7 * 18));
+					this.addSlot(new Slot(var2, 2 + var8 + var7 * 5, 80 + var8 * 18, 18 + var7 * 18));
 				}
 			}
 		}
 
 		for (var7 = 0; var7 < 3; ++var7) {
 			for (var8 = 0; var8 < 9; ++var8) {
-				this.a(new ajk(var1, var8 + var7 * 9 + 9, 8 + var8 * 18, 102 + var7 * 18 + var6));
+				this.addSlot(new Slot(var1, var8 + var7 * 9 + 9, 8 + var8 * 18, 102 + var7 * 18 + var6));
 			}
 		}
 
 		for (var7 = 0; var7 < 9; ++var7) {
-			this.a(new ajk(var1, var7, 8 + var7 * 18, 160 + var6));
+			this.addSlot(new Slot(var1, var7, 8 + var7 * 18, 160 + var6));
 		}
 
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.a.a(var1) && this.f.ai() && this.f.g((Entity) var1) < 8.0F;
+		return this.a.a(var1) && this.f.isAlive() && this.f.g((Entity) var1) < 8.0F;
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {
 		ItemStack var3 = null;
-		ajk var4 = (ajk) this.c.get(var2);
-		if (var4 != null && var4.e()) {
-			ItemStack var5 = var4.d();
+		Slot var4 = (Slot) this.slots.get(var2);
+		if (var4 != null && var4.hasItem()) {
+			ItemStack var5 = var4.getItemStack();
 			var3 = var5.getCopy();
 			if (var2 < this.a.n_()) {
-				if (!this.a(var5, this.a.n_(), this.c.size(), true)) {
+				if (!this.a(var5, this.a.n_(), this.slots.size(), true)) {
 					return null;
 				}
-			} else if (this.a(1).a(var5) && !this.a(1).e()) {
+			} else if (this.getSlot(1).a(var5) && !this.getSlot(1).hasItem()) {
 				if (!this.a(var5, 1, 2, false)) {
 					return null;
 				}
-			} else if (this.a(0).a(var5)) {
+			} else if (this.getSlot(0).a(var5)) {
 				if (!this.a(var5, 0, 1, false)) {
 					return null;
 				}
@@ -61,18 +61,18 @@ public class aiy extends Container {
 				return null;
 			}
 
-			if (var5.b == 0) {
+			if (var5.amount == 0) {
 				var4.d((ItemStack) null);
 			} else {
-				var4.f();
+				var4.update();
 			}
 		}
 
 		return var3;
 	}
 
-	public void b(EntityHuman var1) {
-		super.b(var1);
+	public void onClose(EntityHuman var1) {
+		super.onClose(var1);
 		this.a.c(var1);
 	}
 }

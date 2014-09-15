@@ -2,7 +2,7 @@ package net.minecraft;
 
 import net.minecraft.server.MinecraftServer;
 
-public class pd implements uy {
+public class pd implements IProgressUpdate {
 
 	private long b;
 	// $FF: synthetic field

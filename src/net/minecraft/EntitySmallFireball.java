@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntitySmallFireball extends ahl {
+public class EntitySmallFireball extends EntityFireball {
 
 	public EntitySmallFireball(World var1) {
 		super(var1);
@@ -17,32 +17,32 @@ public class EntitySmallFireball extends ahl {
 		this.a(0.3125F, 0.3125F);
 	}
 
-	protected void a(bru var1) {
-		if (!this.o.D) {
+	protected void a(MovingObjectPosition var1) {
+		if (!this.world.isStatic) {
 			boolean var2;
-			if (var1.d != null) {
-				var2 = var1.d.a(wh.a((ahl) this, this.a), 5.0F);
+			if (var1.entity != null) {
+				var2 = var1.entity.damageEntity(DamageSource.fireball((EntityFireball) this, this.a), 5.0F);
 				if (var2) {
-					this.a(this.a, var1.d);
-					if (!var1.d.T()) {
-						var1.d.e(5);
+					this.a(this.a, var1.entity);
+					if (!var1.entity.T()) {
+						var1.entity.e(5);
 					}
 				}
 			} else {
 				var2 = true;
 				if (this.a != null && this.a instanceof EntityInsentient) {
-					var2 = this.o.Q().b("mobGriefing");
+					var2 = this.world.getGameRules().b("mobGriefing");
 				}
 
 				if (var2) {
-					Position var3 = var1.a().a(var1.b);
-					if (this.o.d(var3)) {
-						this.o.a(var3, aty.ab.P());
+					Position var3 = var1.getPosition().a(var1.face);
+					if (this.world.d(var3)) {
+						this.world.a(var3, Blocks.FIRE.getBlockState());
 					}
 				}
 			}
 
-			this.J();
+			this.die();
 		}
 
 	}
@@ -51,7 +51,7 @@ public class EntitySmallFireball extends ahl {
 		return false;
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		return false;
 	}
 }

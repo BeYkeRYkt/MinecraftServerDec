@@ -10,14 +10,14 @@ public class ChunkCoordIntPair {
 		this.chunkZ = chunkZ;
 	}
 
-	public static long toLongHash(int chunkX, int сргтлЯ) {
-		return (long) chunkX & 4294967295L | ((long) сргтлЯ & 4294967295L) << 32;
+	public static long toLongHash(int chunkX, int chunkZ) {
+		return (long) chunkX & 4294967295L | ((long) chunkZ & 4294967295L) << 32;
 	}
 
 	public int hashCode() {
-		int var1 = 1664525 * this.chunkX + 1013904223;
-		int var2 = 1664525 * (this.chunkZ ^ -559038737) + 1013904223;
-		return var1 ^ var2;
+		int hashX = 1664525 * this.chunkX + 1013904223;
+		int hashZ = 1664525 * (this.chunkZ ^ -559038737) + 1013904223;
+		return hashX ^ hashZ;
 	}
 
 	public boolean equals(Object obj) {

@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class TileEntityDropper extends TileEntityDispenser {
 
-	public String d_() {
+	public String getName() {
 		return this.k_() ? this.a : "container.dropper";
 	}
 

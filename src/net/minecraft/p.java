@@ -5,9 +5,9 @@ import java.util.concurrent.Callable;
 final class p implements Callable {
 
 	// $FF: synthetic field
-	final bec a;
+	final IBlockState a;
 
-	p(bec var1) {
+	p(IBlockState var1) {
 		this.a = var1;
 	}
 

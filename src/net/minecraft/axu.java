@@ -4,38 +4,38 @@ public enum axu implements va {
 
 	a("STONE", 0, 0, "stone") {
 		@Override
-		public bec d() {
-			return aty.b.P().a(BlockStone.a, bbb.a);
+		public IBlockState d() {
+			return Blocks.STONE.getBlockState().a(BlockStone.a, bbb.a);
 		}
 	},
 	b("COBBLESTONE", 1, 1, "cobblestone", "cobble") {
 		@Override
-		public bec d() {
-			return aty.e.P();
+		public IBlockState d() {
+			return Blocks.COBBLESTONE.getBlockState();
 		}
 	},
 	c("STONEBRICK", 2, 2, "stone_brick", "brick") {
 		@Override
-		public bec d() {
-			return aty.bf.P().a(BlockSmoothBrick.a, bbd.a);
+		public IBlockState d() {
+			return Blocks.STONEBRICK.getBlockState().a(BlockSmoothBrick.a, bbd.a);
 		}
 	},
 	d("MOSSY_STONEBRICK", 3, 3, "mossy_brick", "mossybrick") {
 		@Override
-		public bec d() {
-			return aty.bf.P().a(BlockSmoothBrick.a, bbd.b);
+		public IBlockState d() {
+			return Blocks.STONEBRICK.getBlockState().a(BlockSmoothBrick.a, bbd.b);
 		}
 	},
 	e("CRACKED_STONEBRICK", 4, 4, "cracked_brick", "crackedbrick") {
 		@Override
-		public bec d() {
-			return aty.bf.P().a(BlockSmoothBrick.a, bbd.c);
+		public IBlockState d() {
+			return Blocks.STONEBRICK.getBlockState().a(BlockSmoothBrick.a, bbd.c);
 		}
 	},
 	f("CHISELED_STONEBRICK", 5, 5, "chiseled_brick", "chiseledbrick") {
 		@Override
-		public bec d() {
-			return aty.bf.P().a(BlockSmoothBrick.a, bbd.d);
+		public IBlockState d() {
+			return Blocks.STONEBRICK.getBlockState().a(BlockSmoothBrick.a, bbd.d);
 		}
 	};
 
@@ -80,9 +80,9 @@ public enum axu implements va {
 		return this.j;
 	}
 
-	public abstract bec d();
+	public abstract IBlockState d();
 
-	public static axu a(bec var0) {
+	public static axu a(IBlockState var0) {
 		axu[] var1 = values();
 		int var2 = var1.length;
 

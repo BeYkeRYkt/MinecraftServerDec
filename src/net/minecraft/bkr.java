@@ -16,16 +16,16 @@ public class bkr extends blb {
 	public bkr() {
 	}
 
-	public bkr(Random var1, int var2, int var3, PaintingDirection var4) {
+	public bkr(Random var1, int var2, int var3, BlockFace var4) {
 		super(0);
 		this.m = var4;
 		switch (bkj.a[this.m.ordinal()]) {
 			case 1:
 			case 2:
-				this.l = new bjb(var2, 39, var3, var2 + 58 - 1, 61, var3 + 58 - 1);
+				this.l = new CuboidArea(var2, 39, var3, var2 + 58 - 1, 61, var3 + 58 - 1);
 				break;
 			default:
-				this.l = new bjb(var2, 39, var3, var2 + 58 - 1, 61, var3 + 58 - 1);
+				this.l = new CuboidArea(var2, 39, var3, var2 + 58 - 1, 61, var3 + 58 - 1);
 		}
 
 		List var5 = this.a(var1);
@@ -57,7 +57,7 @@ public class bkr extends blb {
 			}
 		}
 
-		int var14 = this.l.b;
+		int var14 = this.l.minY;
 		int var15 = this.a(9, 22);
 		int var16 = this.b(9, 22);
 		Iterator var17 = this.q.iterator();
@@ -67,9 +67,9 @@ public class bkr extends blb {
 			var11.c().a(var15, var14, var16);
 		}
 
-		bjb var18 = bjb.a(this.a(1, 1), this.d(1), this.b(1, 1), this.a(23, 21), this.d(8), this.b(23, 21));
-		bjb var19 = bjb.a(this.a(34, 1), this.d(1), this.b(34, 1), this.a(56, 21), this.d(8), this.b(56, 21));
-		bjb var12 = bjb.a(this.a(22, 22), this.d(13), this.b(22, 22), this.a(35, 35), this.d(17), this.b(35, 35));
+		CuboidArea var18 = CuboidArea.a(this.a(1, 1), this.d(1), this.b(1, 1), this.a(23, 21), this.d(8), this.b(23, 21));
+		CuboidArea var19 = CuboidArea.a(this.a(34, 1), this.d(1), this.b(34, 1), this.a(56, 21), this.d(8), this.b(56, 21));
+		CuboidArea var12 = CuboidArea.a(this.a(22, 22), this.d(13), this.b(22, 22), this.a(35, 35), this.d(17), this.b(35, 35));
 		int var13 = var1.nextInt();
 		this.q.add(new ble(this.m, var18, var13++));
 		this.q.add(new ble(this.m, var19, var13++));
@@ -119,11 +119,11 @@ public class bkr extends blb {
 				for (int var17 = 0; var17 < 3; ++var17) {
 					var6 = a(var3, var17, var4);
 					if (var2[var6] != null) {
-						PaintingDirection[] var7 = PaintingDirection.values();
+						BlockFace[] var7 = BlockFace.values();
 						var8 = var7.length;
 
 						for (var9 = 0; var9 < var8; ++var9) {
-							PaintingDirection var10 = var7[var9];
+							BlockFace var10 = var7[var9];
 							var11 = var3 + var10.g();
 							var12 = var17 + var10.h();
 							var13 = var4 + var10.i();
@@ -131,7 +131,7 @@ public class bkr extends blb {
 								int var14 = a(var11, var12, var13);
 								if (var2[var14] != null) {
 									if (var13 != var4) {
-										var2[var6].a(var10.d(), var2[var14]);
+										var2[var6].a(var10.getOpposite(), var2[var14]);
 									} else {
 										var2[var6].a(var10, var2[var14]);
 									}
@@ -146,22 +146,22 @@ public class bkr extends blb {
 		blf var15;
 		blf var16;
 		blf var18;
-		var2[h].a(PaintingDirection.b, var15 = new blf(1003));
-		var2[i].a(PaintingDirection.d, var16 = new blf(1001));
-		var2[j].a(PaintingDirection.d, var18 = new blf(1002));
+		var2[h].a(BlockFace.UP, var15 = new blf(1003));
+		var2[i].a(BlockFace.SOUTH, var16 = new blf(1001));
+		var2[j].a(BlockFace.SOUTH, var18 = new blf(1002));
 		var15.d = true;
 		var16.d = true;
 		var18.d = true;
 		this.o.e = true;
 		this.p = var2[a(var1.nextInt(4), 0, 2)];
 		this.p.d = true;
-		this.p.b[PaintingDirection.f.a()].d = true;
-		this.p.b[PaintingDirection.c.a()].d = true;
-		this.p.b[PaintingDirection.f.a()].b[PaintingDirection.c.a()].d = true;
-		this.p.b[PaintingDirection.b.a()].d = true;
-		this.p.b[PaintingDirection.f.a()].b[PaintingDirection.b.a()].d = true;
-		this.p.b[PaintingDirection.c.a()].b[PaintingDirection.b.a()].d = true;
-		this.p.b[PaintingDirection.f.a()].b[PaintingDirection.c.a()].b[PaintingDirection.b.a()].d = true;
+		this.p.b[BlockFace.EAST.getId()].d = true;
+		this.p.b[BlockFace.NORTH.getId()].d = true;
+		this.p.b[BlockFace.EAST.getId()].b[BlockFace.NORTH.getId()].d = true;
+		this.p.b[BlockFace.UP.getId()].d = true;
+		this.p.b[BlockFace.EAST.getId()].b[BlockFace.UP.getId()].d = true;
+		this.p.b[BlockFace.NORTH.getId()].b[BlockFace.UP.getId()].d = true;
+		this.p.b[BlockFace.EAST.getId()].b[BlockFace.NORTH.getId()].b[BlockFace.UP.getId()].d = true;
 		ArrayList var19 = Lists.newArrayList();
 		blf[] var20 = var2;
 		var8 = var2.length;
@@ -188,7 +188,7 @@ public class bkr extends blb {
 				++var11;
 				var12 = var1.nextInt(6);
 				if (var23.c[var12]) {
-					var13 = PaintingDirection.a(var12).d().a();
+					var13 = BlockFace.getById(var12).getOpposite().getId();
 					var23.c[var12] = false;
 					var23.b[var12].c[var13] = false;
 					if (var23.a(var21++) && var23.b[var12].a(var21++)) {
@@ -207,7 +207,7 @@ public class bkr extends blb {
 		return var19;
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		this.a(false, 0, var1, var2, var3);
 		this.a(true, 33, var1, var2, var3);
 		this.b(var1, var2, var3);
@@ -263,7 +263,7 @@ public class bkr extends blb {
 		return true;
 	}
 
-	private void a(boolean var1, int var2, World var3, Random var4, bjb var5) {
+	private void a(boolean var1, int var2, World var3, Random var4, CuboidArea var5) {
 		boolean var6 = true;
 		if (this.a(var5, var2, 0, var2 + 23, 20)) {
 			this.a(var3, var5, var2 + 0, 0, 0, var2 + 24, 0, 20, a, a, false);
@@ -310,7 +310,7 @@ public class bkr extends blb {
 
 	}
 
-	private void b(World var1, Random var2, bjb var3) {
+	private void b(World var1, Random var2, CuboidArea var3) {
 		if (this.a(var3, 22, 5, 35, 17)) {
 			this.a(var1, var3, 25, 0, 0, 32, 8, 20, f, f, false);
 
@@ -331,7 +331,7 @@ public class bkr extends blb {
 
 	}
 
-	private void c(World var1, Random var2, bjb var3) {
+	private void c(World var1, Random var2, CuboidArea var3) {
 		if (this.a(var3, 15, 20, 42, 21)) {
 			this.a(var1, var3, 15, 0, 21, 42, 0, 21, a, a, false);
 			this.a(var1, var3, 26, 1, 21, 31, 3, 21, f, f, false);
@@ -392,7 +392,7 @@ public class bkr extends blb {
 
 	}
 
-	private void d(World var1, Random var2, bjb var3) {
+	private void d(World var1, Random var2, CuboidArea var3) {
 		if (this.a(var3, 21, 21, 36, 36)) {
 			this.a(var1, var3, 21, 0, 22, 36, 0, 36, a, a, false);
 			this.a(var1, var3, 21, 1, 22, 36, 23, 36, f, f, false);
@@ -429,7 +429,7 @@ public class bkr extends blb {
 
 	}
 
-	private void e(World var1, Random var2, bjb var3) {
+	private void e(World var1, Random var2, CuboidArea var3) {
 		int var4;
 		if (this.a(var3, 0, 21, 6, 58)) {
 			this.a(var1, var3, 0, 0, 21, 6, 0, 57, a, a, false);
@@ -483,7 +483,7 @@ public class bkr extends blb {
 
 	}
 
-	private void f(World var1, Random var2, bjb var3) {
+	private void f(World var1, Random var2, CuboidArea var3) {
 		int var4;
 		if (this.a(var3, 7, 21, 13, 50)) {
 			this.a(var1, var3, 7, 0, 21, 13, 0, 50, a, a, false);
@@ -544,7 +544,7 @@ public class bkr extends blb {
 
 	}
 
-	private void g(World var1, Random var2, bjb var3) {
+	private void g(World var1, Random var2, CuboidArea var3) {
 		int var4;
 		if (this.a(var3, 14, 21, 20, 43)) {
 			this.a(var1, var3, 14, 0, 21, 20, 0, 43, a, a, false);

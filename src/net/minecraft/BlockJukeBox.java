@@ -6,34 +6,34 @@ public class BlockJukeBox extends atg {
 
 	protected BlockJukeBox() {
 		super(Material.WOOD);
-		this.j(this.L.b().a(a, Boolean.valueOf(false)));
-		this.a(CreativeModeTab.c);
+		this.setBlockState(this.L.b().a(a, Boolean.valueOf(false)));
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (((Boolean) var3.b(a)).booleanValue()) {
 			this.e(var1, var2, var3);
 			var3 = var3.a(a, Boolean.valueOf(false));
-			var1.a(var2, var3, 2);
+			var1.setBlockAt(var2, var3, 2);
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public void a(World var1, Position var2, bec var3, ItemStack var4) {
-		if (!var1.D) {
-			TileEntity var5 = var1.s(var2);
+	public void a(World var1, Position var2, IBlockState var3, ItemStack var4) {
+		if (!var1.isStatic) {
+			TileEntity var5 = var1.getTileEntity(var2);
 			if (var5 instanceof TileEntityRecordPlayer) {
-				((TileEntityRecordPlayer) var5).a(new ItemStack(var4.getItem(), 1, var4.i()));
-				var1.a(var2, var3.a(a, Boolean.valueOf(true)), 2);
+				((TileEntityRecordPlayer) var5).a(new ItemStack(var4.getItem(), 1, var4.getDurability()));
+				var1.setBlockAt(var2, var3.a(a, Boolean.valueOf(true)), 2);
 			}
 		}
 	}
 
-	private void e(World var1, Position var2, bec var3) {
-		if (!var1.D) {
-			TileEntity var4 = var1.s(var2);
+	private void e(World var1, Position var2, IBlockState var3) {
+		if (!var1.isStatic) {
+			TileEntity var4 = var1.getTileEntity(var2);
 			if (var4 instanceof TileEntityRecordPlayer) {
 				TileEntityRecordPlayer var5 = (TileEntityRecordPlayer) var4;
 				ItemStack var6 = var5.a();
@@ -48,19 +48,19 @@ public class BlockJukeBox extends atg {
 					ItemStack var14 = var6.getCopy();
 					EntityItem var15 = new EntityItem(var1, (double) var2.getX() + var8, (double) var2.getY() + var10, (double) var2.getZ() + var12, var14);
 					var15.p();
-					var1.d((Entity) var15);
+					var1.addEntity((Entity) var15);
 				}
 			}
 		}
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
 		super.b(var1, var2, var3);
 	}
 
-	public void a(World var1, Position var2, bec var3, float var4, int var5) {
-		if (!var1.D) {
+	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+		if (!var1.isStatic) {
 			super.a(var1, var2, var3, var4, 0);
 		}
 	}
@@ -74,11 +74,11 @@ public class BlockJukeBox extends atg {
 	}
 
 	public int l(World var1, Position var2) {
-		TileEntity var3 = var1.s(var2);
+		TileEntity var3 = var1.getTileEntity(var2);
 		if (var3 instanceof TileEntityRecordPlayer) {
 			ItemStack var4 = ((TileEntityRecordPlayer) var3).a();
 			if (var4 != null) {
-				return Item.getId(var4.getItem()) + 1 - Item.getId(amk.cq);
+				return Item.getId(var4.getItem()) + 1 - Item.getId(Items.RECORD_13);
 			}
 		}
 
@@ -89,11 +89,11 @@ public class BlockJukeBox extends atg {
 		return 3;
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, Boolean.valueOf(var1 > 0));
+	public IBlockState setData(int var1) {
+		return this.getBlockState().a(a, Boolean.valueOf(var1 > 0));
 	}
 
-	public int c(bec var1) {
+	public int getData(IBlockState var1) {
 		return ((Boolean) var1.b(a)).booleanValue() ? 1 : 0;
 	}
 

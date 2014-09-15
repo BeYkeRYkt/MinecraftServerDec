@@ -5,9 +5,9 @@ import java.util.concurrent.Callable;
 class bmp implements Callable {
 
 	// $FF: synthetic field
-	final bmm a;
+	final StructureGenerator a;
 
-	bmp(bmm var1) {
+	bmp(StructureGenerator var1) {
 		this.a = var1;
 	}
 

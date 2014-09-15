@@ -16,129 +16,129 @@ public enum EnumProtocol {
 
 	HANDSHAKING(-1) {
 		{
-			registerPacket(PacketDirection.SERVERBOUND, PacketInSetProtocol.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketHandshakingInSetProtocol.class);
 		}
 	},
 	PLAY(0) {
 		{
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutKeepAlive.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutJoinGame.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutChatMessage.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutTimeUpdate.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutEntityEquipment.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutSpawnPosition.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutUpdateHealth.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutRespawn.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutPlayerPositionAndLook.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutHeldItemChange.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutUseBed.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutAnimation.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutSpawnPlayer.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutCollectItem.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutSpawnObject.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutSpawnMob.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutSpawnPainting.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutSpawnExpirienceOrb.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutEntityVelocity.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutDestroyEntities.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutEntity.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutEntityRelativeMove.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutEntityLook.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutEntityRelativeLookMove.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutEntityTeleport.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutEntityHeadLook.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutEntityStatus.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutAttachEntity.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutEntityMetadata.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutEntityEffect.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutRemoveEntityEffect.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutSetExpirience.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutEntityProperties.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutChunkData.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutMultiBlockChange.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutBlockChange.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutBlockAction.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutBlockBreakAnimation.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutMapChunkBulk.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutExplosion.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutEffect.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutSoundEffect.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutParticle.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutChangeGameState.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutSpawnGlobalEntity.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutOpenWindow.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutCloseWindow.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutSetSlot.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutWindowItems.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutWindowProperty.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutConfirmTransaction.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutUpdateSign.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutMap.class);
-			registerPacket(PacketDirection.CLIENTBOUND, PacketOutUpdateBlockEntity.class);
-			registerPacket(PacketDirection.CLIENTBOUND, kc.class);
-			registerPacket(PacketDirection.CLIENTBOUND, is.class);
-			registerPacket(PacketDirection.CLIENTBOUND, kh.class);
-			registerPacket(PacketDirection.CLIENTBOUND, kd.class);
-			registerPacket(PacketDirection.CLIENTBOUND, iy.class);
-			registerPacket(PacketDirection.CLIENTBOUND, ld.class);
-			registerPacket(PacketDirection.CLIENTBOUND, lf.class);
-			registerPacket(PacketDirection.CLIENTBOUND, kw.class);
-			registerPacket(PacketDirection.CLIENTBOUND, le.class);
-			registerPacket(PacketDirection.CLIENTBOUND, ji.class);
-			registerPacket(PacketDirection.CLIENTBOUND, jj.class);
-			registerPacket(PacketDirection.CLIENTBOUND, ix.class);
-			registerPacket(PacketDirection.CLIENTBOUND, ke.class);
-			registerPacket(PacketDirection.CLIENTBOUND, ku.class);
-			registerPacket(PacketDirection.CLIENTBOUND, kr.class);
-			registerPacket(PacketDirection.CLIENTBOUND, lj.class);
-			registerPacket(PacketDirection.CLIENTBOUND, jn.class);
-			registerPacket(PacketDirection.CLIENTBOUND, lm.class);
-			registerPacket(PacketDirection.CLIENTBOUND, ko.class);
-			registerPacket(PacketDirection.CLIENTBOUND, jl.class);
-			registerPacket(PacketDirection.SERVERBOUND, mf.class);
-			registerPacket(PacketDirection.SERVERBOUND, lu.class);
-			registerPacket(PacketDirection.SERVERBOUND, md.class);
-			registerPacket(PacketDirection.SERVERBOUND, mg.class);
-			registerPacket(PacketDirection.SERVERBOUND, mh.class);
-			registerPacket(PacketDirection.SERVERBOUND, mj.class);
-			registerPacket(PacketDirection.SERVERBOUND, mi.class);
-			registerPacket(PacketDirection.SERVERBOUND, ml.class);
-			registerPacket(PacketDirection.SERVERBOUND, mx.class);
-			registerPacket(PacketDirection.SERVERBOUND, ms.class);
-			registerPacket(PacketDirection.SERVERBOUND, mv.class);
-			registerPacket(PacketDirection.SERVERBOUND, mn.class);
-			registerPacket(PacketDirection.SERVERBOUND, mp.class);
-			registerPacket(PacketDirection.SERVERBOUND, mb.class);
-			registerPacket(PacketDirection.SERVERBOUND, ma.class);
-			registerPacket(PacketDirection.SERVERBOUND, ly.class);
-			registerPacket(PacketDirection.SERVERBOUND, mt.class);
-			registerPacket(PacketDirection.SERVERBOUND, lz.class);
-			registerPacket(PacketDirection.SERVERBOUND, mu.class);
-			registerPacket(PacketDirection.SERVERBOUND, mk.class);
-			registerPacket(PacketDirection.SERVERBOUND, lt.class);
-			registerPacket(PacketDirection.SERVERBOUND, lx.class);
-			registerPacket(PacketDirection.SERVERBOUND, lv.class);
-			registerPacket(PacketDirection.SERVERBOUND, mc.class);
-			registerPacket(PacketDirection.SERVERBOUND, mw.class);
-			registerPacket(PacketDirection.SERVERBOUND, mq.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutKeepAlive.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutJoinGame.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutChatMessage.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutTimeUpdate.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutEntityEquipment.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutSpawnPosition.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutUpdateHealth.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutRespawn.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutPlayerPositionAndLook.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutHeldItemChange.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutUseBed.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutAnimation.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutSpawnPlayer.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutCollectItem.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutSpawnObject.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutSpawnMob.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutSpawnPainting.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutSpawnExpirienceOrb.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutEntityVelocity.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutDestroyEntities.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutEntity.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutEntityRelativeMove.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutEntityLook.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutEntityRelativeLookMove.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutEntityTeleport.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutEntityHeadLook.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutEntityStatus.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutAttachEntity.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutEntityMetadata.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutEntityEffect.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutRemoveEntityEffect.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutSetExpirience.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutEntityProperties.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutChunkData.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutMultiBlockChange.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutBlockChange.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutBlockAction.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutBlockBreakAnimation.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutMapChunkBulk.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutExplosion.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutEffect.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutSoundEffect.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutParticle.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutChangeGameState.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutSpawnGlobalEntity.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutOpenWindow.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutCloseWindow.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutSetSlot.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutWindowItems.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutWindowProperty.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutConfirmTransaction.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutUpdateSign.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutMap.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutUpdateBlockEntity.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutSignEditorOpen.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutStatistics.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutListItem.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutPlayerAbilities.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutTabComplete.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutScoreboardObjective.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutUpdateScore.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutDisplayScoreboard.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutScoreboardTeam.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutPluginMessage.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutDisconnect.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutServerDifficulty.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutCombatEvent.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutCamera.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutWorldBorder.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutTitle.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutSetCompression.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutListHeaderFooter.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutResourcePackSend.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketPlayOutUpdateEntityNBT.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInKeepAlive.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInChatMessage.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInUseEntity.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInPlayer.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInPlayerPosition.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInPlayerLook.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInPositionLook.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInPlayerDigging.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInBlockPlace.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInHeldItemChange.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInAnimation.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInEntityAction.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInSteerVehicle.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInCloseWindow.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInClickWindow.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInConfirmTransaction.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInCreativeInventoryAction.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInEnchantItem.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInUpdateSign.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInPlayAbilities.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInTabComplete.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInClientSettings.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInClientStatus.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInPluginMessage.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInSpectate.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketPlayInResourcePackStatus.class);
 		}
 	},
 	STATUS(1) {
 		{
-			registerPacket(PacketDirection.SERVERBOUND, nx.class);
-			registerPacket(PacketDirection.CLIENTBOUND, no.class);
-			registerPacket(PacketDirection.SERVERBOUND, nw.class);
-			registerPacket(PacketDirection.CLIENTBOUND, nn.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketStatusInRequest.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketStatusOutResponse.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketStatusInPing.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketStatusOutPing.class);
 		}
 	},
 	LOGIN(2) {
 		{
-			registerPacket(PacketDirection.CLIENTBOUND, ng.class);
-			registerPacket(PacketDirection.CLIENTBOUND, ne.class);
-			registerPacket(PacketDirection.CLIENTBOUND, nd.class);
-			registerPacket(PacketDirection.CLIENTBOUND, nf.class);
-			registerPacket(PacketDirection.SERVERBOUND, ni.class);
-			registerPacket(PacketDirection.SERVERBOUND, nj.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketLoginOutDisconnect.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketLoginOutEncryptionRequest.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketLoginOutLoginSuccess.class);
+			registerPacket(PacketDirection.CLIENTBOUND, PacketLoginOutSetCompression.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketLoginInLoginStart.class);
+			registerPacket(PacketDirection.SERVERBOUND, PacketLoginInEncryptionResponse.class);
 		}
 	};
 
@@ -162,6 +162,14 @@ public enum EnumProtocol {
 				}
 			}
 		}
+	}
+
+	public static EnumProtocol getState(int stateId) {
+		return stateIdMap.get(stateId);
+	}
+
+	public static EnumProtocol getByPacket(Packet<?> packet) {
+		return packetMap.get(packet.getClass());
 	}
 
 	private final int stateId;
@@ -200,14 +208,6 @@ public enum EnumProtocol {
 
 	public int getStateId() {
 		return this.stateId;
-	}
-
-	public static EnumProtocol getState(int stateId) {
-		return stateIdMap.get(stateId);
-	}
-
-	public static EnumProtocol a(Packet<?> packet) {
-		return packetMap.get(packet.getClass());
 	}
 
 }

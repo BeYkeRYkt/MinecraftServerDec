@@ -1,6 +1,6 @@
 package net.minecraft;
 
-class aik extends ajk {
+class aik extends Slot {
 
 	private EntityHuman a;
 
@@ -18,14 +18,14 @@ class aik extends ajk {
 	}
 
 	public void a(EntityHuman var1, ItemStack var2) {
-		if (var2.getItem() == amk.bz && var2.i() > 0) {
-			this.a.b((Statistic) tl.B);
+		if (var2.getItem() == Items.POTION && var2.getDurability() > 0) {
+			this.a.b((Statistic) AchievementList.B);
 		}
 
 		super.a(var1, var2);
 	}
 
 	public static boolean b_(ItemStack var0) {
-		return var0 != null && (var0.getItem() == amk.bz || var0.getItem() == amk.bA);
+		return var0 != null && (var0.getItem() == Items.POTION || var0.getItem() == Items.GLASS_BOTTLE);
 	}
 }

@@ -4,41 +4,41 @@ package net.minecraft;
 class bag {
 
 	// $FF: synthetic field
-	static final int[] a = new int[ayx.values().length];
+	static final int[] a = new int[EnumWoodType.values().length];
 
 	static {
 		try {
-			a[ayx.b.ordinal()] = 1;
+			a[EnumWoodType.b.ordinal()] = 1;
 		} catch (NoSuchFieldError var6) {
 			;
 		}
 
 		try {
-			a[ayx.c.ordinal()] = 2;
+			a[EnumWoodType.c.ordinal()] = 2;
 		} catch (NoSuchFieldError var5) {
 			;
 		}
 
 		try {
-			a[ayx.d.ordinal()] = 3;
+			a[EnumWoodType.d.ordinal()] = 3;
 		} catch (NoSuchFieldError var4) {
 			;
 		}
 
 		try {
-			a[ayx.e.ordinal()] = 4;
+			a[EnumWoodType.e.ordinal()] = 4;
 		} catch (NoSuchFieldError var3) {
 			;
 		}
 
 		try {
-			a[ayx.f.ordinal()] = 5;
+			a[EnumWoodType.f.ordinal()] = 5;
 		} catch (NoSuchFieldError var2) {
 			;
 		}
 
 		try {
-			a[ayx.a.ordinal()] = 6;
+			a[EnumWoodType.a.ordinal()] = 6;
 		} catch (NoSuchFieldError var1) {
 			;
 		}

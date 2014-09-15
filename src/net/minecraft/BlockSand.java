@@ -1,26 +1,26 @@
 package net.minecraft;
 
-public class BlockSand extends avt {
+public class BlockSand extends BlockFalling {
 
 	public static final bev a = bev.a("variant", bac.class);
 
 	public BlockSand() {
-		this.j(this.L.b().a(a, bac.a));
+		this.setBlockState(this.L.b().a(a, bac.a));
 	}
 
-	public int a(bec var1) {
+	public int a(IBlockState var1) {
 		return ((bac) var1.b(a)).a();
 	}
 
-	public MaterialMapColor g(bec var1) {
+	public MaterialMapColor getMapColor(IBlockState var1) {
 		return ((bac) var1.b(a)).c();
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, bac.a(var1));
+	public IBlockState setData(int var1) {
+		return this.getBlockState().a(a, bac.a(var1));
 	}
 
-	public int c(bec var1) {
+	public int getData(IBlockState var1) {
 		return ((bac) var1.b(a)).a();
 	}
 

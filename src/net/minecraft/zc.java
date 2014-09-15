@@ -19,16 +19,16 @@ public class zc {
 		this.d = var1;
 	}
 
-	public void a(int var1, zb var2) {
+	public void a(int var1, PathfinderGoal var2) {
 		this.b.add(new zd(this, var1, var2));
 	}
 
-	public void a(zb var1) {
+	public void a(PathfinderGoal var1) {
 		Iterator var2 = this.b.iterator();
 
 		while (var2.hasNext()) {
 			zd var3 = (zd) var2.next();
-			zb var4 = var3.a;
+			PathfinderGoal var4 = var3.a;
 			if (var4 == var1) {
 				if (this.c.contains(var3)) {
 					var4.d();

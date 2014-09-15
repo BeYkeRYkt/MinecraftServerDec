@@ -7,15 +7,15 @@ public class EntityBlaze extends EntityMonster {
 
 	public EntityBlaze(World var1) {
 		super(var1);
-		this.ab = true;
+		this.fireProof = true;
 		this.b_ = 10;
 		this.i.a(4, new aen(this));
-		this.i.a(5, new zo(this, 1.0D));
-		this.i.a(7, new zy(this, 1.0D));
-		this.i.a(8, new zh(this, EntityHuman.class, 8.0F));
-		this.i.a(8, new zx(this));
+		this.i.a(5, new PathfinderGoalMoveTowardsRestriction(this, 1.0D));
+		this.i.a(7, new PathfinderGoalRandomStroll(this, 1.0D));
+		this.i.a(8, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+		this.i.a(8, new PathfinderGoalRandomLookaround(this));
 		this.bg.a(1, new aal(this, true, new Class[0]));
-		this.bg.a(2, new aaq(this, EntityHuman.class, true));
+		this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
 	}
 
 	protected void aW() {
@@ -51,13 +51,13 @@ public class EntityBlaze extends EntityMonster {
 			this.motionY *= 0.6D;
 		}
 
-		if (this.o.D) {
-			if (this.V.nextInt(24) == 0 && !this.R()) {
-				this.o.a(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.fire", 1.0F + this.V.nextFloat(), this.V.nextFloat() * 0.7F + 0.3F, false);
+		if (this.world.isStatic) {
+			if (this.random.nextInt(24) == 0 && !this.isSilent()) {
+				this.world.a(this.locationX + 0.5D, this.locationY + 0.5D, this.locationZ + 0.5D, "fire.fire", 1.0F + this.random.nextFloat(), this.random.nextFloat() * 0.7F + 0.3F, false);
 			}
 
 			for (int var1 = 0; var1 < 2; ++var1) {
-				this.o.a(Particle.m, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, 0.0D, 0.0D, 0.0D, new int[0]);
+				this.world.a(Particle.m, this.locationX + (this.random.nextDouble() - 0.5D) * (double) this.height, this.locationY + this.random.nextDouble() * (double) this.width, this.locationZ + (this.random.nextDouble() - 0.5D) * (double) this.height, 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 		}
 
@@ -66,17 +66,17 @@ public class EntityBlaze extends EntityMonster {
 
 	protected void E() {
 		if (this.U()) {
-			this.a(wh.f, 1.0F);
+			this.damageEntity(DamageSource.DROWN, 1.0F);
 		}
 
 		--this.c;
 		if (this.c <= 0) {
 			this.c = 100;
-			this.b = 0.5F + (float) this.V.nextGaussian() * 3.0F;
+			this.b = 0.5F + (float) this.random.nextGaussian() * 3.0F;
 		}
 
 		EntityLiving var1 = this.u();
-		if (var1 != null && var1.locationY + (double) var1.aR() > this.locationY + (double) this.aR() + (double) this.b) {
+		if (var1 != null && var1.locationY + (double) var1.getHeadHeight() > this.locationY + (double) this.getHeadHeight() + (double) this.b) {
 			this.motionY += (0.30000001192092896D - this.motionY) * 0.30000001192092896D;
 			this.ai = true;
 		}
@@ -87,20 +87,20 @@ public class EntityBlaze extends EntityMonster {
 	public void e(float var1, float var2) {
 	}
 
-	protected Item A() {
-		return amk.bv;
+	protected Item getLoot() {
+		return Items.BLAZE_ROD;
 	}
 
 	public boolean au() {
 		return this.n();
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		if (var1) {
-			int var3 = this.V.nextInt(2 + var2);
+			int var3 = this.random.nextInt(2 + var2);
 
 			for (int var4 = 0; var4 < var3; ++var4) {
-				this.a(amk.bv, 1);
+				this.a(Items.BLAZE_ROD, 1);
 			}
 		}
 

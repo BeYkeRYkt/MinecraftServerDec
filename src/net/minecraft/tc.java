@@ -19,35 +19,35 @@ public class tc implements CommandSenderInterface {
 		return this.b.toString();
 	}
 
-	public String d_() {
+	public String getName() {
 		return "Rcon";
 	}
 
-	public IJSONComponent e_() {
-		return new hy(this.d_());
+	public IChatBaseComponent getComponentName() {
+		return new ChatComponentText(this.getName());
 	}
 
-	public void sendChatMessage(IJSONComponent var1) {
-		this.b.append(var1.c());
+	public void sendChatMessage(IChatBaseComponent var1) {
+		this.b.append(var1.getStrippedMessage());
 	}
 
-	public boolean a(int var1, String var2) {
+	public boolean canExecuteCommand(int var1, String var2) {
 		return true;
 	}
 
-	public Position c() {
+	public Position getEntityPosition() {
 		return new Position(0, 0, 0);
 	}
 
-	public Vec3D d() {
+	public Vec3D getCenter() {
 		return new Vec3D(0.0D, 0.0D, 0.0D);
 	}
 
-	public World e() {
-		return MinecraftServer.getInstance().e();
+	public World getPrimaryWorld() {
+		return MinecraftServer.getInstance().getPrimaryWorld();
 	}
 
-	public Entity f() {
+	public Entity getEntity() {
 		return null;
 	}
 

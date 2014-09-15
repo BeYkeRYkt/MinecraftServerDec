@@ -25,7 +25,7 @@ public class bph extends bpa {
 				if (var17 == var13 && var17 == var15 && var17 == var14 && var17 == var16) {
 					var10[var12 + var11 * var3] = -1;
 				} else {
-					var10[var12 + var11 * var3] = arm.w.az;
+					var10[var12 + var11 * var3] = BiomeBase.RIVER.az;
 				}
 			}
 		}

@@ -16,7 +16,7 @@ public abstract class bes<T> implements bex<T> {
 		return this.b;
 	}
 
-	public Class<T> b() {
+	public Class<T> getStateClass() {
 		return this.a;
 	}
 

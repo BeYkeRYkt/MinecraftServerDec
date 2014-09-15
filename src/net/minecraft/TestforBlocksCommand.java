@@ -24,13 +24,13 @@ public class TestforBlocksCommand extends AbstractCommand {
 			Position var3 = a(var1, var2, 0, false);
 			Position var4 = a(var1, var2, 3, false);
 			Position var5 = a(var1, var2, 6, false);
-			bjb var6 = new bjb(var3, var4);
-			bjb var7 = new bjb(var5, var5.a(var6.b()));
+			CuboidArea var6 = new CuboidArea(var3, var4);
+			CuboidArea var7 = new CuboidArea(var5, var5.a(var6.b()));
 			int var8 = var6.c() * var6.d() * var6.e();
 			if (var8 > 524288) {
 				throw new di("commands.compare.tooManyBlocks", new Object[] { Integer.valueOf(var8), Integer.valueOf(524288) });
-			} else if (var6.b >= 0 && var6.e < 256 && var7.b >= 0 && var7.e < 256) {
-				World var9 = var1.e();
+			} else if (var6.minY >= 0 && var6.maxY < 256 && var7.minY >= 0 && var7.maxY < 256) {
+				World var9 = var1.getPrimaryWorld();
 				if (var9.a(var6) && var9.a(var7)) {
 					boolean var10 = false;
 					if (var2.length > 9 && var2[9].equals("masked")) {
@@ -38,19 +38,19 @@ public class TestforBlocksCommand extends AbstractCommand {
 					}
 
 					var8 = 0;
-					Position var11 = new Position(var7.a - var6.a, var7.b - var6.b, var7.c - var6.c);
+					Position var11 = new Position(var7.minX - var6.minX, var7.minY - var6.minY, var7.minZ - var6.minZ);
 
-					for (int var12 = var6.c; var12 <= var6.f; ++var12) {
-						for (int var13 = var6.b; var13 <= var6.e; ++var13) {
-							for (int var14 = var6.a; var14 <= var6.d; ++var14) {
+					for (int var12 = var6.minZ; var12 <= var6.maxZ; ++var12) {
+						for (int var13 = var6.minY; var13 <= var6.maxY; ++var13) {
+							for (int var14 = var6.minX; var14 <= var6.maxX; ++var14) {
 								Position var15 = new Position(var14, var13, var12);
 								Position var16 = var15.a((fd) var11);
 								boolean var17 = false;
-								bec var18 = var9.p(var15);
-								if (!var10 || var18.getBlock() != aty.a) {
-									if (var18 == var9.p(var16)) {
-										TileEntity var19 = var9.s(var15);
-										TileEntity var20 = var9.s(var16);
+								IBlockState var18 = var9.getBlockState(var15);
+								if (!var10 || var18.getBlock() != Blocks.AIR) {
+									if (var18 == var9.getBlockState(var16)) {
+										TileEntity var19 = var9.getTileEntity(var15);
+										TileEntity var20 = var9.getTileEntity(var16);
 										if (var19 != null && var20 != null) {
 											NBTCompoundTag var21 = new NBTCompoundTag();
 											var19.write(var21);

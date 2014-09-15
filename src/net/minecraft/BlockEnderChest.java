@@ -9,8 +9,8 @@ public class BlockEnderChest extends atg {
 
 	protected BlockEnderChest() {
 		super(Material.STONE);
-		this.j(this.L.b().a(a, PaintingDirection.c));
-		this.a(CreativeModeTab.c);
+		this.setBlockState(this.L.b().a(a, BlockFace.NORTH));
+		this.a(CreativeModeTab.DECORATIONS);
 		this.a(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 	}
 
@@ -26,8 +26,8 @@ public class BlockEnderChest extends atg {
 		return 2;
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
-		return Item.getItemOf(aty.Z);
+	public Item a(IBlockState var1, Random var2, int var3) {
+		return Item.getItemOf(Blocks.OBSIDIAN);
 	}
 
 	public int a(Random var1) {
@@ -38,21 +38,21 @@ public class BlockEnderChest extends atg {
 		return true;
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return this.P().a(a, var8.aO().d());
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		return this.getBlockState().a(a, var8.aO().getOpposite());
 	}
 
-	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
-		var1.a(var2, var3.a(a, var4.aO().d()), 2);
+	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
+		var1.setBlockAt(var2, var3.a(a, var4.aO().getOpposite()), 2);
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
-		InventoryEnderChest var9 = var4.cn();
-		TileEntity var10 = var1.s(var2);
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+		InventoryEnderChest var9 = var4.getEnderChest();
+		TileEntity var10 = var1.getTileEntity(var2);
 		if (var9 != null && var10 instanceof TileEntityEnderChest) {
-			if (var1.p(var2.a()).getBlock().t()) {
+			if (var1.getBlockState(var2.a()).getBlock().t()) {
 				return true;
-			} else if (var1.D) {
+			} else if (var1.isStatic) {
 				return true;
 			} else {
 				var9.a((TileEntityEnderChest) var10);
@@ -68,17 +68,17 @@ public class BlockEnderChest extends atg {
 		return new TileEntityEnderChest();
 	}
 
-	public bec a(int var1) {
-		PaintingDirection var2 = PaintingDirection.a(var1);
+	public IBlockState setData(int var1) {
+		BlockFace var2 = BlockFace.getById(var1);
 		if (var2.k() == el.b) {
-			var2 = PaintingDirection.c;
+			var2 = BlockFace.NORTH;
 		}
 
-		return this.P().a(a, var2);
+		return this.getBlockState().a(a, var2);
 	}
 
-	public int c(bec var1) {
-		return ((PaintingDirection) var1.b(a)).a();
+	public int getData(IBlockState var1) {
+		return ((BlockFace) var1.b(a)).getId();
 	}
 
 	protected bed e() {

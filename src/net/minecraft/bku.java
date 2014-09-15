@@ -7,23 +7,23 @@ public class bku extends blb {
 	public bku() {
 	}
 
-	public bku(PaintingDirection var1, blf var2, Random var3) {
+	public bku(BlockFace var1, blf var2, Random var3) {
 		super(1, var1, var2, 2, 1, 1);
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
-		blf var4 = this.k.b[PaintingDirection.f.a()];
+	public boolean a(World var1, Random var2, CuboidArea var3) {
+		blf var4 = this.k.b[BlockFace.EAST.getId()];
 		blf var5 = this.k;
 		if (this.k.a / 25 > 0) {
-			this.a(var1, var3, 8, 0, var4.c[PaintingDirection.a.a()]);
-			this.a(var1, var3, 0, 0, var5.c[PaintingDirection.a.a()]);
+			this.a(var1, var3, 8, 0, var4.c[BlockFace.DOWN.getId()]);
+			this.a(var1, var3, 0, 0, var5.c[BlockFace.DOWN.getId()]);
 		}
 
-		if (var5.b[PaintingDirection.b.a()] == null) {
+		if (var5.b[BlockFace.UP.getId()] == null) {
 			this.a(var1, var3, 1, 4, 1, 7, 4, 6, a);
 		}
 
-		if (var4.b[PaintingDirection.b.a()] == null) {
+		if (var4.b[BlockFace.UP.getId()] == null) {
 			this.a(var1, var3, 8, 4, 1, 14, 4, 6, a);
 		}
 
@@ -44,27 +44,27 @@ public class bku extends blb {
 		this.a(var1, var3, 5, 3, 0, 10, 3, 4, b, b, false);
 		this.a(var1, e, 6, 2, 3, var3);
 		this.a(var1, e, 9, 2, 3, var3);
-		if (var5.c[PaintingDirection.d.a()]) {
+		if (var5.c[BlockFace.SOUTH.getId()]) {
 			this.a(var1, var3, 3, 1, 0, 4, 2, 0, f, f, false);
 		}
 
-		if (var5.c[PaintingDirection.c.a()]) {
+		if (var5.c[BlockFace.NORTH.getId()]) {
 			this.a(var1, var3, 3, 1, 7, 4, 2, 7, f, f, false);
 		}
 
-		if (var5.c[PaintingDirection.e.a()]) {
+		if (var5.c[BlockFace.WEST.getId()]) {
 			this.a(var1, var3, 0, 1, 3, 0, 2, 4, f, f, false);
 		}
 
-		if (var4.c[PaintingDirection.d.a()]) {
+		if (var4.c[BlockFace.SOUTH.getId()]) {
 			this.a(var1, var3, 11, 1, 0, 12, 2, 0, f, f, false);
 		}
 
-		if (var4.c[PaintingDirection.c.a()]) {
+		if (var4.c[BlockFace.NORTH.getId()]) {
 			this.a(var1, var3, 11, 1, 7, 12, 2, 7, f, f, false);
 		}
 
-		if (var4.c[PaintingDirection.f.a()]) {
+		if (var4.c[BlockFace.EAST.getId()]) {
 			this.a(var1, var3, 15, 1, 3, 15, 2, 4, f, f, false);
 		}
 

@@ -2,7 +2,7 @@ package net.minecraft;
 
 import org.apache.commons.lang3.StringUtils;
 
-public abstract class aaw extends zb {
+public abstract class aaw extends PathfinderGoal {
 
 	protected final EntityCreature e;
 	protected boolean f;
@@ -25,16 +25,16 @@ public abstract class aaw extends zb {
 		EntityLiving var1 = this.e.u();
 		if (var1 == null) {
 			return false;
-		} else if (!var1.ai()) {
+		} else if (!var1.isAlive()) {
 			return false;
 		} else {
-			bsf var2 = this.e.bN();
-			bsf var3 = var1.bN();
+			ScoreboardTeamBase var2 = this.e.bN();
+			ScoreboardTeamBase var3 = var1.bN();
 			if (var2 != null && var3 == var2) {
 				return false;
 			} else {
 				double var4 = this.f();
-				if (this.e.h(var1) > var4 * var4) {
+				if (this.e.getDistanceSquared(var1) > var4 * var4) {
 					return false;
 				} else {
 					if (this.f) {
@@ -45,7 +45,7 @@ public abstract class aaw extends zb {
 						}
 					}
 
-					return !(var1 instanceof EntityHuman) || !((EntityHuman) var1).by.invulnerable;
+					return !(var1 instanceof EntityHuman) || !((EntityHuman) var1).playerProperties.invulnerable;
 				}
 			}
 		}
@@ -71,13 +71,13 @@ public abstract class aaw extends zb {
 			return false;
 		} else if (var1 == var0) {
 			return false;
-		} else if (!var1.ai()) {
+		} else if (!var1.isAlive()) {
 			return false;
 		} else if (!var0.a(var1.getClass())) {
 			return false;
 		} else {
-			bsf var4 = var0.bN();
-			bsf var5 = var1.bN();
+			ScoreboardTeamBase var4 = var0.bN();
+			ScoreboardTeamBase var5 = var1.bN();
 			if (var4 != null && var5 == var4) {
 				return false;
 			} else {
@@ -89,7 +89,7 @@ public abstract class aaw extends zb {
 					if (var1 == ((xt) var0).l_()) {
 						return false;
 					}
-				} else if (var1 instanceof EntityHuman && !var2 && ((EntityHuman) var1).by.invulnerable) {
+				} else if (var1 instanceof EntityHuman && !var2 && ((EntityHuman) var1).playerProperties.invulnerable) {
 					return false;
 				}
 
@@ -132,8 +132,8 @@ public abstract class aaw extends zb {
 			if (var3 == null) {
 				return false;
 			} else {
-				int var4 = var3.a - DataTypesConverter.toFixedPointInt(var1.locationX);
-				int var5 = var3.c - DataTypesConverter.toFixedPointInt(var1.locationZ);
+				int var4 = var3.a - MathHelper.toFixedPointInt(var1.locationX);
+				int var5 = var3.c - MathHelper.toFixedPointInt(var1.locationZ);
 				return (double) (var4 * var4 + var5 * var5) <= 2.25D;
 			}
 		}

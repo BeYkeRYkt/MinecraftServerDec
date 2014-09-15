@@ -34,8 +34,8 @@ public class aba extends aay {
 			super.k();
 		} else {
 			if (this.f != null) {
-				double var1 = (double) (this.b.J * this.b.J);
-				if (this.b.c(this.f) >= var1 && (this.b.locationY <= (double) this.f.getY() || this.b.c(new Position(this.f.getX(), DataTypesConverter.toFixedPointInt(this.b.locationY), this.f.getZ())) >= var1)) {
+				double var1 = (double) (this.b.height * this.b.height);
+				if (this.b.c(this.f) >= var1 && (this.b.locationY <= (double) this.f.getY() || this.b.c(new Position(this.f.getX(), MathHelper.toFixedPointInt(this.b.locationY), this.f.getZ())) >= var1)) {
 					this.b.q().a((double) this.f.getX(), (double) this.f.getY(), (double) this.f.getZ(), this.e);
 				} else {
 					this.f = null;

@@ -1,19 +1,13 @@
 package net.minecraft;
 
-import com.google.common.collect.Lists;
-
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.EventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.util.concurrent.GenericFutureListener;
-
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import net.minecraft.server.MinecraftServer;
 
@@ -22,64 +16,60 @@ import org.apache.logging.log4j.Logger;
 
 public class ServerConnection {
 
-	private static final Logger d = LogManager.getLogger();
-	public static final up a = new rd();
-	public static final up b = new re();
-	private final MinecraftServer e;
-	public volatile boolean c;
-	private final List<ChannelFuture> f = Collections.synchronizedList(new ArrayList<ChannelFuture>());
-	private final List g = Collections.synchronizedList(Lists.newArrayList());
+	private static final Logger logger = LogManager.getLogger();
+	public static final ConnectionNioEventLoopGroup serverConnectionEventGroup = new ServerConnectionNioEventLoopGroup();
 
-	public ServerConnection(MinecraftServer var1) {
-		this.e = var1;
-		this.c = true;
+	public volatile boolean open;
+	private final MinecraftServer minecraftserver;
+	private final List<ChannelFuture> channels = Collections.synchronizedList(new ArrayList<ChannelFuture>());
+	private final List<NetworkManager> networkManagers = Collections.synchronizedList(new ArrayList<NetworkManager>());
+
+	public ServerConnection(MinecraftServer minecraftserver) {
+		this.minecraftserver = minecraftserver;
+		this.open = true;
 	}
 
-	public void bindToPort(InetAddress var1, int var2) {
-		this.f.add((((new ServerBootstrap()).channel(NioServerSocketChannel.class)).childHandler(new rf(this)).group((EventLoopGroup) a.c()).localAddress(var1, var2)).bind().syncUninterruptibly());
+	public void bindToPort(InetAddress itenAddress, int port) {
+		synchronized (channels) { 
+			this.channels.add((((new ServerBootstrap()).channel(NioServerSocketChannel.class)).childHandler(new ServerConnectionChannel(this)).group(serverConnectionEventGroup.getGroup()).localAddress(itenAddress, port)).bind().syncUninterruptibly());
+		}
 	}
 
-	public void b() {
-		this.c = false;
-		Iterator var1 = this.f.iterator();
-
-		while (var1.hasNext()) {
-			ChannelFuture var2 = (ChannelFuture) var1.next();
-
+	public void closeChannels() {
+		this.open = false;
+		for (ChannelFuture channelFuture : channels) {
 			try {
-				var2.channel().close().sync();
+				channelFuture.channel().close().sync();
 			} catch (InterruptedException var4) {
-				d.error("Interrupted whilst closing channel");
+				logger.error("Interrupted whilst closing channel");
 			}
 		}
-
 	}
 
-	public void c() {
-		synchronized (this.g) {
-			Iterator var2 = this.g.iterator();
-
-			while (var2.hasNext()) {
-				gr var3 = (gr) var2.next();
-				if (!var3.h()) {
-					if (!var3.g()) {
-						var2.remove();
-						var3.l();
+	public void doTick() {
+		synchronized (this.networkManagers) {
+			Iterator<NetworkManager> iterator = this.networkManagers.iterator();
+			while (iterator.hasNext()) {
+				NetworkManager networkmanager = iterator.next();
+				if (!networkmanager.hasChannel()) {
+					if (!networkmanager.isConnected()) {
+						iterator.remove();
+						networkmanager.closeChannel();
 					} else {
 						try {
-							var3.a();
-						} catch (Exception var8) {
-							if (var3.c()) {
-								CrashReport var10 = CrashReport.generateCrashReport(var8, "Ticking memory connection");
-								CrashReportSystemDetails var6 = var10.generateSystemDetails("Ticking connection");
-								var6.addDetails("Connection", (Callable) (new rh(this, var3)));
-								throw new ReportedException(var10);
+							networkmanager.sendAndFlushQueuedPacket();
+						} catch (Exception ex) {
+							if (networkmanager.isLocal()) {
+								CrashReport crashReport = CrashReport.generateCrashReport(ex, "Ticking memory connection");
+								CrashReportSystemDetails crashReportDetails = crashReport.generateSystemDetails("Ticking connection");
+								crashReportDetails.addDetails("Connection", (new CrashReportServerConnection(networkmanager)));
+								throw new ReportedException(crashReport);
 							}
 
-							d.warn("Failed to handle packet for " + var3.b(), (Throwable) var8);
-							hy var5 = new hy("Internal server error");
-							var3.a(new jj(var5), new ri(this, var3, var5), new GenericFutureListener[0]);
-							var3.k();
+							logger.warn("Failed to handle packet for " + networkmanager.getAddress(), (Throwable) ex);
+							ChatComponentText text = new ChatComponentText("Internal server error");
+							networkmanager.handleSendPacket(new PacketPlayOutDisconnect(text), new ServerConnectionFuture(networkmanager, text));
+							networkmanager.disableAutoRead();
 						}
 					}
 				}
@@ -88,18 +78,12 @@ public class ServerConnection {
 		}
 	}
 
-	public MinecraftServer d() {
-		return this.e;
+	public MinecraftServer getMinecraftServer() {
+		return this.minecraftserver;
 	}
 
-	// $FF: synthetic method
-	static List a(ServerConnection var0) {
-		return var0.g;
-	}
-
-	// $FF: synthetic method
-	static MinecraftServer b(ServerConnection var0) {
-		return var0.e;
+	protected List<NetworkManager> getNetworkManagers() {
+		return networkManagers;
 	}
 
 }

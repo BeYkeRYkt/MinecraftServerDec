@@ -30,12 +30,12 @@ public class TellCommand extends AbstractCommand {
 			if (var3 == var1) {
 				throw new dm("commands.message.sameTarget", new Object[0]);
 			} else {
-				IJSONComponent var4 = b(var1, var2, 1, !(var1 instanceof EntityHuman));
-				hz var5 = new hz("commands.message.display.incoming", new Object[] { var1.e_(), var4.f() });
-				hz var6 = new hz("commands.message.display.outgoing", new Object[] { var3.e_(), var4.f() });
-				var5.b().a(FormattingCode.h).b(Boolean.valueOf(true));
-				var6.b().a(FormattingCode.h).b(Boolean.valueOf(true));
-				var3.sendChatMessage((IJSONComponent) var5);
+				IChatBaseComponent var4 = b(var1, var2, 1, !(var1 instanceof EntityHuman));
+				ChatMessage var5 = new ChatMessage("commands.message.display.incoming", new Object[] { var1.getComponentName(), var4.f() });
+				ChatMessage var6 = new ChatMessage("commands.message.display.outgoing", new Object[] { var3.getComponentName(), var4.f() });
+				var5.getChatModifier().setColor(EnumChatFormat.GRAY).b(Boolean.valueOf(true));
+				var6.getChatModifier().setColor(EnumChatFormat.GRAY).b(Boolean.valueOf(true));
+				var3.sendChatMessage((IChatBaseComponent) var5);
 				var1.sendChatMessage(var6);
 			}
 		}

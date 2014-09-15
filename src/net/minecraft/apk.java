@@ -8,7 +8,7 @@ final class apk implements apl {
 	private apk() {
 	}
 
-	public void a(apf var1, int var2) {
+	public void a(Enchantment var1, int var2) {
 		var1.b(this.a, this.b, var2);
 	}
 

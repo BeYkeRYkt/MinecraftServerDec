@@ -7,16 +7,16 @@ public class tz {
 
 	protected final Map<Statistic, tw> a = Maps.newConcurrentMap();
 
-	public boolean a(tk var1) {
+	public boolean a(Achievement var1) {
 		return this.a((Statistic) var1) > 0;
 	}
 
-	public boolean b(tk var1) {
+	public boolean b(Achievement var1) {
 		return var1.c == null || this.a(var1.c);
 	}
 
 	public void b(EntityHuman var1, Statistic var2, int var3) {
-		if (!var2.d() || this.b((tk) var2)) {
+		if (!var2.d() || this.b((Achievement) var2)) {
 			this.a(var1, var2, this.a(var2) + var3);
 		}
 	}
@@ -36,12 +36,12 @@ public class tz {
 		return var2 == null ? 0 : var2.a();
 	}
 
-	public tx b(Statistic var1) {
+	public IJsonStatistic b(Statistic var1) {
 		tw var2 = (tw) this.a.get(var1);
 		return var2 != null ? var2.b() : null;
 	}
 
-	public tx a(Statistic var1, tx var2) {
+	public IJsonStatistic a(Statistic var1, IJsonStatistic var2) {
 		tw var3 = (tw) this.a.get(var1);
 		if (var3 == null) {
 			var3 = new tw();

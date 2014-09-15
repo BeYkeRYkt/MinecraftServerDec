@@ -4,23 +4,23 @@ import com.google.common.base.Predicate;
 
 public class EntityOcelot extends xx {
 
-	private yp bm;
+	private PathfinderGoalAvoidEntity bm;
 	private aag bn;
 
 	public EntityOcelot(World var1) {
 		super(var1);
 		this.a(0.6F, 0.7F);
 		((aay) this.s()).a(true);
-		this.i.a(1, new yy(this));
+		this.i.a(1, new PathfinderGoalFloat(this));
 		this.i.a(2, this.bk);
-		this.i.a(3, this.bn = new aag(this, 0.6D, amk.aU, true));
+		this.i.a(3, this.bn = new aag(this, 0.6D, Items.FISH, true));
 		this.i.a(5, new yz(this, 1.0D, 10.0F, 5.0F));
 		this.i.a(6, new zr(this, 0.8D));
 		this.i.a(7, new zg(this, 0.3F));
 		this.i.a(8, new zq(this));
 		this.i.a(9, new yt(this, 0.8D));
-		this.i.a(10, new zy(this, 0.8D));
-		this.i.a(11, new zh(this, EntityHuman.class, 10.0F));
+		this.i.a(10, new PathfinderGoalRandomStroll(this, 0.8D));
+		this.i.a(11, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 10.0F));
 		this.bg.a(1, new aat(this, EntityChicken.class, false, (Predicate) null));
 	}
 
@@ -33,24 +33,24 @@ public class EntityOcelot extends xx {
 		if (this.q().a()) {
 			double var1 = this.q().b();
 			if (var1 == 0.6D) {
-				this.c(true);
-				this.d(false);
+				this.setSneaking(true);
+				this.setSprinting(false);
 			} else if (var1 == 1.33D) {
-				this.c(false);
-				this.d(true);
+				this.setSneaking(false);
+				this.setSprinting(true);
 			} else {
-				this.c(false);
-				this.d(false);
+				this.setSneaking(false);
+				this.setSprinting(false);
 			}
 		} else {
-			this.c(false);
-			this.d(false);
+			this.setSneaking(false);
+			this.setSprinting(false);
 		}
 
 	}
 
 	protected boolean C() {
-		return !this.cj() && this.W > 2400;
+		return !this.cj() && this.ticksLived > 2400;
 	}
 
 	protected void aW() {
@@ -73,7 +73,7 @@ public class EntityOcelot extends xx {
 	}
 
 	protected String z() {
-		return this.cj() ? (this.cp() ? "mob.cat.purr" : (this.V.nextInt(4) == 0 ? "mob.cat.purreow" : "mob.cat.meow")) : "";
+		return this.cj() ? (this.cp() ? "mob.cat.purr" : (this.random.nextInt(4) == 0 ? "mob.cat.purreow" : "mob.cat.meow")) : "";
 	}
 
 	protected String bn() {
@@ -88,52 +88,52 @@ public class EntityOcelot extends xx {
 		return 0.4F;
 	}
 
-	protected Item A() {
-		return amk.aF;
+	protected Item getLoot() {
+		return Items.LEATHER;
 	}
 
 	public boolean r(Entity var1) {
-		return var1.a(wh.a((EntityLiving) this), 3.0F);
+		return var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), 3.0F);
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
 			this.bk.a(false);
-			return super.a(var1, var2);
+			return super.damageEntity(var1, var2);
 		}
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 	}
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (this.cj()) {
-			if (this.e(var1) && !this.o.D && !this.d(var2)) {
+			if (this.e(var1) && !this.world.isStatic && !this.d(var2)) {
 				this.bk.a(!this.cl());
 			}
-		} else if (this.bn.f() && var2 != null && var2.getItem() == amk.aU && var1.h(this) < 9.0D) {
-			if (!var1.by.instabuild) {
-				--var2.b;
+		} else if (this.bn.f() && var2 != null && var2.getItem() == Items.FISH && var1.getDistanceSquared(this) < 9.0D) {
+			if (!var1.playerProperties.instabuild) {
+				--var2.amount;
 			}
 
-			if (var2.b <= 0) {
-				var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
+			if (var2.amount <= 0) {
+				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 
-			if (!this.o.D) {
-				if (this.V.nextInt(3) == 0) {
+			if (!this.world.isStatic) {
+				if (this.random.nextInt(3) == 0) {
 					this.m(true);
-					this.r(1 + this.o.s.nextInt(3));
-					this.b(var1.aJ().toString());
+					this.r(1 + this.world.s.nextInt(3));
+					this.b(var1.getUUID().toString());
 					this.l(true);
 					this.bk.a(true);
-					this.o.a((Entity) this, (byte) 7);
+					this.world.broadcastEntityEffect((Entity) this, (byte) 7);
 				} else {
 					this.l(false);
-					this.o.a((Entity) this, (byte) 6);
+					this.world.broadcastEntityEffect((Entity) this, (byte) 6);
 				}
 			}
 
@@ -143,8 +143,8 @@ public class EntityOcelot extends xx {
 		return super.a(var1);
 	}
 
-	public EntityOcelot b(ws var1) {
-		EntityOcelot var2 = new EntityOcelot(this.o);
+	public EntityOcelot b(EntityAgeable var1) {
+		EntityOcelot var2 = new EntityOcelot(this.world);
 		if (this.cj()) {
 			var2.b(this.b());
 			var2.m(true);
@@ -155,10 +155,10 @@ public class EntityOcelot extends xx {
 	}
 
 	public boolean d(ItemStack var1) {
-		return var1 != null && var1.getItem() == amk.aU;
+		return var1 != null && var1.getItem() == Items.FISH;
 	}
 
-	public boolean a(abq var1) {
+	public boolean a(EntityAnimal var1) {
 		if (var1 == this) {
 			return false;
 		} else if (!this.cj()) {
@@ -180,18 +180,18 @@ public class EntityOcelot extends xx {
 	}
 
 	public boolean bQ() {
-		return this.o.s.nextInt(3) != 0;
+		return this.world.s.nextInt(3) != 0;
 	}
 
 	public boolean bR() {
-		if (this.o.a(this.aQ(), (Entity) this) && this.o.a((Entity) this, this.aQ()).isEmpty() && !this.o.d(this.aQ())) {
-			Position var1 = new Position(this.locationX, this.aQ().b, this.locationZ);
+		if (this.world.a(this.getBoundingBox(), (Entity) this) && this.world.getCubes((Entity) this, this.getBoundingBox()).isEmpty() && !this.world.d(this.getBoundingBox())) {
+			Position var1 = new Position(this.locationX, this.getBoundingBox().minY, this.locationZ);
 			if (var1.getY() < 63) {
 				return false;
 			}
 
-			Block var2 = this.o.p(var1.b()).getBlock();
-			if (var2 == aty.c || var2.r() == Material.LEAVES) {
+			Block var2 = this.world.getBlockState(var1.b()).getBlock();
+			if (var2 == Blocks.GRASS || var2.getMaterial() == Material.LEAVES) {
 				return true;
 			}
 		}
@@ -199,8 +199,8 @@ public class EntityOcelot extends xx {
 		return false;
 	}
 
-	public String d_() {
-		return this.k_() ? this.aL() : (this.cj() ? fi.a("entity.Cat.name") : super.d_());
+	public String getName() {
+		return this.k_() ? this.getCustomName() : (this.cj() ? LocaleI18n.get("entity.Cat.name") : super.getName());
 	}
 
 	public void m(boolean var1) {
@@ -209,10 +209,10 @@ public class EntityOcelot extends xx {
 
 	protected void ck() {
 		if (this.bm == null) {
-			this.bm = new yp(this, new abz(this), 16.0F, 0.8D, 1.33D);
+			this.bm = new PathfinderGoalAvoidEntity(this, new abz(this), 16.0F, 0.8D, 1.33D);
 		}
 
-		this.i.a((zb) this.bm);
+		this.i.a((PathfinderGoal) this.bm);
 		if (!this.cj()) {
 			this.i.a(4, this.bm);
 		}
@@ -221,12 +221,12 @@ public class EntityOcelot extends xx {
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		if (this.o.s.nextInt(7) == 0) {
+		if (this.world.s.nextInt(7) == 0) {
 			for (int var3 = 0; var3 < 2; ++var3) {
-				EntityOcelot var4 = new EntityOcelot(this.o);
-				var4.b(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
+				EntityOcelot var4 = new EntityOcelot(this.world);
+				var4.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
 				var4.b(-24000);
-				this.o.d((Entity) var4);
+				this.world.addEntity((Entity) var4);
 			}
 		}
 
@@ -234,7 +234,7 @@ public class EntityOcelot extends xx {
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.b(var1);
 	}
 }

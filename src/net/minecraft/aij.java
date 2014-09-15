@@ -1,6 +1,6 @@
 package net.minecraft;
 
-class aij extends ajk {
+class aij extends Slot {
 
 	// $FF: synthetic field
 	final aii a;

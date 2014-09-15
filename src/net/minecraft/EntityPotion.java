@@ -12,7 +12,7 @@ public class EntityPotion extends ahr {
 	}
 
 	public EntityPotion(World var1, EntityLiving var2, int var3) {
-		this(var1, var2, new ItemStack(amk.bz, 1, var3));
+		this(var1, var2, new ItemStack(Items.POTION, 1, var3));
 	}
 
 	public EntityPotion(World var1, EntityLiving var2, ItemStack var3) {
@@ -39,35 +39,35 @@ public class EntityPotion extends ahr {
 
 	public void a(int var1) {
 		if (this.c == null) {
-			this.c = new ItemStack(amk.bz, 1, 0);
+			this.c = new ItemStack(Items.POTION, 1, 0);
 		}
 
-		this.c.b(var1);
+		this.c.setDurability(var1);
 	}
 
 	public int o() {
 		if (this.c == null) {
-			this.c = new ItemStack(amk.bz, 1, 0);
+			this.c = new ItemStack(Items.POTION, 1, 0);
 		}
 
-		return this.c.i();
+		return this.c.getDurability();
 	}
 
-	protected void a(bru var1) {
-		if (!this.o.D) {
-			List var2 = amk.bz.h(this.c);
+	protected void a(MovingObjectPosition var1) {
+		if (!this.world.isStatic) {
+			List var2 = Items.POTION.h(this.c);
 			if (var2 != null && !var2.isEmpty()) {
-				brt var3 = this.aQ().b(4.0D, 2.0D, 4.0D);
-				List var4 = this.o.a(EntityLiving.class, var3);
+				AxisAlignedBB var3 = this.getBoundingBox().grow(4.0D, 2.0D, 4.0D);
+				List var4 = this.world.a(EntityLiving.class, var3);
 				if (!var4.isEmpty()) {
 					Iterator var5 = var4.iterator();
 
 					while (var5.hasNext()) {
 						EntityLiving var6 = (EntityLiving) var5.next();
-						double var7 = this.h(var6);
+						double var7 = this.getDistanceSquared(var6);
 						if (var7 < 16.0D) {
 							double var9 = 1.0D - Math.sqrt(var7) / 4.0D;
-							if (var6 == var1.d) {
+							if (var6 == var1.entity) {
 								var9 = 1.0D;
 							}
 
@@ -90,8 +90,8 @@ public class EntityPotion extends ahr {
 				}
 			}
 
-			this.o.b(2002, new Position(this), this.o());
-			this.J();
+			this.world.b(2002, new Position(this), this.o());
+			this.die();
 		}
 
 	}
@@ -105,7 +105,7 @@ public class EntityPotion extends ahr {
 		}
 
 		if (this.c == null) {
-			this.J();
+			this.die();
 		}
 
 	}
@@ -113,7 +113,7 @@ public class EntityPotion extends ahr {
 	public void b(NBTCompoundTag var1) {
 		super.b(var1);
 		if (this.c != null) {
-			var1.put("Potion", (NBTTag) this.c.b(new NBTCompoundTag()));
+			var1.put("Potion", (NBTTag) this.c.write(new NBTCompoundTag()));
 		}
 
 	}

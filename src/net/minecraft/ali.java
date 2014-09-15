@@ -71,7 +71,7 @@ public enum ali {
 	}
 
 	public static ali a(ItemStack var0) {
-		return var0.getItem() instanceof alh ? a(var0.i()) : a;
+		return var0.getItem() instanceof ItemFish ? a(var0.getDurability()) : a;
 	}
 
 	static {

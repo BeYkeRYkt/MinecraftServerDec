@@ -34,8 +34,8 @@ public class EntityMinecartFurnace extends adx {
 		}
 
 		this.i(this.c > 0);
-		if (this.j() && this.V.nextInt(4) == 0) {
-			this.o.a(Particle.m, this.locationX, this.locationY + 0.8D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+		if (this.j() && this.random.nextInt(4) == 0) {
+			this.world.a(Particle.m, this.locationX, this.locationY + 0.8D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 	}
@@ -44,19 +44,19 @@ public class EntityMinecartFurnace extends adx {
 		return 0.2D;
 	}
 
-	public void a(wh var1) {
+	public void a(DamageSource var1) {
 		super.a(var1);
 		if (!var1.c()) {
-			this.a(new ItemStack(aty.al, 1), 0.0F);
+			this.a(new ItemStack(Blocks.FURNACE, 1), 0.0F);
 		}
 
 	}
 
-	protected void a(Position var1, bec var2) {
+	protected void a(Position var1, IBlockState var2) {
 		super.a(var1, var2);
 		double var3 = this.a * this.a + this.b * this.b;
 		if (var3 > 1.0E-4D && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.001D) {
-			var3 = (double) DataTypesConverter.a(var3);
+			var3 = (double) MathHelper.sqrt(var3);
 			this.a /= var3;
 			this.b /= var3;
 			if (this.a * this.motionX + this.b * this.motionZ < 0.0D) {
@@ -74,7 +74,7 @@ public class EntityMinecartFurnace extends adx {
 	protected void o() {
 		double var1 = this.a * this.a + this.b * this.b;
 		if (var1 > 1.0E-4D) {
-			var1 = (double) DataTypesConverter.a(var1);
+			var1 = (double) MathHelper.sqrt(var1);
 			this.a /= var1;
 			this.b /= var1;
 			double var3 = 1.0D;
@@ -94,9 +94,9 @@ public class EntityMinecartFurnace extends adx {
 
 	public boolean e(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		if (var2 != null && var2.getItem() == amk.h) {
-			if (!var1.by.instabuild && --var2.b == 0) {
-				var1.playerInventory.a(var1.playerInventory.c, (ItemStack) null);
+		if (var2 != null && var2.getItem() == Items.COAL) {
+			if (!var1.playerProperties.instabuild && --var2.amount == 0) {
+				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 
 			this.c += 3600;
@@ -134,7 +134,7 @@ public class EntityMinecartFurnace extends adx {
 
 	}
 
-	public bec u() {
-		return (this.j() ? aty.am : aty.al).P().a(BlockFurnace.a, PaintingDirection.c);
+	public IBlockState u() {
+		return (this.j() ? Blocks.LIT_FURNACE : Blocks.FURNACE).getBlockState().a(BlockFurnace.a, BlockFace.NORTH);
 	}
 }

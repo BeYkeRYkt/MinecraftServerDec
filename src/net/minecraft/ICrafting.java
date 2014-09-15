@@ -4,11 +4,12 @@ import java.util.List;
 
 public interface ICrafting {
 
-	void a(Container var1, List var2);
+	void setContainerData(Container container, List<ItemStack> items);
 
-	void a(Container var1, int var2, ItemStack var3);
+	void setContainerData(Container container, int slot, ItemStack item);
 
-	void a(Container var1, int var2, int var3);
+	void setContainerData(Container container, int slot, int id);
 
-	void a(Container var1, IInventory var2);
+	void setContainerData(Container container, IInventory inventory);
+
 }

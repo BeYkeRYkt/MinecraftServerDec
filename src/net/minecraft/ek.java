@@ -23,40 +23,40 @@ class ek {
 			;
 		}
 
-		b = new int[PaintingDirection.values().length];
+		b = new int[BlockFace.values().length];
 
 		try {
-			b[PaintingDirection.c.ordinal()] = 1;
+			b[BlockFace.NORTH.ordinal()] = 1;
 		} catch (NoSuchFieldError var9) {
 			;
 		}
 
 		try {
-			b[PaintingDirection.f.ordinal()] = 2;
+			b[BlockFace.EAST.ordinal()] = 2;
 		} catch (NoSuchFieldError var8) {
 			;
 		}
 
 		try {
-			b[PaintingDirection.d.ordinal()] = 3;
+			b[BlockFace.SOUTH.ordinal()] = 3;
 		} catch (NoSuchFieldError var7) {
 			;
 		}
 
 		try {
-			b[PaintingDirection.e.ordinal()] = 4;
+			b[BlockFace.WEST.ordinal()] = 4;
 		} catch (NoSuchFieldError var6) {
 			;
 		}
 
 		try {
-			b[PaintingDirection.b.ordinal()] = 5;
+			b[BlockFace.UP.ordinal()] = 5;
 		} catch (NoSuchFieldError var5) {
 			;
 		}
 
 		try {
-			b[PaintingDirection.a.ordinal()] = 6;
+			b[BlockFace.DOWN.ordinal()] = 6;
 		} catch (NoSuchFieldError var4) {
 			;
 		}

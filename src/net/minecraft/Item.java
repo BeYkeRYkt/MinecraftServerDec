@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Item {
 
 	public static final RegistryMaterials REGISTRY = new RegistryMaterials();
-	private static final Map<Block, Item> a = Maps.newHashMap();
+	private static final Map<Block, Item> blockToItem = Maps.newHashMap();
 	protected static final UUID f = UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF");
 	protected static Random rnd = new Random();
 	protected int maxStackSize = 64;
@@ -19,10 +19,10 @@ public class Item {
 	protected boolean j;
 	private Item craftingResult;
 	private String k;
-	private String l;
+	private String name;
 
-	public static int getId(Item var0) {
-		return var0 == null ? 0 : REGISTRY.getBlockId(var0);
+	public static int getId(Item item) {
+		return item == null ? 0 : REGISTRY.getBlockId(item);
 	}
 
 	public static Item getById(int id) {
@@ -30,31 +30,31 @@ public class Item {
 	}
 
 	public static Item getItemOf(Block block) {
-		return (Item) a.get(block);
+		return blockToItem.get(block);
 	}
 
-	public static Item d(String var0) {
-		Item var1 = (Item) REGISTRY.getByName(new BlockNameInfo(var0));
-		if (var1 == null) {
+	public static Item getByName(String name) {
+		Item item = (Item) REGISTRY.getByName(new RegistryObjectName(name));
+		if (item == null) {
 			try {
-				return getById(Integer.parseInt(var0));
+				return getById(Integer.parseInt(name));
 			} catch (NumberFormatException var3) {
 			}
 		}
 
-		return var1;
+		return item;
 	}
 
 	public boolean a(NBTCompoundTag var1) {
 		return false;
 	}
 
-	public Item c(int var1) {
-		this.maxStackSize = var1;
+	public Item setMaxStackSize(int size) {
+		this.maxStackSize = size;
 		return this;
 	}
 
-	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
 		return false;
 	}
 
@@ -70,7 +70,7 @@ public class Item {
 		return var1;
 	}
 
-	public int j() {
+	public int getMaxStackSize() {
 		return this.maxStackSize;
 	}
 
@@ -87,16 +87,16 @@ public class Item {
 		return this;
 	}
 
-	public int l() {
+	public int getDurability() {
 		return this.durability;
 	}
 
-	protected Item d(int var1) {
-		this.durability = var1;
+	protected Item setDurability(int durability) {
+		this.durability = durability;
 		return this;
 	}
 
-	public boolean m() {
+	public boolean usesDurability() {
 		return this.durability > 0 && !this.j;
 	}
 
@@ -121,26 +121,26 @@ public class Item {
 		return this;
 	}
 
-	public Item c(String var1) {
-		this.l = var1;
+	public Item setName(String name) {
+		this.name = name;
 		return this;
 	}
 
-	public String k(ItemStack var1) {
-		String var2 = this.e_(var1);
-		return var2 == null ? "" : fi.a(var2);
+	public String getLocalizedName(ItemStack itemstack) {
+		String string = this.getName(itemstack);
+		return string == null ? "" : LocaleI18n.get(string);
 	}
 
-	public String a() {
-		return "item." + this.l;
+	public String getName() {
+		return "item." + this.name;
 	}
 
-	public String e_(ItemStack var1) {
-		return "item." + this.l;
+	public String getName(ItemStack itemstack) {
+		return "item." + this.name;
 	}
 
-	public Item c(Item var1) {
-		this.craftingResult = var1;
+	public Item setCraftingResult(Item item) {
+		this.craftingResult = item;
 		return this;
 	}
 
@@ -148,7 +148,7 @@ public class Item {
 		return true;
 	}
 
-	public Item q() {
+	public Item getCraftingResult() {
 		return this.craftingResult;
 	}
 
@@ -191,7 +191,7 @@ public class Item {
 	}
 
 	public String a(ItemStack var1) {
-		return ("" + fi.a(this.k(var1) + ".name")).trim();
+		return ("" + LocaleI18n.get(this.getLocalizedName(var1) + ".name")).trim();
 	}
 
 	public amx g(ItemStack var1) {
@@ -199,20 +199,20 @@ public class Item {
 	}
 
 	public boolean f_(ItemStack var1) {
-		return this.j() == 1 && this.m();
+		return this.getMaxStackSize() == 1 && this.usesDurability();
 	}
 
-	protected bru a(World var1, EntityHuman var2, boolean var3) {
-		float var4 = var2.B + (var2.pitch - var2.B);
-		float var5 = var2.A + (var2.yaw - var2.A);
-		double var6 = var2.p + (var2.locationX - var2.p);
-		double var8 = var2.q + (var2.locationY - var2.q) + (double) var2.aR();
-		double var10 = var2.r + (var2.locationZ - var2.r);
+	protected MovingObjectPosition a(World var1, EntityHuman var2, boolean var3) {
+		float var4 = var2.lastPitch + (var2.pitch - var2.lastPitch);
+		float var5 = var2.lastYaw + (var2.yaw - var2.lastYaw);
+		double var6 = var2.previousX + (var2.locationX - var2.previousX);
+		double var8 = var2.previousY + (var2.locationY - var2.previousY) + (double) var2.getHeadHeight();
+		double var10 = var2.previousZ + (var2.locationZ - var2.previousZ);
 		Vec3D var12 = new Vec3D(var6, var8, var10);
-		float var13 = DataTypesConverter.b(-var5 * 0.017453292F - 3.1415927F);
-		float var14 = DataTypesConverter.a(-var5 * 0.017453292F - 3.1415927F);
-		float var15 = -DataTypesConverter.b(-var4 * 0.017453292F);
-		float var16 = DataTypesConverter.a(-var4 * 0.017453292F);
+		float var13 = MathHelper.b(-var5 * 0.017453292F - 3.1415927F);
+		float var14 = MathHelper.a(-var5 * 0.017453292F - 3.1415927F);
+		float var15 = -MathHelper.b(-var4 * 0.017453292F);
+		float var16 = MathHelper.a(-var4 * 0.017453292F);
 		float var17 = var14 * var15;
 		float var19 = var13 * var15;
 		double var20 = 5.0D;
@@ -224,7 +224,7 @@ public class Item {
 		return 0;
 	}
 
-	public Item a(CreativeModeTab var1) {
+	public Item setCreativeModeTab(CreativeModeTab var1) {
 		return this;
 	}
 
@@ -240,362 +240,362 @@ public class Item {
 		return HashMultimap.create();
 	}
 
-	public static void t() {
-		a(aty.b, (Item) (new amr(aty.b, aty.b, new alr())).b("stone"));
-		a((Block) aty.c, (Item) (new ann(aty.c, false)));
-		a(aty.d, (Item) (new amr(aty.d, aty.d, new ama())).b("dirt"));
-		c(aty.e);
-		a(aty.f, (Item) (new amr(aty.f, aty.f, new amb())).b("wood"));
-		a(aty.g, (Item) (new amr(aty.g, aty.g, new amc())).b("sapling"));
-		c(aty.h);
-		a((Block) aty.m, (Item) (new amr(aty.m, aty.m, new amd())).b("sand"));
-		c(aty.n);
-		c(aty.o);
-		c(aty.p);
-		c(aty.q);
-		a(aty.r, (Item) (new amr(aty.r, aty.r, new ame())).b("log"));
-		a(aty.s, (Item) (new amr(aty.s, aty.s, new amf())).b("log"));
-		a((Block) aty.t, (Item) (new amm(aty.t)).b("leaves"));
-		a((Block) aty.u, (Item) (new amm(aty.u)).b("leaves"));
-		a(aty.v, (Item) (new amr(aty.v, aty.v, new amg())).b("sponge"));
-		c(aty.w);
-		c(aty.x);
-		c(aty.y);
-		c(aty.z);
-		a(aty.A, (Item) (new amr(aty.A, aty.A, new amh())).b("sandStone"));
-		c(aty.B);
-		c(aty.D);
-		c(aty.E);
-		a((Block) aty.F, (Item) (new amv(aty.F)));
-		c(aty.G);
-		a((Block) aty.H, (Item) (new ann(aty.H, true)).a(new String[] { "shrub", "grass", "fern" }));
-		c((Block) aty.I);
-		a((Block) aty.J, (Item) (new amv(aty.J)));
-		a(aty.L, (Item) (new akx(aty.L)).b("cloth"));
-		a((Block) aty.N, (Item) (new amr(aty.N, aty.N, new als())).b("flower"));
-		a((Block) aty.O, (Item) (new amr(aty.O, aty.O, new alt())).b("rose"));
-		c((Block) aty.P);
-		c((Block) aty.Q);
-		c(aty.R);
-		c(aty.S);
-		a((Block) aty.U, (Item) (new ani(aty.U, aty.U, aty.T)).b("stoneSlab"));
-		c(aty.V);
-		c(aty.W);
-		c(aty.X);
-		c(aty.Y);
-		c(aty.Z);
-		c(aty.aa);
-		c(aty.ac);
-		c(aty.ad);
-		c((Block) aty.ae);
-		c(aty.ag);
-		c(aty.ah);
-		c(aty.ai);
-		c(aty.ak);
-		c(aty.al);
-		c(aty.am);
-		c(aty.au);
-		c(aty.av);
-		c(aty.aw);
-		c(aty.ay);
-		c(aty.az);
-		c(aty.aB);
-		c(aty.aC);
-		c(aty.aF);
-		c(aty.aG);
-		a(aty.aH, (Item) (new anj(aty.aH)));
-		c(aty.aI);
-		c(aty.aJ);
-		c((Block) aty.aK);
-		c(aty.aL);
-		c(aty.aN);
-		c(aty.aO);
-		c(aty.aP);
-		c(aty.aQ);
-		c(aty.aR);
-		c(aty.aS);
-		c(aty.aT);
-		c(aty.aU);
-		c(aty.aV);
-		c(aty.aW);
-		c(aty.aX);
-		c(aty.aZ);
-		c(aty.bd);
-		a(aty.be, (Item) (new amr(aty.be, aty.be, new alu())).b("monsterStoneEgg"));
-		a(aty.bf, (Item) (new amr(aty.bf, aty.bf, new alv())).b("stonebricksmooth"));
-		c(aty.bg);
-		c(aty.bh);
-		c(aty.bi);
-		c(aty.bj);
-		c(aty.bk);
-		a(aty.bn, (Item) (new ann(aty.bn, false)));
-		c(aty.bo);
-		c(aty.bp);
-		c(aty.bq);
-		c(aty.br);
-		c(aty.bs);
-		c(aty.bt);
-		c(aty.bu);
-		c(aty.bv);
-		c((Block) aty.bw);
-		a(aty.bx, (Item) (new anp(aty.bx)));
-		c(aty.by);
-		c(aty.bz);
-		c(aty.bA);
-		c(aty.bC);
-		c(aty.bG);
-		c(aty.bH);
-		c(aty.bI);
-		c(aty.bJ);
-		a((Block) aty.bM, (Item) (new ani(aty.bM, aty.bM, aty.bL)).b("woodSlab"));
-		c(aty.bO);
-		c(aty.bP);
-		c(aty.bQ);
-		c((Block) aty.bR);
-		c(aty.bT);
-		c(aty.bU);
-		c(aty.bV);
-		c(aty.bW);
-		c(aty.bX);
-		c((Block) aty.bY);
-		a(aty.bZ, (Item) (new amr(aty.bZ, aty.bZ, new alw())).b("cobbleWall"));
-		c(aty.cd);
-		a(aty.cf, (Item) (new ajm(aty.cf)).b("anvil"));
-		c(aty.cg);
-		c(aty.ch);
-		c(aty.ci);
-		c((Block) aty.cl);
-		c(aty.cn);
-		c(aty.co);
-		c((Block) aty.cp);
-		a(aty.cq, (Item) (new amr(aty.cq, aty.cq, new String[] { "default", "chiseled", "lines" })).b("quartzBlock"));
-		c(aty.cr);
-		c(aty.cs);
-		c(aty.ct);
-		a(aty.cu, (Item) (new akx(aty.cu)).b("clayHardenedStained"));
-		c(aty.cv);
-		c(aty.cw);
-		c(aty.cx);
-		a(aty.cy, (Item) (new akx(aty.cy)).b("woolCarpet"));
-		c(aty.cz);
-		c(aty.cA);
-		c(aty.cB);
-		c(aty.cC);
-		c(aty.cD);
-		c(aty.cE);
-		a((Block) aty.cF, (Item) (new aku(aty.cF, aty.cF, new alx())).b("doublePlant"));
-		a((Block) aty.cG, (Item) (new akx(aty.cG)).b("stainedGlass"));
-		a((Block) aty.cH, (Item) (new akx(aty.cH)).b("stainedGlassPane"));
-		a(aty.cI, (Item) (new amr(aty.cI, aty.cI, new aly())).b("prismarine"));
-		c(aty.cJ);
-		a(aty.cM, (Item) (new amr(aty.cM, aty.cM, new alz())).b("redSandStone"));
-		c(aty.cN);
-		a((Block) aty.cP, (Item) (new ani(aty.cP, aty.cP, aty.cO)).b("stoneSlab2"));
-		a(256, "iron_shovel", (new ane(ami.c)).c("shovelIron"));
-		a(257, "iron_pickaxe", (new amu(ami.c)).c("pickaxeIron"));
-		a(258, "iron_axe", (new ajr(ami.c)).c("hatchetIron"));
-		a(259, "flint_and_steel", (new alk()).c("flintAndSteel"));
-		a(260, "apple", (new all(4, 0.3F, false)).c("apple"));
-		a(261, "bow", (new ajz()).c("bow"));
-		a(262, "arrow", (new Item()).c("arrow").a(CreativeModeTab.j));
-		a(263, "coal", (new akd()).c("coal"));
-		a(264, "diamond", (new Item()).c("diamond").a(CreativeModeTab.l));
-		a(265, "iron_ingot", (new Item()).c("ingotIron").a(CreativeModeTab.l));
-		a(266, "gold_ingot", (new Item()).c("ingotGold").a(CreativeModeTab.l));
-		a(267, "iron_sword", (new anm(ami.c)).c("swordIron"));
-		a(268, "wooden_sword", (new anm(ami.a)).c("swordWood"));
-		a(269, "wooden_shovel", (new ane(ami.a)).c("shovelWood"));
-		a(270, "wooden_pickaxe", (new amu(ami.a)).c("pickaxeWood"));
-		a(271, "wooden_axe", (new ajr(ami.a)).c("hatchetWood"));
-		a(272, "stone_sword", (new anm(ami.b)).c("swordStone"));
-		a(273, "stone_shovel", (new ane(ami.b)).c("shovelStone"));
-		a(274, "stone_pickaxe", (new amu(ami.b)).c("pickaxeStone"));
-		a(275, "stone_axe", (new ajr(ami.b)).c("hatchetStone"));
-		a(276, "diamond_sword", (new anm(ami.d)).c("swordDiamond"));
-		a(277, "diamond_shovel", (new ane(ami.d)).c("shovelDiamond"));
-		a(278, "diamond_pickaxe", (new amu(ami.d)).c("pickaxeDiamond"));
-		a(279, "diamond_axe", (new ajr(ami.d)).c("hatchetDiamond"));
-		a(280, "stick", (new Item()).n().c("stick").a(CreativeModeTab.l));
-		a(281, "bowl", (new Item()).c("bowl").a(CreativeModeTab.l));
-		a(282, "mushroom_stew", (new aka(6)).c("mushroomStew"));
-		a(283, "golden_sword", (new anm(ami.e)).c("swordGold"));
-		a(284, "golden_shovel", (new ane(ami.e)).c("shovelGold"));
-		a(285, "golden_pickaxe", (new amu(ami.e)).c("pickaxeGold"));
-		a(286, "golden_axe", (new ajr(ami.e)).c("hatchetGold"));
-		a(287, "string", (new ajv(aty.bS)).c("string").a(CreativeModeTab.l));
-		a(288, "feather", (new Item()).c("feather").a(CreativeModeTab.l));
-		a(289, "gunpowder", (new Item()).c("sulphur").e(ans.k).a(CreativeModeTab.l));
-		a(290, "wooden_hoe", (new alo(ami.a)).c("hoeWood"));
-		a(291, "stone_hoe", (new alo(ami.b)).c("hoeStone"));
-		a(292, "iron_hoe", (new alo(ami.c)).c("hoeIron"));
-		a(293, "diamond_hoe", (new alo(ami.d)).c("hoeDiamond"));
-		a(294, "golden_hoe", (new alo(ami.e)).c("hoeGold"));
-		a(295, "wheat_seeds", (new anc(aty.aj, aty.ak)).c("seeds"));
-		a(296, "wheat", (new Item()).c("wheat").a(CreativeModeTab.l));
-		a(297, "bread", (new all(5, 0.6F, false)).c("bread"));
-		a(298, "leather_helmet", (new ajn(ajp.a, 0, 0)).c("helmetCloth"));
-		a(299, "leather_chestplate", (new ajn(ajp.a, 0, 1)).c("chestplateCloth"));
-		a(300, "leather_leggings", (new ajn(ajp.a, 0, 2)).c("leggingsCloth"));
-		a(301, "leather_boots", (new ajn(ajp.a, 0, 3)).c("bootsCloth"));
-		a(302, "chainmail_helmet", (new ajn(ajp.b, 1, 0)).c("helmetChain"));
-		a(303, "chainmail_chestplate", (new ajn(ajp.b, 1, 1)).c("chestplateChain"));
-		a(304, "chainmail_leggings", (new ajn(ajp.b, 1, 2)).c("leggingsChain"));
-		a(305, "chainmail_boots", (new ajn(ajp.b, 1, 3)).c("bootsChain"));
-		a(306, "iron_helmet", (new ajn(ajp.c, 2, 0)).c("helmetIron"));
-		a(307, "iron_chestplate", (new ajn(ajp.c, 2, 1)).c("chestplateIron"));
-		a(308, "iron_leggings", (new ajn(ajp.c, 2, 2)).c("leggingsIron"));
-		a(309, "iron_boots", (new ajn(ajp.c, 2, 3)).c("bootsIron"));
-		a(310, "diamond_helmet", (new ajn(ajp.e, 3, 0)).c("helmetDiamond"));
-		a(311, "diamond_chestplate", (new ajn(ajp.e, 3, 1)).c("chestplateDiamond"));
-		a(312, "diamond_leggings", (new ajn(ajp.e, 3, 2)).c("leggingsDiamond"));
-		a(313, "diamond_boots", (new ajn(ajp.e, 3, 3)).c("bootsDiamond"));
-		a(314, "golden_helmet", (new ajn(ajp.d, 4, 0)).c("helmetGold"));
-		a(315, "golden_chestplate", (new ajn(ajp.d, 4, 1)).c("chestplateGold"));
-		a(316, "golden_leggings", (new ajn(ajp.d, 4, 2)).c("leggingsGold"));
-		a(317, "golden_boots", (new ajn(ajp.d, 4, 3)).c("bootsGold"));
-		a(318, "flint", (new Item()).c("flint").a(CreativeModeTab.l));
-		a(319, "porkchop", (new all(3, 0.3F, true)).c("porkchopRaw"));
-		a(320, "cooked_porkchop", (new all(8, 0.8F, true)).c("porkchopCooked"));
-		a(321, "painting", (new aln(EntityPainting.class)).c("painting"));
-		a(322, "golden_apple", (new alm(4, 1.2F, false)).h().a(MobEffectList.l.H, 5, 1, 1.0F).c("appleGold"));
-		a(323, "sign", (new anf()).c("sign"));
-		a(324, "wooden_door", (new akt(aty.ao)).c("doorOak"));
-		Item var0 = (new akb(aty.a)).c("bucket").c(16);
-		a(325, "bucket", var0);
-		a(326, "water_bucket", (new akb(aty.i)).c("bucketWater").c(var0));
-		a(327, "lava_bucket", (new akb(aty.k)).c("bucketLava").c(var0));
-		a(328, "minecart", (new amp(MinecartType.RIDEABLE)).c("minecart"));
-		a(329, "saddle", (new ana()).c("saddle"));
-		a(330, "iron_door", (new akt(aty.aA)).c("doorIron"));
-		a(331, "redstone", (new amz()).c("redstone").e(ans.i));
-		a(332, "snowball", (new ank()).c("snowball"));
-		a(333, "boat", (new ajw()).c("boat"));
-		a(334, "leather", (new Item()).c("leather").a(CreativeModeTab.l));
-		a(335, "milk_bucket", (new amo()).c("milk").c(var0));
-		a(336, "brick", (new Item()).c("brick").a(CreativeModeTab.l));
-		a(337, "clay_ball", (new Item()).c("clay").a(CreativeModeTab.l));
-		a(338, "reeds", (new ajv(aty.aM)).c("reeds").a(CreativeModeTab.l));
-		a(339, "paper", (new Item()).c("paper").a(CreativeModeTab.f));
-		a(340, "book", (new ajx()).c("book").a(CreativeModeTab.f));
-		a(341, "slime_ball", (new Item()).c("slimeball").a(CreativeModeTab.f));
-		a(342, "chest_minecart", (new amp(MinecartType.CHEST)).c("minecartChest"));
-		a(343, "furnace_minecart", (new amp(MinecartType.FURNACE)).c("minecartFurnace"));
-		a(344, "egg", (new aky()).c("egg"));
-		a(345, "compass", (new Item()).c("compass").a(CreativeModeTab.i));
-		a(346, "fishing_rod", (new alj()).c("fishingRod"));
-		a(347, "clock", (new Item()).c("clock").a(CreativeModeTab.i));
-		a(348, "glowstone_dust", (new Item()).c("yellowDust").e(ans.j).a(CreativeModeTab.l));
-		a(349, "fish", (new alh(false)).c("fish").a(true));
-		a(350, "cooked_fish", (new alh(true)).c("fish").a(true));
-		a(351, "dye", (new akw()).c("dyePowder"));
-		a(352, "bone", (new Item()).c("bone").n().a(CreativeModeTab.f));
-		a(353, "sugar", (new Item()).c("sugar").e(ans.b).a(CreativeModeTab.l));
-		a(354, "cake", (new ajv(aty.ba)).c(1).c("cake").a(CreativeModeTab.h));
-		a(355, "bed", (new ajt()).c(1).c("bed"));
-		a(356, "repeater", (new ajv(aty.bb)).c("diode").a(CreativeModeTab.d));
-		a(357, "cookie", (new all(2, 0.1F, false)).c("cookie"));
-		a(358, "filled_map", (new amn()).c("map"));
-		a(359, "shears", (new and()).c("shears"));
-		a(360, "melon", (new all(2, 0.3F, false)).c("melon"));
-		a(361, "pumpkin_seeds", (new anc(aty.bl, aty.ak)).c("seeds_pumpkin"));
-		a(362, "melon_seeds", (new anc(aty.bm, aty.ak)).c("seeds_melon"));
-		a(363, "beef", (new all(3, 0.3F, true)).c("beefRaw"));
-		a(364, "cooked_beef", (new all(8, 0.8F, true)).c("beefCooked"));
-		a(365, "chicken", (new all(2, 0.3F, true)).a(MobEffectList.s.H, 30, 0, 0.3F).c("chickenRaw"));
-		a(366, "cooked_chicken", (new all(6, 0.6F, true)).c("chickenCooked"));
-		a(367, "rotten_flesh", (new all(4, 0.1F, true)).a(MobEffectList.s.H, 30, 0, 0.8F).c("rottenFlesh"));
-		a(368, "ender_pearl", (new alc()).c("enderPearl"));
-		a(369, "blaze_rod", (new Item()).c("blazeRod").a(CreativeModeTab.l).n());
-		a(370, "ghast_tear", (new Item()).c("ghastTear").e(ans.c).a(CreativeModeTab.k));
-		a(371, "gold_nugget", (new Item()).c("goldNugget").a(CreativeModeTab.l));
-		a(372, "nether_wart", (new anc(aty.bB, aty.aW)).c("netherStalkSeeds").e("+4"));
-		a(373, "potion", (new amw()).c("potion"));
-		a(374, "glass_bottle", (new ajy()).c("glassBottle"));
-		a(375, "spider_eye", (new all(2, 0.8F, false)).a(MobEffectList.u.H, 5, 0, 1.0F).c("spiderEye").e(ans.d));
-		a(376, "fermented_spider_eye", (new Item()).c("fermentedSpiderEye").e(ans.e).a(CreativeModeTab.k));
-		a(377, "blaze_powder", (new Item()).c("blazePowder").e(ans.g).a(CreativeModeTab.k));
-		a(378, "magma_cream", (new Item()).c("magmaCream").e(ans.h).a(CreativeModeTab.k));
-		a(379, "brewing_stand", (new ajv(aty.bD)).c("brewingStand").a(CreativeModeTab.k));
-		a(380, "cauldron", (new ajv(aty.bE)).c("cauldron").a(CreativeModeTab.k));
-		a(381, "ender_eye", (new alb()).c("eyeOfEnder"));
-		a(382, "speckled_melon", (new Item()).c("speckledMelon").e(ans.f).a(CreativeModeTab.k));
-		a(383, "spawn_egg", (new anl()).c("monsterPlacer"));
-		a(384, "experience_bottle", (new ald()).c("expBottle"));
-		a(385, "fire_charge", (new ale()).c("fireball"));
-		a(386, "writable_book", (new anq()).c("writingBook").a(CreativeModeTab.f));
-		a(387, "written_book", (new anr()).c("writtenBook").c(16));
-		a(388, "emerald", (new Item()).c("emerald").a(CreativeModeTab.l));
-		a(389, "item_frame", (new aln(EntityItemFrame.class)).c("frame"));
-		a(390, "flower_pot", (new ajv(aty.ca)).c("flowerPot").a(CreativeModeTab.c));
-		a(391, "carrot", (new anb(3, 0.6F, aty.cb, aty.ak)).c("carrots"));
-		a(392, "potato", (new anb(1, 0.3F, aty.cc, aty.ak)).c("potato"));
-		a(393, "baked_potato", (new all(5, 0.6F, false)).c("potatoBaked"));
-		a(394, "poisonous_potato", (new all(2, 0.3F, false)).a(MobEffectList.u.H, 5, 0, 0.6F).c("potatoPoisonous"));
-		a(395, "map", (new akz()).c("emptyMap"));
-		a(396, "golden_carrot", (new all(6, 1.2F, false)).c("carrotGolden").e(ans.l).a(CreativeModeTab.k));
-		a(397, "skull", (new anh()).c("skull"));
-		a(398, "carrot_on_a_stick", (new akc()).c("carrotOnAStick"));
-		a(399, "nether_star", (new ang()).c("netherStar").a(CreativeModeTab.l));
-		a(400, "pumpkin_pie", (new all(8, 0.3F, false)).c("pumpkinPie").a(CreativeModeTab.h));
-		a(401, "fireworks", (new alg()).c("fireworks"));
-		a(402, "firework_charge", (new alf()).c("fireworksCharge").a(CreativeModeTab.f));
-		a(403, "enchanted_book", (new ala()).c(1).c("enchantedBook"));
-		a(404, "comparator", (new ajv(aty.cj)).c("comparator").a(CreativeModeTab.d));
-		a(405, "netherbrick", (new Item()).c("netherbrick").a(CreativeModeTab.l));
-		a(406, "quartz", (new Item()).c("netherquartz").a(CreativeModeTab.l));
-		a(407, "tnt_minecart", (new amp(MinecartType.TNT)).c("minecartTnt"));
-		a(408, "hopper_minecart", (new amp(MinecartType.HOPPER)).c("minecartHopper"));
-		a(409, "prismarine_shard", (new Item()).c("prismarineShard").a(CreativeModeTab.l));
-		a(410, "prismarine_crystals", (new Item()).c("prismarineCrystals").a(CreativeModeTab.l));
-		a(411, "rabbit", (new all(3, 0.3F, true)).c("rabbitRaw"));
-		a(412, "cooked_rabbit", (new all(5, 0.6F, true)).c("rabbitCooked"));
-		a(413, "rabbit_stew", (new aka(10)).c("rabbitStew"));
-		a(414, "rabbit_foot", (new Item()).c("rabbitFoot").e(ans.n).a(CreativeModeTab.k));
-		a(415, "rabbit_hide", (new Item()).c("rabbitHide").a(CreativeModeTab.l));
-		a(416, "armor_stand", (new ajq()).c("armorStand").c(16));
-		a(417, "iron_horse_armor", (new Item()).c("horsearmormetal").c(1).a(CreativeModeTab.f));
-		a(418, "golden_horse_armor", (new Item()).c("horsearmorgold").c(1).a(CreativeModeTab.f));
-		a(419, "diamond_horse_armor", (new Item()).c("horsearmordiamond").c(1).a(CreativeModeTab.f));
-		a(420, "lead", (new aml()).c("leash"));
-		a(421, "name_tag", (new amt()).c("nameTag"));
-		a(422, "command_block_minecart", (new amp(MinecartType.COMMAND_BLOCK)).c("minecartCommandBlock").a((CreativeModeTab) null));
-		a(423, "mutton", (new all(2, 0.3F, true)).c("muttonRaw"));
-		a(424, "cooked_mutton", (new all(6, 0.8F, true)).c("muttonCooked"));
-		a(425, "banner", (new ajs()).b("banner"));
-		a(427, "spruce_door", (new akt(aty.ap)).c("doorSpruce"));
-		a(428, "birch_door", (new akt(aty.aq)).c("doorBirch"));
-		a(429, "jungle_door", (new akt(aty.ar)).c("doorJungle"));
-		a(430, "acacia_door", (new akt(aty.as)).c("doorAcacia"));
-		a(431, "dark_oak_door", (new akt(aty.at)).c("doorDarkOak"));
-		a(2256, "record_13", (new amy("13")).c("record"));
-		a(2257, "record_cat", (new amy("cat")).c("record"));
-		a(2258, "record_blocks", (new amy("blocks")).c("record"));
-		a(2259, "record_chirp", (new amy("chirp")).c("record"));
-		a(2260, "record_far", (new amy("far")).c("record"));
-		a(2261, "record_mall", (new amy("mall")).c("record"));
-		a(2262, "record_mellohi", (new amy("mellohi")).c("record"));
-		a(2263, "record_stal", (new amy("stal")).c("record"));
-		a(2264, "record_strad", (new amy("strad")).c("record"));
-		a(2265, "record_ward", (new amy("ward")).c("record"));
-		a(2266, "record_11", (new amy("11")).c("record"));
-		a(2267, "record_wait", (new amy("wait")).c("record"));
+	public static void registerItems() {
+		register(Blocks.STONE,  (new ItemMultiTexture(Blocks.STONE, Blocks.STONE, new alr())).setBlockName("stone"));
+		register((Block) Blocks.GRASS,  (new ItemWithAuxData(Blocks.GRASS, false)));
+		register(Blocks.DIRT,  (new ItemMultiTexture(Blocks.DIRT, Blocks.DIRT, new ama())).setBlockName("dirt"));
+		register(Blocks.COBBLESTONE);
+		register(Blocks.PLANKS,  (new ItemMultiTexture(Blocks.PLANKS, Blocks.PLANKS, new amb())).setBlockName("wood"));
+		register(Blocks.SAPLING,  (new ItemMultiTexture(Blocks.SAPLING, Blocks.SAPLING, new amc())).setBlockName("sapling"));
+		register(Blocks.BEDROCK);
+		register((Block) Blocks.SAND,  (new ItemMultiTexture(Blocks.SAND, Blocks.SAND, new amd())).setBlockName("sand"));
+		register(Blocks.GRAVEL);
+		register(Blocks.GOLD_ORE);
+		register(Blocks.IRON_ORE);
+		register(Blocks.COAL_ORE);
+		register(Blocks.LOG,  (new ItemMultiTexture(Blocks.LOG, Blocks.LOG, new ame())).setBlockName("log"));
+		register(Blocks.LOG2,  (new ItemMultiTexture(Blocks.LOG2, Blocks.LOG2, new amf())).setBlockName("log"));
+		register((Block) Blocks.LEAVES,  (new ItemLeaves(Blocks.LEAVES)).setBlockName("leaves"));
+		register((Block) Blocks.LEAVES2,  (new ItemLeaves(Blocks.LEAVES2)).setBlockName("leaves"));
+		register(Blocks.SPONGE,  (new ItemMultiTexture(Blocks.SPONGE, Blocks.SPONGE, new amg())).setBlockName("sponge"));
+		register(Blocks.GLASS);
+		register(Blocks.LAPIS_ORE);
+		register(Blocks.LAPIS_BLOCK);
+		register(Blocks.DISPENSER);
+		register(Blocks.SANDSTONE,  (new ItemMultiTexture(Blocks.SANDSTONE, Blocks.SANDSTONE, new amh())).setBlockName("sandStone"));
+		register(Blocks.NOTEBLOCK);
+		register(Blocks.GOLDEN_RAIL);
+		register(Blocks.DETECTOR_RAIL);
+		register((Block) Blocks.STICKY_PISTON,  (new ItemPiston(Blocks.STICKY_PISTON)));
+		register(Blocks.WEB);
+		register((Block) Blocks.TALLGRASS,  (new ItemWithAuxData(Blocks.TALLGRASS, true)).a(new String[] { "shrub", "grass", "fern" }));
+		register((Block) Blocks.DEADBUSH);
+		register((Block) Blocks.PISTON,  (new ItemPiston(Blocks.PISTON)));
+		register(Blocks.WOOL,  (new ItemCloth(Blocks.WOOL)).setBlockName("cloth"));
+		register((Block) Blocks.YELLOW_FLOWER,  (new ItemMultiTexture(Blocks.YELLOW_FLOWER, Blocks.YELLOW_FLOWER, new als())).setBlockName("flower"));
+		register((Block) Blocks.RED_FLOWER,  (new ItemMultiTexture(Blocks.RED_FLOWER, Blocks.RED_FLOWER, new alt())).setBlockName("rose"));
+		register((Block) Blocks.BRWON_MUSHROOM);
+		register((Block) Blocks.RED_MUSHROOM);
+		register(Blocks.GOLD_BLOCK);
+		register(Blocks.IRON_BLOCK);
+		register((Block) Blocks.STONE_SLAB,  (new ItemStep(Blocks.STONE_SLAB, Blocks.STONE_SLAB, Blocks.DOUBLE_STONE_SLAB)).setBlockName("stoneSlab"));
+		register(Blocks.BRICK_BLOCK);
+		register(Blocks.TNT);
+		register(Blocks.BOOKSHELF);
+		register(Blocks.MOSSY_COBBLESTONE);
+		register(Blocks.OBSIDIAN);
+		register(Blocks.TORCH);
+		register(Blocks.MOB_SPAWNER);
+		register(Blocks.OAK_STAIRS);
+		register((Block) Blocks.CHEST);
+		register(Blocks.DIAMOND_ORE);
+		register(Blocks.DIAMOND_BLOCK);
+		register(Blocks.CRAFTING_TABLE);
+		register(Blocks.FARMLAND);
+		register(Blocks.FURNACE);
+		register(Blocks.LIT_FURNACE);
+		register(Blocks.LADDER);
+		register(Blocks.RAIL);
+		register(Blocks.STONE_STAIRS);
+		register(Blocks.LEVER);
+		register(Blocks.STONE_PRESSURE_PLATE);
+		register(Blocks.WOODEN_PRESSURE_PLATE);
+		register(Blocks.REDSTONE_ORE);
+		register(Blocks.REDSTONE_TORCH);
+		register(Blocks.STONE_BUTTON);
+		register(Blocks.SNOW_LAYER,  (new ItemSnow(Blocks.SNOW_LAYER)));
+		register(Blocks.ICE);
+		register(Blocks.SNOW);
+		register((Block) Blocks.CACTUS);
+		register(Blocks.CLAY);
+		register(Blocks.JUKEBOX);
+		register(Blocks.FENCE);
+		register(Blocks.SPRUCE_FENCE);
+		register(Blocks.BIRCH_FENCE);
+		register(Blocks.JUNGLE_FENCE);
+		register(Blocks.DARK_OAK_FENCE);
+		register(Blocks.ACACIA_FENCE);
+		register(Blocks.PUMPKIN);
+		register(Blocks.NETHERRACK);
+		register(Blocks.SOUL_SAND);
+		register(Blocks.GLOWSTONE);
+		register(Blocks.LIT_PUMPKIN);
+		register(Blocks.TRAPDOOR);
+		register(Blocks.MONSTER_EGG,  (new ItemMultiTexture(Blocks.MONSTER_EGG, Blocks.MONSTER_EGG, new alu())).setBlockName("monsterStoneEgg"));
+		register(Blocks.STONEBRICK,  (new ItemMultiTexture(Blocks.STONEBRICK, Blocks.STONEBRICK, new alv())).setBlockName("stonebricksmooth"));
+		register(Blocks.BROWN_MUSHROOM_BLOCK);
+		register(Blocks.RED_MUSHROOM_BLOCK);
+		register(Blocks.IRON_BARS);
+		register(Blocks.GLASS_PANE);
+		register(Blocks.MELON_BLOCK);
+		register(Blocks.VINE,  (new ItemWithAuxData(Blocks.VINE, false)));
+		register(Blocks.FENCE_GATE);
+		register(Blocks.SPRUCE_FENCE_GATE);
+		register(Blocks.BIRCH_FENCE_GATE);
+		register(Blocks.JUNGLE_FENCE_GATE);
+		register(Blocks.DARK_OAK_FENCE_GATE);
+		register(Blocks.ACACIA_FENCE_GATE);
+		register(Blocks.BRICK_STAIRS);
+		register(Blocks.STONE_BROCK_STAIRS);
+		register((Block) Blocks.MYCELIUM);
+		register(Blocks.WATER_LILY,  (new ItemWaterLily(Blocks.WATER_LILY)));
+		register(Blocks.NETHER_BRICK);
+		register(Blocks.NETHER_BRICK_FENCE);
+		register(Blocks.NETHER_BRICK_STAIRS);
+		register(Blocks.ENCHANTING_TABLE);
+		register(Blocks.END_PORTAL_FRAME);
+		register(Blocks.END_STONE);
+		register(Blocks.DRAGON_EGG);
+		register(Blocks.REDSTONE_LAMP);
+		register((Block) Blocks.WOODEN_SLAB,  (new ItemStep(Blocks.WOODEN_SLAB, Blocks.WOODEN_SLAB, Blocks.DOUBLE_WOODEN_SLAB)).setBlockName("woodSlab"));
+		register(Blocks.SANDSTONE_STAIRS);
+		register(Blocks.EMERALD_ORE);
+		register(Blocks.ENDER_CHEST);
+		register((Block) Blocks.TRIPWIRE_HOOK);
+		register(Blocks.EMERALD_BLOCK);
+		register(Blocks.SPRUCE_STAIRS);
+		register(Blocks.BIRCH_STAIRS);
+		register(Blocks.JUNGLE_STAIRS);
+		register(Blocks.COMMAND_BLOCK);
+		register((Block) Blocks.BEACON);
+		register(Blocks.COBBLESTONE_WALL,  (new ItemMultiTexture(Blocks.COBBLESTONE_WALL, Blocks.COBBLESTONE_WALL, new alw())).setBlockName("cobbleWall"));
+		register(Blocks.WOODEN_BUTTON);
+		register(Blocks.ANVIL,  (new ItemAnvil(Blocks.ANVIL)).setBlockName("anvil"));
+		register(Blocks.TRAPPED_CHEST);
+		register(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE);
+		register(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE);
+		register((Block) Blocks.DAYLIGHT_DETECTOR);
+		register(Blocks.REDSTONE_BLOCK);
+		register(Blocks.QUARTZ_ORE);
+		register((Block) Blocks.HOPPER);
+		register(Blocks.QUARTZ_BLOCK,  (new ItemMultiTexture(Blocks.QUARTZ_BLOCK, Blocks.QUARTZ_BLOCK, new String[] { "default", "chiseled", "lines" })).setBlockName("quartzBlock"));
+		register(Blocks.QUARTZ_STAIRS);
+		register(Blocks.ACTIVATOR_RAIL);
+		register(Blocks.DROPPER);
+		register(Blocks.STAINDED_HARDENED_CLAY,  (new ItemCloth(Blocks.STAINDED_HARDENED_CLAY)).setBlockName("clayHardenedStained"));
+		register(Blocks.BARRIER);
+		register(Blocks.IRON_TRAPDOOR);
+		register(Blocks.HAY_BLOCK);
+		register(Blocks.CARPET,  (new ItemCloth(Blocks.CARPET)).setBlockName("woolCarpet"));
+		register(Blocks.HARDENED_CLAY);
+		register(Blocks.COAL_BLOCK);
+		register(Blocks.PACKED_ICE);
+		register(Blocks.ACACIA_STAIRS);
+		register(Blocks.DARK_OAK_STAIRS);
+		register(Blocks.SLIME);
+		register((Block) Blocks.DOUBLE_PLANT,  (new ItemTallPlant(Blocks.DOUBLE_PLANT, Blocks.DOUBLE_PLANT, new alx())).setBlockName("doublePlant"));
+		register((Block) Blocks.STAINED_GLASS,  (new ItemCloth(Blocks.STAINED_GLASS)).setBlockName("stainedGlass"));
+		register((Block) Blocks.STAINED_GLASS_PANE,  (new ItemCloth(Blocks.STAINED_GLASS_PANE)).setBlockName("stainedGlassPane"));
+		register(Blocks.PRISMARINE,  (new ItemMultiTexture(Blocks.PRISMARINE, Blocks.PRISMARINE, new aly())).setBlockName("prismarine"));
+		register(Blocks.SEA_LANTERN);
+		register(Blocks.RED_SANDSTONE,  (new ItemMultiTexture(Blocks.RED_SANDSTONE, Blocks.RED_SANDSTONE, new alz())).setBlockName("redSandStone"));
+		register(Blocks.RED_SANDSTONE_STAIRS);
+		register((Block) Blocks.STONE_SLAB2,  (new ItemStep(Blocks.STONE_SLAB2, Blocks.STONE_SLAB2, Blocks.DOUBLE_STONE_SLAB2)).setBlockName("stoneSlab2"));
+		register(256, "iron_shovel", (new ItemSpade(EnumToolMaterial.IRON)).setName("shovelIron"));
+		register(257, "iron_pickaxe", (new ItemPickaxe(EnumToolMaterial.IRON)).setName("pickaxeIron"));
+		register(258, "iron_axe", (new ItemAxe(EnumToolMaterial.IRON)).setName("hatchetIron"));
+		register(259, "flint_and_steel", (new alk()).setName("flintAndSteel"));
+		register(260, "apple", (new ItemFood(4, 0.3F, false)).setName("apple"));
+		register(261, "bow", (new ItemBow()).setName("bow"));
+		register(262, "arrow", (new Item()).setName("arrow").setCreativeModeTab(CreativeModeTab.COMBAT));
+		register(263, "coal", (new ItemCoal()).setName("coal"));
+		register(264, "diamond", (new Item()).setName("diamond").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(265, "iron_ingot", (new Item()).setName("ingotIron").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(266, "gold_ingot", (new Item()).setName("ingotGold").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(267, "iron_sword", (new ItemSword(EnumToolMaterial.IRON)).setName("swordIron"));
+		register(268, "wooden_sword", (new ItemSword(EnumToolMaterial.WOOD)).setName("swordWood"));
+		register(269, "wooden_shovel", (new ItemSpade(EnumToolMaterial.WOOD)).setName("shovelWood"));
+		register(270, "wooden_pickaxe", (new ItemPickaxe(EnumToolMaterial.WOOD)).setName("pickaxeWood"));
+		register(271, "wooden_axe", (new ItemAxe(EnumToolMaterial.WOOD)).setName("hatchetWood"));
+		register(272, "stone_sword", (new ItemSword(EnumToolMaterial.STONE)).setName("swordStone"));
+		register(273, "stone_shovel", (new ItemSpade(EnumToolMaterial.STONE)).setName("shovelStone"));
+		register(274, "stone_pickaxe", (new ItemPickaxe(EnumToolMaterial.STONE)).setName("pickaxeStone"));
+		register(275, "stone_axe", (new ItemAxe(EnumToolMaterial.STONE)).setName("hatchetStone"));
+		register(276, "diamond_sword", (new ItemSword(EnumToolMaterial.EMERALD)).setName("swordDiamond"));
+		register(277, "diamond_shovel", (new ItemSpade(EnumToolMaterial.EMERALD)).setName("shovelDiamond"));
+		register(278, "diamond_pickaxe", (new ItemPickaxe(EnumToolMaterial.EMERALD)).setName("pickaxeDiamond"));
+		register(279, "diamond_axe", (new ItemAxe(EnumToolMaterial.EMERALD)).setName("hatchetDiamond"));
+		register(280, "stick", (new Item()).n().setName("stick").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(281, "bowl", (new Item()).setName("bowl").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(282, "mushroom_stew", (new ItemSoup(6)).setName("mushroomStew"));
+		register(283, "golden_sword", (new ItemSword(EnumToolMaterial.GOLD)).setName("swordGold"));
+		register(284, "golden_shovel", (new ItemSpade(EnumToolMaterial.GOLD)).setName("shovelGold"));
+		register(285, "golden_pickaxe", (new ItemPickaxe(EnumToolMaterial.GOLD)).setName("pickaxeGold"));
+		register(286, "golden_axe", (new ItemAxe(EnumToolMaterial.GOLD)).setName("hatchetGold"));
+		register(287, "string", (new ItemReed(Blocks.TRIPWIRE)).setName("string").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(288, "feather", (new Item()).setName("feather").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(289, "gunpowder", (new Item()).setName("sulphur").e(PotionBrewer.k).setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(290, "wooden_hoe", (new ItemHoe(EnumToolMaterial.WOOD)).setName("hoeWood"));
+		register(291, "stone_hoe", (new ItemHoe(EnumToolMaterial.STONE)).setName("hoeStone"));
+		register(292, "iron_hoe", (new ItemHoe(EnumToolMaterial.IRON)).setName("hoeIron"));
+		register(293, "diamond_hoe", (new ItemHoe(EnumToolMaterial.EMERALD)).setName("hoeDiamond"));
+		register(294, "golden_hoe", (new ItemHoe(EnumToolMaterial.GOLD)).setName("hoeGold"));
+		register(295, "wheat_seeds", (new ItemSeeds(Blocks.WHEAT, Blocks.FARMLAND)).setName("seeds"));
+		register(296, "wheat", (new Item()).setName("wheat").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(297, "bread", (new ItemFood(5, 0.6F, false)).setName("bread"));
+		register(298, "leather_helmet", (new ItemArmor(EnumArmorMaterial.LEATHER, 0, 0)).setName("helmetCloth"));
+		register(299, "leather_chestplate", (new ItemArmor(EnumArmorMaterial.LEATHER, 0, 1)).setName("chestplateCloth"));
+		register(300, "leather_leggings", (new ItemArmor(EnumArmorMaterial.LEATHER, 0, 2)).setName("leggingsCloth"));
+		register(301, "leather_boots", (new ItemArmor(EnumArmorMaterial.LEATHER, 0, 3)).setName("bootsCloth"));
+		register(302, "chainmail_helmet", (new ItemArmor(EnumArmorMaterial.CHAIN, 1, 0)).setName("helmetChain"));
+		register(303, "chainmail_chestplate", (new ItemArmor(EnumArmorMaterial.CHAIN, 1, 1)).setName("chestplateChain"));
+		register(304, "chainmail_leggings", (new ItemArmor(EnumArmorMaterial.CHAIN, 1, 2)).setName("leggingsChain"));
+		register(305, "chainmail_boots", (new ItemArmor(EnumArmorMaterial.CHAIN, 1, 3)).setName("bootsChain"));
+		register(306, "iron_helmet", (new ItemArmor(EnumArmorMaterial.IRON, 2, 0)).setName("helmetIron"));
+		register(307, "iron_chestplate", (new ItemArmor(EnumArmorMaterial.IRON, 2, 1)).setName("chestplateIron"));
+		register(308, "iron_leggings", (new ItemArmor(EnumArmorMaterial.IRON, 2, 2)).setName("leggingsIron"));
+		register(309, "iron_boots", (new ItemArmor(EnumArmorMaterial.IRON, 2, 3)).setName("bootsIron"));
+		register(310, "diamond_helmet", (new ItemArmor(EnumArmorMaterial.DIAMOND, 3, 0)).setName("helmetDiamond"));
+		register(311, "diamond_chestplate", (new ItemArmor(EnumArmorMaterial.DIAMOND, 3, 1)).setName("chestplateDiamond"));
+		register(312, "diamond_leggings", (new ItemArmor(EnumArmorMaterial.DIAMOND, 3, 2)).setName("leggingsDiamond"));
+		register(313, "diamond_boots", (new ItemArmor(EnumArmorMaterial.DIAMOND, 3, 3)).setName("bootsDiamond"));
+		register(314, "golden_helmet", (new ItemArmor(EnumArmorMaterial.GOLD, 4, 0)).setName("helmetGold"));
+		register(315, "golden_chestplate", (new ItemArmor(EnumArmorMaterial.GOLD, 4, 1)).setName("chestplateGold"));
+		register(316, "golden_leggings", (new ItemArmor(EnumArmorMaterial.GOLD, 4, 2)).setName("leggingsGold"));
+		register(317, "golden_boots", (new ItemArmor(EnumArmorMaterial.GOLD, 4, 3)).setName("bootsGold"));
+		register(318, "flint", (new Item()).setName("flint").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(319, "porkchop", (new ItemFood(3, 0.3F, true)).setName("porkchopRaw"));
+		register(320, "cooked_porkchop", (new ItemFood(8, 0.8F, true)).setName("porkchopCooked"));
+		register(321, "painting", (new ItemHanging(EntityPainting.class)).setName("painting"));
+		register(322, "golden_apple", (new ItemGoldenApple(4, 1.2F, false)).h().a(MobEffectList.REGENERATION.id, 5, 1, 1.0F).setName("appleGold"));
+		register(323, "sign", (new ItemSign()).setName("sign"));
+		register(324, "wooden_door", (new ItemDoor(Blocks.WOODEN_DOOR)).setName("doorOak"));
+		Item bucket = (new ItemBucket(Blocks.AIR)).setName("bucket").setMaxStackSize(16);
+		register(325, "bucket", bucket);
+		register(326, "water_bucket", (new ItemBucket(Blocks.FLOWING_WATER)).setName("bucketWater").setCraftingResult(bucket));
+		register(327, "lava_bucket", (new ItemBucket(Blocks.FLOWING_LAVA)).setName("bucketLava").setCraftingResult(bucket));
+		register(328, "minecart", (new ItemMinecart(MinecartType.RIDEABLE)).setName("minecart"));
+		register(329, "saddle", (new ItemSaddle()).setName("saddle"));
+		register(330, "iron_door", (new ItemDoor(Blocks.IRON_DOOR)).setName("doorIron"));
+		register(331, "redstone", (new ItemRedstone()).setName("redstone").e(PotionBrewer.i));
+		register(332, "snowball", (new ItemSnowball()).setName("snowball"));
+		register(333, "boat", (new ItemBoat()).setName("boat"));
+		register(334, "leather", (new Item()).setName("leather").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(335, "milk_bucket", (new ItemMilkBucket()).setName("milk").setCraftingResult(bucket));
+		register(336, "brick", (new Item()).setName("brick").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(337, "clay_ball", (new Item()).setName("clay").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(338, "reeds", (new ItemReed(Blocks.REEDS)).setName("reeds").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(339, "paper", (new Item()).setName("paper").setCreativeModeTab(CreativeModeTab.MISC));
+		register(340, "book", (new ItemBook()).setName("book").setCreativeModeTab(CreativeModeTab.MISC));
+		register(341, "slime_ball", (new Item()).setName("slimeball").setCreativeModeTab(CreativeModeTab.MISC));
+		register(342, "chest_minecart", (new ItemMinecart(MinecartType.CHEST)).setName("minecartChest"));
+		register(343, "furnace_minecart", (new ItemMinecart(MinecartType.FURNACE)).setName("minecartFurnace"));
+		register(344, "egg", (new ItemEgg()).setName("egg"));
+		register(345, "compass", (new Item()).setName("compass").setCreativeModeTab(CreativeModeTab.TOOLS));
+		register(346, "fishing_rod", (new ItemFishingRod()).setName("fishingRod"));
+		register(347, "clock", (new Item()).setName("clock").setCreativeModeTab(CreativeModeTab.TOOLS));
+		register(348, "glowstone_dust", (new Item()).setName("yellowDust").e(PotionBrewer.j).setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(349, "fish", (new ItemFish(false)).setName("fish").a(true));
+		register(350, "cooked_fish", (new ItemFish(true)).setName("fish").a(true));
+		register(351, "dye", (new ItemDye()).setName("dyePowder"));
+		register(352, "bone", (new Item()).setName("bone").n().setCreativeModeTab(CreativeModeTab.MISC));
+		register(353, "sugar", (new Item()).setName("sugar").e(PotionBrewer.b).setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(354, "cake", (new ItemReed(Blocks.CAKE)).setMaxStackSize(1).setName("cake").setCreativeModeTab(CreativeModeTab.FOOD));
+		register(355, "bed", (new ItemBed()).setMaxStackSize(1).setName("bed"));
+		register(356, "repeater", (new ItemReed(Blocks.UNPOWERED_REPEATER)).setName("diode").setCreativeModeTab(CreativeModeTab.REDSTONE));
+		register(357, "cookie", (new ItemFood(2, 0.1F, false)).setName("cookie"));
+		register(358, "filled_map", (new ItemMapFilled()).setName("map"));
+		register(359, "shears", (new ItemShears()).setName("shears"));
+		register(360, "melon", (new ItemFood(2, 0.3F, false)).setName("melon"));
+		register(361, "pumpkin_seeds", (new ItemSeeds(Blocks.PUMPKIN_STEM, Blocks.FARMLAND)).setName("seeds_pumpkin"));
+		register(362, "melon_seeds", (new ItemSeeds(Blocks.MELON_STEM, Blocks.FARMLAND)).setName("seeds_melon"));
+		register(363, "beef", (new ItemFood(3, 0.3F, true)).setName("beefRaw"));
+		register(364, "cooked_beef", (new ItemFood(8, 0.8F, true)).setName("beefCooked"));
+		register(365, "chicken", (new ItemFood(2, 0.3F, true)).a(MobEffectList.HUNGER.id, 30, 0, 0.3F).setName("chickenRaw"));
+		register(366, "cooked_chicken", (new ItemFood(6, 0.6F, true)).setName("chickenCooked"));
+		register(367, "rotten_flesh", (new ItemFood(4, 0.1F, true)).a(MobEffectList.HUNGER.id, 30, 0, 0.8F).setName("rottenFlesh"));
+		register(368, "ender_pearl", (new ItemEnderPearl()).setName("enderPearl"));
+		register(369, "blaze_rod", (new Item()).setName("blazeRod").setCreativeModeTab(CreativeModeTab.MATERIALS).n());
+		register(370, "ghast_tear", (new Item()).setName("ghastTear").e(PotionBrewer.c).setCreativeModeTab(CreativeModeTab.BREWING));
+		register(371, "gold_nugget", (new Item()).setName("goldNugget").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(372, "nether_wart", (new ItemSeeds(Blocks.NETHER_WART, Blocks.SOUL_SAND)).setName("netherStalkSeeds").e("+4"));
+		register(373, "potion", (new ItemPotion()).setName("potion"));
+		register(374, "glass_bottle", (new ItemGlassBottle()).setName("glassBottle"));
+		register(375, "spider_eye", (new ItemFood(2, 0.8F, false)).a(MobEffectList.POISON.id, 5, 0, 1.0F).setName("spiderEye").e(PotionBrewer.d));
+		register(376, "fermented_spider_eye", (new Item()).setName("fermentedSpiderEye").e(PotionBrewer.e).setCreativeModeTab(CreativeModeTab.BREWING));
+		register(377, "blaze_powder", (new Item()).setName("blazePowder").e(PotionBrewer.g).setCreativeModeTab(CreativeModeTab.BREWING));
+		register(378, "magma_cream", (new Item()).setName("magmaCream").e(PotionBrewer.h).setCreativeModeTab(CreativeModeTab.BREWING));
+		register(379, "brewing_stand", (new ItemReed(Blocks.BREWING_STAND)).setName("brewingStand").setCreativeModeTab(CreativeModeTab.BREWING));
+		register(380, "cauldron", (new ItemReed(Blocks.CAULDRON)).setName("cauldron").setCreativeModeTab(CreativeModeTab.BREWING));
+		register(381, "ender_eye", (new ItemEnderEye()).setName("eyeOfEnder"));
+		register(382, "speckled_melon", (new Item()).setName("speckledMelon").e(PotionBrewer.f).setCreativeModeTab(CreativeModeTab.BREWING));
+		register(383, "spawn_egg", (new ItemMonsterEgg()).setName("monsterPlacer"));
+		register(384, "experience_bottle", (new ald()).setName("expBottle"));
+		register(385, "fire_charge", (new ItemFireball()).setName("fireball"));
+		register(386, "writable_book", (new ItemBookAndQuill()).setName("writingBook").setCreativeModeTab(CreativeModeTab.MISC));
+		register(387, "written_book", (new ItemWrittenBook()).setName("writtenBook").setMaxStackSize(16));
+		register(388, "emerald", (new Item()).setName("emerald").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(389, "item_frame", (new ItemHanging(EntityItemFrame.class)).setName("frame"));
+		register(390, "flower_pot", (new ItemReed(Blocks.FLOWER_POT)).setName("flowerPot").setCreativeModeTab(CreativeModeTab.DECORATIONS));
+		register(391, "carrot", (new ItemSeedFood(3, 0.6F, Blocks.CARROTS, Blocks.FARMLAND)).setName("carrots"));
+		register(392, "potato", (new ItemSeedFood(1, 0.3F, Blocks.POTATOES, Blocks.FARMLAND)).setName("potato"));
+		register(393, "baked_potato", (new ItemFood(5, 0.6F, false)).setName("potatoBaked"));
+		register(394, "poisonous_potato", (new ItemFood(2, 0.3F, false)).a(MobEffectList.POISON.id, 5, 0, 0.6F).setName("potatoPoisonous"));
+		register(395, "map", (new ItemMapEmpty()).setName("emptyMap"));
+		register(396, "golden_carrot", (new ItemFood(6, 1.2F, false)).setName("carrotGolden").e(PotionBrewer.l).setCreativeModeTab(CreativeModeTab.BREWING));
+		register(397, "skull", (new ItemSkull()).setName("skull"));
+		register(398, "carrot_on_a_stick", (new ItemCarrotStick()).setName("carrotOnAStick"));
+		register(399, "nether_star", (new ItemNetherStar()).setName("netherStar").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(400, "pumpkin_pie", (new ItemFood(8, 0.3F, false)).setName("pumpkinPie").setCreativeModeTab(CreativeModeTab.FOOD));
+		register(401, "fireworks", (new ItemFireworks()).setName("fireworks"));
+		register(402, "firework_charge", (new ItemFireworksCharge()).setName("fireworksCharge").setCreativeModeTab(CreativeModeTab.MISC));
+		register(403, "enchanted_book", (new ItemEnchantedBook()).setMaxStackSize(1).setName("enchantedBook"));
+		register(404, "comparator", (new ItemReed(Blocks.UNPOWERED_COMPARATOR)).setName("comparator").setCreativeModeTab(CreativeModeTab.REDSTONE));
+		register(405, "netherbrick", (new Item()).setName("netherbrick").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(406, "quartz", (new Item()).setName("netherquartz").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(407, "tnt_minecart", (new ItemMinecart(MinecartType.TNT)).setName("minecartTnt"));
+		register(408, "hopper_minecart", (new ItemMinecart(MinecartType.HOPPER)).setName("minecartHopper"));
+		register(409, "prismarine_shard", (new Item()).setName("prismarineShard").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(410, "prismarine_crystals", (new Item()).setName("prismarineCrystals").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(411, "rabbit", (new ItemFood(3, 0.3F, true)).setName("rabbitRaw"));
+		register(412, "cooked_rabbit", (new ItemFood(5, 0.6F, true)).setName("rabbitCooked"));
+		register(413, "rabbit_stew", (new ItemSoup(10)).setName("rabbitStew"));
+		register(414, "rabbit_foot", (new Item()).setName("rabbitFoot").e(PotionBrewer.n).setCreativeModeTab(CreativeModeTab.BREWING));
+		register(415, "rabbit_hide", (new Item()).setName("rabbitHide").setCreativeModeTab(CreativeModeTab.MATERIALS));
+		register(416, "armor_stand", (new ItemArmorStand()).setName("armorStand").setMaxStackSize(16));
+		register(417, "iron_horse_armor", (new Item()).setName("horsearmormetal").setMaxStackSize(1).setCreativeModeTab(CreativeModeTab.MISC));
+		register(418, "golden_horse_armor", (new Item()).setName("horsearmorgold").setMaxStackSize(1).setCreativeModeTab(CreativeModeTab.MISC));
+		register(419, "diamond_horse_armor", (new Item()).setName("horsearmordiamond").setMaxStackSize(1).setCreativeModeTab(CreativeModeTab.MISC));
+		register(420, "lead", (new ItemLeash()).setName("leash"));
+		register(421, "name_tag", (new ItemNameTag()).setName("nameTag"));
+		register(422, "command_block_minecart", (new ItemMinecart(MinecartType.COMMAND_BLOCK)).setName("minecartCommandBlock").setCreativeModeTab((CreativeModeTab) null));
+		register(423, "mutton", (new ItemFood(2, 0.3F, true)).setName("muttonRaw"));
+		register(424, "cooked_mutton", (new ItemFood(6, 0.8F, true)).setName("muttonCooked"));
+		register(425, "banner", (new ItemBanner()).setBlockName("banner"));
+		register(427, "spruce_door", (new ItemDoor(Blocks.SPRUCE_DOOR)).setName("doorSpruce"));
+		register(428, "birch_door", (new ItemDoor(Blocks.BIRCH_DOOR)).setName("doorBirch"));
+		register(429, "jungle_door", (new ItemDoor(Blocks.JUNGLE_DOOR)).setName("doorJungle"));
+		register(430, "acacia_door", (new ItemDoor(Blocks.ACACIA_DOOR)).setName("doorAcacia"));
+		register(431, "dark_oak_door", (new ItemDoor(Blocks.DARK_OAK_DOOR)).setName("doorDarkOak"));
+		register(2256, "record_13", (new ItemRecord("13")).setName("record"));
+		register(2257, "record_cat", (new ItemRecord("cat")).setName("record"));
+		register(2258, "record_blocks", (new ItemRecord("blocks")).setName("record"));
+		register(2259, "record_chirp", (new ItemRecord("chirp")).setName("record"));
+		register(2260, "record_far", (new ItemRecord("far")).setName("record"));
+		register(2261, "record_mall", (new ItemRecord("mall")).setName("record"));
+		register(2262, "record_mellohi", (new ItemRecord("mellohi")).setName("record"));
+		register(2263, "record_stal", (new ItemRecord("stal")).setName("record"));
+		register(2264, "record_strad", (new ItemRecord("strad")).setName("record"));
+		register(2265, "record_ward", (new ItemRecord("ward")).setName("record"));
+		register(2266, "record_11", (new ItemRecord("11")).setName("record"));
+		register(2267, "record_wait", (new ItemRecord("wait")).setName("record"));
 	}
 
-	private static void c(Block var0) {
-		a(var0, (Item) (new aju(var0)));
+	private static void register(Block block) {
+		register(block, new ItemBlock(block));
 	}
 
-	protected static void a(Block var0, Item var1) {
-		a(Block.a(var0), (BlockNameInfo) Block.BLOCKREGISTRY.c(var0), var1);
-		a.put(var0, var1);
+	protected static void register(Block block, Item item) {
+		register(Block.getBlockId(block), (RegistryObjectName) Block.BLOCKREGISTRY.c(block), item);
+		blockToItem.put(block, item);
 	}
 
-	private static void a(int var0, String var1, Item var2) {
-		a(var0, new BlockNameInfo(var1), var2);
+	private static void register(int id, String name, Item item) {
+		register(id, new RegistryObjectName(name), item);
 	}
 
-	private static void a(int var0, BlockNameInfo var1, Item var2) {
-		REGISTRY.register(var0, var1, var2);
+	private static void register(int id, RegistryObjectName name, Item item) {
+		REGISTRY.register(id, name, item);
 	}
 
 }

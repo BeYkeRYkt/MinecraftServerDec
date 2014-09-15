@@ -14,7 +14,7 @@ public class ze extends zn {
 
 	public boolean a() {
 		if (this.a <= 0) {
-			if (!this.c.o.Q().b("mobGriefing")) {
+			if (!this.c.world.getGameRules().b("mobGriefing")) {
 				return false;
 			}
 
@@ -42,34 +42,34 @@ public class ze extends zn {
 		super.e();
 		this.c.p().a((double) this.b.getX() + 0.5D, (double) (this.b.getY() + 1), (double) this.b.getZ() + 0.5D, 10.0F, (float) this.c.bP());
 		if (this.f()) {
-			World var1 = this.c.o;
+			World var1 = this.c.world;
 			Position var2 = this.b.a();
-			bec var3 = var1.p(var2);
+			IBlockState var3 = var1.getBlockState(var2);
 			Block var4 = var3.getBlock();
 			if (this.f == 0 && var4 instanceof BlockCrops && ((Integer) var3.b(BlockCrops.a)).intValue() == 7) {
 				var1.b(var2, true);
-			} else if (this.f == 1 && var4 == aty.a) {
+			} else if (this.f == 1 && var4 == Blocks.AIR) {
 				wa var5 = this.c.co();
 
 				for (int var6 = 0; var6 < var5.n_(); ++var6) {
 					ItemStack var7 = var5.a(var6);
 					boolean var8 = false;
 					if (var7 != null) {
-						if (var7.getItem() == amk.N) {
-							var1.a(var2, aty.aj.P(), 3);
+						if (var7.getItem() == Items.WHEAT_SEEDS) {
+							var1.setBlockAt(var2, Blocks.WHEAT.getBlockState(), 3);
 							var8 = true;
-						} else if (var7.getItem() == amk.bS) {
-							var1.a(var2, aty.cc.P(), 3);
+						} else if (var7.getItem() == Items.POTATO) {
+							var1.setBlockAt(var2, Blocks.POTATOES.getBlockState(), 3);
 							var8 = true;
-						} else if (var7.getItem() == amk.bR) {
-							var1.a(var2, aty.cb.P(), 3);
+						} else if (var7.getItem() == Items.CARROT) {
+							var1.setBlockAt(var2, Blocks.CARROTS.getBlockState(), 3);
 							var8 = true;
 						}
 					}
 
 					if (var8) {
-						--var7.b;
-						if (var7.b <= 0) {
+						--var7.amount;
+						if (var7.amount <= 0) {
 							var5.a(var6, (ItemStack) null);
 						}
 						break;
@@ -84,17 +84,17 @@ public class ze extends zn {
 	}
 
 	protected boolean a(World var1, Position var2) {
-		Block var3 = var1.p(var2).getBlock();
-		if (var3 == aty.ak) {
+		Block var3 = var1.getBlockState(var2).getBlock();
+		if (var3 == Blocks.FARMLAND) {
 			var2 = var2.a();
-			bec var4 = var1.p(var2);
+			IBlockState var4 = var1.getBlockState(var2);
 			var3 = var4.getBlock();
 			if (var3 instanceof BlockCrops && ((Integer) var4.b(BlockCrops.a)).intValue() == 7 && this.e && (this.f == 0 || this.f < 0)) {
 				this.f = 0;
 				return true;
 			}
 
-			if (var3 == aty.a && this.d && (this.f == 1 || this.f < 0)) {
+			if (var3 == Blocks.AIR && this.d && (this.f == 1 || this.f < 0)) {
 				this.f = 1;
 				return true;
 			}

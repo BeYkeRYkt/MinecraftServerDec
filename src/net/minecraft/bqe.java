@@ -23,8 +23,8 @@ public class bqe extends bqc {
 
 	public void a(double var1, double var3, int var5) {
 		int var6 = 128 * (1 << var5);
-		int var7 = DataTypesConverter.toFixedPointInt((var1 + 64.0D) / (double) var6);
-		int var8 = DataTypesConverter.toFixedPointInt((var3 + 64.0D) / (double) var6);
+		int var7 = MathHelper.toFixedPointInt((var1 + 64.0D) / (double) var6);
+		int var8 = MathHelper.toFixedPointInt((var3 + 64.0D) / (double) var6);
 		this.b = var7 * var6 + var6 / 2 - 64;
 		this.c = var8 * var6 + var6 / 2 - 64;
 	}
@@ -34,7 +34,7 @@ public class bqe extends bqc {
 		this.b = var1.getInt("xCenter");
 		this.c = var1.getInt("zCenter");
 		this.e = var1.getByte("scale");
-		this.e = (byte) DataTypesConverter.a(this.e, 0, 4);
+		this.e = (byte) MathHelper.a(this.e, 0, 4);
 		short var2 = var1.getShort("width");
 		short var3 = var1.getShort("height");
 		if (var2 == 128 && var3 == 128) {
@@ -78,14 +78,14 @@ public class bqe extends bqc {
 		}
 
 		if (!var1.playerInventory.c(var2)) {
-			this.h.remove(var1.d_());
+			this.h.remove(var1.getName());
 		}
 
 		for (int var6 = 0; var6 < this.g.size(); ++var6) {
 			bqf var4 = (bqf) this.g.get(var6);
-			if (!var4.a.I && (var4.a.playerInventory.c(var2) || var2.y())) {
+			if (!var4.a.dead && (var4.a.playerInventory.c(var2) || var2.y())) {
 				if (!var2.y() && var4.a.dimensionId == this.d) {
-					this.a(0, var4.a.o, var4.a.d_(), var4.a.locationX, var4.a.locationZ, (double) var4.a.yaw);
+					this.a(0, var4.a.world, var4.a.getName(), var4.a.locationX, var4.a.locationZ, (double) var4.a.yaw);
 				}
 			} else {
 				this.i.remove(var4.a);
@@ -96,7 +96,7 @@ public class bqe extends bqc {
 		if (var2.y()) {
 			EntityItemFrame var7 = var2.z();
 			Position var9 = var7.getPosition();
-			this.a(1, var1.o, "frame-" + var7.getId(), (double) var9.getX(), (double) var9.getZ(), (double) (var7.direction.toByte() * 90));
+			this.a(1, var1.world, "frame-" + var7.getId(), (double) var9.getX(), (double) var9.getZ(), (double) (var7.direction.toDirection() * 90));
 		}
 
 		if (var2.hasTag() && var2.getTag().isTagAssignableFrom("Decorations", 9)) {
@@ -105,7 +105,7 @@ public class bqe extends bqc {
 			for (int var10 = 0; var10 < var8.getSize(); ++var10) {
 				NBTCompoundTag var5 = var8.getCompound(var10);
 				if (!this.h.containsKey(var5.getString("id"))) {
-					this.a(var5.getByte("type"), var1.o, var5.getString("id"), var5.getDouble("x"), var5.getDouble("z"), var5.getDouble("rot"));
+					this.a(var5.getByte("type"), var1.world, var5.getString("id"), var5.getDouble("x"), var5.getDouble("z"), var5.getDouble("rot"));
 				}
 			}
 		}
@@ -124,7 +124,7 @@ public class bqe extends bqc {
 			var8 += var8 < 0.0D ? -8.0D : 8.0D;
 			var15 = (byte) ((int) (var8 * 16.0D / 360.0D));
 			if (this.d < 0) {
-				int var17 = (int) (var2.P().g() / 10L);
+				int var17 = (int) (var2.getWorldData().getDayTime() / 10L);
 				var15 = (byte) (var17 * var17 * 34187121 + var17 * 121 >> 15 & 15);
 			}
 		} else {

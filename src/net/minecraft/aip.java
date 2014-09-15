@@ -11,18 +11,18 @@ public class aip extends Container {
 		int var4;
 		for (var3 = 0; var3 < 3; ++var3) {
 			for (var4 = 0; var4 < 3; ++var4) {
-				this.a(new ajk(var2, var4 + var3 * 3, 62 + var4 * 18, 17 + var3 * 18));
+				this.addSlot(new Slot(var2, var4 + var3 * 3, 62 + var4 * 18, 17 + var3 * 18));
 			}
 		}
 
 		for (var3 = 0; var3 < 3; ++var3) {
 			for (var4 = 0; var4 < 9; ++var4) {
-				this.a(new ajk(var1, var4 + var3 * 9 + 9, 8 + var4 * 18, 84 + var3 * 18));
+				this.addSlot(new Slot(var1, var4 + var3 * 9 + 9, 8 + var4 * 18, 84 + var3 * 18));
 			}
 		}
 
 		for (var3 = 0; var3 < 9; ++var3) {
-			this.a(new ajk(var1, var3, 8 + var3 * 18, 142));
+			this.addSlot(new Slot(var1, var3, 8 + var3 * 18, 142));
 		}
 
 	}
@@ -33,9 +33,9 @@ public class aip extends Container {
 
 	public ItemStack b(EntityHuman var1, int var2) {
 		ItemStack var3 = null;
-		ajk var4 = (ajk) this.c.get(var2);
-		if (var4 != null && var4.e()) {
-			ItemStack var5 = var4.d();
+		Slot var4 = (Slot) this.slots.get(var2);
+		if (var4 != null && var4.hasItem()) {
+			ItemStack var5 = var4.getItemStack();
 			var3 = var5.getCopy();
 			if (var2 < 9) {
 				if (!this.a(var5, 9, 45, true)) {
@@ -45,13 +45,13 @@ public class aip extends Container {
 				return null;
 			}
 
-			if (var5.b == 0) {
+			if (var5.amount == 0) {
 				var4.d((ItemStack) null);
 			} else {
-				var4.f();
+				var4.update();
 			}
 
-			if (var5.b == var3.b) {
+			if (var5.amount == var3.amount) {
 				return null;
 			}
 

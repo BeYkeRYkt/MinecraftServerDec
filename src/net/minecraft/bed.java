@@ -36,7 +36,7 @@ public class bed {
 		while (var6.hasNext()) {
 			List var7 = (List) var6.next();
 			Map var8 = eu.b(this.d, var7);
-			beg var9 = new beg(var1, ImmutableMap.copyOf(var8), (bee) null);
+			BlockState var9 = new BlockState(var1, ImmutableMap.copyOf(var8), (bee) null);
 			var3.put(var8, var9);
 			var4.add(var9);
 		}
@@ -44,7 +44,7 @@ public class bed {
 		var6 = var4.iterator();
 
 		while (var6.hasNext()) {
-			beg var10 = (beg) var6.next();
+			BlockState var10 = (BlockState) var6.next();
 			var10.a(var3);
 		}
 
@@ -65,8 +65,8 @@ public class bed {
 		return var1;
 	}
 
-	public bec b() {
-		return (bec) this.e.get(0);
+	public IBlockState b() {
+		return (IBlockState) this.e.get(0);
 	}
 
 	public Block c() {

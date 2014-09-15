@@ -9,11 +9,11 @@ public class BlockLever extends Block {
 
 	protected BlockLever() {
 		super(Material.ORIENTABLE);
-		this.j(this.L.b().a(a, axk.e).a(b, Boolean.valueOf(false)));
-		this.a(CreativeModeTab.d);
+		this.setBlockState(this.L.b().a(a, axk.e).a(b, Boolean.valueOf(false)));
+		this.a(CreativeModeTab.REDSTONE);
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -25,8 +25,8 @@ public class BlockLever extends Block {
 		return false;
 	}
 
-	public boolean a(World var1, Position var2, PaintingDirection var3) {
-		return var3 == PaintingDirection.b && World.a((ard) var1, var2.b()) ? true : this.d(var1, var2.a(var3.d()));
+	public boolean a(World var1, Position var2, BlockFace var3) {
+		return var3 == BlockFace.UP && World.a((ard) var1, var2.b()) ? true : this.d(var1, var2.a(var3.getOpposite()));
 	}
 
 	public boolean c(World var1, Position var2) {
@@ -34,34 +34,34 @@ public class BlockLever extends Block {
 	}
 
 	protected boolean d(World var1, Position var2) {
-		return var1.p(var2).getBlock().t();
+		return var1.getBlockState(var2).getBlock().t();
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		bec var9 = this.P().a(b, Boolean.valueOf(false));
-		if (this.d(var1, var2.a(var3.d()))) {
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		IBlockState var9 = this.getBlockState().a(b, Boolean.valueOf(false));
+		if (this.d(var1, var2.a(var3.getOpposite()))) {
 			return var9.a(a, axk.a(var3, var8.aO()));
 		} else {
 			Iterator var10 = en.a.iterator();
 
-			PaintingDirection var11;
+			BlockFace var11;
 			do {
 				if (!var10.hasNext()) {
 					if (World.a((ard) var1, var2.b())) {
-						return var9.a(a, axk.a(PaintingDirection.b, var8.aO()));
+						return var9.a(a, axk.a(BlockFace.UP, var8.aO()));
 					}
 
 					return var9;
 				}
 
-				var11 = (PaintingDirection) var10.next();
-			} while (var11 == var3 || !this.d(var1, var2.a(var11.d())));
+				var11 = (BlockFace) var10.next();
+			} while (var11 == var3 || !this.d(var1, var2.a(var11.getOpposite())));
 
 			return var9.a(a, axk.a(var11, var8.aO()));
 		}
 	}
 
-	public static int a(PaintingDirection var0) {
+	public static int a(BlockFace var0) {
 		switch (axj.a[var0.ordinal()]) {
 			case 1:
 				return 0;
@@ -80,8 +80,8 @@ public class BlockLever extends Block {
 		}
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
-		if (this.e(var1, var2) && !this.d(var1, var2.a(((axk) var3.b(a)).c().d()))) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
+		if (this.e(var1, var2) && !this.d(var1, var2.a(((axk) var3.b(a)).c().getOpposite()))) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
 		}
@@ -92,7 +92,7 @@ public class BlockLever extends Block {
 		if (this.c(var1, var2)) {
 			return true;
 		} else {
-			this.b(var1, var2, var1.p(var2), 0);
+			this.b(var1, var2, var1.getBlockState(var2), 0);
 			var1.g(var2);
 			return false;
 		}
@@ -100,7 +100,7 @@ public class BlockLever extends Block {
 
 	public void a(ard var1, Position var2) {
 		float var3 = 0.1875F;
-		switch (axj.b[((axk) var1.p(var2).b(a)).ordinal()]) {
+		switch (axj.b[((axk) var1.getBlockState(var2).b(a)).ordinal()]) {
 			case 1:
 				this.a(0.0F, 0.2F, 0.5F - var3, var3 * 2.0F, 0.8F, 0.5F + var3);
 				break;
@@ -126,35 +126,35 @@ public class BlockLever extends Block {
 
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
-		if (var1.D) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+		if (var1.isStatic) {
 			return true;
 		} else {
 			var3 = var3.a(b);
-			var1.a(var2, var3, 3);
-			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, ((Boolean) var3.b(b)).booleanValue() ? 0.6F : 0.5F);
+			var1.setBlockAt(var2, var3, 3);
+			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, ((Boolean) var3.b(b)).booleanValue() ? 0.6F : 0.5F);
 			var1.c(var2, (Block) this);
-			PaintingDirection var9 = ((axk) var3.b(a)).c();
-			var1.c(var2.a(var9.d()), (Block) this);
+			BlockFace var9 = ((axk) var3.b(a)).c();
+			var1.c(var2.a(var9.getOpposite()), (Block) this);
 			return true;
 		}
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		if (((Boolean) var3.b(b)).booleanValue()) {
 			var1.c(var2, (Block) this);
-			PaintingDirection var4 = ((axk) var3.b(a)).c();
-			var1.c(var2.a(var4.d()), (Block) this);
+			BlockFace var4 = ((axk) var3.b(a)).c();
+			var1.c(var2.a(var4.getOpposite()), (Block) this);
 		}
 
 		super.b(var1, var2, var3);
 	}
 
-	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return ((Boolean) var3.b(b)).booleanValue() ? 15 : 0;
 	}
 
-	public int b(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return !((Boolean) var3.b(b)).booleanValue() ? 0 : (((axk) var3.b(a)).c() == var4 ? 15 : 0);
 	}
 
@@ -162,11 +162,11 @@ public class BlockLever extends Block {
 		return true;
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, axk.a(var1 & 7)).a(b, Boolean.valueOf((var1 & 8) > 0));
+	public IBlockState setData(int var1) {
+		return this.getBlockState().a(a, axk.a(var1 & 7)).a(b, Boolean.valueOf((var1 & 8) > 0));
 	}
 
-	public int c(bec var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
 		int var3 = var2 | ((axk) var1.b(a)).a();
 		if (((Boolean) var1.b(b)).booleanValue()) {

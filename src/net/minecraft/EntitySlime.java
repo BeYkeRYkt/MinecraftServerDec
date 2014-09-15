@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntitySlime extends EntityInsentient implements aex {
+public class EntitySlime extends EntityInsentient implements IMonster {
 
 	public float a;
 	public float b;
@@ -63,8 +63,8 @@ public class EntitySlime extends EntityInsentient implements aex {
 	}
 
 	public void s_() {
-		if (!this.o.D && this.o.getDifficulty() == Difficulty.PEACEFUL && this.ck() > 0) {
-			this.I = true;
+		if (!this.world.isStatic && this.world.getDifficulty() == Difficulty.PEACEFUL && this.ck() > 0) {
+			this.dead = true;
 		}
 
 		this.b += (this.a - this.b) * 0.5F;
@@ -74,19 +74,19 @@ public class EntitySlime extends EntityInsentient implements aex {
 			int var1 = this.ck();
 
 			for (int var2 = 0; var2 < var1 * 8; ++var2) {
-				float var3 = this.V.nextFloat() * 3.1415927F * 2.0F;
-				float var4 = this.V.nextFloat() * 0.5F + 0.5F;
-				float var5 = DataTypesConverter.a(var3) * (float) var1 * 0.5F * var4;
-				float var6 = DataTypesConverter.b(var3) * (float) var1 * 0.5F * var4;
-				World var10000 = this.o;
+				float var3 = this.random.nextFloat() * 3.1415927F * 2.0F;
+				float var4 = this.random.nextFloat() * 0.5F + 0.5F;
+				float var5 = MathHelper.a(var3) * (float) var1 * 0.5F * var4;
+				float var6 = MathHelper.b(var3) * (float) var1 * 0.5F * var4;
+				World var10000 = this.world;
 				Particle var10001 = this.n();
 				double var10002 = this.locationX + (double) var5;
 				double var10004 = this.locationZ + (double) var6;
-				var10000.a(var10001, var10002, this.aQ().b, var10004, 0.0D, 0.0D, 0.0D, new int[0]);
+				var10000.a(var10001, var10002, this.getBoundingBox().minY, var10004, 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 
 			if (this.cj()) {
-				this.a(this.ci(), this.bA(), ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F) / 0.8F);
+				this.a(this.ci(), this.bA(), ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F) / 0.8F);
 			}
 
 			this.a = -0.5F;
@@ -103,11 +103,11 @@ public class EntitySlime extends EntityInsentient implements aex {
 	}
 
 	protected int ce() {
-		return this.V.nextInt(20) + 10;
+		return this.random.nextInt(20) + 10;
 	}
 
 	protected EntitySlime cd() {
-		return new EntitySlime(this.o);
+		return new EntitySlime(this.world);
 	}
 
 	public void i(int var1) {
@@ -116,7 +116,7 @@ public class EntitySlime extends EntityInsentient implements aex {
 			this.a(0.51000005F * (float) var2, 0.51000005F * (float) var2);
 			this.yaw = this.headPitch;
 			this.aG = this.headPitch;
-			if (this.V() && this.V.nextInt(20) == 0) {
+			if (this.V() && this.random.nextInt(20) == 0) {
 				this.X();
 			}
 		}
@@ -124,17 +124,17 @@ public class EntitySlime extends EntityInsentient implements aex {
 		super.i(var1);
 	}
 
-	public void J() {
+	public void die() {
 		int var1 = this.ck();
-		if (!this.o.D && var1 > 1 && this.bm() <= 0.0F) {
-			int var2 = 2 + this.V.nextInt(3);
+		if (!this.world.isStatic && var1 > 1 && this.getHealth() <= 0.0F) {
+			int var2 = 2 + this.random.nextInt(3);
 
 			for (int var3 = 0; var3 < var2; ++var3) {
 				float var4 = ((float) (var3 % 2) - 0.5F) * (float) var1 / 4.0F;
 				float var5 = ((float) (var3 / 2) - 0.5F) * (float) var1 / 4.0F;
 				EntitySlime var6 = this.cd();
 				if (this.k_()) {
-					var6.a(this.aL());
+					var6.a(this.getCustomName());
 				}
 
 				if (this.bY()) {
@@ -142,12 +142,12 @@ public class EntitySlime extends EntityInsentient implements aex {
 				}
 
 				var6.a(var1 / 2);
-				var6.b(this.locationX + (double) var4, this.locationY + 0.5D, this.locationZ + (double) var5, this.V.nextFloat() * 360.0F, 0.0F);
-				this.o.d((Entity) var6);
+				var6.setPositionRotation(this.locationX + (double) var4, this.locationY + 0.5D, this.locationZ + (double) var5, this.random.nextFloat() * 360.0F, 0.0F);
+				this.world.addEntity((Entity) var6);
 			}
 		}
 
-		super.J();
+		super.die();
 	}
 
 	public void i(Entity var1) {
@@ -167,15 +167,15 @@ public class EntitySlime extends EntityInsentient implements aex {
 
 	protected void e(EntityLiving var1) {
 		int var2 = this.ck();
-		if (this.t(var1) && this.h(var1) < 0.6D * (double) var2 * 0.6D * (double) var2 && var1.a(wh.a((EntityLiving) this), (float) this.ch())) {
-			this.a("mob.attack", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
+		if (this.t(var1) && this.getDistanceSquared(var1) < 0.6D * (double) var2 * 0.6D * (double) var2 && var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), (float) this.ch())) {
+			this.a("mob.attack", 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.a(this, var1);
 		}
 
 	}
 
-	public float aR() {
-		return 0.625F * this.K;
+	public float getHeadHeight() {
+		return 0.625F * this.width;
 	}
 
 	protected boolean cg() {
@@ -194,22 +194,22 @@ public class EntitySlime extends EntityInsentient implements aex {
 		return "mob.slime." + (this.ck() > 1 ? "big" : "small");
 	}
 
-	protected Item A() {
-		return this.ck() == 1 ? amk.aM : null;
+	protected Item getLoot() {
+		return this.ck() == 1 ? Items.SLIME_BALL : null;
 	}
 
 	public boolean bQ() {
-		Chunk var1 = this.o.f(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
-		if (this.o.P().getLevelType() == LevelType.FLAT && this.V.nextInt(4) != 1) {
+		Chunk var1 = this.world.getChunk(new Position(MathHelper.toFixedPointInt(this.locationX), 0, MathHelper.toFixedPointInt(this.locationZ)));
+		if (this.world.getWorldData().getLevelType() == LevelType.FLAT && this.random.nextInt(4) != 1) {
 			return false;
 		} else {
-			if (this.o.getDifficulty() != Difficulty.PEACEFUL) {
-				arm var2 = this.o.b(new Position(DataTypesConverter.toFixedPointInt(this.locationX), 0, DataTypesConverter.toFixedPointInt(this.locationZ)));
-				if (var2 == arm.v && this.locationY > 50.0D && this.locationY < 70.0D && this.V.nextFloat() < 0.5F && this.V.nextFloat() < this.o.y() && this.o.l(new Position(this)) <= this.V.nextInt(8)) {
+			if (this.world.getDifficulty() != Difficulty.PEACEFUL) {
+				BiomeBase var2 = this.world.b(new Position(MathHelper.toFixedPointInt(this.locationX), 0, MathHelper.toFixedPointInt(this.locationZ)));
+				if (var2 == BiomeBase.SWAMPLAND && this.locationY > 50.0D && this.locationY < 70.0D && this.random.nextFloat() < 0.5F && this.random.nextFloat() < this.world.y() && this.world.l(new Position(this)) <= this.random.nextInt(8)) {
 					return super.bQ();
 				}
 
-				if (this.V.nextInt(10) == 0 && var1.a(987234911L).nextInt(10) == 0 && this.locationY < 40.0D) {
+				if (this.random.nextInt(10) == 0 && var1.a(987234911L).nextInt(10) == 0 && this.locationY < 40.0D) {
 					return super.bQ();
 				}
 			}
@@ -234,14 +234,14 @@ public class EntitySlime extends EntityInsentient implements aex {
 		return this.ck() > 2;
 	}
 
-	protected void bE() {
+	protected void jump() {
 		this.motionY = 0.41999998688697815D;
 		this.ai = true;
 	}
 
 	public xq a(vu var1, xq var2) {
-		int var3 = this.V.nextInt(3);
-		if (var3 < 2 && this.V.nextFloat() < 0.5F * var1.c()) {
+		int var3 = this.random.nextInt(3);
+		if (var3 < 2 && this.random.nextFloat() < 0.5F * var1.c()) {
 			++var3;
 		}
 

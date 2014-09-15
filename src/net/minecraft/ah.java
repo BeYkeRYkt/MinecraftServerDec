@@ -32,7 +32,7 @@ public class ah {
 		return var3.size() == 1 ? (Entity) var3.get(0) : null;
 	}
 
-	public static IJSONComponent b(CommandSenderInterface var0, String var1) {
+	public static IChatBaseComponent b(CommandSenderInterface var0, String var1) {
 		List var2 = b(var0, var1, Entity.class);
 		if (var2.isEmpty()) {
 			return null;
@@ -42,7 +42,7 @@ public class ah {
 
 			while (var4.hasNext()) {
 				Entity var5 = (Entity) var4.next();
-				var3.add(var5.e_());
+				var3.add(var5.getComponentName());
 			}
 
 			return AbstractCommand.a((List) var3);
@@ -51,13 +51,13 @@ public class ah {
 
 	public static List b(CommandSenderInterface var0, String var1, Class var2) {
 		Matcher var3 = a.matcher(var1);
-		if (var3.matches() && var0.a(1, "@")) {
+		if (var3.matches() && var0.canExecuteCommand(1, "@")) {
 			Map var4 = c(var3.group(2));
 			if (!b(var0, var4)) {
 				return Collections.emptyList();
 			} else {
 				String var5 = var3.group(1);
-				Position var6 = b(var4, var0.c());
+				Position var6 = b(var4, var0.getEntityPosition());
 				List var7 = a(var0, var4);
 				ArrayList var8 = Lists.newArrayList();
 				Iterator var9 = var7.iterator();
@@ -88,7 +88,7 @@ public class ah {
 	private static List a(CommandSenderInterface var0, Map var1) {
 		ArrayList var2 = Lists.newArrayList();
 		if (h(var1)) {
-			var2.add(var0.e());
+			var2.add(var0.getPrimaryWorld());
 		} else {
 			Collections.addAll(var2, MinecraftServer.getInstance().worlds);
 		}
@@ -100,8 +100,8 @@ public class ah {
 		String var2 = b(var1, "type");
 		var2 = var2 != null && var2.startsWith("!") ? var2.substring(1) : var2;
 		if (var2 != null && !EntityTypes.isEntity(var2)) {
-			hz var3 = new hz("commands.generic.entity.invalidType", new Object[] { var2 });
-			var3.b().a(FormattingCode.m);
+			ChatMessage var3 = new ChatMessage("commands.generic.entity.invalidType", new Object[] { var2 });
+			var3.getChatModifier().setColor(EnumChatFormat.RED);
 			var0.sendChatMessage(var3);
 			return false;
 		} else {
@@ -143,8 +143,8 @@ public class ah {
 
 	private static List c(Map var0) {
 		ArrayList var1 = Lists.newArrayList();
-		int var2 = a(var0, "m", GameMode.NOT_SET.getId());
-		if (var2 != GameMode.NOT_SET.getId()) {
+		int var2 = a(var0, "m", EnumGameMode.NOT_SET.getId());
+		if (var2 != EnumGameMode.NOT_SET.getId()) {
 			var1.add(new ao(var2));
 		}
 
@@ -239,10 +239,10 @@ public class ah {
 			int var16 = var4.j.size();
 			int var17 = var4.f.size();
 			boolean var18 = var16 < var17 / 16;
-			brt var19;
+			AxisAlignedBB var19;
 			if (!var0.containsKey("dx") && !var0.containsKey("dy") && !var0.containsKey("dz")) {
 				if (var13 >= 0) {
-					var19 = new brt((double) (var5.getX() - var13), (double) (var5.getY() - var13), (double) (var5.getZ() - var13), (double) (var5.getX() + var13 + 1), (double) (var5.getY() + var13 + 1), (double) (var5.getZ() + var13 + 1));
+					var19 = new AxisAlignedBB((double) (var5.getX() - var13), (double) (var5.getY() - var13), (double) (var5.getZ() - var13), (double) (var5.getX() + var13 + 1), (double) (var5.getY() + var13 + 1), (double) (var5.getZ() + var13 + 1));
 					if (var8 && var18 && !var9) {
 						var6.addAll(var4.b(var1, var15));
 					} else {
@@ -285,7 +285,7 @@ public class ah {
 			Collections.sort((List) var0, new al(var5));
 		}
 
-		Entity var7 = var2.f();
+		Entity var7 = (Entity) var2;
 		if (var7 != null && var3.isAssignableFrom(var7.getClass()) && var6 == 1 && ((List) var0).contains(var7) && !"r".equals(var4)) {
 			var0 = Lists.newArrayList((Object[]) (new Entity[] { var7 }));
 		}
@@ -301,7 +301,7 @@ public class ah {
 		return (List) var0;
 	}
 
-	private static brt a(Position var0, int var1, int var2, int var3) {
+	private static AxisAlignedBB a(Position var0, int var1, int var2, int var3) {
 		boolean var4 = var1 < 0;
 		boolean var5 = var2 < 0;
 		boolean var6 = var3 < 0;
@@ -311,7 +311,7 @@ public class ah {
 		int var10 = var0.getX() + (var4 ? 0 : var1) + 1;
 		int var11 = var0.getY() + (var5 ? 0 : var2) + 1;
 		int var12 = var0.getZ() + (var6 ? 0 : var3) + 1;
-		return new brt((double) var7, (double) var8, (double) var9, (double) var10, (double) var11, (double) var12);
+		return new AxisAlignedBB((double) var7, (double) var8, (double) var9, (double) var10, (double) var11, (double) var12);
 	}
 
 	public static int a(int var0) {
@@ -347,7 +347,7 @@ public class ah {
 	}
 
 	private static int a(Map var0, String var1, int var2) {
-		return var0.containsKey(var1) ? DataTypesConverter.a((String) var0.get(var1), var2) : var2;
+		return var0.containsKey(var1) ? MathHelper.a((String) var0.get(var1), var2) : var2;
 	}
 
 	private static String b(Map var0, String var1) {
@@ -361,7 +361,7 @@ public class ah {
 		while (var2.hasNext()) {
 			String var3 = (String) var2.next();
 			if (var3.startsWith("score_") && var3.length() > "score_".length()) {
-				var1.put(var3.substring("score_".length()), Integer.valueOf(DataTypesConverter.a((String) var0.get(var3), 1)));
+				var1.put(var3.substring("score_".length()), Integer.valueOf(MathHelper.a((String) var0.get(var3), 1)));
 			}
 		}
 

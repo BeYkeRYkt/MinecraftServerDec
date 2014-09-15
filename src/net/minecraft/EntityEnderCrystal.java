@@ -10,7 +10,7 @@ public class EntityEnderCrystal extends Entity {
 		this.k = true;
 		this.a(2.0F, 2.0F);
 		this.b = 5;
-		this.a = this.V.nextInt(100000);
+		this.a = this.random.nextInt(100000);
 	}
 
 	protected boolean r_() {
@@ -22,16 +22,16 @@ public class EntityEnderCrystal extends Entity {
 	}
 
 	public void s_() {
-		this.p = this.locationX;
-		this.q = this.locationY;
-		this.r = this.locationZ;
+		this.previousX = this.locationX;
+		this.previousY = this.locationY;
+		this.previousZ = this.locationZ;
 		++this.a;
 		this.dataWatcher.b(8, Integer.valueOf(this.b));
-		int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
-		int var2 = DataTypesConverter.toFixedPointInt(this.locationY);
-		int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
-		if (this.o.worldProvider instanceof TheEndWorldProvider && this.o.p(new Position(var1, var2, var3)).getBlock() != aty.ab) {
-			this.o.a(new Position(var1, var2, var3), aty.ab.P());
+		int var1 = MathHelper.toFixedPointInt(this.locationX);
+		int var2 = MathHelper.toFixedPointInt(this.locationY);
+		int var3 = MathHelper.toFixedPointInt(this.locationZ);
+		if (this.world.worldProvider instanceof WorldProviderTheEnd && this.world.getBlockState(new Position(var1, var2, var3)).getBlock() != Blocks.FIRE) {
+			this.world.a(new Position(var1, var2, var3), Blocks.FIRE.getBlockState());
 		}
 
 	}
@@ -46,16 +46,16 @@ public class EntityEnderCrystal extends Entity {
 		return true;
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
-			if (!this.I && !this.o.D) {
+			if (!this.dead && !this.world.isStatic) {
 				this.b = 0;
 				if (this.b <= 0) {
-					this.J();
-					if (!this.o.D) {
-						this.o.a((Entity) null, this.locationX, this.locationY, this.locationZ, 6.0F, true);
+					this.die();
+					if (!this.world.isStatic) {
+						this.world.a((Entity) null, this.locationX, this.locationY, this.locationZ, 6.0F, true);
 					}
 				}
 			}

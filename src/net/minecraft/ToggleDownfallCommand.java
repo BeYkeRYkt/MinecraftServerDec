@@ -22,7 +22,7 @@ public class ToggleDownfallCommand extends AbstractCommand {
 	}
 
 	protected void d() {
-		WorldData var1 = MinecraftServer.getInstance().worlds[0].P();
-		var1.b(!var1.p());
+		WorldData var1 = MinecraftServer.getInstance().getPrimaryWorld().getWorldData();
+		var1.setRaining(!var1.isRaining());
 	}
 }

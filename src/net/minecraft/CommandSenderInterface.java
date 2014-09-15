@@ -2,21 +2,19 @@ package net.minecraft;
 
 public interface CommandSenderInterface {
 
-	String d_();
+	String getName();
 
-	IJSONComponent e_();
+	IChatBaseComponent getComponentName();
 
-	void sendChatMessage(IJSONComponent var1);
+	void sendChatMessage(IChatBaseComponent var1);
 
-	boolean a(int var1, String var2);
+	boolean canExecuteCommand(int var1, String var2);
 
-	Position c();
+	Position getEntityPosition();
 
-	Vec3D d();
+	Vec3D getCenter();
 
-	World e();
-
-	Entity f();
+	World getPrimaryWorld();
 
 	boolean t_();
 

@@ -17,11 +17,11 @@ public class BlockFire extends Block {
 	private final Map S = Maps.newIdentityHashMap();
 	private final Map T = Maps.newIdentityHashMap();
 
-	public bec a(bec var1, ard var2, Position var3) {
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		int var4 = var3.getX();
 		int var5 = var3.getY();
 		int var6 = var3.getZ();
-		if (!World.a(var2, var3.b()) && !aty.ab.e(var2, var3.b())) {
+		if (!World.a(var2, var3.b()) && !Blocks.FIRE.e(var2, var3.b())) {
 			boolean var7 = (var4 + var5 + var6 & 1) == 1;
 			boolean var8 = (var4 / 2 + var5 / 2 + var6 / 2 & 1) == 1;
 			int var9 = 0;
@@ -31,60 +31,60 @@ public class BlockFire extends Block {
 
 			return var1.a(N, Boolean.valueOf(this.e(var2, var3.c()))).a(O, Boolean.valueOf(this.e(var2, var3.f()))).a(P, Boolean.valueOf(this.e(var2, var3.d()))).a(Q, Boolean.valueOf(this.e(var2, var3.e()))).a(R, Integer.valueOf(var9)).a(b, Boolean.valueOf(var8)).a(M, Boolean.valueOf(var7));
 		} else {
-			return this.P();
+			return this.getBlockState();
 		}
 	}
 
 	protected BlockFire() {
 		super(Material.FIRE);
-		this.j(this.L.b().a(a, Integer.valueOf(0)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false)).a(P, Boolean.valueOf(false)).a(Q, Boolean.valueOf(false)).a(R, Integer.valueOf(0)));
+		this.setBlockState(this.L.b().a(a, Integer.valueOf(0)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)).a(O, Boolean.valueOf(false)).a(P, Boolean.valueOf(false)).a(Q, Boolean.valueOf(false)).a(R, Integer.valueOf(0)));
 		this.a(true);
 	}
 
-	public static void j() {
-		aty.ab.a(aty.f, 5, 20);
-		aty.ab.a(aty.bL, 5, 20);
-		aty.ab.a(aty.bM, 5, 20);
-		aty.ab.a(aty.bo, 5, 20);
-		aty.ab.a(aty.bp, 5, 20);
-		aty.ab.a(aty.bq, 5, 20);
-		aty.ab.a(aty.br, 5, 20);
-		aty.ab.a(aty.bs, 5, 20);
-		aty.ab.a(aty.bt, 5, 20);
-		aty.ab.a(aty.aO, 5, 20);
-		aty.ab.a(aty.aP, 5, 20);
-		aty.ab.a(aty.aQ, 5, 20);
-		aty.ab.a(aty.aR, 5, 20);
-		aty.ab.a(aty.aS, 5, 20);
-		aty.ab.a(aty.aT, 5, 20);
-		aty.ab.a(aty.ad, 5, 20);
-		aty.ab.a(aty.bV, 5, 20);
-		aty.ab.a(aty.bU, 5, 20);
-		aty.ab.a(aty.bW, 5, 20);
-		aty.ab.a(aty.r, 5, 5);
-		aty.ab.a(aty.s, 5, 5);
-		aty.ab.a(aty.t, 30, 60);
-		aty.ab.a(aty.u, 30, 60);
-		aty.ab.a(aty.X, 30, 20);
-		aty.ab.a(aty.W, 15, 100);
-		aty.ab.a(aty.H, 60, 100);
-		aty.ab.a(aty.cF, 60, 100);
-		aty.ab.a(aty.N, 60, 100);
-		aty.ab.a(aty.O, 60, 100);
-		aty.ab.a(aty.I, 60, 100);
-		aty.ab.a(aty.L, 30, 60);
-		aty.ab.a(aty.bn, 15, 100);
-		aty.ab.a(aty.cA, 5, 5);
-		aty.ab.a(aty.cx, 60, 20);
-		aty.ab.a(aty.cy, 60, 20);
+	public static void registerBurnableBlocks() {
+		Blocks.FIRE.addBurnableBlock(Blocks.PLANKS, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.DOUBLE_WOODEN_SLAB, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.WOODEN_SLAB, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.FENCE_GATE, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.SPRUCE_FENCE_GATE, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.BIRCH_FENCE_GATE, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.JUNGLE_FENCE_GATE, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.DARK_OAK_FENCE_GATE, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.ACACIA_FENCE_GATE, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.FENCE, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.SPRUCE_FENCE, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.BIRCH_FENCE, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.JUNGLE_FENCE, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.DARK_OAK_FENCE, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.ACACIA_FENCE, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.OAK_STAIRS, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.BIRCH_STAIRS, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.SPRUCE_STAIRS, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.JUNGLE_STAIRS, 5, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.LOG, 5, 5);
+		Blocks.FIRE.addBurnableBlock(Blocks.LOG2, 5, 5);
+		Blocks.FIRE.addBurnableBlock(Blocks.LEAVES, 30, 60);
+		Blocks.FIRE.addBurnableBlock(Blocks.LEAVES2, 30, 60);
+		Blocks.FIRE.addBurnableBlock(Blocks.BOOKSHELF, 30, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.TNT, 15, 100);
+		Blocks.FIRE.addBurnableBlock(Blocks.TALLGRASS, 60, 100);
+		Blocks.FIRE.addBurnableBlock(Blocks.DOUBLE_PLANT, 60, 100);
+		Blocks.FIRE.addBurnableBlock(Blocks.YELLOW_FLOWER, 60, 100);
+		Blocks.FIRE.addBurnableBlock(Blocks.RED_FLOWER, 60, 100);
+		Blocks.FIRE.addBurnableBlock(Blocks.DEADBUSH, 60, 100);
+		Blocks.FIRE.addBurnableBlock(Blocks.WOOL, 30, 60);
+		Blocks.FIRE.addBurnableBlock(Blocks.VINE, 15, 100);
+		Blocks.FIRE.addBurnableBlock(Blocks.COAL_BLOCK, 5, 5);
+		Blocks.FIRE.addBurnableBlock(Blocks.HAY_BLOCK, 60, 20);
+		Blocks.FIRE.addBurnableBlock(Blocks.CARPET, 60, 20);
 	}
 
-	public void a(Block var1, int var2, int var3) {
+	public void addBurnableBlock(Block var1, int var2, int var3) {
 		this.S.put(var1, Integer.valueOf(var2));
 		this.T.put(var1, Integer.valueOf(var3));
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -104,15 +104,15 @@ public class BlockFire extends Block {
 		return 30;
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
-		if (var1.Q().b("doFireTick")) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
+		if (var1.getGameRules().b("doFireTick")) {
 			if (!this.c(var1, var2)) {
 				var1.g(var2);
 			}
 
-			Block var5 = var1.p(var2.b()).getBlock();
-			boolean var6 = var5 == aty.aV;
-			if (var1.worldProvider instanceof TheEndWorldProvider && var5 == aty.h) {
+			Block var5 = var1.getBlockState(var2.b()).getBlock();
+			boolean var6 = var5 == Blocks.NETHERRACK;
+			if (var1.worldProvider instanceof WorldProviderTheEnd && var5 == Blocks.BEDROCK) {
 				var6 = true;
 			}
 
@@ -122,7 +122,7 @@ public class BlockFire extends Block {
 				int var7 = ((Integer) var3.b(a)).intValue();
 				if (var7 < 15) {
 					var3 = var3.a(a, Integer.valueOf(var7 + var4.nextInt(3) / 2));
-					var1.a(var2, var3, 4);
+					var1.setBlockAt(var2, var3, 4);
 				}
 
 				var1.a(var2, (Block) this, this.a(var1) + var4.nextInt(10));
@@ -177,7 +177,7 @@ public class BlockFire extends Block {
 											var17 = 15;
 										}
 
-										var1.a(var14, var3.a(a, Integer.valueOf(var17)), 3);
+										var1.setBlockAt(var14, var3.a(a, Integer.valueOf(var17)), 3);
 									}
 								}
 							}
@@ -208,33 +208,33 @@ public class BlockFire extends Block {
 	}
 
 	private void a(World var1, Position var2, int var3, Random var4, int var5) {
-		int var6 = this.c(var1.p(var2).getBlock());
+		int var6 = this.c(var1.getBlockState(var2).getBlock());
 		if (var4.nextInt(var3) < var6) {
-			bec var7 = var1.p(var2);
+			IBlockState var7 = var1.getBlockState(var2);
 			if (var4.nextInt(var5 + 10) < 5 && !var1.C(var2)) {
 				int var8 = var5 + var4.nextInt(5) / 4;
 				if (var8 > 15) {
 					var8 = 15;
 				}
 
-				var1.a(var2, this.P().a(a, Integer.valueOf(var8)), 3);
+				var1.setBlockAt(var2, this.getBlockState().a(a, Integer.valueOf(var8)), 3);
 			} else {
 				var1.g(var2);
 			}
 
-			if (var7.getBlock() == aty.W) {
-				aty.W.d(var1, var2, var7.a(BlockTNT.a, Boolean.valueOf(true)));
+			if (var7.getBlock() == Blocks.TNT) {
+				Blocks.TNT.d(var1, var2, var7.a(BlockTNT.a, Boolean.valueOf(true)));
 			}
 		}
 
 	}
 
 	private boolean e(World var1, Position var2) {
-		PaintingDirection[] var3 = PaintingDirection.values();
+		BlockFace[] var3 = BlockFace.values();
 		int var4 = var3.length;
 
 		for (int var5 = 0; var5 < var4; ++var5) {
-			PaintingDirection var6 = var3[var5];
+			BlockFace var6 = var3[var5];
 			if (this.e((ard) var1, var2.a(var6))) {
 				return true;
 			}
@@ -248,12 +248,12 @@ public class BlockFire extends Block {
 			return 0;
 		} else {
 			int var3 = 0;
-			PaintingDirection[] var4 = PaintingDirection.values();
+			BlockFace[] var4 = BlockFace.values();
 			int var5 = var4.length;
 
 			for (int var6 = 0; var6 < var5; ++var6) {
-				PaintingDirection var7 = var4[var6];
-				var3 = Math.max(this.d(var1.p(var2.a(var7)).getBlock()), var3);
+				BlockFace var7 = var4[var6];
+				var3 = Math.max(this.d(var1.getBlockState(var2.a(var7)).getBlock()), var3);
 			}
 
 			return var3;
@@ -265,22 +265,22 @@ public class BlockFire extends Block {
 	}
 
 	public boolean e(ard var1, Position var2) {
-		return this.d(var1.p(var2).getBlock()) > 0;
+		return this.d(var1.getBlockState(var2).getBlock()) > 0;
 	}
 
 	public boolean c(World var1, Position var2) {
 		return World.a((ard) var1, var2.b()) || this.e(var1, var2);
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!World.a((ard) var1, var2.b()) && !this.e(var1, var2)) {
 			var1.g(var2);
 		}
 
 	}
 
-	public void c(World var1, Position var2, bec var3) {
-		if (var1.worldProvider.getDimensionId() > 0 || !aty.aY.d(var1, var2)) {
+	public void c(World var1, Position var2, IBlockState var3) {
+		if (var1.worldProvider.getDimensionId() > 0 || !Blocks.PORTAL.d(var1, var2)) {
 			if (!World.a((ard) var1, var2.b()) && !this.e(var1, var2)) {
 				var1.g(var2);
 			} else {
@@ -289,15 +289,15 @@ public class BlockFire extends Block {
 		}
 	}
 
-	public MaterialMapColor g(bec var1) {
+	public MaterialMapColor getMapColor(IBlockState var1) {
 		return MaterialMapColor.f;
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, Integer.valueOf(var1));
+	public IBlockState setData(int var1) {
+		return this.getBlockState().a(a, Integer.valueOf(var1));
 	}
 
-	public int c(bec var1) {
+	public int getData(IBlockState var1) {
 		return ((Integer) var1.b(a)).intValue();
 	}
 

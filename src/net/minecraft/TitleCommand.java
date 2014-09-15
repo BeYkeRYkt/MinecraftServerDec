@@ -1,8 +1,12 @@
 package net.minecraft;
 
 import com.google.gson.JsonParseException;
+
 import java.util.List;
+
+import net.minecraft.PacketPlayOutTitle.TitleAction;
 import net.minecraft.server.MinecraftServer;
+
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,17 +42,17 @@ public class TitleCommand extends AbstractCommand {
 			}
 
 			EntityPlayer var3 = a(var1, var2[0]);
-			lk var4 = lk.a(var2[1]);
-			if (var4 != lk.d && var4 != lk.e) {
-				if (var4 == lk.c) {
+			TitleAction var4 = TitleAction.getByName(var2[1]);
+			if (var4 != TitleAction.CLEAR && var4 != TitleAction.RESET) {
+				if (var4 == TitleAction.TIMES) {
 					if (var2.length != 5) {
 						throw new dp("commands.title.usage", new Object[0]);
 					} else {
 						int var11 = a(var2[2]);
 						int var12 = a(var2[3]);
 						int var13 = a(var2[4]);
-						lj var14 = new lj(var11, var12, var13);
-						var3.playerConncetion.sendPacket((Packet) var14);
+						PacketPlayOutTitle var14 = new PacketPlayOutTitle(var11, var12, var13);
+						var3.playerConnection.sendPacket((Packet) var14);
 						a(var1, this, "commands.title.success", new Object[0]);
 					}
 				} else if (var2.length < 3) {
@@ -56,30 +60,30 @@ public class TitleCommand extends AbstractCommand {
 				} else {
 					String var10 = a(var2, 2);
 
-					IJSONComponent var6;
+					IChatBaseComponent var6;
 					try {
-						var6 = JSONComponentFormat.a(var10);
+						var6 = ChatSerializer.fromJsonString(var10);
 					} catch (JsonParseException var9) {
 						Throwable var8 = ExceptionUtils.getRootCause(var9);
 						throw new dl("commands.tellraw.jsonException", new Object[] { var8 == null ? "" : var8.getMessage() });
 					}
 
-					lj var7 = new lj(var4, hq.a(var1, var6, var3));
-					var3.playerConncetion.sendPacket((Packet) var7);
+					PacketPlayOutTitle var7 = new PacketPlayOutTitle(var4, hq.a(var1, var6, var3));
+					var3.playerConnection.sendPacket((Packet) var7);
 					a(var1, this, "commands.title.success", new Object[0]);
 				}
 			} else if (var2.length != 2) {
 				throw new dp("commands.title.usage", new Object[0]);
 			} else {
-				lj var5 = new lj(var4, (IJSONComponent) null);
-				var3.playerConncetion.sendPacket((Packet) var5);
+				PacketPlayOutTitle var5 = new PacketPlayOutTitle(var4, (IChatBaseComponent) null);
+				var3.playerConnection.sendPacket((Packet) var5);
 				a(var1, this, "commands.title.success", new Object[0]);
 			}
 		}
 	}
 
 	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
-		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().I()) : (var2.length == 2 ? a(var2, lk.a()) : null);
+		return var2.length == 1 ? a(var2, MinecraftServer.getInstance().I()) : (var2.length == 2 ? a(var2, TitleAction.getTitles()) : null);
 	}
 
 	public boolean b(String[] var1, int var2) {

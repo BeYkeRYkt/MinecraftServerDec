@@ -10,7 +10,7 @@ class bdh extends aqi {
 	}
 
 	public void a(int var1) {
-		this.a.world.c(this.a.position, aty.ac, var1, 0);
+		this.a.world.c(this.a.position, Blocks.MOB_SPAWNER, var1, 0);
 	}
 
 	public World a() {
@@ -24,7 +24,7 @@ class bdh extends aqi {
 	public void a(aqj var1) {
 		super.a(var1);
 		if (this.a() != null) {
-			this.a().h(this.a.position);
+			this.a().notify(this.a.position);
 		}
 
 	}

@@ -26,18 +26,18 @@ public class EntityThrownExpBottle extends ahr {
 		return -20.0F;
 	}
 
-	protected void a(bru var1) {
-		if (!this.o.D) {
-			this.o.b(2002, new Position(this), 0);
-			int var2 = 3 + this.o.s.nextInt(5) + this.o.s.nextInt(5);
+	protected void a(MovingObjectPosition var1) {
+		if (!this.world.isStatic) {
+			this.world.b(2002, new Position(this), 0);
+			int var2 = 3 + this.world.s.nextInt(5) + this.world.s.nextInt(5);
 
 			while (var2 > 0) {
 				int var3 = EntityExpirienceOrb.a(var2);
 				var2 -= var3;
-				this.o.d((Entity) (new EntityExpirienceOrb(this.o, this.locationX, this.locationY, this.locationZ, var3)));
+				this.world.addEntity((Entity) (new EntityExpirienceOrb(this.world, this.locationX, this.locationY, this.locationZ, var3)));
 			}
 
-			this.J();
+			this.die();
 		}
 
 	}

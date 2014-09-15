@@ -40,8 +40,8 @@ public class QueryListener extends te {
 		this.i = var1.getIntProperty("query.port", 0);
 		this.s = var1.C();
 		this.j = var1.D();
-		this.l = var1.E();
-		this.k = var1.H();
+		this.l = var1.getMotd();
+		this.k = var1.getMaxPlayers();
 		this.m = var1.getLevelName();
 		this.w = 0L;
 		this.r = "0.0.0.0";
@@ -143,7 +143,7 @@ public class QueryListener extends te {
 			this.v.a("game_id");
 			this.v.a("MINECRAFT");
 			this.v.a("version");
-			this.v.a(this.b.F());
+			this.v.a(this.b.getGameVersion());
 			this.v.a("plugins");
 			this.v.a(this.b.K());
 			this.v.a("map");

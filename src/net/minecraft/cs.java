@@ -28,7 +28,7 @@ class cs {
 	}
 
 	float b() {
-		return DataTypesConverter.a(this.a * this.a + this.b * this.b);
+		return MathHelper.sqrt(this.a * this.a + this.b * this.b);
 	}
 
 	public void b(cs var1) {
@@ -66,7 +66,7 @@ class cs {
 			}
 
 			var2 = var2.b();
-		} while (var1.p(var2).getBlock().r() == Material.AIR);
+		} while (var1.getBlockState(var2).getBlock().getMaterial() == Material.AIR);
 
 		return var2.getY() + 1;
 	}
@@ -81,14 +81,14 @@ class cs {
 			}
 
 			var2 = var2.b();
-			var3 = var1.p(var2).getBlock().r();
+			var3 = var1.getBlockState(var2).getBlock().getMaterial();
 		} while (var3 == Material.AIR);
 
 		return !var3.isLiquid() && var3 != Material.FIRE;
 	}
 
 	public void a(Random var1, double var2, double var4, double var6, double var8) {
-		this.a = DataTypesConverter.a(var1, var2, var6);
-		this.b = DataTypesConverter.a(var1, var4, var8);
+		this.a = MathHelper.a(var1, var2, var6);
+		this.b = MathHelper.a(var1, var4, var8);
 	}
 }

@@ -5,7 +5,7 @@ import com.google.common.base.Function;
 final class amd implements Function {
 
 	public String a(ItemStack var1) {
-		return bac.a(var1.i()).d();
+		return bac.a(var1.getDurability()).d();
 	}
 
 	// $FF: synthetic method

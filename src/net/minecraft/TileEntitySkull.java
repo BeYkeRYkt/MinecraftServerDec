@@ -49,7 +49,7 @@ public class TileEntitySkull extends TileEntity {
 	public Packet getUpdatePacket() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		this.write(var1);
-		return new PacketOutUpdateBlockEntity(this.position, 4, var1);
+		return new PacketPlayOutUpdateBlockEntity(this.position, 4, var1);
 	}
 
 	public void a(int var1) {
@@ -65,7 +65,7 @@ public class TileEntitySkull extends TileEntity {
 
 	private void e() {
 		this.g = b(this.g);
-		this.o_();
+		this.update();
 	}
 
 	public static GameProfile b(GameProfile var0) {

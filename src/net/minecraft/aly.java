@@ -5,7 +5,7 @@ import com.google.common.base.Function;
 final class aly implements Function {
 
 	public String a(ItemStack var1) {
-		return azj.a(var1.i()).c();
+		return azj.a(var1.getDurability()).c();
 	}
 
 	// $FF: synthetic method

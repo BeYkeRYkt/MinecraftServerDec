@@ -20,30 +20,30 @@ public class BlockRedstoneWire extends Block {
 
 	public BlockRedstoneWire() {
 		super(Material.ORIENTABLE);
-		this.j(this.L.b().a(a, azu.c).a(b, azu.c).a(M, azu.c).a(N, azu.c).a(O, Integer.valueOf(0)));
+		this.setBlockState(this.L.b().a(a, azu.c).a(b, azu.c).a(M, azu.c).a(N, azu.c).a(O, Integer.valueOf(0)));
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
 	}
 
-	public bec a(bec var1, ard var2, Position var3) {
-		var1 = var1.a(N, this.c(var2, var3, PaintingDirection.e));
-		var1 = var1.a(b, this.c(var2, var3, PaintingDirection.f));
-		var1 = var1.a(a, this.c(var2, var3, PaintingDirection.c));
-		var1 = var1.a(M, this.c(var2, var3, PaintingDirection.d));
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
+		var1 = var1.a(N, this.c(var2, var3, BlockFace.WEST));
+		var1 = var1.a(b, this.c(var2, var3, BlockFace.EAST));
+		var1 = var1.a(a, this.c(var2, var3, BlockFace.NORTH));
+		var1 = var1.a(M, this.c(var2, var3, BlockFace.SOUTH));
 		return var1;
 	}
 
-	private azu c(ard var1, Position var2, PaintingDirection var3) {
+	private azu c(ard var1, Position var2, BlockFace var3) {
 		Position var4 = var2.a(var3);
-		Block var5 = var1.p(var2.a(var3)).getBlock();
-		if (!a(var1.p(var4), var3) && (var5.s() || !d(var1.p(var4.b())))) {
-			Block var6 = var1.p(var2.a()).getBlock();
-			return !var6.s() && var5.s() && d(var1.p(var4.a())) ? azu.a : azu.c;
+		Block var5 = var1.getBlockState(var2.a(var3)).getBlock();
+		if (!a(var1.getBlockState(var4), var3) && (var5.s() || !d(var1.getBlockState(var4.b())))) {
+			Block var6 = var1.getBlockState(var2.a()).getBlock();
+			return !var6.s() && var5.s() && d(var1.getBlockState(var4.a())) ? azu.a : azu.c;
 		} else {
 			return azu.b;
 		}
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -56,10 +56,10 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return World.a((ard) var1, var2.b()) || var1.p(var2.b()).getBlock() == aty.aX;
+		return World.a((ard) var1, var2.b()) || var1.getBlockState(var2.b()).getBlock() == Blocks.GLOWSTONE;
 	}
 
-	private bec e(World var1, Position var2, bec var3) {
+	private IBlockState e(World var1, Position var2, IBlockState var3) {
 		var3 = this.a(var1, var2, var2, var3);
 		ArrayList var4 = Lists.newArrayList((Iterable) this.Q);
 		this.Q.clear();
@@ -73,8 +73,8 @@ public class BlockRedstoneWire extends Block {
 		return var3;
 	}
 
-	private bec a(World var1, Position var2, Position var3, bec var4) {
-		bec var5 = var4;
+	private IBlockState a(World var1, Position var2, Position var3, IBlockState var4) {
+		IBlockState var5 = var4;
 		int var6 = ((Integer) var4.b(O)).intValue();
 		byte var7 = 0;
 		int var14 = this.a(var1, var3, var7);
@@ -89,18 +89,18 @@ public class BlockRedstoneWire extends Block {
 		Iterator var10 = en.a.iterator();
 
 		while (var10.hasNext()) {
-			PaintingDirection var11 = (PaintingDirection) var10.next();
+			BlockFace var11 = (BlockFace) var10.next();
 			Position var12 = var2.a(var11);
 			boolean var13 = var12.getX() != var3.getX() || var12.getZ() != var3.getZ();
 			if (var13) {
 				var9 = this.a(var1, var12, var9);
 			}
 
-			if (var1.p(var12).getBlock().t() && !var1.p(var2.a()).getBlock().t()) {
+			if (var1.getBlockState(var12).getBlock().t() && !var1.getBlockState(var2.a()).getBlock().t()) {
 				if (var13 && var2.getY() >= var3.getY()) {
 					var9 = this.a(var1, var12.a(), var9);
 				}
-			} else if (!var1.p(var12).getBlock().t() && var13 && var2.getY() <= var3.getY()) {
+			} else if (!var1.getBlockState(var12).getBlock().t() && var13 && var2.getY() <= var3.getY()) {
 				var9 = this.a(var1, var12.b(), var9);
 			}
 		}
@@ -119,16 +119,16 @@ public class BlockRedstoneWire extends Block {
 
 		if (var6 != var14) {
 			var4 = var4.a(O, Integer.valueOf(var14));
-			if (var1.p(var2) == var5) {
-				var1.a(var2, var4, 2);
+			if (var1.getBlockState(var2) == var5) {
+				var1.setBlockAt(var2, var4, 2);
 			}
 
 			this.Q.add(var2);
-			PaintingDirection[] var15 = PaintingDirection.values();
+			BlockFace[] var15 = BlockFace.values();
 			int var16 = var15.length;
 
 			for (int var17 = 0; var17 < var16; ++var17) {
-				PaintingDirection var18 = var15[var17];
+				BlockFace var18 = var15[var17];
 				this.Q.add(var2.a(var18));
 			}
 		}
@@ -137,43 +137,43 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	private void d(World var1, Position var2) {
-		if (var1.p(var2).getBlock() == this) {
+		if (var1.getBlockState(var2).getBlock() == this) {
 			var1.c(var2, (Block) this);
-			PaintingDirection[] var3 = PaintingDirection.values();
+			BlockFace[] var3 = BlockFace.values();
 			int var4 = var3.length;
 
 			for (int var5 = 0; var5 < var4; ++var5) {
-				PaintingDirection var6 = var3[var5];
+				BlockFace var6 = var3[var5];
 				var1.c(var2.a(var6), (Block) this);
 			}
 
 		}
 	}
 
-	public void c(World var1, Position var2, bec var3) {
-		if (!var1.D) {
+	public void c(World var1, Position var2, IBlockState var3) {
+		if (!var1.isStatic) {
 			this.e(var1, var2, var3);
 			Iterator var4 = en.b.iterator();
 
-			PaintingDirection var5;
+			BlockFace var5;
 			while (var4.hasNext()) {
-				var5 = (PaintingDirection) var4.next();
+				var5 = (BlockFace) var4.next();
 				var1.c(var2.a(var5), (Block) this);
 			}
 
 			var4 = en.a.iterator();
 
 			while (var4.hasNext()) {
-				var5 = (PaintingDirection) var4.next();
+				var5 = (BlockFace) var4.next();
 				this.d(var1, var2.a(var5));
 			}
 
 			var4 = en.a.iterator();
 
 			while (var4.hasNext()) {
-				var5 = (PaintingDirection) var4.next();
+				var5 = (BlockFace) var4.next();
 				Position var6 = var2.a(var5);
-				if (var1.p(var6).getBlock().t()) {
+				if (var1.getBlockState(var6).getBlock().t()) {
 					this.d(var1, var6.a());
 				} else {
 					this.d(var1, var6.b());
@@ -183,32 +183,32 @@ public class BlockRedstoneWire extends Block {
 		}
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		super.b(var1, var2, var3);
-		if (!var1.D) {
-			PaintingDirection[] var4 = PaintingDirection.values();
+		if (!var1.isStatic) {
+			BlockFace[] var4 = BlockFace.values();
 			int var5 = var4.length;
 
 			for (int var6 = 0; var6 < var5; ++var6) {
-				PaintingDirection var7 = var4[var6];
+				BlockFace var7 = var4[var6];
 				var1.c(var2.a(var7), (Block) this);
 			}
 
 			this.e(var1, var2, var3);
 			Iterator var8 = en.a.iterator();
 
-			PaintingDirection var9;
+			BlockFace var9;
 			while (var8.hasNext()) {
-				var9 = (PaintingDirection) var8.next();
+				var9 = (BlockFace) var8.next();
 				this.d(var1, var2.a(var9));
 			}
 
 			var8 = en.a.iterator();
 
 			while (var8.hasNext()) {
-				var9 = (PaintingDirection) var8.next();
+				var9 = (BlockFace) var8.next();
 				Position var10 = var2.a(var9);
-				if (var1.p(var10).getBlock().t()) {
+				if (var1.getBlockState(var10).getBlock().t()) {
 					this.d(var1, var10.a());
 				} else {
 					this.d(var1, var10.b());
@@ -219,16 +219,16 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	private int a(World var1, Position var2, int var3) {
-		if (var1.p(var2).getBlock() != this) {
+		if (var1.getBlockState(var2).getBlock() != this) {
 			return var3;
 		} else {
-			int var4 = ((Integer) var1.p(var2).b(O)).intValue();
+			int var4 = ((Integer) var1.getBlockState(var2).b(O)).intValue();
 			return var4 > var3 ? var4 : var3;
 		}
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
-		if (!var1.D) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
+		if (!var1.isStatic) {
 			if (this.c(var1, var2)) {
 				this.e(var1, var2, var3);
 			} else {
@@ -239,29 +239,29 @@ public class BlockRedstoneWire extends Block {
 		}
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
-		return amk.aC;
+	public Item a(IBlockState var1, Random var2, int var3) {
+		return Items.REDSTONE;
 	}
 
-	public int b(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return !this.P ? 0 : this.a(var1, var2, var3, var4);
 	}
 
-	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		if (!this.P) {
 			return 0;
 		} else {
 			int var5 = ((Integer) var3.b(O)).intValue();
 			if (var5 == 0) {
 				return 0;
-			} else if (var4 == PaintingDirection.b) {
+			} else if (var4 == BlockFace.UP) {
 				return var5;
 			} else {
-				EnumSet var6 = EnumSet.noneOf(PaintingDirection.class);
+				EnumSet var6 = EnumSet.noneOf(BlockFace.class);
 				Iterator var7 = en.a.iterator();
 
 				while (var7.hasNext()) {
-					PaintingDirection var8 = (PaintingDirection) var7.next();
+					BlockFace var8 = (BlockFace) var7.next();
 					if (this.d(var1, var2, var8)) {
 						var6.add(var8);
 					}
@@ -278,30 +278,30 @@ public class BlockRedstoneWire extends Block {
 		}
 	}
 
-	private boolean d(ard var1, Position var2, PaintingDirection var3) {
+	private boolean d(ard var1, Position var2, BlockFace var3) {
 		Position var4 = var2.a(var3);
-		bec var5 = var1.p(var4);
+		IBlockState var5 = var1.getBlockState(var4);
 		Block var6 = var5.getBlock();
 		boolean var7 = var6.t();
-		boolean var8 = var1.p(var2.a()).getBlock().t();
-		return !var8 && var7 && e(var1, var4.a()) ? true : (a(var5, var3) ? true : (var6 == aty.bc && var5.b(ava.N) == var3 ? true : !var7 && e(var1, var4.b())));
+		boolean var8 = var1.getBlockState(var2.a()).getBlock().t();
+		return !var8 && var7 && e(var1, var4.a()) ? true : (a(var5, var3) ? true : (var6 == Blocks.POWERED_REPEATER && var5.b(ava.N) == var3 ? true : !var7 && e(var1, var4.b())));
 	}
 
 	protected static boolean e(ard var0, Position var1) {
-		return d(var0.p(var1));
+		return d(var0.getBlockState(var1));
 	}
 
-	protected static boolean d(bec var0) {
-		return a(var0, (PaintingDirection) null);
+	protected static boolean d(IBlockState var0) {
+		return a(var0, (BlockFace) null);
 	}
 
-	protected static boolean a(bec var0, PaintingDirection var1) {
+	protected static boolean a(IBlockState var0, BlockFace var1) {
 		Block var2 = var0.getBlock();
-		if (var2 == aty.af) {
+		if (var2 == Blocks.REDSTONE_WIRE) {
 			return true;
-		} else if (aty.bb.e(var2)) {
-			PaintingDirection var3 = (PaintingDirection) var0.b(BlockRepeater.N);
-			return var3 == var1 || var3.d() == var1;
+		} else if (Blocks.UNPOWERED_REPEATER.e(var2)) {
+			BlockFace var3 = (BlockFace) var0.b(BlockRepeater.N);
+			return var3 == var1 || var3.getOpposite() == var1;
 		} else {
 			return var2.g() && var1 != null;
 		}
@@ -311,11 +311,11 @@ public class BlockRedstoneWire extends Block {
 		return this.P;
 	}
 
-	public bec a(int var1) {
-		return this.P().a(O, Integer.valueOf(var1));
+	public IBlockState setData(int var1) {
+		return this.getBlockState().a(O, Integer.valueOf(var1));
 	}
 
-	public int c(bec var1) {
+	public int getData(IBlockState var1) {
 		return ((Integer) var1.b(O)).intValue();
 	}
 

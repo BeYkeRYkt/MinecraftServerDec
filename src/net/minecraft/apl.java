@@ -2,5 +2,5 @@ package net.minecraft;
 
 interface apl {
 
-	void a(apf var1, int var2);
+	void a(Enchantment var1, int var2);
 }

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class TileEntityMobSpawner extends TileEntity implements pm {
+public class TileEntityMobSpawner extends TileEntity implements PacketTickable {
 
 	private final aqi a = new bdh(this);
 
@@ -14,7 +14,7 @@ public class TileEntityMobSpawner extends TileEntity implements pm {
 		this.a.b(var1);
 	}
 
-	public void c() {
+	public void doTick() {
 		this.a.c();
 	}
 
@@ -22,7 +22,7 @@ public class TileEntityMobSpawner extends TileEntity implements pm {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		this.write(var1);
 		var1.remove("SpawnPotentials");
-		return new PacketOutUpdateBlockEntity(this.position, 1, var1);
+		return new PacketPlayOutUpdateBlockEntity(this.position, 1, var1);
 	}
 
 	public boolean c(int var1, int var2) {

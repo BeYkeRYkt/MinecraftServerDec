@@ -8,12 +8,12 @@ class bkm implements bks {
 	}
 
 	public boolean a(blf var1) {
-		return var1.c[PaintingDirection.b.a()] && !var1.b[PaintingDirection.b.a()].d;
+		return var1.c[BlockFace.UP.getId()] && !var1.b[BlockFace.UP.getId()].d;
 	}
 
-	public blb a(PaintingDirection var1, blf var2, Random var3) {
+	public blb a(BlockFace var1, blf var2, Random var3) {
 		var2.d = true;
-		var2.b[PaintingDirection.b.a()].d = true;
+		var2.b[BlockFace.UP.getId()].d = true;
 		return new bkw(var1, var2, var3);
 	}
 

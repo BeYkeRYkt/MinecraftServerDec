@@ -2,24 +2,24 @@ package net.minecraft;
 
 public class bos extends bpa {
 
-	private arm[] c;
-	private arm[] d;
-	private arm[] e;
-	private arm[] f;
-	private final bgl g;
+	private BiomeBase[] c;
+	private BiomeBase[] d;
+	private BiomeBase[] e;
+	private BiomeBase[] f;
+	private final ChunkProviderGenerateProperties g;
 
 	public bos(long var1, bpa var3, LevelType var4, String var5) {
 		super(var1);
-		this.c = new arm[] { arm.r, arm.r, arm.r, arm.Y, arm.Y, arm.q };
-		this.d = new arm[] { arm.t, arm.S, arm.s, arm.q, arm.Q, arm.v };
-		this.e = new arm[] { arm.t, arm.s, arm.u, arm.q };
-		this.f = new arm[] { arm.B, arm.B, arm.B, arm.T };
+		this.c = new BiomeBase[] { BiomeBase.DESERT, BiomeBase.DESERT, BiomeBase.DESERT, BiomeBase.SAVANNA, BiomeBase.SAVANNA, BiomeBase.PLAINS };
+		this.d = new BiomeBase[] { BiomeBase.FOREST, BiomeBase.ROOFED_FOREST, BiomeBase.EXTREME_HILLS, BiomeBase.PLAINS, BiomeBase.BIRCH_FOREST, BiomeBase.SWAMPLAND };
+		this.e = new BiomeBase[] { BiomeBase.FOREST, BiomeBase.EXTREME_HILLS, BiomeBase.TAIGA, BiomeBase.PLAINS };
+		this.f = new BiomeBase[] { BiomeBase.ICE_PLAINS, BiomeBase.ICE_PLAINS, BiomeBase.ICE_PLAINS, BiomeBase.COLD_TAIGA };
 		this.a = var3;
 		if (var4 == LevelType.DEFAULT_1_1) {
-			this.c = new arm[] { arm.r, arm.t, arm.s, arm.v, arm.q, arm.u };
+			this.c = new BiomeBase[] { BiomeBase.DESERT, BiomeBase.FOREST, BiomeBase.EXTREME_HILLS, BiomeBase.SWAMPLAND, BiomeBase.PLAINS, BiomeBase.TAIGA };
 			this.g = null;
 		} else if (var4 == LevelType.CUSTOM) {
-			this.g = bgn.a(var5).b();
+			this.g = ChunkProviderGeneratePropertiesHolder.fromJSON(var5).getPropertiesHolder();
 		} else {
 			this.g = null;
 		}
@@ -36,38 +36,38 @@ public class bos extends bpa {
 				int var9 = var5[var8 + var7 * var3];
 				int var10 = (var9 & 3840) >> 8;
 				var9 &= -3841;
-				if (this.g != null && this.g.F >= 0) {
-					var6[var8 + var7 * var3] = this.g.F;
+				if (this.g != null && this.g.fixedBiome >= 0) {
+					var6[var8 + var7 * var3] = this.g.fixedBiome;
 				} else if (b(var9)) {
 					var6[var8 + var7 * var3] = var9;
-				} else if (var9 == arm.D.az) {
+				} else if (var9 == BiomeBase.MUSHROOM_ISLAND.az) {
 					var6[var8 + var7 * var3] = var9;
 				} else if (var9 == 1) {
 					if (var10 > 0) {
 						if (this.a(3) == 0) {
-							var6[var8 + var7 * var3] = arm.ac.az;
+							var6[var8 + var7 * var3] = BiomeBase.MESA_PLATEAU.az;
 						} else {
-							var6[var8 + var7 * var3] = arm.ab.az;
+							var6[var8 + var7 * var3] = BiomeBase.MESA_PLATEAU_F.az;
 						}
 					} else {
 						var6[var8 + var7 * var3] = this.c[this.a(this.c.length)].az;
 					}
 				} else if (var9 == 2) {
 					if (var10 > 0) {
-						var6[var8 + var7 * var3] = arm.K.az;
+						var6[var8 + var7 * var3] = BiomeBase.JUNGLE.az;
 					} else {
 						var6[var8 + var7 * var3] = this.d[this.a(this.d.length)].az;
 					}
 				} else if (var9 == 3) {
 					if (var10 > 0) {
-						var6[var8 + var7 * var3] = arm.V.az;
+						var6[var8 + var7 * var3] = BiomeBase.MEGA_TAIGA.az;
 					} else {
 						var6[var8 + var7 * var3] = this.e[this.a(this.e.length)].az;
 					}
 				} else if (var9 == 4) {
 					var6[var8 + var7 * var3] = this.f[this.a(this.f.length)].az;
 				} else {
-					var6[var8 + var7 * var3] = arm.D.az;
+					var6[var8 + var7 * var3] = BiomeBase.MUSHROOM_ISLAND.az;
 				}
 			}
 		}

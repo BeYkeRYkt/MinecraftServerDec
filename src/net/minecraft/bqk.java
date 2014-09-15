@@ -6,9 +6,9 @@ import java.io.FilenameFilter;
 class bqk implements FilenameFilter {
 
 	// $FF: synthetic field
-	final bqj a;
+	final WorldLoaderServer a;
 
-	bqk(bqj var1) {
+	bqk(WorldLoaderServer var1) {
 		this.a = var1;
 	}
 

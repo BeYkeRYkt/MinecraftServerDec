@@ -31,7 +31,7 @@ public abstract class aaz {
 	}
 
 	public final bpv a(double var1, double var3, double var5) {
-		return this.a(new Position(DataTypesConverter.toFixedPointInt(var1), (int) var3, DataTypesConverter.toFixedPointInt(var5)));
+		return this.a(new Position(MathHelper.toFixedPointInt(var1), (int) var3, MathHelper.toFixedPointInt(var5)));
 	}
 
 	public bpv a(Position var1) {
@@ -50,7 +50,7 @@ public abstract class aaz {
 	}
 
 	public boolean a(double var1, double var3, double var5, double var7) {
-		bpv var9 = this.a((double) DataTypesConverter.toFixedPointInt(var1), (double) ((int) var3), (double) DataTypesConverter.toFixedPointInt(var5));
+		bpv var9 = this.a((double) MathHelper.toFixedPointInt(var1), (double) ((int) var3), (double) MathHelper.toFixedPointInt(var5));
 		return this.a(var9, var7);
 	}
 
@@ -113,7 +113,7 @@ public abstract class aaz {
 			} else if (this.d != null && this.d.e() < this.d.d()) {
 				var1 = this.c();
 				Vec3D var2 = this.d.a(this.b, this.d.e());
-				if (var1.y > var2.y && !this.b.onGround && DataTypesConverter.toFixedPointInt(var1.x) == DataTypesConverter.toFixedPointInt(var2.x) && DataTypesConverter.toFixedPointInt(var1.z) == DataTypesConverter.toFixedPointInt(var2.z)) {
+				if (var1.y > var2.y && !this.b.onGround && MathHelper.toFixedPointInt(var1.x) == MathHelper.toFixedPointInt(var2.x) && MathHelper.toFixedPointInt(var1.z) == MathHelper.toFixedPointInt(var2.z)) {
 					this.d.c(this.d.e() + 1);
 				}
 			}
@@ -138,7 +138,7 @@ public abstract class aaz {
 			}
 		}
 
-		float var8 = this.b.J * this.b.J * this.i;
+		float var8 = this.b.height * this.b.height * this.i;
 
 		int var4;
 		for (var4 = this.d.e(); var4 < var2; ++var4) {
@@ -148,8 +148,8 @@ public abstract class aaz {
 			}
 		}
 
-		var4 = DataTypesConverter.f(this.b.J);
-		int var9 = (int) this.b.K + 1;
+		var4 = MathHelper.f(this.b.height);
+		int var9 = (int) this.b.width + 1;
 		int var6 = var4;
 
 		for (int var7 = var2 - 1; var7 >= this.d.e(); --var7) {

@@ -9,18 +9,18 @@ public class bdy {
 	private final World a;
 	private final Position b;
 	private final Position c;
-	private final PaintingDirection d;
+	private final BlockFace d;
 	private final List e = Lists.newArrayList();
 	private final List f = Lists.newArrayList();
 
-	public bdy(World var1, Position var2, PaintingDirection var3, boolean var4) {
+	public bdy(World var1, Position var2, BlockFace var3, boolean var4) {
 		this.a = var1;
 		this.b = var2;
 		if (var4) {
 			this.d = var3;
 			this.c = var2.a(var3);
 		} else {
-			this.d = var3.d();
+			this.d = var3.getOpposite();
 			this.c = var2.a(var3, 2);
 		}
 
@@ -29,7 +29,7 @@ public class bdy {
 	public boolean a() {
 		this.e.clear();
 		this.f.clear();
-		Block var1 = this.a.p(this.c).getBlock();
+		Block var1 = this.a.getBlockState(this.c).getBlock();
 		if (!BlockPiston.a(var1, this.a, this.c, this.d, false)) {
 			if (var1.i() != 1) {
 				return false;
@@ -42,7 +42,7 @@ public class bdy {
 		} else {
 			for (int var2 = 0; var2 < this.e.size(); ++var2) {
 				Position var3 = (Position) this.e.get(var2);
-				if (this.a.p(var3).getBlock() == aty.cE && !this.b(var3)) {
+				if (this.a.getBlockState(var3).getBlock() == Blocks.SLIME && !this.b(var3)) {
 					return false;
 				}
 			}
@@ -52,8 +52,8 @@ public class bdy {
 	}
 
 	private boolean a(Position var1) {
-		Block var2 = this.a.p(var1).getBlock();
-		if (var2.r() == Material.AIR) {
+		Block var2 = this.a.getBlockState(var1).getBlock();
+		if (var2.getMaterial() == Material.AIR) {
 			return true;
 		} else if (!BlockPiston.a(var2, this.a, var1, this.d, false)) {
 			return true;
@@ -66,10 +66,10 @@ public class bdy {
 			if (var3 + this.e.size() > 12) {
 				return false;
 			} else {
-				while (var2 == aty.cE) {
-					Position var4 = var1.a(this.d.d(), var3);
-					var2 = this.a.p(var4).getBlock();
-					if (var2.r() == Material.AIR || !BlockPiston.a(var2, this.a, var4, this.d, false) || var4.equals(this.b)) {
+				while (var2 == Blocks.SLIME) {
+					Position var4 = var1.a(this.d.getOpposite(), var3);
+					var2 = this.a.getBlockState(var4).getBlock();
+					if (var2.getMaterial() == Material.AIR || !BlockPiston.a(var2, this.a, var4, this.d, false) || var4.equals(this.b)) {
 						break;
 					}
 
@@ -83,7 +83,7 @@ public class bdy {
 
 				int var5;
 				for (var5 = var3 - 1; var5 >= 0; --var5) {
-					this.e.add(var1.a(this.d.d(), var5));
+					this.e.add(var1.a(this.d.getOpposite(), var5));
 					++var10;
 				}
 
@@ -97,7 +97,7 @@ public class bdy {
 
 						for (int var8 = 0; var8 <= var7 + var10; ++var8) {
 							Position var9 = (Position) this.e.get(var8);
-							if (this.a.p(var9).getBlock() == aty.cE && !this.b(var9)) {
+							if (this.a.getBlockState(var9).getBlock() == Blocks.SLIME && !this.b(var9)) {
 								return false;
 							}
 						}
@@ -105,8 +105,8 @@ public class bdy {
 						return true;
 					}
 
-					var2 = this.a.p(var6).getBlock();
-					if (var2.r() == Material.AIR) {
+					var2 = this.a.getBlockState(var6).getBlock();
+					if (var2.getMaterial() == Material.AIR) {
 						return true;
 					}
 
@@ -145,11 +145,11 @@ public class bdy {
 	}
 
 	private boolean b(Position var1) {
-		PaintingDirection[] var2 = PaintingDirection.values();
+		BlockFace[] var2 = BlockFace.values();
 		int var3 = var2.length;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			PaintingDirection var5 = var2[var4];
+			BlockFace var5 = var2[var4];
 			if (var5.k() != this.d.k() && !this.a(var1.a(var5))) {
 				return false;
 			}

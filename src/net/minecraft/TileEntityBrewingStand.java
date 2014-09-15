@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.Arrays;
 import java.util.List;
 
-public class TileEntityBrewingStand extends bdf implements pm, we {
+public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 
 	private static final int[] a = new int[] { 3 };
 	private static final int[] f = new int[] { 0, 1, 2 };
@@ -13,7 +13,7 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 	private Item j;
 	private String k;
 
-	public String d_() {
+	public String getName() {
 		return this.k_() ? this.k : "container.brewing";
 	}
 
@@ -29,29 +29,29 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 		return this.g.length;
 	}
 
-	public void c() {
+	public void doTick() {
 		if (this.h > 0) {
 			--this.h;
 			if (this.h == 0) {
 				this.o();
-				this.o_();
+				this.update();
 			} else if (!this.n()) {
 				this.h = 0;
-				this.o_();
+				this.update();
 			} else if (this.j != this.g[3].getItem()) {
 				this.h = 0;
-				this.o_();
+				this.update();
 			}
 		} else if (this.n()) {
 			this.h = 400;
 			this.j = this.g[3].getItem();
 		}
 
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			boolean[] var1 = this.m();
 			if (!Arrays.equals(var1, this.i)) {
 				this.i = var1;
-				bec var2 = this.world.p(this.v());
+				IBlockState var2 = this.world.getBlockState(this.v());
 				if (!(var2.getBlock() instanceof BlockBrewingStand)) {
 					return;
 				}
@@ -60,14 +60,14 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 					var2 = var2.a(BlockBrewingStand.a[var3], Boolean.valueOf(var1[var3]));
 				}
 
-				this.world.a(this.position, var2, 2);
+				this.world.setBlockAt(this.position, var2, 2);
 			}
 		}
 
 	}
 
 	private boolean n() {
-		if (this.g[3] != null && this.g[3].b > 0) {
+		if (this.g[3] != null && this.g[3].amount > 0) {
 			ItemStack var1 = this.g[3];
 			if (!var1.getItem().l(var1)) {
 				return false;
@@ -75,16 +75,16 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 				boolean var2 = false;
 
 				for (int var3 = 0; var3 < 3; ++var3) {
-					if (this.g[var3] != null && this.g[var3].getItem() == amk.bz) {
-						int var4 = this.g[var3].i();
+					if (this.g[var3] != null && this.g[var3].getItem() == Items.POTION) {
+						int var4 = this.g[var3].getDurability();
 						int var5 = this.c(var4, var1);
-						if (!amw.f(var4) && amw.f(var5)) {
+						if (!ItemPotion.f(var4) && ItemPotion.f(var5)) {
 							var2 = true;
 							break;
 						}
 
-						List var6 = amk.bz.e(var4);
-						List var7 = amk.bz.e(var5);
+						List var6 = Items.POTION.e(var4);
+						List var7 = Items.POTION.e(var5);
 						if ((var4 <= 0 || var6 != var7) && (var6 == null || !var6.equals(var7) && var7 != null) && var4 != var5) {
 							var2 = true;
 							break;
@@ -104,26 +104,26 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 			ItemStack var1 = this.g[3];
 
 			for (int var2 = 0; var2 < 3; ++var2) {
-				if (this.g[var2] != null && this.g[var2].getItem() == amk.bz) {
-					int var3 = this.g[var2].i();
+				if (this.g[var2] != null && this.g[var2].getItem() == Items.POTION) {
+					int var3 = this.g[var2].getDurability();
 					int var4 = this.c(var3, var1);
-					List var5 = amk.bz.e(var3);
-					List var6 = amk.bz.e(var4);
+					List var5 = Items.POTION.e(var3);
+					List var6 = Items.POTION.e(var4);
 					if ((var3 <= 0 || var5 != var6) && (var5 == null || !var5.equals(var6) && var6 != null)) {
 						if (var3 != var4) {
-							this.g[var2].b(var4);
+							this.g[var2].setDurability(var4);
 						}
-					} else if (!amw.f(var3) && amw.f(var4)) {
-						this.g[var2].b(var4);
+					} else if (!ItemPotion.f(var3) && ItemPotion.f(var4)) {
+						this.g[var2].setDurability(var4);
 					}
 				}
 			}
 
 			if (var1.getItem().r()) {
-				this.g[3] = new ItemStack(var1.getItem().q());
+				this.g[3] = new ItemStack(var1.getItem().getCraftingResult());
 			} else {
-				--this.g[3].b;
-				if (this.g[3].b <= 0) {
+				--this.g[3].amount;
+				if (this.g[3].amount <= 0) {
 					this.g[3] = null;
 				}
 			}
@@ -132,7 +132,7 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 	}
 
 	private int c(int var1, ItemStack var2) {
-		return var2 == null ? var1 : (var2.getItem().l(var2) ? ans.a(var1, var2.getItem().j(var2)) : var1);
+		return var2 == null ? var1 : (var2.getItem().l(var2) ? PotionBrewer.a(var1, var2.getItem().j(var2)) : var1);
 	}
 
 	public void read(NBTCompoundTag var1) {
@@ -164,7 +164,7 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 			if (this.g[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.put("Slot", (byte) var3);
-				this.g[var3].b(var4);
+				this.g[var3].write(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
@@ -212,7 +212,7 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.world.s(this.position) != this ? false : var1.e((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
+		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public void b(EntityHuman var1) {
@@ -222,7 +222,7 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 	}
 
 	public boolean b(int var1, ItemStack var2) {
-		return var1 == 3 ? var2.getItem().l(var2) : var2.getItem() == amk.bz || var2.getItem() == amk.bA;
+		return var1 == 3 ? var2.getItem().l(var2) : var2.getItem() == Items.POTION || var2.getItem() == Items.GLASS_BOTTLE;
 	}
 
 	public boolean[] m() {
@@ -237,15 +237,15 @@ public class TileEntityBrewingStand extends bdf implements pm, we {
 		return var1;
 	}
 
-	public int[] a(PaintingDirection var1) {
-		return var1 == PaintingDirection.b ? a : f;
+	public int[] a(BlockFace var1) {
+		return var1 == BlockFace.UP ? a : f;
 	}
 
-	public boolean a(int var1, ItemStack var2, PaintingDirection var3) {
+	public boolean a(int var1, ItemStack var2, BlockFace var3) {
 		return this.b(var1, var2);
 	}
 
-	public boolean b(int var1, ItemStack var2, PaintingDirection var3) {
+	public boolean b(int var1, ItemStack var2, BlockFace var3) {
 		return true;
 	}
 

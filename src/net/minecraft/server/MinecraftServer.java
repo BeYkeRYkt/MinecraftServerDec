@@ -36,55 +36,62 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
+
 import javax.imageio.ImageIO;
 
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bukkit.Bukkit;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.event.world.WorldInitEvent;
+import org.bukkit.event.world.WorldLoadEvent;
+import org.bukkit.event.world.WorldSaveEvent;
+import org.bukkit.plugin.Plugin;
 
-public abstract class MinecraftServer implements CommandSenderInterface, Runnable, vn, wd {
+import pipebukkit.server.PipeServer;
+import pipebukkit.server.command.PipeServerCommandSender;
+import pipebukkit.server.scheduler.PipeScheduler;
+
+public abstract class MinecraftServer implements CommandSenderInterface, Runnable, ITaskScheduler, wd {
 
 	private static final Logger logger = LogManager.getLogger();
 	public static final File usercache = new File("usercache.json");
 	private static MinecraftServer instance;
 	private final Convertable convertable;
 	private final Snooper snooper = new Snooper("server", this, getCurrentMillis());
-	private final File universe;
-	private final List<pm> o = Lists.newArrayList();
-	private final CommandHandlerInterface commandHandler;
+	public final File universe;
+	private final List<PacketTickable> o = Lists.newArrayList();
+	private final ICommandHandler commandHandler;
 	public final MethodProfiler profiler = new MethodProfiler();
 	private final ServerConnection serverConnection;
 	private final ServerPing serverPing = new ServerPing();
 	private final Random rnd = new Random();
 	private String ip;
-	private int u = -1;
-	public WorldServer[] worlds;
+	private int port = -1;
+	public ArrayList<WorldServer> worlds;
 	private PlayerList playerList;
 	private boolean running = true;
 	private boolean stopped;
-	private int ticks;
+	private int currentTick;
 	protected final Proxy proxy;
 	private boolean onlineMode;
 	private boolean spawnAnimals;
 	private boolean spawnNPCs;
 	private boolean pvp;
 	private boolean flightAllowed;
-	private String E;
-	private int F;
-	private int G = 0;
+	private String motd;
+	private int maxBuildHeight;
+	private int idleTimeOut = 0;
 	public final long[] g = new long[100];
-	public long[][] h;
 	private KeyPair keyPair;
-	private String I;
-	private String J;
-	private boolean L;
-	private boolean M;
+	private String levelName;
 	private boolean N;
 	private String O = "";
 	private String P = "";
 	private long R;
 	private boolean T;
-	private boolean U;
+	private boolean forceGameMode;
 	private final YggdrasilAuthenticationService authService;
 	private final MinecraftSessionService minecraftSessionService;
 	private long lastServerPingUpdate = 0L;
@@ -94,216 +101,87 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private Thread mainThread;
 	private long lastTickTime = getCurrentMillis();
 
-	public MinecraftServer(File universe, Proxy var2, File usercache) {
-		this.proxy = var2;
+	private PipeServer pipeServer;
+	public PipeServer getPipeServer() {
+		return pipeServer;
+	}
+	private ConsoleCommandSender console;
+	public ConsoleCommandSender getConsoleCommandSender() {
+		return console;
+	}
+
+	public MinecraftServer(File universe, Proxy proxy, File usercache) {
 		instance = this;
+		this.proxy = proxy;
 		this.universe = universe;
 		this.serverConnection = new ServerConnection(this);
 		this.userCache = new UserCache(this, usercache);
-		this.commandHandler = this.h();
-		this.convertable = new bqj(universe);
-		this.authService = new YggdrasilAuthenticationService(var2, UUID.randomUUID().toString());
+		this.commandHandler = this.createCommandsHandler();
+		this.convertable = new WorldLoaderServer(universe);
+		this.authService = new YggdrasilAuthenticationService(proxy, UUID.randomUUID().toString());
 		this.minecraftSessionService = this.authService.createMinecraftSessionService();
 		this.gameProflieRepository = this.authService.createProfileRepository();
 	}
 
-	protected cl h() {
-		return new cl();
+	public static void main(String[] args) {
+		Bootstrap.load();
+
+		try {
+			String universe = ".";
+			String world = null;
+			int port = -1;
+
+			for (int i = 0; i < args.length; ++i) {
+				String argName = args[i];
+				String argsValue = i == args.length - 1 ? null : args[i + 1];
+				boolean hadArgValue = false;
+				if (argName.equals("--port") && argsValue != null) {
+					hadArgValue = true;
+
+					try {
+						port = Integer.parseInt(argsValue);
+					} catch (NumberFormatException var13) {
+					}
+				} else if (argName.equals("--universe") && argsValue != null) {
+					hadArgValue = true;
+					universe = argsValue;
+				} else if (argName.equals("--world") && argsValue != null) {
+					hadArgValue = true;
+					world = argsValue;
+				}
+
+				if (hadArgValue) {
+					++i;
+				}
+			}
+
+			DedicatedMinecraftServer dedicatedMinecraftServer = new DedicatedMinecraftServer(new File(universe));
+
+			if (world != null) {
+				dedicatedMinecraftServer.setLevelName(world);
+			}
+
+			if (port >= 0) {
+				dedicatedMinecraftServer.setPort(port);
+			}
+
+			dedicatedMinecraftServer.startMainThread();
+			Runtime.getRuntime().addShutdownHook(new ServerShutdownHook("Server Shutdown Thread", dedicatedMinecraftServer));
+		} catch (Exception var14) {
+			logger.fatal("Failed to start the minecraft server", var14);
+		}
+
 	}
 
 	protected abstract boolean startServer() throws UnknownHostException;
 
-	protected void a(String var1) {
-		if (this.X().b(var1)) {
-			logger.info("Converting map!");
-			this.b("menu.convertingLevel");
-			this.X().a(var1, new pd(this));
-		}
-
-	}
-
-	protected synchronized void b(String var1) {
-	}
-
-	protected void a(String var1, String var2, long var3, LevelType var5, String var6) {
-		this.a(var1);
-		this.b("menu.loadingLevel");
-		this.worlds = new WorldServer[3];
-		this.h = new long[this.worlds.length][100];
-		IDataManager var7 = this.convertable.a(var1, true);
-		this.a(this.getLevelName(), var7);
-		WorldData var9 = var7.d();
-		arb var8;
-		if (var9 == null) {
-			if (this.W()) {
-				var8 = qj.a;
-			} else {
-				var8 = new arb(var3, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), var5);
-				var8.a(var6);
-				if (this.M) {
-					var8.a();
-				}
-			}
-
-			var9 = new WorldData(var8, var2);
-		} else {
-			var9.a(var2);
-			var8 = new arb(var9);
-		}
-
-		for (int var10 = 0; var10 < this.worlds.length; ++var10) {
-			byte var11 = 0;
-			if (var10 == 1) {
-				var11 = -1;
-			}
-
-			if (var10 == 2) {
-				var11 = 1;
-			}
-
-			if (var10 == 0) {
-				if (this.W()) {
-					this.worlds[var10] = (WorldServer) (new qj(this, var7, var9, var11, this.profiler)).b();
-				} else {
-					this.worlds[var10] = (WorldServer) (new WorldServer(this, var7, var9, var11, this.profiler)).b();
-				}
-
-				this.worlds[var10].a(var8);
-			} else {
-				this.worlds[var10] = (WorldServer) (new ql(this, var7, var11, this.worlds[0], this.profiler)).b();
-			}
-
-			this.worlds[var10].a((ara) (new qp(this, this.worlds[var10])));
-			if (!this.isSinglePlayer()) {
-				this.worlds[var10].P().a(this.getServerGameMode());
-			}
-		}
-
-		this.playerList.a(this.worlds);
-		this.a(this.getDifficulty());
-		this.k();
-	}
-
-	protected void k() {
-		int var5 = 0;
-		this.b("menu.generatingTerrain");
-		byte var6 = 0;
-		logger.info("Preparing start region for level " + var6);
-		WorldServer var7 = this.worlds[var6];
-		Position var8 = var7.M();
-		long var9 = getCurrentMillis();
-
-		for (int var11 = -192; var11 <= 192 && this.isTicking(); var11 += 16) {
-			for (int var12 = -192; var12 <= 192 && this.isTicking(); var12 += 16) {
-				long var13 = getCurrentMillis();
-				if (var13 - var9 > 1000L) {
-					this.a_("Preparing spawn area", var5 * 100 / 625);
-					var9 = var13;
-				}
-
-				++var5;
-				var7.b.c(var8.getX() + var11 >> 4, var8.getZ() + var12 >> 4);
-			}
-		}
-	}
-
-	protected void a(String var1, IDataManager var2) {
-		File var3 = new File(var2.b(), "resources.zip");
-		if (var3.isFile()) {
-			this.setResourcePack("level://" + var1 + "/" + var3.getName(), "");
-		}
-
-	}
-
-	public abstract boolean isStructureGenerationEnabled();
-
-	public abstract GameMode getServerGameMode();
-
-	public abstract Difficulty getDifficulty();
-
-	public abstract boolean isHardcore();
-
-	public abstract int getOpPermissionLevel();
-
-	protected void a_(String var1, int var2) {
-		logger.info(var1 + ": " + var2 + "%");
-	}
-
-	protected void saveChunks(boolean silenced) {
-		if (!this.N) {
-			for (WorldServer world : worlds) {
-				if (world != null) {
-					if (!silenced) {
-						logger.info("Saving chunks for level \'" + world.P().k() + "\'/" + world.worldProvider.k());
-					}
-
-					try {
-						world.save(true, (uy) null);
-					} catch (aqz var7) {
-						logger.warn(var7.getMessage());
-					}
-				}
-			}
-
-		}
-	}
-
-	public void stop() {
-		if (!this.N) {
-			logger.info("Stopping server");
-			if (this.getServerConnection() != null) {
-				this.getServerConnection().b();
-			}
-
-			if (this.playerList != null) {
-				logger.info("Saving players");
-				this.playerList.k();
-				this.playerList.v();
-			}
-
-			if (this.worlds != null) {
-				logger.info("Saving worlds");
-				this.saveChunks(false);
-
-				for (WorldServer world : worlds) {
-					world.saveData();
-				}
-			}
-
-			if (this.snooper.d()) {
-				this.snooper.e();
-			}
-
-		}
-	}
-
-	public String getIp() {
-		return this.ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-
-	public boolean isTicking() {
-		return this.running;
-	}
-
-	public void stopTicking() {
-		this.running = false;
-	}
-
 	public void run() {
-		tick();
-	}
-
-	private void tick() {
 		try {
 			if (this.startServer()) {
 				this.lastTickTime = getCurrentMillis();
 				long var1 = 0L;
-				this.serverPing.a((IJSONComponent) (new hy(this.E)));
-				this.serverPing.a(new nt("1.8", 47));
+				this.serverPing.a((IChatBaseComponent) (new ChatComponentText(this.motd)));
+				this.serverPing.a(new ServerPingServerData("1.8", 47));
 				this.a(this.serverPing);
 
 				while (this.running) {
@@ -322,13 +200,14 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 					var1 += var5;
 					this.lastTickTime = var48;
-					if (this.worlds[0].f()) {
-						this.y();
+
+					if (getPrimaryWorld().f()) {
+						this.doTick();
 						var1 = 0L;
 					} else {
 						while (var1 > 50L) {
 							var1 -= 50L;
-							this.y();
+							this.doTick();
 						}
 					}
 
@@ -367,6 +246,282 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		}
 	}
 
+	public void doTick() {
+		long var1 = System.nanoTime();
+		++this.currentTick;
+
+		((PipeScheduler) Bukkit.getScheduler()).doTick(currentTick);
+
+		if (this.T) {
+			this.T = false;
+			this.profiler.a = true;
+			this.profiler.a();
+		}
+
+		this.profiler.a("root");
+		this.profiler.a("jobs");
+
+		synchronized (this.tasks) {
+			while (!this.tasks.isEmpty()) {
+				try {
+					this.tasks.poll().run();
+				} catch (Throwable t) {
+					logger.fatal((Object) t);
+				}
+			}
+		}
+
+		this.profiler.c("levels");
+
+		int i;
+		for (i = 0; i < this.worlds.size(); ++i) {
+			long var2 = System.nanoTime();
+			if (i == 0 || this.isNetherAllowed()) {
+				WorldServer world = worlds.get(i);
+				this.profiler.a(world.getWorldData().getLevelName());
+
+				if (this.currentTick % 20 == 0) {
+					this.profiler.a("timeSync");
+					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.getTime(), world.L(), world.getGameRules().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
+					this.profiler.b();
+				}
+
+				this.profiler.a("tick");
+
+				CrashReport var6;
+				try {
+					world.doTick();
+				} catch (Throwable var8) {
+					var6 = CrashReport.generateCrashReport(var8, "Exception ticking world");
+					world.a(var6);
+					throw new ReportedException(var6);
+				}
+
+				try {
+					world.i();
+				} catch (Throwable var7) {
+					var6 = CrashReport.generateCrashReport(var7, "Exception ticking world entities");
+					world.a(var6);
+					throw new ReportedException(var6);
+				}
+
+				this.profiler.b();
+				this.profiler.a("tracker");
+				world.getEntityTracker().a();
+				this.profiler.b();
+				this.profiler.b();
+			}
+		}
+
+		this.profiler.c("connection");
+		this.getServerConnection().doTick();
+		this.profiler.c("players");
+		this.playerList.e();
+		this.profiler.c("tickables");
+
+		for (i = 0; i < this.o.size(); ++i) {
+			((PacketTickable) this.o.get(i)).doTick();
+		}
+
+		this.profiler.b();
+		if (var1 - this.lastServerPingUpdate >= 5000000000L) {
+			this.lastServerPingUpdate = var1;
+			this.serverPing.a(new ServerPingPlayerSample(this.getMaxPlayers(), this.getOnlinePlayersCount()));
+			GameProfile[] var3 = new GameProfile[Math.min(this.getOnlinePlayersCount(), 12)];
+			int var4 = MathHelper.a(this.rnd, 0, this.getOnlinePlayersCount() - var3.length);
+
+			for (int var5 = 0; var5 < var3.length; ++var5) {
+				var3[var5] = ((EntityPlayer) this.playerList.players.get(var4 + var5)).getGameProfile();
+			}
+
+			Collections.shuffle(Arrays.asList(var3));
+			this.serverPing.b().a(var3);
+		}
+
+		this.profiler.a("tallying");
+		this.g[this.currentTick % 100] = System.nanoTime() - var1;
+		this.profiler.b();
+		this.profiler.a("snooper");
+		if (!this.snooper.d() && this.currentTick > 100) {
+			this.snooper.a();
+		}
+
+		if (this.currentTick % 6000 == 0) {
+			this.snooper.b();
+		}
+
+		this.profiler.b();
+		this.profiler.b();
+	}
+
+	public abstract ServerProperties getServerProperties();
+
+	protected DedicatedServerCommandHandler createCommandsHandler() {
+		return new DedicatedServerCommandHandler();
+	}
+
+	protected void loadWorlds(String levelname, long seed, LevelType levelType, String settings) {
+		this.worlds = new ArrayList<WorldServer>();
+
+		WorldSettings worldSettings = new WorldSettings(seed, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), levelType);
+		WorldData worldData = new WorldData(worldSettings, levelname);
+
+		for (int i = 0; i < 3; ++i) {
+			byte dimension = 0;
+			if (i == 1) {
+				dimension = -1;
+			}
+
+			if (i == 2) {
+				dimension = 1;
+			}
+
+			WorldServer worldServer = null;
+			if (i == 0) {
+				IDataManager datamanager = new ServerNBTManager(Bukkit.getWorldContainer(), levelname, true);
+				worldServer = new WorldServer(this, datamanager, worldData, dimension, this.profiler).b();
+				worldServer.applyWorldSettings(worldSettings);
+			} else {
+				IDataManager datamanager = new ServerNBTManager(Bukkit.getWorldContainer(), dimension == -1 ? levelname+"_nether" : levelname+"_the_end", true);
+				worldServer = new SecondaryWorldServer(this, datamanager, dimension, this.worlds.get(0), this.profiler).b();
+			}
+
+			Bukkit.getPluginManager().callEvent(new WorldInitEvent(worldServer.getBukkitWorld()));
+
+			worldServer.addIWorldAccess(new WorldManager(this, worldServer));
+			worldServer.getWorldData().setGameMode(this.getServerGameMode());
+
+			worlds.add(worldServer);
+		}
+
+		this.playerList.setPlayerFileData(this.worlds.toArray(new WorldServer[0]));
+		this.setWorldsDifficulty(this.getDifficulty());
+		this.generateTerrain();
+	}
+
+	protected void generateTerrain() {
+		for (int level = 0; level < worlds.size(); level++) {
+			logger.info("Preparing start region for level " + level);
+			WorldServer worldServer = this.worlds.get(level);
+			Position spawnPosition = worldServer.getSpawnPosition();
+			long timeA = getCurrentMillis();
+			int chunksLoaded = 0;
+			for (int x = -192; x <= 192 && this.isTicking(); x += 16) {
+				for (int z = -192; z <= 192 && this.isTicking(); z += 16) {
+					long timeB = getCurrentMillis();
+					if (timeB - timeA > 1000L) {
+						this.a_("Preparing spawn area", chunksLoaded * 100 / 625);
+						timeA = timeB;
+					}
+	
+					++chunksLoaded;
+					worldServer.chunkProviderServer.getChunkAt(spawnPosition.getX() + x >> 4, spawnPosition.getZ() + z >> 4);
+				}
+			}
+		}
+
+		for (WorldServer worldServer : worlds) {
+			Bukkit.getPluginManager().callEvent(new WorldLoadEvent(worldServer.getBukkitWorld()));
+		}
+	}
+
+	public abstract boolean isStructureGenerationEnabled();
+
+	public abstract EnumGameMode getServerGameMode();
+
+	public abstract Difficulty getDifficulty();
+
+	public abstract boolean isHardcore();
+
+	public abstract int getOpPermissionLevel();
+
+	protected void a_(String var1, int var2) {
+		logger.info(var1 + ": " + var2 + "%");
+	}
+
+	protected void saveChunks(boolean silenced) {
+		if (!this.N) {
+			for (WorldServer world : worlds) {
+				if (world != null) {
+					if (!silenced) {
+						logger.info("Saving chunks for level \'" + world.getWorldData().getLevelName() + "\'/" + world.worldProvider.getWorldName());
+					}
+
+					try {
+						world.save(true, (IProgressUpdate) null);
+					} catch (ExceptionWorldConflict ex) {
+						logger.warn(ex.getMessage());
+					}
+
+					if (!silenced) {
+						logger.info("Saved chunks for level \'" + world.getWorldData().getLevelName() + "\'/" + world.worldProvider.getWorldName());
+					}
+
+					Bukkit.getPluginManager().callEvent(new WorldSaveEvent(world.getBukkitWorld()));
+				}
+			}
+		}
+	}
+
+	public void stop() {
+		if (!this.N) {
+			logger.info("Stopping server");
+			if (this.getServerConnection() != null) {
+				this.getServerConnection().closeChannels();
+			}
+
+			logger.info("Disabling plugins");
+			Plugin[] plugins = Bukkit.getPluginManager().getPlugins();
+			for (int i = plugins.length-1; i >=0; i--) {
+				try {
+					Bukkit.getPluginManager().disablePlugin(plugins[i]);
+				} catch (Throwable t) {
+					t.printStackTrace();
+				}
+			}
+
+			if (this.playerList != null) {
+				logger.info("Saving players");
+				this.playerList.savePlayers();
+				this.playerList.kickAll();
+				logger.info("Saved players");
+			}
+
+			if (this.worlds != null) {
+				logger.info("Saving worlds");
+				this.saveChunks(false);
+
+				for (WorldServer world : worlds) {
+					world.saveLevel();
+				}
+				logger.info("Saved worlds");
+			}
+
+			if (this.snooper.d()) {
+				this.snooper.e();
+			}
+
+		}
+	}
+
+	public String getIp() {
+		return this.ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public boolean isTicking() {
+		return this.running;
+	}
+
+	public void stopTicking() {
+		this.running = false;
+	}
+
+	
+
 	private void a(ServerPing var1) {
 		File var2 = this.d("server-icon.png");
 		if (var2.isFile()) {
@@ -398,214 +553,16 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	protected void exit() {
 	}
 
-	protected void y() {
-		long var1 = System.nanoTime();
-		++this.ticks;
-		if (this.T) {
-			this.T = false;
-			this.profiler.a = true;
-			this.profiler.a();
-		}
-
-		this.profiler.a("root");
-		this.doTick();
-		if (var1 - this.lastServerPingUpdate >= 5000000000L) {
-			this.lastServerPingUpdate = var1;
-			this.serverPing.a(new nq(this.H(), this.G()));
-			GameProfile[] var3 = new GameProfile[Math.min(this.G(), 12)];
-			int var4 = DataTypesConverter.a(this.rnd, 0, this.G() - var3.length);
-
-			for (int var5 = 0; var5 < var3.length; ++var5) {
-				var3[var5] = ((EntityPlayer) this.playerList.players.get(var4 + var5)).getGameProfile();
-			}
-
-			Collections.shuffle(Arrays.asList(var3));
-			this.serverPing.b().a(var3);
-		}
-
-		if (this.ticks % 900 == 0) {
-			this.profiler.a("save");
-			this.playerList.k();
-			this.saveChunks(true);
-			this.profiler.b();
-		}
-
-		this.profiler.a("tallying");
-		this.g[this.ticks % 100] = System.nanoTime() - var1;
-		this.profiler.b();
-		this.profiler.a("snooper");
-		if (!this.snooper.d() && this.ticks > 100) {
-			this.snooper.a();
-		}
-
-		if (this.ticks % 6000 == 0) {
-			this.snooper.b();
-		}
-
-		this.profiler.b();
-		this.profiler.b();
-	}
-
-	public void doTick() {
-		this.profiler.a("jobs");
-
-		synchronized (this.tasks) {
-			while (!this.tasks.isEmpty()) {
-				try {
-					this.tasks.poll().run();
-				} catch (Throwable t) {
-					logger.fatal((Object) t);
-				}
-			}
-		}
-
-		this.profiler.c("levels");
-
-		int i;
-		for (i = 0; i < this.worlds.length; ++i) {
-			long var2 = System.nanoTime();
-			if (i == 0 || this.isNetherAllowed()) {
-				WorldServer world = this.worlds[i];
-				this.profiler.a(world.P().k());
-
-				if (this.ticks % 20 == 0) {
-					this.profiler.a("timeSync");
-					this.playerList.sendPacket((Packet<?>) (new PacketOutTimeUpdate(world.K(), world.L(), world.Q().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
-					this.profiler.b();
-				}
-
-				this.profiler.a("tick");
-
-				CrashReport var6;
-				try {
-					world.c();
-				} catch (Throwable var8) {
-					var6 = CrashReport.generateCrashReport(var8, "Exception ticking world");
-					world.a(var6);
-					throw new ReportedException(var6);
-				}
-
-				try {
-					world.i();
-				} catch (Throwable var7) {
-					var6 = CrashReport.generateCrashReport(var7, "Exception ticking world entities");
-					world.a(var6);
-					throw new ReportedException(var6);
-				}
-
-				this.profiler.b();
-				this.profiler.a("tracker");
-				world.s().a();
-				this.profiler.b();
-				this.profiler.b();
-			}
-
-			this.h[i][this.ticks % 100] = System.nanoTime() - var2;
-		}
-
-		this.profiler.c("connection");
-		this.getServerConnection().c();
-		this.profiler.c("players");
-		this.playerList.e();
-		this.profiler.c("tickables");
-
-		for (i = 0; i < this.o.size(); ++i) {
-			((pm) this.o.get(i)).c();
-		}
-
-		this.profiler.b();
-	}
 
 	public boolean isNetherAllowed() {
 		return true;
 	}
 
-	public void a(pm var1) {
+	public void a(PacketTickable var1) {
 		this.o.add(var1);
 	}
 
-	public static void main(String[] var0) {
-		od.c();
-
-		try {
-			boolean var1 = true;
-			String var2 = null;
-			String var3 = ".";
-			String var4 = null;
-			boolean var5 = false;
-			boolean var6 = false;
-			int var7 = -1;
-
-			for (int var8 = 0; var8 < var0.length; ++var8) {
-				String var9 = var0[var8];
-				String var10 = var8 == var0.length - 1 ? null : var0[var8 + 1];
-				boolean var11 = false;
-				if (!var9.equals("nogui") && !var9.equals("--nogui")) {
-					if (var9.equals("--port") && var10 != null) {
-						var11 = true;
-
-						try {
-							var7 = Integer.parseInt(var10);
-						} catch (NumberFormatException var13) {
-							;
-						}
-					} else if (var9.equals("--singleplayer") && var10 != null) {
-						var11 = true;
-						var2 = var10;
-					} else if (var9.equals("--universe") && var10 != null) {
-						var11 = true;
-						var3 = var10;
-					} else if (var9.equals("--world") && var10 != null) {
-						var11 = true;
-						var4 = var10;
-					} else if (var9.equals("--demo")) {
-						var5 = true;
-					} else if (var9.equals("--bonusChest")) {
-						var6 = true;
-					}
-				} else {
-					var1 = false;
-				}
-
-				if (var11) {
-					++var8;
-				}
-			}
-
-			DedicatedMinecraftServer var15 = new DedicatedMinecraftServer(new File(var3));
-			if (var2 != null) {
-				var15.j(var2);
-			}
-
-			if (var4 != null) {
-				var15.setLevelName(var4);
-			}
-
-			if (var7 >= 0) {
-				var15.setPort(var7);
-			}
-
-			if (var5) {
-				var15.b(true);
-			}
-
-			if (var6) {
-				var15.c(true);
-			}
-
-			if (var1 && !GraphicsEnvironment.isHeadless()) {
-				var15.enableGui();
-			}
-
-			var15.B();
-			Runtime.getRuntime().addShutdownHook(new ServerShutdownHook("Server Shutdown Thread", var15));
-		} catch (Exception var14) {
-			logger.fatal("Failed to start the minecraft server", (Throwable) var14);
-		}
-
-	}
-
-	public void B() {
+	public void startMainThread() {
 		this.mainThread = new Thread(this, "Server thread");
 		this.mainThread.start();
 	}
@@ -614,16 +571,16 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return new File(this.w(), var1);
 	}
 
-	public void e(String var1) {
-		logger.info(var1);
+	public void logInfo(String message) {
+		logger.info(message);
 	}
 
-	public void f(String var1) {
-		logger.warn(var1);
+	public void logWarning(String message) {
+		logger.warn(message);
 	}
 
-	public WorldServer a(int var1) {
-		return var1 == -1 ? this.worlds[1] : (var1 == 1 ? this.worlds[2] : this.worlds[0]);
+	public WorldServer getWorldServer(int dimensionId) {
+		return dimensionId == -1 ? this.worlds.get(1) : (dimensionId == 1 ? this.worlds.get(2) : this.worlds.get(0));
 	}
 
 	public String C() {
@@ -631,22 +588,22 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public int D() {
-		return this.u;
+		return this.port;
 	}
 
-	public String E() {
-		return this.E;
+	public String getMotd() {
+		return this.motd;
 	}
 
-	public String F() {
+	public String getGameVersion() {
 		return "1.8";
 	}
 
-	public int G() {
-		return this.playerList.p();
+	public int getOnlinePlayersCount() {
+		return this.playerList.getPlayersCount();
 	}
 
-	public int H() {
+	public int getMaxPlayers() {
 		return this.playerList.getMaxPlayers();
 	}
 
@@ -664,7 +621,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 	public String g(String var1) {
 		tc.h().i();
-		this.commandHandler.a(tc.h(), var1);
+		this.commandHandler.handleCommand(tc.h(), var1);
 		return tc.h().j();
 	}
 
@@ -741,71 +698,56 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return this.universe != null;
 	}
 
-	public String d_() {
+	public String getName() {
 		return "Server";
 	}
 
-	public void sendChatMessage(IJSONComponent var1) {
-		logger.info(var1.c());
+	public void sendChatMessage(IChatBaseComponent var1) {
+		logger.info(var1.getStrippedMessage());
 	}
 
-	public boolean a(int var1, String var2) {
+	public boolean canExecuteCommand(int var1, String var2) {
 		return true;
 	}
 
-	public CommandHandlerInterface getCommandHandler() {
+	public ICommandHandler getCommandHandler() {
 		return this.commandHandler;
 	}
 
-	public KeyPair P() {
+	public KeyPair getKeyPair() {
 		return this.keyPair;
 	}
 
 	public int getPort() {
-		return this.u;
+		return this.port;
 	}
 
-	public void setPort(int var1) {
-		this.u = var1;
-	}
-
-	public String R() {
-		return this.I;
-	}
-
-	public void j(String var1) {
-		this.I = var1;
-	}
-
-	public boolean isSinglePlayer() {
-		return this.I != null;
+	public void setPort(int port) {
+		this.port = port;
 	}
 
 	public String getLevelName() {
-		return this.J;
+		return this.levelName;
 	}
 
-	public void setLevelName(String var1) {
-		this.J = var1;
+	public void setLevelName(String levelName) {
+		this.levelName = levelName;
 	}
 
-	public void setKeyPair(KeyPair var1) {
-		this.keyPair = var1;
+	public void setKeyPair(KeyPair keyPair) {
+		this.keyPair = keyPair;
 	}
 
-	public void a(Difficulty var1) {
-		for (int var2 = 0; var2 < this.worlds.length; ++var2) {
-			WorldServer var3 = this.worlds[var2];
-			if (var3 != null) {
-				if (var3.P().isHardcore()) {
-					var3.P().a(Difficulty.HARD);
-					var3.a(true, true);
-				} else if (this.isSinglePlayer()) {
-					var3.P().a(var1);
-					var3.a(var3.getDifficulty() != Difficulty.PEACEFUL, true);
+	public void setWorldsDifficulty(Difficulty var1) {
+		for (int i = 0; i < this.worlds.size(); ++i) {
+			WorldServer worldServer = worlds.get(i);
+			if (worldServer != null) {
+				if (worldServer.getWorldData().isHardcore()) {
+					worldServer.getWorldData().setDifficulty(Difficulty.HARD);
+					worldServer.a(true, true);
 				} else {
-					var3.P().a(var1);
-					var3.a(this.isMonsterSpawnEnabled(), this.spawnAnimals);
+					worldServer.getWorldData().setDifficulty(var1);
+					worldServer.a(this.isMonsterSpawnEnabled(), this.spawnAnimals);
 				}
 			}
 		}
@@ -816,34 +758,22 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return true;
 	}
 
-	public boolean W() {
-		return this.L;
-	}
-
-	public void b(boolean var1) {
-		this.L = var1;
-	}
-
-	public void c(boolean var1) {
-		this.M = var1;
-	}
-
 	public Convertable X() {
 		return this.convertable;
 	}
 
-	public void Z() {
+	public void stopSinglePlayerServer() {
 		this.N = true;
 		this.X().d();
 
-		for (int var1 = 0; var1 < this.worlds.length; ++var1) {
-			WorldServer var2 = this.worlds[var1];
+		for (int var1 = 0; var1 < this.worlds.size(); ++var1) {
+			WorldServer var2 = this.worlds.get(var1);
 			if (var2 != null) {
-				var2.saveData();
+				var2.saveLevel();
 			}
 		}
 
-		this.X().e(this.worlds[0].O().g());
+		this.X().e(this.worlds.get(0).getDataManager().g());
 		this.stopTicking();
 	}
 
@@ -864,29 +794,29 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		var1.a("whitelist_enabled", Boolean.valueOf(false));
 		var1.a("whitelist_count", Integer.valueOf(0));
 		if (this.playerList != null) {
-			var1.a("players_current", Integer.valueOf(this.G()));
-			var1.a("players_max", Integer.valueOf(this.H()));
+			var1.a("players_current", Integer.valueOf(this.getOnlinePlayersCount()));
+			var1.a("players_max", Integer.valueOf(this.getMaxPlayers()));
 			var1.a("players_seen", Integer.valueOf(this.playerList.r().length));
 		}
 
 		var1.a("uses_auth", Boolean.valueOf(this.onlineMode));
 		var1.a("gui_state", this.isGuiEnabled() ? "enabled" : "disabled");
 		var1.a("run_time", Long.valueOf((getCurrentMillis() - var1.g()) / 60L * 1000L));
-		var1.a("avg_tick_ms", Integer.valueOf((int) (DataTypesConverter.a(this.g) * 1.0E-6D)));
+		var1.a("avg_tick_ms", Integer.valueOf((int) (MathHelper.a(this.g) * 1.0E-6D)));
 		int var2 = 0;
 		if (this.worlds != null) {
-			for (int var3 = 0; var3 < this.worlds.length; ++var3) {
-				if (this.worlds[var3] != null) {
-					WorldServer var4 = this.worlds[var3];
-					WorldData var5 = var4.P();
+			for (int var3 = 0; var3 < this.worlds.size(); ++var3) {
+				if (this.worlds.get(var3) != null) {
+					WorldServer var4 = this.worlds.get(var3);
+					WorldData var5 = var4.getWorldData();
 					var1.a("world[" + var2 + "][dimension]", Integer.valueOf(var4.worldProvider.getDimensionId()));
-					var1.a("world[" + var2 + "][mode]", var5.r());
+					var1.a("world[" + var2 + "][mode]", var5.getGameMode());
 					var1.a("world[" + var2 + "][difficulty]", var4.getDifficulty());
 					var1.a("world[" + var2 + "][hardcore]", Boolean.valueOf(var5.isHardcore()));
-					var1.a("world[" + var2 + "][generator_name]", var5.getLevelType().a());
-					var1.a("world[" + var2 + "][generator_version]", Integer.valueOf(var5.getLevelType().d()));
-					var1.a("world[" + var2 + "][height]", Integer.valueOf(this.F));
-					var1.a("world[" + var2 + "][chunks_loaded]", Integer.valueOf(var4.N().g()));
+					var1.a("world[" + var2 + "][generator_name]", var5.getLevelType().getName());
+					var1.a("world[" + var2 + "][generator_version]", Integer.valueOf(var5.getLevelType().getVersion()));
+					var1.a("world[" + var2 + "][height]", Integer.valueOf(this.maxBuildHeight));
+					var1.a("world[" + var2 + "][chunks_loaded]", Integer.valueOf(var4.getChunkProvider().getLoadedChunks()));
 					++var2;
 				}
 			}
@@ -896,7 +826,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public void b(Snooper var1) {
-		var1.b("singleplayer", Boolean.valueOf(this.isSinglePlayer()));
+		var1.b("singleplayer", false);
 		var1.b("server_brand", this.getServerModName());
 		var1.b("gui_supported", GraphicsEnvironment.isHeadless() ? "headless" : "supported");
 		var1.b("dedicated", Boolean.valueOf(this.isDedicated()));
@@ -950,20 +880,16 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 	public abstract boolean isCommandBlockEnabled();
 
-	public String ak() {
-		return this.E;
+	public void setMotd(String motd) {
+		this.motd = motd;
 	}
 
-	public void setMotd(String var1) {
-		this.E = var1;
+	public int getMaxBuildHeight() {
+		return this.maxBuildHeight;
 	}
 
-	public int al() {
-		return this.F;
-	}
-
-	public void c(int var1) {
-		this.F = var1;
+	public void setMaxBuildHeight(int maxBuildHeight) {
+		this.maxBuildHeight = maxBuildHeight;
 	}
 
 	public boolean isStopped() {
@@ -976,13 +902,14 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 	public void setPlayerList(PlayerList playerList) {
 		this.playerList = playerList;
+		pipeServer = new PipeServer();
+		console = new PipeServerCommandSender();
 	}
 
-	public void setServerGameMode(GameMode var1) {
-		for (int i = 0; i < this.worlds.length; ++i) {
-			getInstance().worlds[i].P().a(var1);
+	public void setServerGameMode(EnumGameMode var1) {
+		for (int i = 0; i < this.worlds.size(); ++i) {
+			getInstance().worlds.get(i).getWorldData().setGameMode(var1);
 		}
-
 	}
 
 	public ServerConnection getServerConnection() {
@@ -993,29 +920,29 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return false;
 	}
 
-	public abstract String a(GameMode var1, boolean var2);
+	public abstract String a(EnumGameMode var1, boolean var2);
 
-	public int ar() {
-		return this.ticks;
+	public int getTicks() {
+		return this.currentTick;
 	}
 
 	public void as() {
 		this.T = true;
 	}
 
-	public Position c() {
+	public Position getEntityPosition() {
 		return Position.ZERO;
 	}
 
-	public Vec3D d() {
+	public Vec3D getCenter() {
 		return new Vec3D(0.0D, 0.0D, 0.0D);
 	}
 
-	public World e() {
-		return this.worlds[0];
+	public WorldServer getPrimaryWorld() {
+		return this.worlds.get(0);
 	}
 
-	public Entity f() {
+	public Entity getEntity() {
 		return null;
 	}
 
@@ -1023,16 +950,16 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return 16;
 	}
 
-	public boolean a(World var1, Position var2, EntityHuman var3) {
+	public boolean isProtected(World var1, Position var2, EntityHuman var3) {
 		return false;
 	}
 
-	public void setForceGameModeEnabled(boolean var1) {
-		this.U = var1;
+	public void setForceGameModeEnabled(boolean forceGameMode) {
+		this.forceGameMode = forceGameMode;
 	}
 
 	public boolean av() {
-		return this.U;
+		return this.forceGameMode;
 	}
 
 	public Proxy getProxy() {
@@ -1043,16 +970,16 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return System.currentTimeMillis();
 	}
 
-	public int ay() {
-		return this.G;
+	public int getIdleTimeOut() {
+		return this.idleTimeOut;
 	}
 
-	public void setIdleTimeout(int var1) {
-		this.G = var1;
+	public void setIdleTimeout(int idleTimeOut) {
+		this.idleTimeOut = idleTimeOut;
 	}
 
-	public IJSONComponent e_() {
-		return new hy(this.d_());
+	public IChatBaseComponent getComponentName() {
+		return new ChatComponentText(this.getName());
 	}
 
 	public boolean isAnnouncePlayerAchievmentsEnabled() {
@@ -1075,18 +1002,18 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return this.serverPing;
 	}
 
-	public void aF() {
+	public void requestServerPingRefresh() {
 		this.lastServerPingUpdate = 0L;
 	}
 
 	public Entity a(UUID var1) {
-		WorldServer[] var2 = this.worlds;
+		WorldServer[] var2 = this.worlds.toArray(new WorldServer[0]);
 		int var3 = var2.length;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			WorldServer var5 = var2[var4];
 			if (var5 != null) {
-				Entity var6 = var5.a(var1);
+				Entity var6 = var5.getEntity(var1);
 				if (var6 != null) {
 					return var6;
 				}
@@ -1097,7 +1024,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public boolean t_() {
-		return getInstance().worlds[0].Q().b("sendCommandFeedback");
+		return getInstance().worlds.get(0).getGameRules().b("sendCommandFeedback");
 	}
 
 	public void a(ag var1, int var2) {
@@ -1107,26 +1034,26 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return 29999984;
 	}
 
-	public ListenableFuture<?> a(Callable<?> var1) {
-		Validate.notNull(var1);
+	public ListenableFuture<?> scheduleSyncTask(Callable<?> callable) {
+		Validate.notNull(callable);
 		if (!this.isMainThread()) {
-			ListenableFutureTask<?> var2 = ListenableFutureTask.create(var1);
+			ListenableFutureTask<?> future = ListenableFutureTask.create(callable);
 			synchronized (this.tasks) {
-				this.tasks.add(var2);
-				return var2;
+				this.tasks.add(future);
+				return future;
 			}
 		} else {
 			try {
-				return Futures.immediateFuture(var1.call());
-			} catch (Exception var6) {
-				return Futures.immediateFailedCheckedFuture(var6);
+				return Futures.immediateFuture(callable.call());
+			} catch (Exception ex) {
+				return Futures.immediateFailedCheckedFuture(ex);
 			}
 		}
 	}
 
-	public ListenableFuture<?> a(Runnable var1) {
-		Validate.notNull(var1);
-		return this.a(Executors.callable(var1));
+	public ListenableFuture<?> scheduleSyncTask(Runnable runnable) {
+		Validate.notNull(runnable);
+		return this.scheduleSyncTask(Executors.callable(runnable));
 	}
 
 	public boolean isMainThread() {

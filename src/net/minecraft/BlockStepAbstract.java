@@ -26,7 +26,7 @@ public abstract class BlockStepAbstract extends Block {
 		if (this.j()) {
 			this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		} else {
-			bec var3 = var1.p(var2);
+			IBlockState var3 = var1.getBlockState(var2);
 			if (var3.getBlock() == this) {
 				if (var3.b(a) == awr.a) {
 					this.a(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
@@ -47,7 +47,7 @@ public abstract class BlockStepAbstract extends Block {
 
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, IBlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
 		this.a(var1, var2);
 		super.a(var1, var2, var3, var4, var5, var6);
 	}
@@ -56,9 +56,9 @@ public abstract class BlockStepAbstract extends Block {
 		return this.j();
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		bec var9 = super.a(var1, var2, var3, var4, var5, var6, var7, var8).a(a, awr.b);
-		return this.j() ? var9 : (var3 != PaintingDirection.a && (var3 == PaintingDirection.b || (double) var5 <= 0.5D) ? var9 : var9.a(a, awr.a));
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		IBlockState var9 = super.a(var1, var2, var3, var4, var5, var6, var7, var8).a(a, awr.b);
+		return this.j() ? var9 : (var3 != BlockFace.DOWN && (var3 == BlockFace.UP || (double) var5 <= 0.5D) ? var9 : var9.a(a, awr.a));
 	}
 
 	public int a(Random var1) {

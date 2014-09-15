@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntityChicken extends abq {
+public class EntityChicken extends EntityAnimal {
 
 	public float bk;
 	public float bm;
@@ -13,19 +13,19 @@ public class EntityChicken extends abq {
 	public EntityChicken(World var1) {
 		super(var1);
 		this.a(0.4F, 0.7F);
-		this.bq = this.V.nextInt(6000) + 6000;
-		this.i.a(0, new yy(this));
+		this.bq = this.random.nextInt(6000) + 6000;
+		this.i.a(0, new PathfinderGoalFloat(this));
 		this.i.a(1, new zu(this, 1.4D));
 		this.i.a(2, new yt(this, 1.0D));
-		this.i.a(3, new aag(this, 1.0D, amk.N, false));
+		this.i.a(3, new aag(this, 1.0D, Items.WHEAT_SEEDS, false));
 		this.i.a(4, new za(this, 1.1D));
-		this.i.a(5, new zy(this, 1.0D));
-		this.i.a(6, new zh(this, EntityHuman.class, 6.0F));
-		this.i.a(7, new zx(this));
+		this.i.a(5, new PathfinderGoalRandomStroll(this, 1.0D));
+		this.i.a(6, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 6.0F));
+		this.i.a(7, new PathfinderGoalRandomLookaround(this));
 	}
 
-	public float aR() {
-		return this.K;
+	public float getHeadHeight() {
+		return this.width;
 	}
 
 	protected void aW() {
@@ -39,7 +39,7 @@ public class EntityChicken extends abq {
 		this.bo = this.bk;
 		this.bn = this.bm;
 		this.bm = (float) ((double) this.bm + (double) (this.onGround ? -1 : 4) * 0.3D);
-		this.bm = DataTypesConverter.a(this.bm, 0.0F, 1.0F);
+		this.bm = MathHelper.a(this.bm, 0.0F, 1.0F);
 		if (!this.onGround && this.bp < 1.0F) {
 			this.bp = 1.0F;
 		}
@@ -50,10 +50,10 @@ public class EntityChicken extends abq {
 		}
 
 		this.bk += this.bp * 2.0F;
-		if (!this.o.D && !this.i_() && !this.cj() && --this.bq <= 0) {
-			this.a("mob.chicken.plop", 1.0F, (this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F);
-			this.a(amk.aP, 1);
-			this.bq = this.V.nextInt(6000) + 6000;
+		if (!this.world.isStatic && !this.i_() && !this.cj() && --this.bq <= 0) {
+			this.a("mob.chicken.plop", 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+			this.a(Items.EGG, 1);
+			this.bq = this.random.nextInt(6000) + 6000;
 		}
 
 	}
@@ -77,31 +77,31 @@ public class EntityChicken extends abq {
 		this.a("mob.chicken.step", 0.15F, 1.0F);
 	}
 
-	protected Item A() {
-		return amk.G;
+	protected Item getLoot() {
+		return Items.FEATHER;
 	}
 
-	protected void b(boolean var1, int var2) {
-		int var3 = this.V.nextInt(3) + this.V.nextInt(1 + var2);
+	protected void dropDeathLoot(boolean var1, int var2) {
+		int var3 = this.random.nextInt(3) + this.random.nextInt(1 + var2);
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			this.a(amk.G, 1);
+			this.a(Items.FEATHER, 1);
 		}
 
 		if (this.au()) {
-			this.a(amk.bl, 1);
+			this.a(Items.COOKED_CHICKEN, 1);
 		} else {
-			this.a(amk.bk, 1);
+			this.a(Items.CHICKEN, 1);
 		}
 
 	}
 
-	public EntityChicken b(ws var1) {
-		return new EntityChicken(this.o);
+	public EntityChicken b(EntityAgeable var1) {
+		return new EntityChicken(this.world);
 	}
 
 	public boolean d(ItemStack var1) {
-		return var1 != null && var1.getItem() == amk.N;
+		return var1 != null && var1.getItem() == Items.WHEAT_SEEDS;
 	}
 
 	public void a(NBTCompoundTag var1) {
@@ -124,18 +124,18 @@ public class EntityChicken extends abq {
 	}
 
 	protected boolean C() {
-		return this.cj() && this.l == null;
+		return this.cj() && this.passenger == null;
 	}
 
 	public void al() {
 		super.al();
-		float var1 = DataTypesConverter.a(this.aG * 3.1415927F / 180.0F);
-		float var2 = DataTypesConverter.b(this.aG * 3.1415927F / 180.0F);
+		float var1 = MathHelper.a(this.aG * 3.1415927F / 180.0F);
+		float var2 = MathHelper.b(this.aG * 3.1415927F / 180.0F);
 		float var3 = 0.1F;
 		float var4 = 0.0F;
-		this.l.b(this.locationX + (double) (var3 * var1), this.locationY + (double) (this.K * 0.5F) + this.l.am() + (double) var4, this.locationZ - (double) (var3 * var2));
-		if (this.l instanceof EntityLiving) {
-			((EntityLiving) this.l).aG = this.aG;
+		this.passenger.b(this.locationX + (double) (var3 * var1), this.locationY + (double) (this.width * 0.5F) + this.passenger.am() + (double) var4, this.locationZ - (double) (var3 * var2));
+		if (this.passenger instanceof EntityLiving) {
+			((EntityLiving) this.passenger).aG = this.aG;
 		}
 
 	}
@@ -149,7 +149,7 @@ public class EntityChicken extends abq {
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.b(var1);
 	}
 }

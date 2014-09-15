@@ -7,30 +7,30 @@ public class bkv extends blb {
 	public bkv() {
 	}
 
-	public bkv(PaintingDirection var1, blf var2, Random var3) {
+	public bkv(BlockFace var1, blf var2, Random var3) {
 		super(1, var1, var2, 2, 2, 1);
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
-		blf var4 = this.k.b[PaintingDirection.f.a()];
+	public boolean a(World var1, Random var2, CuboidArea var3) {
+		blf var4 = this.k.b[BlockFace.EAST.getId()];
 		blf var5 = this.k;
-		blf var6 = var5.b[PaintingDirection.b.a()];
-		blf var7 = var4.b[PaintingDirection.b.a()];
+		blf var6 = var5.b[BlockFace.UP.getId()];
+		blf var7 = var4.b[BlockFace.UP.getId()];
 		if (this.k.a / 25 > 0) {
-			this.a(var1, var3, 8, 0, var4.c[PaintingDirection.a.a()]);
-			this.a(var1, var3, 0, 0, var5.c[PaintingDirection.a.a()]);
+			this.a(var1, var3, 8, 0, var4.c[BlockFace.DOWN.getId()]);
+			this.a(var1, var3, 0, 0, var5.c[BlockFace.DOWN.getId()]);
 		}
 
-		if (var6.b[PaintingDirection.b.a()] == null) {
+		if (var6.b[BlockFace.UP.getId()] == null) {
 			this.a(var1, var3, 1, 8, 1, 7, 8, 6, a);
 		}
 
-		if (var7.b[PaintingDirection.b.a()] == null) {
+		if (var7.b[BlockFace.UP.getId()] == null) {
 			this.a(var1, var3, 8, 8, 1, 14, 8, 6, a);
 		}
 
 		for (int var8 = 1; var8 <= 7; ++var8) {
-			bec var9 = b;
+			IBlockState var9 = b;
 			if (var8 == 2 || var8 == 6) {
 				var9 = a;
 			}
@@ -64,51 +64,51 @@ public class bkv extends blb {
 		this.a(var1, e, 5, 4, 5, var3);
 		this.a(var1, e, 10, 4, 2, var3);
 		this.a(var1, e, 10, 4, 5, var3);
-		if (var5.c[PaintingDirection.d.a()]) {
+		if (var5.c[BlockFace.SOUTH.getId()]) {
 			this.a(var1, var3, 3, 1, 0, 4, 2, 0, f, f, false);
 		}
 
-		if (var5.c[PaintingDirection.c.a()]) {
+		if (var5.c[BlockFace.NORTH.getId()]) {
 			this.a(var1, var3, 3, 1, 7, 4, 2, 7, f, f, false);
 		}
 
-		if (var5.c[PaintingDirection.e.a()]) {
+		if (var5.c[BlockFace.WEST.getId()]) {
 			this.a(var1, var3, 0, 1, 3, 0, 2, 4, f, f, false);
 		}
 
-		if (var4.c[PaintingDirection.d.a()]) {
+		if (var4.c[BlockFace.SOUTH.getId()]) {
 			this.a(var1, var3, 11, 1, 0, 12, 2, 0, f, f, false);
 		}
 
-		if (var4.c[PaintingDirection.c.a()]) {
+		if (var4.c[BlockFace.NORTH.getId()]) {
 			this.a(var1, var3, 11, 1, 7, 12, 2, 7, f, f, false);
 		}
 
-		if (var4.c[PaintingDirection.f.a()]) {
+		if (var4.c[BlockFace.EAST.getId()]) {
 			this.a(var1, var3, 15, 1, 3, 15, 2, 4, f, f, false);
 		}
 
-		if (var6.c[PaintingDirection.d.a()]) {
+		if (var6.c[BlockFace.SOUTH.getId()]) {
 			this.a(var1, var3, 3, 5, 0, 4, 6, 0, f, f, false);
 		}
 
-		if (var6.c[PaintingDirection.c.a()]) {
+		if (var6.c[BlockFace.NORTH.getId()]) {
 			this.a(var1, var3, 3, 5, 7, 4, 6, 7, f, f, false);
 		}
 
-		if (var6.c[PaintingDirection.e.a()]) {
+		if (var6.c[BlockFace.WEST.getId()]) {
 			this.a(var1, var3, 0, 5, 3, 0, 6, 4, f, f, false);
 		}
 
-		if (var7.c[PaintingDirection.d.a()]) {
+		if (var7.c[BlockFace.SOUTH.getId()]) {
 			this.a(var1, var3, 11, 5, 0, 12, 6, 0, f, f, false);
 		}
 
-		if (var7.c[PaintingDirection.c.a()]) {
+		if (var7.c[BlockFace.NORTH.getId()]) {
 			this.a(var1, var3, 11, 5, 7, 12, 6, 7, f, f, false);
 		}
 
-		if (var7.c[PaintingDirection.f.a()]) {
+		if (var7.c[BlockFace.EAST.getId()]) {
 			this.a(var1, var3, 15, 5, 3, 15, 6, 4, f, f, false);
 		}
 

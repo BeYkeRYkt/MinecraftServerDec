@@ -29,13 +29,13 @@ public abstract class bpa {
 		bop var19 = new bop(5L, var14);
 		bok var20 = new bok(4L, var19);
 		bpa var21 = bpp.b(1000L, var20, 0);
-		bgl var5 = null;
+		ChunkProviderGenerateProperties var5 = null;
 		int var6 = 4;
 		int var7 = var6;
 		if (var2 == LevelType.CUSTOM && var3.length() > 0) {
-			var5 = bgn.a(var3).b();
-			var6 = var5.G;
-			var7 = var5.H;
+			var5 = ChunkProviderGeneratePropertiesHolder.fromJSON(var3).getPropertiesHolder();
+			var6 = var5.biomeSize;
+			var7 = var5.riverSize;
 		}
 
 		if (var2 == LevelType.LARGE_BIOMES) {
@@ -126,9 +126,9 @@ public abstract class bpa {
 	protected static boolean a(int var0, int var1) {
 		if (var0 == var1) {
 			return true;
-		} else if (var0 != arm.ab.az && var0 != arm.ac.az) {
-			arm var2 = arm.e(var0);
-			arm var3 = arm.e(var1);
+		} else if (var0 != BiomeBase.MESA_PLATEAU_F.az && var0 != BiomeBase.MESA_PLATEAU.az) {
+			BiomeBase var2 = BiomeBase.e(var0);
+			BiomeBase var3 = BiomeBase.e(var1);
 
 			try {
 				return var2 != null && var3 != null ? var2.a(var3) : false;
@@ -142,12 +142,12 @@ public abstract class bpa {
 				throw new ReportedException(var5);
 			}
 		} else {
-			return var1 == arm.ab.az || var1 == arm.ac.az;
+			return var1 == BiomeBase.MESA_PLATEAU_F.az || var1 == BiomeBase.MESA_PLATEAU.az;
 		}
 	}
 
 	protected static boolean b(int var0) {
-		return var0 == arm.p.az || var0 == arm.N.az || var0 == arm.z.az;
+		return var0 == BiomeBase.OCEAN.az || var0 == BiomeBase.DEEP_OCEAN.az || var0 == BiomeBase.FROZEN_OCEAN.az;
 	}
 
 	protected int a(int... var1) {

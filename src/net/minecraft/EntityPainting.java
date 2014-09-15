@@ -11,7 +11,7 @@ public class EntityPainting extends adj {
 		super(var1);
 	}
 
-	public EntityPainting(World var1, Position var2, PaintingDirection var3) {
+	public EntityPainting(World var1, Position var2, BlockFace var3) {
 		super(var1, var2);
 		ArrayList var4 = Lists.newArrayList();
 		PaintingType[] var5 = PaintingType.values();
@@ -27,7 +27,7 @@ public class EntityPainting extends adj {
 		}
 
 		if (!var4.isEmpty()) {
-			this.type = (PaintingType) var4.get(this.V.nextInt(var4.size()));
+			this.type = (PaintingType) var4.get(this.random.nextInt(var4.size()));
 		}
 
 		this.a(var3);
@@ -66,19 +66,19 @@ public class EntityPainting extends adj {
 	}
 
 	public void b(Entity var1) {
-		if (this.o.Q().b("doTileDrops")) {
+		if (this.world.getGameRules().b("doTileDrops")) {
 			if (var1 instanceof EntityHuman) {
 				EntityHuman var2 = (EntityHuman) var1;
-				if (var2.by.instabuild) {
+				if (var2.playerProperties.instabuild) {
 					return;
 				}
 			}
 
-			this.a(new ItemStack(amk.an), 0.0F);
+			this.a(new ItemStack(Items.PAINTING), 0.0F);
 		}
 	}
 
-	public void b(double var1, double var3, double var5, float var7, float var8) {
+	public void setPositionRotation(double var1, double var3, double var5, float var7, float var8) {
 		Position var9 = new Position(var1 - this.locationX, var3 - this.locationY, var5 - this.locationZ);
 		Position var10 = this.a.a((fd) var9);
 		this.b((double) var10.getX(), (double) var10.getY(), (double) var10.getZ());

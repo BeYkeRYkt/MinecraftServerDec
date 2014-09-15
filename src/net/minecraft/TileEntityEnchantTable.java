@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class TileEntityEnchantTable extends TileEntity implements pm, vv {
+public class TileEntityEnchantTable extends TileEntity implements PacketTickable, vv {
 
 	public int a;
 	public float f;
@@ -33,7 +33,7 @@ public class TileEntityEnchantTable extends TileEntity implements pm, vv {
 
 	}
 
-	public void c() {
+	public void doTick() {
 		this.k = this.j;
 		this.m = this.l;
 		EntityHuman var1 = this.world.a((double) ((float) this.position.getX() + 0.5F), (double) ((float) this.position.getY() + 0.5F), (double) ((float) this.position.getZ() + 0.5F), 3.0D);
@@ -80,17 +80,17 @@ public class TileEntityEnchantTable extends TileEntity implements pm, vv {
 		}
 
 		this.l += var7 * 0.4F;
-		this.j = DataTypesConverter.a(this.j, 0.0F, 1.0F);
+		this.j = MathHelper.a(this.j, 0.0F, 1.0F);
 		++this.a;
 		this.g = this.f;
 		float var3 = (this.h - this.f) * 0.4F;
 		float var8 = 0.2F;
-		var3 = DataTypesConverter.a(var3, -var8, var8);
+		var3 = MathHelper.a(var3, -var8, var8);
 		this.i += (var3 - this.i) * 0.9F;
 		this.f += this.i;
 	}
 
-	public String d_() {
+	public String getName() {
 		return this.k_() ? this.p : "container.enchant";
 	}
 
@@ -102,8 +102,8 @@ public class TileEntityEnchantTable extends TileEntity implements pm, vv {
 		this.p = var1;
 	}
 
-	public IJSONComponent e_() {
-		return (IJSONComponent) (this.k_() ? new hy(this.d_()) : new hz(this.d_(), new Object[0]));
+	public IChatBaseComponent getComponentName() {
+		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {

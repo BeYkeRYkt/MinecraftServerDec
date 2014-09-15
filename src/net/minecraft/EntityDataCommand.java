@@ -23,15 +23,15 @@ public class EntityDataCommand extends AbstractCommand {
 		} else {
 			Entity var3 = b(var1, var2[0]);
 			if (var3 instanceof EntityHuman) {
-				throw new di("commands.entitydata.noPlayers", new Object[] { var3.e_() });
+				throw new di("commands.entitydata.noPlayers", new Object[] { var3.getComponentName() });
 			} else {
 				NBTCompoundTag var4 = new NBTCompoundTag();
-				var3.e(var4);
+				var3.write(var4);
 				NBTCompoundTag var5 = (NBTCompoundTag) var4.getCopy();
 
 				NBTCompoundTag var6;
 				try {
-					var6 = gg.a(a(var1, var2, 1).c());
+					var6 = gg.a(a(var1, var2, 1).getStrippedMessage());
 				} catch (gf var8) {
 					throw new di("commands.entitydata.tagError", new Object[] { var8.getMessage() });
 				}

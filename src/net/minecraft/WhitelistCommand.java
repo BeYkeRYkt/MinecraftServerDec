@@ -30,9 +30,9 @@ public class WhitelistCommand extends AbstractCommand {
 				minecraftserver.getPlayerList().a(false);
 				a(sender, this, "commands.whitelist.disabled", new Object[0]);
 			} else if (args[0].equals("list")) {
-				sender.sendChatMessage(new hz("commands.whitelist.list", new Object[] { Integer.valueOf(minecraftserver.getPlayerList().m().length), Integer.valueOf(minecraftserver.getPlayerList().r().length) }));
-				String[] var4 = minecraftserver.getPlayerList().m();
-				sender.sendChatMessage(new hy(a(var4)));
+				sender.sendChatMessage(new ChatMessage("commands.whitelist.list", new Object[] { Integer.valueOf(minecraftserver.getPlayerList().getWhitelisted().length), Integer.valueOf(minecraftserver.getPlayerList().r().length) }));
+				String[] var4 = minecraftserver.getPlayerList().getWhitelisted();
+				sender.sendChatMessage(new ChatComponentText(a(var4)));
 			} else {
 				GameProfile var5;
 				if (args[0].equals("add")) {
@@ -45,19 +45,19 @@ public class WhitelistCommand extends AbstractCommand {
 						throw new di("commands.whitelist.add.failed", new Object[] { args[1] });
 					}
 
-					minecraftserver.getPlayerList().d(var5);
+					minecraftserver.getPlayerList().addWhitelist(var5);
 					a(sender, this, "commands.whitelist.add.success", new Object[] { args[1] });
 				} else if (args[0].equals("remove")) {
 					if (args.length < 2) {
 						throw new dp("commands.whitelist.remove.usage", new Object[0]);
 					}
 
-					var5 = minecraftserver.getPlayerList().l().a(args[1]);
+					var5 = minecraftserver.getPlayerList().getWhitelist().getByName(args[1]);
 					if (var5 == null) {
 						throw new di("commands.whitelist.remove.failed", new Object[] { args[1] });
 					}
 
-					minecraftserver.getPlayerList().c(var5);
+					minecraftserver.getPlayerList().removeWhitelist(var5);
 					a(sender, this, "commands.whitelist.remove.success", new Object[] { args[1] });
 				} else if (args[0].equals("reload")) {
 					minecraftserver.getPlayerList().a();
@@ -74,7 +74,7 @@ public class WhitelistCommand extends AbstractCommand {
 		} else {
 			if (args.length == 2) {
 				if (args[0].equals("remove")) {
-					return a(args, MinecraftServer.getInstance().getPlayerList().m());
+					return a(args, MinecraftServer.getInstance().getPlayerList().getWhitelisted());
 				}
 
 				if (args[0].equals("add")) {

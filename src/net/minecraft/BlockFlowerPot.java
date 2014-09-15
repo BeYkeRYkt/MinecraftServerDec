@@ -9,7 +9,7 @@ public class BlockFlowerPot extends atg {
 
 	public BlockFlowerPot() {
 		super(Material.ORIENTABLE);
-		this.j(this.L.b().a(b, awf.a).a(a, Integer.valueOf(0)));
+		this.setBlockState(this.L.b().a(b, awf.a).a(a, Integer.valueOf(0)));
 		this.h();
 	}
 
@@ -31,24 +31,24 @@ public class BlockFlowerPot extends atg {
 		return false;
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		ItemStack var9 = var4.playerInventory.getItemInHand();
-		if (var9 != null && var9.getItem() instanceof aju) {
+		if (var9 != null && var9.getItem() instanceof ItemBlock) {
 			TileEntityFlowerPot var10 = this.d(var1, var2);
 			if (var10 == null) {
 				return false;
 			} else if (var10.b() != null) {
 				return false;
 			} else {
-				Block var11 = Block.a(var9.getItem());
-				if (!this.a(var11, var9.i())) {
+				Block var11 = Block.getBlockByItem(var9.getItem());
+				if (!this.a(var11, var9.getDurability())) {
 					return false;
 				} else {
-					var10.a(var9.getItem(), var9.i());
-					var10.o_();
-					var1.h(var2);
-					if (!var4.by.instabuild && --var9.b <= 0) {
-						var4.playerInventory.a(var4.playerInventory.c, (ItemStack) null);
+					var10.a(var9.getItem(), var9.getDurability());
+					var10.update();
+					var1.notify(var2);
+					if (!var4.playerProperties.instabuild && --var9.amount <= 0) {
+						var4.playerInventory.a(var4.playerInventory.itemInHandIndex, (ItemStack) null);
 					}
 
 					return true;
@@ -60,7 +60,7 @@ public class BlockFlowerPot extends atg {
 	}
 
 	private boolean a(Block var1, int var2) {
-		return var1 != aty.N && var1 != aty.O && var1 != aty.aK && var1 != aty.P && var1 != aty.Q && var1 != aty.g && var1 != aty.I ? var1 == aty.H && var2 == bbi.c.a() : true;
+		return var1 != Blocks.YELLOW_FLOWER && var1 != Blocks.RED_FLOWER && var1 != Blocks.CACTUS && var1 != Blocks.BRWON_MUSHROOM && var1 != Blocks.RED_MUSHROOM && var1 != Blocks.SAPLING && var1 != Blocks.DEADBUSH ? var1 == Blocks.TALLGRASS && var2 == EnumGrassType.c.a() : true;
 	}
 
 	public int j(World var1, Position var2) {
@@ -72,7 +72,7 @@ public class BlockFlowerPot extends atg {
 		return super.c(var1, var2) && World.a((ard) var1, var2.b());
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!World.a((ard) var1, var2.b())) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -80,7 +80,7 @@ public class BlockFlowerPot extends atg {
 
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		TileEntityFlowerPot var4 = this.d(var1, var2);
 		if (var4 != null && var4.b() != null) {
 			a(var1, var2, new ItemStack(var4.b(), 1, var4.c()));
@@ -89,9 +89,9 @@ public class BlockFlowerPot extends atg {
 		super.b(var1, var2, var3);
 	}
 
-	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
+	public void a(World var1, Position var2, IBlockState var3, EntityHuman var4) {
 		super.a(var1, var2, var3, var4);
-		if (var4.by.instabuild) {
+		if (var4.playerProperties.instabuild) {
 			TileEntityFlowerPot var5 = this.d(var1, var2);
 			if (var5 != null) {
 				var5.a((Item) null, 0);
@@ -100,12 +100,12 @@ public class BlockFlowerPot extends atg {
 
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
-		return amk.bQ;
+	public Item a(IBlockState var1, Random var2, int var3) {
+		return Items.FLOWER_POT;
 	}
 
 	private TileEntityFlowerPot d(World var1, Position var2) {
-		TileEntity var3 = var1.s(var2);
+		TileEntity var3 = var1.getTileEntity(var2);
 		return var3 instanceof TileEntityFlowerPot ? (TileEntityFlowerPot) var3 : null;
 	}
 
@@ -114,51 +114,51 @@ public class BlockFlowerPot extends atg {
 		int var4 = 0;
 		switch (var2) {
 			case 1:
-				var3 = aty.O;
-				var4 = awa.b.b();
+				var3 = Blocks.RED_FLOWER;
+				var4 = EnumFlowerType.b.b();
 				break;
 			case 2:
-				var3 = aty.N;
+				var3 = Blocks.YELLOW_FLOWER;
 				break;
 			case 3:
-				var3 = aty.g;
-				var4 = ayx.a.a();
+				var3 = Blocks.SAPLING;
+				var4 = EnumWoodType.a.a();
 				break;
 			case 4:
-				var3 = aty.g;
-				var4 = ayx.b.a();
+				var3 = Blocks.SAPLING;
+				var4 = EnumWoodType.b.a();
 				break;
 			case 5:
-				var3 = aty.g;
-				var4 = ayx.c.a();
+				var3 = Blocks.SAPLING;
+				var4 = EnumWoodType.c.a();
 				break;
 			case 6:
-				var3 = aty.g;
-				var4 = ayx.d.a();
+				var3 = Blocks.SAPLING;
+				var4 = EnumWoodType.d.a();
 				break;
 			case 7:
-				var3 = aty.Q;
+				var3 = Blocks.RED_MUSHROOM;
 				break;
 			case 8:
-				var3 = aty.P;
+				var3 = Blocks.BRWON_MUSHROOM;
 				break;
 			case 9:
-				var3 = aty.aK;
+				var3 = Blocks.CACTUS;
 				break;
 			case 10:
-				var3 = aty.I;
+				var3 = Blocks.DEADBUSH;
 				break;
 			case 11:
-				var3 = aty.H;
-				var4 = bbi.c.a();
+				var3 = Blocks.TALLGRASS;
+				var4 = EnumGrassType.c.a();
 				break;
 			case 12:
-				var3 = aty.g;
-				var4 = ayx.e.a();
+				var3 = Blocks.SAPLING;
+				var4 = EnumWoodType.e.a();
 				break;
 			case 13:
-				var3 = aty.g;
-				var4 = ayx.f.a();
+				var3 = Blocks.SAPLING;
+				var4 = EnumWoodType.f.a();
 		}
 
 		return new TileEntityFlowerPot(Item.getItemOf((Block) var3), var4);
@@ -168,21 +168,21 @@ public class BlockFlowerPot extends atg {
 		return new bed(this, new bex[] { b, a });
 	}
 
-	public int c(bec var1) {
+	public int getData(IBlockState var1) {
 		return ((Integer) var1.b(a)).intValue();
 	}
 
-	public bec a(bec var1, ard var2, Position var3) {
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		awf var4 = awf.a;
-		TileEntity var5 = var2.s(var3);
+		TileEntity var5 = var2.getTileEntity(var3);
 		if (var5 instanceof TileEntityFlowerPot) {
 			TileEntityFlowerPot var6 = (TileEntityFlowerPot) var5;
 			Item var7 = var6.b();
-			if (var7 instanceof aju) {
+			if (var7 instanceof ItemBlock) {
 				int var8 = var6.c();
-				Block var9 = Block.a(var7);
-				if (var9 == aty.g) {
-					switch (awe.a[ayx.a(var8).ordinal()]) {
+				Block var9 = Block.getBlockByItem(var7);
+				if (var9 == Blocks.SAPLING) {
+					switch (awe.a[EnumWoodType.a(var8).ordinal()]) {
 						case 1:
 							var4 = awf.l;
 							break;
@@ -204,7 +204,7 @@ public class BlockFlowerPot extends atg {
 						default:
 							var4 = awf.a;
 					}
-				} else if (var9 == aty.H) {
+				} else if (var9 == Blocks.TALLGRASS) {
 					switch (var8) {
 						case 0:
 							var4 = awf.t;
@@ -215,10 +215,10 @@ public class BlockFlowerPot extends atg {
 						default:
 							var4 = awf.a;
 					}
-				} else if (var9 == aty.N) {
+				} else if (var9 == Blocks.YELLOW_FLOWER) {
 					var4 = awf.k;
-				} else if (var9 == aty.O) {
-					switch (awe.b[awa.a(awc.b, var8).ordinal()]) {
+				} else if (var9 == Blocks.RED_FLOWER) {
+					switch (awe.b[EnumFlowerType.a(EnumFlowerColor.b, var8).ordinal()]) {
 						case 1:
 							var4 = awf.b;
 							break;
@@ -249,13 +249,13 @@ public class BlockFlowerPot extends atg {
 						default:
 							var4 = awf.a;
 					}
-				} else if (var9 == aty.Q) {
+				} else if (var9 == Blocks.RED_MUSHROOM) {
 					var4 = awf.r;
-				} else if (var9 == aty.P) {
+				} else if (var9 == Blocks.BRWON_MUSHROOM) {
 					var4 = awf.s;
-				} else if (var9 == aty.I) {
+				} else if (var9 == Blocks.DEADBUSH) {
 					var4 = awf.t;
-				} else if (var9 == aty.aK) {
+				} else if (var9 == Blocks.CACTUS) {
 					var4 = awf.v;
 				}
 			}

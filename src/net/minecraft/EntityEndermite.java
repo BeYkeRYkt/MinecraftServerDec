@@ -9,16 +9,16 @@ public class EntityEndermite extends EntityMonster {
 		super(var1);
 		this.b_ = 3;
 		this.a(0.4F, 0.3F);
-		this.i.a(1, new yy(this));
+		this.i.a(1, new PathfinderGoalFloat(this));
 		this.i.a(2, new zk(this, EntityHuman.class, 1.0D, false));
-		this.i.a(3, new zy(this, 1.0D));
-		this.i.a(7, new zh(this, EntityHuman.class, 8.0F));
-		this.i.a(8, new zx(this));
+		this.i.a(3, new PathfinderGoalRandomStroll(this, 1.0D));
+		this.i.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+		this.i.a(8, new PathfinderGoalRandomLookaround(this));
 		this.bg.a(1, new aal(this, true, new Class[0]));
-		this.bg.a(2, new aaq(this, EntityHuman.class, true));
+		this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return 0.1F;
 	}
 
@@ -49,7 +49,7 @@ public class EntityEndermite extends EntityMonster {
 		this.a("mob.silverfish.step", 0.15F, 1.0F);
 	}
 
-	protected Item A() {
+	protected Item getLoot() {
 		return null;
 	}
 
@@ -80,9 +80,9 @@ public class EntityEndermite extends EntityMonster {
 
 	public void m() {
 		super.m();
-		if (this.o.D) {
+		if (this.world.isStatic) {
 			for (int var1 = 0; var1 < 2; ++var1) {
-				this.o.a(Particle.y, this.locationX + (this.V.nextDouble() - 0.5D) * (double) this.J, this.locationY + this.V.nextDouble() * (double) this.K, this.locationZ + (this.V.nextDouble() - 0.5D) * (double) this.J, (this.V.nextDouble() - 0.5D) * 2.0D, -this.V.nextDouble(), (this.V.nextDouble() - 0.5D) * 2.0D, new int[0]);
+				this.world.a(Particle.y, this.locationX + (this.random.nextDouble() - 0.5D) * (double) this.height, this.locationY + this.random.nextDouble() * (double) this.width, this.locationZ + (this.random.nextDouble() - 0.5D) * (double) this.height, (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D, new int[0]);
 			}
 		} else {
 			if (!this.bY()) {
@@ -90,7 +90,7 @@ public class EntityEndermite extends EntityMonster {
 			}
 
 			if (this.b >= 2400) {
-				this.J();
+				this.die();
 			}
 		}
 
@@ -102,14 +102,14 @@ public class EntityEndermite extends EntityMonster {
 
 	public boolean bQ() {
 		if (super.bQ()) {
-			EntityHuman var1 = this.o.a(this, 5.0D);
+			EntityHuman var1 = this.world.a(this, 5.0D);
 			return var1 == null;
 		} else {
 			return false;
 		}
 	}
 
-	public xs by() {
-		return xs.c;
+	public EnumMonsterType by() {
+		return EnumMonsterType.c;
 	}
 }

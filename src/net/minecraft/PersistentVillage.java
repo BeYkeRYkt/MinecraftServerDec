@@ -27,7 +27,7 @@ public class PersistentVillage extends bqc {
 		Iterator var2 = this.e.iterator();
 
 		while (var2.hasNext()) {
-			abi var3 = (abi) var2.next();
+			Village var3 = (Village) var2.next();
 			var3.a(var1);
 		}
 
@@ -47,7 +47,7 @@ public class PersistentVillage extends bqc {
 		Iterator var1 = this.e.iterator();
 
 		while (var1.hasNext()) {
-			abi var2 = (abi) var1.next();
+			Village var2 = (Village) var1.next();
 			var2.a(this.f);
 		}
 
@@ -64,7 +64,7 @@ public class PersistentVillage extends bqc {
 		Iterator var1 = this.e.iterator();
 
 		while (var1.hasNext()) {
-			abi var2 = (abi) var1.next();
+			Village var2 = (Village) var1.next();
 			if (var2.g()) {
 				var1.remove();
 				this.c();
@@ -77,13 +77,13 @@ public class PersistentVillage extends bqc {
 		return this.e;
 	}
 
-	public abi a(Position var1, int var2) {
-		abi var3 = null;
+	public Village a(Position var1, int var2) {
+		Village var3 = null;
 		double var4 = 3.4028234663852886E38D;
 		Iterator var6 = this.e.iterator();
 
 		while (var6.hasNext()) {
-			abi var7 = (abi) var6.next();
+			Village var7 = (Village) var6.next();
 			double var8 = var7.a().i(var1);
 			if (var8 < var4) {
 				float var10 = (float) (var2 + var7.b());
@@ -106,9 +106,9 @@ public class PersistentVillage extends bqc {
 	private void g() {
 		for (int var1 = 0; var1 < this.d.size(); ++var1) {
 			abh var2 = (abh) this.d.get(var1);
-			abi var3 = this.a(var2.d(), 32);
+			Village var3 = this.a(var2.d(), 32);
 			if (var3 == null) {
-				var3 = new abi(this.b);
+				var3 = new Village(this.b);
 				this.e.add(var3);
 				this.c();
 			}
@@ -156,7 +156,7 @@ public class PersistentVillage extends bqc {
 						return null;
 					}
 
-					abi var5 = (abi) var2.next();
+					Village var5 = (Village) var2.next();
 					var4 = var5.e(var1);
 				} while (var4 == null);
 
@@ -170,8 +170,8 @@ public class PersistentVillage extends bqc {
 	}
 
 	private void d(Position var1) {
-		PaintingDirection var2 = BlockDoor.h(this.b, var1);
-		PaintingDirection var3 = var2.d();
+		BlockFace var2 = BlockDoor.h(this.b, var1);
+		BlockFace var3 = var2.getOpposite();
 		int var4 = this.a(var1, var2, 5);
 		int var5 = this.a(var1, var3, var4 + 1);
 		if (var4 != var5) {
@@ -180,7 +180,7 @@ public class PersistentVillage extends bqc {
 
 	}
 
-	private int a(Position var1, PaintingDirection var2, int var3) {
+	private int a(Position var1, BlockFace var2, int var3) {
 		int var4 = 0;
 
 		for (int var5 = 1; var5 <= 5; ++var5) {
@@ -211,8 +211,8 @@ public class PersistentVillage extends bqc {
 	}
 
 	private boolean f(Position var1) {
-		Block var2 = this.b.p(var1).getBlock();
-		return var2 instanceof BlockDoor ? var2.r() == Material.WOOD : false;
+		Block var2 = this.b.getBlockState(var1).getBlock();
+		return var2 instanceof BlockDoor ? var2.getMaterial() == Material.WOOD : false;
 	}
 
 	public void a(NBTCompoundTag var1) {
@@ -221,7 +221,7 @@ public class PersistentVillage extends bqc {
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
-			abi var5 = new abi();
+			Village var5 = new Village();
 			var5.a(var4);
 			this.e.add(var5);
 		}
@@ -234,7 +234,7 @@ public class PersistentVillage extends bqc {
 		Iterator var3 = this.e.iterator();
 
 		while (var3.hasNext()) {
-			abi var4 = (abi) var3.next();
+			Village var4 = (Village) var3.next();
 			NBTCompoundTag var5 = new NBTCompoundTag();
 			var4.b(var5);
 			var2.addTag((NBTTag) var5);
@@ -244,6 +244,6 @@ public class PersistentVillage extends bqc {
 	}
 
 	public static String a(WorldProvider var0) {
-		return "villages" + var0.l();
+		return "villages" + var0.getWorldSuffix();
 	}
 }

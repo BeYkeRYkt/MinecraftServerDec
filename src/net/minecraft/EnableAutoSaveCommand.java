@@ -16,11 +16,11 @@ public class EnableAutoSaveCommand extends AbstractCommand {
 		MinecraftServer var3 = MinecraftServer.getInstance();
 		boolean var4 = false;
 
-		for (int var5 = 0; var5 < var3.worlds.length; ++var5) {
-			if (var3.worlds[var5] != null) {
-				WorldServer var6 = var3.worlds[var5];
-				if (var6.c) {
-					var6.c = false;
+		for (int var5 = 0; var5 < var3.worlds.size(); ++var5) {
+			if (var3.worlds.get(var5) != null) {
+				WorldServer var6 = var3.worlds.get(var5);
+				if (var6.savingDisabled) {
+					var6.savingDisabled = false;
 					var4 = true;
 				}
 			}

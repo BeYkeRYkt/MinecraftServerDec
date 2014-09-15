@@ -42,19 +42,19 @@ public class zr extends zn {
 		if (!var1.d(var2.a())) {
 			return false;
 		} else {
-			bec var3 = var1.p(var2);
+			IBlockState var3 = var1.getBlockState(var2);
 			Block var4 = var3.getBlock();
-			if (var4 == aty.ae) {
-				TileEntity var5 = var1.s(var2);
+			if (var4 == Blocks.CHEST) {
+				TileEntity var5 = var1.getTileEntity(var2);
 				if (var5 instanceof TileEntityChest && ((TileEntityChest) var5).l < 1) {
 					return true;
 				}
 			} else {
-				if (var4 == aty.am) {
+				if (var4 == Blocks.LIT_FURNACE) {
 					return true;
 				}
 
-				if (var4 == aty.C && var3.b(BlockBed.a) != atq.a) {
+				if (var4 == Blocks.BED && var3.b(BlockBed.a) != atq.a) {
 					return true;
 				}
 			}

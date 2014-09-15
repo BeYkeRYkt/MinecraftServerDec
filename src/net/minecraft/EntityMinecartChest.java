@@ -10,9 +10,9 @@ public class EntityMinecartChest extends aed {
 		super(var1, var2, var4, var6);
 	}
 
-	public void a(wh var1) {
+	public void a(DamageSource var1) {
 		super.a(var1);
-		this.a(Item.getItemOf((Block) aty.ae), 1, 0.0F);
+		this.a(Item.getItemOf((Block) Blocks.CHEST), 1, 0.0F);
 	}
 
 	public int n_() {
@@ -23,8 +23,8 @@ public class EntityMinecartChest extends aed {
 		return MinecartType.CHEST;
 	}
 
-	public bec u() {
-		return aty.ae.P().a(BlockChest.a, PaintingDirection.c);
+	public IBlockState u() {
+		return Blocks.CHEST.getBlockState().a(BlockChest.a, BlockFace.NORTH);
 	}
 
 	public int w() {
@@ -36,6 +36,6 @@ public class EntityMinecartChest extends aed {
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {
-		return new aim(var1, this, var2);
+		return new ContainerChest(var1, this, var2);
 	}
 }

@@ -11,11 +11,11 @@ public class BlockFence extends Block {
 
 	public BlockFence(Material var1) {
 		super(var1);
-		this.j(this.L.b().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)));
-		this.a(CreativeModeTab.c);
+		this.setBlockState(this.L.b().a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)));
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List var5, Entity var6) {
+	public void a(World var1, Position var2, IBlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
 		boolean var7 = this.e(var1, var2.c());
 		boolean var8 = this.e(var1, var2.d());
 		boolean var9 = this.e(var1, var2.e());
@@ -104,19 +104,19 @@ public class BlockFence extends Block {
 	}
 
 	public boolean e(ard var1, Position var2) {
-		Block var3 = var1.p(var2).getBlock();
-		return var3 == aty.cv ? false : ((!(var3 instanceof BlockFence) || var3.material != this.material) && !(var3 instanceof BlockFenceGate) ? (var3.material.k() && var3.d() ? var3.material != Material.PUMPKIN : false) : true);
+		Block var3 = var1.getBlockState(var2).getBlock();
+		return var3 == Blocks.BARRIER ? false : ((!(var3 instanceof BlockFence) || var3.material != this.material) && !(var3 instanceof BlockFenceGate) ? (var3.material.k() && var3.d() ? var3.material != Material.PUMPKIN : false) : true);
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
-		return var1.D ? true : aml.a(var4, var1, var2);
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+		return var1.isStatic ? true : ItemLeash.a(var4, var1, var2);
 	}
 
-	public int c(bec var1) {
+	public int getData(IBlockState var1) {
 		return 0;
 	}
 
-	public bec a(bec var1, ard var2, Position var3) {
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		return var1.a(a, Boolean.valueOf(this.e(var2, var3.c()))).a(b, Boolean.valueOf(this.e(var2, var3.f()))).a(M, Boolean.valueOf(this.e(var2, var3.d()))).a(N, Boolean.valueOf(this.e(var2, var3.e())));
 	}
 

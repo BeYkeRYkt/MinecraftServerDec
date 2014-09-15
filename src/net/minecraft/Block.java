@@ -1,12 +1,11 @@
 package net.minecraft;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
 public class Block {
 
-	private static final BlockNameInfo air = new BlockNameInfo("air");
+	private static final RegistryObjectName air = new RegistryObjectName("air");
 
 	public static final RegistryBlocks BLOCKREGISTRY = new RegistryBlocks(air);
 	public static final RegistryID IDREGISTRY = new RegistryID();
@@ -29,12 +28,12 @@ public class Block {
 		registerBlock(1, "stone", (new BlockStone()).c(1.5F).b(10.0F).a(i).setName("stone"));
 		registerBlock(2, "grass", (new BlockGrass()).c(0.6F).a(h).setName("grass"));
 		registerBlock(3, "dirt", (new BlockDirt()).c(0.5F).a(g).setName("dirt"));
-		Block stoneBrick = (new Block(Material.STONE)).c(2.0F).b(10.0F).a(i).setName("stonebrick").a(CreativeModeTab.b);
+		Block stoneBrick = (new Block(Material.STONE)).c(2.0F).b(10.0F).a(i).setName("stonebrick").a(CreativeModeTab.BUILDING_BLOCKS);
 		registerBlock(4, "cobblestone", stoneBrick);
 		Block wood = (new BlockWood()).c(2.0F).b(5.0F).a(f).setName("wood");
 		registerBlock(5, "planks", wood);
 		registerBlock(6, "sapling", (new BlockSapling()).c(0.0F).a(h).setName("sapling"));
-		registerBlock(7, "bedrock", (new Block(Material.STONE)).v().b(6000000.0F).a(i).setName("bedrock").J().a(CreativeModeTab.b));
+		registerBlock(7, "bedrock", (new Block(Material.STONE)).v().b(6000000.0F).a(i).setName("bedrock").J().a(CreativeModeTab.BUILDING_BLOCKS));
 		registerBlock(8, "flowing_water", (new BlockFlowing(Material.WATER)).c(100.0F).e(3).setName("water").J());
 		registerBlock(9, "water", (new BlockStationary(Material.WATER)).c(100.0F).e(3).setName("water").J());
 		registerBlock(10, "flowing_lava", (new BlockFlowing(Material.LAVA)).c(100.0F).a(1.0F).setName("lava").J());
@@ -49,7 +48,7 @@ public class Block {
 		registerBlock(19, "sponge", (new BlockSponge()).c(0.6F).a(h).setName("sponge"));
 		registerBlock(20, "glass", (new BlockGlass(Material.SHATTERABLE, false)).c(0.3F).a(k).setName("glass"));
 		registerBlock(21, "lapis_ore", (new BlockOre()).c(3.0F).b(5.0F).a(i).setName("oreLapis"));
-		registerBlock(22, "lapis_block", (new BlockOreBlock(MaterialMapColor.H)).c(3.0F).b(5.0F).a(i).setName("blockLapis").a(CreativeModeTab.b));
+		registerBlock(22, "lapis_block", (new BlockOreBlock(MaterialMapColor.H)).c(3.0F).b(5.0F).a(i).setName("blockLapis").a(CreativeModeTab.BUILDING_BLOCKS));
 		registerBlock(23, "dispenser", (new BlockDispenser()).c(3.5F).a(i).setName("dispenser"));
 		Block sandStone = (new BlockSandStone()).a(i).c(0.8F).setName("sandStone");
 		registerBlock(24, "sandstone", sandStone);
@@ -75,16 +74,16 @@ public class Block {
 		registerBlock(42, "iron_block", (new BlockOreBlock(MaterialMapColor.h)).c(5.0F).b(10.0F).a(j).setName("blockIron"));
 		registerBlock(43, "double_stone_slab", (new BlockDoubleStep()).c(2.0F).b(10.0F).a(i).setName("stoneSlab"));
 		registerBlock(44, "stone_slab", (new BlockSingleStep()).c(2.0F).b(10.0F).a(i).setName("stoneSlab"));
-		Block stone = (new Block(Material.STONE)).c(2.0F).b(10.0F).a(i).setName("brick").a(CreativeModeTab.b);
+		Block stone = (new Block(Material.STONE)).c(2.0F).b(10.0F).a(i).setName("brick").a(CreativeModeTab.BUILDING_BLOCKS);
 		registerBlock(45, "brick_block", stone);
 		registerBlock(46, "tnt", (new BlockTNT()).c(0.0F).a(h).setName("tnt"));
 		registerBlock(47, "bookshelf", (new BlockBookshelf()).c(1.5F).a(f).setName("bookshelf"));
-		registerBlock(48, "mossy_cobblestone", (new Block(Material.STONE)).c(2.0F).b(10.0F).a(i).setName("stoneMoss").a(CreativeModeTab.b));
+		registerBlock(48, "mossy_cobblestone", (new Block(Material.STONE)).c(2.0F).b(10.0F).a(i).setName("stoneMoss").a(CreativeModeTab.BUILDING_BLOCKS));
 		registerBlock(49, "obsidian", (new BlockObsidian()).c(50.0F).b(2000.0F).a(i).setName("obsidian"));
 		registerBlock(50, "torch", (new BlockTorch()).c(0.0F).a(0.9375F).a(f).setName("torch"));
 		registerBlock(51, "fire", (new BlockFire()).c(0.0F).a(1.0F).a(l).setName("fire").J());
 		registerBlock(52, "mob_spawner", (new BlockMobSpawner()).c(5.0F).a(j).setName("mobSpawner").J());
-		registerBlock(53, "oak_stairs", (new BlockStairs(wood.P().a(BlockWood.a, ayx.a))).setName("stairsWood"));
+		registerBlock(53, "oak_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, EnumWoodType.a))).setName("stairsWood"));
 		registerBlock(54, "chest", (new BlockChest(0)).c(2.5F).a(f).setName("chest"));
 		registerBlock(55, "redstone_wire", (new BlockRedstoneWire()).c(0.0F).a(e).setName("redstoneDust").J());
 		registerBlock(56, "diamond_ore", (new BlockOre()).c(3.0F).b(5.0F).a(i).setName("oreDiamond"));
@@ -93,22 +92,22 @@ public class Block {
 		registerBlock(59, "wheat", (new BlockCrops()).setName("crops"));
 		Block soil = (new BlockSoil()).c(0.6F).a(g).setName("farmland");
 		registerBlock(60, "farmland", soil);
-		registerBlock(61, "furnace", (new BlockFurnace(false)).c(3.5F).a(i).setName("furnace").a(CreativeModeTab.c));
+		registerBlock(61, "furnace", (new BlockFurnace(false)).c(3.5F).a(i).setName("furnace").a(CreativeModeTab.DECORATIONS));
 		registerBlock(62, "lit_furnace", (new BlockFurnace(true)).c(3.5F).a(i).a(0.875F).setName("furnace"));
 		registerBlock(63, "standing_sign", (new BlockStandingSign()).c(1.0F).a(f).setName("sign").J());
 		registerBlock(64, "wooden_door", (new BlockDoor(Material.WOOD)).c(3.0F).a(f).setName("doorOak").J());
 		registerBlock(65, "ladder", (new BlockLadder()).c(0.4F).a(o).setName("ladder"));
 		registerBlock(66, "rail", (new BlockMinecartTrack()).c(0.7F).a(j).setName("rail"));
-		registerBlock(67, "stone_stairs", (new BlockStairs(stoneBrick.P())).setName("stairsStone"));
+		registerBlock(67, "stone_stairs", (new BlockStairs(stoneBrick.getBlockState())).setName("stairsStone"));
 		registerBlock(68, "wall_sign", (new BlockWallSign()).c(1.0F).a(f).setName("sign").J());
 		registerBlock(69, "lever", (new BlockLever()).c(0.5F).a(f).setName("lever"));
 		registerBlock(70, "stone_pressure_plate", (new BlockPressurePlateBinary(Material.STONE, azh.b)).c(0.5F).a(i).setName("pressurePlateStone"));
 		registerBlock(71, "iron_door", (new BlockDoor(Material.ORE)).c(5.0F).a(j).setName("doorIron").J());
 		registerBlock(72, "wooden_pressure_plate", (new BlockPressurePlateBinary(Material.WOOD, azh.a)).c(0.5F).a(f).setName("pressurePlateWood"));
-		registerBlock(73, "redstone_ore", (new BlockRedstoneOre(false)).c(3.0F).b(5.0F).a(i).setName("oreRedstone").a(CreativeModeTab.b));
+		registerBlock(73, "redstone_ore", (new BlockRedstoneOre(false)).c(3.0F).b(5.0F).a(i).setName("oreRedstone").a(CreativeModeTab.BUILDING_BLOCKS));
 		registerBlock(74, "lit_redstone_ore", (new BlockRedstoneOre(true)).a(0.625F).c(3.0F).b(5.0F).a(i).setName("oreRedstone"));
 		registerBlock(75, "unlit_redstone_torch", (new BlockRedstoneTorch(false)).c(0.0F).a(f).setName("notGate"));
-		registerBlock(76, "redstone_torch", (new BlockRedstoneTorch(true)).c(0.0F).a(0.5F).a(f).setName("notGate").a(CreativeModeTab.d));
+		registerBlock(76, "redstone_torch", (new BlockRedstoneTorch(true)).c(0.0F).a(0.5F).a(f).setName("notGate").a(CreativeModeTab.REDSTONE));
 		registerBlock(77, "stone_button", (new BlockStoneButton()).c(0.5F).a(i).setName("button"));
 		registerBlock(78, "snow_layer", (new BlockSnow()).c(0.1F).a(n).setName("snow").e(0));
 		registerBlock(79, "ice", (new BlockIce()).c(0.5F).e(3).a(k).setName("ice"));
@@ -143,36 +142,36 @@ public class Block {
 		registerBlock(105, "melon_stem", (new BlockStem(melon)).c(0.0F).a(f).setName("pumpkinStem"));
 		registerBlock(106, "vine", (new BlockVine()).c(0.2F).a(h).setName("vine"));
 		registerBlock(107, "fence_gate", (new BlockFenceGate()).c(2.0F).b(5.0F).a(f).setName("fenceGate"));
-		registerBlock(108, "brick_stairs", (new BlockStairs(stone.P())).setName("stairsBrick"));
-		registerBlock(109, "stone_brick_stairs", (new BlockStairs(smoothbrick.P().a(BlockSmoothBrick.a, bbd.a))).setName("stairsStoneBrickSmooth"));
+		registerBlock(108, "brick_stairs", (new BlockStairs(stone.getBlockState())).setName("stairsBrick"));
+		registerBlock(109, "stone_brick_stairs", (new BlockStairs(smoothbrick.getBlockState().a(BlockSmoothBrick.a, bbd.a))).setName("stairsStoneBrickSmooth"));
 		registerBlock(110, "mycelium", (new BlockMycel()).c(0.6F).a(h).setName("mycel"));
 		registerBlock(111, "waterlily", (new BlockWaterLily()).c(0.0F).a(h).setName("waterlily"));
-		Block netherBrick = (new BlockNetherBrick()).c(2.0F).b(10.0F).a(i).setName("netherBrick").a(CreativeModeTab.b);
+		Block netherBrick = (new BlockNetherBrick()).c(2.0F).b(10.0F).a(i).setName("netherBrick").a(CreativeModeTab.BUILDING_BLOCKS);
 		registerBlock(112, "nether_brick", netherBrick);
 		registerBlock(113, "nether_brick_fence", (new BlockFence(Material.STONE)).c(2.0F).b(10.0F).a(i).setName("netherFence"));
-		registerBlock(114, "nether_brick_stairs", (new BlockStairs(netherBrick.P())).setName("stairsNetherBrick"));
+		registerBlock(114, "nether_brick_stairs", (new BlockStairs(netherBrick.getBlockState())).setName("stairsNetherBrick"));
 		registerBlock(115, "nether_wart", (new BlockNetherWart()).setName("netherStalk"));
 		registerBlock(116, "enchanting_table", (new BlockEnchantmentTable()).c(5.0F).b(2000.0F).setName("enchantmentTable"));
 		registerBlock(117, "brewing_stand", (new BlockBrewingStand()).c(0.5F).a(0.125F).setName("brewingStand"));
 		registerBlock(118, "cauldron", (new BlockCauldron()).c(2.0F).setName("cauldron"));
 		registerBlock(119, "end_portal", (new BlockEnderPortal(Material.PORTAL)).c(-1.0F).b(6000000.0F));
-		registerBlock(120, "end_portal_frame", (new BlockEnderPortalFrame()).a(k).a(0.125F).c(-1.0F).setName("endPortalFrame").b(6000000.0F).a(CreativeModeTab.c));
-		registerBlock(121, "end_stone", (new Block(Material.STONE)).c(3.0F).b(15.0F).a(i).setName("whiteStone").a(CreativeModeTab.b));
+		registerBlock(120, "end_portal_frame", (new BlockEnderPortalFrame()).a(k).a(0.125F).c(-1.0F).setName("endPortalFrame").b(6000000.0F).a(CreativeModeTab.DECORATIONS));
+		registerBlock(121, "end_stone", (new Block(Material.STONE)).c(3.0F).b(15.0F).a(i).setName("whiteStone").a(CreativeModeTab.BUILDING_BLOCKS));
 		registerBlock(122, "dragon_egg", (new BlockDragonEgg()).c(3.0F).b(15.0F).a(i).a(0.125F).setName("dragonEgg"));
-		registerBlock(123, "redstone_lamp", (new BlockRedstoneLamp(false)).c(0.3F).a(k).setName("redstoneLight").a(CreativeModeTab.d));
+		registerBlock(123, "redstone_lamp", (new BlockRedstoneLamp(false)).c(0.3F).a(k).setName("redstoneLight").a(CreativeModeTab.REDSTONE));
 		registerBlock(124, "lit_redstone_lamp", (new BlockRedstoneLamp(true)).c(0.3F).a(k).setName("redstoneLight"));
 		registerBlock(125, "double_wooden_slab", (new BlockDoubleWoodStep()).c(2.0F).b(5.0F).a(f).setName("woodSlab"));
 		registerBlock(126, "wooden_slab", (new BlockSingleWoodStep()).c(2.0F).b(5.0F).a(f).setName("woodSlab"));
 		registerBlock(127, "cocoa", (new BlockCocoa()).c(0.2F).b(5.0F).a(f).setName("cocoa"));
-		registerBlock(128, "sandstone_stairs", (new BlockStairs(sandStone.P().a(BlockSandStone.a, bae.c))).setName("stairsSandStone"));
+		registerBlock(128, "sandstone_stairs", (new BlockStairs(sandStone.getBlockState().a(BlockSandStone.a, bae.c))).setName("stairsSandStone"));
 		registerBlock(129, "emerald_ore", (new BlockOre()).c(3.0F).b(5.0F).a(i).setName("oreEmerald"));
 		registerBlock(130, "ender_chest", (new BlockEnderChest()).c(22.5F).b(1000.0F).a(i).setName("enderChest").a(0.5F));
 		registerBlock(131, "tripwire_hook", (new BlockTripwireHook()).setName("tripWireSource"));
 		registerBlock(132, "tripwire", (new BlockTripwire()).setName("tripWire"));
 		registerBlock(133, "emerald_block", (new BlockOreBlock(MaterialMapColor.I)).c(5.0F).b(10.0F).a(j).setName("blockEmerald"));
-		registerBlock(134, "spruce_stairs", (new BlockStairs(wood.P().a(BlockWood.a, ayx.b))).setName("stairsWoodSpruce"));
-		registerBlock(135, "birch_stairs", (new BlockStairs(wood.P().a(BlockWood.a, ayx.c))).setName("stairsWoodBirch"));
-		registerBlock(136, "jungle_stairs", (new BlockStairs(wood.P().a(BlockWood.a, ayx.d))).setName("stairsWoodJungle"));
+		registerBlock(134, "spruce_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, EnumWoodType.b))).setName("stairsWoodSpruce"));
+		registerBlock(135, "birch_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, EnumWoodType.c))).setName("stairsWoodBirch"));
+		registerBlock(136, "jungle_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, EnumWoodType.d))).setName("stairsWoodJungle"));
 		registerBlock(137, "command_block", (new BlockCommand()).v().b(6000000.0F).setName("commandBlock"));
 		registerBlock(138, "beacon", (new BlockBeacon()).setName("beacon").a(1.0F));
 		registerBlock(139, "cobblestone_wall", (new BlockCobbleWall(stoneBrick)).setName("cobbleWall"));
@@ -193,24 +192,24 @@ public class Block {
 		registerBlock(154, "hopper", (new BlockHopper()).c(3.0F).b(8.0F).a(j).setName("hopper"));
 		Block blockQuartz = (new BlockQuartz()).a(i).c(0.8F).setName("quartzBlock");
 		registerBlock(155, "quartz_block", blockQuartz);
-		registerBlock(156, "quartz_stairs", (new BlockStairs(blockQuartz.P().a(BlockQuartz.a, azn.a))).setName("stairsQuartz"));
+		registerBlock(156, "quartz_stairs", (new BlockStairs(blockQuartz.getBlockState().a(BlockQuartz.a, azn.a))).setName("stairsQuartz"));
 		registerBlock(157, "activator_rail", (new BlockPoweredRail()).c(0.7F).a(j).setName("activatorRail"));
 		registerBlock(158, "dropper", (new BlockDropper()).c(3.5F).a(i).setName("dropper"));
 		registerBlock(159, "stained_hardened_clay", (new BlockCloth(Material.STONE)).c(1.25F).b(7.0F).a(i).setName("clayHardenedStained"));
 		registerBlock(160, "stained_glass_pane", (new BlockStainedGlassPane()).c(0.3F).a(k).setName("thinStainedGlass"));
 		registerBlock(161, "leaves2", (new BlockLeaves2()).setName("leaves"));
 		registerBlock(162, "log2", (new BlockLog2()).setName("log"));
-		registerBlock(163, "acacia_stairs", (new BlockStairs(wood.P().a(BlockWood.a, ayx.e))).setName("stairsWoodAcacia"));
-		registerBlock(164, "dark_oak_stairs", (new BlockStairs(wood.P().a(BlockWood.a, ayx.f))).setName("stairsWoodDarkOak"));
+		registerBlock(163, "acacia_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, EnumWoodType.e))).setName("stairsWoodAcacia"));
+		registerBlock(164, "dark_oak_stairs", (new BlockStairs(wood.getBlockState().a(BlockWood.a, EnumWoodType.f))).setName("stairsWoodDarkOak"));
 		registerBlock(165, "slime", (new BlockSlime()).setName("slime").a(q));
 		registerBlock(166, "barrier", (new BlockBarrier()).setName("barrier"));
 		registerBlock(167, "iron_trapdoor", (new BlockTrapdoor(Material.ORE)).c(5.0F).a(j).setName("ironTrapdoor").J());
 		registerBlock(168, "prismarine", (new BlockPrismarine()).c(1.5F).b(10.0F).a(i).setName("prismarine"));
 		registerBlock(169, "sea_lantern", (new bah(Material.SHATTERABLE)).c(0.3F).a(k).a(1.0F).setName("seaLantern"));
-		registerBlock(170, "hay_block", (new BlockHay()).c(0.5F).a(h).setName("hayBlock").a(CreativeModeTab.b));
+		registerBlock(170, "hay_block", (new BlockHay()).c(0.5F).a(h).setName("hayBlock").a(CreativeModeTab.BUILDING_BLOCKS));
 		registerBlock(171, "carpet", (new BlockCarpet()).c(0.1F).a(l).setName("woolCarpet").e(0));
 		registerBlock(172, "hardened_clay", (new BlockHardenedClay()).c(1.25F).b(7.0F).a(i).setName("clayHardened"));
-		registerBlock(173, "coal_block", (new Block(Material.STONE)).c(5.0F).b(10.0F).a(i).setName("blockCoal").a(CreativeModeTab.b));
+		registerBlock(173, "coal_block", (new Block(Material.STONE)).c(5.0F).b(10.0F).a(i).setName("blockCoal").a(CreativeModeTab.BUILDING_BLOCKS));
 		registerBlock(174, "packed_ice", (new BlockPackedIce()).c(0.5F).a(k).setName("icePacked"));
 		registerBlock(175, "double_plant", new BlockTallPlant());
 		registerBlock(176, "standing_banner", (new BlockStandingBanner()).c(1.0F).a(f).setName("banner").J());
@@ -218,7 +217,7 @@ public class Block {
 		registerBlock(178, "daylight_detector_inverted", new BlockDaylightDetector(true));
 		Block redSandStone = (new BlockRedSandStone()).a(i).c(0.8F).setName("redSandStone");
 		registerBlock(179, "red_sandstone", redSandStone);
-		registerBlock(180, "red_sandstone_stairs", (new BlockStairs(redSandStone.P().a(BlockRedSandStone.a, azr.c))).setName("stairsRedSandStone"));
+		registerBlock(180, "red_sandstone_stairs", (new BlockStairs(redSandStone.getBlockState().a(BlockRedSandStone.a, azr.c))).setName("stairsRedSandStone"));
 		registerBlock(181, "double_stone_slab2", (new BlockDoubleStoneStep2()).c(2.0F).b(10.0F).a(i).setName("stoneSlab2"));
 		registerBlock(182, "stone_slab2", (new BlockSingleStoneStep2()).c(2.0F).b(10.0F).a(i).setName("stoneSlab2"));
 		registerBlock(183, "spruce_fence_gate", (new BlockFenceGate()).c(2.0F).b(5.0F).a(f).setName("spruceFenceGate"));
@@ -263,8 +262,8 @@ public class Block {
 		for (Object obj : BLOCKREGISTRY) {
 			Block block = (Block) obj;
 			for (Object becObj : block.O().a()) {
-				bec bec = (bec) becObj;
-				int id = BLOCKREGISTRY.getBlockId(block) << 4 | block.c(bec);
+				IBlockState bec = (IBlockState) becObj;
+				int id = BLOCKREGISTRY.getBlockId(block) << 4 | block.getData(bec);
 				IDREGISTRY.register(bec, id);
 			}
 		}
@@ -292,38 +291,38 @@ public class Block {
 	protected final Material material;
 	public float K;
 	protected final bed L;
-	private bec M;
+	private IBlockState blockState;
 	private String name;
 
-	public static int a(Block var0) {
-		return BLOCKREGISTRY.getBlockId(var0);
+	public static int getBlockId(Block block) {
+		return BLOCKREGISTRY.getBlockId(block);
 	}
 
-	public static int f(bec var0) {
-		return a(var0.getBlock()) + (var0.getBlock().c(var0) << 12);
+	public static int getStateId(IBlockState blockState) {
+		return getBlockId(blockState.getBlock()) + (blockState.getBlock().getData(blockState) << 12);
 	}
 
-	public static Block c(int var0) {
-		return (Block) BLOCKREGISTRY.getById(var0);
+	public static Block getBlockById(int blockId) {
+		return (Block) BLOCKREGISTRY.getById(blockId);
 	}
 
-	public static bec d(int var0) {
-		int var1 = var0 & 4095;
-		int var2 = var0 >> 12 & 15;
-		return c(var1).a(var2);
+	public static IBlockState getStateById(int stateId) {
+		int blockId = stateId & 4095;
+		int data = stateId >> 12 & 15;
+		return getBlockById(blockId).setData(data);
 	}
 
-	public static Block a(Item var0) {
-		return var0 instanceof aju ? ((aju) var0).d() : null;
+	public static Block getBlockByItem(Item item) {
+		return item instanceof ItemBlock ? ((ItemBlock) item).getBlock() : null;
 	}
 
-	public static Block b(String var0) {
-		BlockNameInfo var1 = new BlockNameInfo(var0);
+	public static Block getBlockByName(String name) {
+		RegistryObjectName var1 = new RegistryObjectName(name);
 		if (BLOCKREGISTRY.d(var1)) {
 			return (Block) BLOCKREGISTRY.getByName(var1);
 		} else {
 			try {
-				return (Block) BLOCKREGISTRY.getById(Integer.parseInt(var0));
+				return (Block) BLOCKREGISTRY.getById(Integer.parseInt(name));
 			} catch (NumberFormatException var3) {
 				return null;
 			}
@@ -346,27 +345,27 @@ public class Block {
 		return this.v;
 	}
 
-	public Material r() {
+	public Material getMaterial() {
 		return this.material;
 	}
 
-	public MaterialMapColor g(bec var1) {
-		return this.r().getMapColor();
+	public MaterialMapColor getMapColor(IBlockState var1) {
+		return this.getMaterial().getMapColor();
 	}
 
-	public bec a(int var1) {
-		return this.P();
+	public IBlockState setData(int data) {
+		return this.getBlockState();
 	}
 
-	public int c(bec var1) {
-		if (var1 != null && !var1.a().isEmpty()) {
-			throw new IllegalArgumentException("Don\'t know how to convert " + var1 + " back into data...");
+	public int getData(IBlockState blockState) {
+		if (blockState != null && !blockState.a().isEmpty()) {
+			throw new IllegalArgumentException("Don\'t know how to convert " + blockState + " back into data...");
 		} else {
 			return 0;
 		}
 	}
 
-	public bec a(bec var1, ard var2, Position var3) {
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		return var1;
 	}
 
@@ -380,7 +379,7 @@ public class Block {
 		this.s = this.c() ? 255 : 0;
 		this.t = !var1.blocksLight();
 		this.L = this.e();
-		this.j(this.L.b());
+		this.setBlockState(this.L.b());
 	}
 
 	protected Block a(BlockSound var1) {
@@ -454,7 +453,7 @@ public class Block {
 		return this;
 	}
 
-	public boolean w() {
+	public boolean isTicking() {
 		return this.z;
 	}
 
@@ -471,27 +470,27 @@ public class Block {
 		this.G = (double) var6;
 	}
 
-	public boolean b(ard var1, Position var2, PaintingDirection var3) {
-		return var1.p(var2).getBlock().r().isBuildable();
+	public boolean b(ard var1, Position var2, BlockFace var3) {
+		return var1.getBlockState(var2).getBlock().getMaterial().isBuildable();
 	}
 
-	public void a(World var1, Position var2, bec var3, brt var4, List<brt> var5, Entity var6) {
-		brt var7 = this.a(var1, var2, var3);
+	public void a(World var1, Position var2, IBlockState var3, AxisAlignedBB var4, List<AxisAlignedBB> var5, Entity var6) {
+		AxisAlignedBB var7 = this.a(var1, var2, var3);
 		if (var7 != null && var4.b(var7)) {
 			var5.add(var7);
 		}
 
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
-		return new brt((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G);
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
+		return new AxisAlignedBB((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G);
 	}
 
 	public boolean c() {
 		return true;
 	}
 
-	public boolean a(bec var1, boolean var2) {
+	public boolean a(IBlockState var1, boolean var2) {
 		return this.y();
 	}
 
@@ -499,34 +498,34 @@ public class Block {
 		return true;
 	}
 
-	public void a(World var1, Position var2, bec var3, Random var4) {
+	public void a(World var1, Position var2, IBlockState var3, Random var4) {
 		this.b(var1, var2, var3, var4);
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 	}
 
-	public void d(World var1, Position var2, bec var3) {
+	public void d(World var1, Position var2, IBlockState var3) {
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 	}
 
 	public int a(World var1) {
 		return 10;
 	}
 
-	public void c(World var1, Position var2, bec var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 	}
 
 	public int a(Random var1) {
 		return 1;
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
+	public Item a(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf(this);
 	}
 
@@ -535,12 +534,12 @@ public class Block {
 		return var4 < 0.0F ? 0.0F : (!var1.b(this) ? var1.a(this) / var4 / 100.0F : var1.a(this) / var4 / 30.0F);
 	}
 
-	public final void b(World var1, Position var2, bec var3, int var4) {
+	public final void b(World var1, Position var2, IBlockState var3, int var4) {
 		this.a(var1, var2, var3, 1.0F, var4);
 	}
 
-	public void a(World var1, Position var2, bec var3, float var4, int var5) {
-		if (!var1.D) {
+	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+		if (!var1.isStatic) {
 			int var6 = this.a(var5, var1.s);
 
 			for (int var7 = 0; var7 < var6; ++var7) {
@@ -556,29 +555,29 @@ public class Block {
 	}
 
 	public static void a(World var0, Position var1, ItemStack var2) {
-		if (!var0.D && var0.Q().b("doTileDrops")) {
+		if (!var0.isStatic && var0.getGameRules().b("doTileDrops")) {
 			float var3 = 0.5F;
 			double var4 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
 			double var6 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
 			double var8 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
 			EntityItem var10 = new EntityItem(var0, (double) var1.getX() + var4, (double) var1.getY() + var6, (double) var1.getZ() + var8, var2);
 			var10.p();
-			var0.d((Entity) var10);
+			var0.addEntity((Entity) var10);
 		}
 	}
 
 	protected void b(World var1, Position var2, int var3) {
-		if (!var1.D) {
+		if (!var1.isStatic) {
 			while (var3 > 0) {
 				int var4 = EntityExpirienceOrb.a(var3);
 				var3 -= var4;
-				var1.d((Entity) (new EntityExpirienceOrb(var1, (double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, var4)));
+				var1.addEntity((Entity) (new EntityExpirienceOrb(var1, (double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, var4)));
 			}
 		}
 
 	}
 
-	public int a(bec var1) {
+	public int a(IBlockState var1) {
 		return 0;
 	}
 
@@ -586,7 +585,7 @@ public class Block {
 		return this.x / 5.0F;
 	}
 
-	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
+	public MovingObjectPosition a(World var1, Position var2, Vec3D var3, Vec3D var4) {
 		this.a((ard) var1, var2);
 		var3 = var3.b((double) (-var2.getX()), (double) (-var2.getY()), (double) (-var2.getZ()));
 		var4 = var4.b((double) (-var2.getX()), (double) (-var2.getY()), (double) (-var2.getZ()));
@@ -648,32 +647,32 @@ public class Block {
 		if (var11 == null) {
 			return null;
 		} else {
-			PaintingDirection var12 = null;
+			BlockFace var12 = null;
 			if (var11 == var5) {
-				var12 = PaintingDirection.e;
+				var12 = BlockFace.WEST;
 			}
 
 			if (var11 == var6) {
-				var12 = PaintingDirection.f;
+				var12 = BlockFace.EAST;
 			}
 
 			if (var11 == var7) {
-				var12 = PaintingDirection.a;
+				var12 = BlockFace.DOWN;
 			}
 
 			if (var11 == var8) {
-				var12 = PaintingDirection.b;
+				var12 = BlockFace.UP;
 			}
 
 			if (var11 == var9) {
-				var12 = PaintingDirection.c;
+				var12 = BlockFace.NORTH;
 			}
 
 			if (var11 == var10) {
-				var12 = PaintingDirection.d;
+				var12 = BlockFace.SOUTH;
 			}
 
-			return new bru(var11.b((double) var2.getX(), (double) var2.getY(), (double) var2.getZ()), var12, var2);
+			return new MovingObjectPosition(var11.b((double) var2.getX(), (double) var2.getY(), (double) var2.getZ()), var12, var2);
 		}
 	}
 
@@ -689,30 +688,30 @@ public class Block {
 		return var1 == null ? false : var1.x >= this.B && var1.x <= this.E && var1.y >= this.C && var1.y <= this.F;
 	}
 
-	public void a(World var1, Position var2, aqo var3) {
+	public void a(World var1, Position var2, Explosion var3) {
 	}
 
-	public boolean a(World var1, Position var2, PaintingDirection var3, ItemStack var4) {
+	public boolean a(World var1, Position var2, BlockFace var3, ItemStack var4) {
 		return this.a(var1, var2, var3);
 	}
 
-	public boolean a(World var1, Position var2, PaintingDirection var3) {
+	public boolean a(World var1, Position var2, BlockFace var3) {
 		return this.c(var1, var2);
 	}
 
 	public boolean c(World var1, Position var2) {
-		return var1.p(var2).getBlock().material.j();
+		return var1.getBlockState(var2).getBlock().material.j();
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		return false;
 	}
 
 	public void a(World var1, Position var2, Entity var3) {
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return this.a(var7);
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		return this.setData(var7);
 	}
 
 	public void a(World var1, Position var2, EntityHuman var3) {
@@ -749,7 +748,7 @@ public class Block {
 		return this.G;
 	}
 
-	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return 0;
 	}
 
@@ -757,18 +756,18 @@ public class Block {
 		return false;
 	}
 
-	public void a(World var1, Position var2, bec var3, Entity var4) {
+	public void a(World var1, Position var2, IBlockState var3, Entity var4) {
 	}
 
-	public int b(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return 0;
 	}
 
 	public void h() {
 	}
 
-	public void a(World var1, EntityHuman var2, Position var3, bec var4, TileEntity var5) {
-		var2.b(StatisticList.H[a(this)]);
+	public void a(World var1, EntityHuman var2, Position var3, IBlockState var4, TileEntity var5) {
+		var2.b(StatisticList.MINE_BLOCK_COUNT[getBlockId(this)]);
 		var2.a(0.025F);
 		if (this.G() && aph.e(var2)) {
 			ItemStack var7 = this.i(var4);
@@ -786,11 +785,11 @@ public class Block {
 		return this.d() && !this.A;
 	}
 
-	protected ItemStack i(bec var1) {
+	protected ItemStack i(IBlockState var1) {
 		int var2 = 0;
 		Item var3 = Item.getItemOf(this);
 		if (var3 != null && var3.k()) {
-			var2 = this.c(var1);
+			var2 = this.getData(var1);
 		}
 
 		return new ItemStack(var3, 1, var2);
@@ -800,23 +799,23 @@ public class Block {
 		return this.a(var2);
 	}
 
-	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
+	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
 	}
 
-	public Block setName(String var1) {
-		this.name = var1;
+	public Block setName(String name) {
+		this.name = name;
 		return this;
 	}
 
-	public String H() {
-		return fi.a(this.a() + ".name");
+	public String getLocalizedName() {
+		return LocaleI18n.get(this.getName() + ".name");
 	}
 
-	public String a() {
+	public String getName() {
 		return "tile." + this.name;
 	}
 
-	public boolean a(World var1, Position var2, bec var3, int var4, int var5) {
+	public boolean a(World var1, Position var2, IBlockState var3, int var4, int var5) {
 		return false;
 	}
 
@@ -842,14 +841,14 @@ public class Block {
 	}
 
 	public int j(World var1, Position var2) {
-		return this.a(var1.p(var2));
+		return this.a(var1.getBlockState(var2));
 	}
 
 	public Block a(CreativeModeTab var1) {
 		return this;
 	}
 
-	public void a(World var1, Position var2, bec var3, EntityHuman var4) {
+	public void a(World var1, Position var2, IBlockState var3, EntityHuman var4) {
 	}
 
 	public void k(World var1, Position var2) {
@@ -859,7 +858,7 @@ public class Block {
 		return true;
 	}
 
-	public boolean a(aqo var1) {
+	public boolean a(Explosion var1) {
 		return true;
 	}
 
@@ -887,21 +886,21 @@ public class Block {
 		return this.L;
 	}
 
-	protected final void j(bec var1) {
-		this.M = var1;
+	protected final void setBlockState(IBlockState blockState) {
+		this.blockState = blockState;
 	}
 
-	public final bec P() {
-		return this.M;
+	public final IBlockState getBlockState() {
+		return this.blockState;
 	}
 
 
-	private static void registerBlock(int id, BlockNameInfo registeredBlock, Block block) {
+	private static void registerBlock(int id, RegistryObjectName registeredBlock, Block block) {
 		BLOCKREGISTRY.register(id, registeredBlock, block);
 	}
 
 	private static void registerBlock(int id, String blockName, Block var2) {
-		registerBlock(id, new BlockNameInfo(blockName), var2);
+		registerBlock(id, new RegistryObjectName(blockName), var2);
 	}
 
 }

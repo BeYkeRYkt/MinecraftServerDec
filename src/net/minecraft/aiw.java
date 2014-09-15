@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class aiw extends ajk {
+public class aiw extends Slot {
 
 	private EntityHuman a;
 	private int b;
@@ -15,8 +15,8 @@ public class aiw extends ajk {
 	}
 
 	public ItemStack a(int var1) {
-		if (this.e()) {
-			this.b += Math.min(var1, this.d().b);
+		if (this.hasItem()) {
+			this.b += Math.min(var1, this.getItemStack().amount);
 		}
 
 		return super.a(var1);
@@ -33,16 +33,16 @@ public class aiw extends ajk {
 	}
 
 	protected void c(ItemStack var1) {
-		var1.a(this.a.o, this.a, this.b);
-		if (!this.a.o.D) {
+		var1.a(this.a.world, this.a, this.b);
+		if (!this.a.world.isStatic) {
 			int var2 = this.b;
-			float var3 = aok.a().b(var1);
+			float var3 = RecipesFurnace.getInstance().b(var1);
 			int var4;
 			if (var3 == 0.0F) {
 				var2 = 0;
 			} else if (var3 < 1.0F) {
-				var4 = DataTypesConverter.d((float) var2 * var3);
-				if (var4 < DataTypesConverter.f((float) var2 * var3) && Math.random() < (double) ((float) var2 * var3 - (float) var4)) {
+				var4 = MathHelper.d((float) var2 * var3);
+				if (var4 < MathHelper.f((float) var2 * var3) && Math.random() < (double) ((float) var2 * var3 - (float) var4)) {
 					++var4;
 				}
 
@@ -52,17 +52,17 @@ public class aiw extends ajk {
 			while (var2 > 0) {
 				var4 = EntityExpirienceOrb.a(var2);
 				var2 -= var4;
-				this.a.o.d((Entity) (new EntityExpirienceOrb(this.a.o, this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ + 0.5D, var4)));
+				this.a.world.addEntity((Entity) (new EntityExpirienceOrb(this.a.world, this.a.locationX, this.a.locationY + 0.5D, this.a.locationZ + 0.5D, var4)));
 			}
 		}
 
 		this.b = 0;
-		if (var1.getItem() == amk.j) {
-			this.a.b((Statistic) tl.k);
+		if (var1.getItem() == Items.IRON_INGOT) {
+			this.a.b((Statistic) AchievementList.k);
 		}
 
-		if (var1.getItem() == amk.aV) {
-			this.a.b((Statistic) tl.p);
+		if (var1.getItem() == Items.COOKED_FISH) {
+			this.a.b((Statistic) AchievementList.p);
 		}
 
 	}

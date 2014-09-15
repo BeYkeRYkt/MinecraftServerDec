@@ -30,7 +30,7 @@ public class bpe extends bpa {
 				}
 
 				if (var10 != 0 && var11 >= 2 && (var11 - 2) % 29 == 1 && var10 < 128) {
-					if (arm.e(var10 + 128) != null) {
+					if (BiomeBase.e(var10 + 128) != null) {
 						var7[var9 + var8 * var3] = var10 + 128;
 					} else {
 						var7[var9 + var8 * var3] = var10;
@@ -40,49 +40,49 @@ public class bpe extends bpa {
 				} else {
 					int var13 = var10;
 					int var14;
-					if (var10 == arm.r.az) {
-						var13 = arm.G.az;
-					} else if (var10 == arm.t.az) {
-						var13 = arm.H.az;
-					} else if (var10 == arm.Q.az) {
-						var13 = arm.R.az;
-					} else if (var10 == arm.S.az) {
-						var13 = arm.q.az;
-					} else if (var10 == arm.u.az) {
-						var13 = arm.I.az;
-					} else if (var10 == arm.V.az) {
-						var13 = arm.W.az;
-					} else if (var10 == arm.T.az) {
-						var13 = arm.U.az;
-					} else if (var10 == arm.q.az) {
+					if (var10 == BiomeBase.DESERT.az) {
+						var13 = BiomeBase.DESERT_HILLS.az;
+					} else if (var10 == BiomeBase.FOREST.az) {
+						var13 = BiomeBase.FOREST_HILLS.az;
+					} else if (var10 == BiomeBase.BIRCH_FOREST.az) {
+						var13 = BiomeBase.BIRCH_FOREST_HILLS.az;
+					} else if (var10 == BiomeBase.ROOFED_FOREST.az) {
+						var13 = BiomeBase.PLAINS.az;
+					} else if (var10 == BiomeBase.TAIGA.az) {
+						var13 = BiomeBase.TAIGA_HILLS.az;
+					} else if (var10 == BiomeBase.MEGA_TAIGA.az) {
+						var13 = BiomeBase.MEGA_TAIGA_HILLS.az;
+					} else if (var10 == BiomeBase.COLD_TAIGA.az) {
+						var13 = BiomeBase.COLD_TAIGA_HILLS.az;
+					} else if (var10 == BiomeBase.PLAINS.az) {
 						if (this.a(3) == 0) {
-							var13 = arm.H.az;
+							var13 = BiomeBase.FOREST_HILLS.az;
 						} else {
-							var13 = arm.t.az;
+							var13 = BiomeBase.FOREST.az;
 						}
-					} else if (var10 == arm.B.az) {
-						var13 = arm.C.az;
-					} else if (var10 == arm.K.az) {
-						var13 = arm.L.az;
-					} else if (var10 == arm.p.az) {
-						var13 = arm.N.az;
-					} else if (var10 == arm.s.az) {
-						var13 = arm.X.az;
-					} else if (var10 == arm.Y.az) {
-						var13 = arm.Z.az;
-					} else if (a(var10, arm.ab.az)) {
-						var13 = arm.aa.az;
-					} else if (var10 == arm.N.az && this.a(3) == 0) {
+					} else if (var10 == BiomeBase.ICE_PLAINS.az) {
+						var13 = BiomeBase.ICE_MOUNTAINS.az;
+					} else if (var10 == BiomeBase.JUNGLE.az) {
+						var13 = BiomeBase.JUNGLE_HILLS.az;
+					} else if (var10 == BiomeBase.OCEAN.az) {
+						var13 = BiomeBase.DEEP_OCEAN.az;
+					} else if (var10 == BiomeBase.EXTREME_HILLS.az) {
+						var13 = BiomeBase.EXTREME_HILLS_PLUS.az;
+					} else if (var10 == BiomeBase.SAVANNA.az) {
+						var13 = BiomeBase.SAVANNA_PLATEAU.az;
+					} else if (a(var10, BiomeBase.MESA_PLATEAU_F.az)) {
+						var13 = BiomeBase.MESA.az;
+					} else if (var10 == BiomeBase.DEEP_OCEAN.az && this.a(3) == 0) {
 						var14 = this.a(2);
 						if (var14 == 0) {
-							var13 = arm.q.az;
+							var13 = BiomeBase.PLAINS.az;
 						} else {
-							var13 = arm.t.az;
+							var13 = BiomeBase.FOREST.az;
 						}
 					}
 
 					if (var12 && var13 != var10) {
-						if (arm.e(var13 + 128) != null) {
+						if (BiomeBase.e(var13 + 128) != null) {
 							var13 += 128;
 						} else {
 							var13 = var10;

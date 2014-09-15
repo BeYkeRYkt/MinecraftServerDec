@@ -16,7 +16,7 @@ class agu implements agw {
 		this.d = var4;
 	}
 
-	public void a(aqd var1, Random var2) {
+	public void a(MerchantRecipeList var1, Random var2) {
 		int var3 = 1;
 		if (this.b != null) {
 			var3 = this.b.a(var2);
@@ -27,6 +27,6 @@ class agu implements agw {
 			var4 = this.d.a(var2);
 		}
 
-		var1.add(new aqc(new ItemStack(this.a.getItem(), var3, this.a.i()), new ItemStack(amk.bO), new ItemStack(this.c.getItem(), var4, this.c.i())));
+		var1.add(new aqc(new ItemStack(this.a.getItem(), var3, this.a.getDurability()), new ItemStack(Items.EMERALD), new ItemStack(this.c.getItem(), var4, this.c.getDurability())));
 	}
 }

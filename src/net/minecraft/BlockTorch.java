@@ -9,12 +9,12 @@ public class BlockTorch extends Block {
 
 	protected BlockTorch() {
 		super(Material.ORIENTABLE);
-		this.j(this.L.b().a(a, PaintingDirection.b));
+		this.setBlockState(this.L.b().a(a, BlockFace.UP));
 		this.a(true);
-		this.a(CreativeModeTab.c);
+		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -30,66 +30,66 @@ public class BlockTorch extends Block {
 		if (World.a((ard) var1, var2)) {
 			return true;
 		} else {
-			Block var3 = var1.p(var2).getBlock();
-			return var3 instanceof BlockFence || var3 == aty.w || var3 == aty.bZ || var3 == aty.cG;
+			Block var3 = var1.getBlockState(var2).getBlock();
+			return var3 instanceof BlockFence || var3 == Blocks.GLASS || var3 == Blocks.COBBLESTONE_WALL || var3 == Blocks.STAINED_GLASS;
 		}
 	}
 
 	public boolean c(World var1, Position var2) {
 		Iterator var3 = a.c().iterator();
 
-		PaintingDirection var4;
+		BlockFace var4;
 		do {
 			if (!var3.hasNext()) {
 				return false;
 			}
 
-			var4 = (PaintingDirection) var3.next();
+			var4 = (BlockFace) var3.next();
 		} while (!this.b(var1, var2, var4));
 
 		return true;
 	}
 
-	private boolean b(World var1, Position var2, PaintingDirection var3) {
-		Position var4 = var2.a(var3.d());
+	private boolean b(World var1, Position var2, BlockFace var3) {
+		Position var4 = var2.a(var3.getOpposite());
 		boolean var5 = var3.k().c();
-		return var5 && var1.d(var4, true) || var3.equals(PaintingDirection.b) && this.d(var1, var4);
+		return var5 && var1.d(var4, true) || var3.equals(BlockFace.UP) && this.d(var1, var4);
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		if (this.b(var1, var2, var3)) {
-			return this.P().a(a, var3);
+			return this.getBlockState().a(a, var3);
 		} else {
 			Iterator var9 = en.a.iterator();
 
-			PaintingDirection var10;
+			BlockFace var10;
 			do {
 				if (!var9.hasNext()) {
-					return this.P();
+					return this.getBlockState();
 				}
 
-				var10 = (PaintingDirection) var9.next();
-			} while (!var1.d(var2.a(var10.d()), true));
+				var10 = (BlockFace) var9.next();
+			} while (!var1.d(var2.a(var10.getOpposite()), true));
 
-			return this.P().a(a, var10);
+			return this.getBlockState().a(a, var10);
 		}
 	}
 
-	public void c(World var1, Position var2, bec var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		this.f(var1, var2, var3);
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		this.e(var1, var2, var3);
 	}
 
-	protected boolean e(World var1, Position var2, bec var3) {
+	protected boolean e(World var1, Position var2, IBlockState var3) {
 		if (!this.f(var1, var2, var3)) {
 			return true;
 		} else {
-			PaintingDirection var4 = (PaintingDirection) var3.b(a);
+			BlockFace var4 = (BlockFace) var3.b(a);
 			el var5 = var4.k();
-			PaintingDirection var6 = var4.d();
+			BlockFace var6 = var4.getOpposite();
 			boolean var7 = false;
 			if (var5.c() && !var1.d(var2.a(var6), true)) {
 				var7 = true;
@@ -107,11 +107,11 @@ public class BlockTorch extends Block {
 		}
 	}
 
-	protected boolean f(World var1, Position var2, bec var3) {
-		if (var3.getBlock() == this && this.b(var1, var2, (PaintingDirection) var3.b(a))) {
+	protected boolean f(World var1, Position var2, IBlockState var3) {
+		if (var3.getBlock() == this && this.b(var1, var2, (BlockFace) var3.b(a))) {
 			return true;
 		} else {
-			if (var1.p(var2).getBlock() == this) {
+			if (var1.getBlockState(var2).getBlock() == this) {
 				this.b(var1, var2, var3, 0);
 				var1.g(var2);
 			}
@@ -120,16 +120,16 @@ public class BlockTorch extends Block {
 		}
 	}
 
-	public bru a(World var1, Position var2, Vec3D var3, Vec3D var4) {
-		PaintingDirection var5 = (PaintingDirection) var1.p(var2).b(a);
+	public MovingObjectPosition a(World var1, Position var2, Vec3D var3, Vec3D var4) {
+		BlockFace var5 = (BlockFace) var1.getBlockState(var2).b(a);
 		float var6 = 0.15F;
-		if (var5 == PaintingDirection.f) {
+		if (var5 == BlockFace.EAST) {
 			this.a(0.0F, 0.2F, 0.5F - var6, var6 * 2.0F, 0.8F, 0.5F + var6);
-		} else if (var5 == PaintingDirection.e) {
+		} else if (var5 == BlockFace.WEST) {
 			this.a(1.0F - var6 * 2.0F, 0.2F, 0.5F - var6, 1.0F, 0.8F, 0.5F + var6);
-		} else if (var5 == PaintingDirection.d) {
+		} else if (var5 == BlockFace.SOUTH) {
 			this.a(0.5F - var6, 0.2F, 0.0F, 0.5F + var6, 0.8F, var6 * 2.0F);
-		} else if (var5 == PaintingDirection.c) {
+		} else if (var5 == BlockFace.NORTH) {
 			this.a(0.5F - var6, 0.2F, 1.0F - var6 * 2.0F, 0.5F + var6, 0.8F, 1.0F);
 		} else {
 			var6 = 0.1F;
@@ -139,33 +139,33 @@ public class BlockTorch extends Block {
 		return super.a(var1, var2, var3, var4);
 	}
 
-	public bec a(int var1) {
-		bec var2 = this.P();
+	public IBlockState setData(int var1) {
+		IBlockState var2 = this.getBlockState();
 		switch (var1) {
 			case 1:
-				var2 = var2.a(a, PaintingDirection.f);
+				var2 = var2.a(a, BlockFace.EAST);
 				break;
 			case 2:
-				var2 = var2.a(a, PaintingDirection.e);
+				var2 = var2.a(a, BlockFace.WEST);
 				break;
 			case 3:
-				var2 = var2.a(a, PaintingDirection.d);
+				var2 = var2.a(a, BlockFace.SOUTH);
 				break;
 			case 4:
-				var2 = var2.a(a, PaintingDirection.c);
+				var2 = var2.a(a, BlockFace.NORTH);
 				break;
 			case 5:
 			default:
-				var2 = var2.a(a, PaintingDirection.b);
+				var2 = var2.a(a, BlockFace.UP);
 		}
 
 		return var2;
 	}
 
-	public int c(bec var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
 		int var3;
-		switch (bbn.a[((PaintingDirection) var1.b(a)).ordinal()]) {
+		switch (bbn.a[((BlockFace) var1.b(a)).ordinal()]) {
 			case 1:
 				var3 = var2 | 1;
 				break;

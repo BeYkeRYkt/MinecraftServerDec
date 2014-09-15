@@ -10,7 +10,7 @@ public class aut implements vv {
 		this.b = var2;
 	}
 
-	public String d_() {
+	public String getName() {
 		return null;
 	}
 
@@ -18,8 +18,8 @@ public class aut implements vv {
 		return false;
 	}
 
-	public IJSONComponent e_() {
-		return new hz(aty.ai.a() + ".name", new Object[0]);
+	public IChatBaseComponent getComponentName() {
+		return new ChatMessage(Blocks.CRAFTING_TABLE.getName() + ".name", new Object[0]);
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {

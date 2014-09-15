@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class yr extends zb {
+public class yr extends PathfinderGoal {
 
 	private EntityWolf a;
 	private EntityHuman b;
@@ -10,7 +10,7 @@ public class yr extends zb {
 
 	public yr(EntityWolf var1, float var2) {
 		this.a = var1;
-		this.c = var1.o;
+		this.c = var1.world;
 		this.d = var2;
 		this.a(2);
 	}
@@ -21,7 +21,7 @@ public class yr extends zb {
 	}
 
 	public boolean b() {
-		return !this.b.ai() ? false : (this.a.h(this.b) > (double) (this.d * this.d) ? false : this.e > 0 && this.a(this.b));
+		return !this.b.isAlive() ? false : (this.a.getDistanceSquared(this.b) > (double) (this.d * this.d) ? false : this.e > 0 && this.a(this.b));
 	}
 
 	public void c() {
@@ -35,12 +35,12 @@ public class yr extends zb {
 	}
 
 	public void e() {
-		this.a.p().a(this.b.locationX, this.b.locationY + (double) this.b.aR(), this.b.locationZ, 10.0F, (float) this.a.bP());
+		this.a.p().a(this.b.locationX, this.b.locationY + (double) this.b.getHeadHeight(), this.b.locationZ, 10.0F, (float) this.a.bP());
 		--this.e;
 	}
 
 	private boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		return var2 == null ? false : (!this.a.cj() && var2.getItem() == amk.aX ? true : this.a.d(var2));
+		return var2 == null ? false : (!this.a.cj() && var2.getItem() == Items.BONE ? true : this.a.d(var2));
 	}
 }

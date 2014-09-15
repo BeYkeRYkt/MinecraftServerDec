@@ -11,13 +11,13 @@ public abstract class aud extends Block {
 
 	protected aud(boolean var1) {
 		super(Material.ORIENTABLE);
-		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Boolean.valueOf(false)));
+		this.setBlockState(this.L.b().a(a, BlockFace.NORTH).a(b, Boolean.valueOf(false)));
 		this.a(true);
-		this.a(CreativeModeTab.d);
+		this.a(CreativeModeTab.REDSTONE);
 		this.M = var1;
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -33,17 +33,17 @@ public abstract class aud extends Block {
 		return false;
 	}
 
-	public boolean a(World var1, Position var2, PaintingDirection var3) {
-		return var1.p(var2.a(var3.d())).getBlock().t();
+	public boolean a(World var1, Position var2, BlockFace var3) {
+		return var1.getBlockState(var2.a(var3.getOpposite())).getBlock().t();
 	}
 
 	public boolean c(World var1, Position var2) {
-		PaintingDirection[] var3 = PaintingDirection.values();
+		BlockFace[] var3 = BlockFace.values();
 		int var4 = var3.length;
 
 		for (int var5 = 0; var5 < var4; ++var5) {
-			PaintingDirection var6 = var3[var5];
-			if (var1.p(var2.a(var6)).getBlock().t()) {
+			BlockFace var6 = var3[var5];
+			if (var1.getBlockState(var2.a(var6)).getBlock().t()) {
 				return true;
 			}
 		}
@@ -51,14 +51,14 @@ public abstract class aud extends Block {
 		return false;
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return var1.p(var2.a(var3.d())).getBlock().t() ? this.P().a(a, var3).a(b, Boolean.valueOf(false)) : this.P().a(a, PaintingDirection.a).a(b, Boolean.valueOf(false));
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		return var1.getBlockState(var2.a(var3.getOpposite())).getBlock().t() ? this.getBlockState().a(a, var3).a(b, Boolean.valueOf(false)) : this.getBlockState().a(a, BlockFace.DOWN).a(b, Boolean.valueOf(false));
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (this.e(var1, var2, var3)) {
-			PaintingDirection var5 = (PaintingDirection) var3.b(a);
-			if (!var1.p(var2.a(var5.d())).getBlock().t()) {
+			BlockFace var5 = (BlockFace) var3.b(a);
+			if (!var1.getBlockState(var2.a(var5.getOpposite())).getBlock().t()) {
 				this.b(var1, var2, var3, 0);
 				var1.g(var2);
 			}
@@ -66,7 +66,7 @@ public abstract class aud extends Block {
 
 	}
 
-	private boolean e(World var1, Position var2, bec var3) {
+	private boolean e(World var1, Position var2, IBlockState var3) {
 		if (!this.c(var1, var2)) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -77,11 +77,11 @@ public abstract class aud extends Block {
 	}
 
 	public void a(ard var1, Position var2) {
-		this.d(var1.p(var2));
+		this.d(var1.getBlockState(var2));
 	}
 
-	private void d(bec var1) {
-		PaintingDirection var2 = (PaintingDirection) var1.b(a);
+	private void d(IBlockState var1) {
+		BlockFace var2 = (BlockFace) var1.b(a);
 		boolean var3 = ((Boolean) var1.b(b)).booleanValue();
 		float var4 = 0.25F;
 		float var5 = 0.375F;
@@ -110,32 +110,32 @@ public abstract class aud extends Block {
 
 	}
 
-	public boolean a(World var1, Position var2, bec var3, EntityHuman var4, PaintingDirection var5, float var6, float var7, float var8) {
+	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (((Boolean) var3.b(b)).booleanValue()) {
 			return true;
 		} else {
-			var1.a(var2, var3.a(b, Boolean.valueOf(true)), 3);
+			var1.setBlockAt(var2, var3.a(b, Boolean.valueOf(true)), 3);
 			var1.b(var2, var2);
-			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
-			this.b(var1, var2, (PaintingDirection) var3.b(a));
+			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
+			this.b(var1, var2, (BlockFace) var3.b(a));
 			var1.a(var2, (Block) this, this.a(var1));
 			return true;
 		}
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		if (((Boolean) var3.b(b)).booleanValue()) {
-			this.b(var1, var2, (PaintingDirection) var3.b(a));
+			this.b(var1, var2, (BlockFace) var3.b(a));
 		}
 
 		super.b(var1, var2, var3);
 	}
 
-	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return ((Boolean) var3.b(b)).booleanValue() ? 15 : 0;
 	}
 
-	public int b(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return !((Boolean) var3.b(b)).booleanValue() ? 0 : (var3.b(a) == var4 ? 15 : 0);
 	}
 
@@ -143,18 +143,18 @@ public abstract class aud extends Block {
 		return true;
 	}
 
-	public void a(World var1, Position var2, bec var3, Random var4) {
+	public void a(World var1, Position var2, IBlockState var3, Random var4) {
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
-		if (!var1.D) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
+		if (!var1.isStatic) {
 			if (((Boolean) var3.b(b)).booleanValue()) {
 				if (this.M) {
 					this.f(var1, var2, var3);
 				} else {
 					var1.a(var2, var3.a(b, Boolean.valueOf(false)));
-					this.b(var1, var2, (PaintingDirection) var3.b(a));
-					var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.5F);
+					this.b(var1, var2, (BlockFace) var3.b(a));
+					var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.5F);
 					var1.b(var2, var2);
 				}
 
@@ -169,8 +169,8 @@ public abstract class aud extends Block {
 		this.a(0.5F - var1, 0.5F - var2, 0.5F - var3, 0.5F + var1, 0.5F + var2, 0.5F + var3);
 	}
 
-	public void a(World var1, Position var2, bec var3, Entity var4) {
-		if (!var1.D) {
+	public void a(World var1, Position var2, IBlockState var3, Entity var4) {
+		if (!var1.isStatic) {
 			if (this.M) {
 				if (!((Boolean) var3.b(b)).booleanValue()) {
 					this.f(var1, var2, var3);
@@ -179,23 +179,23 @@ public abstract class aud extends Block {
 		}
 	}
 
-	private void f(World var1, Position var2, bec var3) {
+	private void f(World var1, Position var2, IBlockState var3) {
 		this.d(var3);
-		List var4 = var1.a(EntityArrow.class, new brt((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G));
+		List var4 = var1.a(EntityArrow.class, new AxisAlignedBB((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G));
 		boolean var5 = !var4.isEmpty();
 		boolean var6 = ((Boolean) var3.b(b)).booleanValue();
 		if (var5 && !var6) {
 			var1.a(var2, var3.a(b, Boolean.valueOf(true)));
-			this.b(var1, var2, (PaintingDirection) var3.b(a));
+			this.b(var1, var2, (BlockFace) var3.b(a));
 			var1.b(var2, var2);
-			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
+			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
 		}
 
 		if (!var5 && var6) {
 			var1.a(var2, var3.a(b, Boolean.valueOf(false)));
-			this.b(var1, var2, (PaintingDirection) var3.b(a));
+			this.b(var1, var2, (BlockFace) var3.b(a));
 			var1.b(var2, var2);
-			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.5F);
+			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, 0.5F);
 		}
 
 		if (var5) {
@@ -204,40 +204,40 @@ public abstract class aud extends Block {
 
 	}
 
-	private void b(World var1, Position var2, PaintingDirection var3) {
+	private void b(World var1, Position var2, BlockFace var3) {
 		var1.c(var2, (Block) this);
-		var1.c(var2.a(var3.d()), (Block) this);
+		var1.c(var2.a(var3.getOpposite()), (Block) this);
 	}
 
-	public bec a(int var1) {
-		PaintingDirection var2;
+	public IBlockState setData(int var1) {
+		BlockFace var2;
 		switch (var1 & 7) {
 			case 0:
-				var2 = PaintingDirection.a;
+				var2 = BlockFace.DOWN;
 				break;
 			case 1:
-				var2 = PaintingDirection.f;
+				var2 = BlockFace.EAST;
 				break;
 			case 2:
-				var2 = PaintingDirection.e;
+				var2 = BlockFace.WEST;
 				break;
 			case 3:
-				var2 = PaintingDirection.d;
+				var2 = BlockFace.SOUTH;
 				break;
 			case 4:
-				var2 = PaintingDirection.c;
+				var2 = BlockFace.NORTH;
 				break;
 			case 5:
 			default:
-				var2 = PaintingDirection.b;
+				var2 = BlockFace.UP;
 		}
 
-		return this.P().a(a, var2).a(b, Boolean.valueOf((var1 & 8) > 0));
+		return this.getBlockState().a(a, var2).a(b, Boolean.valueOf((var1 & 8) > 0));
 	}
 
-	public int c(bec var1) {
+	public int getData(IBlockState var1) {
 		int var2;
-		switch (aue.a[((PaintingDirection) var1.b(a)).ordinal()]) {
+		switch (aue.a[((BlockFace) var1.b(a)).ordinal()]) {
 			case 1:
 				var2 = 1;
 				break;

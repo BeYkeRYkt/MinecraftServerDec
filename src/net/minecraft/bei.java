@@ -6,7 +6,7 @@ public class bei {
 
 	private final World a;
 	private final Position b;
-	private bec c;
+	private IBlockState c;
 	private TileEntity d;
 	private boolean e;
 
@@ -15,9 +15,9 @@ public class bei {
 		this.b = var2;
 	}
 
-	public bec a() {
-		if (this.c == null && this.a.e(this.b)) {
-			this.c = this.a.p(this.b);
+	public IBlockState a() {
+		if (this.c == null && this.a.isLoaded(this.b)) {
+			this.c = this.a.getBlockState(this.b);
 		}
 
 		return this.c;
@@ -25,7 +25,7 @@ public class bei {
 
 	public TileEntity b() {
 		if (this.d == null && !this.e) {
-			this.d = this.a.s(this.b);
+			this.d = this.a.getTileEntity(this.b);
 			this.e = true;
 		}
 

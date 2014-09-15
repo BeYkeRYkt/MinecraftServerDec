@@ -13,7 +13,7 @@ public class PublishCommand extends AbstractCommand {
 	}
 
 	public void executeCommand(CommandSenderInterface var1, String[] var2) {
-		String var3 = MinecraftServer.getInstance().a(GameMode.SURVIVAL, false);
+		String var3 = MinecraftServer.getInstance().a(EnumGameMode.SURVIVAL, false);
 		if (var3 != null) {
 			a(var1, this, "commands.publish.started", new Object[] { var3 });
 		} else {

@@ -3,11 +3,11 @@ package net.minecraft;
 public class BlockWallBanner extends atb {
 
 	public BlockWallBanner() {
-		this.j(this.L.b().a(a, PaintingDirection.c));
+		this.setBlockState(this.L.b().a(a, BlockFace.NORTH));
 	}
 
 	public void a(ard var1, Position var2) {
-		PaintingDirection var3 = (PaintingDirection) var1.p(var2).b(a);
+		BlockFace var3 = (BlockFace) var1.getBlockState(var2).b(a);
 		float var4 = 0.0F;
 		float var5 = 0.78125F;
 		float var6 = 0.0F;
@@ -31,9 +31,9 @@ public class BlockWallBanner extends atb {
 
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
-		PaintingDirection var5 = (PaintingDirection) var3.b(a);
-		if (!var1.p(var2.a(var5.d())).getBlock().r().isBuildable()) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
+		BlockFace var5 = (BlockFace) var3.b(a);
+		if (!var1.getBlockState(var2.a(var5.getOpposite())).getBlock().getMaterial().isBuildable()) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
 		}
@@ -41,17 +41,17 @@ public class BlockWallBanner extends atb {
 		super.a(var1, var2, var3, var4);
 	}
 
-	public bec a(int var1) {
-		PaintingDirection var2 = PaintingDirection.a(var1);
+	public IBlockState setData(int var1) {
+		BlockFace var2 = BlockFace.getById(var1);
 		if (var2.k() == el.b) {
-			var2 = PaintingDirection.c;
+			var2 = BlockFace.NORTH;
 		}
 
-		return this.P().a(a, var2);
+		return this.getBlockState().a(a, var2);
 	}
 
-	public int c(bec var1) {
-		return ((PaintingDirection) var1.b(a)).a();
+	public int getData(IBlockState var1) {
+		return ((BlockFace) var1.b(a)).getId();
 	}
 
 	protected bed e() {

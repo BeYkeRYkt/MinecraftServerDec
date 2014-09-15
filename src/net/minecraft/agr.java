@@ -12,12 +12,12 @@ class agr implements agw {
 		this.b = var2;
 	}
 
-	public void a(aqd var1, Random var2) {
+	public void a(MerchantRecipeList var1, Random var2) {
 		int var3 = 1;
 		if (this.b != null) {
 			var3 = this.b.a(var2);
 		}
 
-		var1.add(new aqc(new ItemStack(this.a, var3, 0), amk.bO));
+		var1.add(new aqc(new ItemStack(this.a, var3, 0), Items.EMERALD));
 	}
 }

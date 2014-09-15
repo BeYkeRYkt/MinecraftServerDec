@@ -40,7 +40,7 @@ public class EntityItem extends Entity {
 		this.e = 5;
 		this.a = (float) (Math.random() * 3.141592653589793D * 2.0D);
 		this.a(0.25F, 0.25F);
-		this.a(new ItemStack(aty.a, 0));
+		this.a(new ItemStack(Blocks.AIR, 0));
 	}
 
 	protected void h() {
@@ -49,36 +49,36 @@ public class EntityItem extends Entity {
 
 	public void s_() {
 		if (this.l() == null) {
-			this.J();
+			this.die();
 		} else {
 			super.s_();
 			if (this.d > 0 && this.d != 32767) {
 				--this.d;
 			}
 
-			this.p = this.locationX;
-			this.q = this.locationY;
-			this.r = this.locationZ;
+			this.previousX = this.locationX;
+			this.previousY = this.locationY;
+			this.previousZ = this.locationZ;
 			this.motionY -= 0.03999999910593033D;
-			this.T = this.j(this.locationX, (this.aQ().b + this.aQ().e) / 2.0D, this.locationZ);
-			this.d(this.motionX, this.motionY, this.motionZ);
-			boolean var1 = (int) this.p != (int) this.locationX || (int) this.q != (int) this.locationY || (int) this.r != (int) this.locationZ;
-			if (var1 || this.W % 25 == 0) {
-				if (this.o.p(new Position(this)).getBlock().r() == Material.LAVA) {
+			this.T = this.j(this.locationX, (this.getBoundingBox().minY + this.getBoundingBox().maxY) / 2.0D, this.locationZ);
+			this.move(this.motionX, this.motionY, this.motionZ);
+			boolean var1 = (int) this.previousX != (int) this.locationX || (int) this.previousY != (int) this.locationY || (int) this.previousZ != (int) this.locationZ;
+			if (var1 || this.ticksLived % 25 == 0) {
+				if (this.world.getBlockState(new Position(this)).getBlock().getMaterial() == Material.LAVA) {
 					this.motionY = 0.20000000298023224D;
-					this.motionX = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
-					this.motionZ = (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F);
-					this.a("random.fizz", 0.4F, 2.0F + this.V.nextFloat() * 0.4F);
+					this.motionX = (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+					this.motionZ = (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+					this.a("random.fizz", 0.4F, 2.0F + this.random.nextFloat() * 0.4F);
 				}
 
-				if (!this.o.D) {
+				if (!this.world.isStatic) {
 					this.w();
 				}
 			}
 
 			float var2 = 0.98F;
 			if (this.onGround) {
-				var2 = this.o.p(new Position(DataTypesConverter.toFixedPointInt(this.locationX), DataTypesConverter.toFixedPointInt(this.aQ().b) - 1, DataTypesConverter.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
+				var2 = this.world.getBlockState(new Position(MathHelper.toFixedPointInt(this.locationX), MathHelper.toFixedPointInt(this.getBoundingBox().minY) - 1, MathHelper.toFixedPointInt(this.locationZ))).getBlock().K * 0.98F;
 			}
 
 			this.motionX *= (double) var2;
@@ -93,15 +93,15 @@ public class EntityItem extends Entity {
 			}
 
 			this.W();
-			if (!this.o.D && this.c >= 6000) {
-				this.J();
+			if (!this.world.isStatic && this.c >= 6000) {
+				this.die();
 			}
 
 		}
 	}
 
 	private void w() {
-		Iterator var1 = this.o.a(EntityItem.class, this.aQ().b(0.5D, 0.0D, 0.5D)).iterator();
+		Iterator var1 = this.world.a(EntityItem.class, this.getBoundingBox().grow(0.5D, 0.0D, 0.5D)).iterator();
 
 		while (var1.hasNext()) {
 			EntityItem var2 = (EntityItem) var1.next();
@@ -113,7 +113,7 @@ public class EntityItem extends Entity {
 	private boolean a(EntityItem var1) {
 		if (var1 == this) {
 			return false;
-		} else if (var1.ai() && this.ai()) {
+		} else if (var1.isAlive() && this.isAlive()) {
 			ItemStack var2 = this.l();
 			ItemStack var3 = var1.l();
 			if (this.d != 32767 && var1.d != 32767) {
@@ -126,18 +126,18 @@ public class EntityItem extends Entity {
 						return false;
 					} else if (var3.getItem() == null) {
 						return false;
-					} else if (var3.getItem().k() && var3.i() != var2.i()) {
+					} else if (var3.getItem().k() && var3.getDurability() != var2.getDurability()) {
 						return false;
-					} else if (var3.b < var2.b) {
+					} else if (var3.amount < var2.amount) {
 						return var1.a(this);
-					} else if (var3.b + var2.b > var3.c()) {
+					} else if (var3.amount + var2.amount > var3.getMaxStackSize()) {
 						return false;
 					} else {
-						var3.b += var2.b;
+						var3.amount += var2.amount;
 						var1.d = Math.max(var1.d, this.d);
 						var1.c = Math.min(var1.c, this.c);
 						var1.a(var3);
-						this.J();
+						this.die();
 						return true;
 					}
 				} else {
@@ -156,33 +156,33 @@ public class EntityItem extends Entity {
 	}
 
 	public boolean W() {
-		if (this.o.a(this.aQ(), Material.WATER, (Entity) this)) {
-			if (!this.Y && !this.aa) {
+		if (this.world.a(this.getBoundingBox(), Material.WATER, (Entity) this)) {
+			if (!this.inWater && !this.justCreated) {
 				this.X();
 			}
 
-			this.Y = true;
+			this.inWater = true;
 		} else {
-			this.Y = false;
+			this.inWater = false;
 		}
 
-		return this.Y;
+		return this.inWater;
 	}
 
 	protected void f(int var1) {
-		this.a(wh.a, (float) var1);
+		this.damageEntity(DamageSource.FIRE, (float) var1);
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
-		} else if (this.l() != null && this.l().getItem() == amk.bZ && var1.c()) {
+		} else if (this.l() != null && this.l().getItem() == Items.NETHER_STAR && var1.c()) {
 			return false;
 		} else {
 			this.ac();
 			this.e = (int) ((float) this.e - var2);
 			if (this.e <= 0) {
-				this.J();
+				this.die();
 			}
 
 			return false;
@@ -202,7 +202,7 @@ public class EntityItem extends Entity {
 		}
 
 		if (this.l() != null) {
-			var1.put("Item", (NBTTag) this.l().b(new NBTCompoundTag()));
+			var1.put("Item", (NBTTag) this.l().write(new NBTCompoundTag()));
 		}
 
 	}
@@ -225,58 +225,58 @@ public class EntityItem extends Entity {
 		NBTCompoundTag var2 = var1.getCompound("Item");
 		this.a(ItemStack.a(var2));
 		if (this.l() == null) {
-			this.J();
+			this.die();
 		}
 
 	}
 
 	public void d(EntityHuman var1) {
-		if (!this.o.D) {
+		if (!this.world.isStatic) {
 			ItemStack var2 = this.l();
-			int var3 = var2.b;
-			if (this.d == 0 && (this.g == null || 6000 - this.c <= 200 || this.g.equals(var1.d_())) && var1.playerInventory.a(var2)) {
-				if (var2.getItem() == Item.getItemOf(aty.r)) {
-					var1.b((Statistic) tl.g);
+			int var3 = var2.amount;
+			if (this.d == 0 && (this.g == null || 6000 - this.c <= 200 || this.g.equals(var1.getName())) && var1.playerInventory.a(var2)) {
+				if (var2.getItem() == Item.getItemOf(Blocks.LOG)) {
+					var1.b((Statistic) AchievementList.g);
 				}
 
-				if (var2.getItem() == Item.getItemOf(aty.s)) {
-					var1.b((Statistic) tl.g);
+				if (var2.getItem() == Item.getItemOf(Blocks.LOG2)) {
+					var1.b((Statistic) AchievementList.g);
 				}
 
-				if (var2.getItem() == amk.aF) {
-					var1.b((Statistic) tl.t);
+				if (var2.getItem() == Items.LEATHER) {
+					var1.b((Statistic) AchievementList.t);
 				}
 
-				if (var2.getItem() == amk.i) {
-					var1.b((Statistic) tl.w);
+				if (var2.getItem() == Items.DIAMOND) {
+					var1.b((Statistic) AchievementList.w);
 				}
 
-				if (var2.getItem() == amk.bv) {
-					var1.b((Statistic) tl.A);
+				if (var2.getItem() == Items.BLAZE_ROD) {
+					var1.b((Statistic) AchievementList.A);
 				}
 
-				if (var2.getItem() == amk.i && this.n() != null) {
-					EntityHuman var4 = this.o.a(this.n());
+				if (var2.getItem() == Items.DIAMOND && this.n() != null) {
+					EntityHuman var4 = this.world.a(this.n());
 					if (var4 != null && var4 != var1) {
-						var4.b((Statistic) tl.x);
+						var4.b((Statistic) AchievementList.x);
 					}
 				}
 
-				if (!this.R()) {
-					this.o.a((Entity) var1, "random.pop", 0.2F, ((this.V.nextFloat() - this.V.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+				if (!this.isSilent()) {
+					this.world.a((Entity) var1, "random.pop", 0.2F, ((this.random.nextFloat() - this.random.nextFloat()) * 0.7F + 1.0F) * 2.0F);
 				}
 
 				var1.a((Entity) this, var3);
-				if (var2.b <= 0) {
-					this.J();
+				if (var2.amount <= 0) {
+					this.die();
 				}
 			}
 
 		}
 	}
 
-	public String d_() {
-		return this.k_() ? this.aL() : fi.a("item." + this.l().a());
+	public String getName() {
+		return this.k_() ? this.getCustomName() : LocaleI18n.get("item." + this.l().a());
 	}
 
 	public boolean aE() {
@@ -285,7 +285,7 @@ public class EntityItem extends Entity {
 
 	public void c(int var1) {
 		super.c(var1);
-		if (!this.o.D) {
+		if (!this.world.isStatic) {
 			this.w();
 		}
 
@@ -294,11 +294,11 @@ public class EntityItem extends Entity {
 	public ItemStack l() {
 		ItemStack var1 = this.getDataWatcher().f(10);
 		if (var1 == null) {
-			if (this.o != null) {
+			if (this.world != null) {
 				b.error("Item entity " + this.getId() + " has no item?!");
 			}
 
-			return new ItemStack(aty.b);
+			return new ItemStack(Blocks.STONE);
 		} else {
 			return var1;
 		}

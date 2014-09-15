@@ -2,7 +2,7 @@ package net.minecraft;
 
 public interface bdd extends IInventory {
 
-	World z();
+	World getPrimaryWorld();
 
 	double A();
 

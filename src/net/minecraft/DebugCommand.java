@@ -39,7 +39,7 @@ public class DebugCommand extends AbstractCommand {
 				a(var1, this, "commands.debug.start", new Object[0]);
 				MinecraftServer.getInstance().as();
 				this.b = MinecraftServer.getCurrentMillis();
-				this.c = MinecraftServer.getInstance().ar();
+				this.c = MinecraftServer.getInstance().getTicks();
 			} else if (var2[0].equals("stop")) {
 				if (var2.length != 1) {
 					throw new dp("commands.debug.usage", new Object[0]);
@@ -50,7 +50,7 @@ public class DebugCommand extends AbstractCommand {
 				}
 
 				long var3 = MinecraftServer.getCurrentMillis();
-				int var5 = MinecraftServer.getInstance().ar();
+				int var5 = MinecraftServer.getInstance().getTicks();
 				long var6 = var3 - this.b;
 				int var8 = var5 - this.c;
 				this.a(var6, var8);

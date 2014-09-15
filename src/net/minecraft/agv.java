@@ -17,7 +17,7 @@ class agv implements agw {
 		this.b = var2;
 	}
 
-	public void a(aqd var1, Random var2) {
+	public void a(MerchantRecipeList var1, Random var2) {
 		int var3 = 1;
 		if (this.b != null) {
 			var3 = this.b.a(var2);
@@ -26,11 +26,11 @@ class agv implements agw {
 		ItemStack var4;
 		ItemStack var5;
 		if (var3 < 0) {
-			var4 = new ItemStack(amk.bO, 1, 0);
-			var5 = new ItemStack(this.a.getItem(), -var3, this.a.i());
+			var4 = new ItemStack(Items.EMERALD, 1, 0);
+			var5 = new ItemStack(this.a.getItem(), -var3, this.a.getDurability());
 		} else {
-			var4 = new ItemStack(amk.bO, var3, 0);
-			var5 = new ItemStack(this.a.getItem(), 1, this.a.i());
+			var4 = new ItemStack(Items.EMERALD, var3, 0);
+			var5 = new ItemStack(this.a.getItem(), 1, this.a.getDurability());
 		}
 
 		var1.add(new aqc(var4, var5));

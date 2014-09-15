@@ -23,7 +23,7 @@ public class TestforBlockCommand extends AbstractCommand {
 		} else {
 			var1.a(ag.b, 0);
 			Position var3 = a(var1, var2, 0, false);
-			Block var4 = Block.b(var2[3]);
+			Block var4 = Block.getBlockByName(var2[3]);
 			if (var4 == null) {
 				throw new dk("commands.setblock.notFound", new Object[] { var2[3] });
 			} else {
@@ -32,14 +32,14 @@ public class TestforBlockCommand extends AbstractCommand {
 					var5 = a(var2[4], -1, 15);
 				}
 
-				World var6 = var1.e();
-				if (!var6.e(var3)) {
+				World var6 = var1.getPrimaryWorld();
+				if (!var6.isLoaded(var3)) {
 					throw new di("commands.testforblock.outOfWorld", new Object[0]);
 				} else {
 					NBTCompoundTag var7 = new NBTCompoundTag();
 					boolean var8 = false;
 					if (var2.length >= 6 && var4.x()) {
-						String var9 = a(var1, var2, 5).c();
+						String var9 = a(var1, var2, 5).getStrippedMessage();
 
 						try {
 							var7 = gg.a(var9);
@@ -49,20 +49,20 @@ public class TestforBlockCommand extends AbstractCommand {
 						}
 					}
 
-					bec var14 = var6.p(var3);
+					IBlockState var14 = var6.getBlockState(var3);
 					Block var10 = var14.getBlock();
 					if (var10 != var4) {
-						throw new di("commands.testforblock.failed.tile", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()), var10.H(), var4.H() });
+						throw new di("commands.testforblock.failed.tile", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()), var10.getLocalizedName(), var4.getLocalizedName() });
 					} else {
 						if (var5 > -1) {
-							int var11 = var14.getBlock().c(var14);
+							int var11 = var14.getBlock().getData(var14);
 							if (var11 != var5) {
 								throw new di("commands.testforblock.failed.data", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()), Integer.valueOf(var11), Integer.valueOf(var5) });
 							}
 						}
 
 						if (var8) {
-							TileEntity var15 = var6.s(var3);
+							TileEntity var15 = var6.getTileEntity(var3);
 							if (var15 == null) {
 								throw new di("commands.testforblock.failed.tileEntity", new Object[] { Integer.valueOf(var3.getX()), Integer.valueOf(var3.getY()), Integer.valueOf(var3.getZ()) });
 							}

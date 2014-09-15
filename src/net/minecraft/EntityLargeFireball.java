@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntityLargeFireball extends ahl {
+public class EntityLargeFireball extends EntityFireball {
 
 	public int e = 1;
 
@@ -12,16 +12,16 @@ public class EntityLargeFireball extends ahl {
 		super(var1, var2, var3, var5, var7);
 	}
 
-	protected void a(bru var1) {
-		if (!this.o.D) {
-			if (var1.d != null) {
-				var1.d.a(wh.a((ahl) this, this.a), 6.0F);
-				this.a(this.a, var1.d);
+	protected void a(MovingObjectPosition var1) {
+		if (!this.world.isStatic) {
+			if (var1.entity != null) {
+				var1.entity.damageEntity(DamageSource.fireball((EntityFireball) this, this.a), 6.0F);
+				this.a(this.a, var1.entity);
 			}
 
-			boolean var2 = this.o.Q().b("mobGriefing");
-			this.o.a((Entity) null, this.locationX, this.locationY, this.locationZ, (float) this.e, var2, var2);
-			this.J();
+			boolean var2 = this.world.getGameRules().b("mobGriefing");
+			this.world.a((Entity) null, this.locationX, this.locationY, this.locationZ, (float) this.e, var2, var2);
+			this.die();
 		}
 
 	}

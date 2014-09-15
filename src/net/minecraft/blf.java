@@ -13,9 +13,9 @@ class blf {
 		this.a = var1;
 	}
 
-	public void a(PaintingDirection var1, blf var2) {
-		this.b[var1.a()] = var2;
-		var2.b[var1.d().a()] = this;
+	public void a(BlockFace var1, blf var2) {
+		this.b[var1.getId()] = var2;
+		var2.b[var1.getOpposite().getId()] = this;
 	}
 
 	public void a() {

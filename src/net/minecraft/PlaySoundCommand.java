@@ -25,7 +25,7 @@ public class PlaySoundCommand extends AbstractCommand {
 			int var31 = var3 + 1;
 			String var4 = var2[var3];
 			EntityPlayer var5 = a(var1, var2[var31++]);
-			Vec3D var6 = var1.d();
+			Vec3D var6 = var1.getCenter();
 			double var7 = var6.x;
 			if (var2.length > var31) {
 				var7 = b(var7, var2[var31++], true);
@@ -60,7 +60,7 @@ public class PlaySoundCommand extends AbstractCommand {
 			double var21 = var5.f(var7, var9, var11);
 			if (var21 > var19) {
 				if (var17 <= 0.0D) {
-					throw new di("commands.playsound.playerTooFar", new Object[] { var5.d_() });
+					throw new di("commands.playsound.playerTooFar", new Object[] { var5.getName() });
 				}
 
 				double var23 = var7 - var5.locationX;
@@ -76,8 +76,8 @@ public class PlaySoundCommand extends AbstractCommand {
 				var13 = var17;
 			}
 
-			var5.playerConncetion.sendPacket((Packet) (new PacketOutSoundEffect(var4, var7, var9, var11, (float) var13, (float) var15)));
-			a(var1, this, "commands.playsound.success", new Object[] { var4, var5.d_() });
+			var5.playerConnection.sendPacket((Packet) (new PacketPlayOutSoundEffect(var4, var7, var9, var11, (float) var13, (float) var15)));
+			a(var1, this, "commands.playsound.success", new Object[] { var4, var5.getName() });
 		}
 	}
 

@@ -6,14 +6,14 @@ public class BlockBookshelf extends Block {
 
 	public BlockBookshelf() {
 		super(Material.WOOD);
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
 	public int a(Random var1) {
 		return 3;
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
-		return amk.aL;
+	public Item a(IBlockState var1, Random var2, int var3) {
+		return Items.BOOK;
 	}
 }

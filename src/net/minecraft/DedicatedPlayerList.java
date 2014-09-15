@@ -15,10 +15,8 @@ public class DedicatedPlayerList extends PlayerList {
 		this.a(var1.getIntProperty("view-distance", 10));
 		this.maxPlayers = var1.getIntProperty("max-players", 20);
 		this.a(var1.getBooleanProperty("white-list", false));
-		if (!var1.isSinglePlayer()) {
-			this.i().a(true);
-			this.j().a(true);
-		}
+		this.getProfileBans().setEnabled(true);
+		this.getIpBanList().setEnabled(true);
 
 		this.z();
 		this.x();
@@ -27,7 +25,7 @@ public class DedicatedPlayerList extends PlayerList {
 		this.A();
 		this.C();
 		this.B();
-		if (!this.l().c().exists()) {
+		if (!this.getWhitelist().getFile().exists()) {
 			this.D();
 		}
 
@@ -39,23 +37,23 @@ public class DedicatedPlayerList extends PlayerList {
 		this.b().saveProperties();
 	}
 
-	public void a(GameProfile var1) {
-		super.a(var1);
+	public void addOp(GameProfile var1) {
+		super.addOp(var1);
 		this.B();
 	}
 
-	public void b(GameProfile var1) {
-		super.b(var1);
+	public void removeOp(GameProfile var1) {
+		super.removeOp(var1);
 		this.B();
 	}
 
-	public void c(GameProfile var1) {
-		super.c(var1);
+	public void removeWhitelist(GameProfile var1) {
+		super.removeWhitelist(var1);
 		this.D();
 	}
 
-	public void d(GameProfile var1) {
-		super.d(var1);
+	public void addWhitelist(GameProfile var1) {
+		super.addWhitelist(var1);
 		this.D();
 	}
 
@@ -65,7 +63,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void w() {
 		try {
-			this.j().f();
+			this.getIpBanList().save();
 		} catch (IOException var2) {
 			h.warn("Failed to save ip banlist: ", (Throwable) var2);
 		}
@@ -74,7 +72,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void x() {
 		try {
-			this.i().f();
+			this.getProfileBans().save();
 		} catch (IOException var2) {
 			h.warn("Failed to save user banlist: ", (Throwable) var2);
 		}
@@ -83,7 +81,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void y() {
 		try {
-			this.j().g();
+			this.getIpBanList().load();
 		} catch (IOException var2) {
 			h.warn("Failed to load ip banlist: ", (Throwable) var2);
 		}
@@ -92,7 +90,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void z() {
 		try {
-			this.i().g();
+			this.getProfileBans().load();
 		} catch (IOException var2) {
 			h.warn("Failed to load user banlist: ", (Throwable) var2);
 		}
@@ -101,7 +99,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void A() {
 		try {
-			this.n().g();
+			this.getOpList().load();
 		} catch (Exception var2) {
 			h.warn("Failed to load operators list: ", (Throwable) var2);
 		}
@@ -110,7 +108,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void B() {
 		try {
-			this.n().f();
+			this.getOpList().save();
 		} catch (Exception var2) {
 			h.warn("Failed to save operators list: ", (Throwable) var2);
 		}
@@ -119,7 +117,7 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void C() {
 		try {
-			this.l().g();
+			this.getWhitelist().load();
 		} catch (Exception var2) {
 			h.warn("Failed to load white-list: ", (Throwable) var2);
 		}
@@ -128,15 +126,15 @@ public class DedicatedPlayerList extends PlayerList {
 
 	private void D() {
 		try {
-			this.l().f();
+			this.getWhitelist().save();
 		} catch (Exception var2) {
 			h.warn("Failed to save white-list: ", (Throwable) var2);
 		}
 
 	}
 
-	public boolean e(GameProfile var1) {
-		return !this.s() || this.g(var1) || this.l().a(var1);
+	public boolean canJoin(GameProfile var1) {
+		return !this.s() || this.isOp(var1) || this.getWhitelist().isWhitelisted(var1);
 	}
 
 	public DedicatedMinecraftServer b() {

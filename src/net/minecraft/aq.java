@@ -16,7 +16,7 @@ final class aq implements Predicate {
 	}
 
 	public boolean a(Entity var1) {
-		bsd var2 = MinecraftServer.getInstance().a(0).Z();
+		Scoreboard var2 = MinecraftServer.getInstance().getWorldServer(0).Z();
 		Iterator var3 = this.a.entrySet().iterator();
 
 		Entry var4;
@@ -35,18 +35,18 @@ final class aq implements Predicate {
 				var5 = var5.substring(0, var5.length() - 4);
 			}
 
-			bry var7 = var2.b(var5);
+			ScoreboardObjective var7 = var2.b(var5);
 			if (var7 == null) {
 				return false;
 			}
 
-			String var8 = var1 instanceof EntityPlayer ? var1.d_() : var1.aJ().toString();
+			String var8 = var1 instanceof EntityPlayer ? var1.getName() : var1.getUUID().toString();
 			if (!var2.b(var8, var7)) {
 				return false;
 			}
 
-			bsa var9 = var2.c(var8, var7);
-			var10 = var9.c();
+			ScoreboardScore var9 = var2.c(var8, var7);
+			var10 = var9.getScore();
 			if (var10 < ((Integer) var4.getValue()).intValue() && var6) {
 				return false;
 			}

@@ -32,22 +32,22 @@ public class ClearCommand extends AbstractCommand {
 		}
 
 		if (var2.length >= 2 && var4 == null) {
-			throw new di("commands.clear.failure", new Object[] { var3.d_() });
+			throw new di("commands.clear.failure", new Object[] { var3.getName() });
 		} else {
 			int var8 = var3.playerInventory.a(var4, var5, var6, var7);
 			var3.defaultContainer.b();
-			if (!var3.by.instabuild) {
-				var3.o();
+			if (!var3.playerProperties.instabuild) {
+				var3.broadcastCarriedItem();
 			}
 
 			var1.a(ag.d, var8);
 			if (var8 == 0) {
-				throw new di("commands.clear.failure", new Object[] { var3.d_() });
+				throw new di("commands.clear.failure", new Object[] { var3.getName() });
 			} else {
 				if (var6 == 0) {
-					var1.sendChatMessage(new hz("commands.clear.testing", new Object[] { var3.d_(), Integer.valueOf(var8) }));
+					var1.sendChatMessage(new ChatMessage("commands.clear.testing", new Object[] { var3.getName(), Integer.valueOf(var8) }));
 				} else {
-					a(var1, this, "commands.clear.success", new Object[] { var3.d_(), Integer.valueOf(var8) });
+					a(var1, this, "commands.clear.success", new Object[] { var3.getName(), Integer.valueOf(var8) });
 				}
 
 			}

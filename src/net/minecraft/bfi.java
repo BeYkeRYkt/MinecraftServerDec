@@ -21,7 +21,7 @@ class bfi implements Callable {
 	}
 
 	public String a() {
-		return CrashReportSystemDetails.a(new Position(this.d.x * 16 + this.a, this.b, this.d.y * 16 + this.c));
+		return CrashReportSystemDetails.a(new Position(this.d.x * 16 + this.a, this.b, this.d.z * 16 + this.c));
 	}
 
 	// $FF: synthetic method

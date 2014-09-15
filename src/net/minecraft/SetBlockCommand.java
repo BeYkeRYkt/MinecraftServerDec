@@ -28,14 +28,14 @@ public class SetBlockCommand extends AbstractCommand {
 				var5 = a(var2[4], 0, 15);
 			}
 
-			World var6 = var1.e();
-			if (!var6.e(var3)) {
+			World var6 = var1.getPrimaryWorld();
+			if (!var6.isLoaded(var3)) {
 				throw new di("commands.setblock.outOfWorld", new Object[0]);
 			} else {
 				NBTCompoundTag var7 = new NBTCompoundTag();
 				boolean var8 = false;
 				if (var2.length >= 7 && var4.x()) {
-					String var9 = a(var1, var2, 6).c();
+					String var9 = a(var1, var2, 6).getStrippedMessage();
 
 					try {
 						var7 = gg.a(var9);
@@ -48,7 +48,7 @@ public class SetBlockCommand extends AbstractCommand {
 				if (var2.length >= 6) {
 					if (var2[5].equals("destroy")) {
 						var6.b(var3, true);
-						if (var4 == aty.a) {
+						if (var4 == Blocks.AIR) {
 							a(var1, this, "commands.setblock.success", new Object[0]);
 							return;
 						}
@@ -57,21 +57,21 @@ public class SetBlockCommand extends AbstractCommand {
 					}
 				}
 
-				TileEntity var13 = var6.s(var3);
+				TileEntity var13 = var6.getTileEntity(var3);
 				if (var13 != null) {
 					if (var13 instanceof IInventory) {
 						((IInventory) var13).l();
 					}
 
-					var6.a(var3, aty.a.P(), var4 == aty.a ? 2 : 4);
+					var6.setBlockAt(var3, Blocks.AIR.getBlockState(), var4 == Blocks.AIR ? 2 : 4);
 				}
 
-				bec var10 = var4.a(var5);
-				if (!var6.a(var3, var10, 2)) {
+				IBlockState var10 = var4.setData(var5);
+				if (!var6.setBlockAt(var3, var10, 2)) {
 					throw new di("commands.setblock.noChange", new Object[0]);
 				} else {
 					if (var8) {
-						TileEntity var11 = var6.s(var3);
+						TileEntity var11 = var6.getTileEntity(var3);
 						if (var11 != null) {
 							var7.put("x", var3.getX());
 							var7.put("y", var3.getY());

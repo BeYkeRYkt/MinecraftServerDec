@@ -9,12 +9,12 @@ public class ble extends blb {
 	public ble() {
 	}
 
-	public ble(PaintingDirection var1, bjb var2, int var3) {
+	public ble(BlockFace var1, CuboidArea var2, int var3) {
 		super(var1, var2);
 		this.o = var3 & 1;
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		if (this.o == 0) {
 			int var4;
 			for (var4 = 0; var4 < 4; ++var4) {

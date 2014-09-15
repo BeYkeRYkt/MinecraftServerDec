@@ -4,14 +4,14 @@ import com.google.common.base.Predicate;
 
 public class BlockLog2 extends axm {
 
-	public static final bev b = bev.a("variant", ayx.class, (Predicate) (new ayj()));
+	public static final bev b = bev.a("variant", EnumWoodType.class, (Predicate) (new ayj()));
 
 	public BlockLog2() {
-		this.j(this.L.b().a(b, ayx.e).a(a, axo.b));
+		this.setBlockState(this.L.b().a(b, EnumWoodType.e).a(a, axo.b));
 	}
 
-	public bec a(int var1) {
-		bec var2 = this.P().a(b, ayx.a((var1 & 3) + 4));
+	public IBlockState setData(int var1) {
+		IBlockState var2 = this.getBlockState().a(b, EnumWoodType.a((var1 & 3) + 4));
 		switch (var1 & 12) {
 			case 0:
 				var2 = var2.a(a, axo.b);
@@ -29,9 +29,9 @@ public class BlockLog2 extends axm {
 		return var2;
 	}
 
-	public int c(bec var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((ayx) var1.b(b)).a() - 4;
+		int var3 = var2 | ((EnumWoodType) var1.b(b)).a() - 4;
 		switch (ayk.a[((axo) var1.b(a)).ordinal()]) {
 			case 1:
 				var3 |= 4;
@@ -50,12 +50,12 @@ public class BlockLog2 extends axm {
 		return new bed(this, new bex[] { b, a });
 	}
 
-	protected ItemStack i(bec var1) {
-		return new ItemStack(Item.getItemOf((Block) this), 1, ((ayx) var1.b(b)).a() - 4);
+	protected ItemStack i(IBlockState var1) {
+		return new ItemStack(Item.getItemOf((Block) this), 1, ((EnumWoodType) var1.b(b)).a() - 4);
 	}
 
-	public int a(bec var1) {
-		return ((ayx) var1.b(b)).a() - 4;
+	public int a(IBlockState var1) {
+		return ((EnumWoodType) var1.b(b)).a() - 4;
 	}
 
 }

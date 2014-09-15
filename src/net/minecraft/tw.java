@@ -3,7 +3,7 @@ package net.minecraft;
 public class tw {
 
 	private int a;
-	private tx b;
+	private IJsonStatistic b;
 
 	public int a() {
 		return this.a;
@@ -13,11 +13,11 @@ public class tw {
 		this.a = var1;
 	}
 
-	public tx b() {
+	public IJsonStatistic b() {
 		return this.b;
 	}
 
-	public void a(tx var1) {
+	public void a(IJsonStatistic var1) {
 		this.b = var1;
 	}
 }

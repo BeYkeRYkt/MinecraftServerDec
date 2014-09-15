@@ -16,14 +16,14 @@ public class EntityCaveSpider extends EntitySpider {
 		if (super.r(var1)) {
 			if (var1 instanceof EntityLiving) {
 				byte var2 = 0;
-				if (this.o.getDifficulty() == Difficulty.NORMAL) {
+				if (this.world.getDifficulty() == Difficulty.NORMAL) {
 					var2 = 7;
-				} else if (this.o.getDifficulty() == Difficulty.HARD) {
+				} else if (this.world.getDifficulty() == Difficulty.HARD) {
 					var2 = 15;
 				}
 
 				if (var2 > 0) {
-					((EntityLiving) var1).c(new MobEffect(MobEffectList.u.H, var2 * 20, 0));
+					((EntityLiving) var1).c(new MobEffect(MobEffectList.POISON.id, var2 * 20, 0));
 				}
 			}
 
@@ -37,7 +37,7 @@ public class EntityCaveSpider extends EntitySpider {
 		return var2;
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return 0.45F;
 	}
 }

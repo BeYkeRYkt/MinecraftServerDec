@@ -1,9 +1,9 @@
 package net.minecraft;
 
-public class EntityIronGolem extends abw {
+public class EntityIronGolem extends EntityGolem {
 
 	private int b;
-	abi a;
+	Village a;
 	private int c;
 	private int bk;
 
@@ -14,14 +14,14 @@ public class EntityIronGolem extends abw {
 		this.i.a(1, new zk(this, 1.0D, true));
 		this.i.a(2, new zp(this, 0.9D, 32.0F));
 		this.i.a(3, new zm(this, 0.6D, true));
-		this.i.a(4, new zo(this, 1.0D));
+		this.i.a(4, new PathfinderGoalMoveTowardsRestriction(this, 1.0D));
 		this.i.a(5, new zs(this));
-		this.i.a(6, new zy(this, 0.6D));
-		this.i.a(7, new zh(this, EntityHuman.class, 6.0F));
-		this.i.a(8, new zx(this));
+		this.i.a(6, new PathfinderGoalRandomStroll(this, 0.6D));
+		this.i.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 6.0F));
+		this.i.a(8, new PathfinderGoalRandomLookaround(this));
 		this.bg.a(1, new aak(this));
 		this.bg.a(2, new aal(this, false, new Class[0]));
-		this.bg.a(3, new acr(this, EntityInsentient.class, 10, false, true, aex.e));
+		this.bg.a(3, new acr(this, EntityInsentient.class, 10, false, true, IMonster.e));
 	}
 
 	protected void h() {
@@ -31,8 +31,8 @@ public class EntityIronGolem extends abw {
 
 	protected void E() {
 		if (--this.b <= 0) {
-			this.b = 70 + this.V.nextInt(50);
-			this.a = this.o.ae().a(new Position(this), 32);
+			this.b = 70 + this.random.nextInt(50);
+			this.a = this.world.ae().a(new Position(this), 32);
 			if (this.a == null) {
 				this.ch();
 			} else {
@@ -55,7 +55,7 @@ public class EntityIronGolem extends abw {
 	}
 
 	protected void s(Entity var1) {
-		if (var1 instanceof aex && this.bb().nextInt(20) == 0) {
+		if (var1 instanceof IMonster && this.bb().nextInt(20) == 0) {
 			this.d((EntityLiving) var1);
 		}
 
@@ -72,14 +72,14 @@ public class EntityIronGolem extends abw {
 			--this.bk;
 		}
 
-		if (this.motionX * this.motionX + this.motionZ * this.motionZ > 2.500000277905201E-7D && this.V.nextInt(5) == 0) {
-			int var1 = DataTypesConverter.toFixedPointInt(this.locationX);
-			int var2 = DataTypesConverter.toFixedPointInt(this.locationY - 0.20000000298023224D);
-			int var3 = DataTypesConverter.toFixedPointInt(this.locationZ);
-			bec var4 = this.o.p(new Position(var1, var2, var3));
+		if (this.motionX * this.motionX + this.motionZ * this.motionZ > 2.500000277905201E-7D && this.random.nextInt(5) == 0) {
+			int var1 = MathHelper.toFixedPointInt(this.locationX);
+			int var2 = MathHelper.toFixedPointInt(this.locationY - 0.20000000298023224D);
+			int var3 = MathHelper.toFixedPointInt(this.locationZ);
+			IBlockState var4 = this.world.getBlockState(new Position(var1, var2, var3));
 			Block var5 = var4.getBlock();
-			if (var5.r() != Material.AIR) {
-				this.o.a(Particle.L, this.locationX + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, this.aQ().b + 0.1D, this.locationZ + ((double) this.V.nextFloat() - 0.5D) * (double) this.J, 4.0D * ((double) this.V.nextFloat() - 0.5D), 0.5D, ((double) this.V.nextFloat() - 0.5D) * 4.0D, new int[] { Block.f(var4) });
+			if (var5.getMaterial() != Material.AIR) {
+				this.world.a(Particle.L, this.locationX + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, this.getBoundingBox().minY + 0.1D, this.locationZ + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, 4.0D * ((double) this.random.nextFloat() - 0.5D), 0.5D, ((double) this.random.nextFloat() - 0.5D) * 4.0D, new int[] { Block.getStateId(var4) });
 			}
 		}
 
@@ -101,8 +101,8 @@ public class EntityIronGolem extends abw {
 
 	public boolean r(Entity var1) {
 		this.c = 10;
-		this.o.a((Entity) this, (byte) 4);
-		boolean var2 = var1.a(wh.a((EntityLiving) this), (float) (7 + this.V.nextInt(15)));
+		this.world.broadcastEntityEffect((Entity) this, (byte) 4);
+		boolean var2 = var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), (float) (7 + this.random.nextInt(15)));
 		if (var2) {
 			var1.motionY += 0.4000000059604645D;
 			this.a(this, var1);
@@ -112,13 +112,13 @@ public class EntityIronGolem extends abw {
 		return var2;
 	}
 
-	public abi n() {
+	public Village n() {
 		return this.a;
 	}
 
 	public void a(boolean var1) {
 		this.bk = var1 ? 400 : 0;
-		this.o.a((Entity) this, (byte) 11);
+		this.world.broadcastEntityEffect((Entity) this, (byte) 11);
 	}
 
 	protected String bn() {
@@ -133,18 +133,18 @@ public class EntityIronGolem extends abw {
 		this.a("mob.irongolem.walk", 1.0F, 1.0F);
 	}
 
-	protected void b(boolean var1, int var2) {
-		int var3 = this.V.nextInt(3);
+	protected void dropDeathLoot(boolean var1, int var2) {
+		int var3 = this.random.nextInt(3);
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(Item.getItemOf((Block) aty.O), 1, (float) awa.b.b());
+			this.a(Item.getItemOf((Block) Blocks.RED_FLOWER), 1, (float) EnumFlowerType.b.b());
 		}
 
-		var4 = 3 + this.V.nextInt(3);
+		var4 = 3 + this.random.nextInt(3);
 
 		for (int var5 = 0; var5 < var4; ++var5) {
-			this.a(amk.j, 1);
+			this.a(Items.IRON_INGOT, 1);
 		}
 
 	}
@@ -167,9 +167,9 @@ public class EntityIronGolem extends abw {
 
 	}
 
-	public void a(wh var1) {
+	public void a(DamageSource var1) {
 		if (!this.cl() && this.aL != null && this.a != null) {
-			this.a.a(this.aL.d_(), -5);
+			this.a.a(this.aL.getName(), -5);
 		}
 
 		super.a(var1);

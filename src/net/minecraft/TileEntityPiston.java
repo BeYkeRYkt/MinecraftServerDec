@@ -4,10 +4,10 @@ import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
 
-public class TileEntityPiston extends TileEntity implements pm {
+public class TileEntityPiston extends TileEntity implements PacketTickable {
 
-	private bec a;
-	private PaintingDirection f;
+	private IBlockState a;
+	private BlockFace f;
 	private boolean g;
 	private boolean h;
 	private float i;
@@ -17,14 +17,14 @@ public class TileEntityPiston extends TileEntity implements pm {
 	public TileEntityPiston() {
 	}
 
-	public TileEntityPiston(bec var1, PaintingDirection var2, boolean var3, boolean var4) {
+	public TileEntityPiston(IBlockState var1, BlockFace var2, boolean var3, boolean var4) {
 		this.a = var1;
 		this.f = var2;
 		this.g = var3;
 		this.h = var4;
 	}
 
-	public bec b() {
+	public IBlockState b() {
 		return this.a;
 	}
 
@@ -36,7 +36,7 @@ public class TileEntityPiston extends TileEntity implements pm {
 		return this.g;
 	}
 
-	public PaintingDirection e() {
+	public BlockFace e() {
 		return this.f;
 	}
 
@@ -55,16 +55,16 @@ public class TileEntityPiston extends TileEntity implements pm {
 			--var1;
 		}
 
-		brt var3 = aty.M.a(this.world, this.position, this.a, var1, this.f);
+		AxisAlignedBB var3 = Blocks.PISTON_EXTENSION.a(this.world, this.position, this.a, var1, this.f);
 		if (var3 != null) {
-			List var4 = this.world.b((Entity) null, var3);
+			List var4 = this.world.getEntities((Entity) null, var3);
 			if (!var4.isEmpty()) {
 				this.k.addAll(var4);
 				Iterator var5 = this.k.iterator();
 
 				while (var5.hasNext()) {
 					Entity var6 = (Entity) var5.next();
-					if (this.a.getBlock() == aty.cE && this.g) {
+					if (this.a.getBlock() == Blocks.SLIME && this.g) {
 						switch (bdw.a[this.f.k().ordinal()]) {
 							case 1:
 								var6.motionX = (double) this.f.g();
@@ -76,7 +76,7 @@ public class TileEntityPiston extends TileEntity implements pm {
 								var6.motionZ = (double) this.f.i();
 						}
 					} else {
-						var6.d((double) (var2 * (float) this.f.g()), (double) (var2 * (float) this.f.h()), (double) (var2 * (float) this.f.i()));
+						var6.move((double) (var2 * (float) this.f.g()), (double) (var2 * (float) this.f.h()), (double) (var2 * (float) this.f.i()));
 					}
 				}
 
@@ -91,22 +91,22 @@ public class TileEntityPiston extends TileEntity implements pm {
 			this.j = this.i = 1.0F;
 			this.world.t(this.position);
 			this.y();
-			if (this.world.p(this.position).getBlock() == aty.M) {
-				this.world.a(this.position, this.a, 3);
+			if (this.world.getBlockState(this.position).getBlock() == Blocks.PISTON_EXTENSION) {
+				this.world.setBlockAt(this.position, this.a, 3);
 				this.world.d(this.position, this.a.getBlock());
 			}
 		}
 
 	}
 
-	public void c() {
+	public void doTick() {
 		this.j = this.i;
 		if (this.j >= 1.0F) {
 			this.a(1.0F, 0.25F);
 			this.world.t(this.position);
 			this.y();
-			if (this.world.p(this.position).getBlock() == aty.M) {
-				this.world.a(this.position, this.a, 3);
+			if (this.world.getBlockState(this.position).getBlock() == Blocks.PISTON_EXTENSION) {
+				this.world.setBlockAt(this.position, this.a, 3);
 				this.world.d(this.position, this.a.getBlock());
 			}
 
@@ -125,17 +125,17 @@ public class TileEntityPiston extends TileEntity implements pm {
 
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
-		this.a = Block.c(var1.getInt("blockId")).a(var1.getInt("blockData"));
-		this.f = PaintingDirection.a(var1.getInt("facing"));
+		this.a = Block.getBlockById(var1.getInt("blockId")).setData(var1.getInt("blockData"));
+		this.f = BlockFace.getById(var1.getInt("facing"));
 		this.j = this.i = var1.getFloat("progress");
 		this.g = var1.getBoolean("extending");
 	}
 
 	public void write(NBTCompoundTag var1) {
 		super.write(var1);
-		var1.put("blockId", Block.a(this.a.getBlock()));
-		var1.put("blockData", this.a.getBlock().c(this.a));
-		var1.put("facing", this.f.a());
+		var1.put("blockId", Block.getBlockId(this.a.getBlock()));
+		var1.put("blockData", this.a.getBlock().getData(this.a));
+		var1.put("facing", this.f.getId());
 		var1.put("progress", this.j);
 		var1.put("extending", this.g);
 	}

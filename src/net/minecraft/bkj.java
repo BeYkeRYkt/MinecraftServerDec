@@ -4,23 +4,23 @@ package net.minecraft;
 class bkj {
 
 	// $FF: synthetic field
-	static final int[] a = new int[PaintingDirection.values().length];
+	static final int[] a = new int[BlockFace.values().length];
 
 	static {
 		try {
-			a[PaintingDirection.c.ordinal()] = 1;
+			a[BlockFace.NORTH.ordinal()] = 1;
 		} catch (NoSuchFieldError var3) {
 			;
 		}
 
 		try {
-			a[PaintingDirection.d.ordinal()] = 2;
+			a[BlockFace.SOUTH.ordinal()] = 2;
 		} catch (NoSuchFieldError var2) {
 			;
 		}
 
 		try {
-			a[PaintingDirection.e.ordinal()] = 3;
+			a[BlockFace.WEST.ordinal()] = 3;
 		} catch (NoSuchFieldError var1) {
 			;
 		}

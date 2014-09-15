@@ -5,14 +5,14 @@ import com.google.common.base.Predicate;
 final class ak implements Predicate {
 
 	// $FF: synthetic field
-	final brt a;
+	final AxisAlignedBB a;
 
-	ak(brt var1) {
+	ak(AxisAlignedBB var1) {
 		this.a = var1;
 	}
 
 	public boolean a(Entity var1) {
-		return var1.locationX >= this.a.a && var1.locationY >= this.a.b && var1.locationZ >= this.a.c ? var1.locationX < this.a.d && var1.locationY < this.a.e && var1.locationZ < this.a.f : false;
+		return var1.locationX >= this.a.minX && var1.locationY >= this.a.minY && var1.locationZ >= this.a.minZ ? var1.locationX < this.a.maxX && var1.locationY < this.a.maxY && var1.locationZ < this.a.maxZ : false;
 	}
 
 	// $FF: synthetic method

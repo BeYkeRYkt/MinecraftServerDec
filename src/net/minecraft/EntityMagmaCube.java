@@ -4,7 +4,7 @@ public class EntityMagmaCube extends EntitySlime {
 
 	public EntityMagmaCube(World var1) {
 		super(var1);
-		this.ab = true;
+		this.fireProof = true;
 	}
 
 	protected void aW() {
@@ -13,11 +13,11 @@ public class EntityMagmaCube extends EntitySlime {
 	}
 
 	public boolean bQ() {
-		return this.o.getDifficulty() != Difficulty.PEACEFUL;
+		return this.world.getDifficulty() != Difficulty.PEACEFUL;
 	}
 
 	public boolean bR() {
-		return this.o.a(this.aQ(), (Entity) this) && this.o.a((Entity) this, this.aQ()).isEmpty() && !this.o.d(this.aQ());
+		return this.world.a(this.getBoundingBox(), (Entity) this) && this.world.getCubes((Entity) this, this.getBoundingBox()).isEmpty() && !this.world.d(this.getBoundingBox());
 	}
 
 	public int bq() {
@@ -33,19 +33,19 @@ public class EntityMagmaCube extends EntitySlime {
 	}
 
 	protected EntitySlime cd() {
-		return new EntityMagmaCube(this.o);
+		return new EntityMagmaCube(this.world);
 	}
 
-	protected Item A() {
-		return amk.bE;
+	protected Item getLoot() {
+		return Items.MAGMA_CREAM;
 	}
 
-	protected void b(boolean var1, int var2) {
-		Item var3 = this.A();
+	protected void dropDeathLoot(boolean var1, int var2) {
+		Item var3 = this.getLoot();
 		if (var3 != null && this.ck() > 1) {
-			int var4 = this.V.nextInt(4) - 2;
+			int var4 = this.random.nextInt(4) - 2;
 			if (var2 > 0) {
-				var4 += this.V.nextInt(var2 + 1);
+				var4 += this.random.nextInt(var2 + 1);
 			}
 
 			for (int var5 = 0; var5 < var4; ++var5) {
@@ -67,7 +67,7 @@ public class EntityMagmaCube extends EntitySlime {
 		this.a *= 0.9F;
 	}
 
-	protected void bE() {
+	protected void jump() {
 		this.motionY = (double) (0.42F + (float) this.ck() * 0.1F);
 		this.ai = true;
 	}

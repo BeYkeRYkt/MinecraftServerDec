@@ -16,13 +16,13 @@ public interface pj {
 
 	int D();
 
-	String E();
+	String getMotd();
 
-	String F();
+	String getGameVersion();
 
-	int G();
+	int getOnlinePlayersCount();
 
-	int H();
+	int getMaxPlayers();
 
 	String[] I();
 
@@ -34,9 +34,9 @@ public interface pj {
 
 	boolean L();
 
-	void e(String var1);
+	void logInfo(String var1);
 
-	void f(String var1);
+	void logWarning(String var1);
 
 	void h(String var1);
 

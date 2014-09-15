@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntityWitherSkull extends ahl {
+public class EntityWitherSkull extends EntityFireball {
 
 	public EntityWitherSkull(World var1) {
 		super(var1);
@@ -20,46 +20,46 @@ public class EntityWitherSkull extends ahl {
 		return false;
 	}
 
-	public float a(aqo var1, World var2, Position var3, bec var4) {
+	public float a(Explosion var1, World var2, Position var3, IBlockState var4) {
 		float var5 = super.a(var1, var2, var3, var4);
-		if (this.l() && var4.getBlock() != aty.h && var4.getBlock() != aty.bF && var4.getBlock() != aty.bG && var4.getBlock() != aty.bX) {
+		if (this.l() && var4.getBlock() != Blocks.BEDROCK && var4.getBlock() != Blocks.END_PORTAL && var4.getBlock() != Blocks.END_PORTAL_FRAME && var4.getBlock() != Blocks.COMMAND_BLOCK) {
 			var5 = Math.min(0.8F, var5);
 		}
 
 		return var5;
 	}
 
-	protected void a(bru var1) {
-		if (!this.o.D) {
-			if (var1.d != null) {
+	protected void a(MovingObjectPosition var1) {
+		if (!this.world.isStatic) {
+			if (var1.entity != null) {
 				if (this.a != null) {
-					if (var1.d.a(wh.a(this.a), 8.0F)) {
-						if (!var1.d.ai()) {
+					if (var1.entity.damageEntity(DamageSource.mobAttack(this.a), 8.0F)) {
+						if (!var1.entity.isAlive()) {
 							this.a.g(5.0F);
 						} else {
-							this.a(this.a, var1.d);
+							this.a(this.a, var1.entity);
 						}
 					}
 				} else {
-					var1.d.a(wh.l, 5.0F);
+					var1.entity.damageEntity(DamageSource.MAGIC, 5.0F);
 				}
 
-				if (var1.d instanceof EntityLiving) {
+				if (var1.entity instanceof EntityLiving) {
 					byte var2 = 0;
-					if (this.o.getDifficulty() == Difficulty.NORMAL) {
+					if (this.world.getDifficulty() == Difficulty.NORMAL) {
 						var2 = 10;
-					} else if (this.o.getDifficulty() == Difficulty.HARD) {
+					} else if (this.world.getDifficulty() == Difficulty.HARD) {
 						var2 = 40;
 					}
 
 					if (var2 > 0) {
-						((EntityLiving) var1.d).c(new MobEffect(MobEffectList.v.H, 20 * var2, 1));
+						((EntityLiving) var1.entity).c(new MobEffect(MobEffectList.WITHER.id, 20 * var2, 1));
 					}
 				}
 			}
 
-			this.o.a(this, this.locationX, this.locationY, this.locationZ, 1.0F, false, this.o.Q().b("mobGriefing"));
-			this.J();
+			this.world.a(this, this.locationX, this.locationY, this.locationZ, 1.0F, false, this.world.getGameRules().b("mobGriefing"));
+			this.die();
 		}
 
 	}
@@ -68,7 +68,7 @@ public class EntityWitherSkull extends ahl {
 		return false;
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		return false;
 	}
 

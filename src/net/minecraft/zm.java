@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
 
-public class zm extends zb {
+public class zm extends PathfinderGoal {
 
 	private EntityCreature a;
 	private double b;
@@ -25,10 +25,10 @@ public class zm extends zb {
 
 	public boolean a() {
 		this.f();
-		if (this.e && this.a.o.w()) {
+		if (this.e && this.a.world.w()) {
 			return false;
 		} else {
-			abi var1 = this.a.o.ae().a(new Position(this.a), 0);
+			Village var1 = this.a.world.ae().a(new Position(this.a), 0);
 			if (var1 == null) {
 				return false;
 			} else {
@@ -63,7 +63,7 @@ public class zm extends zb {
 		if (this.a.s().m()) {
 			return false;
 		} else {
-			float var1 = this.a.J + 4.0F;
+			float var1 = this.a.height + 4.0F;
 			return this.a.b(this.d.d()) > (double) (var1 * var1);
 		}
 	}
@@ -79,7 +79,7 @@ public class zm extends zb {
 
 	}
 
-	private abh a(abi var1) {
+	private abh a(Village var1) {
 		abh var2 = null;
 		int var3 = Integer.MAX_VALUE;
 		List var4 = var1.f();
@@ -87,7 +87,7 @@ public class zm extends zb {
 
 		while (var5.hasNext()) {
 			abh var6 = (abh) var5.next();
-			int var7 = var6.b(DataTypesConverter.toFixedPointInt(this.a.locationX), DataTypesConverter.toFixedPointInt(this.a.locationY), DataTypesConverter.toFixedPointInt(this.a.locationZ));
+			int var7 = var6.b(MathHelper.toFixedPointInt(this.a.locationX), MathHelper.toFixedPointInt(this.a.locationY), MathHelper.toFixedPointInt(this.a.locationZ));
 			if (var7 < var3 && !this.a(var6)) {
 				var2 = var6;
 				var3 = var7;

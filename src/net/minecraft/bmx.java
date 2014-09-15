@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-public class bmx extends bmv {
+public class bmx extends StructureStart {
 
 	private boolean c;
 
@@ -22,15 +22,15 @@ public class bmx extends bmv {
 
 		int var10;
 		while (!var8.isEmpty() || !var9.isEmpty()) {
-			bms var11;
+			StructurePiece var11;
 			if (var8.isEmpty()) {
 				var10 = var2.nextInt(var9.size());
-				var11 = (bms) var9.remove(var10);
-				var11.a((bms) var7, (List) this.a, var2);
+				var11 = (StructurePiece) var9.remove(var10);
+				var11.a((StructurePiece) var7, (List) this.a, var2);
 			} else {
 				var10 = var2.nextInt(var8.size());
-				var11 = (bms) var8.remove(var10);
-				var11.a((bms) var7, (List) this.a, var2);
+				var11 = (StructurePiece) var8.remove(var10);
+				var11.a((StructurePiece) var7, (List) this.a, var2);
 			}
 		}
 
@@ -39,7 +39,7 @@ public class bmx extends bmv {
 		Iterator var13 = this.a.iterator();
 
 		while (var13.hasNext()) {
-			bms var12 = (bms) var13.next();
+			StructurePiece var12 = (StructurePiece) var13.next();
 			if (!(var12 instanceof bno)) {
 				++var10;
 			}

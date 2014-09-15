@@ -28,7 +28,7 @@ public class TriggerCommand extends AbstractCommand {
 			if (var1 instanceof EntityPlayer) {
 				var3 = (EntityPlayer) var1;
 			} else {
-				Entity var4 = var1.f();
+				Entity var4 = (Entity) var1;
 				if (!(var4 instanceof EntityPlayer)) {
 					throw new di("commands.trigger.invalidPlayer", new Object[0]);
 				}
@@ -36,29 +36,29 @@ public class TriggerCommand extends AbstractCommand {
 				var3 = (EntityPlayer) var4;
 			}
 
-			bsd var8 = MinecraftServer.getInstance().a(0).Z();
-			bry var5 = var8.b(var2[0]);
-			if (var5 != null && var5.c() == bsk.c) {
+			Scoreboard var8 = MinecraftServer.getInstance().getWorldServer(0).Z();
+			ScoreboardObjective var5 = var8.b(var2[0]);
+			if (var5 != null && var5.getCriteria() == IScoreboardCriteria.trigger) {
 				int var6 = a(var2[2]);
-				if (!var8.b(var3.d_(), var5)) {
+				if (!var8.b(var3.getName(), var5)) {
 					throw new di("commands.trigger.invalidObjective", new Object[] { var2[0] });
 				} else {
-					bsa var7 = var8.c(var3.d_(), var5);
-					if (var7.g()) {
+					ScoreboardScore var7 = var8.c(var3.getName(), var5);
+					if (var7.isLocked()) {
 						throw new di("commands.trigger.disabled", new Object[] { var2[0] });
 					} else {
 						if ("set".equals(var2[1])) {
-							var7.c(var6);
+							var7.setScore(var6);
 						} else {
 							if (!"add".equals(var2[1])) {
 								throw new di("commands.trigger.invalidMode", new Object[] { var2[1] });
 							}
 
-							var7.a(var6);
+							var7.addScore(var6);
 						}
 
-						var7.a(true);
-						if (var3.c.d()) {
+						var7.setLocked(true);
+						if (var3.playerInteractManager.isCreative()) {
 							a(var1, this, "commands.trigger.success", new Object[] { var2[0], var2[1], var2[2] });
 						}
 
@@ -72,14 +72,14 @@ public class TriggerCommand extends AbstractCommand {
 
 	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
 		if (var2.length == 1) {
-			bsd var4 = MinecraftServer.getInstance().a(0).Z();
+			Scoreboard var4 = MinecraftServer.getInstance().getWorldServer(0).Z();
 			ArrayList var5 = Lists.newArrayList();
 			Iterator var6 = var4.c().iterator();
 
 			while (var6.hasNext()) {
-				bry var7 = (bry) var6.next();
-				if (var7.c() == bsk.c) {
-					var5.add(var7.b());
+				ScoreboardObjective var7 = (ScoreboardObjective) var6.next();
+				if (var7.getCriteria() == IScoreboardCriteria.trigger) {
+					var5.add(var7.getName());
 				}
 			}
 

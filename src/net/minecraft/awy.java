@@ -4,12 +4,12 @@ import com.google.common.base.Predicate;
 
 final class awy implements Predicate {
 
-	public boolean a(PaintingDirection var1) {
-		return var1 != PaintingDirection.b;
+	public boolean a(BlockFace var1) {
+		return var1 != BlockFace.UP;
 	}
 
 	// $FF: synthetic method
 	public boolean apply(Object var1) {
-		return this.a((PaintingDirection) var1);
+		return this.a((BlockFace) var1);
 	}
 }

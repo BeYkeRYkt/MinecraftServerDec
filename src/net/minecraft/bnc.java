@@ -11,7 +11,7 @@ public class bnc extends bnn {
 	public bnc() {
 	}
 
-	public bnc(bnk var1, int var2, Random var3, bjb var4, PaintingDirection var5) {
+	public bnc(bnk var1, int var2, Random var3, CuboidArea var4, BlockFace var5) {
 		super(var1, var2);
 		this.m = var5;
 		this.l = var4;
@@ -27,57 +27,57 @@ public class bnc extends bnn {
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.a = Block.c(var1.getInt("CA"));
-		this.b = Block.c(var1.getInt("CB"));
+		this.a = Block.getBlockById(var1.getInt("CA"));
+		this.b = Block.getBlockById(var1.getInt("CB"));
 	}
 
 	private Block a(Random var1) {
 		switch (var1.nextInt(5)) {
 			case 0:
-				return aty.cb;
+				return Blocks.CARROTS;
 			case 1:
-				return aty.cc;
+				return Blocks.POTATOES;
 			default:
-				return aty.aj;
+				return Blocks.WHEAT;
 		}
 	}
 
-	public static bnc a(bnk var0, List var1, Random var2, int var3, int var4, int var5, PaintingDirection var6, int var7) {
-		bjb var8 = bjb.a(var3, var4, var5, 0, 0, 0, 7, 4, 9, var6);
-		return a(var8) && bms.a(var1, var8) == null ? new bnc(var0, var7, var2, var8, var6) : null;
+	public static bnc a(bnk var0, List var1, Random var2, int var3, int var4, int var5, BlockFace var6, int var7) {
+		CuboidArea var8 = CuboidArea.a(var3, var4, var5, 0, 0, 0, 7, 4, 9, var6);
+		return a(var8) && StructurePiece.a(var1, var8) == null ? new bnc(var0, var7, var2, var8, var6) : null;
 	}
 
-	public boolean a(World var1, Random var2, bjb var3) {
+	public boolean a(World var1, Random var2, CuboidArea var3) {
 		if (this.h < 0) {
 			this.h = this.b(var1, var3);
 			if (this.h < 0) {
 				return true;
 			}
 
-			this.l.a(0, this.h - this.l.e + 4 - 1, 0);
+			this.l.a(0, this.h - this.l.maxY + 4 - 1, 0);
 		}
 
-		this.a(var1, var3, 0, 1, 0, 6, 4, 8, aty.a.P(), aty.a.P(), false);
-		this.a(var1, var3, 1, 0, 1, 2, 0, 7, aty.ak.P(), aty.ak.P(), false);
-		this.a(var1, var3, 4, 0, 1, 5, 0, 7, aty.ak.P(), aty.ak.P(), false);
-		this.a(var1, var3, 0, 0, 0, 0, 0, 8, aty.r.P(), aty.r.P(), false);
-		this.a(var1, var3, 6, 0, 0, 6, 0, 8, aty.r.P(), aty.r.P(), false);
-		this.a(var1, var3, 1, 0, 0, 5, 0, 0, aty.r.P(), aty.r.P(), false);
-		this.a(var1, var3, 1, 0, 8, 5, 0, 8, aty.r.P(), aty.r.P(), false);
-		this.a(var1, var3, 3, 0, 1, 3, 0, 7, aty.j.P(), aty.j.P(), false);
+		this.a(var1, var3, 0, 1, 0, 6, 4, 8, Blocks.AIR.getBlockState(), Blocks.AIR.getBlockState(), false);
+		this.a(var1, var3, 1, 0, 1, 2, 0, 7, Blocks.FARMLAND.getBlockState(), Blocks.FARMLAND.getBlockState(), false);
+		this.a(var1, var3, 4, 0, 1, 5, 0, 7, Blocks.FARMLAND.getBlockState(), Blocks.FARMLAND.getBlockState(), false);
+		this.a(var1, var3, 0, 0, 0, 0, 0, 8, Blocks.LOG.getBlockState(), Blocks.LOG.getBlockState(), false);
+		this.a(var1, var3, 6, 0, 0, 6, 0, 8, Blocks.LOG.getBlockState(), Blocks.LOG.getBlockState(), false);
+		this.a(var1, var3, 1, 0, 0, 5, 0, 0, Blocks.LOG.getBlockState(), Blocks.LOG.getBlockState(), false);
+		this.a(var1, var3, 1, 0, 8, 5, 0, 8, Blocks.LOG.getBlockState(), Blocks.LOG.getBlockState(), false);
+		this.a(var1, var3, 3, 0, 1, 3, 0, 7, Blocks.WATER.getBlockState(), Blocks.WATER.getBlockState(), false);
 
 		int var4;
 		for (var4 = 1; var4 <= 7; ++var4) {
-			this.a(var1, this.a.a(DataTypesConverter.a(var2, 2, 7)), 1, 1, var4, var3);
-			this.a(var1, this.a.a(DataTypesConverter.a(var2, 2, 7)), 2, 1, var4, var3);
-			this.a(var1, this.b.a(DataTypesConverter.a(var2, 2, 7)), 4, 1, var4, var3);
-			this.a(var1, this.b.a(DataTypesConverter.a(var2, 2, 7)), 5, 1, var4, var3);
+			this.a(var1, this.a.setData(MathHelper.a(var2, 2, 7)), 1, 1, var4, var3);
+			this.a(var1, this.a.setData(MathHelper.a(var2, 2, 7)), 2, 1, var4, var3);
+			this.a(var1, this.b.setData(MathHelper.a(var2, 2, 7)), 4, 1, var4, var3);
+			this.a(var1, this.b.setData(MathHelper.a(var2, 2, 7)), 5, 1, var4, var3);
 		}
 
 		for (var4 = 0; var4 < 9; ++var4) {
 			for (int var5 = 0; var5 < 7; ++var5) {
 				this.b(var1, var5, 4, var4, var3);
-				this.b(var1, aty.d.P(), var5, -1, var4, var3);
+				this.b(var1, Blocks.DIRT.getBlockState(), var5, -1, var4, var3);
 			}
 		}
 

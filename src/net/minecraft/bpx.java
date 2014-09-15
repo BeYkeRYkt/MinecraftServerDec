@@ -11,20 +11,20 @@ public class bpx extends bpu {
 	}
 
 	public bpt a(Entity var1) {
-		return this.a(DataTypesConverter.toFixedPointInt(var1.aQ().a), DataTypesConverter.toFixedPointInt(var1.aQ().b + 0.5D), DataTypesConverter.toFixedPointInt(var1.aQ().c));
+		return this.a(MathHelper.toFixedPointInt(var1.getBoundingBox().minX), MathHelper.toFixedPointInt(var1.getBoundingBox().minY + 0.5D), MathHelper.toFixedPointInt(var1.getBoundingBox().minZ));
 	}
 
 	public bpt a(Entity var1, double var2, double var4, double var6) {
-		return this.a(DataTypesConverter.toFixedPointInt(var2 - (double) (var1.J / 2.0F)), DataTypesConverter.toFixedPointInt(var4 + 0.5D), DataTypesConverter.toFixedPointInt(var6 - (double) (var1.J / 2.0F)));
+		return this.a(MathHelper.toFixedPointInt(var2 - (double) (var1.height / 2.0F)), MathHelper.toFixedPointInt(var4 + 0.5D), MathHelper.toFixedPointInt(var6 - (double) (var1.height / 2.0F)));
 	}
 
 	public int a(bpt[] var1, Entity var2, bpt var3, bpt var4, float var5) {
 		int var6 = 0;
-		PaintingDirection[] var7 = PaintingDirection.values();
+		BlockFace[] var7 = BlockFace.values();
 		int var8 = var7.length;
 
 		for (int var9 = 0; var9 < var8; ++var9) {
-			PaintingDirection var10 = var7[var9];
+			BlockFace var10 = var7[var9];
 			bpt var11 = this.a(var2, var3.a + var10.g(), var3.b + var10.h(), var3.c + var10.i());
 			if (var11 != null && !var11.i && var11.a(var4) < var5) {
 				var1[var6++] = var11;
@@ -44,8 +44,8 @@ public class bpx extends bpu {
 			for (int var6 = var3; var6 < var3 + this.d; ++var6) {
 				for (int var7 = var4; var7 < var4 + this.e; ++var7) {
 					Position var8 = new Position(var5, var6, var7);
-					Block var9 = this.a.p(var8).getBlock();
-					if (var9.r() != Material.WATER) {
+					Block var9 = this.a.getBlockState(var8).getBlock();
+					if (var9.getMaterial() != Material.WATER) {
 						return 0;
 					}
 				}

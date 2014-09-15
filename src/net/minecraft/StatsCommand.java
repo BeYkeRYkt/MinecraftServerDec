@@ -79,19 +79,19 @@ public class StatsCommand extends AbstractCommand {
 			if (var6 == null) {
 				throw new di("commands.stats.failed", new Object[0]);
 			} else {
-				World var7 = var1.e();
-				af var8;
+				World var7 = var1.getPrimaryWorld();
+				CommandBlockStatistic var8;
 				Position var9;
 				TileEntity var10;
 				if (var3) {
 					var9 = a(var1, var2, 1, false);
-					var10 = var7.s(var9);
+					var10 = var7.getTileEntity(var9);
 					if (var10 == null) {
 						throw new di("commands.stats.noCompatibleBlock", new Object[] { Integer.valueOf(var9.getX()), Integer.valueOf(var9.getY()), Integer.valueOf(var9.getZ()) });
 					}
 
 					if (var10 instanceof TileEntityCommand) {
-						var8 = ((TileEntityCommand) var10).c();
+						var8 = ((TileEntityCommand) var10).getStatistic();
 					} else {
 						if (!(var10 instanceof TileEntitySign)) {
 							throw new di("commands.stats.noCompatibleBlock", new Object[] { Integer.valueOf(var9.getX()), Integer.valueOf(var9.getY()), Integer.valueOf(var9.getZ()) });
@@ -111,17 +111,17 @@ public class StatsCommand extends AbstractCommand {
 						throw new di("commands.stats.failed", new Object[0]);
 					}
 
-					af.a(var8, var6, var13, var14);
+					CommandBlockStatistic.a(var8, var6, var13, var14);
 					a(var1, this, "commands.stats.success", new Object[] { var6.b(), var14, var13 });
 				} else if ("clear".equals(var5)) {
-					af.a(var8, var6, (String) null, (String) null);
+					CommandBlockStatistic.a(var8, var6, (String) null, (String) null);
 					a(var1, this, "commands.stats.cleared", new Object[] { var6.b() });
 				}
 
 				if (var3) {
 					var9 = a(var1, var2, 1, false);
-					var10 = var7.s(var9);
-					var10.o_();
+					var10 = var7.getTileEntity(var9);
+					var10.update();
 				}
 
 			}
@@ -138,14 +138,14 @@ public class StatsCommand extends AbstractCommand {
 	}
 
 	protected List e() {
-		Collection var1 = MinecraftServer.getInstance().a(0).Z().c();
+		Collection var1 = MinecraftServer.getInstance().getWorldServer(0).Z().c();
 		ArrayList var2 = Lists.newArrayList();
 		Iterator var3 = var1.iterator();
 
 		while (var3.hasNext()) {
-			bry var4 = (bry) var3.next();
-			if (!var4.c().b()) {
-				var2.add(var4.b());
+			ScoreboardObjective var4 = (ScoreboardObjective) var3.next();
+			if (!var4.getCriteria().isReadOnly()) {
+				var2.add(var4.getName());
 			}
 		}
 

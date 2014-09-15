@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 import net.minecraft.server.MinecraftServer;
 
-public abstract class AbstractCommand implements CommandInterface {
+public abstract class AbstractCommand implements ICommand {
 
 	private static y a;
 
@@ -26,7 +26,7 @@ public abstract class AbstractCommand implements CommandInterface {
 	}
 
 	public boolean a(CommandSenderInterface var1) {
-		return var1.a(this.a(), this.getName());
+		return var1.canExecuteCommand(this.a(), this.getName());
 	}
 
 	public List<String> getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {
@@ -76,7 +76,7 @@ public abstract class AbstractCommand implements CommandInterface {
 	}
 
 	public static Position a(CommandSenderInterface var0, String[] var1, int var2, boolean var3) throws dk {
-		Position var4 = var0.c();
+		Position var4 = var0.getEntityPosition();
 		return new Position(b((double) var4.getX(), var1[var2], -30000000, 30000000, var3), b((double) var4.getY(), var1[var2 + 1], 0, 256, false), b((double) var4.getZ(), var1[var2 + 2], -30000000, 30000000, var3));
 	}
 
@@ -139,7 +139,7 @@ public abstract class AbstractCommand implements CommandInterface {
 		}
 
 		if (var2 == null) {
-			var2 = MinecraftServer.getInstance().getPlayerList().a(var1);
+			var2 = MinecraftServer.getInstance().getPlayerList().getPlayer(var1);
 		}
 
 		if (var2 == null) {
@@ -157,7 +157,7 @@ public abstract class AbstractCommand implements CommandInterface {
 		Object var3 = ah.a(var0, var1, var2);
 		MinecraftServer var4 = MinecraftServer.getInstance();
 		if (var3 == null) {
-			var3 = var4.getPlayerList().a(var1);
+			var3 = var4.getPlayerList().getPlayer(var1);
 		}
 
 		if (var3 == null) {
@@ -185,7 +185,7 @@ public abstract class AbstractCommand implements CommandInterface {
 
 	public static String d(CommandSenderInterface var0, String var1) throws dm {
 		try {
-			return a(var0, var1).d_();
+			return a(var0, var1).getName();
 		} catch (dm var3) {
 			if (ah.b(var1)) {
 				throw var3;
@@ -197,10 +197,10 @@ public abstract class AbstractCommand implements CommandInterface {
 
 	public static String e(CommandSenderInterface var0, String var1) throws dj {
 		try {
-			return a(var0, var1).d_();
+			return a(var0, var1).getName();
 		} catch (dm var5) {
 			try {
-				return b(var0, var1).aJ().toString();
+				return b(var0, var1).getUUID().toString();
 			} catch (dj var4) {
 				if (ah.b(var1)) {
 					throw var4;
@@ -211,21 +211,21 @@ public abstract class AbstractCommand implements CommandInterface {
 		}
 	}
 
-	public static IJSONComponent a(CommandSenderInterface var0, String[] var1, int var2) throws dm {
+	public static IChatBaseComponent a(CommandSenderInterface var0, String[] var1, int var2) throws dm {
 		return b(var0, var1, var2, false);
 	}
 
-	public static IJSONComponent b(CommandSenderInterface var0, String[] var1, int var2, boolean var3) throws dm {
-		hy var4 = new hy("");
+	public static IChatBaseComponent b(CommandSenderInterface var0, String[] var1, int var2, boolean var3) throws dm {
+		ChatComponentText var4 = new ChatComponentText("");
 
 		for (int var5 = var2; var5 < var1.length; ++var5) {
 			if (var5 > var2) {
 				var4.a(" ");
 			}
 
-			Object var6 = new hy(var1[var5]);
+			Object var6 = new ChatComponentText(var1[var5]);
 			if (var3) {
-				IJSONComponent var7 = ah.b(var0, var1[var5]);
+				IChatBaseComponent var7 = ah.b(var0, var1[var5]);
 				if (var7 == null) {
 					if (ah.b(var1[var5])) {
 						throw new dm();
@@ -235,7 +235,7 @@ public abstract class AbstractCommand implements CommandInterface {
 				}
 			}
 
-			var4.a((IJSONComponent) var6);
+			var4.a((IChatBaseComponent) var6);
 		}
 
 		return var4;
@@ -329,7 +329,7 @@ public abstract class AbstractCommand implements CommandInterface {
 	}
 
 	public static Item f(CommandSenderInterface var0, String var1) throws dk {
-		BlockNameInfo var2 = new BlockNameInfo(var1);
+		RegistryObjectName var2 = new RegistryObjectName(var1);
 		Item var3 = (Item) Item.REGISTRY.getByName(var2);
 		if (var3 == null) {
 			throw new dk("commands.give.notFound", new Object[] { var2 });
@@ -339,7 +339,7 @@ public abstract class AbstractCommand implements CommandInterface {
 	}
 
 	public static Block g(CommandSenderInterface var0, String var1) throws dk {
-		BlockNameInfo var2 = new BlockNameInfo(var1);
+		RegistryObjectName var2 = new RegistryObjectName(var1);
 		if (!Block.BLOCKREGISTRY.d(var2)) {
 			throw new dk("commands.give.notFound", new Object[] { var2 });
 		} else {
@@ -371,8 +371,8 @@ public abstract class AbstractCommand implements CommandInterface {
 		return var1.toString();
 	}
 
-	public static IJSONComponent a(List var0) {
-		hy var1 = new hy("");
+	public static IChatBaseComponent a(List var0) {
+		ChatComponentText var1 = new ChatComponentText("");
 
 		for (int var2 = 0; var2 < var0.size(); ++var2) {
 			if (var2 > 0) {
@@ -383,7 +383,7 @@ public abstract class AbstractCommand implements CommandInterface {
 				}
 			}
 
-			var1.a((IJSONComponent) var0.get(var2));
+			var1.a((IChatBaseComponent) var0.get(var2));
 		}
 
 		return var1;
@@ -440,7 +440,7 @@ public abstract class AbstractCommand implements CommandInterface {
 
 				while (var4.hasNext()) {
 					Object var6 = var4.next();
-					if (var6 instanceof BlockNameInfo && startWith(var2, ((BlockNameInfo) var6).getBlockName())) {
+					if (var6 instanceof RegistryObjectName && startWith(var2, ((RegistryObjectName) var6).getBlockName())) {
 						var3.add(String.valueOf(var6));
 					}
 				}
@@ -454,11 +454,11 @@ public abstract class AbstractCommand implements CommandInterface {
 		return false;
 	}
 
-	public static void a(CommandSenderInterface var0, CommandInterface var1, String var2, Object... var3) {
+	public static void a(CommandSenderInterface var0, ICommand var1, String var2, Object... var3) {
 		a(var0, var1, 0, var2, var3);
 	}
 
-	public static void a(CommandSenderInterface var0, CommandInterface var1, int var2, String var3, Object... var4) {
+	public static void a(CommandSenderInterface var0, ICommand var1, int var2, String var3, Object... var4) {
 		if (a != null) {
 			a.a(var0, var1, var2, var3, var4);
 		}
@@ -469,7 +469,7 @@ public abstract class AbstractCommand implements CommandInterface {
 		a = var0;
 	}
 
-	public int compareTo(CommandInterface var1) {
+	public int compareTo(ICommand var1) {
 		return this.getName().compareTo(var1.getName());
 	}
 

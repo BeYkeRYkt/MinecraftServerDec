@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class aac extends zb {
+public class aac extends PathfinderGoal {
 
 	private EntityHorse a;
 	private double b;
@@ -15,7 +15,7 @@ public class aac extends zb {
 	}
 
 	public boolean a() {
-		if (!this.a.cm() && this.a.l != null) {
+		if (!this.a.cm() && this.a.passenger != null) {
 			Vec3D var1 = abf.a(this.a, 5, 4);
 			if (var1 == null) {
 				return false;
@@ -35,27 +35,27 @@ public class aac extends zb {
 	}
 
 	public boolean b() {
-		return !this.a.s().m() && this.a.l != null;
+		return !this.a.s().m() && this.a.passenger != null;
 	}
 
 	public void e() {
 		if (this.a.bb().nextInt(50) == 0) {
-			if (this.a.l instanceof EntityHuman) {
+			if (this.a.passenger instanceof EntityHuman) {
 				int var1 = this.a.cA();
 				int var2 = this.a.cG();
 				if (var2 > 0 && this.a.bb().nextInt(var2) < var1) {
-					this.a.h((EntityHuman) this.a.l);
-					this.a.o.a((Entity) this.a, (byte) 7);
+					this.a.h((EntityHuman) this.a.passenger);
+					this.a.world.broadcastEntityEffect((Entity) this.a, (byte) 7);
 					return;
 				}
 
 				this.a.u(5);
 			}
 
-			this.a.l.a((Entity) null);
-			this.a.l = null;
+			this.a.passenger.mount((Entity) null);
+			this.a.passenger = null;
 			this.a.cU();
-			this.a.o.a((Entity) this.a, (byte) 6);
+			this.a.world.broadcastEntityEffect((Entity) this.a, (byte) 6);
 		}
 
 	}

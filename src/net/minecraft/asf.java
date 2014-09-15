@@ -5,9 +5,9 @@ import java.util.Random;
 class asf extends asl {
 
 	// $FF: synthetic field
-	final asd aD;
+	final BiomeForest aD;
 
-	asf(asd var1, int var2, arm var3) {
+	asf(BiomeForest var1, int var2, BiomeBase var3) {
 		super(var2, var3);
 		this.aD = var1;
 	}

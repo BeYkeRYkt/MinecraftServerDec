@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 
-public class bkh extends bmv {
+public class bkh extends StructureStart {
 
 	private Set c = Sets.newHashSet();
 	private boolean d;
@@ -27,13 +27,13 @@ public class bkh extends bmv {
 		var2.setSeed(var9 ^ var11 ^ var1.J());
 		int var13 = var3 * 16 + 8 - 29;
 		int var14 = var4 * 16 + 8 - 29;
-		PaintingDirection var15 = en.a.a(var2);
+		BlockFace var15 = en.a.a(var2);
 		this.a.add(new bkr(var2, var13, var14, var15));
 		this.c();
 		this.d = true;
 	}
 
-	public void a(World var1, Random var2, bjb var3) {
+	public void a(World var1, Random var2, CuboidArea var3) {
 		if (!this.d) {
 			this.a.clear();
 			this.b(var1, var2, this.e(), this.f());

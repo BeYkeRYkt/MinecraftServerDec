@@ -1,19 +1,19 @@
 package net.minecraft;
 
-public class EntityCow extends abq {
+public class EntityCow extends EntityAnimal {
 
 	public EntityCow(World var1) {
 		super(var1);
 		this.a(0.9F, 1.3F);
 		((aay) this.s()).a(true);
-		this.i.a(0, new yy(this));
+		this.i.a(0, new PathfinderGoalFloat(this));
 		this.i.a(1, new zu(this, 2.0D));
 		this.i.a(2, new yt(this, 1.0D));
-		this.i.a(3, new aag(this, 1.25D, amk.O, false));
+		this.i.a(3, new aag(this, 1.25D, Items.WHEAT, false));
 		this.i.a(4, new za(this, 1.25D));
-		this.i.a(5, new zy(this, 1.0D));
-		this.i.a(6, new zh(this, EntityHuman.class, 6.0F));
-		this.i.a(7, new zx(this));
+		this.i.a(5, new PathfinderGoalRandomStroll(this, 1.0D));
+		this.i.a(6, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 6.0F));
+		this.i.a(7, new PathfinderGoalRandomLookaround(this));
 	}
 
 	protected void aW() {
@@ -42,25 +42,25 @@ public class EntityCow extends abq {
 		return 0.4F;
 	}
 
-	protected Item A() {
-		return amk.aF;
+	protected Item getLoot() {
+		return Items.LEATHER;
 	}
 
-	protected void b(boolean var1, int var2) {
-		int var3 = this.V.nextInt(3) + this.V.nextInt(1 + var2);
+	protected void dropDeathLoot(boolean var1, int var2) {
+		int var3 = this.random.nextInt(3) + this.random.nextInt(1 + var2);
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(amk.aF, 1);
+			this.a(Items.LEATHER, 1);
 		}
 
-		var3 = this.V.nextInt(3) + 1 + this.V.nextInt(1 + var2);
+		var3 = this.random.nextInt(3) + 1 + this.random.nextInt(1 + var2);
 
 		for (var4 = 0; var4 < var3; ++var4) {
 			if (this.au()) {
-				this.a(amk.bj, 1);
+				this.a(Items.COOKED_BEEF, 1);
 			} else {
-				this.a(amk.bi, 1);
+				this.a(Items.BEEF, 1);
 			}
 		}
 
@@ -68,11 +68,11 @@ public class EntityCow extends abq {
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		if (var2 != null && var2.getItem() == amk.aw && !var1.by.instabuild) {
-			if (var2.b-- == 1) {
-				var1.playerInventory.a(var1.playerInventory.c, new ItemStack(amk.aG));
-			} else if (!var1.playerInventory.a(new ItemStack(amk.aG))) {
-				var1.a(new ItemStack(amk.aG, 1, 0), false);
+		if (var2 != null && var2.getItem() == Items.BUCKET && !var1.playerProperties.instabuild) {
+			if (var2.amount-- == 1) {
+				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, new ItemStack(Items.MILK_BUCKET));
+			} else if (!var1.playerInventory.a(new ItemStack(Items.MILK_BUCKET))) {
+				var1.dropItem(new ItemStack(Items.MILK_BUCKET, 1, 0), false);
 			}
 
 			return true;
@@ -81,16 +81,16 @@ public class EntityCow extends abq {
 		}
 	}
 
-	public EntityCow b(ws var1) {
-		return new EntityCow(this.o);
+	public EntityCow b(EntityAgeable var1) {
+		return new EntityCow(this.world);
 	}
 
-	public float aR() {
-		return this.K;
+	public float getHeadHeight() {
+		return this.width;
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.b(var1);
 	}
 }

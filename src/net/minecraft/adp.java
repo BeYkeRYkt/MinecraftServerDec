@@ -26,7 +26,7 @@ public class adp extends vk {
 				var4 = 1;
 			}
 
-			var2.b(var4);
+			var2.setDurability(var4);
 		}
 
 		if (this.d) {

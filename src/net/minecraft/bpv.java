@@ -44,9 +44,9 @@ public class bpv {
 	}
 
 	public Vec3D a(Entity var1, int var2) {
-		double var3 = (double) this.a[var2].a + (double) ((int) (var1.J + 1.0F)) * 0.5D;
+		double var3 = (double) this.a[var2].a + (double) ((int) (var1.height + 1.0F)) * 0.5D;
 		double var5 = (double) this.a[var2].b;
-		double var7 = (double) this.a[var2].c + (double) ((int) (var1.J + 1.0F)) * 0.5D;
+		double var7 = (double) this.a[var2].c + (double) ((int) (var1.height + 1.0F)) * 0.5D;
 		return new Vec3D(var3, var5, var7);
 	}
 

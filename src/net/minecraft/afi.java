@@ -1,6 +1,6 @@
 package net.minecraft;
 
-class afi extends zb {
+class afi extends PathfinderGoal {
 
 	private EntityGuardian a;
 	private int b;
@@ -12,11 +12,11 @@ class afi extends zb {
 
 	public boolean a() {
 		EntityLiving var1 = this.a.u();
-		return var1 != null && var1.ai();
+		return var1 != null && var1.isAlive();
 	}
 
 	public boolean b() {
-		return super.b() && (this.a.cl() || this.a.h(this.a.u()) > 9.0D);
+		return super.b() && (this.a.cl() || this.a.getDistanceSquared(this.a.u()) > 9.0D);
 	}
 
 	public void c() {
@@ -42,10 +42,10 @@ class afi extends zb {
 			++this.b;
 			if (this.b == 0) {
 				EntityGuardian.a(this.a, this.a.u().getId());
-				this.a.o.a((Entity) this.a, (byte) 21);
+				this.a.world.broadcastEntityEffect((Entity) this.a, (byte) 21);
 			} else if (this.b >= this.a.ck()) {
 				float var2 = 1.0F;
-				if (this.a.o.getDifficulty() == Difficulty.HARD) {
+				if (this.a.world.getDifficulty() == Difficulty.HARD) {
 					var2 += 2.0F;
 				}
 
@@ -53,8 +53,8 @@ class afi extends zb {
 					var2 += 2.0F;
 				}
 
-				var1.a(wh.b(this.a, this.a), var2);
-				var1.a(wh.a((EntityLiving) this.a), (float) this.a.a(afs.e).e());
+				var1.damageEntity(DamageSource.magic(this.a, this.a), var2);
+				var1.damageEntity(DamageSource.mobAttack((EntityLiving) this.a), (float) this.a.a(afs.e).e());
 				this.a.d((EntityLiving) null);
 			} else if (this.b >= 60 && this.b % 20 == 0) {
 				;

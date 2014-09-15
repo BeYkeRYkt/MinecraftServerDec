@@ -15,9 +15,9 @@ final class sh implements ProfileLookupCallback {
 	// $FF: synthetic field
 	final Map b;
 	// $FF: synthetic field
-	final sv c;
+	final GameProfileBanList c;
 
-	sh(MinecraftServer var1, Map var2, sv var3) {
+	sh(MinecraftServer var1, Map var2, GameProfileBanList var3) {
 		this.a = var1;
 		this.b = var2;
 		this.c = var3;
@@ -34,7 +34,7 @@ final class sh implements ProfileLookupCallback {
 			String var4 = var2.length > 2 ? var2[2] : null;
 			Date var5 = var2.length > 3 ? sf.a(var2[3], (Date) null) : null;
 			String var6 = var2.length > 4 ? var2[4] : null;
-			this.c.a((sr) (new sw(var1, var3, var4, var5, var6)));
+			this.c.add((JsonListEntry) (new GameProfileBanEntry(var1, var3, var4, var5, var6)));
 		}
 	}
 

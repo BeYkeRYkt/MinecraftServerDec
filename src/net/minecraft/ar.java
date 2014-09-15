@@ -15,7 +15,7 @@ final class ar implements Predicate {
 	}
 
 	public boolean a(Entity var1) {
-		return var1.d_().equals(this.a) != this.b;
+		return var1.getName().equals(this.a) != this.b;
 	}
 
 	// $FF: synthetic method

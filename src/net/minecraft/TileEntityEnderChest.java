@@ -1,15 +1,15 @@
 package net.minecraft;
 
-public class TileEntityEnderChest extends TileEntity implements pm {
+public class TileEntityEnderChest extends TileEntity implements PacketTickable {
 
 	public float a;
 	public float f;
 	public int g;
 	private int h;
 
-	public void c() {
+	public void doTick() {
 		if (++this.h % 20 * 4 == 0) {
-			this.world.c(this.position, aty.bQ, 1, this.g);
+			this.world.c(this.position, Blocks.ENDER_CHEST, 1, this.g);
 		}
 
 		this.f = this.a;
@@ -21,7 +21,7 @@ public class TileEntityEnderChest extends TileEntity implements pm {
 		if (this.g > 0 && this.a == 0.0F) {
 			double var5 = (double) var1 + 0.5D;
 			var7 = (double) var3 + 0.5D;
-			this.world.a(var5, (double) var2 + 0.5D, var7, "random.chestopen", 0.5F, this.world.s.nextFloat() * 0.1F + 0.9F);
+			this.world.makeSound(var5, (double) var2 + 0.5D, var7, "random.chestopen", 0.5F, this.world.s.nextFloat() * 0.1F + 0.9F);
 		}
 
 		if (this.g == 0 && this.a > 0.0F || this.g > 0 && this.a < 1.0F) {
@@ -40,7 +40,7 @@ public class TileEntityEnderChest extends TileEntity implements pm {
 			if (this.a < var6 && var11 >= var6) {
 				var7 = (double) var1 + 0.5D;
 				double var9 = (double) var3 + 0.5D;
-				this.world.a(var7, (double) var2 + 0.5D, var9, "random.chestclosed", 0.5F, this.world.s.nextFloat() * 0.1F + 0.9F);
+				this.world.makeSound(var7, (double) var2 + 0.5D, var9, "random.chestclosed", 0.5F, this.world.s.nextFloat() * 0.1F + 0.9F);
 			}
 
 			if (this.a < 0.0F) {
@@ -66,15 +66,15 @@ public class TileEntityEnderChest extends TileEntity implements pm {
 
 	public void b() {
 		++this.g;
-		this.world.c(this.position, aty.bQ, 1, this.g);
+		this.world.c(this.position, Blocks.ENDER_CHEST, 1, this.g);
 	}
 
 	public void d() {
 		--this.g;
-		this.world.c(this.position, aty.bQ, 1, this.g);
+		this.world.c(this.position, Blocks.ENDER_CHEST, 1, this.g);
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.world.s(this.position) != this ? false : var1.e((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
+		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 }

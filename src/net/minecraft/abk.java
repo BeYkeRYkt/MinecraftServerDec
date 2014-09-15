@@ -10,7 +10,7 @@ public class abk {
 	private int c = -1;
 	private int d;
 	private int e;
-	private abi f;
+	private Village f;
 	private int g;
 	private int h;
 	private int i;
@@ -67,7 +67,7 @@ public class abk {
 
 		while (var2.hasNext()) {
 			EntityHuman var3 = (EntityHuman) var2.next();
-			if (!var3.v()) {
+			if (!var3.isSpectator()) {
 				this.f = this.a.ae().a(new Position(var3), 1);
 				if (this.f != null && this.f.c() >= 10 && this.f.d() >= 20 && this.f.e() >= 20) {
 					Position var4 = this.f.a();
@@ -78,14 +78,14 @@ public class abk {
 					while (true) {
 						if (var7 < 10) {
 							float var8 = this.a.s.nextFloat() * 3.1415927F * 2.0F;
-							this.g = var4.getX() + (int) ((double) (DataTypesConverter.b(var8) * var5) * 0.9D);
+							this.g = var4.getX() + (int) ((double) (MathHelper.b(var8) * var5) * 0.9D);
 							this.h = var4.getY();
-							this.i = var4.getZ() + (int) ((double) (DataTypesConverter.a(var8) * var5) * 0.9D);
+							this.i = var4.getZ() + (int) ((double) (MathHelper.a(var8) * var5) * 0.9D);
 							var6 = false;
 							Iterator var9 = this.a.ae().b().iterator();
 
 							while (var9.hasNext()) {
-								abi var10 = (abi) var9.next();
+								Village var10 = (Village) var9.next();
 								if (var10 != this.f && var10.a(new Position(this.g, this.h, this.i))) {
 									var6 = true;
 									break;
@@ -132,8 +132,8 @@ public class abk {
 				return false;
 			}
 
-			var2.b(var1.x, var1.y, var1.z, this.a.s.nextFloat() * 360.0F, 0.0F);
-			this.a.d((Entity) var2);
+			var2.setPositionRotation(var1.x, var1.y, var1.z, this.a.s.nextFloat() * 360.0F, 0.0F);
+			this.a.addEntity((Entity) var2);
 			Position var3 = this.f.a();
 			var2.a(var3, this.f.b());
 			return true;
@@ -143,7 +143,7 @@ public class abk {
 	private Vec3D a(Position var1) {
 		for (int var2 = 0; var2 < 10; ++var2) {
 			Position var3 = var1.a(this.a.s.nextInt(16) - 8, this.a.s.nextInt(6) - 3, this.a.s.nextInt(16) - 8);
-			if (this.f.a(var3) && arg.a(xo.a, this.a, var3)) {
+			if (this.f.a(var3) && SpawnerCreature.a(xo.a, this.a, var3)) {
 				return new Vec3D((double) var3.getX(), (double) var3.getY(), (double) var3.getZ());
 			}
 		}

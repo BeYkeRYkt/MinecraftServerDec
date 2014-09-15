@@ -18,7 +18,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 
 		List var4 = (List) b.get(var1);
 		if (var3) {
-			var4.add(new azx(var2, var1.K()));
+			var4.add(new azx(var2, var1.getTime()));
 		}
 
 		int var5 = 0;
@@ -46,57 +46,57 @@ public class BlockRedstoneTorch extends BlockTorch {
 		return 2;
 	}
 
-	public void c(World var1, Position var2, bec var3) {
+	public void c(World var1, Position var2, IBlockState var3) {
 		if (this.M) {
-			PaintingDirection[] var4 = PaintingDirection.values();
+			BlockFace[] var4 = BlockFace.values();
 			int var5 = var4.length;
 
 			for (int var6 = 0; var6 < var5; ++var6) {
-				PaintingDirection var7 = var4[var6];
+				BlockFace var7 = var4[var6];
 				var1.c(var2.a(var7), (Block) this);
 			}
 		}
 
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		if (this.M) {
-			PaintingDirection[] var4 = PaintingDirection.values();
+			BlockFace[] var4 = BlockFace.values();
 			int var5 = var4.length;
 
 			for (int var6 = 0; var6 < var5; ++var6) {
-				PaintingDirection var7 = var4[var6];
+				BlockFace var7 = var4[var6];
 				var1.c(var2.a(var7), (Block) this);
 			}
 		}
 
 	}
 
-	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return this.M && var3.b(a) != var4 ? 15 : 0;
 	}
 
-	private boolean g(World var1, Position var2, bec var3) {
-		PaintingDirection var4 = ((PaintingDirection) var3.b(a)).d();
+	private boolean g(World var1, Position var2, IBlockState var3) {
+		BlockFace var4 = ((BlockFace) var3.b(a)).getOpposite();
 		return var1.b(var2.a(var4), var4);
 	}
 
-	public void a(World var1, Position var2, bec var3, Random var4) {
+	public void a(World var1, Position var2, IBlockState var3, Random var4) {
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		boolean var5 = this.g(var1, var2, var3);
 		List var6 = (List) b.get(var1);
 
-		while (var6 != null && !var6.isEmpty() && var1.K() - ((azx) var6.get(0)).b > 60L) {
+		while (var6 != null && !var6.isEmpty() && var1.getTime() - ((azx) var6.get(0)).b > 60L) {
 			var6.remove(0);
 		}
 
 		if (this.M) {
 			if (var5) {
-				var1.a(var2, aty.aE.P().a(a, var3.b(a)), 3);
+				var1.setBlockAt(var2, Blocks.UNLIT_REDSTONE_TORCH.getBlockState().a(a, var3.b(a)), 3);
 				if (this.a(var1, var2, true)) {
-					var1.a((double) ((float) var2.getX() + 0.5F), (double) ((float) var2.getY() + 0.5F), (double) ((float) var2.getZ() + 0.5F), "random.fizz", 0.5F, 2.6F + (var1.s.nextFloat() - var1.s.nextFloat()) * 0.8F);
+					var1.makeSound((double) ((float) var2.getX() + 0.5F), (double) ((float) var2.getY() + 0.5F), (double) ((float) var2.getZ() + 0.5F), "random.fizz", 0.5F, 2.6F + (var1.s.nextFloat() - var1.s.nextFloat()) * 0.8F);
 
 					for (int var7 = 0; var7 < 5; ++var7) {
 						double var8 = (double) var2.getX() + var4.nextDouble() * 0.6D + 0.2D;
@@ -105,16 +105,16 @@ public class BlockRedstoneTorch extends BlockTorch {
 						var1.a(Particle.l, var8, var10, var12, 0.0D, 0.0D, 0.0D, new int[0]);
 					}
 
-					var1.a(var2, var1.p(var2).getBlock(), 160);
+					var1.a(var2, var1.getBlockState(var2).getBlock(), 160);
 				}
 			}
 		} else if (!var5 && !this.a(var1, var2, false)) {
-			var1.a(var2, aty.aF.P().a(a, var3.b(a)), 3);
+			var1.setBlockAt(var2, Blocks.REDSTONE_TORCH.getBlockState().a(a, var3.b(a)), 3);
 		}
 
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!this.e(var1, var2, var3)) {
 			if (this.M == this.g(var1, var2, var3)) {
 				var1.a(var2, (Block) this, this.a(var1));
@@ -123,12 +123,12 @@ public class BlockRedstoneTorch extends BlockTorch {
 		}
 	}
 
-	public int b(ard var1, Position var2, bec var3, PaintingDirection var4) {
-		return var4 == PaintingDirection.a ? this.a(var1, var2, var3, var4) : 0;
+	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+		return var4 == BlockFace.DOWN ? this.a(var1, var2, var3, var4) : 0;
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
-		return Item.getItemOf(aty.aF);
+	public Item a(IBlockState var1, Random var2, int var3) {
+		return Item.getItemOf(Blocks.REDSTONE_TORCH);
 	}
 
 	public boolean g() {
@@ -136,7 +136,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 	}
 
 	public boolean b(Block var1) {
-		return var1 == aty.aE || var1 == aty.aF;
+		return var1 == Blocks.UNLIT_REDSTONE_TORCH || var1 == Blocks.REDSTONE_TORCH;
 	}
 
 }

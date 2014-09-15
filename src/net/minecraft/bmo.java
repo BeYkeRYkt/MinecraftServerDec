@@ -9,9 +9,9 @@ class bmo implements Callable {
 	// $FF: synthetic field
 	final int b;
 	// $FF: synthetic field
-	final bmm c;
+	final StructureGenerator c;
 
-	bmo(bmm var1, int var2, int var3) {
+	bmo(StructureGenerator var1, int var2, int var3) {
 		this.c = var1;
 		this.a = var2;
 		this.b = var3;

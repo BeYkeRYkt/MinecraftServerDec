@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.Iterator;
 import java.util.List;
 
-public class zv extends zb {
+public class zv extends PathfinderGoal {
 
 	private EntityVillager a;
 	private EntityLiving b;
@@ -22,14 +22,14 @@ public class zv extends zb {
 		} else if (this.a.bb().nextInt(400) != 0) {
 			return false;
 		} else {
-			List var1 = this.a.o.a(EntityVillager.class, this.a.aQ().b(6.0D, 3.0D, 6.0D));
+			List var1 = this.a.world.a(EntityVillager.class, this.a.getBoundingBox().grow(6.0D, 3.0D, 6.0D));
 			double var2 = Double.MAX_VALUE;
 			Iterator var4 = var1.iterator();
 
 			while (var4.hasNext()) {
 				EntityVillager var5 = (EntityVillager) var4.next();
 				if (var5 != this.a && !var5.cl() && var5.l() < 0) {
-					double var6 = var5.h(this.a);
+					double var6 = var5.getDistanceSquared(this.a);
 					if (var6 <= var2) {
 						var2 = var6;
 						this.b = var5;
@@ -68,7 +68,7 @@ public class zv extends zb {
 	public void e() {
 		--this.d;
 		if (this.b != null) {
-			if (this.a.h(this.b) > 4.0D) {
+			if (this.a.getDistanceSquared(this.b) > 4.0D) {
 				this.a.s().a((Entity) this.b, this.c);
 			}
 		} else if (this.a.s().m()) {

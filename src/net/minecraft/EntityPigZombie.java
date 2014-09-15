@@ -12,13 +12,13 @@ public class EntityPigZombie extends EntityZombie {
 
 	public EntityPigZombie(World var1) {
 		super(var1);
-		this.ab = true;
+		this.fireProof = true;
 	}
 
 	public void b(EntityLiving var1) {
 		super.b(var1);
 		if (var1 != null) {
-			this.bn = var1.aJ();
+			this.bn = var1.getUUID();
 		}
 
 	}
@@ -52,11 +52,11 @@ public class EntityPigZombie extends EntityZombie {
 		}
 
 		if (this.bm > 0 && --this.bm == 0) {
-			this.a("mob.zombiepig.zpigangry", this.bA() * 2.0F, ((this.V.nextFloat() - this.V.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+			this.a("mob.zombiepig.zpigangry", this.bA() * 2.0F, ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F) * 1.8F);
 		}
 
 		if (this.bl > 0 && this.bn != null && this.bc() == null) {
-			EntityHuman var2 = this.o.b(this.bn);
+			EntityHuman var2 = this.world.b(this.bn);
 			this.b((EntityLiving) var2);
 			this.aL = var2;
 			this.aM = this.bd();
@@ -66,11 +66,11 @@ public class EntityPigZombie extends EntityZombie {
 	}
 
 	public boolean bQ() {
-		return this.o.getDifficulty() != Difficulty.PEACEFUL;
+		return this.world.getDifficulty() != Difficulty.PEACEFUL;
 	}
 
 	public boolean bR() {
-		return this.o.a(this.aQ(), (Entity) this) && this.o.a((Entity) this, this.aQ()).isEmpty() && !this.o.d(this.aQ());
+		return this.world.a(this.getBoundingBox(), (Entity) this) && this.world.getCubes((Entity) this, this.getBoundingBox()).isEmpty() && !this.world.d(this.getBoundingBox());
 	}
 
 	public void b(NBTCompoundTag var1) {
@@ -90,7 +90,7 @@ public class EntityPigZombie extends EntityZombie {
 		String var2 = var1.getString("HurtBy");
 		if (var2.length() > 0) {
 			this.bn = UUID.fromString(var2);
-			EntityHuman var3 = this.o.b(this.bn);
+			EntityHuman var3 = this.world.b(this.bn);
 			this.b((EntityLiving) var3);
 			if (var3 != null) {
 				this.aL = var3;
@@ -100,7 +100,7 @@ public class EntityPigZombie extends EntityZombie {
 
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else {
@@ -109,13 +109,13 @@ public class EntityPigZombie extends EntityZombie {
 				this.b(var3);
 			}
 
-			return super.a(var1, var2);
+			return super.damageEntity(var1, var2);
 		}
 	}
 
 	private void b(Entity var1) {
-		this.bl = 400 + this.V.nextInt(400);
-		this.bm = this.V.nextInt(40);
+		this.bl = 400 + this.random.nextInt(400);
+		this.bm = this.random.nextInt(40);
 		if (var1 instanceof EntityLiving) {
 			this.b((EntityLiving) var1);
 		}
@@ -138,18 +138,18 @@ public class EntityPigZombie extends EntityZombie {
 		return "mob.zombiepig.zpigdeath";
 	}
 
-	protected void b(boolean var1, int var2) {
-		int var3 = this.V.nextInt(2 + var2);
+	protected void dropDeathLoot(boolean var1, int var2) {
+		int var3 = this.random.nextInt(2 + var2);
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(amk.bt, 1);
+			this.a(Items.ROTTEN_FLESH, 1);
 		}
 
-		var3 = this.V.nextInt(2 + var2);
+		var3 = this.random.nextInt(2 + var2);
 
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(amk.bx, 1);
+			this.a(Items.GOLD_NUGGET, 1);
 		}
 
 	}
@@ -159,11 +159,11 @@ public class EntityPigZombie extends EntityZombie {
 	}
 
 	protected void bp() {
-		this.a(amk.k, 1);
+		this.a(Items.GOLD_INGOT, 1);
 	}
 
 	protected void a(vu var1) {
-		this.c(0, new ItemStack(amk.B));
+		this.setArmor(0, new ItemStack(Items.GOLDEN_SWORD));
 	}
 
 	public xq a(vu var1, xq var2) {

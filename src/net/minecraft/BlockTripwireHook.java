@@ -14,16 +14,16 @@ public class BlockTripwireHook extends Block {
 
 	public BlockTripwireHook() {
 		super(Material.ORIENTABLE);
-		this.j(this.L.b().a(a, PaintingDirection.c).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)));
-		this.a(CreativeModeTab.d);
+		this.setBlockState(this.L.b().a(a, BlockFace.NORTH).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false)));
+		this.a(CreativeModeTab.REDSTONE);
 		this.a(true);
 	}
 
-	public bec a(bec var1, ard var2, Position var3) {
+	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		return var1.a(N, Boolean.valueOf(!World.a(var2, var3.b())));
 	}
 
-	public brt a(World var1, Position var2, bec var3) {
+	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
 		return null;
 	}
 
@@ -35,27 +35,27 @@ public class BlockTripwireHook extends Block {
 		return false;
 	}
 
-	public boolean a(World var1, Position var2, PaintingDirection var3) {
-		return var3.k().c() && var1.p(var2.a(var3.d())).getBlock().t();
+	public boolean a(World var1, Position var2, BlockFace var3) {
+		return var3.k().c() && var1.getBlockState(var2.a(var3.getOpposite())).getBlock().t();
 	}
 
 	public boolean c(World var1, Position var2) {
 		Iterator var3 = en.a.iterator();
 
-		PaintingDirection var4;
+		BlockFace var4;
 		do {
 			if (!var3.hasNext()) {
 				return false;
 			}
 
-			var4 = (PaintingDirection) var3.next();
-		} while (!var1.p(var2.a(var4)).getBlock().t());
+			var4 = (BlockFace) var3.next();
+		} while (!var1.getBlockState(var2.a(var4)).getBlock().t());
 
 		return true;
 	}
 
-	public bec a(World var1, Position var2, PaintingDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		bec var9 = this.P().a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false));
+	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
+		IBlockState var9 = this.getBlockState().a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false)).a(N, Boolean.valueOf(false));
 		if (var3.k().c()) {
 			var9 = var9.a(a, var3);
 		}
@@ -63,15 +63,15 @@ public class BlockTripwireHook extends Block {
 		return var9;
 	}
 
-	public void a(World var1, Position var2, bec var3, EntityLiving var4, ItemStack var5) {
-		this.a(var1, var2, var3, false, false, -1, (bec) null);
+	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
+		this.a(var1, var2, var3, false, false, -1, (IBlockState) null);
 	}
 
-	public void a(World var1, Position var2, bec var3, Block var4) {
+	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (var4 != this) {
 			if (this.e(var1, var2, var3)) {
-				PaintingDirection var5 = (PaintingDirection) var3.b(a);
-				if (!var1.p(var2.a(var5.d())).getBlock().t()) {
+				BlockFace var5 = (BlockFace) var3.b(a);
+				if (!var1.getBlockState(var2.a(var5.getOpposite())).getBlock().t()) {
 					this.b(var1, var2, var3, 0);
 					var1.g(var2);
 				}
@@ -80,33 +80,33 @@ public class BlockTripwireHook extends Block {
 		}
 	}
 
-	public void a(World var1, Position var2, bec var3, boolean var4, boolean var5, int var6, bec var7) {
-		PaintingDirection var8 = (PaintingDirection) var3.b(a);
+	public void a(World var1, Position var2, IBlockState var3, boolean var4, boolean var5, int var6, IBlockState var7) {
+		BlockFace var8 = (BlockFace) var3.b(a);
 		boolean var9 = ((Boolean) var3.b(M)).booleanValue();
 		boolean var10 = ((Boolean) var3.b(b)).booleanValue();
 		boolean var11 = !World.a((ard) var1, var2.b());
 		boolean var12 = !var4;
 		boolean var13 = false;
 		int var14 = 0;
-		bec[] var15 = new bec[42];
+		IBlockState[] var15 = new IBlockState[42];
 
 		Position var17;
 		for (int var16 = 1; var16 < 42; ++var16) {
 			var17 = var2.a(var8, var16);
-			bec var18 = var1.p(var17);
-			if (var18.getBlock() == aty.bR) {
-				if (var18.b(a) == var8.d()) {
+			IBlockState var18 = var1.getBlockState(var17);
+			if (var18.getBlock() == Blocks.TRIPWIRE_HOOK) {
+				if (var18.b(a) == var8.getOpposite()) {
 					var14 = var16;
 				}
 				break;
 			}
 
-			if (var18.getBlock() != aty.bS && var16 != var6) {
+			if (var18.getBlock() != Blocks.TRIPWIRE && var16 != var6) {
 				var15[var16] = null;
 				var12 = false;
 			} else {
 				if (var16 == var6) {
-					var18 = (bec) Objects.firstNonNull(var7, var18);
+					var18 = (IBlockState) Objects.firstNonNull(var7, var18);
 				}
 
 				boolean var19 = !((Boolean) var18.b(BlockTripwire.N)).booleanValue();
@@ -124,18 +124,18 @@ public class BlockTripwireHook extends Block {
 
 		var12 &= var14 > 1;
 		var13 &= var12;
-		bec var22 = this.P().a(M, Boolean.valueOf(var12)).a(b, Boolean.valueOf(var13));
+		IBlockState var22 = this.getBlockState().a(M, Boolean.valueOf(var12)).a(b, Boolean.valueOf(var13));
 		if (var14 > 0) {
 			var17 = var2.a(var8, var14);
-			PaintingDirection var24 = var8.d();
-			var1.a(var17, var22.a(a, var24), 3);
+			BlockFace var24 = var8.getOpposite();
+			var1.setBlockAt(var17, var22.a(a, var24), 3);
 			this.b(var1, var17, var24);
 			this.a(var1, var17, var12, var13, var9, var10);
 		}
 
 		this.a(var1, var2, var12, var13, var9, var10);
 		if (!var4) {
-			var1.a(var2, var22.a(a, var8), 3);
+			var1.setBlockAt(var2, var22.a(a, var8), 3);
 			if (var5) {
 				this.b(var1, var2, var8);
 			}
@@ -144,41 +144,41 @@ public class BlockTripwireHook extends Block {
 		if (var9 != var12) {
 			for (int var23 = 1; var23 < var14; ++var23) {
 				Position var25 = var2.a(var8, var23);
-				bec var26 = var15[var23];
-				if (var26 != null && var1.p(var25).getBlock() != aty.a) {
-					var1.a(var25, var26.a(M, Boolean.valueOf(var12)), 3);
+				IBlockState var26 = var15[var23];
+				if (var26 != null && var1.getBlockState(var25).getBlock() != Blocks.AIR) {
+					var1.setBlockAt(var25, var26.a(M, Boolean.valueOf(var12)), 3);
 				}
 			}
 		}
 
 	}
 
-	public void a(World var1, Position var2, bec var3, Random var4) {
+	public void a(World var1, Position var2, IBlockState var3, Random var4) {
 	}
 
-	public void b(World var1, Position var2, bec var3, Random var4) {
-		this.a(var1, var2, var3, false, true, -1, (bec) null);
+	public void b(World var1, Position var2, IBlockState var3, Random var4) {
+		this.a(var1, var2, var3, false, true, -1, (IBlockState) null);
 	}
 
 	private void a(World var1, Position var2, boolean var3, boolean var4, boolean var5, boolean var6) {
 		if (var4 && !var6) {
-			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.click", 0.4F, 0.6F);
+			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.click", 0.4F, 0.6F);
 		} else if (!var4 && var6) {
-			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.click", 0.4F, 0.5F);
+			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.click", 0.4F, 0.5F);
 		} else if (var3 && !var5) {
-			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.click", 0.4F, 0.7F);
+			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.click", 0.4F, 0.7F);
 		} else if (!var3 && var5) {
-			var1.a((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.bowhit", 0.4F, 1.2F / (var1.s.nextFloat() * 0.2F + 0.9F));
+			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.bowhit", 0.4F, 1.2F / (var1.s.nextFloat() * 0.2F + 0.9F));
 		}
 
 	}
 
-	private void b(World var1, Position var2, PaintingDirection var3) {
+	private void b(World var1, Position var2, BlockFace var3) {
 		var1.c(var2, (Block) this);
-		var1.c(var2.a(var3.d()), (Block) this);
+		var1.c(var2.a(var3.getOpposite()), (Block) this);
 	}
 
-	private boolean e(World var1, Position var2, bec var3) {
+	private boolean e(World var1, Position var2, IBlockState var3) {
 		if (!this.c(var1, var2)) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -190,7 +190,7 @@ public class BlockTripwireHook extends Block {
 
 	public void a(ard var1, Position var2) {
 		float var3 = 0.1875F;
-		switch (bbu.a[((PaintingDirection) var1.p(var2).b(a)).ordinal()]) {
+		switch (bbu.a[((BlockFace) var1.getBlockState(var2).b(a)).ordinal()]) {
 			case 1:
 				this.a(0.0F, 0.2F, 0.5F - var3, var3 * 2.0F, 0.8F, 0.5F + var3);
 				break;
@@ -206,26 +206,26 @@ public class BlockTripwireHook extends Block {
 
 	}
 
-	public void b(World var1, Position var2, bec var3) {
+	public void b(World var1, Position var2, IBlockState var3) {
 		boolean var4 = ((Boolean) var3.b(M)).booleanValue();
 		boolean var5 = ((Boolean) var3.b(b)).booleanValue();
 		if (var4 || var5) {
-			this.a(var1, var2, var3, true, false, -1, (bec) null);
+			this.a(var1, var2, var3, true, false, -1, (IBlockState) null);
 		}
 
 		if (var5) {
 			var1.c(var2, (Block) this);
-			var1.c(var2.a(((PaintingDirection) var3.b(a)).d()), (Block) this);
+			var1.c(var2.a(((BlockFace) var3.b(a)).getOpposite()), (Block) this);
 		}
 
 		super.b(var1, var2, var3);
 	}
 
-	public int a(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return ((Boolean) var3.b(b)).booleanValue() ? 15 : 0;
 	}
 
-	public int b(ard var1, Position var2, bec var3, PaintingDirection var4) {
+	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return !((Boolean) var3.b(b)).booleanValue() ? 0 : (var3.b(a) == var4 ? 15 : 0);
 	}
 
@@ -233,13 +233,13 @@ public class BlockTripwireHook extends Block {
 		return true;
 	}
 
-	public bec a(int var1) {
-		return this.P().a(a, PaintingDirection.fromByte(var1 & 3)).a(b, Boolean.valueOf((var1 & 8) > 0)).a(M, Boolean.valueOf((var1 & 4) > 0));
+	public IBlockState setData(int var1) {
+		return this.getBlockState().a(a, BlockFace.fromDirection(var1 & 3)).a(b, Boolean.valueOf((var1 & 8) > 0)).a(M, Boolean.valueOf((var1 & 4) > 0));
 	}
 
-	public int c(bec var1) {
+	public int getData(IBlockState var1) {
 		byte var2 = 0;
-		int var3 = var2 | ((PaintingDirection) var1.b(a)).toByte();
+		int var3 = var2 | ((BlockFace) var1.b(a)).toDirection();
 		if (((Boolean) var1.b(b)).booleanValue()) {
 			var3 |= 8;
 		}

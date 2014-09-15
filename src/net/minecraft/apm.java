@@ -3,12 +3,12 @@ package net.minecraft;
 final class apm implements apl {
 
 	public float a;
-	public xs b;
+	public EnumMonsterType b;
 
 	private apm() {
 	}
 
-	public void a(apf var1, int var2) {
+	public void a(Enchantment var1, int var2) {
 		this.a += var1.a(var2, this.b);
 	}
 

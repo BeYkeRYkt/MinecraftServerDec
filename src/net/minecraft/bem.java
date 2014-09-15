@@ -5,22 +5,22 @@ import com.google.common.cache.LoadingCache;
 public class bem {
 
 	private final Position a;
-	private final PaintingDirection b;
-	private final PaintingDirection c;
+	private final BlockFace b;
+	private final BlockFace c;
 	private final LoadingCache d;
 
-	public bem(Position var1, PaintingDirection var2, PaintingDirection var3, LoadingCache var4) {
+	public bem(Position var1, BlockFace var2, BlockFace var3, LoadingCache var4) {
 		this.a = var1;
 		this.b = var2;
 		this.c = var3;
 		this.d = var4;
 	}
 
-	public PaintingDirection b() {
+	public BlockFace b() {
 		return this.b;
 	}
 
-	public PaintingDirection c() {
+	public BlockFace c() {
 		return this.c;
 	}
 

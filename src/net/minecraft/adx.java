@@ -53,11 +53,11 @@ public abstract class adx extends Entity implements vz {
 		this.dataWatcher.a(22, Byte.valueOf((byte) 0));
 	}
 
-	public brt j(Entity var1) {
-		return var1.ae() ? var1.aQ() : null;
+	public AxisAlignedBB j(Entity var1) {
+		return var1.ae() ? var1.getBoundingBox() : null;
 	}
 
-	public brt S() {
+	public AxisAlignedBB S() {
 		return null;
 	}
 
@@ -71,17 +71,17 @@ public abstract class adx extends Entity implements vz {
 		this.motionX = 0.0D;
 		this.motionY = 0.0D;
 		this.motionZ = 0.0D;
-		this.p = var2;
-		this.q = var4;
-		this.r = var6;
+		this.previousX = var2;
+		this.previousY = var4;
+		this.previousZ = var6;
 	}
 
 	public double an() {
-		return (double) this.K * 0.5D - 0.20000000298023224D;
+		return (double) this.width * 0.5D - 0.20000000298023224D;
 	}
 
-	public boolean a(wh var1, float var2) {
-		if (!this.o.D && !this.I) {
+	public boolean damageEntity(DamageSource var1, float var2) {
+		if (!this.world.isStatic && !this.dead) {
 			if (this.b(var1)) {
 				return false;
 			} else {
@@ -89,14 +89,14 @@ public abstract class adx extends Entity implements vz {
 				this.j(10);
 				this.ac();
 				this.a(this.p() + var2 * 10.0F);
-				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).by.instabuild;
+				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).playerProperties.instabuild;
 				if (var3 || this.p() > 40.0F) {
-					if (this.l != null) {
-						this.l.a((Entity) null);
+					if (this.passenger != null) {
+						this.passenger.mount((Entity) null);
 					}
 
 					if (var3 && !this.k_()) {
-						this.J();
+						this.die();
 					} else {
 						this.a(var1);
 					}
@@ -109,9 +109,9 @@ public abstract class adx extends Entity implements vz {
 		}
 	}
 
-	public void a(wh var1) {
-		this.J();
-		ItemStack var2 = new ItemStack(amk.az, 1);
+	public void a(DamageSource var1) {
+		this.die();
+		ItemStack var2 = new ItemStack(Items.MINECART, 1);
 		if (this.b != null) {
 			var2.c(this.b);
 		}
@@ -120,11 +120,11 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public boolean ad() {
-		return !this.I;
+		return !this.dead;
 	}
 
-	public void J() {
-		super.J();
+	public void die() {
+		super.die();
 	}
 
 	public void s_() {
@@ -141,17 +141,17 @@ public abstract class adx extends Entity implements vz {
 		}
 
 		int var2;
-		if (!this.o.D && this.o instanceof WorldServer) {
-			this.o.B.a("portal");
-			MinecraftServer var1 = ((WorldServer) this.o).r();
+		if (!this.world.isStatic && this.world instanceof WorldServer) {
+			this.world.B.a("portal");
+			MinecraftServer var1 = ((WorldServer) this.world).r();
 			var2 = this.L();
 			if (this.ak) {
 				if (var1.isNetherAllowed()) {
-					if (this.m == null && this.al++ >= var2) {
+					if (this.vehicle == null && this.al++ >= var2) {
 						this.al = var2;
-						this.aj = this.ar();
+						this.portalCooldown = this.ar();
 						byte var3;
-						if (this.o.worldProvider.getDimensionId() == -1) {
+						if (this.world.worldProvider.getDimensionId() == -1) {
 							var3 = 0;
 						} else {
 							var3 = -1;
@@ -172,19 +172,19 @@ public abstract class adx extends Entity implements vz {
 				}
 			}
 
-			if (this.aj > 0) {
-				--this.aj;
+			if (this.portalCooldown > 0) {
+				--this.portalCooldown;
 			}
 
-			this.o.B.b();
+			this.world.B.b();
 		}
 
-		if (this.o.D) {
+		if (this.world.isStatic) {
 			if (this.d > 0) {
 				double var15 = this.locationX + (this.e - this.locationX) / (double) this.d;
 				double var17 = this.locationY + (this.f - this.locationY) / (double) this.d;
 				double var18 = this.locationZ + (this.g - this.locationZ) / (double) this.d;
-				double var7 = DataTypesConverter.g(this.h - (double) this.yaw);
+				double var7 = MathHelper.g(this.h - (double) this.yaw);
 				this.yaw = (float) ((double) this.yaw + var7 / (double) this.d);
 				this.pitch = (float) ((double) this.pitch + (this.i - (double) this.pitch) / (double) this.d);
 				--this.d;
@@ -196,22 +196,22 @@ public abstract class adx extends Entity implements vz {
 			}
 
 		} else {
-			this.p = this.locationX;
-			this.q = this.locationY;
-			this.r = this.locationZ;
+			this.previousX = this.locationX;
+			this.previousY = this.locationY;
+			this.previousZ = this.locationZ;
 			this.motionY -= 0.03999999910593033D;
-			int var14 = DataTypesConverter.toFixedPointInt(this.locationX);
-			var2 = DataTypesConverter.toFixedPointInt(this.locationY);
-			int var16 = DataTypesConverter.toFixedPointInt(this.locationZ);
-			if (ati.d(this.o, new Position(var14, var2 - 1, var16))) {
+			int var14 = MathHelper.toFixedPointInt(this.locationX);
+			var2 = MathHelper.toFixedPointInt(this.locationY);
+			int var16 = MathHelper.toFixedPointInt(this.locationZ);
+			if (ati.d(this.world, new Position(var14, var2 - 1, var16))) {
 				--var2;
 			}
 
 			Position var4 = new Position(var14, var2, var16);
-			bec var5 = this.o.p(var4);
+			IBlockState var5 = this.world.getBlockState(var4);
 			if (ati.d(var5)) {
 				this.a(var4, var5);
-				if (var5.getBlock() == aty.cs) {
+				if (var5.getBlock() == Blocks.ACTIVATOR_RAIL) {
 					this.a(var14, var2, var16, ((Boolean) var5.b(BlockPoweredRail.M)).booleanValue());
 				}
 			} else {
@@ -220,8 +220,8 @@ public abstract class adx extends Entity implements vz {
 
 			this.Q();
 			this.pitch = 0.0F;
-			double var6 = this.p - this.locationX;
-			double var8 = this.r - this.locationZ;
+			double var6 = this.previousX - this.locationX;
+			double var8 = this.previousZ - this.locationZ;
 			if (var6 * var6 + var8 * var8 > 0.001D) {
 				this.yaw = (float) (Math.atan2(var8, var6) * 180.0D / 3.141592653589793D);
 				if (this.a) {
@@ -229,28 +229,28 @@ public abstract class adx extends Entity implements vz {
 				}
 			}
 
-			double var10 = (double) DataTypesConverter.g(this.yaw - this.A);
+			double var10 = (double) MathHelper.g(this.yaw - this.lastYaw);
 			if (var10 < -170.0D || var10 >= 170.0D) {
 				this.yaw += 180.0F;
 				this.a = !this.a;
 			}
 
 			this.b(this.yaw, this.pitch);
-			Iterator var12 = this.o.b((Entity) this, this.aQ().b(0.20000000298023224D, 0.0D, 0.20000000298023224D)).iterator();
+			Iterator var12 = this.world.getEntities((Entity) this, this.getBoundingBox().grow(0.20000000298023224D, 0.0D, 0.20000000298023224D)).iterator();
 
 			while (var12.hasNext()) {
 				Entity var13 = (Entity) var12.next();
-				if (var13 != this.l && var13.ae() && var13 instanceof adx) {
+				if (var13 != this.passenger && var13.ae() && var13 instanceof adx) {
 					var13.i(this);
 				}
 			}
 
-			if (this.l != null && this.l.I) {
-				if (this.l.m == this) {
-					this.l.m = null;
+			if (this.passenger != null && this.passenger.dead) {
+				if (this.passenger.vehicle == this) {
+					this.passenger.vehicle = null;
 				}
 
-				this.l = null;
+				this.passenger = null;
 			}
 
 			this.W();
@@ -266,15 +266,15 @@ public abstract class adx extends Entity implements vz {
 
 	protected void n() {
 		double var1 = this.m();
-		this.motionX = DataTypesConverter.a(this.motionX, -var1, var1);
-		this.motionZ = DataTypesConverter.a(this.motionZ, -var1, var1);
+		this.motionX = MathHelper.a(this.motionX, -var1, var1);
+		this.motionZ = MathHelper.a(this.motionZ, -var1, var1);
 		if (this.onGround) {
 			this.motionX *= 0.5D;
 			this.motionY *= 0.5D;
 			this.motionZ *= 0.5D;
 		}
 
-		this.d(this.motionX, this.motionY, this.motionZ);
+		this.move(this.motionX, this.motionY, this.motionZ);
 		if (!this.onGround) {
 			this.motionX *= 0.949999988079071D;
 			this.motionY *= 0.949999988079071D;
@@ -283,14 +283,14 @@ public abstract class adx extends Entity implements vz {
 
 	}
 
-	protected void a(Position var1, bec var2) {
-		this.O = 0.0F;
+	protected void a(Position var1, IBlockState var2) {
+		this.fallDistance = 0.0F;
 		Vec3D var3 = this.k(this.locationX, this.locationY, this.locationZ);
 		this.locationY = (double) var1.getY();
 		boolean var4 = false;
 		boolean var5 = false;
 		ati var6 = (ati) var2.getBlock();
-		if (var6 == aty.D) {
+		if (var6 == Blocks.GOLDEN_RAIL) {
 			var4 = ((Boolean) var2.b(BlockPoweredRail.M)).booleanValue();
 			var5 = !var4;
 		}
@@ -336,11 +336,11 @@ public abstract class adx extends Entity implements vz {
 		double var23;
 		double var25;
 		double var27;
-		if (this.l instanceof EntityLiving) {
-			var21 = (double) ((EntityLiving) this.l).aY;
+		if (this.passenger instanceof EntityLiving) {
+			var21 = (double) ((EntityLiving) this.passenger).aY;
 			if (var21 > 0.0D) {
-				var23 = -Math.sin((double) (this.l.yaw * 3.1415927F / 180.0F));
-				var25 = Math.cos((double) (this.l.yaw * 3.1415927F / 180.0F));
+				var23 = -Math.sin((double) (this.passenger.yaw * 3.1415927F / 180.0F));
+				var25 = Math.cos((double) (this.passenger.yaw * 3.1415927F / 180.0F));
 				var27 = this.motionX * this.motionX + this.motionZ * this.motionZ;
 				if (var27 < 0.01D) {
 					this.motionX += var23 * 0.1D;
@@ -389,18 +389,18 @@ public abstract class adx extends Entity implements vz {
 		this.b(this.locationX, this.locationY, this.locationZ);
 		var31 = this.motionX;
 		var33 = this.motionZ;
-		if (this.l != null) {
+		if (this.passenger != null) {
 			var31 *= 0.75D;
 			var33 *= 0.75D;
 		}
 
 		double var35 = this.m();
-		var31 = DataTypesConverter.a(var31, -var35, var35);
-		var33 = DataTypesConverter.a(var33, -var35, var35);
-		this.d(var31, 0.0D, var33);
-		if (var10[0][1] != 0 && DataTypesConverter.toFixedPointInt(this.locationX) - var1.getX() == var10[0][0] && DataTypesConverter.toFixedPointInt(this.locationZ) - var1.getZ() == var10[0][2]) {
+		var31 = MathHelper.a(var31, -var35, var35);
+		var33 = MathHelper.a(var33, -var35, var35);
+		this.move(var31, 0.0D, var33);
+		if (var10[0][1] != 0 && MathHelper.toFixedPointInt(this.locationX) - var1.getX() == var10[0][0] && MathHelper.toFixedPointInt(this.locationZ) - var1.getZ() == var10[0][2]) {
 			this.b(this.locationX, this.locationY + (double) var10[0][1], this.locationZ);
-		} else if (var10[1][1] != 0 && DataTypesConverter.toFixedPointInt(this.locationX) - var1.getX() == var10[1][0] && DataTypesConverter.toFixedPointInt(this.locationZ) - var1.getZ() == var10[1][2]) {
+		} else if (var10[1][1] != 0 && MathHelper.toFixedPointInt(this.locationX) - var1.getX() == var10[1][0] && MathHelper.toFixedPointInt(this.locationZ) - var1.getZ() == var10[1][2]) {
 			this.b(this.locationX, this.locationY + (double) var10[1][1], this.locationZ);
 		}
 
@@ -417,8 +417,8 @@ public abstract class adx extends Entity implements vz {
 			this.b(this.locationX, var37.y, this.locationZ);
 		}
 
-		int var44 = DataTypesConverter.toFixedPointInt(this.locationX);
-		int var39 = DataTypesConverter.toFixedPointInt(this.locationZ);
+		int var44 = MathHelper.toFixedPointInt(this.locationX);
+		int var39 = MathHelper.toFixedPointInt(this.locationZ);
 		if (var44 != var1.getX() || var39 != var1.getZ()) {
 			var19 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.motionX = var19 * (double) (var44 - var1.getX());
@@ -432,15 +432,15 @@ public abstract class adx extends Entity implements vz {
 				this.motionX += this.motionX / var40 * var42;
 				this.motionZ += this.motionZ / var40 * var42;
 			} else if (var9 == atl.b) {
-				if (this.o.p(var1.e()).getBlock().t()) {
+				if (this.world.getBlockState(var1.e()).getBlock().t()) {
 					this.motionX = 0.02D;
-				} else if (this.o.p(var1.f()).getBlock().t()) {
+				} else if (this.world.getBlockState(var1.f()).getBlock().t()) {
 					this.motionX = -0.02D;
 				}
 			} else if (var9 == atl.a) {
-				if (this.o.p(var1.c()).getBlock().t()) {
+				if (this.world.getBlockState(var1.c()).getBlock().t()) {
 					this.motionZ = 0.02D;
-				} else if (this.o.p(var1.d()).getBlock().t()) {
+				} else if (this.world.getBlockState(var1.d()).getBlock().t()) {
 					this.motionZ = -0.02D;
 				}
 			}
@@ -449,7 +449,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	protected void o() {
-		if (this.l != null) {
+		if (this.passenger != null) {
 			this.motionX *= 0.996999979019165D;
 			this.motionY *= 0.0D;
 			this.motionZ *= 0.996999979019165D;
@@ -465,20 +465,20 @@ public abstract class adx extends Entity implements vz {
 		this.locationX = var1;
 		this.locationY = var3;
 		this.locationZ = var5;
-		float var7 = this.J / 2.0F;
-		float var8 = this.K;
-		this.a(new brt(var1 - (double) var7, var3, var5 - (double) var7, var1 + (double) var7, var3 + (double) var8, var5 + (double) var7));
+		float var7 = this.height / 2.0F;
+		float var8 = this.width;
+		this.setBoundingBox(new AxisAlignedBB(var1 - (double) var7, var3, var5 - (double) var7, var1 + (double) var7, var3 + (double) var8, var5 + (double) var7));
 	}
 
 	public Vec3D k(double var1, double var3, double var5) {
-		int var7 = DataTypesConverter.toFixedPointInt(var1);
-		int var8 = DataTypesConverter.toFixedPointInt(var3);
-		int var9 = DataTypesConverter.toFixedPointInt(var5);
-		if (ati.d(this.o, new Position(var7, var8 - 1, var9))) {
+		int var7 = MathHelper.toFixedPointInt(var1);
+		int var8 = MathHelper.toFixedPointInt(var3);
+		int var9 = MathHelper.toFixedPointInt(var5);
+		if (ati.d(this.world, new Position(var7, var8 - 1, var9))) {
 			--var8;
 		}
 
-		bec var10 = this.o.p(new Position(var7, var8, var9));
+		IBlockState var10 = this.world.getBlockState(new Position(var7, var8, var9));
 		if (ati.d(var10)) {
 			atl var11 = (atl) var10.b(((ati) var10.getBlock()).l());
 			int[][] var12 = c[var11.a()];
@@ -526,18 +526,18 @@ public abstract class adx extends Entity implements vz {
 			int var2 = var1.getInt("DisplayData");
 			Block var3;
 			if (var1.isTagAssignableFrom("DisplayTile", 8)) {
-				var3 = Block.b(var1.getString("DisplayTile"));
+				var3 = Block.getBlockByName(var1.getString("DisplayTile"));
 				if (var3 == null) {
-					this.a(aty.a.P());
+					this.a(Blocks.AIR.getBlockState());
 				} else {
-					this.a(var3.a(var2));
+					this.a(var3.setData(var2));
 				}
 			} else {
-				var3 = Block.c(var1.getInt("DisplayTile"));
+				var3 = Block.getBlockById(var1.getInt("DisplayTile"));
 				if (var3 == null) {
-					this.a(aty.a.P());
+					this.a(Blocks.AIR.getBlockState());
 				} else {
-					this.a(var3.a(var2));
+					this.a(var3.setData(var2));
 				}
 			}
 
@@ -553,10 +553,10 @@ public abstract class adx extends Entity implements vz {
 	protected void b(NBTCompoundTag var1) {
 		if (this.x()) {
 			var1.put("CustomDisplayTile", true);
-			bec var2 = this.t();
-			BlockNameInfo var3 = (BlockNameInfo) Block.BLOCKREGISTRY.c(var2.getBlock());
+			IBlockState var2 = this.t();
+			RegistryObjectName var3 = (RegistryObjectName) Block.BLOCKREGISTRY.c(var2.getBlock());
 			var1.put("DisplayTile", var3 == null ? "" : var3.toString());
-			var1.put("DisplayData", var2.getBlock().c(var2));
+			var1.put("DisplayData", var2.getBlock().getData(var2));
 			var1.put("DisplayOffset", this.v());
 		}
 
@@ -567,18 +567,18 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public void i(Entity var1) {
-		if (!this.o.D) {
+		if (!this.world.isStatic) {
 			if (!var1.T && !this.T) {
-				if (var1 != this.l) {
-					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof EntityIronGolem) && this.s() == MinecartType.RIDEABLE && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.l == null && var1.m == null) {
-						var1.a((Entity) this);
+				if (var1 != this.passenger) {
+					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof EntityIronGolem) && this.s() == MinecartType.RIDEABLE && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.passenger == null && var1.vehicle == null) {
+						var1.mount((Entity) this);
 					}
 
 					double var2 = var1.locationX - this.locationX;
 					double var4 = var1.locationZ - this.locationZ;
 					double var6 = var2 * var2 + var4 * var4;
 					if (var6 >= 9.999999747378752E-5D) {
-						var6 = (double) DataTypesConverter.a(var6);
+						var6 = (double) MathHelper.sqrt(var6);
 						var2 /= var6;
 						var4 /= var6;
 						double var8 = 1.0D / var6;
@@ -598,7 +598,7 @@ public abstract class adx extends Entity implements vz {
 							double var10 = var1.locationX - this.locationX;
 							double var12 = var1.locationZ - this.locationZ;
 							Vec3D var14 = (new Vec3D(var10, 0.0D, var12)).a();
-							Vec3D var15 = (new Vec3D((double) DataTypesConverter.b(this.yaw * 3.1415927F / 180.0F), 0.0D, (double) DataTypesConverter.a(this.yaw * 3.1415927F / 180.0F))).a();
+							Vec3D var15 = (new Vec3D((double) MathHelper.b(this.yaw * 3.1415927F / 180.0F), 0.0D, (double) MathHelper.a(this.yaw * 3.1415927F / 180.0F))).a();
 							double var16 = Math.abs(var14.b(var15));
 							if (var16 < 0.800000011920929D) {
 								return;
@@ -644,7 +644,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public float p() {
-		return this.dataWatcher.d(19);
+		return this.dataWatcher.getData(19);
 	}
 
 	public void j(int var1) {
@@ -665,12 +665,12 @@ public abstract class adx extends Entity implements vz {
 
 	public abstract MinecartType s();
 
-	public bec t() {
-		return !this.x() ? this.u() : Block.d(this.getDataWatcher().c(20));
+	public IBlockState t() {
+		return !this.x() ? this.u() : Block.getStateById(this.getDataWatcher().c(20));
 	}
 
-	public bec u() {
-		return aty.a.P();
+	public IBlockState u() {
+		return Blocks.AIR.getBlockState();
 	}
 
 	public int v() {
@@ -681,8 +681,8 @@ public abstract class adx extends Entity implements vz {
 		return 6;
 	}
 
-	public void a(bec var1) {
-		this.getDataWatcher().b(20, Integer.valueOf(Block.f(var1)));
+	public void a(IBlockState var1) {
+		this.getDataWatcher().b(20, Integer.valueOf(Block.getStateId(var1)));
 		this.a(true);
 	}
 
@@ -703,28 +703,28 @@ public abstract class adx extends Entity implements vz {
 		this.b = var1;
 	}
 
-	public String d_() {
-		return this.b != null ? this.b : super.d_();
+	public String getName() {
+		return this.b != null ? this.b : super.getName();
 	}
 
 	public boolean k_() {
 		return this.b != null;
 	}
 
-	public String aL() {
+	public String getCustomName() {
 		return this.b;
 	}
 
-	public IJSONComponent e_() {
+	public IChatBaseComponent getComponentName() {
 		if (this.k_()) {
-			hy var2 = new hy(this.b);
-			var2.b().a(this.aP());
-			var2.b().a(this.aJ().toString());
+			ChatComponentText var2 = new ChatComponentText(this.b);
+			var2.getChatModifier().a(this.aP());
+			var2.getChatModifier().a(this.getUUID().toString());
 			return var2;
 		} else {
-			hz var1 = new hz(this.d_(), new Object[0]);
-			var1.b().a(this.aP());
-			var1.b().a(this.aJ().toString());
+			ChatMessage var1 = new ChatMessage(this.getName(), new Object[0]);
+			var1.getChatModifier().a(this.aP());
+			var1.getChatModifier().a(this.getUUID().toString());
 			return var1;
 		}
 	}

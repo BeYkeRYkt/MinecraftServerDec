@@ -1,13 +1,13 @@
 package net.minecraft;
 
-public class EntityGhast extends xl implements aex {
+public class EntityGhast extends xl implements IMonster {
 
 	private int a = 1;
 
 	public EntityGhast(World var1) {
 		super(var1);
 		this.a(4.0F, 4.0F);
-		this.ab = true;
+		this.fireProof = true;
 		this.b_ = 5;
 		this.f = new afc(this);
 		this.i.a(5, new afe(this));
@@ -26,21 +26,21 @@ public class EntityGhast extends xl implements aex {
 
 	public void s_() {
 		super.s_();
-		if (!this.o.D && this.o.getDifficulty() == Difficulty.PEACEFUL) {
-			this.J();
+		if (!this.world.isStatic && this.world.getDifficulty() == Difficulty.PEACEFUL) {
+			this.die();
 		}
 
 	}
 
-	public boolean a(wh var1, float var2) {
+	public boolean damageEntity(DamageSource var1, float var2) {
 		if (this.b(var1)) {
 			return false;
 		} else if ("fireball".equals(var1.p()) && var1.j() instanceof EntityHuman) {
-			super.a(var1, 1000.0F);
-			((EntityHuman) var1.j()).b((Statistic) tl.z);
+			super.damageEntity(var1, 1000.0F);
+			((EntityHuman) var1.j()).b((Statistic) AchievementList.z);
 			return true;
 		} else {
-			return super.a(var1, var2);
+			return super.damageEntity(var1, var2);
 		}
 	}
 
@@ -67,22 +67,22 @@ public class EntityGhast extends xl implements aex {
 		return "mob.ghast.death";
 	}
 
-	protected Item A() {
-		return amk.H;
+	protected Item getLoot() {
+		return Items.GUNPOWDER;
 	}
 
-	protected void b(boolean var1, int var2) {
-		int var3 = this.V.nextInt(2) + this.V.nextInt(1 + var2);
+	protected void dropDeathLoot(boolean var1, int var2) {
+		int var3 = this.random.nextInt(2) + this.random.nextInt(1 + var2);
 
 		int var4;
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(amk.bw, 1);
+			this.a(Items.GHAST_TEAR, 1);
 		}
 
-		var3 = this.V.nextInt(3) + this.V.nextInt(1 + var2);
+		var3 = this.random.nextInt(3) + this.random.nextInt(1 + var2);
 
 		for (var4 = 0; var4 < var3; ++var4) {
-			this.a(amk.H, 1);
+			this.a(Items.GUNPOWDER, 1);
 		}
 
 	}
@@ -92,7 +92,7 @@ public class EntityGhast extends xl implements aex {
 	}
 
 	public boolean bQ() {
-		return this.V.nextInt(20) == 0 && super.bQ() && this.o.getDifficulty() != Difficulty.PEACEFUL;
+		return this.random.nextInt(20) == 0 && super.bQ() && this.world.getDifficulty() != Difficulty.PEACEFUL;
 	}
 
 	public int bU() {
@@ -112,7 +112,7 @@ public class EntityGhast extends xl implements aex {
 
 	}
 
-	public float aR() {
+	public float getHeadHeight() {
 		return 2.6F;
 	}
 }

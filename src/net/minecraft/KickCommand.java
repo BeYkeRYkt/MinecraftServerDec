@@ -19,22 +19,22 @@ public class KickCommand extends AbstractCommand {
 
 	public void executeCommand(CommandSenderInterface var1, String[] var2) throws dm, dp {
 		if (var2.length > 0 && var2[0].length() > 1) {
-			EntityPlayer var3 = MinecraftServer.getInstance().getPlayerList().a(var2[0]);
+			EntityPlayer var3 = MinecraftServer.getInstance().getPlayerList().getPlayer(var2[0]);
 			String var4 = "Kicked by an operator.";
 			boolean var5 = false;
 			if (var3 == null) {
 				throw new dm();
 			} else {
 				if (var2.length >= 2) {
-					var4 = a(var1, var2, 1).c();
+					var4 = a(var1, var2, 1).getStrippedMessage();
 					var5 = true;
 				}
 
-				var3.playerConncetion.c(var4);
+				var3.playerConnection.disconnect(var4);
 				if (var5) {
-					a(var1, this, "commands.kick.success.reason", new Object[] { var3.d_(), var4 });
+					a(var1, this, "commands.kick.success.reason", new Object[] { var3.getName(), var4 });
 				} else {
-					a(var1, this, "commands.kick.success", new Object[] { var3.d_() });
+					a(var1, this, "commands.kick.success", new Object[] { var3.getName() });
 				}
 
 			}

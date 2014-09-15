@@ -4,9 +4,13 @@ import java.util.concurrent.Callable;
 
 public class PlayerInventory implements IInventory {
 
+	public static int getHotbarSize() {
+		return 9;
+	}
+
 	public ItemStack[] contents = new ItemStack[36];
 	public ItemStack[] armor = new ItemStack[4];
-	public int c;
+	public int itemInHandIndex;
 	public EntityHuman d;
 	private ItemStack f;
 	public boolean e;
@@ -16,11 +20,7 @@ public class PlayerInventory implements IInventory {
 	}
 
 	public ItemStack getItemInHand() {
-		return this.c < 9 && this.c >= 0 ? this.contents[this.c] : null;
-	}
-
-	public static int i() {
-		return 9;
+		return this.itemInHandIndex < 9 && this.itemInHandIndex >= 0 ? this.contents[this.itemInHandIndex] : null;
 	}
 
 	private int c(Item var1) {
@@ -35,7 +35,7 @@ public class PlayerInventory implements IInventory {
 
 	private int d(ItemStack var1) {
 		for (int var2 = 0; var2 < this.contents.length; ++var2) {
-			if (this.contents[var2] != null && this.contents[var2].getItem() == var1.getItem() && this.contents[var2].d() && this.contents[var2].b < this.contents[var2].c() && this.contents[var2].b < this.p_() && (!this.contents[var2].f() || this.contents[var2].i() == var1.i()) && ItemStack.a(this.contents[var2], var1)) {
+			if (this.contents[var2] != null && this.contents[var2].getItem() == var1.getItem() && this.contents[var2].d() && this.contents[var2].amount < this.contents[var2].getMaxStackSize() && this.contents[var2].amount < this.p_() && (!this.contents[var2].f() || this.contents[var2].getDurability() == var1.getDurability()) && ItemStack.a(this.contents[var2], var1)) {
 				return var2;
 			}
 		}
@@ -61,12 +61,12 @@ public class PlayerInventory implements IInventory {
 		int var8;
 		for (var6 = 0; var6 < this.contents.length; ++var6) {
 			var7 = this.contents[var6];
-			if (var7 != null && (var1 == null || var7.getItem() == var1) && (var2 <= -1 || var7.i() == var2) && (var4 == null || TestforBlockCommand.a(var4, var7.getTag(), true))) {
-				var8 = var3 <= 0 ? var7.b : Math.min(var3 - var5, var7.b);
+			if (var7 != null && (var1 == null || var7.getItem() == var1) && (var2 <= -1 || var7.getDurability() == var2) && (var4 == null || TestforBlockCommand.a(var4, var7.getTag(), true))) {
+				var8 = var3 <= 0 ? var7.amount : Math.min(var3 - var5, var7.amount);
 				var5 += var8;
 				if (var3 != 0) {
-					this.contents[var6].b -= var8;
-					if (this.contents[var6].b == 0) {
+					this.contents[var6].amount -= var8;
+					if (this.contents[var6].amount == 0) {
 						this.contents[var6] = null;
 					}
 
@@ -79,12 +79,12 @@ public class PlayerInventory implements IInventory {
 
 		for (var6 = 0; var6 < this.armor.length; ++var6) {
 			var7 = this.armor[var6];
-			if (var7 != null && (var1 == null || var7.getItem() == var1) && (var2 <= -1 || var7.i() == var2) && (var4 == null || TestforBlockCommand.a(var4, var7.getTag(), false))) {
-				var8 = var3 <= 0 ? var7.b : Math.min(var3 - var5, var7.b);
+			if (var7 != null && (var1 == null || var7.getItem() == var1) && (var2 <= -1 || var7.getDurability() == var2) && (var4 == null || TestforBlockCommand.a(var4, var7.getTag(), false))) {
+				var8 = var3 <= 0 ? var7.amount : Math.min(var3 - var5, var7.amount);
 				var5 += var8;
 				if (var3 != 0) {
-					this.armor[var6].b -= var8;
-					if (this.armor[var6].b == 0) {
+					this.armor[var6].amount -= var8;
+					if (this.armor[var6].amount == 0) {
 						this.armor[var6] = null;
 					}
 
@@ -100,7 +100,7 @@ public class PlayerInventory implements IInventory {
 				return var5;
 			}
 
-			if (var2 > -1 && this.f.i() != var2) {
+			if (var2 > -1 && this.f.getDurability() != var2) {
 				return var5;
 			}
 
@@ -108,11 +108,11 @@ public class PlayerInventory implements IInventory {
 				return var5;
 			}
 
-			var6 = var3 <= 0 ? this.f.b : Math.min(var3 - var5, this.f.b);
+			var6 = var3 <= 0 ? this.f.amount : Math.min(var3 - var5, this.f.amount);
 			var5 += var6;
 			if (var3 != 0) {
-				this.f.b -= var6;
-				if (this.f.b == 0) {
+				this.f.amount -= var6;
+				if (this.f.amount == 0) {
 					this.f = null;
 				}
 
@@ -127,7 +127,7 @@ public class PlayerInventory implements IInventory {
 
 	private int e(ItemStack var1) {
 		Item var2 = var1.getItem();
-		int var3 = var1.b;
+		int var3 = var1.amount;
 		int var4 = this.d(var1);
 		if (var4 < 0) {
 			var4 = this.j();
@@ -137,26 +137,26 @@ public class PlayerInventory implements IInventory {
 			return var3;
 		} else {
 			if (this.contents[var4] == null) {
-				this.contents[var4] = new ItemStack(var2, 0, var1.i());
+				this.contents[var4] = new ItemStack(var2, 0, var1.getDurability());
 				if (var1.hasTag()) {
-					this.contents[var4].d((NBTCompoundTag) var1.getTag().getCopy());
+					this.contents[var4].setTag((NBTCompoundTag) var1.getTag().getCopy());
 				}
 			}
 
 			int var5 = var3;
-			if (var3 > this.contents[var4].c() - this.contents[var4].b) {
-				var5 = this.contents[var4].c() - this.contents[var4].b;
+			if (var3 > this.contents[var4].getMaxStackSize() - this.contents[var4].amount) {
+				var5 = this.contents[var4].getMaxStackSize() - this.contents[var4].amount;
 			}
 
-			if (var5 > this.p_() - this.contents[var4].b) {
-				var5 = this.p_() - this.contents[var4].b;
+			if (var5 > this.p_() - this.contents[var4].amount) {
+				var5 = this.p_() - this.contents[var4].amount;
 			}
 
 			if (var5 == 0) {
 				return var3;
 			} else {
 				var3 -= var5;
-				this.contents[var4].b += var5;
+				this.contents[var4].amount += var5;
 				this.contents[var4].c = 5;
 				return var3;
 			}
@@ -166,7 +166,7 @@ public class PlayerInventory implements IInventory {
 	public void k() {
 		for (int var1 = 0; var1 < this.contents.length; ++var1) {
 			if (this.contents[var1] != null) {
-				this.contents[var1].a(this.d.o, this.d, var1, this.c == var1);
+				this.contents[var1].a(this.d.world, this.d, var1, this.itemInHandIndex == var1);
 			}
 		}
 
@@ -177,7 +177,7 @@ public class PlayerInventory implements IInventory {
 		if (var2 < 0) {
 			return false;
 		} else {
-			if (--this.contents[var2].b <= 0) {
+			if (--this.contents[var2].amount <= 0) {
 				this.contents[var2] = null;
 			}
 
@@ -191,7 +191,7 @@ public class PlayerInventory implements IInventory {
 	}
 
 	public boolean a(ItemStack var1) {
-		if (var1 != null && var1.b != 0 && var1.getItem() != null) {
+		if (var1 != null && var1.amount != 0 && var1.getItem() != null) {
 			try {
 				int var2;
 				if (var1.g()) {
@@ -199,32 +199,32 @@ public class PlayerInventory implements IInventory {
 					if (var2 >= 0) {
 						this.contents[var2] = ItemStack.b(var1);
 						this.contents[var2].c = 5;
-						var1.b = 0;
+						var1.amount = 0;
 						return true;
-					} else if (this.d.by.instabuild) {
-						var1.b = 0;
+					} else if (this.d.playerProperties.instabuild) {
+						var1.amount = 0;
 						return true;
 					} else {
 						return false;
 					}
 				} else {
 					do {
-						var2 = var1.b;
-						var1.b = this.e(var1);
-					} while (var1.b > 0 && var1.b < var2);
+						var2 = var1.amount;
+						var1.amount = this.e(var1);
+					} while (var1.amount > 0 && var1.amount < var2);
 
-					if (var1.b == var2 && this.d.by.instabuild) {
-						var1.b = 0;
+					if (var1.amount == var2 && this.d.playerProperties.instabuild) {
+						var1.amount = 0;
 						return true;
 					} else {
-						return var1.b < var2;
+						return var1.amount < var2;
 					}
 				}
 			} catch (Throwable var5) {
 				CrashReport var3 = CrashReport.generateCrashReport(var5, "Adding item to inventory");
 				CrashReportSystemDetails var4 = var3.generateSystemDetails("Item being added");
 				var4.addDetails("Item ID", (Object) Integer.valueOf(Item.getId(var1.getItem())));
-				var4.addDetails("Item data", (Object) Integer.valueOf(var1.i()));
+				var4.addDetails("Item data", (Object) Integer.valueOf(var1.getDurability()));
 				var4.addDetails("Item name", (Callable) (new ahc(this, var1)));
 				throw new ReportedException(var3);
 			}
@@ -242,13 +242,13 @@ public class PlayerInventory implements IInventory {
 
 		if (var3[var1] != null) {
 			ItemStack var4;
-			if (var3[var1].b <= var2) {
+			if (var3[var1].amount <= var2) {
 				var4 = var3[var1];
 				var3[var1] = null;
 				return var4;
 			} else {
 				var4 = var3[var1].a(var2);
-				if (var3[var1].b == 0) {
+				if (var3[var1].amount == 0) {
 					var3[var1] = null;
 				}
 
@@ -287,8 +287,8 @@ public class PlayerInventory implements IInventory {
 
 	public float a(Block var1) {
 		float var2 = 1.0F;
-		if (this.contents[this.c] != null) {
-			var2 *= this.contents[this.c].a(var1);
+		if (this.contents[this.itemInHandIndex] != null) {
+			var2 *= this.contents[this.itemInHandIndex].a(var1);
 		}
 
 		return var2;
@@ -301,7 +301,7 @@ public class PlayerInventory implements IInventory {
 			if (this.contents[var2] != null) {
 				var3 = new NBTCompoundTag();
 				var3.put("Slot", (byte) var2);
-				this.contents[var2].b(var3);
+				this.contents[var2].write(var3);
 				var1.addTag((NBTTag) var3);
 			}
 		}
@@ -310,7 +310,7 @@ public class PlayerInventory implements IInventory {
 			if (this.armor[var2] != null) {
 				var3 = new NBTCompoundTag();
 				var3.put("Slot", (byte) (var2 + 100));
-				this.armor[var2].b(var3);
+				this.armor[var2].write(var3);
 				var1.addTag((NBTTag) var3);
 			}
 		}
@@ -353,7 +353,7 @@ public class PlayerInventory implements IInventory {
 		return var2[var1];
 	}
 
-	public String d_() {
+	public String getName() {
 		return "container.inventory";
 	}
 
@@ -361,8 +361,8 @@ public class PlayerInventory implements IInventory {
 		return false;
 	}
 
-	public IJSONComponent e_() {
-		return (IJSONComponent) (this.k_() ? new hy(this.d_()) : new hz(this.d_(), new Object[0]));
+	public IChatBaseComponent getComponentName() {
+		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 
 	public int p_() {
@@ -370,10 +370,10 @@ public class PlayerInventory implements IInventory {
 	}
 
 	public boolean b(Block var1) {
-		if (var1.r().l()) {
+		if (var1.getMaterial().l()) {
 			return true;
 		} else {
-			ItemStack var2 = this.a(this.c);
+			ItemStack var2 = this.a(this.itemInHandIndex);
 			return var2 != null ? var2.b(var1) : false;
 		}
 	}
@@ -386,8 +386,8 @@ public class PlayerInventory implements IInventory {
 		int var1 = 0;
 
 		for (int var2 = 0; var2 < this.armor.length; ++var2) {
-			if (this.armor[var2] != null && this.armor[var2].getItem() instanceof ajn) {
-				int var3 = ((ajn) this.armor[var2].getItem()).c;
+			if (this.armor[var2] != null && this.armor[var2].getItem() instanceof ItemArmor) {
+				int var3 = ((ItemArmor) this.armor[var2].getItem()).c;
 				var1 += var3;
 			}
 		}
@@ -402,9 +402,9 @@ public class PlayerInventory implements IInventory {
 		}
 
 		for (int var2 = 0; var2 < this.armor.length; ++var2) {
-			if (this.armor[var2] != null && this.armor[var2].getItem() instanceof ajn) {
+			if (this.armor[var2] != null && this.armor[var2].getItem() instanceof ItemArmor) {
 				this.armor[var2].a((int) var1, (EntityLiving) this.d);
-				if (this.armor[var2].b == 0) {
+				if (this.armor[var2].amount == 0) {
 					this.armor[var2] = null;
 				}
 			}
@@ -430,7 +430,7 @@ public class PlayerInventory implements IInventory {
 
 	}
 
-	public void o_() {
+	public void update() {
 		this.e = true;
 	}
 
@@ -443,7 +443,7 @@ public class PlayerInventory implements IInventory {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.d.I ? false : var1.h(this.d) <= 64.0D;
+		return this.d.dead ? false : var1.getDistanceSquared(this.d) <= 64.0D;
 	}
 
 	public boolean c(ItemStack var1) {
@@ -483,7 +483,7 @@ public class PlayerInventory implements IInventory {
 			this.armor[var2] = ItemStack.b(var1.armor[var2]);
 		}
 
-		this.c = var1.c;
+		this.itemInHandIndex = var1.itemInHandIndex;
 	}
 
 	public int a_(int var1) {

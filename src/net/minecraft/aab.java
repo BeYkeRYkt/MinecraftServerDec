@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class aab extends zb {
+public class aab extends PathfinderGoal {
 
 	private EntityCreature a;
 
@@ -9,7 +9,7 @@ public class aab extends zb {
 	}
 
 	public boolean a() {
-		return this.a.o.w();
+		return this.a.world.w();
 	}
 
 	public void c() {

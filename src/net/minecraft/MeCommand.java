@@ -21,8 +21,8 @@ public class MeCommand extends AbstractCommand {
 		if (var2.length <= 0) {
 			throw new dp("commands.me.usage", new Object[0]);
 		} else {
-			IJSONComponent var3 = b(var1, var2, 0, !(var1 instanceof EntityHuman));
-			MinecraftServer.getInstance().getPlayerList().a((IJSONComponent) (new hz("chat.type.emote", new Object[] { var1.e_(), var3 })));
+			IChatBaseComponent var3 = b(var1, var2, 0, !(var1 instanceof EntityHuman));
+			MinecraftServer.getInstance().getPlayerList().sendMessage((IChatBaseComponent) (new ChatMessage("chat.type.emote", new Object[] { var1.getComponentName(), var3 })));
 		}
 	}
 

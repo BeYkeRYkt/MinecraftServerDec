@@ -1,47 +1,42 @@
 package net.minecraft;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
-
 public class Statistic {
 
-	public final String e;
-	private final IJSONComponent a;
-	public boolean f;
-	private final tv b;
-	private final bsk c;
-	private Class d;
-	private static NumberFormat k = NumberFormat.getIntegerInstance(Locale.US);
-	public static tv g = new tr();
-	private static DecimalFormat l = new DecimalFormat("########0.00");
-	public static tv h = new ts();
-	public static tv i = new tt();
-	public static tv j = new tu();
+	public static Counter unknownCounter = new UnknownCounter();
+	public static Counter timeCounter = new TimeCounter();
+	public static Counter distancesCounter = new DistancesCounter();
+	public static Counter damageCounter = new DamageCounter();
 
-	public Statistic(String var1, IJSONComponent var2, tv var3) {
-		this.e = var1;
-		this.a = var2;
-		this.b = var3;
-		this.c = new bsm(this);
-		bsk.a.put(this.c.a(), this.c);
+	public final String name;
+	public boolean local;
+	private final IChatBaseComponent nameId;
+	private final Counter counter;
+	private final IScoreboardCriteria criteria;
+	private Class<IJsonStatistic> clazz;
+
+	public Statistic(String var1, IChatBaseComponent var2, Counter var3) {
+		this.name = var1;
+		this.nameId = var2;
+		this.counter = var3;
+		this.criteria = new ScoreboardStatisticCriteria(this);
+		IScoreboardCriteria.byName.put(this.criteria.getName(), this.criteria);
 	}
 
-	public Statistic(String var1, IJSONComponent var2) {
-		this(var1, var2, g);
+	public Statistic(String var1, IChatBaseComponent var2) {
+		this(var1, var2, unknownCounter);
 	}
 
-	public Statistic i() {
-		this.f = true;
+	public Statistic setLocal() {
+		this.local = true;
 		return this;
 	}
 
-	public Statistic h() {
-		if (StatisticList.a.containsKey(this.e)) {
-			throw new RuntimeException("Duplicate stat id: \"" + ((Statistic) StatisticList.a.get(this.e)).a + "\" and \"" + this.a + "\" at id " + this.e);
+	public Statistic register() {
+		if (StatisticList.list.containsKey(this.name)) {
+			throw new RuntimeException("Duplicate stat id: \"" + ((Statistic) StatisticList.list.get(this.name)).nameId + "\" and \"" + this.nameId + "\" at id " + this.name);
 		} else {
 			StatisticList.b.add(this);
-			StatisticList.a.put(this.e, this);
+			StatisticList.list.put(this.name, this);
 			return this;
 		}
 	}
@@ -50,17 +45,17 @@ public class Statistic {
 		return false;
 	}
 
-	public IJSONComponent e() {
-		IJSONComponent var1 = this.a.f();
-		var1.b().a(FormattingCode.h);
-		var1.b().a(new hr(hs.b, new hy(this.e)));
+	public IChatBaseComponent e() {
+		IChatBaseComponent var1 = this.nameId.f();
+		var1.getChatModifier().setColor(EnumChatFormat.GRAY);
+		var1.getChatModifier().a(new ChatHoverable(EnumHoverAction.b, new ChatComponentText(this.name)));
 		return var1;
 	}
 
-	public IJSONComponent j() {
-		IJSONComponent var1 = this.e();
-		IJSONComponent var2 = (new hy("[")).a(var1).a("]");
-		var2.a(var1.b());
+	public IChatBaseComponent j() {
+		IChatBaseComponent var1 = this.e();
+		IChatBaseComponent var2 = (new ChatComponentText("[")).a(var1).a("]");
+		var2.a(var1.getChatModifier());
 		return var2;
 	}
 
@@ -69,30 +64,30 @@ public class Statistic {
 			return true;
 		} else if (var1 != null && this.getClass() == var1.getClass()) {
 			Statistic var2 = (Statistic) var1;
-			return this.e.equals(var2.e);
+			return this.name.equals(var2.name);
 		} else {
 			return false;
 		}
 	}
 
 	public int hashCode() {
-		return this.e.hashCode();
+		return this.name.hashCode();
 	}
 
 	public String toString() {
-		return "Stat{id=" + this.e + ", nameId=" + this.a + ", awardLocallyOnly=" + this.f + ", formatter=" + this.b + ", objectiveCriteria=" + this.c + '}';
+		return "Stat{id=" + this.name + ", nameId=" + this.nameId + ", awardLocallyOnly=" + this.local + ", formatter=" + this.counter + ", objectiveCriteria=" + this.criteria + '}';
 	}
 
-	public bsk k() {
-		return this.c;
+	public IScoreboardCriteria getCrteria() {
+		return this.criteria;
 	}
 
-	public Class l() {
-		return this.d;
+	public Class<IJsonStatistic> l() {
+		return this.clazz;
 	}
 
-	public Statistic b(Class var1) {
-		this.d = var1;
+	public Statistic b(Class<IJsonStatistic> clazz) {
+		this.clazz = clazz;
 		return this;
 	}
 

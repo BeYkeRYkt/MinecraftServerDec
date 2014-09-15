@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class TileEntityFurnace extends bdf implements pm, we {
+public class TileEntityFurnace extends bdf implements PacketTickable, we {
 
 	private static final int[] a = new int[] { 0 };
 	private static final int[] f = new int[] { 2, 1 };
@@ -23,13 +23,13 @@ public class TileEntityFurnace extends bdf implements pm, we {
 	public ItemStack a(int var1, int var2) {
 		if (this.h[var1] != null) {
 			ItemStack var3;
-			if (this.h[var1].b <= var2) {
+			if (this.h[var1].amount <= var2) {
 				var3 = this.h[var1];
 				this.h[var1] = null;
 				return var3;
 			} else {
 				var3 = this.h[var1].a(var2);
-				if (this.h[var1].b == 0) {
+				if (this.h[var1].amount == 0) {
 					this.h[var1] = null;
 				}
 
@@ -53,19 +53,19 @@ public class TileEntityFurnace extends bdf implements pm, we {
 	public void a(int var1, ItemStack var2) {
 		boolean var3 = var2 != null && var2.a(this.h[var1]) && ItemStack.a(var2, this.h[var1]);
 		this.h[var1] = var2;
-		if (var2 != null && var2.b > this.p_()) {
-			var2.b = this.p_();
+		if (var2 != null && var2.amount > this.p_()) {
+			var2.amount = this.p_();
 		}
 
 		if (var1 == 0 && !var3) {
 			this.l = this.a(var2);
 			this.k = 0;
-			this.o_();
+			this.update();
 		}
 
 	}
 
-	public String d_() {
+	public String getName() {
 		return this.k_() ? this.m : "container.furnace";
 	}
 
@@ -111,7 +111,7 @@ public class TileEntityFurnace extends bdf implements pm, we {
 			if (this.h[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.put("Slot", (byte) var3);
-				this.h[var3].b(var4);
+				this.h[var3].write(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
@@ -131,17 +131,17 @@ public class TileEntityFurnace extends bdf implements pm, we {
 		return this.i > 0;
 	}
 
-	public void c() {
+	public void doTick() {
 		boolean var1 = this.m();
 		boolean var2 = false;
 		if (this.m()) {
 			--this.i;
 		}
 
-		if (!this.world.D) {
+		if (!this.world.isStatic) {
 			if (!this.m() && (this.h[1] == null || this.h[0] == null)) {
 				if (!this.m() && this.k > 0) {
-					this.k = DataTypesConverter.a(this.k - 2, 0, this.l);
+					this.k = MathHelper.a(this.k - 2, 0, this.l);
 				}
 			} else {
 				if (!this.m() && this.o()) {
@@ -149,9 +149,9 @@ public class TileEntityFurnace extends bdf implements pm, we {
 					if (this.m()) {
 						var2 = true;
 						if (this.h[1] != null) {
-							--this.h[1].b;
-							if (this.h[1].b == 0) {
-								Item var3 = this.h[1].getItem().q();
+							--this.h[1].amount;
+							if (this.h[1].amount == 0) {
+								Item var3 = this.h[1].getItem().getCraftingResult();
 								this.h[1] = var3 != null ? new ItemStack(var3) : null;
 							}
 						}
@@ -178,7 +178,7 @@ public class TileEntityFurnace extends bdf implements pm, we {
 		}
 
 		if (var2) {
-			this.o_();
+			this.update();
 		}
 
 	}
@@ -191,26 +191,26 @@ public class TileEntityFurnace extends bdf implements pm, we {
 		if (this.h[0] == null) {
 			return false;
 		} else {
-			ItemStack var1 = aok.a().a(this.h[0]);
-			return var1 == null ? false : (this.h[2] == null ? true : (!this.h[2].a(var1) ? false : (this.h[2].b < this.p_() && this.h[2].b < this.h[2].c() ? true : this.h[2].b < var1.c())));
+			ItemStack var1 = RecipesFurnace.getInstance().a(this.h[0]);
+			return var1 == null ? false : (this.h[2] == null ? true : (!this.h[2].a(var1) ? false : (this.h[2].amount < this.p_() && this.h[2].amount < this.h[2].getMaxStackSize() ? true : this.h[2].amount < var1.getMaxStackSize())));
 		}
 	}
 
 	public void n() {
 		if (this.o()) {
-			ItemStack var1 = aok.a().a(this.h[0]);
+			ItemStack var1 = RecipesFurnace.getInstance().a(this.h[0]);
 			if (this.h[2] == null) {
 				this.h[2] = var1.getCopy();
 			} else if (this.h[2].getItem() == var1.getItem()) {
-				++this.h[2].b;
+				++this.h[2].amount;
 			}
 
-			if (this.h[0].getItem() == Item.getItemOf(aty.v) && this.h[0].i() == 1 && this.h[1] != null && this.h[1].getItem() == amk.aw) {
-				this.h[1] = new ItemStack(amk.ax);
+			if (this.h[0].getItem() == Item.getItemOf(Blocks.SPONGE) && this.h[0].getDurability() == 1 && this.h[1] != null && this.h[1].getItem() == Items.BUCKET) {
+				this.h[1] = new ItemStack(Items.WATER_BUCKET);
 			}
 
-			--this.h[0].b;
-			if (this.h[0].b <= 0) {
+			--this.h[0].amount;
+			if (this.h[0].amount <= 0) {
 				this.h[0] = null;
 			}
 
@@ -222,22 +222,22 @@ public class TileEntityFurnace extends bdf implements pm, we {
 			return 0;
 		} else {
 			Item var1 = var0.getItem();
-			if (var1 instanceof aju && Block.a(var1) != aty.a) {
-				Block var2 = Block.a(var1);
-				if (var2 == aty.bM) {
+			if (var1 instanceof ItemBlock && Block.getBlockByItem(var1) != Blocks.AIR) {
+				Block var2 = Block.getBlockByItem(var1);
+				if (var2 == Blocks.WOODEN_SLAB) {
 					return 150;
 				}
 
-				if (var2.r() == Material.WOOD) {
+				if (var2.getMaterial() == Material.WOOD) {
 					return 300;
 				}
 
-				if (var2 == aty.cA) {
+				if (var2 == Blocks.COAL_BLOCK) {
 					return 16000;
 				}
 			}
 
-			return var1 instanceof aks && ((aks) var1).h().equals("WOOD") ? 200 : (var1 instanceof anm && ((anm) var1).h().equals("WOOD") ? 200 : (var1 instanceof alo && ((alo) var1).g().equals("WOOD") ? 200 : (var1 == amk.y ? 100 : (var1 == amk.h ? 1600 : (var1 == amk.ay ? 20000 : (var1 == Item.getItemOf(aty.g) ? 100 : (var1 == amk.bv ? 2400 : 0)))))));
+			return var1 instanceof ItemTool && ((ItemTool) var1).h().equals("WOOD") ? 200 : (var1 instanceof ItemSword && ((ItemSword) var1).h().equals("WOOD") ? 200 : (var1 instanceof ItemHoe && ((ItemHoe) var1).g().equals("WOOD") ? 200 : (var1 == Items.STICK ? 100 : (var1 == Items.COAL ? 1600 : (var1 == Items.LAVA_BUCKET ? 20000 : (var1 == Item.getItemOf(Blocks.SAPLING) ? 100 : (var1 == Items.BLAZE_ROD ? 2400 : 0)))))));
 		}
 	}
 
@@ -246,7 +246,7 @@ public class TileEntityFurnace extends bdf implements pm, we {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.world.s(this.position) != this ? false : var1.e((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
+		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public void b(EntityHuman var1) {
@@ -259,18 +259,18 @@ public class TileEntityFurnace extends bdf implements pm, we {
 		return var1 == 2 ? false : (var1 != 1 ? true : c(var2) || aiu.c_(var2));
 	}
 
-	public int[] a(PaintingDirection var1) {
-		return var1 == PaintingDirection.a ? f : (var1 == PaintingDirection.b ? a : g);
+	public int[] a(BlockFace var1) {
+		return var1 == BlockFace.DOWN ? f : (var1 == BlockFace.UP ? a : g);
 	}
 
-	public boolean a(int var1, ItemStack var2, PaintingDirection var3) {
+	public boolean a(int var1, ItemStack var2, BlockFace var3) {
 		return this.b(var1, var2);
 	}
 
-	public boolean b(int var1, ItemStack var2, PaintingDirection var3) {
-		if (var3 == PaintingDirection.a && var1 == 1) {
+	public boolean b(int var1, ItemStack var2, BlockFace var3) {
+		if (var3 == BlockFace.DOWN && var1 == 1) {
 			Item var4 = var2.getItem();
-			if (var4 != amk.ax && var4 != amk.aw) {
+			if (var4 != Items.WATER_BUCKET && var4 != Items.BUCKET) {
 				return false;
 			}
 		}

@@ -4,9 +4,9 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.Random;
 
-public class EntitySheep extends abq {
+public class EntitySheep extends EntityAnimal {
 
-	private final ain bk = new ain(new acm(this), 2, 1);
+	private final InventoryCrafting bk = new InventoryCrafting(new acm(this), 2, 1);
 	private static final Map bm = Maps.newEnumMap(akv.class);
 	private int bn;
 	private yw bo = new yw(this);
@@ -19,17 +19,17 @@ public class EntitySheep extends abq {
 		super(var1);
 		this.a(0.9F, 1.3F);
 		((aay) this.s()).a(true);
-		this.i.a(0, new yy(this));
+		this.i.a(0, new PathfinderGoalFloat(this));
 		this.i.a(1, new zu(this, 1.25D));
 		this.i.a(2, new yt(this, 1.0D));
-		this.i.a(3, new aag(this, 1.1D, amk.O, false));
+		this.i.a(3, new aag(this, 1.1D, Items.WHEAT, false));
 		this.i.a(4, new za(this, 1.1D));
 		this.i.a(5, this.bo);
-		this.i.a(6, new zy(this, 1.0D));
-		this.i.a(7, new zh(this, EntityHuman.class, 6.0F));
-		this.i.a(8, new zx(this));
-		this.bk.a(0, new ItemStack(amk.aW, 1, 0));
-		this.bk.a(1, new ItemStack(amk.aW, 1, 0));
+		this.i.a(6, new PathfinderGoalRandomStroll(this, 1.0D));
+		this.i.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 6.0F));
+		this.i.a(8, new PathfinderGoalRandomLookaround(this));
+		this.bk.a(0, new ItemStack(Items.DYE, 1, 0));
+		this.bk.a(1, new ItemStack(Items.DYE, 1, 0));
 	}
 
 	protected void E() {
@@ -38,7 +38,7 @@ public class EntitySheep extends abq {
 	}
 
 	public void m() {
-		if (this.o.D) {
+		if (this.world.isStatic) {
 			this.bn = Math.max(0, this.bn - 1);
 		}
 
@@ -56,39 +56,39 @@ public class EntitySheep extends abq {
 		this.dataWatcher.a(16, new Byte((byte) 0));
 	}
 
-	protected void b(boolean var1, int var2) {
+	protected void dropDeathLoot(boolean var1, int var2) {
 		if (!this.ck()) {
-			this.a(new ItemStack(Item.getItemOf(aty.L), 1, this.cj().a()), 0.0F);
+			this.a(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, this.cj().a()), 0.0F);
 		}
 
-		int var3 = this.V.nextInt(2) + 1 + this.V.nextInt(1 + var2);
+		int var3 = this.random.nextInt(2) + 1 + this.random.nextInt(1 + var2);
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			if (this.au()) {
-				this.a(amk.bn, 1);
+				this.a(Items.COOKED_MUTTON, 1);
 			} else {
-				this.a(amk.bm, 1);
+				this.a(Items.MUTTON, 1);
 			}
 		}
 
 	}
 
-	protected Item A() {
-		return Item.getItemOf(aty.L);
+	protected Item getLoot() {
+		return Item.getItemOf(Blocks.WOOL);
 	}
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
-		if (var2 != null && var2.getItem() == amk.be && !this.ck() && !this.i_()) {
-			if (!this.o.D) {
+		if (var2 != null && var2.getItem() == Items.SHEARS && !this.ck() && !this.i_()) {
+			if (!this.world.isStatic) {
 				this.l(true);
-				int var3 = 1 + this.V.nextInt(3);
+				int var3 = 1 + this.random.nextInt(3);
 
 				for (int var4 = 0; var4 < var3; ++var4) {
-					EntityItem var5 = this.a(new ItemStack(Item.getItemOf(aty.L), 1, this.cj().a()), 1.0F);
-					var5.motionY += (double) (this.V.nextFloat() * 0.05F);
-					var5.motionX += (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.1F);
-					var5.motionZ += (double) ((this.V.nextFloat() - this.V.nextFloat()) * 0.1F);
+					EntityItem var5 = this.a(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, this.cj().a()), 1.0F);
+					var5.motionY += (double) (this.random.nextFloat() * 0.05F);
+					var5.motionX += (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.1F);
+					var5.motionZ += (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.1F);
 				}
 			}
 
@@ -155,10 +155,10 @@ public class EntitySheep extends abq {
 		return var1 < 5 ? akv.p : (var1 < 10 ? akv.h : (var1 < 15 ? akv.i : (var1 < 18 ? akv.m : (var0.nextInt(500) == 0 ? akv.g : akv.a))));
 	}
 
-	public EntitySheep b(ws var1) {
+	public EntitySheep b(EntityAgeable var1) {
 		EntitySheep var2 = (EntitySheep) var1;
-		EntitySheep var3 = new EntitySheep(this.o);
-		var3.b(this.a((abq) this, (abq) var2));
+		EntitySheep var3 = new EntitySheep(this.world);
+		var3.b(this.a((EntityAnimal) this, (EntityAnimal) var2));
 		return var3;
 	}
 
@@ -172,32 +172,32 @@ public class EntitySheep extends abq {
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		this.b(a(this.o.s));
+		this.b(a(this.world.s));
 		return var2;
 	}
 
-	private akv a(abq var1, abq var2) {
+	private akv a(EntityAnimal var1, EntityAnimal var2) {
 		int var3 = ((EntitySheep) var1).cj().b();
 		int var4 = ((EntitySheep) var2).cj().b();
-		this.bk.a(0).b(var3);
-		this.bk.a(1).b(var4);
-		ItemStack var5 = aop.a().a(this.bk, ((EntitySheep) var1).o);
+		this.bk.a(0).setDurability(var3);
+		this.bk.a(1).setDurability(var4);
+		ItemStack var5 = CraftingManager.getInstance().a(this.bk, ((EntitySheep) var1).world);
 		int var6;
-		if (var5 != null && var5.getItem() == amk.aW) {
-			var6 = var5.i();
+		if (var5 != null && var5.getItem() == Items.DYE) {
+			var6 = var5.getDurability();
 		} else {
-			var6 = this.o.s.nextBoolean() ? var3 : var4;
+			var6 = this.world.s.nextBoolean() ? var3 : var4;
 		}
 
 		return akv.a(var6);
 	}
 
-	public float aR() {
-		return 0.95F * this.K;
+	public float getHeadHeight() {
+		return 0.95F * this.width;
 	}
 
 	// $FF: synthetic method
-	public ws a(ws var1) {
+	public EntityAgeable a(EntityAgeable var1) {
 		return this.b(var1);
 	}
 

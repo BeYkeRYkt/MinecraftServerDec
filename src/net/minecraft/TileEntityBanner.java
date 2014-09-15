@@ -22,10 +22,10 @@ public class TileEntityBanner extends TileEntity {
 			if (var2.isTagAssignableFrom("Base", 99)) {
 				this.a = var2.getInt("Base");
 			} else {
-				this.a = var1.i() & 15;
+				this.a = var1.getDurability() & 15;
 			}
 		} else {
-			this.a = var1.i() & 15;
+			this.a = var1.getDurability() & 15;
 		}
 
 		this.h = null;
@@ -56,7 +56,7 @@ public class TileEntityBanner extends TileEntity {
 	public Packet getUpdatePacket() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		this.write(var1);
-		return new PacketOutUpdateBlockEntity(this.position, 6, var1);
+		return new PacketPlayOutUpdateBlockEntity(this.position, 6, var1);
 	}
 
 	public int b() {
@@ -65,7 +65,7 @@ public class TileEntityBanner extends TileEntity {
 
 	public static int b(ItemStack var0) {
 		NBTCompoundTag var1 = var0.a("BlockEntityTag", false);
-		return var1 != null && var1.hasKey("Base") ? var1.getInt("Base") : var0.i();
+		return var1 != null && var1.hasKey("Base") ? var1.getInt("Base") : var0.getDurability();
 	}
 
 	public static int c(ItemStack var0) {
@@ -82,7 +82,7 @@ public class TileEntityBanner extends TileEntity {
 				if (var2.isEmpty()) {
 					var0.getTag().remove("BlockEntityTag");
 					if (var0.getTag().isEmpty()) {
-						var0.d((NBTCompoundTag) null);
+						var0.setTag((NBTCompoundTag) null);
 					}
 				}
 

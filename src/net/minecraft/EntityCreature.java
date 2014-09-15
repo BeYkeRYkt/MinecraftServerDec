@@ -8,14 +8,14 @@ public abstract class EntityCreature extends EntityInsentient {
 	public static final AttributeModifier bj = (new AttributeModifier(bi, "Fleeing speed bonus", 2.0D, 2)).setSerializable(false);
 	private Position a;
 	private float b;
-	private zb c;
+	private PathfinderGoal c;
 	private boolean bk;
 
 	public EntityCreature(World var1) {
 		super(var1);
 		this.a = Position.ZERO;
 		this.b = -1.0F;
-		this.c = new zo(this, 1.0D);
+		this.c = new PathfinderGoalMoveTowardsRestriction(this, 1.0D);
 	}
 
 	public float a(Position var1) {
@@ -23,7 +23,7 @@ public abstract class EntityCreature extends EntityInsentient {
 	}
 
 	public boolean bQ() {
-		return super.bQ() && this.a(new Position(this.locationX, this.aQ().b, this.locationZ)) >= 0.0F;
+		return super.bQ() && this.a(new Position(this.locationX, this.getBoundingBox().minY, this.locationZ)) >= 0.0F;
 	}
 
 	public boolean cd() {
@@ -61,7 +61,7 @@ public abstract class EntityCreature extends EntityInsentient {
 
 	protected void bZ() {
 		super.bZ();
-		if (this.cb() && this.cc() != null && this.cc().o == this.o) {
+		if (this.cb() && this.cc() != null && this.cc().world == this.world) {
 			Entity var1 = this.cc();
 			this.a(new Position((int) var1.locationX, (int) var1.locationY, (int) var1.locationZ), 5);
 			float var2 = this.g(var1);

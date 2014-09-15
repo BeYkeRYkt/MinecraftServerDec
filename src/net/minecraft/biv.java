@@ -34,9 +34,9 @@ public class biv {
 	public void d() {
 		int var1 = 0;
 
-		biw var3;
+		WorldGenFlatLayerInfo var3;
 		for (Iterator var2 = this.a.iterator(); var2.hasNext(); var1 += var3.b()) {
-			var3 = (biw) var2.next();
+			var3 = (WorldGenFlatLayerInfo) var2.next();
 			var3.b(var1);
 		}
 
@@ -53,7 +53,7 @@ public class biv {
 				var1.append(",");
 			}
 
-			var1.append(((biw) this.a.get(var2)).toString());
+			var1.append(((WorldGenFlatLayerInfo) this.a.get(var2)).toString());
 		}
 
 		var1.append(";");
@@ -97,7 +97,7 @@ public class biv {
 		return var1.toString();
 	}
 
-	private static biw a(int var0, String var1, int var2) {
+	private static WorldGenFlatLayerInfo a(int var0, String var1, int var2) {
 		String[] var3 = var0 >= 3 ? var1.split("\\*", 2) : var1.split("x", 2);
 		int var4 = 1;
 		int var5 = 0;
@@ -126,14 +126,14 @@ public class biv {
 					var5 = Integer.parseInt(var3[1]);
 				}
 
-				var6 = Block.c(Integer.parseInt(var3[0]));
+				var6 = Block.getBlockById(Integer.parseInt(var3[0]));
 			} else {
 				var3 = var7.split(":", 3);
-				var6 = var3.length > 1 ? Block.b(var3[0] + ":" + var3[1]) : null;
+				var6 = var3.length > 1 ? Block.getBlockByName(var3[0] + ":" + var3[1]) : null;
 				if (var6 != null) {
 					var5 = var3.length > 2 ? Integer.parseInt(var3[2]) : 0;
 				} else {
-					var6 = Block.b(var3[0]);
+					var6 = Block.getBlockByName(var3[0]);
 					if (var6 != null) {
 						var5 = var3.length > 1 ? Integer.parseInt(var3[1]) : 0;
 					}
@@ -144,7 +144,7 @@ public class biv {
 				}
 			}
 
-			if (var6 == aty.a) {
+			if (var6 == Blocks.AIR) {
 				var5 = 0;
 			}
 
@@ -155,7 +155,7 @@ public class biv {
 			return null;
 		}
 
-		biw var10 = new biw(var0, var4, var6, var5);
+		WorldGenFlatLayerInfo var10 = new WorldGenFlatLayerInfo(var0, var4, var6, var5);
 		var10.b(var2);
 		return var10;
 	}
@@ -170,7 +170,7 @@ public class biv {
 
 			for (int var7 = 0; var7 < var6; ++var7) {
 				String var8 = var5[var7];
-				biw var9 = a(var0, var8, var4);
+				WorldGenFlatLayerInfo var9 = a(var0, var8, var4);
 				if (var9 == null) {
 					return null;
 				}
@@ -190,7 +190,7 @@ public class biv {
 			return e();
 		} else {
 			String[] var1 = var0.split(";", -1);
-			int var2 = var1.length == 1 ? 0 : DataTypesConverter.a(var1[0], 0);
+			int var2 = var1.length == 1 ? 0 : MathHelper.a(var1[0], 0);
 			if (var2 >= 0 && var2 <= 3) {
 				biv var3 = new biv();
 				int var4 = var1.length == 1 ? 0 : 1;
@@ -198,9 +198,9 @@ public class biv {
 				if (var5 != null && !var5.isEmpty()) {
 					var3.c().addAll(var5);
 					var3.d();
-					int var6 = arm.q.az;
+					int var6 = BiomeBase.PLAINS.az;
 					if (var2 > 0 && var1.length > var4) {
-						var6 = DataTypesConverter.a(var1[var4++], var6);
+						var6 = MathHelper.a(var1[var4++], var6);
 					}
 
 					var3.a(var6);
@@ -243,10 +243,10 @@ public class biv {
 
 	public static biv e() {
 		biv var0 = new biv();
-		var0.a(arm.q.az);
-		var0.c().add(new biw(1, aty.h));
-		var0.c().add(new biw(2, aty.d));
-		var0.c().add(new biw(1, aty.c));
+		var0.a(BiomeBase.PLAINS.az);
+		var0.c().add(new WorldGenFlatLayerInfo(1, Blocks.BEDROCK));
+		var0.c().add(new WorldGenFlatLayerInfo(2, Blocks.DIRT));
+		var0.c().add(new WorldGenFlatLayerInfo(1, Blocks.GRASS));
 		var0.d();
 		var0.b().put("village", Maps.newHashMap());
 		return var0;

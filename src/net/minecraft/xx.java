@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.UUID;
 
-public abstract class xx extends abq implements xt {
+public abstract class xx extends EntityAnimal implements xt {
 
 	protected aad bk = new aad(this);
 
@@ -54,10 +54,10 @@ public abstract class xx extends abq implements xt {
 		}
 
 		for (int var3 = 0; var3 < 7; ++var3) {
-			double var4 = this.V.nextGaussian() * 0.02D;
-			double var6 = this.V.nextGaussian() * 0.02D;
-			double var8 = this.V.nextGaussian() * 0.02D;
-			this.o.a(var2, this.locationX + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, this.locationY + 0.5D + (double) (this.V.nextFloat() * this.K), this.locationZ + (double) (this.V.nextFloat() * this.J * 2.0F) - (double) this.J, var4, var6, var8, new int[0]);
+			double var4 = this.random.nextGaussian() * 0.02D;
+			double var6 = this.random.nextGaussian() * 0.02D;
+			double var8 = this.random.nextGaussian() * 0.02D;
+			this.world.a(var2, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, var4, var6, var8, new int[0]);
 		}
 
 	}
@@ -105,7 +105,7 @@ public abstract class xx extends abq implements xt {
 	public EntityLiving cm() {
 		try {
 			UUID var1 = UUID.fromString(this.b());
-			return var1 == null ? null : this.o.b(var1);
+			return var1 == null ? null : this.world.b(var1);
 		} catch (IllegalArgumentException var2) {
 			return null;
 		}
@@ -123,7 +123,7 @@ public abstract class xx extends abq implements xt {
 		return true;
 	}
 
-	public bsf bN() {
+	public ScoreboardTeamBase bN() {
 		if (this.cj()) {
 			EntityLiving var1 = this.cm();
 			if (var1 != null) {
@@ -149,9 +149,9 @@ public abstract class xx extends abq implements xt {
 		return super.c(var1);
 	}
 
-	public void a(wh var1) {
-		if (!this.o.D && this.o.Q().b("showDeathMessages") && this.k_() && this.cm() instanceof EntityPlayer) {
-			((EntityPlayer) this.cm()).sendChatMessage(this.br().b());
+	public void a(DamageSource var1) {
+		if (!this.world.isStatic && this.world.getGameRules().b("showDeathMessages") && this.k_() && this.cm() instanceof EntityPlayer) {
+			((EntityPlayer) this.cm()).sendChatMessage(this.br().getMessage());
 		}
 
 		super.a(var1);

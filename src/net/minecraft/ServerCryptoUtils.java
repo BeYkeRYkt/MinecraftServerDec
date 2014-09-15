@@ -66,15 +66,13 @@ public class ServerCryptoUtils {
 		}
 	}
 
-	public static PublicKey a(byte[] var0) {
+	public static PublicKey fromArray(byte[] array) {
 		try {
-			X509EncodedKeySpec var1 = new X509EncodedKeySpec(var0);
-			KeyFactory var2 = KeyFactory.getInstance("RSA");
-			return var2.generatePublic(var1);
+			X509EncodedKeySpec spec = new X509EncodedKeySpec(array);
+			KeyFactory factory = KeyFactory.getInstance("RSA");
+			return factory.generatePublic(spec);
 		} catch (NoSuchAlgorithmException var3) {
-			;
 		} catch (InvalidKeySpecException var4) {
-			;
 		}
 
 		logger.error("Public key reconstitute failed!");

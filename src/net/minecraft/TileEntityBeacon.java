@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class TileEntityBeacon extends bdf implements pm, IInventory {
+public class TileEntityBeacon extends bdf implements PacketTickable, IInventory {
 
-	public static final MobEffectList[][] a = new MobEffectList[][] { { MobEffectList.c, MobEffectList.e }, { MobEffectList.m, MobEffectList.j }, { MobEffectList.g }, { MobEffectList.l } };
+	public static final MobEffectList[][] a = new MobEffectList[][] { { MobEffectList.FASTER_MOVEMENT, MobEffectList.FASTER_DIG }, { MobEffectList.RESISTANCE, MobEffectList.JUMP }, { MobEffectList.INCREASE_DAMAGE }, { MobEffectList.REGENERATION } };
 	private final List f = Lists.newArrayList();
 	private boolean i;
 	private int j = -1;
@@ -16,8 +16,8 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 	private ItemStack m;
 	private String n;
 
-	public void c() {
-		if (this.world.K() % 80L == 0L) {
+	public void doTick() {
+		if (this.world.getTime() % 80L == 0L) {
 			this.m();
 		}
 
@@ -29,7 +29,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 	}
 
 	private void A() {
-		if (this.i && this.j > 0 && !this.world.D && this.k > 0) {
+		if (this.i && this.j > 0 && !this.world.isStatic && this.k > 0) {
 			double var1 = (double) (this.j * 10 + 10);
 			byte var3 = 0;
 			if (this.j >= 4 && this.k == this.l) {
@@ -39,7 +39,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 			int var4 = this.position.getX();
 			int var5 = this.position.getY();
 			int var6 = this.position.getZ();
-			brt var7 = (new brt((double) var4, (double) var5, (double) var6, (double) (var4 + 1), (double) (var5 + 1), (double) (var6 + 1))).b(var1, var1, var1).a(0.0D, (double) this.world.U(), 0.0D);
+			AxisAlignedBB var7 = (new AxisAlignedBB((double) var4, (double) var5, (double) var6, (double) (var4 + 1), (double) (var5 + 1), (double) (var6 + 1))).grow(var1, var1, var1).a(0.0D, (double) this.world.U(), 0.0D);
 			List var8 = this.world.a(EntityHuman.class, var7);
 			Iterator var9 = var8.iterator();
 
@@ -76,12 +76,12 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 		int var7;
 		for (var7 = var3 + 1; var7 < this.world.V(); ++var7) {
 			Position var8 = new Position(var2, var7, var4);
-			bec var9 = this.world.p(var8);
+			IBlockState var9 = this.world.getBlockState(var8);
 			float[] var10;
-			if (var9.getBlock() == aty.cG) {
+			if (var9.getBlock() == Blocks.STAINED_GLASS) {
 				var10 = EntitySheep.a((akv) var9.b(BlockStainedGlass.a));
 			} else {
-				if (var9.getBlock() != aty.cH) {
+				if (var9.getBlock() != Blocks.STAINED_GLASS_PANE) {
 					if (var9.getBlock().n() >= 15) {
 						this.i = false;
 						this.f.clear();
@@ -120,8 +120,8 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 
 				for (int var17 = var2 - var7; var17 <= var2 + var7 && var16; ++var17) {
 					for (int var11 = var4 - var7; var11 <= var4 + var7; ++var11) {
-						Block var12 = this.world.p(new Position(var17, var14, var11)).getBlock();
-						if (var12 != aty.bT && var12 != aty.R && var12 != aty.ah && var12 != aty.S) {
+						Block var12 = this.world.getBlockState(new Position(var17, var14, var11)).getBlock();
+						if (var12 != Blocks.EMERALD_BLOCK && var12 != Blocks.GOLD_BLOCK && var12 != Blocks.DIAMOND_BLOCK && var12 != Blocks.IRON_BLOCK) {
 							var16 = false;
 							break;
 						}
@@ -138,12 +138,12 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 			}
 		}
 
-		if (!this.world.D && this.j == 4 && var1 < this.j) {
-			Iterator var13 = this.world.a(EntityHuman.class, (new brt((double) var2, (double) var3, (double) var4, (double) var2, (double) (var3 - 4), (double) var4)).b(10.0D, 5.0D, 10.0D)).iterator();
+		if (!this.world.isStatic && this.j == 4 && var1 < this.j) {
+			Iterator var13 = this.world.a(EntityHuman.class, (new AxisAlignedBB((double) var2, (double) var3, (double) var4, (double) var2, (double) (var3 - 4), (double) var4)).grow(10.0D, 5.0D, 10.0D)).iterator();
 
 			while (var13.hasNext()) {
 				EntityHuman var15 = (EntityHuman) var13.next();
-				var15.b((Statistic) tl.K);
+				var15.b((Statistic) AchievementList.K);
 			}
 		}
 
@@ -152,7 +152,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 	public Packet getUpdatePacket() {
 		NBTCompoundTag var1 = new NBTCompoundTag();
 		this.write(var1);
-		return new PacketOutUpdateBlockEntity(this.position, 3, var1);
+		return new PacketPlayOutUpdateBlockEntity(this.position, 3, var1);
 	}
 
 	public void read(NBTCompoundTag var1) {
@@ -179,13 +179,13 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 
 	public ItemStack a(int var1, int var2) {
 		if (var1 == 0 && this.m != null) {
-			if (var2 >= this.m.b) {
+			if (var2 >= this.m.amount) {
 				ItemStack var3 = this.m;
 				this.m = null;
 				return var3;
 			} else {
-				this.m.b -= var2;
-				return new ItemStack(this.m.getItem(), var2, this.m.i());
+				this.m.amount -= var2;
+				return new ItemStack(this.m.getItem(), var2, this.m.getDurability());
 			}
 		} else {
 			return null;
@@ -209,7 +209,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 
 	}
 
-	public String d_() {
+	public String getName() {
 		return this.k_() ? this.n : "container.beacon";
 	}
 
@@ -226,7 +226,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.world.s(this.position) != this ? false : var1.e((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
+		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
 	public void b(EntityHuman var1) {
@@ -236,7 +236,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 	}
 
 	public boolean b(int var1, ItemStack var2) {
-		return var2.getItem() == amk.bO || var2.getItem() == amk.i || var2.getItem() == amk.k || var2.getItem() == amk.j;
+		return var2.getItem() == Items.EMERALD || var2.getItem() == Items.DIAMOND || var2.getItem() == Items.GOLD_INGOT || var2.getItem() == Items.IRON_INGOT;
 	}
 
 	public String k() {
@@ -244,7 +244,7 @@ public class TileEntityBeacon extends bdf implements pm, IInventory {
 	}
 
 	public Container a(PlayerInventory var1, EntityHuman var2) {
-		return new aig(var1, this);
+		return new ContainerBeacon(var1, this);
 	}
 
 	public int a_(int var1) {

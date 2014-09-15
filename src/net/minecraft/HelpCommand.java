@@ -36,12 +36,12 @@ public class HelpCommand extends AbstractCommand {
 			var13 = var2.length == 0 ? 0 : a(var2[0], 1, var5 + 1) - 1;
 		} catch (dk var12) {
 			Map var8 = this.d();
-			CommandInterface var9 = (CommandInterface) var8.get(var2[0]);
+			ICommand var9 = (ICommand) var8.get(var2[0]);
 			if (var9 != null) {
 				throw new dp(var9.getUsage(var1), new Object[0]);
 			}
 
-			if (DataTypesConverter.a(var2[0], -1) != -1) {
+			if (MathHelper.a(var2[0], -1) != -1) {
 				throw var12;
 			}
 
@@ -49,20 +49,20 @@ public class HelpCommand extends AbstractCommand {
 		}
 
 		int var7 = Math.min((var13 + 1) * 7, var3.size());
-		hz var14 = new hz("commands.help.header", new Object[] { Integer.valueOf(var13 + 1), Integer.valueOf(var5 + 1) });
-		var14.b().a(FormattingCode.c);
+		ChatMessage var14 = new ChatMessage("commands.help.header", new Object[] { Integer.valueOf(var13 + 1), Integer.valueOf(var5 + 1) });
+		var14.getChatModifier().setColor(EnumChatFormat.DARK_GREEN);
 		var1.sendChatMessage(var14);
 
 		for (int var15 = var13 * 7; var15 < var7; ++var15) {
-			CommandInterface var10 = (CommandInterface) var3.get(var15);
-			hz var11 = new hz(var10.getUsage(var1), new Object[0]);
-			var11.b().a(new hm(hn.e, "/" + var10.getName() + " "));
+			ICommand var10 = (ICommand) var3.get(var15);
+			ChatMessage var11 = new ChatMessage(var10.getUsage(var1), new Object[0]);
+			var11.getChatModifier().a(new hm(hn.e, "/" + var10.getName() + " "));
 			var1.sendChatMessage(var11);
 		}
 
 		if (var13 == 0 && var1 instanceof EntityHuman) {
-			hz var16 = new hz("commands.help.footer", new Object[0]);
-			var16.b().a(FormattingCode.k);
+			ChatMessage var16 = new ChatMessage("commands.help.footer", new Object[0]);
+			var16.getChatModifier().setColor(EnumChatFormat.GREEN);
 			var1.sendChatMessage(var16);
 		}
 

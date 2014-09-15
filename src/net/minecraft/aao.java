@@ -9,7 +9,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class aao extends zb {
+public class aao extends PathfinderGoal {
 
 	private static final Logger a = LogManager.getLogger();
 	private EntityInsentient b;
@@ -27,8 +27,8 @@ public class aao extends zb {
 		this.d = new Comparator<Entity>() {
 			@Override
 			public int compare(Entity entity1, Entity entity2) {
-				double var3 = b.h(entity1);
-				double var5 = b.h(entity2);
+				double var3 = b.getDistanceSquared(entity1);
+				double var5 = b.getDistanceSquared(entity2);
 				return var3 < var5 ? -1 : (var3 > var5 ? 1 : 0);
 			}
 		};
@@ -36,7 +36,7 @@ public class aao extends zb {
 
 	public boolean a() {
 		double var1 = this.f();
-		List var3 = this.b.o.a(EntityHuman.class, this.b.aQ().b(var1, 4.0D, var1), this.c);
+		List var3 = this.b.world.a(EntityHuman.class, this.b.getBoundingBox().grow(var1, 4.0D, var1), this.c);
 		Collections.sort(var3, this.d);
 		if (var3.isEmpty()) {
 			return false;
@@ -50,16 +50,16 @@ public class aao extends zb {
 		EntityLiving var1 = this.b.u();
 		if (var1 == null) {
 			return false;
-		} else if (!var1.ai()) {
+		} else if (!var1.isAlive()) {
 			return false;
 		} else {
-			bsf var2 = this.b.bN();
-			bsf var3 = var1.bN();
+			ScoreboardTeamBase var2 = this.b.bN();
+			ScoreboardTeamBase var3 = var1.bN();
 			if (var2 != null && var3 == var2) {
 				return false;
 			} else {
 				double var4 = this.f();
-				return this.b.h(var1) > var4 * var4 ? false : !(var1 instanceof EntityPlayer) || !((EntityPlayer) var1).c.d();
+				return this.b.getDistanceSquared(var1) > var4 * var4 ? false : !(var1 instanceof EntityPlayer) || !((EntityPlayer) var1).playerInteractManager.isCreative();
 			}
 		}
 	}

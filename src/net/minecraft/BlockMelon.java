@@ -6,11 +6,11 @@ public class BlockMelon extends Block {
 
 	protected BlockMelon() {
 		super(Material.PUMPKIN);
-		this.a(CreativeModeTab.b);
+		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public Item a(bec var1, Random var2, int var3) {
-		return amk.bf;
+	public Item a(IBlockState var1, Random var2, int var3) {
+		return Items.MELON;
 	}
 
 	public int a(Random var1) {

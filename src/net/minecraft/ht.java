@@ -29,11 +29,11 @@ public class ht extends hj {
 	public String e() {
 		MinecraftServer var1 = MinecraftServer.getInstance();
 		if (var1 != null && var1.hasUniverse() && vb.b(this.d)) {
-			bsd var2 = var1.a(0).Z();
-			bry var3 = var2.b(this.c);
+			Scoreboard var2 = var1.getWorldServer(0).Z();
+			ScoreboardObjective var3 = var2.b(this.c);
 			if (var2.b(this.b, var3)) {
-				bsa var4 = var2.c(this.b, var3);
-				this.b(String.format("%d", new Object[] { Integer.valueOf(var4.c()) }));
+				ScoreboardScore var4 = var2.c(this.b, var3);
+				this.b(String.format("%d", new Object[] { Integer.valueOf(var4.getScore()) }));
 			} else {
 				this.d = "";
 			}
@@ -45,11 +45,11 @@ public class ht extends hj {
 	public ht i() {
 		ht var1 = new ht(this.b, this.c);
 		var1.b(this.d);
-		var1.a(this.b().m());
+		var1.a(this.getChatModifier().m());
 		Iterator var2 = this.a().iterator();
 
 		while (var2.hasNext()) {
-			IJSONComponent var3 = (IJSONComponent) var2.next();
+			IChatBaseComponent var3 = (IChatBaseComponent) var2.next();
 			var1.a(var3.f());
 		}
 
@@ -68,11 +68,11 @@ public class ht extends hj {
 	}
 
 	public String toString() {
-		return "ScoreComponent{name=\'" + this.b + '\'' + "objective=\'" + this.c + '\'' + ", siblings=" + this.a + ", style=" + this.b() + '}';
+		return "ScoreComponent{name=\'" + this.b + '\'' + "objective=\'" + this.c + '\'' + ", siblings=" + this.a + ", style=" + this.getChatModifier() + '}';
 	}
 
 	// $FF: synthetic method
-	public IJSONComponent f() {
+	public IChatBaseComponent f() {
 		return this.i();
 	}
 }

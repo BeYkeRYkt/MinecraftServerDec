@@ -2,351 +2,354 @@ package net.minecraft;
 
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.Futures;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.util.concurrent.GenericFutureListener;
+
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.Callable;
+
+import net.minecraft.PacketPlayInClientStatus.ClientStatusAction;
+import net.minecraft.PacketPlayInPlayerDigging.PlayerDiggingAction;
+import net.minecraft.PacketPlayInUseEntity.UseEntityAction;
 import net.minecraft.server.MinecraftServer;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class PlayerConnection implements ls, pm {
+public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 
-	private static final Logger c = LogManager.getLogger();
-	public final gr a;
-	private final MinecraftServer d;
-	public EntityPlayer b;
-	private int e;
-	private int f;
-	private int g;
-	private boolean h;
-	private int i;
-	private long j;
-	private long k;
-	private int l;
-	private int m;
-	private um n = new um();
-	private double o;
-	private double p;
-	private double q;
-	private boolean r = true;
+	private static final Logger logger = LogManager.getLogger();
 
-	public PlayerConnection(MinecraftServer var1, gr var2, EntityPlayer var3) {
-		this.d = var1;
-		this.a = var2;
-		var2.a((PacketListener) this);
-		this.b = var3;
-		var3.playerConncetion = this;
+	public final NetworkManager networkManager;
+	private final MinecraftServer minecraftserver;
+	public EntityPlayer player;
+	private int currentTick;
+	private int lastMoveTick;
+	private int flyTime;
+	private int packetKeepAliveMilliseconds;
+	private long lastKeepAliveMilliseconds;
+	private long lastKeepAliveTick;
+	private int chatThrottle;
+	private int creativeItemDropThrottle;
+	private IntHashMap intHashMap = new IntHashMap();
+	private double lastX;
+	private double lastY;
+	private double lastZ;
+	private boolean checkMovement = true;
+
+	public PlayerConnection(MinecraftServer minecraftserver, NetworkManager networkManager, EntityPlayer player) {
+		this.minecraftserver = minecraftserver;
+		this.networkManager = networkManager;
+		networkManager.setPacketListener((PacketListener) this);
+		this.player = player;
+		player.playerConnection = this;
 	}
 
-	public void c() {
-		this.h = false;
-		++this.e;
-		this.d.profiler.a("keepAlive");
-		if ((long) this.e - this.k > 40L) {
-			this.k = (long) this.e;
-			this.j = this.d();
-			this.i = (int) this.j;
-			this.sendPacket((Packet) (new PacketOutKeepAlive(this.i)));
+	public void doTick() {
+		++this.currentTick;
+		this.minecraftserver.profiler.a("keepAlive");
+		if ((long) this.currentTick - this.lastKeepAliveTick > 40L) {
+			this.lastKeepAliveTick = (long) this.currentTick;
+			this.lastKeepAliveMilliseconds = this.getCurrentMillis();
+			this.packetKeepAliveMilliseconds = (int) this.lastKeepAliveMilliseconds;
+			this.sendPacket(new PacketPlayOutKeepAlive(this.packetKeepAliveMilliseconds));
 		}
 
-		this.d.profiler.b();
-		if (this.l > 0) {
-			--this.l;
+		this.minecraftserver.profiler.b();
+		if (this.chatThrottle > 0) {
+			--this.chatThrottle;
 		}
 
-		if (this.m > 0) {
-			--this.m;
+		if (this.creativeItemDropThrottle > 0) {
+			--this.creativeItemDropThrottle;
 		}
 
-		if (this.b.D() > 0L && this.d.ay() > 0 && MinecraftServer.getCurrentMillis() - this.b.D() > (long) (this.d.ay() * 1000 * 60)) {
-			this.c("You have been idle for too long!");
+		if (this.player.getLastActiveTime() > 0L && this.minecraftserver.getIdleTimeOut() > 0 && MinecraftServer.getCurrentMillis() - this.player.getLastActiveTime() > (long) (this.minecraftserver.getIdleTimeOut() * 1000 * 60)) {
+			this.disconnect("You have been idle for too long!");
 		}
-
 	}
 
-	public gr a() {
-		return this.a;
+	public NetworkManager getNetworkManager() {
+		return this.networkManager;
 	}
 
-	public void c(String var1) {
-		hy var2 = new hy(var1);
-		this.a.a(new jj(var2), new rk(this, var2), new GenericFutureListener[0]);
-		this.a.k();
-		Futures.getUnchecked(this.d.a((Runnable) (new rl(this))));
+	public void disconnect(String message) {
+		ChatComponentText componenetMessage = new ChatComponentText(message);
+		this.networkManager.handleSendPacket(new PacketPlayOutDisconnect(componenetMessage), new PlayerConnectionFuture(this, componenetMessage));
+		this.networkManager.disableAutoRead();
+		Futures.getUnchecked(this.minecraftserver.scheduleSyncTask(new NetworkManagerCloseRunnable(this)));
 	}
 
-	public void a(mp var1) {
-		ig.a(var1, this, this.b.u());
-		this.b.a(var1.a(), var1.b(), var1.c(), var1.d());
+	public void handle(PacketPlayInSteerVehicle packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		this.player.handleSteerVehicle(packet.getSidewaysSpeed(), packet.getForwardSpeed(), packet.isJump(), packet.isUnmount());
 	}
 
-	public void a(mg var1) {
-		ig.a(var1, this, this.b.u());
-		WorldServer var2 = this.d.a(this.b.dimensionId);
-		this.h = true;
-		if (!this.b.i) {
-			double var3 = this.b.locationX;
-			double var5 = this.b.locationY;
-			double var7 = this.b.locationZ;
-			double var9 = 0.0D;
-			double var11 = var1.a() - this.o;
-			double var13 = var1.b() - this.p;
-			double var15 = var1.c() - this.q;
-			if (var1.g()) {
-				var9 = var11 * var11 + var13 * var13 + var15 * var15;
-				if (!this.r && var9 < 0.25D) {
-					this.r = true;
+	public void handle(PacketPlayInPlayer packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		WorldServer worldServer = this.minecraftserver.getWorldServer(this.player.dimensionId);
+		if (!this.player.viewingCredits) {
+			double playerLocX = this.player.locationX;
+			double playerLocY = this.player.locationY;
+			double playerLocZ = this.player.locationZ;
+			double distance = 0.0D;
+			double changeX = packet.getX() - this.lastX;
+			double changeY = packet.getFeetY() - this.lastY;
+			double changeZ = packet.getZ() - this.lastZ;
+			if (packet.hasPosition()) {
+				distance = changeX * changeX + changeY * changeY + changeZ * changeZ;
+				if (!this.checkMovement && distance < 0.25D) {
+					this.checkMovement = true;
 				}
 			}
 
-			if (this.r) {
-				this.f = this.e;
-				double var19;
-				double var21;
-				double var23;
-				if (this.b.m != null) {
-					float var47 = this.b.yaw;
-					float var18 = this.b.pitch;
-					this.b.m.al();
-					var19 = this.b.locationX;
-					var21 = this.b.locationY;
-					var23 = this.b.locationZ;
-					if (var1.h()) {
-						var47 = var1.d();
-						var18 = var1.e();
+			if (this.checkMovement) {
+				this.lastMoveTick = this.currentTick;
+				double locX;
+				double locY;
+				double locZ;
+				if (this.player.vehicle != null) {
+					float yaw = this.player.yaw;
+					float pitch = this.player.pitch;
+					this.player.vehicle.al();
+					locX = this.player.locationX;
+					locY = this.player.locationY;
+					locZ = this.player.locationZ;
+					if (packet.hasLook()) {
+						yaw = packet.getYaw();
+						pitch = packet.getPitch();
 					}
 
-					this.b.onGround = var1.f();
-					this.b.l();
-					this.b.a(var19, var21, var23, var47, var18);
-					if (this.b.m != null) {
-						this.b.m.al();
+					this.player.onGround = packet.isOnGround();
+					this.player.l();
+					this.player.setLocation(locX, locY, locZ, yaw, pitch);
+					if (this.player.vehicle != null) {
+						this.player.vehicle.al();
 					}
 
-					this.d.getPlayerList().d(this.b);
-					if (this.b.m != null) {
-						if (var9 > 4.0D) {
-							Entity var48 = this.b.m;
-							this.b.playerConncetion.sendPacket((Packet) (new PacketOutEntityTeleport(var48)));
-							this.a(this.b.locationX, this.b.locationY, this.b.locationZ, this.b.yaw, this.b.pitch);
+					this.minecraftserver.getPlayerList().d(this.player);
+					if (this.player.vehicle != null) {
+						if (distance > 4.0D) {
+							Entity vehicle = this.player.vehicle;
+							this.player.playerConnection.sendPacket(new PacketPlayOutEntityTeleport(vehicle));
+							this.movePlayer(this.player.locationX, this.player.locationY, this.player.locationZ, this.player.yaw, this.player.pitch);
 						}
 
-						this.b.m.ai = true;
+						this.player.vehicle.ai = true;
 					}
 
-					if (this.r) {
-						this.o = this.b.locationX;
-						this.p = this.b.locationY;
-						this.q = this.b.locationZ;
+					if (this.checkMovement) {
+						this.lastX = this.player.locationX;
+						this.lastY = this.player.locationY;
+						this.lastZ = this.player.locationZ;
 					}
 
-					var2.g(this.b);
+					worldServer.playerJoinedWorld(this.player);
 					return;
 				}
 
-				if (this.b.bI()) {
-					this.b.l();
-					this.b.a(this.o, this.p, this.q, this.b.yaw, this.b.pitch);
-					var2.g(this.b);
+				if (this.player.isSleeping()) {
+					this.player.l();
+					this.player.setLocation(this.lastX, this.lastY, this.lastZ, this.player.yaw, this.player.pitch);
+					worldServer.playerJoinedWorld(this.player);
 					return;
 				}
 
-				double var17 = this.b.locationY;
-				this.o = this.b.locationX;
-				this.p = this.b.locationY;
-				this.q = this.b.locationZ;
-				var19 = this.b.locationX;
-				var21 = this.b.locationY;
-				var23 = this.b.locationZ;
-				float var25 = this.b.yaw;
-				float var26 = this.b.pitch;
-				if (var1.g() && var1.b() == -999.0D) {
-					var1.a(false);
+				double y = this.player.locationY;
+				this.lastX = this.player.locationX;
+				this.lastY = this.player.locationY;
+				this.lastZ = this.player.locationZ;
+				locX = this.player.locationX;
+				locY = this.player.locationY;
+				locZ = this.player.locationZ;
+				float yaw = this.player.yaw;
+				float pitch = this.player.pitch;
+				if (packet.hasPosition() && packet.getFeetY() == -999.0D) {
+					packet.setHasPosition(false);
 				}
 
-				if (var1.g()) {
-					var19 = var1.a();
-					var21 = var1.b();
-					var23 = var1.c();
-					if (Math.abs(var1.a()) > 3.0E7D || Math.abs(var1.c()) > 3.0E7D) {
-						this.c("Illegal position");
+				if (packet.hasPosition()) {
+					locX = packet.getX();
+					locY = packet.getFeetY();
+					locZ = packet.getZ();
+					if (Math.abs(packet.getX()) > 3.0E7D || Math.abs(packet.getZ()) > 3.0E7D) {
+						this.disconnect("Illegal position");
 						return;
 					}
 				}
 
-				if (var1.h()) {
-					var25 = var1.d();
-					var26 = var1.e();
+				if (packet.hasLook()) {
+					yaw = packet.getYaw();
+					pitch = packet.getPitch();
 				}
 
-				this.b.l();
-				this.b.a(this.o, this.p, this.q, var25, var26);
-				if (!this.r) {
+				this.player.l();
+				this.player.setLocation(this.lastX, this.lastY, this.lastZ, yaw, pitch);
+				if (!this.checkMovement) {
 					return;
 				}
 
-				double var27 = var19 - this.b.locationX;
-				double var29 = var21 - this.b.locationY;
-				double var31 = var23 - this.b.locationZ;
-				double var33 = Math.min(Math.abs(var27), Math.abs(this.b.motionX));
-				double var35 = Math.min(Math.abs(var29), Math.abs(this.b.motionY));
-				double var37 = Math.min(Math.abs(var31), Math.abs(this.b.motionZ));
-				double var39 = var33 * var33 + var35 * var35 + var37 * var37;
-				if (var39 > 100.0D && (!this.d.isSinglePlayer() || !this.d.R().equals(this.b.d_()))) {
-					c.warn(this.b.d_() + " moved too quickly! " + var27 + "," + var29 + "," + var31 + " (" + var33 + ", " + var35 + ", " + var37 + ")");
-					this.a(this.o, this.p, this.q, this.b.yaw, this.b.pitch);
+				double diffX = locX - this.player.locationX;
+				double diffY = locY - this.player.locationY;
+				double diffZ = locZ - this.player.locationZ;
+				double realDiffX = Math.min(Math.abs(diffX), Math.abs(this.player.motionX));
+				double realDiifY = Math.min(Math.abs(diffY), Math.abs(this.player.motionY));
+				double realDiffZ = Math.min(Math.abs(diffZ), Math.abs(this.player.motionZ));
+				double realDistance = realDiffX * realDiffX + realDiifY * realDiifY + realDiffZ * realDiffZ;
+				if (realDistance > 100.0D) {
+					logger.warn(this.player.getName() + " moved too quickly! " + diffX + "," + diffY + "," + diffZ + " (" + realDiffX + ", " + realDiifY + ", " + realDiffZ + ")");
+					this.movePlayer(this.lastX, this.lastY, this.lastZ, this.player.yaw, this.player.pitch);
 					return;
 				}
 
-				float var41 = 0.0625F;
-				boolean var42 = var2.a((Entity) this.b, this.b.aQ().d((double) var41, (double) var41, (double) var41)).isEmpty();
-				if (this.b.onGround && !var1.f() && var29 > 0.0D) {
-					this.b.bE();
+				float shrinkSize = 0.0625F;
+				boolean noCollisionDetected = worldServer.getCubes(this.player, this.player.getBoundingBox().shrink(shrinkSize, shrinkSize, shrinkSize)).isEmpty();
+				if (this.player.onGround && !packet.isOnGround() && diffY > 0.0D) {
+					this.player.jump();
 				}
 
-				this.b.d(var27, var29, var31);
-				this.b.onGround = var1.f();
-				double var43 = var29;
-				var27 = var19 - this.b.locationX;
-				var29 = var21 - this.b.locationY;
-				if (var29 > -0.5D || var29 < 0.5D) {
-					var29 = 0.0D;
+				this.player.move(diffX, diffY, diffZ);
+				this.player.onGround = packet.isOnGround();
+				double prevDiffY = diffY;
+				diffX = locX - this.player.locationX;
+				diffY = locY - this.player.locationY;
+				if (diffY > -0.5D || diffY < 0.5D) {
+					diffY = 0.0D;
+				}
+				diffZ = locZ - this.player.locationZ;
+				realDistance = diffX * diffX + diffY * diffY + diffZ * diffZ;
+				boolean movedWrongly = false;
+				if (realDistance > 0.0625D && !this.player.isSleeping() && !this.player.playerInteractManager.isCreative()) {
+					movedWrongly = true;
+					logger.warn(this.player.getName() + " moved wrongly!");
 				}
 
-				var31 = var23 - this.b.locationZ;
-				var39 = var27 * var27 + var29 * var29 + var31 * var31;
-				boolean var45 = false;
-				if (var39 > 0.0625D && !this.b.bI() && !this.b.c.d()) {
-					var45 = true;
-					c.warn(this.b.d_() + " moved wrongly!");
-				}
-
-				this.b.a(var19, var21, var23, var25, var26);
-				this.b.k(this.b.locationX - var3, this.b.locationY - var5, this.b.locationZ - var7);
-				if (!this.b.T) {
-					boolean var46 = var2.a((Entity) this.b, this.b.aQ().d((double) var41, (double) var41, (double) var41)).isEmpty();
-					if (var42 && (var45 || !var46) && !this.b.bI()) {
-						this.a(this.o, this.p, this.q, var25, var26);
+				this.player.setLocation(locX, locY, locZ, yaw, pitch);
+				this.player.k(this.player.locationX - playerLocX, this.player.locationY - playerLocY, this.player.locationZ - playerLocZ);
+				if (!this.player.T) {
+					if (noCollisionDetected && (movedWrongly || !worldServer.getCubes(this.player, this.player.getBoundingBox().shrink(shrinkSize, shrinkSize, shrinkSize)).isEmpty()) && !this.player.isSleeping()) {
+						this.movePlayer(this.lastX, this.lastY, this.lastZ, yaw, pitch);
 						return;
 					}
 				}
 
-				brt var49 = this.b.aQ().b((double) var41, (double) var41, (double) var41).a(0.0D, -0.55D, 0.0D);
-				if (!this.d.isFlightAllowed() && !this.b.by.mayfly && !var2.c(var49)) {
-					if (var43 >= -0.03125D) {
-						++this.g;
-						if (this.g > 80) {
-							c.warn(this.b.d_() + " was kicked for floating too long!");
-							this.c("Flying is not enabled on this server");
+				AxisAlignedBB axisAligned = this.player.getBoundingBox().grow(shrinkSize, shrinkSize, shrinkSize).a(0.0D, -0.55D, 0.0D);
+				if (!this.minecraftserver.isFlightAllowed() && !this.player.playerProperties.mayfly && !worldServer.isOnGround(axisAligned)) {
+					if (prevDiffY >= -0.03125D) {
+						++this.flyTime;
+						if (this.flyTime > 80) {
+							logger.warn(this.player.getName() + " was kicked for floating too long!");
+							this.disconnect("Flying is not enabled on this server");
 							return;
 						}
 					}
 				} else {
-					this.g = 0;
+					this.flyTime = 0;
 				}
 
-				this.b.onGround = var1.f();
-				this.d.getPlayerList().d(this.b);
-				this.b.a(this.b.locationY - var17, var1.f());
-			} else if (this.e - this.f > 20) {
-				this.a(this.o, this.p, this.q, this.b.yaw, this.b.pitch);
+				this.player.onGround = packet.isOnGround();
+				this.minecraftserver.getPlayerList().d(this.player);
+				this.player.a(this.player.locationY - y, packet.isOnGround());
+			} else if (this.currentTick - this.lastMoveTick > 20) {
+				this.movePlayer(this.lastX, this.lastY, this.lastZ, this.player.yaw, this.player.pitch);
 			}
 
 		}
 	}
 
-	public void a(double var1, double var3, double var5, float var7, float var8) {
-		this.a(var1, var3, var5, var7, var8, Collections.emptySet());
+	public void movePlayer(double x, double y, double z, float yaw, float pitch) {
+		this.movePlayer(x, y, z, yaw, pitch, new HashSet<PositionFlag>());
 	}
 
-	public void a(double var1, double var3, double var5, float var7, float var8, Set var9) {
-		this.r = false;
-		this.o = var1;
-		this.p = var3;
-		this.q = var5;
-		if (var9.contains(PositionFlag.X)) {
-			this.o += this.b.locationX;
+	public void movePlayer(double x, double y, double z, float yaw, float pitch, Set<PositionFlag> flags) {
+		this.checkMovement = false;
+		this.lastX = x;
+		this.lastY = y;
+		this.lastZ = z;
+		if (flags.contains(PositionFlag.X)) {
+			this.lastX += this.player.locationX;
 		}
 
-		if (var9.contains(PositionFlag.Y)) {
-			this.p += this.b.locationY;
+		if (flags.contains(PositionFlag.Y)) {
+			this.lastY += this.player.locationY;
 		}
 
-		if (var9.contains(PositionFlag.Z)) {
-			this.q += this.b.locationZ;
+		if (flags.contains(PositionFlag.Z)) {
+			this.lastZ += this.player.locationZ;
 		}
 
-		float var10 = var7;
-		float var11 = var8;
-		if (var9.contains(PositionFlag.PITCH)) {
-			var10 = var7 + this.b.yaw;
+		float newYaw = yaw;
+		float newPitch = pitch;
+		if (flags.contains(PositionFlag.PITCH)) {
+			newYaw = yaw + this.player.yaw;
 		}
 
-		if (var9.contains(PositionFlag.YAW)) {
-			var11 = var8 + this.b.pitch;
+		if (flags.contains(PositionFlag.YAW)) {
+			newPitch = pitch + this.player.pitch;
 		}
 
-		this.b.a(this.o, this.p, this.q, var10, var11);
-		this.b.playerConncetion.sendPacket((Packet) (new PacketOutPlayerPositionAndLook(var1, var3, var5, var7, var8, var9)));
+		this.player.setLocation(this.lastX, this.lastY, this.lastZ, newYaw, newPitch);
+		this.player.playerConnection.sendPacket(new PacketPlayOutPlayerPositionAndLook(x, y, z, yaw, pitch, flags));
 	}
 
-	public void a(ml var1) {
-		ig.a(var1, this, this.b.u());
-		WorldServer var2 = this.d.a(this.b.dimensionId);
-		Position var3 = var1.a();
-		this.b.z();
-		switch (rn.a[var1.c().ordinal()]) {
-			case 1:
-				if (!this.b.v()) {
-					this.b.a(false);
+	private long getCurrentMillis() {
+		return System.nanoTime() / 1000000L;
+	}
+
+	public void handle(PacketPlayInPlayerDigging packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		WorldServer worldServer = this.minecraftserver.getWorldServer(this.player.dimensionId);
+		Position position = packet.getPosition();
+		this.player.updateLastActiveTime();
+		switch (packet.getAction()) {
+			case DROP_ITEM:
+				if (!this.player.isSpectator()) {
+					this.player.dropItemInHand(false);
 				}
 
 				return;
-			case 2:
-				if (!this.b.v()) {
-					this.b.a(true);
+			case DROP_ALL_ITEMS:
+				if (!this.player.isSpectator()) {
+					this.player.dropItemInHand(true);
 				}
 
 				return;
-			case 3:
-				this.b.bT();
+			case RELEASE_USE_ITEM:
+				this.player.bT();
 				return;
-			case 4:
-			case 5:
-			case 6:
-				double var4 = this.b.locationX - ((double) var3.getX() + 0.5D);
-				double var6 = this.b.locationY - ((double) var3.getY() + 0.5D) + 1.5D;
-				double var8 = this.b.locationZ - ((double) var3.getZ() + 0.5D);
-				double var10 = var4 * var4 + var6 * var6 + var8 * var8;
-				if (var10 > 36.0D) {
+			case START_DESTROY_BLOCK:
+			case ABORT_DESTROY_BLOCK:
+			case STOP_DESTROY_BLOCK:
+				double diffX = this.player.locationX - ((double) position.getX() + 0.5D);
+				double diffY = this.player.locationY - ((double) position.getY() + 0.5D) + 1.5D;
+				double diffZ = this.player.locationZ - ((double) position.getZ() + 0.5D);
+				double distanceSquared = diffX * diffX + diffY * diffY + diffZ * diffZ;
+				if (distanceSquared > 36.0D) {
 					return;
-				} else if (var3.getY() >= this.d.al()) {
+				} else if (position.getY() >= this.minecraftserver.getMaxBuildHeight()) {
 					return;
 				} else {
-					if (var1.c() == mm.a) {
-						if (!this.d.a((World) var2, var3, (EntityHuman) this.b) && var2.af().a(var3)) {
-							this.b.c.a(var3, var1.b());
+					if (packet.getAction() == PlayerDiggingAction.START_DESTROY_BLOCK) {
+						if (!this.minecraftserver.isProtected((World) worldServer, position, (EntityHuman) this.player) && worldServer.getWorldBorder().isInside(position)) {
+							this.player.playerInteractManager.a(position, packet.getFace());
 						} else {
-							this.b.playerConncetion.sendPacket((Packet) (new PacketOutBlockChange(var2, var3)));
+							this.player.playerConnection.sendPacket(new PacketPlayOutBlockChange(worldServer, position));
 						}
 					} else {
-						if (var1.c() == mm.c) {
-							this.b.c.a(var3);
-						} else if (var1.c() == mm.b) {
-							this.b.c.e();
+						if (packet.getAction() == PlayerDiggingAction.STOP_DESTROY_BLOCK) {
+							this.player.playerInteractManager.a(position);
+						} else if (packet.getAction() == PlayerDiggingAction.ABORT_DESTROY_BLOCK) {
+							this.player.playerInteractManager.e();
 						}
 
-						if (var2.p(var3).getBlock().r() != Material.AIR) {
-							this.b.playerConncetion.sendPacket((Packet) (new PacketOutBlockChange(var2, var3)));
+						if (worldServer.getBlockState(position).getBlock().getMaterial() != Material.AIR) {
+							this.player.playerConnection.sendPacket(new PacketPlayOutBlockChange(worldServer, position));
 						}
 					}
 
@@ -357,611 +360,588 @@ public class PlayerConnection implements ls, pm {
 		}
 	}
 
-	public void a(mx var1) {
-		ig.a(var1, this, this.b.u());
-		WorldServer var2 = this.d.a(this.b.dimensionId);
-		ItemStack var3 = this.b.playerInventory.getItemInHand();
-		boolean var4 = false;
-		Position var5 = var1.a();
-		PaintingDirection var6 = PaintingDirection.a(var1.b());
-		this.b.z();
-		if (var1.b() == 255) {
-			if (var3 == null) {
+	public void handle(PacketPlayInBlockPlace packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		WorldServer worldServer = this.minecraftserver.getWorldServer(this.player.dimensionId);
+		ItemStack packetItemStack = this.player.playerInventory.getItemInHand();
+		boolean update = false;
+		Position position = packet.getPosition();
+		BlockFace blockFace = BlockFace.getById(packet.getDirection());
+		this.player.updateLastActiveTime();
+		if (packet.getDirection() == 255) {
+			if (packetItemStack == null) {
 				return;
 			}
 
-			this.b.c.a(this.b, var2, var3);
-		} else if (var5.getY() >= this.d.al() - 1 && (var6 == PaintingDirection.b || var5.getY() >= this.d.al())) {
-			hz var7 = new hz("build.tooHigh", new Object[] { Integer.valueOf(this.d.al()) });
-			var7.b().a(FormattingCode.m);
-			this.b.playerConncetion.sendPacket((Packet) (new PacketOutChatMessage(var7)));
-			var4 = true;
+			this.player.playerInteractManager.useItem(this.player, worldServer, packetItemStack);
+		} else if (position.getY() >= this.minecraftserver.getMaxBuildHeight() - 1 && (blockFace == BlockFace.UP || position.getY() >= this.minecraftserver.getMaxBuildHeight())) {
+			ChatMessage chatMessage = new ChatMessage("build.tooHigh", new Object[] { Integer.valueOf(this.minecraftserver.getMaxBuildHeight()) });
+			chatMessage.getChatModifier().setColor(EnumChatFormat.RED);
+			this.player.playerConnection.sendPacket(new PacketPlayOutChatMessage(chatMessage));
+			update = true;
 		} else {
-			if (this.r && this.b.e((double) var5.getX() + 0.5D, (double) var5.getY() + 0.5D, (double) var5.getZ() + 0.5D) < 64.0D && !this.d.a((World) var2, var5, (EntityHuman) this.b) && var2.af().a(var5)) {
-				this.b.c.a(this.b, var2, var3, var5, var6, var1.d(), var1.e(), var1.f());
+			if (this.checkMovement && this.player.getDistanceSquared(position.getX() + 0.5D, position.getY() + 0.5D, position.getZ() + 0.5D) < 64.0D && !this.minecraftserver.isProtected(worldServer, position, this.player) && worldServer.getWorldBorder().isInside(position)) {
+				this.player.playerInteractManager.interact(this.player, worldServer, packetItemStack, position, blockFace, packet.getCursorX(), packet.getCursorY(), packet.getCursorZ());
 			}
 
-			var4 = true;
+			update = true;
 		}
 
-		if (var4) {
-			this.b.playerConncetion.sendPacket((Packet) (new PacketOutBlockChange(var2, var5)));
-			this.b.playerConncetion.sendPacket((Packet) (new PacketOutBlockChange(var2, var5.a(var6))));
+		if (update) {
+			this.player.playerConnection.sendPacket(new PacketPlayOutBlockChange(worldServer, position));
+			this.player.playerConnection.sendPacket(new PacketPlayOutBlockChange(worldServer, position.a(blockFace)));
 		}
 
-		var3 = this.b.playerInventory.getItemInHand();
-		if (var3 != null && var3.b == 0) {
-			this.b.playerInventory.contents[this.b.playerInventory.c] = null;
-			var3 = null;
+		packetItemStack = this.player.playerInventory.getItemInHand();
+		if (packetItemStack != null && packetItemStack.amount == 0) {
+			this.player.playerInventory.contents[this.player.playerInventory.itemInHandIndex] = null;
+			packetItemStack = null;
 		}
 
-		if (var3 == null || var3.l() == 0) {
-			this.b.g = true;
-			this.b.playerInventory.contents[this.b.playerInventory.c] = ItemStack.b(this.b.playerInventory.contents[this.b.playerInventory.c]);
-			ajk var8 = this.b.activeContainer.a((IInventory) this.b.playerInventory, this.b.playerInventory.c);
-			this.b.activeContainer.b();
-			this.b.g = false;
-			if (!ItemStack.b(this.b.playerInventory.getItemInHand(), var1.c())) {
-				this.sendPacket((Packet) (new PacketOutSetSlot(this.b.activeContainer.d, var8.e, this.b.playerInventory.getItemInHand())));
+		if (packetItemStack == null || packetItemStack.l() == 0) {
+			this.player.g = true;
+			this.player.playerInventory.contents[this.player.playerInventory.itemInHandIndex] = ItemStack.b(this.player.playerInventory.contents[this.player.playerInventory.itemInHandIndex]);
+			Slot var8 = this.player.activeContainer.a((IInventory) this.player.playerInventory, this.player.playerInventory.itemInHandIndex);
+			this.player.activeContainer.b();
+			this.player.g = false;
+			if (!ItemStack.matches(this.player.playerInventory.getItemInHand(), packet.getItem())) {
+				this.sendPacket(new PacketPlayOutSetSlot(this.player.activeContainer.windowId, var8.index, this.player.playerInventory.getItemInHand()));
 			}
 		}
 
 	}
 
-	public void a(mw var1) {
-		ig.a(var1, this, this.b.u());
-		if (this.b.v()) {
-			Entity var2 = null;
-			WorldServer[] var3 = this.d.worlds;
-			int var4 = var3.length;
+	public void handle(PacketPlayInSpectate packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		if (this.player.isSpectator()) {
+			Entity entity = null;
 
-			for (int var5 = 0; var5 < var4; ++var5) {
-				WorldServer var6 = var3[var5];
-				if (var6 != null) {
-					var2 = var1.a(var6);
-					if (var2 != null) {
+			for (WorldServer worldServer : minecraftserver.worlds) {
+				if (worldServer != null) {
+					entity = packet.getEntity(worldServer);
+					if (entity != null) {
 						break;
 					}
 				}
 			}
 
-			if (var2 != null) {
-				this.b.e(this.b);
-				this.b.a((Entity) null);
-				if (var2.o != this.b.o) {
-					WorldServer var7 = this.b.u();
-					WorldServer var8 = (WorldServer) var2.o;
-					this.b.dimensionId = var2.dimensionId;
-					this.sendPacket((Packet) (new PacketOutRespawn(this.b.dimensionId, var7.getDifficulty(), var7.P().getLevelType(), this.b.c.getGameMode())));
-					var7.f(this.b);
-					this.b.I = false;
-					this.b.b(var2.locationX, var2.locationY, var2.locationZ, var2.yaw, var2.pitch);
-					if (this.b.ai()) {
-						var7.a((Entity) this.b, false);
-						var8.d(this.b);
-						var8.a((Entity) this.b, false);
+			if (entity != null) {
+				this.player.e(this.player);
+				this.player.mount((Entity) null);
+				if (entity.world != this.player.world) {
+					WorldServer playerWorldServer = this.player.getWorldServer();
+					WorldServer entityWorldServer = (WorldServer) entity.world;
+					this.player.dimensionId = entity.dimensionId;
+					this.sendPacket(new PacketPlayOutRespawn(this.player.dimensionId, playerWorldServer.getDifficulty(), playerWorldServer.getWorldData().getLevelType(), this.player.playerInteractManager.getGameMode()));
+					playerWorldServer.f(this.player);
+					this.player.dead = false;
+					this.player.setPositionRotation(entity.locationX, entity.locationY, entity.locationZ, entity.yaw, entity.pitch);
+					if (this.player.isAlive()) {
+						playerWorldServer.a((Entity) this.player, false);
+						entityWorldServer.addEntity(this.player);
+						entityWorldServer.a((Entity) this.player, false);
 					}
 
-					this.b.a((World) var8);
-					this.d.getPlayerList().a(this.b, var7);
-					this.b.a(var2.locationX, var2.locationY, var2.locationZ);
-					this.b.c.a(var8);
-					this.d.getPlayerList().b(this.b, var8);
-					this.d.getPlayerList().f(this.b);
+					this.player.setWorld((World) entityWorldServer);
+					this.minecraftserver.getPlayerList().a(this.player, playerWorldServer);
+					this.player.updatePosition(entity.locationX, entity.locationY, entity.locationZ);
+					this.player.playerInteractManager.setWorldServer(entityWorldServer);
+					this.minecraftserver.getPlayerList().updateWorldData(this.player, entityWorldServer);
+					this.minecraftserver.getPlayerList().f(this.player);
 				} else {
-					this.b.a(var2.locationX, var2.locationY, var2.locationZ);
+					this.player.updatePosition(entity.locationX, entity.locationY, entity.locationZ);
 				}
 			}
 		}
-
 	}
 
-	public void a(mq var1) {
+	public void handle(PacketPlayInResourcePackStatus packet) {
 	}
 
-	public void handle(IJSONComponent var1) {
-		c.info(this.b.d_() + " lost connection: " + var1);
-		this.d.aF();
-		hz var2 = new hz("multiplayer.player.left", new Object[] { this.b.e_() });
-		var2.b().a(FormattingCode.o);
-		this.d.getPlayerList().a((IJSONComponent) var2);
-		this.b.q();
-		this.d.getPlayerList().e(this.b);
-		if (this.d.isSinglePlayer() && this.b.d_().equals(this.d.R())) {
-			c.info("Stopping singleplayer server as player logged out");
-			this.d.stopTicking();
+	public void handle(IChatBaseComponent packet) {
+		logger.info(this.player.getName() + " lost connection: " + packet);
+		this.minecraftserver.requestServerPingRefresh();
+		ChatMessage chatMessage = new ChatMessage("multiplayer.player.left", new Object[] { this.player.getComponentName() });
+		chatMessage.getChatModifier().setColor(EnumChatFormat.YELLOW);
+		this.minecraftserver.getPlayerList().sendMessage(chatMessage);
+		this.player.q();
+		this.minecraftserver.getPlayerList().disconnect(this.player);
+	}
+
+	public void handle(PacketPlayInHeldItemChange packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		if (packet.getSlot() >= 0 && packet.getSlot() < PlayerInventory.getHotbarSize()) {
+			this.player.playerInventory.itemInHandIndex = packet.getSlot();
+			this.player.updateLastActiveTime();
+		} else {
+			logger.warn(this.player.getName() + " tried to set an invalid carried item");
+		}
+	}
+
+	public void handle(PacketPlayInChatMessage packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		if (this.player.getChatFlag() == EnumChatFlag.HIDDEN) {
+			ChatMessage response = new ChatMessage("chat.cannotSend", new Object[0]);
+			response.getChatModifier().setColor(EnumChatFormat.RED);
+			this.sendPacket(new PacketPlayOutChatMessage(response));
+		} else {
+			this.player.updateLastActiveTime();
+			String message = packet.getMessage();
+			message = StringUtils.normalizeSpace(message);
+
+			for (int i = 0; i < message.length(); ++i) {
+				if (!SharedConstants.isAllowedChatCharacter(message.charAt(i))) {
+					this.disconnect("Illegal characters in chat");
+					return;
+				}
+			}
+
+			if (message.startsWith("/")) {
+				this.handleCommand(message);
+			} else {
+				ChatMessage chatMessage = new ChatMessage("chat.type.text", new Object[] { this.player.getComponentName(), message });
+				this.minecraftserver.getPlayerList().sendMessage(chatMessage, false);
+			}
+
+			this.chatThrottle += 20;
+			if (this.chatThrottle > 200 && !this.minecraftserver.getPlayerList().isOp(this.player.getGameProfile())) {
+				this.disconnect("disconnect.spam");
+			}
+
+		}
+	}
+
+	private void handleCommand(String command) {
+		this.minecraftserver.getCommandHandler().handleCommand(this.player, command);
+	}
+
+	public void handle(PacketPlayInAnimation packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		this.player.updateLastActiveTime();
+		this.player.performHandAnimation();
+	}
+
+	public void handle(PacketPlayInEntityAction packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		this.player.updateLastActiveTime();
+		switch (packet.getAction()) {
+			case START_SNEAKING: {
+				this.player.setSneaking(true);
+				break;
+			}
+			case STOP_SNEAKING: {
+				this.player.setSneaking(false);
+				break;
+			}
+			case START_SPRINTING: {
+				this.player.setSprinting(true);
+				break;
+			}
+			case STOP_SPRINTING: {
+				this.player.setSprinting(false);
+				break;
+			}
+			case STOP_SLEEPING: {
+				this.player.a(false, true, true);
+				this.checkMovement = false;
+				break;
+			}
+			case RIDING_JUMP: {
+				if (this.player.vehicle instanceof EntityHorse) {
+					((EntityHorse) this.player.vehicle).jump(packet.getHorseJumpBoost());
+				}
+				break;
+			}
+			case OPEN_INVENTORY: {
+				if (this.player.vehicle instanceof EntityHorse) {
+					((EntityHorse) this.player.vehicle).openChest(this.player);
+				}
+				break;
+			}
+			default: {
+				throw new IllegalArgumentException("Invalid client command!");
+			}
 		}
 
 	}
 
-	public void sendPacket(Packet var1) {
-		if (var1 instanceof PacketOutChatMessage) {
-			PacketOutChatMessage var2 = (PacketOutChatMessage) var1;
-			ahg var3 = this.b.y();
-			if (var3 == ahg.c) {
+	public void handle(PacketPlayInUseEntity packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		WorldServer worldServer = this.minecraftserver.getWorldServer(this.player.dimensionId);
+		Entity entity = packet.getEntity(worldServer);
+		this.player.updateLastActiveTime();
+		if (entity != null) {
+			boolean flag = this.player.t(entity);
+			double maxDistance = 36.0D;
+			if (!flag) {
+				maxDistance = 9.0D;
+			}
+
+			if (this.player.getDistanceSquared(entity) < maxDistance) {
+				if (packet.getAction() == UseEntityAction.INTERACT) {
+					this.player.useEntity(entity);
+				} else if (packet.getAction() == UseEntityAction.INTERACT_AT) {
+					entity.interactAt((EntityHuman) this.player, packet.getInteractedAt());
+				} else if (packet.getAction() == UseEntityAction.ATTACK) {
+					if (entity instanceof EntityItem || entity instanceof EntityExpirienceOrb || entity instanceof EntityArrow || entity == this.player) {
+						this.disconnect("Attempting to attack an invalid entity");
+						this.minecraftserver.logWarning("Player " + this.player.getName() + " tried to attack an invalid entity");
+						return;
+					}
+					this.player.attackEntity(entity);
+				}
+			}
+		}
+	}
+
+	public void handle(PacketPlayInClientStatus packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		this.player.updateLastActiveTime();
+		ClientStatusAction action = packet.getAction();
+		switch (action) {
+			case PERFORM_RESPAWN: {
+				if (this.player.viewingCredits) {
+					this.player = this.minecraftserver.getPlayerList().moveToWorld(this.player, 0, true);
+				} else if (this.player.getWorldServer().getWorldData().isHardcore()) {
+					GameProfileBanEntry banEntry = new GameProfileBanEntry(this.player.getGameProfile(), (Date) null, "(You just lost the game)", (Date) null, "Death in Hardcore");
+					this.minecraftserver.getPlayerList().getProfileBans().add((JsonListEntry) banEntry);
+					this.player.playerConnection.disconnect("You have died. Game over, man, it\'s game over!");
+				} else {
+					if (this.player.getHealth() > 0.0F) {
+						return;
+					}
+
+					this.player = this.minecraftserver.getPlayerList().moveToWorld(this.player, 0, false);
+				}
+				break;
+			}
+			case REQUEST_STATS: {
+				this.player.getStatisticManager().sendStatistics(this.player);
+				break;
+			}
+			case OPEN_INVENTORY_ACHIEVEMENT: {
+				this.player.b(AchievementList.f);
+			}
+		}
+	}
+
+	public void handle(PacketPlayInCloseWindow packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		this.player.closeWindow();
+	}
+
+	public void handle(PacketPlayInClickWindow packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		this.player.updateLastActiveTime();
+		if (this.player.activeContainer.windowId == packet.getWindowId() && this.player.activeContainer.isTransactionsConfirmed(this.player)) {
+			if (this.player.isSpectator()) {
+				ArrayList<ItemStack> items = Lists.newArrayList();
+				for (int i = 0; i < this.player.activeContainer.slots.size(); ++i) {
+					items.add(this.player.activeContainer.slots.get(i).getItemStack());
+				}
+				this.player.setContainerData(this.player.activeContainer, items);
+			} else {
+				ItemStack item = this.player.activeContainer.a(packet.getSlot(), packet.getButton(), packet.getMode(), this.player);
+				if (ItemStack.matches(packet.getItem(), item)) {
+					this.player.playerConnection.sendPacket(new PacketPlayOutConfirmTransaction(packet.getWindowId(), packet.getAction(), true));
+					this.player.g = true;
+					this.player.activeContainer.b();
+					this.player.broadcastCarriedItem();
+					this.player.g = false;
+				} else {
+					this.intHashMap.a(this.player.activeContainer.windowId, Short.valueOf(packet.getAction()));
+					this.player.playerConnection.sendPacket(new PacketPlayOutConfirmTransaction(packet.getWindowId(), packet.getAction(), false));
+					this.player.activeContainer.notifyTransactionStatus(this.player, false);
+					ArrayList<ItemStack> items = Lists.newArrayList();
+					for (int i = 0; i < this.player.activeContainer.slots.size(); ++i) {
+						items.add(this.player.activeContainer.slots.get(i).getItemStack());
+					}
+					this.player.setContainerData(this.player.activeContainer, items);
+				}
+			}
+		}
+	}
+
+	public void handle(PacketPlayInEnchantItem packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		this.player.updateLastActiveTime();
+		if (this.player.activeContainer.windowId == packet.getWindowId() && this.player.activeContainer.isTransactionsConfirmed(this.player) && !this.player.isSpectator()) {
+			this.player.activeContainer.a((EntityHuman) this.player, packet.getEnchantment());
+			this.player.activeContainer.b();
+		}
+	}
+
+	public void handle(PacketPlayInCreativeInventoryAction packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		if (this.player.playerInteractManager.isCreative()) {
+			boolean dropItem = packet.getSlot() < 0;
+			ItemStack item = packet.getItem();
+			if (item != null && item.hasTag() && item.getTag().isTagAssignableFrom("BlockEntityTag", 10)) {
+				NBTCompoundTag itemtag = item.getTag().getCompound("BlockEntityTag");
+				if (itemtag.hasKey("x") && itemtag.hasKey("y") && itemtag.hasKey("z")) {
+					Position position = new Position(itemtag.getInt("x"), itemtag.getInt("y"), itemtag.getInt("z"));
+					TileEntity tileEntity = this.player.world.getTileEntity(position);
+					if (tileEntity != null) {
+						NBTCompoundTag tag = new NBTCompoundTag();
+						tileEntity.write(tag);
+						tag.remove("x");
+						tag.remove("y");
+						tag.remove("z");
+						item.addTag("BlockEntityTag", (NBTTag) tag);
+					}
+				}
+			}
+
+			boolean isInventoryClick = packet.getSlot() >= 1 && packet.getSlot() < 36 + PlayerInventory.getHotbarSize();
+			boolean isValidItemCheck1 = item == null || item.getItem() != null;
+			boolean isValidItemCheck2 = item == null || item.getDurability() >= 0 && item.amount <= 64 && item.amount > 0;
+			if (isInventoryClick && isValidItemCheck1 && isValidItemCheck2) {
+				if (item == null) {
+					this.player.defaultContainer.setItem(packet.getSlot(), (ItemStack) null);
+				} else {
+					this.player.defaultContainer.setItem(packet.getSlot(), item);
+				}
+
+				this.player.defaultContainer.notifyTransactionStatus(this.player, true);
+			} else if (dropItem && isValidItemCheck1 && isValidItemCheck2 && this.creativeItemDropThrottle < 200) {
+				this.creativeItemDropThrottle += 20;
+				EntityItem entityItem = this.player.dropItem(item, true);
+				if (entityItem != null) {
+					entityItem.j();
+				}
+			}
+		}
+	}
+
+	public void handle(PacketPlayInConfirmTransaction packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		Short action = (Short) this.intHashMap.get(this.player.activeContainer.windowId);
+		if (action != null && packet.getAction() == action.shortValue() && this.player.activeContainer.windowId == packet.getWindowId() && !this.player.activeContainer.isTransactionsConfirmed(this.player) && !this.player.isSpectator()) {
+			this.player.activeContainer.notifyTransactionStatus(this.player, true);
+		}
+	}
+
+	public void handle(PacketPlayInUpdateSign packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		this.player.updateLastActiveTime();
+		WorldServer worlServer = this.minecraftserver.getWorldServer(this.player.dimensionId);
+		Position position = packet.getPosition();
+		if (worlServer.isLoaded(position)) {
+			TileEntity tileEntity = worlServer.getTileEntity(position);
+			if (!(tileEntity instanceof TileEntitySign)) {
 				return;
 			}
 
-			if (var3 == ahg.b && !var2.isChatMessage()) {
+			TileEntitySign sign = (TileEntitySign) tileEntity;
+			if (!sign.isEditable() || sign.getEditor() != this.player) {
+				this.minecraftserver.logWarning("Player " + this.player.getName() + " just tried to change non-editable sign");
+				return;
+			}
+
+			System.arraycopy(packet.getLines(), 0, sign.lines, 0, 4);
+			sign.update();
+			worlServer.notify(position);
+		}
+	}
+
+	public void handle(PacketPlayInKeepAlive packet) {
+		if (packet.getKeepAliveId() == this.packetKeepAliveMilliseconds) {
+			int roundTripTime = (int) (this.getCurrentMillis() - this.lastKeepAliveMilliseconds);
+			this.player.ping = (this.player.ping * 3 + roundTripTime) / 4;
+		}
+	}
+
+	public void handle(PacketPlayInPlayAbilities packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		this.player.playerProperties.flying = packet.isFlying() && this.player.playerProperties.mayfly;
+	}
+
+	public void handle(PacketPlayInTabComplete packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		String[] data = minecraftserver.getTabCompleteList((CommandSenderInterface) this.player, packet.getText(), packet.getPosition()).toArray(new String[0]);
+		this.player.playerConnection.sendPacket(new PacketPlayOutTabComplete(data));
+	}
+
+	public void handle(PacketPlayInClientSettings packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		this.player.setClientSettings(packet);
+	}
+
+	public void handle(PacketPlayInPluginMessage packet) {
+		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		PacketDataSerializer serializer;
+		ItemStack packetItemStack;
+		ItemStack itemInHand;
+		if ("MC|BEdit".equals(packet.getChannelName())) {
+			serializer = new PacketDataSerializer(Unpooled.wrappedBuffer((ByteBuf) packet.getMessage()));
+
+			try {
+				packetItemStack = serializer.readItemStack();
+				if (packetItemStack != null) {
+					if (!ItemBookAndQuill.isValid(packetItemStack.getTag())) {
+						throw new IOException("Invalid book tag!");
+					}
+
+					itemInHand = this.player.playerInventory.getItemInHand();
+					if (itemInHand == null) {
+						return;
+					}
+
+					if (packetItemStack.getItem() == Items.WRITABLE_BOOK && packetItemStack.getItem() == itemInHand.getItem()) {
+						itemInHand.addTag("pages", packetItemStack.getTag().getList("pages", 8));
+					}
+
+					return;
+				}
+			} catch (Exception ex) {
+				logger.error("Couldn\'t handle book info", ex);
+				return;
+			} finally {
+				serializer.release();
+			}
+
+			return;
+		} else if ("MC|BSign".equals(packet.getChannelName())) {
+			serializer = new PacketDataSerializer(Unpooled.wrappedBuffer((ByteBuf) packet.getMessage()));
+
+			try {
+				packetItemStack = serializer.readItemStack();
+				if (packetItemStack != null) {
+					if (!ItemWrittenBook.isValid(packetItemStack.getTag())) {
+						throw new IOException("Invalid book tag!");
+					}
+
+					itemInHand = this.player.playerInventory.getItemInHand();
+					if (itemInHand == null) {
+						return;
+					}
+
+					if (packetItemStack.getItem() == Items.WRITTEN_BOOK && itemInHand.getItem() == Items.WRITABLE_BOOK) {
+						itemInHand.addTag("author", new NBTStringTag(this.player.getName()));
+						itemInHand.addTag("title", new NBTStringTag(packetItemStack.getTag().getString("title")));
+						itemInHand.addTag("pages", packetItemStack.getTag().getList("pages", 8));
+						itemInHand.setItem(Items.WRITTEN_BOOK);
+					}
+
+					return;
+				}
+			} catch (Exception ex) {
+				logger.error("Couldn\'t sign book", ex);
+				return;
+			} finally {
+				serializer.release();
+			}
+
+			return;
+		} else if ("MC|TrSel".equals(packet.getChannelName())) {
+			try {
+				int tradeId = packet.getMessage().readInt();
+				Container activeContainer = this.player.activeContainer;
+				if (activeContainer instanceof ContainerMerchant) {
+					((ContainerMerchant) activeContainer).selectOffer(tradeId);
+				}
+			} catch (Exception ex) {
+				logger.error("Couldn\'t select trade", (Throwable) ex);
+			}
+		} else if ("MC|AdvCdm".equals(packet.getChannelName())) {
+			if (!this.minecraftserver.isCommandBlockEnabled()) {
+				this.player.sendChatMessage(new ChatMessage("advMode.notEnabled", new Object[0]));
+			} else if (this.player.canExecuteCommand(2, "") && this.player.playerProperties.instabuild) {
+				serializer = packet.getMessage();
+
+				try {
+					byte entityId = serializer.readByte();
+					CommandBlockListenerAbstract commandBlockListener = null;
+					if (entityId == 0) {
+						TileEntity tileEntity = this.player.world.getTileEntity(new Position(serializer.readInt(), serializer.readInt(), serializer.readInt()));
+						if (tileEntity instanceof TileEntityCommand) {
+							commandBlockListener = ((TileEntityCommand) tileEntity).getListener();
+						}
+					} else if (entityId == 1) {
+						Entity entity = this.player.world.getEntity(serializer.readInt());
+						if (entity instanceof EntityMinecartCommandBlock) {
+							commandBlockListener = ((EntityMinecartCommandBlock) entity).getListener();
+						}
+					}
+
+					String command = serializer.readString(serializer.readableBytes());
+					boolean trackOutput = serializer.readBoolean();
+					if (commandBlockListener != null) {
+						commandBlockListener.setCommand(command);
+						commandBlockListener.setTrackOutput(trackOutput);
+						if (!trackOutput) {
+							commandBlockListener.setLastOutput((IChatBaseComponent) null);
+						}
+						commandBlockListener.updateEntity();
+						this.player.sendChatMessage(new ChatMessage("advMode.setCommand.success", new Object[] { command }));
+					}
+				} catch (Exception ex) {
+					logger.error("Couldn\'t set command block", (Throwable) ex);
+				} finally {
+					serializer.release();
+				}
+			} else {
+				this.player.sendChatMessage(new ChatMessage("advMode.notAllowed", new Object[0]));
+			}
+		} else if ("MC|Beacon".equals(packet.getChannelName())) {
+			if (this.player.activeContainer instanceof ContainerBeacon) {
+				try {
+					serializer = packet.getMessage();
+					int i1 = serializer.readInt();
+					int i2 = serializer.readInt();
+					ContainerBeacon containerBeacon = (ContainerBeacon) this.player.activeContainer;
+					Slot slot = containerBeacon.getSlot(0);
+					if (slot.hasItem()) {
+						slot.a(1);
+						IInventory inventory = containerBeacon.getInventory();
+						inventory.b(1, i1);
+						inventory.b(2, i2);
+						inventory.update();
+					}
+				} catch (Exception var32) {
+					logger.error("Couldn\'t set beacon", (Throwable) var32);
+				}
+			}
+		} else if ("MC|ItemName".equals(packet.getChannelName()) && this.player.activeContainer instanceof ContainerAnvil) {
+			ContainerAnvil containerAnvil = (ContainerAnvil) this.player.activeContainer;
+			if (packet.getMessage() != null && packet.getMessage().readableBytes() >= 1) {
+				String itemName = SharedConstants.cleanupString(packet.getMessage().readString(32767));
+				if (itemName.length() <= 30) {
+					containerAnvil.setResultItemName(itemName);
+				}
+			} else {
+				containerAnvil.setResultItemName("");
+			}
+		}
+
+	}
+
+	public void sendPacket(final Packet<? extends PacketListener> packet) {
+		if (packet instanceof PacketPlayOutChatMessage) {
+			PacketPlayOutChatMessage message = (PacketPlayOutChatMessage) packet;
+			EnumChatFlag chatFlag = this.player.getChatFlag();
+			if (chatFlag == EnumChatFlag.HIDDEN) {
+				return;
+			}
+
+			if (chatFlag == EnumChatFlag.SYSTEM && !message.isChatMessage()) {
 				return;
 			}
 		}
 
 		try {
-			this.a.a(var1);
-		} catch (Throwable var5) {
-			CrashReport var6 = CrashReport.generateCrashReport(var5, "Sending packet");
-			CrashReportSystemDetails var4 = var6.generateSystemDetails("Packet being sent");
-			var4.addDetails("Packet class", (Callable) (new rm(this, var1)));
-			throw new ReportedException(var6);
+			this.networkManager.handleSendPacket(packet);
+		} catch (Throwable t) {
+			CrashReport crashReport = CrashReport.generateCrashReport(t, "Sending packet");
+			CrashReportSystemDetails crashReportDetails = crashReport.generateSystemDetails("Packet being sent");
+			crashReportDetails.addDetails("Packet class", new Callable<String>() {
+				@Override
+				public String call() throws Exception {
+					return packet.getClass().getCanonicalName();
+				}
+			});
+			throw new ReportedException(crashReport);
 		}
-	}
-
-	public void a(ms var1) {
-		ig.a(var1, this, this.b.u());
-		if (var1.a() >= 0 && var1.a() < PlayerInventory.i()) {
-			this.b.playerInventory.c = var1.a();
-			this.b.z();
-		} else {
-			c.warn(this.b.d_() + " tried to set an invalid carried item");
-		}
-	}
-
-	public void a(lu var1) {
-		ig.a(var1, this, this.b.u());
-		if (this.b.y() == ahg.c) {
-			hz var4 = new hz("chat.cannotSend", new Object[0]);
-			var4.b().a(FormattingCode.m);
-			this.sendPacket((Packet) (new PacketOutChatMessage(var4)));
-		} else {
-			this.b.z();
-			String var2 = var1.a();
-			var2 = StringUtils.normalizeSpace(var2);
-
-			for (int var3 = 0; var3 < var2.length(); ++var3) {
-				if (!v.a(var2.charAt(var3))) {
-					this.c("Illegal characters in chat");
-					return;
-				}
-			}
-
-			if (var2.startsWith("/")) {
-				this.d(var2);
-			} else {
-				hz var5 = new hz("chat.type.text", new Object[] { this.b.e_(), var2 });
-				this.d.getPlayerList().a(var5, false);
-			}
-
-			this.l += 20;
-			if (this.l > 200 && !this.d.getPlayerList().g(this.b.getGameProfile())) {
-				this.c("disconnect.spam");
-			}
-
-		}
-	}
-
-	private void d(String var1) {
-		this.d.getCommandHandler().a(this.b, var1);
-	}
-
-	public void a(mv var1) {
-		ig.a(var1, this, this.b.u());
-		this.b.z();
-		this.b.bv();
-	}
-
-	public void a(mn var1) {
-		ig.a(var1, this, this.b.u());
-		this.b.z();
-		switch (rn.b[var1.b().ordinal()]) {
-			case 1:
-				this.b.c(true);
-				break;
-			case 2:
-				this.b.c(false);
-				break;
-			case 3:
-				this.b.d(true);
-				break;
-			case 4:
-				this.b.d(false);
-				break;
-			case 5:
-				this.b.a(false, true, true);
-				this.r = false;
-				break;
-			case 6:
-				if (this.b.m instanceof EntityHorse) {
-					((EntityHorse) this.b.m).v(var1.c());
-				}
-				break;
-			case 7:
-				if (this.b.m instanceof EntityHorse) {
-					((EntityHorse) this.b.m).g(this.b);
-				}
-				break;
-			default:
-				throw new IllegalArgumentException("Invalid client command!");
-		}
-
-	}
-
-	public void a(md var1) {
-		ig.a(var1, this, this.b.u());
-		WorldServer var2 = this.d.a(this.b.dimensionId);
-		Entity var3 = var1.a((World) var2);
-		this.b.z();
-		if (var3 != null) {
-			boolean var4 = this.b.t(var3);
-			double var5 = 36.0D;
-			if (!var4) {
-				var5 = 9.0D;
-			}
-
-			if (this.b.h(var3) < var5) {
-				if (var1.a() == me.a) {
-					this.b.u(var3);
-				} else if (var1.a() == me.c) {
-					var3.a((EntityHuman) this.b, var1.b());
-				} else if (var1.a() == me.b) {
-					if (var3 instanceof EntityItem || var3 instanceof EntityExpirienceOrb || var3 instanceof EntityArrow || var3 == this.b) {
-						this.c("Attempting to attack an invalid entity");
-						this.d.f("Player " + this.b.d_() + " tried to attack an invalid entity");
-						return;
-					}
-
-					this.b.f(var3);
-				}
-			}
-		}
-
-	}
-
-	public void a(lv var1) {
-		ig.a(var1, this, this.b.u());
-		this.b.z();
-		lw var2 = var1.a();
-		switch (rn.c[var2.ordinal()]) {
-			case 1:
-				if (this.b.i) {
-					this.b = this.d.getPlayerList().a(this.b, 0, true);
-				} else if (this.b.u().P().isHardcore()) {
-					if (this.d.isSinglePlayer() && this.b.d_().equals(this.d.R())) {
-						this.b.playerConncetion.c("You have died. Game over, man, it\'s game over!");
-						this.d.Z();
-					} else {
-						sw var3 = new sw(this.b.getGameProfile(), (Date) null, "(You just lost the game)", (Date) null, "Death in Hardcore");
-						this.d.getPlayerList().i().a((sr) var3);
-						this.b.playerConncetion.c("You have died. Game over, man, it\'s game over!");
-					}
-				} else {
-					if (this.b.bm() > 0.0F) {
-						return;
-					}
-
-					this.b = this.d.getPlayerList().a(this.b, 0, false);
-				}
-				break;
-			case 2:
-				this.b.A().a(this.b);
-				break;
-			case 3:
-				this.b.b((Statistic) tl.f);
-		}
-
-	}
-
-	public void a(mb var1) {
-		ig.a(var1, this, this.b.u());
-		this.b.p();
-	}
-
-	public void a(ma var1) {
-		ig.a(var1, this, this.b.u());
-		this.b.z();
-		if (this.b.activeContainer.d == var1.a() && this.b.activeContainer.c(this.b)) {
-			if (this.b.v()) {
-				ArrayList var2 = Lists.newArrayList();
-
-				for (int var3 = 0; var3 < this.b.activeContainer.c.size(); ++var3) {
-					var2.add(((ajk) this.b.activeContainer.c.get(var3)).d());
-				}
-
-				this.b.a(this.b.activeContainer, (List) var2);
-			} else {
-				ItemStack var5 = this.b.activeContainer.a(var1.b(), var1.c(), var1.f(), this.b);
-				if (ItemStack.b(var1.e(), var5)) {
-					this.b.playerConncetion.sendPacket((Packet) (new PacketOutConfirmTransaction(var1.a(), var1.d(), true)));
-					this.b.g = true;
-					this.b.activeContainer.b();
-					this.b.o();
-					this.b.g = false;
-				} else {
-					this.n.a(this.b.activeContainer.d, Short.valueOf(var1.d()));
-					this.b.playerConncetion.sendPacket((Packet) (new PacketOutConfirmTransaction(var1.a(), var1.d(), false)));
-					this.b.activeContainer.a(this.b, false);
-					ArrayList var6 = Lists.newArrayList();
-
-					for (int var4 = 0; var4 < this.b.activeContainer.c.size(); ++var4) {
-						var6.add(((ajk) this.b.activeContainer.c.get(var4)).d());
-					}
-
-					this.b.a(this.b.activeContainer, (List) var6);
-				}
-			}
-		}
-
-	}
-
-	public void a(lz var1) {
-		ig.a(var1, this, this.b.u());
-		this.b.z();
-		if (this.b.activeContainer.d == var1.a() && this.b.activeContainer.c(this.b) && !this.b.v()) {
-			this.b.activeContainer.a((EntityHuman) this.b, var1.b());
-			this.b.activeContainer.b();
-		}
-
-	}
-
-	public void a(mt var1) {
-		ig.a(var1, this, this.b.u());
-		if (this.b.c.d()) {
-			boolean var2 = var1.a() < 0;
-			ItemStack var3 = var1.b();
-			if (var3 != null && var3.hasTag() && var3.getTag().isTagAssignableFrom("BlockEntityTag", 10)) {
-				NBTCompoundTag var4 = var3.getTag().getCompound("BlockEntityTag");
-				if (var4.hasKey("x") && var4.hasKey("y") && var4.hasKey("z")) {
-					Position var5 = new Position(var4.getInt("x"), var4.getInt("y"), var4.getInt("z"));
-					TileEntity var6 = this.b.o.s(var5);
-					if (var6 != null) {
-						NBTCompoundTag var7 = new NBTCompoundTag();
-						var6.write(var7);
-						var7.remove("x");
-						var7.remove("y");
-						var7.remove("z");
-						var3.a("BlockEntityTag", (NBTTag) var7);
-					}
-				}
-			}
-
-			boolean var8 = var1.a() >= 1 && var1.a() < 36 + PlayerInventory.i();
-			boolean var9 = var3 == null || var3.getItem() != null;
-			boolean var10 = var3 == null || var3.i() >= 0 && var3.b <= 64 && var3.b > 0;
-			if (var8 && var9 && var10) {
-				if (var3 == null) {
-					this.b.defaultContainer.a(var1.a(), (ItemStack) null);
-				} else {
-					this.b.defaultContainer.a(var1.a(), var3);
-				}
-
-				this.b.defaultContainer.a(this.b, true);
-			} else if (var2 && var9 && var10 && this.m < 200) {
-				this.m += 20;
-				EntityItem var11 = this.b.a(var3, true);
-				if (var11 != null) {
-					var11.j();
-				}
-			}
-		}
-
-	}
-
-	public void a(ly var1) {
-		ig.a(var1, this, this.b.u());
-		Short var2 = (Short) this.n.a(this.b.activeContainer.d);
-		if (var2 != null && var1.b() == var2.shortValue() && this.b.activeContainer.d == var1.a() && !this.b.activeContainer.c(this.b) && !this.b.v()) {
-			this.b.activeContainer.a(this.b, true);
-		}
-
-	}
-
-	public void a(mu var1) {
-		ig.a(var1, this, this.b.u());
-		this.b.z();
-		WorldServer var2 = this.d.a(this.b.dimensionId);
-		Position var3 = var1.a();
-		if (var2.e(var3)) {
-			TileEntity var4 = var2.s(var3);
-			if (!(var4 instanceof TileEntitySign)) {
-				return;
-			}
-
-			TileEntitySign var5 = (TileEntitySign) var4;
-			if (!var5.b() || var5.c() != this.b) {
-				this.d.f("Player " + this.b.d_() + " just tried to change non-editable sign");
-				return;
-			}
-
-			System.arraycopy(var1.b(), 0, var5.a, 0, 4);
-			var5.o_();
-			var2.h(var3);
-		}
-
-	}
-
-	public void a(mf var1) {
-		if (var1.a() == this.i) {
-			int var2 = (int) (this.d() - this.j);
-			this.b.h = (this.b.h * 3 + var2) / 4;
-		}
-
-	}
-
-	private long d() {
-		return System.nanoTime() / 1000000L;
-	}
-
-	public void a(mk var1) {
-		ig.a(var1, this, this.b.u());
-		this.b.by.flying = var1.b() && this.b.by.mayfly;
-	}
-
-	public void a(lt var1) {
-		ig.a(var1, this, this.b.u());
-		ArrayList var2 = Lists.newArrayList();
-		Iterator var3 = this.d.getTabCompleteList((CommandSenderInterface) this.b, var1.a(), var1.b()).iterator();
-
-		while (var3.hasNext()) {
-			String var4 = (String) var3.next();
-			var2.add(var4);
-		}
-
-		this.b.playerConncetion.sendPacket((Packet) (new iy((String[]) var2.toArray(new String[var2.size()]))));
-	}
-
-	public void a(lx var1) {
-		ig.a(var1, this, this.b.u());
-		this.b.a(var1);
-	}
-
-	public void a(mc var1) {
-		ig.a(var1, this, this.b.u());
-		PacketDataSerializer var2;
-		ItemStack var3;
-		ItemStack var4;
-		if ("MC|BEdit".equals(var1.a())) {
-			var2 = new PacketDataSerializer(Unpooled.wrappedBuffer((ByteBuf) var1.b()));
-
-			try {
-				var3 = var2.readItemStack();
-				if (var3 != null) {
-					if (!anq.b(var3.getTag())) {
-						throw new IOException("Invalid book tag!");
-					}
-
-					var4 = this.b.playerInventory.getItemInHand();
-					if (var4 == null) {
-						return;
-					}
-
-					if (var3.getItem() == amk.bM && var3.getItem() == var4.getItem()) {
-						var4.a("pages", (NBTTag) var3.getTag().getList("pages", 8));
-					}
-
-					return;
-				}
-			} catch (Exception var38) {
-				c.error("Couldn\'t handle book info", (Throwable) var38);
-				return;
-			} finally {
-				var2.release();
-			}
-
-			return;
-		} else if ("MC|BSign".equals(var1.a())) {
-			var2 = new PacketDataSerializer(Unpooled.wrappedBuffer((ByteBuf) var1.b()));
-
-			try {
-				var3 = var2.readItemStack();
-				if (var3 != null) {
-					if (!anr.b(var3.getTag())) {
-						throw new IOException("Invalid book tag!");
-					}
-
-					var4 = this.b.playerInventory.getItemInHand();
-					if (var4 == null) {
-						return;
-					}
-
-					if (var3.getItem() == amk.bN && var4.getItem() == amk.bM) {
-						var4.a("author", (NBTTag) (new NBTStringTag(this.b.d_())));
-						var4.a("title", (NBTTag) (new NBTStringTag(var3.getTag().getString("title"))));
-						var4.a("pages", (NBTTag) var3.getTag().getList("pages", 8));
-						var4.a(amk.bN);
-					}
-
-					return;
-				}
-			} catch (Exception var36) {
-				c.error("Couldn\'t sign book", (Throwable) var36);
-				return;
-			} finally {
-				var2.release();
-			}
-
-			return;
-		} else if ("MC|TrSel".equals(var1.a())) {
-			try {
-				int var40 = var1.b().readInt();
-				Container var42 = this.b.activeContainer;
-				if (var42 instanceof ajf) {
-					((ajf) var42).d(var40);
-				}
-			} catch (Exception var35) {
-				c.error("Couldn\'t select trade", (Throwable) var35);
-			}
-		} else if ("MC|AdvCdm".equals(var1.a())) {
-			if (!this.d.isCommandBlockEnabled()) {
-				this.b.sendChatMessage((IJSONComponent) (new hz("advMode.notEnabled", new Object[0])));
-			} else if (this.b.a(2, "") && this.b.by.instabuild) {
-				var2 = var1.b();
-
-				try {
-					byte var43 = var2.readByte();
-					aqf var46 = null;
-					if (var43 == 0) {
-						TileEntity var5 = this.b.o.s(new Position(var2.readInt(), var2.readInt(), var2.readInt()));
-						if (var5 instanceof TileEntityCommand) {
-							var46 = ((TileEntityCommand) var5).b();
-						}
-					} else if (var43 == 1) {
-						Entity var48 = this.b.o.a(var2.readInt());
-						if (var48 instanceof EntityMinecartCommandBlock) {
-							var46 = ((EntityMinecartCommandBlock) var48).j();
-						}
-					}
-
-					String var49 = var2.readString(var2.readableBytes());
-					boolean var6 = var2.readBoolean();
-					if (var46 != null) {
-						var46.a(var49);
-						var46.a(var6);
-						if (!var6) {
-							var46.b((IJSONComponent) null);
-						}
-
-						var46.h();
-						this.b.sendChatMessage((IJSONComponent) (new hz("advMode.setCommand.success", new Object[] { var49 })));
-					}
-				} catch (Exception var33) {
-					c.error("Couldn\'t set command block", (Throwable) var33);
-				} finally {
-					var2.release();
-				}
-			} else {
-				this.b.sendChatMessage((IJSONComponent) (new hz("advMode.notAllowed", new Object[0])));
-			}
-		} else if ("MC|Beacon".equals(var1.a())) {
-			if (this.b.activeContainer instanceof aig) {
-				try {
-					var2 = var1.b();
-					int var44 = var2.readInt();
-					int var47 = var2.readInt();
-					aig var50 = (aig) this.b.activeContainer;
-					ajk var51 = var50.a(0);
-					if (var51.e()) {
-						var51.a(1);
-						IInventory var7 = var50.e();
-						var7.b(1, var44);
-						var7.b(2, var47);
-						var7.o_();
-					}
-				} catch (Exception var32) {
-					c.error("Couldn\'t set beacon", (Throwable) var32);
-				}
-			}
-		} else if ("MC|ItemName".equals(var1.a()) && this.b.activeContainer instanceof aid) {
-			aid var41 = (aid) this.b.activeContainer;
-			if (var1.b() != null && var1.b().readableBytes() >= 1) {
-				String var45 = v.a(var1.b().readString(32767));
-				if (var45.length() <= 30) {
-					var41.a(var45);
-				}
-			} else {
-				var41.a("");
-			}
-		}
-
 	}
 
 }

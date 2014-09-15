@@ -17,7 +17,7 @@ public class TileEntityRecordPlayer extends TileEntity {
 	public void write(NBTCompoundTag var1) {
 		super.write(var1);
 		if (this.a() != null) {
-			var1.put("RecordItem", (NBTTag) this.a().b(new NBTCompoundTag()));
+			var1.put("RecordItem", (NBTTag) this.a().write(new NBTCompoundTag()));
 		}
 
 	}
@@ -28,6 +28,6 @@ public class TileEntityRecordPlayer extends TileEntity {
 
 	public void a(ItemStack var1) {
 		this.a = var1;
-		this.o_();
+		this.update();
 	}
 }
