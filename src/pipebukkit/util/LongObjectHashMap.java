@@ -19,13 +19,13 @@ public class LongObjectHashMap<V> implements Iterable<V> {
 		table = (Entry<V>[]) Array.newInstance(Entry.class, tableSize);
 	}
 
-	public boolean contains(long hash) {
-		Entry<V> entry = table[getTableIndex(hash)];
+	public boolean contains(long key) {
+		Entry<V> entry = table[getTableIndex(key)];
 		if (entry == null) {
 			return false;
 		}
 		for (;;) {
-			if (entry.hash == hash) {
+			if (entry.key == key) {
 				return true;
 			}
 			if (entry.nextEntry == null) {
@@ -35,13 +35,13 @@ public class LongObjectHashMap<V> implements Iterable<V> {
 		}
 	}
 
-	public V get(long hash) {
-		Entry<V> entry = table[getTableIndex(hash)];
+	public V get(long key) {
+		Entry<V> entry = table[getTableIndex(key)];
 		if (entry == null) {
 			return null;
 		}
 		for (;;) {
-			if (entry.hash == hash) {
+			if (entry.key == key) {
 				return entry.value;
 			}
 			if (entry.nextEntry == null) {
@@ -51,22 +51,22 @@ public class LongObjectHashMap<V> implements Iterable<V> {
 		}
 	}
 
-	public void put(long hash, V value) {
+	public void put(long key, V value) {
 		resizeIfNeeded();
-		int index = getTableIndex(hash);
+		int index = getTableIndex(key);
 		Entry<V> entry = table[index];
 		if (entry == null) {
-			table[index] = new Entry<V>(hash, value);
+			table[index] = new Entry<V>(key, value);
 			count++;
 			return;
 		}
 		for (;;) {
-			if (entry.hash == hash) {
+			if (entry.key == key) {
 				entry.value = value;
 				return;
 			}
 			if (entry.nextEntry == null) {
-				entry.nextEntry = new Entry<V>(hash, value);
+				entry.nextEntry = new Entry<V>(key, value);
 				count++;
 				return;
 			}
@@ -74,14 +74,14 @@ public class LongObjectHashMap<V> implements Iterable<V> {
 		}
 	}
 
-	public void remove(long hash) {
-		int index = getTableIndex(hash);
+	public void remove(long key) {
+		int index = getTableIndex(key);
 		Entry<V> entry = table[index];
 		if (entry == null) {
 			return;
 		}
 		if (entry.nextEntry == null) {
-			if (entry.hash == hash) {
+			if (entry.key == key) {
 				table[index] = null;
 				count--;
 			}
@@ -90,7 +90,7 @@ public class LongObjectHashMap<V> implements Iterable<V> {
 		Entry<V> prevEntry = entry;
 		entry = entry.nextEntry;
 		for (;;) {
-			if (entry.hash == hash) {
+			if (entry.key == key) {
 				prevEntry.nextEntry = entry.nextEntry;
 				count--;
 				entry.nextEntry = entry;
@@ -108,8 +108,11 @@ public class LongObjectHashMap<V> implements Iterable<V> {
 		return count;
 	}
 
-	private int getTableIndex(long hash) {
-		return (int) (hash & (table.length - 1));
+	private int getTableIndex(long key) {
+		key = key ^= key >>> 20 ^ key >>> 12;
+		key = key ^ key >>> 7 ^ key >>> 4;
+		key = key ^ key >>> 32;
+		return (int) (key & (table.length - 1));
 	}
 
 	private void resizeIfNeeded() {
@@ -120,7 +123,7 @@ public class LongObjectHashMap<V> implements Iterable<V> {
 					continue;
 				}
 				do {
-					resizedMap.put(entry.hash, entry.value);
+					resizedMap.put(entry.key, entry.value);
 				} while ((entry = entry.nextEntry) != null);
 			}
 			this.count = resizedMap.count;
@@ -130,13 +133,13 @@ public class LongObjectHashMap<V> implements Iterable<V> {
 
 	private static class Entry<V> {
 
-		protected long hash;
+		protected long key;
 		protected V value;
 
 		protected Entry<V> nextEntry;
 
-		public Entry(long hash, V value) {
-			this.hash = hash;
+		public Entry(long key, V value) {
+			this.key = key;
 			this.value = value;
 		}
 
