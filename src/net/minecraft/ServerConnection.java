@@ -1,8 +1,8 @@
 package net.minecraft;
 
-import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
+import net.minecraft.util.io.netty.bootstrap.ServerBootstrap;
+import net.minecraft.util.io.netty.channel.ChannelFuture;
+import net.minecraft.util.io.netty.channel.socket.nio.NioServerSocketChannel;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Collections;

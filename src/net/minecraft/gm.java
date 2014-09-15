@@ -1,7 +1,7 @@
 package net.minecraft;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelHandlerContext;
+import net.minecraft.util.io.netty.buffer.ByteBuf;
+import net.minecraft.util.io.netty.channel.ChannelHandlerContext;
 
 import javax.crypto.Cipher;
 import javax.crypto.ShortBufferException;

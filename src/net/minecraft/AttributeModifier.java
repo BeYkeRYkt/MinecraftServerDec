@@ -1,6 +1,6 @@
 package net.minecraft;
 
-import io.netty.util.internal.ThreadLocalRandom;
+import net.minecraft.util.io.netty.util.internal.ThreadLocalRandom;
 import java.util.Random;
 import java.util.UUID;
 import org.apache.commons.lang3.Validate;

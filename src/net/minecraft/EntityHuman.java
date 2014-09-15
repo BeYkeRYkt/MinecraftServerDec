@@ -2,7 +2,7 @@ package net.minecraft;
 
 import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
-import com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;

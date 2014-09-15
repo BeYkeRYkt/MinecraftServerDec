@@ -3,8 +3,8 @@ package net.minecraft;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.Futures;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
+import net.minecraft.util.io.netty.buffer.ByteBuf;
+import net.minecraft.util.io.netty.buffer.Unpooled;
 
 import java.io.IOException;
 import java.util.ArrayList;

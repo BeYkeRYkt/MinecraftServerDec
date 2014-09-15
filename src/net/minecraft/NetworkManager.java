@@ -2,16 +2,16 @@ package net.minecraft;
 
 import com.google.common.collect.Queues;
 
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.channel.local.LocalChannel;
-import io.netty.channel.local.LocalServerChannel;
-import io.netty.util.AttributeKey;
-import io.netty.util.concurrent.Future;
-import io.netty.util.concurrent.GenericFutureListener;
+import net.minecraft.util.io.netty.channel.Channel;
+import net.minecraft.util.io.netty.channel.ChannelFuture;
+import net.minecraft.util.io.netty.channel.ChannelFutureListener;
+import net.minecraft.util.io.netty.channel.ChannelHandlerContext;
+import net.minecraft.util.io.netty.channel.SimpleChannelInboundHandler;
+import net.minecraft.util.io.netty.channel.local.LocalChannel;
+import net.minecraft.util.io.netty.channel.local.LocalServerChannel;
+import net.minecraft.util.io.netty.util.AttributeKey;
+import net.minecraft.util.io.netty.util.concurrent.Future;
+import net.minecraft.util.io.netty.util.concurrent.GenericFutureListener;
 
 import java.net.SocketAddress;
 import java.util.Queue;
@@ -29,7 +29,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<PacketLis
 	private static final Logger logger = LogManager.getLogger();
 	public static final Marker markerNetwork = MarkerManager.getMarker("NETWORK");
 	public static final Marker markerNetworkPackets = MarkerManager.getMarker("NETWORK_PACKETS", markerNetwork);
-	public static final AttributeKey<EnumProtocol> attributeKey = AttributeKey.valueOf("protocol");
+	public static final AttributeKey<EnumProtocol> attributeKey = new AttributeKey<EnumProtocol>("protocol");
 	private final Queue<QueuedPacket> outPacketQueue = Queues.newConcurrentLinkedQueue();
 	private Channel channel;
 	private SocketAddress address;

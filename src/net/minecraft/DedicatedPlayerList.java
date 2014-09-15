@@ -1,6 +1,6 @@
 package net.minecraft;
 
-import com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 import java.io.IOException;
 import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;

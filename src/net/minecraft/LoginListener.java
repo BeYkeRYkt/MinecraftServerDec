@@ -1,7 +1,7 @@
 package net.minecraft;
 
 import com.google.common.base.Charsets;
-import com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 import java.security.PrivateKey;
 import java.util.Arrays;
 import java.util.Random;

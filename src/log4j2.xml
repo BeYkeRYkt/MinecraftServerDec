@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN" packages="net.minecraft,com.mojang">
+<Configuration status="WARN" packages="net.minecraft.util.com.mojang.util">
     <Appenders>
-        <Console name="SysOut" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%d{HH:mm:ss}] [%t/%level]: %msg%n" />
-        </Console>
-        <Queue name="ServerGuiConsole">
+        <Console name="WINDOWS_COMPAT" target="SYSTEM_OUT"></Console>
+        <Queue name="TerminalConsole">
             <PatternLayout pattern="[%d{HH:mm:ss} %level]: %msg%n" />
         </Queue>
         <RollingRandomAccessFile name="File" fileName="logs/latest.log" filePattern="logs/%d{yyyy-MM-dd}-%i.log.gz">
@@ -20,9 +18,9 @@
             <filters>
                 <MarkerFilter marker="NETWORK_PACKETS" onMatch="DENY" onMismatch="NEUTRAL" />
             </filters>
-            <AppenderRef ref="SysOut"/>
+            <AppenderRef ref="WINDOWS_COMPAT" level="info"/>
             <AppenderRef ref="File"/>
-            <AppenderRef ref="ServerGuiConsole"/>
+            <AppenderRef ref="TerminalConsole" level="info"/>
         </Root>
     </Loggers>
 </Configuration>

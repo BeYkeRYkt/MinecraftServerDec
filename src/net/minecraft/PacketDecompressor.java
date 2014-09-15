@@ -1,10 +1,10 @@
 package net.minecraft;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.ByteToMessageDecoder;
-import io.netty.handler.codec.DecoderException;
+import net.minecraft.util.io.netty.buffer.ByteBuf;
+import net.minecraft.util.io.netty.buffer.Unpooled;
+import net.minecraft.util.io.netty.channel.ChannelHandlerContext;
+import net.minecraft.util.io.netty.handler.codec.ByteToMessageDecoder;
+import net.minecraft.util.io.netty.handler.codec.DecoderException;
 
 import java.util.List;
 import java.util.zip.DataFormatException;

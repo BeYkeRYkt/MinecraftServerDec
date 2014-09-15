@@ -1,9 +1,9 @@
 package pipebukkit.server;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufOutputStream;
-import io.netty.buffer.Unpooled;
-import io.netty.handler.codec.base64.Base64;
+import net.minecraft.util.io.netty.buffer.ByteBuf;
+import net.minecraft.util.io.netty.buffer.ByteBufOutputStream;
+import net.minecraft.util.io.netty.buffer.Unpooled;
+import net.minecraft.util.io.netty.handler.codec.base64.Base64;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -91,7 +91,7 @@ import com.avaje.ebean.config.ServerConfig;
 import com.avaje.ebean.config.dbplatform.SQLitePlatform;
 import com.avaje.ebeaninternal.server.lib.sql.TransactionIsolation;
 import com.google.common.base.Charsets;
-import com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 
 public class PipeServer implements Server {
 

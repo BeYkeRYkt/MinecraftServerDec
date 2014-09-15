@@ -1,8 +1,8 @@
 package net.minecraft;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.ByteToMessageDecoder;
+import net.minecraft.util.io.netty.buffer.ByteBuf;
+import net.minecraft.util.io.netty.channel.ChannelHandlerContext;
+import net.minecraft.util.io.netty.handler.codec.ByteToMessageDecoder;
 
 import java.io.IOException;
 import java.util.List;

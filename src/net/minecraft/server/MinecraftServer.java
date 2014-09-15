@@ -8,15 +8,15 @@ import com.google.common.collect.Queues;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListenableFutureTask;
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.GameProfileRepository;
-import com.mojang.authlib.minecraft.MinecraftSessionService;
-import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.GameProfileRepository;
+import net.minecraft.util.com.mojang.authlib.minecraft.MinecraftSessionService;
+import net.minecraft.util.com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufOutputStream;
-import io.netty.buffer.Unpooled;
-import io.netty.handler.codec.base64.Base64;
+import net.minecraft.util.io.netty.buffer.ByteBuf;
+import net.minecraft.util.io.netty.buffer.ByteBufOutputStream;
+import net.minecraft.util.io.netty.buffer.Unpooled;
+import net.minecraft.util.io.netty.handler.codec.base64.Base64;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;

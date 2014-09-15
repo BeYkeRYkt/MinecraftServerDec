@@ -1,6 +1,6 @@
 package net.minecraft;
 
-import io.netty.buffer.ByteBuf;
+import net.minecraft.util.io.netty.buffer.ByteBuf;
 import java.io.IOException;
 
 public class PacketPlayInPluginMessage implements Packet<PlayInPacketListener> {

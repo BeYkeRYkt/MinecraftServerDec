@@ -1,7 +1,7 @@
 package net.minecraft;
 
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.exceptions.AuthenticationUnavailableException;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.exceptions.AuthenticationUnavailableException;
 
 import java.math.BigInteger;
 import java.util.UUID;

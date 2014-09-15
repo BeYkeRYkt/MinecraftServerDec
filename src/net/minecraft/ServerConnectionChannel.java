@@ -1,10 +1,10 @@
 package net.minecraft;
 
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelException;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.handler.timeout.ReadTimeoutHandler;
+import net.minecraft.util.io.netty.channel.Channel;
+import net.minecraft.util.io.netty.channel.ChannelException;
+import net.minecraft.util.io.netty.channel.ChannelInitializer;
+import net.minecraft.util.io.netty.channel.ChannelOption;
+import net.minecraft.util.io.netty.handler.timeout.ReadTimeoutHandler;
 
 class ServerConnectionChannel extends ChannelInitializer<Channel> {
 
