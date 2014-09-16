@@ -177,8 +177,26 @@ public abstract class TileEntity {
 		});
 		if (this.world != null) {
 			CrashReportSystemDetails.a(details, this.position, this.getBlock(), this.getBlockData());
-			details.addDetails("Actual block type", (Callable<?>) (new bco(this)));
-			details.addDetails("Actual block data value", (Callable<?>) (new bcp(this)));
+			details.addDetails("Actual block type", new Callable<String>() {
+				@Override
+				public String call() throws Exception {
+					int blockId = Block.getBlockId(world.getBlockState(position).getBlock());
+					return String.format("ID #%d (%s // %s)", new Object[] { blockId, Block.getBlockById(blockId).getName(), Block.getBlockById(blockId).getClass().getCanonicalName() });
+				}
+			});
+			details.addDetails("Actual block data value", new Callable<String>() {
+				@Override
+				public String call() throws Exception {
+					IBlockState blockState = world.getBlockState(position);
+					int data = blockState.getBlock().getData(blockState);
+					if (data < 0) {
+						return "Unknown? (Got " + data + ")";
+					} else {
+						String dataString = String.format("%4s", Integer.toBinaryString(data)).replace(" ", "0");
+						return String.format("%1$d / 0x%1$X / 0b%2$s", data, dataString);
+					}
+				}
+			});
 		}
 	}
 
