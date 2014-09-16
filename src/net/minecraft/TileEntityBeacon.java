@@ -1,11 +1,12 @@
 package net.minecraft;
 
 import com.google.common.collect.Lists;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class TileEntityBeacon extends bdf implements PacketTickable, IInventory {
+public class TileEntityBeacon extends TileEntityLockable implements ITickable, IInventory {
 
 	public static final MobEffectList[][] a = new MobEffectList[][] { { MobEffectList.FASTER_MOVEMENT, MobEffectList.FASTER_DIG }, { MobEffectList.RESISTANCE, MobEffectList.JUMP }, { MobEffectList.INCREASE_DAMAGE }, { MobEffectList.REGENERATION } };
 	private final List f = Lists.newArrayList();
@@ -15,6 +16,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 	private int l;
 	private ItemStack m;
 	private String n;
+	private List<EntityHuman> viewers = new java.util.ArrayList<EntityHuman>();
 
 	public void doTick() {
 		if (this.world.getTime() % 80L == 0L) {
@@ -230,12 +232,14 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 	}
 
 	public void onContainerOpen(EntityHuman var1) {
+		viewers.add(var1);
 	}
 
 	public void onContainerClose(EntityHuman var1) {
+		viewers.remove(var1);
 	}
 
-	public boolean b(int var1, ItemStack var2) {
+	public boolean canSuckItemFromInventory(int var1, ItemStack var2) {
 		return var2.getItem() == Items.EMERALD || var2.getItem() == Items.DIAMOND || var2.getItem() == Items.GOLD_INGOT || var2.getItem() == Items.IRON_INGOT;
 	}
 
@@ -260,16 +264,16 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 		}
 	}
 
-	public void b(int var1, int var2) {
-		switch (var1) {
+	public void selectBeaconPower(int powerSlot, int power) {
+		switch (powerSlot) {
 			case 0:
-				this.j = var2;
+				this.j = power;
 				break;
 			case 1:
-				this.k = var2;
+				this.k = power;
 				break;
 			case 2:
-				this.l = var2;
+				this.l = power;
 		}
 
 	}
@@ -289,6 +293,11 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 		} else {
 			return super.c(var1, var2);
 		}
+	}
+
+	@Override
+	public List<EntityHuman> getViewers() {
+		return viewers;
 	}
 
 }

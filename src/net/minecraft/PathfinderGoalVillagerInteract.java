@@ -25,7 +25,7 @@ public class PathfinderGoalVillagerInteract extends PathfinderGoalInteract {
 		if (this.e > 0) {
 			--this.e;
 			if (this.e == 0) {
-				wa var1 = this.f.co();
+				InventorySubcontainer var1 = this.f.co();
 
 				for (int var2 = 0; var2 < var1.getSize(); ++var2) {
 					ItemStack var3 = var1.getItem(var2);

@@ -1,9 +1,10 @@
 package net.minecraft;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
+public class TileEntityBrewingStand extends TileEntityLockable implements ITickable, IWorldInventory {
 
 	private static final int[] a = new int[] { 3 };
 	private static final int[] f = new int[] { 0, 1, 2 };
@@ -12,6 +13,7 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 	private boolean[] i;
 	private Item j;
 	private String k;
+	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
 	public String getName() {
 		return this.hasCustomName() ? this.k : "container.brewing";
@@ -216,12 +218,14 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 	}
 
 	public void onContainerOpen(EntityHuman var1) {
+		viewers.add(var1);
 	}
 
 	public void onContainerClose(EntityHuman var1) {
+		viewers.remove(var1);
 	}
 
-	public boolean b(int var1, ItemStack var2) {
+	public boolean canSuckItemFromInventory(int var1, ItemStack var2) {
 		return var1 == 3 ? var2.getItem().l(var2) : var2.getItem() == Items.POTION || var2.getItem() == Items.GLASS_BOTTLE;
 	}
 
@@ -242,7 +246,7 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 	}
 
 	public boolean a(int var1, ItemStack var2, BlockFace var3) {
-		return this.b(var1, var2);
+		return this.canSuckItemFromInventory(var1, var2);
 	}
 
 	public boolean b(int var1, ItemStack var2, BlockFace var3) {
@@ -266,7 +270,7 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 		}
 	}
 
-	public void b(int var1, int var2) {
+	public void selectBeaconPower(int var1, int var2) {
 		switch (var1) {
 			case 0:
 				this.h = var2;
@@ -283,6 +287,11 @@ public class TileEntityBrewingStand extends bdf implements PacketTickable, we {
 			this.g[var1] = null;
 		}
 
+	}
+
+	@Override
+	public List<EntityHuman> getViewers() {
+		return viewers;
 	}
 
 }

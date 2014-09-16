@@ -13,7 +13,7 @@ import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class LoginListener implements LoginServerboundPacketListener, PacketTickable {
+public class LoginListener implements LoginServerboundPacketListener, ITickable {
 
 	private static final AtomicInteger atomic = new AtomicInteger(0);
 	private static final Logger logger = LogManager.getLogger();

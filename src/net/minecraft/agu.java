@@ -27,6 +27,6 @@ class agu implements agw {
 			var4 = this.d.a(var2);
 		}
 
-		var1.add(new aqc(new ItemStack(this.a.getItem(), var3, this.a.getWearout()), new ItemStack(Items.EMERALD), new ItemStack(this.c.getItem(), var4, this.c.getWearout())));
+		var1.add(new MerchantRecipe(new ItemStack(this.a.getItem(), var3, this.a.getWearout()), new ItemStack(Items.EMERALD), new ItemStack(this.c.getItem(), var4, this.c.getWearout())));
 	}
 }

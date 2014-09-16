@@ -8,9 +8,9 @@ public class aii extends Container {
 
 	public aii(PlayerInventory var1, IInventory var2) {
 		this.a = var2;
-		this.addSlot((Slot) (new aik(var1.d, var2, 0, 56, 46)));
-		this.addSlot((Slot) (new aik(var1.d, var2, 1, 79, 53)));
-		this.addSlot((Slot) (new aik(var1.d, var2, 2, 102, 46)));
+		this.addSlot((Slot) (new aik(var1.owner, var2, 0, 56, 46)));
+		this.addSlot((Slot) (new aik(var1.owner, var2, 1, 79, 53)));
+		this.addSlot((Slot) (new aik(var1.owner, var2, 2, 102, 46)));
 		this.f = this.addSlot((Slot) (new aij(this, var2, 3, 79, 17)));
 
 		int var3;

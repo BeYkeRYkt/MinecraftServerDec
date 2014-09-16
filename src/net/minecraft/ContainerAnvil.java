@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 public class ContainerAnvil extends Container {
 
 	private static final Logger f = LogManager.getLogger();
-	private IInventory g = new aji();
+	private IInventory g = new InventoryResult();
 	private IInventory h = new aie(this, "Repair", true, 2);
 	private World i;
 	private Position j;

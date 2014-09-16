@@ -138,8 +138,8 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<PacketLis
 
 	public void sendAndFlushQueuedPacket() {
 		this.sendQueuedPacket();
-		if (this.listener instanceof PacketTickable) {
-			((PacketTickable) this.listener).doTick();
+		if (this.listener instanceof ITickable) {
+			((ITickable) this.listener).doTick();
 		}
 		this.channel.flush();
 	}

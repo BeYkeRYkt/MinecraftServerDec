@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class TileEntityLightDetector extends TileEntity implements PacketTickable {
+public class TileEntityLightDetector extends TileEntity implements ITickable {
 
 	public void doTick() {
 		if (this.world != null && !this.world.isStatic && this.world.getTime() % 20L == 0L) {

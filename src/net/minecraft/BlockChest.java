@@ -303,7 +303,7 @@ public class BlockChest extends atg {
 		if (var1.isStatic) {
 			return true;
 		} else {
-			vy var9 = this.d(var1, var2);
+			ILockable var9 = this.d(var1, var2);
 			if (var9 != null) {
 				var4.a((IInventory) var9);
 			}
@@ -312,7 +312,7 @@ public class BlockChest extends atg {
 		}
 	}
 
-	public vy d(World var1, Position var2) {
+	public ILockable d(World var1, Position var2) {
 		TileEntity var3 = var1.getTileEntity(var2);
 		if (!(var3 instanceof TileEntityChest)) {
 			return null;
@@ -335,15 +335,15 @@ public class BlockChest extends atg {
 						TileEntity var9 = var1.getTileEntity(var7);
 						if (var9 instanceof TileEntityChest) {
 							if (var6 != BlockFace.WEST && var6 != BlockFace.NORTH) {
-								var4 = new InventoryLargeChest("container.chestDouble", (vy) var4, (TileEntityChest) var9);
+								var4 = new InventoryLargeChest("container.chestDouble", (ILockable) var4, (TileEntityChest) var9);
 							} else {
-								var4 = new InventoryLargeChest("container.chestDouble", (TileEntityChest) var9, (vy) var4);
+								var4 = new InventoryLargeChest("container.chestDouble", (TileEntityChest) var9, (ILockable) var4);
 							}
 						}
 					}
 				}
 
-				return (vy) var4;
+				return (ILockable) var4;
 			}
 		}
 	}

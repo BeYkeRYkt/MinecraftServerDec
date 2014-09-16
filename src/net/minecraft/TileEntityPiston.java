@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
 
-public class TileEntityPiston extends TileEntity implements PacketTickable {
+public class TileEntityPiston extends TileEntity implements ITickable {
 
 	private IBlockState a;
 	private BlockFace f;

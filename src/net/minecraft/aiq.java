@@ -16,7 +16,7 @@ public class aiq extends Container {
 	public aiq(PlayerInventory var1, World var2, Position var3) {
 		this.i = var2;
 		this.j = var3;
-		this.f = var1.d.ci();
+		this.f = var1.owner.ci();
 		this.addSlot((Slot) (new ais(this, this.a, 0, 15, 47)));
 		this.addSlot((Slot) (new ait(this, this.a, 1, 35, 47)));
 

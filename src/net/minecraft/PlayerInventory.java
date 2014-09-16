@@ -1,5 +1,7 @@
 package net.minecraft;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 public class PlayerInventory implements IInventory {
@@ -11,12 +13,13 @@ public class PlayerInventory implements IInventory {
 	public ItemStack[] contents = new ItemStack[36];
 	public ItemStack[] armor = new ItemStack[4];
 	public int itemInHandIndex;
-	public EntityHuman d;
+	public EntityHuman owner;
 	private ItemStack carried;
 	public boolean e;
+	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
-	public PlayerInventory(EntityHuman var1) {
-		this.d = var1;
+	public PlayerInventory(EntityHuman viewers) {
+		this.owner = viewers;
 	}
 
 	public ItemStack getItemInHand() {
@@ -166,7 +169,7 @@ public class PlayerInventory implements IInventory {
 	public void k() {
 		for (int var1 = 0; var1 < this.contents.length; ++var1) {
 			if (this.contents[var1] != null) {
-				this.contents[var1].a(this.d.world, this.d, var1, this.itemInHandIndex == var1);
+				this.contents[var1].a(this.owner.world, this.owner, var1, this.itemInHandIndex == var1);
 			}
 		}
 
@@ -201,7 +204,7 @@ public class PlayerInventory implements IInventory {
 						this.contents[var2].c = 5;
 						var1.amount = 0;
 						return true;
-					} else if (this.d.playerProperties.instabuild) {
+					} else if (this.owner.playerProperties.instabuild) {
 						var1.amount = 0;
 						return true;
 					} else {
@@ -213,7 +216,7 @@ public class PlayerInventory implements IInventory {
 						var1.amount = this.e(var1);
 					} while (var1.amount > 0 && var1.amount < var2);
 
-					if (var1.amount == var2 && this.d.playerProperties.instabuild) {
+					if (var1.amount == var2 && this.owner.playerProperties.instabuild) {
 						var1.amount = 0;
 						return true;
 					} else {
@@ -403,7 +406,7 @@ public class PlayerInventory implements IInventory {
 
 		for (int var2 = 0; var2 < this.armor.length; ++var2) {
 			if (this.armor[var2] != null && this.armor[var2].getItem() instanceof ItemArmor) {
-				this.armor[var2].a((int) var1, (EntityLiving) this.d);
+				this.armor[var2].a((int) var1, (EntityLiving) this.owner);
 				if (this.armor[var2].amount == 0) {
 					this.armor[var2] = null;
 				}
@@ -416,14 +419,14 @@ public class PlayerInventory implements IInventory {
 		int var1;
 		for (var1 = 0; var1 < this.contents.length; ++var1) {
 			if (this.contents[var1] != null) {
-				this.d.a(this.contents[var1], true, false);
+				this.owner.a(this.contents[var1], true, false);
 				this.contents[var1] = null;
 			}
 		}
 
 		for (var1 = 0; var1 < this.armor.length; ++var1) {
 			if (this.armor[var1] != null) {
-				this.d.a(this.armor[var1], true, false);
+				this.owner.a(this.armor[var1], true, false);
 				this.armor[var1] = null;
 			}
 		}
@@ -443,7 +446,7 @@ public class PlayerInventory implements IInventory {
 	}
 
 	public boolean canInteract(EntityHuman var1) {
-		return this.d.dead ? false : var1.getDistanceSquared(this.d) <= 64.0D;
+		return this.owner.dead ? false : var1.getDistanceSquared(this.owner) <= 64.0D;
 	}
 
 	public boolean c(ItemStack var1) {
@@ -464,12 +467,14 @@ public class PlayerInventory implements IInventory {
 	}
 
 	public void onContainerOpen(EntityHuman var1) {
+		viewers.add(var1);
 	}
 
 	public void onContainerClose(EntityHuman var1) {
+		viewers.remove(var1);
 	}
 
-	public boolean b(int var1, ItemStack var2) {
+	public boolean canSuckItemFromInventory(int var1, ItemStack var2) {
 		return true;
 	}
 
@@ -490,7 +495,7 @@ public class PlayerInventory implements IInventory {
 		return 0;
 	}
 
-	public void b(int var1, int var2) {
+	public void selectBeaconPower(int var1, int var2) {
 	}
 
 	public int getPropertiesCount() {
@@ -508,4 +513,10 @@ public class PlayerInventory implements IInventory {
 		}
 
 	}
+
+	@Override
+	public List<EntityHuman> getViewers() {
+		return viewers;
+	}
+
 }

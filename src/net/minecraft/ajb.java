@@ -3,14 +3,14 @@ package net.minecraft;
 public class ajb extends Container {
 
 	public InventoryCrafting a = new InventoryCrafting(this, 2, 2);
-	public IInventory f = new aji();
+	public IInventory f = new InventoryResult();
 	public boolean g;
 	private final EntityHuman h;
 
 	public ajb(PlayerInventory var1, boolean var2, EntityHuman var3) {
 		this.g = var2;
 		this.h = var3;
-		this.addSlot((Slot) (new ajj(var1.d, this.a, this.f, 0, 144, 36)));
+		this.addSlot((Slot) (new ajj(var1.owner, this.a, this.f, 0, 144, 36)));
 
 		int var4;
 		int var5;

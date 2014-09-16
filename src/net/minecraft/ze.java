@@ -49,7 +49,7 @@ public class ze extends zn {
 			if (this.f == 0 && var4 instanceof BlockCrops && ((Integer) var3.b(BlockCrops.a)).intValue() == 7) {
 				var1.b(var2, true);
 			} else if (this.f == 1 && var4 == Blocks.AIR) {
-				wa var5 = this.c.co();
+				InventorySubcontainer var5 = this.c.co();
 
 				for (int var6 = 0; var6 < var5.getSize(); ++var6) {
 					ItemStack var7 = var5.getItem(var6);

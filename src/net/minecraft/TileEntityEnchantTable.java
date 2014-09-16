@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class TileEntityEnchantTable extends TileEntity implements PacketTickable, vv {
+public class TileEntityEnchantTable extends TileEntity implements ITickable, vv {
 
 	public int a;
 	public float f;

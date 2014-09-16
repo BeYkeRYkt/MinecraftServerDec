@@ -4,7 +4,7 @@ import com.google.common.base.Predicate;
 import java.util.Iterator;
 import java.util.List;
 
-public class EntityHorse extends EntityAnimal implements vr {
+public class EntityHorse extends EntityAnimal implements IInventoryListener {
 
 	private static final Predicate bq = new abu();
 	private static final xy br = (new yg((xy) null, "horse.jumpStrength", 0.7D, 0.0D, 2.0D)).a("Jump Strength").a(true);
@@ -332,7 +332,7 @@ public class EntityHorse extends EntityAnimal implements vr {
 
 	}
 
-	public void a(wa var1) {
+	public void a(InventorySubcontainer var1) {
 		int var2 = this.cv();
 		boolean var3 = this.cE();
 		this.cZ();

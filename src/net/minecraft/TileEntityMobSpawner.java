@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class TileEntityMobSpawner extends TileEntity implements PacketTickable {
+public class TileEntityMobSpawner extends TileEntity implements ITickable {
 
 	private final aqi a = new bdh(this);
 

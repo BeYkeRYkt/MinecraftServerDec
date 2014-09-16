@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class TileEntityEnderChest extends TileEntity implements PacketTickable {
+public class TileEntityEnderChest extends TileEntity implements ITickable {
 
 	public float a;
 	public float f;

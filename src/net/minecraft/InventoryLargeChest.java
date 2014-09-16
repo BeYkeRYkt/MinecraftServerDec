@@ -1,12 +1,16 @@
 package net.minecraft;
 
-public class InventoryLargeChest implements vy {
+import java.util.ArrayList;
+import java.util.List;
+
+public class InventoryLargeChest implements ILockable {
 
 	private String a;
-	private vy b;
-	private vy c;
+	private ILockable b;
+	private ILockable c;
+	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
-	public InventoryLargeChest(String var1, vy var2, vy var3) {
+	public InventoryLargeChest(String var1, ILockable var2, ILockable var3) {
 		this.a = var1;
 		if (var2 == null) {
 			var2 = var3;
@@ -18,10 +22,10 @@ public class InventoryLargeChest implements vy {
 
 		this.b = var2;
 		this.c = var3;
-		if (var2.q_()) {
-			var3.a(var2.i());
-		} else if (var3.q_()) {
-			var2.a(var3.i());
+		if (var2.isLocked()) {
+			var3.setLock(var2.getLock());
+		} else if (var3.isLocked()) {
+			var2.setLock(var3.getLock());
 		}
 
 	}
@@ -83,14 +87,16 @@ public class InventoryLargeChest implements vy {
 	public void onContainerOpen(EntityHuman var1) {
 		this.b.onContainerOpen(var1);
 		this.c.onContainerOpen(var1);
+		viewers.add(var1);
 	}
 
 	public void onContainerClose(EntityHuman var1) {
 		this.b.onContainerClose(var1);
 		this.c.onContainerClose(var1);
+		viewers.remove(var1);
 	}
 
-	public boolean b(int var1, ItemStack var2) {
+	public boolean canSuckItemFromInventory(int var1, ItemStack var2) {
 		return true;
 	}
 
@@ -98,24 +104,24 @@ public class InventoryLargeChest implements vy {
 		return 0;
 	}
 
-	public void b(int var1, int var2) {
+	public void selectBeaconPower(int var1, int var2) {
 	}
 
 	public int getPropertiesCount() {
 		return 0;
 	}
 
-	public boolean q_() {
-		return this.b.q_() || this.c.q_();
+	public boolean isLocked() {
+		return this.b.isLocked() || this.c.isLocked();
 	}
 
-	public void a(vx var1) {
-		this.b.a(var1);
-		this.c.a(var1);
+	public void setLock(ContainerLock var1) {
+		this.b.setLock(var1);
+		this.c.setLock(var1);
 	}
 
-	public vx i() {
-		return this.b.i();
+	public ContainerLock getLock() {
+		return this.b.getLock();
 	}
 
 	public String getInventoryType() {
@@ -130,4 +136,10 @@ public class InventoryLargeChest implements vy {
 		this.b.clearInventory();
 		this.c.clearInventory();
 	}
+
+	@Override
+	public List<EntityHuman> getViewers() {
+		return viewers;
+	}
+
 }

@@ -1,6 +1,9 @@
 package net.minecraft;
 
-public class TileEntityFurnace extends bdf implements PacketTickable, we {
+import java.util.ArrayList;
+import java.util.List;
+
+public class TileEntityFurnace extends TileEntityLockable implements ITickable, IWorldInventory {
 
 	private static final int[] a = new int[] { 0 };
 	private static final int[] f = new int[] { 2, 1 };
@@ -11,6 +14,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 	private int k;
 	private int l;
 	private String m;
+	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
 	public int getSize() {
 		return this.h.length;
@@ -250,13 +254,15 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 	}
 
 	public void onContainerOpen(EntityHuman var1) {
+		viewers.add(var1);
 	}
 
 	public void onContainerClose(EntityHuman var1) {
+		viewers.remove(var1);
 	}
 
-	public boolean b(int var1, ItemStack var2) {
-		return var1 == 2 ? false : (var1 != 1 ? true : c(var2) || aiu.c_(var2));
+	public boolean canSuckItemFromInventory(int slot, ItemStack itemStack) {
+		return slot == 2 ? false : (slot != 1 ? true : c(itemStack) || aiu.c_(itemStack));
 	}
 
 	public int[] a(BlockFace var1) {
@@ -264,7 +270,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 	}
 
 	public boolean a(int var1, ItemStack var2, BlockFace var3) {
-		return this.b(var1, var2);
+		return this.canSuckItemFromInventory(var1, var2);
 	}
 
 	public boolean b(int var1, ItemStack var2, BlockFace var3) {
@@ -301,7 +307,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 		}
 	}
 
-	public void b(int var1, int var2) {
+	public void selectBeaconPower(int var1, int var2) {
 		switch (var1) {
 			case 0:
 				this.i = var2;
@@ -327,6 +333,11 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 			this.h[var1] = null;
 		}
 
+	}
+
+	@Override
+	public List<EntityHuman> getViewers() {
+		return viewers;
 	}
 
 }

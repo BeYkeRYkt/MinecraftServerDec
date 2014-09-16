@@ -8,7 +8,7 @@ public interface IMerchant {
 
 	MerchantRecipeList b_(EntityHuman var1);
 
-	void a(aqc var1);
+	void a(MerchantRecipe var1);
 
 	void a_(ItemStack var1);
 

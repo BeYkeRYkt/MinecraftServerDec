@@ -1472,12 +1472,12 @@ public abstract class EntityHuman extends EntityLiving {
 		return UUID.nameUUIDFromBytes(("OfflinePlayer:" + var0).getBytes(Charsets.UTF_8));
 	}
 
-	public boolean a(vx var1) {
-		if (var1.a()) {
+	public boolean a(ContainerLock var1) {
+		if (var1.isNotLocked()) {
 			return true;
 		} else {
 			ItemStack var2 = this.bY();
-			return var2 != null && var2.s() ? var2.q().equals(var1.b()) : false;
+			return var2 != null && var2.s() ? var2.q().equals(var1.getUnlockingItemDisplayName()) : false;
 		}
 	}
 

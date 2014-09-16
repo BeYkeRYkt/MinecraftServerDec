@@ -21,7 +21,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 	private int careerLevel;
 	private boolean bx;
 	private boolean by;
-	private wa bz;
+	private InventorySubcontainer bz;
 	private static final agw[][][][] bA = new agw[][][][] {
 			{
 					{ { new agr(Items.WHEAT, new agx(18, 22)), new agr(Items.POTATO, new agx(15, 19)), new agr(Items.CARROT, new agx(15, 19)), new agv(Items.BREAD, new agx(-4, -2)) }, { new agr(Item.getItemOf(Blocks.PUMPKIN), new agx(8, 13)), new agv(Items.PUMPKIN_PIE, new agx(-3, -2)) }, { new agr(Item.getItemOf(Blocks.MELON_BLOCK), new agx(7, 12)), new agv(Items.APPLE, new agx(-5, -7)) }, { new agv(Items.COOKIE, new agx(-6, -10)), new agv(Items.CAKE, new agx(1, 1)) } },
@@ -43,7 +43,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 
 	public EntityVillager(World var1, int var2) {
 		super(var1);
-		this.bz = new wa("Items", false, 8);
+		this.bz = new InventorySubcontainer("Items", false, 8);
 		this.setProfession(var2);
 		this.a(0.6F, 1.8F);
 		((aay) this.s()).b(true);
@@ -120,7 +120,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 					Iterator var3 = this.bp.iterator();
 
 					while (var3.hasNext()) {
-						aqc var4 = (aqc) var3.next();
+						MerchantRecipe var4 = (MerchantRecipe) var3.next();
 						if (var4.h()) {
 							var4.a(this.random.nextInt(6) + this.random.nextInt(6) + 2);
 						}
@@ -332,7 +332,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		this.willing = var1;
 	}
 
-	public void a(aqc var1) {
+	public void a(MerchantRecipe var1) {
 		var1.g();
 		this.a_ = -this.w();
 		this.a("mob.villager.yes", this.bA(), this.bB());
@@ -505,7 +505,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		}
 	}
 
-	public wa co() {
+	public InventorySubcontainer co() {
 		return this.bz;
 	}
 

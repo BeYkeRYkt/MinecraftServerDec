@@ -1,6 +1,6 @@
 package net.minecraft;
 
-class aie extends wa {
+class aie extends InventorySubcontainer {
 
 	// $FF: synthetic field
 	final ContainerAnvil a;

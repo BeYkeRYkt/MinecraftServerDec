@@ -491,9 +491,9 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			this.n();
 		}
 
-		if (var1 instanceof vy) {
-			vy var2 = (vy) var1;
-			if (var2.q_() && !this.a(var2.i()) && !this.isSpectator()) {
+		if (var1 instanceof ILockable) {
+			ILockable var2 = (ILockable) var1;
+			if (var2.isLocked() && !this.a(var2.getLock()) && !this.isSpectator()) {
 				this.playerConnection.sendPacket((Packet) (new PacketPlayOutChatMessage(new ChatMessage("container.isLocked", new Object[] { var1.getComponentName() }), (byte) 2)));
 				this.playerConnection.sendPacket((Packet) (new PacketPlayOutSoundEffect("random.door_close", this.locationX, this.locationY, this.locationZ, 1.0F, 1.0F)));
 				return;
@@ -518,7 +518,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		this.activeContainer = new ContainerMerchant(this.playerInventory, var1, this.world);
 		this.activeContainer.windowId = this.bT;
 		this.activeContainer.addSlotListener((ICrafting) this);
-		aje var2 = ((ContainerMerchant) this.activeContainer).e();
+		InventoryMerchant var2 = ((ContainerMerchant) this.activeContainer).e();
 		IChatBaseComponent var3 = var1.getComponentName();
 		this.playerConnection.sendPacket((Packet) (new PacketPlayOutOpenWindow(this.bT, "minecraft:villager", var3, var2.getSize())));
 		MerchantRecipeList var4 = var1.b_(this);

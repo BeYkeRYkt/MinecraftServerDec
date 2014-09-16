@@ -3,14 +3,14 @@ package net.minecraft;
 public class aio extends Container {
 
 	public InventoryCrafting a = new InventoryCrafting(this, 3, 3);
-	public IInventory f = new aji();
+	public IInventory f = new InventoryResult();
 	private World g;
 	private Position h;
 
 	public aio(PlayerInventory var1, World var2, Position var3) {
 		this.g = var2;
 		this.h = var3;
-		this.addSlot((Slot) (new ajj(var1.d, this.a, this.f, 0, 124, 35)));
+		this.addSlot((Slot) (new ajj(var1.owner, this.a, this.f, 0, 124, 35)));
 
 		int var4;
 		int var5;

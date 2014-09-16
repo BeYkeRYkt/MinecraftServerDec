@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.Iterator;
 import net.minecraft.server.MinecraftServer;
 
-public abstract class adx extends Entity implements vz {
+public abstract class adx extends Entity implements ICustomNameable {
 
 	private boolean a;
 	private String b;

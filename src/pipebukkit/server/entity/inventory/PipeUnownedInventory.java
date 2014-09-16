@@ -3,7 +3,6 @@ package pipebukkit.server.entity.inventory;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.InventoryType;
 
 import net.minecraft.ChatComponentText;
@@ -33,7 +32,7 @@ public class PipeUnownedInventory extends PipeInventory {
 		private final ItemStack[] items;
 		private final String title;
 		private int maxStackSize = 64;
-		private final ArrayList<HumanEntity> viewers = new ArrayList<HumanEntity>();
+		private final List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
 		public MinecraftUnownedInventory(InventoryType type, int slots, String title) {
 			this.type = type;
@@ -53,7 +52,7 @@ public class PipeUnownedInventory extends PipeInventory {
 
 		@Override
 		public IChatBaseComponent getComponentName() {
-			return hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object());
+			return hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName());
 		}
 
 		@Override
@@ -103,51 +102,51 @@ public class PipeUnownedInventory extends PipeInventory {
 		}
 
 		@Override
-		public boolean canInteract(EntityHuman var1) {
-			// TODO Auto-generated method stub
-			return false;
+		public boolean canInteract(EntityHuman who) {
+			return true;
 		}
 
 		@Override
 		public void onContainerOpen(EntityHuman who) {
-			viewers.add(who.getBukkitEntity(HumanEntity.class));
+			viewers.add(who);
 		}
 
 		@Override
 		public void onContainerClose(EntityHuman who) {
-			viewers.remove(who.getBukkitEntity(HumanEntity.class));
+			viewers.remove(who);
 		}
 
 		@Override
-		public boolean b(int var1, ItemStack var2) {
-			// TODO Auto-generated method stub
+		public boolean canSuckItemFromInventory(int slot, ItemStack itemStack) {
 			return false;
 		}
 
 		@Override
-		public int getProperty(int var1) {
-			// TODO Auto-generated method stub
+		public int getProperty(int property) {
 			return 0;
 		}
 
 		@Override
-		public void b(int var1, int var2) {
-			// TODO Auto-generated method stub
-			
+		public void selectBeaconPower(int powerSlot, int powerType) {
 		}
 
 		@Override
 		public int getPropertiesCount() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public void clearInventory() {
-			// TODO Auto-generated method stub
-			
+			for (int i = 0; i < items.length; i++) {
+				setItem(i, null);
+			}
 		}
-		
+
+		@Override
+		public List<EntityHuman> getViewers() {
+			return viewers;
+		}
+
 	}
 
 }

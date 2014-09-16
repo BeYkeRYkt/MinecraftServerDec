@@ -1,11 +1,15 @@
 package net.minecraft;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InventoryCrafting implements IInventory {
 
 	private final ItemStack[] a;
 	private final int b;
 	private final int c;
 	private final Container d;
+	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
 	public InventoryCrafting(Container var1, int var2, int var3) {
 		int var4 = var2 * var3;
@@ -87,13 +91,15 @@ public class InventoryCrafting implements IInventory {
 		return true;
 	}
 
-	public void onContainerOpen(EntityHuman var1) {
+	public void onContainerOpen(EntityHuman who) {
+		viewers.add(who);
 	}
 
-	public void onContainerClose(EntityHuman var1) {
+	public void onContainerClose(EntityHuman who) {
+		viewers.remove(who);
 	}
 
-	public boolean b(int var1, ItemStack var2) {
+	public boolean canSuckItemFromInventory(int var1, ItemStack var2) {
 		return true;
 	}
 
@@ -101,7 +107,7 @@ public class InventoryCrafting implements IInventory {
 		return 0;
 	}
 
-	public void b(int var1, int var2) {
+	public void selectBeaconPower(int var1, int var2) {
 	}
 
 	public int getPropertiesCount() {
@@ -122,4 +128,10 @@ public class InventoryCrafting implements IInventory {
 	public int i() {
 		return this.b;
 	}
+
+	@Override
+	public List<EntityHuman> getViewers() {
+		return viewers;
+	}
+
 }

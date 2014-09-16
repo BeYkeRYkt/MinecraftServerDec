@@ -3,16 +3,16 @@ package net.minecraft;
 public class ContainerMerchant extends Container {
 
 	private IMerchant a;
-	private aje f;
+	private InventoryMerchant f;
 	private final World g;
 
 	public ContainerMerchant(PlayerInventory var1, IMerchant var2, World var3) {
 		this.a = var2;
 		this.g = var3;
-		this.f = new aje(var1.d, var2);
+		this.f = new InventoryMerchant(var1.owner, var2);
 		this.addSlot(new Slot(this.f, 0, 36, 53));
 		this.addSlot(new Slot(this.f, 1, 62, 53));
-		this.addSlot((Slot) (new ajg(var1.d, var2, this.f, 2, 120, 53)));
+		this.addSlot((Slot) (new ajg(var1.owner, var2, this.f, 2, 120, 53)));
 
 		int var4;
 		for (var4 = 0; var4 < 3; ++var4) {
@@ -27,7 +27,7 @@ public class ContainerMerchant extends Container {
 
 	}
 
-	public aje e() {
+	public InventoryMerchant e() {
 		return this.f;
 	}
 

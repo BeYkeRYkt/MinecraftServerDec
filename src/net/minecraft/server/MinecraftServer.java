@@ -62,7 +62,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private final Convertable convertable;
 	private final Snooper snooper = new Snooper("server", this, getCurrentMillis());
 	public final File universe;
-	private final List<PacketTickable> o = Lists.newArrayList();
+	private final List<ITickable> o = Lists.newArrayList();
 	private final ICommandHandler commandHandler;
 	public final MethodProfiler profiler = new MethodProfiler();
 	private final ServerConnection serverConnection;
@@ -321,7 +321,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.profiler.c("tickables");
 
 		for (i = 0; i < this.o.size(); ++i) {
-			((PacketTickable) this.o.get(i)).doTick();
+			((ITickable) this.o.get(i)).doTick();
 		}
 
 		this.profiler.b();
@@ -554,7 +554,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return true;
 	}
 
-	public void a(PacketTickable var1) {
+	public void a(ITickable var1) {
 		this.o.add(var1);
 	}
 

@@ -12,7 +12,7 @@ public class aiv extends Container {
 		this.a = var2;
 		this.addSlot(new Slot(var2, 0, 56, 17));
 		this.addSlot((Slot) (new aiu(var2, 1, 56, 53)));
-		this.addSlot((Slot) (new aiw(var1.d, var2, 2, 116, 35)));
+		this.addSlot((Slot) (new aiw(var1.owner, var2, 2, 116, 35)));
 
 		int var3;
 		for (var3 = 0; var3 < 3; ++var3) {

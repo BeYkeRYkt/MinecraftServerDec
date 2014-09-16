@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class InventoryEnderChest extends wa {
+public class InventoryEnderChest extends InventorySubcontainer {
 
 	private TileEntityEnderChest a;
 

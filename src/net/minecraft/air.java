@@ -1,6 +1,6 @@
 package net.minecraft;
 
-class air extends wa {
+class air extends InventorySubcontainer {
 
 	// $FF: synthetic field
 	final aiq a;

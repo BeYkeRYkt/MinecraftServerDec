@@ -255,9 +255,9 @@ public class PlayerInteractManager {
 	public boolean interact(EntityHuman var1, World var2, ItemStack var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
 		if (this.gameMode == EnumGameMode.SPECTATOR) {
 			TileEntity var13 = var2.getTileEntity(var4);
-			if (var13 instanceof vy) {
+			if (var13 instanceof ILockable) {
 				Block var14 = var2.getBlockState(var4).getBlock();
-				vy var15 = (vy) var13;
+				ILockable var15 = (ILockable) var13;
 				if (var15 instanceof TileEntityChest && var14 instanceof BlockChest) {
 					var15 = ((BlockChest) var14).d(var2, var4);
 				}

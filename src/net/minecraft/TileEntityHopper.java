@@ -1,12 +1,14 @@
 package net.minecraft;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class TileEntityHopper extends bdf implements bdd, PacketTickable {
+public class TileEntityHopper extends TileEntityLockable implements IHopper, ITickable {
 
 	private ItemStack[] a = new ItemStack[5];
 	private String f;
 	private int g = -1;
+	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
@@ -120,12 +122,14 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 	}
 
 	public void onContainerOpen(EntityHuman var1) {
+		viewers.add(var1);
 	}
 
 	public void onContainerClose(EntityHuman var1) {
+		viewers.remove(var1);
 	}
 
-	public boolean b(int var1, ItemStack var2) {
+	public boolean canSuckItemFromInventory(int var1, ItemStack var2) {
 		return true;
 	}
 
@@ -149,7 +153,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 				}
 
 				if (!this.q()) {
-					var1 = a((bdd) this) || var1;
+					var1 = a((IHopper) this) || var1;
 				}
 
 				if (var1) {
@@ -221,8 +225,8 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 	}
 
 	private boolean a(IInventory var1, BlockFace var2) {
-		if (var1 instanceof we) {
-			we var3 = (we) var1;
+		if (var1 instanceof IWorldInventory) {
+			IWorldInventory var3 = (IWorldInventory) var1;
 			int[] var4 = var3.a(var2);
 
 			for (int var5 = 0; var5 < var4.length; ++var5) {
@@ -246,8 +250,8 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 	}
 
 	private static boolean b(IInventory var0, BlockFace var1) {
-		if (var0 instanceof we) {
-			we var2 = (we) var0;
+		if (var0 instanceof IWorldInventory) {
+			IWorldInventory var2 = (IWorldInventory) var0;
 			int[] var3 = var2.a(var1);
 
 			for (int var4 = 0; var4 < var3.length; ++var4) {
@@ -268,7 +272,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 		return true;
 	}
 
-	public static boolean a(bdd var0) {
+	public static boolean a(IHopper var0) {
 		IInventory var1 = b(var0);
 		if (var1 != null) {
 			BlockFace var2 = BlockFace.DOWN;
@@ -276,8 +280,8 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 				return false;
 			}
 
-			if (var1 instanceof we) {
-				we var3 = (we) var1;
+			if (var1 instanceof IWorldInventory) {
+				IWorldInventory var3 = (IWorldInventory) var1;
 				int[] var4 = var3.a(var2);
 
 				for (int var5 = 0; var5 < var4.length; ++var5) {
@@ -304,7 +308,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 		return false;
 	}
 
-	private static boolean a(bdd var0, IInventory var1, int var2, BlockFace var3) {
+	private static boolean a(IHopper var0, IInventory var1, int var2, BlockFace var3) {
 		ItemStack var4 = var1.getItem(var2);
 		if (var4 != null && b(var1, var4, var2, var3)) {
 			ItemStack var5 = var4.getCopy();
@@ -339,18 +343,18 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 	}
 
 	public static ItemStack a(IInventory var0, ItemStack var1, BlockFace var2) {
-		if (var0 instanceof we && var2 != null) {
-			we var6 = (we) var0;
+		if (var0 instanceof IWorldInventory && var2 != null) {
+			IWorldInventory var6 = (IWorldInventory) var0;
 			int[] var7 = var6.a(var2);
 
 			for (int var5 = 0; var5 < var7.length && var1 != null && var1.amount > 0; ++var5) {
-				var1 = c(var0, var1, var7[var5], var2);
+				var1 = tryTakeInItemFromSlot(var0, var1, var7[var5], var2);
 			}
 		} else {
 			int var3 = var0.getSize();
 
 			for (int var4 = 0; var4 < var3 && var1 != null && var1.amount > 0; ++var4) {
-				var1 = c(var0, var1, var4, var2);
+				var1 = tryTakeInItemFromSlot(var0, var1, var4, var2);
 			}
 		}
 
@@ -361,17 +365,17 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 		return var1;
 	}
 
-	private static boolean a(IInventory var0, ItemStack var1, int var2, BlockFace var3) {
-		return !var0.b(var2, var1) ? false : !(var0 instanceof we) || ((we) var0).a(var2, var1, var3);
+	private static boolean canTakeItemFromInventory(IInventory var0, ItemStack var1, int var2, BlockFace var3) {
+		return !var0.canSuckItemFromInventory(var2, var1) ? false : !(var0 instanceof IWorldInventory) || ((IWorldInventory) var0).a(var2, var1, var3);
 	}
 
 	private static boolean b(IInventory var0, ItemStack var1, int var2, BlockFace var3) {
-		return !(var0 instanceof we) || ((we) var0).b(var2, var1, var3);
+		return !(var0 instanceof IWorldInventory) || ((IWorldInventory) var0).b(var2, var1, var3);
 	}
 
-	private static ItemStack c(IInventory var0, ItemStack var1, int var2, BlockFace var3) {
+	private static ItemStack tryTakeInItemFromSlot(IInventory var0, ItemStack var1, int var2, BlockFace var3) {
 		ItemStack var4 = var0.getItem(var2);
-		if (a(var0, var1, var2, var3)) {
+		if (canTakeItemFromInventory(var0, var1, var2, var3)) {
 			boolean var5 = false;
 			if (var4 == null) {
 				var0.setItem(var2, var1);
@@ -407,7 +411,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 		return b(this.getPrimaryWorld(), (double) (this.position.getX() + var1.g()), (double) (this.position.getY() + var1.h()), (double) (this.position.getZ() + var1.i()));
 	}
 
-	public static IInventory b(bdd var0) {
+	public static IInventory b(IHopper var0) {
 		return b(var0.getPrimaryWorld(), var0.A(), var0.B() + 1.0D, var0.C());
 	}
 
@@ -483,7 +487,7 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 		return 0;
 	}
 
-	public void b(int var1, int var2) {
+	public void selectBeaconPower(int var1, int var2) {
 	}
 
 	public int getPropertiesCount() {
@@ -496,4 +500,10 @@ public class TileEntityHopper extends bdf implements bdd, PacketTickable {
 		}
 
 	}
+
+	@Override
+	public List<EntityHuman> getViewers() {
+		return viewers;
+	}
+
 }

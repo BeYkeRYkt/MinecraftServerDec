@@ -1,12 +1,15 @@
 package net.minecraft;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-public class TileEntityDispenser extends bdf implements IInventory {
+public class TileEntityDispenser extends TileEntityLockable implements IInventory {
 
 	private static final Random f = new Random();
 	private ItemStack[] g = new ItemStack[9];
 	protected String customName;
+	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
 	public int getSize() {
 		return 9;
@@ -141,12 +144,14 @@ public class TileEntityDispenser extends bdf implements IInventory {
 	}
 
 	public void onContainerOpen(EntityHuman var1) {
+		viewers.add(var1);
 	}
 
 	public void onContainerClose(EntityHuman var1) {
+		viewers.remove(var1);
 	}
 
-	public boolean b(int var1, ItemStack var2) {
+	public boolean canSuckItemFromInventory(int var1, ItemStack var2) {
 		return true;
 	}
 
@@ -162,7 +167,7 @@ public class TileEntityDispenser extends bdf implements IInventory {
 		return 0;
 	}
 
-	public void b(int var1, int var2) {
+	public void selectBeaconPower(int var1, int var2) {
 	}
 
 	public int getPropertiesCount() {
@@ -174,6 +179,11 @@ public class TileEntityDispenser extends bdf implements IInventory {
 			this.g[var1] = null;
 		}
 
+	}
+
+	@Override
+	public List<EntityHuman> getViewers() {
+		return viewers;
 	}
 
 }

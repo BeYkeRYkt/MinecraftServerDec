@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntityMinecartChest extends aed {
+public class EntityMinecartChest extends InventoryMinecart {
 
 	public EntityMinecartChest(World var1) {
 		super(var1);

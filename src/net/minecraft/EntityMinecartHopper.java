@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.List;
 
-public class EntityMinecartHopper extends aed implements bdd {
+public class EntityMinecartHopper extends InventoryMinecart implements IHopper {
 
 	private boolean a = true;
 	private int b = -1;
@@ -96,7 +96,7 @@ public class EntityMinecartHopper extends aed implements bdd {
 	}
 
 	public boolean D() {
-		if (TileEntityHopper.a((bdd) this)) {
+		if (TileEntityHopper.a((IHopper) this)) {
 			return true;
 		} else {
 			List var1 = this.world.a(EntityItem.class, this.getBoundingBox().grow(0.25D, 0.0D, 0.25D), EntityPredicates.a);
@@ -138,4 +138,5 @@ public class EntityMinecartHopper extends aed implements bdd {
 	public Container a(PlayerInventory var1, EntityHuman var2) {
 		return new aix(var1, this, var2);
 	}
+
 }

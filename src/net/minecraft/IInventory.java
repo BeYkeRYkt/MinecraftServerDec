@@ -1,35 +1,39 @@
 package net.minecraft;
 
-public interface IInventory extends vz {
+import java.util.List;
 
-	int getSize();
+public interface IInventory extends ICustomNameable {
 
-	ItemStack getItem(int slot);
+	public int getSize();
 
-	ItemStack splitStack(int slot, int splitSize);
+	public ItemStack getItem(int slot);
 
-	ItemStack splitWithoutUpdate(int slot);
+	public ItemStack splitStack(int slot, int splitSize);
 
-	void setItem(int slot, ItemStack itemStack);
+	public ItemStack splitWithoutUpdate(int slot);
 
-	int getMaxStackSize();
+	public void setItem(int slot, ItemStack itemStack);
 
-	void update();
+	public int getMaxStackSize();
 
-	boolean canInteract(EntityHuman who);
+	public void update();
 
-	void onContainerOpen(EntityHuman who);
+	public boolean canInteract(EntityHuman who);
 
-	void onContainerClose(EntityHuman who);
+	public void onContainerOpen(EntityHuman who);
 
-	boolean b(int var1, ItemStack var2);
+	public void onContainerClose(EntityHuman who);
 
-	int getProperty(int propertyNumber);
+	public boolean canSuckItemFromInventory(int slot, ItemStack itemStack);
 
-	void b(int var1, int var2);
+	public int getProperty(int propertyNumber);
 
-	int getPropertiesCount();
+	public void selectBeaconPower(int powerSlot, int powerType);
 
-	void clearInventory();
+	public int getPropertiesCount();
+
+	public void clearInventory();
+
+	public List<EntityHuman> getViewers();
 
 }

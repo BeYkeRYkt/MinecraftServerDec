@@ -22,7 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class PlayerConnection implements PlayInPacketListener, PacketTickable {
+public class PlayerConnection implements PlayInPacketListener, ITickable {
 
 	private static final Logger logger = LogManager.getLogger();
 
@@ -894,8 +894,8 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 					if (slot.hasItem()) {
 						slot.a(1);
 						IInventory inventory = containerBeacon.getInventory();
-						inventory.b(1, i1);
-						inventory.b(2, i2);
+						inventory.selectBeaconPower(1, i1);
+						inventory.selectBeaconPower(2, i2);
 						inventory.update();
 					}
 				} catch (Exception var32) {

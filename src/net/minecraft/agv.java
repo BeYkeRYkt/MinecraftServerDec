@@ -33,6 +33,6 @@ class agv implements agw {
 			var5 = new ItemStack(this.a.getItem(), 1, this.a.getWearout());
 		}
 
-		var1.add(new aqc(var4, var5));
+		var1.add(new MerchantRecipe(var4, var5));
 	}
 }

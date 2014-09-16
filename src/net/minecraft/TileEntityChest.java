@@ -1,9 +1,10 @@
 package net.minecraft;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class TileEntityChest extends bdf implements PacketTickable, IInventory {
+public class TileEntityChest extends TileEntityLockable implements ITickable, IInventory {
 
 	private ItemStack[] m = new ItemStack[27];
 	public boolean a;
@@ -17,6 +18,7 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 	private int n;
 	private int o = -1;
 	private String p;
+	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
 	public int getSize() {
 		return 27;
@@ -287,7 +289,7 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 			this.world.c(this.position, this.getBlock());
 			this.world.c(this.position.b(), this.getBlock());
 		}
-
+		viewers.add(who);
 	}
 
 	public void onContainerClose(EntityHuman who) {
@@ -297,10 +299,10 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 			this.world.c(this.position, this.getBlock());
 			this.world.c(this.position.b(), this.getBlock());
 		}
-
+		viewers.remove(who);
 	}
 
-	public boolean b(int var1, ItemStack var2) {
+	public boolean canSuckItemFromInventory(int var1, ItemStack var2) {
 		return true;
 	}
 
@@ -334,7 +336,7 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 		return 0;
 	}
 
-	public void b(int var1, int var2) {
+	public void selectBeaconPower(int var1, int var2) {
 	}
 
 	public int getPropertiesCount() {
@@ -347,4 +349,10 @@ public class TileEntityChest extends bdf implements PacketTickable, IInventory {
 		}
 
 	}
+
+	@Override
+	public List<EntityHuman> getViewers() {
+		return viewers;
+	}
+
 }
