@@ -2,11 +2,11 @@ package net.minecraft;
 
 public class ContainerChest extends Container {
 
-	private IInventory a;
+	private IInventory inventory;
 	private int f;
 
 	public ContainerChest(IInventory var1, IInventory var2, EntityHuman var3) {
-		this.a = var2;
+		this.inventory = var2;
 		this.f = var2.getSize() / 9;
 		var2.onContainerOpen(var3);
 		int var4 = (this.f - 4) * 18;
@@ -32,7 +32,7 @@ public class ContainerChest extends Container {
 	}
 
 	public boolean a(EntityHuman var1) {
-		return this.a.canInteract(var1);
+		return this.inventory.canInteract(var1);
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {
@@ -61,10 +61,11 @@ public class ContainerChest extends Container {
 
 	public void onClose(EntityHuman var1) {
 		super.onClose(var1);
-		this.a.onContainerClose(var1);
+		this.inventory.onContainerClose(var1);
 	}
 
-	public IInventory e() {
-		return this.a;
+	public IInventory getInventory() {
+		return this.inventory;
 	}
+
 }

@@ -51,7 +51,7 @@ public class Explosion {
 						var6 /= var12;
 						var8 /= var12;
 						var10 /= var12;
-						float var14 = this.i * (0.7F + this.d.s.nextFloat() * 0.6F);
+						float var14 = this.i * (0.7F + this.d.random.nextFloat() * 0.6F);
 						double var15 = this.e;
 						double var17 = this.f;
 						double var19 = this.g;
@@ -119,7 +119,7 @@ public class Explosion {
 	}
 
 	public void a(boolean var1) {
-		this.d.makeSound(this.e, this.f, this.g, "random.explode", 4.0F, (1.0F + (this.d.s.nextFloat() - this.d.s.nextFloat()) * 0.2F) * 0.7F);
+		this.d.makeSound(this.e, this.f, this.g, "random.explode", 4.0F, (1.0F + (this.d.random.nextFloat() - this.d.random.nextFloat()) * 0.2F) * 0.7F);
 		if (this.i >= 2.0F && this.b) {
 			this.d.a(Particle.c, this.e, this.f, this.g, 1.0D, 0.0D, 0.0D, new int[0]);
 		} else {
@@ -135,9 +135,9 @@ public class Explosion {
 				var3 = (Position) var2.next();
 				Block var4 = this.d.getBlockState(var3).getBlock();
 				if (var1) {
-					double var5 = (double) ((float) var3.getX() + this.d.s.nextFloat());
-					double var7 = (double) ((float) var3.getY() + this.d.s.nextFloat());
-					double var9 = (double) ((float) var3.getZ() + this.d.s.nextFloat());
+					double var5 = (double) ((float) var3.getX() + this.d.random.nextFloat());
+					double var7 = (double) ((float) var3.getY() + this.d.random.nextFloat());
+					double var9 = (double) ((float) var3.getZ() + this.d.random.nextFloat());
 					double var11 = var5 - this.e;
 					double var13 = var7 - this.f;
 					double var15 = var9 - this.g;
@@ -146,7 +146,7 @@ public class Explosion {
 					var13 /= var17;
 					var15 /= var17;
 					double var19 = 0.5D / (var17 / (double) this.i + 0.1D);
-					var19 *= (double) (this.d.s.nextFloat() * this.d.s.nextFloat() + 0.3F);
+					var19 *= (double) (this.d.random.nextFloat() * this.d.random.nextFloat() + 0.3F);
 					var11 *= var19;
 					var13 *= var19;
 					var15 *= var19;

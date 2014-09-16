@@ -45,7 +45,7 @@ public class CloneCommand extends AbstractCommand {
 					}
 
 					if (var6.minY >= 0 && var6.maxY < 256 && var7.minY >= 0 && var7.maxY < 256) {
-						World var12 = var1.getPrimaryWorld();
+						World var12 = var1.getWorld();
 						if (var12.a(var6) && var12.a(var7)) {
 							boolean var13 = false;
 							if (var2.length >= 10) {

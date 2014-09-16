@@ -140,7 +140,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	public BiomeMeta a(EnumCreatureType var1, Position var2) {
 		List var3 = this.getChunkProvider().getMobsFor(var1, var2);
-		return var3 != null && !var3.isEmpty() ? (BiomeMeta) vj.a(this.s, var3) : null;
+		return var3 != null && !var3.isEmpty() ? (BiomeMeta) vj.a(this.random, var3) : null;
 	}
 
 	public boolean a(EnumCreatureType var1, BiomeMeta var2, Position var3) {
@@ -235,7 +235,7 @@ public class WorldServer extends World implements ITaskScheduler {
 				this.B.c("thunder");
 				int var8;
 				Position var9;
-				if (this.s.nextInt(100000) == 0 && this.S() && this.R()) {
+				if (this.random.nextInt(100000) == 0 && this.S() && this.R()) {
 					this.m = this.m * 3 + 1013904223;
 					var8 = this.m >> 2;
 					var9 = this.a(new Position(var5 + (var8 & 15), 0, var6 + (var8 >> 8 & 15)));
@@ -245,7 +245,7 @@ public class WorldServer extends World implements ITaskScheduler {
 				}
 
 				this.B.c("iceandsnow");
-				if (this.s.nextInt(16) == 0) {
+				if (this.random.nextInt(16) == 0) {
 					this.m = this.m * 3 + 1013904223;
 					var8 = this.m >> 2;
 					var9 = this.q(new Position(var5 + (var8 & 15), 0, var6 + (var8 >> 8 & 15)));
@@ -284,7 +284,7 @@ public class WorldServer extends World implements ITaskScheduler {
 								Block var20 = var19.getBlock();
 								if (var20.isTicking()) {
 									++var1;
-									var20.a((World) this, var18, var19, this.s);
+									var20.a((World) this, var18, var19, this.random);
 								}
 							}
 						}
@@ -299,7 +299,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		Position var2 = this.q(var1);
 		AxisAlignedBB var3 = (new AxisAlignedBB(var2, new Position(var2.getX(), this.U(), var2.getZ()))).grow(3.0D, 3.0D, 3.0D);
 		List var4 = this.a(EntityLiving.class, var3, new qu(this));
-		return !var4.isEmpty() ? ((EntityLiving) var4.get(this.s.nextInt(var4.size()))).getEntityPosition() : var2;
+		return !var4.isEmpty() ? ((EntityLiving) var4.get(this.random.nextInt(var4.size()))).getEntityPosition() : var2;
 	}
 
 	public boolean a(Position var1, Block var2) {
@@ -320,7 +320,7 @@ public class WorldServer extends World implements ITaskScheduler {
 				if (this.a(var5.position.a(-var6, -var6, -var6), var5.position.a(var6, var6, var6))) {
 					IBlockState var7 = this.getBlockState(var5.position);
 					if (var7.getBlock().getMaterial() != Material.AIR && var7.getBlock() == var5.getBlock()) {
-						var7.getBlock().b((World) this, var5.position, var7, this.s);
+						var7.getBlock().b((World) this, var5.position, var7, this.random);
 					}
 				}
 
@@ -412,7 +412,7 @@ public class WorldServer extends World implements ITaskScheduler {
 						IBlockState var6 = this.getBlockState(var4.position);
 						if (var6.getBlock().getMaterial() != Material.AIR && Block.a(var6.getBlock(), var4.getBlock())) {
 							try {
-								var6.getBlock().b((World) this, var4.position, var6, this.s);
+								var6.getBlock().b((World) this, var4.position, var6, this.random);
 							} catch (Throwable var10) {
 								CrashReport var8 = CrashReport.generateCrashReport(var10, "Exception while ticking a block");
 								CrashReportSystemDetails var9 = var8.generateSystemDetails("Block being ticked");

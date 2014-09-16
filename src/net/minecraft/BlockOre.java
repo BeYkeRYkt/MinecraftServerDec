@@ -32,18 +32,18 @@ public class BlockOre extends Block {
 
 	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		super.a(var1, var2, var3, var4, var5);
-		if (this.a(var3, var1.s, var5) != Item.getItemOf((Block) this)) {
+		if (this.a(var3, var1.random, var5) != Item.getItemOf((Block) this)) {
 			int var6 = 0;
 			if (this == Blocks.COAL_ORE) {
-				var6 = MathHelper.a(var1.s, 0, 2);
+				var6 = MathHelper.a(var1.random, 0, 2);
 			} else if (this == Blocks.DIAMOND_ORE) {
-				var6 = MathHelper.a(var1.s, 3, 7);
+				var6 = MathHelper.a(var1.random, 3, 7);
 			} else if (this == Blocks.EMERALD_ORE) {
-				var6 = MathHelper.a(var1.s, 3, 7);
+				var6 = MathHelper.a(var1.random, 3, 7);
 			} else if (this == Blocks.LAPIS_ORE) {
-				var6 = MathHelper.a(var1.s, 2, 5);
+				var6 = MathHelper.a(var1.random, 2, 5);
 			} else if (this == Blocks.QUARTZ_ORE) {
-				var6 = MathHelper.a(var1.s, 2, 5);
+				var6 = MathHelper.a(var1.random, 2, 5);
 			}
 
 			this.b(var1, var2, var6);

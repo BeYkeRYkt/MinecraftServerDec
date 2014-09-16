@@ -284,7 +284,7 @@ public class BlockFire extends Block {
 			if (!World.a((ard) var1, var2.b()) && !this.e(var1, var2)) {
 				var1.g(var2);
 			} else {
-				var1.a(var2, (Block) this, this.a(var1) + var1.s.nextInt(10));
+				var1.a(var2, (Block) this, this.a(var1) + var1.random.nextInt(10));
 			}
 		}
 	}

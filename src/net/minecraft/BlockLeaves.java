@@ -144,8 +144,8 @@ public abstract class BlockLeaves extends BlockTransparent {
 				}
 			}
 
-			if (var1.s.nextInt(var6) == 0) {
-				Item var7 = this.a(var3, var1.s, var5);
+			if (var1.random.nextInt(var6) == 0) {
+				Item var7 = this.a(var3, var1.random, var5);
 				a(var1, var2, new ItemStack(var7, 1, this.a(var3)));
 			}
 

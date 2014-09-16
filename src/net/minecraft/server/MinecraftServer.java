@@ -202,7 +202,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 					var1 += var5;
 					this.lastTickTime = var48;
 
-					if (getPrimaryWorld().f()) {
+					if (getWorld().f()) {
 						this.doTick();
 						var1 = 0L;
 					} else {
@@ -934,7 +934,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return new Vec3D(0.0D, 0.0D, 0.0D);
 	}
 
-	public WorldServer getPrimaryWorld() {
+	public WorldServer getWorld() {
 		return this.worlds.get(0);
 	}
 

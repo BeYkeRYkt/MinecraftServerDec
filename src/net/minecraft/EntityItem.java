@@ -223,7 +223,7 @@ public class EntityItem extends Entity {
 		}
 
 		NBTCompoundTag var2 = var1.getCompound("Item");
-		this.a(ItemStack.a(var2));
+		this.a(ItemStack.fromNBT(var2));
 		if (this.l() == null) {
 			this.die();
 		}

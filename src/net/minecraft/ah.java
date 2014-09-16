@@ -88,7 +88,7 @@ public class ah {
 	private static List a(CommandSenderInterface var0, Map var1) {
 		ArrayList var2 = Lists.newArrayList();
 		if (h(var1)) {
-			var2.add(var0.getPrimaryWorld());
+			var2.add(var0.getWorld());
 		} else {
 			Collections.addAll(var2, MinecraftServer.getInstance().worlds);
 		}

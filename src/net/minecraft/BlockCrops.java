@@ -36,7 +36,7 @@ public class BlockCrops extends auc implements atz {
 	}
 
 	public void g(World var1, Position var2, IBlockState var3) {
-		int var4 = ((Integer) var3.b(a)).intValue() + MathHelper.a(var1.s, 2, 5);
+		int var4 = ((Integer) var3.b(a)).intValue() + MathHelper.a(var1.random, 2, 5);
 		if (var4 > 7) {
 			var4 = 7;
 		}
@@ -105,7 +105,7 @@ public class BlockCrops extends auc implements atz {
 				int var7 = 3 + var5;
 
 				for (int var8 = 0; var8 < var7; ++var8) {
-					if (var1.s.nextInt(15) <= var6) {
+					if (var1.random.nextInt(15) <= var6) {
 						a(var1, var2, new ItemStack(this.j(), 1, 0));
 					}
 				}

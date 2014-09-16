@@ -168,7 +168,7 @@ public class BlockTripwireHook extends Block {
 		} else if (var3 && !var5) {
 			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.click", 0.4F, 0.7F);
 		} else if (!var3 && var5) {
-			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.bowhit", 0.4F, 1.2F / (var1.s.nextFloat() * 0.2F + 0.9F));
+			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.bowhit", 0.4F, 1.2F / (var1.random.nextFloat() * 0.2F + 0.9F));
 		}
 
 	}
@@ -229,7 +229,7 @@ public class BlockTripwireHook extends Block {
 		return !((Boolean) var3.b(b)).booleanValue() ? 0 : (var3.b(a) == var4 ? 15 : 0);
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 

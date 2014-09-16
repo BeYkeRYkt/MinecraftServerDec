@@ -477,7 +477,7 @@ public class Chunk {
 				if (var10 instanceof avs) {
 					var15 = this.a(position, bfl.c);
 					if (var15 != null) {
-						var15.E();
+						var15.removeBlockData();
 					}
 				}
 
@@ -493,7 +493,7 @@ public class Chunk {
 					}
 
 					if (var15 != null) {
-						var15.E();
+						var15.removeBlockData();
 					}
 				}
 
@@ -613,7 +613,7 @@ public class Chunk {
 			} else if (var2 == bfl.b) {
 				this.w.add(var1);
 			}
-		} else if (var3.x()) {
+		} else if (var3.isInvalid()) {
 			this.tileEntities.remove(var1);
 			return null;
 		}
@@ -630,14 +630,14 @@ public class Chunk {
 	}
 
 	public void a(Position var1, TileEntity var2) {
-		var2.a(this.worldServer);
-		var2.a(var1);
+		var2.setWorld(this.worldServer);
+		var2.setPosition(var1);
 		if (this.getBlockAtWorldCoords(var1) instanceof avs) {
 			if (this.tileEntities.containsKey(var1)) {
-				((TileEntity) this.tileEntities.get(var1)).y();
+				((TileEntity) this.tileEntities.get(var1)).setValid();
 			}
 
-			var2.D();
+			var2.setInvalidate();
 			this.tileEntities.put(var1, var2);
 		}
 	}
@@ -646,7 +646,7 @@ public class Chunk {
 		if (this.h) {
 			TileEntity var2 = (TileEntity) this.tileEntities.remove(var1);
 			if (var2 != null) {
-				var2.y();
+				var2.setValid();
 			}
 		}
 

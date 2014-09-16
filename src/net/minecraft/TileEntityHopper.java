@@ -24,7 +24,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			byte var5 = var4.getByte("Slot");
 			if (var5 >= 0 && var5 < this.a.length) {
-				this.a[var5] = ItemStack.a(var4);
+				this.a[var5] = ItemStack.fromNBT(var4);
 			}
 		}
 
@@ -299,7 +299,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 				}
 			}
 		} else {
-			EntityItem var6 = a(var0.getPrimaryWorld(), var0.A(), var0.B() + 1.0D, var0.C());
+			EntityItem var6 = a(var0.getWorld(), var0.A(), var0.B() + 1.0D, var0.C());
 			if (var6 != null) {
 				return a((IInventory) var0, var6);
 			}
@@ -408,11 +408,11 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 
 	private IInventory G() {
 		BlockFace var1 = BlockHopper.b(this.getBlockData());
-		return b(this.getPrimaryWorld(), (double) (this.position.getX() + var1.g()), (double) (this.position.getY() + var1.h()), (double) (this.position.getZ() + var1.i()));
+		return b(this.getWorld(), (double) (this.position.getX() + var1.g()), (double) (this.position.getY() + var1.h()), (double) (this.position.getZ() + var1.i()));
 	}
 
 	public static IInventory b(IHopper var0) {
-		return b(var0.getPrimaryWorld(), var0.A(), var0.B() + 1.0D, var0.C());
+		return b(var0.getWorld(), var0.A(), var0.B() + 1.0D, var0.C());
 	}
 
 	public static EntityItem a(World var0, double var1, double var3, double var5) {
@@ -440,7 +440,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 		if (var7 == null) {
 			List var14 = var0.getEntities((Entity) null, new AxisAlignedBB(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.c);
 			if (var14.size() > 0) {
-				var7 = (IInventory) var14.get(var0.s.nextInt(var14.size()));
+				var7 = (IInventory) var14.get(var0.random.nextInt(var14.size()));
 			}
 		}
 
@@ -448,7 +448,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 	}
 
 	private static boolean a(ItemStack var0, ItemStack var1) {
-		return var0.getItem() != var1.getItem() ? false : (var0.getWearout() != var1.getWearout() ? false : (var0.amount > var0.getMaxStackSize() ? false : ItemStack.a(var0, var1)));
+		return var0.getItem() != var1.getItem() ? false : (var0.getWearout() != var1.getWearout() ? false : (var0.amount > var0.getMaxStackSize() ? false : ItemStack.isSameNBTTags(var0, var1)));
 	}
 
 	public double A() {
@@ -479,7 +479,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 		return "minecraft:hopper";
 	}
 
-	public Container a(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
 		return new aix(var1, this, var2);
 	}
 

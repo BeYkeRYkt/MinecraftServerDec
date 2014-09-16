@@ -139,7 +139,7 @@ public abstract class aud extends Block {
 		return !((Boolean) var3.b(b)).booleanValue() ? 0 : (var3.b(a) == var4 ? 15 : 0);
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 

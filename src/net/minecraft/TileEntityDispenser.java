@@ -105,7 +105,7 @@ public class TileEntityDispenser extends TileEntityLockable implements IInventor
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			int var5 = var4.getByte("Slot") & 255;
 			if (var5 >= 0 && var5 < this.g.length) {
-				this.g[var5] = ItemStack.a(var4);
+				this.g[var5] = ItemStack.fromNBT(var4);
 			}
 		}
 
@@ -159,7 +159,7 @@ public class TileEntityDispenser extends TileEntityLockable implements IInventor
 		return "minecraft:dispenser";
 	}
 
-	public Container a(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
 		return new aip(var1, this);
 	}
 

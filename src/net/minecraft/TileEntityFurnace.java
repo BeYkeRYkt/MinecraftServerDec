@@ -55,7 +55,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 	}
 
 	public void setItem(int var1, ItemStack var2) {
-		boolean var3 = var2 != null && var2.a(this.h[var1]) && ItemStack.a(var2, this.h[var1]);
+		boolean var3 = var2 != null && var2.a(this.h[var1]) && ItemStack.isSameNBTTags(var2, this.h[var1]);
 		this.h[var1] = var2;
 		if (var2 != null && var2.amount > this.getMaxStackSize()) {
 			var2.amount = this.getMaxStackSize();
@@ -90,7 +90,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			byte var5 = var4.getByte("Slot");
 			if (var5 >= 0 && var5 < this.h.length) {
-				this.h[var5] = ItemStack.a(var4);
+				this.h[var5] = ItemStack.fromNBT(var4);
 			}
 		}
 
@@ -288,7 +288,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 		return "minecraft:furnace";
 	}
 
-	public Container a(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
 		return new aiv(var1, this);
 	}
 

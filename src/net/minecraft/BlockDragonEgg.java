@@ -55,17 +55,17 @@ public class BlockDragonEgg extends Block {
 		IBlockState var3 = var1.getBlockState(var2);
 		if (var3.getBlock() == this) {
 			for (int var4 = 0; var4 < 1000; ++var4) {
-				Position var5 = var2.a(var1.s.nextInt(16) - var1.s.nextInt(16), var1.s.nextInt(8) - var1.s.nextInt(8), var1.s.nextInt(16) - var1.s.nextInt(16));
+				Position var5 = var2.a(var1.random.nextInt(16) - var1.random.nextInt(16), var1.random.nextInt(8) - var1.random.nextInt(8), var1.random.nextInt(16) - var1.random.nextInt(16));
 				if (var1.getBlockState(var5).getBlock().material == Material.AIR) {
 					if (var1.isStatic) {
 						for (int var6 = 0; var6 < 128; ++var6) {
-							double var7 = var1.s.nextDouble();
-							float var9 = (var1.s.nextFloat() - 0.5F) * 0.2F;
-							float var10 = (var1.s.nextFloat() - 0.5F) * 0.2F;
-							float var11 = (var1.s.nextFloat() - 0.5F) * 0.2F;
-							double var12 = (double) var5.getX() + (double) (var2.getX() - var5.getX()) * var7 + (var1.s.nextDouble() - 0.5D) * 1.0D + 0.5D;
-							double var14 = (double) var5.getY() + (double) (var2.getY() - var5.getY()) * var7 + var1.s.nextDouble() * 1.0D - 0.5D;
-							double var16 = (double) var5.getZ() + (double) (var2.getZ() - var5.getZ()) * var7 + (var1.s.nextDouble() - 0.5D) * 1.0D + 0.5D;
+							double var7 = var1.random.nextDouble();
+							float var9 = (var1.random.nextFloat() - 0.5F) * 0.2F;
+							float var10 = (var1.random.nextFloat() - 0.5F) * 0.2F;
+							float var11 = (var1.random.nextFloat() - 0.5F) * 0.2F;
+							double var12 = (double) var5.getX() + (double) (var2.getX() - var5.getX()) * var7 + (var1.random.nextDouble() - 0.5D) * 1.0D + 0.5D;
+							double var14 = (double) var5.getY() + (double) (var2.getY() - var5.getY()) * var7 + var1.random.nextDouble() * 1.0D - 0.5D;
+							double var16 = (double) var5.getZ() + (double) (var2.getZ() - var5.getZ()) * var7 + (var1.random.nextDouble() - 0.5D) * 1.0D + 0.5D;
 							var1.a(Particle.y, var12, var14, var16, (double) var9, (double) var10, (double) var11, new int[0]);
 						}
 					} else {

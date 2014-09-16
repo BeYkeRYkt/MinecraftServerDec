@@ -123,7 +123,7 @@ public class EntityArmorStand extends EntityLiving {
 			NBTListTag var2 = var1.getList("Equipment", 10);
 
 			for (int var3 = 0; var3 < this.g.length; ++var3) {
-				this.g[var3] = ItemStack.a(var2.getCompound(var3));
+				this.g[var3] = ItemStack.fromNBT(var2.getCompound(var3));
 			}
 		}
 

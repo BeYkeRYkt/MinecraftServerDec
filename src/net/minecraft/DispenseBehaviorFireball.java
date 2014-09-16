@@ -11,7 +11,7 @@ final class DispenseBehaviorFireball extends DispenseBehaviorItem {
 		double var7 = var4.getY() + (double) ((float) var3.g() * 0.3F);
 		double var9 = var4.getZ() + (double) ((float) var3.i() * 0.3F);
 		World var11 = var1.i();
-		Random var12 = var11.s;
+		Random var12 = var11.random;
 		double var13 = var12.nextGaussian() * 0.05D + (double) var3.g();
 		double var15 = var12.nextGaussian() * 0.05D + (double) var3.h();
 		double var17 = var12.nextGaussian() * 0.05D + (double) var3.i();

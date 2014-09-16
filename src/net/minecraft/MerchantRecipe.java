@@ -76,11 +76,11 @@ public class MerchantRecipe {
 
 	public void a(NBTCompoundTag var1) {
 		NBTCompoundTag var2 = var1.getCompound("buy");
-		this.a = ItemStack.a(var2);
+		this.a = ItemStack.fromNBT(var2);
 		NBTCompoundTag var3 = var1.getCompound("sell");
-		this.c = ItemStack.a(var3);
+		this.c = ItemStack.fromNBT(var3);
 		if (var1.isTagAssignableFrom("buyB", 10)) {
-			this.b = ItemStack.a(var1.getCompound("buyB"));
+			this.b = ItemStack.fromNBT(var1.getCompound("buyB"));
 		}
 
 		if (var1.isTagAssignableFrom("uses", 99)) {

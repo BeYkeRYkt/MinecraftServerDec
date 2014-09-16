@@ -145,7 +145,7 @@ public class BlockDoor extends Block {
 				}
 			} else {
 				boolean var8 = var1.z(var2) || var1.z(var10);
-				if ((var8 || var4.g()) && var4 != this && var8 != ((Boolean) var7.b(N)).booleanValue()) {
+				if ((var8 || var4.isTrappedChest()) && var4 != this && var8 != ((Boolean) var7.b(N)).booleanValue()) {
 					var1.setBlockAt(var10, var7.a(N, Boolean.valueOf(var8)), 2);
 					if (var8 != ((Boolean) var3.b(b)).booleanValue()) {
 						var1.setBlockAt(var2, var3.a(b, Boolean.valueOf(var8)), 2);

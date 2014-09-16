@@ -43,8 +43,8 @@ public class tc implements CommandSenderInterface {
 		return new Vec3D(0.0D, 0.0D, 0.0D);
 	}
 
-	public World getPrimaryWorld() {
-		return MinecraftServer.getInstance().getPrimaryWorld();
+	public World getWorld() {
+		return MinecraftServer.getInstance().getWorld();
 	}
 
 	public Entity getEntity() {

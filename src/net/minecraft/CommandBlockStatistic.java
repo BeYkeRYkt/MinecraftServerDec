@@ -24,7 +24,7 @@ public class CommandBlockStatistic {
 
 			String var6 = this.d[var2.a()];
 			if (var6 != null) {
-				Scoreboard var7 = var1.getPrimaryWorld().Z();
+				Scoreboard var7 = var1.getWorld().Z();
 				ScoreboardObjective var8 = var7.b(var6);
 				if (var8 != null) {
 					if (var7.b(var5, var8)) {

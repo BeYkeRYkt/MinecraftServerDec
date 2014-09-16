@@ -133,7 +133,7 @@ public class EntityWither extends EntityMonster implements IRangedEntity {
 			double var5 = this.u(var22);
 			double var7 = this.v(var22);
 			this.world.a(Particle.l, var23 + this.random.nextGaussian() * 0.30000001192092896D, var5 + this.random.nextGaussian() * 0.30000001192092896D, var7 + this.random.nextGaussian() * 0.30000001192092896D, 0.0D, 0.0D, 0.0D, new int[0]);
-			if (var21 && this.world.s.nextInt(4) == 0) {
+			if (var21 && this.world.random.nextInt(4) == 0) {
 				this.world.a(Particle.p, var23 + this.random.nextGaussian() * 0.30000001192092896D, var5 + this.random.nextGaussian() * 0.30000001192092896D, var7 + this.random.nextGaussian() * 0.30000001192092896D, 0.699999988079071D, 0.699999988079071D, 0.5D, new int[0]);
 			}
 		}

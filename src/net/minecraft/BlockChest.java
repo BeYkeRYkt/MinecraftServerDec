@@ -8,12 +8,12 @@ public class BlockChest extends atg {
 
 	public static final beu a = beu.a("facing", (Predicate) en.a);
 	private final Random M = new Random();
-	public final int b;
+	public final int chestType;
 
-	protected BlockChest(int var1) {
+	protected BlockChest(int chestType) {
 		super(Material.WOOD);
 		this.setBlockState(this.L.b().a(a, BlockFace.NORTH));
-		this.b = var1;
+		this.chestType = chestType;
 		this.a(CreativeModeTab.DECORATIONS);
 		this.a(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 	}
@@ -98,7 +98,7 @@ public class BlockChest extends atg {
 		if (var5.s()) {
 			TileEntity var15 = var1.getTileEntity(var2);
 			if (var15 instanceof TileEntityChest) {
-				((TileEntityChest) var15).a(var5.q());
+				((TileEntityChest) var15).setCustomName(var5.q());
 			}
 		}
 
@@ -284,7 +284,7 @@ public class BlockChest extends atg {
 		super.a(var1, var2, var3, var4);
 		TileEntity var5 = var1.getTileEntity(var2);
 		if (var5 instanceof TileEntityChest) {
-			var5.E();
+			var5.removeBlockData();
 		}
 
 	}
@@ -352,18 +352,18 @@ public class BlockChest extends atg {
 		return new TileEntityChest();
 	}
 
-	public boolean g() {
-		return this.b == 1;
+	public boolean isTrappedChest() {
+		return this.chestType == 1;
 	}
 
 	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
-		if (!this.g()) {
+		if (!this.isTrappedChest()) {
 			return 0;
 		} else {
 			int var5 = 0;
 			TileEntity var6 = var1.getTileEntity(var2);
 			if (var6 instanceof TileEntityChest) {
-				var5 = ((TileEntityChest) var6).viewersNumber;
+				var5 = ((TileEntityChest) var6).getAllViewersCount();
 			}
 
 			return MathHelper.a(var5, 0, 15);

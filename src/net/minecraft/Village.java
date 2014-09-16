@@ -52,7 +52,7 @@ public class Village {
 		}
 
 		int var2 = this.h / 10;
-		if (this.l < var2 && this.b.size() > 20 && this.a.s.nextInt(7000) == 0) {
+		if (this.l < var2 && this.b.size() > 20 && this.a.random.nextInt(7000) == 0) {
 			Vec3D var3 = this.a(this.d, 2, 4, 2);
 			if (var3 != null) {
 				EntityIronGolem var4 = new EntityIronGolem(this.a);
@@ -66,7 +66,7 @@ public class Village {
 
 	private Vec3D a(Position var1, int var2, int var3, int var4) {
 		for (int var5 = 0; var5 < 10; ++var5) {
-			Position var6 = var1.a(this.a.s.nextInt(16) - 8, this.a.s.nextInt(6) - 3, this.a.s.nextInt(16) - 8);
+			Position var6 = var1.a(this.a.random.nextInt(16) - 8, this.a.random.nextInt(6) - 3, this.a.random.nextInt(16) - 8);
 			if (this.a(var6) && this.a(new Position(var2, var3, var4), var6)) {
 				return new Vec3D((double) var6.getX(), (double) var6.getY(), (double) var6.getZ());
 			}
@@ -276,7 +276,7 @@ public class Village {
 
 	private void m() {
 		boolean var1 = false;
-		boolean var2 = this.a.s.nextInt(50) == 0;
+		boolean var2 = this.a.random.nextInt(50) == 0;
 		Iterator var3 = this.b.iterator();
 
 		while (var3.hasNext()) {

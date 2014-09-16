@@ -10,7 +10,7 @@ public class BlockMinecartTrack extends ati {
 	}
 
 	protected void b(World var1, Position var2, IBlockState var3, Block var4) {
-		if (var4.g() && (new atk(this, var1, var2, var3)).a() == 3) {
+		if (var4.isTrappedChest() && (new atk(this, var1, var2, var3)).a() == 3) {
 			this.a(var1, var2, var3, false);
 		}
 

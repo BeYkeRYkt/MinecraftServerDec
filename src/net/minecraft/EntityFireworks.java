@@ -98,7 +98,7 @@ public class EntityFireworks extends Entity {
 		this.b = var1.getInt("LifeTime");
 		NBTCompoundTag var2 = var1.getCompound("FireworksItem");
 		if (var2 != null) {
-			ItemStack var3 = ItemStack.a(var2);
+			ItemStack var3 = ItemStack.fromNBT(var2);
 			if (var3 != null) {
 				this.dataWatcher.b(8, var3);
 			}

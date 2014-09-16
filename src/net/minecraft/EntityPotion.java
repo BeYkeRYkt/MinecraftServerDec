@@ -99,7 +99,7 @@ public class EntityPotion extends ahr {
 	public void a(NBTCompoundTag var1) {
 		super.a(var1);
 		if (var1.isTagAssignableFrom("Potion", 10)) {
-			this.c = ItemStack.a(var1.getCompound("Potion"));
+			this.c = ItemStack.fromNBT(var1.getCompound("Potion"));
 		} else {
 			this.a(var1.getInt("potionValue"));
 		}

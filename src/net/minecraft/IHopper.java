@@ -2,7 +2,7 @@ package net.minecraft;
 
 public interface IHopper extends IInventory {
 
-	World getPrimaryWorld();
+	World getWorld();
 
 	double A();
 

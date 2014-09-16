@@ -332,7 +332,7 @@ public class PipeServer implements Server {
 		IDataManager datamanager = new ServerNBTManager(Bukkit.getWorldContainer(), creator.name(), true);
 		int dimension = 1337 + worlds.size();
 
-		WorldServer worldServer = new SecondaryWorldServer(MinecraftServer.getInstance(), datamanager, creator.name(), worldSettings, dimension, MinecraftServer.getInstance().getPrimaryWorld(), MinecraftServer.getInstance().profiler).b();
+		WorldServer worldServer = new SecondaryWorldServer(MinecraftServer.getInstance(), datamanager, creator.name(), worldSettings, dimension, MinecraftServer.getInstance().getWorld(), MinecraftServer.getInstance().profiler).b();
 		worldServer.addIWorldAccess(new WorldManager(MinecraftServer.getInstance(), worldServer));
 		worldServer.getWorldData().setGameMode(MinecraftServer.getInstance().getServerGameMode());
 
@@ -513,7 +513,7 @@ public class PipeServer implements Server {
 	@SuppressWarnings("deprecation")
 	@Override
 	public GameMode getDefaultGameMode() {
-		return GameMode.getByValue(MinecraftServer.getInstance().getPrimaryWorld().getWorldData().getGameMode().getId());
+		return GameMode.getByValue(MinecraftServer.getInstance().getWorld().getWorldData().getGameMode().getId());
 	}
 
 	@Override
@@ -646,7 +646,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public OfflinePlayer[] getOfflinePlayers() {
-		WorldNBTStorage storage = (WorldNBTStorage) MinecraftServer.getInstance().getPrimaryWorld().getDataManager();
+		WorldNBTStorage storage = (WorldNBTStorage) MinecraftServer.getInstance().getWorld().getDataManager();
 		String[] files = storage.getPlayerDir().list(new FilenameFilter() {
 			@Override
 			public boolean accept(File dir, String name) {
@@ -783,7 +783,7 @@ public class PipeServer implements Server {
 	@Override
 	public void setDefaultGameMode(GameMode mode) {
 		Validate.notNull(mode, "Mode cannot be null");
-		MinecraftServer.getInstance().getPrimaryWorld().getWorldData().setGameMode(EnumGameMode.getById(mode.getValue()));
+		MinecraftServer.getInstance().getWorld().getWorldData().setGameMode(EnumGameMode.getById(mode.getValue()));
 	}
 
 	@Override

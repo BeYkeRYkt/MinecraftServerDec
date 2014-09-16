@@ -241,7 +241,7 @@ public abstract class EntityInsentient extends EntityLiving {
 			var2 = var1.getList("Equipment", 10);
 
 			for (var3 = 0; var3 < this.bj.length; ++var3) {
-				this.bj[var3] = ItemStack.a(var2.getCompound(var3));
+				this.bj[var3] = ItemStack.fromNBT(var2.getCompound(var3));
 			}
 		}
 

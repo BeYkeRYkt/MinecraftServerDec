@@ -19,7 +19,7 @@ public class BlockMinecartDetector extends ati {
 		return 20;
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 

@@ -133,7 +133,7 @@ public abstract class ath extends Block {
 		return var4 == BlockFace.UP ? this.e(var3) : 0;
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 

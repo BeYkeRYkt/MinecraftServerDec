@@ -200,7 +200,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		NBTListTag var5 = var1.getList("Inventory", 10);
 
 		for (int var3 = 0; var3 < var5.getSize(); ++var3) {
-			ItemStack var4 = ItemStack.a(var5.getCompound(var3));
+			ItemStack var4 = ItemStack.fromNBT(var5.getCompound(var3));
 			if (var4 != null) {
 				this.bz.a(var4);
 			}
@@ -476,7 +476,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		this.setProfession(this.world.s.nextInt(5));
+		this.setProfession(this.world.random.nextInt(5));
 		this.ct();
 		return var2;
 	}

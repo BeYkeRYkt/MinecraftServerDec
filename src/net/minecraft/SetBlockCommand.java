@@ -28,7 +28,7 @@ public class SetBlockCommand extends AbstractCommand {
 				var5 = a(var2[4], 0, 15);
 			}
 
-			World var6 = var1.getPrimaryWorld();
+			World var6 = var1.getWorld();
 			if (!var6.isLoaded(var3)) {
 				throw new di("commands.setblock.outOfWorld", new Object[0]);
 			} else {

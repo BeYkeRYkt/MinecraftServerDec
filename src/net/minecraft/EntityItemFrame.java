@@ -136,7 +136,7 @@ public class EntityItemFrame extends adj {
 	public void a(NBTCompoundTag var1) {
 		NBTCompoundTag var2 = var1.getCompound("Item");
 		if (var2 != null && !var2.isEmpty()) {
-			this.a(ItemStack.a(var2), false);
+			this.a(ItemStack.fromNBT(var2), false);
 			this.a(var1.getByte("ItemRotation"), false);
 			if (var1.isTagAssignableFrom("ItemDropChance", 99)) {
 				this.c = var1.getFloat("ItemDropChance");

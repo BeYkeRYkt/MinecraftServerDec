@@ -69,7 +69,7 @@ public class BlockStem extends auc implements atz {
 	}
 
 	public void g(World var1, Position var2, IBlockState var3) {
-		int var4 = ((Integer) var3.b(a)).intValue() + MathHelper.a(var1.s, 2, 5);
+		int var4 = ((Integer) var3.b(a)).intValue() + MathHelper.a(var1.random, 2, 5);
 		var1.setBlockAt(var2, var3.a(a, Integer.valueOf(Math.min(7, var4))), 2);
 	}
 
@@ -92,7 +92,7 @@ public class BlockStem extends auc implements atz {
 				int var7 = ((Integer) var3.b(a)).intValue();
 
 				for (int var8 = 0; var8 < 3; ++var8) {
-					if (var1.s.nextInt(15) <= var7) {
+					if (var1.random.nextInt(15) <= var7) {
 						a(var1, var2, new ItemStack(var6));
 					}
 				}

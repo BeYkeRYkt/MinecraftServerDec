@@ -516,7 +516,7 @@ public abstract class PlayerList {
 	}
 
 	public void updateWorldData(EntityPlayer var1, WorldServer var2) {
-		WorldBorder var3 = this.minecraftserver.getPrimaryWorld().getWorldBorder();
+		WorldBorder var3 = this.minecraftserver.getWorld().getWorldBorder();
 		var1.playerConnection.sendPacket((Packet) (new PacketPlayOutWorldBorder(var3, WorldBorderAction.INITIALIZE)));
 		var1.playerConnection.sendPacket((Packet) (new PacketPlayOutTimeUpdate(var2.getTime(), var2.L(), var2.getGameRules().b("doDaylightCycle"))));
 		if (var2.S()) {
@@ -534,7 +534,7 @@ public abstract class PlayerList {
 	}
 
 	public String[] r() {
-		return this.minecraftserver.getPrimaryWorld().getDataManager().getPlayerFileData().getSeenPlayers();
+		return this.minecraftserver.getWorld().getDataManager().getPlayerFileData().getSeenPlayers();
 	}
 
 	public boolean s() {

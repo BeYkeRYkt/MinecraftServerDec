@@ -35,8 +35,8 @@ class bdl implements CommandSenderInterface {
 		return new Vec3D((double) this.b.position.getX() + 0.5D, (double) this.b.position.getY() + 0.5D, (double) this.b.position.getZ() + 0.5D);
 	}
 
-	public World getPrimaryWorld() {
-		return this.a.getPrimaryWorld();
+	public World getWorld() {
+		return this.a.getWorld();
 	}
 
 	public Entity getEntity() {

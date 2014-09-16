@@ -15,7 +15,7 @@ public class BlockCocoa extends avb implements atz {
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!this.e(var1, var2, var3)) {
 			this.f(var1, var2, var3);
-		} else if (var1.s.nextInt(5) == 0) {
+		} else if (var1.random.nextInt(5) == 0) {
 			int var5 = ((Integer) var3.b(a)).intValue();
 			if (var5 < 2) {
 				var1.setBlockAt(var2, var3.a(a, Integer.valueOf(var5 + 1)), 2);

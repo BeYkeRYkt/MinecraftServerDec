@@ -63,8 +63,8 @@ public class ItemDye extends Item {
 			atz var4 = (atz) var3.getBlock();
 			if (var4.a(var1, var2, var3, var1.isStatic)) {
 				if (!var1.isStatic) {
-					if (var4.a(var1, var1.s, var2, var3)) {
-						var4.b(var1, var1.s, var2, var3);
+					if (var4.a(var1, var1.random, var2, var3)) {
+						var4.b(var1, var1.random, var2, var3);
 					}
 
 					--var0.amount;

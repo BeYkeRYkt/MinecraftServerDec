@@ -133,7 +133,7 @@ public class BlockSapling extends auc implements atz {
 	}
 
 	public boolean a(World var1, Random var2, Position var3, IBlockState var4) {
-		return (double) var1.s.nextFloat() < 0.45D;
+		return (double) var1.random.nextFloat() < 0.45D;
 	}
 
 	public void b(World var1, Random var2, Position var3, IBlockState var4) {

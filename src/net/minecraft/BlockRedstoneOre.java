@@ -63,15 +63,15 @@ public class BlockRedstoneOre extends Block {
 
 	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		super.a(var1, var2, var3, var4, var5);
-		if (this.a(var3, var1.s, var5) != Item.getItemOf((Block) this)) {
-			int var6 = 1 + var1.s.nextInt(5);
+		if (this.a(var3, var1.random, var5) != Item.getItemOf((Block) this)) {
+			int var6 = 1 + var1.random.nextInt(5);
 			this.b(var1, var2, var6);
 		}
 
 	}
 
 	private void e(World var1, Position var2) {
-		Random var3 = var1.s;
+		Random var3 = var1.random;
 		double var4 = 0.0625D;
 
 		for (int var6 = 0; var6 < 6; ++var6) {

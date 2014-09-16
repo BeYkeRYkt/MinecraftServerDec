@@ -58,7 +58,7 @@ public class EntityMinecartHopper extends InventoryMinecart implements IHopper {
 		this.a = var1;
 	}
 
-	public World getPrimaryWorld() {
+	public World getWorld() {
 		return this.world;
 	}
 
@@ -135,7 +135,7 @@ public class EntityMinecartHopper extends InventoryMinecart implements IHopper {
 		return "minecraft:hopper";
 	}
 
-	public Container a(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
 		return new aix(var1, this, var2);
 	}
 

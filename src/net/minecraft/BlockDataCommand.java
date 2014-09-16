@@ -22,7 +22,7 @@ public class BlockDataCommand extends AbstractCommand {
 		} else {
 			var1.a(ag.b, 0);
 			Position var3 = a(var1, var2, 0, false);
-			World var4 = var1.getPrimaryWorld();
+			World var4 = var1.getWorld();
 			if (!var4.isLoaded(var3)) {
 				throw new di("commands.blockdata.outOfWorld", new Object[0]);
 			} else {

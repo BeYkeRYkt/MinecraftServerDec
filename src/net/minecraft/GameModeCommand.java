@@ -25,7 +25,7 @@ public class GameModeCommand extends AbstractCommand {
 			EntityPlayer var4 = var2.length >= 2 ? a(var1, var2[1]) : b(var1);
 			var4.a(var3);
 			var4.fallDistance = 0.0F;
-			if (var1.getPrimaryWorld().getGameRules().b("sendCommandFeedback")) {
+			if (var1.getWorld().getGameRules().b("sendCommandFeedback")) {
 				var4.sendChatMessage((IChatBaseComponent) (new ChatMessage("gameMode.changed", new Object[0])));
 			}
 

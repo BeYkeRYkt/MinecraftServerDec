@@ -126,7 +126,7 @@ public class EntityOcelot extends xx {
 			if (!this.world.isStatic) {
 				if (this.random.nextInt(3) == 0) {
 					this.m(true);
-					this.r(1 + this.world.s.nextInt(3));
+					this.r(1 + this.world.random.nextInt(3));
 					this.b(var1.getUUID().toString());
 					this.l(true);
 					this.bk.a(true);
@@ -180,7 +180,7 @@ public class EntityOcelot extends xx {
 	}
 
 	public boolean bQ() {
-		return this.world.s.nextInt(3) != 0;
+		return this.world.random.nextInt(3) != 0;
 	}
 
 	public boolean bR() {
@@ -221,7 +221,7 @@ public class EntityOcelot extends xx {
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		if (this.world.s.nextInt(7) == 0) {
+		if (this.world.random.nextInt(7) == 0) {
 			for (int var3 = 0; var3 < 2; ++var3) {
 				EntityOcelot var4 = new EntityOcelot(this.world);
 				var4.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);

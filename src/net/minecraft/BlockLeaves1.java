@@ -11,7 +11,7 @@ public class BlockLeaves1 extends BlockLeaves {
 	}
 
 	protected void a(World var1, Position var2, IBlockState var3, int var4) {
-		if (var3.b(P) == EnumWoodType.a && var1.s.nextInt(var4) == 0) {
+		if (var3.b(P) == EnumWoodType.a && var1.random.nextInt(var4) == 0) {
 			a(var1, var2, new ItemStack(Items.APPLE, 1, 0));
 		}
 

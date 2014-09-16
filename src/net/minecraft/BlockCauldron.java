@@ -139,7 +139,7 @@ public class BlockCauldron extends Block {
 	}
 
 	public void k(World var1, Position var2) {
-		if (var1.s.nextInt(20) == 1) {
+		if (var1.random.nextInt(20) == 1) {
 			IBlockState var3 = var1.getBlockState(var2);
 			if (((Integer) var3.b(a)).intValue() < 3) {
 				var1.setBlockAt(var2, var3.a(a), 2);

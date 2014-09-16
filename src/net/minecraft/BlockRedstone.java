@@ -7,7 +7,7 @@ public class BlockRedstone extends BlockOreBlock {
 		this.a(CreativeModeTab.REDSTONE);
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 

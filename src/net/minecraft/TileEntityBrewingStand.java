@@ -146,7 +146,7 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			byte var5 = var4.getByte("Slot");
 			if (var5 >= 0 && var5 < this.g.length) {
-				this.g[var5] = ItemStack.a(var4);
+				this.g[var5] = ItemStack.fromNBT(var4);
 			}
 		}
 
@@ -257,7 +257,7 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 		return "minecraft:brewing_stand";
 	}
 
-	public Container a(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
 		return new aii(var1, this);
 	}
 

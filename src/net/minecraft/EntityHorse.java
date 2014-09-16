@@ -973,21 +973,21 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 				NBTCompoundTag var6 = var4.getCompound(var5);
 				int var7 = var6.getByte("Slot") & 255;
 				if (var7 >= 2 && var7 < this.bC.getSize()) {
-					this.bC.setItem(var7, ItemStack.a(var6));
+					this.bC.setItem(var7, ItemStack.fromNBT(var6));
 				}
 			}
 		}
 
 		ItemStack var9;
 		if (var1.isTagAssignableFrom("ArmorItem", 10)) {
-			var9 = ItemStack.a(var1.getCompound("ArmorItem"));
+			var9 = ItemStack.fromNBT(var1.getCompound("ArmorItem"));
 			if (var9 != null && a(var9.getItem())) {
 				this.bC.setItem(1, var9);
 			}
 		}
 
 		if (var1.isTagAssignableFrom("SaddleItem", 10)) {
-			var9 = ItemStack.a(var1.getCompound("SaddleItem"));
+			var9 = ItemStack.fromNBT(var1.getCompound("SaddleItem"));
 			if (var9 != null && var9.getItem() == Items.SADDLE) {
 				this.bC.setItem(0, var9);
 			}

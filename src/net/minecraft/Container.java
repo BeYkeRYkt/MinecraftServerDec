@@ -223,7 +223,7 @@ public abstract class Container {
 
 								var16.a(var4, var6.getCarried());
 							} else if (var16.a(var20)) {
-								if (var17.getItem() == var20.getItem() && var17.getWearout() == var20.getWearout() && ItemStack.a(var17, var20)) {
+								if (var17.getItem() == var20.getItem() && var17.getWearout() == var20.getWearout() && ItemStack.isSameNBTTags(var17, var20)) {
 									var21 = var2 == 0 ? var20.amount : 1;
 									if (var21 > var16.b(var20) - var17.amount) {
 										var21 = var16.b(var20) - var17.amount;
@@ -243,7 +243,7 @@ public abstract class Container {
 									var16.d(var20);
 									var6.setCarried(var17);
 								}
-							} else if (var17.getItem() == var20.getItem() && var20.getMaxStackSize() > 1 && (!var17.f() || var17.getWearout() == var20.getWearout()) && ItemStack.a(var17, var20)) {
+							} else if (var17.getItem() == var20.getItem() && var20.getMaxStackSize() > 1 && (!var17.f() || var17.getWearout() == var20.getWearout()) && ItemStack.isSameNBTTags(var17, var20)) {
 								var21 = var17.amount;
 								if (var21 > 0 && var21 + var20.amount <= var20.getMaxStackSize()) {
 									var20.amount += var21;
@@ -387,7 +387,7 @@ public abstract class Container {
 			while (var1.amount > 0 && (!var4 && var6 < var3 || var4 && var6 >= var2)) {
 				var7 = (Slot) this.slots.get(var6);
 				var8 = var7.getItemStack();
-				if (var8 != null && var8.getItem() == var1.getItem() && (!var1.f() || var1.getWearout() == var8.getWearout()) && ItemStack.a(var1, var8)) {
+				if (var8 != null && var8.getItem() == var1.getItem() && (!var1.f() || var1.getWearout() == var8.getWearout()) && ItemStack.isSameNBTTags(var1, var8)) {
 					int var9 = var8.amount + var1.amount;
 					if (var9 <= var1.getMaxStackSize()) {
 						var1.amount = 0;
@@ -458,7 +458,7 @@ public abstract class Container {
 
 	public static boolean a(Slot var0, ItemStack var1, boolean var2) {
 		boolean var3 = var0 == null || !var0.hasItem();
-		if (var0 != null && var0.hasItem() && var1 != null && var1.a(var0.getItemStack()) && ItemStack.a(var0.getItemStack(), var1)) {
+		if (var0 != null && var0.hasItem() && var1 != null && var1.a(var0.getItemStack()) && ItemStack.isSameNBTTags(var0.getItemStack(), var1)) {
 			int var10002 = var2 ? 0 : var1.amount;
 			var3 |= var0.getItemStack().amount + var10002 <= var1.getMaxStackSize();
 		}

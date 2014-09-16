@@ -77,7 +77,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimal {
 	}
 
 	protected int b(EntityHuman var1) {
-		return 1 + this.world.s.nextInt(3);
+		return 1 + this.world.random.nextInt(3);
 	}
 
 	public boolean d(ItemStack var1) {

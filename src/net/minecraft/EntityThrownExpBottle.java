@@ -29,7 +29,7 @@ public class EntityThrownExpBottle extends ahr {
 	protected void a(MovingObjectPosition var1) {
 		if (!this.world.isStatic) {
 			this.world.b(2002, new Position(this), 0);
-			int var2 = 3 + this.world.s.nextInt(5) + this.world.s.nextInt(5);
+			int var2 = 3 + this.world.random.nextInt(5) + this.world.random.nextInt(5);
 
 			while (var2 > 0) {
 				int var3 = EntityExpirienceOrb.a(var2);

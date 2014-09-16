@@ -7,7 +7,34 @@ import java.util.Random;
 
 public final class ItemStack {
 
-	public static final DecimalFormat a = new DecimalFormat("#.###");
+	public static final DecimalFormat format = new DecimalFormat("#.###");
+
+	public static ItemStack fromNBT(NBTCompoundTag tag) {
+		ItemStack itemStack = new ItemStack();
+		itemStack.read(tag);
+		return itemStack.getItem() != null ? itemStack : null;
+	}
+
+	public static boolean isSameNBTTags(ItemStack itemStack1, ItemStack itemStack2) {
+		return itemStack1 == null && itemStack2 == null ? true : (itemStack1 != null && itemStack2 != null ? (itemStack1.tag == null && itemStack2.tag != null ? false : itemStack1.tag == null || itemStack1.tag.equals(itemStack2.tag)) : false);
+	}
+
+	public static boolean matches(ItemStack itemStack1, ItemStack itemStack2) {
+		return itemStack1 == null && itemStack2 == null ? true : (itemStack1 != null && itemStack2 != null ? itemStack1.isSame(itemStack2) : false);
+	}
+
+	private boolean isSame(ItemStack itemStack) {
+		return this.amount != itemStack.amount ? false : (this.item != itemStack.item ? false : (this.wearout != itemStack.wearout ? false : (this.tag == null && itemStack.tag != null ? false : this.tag == null || this.tag.equals(itemStack.tag))));
+	}
+
+	public static boolean c(ItemStack itemStack1, ItemStack itemStack2) {
+		return itemStack1 == null && itemStack2 == null ? true : (itemStack1 != null && itemStack2 != null ? itemStack1.a(itemStack2) : false);
+	}
+
+	public static ItemStack getCopy(ItemStack itemStack) {
+		return itemStack == null ? null : itemStack.getCopy();
+	}
+
 	public int amount;
 	public int c;
 	private Item item;
@@ -51,12 +78,6 @@ public final class ItemStack {
 			this.wearout = 0;
 		}
 
-	}
-
-	public static ItemStack a(NBTCompoundTag var0) {
-		ItemStack var1 = new ItemStack();
-		var1.real(var0);
-		return var1.getItem() != null ? var1 : null;
 	}
 
 	private ItemStack() {
@@ -113,7 +134,7 @@ public final class ItemStack {
 		return tag;
 	}
 
-	public void real(NBTCompoundTag tag) {
+	public void read(NBTCompoundTag tag) {
 		if (tag.isTagAssignableFrom("id", 8)) {
 			this.item = Item.getByName(tag.getString("id"));
 		} else {
@@ -261,21 +282,7 @@ public final class ItemStack {
 		return var1;
 	}
 
-	public static boolean a(ItemStack var0, ItemStack var1) {
-		return var0 == null && var1 == null ? true : (var0 != null && var1 != null ? (var0.tag == null && var1.tag != null ? false : var0.tag == null || var0.tag.equals(var1.tag)) : false);
-	}
 
-	public static boolean matches(ItemStack var0, ItemStack var1) {
-		return var0 == null && var1 == null ? true : (var0 != null && var1 != null ? var0.d(var1) : false);
-	}
-
-	private boolean d(ItemStack var1) {
-		return this.amount != var1.amount ? false : (this.item != var1.item ? false : (this.wearout != var1.wearout ? false : (this.tag == null && var1.tag != null ? false : this.tag == null || this.tag.equals(var1.tag))));
-	}
-
-	public static boolean c(ItemStack var0, ItemStack var1) {
-		return var0 == null && var1 == null ? true : (var0 != null && var1 != null ? var0.a(var1) : false);
-	}
 
 	public boolean a(ItemStack var1) {
 		return var1 != null && this.item == var1.item && this.wearout == var1.wearout;
@@ -283,10 +290,6 @@ public final class ItemStack {
 
 	public String a() {
 		return this.item.getName(this);
-	}
-
-	public static ItemStack b(ItemStack var0) {
-		return var0 == null ? null : var0.getCopy();
 	}
 
 	public String toString() {

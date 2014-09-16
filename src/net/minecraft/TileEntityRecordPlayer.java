@@ -7,7 +7,7 @@ public class TileEntityRecordPlayer extends TileEntity {
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
 		if (var1.isTagAssignableFrom("RecordItem", 10)) {
-			this.a(ItemStack.a(var1.getCompound("RecordItem")));
+			this.a(ItemStack.fromNBT(var1.getCompound("RecordItem")));
 		} else if (var1.getInt("Record") > 0) {
 			this.a(new ItemStack(Item.getById(var1.getInt("Record")), 1, 0));
 		}

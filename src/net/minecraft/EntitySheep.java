@@ -172,7 +172,7 @@ public class EntitySheep extends EntityAnimal {
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		this.b(a(this.world.s));
+		this.b(a(this.world.random));
 		return var2;
 	}
 
@@ -186,7 +186,7 @@ public class EntitySheep extends EntityAnimal {
 		if (var5 != null && var5.getItem() == Items.DYE) {
 			var6 = var5.getWearout();
 		} else {
-			var6 = this.world.s.nextBoolean() ? var3 : var4;
+			var6 = this.world.random.nextBoolean() ? var3 : var4;
 		}
 
 		return akv.a(var6);

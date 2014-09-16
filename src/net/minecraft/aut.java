@@ -22,7 +22,7 @@ public class aut implements vv {
 		return new ChatMessage(Blocks.CRAFTING_TABLE.getName() + ".name", new Object[0]);
 	}
 
-	public Container a(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
 		return new aio(var1, this.a, this.b);
 	}
 

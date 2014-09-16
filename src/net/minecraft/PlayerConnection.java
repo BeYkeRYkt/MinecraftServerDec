@@ -400,7 +400,7 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 
 		if (packetItemStack == null || packetItemStack.l() == 0) {
 			this.player.g = true;
-			this.player.playerInventory.contents[this.player.playerInventory.itemInHandIndex] = ItemStack.b(this.player.playerInventory.contents[this.player.playerInventory.itemInHandIndex]);
+			this.player.playerInventory.contents[this.player.playerInventory.itemInHandIndex] = ItemStack.getCopy(this.player.playerInventory.contents[this.player.playerInventory.itemInHandIndex]);
 			Slot var8 = this.player.activeContainer.a((IInventory) this.player.playerInventory, this.player.playerInventory.itemInHandIndex);
 			this.player.activeContainer.b();
 			this.player.g = false;

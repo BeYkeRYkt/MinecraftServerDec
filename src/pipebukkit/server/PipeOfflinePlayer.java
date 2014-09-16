@@ -30,7 +30,7 @@ public class PipeOfflinePlayer implements OfflinePlayer, ConfigurationSerializab
 
 	public PipeOfflinePlayer(GameProfile profile) {
 		this.profile = profile;
-		this.storage = (WorldNBTStorage) (MinecraftServer.getInstance().getPrimaryWorld().getDataManager());
+		this.storage = (WorldNBTStorage) (MinecraftServer.getInstance().getWorld().getDataManager());
 	}
 
 	@Override

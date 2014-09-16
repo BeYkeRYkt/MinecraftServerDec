@@ -162,7 +162,7 @@ public class BlockVine extends Block {
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!var1.isStatic) {
-			if (var1.s.nextInt(4) == 0) {
+			if (var1.random.nextInt(4) == 0) {
 				byte var5 = 4;
 				int var6 = 5;
 				boolean var7 = false;

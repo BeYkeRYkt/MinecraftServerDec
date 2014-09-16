@@ -407,7 +407,7 @@ public class Block {
 	}
 
 	public boolean t() {
-		return this.material.k() && this.d() && !this.g();
+		return this.material.k() && this.d() && !this.isTrappedChest();
 	}
 
 	public boolean u() {
@@ -540,11 +540,11 @@ public class Block {
 
 	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		if (!var1.isStatic) {
-			int var6 = this.a(var5, var1.s);
+			int var6 = this.a(var5, var1.random);
 
 			for (int var7 = 0; var7 < var6; ++var7) {
-				if (var1.s.nextFloat() <= var4) {
-					Item var8 = this.a(var3, var1.s, var5);
+				if (var1.random.nextFloat() <= var4) {
+					Item var8 = this.a(var3, var1.random, var5);
 					if (var8 != null) {
 						a(var1, var2, new ItemStack(var8, 1, this.a(var3)));
 					}
@@ -557,9 +557,9 @@ public class Block {
 	public static void a(World var0, Position var1, ItemStack var2) {
 		if (!var0.isStatic && var0.getGameRules().b("doTileDrops")) {
 			float var3 = 0.5F;
-			double var4 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
-			double var6 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
-			double var8 = (double) (var0.s.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
+			double var4 = (double) (var0.random.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
+			double var6 = (double) (var0.random.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
+			double var8 = (double) (var0.random.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
 			EntityItem var10 = new EntityItem(var0, (double) var1.getX() + var4, (double) var1.getY() + var6, (double) var1.getZ() + var8, var2);
 			var10.p();
 			var0.addEntity((Entity) var10);
@@ -752,7 +752,7 @@ public class Block {
 		return 0;
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return false;
 	}
 

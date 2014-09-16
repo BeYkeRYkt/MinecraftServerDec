@@ -38,7 +38,7 @@ public class PlayerInventory implements IInventory {
 
 	private int firstPartial(ItemStack var1) {
 		for (int var2 = 0; var2 < this.contents.length; ++var2) {
-			if (this.contents[var2] != null && this.contents[var2].getItem() == var1.getItem() && this.contents[var2].d() && this.contents[var2].amount < this.contents[var2].getMaxStackSize() && this.contents[var2].amount < this.getMaxStackSize() && (!this.contents[var2].f() || this.contents[var2].getWearout() == var1.getWearout()) && ItemStack.a(this.contents[var2], var1)) {
+			if (this.contents[var2] != null && this.contents[var2].getItem() == var1.getItem() && this.contents[var2].d() && this.contents[var2].amount < this.contents[var2].getMaxStackSize() && this.contents[var2].amount < this.getMaxStackSize() && (!this.contents[var2].f() || this.contents[var2].getWearout() == var1.getWearout()) && ItemStack.isSameNBTTags(this.contents[var2], var1)) {
 				return var2;
 			}
 		}
@@ -200,7 +200,7 @@ public class PlayerInventory implements IInventory {
 				if (var1.g()) {
 					var2 = this.getFirstEmptySlot();
 					if (var2 >= 0) {
-						this.contents[var2] = ItemStack.b(var1);
+						this.contents[var2] = ItemStack.getCopy(var1);
 						this.contents[var2].c = 5;
 						var1.amount = 0;
 						return true;
@@ -328,7 +328,7 @@ public class PlayerInventory implements IInventory {
 		for (int var2 = 0; var2 < var1.getSize(); ++var2) {
 			NBTCompoundTag var3 = var1.getCompound(var2);
 			int var4 = var3.getByte("Slot") & 255;
-			ItemStack var5 = ItemStack.a(var3);
+			ItemStack var5 = ItemStack.fromNBT(var3);
 			if (var5 != null) {
 				if (var4 >= 0 && var4 < this.contents.length) {
 					this.contents[var4] = var5;
@@ -481,11 +481,11 @@ public class PlayerInventory implements IInventory {
 	public void b(PlayerInventory var1) {
 		int var2;
 		for (var2 = 0; var2 < this.contents.length; ++var2) {
-			this.contents[var2] = ItemStack.b(var1.contents[var2]);
+			this.contents[var2] = ItemStack.getCopy(var1.contents[var2]);
 		}
 
 		for (var2 = 0; var2 < this.armor.length; ++var2) {
-			this.armor[var2] = ItemStack.b(var1.armor[var2]);
+			this.armor[var2] = ItemStack.getCopy(var1.armor[var2]);
 		}
 
 		this.itemInHandIndex = var1.itemInHandIndex;

@@ -131,7 +131,7 @@ public class WorldBorderCommand extends AbstractCommand {
 	}
 
 	protected WorldBorder d() {
-		return MinecraftServer.getInstance().getPrimaryWorld().getWorldBorder();
+		return MinecraftServer.getInstance().getWorld().getWorldBorder();
 	}
 
 	public List getTabCompleteList(CommandSenderInterface var1, String[] var2, Position var3) {

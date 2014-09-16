@@ -327,7 +327,7 @@ public class EntityZombie extends EntityMonster {
 		float var3 = var1.c();
 		this.j(this.random.nextFloat() < 0.55F * var3);
 		if (var7 == null) {
-			var7 = new agl(this, this.world.s.nextFloat() < 0.05F, this.world.s.nextFloat() < 0.05F, (agk) null);
+			var7 = new agl(this, this.world.random.nextFloat() < 0.05F, this.world.random.nextFloat() < 0.05F, (agk) null);
 		}
 
 		if (var7 instanceof agl) {
@@ -338,14 +338,14 @@ public class EntityZombie extends EntityMonster {
 
 			if (var4.a) {
 				this.l(true);
-				if ((double) this.world.s.nextFloat() < 0.05D) {
+				if ((double) this.world.random.nextFloat() < 0.05D) {
 					List var5 = this.world.a(EntityChicken.class, this.getBoundingBox().grow(5.0D, 3.0D, 5.0D), EntityPredicates.b);
 					if (!var5.isEmpty()) {
 						EntityChicken var6 = (EntityChicken) var5.get(0);
 						var6.l(true);
 						this.mount((Entity) var6);
 					}
-				} else if ((double) this.world.s.nextFloat() < 0.05D) {
+				} else if ((double) this.world.random.nextFloat() < 0.05D) {
 					EntityChicken var10 = new EntityChicken(this.world);
 					var10.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
 					var10.a(var1, (xq) null);

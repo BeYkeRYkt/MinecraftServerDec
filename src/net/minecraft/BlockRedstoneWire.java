@@ -303,11 +303,11 @@ public class BlockRedstoneWire extends Block {
 			BlockFace var3 = (BlockFace) var0.b(BlockRepeater.N);
 			return var3 == var1 || var3.getOpposite() == var1;
 		} else {
-			return var2.g() && var1 != null;
+			return var2.isTrappedChest() && var1 != null;
 		}
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return this.P;
 	}
 

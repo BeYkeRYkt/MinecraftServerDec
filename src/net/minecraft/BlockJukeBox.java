@@ -42,9 +42,9 @@ public class BlockJukeBox extends atg {
 					var1.a(var2, (String) null);
 					var5.a((ItemStack) null);
 					float var7 = 0.7F;
-					double var8 = (double) (var1.s.nextFloat() * var7) + (double) (1.0F - var7) * 0.5D;
-					double var10 = (double) (var1.s.nextFloat() * var7) + (double) (1.0F - var7) * 0.2D + 0.6D;
-					double var12 = (double) (var1.s.nextFloat() * var7) + (double) (1.0F - var7) * 0.5D;
+					double var8 = (double) (var1.random.nextFloat() * var7) + (double) (1.0F - var7) * 0.5D;
+					double var10 = (double) (var1.random.nextFloat() * var7) + (double) (1.0F - var7) * 0.2D + 0.6D;
+					double var12 = (double) (var1.random.nextFloat() * var7) + (double) (1.0F - var7) * 0.5D;
 					ItemStack var14 = var6.getCopy();
 					EntityItem var15 = new EntityItem(var1, (double) var2.getX() + var8, (double) var2.getY() + var10, (double) var2.getZ() + var12, var14);
 					var15.p();

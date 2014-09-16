@@ -36,9 +36,9 @@ public class BlockNetherWart extends auc {
 		if (!var1.isStatic) {
 			int var6 = 1;
 			if (((Integer) var3.b(a)).intValue() >= 3) {
-				var6 = 2 + var1.s.nextInt(3);
+				var6 = 2 + var1.random.nextInt(3);
 				if (var5 > 0) {
-					var6 += var1.s.nextInt(var5 + 1);
+					var6 += var1.random.nextInt(var5 + 1);
 				}
 			}
 

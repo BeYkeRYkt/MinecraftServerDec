@@ -129,7 +129,7 @@ public abstract class InventoryMinecart extends adx implements ILockable {
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			int var5 = var4.getByte("Slot") & 255;
 			if (var5 >= 0 && var5 < this.a.length) {
-				this.a[var5] = ItemStack.a(var4);
+				this.a[var5] = ItemStack.fromNBT(var4);
 			}
 		}
 

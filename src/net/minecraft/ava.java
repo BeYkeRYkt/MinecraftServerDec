@@ -121,7 +121,7 @@ public abstract class ava extends avb {
 		return this.c(var5) ? (var5 == Blocks.REDSTONE_WIRE ? ((Integer) var4.b(BlockRedstoneWire.O)).intValue() : var1.a(var2, var3)) : 0;
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 
@@ -166,7 +166,7 @@ public abstract class ava extends avb {
 	}
 
 	protected boolean c(Block var1) {
-		return var1.g();
+		return var1.isTrappedChest();
 	}
 
 	protected int a(ard var1, Position var2, IBlockState var3) {

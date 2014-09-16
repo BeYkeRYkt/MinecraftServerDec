@@ -82,7 +82,7 @@ public class BlockDaylightDetector extends atg {
 		return 3;
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 

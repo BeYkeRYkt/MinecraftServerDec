@@ -38,7 +38,7 @@ public abstract class World implements ard {
 	protected float q;
 	protected float r;
 	private int I;
-	public final Random s = new Random();
+	public final Random random = new Random();
 	public final WorldProvider worldProvider;
 	protected List<IWorldAccess> u = Lists.newArrayList();
 	protected IChunkProvider chunkProvider;
@@ -60,7 +60,7 @@ public abstract class World implements ard {
 	int[] H;
 
 	protected World(IDataManager var1, String levelName, WorldSettings settings, WorldProvider var3, MethodProfiler var4, boolean var5) {
-		this.K = this.s.nextInt(12000);
+		this.K = this.random.nextInt(12000);
 		this.F = true;
 		this.G = true;
 		this.H = new int['\u8000'];
@@ -1019,7 +1019,7 @@ public abstract class World implements ard {
 
 		while (var10.hasNext()) {
 			TileEntity var11 = (TileEntity) var10.next();
-			if (!var11.x() && var11.t()) {
+			if (!var11.isInvalid() && var11.hasWorld()) {
 				Position var13 = var11.getPosition();
 				if (this.isLoaded(var13) && this.worldborder.isInside(var13)) {
 					try {
@@ -1027,13 +1027,13 @@ public abstract class World implements ard {
 					} catch (Throwable var7) {
 						CrashReport var16 = CrashReport.generateCrashReport(var7, "Ticking block entity");
 						CrashReportSystemDetails var6 = var16.generateSystemDetails("Block entity being ticked");
-						var11.a(var6);
+						var11.addCrashReportDetails(var6);
 						throw new ReportedException(var16);
 					}
 				}
 			}
 
-			if (var11.x()) {
+			if (var11.isInvalid()) {
 				var10.remove();
 				this.h.remove(var11);
 				if (this.isLoaded(var11.getPosition())) {
@@ -1053,7 +1053,7 @@ public abstract class World implements ard {
 		if (!this.a.isEmpty()) {
 			for (int var12 = 0; var12 < this.a.size(); ++var12) {
 				TileEntity var14 = (TileEntity) this.a.get(var12);
-				if (!var14.x()) {
+				if (!var14.isInvalid()) {
 					if (!this.h.contains(var14)) {
 						this.a(var14);
 					}
@@ -1412,7 +1412,7 @@ public abstract class World implements ard {
 			if (this.L) {
 				for (var3 = 0; var3 < this.a.size(); ++var3) {
 					var4 = (TileEntity) this.a.get(var3);
-					if (!var4.x() && var4.getPosition().equals(var1)) {
+					if (!var4.isInvalid() && var4.getPosition().equals(var1)) {
 						var2 = var4;
 						break;
 					}
@@ -1426,7 +1426,7 @@ public abstract class World implements ard {
 			if (var2 == null) {
 				for (var3 = 0; var3 < this.a.size(); ++var3) {
 					var4 = (TileEntity) this.a.get(var3);
-					if (!var4.x() && var4.getPosition().equals(var1)) {
+					if (!var4.isInvalid() && var4.getPosition().equals(var1)) {
 						var2 = var4;
 						break;
 					}
@@ -1438,15 +1438,15 @@ public abstract class World implements ard {
 	}
 
 	public void a(Position var1, TileEntity var2) {
-		if (var2 != null && !var2.x()) {
+		if (var2 != null && !var2.isInvalid()) {
 			if (this.L) {
-				var2.a(var1);
+				var2.setPosition(var1);
 				Iterator var3 = this.a.iterator();
 
 				while (var3.hasNext()) {
 					TileEntity var4 = (TileEntity) var3.next();
 					if (var4.getPosition().equals(var1)) {
-						var4.y();
+						var4.setValid();
 						var3.remove();
 					}
 				}
@@ -1463,7 +1463,7 @@ public abstract class World implements ard {
 	public void t(Position var1) {
 		TileEntity var2 = this.getTileEntity(var1);
 		if (var2 != null && this.L) {
-			var2.y();
+			var2.setValid();
 			this.a.remove(var2);
 		} else {
 			if (var2 != null) {
@@ -1548,9 +1548,9 @@ public abstract class World implements ard {
 				int var2 = this.worldData.getThunderTime();
 				if (var2 <= 0) {
 					if (this.worldData.isThundering()) {
-						this.worldData.setThunderTime(this.s.nextInt(12000) + 3600);
+						this.worldData.setThunderTime(this.random.nextInt(12000) + 3600);
 					} else {
-						this.worldData.setThunderTime(this.s.nextInt(168000) + 12000);
+						this.worldData.setThunderTime(this.random.nextInt(168000) + 12000);
 					}
 				} else {
 					--var2;
@@ -1571,9 +1571,9 @@ public abstract class World implements ard {
 				int var3 = this.worldData.getRainTime();
 				if (var3 <= 0) {
 					if (this.worldData.isRaining()) {
-						this.worldData.setRainTime(this.s.nextInt(12000) + 12000);
+						this.worldData.setRainTime(this.random.nextInt(12000) + 12000);
 					} else {
-						this.worldData.setRainTime(this.s.nextInt(168000) + 12000);
+						this.worldData.setRainTime(this.random.nextInt(168000) + 12000);
 					}
 				} else {
 					--var3;
@@ -1624,11 +1624,11 @@ public abstract class World implements ard {
 
 		this.B.a("playerCheckLight");
 		if (!this.j.isEmpty()) {
-			var1 = this.s.nextInt(this.j.size());
+			var1 = this.random.nextInt(this.j.size());
 			var2 = (EntityHuman) this.j.get(var1);
-			var3 = MathHelper.toFixedPointInt(var2.locationX) + this.s.nextInt(11) - 5;
-			var4 = MathHelper.toFixedPointInt(var2.locationY) + this.s.nextInt(11) - 5;
-			var5 = MathHelper.toFixedPointInt(var2.locationZ) + this.s.nextInt(11) - 5;
+			var3 = MathHelper.toFixedPointInt(var2.locationX) + this.random.nextInt(11) - 5;
+			var4 = MathHelper.toFixedPointInt(var2.locationY) + this.random.nextInt(11) - 5;
+			var5 = MathHelper.toFixedPointInt(var2.locationZ) + this.random.nextInt(11) - 5;
 			this.x(new Position(var3, var4, var5));
 		}
 
@@ -1649,11 +1649,11 @@ public abstract class World implements ard {
 			Block var9 = var3.getBlockAtWorldCoords(var8);
 			var5 += var1;
 			var6 += var2;
-			if (var9.getMaterial() == Material.AIR && this.k(var8) <= this.s.nextInt(8) && this.b(EnumSkyBlock.SKY, var8) <= 0) {
+			if (var9.getMaterial() == Material.AIR && this.k(var8) <= this.random.nextInt(8) && this.b(EnumSkyBlock.SKY, var8) <= 0) {
 				EntityHuman var10 = this.a((double) var5 + 0.5D, (double) var7 + 0.5D, (double) var6 + 0.5D, 8.0D);
 				if (var10 != null && var10.getDistanceSquared((double) var5 + 0.5D, (double) var7 + 0.5D, (double) var6 + 0.5D) > 4.0D) {
-					this.makeSound((double) var5 + 0.5D, (double) var7 + 0.5D, (double) var6 + 0.5D, "ambient.cave.cave", 0.7F, 0.8F + this.s.nextFloat() * 0.2F);
-					this.K = this.s.nextInt(12000) + 6000;
+					this.makeSound((double) var5 + 0.5D, (double) var7 + 0.5D, (double) var6 + 0.5D, "ambient.cave.cave", 0.7F, 0.8F + this.random.nextFloat() * 0.2F);
+					this.K = this.random.nextInt(12000) + 6000;
 				}
 			}
 		}
@@ -2325,8 +2325,8 @@ public abstract class World implements ard {
 
 	public Random a(int var1, int var2, int var3) {
 		long var4 = (long) var1 * 341873128712L + (long) var2 * 132897987541L + this.getWorldData().getSeed() + (long) var3;
-		this.s.setSeed(var4);
-		return this.s;
+		this.random.setSeed(var4);
+		return this.random;
 	}
 
 	public Position a(String var1, Position var2) {

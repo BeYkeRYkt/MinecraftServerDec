@@ -71,7 +71,7 @@ public class BlockFurnace extends atg {
 
 		M = false;
 		if (var4 != null) {
-			var4.D();
+			var4.setInvalidate();
 			var1.a(var2, var4);
 		}
 

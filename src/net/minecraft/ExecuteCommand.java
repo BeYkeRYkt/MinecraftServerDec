@@ -28,7 +28,7 @@ public class ExecuteCommand extends AbstractCommand {
 			Position var10 = new Position(var4, var6, var8);
 			byte var11 = 4;
 			if ("detect".equals(var2[4]) && var2.length > 10) {
-				World var12 = var1.getPrimaryWorld();
+				World var12 = var1.getWorld();
 				double var13 = b(var4, var2[5], false);
 				double var15 = b(var6, var2[6], false);
 				double var17 = b(var8, var2[7], false);

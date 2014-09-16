@@ -648,7 +648,7 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	public void b(ItemStack var1) {
-		this.a("random.break", 0.8F, 0.8F + this.world.s.nextFloat() * 0.4F);
+		this.a("random.break", 0.8F, 0.8F + this.world.random.nextFloat() * 0.4F);
 
 		for (int var2 = 0; var2 < 5; ++var2) {
 			Vec3D var3 = new Vec3D(((double) this.random.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D);

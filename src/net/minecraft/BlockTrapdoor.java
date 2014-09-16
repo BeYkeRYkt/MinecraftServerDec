@@ -95,7 +95,7 @@ public class BlockTrapdoor extends Block {
 				this.b(var1, var2, var3, 0);
 			} else {
 				boolean var6 = var1.z(var2);
-				if (var6 || var4.g()) {
+				if (var6 || var4.isTrappedChest()) {
 					boolean var7 = ((Boolean) var3.b(b)).booleanValue();
 					if (var7 != var6) {
 						var1.setBlockAt(var2, var3.a(b, Boolean.valueOf(var6)), 2);

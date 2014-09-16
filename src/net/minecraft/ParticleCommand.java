@@ -62,7 +62,7 @@ public class ParticleCommand extends AbstractCommand {
 					var22 = true;
 				}
 
-				World var23 = var1.getPrimaryWorld();
+				World var23 = var1.getWorld();
 				if (var23 instanceof WorldServer) {
 					WorldServer var24 = (WorldServer) var23;
 					int[] var25 = new int[var4.d()];

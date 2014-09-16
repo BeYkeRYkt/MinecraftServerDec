@@ -70,24 +70,24 @@ public abstract class TileEntity {
 	
 	protected World world;
 	protected Position position;
-	protected boolean d;
+	protected boolean invalid;
 	private int blockData;
-	protected Block chestBlock;
+	protected Block block;
 
 	public TileEntity() {
 		this.position = Position.ZERO;
 		this.blockData = -1;
 	}
 
-	public World getPrimaryWorld() {
+	public World getWorld() {
 		return this.world;
 	}
 
-	public void a(World var1) {
+	public void setWorld(World var1) {
 		this.world = var1;
 	}
 
-	public boolean t() {
+	public boolean hasWorld() {
 		return this.world != null;
 	}
 
@@ -132,55 +132,54 @@ public abstract class TileEntity {
 		return this.position;
 	}
 
-	public Block getBlock() {
-		if (this.chestBlock == null) {
-			this.chestBlock = this.world.getBlockState(this.position).getBlock();
-		}
+	public void setPosition(Position position) {
+		this.position = position;
+	}
 
-		return this.chestBlock;
+	public Block getBlock() {
+		if (this.block == null) {
+			this.block = this.world.getBlockState(this.position).getBlock();
+		}
+		return this.block;
 	}
 
 	public Packet<?> getUpdatePacket() {
 		return null;
 	}
 
-	public boolean x() {
-		return this.d;
+	public boolean isInvalid() {
+		return this.invalid;
 	}
 
-	public void y() {
-		this.d = true;
+	public void setValid() {
+		this.invalid = true;
 	}
 
-	public void D() {
-		this.d = false;
+	public void setInvalidate() {
+		this.invalid = false;
 	}
 
 	public boolean c(int var1, int var2) {
 		return false;
 	}
 
-	public void E() {
-		this.chestBlock = null;
+	public void removeBlockData() {
+		this.block = null;
 		this.blockData = -1;
 	}
 
-	public void a(CrashReportSystemDetails var1) {
-		var1.addDetails("Name", new Callable<String>() {
+	public void addCrashReportDetails(CrashReportSystemDetails details) {
+		details.addDetails("Name", new Callable<String>() {
 			@Override
 			public String call() throws Exception {
 				return (String) classToName.get(getClass()) + " // " + getClass().getCanonicalName();
 			}
 		});
 		if (this.world != null) {
-			CrashReportSystemDetails.a(var1, this.position, this.getBlock(), this.getBlockData());
-			var1.addDetails("Actual block type", (Callable<?>) (new bco(this)));
-			var1.addDetails("Actual block data value", (Callable<?>) (new bcp(this)));
+			CrashReportSystemDetails.a(details, this.position, this.getBlock(), this.getBlockData());
+			details.addDetails("Actual block type", (Callable<?>) (new bco(this)));
+			details.addDetails("Actual block data value", (Callable<?>) (new bcp(this)));
 		}
-	}
-
-	public void a(Position var1) {
-		this.position = var1;
 	}
 
 }

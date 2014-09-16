@@ -35,7 +35,7 @@ public class EntityMinecartChest extends InventoryMinecart {
 		return "minecraft:chest";
 	}
 
-	public Container a(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
 		return new ContainerChest(var1, this, var2);
 	}
 }

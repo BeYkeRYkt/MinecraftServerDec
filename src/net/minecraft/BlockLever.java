@@ -158,7 +158,7 @@ public class BlockLever extends Block {
 		return !((Boolean) var3.b(b)).booleanValue() ? 0 : (((axk) var3.b(a)).c() == var4 ? 15 : 0);
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 

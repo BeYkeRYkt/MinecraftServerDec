@@ -30,7 +30,7 @@ public class BlockTNT extends Block {
 	public void a(World var1, Position var2, Explosion var3) {
 		if (!var1.isStatic) {
 			EntityTNTPrimed var4 = new EntityTNTPrimed(var1, (double) ((float) var2.getX() + 0.5F), (double) ((float) var2.getY() + 0.5F), (double) ((float) var2.getZ() + 0.5F), var3.c());
-			var4.a = var1.s.nextInt(var4.a / 4) + var4.a / 8;
+			var4.a = var1.random.nextInt(var4.a / 4) + var4.a / 8;
 			var1.addEntity((Entity) var4);
 		}
 	}

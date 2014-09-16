@@ -481,7 +481,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	public void a(vv var1) {
 		this.cr();
 		this.playerConnection.sendPacket((Packet) (new PacketPlayOutOpenWindow(this.bT, var1.getInventoryType(), var1.getComponentName())));
-		this.activeContainer = var1.a(this.playerInventory, this);
+		this.activeContainer = var1.getContainer(this.playerInventory, this);
 		this.activeContainer.windowId = this.bT;
 		this.activeContainer.addSlotListener((ICrafting) this);
 	}
@@ -503,7 +503,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		this.cr();
 		if (var1 instanceof vv) {
 			this.playerConnection.sendPacket((Packet) (new PacketPlayOutOpenWindow(this.bT, ((vv) var1).getInventoryType(), var1.getComponentName(), var1.getSize())));
-			this.activeContainer = ((vv) var1).a(this.playerInventory, this);
+			this.activeContainer = ((vv) var1).getContainer(this.playerInventory, this);
 		} else {
 			this.playerConnection.sendPacket((Packet) (new PacketPlayOutOpenWindow(this.bT, "minecraft:container", var1.getComponentName(), var1.getSize())));
 			this.activeContainer = new ContainerChest(this.playerInventory, var1, this);

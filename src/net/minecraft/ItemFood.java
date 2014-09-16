@@ -27,14 +27,14 @@ public class ItemFood extends Item {
 	public ItemStack b(ItemStack var1, World var2, EntityHuman var3) {
 		--var1.amount;
 		var3.ck().a(this, var1);
-		var2.a((Entity) var3, "random.burp", 0.5F, var2.s.nextFloat() * 0.1F + 0.9F);
+		var2.a((Entity) var3, "random.burp", 0.5F, var2.random.nextFloat() * 0.1F + 0.9F);
 		this.c(var1, var2, var3);
 		var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
 		return var1;
 	}
 
 	protected void c(ItemStack var1, World var2, EntityHuman var3) {
-		if (!var2.isStatic && this.l > 0 && var2.s.nextFloat() < this.o) {
+		if (!var2.isStatic && this.l > 0 && var2.random.nextFloat() < this.o) {
 			var3.c(new MobEffect(this.l, this.m * 20, this.n));
 		}
 

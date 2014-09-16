@@ -22,7 +22,7 @@ public class InventoryEnderChest extends InventorySubcontainer {
 			NBTCompoundTag var3 = var1.getCompound(var2);
 			int var4 = var3.getByte("Slot") & 255;
 			if (var4 >= 0 && var4 < this.getSize()) {
-				this.setItem(var4, ItemStack.a(var3));
+				this.setItem(var4, ItemStack.fromNBT(var3));
 			}
 		}
 

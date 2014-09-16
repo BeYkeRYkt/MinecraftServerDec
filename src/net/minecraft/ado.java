@@ -390,7 +390,7 @@ public class ado extends Entity {
 	}
 
 	private ItemStack m() {
-		float var1 = this.world.s.nextFloat();
+		float var1 = this.world.random.nextFloat();
 		int var2 = aph.g(this.b);
 		int var3 = aph.h(this.b);
 		float var4 = 0.1F - (float) var2 * 0.025F - (float) var3 * 0.01F;

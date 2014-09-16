@@ -37,7 +37,7 @@ public class ItemArmorStand extends Item {
 							EntityArmorStand var20 = new EntityArmorStand(var3, var13 + 0.5D, var15, var17 + 0.5D);
 							float var21 = (float) MathHelper.d((MathHelper.g(var2.yaw - 180.0F) + 22.5F) / 45.0F) * 45.0F;
 							var20.setPositionRotation(var13 + 0.5D, var15, var17 + 0.5D, var21, 0.0F);
-							this.a(var20, var3.s);
+							this.a(var20, var3.random);
 							NBTCompoundTag var22 = var1.getTag();
 							if (var22 != null && var22.isTagAssignableFrom("EntityTag", 10)) {
 								NBTCompoundTag var23 = new NBTCompoundTag();

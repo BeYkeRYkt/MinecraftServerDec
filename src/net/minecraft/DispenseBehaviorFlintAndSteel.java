@@ -9,7 +9,7 @@ final class DispenseBehaviorFlintAndSteel extends DispenseBehaviorItem {
 		Position var4 = var1.d().getRelative(BlockDispenser.b(var1.f()));
 		if (var3.d(var4)) {
 			var3.a(var4, Blocks.FIRE.getBlockState());
-			if (var2.a(1, var3.s)) {
+			if (var2.a(1, var3.random)) {
 				var2.amount = 0;
 			}
 		} else if (var3.getBlockState(var4).getBlock() == Blocks.TNT) {

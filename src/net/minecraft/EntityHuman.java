@@ -231,7 +231,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 	protected void b(ItemStack var1, int var2) {
 		if (var1.m() == ano.c) {
-			this.a("random.drink", 0.5F, this.world.s.nextFloat() * 0.1F + 0.9F);
+			this.a("random.drink", 0.5F, this.world.random.nextFloat() * 0.1F + 0.9F);
 		}
 
 		if (var1.m() == ano.b) {
@@ -1482,7 +1482,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public boolean t_() {
-		return MinecraftServer.getInstance().getPrimaryWorld().getGameRules().b("sendCommandFeedback");
+		return MinecraftServer.getInstance().getWorld().getGameRules().b("sendCommandFeedback");
 	}
 
 	public boolean d(int var1, ItemStack var2) {

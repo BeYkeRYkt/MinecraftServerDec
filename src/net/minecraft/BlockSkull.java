@@ -142,7 +142,7 @@ public class BlockSkull extends atg {
 
 				int var16;
 				for (var16 = 0; var16 < 120; ++var16) {
-					var1.a(Particle.F, (double) var12.getX() + var1.s.nextDouble(), (double) (var12.getY() - 2) + var1.s.nextDouble() * 3.9D, (double) var12.getZ() + var1.s.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
+					var1.a(Particle.F, (double) var12.getX() + var1.random.nextDouble(), (double) (var12.getY() - 2) + var1.random.nextDouble() * 3.9D, (double) var12.getZ() + var1.random.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
 				}
 
 				for (var16 = 0; var16 < var4.c(); ++var16) {
