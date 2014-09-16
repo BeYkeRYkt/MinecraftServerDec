@@ -507,7 +507,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 		for (int var8 = 0; var8 < this.h.size(); ++var8) {
 			TileEntity var9 = (TileEntity) this.h.get(var8);
-			Position var10 = var9.v();
+			Position var10 = var9.getPosition();
 			if (var10.getX() >= var1 && var10.getY() >= var2 && var10.getZ() >= var3 && var10.getX() < var4 && var10.getY() < var5 && var10.getZ() < var6) {
 				var7.add(var9);
 			}

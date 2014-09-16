@@ -622,7 +622,7 @@ public class Chunk {
 	}
 
 	public void a(TileEntity var1) {
-		this.a(var1.v(), var1);
+		this.a(var1.getPosition(), var1);
 		if (this.h) {
 			this.worldServer.a(var1);
 		}
@@ -942,7 +942,7 @@ public class Chunk {
 
 					for (int var11 = 0; var11 < var10; ++var11) {
 						BlockFace var12 = var9[var11];
-						Position var13 = var7.a(var12);
+						Position var13 = var7.getRelative(var12);
 						if (this.worldServer.getBlockState(var13).getBlock().p() > 0) {
 							this.worldServer.x(var13);
 						}

@@ -389,7 +389,7 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 
 		if (update) {
 			this.player.playerConnection.sendPacket(new PacketPlayOutBlockChange(worldServer, position));
-			this.player.playerConnection.sendPacket(new PacketPlayOutBlockChange(worldServer, position.a(blockFace)));
+			this.player.playerConnection.sendPacket(new PacketPlayOutBlockChange(worldServer, position.getRelative(blockFace)));
 		}
 
 		packetItemStack = this.player.playerInventory.getItemInHand();

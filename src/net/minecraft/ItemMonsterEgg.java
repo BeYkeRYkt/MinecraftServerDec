@@ -20,7 +20,7 @@ public class ItemMonsterEgg extends Item {
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var3.isStatic) {
 			return true;
-		} else if (!var2.a(var4.a(var5), var5, var1)) {
+		} else if (!var2.a(var4.getRelative(var5), var5, var1)) {
 			return false;
 		} else {
 			IBlockState var9 = var3.getBlockState(var4);
@@ -39,7 +39,7 @@ public class ItemMonsterEgg extends Item {
 				}
 			}
 
-			var4 = var4.a(var5);
+			var4 = var4.getRelative(var5);
 			double var13 = 0.0D;
 			if (var5 == BlockFace.UP && var9 instanceof BlockFence) {
 				var13 = 0.5D;

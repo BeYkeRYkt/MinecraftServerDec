@@ -4,7 +4,7 @@ final class DispenseBehaviorCommandBlock extends DispenseBehaviorItem {
 
 	protected ItemStack b(ISourceBlock var1, ItemStack var2) {
 		World var3 = var1.i();
-		Position var4 = var1.d().a(BlockDispenser.b(var1.f()));
+		Position var4 = var1.d().getRelative(BlockDispenser.b(var1.f()));
 		if (var3.d(var4)) {
 			if (!var3.isStatic) {
 				IBlockState var5 = Blocks.COMMAND_BLOCK.getBlockState().a(BlockCommand.a, Boolean.valueOf(false));

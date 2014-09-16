@@ -1020,7 +1020,7 @@ public abstract class World implements ard {
 		while (var10.hasNext()) {
 			TileEntity var11 = (TileEntity) var10.next();
 			if (!var11.x() && var11.t()) {
-				Position var13 = var11.v();
+				Position var13 = var11.getPosition();
 				if (this.isLoaded(var13) && this.worldborder.isInside(var13)) {
 					try {
 						((ITickable) var11).doTick();
@@ -1036,8 +1036,8 @@ public abstract class World implements ard {
 			if (var11.x()) {
 				var10.remove();
 				this.h.remove(var11);
-				if (this.isLoaded(var11.v())) {
-					this.getChunk(var11.v()).e(var11.v());
+				if (this.isLoaded(var11.getPosition())) {
+					this.getChunk(var11.getPosition()).e(var11.getPosition());
 				}
 			}
 		}
@@ -1058,11 +1058,11 @@ public abstract class World implements ard {
 						this.a(var14);
 					}
 
-					if (this.isLoaded(var14.v())) {
-						this.getChunk(var14.v()).a(var14.v(), var14);
+					if (this.isLoaded(var14.getPosition())) {
+						this.getChunk(var14.getPosition()).a(var14.getPosition(), var14);
 					}
 
-					this.notify(var14.v());
+					this.notify(var14.getPosition());
 				}
 			}
 
@@ -1392,7 +1392,7 @@ public abstract class World implements ard {
 	}
 
 	public boolean a(EntityHuman var1, Position var2, BlockFace var3) {
-		var2 = var2.a(var3);
+		var2 = var2.getRelative(var3);
 		if (this.getBlockState(var2).getBlock() == Blocks.FIRE) {
 			this.a(var1, 1004, var2, 0);
 			this.g(var2);
@@ -1412,7 +1412,7 @@ public abstract class World implements ard {
 			if (this.L) {
 				for (var3 = 0; var3 < this.a.size(); ++var3) {
 					var4 = (TileEntity) this.a.get(var3);
-					if (!var4.x() && var4.v().equals(var1)) {
+					if (!var4.x() && var4.getPosition().equals(var1)) {
 						var2 = var4;
 						break;
 					}
@@ -1426,7 +1426,7 @@ public abstract class World implements ard {
 			if (var2 == null) {
 				for (var3 = 0; var3 < this.a.size(); ++var3) {
 					var4 = (TileEntity) this.a.get(var3);
-					if (!var4.x() && var4.v().equals(var1)) {
+					if (!var4.x() && var4.getPosition().equals(var1)) {
 						var2 = var4;
 						break;
 					}
@@ -1445,7 +1445,7 @@ public abstract class World implements ard {
 
 				while (var3.hasNext()) {
 					TileEntity var4 = (TileEntity) var3.next();
-					if (var4.v().equals(var1)) {
+					if (var4.getPosition().equals(var1)) {
 						var4.y();
 						var3.remove();
 					}
@@ -1763,7 +1763,7 @@ public abstract class World implements ard {
 
 				for (int var8 = 0; var8 < var7; ++var8) {
 					BlockFace var9 = var6[var8];
-					Position var10 = var1.a(var9);
+					Position var10 = var1.getRelative(var9);
 					int var11 = this.b(var2, var10) - var5;
 					if (var11 > var4) {
 						var4 = var11;
@@ -2005,7 +2005,6 @@ public abstract class World implements ard {
 		if (this.isLoaded(var1)) {
 			this.getChunk(var1).e();
 		}
-
 	}
 
 	public int a(Class var1) {
@@ -2104,7 +2103,7 @@ public abstract class World implements ard {
 
 		for (int var5 = 0; var5 < var4; ++var5) {
 			BlockFace var6 = var3[var5];
-			int var7 = this.c(var1.a(var6), var6);
+			int var7 = this.c(var1.getRelative(var6), var6);
 			if (var7 >= 15) {
 				return 15;
 			}
@@ -2374,13 +2373,13 @@ public abstract class World implements ard {
 
 		while (var3.hasNext()) {
 			BlockFace var4 = (BlockFace) var3.next();
-			Position var5 = var1.a(var4);
+			Position var5 = var1.getRelative(var4);
 			if (this.isLoaded(var5)) {
 				IBlockState var6 = this.getBlockState(var5);
 				if (Blocks.UNPOWERED_COMPARATOR.e(var6.getBlock())) {
 					var6.getBlock().a(this, var5, var6, var2);
 				} else if (var6.getBlock().t()) {
-					var5 = var5.a(var4);
+					var5 = var5.getRelative(var4);
 					var6 = this.getBlockState(var5);
 					if (Blocks.UNPOWERED_COMPARATOR.e(var6.getBlock())) {
 						var6.getBlock().a(this, var5, var6, var2);

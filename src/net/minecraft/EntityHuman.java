@@ -1337,7 +1337,7 @@ public abstract class EntityHuman extends EntityLiving {
 		} else if (var3 == null) {
 			return false;
 		} else {
-			Position var4 = var1.a(var2.getOpposite());
+			Position var4 = var1.getRelative(var2.getOpposite());
 			Block var5 = this.world.getBlockState(var4).getBlock();
 			return var3.d(var5) || var3.x();
 		}

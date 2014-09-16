@@ -471,7 +471,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void a(TileEntitySign var1) {
 		var1.a((EntityHuman) this);
-		this.playerConnection.sendPacket((Packet) (new PacketPlayOutSignEditorOpen(var1.v())));
+		this.playerConnection.sendPacket((Packet) (new PacketPlayOutSignEditorOpen(var1.getPosition())));
 	}
 
 	private void cr() {

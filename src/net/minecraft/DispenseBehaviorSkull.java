@@ -10,7 +10,7 @@ final class DispenseBehaviorSkull extends DispenseBehaviorItem {
 	protected ItemStack b(ISourceBlock var1, ItemStack var2) {
 		World var3 = var1.i();
 		BlockFace var4 = BlockDispenser.b(var1.f());
-		Position var5 = var1.d().a(var4);
+		Position var5 = var1.d().getRelative(var4);
 		BlockSkull var6 = Blocks.SKULL;
 		if (var3.d(var5) && var6.b(var3, var5, var2)) {
 			if (!var3.isStatic) {

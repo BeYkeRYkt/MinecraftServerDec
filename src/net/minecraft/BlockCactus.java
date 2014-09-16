@@ -66,7 +66,7 @@ public class BlockCactus extends Block {
 
 		while (var3.hasNext()) {
 			BlockFace var4 = (BlockFace) var3.next();
-			if (var1.getBlockState(var2.a(var4)).getBlock().getMaterial().isBuildable()) {
+			if (var1.getBlockState(var2.getRelative(var4)).getBlock().getMaterial().isBuildable()) {
 				return false;
 			}
 		}

@@ -18,7 +18,7 @@ public class bdy {
 		this.b = var2;
 		if (var4) {
 			this.d = var3;
-			this.c = var2.a(var3);
+			this.c = var2.getRelative(var3);
 		} else {
 			this.d = var3.getOpposite();
 			this.c = var2.a(var3, 2);
@@ -150,7 +150,7 @@ public class bdy {
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			BlockFace var5 = var2[var4];
-			if (var5.k() != this.d.k() && !this.a(var1.a(var5))) {
+			if (var5.k() != this.d.k() && !this.a(var1.getRelative(var5))) {
 				return false;
 			}
 		}

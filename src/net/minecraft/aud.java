@@ -34,7 +34,7 @@ public abstract class aud extends Block {
 	}
 
 	public boolean a(World var1, Position var2, BlockFace var3) {
-		return var1.getBlockState(var2.a(var3.getOpposite())).getBlock().t();
+		return var1.getBlockState(var2.getRelative(var3.getOpposite())).getBlock().t();
 	}
 
 	public boolean c(World var1, Position var2) {
@@ -43,7 +43,7 @@ public abstract class aud extends Block {
 
 		for (int var5 = 0; var5 < var4; ++var5) {
 			BlockFace var6 = var3[var5];
-			if (var1.getBlockState(var2.a(var6)).getBlock().t()) {
+			if (var1.getBlockState(var2.getRelative(var6)).getBlock().t()) {
 				return true;
 			}
 		}
@@ -52,13 +52,13 @@ public abstract class aud extends Block {
 	}
 
 	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return var1.getBlockState(var2.a(var3.getOpposite())).getBlock().t() ? this.getBlockState().a(a, var3).a(b, Boolean.valueOf(false)) : this.getBlockState().a(a, BlockFace.DOWN).a(b, Boolean.valueOf(false));
+		return var1.getBlockState(var2.getRelative(var3.getOpposite())).getBlock().t() ? this.getBlockState().a(a, var3).a(b, Boolean.valueOf(false)) : this.getBlockState().a(a, BlockFace.DOWN).a(b, Boolean.valueOf(false));
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (this.e(var1, var2, var3)) {
 			BlockFace var5 = (BlockFace) var3.b(a);
-			if (!var1.getBlockState(var2.a(var5.getOpposite())).getBlock().t()) {
+			if (!var1.getBlockState(var2.getRelative(var5.getOpposite())).getBlock().t()) {
 				this.b(var1, var2, var3, 0);
 				var1.g(var2);
 			}
@@ -206,7 +206,7 @@ public abstract class aud extends Block {
 
 	private void b(World var1, Position var2, BlockFace var3) {
 		var1.c(var2, (Block) this);
-		var1.c(var2.a(var3.getOpposite()), (Block) this);
+		var1.c(var2.getRelative(var3.getOpposite()), (Block) this);
 	}
 
 	public IBlockState setData(int var1) {

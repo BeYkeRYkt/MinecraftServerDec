@@ -40,7 +40,7 @@ public class BlockPistonMoving extends atg {
 	}
 
 	public void d(World var1, Position var2, IBlockState var3) {
-		Position var4 = var2.a(((BlockFace) var3.b(a)).getOpposite());
+		Position var4 = var2.getRelative(((BlockFace) var3.b(a)).getOpposite());
 		IBlockState var5 = var1.getBlockState(var4);
 		if (var5.getBlock() instanceof BlockPiston && ((Boolean) var5.b(BlockPiston.b)).booleanValue()) {
 			var1.g(var4);

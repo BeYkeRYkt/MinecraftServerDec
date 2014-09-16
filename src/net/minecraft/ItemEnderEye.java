@@ -8,7 +8,7 @@ public class ItemEnderEye extends Item {
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
 		IBlockState var9 = var3.getBlockState(var4);
-		if (var2.a(var4.a(var5), var5, var1) && var9.getBlock() == Blocks.END_PORTAL_FRAME && !((Boolean) var9.b(BlockEnderPortalFrame.b)).booleanValue()) {
+		if (var2.a(var4.getRelative(var5), var5, var1) && var9.getBlock() == Blocks.END_PORTAL_FRAME && !((Boolean) var9.b(BlockEnderPortalFrame.b)).booleanValue()) {
 			if (var3.isStatic) {
 				return true;
 			} else {

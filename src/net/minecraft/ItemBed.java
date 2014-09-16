@@ -21,7 +21,7 @@ public class ItemBed extends Item {
 
 			int var12 = MathHelper.toFixedPointInt((double) (var2.yaw * 4.0F / 360.0F) + 0.5D) & 3;
 			BlockFace var13 = BlockFace.fromDirection(var12);
-			Position var14 = var4.a(var13);
+			Position var14 = var4.getRelative(var13);
 			boolean var15 = var10.f(var3, var14);
 			boolean var16 = var3.d(var4) || var11;
 			boolean var17 = var3.d(var14) || var15;

@@ -10,7 +10,7 @@ final class DispenseBehaviorMinecart extends DispenseBehaviorItem {
 		double var5 = var1.getX() + (double) var3.g() * 1.125D;
 		double var7 = Math.floor(var1.getY()) + (double) var3.h();
 		double var9 = var1.getZ() + (double) var3.i() * 1.125D;
-		Position var11 = var1.d().a(var3);
+		Position var11 = var1.d().getRelative(var3);
 		IBlockState var12 = var4.getBlockState(var11);
 		atl var13 = var12.getBlock() instanceof ati ? (atl) var12.b(((ati) var12.getBlock()).l()) : atl.a;
 		double var14;

@@ -64,7 +64,7 @@ public class BlockStationary extends axl {
 
 		for (int var5 = 0; var5 < var4; ++var5) {
 			BlockFace var6 = var3[var5];
-			if (this.m(var1, var2.a(var6))) {
+			if (this.m(var1, var2.getRelative(var6))) {
 				return true;
 			}
 		}

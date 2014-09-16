@@ -19,7 +19,7 @@ public class BlockBed extends avb {
 			return true;
 		} else {
 			if (var3.b(a) != atq.a) {
-				var2 = var2.a((BlockFace) var3.b(N));
+				var2 = var2.getRelative((BlockFace) var3.b(N));
 				var3 = var1.getBlockState(var2);
 				if (var3.getBlock() != this) {
 					return true;
@@ -54,7 +54,7 @@ public class BlockBed extends avb {
 				}
 			} else {
 				var1.g(var2);
-				Position var9 = var2.a(((BlockFace) var3.b(N)).getOpposite());
+				Position var9 = var2.getRelative(((BlockFace) var3.b(N)).getOpposite());
 				if (var1.getBlockState(var9).getBlock() == this) {
 					var1.g(var9);
 				}
@@ -95,10 +95,10 @@ public class BlockBed extends avb {
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		BlockFace var5 = (BlockFace) var3.b(N);
 		if (var3.b(a) == atq.a) {
-			if (var1.getBlockState(var2.a(var5.getOpposite())).getBlock() != this) {
+			if (var1.getBlockState(var2.getRelative(var5.getOpposite())).getBlock() != this) {
 				var1.g(var2);
 			}
-		} else if (var1.getBlockState(var2.a(var5)).getBlock() != this) {
+		} else if (var1.getBlockState(var2.getRelative(var5)).getBlock() != this) {
 			var1.g(var2);
 			if (!var1.isStatic) {
 				this.b(var1, var2, var3, 0);
@@ -161,7 +161,7 @@ public class BlockBed extends avb {
 
 	public void a(World var1, Position var2, IBlockState var3, EntityHuman var4) {
 		if (var4.playerProperties.instabuild && var3.b(a) == atq.a) {
-			Position var5 = var2.a(((BlockFace) var3.b(N)).getOpposite());
+			Position var5 = var2.getRelative(((BlockFace) var3.b(N)).getOpposite());
 			if (var1.getBlockState(var5).getBlock() == this) {
 				var1.g(var5);
 			}
@@ -176,7 +176,7 @@ public class BlockBed extends avb {
 
 	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		if (var1.b(a) == atq.b) {
-			IBlockState var4 = var2.getBlockState(var3.a((BlockFace) var1.b(N)));
+			IBlockState var4 = var2.getBlockState(var3.getRelative((BlockFace) var1.b(N)));
 			if (var4.getBlock() == this) {
 				var1 = var1.a(b, var4.b(b));
 			}

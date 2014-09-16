@@ -77,7 +77,7 @@ public abstract class axl extends Block {
 		Position var7;
 		while (var5.hasNext()) {
 			var6 = (BlockFace) var5.next();
-			var7 = var2.a(var6);
+			var7 = var2.getRelative(var6);
 			int var8 = this.f(var1, var7);
 			int var9;
 			if (var8 < 0) {
@@ -99,7 +99,7 @@ public abstract class axl extends Block {
 
 			while (var5.hasNext()) {
 				var6 = (BlockFace) var5.next();
-				var7 = var2.a(var6);
+				var7 = var2.getRelative(var6);
 				if (this.b(var1, var7, var6) || this.b(var1, var7.a(), var6)) {
 					var3 = var3.a().b(0.0D, -6.0D, 0.0D);
 					break;
@@ -134,7 +134,7 @@ public abstract class axl extends Block {
 
 			for (int var7 = 0; var7 < var6; ++var7) {
 				BlockFace var8 = var5[var7];
-				if (var8 != BlockFace.DOWN && var1.getBlockState(var2.a(var8)).getBlock().getMaterial() == Material.WATER) {
+				if (var8 != BlockFace.DOWN && var1.getBlockState(var2.getRelative(var8)).getBlock().getMaterial() == Material.WATER) {
 					var4 = true;
 					break;
 				}

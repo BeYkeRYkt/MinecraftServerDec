@@ -26,7 +26,7 @@ public class BlockLever extends Block {
 	}
 
 	public boolean a(World var1, Position var2, BlockFace var3) {
-		return var3 == BlockFace.UP && World.a((ard) var1, var2.b()) ? true : this.d(var1, var2.a(var3.getOpposite()));
+		return var3 == BlockFace.UP && World.a((ard) var1, var2.b()) ? true : this.d(var1, var2.getRelative(var3.getOpposite()));
 	}
 
 	public boolean c(World var1, Position var2) {
@@ -39,7 +39,7 @@ public class BlockLever extends Block {
 
 	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		IBlockState var9 = this.getBlockState().a(b, Boolean.valueOf(false));
-		if (this.d(var1, var2.a(var3.getOpposite()))) {
+		if (this.d(var1, var2.getRelative(var3.getOpposite()))) {
 			return var9.a(a, axk.a(var3, var8.aO()));
 		} else {
 			Iterator var10 = en.a.iterator();
@@ -55,7 +55,7 @@ public class BlockLever extends Block {
 				}
 
 				var11 = (BlockFace) var10.next();
-			} while (var11 == var3 || !this.d(var1, var2.a(var11.getOpposite())));
+			} while (var11 == var3 || !this.d(var1, var2.getRelative(var11.getOpposite())));
 
 			return var9.a(a, axk.a(var11, var8.aO()));
 		}
@@ -81,7 +81,7 @@ public class BlockLever extends Block {
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
-		if (this.e(var1, var2) && !this.d(var1, var2.a(((axk) var3.b(a)).c().getOpposite()))) {
+		if (this.e(var1, var2) && !this.d(var1, var2.getRelative(((axk) var3.b(a)).c().getOpposite()))) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
 		}
@@ -135,7 +135,7 @@ public class BlockLever extends Block {
 			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, ((Boolean) var3.b(b)).booleanValue() ? 0.6F : 0.5F);
 			var1.c(var2, (Block) this);
 			BlockFace var9 = ((axk) var3.b(a)).c();
-			var1.c(var2.a(var9.getOpposite()), (Block) this);
+			var1.c(var2.getRelative(var9.getOpposite()), (Block) this);
 			return true;
 		}
 	}
@@ -144,7 +144,7 @@ public class BlockLever extends Block {
 		if (((Boolean) var3.b(b)).booleanValue()) {
 			var1.c(var2, (Block) this);
 			BlockFace var4 = ((axk) var3.b(a)).c();
-			var1.c(var2.a(var4.getOpposite()), (Block) this);
+			var1.c(var2.getRelative(var4.getOpposite()), (Block) this);
 		}
 
 		super.b(var1, var2, var3);

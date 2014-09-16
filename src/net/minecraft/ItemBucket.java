@@ -23,7 +23,7 @@ public class ItemBucket extends Item {
 				}
 
 				if (var4) {
-					if (!var3.a(var6.a(var5.face), var5.face, var1)) {
+					if (!var3.a(var6.getRelative(var5.face), var5.face, var1)) {
 						return var1;
 					}
 
@@ -45,7 +45,7 @@ public class ItemBucket extends Item {
 						return new ItemStack(Items.BUCKET);
 					}
 
-					Position var9 = var6.a(var5.face);
+					Position var9 = var6.getRelative(var5.face);
 					if (!var3.a(var9, var5.face, var1)) {
 						return var1;
 					}

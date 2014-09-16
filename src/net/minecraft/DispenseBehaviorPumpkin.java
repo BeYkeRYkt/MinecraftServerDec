@@ -6,7 +6,7 @@ final class DispenseBehaviorPumpkin extends DispenseBehaviorItem {
 
 	protected ItemStack b(ISourceBlock var1, ItemStack var2) {
 		World var3 = var1.i();
-		Position var4 = var1.d().a(BlockDispenser.b(var1.f()));
+		Position var4 = var1.d().getRelative(BlockDispenser.b(var1.f()));
 		BlockPumpkin var5 = (BlockPumpkin) Blocks.PUMPKIN;
 		if (var3.d(var4) && var5.d(var3, var4)) {
 			if (!var3.isStatic) {

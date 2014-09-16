@@ -66,12 +66,12 @@ public class BlockRedstoneComparator extends ava implements avs {
 	protected int f(World var1, Position var2, IBlockState var3) {
 		int var4 = super.f(var1, var2, var3);
 		BlockFace var5 = (BlockFace) var3.b(N);
-		Position var6 = var2.a(var5);
+		Position var6 = var2.getRelative(var5);
 		Block var7 = var1.getBlockState(var6).getBlock();
 		if (var7.N()) {
 			var4 = var7.l(var1, var6);
 		} else if (var4 < 15 && var7.t()) {
-			var6 = var6.a(var5);
+			var6 = var6.getRelative(var5);
 			var7 = var1.getBlockState(var6).getBlock();
 			if (var7.N()) {
 				var4 = var7.l(var1, var6);

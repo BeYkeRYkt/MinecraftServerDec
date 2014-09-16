@@ -70,12 +70,12 @@ public class ayz {
 				}
 
 				if (var1 == 0) {
-					var3 = this.a.getBlockState(var2.a(this.d)).getBlock();
+					var3 = this.a.getBlockState(var2.getRelative(this.d)).getBlock();
 					if (var3 != Blocks.OBSIDIAN) {
 						break label56;
 					}
 				} else if (var1 == this.h - 1) {
-					var3 = this.a.getBlockState(var2.a(this.c)).getBlock();
+					var3 = this.a.getBlockState(var2.getRelative(this.c)).getBlock();
 					if (var3 != Blocks.OBSIDIAN) {
 						break label56;
 					}

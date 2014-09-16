@@ -6,16 +6,16 @@ import java.util.List;
 
 public class TileEntityChest extends TileEntityLockable implements ITickable, IInventory {
 
-	private ItemStack[] m = new ItemStack[27];
+	private ItemStack[] items = new ItemStack[27];
 	public boolean a;
-	public TileEntityChest f;
-	public TileEntityChest g;
-	public TileEntityChest h;
-	public TileEntityChest i;
+	public TileEntityChest northChest;
+	public TileEntityChest eastChest;
+	public TileEntityChest westChest;
+	public TileEntityChest southChest;
 	public float j;
 	public float k;
 	public int viewersNumber;
-	private int n;
+	private int ticks;
 	private int o = -1;
 	private String p;
 	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
@@ -24,26 +24,26 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 		return 27;
 	}
 
-	public ItemStack getItem(int var1) {
-		return this.m[var1];
+	public ItemStack getItem(int slot) {
+		return this.items[slot];
 	}
 
-	public ItemStack splitStack(int var1, int var2) {
-		if (this.m[var1] != null) {
-			ItemStack var3;
-			if (this.m[var1].amount <= var2) {
-				var3 = this.m[var1];
-				this.m[var1] = null;
+	public ItemStack splitStack(int slot, int splitSize) {
+		if (this.items[slot] != null) {
+			ItemStack itemStack;
+			if (this.items[slot].amount <= splitSize) {
+				itemStack = this.items[slot];
+				this.items[slot] = null;
 				this.update();
-				return var3;
+				return itemStack;
 			} else {
-				var3 = this.m[var1].a(var2);
-				if (this.m[var1].amount == 0) {
-					this.m[var1] = null;
+				itemStack = this.items[slot].a(splitSize);
+				if (this.items[slot].amount == 0) {
+					this.items[slot] = null;
 				}
 
 				this.update();
-				return var3;
+				return itemStack;
 			}
 		} else {
 			return null;
@@ -51,9 +51,9 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 	}
 
 	public ItemStack splitWithoutUpdate(int var1) {
-		if (this.m[var1] != null) {
-			ItemStack var2 = this.m[var1];
-			this.m[var1] = null;
+		if (this.items[var1] != null) {
+			ItemStack var2 = this.items[var1];
+			this.items[var1] = null;
 			return var2;
 		} else {
 			return null;
@@ -61,7 +61,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 	}
 
 	public void setItem(int var1, ItemStack var2) {
-		this.m[var1] = var2;
+		this.items[var1] = var2;
 		if (var2 != null && var2.amount > this.getMaxStackSize()) {
 			var2.amount = this.getMaxStackSize();
 		}
@@ -84,7 +84,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
-		this.m = new ItemStack[this.getSize()];
+		this.items = new ItemStack[this.getSize()];
 		if (var1.isTagAssignableFrom("CustomName", 8)) {
 			this.p = var1.getString("CustomName");
 		}
@@ -92,8 +92,8 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			int var5 = var4.getByte("Slot") & 255;
-			if (var5 >= 0 && var5 < this.m.length) {
-				this.m[var5] = ItemStack.a(var4);
+			if (var5 >= 0 && var5 < this.items.length) {
+				this.items[var5] = ItemStack.a(var4);
 			}
 		}
 
@@ -103,11 +103,11 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 		super.write(var1);
 		NBTListTag var2 = new NBTListTag();
 
-		for (int var3 = 0; var3 < this.m.length; ++var3) {
-			if (this.m[var3] != null) {
+		for (int var3 = 0; var3 < this.items.length; ++var3) {
+			if (this.items[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.put("Slot", (byte) var3);
-				this.m[var3].write(var4);
+				this.items[var3].write(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
@@ -132,76 +132,84 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 		this.a = false;
 	}
 
-	private void a(TileEntityChest var1, BlockFace var2) {
-		if (var1.x()) {
+	private void a(TileEntityChest teChest, BlockFace face) {
+		if (teChest.x()) {
 			this.a = false;
 		} else if (this.a) {
-			switch (bcs.a[var2.ordinal()]) {
-				case 1:
-					if (this.f != var1) {
+			switch (face) {
+				case NORTH: {
+					if (this.northChest != teChest) {
 						this.a = false;
 					}
 					break;
-				case 2:
-					if (this.i != var1) {
+				}
+				case SOUTH: {
+					if (this.southChest != teChest) {
 						this.a = false;
 					}
 					break;
-				case 3:
-					if (this.g != var1) {
+				}
+				case EAST: {
+					if (this.eastChest != teChest) {
 						this.a = false;
 					}
 					break;
-				case 4:
-					if (this.h != var1) {
+				}
+				case WEST: {
+					if (this.westChest != teChest) {
 						this.a = false;
 					}
+					break;
+				}
+				default: {
+					break;
+				}
 			}
 		}
 
 	}
 
-	public void m() {
+	public void checkDoubleChest() {
 		if (!this.a) {
 			this.a = true;
-			this.h = this.a(BlockFace.WEST);
-			this.g = this.a(BlockFace.EAST);
-			this.f = this.a(BlockFace.NORTH);
-			this.i = this.a(BlockFace.SOUTH);
+			this.westChest = this.getConnectedChest(BlockFace.WEST);
+			this.eastChest = this.getConnectedChest(BlockFace.EAST);
+			this.northChest = this.getConnectedChest(BlockFace.NORTH);
+			this.southChest = this.getConnectedChest(BlockFace.SOUTH);
 		}
 	}
 
-	protected TileEntityChest a(BlockFace var1) {
-		Position var2 = this.position.a(var1);
-		if (this.b(var2)) {
-			TileEntity var3 = this.world.getTileEntity(var2);
+	protected TileEntityChest getConnectedChest(BlockFace face) {
+		Position connectedChestPosition = this.position.getRelative(face);
+		if (this.isChest(connectedChestPosition)) {
+			TileEntity var3 = this.world.getTileEntity(connectedChestPosition);
 			if (var3 instanceof TileEntityChest) {
-				TileEntityChest var4 = (TileEntityChest) var3;
-				var4.a(this, var1.getOpposite());
-				return var4;
+				TileEntityChest connectedTEChest = (TileEntityChest) var3;
+				connectedTEChest.a(this, face.getOpposite());
+				return connectedTEChest;
 			}
 		}
 
 		return null;
 	}
 
-	private boolean b(Position var1) {
+	private boolean isChest(Position position) {
 		if (this.world == null) {
 			return false;
 		} else {
-			Block var2 = this.world.getBlockState(var1).getBlock();
-			return var2 instanceof BlockChest && ((BlockChest) var2).b == this.n();
+			Block block = this.world.getBlockState(position).getBlock();
+			return block instanceof BlockChest && ((BlockChest) block).b == this.n();
 		}
 	}
 
 	public void doTick() {
-		this.m();
+		this.checkDoubleChest();
 		int var1 = this.position.getX();
 		int var2 = this.position.getY();
 		int var3 = this.position.getZ();
-		++this.n;
+		++this.ticks;
 		float var4;
-		if (!this.world.isStatic && this.viewersNumber != 0 && (this.n + var1 + var2 + var3) % 200 == 0) {
+		if (!this.world.isStatic && this.viewersNumber != 0 && (this.ticks + var1 + var2 + var3) % 200 == 0) {
 			this.viewersNumber = 0;
 			var4 = 5.0F;
 			List var5 = this.world.a(EntityHuman.class, new AxisAlignedBB((double) ((float) var1 - var4), (double) ((float) var2 - var4), (double) ((float) var3 - var4), (double) ((float) (var1 + 1) + var4), (double) ((float) (var2 + 1) + var4), (double) ((float) (var3 + 1) + var4)));
@@ -221,14 +229,14 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 		this.k = this.j;
 		var4 = 0.1F;
 		double var14;
-		if (this.viewersNumber > 0 && this.j == 0.0F && this.f == null && this.h == null) {
+		if (this.viewersNumber > 0 && this.j == 0.0F && this.northChest == null && this.westChest == null) {
 			double var11 = (double) var1 + 0.5D;
 			var14 = (double) var3 + 0.5D;
-			if (this.i != null) {
+			if (this.southChest != null) {
 				var14 += 0.5D;
 			}
 
-			if (this.g != null) {
+			if (this.eastChest != null) {
 				var11 += 0.5D;
 			}
 
@@ -248,14 +256,14 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 			}
 
 			float var13 = 0.5F;
-			if (this.j < var13 && var12 >= var13 && this.f == null && this.h == null) {
+			if (this.j < var13 && var12 >= var13 && this.northChest == null && this.westChest == null) {
 				var14 = (double) var1 + 0.5D;
 				double var9 = (double) var3 + 0.5D;
-				if (this.i != null) {
+				if (this.southChest != null) {
 					var9 += 0.5D;
 				}
 
-				if (this.g != null) {
+				if (this.eastChest != null) {
 					var14 += 0.5D;
 				}
 
@@ -309,7 +317,7 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 	public void y() {
 		super.y();
 		this.E();
-		this.m();
+		this.checkDoubleChest();
 	}
 
 	public int n() {
@@ -332,11 +340,11 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 		return new ContainerChest(var1, this, var2);
 	}
 
-	public int getProperty(int var1) {
+	public int getProperty(int propertyIndex) {
 		return 0;
 	}
 
-	public void selectBeaconPower(int var1, int var2) {
+	public void selectBeaconPower(int powerSlot, int powerType) {
 	}
 
 	public int getPropertiesCount() {
@@ -344,10 +352,9 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 	}
 
 	public void clearInventory() {
-		for (int var1 = 0; var1 < this.m.length; ++var1) {
-			this.m[var1] = null;
+		for (int i = 0; i < this.items.length; ++i) {
+			this.items[i] = null;
 		}
-
 	}
 
 	@Override

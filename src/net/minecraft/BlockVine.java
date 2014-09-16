@@ -116,7 +116,7 @@ public class BlockVine extends Block {
 			case 3:
 			case 4:
 			case 5:
-				return this.c(var1.getBlockState(var2.a(var3.getOpposite())).getBlock());
+				return this.c(var1.getBlockState(var2.getRelative(var3.getOpposite())).getBlock());
 			default:
 				return false;
 		}
@@ -133,7 +133,7 @@ public class BlockVine extends Block {
 		while (var5.hasNext()) {
 			BlockFace var6 = (BlockFace) var5.next();
 			bet var7 = a(var6);
-			if (((Boolean) var3.b(var7)).booleanValue() && !this.c(var1.getBlockState(var2.a(var6)).getBlock())) {
+			if (((Boolean) var3.b(var7)).booleanValue() && !this.c(var1.getBlockState(var2.getRelative(var6)).getBlock())) {
 				IBlockState var8 = var1.getBlockState(var2.a());
 				if (var8.getBlock() != this || !((Boolean) var8.b(var7)).booleanValue()) {
 					var3 = var3.a(var7, Boolean.valueOf(false));
@@ -190,7 +190,7 @@ public class BlockVine extends Block {
 
 						while (var22.hasNext()) {
 							var23 = (BlockFace) var22.next();
-							if (var4.nextBoolean() || !this.c(var1.getBlockState(var2.a(var23).a()).getBlock())) {
+							if (var4.nextBoolean() || !this.c(var1.getBlockState(var2.getRelative(var23).a()).getBlock())) {
 								var19 = var19.a(a(var23), Boolean.valueOf(false));
 							}
 						}
@@ -204,22 +204,22 @@ public class BlockVine extends Block {
 					Position var18;
 					if (var17.k().c() && !((Boolean) var3.b(a(var17))).booleanValue()) {
 						if (!var7) {
-							var18 = var2.a(var17);
+							var18 = var2.getRelative(var17);
 							Block var21 = var1.getBlockState(var18).getBlock();
 							if (var21.material == Material.AIR) {
 								var23 = var17.e();
 								BlockFace var24 = var17.f();
 								boolean var25 = ((Boolean) var3.b(a(var23))).booleanValue();
 								boolean var26 = ((Boolean) var3.b(a(var24))).booleanValue();
-								Position var27 = var18.a(var23);
-								Position var16 = var18.a(var24);
+								Position var27 = var18.getRelative(var23);
+								Position var16 = var18.getRelative(var24);
 								if (var25 && this.c(var1.getBlockState(var27).getBlock())) {
 									var1.setBlockAt(var18, this.getBlockState().a(a(var23), Boolean.valueOf(true)), 2);
 								} else if (var26 && this.c(var1.getBlockState(var16).getBlock())) {
 									var1.setBlockAt(var18, this.getBlockState().a(a(var24), Boolean.valueOf(true)), 2);
-								} else if (var25 && var1.d(var27) && this.c(var1.getBlockState(var2.a(var23)).getBlock())) {
+								} else if (var25 && var1.d(var27) && this.c(var1.getBlockState(var2.getRelative(var23)).getBlock())) {
 									var1.setBlockAt(var27, this.getBlockState().a(a(var17.getOpposite()), Boolean.valueOf(true)), 2);
-								} else if (var26 && var1.d(var16) && this.c(var1.getBlockState(var2.a(var24)).getBlock())) {
+								} else if (var26 && var1.d(var16) && this.c(var1.getBlockState(var2.getRelative(var24)).getBlock())) {
 									var1.setBlockAt(var16, this.getBlockState().a(a(var17.getOpposite()), Boolean.valueOf(true)), 2);
 								} else if (this.c(var1.getBlockState(var18.a()).getBlock())) {
 									var1.setBlockAt(var18, this.getBlockState(), 2);

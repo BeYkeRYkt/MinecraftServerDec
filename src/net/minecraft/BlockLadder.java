@@ -82,7 +82,7 @@ public class BlockLadder extends Block {
 	}
 
 	protected boolean b(World var1, Position var2, BlockFace var3) {
-		return var1.getBlockState(var2.a(var3.getOpposite())).getBlock().t();
+		return var1.getBlockState(var2.getRelative(var3.getOpposite())).getBlock().t();
 	}
 
 	public IBlockState setData(int var1) {

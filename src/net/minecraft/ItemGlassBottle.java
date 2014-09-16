@@ -17,7 +17,7 @@ public class ItemGlassBottle extends Item {
 					return var1;
 				}
 
-				if (!var3.a(var5.a(var4.face), var4.face, var1)) {
+				if (!var3.a(var5.getRelative(var4.face), var4.face, var1)) {
 					return var1;
 				}
 

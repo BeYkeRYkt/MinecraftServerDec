@@ -23,7 +23,7 @@ public class BlockDropper extends BlockDispenser {
 				ItemStack var6 = var4.getItem(var5);
 				if (var6 != null) {
 					BlockFace var7 = (BlockFace) var1.getBlockState(var2).b(a);
-					Position var8 = var2.a(var7);
+					Position var8 = var2.getRelative(var7);
 					IInventory var9 = TileEntityHopper.b(var1, (double) var8.getX(), (double) var8.getY(), (double) var8.getZ());
 					ItemStack var10;
 					if (var9 == null) {

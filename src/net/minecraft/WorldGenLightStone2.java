@@ -21,7 +21,7 @@ public class WorldGenLightStone2 extends WorldGenerator {
 
 					for (int var9 = 0; var9 < var8; ++var9) {
 						BlockFace var10 = var7[var9];
-						if (var1.getBlockState(var5.a(var10)).getBlock() == Blocks.GLOWSTONE) {
+						if (var1.getBlockState(var5.getRelative(var10)).getBlock() == Blocks.GLOWSTONE) {
 							++var6;
 						}
 

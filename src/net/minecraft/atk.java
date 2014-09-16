@@ -127,7 +127,7 @@ public class atk {
 
 		while (var2.hasNext()) {
 			BlockFace var3 = (BlockFace) var2.next();
-			if (this.a(this.c.a(var3))) {
+			if (this.a(this.c.getRelative(var3))) {
 				++var1;
 			}
 		}

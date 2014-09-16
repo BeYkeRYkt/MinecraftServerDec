@@ -33,8 +33,8 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	private azu c(ard var1, Position var2, BlockFace var3) {
-		Position var4 = var2.a(var3);
-		Block var5 = var1.getBlockState(var2.a(var3)).getBlock();
+		Position var4 = var2.getRelative(var3);
+		Block var5 = var1.getBlockState(var2.getRelative(var3)).getBlock();
 		if (!a(var1.getBlockState(var4), var3) && (var5.s() || !d(var1.getBlockState(var4.b())))) {
 			Block var6 = var1.getBlockState(var2.a()).getBlock();
 			return !var6.s() && var5.s() && d(var1.getBlockState(var4.a())) ? azu.a : azu.c;
@@ -90,7 +90,7 @@ public class BlockRedstoneWire extends Block {
 
 		while (var10.hasNext()) {
 			BlockFace var11 = (BlockFace) var10.next();
-			Position var12 = var2.a(var11);
+			Position var12 = var2.getRelative(var11);
 			boolean var13 = var12.getX() != var3.getX() || var12.getZ() != var3.getZ();
 			if (var13) {
 				var9 = this.a(var1, var12, var9);
@@ -129,7 +129,7 @@ public class BlockRedstoneWire extends Block {
 
 			for (int var17 = 0; var17 < var16; ++var17) {
 				BlockFace var18 = var15[var17];
-				this.Q.add(var2.a(var18));
+				this.Q.add(var2.getRelative(var18));
 			}
 		}
 
@@ -144,7 +144,7 @@ public class BlockRedstoneWire extends Block {
 
 			for (int var5 = 0; var5 < var4; ++var5) {
 				BlockFace var6 = var3[var5];
-				var1.c(var2.a(var6), (Block) this);
+				var1.c(var2.getRelative(var6), (Block) this);
 			}
 
 		}
@@ -158,21 +158,21 @@ public class BlockRedstoneWire extends Block {
 			BlockFace var5;
 			while (var4.hasNext()) {
 				var5 = (BlockFace) var4.next();
-				var1.c(var2.a(var5), (Block) this);
+				var1.c(var2.getRelative(var5), (Block) this);
 			}
 
 			var4 = en.a.iterator();
 
 			while (var4.hasNext()) {
 				var5 = (BlockFace) var4.next();
-				this.d(var1, var2.a(var5));
+				this.d(var1, var2.getRelative(var5));
 			}
 
 			var4 = en.a.iterator();
 
 			while (var4.hasNext()) {
 				var5 = (BlockFace) var4.next();
-				Position var6 = var2.a(var5);
+				Position var6 = var2.getRelative(var5);
 				if (var1.getBlockState(var6).getBlock().t()) {
 					this.d(var1, var6.a());
 				} else {
@@ -191,7 +191,7 @@ public class BlockRedstoneWire extends Block {
 
 			for (int var6 = 0; var6 < var5; ++var6) {
 				BlockFace var7 = var4[var6];
-				var1.c(var2.a(var7), (Block) this);
+				var1.c(var2.getRelative(var7), (Block) this);
 			}
 
 			this.e(var1, var2, var3);
@@ -200,14 +200,14 @@ public class BlockRedstoneWire extends Block {
 			BlockFace var9;
 			while (var8.hasNext()) {
 				var9 = (BlockFace) var8.next();
-				this.d(var1, var2.a(var9));
+				this.d(var1, var2.getRelative(var9));
 			}
 
 			var8 = en.a.iterator();
 
 			while (var8.hasNext()) {
 				var9 = (BlockFace) var8.next();
-				Position var10 = var2.a(var9);
+				Position var10 = var2.getRelative(var9);
 				if (var1.getBlockState(var10).getBlock().t()) {
 					this.d(var1, var10.a());
 				} else {
@@ -279,7 +279,7 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	private boolean d(ard var1, Position var2, BlockFace var3) {
-		Position var4 = var2.a(var3);
+		Position var4 = var2.getRelative(var3);
 		IBlockState var5 = var1.getBlockState(var4);
 		Block var6 = var5.getBlock();
 		boolean var7 = var6.t();

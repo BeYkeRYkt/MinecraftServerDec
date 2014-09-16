@@ -48,7 +48,7 @@ public class WorldGenDesertWell extends WorldGenerator {
 
 			while (var7.hasNext()) {
 				BlockFace var8 = (BlockFace) var7.next();
-				var1.setBlockAt(var3.a(var8), this.d, 2);
+				var1.setBlockAt(var3.getRelative(var8), this.d, 2);
 			}
 
 			for (var4 = -2; var4 <= 2; ++var4) {

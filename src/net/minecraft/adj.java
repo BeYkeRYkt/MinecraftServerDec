@@ -88,7 +88,7 @@ public abstract class adj extends Entity {
 		} else {
 			int var1 = Math.max(1, this.l() / 16);
 			int var2 = Math.max(1, this.m() / 16);
-			Position var3 = this.a.a(this.direction.getOpposite());
+			Position var3 = this.a.getRelative(this.direction.getOpposite());
 			BlockFace var4 = this.direction.f();
 
 			for (int var5 = 0; var5 < var1; ++var5) {
@@ -171,7 +171,7 @@ public abstract class adj extends Entity {
 		BlockFace var2;
 		if (var1.isTagAssignableFrom("Direction", 99)) {
 			var2 = BlockFace.fromDirection(var1.getByte("Direction"));
-			this.a = this.a.a(var2);
+			this.a = this.a.getRelative(var2);
 		} else if (var1.isTagAssignableFrom("Facing", 99)) {
 			var2 = BlockFace.fromDirection(var1.getByte("Facing"));
 		} else {

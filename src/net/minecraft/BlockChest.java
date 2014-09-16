@@ -51,7 +51,7 @@ public class BlockChest extends atg {
 
 		while (var4.hasNext()) {
 			BlockFace var5 = (BlockFace) var4.next();
-			Position var6 = var2.a(var5);
+			Position var6 = var2.getRelative(var5);
 			IBlockState var7 = var1.getBlockState(var6);
 			if (var7.getBlock() == this) {
 				this.e(var1, var6, var7);
@@ -185,7 +185,7 @@ public class BlockChest extends atg {
 
 		while (var5.hasNext()) {
 			BlockFace var6 = (BlockFace) var5.next();
-			IBlockState var7 = var1.getBlockState(var2.a(var6));
+			IBlockState var7 = var1.getBlockState(var2.getRelative(var6));
 			if (var7.getBlock() == this) {
 				return var3;
 			}
@@ -204,15 +204,15 @@ public class BlockChest extends atg {
 			return var3.a(a, var4.getOpposite());
 		} else {
 			BlockFace var8 = (BlockFace) var3.b(a);
-			if (var1.getBlockState(var2.a(var8)).getBlock().m()) {
+			if (var1.getBlockState(var2.getRelative(var8)).getBlock().m()) {
 				var8 = var8.getOpposite();
 			}
 
-			if (var1.getBlockState(var2.a(var8)).getBlock().m()) {
+			if (var1.getBlockState(var2.getRelative(var8)).getBlock().m()) {
 				var8 = var8.e();
 			}
 
-			if (var1.getBlockState(var2.a(var8)).getBlock().m()) {
+			if (var1.getBlockState(var2.getRelative(var8)).getBlock().m()) {
 				var8 = var8.getOpposite();
 			}
 
@@ -274,7 +274,7 @@ public class BlockChest extends atg {
 				}
 
 				var4 = (BlockFace) var3.next();
-			} while (var1.getBlockState(var2.a(var4)).getBlock() != this);
+			} while (var1.getBlockState(var2.getRelative(var4)).getBlock() != this);
 
 			return true;
 		}
@@ -325,7 +325,7 @@ public class BlockChest extends atg {
 
 				while (var5.hasNext()) {
 					BlockFace var6 = (BlockFace) var5.next();
-					Position var7 = var2.a(var6);
+					Position var7 = var2.getRelative(var6);
 					Block var8 = var1.getBlockState(var7).getBlock();
 					if (var8 == this) {
 						if (this.m(var1, var7)) {

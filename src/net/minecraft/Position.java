@@ -96,7 +96,7 @@ public class Position extends fd {
 		return this.a(BlockFace.EAST, var1);
 	}
 
-	public Position a(BlockFace var1) {
+	public Position getRelative(BlockFace var1) {
 		return this.a(var1, 1);
 	}
 

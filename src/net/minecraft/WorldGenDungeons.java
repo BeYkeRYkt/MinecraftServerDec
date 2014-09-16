@@ -91,7 +91,7 @@ public class WorldGenDungeons extends WorldGenerator {
 
 								while (var21.hasNext()) {
 									BlockFace var22 = (BlockFace) var21.next();
-									if (var1.getBlockState(var26.a(var22)).getBlock().getMaterial().isBuildable()) {
+									if (var1.getBlockState(var26.getRelative(var22)).getBlock().getMaterial().isBuildable()) {
 										++var20;
 									}
 								}

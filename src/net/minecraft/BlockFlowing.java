@@ -31,7 +31,7 @@ public class BlockFlowing extends axl {
 			this.a = 0;
 
 			BlockFace var10;
-			for (Iterator var9 = en.a.iterator(); var9.hasNext(); var8 = this.a(var1, var2.a(var10), var8)) {
+			for (Iterator var9 = en.a.iterator(); var9.hasNext(); var8 = this.a(var1, var2.getRelative(var10), var8)) {
 				var10 = (BlockFace) var9.next();
 			}
 
@@ -107,7 +107,7 @@ public class BlockFlowing extends axl {
 
 			while (var11.hasNext()) {
 				BlockFace var12 = (BlockFace) var11.next();
-				this.a(var1, var2.a(var12), var1.getBlockState(var2.a(var12)), var16);
+				this.a(var1, var2.getRelative(var12), var1.getBlockState(var2.getRelative(var12)), var16);
 			}
 		}
 
@@ -135,7 +135,7 @@ public class BlockFlowing extends axl {
 		while (var6.hasNext()) {
 			BlockFace var7 = (BlockFace) var6.next();
 			if (var7 != var4) {
-				Position var8 = var2.a(var7);
+				Position var8 = var2.getRelative(var7);
 				IBlockState var9 = var1.getBlockState(var8);
 				if (!this.g(var1, var8, var9) && (var9.getBlock().getMaterial() != this.material || ((Integer) var9.b(b)).intValue() > 0)) {
 					if (!this.g(var1, var8.b(), var9)) {
@@ -162,7 +162,7 @@ public class BlockFlowing extends axl {
 
 		while (var5.hasNext()) {
 			BlockFace var6 = (BlockFace) var5.next();
-			Position var7 = var2.a(var6);
+			Position var7 = var2.getRelative(var6);
 			IBlockState var8 = var1.getBlockState(var7);
 			if (!this.g(var1, var7, var8) && (var8.getBlock().getMaterial() != this.material || ((Integer) var8.b(b)).intValue() > 0)) {
 				int var9;

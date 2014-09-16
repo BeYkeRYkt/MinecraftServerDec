@@ -71,12 +71,12 @@ public abstract class TileEntity {
 	protected World world;
 	protected Position position;
 	protected boolean d;
-	private int h;
-	protected Block e;
+	private int blockData;
+	protected Block chestBlock;
 
 	public TileEntity() {
 		this.position = Position.ZERO;
-		this.h = -1;
+		this.blockData = -1;
 	}
 
 	public World getPrimaryWorld() {
@@ -107,19 +107,19 @@ public abstract class TileEntity {
 		}
 	}
 
-	public int u() {
-		if (this.h == -1) {
+	public int getBlockData() {
+		if (this.blockData == -1) {
 			IBlockState var1 = this.world.getBlockState(this.position);
-			this.h = var1.getBlock().getData(var1);
+			this.blockData = var1.getBlock().getData(var1);
 		}
 
-		return this.h;
+		return this.blockData;
 	}
 
 	public void update() {
 		if (this.world != null) {
-			IBlockState var1 = this.world.getBlockState(this.position);
-			this.h = var1.getBlock().getData(var1);
+			IBlockState blockState = this.world.getBlockState(this.position);
+			this.blockData = blockState.getBlock().getData(blockState);
 			this.world.b(this.position, this);
 			if (this.getBlock() != Blocks.AIR) {
 				this.world.e(this.position, this.getBlock());
@@ -128,16 +128,16 @@ public abstract class TileEntity {
 
 	}
 
-	public Position v() {
+	public Position getPosition() {
 		return this.position;
 	}
 
 	public Block getBlock() {
-		if (this.e == null) {
-			this.e = this.world.getBlockState(this.position).getBlock();
+		if (this.chestBlock == null) {
+			this.chestBlock = this.world.getBlockState(this.position).getBlock();
 		}
 
-		return this.e;
+		return this.chestBlock;
 	}
 
 	public Packet<?> getUpdatePacket() {
@@ -161,8 +161,8 @@ public abstract class TileEntity {
 	}
 
 	public void E() {
-		this.e = null;
-		this.h = -1;
+		this.chestBlock = null;
+		this.blockData = -1;
 	}
 
 	public void a(CrashReportSystemDetails var1) {
@@ -173,7 +173,7 @@ public abstract class TileEntity {
 			}
 		});
 		if (this.world != null) {
-			CrashReportSystemDetails.a(var1, this.position, this.getBlock(), this.u());
+			CrashReportSystemDetails.a(var1, this.position, this.getBlock(), this.getBlockData());
 			var1.addDetails("Actual block type", (Callable<?>) (new bco(this)));
 			var1.addDetails("Actual block data value", (Callable<?>) (new bcp(this)));
 		}

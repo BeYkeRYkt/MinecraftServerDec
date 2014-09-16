@@ -53,7 +53,7 @@ public class BlockReed extends Block {
 				}
 
 				var5 = (BlockFace) var4.next();
-			} while (var1.getBlockState(var2.a(var5).b()).getBlock().getMaterial() != Material.WATER);
+			} while (var1.getBlockState(var2.getRelative(var5).b()).getBlock().getMaterial() != Material.WATER);
 
 			return true;
 		}

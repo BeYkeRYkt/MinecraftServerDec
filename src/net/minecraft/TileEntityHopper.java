@@ -146,7 +146,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 
 	public boolean m() {
 		if (this.world != null && !this.world.isStatic) {
-			if (!this.n() && BlockHopper.f(this.u())) {
+			if (!this.n() && BlockHopper.f(this.getBlockData())) {
 				boolean var1 = false;
 				if (!this.p()) {
 					var1 = this.r();
@@ -202,7 +202,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 		if (var1 == null) {
 			return false;
 		} else {
-			BlockFace var2 = BlockHopper.b(this.u()).getOpposite();
+			BlockFace var2 = BlockHopper.b(this.getBlockData()).getOpposite();
 			if (this.a(var1, var2)) {
 				return false;
 			} else {
@@ -407,7 +407,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 	}
 
 	private IInventory G() {
-		BlockFace var1 = BlockHopper.b(this.u());
+		BlockFace var1 = BlockHopper.b(this.getBlockData());
 		return b(this.getPrimaryWorld(), (double) (this.position.getX() + var1.g()), (double) (this.position.getY() + var1.h()), (double) (this.position.getZ() + var1.i()));
 	}
 

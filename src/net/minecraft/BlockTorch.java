@@ -51,7 +51,7 @@ public class BlockTorch extends Block {
 	}
 
 	private boolean b(World var1, Position var2, BlockFace var3) {
-		Position var4 = var2.a(var3.getOpposite());
+		Position var4 = var2.getRelative(var3.getOpposite());
 		boolean var5 = var3.k().c();
 		return var5 && var1.d(var4, true) || var3.equals(BlockFace.UP) && this.d(var1, var4);
 	}
@@ -69,7 +69,7 @@ public class BlockTorch extends Block {
 				}
 
 				var10 = (BlockFace) var9.next();
-			} while (!var1.d(var2.a(var10.getOpposite()), true));
+			} while (!var1.d(var2.getRelative(var10.getOpposite()), true));
 
 			return this.getBlockState().a(a, var10);
 		}
@@ -91,9 +91,9 @@ public class BlockTorch extends Block {
 			el var5 = var4.k();
 			BlockFace var6 = var4.getOpposite();
 			boolean var7 = false;
-			if (var5.c() && !var1.d(var2.a(var6), true)) {
+			if (var5.c() && !var1.d(var2.getRelative(var6), true)) {
 				var7 = true;
-			} else if (var5.b() && !this.d(var1, var2.a(var6))) {
+			} else if (var5.b() && !this.d(var1, var2.getRelative(var6))) {
 				var7 = true;
 			}
 

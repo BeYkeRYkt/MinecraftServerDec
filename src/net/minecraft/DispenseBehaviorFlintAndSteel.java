@@ -6,7 +6,7 @@ final class DispenseBehaviorFlintAndSteel extends DispenseBehaviorItem {
 
 	protected ItemStack b(ISourceBlock var1, ItemStack var2) {
 		World var3 = var1.i();
-		Position var4 = var1.d().a(BlockDispenser.b(var1.f()));
+		Position var4 = var1.d().getRelative(BlockDispenser.b(var1.f()));
 		if (var3.d(var4)) {
 			var3.a(var4, Blocks.FIRE.getBlockState());
 			if (var2.a(1, var3.s)) {

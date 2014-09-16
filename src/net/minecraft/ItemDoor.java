@@ -16,7 +16,7 @@ public class ItemDoor extends Item {
 			IBlockState var9 = var3.getBlockState(var4);
 			Block var10 = var9.getBlock();
 			if (!var10.f(var3, var4)) {
-				var4 = var4.a(var5);
+				var4 = var4.getRelative(var5);
 			}
 
 			if (!var2.a(var4, var5, var1)) {
@@ -32,8 +32,8 @@ public class ItemDoor extends Item {
 	}
 
 	public static void a(World var0, Position var1, BlockFace var2, Block var3) {
-		Position var4 = var1.a(var2.e());
-		Position var5 = var1.a(var2.f());
+		Position var4 = var1.getRelative(var2.e());
+		Position var5 = var1.getRelative(var2.f());
 		int var6 = (var0.getBlockState(var5).getBlock().t() ? 1 : 0) + (var0.getBlockState(var5.a()).getBlock().t() ? 1 : 0);
 		int var7 = (var0.getBlockState(var4).getBlock().t() ? 1 : 0) + (var0.getBlockState(var4.a()).getBlock().t() ? 1 : 0);
 		boolean var8 = var0.getBlockState(var5).getBlock() == var3 || var0.getBlockState(var5.a()).getBlock() == var3;

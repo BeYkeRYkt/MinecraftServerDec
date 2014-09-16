@@ -235,7 +235,7 @@ public class BlockFire extends Block {
 
 		for (int var5 = 0; var5 < var4; ++var5) {
 			BlockFace var6 = var3[var5];
-			if (this.e((ard) var1, var2.a(var6))) {
+			if (this.e((ard) var1, var2.getRelative(var6))) {
 				return true;
 			}
 		}
@@ -253,7 +253,7 @@ public class BlockFire extends Block {
 
 			for (int var6 = 0; var6 < var5; ++var6) {
 				BlockFace var7 = var4[var6];
-				var3 = Math.max(this.d(var1.getBlockState(var2.a(var7)).getBlock()), var3);
+				var3 = Math.max(this.d(var1.getBlockState(var2.getRelative(var7)).getBlock()), var3);
 			}
 
 			return var3;

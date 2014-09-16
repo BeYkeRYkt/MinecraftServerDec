@@ -53,7 +53,7 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 			boolean[] var1 = this.m();
 			if (!Arrays.equals(var1, this.i)) {
 				this.i = var1;
-				IBlockState var2 = this.world.getBlockState(this.v());
+				IBlockState var2 = this.world.getBlockState(this.getPosition());
 				if (!(var2.getBlock() instanceof BlockBrewingStand)) {
 					return;
 				}

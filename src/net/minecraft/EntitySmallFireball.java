@@ -35,7 +35,7 @@ public class EntitySmallFireball extends EntityFireball {
 				}
 
 				if (var2) {
-					Position var3 = var1.getPosition().a(var1.face);
+					Position var3 = var1.getPosition().getRelative(var1.face);
 					if (this.world.d(var3)) {
 						this.world.a(var3, Blocks.FIRE.getBlockState());
 					}

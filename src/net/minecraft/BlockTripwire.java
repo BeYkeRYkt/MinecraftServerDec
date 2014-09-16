@@ -164,7 +164,7 @@ public class BlockTripwire extends Block {
 	}
 
 	public static boolean c(ard var0, Position var1, IBlockState var2, BlockFace var3) {
-		Position var4 = var1.a(var3);
+		Position var4 = var1.getRelative(var3);
 		IBlockState var5 = var0.getBlockState(var4);
 		Block var6 = var5.getBlock();
 		if (var6 == Blocks.TRIPWIRE_HOOK) {

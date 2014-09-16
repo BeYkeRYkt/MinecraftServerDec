@@ -36,7 +36,7 @@ public class BlockTripwireHook extends Block {
 	}
 
 	public boolean a(World var1, Position var2, BlockFace var3) {
-		return var3.k().c() && var1.getBlockState(var2.a(var3.getOpposite())).getBlock().t();
+		return var3.k().c() && var1.getBlockState(var2.getRelative(var3.getOpposite())).getBlock().t();
 	}
 
 	public boolean c(World var1, Position var2) {
@@ -49,7 +49,7 @@ public class BlockTripwireHook extends Block {
 			}
 
 			var4 = (BlockFace) var3.next();
-		} while (!var1.getBlockState(var2.a(var4)).getBlock().t());
+		} while (!var1.getBlockState(var2.getRelative(var4)).getBlock().t());
 
 		return true;
 	}
@@ -71,7 +71,7 @@ public class BlockTripwireHook extends Block {
 		if (var4 != this) {
 			if (this.e(var1, var2, var3)) {
 				BlockFace var5 = (BlockFace) var3.b(a);
-				if (!var1.getBlockState(var2.a(var5.getOpposite())).getBlock().t()) {
+				if (!var1.getBlockState(var2.getRelative(var5.getOpposite())).getBlock().t()) {
 					this.b(var1, var2, var3, 0);
 					var1.g(var2);
 				}
@@ -175,7 +175,7 @@ public class BlockTripwireHook extends Block {
 
 	private void b(World var1, Position var2, BlockFace var3) {
 		var1.c(var2, (Block) this);
-		var1.c(var2.a(var3.getOpposite()), (Block) this);
+		var1.c(var2.getRelative(var3.getOpposite()), (Block) this);
 	}
 
 	private boolean e(World var1, Position var2, IBlockState var3) {
@@ -215,7 +215,7 @@ public class BlockTripwireHook extends Block {
 
 		if (var5) {
 			var1.c(var2, (Block) this);
-			var1.c(var2.a(((BlockFace) var3.b(a)).getOpposite()), (Block) this);
+			var1.c(var2.getRelative(((BlockFace) var3.b(a)).getOpposite()), (Block) this);
 		}
 
 		super.b(var1, var2, var3);

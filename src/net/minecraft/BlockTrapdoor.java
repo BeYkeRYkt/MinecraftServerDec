@@ -89,7 +89,7 @@ public class BlockTrapdoor extends Block {
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!var1.isStatic) {
-			Position var5 = var2.a(((BlockFace) var3.b(a)).getOpposite());
+			Position var5 = var2.getRelative(((BlockFace) var3.b(a)).getOpposite());
 			if (!c(var1.getBlockState(var5).getBlock())) {
 				var1.g(var2);
 				this.b(var1, var2, var3, 0);
@@ -123,7 +123,7 @@ public class BlockTrapdoor extends Block {
 	}
 
 	public boolean a(World var1, Position var2, BlockFace var3) {
-		return !var3.k().b() && c(var1.getBlockState(var2.a(var3.getOpposite())).getBlock());
+		return !var3.k().b() && c(var1.getBlockState(var2.getRelative(var3.getOpposite())).getBlock());
 	}
 
 	protected static BlockFace b(int var0) {

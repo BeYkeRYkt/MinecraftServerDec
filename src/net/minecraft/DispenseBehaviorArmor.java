@@ -6,7 +6,7 @@ import java.util.List;
 final class DispenseBehaviorArmor extends DispenseBehaviorItem {
 
 	protected ItemStack b(ISourceBlock var1, ItemStack var2) {
-		Position var3 = var1.d().a(BlockDispenser.b(var1.f()));
+		Position var3 = var1.d().getRelative(BlockDispenser.b(var1.f()));
 		int var4 = var3.getX();
 		int var5 = var3.getY();
 		int var6 = var3.getZ();

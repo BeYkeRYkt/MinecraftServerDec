@@ -114,16 +114,16 @@ public class PortalTravelAgent {
 			BlockFace var19 = BlockFace.fromDirection(var1.aG());
 			if (var18 != null) {
 				BlockFace var20 = var18.f();
-				Position var21 = ((Position) var9).a(var18);
+				Position var21 = ((Position) var9).getRelative(var18);
 				boolean var22 = this.a(var21);
-				boolean var23 = this.a(var21.a(var20));
+				boolean var23 = this.a(var21.getRelative(var20));
 				if (var23 && var22) {
-					var9 = ((Position) var9).a(var20);
+					var9 = ((Position) var9).getRelative(var20);
 					var18 = var18.getOpposite();
 					var20 = var20.getOpposite();
-					Position var24 = ((Position) var9).a(var18);
+					Position var24 = ((Position) var9).getRelative(var18);
 					var22 = this.a(var24);
-					var23 = this.a(var24.a(var20));
+					var23 = this.a(var24.getRelative(var20));
 				}
 
 				float var38 = 0.5F;

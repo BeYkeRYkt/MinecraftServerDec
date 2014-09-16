@@ -53,7 +53,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 
 			for (int var6 = 0; var6 < var5; ++var6) {
 				BlockFace var7 = var4[var6];
-				var1.c(var2.a(var7), (Block) this);
+				var1.c(var2.getRelative(var7), (Block) this);
 			}
 		}
 
@@ -66,7 +66,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 
 			for (int var6 = 0; var6 < var5; ++var6) {
 				BlockFace var7 = var4[var6];
-				var1.c(var2.a(var7), (Block) this);
+				var1.c(var2.getRelative(var7), (Block) this);
 			}
 		}
 
@@ -78,7 +78,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 
 	private boolean g(World var1, Position var2, IBlockState var3) {
 		BlockFace var4 = ((BlockFace) var3.b(a)).getOpposite();
-		return var1.b(var2.a(var4), var4);
+		return var1.b(var2.getRelative(var4), var4);
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Random var4) {

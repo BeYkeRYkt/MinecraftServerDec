@@ -16,7 +16,7 @@ public class ItemDye extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		if (!var2.a(var4.a(var5), var5, var1)) {
+		if (!var2.a(var4.getRelative(var5), var5, var1)) {
 			return false;
 		} else {
 			akv var9 = akv.a(var1.getWearout());
@@ -40,7 +40,7 @@ public class ItemDye extends Item {
 						return false;
 					}
 
-					var4 = var4.a(var5);
+					var4 = var4.getRelative(var5);
 					if (var3.d(var4)) {
 						IBlockState var12 = Blocks.COCOA.a(var3, var4, var5, var6, var7, var8, 0, var2);
 						var3.setBlockAt(var4, var12, 2);

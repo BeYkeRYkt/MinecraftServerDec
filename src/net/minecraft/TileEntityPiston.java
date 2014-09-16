@@ -28,7 +28,7 @@ public class TileEntityPiston extends TileEntity implements ITickable {
 		return this.a;
 	}
 
-	public int u() {
+	public int getBlockData() {
 		return 0;
 	}
 

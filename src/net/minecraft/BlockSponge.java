@@ -52,7 +52,7 @@ public class BlockSponge extends Block {
 
 			for (int var11 = 0; var11 < var10; ++var11) {
 				BlockFace var12 = var9[var11];
-				Position var13 = var7.a(var12);
+				Position var13 = var7.getRelative(var12);
 				if (var1.getBlockState(var13).getBlock().getMaterial() == Material.WATER) {
 					var1.setBlockAt(var13, Blocks.AIR.getBlockState(), 2);
 					var4.add(var13);

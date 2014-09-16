@@ -14,7 +14,7 @@ public class ItemReed extends Item {
 		if (var10 == Blocks.SNOW_LAYER && ((Integer) var9.b(BlockSnow.a)).intValue() < 1) {
 			var5 = BlockFace.UP;
 		} else if (!var10.f(var3, var4)) {
-			var4 = var4.a(var5);
+			var4 = var4.getRelative(var5);
 		}
 
 		if (!var2.a(var4, var5, var1)) {

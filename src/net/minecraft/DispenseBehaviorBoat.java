@@ -10,7 +10,7 @@ final class DispenseBehaviorBoat extends DispenseBehaviorItem {
 		double var5 = var1.getX() + (double) ((float) var3.g() * 1.125F);
 		double var7 = var1.getY() + (double) ((float) var3.h() * 1.125F);
 		double var9 = var1.getZ() + (double) ((float) var3.i() * 1.125F);
-		Position var11 = var1.d().a(var3);
+		Position var11 = var1.d().getRelative(var3);
 		Material var12 = var4.getBlockState(var11).getBlock().getMaterial();
 		double var13;
 		if (Material.WATER.equals(var12)) {
