@@ -5,95 +5,95 @@ import java.util.List;
 
 public class InventoryLargeChest implements ILockable {
 
-	private String a;
-	private ILockable b;
-	private ILockable c;
+	private String inventoryName;
+	private ILockable leftChest;
+	private ILockable rightChest;
 	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
-	public InventoryLargeChest(String var1, ILockable var2, ILockable var3) {
-		this.a = var1;
-		if (var2 == null) {
-			var2 = var3;
+	public InventoryLargeChest(String inventoryName, ILockable leftChest, ILockable rightChest) {
+		this.inventoryName = inventoryName;
+
+		if (leftChest == null) {
+			leftChest = rightChest;
 		}
 
-		if (var3 == null) {
-			var3 = var2;
+		if (rightChest == null) {
+			rightChest = leftChest;
 		}
 
-		this.b = var2;
-		this.c = var3;
-		if (var2.isLocked()) {
-			var3.setLock(var2.getLock());
-		} else if (var3.isLocked()) {
-			var2.setLock(var3.getLock());
+		this.leftChest = leftChest;
+		this.rightChest = rightChest;
+		if (leftChest.isLocked()) {
+			rightChest.setLock(leftChest.getLock());
+		} else if (rightChest.isLocked()) {
+			leftChest.setLock(rightChest.getLock());
 		}
 
 	}
 
 	public int getSize() {
-		return this.b.getSize() + this.c.getSize();
+		return this.leftChest.getSize() + this.rightChest.getSize();
 	}
 
-	public boolean a(IInventory var1) {
-		return this.b == var1 || this.c == var1;
+	public boolean isPartOfInventory(IInventory inventory) {
+		return this.leftChest == inventory || this.rightChest == inventory;
 	}
 
 	public String getName() {
-		return this.b.hasCustomName() ? this.b.getName() : (this.c.hasCustomName() ? this.c.getName() : this.a);
+		return this.leftChest.hasCustomName() ? this.leftChest.getName() : (this.rightChest.hasCustomName() ? this.rightChest.getName() : this.inventoryName);
 	}
 
 	public boolean hasCustomName() {
-		return this.b.hasCustomName() || this.c.hasCustomName();
+		return this.leftChest.hasCustomName() || this.rightChest.hasCustomName();
 	}
 
 	public IChatBaseComponent getComponentName() {
 		return (IChatBaseComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 
-	public ItemStack getItem(int var1) {
-		return var1 >= this.b.getSize() ? this.c.getItem(var1 - this.b.getSize()) : this.b.getItem(var1);
+	public ItemStack getItem(int slot) {
+		return slot >= this.leftChest.getSize() ? this.rightChest.getItem(slot - this.leftChest.getSize()) : this.leftChest.getItem(slot);
 	}
 
-	public ItemStack splitStack(int var1, int var2) {
-		return var1 >= this.b.getSize() ? this.c.splitStack(var1 - this.b.getSize(), var2) : this.b.splitStack(var1, var2);
+	public ItemStack splitStack(int slot, int splitSize) {
+		return slot >= this.leftChest.getSize() ? this.rightChest.splitStack(slot - this.leftChest.getSize(), splitSize) : this.leftChest.splitStack(slot, splitSize);
 	}
 
-	public ItemStack splitWithoutUpdate(int var1) {
-		return var1 >= this.b.getSize() ? this.c.splitWithoutUpdate(var1 - this.b.getSize()) : this.b.splitWithoutUpdate(var1);
+	public ItemStack splitWithoutUpdate(int splitSize) {
+		return splitSize >= this.leftChest.getSize() ? this.rightChest.splitWithoutUpdate(splitSize - this.leftChest.getSize()) : this.leftChest.splitWithoutUpdate(splitSize);
 	}
 
-	public void setItem(int var1, ItemStack var2) {
-		if (var1 >= this.b.getSize()) {
-			this.c.setItem(var1 - this.b.getSize(), var2);
+	public void setItem(int slot, ItemStack itemStack) {
+		if (slot >= this.leftChest.getSize()) {
+			this.rightChest.setItem(slot - this.leftChest.getSize(), itemStack);
 		} else {
-			this.b.setItem(var1, var2);
+			this.leftChest.setItem(slot, itemStack);
 		}
-
 	}
 
 	public int getMaxStackSize() {
-		return this.b.getMaxStackSize();
+		return this.leftChest.getMaxStackSize();
 	}
 
 	public void update() {
-		this.b.update();
-		this.c.update();
+		this.leftChest.update();
+		this.rightChest.update();
 	}
 
-	public boolean canInteract(EntityHuman var1) {
-		return this.b.canInteract(var1) && this.c.canInteract(var1);
+	public boolean canInteract(EntityHuman who) {
+		return this.leftChest.canInteract(who) && this.rightChest.canInteract(who);
 	}
 
-	public void onContainerOpen(EntityHuman var1) {
-		this.b.onContainerOpen(var1);
-		this.c.onContainerOpen(var1);
-		viewers.add(var1);
+	public void onContainerOpen(EntityHuman who) {
+		this.leftChest.onContainerOpen(who);
+		this.rightChest.onContainerOpen(who);
+		viewers.add(who);
 	}
 
-	public void onContainerClose(EntityHuman var1) {
-		this.b.onContainerClose(var1);
-		this.c.onContainerClose(var1);
-		viewers.remove(var1);
+	public void onContainerClose(EntityHuman who) {
+		this.leftChest.onContainerClose(who);
+		this.rightChest.onContainerClose(who);
+		viewers.remove(who);
 	}
 
 	public boolean canSuckItemFromInventory(int var1, ItemStack var2) {
@@ -112,29 +112,29 @@ public class InventoryLargeChest implements ILockable {
 	}
 
 	public boolean isLocked() {
-		return this.b.isLocked() || this.c.isLocked();
+		return this.leftChest.isLocked() || this.rightChest.isLocked();
 	}
 
 	public void setLock(ContainerLock var1) {
-		this.b.setLock(var1);
-		this.c.setLock(var1);
+		this.leftChest.setLock(var1);
+		this.rightChest.setLock(var1);
 	}
 
 	public ContainerLock getLock() {
-		return this.b.getLock();
+		return this.leftChest.getLock();
 	}
 
 	public String getInventoryType() {
-		return this.b.getInventoryType();
+		return this.leftChest.getInventoryType();
 	}
 
-	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
-		return new ContainerChest(var1, this, var2);
+	public Container getContainer(PlayerInventory playerInventory, EntityHuman human) {
+		return new ContainerChest(playerInventory, this, human);
 	}
 
 	public void clearInventory() {
-		this.b.clearInventory();
-		this.c.clearInventory();
+		this.leftChest.clearInventory();
+		this.rightChest.clearInventory();
 	}
 
 	@Override

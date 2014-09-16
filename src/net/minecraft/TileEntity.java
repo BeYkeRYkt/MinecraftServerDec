@@ -83,8 +83,8 @@ public abstract class TileEntity {
 		return this.world;
 	}
 
-	public void setWorld(World var1) {
-		this.world = var1;
+	public void setWorld(World world) {
+		this.world = world;
 	}
 
 	public boolean hasWorld() {
