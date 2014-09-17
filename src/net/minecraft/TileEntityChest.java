@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TileEntityChest extends TileEntityLockable implements ITickable, IInventory {
+public class TileEntityChest extends TileEntityLockable implements IInventory {
 
 	private ItemStack[] items = new ItemStack[27];
 	public boolean doubleChestChecked;
@@ -198,49 +198,6 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 		}
 	}
 
-	public void doTick() {
-		this.checkDoubleChest();
-		int x = position.getX();
-		int y = position.getY();
-		int z = position.getZ();
-
-		if (northChest != null || westChest != null) {
-			return;
-		}
-
-		if (!viewers.isEmpty() && !soundEffectStatus.isOpenSoundPlayed()) {
-			double chestCenterX = x + 0.5D;
-			double chestCenterZ = z + 0.5D;
-
-			if (southChest != null) {
-				chestCenterZ += 0.5D;
-			}
-
-			if (eastChest != null) {
-				chestCenterX += 0.5D;
-			}
-
-			world.makeSound(chestCenterX, y + 0.5D, chestCenterZ, "random.chestopen", 0.5F, this.world.random.nextFloat() * 0.1F + 0.9F);
-			soundEffectStatus.onContainerOpen();
-		}
-
-		if (viewers.isEmpty() && !soundEffectStatus.isCloseSoundPlayed()) {
-			double chestCenterX = x + 0.5D;
-			double chestCenterZ = z + 0.5D;
-			if (this.southChest != null) {
-				chestCenterZ += 0.5D;
-			}
-
-			if (this.eastChest != null) {
-				chestCenterX += 0.5D;
-			}
-
-			this.world.makeSound(chestCenterX, y + 0.5D, chestCenterZ, "random.chestclosed", 0.5F, this.world.random.nextFloat() * 0.1F + 0.9F);
-			soundEffectStatus.onContainerClose();
-		}
-
-	}
-
 	public boolean c(int var1, int var2) {
 		if (var1 == 1) {
 			moajangCodeViewersCount = var2;
@@ -256,6 +213,20 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 			this.world.c(this.position, this.getBlock(), 1, viewers.size());
 			this.world.c(this.position, this.getBlock());
 			this.world.c(this.position.b(), this.getBlock());
+			if (viewers.size() == 1 && northChest == null && westChest == null) {
+				double chestCenterX = position.getX() + 0.5D;
+				double chestCenterZ = position.getZ() + 0.5D;
+
+				if (southChest != null) {
+					chestCenterZ += 0.5D;
+				}
+
+				if (eastChest != null) {
+					chestCenterX += 0.5D;
+				}
+
+				world.makeSound(chestCenterX, position.getY() + 0.5D, chestCenterZ, "random.chestopen", 0.5F, this.world.random.nextFloat() * 0.1F + 0.9F);
+			}
 		}
 	}
 
@@ -268,6 +239,19 @@ public class TileEntityChest extends TileEntityLockable implements ITickable, II
 			this.world.c(this.position, this.getBlock(), 1, viewers.size());
 			this.world.c(this.position, this.getBlock());
 			this.world.c(this.position.b(), this.getBlock());
+			if (viewers.size() == 0 && northChest == null && westChest == null) {
+				double chestCenterX = position.getX() + 0.5D;
+				double chestCenterZ = position.getZ() + 0.5D;
+				if (this.southChest != null) {
+					chestCenterZ += 0.5D;
+				}
+
+				if (this.eastChest != null) {
+					chestCenterX += 0.5D;
+				}
+
+				this.world.makeSound(chestCenterX, position.getY() + 0.5D, chestCenterZ, "random.chestclosed", 0.5F, this.world.random.nextFloat() * 0.1F + 0.9F);
+			}
 		}
 	}
 
