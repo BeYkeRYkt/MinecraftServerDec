@@ -54,10 +54,10 @@ public class BlockBrewingStand extends atg {
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
-		if (var5.s()) {
+		if (var5.hasDisplayName()) {
 			TileEntity var6 = var1.getTileEntity(var2);
 			if (var6 instanceof TileEntityBrewingStand) {
-				((TileEntityBrewingStand) var6).a(var5.q());
+				((TileEntityBrewingStand) var6).a(var5.getDisplayName());
 			}
 		}
 

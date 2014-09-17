@@ -7,17 +7,17 @@ import java.util.List;
 
 public class InventorySubcontainer implements IInventory {
 
-	private String a;
-	private int b;
-	private ItemStack[] c;
+	private String name;
+	private int size;
+	private ItemStack[] items;
 	private List<IInventoryListener> d;
-	private boolean e;
+	private boolean hasCustomName;
 
-	public InventorySubcontainer(String var1, boolean var2, int var3) {
-		this.a = var1;
-		this.e = var2;
-		this.b = var3;
-		this.c = new ItemStack[var3];
+	public InventorySubcontainer(String var1, boolean var2, int size) {
+		this.name = var1;
+		this.hasCustomName = var2;
+		this.size = size;
+		this.items = new ItemStack[size];
 	}
 
 	public void a(IInventoryListener var1) {
@@ -33,21 +33,21 @@ public class InventorySubcontainer implements IInventory {
 	}
 
 	public ItemStack getItem(int var1) {
-		return var1 >= 0 && var1 < this.c.length ? this.c[var1] : null;
+		return var1 >= 0 && var1 < this.items.length ? this.items[var1] : null;
 	}
 
 	public ItemStack splitStack(int var1, int var2) {
-		if (this.c[var1] != null) {
+		if (this.items[var1] != null) {
 			ItemStack var3;
-			if (this.c[var1].amount <= var2) {
-				var3 = this.c[var1];
-				this.c[var1] = null;
+			if (this.items[var1].amount <= var2) {
+				var3 = this.items[var1];
+				this.items[var1] = null;
 				this.update();
 				return var3;
 			} else {
-				var3 = this.c[var1].a(var2);
-				if (this.c[var1].amount == 0) {
-					this.c[var1] = null;
+				var3 = this.items[var1].a(var2);
+				if (this.items[var1].amount == 0) {
+					this.items[var1] = null;
 				}
 
 				this.update();
@@ -61,7 +61,7 @@ public class InventorySubcontainer implements IInventory {
 	public ItemStack a(ItemStack var1) {
 		ItemStack var2 = var1.getCopy();
 
-		for (int var3 = 0; var3 < this.b; ++var3) {
+		for (int var3 = 0; var3 < this.size; ++var3) {
 			ItemStack var4 = this.getItem(var3);
 			if (var4 == null) {
 				this.setItem(var3, var2);
@@ -91,9 +91,9 @@ public class InventorySubcontainer implements IInventory {
 	}
 
 	public ItemStack splitWithoutUpdate(int var1) {
-		if (this.c[var1] != null) {
-			ItemStack var2 = this.c[var1];
-			this.c[var1] = null;
+		if (this.items[var1] != null) {
+			ItemStack var2 = this.items[var1];
+			this.items[var1] = null;
 			return var2;
 		} else {
 			return null;
@@ -101,7 +101,7 @@ public class InventorySubcontainer implements IInventory {
 	}
 
 	public void setItem(int var1, ItemStack var2) {
-		this.c[var1] = var2;
+		this.items[var1] = var2;
 		if (var2 != null && var2.amount > this.getMaxStackSize()) {
 			var2.amount = this.getMaxStackSize();
 		}
@@ -110,20 +110,20 @@ public class InventorySubcontainer implements IInventory {
 	}
 
 	public int getSize() {
-		return this.b;
+		return this.size;
 	}
 
 	public String getName() {
-		return this.a;
+		return this.name;
 	}
 
 	public boolean hasCustomName() {
-		return this.e;
+		return this.hasCustomName;
 	}
 
-	public void a(String var1) {
-		this.e = true;
-		this.a = var1;
+	public void setCustomName(String name) {
+		this.hasCustomName = true;
+		this.name = name;
 	}
 
 	public IChatBaseComponent getComponentName() {
@@ -169,8 +169,8 @@ public class InventorySubcontainer implements IInventory {
 	}
 
 	public void clearInventory() {
-		for (int var1 = 0; var1 < this.c.length; ++var1) {
-			this.c[var1] = null;
+		for (int var1 = 0; var1 < this.items.length; ++var1) {
+			this.items[var1] = null;
 		}
 
 	}
@@ -178,6 +178,11 @@ public class InventorySubcontainer implements IInventory {
 	@Override
 	public List<EntityHuman> getViewers() {
 		return new ArrayList<EntityHuman>();
+	}
+
+	@Override
+	public ItemStack[] getItems() {
+		return items;
 	}
 
 }

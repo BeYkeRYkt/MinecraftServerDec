@@ -90,7 +90,7 @@ import org.bukkit.util.CachedServerIcon;
 import pipebukkit.server.banlists.PipeIpBanList;
 import pipebukkit.server.banlists.PipeProfileBanList;
 import pipebukkit.server.entity.PipePlayer;
-import pipebukkit.server.entity.inventory.PipeUnownedInventory;
+import pipebukkit.server.inventory.PipeUnownedInventory;
 import pipebukkit.server.metadata.EntityMetadataStorage;
 import pipebukkit.server.metadata.PlayerMetadataStorage;
 import pipebukkit.server.scheduler.PipeScheduler;
@@ -101,6 +101,7 @@ import com.avaje.ebean.config.ServerConfig;
 import com.avaje.ebean.config.dbplatform.SQLitePlatform;
 import com.avaje.ebeaninternal.server.lib.sql.TransactionIsolation;
 import com.google.common.base.Charsets;
+import com.google.common.collect.Lists;
 
 import net.minecraft.util.com.mojang.authlib.GameProfile;
 
@@ -131,7 +132,7 @@ public class PipeServer implements Server {
 	public PipeServer() {
 		Bukkit.setServer(this);
 
-		players = Collections.unmodifiableList(com.google.common.collect.Lists.transform(MinecraftServer.getInstance().getPlayerList().players, new com.google.common.base.Function<EntityPlayer, Player>() {
+		players = Collections.unmodifiableList(Lists.transform(MinecraftServer.getInstance().getPlayerList().players, new com.google.common.base.Function<EntityPlayer, Player>() {
 			@Override
 			public Player apply(EntityPlayer player) {
 				return player.getBukkitEntity(Player.class);

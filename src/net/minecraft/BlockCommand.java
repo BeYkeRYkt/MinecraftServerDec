@@ -60,8 +60,8 @@ public class BlockCommand extends atg {
 		TileEntity var6 = var1.getTileEntity(var2);
 		if (var6 instanceof TileEntityCommand) {
 			CommandBlockListenerAbstract var7 = ((TileEntityCommand) var6).getListener();
-			if (var5.s()) {
-				var7.setCustomName(var5.q());
+			if (var5.hasDisplayName()) {
+				var7.setCustomName(var5.getDisplayName());
 			}
 
 			if (!var1.isStatic) {

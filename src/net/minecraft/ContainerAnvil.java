@@ -188,15 +188,15 @@ public class ContainerAnvil extends Container {
 			}
 
 			if (StringUtils.isBlank(this.l)) {
-				if (var8.s()) {
+				if (var8.hasDisplayName()) {
 					var11 = 1;
 					var9 += var11;
-					var12.r();
+					var12.removeDisplayName();
 				}
-			} else if (!this.l.equals(var8.q())) {
+			} else if (!this.l.equals(var8.getDisplayName())) {
 				var11 = 1;
 				var9 += var11;
-				var12.c(this.l);
+				var12.setDisplayName(this.l);
 			}
 
 			this.a = var25 + var9;
@@ -291,9 +291,9 @@ public class ContainerAnvil extends Container {
 		if (this.getSlot(2).hasItem()) {
 			ItemStack var2 = this.getSlot(2).getItemStack();
 			if (StringUtils.isBlank(name)) {
-				var2.r();
+				var2.removeDisplayName();
 			} else {
-				var2.c(this.l);
+				var2.setDisplayName(this.l);
 			}
 		}
 

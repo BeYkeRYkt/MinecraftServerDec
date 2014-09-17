@@ -95,10 +95,10 @@ public class BlockChest extends atg {
 			var1.setBlockAt(var2, var3, 3);
 		}
 
-		if (var5.s()) {
+		if (var5.hasDisplayName()) {
 			TileEntity var15 = var1.getTileEntity(var2);
 			if (var15 instanceof TileEntityChest) {
-				((TileEntityChest) var15).setCustomName(var5.q());
+				((TileEntityChest) var15).setCustomName(var5.getDisplayName());
 			}
 		}
 

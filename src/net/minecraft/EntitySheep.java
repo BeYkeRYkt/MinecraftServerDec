@@ -6,8 +6,9 @@ import java.util.Random;
 
 public class EntitySheep extends EntityAnimal {
 
-	private final InventoryCrafting bk = new InventoryCrafting(new acm(this), 2, 1);
 	private static final Map bm = Maps.newEnumMap(akv.class);
+
+	private final InventoryCrafting bk = new InventoryCrafting(new acm(this), 2, 1);
 	private int bn;
 	private yw bo = new yw(this);
 

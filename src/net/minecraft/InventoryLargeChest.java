@@ -1,6 +1,7 @@
 package net.minecraft;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class InventoryLargeChest implements ILockable {
@@ -140,6 +141,14 @@ public class InventoryLargeChest implements ILockable {
 	@Override
 	public List<EntityHuman> getViewers() {
 		return viewers;
+	}
+
+	@Override
+	public ItemStack[] getItems() {
+		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+		items.addAll(Arrays.asList(leftChest.getItems()));
+		items.addAll(Arrays.asList(rightChest.getItems()));
+		return items.toArray(new ItemStack[items.size()]);
 	}
 
 }

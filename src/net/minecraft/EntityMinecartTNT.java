@@ -12,7 +12,7 @@ public class EntityMinecartTNT extends adx {
 		super(var1, var2, var4, var6);
 	}
 
-	public MinecartType s() {
+	public MinecartType getType() {
 		return MinecartType.TNT;
 	}
 

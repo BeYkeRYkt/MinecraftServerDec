@@ -578,7 +578,7 @@ public abstract class EntityHuman extends EntityLiving {
 		super.a(var1);
 		this.uuid = a(this.gameProfile);
 		NBTListTag var2 = var1.getList("Inventory", 10);
-		this.playerInventory.b(var2);
+		this.playerInventory.read(var2);
 		this.playerInventory.itemInHandIndex = var1.getInt("SelectedItemSlot");
 		this.isSleeping = var1.getBoolean("Sleeping");
 		this.sleepTimer = var1.getShort("SleepTimer");
@@ -612,7 +612,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public void b(NBTCompoundTag tag) {
 		super.b(tag);
-		tag.put("Inventory", (NBTTag) this.playerInventory.a(new NBTListTag()));
+		tag.put("Inventory", (NBTTag) this.playerInventory.write(new NBTListTag()));
 		tag.put("SelectedItemSlot", this.playerInventory.itemInHandIndex);
 		tag.put("Sleeping", this.isSleeping);
 		tag.put("SleepTimer", (short) this.sleepTimer);
@@ -1358,7 +1358,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public void a(EntityHuman var1, boolean var2) {
 		if (var2) {
-			this.playerInventory.b(var1.playerInventory);
+			this.playerInventory.copyInventoryFrom(var1.playerInventory);
 			this.h(var1.getHealth());
 			this.fooddata = var1.fooddata;
 			this.xpLevel = var1.xpLevel;
@@ -1367,7 +1367,7 @@ public abstract class EntityHuman extends EntityLiving {
 			this.r(var1.bW());
 			this.an = var1.an;
 		} else if (this.world.getGameRules().b("keepInventory")) {
-			this.playerInventory.b(var1.playerInventory);
+			this.playerInventory.copyInventoryFrom(var1.playerInventory);
 			this.xpLevel = var1.xpLevel;
 			this.xpTotal = var1.xpTotal;
 			this.xp = var1.xp;
@@ -1477,7 +1477,7 @@ public abstract class EntityHuman extends EntityLiving {
 			return true;
 		} else {
 			ItemStack var2 = this.bY();
-			return var2 != null && var2.s() ? var2.q().equals(var1.getUnlockingItemDisplayName()) : false;
+			return var2 != null && var2.hasDisplayName() ? var2.getDisplayName().equals(var1.getUnlockingItemDisplayName()) : false;
 		}
 	}
 

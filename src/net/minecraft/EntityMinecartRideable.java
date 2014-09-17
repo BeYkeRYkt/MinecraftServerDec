@@ -40,7 +40,7 @@ public class EntityMinecartRideable extends adx {
 
 	}
 
-	public MinecartType s() {
+	public MinecartType getType() {
 		return MinecartType.RIDEABLE;
 	}
 }

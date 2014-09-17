@@ -65,14 +65,14 @@ public class CombatTracker {
 					if (var6 != null && (var4 == null || !var6.equals(var4))) {
 						Entity var9 = var1.a().j();
 						ItemStack var8 = var9 instanceof EntityLiving ? ((EntityLiving) var9).getItemInHand() : null;
-						if (var8 != null && var8.s()) {
+						if (var8 != null && var8.hasDisplayName()) {
 							var3 = new ChatMessage("death.fell.assist.item", new Object[] { this.b.getComponentName(), var6, var8.C() });
 						} else {
 							var3 = new ChatMessage("death.fell.assist", new Object[] { this.b.getComponentName(), var6 });
 						}
 					} else if (var4 != null) {
 						ItemStack var7 = var5 instanceof EntityLiving ? ((EntityLiving) var5).getItemInHand() : null;
-						if (var7 != null && var7.s()) {
+						if (var7 != null && var7.hasDisplayName()) {
 							var3 = new ChatMessage("death.fell.finish.item", new Object[] { this.b.getComponentName(), var4, var7.C() });
 						} else {
 							var3 = new ChatMessage("death.fell.finish", new Object[] { this.b.getComponentName(), var4 });

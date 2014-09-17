@@ -35,9 +35,9 @@ public class ShapelessRecipes implements IRecipe {
 	public boolean a(InventoryCrafting var1, World var2) {
 		ArrayList var3 = Lists.newArrayList((Iterable) this.b);
 
-		for (int var4 = 0; var4 < var1.h(); ++var4) {
-			for (int var5 = 0; var5 < var1.i(); ++var5) {
-				ItemStack var6 = var1.c(var5, var4);
+		for (int var4 = 0; var4 < var1.getRows(); ++var4) {
+			for (int var5 = 0; var5 < var1.getCols(); ++var5) {
+				ItemStack var6 = var1.getItem(var5, var4);
 				if (var6 != null) {
 					boolean var7 = false;
 					Iterator var8 = var3.iterator();

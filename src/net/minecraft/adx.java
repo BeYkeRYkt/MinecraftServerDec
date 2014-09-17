@@ -113,7 +113,7 @@ public abstract class adx extends Entity implements ICustomNameable {
 		this.die();
 		ItemStack var2 = new ItemStack(Items.MINECART, 1);
 		if (this.b != null) {
-			var2.c(this.b);
+			var2.setDisplayName(this.b);
 		}
 
 		this.a(var2, 0.0F);
@@ -570,7 +570,7 @@ public abstract class adx extends Entity implements ICustomNameable {
 		if (!this.world.isStatic) {
 			if (!var1.T && !this.T) {
 				if (var1 != this.passenger) {
-					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof EntityIronGolem) && this.s() == MinecartType.RIDEABLE && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.passenger == null && var1.vehicle == null) {
+					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof EntityIronGolem) && this.getType() == MinecartType.RIDEABLE && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.passenger == null && var1.vehicle == null) {
 						var1.mount((Entity) this);
 					}
 
@@ -606,13 +606,13 @@ public abstract class adx extends Entity implements ICustomNameable {
 
 							double var18 = var1.motionX + this.motionX;
 							double var20 = var1.motionZ + this.motionZ;
-							if (((adx) var1).s() == MinecartType.FURNACE && this.s() != MinecartType.FURNACE) {
+							if (((adx) var1).getType() == MinecartType.FURNACE && this.getType() != MinecartType.FURNACE) {
 								this.motionX *= 0.20000000298023224D;
 								this.motionZ *= 0.20000000298023224D;
 								this.g(var1.motionX - var2, 0.0D, var1.motionZ - var4);
 								var1.motionX *= 0.949999988079071D;
 								var1.motionZ *= 0.949999988079071D;
-							} else if (((adx) var1).s() != MinecartType.FURNACE && this.s() == MinecartType.FURNACE) {
+							} else if (((adx) var1).getType() != MinecartType.FURNACE && this.getType() == MinecartType.FURNACE) {
 								var1.motionX *= 0.20000000298023224D;
 								var1.motionZ *= 0.20000000298023224D;
 								var1.g(this.motionX + var2, 0.0D, this.motionZ + var4);
@@ -663,7 +663,7 @@ public abstract class adx extends Entity implements ICustomNameable {
 		return this.dataWatcher.c(18);
 	}
 
-	public abstract MinecartType s();
+	public abstract MinecartType getType();
 
 	public IBlockState t() {
 		return !this.x() ? this.u() : Block.getStateById(this.getDataWatcher().c(20));

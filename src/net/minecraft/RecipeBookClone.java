@@ -55,8 +55,8 @@ public class RecipeBookClone implements IRecipe {
 			ItemStack var6 = new ItemStack(Items.WRITTEN_BOOK, var2);
 			var6.setTag((NBTCompoundTag) var3.getTag().getCopy());
 			var6.getTag().put("generation", ItemWrittenBook.h(var3) + 1);
-			if (var3.s()) {
-				var6.c(var3.q());
+			if (var3.hasDisplayName()) {
+				var6.setDisplayName(var3.getDisplayName());
 			}
 
 			return var6;

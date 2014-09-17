@@ -224,7 +224,7 @@ public class EntityArmorStand extends EntityLiving {
 		if (var1 != null && !var1.isEmpty()) {
 			for (int var2 = 0; var2 < var1.size(); ++var2) {
 				Entity var3 = (Entity) var1.get(var2);
-				if (var3 instanceof adx && ((adx) var3).s() == MinecartType.RIDEABLE && this.getDistanceSquared(var3) <= 0.2D) {
+				if (var3 instanceof adx && ((adx) var3).getType() == MinecartType.RIDEABLE && this.getDistanceSquared(var3) <= 0.2D) {
 					var3.i(this);
 				}
 			}

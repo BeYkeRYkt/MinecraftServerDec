@@ -8,7 +8,7 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 
 	private static final int[] a = new int[] { 3 };
 	private static final int[] f = new int[] { 0, 1, 2 };
-	private ItemStack[] g = new ItemStack[4];
+	private ItemStack[] items = new ItemStack[4];
 	private int h;
 	private boolean[] i;
 	private Item j;
@@ -28,7 +28,7 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	}
 
 	public int getSize() {
-		return this.g.length;
+		return this.items.length;
 	}
 
 	public void doTick() {
@@ -40,13 +40,13 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 			} else if (!this.n()) {
 				this.h = 0;
 				this.update();
-			} else if (this.j != this.g[3].getItem()) {
+			} else if (this.j != this.items[3].getItem()) {
 				this.h = 0;
 				this.update();
 			}
 		} else if (this.n()) {
 			this.h = 400;
-			this.j = this.g[3].getItem();
+			this.j = this.items[3].getItem();
 		}
 
 		if (!this.world.isStatic) {
@@ -69,16 +69,16 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	}
 
 	private boolean n() {
-		if (this.g[3] != null && this.g[3].amount > 0) {
-			ItemStack var1 = this.g[3];
+		if (this.items[3] != null && this.items[3].amount > 0) {
+			ItemStack var1 = this.items[3];
 			if (!var1.getItem().l(var1)) {
 				return false;
 			} else {
 				boolean var2 = false;
 
 				for (int var3 = 0; var3 < 3; ++var3) {
-					if (this.g[var3] != null && this.g[var3].getItem() == Items.POTION) {
-						int var4 = this.g[var3].getWearout();
+					if (this.items[var3] != null && this.items[var3].getItem() == Items.POTION) {
+						int var4 = this.items[var3].getWearout();
 						int var5 = this.c(var4, var1);
 						if (!ItemPotion.f(var4) && ItemPotion.f(var5)) {
 							var2 = true;
@@ -103,30 +103,30 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 
 	private void o() {
 		if (this.n()) {
-			ItemStack var1 = this.g[3];
+			ItemStack var1 = this.items[3];
 
 			for (int var2 = 0; var2 < 3; ++var2) {
-				if (this.g[var2] != null && this.g[var2].getItem() == Items.POTION) {
-					int var3 = this.g[var2].getWearout();
+				if (this.items[var2] != null && this.items[var2].getItem() == Items.POTION) {
+					int var3 = this.items[var2].getWearout();
 					int var4 = this.c(var3, var1);
 					List var5 = Items.POTION.e(var3);
 					List var6 = Items.POTION.e(var4);
 					if ((var3 <= 0 || var5 != var6) && (var5 == null || !var5.equals(var6) && var6 != null)) {
 						if (var3 != var4) {
-							this.g[var2].setWearout(var4);
+							this.items[var2].setWearout(var4);
 						}
 					} else if (!ItemPotion.f(var3) && ItemPotion.f(var4)) {
-						this.g[var2].setWearout(var4);
+						this.items[var2].setWearout(var4);
 					}
 				}
 			}
 
 			if (var1.getItem().r()) {
-				this.g[3] = new ItemStack(var1.getItem().getCraftingResult());
+				this.items[3] = new ItemStack(var1.getItem().getCraftingResult());
 			} else {
-				--this.g[3].amount;
-				if (this.g[3].amount <= 0) {
-					this.g[3] = null;
+				--this.items[3].amount;
+				if (this.items[3].amount <= 0) {
+					this.items[3] = null;
 				}
 			}
 
@@ -140,13 +140,13 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
-		this.g = new ItemStack[this.getSize()];
+		this.items = new ItemStack[this.getSize()];
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			byte var5 = var4.getByte("Slot");
-			if (var5 >= 0 && var5 < this.g.length) {
-				this.g[var5] = ItemStack.fromNBT(var4);
+			if (var5 >= 0 && var5 < this.items.length) {
+				this.items[var5] = ItemStack.fromNBT(var4);
 			}
 		}
 
@@ -162,11 +162,11 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 		var1.put("BrewTime", (short) this.h);
 		NBTListTag var2 = new NBTListTag();
 
-		for (int var3 = 0; var3 < this.g.length; ++var3) {
-			if (this.g[var3] != null) {
+		for (int var3 = 0; var3 < this.items.length; ++var3) {
+			if (this.items[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.put("Slot", (byte) var3);
-				this.g[var3].write(var4);
+				this.items[var3].write(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
@@ -179,13 +179,13 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	}
 
 	public ItemStack getItem(int var1) {
-		return var1 >= 0 && var1 < this.g.length ? this.g[var1] : null;
+		return var1 >= 0 && var1 < this.items.length ? this.items[var1] : null;
 	}
 
 	public ItemStack splitStack(int var1, int var2) {
-		if (var1 >= 0 && var1 < this.g.length) {
-			ItemStack var3 = this.g[var1];
-			this.g[var1] = null;
+		if (var1 >= 0 && var1 < this.items.length) {
+			ItemStack var3 = this.items[var1];
+			this.items[var1] = null;
 			return var3;
 		} else {
 			return null;
@@ -193,9 +193,9 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	}
 
 	public ItemStack splitWithoutUpdate(int var1) {
-		if (var1 >= 0 && var1 < this.g.length) {
-			ItemStack var2 = this.g[var1];
-			this.g[var1] = null;
+		if (var1 >= 0 && var1 < this.items.length) {
+			ItemStack var2 = this.items[var1];
+			this.items[var1] = null;
 			return var2;
 		} else {
 			return null;
@@ -203,8 +203,8 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	}
 
 	public void setItem(int var1, ItemStack var2) {
-		if (var1 >= 0 && var1 < this.g.length) {
-			this.g[var1] = var2;
+		if (var1 >= 0 && var1 < this.items.length) {
+			this.items[var1] = var2;
 		}
 
 	}
@@ -233,7 +233,7 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 		boolean[] var1 = new boolean[3];
 
 		for (int var2 = 0; var2 < 3; ++var2) {
-			if (this.g[var2] != null) {
+			if (this.items[var2] != null) {
 				var1[var2] = true;
 			}
 		}
@@ -283,8 +283,8 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	}
 
 	public void clearInventory() {
-		for (int var1 = 0; var1 < this.g.length; ++var1) {
-			this.g[var1] = null;
+		for (int var1 = 0; var1 < this.items.length; ++var1) {
+			this.items[var1] = null;
 		}
 
 	}
@@ -292,6 +292,11 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	@Override
 	public List<EntityHuman> getViewers() {
 		return viewers;
+	}
+
+	@Override
+	public ItemStack[] getItems() {
+		return items;
 	}
 
 }

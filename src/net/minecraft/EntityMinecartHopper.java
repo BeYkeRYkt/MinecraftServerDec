@@ -18,7 +18,7 @@ public class EntityMinecartHopper extends InventoryMinecart implements IHopper {
 		this.c = Position.ZERO;
 	}
 
-	public MinecartType s() {
+	public MinecartType getType() {
 		return MinecartType.HOPPER;
 	}
 

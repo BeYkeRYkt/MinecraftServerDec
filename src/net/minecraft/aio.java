@@ -2,8 +2,8 @@ package net.minecraft;
 
 public class aio extends Container {
 
-	public InventoryCrafting a = new InventoryCrafting(this, 3, 3);
 	public IInventory f = new InventoryResult();
+	public InventoryCrafting a = new InventoryCrafting(this, 3, 3);
 	private World g;
 	private Position h;
 

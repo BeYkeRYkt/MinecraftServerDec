@@ -8,7 +8,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 	private static final int[] a = new int[] { 0 };
 	private static final int[] f = new int[] { 2, 1 };
 	private static final int[] g = new int[] { 1 };
-	private ItemStack[] h = new ItemStack[3];
+	private ItemStack[] items = new ItemStack[3];
 	private int i;
 	private int j;
 	private int k;
@@ -17,24 +17,24 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
 	public int getSize() {
-		return this.h.length;
+		return this.items.length;
 	}
 
 	public ItemStack getItem(int var1) {
-		return this.h[var1];
+		return this.items[var1];
 	}
 
 	public ItemStack splitStack(int var1, int var2) {
-		if (this.h[var1] != null) {
+		if (this.items[var1] != null) {
 			ItemStack var3;
-			if (this.h[var1].amount <= var2) {
-				var3 = this.h[var1];
-				this.h[var1] = null;
+			if (this.items[var1].amount <= var2) {
+				var3 = this.items[var1];
+				this.items[var1] = null;
 				return var3;
 			} else {
-				var3 = this.h[var1].a(var2);
-				if (this.h[var1].amount == 0) {
-					this.h[var1] = null;
+				var3 = this.items[var1].a(var2);
+				if (this.items[var1].amount == 0) {
+					this.items[var1] = null;
 				}
 
 				return var3;
@@ -45,9 +45,9 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 	}
 
 	public ItemStack splitWithoutUpdate(int var1) {
-		if (this.h[var1] != null) {
-			ItemStack var2 = this.h[var1];
-			this.h[var1] = null;
+		if (this.items[var1] != null) {
+			ItemStack var2 = this.items[var1];
+			this.items[var1] = null;
 			return var2;
 		} else {
 			return null;
@@ -55,8 +55,8 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 	}
 
 	public void setItem(int var1, ItemStack var2) {
-		boolean var3 = var2 != null && var2.a(this.h[var1]) && ItemStack.isSameNBTTags(var2, this.h[var1]);
-		this.h[var1] = var2;
+		boolean var3 = var2 != null && var2.a(this.items[var1]) && ItemStack.isSameNBTTags(var2, this.items[var1]);
+		this.items[var1] = var2;
 		if (var2 != null && var2.amount > this.getMaxStackSize()) {
 			var2.amount = this.getMaxStackSize();
 		}
@@ -84,20 +84,20 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
-		this.h = new ItemStack[this.getSize()];
+		this.items = new ItemStack[this.getSize()];
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			byte var5 = var4.getByte("Slot");
-			if (var5 >= 0 && var5 < this.h.length) {
-				this.h[var5] = ItemStack.fromNBT(var4);
+			if (var5 >= 0 && var5 < this.items.length) {
+				this.items[var5] = ItemStack.fromNBT(var4);
 			}
 		}
 
 		this.i = var1.getShort("BurnTime");
 		this.k = var1.getShort("CookTime");
 		this.l = var1.getShort("CookTimeTotal");
-		this.j = b(this.h[1]);
+		this.j = b(this.items[1]);
 		if (var1.isTagAssignableFrom("CustomName", 8)) {
 			this.m = var1.getString("CustomName");
 		}
@@ -111,11 +111,11 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 		var1.put("CookTimeTotal", (short) this.l);
 		NBTListTag var2 = new NBTListTag();
 
-		for (int var3 = 0; var3 < this.h.length; ++var3) {
-			if (this.h[var3] != null) {
+		for (int var3 = 0; var3 < this.items.length; ++var3) {
+			if (this.items[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.put("Slot", (byte) var3);
-				this.h[var3].write(var4);
+				this.items[var3].write(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
@@ -143,20 +143,20 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 		}
 
 		if (!this.world.isStatic) {
-			if (!this.m() && (this.h[1] == null || this.h[0] == null)) {
+			if (!this.m() && (this.items[1] == null || this.items[0] == null)) {
 				if (!this.m() && this.k > 0) {
 					this.k = MathHelper.a(this.k - 2, 0, this.l);
 				}
 			} else {
 				if (!this.m() && this.o()) {
-					this.j = this.i = b(this.h[1]);
+					this.j = this.i = b(this.items[1]);
 					if (this.m()) {
 						var2 = true;
-						if (this.h[1] != null) {
-							--this.h[1].amount;
-							if (this.h[1].amount == 0) {
-								Item var3 = this.h[1].getItem().getCraftingResult();
-								this.h[1] = var3 != null ? new ItemStack(var3) : null;
+						if (this.items[1] != null) {
+							--this.items[1].amount;
+							if (this.items[1].amount == 0) {
+								Item var3 = this.items[1].getItem().getCraftingResult();
+								this.items[1] = var3 != null ? new ItemStack(var3) : null;
 							}
 						}
 					}
@@ -166,7 +166,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 					++this.k;
 					if (this.k == this.l) {
 						this.k = 0;
-						this.l = this.a(this.h[0]);
+						this.l = this.a(this.items[0]);
 						this.n();
 						var2 = true;
 					}
@@ -192,30 +192,30 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 	}
 
 	private boolean o() {
-		if (this.h[0] == null) {
+		if (this.items[0] == null) {
 			return false;
 		} else {
-			ItemStack var1 = RecipesFurnace.getInstance().a(this.h[0]);
-			return var1 == null ? false : (this.h[2] == null ? true : (!this.h[2].a(var1) ? false : (this.h[2].amount < this.getMaxStackSize() && this.h[2].amount < this.h[2].getMaxStackSize() ? true : this.h[2].amount < var1.getMaxStackSize())));
+			ItemStack var1 = RecipesFurnace.getInstance().a(this.items[0]);
+			return var1 == null ? false : (this.items[2] == null ? true : (!this.items[2].a(var1) ? false : (this.items[2].amount < this.getMaxStackSize() && this.items[2].amount < this.items[2].getMaxStackSize() ? true : this.items[2].amount < var1.getMaxStackSize())));
 		}
 	}
 
 	public void n() {
 		if (this.o()) {
-			ItemStack var1 = RecipesFurnace.getInstance().a(this.h[0]);
-			if (this.h[2] == null) {
-				this.h[2] = var1.getCopy();
-			} else if (this.h[2].getItem() == var1.getItem()) {
-				++this.h[2].amount;
+			ItemStack var1 = RecipesFurnace.getInstance().a(this.items[0]);
+			if (this.items[2] == null) {
+				this.items[2] = var1.getCopy();
+			} else if (this.items[2].getItem() == var1.getItem()) {
+				++this.items[2].amount;
 			}
 
-			if (this.h[0].getItem() == Item.getItemOf(Blocks.SPONGE) && this.h[0].getWearout() == 1 && this.h[1] != null && this.h[1].getItem() == Items.BUCKET) {
-				this.h[1] = new ItemStack(Items.WATER_BUCKET);
+			if (this.items[0].getItem() == Item.getItemOf(Blocks.SPONGE) && this.items[0].getWearout() == 1 && this.items[1] != null && this.items[1].getItem() == Items.BUCKET) {
+				this.items[1] = new ItemStack(Items.WATER_BUCKET);
 			}
 
-			--this.h[0].amount;
-			if (this.h[0].amount <= 0) {
-				this.h[0] = null;
+			--this.items[0].amount;
+			if (this.items[0].amount <= 0) {
+				this.items[0] = null;
 			}
 
 		}
@@ -329,8 +329,8 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 	}
 
 	public void clearInventory() {
-		for (int var1 = 0; var1 < this.h.length; ++var1) {
-			this.h[var1] = null;
+		for (int var1 = 0; var1 < this.items.length; ++var1) {
+			this.items[var1] = null;
 		}
 
 	}
@@ -338,6 +338,11 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 	@Override
 	public List<EntityHuman> getViewers() {
 		return viewers;
+	}
+
+	@Override
+	public ItemStack[] getItems() {
+		return items;
 	}
 
 }

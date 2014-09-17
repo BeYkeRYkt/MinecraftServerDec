@@ -22,7 +22,7 @@ public class aph {
 		if (var1 == null) {
 			return 0;
 		} else {
-			NBTListTag var2 = var1.p();
+			NBTListTag var2 = var1.getEnchantmentsTag();
 			if (var2 == null) {
 				return 0;
 			} else {
@@ -41,7 +41,7 @@ public class aph {
 
 	public static Map a(ItemStack var0) {
 		LinkedHashMap var1 = Maps.newLinkedHashMap();
-		NBTListTag var2 = var0.getItem() == Items.ENCHANTED_BOOK ? Items.ENCHANTED_BOOK.h(var0) : var0.p();
+		NBTListTag var2 = var0.getItem() == Items.ENCHANTED_BOOK ? Items.ENCHANTED_BOOK.h(var0) : var0.getEnchantmentsTag();
 		if (var2 != null) {
 			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 				short var4 = var2.getCompound(var3).getShort("id");
@@ -103,7 +103,7 @@ public class aph {
 
 	private static void a(apl var0, ItemStack var1) {
 		if (var1 != null) {
-			NBTListTag var2 = var1.p();
+			NBTListTag var2 = var1.getEnchantmentsTag();
 			if (var2 != null) {
 				for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 					short var4 = var2.getCompound(var3).getShort("id");

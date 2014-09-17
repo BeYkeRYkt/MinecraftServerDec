@@ -14,7 +14,6 @@ public class TileEntityChest extends TileEntityLockable implements IInventory {
 	private int moajangCodeViewersCount;
 	private int chestType = -1;
 	private String customName;
-	private SoundEffectStatus soundEffectStatus = new SoundEffectStatus();
 	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
 	public int getSize() {
@@ -311,29 +310,9 @@ public class TileEntityChest extends TileEntityLockable implements IInventory {
 		return viewers;
 	}
 
-	private class SoundEffectStatus {
-
-		private boolean openSoundPlayed = false;
-		private boolean closeSoundPlayed = true;
-
-		public boolean isOpenSoundPlayed() {
-			return openSoundPlayed;
-		}
-
-		public boolean isCloseSoundPlayed() {
-			return closeSoundPlayed;
-		}
-
-		public void onContainerOpen() {
-			openSoundPlayed = true;
-			closeSoundPlayed = false;
-		}
-
-		public void onContainerClose() {
-			openSoundPlayed = false;
-			closeSoundPlayed = true;
-		}
-
+	@Override
+	public ItemStack[] getItems() {
+		return items;
 	}
 
 }

@@ -300,4 +300,9 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 		return viewers;
 	}
 
+	@Override
+	public ItemStack[] getItems() {
+		return new ItemStack[0];
+	}
+
 }

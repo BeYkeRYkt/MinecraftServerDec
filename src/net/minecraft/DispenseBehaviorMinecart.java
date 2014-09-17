@@ -35,8 +35,8 @@ final class DispenseBehaviorMinecart extends DispenseBehaviorItem {
 		}
 
 		adx var18 = adx.a(var4, var5, var7 + var14, var9, ItemMinecart.a((ItemMinecart) var2.getItem()));
-		if (var2.s()) {
-			var18.a(var2.q());
+		if (var2.hasDisplayName()) {
+			var18.a(var2.getDisplayName());
 		}
 
 		var4.addEntity((Entity) var18);

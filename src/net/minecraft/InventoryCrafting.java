@@ -5,30 +5,30 @@ import java.util.List;
 
 public class InventoryCrafting implements IInventory {
 
-	private final ItemStack[] a;
-	private final int b;
-	private final int c;
-	private final Container d;
+	private final ItemStack[] items;
+	private final int cols;
+	private final int rows;
+	private final Container container;
 	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
-	public InventoryCrafting(Container var1, int var2, int var3) {
-		int var4 = var2 * var3;
-		this.a = new ItemStack[var4];
-		this.d = var1;
-		this.b = var2;
-		this.c = var3;
+	public InventoryCrafting(Container container, int cols, int rows) {
+		int size = cols * rows;
+		this.items = new ItemStack[size];
+		this.container = container;
+		this.cols = cols;
+		this.rows = rows;
 	}
 
 	public int getSize() {
-		return this.a.length;
+		return this.items.length;
 	}
 
-	public ItemStack getItem(int var1) {
-		return var1 >= this.getSize() ? null : this.a[var1];
+	public ItemStack getItem(int slot) {
+		return slot >= this.getSize() ? null : this.items[slot];
 	}
 
-	public ItemStack c(int var1, int var2) {
-		return var1 >= 0 && var1 < this.b && var2 >= 0 && var2 <= this.c ? this.getItem(var1 + var2 * this.b) : null;
+	public ItemStack getItem(int col, int row) {
+		return col >= 0 && col < this.cols && row >= 0 && row <= this.rows ? this.getItem(col + row * this.cols) : null;
 	}
 
 	public String getName() {
@@ -44,9 +44,9 @@ public class InventoryCrafting implements IInventory {
 	}
 
 	public ItemStack splitWithoutUpdate(int var1) {
-		if (this.a[var1] != null) {
-			ItemStack var2 = this.a[var1];
-			this.a[var1] = null;
+		if (this.items[var1] != null) {
+			ItemStack var2 = this.items[var1];
+			this.items[var1] = null;
 			return var2;
 		} else {
 			return null;
@@ -54,20 +54,20 @@ public class InventoryCrafting implements IInventory {
 	}
 
 	public ItemStack splitStack(int var1, int var2) {
-		if (this.a[var1] != null) {
+		if (this.items[var1] != null) {
 			ItemStack var3;
-			if (this.a[var1].amount <= var2) {
-				var3 = this.a[var1];
-				this.a[var1] = null;
-				this.d.a((IInventory) this);
+			if (this.items[var1].amount <= var2) {
+				var3 = this.items[var1];
+				this.items[var1] = null;
+				this.container.a((IInventory) this);
 				return var3;
 			} else {
-				var3 = this.a[var1].a(var2);
-				if (this.a[var1].amount == 0) {
-					this.a[var1] = null;
+				var3 = this.items[var1].a(var2);
+				if (this.items[var1].amount == 0) {
+					this.items[var1] = null;
 				}
 
-				this.d.a((IInventory) this);
+				this.container.a((IInventory) this);
 				return var3;
 			}
 		} else {
@@ -75,9 +75,9 @@ public class InventoryCrafting implements IInventory {
 		}
 	}
 
-	public void setItem(int var1, ItemStack var2) {
-		this.a[var1] = var2;
-		this.d.a((IInventory) this);
+	public void setItem(int slot, ItemStack itemStack) {
+		this.items[slot] = itemStack;
+		this.container.a((IInventory) this);
 	}
 
 	public int getMaxStackSize() {
@@ -115,23 +115,28 @@ public class InventoryCrafting implements IInventory {
 	}
 
 	public void clearInventory() {
-		for (int var1 = 0; var1 < this.a.length; ++var1) {
-			this.a[var1] = null;
+		for (int i = 0; i < this.items.length; ++i) {
+			this.items[i] = null;
 		}
 
 	}
 
-	public int h() {
-		return this.c;
+	public int getRows() {
+		return this.rows;
 	}
 
-	public int i() {
-		return this.b;
+	public int getCols() {
+		return this.cols;
 	}
 
 	@Override
 	public List<EntityHuman> getViewers() {
 		return viewers;
+	}
+
+	@Override
+	public ItemStack[] getItems() {
+		return items;
 	}
 
 }

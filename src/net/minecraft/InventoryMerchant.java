@@ -186,4 +186,9 @@ public class InventoryMerchant implements IInventory {
 		return viewers;
 	}
 
+	@Override
+	public ItemStack[] getItems() {
+		return items;
+	}
+
 }

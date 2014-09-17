@@ -5,14 +5,14 @@ import java.util.List;
 
 public class InventoryResult implements IInventory {
 
-	private ItemStack[] a = new ItemStack[1];
+	private ItemStack[] resultItems = new ItemStack[1];
 
 	public int getSize() {
 		return 1;
 	}
 
 	public ItemStack getItem(int var1) {
-		return this.a[0];
+		return this.resultItems[0];
 	}
 
 	public String getName() {
@@ -28,9 +28,9 @@ public class InventoryResult implements IInventory {
 	}
 
 	public ItemStack splitStack(int var1, int var2) {
-		if (this.a[0] != null) {
-			ItemStack var3 = this.a[0];
-			this.a[0] = null;
+		if (this.resultItems[0] != null) {
+			ItemStack var3 = this.resultItems[0];
+			this.resultItems[0] = null;
 			return var3;
 		} else {
 			return null;
@@ -38,9 +38,9 @@ public class InventoryResult implements IInventory {
 	}
 
 	public ItemStack splitWithoutUpdate(int var1) {
-		if (this.a[0] != null) {
-			ItemStack var2 = this.a[0];
-			this.a[0] = null;
+		if (this.resultItems[0] != null) {
+			ItemStack var2 = this.resultItems[0];
+			this.resultItems[0] = null;
 			return var2;
 		} else {
 			return null;
@@ -48,7 +48,7 @@ public class InventoryResult implements IInventory {
 	}
 
 	public void setItem(int var1, ItemStack var2) {
-		this.a[0] = var2;
+		this.resultItems[0] = var2;
 	}
 
 	public int getMaxStackSize() {
@@ -84,14 +84,19 @@ public class InventoryResult implements IInventory {
 	}
 
 	public void clearInventory() {
-		for (int var1 = 0; var1 < this.a.length; ++var1) {
-			this.a[var1] = null;
+		for (int i = 0; i < this.resultItems.length; ++i) {
+			this.resultItems[i] = null;
 		}
 	}
 
 	@Override
 	public List<EntityHuman> getViewers() {
 		return new ArrayList<EntityHuman>();
+	}
+
+	@Override
+	public ItemStack[] getItems() {
+		return resultItems;
 	}
 
 }

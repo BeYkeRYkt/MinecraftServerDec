@@ -36,4 +36,6 @@ public interface IInventory extends ICustomNameable {
 
 	public List<EntityHuman> getViewers();
 
+	public ItemStack[] getItems();
+
 }

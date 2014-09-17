@@ -87,10 +87,10 @@ public class BlockFurnace extends atg {
 
 	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
 		var1.setBlockAt(var2, var3.a(a, var4.aO().getOpposite()), 2);
-		if (var5.s()) {
+		if (var5.hasDisplayName()) {
 			TileEntity var6 = var1.getTileEntity(var2);
 			if (var6 instanceof TileEntityFurnace) {
-				((TileEntityFurnace) var6).a(var5.q());
+				((TileEntityFurnace) var6).a(var5.getDisplayName());
 			}
 		}
 

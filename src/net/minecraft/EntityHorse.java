@@ -305,7 +305,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 	private void cY() {
 		aic var1 = this.bC;
 		this.bC = new aic("HorseChest", this.cX());
-		this.bC.a(this.getName());
+		this.bC.setCustomName(this.getName());
 		if (var1 != null) {
 			var1.b(this);
 			int var2 = Math.min(var1.getSize(), this.bC.getSize());
@@ -476,7 +476,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 
 	public void openChest(EntityHuman human) {
 		if (!this.world.isStatic && (this.passenger == null || this.passenger == human) && this.cm()) {
-			this.bC.a(this.getName());
+			this.bC.setCustomName(this.getName());
 			human.a(this, this.bC);
 		}
 

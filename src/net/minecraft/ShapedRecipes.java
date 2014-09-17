@@ -62,7 +62,7 @@ public class ShapedRecipes implements IRecipe {
 					}
 				}
 
-				ItemStack var10 = var1.c(var5, var6);
+				ItemStack var10 = var1.getItem(var5, var6);
 				if (var10 != null || var9 != null) {
 					if (var10 == null && var9 != null || var10 != null && var9 == null) {
 						return false;

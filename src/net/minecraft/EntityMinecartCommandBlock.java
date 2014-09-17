@@ -31,7 +31,7 @@ public class EntityMinecartCommandBlock extends adx {
 		this.listener.write(var1);
 	}
 
-	public MinecartType s() {
+	public MinecartType getType() {
 		return MinecartType.COMMAND_BLOCK;
 	}
 

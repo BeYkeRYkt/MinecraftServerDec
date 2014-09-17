@@ -347,7 +347,7 @@ public class qy {
 			return new PacketPlayOutSpawnPlayer((EntityHuman) this.a);
 		} else if (this.a instanceof adx) {
 			adx var9 = (adx) this.a;
-			return new PacketPlayOutSpawnObject(this.a, 10, var9.s().getId());
+			return new PacketPlayOutSpawnObject(this.a, 10, var9.getType().getId());
 		} else if (this.a instanceof EntityBoat) {
 			return new PacketPlayOutSpawnObject(this.a, 1);
 		} else if (this.a instanceof IAnimal) {

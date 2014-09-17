@@ -19,7 +19,7 @@ public class EntityMinecartChest extends InventoryMinecart {
 		return 27;
 	}
 
-	public MinecartType s() {
+	public MinecartType getType() {
 		return MinecartType.CHEST;
 	}
 
@@ -38,4 +38,5 @@ public class EntityMinecartChest extends InventoryMinecart {
 	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
 		return new ContainerChest(var1, this, var2);
 	}
+
 }

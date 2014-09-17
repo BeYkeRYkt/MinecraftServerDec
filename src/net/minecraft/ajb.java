@@ -2,8 +2,8 @@ package net.minecraft;
 
 public class ajb extends Container {
 
-	public InventoryCrafting a = new InventoryCrafting(this, 2, 2);
 	public IInventory f = new InventoryResult();
+	public InventoryCrafting a = new InventoryCrafting(this, 2, 2);
 	public boolean g;
 	private final EntityHuman h;
 

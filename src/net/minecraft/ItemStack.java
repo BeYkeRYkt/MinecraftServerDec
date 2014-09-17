@@ -341,57 +341,56 @@ public final class ItemStack {
 		}
 	}
 
-	public NBTListTag p() {
+	public NBTListTag getEnchantmentsTag() {
 		return this.tag == null ? null : this.tag.getList("ench", 10);
+	}
+
+	public boolean hasDisplayName() {
+		return this.tag == null ? false : (!this.tag.isTagAssignableFrom("display", 10) ? false : this.tag.getCompound("display").isTagAssignableFrom("Name", 8));
 	}
 
 	public void setTag(NBTCompoundTag tag) {
 		this.tag = tag;
 	}
 
-	public String q() {
-		String var1 = this.getItem().a(this);
+	public String getDisplayName() {
+		String defaultName = this.getItem().a(this);
 		if (this.tag != null && this.tag.isTagAssignableFrom("display", 10)) {
-			NBTCompoundTag var2 = this.tag.getCompound("display");
-			if (var2.isTagAssignableFrom("Name", 8)) {
-				var1 = var2.getString("Name");
+			NBTCompoundTag displayTag = this.tag.getCompound("display");
+			if (displayTag.isTagAssignableFrom("Name", 8)) {
+				defaultName = displayTag.getString("Name");
 			}
 		}
 
-		return var1;
+		return defaultName;
 	}
 
-	public ItemStack c(String var1) {
+	public ItemStack setDisplayName(String name) {
 		if (this.tag == null) {
 			this.tag = new NBTCompoundTag();
 		}
 
 		if (!this.tag.isTagAssignableFrom("display", 10)) {
-			this.tag.put("display", (NBTTag) (new NBTCompoundTag()));
+			this.tag.put("display", new NBTCompoundTag());
 		}
 
-		this.tag.getCompound("display").put("Name", var1);
+		this.tag.getCompound("display").put("Name", name);
 		return this;
 	}
 
-	public void r() {
+	public void removeDisplayName() {
 		if (this.tag != null) {
 			if (this.tag.isTagAssignableFrom("display", 10)) {
-				NBTCompoundTag var1 = this.tag.getCompound("display");
-				var1.remove("Name");
-				if (var1.isEmpty()) {
+				NBTCompoundTag displayTag = this.tag.getCompound("display");
+				displayTag.remove("Name");
+				if (displayTag.isEmpty()) {
 					this.tag.remove("display");
 					if (this.tag.isEmpty()) {
-						this.setTag((NBTCompoundTag) null);
+						this.setTag(null);
 					}
 				}
-
 			}
 		}
-	}
-
-	public boolean s() {
-		return this.tag == null ? false : (!this.tag.isTagAssignableFrom("display", 10) ? false : this.tag.getCompound("display").isTagAssignableFrom("Name", 8));
 	}
 
 	public amx u() {
@@ -483,8 +482,8 @@ public final class ItemStack {
 	}
 
 	public IChatBaseComponent C() {
-		ChatComponentText var1 = new ChatComponentText(this.q());
-		if (this.s()) {
+		ChatComponentText var1 = new ChatComponentText(this.getDisplayName());
+		if (this.hasDisplayName()) {
 			var1.getChatModifier().b(Boolean.valueOf(true));
 		}
 
