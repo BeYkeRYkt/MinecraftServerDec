@@ -100,6 +100,7 @@ public abstract class PipeInventory implements Inventory {
 	@SuppressWarnings("deprecation")
 	@Override
 	public HashMap<Integer, ? extends ItemStack> all(Material  material) throws IllegalArgumentException {
+		Validate.notNull(material, "Material cannot be null");
 		return all(material.getId());
 	}
 
@@ -150,6 +151,7 @@ public abstract class PipeInventory implements Inventory {
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean contains(Material material) throws IllegalArgumentException {
+		Validate.notNull(material, "Material cannot be null");
 		return contains(material.getId());
 	}
 
@@ -167,6 +169,7 @@ public abstract class PipeInventory implements Inventory {
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean contains(Material material, int amount) throws IllegalArgumentException {
+		Validate.notNull(material, "Material cannot be null");
 		return contains(material.getId(), amount);
 	}
 
@@ -209,6 +212,7 @@ public abstract class PipeInventory implements Inventory {
 	@SuppressWarnings("deprecation")
 	@Override
 	public int first(Material material) throws IllegalArgumentException {
+		Validate.notNull(material, "Material cannot be null");
 		return first(material.getId());
 	}
 

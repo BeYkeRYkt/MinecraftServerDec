@@ -20,6 +20,9 @@ public class PipeItemStack extends ItemStack {
 	}
 
 	public PipeItemStack(ItemStack bukkitItemStack) {
+		if (bukkitItemStack.getType() == Material.AIR) {
+			return;
+		}
 		@SuppressWarnings("deprecation")
 		net.minecraft.Item item = net.minecraft.Item.getById(bukkitItemStack.getTypeId());
 		handle = new net.minecraft.ItemStack(item, bukkitItemStack.getAmount(), bukkitItemStack.getDurability());
