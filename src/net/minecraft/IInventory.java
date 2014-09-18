@@ -2,6 +2,8 @@ package net.minecraft;
 
 import java.util.List;
 
+import org.bukkit.inventory.InventoryHolder;
+
 public interface IInventory extends ICustomNameable {
 
 	public int getSize();
@@ -37,5 +39,7 @@ public interface IInventory extends ICustomNameable {
 	public List<EntityHuman> getViewers();
 
 	public ItemStack[] getItems();
+
+	public InventoryHolder getHolder();
 
 }

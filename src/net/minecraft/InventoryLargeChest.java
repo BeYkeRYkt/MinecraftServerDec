@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.inventory.InventoryHolder;
+
 public class InventoryLargeChest implements ILockable {
 
 	private String inventoryName;
@@ -149,6 +151,11 @@ public class InventoryLargeChest implements ILockable {
 		items.addAll(Arrays.asList(leftChest.getItems()));
 		items.addAll(Arrays.asList(rightChest.getItems()));
 		return items.toArray(new ItemStack[items.size()]);
+	}
+
+	@Override
+	public InventoryHolder getHolder() {
+		return null;
 	}
 
 }

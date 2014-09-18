@@ -107,7 +107,7 @@ public class TileEntityEnchantTable extends TileEntity implements ITickable, vv 
 	}
 
 	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
-		return new aiq(var1, this.world, this.position);
+		return new ContainerEnchantTable(var1, this.world, this.position);
 	}
 
 	public String getInventoryType() {

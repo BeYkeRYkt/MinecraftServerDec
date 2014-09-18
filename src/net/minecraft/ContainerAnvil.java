@@ -10,7 +10,7 @@ public class ContainerAnvil extends Container {
 
 	private static final Logger f = LogManager.getLogger();
 	private IInventory g = new InventoryResult();
-	private IInventory h = new aie(this, "Repair", true, 2);
+	private IInventory h = new InventoryAnvil(this, "Repair", true, 2);
 	private World i;
 	private Position j;
 	public int a;

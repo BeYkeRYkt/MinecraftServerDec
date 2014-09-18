@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.inventory.InventoryHolder;
+
 public abstract class InventoryMinecart extends adx implements ILockable {
 
 	protected ItemStack[] items = new ItemStack[36];
@@ -188,6 +190,15 @@ public abstract class InventoryMinecart extends adx implements ILockable {
 	@Override
 	public ItemStack[] getItems() {
 		return Arrays.copyOfRange(items, 0, getSize());
+	}
+
+	@Override
+	public InventoryHolder getHolder() {
+		org.bukkit.entity.Entity minecart = getBukkitEntity(org.bukkit.entity.Entity.class);
+		if (minecart instanceof InventoryHolder) {
+			return (InventoryHolder) minecart;
+		}
+		return null;
 	}
 
 }

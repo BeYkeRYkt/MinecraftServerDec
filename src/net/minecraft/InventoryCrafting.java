@@ -3,6 +3,9 @@ package net.minecraft;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.InventoryHolder;
+
 public class InventoryCrafting implements IInventory {
 
 	private final ItemStack[] items;
@@ -10,8 +13,9 @@ public class InventoryCrafting implements IInventory {
 	private final int rows;
 	private final Container container;
 	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
+	private EntityHuman owner;
 
-	public InventoryCrafting(Container container, int cols, int rows) {
+	public InventoryCrafting(EntityHuman owner, Container container, int cols, int rows) {
 		int size = cols * rows;
 		this.items = new ItemStack[size];
 		this.container = container;
@@ -137,6 +141,14 @@ public class InventoryCrafting implements IInventory {
 	@Override
 	public ItemStack[] getItems() {
 		return items;
+	}
+
+	@Override
+	public InventoryHolder getHolder() {
+		if (owner != null) {
+			return owner.getBukkitEntity(Player.class);
+		}
+		return null;
 	}
 
 }

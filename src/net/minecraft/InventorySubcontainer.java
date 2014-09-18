@@ -5,49 +5,47 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.inventory.InventoryHolder;
+
 public class InventorySubcontainer implements IInventory {
 
 	private String name;
 	private int size;
 	private ItemStack[] items;
-	private List<IInventoryListener> d;
+	private List<IInventoryListener> listeners = Lists.newArrayList();;
 	private boolean hasCustomName;
 
-	public InventorySubcontainer(String var1, boolean var2, int size) {
-		this.name = var1;
-		this.hasCustomName = var2;
+	public InventorySubcontainer(String name, boolean hasCustomName, int size) {
+		this.name = name;
+		this.hasCustomName = hasCustomName;
 		this.size = size;
 		this.items = new ItemStack[size];
 	}
 
-	public void a(IInventoryListener var1) {
-		if (this.d == null) {
-			this.d = Lists.newArrayList();
-		}
-
-		this.d.add(var1);
+	public void addInventoryListener(IInventoryListener listener) {
+		this.listeners.add(listener);
 	}
 
-	public void b(IInventoryListener var1) {
-		this.d.remove(var1);
+	public void removeInventoryListener(IInventoryListener listener) {
+		this.listeners.remove(listener);
 	}
 
-	public ItemStack getItem(int var1) {
-		return var1 >= 0 && var1 < this.items.length ? this.items[var1] : null;
+	public ItemStack getItem(int slot) {
+		return slot >= 0 && slot < this.items.length ? this.items[slot] : null;
 	}
 
-	public ItemStack splitStack(int var1, int var2) {
-		if (this.items[var1] != null) {
+	public ItemStack splitStack(int slot, int splitSize) {
+		if (this.items[slot] != null) {
 			ItemStack var3;
-			if (this.items[var1].amount <= var2) {
-				var3 = this.items[var1];
-				this.items[var1] = null;
+			if (this.items[slot].amount <= splitSize) {
+				var3 = this.items[slot];
+				this.items[slot] = null;
 				this.update();
 				return var3;
 			} else {
-				var3 = this.items[var1].a(var2);
-				if (this.items[var1].amount == 0) {
-					this.items[var1] = null;
+				var3 = this.items[slot].a(splitSize);
+				if (this.items[slot].amount == 0) {
+					this.items[slot] = null;
 				}
 
 				this.update();
@@ -90,20 +88,20 @@ public class InventorySubcontainer implements IInventory {
 		return var2;
 	}
 
-	public ItemStack splitWithoutUpdate(int var1) {
-		if (this.items[var1] != null) {
-			ItemStack var2 = this.items[var1];
-			this.items[var1] = null;
+	public ItemStack splitWithoutUpdate(int slot) {
+		if (this.items[slot] != null) {
+			ItemStack var2 = this.items[slot];
+			this.items[slot] = null;
 			return var2;
 		} else {
 			return null;
 		}
 	}
 
-	public void setItem(int var1, ItemStack var2) {
-		this.items[var1] = var2;
-		if (var2 != null && var2.amount > this.getMaxStackSize()) {
-			var2.amount = this.getMaxStackSize();
+	public void setItem(int slot, ItemStack itemStack) {
+		this.items[slot] = itemStack;
+		if (itemStack != null && itemStack.amount > this.getMaxStackSize()) {
+			itemStack.amount = this.getMaxStackSize();
 		}
 
 		this.update();
@@ -135,33 +133,33 @@ public class InventorySubcontainer implements IInventory {
 	}
 
 	public void update() {
-		if (this.d != null) {
-			for (int var1 = 0; var1 < this.d.size(); ++var1) {
-				((IInventoryListener) this.d.get(var1)).a(this);
+		if (this.listeners != null) {
+			for (int i = 0; i < this.listeners.size(); ++i) {
+				((IInventoryListener) this.listeners.get(i)).a(this);
 			}
 		}
 
 	}
 
-	public boolean canInteract(EntityHuman var1) {
+	public boolean canInteract(EntityHuman who) {
 		return true;
 	}
 
-	public void onContainerOpen(EntityHuman var1) {
+	public void onContainerOpen(EntityHuman who) {
 	}
 
-	public void onContainerClose(EntityHuman var1) {
+	public void onContainerClose(EntityHuman who) {
 	}
 
-	public boolean canSuckItemFromInventory(int var1, ItemStack var2) {
+	public boolean canSuckItemFromInventory(int slot, ItemStack item) {
 		return true;
 	}
 
-	public int getProperty(int var1) {
+	public int getProperty(int property) {
 		return 0;
 	}
 
-	public void selectBeaconPower(int var1, int var2) {
+	public void selectBeaconPower(int powerSlot, int powerType) {
 	}
 
 	public int getPropertiesCount() {
@@ -169,8 +167,8 @@ public class InventorySubcontainer implements IInventory {
 	}
 
 	public void clearInventory() {
-		for (int var1 = 0; var1 < this.items.length; ++var1) {
-			this.items[var1] = null;
+		for (int i = 0; i < this.items.length; ++i) {
+			this.items[i] = null;
 		}
 
 	}
@@ -183,6 +181,11 @@ public class InventorySubcontainer implements IInventory {
 	@Override
 	public ItemStack[] getItems() {
 		return items;
+	}
+
+	@Override
+	public InventoryHolder getHolder() {
+		return null;
 	}
 
 }

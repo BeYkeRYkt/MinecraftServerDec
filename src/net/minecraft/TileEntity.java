@@ -7,6 +7,7 @@ import java.util.concurrent.Callable;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bukkit.inventory.InventoryHolder;
 
 public abstract class TileEntity {
 
@@ -68,7 +69,7 @@ public abstract class TileEntity {
 		register(TileEntityBanner.class, "Banner");
 	}
 	
-	protected World world;
+	protected WorldServer world;
 	protected Position position;
 	protected boolean invalid;
 	private int blockData;
@@ -79,11 +80,11 @@ public abstract class TileEntity {
 		this.blockData = -1;
 	}
 
-	public World getWorld() {
+	public WorldServer getWorld() {
 		return this.world;
 	}
 
-	public void setWorld(World world) {
+	public void setWorld(WorldServer world) {
 		this.world = world;
 	}
 
@@ -198,6 +199,14 @@ public abstract class TileEntity {
 				}
 			});
 		}
+	}
+
+	public InventoryHolder getHolder() {
+		org.bukkit.block.BlockState bs = world.getBukkitWorld().getBlockAt(position.getX(), position.getY(), position.getZ()).getState();
+		if (bs instanceof InventoryHolder) {
+			return (InventoryHolder) bs;
+		}
+		return null;
 	}
 
 }

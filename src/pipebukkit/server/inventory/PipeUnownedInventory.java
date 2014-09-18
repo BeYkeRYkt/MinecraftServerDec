@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.InventoryHolder;
 
 import net.minecraft.ChatComponentText;
 import net.minecraft.ChatMessage;
@@ -150,6 +151,11 @@ public class PipeUnownedInventory extends PipeInventory {
 		@Override
 		public ItemStack[] getItems() {
 			return items;
+		}
+
+		@Override
+		public InventoryHolder getHolder() {
+			return null;
 		}
 
 	}

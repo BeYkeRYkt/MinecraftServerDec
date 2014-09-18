@@ -3,6 +3,9 @@ package net.minecraft;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.InventoryHolder;
+
 public class PlayerInventory implements IInventory {
 
 	public static int getHotbarSize() {
@@ -518,6 +521,11 @@ public class PlayerInventory implements IInventory {
 	@Override
 	public ItemStack[] getItems() {
 		return contents;
+	}
+
+	@Override
+	public InventoryHolder getHolder() {
+		return owner.getBukkitEntity(Player.class);
 	}
 
 }

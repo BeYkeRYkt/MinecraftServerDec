@@ -52,7 +52,7 @@ public abstract class EntityHuman extends EntityLiving {
 		super(var1);
 		this.uuid = a(var2);
 		this.gameProfile = var2;
-		this.defaultContainer = new ajb(this.playerInventory, !var1.isStatic, this);
+		this.defaultContainer = new PlayerCraftingContainer(this.playerInventory, !var1.isStatic, this);
 		this.activeContainer = this.defaultContainer;
 		Position var3 = var1.getSpawnPosition();
 		this.setPositionRotation((double) var3.getX() + 0.5D, (double) (var3.getY() + 1), (double) var3.getZ() + 0.5D, 0.0F, 0.0F);

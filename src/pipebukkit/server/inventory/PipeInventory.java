@@ -32,8 +32,56 @@ public abstract class PipeInventory implements Inventory {
 
 	@Override
 	public HashMap<Integer, ItemStack> addItem(ItemStack... items) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
+		Validate.notNull(items, "Items cannot be null");
+		HashMap<Integer, ItemStack> left = new HashMap<Integer, ItemStack>();
+		ItemStack[] contents = getContents();
+		for (int i = 0; i < contents.length; i++) {
+			ItemStack inventoryItemStack = contents[i];
+			if (inventoryItemStack != null) {
+				for (ItemStack inputItemStack : items) {
+					if (inputItemStack == null || inputItemStack.getAmount() <= 0) {
+						continue;
+					}
+					if (inputItemStack.isSimilar(inventoryItemStack)) {
+						int addAmount = inputItemStack.getAmount();
+						int hasAmount = inventoryItemStack.getAmount();
+						if (hasAmount + addAmount <= inventoryItemStack.getMaxStackSize()) {
+							inventoryItemStack.setAmount(hasAmount + addAmount);
+							inputItemStack.setAmount(0);
+						} else {
+							inventoryItemStack.setAmount(inventoryItemStack.getMaxStackSize());
+							inputItemStack.setAmount(addAmount - (inventoryItemStack.getMaxStackSize() - hasAmount));
+						}
+					}
+				}
+			}
+		}
+		for (int i = 0; i < contents.length; i++) {
+			if (contents[i] != null) {
+				continue;
+			}
+			for (ItemStack inputItemStack : items) {
+				if (inputItemStack == null || inputItemStack.getAmount() <= 0) {
+					continue;
+				}
+				ItemStack newStack = new PipeItemStack(inputItemStack);
+				if (inputItemStack.getAmount() < getMaxStackSize()) {
+					setItem(i, newStack);
+					inputItemStack.setAmount(0);
+				} else {
+					newStack.setAmount(getMaxStackSize());
+					setItem(i, newStack);
+					inputItemStack.setAmount(inputItemStack.getAmount() - getMaxStackSize());
+				}
+				break;
+			}
+		}
+		for (int i = 0; i < items.length; i++) {
+			if (items[i] != null && items[i].getAmount() > 0) {
+				left.put(i, items[i]);
+			}
+		}
+		return left;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -198,8 +246,7 @@ public abstract class PipeInventory implements Inventory {
 
 	@Override
 	public InventoryHolder getHolder() {
-		// TODO Auto-generated method stub
-		return null;
+		return nmsInventory.getHolder();
 	}
 
 	@Override
@@ -325,7 +372,19 @@ public abstract class PipeInventory implements Inventory {
 
 	@Override
 	public void setMaxStackSize(int maxStackSize) {
-		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public int hashCode() {
+		return nmsInventory.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof PipeInventory)) {
+			return false;
+		}
+		return ((PipeInventory) obj).nmsInventory.equals(nmsInventory);
 	}
 
 }

@@ -23,7 +23,7 @@ public class aut implements vv {
 	}
 
 	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
-		return new aio(var1, this.a, this.b);
+		return new ContainerWorkbench(var1, this.a, this.b);
 	}
 
 	public String getInventoryType() {

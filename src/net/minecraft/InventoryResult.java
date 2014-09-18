@@ -3,6 +3,8 @@ package net.minecraft;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.inventory.InventoryHolder;
+
 public class InventoryResult implements IInventory {
 
 	private ItemStack[] resultItems = new ItemStack[1];
@@ -97,6 +99,11 @@ public class InventoryResult implements IInventory {
 	@Override
 	public ItemStack[] getItems() {
 		return resultItems;
+	}
+
+	@Override
+	public InventoryHolder getHolder() {
+		return null;
 	}
 
 }
