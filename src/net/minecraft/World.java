@@ -334,7 +334,7 @@ public abstract class World implements ard {
 				CrashReport var5 = CrashReport.generateCrashReport(var7, "Exception while updating neighbours");
 				CrashReportSystemDetails var6 = var5.generateSystemDetails("Block being updated");
 				var6.addDetails("Source block type", (Callable) (new aqw(this, var2)));
-				net.minecraft.CrashReportSystemDetails.a(var6, var1, var3);
+				net.minecraft.CrashReportSystemDetails.addBlockStateInfo(var6, var1, var3);
 				throw new ReportedException(var5);
 			}
 		}
@@ -2307,7 +2307,7 @@ public abstract class World implements ard {
 		} catch (Throwable var8) {
 			CrashReport var6 = CrashReport.generateCrashReport(var8, "Playing level event");
 			CrashReportSystemDetails var7 = var6.generateSystemDetails("Level event being played");
-			var7.addDetails("Block coordinates", (Object) net.minecraft.CrashReportSystemDetails.a(var3));
+			var7.addDetails("Block coordinates", (Object) net.minecraft.CrashReportSystemDetails.getPositionInfo(var3));
 			var7.addDetails("Event source", (Object) var1);
 			var7.addDetails("Event type", (Object) Integer.valueOf(var2));
 			var7.addDetails("Event data", (Object) Integer.valueOf(var4));
@@ -2342,7 +2342,7 @@ public abstract class World implements ard {
 		try {
 			this.worldData.addCrashReportDetails(var2);
 		} catch (Throwable var4) {
-			var2.a("Level Data Unobtainable", var4);
+			var2.addDetails("Level Data Unobtainable", var4);
 		}
 
 		return var2;

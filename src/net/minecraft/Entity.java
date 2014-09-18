@@ -586,7 +586,7 @@ public abstract class Entity implements CommandSenderInterface {
 						} catch (Throwable var11) {
 							CrashReport var9 = CrashReport.generateCrashReport(var11, "Colliding entity with block");
 							CrashReportSystemDetails var10 = var9.generateSystemDetails("Block being collided with");
-							net.minecraft.CrashReportSystemDetails.a(var10, var6, var7);
+							net.minecraft.CrashReportSystemDetails.addBlockStateInfo(var10, var6, var7);
 							throw new ReportedException(var9);
 						}
 					}
@@ -1546,7 +1546,7 @@ public abstract class Entity implements CommandSenderInterface {
 		var1.addDetails("Entity ID", (Object) Integer.valueOf(this.entityId));
 		var1.addDetails("Entity Name", this.getName());
 		var1.addDetails("Entity\'s Exact location", (Object) String.format("%.2f, %.2f, %.2f", new Object[] { Double.valueOf(this.locationX), Double.valueOf(this.locationY), Double.valueOf(this.locationZ) }));
-		var1.addDetails("Entity\'s Block location", (Object) net.minecraft.CrashReportSystemDetails.a((double) MathHelper.toFixedPointInt(this.locationX), (double) MathHelper.toFixedPointInt(this.locationY), (double) MathHelper.toFixedPointInt(this.locationZ)));
+		var1.addDetails("Entity\'s Block location", (Object) net.minecraft.CrashReportSystemDetails.getPositionInfo((double) MathHelper.toFixedPointInt(this.locationX), (double) MathHelper.toFixedPointInt(this.locationY), (double) MathHelper.toFixedPointInt(this.locationZ)));
 		var1.addDetails("Entity\'s Momentum", (Object) String.format("%.2f, %.2f, %.2f", new Object[] { Double.valueOf(this.motionX), Double.valueOf(this.motionY), Double.valueOf(this.motionZ) }));
 		var1.addDetails("Entity\'s Rider", passenger.toString());
 		var1.addDetails("Entity\'s Vehicle", vehicle.toString());

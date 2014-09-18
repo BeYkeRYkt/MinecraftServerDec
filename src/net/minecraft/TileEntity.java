@@ -177,7 +177,7 @@ public abstract class TileEntity {
 			}
 		});
 		if (this.world != null) {
-			CrashReportSystemDetails.a(details, this.position, this.getBlock(), this.getBlockData());
+			CrashReportSystemDetails.addBlockStateInfo(details, this.position, this.getBlock(), this.getBlockData());
 			details.addDetails("Actual block type", new Callable<String>() {
 				@Override
 				public String call() throws Exception {

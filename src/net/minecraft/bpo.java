@@ -17,7 +17,7 @@ public class bpo extends bpa {
 		int[] var9 = this.a.a(var5, var6, var7, var8);
 		int var10 = var7 - 1 << 2;
 		int var11 = var8 - 1 << 2;
-		int[] var12 = boy.a(var10 * var11);
+		int[] var12 = IntCache.allocate(var10 * var11);
 
 		int var14;
 		for (int var13 = 0; var13 < var8 - 1; ++var13) {
@@ -66,7 +66,7 @@ public class bpo extends bpa {
 			}
 		}
 
-		int[] var48 = boy.a(var3 * var4);
+		int[] var48 = IntCache.allocate(var3 * var4);
 
 		for (var14 = 0; var14 < var4; ++var14) {
 			System.arraycopy(var12, (var14 + (var2 & 3)) * var10 + (var1 & 3), var48, var14 * var3, var3);

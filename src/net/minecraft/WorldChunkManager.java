@@ -50,7 +50,7 @@ public class WorldChunkManager {
 	}
 
 	public float[] a(float[] var1, int var2, int var3, int var4, int var5) {
-		boy.a();
+		IntCache.deallocate();
 		if (var1 == null || var1.length < var4 * var5) {
 			var1 = new float[var4 * var5];
 		}
@@ -82,7 +82,7 @@ public class WorldChunkManager {
 	}
 
 	public BiomeBase[] a(BiomeBase[] var1, int var2, int var3, int var4, int var5) {
-		boy.a();
+		IntCache.deallocate();
 		if (var1 == null || var1.length < var4 * var5) {
 			var1 = new BiomeBase[var4 * var5];
 		}
@@ -112,7 +112,7 @@ public class WorldChunkManager {
 	}
 
 	public BiomeBase[] a(BiomeBase[] var1, int var2, int var3, int var4, int var5, boolean var6) {
-		boy.a();
+		IntCache.deallocate();
 		if (var1 == null || var1.length < var4 * var5) {
 			var1 = new BiomeBase[var4 * var5];
 		}
@@ -133,7 +133,7 @@ public class WorldChunkManager {
 	}
 
 	public boolean a(int var1, int var2, int var3, List var4) {
-		boy.a();
+		IntCache.deallocate();
 		int var5 = var1 - var3 >> 2;
 		int var6 = var2 - var3 >> 2;
 		int var7 = var1 + var3 >> 2;
@@ -164,7 +164,7 @@ public class WorldChunkManager {
 	}
 
 	public Position a(int var1, int var2, int var3, List var4, Random var5) {
-		boy.a();
+		IntCache.deallocate();
 		int var6 = var1 - var3 >> 2;
 		int var7 = var2 - var3 >> 2;
 		int var8 = var1 + var3 >> 2;

@@ -416,7 +416,7 @@ public class WorldServer extends World implements ITaskScheduler {
 							} catch (Throwable var10) {
 								CrashReport var8 = CrashReport.generateCrashReport(var10, "Exception while ticking a block");
 								CrashReportSystemDetails var9 = var8.generateSystemDetails("Block being ticked");
-								net.minecraft.CrashReportSystemDetails.a(var9, var4.position, var6);
+								net.minecraft.CrashReportSystemDetails.addBlockStateInfo(var9, var4.position, var6);
 								throw new ReportedException(var8);
 							}
 						}

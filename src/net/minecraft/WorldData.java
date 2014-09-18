@@ -573,7 +573,7 @@ public class WorldData {
 		details.addDetails("Level spawn location", new Callable<String>() {
 			@Override
 			public String call() throws Exception {
-				return CrashReportSystemDetails.a(getSpawnX(), getSpawnY(), getSpawnZ());
+				return CrashReportSystemDetails.getPositionInfo(getSpawnX(), getSpawnY(), getSpawnZ());
 			}
 		});
 		details.addDetails("Level time", new Callable<String>() {

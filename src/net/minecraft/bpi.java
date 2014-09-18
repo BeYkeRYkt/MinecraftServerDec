@@ -20,7 +20,7 @@ public class bpi extends bpa {
 	public int[] a(int var1, int var2, int var3, int var4) {
 		int[] var5 = this.c.a(var1, var2, var3, var4);
 		int[] var6 = this.d.a(var1, var2, var3, var4);
-		int[] var7 = boy.a(var3 * var4);
+		int[] var7 = IntCache.allocate(var3 * var4);
 
 		for (int var8 = 0; var8 < var3 * var4; ++var8) {
 			if (var5[var8] != BiomeBase.OCEAN.az && var5[var8] != BiomeBase.DEEP_OCEAN.az) {
