@@ -15,6 +15,19 @@ public class PipeItemStack extends ItemStack {
 
 	private net.minecraft.ItemStack handle;
 
+	public net.minecraft.ItemStack getHandle() {
+		return handle;
+	}
+
+	public PipeItemStack(ItemStack bukkitItemStack) {
+		@SuppressWarnings("deprecation")
+		net.minecraft.Item item = net.minecraft.Item.getById(bukkitItemStack.getTypeId());
+		handle = new net.minecraft.ItemStack(item, bukkitItemStack.getAmount(), bukkitItemStack.getDurability());
+		if (bukkitItemStack.hasItemMeta()) {
+			bukkitItemStack.setItemMeta(bukkitItemStack.getItemMeta());
+		}
+	}
+
 	public PipeItemStack(net.minecraft.ItemStack handle) {
 		this.handle = handle;
 	}

@@ -22,9 +22,9 @@ import com.google.common.collect.Lists;
 
 public abstract class PipeInventory implements Inventory {
 
-	private IInventory minecraftInventory;
+	private IInventory nmsInventory;
 	public PipeInventory(IInventory minecraftInventory) {
-		this.minecraftInventory = minecraftInventory;
+		this.nmsInventory = minecraftInventory;
 	}
 
 	@Override
@@ -36,32 +36,45 @@ public abstract class PipeInventory implements Inventory {
 		return null;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
-	public HashMap<Integer, ? extends ItemStack> all(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public HashMap<Integer, ? extends ItemStack> all(int id) {
+		HashMap<Integer, ItemStack> all = new HashMap<Integer, ItemStack>();
+		ItemStack[] contents = getContents();
+		for (int i = 0; i < contents.length; i++) {
+			if (contents[i] != null && contents[i].getTypeId() == id) {
+				all.put(i, contents[i]);
+			}
+		}
+		return all;
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public HashMap<Integer, ? extends ItemStack> all(Material  material) throws IllegalArgumentException {
+		return all(material.getId());
 	}
 
 	@Override
-	public HashMap<Integer, ? extends ItemStack> all(Material arg0) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public HashMap<Integer, ? extends ItemStack> all(ItemStack arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public HashMap<Integer, ? extends ItemStack> all(ItemStack itemStack) {
+		HashMap<Integer, ItemStack> all = new HashMap<Integer, ItemStack>();
+		ItemStack[] contents = getContents();
+		for (int i = 0; i < contents.length; i++) {
+			if (contents[i] != null && contents[i].equals(itemStack)) {
+				all.put(i, contents[i]);
+			}
+		}
+		return all;
 	}
 
 	@Override
 	public void clear() {
-		minecraftInventory.clearInventory();
+		nmsInventory.clearInventory();
 	}
 
 	@Override
 	public void clear(int slot) {
-		minecraftInventory.setItem(slot, null);
+		nmsInventory.setItem(slot, null);
 	}
 
 	@Override
@@ -77,7 +90,7 @@ public abstract class PipeInventory implements Inventory {
 
 	@Override
 	public boolean contains(int id) {
-		net.minecraft.ItemStack[] nmsItems = minecraftInventory.getItems();
+		net.minecraft.ItemStack[] nmsItems = nmsInventory.getItems();
 		for (int i = 0; i < nmsItems.length; i++) {
 			if (nmsItems[i] != null && Item.getId(nmsItems[i].getItem()) == id) {
 				return true;
@@ -94,7 +107,7 @@ public abstract class PipeInventory implements Inventory {
 
 	@Override
 	public boolean contains(int id, int amount) {
-		net.minecraft.ItemStack[] nmsItems = minecraftInventory.getItems();
+		net.minecraft.ItemStack[] nmsItems = nmsInventory.getItems();
 		for (int i = 0; i < nmsItems.length; i++) {
 			if (nmsItems[i] != null && Item.getId(nmsItems[i].getItem()) == id && nmsItems[i].getAmount() >= amount) {
 				return true;
@@ -122,13 +135,21 @@ public abstract class PipeInventory implements Inventory {
 
 	@Override
 	public boolean containsAtLeast(ItemStack itemStack, int amount) {
-		// TODO Auto-generated method stub
+		ItemStack[] contents = getContents();
+		for (int i = 0; i < contents.length; i++) {
+			if (contents[i] != null && contents[i].isSimilar(itemStack)) {
+				amount -= contents[i].getAmount();
+				if (amount <= 0) {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public int first(int id) {
-		net.minecraft.ItemStack[] nmsItems = minecraftInventory.getItems();
+		net.minecraft.ItemStack[] nmsItems = nmsInventory.getItems();
 		for (int i = 0; i < nmsItems.length; i++) {
 			if (nmsItems[i] != null && Item.getId(nmsItems[i].getItem()) == id) {
 				return i;
@@ -156,7 +177,7 @@ public abstract class PipeInventory implements Inventory {
 
 	@Override
 	public int firstEmpty() {
-		net.minecraft.ItemStack[] nmsItems = minecraftInventory.getItems();
+		net.minecraft.ItemStack[] nmsItems = nmsInventory.getItems();
 		for (int i = 0; i < nmsItems.length; i++) {
 			if (nmsItems[i] == null) {
 				return i;
@@ -167,7 +188,7 @@ public abstract class PipeInventory implements Inventory {
 
 	@Override
 	public ItemStack[] getContents() {
-		net.minecraft.ItemStack[] nmsItems = minecraftInventory.getItems();
+		net.minecraft.ItemStack[] nmsItems = nmsInventory.getItems();
 		ItemStack[] contents = new ItemStack[nmsItems.length];
 		for (int i = 0; i < nmsItems.length; i++) {
 			contents[i] = new PipeItemStack(nmsItems[i]);
@@ -183,32 +204,32 @@ public abstract class PipeInventory implements Inventory {
 
 	@Override
 	public ItemStack getItem(int slot) {
-		return new PipeItemStack(minecraftInventory.getItem(slot));
+		return new PipeItemStack(nmsInventory.getItem(slot));
 	}
 
 	@Override
 	public int getMaxStackSize() {
-		return minecraftInventory.getMaxStackSize();
+		return nmsInventory.getMaxStackSize();
 	}
 
 	@Override
 	public String getName() {
-		return minecraftInventory.getName();
+		return nmsInventory.getName();
 	}
 
 	@Override
 	public int getSize() {
-		return minecraftInventory.getSize();
+		return nmsInventory.getSize();
 	}
 
 	@Override
 	public String getTitle() {
-		return minecraftInventory.getName();
+		return nmsInventory.getName();
 	}
 
 	@Override
 	public List<HumanEntity> getViewers() {
-		return Collections.unmodifiableList(Lists.transform(minecraftInventory.getViewers(), new Function<EntityHuman, HumanEntity>() {
+		return Collections.unmodifiableList(Lists.transform(nmsInventory.getViewers(), new Function<EntityHuman, HumanEntity>() {
 			@Override
 			public HumanEntity apply(EntityHuman human) {
 				return human.getBukkitEntity(HumanEntity.class);
@@ -238,7 +259,7 @@ public abstract class PipeInventory implements Inventory {
 
 	@Override
 	public void remove(int id) {
-		net.minecraft.ItemStack[] nmsItems = minecraftInventory.getItems();
+		net.minecraft.ItemStack[] nmsItems = nmsInventory.getItems();
 		for (int i = 0; i < nmsItems.length; i++) {
 			if (nmsItems[i] != null && Item.getId(nmsItems[i].getItem()) == id) {
 				clear(i);
@@ -257,27 +278,54 @@ public abstract class PipeInventory implements Inventory {
 	}
 
 	@Override
-	public HashMap<Integer, ItemStack> removeItem(ItemStack... arg0) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
+	public HashMap<Integer, ItemStack> removeItem(ItemStack... items) throws IllegalArgumentException {
+		Validate.notNull(items, "Items cannot be null");
+		HashMap<Integer, ItemStack> left = new HashMap<Integer, ItemStack>();
+		ItemStack[] contents = getContents();
+		for (int i = 0; i < contents.length; i++) {
+			ItemStack inventoryItemStack = contents[i];
+			if (inventoryItemStack != null) {
+				for (ItemStack inputItemStack : items) {
+					if (inputItemStack == null || inputItemStack.getAmount() <= 0) {
+						continue;
+					}
+					if (inputItemStack.isSimilar(inventoryItemStack)) {
+						int deleteAmount = inputItemStack.getAmount();
+						int hasAmount = inventoryItemStack.getAmount();
+						if (hasAmount <= deleteAmount) {
+							inputItemStack.setAmount(deleteAmount - hasAmount);
+							clear(i);
+						} else {
+							inputItemStack.setAmount(0);
+							inventoryItemStack.setAmount(hasAmount - deleteAmount);
+						}
+					}
+				}
+			}
+		}
+		for (int i = 0; i < items.length; i++) {
+			if (items[i] != null && items[i].getAmount() > 0) {
+				left.put(i, items[i]);
+			}
+		}
+		return left;
 	}
 
 	@Override
-	public void setContents(ItemStack[] arg0) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
+	public void setContents(ItemStack[] items) throws IllegalArgumentException {
+		for (int i = 0; i < getSize() && i < items.length; i++) {
+			nmsInventory.setItem(i, new PipeItemStack(items[i]).getHandle());
+		}
 	}
 
 	@Override
 	public void setItem(int slot, ItemStack itemStack) {
-		// TODO Auto-generated method stub
-		
+		nmsInventory.setItem(slot, new PipeItemStack(itemStack).getHandle());
 	}
 
 	@Override
-	public void setMaxStackSize(int arg0) {
+	public void setMaxStackSize(int maxStackSize) {
 		// TODO Auto-generated method stub
-
 	}
 
 }
