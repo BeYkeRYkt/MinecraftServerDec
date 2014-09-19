@@ -1019,7 +1019,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return null;
 	}
 
-	public boolean t_() {
+	public boolean isCommandBlockOuputEnabled() {
 		return getInstance().worlds.get(0).getGameRules().b("sendCommandFeedback");
 	}
 

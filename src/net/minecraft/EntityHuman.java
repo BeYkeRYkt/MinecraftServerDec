@@ -1481,7 +1481,7 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 	}
 
-	public boolean t_() {
+	public boolean isCommandBlockOuputEnabled() {
 		return MinecraftServer.getInstance().getWorld().getGameRules().b("sendCommandFeedback");
 	}
 

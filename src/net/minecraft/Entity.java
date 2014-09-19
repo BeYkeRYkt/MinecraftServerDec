@@ -1657,7 +1657,7 @@ public abstract class Entity implements CommandSenderInterface {
 		return this.world;
 	}
 
-	public boolean t_() {
+	public boolean isCommandBlockOuputEnabled() {
 		return false;
 	}
 

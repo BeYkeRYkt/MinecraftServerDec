@@ -40,7 +40,7 @@ class bdk implements CommandSenderInterface {
 		return null;
 	}
 
-	public boolean t_() {
+	public boolean isCommandBlockOuputEnabled() {
 		return false;
 	}
 

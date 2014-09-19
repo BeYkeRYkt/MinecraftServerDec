@@ -52,7 +52,7 @@ public class EntityMinecartCommandBlock extends adx {
 	}
 
 	public boolean e(EntityHuman var1) {
-		this.listener.a(var1);
+		this.listener.canOpen(var1);
 		return false;
 	}
 

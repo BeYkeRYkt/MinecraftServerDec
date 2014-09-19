@@ -224,7 +224,7 @@ public class PipeBlock implements Block {
 				//TODO
 			}
 			case COMMAND: {
-				//TODO
+				return new PipeCommandBlock(this);
 			}
 			case BEACON: {
 				//TODO

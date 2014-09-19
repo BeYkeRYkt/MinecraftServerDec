@@ -16,7 +16,7 @@ public interface CommandSenderInterface {
 
 	World getWorld();
 
-	boolean t_();
+	boolean isCommandBlockOuputEnabled();
 
 	void a(ag var1, int var2);
 }

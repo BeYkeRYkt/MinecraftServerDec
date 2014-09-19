@@ -43,7 +43,7 @@ class bdl implements CommandSenderInterface {
 		return this.a;
 	}
 
-	public boolean t_() {
+	public boolean isCommandBlockOuputEnabled() {
 		return false;
 	}
 

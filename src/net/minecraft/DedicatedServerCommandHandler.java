@@ -75,7 +75,7 @@ public class DedicatedServerCommandHandler extends AbstractCommandsHandler imple
 	public void a(CommandSenderInterface var1, ICommand var2, int var3, String var4, Object... var5) {
 		boolean var6 = true;
 		MinecraftServer var7 = MinecraftServer.getInstance();
-		if (!var1.t_()) {
+		if (!var1.isCommandBlockOuputEnabled()) {
 			var6 = false;
 		}
 
