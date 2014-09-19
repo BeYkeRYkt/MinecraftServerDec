@@ -31,7 +31,7 @@ public class BlockSponge extends Block {
 	protected void e(World var1, Position var2, IBlockState var3) {
 		if (!((Boolean) var3.b(a)).booleanValue() && this.d(var1, var2)) {
 			var1.setBlockAt(var2, var3.a(a, Boolean.valueOf(true)), 2);
-			var1.b(2001, var2, Block.getBlockId((Block) Blocks.WATER));
+			var1.triggerEffect(2001, var2, Block.getBlockId((Block) Blocks.WATER));
 		}
 
 	}

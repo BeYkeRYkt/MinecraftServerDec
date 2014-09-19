@@ -31,7 +31,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimal {
 				double var1 = this.random.nextGaussian() * 0.02D;
 				double var3 = this.random.nextGaussian() * 0.02D;
 				double var5 = this.random.nextGaussian() * 0.02D;
-				this.world.a(Particle.I, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, var1, var3, var5, new int[0]);
+				this.world.addParticle(Particle.I, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, var1, var3, var5, new int[0]);
 			}
 		}
 

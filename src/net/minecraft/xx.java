@@ -57,7 +57,7 @@ public abstract class xx extends EntityAnimal implements xt {
 			double var4 = this.random.nextGaussian() * 0.02D;
 			double var6 = this.random.nextGaussian() * 0.02D;
 			double var8 = this.random.nextGaussian() * 0.02D;
-			this.world.a(var2, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, var4, var6, var8, new int[0]);
+			this.world.addParticle(var2, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, var4, var6, var8, new int[0]);
 		}
 
 	}

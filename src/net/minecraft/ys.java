@@ -46,7 +46,7 @@ public class ys extends yv {
 	public void e() {
 		super.e();
 		if (this.a.bb().nextInt(20) == 0) {
-			this.a.world.b(1010, this.b, 0);
+			this.a.world.triggerEffect(1010, this.b, 0);
 		}
 
 		++this.g;
@@ -58,8 +58,8 @@ public class ys extends yv {
 
 		if (this.g == 240 && this.a.world.getDifficulty() == Difficulty.HARD) {
 			this.a.world.g(this.b);
-			this.a.world.b(1012, this.b, 0);
-			this.a.world.b(2001, this.b, Block.getBlockId((Block) this.c));
+			this.a.world.triggerEffect(1012, this.b, 0);
+			this.a.world.triggerEffect(2001, this.b, Block.getBlockId((Block) this.c));
 		}
 
 	}

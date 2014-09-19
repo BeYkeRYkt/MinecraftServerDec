@@ -27,8 +27,8 @@ public class ItemMonsterEgg extends Item {
 			if (var9.getBlock() == Blocks.MOB_SPAWNER) {
 				TileEntity var10 = var3.getTileEntity(var4);
 				if (var10 instanceof TileEntityMobSpawner) {
-					aqi var11 = ((TileEntityMobSpawner) var10).b();
-					var11.a(EntityTypes.getNameById(var1.getWearout()));
+					MobSpawnerAbstract var11 = ((TileEntityMobSpawner) var10).getSpawner();
+					var11.setMobName(EntityTypes.getNameById(var1.getWearout()));
 					var10.update();
 					var3.notify(var4);
 					if (!var2.playerProperties.instabuild) {

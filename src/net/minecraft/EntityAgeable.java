@@ -107,7 +107,7 @@ public abstract class EntityAgeable extends EntityCreature {
 		if (this.world.isStatic) {
 			if (this.c > 0) {
 				if (this.c % 4 == 0) {
-					this.world.a(Particle.v, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, 0.0D, 0.0D, 0.0D, new int[0]);
+					this.world.addParticle(Particle.v, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, 0.0D, 0.0D, 0.0D, new int[0]);
 				}
 
 				--this.c;

@@ -286,7 +286,7 @@ public class aph {
 			ArrayList var8 = null;
 			Map var9 = b(var7, var1);
 			if (var9 != null && !var9.isEmpty()) {
-				apo var10 = (apo) vj.a(var0, var9.values());
+				apo var10 = (apo) WeightedRandom.a(var0, var9.values());
 				if (var10 != null) {
 					var8 = Lists.newArrayList();
 					var8.add(var10);
@@ -317,7 +317,7 @@ public class aph {
 						}
 
 						if (!var9.isEmpty()) {
-							apo var17 = (apo) vj.a(var0, var9.values());
+							apo var17 = (apo) WeightedRandom.a(var0, var9.values());
 							var8.add(var17);
 						}
 					}

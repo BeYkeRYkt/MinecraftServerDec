@@ -39,11 +39,11 @@ public class DispenseBehaviorItem implements IDispenseBehavior {
 	}
 
 	protected void a(ISourceBlock var1) {
-		var1.i().b(1000, var1.d(), 0);
+		var1.i().triggerEffect(1000, var1.d(), 0);
 	}
 
 	protected void a(ISourceBlock var1, BlockFace var2) {
-		var1.i().b(2000, var1.d(), this.a(var2));
+		var1.i().triggerEffect(2000, var1.d(), this.a(var2));
 	}
 
 	private int a(BlockFace var1) {

@@ -119,7 +119,7 @@ public class WorldGenStrongholdPortalRoom extends WorldGenStrongholdPiece {
 				var1.setBlockAt(var10, Blocks.MOB_SPAWNER.getBlockState(), 2);
 				TileEntity var11 = var1.getTileEntity(var10);
 				if (var11 instanceof TileEntityMobSpawner) {
-					((TileEntityMobSpawner) var11).b().a("Silverfish");
+					((TileEntityMobSpawner) var11).getSpawner().setMobName("Silverfish");
 				}
 			}
 		}

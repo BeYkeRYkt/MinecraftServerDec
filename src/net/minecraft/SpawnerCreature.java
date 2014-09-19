@@ -85,7 +85,7 @@ public final class SpawnerCreature {
 												Position var30 = new Position(var23, var24, var25);
 												float var31 = (float) var23 + 0.5F;
 												float var32 = (float) var25 + 0.5F;
-												if (!var1.b((double) var31, (double) var24, (double) var32, 24.0D) && var37.c((double) var31, (double) var24, (double) var32) >= 576.0D) {
+												if (!var1.findNearbyPlayer((double) var31, (double) var24, (double) var32, 24.0D) && var37.c((double) var31, (double) var24, (double) var32) >= 576.0D) {
 													if (var27 == null) {
 														var27 = var1.a(var40, var30);
 														if (var27 == null) {
@@ -171,7 +171,7 @@ public final class SpawnerCreature {
 		List var7 = var1.a(EnumCreatureType.CREATURE);
 		if (!var7.isEmpty()) {
 			while (var6.nextFloat() < var1.g()) {
-				BiomeMeta var8 = (BiomeMeta) vj.a(var0.random, var7);
+				BiomeMeta var8 = (BiomeMeta) WeightedRandom.a(var0.random, var7);
 				int var9 = var8.c + var6.nextInt(1 + var8.d - var8.c);
 				xq var10 = null;
 				int var11 = var2 + var6.nextInt(var4);

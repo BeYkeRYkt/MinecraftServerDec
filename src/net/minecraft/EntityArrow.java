@@ -267,7 +267,7 @@ public class EntityArrow extends Entity implements aho {
 
 			if (this.l()) {
 				for (var11 = 0; var11 < 4; ++var11) {
-					this.world.a(Particle.j, this.locationX + this.motionX * (double) var11 / 4.0D, this.locationY + this.motionY * (double) var11 / 4.0D, this.locationZ + this.motionZ * (double) var11 / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
+					this.world.addParticle(Particle.j, this.locationX + this.motionX * (double) var11 / 4.0D, this.locationY + this.motionY * (double) var11 / 4.0D, this.locationZ + this.motionZ * (double) var11 / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
 				}
 			}
 
@@ -300,7 +300,7 @@ public class EntityArrow extends Entity implements aho {
 			if (this.V()) {
 				for (int var28 = 0; var28 < 4; ++var28) {
 					var29 = 0.25F;
-					this.world.a(Particle.e, this.locationX - this.motionX * (double) var29, this.locationY - this.motionY * (double) var29, this.locationZ - this.motionZ * (double) var29, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.world.addParticle(Particle.e, this.locationX - this.motionX * (double) var29, this.locationY - this.motionY * (double) var29, this.locationZ - this.motionZ * (double) var29, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 
 				var25 = 0.6F;

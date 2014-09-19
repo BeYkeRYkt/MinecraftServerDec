@@ -96,10 +96,10 @@ public class EntityEnderSignal extends Entity {
 		float var10 = 0.25F;
 		if (this.V()) {
 			for (int var3 = 0; var3 < 4; ++var3) {
-				this.world.a(Particle.e, this.locationX - this.motionX * (double) var10, this.locationY - this.motionY * (double) var10, this.locationZ - this.motionZ * (double) var10, this.motionX, this.motionY, this.motionZ, new int[0]);
+				this.world.addParticle(Particle.e, this.locationX - this.motionX * (double) var10, this.locationY - this.motionY * (double) var10, this.locationZ - this.motionZ * (double) var10, this.motionX, this.motionY, this.motionZ, new int[0]);
 			}
 		} else {
-			this.world.a(Particle.y, this.locationX - this.motionX * (double) var10 + this.random.nextDouble() * 0.6D - 0.3D, this.locationY - this.motionY * (double) var10 - 0.5D, this.locationZ - this.motionZ * (double) var10 + this.random.nextDouble() * 0.6D - 0.3D, this.motionX, this.motionY, this.motionZ, new int[0]);
+			this.world.addParticle(Particle.y, this.locationX - this.motionX * (double) var10 + this.random.nextDouble() * 0.6D - 0.3D, this.locationY - this.motionY * (double) var10 - 0.5D, this.locationZ - this.motionZ * (double) var10 + this.random.nextDouble() * 0.6D - 0.3D, this.motionX, this.motionY, this.motionZ, new int[0]);
 		}
 
 		if (!this.world.isStatic) {
@@ -110,7 +110,7 @@ public class EntityEnderSignal extends Entity {
 				if (this.e) {
 					this.world.addEntity((Entity) (new EntityItem(this.world, this.locationX, this.locationY, this.locationZ, new ItemStack(Items.ENDER_EYE))));
 				} else {
-					this.world.b(2003, new Position(this), 0);
+					this.world.triggerEffect(2003, new Position(this), 0);
 				}
 			}
 		}

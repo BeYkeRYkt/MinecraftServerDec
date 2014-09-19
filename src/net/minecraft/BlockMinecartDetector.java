@@ -108,7 +108,7 @@ public class BlockMinecartDetector extends ati {
 
 	protected List a(World var1, Position var2, Class var3, Predicate... var4) {
 		AxisAlignedBB var5 = this.a(var2);
-		return var4.length != 1 ? var1.a(var3, var5) : var1.a(var3, var5, var4[0]);
+		return var4.length != 1 ? var1.getEntititesInAABB(var3, var5) : var1.getEntititesInAABB(var3, var5, var4[0]);
 	}
 
 	private AxisAlignedBB a(Position var1) {

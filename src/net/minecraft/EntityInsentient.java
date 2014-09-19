@@ -138,7 +138,7 @@ public abstract class EntityInsentient extends EntityLiving {
 				double var4 = this.random.nextGaussian() * 0.02D;
 				double var6 = this.random.nextGaussian() * 0.02D;
 				double var8 = 10.0D;
-				this.world.a(Particle.a, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height - var2 * var8, this.locationY + (double) (this.random.nextFloat() * this.width) - var4 * var8, this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height - var6 * var8, var2, var4, var6, new int[0]);
+				this.world.addParticle(Particle.a, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height - var2 * var8, this.locationY + (double) (this.random.nextFloat() * this.width) - var4 * var8, this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height - var6 * var8, var2, var4, var6, new int[0]);
 			}
 		} else {
 			this.world.broadcastEntityEffect((Entity) this, (byte) 20);
@@ -274,7 +274,7 @@ public abstract class EntityInsentient extends EntityLiving {
 		super.m();
 		this.world.B.a("looting");
 		if (!this.world.isStatic && this.bX() && !this.aN && this.world.getGameRules().b("mobGriefing")) {
-			List var1 = this.world.a(EntityItem.class, this.getBoundingBox().grow(1.0D, 0.0D, 1.0D));
+			List var1 = this.world.getEntititesInAABB(EntityItem.class, this.getBoundingBox().grow(1.0D, 0.0D, 1.0D));
 			Iterator var2 = var1.iterator();
 
 			while (var2.hasNext()) {
@@ -757,7 +757,7 @@ public abstract class EntityInsentient extends EntityLiving {
 		if (this.bm && this.bo != null) {
 			if (this.bo.isTagAssignableFrom("UUIDMost", 4) && this.bo.isTagAssignableFrom("UUIDLeast", 4)) {
 				UUID var5 = new UUID(this.bo.getLong("UUIDMost"), this.bo.getLong("UUIDLeast"));
-				List var6 = this.world.a(EntityLiving.class, this.getBoundingBox().grow(10.0D, 10.0D, 10.0D));
+				List var6 = this.world.getEntititesInAABB(EntityLiving.class, this.getBoundingBox().grow(10.0D, 10.0D, 10.0D));
 				Iterator var3 = var6.iterator();
 
 				while (var3.hasNext()) {

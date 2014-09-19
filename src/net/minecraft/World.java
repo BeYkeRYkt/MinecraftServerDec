@@ -233,7 +233,7 @@ public abstract class World implements ard {
 		if (var4.getMaterial() == Material.AIR) {
 			return false;
 		} else {
-			this.b(2001, var1, Block.getStateId(var3));
+			this.triggerEffect(2001, var1, Block.getStateId(var3));
 			if (var2) {
 				var4.b(this, var1, var3, 0);
 			}
@@ -671,7 +671,7 @@ public abstract class World implements ard {
 
 	}
 
-	public void a(Particle var1, double var2, double var4, double var6, double var8, double var10, double var12, int... var14) {
+	public void addParticle(Particle var1, double var2, double var4, double var6, double var8, double var10, double var12, int... var14) {
 		this.a(var1.c(), var1.e(), var2, var4, var6, var8, var10, var12, var14);
 	}
 
@@ -1956,11 +1956,11 @@ public abstract class World implements ard {
 		return var3;
 	}
 
-	public <T> List<T> a(Class<T> var1, AxisAlignedBB var2) {
-		return this.a(var1, var2, EntityPredicates.notSpectators);
+	public <T> List<T> getEntititesInAABB(Class<T> var1, AxisAlignedBB var2) {
+		return this.getEntititesInAABB(var1, var2, EntityPredicates.notSpectators);
 	}
 
-	public <T> List<T> a(Class<T> var1, AxisAlignedBB var2, Predicate<?> var3) {
+	public <T> List<T> getEntititesInAABB(Class<T> var1, AxisAlignedBB var2, Predicate<?> var3) {
 		int var4 = MathHelper.toFixedPointInt((var2.minX - 2.0D) / 16.0D);
 		int var5 = MathHelper.toFixedPointInt((var2.maxX + 2.0D) / 16.0D);
 		int var6 = MathHelper.toFixedPointInt((var2.minZ - 2.0D) / 16.0D);
@@ -1979,7 +1979,7 @@ public abstract class World implements ard {
 	}
 
 	public <T> Entity a(Class<T> var1, AxisAlignedBB var2, Entity var3) {
-		List<T> var4 = this.a(var1, var2);
+		List<T> var4 = this.getEntititesInAABB(var1, var2);
 		Entity var5 = null;
 		double var6 = Double.MAX_VALUE;
 
@@ -2138,7 +2138,7 @@ public abstract class World implements ard {
 		return var11;
 	}
 
-	public boolean b(double var1, double var3, double var5, double var7) {
+	public boolean findNearbyPlayer(double var1, double var3, double var5, double var7) {
 		for (int var9 = 0; var9 < this.j.size(); ++var9) {
 			EntityHuman var10 = (EntityHuman) this.j.get(var9);
 			if (EntityPredicates.notSpectators.apply(var10)) {
@@ -2294,7 +2294,7 @@ public abstract class World implements ard {
 
 	}
 
-	public void b(int var1, Position var2, int var3) {
+	public void triggerEffect(int var1, Position var2, int var3) {
 		this.a((EntityHuman) null, var1, var2, var3);
 	}
 

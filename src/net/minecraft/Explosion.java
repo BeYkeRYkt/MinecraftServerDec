@@ -121,9 +121,9 @@ public class Explosion {
 	public void a(boolean var1) {
 		this.d.makeSound(this.e, this.f, this.g, "random.explode", 4.0F, (1.0F + (this.d.random.nextFloat() - this.d.random.nextFloat()) * 0.2F) * 0.7F);
 		if (this.i >= 2.0F && this.b) {
-			this.d.a(Particle.c, this.e, this.f, this.g, 1.0D, 0.0D, 0.0D, new int[0]);
+			this.d.addParticle(Particle.c, this.e, this.f, this.g, 1.0D, 0.0D, 0.0D, new int[0]);
 		} else {
-			this.d.a(Particle.b, this.e, this.f, this.g, 1.0D, 0.0D, 0.0D, new int[0]);
+			this.d.addParticle(Particle.b, this.e, this.f, this.g, 1.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 		Iterator var2;
@@ -150,8 +150,8 @@ public class Explosion {
 					var11 *= var19;
 					var13 *= var19;
 					var15 *= var19;
-					this.d.a(Particle.a, (var5 + this.e * 1.0D) / 2.0D, (var7 + this.f * 1.0D) / 2.0D, (var9 + this.g * 1.0D) / 2.0D, var11, var13, var15, new int[0]);
-					this.d.a(Particle.l, var5, var7, var9, var11, var13, var15, new int[0]);
+					this.d.addParticle(Particle.a, (var5 + this.e * 1.0D) / 2.0D, (var7 + this.f * 1.0D) / 2.0D, (var9 + this.g * 1.0D) / 2.0D, var11, var13, var15, new int[0]);
+					this.d.addParticle(Particle.l, var5, var7, var9, var11, var13, var15, new int[0]);
 				}
 
 				if (var4.getMaterial() != Material.AIR) {

@@ -23,7 +23,7 @@ public class ItemEnderEye extends Item {
 					double var17 = 0.0D;
 					double var19 = 0.0D;
 					double var21 = 0.0D;
-					var3.a(Particle.l, var11, var13, var15, var17, var19, var21, new int[0]);
+					var3.addParticle(Particle.l, var11, var13, var15, var17, var19, var21, new int[0]);
 				}
 
 				BlockFace var23 = (BlockFace) var9.b(BlockEnderPortalFrame.a);

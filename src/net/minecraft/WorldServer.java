@@ -140,7 +140,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	public BiomeMeta a(EnumCreatureType var1, Position var2) {
 		List var3 = this.getChunkProvider().getMobsFor(var1, var2);
-		return var3 != null && !var3.isEmpty() ? (BiomeMeta) vj.a(this.random, var3) : null;
+		return var3 != null && !var3.isEmpty() ? (BiomeMeta) WeightedRandom.a(this.random, var3) : null;
 	}
 
 	public boolean a(EnumCreatureType var1, BiomeMeta var2, Position var3) {
@@ -298,7 +298,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	protected Position a(Position var1) {
 		Position var2 = this.q(var1);
 		AxisAlignedBB var3 = (new AxisAlignedBB(var2, new Position(var2.getX(), this.U(), var2.getZ()))).grow(3.0D, 3.0D, 3.0D);
-		List var4 = this.a(EntityLiving.class, var3, new qu(this));
+		List var4 = this.getEntititesInAABB(EntityLiving.class, var3, new qu(this));
 		return !var4.isEmpty() ? ((EntityLiving) var4.get(this.random.nextInt(var4.size()))).getEntityPosition() : var2;
 	}
 

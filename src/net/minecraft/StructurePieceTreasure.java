@@ -28,7 +28,7 @@ public class StructurePieceTreasure extends vk {
 
 	public static void a(Random var0, List var1, IInventory var2, int var3) {
 		for (int var4 = 0; var4 < var3; ++var4) {
-			StructurePieceTreasure var5 = (StructurePieceTreasure) vj.a(var0, var1);
+			StructurePieceTreasure var5 = (StructurePieceTreasure) WeightedRandom.a(var0, var1);
 			int var6 = var5.c + var0.nextInt(var5.d - var5.c + 1);
 			if (var5.b.getMaxStackSize() >= var6) {
 				ItemStack var7 = var5.b.getCopy();
@@ -47,7 +47,7 @@ public class StructurePieceTreasure extends vk {
 
 	public static void a(Random var0, List var1, TileEntityDispenser var2, int var3) {
 		for (int var4 = 0; var4 < var3; ++var4) {
-			StructurePieceTreasure var5 = (StructurePieceTreasure) vj.a(var0, var1);
+			StructurePieceTreasure var5 = (StructurePieceTreasure) WeightedRandom.a(var0, var1);
 			int var6 = var5.c + var0.nextInt(var5.d - var5.c + 1);
 			if (var5.b.getMaxStackSize() >= var6) {
 				ItemStack var7 = var5.b.getCopy();

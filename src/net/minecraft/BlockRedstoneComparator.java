@@ -87,7 +87,7 @@ public class BlockRedstoneComparator extends ava implements avs {
 	}
 
 	private EntityItemFrame a(World var1, BlockFace var2, Position var3) {
-		List var4 = var1.a(EntityItemFrame.class, new AxisAlignedBB((double) var3.getX(), (double) var3.getY(), (double) var3.getZ(), (double) (var3.getX() + 1), (double) (var3.getY() + 1), (double) (var3.getZ() + 1)), (Predicate) (new auq(this, var2)));
+		List var4 = var1.getEntititesInAABB(EntityItemFrame.class, new AxisAlignedBB((double) var3.getX(), (double) var3.getY(), (double) var3.getZ(), (double) (var3.getX() + 1), (double) (var3.getY() + 1), (double) (var3.getZ() + 1)), (Predicate) (new auq(this, var2)));
 		return var4.size() == 1 ? (EntityItemFrame) var4.get(0) : null;
 	}
 

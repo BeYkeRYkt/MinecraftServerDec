@@ -39,7 +39,7 @@ public class BlockPumpkin extends avb {
 			var1.addEntity((Entity) var9);
 
 			for (var6 = 0; var6 < 120; ++var6) {
-				var1.a(Particle.G, (double) var11.getX() + var1.random.nextDouble(), (double) var11.getY() + var1.random.nextDouble() * 2.5D, (double) var11.getZ() + var1.random.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
+				var1.addParticle(Particle.G, (double) var11.getX() + var1.random.nextDouble(), (double) var11.getY() + var1.random.nextDouble() * 2.5D, (double) var11.getZ() + var1.random.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 
 			for (var6 = 0; var6 < this.l().b(); ++var6) {
@@ -60,7 +60,7 @@ public class BlockPumpkin extends avb {
 			var1.addEntity((Entity) var13);
 
 			for (var6 = 0; var6 < 120; ++var6) {
-				var1.a(Particle.F, (double) var10.getX() + var1.random.nextDouble(), (double) var10.getY() + var1.random.nextDouble() * 3.9D, (double) var10.getZ() + var1.random.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
+				var1.addParticle(Particle.F, (double) var10.getX() + var1.random.nextDouble(), (double) var10.getY() + var1.random.nextDouble() * 3.9D, (double) var10.getZ() + var1.random.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 
 			for (var6 = 0; var6 < this.T().c(); ++var6) {

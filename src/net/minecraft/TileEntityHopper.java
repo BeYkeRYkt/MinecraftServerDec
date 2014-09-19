@@ -416,7 +416,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 	}
 
 	public static EntityItem a(World var0, double var1, double var3, double var5) {
-		List var7 = var0.a(EntityItem.class, new AxisAlignedBB(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.a);
+		List var7 = var0.getEntititesInAABB(EntityItem.class, new AxisAlignedBB(var1, var3, var5, var1 + 1.0D, var3 + 1.0D, var5 + 1.0D), EntityPredicates.a);
 		return var7.size() > 0 ? (EntityItem) var7.get(0) : null;
 	}
 

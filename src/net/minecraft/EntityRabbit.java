@@ -308,7 +308,7 @@ public class EntityRabbit extends EntityAnimal {
 	}
 
 	protected void cn() {
-		this.world.a(Particle.M, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, 0.0D, 0.0D, 0.0D, new int[] { Block.getStateId(Blocks.CARROTS.setData(7)) });
+		this.world.addParticle(Particle.M, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, 0.0D, 0.0D, 0.0D, new int[] { Block.getStateId(Blocks.CARROTS.setData(7)) });
 		this.bs = 100;
 	}
 

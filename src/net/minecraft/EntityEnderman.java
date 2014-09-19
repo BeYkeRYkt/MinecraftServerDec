@@ -82,7 +82,7 @@ public class EntityEnderman extends EntityMonster {
 	public void m() {
 		if (this.world.isStatic) {
 			for (int var1 = 0; var1 < 2; ++var1) {
-				this.world.a(Particle.y, this.locationX + (this.random.nextDouble() - 0.5D) * (double) this.height, this.locationY + this.random.nextDouble() * (double) this.width - 0.25D, this.locationZ + (this.random.nextDouble() - 0.5D) * (double) this.height, (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D, new int[0]);
+				this.world.addParticle(Particle.y, this.locationX + (this.random.nextDouble() - 0.5D) * (double) this.height, this.locationY + this.random.nextDouble() * (double) this.width - 0.25D, this.locationZ + (this.random.nextDouble() - 0.5D) * (double) this.height, (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D, new int[0]);
 			}
 		}
 
@@ -174,7 +174,7 @@ public class EntityEnderman extends EntityMonster {
 				double var22 = var7 + (this.locationX - var7) * var30 + (this.random.nextDouble() - 0.5D) * (double) this.height * 2.0D;
 				double var24 = var9 + (this.locationY - var9) * var30 + this.random.nextDouble() * (double) this.width;
 				double var26 = var11 + (this.locationZ - var11) * var30 + (this.random.nextDouble() - 0.5D) * (double) this.height * 2.0D;
-				this.world.a(Particle.y, var22, var24, var26, (double) var19, (double) var20, (double) var21, new int[0]);
+				this.world.addParticle(Particle.y, var22, var24, var26, (double) var19, (double) var20, (double) var21, new int[0]);
 			}
 
 			this.world.makeSound(var7, var9, var11, "mob.endermen.portal", 1.0F, 1.0F);

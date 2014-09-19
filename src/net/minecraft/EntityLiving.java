@@ -156,7 +156,7 @@ public abstract class EntityLiving extends Entity {
 						float var4 = this.random.nextFloat() - this.random.nextFloat();
 						float var5 = this.random.nextFloat() - this.random.nextFloat();
 						float var6 = this.random.nextFloat() - this.random.nextFloat();
-						this.world.a(Particle.e, this.locationX + (double) var4, this.locationY + (double) var5, this.locationZ + (double) var6, this.motionX, this.motionY, this.motionZ, new int[0]);
+						this.world.addParticle(Particle.e, this.locationX + (double) var4, this.locationY + (double) var5, this.locationZ + (double) var6, this.motionX, this.motionY, this.motionZ, new int[0]);
 					}
 
 					this.damageEntity(DamageSource.DROWN, 2.0F);
@@ -238,7 +238,7 @@ public abstract class EntityLiving extends Entity {
 				double var8 = this.random.nextGaussian() * 0.02D;
 				double var4 = this.random.nextGaussian() * 0.02D;
 				double var6 = this.random.nextGaussian() * 0.02D;
-				this.world.a(Particle.a, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, var8, var4, var6, new int[0]);
+				this.world.addParticle(Particle.a, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, var8, var4, var6, new int[0]);
 			}
 		}
 
@@ -422,7 +422,7 @@ public abstract class EntityLiving extends Entity {
 				double var5 = (double) (var11 >> 16 & 255) / 255.0D;
 				double var7 = (double) (var11 >> 8 & 255) / 255.0D;
 				double var9 = (double) (var11 >> 0 & 255) / 255.0D;
-				this.world.a(var12 ? Particle.q : Particle.p, this.locationX + (this.random.nextDouble() - 0.5D) * (double) this.height, this.locationY + this.random.nextDouble() * (double) this.width, this.locationZ + (this.random.nextDouble() - 0.5D) * (double) this.height, var5, var7, var9, new int[0]);
+				this.world.addParticle(var12 ? Particle.q : Particle.p, this.locationX + (this.random.nextDouble() - 0.5D) * (double) this.height, this.locationY + this.random.nextDouble() * (double) this.width, this.locationZ + (this.random.nextDouble() - 0.5D) * (double) this.height, var5, var7, var9, new int[0]);
 			}
 		}
 
@@ -659,7 +659,7 @@ public abstract class EntityLiving extends Entity {
 			var6 = var6.a(-this.pitch * 3.1415927F / 180.0F);
 			var6 = var6.b(-this.yaw * 3.1415927F / 180.0F);
 			var6 = var6.b(this.locationX, this.locationY + (double) this.getHeadHeight(), this.locationZ);
-			this.world.a(Particle.K, var6.x, var6.y, var6.z, var3.x, var3.y + 0.05D, var3.z, new int[] { Item.getId(var1.getItem()) });
+			this.world.addParticle(Particle.K, var6.x, var6.y, var6.z, var3.x, var3.y + 0.05D, var3.z, new int[] { Item.getId(var1.getItem()) });
 		}
 
 	}

@@ -101,7 +101,7 @@ public class EntityItem extends Entity {
 	}
 
 	private void w() {
-		Iterator var1 = this.world.a(EntityItem.class, this.getBoundingBox().grow(0.5D, 0.0D, 0.5D)).iterator();
+		Iterator var1 = this.world.getEntititesInAABB(EntityItem.class, this.getBoundingBox().grow(0.5D, 0.0D, 0.5D)).iterator();
 
 		while (var1.hasNext()) {
 			EntityItem var2 = (EntityItem) var1.next();

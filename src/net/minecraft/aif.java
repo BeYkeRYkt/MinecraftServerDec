@@ -49,13 +49,13 @@ class aif extends Slot {
 			++var4;
 			if (var4 > 2) {
 				this.a.g(this.b);
-				this.a.b(1020, this.b, 0);
+				this.a.triggerEffect(1020, this.b, 0);
 			} else {
 				this.a.setBlockAt(this.b, var5.a(BlockAnvil.b, Integer.valueOf(var4)), 2);
-				this.a.b(1021, this.b, 0);
+				this.a.triggerEffect(1021, this.b, 0);
 			}
 		} else if (!this.a.isStatic) {
-			this.a.b(1021, this.b, 0);
+			this.a.triggerEffect(1021, this.b, 0);
 		}
 
 	}

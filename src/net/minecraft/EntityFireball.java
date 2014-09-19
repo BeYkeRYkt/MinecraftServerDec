@@ -142,7 +142,7 @@ public abstract class EntityFireball extends Entity {
 			if (this.V()) {
 				for (int var17 = 0; var17 < 4; ++var17) {
 					float var18 = 0.25F;
-					this.world.a(Particle.e, this.locationX - this.motionX * (double) var18, this.locationY - this.motionY * (double) var18, this.locationZ - this.motionZ * (double) var18, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.world.addParticle(Particle.e, this.locationX - this.motionX * (double) var18, this.locationY - this.motionY * (double) var18, this.locationZ - this.motionZ * (double) var18, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 
 				var16 = 0.8F;
@@ -154,7 +154,7 @@ public abstract class EntityFireball extends Entity {
 			this.motionX *= (double) var16;
 			this.motionY *= (double) var16;
 			this.motionZ *= (double) var16;
-			this.world.a(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.world.addParticle(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 			this.b(this.locationX, this.locationY, this.locationZ);
 		}
 	}

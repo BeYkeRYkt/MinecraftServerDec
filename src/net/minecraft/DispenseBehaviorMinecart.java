@@ -45,6 +45,6 @@ final class DispenseBehaviorMinecart extends DispenseBehaviorItem {
 	}
 
 	protected void a(ISourceBlock var1) {
-		var1.i().b(1000, var1.d(), 0);
+		var1.i().triggerEffect(1000, var1.d(), 0);
 	}
 }

@@ -176,7 +176,7 @@ public abstract class ahr extends Entity implements aho {
 		if (this.V()) {
 			for (int var7 = 0; var7 < 4; ++var7) {
 				float var19 = 0.25F;
-				this.world.a(Particle.e, this.locationX - this.motionX * (double) var19, this.locationY - this.motionY * (double) var19, this.locationZ - this.motionZ * (double) var19, this.motionX, this.motionY, this.motionZ, new int[0]);
+				this.world.addParticle(Particle.e, this.locationX - this.motionX * (double) var19, this.locationY - this.motionY * (double) var19, this.locationZ - this.motionZ * (double) var19, this.motionX, this.motionY, this.motionZ, new int[0]);
 			}
 
 			var17 = 0.8F;

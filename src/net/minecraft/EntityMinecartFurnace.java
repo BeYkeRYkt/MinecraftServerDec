@@ -35,7 +35,7 @@ public class EntityMinecartFurnace extends adx {
 
 		this.i(this.c > 0);
 		if (this.j() && this.random.nextInt(4) == 0) {
-			this.world.a(Particle.m, this.locationX, this.locationY + 0.8D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.world.addParticle(Particle.m, this.locationX, this.locationY + 0.8D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 	}

@@ -245,9 +245,9 @@ public abstract class EntityHuman extends EntityLiving {
 				var7 = var7.b(-this.yaw * 3.1415927F / 180.0F);
 				var7 = var7.b(this.locationX, this.locationY + (double) this.getHeadHeight(), this.locationZ);
 				if (var1.f()) {
-					this.world.a(Particle.K, var7.x, var7.y, var7.z, var4.x, var4.y + 0.05D, var4.z, new int[] { Item.getId(var1.getItem()), var1.getWearout() });
+					this.world.addParticle(Particle.K, var7.x, var7.y, var7.z, var4.x, var4.y + 0.05D, var4.z, new int[] { Item.getId(var1.getItem()), var1.getWearout() });
 				} else {
-					this.world.a(Particle.K, var7.x, var7.y, var7.z, var4.x, var4.y + 0.05D, var4.z, new int[] { Item.getId(var1.getItem()) });
+					this.world.addParticle(Particle.K, var7.x, var7.y, var7.z, var4.x, var4.y + 0.05D, var4.z, new int[] { Item.getId(var1.getItem()) });
 				}
 			}
 
@@ -950,7 +950,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 			double var2 = 8.0D;
 			double var4 = 5.0D;
-			List var6 = this.world.a(EntityMonster.class, new AxisAlignedBB((double) position.getX() - var2, (double) position.getY() - var4, (double) position.getZ() - var2, (double) position.getX() + var2, (double) position.getY() + var4, (double) position.getZ() + var2));
+			List var6 = this.world.getEntititesInAABB(EntityMonster.class, new AxisAlignedBB((double) position.getX() - var2, (double) position.getY() - var4, (double) position.getZ() - var2, (double) position.getX() + var2, (double) position.getY() + var4, (double) position.getZ() + var2));
 			if (!var6.isEmpty()) {
 				return EnumBedResult.NOT_SAFE;
 			}

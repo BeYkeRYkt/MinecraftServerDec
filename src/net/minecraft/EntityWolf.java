@@ -154,7 +154,7 @@ public class EntityWolf extends xx {
 				for (int var3 = 0; var3 < var2; ++var3) {
 					float var4 = (this.random.nextFloat() * 2.0F - 1.0F) * this.height * 0.5F;
 					float var5 = (this.random.nextFloat() * 2.0F - 1.0F) * this.height * 0.5F;
-					this.world.a(Particle.f, this.locationX + (double) var4, (double) (var1 + 0.8F), this.locationZ + (double) var5, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.world.addParticle(Particle.f, this.locationX + (double) var4, (double) (var1 + 0.8F), this.locationZ + (double) var5, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 			}
 		}

@@ -24,7 +24,7 @@ public class EntityMinecartTNT extends adx {
 		super.s_();
 		if (this.a > 0) {
 			--this.a;
-			this.world.a(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.world.addParticle(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 		} else if (this.a == 0) {
 			this.b(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		}

@@ -246,7 +246,7 @@ public class ah {
 					if (var8 && var18 && !var9) {
 						var6.addAll(var4.b(var1, var15));
 					} else {
-						var6.addAll(var4.a(var1, var19, var15));
+						var6.addAll(var4.getEntititesInAABB(var1, var19, var15));
 					}
 				} else if (var3.equals("a")) {
 					var6.addAll(var4.b(var1, var14));
@@ -261,7 +261,7 @@ public class ah {
 					ak var20 = new ak(var19);
 					var6.addAll(var4.b(var1, Predicates.and(var15, var20)));
 				} else {
-					var6.addAll(var4.a(var1, var19, var15));
+					var6.addAll(var4.getEntititesInAABB(var1, var19, var15));
 				}
 			}
 		} else if (var3.equals("a")) {

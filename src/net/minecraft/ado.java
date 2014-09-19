@@ -399,16 +399,16 @@ public class ado extends Entity {
 		var5 = MathHelper.a(var5, 0.0F, 1.0F);
 		if (var1 < var4) {
 			this.b.b(StatisticList.D);
-			return ((adp) vj.a(this.random, d)).a(this.random);
+			return ((adp) WeightedRandom.a(this.random, d)).a(this.random);
 		} else {
 			var1 -= var4;
 			if (var1 < var5) {
 				this.b.b(StatisticList.E);
-				return ((adp) vj.a(this.random, e)).a(this.random);
+				return ((adp) WeightedRandom.a(this.random, e)).a(this.random);
 			} else {
 				float var10000 = var1 - var5;
 				this.b.b(StatisticList.C);
-				return ((adp) vj.a(this.random, f)).a(this.random);
+				return ((adp) WeightedRandom.a(this.random, f)).a(this.random);
 			}
 		}
 	}

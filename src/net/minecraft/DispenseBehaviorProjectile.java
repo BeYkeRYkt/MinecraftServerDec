@@ -14,7 +14,7 @@ public abstract class DispenseBehaviorProjectile extends DispenseBehaviorItem {
 	}
 
 	protected void a(ISourceBlock var1) {
-		var1.i().b(1002, var1.d(), 0);
+		var1.i().triggerEffect(1002, var1.d(), 0);
 	}
 
 	protected abstract aho a(World var1, IPosition var2);

@@ -704,13 +704,13 @@ public abstract class Entity implements CommandSenderInterface {
 		for (var3 = 0; (float) var3 < 1.0F + this.height * 20.0F; ++var3) {
 			var4 = (this.random.nextFloat() * 2.0F - 1.0F) * this.height;
 			var5 = (this.random.nextFloat() * 2.0F - 1.0F) * this.height;
-			this.world.a(Particle.e, this.locationX + (double) var4, (double) (var2 + 1.0F), this.locationZ + (double) var5, this.motionX, this.motionY - (double) (this.random.nextFloat() * 0.2F), this.motionZ, new int[0]);
+			this.world.addParticle(Particle.e, this.locationX + (double) var4, (double) (var2 + 1.0F), this.locationZ + (double) var5, this.motionX, this.motionY - (double) (this.random.nextFloat() * 0.2F), this.motionZ, new int[0]);
 		}
 
 		for (var3 = 0; (float) var3 < 1.0F + this.height * 20.0F; ++var3) {
 			var4 = (this.random.nextFloat() * 2.0F - 1.0F) * this.height;
 			var5 = (this.random.nextFloat() * 2.0F - 1.0F) * this.height;
-			this.world.a(Particle.f, this.locationX + (double) var4, (double) (var2 + 1.0F), this.locationZ + (double) var5, this.motionX, this.motionY, this.motionZ, new int[0]);
+			this.world.addParticle(Particle.f, this.locationX + (double) var4, (double) (var2 + 1.0F), this.locationZ + (double) var5, this.motionX, this.motionY, this.motionZ, new int[0]);
 		}
 
 	}
@@ -730,7 +730,7 @@ public abstract class Entity implements CommandSenderInterface {
 		IBlockState var5 = this.world.getBlockState(var4);
 		Block var6 = var5.getBlock();
 		if (var6.b() != -1) {
-			this.world.a(Particle.L, this.locationX + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, this.getBoundingBox().minY + 0.1D, this.locationZ + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, -this.motionX * 4.0D, 1.5D, -this.motionZ * 4.0D, new int[] { Block.getStateId(var5) });
+			this.world.addParticle(Particle.L, this.locationX + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, this.getBoundingBox().minY + 0.1D, this.locationZ + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, -this.motionX * 4.0D, 1.5D, -this.motionZ * 4.0D, new int[] { Block.getStateId(var5) });
 		}
 
 	}

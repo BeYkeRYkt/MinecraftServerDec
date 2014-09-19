@@ -213,7 +213,7 @@ public class WorldGenMineshaftCorridor extends StructurePiece {
 						var1.setBlockAt(var14, Blocks.MOB_SPAWNER.getBlockState(), 2);
 						TileEntity var15 = var1.getTileEntity(var14);
 						if (var15 instanceof TileEntityMobSpawner) {
-							((TileEntityMobSpawner) var15).b().a("CaveSpider");
+							((TileEntityMobSpawner) var15).getSpawner().setMobName("CaveSpider");
 						}
 					}
 				}

@@ -209,7 +209,7 @@ public class PipeBlock implements Block {
 				//TODO
 			}
 			case MOB_SPAWNER: {
-				//TODO
+				return new PipeMobSpawner(this);
 			}
 			case NOTE_BLOCK: {
 				//TODO

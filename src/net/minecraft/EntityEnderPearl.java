@@ -13,7 +13,7 @@ public class EntityEnderPearl extends ahr {
 		}
 
 		for (int var3 = 0; var3 < 32; ++var3) {
-			this.world.a(Particle.y, this.locationX, this.locationY + this.random.nextDouble() * 2.0D, this.locationZ, this.random.nextGaussian(), 0.0D, this.random.nextGaussian(), new int[0]);
+			this.world.addParticle(Particle.y, this.locationX, this.locationY + this.random.nextDouble() * 2.0D, this.locationZ, this.random.nextGaussian(), 0.0D, this.random.nextGaussian(), new int[0]);
 		}
 
 		if (!this.world.isStatic) {

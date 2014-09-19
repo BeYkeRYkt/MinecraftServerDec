@@ -58,7 +58,7 @@ public class EntityTNTPrimed extends Entity {
 			}
 		} else {
 			this.W();
-			this.world.a(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.world.addParticle(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 	}

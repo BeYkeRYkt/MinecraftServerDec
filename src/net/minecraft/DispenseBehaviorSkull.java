@@ -48,9 +48,9 @@ final class DispenseBehaviorSkull extends DispenseBehaviorItem {
 
 	protected void a(ISourceBlock var1) {
 		if (this.b) {
-			var1.i().b(1000, var1.d(), 0);
+			var1.i().triggerEffect(1000, var1.d(), 0);
 		} else {
-			var1.i().b(1001, var1.d(), 0);
+			var1.i().triggerEffect(1001, var1.d(), 0);
 		}
 
 	}

@@ -38,7 +38,7 @@ public class BlockJukeBox extends atg {
 				TileEntityRecordPlayer var5 = (TileEntityRecordPlayer) var4;
 				ItemStack var6 = var5.a();
 				if (var6 != null) {
-					var1.b(1005, var2, 0);
+					var1.triggerEffect(1005, var2, 0);
 					var1.a(var2, (String) null);
 					var5.a((ItemStack) null);
 					float var7 = 0.7F;

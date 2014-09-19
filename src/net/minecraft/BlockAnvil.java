@@ -54,7 +54,7 @@ public class BlockAnvil extends BlockFalling {
 	}
 
 	public void a_(World var1, Position var2) {
-		var1.b(1022, var2, 0);
+		var1.triggerEffect(1022, var2, 0);
 	}
 
 	public IBlockState setData(int var1) {

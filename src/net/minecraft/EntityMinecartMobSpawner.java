@@ -2,7 +2,7 @@ package net.minecraft;
 
 public class EntityMinecartMobSpawner extends adx {
 
-	private final aqi a = new aei(this);
+	private final MobSpawnerAbstract a = new aei(this);
 
 	public EntityMinecartMobSpawner(World var1) {
 		super(var1);
@@ -22,16 +22,16 @@ public class EntityMinecartMobSpawner extends adx {
 
 	protected void a(NBTCompoundTag var1) {
 		super.a(var1);
-		this.a.a(var1);
+		this.a.read(var1);
 	}
 
 	protected void b(NBTCompoundTag var1) {
 		super.b(var1);
-		this.a.b(var1);
+		this.a.write(var1);
 	}
 
 	public void s_() {
 		super.s_();
-		this.a.c();
+		this.a.doTick();
 	}
 }

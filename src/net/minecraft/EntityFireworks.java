@@ -71,7 +71,7 @@ public class EntityFireworks extends Entity {
 
 		++this.a;
 		if (this.world.isStatic && this.a % 2 < 2) {
-			this.world.a(Particle.d, this.locationX, this.locationY - 0.3D, this.locationZ, this.random.nextGaussian() * 0.05D, -this.motionY * 0.5D, this.random.nextGaussian() * 0.05D, new int[0]);
+			this.world.addParticle(Particle.d, this.locationX, this.locationY - 0.3D, this.locationZ, this.random.nextGaussian() * 0.05D, -this.motionY * 0.5D, this.random.nextGaussian() * 0.05D, new int[0]);
 		}
 
 		if (!this.world.isStatic && this.a > this.b) {

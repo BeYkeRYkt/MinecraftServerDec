@@ -23,7 +23,7 @@ public class ItemDye extends Item {
 			if (var9 == akv.a) {
 				if (a(var1, var3, var4)) {
 					if (!var3.isStatic) {
-						var3.b(2005, var4, 0);
+						var3.triggerEffect(2005, var4, 0);
 					}
 
 					return true;

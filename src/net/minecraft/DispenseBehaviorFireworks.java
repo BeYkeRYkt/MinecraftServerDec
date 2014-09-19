@@ -14,6 +14,6 @@ final class DispenseBehaviorFireworks extends DispenseBehaviorItem {
 	}
 
 	protected void a(ISourceBlock var1) {
-		var1.i().b(1002, var1.d(), 0);
+		var1.i().triggerEffect(1002, var1.d(), 0);
 	}
 }

@@ -84,7 +84,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 			var1 = (this.random.nextFloat() - 0.5F) * 8.0F;
 			var2 = (this.random.nextFloat() - 0.5F) * 4.0F;
 			var3 = (this.random.nextFloat() - 0.5F) * 8.0F;
-			this.world.a(Particle.b, this.locationX + (double) var1, this.locationY + 2.0D + (double) var2, this.locationZ + (double) var3, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.world.addParticle(Particle.b, this.locationX + (double) var1, this.locationY + 2.0D + (double) var2, this.locationZ + (double) var3, 0.0D, 0.0D, 0.0D, new int[0]);
 		} else {
 			this.n();
 			var1 = 0.2F / (MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ) * 10.0F + 1.0F);
@@ -284,7 +284,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 
 		if (this.random.nextInt(10) == 0) {
 			float var1 = 32.0F;
-			List var2 = this.world.a(EntityEnderCrystal.class, this.getBoundingBox().grow((double) var1, (double) var1, (double) var1));
+			List var2 = this.world.getEntititesInAABB(EntityEnderCrystal.class, this.getBoundingBox().grow((double) var1, (double) var1, (double) var1));
 			EntityEnderCrystal var3 = null;
 			double var4 = Double.MAX_VALUE;
 			Iterator var6 = var2.iterator();
@@ -396,7 +396,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 			double var16 = var1.minX + (var1.maxX - var1.minX) * (double) this.random.nextFloat();
 			double var17 = var1.minY + (var1.maxY - var1.minY) * (double) this.random.nextFloat();
 			double var14 = var1.minZ + (var1.maxZ - var1.minZ) * (double) this.random.nextFloat();
-			this.world.a(Particle.b, var16, var17, var14, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.world.addParticle(Particle.b, var16, var17, var14, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 		return var8;
@@ -443,7 +443,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 			float var1 = (this.random.nextFloat() - 0.5F) * 8.0F;
 			float var2 = (this.random.nextFloat() - 0.5F) * 4.0F;
 			float var3 = (this.random.nextFloat() - 0.5F) * 8.0F;
-			this.world.a(Particle.c, this.locationX + (double) var1, this.locationY + 2.0D + (double) var2, this.locationZ + (double) var3, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.world.addParticle(Particle.c, this.locationX + (double) var1, this.locationY + 2.0D + (double) var2, this.locationZ + (double) var3, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 		int var4;

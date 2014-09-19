@@ -99,7 +99,7 @@ public class EntityMinecartHopper extends InventoryMinecart implements IHopper {
 		if (TileEntityHopper.a((IHopper) this)) {
 			return true;
 		} else {
-			List var1 = this.world.a(EntityItem.class, this.getBoundingBox().grow(0.25D, 0.0D, 0.25D), EntityPredicates.a);
+			List var1 = this.world.getEntititesInAABB(EntityItem.class, this.getBoundingBox().grow(0.25D, 0.0D, 0.25D), EntityPredicates.a);
 			if (var1.size() > 0) {
 				TileEntityHopper.a((IInventory) this, (EntityItem) var1.get(0));
 			}

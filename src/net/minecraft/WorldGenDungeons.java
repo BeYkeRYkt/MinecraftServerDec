@@ -120,7 +120,7 @@ public class WorldGenDungeons extends WorldGenerator {
 			var1.setBlockAt(var3, Blocks.MOB_SPAWNER.getBlockState(), 2);
 			TileEntity var23 = var1.getTileEntity(var3);
 			if (var23 instanceof TileEntityMobSpawner) {
-				((TileEntityMobSpawner) var23).b().a(this.a(var2));
+				((TileEntityMobSpawner) var23).getSpawner().setMobName(this.a(var2));
 			} else {
 				a.error("Failed to fetch mob spawner entity at (" + var3.getX() + ", " + var3.getY() + ", " + var3.getZ() + ")");
 			}

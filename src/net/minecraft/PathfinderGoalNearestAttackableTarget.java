@@ -44,7 +44,7 @@ public class PathfinderGoalNearestAttackableTarget extends aaw {
 			return false;
 		} else {
 			double var1 = this.f();
-			List var3 = this.e.world.a(this.a, this.e.getBoundingBox().grow(var1, 4.0D, var1), Predicates.and(this.c, EntityPredicates.notSpectators));
+			List var3 = this.e.world.getEntititesInAABB(this.a, this.e.getBoundingBox().grow(var1, 4.0D, var1), Predicates.and(this.c, EntityPredicates.notSpectators));
 			Collections.sort(var3, this.b);
 			if (var3.isEmpty()) {
 				return false;
