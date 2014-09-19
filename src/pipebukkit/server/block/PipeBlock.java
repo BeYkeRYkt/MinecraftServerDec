@@ -206,7 +206,7 @@ public class PipeBlock implements Block {
 				return new PipeDropper(this);
 			}
 			case HOPPER: {
-				//TODO
+				return new PipeHopper(this);
 			}
 			case MOB_SPAWNER: {
 				return new PipeMobSpawner(this);
