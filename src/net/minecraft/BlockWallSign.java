@@ -4,7 +4,7 @@ import com.google.common.base.Predicate;
 
 public class BlockWallSign extends bai {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 
 	public BlockWallSign() {
 		this.setBlockState(this.L.b().a(a, BlockFace.NORTH));

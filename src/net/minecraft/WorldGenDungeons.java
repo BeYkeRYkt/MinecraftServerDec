@@ -87,7 +87,7 @@ public class WorldGenDungeons extends WorldGenerator {
 							Position var26 = new Position(var16, var24, var25);
 							if (var1.d(var26)) {
 								int var20 = 0;
-								Iterator var21 = en.a.iterator();
+								Iterator var21 = UniverseDirection.HORIZONTAL.iterator();
 
 								while (var21.hasNext()) {
 									BlockFace var22 = (BlockFace) var21.next();

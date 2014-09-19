@@ -27,7 +27,7 @@ public class bkh extends StructureStart {
 		var2.setSeed(var9 ^ var11 ^ var1.J());
 		int var13 = var3 * 16 + 8 - 29;
 		int var14 = var4 * 16 + 8 - 29;
-		BlockFace var15 = en.a.a(var2);
+		BlockFace var15 = UniverseDirection.HORIZONTAL.getRandomBlockFace(var2);
 		this.a.add(new bkr(var2, var13, var14, var15));
 		this.c();
 		this.d = true;

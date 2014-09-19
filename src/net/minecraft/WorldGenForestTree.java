@@ -46,7 +46,7 @@ public class WorldGenForestTree extends WorldGenTreeAbstract {
 					this.a(var1, var3.a(1, -1, 0));
 					this.a(var1, var3.a(1, -1, 1));
 					this.a(var1, var3.a(0, -1, 1));
-					BlockFace var19 = en.a.a(var2);
+					BlockFace var19 = UniverseDirection.HORIZONTAL.getRandomBlockFace(var2);
 					var8 = var4 - var2.nextInt(4);
 					var9 = 2 - var2.nextInt(3);
 					int var10 = var3.getX();

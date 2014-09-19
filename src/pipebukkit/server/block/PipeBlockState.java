@@ -167,7 +167,11 @@ public class PipeBlockState implements BlockState {
 	}
 
 	protected TileEntity getTileEntity() {
-		return ((PipeWorld) getWorld()).getHandle().getTileEntity(new Position(getX(), getY(), getZ()));
+		return getTileEntity(getBlock());
+	}
+
+	protected TileEntity getTileEntity(Block block) {
+		return ((PipeWorld) getWorld()).getHandle().getTileEntity(new Position(block.getX(), block.getY(), block.getZ()));
 	}
 
 }

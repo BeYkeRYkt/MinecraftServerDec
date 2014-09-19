@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class BlockFurnace extends atg {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 	private final boolean b;
 	private static boolean M;
 

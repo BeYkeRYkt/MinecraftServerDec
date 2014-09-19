@@ -128,7 +128,7 @@ public class BlockVine extends Block {
 
 	private boolean e(World var1, Position var2, IBlockState var3) {
 		IBlockState var4 = var3;
-		Iterator var5 = en.a.iterator();
+		Iterator var5 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var5.hasNext()) {
 			BlockFace var6 = (BlockFace) var5.next();
@@ -186,7 +186,7 @@ public class BlockVine extends Block {
 				if (var17 == BlockFace.UP && var2.getY() < 255 && var1.d(var2.getUp())) {
 					if (!var7) {
 						IBlockState var19 = var3;
-						Iterator var22 = en.a.iterator();
+						Iterator var22 = UniverseDirection.HORIZONTAL.iterator();
 
 						while (var22.hasNext()) {
 							var23 = (BlockFace) var22.next();
@@ -239,7 +239,7 @@ public class BlockVine extends Block {
 							BlockFace var14;
 							if (var11.material == Material.AIR) {
 								var12 = var3;
-								var13 = en.a.iterator();
+								var13 = UniverseDirection.HORIZONTAL.iterator();
 
 								while (var13.hasNext()) {
 									var14 = (BlockFace) var13.next();
@@ -253,7 +253,7 @@ public class BlockVine extends Block {
 								}
 							} else if (var11 == this) {
 								var12 = var20;
-								var13 = en.a.iterator();
+								var13 = UniverseDirection.HORIZONTAL.iterator();
 
 								while (var13.hasNext()) {
 									var14 = (BlockFace) var13.next();

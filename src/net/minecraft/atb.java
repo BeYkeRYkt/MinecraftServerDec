@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class atb extends atg {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 	public static final bew b = bew.a("rotation", 0, 15);
 
 	protected atb() {

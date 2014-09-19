@@ -21,7 +21,7 @@ public class BlockStem extends auc implements atz {
 
 	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		var1 = var1.a(b, BlockFace.UP);
-		Iterator var4 = en.a.iterator();
+		Iterator var4 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var4.hasNext()) {
 			BlockFace var5 = (BlockFace) var4.next();
@@ -48,7 +48,7 @@ public class BlockStem extends auc implements atz {
 					var3 = var3.a(a, Integer.valueOf(var6 + 1));
 					var1.setBlockAt(var2, var3, 2);
 				} else {
-					Iterator var7 = en.a.iterator();
+					Iterator var7 = UniverseDirection.HORIZONTAL.iterator();
 
 					while (var7.hasNext()) {
 						BlockFace var8 = (BlockFace) var7.next();
@@ -57,7 +57,7 @@ public class BlockStem extends auc implements atz {
 						}
 					}
 
-					var2 = var2.getRelative(en.a.a(var4));
+					var2 = var2.getRelative(UniverseDirection.HORIZONTAL.getRandomBlockFace(var4));
 					Block var9 = var1.getBlockState(var2.getDown()).getBlock();
 					if (var1.getBlockState(var2).getBlock().material == Material.AIR && (var9 == Blocks.FARMLAND || var9 == Blocks.DIRT || var9 == Blocks.GRASS)) {
 						var1.a(var2, this.M.getBlockState());

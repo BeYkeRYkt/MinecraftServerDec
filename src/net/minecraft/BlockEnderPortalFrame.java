@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class BlockEnderPortalFrame extends Block {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 	public static final bet b = bet.a("eye");
 
 	public BlockEnderPortalFrame() {

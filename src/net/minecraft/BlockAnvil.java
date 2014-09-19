@@ -4,7 +4,7 @@ import com.google.common.base.Predicate;
 
 public class BlockAnvil extends BlockFalling {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 	public static final bew b = bew.a("damage", 0, 2);
 
 	protected BlockAnvil() {

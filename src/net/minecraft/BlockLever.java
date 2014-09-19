@@ -42,7 +42,7 @@ public class BlockLever extends Block {
 		if (this.d(var1, var2.getRelative(var3.getOpposite()))) {
 			return var9.a(a, axk.a(var3, var8.aO()));
 		} else {
-			Iterator var10 = en.a.iterator();
+			Iterator var10 = UniverseDirection.HORIZONTAL.iterator();
 
 			BlockFace var11;
 			do {

@@ -44,7 +44,7 @@ public class WorldGenDesertWell extends WorldGenerator {
 			}
 
 			var1.setBlockAt(var3, this.d, 2);
-			Iterator var7 = en.a.iterator();
+			Iterator var7 = UniverseDirection.HORIZONTAL.iterator();
 
 			while (var7.hasNext()) {
 				BlockFace var8 = (BlockFace) var7.next();

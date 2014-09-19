@@ -10,7 +10,7 @@ public class bnp extends bnn {
 
 	public bnp(bnk var1, int var2, Random var3, int var4, int var5) {
 		super(var1, var2);
-		this.m = en.a.a(var3);
+		this.m = UniverseDirection.HORIZONTAL.getRandomBlockFace(var3);
 		switch (bmz.a[this.m.ordinal()]) {
 			case 1:
 			case 2:

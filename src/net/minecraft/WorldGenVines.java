@@ -7,7 +7,7 @@ public class WorldGenVines extends WorldGenerator {
 	public boolean b(World var1, Random var2, Position var3) {
 		for (; var3.getY() < 128; var3 = var3.getUp()) {
 			if (var1.d(var3)) {
-				BlockFace[] var4 = en.a.a();
+				BlockFace[] var4 = UniverseDirection.HORIZONTAL.getBlockFaces();
 				int var5 = var4.length;
 
 				for (int var6 = 0; var6 < var5; ++var6) {

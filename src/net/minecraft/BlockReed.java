@@ -44,7 +44,7 @@ public class BlockReed extends Block {
 		} else if (var3 != Blocks.GRASS && var3 != Blocks.DIRT && var3 != Blocks.SAND) {
 			return false;
 		} else {
-			Iterator var4 = en.a.iterator();
+			Iterator var4 = UniverseDirection.HORIZONTAL.iterator();
 
 			BlockFace var5;
 			do {

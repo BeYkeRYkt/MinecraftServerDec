@@ -8,17 +8,17 @@ class ek {
 	// $FF: synthetic field
 	static final int[] b;
 	// $FF: synthetic field
-	static final int[] c = new int[en.values().length];
+	static final int[] c = new int[UniverseDirection.values().length];
 
 	static {
 		try {
-			c[en.a.ordinal()] = 1;
+			c[UniverseDirection.HORIZONTAL.ordinal()] = 1;
 		} catch (NoSuchFieldError var11) {
 			;
 		}
 
 		try {
-			c[en.b.ordinal()] = 2;
+			c[UniverseDirection.VERTICAL.ordinal()] = 2;
 		} catch (NoSuchFieldError var10) {
 			;
 		}

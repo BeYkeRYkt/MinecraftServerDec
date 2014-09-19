@@ -60,7 +60,7 @@ public class BlockTorch extends Block {
 		if (this.b(var1, var2, var3)) {
 			return this.getBlockState().a(a, var3);
 		} else {
-			Iterator var9 = en.a.iterator();
+			Iterator var9 = UniverseDirection.HORIZONTAL.iterator();
 
 			BlockFace var10;
 			do {

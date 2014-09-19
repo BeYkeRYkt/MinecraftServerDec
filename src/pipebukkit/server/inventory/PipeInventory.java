@@ -23,8 +23,8 @@ import com.google.common.collect.Lists;
 public abstract class PipeInventory implements Inventory {
 
 	private IInventory nmsInventory;
-	public PipeInventory(IInventory minecraftInventory) {
-		this.nmsInventory = minecraftInventory;
+	public PipeInventory(IInventory nmsInventory) {
+		this.nmsInventory = nmsInventory;
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class BlockDoor extends Block {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 	public static final bet b = bet.a("open");
 	public static final bev M = bev.a("hinge", avh.class);
 	public static final bet N = bet.a("powered");

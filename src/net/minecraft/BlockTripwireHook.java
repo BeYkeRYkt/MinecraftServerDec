@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class BlockTripwireHook extends Block {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 	public static final bet b = bet.a("powered");
 	public static final bet M = bet.a("attached");
 	public static final bet N = bet.a("suspended");
@@ -40,7 +40,7 @@ public class BlockTripwireHook extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		Iterator var3 = en.a.iterator();
+		Iterator var3 = UniverseDirection.HORIZONTAL.iterator();
 
 		BlockFace var4;
 		do {

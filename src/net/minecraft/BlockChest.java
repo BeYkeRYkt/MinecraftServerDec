@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class BlockChest extends atg {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 	private final Random M = new Random();
 	public final int chestType;
 
@@ -47,7 +47,7 @@ public class BlockChest extends atg {
 
 	public void c(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
-		Iterator var4 = en.a.iterator();
+		Iterator var4 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var4.hasNext()) {
 			BlockFace var5 = (BlockFace) var4.next();
@@ -181,7 +181,7 @@ public class BlockChest extends atg {
 
 	public IBlockState f(World var1, Position var2, IBlockState var3) {
 		BlockFace var4 = null;
-		Iterator var5 = en.a.iterator();
+		Iterator var5 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var5.hasNext()) {
 			BlockFace var6 = (BlockFace) var5.next();
@@ -265,7 +265,7 @@ public class BlockChest extends atg {
 		if (var1.getBlockState(var2).getBlock() != this) {
 			return false;
 		} else {
-			Iterator var3 = en.a.iterator();
+			Iterator var3 = UniverseDirection.HORIZONTAL.iterator();
 
 			BlockFace var4;
 			do {
@@ -321,7 +321,7 @@ public class BlockChest extends atg {
 			if (this.m(var1, var2)) {
 				return null;
 			} else {
-				Iterator var5 = en.a.iterator();
+				Iterator var5 = UniverseDirection.HORIZONTAL.iterator();
 
 				while (var5.hasNext()) {
 					BlockFace var6 = (BlockFace) var5.next();

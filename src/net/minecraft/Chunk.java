@@ -191,12 +191,12 @@ public class Chunk {
 
 						Iterator var8;
 						BlockFace var9;
-						for (var8 = en.a.iterator(); var8.hasNext(); var7 = Math.min(var7, this.worldServer.b(var5 + var9.g(), var6 + var9.i()))) {
+						for (var8 = UniverseDirection.HORIZONTAL.iterator(); var8.hasNext(); var7 = Math.min(var7, this.worldServer.b(var5 + var9.g(), var6 + var9.i()))) {
 							var9 = (BlockFace) var8.next();
 						}
 
 						this.c(var5, var6, var7);
-						var8 = en.a.iterator();
+						var8 = UniverseDirection.HORIZONTAL.iterator();
 
 						while (var8.hasNext()) {
 							var9 = (BlockFace) var8.next();
@@ -310,7 +310,7 @@ public class Chunk {
 			}
 
 			if (!this.worldServer.worldProvider.noSkyLight()) {
-				Iterator var11 = en.a.iterator();
+				Iterator var11 = UniverseDirection.HORIZONTAL.iterator();
 
 				while (var11.hasNext()) {
 					BlockFace var12 = (BlockFace) var11.next();
@@ -971,7 +971,7 @@ public class Chunk {
 				}
 
 				if (this.lightPopulated) {
-					Iterator var5 = en.a.iterator();
+					Iterator var5 = UniverseDirection.HORIZONTAL.iterator();
 
 					while (var5.hasNext()) {
 						BlockFace var6 = (BlockFace) var5.next();

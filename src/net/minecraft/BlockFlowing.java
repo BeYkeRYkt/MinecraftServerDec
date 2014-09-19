@@ -31,7 +31,7 @@ public class BlockFlowing extends axl {
 			this.a = 0;
 
 			BlockFace var10;
-			for (Iterator var9 = en.a.iterator(); var9.hasNext(); var8 = this.a(var1, var2.getRelative(var10), var8)) {
+			for (Iterator var9 = UniverseDirection.HORIZONTAL.iterator(); var9.hasNext(); var8 = this.a(var1, var2.getRelative(var10), var8)) {
 				var10 = (BlockFace) var9.next();
 			}
 
@@ -130,7 +130,7 @@ public class BlockFlowing extends axl {
 
 	private int a(World var1, Position var2, int var3, BlockFace var4) {
 		int var5 = 1000;
-		Iterator var6 = en.a.iterator();
+		Iterator var6 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var6.hasNext()) {
 			BlockFace var7 = (BlockFace) var6.next();
@@ -158,7 +158,7 @@ public class BlockFlowing extends axl {
 	private Set e(World var1, Position var2) {
 		int var3 = 1000;
 		EnumSet var4 = EnumSet.noneOf(BlockFace.class);
-		Iterator var5 = en.a.iterator();
+		Iterator var5 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var5.hasNext()) {
 			BlockFace var6 = (BlockFace) var5.next();

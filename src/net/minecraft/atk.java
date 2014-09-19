@@ -123,7 +123,7 @@ public class atk {
 
 	protected int a() {
 		int var1 = 0;
-		Iterator var2 = en.a.iterator();
+		Iterator var2 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var2.hasNext()) {
 			BlockFace var3 = (BlockFace) var2.next();

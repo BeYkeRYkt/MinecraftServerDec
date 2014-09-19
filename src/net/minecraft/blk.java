@@ -217,7 +217,7 @@ public class blk extends bln {
 		this.a(var1, Blocks.AIR.getBlockState(), 10, -10, 12, var3);
 		this.a(var1, Blocks.SANDSTONE.setData(bae.b.a()), 10, -10, 13, var3);
 		this.a(var1, Blocks.SANDSTONE.setData(bae.c.a()), 10, -11, 13, var3);
-		Iterator var15 = en.a.iterator();
+		Iterator var15 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var15.hasNext()) {
 			BlockFace var11 = (BlockFace) var15.next();

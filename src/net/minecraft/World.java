@@ -2369,7 +2369,7 @@ public abstract class World implements ard {
 	}
 
 	public void e(Position var1, Block var2) {
-		Iterator var3 = en.a.iterator();
+		Iterator var3 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var3.hasNext()) {
 			BlockFace var4 = (BlockFace) var3.next();

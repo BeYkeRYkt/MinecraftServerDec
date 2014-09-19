@@ -6,14 +6,14 @@ import java.util.Map;
 
 public enum el implements Predicate, va {
 
-	a("X", 0, "x", en.a), b("Y", 1, "y", en.b), c("Z", 2, "z", en.a);
+	a("X", 0, "x", UniverseDirection.HORIZONTAL), b("Y", 1, "y", UniverseDirection.VERTICAL), c("Z", 2, "z", UniverseDirection.HORIZONTAL);
 	private static final Map d = Maps.newHashMap();
 	private final String e;
-	private final en f;
+	private final UniverseDirection f;
 	// $FF: synthetic field
 	private static final el[] g = new el[] { a, b, c };
 
-	private el(String var1, int var2, String var3, en var4) {
+	private el(String var1, int var2, String var3, UniverseDirection var4) {
 		this.e = var3;
 		this.f = var4;
 	}
@@ -23,11 +23,11 @@ public enum el implements Predicate, va {
 	}
 
 	public boolean b() {
-		return this.f == en.b;
+		return this.f == UniverseDirection.VERTICAL;
 	}
 
 	public boolean c() {
-		return this.f == en.a;
+		return this.f == UniverseDirection.HORIZONTAL;
 	}
 
 	public String toString() {
@@ -38,7 +38,7 @@ public enum el implements Predicate, va {
 		return var1 != null && var1.k() == this;
 	}
 
-	public en d() {
+	public UniverseDirection d() {
 		return this.f;
 	}
 

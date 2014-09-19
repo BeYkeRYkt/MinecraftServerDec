@@ -62,7 +62,7 @@ public class BlockCactus extends Block {
 	}
 
 	public boolean d(World var1, Position var2) {
-		Iterator var3 = en.a.iterator();
+		Iterator var3 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var3.hasNext()) {
 			BlockFace var4 = (BlockFace) var3.next();

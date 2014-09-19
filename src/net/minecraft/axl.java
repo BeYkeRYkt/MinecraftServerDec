@@ -71,7 +71,7 @@ public abstract class axl extends Block {
 	protected Vec3D h(ard var1, Position var2) {
 		Vec3D var3 = new Vec3D(0.0D, 0.0D, 0.0D);
 		int var4 = this.f(var1, var2);
-		Iterator var5 = en.a.iterator();
+		Iterator var5 = UniverseDirection.HORIZONTAL.iterator();
 
 		BlockFace var6;
 		Position var7;
@@ -95,7 +95,7 @@ public abstract class axl extends Block {
 		}
 
 		if (((Integer) var1.getBlockState(var2).b(b)).intValue() >= 8) {
-			var5 = en.a.iterator();
+			var5 = UniverseDirection.HORIZONTAL.iterator();
 
 			while (var5.hasNext()) {
 				var6 = (BlockFace) var5.next();

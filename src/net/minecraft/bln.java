@@ -17,7 +17,7 @@ abstract class bln extends StructurePiece {
 		this.a = var5;
 		this.b = var6;
 		this.c = var7;
-		this.m = en.a.a(var1);
+		this.m = UniverseDirection.HORIZONTAL.getRandomBlockFace(var1);
 		switch (blj.a[this.m.ordinal()]) {
 			case 1:
 			case 2:

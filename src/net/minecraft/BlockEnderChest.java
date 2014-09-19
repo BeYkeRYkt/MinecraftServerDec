@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class BlockEnderChest extends atg {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 
 	protected BlockEnderChest() {
 		super(Material.STONE);

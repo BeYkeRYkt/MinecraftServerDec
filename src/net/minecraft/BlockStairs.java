@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class BlockStairs extends Block {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 	public static final bev b = bev.a("half", bau.class);
 	public static final bev M = bev.a("shape", bav.class);
 	private static final int[][] N = new int[][] { { 4, 5 }, { 5, 7 }, { 6, 7 }, { 4, 6 }, { 0, 1 }, { 1, 3 }, { 2, 3 }, { 0, 2 } };

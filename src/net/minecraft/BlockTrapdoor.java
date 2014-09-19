@@ -4,7 +4,7 @@ import com.google.common.base.Predicate;
 
 public class BlockTrapdoor extends Block {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 	public static final bet b = bet.a("open");
 	public static final bev M = bev.a("half", bbr.class);
 

@@ -43,7 +43,7 @@ public class WorldGenAcaciaTree extends WorldGenTreeAbstract {
 				Block var20 = var1.getBlockState(var3.getDown()).getBlock();
 				if ((var20 == Blocks.GRASS || var20 == Blocks.DIRT) && var3.getY() < 256 - var4 - 1) {
 					this.a(var1, var3.getDown());
-					BlockFace var21 = en.a.a(var2);
+					BlockFace var21 = UniverseDirection.HORIZONTAL.getRandomBlockFace(var2);
 					var8 = var4 - var2.nextInt(4) - 1;
 					var9 = 3 - var2.nextInt(3);
 					int var10 = var3.getX();
@@ -92,7 +92,7 @@ public class WorldGenAcaciaTree extends WorldGenTreeAbstract {
 					this.b(var1, var22.d(2));
 					var10 = var3.getX();
 					var11 = var3.getZ();
-					BlockFace var23 = en.a.a(var2);
+					BlockFace var23 = UniverseDirection.HORIZONTAL.getRandomBlockFace(var2);
 					if (var23 != var21) {
 						var14 = var8 - var2.nextInt(2) - 1;
 						var24 = 1 + var2.nextInt(3);

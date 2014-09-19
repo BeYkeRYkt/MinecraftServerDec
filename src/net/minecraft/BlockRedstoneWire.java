@@ -86,7 +86,7 @@ public class BlockRedstoneWire extends Block {
 		}
 
 		int var9 = 0;
-		Iterator var10 = en.a.iterator();
+		Iterator var10 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var10.hasNext()) {
 			BlockFace var11 = (BlockFace) var10.next();
@@ -153,7 +153,7 @@ public class BlockRedstoneWire extends Block {
 	public void c(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			this.e(var1, var2, var3);
-			Iterator var4 = en.b.iterator();
+			Iterator var4 = UniverseDirection.VERTICAL.iterator();
 
 			BlockFace var5;
 			while (var4.hasNext()) {
@@ -161,14 +161,14 @@ public class BlockRedstoneWire extends Block {
 				var1.c(var2.getRelative(var5), (Block) this);
 			}
 
-			var4 = en.a.iterator();
+			var4 = UniverseDirection.HORIZONTAL.iterator();
 
 			while (var4.hasNext()) {
 				var5 = (BlockFace) var4.next();
 				this.d(var1, var2.getRelative(var5));
 			}
 
-			var4 = en.a.iterator();
+			var4 = UniverseDirection.HORIZONTAL.iterator();
 
 			while (var4.hasNext()) {
 				var5 = (BlockFace) var4.next();
@@ -195,7 +195,7 @@ public class BlockRedstoneWire extends Block {
 			}
 
 			this.e(var1, var2, var3);
-			Iterator var8 = en.a.iterator();
+			Iterator var8 = UniverseDirection.HORIZONTAL.iterator();
 
 			BlockFace var9;
 			while (var8.hasNext()) {
@@ -203,7 +203,7 @@ public class BlockRedstoneWire extends Block {
 				this.d(var1, var2.getRelative(var9));
 			}
 
-			var8 = en.a.iterator();
+			var8 = UniverseDirection.HORIZONTAL.iterator();
 
 			while (var8.hasNext()) {
 				var9 = (BlockFace) var8.next();
@@ -258,7 +258,7 @@ public class BlockRedstoneWire extends Block {
 				return var5;
 			} else {
 				EnumSet var6 = EnumSet.noneOf(BlockFace.class);
-				Iterator var7 = en.a.iterator();
+				Iterator var7 = UniverseDirection.HORIZONTAL.iterator();
 
 				while (var7.hasNext()) {
 					BlockFace var8 = (BlockFace) var7.next();
