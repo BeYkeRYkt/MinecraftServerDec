@@ -91,7 +91,7 @@ import org.bukkit.util.CachedServerIcon;
 import pipebukkit.server.banlists.PipeIpBanList;
 import pipebukkit.server.banlists.PipeProfileBanList;
 import pipebukkit.server.entity.PipePlayer;
-import pipebukkit.server.inventory.PipeUnownedInventory;
+import pipebukkit.server.inventory.PipeCustomInventory;
 import pipebukkit.server.metadata.BlockMetadataStorage;
 import pipebukkit.server.metadata.EntityMetadataStorage;
 import pipebukkit.server.metadata.PlayerMetadataStorage;
@@ -320,10 +320,7 @@ public class PipeServer implements Server {
 	}
 
 	private Inventory createInventory(InventoryHolder holder, InventoryType type, int slots, String title) {
-		if (holder == null) {
-			return new PipeUnownedInventory(type, slots, title);
-		}
-		return null;
+		return new PipeCustomInventory(holder, type, slots, title);
 	}
 
 	@Override
