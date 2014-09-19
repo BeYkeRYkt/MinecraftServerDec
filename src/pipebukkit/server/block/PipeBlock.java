@@ -194,7 +194,7 @@ public class PipeBlock implements Block {
 				return new PipeSign(this);
 			}
 			case CHEST: case TRAPPED_CHEST: {
-				//TODO
+				return new PipeChest(this);
 			}
 			case BURNING_FURNACE: case FURNACE: {
 				//TODO
