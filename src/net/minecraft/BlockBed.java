@@ -14,7 +14,7 @@ public class BlockBed extends avb {
 		this.j();
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {
@@ -148,9 +148,9 @@ public class BlockBed extends avb {
 		return World.a((ard) var0, var1.b()) && !var0.getBlockState(var1).getBlock().getMaterial().isBuildable() && !var0.getBlockState(var1.a()).getBlock().getMaterial().isBuildable();
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		if (var3.b(a) == atq.b) {
-			super.a(var1, var2, var3, var4, 0);
+			super.dropNaturally(var1, var2, var3, var4, 0);
 		}
 
 	}

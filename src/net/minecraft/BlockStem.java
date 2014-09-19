@@ -84,8 +84,8 @@ public class BlockStem extends auc implements atz {
 		this.a(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, (float) this.F, 0.5F + var3);
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
-		super.a(var1, var2, var3, var4, var5);
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
+		super.dropNaturally(var1, var2, var3, var4, var5);
 		if (!var1.isStatic) {
 			Item var6 = this.j();
 			if (var6 != null) {

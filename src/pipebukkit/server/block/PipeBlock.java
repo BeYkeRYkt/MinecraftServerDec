@@ -215,7 +215,7 @@ public class PipeBlock implements Block {
 				//TODO
 			}
 			case JUKEBOX: {
-				//TODO
+				return new PipeJukebox(this);
 			}
 			case BREWING_STAND: {
 				//TODO

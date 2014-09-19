@@ -156,7 +156,7 @@ public abstract class TileEntity {
 		this.invalid = true;
 	}
 
-	public void setInvalidate() {
+	public void setInvalid() {
 		this.invalid = false;
 	}
 

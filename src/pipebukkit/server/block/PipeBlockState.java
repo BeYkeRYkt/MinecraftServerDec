@@ -2,6 +2,8 @@ package pipebukkit.server.block;
 
 import java.util.List;
 
+import net.minecraft.Position;
+import net.minecraft.TileEntity;
 import net.minecraft.server.MinecraftServer;
 
 import org.bukkit.Chunk;
@@ -13,6 +15,8 @@ import org.bukkit.block.BlockState;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
+
+import pipebukkit.server.PipeWorld;
 
 public class PipeBlockState implements BlockState {
 
@@ -160,6 +164,10 @@ public class PipeBlockState implements BlockState {
 			return false;
 		}
 		return getBlock().setTypeIdAndData(type, getRawData(), applyPhysics);
+	}
+
+	protected TileEntity getTileEntity() {
+		return ((PipeWorld) getWorld()).getHandle().getTileEntity(new Position(getX(), getY(), getZ()));
 	}
 
 }

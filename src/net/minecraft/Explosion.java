@@ -156,7 +156,7 @@ public class Explosion {
 
 				if (var4.getMaterial() != Material.AIR) {
 					if (var4.a(this)) {
-						var4.a(this.d, var3, this.d.getBlockState(var3), 1.0F / this.i, 0);
+						var4.dropNaturally(this.d, var3, this.d.getBlockState(var3), 1.0F / this.i, 0);
 					}
 
 					this.d.setBlockAt(var3, Blocks.AIR.getBlockState(), 3);

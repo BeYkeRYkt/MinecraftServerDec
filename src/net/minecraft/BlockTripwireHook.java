@@ -206,7 +206,7 @@ public class BlockTripwireHook extends Block {
 
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		boolean var4 = ((Boolean) var3.b(M)).booleanValue();
 		boolean var5 = ((Boolean) var3.b(b)).booleanValue();
 		if (var4 || var5) {
@@ -218,7 +218,7 @@ public class BlockTripwireHook extends Block {
 			var1.c(var2.getRelative(((BlockFace) var3.b(a)).getOpposite()), (Block) this);
 		}
 
-		super.b(var1, var2, var3);
+		super.remove(var1, var2, var3);
 	}
 
 	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {

@@ -72,7 +72,7 @@ public class BlockTripwire extends Block {
 		this.e(var1, var2, var3);
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3.a(a, Boolean.valueOf(true)));
 	}
 

@@ -17,7 +17,7 @@ public abstract class BlockLeaves extends BlockTransparent {
 		this.a(h);
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		byte var4 = 1;
 		int var5 = var4 + 1;
 		int var6 = var2.getX();
@@ -134,7 +134,7 @@ public abstract class BlockLeaves extends BlockTransparent {
 		return Item.getItemOf(Blocks.SAPLING);
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		if (!var1.isStatic) {
 			int var6 = this.d(var3);
 			if (var5 > 0) {

@@ -446,7 +446,7 @@ public class Chunk {
 			var11.setBlockState(var3, var4 & 15, var5, blockState);
 			if (var10 != var9) {
 				if (!this.worldServer.isStatic) {
-					var10.b(this.worldServer, position, var8);
+					var10.remove(this.worldServer, position, var8);
 				} else if (var10 instanceof avs) {
 					this.worldServer.t(position);
 				}
@@ -488,7 +488,7 @@ public class Chunk {
 				if (var9 instanceof avs) {
 					var15 = this.a(position, bfl.c);
 					if (var15 == null) {
-						var15 = ((avs) var9).a(this.worldServer, var9.getData(blockState));
+						var15 = ((avs) var9).getTileEntity(this.worldServer, var9.getData(blockState));
 						this.worldServer.a(position, var15);
 					}
 
@@ -601,7 +601,7 @@ public class Chunk {
 
 	private TileEntity i(Position var1) {
 		Block var2 = this.getBlockAtWorldCoords(var1);
-		return !var2.x() ? null : ((avs) var2).a(this.worldServer, this.getBlockDataAt(var1));
+		return !var2.x() ? null : ((avs) var2).getTileEntity(this.worldServer, this.getBlockDataAt(var1));
 	}
 
 	public TileEntity a(Position var1, bfl var2) {
@@ -637,7 +637,7 @@ public class Chunk {
 				((TileEntity) this.tileEntities.get(var1)).setValid();
 			}
 
-			var2.setInvalidate();
+			var2.setInvalid();
 			this.tileEntities.put(var1, var2);
 		}
 	}

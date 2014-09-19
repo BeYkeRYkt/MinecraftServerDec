@@ -11,7 +11,7 @@ public class BlockCommand extends atg {
 		this.setBlockState(this.L.b().a(a, Boolean.valueOf(false)));
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityCommand();
 	}
 
@@ -42,12 +42,12 @@ public class BlockCommand extends atg {
 		return 1;
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		TileEntity var9 = var1.getTileEntity(var2);
 		return var9 instanceof TileEntityCommand ? ((TileEntityCommand) var9).getListener().a(var4) : false;
 	}
 
-	public boolean N() {
+	public boolean isComplexRedstone() {
 		return true;
 	}
 

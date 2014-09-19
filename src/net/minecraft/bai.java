@@ -27,7 +27,7 @@ public class bai extends atg {
 		return false;
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntitySign();
 	}
 
@@ -35,7 +35,7 @@ public class bai extends atg {
 		return Items.SIGN;
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {

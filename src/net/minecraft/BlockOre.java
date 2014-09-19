@@ -30,8 +30,8 @@ public class BlockOre extends Block {
 		}
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
-		super.a(var1, var2, var3, var4, var5);
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
+		super.dropNaturally(var1, var2, var3, var4, var5);
 		if (this.a(var3, var1.random, var5) != Item.getItemOf((Block) this)) {
 			int var6 = 0;
 			if (this == Blocks.COAL_ORE) {

@@ -33,7 +33,7 @@ public class BlockStainedGlassPane extends BlockThin {
 
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			BlockBeacon.d(var1, var2);
 		}

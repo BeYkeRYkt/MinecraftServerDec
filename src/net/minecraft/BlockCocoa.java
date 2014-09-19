@@ -91,7 +91,7 @@ public class BlockCocoa extends avb implements atz {
 		this.b(var1, var2, var3, 0);
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		int var6 = ((Integer) var3.b(a)).intValue();
 		byte var7 = 1;
 		if (var6 >= 2) {

@@ -10,9 +10,9 @@ public class BlockJukeBox extends atg {
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (((Boolean) var3.b(a)).booleanValue()) {
-			this.e(var1, var2, var3);
+			this.dropRecord(var1, var2, var3);
 			var3 = var3.a(a, Boolean.valueOf(false));
 			var1.setBlockAt(var2, var3, 2);
 			return true;
@@ -25,58 +25,58 @@ public class BlockJukeBox extends atg {
 		if (!var1.isStatic) {
 			TileEntity var5 = var1.getTileEntity(var2);
 			if (var5 instanceof TileEntityRecordPlayer) {
-				((TileEntityRecordPlayer) var5).a(new ItemStack(var4.getItem(), 1, var4.getWearout()));
+				((TileEntityRecordPlayer) var5).setRecord(new ItemStack(var4.getItem(), 1, var4.getWearout()));
 				var1.setBlockAt(var2, var3.a(a, Boolean.valueOf(true)), 2);
 			}
 		}
 	}
 
-	private void e(World var1, Position var2, IBlockState var3) {
-		if (!var1.isStatic) {
-			TileEntity var4 = var1.getTileEntity(var2);
-			if (var4 instanceof TileEntityRecordPlayer) {
-				TileEntityRecordPlayer var5 = (TileEntityRecordPlayer) var4;
-				ItemStack var6 = var5.a();
-				if (var6 != null) {
-					var1.triggerEffect(1005, var2, 0);
-					var1.a(var2, (String) null);
-					var5.a((ItemStack) null);
-					float var7 = 0.7F;
-					double var8 = (double) (var1.random.nextFloat() * var7) + (double) (1.0F - var7) * 0.5D;
-					double var10 = (double) (var1.random.nextFloat() * var7) + (double) (1.0F - var7) * 0.2D + 0.6D;
-					double var12 = (double) (var1.random.nextFloat() * var7) + (double) (1.0F - var7) * 0.5D;
-					ItemStack var14 = var6.getCopy();
-					EntityItem var15 = new EntityItem(var1, (double) var2.getX() + var8, (double) var2.getY() + var10, (double) var2.getZ() + var12, var14);
-					var15.p();
-					var1.addEntity((Entity) var15);
+	public void dropRecord(World world, Position position, IBlockState blockState) {
+		if (!world.isStatic) {
+			TileEntity tileEntity = world.getTileEntity(position);
+			if (tileEntity instanceof TileEntityRecordPlayer) {
+				TileEntityRecordPlayer jukebox = (TileEntityRecordPlayer) tileEntity;
+				ItemStack record = jukebox.getRecord();
+				if (record != null) {
+					world.triggerEffect(1005, position, 0);
+					world.a(position, (String) null);
+					jukebox.setRecord((ItemStack) null);
+					float randomAmpl = 0.7F;
+					double randomX = (double) (world.random.nextFloat() * randomAmpl) + (double) (1.0F - randomAmpl) * 0.5D;
+					double randomY = (double) (world.random.nextFloat() * randomAmpl) + (double) (1.0F - randomAmpl) * 0.2D + 0.6D;
+					double randomZ = (double) (world.random.nextFloat() * randomAmpl) + (double) (1.0F - randomAmpl) * 0.5D;
+					ItemStack itemStack = record.getCopy();
+					EntityItem entityItem = new EntityItem(world, (double) position.getX() + randomX, (double) position.getY() + randomY, (double) position.getZ() + randomZ, itemStack);
+					entityItem.p();
+					world.addEntity(entityItem);
 				}
 			}
 		}
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
-		this.e(var1, var2, var3);
-		super.b(var1, var2, var3);
+	public void remove(World var1, Position var2, IBlockState var3) {
+		this.dropRecord(var1, var2, var3);
+		super.remove(var1, var2, var3);
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		if (!var1.isStatic) {
-			super.a(var1, var2, var3, var4, 0);
+			super.dropNaturally(var1, var2, var3, var4, 0);
 		}
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityRecordPlayer();
 	}
 
-	public boolean N() {
+	public boolean isComplexRedstone() {
 		return true;
 	}
 
 	public int l(World var1, Position var2) {
 		TileEntity var3 = var1.getTileEntity(var2);
 		if (var3 instanceof TileEntityRecordPlayer) {
-			ItemStack var4 = ((TileEntityRecordPlayer) var3).a();
+			ItemStack var4 = ((TileEntityRecordPlayer) var3).getRecord();
 			if (var4 != null) {
 				return Item.getId(var4.getItem()) + 1 - Item.getId(Items.RECORD_13);
 			}

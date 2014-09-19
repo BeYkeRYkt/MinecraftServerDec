@@ -10,7 +10,7 @@ public class BlockEnderPortal extends atg {
 		this.a(1.0F);
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityEnderPortal();
 	}
 

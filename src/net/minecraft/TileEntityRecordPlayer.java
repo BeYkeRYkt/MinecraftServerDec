@@ -2,32 +2,32 @@ package net.minecraft;
 
 public class TileEntityRecordPlayer extends TileEntity {
 
-	private ItemStack a;
+	private ItemStack record;
 
-	public void read(NBTCompoundTag var1) {
-		super.read(var1);
-		if (var1.isTagAssignableFrom("RecordItem", 10)) {
-			this.a(ItemStack.fromNBT(var1.getCompound("RecordItem")));
-		} else if (var1.getInt("Record") > 0) {
-			this.a(new ItemStack(Item.getById(var1.getInt("Record")), 1, 0));
+	public void read(NBTCompoundTag tag) {
+		super.read(tag);
+		if (tag.isTagAssignableFrom("RecordItem", 10)) {
+			this.setRecord(ItemStack.fromNBT(tag.getCompound("RecordItem")));
+		} else if (tag.getInt("Record") > 0) {
+			this.setRecord(new ItemStack(Item.getById(tag.getInt("Record")), 1, 0));
 		}
 
 	}
 
-	public void write(NBTCompoundTag var1) {
-		super.write(var1);
-		if (this.a() != null) {
-			var1.put("RecordItem", (NBTTag) this.a().write(new NBTCompoundTag()));
+	public void write(NBTCompoundTag tag) {
+		super.write(tag);
+		if (this.getRecord() != null) {
+			tag.put("RecordItem", (NBTTag) this.getRecord().write(new NBTCompoundTag()));
 		}
 
 	}
 
-	public ItemStack a() {
-		return this.a;
+	public ItemStack getRecord() {
+		return this.record;
 	}
 
-	public void a(ItemStack var1) {
-		this.a = var1;
+	public void setRecord(ItemStack record) {
+		this.record = record;
 		this.update();
 	}
 }

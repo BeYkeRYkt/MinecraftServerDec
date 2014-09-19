@@ -86,7 +86,7 @@ public class BlockMinecartDetector extends ati {
 		return b;
 	}
 
-	public boolean N() {
+	public boolean isComplexRedstone() {
 		return true;
 	}
 

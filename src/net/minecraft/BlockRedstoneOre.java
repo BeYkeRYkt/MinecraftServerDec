@@ -29,9 +29,9 @@ public class BlockRedstoneOre extends Block {
 		super.a(var1, var2, var3);
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		this.d(var1, var2);
-		return super.a(var1, var2, var3, var4, var5, var6, var7, var8);
+		return super.interact(var1, var2, var3, var4, var5, var6, var7, var8);
 	}
 
 	private void d(World var1, Position var2) {
@@ -61,8 +61,8 @@ public class BlockRedstoneOre extends Block {
 		return 4 + var1.nextInt(2);
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
-		super.a(var1, var2, var3, var4, var5);
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
+		super.dropNaturally(var1, var2, var3, var4, var5);
 		if (this.a(var3, var1.random, var5) != Item.getItemOf((Block) this)) {
 			int var6 = 1 + var1.random.nextInt(5);
 			this.b(var1, var2, var6);

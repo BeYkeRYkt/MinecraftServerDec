@@ -46,7 +46,7 @@ public class BlockEnderChest extends atg {
 		var1.setBlockAt(var2, var3.a(a, var4.aO().getOpposite()), 2);
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		InventoryEnderChest var9 = var4.getEnderChest();
 		TileEntity var10 = var1.getTileEntity(var2);
 		if (var9 != null && var10 instanceof TileEntityEnderChest) {
@@ -64,7 +64,7 @@ public class BlockEnderChest extends atg {
 		}
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityEnderChest();
 	}
 

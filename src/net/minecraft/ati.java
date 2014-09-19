@@ -101,8 +101,8 @@ public abstract class ati extends Block {
 		return 0;
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
-		super.b(var1, var2, var3);
+	public void remove(World var1, Position var2, IBlockState var3) {
+		super.remove(var1, var2, var3);
 		if (((atl) var3.b(this.l())).c()) {
 			var1.c(var2.a(), (Block) this);
 		}

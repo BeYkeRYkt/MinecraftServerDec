@@ -47,7 +47,7 @@ public class BlockDispenser extends atg {
 		}
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {
@@ -102,7 +102,7 @@ public class BlockDispenser extends atg {
 
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityDispenser();
 	}
 
@@ -121,14 +121,14 @@ public class BlockDispenser extends atg {
 
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		TileEntity var4 = var1.getTileEntity(var2);
 		if (var4 instanceof TileEntityDispenser) {
 			vs.a(var1, var2, (TileEntityDispenser) var4);
 			var1.e(var2, this);
 		}
 
-		super.b(var1, var2, var3);
+		super.remove(var1, var2, var3);
 	}
 
 	public static IPosition a(ISourceBlock var0) {
@@ -143,7 +143,7 @@ public class BlockDispenser extends atg {
 		return BlockFace.getById(var0 & 7);
 	}
 
-	public boolean N() {
+	public boolean isComplexRedstone() {
 		return true;
 	}
 

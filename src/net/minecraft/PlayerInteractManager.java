@@ -275,7 +275,7 @@ public class PlayerInteractManager {
 		} else {
 			if (!var1.aw() || var1.getItemInHand() == null) {
 				IBlockState var9 = var2.getBlockState(var4);
-				if (var9.getBlock().a(var2, var4, var9, var1, var5, var6, var7, var8)) {
+				if (var9.getBlock().interact(var2, var4, var9, var1, var5, var6, var7, var8)) {
 					return true;
 				}
 			}

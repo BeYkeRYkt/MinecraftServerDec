@@ -518,7 +518,7 @@ public class Block {
 	public void c(World var1, Position var2, IBlockState var3) {
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 	}
 
 	public int a(Random var1) {
@@ -535,10 +535,10 @@ public class Block {
 	}
 
 	public final void b(World var1, Position var2, IBlockState var3, int var4) {
-		this.a(var1, var2, var3, 1.0F, var4);
+		this.dropNaturally(var1, var2, var3, 1.0F, var4);
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		if (!var1.isStatic) {
 			int var6 = this.a(var5, var1.random);
 
@@ -703,7 +703,7 @@ public class Block {
 		return var1.getBlockState(var2).getBlock().material.j();
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		return false;
 	}
 
@@ -870,7 +870,7 @@ public class Block {
 		return var0 != null && var1 != null ? (var0 == var1 ? true : var0.b(var1)) : false;
 	}
 
-	public boolean N() {
+	public boolean isComplexRedstone() {
 		return false;
 	}
 

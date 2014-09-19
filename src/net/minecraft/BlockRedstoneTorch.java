@@ -59,7 +59,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		if (this.M) {
 			BlockFace[] var4 = BlockFace.values();
 			int var5 = var4.length;

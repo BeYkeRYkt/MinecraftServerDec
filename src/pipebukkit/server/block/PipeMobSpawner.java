@@ -1,13 +1,10 @@
 package pipebukkit.server.block;
 
-import net.minecraft.Position;
 import net.minecraft.TileEntityMobSpawner;
 
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.CreatureType;
 import org.bukkit.entity.EntityType;
-
-import pipebukkit.server.PipeWorld;
 
 @SuppressWarnings("deprecation")
 public class PipeMobSpawner extends PipeBlockState implements CreatureSpawner {
@@ -16,7 +13,7 @@ public class PipeMobSpawner extends PipeBlockState implements CreatureSpawner {
 
 	public PipeMobSpawner(PipeBlock block) {
 		super(block);
-		spawner = (TileEntityMobSpawner) ((PipeWorld) block.getWorld()).getHandle().getTileEntity(new Position(getX(), getY(), getZ()));
+		spawner = (TileEntityMobSpawner) getTileEntity();
 	}
 
 	@Override

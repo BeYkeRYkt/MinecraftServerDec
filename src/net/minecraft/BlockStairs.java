@@ -416,8 +416,8 @@ public class BlockStairs extends Block {
 		this.O.c(var1, var2, this.P);
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
-		this.O.b(var1, var2, this.P);
+	public void remove(World var1, Position var2, IBlockState var3) {
+		this.O.remove(var1, var2, this.P);
 	}
 
 	public void a(World var1, Position var2, Entity var3) {
@@ -428,8 +428,8 @@ public class BlockStairs extends Block {
 		this.O.b(var1, var2, var3, var4);
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
-		return this.O.a(var1, var2, this.P, var4, BlockFace.DOWN, 0.0F, 0.0F, 0.0F);
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+		return this.O.interact(var1, var2, this.P, var4, BlockFace.DOWN, 0.0F, 0.0F, 0.0F);
 	}
 
 	public void a(World var1, Position var2, Explosion var3) {

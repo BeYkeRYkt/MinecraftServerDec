@@ -110,7 +110,7 @@ public abstract class aud extends Block {
 
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (((Boolean) var3.b(b)).booleanValue()) {
 			return true;
 		} else {
@@ -123,12 +123,12 @@ public abstract class aud extends Block {
 		}
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		if (((Boolean) var3.b(b)).booleanValue()) {
 			this.b(var1, var2, (BlockFace) var3.b(a));
 		}
 
-		super.b(var1, var2, var3);
+		super.remove(var1, var2, var3);
 	}
 
 	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {

@@ -56,7 +56,7 @@ public class BlockSkull extends atg {
 		return this.getBlockState().a(a, var8.aO()).a(b, Boolean.valueOf(false));
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntitySkull();
 	}
 
@@ -65,7 +65,7 @@ public class BlockSkull extends atg {
 		return var3 instanceof TileEntitySkull ? ((TileEntitySkull) var3).c() : super.j(var1, var2);
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, EntityHuman var4) {
@@ -77,7 +77,7 @@ public class BlockSkull extends atg {
 		super.a(var1, var2, var3, var4);
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			if (!((Boolean) var3.b(b)).booleanValue()) {
 				TileEntity var4 = var1.getTileEntity(var2);
@@ -95,7 +95,7 @@ public class BlockSkull extends atg {
 				}
 			}
 
-			super.b(var1, var2, var3);
+			super.remove(var1, var2, var3);
 		}
 	}
 

@@ -21,7 +21,7 @@ public class BlockBrewingStand extends atg {
 		return 3;
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityBrewingStand();
 	}
 
@@ -40,7 +40,7 @@ public class BlockBrewingStand extends atg {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {
@@ -63,20 +63,20 @@ public class BlockBrewingStand extends atg {
 
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		TileEntity var4 = var1.getTileEntity(var2);
 		if (var4 instanceof TileEntityBrewingStand) {
 			vs.a(var1, var2, (TileEntityBrewingStand) var4);
 		}
 
-		super.b(var1, var2, var3);
+		super.remove(var1, var2, var3);
 	}
 
 	public Item a(IBlockState var1, Random var2, int var3) {
 		return Items.BREWING_STAND;
 	}
 
-	public boolean N() {
+	public boolean isComplexRedstone() {
 		return true;
 	}
 

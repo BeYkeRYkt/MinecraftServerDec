@@ -112,12 +112,12 @@ public abstract class ath extends Block {
 		return new AxisAlignedBB((double) ((float) var1.getX() + 0.125F), (double) var1.getY(), (double) ((float) var1.getZ() + 0.125F), (double) ((float) (var1.getX() + 1) - 0.125F), (double) var1.getY() + 0.25D, (double) ((float) (var1.getZ() + 1) - 0.125F));
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		if (this.e(var3) > 0) {
 			this.d(var1, var2);
 		}
 
-		super.b(var1, var2, var3);
+		super.remove(var1, var2, var3);
 	}
 
 	protected void d(World var1, Position var2) {

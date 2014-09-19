@@ -31,8 +31,8 @@ public class BlockPistonExtension extends Block {
 		super.a(var1, var2, var3, var4);
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
-		super.b(var1, var2, var3);
+	public void remove(World var1, Position var2, IBlockState var3) {
+		super.remove(var1, var2, var3);
 		BlockFace var4 = ((BlockFace) var3.b(a)).getOpposite();
 		var2 = var2.getRelative(var4);
 		IBlockState var5 = var1.getBlockState(var2);

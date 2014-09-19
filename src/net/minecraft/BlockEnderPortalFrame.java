@@ -41,7 +41,7 @@ public class BlockEnderPortalFrame extends Block {
 		return this.getBlockState().a(a, var8.aO().getOpposite()).a(b, Boolean.valueOf(false));
 	}
 
-	public boolean N() {
+	public boolean isComplexRedstone() {
 		return true;
 	}
 

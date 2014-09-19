@@ -213,7 +213,7 @@ public abstract class World implements ard {
 
 				if (!this.isStatic && (notifyType & 1) != 0) {
 					this.b(position, var6.getBlock());
-					if (var5.N()) {
+					if (var5.isComplexRedstone()) {
 						this.e(position, var5);
 					}
 				}

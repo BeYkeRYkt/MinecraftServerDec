@@ -183,8 +183,8 @@ public class BlockRedstoneWire extends Block {
 		}
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
-		super.b(var1, var2, var3);
+	public void remove(World var1, Position var2, IBlockState var3) {
+		super.remove(var1, var2, var3);
 		if (!var1.isStatic) {
 			BlockFace[] var4 = BlockFace.values();
 			int var5 = var4.length;

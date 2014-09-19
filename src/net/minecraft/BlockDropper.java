@@ -8,7 +8,7 @@ public class BlockDropper extends BlockDispenser {
 		return this.O;
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityDropper();
 	}
 

@@ -1,12 +1,9 @@
 package pipebukkit.server.block;
 
 import net.minecraft.ChatComponentText;
-import net.minecraft.Position;
 import net.minecraft.TileEntitySign;
 
 import org.bukkit.block.Sign;
-
-import pipebukkit.server.PipeWorld;
 
 public class PipeSign extends PipeBlockState implements Sign {
 
@@ -15,7 +12,7 @@ public class PipeSign extends PipeBlockState implements Sign {
 
 	public PipeSign(PipeBlock block) {
 		super(block);
-		sign = (TileEntitySign) ((PipeWorld) getWorld()).getHandle().getTileEntity(new Position(getX(), getY(), getZ()));
+		sign = (TileEntitySign) getTileEntity();
 		for (int i = 0; i < sign.lines.length && i < lines.length; i++) {
 			lines[i] = sign.lines[i].getComponentVaue();
 		}
