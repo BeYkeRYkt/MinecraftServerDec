@@ -198,7 +198,7 @@ public class sf {
 	}
 
 	public static String a(String var0) {
-		if (!vb.b(var0) && var0.length() <= 16) {
+		if (!UtilColor.isEmpty(var0) && var0.length() <= 16) {
 			MinecraftServer var1 = MinecraftServer.getInstance();
 			GameProfile var2 = var1.getUserCache().getProfile(var0);
 			if (var2 != null && var2.getId() != null) {

@@ -28,7 +28,7 @@ public class ht extends hj {
 
 	public String getComponentVaue() {
 		MinecraftServer var1 = MinecraftServer.getInstance();
-		if (var1 != null && var1.hasUniverse() && vb.b(this.d)) {
+		if (var1 != null && var1.hasUniverse() && UtilColor.isEmpty(this.d)) {
 			Scoreboard var2 = var1.getWorldServer(0).Z();
 			ScoreboardObjective var3 = var2.b(this.c);
 			if (var2.b(this.b, var3)) {

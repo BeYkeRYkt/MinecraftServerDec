@@ -62,7 +62,7 @@ public class BlockSkull extends atg {
 
 	public int j(World var1, Position var2) {
 		TileEntity var3 = var1.getTileEntity(var2);
-		return var3 instanceof TileEntitySkull ? ((TileEntitySkull) var3).c() : super.j(var1, var2);
+		return var3 instanceof TileEntitySkull ? ((TileEntitySkull) var3).getSkullType() : super.j(var1, var2);
 	}
 
 	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
@@ -84,10 +84,10 @@ public class BlockSkull extends atg {
 				if (var4 instanceof TileEntitySkull) {
 					TileEntitySkull var5 = (TileEntitySkull) var4;
 					ItemStack var6 = new ItemStack(Items.SKULL, 1, this.j(var1, var2));
-					if (var5.c() == 3 && var5.b() != null) {
+					if (var5.getSkullType() == 3 && var5.getGameProfile() != null) {
 						var6.setTag(new NBTCompoundTag());
 						NBTCompoundTag var7 = new NBTCompoundTag();
-						ga.a(var7, var5.b());
+						GameProfileSerializer.serialize(var7, var5.getGameProfile());
 						var6.getTag().put("SkullOwner", (NBTTag) var7);
 					}
 
@@ -108,7 +108,7 @@ public class BlockSkull extends atg {
 	}
 
 	public void a(World var1, Position var2, TileEntitySkull var3) {
-		if (var3.c() == 1 && var2.getY() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.isStatic) {
+		if (var3.getSkullType() == 1 && var2.getY() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.isStatic) {
 			bek var4 = this.l();
 			bem var5 = var4.a(var1, var2);
 			if (var5 != null) {

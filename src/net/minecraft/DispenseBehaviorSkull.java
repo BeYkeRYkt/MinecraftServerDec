@@ -22,18 +22,18 @@ final class DispenseBehaviorSkull extends DispenseBehaviorItem {
 						if (var2.hasTag()) {
 							NBTCompoundTag var9 = var2.getTag();
 							if (var9.isTagAssignableFrom("SkullOwner", 10)) {
-								var8 = ga.a(var9.getCompound("SkullOwner"));
+								var8 = GameProfileSerializer.deserialize(var9.getCompound("SkullOwner"));
 							} else if (var9.isTagAssignableFrom("SkullOwner", 8)) {
 								var8 = new GameProfile((UUID) null, var9.getString("SkullOwner"));
 							}
 						}
 
-						((TileEntitySkull) var7).a(var8);
+						((TileEntitySkull) var7).setGameProfile(var8);
 					} else {
-						((TileEntitySkull) var7).a(var2.getWearout());
+						((TileEntitySkull) var7).setSkullType(var2.getWearout());
 					}
 
-					((TileEntitySkull) var7).b(var4.getOpposite().toDirection() * 4);
+					((TileEntitySkull) var7).setRotation(var4.getOpposite().toDirection() * 4);
 					Blocks.SKULL.a(var3, var5, (TileEntitySkull) var7);
 				}
 
