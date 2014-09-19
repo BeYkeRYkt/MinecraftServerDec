@@ -203,7 +203,7 @@ public class PipeBlock implements Block {
 				return new PipeDispenser(this);
 			}
 			case DROPPER: {
-				//TODO
+				return new PipeDropper(this);
 			}
 			case HOPPER: {
 				//TODO
