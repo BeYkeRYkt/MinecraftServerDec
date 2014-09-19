@@ -36,7 +36,7 @@ public class BlockDataCommand extends AbstractCommand {
 
 					NBTCompoundTag var8;
 					try {
-						var8 = gg.a(a(var1, var2, 3).getStrippedMessage());
+						var8 = gg.a(a(var1, var2, 3).getJsonMessage());
 					} catch (gf var10) {
 						throw new di("commands.blockdata.tagError", new Object[] { var10.getMessage() });
 					}

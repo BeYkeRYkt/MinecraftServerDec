@@ -54,13 +54,13 @@ public abstract class hj implements IChatBaseComponent {
 		return Iterators.concat(Iterators.forArray(new hj[] { this }), a((Iterable) this.a));
 	}
 
-	public final String getStrippedMessage() {
+	public final String getJsonMessage() {
 		StringBuilder var1 = new StringBuilder();
 		Iterator var2 = this.iterator();
 
 		while (var2.hasNext()) {
 			IChatBaseComponent var3 = (IChatBaseComponent) var2.next();
-			var1.append(var3.e());
+			var1.append(var3.getComponentVaue());
 		}
 
 		return var1.toString();

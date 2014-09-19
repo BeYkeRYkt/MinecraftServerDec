@@ -152,14 +152,14 @@ public class ChatMessage extends hj {
 		return Iterators.concat(a(this.b), a(this.a));
 	}
 
-	public String e() {
+	public String getComponentVaue() {
 		this.g();
 		StringBuilder var1 = new StringBuilder();
 		Iterator var2 = this.b.iterator();
 
 		while (var2.hasNext()) {
 			IChatBaseComponent var3 = (IChatBaseComponent) var2.next();
-			var1.append(var3.e());
+			var1.append(var3.getComponentVaue());
 		}
 
 		return var1.toString();

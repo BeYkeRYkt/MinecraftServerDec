@@ -26,7 +26,7 @@ public class ht extends hj {
 		this.d = var1;
 	}
 
-	public String e() {
+	public String getComponentVaue() {
 		MinecraftServer var1 = MinecraftServer.getInstance();
 		if (var1 != null && var1.hasUniverse() && vb.b(this.d)) {
 			Scoreboard var2 = var1.getWorldServer(0).Z();

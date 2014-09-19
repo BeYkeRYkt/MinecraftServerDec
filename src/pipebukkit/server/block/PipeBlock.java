@@ -191,7 +191,7 @@ public class PipeBlock implements Block {
 		Material material = getType();
 		switch (material) {
 			case SIGN: case SIGN_POST: case WALL_SIGN: {
-				//TODO
+				return new PipeSign(this);
 			}
 			case CHEST: case TRAPPED_CHEST: {
 				//TODO

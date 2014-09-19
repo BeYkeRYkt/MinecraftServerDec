@@ -12,11 +12,12 @@ public interface IChatBaseComponent extends Iterable {
 
 	IChatBaseComponent a(IChatBaseComponent var1);
 
-	String e();
+	String getComponentVaue();
 
-	String getStrippedMessage();
+	String getJsonMessage();
 
 	List a();
 
 	IChatBaseComponent f();
+
 }

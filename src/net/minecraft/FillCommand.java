@@ -51,7 +51,7 @@ public class FillCommand extends AbstractCommand {
 				NBTCompoundTag var22 = new NBTCompoundTag();
 				boolean var23 = false;
 				if (var2.length >= 10 && var5.x()) {
-					String var13 = a(var1, var2, 9).getStrippedMessage();
+					String var13 = a(var1, var2, 9).getJsonMessage();
 
 					try {
 						var22 = gg.a(var13);

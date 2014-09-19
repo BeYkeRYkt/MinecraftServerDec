@@ -14,7 +14,7 @@ public class hu extends hj {
 		return this.b;
 	}
 
-	public String e() {
+	public String getComponentVaue() {
 		return this.b;
 	}
 

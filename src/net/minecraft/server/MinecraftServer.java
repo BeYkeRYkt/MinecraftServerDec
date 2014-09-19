@@ -699,7 +699,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public void sendChatMessage(IChatBaseComponent var1) {
-		logger.info(var1.getStrippedMessage());
+		logger.info(var1.getJsonMessage());
 	}
 
 	public boolean canExecuteCommand(int var1, String var2) {

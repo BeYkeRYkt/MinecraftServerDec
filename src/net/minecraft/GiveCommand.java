@@ -27,7 +27,7 @@ public class GiveCommand extends AbstractCommand {
 			int var6 = var2.length >= 4 ? a(var2[3]) : 0;
 			ItemStack var7 = new ItemStack(var4, var5, var6);
 			if (var2.length >= 5) {
-				String var8 = a(var1, var2, 4).getStrippedMessage();
+				String var8 = a(var1, var2, 4).getJsonMessage();
 
 				try {
 					var7.setTag(gg.a(var8));

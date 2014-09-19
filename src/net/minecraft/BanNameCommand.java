@@ -32,7 +32,7 @@ public class BanNameCommand extends AbstractCommand {
 			} else {
 				String var5 = null;
 				if (var2.length >= 2) {
-					var5 = a(var1, var2, 1).getStrippedMessage();
+					var5 = a(var1, var2, 1).getJsonMessage();
 				}
 
 				GameProfileBanEntry var6 = new GameProfileBanEntry(var4, (Date) null, var1.getName(), (Date) null, var5);

@@ -39,7 +39,7 @@ public class TestforBlockCommand extends AbstractCommand {
 					NBTCompoundTag var7 = new NBTCompoundTag();
 					boolean var8 = false;
 					if (var2.length >= 6 && var4.x()) {
-						String var9 = a(var1, var2, 5).getStrippedMessage();
+						String var9 = a(var1, var2, 5).getJsonMessage();
 
 						try {
 							var7 = gg.a(var9);

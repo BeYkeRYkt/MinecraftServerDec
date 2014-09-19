@@ -26,7 +26,7 @@ public class KickCommand extends AbstractCommand {
 				throw new dm();
 			} else {
 				if (var2.length >= 2) {
-					var4 = a(var1, var2, 1).getStrippedMessage();
+					var4 = a(var1, var2, 1).getJsonMessage();
 					var5 = true;
 				}
 
