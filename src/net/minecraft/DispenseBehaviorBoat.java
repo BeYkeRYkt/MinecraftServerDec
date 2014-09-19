@@ -5,12 +5,12 @@ final class DispenseBehaviorBoat extends DispenseBehaviorItem {
 	private final DispenseBehaviorItem b = new DispenseBehaviorItem();
 
 	public ItemStack b(ISourceBlock var1, ItemStack var2) {
-		BlockFace var3 = BlockDispenser.b(var1.f());
-		World var4 = var1.i();
+		BlockFace var3 = BlockDispenser.b(var1.getData());
+		World var4 = var1.getWorld();
 		double var5 = var1.getX() + (double) ((float) var3.g() * 1.125F);
 		double var7 = var1.getY() + (double) ((float) var3.h() * 1.125F);
 		double var9 = var1.getZ() + (double) ((float) var3.i() * 1.125F);
-		Position var11 = var1.d().getRelative(var3);
+		Position var11 = var1.getPosition().getRelative(var3);
 		Material var12 = var4.getBlockState(var11).getBlock().getMaterial();
 		double var13;
 		if (Material.WATER.equals(var12)) {
@@ -30,6 +30,6 @@ final class DispenseBehaviorBoat extends DispenseBehaviorItem {
 	}
 
 	protected void a(ISourceBlock var1) {
-		var1.i().triggerEffect(1000, var1.d(), 0);
+		var1.getWorld().triggerEffect(1000, var1.getPosition(), 0);
 	}
 }

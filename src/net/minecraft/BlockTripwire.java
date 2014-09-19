@@ -66,7 +66,7 @@ public class BlockTripwire extends Block {
 
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		var3 = var3.a(b, Boolean.valueOf(!World.a((ard) var1, var2.getDown())));
 		var1.setBlockAt(var2, var3, 3);
 		this.e(var1, var2, var3);

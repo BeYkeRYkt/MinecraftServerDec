@@ -5,12 +5,12 @@ final class DispenseBehaviorMinecart extends DispenseBehaviorItem {
 	private final DispenseBehaviorItem b = new DispenseBehaviorItem();
 
 	public ItemStack b(ISourceBlock var1, ItemStack var2) {
-		BlockFace var3 = BlockDispenser.b(var1.f());
-		World var4 = var1.i();
+		BlockFace var3 = BlockDispenser.b(var1.getData());
+		World var4 = var1.getWorld();
 		double var5 = var1.getX() + (double) var3.g() * 1.125D;
 		double var7 = Math.floor(var1.getY()) + (double) var3.h();
 		double var9 = var1.getZ() + (double) var3.i() * 1.125D;
-		Position var11 = var1.d().getRelative(var3);
+		Position var11 = var1.getPosition().getRelative(var3);
 		IBlockState var12 = var4.getBlockState(var11);
 		atl var13 = var12.getBlock() instanceof ati ? (atl) var12.b(((ati) var12.getBlock()).l()) : atl.a;
 		double var14;
@@ -45,6 +45,6 @@ final class DispenseBehaviorMinecart extends DispenseBehaviorItem {
 	}
 
 	protected void a(ISourceBlock var1) {
-		var1.i().triggerEffect(1000, var1.d(), 0);
+		var1.getWorld().triggerEffect(1000, var1.getPosition(), 0);
 	}
 }

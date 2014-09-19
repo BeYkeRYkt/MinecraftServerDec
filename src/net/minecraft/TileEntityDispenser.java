@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class TileEntityDispenser extends TileEntityLockable implements IInventory {
 
-	private static final Random f = new Random();
+	private static final Random random = new Random();
 	private ItemStack[] items = new ItemStack[9];
 	protected String customName;
 	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
@@ -51,17 +51,17 @@ public class TileEntityDispenser extends TileEntityLockable implements IInventor
 		}
 	}
 
-	public int m() {
-		int var1 = -1;
-		int var2 = 1;
+	public int getRandomSlot() {
+		int randomSlot = -1;
+		int randomI = 1;
 
-		for (int var3 = 0; var3 < this.items.length; ++var3) {
-			if (this.items[var3] != null && f.nextInt(var2++) == 0) {
-				var1 = var3;
+		for (int i = 0; i < this.items.length; ++i) {
+			if (this.items[i] != null && random.nextInt(randomI++) == 0) {
+				randomSlot = i;
 			}
 		}
 
-		return var1;
+		return randomSlot;
 	}
 
 	public void setItem(int var1, ItemStack var2) {

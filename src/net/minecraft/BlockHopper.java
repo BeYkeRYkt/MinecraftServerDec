@@ -58,7 +58,7 @@ public class BlockHopper extends atg {
 
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
 	}
 
@@ -68,7 +68,7 @@ public class BlockHopper extends atg {
 		} else {
 			TileEntity var9 = var1.getTileEntity(var2);
 			if (var9 instanceof TileEntityHopper) {
-				var4.a((IInventory) ((TileEntityHopper) var9));
+				var4.openDispenser((IInventory) ((TileEntityHopper) var9));
 			}
 
 			return true;

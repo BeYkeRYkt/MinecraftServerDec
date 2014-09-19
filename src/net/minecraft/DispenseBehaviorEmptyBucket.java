@@ -5,8 +5,8 @@ final class DispenseBehaviorEmptyBucket extends DispenseBehaviorItem {
 	private final DispenseBehaviorItem b = new DispenseBehaviorItem();
 
 	public ItemStack b(ISourceBlock var1, ItemStack var2) {
-		World var3 = var1.i();
-		Position var4 = var1.d().getRelative(BlockDispenser.b(var1.f()));
+		World var3 = var1.getWorld();
+		Position var4 = var1.getPosition().getRelative(BlockDispenser.b(var1.getData()));
 		IBlockState var5 = var3.getBlockState(var4);
 		Block var6 = var5.getBlock();
 		Material var7 = var6.getMaterial();
@@ -25,7 +25,7 @@ final class DispenseBehaviorEmptyBucket extends DispenseBehaviorItem {
 		if (--var2.amount == 0) {
 			var2.setItem(var8);
 			var2.amount = 1;
-		} else if (((TileEntityDispenser) var1.h()).a(new ItemStack(var8)) < 0) {
+		} else if (((TileEntityDispenser) var1.getTileEntity()).a(new ItemStack(var8)) < 0) {
 			this.b.a(var1, new ItemStack(var8));
 		}
 

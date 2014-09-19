@@ -118,7 +118,7 @@ public abstract class axl extends Block {
 		return this.material == Material.WATER ? 5 : (this.material == Material.LAVA ? (var1.worldProvider.noSkyLight() ? 10 : 30) : 0);
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
 	}
 

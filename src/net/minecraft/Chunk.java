@@ -482,7 +482,7 @@ public class Chunk {
 				}
 
 				if (!this.worldServer.isStatic && var10 != var9) {
-					var9.c(this.worldServer, position, blockState);
+					var9.onPlace(this.worldServer, position, blockState);
 				}
 
 				if (var9 instanceof avs) {

@@ -46,7 +46,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 		return 2;
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		if (this.M) {
 			BlockFace[] var4 = BlockFace.values();
 			int var5 = var4.length;

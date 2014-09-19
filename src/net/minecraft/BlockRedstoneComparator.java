@@ -151,8 +151,8 @@ public class BlockRedstoneComparator extends ava implements avs {
 		this.k(var1, var2, var3);
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
-		super.c(var1, var2, var3);
+	public void onPlace(World var1, Position var2, IBlockState var3) {
+		super.onPlace(var1, var2, var3);
 		var1.a(var2, this.getTileEntity(var1, 0));
 	}
 

@@ -15,7 +15,7 @@ public class BlockRedstoneLamp extends Block {
 
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			if (this.a && !var1.z(var2)) {
 				var1.setBlockAt(var2, Blocks.REDSTONE_LAMP.getBlockState(), 2);

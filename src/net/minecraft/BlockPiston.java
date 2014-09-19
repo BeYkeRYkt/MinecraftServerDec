@@ -36,7 +36,7 @@ public class BlockPiston extends Block {
 
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic && var1.getTileEntity(var2) == null) {
 			this.e(var1, var2, var3);
 		}

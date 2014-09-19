@@ -411,9 +411,9 @@ public class BlockStairs extends Block {
 		return this.O.c(var1, var2);
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		this.a(var1, var2, this.P, Blocks.AIR);
-		this.O.c(var1, var2, this.P);
+		this.O.onPlace(var1, var2, this.P);
 	}
 
 	public void remove(World var1, Position var2, IBlockState var3) {

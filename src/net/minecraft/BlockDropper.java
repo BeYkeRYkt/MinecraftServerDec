@@ -4,19 +4,19 @@ public class BlockDropper extends BlockDispenser {
 
 	private final IDispenseBehavior O = new DispenseBehaviorItem();
 
-	protected IDispenseBehavior a(ItemStack var1) {
+	protected IDispenseBehavior getDispenseBehaviour(ItemStack var1) {
 		return this.O;
 	}
 
-	public TileEntity getTileEntity(World var1, int var2) {
+	public TileEntity getTileEntity(World world, int var2) {
 		return new TileEntityDropper();
 	}
 
-	protected void d(World var1, Position var2) {
-		ea var3 = new ea(var1, var2);
-		TileEntityDispenser var4 = (TileEntityDispenser) var3.h();
+	public void dispense(World var1, Position var2) {
+		SourceBlock var3 = new SourceBlock(var1, var2);
+		TileEntityDispenser var4 = (TileEntityDispenser) var3.getTileEntity();
 		if (var4 != null) {
-			int var5 = var4.m();
+			int var5 = var4.getRandomSlot();
 			if (var5 < 0) {
 				var1.triggerEffect(1001, var2, 0);
 			} else {

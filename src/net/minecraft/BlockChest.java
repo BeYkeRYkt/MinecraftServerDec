@@ -45,7 +45,7 @@ public class BlockChest extends atg {
 
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
 		Iterator var4 = UniverseDirection.HORIZONTAL.iterator();
 
@@ -305,7 +305,7 @@ public class BlockChest extends atg {
 		} else {
 			ILockable var9 = this.d(var1, var2);
 			if (var9 != null) {
-				var4.a((IInventory) var9);
+				var4.openDispenser((IInventory) var9);
 			}
 
 			return true;

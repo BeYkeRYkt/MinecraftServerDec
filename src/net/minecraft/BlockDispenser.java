@@ -6,7 +6,7 @@ public class BlockDispenser extends atg {
 
 	public static final beu a = beu.a("facing");
 	public static final bet b = bet.a("triggered");
-	public static final ei M = new ei(new DispenseBehaviorItem());
+	public static final RegistryDefault registry = new RegistryDefault(new DispenseBehaviorItem());
 	protected Random N = new Random();
 
 	protected BlockDispenser() {
@@ -19,9 +19,9 @@ public class BlockDispenser extends atg {
 		return 4;
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
-		super.c(var1, var2, var3);
-		this.e(var1, var2, var3);
+	public void onPlace(World world, Position position, IBlockState blockState) {
+		super.onPlace(world, position, blockState);
+		this.e(world, position, blockState);
 	}
 
 	private void e(World var1, Position var2, IBlockState var3) {
@@ -47,40 +47,39 @@ public class BlockDispenser extends atg {
 		}
 	}
 
-	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
-		if (var1.isStatic) {
+	public boolean interact(World world, Position position, IBlockState var3, EntityHuman human, BlockFace var5, float var6, float var7, float var8) {
+		if (world.isStatic) {
 			return true;
 		} else {
-			TileEntity var9 = var1.getTileEntity(var2);
-			if (var9 instanceof TileEntityDispenser) {
-				var4.a((IInventory) ((TileEntityDispenser) var9));
+			TileEntity tileEntity = world.getTileEntity(position);
+			if (tileEntity instanceof TileEntityDispenser) {
+				human.openDispenser((IInventory) ((TileEntityDispenser) tileEntity));
 			}
 
 			return true;
 		}
 	}
 
-	protected void d(World var1, Position var2) {
-		ea var3 = new ea(var1, var2);
-		TileEntityDispenser var4 = (TileEntityDispenser) var3.h();
-		if (var4 != null) {
-			int var5 = var4.m();
-			if (var5 < 0) {
-				var1.triggerEffect(1001, var2, 0);
+	public void dispense(World world, Position position) {
+		SourceBlock sourceBlock = new SourceBlock(world, position);
+		TileEntityDispenser dispenser = (TileEntityDispenser) sourceBlock.getTileEntity();
+		if (dispenser != null) {
+			int slot = dispenser.getRandomSlot();
+			if (slot < 0) {
+				world.triggerEffect(1001, position, 0);
 			} else {
-				ItemStack var6 = var4.getItem(var5);
-				IDispenseBehavior var7 = this.a(var6);
-				if (var7 != IDispenseBehavior.a) {
-					ItemStack var8 = var7.a(var3, var6);
-					var4.setItem(var5, var8.amount == 0 ? null : var8);
+				ItemStack itemStack = dispenser.getItem(slot);
+				IDispenseBehavior dispenseBehaviour = this.getDispenseBehaviour(itemStack);
+				if (dispenseBehaviour != IDispenseBehavior.NOP) {
+					ItemStack itemStackNew = dispenseBehaviour.a(sourceBlock, itemStack);
+					dispenser.setItem(slot, itemStackNew.amount == 0 ? null : itemStackNew);
 				}
-
 			}
 		}
 	}
 
-	protected IDispenseBehavior a(ItemStack var1) {
-		return (IDispenseBehavior) M.getByName(var1 == null ? null : var1.getItem());
+	protected IDispenseBehavior getDispenseBehaviour(ItemStack itemStack) {
+		return (IDispenseBehavior) registry.getByName(itemStack == null ? null : itemStack.getItem());
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
@@ -97,7 +96,7 @@ public class BlockDispenser extends atg {
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!var1.isStatic) {
-			this.d(var1, var2);
+			this.dispense(var1, var2);
 		}
 
 	}
@@ -132,7 +131,7 @@ public class BlockDispenser extends atg {
 	}
 
 	public static IPosition a(ISourceBlock var0) {
-		BlockFace var1 = b(var0.f());
+		BlockFace var1 = b(var0.getData());
 		double var2 = var0.getX() + 0.7D * (double) var1.g();
 		double var4 = var0.getY() + 0.7D * (double) var1.h();
 		double var6 = var0.getZ() + 0.7D * (double) var1.i();

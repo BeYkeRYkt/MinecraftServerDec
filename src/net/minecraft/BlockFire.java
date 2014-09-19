@@ -279,7 +279,7 @@ public class BlockFire extends Block {
 
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		if (var1.worldProvider.getDimensionId() > 0 || !Blocks.PORTAL.d(var1, var2)) {
 			if (!World.a((ard) var1, var2.getDown()) && !this.e(var1, var2)) {
 				var1.g(var2);

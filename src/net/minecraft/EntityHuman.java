@@ -741,7 +741,7 @@ public abstract class EntityHuman extends EntityLiving {
 	public void a(IMerchant var1) {
 	}
 
-	public void a(IInventory var1) {
+	public void openDispenser(IInventory var1) {
 	}
 
 	public void a(EntityHorse var1, IInventory var2) {
@@ -756,7 +756,7 @@ public abstract class EntityHuman extends EntityLiving {
 	public boolean useEntity(Entity var1) {
 		if (this.isSpectator()) {
 			if (var1 instanceof IInventory) {
-				this.a((IInventory) var1);
+				this.openDispenser((IInventory) var1);
 			}
 
 			return false;

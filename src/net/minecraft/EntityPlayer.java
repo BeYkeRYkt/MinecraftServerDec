@@ -486,7 +486,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		this.activeContainer.addSlotListener((ICrafting) this);
 	}
 
-	public void a(IInventory var1) {
+	public void openDispenser(IInventory var1) {
 		if (this.activeContainer != this.defaultContainer) {
 			this.n();
 		}

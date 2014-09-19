@@ -26,7 +26,7 @@ public class BlockStainedGlassPane extends BlockThin {
 		return new bed(this, new bex[] { b, M, O, N, a });
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			BlockBeacon.d(var1, var2);
 		}

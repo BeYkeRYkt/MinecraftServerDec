@@ -19,7 +19,7 @@ public class BlockSponge extends Block {
 		return ((Boolean) var1.b(a)).booleanValue() ? 1 : 0;
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
 	}
 

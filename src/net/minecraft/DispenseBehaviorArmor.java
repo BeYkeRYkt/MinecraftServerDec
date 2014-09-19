@@ -6,12 +6,12 @@ import java.util.List;
 final class DispenseBehaviorArmor extends DispenseBehaviorItem {
 
 	protected ItemStack b(ISourceBlock var1, ItemStack var2) {
-		Position var3 = var1.d().getRelative(BlockDispenser.b(var1.f()));
+		Position var3 = var1.getPosition().getRelative(BlockDispenser.b(var1.getData()));
 		int var4 = var3.getX();
 		int var5 = var3.getY();
 		int var6 = var3.getZ();
 		AxisAlignedBB var7 = new AxisAlignedBB((double) var4, (double) var5, (double) var6, (double) (var4 + 1), (double) (var5 + 1), (double) (var6 + 1));
-		List var8 = var1.i().getEntititesInAABB(EntityLiving.class, var7, Predicates.and(EntityPredicates.notSpectators, new xj(var2)));
+		List var8 = var1.getWorld().getEntititesInAABB(EntityLiving.class, var7, Predicates.and(EntityPredicates.notSpectators, new xj(var2)));
 		if (var8.size() > 0) {
 			EntityLiving var9 = (EntityLiving) var8.get(0);
 			int var10 = var9 instanceof EntityHuman ? 1 : 0;

@@ -46,7 +46,7 @@ public class BlockBrewingStand extends atg {
 		} else {
 			TileEntity var9 = var1.getTileEntity(var2);
 			if (var9 instanceof TileEntityBrewingStand) {
-				var4.a((IInventory) ((TileEntityBrewingStand) var9));
+				var4.openDispenser((IInventory) ((TileEntityBrewingStand) var9));
 			}
 
 			return true;

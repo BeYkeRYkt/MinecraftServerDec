@@ -200,7 +200,7 @@ public class PipeBlock implements Block {
 				return new PipeFurnace(this);
 			}
 			case DISPENSER: {
-				//TODO
+				return new PipeDispenser(this);
 			}
 			case DROPPER: {
 				//TODO

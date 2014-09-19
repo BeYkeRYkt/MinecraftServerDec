@@ -19,7 +19,7 @@ public class BlockFurnace extends atg {
 		return Item.getItemOf(Blocks.FURNACE);
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
 	}
 
@@ -50,7 +50,7 @@ public class BlockFurnace extends atg {
 		} else {
 			TileEntity var9 = var1.getTileEntity(var2);
 			if (var9 instanceof TileEntityFurnace) {
-				var4.a((IInventory) ((TileEntityFurnace) var9));
+				var4.openDispenser((IInventory) ((TileEntityFurnace) var9));
 			}
 
 			return true;

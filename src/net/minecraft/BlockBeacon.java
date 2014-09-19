@@ -18,7 +18,7 @@ public class BlockBeacon extends atg {
 		} else {
 			TileEntity var9 = var1.getTileEntity(var2);
 			if (var9 instanceof TileEntityBeacon) {
-				var4.a((IInventory) ((TileEntityBeacon) var9));
+				var4.openDispenser((IInventory) ((TileEntityBeacon) var9));
 			}
 
 			return true;

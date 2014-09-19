@@ -8,9 +8,9 @@ final class DispenseBehaviorSkull extends DispenseBehaviorItem {
 	private boolean b = true;
 
 	protected ItemStack b(ISourceBlock var1, ItemStack var2) {
-		World var3 = var1.i();
-		BlockFace var4 = BlockDispenser.b(var1.f());
-		Position var5 = var1.d().getRelative(var4);
+		World var3 = var1.getWorld();
+		BlockFace var4 = BlockDispenser.b(var1.getData());
+		Position var5 = var1.getPosition().getRelative(var4);
 		BlockSkull var6 = Blocks.SKULL;
 		if (var3.d(var5) && var6.b(var3, var5, var2)) {
 			if (!var3.isStatic) {
@@ -48,9 +48,9 @@ final class DispenseBehaviorSkull extends DispenseBehaviorItem {
 
 	protected void a(ISourceBlock var1) {
 		if (this.b) {
-			var1.i().triggerEffect(1000, var1.d(), 0);
+			var1.getWorld().triggerEffect(1000, var1.getPosition(), 0);
 		} else {
-			var1.i().triggerEffect(1001, var1.d(), 0);
+			var1.getWorld().triggerEffect(1001, var1.getPosition(), 0);
 		}
 
 	}

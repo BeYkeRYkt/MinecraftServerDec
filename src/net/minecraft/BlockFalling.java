@@ -15,7 +15,7 @@ public class BlockFalling extends Block {
 		super(var1);
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		var1.a(var2, (Block) this, this.a(var1));
 	}
 

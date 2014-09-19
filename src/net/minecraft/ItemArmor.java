@@ -18,7 +18,7 @@ public class ItemArmor extends Item {
 		this.setDurability(var1.a(var3));
 		this.maxStackSize = 1;
 		this.setCreativeModeTab(CreativeModeTab.COMBAT);
-		BlockDispenser.M.a(this, l);
+		BlockDispenser.registry.a(this, l);
 	}
 
 	public int b() {

@@ -515,7 +515,7 @@ public class Block {
 		return 10;
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 	}
 
 	public void remove(World var1, Position var2, IBlockState var3) {

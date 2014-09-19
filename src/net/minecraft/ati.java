@@ -52,7 +52,7 @@ public abstract class ati extends Block {
 		return World.a((ard) var1, var2.getDown());
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			var3 = this.a(var1, var2, var3, true);
 			if (this.a) {
