@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.WeakHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -91,6 +92,7 @@ import pipebukkit.server.banlists.PipeIpBanList;
 import pipebukkit.server.banlists.PipeProfileBanList;
 import pipebukkit.server.entity.PipePlayer;
 import pipebukkit.server.inventory.PipeUnownedInventory;
+import pipebukkit.server.metadata.BlockMetadataStorage;
 import pipebukkit.server.metadata.EntityMetadataStorage;
 import pipebukkit.server.metadata.PlayerMetadataStorage;
 import pipebukkit.server.scheduler.PipeScheduler;
@@ -128,6 +130,7 @@ public class PipeServer implements Server {
 
 	private EntityMetadataStorage entityMetadata = new EntityMetadataStorage();
 	private PlayerMetadataStorage playerMetadata = new PlayerMetadataStorage();
+	private WeakHashMap<World, BlockMetadataStorage> blockStorage = new WeakHashMap<World, BlockMetadataStorage>();
 
 	public PipeServer() {
 		Bukkit.setServer(this);
@@ -193,6 +196,10 @@ public class PipeServer implements Server {
 
 	public PlayerMetadataStorage getPlayerMetadataStorage() {
 		return playerMetadata;
+	}
+
+	public BlockMetadataStorage getBlockMetadataStorage(World world) {
+		return blockStorage.get(world);
 	}
 
 	@Override

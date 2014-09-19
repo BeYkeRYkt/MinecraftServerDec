@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.minecraft.IBlockState;
 import net.minecraft.Position;
+import net.minecraft.server.MinecraftServer;
 
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -36,27 +37,23 @@ public class PipeBlock implements Block {
 	}
 
 	@Override
-	public List<MetadataValue> getMetadata(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MetadataValue> getMetadata(String metadataKey) {
+		return MinecraftServer.getInstance().getPipeServer().getBlockMetadataStorage(getWorld()).getMetadata(this, metadataKey);
 	}
 
 	@Override
-	public boolean hasMetadata(String arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean hasMetadata(String metadataKey) {
+		return MinecraftServer.getInstance().getPipeServer().getBlockMetadataStorage(getWorld()).hasMetadata(this, metadataKey);
 	}
 
 	@Override
-	public void removeMetadata(String arg0, Plugin arg1) {
-		// TODO Auto-generated method stub
-		
+	public void removeMetadata(String metadataKey, Plugin owningPlugin) {
+		MinecraftServer.getInstance().getPipeServer().getBlockMetadataStorage(getWorld()).removeMetadata(this, metadataKey, owningPlugin);
 	}
 
 	@Override
-	public void setMetadata(String arg0, MetadataValue arg1) {
-		// TODO Auto-generated method stub
-		
+	public void setMetadata(String metadataKey, MetadataValue metadataValue) {
+		MinecraftServer.getInstance().getPipeServer().getBlockMetadataStorage(getWorld()).setMetadata(this, metadataKey, metadataValue);
 	}
 
 	@Override
@@ -191,8 +188,51 @@ public class PipeBlock implements Block {
 
 	@Override
 	public BlockState getState() {
-		// TODO Auto-generated method stub
-		return null;
+		Material material = getType();
+		switch (material) {
+			case SIGN: case SIGN_POST: case WALL_SIGN: {
+				//TODO
+			}
+			case CHEST: case TRAPPED_CHEST: {
+				//TODO
+			}
+			case BURNING_FURNACE: case FURNACE: {
+				//TODO
+			}
+			case DISPENSER: {
+				//TODO
+			}
+			case DROPPER: {
+				//TODO
+			}
+			case HOPPER: {
+				//TODO
+			}
+			case MOB_SPAWNER: {
+				//TODO
+			}
+			case NOTE_BLOCK: {
+				//TODO
+			}
+			case JUKEBOX: {
+				//TODO
+			}
+			case BREWING_STAND: {
+				//TODO
+			}
+			case SKULL: {
+				//TODO
+			}
+			case COMMAND: {
+				//TODO
+			}
+			case BEACON: {
+				//TODO
+			}
+			default: {
+				return new PipeBlockState(this);
+			}
+		}
 	}
 
 	@Override
@@ -269,7 +309,6 @@ public class PipeBlock implements Block {
 	@Override
 	public void setBiome(Biome arg0) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
