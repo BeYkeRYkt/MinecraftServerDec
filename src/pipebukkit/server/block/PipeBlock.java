@@ -197,7 +197,7 @@ public class PipeBlock implements Block {
 				return new PipeChest(this);
 			}
 			case BURNING_FURNACE: case FURNACE: {
-				//TODO
+				return new PipeFurnace(this);
 			}
 			case DISPENSER: {
 				//TODO

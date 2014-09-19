@@ -6,14 +6,14 @@ import org.bukkit.inventory.Inventory;
 
 import net.minecraft.IInventory;
 import net.minecraft.InventoryLargeChest;
-import net.minecraft.TileEntityLockable;
+import net.minecraft.TileEntityChest;
 
 public class PipeDoubleChestInventory extends PipeChestInventory implements DoubleChestInventory {
 
 	private IInventory left;
 	private IInventory right;
 
-	public PipeDoubleChestInventory(TileEntityLockable left, TileEntityLockable right) {
+	public PipeDoubleChestInventory(TileEntityChest left, TileEntityChest right) {
 		super(new InventoryLargeChest("Large chest", left, right));
 		this.left  = left;
 		this.right = right;

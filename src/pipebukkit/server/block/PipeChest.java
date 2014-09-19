@@ -50,13 +50,13 @@ public class PipeChest extends PipeBlockState implements Chest {
 		return new PipeChestInventory(chest);
 	}
 
-	 @Override
-	 public boolean update(boolean force, boolean applyPhysics) {
-		 if (super.update(force, applyPhysics)) {
-			 chest.update();
-			 return true;
-		 }
-		 return false;
-	 }
+	@Override
+	public boolean update(boolean force, boolean applyPhysics) {
+		if (super.update(force, applyPhysics)) {
+			chest.update();
+			return true;
+		}
+		return false;
+	}
 
 }

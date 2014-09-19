@@ -22,7 +22,7 @@ import com.google.common.collect.Lists;
 
 public abstract class PipeInventory implements Inventory {
 
-	private IInventory nmsInventory;
+	protected IInventory nmsInventory;
 	public PipeInventory(IInventory nmsInventory) {
 		this.nmsInventory = nmsInventory;
 	}
