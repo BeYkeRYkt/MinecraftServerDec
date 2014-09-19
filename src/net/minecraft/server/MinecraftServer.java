@@ -390,10 +390,10 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			worldServer.addIWorldAccess(new WorldManager(this, worldServer));
 			worldServer.getWorldData().setGameMode(this.getServerGameMode());
 
-			Bukkit.getPluginManager().callEvent(new WorldInitEvent(worldServer.getBukkitWorld()));
-
 			worlds.add(worldServer);
 			getPipeServer().addWorld(worldServer);
+
+			Bukkit.getPluginManager().callEvent(new WorldInitEvent(worldServer.getBukkitWorld()));
 
 			generateTerrain(worldServer);
 

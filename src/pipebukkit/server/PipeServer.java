@@ -344,10 +344,10 @@ public class PipeServer implements Server {
 		worldServer.addIWorldAccess(new WorldManager(MinecraftServer.getInstance(), worldServer));
 		worldServer.getWorldData().setGameMode(MinecraftServer.getInstance().getServerGameMode());
 
-		Bukkit.getPluginManager().callEvent(new WorldInitEvent(worldServer.getBukkitWorld()));
-
 		MinecraftServer.getInstance().worlds.add(worldServer);
 		addWorld(worldServer);
+
+		Bukkit.getPluginManager().callEvent(new WorldInitEvent(worldServer.getBukkitWorld()));
 
 		MinecraftServer.getInstance().generateTerrain(worldServer);
 
