@@ -82,7 +82,7 @@ public abstract class axl extends Block {
 			int var9;
 			if (var8 < 0) {
 				if (!var1.getBlockState(var7).getBlock().getMaterial().isSolid()) {
-					var8 = this.f(var1, var7.b());
+					var8 = this.f(var1, var7.getDown());
 					if (var8 >= 0) {
 						var9 = var8 - (var4 - 8);
 						var3 = var3.b((double) ((var7.getX() - var2.getX()) * var9), (double) ((var7.getY() - var2.getY()) * var9), (double) ((var7.getZ() - var2.getZ()) * var9));
@@ -100,7 +100,7 @@ public abstract class axl extends Block {
 			while (var5.hasNext()) {
 				var6 = (BlockFace) var5.next();
 				var7 = var2.getRelative(var6);
-				if (this.b(var1, var7, var6) || this.b(var1, var7.a(), var6)) {
+				if (this.b(var1, var7, var6) || this.b(var1, var7.getUp(), var6)) {
 					var3 = var3.a().b(0.0D, -6.0D, 0.0D);
 					break;
 				}

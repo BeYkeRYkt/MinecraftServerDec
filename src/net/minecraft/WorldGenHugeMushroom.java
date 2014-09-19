@@ -49,7 +49,7 @@ public class WorldGenHugeMushroom extends WorldGenerator {
 			if (!var6) {
 				return false;
 			} else {
-				Block var15 = var1.getBlockState(var3.b()).getBlock();
+				Block var15 = var1.getBlockState(var3.getDown()).getBlock();
 				if (var15 != Blocks.DIRT && var15 != Blocks.GRASS && var15 != Blocks.MYCELIUM) {
 					return false;
 				} else {

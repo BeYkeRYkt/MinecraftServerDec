@@ -13,7 +13,7 @@ public class WorldGenHellLava extends WorldGenerator {
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
-		if (var1.getBlockState(var3.a()).getBlock() != Blocks.NETHERRACK) {
+		if (var1.getBlockState(var3.getUp()).getBlock() != Blocks.NETHERRACK) {
 			return false;
 		} else if (var1.getBlockState(var3).getBlock().getMaterial() != Material.AIR && var1.getBlockState(var3).getBlock() != Blocks.NETHERRACK) {
 			return false;
@@ -35,7 +35,7 @@ public class WorldGenHellLava extends WorldGenerator {
 				++var4;
 			}
 
-			if (var1.getBlockState(var3.b()).getBlock() == Blocks.NETHERRACK) {
+			if (var1.getBlockState(var3.getDown()).getBlock() == Blocks.NETHERRACK) {
 				++var4;
 			}
 
@@ -56,7 +56,7 @@ public class WorldGenHellLava extends WorldGenerator {
 				++var5;
 			}
 
-			if (var1.d(var3.b())) {
+			if (var1.d(var3.getDown())) {
 				++var5;
 			}
 

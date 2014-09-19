@@ -54,7 +54,7 @@ public class BlockMushroom extends auc implements atz {
 
 	public boolean f(World var1, Position var2, IBlockState var3) {
 		if (var2.getY() >= 0 && var2.getY() < 256) {
-			IBlockState var4 = var1.getBlockState(var2.b());
+			IBlockState var4 = var1.getBlockState(var2.getDown());
 			return var4.getBlock() == Blocks.MYCELIUM ? true : (var4.getBlock() == Blocks.DIRT && var4.b(BlockDirt.a) == avd.c ? true : var1.k(var2) < 13 && this.c(var4.getBlock()));
 		} else {
 			return false;

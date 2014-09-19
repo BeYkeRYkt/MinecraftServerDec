@@ -68,7 +68,7 @@ public class EntitySilverfish extends EntityMonster {
 	}
 
 	public float a(Position var1) {
-		return this.world.getBlockState(var1.b()).getBlock() == Blocks.STONE ? 10.0F : super.a(var1);
+		return this.world.getBlockState(var1.getDown()).getBlock() == Blocks.STONE ? 10.0F : super.a(var1);
 	}
 
 	protected boolean m_() {

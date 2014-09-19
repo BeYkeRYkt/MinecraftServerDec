@@ -54,7 +54,7 @@ public class BlockCarpet extends Block {
 	}
 
 	private boolean d(World var1, Position var2) {
-		return !var1.d(var2.b());
+		return !var1.d(var2.getDown());
 	}
 
 	public int a(IBlockState var1) {

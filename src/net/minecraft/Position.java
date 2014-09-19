@@ -48,7 +48,7 @@ public class Position extends fd {
 		return new Position(this.getX() * var1, this.getY() * var1, this.getZ() * var1);
 	}
 
-	public Position a() {
+	public Position getUp() {
 		return this.b(1);
 	}
 
@@ -56,7 +56,7 @@ public class Position extends fd {
 		return this.a(BlockFace.UP, var1);
 	}
 
-	public Position b() {
+	public Position getDown() {
 		return this.c(1);
 	}
 

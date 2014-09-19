@@ -80,7 +80,7 @@ public class EntityBat extends EntityAmbient {
 	protected void E() {
 		super.E();
 		Position var1 = new Position(this);
-		Position var2 = var1.a();
+		Position var2 = var1.getUp();
 		if (this.n()) {
 			if (!this.world.getBlockState(var2).getBlock().t()) {
 				this.a(false);

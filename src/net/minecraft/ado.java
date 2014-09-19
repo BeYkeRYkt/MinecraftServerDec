@@ -228,7 +228,7 @@ public class ado extends Entity {
 				if (!this.world.isStatic && var34 > 0.0D) {
 					WorldServer var36 = (WorldServer) this.world;
 					int var37 = 1;
-					Position var38 = (new Position(this)).a();
+					Position var38 = (new Position(this)).getUp();
 					if (this.random.nextFloat() < 0.25F && this.world.C(var38)) {
 						var37 = 2;
 					}

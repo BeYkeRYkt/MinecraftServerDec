@@ -17,11 +17,11 @@ public abstract class ava extends avb {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return World.a((ard) var1, var2.b()) ? super.c(var1, var2) : false;
+		return World.a((ard) var1, var2.getDown()) ? super.c(var1, var2) : false;
 	}
 
 	public boolean d(World var1, Position var2) {
-		return World.a((ard) var1, var2.b());
+		return World.a((ard) var1, var2.getDown());
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Random var4) {

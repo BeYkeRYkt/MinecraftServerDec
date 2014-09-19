@@ -13,7 +13,7 @@ public class BlockDirt extends Block {
 
 	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		if (var1.b(a) == avd.c) {
-			Block var4 = var2.getBlockState(var3.a()).getBlock();
+			Block var4 = var2.getBlockState(var3.getUp()).getBlock();
 			var1 = var1.a(b, Boolean.valueOf(var4 == Blocks.SNOW || var4 == Blocks.SNOW_LAYER));
 		}
 

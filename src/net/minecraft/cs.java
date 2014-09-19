@@ -65,7 +65,7 @@ class cs {
 				return 257;
 			}
 
-			var2 = var2.b();
+			var2 = var2.getDown();
 		} while (var1.getBlockState(var2).getBlock().getMaterial() == Material.AIR);
 
 		return var2.getY() + 1;
@@ -80,7 +80,7 @@ class cs {
 				return false;
 			}
 
-			var2 = var2.b();
+			var2 = var2.getDown();
 			var3 = var1.getBlockState(var2).getBlock().getMaterial();
 		} while (var3 == Material.AIR);
 

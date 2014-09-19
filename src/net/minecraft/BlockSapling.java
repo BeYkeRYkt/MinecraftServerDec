@@ -17,7 +17,7 @@ public class BlockSapling extends auc implements atz {
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!var1.isStatic) {
 			super.b(var1, var2, var3, var4);
-			if (var1.l(var2.a()) >= 9 && var4.nextInt(7) == 0) {
+			if (var1.l(var2.getUp()) >= 9 && var4.nextInt(7) == 0) {
 				this.d(var1, var2, var3, var4);
 			}
 

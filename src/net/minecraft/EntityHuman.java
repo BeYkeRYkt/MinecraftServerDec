@@ -1022,7 +1022,7 @@ public abstract class EntityHuman extends EntityLiving {
 			this.world.setBlockAt(this.bv, var4.a(BlockBed.b, Boolean.valueOf(false)), 4);
 			Position var5 = BlockBed.a(this.world, this.bv, 0);
 			if (var5 == null) {
-				var5 = this.bv.a();
+				var5 = this.bv.getUp();
 			}
 
 			this.b((double) ((float) var5.getX() + 0.5F), (double) ((float) var5.getY() + 0.1F), (double) ((float) var5.getZ() + 0.5F));
@@ -1050,7 +1050,7 @@ public abstract class EntityHuman extends EntityLiving {
 				return null;
 			} else {
 				Material var3 = var0.getBlockState(var1).getBlock().getMaterial();
-				Material var4 = var0.getBlockState(var1.a()).getBlock().getMaterial();
+				Material var4 = var0.getBlockState(var1.getUp()).getBlock().getMaterial();
 				boolean var5 = !var3.isBuildable() && !var3.isLiquid();
 				boolean var6 = !var4.isBuildable() && !var4.isLiquid();
 				return var5 && var6 ? var1 : null;

@@ -52,11 +52,11 @@ public class BlockPiston extends Block {
 		boolean var5 = this.b(var1, var2, var4);
 		if (var5 && !((Boolean) var3.b(b)).booleanValue()) {
 			if ((new bdy(var1, var2, var4, true)).a()) {
-				var1.c(var2, this, 0, var4.getId());
+				var1.playBlockAction(var2, this, 0, var4.getId());
 			}
 		} else if (!var5 && ((Boolean) var3.b(b)).booleanValue()) {
 			var1.setBlockAt(var2, var3.a(b, Boolean.valueOf(false)), 2);
-			var1.c(var2, this, 1, var4.getId());
+			var1.playBlockAction(var2, this, 1, var4.getId());
 		}
 
 	}
@@ -76,7 +76,7 @@ public class BlockPiston extends Block {
 		if (var1.b(var2, BlockFace.NORTH)) {
 			return true;
 		} else {
-			Position var9 = var2.a();
+			Position var9 = var2.getUp();
 			BlockFace[] var10 = BlockFace.values();
 			var6 = var10.length;
 

@@ -49,7 +49,7 @@ public abstract class ati extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return World.a((ard) var1, var2.b());
+		return World.a((ard) var1, var2.getDown());
 	}
 
 	public void c(World var1, Position var2, IBlockState var3) {
@@ -66,7 +66,7 @@ public abstract class ati extends Block {
 		if (!var1.isStatic) {
 			atl var5 = (atl) var3.b(this.l());
 			boolean var6 = false;
-			if (!World.a((ard) var1, var2.b())) {
+			if (!World.a((ard) var1, var2.getDown())) {
 				var6 = true;
 			}
 
@@ -104,12 +104,12 @@ public abstract class ati extends Block {
 	public void remove(World var1, Position var2, IBlockState var3) {
 		super.remove(var1, var2, var3);
 		if (((atl) var3.b(this.l())).c()) {
-			var1.c(var2.a(), (Block) this);
+			var1.c(var2.getUp(), (Block) this);
 		}
 
 		if (this.a) {
 			var1.c(var2, (Block) this);
-			var1.c(var2.b(), (Block) this);
+			var1.c(var2.getDown(), (Block) this);
 		}
 
 	}

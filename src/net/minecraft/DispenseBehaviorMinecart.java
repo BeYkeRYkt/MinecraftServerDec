@@ -21,11 +21,11 @@ final class DispenseBehaviorMinecart extends DispenseBehaviorItem {
 				var14 = 0.1D;
 			}
 		} else {
-			if (var12.getBlock().getMaterial() != Material.AIR || !ati.d(var4.getBlockState(var11.b()))) {
+			if (var12.getBlock().getMaterial() != Material.AIR || !ati.d(var4.getBlockState(var11.getDown()))) {
 				return this.b.a(var1, var2);
 			}
 
-			IBlockState var16 = var4.getBlockState(var11.b());
+			IBlockState var16 = var4.getBlockState(var11.getDown());
 			atl var17 = var16.getBlock() instanceof ati ? (atl) var16.b(((ati) var16.getBlock()).l()) : atl.a;
 			if (var3 != BlockFace.DOWN && var17.c()) {
 				var14 = -0.4D;

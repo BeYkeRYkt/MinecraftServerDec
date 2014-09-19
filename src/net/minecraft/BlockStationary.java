@@ -48,8 +48,8 @@ public class BlockStationary extends axl {
 				} else {
 					for (int var9 = 0; var9 < 3; ++var9) {
 						Position var10 = var2.a(var4.nextInt(3) - 1, 0, var4.nextInt(3) - 1);
-						if (var1.d(var10.a()) && this.m(var1, var10)) {
-							var1.a(var10.a(), Blocks.FIRE.getBlockState());
+						if (var1.d(var10.getUp()) && this.m(var1, var10)) {
+							var1.a(var10.getUp(), Blocks.FIRE.getBlockState());
 						}
 					}
 				}

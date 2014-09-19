@@ -481,10 +481,10 @@ public abstract class Entity implements CommandSenderInterface {
 			Position var26 = new Position(var57, var58, var59);
 			Block var60 = this.world.getBlockState(var26).getBlock();
 			if (var60.getMaterial() == Material.AIR) {
-				Block var28 = this.world.getBlockState(var26.b()).getBlock();
+				Block var28 = this.world.getBlockState(var26.getDown()).getBlock();
 				if (var28 instanceof BlockFence || var28 instanceof BlockCobbleWall || var28 instanceof BlockFenceGate) {
 					var60 = var28;
-					var26 = var26.b();
+					var26 = var26.getDown();
 				}
 			}
 
@@ -598,7 +598,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 	protected void a(Position var1, Block var2) {
 		BlockSound var3 = var2.H;
-		if (this.world.getBlockState(var1.a()).getBlock() == Blocks.SNOW_LAYER) {
+		if (this.world.getBlockState(var1.getUp()).getBlock() == Blocks.SNOW_LAYER) {
 			var3 = Blocks.SNOW_LAYER.H;
 			this.a(var3.c(), var3.d() * 0.15F, var3.e());
 		} else if (!var2.getMaterial().isLiquid()) {
@@ -1383,7 +1383,7 @@ public abstract class Entity implements CommandSenderInterface {
 				var15 = 1;
 			}
 
-			if (!this.world.u(var7.a()) && 1.0D - var10 < var16) {
+			if (!this.world.u(var7.getUp()) && 1.0D - var10 < var16) {
 				var16 = 1.0D - var10;
 				var15 = 3;
 			}

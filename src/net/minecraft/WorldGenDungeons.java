@@ -44,7 +44,7 @@ public class WorldGenDungeons extends WorldGenerator {
 						return false;
 					}
 
-					if ((var14 == var6 || var14 == var7 || var16 == var11 || var16 == var12) && var15 == 0 && var1.d(var17) && var1.d(var17.a())) {
+					if ((var14 == var6 || var14 == var7 || var16 == var11 || var16 == var12) && var15 == 0 && var1.d(var17) && var1.d(var17.getUp())) {
 						++var13;
 					}
 				}
@@ -60,7 +60,7 @@ public class WorldGenDungeons extends WorldGenerator {
 							if (var1.getBlockState(var17).getBlock() != Blocks.CHEST) {
 								var1.g(var17);
 							}
-						} else if (var17.getY() >= 0 && !var1.getBlockState(var17.b()).getBlock().getMaterial().isBuildable()) {
+						} else if (var17.getY() >= 0 && !var1.getBlockState(var17.getDown()).getBlock().getMaterial().isBuildable()) {
 							var1.g(var17);
 						} else if (var1.getBlockState(var17).getBlock().getMaterial().isBuildable() && var1.getBlockState(var17).getBlock() != Blocks.CHEST) {
 							if (var15 == -1 && var2.nextInt(4) != 0) {

@@ -249,7 +249,7 @@ public class WorldServer extends World implements ITaskScheduler {
 					this.m = this.m * 3 + 1013904223;
 					var8 = this.m >> 2;
 					var9 = this.q(new Position(var5 + (var8 & 15), 0, var6 + (var8 >> 8 & 15)));
-					Position var10 = var9.b();
+					Position var10 = var9.getDown();
 					if (this.w(var10)) {
 						this.a(var10, Blocks.ICE.getBlockState());
 					}
@@ -564,7 +564,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		if (!this.worldProvider.isPrimaryWorld()) {
 			this.worldData.setSpawn(Position.ZERO.b(this.worldProvider.i()));
 		} else if (this.worldData.getLevelType() == LevelType.DEBUG) {
-			this.worldData.setSpawn(Position.ZERO.a());
+			this.worldData.setSpawn(Position.ZERO.getUp());
 		} else {
 			this.isLoading = true;
 			WorldChunkManager var2 = this.worldProvider.m();
@@ -701,7 +701,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		return var11;
 	}
 
-	public void c(Position var1, Block var2, int var3, int var4) {
+	public void playBlockAction(Position var1, Block var2, int var3, int var4) {
 		aqk var5 = new aqk(var1, var2, var3, var4);
 		Iterator var6 = this.S[this.T].iterator();
 

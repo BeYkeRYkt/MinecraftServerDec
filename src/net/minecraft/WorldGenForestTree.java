@@ -40,9 +40,9 @@ public class WorldGenForestTree extends WorldGenTreeAbstract {
 			if (!var5) {
 				return false;
 			} else {
-				Block var18 = var1.getBlockState(var3.b()).getBlock();
+				Block var18 = var1.getBlockState(var3.getDown()).getBlock();
 				if ((var18 == Blocks.GRASS || var18 == Blocks.DIRT) && var3.getY() < 256 - var4 - 1) {
-					this.a(var1, var3.b());
+					this.a(var1, var3.getDown());
 					this.a(var1, var3.a(1, -1, 0));
 					this.a(var1, var3.a(1, -1, 1));
 					this.a(var1, var3.a(0, -1, 1));

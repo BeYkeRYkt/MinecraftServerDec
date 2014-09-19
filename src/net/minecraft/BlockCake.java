@@ -74,7 +74,7 @@ public class BlockCake extends Block {
 	}
 
 	private boolean d(World var1, Position var2) {
-		return var1.getBlockState(var2.b()).getBlock().getMaterial().isBuildable();
+		return var1.getBlockState(var2.getDown()).getBlock().getMaterial().isBuildable();
 	}
 
 	public int a(Random var1) {

@@ -39,7 +39,7 @@ public class zr extends zn {
 	}
 
 	protected boolean a(World var1, Position var2) {
-		if (!var1.d(var2.a())) {
+		if (!var1.d(var2.getUp())) {
 			return false;
 		} else {
 			IBlockState var3 = var1.getBlockState(var2);

@@ -74,7 +74,7 @@ public class BlockPumpkin extends avb {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return var1.getBlockState(var2).getBlock().material.j() && World.a((ard) var1, var2.b());
+		return var1.getBlockState(var2).getBlock().material.j() && World.a((ard) var1, var2.getDown());
 	}
 
 	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {

@@ -20,7 +20,7 @@ public class BlockTripwireHook extends Block {
 	}
 
 	public IBlockState a(IBlockState var1, ard var2, Position var3) {
-		return var1.a(N, Boolean.valueOf(!World.a(var2, var3.b())));
+		return var1.a(N, Boolean.valueOf(!World.a(var2, var3.getDown())));
 	}
 
 	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
@@ -84,7 +84,7 @@ public class BlockTripwireHook extends Block {
 		BlockFace var8 = (BlockFace) var3.b(a);
 		boolean var9 = ((Boolean) var3.b(M)).booleanValue();
 		boolean var10 = ((Boolean) var3.b(b)).booleanValue();
-		boolean var11 = !World.a((ard) var1, var2.b());
+		boolean var11 = !World.a((ard) var1, var2.getDown());
 		boolean var12 = !var4;
 		boolean var13 = false;
 		int var14 = 0;

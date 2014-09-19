@@ -170,7 +170,7 @@ public class Explosion {
 
 			while (var2.hasNext()) {
 				var3 = (Position) var2.next();
-				if (this.d.getBlockState(var3).getBlock().getMaterial() == Material.AIR && this.d.getBlockState(var3.b()).getBlock().m() && this.c.nextInt(3) == 0) {
+				if (this.d.getBlockState(var3).getBlock().getMaterial() == Material.AIR && this.d.getBlockState(var3.getDown()).getBlock().m() && this.c.nextInt(3) == 0) {
 					this.d.a(var3, Blocks.FIRE.getBlockState());
 				}
 			}

@@ -78,11 +78,11 @@ public class BlockRedstoneOre extends Block {
 			double var7 = (double) ((float) var2.getX() + var3.nextFloat());
 			double var9 = (double) ((float) var2.getY() + var3.nextFloat());
 			double var11 = (double) ((float) var2.getZ() + var3.nextFloat());
-			if (var6 == 0 && !var1.getBlockState(var2.a()).getBlock().c()) {
+			if (var6 == 0 && !var1.getBlockState(var2.getUp()).getBlock().c()) {
 				var9 = (double) var2.getY() + var4 + 1.0D;
 			}
 
-			if (var6 == 1 && !var1.getBlockState(var2.b()).getBlock().c()) {
+			if (var6 == 1 && !var1.getBlockState(var2.getDown()).getBlock().c()) {
 				var9 = (double) var2.getY() - var4;
 			}
 

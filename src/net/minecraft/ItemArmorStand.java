@@ -18,7 +18,7 @@ public class ItemArmorStand extends Item {
 			if (!var2.a(var10, var5, var1)) {
 				return false;
 			} else {
-				Position var11 = var10.a();
+				Position var11 = var10.getUp();
 				boolean var12 = !var3.d(var10) && !var3.getBlockState(var10).getBlock().f(var3, var10);
 				var12 |= !var3.d(var11) && !var3.getBlockState(var11).getBlock().f(var3, var11);
 				if (var12) {

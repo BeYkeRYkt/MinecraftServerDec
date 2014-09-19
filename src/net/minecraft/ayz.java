@@ -22,7 +22,7 @@ public class ayz {
 			this.c = BlockFace.SOUTH;
 		}
 
-		for (Position var4 = var2; var2.getY() > var4.getY() - 21 && var2.getY() > 0 && this.a(var1.getBlockState(var2.b()).getBlock()); var2 = var2.b()) {
+		for (Position var4 = var2; var2.getY() > var4.getY() - 21 && var2.getY() > 0 && this.a(var1.getBlockState(var2.getDown()).getBlock()); var2 = var2.getDown()) {
 			;
 		}
 
@@ -46,7 +46,7 @@ public class ayz {
 		int var3;
 		for (var3 = 0; var3 < 22; ++var3) {
 			Position var4 = var1.a(var2, var3);
-			if (!this.a(this.a.getBlockState(var4).getBlock()) || this.a.getBlockState(var4.b()).getBlock() != Blocks.OBSIDIAN) {
+			if (!this.a(this.a.getBlockState(var4).getBlock()) || this.a.getBlockState(var4.getDown()).getBlock() != Blocks.OBSIDIAN) {
 				break;
 			}
 		}

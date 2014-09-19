@@ -50,7 +50,7 @@ public class BlockEnderChest extends atg {
 		InventoryEnderChest var9 = var4.getEnderChest();
 		TileEntity var10 = var1.getTileEntity(var2);
 		if (var9 != null && var10 instanceof TileEntityEnderChest) {
-			if (var1.getBlockState(var2.a()).getBlock().t()) {
+			if (var1.getBlockState(var2.getUp()).getBlock().t()) {
 				return true;
 			} else if (var1.isStatic) {
 				return true;

@@ -14,7 +14,7 @@ public class BlockLongGrass extends auc implements atz {
 	}
 
 	public boolean f(World var1, Position var2, IBlockState var3) {
-		return this.c(var1.getBlockState(var2.b()).getBlock());
+		return this.c(var1.getBlockState(var2.getDown()).getBlock());
 	}
 
 	public boolean f(World var1, Position var2) {

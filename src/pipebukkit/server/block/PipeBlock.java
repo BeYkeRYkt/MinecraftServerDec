@@ -212,7 +212,7 @@ public class PipeBlock implements Block {
 				return new PipeMobSpawner(this);
 			}
 			case NOTE_BLOCK: {
-				//TODO
+				return new PipeNoteBlock(this);
 			}
 			case JUKEBOX: {
 				return new PipeJukebox(this);

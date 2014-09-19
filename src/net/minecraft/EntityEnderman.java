@@ -142,7 +142,7 @@ public class EntityEnderman extends EntityMonster {
 			boolean var15 = false;
 
 			while (!var15 && var14.getY() > 0) {
-				Position var16 = var14.b();
+				Position var16 = var14.getDown();
 				Block var17 = this.world.getBlockState(var16).getBlock();
 				if (var17.getMaterial().isSolid()) {
 					var15 = true;

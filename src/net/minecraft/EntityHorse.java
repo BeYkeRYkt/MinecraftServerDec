@@ -422,7 +422,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 
 	protected void a(Position var1, Block var2) {
 		BlockSound var3 = var2.H;
-		if (this.world.getBlockState(var1.a()).getBlock() == Blocks.SNOW_LAYER) {
+		if (this.world.getBlockState(var1.getUp()).getBlock() == Blocks.SNOW_LAYER) {
 			var3 = Blocks.SNOW_LAYER.H;
 		}
 

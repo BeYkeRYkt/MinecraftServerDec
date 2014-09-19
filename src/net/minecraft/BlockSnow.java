@@ -47,7 +47,7 @@ public class BlockSnow extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		IBlockState var3 = var1.getBlockState(var2.b());
+		IBlockState var3 = var1.getBlockState(var2.getDown());
 		Block var4 = var3.getBlock();
 		return var4 != Blocks.ICE && var4 != Blocks.PACKED_ICE ? (var4.getMaterial() == Material.LEAVES ? true : (var4 == this && ((Integer) var3.b(a)).intValue() == 7 ? true : var4.c() && var4.material.isSolid())) : false;
 	}

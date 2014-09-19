@@ -35,9 +35,9 @@ public class BlockRedstoneWire extends Block {
 	private azu c(ard var1, Position var2, BlockFace var3) {
 		Position var4 = var2.getRelative(var3);
 		Block var5 = var1.getBlockState(var2.getRelative(var3)).getBlock();
-		if (!a(var1.getBlockState(var4), var3) && (var5.s() || !d(var1.getBlockState(var4.b())))) {
-			Block var6 = var1.getBlockState(var2.a()).getBlock();
-			return !var6.s() && var5.s() && d(var1.getBlockState(var4.a())) ? azu.a : azu.c;
+		if (!a(var1.getBlockState(var4), var3) && (var5.s() || !d(var1.getBlockState(var4.getDown())))) {
+			Block var6 = var1.getBlockState(var2.getUp()).getBlock();
+			return !var6.s() && var5.s() && d(var1.getBlockState(var4.getUp())) ? azu.a : azu.c;
 		} else {
 			return azu.b;
 		}
@@ -56,7 +56,7 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return World.a((ard) var1, var2.b()) || var1.getBlockState(var2.b()).getBlock() == Blocks.GLOWSTONE;
+		return World.a((ard) var1, var2.getDown()) || var1.getBlockState(var2.getDown()).getBlock() == Blocks.GLOWSTONE;
 	}
 
 	private IBlockState e(World var1, Position var2, IBlockState var3) {
@@ -96,12 +96,12 @@ public class BlockRedstoneWire extends Block {
 				var9 = this.a(var1, var12, var9);
 			}
 
-			if (var1.getBlockState(var12).getBlock().t() && !var1.getBlockState(var2.a()).getBlock().t()) {
+			if (var1.getBlockState(var12).getBlock().t() && !var1.getBlockState(var2.getUp()).getBlock().t()) {
 				if (var13 && var2.getY() >= var3.getY()) {
-					var9 = this.a(var1, var12.a(), var9);
+					var9 = this.a(var1, var12.getUp(), var9);
 				}
 			} else if (!var1.getBlockState(var12).getBlock().t() && var13 && var2.getY() <= var3.getY()) {
-				var9 = this.a(var1, var12.b(), var9);
+				var9 = this.a(var1, var12.getDown(), var9);
 			}
 		}
 
@@ -174,9 +174,9 @@ public class BlockRedstoneWire extends Block {
 				var5 = (BlockFace) var4.next();
 				Position var6 = var2.getRelative(var5);
 				if (var1.getBlockState(var6).getBlock().t()) {
-					this.d(var1, var6.a());
+					this.d(var1, var6.getUp());
 				} else {
-					this.d(var1, var6.b());
+					this.d(var1, var6.getDown());
 				}
 			}
 
@@ -209,9 +209,9 @@ public class BlockRedstoneWire extends Block {
 				var9 = (BlockFace) var8.next();
 				Position var10 = var2.getRelative(var9);
 				if (var1.getBlockState(var10).getBlock().t()) {
-					this.d(var1, var10.a());
+					this.d(var1, var10.getUp());
 				} else {
-					this.d(var1, var10.b());
+					this.d(var1, var10.getDown());
 				}
 			}
 
@@ -283,8 +283,8 @@ public class BlockRedstoneWire extends Block {
 		IBlockState var5 = var1.getBlockState(var4);
 		Block var6 = var5.getBlock();
 		boolean var7 = var6.t();
-		boolean var8 = var1.getBlockState(var2.a()).getBlock().t();
-		return !var8 && var7 && e(var1, var4.a()) ? true : (a(var5, var3) ? true : (var6 == Blocks.POWERED_REPEATER && var5.b(ava.N) == var3 ? true : !var7 && e(var1, var4.b())));
+		boolean var8 = var1.getBlockState(var2.getUp()).getBlock().t();
+		return !var8 && var7 && e(var1, var4.getUp()) ? true : (a(var5, var3) ? true : (var6 == Blocks.POWERED_REPEATER && var5.b(ava.N) == var3 ? true : !var7 && e(var1, var4.getDown())));
 	}
 
 	protected static boolean e(ard var0, Position var1) {

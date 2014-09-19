@@ -108,11 +108,11 @@ public class EntityMinecartTNT extends adx {
 	}
 
 	public float a(Explosion var1, World var2, Position var3, IBlockState var4) {
-		return this.y() && (ati.d(var4) || ati.d(var2, var3.a())) ? 0.0F : super.a(var1, var2, var3, var4);
+		return this.y() && (ati.d(var4) || ati.d(var2, var3.getUp())) ? 0.0F : super.a(var1, var2, var3, var4);
 	}
 
 	public boolean a(Explosion var1, World var2, Position var3, IBlockState var4, float var5) {
-		return this.y() && (ati.d(var4) || ati.d(var2, var3.a())) ? false : super.a(var1, var2, var3, var4, var5);
+		return this.y() && (ati.d(var4) || ati.d(var2, var3.getUp())) ? false : super.a(var1, var2, var3, var4, var5);
 	}
 
 	protected void a(NBTCompoundTag var1) {

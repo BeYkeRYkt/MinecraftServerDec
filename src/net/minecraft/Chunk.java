@@ -816,7 +816,7 @@ public class Chunk {
 				Block var8 = this.getBlockAtWorldCoords(var5);
 				Material var9 = var8.getMaterial();
 				if (!var9.isSolid() && !var9.isLiquid()) {
-					var5 = var5.b();
+					var5 = var5.getDown();
 				} else {
 					var7 = var5.getY() + 1;
 				}

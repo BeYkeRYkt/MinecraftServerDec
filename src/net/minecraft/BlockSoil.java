@@ -29,7 +29,7 @@ public class BlockSoil extends Block {
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		int var5 = ((Integer) var3.b(a)).intValue();
-		if (!this.e(var1, var2) && !var1.C(var2.a())) {
+		if (!this.e(var1, var2) && !var1.C(var2.getUp())) {
 			if (var5 > 0) {
 				var1.setBlockAt(var2, var3.a(a, Integer.valueOf(var5 - 1)), 2);
 			} else if (!this.d(var1, var2)) {
@@ -56,7 +56,7 @@ public class BlockSoil extends Block {
 	}
 
 	private boolean d(World var1, Position var2) {
-		Block var3 = var1.getBlockState(var2.a()).getBlock();
+		Block var3 = var1.getBlockState(var2.getUp()).getBlock();
 		return var3 instanceof BlockCrops || var3 instanceof BlockStem;
 	}
 
@@ -77,7 +77,7 @@ public class BlockSoil extends Block {
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		super.a(var1, var2, var3, var4);
-		if (var1.getBlockState(var2.a()).getBlock().getMaterial().isBuildable()) {
+		if (var1.getBlockState(var2.getUp()).getBlock().getMaterial().isBuildable()) {
 			var1.a(var2, Blocks.DIRT.getBlockState());
 		}
 

@@ -183,7 +183,7 @@ public class EntityGuardian extends EntityMonster {
 					this.world.a(this.locationX, this.locationY, this.locationZ, "mob.guardian.flop", 1.0F, 1.0F, false);
 				}
 
-				this.bp = this.motionY < 0.0D && this.world.d((new Position(this)).b(), false);
+				this.bp = this.motionY < 0.0D && this.world.d((new Position(this)).getDown(), false);
 			} else if (this.n()) {
 				if (this.bk < 0.5F) {
 					this.bk = 4.0F;

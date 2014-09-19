@@ -27,7 +27,7 @@ public class BlockIce extends awt {
 
 			int var6 = aph.f(var2);
 			this.b(var1, var3, var4, var6);
-			Material var7 = var1.getBlockState(var3.b()).getBlock().getMaterial();
+			Material var7 = var1.getBlockState(var3.getDown()).getBlock().getMaterial();
 			if (var7.isSolid() || var7.isLiquid()) {
 				var1.a(var3, Blocks.FLOWING_WATER.getBlockState());
 			}

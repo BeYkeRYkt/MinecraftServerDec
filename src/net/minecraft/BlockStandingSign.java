@@ -9,7 +9,7 @@ public class BlockStandingSign extends bai {
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
-		if (!var1.getBlockState(var2.b()).getBlock().getMaterial().isBuildable()) {
+		if (!var1.getBlockState(var2.getDown()).getBlock().getMaterial().isBuildable()) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
 		}

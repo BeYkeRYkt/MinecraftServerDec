@@ -243,7 +243,7 @@ public class WorldGenBigTree extends WorldGenTreeAbstract {
 	}
 
 	private boolean f() {
-		Block var1 = this.l.getBlockState(this.m.b()).getBlock();
+		Block var1 = this.l.getBlockState(this.m.getDown()).getBlock();
 		if (var1 != Blocks.DIRT && var1 != Blocks.GRASS && var1 != Blocks.FARMLAND) {
 			return false;
 		} else {

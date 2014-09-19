@@ -53,9 +53,9 @@ public class WorldGenTrees extends WorldGenTreeAbstract {
 			if (!var5) {
 				return false;
 			} else {
-				Block var19 = var1.getBlockState(var3.b()).getBlock();
+				Block var19 = var1.getBlockState(var3.getDown()).getBlock();
 				if ((var19 == Blocks.GRASS || var19 == Blocks.DIRT || var19 == Blocks.FARMLAND) && var3.getY() < 256 - var4 - 1) {
-					this.a(var1, var3.b());
+					this.a(var1, var3.getDown());
 					var7 = 3;
 					byte var20 = 0;
 
@@ -168,9 +168,9 @@ public class WorldGenTrees extends WorldGenTreeAbstract {
 		this.a(var1, var2, Blocks.VINE, var3);
 		int var4 = 4;
 
-		for (var2 = var2.b(); var1.getBlockState(var2).getBlock().getMaterial() == Material.AIR && var4 > 0; --var4) {
+		for (var2 = var2.getDown(); var1.getBlockState(var2).getBlock().getMaterial() == Material.AIR && var4 > 0; --var4) {
 			this.a(var1, var2, Blocks.VINE, var3);
-			var2 = var2.b();
+			var2 = var2.getDown();
 		}
 
 	}

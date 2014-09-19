@@ -59,14 +59,14 @@ public class BlockMinecartDetector extends ati {
 		if (var5 && !var4) {
 			var1.setBlockAt(var2, var3.a(M, Boolean.valueOf(true)), 3);
 			var1.c(var2, (Block) this);
-			var1.c(var2.b(), (Block) this);
+			var1.c(var2.getDown(), (Block) this);
 			var1.b(var2, var2);
 		}
 
 		if (!var5 && var4) {
 			var1.setBlockAt(var2, var3.a(M, Boolean.valueOf(false)), 3);
 			var1.c(var2, (Block) this);
-			var1.c(var2.b(), (Block) this);
+			var1.c(var2.getDown(), (Block) this);
 			var1.b(var2, var2);
 		}
 

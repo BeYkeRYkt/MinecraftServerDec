@@ -459,9 +459,9 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		Position var7 = new Position(var4, var5, var6);
 		Block var8 = this.world.getBlockState(var7).getBlock();
 		if (var8.getMaterial() == Material.AIR) {
-			Block var9 = this.world.getBlockState(var7.b()).getBlock();
+			Block var9 = this.world.getBlockState(var7.getDown()).getBlock();
 			if (var9 instanceof BlockFence || var9 instanceof BlockCobbleWall || var9 instanceof BlockFenceGate) {
-				var7 = var7.b();
+				var7 = var7.getDown();
 				var8 = this.world.getBlockState(var7).getBlock();
 			}
 		}

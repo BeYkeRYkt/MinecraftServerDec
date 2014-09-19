@@ -69,11 +69,11 @@ public class BlockFlowerPot extends atg {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return super.c(var1, var2) && World.a((ard) var1, var2.b());
+		return super.c(var1, var2) && World.a((ard) var1, var2.getDown());
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
-		if (!World.a((ard) var1, var2.b())) {
+		if (!World.a((ard) var1, var2.getDown())) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
 		}

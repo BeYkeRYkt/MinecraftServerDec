@@ -6,7 +6,7 @@ public class WorldGenPackedIce2 extends WorldGenerator {
 
 	public boolean b(World var1, Random var2, Position var3) {
 		while (var1.d(var3) && var3.getY() > 2) {
-			var3 = var3.b();
+			var3 = var3.getDown();
 		}
 
 		if (var1.getBlockState(var3).getBlock() != Blocks.SNOW) {
@@ -69,7 +69,7 @@ public class WorldGenPackedIce2 extends WorldGenerator {
 							Block var17 = var1.getBlockState(var15).getBlock();
 							if (var17.getMaterial() == Material.AIR || var17 == Blocks.DIRT || var17 == Blocks.SNOW || var17 == Blocks.ICE || var17 == Blocks.PACKED_ICE) {
 								this.a(var1, var15, Blocks.PACKED_ICE);
-								var15 = var15.b();
+								var15 = var15.getDown();
 								--var16;
 								if (var16 <= 0) {
 									var15 = var15.c(var2.nextInt(5) + 1);

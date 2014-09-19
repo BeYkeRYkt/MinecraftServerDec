@@ -153,15 +153,15 @@ public final class SpawnerCreature {
 		} else {
 			Block var3 = var1.getBlockState(var2).getBlock();
 			if (var0 == xo.c) {
-				return var3.getMaterial().isLiquid() && var1.getBlockState(var2.b()).getBlock().getMaterial().isLiquid() && !var1.getBlockState(var2.a()).getBlock().t();
+				return var3.getMaterial().isLiquid() && var1.getBlockState(var2.getDown()).getBlock().getMaterial().isLiquid() && !var1.getBlockState(var2.getUp()).getBlock().t();
 			} else {
-				Position var4 = var2.b();
+				Position var4 = var2.getDown();
 				if (!World.a((ard) var1, var4)) {
 					return false;
 				} else {
 					Block var5 = var1.getBlockState(var4).getBlock();
 					boolean var6 = var5 != Blocks.BEDROCK && var5 != Blocks.BARRIER;
-					return var6 && !var3.t() && !var3.getMaterial().isLiquid() && !var1.getBlockState(var2.a()).getBlock().t();
+					return var6 && !var3.t() && !var3.getMaterial().isLiquid() && !var1.getBlockState(var2.getUp()).getBlock().t();
 				}
 			}
 		}

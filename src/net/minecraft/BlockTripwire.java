@@ -44,7 +44,7 @@ public class BlockTripwire extends Block {
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		boolean var5 = ((Boolean) var3.b(b)).booleanValue();
-		boolean var6 = !World.a((ard) var1, var2.b());
+		boolean var6 = !World.a((ard) var1, var2.getDown());
 		if (var5 != var6) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
@@ -67,7 +67,7 @@ public class BlockTripwire extends Block {
 	}
 
 	public void c(World var1, Position var2, IBlockState var3) {
-		var3 = var3.a(b, Boolean.valueOf(!World.a((ard) var1, var2.b())));
+		var3 = var3.a(b, Boolean.valueOf(!World.a((ard) var1, var2.getDown())));
 		var1.setBlockAt(var2, var3, 3);
 		this.e(var1, var2, var3);
 	}

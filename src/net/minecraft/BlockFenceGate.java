@@ -22,7 +22,7 @@ public class BlockFenceGate extends avb {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return var1.getBlockState(var2.b()).getBlock().getMaterial().isBuildable() ? super.c(var1, var2) : false;
+		return var1.getBlockState(var2.getDown()).getBlock().getMaterial().isBuildable() ? super.c(var1, var2) : false;
 	}
 
 	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {

@@ -40,19 +40,19 @@ public class atk {
 				break;
 			case 3:
 				this.g.add(this.c.e());
-				this.g.add(this.c.f().a());
+				this.g.add(this.c.f().getUp());
 				break;
 			case 4:
-				this.g.add(this.c.e().a());
+				this.g.add(this.c.e().getUp());
 				this.g.add(this.c.f());
 				break;
 			case 5:
-				this.g.add(this.c.c().a());
+				this.g.add(this.c.c().getUp());
 				this.g.add(this.c.d());
 				break;
 			case 6:
 				this.g.add(this.c.c());
-				this.g.add(this.c.d().a());
+				this.g.add(this.c.d().getUp());
 				break;
 			case 7:
 				this.g.add(this.c.f());
@@ -86,7 +86,7 @@ public class atk {
 	}
 
 	private boolean a(Position var1) {
-		return ati.d(this.b, var1) || ati.d(this.b, var1.a()) || ati.d(this.b, var1.b());
+		return ati.d(this.b, var1) || ati.d(this.b, var1.getUp()) || ati.d(this.b, var1.getDown());
 	}
 
 	private atk b(Position var1) {
@@ -94,12 +94,12 @@ public class atk {
 		if (ati.d(var3)) {
 			return new atk(this.a, this.b, var1, var3);
 		} else {
-			Position var2 = var1.a();
+			Position var2 = var1.getUp();
 			var3 = this.b.getBlockState(var2);
 			if (ati.d(var3)) {
 				return new atk(this.a, this.b, var2, var3);
 			} else {
-				var2 = var1.b();
+				var2 = var1.getDown();
 				var3 = this.b.getBlockState(var2);
 				return ati.d(var3) ? new atk(this.a, this.b, var2, var3) : null;
 			}
@@ -177,21 +177,21 @@ public class atk {
 		}
 
 		if (var10 == atl.a) {
-			if (ati.d(this.b, var2.a())) {
+			if (ati.d(this.b, var2.getUp())) {
 				var10 = atl.e;
 			}
 
-			if (ati.d(this.b, var3.a())) {
+			if (ati.d(this.b, var3.getUp())) {
 				var10 = atl.f;
 			}
 		}
 
 		if (var10 == atl.b) {
-			if (ati.d(this.b, var5.a())) {
+			if (ati.d(this.b, var5.getUp())) {
 				var10 = atl.c;
 			}
 
-			if (ati.d(this.b, var4.a())) {
+			if (ati.d(this.b, var4.getUp())) {
 				var10 = atl.d;
 			}
 		}
@@ -297,21 +297,21 @@ public class atk {
 		}
 
 		if (var11 == atl.a) {
-			if (ati.d(this.b, var3.a())) {
+			if (ati.d(this.b, var3.getUp())) {
 				var11 = atl.e;
 			}
 
-			if (ati.d(this.b, var4.a())) {
+			if (ati.d(this.b, var4.getUp())) {
 				var11 = atl.f;
 			}
 		}
 
 		if (var11 == atl.b) {
-			if (ati.d(this.b, var6.a())) {
+			if (ati.d(this.b, var6.getUp())) {
 				var11 = atl.c;
 			}
 
-			if (ati.d(this.b, var5.a())) {
+			if (ati.d(this.b, var5.getUp())) {
 				var11 = atl.d;
 			}
 		}

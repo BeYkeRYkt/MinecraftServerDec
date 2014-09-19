@@ -35,7 +35,7 @@ public abstract class yv extends PathfinderGoal {
 					}
 				}
 
-				this.b = (new Position(this.a)).a();
+				this.b = (new Position(this.a)).getUp();
 				this.c = this.a(this.b);
 				return this.c != null;
 			} else {

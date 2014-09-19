@@ -379,7 +379,7 @@ public class BlockChest extends atg {
 	}
 
 	private boolean n(World var1, Position var2) {
-		return var1.getBlockState(var2.a()).getBlock().t();
+		return var1.getBlockState(var2.getUp()).getBlock().t();
 	}
 
 	private boolean o(World var1, Position var2) {

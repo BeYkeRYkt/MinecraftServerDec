@@ -46,11 +46,11 @@ public abstract class ath extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return this.m(var1, var2.b());
+		return this.m(var1, var2.getDown());
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
-		if (!this.m(var1, var2.b())) {
+		if (!this.m(var1, var2.getDown())) {
 			this.b(var1, var2, var3, 0);
 			var1.g(var2);
 		}
@@ -122,7 +122,7 @@ public abstract class ath extends Block {
 
 	protected void d(World var1, Position var2) {
 		var1.c(var2, (Block) this);
-		var1.c(var2.b(), (Block) this);
+		var1.c(var2.getDown(), (Block) this);
 	}
 
 	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {

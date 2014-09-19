@@ -68,9 +68,9 @@ public class PortalTravelAgent {
 				Position var16;
 				for (int var14 = -128; var14 <= 128; ++var14) {
 					for (Position var15 = var34.a(var13, this.a.V() - 1 - var34.getY(), var14); var15.getY() >= 0; var15 = var16) {
-						var16 = var15.b();
+						var16 = var15.getDown();
 						if (this.a.getBlockState(var15).getBlock() == Blocks.PORTAL) {
-							while (this.a.getBlockState(var16 = var15.b()).getBlock() == Blocks.PORTAL) {
+							while (this.a.getBlockState(var16 = var15.getDown()).getBlock() == Blocks.PORTAL) {
 								var15 = var16;
 							}
 
@@ -176,7 +176,7 @@ public class PortalTravelAgent {
 	}
 
 	private boolean a(Position var1) {
-		return !this.a.d(var1) || !this.a.d(var1.a());
+		return !this.a.d(var1) || !this.a.d(var1.getUp());
 	}
 
 	public boolean a(Entity var1) {

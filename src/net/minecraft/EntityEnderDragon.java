@@ -509,7 +509,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 		}
 
 		this.world.a(var1, Blocks.BEDROCK.getBlockState());
-		this.world.a(var1.a(), Blocks.BEDROCK.getBlockState());
+		this.world.a(var1.getUp(), Blocks.BEDROCK.getBlockState());
 		Position var13 = var1.b(2);
 		this.world.a(var13, Blocks.BEDROCK.getBlockState());
 		this.world.a(var13.e(), Blocks.TORCH.getBlockState().a(BlockTorch.a, BlockFace.EAST));

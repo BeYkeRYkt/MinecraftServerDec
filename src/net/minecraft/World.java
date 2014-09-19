@@ -108,7 +108,7 @@ public abstract class World implements ard {
 
 	public Block c(Position var1) {
 		Position var2;
-		for (var2 = new Position(var1.getX(), 63, var1.getZ()); !this.d(var2.a()); var2 = var2.a()) {
+		for (var2 = new Position(var1.getX(), 63, var1.getZ()); !this.d(var2.getUp()); var2 = var2.getUp()) {
 			;
 		}
 
@@ -291,8 +291,8 @@ public abstract class World implements ard {
 	public void c(Position var1, Block var2) {
 		this.d(var1.e(), var2);
 		this.d(var1.f(), var2);
-		this.d(var1.b(), var2);
-		this.d(var1.a(), var2);
+		this.d(var1.getDown(), var2);
+		this.d(var1.getUp(), var2);
 		this.d(var1.c(), var2);
 		this.d(var1.d(), var2);
 	}
@@ -307,11 +307,11 @@ public abstract class World implements ard {
 		}
 
 		if (var3 != BlockFace.DOWN) {
-			this.d(var1.b(), var2);
+			this.d(var1.getDown(), var2);
 		}
 
 		if (var3 != BlockFace.UP) {
-			this.d(var1.a(), var2);
+			this.d(var1.getUp(), var2);
 		}
 
 		if (var3 != BlockFace.NORTH) {
@@ -356,7 +356,7 @@ public abstract class World implements ard {
 			if (!this.i(var2)) {
 				return false;
 			} else {
-				for (var2 = var2.b(); var2.getY() > var1.getY(); var2 = var2.b()) {
+				for (var2 = var2.getDown(); var2.getY() > var1.getY(); var2 = var2.getDown()) {
 					Block var3 = this.getBlockState(var2).getBlock();
 					if (var3.n() > 0 && !var3.getMaterial().isLiquid()) {
 						return false;
@@ -387,7 +387,7 @@ public abstract class World implements ard {
 	public int c(Position var1, boolean var2) {
 		if (var1.getX() >= -30000000 && var1.getZ() >= -30000000 && var1.getX() < 30000000 && var1.getZ() < 30000000) {
 			if (var2 && this.getBlockState(var1).getBlock().q()) {
-				int var8 = this.c(var1.a(), false);
+				int var8 = this.c(var1.getUp(), false);
 				int var4 = this.c(var1.f(), false);
 				int var5 = this.c(var1.e(), false);
 				int var6 = this.c(var1.d(), false);
@@ -903,7 +903,7 @@ public abstract class World implements ard {
 		Position var3;
 		Position var4;
 		for (var3 = new Position(var1.getX(), var2.g() + 16, var1.getZ()); var3.getY() >= 0; var3 = var4) {
-			var4 = var3.b();
+			var4 = var3.getDown();
 			Material var5 = var2.getBlockAtWorldCoords(var4).getMaterial();
 			if (var5.isSolid() && var5 != Material.LEAVES) {
 				break;
@@ -1869,11 +1869,11 @@ public abstract class World implements ard {
 								this.H[var4++] = var11 + 1 - var7 + 32 + (var12 - var8 + 32 << 6) + (var13 - var9 + 32 << 12);
 							}
 
-							if (this.b(var1, var29.b()) < var16) {
+							if (this.b(var1, var29.getDown()) < var16) {
 								this.H[var4++] = var11 - var7 + 32 + (var12 - 1 - var8 + 32 << 6) + (var13 - var9 + 32 << 12);
 							}
 
-							if (this.b(var1, var29.a()) < var16) {
+							if (this.b(var1, var29.getUp()) < var16) {
 								this.H[var4++] = var11 - var7 + 32 + (var12 + 1 - var8 + 32 << 6) + (var13 - var9 + 32 << 12);
 							}
 
@@ -2053,11 +2053,11 @@ public abstract class World implements ard {
 
 	public int y(Position var1) {
 		byte var2 = 0;
-		int var3 = Math.max(var2, this.a(var1.b(), BlockFace.DOWN));
+		int var3 = Math.max(var2, this.a(var1.getDown(), BlockFace.DOWN));
 		if (var3 >= 15) {
 			return var3;
 		} else {
-			var3 = Math.max(var3, this.a(var1.a(), BlockFace.UP));
+			var3 = Math.max(var3, this.a(var1.getUp(), BlockFace.UP));
 			if (var3 >= 15) {
 				return var3;
 			} else {
@@ -2093,7 +2093,7 @@ public abstract class World implements ard {
 	}
 
 	public boolean z(Position var1) {
-		return this.c(var1.b(), BlockFace.DOWN) > 0 ? true : (this.c(var1.a(), BlockFace.UP) > 0 ? true : (this.c(var1.c(), BlockFace.NORTH) > 0 ? true : (this.c(var1.d(), BlockFace.SOUTH) > 0 ? true : (this.c(var1.e(), BlockFace.WEST) > 0 ? true : this.c(var1.f(), BlockFace.EAST) > 0))));
+		return this.c(var1.getDown(), BlockFace.DOWN) > 0 ? true : (this.c(var1.getUp(), BlockFace.UP) > 0 ? true : (this.c(var1.c(), BlockFace.NORTH) > 0 ? true : (this.c(var1.d(), BlockFace.SOUTH) > 0 ? true : (this.c(var1.e(), BlockFace.WEST) > 0 ? true : this.c(var1.f(), BlockFace.EAST) > 0))));
 	}
 
 	public int A(Position var1) {
@@ -2218,7 +2218,7 @@ public abstract class World implements ard {
 		return this.chunkProvider;
 	}
 
-	public void c(Position var1, Block var2, int var3, int var4) {
+	public void playBlockAction(Position var1, Block var2, int var3, int var4) {
 		var2.a(this, var1, this.getBlockState(var1), var3, var4);
 	}
 

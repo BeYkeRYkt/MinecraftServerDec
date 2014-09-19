@@ -190,7 +190,7 @@ public class EntityOcelot extends xx {
 				return false;
 			}
 
-			Block var2 = this.world.getBlockState(var1.b()).getBlock();
+			Block var2 = this.world.getBlockState(var1.getDown()).getBlock();
 			if (var2 == Blocks.GRASS || var2.getMaterial() == Material.LEAVES) {
 				return true;
 			}

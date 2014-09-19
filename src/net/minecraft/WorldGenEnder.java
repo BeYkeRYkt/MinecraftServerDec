@@ -11,7 +11,7 @@ public class WorldGenEnder extends WorldGenerator {
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
-		if (var1.d(var3) && var1.getBlockState(var3.b()).getBlock() == this.a) {
+		if (var1.d(var3) && var1.getBlockState(var3.getDown()).getBlock() == this.a) {
 			int var4 = var2.nextInt(32) + 6;
 			int var5 = var2.nextInt(4) + 1;
 

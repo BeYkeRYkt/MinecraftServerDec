@@ -11,7 +11,7 @@ public class WorldGenLakes extends WorldGenerator {
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
-		for (var3 = var3.a(-8, 0, -8); var3.getY() > 5 && var1.d(var3); var3 = var3.b()) {
+		for (var3 = var3.a(-8, 0, -8); var3.getY() > 5 && var1.d(var3); var3 = var3.getDown()) {
 			;
 		}
 

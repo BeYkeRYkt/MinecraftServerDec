@@ -26,11 +26,11 @@ public class BlockLever extends Block {
 	}
 
 	public boolean a(World var1, Position var2, BlockFace var3) {
-		return var3 == BlockFace.UP && World.a((ard) var1, var2.b()) ? true : this.d(var1, var2.getRelative(var3.getOpposite()));
+		return var3 == BlockFace.UP && World.a((ard) var1, var2.getDown()) ? true : this.d(var1, var2.getRelative(var3.getOpposite()));
 	}
 
 	public boolean c(World var1, Position var2) {
-		return this.d(var1, var2.e()) ? true : (this.d(var1, var2.f()) ? true : (this.d(var1, var2.c()) ? true : (this.d(var1, var2.d()) ? true : (World.a((ard) var1, var2.b()) ? true : this.d(var1, var2.a())))));
+		return this.d(var1, var2.e()) ? true : (this.d(var1, var2.f()) ? true : (this.d(var1, var2.c()) ? true : (this.d(var1, var2.d()) ? true : (World.a((ard) var1, var2.getDown()) ? true : this.d(var1, var2.getUp())))));
 	}
 
 	protected boolean d(World var1, Position var2) {
@@ -47,7 +47,7 @@ public class BlockLever extends Block {
 			BlockFace var11;
 			do {
 				if (!var10.hasNext()) {
-					if (World.a((ard) var1, var2.b())) {
+					if (World.a((ard) var1, var2.getDown())) {
 						return var9.a(a, axk.a(BlockFace.UP, var8.aO()));
 					}
 

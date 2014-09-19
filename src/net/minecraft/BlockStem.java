@@ -40,7 +40,7 @@ public class BlockStem extends auc implements atz {
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		super.b(var1, var2, var3, var4);
-		if (var1.l(var2.a()) >= 9) {
+		if (var1.l(var2.getUp()) >= 9) {
 			float var5 = BlockCrops.a(this, var1, var2);
 			if (var4.nextInt((int) (25.0F / var5) + 1) == 0) {
 				int var6 = ((Integer) var3.b(a)).intValue();
@@ -58,7 +58,7 @@ public class BlockStem extends auc implements atz {
 					}
 
 					var2 = var2.getRelative(en.a.a(var4));
-					Block var9 = var1.getBlockState(var2.b()).getBlock();
+					Block var9 = var1.getBlockState(var2.getDown()).getBlock();
 					if (var1.getBlockState(var2).getBlock().material == Material.AIR && (var9 == Blocks.FARMLAND || var9 == Blocks.DIRT || var9 == Blocks.GRASS)) {
 						var1.a(var2, this.M.getBlockState());
 					}

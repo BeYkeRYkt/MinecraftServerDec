@@ -16,8 +16,8 @@ public class BlockReed extends Block {
 	}
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
-		if (var1.getBlockState(var2.b()).getBlock() == Blocks.REEDS || this.e(var1, var2, var3)) {
-			if (var1.d(var2.a())) {
+		if (var1.getBlockState(var2.getDown()).getBlock() == Blocks.REEDS || this.e(var1, var2, var3)) {
+			if (var1.d(var2.getUp())) {
 				int var5;
 				for (var5 = 1; var1.getBlockState(var2.c(var5)).getBlock() == this; ++var5) {
 					;
@@ -26,7 +26,7 @@ public class BlockReed extends Block {
 				if (var5 < 3) {
 					int var6 = ((Integer) var3.b(a)).intValue();
 					if (var6 == 15) {
-						var1.a(var2.a(), this.getBlockState());
+						var1.a(var2.getUp(), this.getBlockState());
 						var1.setBlockAt(var2, var3.a(a, Integer.valueOf(0)), 4);
 					} else {
 						var1.setBlockAt(var2, var3.a(a, Integer.valueOf(var6 + 1)), 4);
@@ -38,7 +38,7 @@ public class BlockReed extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		Block var3 = var1.getBlockState(var2.b()).getBlock();
+		Block var3 = var1.getBlockState(var2.getDown()).getBlock();
 		if (var3 == this) {
 			return true;
 		} else if (var3 != Blocks.GRASS && var3 != Blocks.DIRT && var3 != Blocks.SAND) {
@@ -53,7 +53,7 @@ public class BlockReed extends Block {
 				}
 
 				var5 = (BlockFace) var4.next();
-			} while (var1.getBlockState(var2.getRelative(var5).b()).getBlock().getMaterial() != Material.WATER);
+			} while (var1.getBlockState(var2.getRelative(var5).getDown()).getBlock().getMaterial() != Material.WATER);
 
 			return true;
 		}

@@ -16,7 +16,7 @@ final class DispenseBehaviorBoat extends DispenseBehaviorItem {
 		if (Material.WATER.equals(var12)) {
 			var13 = 1.0D;
 		} else {
-			if (!Material.AIR.equals(var12) || !Material.WATER.equals(var4.getBlockState(var11.b()).getBlock().getMaterial())) {
+			if (!Material.AIR.equals(var12) || !Material.WATER.equals(var4.getBlockState(var11.getDown()).getBlock().getMaterial())) {
 				return this.b.a(var1, var2);
 			}
 

@@ -17,7 +17,7 @@ public class ItemHoe extends Item {
 		} else {
 			IBlockState var9 = var3.getBlockState(var4);
 			Block var10 = var9.getBlock();
-			if (var5 != BlockFace.DOWN && var3.getBlockState(var4.a()).getBlock().getMaterial() == Material.AIR) {
+			if (var5 != BlockFace.DOWN && var3.getBlockState(var4.getUp()).getBlock().getMaterial() == Material.AIR) {
 				if (var10 == Blocks.GRASS) {
 					return this.a(var1, var2, var3, var4, Blocks.FARMLAND.getBlockState());
 				}

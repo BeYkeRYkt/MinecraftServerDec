@@ -10,7 +10,7 @@ public class WorldGenSwampTree extends WorldGenTreeAbstract {
 
 	public boolean b(World var1, Random var2, Position var3) {
 		int var4;
-		for (var4 = var2.nextInt(4) + 5; var1.getBlockState(var3.b()).getBlock().getMaterial() == Material.WATER; var3 = var3.b()) {
+		for (var4 = var2.nextInt(4) + 5; var1.getBlockState(var3.getDown()).getBlock().getMaterial() == Material.WATER; var3 = var3.getDown()) {
 			;
 		}
 
@@ -49,9 +49,9 @@ public class WorldGenSwampTree extends WorldGenTreeAbstract {
 			if (!var5) {
 				return false;
 			} else {
-				Block var17 = var1.getBlockState(var3.b()).getBlock();
+				Block var17 = var1.getBlockState(var3.getDown()).getBlock();
 				if ((var17 == Blocks.GRASS || var17 == Blocks.DIRT) && var3.getY() < 256 - var4 - 1) {
-					this.a(var1, var3.b());
+					this.a(var1, var3.getDown());
 
 					int var11;
 					Position var14;
@@ -129,9 +129,9 @@ public class WorldGenSwampTree extends WorldGenTreeAbstract {
 		this.a(var1, var2, Blocks.VINE, var3);
 		int var4 = 4;
 
-		for (var2 = var2.b(); var1.getBlockState(var2).getBlock().getMaterial() == Material.AIR && var4 > 0; --var4) {
+		for (var2 = var2.getDown(); var1.getBlockState(var2).getBlock().getMaterial() == Material.AIR && var4 > 0; --var4) {
 			this.a(var1, var2, Blocks.VINE, var3);
-			var2 = var2.b();
+			var2 = var2.getDown();
 		}
 
 	}

@@ -209,9 +209,9 @@ public class TileEntityChest extends TileEntityLockable implements IInventory {
 	public void onContainerOpen(EntityHuman who) {
 		if (!who.isSpectator()) {
 			viewers.add(who);
-			this.world.c(this.position, this.getBlock(), 1, viewers.size());
+			this.world.playBlockAction(this.position, this.getBlock(), 1, viewers.size());
 			this.world.c(this.position, this.getBlock());
-			this.world.c(this.position.b(), this.getBlock());
+			this.world.c(this.position.getDown(), this.getBlock());
 			if (viewers.size() == 1 && northChest == null && westChest == null) {
 				double chestCenterX = position.getX() + 0.5D;
 				double chestCenterZ = position.getZ() + 0.5D;
@@ -235,9 +235,9 @@ public class TileEntityChest extends TileEntityLockable implements IInventory {
 				moajangCodeViewersCount = 0;
 			} 
 			viewers.remove(who);
-			this.world.c(this.position, this.getBlock(), 1, viewers.size());
+			this.world.playBlockAction(this.position, this.getBlock(), 1, viewers.size());
 			this.world.c(this.position, this.getBlock());
-			this.world.c(this.position.b(), this.getBlock());
+			this.world.c(this.position.getDown(), this.getBlock());
 			if (viewers.size() == 0 && northChest == null && westChest == null) {
 				double chestCenterX = position.getX() + 0.5D;
 				double chestCenterZ = position.getZ() + 0.5D;

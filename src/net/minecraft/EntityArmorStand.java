@@ -410,7 +410,7 @@ public class EntityArmorStand extends EntityLiving {
 		for (int var1 = 0; var1 < this.g.length; ++var1) {
 			if (this.g[var1] != null && this.g[var1].amount > 0) {
 				if (this.g[var1] != null) {
-					Block.a(this.world, (new Position(this)).a(), this.g[var1]);
+					Block.a(this.world, (new Position(this)).getUp(), this.g[var1]);
 				}
 
 				this.g[var1] = null;

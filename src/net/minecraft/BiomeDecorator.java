@@ -178,7 +178,7 @@ public class BiomeDecorator {
 
 			while (true) {
 				if (var7.getY() > 0) {
-					Position var13 = var7.b();
+					Position var13 = var7.getDown();
 					if (this.a.d(var13)) {
 						var7 = var13;
 						continue;

@@ -100,9 +100,9 @@ public class BlockPoweredRail extends ati {
 		boolean var6 = var1.z(var2) || this.a(var1, var2, var3, true, 0) || this.a(var1, var2, var3, false, 0);
 		if (var6 != var5) {
 			var1.setBlockAt(var2, var3.a(M, Boolean.valueOf(var6)), 3);
-			var1.c(var2.b(), (Block) this);
+			var1.c(var2.getDown(), (Block) this);
 			if (((atl) var3.b(b)).c()) {
-				var1.c(var2.a(), (Block) this);
+				var1.c(var2.getUp(), (Block) this);
 			}
 		}
 

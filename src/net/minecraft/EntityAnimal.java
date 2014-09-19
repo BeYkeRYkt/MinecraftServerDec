@@ -47,7 +47,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimal {
 	}
 
 	public float a(Position var1) {
-		return this.world.getBlockState(var1.b()).getBlock() == Blocks.GRASS ? 10.0F : this.world.o(var1) - 0.5F;
+		return this.world.getBlockState(var1.getDown()).getBlock() == Blocks.GRASS ? 10.0F : this.world.o(var1) - 0.5F;
 	}
 
 	public void b(NBTCompoundTag var1) {
@@ -65,7 +65,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimal {
 		int var2 = MathHelper.toFixedPointInt(this.getBoundingBox().minY);
 		int var3 = MathHelper.toFixedPointInt(this.locationZ);
 		Position var4 = new Position(var1, var2, var3);
-		return this.world.getBlockState(var4.b()).getBlock() == this.bl && this.world.k(var4) > 8 && super.bQ();
+		return this.world.getBlockState(var4.getDown()).getBlock() == this.bl && this.world.k(var4) > 8 && super.bQ();
 	}
 
 	public int w() {

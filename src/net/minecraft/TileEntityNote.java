@@ -1,47 +1,64 @@
 package net.minecraft;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Instrument;
+import org.bukkit.Note;
+import org.bukkit.event.block.NotePlayEvent;
+
 public class TileEntityNote extends TileEntity {
 
-	public byte a;
+	public byte note;
 	public boolean f;
 
-	public void write(NBTCompoundTag var1) {
-		super.write(var1);
-		var1.put("note", this.a);
+	public void write(NBTCompoundTag tag) {
+		super.write(tag);
+		tag.put("note", this.note);
 	}
 
-	public void read(NBTCompoundTag var1) {
-		super.read(var1);
-		this.a = var1.getByte("note");
-		this.a = (byte) MathHelper.a(this.a, 0, 24);
+	public void read(NBTCompoundTag tag) {
+		super.read(tag);
+		this.note = tag.getByte("note");
+		this.note = (byte) MathHelper.a(this.note, 0, 24);
 	}
 
 	public void b() {
-		this.a = (byte) ((this.a + 1) % 25);
+		this.note = (byte) ((this.note + 1) % 25);
 		this.update();
 	}
 
-	public void a(World var1, Position var2) {
-		if (var1.getBlockState(var2.a()).getBlock().getMaterial() == Material.AIR) {
-			Material var3 = var1.getBlockState(var2.b()).getBlock().getMaterial();
-			byte var4 = 0;
-			if (var3 == Material.STONE) {
-				var4 = 1;
+	public void play(WorldServer world, Position position) {
+		if (world.getBlockState(position.getUp()).getBlock().getMaterial() == Material.AIR) {
+			Material material = world.getBlockState(position.getDown()).getBlock().getMaterial();
+			byte instrument = 0;
+			if (material == Material.STONE) {
+				instrument = 1;
 			}
 
-			if (var3 == Material.SAND) {
-				var4 = 2;
+			if (material == Material.SAND) {
+				instrument = 2;
 			}
 
-			if (var3 == Material.SHATTERABLE) {
-				var4 = 3;
+			if (material == Material.SHATTERABLE) {
+				instrument = 3;
 			}
 
-			if (var3 == Material.WOOD) {
-				var4 = 4;
+			if (material == Material.WOOD) {
+				instrument = 4;
 			}
 
-			var1.c(var2, Blocks.NOTEBLOCK, var4, this.a);
+			play(world, position, instrument, note);
 		}
 	}
+
+	@SuppressWarnings("deprecation")
+	public void play(WorldServer world, Position position, byte instrument, byte note) {
+		NotePlayEvent notePlayEventevent = new NotePlayEvent(world.getBukkitWorld().getBlockAt(position.getX(), position.getY(), position.getZ()), Instrument.getByType(instrument), new Note(note));
+		Bukkit.getPluginManager().callEvent(notePlayEventevent);
+		if (notePlayEventevent.isCancelled()) {
+			return;
+		}
+
+		world.playBlockAction(position, Blocks.NOTEBLOCK, notePlayEventevent.getInstrument().getType(), notePlayEventevent.getNote().getId());
+	}
+
 }

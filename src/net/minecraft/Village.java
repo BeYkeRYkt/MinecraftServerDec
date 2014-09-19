@@ -76,7 +76,7 @@ public class Village {
 	}
 
 	private boolean a(Position var1, Position var2) {
-		if (!World.a((ard) this.a, var2.b())) {
+		if (!World.a((ard) this.a, var2.getDown())) {
 			return false;
 		} else {
 			int var3 = var2.getX() - var1.getX() / 2;

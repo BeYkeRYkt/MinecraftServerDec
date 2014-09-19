@@ -23,7 +23,7 @@ public class BlockCrops extends auc implements atz {
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		super.b(var1, var2, var3, var4);
-		if (var1.l(var2.a()) >= 9) {
+		if (var1.l(var2.getUp()) >= 9) {
 			int var5 = ((Integer) var3.b(a)).intValue();
 			if (var5 < 7) {
 				float var6 = a(this, var1, var2);
@@ -46,7 +46,7 @@ public class BlockCrops extends auc implements atz {
 
 	protected static float a(Block var0, World var1, Position var2) {
 		float var3 = 1.0F;
-		Position var4 = var2.b();
+		Position var4 = var2.getDown();
 
 		for (int var5 = -1; var5 <= 1; ++var5) {
 			for (int var6 = -1; var6 <= 1; ++var6) {
@@ -86,7 +86,7 @@ public class BlockCrops extends auc implements atz {
 	}
 
 	public boolean f(World var1, Position var2, IBlockState var3) {
-		return (var1.k(var2) >= 8 || var1.i(var2)) && this.c(var1.getBlockState(var2.b()).getBlock());
+		return (var1.k(var2) >= 8 || var1.i(var2)) && this.c(var1.getBlockState(var2.getDown()).getBlock());
 	}
 
 	protected Item j() {

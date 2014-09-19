@@ -15,7 +15,7 @@ public class BlockCactus extends Block {
 	}
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
-		Position var5 = var2.a();
+		Position var5 = var2.getUp();
 		if (var1.d(var5)) {
 			int var6;
 			for (var6 = 1; var1.getBlockState(var2.c(var6)).getBlock() == this; ++var6) {
@@ -71,7 +71,7 @@ public class BlockCactus extends Block {
 			}
 		}
 
-		Block var5 = var1.getBlockState(var2.b()).getBlock();
+		Block var5 = var1.getBlockState(var2.getDown()).getBlock();
 		return var5 == Blocks.CACTUS || var5 == Blocks.SAND;
 	}
 

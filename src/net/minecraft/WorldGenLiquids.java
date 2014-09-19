@@ -11,9 +11,9 @@ public class WorldGenLiquids extends WorldGenerator {
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
-		if (var1.getBlockState(var3.a()).getBlock() != Blocks.STONE) {
+		if (var1.getBlockState(var3.getUp()).getBlock() != Blocks.STONE) {
 			return false;
-		} else if (var1.getBlockState(var3.b()).getBlock() != Blocks.STONE) {
+		} else if (var1.getBlockState(var3.getDown()).getBlock() != Blocks.STONE) {
 			return false;
 		} else if (var1.getBlockState(var3).getBlock().getMaterial() != Material.AIR && var1.getBlockState(var3).getBlock() != Blocks.STONE) {
 			return false;

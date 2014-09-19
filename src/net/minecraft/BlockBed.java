@@ -145,7 +145,7 @@ public class BlockBed extends avb {
 	}
 
 	protected static boolean d(World var0, Position var1) {
-		return World.a((ard) var0, var1.b()) && !var0.getBlockState(var1).getBlock().getMaterial().isBuildable() && !var0.getBlockState(var1.a()).getBlock().getMaterial().isBuildable();
+		return World.a((ard) var0, var1.getDown()) && !var0.getBlockState(var1).getBlock().getMaterial().isBuildable() && !var0.getBlockState(var1.getUp()).getBlock().getMaterial().isBuildable();
 	}
 
 	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {

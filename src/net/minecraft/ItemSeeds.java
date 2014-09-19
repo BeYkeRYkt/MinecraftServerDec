@@ -16,8 +16,8 @@ public class ItemSeeds extends Item {
 			return false;
 		} else if (!var2.a(var4.getRelative(var5), var5, var1)) {
 			return false;
-		} else if (var3.getBlockState(var4).getBlock() == this.b && var3.d(var4.a())) {
-			var3.a(var4.a(), this.a.getBlockState());
+		} else if (var3.getBlockState(var4).getBlock() == this.b && var3.d(var4.getUp())) {
+			var3.a(var4.getUp(), this.a.getBlockState());
 			--var1.amount;
 			return true;
 		} else {

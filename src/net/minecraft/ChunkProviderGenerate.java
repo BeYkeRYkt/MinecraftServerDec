@@ -351,7 +351,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 		for (var14 = 0; var14 < 16; ++var14) {
 			for (var15 = 0; var15 < 16; ++var15) {
 				Position var18 = this.world.q(var6.a(var14, 0, var15));
-				Position var19 = var18.b();
+				Position var19 = var18.getDown();
 				if (this.world.v(var19)) {
 					this.world.setBlockAt(var19, Blocks.ICE.getBlockState(), 2);
 				}

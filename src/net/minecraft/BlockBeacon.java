@@ -52,7 +52,7 @@ public class BlockBeacon extends atg {
 		TileEntity var5 = var1.getTileEntity(var2);
 		if (var5 instanceof TileEntityBeacon) {
 			((TileEntityBeacon) var5).m();
-			var1.c(var2, this, 1, 0);
+			var1.playBlockAction(var2, this, 1, 0);
 		}
 
 	}

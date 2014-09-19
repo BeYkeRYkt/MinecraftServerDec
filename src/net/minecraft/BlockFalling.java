@@ -31,7 +31,7 @@ public class BlockFalling extends Block {
 	}
 
 	private void e(World var1, Position var2) {
-		if (d(var1, var2.b()) && var2.getY() >= 0) {
+		if (d(var1, var2.getDown()) && var2.getY() >= 0) {
 			byte var3 = 32;
 			if (!instafall && var1.a(var2.a(-var3, -var3, -var3), var2.a(var3, var3, var3))) {
 				if (!var1.isStatic) {
@@ -43,12 +43,12 @@ public class BlockFalling extends Block {
 				var1.g(var2);
 
 				Position var4;
-				for (var4 = var2.b(); d(var1, var4) && var4.getY() > 0; var4 = var4.b()) {
+				for (var4 = var2.getDown(); d(var1, var4) && var4.getY() > 0; var4 = var4.getDown()) {
 					;
 				}
 
 				if (var4.getY() > 0) {
-					var1.a(var4.a(), this.getBlockState());
+					var1.a(var4.getUp(), this.getBlockState());
 				}
 			}
 
