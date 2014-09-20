@@ -19,7 +19,7 @@ public class BlockThin extends Block {
 	}
 
 	public IBlockState a(IBlockState var1, ard var2, Position var3) {
-		return var1.a(b, Boolean.valueOf(this.c(var2.getBlockState(var3.c()).getBlock()))).a(N, Boolean.valueOf(this.c(var2.getBlockState(var3.d()).getBlock()))).a(O, Boolean.valueOf(this.c(var2.getBlockState(var3.e()).getBlock()))).a(M, Boolean.valueOf(this.c(var2.getBlockState(var3.f()).getBlock())));
+		return var1.a(b, Boolean.valueOf(this.c(var2.getBlockState(var3.getNorth()).getBlock()))).a(N, Boolean.valueOf(this.c(var2.getBlockState(var3.getSouth()).getBlock()))).a(O, Boolean.valueOf(this.c(var2.getBlockState(var3.getWest()).getBlock()))).a(M, Boolean.valueOf(this.c(var2.getBlockState(var3.getEast()).getBlock())));
 	}
 
 	public Item a(IBlockState var1, Random var2, int var3) {
@@ -35,10 +35,10 @@ public class BlockThin extends Block {
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
-		boolean var7 = this.c(var1.getBlockState(var2.c()).getBlock());
-		boolean var8 = this.c(var1.getBlockState(var2.d()).getBlock());
-		boolean var9 = this.c(var1.getBlockState(var2.e()).getBlock());
-		boolean var10 = this.c(var1.getBlockState(var2.f()).getBlock());
+		boolean var7 = this.c(var1.getBlockState(var2.getNorth()).getBlock());
+		boolean var8 = this.c(var1.getBlockState(var2.getSouth()).getBlock());
+		boolean var9 = this.c(var1.getBlockState(var2.getWest()).getBlock());
+		boolean var10 = this.c(var1.getBlockState(var2.getEast()).getBlock());
 		if ((!var9 || !var10) && (var9 || var10 || var7 || var8)) {
 			if (var9) {
 				this.a(0.0F, 0.0F, 0.4375F, 0.5F, 1.0F, 0.5625F);
@@ -76,10 +76,10 @@ public class BlockThin extends Block {
 		float var4 = 0.5625F;
 		float var5 = 0.4375F;
 		float var6 = 0.5625F;
-		boolean var7 = this.c(var1.getBlockState(var2.c()).getBlock());
-		boolean var8 = this.c(var1.getBlockState(var2.d()).getBlock());
-		boolean var9 = this.c(var1.getBlockState(var2.e()).getBlock());
-		boolean var10 = this.c(var1.getBlockState(var2.f()).getBlock());
+		boolean var7 = this.c(var1.getBlockState(var2.getNorth()).getBlock());
+		boolean var8 = this.c(var1.getBlockState(var2.getSouth()).getBlock());
+		boolean var9 = this.c(var1.getBlockState(var2.getWest()).getBlock());
+		boolean var10 = this.c(var1.getBlockState(var2.getEast()).getBlock());
 		if ((!var9 || !var10) && (var9 || var10 || var7 || var8)) {
 			if (var9) {
 				var3 = 0.0F;

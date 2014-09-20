@@ -31,44 +31,44 @@ public class atk {
 		this.g.clear();
 		switch (atj.a[var1.ordinal()]) {
 			case 1:
-				this.g.add(this.c.c());
-				this.g.add(this.c.d());
+				this.g.add(this.c.getNorth());
+				this.g.add(this.c.getSouth());
 				break;
 			case 2:
-				this.g.add(this.c.e());
-				this.g.add(this.c.f());
+				this.g.add(this.c.getWest());
+				this.g.add(this.c.getEast());
 				break;
 			case 3:
-				this.g.add(this.c.e());
-				this.g.add(this.c.f().getUp());
+				this.g.add(this.c.getWest());
+				this.g.add(this.c.getEast().getUp());
 				break;
 			case 4:
-				this.g.add(this.c.e().getUp());
-				this.g.add(this.c.f());
+				this.g.add(this.c.getWest().getUp());
+				this.g.add(this.c.getEast());
 				break;
 			case 5:
-				this.g.add(this.c.c().getUp());
-				this.g.add(this.c.d());
+				this.g.add(this.c.getNorth().getUp());
+				this.g.add(this.c.getSouth());
 				break;
 			case 6:
-				this.g.add(this.c.c());
-				this.g.add(this.c.d().getUp());
+				this.g.add(this.c.getNorth());
+				this.g.add(this.c.getSouth().getUp());
 				break;
 			case 7:
-				this.g.add(this.c.f());
-				this.g.add(this.c.d());
+				this.g.add(this.c.getEast());
+				this.g.add(this.c.getSouth());
 				break;
 			case 8:
-				this.g.add(this.c.e());
-				this.g.add(this.c.d());
+				this.g.add(this.c.getWest());
+				this.g.add(this.c.getSouth());
 				break;
 			case 9:
-				this.g.add(this.c.e());
-				this.g.add(this.c.c());
+				this.g.add(this.c.getWest());
+				this.g.add(this.c.getNorth());
 				break;
 			case 10:
-				this.g.add(this.c.f());
-				this.g.add(this.c.c());
+				this.g.add(this.c.getEast());
+				this.g.add(this.c.getNorth());
 		}
 
 	}
@@ -141,10 +141,10 @@ public class atk {
 
 	private void c(atk var1) {
 		this.g.add(var1.c);
-		Position var2 = this.c.c();
-		Position var3 = this.c.d();
-		Position var4 = this.c.e();
-		Position var5 = this.c.f();
+		Position var2 = this.c.getNorth();
+		Position var3 = this.c.getSouth();
+		Position var4 = this.c.getWest();
+		Position var5 = this.c.getEast();
 		boolean var6 = this.c(var2);
 		boolean var7 = this.c(var3);
 		boolean var8 = this.c(var4);
@@ -215,10 +215,10 @@ public class atk {
 	}
 
 	public atk a(boolean var1, boolean var2) {
-		Position var3 = this.c.c();
-		Position var4 = this.c.d();
-		Position var5 = this.c.e();
-		Position var6 = this.c.f();
+		Position var3 = this.c.getNorth();
+		Position var4 = this.c.getSouth();
+		Position var5 = this.c.getWest();
+		Position var6 = this.c.getEast();
 		boolean var7 = this.d(var3);
 		boolean var8 = this.d(var4);
 		boolean var9 = this.d(var5);

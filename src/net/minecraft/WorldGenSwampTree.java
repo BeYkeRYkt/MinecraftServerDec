@@ -91,10 +91,10 @@ public class WorldGenSwampTree extends WorldGenTreeAbstract {
 							for (var11 = var3.getZ() - var9; var11 <= var3.getZ() + var9; ++var11) {
 								Position var21 = new Position(var20, var18, var11);
 								if (var1.getBlockState(var21).getBlock().getMaterial() == Material.LEAVES) {
-									Position var22 = var21.e();
-									var14 = var21.f();
-									Position var15 = var21.c();
-									Position var16 = var21.d();
+									Position var22 = var21.getWest();
+									var14 = var21.getEast();
+									Position var15 = var21.getNorth();
+									Position var16 = var21.getSouth();
 									if (var2.nextInt(4) == 0 && var1.getBlockState(var22).getBlock().getMaterial() == Material.AIR) {
 										this.a(var1, var22, BlockVine.S);
 									}

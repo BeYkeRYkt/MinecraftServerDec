@@ -1373,12 +1373,12 @@ public abstract class Entity implements CommandSenderInterface {
 		} else {
 			byte var15 = 3;
 			double var16 = 9999.0D;
-			if (!this.world.u(var7.e()) && var8 < var16) {
+			if (!this.world.u(var7.getWest()) && var8 < var16) {
 				var16 = var8;
 				var15 = 0;
 			}
 
-			if (!this.world.u(var7.f()) && 1.0D - var8 < var16) {
+			if (!this.world.u(var7.getEast()) && 1.0D - var8 < var16) {
 				var16 = 1.0D - var8;
 				var15 = 1;
 			}
@@ -1388,12 +1388,12 @@ public abstract class Entity implements CommandSenderInterface {
 				var15 = 3;
 			}
 
-			if (!this.world.u(var7.c()) && var12 < var16) {
+			if (!this.world.u(var7.getNorth()) && var12 < var16) {
 				var16 = var12;
 				var15 = 4;
 			}
 
-			if (!this.world.u(var7.d()) && 1.0D - var12 < var16) {
+			if (!this.world.u(var7.getSouth()) && 1.0D - var12 < var16) {
 				var16 = 1.0D - var12;
 				var15 = 5;
 			}

@@ -20,15 +20,15 @@ public class BlockMycel extends Block {
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!var1.isStatic) {
-			if (var1.l(var2.getUp()) < 4 && var1.getBlockState(var2.getUp()).getBlock().n() > 2) {
+			if (var1.getLightLevel(var2.getUp()) < 4 && var1.getBlockState(var2.getUp()).getBlock().n() > 2) {
 				var1.a(var2, Blocks.DIRT.getBlockState().a(BlockDirt.a, avd.a));
 			} else {
-				if (var1.l(var2.getUp()) >= 9) {
+				if (var1.getLightLevel(var2.getUp()) >= 9) {
 					for (int var5 = 0; var5 < 4; ++var5) {
 						Position var6 = var2.a(var4.nextInt(3) - 1, var4.nextInt(5) - 3, var4.nextInt(3) - 1);
 						IBlockState var7 = var1.getBlockState(var6);
 						Block var8 = var1.getBlockState(var6.getUp()).getBlock();
-						if (var7.getBlock() == Blocks.DIRT && var7.b(BlockDirt.a) == avd.a && var1.l(var6.getUp()) >= 4 && var8.n() <= 2) {
+						if (var7.getBlock() == Blocks.DIRT && var7.b(BlockDirt.a) == avd.a && var1.getLightLevel(var6.getUp()) >= 4 && var8.n() <= 2) {
 							var1.a(var6, this.getBlockState());
 						}
 					}

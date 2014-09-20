@@ -289,21 +289,21 @@ public abstract class World implements ard {
 	}
 
 	public void c(Position var1, Block var2) {
-		this.d(var1.e(), var2);
-		this.d(var1.f(), var2);
+		this.d(var1.getWest(), var2);
+		this.d(var1.getEast(), var2);
 		this.d(var1.getDown(), var2);
 		this.d(var1.getUp(), var2);
-		this.d(var1.c(), var2);
-		this.d(var1.d(), var2);
+		this.d(var1.getNorth(), var2);
+		this.d(var1.getSouth(), var2);
 	}
 
 	public void a(Position var1, Block var2, BlockFace var3) {
 		if (var3 != BlockFace.WEST) {
-			this.d(var1.e(), var2);
+			this.d(var1.getWest(), var2);
 		}
 
 		if (var3 != BlockFace.EAST) {
-			this.d(var1.f(), var2);
+			this.d(var1.getEast(), var2);
 		}
 
 		if (var3 != BlockFace.DOWN) {
@@ -315,11 +315,11 @@ public abstract class World implements ard {
 		}
 
 		if (var3 != BlockFace.NORTH) {
-			this.d(var1.c(), var2);
+			this.d(var1.getNorth(), var2);
 		}
 
 		if (var3 != BlockFace.SOUTH) {
-			this.d(var1.d(), var2);
+			this.d(var1.getSouth(), var2);
 		}
 
 	}
@@ -376,22 +376,22 @@ public abstract class World implements ard {
 				var1 = new Position(var1.getX(), 255, var1.getZ());
 			}
 
-			return this.getChunk(var1).a(var1, 0);
+			return this.getChunk(var1).getLightLevel(var1, 0);
 		}
 	}
 
-	public int l(Position var1) {
-		return this.c(var1, true);
+	public int getLightLevel(Position position) {
+		return this.getLightLevel(position, true);
 	}
 
-	public int c(Position var1, boolean var2) {
-		if (var1.getX() >= -30000000 && var1.getZ() >= -30000000 && var1.getX() < 30000000 && var1.getZ() < 30000000) {
-			if (var2 && this.getBlockState(var1).getBlock().q()) {
-				int var8 = this.c(var1.getUp(), false);
-				int var4 = this.c(var1.f(), false);
-				int var5 = this.c(var1.e(), false);
-				int var6 = this.c(var1.d(), false);
-				int var7 = this.c(var1.c(), false);
+	public int getLightLevel(Position position, boolean wholeBlock) {
+		if (position.getX() >= -30000000 && position.getZ() >= -30000000 && position.getX() < 30000000 && position.getZ() < 30000000) {
+			if (wholeBlock && this.getBlockState(position).getBlock().q()) {
+				int var8 = this.getLightLevel(position.getUp(), false);
+				int var4 = this.getLightLevel(position.getEast(), false);
+				int var5 = this.getLightLevel(position.getWest(), false);
+				int var6 = this.getLightLevel(position.getSouth(), false);
+				int var7 = this.getLightLevel(position.getNorth(), false);
 				if (var4 > var8) {
 					var8 = var4;
 				}
@@ -409,15 +409,15 @@ public abstract class World implements ard {
 				}
 
 				return var8;
-			} else if (var1.getY() < 0) {
+			} else if (position.getY() < 0) {
 				return 0;
 			} else {
-				if (var1.getY() >= 256) {
-					var1 = new Position(var1.getX(), 255, var1.getZ());
+				if (position.getY() >= 256) {
+					position = new Position(position.getX(), 255, position.getZ());
 				}
 
-				Chunk var3 = this.getChunk(var1);
-				return var3.a(var1, this.d);
+				Chunk chunk = this.getChunk(position);
+				return chunk.getLightLevel(position, this.d);
 			}
 		} else {
 			return 15;
@@ -463,7 +463,7 @@ public abstract class World implements ard {
 			return var1.lightLevel;
 		} else {
 			Chunk var3 = this.getChunk(var2);
-			return var3.a(var1, var2);
+			return var3.getBrightness(var1, var2);
 		}
 	}
 
@@ -471,7 +471,7 @@ public abstract class World implements ard {
 		if (this.a(var2)) {
 			if (this.isLoaded(var2)) {
 				Chunk var4 = this.getChunk(var2);
-				var4.a(var1, var2, var3);
+				var4.setBrightness(var1, var2, var3);
 				this.n(var2);
 			}
 		}
@@ -485,7 +485,7 @@ public abstract class World implements ard {
 	}
 
 	public float o(Position var1) {
-		return this.worldProvider.p()[this.l(var1)];
+		return this.worldProvider.p()[this.getLightLevel(var1)];
 	}
 
 	public IBlockState getBlockState(Position position) {
@@ -1694,7 +1694,7 @@ public abstract class World implements ard {
 						return true;
 					}
 
-					boolean var7 = this.F(var1.e()) && this.F(var1.f()) && this.F(var1.c()) && this.F(var1.d());
+					boolean var7 = this.F(var1.getWest()) && this.F(var1.getEast()) && this.F(var1.getNorth()) && this.F(var1.getSouth());
 					if (!var7) {
 						return true;
 					}
@@ -1861,11 +1861,11 @@ public abstract class World implements ard {
 						var19 = Math.abs(var13 - var9);
 						boolean var31 = var4 < this.H.length - 6;
 						if (var17 + var18 + var19 < 17 && var31) {
-							if (this.b(var1, var29.e()) < var16) {
+							if (this.b(var1, var29.getWest()) < var16) {
 								this.H[var4++] = var11 - 1 - var7 + 32 + (var12 - var8 + 32 << 6) + (var13 - var9 + 32 << 12);
 							}
 
-							if (this.b(var1, var29.f()) < var16) {
+							if (this.b(var1, var29.getEast()) < var16) {
 								this.H[var4++] = var11 + 1 - var7 + 32 + (var12 - var8 + 32 << 6) + (var13 - var9 + 32 << 12);
 							}
 
@@ -1877,11 +1877,11 @@ public abstract class World implements ard {
 								this.H[var4++] = var11 - var7 + 32 + (var12 + 1 - var8 + 32 << 6) + (var13 - var9 + 32 << 12);
 							}
 
-							if (this.b(var1, var29.c()) < var16) {
+							if (this.b(var1, var29.getNorth()) < var16) {
 								this.H[var4++] = var11 - var7 + 32 + (var12 - var8 + 32 << 6) + (var13 - 1 - var9 + 32 << 12);
 							}
 
-							if (this.b(var1, var29.d()) < var16) {
+							if (this.b(var1, var29.getSouth()) < var16) {
 								this.H[var4++] = var11 - var7 + 32 + (var12 - var8 + 32 << 6) + (var13 + 1 - var9 + 32 << 12);
 							}
 						}
@@ -2061,19 +2061,19 @@ public abstract class World implements ard {
 			if (var3 >= 15) {
 				return var3;
 			} else {
-				var3 = Math.max(var3, this.a(var1.c(), BlockFace.NORTH));
+				var3 = Math.max(var3, this.a(var1.getNorth(), BlockFace.NORTH));
 				if (var3 >= 15) {
 					return var3;
 				} else {
-					var3 = Math.max(var3, this.a(var1.d(), BlockFace.SOUTH));
+					var3 = Math.max(var3, this.a(var1.getSouth(), BlockFace.SOUTH));
 					if (var3 >= 15) {
 						return var3;
 					} else {
-						var3 = Math.max(var3, this.a(var1.e(), BlockFace.WEST));
+						var3 = Math.max(var3, this.a(var1.getWest(), BlockFace.WEST));
 						if (var3 >= 15) {
 							return var3;
 						} else {
-							var3 = Math.max(var3, this.a(var1.f(), BlockFace.EAST));
+							var3 = Math.max(var3, this.a(var1.getEast(), BlockFace.EAST));
 							return var3 >= 15 ? var3 : var3;
 						}
 					}
@@ -2093,7 +2093,7 @@ public abstract class World implements ard {
 	}
 
 	public boolean z(Position var1) {
-		return this.c(var1.getDown(), BlockFace.DOWN) > 0 ? true : (this.c(var1.getUp(), BlockFace.UP) > 0 ? true : (this.c(var1.c(), BlockFace.NORTH) > 0 ? true : (this.c(var1.d(), BlockFace.SOUTH) > 0 ? true : (this.c(var1.e(), BlockFace.WEST) > 0 ? true : this.c(var1.f(), BlockFace.EAST) > 0))));
+		return this.c(var1.getDown(), BlockFace.DOWN) > 0 ? true : (this.c(var1.getUp(), BlockFace.UP) > 0 ? true : (this.c(var1.getNorth(), BlockFace.NORTH) > 0 ? true : (this.c(var1.getSouth(), BlockFace.SOUTH) > 0 ? true : (this.c(var1.getWest(), BlockFace.WEST) > 0 ? true : this.c(var1.getEast(), BlockFace.EAST) > 0))));
 	}
 
 	public int A(Position var1) {

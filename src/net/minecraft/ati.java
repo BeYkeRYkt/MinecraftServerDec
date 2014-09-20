@@ -70,13 +70,13 @@ public abstract class ati extends Block {
 				var6 = true;
 			}
 
-			if (var5 == atl.c && !World.a((ard) var1, var2.f())) {
+			if (var5 == atl.c && !World.a((ard) var1, var2.getEast())) {
 				var6 = true;
-			} else if (var5 == atl.d && !World.a((ard) var1, var2.e())) {
+			} else if (var5 == atl.d && !World.a((ard) var1, var2.getWest())) {
 				var6 = true;
-			} else if (var5 == atl.e && !World.a((ard) var1, var2.c())) {
+			} else if (var5 == atl.e && !World.a((ard) var1, var2.getNorth())) {
 				var6 = true;
-			} else if (var5 == atl.f && !World.a((ard) var1, var2.d())) {
+			} else if (var5 == atl.f && !World.a((ard) var1, var2.getSouth())) {
 				var6 = true;
 			}
 

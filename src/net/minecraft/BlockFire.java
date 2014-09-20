@@ -29,7 +29,7 @@ public class BlockFire extends Block {
 				var9 = var7 ? 1 : 2;
 			}
 
-			return var1.a(N, Boolean.valueOf(this.e(var2, var3.c()))).a(O, Boolean.valueOf(this.e(var2, var3.f()))).a(P, Boolean.valueOf(this.e(var2, var3.d()))).a(Q, Boolean.valueOf(this.e(var2, var3.e()))).a(R, Integer.valueOf(var9)).a(b, Boolean.valueOf(var8)).a(M, Boolean.valueOf(var7));
+			return var1.a(N, Boolean.valueOf(this.e(var2, var3.getNorth()))).a(O, Boolean.valueOf(this.e(var2, var3.getEast()))).a(P, Boolean.valueOf(this.e(var2, var3.getSouth()))).a(Q, Boolean.valueOf(this.e(var2, var3.getWest()))).a(R, Integer.valueOf(var9)).a(b, Boolean.valueOf(var8)).a(M, Boolean.valueOf(var7));
 		} else {
 			return this.getBlockState();
 		}
@@ -147,12 +147,12 @@ public class BlockFire extends Block {
 					var9 = -50;
 				}
 
-				this.a(var1, var2.f(), 300 + var9, var4, var7);
-				this.a(var1, var2.e(), 300 + var9, var4, var7);
+				this.a(var1, var2.getEast(), 300 + var9, var4, var7);
+				this.a(var1, var2.getWest(), 300 + var9, var4, var7);
 				this.a(var1, var2.getDown(), 250 + var9, var4, var7);
 				this.a(var1, var2.getUp(), 250 + var9, var4, var7);
-				this.a(var1, var2.c(), 300 + var9, var4, var7);
-				this.a(var1, var2.d(), 300 + var9, var4, var7);
+				this.a(var1, var2.getNorth(), 300 + var9, var4, var7);
+				this.a(var1, var2.getSouth(), 300 + var9, var4, var7);
 
 				for (int var10 = -1; var10 <= 1; ++var10) {
 					for (int var11 = -1; var11 <= 1; ++var11) {
@@ -190,7 +190,7 @@ public class BlockFire extends Block {
 	}
 
 	protected boolean d(World var1, Position var2) {
-		return var1.C(var2) || var1.C(var2.e()) || var1.C(var2.f()) || var1.C(var2.c()) || var1.C(var2.d());
+		return var1.C(var2) || var1.C(var2.getWest()) || var1.C(var2.getEast()) || var1.C(var2.getNorth()) || var1.C(var2.getSouth());
 	}
 
 	public boolean M() {

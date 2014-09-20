@@ -49,7 +49,7 @@ public class BlockLadder extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return var1.getBlockState(var2.e()).getBlock().t() ? true : (var1.getBlockState(var2.f()).getBlock().t() ? true : (var1.getBlockState(var2.c()).getBlock().t() ? true : var1.getBlockState(var2.d()).getBlock().t()));
+		return var1.getBlockState(var2.getWest()).getBlock().t() ? true : (var1.getBlockState(var2.getEast()).getBlock().t() ? true : (var1.getBlockState(var2.getNorth()).getBlock().t() ? true : var1.getBlockState(var2.getSouth()).getBlock().t()));
 	}
 
 	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {

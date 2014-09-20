@@ -3,6 +3,7 @@ package pipebukkit.server.block;
 import java.util.Collection;
 import java.util.List;
 
+import net.minecraft.EnumSkyBlock;
 import net.minecraft.IBlockState;
 import net.minecraft.Position;
 import net.minecraft.server.MinecraftServer;
@@ -70,18 +71,16 @@ public class PipeBlock implements Block {
 
 	@Override
 	public Biome getBiome() {
-		// TODO Auto-generated method stub
-		return null;
+		return getWorld().getBiome(x, z);
 	}
 
 	@Override
 	public int getBlockPower() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getBlockPower(BlockFace.SELF);
 	}
 
 	@Override
-	public int getBlockPower(BlockFace arg0) {
+	public int getBlockPower(BlockFace face) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -125,26 +124,27 @@ public class PipeBlock implements Block {
 
 	@Override
 	public double getHumidity() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getWorld().getHumidity(x, z);
 	}
 
 	@Override
 	public byte getLightFromBlocks() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (byte) chunk.getHandle().getBrightness(EnumSkyBlock.BLOCK, new Position(getX(), getY(), getZ()));
 	}
 
 	@Override
 	public byte getLightFromSky() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (byte) chunk.getHandle().getBrightness(EnumSkyBlock.SKY, new Position(getX(), getY(), getZ()));
 	}
 
 	@Override
 	public byte getLightLevel() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (byte) chunk.getHandle().getWorld().getLightLevel(new Position(getX(), getY(), getZ()));
+	}
+
+	@Override
+	public double getTemperature() {
+		return getWorld().getTemperature(x, z);
 	}
 
 	@Override
@@ -165,10 +165,10 @@ public class PipeBlock implements Block {
 		return store;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public PistonMoveReaction getPistonMoveReaction() {
-		// TODO Auto-generated method stub
-		return null;
+		return PistonMoveReaction.getById(chunk.getHandle().getBlockAtWorldCoords(x, y, z).getMaterial().getPushReaction());
 	}
 
 	@Override
@@ -233,12 +233,6 @@ public class PipeBlock implements Block {
 				return new PipeBlockState(this);
 			}
 		}
-	}
-
-	@Override
-	public double getTemperature() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -307,8 +301,8 @@ public class PipeBlock implements Block {
 	}
 
 	@Override
-	public void setBiome(Biome arg0) {
-		// TODO Auto-generated method stub
+	public void setBiome(Biome biome) {
+		getWorld().setBiome(x, z, biome);
 	}
 
 	@Override
@@ -350,6 +344,20 @@ public class PipeBlock implements Block {
 			}
 			return success;
 		}
+	}
+
+	@Override
+	public int hashCode() {
+		return y << 24 ^ x ^ z ^ getWorld().hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Block)) {
+			return false;
+		}
+		Block other = (Block) obj;
+		return x == other.getX() && y == other.getY() && z == other.getZ() && getWorld() == other.getWorld();
 	}
 
 }

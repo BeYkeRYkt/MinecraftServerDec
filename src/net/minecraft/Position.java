@@ -64,7 +64,7 @@ public class Position extends fd {
 		return this.a(BlockFace.DOWN, var1);
 	}
 
-	public Position c() {
+	public Position getNorth() {
 		return this.d(1);
 	}
 
@@ -72,7 +72,7 @@ public class Position extends fd {
 		return this.a(BlockFace.NORTH, var1);
 	}
 
-	public Position d() {
+	public Position getSouth() {
 		return this.e(1);
 	}
 
@@ -80,7 +80,7 @@ public class Position extends fd {
 		return this.a(BlockFace.SOUTH, var1);
 	}
 
-	public Position e() {
+	public Position getWest() {
 		return this.f(1);
 	}
 
@@ -88,7 +88,7 @@ public class Position extends fd {
 		return this.a(BlockFace.WEST, var1);
 	}
 
-	public Position f() {
+	public Position getEast() {
 		return this.g(1);
 	}
 

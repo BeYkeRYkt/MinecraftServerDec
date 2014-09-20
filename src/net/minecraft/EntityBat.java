@@ -162,7 +162,7 @@ public class EntityBat extends EntityAmbient {
 		if (var1.getY() >= 63) {
 			return false;
 		} else {
-			int var2 = this.world.l(var1);
+			int var2 = this.world.getLightLevel(var1);
 			byte var3 = 4;
 			if (this.a(this.world.Y())) {
 				var3 = 7;

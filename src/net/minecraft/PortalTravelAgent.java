@@ -95,19 +95,19 @@ public class PortalTravelAgent {
 			double var36 = (double) ((Position) var9).getY() + 0.5D;
 			double var37 = (double) ((Position) var9).getZ() + 0.5D;
 			BlockFace var18 = null;
-			if (this.a.getBlockState(((Position) var9).e()).getBlock() == Blocks.PORTAL) {
+			if (this.a.getBlockState(((Position) var9).getWest()).getBlock() == Blocks.PORTAL) {
 				var18 = BlockFace.NORTH;
 			}
 
-			if (this.a.getBlockState(((Position) var9).f()).getBlock() == Blocks.PORTAL) {
+			if (this.a.getBlockState(((Position) var9).getEast()).getBlock() == Blocks.PORTAL) {
 				var18 = BlockFace.SOUTH;
 			}
 
-			if (this.a.getBlockState(((Position) var9).c()).getBlock() == Blocks.PORTAL) {
+			if (this.a.getBlockState(((Position) var9).getNorth()).getBlock() == Blocks.PORTAL) {
 				var18 = BlockFace.EAST;
 			}
 
-			if (this.a.getBlockState(((Position) var9).d()).getBlock() == Blocks.PORTAL) {
+			if (this.a.getBlockState(((Position) var9).getSouth()).getBlock() == Blocks.PORTAL) {
 				var18 = BlockFace.WEST;
 			}
 

@@ -178,9 +178,9 @@ public class WorldGenBigTree extends WorldGenTreeAbstract {
 		Block var3 = Blocks.LOG;
 		this.a(var1, var2, var3);
 		if (this.g == 2) {
-			this.a(var1.f(), var2.f(), var3);
-			this.a(var1.f().d(), var2.f().d(), var3);
-			this.a(var1.d(), var2.d(), var3);
+			this.a(var1.getEast(), var2.getEast(), var3);
+			this.a(var1.getEast().getSouth(), var2.getEast().getSouth(), var3);
+			this.a(var1.getSouth(), var2.getSouth(), var3);
 		}
 
 	}

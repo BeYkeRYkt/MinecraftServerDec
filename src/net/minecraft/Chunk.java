@@ -468,7 +468,7 @@ public class Chunk {
 						this.d(var3, var4, var5);
 					}
 
-					if (var13 != var14 && (var13 < var14 || this.a(EnumSkyBlock.SKY, position) > 0 || this.a(EnumSkyBlock.BLOCK, position) > 0)) {
+					if (var13 != var14 && (var13 < var14 || this.getBrightness(EnumSkyBlock.SKY, position) > 0 || this.getBrightness(EnumSkyBlock.BLOCK, position) > 0)) {
 						this.d(var3, var5);
 					}
 				}
@@ -503,18 +503,18 @@ public class Chunk {
 		}
 	}
 
-	public int a(EnumSkyBlock var1, Position var2) {
-		int var3 = var2.getX() & 15;
-		int var4 = var2.getY();
-		int var5 = var2.getZ() & 15;
-		ChunkSection var6 = this.chunkSections[var4 >> 4];
-		return var6 == null ? (this.d(var2) ? var1.lightLevel : 0) : (var1 == EnumSkyBlock.SKY ? (this.worldServer.worldProvider.noSkyLight() ? 0 : var6.getSkyLight(var3, var4 & 15, var5)) : (var1 == EnumSkyBlock.BLOCK ? var6.getBlockLight(var3, var4 & 15, var5) : var1.lightLevel));
+	public int getBrightness(EnumSkyBlock enumSkyBlock, Position position) {
+		int x = position.getX() & 15;
+		int y = position.getY();
+		int z = position.getZ() & 15;
+		ChunkSection chunkSection = this.chunkSections[y >> 4];
+		return chunkSection == null ? (this.d(position) ? enumSkyBlock.lightLevel : 0) : (enumSkyBlock == EnumSkyBlock.SKY ? (this.worldServer.worldProvider.noSkyLight() ? 0 : chunkSection.getSkyLight(x, y & 15, z)) : (enumSkyBlock == EnumSkyBlock.BLOCK ? chunkSection.getBlockLight(x, y & 15, z) : enumSkyBlock.lightLevel));
 	}
 
-	public void a(EnumSkyBlock var1, Position var2, int var3) {
-		int var4 = var2.getX() & 15;
-		int var5 = var2.getY();
-		int var6 = var2.getZ() & 15;
+	public void setBrightness(EnumSkyBlock enumSkyBlock, Position position, int brightness) {
+		int var4 = position.getX() & 15;
+		int var5 = position.getY();
+		int var6 = position.getZ() & 15;
 		ChunkSection var7 = this.chunkSections[var5 >> 4];
 		if (var7 == null) {
 			var7 = this.chunkSections[var5 >> 4] = new ChunkSection(var5 >> 4 << 4, !this.worldServer.worldProvider.noSkyLight());
@@ -522,32 +522,32 @@ public class Chunk {
 		}
 
 		this.q = true;
-		if (var1 == EnumSkyBlock.SKY) {
+		if (enumSkyBlock == EnumSkyBlock.SKY) {
 			if (!this.worldServer.worldProvider.noSkyLight()) {
-				var7.setSkyLight(var4, var5 & 15, var6, var3);
+				var7.setSkyLight(var4, var5 & 15, var6, brightness);
 			}
-		} else if (var1 == EnumSkyBlock.BLOCK) {
-			var7.setBlockLight(var4, var5 & 15, var6, var3);
+		} else if (enumSkyBlock == EnumSkyBlock.BLOCK) {
+			var7.setBlockLight(var4, var5 & 15, var6, brightness);
 		}
 
 	}
 
-	public int a(Position var1, int var2) {
-		int var3 = var1.getX() & 15;
-		int var4 = var1.getY();
-		int var5 = var1.getZ() & 15;
-		ChunkSection var6 = this.chunkSections[var4 >> 4];
-		if (var6 == null) {
+	public int getLightLevel(Position position, int var2) {
+		int var3 = position.getX() & 15;
+		int var4 = position.getY();
+		int var5 = position.getZ() & 15;
+		ChunkSection chunkSection = this.chunkSections[var4 >> 4];
+		if (chunkSection == null) {
 			return !this.worldServer.worldProvider.noSkyLight() && var2 < EnumSkyBlock.SKY.lightLevel ? EnumSkyBlock.SKY.lightLevel - var2 : 0;
 		} else {
-			int var7 = this.worldServer.worldProvider.noSkyLight() ? 0 : var6.getSkyLight(var3, var4 & 15, var5);
-			var7 -= var2;
-			int var8 = var6.getBlockLight(var3, var4 & 15, var5);
-			if (var8 > var7) {
-				var7 = var8;
+			int skyLight = this.worldServer.worldProvider.noSkyLight() ? 0 : chunkSection.getSkyLight(var3, var4 & 15, var5);
+			skyLight -= var2;
+			int blockLight = chunkSection.getBlockLight(var3, var4 & 15, var5);
+			if (blockLight > skyLight) {
+				skyLight = blockLight;
 			}
 
-			return var7;
+			return skyLight;
 		}
 	}
 

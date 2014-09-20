@@ -60,9 +60,9 @@ public class WorldGenMegaTree extends WorldGenMegaTreeAbstract {
 	}
 
 	public void a(World var1, Random var2, Position var3) {
-		this.b(var1, var3.e().c());
-		this.b(var1, var3.g(2).c());
-		this.b(var1, var3.e().e(2));
+		this.b(var1, var3.getWest().getNorth());
+		this.b(var1, var3.g(2).getNorth());
+		this.b(var1, var3.getWest().e(2));
 		this.b(var1, var3.g(2).e(2));
 
 		for (int var4 = 0; var4 < 5; ++var4) {

@@ -117,10 +117,10 @@ public class WorldGenTrees extends WorldGenTreeAbstract {
 								for (var13 = var3.getZ() - var11; var13 <= var3.getZ() + var11; ++var13) {
 									Position var23 = new Position(var12, var9, var13);
 									if (var1.getBlockState(var23).getBlock().getMaterial() == Material.LEAVES) {
-										Position var24 = var23.e();
-										var16 = var23.f();
-										Position var25 = var23.c();
-										Position var18 = var23.d();
+										Position var24 = var23.getWest();
+										var16 = var23.getEast();
+										Position var25 = var23.getNorth();
+										Position var18 = var23.getSouth();
 										if (var2.nextInt(4) == 0 && var1.getBlockState(var24).getBlock().getMaterial() == Material.AIR) {
 											this.a(var1, var24, BlockVine.S);
 										}

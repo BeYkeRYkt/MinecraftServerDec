@@ -19,36 +19,36 @@ public class WorldGenLiquids extends WorldGenerator {
 			return false;
 		} else {
 			int var4 = 0;
-			if (var1.getBlockState(var3.e()).getBlock() == Blocks.STONE) {
+			if (var1.getBlockState(var3.getWest()).getBlock() == Blocks.STONE) {
 				++var4;
 			}
 
-			if (var1.getBlockState(var3.f()).getBlock() == Blocks.STONE) {
+			if (var1.getBlockState(var3.getEast()).getBlock() == Blocks.STONE) {
 				++var4;
 			}
 
-			if (var1.getBlockState(var3.c()).getBlock() == Blocks.STONE) {
+			if (var1.getBlockState(var3.getNorth()).getBlock() == Blocks.STONE) {
 				++var4;
 			}
 
-			if (var1.getBlockState(var3.d()).getBlock() == Blocks.STONE) {
+			if (var1.getBlockState(var3.getSouth()).getBlock() == Blocks.STONE) {
 				++var4;
 			}
 
 			int var5 = 0;
-			if (var1.d(var3.e())) {
+			if (var1.d(var3.getWest())) {
 				++var5;
 			}
 
-			if (var1.d(var3.f())) {
+			if (var1.d(var3.getEast())) {
 				++var5;
 			}
 
-			if (var1.d(var3.c())) {
+			if (var1.d(var3.getNorth())) {
 				++var5;
 			}
 
-			if (var1.d(var3.d())) {
+			if (var1.d(var3.getSouth())) {
 				++var5;
 			}
 

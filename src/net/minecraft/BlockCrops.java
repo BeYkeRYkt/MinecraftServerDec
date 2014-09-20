@@ -23,7 +23,7 @@ public class BlockCrops extends auc implements atz {
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		super.b(var1, var2, var3, var4);
-		if (var1.l(var2.getUp()) >= 9) {
+		if (var1.getLightLevel(var2.getUp()) >= 9) {
 			int var5 = ((Integer) var3.b(a)).intValue();
 			if (var5 < 7) {
 				float var6 = a(this, var1, var2);
@@ -67,16 +67,16 @@ public class BlockCrops extends auc implements atz {
 			}
 		}
 
-		Position var12 = var2.c();
-		Position var13 = var2.d();
-		Position var14 = var2.e();
-		Position var15 = var2.f();
+		Position var12 = var2.getNorth();
+		Position var13 = var2.getSouth();
+		Position var14 = var2.getWest();
+		Position var15 = var2.getEast();
 		boolean var9 = var0 == var1.getBlockState(var14).getBlock() || var0 == var1.getBlockState(var15).getBlock();
 		boolean var10 = var0 == var1.getBlockState(var12).getBlock() || var0 == var1.getBlockState(var13).getBlock();
 		if (var9 && var10) {
 			var3 /= 2.0F;
 		} else {
-			boolean var11 = var0 == var1.getBlockState(var14.c()).getBlock() || var0 == var1.getBlockState(var15.c()).getBlock() || var0 == var1.getBlockState(var15.d()).getBlock() || var0 == var1.getBlockState(var14.d()).getBlock();
+			boolean var11 = var0 == var1.getBlockState(var14.getNorth()).getBlock() || var0 == var1.getBlockState(var15.getNorth()).getBlock() || var0 == var1.getBlockState(var15.getSouth()).getBlock() || var0 == var1.getBlockState(var14.getSouth()).getBlock();
 			if (var11) {
 				var3 /= 2.0F;
 			}

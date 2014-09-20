@@ -432,15 +432,15 @@ public abstract class adx extends Entity implements ICustomNameable {
 				this.motionX += this.motionX / var40 * var42;
 				this.motionZ += this.motionZ / var40 * var42;
 			} else if (var9 == atl.b) {
-				if (this.world.getBlockState(var1.e()).getBlock().t()) {
+				if (this.world.getBlockState(var1.getWest()).getBlock().t()) {
 					this.motionX = 0.02D;
-				} else if (this.world.getBlockState(var1.f()).getBlock().t()) {
+				} else if (this.world.getBlockState(var1.getEast()).getBlock().t()) {
 					this.motionX = -0.02D;
 				}
 			} else if (var9 == atl.a) {
-				if (this.world.getBlockState(var1.c()).getBlock().t()) {
+				if (this.world.getBlockState(var1.getNorth()).getBlock().t()) {
 					this.motionZ = 0.02D;
-				} else if (this.world.getBlockState(var1.d()).getBlock().t()) {
+				} else if (this.world.getBlockState(var1.getSouth()).getBlock().t()) {
 					this.motionZ = -0.02D;
 				}
 			}

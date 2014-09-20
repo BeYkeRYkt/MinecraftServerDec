@@ -30,7 +30,7 @@ public class BlockLever extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return this.d(var1, var2.e()) ? true : (this.d(var1, var2.f()) ? true : (this.d(var1, var2.c()) ? true : (this.d(var1, var2.d()) ? true : (World.a((ard) var1, var2.getDown()) ? true : this.d(var1, var2.getUp())))));
+		return this.d(var1, var2.getWest()) ? true : (this.d(var1, var2.getEast()) ? true : (this.d(var1, var2.getNorth()) ? true : (this.d(var1, var2.getSouth()) ? true : (World.a((ard) var1, var2.getDown()) ? true : this.d(var1, var2.getUp())))));
 	}
 
 	protected boolean d(World var1, Position var2) {

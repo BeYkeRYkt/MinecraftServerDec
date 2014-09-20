@@ -27,15 +27,15 @@ public class BlockDispenser extends atg {
 	private void e(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			BlockFace var4 = (BlockFace) var3.b(a);
-			boolean var5 = var1.getBlockState(var2.c()).getBlock().m();
-			boolean var6 = var1.getBlockState(var2.d()).getBlock().m();
+			boolean var5 = var1.getBlockState(var2.getNorth()).getBlock().m();
+			boolean var6 = var1.getBlockState(var2.getSouth()).getBlock().m();
 			if (var4 == BlockFace.NORTH && var5 && !var6) {
 				var4 = BlockFace.SOUTH;
 			} else if (var4 == BlockFace.SOUTH && var6 && !var5) {
 				var4 = BlockFace.NORTH;
 			} else {
-				boolean var7 = var1.getBlockState(var2.e()).getBlock().m();
-				boolean var8 = var1.getBlockState(var2.f()).getBlock().m();
+				boolean var7 = var1.getBlockState(var2.getWest()).getBlock().m();
+				boolean var8 = var1.getBlockState(var2.getEast()).getBlock().m();
 				if (var4 == BlockFace.WEST && var7 && !var8) {
 					var4 = BlockFace.EAST;
 				} else if (var4 == BlockFace.EAST && var8 && !var7) {

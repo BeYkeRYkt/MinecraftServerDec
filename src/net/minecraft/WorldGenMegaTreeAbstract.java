@@ -57,9 +57,9 @@ public abstract class WorldGenMegaTreeAbstract extends WorldGenTreeAbstract {
 		Block var4 = var2.getBlockState(var3).getBlock();
 		if ((var4 == Blocks.GRASS || var4 == Blocks.DIRT) && var1.getY() >= 2) {
 			this.a(var2, var3);
-			this.a(var2, var3.f());
-			this.a(var2, var3.d());
-			this.a(var2, var3.d().f());
+			this.a(var2, var3.getEast());
+			this.a(var2, var3.getSouth());
+			this.a(var2, var3.getSouth().getEast());
 			return true;
 		} else {
 			return false;

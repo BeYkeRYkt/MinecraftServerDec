@@ -40,7 +40,7 @@ public class BlockStem extends auc implements atz {
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		super.b(var1, var2, var3, var4);
-		if (var1.l(var2.getUp()) >= 9) {
+		if (var1.getLightLevel(var2.getUp()) >= 9) {
 			float var5 = BlockCrops.a(this, var1, var2);
 			if (var4.nextInt((int) (25.0F / var5) + 1) == 0) {
 				int var6 = ((Integer) var3.b(a)).intValue();

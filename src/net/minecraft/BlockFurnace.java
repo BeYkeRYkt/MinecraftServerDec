@@ -25,10 +25,10 @@ public class BlockFurnace extends atg {
 
 	private void e(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
-			Block var4 = var1.getBlockState(var2.c()).getBlock();
-			Block var5 = var1.getBlockState(var2.d()).getBlock();
-			Block var6 = var1.getBlockState(var2.e()).getBlock();
-			Block var7 = var1.getBlockState(var2.f()).getBlock();
+			Block var4 = var1.getBlockState(var2.getNorth()).getBlock();
+			Block var5 = var1.getBlockState(var2.getSouth()).getBlock();
+			Block var6 = var1.getBlockState(var2.getWest()).getBlock();
+			Block var7 = var1.getBlockState(var2.getEast()).getBlock();
 			BlockFace var8 = (BlockFace) var3.b(a);
 			if (var8 == BlockFace.NORTH && var4.m() && !var5.m()) {
 				var8 = BlockFace.SOUTH;

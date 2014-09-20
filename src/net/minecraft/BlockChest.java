@@ -31,13 +31,13 @@ public class BlockChest extends atg {
 	}
 
 	public void a(ard var1, Position var2) {
-		if (var1.getBlockState(var2.c()).getBlock() == this) {
+		if (var1.getBlockState(var2.getNorth()).getBlock() == this) {
 			this.a(0.0625F, 0.0F, 0.0F, 0.9375F, 0.875F, 0.9375F);
-		} else if (var1.getBlockState(var2.d()).getBlock() == this) {
+		} else if (var1.getBlockState(var2.getSouth()).getBlock() == this) {
 			this.a(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 1.0F);
-		} else if (var1.getBlockState(var2.e()).getBlock() == this) {
+		} else if (var1.getBlockState(var2.getWest()).getBlock() == this) {
 			this.a(0.0F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
-		} else if (var1.getBlockState(var2.f()).getBlock() == this) {
+		} else if (var1.getBlockState(var2.getEast()).getBlock() == this) {
 			this.a(0.0625F, 0.0F, 0.0625F, 1.0F, 0.875F, 0.9375F);
 		} else {
 			this.a(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
@@ -67,10 +67,10 @@ public class BlockChest extends atg {
 	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
 		BlockFace var6 = BlockFace.fromDirection(MathHelper.toFixedPointInt((double) (var4.yaw * 4.0F / 360.0F) + 0.5D) & 3).getOpposite();
 		var3 = var3.a(a, var6);
-		Position var7 = var2.c();
-		Position var8 = var2.d();
-		Position var9 = var2.e();
-		Position var10 = var2.f();
+		Position var7 = var2.getNorth();
+		Position var8 = var2.getSouth();
+		Position var9 = var2.getWest();
+		Position var10 = var2.getEast();
 		boolean var11 = this == var1.getBlockState(var7).getBlock();
 		boolean var12 = this == var1.getBlockState(var8).getBlock();
 		boolean var13 = this == var1.getBlockState(var9).getBlock();
@@ -108,10 +108,10 @@ public class BlockChest extends atg {
 		if (var1.isStatic) {
 			return var3;
 		} else {
-			IBlockState var4 = var1.getBlockState(var2.c());
-			IBlockState var5 = var1.getBlockState(var2.d());
-			IBlockState var6 = var1.getBlockState(var2.e());
-			IBlockState var7 = var1.getBlockState(var2.f());
+			IBlockState var4 = var1.getBlockState(var2.getNorth());
+			IBlockState var5 = var1.getBlockState(var2.getSouth());
+			IBlockState var6 = var1.getBlockState(var2.getWest());
+			IBlockState var7 = var1.getBlockState(var2.getEast());
 			BlockFace var8 = (BlockFace) var3.b(a);
 			Block var9 = var4.getBlock();
 			Block var10 = var5.getBlock();
@@ -121,9 +121,9 @@ public class BlockChest extends atg {
 				boolean var21 = var9.m();
 				boolean var22 = var10.m();
 				if (var11 == this || var12 == this) {
-					Position var23 = var11 == this ? var2.e() : var2.f();
-					IBlockState var24 = var1.getBlockState(var23.c());
-					IBlockState var25 = var1.getBlockState(var23.d());
+					Position var23 = var11 == this ? var2.getWest() : var2.getEast();
+					IBlockState var24 = var1.getBlockState(var23.getNorth());
+					IBlockState var25 = var1.getBlockState(var23.getSouth());
 					var8 = BlockFace.SOUTH;
 					BlockFace var26;
 					if (var11 == this) {
@@ -147,9 +147,9 @@ public class BlockChest extends atg {
 					}
 				}
 			} else {
-				Position var13 = var9 == this ? var2.c() : var2.d();
-				IBlockState var14 = var1.getBlockState(var13.e());
-				IBlockState var15 = var1.getBlockState(var13.f());
+				Position var13 = var9 == this ? var2.getNorth() : var2.getSouth();
+				IBlockState var14 = var1.getBlockState(var13.getWest());
+				IBlockState var15 = var1.getBlockState(var13.getEast());
 				var8 = BlockFace.EAST;
 				BlockFace var16;
 				if (var9 == this) {
@@ -222,10 +222,10 @@ public class BlockChest extends atg {
 
 	public boolean c(World var1, Position var2) {
 		int var3 = 0;
-		Position var4 = var2.e();
-		Position var5 = var2.f();
-		Position var6 = var2.c();
-		Position var7 = var2.d();
+		Position var4 = var2.getWest();
+		Position var5 = var2.getEast();
+		Position var6 = var2.getNorth();
+		Position var7 = var2.getSouth();
 		if (var1.getBlockState(var4).getBlock() == this) {
 			if (this.e(var1, var4)) {
 				return false;

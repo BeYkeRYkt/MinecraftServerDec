@@ -33,14 +33,14 @@ public class EmptyChunk extends Chunk {
 		return 0;
 	}
 
-	public int a(EnumSkyBlock var1, Position var2) {
+	public int getBrightness(EnumSkyBlock var1, Position var2) {
 		return var1.lightLevel;
 	}
 
-	public void a(EnumSkyBlock var1, Position var2, int var3) {
+	public void setBrightness(EnumSkyBlock var1, Position var2, int var3) {
 	}
 
-	public int a(Position var1, int var2) {
+	public int getLightLevel(Position var1, int var2) {
 		return 0;
 	}
 

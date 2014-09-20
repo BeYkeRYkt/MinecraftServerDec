@@ -829,7 +829,7 @@ public class Block {
 	}
 
 	public int i() {
-		return this.material.m();
+		return this.material.getPushReaction();
 	}
 
 	public void a(World var1, Position var2, Entity var3, float var4) {
