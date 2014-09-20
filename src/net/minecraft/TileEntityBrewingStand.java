@@ -9,22 +9,22 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	private static final int[] a = new int[] { 3 };
 	private static final int[] f = new int[] { 0, 1, 2 };
 	private ItemStack[] items = new ItemStack[4];
-	private int h;
+	private int brewTime;
 	private boolean[] i;
 	private Item j;
-	private String k;
+	private String customName;
 	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
 	public String getName() {
-		return this.hasCustomName() ? this.k : "container.brewing";
+		return this.hasCustomName() ? this.customName : "container.brewing";
 	}
 
 	public boolean hasCustomName() {
-		return this.k != null && this.k.length() > 0;
+		return this.customName != null && this.customName.length() > 0;
 	}
 
 	public void a(String var1) {
-		this.k = var1;
+		this.customName = var1;
 	}
 
 	public int getSize() {
@@ -32,20 +32,20 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	}
 
 	public void doTick() {
-		if (this.h > 0) {
-			--this.h;
-			if (this.h == 0) {
+		if (this.brewTime > 0) {
+			--this.brewTime;
+			if (this.brewTime == 0) {
 				this.o();
 				this.update();
 			} else if (!this.n()) {
-				this.h = 0;
+				this.brewTime = 0;
 				this.update();
 			} else if (this.j != this.items[3].getItem()) {
-				this.h = 0;
+				this.brewTime = 0;
 				this.update();
 			}
 		} else if (this.n()) {
-			this.h = 400;
+			this.brewTime = 400;
 			this.j = this.items[3].getItem();
 		}
 
@@ -137,9 +137,9 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 		return var2 == null ? var1 : (var2.getItem().l(var2) ? PotionBrewer.a(var1, var2.getItem().j(var2)) : var1);
 	}
 
-	public void read(NBTCompoundTag var1) {
-		super.read(var1);
-		NBTListTag var2 = var1.getList("Items", 10);
+	public void read(NBTCompoundTag tag) {
+		super.read(tag);
+		NBTListTag var2 = tag.getList("Items", 10);
 		this.items = new ItemStack[this.getSize()];
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
@@ -150,16 +150,16 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 			}
 		}
 
-		this.h = var1.getShort("BrewTime");
-		if (var1.isTagAssignableFrom("CustomName", 8)) {
-			this.k = var1.getString("CustomName");
+		this.brewTime = tag.getShort("BrewTime");
+		if (tag.isTagAssignableFrom("CustomName", 8)) {
+			this.customName = tag.getString("CustomName");
 		}
 
 	}
 
-	public void write(NBTCompoundTag var1) {
-		super.write(var1);
-		var1.put("BrewTime", (short) this.h);
+	public void write(NBTCompoundTag tag) {
+		super.write(tag);
+		tag.put("BrewTime", (short) this.brewTime);
 		NBTListTag var2 = new NBTListTag();
 
 		for (int var3 = 0; var3 < this.items.length; ++var3) {
@@ -171,9 +171,9 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 			}
 		}
 
-		var1.put("Items", (NBTTag) var2);
+		tag.put("Items", (NBTTag) var2);
 		if (this.hasCustomName()) {
-			var1.put("CustomName", this.k);
+			tag.put("CustomName", this.customName);
 		}
 
 	}
@@ -264,18 +264,13 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	public int getProperty(int var1) {
 		switch (var1) {
 			case 0:
-				return this.h;
+				return this.brewTime;
 			default:
 				return 0;
 		}
 	}
 
-	public void selectBeaconPower(int var1, int var2) {
-		switch (var1) {
-			case 0:
-				this.h = var2;
-			default:
-		}
+	public void readClientCustomInput(int var1, int var2) {
 	}
 
 	public int getPropertiesCount() {
@@ -297,6 +292,14 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	@Override
 	public ItemStack[] getItems() {
 		return items;
+	}
+
+	public int getBrewTime() {
+		return brewTime;
+	}
+
+	public void setBrewTime(int brewTime) {
+		this.brewTime = brewTime;
 	}
 
 }

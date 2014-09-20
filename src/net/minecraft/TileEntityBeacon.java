@@ -266,7 +266,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 		}
 	}
 
-	public void selectBeaconPower(int powerSlot, int power) {
+	public void readClientCustomInput(int powerSlot, int power) {
 		switch (powerSlot) {
 			case 0:
 				this.j = power;

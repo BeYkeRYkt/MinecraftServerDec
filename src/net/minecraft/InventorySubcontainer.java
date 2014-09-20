@@ -159,7 +159,7 @@ public class InventorySubcontainer implements IInventory {
 		return 0;
 	}
 
-	public void selectBeaconPower(int powerSlot, int powerType) {
+	public void readClientCustomInput(int powerSlot, int powerType) {
 	}
 
 	public int getPropertiesCount() {

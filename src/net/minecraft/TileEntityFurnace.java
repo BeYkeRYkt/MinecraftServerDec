@@ -307,7 +307,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 		}
 	}
 
-	public void selectBeaconPower(int var1, int var2) {
+	public void readClientCustomInput(int var1, int var2) {
 	}
 
 	public int getPropertiesCount() {

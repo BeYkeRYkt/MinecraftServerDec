@@ -30,7 +30,7 @@ public interface IInventory extends ICustomNameable {
 
 	public int getProperty(int propertyNumber);
 
-	public void selectBeaconPower(int powerSlot, int powerType);
+	public void readClientCustomInput(int powerSlot, int powerType);
 
 	public int getPropertiesCount();
 

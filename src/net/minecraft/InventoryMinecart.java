@@ -158,7 +158,7 @@ public abstract class InventoryMinecart extends adx implements ILockable {
 		return 0;
 	}
 
-	public void selectBeaconPower(int var1, int var2) {
+	public void readClientCustomInput(int var1, int var2) {
 	}
 
 	public int getPropertiesCount() {

@@ -130,7 +130,7 @@ public class PipeCustomInventory extends PipeInventory {
 		}
 
 		@Override
-		public void selectBeaconPower(int powerSlot, int powerType) {
+		public void readClientCustomInput(int powerSlot, int powerType) {
 		}
 
 		@Override

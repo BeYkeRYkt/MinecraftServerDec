@@ -894,8 +894,8 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 					if (slot.hasItem()) {
 						slot.a(1);
 						IInventory inventory = containerBeacon.getInventory();
-						inventory.selectBeaconPower(1, i1);
-						inventory.selectBeaconPower(2, i2);
+						inventory.readClientCustomInput(1, i1);
+						inventory.readClientCustomInput(2, i2);
 						inventory.update();
 					}
 				} catch (Exception var32) {

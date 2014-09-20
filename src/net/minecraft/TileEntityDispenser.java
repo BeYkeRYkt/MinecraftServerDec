@@ -167,7 +167,7 @@ public class TileEntityDispenser extends TileEntityLockable implements IInventor
 		return 0;
 	}
 
-	public void selectBeaconPower(int var1, int var2) {
+	public void readClientCustomInput(int var1, int var2) {
 	}
 
 	public int getPropertiesCount() {

@@ -218,7 +218,7 @@ public class PipeBlock implements Block {
 				return new PipeJukebox(this);
 			}
 			case BREWING_STAND: {
-				//TODO
+				return new PipeBrewingStand(this);
 			}
 			case SKULL: {
 				return new PipeSkull(this);
