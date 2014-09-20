@@ -18,7 +18,7 @@ public class BlockCactus extends Block {
 		Position var5 = var2.getUp();
 		if (var1.d(var5)) {
 			int var6;
-			for (var6 = 1; var1.getBlockState(var2.c(var6)).getBlock() == this; ++var6) {
+			for (var6 = 1; var1.getBlockState(var2.getDown(var6)).getBlock() == this; ++var6) {
 				;
 			}
 

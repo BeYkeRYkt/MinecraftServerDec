@@ -140,9 +140,9 @@ public class WorldGenHugeMushroom extends WorldGenerator {
 					}
 
 					for (var9 = 0; var9 < var5; ++var9) {
-						Block var17 = var1.getBlockState(var3.b(var9)).getBlock();
+						Block var17 = var1.getBlockState(var3.getUp(var9)).getBlock();
 						if (!var17.m()) {
-							this.a(var1, var3.b(var9), Block.getBlockById(Block.getBlockId(Blocks.BROWN_MUSHROOM_BLOCK) + var4), 10);
+							this.a(var1, var3.getUp(var9), Block.getBlockById(Block.getBlockId(Blocks.BROWN_MUSHROOM_BLOCK) + var4), 10);
 						}
 					}
 

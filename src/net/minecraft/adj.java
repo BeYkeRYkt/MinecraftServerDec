@@ -93,7 +93,7 @@ public abstract class adj extends Entity {
 
 			for (int var5 = 0; var5 < var1; ++var5) {
 				for (int var6 = 0; var6 < var2; ++var6) {
-					Position var7 = var3.a(var4, var5).b(var6);
+					Position var7 = var3.getRelative(var4, var5).getUp(var6);
 					Block var8 = this.world.getBlockState(var7).getBlock();
 					if (!var8.getMaterial().isBuildable() && !ava.d(var8)) {
 						return false;

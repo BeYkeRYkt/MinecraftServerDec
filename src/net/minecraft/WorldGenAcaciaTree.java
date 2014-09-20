@@ -86,10 +86,10 @@ public class WorldGenAcaciaTree extends WorldGenTreeAbstract {
 						}
 					}
 
-					this.b(var1, var22.g(2));
-					this.b(var1, var22.f(2));
-					this.b(var1, var22.e(2));
-					this.b(var1, var22.d(2));
+					this.b(var1, var22.getEast(2));
+					this.b(var1, var22.getWest(2));
+					this.b(var1, var22.getSouth(2));
+					this.b(var1, var22.getNorth(2));
 					var10 = var3.getX();
 					var11 = var3.getZ();
 					BlockFace var23 = UniverseDirection.HORIZONTAL.getRandomBlockFace(var2);

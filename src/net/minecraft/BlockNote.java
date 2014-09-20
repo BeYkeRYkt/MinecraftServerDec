@@ -13,7 +13,7 @@ public class BlockNote extends atg {
 	}
 
 	public void a(WorldServer var1, Position var2, IBlockState var3, Block var4) {
-		boolean var5 = var1.z(var2);
+		boolean var5 = var1.isBlockIndirectlyPowered(var2);
 		TileEntity var6 = var1.getTileEntity(var2);
 		if (var6 instanceof TileEntityNote) {
 			TileEntityNote var7 = (TileEntityNote) var6;

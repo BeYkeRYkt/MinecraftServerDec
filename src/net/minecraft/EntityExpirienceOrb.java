@@ -54,7 +54,7 @@ public class EntityExpirienceOrb extends Entity {
 		double var1 = 8.0D;
 		if (this.g < this.a - 20 + this.getId() % 100) {
 			if (this.f == null || this.f.getDistanceSquared(this) > var1 * var1) {
-				this.f = this.world.a(this, var1);
+				this.f = this.world.findNearbyPlayer(this, var1);
 			}
 
 			this.g = this.a;

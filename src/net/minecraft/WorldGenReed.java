@@ -14,7 +14,7 @@ public class WorldGenReed extends WorldGenerator {
 
 					for (int var8 = 0; var8 < var7; ++var8) {
 						if (Blocks.REEDS.d(var1, var5)) {
-							var1.setBlockAt(var5.b(var8), Blocks.REEDS.getBlockState(), 2);
+							var1.setBlockAt(var5.getUp(var8), Blocks.REEDS.getBlockState(), 2);
 						}
 					}
 				}

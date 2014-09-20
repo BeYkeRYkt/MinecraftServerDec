@@ -125,7 +125,7 @@ public abstract class ath extends Block {
 		var1.c(var2.getDown(), (Block) this);
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return this.e(var3);
 	}
 

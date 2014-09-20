@@ -12,7 +12,7 @@ public class BlockTNT extends Block {
 
 	public void onPlace(World var1, Position var2, IBlockState var3) {
 		super.onPlace(var1, var2, var3);
-		if (var1.z(var2)) {
+		if (var1.isBlockIndirectlyPowered(var2)) {
 			this.d(var1, var2, var3.a(a, Boolean.valueOf(true)));
 			var1.g(var2);
 		}
@@ -20,7 +20,7 @@ public class BlockTNT extends Block {
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
-		if (var1.z(var2)) {
+		if (var1.isBlockIndirectlyPowered(var2)) {
 			this.d(var1, var2, var3.a(a, Boolean.valueOf(true)));
 			var1.g(var2);
 		}

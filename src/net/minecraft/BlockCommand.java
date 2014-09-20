@@ -17,7 +17,7 @@ public class BlockCommand extends atg {
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!var1.isStatic) {
-			boolean var5 = var1.z(var2);
+			boolean var5 = var1.isBlockIndirectlyPowered(var2);
 			boolean var6 = ((Boolean) var3.b(a)).booleanValue();
 			if (var5 && !var6) {
 				var1.setBlockAt(var2, var3.a(a, Boolean.valueOf(true)), 4);

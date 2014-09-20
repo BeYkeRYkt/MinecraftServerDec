@@ -77,9 +77,9 @@ public class WorldGenSwampTree extends WorldGenTreeAbstract {
 					}
 
 					for (var18 = 0; var18 < var4; ++var18) {
-						Block var19 = var1.getBlockState(var3.b(var18)).getBlock();
+						Block var19 = var1.getBlockState(var3.getUp(var18)).getBlock();
 						if (var19.getMaterial() == Material.AIR || var19.getMaterial() == Material.LEAVES || var19 == Blocks.FLOWING_WATER || var19 == Blocks.WATER) {
-							this.a(var1, var3.b(var18), Blocks.LOG);
+							this.a(var1, var3.getUp(var18), Blocks.LOG);
 						}
 					}
 

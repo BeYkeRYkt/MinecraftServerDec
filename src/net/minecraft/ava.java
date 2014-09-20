@@ -47,10 +47,10 @@ public abstract class ava extends avb {
 	}
 
 	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
-		return this.a(var1, var2, var3, var4);
+		return this.getPower(var1, var2, var3, var4);
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return !this.l(var3) ? 0 : (var3.b(N) == var4 ? this.a(var1, var2, var3) : 0);
 	}
 
@@ -99,7 +99,7 @@ public abstract class ava extends avb {
 	protected int f(World var1, Position var2, IBlockState var3) {
 		BlockFace var4 = (BlockFace) var3.b(N);
 		Position var5 = var2.getRelative(var4);
-		int var6 = var1.c(var5, var4);
+		int var6 = var1.getBlockFacePower(var5, var4);
 		if (var6 >= 15) {
 			return var6;
 		} else {
@@ -118,7 +118,7 @@ public abstract class ava extends avb {
 	protected int c(ard var1, Position var2, BlockFace var3) {
 		IBlockState var4 = var1.getBlockState(var2);
 		Block var5 = var4.getBlock();
-		return this.c(var5) ? (var5 == Blocks.REDSTONE_WIRE ? ((Integer) var4.b(BlockRedstoneWire.O)).intValue() : var1.a(var2, var3)) : 0;
+		return this.c(var5) ? (var5 == Blocks.REDSTONE_WIRE ? ((Integer) var4.b(BlockRedstoneWire.O)).intValue() : var1.getBlockPower(var2, var3)) : 0;
 	}
 
 	public boolean isTrappedChest() {

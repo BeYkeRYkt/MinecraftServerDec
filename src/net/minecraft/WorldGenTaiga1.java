@@ -70,9 +70,9 @@ public class WorldGenTaiga1 extends WorldGenTreeAbstract {
 					}
 
 					for (var11 = 0; var11 < var4 - 1; ++var11) {
-						Block var19 = var1.getBlockState(var3.b(var11)).getBlock();
+						Block var19 = var1.getBlockState(var3.getUp(var11)).getBlock();
 						if (var19.getMaterial() == Material.AIR || var19.getMaterial() == Material.LEAVES) {
-							this.a(var1, var3.b(var11), Blocks.LOG, EnumWoodType.b.a());
+							this.a(var1, var3.getUp(var11), Blocks.LOG, EnumWoodType.b.a());
 						}
 					}
 

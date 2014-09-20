@@ -61,7 +61,7 @@ public class arj implements ard {
 		return this.getBlockState(var1).getBlock().getMaterial() == Material.AIR;
 	}
 
-	public int a(Position var1, BlockFace var2) {
+	public int getBlockPower(Position var1, BlockFace var2) {
 		IBlockState var3 = this.getBlockState(var1);
 		return var3.getBlock().b((ard) this, var1, var3, var2);
 	}

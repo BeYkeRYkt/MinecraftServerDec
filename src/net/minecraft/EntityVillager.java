@@ -279,7 +279,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 					this.village.h();
 				}
 			} else {
-				EntityHuman var3 = this.world.a(this, 16.0D);
+				EntityHuman var3 = this.world.findNearbyPlayer(this, 16.0D);
 				if (var3 != null) {
 					this.village.h();
 				}

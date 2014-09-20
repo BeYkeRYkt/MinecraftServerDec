@@ -14,7 +14,7 @@ public class PortalTravelAgent {
 
 	public PortalTravelAgent(WorldServer var1) {
 		this.a = var1;
-		this.b = new Random(var1.J());
+		this.b = new Random(var1.getSeed());
 	}
 
 	public void a(Entity var1, float var2) {

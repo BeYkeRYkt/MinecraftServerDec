@@ -85,7 +85,7 @@ public final class SpawnerCreature {
 												Position var30 = new Position(var23, var24, var25);
 												float var31 = (float) var23 + 0.5F;
 												float var32 = (float) var25 + 0.5F;
-												if (!var1.findNearbyPlayer((double) var31, (double) var24, (double) var32, 24.0D) && var37.c((double) var31, (double) var24, (double) var32) >= 576.0D) {
+												if (!var1.hasNearbyPlayer((double) var31, (double) var24, (double) var32, 24.0D) && var37.c((double) var31, (double) var24, (double) var32) >= 576.0D) {
 													if (var27 == null) {
 														var27 = var1.a(var40, var30);
 														if (var27 == null) {

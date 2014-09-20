@@ -32,7 +32,7 @@ public class aag extends PathfinderGoal {
 			--this.i;
 			return false;
 		} else {
-			this.h = this.a.world.a(this.a, 10.0D);
+			this.h = this.a.world.findNearbyPlayer(this.a, 10.0D);
 			if (this.h == null) {
 				return false;
 			} else {

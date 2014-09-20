@@ -22,7 +22,7 @@ public class BlockDaylightDetector extends atg {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.375F, 1.0F);
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return ((Integer) var3.b(a)).intValue();
 	}
 

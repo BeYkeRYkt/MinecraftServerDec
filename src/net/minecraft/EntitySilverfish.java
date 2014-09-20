@@ -77,7 +77,7 @@ public class EntitySilverfish extends EntityMonster {
 
 	public boolean bQ() {
 		if (super.bQ()) {
-			EntityHuman var1 = this.world.a(this, 5.0D);
+			EntityHuman var1 = this.world.findNearbyPlayer(this, 5.0D);
 			return var1 == null;
 		} else {
 			return false;

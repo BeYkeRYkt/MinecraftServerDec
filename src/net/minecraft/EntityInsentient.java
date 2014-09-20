@@ -332,7 +332,7 @@ public abstract class EntityInsentient extends EntityLiving {
 				}
 
 				if (var2.getItem() == Items.DIAMOND && var1.n() != null) {
-					EntityHuman var9 = this.world.a(var1.n());
+					EntityHuman var9 = this.world.getEntityHuman(var1.n());
 					if (var9 != null) {
 						var9.b((Statistic) AchievementList.x);
 					}
@@ -360,7 +360,7 @@ public abstract class EntityInsentient extends EntityLiving {
 		if (this.bl) {
 			this.aO = 0;
 		} else {
-			EntityHuman var1 = this.world.a(this, -1.0D);
+			EntityHuman var1 = this.world.findNearbyPlayer(this, -1.0D);
 			if (var1 != null) {
 				double var2 = var1.locationX - this.locationX;
 				double var4 = var1.locationY - this.locationY;

@@ -49,59 +49,59 @@ public class Position extends fd {
 	}
 
 	public Position getUp() {
-		return this.b(1);
+		return this.getUp(1);
 	}
 
-	public Position b(int var1) {
-		return this.a(BlockFace.UP, var1);
+	public Position getUp(int var1) {
+		return this.getRelative(BlockFace.UP, var1);
 	}
 
 	public Position getDown() {
-		return this.c(1);
+		return this.getDown(1);
 	}
 
-	public Position c(int var1) {
-		return this.a(BlockFace.DOWN, var1);
+	public Position getDown(int var1) {
+		return this.getRelative(BlockFace.DOWN, var1);
 	}
 
 	public Position getNorth() {
-		return this.d(1);
+		return this.getNorth(1);
 	}
 
-	public Position d(int var1) {
-		return this.a(BlockFace.NORTH, var1);
+	public Position getNorth(int var1) {
+		return this.getRelative(BlockFace.NORTH, var1);
 	}
 
 	public Position getSouth() {
-		return this.e(1);
+		return this.getSouth(1);
 	}
 
-	public Position e(int var1) {
-		return this.a(BlockFace.SOUTH, var1);
+	public Position getSouth(int var1) {
+		return this.getRelative(BlockFace.SOUTH, var1);
 	}
 
 	public Position getWest() {
-		return this.f(1);
+		return this.getWest(1);
 	}
 
-	public Position f(int var1) {
-		return this.a(BlockFace.WEST, var1);
+	public Position getWest(int var1) {
+		return this.getRelative(BlockFace.WEST, var1);
 	}
 
 	public Position getEast() {
-		return this.g(1);
+		return this.getEast(1);
 	}
 
-	public Position g(int var1) {
-		return this.a(BlockFace.EAST, var1);
+	public Position getEast(int var1) {
+		return this.getRelative(BlockFace.EAST, var1);
 	}
 
 	public Position getRelative(BlockFace var1) {
-		return this.a(var1, 1);
+		return this.getRelative(var1, 1);
 	}
 
-	public Position a(BlockFace var1, int var2) {
-		return new Position(this.getX() + var1.g() * var2, this.getY() + var1.h() * var2, this.getZ() + var1.i() * var2);
+	public Position getRelative(BlockFace face, int var2) {
+		return new Position(this.getX() + face.g() * var2, this.getY() + face.h() * var2, this.getZ() + face.i() * var2);
 	}
 
 	public Position c(fd var1) {

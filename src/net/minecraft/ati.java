@@ -94,7 +94,7 @@ public abstract class ati extends Block {
 	}
 
 	protected IBlockState a(World var1, Position var2, IBlockState var3, boolean var4) {
-		return var1.isStatic ? var3 : (new atk(this, var1, var2, var3)).a(var1.z(var2), var4).b();
+		return var1.isStatic ? var3 : (new atk(this, var1, var2, var3)).a(var1.isBlockIndirectlyPowered(var2), var4).b();
 	}
 
 	public int i() {

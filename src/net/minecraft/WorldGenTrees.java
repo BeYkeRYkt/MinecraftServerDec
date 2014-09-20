@@ -85,9 +85,9 @@ public class WorldGenTrees extends WorldGenTreeAbstract {
 					}
 
 					for (var9 = 0; var9 < var4; ++var9) {
-						Block var21 = var1.getBlockState(var3.b(var9)).getBlock();
+						Block var21 = var1.getBlockState(var3.getUp(var9)).getBlock();
 						if (var21.getMaterial() == Material.AIR || var21.getMaterial() == Material.LEAVES || var21.getMaterial() == Material.REPLACEABLE_PLANT) {
-							this.a(var1, var3.b(var9), Blocks.LOG, this.c);
+							this.a(var1, var3.getUp(var9), Blocks.LOG, this.c);
 							if (this.b && var9 > 0) {
 								if (var2.nextInt(3) > 0 && var1.d(var3.a(-1, var9, 0))) {
 									this.a(var1, var3.a(-1, var9, 0), Blocks.VINE, BlockVine.S);

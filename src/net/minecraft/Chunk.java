@@ -370,7 +370,7 @@ public class Chunk {
 	}
 
 	public IBlockState getBlockState(Position position) {
-		if (this.worldServer.G() == LevelType.DEBUG) {
+		if (this.worldServer.getLevelType() == LevelType.DEBUG) {
 			IBlockState blockstate = null;
 			if (position.getY() == 60) {
 				blockstate = Blocks.BARRIER.getBlockState();
@@ -748,7 +748,7 @@ public class Chunk {
 	}
 
 	public Random a(long var1) {
-		return new Random(this.worldServer.J() + (long) (this.x * this.x * 4987142) + (long) (this.x * 5947611) + (long) (this.z * this.z) * 4392871L + (long) (this.z * 389711) ^ var1);
+		return new Random(this.worldServer.getSeed() + (long) (this.x * this.x * 4987142) + (long) (this.x * 5947611) + (long) (this.z * this.z) * 4392871L + (long) (this.z * 389711) ^ var1);
 	}
 
 	public boolean f() {
@@ -976,7 +976,7 @@ public class Chunk {
 					while (var5.hasNext()) {
 						BlockFace var6 = (BlockFace) var5.next();
 						int var4 = var6.c() == em.a ? 16 : 1;
-						this.worldServer.getChunk(var1.a(var6, var4)).a(var6.getOpposite());
+						this.worldServer.getChunk(var1.getRelative(var6, var4)).a(var6.getOpposite());
 					}
 
 					this.y();

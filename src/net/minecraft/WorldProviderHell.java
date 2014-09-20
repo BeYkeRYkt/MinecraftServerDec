@@ -20,7 +20,7 @@ public class WorldProviderHell extends WorldProvider {
 	}
 
 	public IChunkProvider getChunkProvider() {
-		return new ChunkProviderHell(this.world, this.world.getWorldData().isMapFeauturesEnabled(), this.world.J());
+		return new ChunkProviderHell(this.world, this.world.getWorldData().isMapFeauturesEnabled(), this.world.getSeed());
 	}
 
 	public boolean canSpawn(int x, int z) {

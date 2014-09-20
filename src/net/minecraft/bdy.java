@@ -21,7 +21,7 @@ public class bdy {
 			this.c = var2.getRelative(var3);
 		} else {
 			this.d = var3.getOpposite();
-			this.c = var2.a(var3, 2);
+			this.c = var2.getRelative(var3, 2);
 		}
 
 	}
@@ -67,7 +67,7 @@ public class bdy {
 				return false;
 			} else {
 				while (var2 == Blocks.SLIME) {
-					Position var4 = var1.a(this.d.getOpposite(), var3);
+					Position var4 = var1.getRelative(this.d.getOpposite(), var3);
 					var2 = this.a.getBlockState(var4).getBlock();
 					if (var2.getMaterial() == Material.AIR || !BlockPiston.a(var2, this.a, var4, this.d, false) || var4.equals(this.b)) {
 						break;
@@ -83,14 +83,14 @@ public class bdy {
 
 				int var5;
 				for (var5 = var3 - 1; var5 >= 0; --var5) {
-					this.e.add(var1.a(this.d.getOpposite(), var5));
+					this.e.add(var1.getRelative(this.d.getOpposite(), var5));
 					++var10;
 				}
 
 				var5 = 1;
 
 				while (true) {
-					Position var6 = var1.a(this.d, var5);
+					Position var6 = var1.getRelative(this.d, var5);
 					int var7 = this.e.indexOf(var6);
 					if (var7 > -1) {
 						this.a(var10, var7);

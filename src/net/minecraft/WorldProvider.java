@@ -49,7 +49,7 @@ public abstract class WorldProvider {
 	}
 
 	public IChunkProvider getChunkProvider() {
-		return (IChunkProvider) (this.levelType == LevelType.FLAT ? new ChunkProviderFlat(this.world, this.world.J(), this.world.getWorldData().isMapFeauturesEnabled(), this.generatorOptions) : (this.levelType == LevelType.DEBUG ? new ChunkProviderDebug(this.world) : (this.levelType == LevelType.CUSTOM ? new ChunkProviderGenerate(this.world, this.world.J(), this.world.getWorldData().isMapFeauturesEnabled(), this.generatorOptions) : new ChunkProviderGenerate(this.world, this.world.J(), this.world.getWorldData().isMapFeauturesEnabled(), this.generatorOptions))));
+		return (IChunkProvider) (this.levelType == LevelType.FLAT ? new ChunkProviderFlat(this.world, this.world.getSeed(), this.world.getWorldData().isMapFeauturesEnabled(), this.generatorOptions) : (this.levelType == LevelType.DEBUG ? new ChunkProviderDebug(this.world) : (this.levelType == LevelType.CUSTOM ? new ChunkProviderGenerate(this.world, this.world.getSeed(), this.world.getWorldData().isMapFeauturesEnabled(), this.generatorOptions) : new ChunkProviderGenerate(this.world, this.world.getSeed(), this.world.getWorldData().isMapFeauturesEnabled(), this.generatorOptions))));
 	}
 
 	public boolean canSpawn(int x, int y) {

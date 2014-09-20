@@ -3,6 +3,8 @@ package pipebukkit.server.block;
 import java.util.Collection;
 import java.util.List;
 
+import net.minecraft.BlockRedstoneWire;
+import net.minecraft.Blocks;
 import net.minecraft.EnumSkyBlock;
 import net.minecraft.IBlockState;
 import net.minecraft.Position;
@@ -75,14 +77,8 @@ public class PipeBlock implements Block {
 	}
 
 	@Override
-	public int getBlockPower() {
-		return getBlockPower(BlockFace.SELF);
-	}
-
-	@Override
-	public int getBlockPower(BlockFace face) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setBiome(Biome biome) {
+		getWorld().setBiome(x, z, biome);
 	}
 
 	@Override
@@ -92,7 +88,7 @@ public class PipeBlock implements Block {
 
 	@Override
 	public byte getData() {
-		return (byte) chunk.getHandle().getBlockDataAt(new Position(x, y, z));
+		return (byte) chunk.getHandle().getBlockDataAt(getPosition());
 	}
 
 	@Override
@@ -129,17 +125,17 @@ public class PipeBlock implements Block {
 
 	@Override
 	public byte getLightFromBlocks() {
-		return (byte) chunk.getHandle().getBrightness(EnumSkyBlock.BLOCK, new Position(getX(), getY(), getZ()));
+		return (byte) chunk.getHandle().getBrightness(EnumSkyBlock.BLOCK, getPosition());
 	}
 
 	@Override
 	public byte getLightFromSky() {
-		return (byte) chunk.getHandle().getBrightness(EnumSkyBlock.SKY, new Position(getX(), getY(), getZ()));
+		return (byte) chunk.getHandle().getBrightness(EnumSkyBlock.SKY, getPosition());
 	}
 
 	@Override
 	public byte getLightLevel() {
-		return (byte) chunk.getHandle().getWorld().getLightLevel(new Position(getX(), getY(), getZ()));
+		return (byte) chunk.getHandle().getWorld().getLightLevel(getPosition());
 	}
 
 	@Override
@@ -267,30 +263,6 @@ public class PipeBlock implements Block {
 	}
 
 	@Override
-	public boolean isBlockFaceIndirectlyPowered(BlockFace arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isBlockFacePowered(BlockFace arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isBlockIndirectlyPowered() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isBlockPowered() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean isEmpty() {
 		return getType() == Material.AIR;
 	}
@@ -298,11 +270,6 @@ public class PipeBlock implements Block {
 	@Override
 	public boolean isLiquid() {
 		return chunk.getHandle().getBlockAtWorldCoords(x, y, z).getMaterial().isLiquid();
-	}
-
-	@Override
-	public void setBiome(Biome biome) {
-		getWorld().setBiome(x, z, biome);
 	}
 
 	@Override
@@ -347,6 +314,66 @@ public class PipeBlock implements Block {
 	}
 
 	@Override
+	public int getBlockPower() {
+		return getBlockPower(BlockFace.SELF);
+	}
+
+	@Override
+	public int getBlockPower(BlockFace face) {
+		//TODO: check this
+		int power = 0;
+		BlockRedstoneWire redstonewire = Blocks.REDSTONE_WIRE;
+		net.minecraft.World nmsWorld = chunk.getHandle().getWorld();
+		if ((face == BlockFace.DOWN || face == BlockFace.SELF) && nmsWorld.isBlockFacePowered(getPosition().getDown(), net.minecraft.BlockFace.DOWN)) {
+			power = redstonewire.getPower(nmsWorld, getPosition().getDown(), power);
+		}
+		if ((face == BlockFace.UP || face == BlockFace.SELF) && nmsWorld.isBlockFacePowered(getPosition().getUp(), net.minecraft.BlockFace.UP)) {
+			power = redstonewire.getPower(nmsWorld, getPosition().getUp(), power);
+		}
+		if ((face == BlockFace.EAST || face == BlockFace.SELF) && nmsWorld.isBlockFacePowered(getPosition().getEast(), net.minecraft.BlockFace.EAST)) {
+			power = redstonewire.getPower(nmsWorld, getPosition().getEast(), power);
+		}
+		if ((face == BlockFace.WEST || face == BlockFace.SELF) && nmsWorld.isBlockFacePowered(getPosition().getWest(), net.minecraft.BlockFace.WEST)) {
+			power = redstonewire.getPower(nmsWorld, getPosition().getWest(), power);
+		}
+		if ((face == BlockFace.NORTH || face == BlockFace.SELF) && nmsWorld.isBlockFacePowered(getPosition().getNorth(), net.minecraft.BlockFace.NORTH)) {
+			power = redstonewire.getPower(nmsWorld, getPosition().getNorth(), power);
+		}
+		if ((face == BlockFace.SOUTH || face == BlockFace.SELF) && nmsWorld.isBlockFacePowered(getPosition().getSouth(), net.minecraft.BlockFace.SOUTH)) {
+			power = redstonewire.getPower(nmsWorld, getPosition().getSouth(), power);
+		}
+		return power > 0 ? power : (face == BlockFace.SELF ? isBlockIndirectlyPowered() : isBlockFaceIndirectlyPowered(face)) ? 15 : 0;
+	}
+
+	@Override
+	public boolean isBlockIndirectlyPowered() {
+		return chunk.getHandle().getWorld().isBlockIndirectlyPowered(getPosition());
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public boolean isBlockFaceIndirectlyPowered(BlockFace face) {
+		//TODO: check this
+		int power = chunk.getHandle().getWorld().getBlockFacePower(getPosition(), net.minecraft.BlockFace.valueOf(face.name()));
+		Block relative = getRelative(face);
+		if (relative.getType() == Material.REDSTONE_WIRE) {
+			return Math.max(power, relative.getData()) > 0;
+		}
+		return power > 0;
+	}
+
+	@Override
+	public boolean isBlockFacePowered(BlockFace face) {
+		//TODO: check this
+		return chunk.getHandle().getWorld().getBlockFacePower(getPosition(), net.minecraft.BlockFace.valueOf(face.name())) > 0;
+	}
+
+	@Override
+	public boolean isBlockPowered() {
+		return chunk.getHandle().getWorld().getBlockPower(getPosition()) > 0;
+	}
+
+	@Override
 	public int hashCode() {
 		return y << 24 ^ x ^ z ^ getWorld().hashCode();
 	}
@@ -359,5 +386,9 @@ public class PipeBlock implements Block {
 		Block other = (Block) obj;
 		return x == other.getX() && y == other.getY() && z == other.getZ() && getWorld() == other.getWorld();
 	}
+
+	private Position getPosition() {
+		return new Position(getX(), getY(), getZ());
+	} 
 
 }

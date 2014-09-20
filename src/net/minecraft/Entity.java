@@ -781,7 +781,7 @@ public abstract class Entity implements CommandSenderInterface {
 		if (this.world.isLoaded(var2)) {
 			double var3 = (this.getBoundingBox().maxY - this.getBoundingBox().minY) * 0.66D;
 			int var5 = MathHelper.toFixedPointInt(this.locationY + var3);
-			return this.world.o(var2.b(var5));
+			return this.world.o(var2.getUp(var5));
 		} else {
 			return 0.0F;
 		}

@@ -92,7 +92,7 @@ public class BlockTripwireHook extends Block {
 
 		Position var17;
 		for (int var16 = 1; var16 < 42; ++var16) {
-			var17 = var2.a(var8, var16);
+			var17 = var2.getRelative(var8, var16);
 			IBlockState var18 = var1.getBlockState(var17);
 			if (var18.getBlock() == Blocks.TRIPWIRE_HOOK) {
 				if (var18.b(a) == var8.getOpposite()) {
@@ -126,7 +126,7 @@ public class BlockTripwireHook extends Block {
 		var13 &= var12;
 		IBlockState var22 = this.getBlockState().a(M, Boolean.valueOf(var12)).a(b, Boolean.valueOf(var13));
 		if (var14 > 0) {
-			var17 = var2.a(var8, var14);
+			var17 = var2.getRelative(var8, var14);
 			BlockFace var24 = var8.getOpposite();
 			var1.setBlockAt(var17, var22.a(a, var24), 3);
 			this.b(var1, var17, var24);
@@ -143,7 +143,7 @@ public class BlockTripwireHook extends Block {
 
 		if (var9 != var12) {
 			for (int var23 = 1; var23 < var14; ++var23) {
-				Position var25 = var2.a(var8, var23);
+				Position var25 = var2.getRelative(var8, var23);
 				IBlockState var26 = var15[var23];
 				if (var26 != null && var1.getBlockState(var25).getBlock() != Blocks.AIR) {
 					var1.setBlockAt(var25, var26.a(M, Boolean.valueOf(var12)), 3);
@@ -221,7 +221,7 @@ public class BlockTripwireHook extends Block {
 		super.remove(var1, var2, var3);
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return ((Boolean) var3.b(b)).booleanValue() ? 15 : 0;
 	}
 

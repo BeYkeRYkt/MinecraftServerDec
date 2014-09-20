@@ -36,7 +36,7 @@ public class TileEntityEnchantTable extends TileEntity implements ITickable, vv 
 	public void doTick() {
 		this.k = this.j;
 		this.m = this.l;
-		EntityHuman var1 = this.world.a((double) ((float) this.position.getX() + 0.5F), (double) ((float) this.position.getY() + 0.5F), (double) ((float) this.position.getZ() + 0.5F), 3.0D);
+		EntityHuman var1 = this.world.findNearbyPlayer((double) ((float) this.position.getX() + 0.5F), (double) ((float) this.position.getY() + 0.5F), (double) ((float) this.position.getZ() + 0.5F), 3.0D);
 		if (var1 != null) {
 			double var2 = var1.locationX - (double) ((float) this.position.getX() + 0.5F);
 			double var4 = var1.locationZ - (double) ((float) this.position.getZ() + 0.5F);

@@ -184,7 +184,7 @@ public class PersistentVillage extends bqc {
 		int var4 = 0;
 
 		for (int var5 = 1; var5 <= 5; ++var5) {
-			if (this.b.i(var1.a(var2, var5))) {
+			if (this.b.i(var1.getRelative(var2, var5))) {
 				++var4;
 				if (var4 >= var3) {
 					return var4;

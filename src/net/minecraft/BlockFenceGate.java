@@ -80,7 +80,7 @@ public class BlockFenceGate extends avb {
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!var1.isStatic) {
-			boolean var5 = var1.z(var2);
+			boolean var5 = var1.isBlockIndirectlyPowered(var2);
 			if (var5 || var4.isTrappedChest()) {
 				if (var5 && !((Boolean) var3.b(a)).booleanValue() && !((Boolean) var3.b(b)).booleanValue()) {
 					var1.setBlockAt(var2, var3.a(a, Boolean.valueOf(true)).a(b, Boolean.valueOf(true)), 2);

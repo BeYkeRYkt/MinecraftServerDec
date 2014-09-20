@@ -56,7 +56,7 @@ public class EntityPigZombie extends EntityZombie {
 		}
 
 		if (this.bl > 0 && this.bn != null && this.bc() == null) {
-			EntityHuman var2 = this.world.b(this.bn);
+			EntityHuman var2 = this.world.getEntityHuman(this.bn);
 			this.b((EntityLiving) var2);
 			this.aL = var2;
 			this.aM = this.bd();
@@ -90,7 +90,7 @@ public class EntityPigZombie extends EntityZombie {
 		String var2 = var1.getString("HurtBy");
 		if (var2.length() > 0) {
 			this.bn = UUID.fromString(var2);
-			EntityHuman var3 = this.world.b(this.bn);
+			EntityHuman var3 = this.world.getEntityHuman(this.bn);
 			this.b((EntityLiving) var3);
 			if (var3 != null) {
 				this.aL = var3;

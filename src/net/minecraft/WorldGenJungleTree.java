@@ -13,7 +13,7 @@ public class WorldGenJungleTree extends WorldGenMegaTreeAbstract {
 		if (!this.a(var1, var2, var3, var4)) {
 			return false;
 		} else {
-			this.c(var1, var3.b(var4), 2);
+			this.c(var1, var3.getUp(var4), 2);
 
 			for (int var5 = var3.getY() + var4 - 2 - var2.nextInt(4); var5 > var3.getY() + var4 / 2; var5 -= 2 + var2.nextInt(4)) {
 				float var6 = var2.nextFloat() * 3.1415927F * 2.0F;
@@ -37,7 +37,7 @@ public class WorldGenJungleTree extends WorldGenMegaTreeAbstract {
 			}
 
 			for (int var13 = 0; var13 < var4; ++var13) {
-				Position var14 = var3.b(var13);
+				Position var14 = var3.getUp(var13);
 				if (this.a(var1.getBlockState(var14).getBlock().getMaterial())) {
 					this.a(var1, var14, Blocks.LOG, this.b);
 					if (var13 > 0) {
@@ -95,7 +95,7 @@ public class WorldGenJungleTree extends WorldGenMegaTreeAbstract {
 		byte var4 = 2;
 
 		for (int var5 = -var4; var5 <= 0; ++var5) {
-			this.a(var1, var2.b(var5), var3 + 1 - var5);
+			this.a(var1, var2.getUp(var5), var3 + 1 - var5);
 		}
 
 	}

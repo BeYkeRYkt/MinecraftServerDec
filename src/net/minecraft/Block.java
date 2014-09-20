@@ -748,7 +748,7 @@ public class Block {
 		return this.G;
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return 0;
 	}
 

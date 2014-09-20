@@ -16,7 +16,7 @@ public class yr extends PathfinderGoal {
 	}
 
 	public boolean a() {
-		this.b = this.c.a(this.a, (double) this.d);
+		this.b = this.c.findNearbyPlayer(this.a, (double) this.d);
 		return this.b == null ? false : this.a(this.b);
 	}
 

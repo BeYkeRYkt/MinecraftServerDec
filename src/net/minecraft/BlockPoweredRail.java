@@ -91,13 +91,13 @@ public class BlockPoweredRail extends ati {
 			return false;
 		} else {
 			atl var7 = (atl) var6.b(b);
-			return var5 == atl.b && (var7 == atl.a || var7 == atl.e || var7 == atl.f) ? false : (var5 == atl.a && (var7 == atl.b || var7 == atl.c || var7 == atl.d) ? false : (((Boolean) var6.b(M)).booleanValue() ? (var1.z(var2) ? true : this.a(var1, var2, var6, var3, var4 + 1)) : false));
+			return var5 == atl.b && (var7 == atl.a || var7 == atl.e || var7 == atl.f) ? false : (var5 == atl.a && (var7 == atl.b || var7 == atl.c || var7 == atl.d) ? false : (((Boolean) var6.b(M)).booleanValue() ? (var1.isBlockIndirectlyPowered(var2) ? true : this.a(var1, var2, var6, var3, var4 + 1)) : false));
 		}
 	}
 
 	protected void b(World var1, Position var2, IBlockState var3, Block var4) {
 		boolean var5 = ((Boolean) var3.b(M)).booleanValue();
-		boolean var6 = var1.z(var2) || this.a(var1, var2, var3, true, 0) || this.a(var1, var2, var3, false, 0);
+		boolean var6 = var1.isBlockIndirectlyPowered(var2) || this.a(var1, var2, var3, true, 0) || this.a(var1, var2, var3, false, 0);
 		if (var6 != var5) {
 			var1.setBlockAt(var2, var3.a(M, Boolean.valueOf(var6)), 3);
 			var1.c(var2.getDown(), (Block) this);

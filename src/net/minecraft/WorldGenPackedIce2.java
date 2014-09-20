@@ -12,11 +12,11 @@ public class WorldGenPackedIce2 extends WorldGenerator {
 		if (var1.getBlockState(var3).getBlock() != Blocks.SNOW) {
 			return false;
 		} else {
-			var3 = var3.b(var2.nextInt(4));
+			var3 = var3.getUp(var2.nextInt(4));
 			int var4 = var2.nextInt(4) + 7;
 			int var5 = var4 / 4 + var2.nextInt(2);
 			if (var5 > 1 && var2.nextInt(60) == 0) {
-				var3 = var3.b(10 + var2.nextInt(30));
+				var3 = var3.getUp(10 + var2.nextInt(30));
 			}
 
 			int var6;
@@ -72,7 +72,7 @@ public class WorldGenPackedIce2 extends WorldGenerator {
 								var15 = var15.getDown();
 								--var16;
 								if (var16 <= 0) {
-									var15 = var15.c(var2.nextInt(5) + 1);
+									var15 = var15.getDown(var2.nextInt(5) + 1);
 									var16 = var2.nextInt(5);
 								}
 								continue;

@@ -83,7 +83,7 @@ public class BlockDispenser extends atg {
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
-		boolean var5 = var1.z(var2) || var1.z(var2.getUp());
+		boolean var5 = var1.isBlockIndirectlyPowered(var2) || var1.isBlockIndirectlyPowered(var2.getUp());
 		boolean var6 = ((Boolean) var3.b(b)).booleanValue();
 		if (var5 && !var6) {
 			var1.a(var2, (Block) this, this.a(var1));

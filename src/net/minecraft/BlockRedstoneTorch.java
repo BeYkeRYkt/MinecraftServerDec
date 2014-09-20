@@ -72,13 +72,13 @@ public class BlockRedstoneTorch extends BlockTorch {
 
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return this.M && var3.b(a) != var4 ? 15 : 0;
 	}
 
 	private boolean g(World var1, Position var2, IBlockState var3) {
 		BlockFace var4 = ((BlockFace) var3.b(a)).getOpposite();
-		return var1.b(var2.getRelative(var4), var4);
+		return var1.isBlockFacePowered(var2.getRelative(var4), var4);
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Random var4) {
@@ -124,7 +124,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 	}
 
 	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
-		return var4 == BlockFace.DOWN ? this.a(var1, var2, var3, var4) : 0;
+		return var4 == BlockFace.DOWN ? this.getPower(var1, var2, var3, var4) : 0;
 	}
 
 	public Item a(IBlockState var1, Random var2, int var3) {

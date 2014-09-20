@@ -17,9 +17,9 @@ public class BlockRedstoneLamp extends Block {
 
 	public void onPlace(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
-			if (this.a && !var1.z(var2)) {
+			if (this.a && !var1.isBlockIndirectlyPowered(var2)) {
 				var1.setBlockAt(var2, Blocks.REDSTONE_LAMP.getBlockState(), 2);
-			} else if (!this.a && var1.z(var2)) {
+			} else if (!this.a && var1.isBlockIndirectlyPowered(var2)) {
 				var1.setBlockAt(var2, Blocks.LIT_REDSTONE_LAMP.getBlockState(), 2);
 			}
 
@@ -28,9 +28,9 @@ public class BlockRedstoneLamp extends Block {
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!var1.isStatic) {
-			if (this.a && !var1.z(var2)) {
+			if (this.a && !var1.isBlockIndirectlyPowered(var2)) {
 				var1.a(var2, (Block) this, 4);
-			} else if (!this.a && var1.z(var2)) {
+			} else if (!this.a && var1.isBlockIndirectlyPowered(var2)) {
 				var1.setBlockAt(var2, Blocks.LIT_REDSTONE_LAMP.getBlockState(), 2);
 			}
 
@@ -39,7 +39,7 @@ public class BlockRedstoneLamp extends Block {
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!var1.isStatic) {
-			if (this.a && !var1.z(var2)) {
+			if (this.a && !var1.isBlockIndirectlyPowered(var2)) {
 				var1.setBlockAt(var2, Blocks.REDSTONE_LAMP.getBlockState(), 2);
 			}
 

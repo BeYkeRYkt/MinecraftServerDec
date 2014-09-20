@@ -1650,7 +1650,7 @@ public abstract class World implements ard {
 			var5 += var1;
 			var6 += var2;
 			if (var9.getMaterial() == Material.AIR && this.k(var8) <= this.random.nextInt(8) && this.b(EnumSkyBlock.SKY, var8) <= 0) {
-				EntityHuman var10 = this.a((double) var5 + 0.5D, (double) var7 + 0.5D, (double) var6 + 0.5D, 8.0D);
+				EntityHuman var10 = this.findNearbyPlayer((double) var5 + 0.5D, (double) var7 + 0.5D, (double) var6 + 0.5D, 8.0D);
 				if (var10 != null && var10.getDistanceSquared((double) var5 + 0.5D, (double) var7 + 0.5D, (double) var6 + 0.5D) > 4.0D) {
 					this.makeSound((double) var5 + 0.5D, (double) var7 + 0.5D, (double) var6 + 0.5D, "ambient.cave.cave", 0.7F, 0.8F + this.random.nextFloat() * 0.2F);
 					this.K = this.random.nextInt(12000) + 6000;
@@ -2042,39 +2042,38 @@ public abstract class World implements ard {
 		return var8 != null && !this.a(var8, var5) ? false : (var7.getMaterial() == Material.ORIENTABLE && var1 == Blocks.ANVIL ? true : var7.getMaterial().j() && var1.a(this, var2, var4, var6));
 	}
 
-	public int a(Position var1, BlockFace var2) {
-		IBlockState var3 = this.getBlockState(var1);
-		return var3.getBlock().b((ard) this, var1, var3, var2);
+	public int getBlockPower(Position position, BlockFace face) {
+		IBlockState blockState = this.getBlockState(position);
+		return blockState.getBlock().b((ard) this, position, blockState, face);
 	}
 
-	public LevelType G() {
+	public LevelType getLevelType() {
 		return this.worldData.getLevelType();
 	}
 
-	public int y(Position var1) {
-		byte var2 = 0;
-		int var3 = Math.max(var2, this.a(var1.getDown(), BlockFace.DOWN));
-		if (var3 >= 15) {
-			return var3;
+	public int getBlockPower(Position position) {
+		int power = Math.max(0, this.getBlockPower(position.getDown(), BlockFace.DOWN));
+		if (power >= 15) {
+			return power;
 		} else {
-			var3 = Math.max(var3, this.a(var1.getUp(), BlockFace.UP));
-			if (var3 >= 15) {
-				return var3;
+			power = Math.max(power, this.getBlockPower(position.getUp(), BlockFace.UP));
+			if (power >= 15) {
+				return power;
 			} else {
-				var3 = Math.max(var3, this.a(var1.getNorth(), BlockFace.NORTH));
-				if (var3 >= 15) {
-					return var3;
+				power = Math.max(power, this.getBlockPower(position.getNorth(), BlockFace.NORTH));
+				if (power >= 15) {
+					return power;
 				} else {
-					var3 = Math.max(var3, this.a(var1.getSouth(), BlockFace.SOUTH));
-					if (var3 >= 15) {
-						return var3;
+					power = Math.max(power, this.getBlockPower(position.getSouth(), BlockFace.SOUTH));
+					if (power >= 15) {
+						return power;
 					} else {
-						var3 = Math.max(var3, this.a(var1.getWest(), BlockFace.WEST));
-						if (var3 >= 15) {
-							return var3;
+						power = Math.max(power, this.getBlockPower(position.getWest(), BlockFace.WEST));
+						if (power >= 15) {
+							return power;
 						} else {
-							var3 = Math.max(var3, this.a(var1.getEast(), BlockFace.EAST));
-							return var3 >= 15 ? var3 : var3;
+							power = Math.max(power, this.getBlockPower(position.getEast(), BlockFace.EAST));
+							return power >= 15 ? power : power;
 						}
 					}
 				}
@@ -2082,45 +2081,40 @@ public abstract class World implements ard {
 		}
 	}
 
-	public boolean b(Position var1, BlockFace var2) {
-		return this.c(var1, var2) > 0;
+	public boolean isBlockFacePowered(Position position, BlockFace face) {
+		return this.getBlockFacePower(position, face) > 0;
 	}
 
-	public int c(Position var1, BlockFace var2) {
-		IBlockState var3 = this.getBlockState(var1);
-		Block var4 = var3.getBlock();
-		return var4.t() ? this.y(var1) : var4.a((ard) this, var1, var3, var2);
+	public int getBlockFacePower(Position position, BlockFace face) {
+		IBlockState blockState = this.getBlockState(position);
+		Block block = blockState.getBlock();
+		return block.t() ? this.getBlockPower(position) : block.getPower((ard) this, position, blockState, face);
 	}
 
-	public boolean z(Position var1) {
-		return this.c(var1.getDown(), BlockFace.DOWN) > 0 ? true : (this.c(var1.getUp(), BlockFace.UP) > 0 ? true : (this.c(var1.getNorth(), BlockFace.NORTH) > 0 ? true : (this.c(var1.getSouth(), BlockFace.SOUTH) > 0 ? true : (this.c(var1.getWest(), BlockFace.WEST) > 0 ? true : this.c(var1.getEast(), BlockFace.EAST) > 0))));
+	public boolean isBlockIndirectlyPowered(Position position) {
+		return this.getBlockFacePower(position.getDown(), BlockFace.DOWN) > 0 ? true : (this.getBlockFacePower(position.getUp(), BlockFace.UP) > 0 ? true : (this.getBlockFacePower(position.getNorth(), BlockFace.NORTH) > 0 ? true : (this.getBlockFacePower(position.getSouth(), BlockFace.SOUTH) > 0 ? true : (this.getBlockFacePower(position.getWest(), BlockFace.WEST) > 0 ? true : this.getBlockFacePower(position.getEast(), BlockFace.EAST) > 0))));
 	}
 
-	public int A(Position var1) {
-		int var2 = 0;
-		BlockFace[] var3 = BlockFace.values();
-		int var4 = var3.length;
-
-		for (int var5 = 0; var5 < var4; ++var5) {
-			BlockFace var6 = var3[var5];
-			int var7 = this.c(var1.getRelative(var6), var6);
-			if (var7 >= 15) {
+	public int getHighestNeighborSignal(Position position) {
+		int power = 0;
+		for (BlockFace face : BlockFace.values()) {
+			int blockPower = this.getBlockFacePower(position.getRelative(face), face);
+			if (blockPower >= 15) {
 				return 15;
 			}
 
-			if (var7 > var2) {
-				var2 = var7;
+			if (blockPower > power) {
+				power = blockPower;
 			}
 		}
-
-		return var2;
+		return power;
 	}
 
-	public EntityHuman a(Entity var1, double var2) {
-		return this.a(var1.locationX, var1.locationY, var1.locationZ, var2);
+	public EntityHuman findNearbyPlayer(Entity var1, double var2) {
+		return this.findNearbyPlayer(var1.locationX, var1.locationY, var1.locationZ, var2);
 	}
 
-	public EntityHuman a(double var1, double var3, double var5, double var7) {
+	public EntityHuman findNearbyPlayer(double var1, double var3, double var5, double var7) {
 		double var9 = -1.0D;
 		EntityHuman var11 = null;
 
@@ -2138,7 +2132,7 @@ public abstract class World implements ard {
 		return var11;
 	}
 
-	public boolean findNearbyPlayer(double var1, double var3, double var5, double var7) {
+	public boolean hasNearbyPlayer(double var1, double var3, double var5, double var7) {
 		for (int var9 = 0; var9 < this.j.size(); ++var9) {
 			EntityHuman var10 = (EntityHuman) this.j.get(var9);
 			if (EntityPredicates.notSpectators.apply(var10)) {
@@ -2152,7 +2146,7 @@ public abstract class World implements ard {
 		return false;
 	}
 
-	public EntityHuman a(String var1) {
+	public EntityHuman getEntityHuman(String var1) {
 		for (int var2 = 0; var2 < this.j.size(); ++var2) {
 			EntityHuman var3 = (EntityHuman) this.j.get(var2);
 			if (var1.equals(var3.getName())) {
@@ -2163,7 +2157,7 @@ public abstract class World implements ard {
 		return null;
 	}
 
-	public EntityHuman b(UUID var1) {
+	public EntityHuman getEntityHuman(UUID var1) {
 		for (int var2 = 0; var2 < this.j.size(); ++var2) {
 			EntityHuman var3 = (EntityHuman) this.j.get(var2);
 			if (var1.equals(var3.getUUID())) {
@@ -2178,7 +2172,7 @@ public abstract class World implements ard {
 		this.dataManager.checkSessionLock();
 	}
 
-	public long J() {
+	public long getSeed() {
 		return this.worldData.getSeed();
 	}
 
@@ -2186,12 +2180,12 @@ public abstract class World implements ard {
 		return this.worldData.getTime();
 	}
 
-	public long L() {
+	public long getDayTime() {
 		return this.worldData.getDayTime();
 	}
 
-	public void b(long var1) {
-		this.worldData.setDayTime(var1);
+	public void setDayTime(long dayTime) {
+		this.worldData.setDayTime(dayTime);
 	}
 
 	public Position getSpawnPosition() {
@@ -2398,7 +2392,7 @@ public abstract class World implements ard {
 			var2 = this.getChunk(var1).getInhabitedTime();
 		}
 
-		return new vu(this.getDifficulty(), this.L(), var2, var4);
+		return new vu(this.getDifficulty(), this.getDayTime(), var2, var4);
 	}
 
 	public Difficulty getDifficulty() {

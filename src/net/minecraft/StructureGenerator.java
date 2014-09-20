@@ -102,12 +102,12 @@ public abstract class StructureGenerator extends WorldGenBase {
 	public Position b(World var1, Position var2) {
 		this.c = var1;
 		this.a(var1);
-		this.b.setSeed(var1.J());
+		this.b.setSeed(var1.getSeed());
 		long var3 = this.b.nextLong();
 		long var5 = this.b.nextLong();
 		long var7 = (long) (var2.getX() >> 4) * var3;
 		long var9 = (long) (var2.getZ() >> 4) * var5;
-		this.b.setSeed(var7 ^ var9 ^ var1.J());
+		this.b.setSeed(var7 ^ var9 ^ var1.getSeed());
 		this.a(var1, var2.getX() >> 4, var2.getZ() >> 4, 0, 0, (bgk) null);
 		double var11 = Double.MAX_VALUE;
 		Position var13 = null;

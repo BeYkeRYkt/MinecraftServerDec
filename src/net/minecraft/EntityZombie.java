@@ -163,7 +163,7 @@ public class EntityZombie extends EntityMonster {
 					int var11 = var6 + MathHelper.a(this.random, 7, 40) * MathHelper.a(this.random, -1, 1);
 					if (World.a((ard) this.world, new Position(var9, var10 - 1, var11)) && this.world.getLightLevel(new Position(var9, var10, var11)) < 10) {
 						var7.b((double) var9, (double) var10, (double) var11);
-						if (!this.world.findNearbyPlayer((double) var9, (double) var10, (double) var11, 7.0D) && this.world.a(var7.getBoundingBox(), (Entity) var7) && this.world.getCubes((Entity) var7, var7.getBoundingBox()).isEmpty() && !this.world.d(var7.getBoundingBox())) {
+						if (!this.world.hasNearbyPlayer((double) var9, (double) var10, (double) var11, 7.0D) && this.world.a(var7.getBoundingBox(), (Entity) var7) && this.world.getCubes((Entity) var7, var7.getBoundingBox()).isEmpty() && !this.world.d(var7.getBoundingBox())) {
 							this.world.addEntity((Entity) var7);
 							var7.d(var3);
 							var7.a(this.world.E(new Position(var7)), (xq) null);

@@ -96,7 +96,7 @@ public class BlockTripwire extends Block {
 
 			while (true) {
 				if (var8 < 42) {
-					Position var9 = var2.a(var7, var8);
+					Position var9 = var2.getRelative(var7, var8);
 					IBlockState var10 = var1.getBlockState(var9);
 					if (var10.getBlock() == Blocks.TRIPWIRE_HOOK) {
 						if (var10.b(BlockTripwireHook.a) == var7.getOpposite()) {

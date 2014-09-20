@@ -68,12 +68,12 @@ public class BlockPiston extends Block {
 		int var6;
 		for (var6 = 0; var6 < var5; ++var6) {
 			BlockFace var7 = var4[var6];
-			if (var7 != var3 && var1.b(var2.getRelative(var7), var7)) {
+			if (var7 != var3 && var1.isBlockFacePowered(var2.getRelative(var7), var7)) {
 				return true;
 			}
 		}
 
-		if (var1.b(var2, BlockFace.NORTH)) {
+		if (var1.isBlockFacePowered(var2, BlockFace.NORTH)) {
 			return true;
 		} else {
 			Position var9 = var2.getUp();
@@ -82,7 +82,7 @@ public class BlockPiston extends Block {
 
 			for (int var11 = 0; var11 < var6; ++var11) {
 				BlockFace var8 = var10[var11];
-				if (var8 != BlockFace.DOWN && var1.b(var9.getRelative(var8), var8)) {
+				if (var8 != BlockFace.DOWN && var1.isBlockFacePowered(var9.getRelative(var8), var8)) {
 					return true;
 				}
 			}

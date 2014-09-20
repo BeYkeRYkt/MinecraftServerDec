@@ -19,9 +19,9 @@ public class WorldGenMegaTree extends WorldGenMegaTreeAbstract {
 			this.a(var1, var3.getX(), var3.getZ(), var3.getY() + var4, 0, var2);
 
 			for (int var5 = 0; var5 < var4; ++var5) {
-				Block var6 = var1.getBlockState(var3.b(var5)).getBlock();
+				Block var6 = var1.getBlockState(var3.getUp(var5)).getBlock();
 				if (var6.getMaterial() == Material.AIR || var6.getMaterial() == Material.LEAVES) {
-					this.a(var1, var3.b(var5), Blocks.LOG, this.b);
+					this.a(var1, var3.getUp(var5), Blocks.LOG, this.b);
 				}
 
 				if (var5 < var4 - 1) {
@@ -61,9 +61,9 @@ public class WorldGenMegaTree extends WorldGenMegaTreeAbstract {
 
 	public void a(World var1, Random var2, Position var3) {
 		this.b(var1, var3.getWest().getNorth());
-		this.b(var1, var3.g(2).getNorth());
-		this.b(var1, var3.getWest().e(2));
-		this.b(var1, var3.g(2).e(2));
+		this.b(var1, var3.getEast(2).getNorth());
+		this.b(var1, var3.getWest().getSouth(2));
+		this.b(var1, var3.getEast(2).getSouth(2));
 
 		for (int var4 = 0; var4 < 5; ++var4) {
 			int var5 = var2.nextInt(64);
@@ -89,7 +89,7 @@ public class WorldGenMegaTree extends WorldGenMegaTreeAbstract {
 
 	private void c(World var1, Position var2) {
 		for (int var3 = 2; var3 >= -3; --var3) {
-			Position var4 = var2.b(var3);
+			Position var4 = var2.getUp(var3);
 			Block var5 = var1.getBlockState(var4).getBlock();
 			if (var5 == Blocks.GRASS || var5 == Blocks.DIRT) {
 				this.a(var1, var4, Blocks.DIRT, avd.c.a());

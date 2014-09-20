@@ -562,14 +562,14 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	private void b(WorldSettings var1) {
 		if (!this.worldProvider.isPrimaryWorld()) {
-			this.worldData.setSpawn(Position.ZERO.b(this.worldProvider.i()));
+			this.worldData.setSpawn(Position.ZERO.getUp(this.worldProvider.i()));
 		} else if (this.worldData.getLevelType() == LevelType.DEBUG) {
 			this.worldData.setSpawn(Position.ZERO.getUp());
 		} else {
 			this.isLoading = true;
 			WorldChunkManager var2 = this.worldProvider.m();
 			List var3 = var2.a();
-			Random var4 = new Random(this.J());
+			Random var4 = new Random(this.getSeed());
 			Position var5 = var2.a(0, 0, 256, var3, var4);
 			int var6 = 0;
 			int var7 = this.worldProvider.i();

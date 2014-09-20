@@ -90,7 +90,7 @@ public class EntityBat extends EntityAmbient {
 					this.headPitch = (float) this.random.nextInt(360);
 				}
 
-				if (this.world.a(this, 4.0D) != null) {
+				if (this.world.findNearbyPlayer(this, 4.0D) != null) {
 					this.a(false);
 					this.world.a((EntityHuman) null, 1015, var1, 0);
 				}

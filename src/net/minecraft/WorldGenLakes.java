@@ -18,7 +18,7 @@ public class WorldGenLakes extends WorldGenerator {
 		if (var3.getY() <= 4) {
 			return false;
 		} else {
-			var3 = var3.c(4);
+			var3 = var3.getDown(4);
 			boolean[] var4 = new boolean[2048];
 			int var5 = var2.nextInt(4) + 4;
 

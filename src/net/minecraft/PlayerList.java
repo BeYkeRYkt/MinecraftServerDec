@@ -518,7 +518,7 @@ public abstract class PlayerList {
 	public void updateWorldData(EntityPlayer var1, WorldServer var2) {
 		WorldBorder var3 = this.minecraftserver.getWorld().getWorldBorder();
 		var1.playerConnection.sendPacket((Packet) (new PacketPlayOutWorldBorder(var3, WorldBorderAction.INITIALIZE)));
-		var1.playerConnection.sendPacket((Packet) (new PacketPlayOutTimeUpdate(var2.getTime(), var2.L(), var2.getGameRules().b("doDaylightCycle"))));
+		var1.playerConnection.sendPacket((Packet) (new PacketPlayOutTimeUpdate(var2.getTime(), var2.getDayTime(), var2.getGameRules().b("doDaylightCycle"))));
 		if (var2.S()) {
 			var1.playerConnection.sendPacket((Packet) (new PacketPlayOutChangeGameState(1, 0.0F)));
 			var1.playerConnection.sendPacket((Packet) (new PacketPlayOutChangeGameState(7, var2.j(1.0F))));

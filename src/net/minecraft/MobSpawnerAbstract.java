@@ -43,7 +43,7 @@ public abstract class MobSpawnerAbstract {
 
 	private boolean hasPlayerNearby() {
 		Position position = this.getPosition();
-		return this.getWorld().findNearbyPlayer(position.getX() + 0.5D, position.getY() + 0.5D, position.getZ() + 0.5D, this.requiredPlayerRange);
+		return this.getWorld().hasNearbyPlayer(position.getX() + 0.5D, position.getY() + 0.5D, position.getZ() + 0.5D, this.requiredPlayerRange);
 	}
 
 	public void doTick() {

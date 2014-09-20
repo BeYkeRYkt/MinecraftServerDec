@@ -231,7 +231,7 @@ public abstract class ahr extends Entity implements aho {
 
 	public EntityLiving n() {
 		if (this.g == null && this.h != null && this.h.length() > 0) {
-			this.g = this.world.a(this.h);
+			this.g = this.world.getEntityHuman(this.h);
 		}
 
 		return this.g;

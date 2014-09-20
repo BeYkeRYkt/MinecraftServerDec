@@ -356,7 +356,7 @@ public class BlockChest extends atg {
 		return this.chestType == 1;
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		if (!this.isTrappedChest()) {
 			return 0;
 		} else {
@@ -371,7 +371,7 @@ public class BlockChest extends atg {
 	}
 
 	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
-		return var4 == BlockFace.UP ? this.a(var1, var2, var3, var4) : 0;
+		return var4 == BlockFace.UP ? this.getPower(var1, var2, var3, var4) : 0;
 	}
 
 	private boolean m(World var1, Position var2) {

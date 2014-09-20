@@ -25,7 +25,7 @@ public class WorldGenNether extends StructureGenerator {
 	protected boolean a(int var1, int var2) {
 		int var3 = var1 >> 4;
 		int var4 = var2 >> 4;
-		this.b.setSeed((long) (var3 ^ var4 << 4) ^ this.c.J());
+		this.b.setSeed((long) (var3 ^ var4 << 4) ^ this.c.getSeed());
 		this.b.nextInt();
 		return this.b.nextInt(3) != 0 ? false : (var1 != (var3 << 4) + 4 + this.b.nextInt(8) ? false : var2 == (var4 << 4) + 4 + this.b.nextInt(8));
 	}

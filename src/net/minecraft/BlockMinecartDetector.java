@@ -40,7 +40,7 @@ public class BlockMinecartDetector extends ati {
 		}
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return ((Boolean) var3.b(M)).booleanValue() ? 15 : 0;
 	}
 

@@ -73,9 +73,9 @@ public class WorldGenForest extends WorldGenTreeAbstract {
 					}
 
 					for (var17 = 0; var17 < var4; ++var17) {
-						Block var18 = var1.getBlockState(var3.b(var17)).getBlock();
+						Block var18 = var1.getBlockState(var3.getUp(var17)).getBlock();
 						if (var18.getMaterial() == Material.AIR || var18.getMaterial() == Material.LEAVES) {
-							this.a(var1, var3.b(var17), Blocks.LOG, EnumWoodType.c.a());
+							this.a(var1, var3.getUp(var17), Blocks.LOG, EnumWoodType.c.a());
 						}
 					}
 

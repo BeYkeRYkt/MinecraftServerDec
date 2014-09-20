@@ -83,9 +83,9 @@ public class WorldGenTaiga2 extends WorldGenTreeAbstract {
 					var23 = var2.nextInt(3);
 
 					for (var14 = 0; var14 < var4 - var23; ++var14) {
-						Block var24 = var1.getBlockState(var3.b(var14)).getBlock();
+						Block var24 = var1.getBlockState(var3.getUp(var14)).getBlock();
 						if (var24.getMaterial() == Material.AIR || var24.getMaterial() == Material.LEAVES) {
-							this.a(var1, var3.b(var14), Blocks.LOG, EnumWoodType.b.a());
+							this.a(var1, var3.getUp(var14), Blocks.LOG, EnumWoodType.b.a());
 						}
 					}
 

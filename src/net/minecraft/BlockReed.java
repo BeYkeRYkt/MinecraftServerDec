@@ -19,7 +19,7 @@ public class BlockReed extends Block {
 		if (var1.getBlockState(var2.getDown()).getBlock() == Blocks.REEDS || this.e(var1, var2, var3)) {
 			if (var1.d(var2.getUp())) {
 				int var5;
-				for (var5 = 1; var1.getBlockState(var2.c(var5)).getBlock() == this; ++var5) {
+				for (var5 = 1; var1.getBlockState(var2.getDown(var5)).getBlock() == this; ++var5) {
 					;
 				}
 

@@ -290,10 +290,10 @@ public class ChunkProviderGenerate implements IChunkProvider {
 		int var5 = var3 * 16;
 		Position var6 = new Position(var4, 0, var5);
 		BiomeBase var7 = this.world.b(var6.a(16, 0, 16));
-		this.rnd.setSeed(this.world.J());
+		this.rnd.setSeed(this.world.getSeed());
 		long var8 = this.rnd.nextLong() / 2L * 2L + 1L;
 		long var10 = this.rnd.nextLong() / 2L * 2L + 1L;
-		this.rnd.setSeed((long) var2 * var8 + (long) var3 * var10 ^ this.world.J());
+		this.rnd.setSeed((long) var2 * var8 + (long) var3 * var10 ^ this.world.getSeed());
 		boolean var12 = false;
 		ChunkCoordIntPair var13 = new ChunkCoordIntPair(var2, var3);
 		if (this.properties.useMineShafts && this.mapFeaturesEnabled) {

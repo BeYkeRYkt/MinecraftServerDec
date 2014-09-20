@@ -80,7 +80,7 @@ public class BlockHopper extends atg {
 	}
 
 	private void e(World var1, Position var2, IBlockState var3) {
-		boolean var4 = !var1.z(var2);
+		boolean var4 = !var1.isBlockIndirectlyPowered(var2);
 		if (var4 != ((Boolean) var3.b(b)).booleanValue()) {
 			var1.setBlockAt(var2, var3.a(b, Boolean.valueOf(var4)), 4);
 		}

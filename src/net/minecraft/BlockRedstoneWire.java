@@ -77,9 +77,9 @@ public class BlockRedstoneWire extends Block {
 		IBlockState var5 = var4;
 		int var6 = ((Integer) var4.b(O)).intValue();
 		byte var7 = 0;
-		int var14 = this.a(var1, var3, var7);
+		int var14 = this.getPower(var1, var3, var7);
 		this.P = false;
-		int var8 = var1.A(var2);
+		int var8 = var1.getHighestNeighborSignal(var2);
 		this.P = true;
 		if (var8 > 0 && var8 > var14 - 1) {
 			var14 = var8;
@@ -93,15 +93,15 @@ public class BlockRedstoneWire extends Block {
 			Position var12 = var2.getRelative(var11);
 			boolean var13 = var12.getX() != var3.getX() || var12.getZ() != var3.getZ();
 			if (var13) {
-				var9 = this.a(var1, var12, var9);
+				var9 = this.getPower(var1, var12, var9);
 			}
 
 			if (var1.getBlockState(var12).getBlock().t() && !var1.getBlockState(var2.getUp()).getBlock().t()) {
 				if (var13 && var2.getY() >= var3.getY()) {
-					var9 = this.a(var1, var12.getUp(), var9);
+					var9 = this.getPower(var1, var12.getUp(), var9);
 				}
 			} else if (!var1.getBlockState(var12).getBlock().t() && var13 && var2.getY() <= var3.getY()) {
-				var9 = this.a(var1, var12.getDown(), var9);
+				var9 = this.getPower(var1, var12.getDown(), var9);
 			}
 		}
 
@@ -218,12 +218,12 @@ public class BlockRedstoneWire extends Block {
 		}
 	}
 
-	private int a(World var1, Position var2, int var3) {
-		if (var1.getBlockState(var2).getBlock() != this) {
-			return var3;
+	public int getPower(World world, Position position, int minimum) {
+		if (world.getBlockState(position).getBlock() != this) {
+			return minimum;
 		} else {
-			int var4 = ((Integer) var1.getBlockState(var2).b(O)).intValue();
-			return var4 > var3 ? var4 : var3;
+			int power = ((Integer) world.getBlockState(position).b(O)).intValue();
+			return power > minimum ? power : minimum;
 		}
 	}
 
@@ -244,10 +244,10 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
-		return !this.P ? 0 : this.a(var1, var2, var3, var4);
+		return !this.P ? 0 : this.getPower(var1, var2, var3, var4);
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		if (!this.P) {
 			return 0;
 		} else {

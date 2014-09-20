@@ -20,7 +20,7 @@ public class abh {
 	public abh(Position var1, BlockFace var2, int var3) {
 		this.a = var1;
 		this.c = var2;
-		this.b = var1.a(var2, 2);
+		this.b = var1.getRelative(var2, 2);
 		this.d = var3;
 	}
 
