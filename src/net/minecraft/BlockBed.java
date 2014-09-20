@@ -101,13 +101,13 @@ public class BlockBed extends avb {
 		} else if (var1.getBlockState(var2.getRelative(var5)).getBlock() != this) {
 			var1.g(var2);
 			if (!var1.isStatic) {
-				this.b(var1, var2, var3, 0);
+				this.dropNaturally(var1, var2, var3, 0);
 			}
 		}
 
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return var1.b(a) == atq.a ? null : Items.BED;
 	}
 

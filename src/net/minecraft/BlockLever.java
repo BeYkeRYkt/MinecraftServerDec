@@ -82,7 +82,7 @@ public class BlockLever extends Block {
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (this.e(var1, var2) && !this.d(var1, var2.getRelative(((axk) var3.b(a)).c().getOpposite()))) {
-			this.b(var1, var2, var3, 0);
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.g(var2);
 		}
 
@@ -92,7 +92,7 @@ public class BlockLever extends Block {
 		if (this.c(var1, var2)) {
 			return true;
 		} else {
-			this.b(var1, var2, var1.getBlockState(var2), 0);
+			this.dropNaturally(var1, var2, var1.getBlockState(var2), 0);
 			var1.g(var2);
 			return false;
 		}

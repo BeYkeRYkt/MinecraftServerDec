@@ -11,7 +11,7 @@ public class ItemSpade extends ItemTool {
 		super(1.0F, var1, c);
 	}
 
-	public boolean b(Block var1) {
+	public boolean canDestroySpecialBlock(Block var1) {
 		return var1 == Blocks.SNOW_LAYER ? true : var1 == Blocks.SNOW;
 	}
 

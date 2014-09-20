@@ -1,5 +1,6 @@
 package net.minecraft;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -521,11 +522,11 @@ public class Block {
 	public void remove(World var1, Position var2, IBlockState var3) {
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random random) {
 		return 1;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState blockState, Random random, int minimum) {
 		return Item.getItemOf(this);
 	}
 
@@ -534,35 +535,46 @@ public class Block {
 		return var4 < 0.0F ? 0.0F : (!var1.b(this) ? var1.a(this) / var4 / 100.0F : var1.a(this) / var4 / 30.0F);
 	}
 
-	public final void b(World var1, Position var2, IBlockState var3, int var4) {
-		this.dropNaturally(var1, var2, var3, 1.0F, var4);
+	public final void dropNaturally(World world, Position position, IBlockState blockState, int minimumDropCount) {
+		this.dropNaturally(world, position, blockState, 1.0F, minimumDropCount);
 	}
 
-	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
-		if (!var1.isStatic) {
-			int var6 = this.a(var5, var1.random);
-
-			for (int var7 = 0; var7 < var6; ++var7) {
-				if (var1.random.nextFloat() <= var4) {
-					Item var8 = this.a(var3, var1.random, var5);
-					if (var8 != null) {
-						a(var1, var2, new ItemStack(var8, 1, this.a(var3)));
-					}
-				}
+	public void dropNaturally(World world, Position position, IBlockState blockState, float dropChance, int minimumDropCount) {
+		if (!world.isStatic) {
+			for (ItemStack drop : getDrops(world, dropChance, minimumDropCount)) {
+				dropItem(world, position, drop);
 			}
-
 		}
 	}
 
-	public static void a(World var0, Position var1, ItemStack var2) {
-		if (!var0.isStatic && var0.getGameRules().b("doTileDrops")) {
-			float var3 = 0.5F;
-			double var4 = (double) (var0.random.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
-			double var6 = (double) (var0.random.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
-			double var8 = (double) (var0.random.nextFloat() * var3) + (double) (1.0F - var3) * 0.5D;
-			EntityItem var10 = new EntityItem(var0, (double) var1.getX() + var4, (double) var1.getY() + var6, (double) var1.getZ() + var8, var2);
-			var10.p();
-			var0.addEntity((Entity) var10);
+	public List<ItemStack> getDrops(World world, int minimumDropCount) {
+		return getDrops(world, 1.0F, minimumDropCount);
+	}
+
+	public List<ItemStack> getDrops(World world, float dropChance, int minimumDropCount) {
+		List<ItemStack> drops = new ArrayList<ItemStack>();
+		int dropCount = this.getDropCount(minimumDropCount, world.random);
+
+		for (int i = 0; i < dropCount; ++i) {
+			if (world.random.nextFloat() <= dropChance) {
+				Item item = this.getItemDrop(blockState, world.random, minimumDropCount);
+				if (item != null) {
+					drops.add(new ItemStack(item, 1, this.getItemDropData(blockState)));
+				}
+			}
+		}
+		return drops;
+	}
+
+	public static void dropItem(World world, Position position, ItemStack itemStack) {
+		if (!world.isStatic && world.getGameRules().b("doTileDrops")) {
+			float addCoord = 0.5F;
+			double diffX = (double) (world.random.nextFloat() * addCoord) + (double) (1.0F - addCoord) * 0.5D;
+			double diffY = (double) (world.random.nextFloat() * addCoord) + (double) (1.0F - addCoord) * 0.5D;
+			double diffZ = (double) (world.random.nextFloat() * addCoord) + (double) (1.0F - addCoord) * 0.5D;
+			EntityItem entityItem = new EntityItem(world, (double) position.getX() + diffX, (double) position.getY() + diffY, (double) position.getZ() + diffZ, itemStack);
+			entityItem.p();
+			world.addEntity((Entity) entityItem);
 		}
 	}
 
@@ -577,7 +589,7 @@ public class Block {
 
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState blockState) {
 		return 0;
 	}
 
@@ -772,11 +784,11 @@ public class Block {
 		if (this.G() && aph.e(var2)) {
 			ItemStack var7 = this.i(var4);
 			if (var7 != null) {
-				a(var1, var3, var7);
+				dropItem(var1, var3, var7);
 			}
 		} else {
 			int var6 = aph.f(var2);
-			this.b(var1, var3, var4, var6);
+			this.dropNaturally(var1, var3, var4, var6);
 		}
 
 	}
@@ -795,8 +807,8 @@ public class Block {
 		return new ItemStack(var3, 1, var2);
 	}
 
-	public int a(int var1, Random var2) {
-		return this.a(var2);
+	public int getDropCount(int minimum, Random random) {
+		return this.getDropCount(random);
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
@@ -841,7 +853,7 @@ public class Block {
 	}
 
 	public int j(World var1, Position var2) {
-		return this.a(var1.getBlockState(var2));
+		return this.getItemDropData(var1.getBlockState(var2));
 	}
 
 	public Block a(CreativeModeTab var1) {

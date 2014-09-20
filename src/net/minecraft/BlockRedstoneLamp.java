@@ -46,7 +46,7 @@ public class BlockRedstoneLamp extends Block {
 		}
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf(Blocks.REDSTONE_LAMP);
 	}
 

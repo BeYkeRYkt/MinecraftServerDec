@@ -93,7 +93,7 @@ public class BlockStem extends auc implements atz {
 
 				for (int var8 = 0; var8 < 3; ++var8) {
 					if (var1.random.nextInt(15) <= var7) {
-						a(var1, var2, new ItemStack(var6));
+						dropItem(var1, var2, new ItemStack(var6));
 					}
 				}
 
@@ -105,7 +105,7 @@ public class BlockStem extends auc implements atz {
 		return this.M == Blocks.PUMPKIN ? Items.PUMPKIN_SEEDS : (this.M == Blocks.MELON_BLOCK ? Items.MELON_SEEDS : null);
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 

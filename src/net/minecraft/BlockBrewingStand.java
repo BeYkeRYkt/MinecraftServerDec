@@ -72,7 +72,7 @@ public class BlockBrewingStand extends atg {
 		super.remove(var1, var2, var3);
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.BREWING_STAND;
 	}
 

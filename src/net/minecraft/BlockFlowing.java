@@ -119,7 +119,7 @@ public class BlockFlowing extends axl {
 				if (this.material == Material.LAVA) {
 					this.d(var1, var2);
 				} else {
-					var3.getBlock().b(var1, var2, var3, 0);
+					var3.getBlock().dropNaturally(var1, var2, var3, 0);
 				}
 			}
 

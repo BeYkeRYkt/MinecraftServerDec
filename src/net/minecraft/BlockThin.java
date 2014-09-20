@@ -22,8 +22,8 @@ public class BlockThin extends Block {
 		return var1.a(b, Boolean.valueOf(this.c(var2.getBlockState(var3.getNorth()).getBlock()))).a(N, Boolean.valueOf(this.c(var2.getBlockState(var3.getSouth()).getBlock()))).a(O, Boolean.valueOf(this.c(var2.getBlockState(var3.getWest()).getBlock()))).a(M, Boolean.valueOf(this.c(var2.getBlockState(var3.getEast()).getBlock())));
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
-		return !this.a ? null : super.a(var1, var2, var3);
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
+		return !this.a ? null : super.getItemDrop(var1, var2, var3);
 	}
 
 	public boolean c() {

@@ -67,7 +67,7 @@ public class BlockReed extends Block {
 		if (this.d(var1, var2)) {
 			return true;
 		} else {
-			this.b(var1, var2, var3, 0);
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.g(var2);
 			return false;
 		}
@@ -81,7 +81,7 @@ public class BlockReed extends Block {
 		return null;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.REEDS;
 	}
 

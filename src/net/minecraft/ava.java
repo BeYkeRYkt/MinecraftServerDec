@@ -58,7 +58,7 @@ public abstract class ava extends avb {
 		if (this.d(var1, var2)) {
 			this.g(var1, var2, var3);
 		} else {
-			this.b(var1, var2, var3, 0);
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.g(var2);
 			BlockFace[] var5 = BlockFace.values();
 			int var6 = var5.length;

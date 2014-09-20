@@ -60,11 +60,11 @@ public abstract class axl extends Block {
 		return 1;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 

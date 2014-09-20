@@ -232,14 +232,14 @@ public class BlockRedstoneWire extends Block {
 			if (this.c(var1, var2)) {
 				this.e(var1, var2, var3);
 			} else {
-				this.b(var1, var2, var3, 0);
+				this.dropNaturally(var1, var2, var3, 0);
 				var1.g(var2);
 			}
 
 		}
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.REDSTONE;
 	}
 

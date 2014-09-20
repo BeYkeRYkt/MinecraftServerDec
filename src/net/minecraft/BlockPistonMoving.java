@@ -65,7 +65,7 @@ public class BlockPistonMoving extends atg {
 		}
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 
@@ -74,7 +74,7 @@ public class BlockPistonMoving extends atg {
 			TileEntityPiston var6 = this.e(var1, var2);
 			if (var6 != null) {
 				IBlockState var7 = var6.b();
-				var7.getBlock().b(var1, var2, var7, 0);
+				var7.getBlock().dropNaturally(var1, var2, var7, 0);
 			}
 		}
 	}

@@ -21,18 +21,18 @@ public class BlockLongGrass extends auc implements atz {
 		return true;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return var2.nextInt(8) == 0 ? Items.WHEAT_SEEDS : null;
 	}
 
-	public int a(int var1, Random var2) {
+	public int getDropCount(int var1, Random var2) {
 		return 1 + var2.nextInt(var1 * 2 + 1);
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, IBlockState var4, TileEntity var5) {
 		if (!var1.isStatic && var2.bY() != null && var2.bY().getItem() == Items.SHEARS) {
 			var2.b(StatisticList.MINE_BLOCK_COUNT[Block.getBlockId((Block) this)]);
-			a(var1, var3, new ItemStack(Blocks.TALLGRASS, 1, ((EnumGrassType) var4.b(a)).a()));
+			dropItem(var1, var3, new ItemStack(Blocks.TALLGRASS, 1, ((EnumGrassType) var4.b(a)).a()));
 		} else {
 			super.a(var1, var2, var3, var4, var5);
 		}

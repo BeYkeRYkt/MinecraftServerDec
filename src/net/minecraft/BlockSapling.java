@@ -124,7 +124,7 @@ public class BlockSapling extends auc implements atz {
 		return var4.getBlock() == this && var4.b(a) == var3;
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((EnumWoodType) var1.b(a)).a();
 	}
 

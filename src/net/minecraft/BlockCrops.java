@@ -106,7 +106,7 @@ public class BlockCrops extends auc implements atz {
 
 				for (int var8 = 0; var8 < var7; ++var8) {
 					if (var1.random.nextInt(15) <= var6) {
-						a(var1, var2, new ItemStack(this.j(), 1, 0));
+						dropItem(var1, var2, new ItemStack(this.j(), 1, 0));
 					}
 				}
 			}
@@ -114,7 +114,7 @@ public class BlockCrops extends auc implements atz {
 		}
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return ((Integer) var1.b(a)).intValue() == 7 ? this.l() : this.j();
 	}
 

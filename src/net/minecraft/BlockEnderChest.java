@@ -26,11 +26,11 @@ public class BlockEnderChest extends atg {
 		return 2;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf(Blocks.OBSIDIAN);
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 8;
 	}
 

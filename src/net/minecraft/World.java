@@ -235,7 +235,7 @@ public abstract class World implements ard {
 		} else {
 			this.triggerEffect(2001, var1, Block.getStateId(var3));
 			if (var2) {
-				var4.b(this, var1, var3, 0);
+				var4.dropNaturally(this, var1, var3, 0);
 			}
 
 			return this.setBlockAt(var1, Blocks.AIR.getBlockState(), 3);

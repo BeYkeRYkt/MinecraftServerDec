@@ -10,7 +10,7 @@ public class BlockRedSandStone extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((azr) var1.b(a)).a();
 	}
 

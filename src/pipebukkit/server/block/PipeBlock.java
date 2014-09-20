@@ -1,5 +1,6 @@
 package pipebukkit.server.block;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,6 +25,7 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 
 import pipebukkit.server.PipeChunk;
+import pipebukkit.server.inventory.PipeItemStack;
 
 public class PipeBlock implements Block {
 
@@ -61,14 +63,27 @@ public class PipeBlock implements Block {
 
 	@Override
 	public boolean breakNaturally() {
-		// TODO Auto-generated method stub
-		return false;
+		net.minecraft.Block block = getNMSBlock();
+		boolean result = false;
+		if (block != null && block != Blocks.AIR) {
+			block.dropNaturally(chunk.getHandle().getWorld(), getPosition(), block.getBlockState(), 0);
+			result = true;
+		}
+		setType(Material.AIR);
+		return result;
 	}
 
 	@Override
-	public boolean breakNaturally(ItemStack arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean breakNaturally(ItemStack itemStack) {
+		net.minecraft.Block block = getNMSBlock();
+		@SuppressWarnings("deprecation")
+		net.minecraft.Item item = itemStack != null ? net.minecraft.Item.getById(itemStack.getTypeId()) : null;
+		if (block != null && (block.getMaterial().alwaysDropsItem() || (item != null && item.canDestroySpecialBlock(block)))) {
+			return breakNaturally();
+		} else {
+			setType(Material.AIR);
+			return true;
+		}
 	}
 
 	@Override
@@ -93,14 +108,24 @@ public class PipeBlock implements Block {
 
 	@Override
 	public Collection<ItemStack> getDrops() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ItemStack> drops = new ArrayList<ItemStack>();
+		net.minecraft.Block block = getNMSBlock();
+		for (net.minecraft.ItemStack drop : block.getDrops(chunk.getHandle().getWorld(), 0)) {
+			drops.add(new PipeItemStack(drop));
+		}
+		return drops;
 	}
 
 	@Override
-	public Collection<ItemStack> getDrops(ItemStack arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<ItemStack> getDrops(ItemStack itemStack) {
+		net.minecraft.Block block = getNMSBlock();
+		@SuppressWarnings("deprecation")
+		net.minecraft.Item item = itemStack != null ? net.minecraft.Item.getById(itemStack.getTypeId()) : null;
+		if (block != null && (block.getMaterial().alwaysDropsItem() || (item != null && item.canDestroySpecialBlock(block)))) {
+			return getDrops();
+		} else {
+			return new ArrayList<ItemStack>();
+		}
 	}
 
 	@Override
@@ -164,7 +189,7 @@ public class PipeBlock implements Block {
 	@SuppressWarnings("deprecation")
 	@Override
 	public PistonMoveReaction getPistonMoveReaction() {
-		return PistonMoveReaction.getById(chunk.getHandle().getBlockAtWorldCoords(x, y, z).getMaterial().getPushReaction());
+		return PistonMoveReaction.getById(getNMSBlock().getMaterial().getPushReaction());
 	}
 
 	@Override
@@ -239,7 +264,7 @@ public class PipeBlock implements Block {
 
 	@Override
 	public int getTypeId() {
-		return net.minecraft.Block.getBlockId(chunk.getHandle().getBlockAtWorldCoords(x, y, z));
+		return net.minecraft.Block.getBlockId(getNMSBlock());
 	}
 
 	@Override
@@ -269,7 +294,7 @@ public class PipeBlock implements Block {
 
 	@Override
 	public boolean isLiquid() {
-		return chunk.getHandle().getBlockAtWorldCoords(x, y, z).getMaterial().isLiquid();
+		return getNMSBlock().getMaterial().isLiquid();
 	}
 
 	@Override
@@ -389,6 +414,10 @@ public class PipeBlock implements Block {
 
 	private Position getPosition() {
 		return new Position(getX(), getY(), getZ());
-	} 
+	}
+
+	private net.minecraft.Block getNMSBlock() {
+		return chunk.getHandle().getBlockAtWorldCoords(x, y, z);
+	}
 
 }

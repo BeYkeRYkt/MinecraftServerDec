@@ -37,7 +37,7 @@ public class BlockPistonExtension extends Block {
 		var2 = var2.getRelative(var4);
 		IBlockState var5 = var1.getBlockState(var2);
 		if ((var5.getBlock() == Blocks.PISTON || var5.getBlock() == Blocks.STICKY_PISTON) && ((Boolean) var5.b(BlockPiston.b)).booleanValue()) {
-			var5.getBlock().b(var1, var2, var5, 0);
+			var5.getBlock().dropNaturally(var1, var2, var5, 0);
 			var1.g(var2);
 		}
 
@@ -59,7 +59,7 @@ public class BlockPistonExtension extends Block {
 		return false;
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 

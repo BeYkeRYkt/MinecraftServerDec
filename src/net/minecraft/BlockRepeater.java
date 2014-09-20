@@ -43,7 +43,7 @@ public class BlockRepeater extends ava {
 		return Blocks.UNPOWERED_REPEATER.getBlockState().a(N, var4).a(b, var2).a(a, var3);
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.REPEATER;
 	}
 

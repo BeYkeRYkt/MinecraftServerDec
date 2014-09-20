@@ -91,7 +91,7 @@ public class BlockSkull extends atg {
 						var6.getTag().put("SkullOwner", (NBTTag) var7);
 					}
 
-					a(var1, var2, var6);
+					dropItem(var1, var2, var6);
 				}
 			}
 
@@ -99,7 +99,7 @@ public class BlockSkull extends atg {
 		}
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.SKULL;
 	}
 

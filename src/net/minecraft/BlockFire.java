@@ -96,7 +96,7 @@ public class BlockFire extends Block {
 		return false;
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 

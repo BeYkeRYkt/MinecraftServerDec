@@ -92,7 +92,7 @@ public class BlockTrapdoor extends Block {
 			Position var5 = var2.getRelative(((BlockFace) var3.b(a)).getOpposite());
 			if (!c(var1.getBlockState(var5).getBlock())) {
 				var1.g(var2);
-				this.b(var1, var2, var3, 0);
+				this.dropNaturally(var1, var2, var3, 0);
 			} else {
 				boolean var6 = var1.isBlockIndirectlyPowered(var2);
 				if (var6 || var4.isTrappedChest()) {

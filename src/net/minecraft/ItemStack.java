@@ -46,34 +46,34 @@ public final class ItemStack {
 	private Block j;
 	private boolean k;
 
-	public ItemStack(Block var1) {
-		this(var1, 1);
+	public ItemStack(Block block) {
+		this(block, 1);
 	}
 
-	public ItemStack(Block var1, int var2) {
-		this(var1, var2, 0);
+	public ItemStack(Block block, int amount) {
+		this(block, amount, 0);
 	}
 
-	public ItemStack(Block var1, int var2, int var3) {
-		this(Item.getItemOf(var1), var2, var3);
+	public ItemStack(Block block, int amount, int wearout) {
+		this(Item.getItemOf(block), amount, wearout);
 	}
 
-	public ItemStack(Item var1) {
-		this(var1, 1);
+	public ItemStack(Item item) {
+		this(item, 1);
 	}
 
-	public ItemStack(Item var1, int var2) {
-		this(var1, var2, 0);
+	public ItemStack(Item item, int amount) {
+		this(item, amount, 0);
 	}
 
-	public ItemStack(Item var1, int var2, int var3) {
+	public ItemStack(Item item, int amount, int wearout) {
 		this.h = null;
 		this.i = false;
 		this.j = null;
 		this.k = false;
-		this.item = var1;
-		this.amount = var2;
-		this.wearout = var3;
+		this.item = item;
+		this.amount = amount;
+		this.wearout = wearout;
 		if (this.wearout < 0) {
 			this.wearout = 0;
 		}
@@ -265,8 +265,8 @@ public final class ItemStack {
 
 	}
 
-	public boolean b(Block var1) {
-		return this.item.b(var1);
+	public boolean canDestroySpecialBlock(Block var1) {
+		return this.item.canDestroySpecialBlock(var1);
 	}
 
 	public boolean a(EntityHuman var1, EntityLiving var2) {

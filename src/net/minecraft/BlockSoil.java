@@ -83,8 +83,8 @@ public class BlockSoil extends Block {
 
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
-		return Blocks.DIRT.a(Blocks.DIRT.getBlockState().a(BlockDirt.a, avd.a), var2, var3);
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
+		return Blocks.DIRT.getItemDrop(Blocks.DIRT.getBlockState().a(BlockDirt.a, avd.a), var2, var3);
 	}
 
 	public IBlockState setData(int var1) {

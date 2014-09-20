@@ -375,11 +375,11 @@ public class PlayerInventory implements IInventory {
 	}
 
 	public boolean b(Block var1) {
-		if (var1.getMaterial().l()) {
+		if (var1.getMaterial().alwaysDropsItem()) {
 			return true;
 		} else {
 			ItemStack var2 = this.getItem(this.itemInHandIndex);
-			return var2 != null ? var2.b(var1) : false;
+			return var2 != null ? var2.canDestroySpecialBlock(var1) : false;
 		}
 	}
 

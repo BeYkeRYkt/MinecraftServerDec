@@ -74,7 +74,7 @@ public class BlockFlowerPot extends atg {
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!World.a((ard) var1, var2.getDown())) {
-			this.b(var1, var2, var3, 0);
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.g(var2);
 		}
 
@@ -83,7 +83,7 @@ public class BlockFlowerPot extends atg {
 	public void remove(World var1, Position var2, IBlockState var3) {
 		TileEntityFlowerPot var4 = this.d(var1, var2);
 		if (var4 != null && var4.b() != null) {
-			a(var1, var2, new ItemStack(var4.b(), 1, var4.c()));
+			dropItem(var1, var2, new ItemStack(var4.b(), 1, var4.c()));
 		}
 
 		super.remove(var1, var2, var3);
@@ -100,7 +100,7 @@ public class BlockFlowerPot extends atg {
 
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.FLOWER_POT;
 	}
 

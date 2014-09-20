@@ -17,7 +17,7 @@ public class BlockIce extends awt {
 		if (this.G() && aph.e(var2)) {
 			ItemStack var8 = this.i(var4);
 			if (var8 != null) {
-				a(var1, var3, var8);
+				dropItem(var1, var3, var8);
 			}
 		} else {
 			if (var1.worldProvider.n()) {
@@ -26,7 +26,7 @@ public class BlockIce extends awt {
 			}
 
 			int var6 = aph.f(var2);
-			this.b(var1, var3, var4, var6);
+			this.dropNaturally(var1, var3, var4, var6);
 			Material var7 = var1.getBlockState(var3.getDown()).getBlock().getMaterial();
 			if (var7.isSolid() || var7.isLiquid()) {
 				var1.a(var3, Blocks.FLOWING_WATER.getBlockState());
@@ -35,7 +35,7 @@ public class BlockIce extends awt {
 
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 
@@ -44,7 +44,7 @@ public class BlockIce extends awt {
 			if (var1.worldProvider.n()) {
 				var1.g(var2);
 			} else {
-				this.b(var1, var2, var1.getBlockState(var2), 0);
+				this.dropNaturally(var1, var2, var1.getBlockState(var2), 0);
 				var1.a(var2, Blocks.WATER.getBlockState());
 			}
 		}

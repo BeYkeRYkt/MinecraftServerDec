@@ -59,7 +59,7 @@ public abstract class aud extends Block {
 		if (this.e(var1, var2, var3)) {
 			BlockFace var5 = (BlockFace) var3.b(a);
 			if (!var1.getBlockState(var2.getRelative(var5.getOpposite())).getBlock().t()) {
-				this.b(var1, var2, var3, 0);
+				this.dropNaturally(var1, var2, var3, 0);
 				var1.g(var2);
 			}
 		}
@@ -68,7 +68,7 @@ public abstract class aud extends Block {
 
 	private boolean e(World var1, Position var2, IBlockState var3) {
 		if (!this.c(var1, var2)) {
-			this.b(var1, var2, var3, 0);
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.g(var2);
 			return false;
 		} else {

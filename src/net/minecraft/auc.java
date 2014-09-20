@@ -35,7 +35,7 @@ public class auc extends Block {
 
 	protected void e(World var1, Position var2, IBlockState var3) {
 		if (!this.f(var1, var2, var3)) {
-			this.b(var1, var2, var3, 0);
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.setBlockAt(var2, Blocks.AIR.getBlockState(), 3);
 		}
 

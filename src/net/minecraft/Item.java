@@ -108,7 +108,7 @@ public class Item {
 		return false;
 	}
 
-	public boolean b(Block var1) {
+	public boolean canDestroySpecialBlock(Block var1) {
 		return false;
 	}
 

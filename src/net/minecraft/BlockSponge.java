@@ -15,7 +15,7 @@ public class BlockSponge extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((Boolean) var1.b(a)).booleanValue() ? 1 : 0;
 	}
 

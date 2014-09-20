@@ -13,11 +13,11 @@ public class BlockHugeMushroom extends Block {
 		this.b = var2;
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return Math.max(0, var1.nextInt(10) - 7);
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf(this.b);
 	}
 

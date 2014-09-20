@@ -57,7 +57,7 @@ public class BlockTallPlant extends auc implements atz {
 			if (var8 == this) {
 				var1.setBlockAt(var6, Blocks.AIR.getBlockState(), 3);
 				if (!var4) {
-					this.b(var1, var6, var3, 0);
+					this.dropNaturally(var1, var6, var3, 0);
 				}
 			}
 
@@ -73,7 +73,7 @@ public class BlockTallPlant extends auc implements atz {
 		}
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		if (var1.b(b) == avj.a) {
 			return null;
 		} else {
@@ -82,7 +82,7 @@ public class BlockTallPlant extends auc implements atz {
 		}
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return var1.b(b) != avj.a && var1.b(a) != avk.c ? ((avk) var1.b(a)).a() : 0;
 	}
 
@@ -137,7 +137,7 @@ public class BlockTallPlant extends auc implements atz {
 		} else {
 			var4.b(StatisticList.MINE_BLOCK_COUNT[Block.getBlockId((Block) this)]);
 			int var6 = (var5 == avk.c ? EnumGrassType.b : EnumGrassType.c).a();
-			a(var1, var2, new ItemStack(Blocks.TALLGRASS, 2, var6));
+			dropItem(var1, var2, new ItemStack(Blocks.TALLGRASS, 2, var6));
 			return true;
 		}
 	}
@@ -156,7 +156,7 @@ public class BlockTallPlant extends auc implements atz {
 	}
 
 	public void b(World var1, Random var2, Position var3, IBlockState var4) {
-		a(var1, var3, new ItemStack(this, 1, this.e(var1, var3).a()));
+		dropItem(var1, var3, new ItemStack(this, 1, this.e(var1, var3).a()));
 	}
 
 	public IBlockState setData(int var1) {

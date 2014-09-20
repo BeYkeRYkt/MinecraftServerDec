@@ -54,7 +54,7 @@ public class ItemSword extends Item {
 		return var1;
 	}
 
-	public boolean b(Block var1) {
+	public boolean canDestroySpecialBlock(Block var1) {
 		return var1 == Blocks.WEB;
 	}
 

@@ -88,7 +88,7 @@ public class BlockCocoa extends avb implements atz {
 
 	private void f(World var1, Position var2, IBlockState var3) {
 		var1.setBlockAt(var2, Blocks.AIR.getBlockState(), 3);
-		this.b(var1, var2, var3, 0);
+		this.dropNaturally(var1, var2, var3, 0);
 	}
 
 	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
@@ -99,7 +99,7 @@ public class BlockCocoa extends avb implements atz {
 		}
 
 		for (int var8 = 0; var8 < var7; ++var8) {
-			a(var1, var2, new ItemStack(Items.DYE, 1, akv.m.b()));
+			dropItem(var1, var2, new ItemStack(Items.DYE, 1, akv.m.b()));
 		}
 
 	}

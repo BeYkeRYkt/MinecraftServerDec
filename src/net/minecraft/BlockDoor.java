@@ -141,7 +141,7 @@ public class BlockDoor extends Block {
 
 			if (var9) {
 				if (!var1.isStatic) {
-					this.b(var1, var2, var3, 0);
+					this.dropNaturally(var1, var2, var3, 0);
 				}
 			} else {
 				boolean var8 = var1.isBlockIndirectlyPowered(var2) || var1.isBlockIndirectlyPowered(var10);
@@ -158,7 +158,7 @@ public class BlockDoor extends Block {
 
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return var1.b(O) == avg.a ? null : this.j();
 	}
 

@@ -15,7 +15,7 @@ public class BlockFurnace extends atg {
 		this.b = var1;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf(Blocks.FURNACE);
 	}
 

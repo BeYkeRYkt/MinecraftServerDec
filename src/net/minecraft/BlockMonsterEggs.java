@@ -13,7 +13,7 @@ public class BlockMonsterEggs extends Block {
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 

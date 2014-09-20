@@ -98,7 +98,7 @@ public class BlockTorch extends Block {
 			}
 
 			if (var7) {
-				this.b(var1, var2, var3, 0);
+				this.dropNaturally(var1, var2, var3, 0);
 				var1.g(var2);
 				return true;
 			} else {
@@ -112,7 +112,7 @@ public class BlockTorch extends Block {
 			return true;
 		} else {
 			if (var1.getBlockState(var2).getBlock() == this) {
-				this.b(var1, var2, var3, 0);
+				this.dropNaturally(var1, var2, var3, 0);
 				var1.g(var2);
 			}
 

@@ -35,7 +35,7 @@ public class BlockAnvil extends BlockFalling {
 		return true;
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((Integer) var1.b(b)).intValue();
 	}
 

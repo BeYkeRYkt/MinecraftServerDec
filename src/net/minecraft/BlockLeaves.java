@@ -122,15 +122,15 @@ public abstract class BlockLeaves extends BlockTransparent {
 	}
 
 	private void d(World var1, Position var2) {
-		this.b(var1, var2, var1.getBlockState(var2), 0);
+		this.dropNaturally(var1, var2, var1.getBlockState(var2), 0);
 		var1.g(var2);
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return var1.nextInt(20) == 0 ? 1 : 0;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf(Blocks.SAPLING);
 	}
 
@@ -145,8 +145,8 @@ public abstract class BlockLeaves extends BlockTransparent {
 			}
 
 			if (var1.random.nextInt(var6) == 0) {
-				Item var7 = this.a(var3, var1.random, var5);
-				a(var1, var2, new ItemStack(var7, 1, this.a(var3)));
+				Item var7 = this.getItemDrop(var3, var1.random, var5);
+				dropItem(var1, var2, new ItemStack(var7, 1, this.getItemDropData(var3)));
 			}
 
 			var6 = 200;

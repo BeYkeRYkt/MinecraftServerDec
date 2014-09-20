@@ -80,7 +80,7 @@ public class BlockCobbleWall extends Block {
 		return var3 == Blocks.BARRIER ? false : (var3 != this && !(var3 instanceof BlockFenceGate) ? (var3.material.k() && var3.d() ? var3.material != Material.PUMPKIN : false) : true);
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((bby) var1.b(P)).a();
 	}
 

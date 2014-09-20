@@ -77,11 +77,11 @@ public class BlockCake extends Block {
 		return var1.getBlockState(var2.getDown()).getBlock().getMaterial().isBuildable();
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 

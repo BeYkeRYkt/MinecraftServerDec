@@ -35,7 +35,7 @@ public class atb extends atg {
 		return new TileEntityBanner();
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.BANNER;
 	}
 
@@ -50,7 +50,7 @@ public class atb extends atg {
 			var8.remove("z");
 			var8.remove("id");
 			var7.addTag("BlockEntityTag", (NBTTag) var8);
-			a(var1, var2, var7);
+			dropItem(var1, var2, var7);
 		} else {
 			super.dropNaturally(var1, var2, var3, var4, var5);
 		}
@@ -67,7 +67,7 @@ public class atb extends atg {
 			var7.remove("z");
 			var7.remove("id");
 			var6.addTag("BlockEntityTag", (NBTTag) var7);
-			a(var1, var3, var6);
+			dropItem(var1, var3, var6);
 		} else {
 			super.a(var1, var2, var3, var4, (TileEntity) null);
 		}

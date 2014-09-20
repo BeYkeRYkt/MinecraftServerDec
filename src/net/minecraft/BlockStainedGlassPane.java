@@ -10,7 +10,7 @@ public class BlockStainedGlassPane extends BlockThin {
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((akv) var1.b(a)).a();
 	}
 

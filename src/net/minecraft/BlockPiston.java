@@ -274,7 +274,7 @@ public class BlockPiston extends Block {
 			for (var11 = var7.size() - 1; var11 >= 0; --var11) {
 				var12 = (Position) var7.get(var11);
 				Block var13 = var1.getBlockState(var12).getBlock();
-				var13.b(var1, var12, var1.getBlockState(var12), 0);
+				var13.dropNaturally(var1, var12, var1.getBlockState(var12), 0);
 				var1.g(var12);
 				--var8;
 				var9[var8] = var13;

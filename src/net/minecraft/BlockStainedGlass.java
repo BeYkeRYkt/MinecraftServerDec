@@ -12,7 +12,7 @@ public class BlockStainedGlass extends awt {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((akv) var1.b(a)).a();
 	}
 
@@ -20,7 +20,7 @@ public class BlockStainedGlass extends awt {
 		return ((akv) var1.b(a)).e();
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 

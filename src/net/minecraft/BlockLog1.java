@@ -54,7 +54,7 @@ public class BlockLog1 extends axm {
 		return new ItemStack(Item.getItemOf((Block) this), 1, ((EnumWoodType) var1.b(b)).a());
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((EnumWoodType) var1.b(b)).a();
 	}
 
