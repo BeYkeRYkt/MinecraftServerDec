@@ -24,11 +24,11 @@ public class PlayerInteractManager {
 		this.worldServer = var1;
 	}
 
-	public void a(EnumGameMode var1) {
-		this.gameMode = var1;
-		var1.setGameModeProperties(this.b.playerProperties);
+	public void setGameMode(EnumGameMode gameMode) {
+		this.gameMode = gameMode;
+		gameMode.setGameModeProperties(this.b.playerProperties);
 		this.b.t();
-		this.b.minecraftserver.getPlayerList().sendPacket((Packet) (new PacketPlayOutListItem(ListItemAction.UPDATE_GAME_MODE, new EntityPlayer[] { this.b })));
+		this.b.minecraftserver.getPlayerList().sendPacket(new PacketPlayOutListItem(ListItemAction.UPDATE_GAME_MODE, new EntityPlayer[] { this.b }));
 	}
 
 	public EnumGameMode getGameMode() {
@@ -48,7 +48,7 @@ public class PlayerInteractManager {
 			this.gameMode = var1;
 		}
 
-		this.a(this.gameMode);
+		this.setGameMode(this.gameMode);
 	}
 
 	public void a() {

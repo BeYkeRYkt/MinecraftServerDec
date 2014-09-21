@@ -23,7 +23,7 @@ public class GameModeCommand extends AbstractCommand {
 		} else {
 			EnumGameMode var3 = this.h(var1, var2[0]);
 			EntityPlayer var4 = var2.length >= 2 ? a(var1, var2[1]) : b(var1);
-			var4.a(var3);
+			var4.setGameMode(var3);
 			var4.fallDistance = 0.0F;
 			if (var1.getWorld().getGameRules().isGameRule("sendCommandFeedback")) {
 				var4.sendChatMessage((IChatBaseComponent) (new ChatMessage("gameMode.changed", new Object[0])));

@@ -6,8 +6,9 @@ import java.util.Set;
 
 import net.minecraft.ChatMessage;
 import net.minecraft.EntityPlayer;
-
 import org.bukkit.Achievement;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Instrument;
 import org.bukkit.Location;
@@ -115,7 +116,7 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 
 	@Override
 	public boolean isOnline() {
-		return true;
+		return Bukkit.getPlayer(getUniqueId()) != null;
 	}
 
 	@Override

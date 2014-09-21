@@ -584,9 +584,9 @@ public abstract class PlayerList {
 
 	private void a(EntityPlayer var1, EntityPlayer var2, World var3) {
 		if (var2 != null) {
-			var1.playerInteractManager.a(var2.playerInteractManager.getGameMode());
+			var1.playerInteractManager.setGameMode(var2.playerInteractManager.getGameMode());
 		} else if (this.s != null) {
-			var1.playerInteractManager.a(this.s);
+			var1.playerInteractManager.setGameMode(this.s);
 		}
 
 		var1.playerInteractManager.b(var3.getWorldData().getGameMode());

@@ -2,8 +2,8 @@ package net.minecraft;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import net.minecraft.util.com.mojang.authlib.GameProfile;
 
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 import net.minecraft.util.io.netty.buffer.Unpooled;
 
 import java.util.ArrayList;
@@ -18,7 +18,10 @@ import net.minecraft.server.MinecraftServer;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerGameModeChangeEvent;
 
 import pipebukkit.server.entity.PipePlayer;
 
@@ -83,9 +86,9 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		super.a(var1);
 		if (var1.isTagAssignableFrom("playerGameType", 99)) {
 			if (MinecraftServer.getInstance().av()) {
-				this.playerInteractManager.a(MinecraftServer.getInstance().getServerGameMode());
+				this.playerInteractManager.setGameMode(MinecraftServer.getInstance().getServerGameMode());
 			} else {
-				this.playerInteractManager.a(EnumGameMode.getById(var1.getInt("playerGameType")));
+				this.playerInteractManager.setGameMode(EnumGameMode.getById(var1.getInt("playerGameType")));
 			}
 		}
 
@@ -720,13 +723,19 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public WorldServer getWorldServer() {
-		return (WorldServer) this.world;
+		return this.world;
 	}
 
-	public void a(EnumGameMode var1) {
-		this.playerInteractManager.a(var1);
-		this.playerConnection.sendPacket((Packet) (new PacketPlayOutChangeGameState(3, (float) var1.getId())));
-		if (var1 == EnumGameMode.SPECTATOR) {
+	public void setGameMode(EnumGameMode mode) {
+		@SuppressWarnings("deprecation")
+		PlayerGameModeChangeEvent gameModeChangeEvent = new PlayerGameModeChangeEvent(getBukkitEntity(Player.class), GameMode.getByValue(mode.getId()));
+		Bukkit.getPluginManager().callEvent(gameModeChangeEvent);
+		if (gameModeChangeEvent.isCancelled()) {
+			return;
+		}
+		this.playerInteractManager.setGameMode(mode);
+		this.playerConnection.sendPacket(new PacketPlayOutChangeGameState(3, mode.getId()));
+		if (mode == EnumGameMode.SPECTATOR) {
 			this.mount((Entity) null);
 		} else {
 			this.e(this);
