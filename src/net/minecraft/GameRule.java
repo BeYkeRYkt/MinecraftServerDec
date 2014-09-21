@@ -2,49 +2,42 @@ package net.minecraft;
 
 class GameRule {
 
-	private String a;
-	private boolean b;
-	private int c;
-	private double d;
-	private final GameRuleValue e;
+	private String data;
+	private boolean isTrue;
+	private int intValue;
+	private final GameRuleValue type;
 
-	public GameRule(String var1, GameRuleValue var2) {
-		this.e = var2;
-		this.a(var1);
+	public GameRule(String data, GameRuleValue type) {
+		this.type = type;
+		this.setRuleData(data);
 	}
 
-	public void a(String var1) {
-		this.a = var1;
-		this.b = Boolean.parseBoolean(var1);
-		this.c = this.b ? 1 : 0;
+	public void setRuleData(String data) {
+		this.data = data;
+		this.isTrue = Boolean.parseBoolean(data);
+		this.intValue = this.isTrue ? 1 : 0;
 
 		try {
-			this.c = Integer.parseInt(var1);
+			this.intValue = Integer.parseInt(data);
 		} catch (NumberFormatException var4) {
-			;
-		}
-
-		try {
-			this.d = Double.parseDouble(var1);
-		} catch (NumberFormatException var3) {
-			;
 		}
 
 	}
 
-	public String a() {
-		return this.a;
+	public String getData() {
+		return this.data;
 	}
 
-	public boolean b() {
-		return this.b;
+	public boolean isTrue() {
+		return this.isTrue;
 	}
 
-	public int c() {
-		return this.c;
+	public int getNumericalValue() {
+		return this.intValue;
 	}
 
-	public GameRuleValue e() {
-		return this.e;
+	public GameRuleValue getType() {
+		return this.type;
 	}
+
 }

@@ -94,12 +94,12 @@ public class Chunk {
 		return var1 == this.x && var2 == this.z;
 	}
 
-	public int f(Position var1) {
-		return this.b(var1.getX() & 15, var1.getZ() & 15);
+	public int getHighestBlockYAt(Position position) {
+		return this.getHighestBlockYAt(position.getX() & 15, position.getZ() & 15);
 	}
 
-	public int b(int var1, int var2) {
-		return this.heightMap[var2 << 4 | var1];
+	public int getHighestBlockYAt(int x, int z) {
+		return this.heightMap[z << 4 | x];
 	}
 
 	public int g() {
@@ -184,7 +184,7 @@ public class Chunk {
 				for (int var3 = 0; var3 < 16; ++var3) {
 					if (this.g[var2 + var3 * 16]) {
 						this.g[var2 + var3 * 16] = false;
-						int var4 = this.b(var2, var3);
+						int var4 = this.getHighestBlockYAt(var2, var3);
 						int var5 = this.x * 16 + var2;
 						int var6 = this.z * 16 + var3;
 						int var7 = Integer.MAX_VALUE;

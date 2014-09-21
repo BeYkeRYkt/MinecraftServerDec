@@ -567,7 +567,7 @@ public class Block {
 	}
 
 	public static void dropItem(World world, Position position, ItemStack itemStack) {
-		if (!world.isStatic && world.getGameRules().b("doTileDrops")) {
+		if (!world.isStatic && world.getGameRules().isGameRule("doTileDrops")) {
 			float addCoord = 0.5F;
 			double diffX = (double) (world.random.nextFloat() * addCoord) + (double) (1.0F - addCoord) * 0.5D;
 			double diffY = (double) (world.random.nextFloat() * addCoord) + (double) (1.0F - addCoord) * 0.5D;

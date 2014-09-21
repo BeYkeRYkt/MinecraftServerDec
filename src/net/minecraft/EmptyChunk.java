@@ -14,7 +14,7 @@ public class EmptyChunk extends Chunk {
 		return var1 == this.x && var2 == this.z;
 	}
 
-	public int b(int var1, int var2) {
+	public int getHighestBlockYAt(int var1, int var2) {
 		return 0;
 	}
 

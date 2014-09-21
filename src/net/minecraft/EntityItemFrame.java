@@ -50,7 +50,7 @@ public class EntityItemFrame extends adj {
 	}
 
 	public void a(Entity var1, boolean var2) {
-		if (this.world.getGameRules().b("doTileDrops")) {
+		if (this.world.getGameRules().isGameRule("doTileDrops")) {
 			ItemStack var3 = this.o();
 			if (var1 instanceof EntityHuman) {
 				EntityHuman var4 = (EntityHuman) var1;

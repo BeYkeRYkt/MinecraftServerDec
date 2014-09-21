@@ -96,7 +96,7 @@ public class yt extends PathfinderGoal {
 				this.a.addParticle(Particle.I, this.d.locationX + (double) (var3.nextFloat() * this.d.height * 2.0F) - (double) this.d.height, this.d.locationY + 0.5D + (double) (var3.nextFloat() * this.d.width), this.d.locationZ + (double) (var3.nextFloat() * this.d.height * 2.0F) - (double) this.d.height, var5, var7, var9, new int[0]);
 			}
 
-			if (this.a.getGameRules().b("doMobLoot")) {
+			if (this.a.getGameRules().isGameRule("doMobLoot")) {
 				this.a.addEntity((Entity) (new EntityExpirienceOrb(this.a, this.d.locationX, this.d.locationY, this.d.locationZ, var3.nextInt(7) + 1)));
 			}
 

@@ -224,7 +224,7 @@ public class BlockPiston extends Block {
 		} else if (!var1.getWorldBorder().isInside(var2)) {
 			return false;
 		} else if (var2.getY() >= 0 && (var3 != BlockFace.DOWN || var2.getY() != 0)) {
-			if (var2.getY() <= var1.U() - 1 && (var3 != BlockFace.UP || var2.getY() != var1.U() - 1)) {
+			if (var2.getY() <= var1.getHeight() - 1 && (var3 != BlockFace.UP || var2.getY() != var1.getHeight() - 1)) {
 				if (var0 != Blocks.PISTON && var0 != Blocks.STICKY_PISTON) {
 					if (var0.g(var1, var2) == -1.0F) {
 						return false;

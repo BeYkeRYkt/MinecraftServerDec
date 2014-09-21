@@ -117,7 +117,7 @@ public class ChunkProviderServer implements IChunkProvider {
 
 	public void queueUnload(int chunkX, int chunkZ) {
 		if (this.worldServer.worldProvider.isPrimaryWorld()) {
-			if (!this.worldServer.isSpawnChunk(chunkX, chunkZ)) {
+			if (!this.worldServer.isSpawnChunk(chunkX, chunkZ) || !worldServer.getBukkitWorld().getKeepSpawnInMemory()) {
 				this.unloadQueue.add(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
 			}
 		} else {
@@ -155,7 +155,15 @@ public class ChunkProviderServer implements IChunkProvider {
 		unloadQueue.remove(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
 	}
 
-	private void requestChunkSave(Chunk chunk) {
+	public void removeChunk(int chunkX, int chunkZ) {
+		chunks.remove(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
+	}
+
+	public boolean isQueuedForSaving(Chunk chunk) {
+		return chunkLoader.isQueuedForSaving(chunk);
+	}
+
+	public void requestChunkSave(Chunk chunk) {
 		if (this.chunkLoader != null) {
 			try {
 				chunk.b(this.worldServer.getTime());

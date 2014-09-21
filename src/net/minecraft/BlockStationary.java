@@ -28,7 +28,7 @@ public class BlockStationary extends axl {
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (this.material == Material.LAVA) {
-			if (var1.getGameRules().b("doFireTick")) {
+			if (var1.getGameRules().isGameRule("doFireTick")) {
 				int var5 = var4.nextInt(3);
 				if (var5 > 0) {
 					Position var6 = var2;

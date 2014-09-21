@@ -66,7 +66,7 @@ public class EntityPainting extends adj {
 	}
 
 	public void b(Entity var1) {
-		if (this.world.getGameRules().b("doTileDrops")) {
+		if (this.world.getGameRules().isGameRule("doTileDrops")) {
 			if (var1 instanceof EntityHuman) {
 				EntityHuman var2 = (EntityHuman) var1;
 				if (var2.playerProperties.instabuild) {

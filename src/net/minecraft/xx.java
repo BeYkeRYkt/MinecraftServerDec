@@ -150,7 +150,7 @@ public abstract class xx extends EntityAnimal implements xt {
 	}
 
 	public void a(DamageSource var1) {
-		if (!this.world.isStatic && this.world.getGameRules().b("showDeathMessages") && this.hasCustomName() && this.cm() instanceof EntityPlayer) {
+		if (!this.world.isStatic && this.world.getGameRules().isGameRule("showDeathMessages") && this.hasCustomName() && this.cm() instanceof EntityPlayer) {
 			((EntityPlayer) this.cm()).sendChatMessage(this.br().getMessage());
 		}
 

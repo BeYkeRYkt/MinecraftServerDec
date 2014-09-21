@@ -98,7 +98,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 		this.worldProvider.m().b();
 		if (this.f()) {
-			if (this.getGameRules().b("doDaylightCycle")) {
+			if (this.getGameRules().isGameRule("doDaylightCycle")) {
 				long var1 = this.worldData.getDayTime() + 24000L;
 				this.worldData.setDayTime(var1 - var1 % 24000L);
 			}
@@ -107,7 +107,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		}
 
 		this.B.a("mobSpawner");
-		if (this.getGameRules().b("doMobSpawning") && this.worldData.getLevelType() != LevelType.DEBUG) {
+		if (this.getGameRules().isGameRule("doMobSpawning") && this.worldData.getLevelType() != LevelType.DEBUG) {
 			this.spawnerCreature.a(this, this.F, this.G, this.worldData.getTime() % 400L == 0L);
 		}
 
@@ -119,7 +119,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		}
 
 		this.worldData.setTime(this.worldData.getTime() + 1L);
-		if (this.getGameRules().b("doDaylightCycle")) {
+		if (this.getGameRules().isGameRule("doDaylightCycle")) {
 			this.worldData.setDayTime(this.worldData.getDayTime() + 1L);
 		}
 
@@ -264,7 +264,7 @@ public class WorldServer extends World implements ITaskScheduler {
 				}
 
 				this.B.c("tickBlocks");
-				var8 = this.getGameRules().c("randomTickSpeed");
+				var8 = this.getGameRules().getGameRule("randomTickSpeed");
 				if (var8 > 0) {
 					ChunkSection[] var23 = var7.getChunkSections();
 					int var24 = var23.length;
@@ -297,7 +297,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	protected Position a(Position var1) {
 		Position var2 = this.q(var1);
-		AxisAlignedBB var3 = (new AxisAlignedBB(var2, new Position(var2.getX(), this.U(), var2.getZ()))).grow(3.0D, 3.0D, 3.0D);
+		AxisAlignedBB var3 = (new AxisAlignedBB(var2, new Position(var2.getX(), this.getHeight(), var2.getZ()))).grow(3.0D, 3.0D, 3.0D);
 		List var4 = this.getEntititesInAABB(EntityLiving.class, var3, new qu(this));
 		return !var4.isEmpty() ? ((EntityLiving) var4.get(this.random.nextInt(var4.size()))).getEntityPosition() : var2;
 	}
@@ -557,7 +557,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.worldData.setIsHardcore(false);
 		this.worldData.setDifficulty(Difficulty.PEACEFUL);
 		this.worldData.setDifficultyLocked(true);
-		this.getGameRules().a("doDaylightCycle", "false");
+		this.getGameRules().setOrAddGameRule("doDaylightCycle", "false");
 	}
 
 	private void b(WorldSettings var1) {
@@ -614,7 +614,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 			this.chunkProvider.requestChunksSave(var1, var2);
 			for (Chunk chunk : chunkProviderServer.getChunkList()) {
-				if (!this.playerChunkMap.a(chunk.x, chunk.z)) {
+				if (!this.playerChunkMap.isChunkInUse(chunk.x, chunk.z)) {
 					this.chunkProviderServer.queueUnload(chunk.x, chunk.z);
 				}
 			}

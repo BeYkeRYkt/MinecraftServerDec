@@ -65,7 +65,7 @@ public class BlockCommand extends atg {
 			}
 
 			if (!var1.isStatic) {
-				var7.setTrackOutput(var1.getGameRules().b("sendCommandFeedback"));
+				var7.setTrackOutput(var1.getGameRules().isGameRule("sendCommandFeedback"));
 			}
 
 		}

@@ -222,7 +222,7 @@ public abstract class EntityLiving extends Entity {
 		++this.av;
 		if (this.av == 20) {
 			int var1;
-			if (!this.world.isStatic && (this.aM > 0 || this.ba()) && this.aZ() && this.world.getGameRules().b("doMobLoot")) {
+			if (!this.world.isStatic && (this.aM > 0 || this.ba()) && this.aZ() && this.world.getGameRules().isGameRule("doMobLoot")) {
 				var1 = this.b(this.aL);
 
 				while (var1 > 0) {
@@ -683,7 +683,7 @@ public abstract class EntityLiving extends Entity {
 				var4 = aph.i((EntityLiving) var2);
 			}
 
-			if (this.aZ() && this.world.getGameRules().b("doMobLoot")) {
+			if (this.aZ() && this.world.getGameRules().isGameRule("doMobLoot")) {
 				this.dropDeathLoot(this.aM > 0, var4);
 				this.a(this.aM > 0, var4);
 				if (this.aM > 0 && this.random.nextFloat() < 0.025F + (float) var4 * 0.01F) {

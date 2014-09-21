@@ -43,7 +43,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 			int var4 = this.position.getX();
 			int var5 = this.position.getY();
 			int var6 = this.position.getZ();
-			AxisAlignedBB var7 = (new AxisAlignedBB((double) var4, (double) var5, (double) var6, (double) (var4 + 1), (double) (var5 + 1), (double) (var6 + 1))).grow(var1, var1, var1).a(0.0D, (double) this.world.U(), 0.0D);
+			AxisAlignedBB var7 = (new AxisAlignedBB((double) var4, (double) var5, (double) var6, (double) (var4 + 1), (double) (var5 + 1), (double) (var6 + 1))).grow(var1, var1, var1).a(0.0D, (double) this.world.getHeight(), 0.0D);
 			List var8 = this.world.getEntititesInAABB(EntityHuman.class, var7);
 			Iterator var9 = var8.iterator();
 

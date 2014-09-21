@@ -44,7 +44,7 @@ public class BlockSoil extends Block {
 	public void a(World var1, Position var2, Entity var3, float var4) {
 		if (var3 instanceof EntityLiving) {
 			if (!var1.isStatic && var1.random.nextFloat() < var4 - 0.5F) {
-				if (!(var3 instanceof EntityHuman) && !var1.getGameRules().b("mobGriefing")) {
+				if (!(var3 instanceof EntityHuman) && !var1.getGameRules().isGameRule("mobGriefing")) {
 					return;
 				}
 

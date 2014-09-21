@@ -113,7 +113,7 @@ public abstract class CommandBlockListenerAbstract implements CommandSenderInter
 
 	public boolean isCommandBlockOuputEnabled() {
 		MinecraftServer minecraftServer = MinecraftServer.getInstance();
-		return minecraftServer == null || !minecraftServer.hasUniverse() || minecraftServer.getWorld().getGameRules().b("commandBlockOutput");
+		return minecraftServer == null || !minecraftServer.hasUniverse() || minecraftServer.getWorld().getGameRules().isGameRule("commandBlockOutput");
 	}
 
 	public void a(ag var1, int var2) {

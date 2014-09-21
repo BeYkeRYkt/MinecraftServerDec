@@ -76,7 +76,7 @@ public class ItemMapFilled extends ItemMap {
 								} else {
 									for (var28 = 0; var28 < var4; ++var28) {
 										for (int var29 = 0; var29 < var4; ++var29) {
-											int var30 = var22.b(var28 + var23, var29 + var24) + 1;
+											int var30 = var22.getHighestBlockYAt(var28 + var23, var29 + var24) + 1;
 											IBlockState var31 = Blocks.AIR.getBlockState();
 											if (var30 > 1) {
 												do {

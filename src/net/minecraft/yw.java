@@ -48,7 +48,7 @@ public class yw extends PathfinderGoal {
 		if (this.a == 4) {
 			Position var1 = new Position(this.c.locationX, this.c.locationY, this.c.locationZ);
 			if (b.apply(this.d.getBlockState(var1))) {
-				if (this.d.getGameRules().b("mobGriefing")) {
+				if (this.d.getGameRules().isGameRule("mobGriefing")) {
 					this.d.b(var1, false);
 				}
 
@@ -56,7 +56,7 @@ public class yw extends PathfinderGoal {
 			} else {
 				Position var2 = var1.getDown();
 				if (this.d.getBlockState(var2).getBlock() == Blocks.GRASS) {
-					if (this.d.getGameRules().b("mobGriefing")) {
+					if (this.d.getGameRules().isGameRule("mobGriefing")) {
 						this.d.triggerEffect(2001, var2, Block.getBlockId((Block) Blocks.GRASS));
 						this.d.setBlockAt(var2, Blocks.DIRT.getBlockState(), 2);
 					}

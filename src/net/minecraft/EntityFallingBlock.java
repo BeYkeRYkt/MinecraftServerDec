@@ -100,12 +100,12 @@ public class EntityFallingBlock extends Entity {
 									var3.update();
 								}
 							}
-						} else if (this.b && !this.e && this.world.getGameRules().b("doTileDrops")) {
+						} else if (this.b && !this.e && this.world.getGameRules().isGameRule("doTileDrops")) {
 							this.a(new ItemStack(var1, 1, var1.getItemDropData(this.d)), 0.0F);
 						}
 					}
 				} else if (this.a > 100 && !this.world.isStatic && (var2.getY() < 1 || var2.getY() > 256) || this.a > 600) {
-					if (this.b && this.world.getGameRules().b("doTileDrops")) {
+					if (this.b && this.world.getGameRules().isGameRule("doTileDrops")) {
 						this.a(new ItemStack(var1, 1, var1.getItemDropData(this.d)), 0.0F);
 					}
 

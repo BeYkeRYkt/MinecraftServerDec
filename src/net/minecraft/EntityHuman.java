@@ -315,7 +315,7 @@ public abstract class EntityHuman extends EntityLiving {
 			--this.bk;
 		}
 
-		if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().b("naturalRegeneration")) {
+		if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().isGameRule("naturalRegeneration")) {
 			if (this.getHealth() < this.bt() && this.ticksLived % 20 == 0) {
 				this.g(1.0F);
 			}
@@ -401,7 +401,7 @@ public abstract class EntityHuman extends EntityLiving {
 			this.a(new ItemStack(Items.APPLE, 1), true, false);
 		}
 
-		if (!this.world.getGameRules().b("keepInventory")) {
+		if (!this.world.getGameRules().isGameRule("keepInventory")) {
 			this.playerInventory.n();
 		}
 
@@ -1344,7 +1344,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	protected int b(EntityHuman var1) {
-		if (this.world.getGameRules().b("keepInventory")) {
+		if (this.world.getGameRules().isGameRule("keepInventory")) {
 			return 0;
 		} else {
 			int var2 = this.xpLevel * 7;
@@ -1366,7 +1366,7 @@ public abstract class EntityHuman extends EntityLiving {
 			this.xp = var1.xp;
 			this.r(var1.bW());
 			this.an = var1.an;
-		} else if (this.world.getGameRules().b("keepInventory")) {
+		} else if (this.world.getGameRules().isGameRule("keepInventory")) {
 			this.playerInventory.copyInventoryFrom(var1.playerInventory);
 			this.xpLevel = var1.xpLevel;
 			this.xpTotal = var1.xpTotal;
@@ -1482,7 +1482,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public boolean isCommandBlockOuputEnabled() {
-		return MinecraftServer.getInstance().getWorld().getGameRules().b("sendCommandFeedback");
+		return MinecraftServer.getInstance().getWorld().getGameRules().isGameRule("sendCommandFeedback");
 	}
 
 	public boolean d(int var1, ItemStack var2) {

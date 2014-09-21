@@ -165,7 +165,7 @@ public class EntityCreeper extends EntityMonster {
 
 	private void cp() {
 		if (!this.world.isStatic) {
-			boolean var1 = this.world.getGameRules().b("mobGriefing");
+			boolean var1 = this.world.getGameRules().isGameRule("mobGriefing");
 			float var2 = this.n() ? 2.0F : 1.0F;
 			this.world.a(this, this.locationX, this.locationY, this.locationZ, (float) this.bl * var2, var1);
 			this.die();
@@ -182,7 +182,7 @@ public class EntityCreeper extends EntityMonster {
 	}
 
 	public boolean cn() {
-		return this.bm < 1 && this.world.getGameRules().b("doMobLoot");
+		return this.bm < 1 && this.world.getGameRules().isGameRule("doMobLoot");
 	}
 
 	public void co() {

@@ -14,7 +14,7 @@ public class EntityLightning extends EntityWeather {
 		this.b = 2;
 		this.a = this.random.nextLong();
 		this.c = this.random.nextInt(3) + 1;
-		if (!var1.isStatic && var1.getGameRules().b("doFireTick") && (var1.getDifficulty() == Difficulty.NORMAL || var1.getDifficulty() == Difficulty.HARD) && var1.a(new Position(this), (int) 10)) {
+		if (!var1.isStatic && var1.getGameRules().isGameRule("doFireTick") && (var1.getDifficulty() == Difficulty.NORMAL || var1.getDifficulty() == Difficulty.HARD) && var1.a(new Position(this), (int) 10)) {
 			Position var8 = new Position(this);
 			if (var1.getBlockState(var8).getBlock().getMaterial() == Material.AIR && Blocks.FIRE.c(var1, var8)) {
 				var1.a(var8, Blocks.FIRE.getBlockState());
@@ -46,7 +46,7 @@ public class EntityLightning extends EntityWeather {
 				this.b = 1;
 				this.a = this.random.nextLong();
 				Position var1 = new Position(this);
-				if (!this.world.isStatic && this.world.getGameRules().b("doFireTick") && this.world.a(var1, (int) 10) && this.world.getBlockState(var1).getBlock().getMaterial() == Material.AIR && Blocks.FIRE.c(this.world, var1)) {
+				if (!this.world.isStatic && this.world.getGameRules().isGameRule("doFireTick") && this.world.a(var1, (int) 10) && this.world.getBlockState(var1).getBlock().getMaterial() == Material.AIR && Blocks.FIRE.c(this.world, var1)) {
 					this.world.a(var1, Blocks.FIRE.getBlockState());
 				}
 			}

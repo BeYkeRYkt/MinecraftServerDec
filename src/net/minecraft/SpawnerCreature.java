@@ -142,7 +142,7 @@ public final class SpawnerCreature {
 		Chunk var3 = var0.a(var1, var2);
 		int var4 = var1 * 16 + var0.random.nextInt(16);
 		int var5 = var2 * 16 + var0.random.nextInt(16);
-		int var6 = MathHelper.c(var3.f(new Position(var4, 0, var5)) + 1, 16);
+		int var6 = MathHelper.c(var3.getHighestBlockYAt(new Position(var4, 0, var5)) + 1, 16);
 		int var7 = var0.random.nextInt(var6 > 0 ? var6 : var3.g() + 16 - 1);
 		return new Position(var4, var7, var5);
 	}

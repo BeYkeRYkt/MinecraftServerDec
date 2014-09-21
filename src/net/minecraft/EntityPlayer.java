@@ -293,7 +293,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	public void a(DamageSource var1) {
-		if (this.world.getGameRules().b("showDeathMessages")) {
+		if (this.world.getGameRules().isGameRule("showDeathMessages")) {
 			ScoreboardTeamBase var2 = this.bN();
 			if (var2 != null && var2.getDeathMessageVisibility() != ScoreboardTeamNameTagVisibility.ALWAYS) {
 				if (var2.getDeathMessageVisibility() == ScoreboardTeamNameTagVisibility.HIDE_FOR_OTHER_TEAMS) {
@@ -306,7 +306,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			}
 		}
 
-		if (!this.world.getGameRules().b("keepInventory")) {
+		if (!this.world.getGameRules().isGameRule("keepInventory")) {
 			this.playerInventory.n();
 		}
 

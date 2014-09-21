@@ -14,7 +14,7 @@ public class ze extends zn {
 
 	public boolean a() {
 		if (this.a <= 0) {
-			if (!this.c.world.getGameRules().b("mobGriefing")) {
+			if (!this.c.world.getGameRules().isGameRule("mobGriefing")) {
 				return false;
 			}
 

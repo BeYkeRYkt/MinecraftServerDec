@@ -283,7 +283,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 				if (this.currentTick % 20 == 0) {
 					this.profiler.a("timeSync");
-					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.getTime(), world.getDayTime(), world.getGameRules().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
+					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.getTime(), world.getDayTime(), world.getGameRules().isGameRule("doDaylightCycle"))), world.worldProvider.getDimensionId());
 					this.profiler.b();
 				}
 
@@ -769,7 +769,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			}
 		}
 
-		this.X().e(this.worlds.get(0).getDataManager().g());
+		this.X().e(this.worlds.get(0).getDataManager().getName());
 		this.stopTicking();
 	}
 
@@ -1020,7 +1020,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public boolean isCommandBlockOuputEnabled() {
-		return getInstance().worlds.get(0).getGameRules().b("sendCommandFeedback");
+		return getInstance().worlds.get(0).getGameRules().isGameRule("sendCommandFeedback");
 	}
 
 	public void a(ag var1, int var2) {

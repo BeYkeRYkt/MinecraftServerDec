@@ -26,8 +26,8 @@ public class ChunkCoordIntPair {
 		} else if (!(obj instanceof ChunkCoordIntPair)) {
 			return false;
 		} else {
-			ChunkCoordIntPair var2 = (ChunkCoordIntPair) obj;
-			return this.chunkX == var2.chunkX && this.chunkZ == var2.chunkZ;
+			ChunkCoordIntPair otherCoords = (ChunkCoordIntPair) obj;
+			return this.chunkX == otherCoords.chunkX && this.chunkZ == otherCoords.chunkZ;
 		}
 	}
 

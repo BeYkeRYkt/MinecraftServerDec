@@ -93,11 +93,11 @@ public class DedicatedServerCommandHandler extends AbstractCommandsHandler imple
 			}
 		}
 
-		if (var1 != var7 && var7.getWorld().getGameRules().b("logAdminCommands")) {
+		if (var1 != var7 && var7.getWorld().getGameRules().isGameRule("logAdminCommands")) {
 			var7.sendChatMessage((IChatBaseComponent) var8);
 		}
 
-		boolean var11 = var7.getWorld().getGameRules().b("sendCommandFeedback");
+		boolean var11 = var7.getWorld().getGameRules().isGameRule("sendCommandFeedback");
 		if (var1 instanceof CommandBlockListenerAbstract) {
 			var11 = ((CommandBlockListenerAbstract) var1).isTrackOutputEnabled();
 		}

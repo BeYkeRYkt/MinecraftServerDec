@@ -151,7 +151,7 @@ public class EntityWither extends EntityMonster implements IRangedEntity {
 		if (this.cj() > 0) {
 			var1 = this.cj() - 1;
 			if (var1 <= 0) {
-				this.world.a(this, this.locationX, this.locationY + (double) this.getHeadHeight(), this.locationZ, 7.0F, false, this.world.getGameRules().b("mobGriefing"));
+				this.world.a(this, this.locationX, this.locationY + (double) this.getHeadHeight(), this.locationZ, 7.0F, false, this.world.getGameRules().isGameRule("mobGriefing"));
 				this.world.a(1013, new Position(this), 0);
 			}
 
@@ -222,7 +222,7 @@ public class EntityWither extends EntityMonster implements IRangedEntity {
 
 			if (this.bo > 0) {
 				--this.bo;
-				if (this.bo == 0 && this.world.getGameRules().b("mobGriefing")) {
+				if (this.bo == 0 && this.world.getGameRules().isGameRule("mobGriefing")) {
 					var1 = MathHelper.toFixedPointInt(this.locationY);
 					var12 = MathHelper.toFixedPointInt(this.locationX);
 					int var15 = MathHelper.toFixedPointInt(this.locationZ);

@@ -63,7 +63,7 @@ class bl implements CommandSenderInterface {
 
 	public boolean isCommandBlockOuputEnabled() {
 		MinecraftServer var1 = MinecraftServer.getInstance();
-		return var1 == null || var1.getWorld().getGameRules().b("commandBlockOutput");
+		return var1 == null || var1.getWorld().getGameRules().isGameRule("commandBlockOutput");
 	}
 
 	public void a(ag var1, int var2) {

@@ -382,7 +382,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 				for (int var12 = var4; var12 <= var7; ++var12) {
 					Block var13 = this.world.getBlockState(new Position(var10, var11, var12)).getBlock();
 					if (var13.getMaterial() != Material.AIR) {
-						if (var13 != Blocks.BARRIER && var13 != Blocks.OBSIDIAN && var13 != Blocks.END_STONE && var13 != Blocks.BEDROCK && var13 != Blocks.COMMAND_BLOCK && this.world.getGameRules().b("mobGriefing")) {
+						if (var13 != Blocks.BARRIER && var13 != Blocks.OBSIDIAN && var13 != Blocks.END_STONE && var13 != Blocks.BEDROCK && var13 != Blocks.COMMAND_BLOCK && this.world.getGameRules().isGameRule("mobGriefing")) {
 							var9 = this.world.g(new Position(var10, var11, var12)) || var9;
 						} else {
 							var8 = true;
@@ -449,7 +449,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 		int var4;
 		int var5;
 		if (!this.world.isStatic) {
-			if (this.bw > 150 && this.bw % 5 == 0 && this.world.getGameRules().b("doMobLoot")) {
+			if (this.bw > 150 && this.bw % 5 == 0 && this.world.getGameRules().isGameRule("doMobLoot")) {
 				var4 = 1000;
 
 				while (var4 > 0) {

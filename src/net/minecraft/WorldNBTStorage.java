@@ -8,7 +8,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.UUID;
+
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.org.apache.commons.io.IOUtils;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -243,8 +247,40 @@ public class WorldNBTStorage implements IDataManager, IPlayerFileData {
 		return new File(this.dataDir, var1 + ".dat");
 	}
 
-	public String g() {
+	public String getName() {
 		return this.worldName;
+	}
+
+	private UUID cachedUUID;
+	@Override
+	public UUID getUUID() {
+        if (cachedUUID != null) {
+        	return cachedUUID;
+        }
+        File uidFile = new File(this.baseDir, "uid.dat");
+        if (uidFile.exists()) {
+        	DataInputStream dis = null;
+        	try {
+        		dis = new DataInputStream(new FileInputStream(uidFile));
+        		return cachedUUID = new UUID(dis.readLong(), dis.readLong());
+        	} catch (IOException ex) {
+                logger.warn("Failed to read " + uidFile + ", generating new random UUID", ex);
+        	} finally {
+            	IOUtils.closeQuietly(dis);
+        	}
+        }
+        cachedUUID = UUID.randomUUID();
+        DataOutputStream dos = null;
+        try {
+        	dos = new DataOutputStream(new FileOutputStream(uidFile));
+        	dos.writeLong(cachedUUID.getMostSignificantBits());
+        	dos.writeLong(cachedUUID.getLeastSignificantBits());
+        } catch (IOException ex) {
+            logger.warn("Failed to write " + uidFile, ex);
+        } finally {
+        	IOUtils.closeQuietly(dos);
+        }
+        return cachedUUID;
 	}
 
 }

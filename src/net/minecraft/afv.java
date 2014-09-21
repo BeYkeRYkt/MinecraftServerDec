@@ -35,7 +35,7 @@ class afv extends PathfinderGoal {
 						Position var7 = var3.a(var5, var4, var6);
 						IBlockState var8 = var1.getBlockState(var7);
 						if (var8.getBlock() == Blocks.MONSTER_EGG) {
-							if (var1.getGameRules().b("mobGriefing")) {
+							if (var1.getGameRules().isGameRule("mobGriefing")) {
 								var1.b(var7, true);
 							} else {
 								var1.setBlockAt(var7, ((axu) var8.b(BlockMonsterEggs.a)).d(), 3);

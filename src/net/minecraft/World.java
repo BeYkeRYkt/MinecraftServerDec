@@ -14,22 +14,20 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 
-import pipebukkit.server.PipeWorld;
 import net.minecraft.server.MinecraftServer;
 
 public abstract class World implements ard {
 
 	protected boolean e;
 	public final List<Entity> f = Lists.newArrayList();
-	protected final List g = Lists.newArrayList();
-	public final List h = Lists.newArrayList();
-	public final List i = Lists.newArrayList();
-	private final List a = Lists.newArrayList();
-	private final List b = Lists.newArrayList();
+	protected final List<Entity> g = Lists.newArrayList();
+	public final List<TileEntity> h = Lists.newArrayList();
+	public final List<TileEntity> i = Lists.newArrayList();
+	private final List<TileEntity> a = Lists.newArrayList();
+	private final List<TileEntity> b = Lists.newArrayList();
 	public final List<Entity> j = Lists.newArrayList();
-	public final List k = Lists.newArrayList();
+	public final List<Entity> k = Lists.newArrayList();
 	protected final IntHashMap l = new IntHashMap();
-	private long c = 16777215L;
 	private int d;
 	protected int m = (new Random()).nextInt();
 	protected final int n = 1013904223;
@@ -37,7 +35,6 @@ public abstract class World implements ard {
 	protected float p;
 	protected float q;
 	protected float r;
-	private int I;
 	public final Random random = new Random();
 	public final WorldProvider worldProvider;
 	protected List<IWorldAccess> u = Lists.newArrayList();
@@ -51,15 +48,17 @@ public abstract class World implements ard {
 	private final Calendar J = Calendar.getInstance();
 	protected Scoreboard C = new Scoreboard();
 	public final boolean isStatic;
-	protected Set E = Sets.newHashSet();
+	protected Set<ChunkCoordIntPair> E = Sets.newHashSet();
 	private int K;
 	protected boolean F;
 	protected boolean G;
 	private boolean L;
 	private final WorldBorder worldborder;
 	int[] H;
+	public boolean pvpMode;
 
 	protected World(IDataManager var1, String levelName, WorldSettings settings, WorldProvider var3, MethodProfiler var4, boolean var5) {
+		this.pvpMode = MinecraftServer.getInstance().isPVPEnabled();
 		this.K = this.random.nextInt(12000);
 		this.F = true;
 		this.G = true;
@@ -88,7 +87,7 @@ public abstract class World implements ard {
 			} catch (Throwable var6) {
 				CrashReport var4 = CrashReport.generateCrashReport(var6, "Getting biome");
 				CrashReportSystemDetails var5 = var4.generateSystemDetails("Coordinates of biome request");
-				var5.addDetails("Location", (Callable) (new aqv(this, var1)));
+				var5.addDetails("Location", (Callable<String>) (new aqv(this, var1)));
 				throw new ReportedException(var4);
 			}
 		} else {
@@ -333,7 +332,7 @@ public abstract class World implements ard {
 			} catch (Throwable var7) {
 				CrashReport var5 = CrashReport.generateCrashReport(var7, "Exception while updating neighbours");
 				CrashReportSystemDetails var6 = var5.generateSystemDetails("Block being updated");
-				var6.addDetails("Source block type", (Callable) (new aqw(this, var2)));
+				var6.addDetails("Source block type", (Callable<String>) (new aqw(this, var2)));
 				net.minecraft.CrashReportSystemDetails.addBlockStateInfo(var6, var1, var3);
 				throw new ReportedException(var5);
 			}
@@ -428,7 +427,7 @@ public abstract class World implements ard {
 		int var2;
 		if (var1.getX() >= -30000000 && var1.getZ() >= -30000000 && var1.getX() < 30000000 && var1.getZ() < 30000000) {
 			if (this.a(var1.getX() >> 4, var1.getZ() >> 4, true)) {
-				var2 = this.a(var1.getX() >> 4, var1.getZ() >> 4).b(var1.getX() & 15, var1.getZ() & 15);
+				var2 = this.a(var1.getX() >> 4, var1.getZ() >> 4).getHighestBlockYAt(var1.getX() & 15, var1.getZ() & 15);
 			} else {
 				var2 = 0;
 			}
@@ -764,8 +763,8 @@ public abstract class World implements ard {
 		this.u.add(var1);
 	}
 
-	public List getCubes(Entity var1, AxisAlignedBB var2) {
-		ArrayList var3 = Lists.newArrayList();
+	public List<AxisAlignedBB> getCubes(Entity var1, AxisAlignedBB var2) {
+		ArrayList<AxisAlignedBB> var3 = Lists.newArrayList();
 		int var4 = MathHelper.toFixedPointInt(var2.minX);
 		int var5 = MathHelper.toFixedPointInt(var2.maxX + 1.0D);
 		int var6 = MathHelper.toFixedPointInt(var2.minY);
@@ -800,7 +799,7 @@ public abstract class World implements ard {
 		}
 
 		double var17 = 0.25D;
-		List var18 = this.getEntities(var1, var2.grow(var17, var17, var17));
+		List<?> var18 = this.getEntities(var1, var2.grow(var17, var17, var17));
 
 		for (int var19 = 0; var19 < var18.size(); ++var19) {
 			if (var1.passenger != var18 && var1.vehicle != var18) {
@@ -839,8 +838,8 @@ public abstract class World implements ard {
 		return var2.locationX > var3 && var2.locationX < var7 && var2.locationZ > var5 && var2.locationZ < var9;
 	}
 
-	public List a(AxisAlignedBB var1) {
-		ArrayList var2 = Lists.newArrayList();
+	public List<AxisAlignedBB> a(AxisAlignedBB var1) {
+		ArrayList<AxisAlignedBB> var2 = Lists.newArrayList();
 		int var3 = MathHelper.toFixedPointInt(var1.minX);
 		int var4 = MathHelper.toFixedPointInt(var1.maxX + 1.0D);
 		int var5 = MathHelper.toFixedPointInt(var1.minY);
@@ -1015,7 +1014,7 @@ public abstract class World implements ard {
 
 		this.B.c("blockEntities");
 		this.L = true;
-		Iterator var10 = this.i.iterator();
+		Iterator<TileEntity> var10 = this.i.iterator();
 
 		while (var10.hasNext()) {
 			TileEntity var11 = (TileEntity) var10.next();
@@ -1082,11 +1081,11 @@ public abstract class World implements ard {
 		return var2;
 	}
 
-	public void a(Collection var1) {
+	public void a(Collection<? extends TileEntity> var1) {
 		if (this.L) {
 			this.a.addAll(var1);
 		} else {
-			Iterator var2 = var1.iterator();
+			Iterator<?> var2 = var1.iterator();
 
 			while (var2.hasNext()) {
 				TileEntity var3 = (TileEntity) var2.next();
@@ -1177,7 +1176,7 @@ public abstract class World implements ard {
 	}
 
 	public boolean a(AxisAlignedBB var1, Entity var2) {
-		List var3 = this.getEntities((Entity) null, var1);
+		List<?> var3 = this.getEntities((Entity) null, var1);
 
 		for (int var4 = 0; var4 < var3.size(); ++var4) {
 			Entity var5 = (Entity) var3.get(var4);
@@ -1441,7 +1440,7 @@ public abstract class World implements ard {
 		if (var2 != null && !var2.isInvalid()) {
 			if (this.L) {
 				var2.setPosition(var1);
-				Iterator var3 = this.a.iterator();
+				Iterator<TileEntity> var3 = this.a.iterator();
 
 				while (var3.hasNext()) {
 					TileEntity var4 = (TileEntity) var3.next();
@@ -1928,9 +1927,9 @@ public abstract class World implements ard {
 		return list;
 	}
 
-	public List a(Class var1, Predicate var2) {
-		ArrayList var3 = Lists.newArrayList();
-		Iterator var4 = this.f.iterator();
+	public List<Entity> a(Class<?> var1, Predicate<Entity> var2) {
+		ArrayList<Entity> var3 = Lists.newArrayList();
+		Iterator<Entity> var4 = this.f.iterator();
 
 		while (var4.hasNext()) {
 			Entity var5 = (Entity) var4.next();
@@ -1942,8 +1941,8 @@ public abstract class World implements ard {
 		return var3;
 	}
 
-	public List b(Class var1, Predicate var2) {
-		ArrayList var3 = Lists.newArrayList();
+	public List<Entity> b(Class<?> var1, Predicate<Entity> var2) {
+		ArrayList<Entity> var3 = Lists.newArrayList();
 		Iterator<Entity> var4 = this.j.iterator();
 
 		while (var4.hasNext()) {
@@ -2007,9 +2006,9 @@ public abstract class World implements ard {
 		}
 	}
 
-	public int a(Class var1) {
+	public int a(Class<?> var1) {
 		int var2 = 0;
-		Iterator var3 = this.f.iterator();
+		Iterator<Entity> var3 = this.f.iterator();
 
 		while (var3.hasNext()) {
 			Entity var4 = (Entity) var3.next();
@@ -2021,9 +2020,9 @@ public abstract class World implements ard {
 		return var2;
 	}
 
-	public void b(Collection var1) {
+	public void b(Collection<Entity> var1) {
 		this.f.addAll(var1);
-		Iterator var2 = var1.iterator();
+		Iterator<Entity> var2 = var1.iterator();
 
 		while (var2.hasNext()) {
 			Entity var3 = (Entity) var2.next();
@@ -2032,7 +2031,7 @@ public abstract class World implements ard {
 
 	}
 
-	public void c(Collection var1) {
+	public void c(Collection<? extends Entity> var1) {
 		this.g.addAll(var1);
 	}
 
@@ -2273,7 +2272,7 @@ public abstract class World implements ard {
 		this.z.a(var1, var2);
 	}
 
-	public bqc a(Class var1, String var2) {
+	public bqc a(Class<?> var1, String var2) {
 		return this.z.a(var1, var2);
 	}
 
@@ -2309,7 +2308,7 @@ public abstract class World implements ard {
 		}
 	}
 
-	public int U() {
+	public int getHeight() {
 		return 256;
 	}
 
@@ -2330,8 +2329,8 @@ public abstract class World implements ard {
 	public CrashReportSystemDetails a(CrashReport var1) {
 		CrashReportSystemDetails var2 = var1.generateSystemDetails("Affected level", 1);
 		var2.addDetails("Level name", (Object) (this.worldData == null ? "????" : this.worldData.getLevelName()));
-		var2.addDetails("All players", (Callable) (new aqx(this)));
-		var2.addDetails("Chunk stats", (Callable) (new aqy(this)));
+		var2.addDetails("All players", (Callable<String>) (new aqx(this)));
+		var2.addDetails("Chunk stats", (Callable<String>) (new aqy(this)));
 
 		try {
 			this.worldData.addCrashReportDetails(var2);
@@ -2363,7 +2362,7 @@ public abstract class World implements ard {
 	}
 
 	public void e(Position var1, Block var2) {
-		Iterator var3 = UniverseDirection.HORIZONTAL.iterator();
+		Iterator<?> var3 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var3.hasNext()) {
 			BlockFace var4 = (BlockFace) var3.next();
@@ -2405,10 +2404,6 @@ public abstract class World implements ard {
 
 	public void b(int var1) {
 		this.d = var1;
-	}
-
-	public void c(int var1) {
-		this.I = var1;
 	}
 
 	public boolean isLoading() {

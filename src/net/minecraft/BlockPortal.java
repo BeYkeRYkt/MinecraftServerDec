@@ -14,7 +14,7 @@ public class BlockPortal extends awt {
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		super.b(var1, var2, var3, var4);
-		if (var1.worldProvider.isSleepAllowed() && var1.getGameRules().b("doMobSpawning") && var4.nextInt(2000) < var1.getDifficulty().getId()) {
+		if (var1.worldProvider.isSleepAllowed() && var1.getGameRules().isGameRule("doMobSpawning") && var4.nextInt(2000) < var1.getDifficulty().getId()) {
 			int var5 = var2.getY();
 
 			Position var6;

@@ -273,7 +273,7 @@ public abstract class EntityInsentient extends EntityLiving {
 	public void m() {
 		super.m();
 		this.world.B.a("looting");
-		if (!this.world.isStatic && this.bX() && !this.aN && this.world.getGameRules().b("mobGriefing")) {
+		if (!this.world.isStatic && this.bX() && !this.aN && this.world.getGameRules().isGameRule("mobGriefing")) {
 			List var1 = this.world.getEntititesInAABB(EntityItem.class, this.getBoundingBox().grow(1.0D, 0.0D, 1.0D));
 			Iterator var2 = var1.iterator();
 
