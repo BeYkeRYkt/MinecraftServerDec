@@ -10,6 +10,7 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.InventoryView.Property;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.permissions.PermissibleBase;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
@@ -19,74 +20,65 @@ import net.minecraft.EntityHuman;
 
 public abstract class PipeHumanEntity extends PipeLivingEntity implements HumanEntity {
 
+	protected final PermissibleBase perm = new PermissibleBase(this);
+
 	public PipeHumanEntity(EntityHuman nmsEntity) {
 		super(nmsEntity);
 	}
 
 	@Override
-	public PermissionAttachment addAttachment(Plugin arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public PermissionAttachment addAttachment(Plugin plugin) {
+		return perm.addAttachment(plugin);
 	}
 
 	@Override
-	public PermissionAttachment addAttachment(Plugin arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
+		return perm.addAttachment(plugin, ticks);
 	}
 
 	@Override
-	public PermissionAttachment addAttachment(Plugin arg0, String arg1, boolean arg2) {
-		// TODO Auto-generated method stub
-		return null;
+	public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
+		return perm.addAttachment(plugin, name, value);
 	}
 
 	@Override
-	public PermissionAttachment addAttachment(Plugin arg0, String arg1, boolean arg2, int arg3) {
-		// TODO Auto-generated method stub
-		return null;
+	public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
+		return perm.addAttachment(plugin, name, value, ticks);
 	}
 
 	@Override
 	public Set<PermissionAttachmentInfo> getEffectivePermissions() {
-		// TODO Auto-generated method stub
-		return null;
+		return perm.getEffectivePermissions();
 	}
 
 	@Override
-	public boolean hasPermission(String arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean hasPermission(String name) {
+		return perm.hasPermission(name);
 	}
 
 	@Override
-	public boolean hasPermission(Permission arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean hasPermission(Permission permission) {
+		return perm.hasPermission(permission);
 	}
 
 	@Override
-	public boolean isPermissionSet(String arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isPermissionSet(String name) {
+		return perm.isPermissionSet(name);
 	}
 
 	@Override
-	public boolean isPermissionSet(Permission arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isPermissionSet(Permission permission) {
+		return perm.isPermissionSet(permission);
 	}
 
 	@Override
 	public void recalculatePermissions() {
-		// TODO Auto-generated method stub
-		
+		perm.recalculatePermissions();
 	}
 
 	@Override
-	public void removeAttachment(PermissionAttachment arg0) {
-		// TODO Auto-generated method stub
-		
+	public void removeAttachment(PermissionAttachment attach) {
+		perm.removeAttachment(attach);
 	}
 
 	@Override
@@ -96,15 +88,14 @@ public abstract class PipeHumanEntity extends PipeLivingEntity implements HumanE
 	}
 
 	@Override
-	public void setOp(boolean arg0) {
+	public void setOp(boolean op) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void closeInventory() {
-		// TODO Auto-generated method stub
-		
+		getHandle(EntityHuman.class).closeWindow();
 	}
 
 	@Override
@@ -145,8 +136,7 @@ public abstract class PipeHumanEntity extends PipeLivingEntity implements HumanE
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return getHandle(EntityHuman.class).getName();
 	}
 
 	@Override

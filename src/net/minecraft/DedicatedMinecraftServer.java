@@ -15,6 +15,7 @@ import net.minecraft.server.MinecraftServer;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bukkit.Bukkit;
 
 public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 
@@ -249,7 +250,7 @@ public class DedicatedMinecraftServer extends MinecraftServer implements pj {
 	public void handlePendingCommands() {
 		while (!this.pendingCommands.isEmpty()) {
 			PendingServerCommand pendingCommand = this.pendingCommands.remove(0);
-			boolean pipeCommandHandled = getPipeServer().handleServerCommand(pendingCommand.command);
+			boolean pipeCommandHandled = getPipeServer().handleCommand(Bukkit.getConsoleSender(), pendingCommand.command);
 			if (!pipeCommandHandled) {
 				this.getCommandHandler().handleCommand(pendingCommand.sender, pendingCommand.command);
 			}

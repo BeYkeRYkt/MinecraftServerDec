@@ -21,6 +21,9 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 public class PlayerConnection implements PlayInPacketListener, ITickable {
 
@@ -461,9 +464,6 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 	public void handle(IChatBaseComponent packet) {
 		logger.info(this.player.getName() + " lost connection: " + packet);
 		this.minecraftserver.requestServerPingRefresh();
-		ChatMessage chatMessage = new ChatMessage("multiplayer.player.left", new Object[] { this.player.getComponentName() });
-		chatMessage.getChatModifier().setColor(EnumChatFormat.YELLOW);
-		this.minecraftserver.getPlayerList().sendMessage(chatMessage);
 		this.player.q();
 		this.minecraftserver.getPlayerList().disconnect(this.player);
 	}
@@ -497,7 +497,11 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 			}
 
 			if (message.startsWith("/")) {
-				this.handleCommand(message);
+				PlayerCommandPreprocessEvent commandPreProcess = new PlayerCommandPreprocessEvent(player.getBukkitEntity(Player.class), message);
+				Bukkit.getPluginManager().callEvent(commandPreProcess);
+				if (!commandPreProcess.isCancelled()) {
+					MinecraftServer.getInstance().getPipeServer().handleCommand(this.player.getBukkitEntity(Player.class), commandPreProcess.getMessage().substring(1, commandPreProcess.getMessage().length()));
+				}
 			} else {
 				ChatMessage chatMessage = new ChatMessage("chat.type.text", new Object[] { this.player.getComponentName(), message });
 				this.minecraftserver.getPlayerList().sendMessage(chatMessage, false);
@@ -511,9 +515,6 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 		}
 	}
 
-	private void handleCommand(String command) {
-		this.minecraftserver.getCommandHandler().handleCommand(this.player, command);
-	}
 
 	public void handle(PacketPlayInAnimation packet) {
 		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
@@ -627,7 +628,7 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 
 	public void handle(PacketPlayInCloseWindow packet) {
 		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
-		this.player.closeWindow();
+		this.player.removeWindow();
 	}
 
 	public void handle(PacketPlayInClickWindow packet) {

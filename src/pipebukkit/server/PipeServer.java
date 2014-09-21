@@ -175,7 +175,7 @@ public class PipeServer implements Server {
 		}
 	}
 
-	public boolean handleServerCommand(String commandString) {
+	public boolean handleCommand(CommandSender sender, String commandString) {
 		String[] split = commandString.split("\\s+");
 		String commandName = split[0];
 		String[] args = new String[0];
@@ -184,7 +184,7 @@ public class PipeServer implements Server {
 		}
 		Command command = commandMap.getCommand(commandName);
 		if (command != null) {
-			command.execute(getConsoleSender(), commandName, args);
+			command.execute(sender, commandName, args);
 			return true;
 		}
 		return false;

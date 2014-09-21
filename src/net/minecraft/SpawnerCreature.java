@@ -17,7 +17,7 @@ public final class SpawnerCreature {
 		} else {
 			this.b.clear();
 			int var5 = 0;
-			Iterator var6 = var1.j.iterator();
+			Iterator var6 = var1.players.iterator();
 
 			int var9;
 			int var12;

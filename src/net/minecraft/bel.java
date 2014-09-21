@@ -2,7 +2,7 @@ package net.minecraft;
 
 import com.google.common.cache.CacheLoader;
 
-class bel extends CacheLoader {
+class bel extends CacheLoader<Object, Object> {
 
 	private final World a;
 

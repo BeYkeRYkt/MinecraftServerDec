@@ -248,7 +248,7 @@ public class Village {
 		while (var5.hasNext()) {
 			String var6 = (String) var5.next();
 			if (this.d(var6)) {
-				EntityHuman var7 = this.a.getEntityHuman(var6);
+				EntityHuman var7 = this.a.getPlayer(var6);
 				if (var7 != null) {
 					double var8 = var7.getDistanceSquared(var1);
 					if (var8 <= var2) {

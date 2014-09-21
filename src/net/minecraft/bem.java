@@ -1,15 +1,15 @@
 package net.minecraft;
 
-import com.google.common.cache.LoadingCache;
+import com.google.common.cache.Cache;
 
 public class bem {
 
 	private final Position a;
 	private final BlockFace b;
 	private final BlockFace c;
-	private final LoadingCache d;
+	private final Cache<Object, Object> d;
 
-	public bem(Position var1, BlockFace var2, BlockFace var3, LoadingCache var4) {
+	public bem(Position var1, BlockFace var2, BlockFace var3, Cache<Object, Object> var4) {
 		this.a = var1;
 		this.b = var2;
 		this.c = var3;

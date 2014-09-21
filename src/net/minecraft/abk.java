@@ -62,7 +62,7 @@ public class abk {
 	}
 
 	private boolean b() {
-		List var1 = this.a.j;
+		List var1 = this.a.players;
 		Iterator var2 = var1.iterator();
 
 		while (var2.hasNext()) {

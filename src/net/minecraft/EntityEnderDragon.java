@@ -333,7 +333,7 @@ public class EntityEnderDragon extends EntityInsentient implements acy, IMonster
 
 	private void cd() {
 		this.bu = false;
-		ArrayList var1 = Lists.newArrayList((Iterable) this.world.j);
+		ArrayList var1 = Lists.newArrayList((Iterable) this.world.players);
 		Iterator var2 = var1.iterator();
 
 		while (var2.hasNext()) {

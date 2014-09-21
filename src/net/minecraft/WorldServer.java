@@ -150,10 +150,10 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	public void d() {
 		this.O = false;
-		if (!this.j.isEmpty()) {
+		if (!this.players.isEmpty()) {
 			int var1 = 0;
 			int var2 = 0;
-			Iterator var3 = this.j.iterator();
+			Iterator var3 = this.players.iterator();
 
 			while (var3.hasNext()) {
 				EntityHuman var4 = (EntityHuman) var3.next();
@@ -164,14 +164,14 @@ public class WorldServer extends World implements ITaskScheduler {
 				}
 			}
 
-			this.O = var2 > 0 && var2 >= this.j.size() - var1;
+			this.O = var2 > 0 && var2 >= this.players.size() - var1;
 		}
 
 	}
 
 	protected void e() {
 		this.O = false;
-		Iterator var1 = this.j.iterator();
+		Iterator var1 = this.players.iterator();
 
 		while (var1.hasNext()) {
 			EntityHuman var2 = (EntityHuman) var1.next();
@@ -192,7 +192,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	public boolean f() {
 		if (this.O && !this.isStatic) {
-			Iterator var1 = this.j.iterator();
+			Iterator var1 = this.players.iterator();
 
 			EntityHuman var2;
 			do {
@@ -359,7 +359,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	public void i() {
-		if (this.j.isEmpty()) {
+		if (this.players.isEmpty()) {
 			if (this.emptyTime++ >= 1200) {
 				return;
 			}
@@ -689,7 +689,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		}
 		explosion.destroyBlocks(false);
 
-		Iterator<Entity> iterator = this.j.iterator();
+		Iterator<Entity> iterator = this.players.iterator();
 		while (iterator.hasNext()) {
 			EntityHuman human = (EntityHuman) iterator.next();
 			if (human.getDistanceSquared(x, y, z) < 4096.0D) {
@@ -794,8 +794,8 @@ public class WorldServer extends World implements ITaskScheduler {
 	public void a(Particle var1, boolean var2, double var3, double var5, double var7, int var9, double var10, double var12, double var14, double var16, int... var18) {
 		PacketPlayOutParticle var19 = new PacketPlayOutParticle(var1, var2, (float) var3, (float) var5, (float) var7, (float) var10, (float) var12, (float) var14, (float) var16, var9, var18);
 
-		for (int var20 = 0; var20 < this.j.size(); ++var20) {
-			EntityPlayer var21 = (EntityPlayer) this.j.get(var20);
+		for (int var20 = 0; var20 < this.players.size(); ++var20) {
+			EntityPlayer var21 = (EntityPlayer) this.players.get(var20);
 			Position var22 = var21.getEntityPosition();
 			double var23 = var22.c(var3, var5, var7);
 			if (var23 <= 256.0D || var2 && var23 <= 65536.0D) {

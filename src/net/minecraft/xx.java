@@ -105,7 +105,7 @@ public abstract class xx extends EntityAnimal implements xt {
 	public EntityLiving cm() {
 		try {
 			UUID var1 = UUID.fromString(this.b());
-			return var1 == null ? null : this.world.getEntityHuman(var1);
+			return var1 == null ? null : this.world.getPlayer(var1);
 		} catch (IllegalArgumentException var2) {
 			return null;
 		}

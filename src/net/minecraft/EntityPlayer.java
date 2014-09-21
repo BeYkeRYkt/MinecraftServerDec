@@ -129,7 +129,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 		this.activeContainer.b();
 		if (!this.world.isStatic && !this.activeContainer.a((EntityHuman) this)) {
-			this.n();
+			this.closeWindow();
 			this.activeContainer = this.defaultContainer;
 		}
 
@@ -488,7 +488,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void openDispenser(IInventory var1) {
 		if (this.activeContainer != this.defaultContainer) {
-			this.n();
+			this.closeWindow();
 		}
 
 		if (var1 instanceof ILockable) {
@@ -533,7 +533,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void a(EntityHorse var1, IInventory var2) {
 		if (this.activeContainer != this.defaultContainer) {
-			this.n();
+			this.closeWindow();
 		}
 
 		this.cr();
@@ -579,9 +579,9 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	}
 
-	public void n() {
+	public void closeWindow() {
 		this.playerConnection.sendPacket((Packet) (new PacketPlayOutCloseWindow(this.activeContainer.windowId)));
-		this.closeWindow();
+		this.removeWindow();
 	}
 
 	public void broadcastCarriedItem() {
@@ -590,7 +590,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		}
 	}
 
-	public void closeWindow() {
+	public void removeWindow() {
 		this.activeContainer.onClose((EntityHuman) this);
 		this.activeContainer = this.defaultContainer;
 	}

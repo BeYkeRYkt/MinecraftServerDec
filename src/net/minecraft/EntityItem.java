@@ -256,7 +256,7 @@ public class EntityItem extends Entity {
 				}
 
 				if (var2.getItem() == Items.DIAMOND && this.n() != null) {
-					EntityHuman var4 = this.world.getEntityHuman(this.n());
+					EntityHuman var4 = this.world.getPlayer(this.n());
 					if (var4 != null && var4 != var1) {
 						var4.b((Statistic) AchievementList.x);
 					}

@@ -21,7 +21,7 @@ import org.bukkit.util.Vector;
 
 public abstract class PipeEntity implements Entity {
 
-	private net.minecraft.Entity nmsEntity;
+	protected net.minecraft.Entity nmsEntity;
 	private EntityDamageEvent lastDamage;
 
 	public PipeEntity(net.minecraft.Entity nmsEntity) {
@@ -261,6 +261,11 @@ public abstract class PipeEntity implements Entity {
 		nmsEntity.mount(null);
 		nmsEntity.setLocation(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
 		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T extends net.minecraft.Entity> T getHandle(Class<T> returnType) {
+		return (T) nmsEntity;
 	}
 
 }

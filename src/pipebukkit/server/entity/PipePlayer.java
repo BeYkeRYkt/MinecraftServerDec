@@ -4,6 +4,7 @@ import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.Set;
 
+import net.minecraft.ChatMessage;
 import net.minecraft.EntityPlayer;
 
 import org.bukkit.Achievement;
@@ -29,16 +30,8 @@ import pipebukkit.server.PipeOfflinePlayer;
 @DelegateDeserialization(PipeOfflinePlayer.class)
 public class PipePlayer extends PipeHumanEntity implements Player {
 
-	private EntityPlayer nmsPlayer;
-
 	public PipePlayer(EntityPlayer nmsPlayer) {
 		super(nmsPlayer);
-		this.nmsPlayer = nmsPlayer;
-	}
-
-	@Override
-	public void closeInventory() {
-		nmsPlayer.closeWindow();
 	}
 
 	@Override
@@ -72,15 +65,23 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 	}
 
 	@Override
-	public void sendMessage(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public void sendRawMessage(String message) {
+		if (getHandle(EntityPlayer.class).playerConnection == null) {
+			return;
+		}
+		getHandle(EntityPlayer.class).sendChatMessage(new ChatMessage(message));
 	}
 
 	@Override
-	public void sendMessage(String[] arg0) {
-		// TODO Auto-generated method stub
-		
+	public void sendMessage(String message) {
+		sendRawMessage(message);
+	}
+
+	@Override
+	public void sendMessage(String[] messages) {
+		for (String message : messages) {
+			sendMessage(message);
+		}
 	}
 
 	@Override
@@ -97,8 +98,7 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 
 	@Override
 	public Player getPlayer() {
-		// TODO Auto-generated method stub
-		return null;
+		return this;
 	}
 
 	@Override
@@ -115,8 +115,7 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 
 	@Override
 	public boolean isOnline() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
@@ -535,12 +534,6 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 
 	@Override
 	public void sendMap(MapView arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void sendRawMessage(String arg0) {
 		// TODO Auto-generated method stub
 		
 	}

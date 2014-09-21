@@ -146,7 +146,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 		super.s_();
 		if (!this.world.isStatic && this.activeContainer != null && !this.activeContainer.a(this)) {
-			this.n();
+			this.closeWindow();
 			this.activeContainer = this.defaultContainer;
 		}
 
@@ -277,7 +277,7 @@ public abstract class EntityHuman extends EntityLiving {
 		return this.getHealth() <= 0.0F || this.isSleeping();
 	}
 
-	protected void n() {
+	public void closeWindow() {
 		this.activeContainer = this.defaultContainer;
 	}
 

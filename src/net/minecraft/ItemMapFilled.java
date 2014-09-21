@@ -1,7 +1,10 @@
 package net.minecraft;
 
+import java.util.Collection;
+
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Multiset;
 import com.google.common.collect.Multisets;
 
 public class ItemMapFilled extends ItemMap {
@@ -55,7 +58,7 @@ public class ItemMapFilled extends ItemMap {
 							boolean var18 = var16 * var16 + var17 * var17 > (var9 - 2) * (var9 - 2);
 							int var19 = (var5 / var4 + var12 - 64) * var4;
 							int var20 = (var6 / var4 + var15 - 64) * var4;
-							HashMultiset var21 = HashMultiset.create();
+							HashMultiset<Object> var21 = HashMultiset.create();
 							Chunk var22 = var1.getChunk(new Position(var19, 0, var20));
 							if (!var22.f()) {
 								int var23 = var19 & 15;
@@ -112,7 +115,14 @@ public class ItemMapFilled extends ItemMap {
 									var35 = 0;
 								}
 
-								MaterialMapColor var36 = (MaterialMapColor) Iterables.getFirst(Multisets.copyHighestCountFirst(var21), MaterialMapColor.b);
+								MaterialMapColor var36 = MaterialMapColor.b;
+								int max = 0;
+								for (Multiset.Entry<Object> entry : var21.entrySet()) {
+									if (entry.getCount() > max) {
+										max = entry.getCount();
+									}
+									var36 = (MaterialMapColor) entry.getElement();
+								}
 								if (var36 == MaterialMapColor.n) {
 									var34 = (double) var25 * 0.1D + (double) (var12 + var15 & 1) * 0.2D;
 									var35 = 1;

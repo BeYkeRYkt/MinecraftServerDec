@@ -66,7 +66,7 @@ public class BlockBed extends avb {
 	}
 
 	private EntityHuman e(World var1, Position var2) {
-		Iterator var3 = var1.j.iterator();
+		Iterator var3 = var1.players.iterator();
 
 		EntityHuman var4;
 		do {

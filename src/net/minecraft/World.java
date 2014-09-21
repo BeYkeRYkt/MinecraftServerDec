@@ -19,13 +19,13 @@ import net.minecraft.server.MinecraftServer;
 public abstract class World implements ard {
 
 	protected boolean e;
-	public final List<Entity> f = Lists.newArrayList();
+	public final List<Entity> entities = Lists.newArrayList();
 	protected final List<Entity> g = Lists.newArrayList();
 	public final List<TileEntity> h = Lists.newArrayList();
 	public final List<TileEntity> i = Lists.newArrayList();
 	private final List<TileEntity> a = Lists.newArrayList();
 	private final List<TileEntity> b = Lists.newArrayList();
-	public final List<Entity> j = Lists.newArrayList();
+	public final List<Entity> players = Lists.newArrayList();
 	public final List<Entity> k = Lists.newArrayList();
 	protected final IntHashMap l = new IntHashMap();
 	private int d;
@@ -699,12 +699,12 @@ public abstract class World implements ard {
 		} else {
 			if (var1 instanceof EntityHuman) {
 				EntityHuman var5 = (EntityHuman) var1;
-				this.j.add(var5);
+				this.players.add(var5);
 				this.d();
 			}
 
 			this.a(var2, var3).addEntity(var1);
-			this.f.add(var1);
+			this.entities.add(var1);
 			this.a(var1);
 			return true;
 		}
@@ -735,7 +735,7 @@ public abstract class World implements ard {
 
 		var1.die();
 		if (var1 instanceof EntityHuman) {
-			this.j.remove(var1);
+			this.players.remove(var1);
 			this.d();
 			this.b(var1);
 		}
@@ -745,7 +745,7 @@ public abstract class World implements ard {
 	public void f(Entity var1) {
 		var1.die();
 		if (var1 instanceof EntityHuman) {
-			this.j.remove(var1);
+			this.players.remove(var1);
 			this.d();
 		}
 
@@ -755,7 +755,7 @@ public abstract class World implements ard {
 			this.a(var2, var3).b(var1);
 		}
 
-		this.f.remove(var1);
+		this.entities.remove(var1);
 		this.b(var1);
 	}
 
@@ -953,7 +953,7 @@ public abstract class World implements ard {
 		}
 
 		this.B.c("remove");
-		this.f.removeAll(this.g);
+		this.entities.removeAll(this.g);
 
 		int var3;
 		int var15;
@@ -973,8 +973,8 @@ public abstract class World implements ard {
 		this.g.clear();
 		this.B.c("regular");
 
-		for (var1 = 0; var1 < this.f.size(); ++var1) {
-			var2 = (Entity) this.f.get(var1);
+		for (var1 = 0; var1 < this.entities.size(); ++var1) {
+			var2 = (Entity) this.entities.get(var1);
 			if (var2.vehicle != null) {
 				if (!var2.vehicle.dead && var2.vehicle.passenger == var2) {
 					continue;
@@ -1005,7 +1005,7 @@ public abstract class World implements ard {
 					this.a(var3, var15).b(var2);
 				}
 
-				this.f.remove(var1--);
+				this.entities.remove(var1--);
 				this.b(var2);
 			}
 
@@ -1598,8 +1598,8 @@ public abstract class World implements ard {
 		int var3;
 		int var4;
 		int var5;
-		for (var1 = 0; var1 < this.j.size(); ++var1) {
-			var2 = (EntityHuman) this.j.get(var1);
+		for (var1 = 0; var1 < this.players.size(); ++var1) {
+			var2 = (EntityHuman) this.players.get(var1);
 			var3 = MathHelper.toFixedPointInt(var2.locationX / 16.0D);
 			var4 = MathHelper.toFixedPointInt(var2.locationZ / 16.0D);
 			var5 = this.q();
@@ -1617,9 +1617,9 @@ public abstract class World implements ard {
 		}
 
 		this.B.a("playerCheckLight");
-		if (!this.j.isEmpty()) {
-			var1 = this.random.nextInt(this.j.size());
-			var2 = (EntityHuman) this.j.get(var1);
+		if (!this.players.isEmpty()) {
+			var1 = this.random.nextInt(this.players.size());
+			var2 = (EntityHuman) this.players.get(var1);
 			var3 = MathHelper.toFixedPointInt(var2.locationX) + this.random.nextInt(11) - 5;
 			var4 = MathHelper.toFixedPointInt(var2.locationY) + this.random.nextInt(11) - 5;
 			var5 = MathHelper.toFixedPointInt(var2.locationZ) + this.random.nextInt(11) - 5;
@@ -1924,7 +1924,7 @@ public abstract class World implements ard {
 
 	public List<Entity> a(Class<?> var1, Predicate<Entity> var2) {
 		ArrayList<Entity> var3 = Lists.newArrayList();
-		Iterator<Entity> var4 = this.f.iterator();
+		Iterator<Entity> var4 = this.entities.iterator();
 
 		while (var4.hasNext()) {
 			Entity var5 = (Entity) var4.next();
@@ -1938,7 +1938,7 @@ public abstract class World implements ard {
 
 	public List<Entity> b(Class<?> var1, Predicate<Entity> var2) {
 		ArrayList<Entity> var3 = Lists.newArrayList();
-		Iterator<Entity> var4 = this.j.iterator();
+		Iterator<Entity> var4 = this.players.iterator();
 
 		while (var4.hasNext()) {
 			Entity var5 = (Entity) var4.next();
@@ -2003,7 +2003,7 @@ public abstract class World implements ard {
 
 	public int a(Class<?> var1) {
 		int var2 = 0;
-		Iterator<Entity> var3 = this.f.iterator();
+		Iterator<Entity> var3 = this.entities.iterator();
 
 		while (var3.hasNext()) {
 			Entity var4 = (Entity) var3.next();
@@ -2016,7 +2016,7 @@ public abstract class World implements ard {
 	}
 
 	public void b(Collection<Entity> var1) {
-		this.f.addAll(var1);
+		this.entities.addAll(var1);
 		Iterator<Entity> var2 = var1.iterator();
 
 		while (var2.hasNext()) {
@@ -2112,8 +2112,8 @@ public abstract class World implements ard {
 		double var9 = -1.0D;
 		EntityHuman var11 = null;
 
-		for (int var12 = 0; var12 < this.j.size(); ++var12) {
-			EntityHuman var13 = (EntityHuman) this.j.get(var12);
+		for (int var12 = 0; var12 < this.players.size(); ++var12) {
+			EntityHuman var13 = (EntityHuman) this.players.get(var12);
 			if (EntityPredicates.notSpectators.apply(var13)) {
 				double var14 = var13.getDistanceSquared(var1, var3, var5);
 				if ((var7 < 0.0D || var14 < var7 * var7) && (var9 == -1.0D || var14 < var9)) {
@@ -2127,8 +2127,8 @@ public abstract class World implements ard {
 	}
 
 	public boolean hasNearbyPlayer(double var1, double var3, double var5, double var7) {
-		for (int var9 = 0; var9 < this.j.size(); ++var9) {
-			EntityHuman var10 = (EntityHuman) this.j.get(var9);
+		for (int var9 = 0; var9 < this.players.size(); ++var9) {
+			EntityHuman var10 = (EntityHuman) this.players.get(var9);
 			if (EntityPredicates.notSpectators.apply(var10)) {
 				double var11 = var10.getDistanceSquared(var1, var3, var5);
 				if (var7 < 0.0D || var11 < var7 * var7) {
@@ -2140,22 +2140,22 @@ public abstract class World implements ard {
 		return false;
 	}
 
-	public EntityHuman getEntityHuman(String var1) {
-		for (int var2 = 0; var2 < this.j.size(); ++var2) {
-			EntityHuman var3 = (EntityHuman) this.j.get(var2);
-			if (var1.equals(var3.getName())) {
-				return var3;
+	public EntityHuman getPlayer(String name) {
+		for (int i = 0; i < this.players.size(); ++i) {
+			EntityHuman player = (EntityHuman) this.players.get(i);
+			if (name.equals(player.getName())) {
+				return player;
 			}
 		}
 
 		return null;
 	}
 
-	public EntityHuman getEntityHuman(UUID var1) {
-		for (int var2 = 0; var2 < this.j.size(); ++var2) {
-			EntityHuman var3 = (EntityHuman) this.j.get(var2);
-			if (var1.equals(var3.getUUID())) {
-				return var3;
+	public EntityHuman getPlayer(UUID uuid) {
+		for (int i = 0; i < this.players.size(); ++i) {
+			EntityHuman player = (EntityHuman) this.players.get(i);
+			if (uuid.equals(player.getUUID())) {
+				return player;
 			}
 		}
 

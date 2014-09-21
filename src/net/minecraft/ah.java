@@ -236,8 +236,8 @@ public class ah {
 		Predicate var14 = Predicates.and((Iterable) var2);
 		Predicate var15 = Predicates.and(EntityPredicates.a, var14);
 		if (var5 != null) {
-			int var16 = var4.j.size();
-			int var17 = var4.f.size();
+			int var16 = var4.players.size();
+			int var17 = var4.entities.size();
 			boolean var18 = var16 < var17 / 16;
 			AxisAlignedBB var19;
 			if (!var0.containsKey("dx") && !var0.containsKey("dy") && !var0.containsKey("dz")) {
