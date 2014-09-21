@@ -8,7 +8,7 @@ public class aiv extends Container {
 	private int h;
 	private int i;
 
-	public aiv(PlayerInventory var1, IInventory var2) {
+	public aiv(InventoryPlayer var1, IInventory var2) {
 		this.a = var2;
 		this.addSlot(new Slot(var2, 0, 56, 17));
 		this.addSlot((Slot) (new aiu(var2, 1, 56, 53)));

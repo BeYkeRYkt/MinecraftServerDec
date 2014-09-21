@@ -4,7 +4,7 @@ public class aix extends Container {
 
 	private final IInventory a;
 
-	public aix(PlayerInventory var1, IInventory var2, EntityHuman var3) {
+	public aix(InventoryPlayer var1, IInventory var2, EntityHuman var3) {
 		this.a = var2;
 		var2.onContainerOpen(var3);
 		byte var4 = 51;

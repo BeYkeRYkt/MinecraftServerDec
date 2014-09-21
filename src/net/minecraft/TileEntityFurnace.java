@@ -288,7 +288,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 		return "minecraft:furnace";
 	}
 
-	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
 		return new aiv(var1, this);
 	}
 

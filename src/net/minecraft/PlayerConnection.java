@@ -470,7 +470,7 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 
 	public void handle(PacketPlayInHeldItemChange packet) {
 		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
-		if (packet.getSlot() >= 0 && packet.getSlot() < PlayerInventory.getHotbarSize()) {
+		if (packet.getSlot() >= 0 && packet.getSlot() < InventoryPlayer.getHotbarSize()) {
 			this.player.playerInventory.itemInHandIndex = packet.getSlot();
 			this.player.updateLastActiveTime();
 		} else {
@@ -693,7 +693,7 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 				}
 			}
 
-			boolean isInventoryClick = packet.getSlot() >= 1 && packet.getSlot() < 36 + PlayerInventory.getHotbarSize();
+			boolean isInventoryClick = packet.getSlot() >= 1 && packet.getSlot() < 36 + InventoryPlayer.getHotbarSize();
 			boolean isValidItemCheck1 = item == null || item.getItem() != null;
 			boolean isValidItemCheck2 = item == null || item.getWearout() >= 0 && item.amount <= 64 && item.amount > 0;
 			if (isInventoryClick && isValidItemCheck1 && isValidItemCheck2) {

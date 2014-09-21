@@ -280,7 +280,7 @@ public class TileEntityChest extends TileEntityLockable implements IInventory {
 		return "minecraft:chest";
 	}
 
-	public Container getContainer(PlayerInventory playerInventory, EntityHuman human) {
+	public Container getContainer(InventoryPlayer playerInventory, EntityHuman human) {
 		return new ContainerChest(playerInventory, this, human);
 	}
 

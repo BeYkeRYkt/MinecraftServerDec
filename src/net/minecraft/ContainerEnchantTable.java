@@ -13,7 +13,7 @@ public class ContainerEnchantTable extends Container {
 	public int[] g = new int[3];
 	public int[] h = new int[] { -1, -1, -1 };
 
-	public ContainerEnchantTable(PlayerInventory var1, World var2, Position var3) {
+	public ContainerEnchantTable(InventoryPlayer var1, World var2, Position var3) {
 		this.i = var2;
 		this.j = var3;
 		this.f = var1.owner.ci();

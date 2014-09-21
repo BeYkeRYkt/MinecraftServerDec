@@ -257,7 +257,7 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 		return "minecraft:brewing_stand";
 	}
 
-	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
 		return new aii(var1, this);
 	}
 

@@ -135,7 +135,7 @@ public class EntityMinecartHopper extends InventoryMinecart implements IHopper {
 		return "minecraft:hopper";
 	}
 
-	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
 		return new aix(var1, this, var2);
 	}
 

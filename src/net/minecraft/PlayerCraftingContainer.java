@@ -7,7 +7,7 @@ public class PlayerCraftingContainer extends Container {
 	public boolean g;
 	private final EntityHuman player;
 
-	public PlayerCraftingContainer(PlayerInventory var1, boolean var2, EntityHuman var3) {
+	public PlayerCraftingContainer(InventoryPlayer var1, boolean var2, EntityHuman var3) {
 		craftingInventory = new InventoryCrafting(var3, this, 2, 2);
 		this.g = var2;
 		this.player = var3;

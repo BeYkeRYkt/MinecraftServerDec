@@ -249,7 +249,7 @@ public class TileEntityBeacon extends TileEntityLockable implements ITickable, I
 		return "minecraft:beacon";
 	}
 
-	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
 		return new ContainerBeacon(var1, this);
 	}
 

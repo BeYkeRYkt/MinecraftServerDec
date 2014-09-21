@@ -159,7 +159,7 @@ public class TileEntityDispenser extends TileEntityLockable implements IInventor
 		return "minecraft:dispenser";
 	}
 
-	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
 		return new aip(var1, this);
 	}
 

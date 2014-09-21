@@ -7,7 +7,7 @@ public class ContainerWorkbench extends Container {
 	private World world;
 	private Position position;
 
-	public ContainerWorkbench(PlayerInventory playerInventory, World var2, Position var3) {
+	public ContainerWorkbench(InventoryPlayer playerInventory, World var2, Position var3) {
 		this.world = var2;
 		this.position = var3;
 		craftingInventory = new InventoryCrafting(playerInventory.owner, this, 3, 3);

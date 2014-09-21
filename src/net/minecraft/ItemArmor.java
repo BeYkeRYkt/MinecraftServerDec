@@ -87,7 +87,7 @@ public class ItemArmor extends Item {
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
 		int var4 = EntityInsentient.c(var1) - 1;
-		ItemStack var5 = var3.q(var4);
+		ItemStack var5 = var3.getArmor(var4);
 		if (var5 == null) {
 			var3.setArmor(var4, var1.getCopy());
 			var1.amount = 0;

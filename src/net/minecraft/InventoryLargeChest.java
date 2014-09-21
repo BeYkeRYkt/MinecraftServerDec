@@ -131,7 +131,7 @@ public class InventoryLargeChest implements ILockable {
 		return this.leftChest.getInventoryType();
 	}
 
-	public Container getContainer(PlayerInventory playerInventory, EntityHuman human) {
+	public Container getContainer(InventoryPlayer playerInventory, EntityHuman human) {
 		return new ContainerChest(playerInventory, this, human);
 	}
 

@@ -6,7 +6,7 @@ public class ContainerMerchant extends Container {
 	private InventoryMerchant f;
 	private final World g;
 
-	public ContainerMerchant(PlayerInventory var1, IMerchant var2, World var3) {
+	public ContainerMerchant(InventoryPlayer var1, IMerchant var2, World var3) {
 		this.a = var2;
 		this.g = var3;
 		this.f = new InventoryMerchant(var1.owner, var2);

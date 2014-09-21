@@ -18,7 +18,7 @@ public class ContainerAnvil extends Container {
 	private String l;
 	private final EntityHuman m;
 
-	public ContainerAnvil(PlayerInventory var1, World var2, Position var3, EntityHuman var4) {
+	public ContainerAnvil(InventoryPlayer var1, World var2, Position var3, EntityHuman var4) {
 		this.j = var3;
 		this.i = var2;
 		this.m = var4;

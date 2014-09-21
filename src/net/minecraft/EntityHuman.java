@@ -11,7 +11,7 @@ import net.minecraft.server.MinecraftServer;
 
 public abstract class EntityHuman extends EntityLiving {
 
-	public PlayerInventory playerInventory = new PlayerInventory(this);
+	public InventoryPlayer playerInventory = new InventoryPlayer(this);
 	private InventoryEnderChest enderChest = new InventoryEnderChest();
 	public Container defaultContainer;
 	public Container activeContainer;
@@ -1240,8 +1240,8 @@ public abstract class EntityHuman extends EntityLiving {
 
 	}
 
-	public ItemStack q(int var1) {
-		return this.playerInventory.e(var1);
+	public ItemStack getArmor(int index) {
+		return this.playerInventory.getArmor(index);
 	}
 
 	public void u(int var1) {
@@ -1385,7 +1385,7 @@ public abstract class EntityHuman extends EntityLiving {
 	public void t() {
 	}
 
-	public void a(EnumGameMode var1) {
+	public void setGameMode(EnumGameMode var1) {
 	}
 
 	public String getName() {

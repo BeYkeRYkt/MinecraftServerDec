@@ -6,7 +6,7 @@ public class aii extends Container {
 	private final Slot f;
 	private int g;
 
-	public aii(PlayerInventory var1, IInventory var2) {
+	public aii(InventoryPlayer var1, IInventory var2) {
 		this.a = var2;
 		this.addSlot((Slot) (new aik(var1.owner, var2, 0, 56, 46)));
 		this.addSlot((Slot) (new aik(var1.owner, var2, 1, 79, 53)));

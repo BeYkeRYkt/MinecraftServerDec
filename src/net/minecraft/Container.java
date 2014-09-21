@@ -87,7 +87,7 @@ public abstract class Container {
 
 	public ItemStack a(int var1, int var2, int var3, EntityHuman var4) {
 		ItemStack var5 = null;
-		PlayerInventory var6 = var4.playerInventory;
+		InventoryPlayer var6 = var4.playerInventory;
 		int var9;
 		ItemStack var17;
 		if (var3 == 5) {
@@ -345,7 +345,7 @@ public abstract class Container {
 	}
 
 	public void onClose(EntityHuman var1) {
-		PlayerInventory var2 = var1.playerInventory;
+		InventoryPlayer var2 = var1.playerInventory;
 		if (var2.getCarried() != null) {
 			var1.dropItem(var2.getCarried(), false);
 			var2.setCarried((ItemStack) null);

@@ -106,7 +106,7 @@ public class TileEntityEnchantTable extends TileEntity implements ITickable, vv 
 		return (IChatBaseComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 
-	public Container getContainer(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
 		return new ContainerEnchantTable(var1, this.world, this.position);
 	}
 
