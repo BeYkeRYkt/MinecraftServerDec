@@ -65,7 +65,7 @@ public class EntityTNTPrimed extends Entity {
 
 	private void l() {
 		float var1 = 4.0F;
-		this.world.a(this, this.locationX, this.locationY + (double) (this.width / 2.0F), this.locationZ, var1, true);
+		this.world.createExplosion(this, this.locationX, this.locationY + (double) (this.width / 2.0F), this.locationZ, var1, true);
 	}
 
 	protected void b(NBTCompoundTag var1) {

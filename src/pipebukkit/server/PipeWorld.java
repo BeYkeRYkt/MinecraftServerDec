@@ -101,33 +101,28 @@ public class PipeWorld implements World {
 	}
 
 	@Override
-	public boolean createExplosion(Location arg0, float arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean createExplosion(Location location, float power) {
+		return createExplosion(location, power, false);
 	}
 
 	@Override
-	public boolean createExplosion(Location arg0, float arg1, boolean arg2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean createExplosion(Location location, float power, boolean setFire) {
+		return createExplosion(location.getX(), location.getY(), location.getZ(), power, setFire);
 	}
 
 	@Override
-	public boolean createExplosion(double arg0, double arg1, double arg2, float arg3) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean createExplosion(double x, double y, double z, float power) {
+		return createExplosion(x, y, z, power, false);
 	}
 
 	@Override
-	public boolean createExplosion(double arg0, double arg1, double arg2, float arg3, boolean arg4) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean createExplosion(double x, double y, double z, float power, boolean setFire) {
+		return createExplosion(x, y, z, power, setFire, true);
 	}
 
 	@Override
-	public boolean createExplosion(double arg0, double arg1, double arg2, float arg3, boolean arg4, boolean arg5) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks) {
+		return nmsWorld.createExplosion(null, x, y, z, power, setFire, breakBlocks).isCancelled();
 	}
 
 	@Override

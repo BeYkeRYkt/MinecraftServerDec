@@ -1350,16 +1350,11 @@ public abstract class World implements ard {
 		return false;
 	}
 
-	public Explosion a(Entity var1, double var2, double var4, double var6, float var8, boolean var9) {
-		return this.a(var1, var2, var4, var6, var8, false, var9);
+	public Explosion createExplosion(Entity entity, double x, double y, double z, float power, boolean breakBlocks) {
+		return this.createExplosion(entity, x, y, z, power, false, breakBlocks);
 	}
 
-	public Explosion a(Entity var1, double var2, double var4, double var6, float var8, boolean var9, boolean var10) {
-		Explosion var11 = new Explosion(this, var1, var2, var4, var6, var8, var9, var10);
-		var11.a();
-		var11.a(true);
-		return var11;
-	}
+	public abstract Explosion createExplosion(Entity entity, double x, double y, double z, float power, boolean setFire, boolean breakBlocks);
 
 	public float a(Vec3D var1, AxisAlignedBB var2) {
 		double var3 = 1.0D / ((var2.maxX - var2.minX) * 2.0D + 1.0D);

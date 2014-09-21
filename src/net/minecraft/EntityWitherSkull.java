@@ -58,7 +58,7 @@ public class EntityWitherSkull extends EntityFireball {
 				}
 			}
 
-			this.world.a(this, this.locationX, this.locationY, this.locationZ, 1.0F, false, this.world.getGameRules().isGameRule("mobGriefing"));
+			this.world.createExplosion(this, this.locationX, this.locationY, this.locationZ, 1.0F, false, this.world.getGameRules().isGameRule("mobGriefing"));
 			this.die();
 		}
 

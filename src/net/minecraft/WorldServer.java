@@ -681,24 +681,23 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.getEntityTracker().b(var1, new PacketPlayOutEntityStatus(var1, var2));
 	}
 
-	public Explosion a(Entity var1, double var2, double var4, double var6, float var8, boolean var9, boolean var10) {
-		Explosion var11 = new Explosion(this, var1, var2, var4, var6, var8, var9, var10);
-		var11.a();
-		var11.a(false);
-		if (!var10) {
-			var11.d();
+	public Explosion createExplosion(Entity entity, double x, double y, double z, float power, boolean setFire, boolean breakBlocks) {
+		Explosion explosion = new Explosion(this, entity, x, y, z, power, setFire, breakBlocks);
+		explosion.damageEntities();
+		if (!breakBlocks) {
+			explosion.clearAffectedBlocks();
 		}
+		explosion.destroyBlocks(false);
 
-		Iterator var12 = this.j.iterator();
-
-		while (var12.hasNext()) {
-			EntityHuman var13 = (EntityHuman) var12.next();
-			if (var13.getDistanceSquared(var2, var4, var6) < 4096.0D) {
-				((EntityPlayer) var13).playerConnection.sendPacket((Packet) (new PacketPlayOutExplosion(var2, var4, var6, var8, var11.e(), (Vec3D) var11.b().get(var13))));
+		Iterator<Entity> iterator = this.j.iterator();
+		while (iterator.hasNext()) {
+			EntityHuman human = (EntityHuman) iterator.next();
+			if (human.getDistanceSquared(x, y, z) < 4096.0D) {
+				((EntityPlayer) human).playerConnection.sendPacket(new PacketPlayOutExplosion(x, y, z, power, explosion.getAffectedBlocks(), explosion.getAffectedPlayers().get(human)));
 			}
 		}
 
-		return var11;
+		return explosion;
 	}
 
 	public void playBlockAction(Position var1, Block var2, int var3, int var4) {

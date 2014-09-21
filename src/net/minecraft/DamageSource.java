@@ -57,7 +57,7 @@ public class DamageSource {
 	}
 
 	public static DamageSource explosion(Explosion var0) {
-		return var0 != null && var0.c() != null ? (new EntityDamageSource("explosion.player", var0.c())).q().d() : (new DamageSource("explosion")).q().d();
+		return var0 != null && var0.getIgniter() != null ? (new EntityDamageSource("explosion.player", var0.getIgniter())).q().d() : (new DamageSource("explosion")).q().d();
 	}
 
 	public boolean a() {

@@ -59,7 +59,7 @@ public class BlockBed extends avb {
 					var1.g(var9);
 				}
 
-				var1.a((Entity) null, (double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, 5.0F, true, true);
+				var1.createExplosion((Entity) null, (double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, 5.0F, true, true);
 				return true;
 			}
 		}

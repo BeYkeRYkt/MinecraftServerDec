@@ -70,7 +70,7 @@ public class EntityMinecartTNT extends adx {
 				var3 = 5.0D;
 			}
 
-			this.world.a(this, this.locationX, this.locationY, this.locationZ, (float) (4.0D + this.random.nextDouble() * 1.5D * var3), true);
+			this.world.createExplosion(this, this.locationX, this.locationY, this.locationZ, (float) (4.0D + this.random.nextDouble() * 1.5D * var3), true);
 			this.die();
 		}
 
