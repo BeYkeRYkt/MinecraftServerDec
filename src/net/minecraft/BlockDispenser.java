@@ -53,7 +53,7 @@ public class BlockDispenser extends atg {
 		} else {
 			TileEntity tileEntity = world.getTileEntity(position);
 			if (tileEntity instanceof TileEntityDispenser) {
-				human.openDispenser((IInventory) ((TileEntityDispenser) tileEntity));
+				human.openInventory((IInventory) ((TileEntityDispenser) tileEntity));
 			}
 
 			return true;

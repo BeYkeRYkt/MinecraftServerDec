@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public interface ILockable extends IInventory, vv {
+public interface ILockable extends IInventory, IInventoryHasType {
 
 	boolean isLocked();
 

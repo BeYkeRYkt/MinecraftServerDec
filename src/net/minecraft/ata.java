@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class ata implements vv {
+public class ata implements IInventoryHasType {
 
 	private final World a;
 	private final Position b;

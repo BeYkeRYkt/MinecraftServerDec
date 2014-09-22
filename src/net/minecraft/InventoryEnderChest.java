@@ -1,11 +1,16 @@
 package net.minecraft;
 
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.inventory.InventoryHolder;
+
 public class InventoryEnderChest extends InventorySubcontainer {
 
 	private TileEntityEnderChest a;
+	private EntityHuman owner;
 
-	public InventoryEnderChest() {
+	public InventoryEnderChest(EntityHuman owner) {
 		super("container.enderchest", false, 27);
+		this.owner = owner;
 	}
 
 	public void a(TileEntityEnderChest var1) {
@@ -64,4 +69,10 @@ public class InventoryEnderChest extends InventorySubcontainer {
 		super.onContainerClose(var1);
 		this.a = null;
 	}
+
+	@Override
+	public InventoryHolder getHolder() {
+		return owner.getBukkitEntity(HumanEntity.class);
+	}
+
 }

@@ -1,27 +1,24 @@
 package net.minecraft;
 
 import com.google.common.base.Predicate;
+
 import java.util.Iterator;
 import java.util.List;
+
+import org.bukkit.entity.Horse;
 
 public class EntityHorse extends EntityAnimal implements IInventoryListener {
 
 	private static final Predicate bq = new abu();
 	private static final xy br = (new yg((xy) null, "horse.jumpStrength", 0.7D, 0.0D, 2.0D)).a("Jump Strength").a(true);
-	private static final String[] bs = new String[] { null, "textures/entity/horse/armor/horse_armor_iron.png", "textures/entity/horse/armor/horse_armor_gold.png", "textures/entity/horse/armor/horse_armor_diamond.png" };
-	private static final String[] bt = new String[] { "", "meo", "goo", "dio" };
 	private static final int[] bu = new int[] { 0, 5, 7, 11 };
-	private static final String[] bv = new String[] { "textures/entity/horse/horse_white.png", "textures/entity/horse/horse_creamy.png", "textures/entity/horse/horse_chestnut.png", "textures/entity/horse/horse_brown.png", "textures/entity/horse/horse_black.png", "textures/entity/horse/horse_gray.png", "textures/entity/horse/horse_darkbrown.png" };
-	private static final String[] bw = new String[] { "hwh", "hcr", "hch", "hbr", "hbl", "hgr", "hdb" };
-	private static final String[] bx = new String[] { null, "textures/entity/horse/horse_markings_white.png", "textures/entity/horse/horse_markings_whitefield.png", "textures/entity/horse/horse_markings_whitedots.png", "textures/entity/horse/horse_markings_blackdots.png" };
-	private static final String[] by = new String[] { "", "wo_", "wmo", "wdo", "bdo" };
 	private int bz;
 	private int bA;
 	private int bB;
 	public int bk;
 	public int bm;
 	protected boolean bn;
-	private InventoryHorseChest bC;
+	private InventoryHorse horseInventory;
 	private boolean bD;
 	protected int bo;
 	protected float bp;
@@ -297,36 +294,36 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 		}
 	}
 
-	private int cX() {
+	private int getSlots() {
 		int var1 = this.cj();
 		return this.cu() && (var1 == 1 || var1 == 2) ? 17 : 2;
 	}
 
 	private void cY() {
-		InventoryHorseChest var1 = this.bC;
-		this.bC = new InventoryHorseChest("HorseChest", this.cX());
-		this.bC.setCustomName(this.getName());
+		InventoryHorse var1 = this.horseInventory;
+		this.horseInventory = new InventoryHorse(this, "HorseChest", this.getSlots());
+		this.horseInventory.setCustomName(this.getName());
 		if (var1 != null) {
 			var1.removeInventoryListener(this);
-			int var2 = Math.min(var1.getSize(), this.bC.getSize());
+			int var2 = Math.min(var1.getSize(), this.horseInventory.getSize());
 
 			for (int var3 = 0; var3 < var2; ++var3) {
 				ItemStack var4 = var1.getItem(var3);
 				if (var4 != null) {
-					this.bC.setItem(var3, var4.getCopy());
+					this.horseInventory.setItem(var3, var4.getCopy());
 				}
 			}
 		}
 
-		this.bC.addInventoryListener(this);
+		this.horseInventory.addInventoryListener(this);
 		this.cZ();
 	}
 
 	private void cZ() {
 		if (!this.world.isStatic) {
-			this.q(this.bC.getItem(0) != null);
+			this.q(this.horseInventory.getItem(0) != null);
 			if (this.cM()) {
-				this.e(this.bC.getItem(1));
+				this.e(this.horseInventory.getItem(1));
 			}
 		}
 
@@ -474,10 +471,10 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 		this.bM = null;
 	}
 
-	public void openChest(EntityHuman human) {
+	public void openHorseInventory(EntityHuman human) {
 		if (!this.world.isStatic && (this.passenger == null || this.passenger == human) && this.cm()) {
-			this.bC.setCustomName(this.getName());
-			human.a(this, this.bC);
+			this.horseInventory.setCustomName(this.getName());
+			human.openHorseInventory(this, this.horseInventory);
 		}
 
 	}
@@ -489,7 +486,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 		} else if (!this.cm() && this.cP()) {
 			return false;
 		} else if (this.cm() && this.cl() && var1.aw()) {
-			this.openChest(var1);
+			this.openHorseInventory(var1);
 			return true;
 		} else if (this.cn() && this.passenger != null) {
 			return super.a(var1);
@@ -512,7 +509,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 							return true;
 						}
 
-						this.openChest(var1);
+						this.openHorseInventory(var1);
 						return true;
 					}
 				}
@@ -591,7 +588,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 				}
 
 				if (!var3 && this.cn() && !this.cE() && var2.getItem() == Items.SADDLE) {
-					this.openChest(var1);
+					this.openHorseInventory(var1);
 					return true;
 				}
 
@@ -813,11 +810,11 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 	}
 
 	public void cV() {
-		this.a((Entity) this, this.bC);
+		this.a((Entity) this, this.horseInventory);
 		this.cC();
 	}
 
-	private void a(Entity var1, InventoryHorseChest var2) {
+	private void a(Entity var1, InventoryHorse var2) {
 		if (var2 != null && !this.world.isStatic) {
 			for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 				ItemStack var4 = var2.getItem(var3);
@@ -915,8 +912,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 		if (this.cu()) {
 			NBTListTag var2 = new NBTListTag();
 
-			for (int var3 = 2; var3 < this.bC.getSize(); ++var3) {
-				ItemStack var4 = this.bC.getItem(var3);
+			for (int var3 = 2; var3 < this.horseInventory.getSize(); ++var3) {
+				ItemStack var4 = this.horseInventory.getItem(var3);
 				if (var4 != null) {
 					NBTCompoundTag var5 = new NBTCompoundTag();
 					var5.put("Slot", (byte) var3);
@@ -928,12 +925,12 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 			var1.put("Items", (NBTTag) var2);
 		}
 
-		if (this.bC.getItem(1) != null) {
-			var1.put("ArmorItem", (NBTTag) this.bC.getItem(1).write(new NBTCompoundTag()));
+		if (this.horseInventory.getItem(1) != null) {
+			var1.put("ArmorItem", (NBTTag) this.horseInventory.getItem(1).write(new NBTCompoundTag()));
 		}
 
-		if (this.bC.getItem(0) != null) {
-			var1.put("SaddleItem", (NBTTag) this.bC.getItem(0).write(new NBTCompoundTag()));
+		if (this.horseInventory.getItem(0) != null) {
+			var1.put("SaddleItem", (NBTTag) this.horseInventory.getItem(0).write(new NBTCompoundTag()));
 		}
 
 	}
@@ -972,8 +969,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 			for (int var5 = 0; var5 < var4.getSize(); ++var5) {
 				NBTCompoundTag var6 = var4.getCompound(var5);
 				int var7 = var6.getByte("Slot") & 255;
-				if (var7 >= 2 && var7 < this.bC.getSize()) {
-					this.bC.setItem(var7, ItemStack.fromNBT(var6));
+				if (var7 >= 2 && var7 < this.horseInventory.getSize()) {
+					this.horseInventory.setItem(var7, ItemStack.fromNBT(var6));
 				}
 			}
 		}
@@ -982,17 +979,17 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 		if (var1.isTagAssignableFrom("ArmorItem", 10)) {
 			var9 = ItemStack.fromNBT(var1.getCompound("ArmorItem"));
 			if (var9 != null && a(var9.getItem())) {
-				this.bC.setItem(1, var9);
+				this.horseInventory.setItem(1, var9);
 			}
 		}
 
 		if (var1.isTagAssignableFrom("SaddleItem", 10)) {
 			var9 = ItemStack.fromNBT(var1.getCompound("SaddleItem"));
 			if (var9 != null && var9.getItem() == Items.SADDLE) {
-				this.bC.setItem(0, var9);
+				this.horseInventory.setItem(0, var9);
 			}
 		} else if (var1.getBoolean("Saddle")) {
-			this.bC.setItem(0, new ItemStack(Items.SADDLE));
+			this.horseInventory.setItem(0, new ItemStack(Items.SADDLE));
 		}
 
 		this.cZ();
@@ -1182,25 +1179,35 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 		}
 
 		int var3 = var1 - 400;
-		if (var3 >= 0 && var3 < 2 && var3 < this.bC.getSize()) {
+		if (var3 >= 0 && var3 < 2 && var3 < this.horseInventory.getSize()) {
 			if (var3 == 0 && var2 != null && var2.getItem() != Items.SADDLE) {
 				return false;
 			} else if (var3 == 1 && (var2 != null && !a(var2.getItem()) || !this.cM())) {
 				return false;
 			} else {
-				this.bC.setItem(var3, var2);
+				this.horseInventory.setItem(var3, var2);
 				this.cZ();
 				return true;
 			}
 		} else {
 			int var4 = var1 - 500 + 2;
-			if (var4 >= 2 && var4 < this.bC.getSize()) {
-				this.bC.setItem(var4, var2);
+			if (var4 >= 2 && var4 < this.horseInventory.getSize()) {
+				this.horseInventory.setItem(var4, var2);
 				return true;
 			} else {
 				return false;
 			}
 		}
+	}
+
+	private Horse bukkithorse;
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T extends org.bukkit.entity.Entity> T getBukkitEntity(Class<T> returnType) {
+		if (bukkithorse == null) {
+			//TODO: create pipehorse instance when implemented
+		}
+		return (T) bukkithorse;
 	}
 
 }

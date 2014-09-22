@@ -12,7 +12,7 @@ import net.minecraft.server.MinecraftServer;
 public abstract class EntityHuman extends EntityLiving {
 
 	public InventoryPlayer playerInventory = new InventoryPlayer(this);
-	private InventoryEnderChest enderChest = new InventoryEnderChest();
+	private InventoryEnderChest enderChest = new InventoryEnderChest(this);
 	public Container defaultContainer;
 	public Container activeContainer;
 	protected FoodMetaData fooddata = new FoodMetaData();
@@ -741,13 +741,13 @@ public abstract class EntityHuman extends EntityLiving {
 	public void a(IMerchant var1) {
 	}
 
-	public void openDispenser(IInventory var1) {
+	public void openInventory(IInventory var1) {
 	}
 
-	public void a(EntityHorse var1, IInventory var2) {
+	public void openHorseInventory(EntityHorse var1, IInventory var2) {
 	}
 
-	public void a(vv var1) {
+	public void a(IInventoryHasType var1) {
 	}
 
 	public void a(ItemStack var1) {
@@ -756,7 +756,7 @@ public abstract class EntityHuman extends EntityLiving {
 	public boolean useEntity(Entity var1) {
 		if (this.isSpectator()) {
 			if (var1 instanceof IInventory) {
-				this.openDispenser((IInventory) var1);
+				this.openInventory((IInventory) var1);
 			}
 
 			return false;

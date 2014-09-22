@@ -1,6 +1,6 @@
 package pipebukkit.server.inventory;
 
-import net.minecraft.TileEntityFurnace;
+import net.minecraft.IInventory;
 
 import org.bukkit.block.Furnace;
 import org.bukkit.event.inventory.InventoryType;
@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class PipeFurnaceInventory extends PipeInventory implements FurnaceInventory {
 
-	public PipeFurnaceInventory(TileEntityFurnace nmsInventory) {
+	public PipeFurnaceInventory(IInventory nmsInventory) {
 		super(nmsInventory);
 	}
 

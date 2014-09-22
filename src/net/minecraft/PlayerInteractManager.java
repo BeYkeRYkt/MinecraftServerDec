@@ -263,11 +263,11 @@ public class PlayerInteractManager {
 				}
 
 				if (var15 != null) {
-					var1.openDispenser((IInventory) var15);
+					var1.openInventory((IInventory) var15);
 					return true;
 				}
 			} else if (var13 instanceof IInventory) {
-				var1.openDispenser((IInventory) var13);
+				var1.openInventory((IInventory) var13);
 				return true;
 			}
 

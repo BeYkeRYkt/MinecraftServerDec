@@ -27,7 +27,6 @@ import pipebukkit.server.entity.PipePlayer;
 
 public class EntityPlayer extends EntityHuman implements ICrafting {
 
-	private static final Logger logger = LogManager.getLogger();
 	private String locale = "en_US";
 	public PlayerConnection playerConnection;
 	public final MinecraftServer minecraftserver;
@@ -47,7 +46,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	private boolean isColorsEnabled = true;
 	private long lastActiveTime = System.currentTimeMillis();
 	private Entity bS = null;
-	private int bT;
+	private int windowId;
 	public boolean g;
 	public int ping;
 	public boolean viewingCredits;
@@ -477,72 +476,72 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		this.playerConnection.sendPacket((Packet) (new PacketPlayOutSignEditorOpen(var1.getPosition())));
 	}
 
-	private void cr() {
-		this.bT = this.bT % 100 + 1;
+	private void nextWindowId() {
+		this.windowId = this.windowId % 100 + 1;
 	}
 
-	public void a(vv var1) {
-		this.cr();
-		this.playerConnection.sendPacket((Packet) (new PacketPlayOutOpenWindow(this.bT, var1.getInventoryType(), var1.getComponentName())));
+	public void a(IInventoryHasType var1) {
+		this.nextWindowId();
+		this.playerConnection.sendPacket((Packet) (new PacketPlayOutOpenWindow(this.windowId, var1.getInventoryType(), var1.getComponentName())));
 		this.activeContainer = var1.getContainer(this.playerInventory, this);
-		this.activeContainer.windowId = this.bT;
+		this.activeContainer.windowId = this.windowId;
 		this.activeContainer.addSlotListener((ICrafting) this);
 	}
 
-	public void openDispenser(IInventory var1) {
+	public void openInventory(IInventory inventory) {
 		if (this.activeContainer != this.defaultContainer) {
 			this.closeWindow();
 		}
 
-		if (var1 instanceof ILockable) {
-			ILockable var2 = (ILockable) var1;
-			if (var2.isLocked() && !this.a(var2.getLock()) && !this.isSpectator()) {
-				this.playerConnection.sendPacket((Packet) (new PacketPlayOutChatMessage(new ChatMessage("container.isLocked", new Object[] { var1.getComponentName() }), (byte) 2)));
-				this.playerConnection.sendPacket((Packet) (new PacketPlayOutSoundEffect("random.door_close", this.locationX, this.locationY, this.locationZ, 1.0F, 1.0F)));
+		if (inventory instanceof ILockable) {
+			ILockable lockable = (ILockable) inventory;
+			if (lockable.isLocked() && !this.a(lockable.getLock()) && !this.isSpectator()) {
+				this.playerConnection.sendPacket(new PacketPlayOutChatMessage(new ChatMessage("container.isLocked", new Object[] { inventory.getComponentName() }), (byte) 2));
+				this.playerConnection.sendPacket(new PacketPlayOutSoundEffect("random.door_close", this.locationX, this.locationY, this.locationZ, 1.0F, 1.0F));
 				return;
 			}
 		}
 
-		this.cr();
-		if (var1 instanceof vv) {
-			this.playerConnection.sendPacket((Packet) (new PacketPlayOutOpenWindow(this.bT, ((vv) var1).getInventoryType(), var1.getComponentName(), var1.getSize())));
-			this.activeContainer = ((vv) var1).getContainer(this.playerInventory, this);
+		this.nextWindowId();
+		if (inventory instanceof IInventoryHasType) {
+			this.playerConnection.sendPacket(new PacketPlayOutOpenWindow(this.windowId, ((IInventoryHasType) inventory).getInventoryType(), inventory.getComponentName(), inventory.getSize()));
+			this.activeContainer = ((IInventoryHasType) inventory).getContainer(this.playerInventory, this);
 		} else {
-			this.playerConnection.sendPacket((Packet) (new PacketPlayOutOpenWindow(this.bT, "minecraft:container", var1.getComponentName(), var1.getSize())));
-			this.activeContainer = new ContainerChest(this.playerInventory, var1, this);
+			this.playerConnection.sendPacket(new PacketPlayOutOpenWindow(this.windowId, "minecraft:container", inventory.getComponentName(), inventory.getSize()));
+			this.activeContainer = new ContainerChest(this.playerInventory, inventory, this);
 		}
 
-		this.activeContainer.windowId = this.bT;
+		this.activeContainer.windowId = this.windowId;
 		this.activeContainer.addSlotListener((ICrafting) this);
 	}
 
 	public void a(IMerchant var1) {
-		this.cr();
+		this.nextWindowId();
 		this.activeContainer = new ContainerMerchant(this.playerInventory, var1, this.world);
-		this.activeContainer.windowId = this.bT;
+		this.activeContainer.windowId = this.windowId;
 		this.activeContainer.addSlotListener((ICrafting) this);
 		InventoryMerchant var2 = ((ContainerMerchant) this.activeContainer).e();
 		IChatBaseComponent var3 = var1.getComponentName();
-		this.playerConnection.sendPacket((Packet) (new PacketPlayOutOpenWindow(this.bT, "minecraft:villager", var3, var2.getSize())));
+		this.playerConnection.sendPacket((Packet) (new PacketPlayOutOpenWindow(this.windowId, "minecraft:villager", var3, var2.getSize())));
 		MerchantRecipeList var4 = var1.b_(this);
 		if (var4 != null) {
 			PacketDataSerializer var5 = new PacketDataSerializer(Unpooled.buffer());
-			var5.writeInt(this.bT);
+			var5.writeInt(this.windowId);
 			var4.a(var5);
 			this.playerConnection.sendPacket((Packet) (new PacketPlayOutPluginMessage("MC|TrList", var5)));
 		}
 
 	}
 
-	public void a(EntityHorse var1, IInventory var2) {
+	public void openHorseInventory(EntityHorse var1, IInventory var2) {
 		if (this.activeContainer != this.defaultContainer) {
 			this.closeWindow();
 		}
 
-		this.cr();
-		this.playerConnection.sendPacket((Packet) (new PacketPlayOutOpenWindow(this.bT, "EntityHorse", var2.getComponentName(), var2.getSize(), var1.getId())));
-		this.activeContainer = new aiy(this.playerInventory, var2, var1, this);
-		this.activeContainer.windowId = this.bT;
+		this.nextWindowId();
+		this.playerConnection.sendPacket((Packet) (new PacketPlayOutOpenWindow(this.windowId, "EntityHorse", var2.getComponentName(), var2.getSize(), var1.getId())));
+		this.activeContainer = new ContainerHorse(this.playerInventory, var2, var1, this);
+		this.activeContainer.windowId = this.windowId;
 		this.activeContainer.addSlotListener((ICrafting) this);
 	}
 
@@ -854,7 +853,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	}
 
 	private Player bukkitplayer;
-	public <T> T getBukkitEntity(Class<T> returnType) {
+	public <T extends org.bukkit.entity.Entity> T getBukkitEntity(Class<T> returnType) {
 		if (bukkitplayer == null) {
 			bukkitplayer = new PipePlayer(this);
 		}

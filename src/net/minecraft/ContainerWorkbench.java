@@ -1,5 +1,8 @@
 package net.minecraft;
 
+import pipebukkit.server.inventory.PipeCraftingInventory;
+import pipebukkit.server.inventory.PipeInventory;
+
 public class ContainerWorkbench extends Container {
 
 	public InventoryResult resultInventory = new InventoryResult();
@@ -97,5 +100,10 @@ public class ContainerWorkbench extends Container {
 
 	public boolean a(ItemStack var1, Slot var2) {
 		return var2.inventory != this.resultInventory && super.a(var1, var2);
+	}
+
+	@Override
+	public PipeInventory getPipeInventory() {
+		return new PipeCraftingInventory(craftingInventory, resultInventory);
 	}
 }

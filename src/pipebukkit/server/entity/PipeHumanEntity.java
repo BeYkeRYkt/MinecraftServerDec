@@ -17,6 +17,7 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
+import pipebukkit.server.inventory.PipeInventoryView;
 import pipebukkit.server.inventory.PipeItemStack;
 import pipebukkit.server.inventory.PipePlayerInventory;
 import net.minecraft.EntityHuman;
@@ -183,8 +184,7 @@ public abstract class PipeHumanEntity extends PipeLivingEntity implements HumanE
 
 	@Override
 	public InventoryView getOpenInventory() {
-		// TODO Auto-generated method stub
-		return null;
+		return new PipeInventoryView(this, getHandle(EntityHuman.class).activeContainer.getPipeInventory());
 	}
 
 	@Override

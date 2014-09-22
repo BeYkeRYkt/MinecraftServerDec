@@ -68,7 +68,7 @@ public class BlockHopper extends atg {
 		} else {
 			TileEntity var9 = var1.getTileEntity(var2);
 			if (var9 instanceof TileEntityHopper) {
-				var4.openDispenser((IInventory) ((TileEntityHopper) var9));
+				var4.openInventory((IInventory) ((TileEntityHopper) var9));
 			}
 
 			return true;

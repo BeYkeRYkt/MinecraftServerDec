@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.Random;
 
-public class TileEntityEnchantTable extends TileEntity implements ITickable, vv {
+public class TileEntityEnchantTable extends TileEntity implements ITickable, IInventoryHasType {
 
 	public int a;
 	public float f;
@@ -107,7 +107,7 @@ public class TileEntityEnchantTable extends TileEntity implements ITickable, vv 
 	}
 
 	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
-		return new ContainerEnchantTable(var1, this.world, this.position);
+		return new ContainerEnchantTable(this, var1, this.world, this.position);
 	}
 
 	public String getInventoryType() {

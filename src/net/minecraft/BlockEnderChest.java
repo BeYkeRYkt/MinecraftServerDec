@@ -56,7 +56,7 @@ public class BlockEnderChest extends atg {
 				return true;
 			} else {
 				var9.a((TileEntityEnderChest) var10);
-				var4.openDispenser((IInventory) var9);
+				var4.openInventory((IInventory) var9);
 				return true;
 			}
 		} else {

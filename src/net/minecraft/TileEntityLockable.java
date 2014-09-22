@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public abstract class TileEntityLockable extends TileEntity implements vv, ILockable {
+public abstract class TileEntityLockable extends TileEntity implements IInventoryHasType, ILockable {
 
 	private ContainerLock lock;
 

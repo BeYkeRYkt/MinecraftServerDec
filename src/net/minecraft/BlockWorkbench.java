@@ -11,7 +11,7 @@ public class BlockWorkbench extends Block {
 		if (var1.isStatic) {
 			return true;
 		} else {
-			var4.a((vv) (new aut(var1, var2)));
+			var4.a((IInventoryHasType) (new aut(var1, var2)));
 			return true;
 		}
 	}

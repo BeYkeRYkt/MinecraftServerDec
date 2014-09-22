@@ -305,7 +305,7 @@ public class BlockChest extends atg {
 		} else {
 			ILockable var9 = this.d(var1, var2);
 			if (var9 != null) {
-				var4.openDispenser((IInventory) var9);
+				var4.openInventory((IInventory) var9);
 			}
 
 			return true;

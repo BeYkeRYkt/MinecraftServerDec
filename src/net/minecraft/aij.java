@@ -3,9 +3,9 @@ package net.minecraft;
 class aij extends Slot {
 
 	// $FF: synthetic field
-	final aii a;
+	final ContainerBrewingStand a;
 
-	public aij(aii var1, IInventory var2, int var3, int var4, int var5) {
+	public aij(ContainerBrewingStand var1, IInventory var2, int var3, int var4, int var5) {
 		super(var2, var3, var4, var5);
 		this.a = var1;
 	}

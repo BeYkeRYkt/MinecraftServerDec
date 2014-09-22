@@ -29,7 +29,7 @@ public class BlockAnvil extends BlockFalling {
 
 	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (!var1.isStatic) {
-			var4.a((vv) (new ata(var1, var2)));
+			var4.a((IInventoryHasType) (new ata(var1, var2)));
 		}
 
 		return true;

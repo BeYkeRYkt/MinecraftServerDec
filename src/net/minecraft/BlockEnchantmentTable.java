@@ -31,7 +31,7 @@ public class BlockEnchantmentTable extends atg {
 		} else {
 			TileEntity var9 = var1.getTileEntity(var2);
 			if (var9 instanceof TileEntityEnchantTable) {
-				var4.a((vv) ((TileEntityEnchantTable) var9));
+				var4.a((IInventoryHasType) ((TileEntityEnchantTable) var9));
 			}
 
 			return true;

@@ -258,7 +258,7 @@ public class TileEntityBrewingStand extends TileEntityLockable implements ITicka
 	}
 
 	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
-		return new aii(var1, this);
+		return new ContainerBrewingStand(var1, this);
 	}
 
 	public int getProperty(int var1) {

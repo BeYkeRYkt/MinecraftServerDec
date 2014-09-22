@@ -2,15 +2,18 @@ package net.minecraft;
 
 import java.util.Iterator;
 import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import pipebukkit.server.inventory.PipeAnvilInventory;
+import pipebukkit.server.inventory.PipeInventory;
+
 public class ContainerAnvil extends Container {
 
-	private static final Logger f = LogManager.getLogger();
 	private IInventory g = new InventoryResult();
-	private IInventory h = new InventoryAnvil(this, "Repair", true, 2);
+	private IInventory h;
 	private World i;
 	private Position j;
 	public int a;
@@ -19,6 +22,7 @@ public class ContainerAnvil extends Container {
 	private final EntityHuman m;
 
 	public ContainerAnvil(InventoryPlayer var1, World var2, Position var3, EntityHuman var4) {
+		h = new InventoryAnvil(var1.owner, this, "Repair", true, 2);
 		this.j = var3;
 		this.i = var2;
 		this.m = var4;
@@ -308,6 +312,11 @@ public class ContainerAnvil extends Container {
 	// $FF: synthetic method
 	static int b(ContainerAnvil var0) {
 		return var0.k;
+	}
+
+	@Override
+	public PipeInventory getPipeInventory() {
+		return new PipeAnvilInventory(h, g);
 	}
 
 }

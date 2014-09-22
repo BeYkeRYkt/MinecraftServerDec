@@ -140,7 +140,7 @@ public abstract class InventoryMinecart extends adx implements ILockable {
 
 	public boolean e(EntityHuman var1) {
 		if (!this.world.isStatic) {
-			var1.openDispenser((IInventory) this);
+			var1.openInventory((IInventory) this);
 		}
 
 		return true;

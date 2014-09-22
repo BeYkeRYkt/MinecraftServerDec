@@ -289,7 +289,7 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 	}
 
 	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
-		return new aiv(var1, this);
+		return new ContainerFurnace(var1, this);
 	}
 
 	public int getProperty(int property) {

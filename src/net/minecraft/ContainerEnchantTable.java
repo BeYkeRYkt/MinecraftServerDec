@@ -3,9 +3,12 @@ package net.minecraft;
 import java.util.List;
 import java.util.Random;
 
+import pipebukkit.server.inventory.PipeEnchantTableInventory;
+import pipebukkit.server.inventory.PipeInventory;
+
 public class ContainerEnchantTable extends Container {
 
-	public IInventory a = new InventoryEnchantTable(this, "Enchant", true, 2);
+	public IInventory a;
 	private World i;
 	private Position j;
 	private Random k = new Random();
@@ -13,7 +16,8 @@ public class ContainerEnchantTable extends Container {
 	public int[] g = new int[3];
 	public int[] h = new int[] { -1, -1, -1 };
 
-	public ContainerEnchantTable(InventoryPlayer var1, World var2, Position var3) {
+	public ContainerEnchantTable(TileEntityEnchantTable table, InventoryPlayer var1, World var2, Position var3) {
+		a = new InventoryEnchantTable(table, this, "Enchant", true, 2);
 		this.i = var2;
 		this.j = var3;
 		this.f = var1.owner.ci();
@@ -251,4 +255,10 @@ public class ContainerEnchantTable extends Container {
 
 		return var3;
 	}
+
+	@Override
+	public PipeInventory getPipeInventory() {
+		return new PipeEnchantTableInventory(a);
+	}
+
 }

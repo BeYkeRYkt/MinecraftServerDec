@@ -1,5 +1,8 @@
 package net.minecraft;
 
+import pipebukkit.server.inventory.PipeBeaconInventory;
+import pipebukkit.server.inventory.PipeInventory;
+
 public class ContainerBeacon extends Container {
 
 	private IInventory inventory;
@@ -78,5 +81,10 @@ public class ContainerBeacon extends Container {
 		}
 
 		return var3;
+	}
+
+	@Override
+	public PipeInventory getPipeInventory() {
+		return new PipeBeaconInventory(getInventory());
 	}
 }

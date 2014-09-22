@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class aut implements vv {
+public class aut implements IInventoryHasType {
 
 	private final World a;
 	private final Position b;

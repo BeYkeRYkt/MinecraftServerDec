@@ -36,7 +36,7 @@ public class EntityMinecartHopper extends InventoryMinecart implements IHopper {
 
 	public boolean e(EntityHuman var1) {
 		if (!this.world.isStatic) {
-			var1.openDispenser((IInventory) this);
+			var1.openInventory((IInventory) this);
 		}
 
 		return true;
@@ -136,7 +136,7 @@ public class EntityMinecartHopper extends InventoryMinecart implements IHopper {
 	}
 
 	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
-		return new aix(var1, this, var2);
+		return new ContainerHopper(var1, this, var2);
 	}
 
 }

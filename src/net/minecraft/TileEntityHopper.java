@@ -480,7 +480,7 @@ public class TileEntityHopper extends TileEntityLockable implements IHopper, ITi
 	}
 
 	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
-		return new aix(var1, this, var2);
+		return new ContainerHopper(var1, this, var2);
 	}
 
 	public int getProperty(int var1) {

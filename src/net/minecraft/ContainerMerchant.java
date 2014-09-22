@@ -1,5 +1,8 @@
 package net.minecraft;
 
+import pipebukkit.server.inventory.PipeInventory;
+import pipebukkit.server.inventory.PipeMerchantInventory;
+
 public class ContainerMerchant extends Container {
 
 	private IMerchant a;
@@ -108,5 +111,10 @@ public class ContainerMerchant extends Container {
 			}
 
 		}
+	}
+
+	@Override
+	public PipeInventory getPipeInventory() {
+		return new PipeMerchantInventory(f);
 	}
 }

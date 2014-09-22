@@ -2,10 +2,13 @@ package net.minecraft;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import pipebukkit.server.inventory.PipeInventory;
 
 public abstract class Container {
 
@@ -508,4 +511,7 @@ public abstract class Container {
 			return MathHelper.d(var2 * 14.0F) + (var1 > 0 ? 1 : 0);
 		}
 	}
+
+	public abstract PipeInventory getPipeInventory();
+
 }

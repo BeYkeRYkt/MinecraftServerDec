@@ -8,7 +8,7 @@ public class EntitySheep extends EntityAnimal {
 
 	private static final Map bm = Maps.newEnumMap(akv.class);
 
-	private final InventoryCrafting bk = new InventoryCrafting(null, new acm(this), 2, 1);
+	private final InventoryCrafting bk = new InventoryCrafting(null, new ContainerSheep(this), 2, 1);
 	private int bn;
 	private yw bo = new yw(this);
 

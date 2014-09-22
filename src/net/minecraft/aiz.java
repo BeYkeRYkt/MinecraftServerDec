@@ -3,9 +3,9 @@ package net.minecraft;
 class aiz extends Slot {
 
 	// $FF: synthetic field
-	final aiy a;
+	final ContainerHorse a;
 
-	aiz(aiy var1, IInventory var2, int var3, int var4, int var5) {
+	aiz(ContainerHorse var1, IInventory var2, int var3, int var4, int var5) {
 		super(var2, var3, var4, var5);
 		this.a = var1;
 	}

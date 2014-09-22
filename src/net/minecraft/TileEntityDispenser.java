@@ -160,7 +160,7 @@ public class TileEntityDispenser extends TileEntityLockable implements IInventor
 	}
 
 	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
-		return new aip(var1, this);
+		return new ContainerDispenser(var1, this);
 	}
 
 	public int getProperty(int var1) {

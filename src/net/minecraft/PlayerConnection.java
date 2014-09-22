@@ -555,7 +555,7 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 			}
 			case OPEN_INVENTORY: {
 				if (this.player.vehicle instanceof EntityHorse) {
-					((EntityHorse) this.player.vehicle).openChest(this.player);
+					((EntityHorse) this.player.vehicle).openHorseInventory(this.player);
 				}
 				break;
 			}

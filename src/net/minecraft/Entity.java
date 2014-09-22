@@ -1693,7 +1693,7 @@ public abstract class Entity implements CommandSenderInterface {
 		aph.b(var1, var2);
 	}
 
-	public <T> T getBukkitEntity(Class<T> returnType) {
+	public <T extends org.bukkit.entity.Entity> T getBukkitEntity(Class<T> returnType) {
 		throw new AssertionError("Unknown entity " + getClass());
 	}
 

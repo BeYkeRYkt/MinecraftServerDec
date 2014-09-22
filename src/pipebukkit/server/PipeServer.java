@@ -597,7 +597,11 @@ public class PipeServer implements Server {
 	@Override
 	public Player getPlayer(UUID uuid) {
 		Validate.notNull(uuid, "UUID cannot be null");
-		return MinecraftServer.getInstance().getPlayerList().getPlayer(uuid).getBukkitEntity(PipePlayer.class);
+		EntityPlayer entityPlayer = MinecraftServer.getInstance().getPlayerList().getPlayer(uuid);
+		if (entityPlayer == null) {
+			return null;
+		}
+		return entityPlayer.getBukkitEntity(PipePlayer.class);
 	}
 
 	@Override
