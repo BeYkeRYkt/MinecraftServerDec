@@ -73,6 +73,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.map.MapView;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.plugin.Plugin;
@@ -92,6 +93,7 @@ import pipebukkit.server.banlists.PipeIpBanList;
 import pipebukkit.server.banlists.PipeProfileBanList;
 import pipebukkit.server.entity.PipePlayer;
 import pipebukkit.server.inventory.PipeCustomInventory;
+import pipebukkit.server.inventory.PipeRecipes;
 import pipebukkit.server.metadata.BlockMetadataStorage;
 import pipebukkit.server.metadata.EntityMetadataStorage;
 import pipebukkit.server.metadata.PlayerMetadataStorage;
@@ -235,9 +237,8 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public boolean addRecipe(Recipe arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addRecipe(Recipe recipe) {
+		return PipeRecipes.addRecipe(recipe);
 	}
 
 	@Override
@@ -252,7 +253,7 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public List<Recipe> getRecipesFor(ItemStack arg0) {
+	public List<Recipe> getRecipesFor(ItemStack result) {
 		// TODO Auto-generated method stub
 		return null;
 	}
