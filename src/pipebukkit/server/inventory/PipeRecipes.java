@@ -41,7 +41,7 @@ public class PipeRecipes {
 			nmsRecipeData.add(entry.getKey());
 			nmsRecipeData.add(new net.minecraft.ItemStack(Item.getById(itemStack.getTypeId()), 1, itemStack.getDurability()));
 		}
-		CraftingManager.getInstance().registerShapedRecipe(new PipeItemStack(shapedRecipe.getResult()).getHandle(), nmsRecipeData);
+		CraftingManager.getInstance().registerShapedRecipe(new PipeItemStack(shapedRecipe.getResult()).getHandle(), nmsRecipeData.toArray());
 	}
 
 	@SuppressWarnings("deprecation")
@@ -53,7 +53,7 @@ public class PipeRecipes {
 			}
 			nmsRecipeData.add(new net.minecraft.ItemStack(Item.getById(itemStack.getTypeId()), 1, itemStack.getDurability()));
 		}
-		CraftingManager.getInstance().registerShapedRecipe(new PipeItemStack(shapelessRecipe.getResult()).getHandle(), nmsRecipeData);
+		CraftingManager.getInstance().registerShapedRecipe(new PipeItemStack(shapelessRecipe.getResult()).getHandle(), nmsRecipeData.toArray());
 	}
 
 	public static ShapedRecipe fromNMSShapedRecipe(ShapedRecipes nmsRecipe) {
