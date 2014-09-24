@@ -80,7 +80,7 @@ public class ContainerFurnace extends Container {
 
 				var4.a(var5, var3);
 			} else if (var2 != 1 && var2 != 0) {
-				if (RecipesFurnace.getInstance().a(var5) != null) {
+				if (RecipesFurnace.getInstance().getSmeltResult(var5) != null) {
 					if (!this.a(var5, 0, 1, false)) {
 						return null;
 					}

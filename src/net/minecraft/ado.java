@@ -7,7 +7,7 @@ public class ado extends Entity {
 
 	private static final List d = Arrays.asList(new adp[] { (new adp(new ItemStack(Items.LEATHER_BOOTS), 10)).a(0.9F), new adp(new ItemStack(Items.LEATHER), 10), new adp(new ItemStack(Items.BONE), 10), new adp(new ItemStack(Items.POTION), 10), new adp(new ItemStack(Items.STRING), 5), (new adp(new ItemStack(Items.FISHING_ROD), 2)).a(0.9F), new adp(new ItemStack(Items.BOWL), 10), new adp(new ItemStack(Items.STICK), 5), new adp(new ItemStack(Items.DYE, 10, akv.p.b()), 1), new adp(new ItemStack(Blocks.TRIPWIRE_HOOK), 10), new adp(new ItemStack(Items.ROTTEN_FLESH), 10) });
 	private static final List e = Arrays.asList(new adp[] { new adp(new ItemStack(Blocks.WATER_LILY), 1), new adp(new ItemStack(Items.NAMETAG), 1), new adp(new ItemStack(Items.SADDLE), 1), (new adp(new ItemStack(Items.BOW), 1)).a(0.25F).a(), (new adp(new ItemStack(Items.FISHING_ROD), 1)).a(0.25F).a(), (new adp(new ItemStack(Items.BOOK), 1)).a() });
-	private static final List f = Arrays.asList(new adp[] { new adp(new ItemStack(Items.FISH, 1, ali.a.a()), 60), new adp(new ItemStack(Items.FISH, 1, ali.b.a()), 25), new adp(new ItemStack(Items.FISH, 1, ali.c.a()), 2), new adp(new ItemStack(Items.FISH, 1, ali.d.a()), 13) });
+	private static final List f = Arrays.asList(new adp[] { new adp(new ItemStack(Items.FISH, 1, EnumFishType.COD.getData()), 60), new adp(new ItemStack(Items.FISH, 1, EnumFishType.SALMON.getData()), 25), new adp(new ItemStack(Items.FISH, 1, EnumFishType.CLOWNFISH.getData()), 2), new adp(new ItemStack(Items.FISH, 1, EnumFishType.PUFFERFISH.getData()), 13) });
 	private int g = -1;
 	private int h = -1;
 	private int i = -1;

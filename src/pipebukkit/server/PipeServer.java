@@ -36,6 +36,7 @@ import net.minecraft.IDataManager;
 import net.minecraft.IRecipe;
 import net.minecraft.JsonListEntry;
 import net.minecraft.LevelType;
+import net.minecraft.RecipesFurnace;
 import net.minecraft.SecondaryWorldServer;
 import net.minecraft.ServerNBTManager;
 import net.minecraft.WorldManager;
@@ -247,11 +248,13 @@ public class PipeServer implements Server {
 	@Override
 	public void clearRecipes() {
 		CraftingManager.getInstance().getRecipes().clear();
+		RecipesFurnace.getInstance().clearRecipes();
 	}
 
 	@Override
 	public void resetRecipes() {
 		CraftingManager.getInstance().resetRecipes();
+		RecipesFurnace.getInstance().resetRecipes();
 	}
 
 	@Override

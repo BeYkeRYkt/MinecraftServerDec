@@ -195,14 +195,14 @@ public class TileEntityFurnace extends TileEntityLockable implements ITickable, 
 		if (this.items[0] == null) {
 			return false;
 		} else {
-			ItemStack var1 = RecipesFurnace.getInstance().a(this.items[0]);
+			ItemStack var1 = RecipesFurnace.getInstance().getSmeltResult(this.items[0]);
 			return var1 == null ? false : (this.items[2] == null ? true : (!this.items[2].a(var1) ? false : (this.items[2].amount < this.getMaxStackSize() && this.items[2].amount < this.items[2].getMaxStackSize() ? true : this.items[2].amount < var1.getMaxStackSize())));
 		}
 	}
 
 	public void n() {
 		if (this.o()) {
-			ItemStack var1 = RecipesFurnace.getInstance().a(this.items[0]);
+			ItemStack var1 = RecipesFurnace.getInstance().getSmeltResult(this.items[0]);
 			if (this.items[2] == null) {
 				this.items[2] = var1.getCopy();
 			} else if (this.items[2].getItem() == var1.getItem()) {
