@@ -12,11 +12,12 @@ import java.util.List;
 public class CraftingManager {
 
 	private static final CraftingManager instance = new CraftingManager();
-	private final List<IRecipe> recipes = Lists.newArrayList();
 
 	public static CraftingManager getInstance() {
 		return instance;
 	}
+
+	private List<IRecipe> recipes = Lists.newArrayList();
 
 	private CraftingManager() {
 		(new RecipesTools()).a(this);
@@ -32,7 +33,7 @@ public class CraftingManager {
 		this.recipes.add(new RecipeMapExtend());
 		this.recipes.add(new RecipeFireworks());
 		this.recipes.add(new aor());
-		(new aoc()).a(this);
+		(new RecipesBanner()).a(this);
 		this.registerShapedRecipe(new ItemStack(Items.PAPER, 3), new Object[] { "###", Character.valueOf('#'), Items.REEDS });
 		this.registerShapelessRecipe(new ItemStack(Items.BOOK, 1), new Object[] { Items.PAPER, Items.PAPER, Items.PAPER, Items.LEATHER });
 		this.registerShapelessRecipe(new ItemStack(Items.WRITABLE_BOOK, 1), new Object[] { Items.BOOK, new ItemStack(Items.DYE, 1, akv.p.b()), Items.FEATHER });
@@ -283,6 +284,10 @@ public class CraftingManager {
 
 	public List<IRecipe> getRecipes() {
 		return this.recipes;
+	}
+
+	public void resetRecipes() {
+		recipes = new CraftingManager().recipes;
 	}
 
 }

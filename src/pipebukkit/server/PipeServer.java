@@ -27,11 +27,13 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
+import net.minecraft.CraftingManager;
 import net.minecraft.Difficulty;
 import net.minecraft.EntityPlayer;
 import net.minecraft.EnumGameMode;
 import net.minecraft.ExceptionWorldConflict;
 import net.minecraft.IDataManager;
+import net.minecraft.IRecipe;
 import net.minecraft.JsonListEntry;
 import net.minecraft.LevelType;
 import net.minecraft.SecondaryWorldServer;
@@ -94,6 +96,7 @@ import pipebukkit.server.banlists.PipeProfileBanList;
 import pipebukkit.server.entity.PipePlayer;
 import pipebukkit.server.inventory.PipeCustomInventory;
 import pipebukkit.server.inventory.PipeRecipes;
+import pipebukkit.server.inventory.RecipeIterator;
 import pipebukkit.server.metadata.BlockMetadataStorage;
 import pipebukkit.server.metadata.EntityMetadataStorage;
 import pipebukkit.server.metadata.PlayerMetadataStorage;
@@ -243,25 +246,23 @@ public class PipeServer implements Server {
 
 	@Override
 	public void clearRecipes() {
-		// TODO Auto-generated method stub
+		CraftingManager.getInstance().getRecipes().clear();
+	}
+
+	@Override
+	public void resetRecipes() {
+		CraftingManager.getInstance().resetRecipes();
 	}
 
 	@Override
 	public Iterator<Recipe> recipeIterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new RecipeIterator();
 	}
 
 	@Override
 	public List<Recipe> getRecipesFor(ItemStack result) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void resetRecipes() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
