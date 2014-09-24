@@ -28,7 +28,7 @@ public class RecipeBookClone implements IRecipe {
 		return var4 != null && var3 > 0;
 	}
 
-	public ItemStack a(InventoryCrafting var1) {
+	public ItemStack getResult(InventoryCrafting var1) {
 		int var2 = 0;
 		ItemStack var3 = null;
 

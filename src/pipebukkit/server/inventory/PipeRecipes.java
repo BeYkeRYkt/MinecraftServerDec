@@ -1,9 +1,11 @@
 package pipebukkit.server.inventory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map.Entry;
 
 import net.minecraft.CraftingManager;
+import net.minecraft.IRecipe;
 import net.minecraft.Item;
 import net.minecraft.ShapedRecipes;
 import net.minecraft.ShapelessRecipes;
@@ -56,12 +58,51 @@ public class PipeRecipes {
 		CraftingManager.getInstance().registerShapedRecipe(new PipeItemStack(shapelessRecipe.getResult()).getHandle(), nmsRecipeData.toArray());
 	}
 
-	public static ShapedRecipe fromNMSShapedRecipe(ShapedRecipes nmsRecipe) {
+	public static Recipe fromNMSRecipe(IRecipe nmsRecipe) {
+		if (nmsRecipe instanceof ShapedRecipes) {
+			return fromNMSShapedRecipe((ShapedRecipes) nmsRecipe);
+		} else if (nmsRecipe instanceof ShapelessRecipes) {
+			return fromNMSShapelessRecipe((ShapelessRecipes) nmsRecipe);
+		}
 		return null;
 	}
 
+	private static String shapeSymbols = "qwertyuio";
+	public static ShapedRecipe fromNMSShapedRecipe(ShapedRecipes nmsRecipe) {
+		ShapedRecipe shapedRecipe = new ShapedRecipe(new PipeItemStack(nmsRecipe.getResult()));
+		HashMap<ItemStack, Character> usedIngredientsMapping = new HashMap<ItemStack, Character>();
+		char[][] shape = new char[nmsRecipe.getRows()][nmsRecipe.getColumns()];
+		for (int i = 0; i < nmsRecipe.getIngredients().length; i++) {
+			net.minecraft.ItemStack nmsItemStack = nmsRecipe.getIngredients()[i];
+			char symbol = ' ';
+			if (nmsItemStack != null) {
+				PipeItemStack itemStack = new PipeItemStack(nmsItemStack.getCopy());
+				if (usedIngredientsMapping.containsKey(itemStack)) {
+					symbol = usedIngredientsMapping.get(itemStack);
+				} else {
+					symbol = shapeSymbols.charAt(usedIngredientsMapping.size());
+					usedIngredientsMapping.put(itemStack, symbol);
+				}
+			}
+			shape[i / nmsRecipe.getRows()][i % nmsRecipe.getColumns()] = symbol;
+		}
+		ArrayList<String> shapeData = new ArrayList<String>();
+		for (int i = 0; i < shape.length; i++) {
+			shapeData.add(new String(shape[i]));
+		}
+		shapedRecipe.shape(shapeData.toArray(new String[0]));
+		for (Entry<ItemStack, Character> entry : usedIngredientsMapping.entrySet()) {
+			shapedRecipe.setIngredient(entry.getValue(), entry.getKey().getData());
+		}
+		return shapedRecipe;
+	}
+
 	public static ShapelessRecipe fromNMSShapelessRecipe(ShapelessRecipes nmsRecipe) {
-		return null;
+		ShapelessRecipe shapelessRecipe = new ShapelessRecipe(new PipeItemStack(nmsRecipe.getResult()));
+		for (net.minecraft.ItemStack nmsItemStack : nmsRecipe.getIngredients()) {
+			shapelessRecipe.addIngredient(new PipeItemStack(nmsItemStack).getData());
+		}
+		return shapelessRecipe;
 	}
 
 }

@@ -170,81 +170,80 @@ public class CraftingManager {
 		Collections.sort(this.recipes, new RecipeSorter());
 	}
 
-	public ShapedRecipes registerShapedRecipe(ItemStack var1, Object... var2) {
-		String var3 = "";
-		int var4 = 0;
-		int var5 = 0;
-		int var6 = 0;
-		if (var2[var4] instanceof String[]) {
-			String[] var7 = (String[]) ((String[]) var2[var4++]);
+	public ShapedRecipes registerShapedRecipe(ItemStack result, Object... recipeData) {
+		String shapeString = "";
+		int dataI = 0;
+		int shapeColumns = 0;
+		int shapeRows = 0;
+		if (recipeData[dataI] instanceof String[]) {
+			String[] legacyShapeData = (String[]) ((String[]) recipeData[dataI++]);
 
-			for (int var8 = 0; var8 < var7.length; ++var8) {
-				String var9 = var7[var8];
-				++var6;
-				var5 = var9.length();
-				var3 = var3 + var9;
+			for (int i = 0; i < legacyShapeData.length; ++i) {
+				String shapeSymbols = legacyShapeData[i];
+				++shapeRows;
+				shapeColumns = shapeSymbols.length();
+				shapeString = shapeString + shapeSymbols;
 			}
 		} else {
-			while (var2[var4] instanceof String) {
-				String var11 = (String) var2[var4++];
-				++var6;
-				var5 = var11.length();
-				var3 = var3 + var11;
+			while (recipeData[dataI] instanceof String) {
+				String shapeData = (String) recipeData[dataI++];
+				++shapeRows;
+				shapeColumns = shapeData.length();
+				shapeString = shapeString + shapeData;
 			}
 		}
 
-		HashMap<Character, ItemStack> var12;
-		for (var12 = Maps.newHashMap(); var4 < var2.length; var4 += 2) {
-			Character var13 = (Character) var2[var4];
-			ItemStack var15 = null;
-			if (var2[var4 + 1] instanceof Item) {
-				var15 = new ItemStack((Item) var2[var4 + 1]);
-			} else if (var2[var4 + 1] instanceof Block) {
-				var15 = new ItemStack((Block) var2[var4 + 1], 1, 32767);
-			} else if (var2[var4 + 1] instanceof ItemStack) {
-				var15 = (ItemStack) var2[var4 + 1];
+		HashMap<Character, ItemStack> ingredientsMap = Maps.newHashMap();
+		for (; dataI < recipeData.length; dataI += 2) {
+			Character replacementChatr = (Character) recipeData[dataI];
+			ItemStack ingredient = null;
+			if (recipeData[dataI + 1] instanceof Item) {
+				ingredient = new ItemStack((Item) recipeData[dataI + 1]);
+			} else if (recipeData[dataI + 1] instanceof Block) {
+				ingredient = new ItemStack((Block) recipeData[dataI + 1], 1, 32767);
+			} else if (recipeData[dataI + 1] instanceof ItemStack) {
+				ingredient = (ItemStack) recipeData[dataI + 1];
 			}
 
-			var12.put(var13, var15);
+			ingredientsMap.put(replacementChatr, ingredient);
 		}
 
-		ItemStack[] var14 = new ItemStack[var5 * var6];
+		ItemStack[] ingredients = new ItemStack[shapeColumns * shapeRows];
 
-		for (int var16 = 0; var16 < var5 * var6; ++var16) {
-			char var10 = var3.charAt(var16);
-			if (var12.containsKey(Character.valueOf(var10))) {
-				var14[var16] = ((ItemStack) var12.get(Character.valueOf(var10))).getCopy();
+		for (int i = 0; i < shapeColumns * shapeRows; ++i) {
+			char replacementChar = shapeString.charAt(i);
+			if (ingredientsMap.containsKey(replacementChar)) {
+				ingredients[i] = ingredientsMap.get(replacementChar).getCopy();
 			} else {
-				var14[var16] = null;
+				ingredients[i] = null;
 			}
 		}
 
-		ShapedRecipes var17 = new ShapedRecipes(var5, var6, var14, var1);
-		this.recipes.add(var17);
-		return var17;
+		ShapedRecipes recipe = new ShapedRecipes(shapeColumns, shapeRows, ingredients, result);
+		this.recipes.add(recipe);
+		return recipe;
 	}
 
-	public void registerShapelessRecipe(ItemStack var1, Object... var2) {
-		ArrayList<ItemStack> var3 = Lists.newArrayList();
-		Object[] var4 = var2;
-		int var5 = var2.length;
+	public void registerShapelessRecipe(ItemStack result, Object... recipeData) {
+		ArrayList<ItemStack> ingredients = Lists.newArrayList();
+		int ingredientsLength = recipeData.length;
 
-		for (int var6 = 0; var6 < var5; ++var6) {
-			Object var7 = var4[var6];
-			if (var7 instanceof ItemStack) {
-				var3.add(((ItemStack) var7).getCopy());
-			} else if (var7 instanceof Item) {
-				var3.add(new ItemStack((Item) var7));
+		for (int i = 0; i < ingredientsLength; ++i) {
+			Object ingredient = recipeData[i];
+			if (ingredient instanceof ItemStack) {
+				ingredients.add(((ItemStack) ingredient).getCopy());
+			} else if (ingredient instanceof Item) {
+				ingredients.add(new ItemStack((Item) ingredient));
 			} else {
-				if (!(var7 instanceof Block)) {
-					throw new IllegalArgumentException("Invalid shapeless recipe: unknown type " + var7.getClass().getName() + "!");
+				if (!(ingredient instanceof Block)) {
+					throw new IllegalArgumentException("Invalid shapeless recipe: unknown type " + ingredient.getClass().getName() + "!");
 				}
 
-				var3.add(new ItemStack((Block) var7));
+				ingredients.add(new ItemStack((Block) ingredient));
 			}
 		}
 
-		this.recipes.add(new ShapelessRecipes(var1, var3));
+		this.recipes.add(new ShapelessRecipes(result, ingredients));
 	}
 
 	public void addRecipe(IRecipe recipe) {
@@ -263,7 +262,7 @@ public class CraftingManager {
 			var4 = (IRecipe) var3.next();
 		} while (!var4.a(var1, var2));
 
-		return var4.a(var1);
+		return var4.getResult(var1);
 	}
 
 	public ItemStack[] b(InventoryCrafting inventoryCrafting, World world) {

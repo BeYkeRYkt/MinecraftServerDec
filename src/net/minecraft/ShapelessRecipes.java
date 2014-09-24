@@ -7,16 +7,20 @@ import java.util.List;
 
 public class ShapelessRecipes implements IRecipe {
 
-	private final ItemStack a;
-	private final List b;
+	private final ItemStack result;
+	private final List<ItemStack> ingredients;
 
-	public ShapelessRecipes(ItemStack var1, List var2) {
-		this.a = var1;
-		this.b = var2;
+	public ShapelessRecipes(ItemStack result, List<ItemStack> ingredients) {
+		this.result = result;
+		this.ingredients = ingredients;
 	}
 
 	public ItemStack getResult() {
-		return this.a;
+		return this.result;
+	}
+
+	public List<ItemStack> getIngredients() {
+		return ingredients;
 	}
 
 	public ItemStack[] b(InventoryCrafting var1) {
@@ -33,14 +37,14 @@ public class ShapelessRecipes implements IRecipe {
 	}
 
 	public boolean a(InventoryCrafting var1, World var2) {
-		ArrayList var3 = Lists.newArrayList((Iterable) this.b);
+		ArrayList<ItemStack> var3 = Lists.newArrayList((Iterable<ItemStack>) this.ingredients);
 
 		for (int var4 = 0; var4 < var1.getRows(); ++var4) {
 			for (int var5 = 0; var5 < var1.getCols(); ++var5) {
 				ItemStack var6 = var1.getItem(var5, var4);
 				if (var6 != null) {
 					boolean var7 = false;
-					Iterator var8 = var3.iterator();
+					Iterator<ItemStack> var8 = var3.iterator();
 
 					while (var8.hasNext()) {
 						ItemStack var9 = (ItemStack) var8.next();
@@ -61,11 +65,11 @@ public class ShapelessRecipes implements IRecipe {
 		return var3.isEmpty();
 	}
 
-	public ItemStack a(InventoryCrafting var1) {
-		return this.a.getCopy();
+	public ItemStack getResult(InventoryCrafting var1) {
+		return this.result.getCopy();
 	}
 
 	public int a() {
-		return this.b.size();
+		return this.ingredients.size();
 	}
 }

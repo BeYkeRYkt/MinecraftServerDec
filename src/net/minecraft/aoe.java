@@ -30,7 +30,7 @@ class aoe implements IRecipe {
 		}
 	}
 
-	public ItemStack a(InventoryCrafting var1) {
+	public ItemStack getResult(InventoryCrafting var1) {
 		ItemStack var2 = null;
 
 		for (int var3 = 0; var3 < var1.getSize(); ++var3) {

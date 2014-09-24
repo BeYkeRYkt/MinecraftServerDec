@@ -32,7 +32,7 @@ public class RecipeArmorDye implements IRecipe {
 		return var3 != null && !var4.isEmpty();
 	}
 
-	public ItemStack a(InventoryCrafting var1) {
+	public ItemStack getResult(InventoryCrafting var1) {
 		ItemStack var2 = null;
 		int[] var3 = new int[3];
 		int var4 = 0;

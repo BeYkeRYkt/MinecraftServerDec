@@ -151,7 +151,7 @@ public class RecipeFireworks implements IRecipe {
 		}
 	}
 
-	public ItemStack a(InventoryCrafting var1) {
+	public ItemStack getResult(InventoryCrafting var1) {
 		return this.a.getCopy();
 	}
 

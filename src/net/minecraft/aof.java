@@ -53,7 +53,7 @@ class aof implements IRecipe {
 		return var3 != null && var4 != null;
 	}
 
-	public ItemStack a(InventoryCrafting var1) {
+	public ItemStack getResult(InventoryCrafting var1) {
 		for (int var2 = 0; var2 < var1.getSize(); ++var2) {
 			ItemStack var3 = var1.getItem(var2);
 			if (var3 != null && TileEntityBanner.c(var3) > 0) {

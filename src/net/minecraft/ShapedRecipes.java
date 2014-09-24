@@ -2,21 +2,33 @@ package net.minecraft;
 
 public class ShapedRecipes implements IRecipe {
 
-	private final int a;
-	private final int b;
-	private final ItemStack[] c;
-	private final ItemStack d;
-	private boolean e;
+	private final int columns;
+	private final int rows;
+	private final ItemStack[] ingredients;
+	private final ItemStack result;
+	private boolean copyNBT;
 
-	public ShapedRecipes(int var1, int var2, ItemStack[] var3, ItemStack var4) {
-		this.a = var1;
-		this.b = var2;
-		this.c = var3;
-		this.d = var4;
+	public ShapedRecipes(int columns, int rows, ItemStack[] ingredients, ItemStack result) {
+		this.columns = columns;
+		this.rows = rows;
+		this.ingredients = ingredients;
+		this.result = result;
 	}
 
 	public ItemStack getResult() {
-		return this.d;
+		return this.result;
+	}
+
+	public int getColumns() {
+		return columns;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public ItemStack[] getIngredients() {
+		return ingredients;
 	}
 
 	public ItemStack[] b(InventoryCrafting var1) {
@@ -33,8 +45,8 @@ public class ShapedRecipes implements IRecipe {
 	}
 
 	public boolean a(InventoryCrafting var1, World var2) {
-		for (int var3 = 0; var3 <= 3 - this.a; ++var3) {
-			for (int var4 = 0; var4 <= 3 - this.b; ++var4) {
+		for (int var3 = 0; var3 <= 3 - this.columns; ++var3) {
+			for (int var4 = 0; var4 <= 3 - this.rows; ++var4) {
 				if (this.a(var1, var3, var4, true)) {
 					return true;
 				}
@@ -54,11 +66,11 @@ public class ShapedRecipes implements IRecipe {
 				int var7 = var5 - var2;
 				int var8 = var6 - var3;
 				ItemStack var9 = null;
-				if (var7 >= 0 && var8 >= 0 && var7 < this.a && var8 < this.b) {
+				if (var7 >= 0 && var8 >= 0 && var7 < this.columns && var8 < this.rows) {
 					if (var4) {
-						var9 = this.c[this.a - var7 - 1 + var8 * this.a];
+						var9 = this.ingredients[this.columns - var7 - 1 + var8 * this.columns];
 					} else {
-						var9 = this.c[var7 + var8 * this.a];
+						var9 = this.ingredients[var7 + var8 * this.columns];
 					}
 				}
 
@@ -82,26 +94,26 @@ public class ShapedRecipes implements IRecipe {
 		return true;
 	}
 
-	public ItemStack a(InventoryCrafting var1) {
-		ItemStack var2 = this.getResult().getCopy();
-		if (this.e) {
-			for (int var3 = 0; var3 < var1.getSize(); ++var3) {
-				ItemStack var4 = var1.getItem(var3);
-				if (var4 != null && var4.hasTag()) {
-					var2.setTag((NBTCompoundTag) var4.getTag().getCopy());
+	public ItemStack getResult(InventoryCrafting inventoryCrafting) {
+		ItemStack result = this.getResult().getCopy();
+		if (this.copyNBT) {
+			for (int i = 0; i < inventoryCrafting.getSize(); ++i) {
+				ItemStack itemStack = inventoryCrafting.getItem(i);
+				if (itemStack != null && itemStack.hasTag()) {
+					result.setTag((NBTCompoundTag) itemStack.getTag().getCopy());
 				}
 			}
 		}
 
-		return var2;
+		return result;
 	}
 
 	public int a() {
-		return this.a * this.b;
+		return this.columns * this.rows;
 	}
 
 	public ShapedRecipes c() {
-		this.e = true;
+		this.copyNBT = true;
 		return this;
 	}
 }

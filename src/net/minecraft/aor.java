@@ -24,7 +24,7 @@ public class aor implements IRecipe {
 		return var3.size() == 2;
 	}
 
-	public ItemStack a(InventoryCrafting var1) {
+	public ItemStack getResult(InventoryCrafting var1) {
 		ArrayList var2 = Lists.newArrayList();
 
 		ItemStack var4;
