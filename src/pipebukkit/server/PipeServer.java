@@ -261,8 +261,14 @@ public class PipeServer implements Server {
 
 	@Override
 	public List<Recipe> getRecipesFor(ItemStack result) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Recipe> recipes = new ArrayList<Recipe>();
+		for (IRecipe nmsRecipe : CraftingManager.getInstance().getRecipes()) {
+			Recipe recipe = PipeRecipes.fromNMSRecipe(nmsRecipe);
+			if (recipe.getResult().equals(result)) {
+				recipes.add(recipe);
+			}
+		}
+		return recipes;
 	}
 
 	@Override
