@@ -673,7 +673,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 
 	public void a(ItemStack var1, int var2) {
 		super.a(var1, var2);
-		if (var1 != null && var1.getItem() != null && var1.getItem().e(var1) == ano.b) {
+		if (var1 != null && var1.getItem() != null && var1.getItem().e(var1) == EnumAnimation.EAT) {
 			this.getWorldServer().getEntityTracker().b(this, new PacketPlayOutAnimation(this, 3));
 		}
 

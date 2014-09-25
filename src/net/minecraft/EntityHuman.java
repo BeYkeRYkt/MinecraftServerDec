@@ -26,12 +26,12 @@ public abstract class EntityHuman extends EntityLiving {
 	public double br;
 	public double bs;
 	public double bt;
-	protected boolean isSleeping;
+	public boolean isSleeping;
+	public int sleepTimer;
 	public Position bv;
-	private int sleepTimer;
 	public float bw;
 	public float bx;
-	private Position c;
+	private Position spawnPosition;
 	private boolean isSpawnForced;
 	private Position e;
 	public PlayerProperties playerProperties = new PlayerProperties();
@@ -39,13 +39,12 @@ public abstract class EntityHuman extends EntityLiving {
 	public int xpTotal;
 	public float xp;
 	private int xpSeed;
-	private ItemStack g;
+	private ItemStack usedItemStack;
 	private int h;
 	protected float bC = 0.1F;
 	protected float bD = 0.02F;
 	private int i;
 	private final GameProfile gameProfile;
-	private boolean bG = false;
 	public ado bE;
 
 	public EntityHuman(World var1, GameProfile var2) {
@@ -75,19 +74,19 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public boolean bR() {
-		return this.g != null;
+		return this.usedItemStack != null;
 	}
 
 	public void bT() {
-		if (this.g != null) {
-			this.g.b(this.world, this, this.h);
+		if (this.usedItemStack != null) {
+			this.usedItemStack.b(this.world, this, this.h);
 		}
 
 		this.bU();
 	}
 
 	public void bU() {
-		this.g = null;
+		this.usedItemStack = null;
 		this.h = 0;
 		if (!this.world.isStatic) {
 			this.f(false);
@@ -95,8 +94,8 @@ public abstract class EntityHuman extends EntityLiving {
 
 	}
 
-	public boolean bV() {
-		return this.bR() && this.g.getItem().e(this.g) == ano.d;
+	public boolean isBlocking() {
+		return this.bR() && this.usedItemStack.getItem().e(this.usedItemStack) == EnumAnimation.BLOCK;
 	}
 
 	public void s_() {
@@ -105,9 +104,9 @@ public abstract class EntityHuman extends EntityLiving {
 			this.onGround = false;
 		}
 
-		if (this.g != null) {
+		if (this.usedItemStack != null) {
 			ItemStack var1 = this.playerInventory.getItemInHand();
-			if (var1 == this.g) {
+			if (var1 == this.usedItemStack) {
 				if (this.h <= 25 && this.h % 4 == 0) {
 					this.b(var1, 5);
 				}
@@ -230,11 +229,11 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	protected void b(ItemStack var1, int var2) {
-		if (var1.m() == ano.c) {
+		if (var1.m() == EnumAnimation.DRINK) {
 			this.a("random.drink", 0.5F, this.world.random.nextFloat() * 0.1F + 0.9F);
 		}
 
-		if (var1.m() == ano.b) {
+		if (var1.m() == EnumAnimation.EAT) {
 			for (int var3 = 0; var3 < var2; ++var3) {
 				Vec3D var4 = new Vec3D(((double) this.random.nextFloat() - 0.5D) * 0.1D, Math.random() * 0.1D + 0.1D, 0.0D);
 				var4 = var4.a(-this.pitch * 3.1415927F / 180.0F);
@@ -257,11 +256,11 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	protected void s() {
-		if (this.g != null) {
-			this.b(this.g, 16);
-			int var1 = this.g.amount;
-			ItemStack var2 = this.g.b(this.world, this);
-			if (var2 != this.g || var2 != null && var2.amount != var1) {
+		if (this.usedItemStack != null) {
+			this.b(this.usedItemStack, 16);
+			int var1 = this.usedItemStack.amount;
+			ItemStack var2 = this.usedItemStack.b(this.world, this);
+			if (var2 != this.usedItemStack || var2 != null && var2.amount != var1) {
 				this.playerInventory.contents[this.playerInventory.itemInHandIndex] = var2;
 				if (var2.amount == 0) {
 					this.playerInventory.contents[this.playerInventory.itemInHandIndex] = null;
@@ -597,7 +596,7 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 
 		if (var1.isTagAssignableFrom("SpawnX", 99) && var1.isTagAssignableFrom("SpawnY", 99) && var1.isTagAssignableFrom("SpawnZ", 99)) {
-			this.c = new Position(var1.getInt("SpawnX"), var1.getInt("SpawnY"), var1.getInt("SpawnZ"));
+			this.spawnPosition = new Position(var1.getInt("SpawnX"), var1.getInt("SpawnY"), var1.getInt("SpawnZ"));
 			this.isSpawnForced = var1.getBoolean("SpawnForced");
 		}
 
@@ -621,10 +620,10 @@ public abstract class EntityHuman extends EntityLiving {
 		tag.put("XpTotal", this.xpTotal);
 		tag.put("XpSeed", this.xpSeed);
 		tag.put("Score", this.bW());
-		if (this.c != null) {
-			tag.put("SpawnX", this.c.getX());
-			tag.put("SpawnY", this.c.getY());
-			tag.put("SpawnZ", this.c.getZ());
+		if (this.spawnPosition != null) {
+			tag.put("SpawnX", this.spawnPosition.getX());
+			tag.put("SpawnY", this.spawnPosition.getY());
+			tag.put("SpawnZ", this.spawnPosition.getZ());
 			tag.put("SpawnForced", this.isSpawnForced);
 		}
 
@@ -710,7 +709,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 	protected void d(DamageSource var1, float var2) {
 		if (!this.b(var1)) {
-			if (!var1.e() && this.bV() && var2 > 0.0F) {
+			if (!var1.e() && this.isBlocking() && var2 > 0.0F) {
 				var2 = (1.0F + var2) * 0.5F;
 			}
 
@@ -1072,7 +1071,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public Position cg() {
-		return this.c;
+		return this.spawnPosition;
 	}
 
 	public boolean ch() {
@@ -1081,10 +1080,10 @@ public abstract class EntityHuman extends EntityLiving {
 
 	public void a(Position var1, boolean var2) {
 		if (var1 != null) {
-			this.c = var1;
+			this.spawnPosition = var1;
 			this.isSpawnForced = var2;
 		} else {
-			this.c = null;
+			this.spawnPosition = null;
 			this.isSpawnForced = false;
 		}
 
@@ -1251,10 +1250,10 @@ public abstract class EntityHuman extends EntityLiving {
 			var1 = var2;
 		}
 
-		this.xp += (float) var1 / (float) this.cj();
+		this.xp += (float) var1 / (float) this.getExpToLevel();
 
-		for (this.xpTotal += var1; this.xp >= 1.0F; this.xp /= (float) this.cj()) {
-			this.xp = (this.xp - 1.0F) * (float) this.cj();
+		for (this.xpTotal += var1; this.xp >= 1.0F; this.xp /= (float) this.getExpToLevel()) {
+			this.xp = (this.xp - 1.0F) * (float) this.getExpToLevel();
 			this.a(1);
 		}
 
@@ -1291,7 +1290,7 @@ public abstract class EntityHuman extends EntityLiving {
 
 	}
 
-	public int cj() {
+	public int getExpToLevel() {
 		return this.xpLevel >= 30 ? 112 + (this.xpLevel - 30) * 9 : (this.xpLevel >= 15 ? 37 + (this.xpLevel - 15) * 5 : 7 + this.xpLevel * 2);
 	}
 
@@ -1317,8 +1316,8 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	public void a(ItemStack var1, int var2) {
-		if (var1 != this.g) {
-			this.g = var1;
+		if (var1 != this.usedItemStack) {
+			this.usedItemStack = var1;
 			this.h = var2;
 			if (!this.world.isStatic) {
 				this.f(true);

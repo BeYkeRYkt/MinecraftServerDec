@@ -313,7 +313,7 @@ public final class ItemStack {
 		return this.getItem().d(this);
 	}
 
-	public ano m() {
+	public EnumAnimation m() {
 		return this.getItem().e(this);
 	}
 

@@ -166,8 +166,8 @@ public class Item {
 		return false;
 	}
 
-	public ano e(ItemStack var1) {
-		return ano.a;
+	public EnumAnimation e(ItemStack var1) {
+		return EnumAnimation.NONE;
 	}
 
 	public int d(ItemStack var1) {

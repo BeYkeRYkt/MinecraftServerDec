@@ -17,6 +17,7 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
+import pipebukkit.server.inventory.PipeEnderChestInventory;
 import pipebukkit.server.inventory.PipeInventoryView;
 import pipebukkit.server.inventory.PipeItemStack;
 import pipebukkit.server.inventory.PipePlayerInventory;
@@ -28,11 +29,13 @@ import net.minecraft.server.MinecraftServer;
 public abstract class PipeHumanEntity extends PipeLivingEntity implements HumanEntity {
 
 	protected PipePlayerInventory inventory;
+	protected PipeEnderChestInventory enderchest;
 	protected final PermissibleBase perm = new PermissibleBase(this);
 
 	public PipeHumanEntity(EntityHuman nmsEntity) {
 		super(nmsEntity);
 		inventory = new PipePlayerInventory(nmsEntity);
+		enderchest = new PipeEnderChestInventory(nmsEntity.getEnderChest());
 	}
 
 	@Override
@@ -120,14 +123,12 @@ public abstract class PipeHumanEntity extends PipeLivingEntity implements HumanE
 
 	@Override
 	public Inventory getEnderChest() {
-		// TODO Auto-generated method stub
-		return null;
+		return enderchest;
 	}
 
 	@Override
 	public int getExpToLevel() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getHandle(EntityHuman.class).getExpToLevel();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -188,21 +189,18 @@ public abstract class PipeHumanEntity extends PipeLivingEntity implements HumanE
 	}
 
 	@Override
+	public boolean isSleeping() {
+		return getHandle(EntityHuman.class).isSleeping;
+	}
+
+	@Override
 	public int getSleepTicks() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getHandle(EntityHuman.class).sleepTimer;
 	}
 
 	@Override
 	public boolean isBlocking() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isSleeping() {
-		// TODO Auto-generated method stub
-		return false;
+		return getHandle(EntityHuman.class).isBlocking();
 	}
 
 	@Override

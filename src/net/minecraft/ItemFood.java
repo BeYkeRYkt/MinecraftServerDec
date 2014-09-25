@@ -44,8 +44,8 @@ public class ItemFood extends Item {
 		return 32;
 	}
 
-	public ano e(ItemStack var1) {
-		return ano.b;
+	public EnumAnimation e(ItemStack var1) {
+		return EnumAnimation.EAT;
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {

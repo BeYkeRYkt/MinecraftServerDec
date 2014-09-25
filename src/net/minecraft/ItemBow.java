@@ -67,8 +67,8 @@ public class ItemBow extends Item {
 		return 72000;
 	}
 
-	public ano e(ItemStack var1) {
-		return ano.e;
+	public EnumAnimation e(ItemStack var1) {
+		return EnumAnimation.BOW;
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {

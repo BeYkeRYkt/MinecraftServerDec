@@ -87,8 +87,8 @@ public class ItemPotion extends Item {
 		return 32;
 	}
 
-	public ano e(ItemStack var1) {
-		return ano.c;
+	public EnumAnimation e(ItemStack var1) {
+		return EnumAnimation.DRINK;
 	}
 
 	public ItemStack a(ItemStack var1, World var2, EntityHuman var3) {
