@@ -36,7 +36,7 @@ public class aiw extends Slot {
 		var1.a(this.a.world, this.a, this.b);
 		if (!this.a.world.isStatic) {
 			int var2 = this.b;
-			float var3 = RecipesFurnace.getInstance().getSmeltTime(var1);
+			float var3 = RecipesFurnace.getInstance().getExpDrop(var1);
 			int var4;
 			if (var3 == 0.0F) {
 				var2 = 0;

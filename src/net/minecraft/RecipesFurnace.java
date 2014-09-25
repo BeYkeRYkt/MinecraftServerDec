@@ -10,7 +10,7 @@ public class RecipesFurnace {
 
 	private static final RecipesFurnace instance = new RecipesFurnace();
 	private Map<ItemStack, ItemStack> recipes = Maps.newHashMap();
-	private Map<ItemStack, Float> smelttime = Maps.newHashMap();
+	private Map<ItemStack, Float> expdrop = Maps.newHashMap();
 
 	public static RecipesFurnace getInstance() {
 		return instance;
@@ -50,17 +50,17 @@ public class RecipesFurnace {
 		this.registerRecipe(Blocks.QUARTZ_ORE, new ItemStack(Items.QUARTZ), 0.2F);
 	}
 
-	public void registerRecipe(Block block, ItemStack result, float time) {
-		this.registerRecipe(Item.getItemOf(block), result, time);
+	public void registerRecipe(Block block, ItemStack result, float expdrop) {
+		this.registerRecipe(Item.getItemOf(block), result, expdrop);
 	}
 
-	public void registerRecipe(Item item, ItemStack result, float time) {
-		this.registerRecipe(new ItemStack(item, 1, 32767), result, time);
+	public void registerRecipe(Item item, ItemStack result, float expdrop) {
+		this.registerRecipe(new ItemStack(item, 1, 32767), result, expdrop);
 	}
 
-	public void registerRecipe(ItemStack itemStack, ItemStack result, float time) {
+	public void registerRecipe(ItemStack itemStack, ItemStack result, float expdrop) {
 		this.recipes.put(itemStack, result);
-		this.smelttime.put(result, time);
+		this.expdrop.put(result, expdrop);
 	}
 
 	public Map<ItemStack, ItemStack> getRecipes() {
@@ -86,8 +86,8 @@ public class RecipesFurnace {
 		return entry.getValue();
 	}
 
-	public float getSmeltTime(ItemStack inputItem) {
-		Iterator<Entry<ItemStack, Float>> iterator = this.smelttime.entrySet().iterator();
+	public float getExpDrop(ItemStack inputItem) {
+		Iterator<Entry<ItemStack, Float>> iterator = this.expdrop.entrySet().iterator();
 
 		Entry<ItemStack, Float> entry;
 		do {
@@ -103,13 +103,13 @@ public class RecipesFurnace {
 
 	public void clearRecipes() {
 		recipes.clear();
-		smelttime.clear();
+		expdrop.clear();
 	}
 
 	public void resetRecipes() {
 		RecipesFurnace reset = new RecipesFurnace();
 		recipes = reset.recipes;
-		smelttime = reset.smelttime;
+		expdrop = reset.expdrop;
 	}
 
 }

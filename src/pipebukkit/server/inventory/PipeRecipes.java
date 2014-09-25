@@ -7,9 +7,11 @@ import java.util.Map.Entry;
 import net.minecraft.CraftingManager;
 import net.minecraft.IRecipe;
 import net.minecraft.Item;
+import net.minecraft.RecipesFurnace;
 import net.minecraft.ShapedRecipes;
 import net.minecraft.ShapelessRecipes;
 
+import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
@@ -23,6 +25,9 @@ public class PipeRecipes {
 			return true;
 		} else if (recipe instanceof ShapelessRecipe) {
 			addShapelessRecipe((ShapelessRecipe) recipe);
+			return true;
+		} else if (recipe instanceof FurnaceRecipe) {
+			addFurnaceRecipe((FurnaceRecipe) recipe);
 			return true;
 		}
 		return false;
@@ -44,6 +49,7 @@ public class PipeRecipes {
 			nmsRecipeData.add(new net.minecraft.ItemStack(Item.getById(itemStack.getTypeId()), 1, itemStack.getDurability()));
 		}
 		CraftingManager.getInstance().registerShapedRecipe(new PipeItemStack(shapedRecipe.getResult()).getHandle(), nmsRecipeData.toArray());
+		CraftingManager.getInstance().sortRecipes();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -56,6 +62,11 @@ public class PipeRecipes {
 			nmsRecipeData.add(new net.minecraft.ItemStack(Item.getById(itemStack.getTypeId()), 1, itemStack.getDurability()));
 		}
 		CraftingManager.getInstance().registerShapedRecipe(new PipeItemStack(shapelessRecipe.getResult()).getHandle(), nmsRecipeData.toArray());
+		CraftingManager.getInstance().sortRecipes();
+	}
+
+	public static void addFurnaceRecipe(FurnaceRecipe furnaceRecipe) {
+		RecipesFurnace.getInstance().registerRecipe(new PipeItemStack(furnaceRecipe.getInput()).getHandle(), new PipeItemStack(furnaceRecipe.getResult()).getHandle(), 0F);
 	}
 
 	public static Recipe fromNMSRecipe(IRecipe nmsRecipe) {
