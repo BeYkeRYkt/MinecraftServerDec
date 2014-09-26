@@ -30,7 +30,7 @@ public class TestforBlocksCommand extends AbstractCommand {
 			if (var8 > 524288) {
 				throw new di("commands.compare.tooManyBlocks", new Object[] { Integer.valueOf(var8), Integer.valueOf(524288) });
 			} else if (var6.minY >= 0 && var6.maxY < 256 && var7.minY >= 0 && var7.maxY < 256) {
-				World var9 = var1.getPrimaryWorld();
+				World var9 = var1.getWorld();
 				if (var9.a(var6) && var9.a(var7)) {
 					boolean var10 = false;
 					if (var2.length > 9 && var2[9].equals("masked")) {

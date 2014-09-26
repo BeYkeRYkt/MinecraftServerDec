@@ -11,7 +11,7 @@ public class ItemPickaxe extends ItemTool {
 		super(2.0F, var1, c);
 	}
 
-	public boolean b(Block var1) {
+	public boolean canDestroySpecialBlock(Block var1) {
 		return var1 == Blocks.OBSIDIAN ? this.b.d() == 3 : (var1 != Blocks.DIAMOND_BLOCK && var1 != Blocks.DIAMOND_ORE ? (var1 != Blocks.EMERALD_ORE && var1 != Blocks.EMERALD_BLOCK ? (var1 != Blocks.GOLD_BLOCK && var1 != Blocks.GOLD_ORE ? (var1 != Blocks.IRON_BLOCK && var1 != Blocks.IRON_ORE ? (var1 != Blocks.LAPIS_BLOCK && var1 != Blocks.LAPIS_ORE ? (var1 != Blocks.REDSTONE_ORE && var1 != Blocks.LIT_REDSTONE_ORE ? (var1.getMaterial() == Material.STONE ? true : (var1.getMaterial() == Material.ORE ? true : var1.getMaterial() == Material.HEAVY)) : this.b.d() >= 2) : this.b.d() >= 1) : this.b.d() >= 1) : this.b.d() >= 2) : this.b.d() >= 2) : this.b.d() >= 2);
 	}
 

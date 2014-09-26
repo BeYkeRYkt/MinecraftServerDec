@@ -1,34 +1,45 @@
 package net.minecraft;
 
-public interface IInventory extends vz {
+import java.util.List;
 
-	int n_();
+import org.bukkit.inventory.InventoryHolder;
 
-	ItemStack a(int var1);
+public interface IInventory extends ICustomNameable {
 
-	ItemStack a(int var1, int var2);
+	public int getSize();
 
-	ItemStack b(int var1);
+	public ItemStack getItem(int slot);
 
-	void a(int var1, ItemStack var2);
+	public ItemStack splitStack(int slot, int splitSize);
 
-	int p_();
+	public ItemStack splitWithoutUpdate(int slot);
 
-	void update();
+	public void setItem(int slot, ItemStack itemStack);
 
-	boolean a(EntityHuman var1);
+	public int getMaxStackSize();
 
-	void b(EntityHuman var1);
+	public void update();
 
-	void c(EntityHuman var1);
+	public boolean canInteract(EntityHuman who);
 
-	boolean b(int var1, ItemStack var2);
+	public void onContainerOpen(EntityHuman who);
 
-	int a_(int var1);
+	public void onContainerClose(EntityHuman who);
 
-	void b(int var1, int var2);
+	public boolean canSuckItemFromInventory(int slot, ItemStack itemStack);
 
-	int g();
+	public int getProperty(int propertyNumber);
 
-	void l();
+	public void readClientCustomInput(int powerSlot, int powerType);
+
+	public int getPropertiesCount();
+
+	public void clearInventory();
+
+	public List<EntityHuman> getViewers();
+
+	public ItemStack[] getItems();
+
+	public InventoryHolder getHolder();
+
 }

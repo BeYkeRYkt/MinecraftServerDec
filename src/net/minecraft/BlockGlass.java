@@ -9,7 +9,7 @@ public class BlockGlass extends awt {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 

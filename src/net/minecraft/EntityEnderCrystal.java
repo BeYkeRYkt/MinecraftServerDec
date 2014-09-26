@@ -21,7 +21,7 @@ public class EntityEnderCrystal extends Entity {
 		this.dataWatcher.a(8, Integer.valueOf(this.b));
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.previousX = this.locationX;
 		this.previousY = this.locationY;
 		this.previousZ = this.locationZ;
@@ -36,18 +36,18 @@ public class EntityEnderCrystal extends Entity {
 
 	}
 
-	protected void b(NBTCompoundTag var1) {
+	protected void writeAdditionalData(NBTCompoundTag var1) {
 	}
 
-	protected void a(NBTCompoundTag var1) {
+	protected void readAdditionalData(NBTCompoundTag var1) {
 	}
 
 	public boolean ad() {
 		return true;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
 			if (!this.dead && !this.world.isStatic) {
@@ -55,7 +55,7 @@ public class EntityEnderCrystal extends Entity {
 				if (this.b <= 0) {
 					this.die();
 					if (!this.world.isStatic) {
-						this.world.a((Entity) null, this.locationX, this.locationY, this.locationZ, 6.0F, true);
+						this.world.createExplosion((Entity) null, this.locationX, this.locationY, this.locationZ, 6.0F, true);
 					}
 				}
 			}

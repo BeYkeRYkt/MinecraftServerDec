@@ -52,7 +52,7 @@ public class EnchantCommand extends AbstractCommand {
 					}
 
 					if (var13.hasTag()) {
-						NBTListTag var8 = var13.p();
+						NBTListTag var8 = var13.getEnchantmentsTag();
 						if (var8 != null) {
 							for (int var9 = 0; var9 < var8.getSize(); ++var9) {
 								short var10 = var8.getCompound(var9).getShort("id");

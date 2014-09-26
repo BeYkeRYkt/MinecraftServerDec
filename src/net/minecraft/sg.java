@@ -5,7 +5,7 @@ import com.google.common.base.Predicate;
 final class sg implements Predicate {
 
 	public boolean a(String var1) {
-		return !vb.b(var1);
+		return !UtilColor.isEmpty(var1);
 	}
 
 	// $FF: synthetic method

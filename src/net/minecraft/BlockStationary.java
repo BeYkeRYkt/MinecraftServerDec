@@ -28,7 +28,7 @@ public class BlockStationary extends axl {
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (this.material == Material.LAVA) {
-			if (var1.getGameRules().b("doFireTick")) {
+			if (var1.getGameRules().isGameRule("doFireTick")) {
 				int var5 = var4.nextInt(3);
 				if (var5 > 0) {
 					Position var6 = var2;
@@ -48,8 +48,8 @@ public class BlockStationary extends axl {
 				} else {
 					for (int var9 = 0; var9 < 3; ++var9) {
 						Position var10 = var2.a(var4.nextInt(3) - 1, 0, var4.nextInt(3) - 1);
-						if (var1.d(var10.a()) && this.m(var1, var10)) {
-							var1.a(var10.a(), Blocks.FIRE.getBlockState());
+						if (var1.d(var10.getUp()) && this.m(var1, var10)) {
+							var1.a(var10.getUp(), Blocks.FIRE.getBlockState());
 						}
 					}
 				}
@@ -64,7 +64,7 @@ public class BlockStationary extends axl {
 
 		for (int var5 = 0; var5 < var4; ++var5) {
 			BlockFace var6 = var3[var5];
-			if (this.m(var1, var2.a(var6))) {
+			if (this.m(var1, var2.getRelative(var6))) {
 				return true;
 			}
 		}

@@ -9,7 +9,7 @@ public class WorldProviderTheEnd extends WorldProvider {
 	}
 
 	public IChunkProvider getChunkProvider() {
-		return new ChunkProviderTheEnd(this.world, this.world.J());
+		return new ChunkProviderTheEnd(this.world, this.world.getSeed());
 	}
 
 	public float a(long var1, float var3) {

@@ -8,7 +8,7 @@ public class ItemGoldenApple extends ItemFood {
 	}
 
 	public amx g(ItemStack var1) {
-		return var1.getDurability() == 0 ? amx.c : amx.d;
+		return var1.getWearout() == 0 ? amx.c : amx.d;
 	}
 
 	protected void c(ItemStack var1, World var2, EntityHuman var3) {
@@ -16,7 +16,7 @@ public class ItemGoldenApple extends ItemFood {
 			var3.c(new MobEffect(MobEffectList.ABSORPTION.id, 2400, 0));
 		}
 
-		if (var1.getDurability() > 0) {
+		if (var1.getWearout() > 0) {
 			if (!var2.isStatic) {
 				var3.c(new MobEffect(MobEffectList.REGENERATION.id, 600, 4));
 				var3.c(new MobEffect(MobEffectList.RESISTANCE.id, 6000, 0));

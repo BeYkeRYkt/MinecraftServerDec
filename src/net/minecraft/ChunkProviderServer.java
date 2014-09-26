@@ -46,7 +46,7 @@ public class ChunkProviderServer implements IChunkProvider {
 
 	public Chunk getChunkAt(int chunkX, int chunkZ) {
 		long longHash = ChunkCoordIntPair.toLongHash(chunkX, chunkZ);
-		this.unloadQueue.remove(Long.valueOf(longHash));
+		this.unloadQueue.remove(longHash);
 		Chunk chunk = this.chunks.get(longHash);
 		if (chunk == null) {
 			chunk = this.loadChunk(chunkX, chunkZ);
@@ -117,11 +117,11 @@ public class ChunkProviderServer implements IChunkProvider {
 
 	public void queueUnload(int chunkX, int chunkZ) {
 		if (this.worldServer.worldProvider.isPrimaryWorld()) {
-			if (!this.worldServer.isSpawnChunk(chunkX, chunkZ)) {
-				this.unloadQueue.add(Long.valueOf(ChunkCoordIntPair.toLongHash(chunkX, chunkZ)));
+			if (!this.worldServer.isSpawnChunk(chunkX, chunkZ) || !worldServer.getBukkitWorld().getKeepSpawnInMemory()) {
+				this.unloadQueue.add(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
 			}
 		} else {
-			this.unloadQueue.add(Long.valueOf(ChunkCoordIntPair.toLongHash(chunkX, chunkZ)));
+			this.unloadQueue.add(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
 		}
 	}
 
@@ -135,8 +135,8 @@ public class ChunkProviderServer implements IChunkProvider {
 		if (!this.worldServer.savingDisabled) {
 			for (int i = 0; i < 100; ++i) {
 				if (!this.unloadQueue.isEmpty()) {
-					Long longHash = this.unloadQueue.iterator().next();
-					Chunk chunk = this.chunks.get(longHash.longValue());
+					long longHash = this.unloadQueue.iterator().next();
+					Chunk chunk = this.chunks.get(longHash);
 					if (chunk != null) {
 						chunk.removeEntities();
 						this.requestChunkSave(chunk);
@@ -155,7 +155,15 @@ public class ChunkProviderServer implements IChunkProvider {
 		unloadQueue.remove(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
 	}
 
-	private void requestChunkSave(Chunk chunk) {
+	public void removeChunk(int chunkX, int chunkZ) {
+		chunks.remove(ChunkCoordIntPair.toLongHash(chunkX, chunkZ));
+	}
+
+	public boolean isQueuedForSaving(Chunk chunk) {
+		return chunkLoader.isQueuedForSaving(chunk);
+	}
+
+	public void requestChunkSave(Chunk chunk) {
 		if (this.chunkLoader != null) {
 			try {
 				chunk.b(this.worldServer.getTime());

@@ -47,9 +47,9 @@ public class WorldGenForest extends WorldGenTreeAbstract {
 			if (!var5) {
 				return false;
 			} else {
-				Block var16 = var1.getBlockState(var3.b()).getBlock();
+				Block var16 = var1.getBlockState(var3.getDown()).getBlock();
 				if ((var16 == Blocks.GRASS || var16 == Blocks.DIRT || var16 == Blocks.FARMLAND) && var3.getY() < 256 - var4 - 1) {
-					this.a(var1, var3.b());
+					this.a(var1, var3.getDown());
 
 					int var17;
 					for (var17 = var3.getY() - 3 + var4; var17 <= var3.getY() + var4; ++var17) {
@@ -73,9 +73,9 @@ public class WorldGenForest extends WorldGenTreeAbstract {
 					}
 
 					for (var17 = 0; var17 < var4; ++var17) {
-						Block var18 = var1.getBlockState(var3.b(var17)).getBlock();
+						Block var18 = var1.getBlockState(var3.getUp(var17)).getBlock();
 						if (var18.getMaterial() == Material.AIR || var18.getMaterial() == Material.LEAVES) {
-							this.a(var1, var3.b(var17), Blocks.LOG, EnumWoodType.c.a());
+							this.a(var1, var3.getUp(var17), Blocks.LOG, EnumWoodType.c.a());
 						}
 					}
 

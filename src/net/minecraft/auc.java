@@ -17,7 +17,7 @@ public class auc extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return super.c(var1, var2) && this.c(var1.getBlockState(var2.b()).getBlock());
+		return super.c(var1, var2) && this.c(var1.getBlockState(var2.getDown()).getBlock());
 	}
 
 	protected boolean c(Block var1) {
@@ -35,14 +35,14 @@ public class auc extends Block {
 
 	protected void e(World var1, Position var2, IBlockState var3) {
 		if (!this.f(var1, var2, var3)) {
-			this.b(var1, var2, var3, 0);
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.setBlockAt(var2, Blocks.AIR.getBlockState(), 3);
 		}
 
 	}
 
 	public boolean f(World var1, Position var2, IBlockState var3) {
-		return this.c(var1.getBlockState(var2.b()).getBlock());
+		return this.c(var1.getBlockState(var2.getDown()).getBlock());
 	}
 
 	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {

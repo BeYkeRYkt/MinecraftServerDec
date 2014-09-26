@@ -43,32 +43,32 @@ public class BlockHopper extends atg {
 		return this.getBlockState().a(a, var9).a(b, Boolean.valueOf(true));
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityHopper();
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
 		super.a(var1, var2, var3, var4, var5);
-		if (var5.s()) {
+		if (var5.hasDisplayName()) {
 			TileEntity var6 = var1.getTileEntity(var2);
 			if (var6 instanceof TileEntityHopper) {
-				((TileEntityHopper) var6).a(var5.q());
+				((TileEntityHopper) var6).a(var5.getDisplayName());
 			}
 		}
 
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {
 			TileEntity var9 = var1.getTileEntity(var2);
 			if (var9 instanceof TileEntityHopper) {
-				var4.a((IInventory) ((TileEntityHopper) var9));
+				var4.openInventory((IInventory) ((TileEntityHopper) var9));
 			}
 
 			return true;
@@ -80,21 +80,21 @@ public class BlockHopper extends atg {
 	}
 
 	private void e(World var1, Position var2, IBlockState var3) {
-		boolean var4 = !var1.z(var2);
+		boolean var4 = !var1.isBlockIndirectlyPowered(var2);
 		if (var4 != ((Boolean) var3.b(b)).booleanValue()) {
 			var1.setBlockAt(var2, var3.a(b, Boolean.valueOf(var4)), 4);
 		}
 
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		TileEntity var4 = var1.getTileEntity(var2);
 		if (var4 instanceof TileEntityHopper) {
 			vs.a(var1, var2, (TileEntityHopper) var4);
 			var1.e(var2, this);
 		}
 
-		super.b(var1, var2, var3);
+		super.remove(var1, var2, var3);
 	}
 
 	public int b() {
@@ -117,7 +117,7 @@ public class BlockHopper extends atg {
 		return (var0 & 8) != 8;
 	}
 
-	public boolean N() {
+	public boolean isComplexRedstone() {
 		return true;
 	}
 

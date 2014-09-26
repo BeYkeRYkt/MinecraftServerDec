@@ -60,29 +60,29 @@ public abstract class axl extends Block {
 		return 1;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 
 	protected Vec3D h(ard var1, Position var2) {
 		Vec3D var3 = new Vec3D(0.0D, 0.0D, 0.0D);
 		int var4 = this.f(var1, var2);
-		Iterator var5 = en.a.iterator();
+		Iterator var5 = UniverseDirection.HORIZONTAL.iterator();
 
 		BlockFace var6;
 		Position var7;
 		while (var5.hasNext()) {
 			var6 = (BlockFace) var5.next();
-			var7 = var2.a(var6);
+			var7 = var2.getRelative(var6);
 			int var8 = this.f(var1, var7);
 			int var9;
 			if (var8 < 0) {
 				if (!var1.getBlockState(var7).getBlock().getMaterial().isSolid()) {
-					var8 = this.f(var1, var7.b());
+					var8 = this.f(var1, var7.getDown());
 					if (var8 >= 0) {
 						var9 = var8 - (var4 - 8);
 						var3 = var3.b((double) ((var7.getX() - var2.getX()) * var9), (double) ((var7.getY() - var2.getY()) * var9), (double) ((var7.getZ() - var2.getZ()) * var9));
@@ -95,12 +95,12 @@ public abstract class axl extends Block {
 		}
 
 		if (((Integer) var1.getBlockState(var2).b(b)).intValue() >= 8) {
-			var5 = en.a.iterator();
+			var5 = UniverseDirection.HORIZONTAL.iterator();
 
 			while (var5.hasNext()) {
 				var6 = (BlockFace) var5.next();
-				var7 = var2.a(var6);
-				if (this.b(var1, var7, var6) || this.b(var1, var7.a(), var6)) {
+				var7 = var2.getRelative(var6);
+				if (this.b(var1, var7, var6) || this.b(var1, var7.getUp(), var6)) {
 					var3 = var3.a().b(0.0D, -6.0D, 0.0D);
 					break;
 				}
@@ -118,7 +118,7 @@ public abstract class axl extends Block {
 		return this.material == Material.WATER ? 5 : (this.material == Material.LAVA ? (var1.worldProvider.noSkyLight() ? 10 : 30) : 0);
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
 	}
 
@@ -134,7 +134,7 @@ public abstract class axl extends Block {
 
 			for (int var7 = 0; var7 < var6; ++var7) {
 				BlockFace var8 = var5[var7];
-				if (var8 != BlockFace.DOWN && var1.getBlockState(var2.a(var8)).getBlock().getMaterial() == Material.WATER) {
+				if (var8 != BlockFace.DOWN && var1.getBlockState(var2.getRelative(var8)).getBlock().getMaterial() == Material.WATER) {
 					var4 = true;
 					break;
 				}
@@ -163,10 +163,10 @@ public abstract class axl extends Block {
 		double var3 = (double) var2.getX();
 		double var5 = (double) var2.getY();
 		double var7 = (double) var2.getZ();
-		var1.makeSound(var3 + 0.5D, var5 + 0.5D, var7 + 0.5D, "random.fizz", 0.5F, 2.6F + (var1.s.nextFloat() - var1.s.nextFloat()) * 0.8F);
+		var1.makeSound(var3 + 0.5D, var5 + 0.5D, var7 + 0.5D, "random.fizz", 0.5F, 2.6F + (var1.random.nextFloat() - var1.random.nextFloat()) * 0.8F);
 
 		for (int var9 = 0; var9 < 8; ++var9) {
-			var1.a(Particle.m, var3 + Math.random(), var5 + 1.2D, var7 + Math.random(), 0.0D, 0.0D, 0.0D, new int[0]);
+			var1.addParticle(Particle.m, var3 + Math.random(), var5 + 1.2D, var7 + Math.random(), 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 	}

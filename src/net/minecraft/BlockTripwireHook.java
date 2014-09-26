@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class BlockTripwireHook extends Block {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 	public static final bet b = bet.a("powered");
 	public static final bet M = bet.a("attached");
 	public static final bet N = bet.a("suspended");
@@ -20,7 +20,7 @@ public class BlockTripwireHook extends Block {
 	}
 
 	public IBlockState a(IBlockState var1, ard var2, Position var3) {
-		return var1.a(N, Boolean.valueOf(!World.a(var2, var3.b())));
+		return var1.a(N, Boolean.valueOf(!World.a(var2, var3.getDown())));
 	}
 
 	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
@@ -36,11 +36,11 @@ public class BlockTripwireHook extends Block {
 	}
 
 	public boolean a(World var1, Position var2, BlockFace var3) {
-		return var3.k().c() && var1.getBlockState(var2.a(var3.getOpposite())).getBlock().t();
+		return var3.k().c() && var1.getBlockState(var2.getRelative(var3.getOpposite())).getBlock().t();
 	}
 
 	public boolean c(World var1, Position var2) {
-		Iterator var3 = en.a.iterator();
+		Iterator var3 = UniverseDirection.HORIZONTAL.iterator();
 
 		BlockFace var4;
 		do {
@@ -49,7 +49,7 @@ public class BlockTripwireHook extends Block {
 			}
 
 			var4 = (BlockFace) var3.next();
-		} while (!var1.getBlockState(var2.a(var4)).getBlock().t());
+		} while (!var1.getBlockState(var2.getRelative(var4)).getBlock().t());
 
 		return true;
 	}
@@ -71,8 +71,8 @@ public class BlockTripwireHook extends Block {
 		if (var4 != this) {
 			if (this.e(var1, var2, var3)) {
 				BlockFace var5 = (BlockFace) var3.b(a);
-				if (!var1.getBlockState(var2.a(var5.getOpposite())).getBlock().t()) {
-					this.b(var1, var2, var3, 0);
+				if (!var1.getBlockState(var2.getRelative(var5.getOpposite())).getBlock().t()) {
+					this.dropNaturally(var1, var2, var3, 0);
 					var1.g(var2);
 				}
 			}
@@ -84,7 +84,7 @@ public class BlockTripwireHook extends Block {
 		BlockFace var8 = (BlockFace) var3.b(a);
 		boolean var9 = ((Boolean) var3.b(M)).booleanValue();
 		boolean var10 = ((Boolean) var3.b(b)).booleanValue();
-		boolean var11 = !World.a((ard) var1, var2.b());
+		boolean var11 = !World.a((ard) var1, var2.getDown());
 		boolean var12 = !var4;
 		boolean var13 = false;
 		int var14 = 0;
@@ -92,7 +92,7 @@ public class BlockTripwireHook extends Block {
 
 		Position var17;
 		for (int var16 = 1; var16 < 42; ++var16) {
-			var17 = var2.a(var8, var16);
+			var17 = var2.getRelative(var8, var16);
 			IBlockState var18 = var1.getBlockState(var17);
 			if (var18.getBlock() == Blocks.TRIPWIRE_HOOK) {
 				if (var18.b(a) == var8.getOpposite()) {
@@ -126,7 +126,7 @@ public class BlockTripwireHook extends Block {
 		var13 &= var12;
 		IBlockState var22 = this.getBlockState().a(M, Boolean.valueOf(var12)).a(b, Boolean.valueOf(var13));
 		if (var14 > 0) {
-			var17 = var2.a(var8, var14);
+			var17 = var2.getRelative(var8, var14);
 			BlockFace var24 = var8.getOpposite();
 			var1.setBlockAt(var17, var22.a(a, var24), 3);
 			this.b(var1, var17, var24);
@@ -143,7 +143,7 @@ public class BlockTripwireHook extends Block {
 
 		if (var9 != var12) {
 			for (int var23 = 1; var23 < var14; ++var23) {
-				Position var25 = var2.a(var8, var23);
+				Position var25 = var2.getRelative(var8, var23);
 				IBlockState var26 = var15[var23];
 				if (var26 != null && var1.getBlockState(var25).getBlock() != Blocks.AIR) {
 					var1.setBlockAt(var25, var26.a(M, Boolean.valueOf(var12)), 3);
@@ -168,19 +168,19 @@ public class BlockTripwireHook extends Block {
 		} else if (var3 && !var5) {
 			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.click", 0.4F, 0.7F);
 		} else if (!var3 && var5) {
-			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.bowhit", 0.4F, 1.2F / (var1.s.nextFloat() * 0.2F + 0.9F));
+			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.1D, (double) var2.getZ() + 0.5D, "random.bowhit", 0.4F, 1.2F / (var1.random.nextFloat() * 0.2F + 0.9F));
 		}
 
 	}
 
 	private void b(World var1, Position var2, BlockFace var3) {
 		var1.c(var2, (Block) this);
-		var1.c(var2.a(var3.getOpposite()), (Block) this);
+		var1.c(var2.getRelative(var3.getOpposite()), (Block) this);
 	}
 
 	private boolean e(World var1, Position var2, IBlockState var3) {
 		if (!this.c(var1, var2)) {
-			this.b(var1, var2, var3, 0);
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.g(var2);
 			return false;
 		} else {
@@ -206,7 +206,7 @@ public class BlockTripwireHook extends Block {
 
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		boolean var4 = ((Boolean) var3.b(M)).booleanValue();
 		boolean var5 = ((Boolean) var3.b(b)).booleanValue();
 		if (var4 || var5) {
@@ -215,13 +215,13 @@ public class BlockTripwireHook extends Block {
 
 		if (var5) {
 			var1.c(var2, (Block) this);
-			var1.c(var2.a(((BlockFace) var3.b(a)).getOpposite()), (Block) this);
+			var1.c(var2.getRelative(((BlockFace) var3.b(a)).getOpposite()), (Block) this);
 		}
 
-		super.b(var1, var2, var3);
+		super.remove(var1, var2, var3);
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return ((Boolean) var3.b(b)).booleanValue() ? 15 : 0;
 	}
 
@@ -229,7 +229,7 @@ public class BlockTripwireHook extends Block {
 		return !((Boolean) var3.b(b)).booleanValue() ? 0 : (var3.b(a) == var4 ? 15 : 0);
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 

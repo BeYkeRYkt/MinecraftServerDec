@@ -14,7 +14,7 @@ public class PortalTravelAgent {
 
 	public PortalTravelAgent(WorldServer var1) {
 		this.a = var1;
-		this.b = new Random(var1.J());
+		this.b = new Random(var1.getSeed());
 	}
 
 	public void a(Entity var1, float var2) {
@@ -68,9 +68,9 @@ public class PortalTravelAgent {
 				Position var16;
 				for (int var14 = -128; var14 <= 128; ++var14) {
 					for (Position var15 = var34.a(var13, this.a.V() - 1 - var34.getY(), var14); var15.getY() >= 0; var15 = var16) {
-						var16 = var15.b();
+						var16 = var15.getDown();
 						if (this.a.getBlockState(var15).getBlock() == Blocks.PORTAL) {
-							while (this.a.getBlockState(var16 = var15.b()).getBlock() == Blocks.PORTAL) {
+							while (this.a.getBlockState(var16 = var15.getDown()).getBlock() == Blocks.PORTAL) {
 								var15 = var16;
 							}
 
@@ -95,35 +95,35 @@ public class PortalTravelAgent {
 			double var36 = (double) ((Position) var9).getY() + 0.5D;
 			double var37 = (double) ((Position) var9).getZ() + 0.5D;
 			BlockFace var18 = null;
-			if (this.a.getBlockState(((Position) var9).e()).getBlock() == Blocks.PORTAL) {
+			if (this.a.getBlockState(((Position) var9).getWest()).getBlock() == Blocks.PORTAL) {
 				var18 = BlockFace.NORTH;
 			}
 
-			if (this.a.getBlockState(((Position) var9).f()).getBlock() == Blocks.PORTAL) {
+			if (this.a.getBlockState(((Position) var9).getEast()).getBlock() == Blocks.PORTAL) {
 				var18 = BlockFace.SOUTH;
 			}
 
-			if (this.a.getBlockState(((Position) var9).c()).getBlock() == Blocks.PORTAL) {
+			if (this.a.getBlockState(((Position) var9).getNorth()).getBlock() == Blocks.PORTAL) {
 				var18 = BlockFace.EAST;
 			}
 
-			if (this.a.getBlockState(((Position) var9).d()).getBlock() == Blocks.PORTAL) {
+			if (this.a.getBlockState(((Position) var9).getSouth()).getBlock() == Blocks.PORTAL) {
 				var18 = BlockFace.WEST;
 			}
 
 			BlockFace var19 = BlockFace.fromDirection(var1.aG());
 			if (var18 != null) {
 				BlockFace var20 = var18.f();
-				Position var21 = ((Position) var9).a(var18);
+				Position var21 = ((Position) var9).getRelative(var18);
 				boolean var22 = this.a(var21);
-				boolean var23 = this.a(var21.a(var20));
+				boolean var23 = this.a(var21.getRelative(var20));
 				if (var23 && var22) {
-					var9 = ((Position) var9).a(var20);
+					var9 = ((Position) var9).getRelative(var20);
 					var18 = var18.getOpposite();
 					var20 = var20.getOpposite();
-					Position var24 = ((Position) var9).a(var18);
+					Position var24 = ((Position) var9).getRelative(var18);
 					var22 = this.a(var24);
-					var23 = this.a(var24.a(var20));
+					var23 = this.a(var24.getRelative(var20));
 				}
 
 				float var38 = 0.5F;
@@ -176,7 +176,7 @@ public class PortalTravelAgent {
 	}
 
 	private boolean a(Position var1) {
-		return !this.a.d(var1) || !this.a.d(var1.a());
+		return !this.a.d(var1) || !this.a.d(var1.getUp());
 	}
 
 	public boolean a(Entity var1) {

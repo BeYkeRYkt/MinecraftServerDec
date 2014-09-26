@@ -22,18 +22,18 @@ public class EntityItemFrame extends adj {
 		return 0.0F;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else if (!var1.c() && this.o() != null) {
 			if (!this.world.isStatic) {
-				this.a(var1.j(), false);
+				this.a(var1.getDamager(), false);
 				this.a((ItemStack) null);
 			}
 
 			return true;
 		} else {
-			return super.damageEntity(var1, var2);
+			return super.receiveDamage(var1, var2);
 		}
 	}
 
@@ -50,7 +50,7 @@ public class EntityItemFrame extends adj {
 	}
 
 	public void a(Entity var1, boolean var2) {
-		if (this.world.getGameRules().b("doTileDrops")) {
+		if (this.world.getGameRules().isGameRule("doTileDrops")) {
 			ItemStack var3 = this.o();
 			if (var1 instanceof EntityHuman) {
 				EntityHuman var4 = (EntityHuman) var1;
@@ -123,20 +123,20 @@ public class EntityItemFrame extends adj {
 
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		if (this.o() != null) {
 			var1.put("Item", (NBTTag) this.o().write(new NBTCompoundTag()));
 			var1.put("ItemRotation", (byte) this.p());
 			var1.put("ItemDropChance", this.c);
 		}
 
-		super.b(var1);
+		super.writeAdditionalData(var1);
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		NBTCompoundTag var2 = var1.getCompound("Item");
 		if (var2 != null && !var2.isEmpty()) {
-			this.a(ItemStack.a(var2), false);
+			this.a(ItemStack.fromNBT(var2), false);
 			this.a(var1.getByte("ItemRotation"), false);
 			if (var1.isTagAssignableFrom("ItemDropChance", 99)) {
 				this.c = var1.getFloat("ItemDropChance");
@@ -147,7 +147,7 @@ public class EntityItemFrame extends adj {
 			}
 		}
 
-		super.a(var1);
+		super.readAdditionalData(var1);
 	}
 
 	public boolean e(EntityHuman var1) {
@@ -156,7 +156,7 @@ public class EntityItemFrame extends adj {
 			if (var2 != null && !this.world.isStatic) {
 				this.a(var2);
 				if (!var1.playerProperties.instabuild && --var2.amount <= 0) {
-					var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
+					var1.playerInventory.setItem(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 				}
 			}
 		} else if (!this.world.isStatic) {

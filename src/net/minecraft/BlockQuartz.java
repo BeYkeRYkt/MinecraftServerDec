@@ -26,7 +26,7 @@ public class BlockQuartz extends Block {
 		}
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		azn var2 = (azn) var1.b(a);
 		return var2 != azn.d && var2 != azn.e ? var2.a() : azn.c.a();
 	}

@@ -8,99 +8,138 @@ public class LongObjectHashMap<V> implements Iterable<V> {
 
 	private Entry<V>[] table;
 
-	private int size = 0;
+	private int count = 0;
+
+	public LongObjectHashMap() {
+		this(512);
+	}
 
 	@SuppressWarnings("unchecked")
-	public LongObjectHashMap() {
-		table = (Entry<V>[]) Array.newInstance(Entry.class, 8192);
+	public LongObjectHashMap(int tableSize) {
+		table = (Entry<V>[]) Array.newInstance(Entry.class, tableSize);
 	}
 
-	public V get(long hash) {
-		Entry<V> entry = table[getTableIndex(hash)];
-		if (entry == null) {
-			return null;
-		}
-		do {
-			if (entry.hash == hash) {
-				return entry.value;
-			}
-		} while ((entry = entry.nextEntry) != null);
-		return null;
-	}
-
-	public void put(long hash, V value) {
-		int index = getTableIndex(hash);
-		Entry<V> entry = table[index];
-		if (entry == null) {
-			table[index] = new Entry<V>(hash, value);
-			return;
-		}
-		for (;entry.nextEntry != null; entry = entry.nextEntry) {
-			if (entry.hash == hash) {
-				entry.value = value;
-				return;
-			}
-		}
-		entry.nextEntry = new Entry<V>(hash, value);
-		size++;
-	}
-
-	public boolean contains(long hash) {
-		Entry<V> entry = table[getTableIndex(hash)];
+	public boolean contains(long key) {
+		Entry<V> entry = table[getTableIndex(key)];
 		if (entry == null) {
 			return false;
 		}
-		do {
-			if (entry.hash == hash) {
+		for (;;) {
+			if (entry.key == key) {
 				return true;
 			}
-		} while ((entry = entry.nextEntry) != null);
-		return false;
+			if (entry.nextEntry == null) {
+				return false;
+			}
+			entry = entry.nextEntry;
+		}
 	}
 
-	public void remove(long hash) {
-		int index = getTableIndex(hash);
+	public V get(long key) {
+		Entry<V> entry = table[getTableIndex(key)];
+		if (entry == null) {
+			return null;
+		}
+		for (;;) {
+			if (entry.key == key) {
+				return entry.value;
+			}
+			if (entry.nextEntry == null) {
+				return null;
+			}
+			entry = entry.nextEntry;
+		}
+	}
+
+	public void put(long key, V value) {
+		resizeIfNeeded();
+		int index = getTableIndex(key);
+		Entry<V> entry = table[index];
+		if (entry == null) {
+			table[index] = new Entry<V>(key, value);
+			count++;
+			return;
+		}
+		for (;;) {
+			if (entry.key == key) {
+				entry.value = value;
+				return;
+			}
+			if (entry.nextEntry == null) {
+				entry.nextEntry = new Entry<V>(key, value);
+				count++;
+				return;
+			}
+			entry = entry.nextEntry;
+		}
+	}
+
+	public void remove(long key) {
+		int index = getTableIndex(key);
 		Entry<V> entry = table[index];
 		if (entry == null) {
 			return;
 		}
 		if (entry.nextEntry == null) {
-			if (entry.hash == hash) {
+			if (entry.key == key) {
 				table[index] = null;
-				size--;
+				count--;
 			}
 			return;
 		}
 		Entry<V> prevEntry = entry;
 		entry = entry.nextEntry;
-		do {
-			if (entry.hash == hash) {
+		for (;;) {
+			if (entry.key == key) {
 				prevEntry.nextEntry = entry.nextEntry;
-				size--;
+				count--;
+				entry.nextEntry = entry;
+				return;
+			}
+			if (entry.nextEntry == null) {
 				return;
 			}
 			prevEntry = entry;
 			entry = entry.nextEntry;
-		} while (entry != null);
+		}
 	}
 
 	public int count() {
-		return size;
+		return count;
 	}
 
-	private int getTableIndex(long hash) {
-		return (int) (hash & (table.length - 1));
+	private int getTableIndex(long key) {
+		key = key ^= key >>> 20 ^ key >>> 12;
+		key = key ^ key >>> 7 ^ key >>> 4;
+		key = key ^ key >>> 32;
+		return (int) (key & (table.length - 1));
+	}
+
+	private void resizeIfNeeded() {
+		if (count > table.length * 2) {
+			LongObjectHashMap<V> resizedMap = new LongObjectHashMap<V>((int) (count));
+			for (Entry<V> entry: table) {
+				if (entry == null) {
+					continue;
+				}
+				do {
+					resizedMap.put(entry.key, entry.value);
+				} while ((entry = entry.nextEntry) != null);
+			}
+			this.count = resizedMap.count;
+			this.table = resizedMap.table;
+		}
 	}
 
 	private static class Entry<V> {
 
-		protected long hash;
+		protected long key;
 		protected V value;
 
 		protected Entry<V> nextEntry;
 
-		public Entry(long hash, V value) {
-			this.hash = hash;
+		public Entry(long key, V value) {
+			this.key = key;
 			this.value = value;
 		}
 
@@ -116,11 +155,10 @@ public class LongObjectHashMap<V> implements Iterable<V> {
 		private int iteratedElements = 0;
 		private int tableIndex = 0;
 		private Entry<V> prevReturnedEntry = null;
-		private boolean removeCalled = false;
 
 		@Override
 		public boolean hasNext() {
-			return iteratedElements < size;
+			return iteratedElements < count;
 		}
 
 		@Override
@@ -128,32 +166,28 @@ public class LongObjectHashMap<V> implements Iterable<V> {
 			if (!hasNext()) {
 				throw new NoSuchElementException();
 			}
-			removeCalled = false;
 			iteratedElements++;
 			if (prevReturnedEntry == null) {
-				while ((prevReturnedEntry = table[tableIndex]) == null) {
-					tableIndex++;
+				for (;;) {
+					prevReturnedEntry = table[tableIndex];
+					if (prevReturnedEntry == null) {
+						tableIndex++;
+					} else {
+						return prevReturnedEntry.value;
+					}
 				}
-				return prevReturnedEntry.value;
 			}
 			if (prevReturnedEntry.nextEntry != null) {
 				prevReturnedEntry = prevReturnedEntry.nextEntry;
 				return prevReturnedEntry.value;
 			}
-			do {
+			for (;;) {
 				tableIndex++;
-			} while ((prevReturnedEntry = table[tableIndex]) == null);
-			return prevReturnedEntry.value;
-		}
-
-		@Override
-		public void remove() {
-			if (prevReturnedEntry == null || removeCalled) {
-				throw new IllegalStateException();
+				prevReturnedEntry = table[tableIndex];
+				if (prevReturnedEntry != null) {
+					return prevReturnedEntry.value;
+				}
 			}
-			LongObjectHashMap.this.remove(prevReturnedEntry.hash);
-			removeCalled = true;
-			iteratedElements--;
 		}
 
 	}

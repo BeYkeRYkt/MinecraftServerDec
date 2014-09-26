@@ -26,11 +26,11 @@ public class BlockLever extends Block {
 	}
 
 	public boolean a(World var1, Position var2, BlockFace var3) {
-		return var3 == BlockFace.UP && World.a((ard) var1, var2.b()) ? true : this.d(var1, var2.a(var3.getOpposite()));
+		return var3 == BlockFace.UP && World.a((ard) var1, var2.getDown()) ? true : this.d(var1, var2.getRelative(var3.getOpposite()));
 	}
 
 	public boolean c(World var1, Position var2) {
-		return this.d(var1, var2.e()) ? true : (this.d(var1, var2.f()) ? true : (this.d(var1, var2.c()) ? true : (this.d(var1, var2.d()) ? true : (World.a((ard) var1, var2.b()) ? true : this.d(var1, var2.a())))));
+		return this.d(var1, var2.getWest()) ? true : (this.d(var1, var2.getEast()) ? true : (this.d(var1, var2.getNorth()) ? true : (this.d(var1, var2.getSouth()) ? true : (World.a((ard) var1, var2.getDown()) ? true : this.d(var1, var2.getUp())))));
 	}
 
 	protected boolean d(World var1, Position var2) {
@@ -39,15 +39,15 @@ public class BlockLever extends Block {
 
 	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		IBlockState var9 = this.getBlockState().a(b, Boolean.valueOf(false));
-		if (this.d(var1, var2.a(var3.getOpposite()))) {
+		if (this.d(var1, var2.getRelative(var3.getOpposite()))) {
 			return var9.a(a, axk.a(var3, var8.aO()));
 		} else {
-			Iterator var10 = en.a.iterator();
+			Iterator var10 = UniverseDirection.HORIZONTAL.iterator();
 
 			BlockFace var11;
 			do {
 				if (!var10.hasNext()) {
-					if (World.a((ard) var1, var2.b())) {
+					if (World.a((ard) var1, var2.getDown())) {
 						return var9.a(a, axk.a(BlockFace.UP, var8.aO()));
 					}
 
@@ -55,7 +55,7 @@ public class BlockLever extends Block {
 				}
 
 				var11 = (BlockFace) var10.next();
-			} while (var11 == var3 || !this.d(var1, var2.a(var11.getOpposite())));
+			} while (var11 == var3 || !this.d(var1, var2.getRelative(var11.getOpposite())));
 
 			return var9.a(a, axk.a(var11, var8.aO()));
 		}
@@ -81,8 +81,8 @@ public class BlockLever extends Block {
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
-		if (this.e(var1, var2) && !this.d(var1, var2.a(((axk) var3.b(a)).c().getOpposite()))) {
-			this.b(var1, var2, var3, 0);
+		if (this.e(var1, var2) && !this.d(var1, var2.getRelative(((axk) var3.b(a)).c().getOpposite()))) {
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.g(var2);
 		}
 
@@ -92,7 +92,7 @@ public class BlockLever extends Block {
 		if (this.c(var1, var2)) {
 			return true;
 		} else {
-			this.b(var1, var2, var1.getBlockState(var2), 0);
+			this.dropNaturally(var1, var2, var1.getBlockState(var2), 0);
 			var1.g(var2);
 			return false;
 		}
@@ -126,7 +126,7 @@ public class BlockLever extends Block {
 
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {
@@ -135,22 +135,22 @@ public class BlockLever extends Block {
 			var1.makeSound((double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, "random.click", 0.3F, ((Boolean) var3.b(b)).booleanValue() ? 0.6F : 0.5F);
 			var1.c(var2, (Block) this);
 			BlockFace var9 = ((axk) var3.b(a)).c();
-			var1.c(var2.a(var9.getOpposite()), (Block) this);
+			var1.c(var2.getRelative(var9.getOpposite()), (Block) this);
 			return true;
 		}
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		if (((Boolean) var3.b(b)).booleanValue()) {
 			var1.c(var2, (Block) this);
 			BlockFace var4 = ((axk) var3.b(a)).c();
-			var1.c(var2.a(var4.getOpposite()), (Block) this);
+			var1.c(var2.getRelative(var4.getOpposite()), (Block) this);
 		}
 
-		super.b(var1, var2, var3);
+		super.remove(var1, var2, var3);
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return ((Boolean) var3.b(b)).booleanValue() ? 15 : 0;
 	}
 
@@ -158,7 +158,7 @@ public class BlockLever extends Block {
 		return !((Boolean) var3.b(b)).booleanValue() ? 0 : (((axk) var3.b(a)).c() == var4 ? 15 : 0);
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 

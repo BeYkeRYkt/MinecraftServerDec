@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.Callable;
+
 import net.minecraft.server.MinecraftServer;
 
 public abstract class CommandBlockListenerAbstract implements CommandSenderInterface {
@@ -74,17 +74,17 @@ public abstract class CommandBlockListenerAbstract implements CommandSenderInter
 
 		MinecraftServer server = MinecraftServer.getInstance();
 		if (server != null && server.hasUniverse() && server.isCommandBlockEnabled()) {
-			ICommandHandler var3 = server.getCommandHandler();
+			ICommandHandler commandHandler = server.getCommandHandler();
 
 			try {
 				this.lastOutput = null;
-				this.succCount = var3.handleCommand(this, this.command);
-			} catch (Throwable var7) {
-				CrashReport var5 = CrashReport.generateCrashReport(var7, "Executing command block");
-				CrashReportSystemDetails var6 = var5.generateSystemDetails("Command to be executed");
-				var6.addDetails("Command", new aqg(this));
-				var6.addDetails("Name", new aqh(this));
-				throw new ReportedException(var5);
+				this.succCount = commandHandler.handleCommand(this, this.command);
+			} catch (Throwable t) {
+				CrashReport crashReportDetails = CrashReport.generateCrashReport(t, "Executing command block");
+				CrashReportSystemDetails crashReportSystemDetails = crashReportDetails.generateSystemDetails("Command to be executed");
+				crashReportSystemDetails.addDetails("Command", getCommand());
+				crashReportSystemDetails.addDetails("Name", getName());
+				throw new ReportedException(crashReportDetails);
 			}
 		} else {
 			this.succCount = 0;
@@ -105,15 +105,15 @@ public abstract class CommandBlockListenerAbstract implements CommandSenderInter
 	}
 
 	public void sendChatMessage(IChatBaseComponent message) {
-		if (this.trackOutput && this.getPrimaryWorld() != null && !this.getPrimaryWorld().isStatic) {
+		if (this.trackOutput && this.getWorld() != null && !this.getWorld().isStatic) {
 			this.lastOutput = (new ChatComponentText("[" + format.format(new Date()) + "] ")).a(message);
 			this.updateEntity();
 		}
 	}
 
-	public boolean t_() {
-		MinecraftServer var1 = MinecraftServer.getInstance();
-		return var1 == null || !var1.hasUniverse() || var1.getPrimaryWorld().getGameRules().b("commandBlockOutput");
+	public boolean isCommandBlockOuputEnabled() {
+		MinecraftServer minecraftServer = MinecraftServer.getInstance();
+		return minecraftServer == null || !minecraftServer.hasUniverse() || minecraftServer.getWorld().getGameRules().isGameRule("commandBlockOutput");
 	}
 
 	public void a(ag var1, int var2) {
@@ -134,12 +134,12 @@ public abstract class CommandBlockListenerAbstract implements CommandSenderInter
 		return this.trackOutput;
 	}
 
-	public boolean a(EntityHuman var1) {
-		if (!var1.playerProperties.instabuild) {
+	public boolean canOpen(EntityHuman who) {
+		if (!who.playerProperties.instabuild) {
 			return false;
 		} else {
-			if (var1.getPrimaryWorld().isStatic) {
-				var1.a(this);
+			if (who.getWorld().isStatic) {
+				who.a(this);
 			}
 
 			return true;

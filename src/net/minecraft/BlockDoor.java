@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class BlockDoor extends Block {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 	public static final bet b = bet.a("open");
 	public static final bev M = bev.a("hinge", avh.class);
 	public static final bet N = bet.a("powered");
@@ -81,11 +81,11 @@ public class BlockDoor extends Block {
 
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (this.material == Material.ORE) {
 			return true;
 		} else {
-			Position var9 = var3.b(O) == avg.b ? var2 : var2.b();
+			Position var9 = var3.b(O) == avg.b ? var2 : var2.getDown();
 			IBlockState var10 = var2.equals(var9) ? var3 : var1.getBlockState(var9);
 			if (var10.getBlock() != this) {
 				return false;
@@ -102,7 +102,7 @@ public class BlockDoor extends Block {
 	public void a(World var1, Position var2, boolean var3) {
 		IBlockState var4 = var1.getBlockState(var2);
 		if (var4.getBlock() == this) {
-			Position var5 = var4.b(O) == avg.b ? var2 : var2.b();
+			Position var5 = var4.b(O) == avg.b ? var2 : var2.getDown();
 			IBlockState var6 = var2 == var5 ? var4 : var1.getBlockState(var5);
 			if (var6.getBlock() == this && ((Boolean) var6.b(b)).booleanValue() != var3) {
 				var1.setBlockAt(var5, var6.a(b, Boolean.valueOf(var3)), 2);
@@ -115,7 +115,7 @@ public class BlockDoor extends Block {
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (var3.b(O) == avg.a) {
-			Position var5 = var2.b();
+			Position var5 = var2.getDown();
 			IBlockState var6 = var1.getBlockState(var5);
 			if (var6.getBlock() != this) {
 				var1.g(var2);
@@ -124,14 +124,14 @@ public class BlockDoor extends Block {
 			}
 		} else {
 			boolean var9 = false;
-			Position var10 = var2.a();
+			Position var10 = var2.getUp();
 			IBlockState var7 = var1.getBlockState(var10);
 			if (var7.getBlock() != this) {
 				var1.g(var2);
 				var9 = true;
 			}
 
-			if (!World.a((ard) var1, var2.b())) {
+			if (!World.a((ard) var1, var2.getDown())) {
 				var1.g(var2);
 				var9 = true;
 				if (var7.getBlock() == this) {
@@ -141,11 +141,11 @@ public class BlockDoor extends Block {
 
 			if (var9) {
 				if (!var1.isStatic) {
-					this.b(var1, var2, var3, 0);
+					this.dropNaturally(var1, var2, var3, 0);
 				}
 			} else {
-				boolean var8 = var1.z(var2) || var1.z(var10);
-				if ((var8 || var4.g()) && var4 != this && var8 != ((Boolean) var7.b(N)).booleanValue()) {
+				boolean var8 = var1.isBlockIndirectlyPowered(var2) || var1.isBlockIndirectlyPowered(var10);
+				if ((var8 || var4.isTrappedChest()) && var4 != this && var8 != ((Boolean) var7.b(N)).booleanValue()) {
 					var1.setBlockAt(var10, var7.a(N, Boolean.valueOf(var8)), 2);
 					if (var8 != ((Boolean) var3.b(b)).booleanValue()) {
 						var1.setBlockAt(var2, var3.a(b, Boolean.valueOf(var8)), 2);
@@ -158,7 +158,7 @@ public class BlockDoor extends Block {
 
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return var1.b(O) == avg.a ? null : this.j();
 	}
 
@@ -168,7 +168,7 @@ public class BlockDoor extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return var2.getY() >= 255 ? false : World.a((ard) var1, var2.b()) && super.c(var1, var2) && super.c(var1, var2.a());
+		return var2.getY() >= 255 ? false : World.a((ard) var1, var2.getDown()) && super.c(var1, var2) && super.c(var1, var2.getUp());
 	}
 
 	public int i() {
@@ -179,10 +179,10 @@ public class BlockDoor extends Block {
 		IBlockState var2 = var0.getBlockState(var1);
 		int var3 = var2.getBlock().getData(var2);
 		boolean var4 = i(var3);
-		IBlockState var5 = var0.getBlockState(var1.b());
+		IBlockState var5 = var0.getBlockState(var1.getDown());
 		int var6 = var5.getBlock().getData(var5);
 		int var7 = var4 ? var6 : var3;
-		IBlockState var8 = var0.getBlockState(var1.a());
+		IBlockState var8 = var0.getBlockState(var1.getUp());
 		int var9 = var8.getBlock().getData(var8);
 		int var10 = var4 ? var3 : var9;
 		boolean var11 = (var10 & 1) != 0;
@@ -195,7 +195,7 @@ public class BlockDoor extends Block {
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, EntityHuman var4) {
-		Position var5 = var2.b();
+		Position var5 = var2.getDown();
 		if (var4.playerProperties.instabuild && var3.b(O) == avg.a && var1.getBlockState(var5).getBlock() == this) {
 			var1.g(var5);
 		}
@@ -205,12 +205,12 @@ public class BlockDoor extends Block {
 	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		IBlockState var4;
 		if (var1.b(O) == avg.b) {
-			var4 = var2.getBlockState(var3.a());
+			var4 = var2.getBlockState(var3.getUp());
 			if (var4.getBlock() == this) {
 				var1 = var1.a(M, var4.b(M)).a(N, var4.b(N));
 			}
 		} else {
-			var4 = var2.getBlockState(var3.b());
+			var4 = var2.getBlockState(var3.getDown());
 			if (var4.getBlock() == this) {
 				var1 = var1.a(a, var4.b(a)).a(b, var4.b(b));
 			}

@@ -18,13 +18,13 @@ public class ItemStep extends ItemBlock {
 	}
 
 	public String getName(ItemStack var1) {
-		return this.b.b(var1.getDurability());
+		return this.b.b(var1.getWearout());
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.amount == 0) {
 			return false;
-		} else if (!var2.a(var4.a(var5), var5, var1)) {
+		} else if (!var2.a(var4.getRelative(var5), var5, var1)) {
 			return false;
 		} else {
 			Object var9 = this.b.a(var1);
@@ -44,7 +44,7 @@ public class ItemStep extends ItemBlock {
 				}
 			}
 
-			return this.a(var1, var3, var4.a(var5), var9) ? true : super.a(var1, var2, var3, var4, var5, var6, var7, var8);
+			return this.a(var1, var3, var4.getRelative(var5), var9) ? true : super.a(var1, var2, var3, var4, var5, var6, var7, var8);
 		}
 	}
 

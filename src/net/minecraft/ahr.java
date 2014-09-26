@@ -74,11 +74,11 @@ public abstract class ahr extends Entity implements aho {
 		this.i = 0;
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.P = this.locationX;
 		this.Q = this.locationY;
 		this.R = this.locationZ;
-		super.s_();
+		super.doTick();
 		if (this.b > 0) {
 			--this.b;
 		}
@@ -176,7 +176,7 @@ public abstract class ahr extends Entity implements aho {
 		if (this.V()) {
 			for (int var7 = 0; var7 < 4; ++var7) {
 				float var19 = 0.25F;
-				this.world.a(Particle.e, this.locationX - this.motionX * (double) var19, this.locationY - this.motionY * (double) var19, this.locationZ - this.motionZ * (double) var19, this.motionX, this.motionY, this.motionZ, new int[0]);
+				this.world.addParticle(Particle.e, this.locationX - this.motionX * (double) var19, this.locationY - this.motionY * (double) var19, this.locationZ - this.motionZ * (double) var19, this.motionX, this.motionY, this.motionZ, new int[0]);
 			}
 
 			var17 = 0.8F;
@@ -195,7 +195,7 @@ public abstract class ahr extends Entity implements aho {
 
 	protected abstract void a(MovingObjectPosition var1);
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("xTile", (short) this.c);
 		var1.put("yTile", (short) this.d);
 		var1.put("zTile", (short) this.e);
@@ -210,7 +210,7 @@ public abstract class ahr extends Entity implements aho {
 		var1.put("ownerName", this.h == null ? "" : this.h);
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.c = var1.getShort("xTile");
 		this.d = var1.getShort("yTile");
 		this.e = var1.getShort("zTile");
@@ -231,7 +231,7 @@ public abstract class ahr extends Entity implements aho {
 
 	public EntityLiving n() {
 		if (this.g == null && this.h != null && this.h.length() > 0) {
-			this.g = this.world.a(this.h);
+			this.g = this.world.getPlayer(this.h);
 		}
 
 		return this.g;

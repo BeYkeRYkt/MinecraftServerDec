@@ -27,7 +27,7 @@ public class GiveCommand extends AbstractCommand {
 			int var6 = var2.length >= 4 ? a(var2[3]) : 0;
 			ItemStack var7 = new ItemStack(var4, var5, var6);
 			if (var2.length >= 5) {
-				String var8 = a(var1, var2, 4).getStrippedMessage();
+				String var8 = a(var1, var2, 4).getJsonMessage();
 
 				try {
 					var7.setTag(gg.a(var8));
@@ -36,7 +36,7 @@ public class GiveCommand extends AbstractCommand {
 				}
 			}
 
-			boolean var11 = var3.playerInventory.a(var7);
+			boolean var11 = var3.playerInventory.pickup(var7);
 			if (var11) {
 				var3.world.a((Entity) var3, "random.pop", 0.2F, ((var3.bb().nextFloat() - var3.bb().nextFloat()) * 0.7F + 1.0F) * 2.0F);
 				var3.defaultContainer.b();

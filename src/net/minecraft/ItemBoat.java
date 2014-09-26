@@ -51,7 +51,7 @@ public class ItemBoat extends Item {
 				if (var24.type == EnumMovingObjectType.BLOCK) {
 					Position var33 = var24.getPosition();
 					if (var2.getBlockState(var33).getBlock() == Blocks.SNOW_LAYER) {
-						var33 = var33.b();
+						var33 = var33.getDown();
 					}
 
 					EntityBoat var34 = new EntityBoat(var2, (double) ((float) var33.getX() + 0.5F), (double) ((float) var33.getY() + 1.0F), (double) ((float) var33.getZ() + 0.5F));

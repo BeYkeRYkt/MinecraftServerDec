@@ -7,7 +7,7 @@ public class boz extends bpa {
 	}
 
 	public int[] a(int var1, int var2, int var3, int var4) {
-		int[] var5 = boy.a(var3 * var4);
+		int[] var5 = IntCache.allocate(var3 * var4);
 
 		for (int var6 = 0; var6 < var4; ++var6) {
 			for (int var7 = 0; var7 < var3; ++var7) {

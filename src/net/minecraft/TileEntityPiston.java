@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
 
-public class TileEntityPiston extends TileEntity implements PacketTickable {
+public class TileEntityPiston extends TileEntity implements ITickable {
 
 	private IBlockState a;
 	private BlockFace f;
@@ -28,7 +28,7 @@ public class TileEntityPiston extends TileEntity implements PacketTickable {
 		return this.a;
 	}
 
-	public int u() {
+	public int getBlockData() {
 		return 0;
 	}
 
@@ -90,7 +90,7 @@ public class TileEntityPiston extends TileEntity implements PacketTickable {
 		if (this.j < 1.0F && this.world != null) {
 			this.j = this.i = 1.0F;
 			this.world.t(this.position);
-			this.y();
+			this.setValid();
 			if (this.world.getBlockState(this.position).getBlock() == Blocks.PISTON_EXTENSION) {
 				this.world.setBlockAt(this.position, this.a, 3);
 				this.world.d(this.position, this.a.getBlock());
@@ -104,7 +104,7 @@ public class TileEntityPiston extends TileEntity implements PacketTickable {
 		if (this.j >= 1.0F) {
 			this.a(1.0F, 0.25F);
 			this.world.t(this.position);
-			this.y();
+			this.setValid();
 			if (this.world.getBlockState(this.position).getBlock() == Blocks.PISTON_EXTENSION) {
 				this.world.setBlockAt(this.position, this.a, 3);
 				this.world.d(this.position, this.a.getBlock());

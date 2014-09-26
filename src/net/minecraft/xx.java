@@ -17,8 +17,8 @@ public abstract class xx extends EntityAnimal implements xt {
 		this.dataWatcher.a(17, "");
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		if (this.b() == null) {
 			var1.put("OwnerUUID", "");
 		} else {
@@ -28,8 +28,8 @@ public abstract class xx extends EntityAnimal implements xt {
 		var1.put("Sitting", this.cl());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		String var2 = "";
 		if (var1.isTagAssignableFrom("OwnerUUID", 8)) {
 			var2 = var1.getString("OwnerUUID");
@@ -57,7 +57,7 @@ public abstract class xx extends EntityAnimal implements xt {
 			double var4 = this.random.nextGaussian() * 0.02D;
 			double var6 = this.random.nextGaussian() * 0.02D;
 			double var8 = this.random.nextGaussian() * 0.02D;
-			this.world.a(var2, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, var4, var6, var8, new int[0]);
+			this.world.addParticle(var2, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, var4, var6, var8, new int[0]);
 		}
 
 	}
@@ -105,7 +105,7 @@ public abstract class xx extends EntityAnimal implements xt {
 	public EntityLiving cm() {
 		try {
 			UUID var1 = UUID.fromString(this.b());
-			return var1 == null ? null : this.world.b(var1);
+			return var1 == null ? null : this.world.getPlayer(var1);
 		} catch (IllegalArgumentException var2) {
 			return null;
 		}
@@ -149,12 +149,12 @@ public abstract class xx extends EntityAnimal implements xt {
 		return super.c(var1);
 	}
 
-	public void a(DamageSource var1) {
-		if (!this.world.isStatic && this.world.getGameRules().b("showDeathMessages") && this.k_() && this.cm() instanceof EntityPlayer) {
+	public void die(DamageSource var1) {
+		if (!this.world.isStatic && this.world.getGameRules().isGameRule("showDeathMessages") && this.hasCustomName() && this.cm() instanceof EntityPlayer) {
 			((EntityPlayer) this.cm()).sendChatMessage(this.br().getMessage());
 		}
 
-		super.a(var1);
+		super.die(var1);
 	}
 
 	// $FF: synthetic method

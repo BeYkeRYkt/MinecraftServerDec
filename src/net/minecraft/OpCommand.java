@@ -1,7 +1,7 @@
 package net.minecraft;
 
 import com.google.common.collect.Lists;
-import com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.server.MinecraftServer;

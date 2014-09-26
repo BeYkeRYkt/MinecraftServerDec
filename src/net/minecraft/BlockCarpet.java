@@ -45,7 +45,7 @@ public class BlockCarpet extends Block {
 
 	private boolean e(World var1, Position var2, IBlockState var3) {
 		if (!this.d(var1, var2)) {
-			this.b(var1, var2, var3, 0);
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.g(var2);
 			return false;
 		} else {
@@ -54,10 +54,10 @@ public class BlockCarpet extends Block {
 	}
 
 	private boolean d(World var1, Position var2) {
-		return !var1.d(var2.b());
+		return !var1.d(var2.getDown());
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((akv) var1.b(a)).a();
 	}
 

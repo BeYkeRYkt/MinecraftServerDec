@@ -14,7 +14,7 @@ public class EntityMinecartFurnace extends adx {
 		super(var1, var2, var4, var6);
 	}
 
-	public MinecartType s() {
+	public MinecartType getType() {
 		return MinecartType.FURNACE;
 	}
 
@@ -23,8 +23,8 @@ public class EntityMinecartFurnace extends adx {
 		this.dataWatcher.a(16, new Byte((byte) 0));
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.c > 0) {
 			--this.c;
 		}
@@ -35,7 +35,7 @@ public class EntityMinecartFurnace extends adx {
 
 		this.i(this.c > 0);
 		if (this.j() && this.random.nextInt(4) == 0) {
-			this.world.a(Particle.m, this.locationX, this.locationY + 0.8D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.world.addParticle(Particle.m, this.locationX, this.locationY + 0.8D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 
 	}
@@ -96,7 +96,7 @@ public class EntityMinecartFurnace extends adx {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (var2 != null && var2.getItem() == Items.COAL) {
 			if (!var1.playerProperties.instabuild && --var2.amount == 0) {
-				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
+				var1.playerInventory.setItem(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 
 			this.c += 3600;
@@ -107,15 +107,15 @@ public class EntityMinecartFurnace extends adx {
 		return true;
 	}
 
-	protected void b(NBTCompoundTag var1) {
-		super.b(var1);
+	protected void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("PushX", this.a);
 		var1.put("PushZ", this.b);
 		var1.put("Fuel", (short) this.c);
 	}
 
-	protected void a(NBTCompoundTag var1) {
-		super.a(var1);
+	protected void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.a = var1.getDouble("PushX");
 		this.b = var1.getDouble("PushZ");
 		this.c = var1.getShort("Fuel");

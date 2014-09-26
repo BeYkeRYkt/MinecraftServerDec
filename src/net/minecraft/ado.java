@@ -7,7 +7,7 @@ public class ado extends Entity {
 
 	private static final List d = Arrays.asList(new adp[] { (new adp(new ItemStack(Items.LEATHER_BOOTS), 10)).a(0.9F), new adp(new ItemStack(Items.LEATHER), 10), new adp(new ItemStack(Items.BONE), 10), new adp(new ItemStack(Items.POTION), 10), new adp(new ItemStack(Items.STRING), 5), (new adp(new ItemStack(Items.FISHING_ROD), 2)).a(0.9F), new adp(new ItemStack(Items.BOWL), 10), new adp(new ItemStack(Items.STICK), 5), new adp(new ItemStack(Items.DYE, 10, akv.p.b()), 1), new adp(new ItemStack(Blocks.TRIPWIRE_HOOK), 10), new adp(new ItemStack(Items.ROTTEN_FLESH), 10) });
 	private static final List e = Arrays.asList(new adp[] { new adp(new ItemStack(Blocks.WATER_LILY), 1), new adp(new ItemStack(Items.NAMETAG), 1), new adp(new ItemStack(Items.SADDLE), 1), (new adp(new ItemStack(Items.BOW), 1)).a(0.25F).a(), (new adp(new ItemStack(Items.FISHING_ROD), 1)).a(0.25F).a(), (new adp(new ItemStack(Items.BOOK), 1)).a() });
-	private static final List f = Arrays.asList(new adp[] { new adp(new ItemStack(Items.FISH, 1, ali.a.a()), 60), new adp(new ItemStack(Items.FISH, 1, ali.b.a()), 25), new adp(new ItemStack(Items.FISH, 1, ali.c.a()), 2), new adp(new ItemStack(Items.FISH, 1, ali.d.a()), 13) });
+	private static final List f = Arrays.asList(new adp[] { new adp(new ItemStack(Items.FISH, 1, EnumFishType.COD.getData()), 60), new adp(new ItemStack(Items.FISH, 1, EnumFishType.SALMON.getData()), 25), new adp(new ItemStack(Items.FISH, 1, EnumFishType.CLOWNFISH.getData()), 2), new adp(new ItemStack(Items.FISH, 1, EnumFishType.PUFFERFISH.getData()), 13) });
 	private int g = -1;
 	private int h = -1;
 	private int i = -1;
@@ -80,8 +80,8 @@ public class ado extends Entity {
 		this.ar = 0;
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.ax > 0) {
 			double var28 = this.locationX + (this.ay - this.locationX) / (double) this.ax;
 			double var29 = this.locationY + (this.az - this.locationY) / (double) this.ax;
@@ -174,7 +174,7 @@ public class ado extends Entity {
 
 			if (var3 != null) {
 				if (var3.entity != null) {
-					if (var3.entity.damageEntity(DamageSource.projectile((Entity) this, this.b), 0.0F)) {
+					if (var3.entity.receiveDamage(DamageSource.projectile((Entity) this, this.b), 0.0F)) {
 						this.c = var3.entity;
 					}
 				} else {
@@ -228,7 +228,7 @@ public class ado extends Entity {
 				if (!this.world.isStatic && var34 > 0.0D) {
 					WorldServer var36 = (WorldServer) this.world;
 					int var37 = 1;
-					Position var38 = (new Position(this)).a();
+					Position var38 = (new Position(this)).getUp();
 					if (this.random.nextFloat() < 0.25F && this.world.C(var38)) {
 						var37 = 2;
 					}
@@ -325,7 +325,7 @@ public class ado extends Entity {
 		}
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("xTile", (short) this.g);
 		var1.put("yTile", (short) this.h);
 		var1.put("zTile", (short) this.i);
@@ -335,7 +335,7 @@ public class ado extends Entity {
 		var1.put("inGround", (byte) (this.aq ? 1 : 0));
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.g = var1.getShort("xTile");
 		this.h = var1.getShort("yTile");
 		this.i = var1.getShort("zTile");
@@ -390,7 +390,7 @@ public class ado extends Entity {
 	}
 
 	private ItemStack m() {
-		float var1 = this.world.s.nextFloat();
+		float var1 = this.world.random.nextFloat();
 		int var2 = aph.g(this.b);
 		int var3 = aph.h(this.b);
 		float var4 = 0.1F - (float) var2 * 0.025F - (float) var3 * 0.01F;
@@ -399,16 +399,16 @@ public class ado extends Entity {
 		var5 = MathHelper.a(var5, 0.0F, 1.0F);
 		if (var1 < var4) {
 			this.b.b(StatisticList.D);
-			return ((adp) vj.a(this.random, d)).a(this.random);
+			return ((adp) WeightedRandom.a(this.random, d)).a(this.random);
 		} else {
 			var1 -= var4;
 			if (var1 < var5) {
 				this.b.b(StatisticList.E);
-				return ((adp) vj.a(this.random, e)).a(this.random);
+				return ((adp) WeightedRandom.a(this.random, e)).a(this.random);
 			} else {
 				float var10000 = var1 - var5;
 				this.b.b(StatisticList.C);
-				return ((adp) vj.a(this.random, f)).a(this.random);
+				return ((adp) WeightedRandom.a(this.random, f)).a(this.random);
 			}
 		}
 	}

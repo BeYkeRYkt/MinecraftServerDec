@@ -44,7 +44,7 @@ public class WorldGenDungeons extends WorldGenerator {
 						return false;
 					}
 
-					if ((var14 == var6 || var14 == var7 || var16 == var11 || var16 == var12) && var15 == 0 && var1.d(var17) && var1.d(var17.a())) {
+					if ((var14 == var6 || var14 == var7 || var16 == var11 || var16 == var12) && var15 == 0 && var1.d(var17) && var1.d(var17.getUp())) {
 						++var13;
 					}
 				}
@@ -60,7 +60,7 @@ public class WorldGenDungeons extends WorldGenerator {
 							if (var1.getBlockState(var17).getBlock() != Blocks.CHEST) {
 								var1.g(var17);
 							}
-						} else if (var17.getY() >= 0 && !var1.getBlockState(var17.b()).getBlock().getMaterial().isBuildable()) {
+						} else if (var17.getY() >= 0 && !var1.getBlockState(var17.getDown()).getBlock().getMaterial().isBuildable()) {
 							var1.g(var17);
 						} else if (var1.getBlockState(var17).getBlock().getMaterial().isBuildable() && var1.getBlockState(var17).getBlock() != Blocks.CHEST) {
 							if (var15 == -1 && var2.nextInt(4) != 0) {
@@ -87,11 +87,11 @@ public class WorldGenDungeons extends WorldGenerator {
 							Position var26 = new Position(var16, var24, var25);
 							if (var1.d(var26)) {
 								int var20 = 0;
-								Iterator var21 = en.a.iterator();
+								Iterator var21 = UniverseDirection.HORIZONTAL.iterator();
 
 								while (var21.hasNext()) {
 									BlockFace var22 = (BlockFace) var21.next();
-									if (var1.getBlockState(var26.a(var22)).getBlock().getMaterial().isBuildable()) {
+									if (var1.getBlockState(var26.getRelative(var22)).getBlock().getMaterial().isBuildable()) {
 										++var20;
 									}
 								}
@@ -120,7 +120,7 @@ public class WorldGenDungeons extends WorldGenerator {
 			var1.setBlockAt(var3, Blocks.MOB_SPAWNER.getBlockState(), 2);
 			TileEntity var23 = var1.getTileEntity(var3);
 			if (var23 instanceof TileEntityMobSpawner) {
-				((TileEntityMobSpawner) var23).b().a(this.a(var2));
+				((TileEntityMobSpawner) var23).getSpawner().setMobName(this.a(var2));
 			} else {
 				a.error("Failed to fetch mob spawner entity at (" + var3.getX() + ", " + var3.getY() + ", " + var3.getZ() + ")");
 			}

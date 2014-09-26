@@ -7,11 +7,11 @@ public class BlockWorkbench extends Block {
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {
-			var4.a((vv) (new aut(var1, var2)));
+			var4.openTypedInventory((IInventoryHasType) (new InventoryWorkbench(var1, var2)));
 			return true;
 		}
 	}

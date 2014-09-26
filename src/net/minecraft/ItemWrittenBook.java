@@ -25,7 +25,7 @@ public class ItemWrittenBook extends Item {
 		if (var1.hasTag()) {
 			NBTCompoundTag var2 = var1.getTag();
 			String var3 = var2.getString("title");
-			if (!vb.b(var3)) {
+			if (!UtilColor.isEmpty(var3)) {
 				return var3;
 			}
 		}
@@ -38,7 +38,7 @@ public class ItemWrittenBook extends Item {
 			this.a(var1, var3);
 		}
 
-		var3.a(var1);
+		var3.openBook(var1);
 		var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
 		return var1;
 	}

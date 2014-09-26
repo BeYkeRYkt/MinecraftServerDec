@@ -20,7 +20,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 
-import com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 
 @SerializableAs("Player")
 public class PipeOfflinePlayer implements OfflinePlayer, ConfigurationSerializable {
@@ -30,7 +30,7 @@ public class PipeOfflinePlayer implements OfflinePlayer, ConfigurationSerializab
 
 	public PipeOfflinePlayer(GameProfile profile) {
 		this.profile = profile;
-		this.storage = (WorldNBTStorage) (MinecraftServer.getInstance().getPrimaryWorld().getDataManager());
+		this.storage = (WorldNBTStorage) (MinecraftServer.getInstance().getWorld().getDataManager());
 	}
 
 	@Override

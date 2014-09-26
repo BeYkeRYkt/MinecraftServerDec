@@ -5,12 +5,12 @@ final class DispenseBehaviorMinecart extends DispenseBehaviorItem {
 	private final DispenseBehaviorItem b = new DispenseBehaviorItem();
 
 	public ItemStack b(ISourceBlock var1, ItemStack var2) {
-		BlockFace var3 = BlockDispenser.b(var1.f());
-		World var4 = var1.i();
+		BlockFace var3 = BlockDispenser.b(var1.getData());
+		World var4 = var1.getWorld();
 		double var5 = var1.getX() + (double) var3.g() * 1.125D;
 		double var7 = Math.floor(var1.getY()) + (double) var3.h();
 		double var9 = var1.getZ() + (double) var3.i() * 1.125D;
-		Position var11 = var1.d().a(var3);
+		Position var11 = var1.getPosition().getRelative(var3);
 		IBlockState var12 = var4.getBlockState(var11);
 		atl var13 = var12.getBlock() instanceof ati ? (atl) var12.b(((ati) var12.getBlock()).l()) : atl.a;
 		double var14;
@@ -21,11 +21,11 @@ final class DispenseBehaviorMinecart extends DispenseBehaviorItem {
 				var14 = 0.1D;
 			}
 		} else {
-			if (var12.getBlock().getMaterial() != Material.AIR || !ati.d(var4.getBlockState(var11.b()))) {
+			if (var12.getBlock().getMaterial() != Material.AIR || !ati.d(var4.getBlockState(var11.getDown()))) {
 				return this.b.a(var1, var2);
 			}
 
-			IBlockState var16 = var4.getBlockState(var11.b());
+			IBlockState var16 = var4.getBlockState(var11.getDown());
 			atl var17 = var16.getBlock() instanceof ati ? (atl) var16.b(((ati) var16.getBlock()).l()) : atl.a;
 			if (var3 != BlockFace.DOWN && var17.c()) {
 				var14 = -0.4D;
@@ -35,8 +35,8 @@ final class DispenseBehaviorMinecart extends DispenseBehaviorItem {
 		}
 
 		adx var18 = adx.a(var4, var5, var7 + var14, var9, ItemMinecart.a((ItemMinecart) var2.getItem()));
-		if (var2.s()) {
-			var18.a(var2.q());
+		if (var2.hasDisplayName()) {
+			var18.a(var2.getDisplayName());
 		}
 
 		var4.addEntity((Entity) var18);
@@ -45,6 +45,6 @@ final class DispenseBehaviorMinecart extends DispenseBehaviorItem {
 	}
 
 	protected void a(ISourceBlock var1) {
-		var1.i().b(1000, var1.d(), 0);
+		var1.getWorld().triggerEffect(1000, var1.getPosition(), 0);
 	}
 }

@@ -6,9 +6,9 @@ import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.io.Files;
-import com.mojang.authlib.Agent;
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.ProfileLookupCallback;
+import net.minecraft.util.com.mojang.authlib.Agent;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.ProfileLookupCallback;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -198,7 +198,7 @@ public class sf {
 	}
 
 	public static String a(String var0) {
-		if (!vb.b(var0) && var0.length() <= 16) {
+		if (!UtilColor.isEmpty(var0) && var0.length() <= 16) {
 			MinecraftServer var1 = MinecraftServer.getInstance();
 			GameProfile var2 = var1.getUserCache().getProfile(var0);
 			if (var2 != null && var2.getId() != null) {

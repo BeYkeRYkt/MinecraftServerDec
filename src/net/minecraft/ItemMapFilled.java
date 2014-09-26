@@ -1,7 +1,10 @@
 package net.minecraft;
 
+import java.util.Collection;
+
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Multiset;
 import com.google.common.collect.Multisets;
 
 public class ItemMapFilled extends ItemMap {
@@ -11,11 +14,11 @@ public class ItemMapFilled extends ItemMap {
 	}
 
 	public bqe a(ItemStack var1, World var2) {
-		String var3 = "map_" + var1.getDurability();
+		String var3 = "map_" + var1.getWearout();
 		bqe var4 = (bqe) var2.a(bqe.class, var3);
 		if (var4 == null && !var2.isStatic) {
-			var1.setDurability(var2.b("map"));
-			var3 = "map_" + var1.getDurability();
+			var1.setWearout(var2.b("map"));
+			var3 = "map_" + var1.getWearout();
 			var4 = new bqe(var3);
 			var4.e = 3;
 			var4.a((double) var2.getWorldData().getSpawnX(), (double) var2.getWorldData().getSpawnZ(), var4.e);
@@ -55,7 +58,7 @@ public class ItemMapFilled extends ItemMap {
 							boolean var18 = var16 * var16 + var17 * var17 > (var9 - 2) * (var9 - 2);
 							int var19 = (var5 / var4 + var12 - 64) * var4;
 							int var20 = (var6 / var4 + var15 - 64) * var4;
-							HashMultiset var21 = HashMultiset.create();
+							HashMultiset<Object> var21 = HashMultiset.create();
 							Chunk var22 = var1.getChunk(new Position(var19, 0, var20));
 							if (!var22.f()) {
 								int var23 = var19 & 15;
@@ -76,7 +79,7 @@ public class ItemMapFilled extends ItemMap {
 								} else {
 									for (var28 = 0; var28 < var4; ++var28) {
 										for (int var29 = 0; var29 < var4; ++var29) {
-											int var30 = var22.b(var28 + var23, var29 + var24) + 1;
+											int var30 = var22.getHighestBlockYAt(var28 + var23, var29 + var24) + 1;
 											IBlockState var31 = Blocks.AIR.getBlockState();
 											if (var30 > 1) {
 												do {
@@ -112,7 +115,14 @@ public class ItemMapFilled extends ItemMap {
 									var35 = 0;
 								}
 
-								MaterialMapColor var36 = (MaterialMapColor) Iterables.getFirst(Multisets.copyHighestCountFirst(var21), MaterialMapColor.b);
+								MaterialMapColor var36 = MaterialMapColor.b;
+								int max = 0;
+								for (Multiset.Entry<Object> entry : var21.entrySet()) {
+									if (entry.getCount() > max) {
+										max = entry.getCount();
+									}
+									var36 = (MaterialMapColor) entry.getElement();
+								}
 								if (var36 == MaterialMapColor.n) {
 									var34 = (double) var25 * 0.1D + (double) (var12 + var15 & 1) * 0.2D;
 									var35 = 1;
@@ -166,8 +176,8 @@ public class ItemMapFilled extends ItemMap {
 	public void d(ItemStack var1, World var2, EntityHuman var3) {
 		if (var1.hasTag() && var1.getTag().getBoolean("map_is_scaling")) {
 			bqe var4 = Items.FILLED_MAP.a(var1, var2);
-			var1.setDurability(var2.b("map"));
-			bqe var5 = new bqe("map_" + var1.getDurability());
+			var1.setWearout(var2.b("map"));
+			bqe var5 = new bqe("map_" + var1.getWearout());
 			var5.e = (byte) (var4.e + 1);
 			if (var5.e > 4) {
 				var5.e = 4;
@@ -176,7 +186,7 @@ public class ItemMapFilled extends ItemMap {
 			var5.a((double) var4.b, (double) var4.c, var5.e);
 			var5.d = var4.d;
 			var5.c();
-			var2.a("map_" + var1.getDurability(), (bqc) var5);
+			var2.a("map_" + var1.getWearout(), (bqc) var5);
 		}
 
 	}

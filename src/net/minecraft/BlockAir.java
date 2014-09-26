@@ -22,6 +22,6 @@ public class BlockAir extends Block {
 		return false;
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
 	}
 }

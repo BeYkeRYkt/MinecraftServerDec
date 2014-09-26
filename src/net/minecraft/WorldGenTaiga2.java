@@ -42,9 +42,9 @@ public class WorldGenTaiga2 extends WorldGenTreeAbstract {
 			if (!var8) {
 				return false;
 			} else {
-				Block var20 = var1.getBlockState(var3.b()).getBlock();
+				Block var20 = var1.getBlockState(var3.getDown()).getBlock();
 				if ((var20 == Blocks.GRASS || var20 == Blocks.DIRT || var20 == Blocks.FARMLAND) && var3.getY() < 256 - var4 - 1) {
-					this.a(var1, var3.b());
+					this.a(var1, var3.getDown());
 					var21 = var2.nextInt(2);
 					var11 = 1;
 					byte var22 = 0;
@@ -83,9 +83,9 @@ public class WorldGenTaiga2 extends WorldGenTreeAbstract {
 					var23 = var2.nextInt(3);
 
 					for (var14 = 0; var14 < var4 - var23; ++var14) {
-						Block var24 = var1.getBlockState(var3.b(var14)).getBlock();
+						Block var24 = var1.getBlockState(var3.getUp(var14)).getBlock();
 						if (var24.getMaterial() == Material.AIR || var24.getMaterial() == Material.LEAVES) {
-							this.a(var1, var3.b(var14), Blocks.LOG, EnumWoodType.b.a());
+							this.a(var1, var3.getUp(var14), Blocks.LOG, EnumWoodType.b.a());
 						}
 					}
 

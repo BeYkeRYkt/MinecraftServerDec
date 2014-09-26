@@ -28,7 +28,7 @@ public class bol extends bpa {
 		int var7 = 1 + var3 + 1;
 		int var8 = 1 + var4 + 1;
 		int[] var9 = this.a.a(var5, var6, var7, var8);
-		int[] var10 = boy.a(var3 * var4);
+		int[] var10 = IntCache.allocate(var3 * var4);
 
 		for (int var11 = 0; var11 < var4; ++var11) {
 			for (int var12 = 0; var12 < var3; ++var12) {
@@ -59,7 +59,7 @@ public class bol extends bpa {
 		int var7 = 1 + var3 + 1;
 		int var8 = 1 + var4 + 1;
 		int[] var9 = this.a.a(var5, var6, var7, var8);
-		int[] var10 = boy.a(var3 * var4);
+		int[] var10 = IntCache.allocate(var3 * var4);
 
 		for (int var11 = 0; var11 < var4; ++var11) {
 			for (int var12 = 0; var12 < var3; ++var12) {
@@ -85,7 +85,7 @@ public class bol extends bpa {
 
 	private int[] e(int var1, int var2, int var3, int var4) {
 		int[] var5 = this.a.a(var1, var2, var3, var4);
-		int[] var6 = boy.a(var3 * var4);
+		int[] var6 = IntCache.allocate(var3 * var4);
 
 		for (int var7 = 0; var7 < var4; ++var7) {
 			for (int var8 = 0; var8 < var3; ++var8) {

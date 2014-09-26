@@ -9,8 +9,8 @@ public class RecipeArmorDye implements IRecipe {
 		ItemStack var3 = null;
 		ArrayList var4 = Lists.newArrayList();
 
-		for (int var5 = 0; var5 < var1.n_(); ++var5) {
-			ItemStack var6 = var1.a(var5);
+		for (int var5 = 0; var5 < var1.getSize(); ++var5) {
+			ItemStack var6 = var1.getItem(var5);
 			if (var6 != null) {
 				if (var6.getItem() instanceof ItemArmor) {
 					ItemArmor var7 = (ItemArmor) var6.getItem();
@@ -32,7 +32,7 @@ public class RecipeArmorDye implements IRecipe {
 		return var3 != null && !var4.isEmpty();
 	}
 
-	public ItemStack a(InventoryCrafting var1) {
+	public ItemStack getResult(InventoryCrafting var1) {
 		ItemStack var2 = null;
 		int[] var3 = new int[3];
 		int var4 = 0;
@@ -44,8 +44,8 @@ public class RecipeArmorDye implements IRecipe {
 		float var10;
 		float var11;
 		int var17;
-		for (var7 = 0; var7 < var1.n_(); ++var7) {
-			ItemStack var8 = var1.a(var7);
+		for (var7 = 0; var7 < var1.getSize(); ++var7) {
+			ItemStack var8 = var1.getItem(var7);
 			if (var8 != null) {
 				if (var8.getItem() instanceof ItemArmor) {
 					var6 = (ItemArmor) var8.getItem();
@@ -71,7 +71,7 @@ public class RecipeArmorDye implements IRecipe {
 						return null;
 					}
 
-					float[] var14 = EntitySheep.a(akv.a(var8.getDurability()));
+					float[] var14 = EntitySheep.a(akv.a(var8.getWearout()));
 					int var15 = (int) (var14[0] * 255.0F);
 					int var16 = (int) (var14[1] * 255.0F);
 					var17 = (int) (var14[2] * 255.0F);
@@ -111,10 +111,10 @@ public class RecipeArmorDye implements IRecipe {
 	}
 
 	public ItemStack[] b(InventoryCrafting var1) {
-		ItemStack[] var2 = new ItemStack[var1.n_()];
+		ItemStack[] var2 = new ItemStack[var1.getSize()];
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {
-			ItemStack var4 = var1.a(var3);
+			ItemStack var4 = var1.getItem(var3);
 			if (var4 != null && var4.getItem().r()) {
 				var2[var3] = new ItemStack(var4.getItem().getCraftingResult());
 			}

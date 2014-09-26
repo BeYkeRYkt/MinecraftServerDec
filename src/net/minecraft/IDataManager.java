@@ -1,6 +1,7 @@
 package net.minecraft;
 
 import java.io.File;
+import java.util.UUID;
 
 public interface IDataManager {
 
@@ -22,5 +23,8 @@ public interface IDataManager {
 
 	File a(String var1);
 
-	String g();
+	String getName();
+
+	UUID getUUID();
+
 }

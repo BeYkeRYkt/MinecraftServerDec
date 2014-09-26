@@ -30,7 +30,7 @@ public class BlockTallPlant extends auc implements atz {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return super.c(var1, var2) && var1.d(var2.a());
+		return super.c(var1, var2) && var1.d(var2.getUp());
 	}
 
 	public boolean f(World var1, Position var2) {
@@ -46,8 +46,8 @@ public class BlockTallPlant extends auc implements atz {
 	protected void e(World var1, Position var2, IBlockState var3) {
 		if (!this.f(var1, var2, var3)) {
 			boolean var4 = var3.b(b) == avj.a;
-			Position var5 = var4 ? var2 : var2.a();
-			Position var6 = var4 ? var2.b() : var2;
+			Position var5 = var4 ? var2 : var2.getUp();
+			Position var6 = var4 ? var2.getDown() : var2;
 			Object var7 = var4 ? this : var1.getBlockState(var5).getBlock();
 			Object var8 = var4 ? var1.getBlockState(var6).getBlock() : this;
 			if (var7 == this) {
@@ -57,7 +57,7 @@ public class BlockTallPlant extends auc implements atz {
 			if (var8 == this) {
 				var1.setBlockAt(var6, Blocks.AIR.getBlockState(), 3);
 				if (!var4) {
-					this.b(var1, var6, var3, 0);
+					this.dropNaturally(var1, var6, var3, 0);
 				}
 			}
 
@@ -66,14 +66,14 @@ public class BlockTallPlant extends auc implements atz {
 
 	public boolean f(World var1, Position var2, IBlockState var3) {
 		if (var3.b(b) == avj.a) {
-			return var1.getBlockState(var2.b()).getBlock() == this;
+			return var1.getBlockState(var2.getDown()).getBlock() == this;
 		} else {
-			IBlockState var4 = var1.getBlockState(var2.a());
+			IBlockState var4 = var1.getBlockState(var2.getUp());
 			return var4.getBlock() == this && super.f(var1, var2, var4);
 		}
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		if (var1.b(b) == avj.a) {
 			return null;
 		} else {
@@ -82,17 +82,17 @@ public class BlockTallPlant extends auc implements atz {
 		}
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return var1.b(b) != avj.a && var1.b(a) != avk.c ? ((avk) var1.b(a)).a() : 0;
 	}
 
 	public void a(World var1, Position var2, avk var3, int var4) {
 		var1.setBlockAt(var2, this.getBlockState().a(b, avj.b).a(a, var3), var4);
-		var1.setBlockAt(var2.a(), this.getBlockState().a(b, avj.a), var4);
+		var1.setBlockAt(var2.getUp(), this.getBlockState().a(b, avj.a), var4);
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
-		var1.setBlockAt(var2.a(), this.getBlockState().a(b, avj.a), 2);
+		var1.setBlockAt(var2.getUp(), this.getBlockState().a(b, avj.a), 2);
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, IBlockState var4, TileEntity var5) {
@@ -103,28 +103,28 @@ public class BlockTallPlant extends auc implements atz {
 
 	public void a(World var1, Position var2, IBlockState var3, EntityHuman var4) {
 		if (var3.b(b) == avj.a) {
-			if (var1.getBlockState(var2.b()).getBlock() == this) {
+			if (var1.getBlockState(var2.getDown()).getBlock() == this) {
 				if (!var4.playerProperties.instabuild) {
-					IBlockState var5 = var1.getBlockState(var2.b());
+					IBlockState var5 = var1.getBlockState(var2.getDown());
 					avk var6 = (avk) var5.b(a);
 					if (var6 != avk.d && var6 != avk.c) {
-						var1.b(var2.b(), true);
+						var1.b(var2.getDown(), true);
 					} else if (!var1.isStatic) {
 						if (var4.bY() != null && var4.bY().getItem() == Items.SHEARS) {
 							this.b(var1, var2, var5, var4);
-							var1.g(var2.b());
+							var1.g(var2.getDown());
 						} else {
-							var1.b(var2.b(), true);
+							var1.b(var2.getDown(), true);
 						}
 					} else {
-						var1.g(var2.b());
+						var1.g(var2.getDown());
 					}
 				} else {
-					var1.g(var2.b());
+					var1.g(var2.getDown());
 				}
 			}
-		} else if (var4.playerProperties.instabuild && var1.getBlockState(var2.a()).getBlock() == this) {
-			var1.setBlockAt(var2.a(), Blocks.AIR.getBlockState(), 2);
+		} else if (var4.playerProperties.instabuild && var1.getBlockState(var2.getUp()).getBlock() == this) {
+			var1.setBlockAt(var2.getUp(), Blocks.AIR.getBlockState(), 2);
 		}
 
 		super.a(var1, var2, var3, var4);
@@ -137,7 +137,7 @@ public class BlockTallPlant extends auc implements atz {
 		} else {
 			var4.b(StatisticList.MINE_BLOCK_COUNT[Block.getBlockId((Block) this)]);
 			int var6 = (var5 == avk.c ? EnumGrassType.b : EnumGrassType.c).a();
-			a(var1, var2, new ItemStack(Blocks.TALLGRASS, 2, var6));
+			dropItem(var1, var2, new ItemStack(Blocks.TALLGRASS, 2, var6));
 			return true;
 		}
 	}
@@ -156,7 +156,7 @@ public class BlockTallPlant extends auc implements atz {
 	}
 
 	public void b(World var1, Random var2, Position var3, IBlockState var4) {
-		a(var1, var3, new ItemStack(this, 1, this.e(var1, var3).a()));
+		dropItem(var1, var3, new ItemStack(this, 1, this.e(var1, var3).a()));
 	}
 
 	public IBlockState setData(int var1) {
@@ -165,7 +165,7 @@ public class BlockTallPlant extends auc implements atz {
 
 	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		if (var1.b(b) == avj.a) {
-			IBlockState var4 = var2.getBlockState(var3.b());
+			IBlockState var4 = var2.getBlockState(var3.getDown());
 			if (var4.getBlock() == this) {
 				var1 = var1.a(a, var4.b(a));
 			}

@@ -10,17 +10,17 @@ public class BlockSnowBlock extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.SNOWBALL;
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 4;
 	}
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (var1.b(EnumSkyBlock.BLOCK, var2) > 11) {
-			this.b(var1, var2, var1.getBlockState(var2), 0);
+			this.dropNaturally(var1, var2, var1.getBlockState(var2), 0);
 			var1.g(var2);
 		}
 

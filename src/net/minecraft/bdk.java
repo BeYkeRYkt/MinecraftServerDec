@@ -32,7 +32,7 @@ class bdk implements CommandSenderInterface {
 		return new Vec3D((double) this.a.position.getX() + 0.5D, (double) this.a.position.getY() + 0.5D, (double) this.a.position.getZ() + 0.5D);
 	}
 
-	public World getPrimaryWorld() {
+	public World getWorld() {
 		return this.a.world;
 	}
 
@@ -40,7 +40,7 @@ class bdk implements CommandSenderInterface {
 		return null;
 	}
 
-	public boolean t_() {
+	public boolean isCommandBlockOuputEnabled() {
 		return false;
 	}
 

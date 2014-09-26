@@ -13,7 +13,7 @@ class ack extends zn {
 
 	public boolean a() {
 		if (this.a <= 0) {
-			if (!this.c.world.getGameRules().b("mobGriefing")) {
+			if (!this.c.world.getGameRules().isGameRule("mobGriefing")) {
 				return false;
 			}
 
@@ -41,7 +41,7 @@ class ack extends zn {
 		this.c.p().a((double) this.b.getX() + 0.5D, (double) (this.b.getY() + 1), (double) this.b.getZ() + 0.5D, 10.0F, (float) this.c.bP());
 		if (this.f()) {
 			World var1 = this.c.world;
-			Position var2 = this.b.a();
+			Position var2 = this.b.getUp();
 			IBlockState var3 = var1.getBlockState(var2);
 			Block var4 = var3.getBlock();
 			if (this.e && var4 instanceof BlockCarrots && ((Integer) var3.b(BlockCarrots.a)).intValue() == 7) {
@@ -59,7 +59,7 @@ class ack extends zn {
 	protected boolean a(World var1, Position var2) {
 		Block var3 = var1.getBlockState(var2).getBlock();
 		if (var3 == Blocks.FARMLAND) {
-			var2 = var2.a();
+			var2 = var2.getUp();
 			IBlockState var4 = var1.getBlockState(var2);
 			var3 = var4.getBlock();
 			if (var3 instanceof BlockCarrots && ((Integer) var4.b(BlockCarrots.a)).intValue() == 7 && this.d && !this.e) {

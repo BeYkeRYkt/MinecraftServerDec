@@ -44,7 +44,7 @@ public class EntityFallingBlock extends Entity {
 		return !this.dead;
 	}
 
-	public void s_() {
+	public void doTick() {
 		Block var1 = this.d.getBlock();
 		if (var1.getMaterial() == Material.AIR) {
 			this.die();
@@ -76,7 +76,7 @@ public class EntityFallingBlock extends Entity {
 					this.motionY *= -0.5D;
 					if (this.world.getBlockState(var2).getBlock() != Blocks.PISTON_EXTENSION) {
 						this.die();
-						if (!this.e && this.world.a(var1, var2, true, BlockFace.UP, (Entity) null, (ItemStack) null) && !BlockFalling.d(this.world, var2.b()) && this.world.setBlockAt(var2, this.d, 3)) {
+						if (!this.e && this.world.a(var1, var2, true, BlockFace.UP, (Entity) null, (ItemStack) null) && !BlockFalling.d(this.world, var2.getDown()) && this.world.setBlockAt(var2, this.d, 3)) {
 							if (var1 instanceof BlockFalling) {
 								((BlockFalling) var1).a_(this.world, var2);
 							}
@@ -100,13 +100,13 @@ public class EntityFallingBlock extends Entity {
 									var3.update();
 								}
 							}
-						} else if (this.b && !this.e && this.world.getGameRules().b("doTileDrops")) {
-							this.a(new ItemStack(var1, 1, var1.a(this.d)), 0.0F);
+						} else if (this.b && !this.e && this.world.getGameRules().isGameRule("doTileDrops")) {
+							this.a(new ItemStack(var1, 1, var1.getItemDropData(this.d)), 0.0F);
 						}
 					}
 				} else if (this.a > 100 && !this.world.isStatic && (var2.getY() < 1 || var2.getY() > 256) || this.a > 600) {
-					if (this.b && this.world.getGameRules().b("doTileDrops")) {
-						this.a(new ItemStack(var1, 1, var1.a(this.d)), 0.0F);
+					if (this.b && this.world.getGameRules().isGameRule("doTileDrops")) {
+						this.a(new ItemStack(var1, 1, var1.getItemDropData(this.d)), 0.0F);
 					}
 
 					this.die();
@@ -128,7 +128,7 @@ public class EntityFallingBlock extends Entity {
 
 				while (var8.hasNext()) {
 					Entity var9 = (Entity) var8.next();
-					var9.damageEntity(var7, (float) Math.min(MathHelper.d((float) var4 * this.h), this.g));
+					var9.receiveDamage(var7, (float) Math.min(MathHelper.d((float) var4 * this.h), this.g));
 				}
 
 				if (var6 && (double) this.random.nextFloat() < 0.05000000074505806D + (double) var4 * 0.05D) {
@@ -145,7 +145,7 @@ public class EntityFallingBlock extends Entity {
 
 	}
 
-	protected void b(NBTCompoundTag var1) {
+	protected void writeAdditionalData(NBTCompoundTag var1) {
 		Block var2 = this.d != null ? this.d.getBlock() : Blocks.AIR;
 		RegistryObjectName var3 = (RegistryObjectName) Block.BLOCKREGISTRY.c(var2);
 		var1.put("Block", var3 == null ? "" : var3.toString());
@@ -161,7 +161,7 @@ public class EntityFallingBlock extends Entity {
 
 	}
 
-	protected void a(NBTCompoundTag var1) {
+	protected void readAdditionalData(NBTCompoundTag var1) {
 		int var2 = var1.getByte("Data") & 255;
 		if (var1.isTagAssignableFrom("Block", 8)) {
 			this.d = Block.getBlockByName(var1.getString("Block")).setData(var2);

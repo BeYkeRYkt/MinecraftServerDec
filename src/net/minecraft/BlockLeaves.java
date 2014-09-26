@@ -17,7 +17,7 @@ public abstract class BlockLeaves extends BlockTransparent {
 		this.a(h);
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		byte var4 = 1;
 		int var5 = var4 + 1;
 		int var6 = var2.getX();
@@ -122,19 +122,19 @@ public abstract class BlockLeaves extends BlockTransparent {
 	}
 
 	private void d(World var1, Position var2) {
-		this.b(var1, var2, var1.getBlockState(var2), 0);
+		this.dropNaturally(var1, var2, var1.getBlockState(var2), 0);
 		var1.g(var2);
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return var1.nextInt(20) == 0 ? 1 : 0;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf(Blocks.SAPLING);
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		if (!var1.isStatic) {
 			int var6 = this.d(var3);
 			if (var5 > 0) {
@@ -144,9 +144,9 @@ public abstract class BlockLeaves extends BlockTransparent {
 				}
 			}
 
-			if (var1.s.nextInt(var6) == 0) {
-				Item var7 = this.a(var3, var1.s, var5);
-				a(var1, var2, new ItemStack(var7, 1, this.a(var3)));
+			if (var1.random.nextInt(var6) == 0) {
+				Item var7 = this.getItemDrop(var3, var1.random, var5);
+				dropItem(var1, var2, new ItemStack(var7, 1, this.getItemDropData(var3)));
 			}
 
 			var6 = 200;

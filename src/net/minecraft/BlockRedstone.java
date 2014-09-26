@@ -7,11 +7,11 @@ public class BlockRedstone extends BlockOreBlock {
 		this.a(CreativeModeTab.REDSTONE);
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return 15;
 	}
 }

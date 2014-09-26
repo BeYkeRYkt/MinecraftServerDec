@@ -57,7 +57,7 @@ public class DamageSource {
 	}
 
 	public static DamageSource explosion(Explosion var0) {
-		return var0 != null && var0.c() != null ? (new EntityDamageSource("explosion.player", var0.c())).q().d() : (new DamageSource("explosion")).q().d();
+		return var0 != null && var0.getIgniter() != null ? (new EntityDamageSource("explosion.player", var0.getIgniter())).q().d() : (new DamageSource("explosion")).q().d();
 	}
 
 	public boolean a() {
@@ -99,10 +99,10 @@ public class DamageSource {
 	}
 
 	public Entity i() {
-		return this.j();
+		return this.getDamager();
 	}
 
-	public Entity j() {
+	public Entity getDamager() {
 		return null;
 	}
 
@@ -162,7 +162,7 @@ public class DamageSource {
 	}
 
 	public boolean u() {
-		Entity var1 = this.j();
+		Entity var1 = this.getDamager();
 		return var1 instanceof EntityHuman && ((EntityHuman) var1).playerProperties.instabuild;
 	}
 

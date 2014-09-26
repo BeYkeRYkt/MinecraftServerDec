@@ -51,11 +51,11 @@ public abstract class EntityFireball extends Entity {
 		this.d = var7 / var9 * 0.1D;
 	}
 
-	public void s_() {
+	public void doTick() {
 		if (!this.world.isStatic && (this.a != null && this.a.dead || !this.world.isLoaded(new Position(this)))) {
 			this.die();
 		} else {
-			super.s_();
+			super.doTick();
 			this.e(1);
 			if (this.i) {
 				if (this.world.getBlockState(new Position(this.e, this.f, this.g)).getBlock() == this.h) {
@@ -142,7 +142,7 @@ public abstract class EntityFireball extends Entity {
 			if (this.V()) {
 				for (int var17 = 0; var17 < 4; ++var17) {
 					float var18 = 0.25F;
-					this.world.a(Particle.e, this.locationX - this.motionX * (double) var18, this.locationY - this.motionY * (double) var18, this.locationZ - this.motionZ * (double) var18, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.world.addParticle(Particle.e, this.locationX - this.motionX * (double) var18, this.locationY - this.motionY * (double) var18, this.locationZ - this.motionZ * (double) var18, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 
 				var16 = 0.8F;
@@ -154,7 +154,7 @@ public abstract class EntityFireball extends Entity {
 			this.motionX *= (double) var16;
 			this.motionY *= (double) var16;
 			this.motionZ *= (double) var16;
-			this.world.a(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.world.addParticle(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 			this.b(this.locationX, this.locationY, this.locationZ);
 		}
 	}
@@ -165,7 +165,7 @@ public abstract class EntityFireball extends Entity {
 
 	protected abstract void a(MovingObjectPosition var1);
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("xTile", (short) this.e);
 		var1.put("yTile", (short) this.f);
 		var1.put("zTile", (short) this.g);
@@ -175,7 +175,7 @@ public abstract class EntityFireball extends Entity {
 		var1.put("direction", (NBTTag) this.createDoubleListTag(new double[] { this.motionX, this.motionY, this.motionZ }));
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.e = var1.getShort("xTile");
 		this.f = var1.getShort("yTile");
 		this.g = var1.getShort("zTile");
@@ -205,13 +205,13 @@ public abstract class EntityFireball extends Entity {
 		return 1.0F;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
 			this.ac();
-			if (var1.j() != null) {
-				Vec3D var3 = var1.j().ap();
+			if (var1.getDamager() != null) {
+				Vec3D var3 = var1.getDamager().ap();
 				if (var3 != null) {
 					this.motionX = var3.x;
 					this.motionY = var3.y;
@@ -221,8 +221,8 @@ public abstract class EntityFireball extends Entity {
 					this.d = this.motionZ * 0.1D;
 				}
 
-				if (var1.j() instanceof EntityLiving) {
-					this.a = (EntityLiving) var1.j();
+				if (var1.getDamager() instanceof EntityLiving) {
+					this.a = (EntityLiving) var1.getDamager();
 				}
 
 				return true;

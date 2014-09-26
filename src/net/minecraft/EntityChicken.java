@@ -104,8 +104,8 @@ public class EntityChicken extends EntityAnimal {
 		return var1 != null && var1.getItem() == Items.WHEAT_SEEDS;
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.br = var1.getBoolean("IsChickenJockey");
 		if (var1.hasKey("EggLayTime")) {
 			this.bq = var1.getInt("EggLayTime");
@@ -117,8 +117,8 @@ public class EntityChicken extends EntityAnimal {
 		return this.cj() ? 10 : super.b(var1);
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("IsChickenJockey", this.br);
 		var1.put("EggLayTime", this.bq);
 	}

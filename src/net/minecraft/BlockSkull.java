@@ -56,16 +56,16 @@ public class BlockSkull extends atg {
 		return this.getBlockState().a(a, var8.aO()).a(b, Boolean.valueOf(false));
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntitySkull();
 	}
 
 	public int j(World var1, Position var2) {
 		TileEntity var3 = var1.getTileEntity(var2);
-		return var3 instanceof TileEntitySkull ? ((TileEntitySkull) var3).c() : super.j(var1, var2);
+		return var3 instanceof TileEntitySkull ? ((TileEntitySkull) var3).getSkullType() : super.j(var1, var2);
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, EntityHuman var4) {
@@ -77,38 +77,38 @@ public class BlockSkull extends atg {
 		super.a(var1, var2, var3, var4);
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			if (!((Boolean) var3.b(b)).booleanValue()) {
 				TileEntity var4 = var1.getTileEntity(var2);
 				if (var4 instanceof TileEntitySkull) {
 					TileEntitySkull var5 = (TileEntitySkull) var4;
 					ItemStack var6 = new ItemStack(Items.SKULL, 1, this.j(var1, var2));
-					if (var5.c() == 3 && var5.b() != null) {
+					if (var5.getSkullType() == 3 && var5.getGameProfile() != null) {
 						var6.setTag(new NBTCompoundTag());
 						NBTCompoundTag var7 = new NBTCompoundTag();
-						ga.a(var7, var5.b());
+						GameProfileSerializer.serialize(var7, var5.getGameProfile());
 						var6.getTag().put("SkullOwner", (NBTTag) var7);
 					}
 
-					a(var1, var2, var6);
+					dropItem(var1, var2, var6);
 				}
 			}
 
-			super.b(var1, var2, var3);
+			super.remove(var1, var2, var3);
 		}
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.SKULL;
 	}
 
 	public boolean b(World var1, Position var2, ItemStack var3) {
-		return var3.getDurability() == 1 && var2.getY() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.isStatic ? this.j().a(var1, var2) != null : false;
+		return var3.getWearout() == 1 && var2.getY() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.isStatic ? this.j().a(var1, var2) != null : false;
 	}
 
 	public void a(World var1, Position var2, TileEntitySkull var3) {
-		if (var3.c() == 1 && var2.getY() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.isStatic) {
+		if (var3.getSkullType() == 1 && var2.getY() >= 2 && var1.getDifficulty() != Difficulty.PEACEFUL && !var1.isStatic) {
 			bek var4 = this.l();
 			bem var5 = var4.a(var1, var2);
 			if (var5 != null) {
@@ -131,7 +131,7 @@ public class BlockSkull extends atg {
 				var14.setPositionRotation((double) var15.getX() + 0.5D, (double) var15.getY() + 0.55D, (double) var15.getZ() + 0.5D, var5.b().k() == el.a ? 0.0F : 90.0F, 0.0F);
 				var14.aG = var5.b().k() == el.a ? 0.0F : 90.0F;
 				var14.n();
-				Iterator var9 = var1.a(EntityHuman.class, var14.getBoundingBox().grow(50.0D, 50.0D, 50.0D)).iterator();
+				Iterator var9 = var1.getEntititesInAABB(EntityHuman.class, var14.getBoundingBox().grow(50.0D, 50.0D, 50.0D)).iterator();
 
 				while (var9.hasNext()) {
 					EntityHuman var10 = (EntityHuman) var9.next();
@@ -142,7 +142,7 @@ public class BlockSkull extends atg {
 
 				int var16;
 				for (var16 = 0; var16 < 120; ++var16) {
-					var1.a(Particle.F, (double) var12.getX() + var1.s.nextDouble(), (double) (var12.getY() - 2) + var1.s.nextDouble() * 3.9D, (double) var12.getZ() + var1.s.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
+					var1.addParticle(Particle.F, (double) var12.getX() + var1.random.nextDouble(), (double) (var12.getY() - 2) + var1.random.nextDouble() * 3.9D, (double) var12.getZ() + var1.random.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
 				}
 
 				for (var16 = 0; var16 < var4.c(); ++var16) {

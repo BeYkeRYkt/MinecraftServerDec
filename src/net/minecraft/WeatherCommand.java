@@ -25,7 +25,7 @@ public class WeatherCommand extends AbstractCommand {
 				var3 = a(var2[1], 1, 1000000) * 20;
 			}
 
-			WorldServer var4 = MinecraftServer.getInstance().getPrimaryWorld();
+			WorldServer var4 = MinecraftServer.getInstance().getWorld();
 			WorldData var5 = var4.getWorldData();
 			if ("clear".equalsIgnoreCase(var2[0])) {
 				var5.setClearWeatherTime(var3);

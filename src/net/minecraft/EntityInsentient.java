@@ -138,7 +138,7 @@ public abstract class EntityInsentient extends EntityLiving {
 				double var4 = this.random.nextGaussian() * 0.02D;
 				double var6 = this.random.nextGaussian() * 0.02D;
 				double var8 = 10.0D;
-				this.world.a(Particle.a, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height - var2 * var8, this.locationY + (double) (this.random.nextFloat() * this.width) - var4 * var8, this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height - var6 * var8, var2, var4, var6, new int[0]);
+				this.world.addParticle(Particle.a, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height - var2 * var8, this.locationY + (double) (this.random.nextFloat() * this.width) - var4 * var8, this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height - var6 * var8, var2, var4, var6, new int[0]);
 			}
 		} else {
 			this.world.broadcastEntityEffect((Entity) this, (byte) 20);
@@ -146,8 +146,8 @@ public abstract class EntityInsentient extends EntityLiving {
 
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (!this.world.isStatic) {
 			this.bZ();
 		}
@@ -182,8 +182,8 @@ public abstract class EntityInsentient extends EntityLiving {
 
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("CanPickUpLoot", this.bX());
 		var1.put("PersistenceRequired", this.bl);
 		NBTListTag var2 = new NBTListTag();
@@ -228,8 +228,8 @@ public abstract class EntityInsentient extends EntityLiving {
 
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		if (var1.isTagAssignableFrom("CanPickUpLoot", 1)) {
 			this.j(var1.getBoolean("CanPickUpLoot"));
 		}
@@ -241,7 +241,7 @@ public abstract class EntityInsentient extends EntityLiving {
 			var2 = var1.getList("Equipment", 10);
 
 			for (var3 = 0; var3 < this.bj.length; ++var3) {
-				this.bj[var3] = ItemStack.a(var2.getCompound(var3));
+				this.bj[var3] = ItemStack.fromNBT(var2.getCompound(var3));
 			}
 		}
 
@@ -273,8 +273,8 @@ public abstract class EntityInsentient extends EntityLiving {
 	public void m() {
 		super.m();
 		this.world.B.a("looting");
-		if (!this.world.isStatic && this.bX() && !this.aN && this.world.getGameRules().b("mobGriefing")) {
-			List var1 = this.world.a(EntityItem.class, this.getBoundingBox().grow(1.0D, 0.0D, 1.0D));
+		if (!this.world.isStatic && this.bX() && !this.aN && this.world.getGameRules().isGameRule("mobGriefing")) {
+			List var1 = this.world.getEntititesInAABB(EntityItem.class, this.getBoundingBox().grow(1.0D, 0.0D, 1.0D));
 			Iterator var2 = var1.iterator();
 
 			while (var2.hasNext()) {
@@ -302,7 +302,7 @@ public abstract class EntityInsentient extends EntityLiving {
 						ItemSword var6 = (ItemSword) var2.getItem();
 						ItemSword var7 = (ItemSword) var5.getItem();
 						if (var6.g() == var7.g()) {
-							var4 = var2.getDurability() > var5.getDurability() || var2.hasTag() && !var5.hasTag();
+							var4 = var2.getWearout() > var5.getWearout() || var2.hasTag() && !var5.hasTag();
 						} else {
 							var4 = var6.g() > var7.g();
 						}
@@ -317,7 +317,7 @@ public abstract class EntityInsentient extends EntityLiving {
 					ItemArmor var8 = (ItemArmor) var2.getItem();
 					ItemArmor var10 = (ItemArmor) var5.getItem();
 					if (var8.c == var10.c) {
-						var4 = var2.getDurability() > var5.getDurability() || var2.hasTag() && !var5.hasTag();
+						var4 = var2.getWearout() > var5.getWearout() || var2.hasTag() && !var5.hasTag();
 					} else {
 						var4 = var8.c > var10.c;
 					}
@@ -332,7 +332,7 @@ public abstract class EntityInsentient extends EntityLiving {
 				}
 
 				if (var2.getItem() == Items.DIAMOND && var1.n() != null) {
-					EntityHuman var9 = this.world.a(var1.n());
+					EntityHuman var9 = this.world.getPlayer(var1.n());
 					if (var9 != null) {
 						var9.b((Statistic) AchievementList.x);
 					}
@@ -360,7 +360,7 @@ public abstract class EntityInsentient extends EntityLiving {
 		if (this.bl) {
 			this.aO = 0;
 		} else {
-			EntityHuman var1 = this.world.a(this, -1.0D);
+			EntityHuman var1 = this.world.findNearbyPlayer(this, -1.0D);
 			if (var1 != null) {
 				double var2 = var1.locationX - this.locationX;
 				double var4 = var1.locationY - this.locationY;
@@ -501,8 +501,8 @@ public abstract class EntityInsentient extends EntityLiving {
 			boolean var5 = this.bh[var3] > 1.0F;
 			if (var4 != null && (var1 || var5) && this.random.nextFloat() - (float) var2 * 0.01F < this.bh[var3]) {
 				if (!var5 && var4.e()) {
-					int var6 = Math.max(var4.j() - 25, 1);
-					int var7 = var4.j() - this.random.nextInt(this.random.nextInt(var6) + 1);
+					int var6 = Math.max(var4.getMaxWearout() - 25, 1);
+					int var7 = var4.getMaxWearout() - this.random.nextInt(this.random.nextInt(var6) + 1);
 					if (var7 > var6) {
 						var7 = var6;
 					}
@@ -511,7 +511,7 @@ public abstract class EntityInsentient extends EntityLiving {
 						var7 = 1;
 					}
 
-					var4.setDurability(var7);
+					var4.setWearout(var7);
 				}
 
 				this.a(var4, 0.0F);
@@ -757,7 +757,7 @@ public abstract class EntityInsentient extends EntityLiving {
 		if (this.bm && this.bo != null) {
 			if (this.bo.isTagAssignableFrom("UUIDMost", 4) && this.bo.isTagAssignableFrom("UUIDLeast", 4)) {
 				UUID var5 = new UUID(this.bo.getLong("UUIDMost"), this.bo.getLong("UUIDLeast"));
-				List var6 = this.world.a(EntityLiving.class, this.getBoundingBox().grow(10.0D, 10.0D, 10.0D));
+				List var6 = this.world.getEntititesInAABB(EntityLiving.class, this.getBoundingBox().grow(10.0D, 10.0D, 10.0D));
 				Iterator var3 = var6.iterator();
 
 				while (var3.hasNext()) {

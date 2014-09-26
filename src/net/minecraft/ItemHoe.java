@@ -12,12 +12,12 @@ public class ItemHoe extends Item {
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
-		if (!var2.a(var4.a(var5), var5, var1)) {
+		if (!var2.a(var4.getRelative(var5), var5, var1)) {
 			return false;
 		} else {
 			IBlockState var9 = var3.getBlockState(var4);
 			Block var10 = var9.getBlock();
-			if (var5 != BlockFace.DOWN && var3.getBlockState(var4.a()).getBlock().getMaterial() == Material.AIR) {
+			if (var5 != BlockFace.DOWN && var3.getBlockState(var4.getUp()).getBlock().getMaterial() == Material.AIR) {
 				if (var10 == Blocks.GRASS) {
 					return this.a(var1, var2, var3, var4, Blocks.FARMLAND.getBlockState());
 				}

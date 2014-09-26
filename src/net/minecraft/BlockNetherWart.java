@@ -19,7 +19,7 @@ public class BlockNetherWart extends auc {
 	}
 
 	public boolean f(World var1, Position var2, IBlockState var3) {
-		return this.c(var1.getBlockState(var2.b()).getBlock());
+		return this.c(var1.getBlockState(var2.getDown()).getBlock());
 	}
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
@@ -32,28 +32,28 @@ public class BlockNetherWart extends auc {
 		super.b(var1, var2, var3, var4);
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		if (!var1.isStatic) {
 			int var6 = 1;
 			if (((Integer) var3.b(a)).intValue() >= 3) {
-				var6 = 2 + var1.s.nextInt(3);
+				var6 = 2 + var1.random.nextInt(3);
 				if (var5 > 0) {
-					var6 += var1.s.nextInt(var5 + 1);
+					var6 += var1.random.nextInt(var5 + 1);
 				}
 			}
 
 			for (int var7 = 0; var7 < var6; ++var7) {
-				a(var1, var2, new ItemStack(Items.NETHER_WART));
+				dropItem(var1, var2, new ItemStack(Items.NETHER_WART));
 			}
 
 		}
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 

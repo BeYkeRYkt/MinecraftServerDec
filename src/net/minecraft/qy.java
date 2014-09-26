@@ -347,7 +347,7 @@ public class qy {
 			return new PacketPlayOutSpawnPlayer((EntityHuman) this.a);
 		} else if (this.a instanceof adx) {
 			adx var9 = (adx) this.a;
-			return new PacketPlayOutSpawnObject(this.a, 10, var9.s().getId());
+			return new PacketPlayOutSpawnObject(this.a, 10, var9.getType().getId());
 		} else if (this.a instanceof EntityBoat) {
 			return new PacketPlayOutSpawnObject(this.a, 1);
 		} else if (this.a instanceof IAnimal) {
@@ -357,7 +357,7 @@ public class qy {
 			EntityHuman var8 = ((ado) this.a).b;
 			return new PacketPlayOutSpawnObject(this.a, 90, var8 != null ? var8.getId() : this.a.getId());
 		} else if (this.a instanceof EntityArrow) {
-			Entity var7 = ((EntityArrow) this.a).c;
+			Entity var7 = ((EntityArrow) this.a).shooter;
 			return new PacketPlayOutSpawnObject(this.a, 60, var7 != null ? var7.getId() : this.a.getId());
 		} else if (this.a instanceof EntitySnowball) {
 			return new PacketPlayOutSpawnObject(this.a, 61);

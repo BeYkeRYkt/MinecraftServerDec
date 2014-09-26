@@ -43,14 +43,14 @@ public class TimeCommand extends AbstractCommand {
 
 			if (var2[0].equals("query")) {
 				if (var2[1].equals("daytime")) {
-					var3 = (int) (var1.getPrimaryWorld().L() % 2147483647L);
+					var3 = (int) (var1.getWorld().getDayTime() % 2147483647L);
 					var1.a(ag.e, var3);
 					a(var1, this, "commands.time.query", new Object[] { Integer.valueOf(var3) });
 					return;
 				}
 
 				if (var2[1].equals("gametime")) {
-					var3 = (int) (var1.getPrimaryWorld().getTime() % 2147483647L);
+					var3 = (int) (var1.getWorld().getTime() % 2147483647L);
 					var1.a(ag.e, var3);
 					a(var1, this, "commands.time.query", new Object[] { Integer.valueOf(var3) });
 					return;
@@ -67,7 +67,7 @@ public class TimeCommand extends AbstractCommand {
 
 	protected void a(CommandSenderInterface var1, int var2) {
 		for (int var3 = 0; var3 < MinecraftServer.getInstance().worlds.size(); ++var3) {
-			MinecraftServer.getInstance().worlds.get(var3).b((long) var2);
+			MinecraftServer.getInstance().worlds.get(var3).setDayTime((long) var2);
 		}
 
 	}
@@ -75,7 +75,7 @@ public class TimeCommand extends AbstractCommand {
 	protected void b(CommandSenderInterface var1, int var2) {
 		for (int var3 = 0; var3 < MinecraftServer.getInstance().worlds.size(); ++var3) {
 			WorldServer var4 = MinecraftServer.getInstance().worlds.get(var3);
-			var4.b(var4.L() + (long) var2);
+			var4.setDayTime(var4.getDayTime() + (long) var2);
 		}
 
 	}

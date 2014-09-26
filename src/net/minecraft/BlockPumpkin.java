@@ -14,8 +14,8 @@ public class BlockPumpkin extends avb {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
-		super.c(var1, var2, var3);
+	public void onPlace(World var1, Position var2, IBlockState var3) {
+		super.onPlace(var1, var2, var3);
 		this.e(var1, var2);
 	}
 
@@ -39,7 +39,7 @@ public class BlockPumpkin extends avb {
 			var1.addEntity((Entity) var9);
 
 			for (var6 = 0; var6 < 120; ++var6) {
-				var1.a(Particle.G, (double) var11.getX() + var1.s.nextDouble(), (double) var11.getY() + var1.s.nextDouble() * 2.5D, (double) var11.getZ() + var1.s.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
+				var1.addParticle(Particle.G, (double) var11.getX() + var1.random.nextDouble(), (double) var11.getY() + var1.random.nextDouble() * 2.5D, (double) var11.getZ() + var1.random.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 
 			for (var6 = 0; var6 < this.l().b(); ++var6) {
@@ -60,7 +60,7 @@ public class BlockPumpkin extends avb {
 			var1.addEntity((Entity) var13);
 
 			for (var6 = 0; var6 < 120; ++var6) {
-				var1.a(Particle.F, (double) var10.getX() + var1.s.nextDouble(), (double) var10.getY() + var1.s.nextDouble() * 3.9D, (double) var10.getZ() + var1.s.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
+				var1.addParticle(Particle.F, (double) var10.getX() + var1.random.nextDouble(), (double) var10.getY() + var1.random.nextDouble() * 3.9D, (double) var10.getZ() + var1.random.nextDouble(), 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 
 			for (var6 = 0; var6 < this.T().c(); ++var6) {
@@ -74,7 +74,7 @@ public class BlockPumpkin extends avb {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return var1.getBlockState(var2).getBlock().material.j() && World.a((ard) var1, var2.b());
+		return var1.getBlockState(var2).getBlock().material.j() && World.a((ard) var1, var2.getDown());
 	}
 
 	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {

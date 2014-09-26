@@ -46,12 +46,12 @@ public abstract class ath extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return this.m(var1, var2.b());
+		return this.m(var1, var2.getDown());
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
-		if (!this.m(var1, var2.b())) {
-			this.b(var1, var2, var3, 0);
+		if (!this.m(var1, var2.getDown())) {
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.g(var2);
 		}
 
@@ -112,20 +112,20 @@ public abstract class ath extends Block {
 		return new AxisAlignedBB((double) ((float) var1.getX() + 0.125F), (double) var1.getY(), (double) ((float) var1.getZ() + 0.125F), (double) ((float) (var1.getX() + 1) - 0.125F), (double) var1.getY() + 0.25D, (double) ((float) (var1.getZ() + 1) - 0.125F));
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		if (this.e(var3) > 0) {
 			this.d(var1, var2);
 		}
 
-		super.b(var1, var2, var3);
+		super.remove(var1, var2, var3);
 	}
 
 	protected void d(World var1, Position var2) {
 		var1.c(var2, (Block) this);
-		var1.c(var2.b(), (Block) this);
+		var1.c(var2.getDown(), (Block) this);
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return this.e(var3);
 	}
 
@@ -133,7 +133,7 @@ public abstract class ath extends Block {
 		return var4 == BlockFace.UP ? this.e(var3) : 0;
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 

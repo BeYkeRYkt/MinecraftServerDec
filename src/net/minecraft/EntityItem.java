@@ -47,11 +47,11 @@ public class EntityItem extends Entity {
 		this.getDataWatcher().a(10, 5);
 	}
 
-	public void s_() {
+	public void doTick() {
 		if (this.l() == null) {
 			this.die();
 		} else {
-			super.s_();
+			super.doTick();
 			if (this.d > 0 && this.d != 32767) {
 				--this.d;
 			}
@@ -101,7 +101,7 @@ public class EntityItem extends Entity {
 	}
 
 	private void w() {
-		Iterator var1 = this.world.a(EntityItem.class, this.getBoundingBox().grow(0.5D, 0.0D, 0.5D)).iterator();
+		Iterator var1 = this.world.getEntititesInAABB(EntityItem.class, this.getBoundingBox().grow(0.5D, 0.0D, 0.5D)).iterator();
 
 		while (var1.hasNext()) {
 			EntityItem var2 = (EntityItem) var1.next();
@@ -126,7 +126,7 @@ public class EntityItem extends Entity {
 						return false;
 					} else if (var3.getItem() == null) {
 						return false;
-					} else if (var3.getItem().k() && var3.getDurability() != var2.getDurability()) {
+					} else if (var3.getItem().k() && var3.getWearout() != var2.getWearout()) {
 						return false;
 					} else if (var3.amount < var2.amount) {
 						return var1.a(this);
@@ -170,11 +170,11 @@ public class EntityItem extends Entity {
 	}
 
 	protected void f(int var1) {
-		this.damageEntity(DamageSource.FIRE, (float) var1);
+		this.receiveDamage(DamageSource.FIRE, (float) var1);
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else if (this.l() != null && this.l().getItem() == Items.NETHER_STAR && var1.c()) {
 			return false;
@@ -189,7 +189,7 @@ public class EntityItem extends Entity {
 		}
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("Health", (short) ((byte) this.e));
 		var1.put("Age", (short) this.c);
 		var1.put("PickupDelay", (short) this.d);
@@ -207,7 +207,7 @@ public class EntityItem extends Entity {
 
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.e = var1.getShort("Health") & 255;
 		this.c = var1.getShort("Age");
 		if (var1.hasKey("PickupDelay")) {
@@ -223,7 +223,7 @@ public class EntityItem extends Entity {
 		}
 
 		NBTCompoundTag var2 = var1.getCompound("Item");
-		this.a(ItemStack.a(var2));
+		this.a(ItemStack.fromNBT(var2));
 		if (this.l() == null) {
 			this.die();
 		}
@@ -234,7 +234,7 @@ public class EntityItem extends Entity {
 		if (!this.world.isStatic) {
 			ItemStack var2 = this.l();
 			int var3 = var2.amount;
-			if (this.d == 0 && (this.g == null || 6000 - this.c <= 200 || this.g.equals(var1.getName())) && var1.playerInventory.a(var2)) {
+			if (this.d == 0 && (this.g == null || 6000 - this.c <= 200 || this.g.equals(var1.getName())) && var1.playerInventory.pickup(var2)) {
 				if (var2.getItem() == Item.getItemOf(Blocks.LOG)) {
 					var1.b((Statistic) AchievementList.g);
 				}
@@ -256,7 +256,7 @@ public class EntityItem extends Entity {
 				}
 
 				if (var2.getItem() == Items.DIAMOND && this.n() != null) {
-					EntityHuman var4 = this.world.a(this.n());
+					EntityHuman var4 = this.world.getPlayer(this.n());
 					if (var4 != null && var4 != var1) {
 						var4.b((Statistic) AchievementList.x);
 					}
@@ -276,15 +276,15 @@ public class EntityItem extends Entity {
 	}
 
 	public String getName() {
-		return this.k_() ? this.getCustomName() : LocaleI18n.get("item." + this.l().a());
+		return this.hasCustomName() ? this.getCustomName() : LocaleI18n.get("item." + this.l().a());
 	}
 
 	public boolean aE() {
 		return false;
 	}
 
-	public void c(int var1) {
-		super.c(var1);
+	public void viewCredits(int var1) {
+		super.viewCredits(var1);
 		if (!this.world.isStatic) {
 			this.w();
 		}

@@ -53,7 +53,7 @@ class bl implements CommandSenderInterface {
 		return new Vec3D(this.d, this.e, this.f);
 	}
 
-	public World getPrimaryWorld() {
+	public World getWorld() {
 		return this.a.world;
 	}
 
@@ -61,9 +61,9 @@ class bl implements CommandSenderInterface {
 		return this.a;
 	}
 
-	public boolean t_() {
+	public boolean isCommandBlockOuputEnabled() {
 		MinecraftServer var1 = MinecraftServer.getInstance();
-		return var1 == null || var1.getPrimaryWorld().getGameRules().b("commandBlockOutput");
+		return var1 == null || var1.getWorld().getGameRules().isGameRule("commandBlockOutput");
 	}
 
 	public void a(ag var1, int var2) {

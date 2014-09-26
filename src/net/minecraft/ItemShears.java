@@ -17,7 +17,7 @@ public class ItemShears extends Item {
 		}
 	}
 
-	public boolean b(Block var1) {
+	public boolean canDestroySpecialBlock(Block var1) {
 		return var1 == Blocks.WEB || var1 == Blocks.REDSTONE_WIRE || var1 == Blocks.TRIPWIRE;
 	}
 

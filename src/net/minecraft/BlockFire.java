@@ -21,15 +21,15 @@ public class BlockFire extends Block {
 		int var4 = var3.getX();
 		int var5 = var3.getY();
 		int var6 = var3.getZ();
-		if (!World.a(var2, var3.b()) && !Blocks.FIRE.e(var2, var3.b())) {
+		if (!World.a(var2, var3.getDown()) && !Blocks.FIRE.e(var2, var3.getDown())) {
 			boolean var7 = (var4 + var5 + var6 & 1) == 1;
 			boolean var8 = (var4 / 2 + var5 / 2 + var6 / 2 & 1) == 1;
 			int var9 = 0;
-			if (this.e(var2, var3.a())) {
+			if (this.e(var2, var3.getUp())) {
 				var9 = var7 ? 1 : 2;
 			}
 
-			return var1.a(N, Boolean.valueOf(this.e(var2, var3.c()))).a(O, Boolean.valueOf(this.e(var2, var3.f()))).a(P, Boolean.valueOf(this.e(var2, var3.d()))).a(Q, Boolean.valueOf(this.e(var2, var3.e()))).a(R, Integer.valueOf(var9)).a(b, Boolean.valueOf(var8)).a(M, Boolean.valueOf(var7));
+			return var1.a(N, Boolean.valueOf(this.e(var2, var3.getNorth()))).a(O, Boolean.valueOf(this.e(var2, var3.getEast()))).a(P, Boolean.valueOf(this.e(var2, var3.getSouth()))).a(Q, Boolean.valueOf(this.e(var2, var3.getWest()))).a(R, Integer.valueOf(var9)).a(b, Boolean.valueOf(var8)).a(M, Boolean.valueOf(var7));
 		} else {
 			return this.getBlockState();
 		}
@@ -96,7 +96,7 @@ public class BlockFire extends Block {
 		return false;
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 
@@ -105,12 +105,12 @@ public class BlockFire extends Block {
 	}
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
-		if (var1.getGameRules().b("doFireTick")) {
+		if (var1.getGameRules().isGameRule("doFireTick")) {
 			if (!this.c(var1, var2)) {
 				var1.g(var2);
 			}
 
-			Block var5 = var1.getBlockState(var2.b()).getBlock();
+			Block var5 = var1.getBlockState(var2.getDown()).getBlock();
 			boolean var6 = var5 == Blocks.NETHERRACK;
 			if (var1.worldProvider instanceof WorldProviderTheEnd && var5 == Blocks.BEDROCK) {
 				var6 = true;
@@ -128,14 +128,14 @@ public class BlockFire extends Block {
 				var1.a(var2, (Block) this, this.a(var1) + var4.nextInt(10));
 				if (!var6) {
 					if (!this.e(var1, var2)) {
-						if (!World.a((ard) var1, var2.b()) || var7 > 3) {
+						if (!World.a((ard) var1, var2.getDown()) || var7 > 3) {
 							var1.g(var2);
 						}
 
 						return;
 					}
 
-					if (!this.e((ard) var1, var2.b()) && var7 == 15 && var4.nextInt(4) == 0) {
+					if (!this.e((ard) var1, var2.getDown()) && var7 == 15 && var4.nextInt(4) == 0) {
 						var1.g(var2);
 						return;
 					}
@@ -147,12 +147,12 @@ public class BlockFire extends Block {
 					var9 = -50;
 				}
 
-				this.a(var1, var2.f(), 300 + var9, var4, var7);
-				this.a(var1, var2.e(), 300 + var9, var4, var7);
-				this.a(var1, var2.b(), 250 + var9, var4, var7);
-				this.a(var1, var2.a(), 250 + var9, var4, var7);
-				this.a(var1, var2.c(), 300 + var9, var4, var7);
-				this.a(var1, var2.d(), 300 + var9, var4, var7);
+				this.a(var1, var2.getEast(), 300 + var9, var4, var7);
+				this.a(var1, var2.getWest(), 300 + var9, var4, var7);
+				this.a(var1, var2.getDown(), 250 + var9, var4, var7);
+				this.a(var1, var2.getUp(), 250 + var9, var4, var7);
+				this.a(var1, var2.getNorth(), 300 + var9, var4, var7);
+				this.a(var1, var2.getSouth(), 300 + var9, var4, var7);
 
 				for (int var10 = -1; var10 <= 1; ++var10) {
 					for (int var11 = -1; var11 <= 1; ++var11) {
@@ -190,7 +190,7 @@ public class BlockFire extends Block {
 	}
 
 	protected boolean d(World var1, Position var2) {
-		return var1.C(var2) || var1.C(var2.e()) || var1.C(var2.f()) || var1.C(var2.c()) || var1.C(var2.d());
+		return var1.C(var2) || var1.C(var2.getWest()) || var1.C(var2.getEast()) || var1.C(var2.getNorth()) || var1.C(var2.getSouth());
 	}
 
 	public boolean M() {
@@ -235,7 +235,7 @@ public class BlockFire extends Block {
 
 		for (int var5 = 0; var5 < var4; ++var5) {
 			BlockFace var6 = var3[var5];
-			if (this.e((ard) var1, var2.a(var6))) {
+			if (this.e((ard) var1, var2.getRelative(var6))) {
 				return true;
 			}
 		}
@@ -253,7 +253,7 @@ public class BlockFire extends Block {
 
 			for (int var6 = 0; var6 < var5; ++var6) {
 				BlockFace var7 = var4[var6];
-				var3 = Math.max(this.d(var1.getBlockState(var2.a(var7)).getBlock()), var3);
+				var3 = Math.max(this.d(var1.getBlockState(var2.getRelative(var7)).getBlock()), var3);
 			}
 
 			return var3;
@@ -269,22 +269,22 @@ public class BlockFire extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return World.a((ard) var1, var2.b()) || this.e(var1, var2);
+		return World.a((ard) var1, var2.getDown()) || this.e(var1, var2);
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
-		if (!World.a((ard) var1, var2.b()) && !this.e(var1, var2)) {
+		if (!World.a((ard) var1, var2.getDown()) && !this.e(var1, var2)) {
 			var1.g(var2);
 		}
 
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		if (var1.worldProvider.getDimensionId() > 0 || !Blocks.PORTAL.d(var1, var2)) {
-			if (!World.a((ard) var1, var2.b()) && !this.e(var1, var2)) {
+			if (!World.a((ard) var1, var2.getDown()) && !this.e(var1, var2)) {
 				var1.g(var2);
 			} else {
-				var1.a(var2, (Block) this, this.a(var1) + var1.s.nextInt(10));
+				var1.a(var2, (Block) this, this.a(var1) + var1.random.nextInt(10));
 			}
 		}
 	}

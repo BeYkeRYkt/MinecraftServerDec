@@ -25,7 +25,7 @@ public class BlockWeb extends Block {
 		return false;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.STRING;
 	}
 

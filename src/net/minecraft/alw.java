@@ -5,7 +5,7 @@ import com.google.common.base.Function;
 final class alw implements Function {
 
 	public String a(ItemStack var1) {
-		return bby.a(var1.getDurability()).c();
+		return bby.a(var1.getWearout()).c();
 	}
 
 	// $FF: synthetic method

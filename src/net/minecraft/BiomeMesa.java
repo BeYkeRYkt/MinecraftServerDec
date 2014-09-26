@@ -43,17 +43,17 @@ public class BiomeMesa extends BiomeBase {
 	}
 
 	public void a(World var1, Random var2, bgk var3, int var4, int var5, double var6) {
-		if (this.aD == null || this.aE != var1.J()) {
-			this.a(var1.J());
+		if (this.aD == null || this.aE != var1.getSeed()) {
+			this.a(var1.getSeed());
 		}
 
-		if (this.aF == null || this.aG == null || this.aE != var1.J()) {
+		if (this.aF == null || this.aG == null || this.aE != var1.getSeed()) {
 			Random var8 = new Random(this.aE);
 			this.aF = new NoiseGenerator3(var8, 4);
 			this.aG = new NoiseGenerator3(var8, 1);
 		}
 
-		this.aE = var1.J();
+		this.aE = var1.getSeed();
 		double var22 = 0.0D;
 		int var10;
 		int var11;

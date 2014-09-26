@@ -31,44 +31,44 @@ public class atk {
 		this.g.clear();
 		switch (atj.a[var1.ordinal()]) {
 			case 1:
-				this.g.add(this.c.c());
-				this.g.add(this.c.d());
+				this.g.add(this.c.getNorth());
+				this.g.add(this.c.getSouth());
 				break;
 			case 2:
-				this.g.add(this.c.e());
-				this.g.add(this.c.f());
+				this.g.add(this.c.getWest());
+				this.g.add(this.c.getEast());
 				break;
 			case 3:
-				this.g.add(this.c.e());
-				this.g.add(this.c.f().a());
+				this.g.add(this.c.getWest());
+				this.g.add(this.c.getEast().getUp());
 				break;
 			case 4:
-				this.g.add(this.c.e().a());
-				this.g.add(this.c.f());
+				this.g.add(this.c.getWest().getUp());
+				this.g.add(this.c.getEast());
 				break;
 			case 5:
-				this.g.add(this.c.c().a());
-				this.g.add(this.c.d());
+				this.g.add(this.c.getNorth().getUp());
+				this.g.add(this.c.getSouth());
 				break;
 			case 6:
-				this.g.add(this.c.c());
-				this.g.add(this.c.d().a());
+				this.g.add(this.c.getNorth());
+				this.g.add(this.c.getSouth().getUp());
 				break;
 			case 7:
-				this.g.add(this.c.f());
-				this.g.add(this.c.d());
+				this.g.add(this.c.getEast());
+				this.g.add(this.c.getSouth());
 				break;
 			case 8:
-				this.g.add(this.c.e());
-				this.g.add(this.c.d());
+				this.g.add(this.c.getWest());
+				this.g.add(this.c.getSouth());
 				break;
 			case 9:
-				this.g.add(this.c.e());
-				this.g.add(this.c.c());
+				this.g.add(this.c.getWest());
+				this.g.add(this.c.getNorth());
 				break;
 			case 10:
-				this.g.add(this.c.f());
-				this.g.add(this.c.c());
+				this.g.add(this.c.getEast());
+				this.g.add(this.c.getNorth());
 		}
 
 	}
@@ -86,7 +86,7 @@ public class atk {
 	}
 
 	private boolean a(Position var1) {
-		return ati.d(this.b, var1) || ati.d(this.b, var1.a()) || ati.d(this.b, var1.b());
+		return ati.d(this.b, var1) || ati.d(this.b, var1.getUp()) || ati.d(this.b, var1.getDown());
 	}
 
 	private atk b(Position var1) {
@@ -94,12 +94,12 @@ public class atk {
 		if (ati.d(var3)) {
 			return new atk(this.a, this.b, var1, var3);
 		} else {
-			Position var2 = var1.a();
+			Position var2 = var1.getUp();
 			var3 = this.b.getBlockState(var2);
 			if (ati.d(var3)) {
 				return new atk(this.a, this.b, var2, var3);
 			} else {
-				var2 = var1.b();
+				var2 = var1.getDown();
 				var3 = this.b.getBlockState(var2);
 				return ati.d(var3) ? new atk(this.a, this.b, var2, var3) : null;
 			}
@@ -123,11 +123,11 @@ public class atk {
 
 	protected int a() {
 		int var1 = 0;
-		Iterator var2 = en.a.iterator();
+		Iterator var2 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var2.hasNext()) {
 			BlockFace var3 = (BlockFace) var2.next();
-			if (this.a(this.c.a(var3))) {
+			if (this.a(this.c.getRelative(var3))) {
 				++var1;
 			}
 		}
@@ -141,10 +141,10 @@ public class atk {
 
 	private void c(atk var1) {
 		this.g.add(var1.c);
-		Position var2 = this.c.c();
-		Position var3 = this.c.d();
-		Position var4 = this.c.e();
-		Position var5 = this.c.f();
+		Position var2 = this.c.getNorth();
+		Position var3 = this.c.getSouth();
+		Position var4 = this.c.getWest();
+		Position var5 = this.c.getEast();
 		boolean var6 = this.c(var2);
 		boolean var7 = this.c(var3);
 		boolean var8 = this.c(var4);
@@ -177,21 +177,21 @@ public class atk {
 		}
 
 		if (var10 == atl.a) {
-			if (ati.d(this.b, var2.a())) {
+			if (ati.d(this.b, var2.getUp())) {
 				var10 = atl.e;
 			}
 
-			if (ati.d(this.b, var3.a())) {
+			if (ati.d(this.b, var3.getUp())) {
 				var10 = atl.f;
 			}
 		}
 
 		if (var10 == atl.b) {
-			if (ati.d(this.b, var5.a())) {
+			if (ati.d(this.b, var5.getUp())) {
 				var10 = atl.c;
 			}
 
-			if (ati.d(this.b, var4.a())) {
+			if (ati.d(this.b, var4.getUp())) {
 				var10 = atl.d;
 			}
 		}
@@ -215,10 +215,10 @@ public class atk {
 	}
 
 	public atk a(boolean var1, boolean var2) {
-		Position var3 = this.c.c();
-		Position var4 = this.c.d();
-		Position var5 = this.c.e();
-		Position var6 = this.c.f();
+		Position var3 = this.c.getNorth();
+		Position var4 = this.c.getSouth();
+		Position var5 = this.c.getWest();
+		Position var6 = this.c.getEast();
 		boolean var7 = this.d(var3);
 		boolean var8 = this.d(var4);
 		boolean var9 = this.d(var5);
@@ -297,21 +297,21 @@ public class atk {
 		}
 
 		if (var11 == atl.a) {
-			if (ati.d(this.b, var3.a())) {
+			if (ati.d(this.b, var3.getUp())) {
 				var11 = atl.e;
 			}
 
-			if (ati.d(this.b, var4.a())) {
+			if (ati.d(this.b, var4.getUp())) {
 				var11 = atl.f;
 			}
 		}
 
 		if (var11 == atl.b) {
-			if (ati.d(this.b, var6.a())) {
+			if (ati.d(this.b, var6.getUp())) {
 				var11 = atl.c;
 			}
 
-			if (ati.d(this.b, var5.a())) {
+			if (ati.d(this.b, var5.getUp())) {
 				var11 = atl.d;
 			}
 		}

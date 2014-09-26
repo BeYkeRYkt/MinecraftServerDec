@@ -51,7 +51,7 @@ public class BlockTorch extends Block {
 	}
 
 	private boolean b(World var1, Position var2, BlockFace var3) {
-		Position var4 = var2.a(var3.getOpposite());
+		Position var4 = var2.getRelative(var3.getOpposite());
 		boolean var5 = var3.k().c();
 		return var5 && var1.d(var4, true) || var3.equals(BlockFace.UP) && this.d(var1, var4);
 	}
@@ -60,7 +60,7 @@ public class BlockTorch extends Block {
 		if (this.b(var1, var2, var3)) {
 			return this.getBlockState().a(a, var3);
 		} else {
-			Iterator var9 = en.a.iterator();
+			Iterator var9 = UniverseDirection.HORIZONTAL.iterator();
 
 			BlockFace var10;
 			do {
@@ -69,13 +69,13 @@ public class BlockTorch extends Block {
 				}
 
 				var10 = (BlockFace) var9.next();
-			} while (!var1.d(var2.a(var10.getOpposite()), true));
+			} while (!var1.d(var2.getRelative(var10.getOpposite()), true));
 
 			return this.getBlockState().a(a, var10);
 		}
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		this.f(var1, var2, var3);
 	}
 
@@ -91,14 +91,14 @@ public class BlockTorch extends Block {
 			el var5 = var4.k();
 			BlockFace var6 = var4.getOpposite();
 			boolean var7 = false;
-			if (var5.c() && !var1.d(var2.a(var6), true)) {
+			if (var5.c() && !var1.d(var2.getRelative(var6), true)) {
 				var7 = true;
-			} else if (var5.b() && !this.d(var1, var2.a(var6))) {
+			} else if (var5.b() && !this.d(var1, var2.getRelative(var6))) {
 				var7 = true;
 			}
 
 			if (var7) {
-				this.b(var1, var2, var3, 0);
+				this.dropNaturally(var1, var2, var3, 0);
 				var1.g(var2);
 				return true;
 			} else {
@@ -112,7 +112,7 @@ public class BlockTorch extends Block {
 			return true;
 		} else {
 			if (var1.getBlockState(var2).getBlock() == this) {
-				this.b(var1, var2, var3, 0);
+				this.dropNaturally(var1, var2, var3, 0);
 				var1.g(var2);
 			}
 

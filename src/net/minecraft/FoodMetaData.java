@@ -2,15 +2,15 @@ package net.minecraft;
 
 public class FoodMetaData {
 
-	private int a = 20;
-	private float b = 5.0F;
-	private float c;
-	private int d;
+	private int foodLevel = 20;
+	private float foodSaturationLevel = 5.0F;
+	private float foodExhaustionLevel;
+	private int foodTickTimer;
 	private int e = 20;
 
 	public void a(int var1, float var2) {
-		this.a = Math.min(var1 + this.a, 20);
-		this.b = Math.min(this.b + (float) var1 * var2 * 2.0F, (float) this.a);
+		this.foodLevel = Math.min(var1 + this.foodLevel, 20);
+		this.foodSaturationLevel = Math.min(this.foodSaturationLevel + (float) var1 * var2 * 2.0F, (float) this.foodLevel);
 	}
 
 	public void a(ItemFood var1, ItemStack var2) {
@@ -19,72 +19,72 @@ public class FoodMetaData {
 
 	public void a(EntityHuman var1) {
 		Difficulty var2 = var1.world.getDifficulty();
-		this.e = this.a;
-		if (this.c > 4.0F) {
-			this.c -= 4.0F;
-			if (this.b > 0.0F) {
-				this.b = Math.max(this.b - 1.0F, 0.0F);
+		this.e = this.foodLevel;
+		if (this.foodExhaustionLevel > 4.0F) {
+			this.foodExhaustionLevel -= 4.0F;
+			if (this.foodSaturationLevel > 0.0F) {
+				this.foodSaturationLevel = Math.max(this.foodSaturationLevel - 1.0F, 0.0F);
 			} else if (var2 != Difficulty.PEACEFUL) {
-				this.a = Math.max(this.a - 1, 0);
+				this.foodLevel = Math.max(this.foodLevel - 1, 0);
 			}
 		}
 
-		if (var1.world.getGameRules().b("naturalRegeneration") && this.a >= 18 && var1.cl()) {
-			++this.d;
-			if (this.d >= 80) {
+		if (var1.world.getGameRules().isGameRule("naturalRegeneration") && this.foodLevel >= 18 && var1.cl()) {
+			++this.foodTickTimer;
+			if (this.foodTickTimer >= 80) {
 				var1.g(1.0F);
 				this.a(3.0F);
-				this.d = 0;
+				this.foodTickTimer = 0;
 			}
-		} else if (this.a <= 0) {
-			++this.d;
-			if (this.d >= 80) {
+		} else if (this.foodLevel <= 0) {
+			++this.foodTickTimer;
+			if (this.foodTickTimer >= 80) {
 				if (var1.getHealth() > 10.0F || var2 == Difficulty.HARD || var1.getHealth() > 1.0F && var2 == Difficulty.NORMAL) {
-					var1.damageEntity(DamageSource.STARVE, 1.0F);
+					var1.receiveDamage(DamageSource.STARVE, 1.0F);
 				}
 
-				this.d = 0;
+				this.foodTickTimer = 0;
 			}
 		} else {
-			this.d = 0;
+			this.foodTickTimer = 0;
 		}
 
 	}
 
 	public void a(NBTCompoundTag var1) {
 		if (var1.isTagAssignableFrom("foodLevel", 99)) {
-			this.a = var1.getInt("foodLevel");
-			this.d = var1.getInt("foodTickTimer");
-			this.b = var1.getFloat("foodSaturationLevel");
-			this.c = var1.getFloat("foodExhaustionLevel");
+			this.foodLevel = var1.getInt("foodLevel");
+			this.foodTickTimer = var1.getInt("foodTickTimer");
+			this.foodSaturationLevel = var1.getFloat("foodSaturationLevel");
+			this.foodExhaustionLevel = var1.getFloat("foodExhaustionLevel");
 		}
 
 	}
 
 	public void b(NBTCompoundTag var1) {
-		var1.put("foodLevel", this.a);
-		var1.put("foodTickTimer", this.d);
-		var1.put("foodSaturationLevel", this.b);
-		var1.put("foodExhaustionLevel", this.c);
+		var1.put("foodLevel", this.foodLevel);
+		var1.put("foodTickTimer", this.foodTickTimer);
+		var1.put("foodSaturationLevel", this.foodSaturationLevel);
+		var1.put("foodExhaustionLevel", this.foodExhaustionLevel);
 	}
 
-	public int a() {
-		return this.a;
+	public int getFoodLevel() {
+		return this.foodLevel;
 	}
 
 	public boolean c() {
-		return this.a < 20;
+		return this.foodLevel < 20;
 	}
 
 	public void a(float var1) {
-		this.c = Math.min(this.c + var1, 40.0F);
+		this.foodExhaustionLevel = Math.min(this.foodExhaustionLevel + var1, 40.0F);
 	}
 
-	public float e() {
-		return this.b;
+	public float getSaturationLevel() {
+		return this.foodSaturationLevel;
 	}
 
 	public void a(int var1) {
-		this.a = var1;
+		this.foodLevel = var1;
 	}
 }

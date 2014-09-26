@@ -8,5 +8,5 @@ public interface ard {
 
 	boolean d(Position var1);
 
-	int a(Position var1, BlockFace var2);
+	int getBlockPower(Position var1, BlockFace var2);
 }

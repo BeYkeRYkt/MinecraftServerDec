@@ -10,7 +10,7 @@ public class BlockEnderPortal extends atg {
 		this.a(1.0F);
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityEnderPortal();
 	}
 
@@ -30,13 +30,13 @@ public class BlockEnderPortal extends atg {
 		return false;
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Entity var4) {
 		if (var4.vehicle == null && var4.passenger == null && !var1.isStatic) {
-			var4.c(1);
+			var4.viewCredits(1);
 		}
 
 	}

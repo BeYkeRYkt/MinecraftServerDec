@@ -16,8 +16,8 @@ public class adp extends vk {
 	public ItemStack a(Random var1) {
 		ItemStack var2 = this.b.getCopy();
 		if (this.c > 0.0F) {
-			int var3 = (int) (this.c * (float) this.b.j());
-			int var4 = var2.j() - var1.nextInt(var1.nextInt(var3) + 1);
+			int var3 = (int) (this.c * (float) this.b.getMaxWearout());
+			int var4 = var2.getMaxWearout() - var1.nextInt(var1.nextInt(var3) + 1);
 			if (var4 > var3) {
 				var4 = var3;
 			}
@@ -26,7 +26,7 @@ public class adp extends vk {
 				var4 = 1;
 			}
 
-			var2.setDurability(var4);
+			var2.setWearout(var4);
 		}
 
 		if (this.d) {

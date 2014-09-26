@@ -9,7 +9,7 @@ public class ItemMonsterEgg extends Item {
 
 	public String a(ItemStack var1) {
 		String var2 = ("" + LocaleI18n.get(this.getName() + ".name")).trim();
-		String var3 = EntityTypes.getNameById(var1.getDurability());
+		String var3 = EntityTypes.getNameById(var1.getWearout());
 		if (var3 != null) {
 			var2 = var2 + " " + LocaleI18n.get("entity." + var3 + ".name");
 		}
@@ -20,15 +20,15 @@ public class ItemMonsterEgg extends Item {
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var3.isStatic) {
 			return true;
-		} else if (!var2.a(var4.a(var5), var5, var1)) {
+		} else if (!var2.a(var4.getRelative(var5), var5, var1)) {
 			return false;
 		} else {
 			IBlockState var9 = var3.getBlockState(var4);
 			if (var9.getBlock() == Blocks.MOB_SPAWNER) {
 				TileEntity var10 = var3.getTileEntity(var4);
 				if (var10 instanceof TileEntityMobSpawner) {
-					aqi var11 = ((TileEntityMobSpawner) var10).b();
-					var11.a(EntityTypes.getNameById(var1.getDurability()));
+					MobSpawnerAbstract var11 = ((TileEntityMobSpawner) var10).getSpawner();
+					var11.setMobName(EntityTypes.getNameById(var1.getWearout()));
 					var10.update();
 					var3.notify(var4);
 					if (!var2.playerProperties.instabuild) {
@@ -39,16 +39,16 @@ public class ItemMonsterEgg extends Item {
 				}
 			}
 
-			var4 = var4.a(var5);
+			var4 = var4.getRelative(var5);
 			double var13 = 0.0D;
 			if (var5 == BlockFace.UP && var9 instanceof BlockFence) {
 				var13 = 0.5D;
 			}
 
-			Entity var12 = a(var3, var1.getDurability(), (double) var4.getX() + 0.5D, (double) var4.getY() + var13, (double) var4.getZ() + 0.5D);
+			Entity var12 = a(var3, var1.getWearout(), (double) var4.getX() + 0.5D, (double) var4.getY() + var13, (double) var4.getZ() + 0.5D);
 			if (var12 != null) {
-				if (var12 instanceof EntityLiving && var1.s()) {
-					var12.a(var1.q());
+				if (var12 instanceof EntityLiving && var1.hasDisplayName()) {
+					var12.a(var1.getDisplayName());
 				}
 
 				if (!var2.playerProperties.instabuild) {
@@ -79,10 +79,10 @@ public class ItemMonsterEgg extends Item {
 					}
 
 					if (var2.getBlockState(var5).getBlock() instanceof axl) {
-						Entity var6 = a(var2, var1.getDurability(), (double) var5.getX() + 0.5D, (double) var5.getY() + 0.5D, (double) var5.getZ() + 0.5D);
+						Entity var6 = a(var2, var1.getWearout(), (double) var5.getX() + 0.5D, (double) var5.getY() + 0.5D, (double) var5.getZ() + 0.5D);
 						if (var6 != null) {
-							if (var6 instanceof EntityLiving && var1.s()) {
-								((EntityInsentient) var6).a(var1.q());
+							if (var6 instanceof EntityLiving && var1.hasDisplayName()) {
+								((EntityInsentient) var6).a(var1.getDisplayName());
 							}
 
 							if (!var3.playerProperties.instabuild) {
@@ -109,7 +109,7 @@ public class ItemMonsterEgg extends Item {
 				var8 = EntityTypes.createEntity(var1, var0);
 				if (var8 instanceof EntityLiving) {
 					EntityInsentient var10 = (EntityInsentient) var8;
-					var8.setPositionRotation(var2, var4, var6, MathHelper.g(var0.s.nextFloat() * 360.0F), 0.0F);
+					var8.setPositionRotation(var2, var4, var6, MathHelper.g(var0.random.nextFloat() * 360.0F), 0.0F);
 					var10.headPitch = var10.yaw;
 					var10.aG = var10.yaw;
 					var10.a(var0.E(new Position(var10)), (xq) null);

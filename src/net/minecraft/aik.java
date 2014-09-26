@@ -18,7 +18,7 @@ class aik extends Slot {
 	}
 
 	public void a(EntityHuman var1, ItemStack var2) {
-		if (var2.getItem() == Items.POTION && var2.getDurability() > 0) {
+		if (var2.getItem() == Items.POTION && var2.getWearout() > 0) {
 			this.a.b((Statistic) AchievementList.B);
 		}
 

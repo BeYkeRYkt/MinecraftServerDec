@@ -19,7 +19,7 @@ public class BlockMinecartDetector extends ati {
 		return 20;
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 
@@ -40,7 +40,7 @@ public class BlockMinecartDetector extends ati {
 		}
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return ((Boolean) var3.b(M)).booleanValue() ? 15 : 0;
 	}
 
@@ -59,14 +59,14 @@ public class BlockMinecartDetector extends ati {
 		if (var5 && !var4) {
 			var1.setBlockAt(var2, var3.a(M, Boolean.valueOf(true)), 3);
 			var1.c(var2, (Block) this);
-			var1.c(var2.b(), (Block) this);
+			var1.c(var2.getDown(), (Block) this);
 			var1.b(var2, var2);
 		}
 
 		if (!var5 && var4) {
 			var1.setBlockAt(var2, var3.a(M, Boolean.valueOf(false)), 3);
 			var1.c(var2, (Block) this);
-			var1.c(var2.b(), (Block) this);
+			var1.c(var2.getDown(), (Block) this);
 			var1.b(var2, var2);
 		}
 
@@ -77,8 +77,8 @@ public class BlockMinecartDetector extends ati {
 		var1.e(var2, this);
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
-		super.c(var1, var2, var3);
+	public void onPlace(World var1, Position var2, IBlockState var3) {
+		super.onPlace(var1, var2, var3);
 		this.e(var1, var2, var3);
 	}
 
@@ -86,7 +86,7 @@ public class BlockMinecartDetector extends ati {
 		return b;
 	}
 
-	public boolean N() {
+	public boolean isComplexRedstone() {
 		return true;
 	}
 
@@ -108,7 +108,7 @@ public class BlockMinecartDetector extends ati {
 
 	protected List a(World var1, Position var2, Class var3, Predicate... var4) {
 		AxisAlignedBB var5 = this.a(var2);
-		return var4.length != 1 ? var1.a(var3, var5) : var1.a(var3, var5, var4[0]);
+		return var4.length != 1 ? var1.getEntititesInAABB(var3, var5) : var1.getEntititesInAABB(var3, var5, var4[0]);
 	}
 
 	private AxisAlignedBB a(Position var1) {

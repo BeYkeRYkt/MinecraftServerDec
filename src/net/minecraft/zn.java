@@ -43,7 +43,7 @@ public abstract class zn extends PathfinderGoal {
 	}
 
 	public void e() {
-		if (this.c.c(this.b.a()) > 1.0D) {
+		if (this.c.c(this.b.getUp()) > 1.0D) {
 			this.g = false;
 			++this.e;
 			if (this.e % 40 == 0) {

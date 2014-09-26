@@ -35,8 +35,8 @@ public class EntityPigZombie extends EntityZombie {
 		this.a(afs.e).a(5.0D);
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 	}
 
 	protected void E() {
@@ -56,7 +56,7 @@ public class EntityPigZombie extends EntityZombie {
 		}
 
 		if (this.bl > 0 && this.bn != null && this.bc() == null) {
-			EntityHuman var2 = this.world.b(this.bn);
+			EntityHuman var2 = this.world.getPlayer(this.bn);
 			this.b((EntityLiving) var2);
 			this.aL = var2;
 			this.aM = this.bd();
@@ -73,8 +73,8 @@ public class EntityPigZombie extends EntityZombie {
 		return this.world.a(this.getBoundingBox(), (Entity) this) && this.world.getCubes((Entity) this, this.getBoundingBox()).isEmpty() && !this.world.d(this.getBoundingBox());
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("Anger", (short) this.bl);
 		if (this.bn != null) {
 			var1.put("HurtBy", this.bn.toString());
@@ -84,13 +84,13 @@ public class EntityPigZombie extends EntityZombie {
 
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.bl = var1.getShort("Anger");
 		String var2 = var1.getString("HurtBy");
 		if (var2.length() > 0) {
 			this.bn = UUID.fromString(var2);
-			EntityHuman var3 = this.world.b(this.bn);
+			EntityHuman var3 = this.world.getPlayer(this.bn);
 			this.b((EntityLiving) var3);
 			if (var3 != null) {
 				this.aL = var3;
@@ -100,16 +100,16 @@ public class EntityPigZombie extends EntityZombie {
 
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
-			Entity var3 = var1.j();
+			Entity var3 = var1.getDamager();
 			if (var3 instanceof EntityHuman) {
 				this.b(var3);
 			}
 
-			return super.damageEntity(var1, var2);
+			return super.receiveDamage(var1, var2);
 		}
 	}
 

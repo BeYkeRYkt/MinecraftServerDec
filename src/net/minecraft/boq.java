@@ -13,7 +13,7 @@ public class boq extends bpa {
 		int var7 = var3 + 2;
 		int var8 = var4 + 2;
 		int[] var9 = this.a.a(var5, var6, var7, var8);
-		int[] var10 = boy.a(var3 * var4);
+		int[] var10 = IntCache.allocate(var3 * var4);
 
 		for (int var11 = 0; var11 < var4; ++var11) {
 			for (int var12 = 0; var12 < var3; ++var12) {

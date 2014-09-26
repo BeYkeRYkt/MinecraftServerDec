@@ -7,56 +7,77 @@ import java.util.Random;
 
 public final class ItemStack {
 
-	public static final DecimalFormat a = new DecimalFormat("#.###");
+	public static final DecimalFormat format = new DecimalFormat("#.###");
+
+	public static ItemStack fromNBT(NBTCompoundTag tag) {
+		ItemStack itemStack = new ItemStack();
+		itemStack.read(tag);
+		return itemStack.getItem() != null ? itemStack : null;
+	}
+
+	public static boolean isSameNBTTags(ItemStack itemStack1, ItemStack itemStack2) {
+		return itemStack1 == null && itemStack2 == null ? true : (itemStack1 != null && itemStack2 != null ? (itemStack1.tag == null && itemStack2.tag != null ? false : itemStack1.tag == null || itemStack1.tag.equals(itemStack2.tag)) : false);
+	}
+
+	public static boolean matches(ItemStack itemStack1, ItemStack itemStack2) {
+		return itemStack1 == null && itemStack2 == null ? true : (itemStack1 != null && itemStack2 != null ? itemStack1.isSame(itemStack2) : false);
+	}
+
+	private boolean isSame(ItemStack itemStack) {
+		return this.amount != itemStack.amount ? false : (this.item != itemStack.item ? false : (this.wearout != itemStack.wearout ? false : (this.tag == null && itemStack.tag != null ? false : this.tag == null || this.tag.equals(itemStack.tag))));
+	}
+
+	public static boolean c(ItemStack itemStack1, ItemStack itemStack2) {
+		return itemStack1 == null && itemStack2 == null ? true : (itemStack1 != null && itemStack2 != null ? itemStack1.a(itemStack2) : false);
+	}
+
+	public static ItemStack getCopy(ItemStack itemStack) {
+		return itemStack == null ? null : itemStack.getCopy();
+	}
+
 	public int amount;
 	public int c;
 	private Item item;
 	private NBTCompoundTag tag;
-	private int durability;
+	private int wearout;
 	private EntityItemFrame g;
 	private Block h;
 	private boolean i;
 	private Block j;
 	private boolean k;
 
-	public ItemStack(Block var1) {
-		this(var1, 1);
+	public ItemStack(Block block) {
+		this(block, 1);
 	}
 
-	public ItemStack(Block var1, int var2) {
-		this(var1, var2, 0);
+	public ItemStack(Block block, int amount) {
+		this(block, amount, 0);
 	}
 
-	public ItemStack(Block var1, int var2, int var3) {
-		this(Item.getItemOf(var1), var2, var3);
+	public ItemStack(Block block, int amount, int wearout) {
+		this(Item.getItemOf(block), amount, wearout);
 	}
 
-	public ItemStack(Item var1) {
-		this(var1, 1);
+	public ItemStack(Item item) {
+		this(item, 1);
 	}
 
-	public ItemStack(Item var1, int var2) {
-		this(var1, var2, 0);
+	public ItemStack(Item item, int amount) {
+		this(item, amount, 0);
 	}
 
-	public ItemStack(Item var1, int var2, int var3) {
+	public ItemStack(Item item, int amount, int wearout) {
 		this.h = null;
 		this.i = false;
 		this.j = null;
 		this.k = false;
-		this.item = var1;
-		this.amount = var2;
-		this.durability = var3;
-		if (this.durability < 0) {
-			this.durability = 0;
+		this.item = item;
+		this.amount = amount;
+		this.wearout = wearout;
+		if (this.wearout < 0) {
+			this.wearout = 0;
 		}
 
-	}
-
-	public static ItemStack a(NBTCompoundTag var0) {
-		ItemStack var1 = new ItemStack();
-		var1.real(var0);
-		return var1.getItem() != null ? var1 : null;
 	}
 
 	private ItemStack() {
@@ -67,7 +88,7 @@ public final class ItemStack {
 	}
 
 	public ItemStack a(int var1) {
-		ItemStack var2 = new ItemStack(this.item, var1, this.durability);
+		ItemStack var2 = new ItemStack(this.item, var1, this.wearout);
 		if (this.tag != null) {
 			var2.tag = (NBTCompoundTag) this.tag.getCopy();
 		}
@@ -105,7 +126,7 @@ public final class ItemStack {
 		RegistryObjectName nameId = (RegistryObjectName) Item.REGISTRY.c(this.item);
 		tag.put("id", nameId == null ? "minecraft:air" : nameId.toString());
 		tag.put("Count", (byte) this.amount);
-		tag.put("Damage", (short) this.durability);
+		tag.put("Damage", (short) this.wearout);
 		if (this.tag != null) {
 			tag.put("tag", (NBTTag) this.tag);
 		}
@@ -113,7 +134,7 @@ public final class ItemStack {
 		return tag;
 	}
 
-	public void real(NBTCompoundTag tag) {
+	public void read(NBTCompoundTag tag) {
 		if (tag.isTagAssignableFrom("id", 8)) {
 			this.item = Item.getByName(tag.getString("id"));
 		} else {
@@ -121,9 +142,9 @@ public final class ItemStack {
 		}
 
 		this.amount = tag.getByte("Count");
-		this.durability = tag.getShort("Damage");
-		if (this.durability < 0) {
-			this.durability = 0;
+		this.wearout = tag.getShort("Damage");
+		if (this.wearout < 0) {
+			this.wearout = 0;
 		}
 
 		if (tag.isTagAssignableFrom("tag", 10)) {
@@ -143,7 +164,7 @@ public final class ItemStack {
 	}
 
 	public boolean e() {
-		return this.item == null ? false : (this.item.getDurability() <= 0 ? false : !this.hasTag() || !this.getTag().getBoolean("Unbreakable"));
+		return this.item == null ? false : (this.item.getMaxWearout() <= 0 ? false : !this.hasTag() || !this.getTag().getBoolean("Unbreakable"));
 	}
 
 	public boolean f() {
@@ -151,27 +172,31 @@ public final class ItemStack {
 	}
 
 	public boolean g() {
-		return this.e() && this.durability > 0;
+		return this.e() && this.wearout > 0;
 	}
 
-	public int h() {
-		return this.durability;
+	public int getAmount() {
+		return amount;
 	}
 
-	public int getDurability() {
-		return this.durability;
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
-	public void setDurability(int durability) {
-		this.durability = durability;
-		if (this.durability < 0) {
-			this.durability = 0;
+	public int getWearout() {
+		return this.wearout;
+	}
+
+	public void setWearout(int wearout) {
+		this.wearout = wearout;
+		if (this.wearout < 0) {
+			this.wearout = 0;
 		}
 
 	}
 
-	public int j() {
-		return this.item.getDurability();
+	public int getMaxWearout() {
+		return this.item.getMaxWearout();
 	}
 
 	public boolean a(int var1, Random var2) {
@@ -194,8 +219,8 @@ public final class ItemStack {
 				}
 			}
 
-			this.durability += var1;
-			return this.durability > this.j();
+			this.wearout += var1;
+			return this.wearout > this.getMaxWearout();
 		}
 	}
 
@@ -217,7 +242,7 @@ public final class ItemStack {
 						this.amount = 0;
 					}
 
-					this.durability = 0;
+					this.wearout = 0;
 				}
 
 			}
@@ -240,8 +265,8 @@ public final class ItemStack {
 
 	}
 
-	public boolean b(Block var1) {
-		return this.item.b(var1);
+	public boolean canDestroySpecialBlock(Block var1) {
+		return this.item.canDestroySpecialBlock(var1);
 	}
 
 	public boolean a(EntityHuman var1, EntityLiving var2) {
@@ -249,7 +274,7 @@ public final class ItemStack {
 	}
 
 	public ItemStack getCopy() {
-		ItemStack var1 = new ItemStack(this.item, this.amount, this.durability);
+		ItemStack var1 = new ItemStack(this.item, this.amount, this.wearout);
 		if (this.tag != null) {
 			var1.tag = (NBTCompoundTag) this.tag.getCopy();
 		}
@@ -257,36 +282,18 @@ public final class ItemStack {
 		return var1;
 	}
 
-	public static boolean a(ItemStack var0, ItemStack var1) {
-		return var0 == null && var1 == null ? true : (var0 != null && var1 != null ? (var0.tag == null && var1.tag != null ? false : var0.tag == null || var0.tag.equals(var1.tag)) : false);
-	}
 
-	public static boolean matches(ItemStack var0, ItemStack var1) {
-		return var0 == null && var1 == null ? true : (var0 != null && var1 != null ? var0.d(var1) : false);
-	}
-
-	private boolean d(ItemStack var1) {
-		return this.amount != var1.amount ? false : (this.item != var1.item ? false : (this.durability != var1.durability ? false : (this.tag == null && var1.tag != null ? false : this.tag == null || this.tag.equals(var1.tag))));
-	}
-
-	public static boolean c(ItemStack var0, ItemStack var1) {
-		return var0 == null && var1 == null ? true : (var0 != null && var1 != null ? var0.a(var1) : false);
-	}
 
 	public boolean a(ItemStack var1) {
-		return var1 != null && this.item == var1.item && this.durability == var1.durability;
+		return var1 != null && this.item == var1.item && this.wearout == var1.wearout;
 	}
 
 	public String a() {
 		return this.item.getName(this);
 	}
 
-	public static ItemStack b(ItemStack var0) {
-		return var0 == null ? null : var0.getCopy();
-	}
-
 	public String toString() {
-		return this.amount + "x" + this.item.getName() + "@" + this.durability;
+		return this.amount + "x" + this.item.getName() + "@" + this.wearout;
 	}
 
 	public void a(World var1, Entity var2, int var3, boolean var4) {
@@ -306,7 +313,7 @@ public final class ItemStack {
 		return this.getItem().d(this);
 	}
 
-	public ano m() {
+	public EnumAnimation m() {
 		return this.getItem().e(this);
 	}
 
@@ -334,57 +341,56 @@ public final class ItemStack {
 		}
 	}
 
-	public NBTListTag p() {
+	public NBTListTag getEnchantmentsTag() {
 		return this.tag == null ? null : this.tag.getList("ench", 10);
+	}
+
+	public boolean hasDisplayName() {
+		return this.tag == null ? false : (!this.tag.isTagAssignableFrom("display", 10) ? false : this.tag.getCompound("display").isTagAssignableFrom("Name", 8));
 	}
 
 	public void setTag(NBTCompoundTag tag) {
 		this.tag = tag;
 	}
 
-	public String q() {
-		String var1 = this.getItem().a(this);
+	public String getDisplayName() {
+		String defaultName = this.getItem().a(this);
 		if (this.tag != null && this.tag.isTagAssignableFrom("display", 10)) {
-			NBTCompoundTag var2 = this.tag.getCompound("display");
-			if (var2.isTagAssignableFrom("Name", 8)) {
-				var1 = var2.getString("Name");
+			NBTCompoundTag displayTag = this.tag.getCompound("display");
+			if (displayTag.isTagAssignableFrom("Name", 8)) {
+				defaultName = displayTag.getString("Name");
 			}
 		}
 
-		return var1;
+		return defaultName;
 	}
 
-	public ItemStack c(String var1) {
+	public ItemStack setDisplayName(String name) {
 		if (this.tag == null) {
 			this.tag = new NBTCompoundTag();
 		}
 
 		if (!this.tag.isTagAssignableFrom("display", 10)) {
-			this.tag.put("display", (NBTTag) (new NBTCompoundTag()));
+			this.tag.put("display", new NBTCompoundTag());
 		}
 
-		this.tag.getCompound("display").put("Name", var1);
+		this.tag.getCompound("display").put("Name", name);
 		return this;
 	}
 
-	public void r() {
+	public void removeDisplayName() {
 		if (this.tag != null) {
 			if (this.tag.isTagAssignableFrom("display", 10)) {
-				NBTCompoundTag var1 = this.tag.getCompound("display");
-				var1.remove("Name");
-				if (var1.isEmpty()) {
+				NBTCompoundTag displayTag = this.tag.getCompound("display");
+				displayTag.remove("Name");
+				if (displayTag.isEmpty()) {
 					this.tag.remove("display");
 					if (this.tag.isEmpty()) {
-						this.setTag((NBTCompoundTag) null);
+						this.setTag(null);
 					}
 				}
-
 			}
 		}
-	}
-
-	public boolean s() {
-		return this.tag == null ? false : (!this.tag.isTagAssignableFrom("display", 10) ? false : this.tag.getCompound("display").isTagAssignableFrom("Name", 8));
 	}
 
 	public amx u() {
@@ -476,8 +482,8 @@ public final class ItemStack {
 	}
 
 	public IChatBaseComponent C() {
-		ChatComponentText var1 = new ChatComponentText(this.q());
-		if (this.s()) {
+		ChatComponentText var1 = new ChatComponentText(this.getDisplayName());
+		if (this.hasDisplayName()) {
 			var1.getChatModifier().b(Boolean.valueOf(true));
 		}
 

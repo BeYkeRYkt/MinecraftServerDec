@@ -101,9 +101,9 @@ public class bnl extends bno {
 			for (int var7 = this.l.minZ; var7 <= this.l.maxZ; ++var7) {
 				Position var8 = new Position(var6, 64, var7);
 				if (var3.b((fd) var8)) {
-					var8 = var1.r(var8).b();
+					var8 = var1.r(var8).getDown();
 					var1.setBlockAt(var8, var4, 2);
-					var1.setBlockAt(var8.b(), var5, 2);
+					var1.setBlockAt(var8.getDown(), var5, 2);
 				}
 			}
 		}

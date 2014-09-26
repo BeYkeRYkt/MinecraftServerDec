@@ -46,39 +46,39 @@ public class BlockRedstoneTorch extends BlockTorch {
 		return 2;
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		if (this.M) {
 			BlockFace[] var4 = BlockFace.values();
 			int var5 = var4.length;
 
 			for (int var6 = 0; var6 < var5; ++var6) {
 				BlockFace var7 = var4[var6];
-				var1.c(var2.a(var7), (Block) this);
+				var1.c(var2.getRelative(var7), (Block) this);
 			}
 		}
 
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		if (this.M) {
 			BlockFace[] var4 = BlockFace.values();
 			int var5 = var4.length;
 
 			for (int var6 = 0; var6 < var5; ++var6) {
 				BlockFace var7 = var4[var6];
-				var1.c(var2.a(var7), (Block) this);
+				var1.c(var2.getRelative(var7), (Block) this);
 			}
 		}
 
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return this.M && var3.b(a) != var4 ? 15 : 0;
 	}
 
 	private boolean g(World var1, Position var2, IBlockState var3) {
 		BlockFace var4 = ((BlockFace) var3.b(a)).getOpposite();
-		return var1.b(var2.a(var4), var4);
+		return var1.isBlockFacePowered(var2.getRelative(var4), var4);
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Random var4) {
@@ -96,13 +96,13 @@ public class BlockRedstoneTorch extends BlockTorch {
 			if (var5) {
 				var1.setBlockAt(var2, Blocks.UNLIT_REDSTONE_TORCH.getBlockState().a(a, var3.b(a)), 3);
 				if (this.a(var1, var2, true)) {
-					var1.makeSound((double) ((float) var2.getX() + 0.5F), (double) ((float) var2.getY() + 0.5F), (double) ((float) var2.getZ() + 0.5F), "random.fizz", 0.5F, 2.6F + (var1.s.nextFloat() - var1.s.nextFloat()) * 0.8F);
+					var1.makeSound((double) ((float) var2.getX() + 0.5F), (double) ((float) var2.getY() + 0.5F), (double) ((float) var2.getZ() + 0.5F), "random.fizz", 0.5F, 2.6F + (var1.random.nextFloat() - var1.random.nextFloat()) * 0.8F);
 
 					for (int var7 = 0; var7 < 5; ++var7) {
 						double var8 = (double) var2.getX() + var4.nextDouble() * 0.6D + 0.2D;
 						double var10 = (double) var2.getY() + var4.nextDouble() * 0.6D + 0.2D;
 						double var12 = (double) var2.getZ() + var4.nextDouble() * 0.6D + 0.2D;
-						var1.a(Particle.l, var8, var10, var12, 0.0D, 0.0D, 0.0D, new int[0]);
+						var1.addParticle(Particle.l, var8, var10, var12, 0.0D, 0.0D, 0.0D, new int[0]);
 					}
 
 					var1.a(var2, var1.getBlockState(var2).getBlock(), 160);
@@ -124,14 +124,14 @@ public class BlockRedstoneTorch extends BlockTorch {
 	}
 
 	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
-		return var4 == BlockFace.DOWN ? this.a(var1, var2, var3, var4) : 0;
+		return var4 == BlockFace.DOWN ? this.getPower(var1, var2, var3, var4) : 0;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf(Blocks.REDSTONE_TORCH);
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 

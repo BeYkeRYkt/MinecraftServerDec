@@ -6,8 +6,8 @@ import com.google.common.collect.Maps;
 import com.google.common.io.Files;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.mojang.authlib.Agent;
-import com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.Agent;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

@@ -58,18 +58,18 @@ public class EntityBoat extends Entity {
 		return (double) this.width * 0.0D - 0.30000001192092896D;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else if (!this.world.isStatic && !this.dead) {
-			if (this.passenger != null && this.passenger == var1.j() && var1 instanceof EntityDamageSourceIndirect) {
+			if (this.passenger != null && this.passenger == var1.getDamager() && var1 instanceof EntityDamageSourceIndirect) {
 				return false;
 			} else {
 				this.b(-this.m());
 				this.a(10);
 				this.a(this.j() + var2 * 10.0F);
 				this.ac();
-				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).playerProperties.instabuild;
+				boolean var3 = var1.getDamager() instanceof EntityHuman && ((EntityHuman) var1.getDamager()).playerProperties.instabuild;
 				if (var3 || this.j() > 40.0F) {
 					if (this.passenger != null) {
 						this.passenger.mount((Entity) this);
@@ -93,8 +93,8 @@ public class EntityBoat extends Entity {
 		return !this.dead;
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.l() > 0) {
 			this.a(this.l() - 1);
 		}
@@ -134,11 +134,11 @@ public class EntityBoat extends Entity {
 				if (this.random.nextBoolean()) {
 					var15 = this.locationX - var6 * var11 * 0.8D + var8 * var13;
 					var17 = this.locationZ - var8 * var11 * 0.8D - var6 * var13;
-					this.world.a(Particle.f, var15, this.locationY - 0.125D, var17, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.world.addParticle(Particle.f, var15, this.locationY - 0.125D, var17, this.motionX, this.motionY, this.motionZ, new int[0]);
 				} else {
 					var15 = this.locationX + var6 + var8 * var11 * 0.7D;
 					var17 = this.locationZ + var8 - var6 * var11 * 0.7D;
-					this.world.a(Particle.f, var15, this.locationY - 0.125D, var17, this.motionX, this.motionY, this.motionZ, new int[0]);
+					this.world.addParticle(Particle.f, var15, this.locationY - 0.125D, var17, this.motionX, this.motionY, this.motionZ, new int[0]);
 				}
 			}
 		}
@@ -301,10 +301,10 @@ public class EntityBoat extends Entity {
 		}
 	}
 
-	protected void b(NBTCompoundTag var1) {
+	protected void writeAdditionalData(NBTCompoundTag var1) {
 	}
 
-	protected void a(NBTCompoundTag var1) {
+	protected void readAdditionalData(NBTCompoundTag var1) {
 	}
 
 	public boolean e(EntityHuman var1) {
@@ -338,7 +338,7 @@ public class EntityBoat extends Entity {
 
 				this.fallDistance = 0.0F;
 			}
-		} else if (this.world.getBlockState((new Position(this)).b()).getBlock().getMaterial() != Material.WATER && var1 < 0.0D) {
+		} else if (this.world.getBlockState((new Position(this)).getDown()).getBlock().getMaterial() != Material.WATER && var1 < 0.0D) {
 			this.fallDistance = (float) ((double) this.fallDistance - var1);
 		}
 

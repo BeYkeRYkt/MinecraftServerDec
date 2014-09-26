@@ -5,9 +5,9 @@ class ajc extends Slot {
 	// $FF: synthetic field
 	final int a;
 	// $FF: synthetic field
-	final ajb b;
+	final PlayerCraftingContainer b;
 
-	ajc(ajb var1, IInventory var2, int var3, int var4, int var5, int var6) {
+	ajc(PlayerCraftingContainer var1, IInventory var2, int var3, int var4, int var5, int var6) {
 		super(var2, var3, var4, var5);
 		this.b = var1;
 		this.a = var6;

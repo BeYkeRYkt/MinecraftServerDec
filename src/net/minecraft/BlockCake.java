@@ -40,7 +40,7 @@ public class BlockCake extends Block {
 		return false;
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		this.b(var1, var2, var3, var4);
 		return true;
 	}
@@ -74,14 +74,14 @@ public class BlockCake extends Block {
 	}
 
 	private boolean d(World var1, Position var2) {
-		return var1.getBlockState(var2.b()).getBlock().getMaterial().isBuildable();
+		return var1.getBlockState(var2.getDown()).getBlock().getMaterial().isBuildable();
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 
@@ -101,7 +101,7 @@ public class BlockCake extends Block {
 		return (7 - ((Integer) var1.getBlockState(var2).b(a)).intValue()) * 2;
 	}
 
-	public boolean N() {
+	public boolean isComplexRedstone() {
 		return true;
 	}
 

@@ -6,8 +6,9 @@ import java.util.Random;
 
 public class EntitySheep extends EntityAnimal {
 
-	private final InventoryCrafting bk = new InventoryCrafting(new acm(this), 2, 1);
 	private static final Map bm = Maps.newEnumMap(akv.class);
+
+	private final InventoryCrafting bk = new InventoryCrafting(null, new ContainerSheep(this), 2, 1);
 	private int bn;
 	private yw bo = new yw(this);
 
@@ -28,8 +29,8 @@ public class EntitySheep extends EntityAnimal {
 		this.i.a(6, new PathfinderGoalRandomStroll(this, 1.0D));
 		this.i.a(7, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 6.0F));
 		this.i.a(8, new PathfinderGoalRandomLookaround(this));
-		this.bk.a(0, new ItemStack(Items.DYE, 1, 0));
-		this.bk.a(1, new ItemStack(Items.DYE, 1, 0));
+		this.bk.setItem(0, new ItemStack(Items.DYE, 1, 0));
+		this.bk.setItem(1, new ItemStack(Items.DYE, 1, 0));
 	}
 
 	protected void E() {
@@ -99,14 +100,14 @@ public class EntitySheep extends EntityAnimal {
 		return super.a(var1);
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("Sheared", this.ck());
 		var1.put("Color", (byte) this.cj().a());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.l(var1.getBoolean("Sheared"));
 		this.b(akv.b(var1.getByte("Color")));
 	}
@@ -172,21 +173,21 @@ public class EntitySheep extends EntityAnimal {
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		this.b(a(this.world.s));
+		this.b(a(this.world.random));
 		return var2;
 	}
 
 	private akv a(EntityAnimal var1, EntityAnimal var2) {
 		int var3 = ((EntitySheep) var1).cj().b();
 		int var4 = ((EntitySheep) var2).cj().b();
-		this.bk.a(0).setDurability(var3);
-		this.bk.a(1).setDurability(var4);
+		this.bk.getItem(0).setWearout(var3);
+		this.bk.getItem(1).setWearout(var4);
 		ItemStack var5 = CraftingManager.getInstance().a(this.bk, ((EntitySheep) var1).world);
 		int var6;
 		if (var5 != null && var5.getItem() == Items.DYE) {
-			var6 = var5.getDurability();
+			var6 = var5.getWearout();
 		} else {
-			var6 = this.world.s.nextBoolean() ? var3 : var4;
+			var6 = this.world.random.nextBoolean() ? var3 : var4;
 		}
 
 		return akv.a(var6);

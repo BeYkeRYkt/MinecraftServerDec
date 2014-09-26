@@ -37,14 +37,14 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 		return this.dataWatcher.a(16);
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("Size", this.ck() - 1);
 		var1.put("wasOnGround", this.bi);
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		int var2 = var1.getInt("Size");
 		if (var2 < 0) {
 			var2 = 0;
@@ -62,14 +62,14 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 		return "mob.slime." + (this.ck() > 1 ? "big" : "small");
 	}
 
-	public void s_() {
+	public void doTick() {
 		if (!this.world.isStatic && this.world.getDifficulty() == Difficulty.PEACEFUL && this.ck() > 0) {
 			this.dead = true;
 		}
 
 		this.b += (this.a - this.b) * 0.5F;
 		this.c = this.b;
-		super.s_();
+		super.doTick();
 		if (this.onGround && !this.bi) {
 			int var1 = this.ck();
 
@@ -82,7 +82,7 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 				Particle var10001 = this.n();
 				double var10002 = this.locationX + (double) var5;
 				double var10004 = this.locationZ + (double) var6;
-				var10000.a(var10001, var10002, this.getBoundingBox().minY, var10004, 0.0D, 0.0D, 0.0D, new int[0]);
+				var10000.addParticle(var10001, var10002, this.getBoundingBox().minY, var10004, 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 
 			if (this.cj()) {
@@ -133,7 +133,7 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 				float var4 = ((float) (var3 % 2) - 0.5F) * (float) var1 / 4.0F;
 				float var5 = ((float) (var3 / 2) - 0.5F) * (float) var1 / 4.0F;
 				EntitySlime var6 = this.cd();
-				if (this.k_()) {
+				if (this.hasCustomName()) {
 					var6.a(this.getCustomName());
 				}
 
@@ -167,7 +167,7 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 
 	protected void e(EntityLiving var1) {
 		int var2 = this.ck();
-		if (this.t(var1) && this.getDistanceSquared(var1) < 0.6D * (double) var2 * 0.6D * (double) var2 && var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), (float) this.ch())) {
+		if (this.t(var1) && this.getDistanceSquared(var1) < 0.6D * (double) var2 * 0.6D * (double) var2 && var1.receiveDamage(DamageSource.mobAttack((EntityLiving) this), (float) this.ch())) {
 			this.a("mob.attack", 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.a(this, var1);
 		}
@@ -205,7 +205,7 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 		} else {
 			if (this.world.getDifficulty() != Difficulty.PEACEFUL) {
 				BiomeBase var2 = this.world.b(new Position(MathHelper.toFixedPointInt(this.locationX), 0, MathHelper.toFixedPointInt(this.locationZ)));
-				if (var2 == BiomeBase.SWAMPLAND && this.locationY > 50.0D && this.locationY < 70.0D && this.random.nextFloat() < 0.5F && this.random.nextFloat() < this.world.y() && this.world.l(new Position(this)) <= this.random.nextInt(8)) {
+				if (var2 == BiomeBase.SWAMPLAND && this.locationY > 50.0D && this.locationY < 70.0D && this.random.nextFloat() < 0.5F && this.random.nextFloat() < this.world.y() && this.world.getLightLevel(new Position(this)) <= this.random.nextInt(8)) {
 					return super.bQ();
 				}
 

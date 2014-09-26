@@ -1,19 +1,29 @@
 package net.minecraft;
 
 import com.google.common.base.Charsets;
-import com.mojang.authlib.GameProfile;
+
+import net.minecraft.util.com.mojang.authlib.GameProfile;
+
+import java.net.InetSocketAddress;
 import java.security.PrivateKey;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.crypto.SecretKey;
+
 import net.minecraft.server.MinecraftServer;
+
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerLoginEvent.Result;
 
-public class LoginListener implements LoginServerboundPacketListener, PacketTickable {
+public class LoginListener implements LoginServerboundPacketListener, ITickable {
 
 	private static final AtomicInteger atomic = new AtomicInteger(0);
 	private static final Logger logger = LogManager.getLogger();
@@ -62,24 +72,29 @@ public class LoginListener implements LoginServerboundPacketListener, PacketTick
 	public void login() {
 		if (!this.profile.isComplete()) {
 			this.profile = this.generateOfflineModeUUID(this.profile);
+			this.state = EnumProtocolState.AUTHENTICATING;
+			new ThreadPlayerLookupUUID(this, "User Authenticator #" + atomic.incrementAndGet(), false).start();
+			return;
 		}
 
-		String loginKickMessage = this.minecraftserver.getPlayerList().getLoginKickMessage(this.networkManager.getAddress(), this.profile);
-		if (loginKickMessage != null) {
-			this.disconnect(loginKickMessage);
+		EntityPlayer player = new EntityPlayer(this.minecraftserver, this.minecraftserver.getWorldServer(0), profile, new PlayerInteractManager(this.minecraftserver.getWorldServer(0)));
+		PlayerLoginEvent loginEvent = new PlayerLoginEvent(player.getBukkitEntity(Player.class), "", ((InetSocketAddress)networkManager.getAddress()).getAddress());
+		Bukkit.getPluginManager().callEvent(loginEvent);
+		if (loginEvent.getResult() != Result.ALLOWED) {
+			this.disconnect(loginEvent.getKickMessage());
 		} else {
 			this.state = EnumProtocolState.ACCEPTED;
 			if (this.minecraftserver.getCompressionThreshold() >= 0 && !this.networkManager.isLocal()) {
 				this.networkManager.handleSendPacket(new PacketLoginOutSetCompression(this.minecraftserver.getCompressionThreshold()), new CompressionEnableListener(this));
 			}
-
 			this.networkManager.handleSendPacket(new PacketLoginOutLoginSuccess(this.profile));
-			this.minecraftserver.getPlayerList().join(this.networkManager, this.minecraftserver.getPlayerList().processLogin(this.profile));
+			this.minecraftserver.getPlayerList().kickDuplicatePlayers(this.profile);
+			this.minecraftserver.getPlayerList().join(this.networkManager, player);
 		}
 	}
 
-	public void handle(IChatBaseComponent component) {
-		logger.info(this.getName() + " lost connection: " + component.getStrippedMessage());
+	public void handleDisconnect(IChatBaseComponent component) {
+		logger.info(this.getName() + " lost connection: " + component.getJsonMessage());
 	}
 
 	public String getName() {
@@ -106,7 +121,7 @@ public class LoginListener implements LoginServerboundPacketListener, PacketTick
 			this.key = packet.getSharedKey(privateKey);
 			this.state = EnumProtocolState.AUTHENTICATING;
 			this.networkManager.setEncryption(this.key);
-			new ThreadPlayerLookupUUID(this, "User Authenticator #" + atomic.incrementAndGet()).start();
+			new ThreadPlayerLookupUUID(this, "User Authenticator #" + atomic.incrementAndGet(), true).start();
 		}
 	}
 

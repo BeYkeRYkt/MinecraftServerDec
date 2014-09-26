@@ -131,7 +131,7 @@ public class WorldData {
 		}
 
 		if (tag.isTagAssignableFrom("GameRules", 10)) {
-			this.gameRules.a(tag.getCompound("GameRules"));
+			this.gameRules.read(tag.getCompound("GameRules"));
 		}
 
 		if (tag.isTagAssignableFrom("Difficulty", 99)) {
@@ -307,7 +307,7 @@ public class WorldData {
 		}
 
 		dataTag.put("DifficultyLocked", this.isDifficultyLocked);
-		dataTag.put("GameRules", (NBTTag) this.gameRules.a());
+		dataTag.put("GameRules", (NBTTag) this.gameRules.write());
 		if (playerTag != null) {
 			dataTag.put("Player", (NBTTag) playerTag);
 		}
@@ -573,7 +573,7 @@ public class WorldData {
 		details.addDetails("Level spawn location", new Callable<String>() {
 			@Override
 			public String call() throws Exception {
-				return CrashReportSystemDetails.a(getSpawnX(), getSpawnY(), getSpawnZ());
+				return CrashReportSystemDetails.getPositionInfo(getSpawnX(), getSpawnY(), getSpawnZ());
 			}
 		});
 		details.addDetails("Level time", new Callable<String>() {

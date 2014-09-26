@@ -33,7 +33,7 @@ public class EntityWitherSkull extends EntityFireball {
 		if (!this.world.isStatic) {
 			if (var1.entity != null) {
 				if (this.a != null) {
-					if (var1.entity.damageEntity(DamageSource.mobAttack(this.a), 8.0F)) {
+					if (var1.entity.receiveDamage(DamageSource.mobAttack(this.a), 8.0F)) {
 						if (!var1.entity.isAlive()) {
 							this.a.g(5.0F);
 						} else {
@@ -41,7 +41,7 @@ public class EntityWitherSkull extends EntityFireball {
 						}
 					}
 				} else {
-					var1.entity.damageEntity(DamageSource.MAGIC, 5.0F);
+					var1.entity.receiveDamage(DamageSource.MAGIC, 5.0F);
 				}
 
 				if (var1.entity instanceof EntityLiving) {
@@ -58,7 +58,7 @@ public class EntityWitherSkull extends EntityFireball {
 				}
 			}
 
-			this.world.a(this, this.locationX, this.locationY, this.locationZ, 1.0F, false, this.world.getGameRules().b("mobGriefing"));
+			this.world.createExplosion(this, this.locationX, this.locationY, this.locationZ, 1.0F, false, this.world.getGameRules().isGameRule("mobGriefing"));
 			this.die();
 		}
 
@@ -68,7 +68,7 @@ public class EntityWitherSkull extends EntityFireball {
 		return false;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
 		return false;
 	}
 

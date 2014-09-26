@@ -40,13 +40,13 @@ public class WorldGenForestTree extends WorldGenTreeAbstract {
 			if (!var5) {
 				return false;
 			} else {
-				Block var18 = var1.getBlockState(var3.b()).getBlock();
+				Block var18 = var1.getBlockState(var3.getDown()).getBlock();
 				if ((var18 == Blocks.GRASS || var18 == Blocks.DIRT) && var3.getY() < 256 - var4 - 1) {
-					this.a(var1, var3.b());
+					this.a(var1, var3.getDown());
 					this.a(var1, var3.a(1, -1, 0));
 					this.a(var1, var3.a(1, -1, 1));
 					this.a(var1, var3.a(0, -1, 1));
-					BlockFace var19 = en.a.a(var2);
+					BlockFace var19 = UniverseDirection.HORIZONTAL.getRandomBlockFace(var2);
 					var8 = var4 - var2.nextInt(4);
 					var9 = 2 - var2.nextInt(3);
 					int var10 = var3.getX();
@@ -67,9 +67,9 @@ public class WorldGenForestTree extends WorldGenTreeAbstract {
 						Material var16 = var1.getBlockState(var15).getBlock().getMaterial();
 						if (var16 == Material.AIR || var16 == Material.LEAVES) {
 							this.a(var1, var15, Blocks.LOG2, EnumWoodType.f.a() - 4);
-							this.a(var1, var15.f(), Blocks.LOG2, EnumWoodType.f.a() - 4);
-							this.a(var1, var15.d(), Blocks.LOG2, EnumWoodType.f.a() - 4);
-							this.a(var1, var15.f().d(), Blocks.LOG2, EnumWoodType.f.a() - 4);
+							this.a(var1, var15.getEast(), Blocks.LOG2, EnumWoodType.f.a() - 4);
+							this.a(var1, var15.getSouth(), Blocks.LOG2, EnumWoodType.f.a() - 4);
+							this.a(var1, var15.getEast().getSouth(), Blocks.LOG2, EnumWoodType.f.a() - 4);
 							var12 = var14;
 						}
 					}

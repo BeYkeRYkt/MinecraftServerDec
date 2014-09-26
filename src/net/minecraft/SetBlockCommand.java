@@ -28,14 +28,14 @@ public class SetBlockCommand extends AbstractCommand {
 				var5 = a(var2[4], 0, 15);
 			}
 
-			World var6 = var1.getPrimaryWorld();
+			World var6 = var1.getWorld();
 			if (!var6.isLoaded(var3)) {
 				throw new di("commands.setblock.outOfWorld", new Object[0]);
 			} else {
 				NBTCompoundTag var7 = new NBTCompoundTag();
 				boolean var8 = false;
 				if (var2.length >= 7 && var4.x()) {
-					String var9 = a(var1, var2, 6).getStrippedMessage();
+					String var9 = a(var1, var2, 6).getJsonMessage();
 
 					try {
 						var7 = gg.a(var9);
@@ -60,7 +60,7 @@ public class SetBlockCommand extends AbstractCommand {
 				TileEntity var13 = var6.getTileEntity(var3);
 				if (var13 != null) {
 					if (var13 instanceof IInventory) {
-						((IInventory) var13).l();
+						((IInventory) var13).clearInventory();
 					}
 
 					var6.setBlockAt(var3, Blocks.AIR.getBlockState(), var4 == Blocks.AIR ? 2 : 4);

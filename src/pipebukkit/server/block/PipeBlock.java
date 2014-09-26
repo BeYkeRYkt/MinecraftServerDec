@@ -1,10 +1,15 @@
 package pipebukkit.server.block;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import net.minecraft.BlockRedstoneWire;
+import net.minecraft.Blocks;
+import net.minecraft.EnumSkyBlock;
 import net.minecraft.IBlockState;
 import net.minecraft.Position;
+import net.minecraft.server.MinecraftServer;
 
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -20,6 +25,7 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 
 import pipebukkit.server.PipeChunk;
+import pipebukkit.server.inventory.PipeItemStack;
 
 public class PipeBlock implements Block {
 
@@ -36,57 +42,58 @@ public class PipeBlock implements Block {
 	}
 
 	@Override
-	public List<MetadataValue> getMetadata(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MetadataValue> getMetadata(String metadataKey) {
+		return MinecraftServer.getInstance().getPipeServer().getBlockMetadataStorage(getWorld()).getMetadata(this, metadataKey);
 	}
 
 	@Override
-	public boolean hasMetadata(String arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean hasMetadata(String metadataKey) {
+		return MinecraftServer.getInstance().getPipeServer().getBlockMetadataStorage(getWorld()).hasMetadata(this, metadataKey);
 	}
 
 	@Override
-	public void removeMetadata(String arg0, Plugin arg1) {
-		// TODO Auto-generated method stub
-		
+	public void removeMetadata(String metadataKey, Plugin owningPlugin) {
+		MinecraftServer.getInstance().getPipeServer().getBlockMetadataStorage(getWorld()).removeMetadata(this, metadataKey, owningPlugin);
 	}
 
 	@Override
-	public void setMetadata(String arg0, MetadataValue arg1) {
-		// TODO Auto-generated method stub
-		
+	public void setMetadata(String metadataKey, MetadataValue metadataValue) {
+		MinecraftServer.getInstance().getPipeServer().getBlockMetadataStorage(getWorld()).setMetadata(this, metadataKey, metadataValue);
 	}
 
 	@Override
 	public boolean breakNaturally() {
-		// TODO Auto-generated method stub
-		return false;
+		net.minecraft.Block block = getNMSBlock();
+		boolean result = false;
+		if (block != null && block != Blocks.AIR) {
+			block.dropNaturally(chunk.getHandle().getWorld(), getPosition(), block.getBlockState(), 0);
+			result = true;
+		}
+		setType(Material.AIR);
+		return result;
 	}
 
 	@Override
-	public boolean breakNaturally(ItemStack arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean breakNaturally(ItemStack itemStack) {
+		net.minecraft.Block block = getNMSBlock();
+		@SuppressWarnings("deprecation")
+		net.minecraft.Item item = itemStack != null ? net.minecraft.Item.getById(itemStack.getTypeId()) : null;
+		if (block != null && (block.getMaterial().alwaysDropsItem() || (item != null && item.canDestroySpecialBlock(block)))) {
+			return breakNaturally();
+		} else {
+			setType(Material.AIR);
+			return true;
+		}
 	}
 
 	@Override
 	public Biome getBiome() {
-		// TODO Auto-generated method stub
-		return null;
+		return getWorld().getBiome(x, z);
 	}
 
 	@Override
-	public int getBlockPower() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getBlockPower(BlockFace arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setBiome(Biome biome) {
+		getWorld().setBiome(x, z, biome);
 	}
 
 	@Override
@@ -96,19 +103,29 @@ public class PipeBlock implements Block {
 
 	@Override
 	public byte getData() {
-		return (byte) chunk.getHandle().getBlockDataAt(new Position(x, y, z));
+		return (byte) chunk.getHandle().getBlockDataAt(getPosition());
 	}
 
 	@Override
 	public Collection<ItemStack> getDrops() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ItemStack> drops = new ArrayList<ItemStack>();
+		net.minecraft.Block block = getNMSBlock();
+		for (net.minecraft.ItemStack drop : block.getDrops(chunk.getHandle().getWorld(), 0)) {
+			drops.add(new PipeItemStack(drop));
+		}
+		return drops;
 	}
 
 	@Override
-	public Collection<ItemStack> getDrops(ItemStack arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<ItemStack> getDrops(ItemStack itemStack) {
+		net.minecraft.Block block = getNMSBlock();
+		@SuppressWarnings("deprecation")
+		net.minecraft.Item item = itemStack != null ? net.minecraft.Item.getById(itemStack.getTypeId()) : null;
+		if (block != null && (block.getMaterial().alwaysDropsItem() || (item != null && item.canDestroySpecialBlock(block)))) {
+			return getDrops();
+		} else {
+			return new ArrayList<ItemStack>();
+		}
 	}
 
 	@Override
@@ -128,26 +145,27 @@ public class PipeBlock implements Block {
 
 	@Override
 	public double getHumidity() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getWorld().getHumidity(x, z);
 	}
 
 	@Override
 	public byte getLightFromBlocks() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (byte) chunk.getHandle().getBrightness(EnumSkyBlock.BLOCK, getPosition());
 	}
 
 	@Override
 	public byte getLightFromSky() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (byte) chunk.getHandle().getBrightness(EnumSkyBlock.SKY, getPosition());
 	}
 
 	@Override
 	public byte getLightLevel() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (byte) chunk.getHandle().getWorld().getLightLevel(getPosition());
+	}
+
+	@Override
+	public double getTemperature() {
+		return getWorld().getTemperature(x, z);
 	}
 
 	@Override
@@ -168,10 +186,10 @@ public class PipeBlock implements Block {
 		return store;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public PistonMoveReaction getPistonMoveReaction() {
-		// TODO Auto-generated method stub
-		return null;
+		return PistonMoveReaction.getById(getNMSBlock().getMaterial().getPushReaction());
 	}
 
 	@Override
@@ -191,14 +209,51 @@ public class PipeBlock implements Block {
 
 	@Override
 	public BlockState getState() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public double getTemperature() {
-		// TODO Auto-generated method stub
-		return 0;
+		Material material = getType();
+		switch (material) {
+			case SIGN: case SIGN_POST: case WALL_SIGN: {
+				return new PipeSign(this);
+			}
+			case CHEST: case TRAPPED_CHEST: {
+				return new PipeChest(this);
+			}
+			case BURNING_FURNACE: case FURNACE: {
+				return new PipeFurnace(this);
+			}
+			case DISPENSER: {
+				return new PipeDispenser(this);
+			}
+			case DROPPER: {
+				return new PipeDropper(this);
+			}
+			case HOPPER: {
+				return new PipeHopper(this);
+			}
+			case MOB_SPAWNER: {
+				return new PipeMobSpawner(this);
+			}
+			case NOTE_BLOCK: {
+				return new PipeNoteBlock(this);
+			}
+			case JUKEBOX: {
+				return new PipeJukebox(this);
+			}
+			case BREWING_STAND: {
+				return new PipeBrewingStand(this);
+			}
+			case SKULL: {
+				return new PipeSkull(this);
+			}
+			case COMMAND: {
+				return new PipeCommandBlock(this);
+			}
+			case BEACON: {
+				return new PipeBeacon(this);
+			}
+			default: {
+				return new PipeBlockState(this);
+			}
+		}
 	}
 
 	@SuppressWarnings("deprecation")
@@ -209,7 +264,7 @@ public class PipeBlock implements Block {
 
 	@Override
 	public int getTypeId() {
-		return net.minecraft.Block.getBlockId(chunk.getHandle().getBlockAtWorldCoords(x, y, z));
+		return net.minecraft.Block.getBlockId(getNMSBlock());
 	}
 
 	@Override
@@ -233,43 +288,13 @@ public class PipeBlock implements Block {
 	}
 
 	@Override
-	public boolean isBlockFaceIndirectlyPowered(BlockFace arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isBlockFacePowered(BlockFace arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isBlockIndirectlyPowered() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isBlockPowered() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean isEmpty() {
 		return getType() == Material.AIR;
 	}
 
 	@Override
 	public boolean isLiquid() {
-		return chunk.getHandle().getBlockAtWorldCoords(x, y, z).getMaterial().isLiquid();
-	}
-
-	@Override
-	public void setBiome(Biome arg0) {
-		// TODO Auto-generated method stub
-		
+		return getNMSBlock().getMaterial().isLiquid();
 	}
 
 	@Override
@@ -311,6 +336,88 @@ public class PipeBlock implements Block {
 			}
 			return success;
 		}
+	}
+
+	@Override
+	public int getBlockPower() {
+		return getBlockPower(BlockFace.SELF);
+	}
+
+	@Override
+	public int getBlockPower(BlockFace face) {
+		//TODO: check this
+		int power = 0;
+		BlockRedstoneWire redstonewire = Blocks.REDSTONE_WIRE;
+		net.minecraft.World nmsWorld = chunk.getHandle().getWorld();
+		if ((face == BlockFace.DOWN || face == BlockFace.SELF) && nmsWorld.isBlockFacePowered(getPosition().getDown(), net.minecraft.BlockFace.DOWN)) {
+			power = redstonewire.getPower(nmsWorld, getPosition().getDown(), power);
+		}
+		if ((face == BlockFace.UP || face == BlockFace.SELF) && nmsWorld.isBlockFacePowered(getPosition().getUp(), net.minecraft.BlockFace.UP)) {
+			power = redstonewire.getPower(nmsWorld, getPosition().getUp(), power);
+		}
+		if ((face == BlockFace.EAST || face == BlockFace.SELF) && nmsWorld.isBlockFacePowered(getPosition().getEast(), net.minecraft.BlockFace.EAST)) {
+			power = redstonewire.getPower(nmsWorld, getPosition().getEast(), power);
+		}
+		if ((face == BlockFace.WEST || face == BlockFace.SELF) && nmsWorld.isBlockFacePowered(getPosition().getWest(), net.minecraft.BlockFace.WEST)) {
+			power = redstonewire.getPower(nmsWorld, getPosition().getWest(), power);
+		}
+		if ((face == BlockFace.NORTH || face == BlockFace.SELF) && nmsWorld.isBlockFacePowered(getPosition().getNorth(), net.minecraft.BlockFace.NORTH)) {
+			power = redstonewire.getPower(nmsWorld, getPosition().getNorth(), power);
+		}
+		if ((face == BlockFace.SOUTH || face == BlockFace.SELF) && nmsWorld.isBlockFacePowered(getPosition().getSouth(), net.minecraft.BlockFace.SOUTH)) {
+			power = redstonewire.getPower(nmsWorld, getPosition().getSouth(), power);
+		}
+		return power > 0 ? power : (face == BlockFace.SELF ? isBlockIndirectlyPowered() : isBlockFaceIndirectlyPowered(face)) ? 15 : 0;
+	}
+
+	@Override
+	public boolean isBlockIndirectlyPowered() {
+		return chunk.getHandle().getWorld().isBlockIndirectlyPowered(getPosition());
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public boolean isBlockFaceIndirectlyPowered(BlockFace face) {
+		//TODO: check this
+		int power = chunk.getHandle().getWorld().getBlockFacePower(getPosition(), net.minecraft.BlockFace.valueOf(face.name()));
+		Block relative = getRelative(face);
+		if (relative.getType() == Material.REDSTONE_WIRE) {
+			return Math.max(power, relative.getData()) > 0;
+		}
+		return power > 0;
+	}
+
+	@Override
+	public boolean isBlockFacePowered(BlockFace face) {
+		//TODO: check this
+		return chunk.getHandle().getWorld().getBlockFacePower(getPosition(), net.minecraft.BlockFace.valueOf(face.name())) > 0;
+	}
+
+	@Override
+	public boolean isBlockPowered() {
+		return chunk.getHandle().getWorld().getBlockPower(getPosition()) > 0;
+	}
+
+	@Override
+	public int hashCode() {
+		return y << 24 ^ x ^ z ^ getWorld().hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Block)) {
+			return false;
+		}
+		Block other = (Block) obj;
+		return x == other.getX() && y == other.getY() && z == other.getZ() && getWorld() == other.getWorld();
+	}
+
+	private Position getPosition() {
+		return new Position(getX(), getY(), getZ());
+	}
+
+	private net.minecraft.Block getNMSBlock() {
+		return chunk.getHandle().getBlockAtWorldCoords(x, y, z);
 	}
 
 }

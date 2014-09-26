@@ -3,9 +3,9 @@ package net.minecraft;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.mojang.authlib.GameProfile;
 
-import io.netty.buffer.Unpooled;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
+import net.minecraft.util.io.netty.buffer.Unpooled;
 
 import java.io.File;
 import java.net.SocketAddress;
@@ -26,6 +26,12 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerLoginEvent.Result;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 public abstract class PlayerList {
 
@@ -82,7 +88,7 @@ public abstract class PlayerList {
 		Position var11 = worldServer.getSpawnPosition();
 		this.a(player, (EntityPlayer) null, worldServer);
 		PlayerConnection var12 = new PlayerConnection(this.minecraftserver, networkManager, player);
-		var12.sendPacket((new PacketPlayOutJoinGame(player.getId(), player.playerInteractManager.getGameMode(), worldData.isHardcore(), worldServer.worldProvider.getDimensionId(), worldServer.getDifficulty(), this.getMaxPlayers(), worldData.getLevelType(), worldServer.getGameRules().b("reducedDebugInfo"))));
+		var12.sendPacket((new PacketPlayOutJoinGame(player.getId(), player.playerInteractManager.getGameMode(), worldData.isHardcore(), worldServer.worldProvider.getDimensionId(), worldServer.getDifficulty(), this.getMaxPlayers(), worldData.getLevelType(), worldServer.getGameRules().isGameRule("reducedDebugInfo"))));
 		var12.sendPacket((new PacketPlayOutPluginMessage("MC|Brand", (new PacketDataSerializer(Unpooled.buffer())).writeString(this.c().getServerModName()))));
 		var12.sendPacket((new PacketPlayOutServerDifficulty(worldData.getDifficulty(), worldData.isDifficultyLocked())));
 		var12.sendPacket((new PacketPlayOutSpawnPosition(var11)));
@@ -92,16 +98,7 @@ public abstract class PlayerList {
 		player.getStatisticManager().b(player);
 		this.a((pk) worldServer.Z(), player);
 		this.minecraftserver.requestServerPingRefresh();
-		ChatMessage var13;
-		if (!player.getName().equalsIgnoreCase(var6)) {
-			var13 = new ChatMessage("multiplayer.player.joined.renamed", new Object[] { player.getComponentName(), var6 });
-		} else {
-			var13 = new ChatMessage("multiplayer.player.joined", new Object[] { player.getComponentName() });
-		}
-
-		var13.getChatModifier().setColor(EnumChatFormat.YELLOW);
-		this.sendMessage((IChatBaseComponent) var13);
-		this.c(player);
+		this.addPlayerToGame(player);
 		var12.movePlayer(player.locationX, player.locationY, player.locationZ, player.yaw, player.pitch);
 		this.updateWorldData(player, worldServer);
 		if (this.minecraftserver.aa().length() > 0) {
@@ -178,26 +175,36 @@ public abstract class PlayerList {
 		return var3;
 	}
 
-	protected void b(EntityPlayer var1) {
-		this.playerFileData.save(var1);
-		StatisticManager var2 = (StatisticManager) this.playersStatistic.get(var1.getUUID());
+	protected void savePlayerData(EntityPlayer player) {
+		this.playerFileData.save(player);
+		StatisticManager var2 = (StatisticManager) this.playersStatistic.get(player.getUUID());
 		if (var2 != null) {
 			var2.write();
 		}
 
 	}
 
-	public void c(EntityPlayer var1) {
-		this.players.add(var1);
-		this.uuidToPlayerMap.put(var1.getUUID(), var1);
-		this.sendPacket((Packet) (new PacketPlayOutListItem(ListItemAction.ADD_PLAYER, new EntityPlayer[] { var1 })));
-		WorldServer var2 = this.minecraftserver.getWorldServer(var1.dimensionId);
-		var2.addEntity(var1);
-		this.a(var1, (WorldServer) null);
+	public void addPlayerToGame(EntityPlayer player) {
+		this.players.add(player);
+		this.uuidToPlayerMap.put(player.getUUID(), player);
 
-		for (int var3 = 0; var3 < this.players.size(); ++var3) {
-			EntityPlayer var4 = (EntityPlayer) this.players.get(var3);
-			var1.playerConnection.sendPacket((Packet) (new PacketPlayOutListItem(ListItemAction.ADD_PLAYER, new EntityPlayer[] { var4 })));
+		PlayerJoinEvent joinEvent = new PlayerJoinEvent(player.getBukkitEntity(Player.class), EnumChatFormat.YELLOW + player.getName() + " joined the game");
+		Bukkit.getPluginManager().callEvent(joinEvent);
+		if (joinEvent.getJoinMessage() != null && !joinEvent.getJoinMessage().isEmpty()) {
+			ChatMessage chatMessage = new ChatMessage(joinEvent.getJoinMessage());
+			this.minecraftserver.getPlayerList().sendMessage(chatMessage);
+		}
+
+		this.sendPacket(new PacketPlayOutListItem(ListItemAction.ADD_PLAYER, new EntityPlayer[] { player }));
+		WorldServer worldServer = this.minecraftserver.getWorldServer(player.dimensionId);
+		if (worldServer.getPlayer(player.getUUID()) == null) {
+			worldServer.addEntity(player);
+			this.a(player, (WorldServer) null);
+		}
+
+		for (int i = 0; i < this.players.size(); ++i) {
+			EntityPlayer otherPlayer = (EntityPlayer) this.players.get(i);
+			player.playerConnection.sendPacket(new PacketPlayOutListItem(ListItemAction.ADD_PLAYER, new EntityPlayer[] { otherPlayer }));
 		}
 
 	}
@@ -206,68 +213,72 @@ public abstract class PlayerList {
 		var1.getWorldServer().getPlayerChunkMap().d(var1);
 	}
 
-	public void disconnect(EntityPlayer var1) {
-		var1.b(StatisticList.f);
-		this.b(var1);
-		WorldServer var2 = var1.getWorldServer();
-		if (var1.vehicle != null) {
-			var2.f(var1.vehicle);
+	public void disconnect(EntityPlayer player) {
+		InventoryCloseEvent closeEvent = new InventoryCloseEvent(player.getBukkitEntity(Player.class).getOpenInventory());
+		Bukkit.getPluginManager().callEvent(closeEvent);
+		player.removeWindow();
+		PlayerQuitEvent quitEvent = new PlayerQuitEvent(player.getBukkitEntity(Player.class), EnumChatFormat.YELLOW + player.getName()+ " left the game");
+		Bukkit.getPluginManager().callEvent(quitEvent);
+		if (quitEvent.getQuitMessage() != null && !quitEvent.getQuitMessage().isEmpty()) {
+			ChatMessage chatMessage = new ChatMessage(quitEvent.getQuitMessage());
+			this.minecraftserver.getPlayerList().sendMessage(chatMessage);
+		}
+		player.b(StatisticList.f);
+		this.savePlayerData(player);
+		WorldServer worldServer = player.getWorldServer();
+		if (player.vehicle != null) {
+			worldServer.f(player.vehicle);
 			logger.debug("removing player mount");
 		}
 
-		var2.e(var1);
-		var2.getPlayerChunkMap().c(var1);
-		this.players.remove(var1);
-		this.uuidToPlayerMap.remove(var1.getUUID());
-		this.playersStatistic.remove(var1.getUUID());
-		this.sendPacket((Packet) (new PacketPlayOutListItem(ListItemAction.REMOVE_PLAYER, new EntityPlayer[] { var1 })));
+		worldServer.e(player);
+		worldServer.getPlayerChunkMap().c(player);
+		this.players.remove(player);
+		this.uuidToPlayerMap.remove(player.getUUID());
+		this.playersStatistic.remove(player.getUUID());
+		this.sendPacket(new PacketPlayOutListItem(ListItemAction.REMOVE_PLAYER, new EntityPlayer[] { player }));
 	}
 
-	public String getLoginKickMessage(SocketAddress address, GameProfile profile) {
-		String var4;
+	public void checkPlayerJoin(PlayerLoginEvent event, SocketAddress address, GameProfile profile) {
+		String message;
 		if (this.playerBanList.isBanned(profile)) {
-			GameProfileBanEntry var5 = (GameProfileBanEntry) this.playerBanList.get(profile);
-			var4 = "You are banned from this server!\nReason: " + var5.getSource();
-			if (var5.getExpires() != null) {
-				var4 = var4 + "\nYour ban will be removed on " + dateFormat.format(var5.getExpires());
+			GameProfileBanEntry entry = (GameProfileBanEntry) this.playerBanList.get(profile);
+			message = "You are banned from this server!\nReason: " + entry.getSource();
+			if (entry.getExpires() != null) {
+				message = message + "\nYour ban will be removed on " + dateFormat.format(entry.getExpires());
 			}
 
-			return var4;
+			event.disallow(Result.KICK_BANNED, message);
 		} else if (!this.canJoin(profile)) {
-			return "You are not white-listed on this server!";
+			event.disallow(Result.KICK_WHITELIST, "You are not white-listed on this server!");
 		} else if (this.ipBanList.isBanned(address)) {
-			IpBanEntry var3 = this.ipBanList.getBanEntry(address);
-			var4 = "Your IP address is banned from this server!\nReason: " + var3.getSource();
-			if (var3.getExpires() != null) {
-				var4 = var4 + "\nYour ban will be removed on " + dateFormat.format(var3.getExpires());
+			IpBanEntry entry = this.ipBanList.getBanEntry(address);
+			message = "Your IP address is banned from this server!\nReason: " + entry.getSource();
+			if (entry.getExpires() != null) {
+				message = message + "\nYour ban will be removed on " + dateFormat.format(entry.getExpires());
 			}
 
-			return var4;
+			event.disallow(Result.KICK_BANNED, message);
 		} else {
-			return this.players.size() >= this.maxPlayers ? "The server is full!" : null;
+			if (this.players.size() >= this.maxPlayers) {
+				event.disallow(Result.KICK_FULL, "The server is full!");
+			}
 		}
 	}
 
-	public EntityPlayer processLogin(GameProfile gameProfile) {
-		UUID var2 = EntityHuman.a(gameProfile);
-		ArrayList var3 = Lists.newArrayList();
+	public void kickDuplicatePlayers(GameProfile gameProfile) {
+		UUID uuid = EntityHuman.a(gameProfile);
 
-		EntityPlayer var5;
-		for (int var4 = 0; var4 < this.players.size(); ++var4) {
-			var5 = (EntityPlayer) this.players.get(var4);
-			if (var5.getUUID().equals(var2)) {
-				var3.add(var5);
+		ArrayList<EntityPlayer> toKick = Lists.newArrayList();
+		for (EntityPlayer player : players) {
+			if (player.getUUID().equals(uuid)) {
+				toKick.add(player);
 			}
 		}
 
-		Iterator var6 = var3.iterator();
-
-		while (var6.hasNext()) {
-			var5 = (EntityPlayer) var6.next();
-			var5.playerConnection.disconnect("You logged in from another location");
+		for (EntityPlayer player : toKick) {
+			player.playerConnection.disconnect("You logged in from another location");
 		}
-
-		return new EntityPlayer(this.minecraftserver, this.minecraftserver.getWorldServer(0), gameProfile, new PlayerInteractManager(this.minecraftserver.getWorldServer(0)));
 	}
 
 	public EntityPlayer moveToWorld(EntityPlayer var1, int var2, boolean var3) {
@@ -280,43 +291,43 @@ public abstract class PlayerList {
 		boolean var5 = var1.ch();
 		var1.dimensionId = var2;
 
-		EntityPlayer var7 = new EntityPlayer(this.minecraftserver, this.minecraftserver.getWorldServer(var1.dimensionId), var1.getGameProfile(), new PlayerInteractManager(this.minecraftserver.getWorldServer(var1.dimensionId)));
-		var7.playerConnection = var1.playerConnection;
-		var7.a((EntityHuman) var1, var3);
-		var7.setId(var1.getId());
-		var7.o(var1);
+		EntityPlayer newEntityPlayer = new EntityPlayer(this.minecraftserver, this.minecraftserver.getWorldServer(var1.dimensionId), var1.getGameProfile(), new PlayerInteractManager(this.minecraftserver.getWorldServer(var1.dimensionId)));
+		newEntityPlayer.playerConnection = var1.playerConnection;
+		newEntityPlayer.a((EntityHuman) var1, var3);
+		newEntityPlayer.setId(var1.getId());
+		newEntityPlayer.o(var1);
 		WorldServer var8 = this.minecraftserver.getWorldServer(var1.dimensionId);
-		this.a(var7, var1, var8);
+		this.a(newEntityPlayer, var1, var8);
 		Position var9;
 		if (var4 != null) {
 			var9 = EntityHuman.a(this.minecraftserver.getWorldServer(var1.dimensionId), var4, var5);
 			if (var9 != null) {
-				var7.setPositionRotation((double) ((float) var9.getX() + 0.5F), (double) ((float) var9.getY() + 0.1F), (double) ((float) var9.getZ() + 0.5F), 0.0F, 0.0F);
-				var7.a(var4, var5);
+				newEntityPlayer.setPositionRotation((double) ((float) var9.getX() + 0.5F), (double) ((float) var9.getY() + 0.1F), (double) ((float) var9.getZ() + 0.5F), 0.0F, 0.0F);
+				newEntityPlayer.a(var4, var5);
 			} else {
-				var7.playerConnection.sendPacket((Packet) (new PacketPlayOutChangeGameState(0, 0.0F)));
+				newEntityPlayer.playerConnection.sendPacket((Packet) (new PacketPlayOutChangeGameState(0, 0.0F)));
 			}
 		}
 
-		var8.chunkProviderServer.getChunkAt((int) var7.locationX >> 4, (int) var7.locationZ >> 4);
+		var8.chunkProviderServer.getChunkAt((int) newEntityPlayer.locationX >> 4, (int) newEntityPlayer.locationZ >> 4);
 
-		while (!var8.getCubes((Entity) var7, var7.getBoundingBox()).isEmpty() && var7.locationY < 256.0D) {
-			var7.b(var7.locationX, var7.locationY + 1.0D, var7.locationZ);
+		while (!var8.getCubes((Entity) newEntityPlayer, newEntityPlayer.getBoundingBox()).isEmpty() && newEntityPlayer.locationY < 256.0D) {
+			newEntityPlayer.b(newEntityPlayer.locationX, newEntityPlayer.locationY + 1.0D, newEntityPlayer.locationZ);
 		}
 
-		var7.playerConnection.sendPacket((Packet) (new PacketPlayOutRespawn(var7.dimensionId, var7.world.getDifficulty(), var7.world.getWorldData().getLevelType(), var7.playerInteractManager.getGameMode())));
+		newEntityPlayer.playerConnection.sendPacket((Packet) (new PacketPlayOutRespawn(newEntityPlayer.dimensionId, newEntityPlayer.world.getDifficulty(), newEntityPlayer.world.getWorldData().getLevelType(), newEntityPlayer.playerInteractManager.getGameMode())));
 		var9 = var8.getSpawnPosition();
-		var7.playerConnection.movePlayer(var7.locationX, var7.locationY, var7.locationZ, var7.yaw, var7.pitch);
-		var7.playerConnection.sendPacket((Packet) (new PacketPlayOutSpawnPosition(var9)));
-		var7.playerConnection.sendPacket((Packet) (new PacketPlayOutSetExpirience(var7.xp, var7.xpTotal, var7.xpLevel)));
-		this.updateWorldData(var7, var8);
-		var8.getPlayerChunkMap().a(var7);
-		var8.addEntity(var7);
-		this.players.add(var7);
-		this.uuidToPlayerMap.put(var7.getUUID(), var7);
-		var7.f_();
-		var7.h(var7.getHealth());
-		return var7;
+		newEntityPlayer.playerConnection.movePlayer(newEntityPlayer.locationX, newEntityPlayer.locationY, newEntityPlayer.locationZ, newEntityPlayer.yaw, newEntityPlayer.pitch);
+		newEntityPlayer.playerConnection.sendPacket((Packet) (new PacketPlayOutSpawnPosition(var9)));
+		newEntityPlayer.playerConnection.sendPacket((Packet) (new PacketPlayOutSetExpirience(newEntityPlayer.xp, newEntityPlayer.xpTotal, newEntityPlayer.xpLevel)));
+		this.updateWorldData(newEntityPlayer, var8);
+		var8.getPlayerChunkMap().a(newEntityPlayer);
+		var8.addEntity(newEntityPlayer);
+		this.players.add(newEntityPlayer);
+		this.uuidToPlayerMap.put(newEntityPlayer.getUUID(), newEntityPlayer);
+		newEntityPlayer.f_();
+		newEntityPlayer.h(newEntityPlayer.getHealth());
+		return newEntityPlayer;
 	}
 
 	public void a(EntityPlayer var1, int var2) {
@@ -507,7 +518,7 @@ public abstract class PlayerList {
 
 	public void savePlayers() {
 		for (int var1 = 0; var1 < this.players.size(); ++var1) {
-			this.b((EntityPlayer) this.players.get(var1));
+			this.savePlayerData((EntityPlayer) this.players.get(var1));
 		}
 
 	}
@@ -516,9 +527,9 @@ public abstract class PlayerList {
 	}
 
 	public void updateWorldData(EntityPlayer var1, WorldServer var2) {
-		WorldBorder var3 = this.minecraftserver.getPrimaryWorld().getWorldBorder();
+		WorldBorder var3 = this.minecraftserver.getWorld().getWorldBorder();
 		var1.playerConnection.sendPacket((Packet) (new PacketPlayOutWorldBorder(var3, WorldBorderAction.INITIALIZE)));
-		var1.playerConnection.sendPacket((Packet) (new PacketPlayOutTimeUpdate(var2.getTime(), var2.L(), var2.getGameRules().b("doDaylightCycle"))));
+		var1.playerConnection.sendPacket((Packet) (new PacketPlayOutTimeUpdate(var2.getTime(), var2.getDayTime(), var2.getGameRules().isGameRule("doDaylightCycle"))));
 		if (var2.S()) {
 			var1.playerConnection.sendPacket((Packet) (new PacketPlayOutChangeGameState(1, 0.0F)));
 			var1.playerConnection.sendPacket((Packet) (new PacketPlayOutChangeGameState(7, var2.j(1.0F))));
@@ -528,13 +539,13 @@ public abstract class PlayerList {
 	}
 
 	public void f(EntityPlayer var1) {
-		var1.a(var1.defaultContainer);
+		var1.sendContainerItems(var1.defaultContainer);
 		var1.r();
 		var1.playerConnection.sendPacket((Packet) (new PacketPlayOutHeldItemChange(var1.playerInventory.itemInHandIndex)));
 	}
 
 	public String[] r() {
-		return this.minecraftserver.getPrimaryWorld().getDataManager().getPlayerFileData().getSeenPlayers();
+		return this.minecraftserver.getWorld().getDataManager().getPlayerFileData().getSeenPlayers();
 	}
 
 	public boolean s() {
@@ -573,9 +584,9 @@ public abstract class PlayerList {
 
 	private void a(EntityPlayer var1, EntityPlayer var2, World var3) {
 		if (var2 != null) {
-			var1.playerInteractManager.a(var2.playerInteractManager.getGameMode());
+			var1.playerInteractManager.setGameMode(var2.playerInteractManager.getGameMode());
 		} else if (this.s != null) {
-			var1.playerInteractManager.a(this.s);
+			var1.playerInteractManager.setGameMode(this.s);
 		}
 
 		var1.playerInteractManager.b(var3.getWorldData().getGameMode());

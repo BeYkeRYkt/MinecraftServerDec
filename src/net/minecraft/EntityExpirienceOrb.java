@@ -33,8 +33,8 @@ public class EntityExpirienceOrb extends Entity {
 	protected void h() {
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.c > 0) {
 			--this.c;
 		}
@@ -54,7 +54,7 @@ public class EntityExpirienceOrb extends Entity {
 		double var1 = 8.0D;
 		if (this.g < this.a - 20 + this.getId() % 100) {
 			if (this.f == null || this.f.getDistanceSquared(this) > var1 * var1) {
-				this.f = this.world.a(this, var1);
+				this.f = this.world.findNearbyPlayer(this, var1);
 			}
 
 			this.g = this.a;
@@ -104,11 +104,11 @@ public class EntityExpirienceOrb extends Entity {
 	}
 
 	protected void f(int var1) {
-		this.damageEntity(DamageSource.FIRE, (float) var1);
+		this.receiveDamage(DamageSource.FIRE, (float) var1);
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
 			this.ac();
@@ -121,13 +121,13 @@ public class EntityExpirienceOrb extends Entity {
 		}
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("Health", (short) ((byte) this.d));
 		var1.put("Age", (short) this.b);
 		var1.put("Value", (short) this.e);
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.d = var1.getShort("Health") & 255;
 		this.b = var1.getShort("Age");
 		this.e = var1.getShort("Value");

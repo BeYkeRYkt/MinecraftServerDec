@@ -42,15 +42,15 @@ public class EntityEnderman extends EntityMonster {
 		this.dataWatcher.a(18, new Byte((byte) 0));
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		IBlockState var2 = this.ck();
 		var1.put("carried", (short) Block.getBlockId(var2.getBlock()));
 		var1.put("carriedData", (short) var2.getBlock().getData(var2));
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		IBlockState var2;
 		if (var1.isTagAssignableFrom("carried", 8)) {
 			var2 = Block.getBlockByName(var1.getString("carried")).setData(var1.getShort("carriedData") & '\uffff');
@@ -82,7 +82,7 @@ public class EntityEnderman extends EntityMonster {
 	public void m() {
 		if (this.world.isStatic) {
 			for (int var1 = 0; var1 < 2; ++var1) {
-				this.world.a(Particle.y, this.locationX + (this.random.nextDouble() - 0.5D) * (double) this.height, this.locationY + this.random.nextDouble() * (double) this.width - 0.25D, this.locationZ + (this.random.nextDouble() - 0.5D) * (double) this.height, (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D, new int[0]);
+				this.world.addParticle(Particle.y, this.locationX + (this.random.nextDouble() - 0.5D) * (double) this.height, this.locationY + this.random.nextDouble() * (double) this.width - 0.25D, this.locationZ + (this.random.nextDouble() - 0.5D) * (double) this.height, (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D, new int[0]);
 			}
 		}
 
@@ -92,7 +92,7 @@ public class EntityEnderman extends EntityMonster {
 
 	protected void E() {
 		if (this.U()) {
-			this.damageEntity(DamageSource.DROWN, 1.0F);
+			this.receiveDamage(DamageSource.DROWN, 1.0F);
 		}
 
 		if (this.cm() && !this.bl && this.random.nextInt(100) == 0) {
@@ -142,7 +142,7 @@ public class EntityEnderman extends EntityMonster {
 			boolean var15 = false;
 
 			while (!var15 && var14.getY() > 0) {
-				Position var16 = var14.b();
+				Position var16 = var14.getDown();
 				Block var17 = this.world.getBlockState(var16).getBlock();
 				if (var17.getMaterial().isSolid()) {
 					var15 = true;
@@ -174,7 +174,7 @@ public class EntityEnderman extends EntityMonster {
 				double var22 = var7 + (this.locationX - var7) * var30 + (this.random.nextDouble() - 0.5D) * (double) this.height * 2.0D;
 				double var24 = var9 + (this.locationY - var9) * var30 + this.random.nextDouble() * (double) this.width;
 				double var26 = var11 + (this.locationZ - var11) * var30 + (this.random.nextDouble() - 0.5D) * (double) this.height * 2.0D;
-				this.world.a(Particle.y, var22, var24, var26, (double) var19, (double) var20, (double) var21, new int[0]);
+				this.world.addParticle(Particle.y, var22, var24, var26, (double) var19, (double) var20, (double) var21, new int[0]);
 			}
 
 			this.world.makeSound(var7, var9, var11, "mob.endermen.portal", 1.0F, 1.0F);
@@ -219,17 +219,17 @@ public class EntityEnderman extends EntityMonster {
 		return Block.getStateById(this.dataWatcher.b(16) & '\uffff');
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
-			if (var1.j() == null || !(var1.j() instanceof EntityEndermite)) {
+			if (var1.getDamager() == null || !(var1.getDamager() instanceof EntityEndermite)) {
 				if (!this.world.isStatic) {
 					this.a(true);
 				}
 
-				if (var1 instanceof EntityDamageSource && var1.j() instanceof EntityHuman) {
-					if (var1.j() instanceof EntityPlayer && ((EntityPlayer) var1.j()).playerInteractManager.isCreative()) {
+				if (var1 instanceof EntityDamageSource && var1.getDamager() instanceof EntityHuman) {
+					if (var1.getDamager() instanceof EntityPlayer && ((EntityPlayer) var1.getDamager()).playerInteractManager.isCreative()) {
 						this.a(false);
 					} else {
 						this.bl = true;
@@ -249,7 +249,7 @@ public class EntityEnderman extends EntityMonster {
 				}
 			}
 
-			boolean var3 = super.damageEntity(var1, var2);
+			boolean var3 = super.receiveDamage(var1, var2);
 			if (var1.e() && this.random.nextInt(10) != 0) {
 				this.n();
 			}

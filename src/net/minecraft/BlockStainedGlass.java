@@ -12,7 +12,7 @@ public class BlockStainedGlass extends awt {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((akv) var1.b(a)).a();
 	}
 
@@ -20,7 +20,7 @@ public class BlockStainedGlass extends awt {
 		return ((akv) var1.b(a)).e();
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 
@@ -36,14 +36,14 @@ public class BlockStainedGlass extends awt {
 		return this.getBlockState().a(a, akv.b(var1));
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			BlockBeacon.d(var1, var2);
 		}
 
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			BlockBeacon.d(var1, var2);
 		}

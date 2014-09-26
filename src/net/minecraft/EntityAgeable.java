@@ -18,21 +18,21 @@ public abstract class EntityAgeable extends EntityCreature {
 		ItemStack var2 = var1.playerInventory.getItemInHand();
 		if (var2 != null && var2.getItem() == Items.SPAWNEGG) {
 			if (!this.world.isStatic) {
-				Class var3 = EntityTypes.getClassById(var2.getDurability());
+				Class var3 = EntityTypes.getClassById(var2.getWearout());
 				if (var3 != null && this.getClass() == var3) {
 					EntityAgeable var4 = this.a(this);
 					if (var4 != null) {
 						var4.b(-24000);
 						var4.setPositionRotation(this.locationX, this.locationY, this.locationZ, 0.0F, 0.0F);
 						this.world.addEntity((Entity) var4);
-						if (var2.s()) {
-							var4.a(var2.q());
+						if (var2.hasDisplayName()) {
+							var4.a(var2.getDisplayName());
 						}
 
 						if (!var1.playerProperties.instabuild) {
 							--var2.amount;
 							if (var2.amount <= 0) {
-								var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
+								var1.playerInventory.setItem(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 							}
 						}
 					}
@@ -90,14 +90,14 @@ public abstract class EntityAgeable extends EntityCreature {
 		this.a(this.i_());
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("Age", this.l());
 		var1.put("ForcedAge", this.b);
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.b(var1.getInt("Age"));
 		this.b = var1.getInt("ForcedAge");
 	}
@@ -107,7 +107,7 @@ public abstract class EntityAgeable extends EntityCreature {
 		if (this.world.isStatic) {
 			if (this.c > 0) {
 				if (this.c % 4 == 0) {
-					this.world.a(Particle.v, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, 0.0D, 0.0D, 0.0D, new int[0]);
+					this.world.addParticle(Particle.v, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, 0.0D, 0.0D, 0.0D, new int[0]);
 				}
 
 				--this.c;

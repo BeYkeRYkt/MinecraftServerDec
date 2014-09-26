@@ -1,11 +1,14 @@
 package net.minecraft;
 
 import com.google.common.collect.Lists;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class TileEntityBeacon extends bdf implements PacketTickable, IInventory {
+import org.bukkit.inventory.InventoryHolder;
+
+public class TileEntityBeacon extends TileEntityLockable implements ITickable, IInventory {
 
 	public static final MobEffectList[][] a = new MobEffectList[][] { { MobEffectList.FASTER_MOVEMENT, MobEffectList.FASTER_DIG }, { MobEffectList.RESISTANCE, MobEffectList.JUMP }, { MobEffectList.INCREASE_DAMAGE }, { MobEffectList.REGENERATION } };
 	private final List f = Lists.newArrayList();
@@ -15,6 +18,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 	private int l;
 	private ItemStack m;
 	private String n;
+	private List<EntityHuman> viewers = new java.util.ArrayList<EntityHuman>();
 
 	public void doTick() {
 		if (this.world.getTime() % 80L == 0L) {
@@ -39,8 +43,8 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 			int var4 = this.position.getX();
 			int var5 = this.position.getY();
 			int var6 = this.position.getZ();
-			AxisAlignedBB var7 = (new AxisAlignedBB((double) var4, (double) var5, (double) var6, (double) (var4 + 1), (double) (var5 + 1), (double) (var6 + 1))).grow(var1, var1, var1).a(0.0D, (double) this.world.U(), 0.0D);
-			List var8 = this.world.a(EntityHuman.class, var7);
+			AxisAlignedBB var7 = (new AxisAlignedBB((double) var4, (double) var5, (double) var6, (double) (var4 + 1), (double) (var5 + 1), (double) (var6 + 1))).grow(var1, var1, var1).a(0.0D, (double) this.world.getHeight(), 0.0D);
+			List var8 = this.world.getEntititesInAABB(EntityHuman.class, var7);
 			Iterator var9 = var8.iterator();
 
 			EntityHuman var10;
@@ -139,7 +143,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 		}
 
 		if (!this.world.isStatic && this.j == 4 && var1 < this.j) {
-			Iterator var13 = this.world.a(EntityHuman.class, (new AxisAlignedBB((double) var2, (double) var3, (double) var4, (double) var2, (double) (var3 - 4), (double) var4)).grow(10.0D, 5.0D, 10.0D)).iterator();
+			Iterator var13 = this.world.getEntititesInAABB(EntityHuman.class, (new AxisAlignedBB((double) var2, (double) var3, (double) var4, (double) var2, (double) (var3 - 4), (double) var4)).grow(10.0D, 5.0D, 10.0D)).iterator();
 
 			while (var13.hasNext()) {
 				EntityHuman var15 = (EntityHuman) var13.next();
@@ -169,15 +173,15 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 		var1.put("Levels", this.j);
 	}
 
-	public int n_() {
+	public int getSize() {
 		return 1;
 	}
 
-	public ItemStack a(int var1) {
+	public ItemStack getItem(int var1) {
 		return var1 == 0 ? this.m : null;
 	}
 
-	public ItemStack a(int var1, int var2) {
+	public ItemStack splitStack(int var1, int var2) {
 		if (var1 == 0 && this.m != null) {
 			if (var2 >= this.m.amount) {
 				ItemStack var3 = this.m;
@@ -185,14 +189,14 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 				return var3;
 			} else {
 				this.m.amount -= var2;
-				return new ItemStack(this.m.getItem(), var2, this.m.getDurability());
+				return new ItemStack(this.m.getItem(), var2, this.m.getWearout());
 			}
 		} else {
 			return null;
 		}
 	}
 
-	public ItemStack b(int var1) {
+	public ItemStack splitWithoutUpdate(int var1) {
 		if (var1 == 0 && this.m != null) {
 			ItemStack var2 = this.m;
 			this.m = null;
@@ -202,7 +206,7 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 		}
 	}
 
-	public void a(int var1, ItemStack var2) {
+	public void setItem(int var1, ItemStack var2) {
 		if (var1 == 0) {
 			this.m = var2;
 		}
@@ -210,10 +214,10 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 	}
 
 	public String getName() {
-		return this.k_() ? this.n : "container.beacon";
+		return this.hasCustomName() ? this.n : "container.beacon";
 	}
 
-	public boolean k_() {
+	public boolean hasCustomName() {
 		return this.n != null && this.n.length() > 0;
 	}
 
@@ -221,33 +225,35 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 		this.n = var1;
 	}
 
-	public int p_() {
+	public int getMaxStackSize() {
 		return 1;
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean canInteract(EntityHuman var1) {
 		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
-	public void b(EntityHuman var1) {
+	public void onContainerOpen(EntityHuman var1) {
+		viewers.add(var1);
 	}
 
-	public void c(EntityHuman var1) {
+	public void onContainerClose(EntityHuman var1) {
+		viewers.remove(var1);
 	}
 
-	public boolean b(int var1, ItemStack var2) {
+	public boolean canSuckItemFromInventory(int var1, ItemStack var2) {
 		return var2.getItem() == Items.EMERALD || var2.getItem() == Items.DIAMOND || var2.getItem() == Items.GOLD_INGOT || var2.getItem() == Items.IRON_INGOT;
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:beacon";
 	}
 
-	public Container a(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
 		return new ContainerBeacon(var1, this);
 	}
 
-	public int a_(int var1) {
+	public int getProperty(int var1) {
 		switch (var1) {
 			case 0:
 				return this.j;
@@ -260,25 +266,25 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 		}
 	}
 
-	public void b(int var1, int var2) {
-		switch (var1) {
+	public void readClientCustomInput(int powerSlot, int power) {
+		switch (powerSlot) {
 			case 0:
-				this.j = var2;
+				this.j = power;
 				break;
 			case 1:
-				this.k = var2;
+				this.k = power;
 				break;
 			case 2:
-				this.l = var2;
+				this.l = power;
 		}
 
 	}
 
-	public int g() {
+	public int getPropertiesCount() {
 		return 3;
 	}
 
-	public void l() {
+	public void clearInventory() {
 		this.m = null;
 	}
 
@@ -289,6 +295,16 @@ public class TileEntityBeacon extends bdf implements PacketTickable, IInventory 
 		} else {
 			return super.c(var1, var2);
 		}
+	}
+
+	@Override
+	public List<EntityHuman> getViewers() {
+		return viewers;
+	}
+
+	@Override
+	public ItemStack[] getItems() {
+		return new ItemStack[0];
 	}
 
 }

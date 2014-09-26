@@ -13,7 +13,7 @@ public class ItemSign extends Item {
 		} else if (!var3.getBlockState(var4).getBlock().getMaterial().isBuildable()) {
 			return false;
 		} else {
-			var4 = var4.a(var5);
+			var4 = var4.getRelative(var5);
 			if (!var2.a(var4, var5, var1)) {
 				return false;
 			} else if (!Blocks.STANDING_SIGN.c(var3, var4)) {

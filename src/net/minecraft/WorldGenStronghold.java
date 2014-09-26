@@ -57,7 +57,7 @@ public class WorldGenStronghold extends StructureGenerator {
 	protected boolean a(int var1, int var2) {
 		if (!this.f) {
 			Random var3 = new Random();
-			var3.setSeed(this.c.J());
+			var3.setSeed(this.c.getSeed());
 			double var4 = var3.nextDouble() * 3.141592653589793D * 2.0D;
 			int var6 = 1;
 

@@ -89,6 +89,11 @@ public class ChunkRegionLoader implements IChunkLoader, IAsyncChunkSaver {
 		}
 	}
 
+	@Override
+	public boolean isQueuedForSaving(Chunk chunk) {
+		return chunksToSave.containsKey(new ChunkCoordIntPair(chunk.x, chunk.z));
+	}
+
 	public boolean saveChunks() {
 		Entry<ChunkCoordIntPair, NBTCompoundTag> entry = null;
 

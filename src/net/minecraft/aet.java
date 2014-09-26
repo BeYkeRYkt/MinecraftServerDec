@@ -11,7 +11,7 @@ class aet extends PathfinderGoal {
 	}
 
 	public boolean a() {
-		return !this.a.world.getGameRules().b("mobGriefing") ? false : (this.a.ck().getBlock().getMaterial() == Material.AIR ? false : this.a.bb().nextInt(2000) == 0);
+		return !this.a.world.getGameRules().isGameRule("mobGriefing") ? false : (this.a.ck().getBlock().getMaterial() == Material.AIR ? false : this.a.bb().nextInt(2000) == 0);
 	}
 
 	public void e() {
@@ -22,7 +22,7 @@ class aet extends PathfinderGoal {
 		int var5 = MathHelper.toFixedPointInt(this.a.locationZ - 1.0D + var1.nextDouble() * 2.0D);
 		Position var6 = new Position(var3, var4, var5);
 		Block var7 = var2.getBlockState(var6).getBlock();
-		Block var8 = var2.getBlockState(var6.b()).getBlock();
+		Block var8 = var2.getBlockState(var6.getDown()).getBlock();
 		if (this.a(var2, var6, this.a.ck().getBlock(), var7, var8)) {
 			var2.setBlockAt(var6, this.a.ck(), 3);
 			this.a.a(Blocks.AIR.getBlockState());

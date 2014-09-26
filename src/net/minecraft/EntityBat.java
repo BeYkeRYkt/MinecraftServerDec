@@ -66,8 +66,8 @@ public class EntityBat extends EntityAmbient {
 
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.n()) {
 			this.motionX = this.motionY = this.motionZ = 0.0D;
 			this.locationY = (double) MathHelper.toFixedPointInt(this.locationY) + 1.0D - (double) this.width;
@@ -80,7 +80,7 @@ public class EntityBat extends EntityAmbient {
 	protected void E() {
 		super.E();
 		Position var1 = new Position(this);
-		Position var2 = var1.a();
+		Position var2 = var1.getUp();
 		if (this.n()) {
 			if (!this.world.getBlockState(var2).getBlock().t()) {
 				this.a(false);
@@ -90,7 +90,7 @@ public class EntityBat extends EntityAmbient {
 					this.headPitch = (float) this.random.nextInt(360);
 				}
 
-				if (this.world.a(this, 4.0D) != null) {
+				if (this.world.findNearbyPlayer(this, 4.0D) != null) {
 					this.a(false);
 					this.world.a((EntityHuman) null, 1015, var1, 0);
 				}
@@ -135,25 +135,25 @@ public class EntityBat extends EntityAmbient {
 		return true;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
 			if (!this.world.isStatic && this.n()) {
 				this.a(false);
 			}
 
-			return super.damageEntity(var1, var2);
+			return super.receiveDamage(var1, var2);
 		}
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.dataWatcher.b(16, Byte.valueOf(var1.getByte("BatFlags")));
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("BatFlags", this.dataWatcher.a(16));
 	}
 
@@ -162,7 +162,7 @@ public class EntityBat extends EntityAmbient {
 		if (var1.getY() >= 63) {
 			return false;
 		} else {
-			int var2 = this.world.l(var1);
+			int var2 = this.world.getLightLevel(var1);
 			byte var3 = 4;
 			if (this.a(this.world.Y())) {
 				var3 = 7;

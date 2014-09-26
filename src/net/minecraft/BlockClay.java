@@ -9,11 +9,11 @@ public class BlockClay extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.CLAY_BALL;
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 4;
 	}
 }

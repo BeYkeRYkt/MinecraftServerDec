@@ -17,7 +17,7 @@ public class BlockSapling extends auc implements atz {
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!var1.isStatic) {
 			super.b(var1, var2, var3, var4);
-			if (var1.l(var2.a()) >= 9 && var4.nextInt(7) == 0) {
+			if (var1.getLightLevel(var2.getUp()) >= 9 && var4.nextInt(7) == 0) {
 				this.d(var1, var2, var3, var4);
 			}
 
@@ -124,7 +124,7 @@ public class BlockSapling extends auc implements atz {
 		return var4.getBlock() == this && var4.b(a) == var3;
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((EnumWoodType) var1.b(a)).a();
 	}
 
@@ -133,7 +133,7 @@ public class BlockSapling extends auc implements atz {
 	}
 
 	public boolean a(World var1, Random var2, Position var3, IBlockState var4) {
-		return (double) var1.s.nextFloat() < 0.45D;
+		return (double) var1.random.nextFloat() < 0.45D;
 	}
 
 	public void b(World var1, Random var2, Position var3, IBlockState var4) {

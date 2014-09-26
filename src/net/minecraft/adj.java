@@ -68,7 +68,7 @@ public abstract class adj extends Entity {
 		return var1 % 32 == 0 ? 0.5D : 0.0D;
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.previousX = this.locationX;
 		this.previousY = this.locationY;
 		this.previousZ = this.locationZ;
@@ -88,12 +88,12 @@ public abstract class adj extends Entity {
 		} else {
 			int var1 = Math.max(1, this.l() / 16);
 			int var2 = Math.max(1, this.m() / 16);
-			Position var3 = this.a.a(this.direction.getOpposite());
+			Position var3 = this.a.getRelative(this.direction.getOpposite());
 			BlockFace var4 = this.direction.f();
 
 			for (int var5 = 0; var5 < var1; ++var5) {
 				for (int var6 = 0; var6 < var2; ++var6) {
-					Position var7 = var3.a(var4, var5).b(var6);
+					Position var7 = var3.getRelative(var4, var5).getUp(var6);
 					Block var8 = this.world.getBlockState(var7).getBlock();
 					if (!var8.getMaterial().isBuildable() && !ava.d(var8)) {
 						return false;
@@ -122,21 +122,21 @@ public abstract class adj extends Entity {
 	}
 
 	public boolean l(Entity var1) {
-		return var1 instanceof EntityHuman ? this.damageEntity(DamageSource.playerAttack((EntityHuman) var1), 0.0F) : false;
+		return var1 instanceof EntityHuman ? this.receiveDamage(DamageSource.playerAttack((EntityHuman) var1), 0.0F) : false;
 	}
 
 	public BlockFace aO() {
 		return this.direction;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
 			if (!this.dead && !this.world.isStatic) {
 				this.die();
 				this.ac();
-				this.b(var1.j());
+				this.b(var1.getDamager());
 			}
 
 			return true;
@@ -159,19 +159,19 @@ public abstract class adj extends Entity {
 
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("Facing", (byte) this.direction.toDirection());
 		var1.put("TileX", this.getPosition().getX());
 		var1.put("TileY", this.getPosition().getY());
 		var1.put("TileZ", this.getPosition().getZ());
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.a = new Position(var1.getInt("TileX"), var1.getInt("TileY"), var1.getInt("TileZ"));
 		BlockFace var2;
 		if (var1.isTagAssignableFrom("Direction", 99)) {
 			var2 = BlockFace.fromDirection(var1.getByte("Direction"));
-			this.a = this.a.a(var2);
+			this.a = this.a.getRelative(var2);
 		} else if (var1.isTagAssignableFrom("Facing", 99)) {
 			var2 = BlockFace.fromDirection(var1.getByte("Facing"));
 		} else {

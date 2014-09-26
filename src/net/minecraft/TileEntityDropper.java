@@ -3,10 +3,10 @@ package net.minecraft;
 public class TileEntityDropper extends TileEntityDispenser {
 
 	public String getName() {
-		return this.k_() ? this.a : "container.dropper";
+		return this.hasCustomName() ? this.customName : "container.dropper";
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:dropper";
 	}
 }

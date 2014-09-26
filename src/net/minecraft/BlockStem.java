@@ -21,11 +21,11 @@ public class BlockStem extends auc implements atz {
 
 	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		var1 = var1.a(b, BlockFace.UP);
-		Iterator var4 = en.a.iterator();
+		Iterator var4 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var4.hasNext()) {
 			BlockFace var5 = (BlockFace) var4.next();
-			if (var2.getBlockState(var3.a(var5)).getBlock() == this.M) {
+			if (var2.getBlockState(var3.getRelative(var5)).getBlock() == this.M) {
 				var1 = var1.a(b, var5);
 				break;
 			}
@@ -40,7 +40,7 @@ public class BlockStem extends auc implements atz {
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		super.b(var1, var2, var3, var4);
-		if (var1.l(var2.a()) >= 9) {
+		if (var1.getLightLevel(var2.getUp()) >= 9) {
 			float var5 = BlockCrops.a(this, var1, var2);
 			if (var4.nextInt((int) (25.0F / var5) + 1) == 0) {
 				int var6 = ((Integer) var3.b(a)).intValue();
@@ -48,17 +48,17 @@ public class BlockStem extends auc implements atz {
 					var3 = var3.a(a, Integer.valueOf(var6 + 1));
 					var1.setBlockAt(var2, var3, 2);
 				} else {
-					Iterator var7 = en.a.iterator();
+					Iterator var7 = UniverseDirection.HORIZONTAL.iterator();
 
 					while (var7.hasNext()) {
 						BlockFace var8 = (BlockFace) var7.next();
-						if (var1.getBlockState(var2.a(var8)).getBlock() == this.M) {
+						if (var1.getBlockState(var2.getRelative(var8)).getBlock() == this.M) {
 							return;
 						}
 					}
 
-					var2 = var2.a(en.a.a(var4));
-					Block var9 = var1.getBlockState(var2.b()).getBlock();
+					var2 = var2.getRelative(UniverseDirection.HORIZONTAL.getRandomBlockFace(var4));
+					Block var9 = var1.getBlockState(var2.getDown()).getBlock();
 					if (var1.getBlockState(var2).getBlock().material == Material.AIR && (var9 == Blocks.FARMLAND || var9 == Blocks.DIRT || var9 == Blocks.GRASS)) {
 						var1.a(var2, this.M.getBlockState());
 					}
@@ -69,7 +69,7 @@ public class BlockStem extends auc implements atz {
 	}
 
 	public void g(World var1, Position var2, IBlockState var3) {
-		int var4 = ((Integer) var3.b(a)).intValue() + MathHelper.a(var1.s, 2, 5);
+		int var4 = ((Integer) var3.b(a)).intValue() + MathHelper.a(var1.random, 2, 5);
 		var1.setBlockAt(var2, var3.a(a, Integer.valueOf(Math.min(7, var4))), 2);
 	}
 
@@ -84,16 +84,16 @@ public class BlockStem extends auc implements atz {
 		this.a(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, (float) this.F, 0.5F + var3);
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
-		super.a(var1, var2, var3, var4, var5);
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
+		super.dropNaturally(var1, var2, var3, var4, var5);
 		if (!var1.isStatic) {
 			Item var6 = this.j();
 			if (var6 != null) {
 				int var7 = ((Integer) var3.b(a)).intValue();
 
 				for (int var8 = 0; var8 < 3; ++var8) {
-					if (var1.s.nextInt(15) <= var7) {
-						a(var1, var2, new ItemStack(var6));
+					if (var1.random.nextInt(15) <= var7) {
+						dropItem(var1, var2, new ItemStack(var6));
 					}
 				}
 
@@ -105,7 +105,7 @@ public class BlockStem extends auc implements atz {
 		return this.M == Blocks.PUMPKIN ? Items.PUMPKIN_SEEDS : (this.M == Blocks.MELON_BLOCK ? Items.MELON_SEEDS : null);
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 

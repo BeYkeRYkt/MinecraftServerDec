@@ -17,7 +17,7 @@ public final class SpawnerCreature {
 		} else {
 			this.b.clear();
 			int var5 = 0;
-			Iterator var6 = var1.j.iterator();
+			Iterator var6 = var1.players.iterator();
 
 			int var9;
 			int var12;
@@ -79,13 +79,13 @@ public final class SpawnerCreature {
 									while (true) {
 										if (var29 < 4) {
 											label108: {
-												var23 += var1.s.nextInt(var26) - var1.s.nextInt(var26);
-												var24 += var1.s.nextInt(1) - var1.s.nextInt(1);
-												var25 += var1.s.nextInt(var26) - var1.s.nextInt(var26);
+												var23 += var1.random.nextInt(var26) - var1.random.nextInt(var26);
+												var24 += var1.random.nextInt(1) - var1.random.nextInt(1);
+												var25 += var1.random.nextInt(var26) - var1.random.nextInt(var26);
 												Position var30 = new Position(var23, var24, var25);
 												float var31 = (float) var23 + 0.5F;
 												float var32 = (float) var25 + 0.5F;
-												if (!var1.b((double) var31, (double) var24, (double) var32, 24.0D) && var37.c((double) var31, (double) var24, (double) var32) >= 576.0D) {
+												if (!var1.hasNearbyPlayer((double) var31, (double) var24, (double) var32, 24.0D) && var37.c((double) var31, (double) var24, (double) var32) >= 576.0D) {
 													if (var27 == null) {
 														var27 = var1.a(var40, var30);
 														if (var27 == null) {
@@ -102,7 +102,7 @@ public final class SpawnerCreature {
 															return var36;
 														}
 
-														var33.setPositionRotation((double) var31, (double) var24, (double) var32, var1.s.nextFloat() * 360.0F, 0.0F);
+														var33.setPositionRotation((double) var31, (double) var24, (double) var32, var1.random.nextFloat() * 360.0F, 0.0F);
 														if (var33.bQ() && var33.bR()) {
 															var28 = var33.a(var1.E(new Position(var33)), var28);
 															if (var33.bR()) {
@@ -140,10 +140,10 @@ public final class SpawnerCreature {
 
 	protected static Position a(World var0, int var1, int var2) {
 		Chunk var3 = var0.a(var1, var2);
-		int var4 = var1 * 16 + var0.s.nextInt(16);
-		int var5 = var2 * 16 + var0.s.nextInt(16);
-		int var6 = MathHelper.c(var3.f(new Position(var4, 0, var5)) + 1, 16);
-		int var7 = var0.s.nextInt(var6 > 0 ? var6 : var3.g() + 16 - 1);
+		int var4 = var1 * 16 + var0.random.nextInt(16);
+		int var5 = var2 * 16 + var0.random.nextInt(16);
+		int var6 = MathHelper.c(var3.getHighestBlockYAt(new Position(var4, 0, var5)) + 1, 16);
+		int var7 = var0.random.nextInt(var6 > 0 ? var6 : var3.g() + 16 - 1);
 		return new Position(var4, var7, var5);
 	}
 
@@ -153,15 +153,15 @@ public final class SpawnerCreature {
 		} else {
 			Block var3 = var1.getBlockState(var2).getBlock();
 			if (var0 == xo.c) {
-				return var3.getMaterial().isLiquid() && var1.getBlockState(var2.b()).getBlock().getMaterial().isLiquid() && !var1.getBlockState(var2.a()).getBlock().t();
+				return var3.getMaterial().isLiquid() && var1.getBlockState(var2.getDown()).getBlock().getMaterial().isLiquid() && !var1.getBlockState(var2.getUp()).getBlock().t();
 			} else {
-				Position var4 = var2.b();
+				Position var4 = var2.getDown();
 				if (!World.a((ard) var1, var4)) {
 					return false;
 				} else {
 					Block var5 = var1.getBlockState(var4).getBlock();
 					boolean var6 = var5 != Blocks.BEDROCK && var5 != Blocks.BARRIER;
-					return var6 && !var3.t() && !var3.getMaterial().isLiquid() && !var1.getBlockState(var2.a()).getBlock().t();
+					return var6 && !var3.t() && !var3.getMaterial().isLiquid() && !var1.getBlockState(var2.getUp()).getBlock().t();
 				}
 			}
 		}
@@ -171,7 +171,7 @@ public final class SpawnerCreature {
 		List var7 = var1.a(EnumCreatureType.CREATURE);
 		if (!var7.isEmpty()) {
 			while (var6.nextFloat() < var1.g()) {
-				BiomeMeta var8 = (BiomeMeta) vj.a(var0.s, var7);
+				BiomeMeta var8 = (BiomeMeta) WeightedRandom.a(var0.random, var7);
 				int var9 = var8.c + var6.nextInt(1 + var8.d - var8.c);
 				xq var10 = null;
 				int var11 = var2 + var6.nextInt(var4);

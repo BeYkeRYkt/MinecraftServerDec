@@ -4,26 +4,26 @@ public class BlockDropper extends BlockDispenser {
 
 	private final IDispenseBehavior O = new DispenseBehaviorItem();
 
-	protected IDispenseBehavior a(ItemStack var1) {
+	protected IDispenseBehavior getDispenseBehaviour(ItemStack var1) {
 		return this.O;
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World world, int var2) {
 		return new TileEntityDropper();
 	}
 
-	protected void d(World var1, Position var2) {
-		ea var3 = new ea(var1, var2);
-		TileEntityDispenser var4 = (TileEntityDispenser) var3.h();
+	public void dispense(World var1, Position var2) {
+		SourceBlock var3 = new SourceBlock(var1, var2);
+		TileEntityDispenser var4 = (TileEntityDispenser) var3.getTileEntity();
 		if (var4 != null) {
-			int var5 = var4.m();
+			int var5 = var4.getRandomSlot();
 			if (var5 < 0) {
-				var1.b(1001, var2, 0);
+				var1.triggerEffect(1001, var2, 0);
 			} else {
-				ItemStack var6 = var4.a(var5);
+				ItemStack var6 = var4.getItem(var5);
 				if (var6 != null) {
 					BlockFace var7 = (BlockFace) var1.getBlockState(var2).b(a);
-					Position var8 = var2.a(var7);
+					Position var8 = var2.getRelative(var7);
 					IInventory var9 = TileEntityHopper.b(var1, (double) var8.getX(), (double) var8.getY(), (double) var8.getZ());
 					ItemStack var10;
 					if (var9 == null) {
@@ -43,7 +43,7 @@ public class BlockDropper extends BlockDispenser {
 						}
 					}
 
-					var4.a(var5, var10);
+					var4.setItem(var5, var10);
 				}
 			}
 		}

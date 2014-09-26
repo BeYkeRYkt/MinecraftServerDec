@@ -1,8 +1,8 @@
 package net.minecraft;
 
 import net.minecraft.server.MinecraftServer;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
+import net.minecraft.util.io.netty.channel.ChannelFuture;
+import net.minecraft.util.io.netty.channel.ChannelFutureListener;
 
 class CompressionEnableListener implements ChannelFutureListener {
 

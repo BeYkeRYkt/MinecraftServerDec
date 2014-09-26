@@ -1,5 +1,8 @@
 package net.minecraft;
 
+import pipebukkit.server.inventory.PipeBeaconInventory;
+import pipebukkit.server.inventory.PipeInventory;
+
 public class ContainerBeacon extends Container {
 
 	private IInventory inventory;
@@ -25,15 +28,15 @@ public class ContainerBeacon extends Container {
 
 	public void addSlotListener(ICrafting icrafting) {
 		super.addSlotListener(icrafting);
-		icrafting.setContainerData(this, this.inventory);
+		icrafting.sendContainerProperties(this, this.inventory);
 	}
 
 	public IInventory getInventory() {
 		return this.inventory;
 	}
 
-	public boolean a(EntityHuman var1) {
-		return this.inventory.a(var1);
+	public boolean isContainerValid(EntityHuman var1) {
+		return this.inventory.canInteract(var1);
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {
@@ -78,5 +81,10 @@ public class ContainerBeacon extends Container {
 		}
 
 		return var3;
+	}
+
+	@Override
+	public PipeInventory getPipeInventory() {
+		return new PipeBeaconInventory(getInventory());
 	}
 }

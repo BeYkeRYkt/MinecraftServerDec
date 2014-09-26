@@ -88,7 +88,7 @@ public class ah {
 	private static List a(CommandSenderInterface var0, Map var1) {
 		ArrayList var2 = Lists.newArrayList();
 		if (h(var1)) {
-			var2.add(var0.getPrimaryWorld());
+			var2.add(var0.getWorld());
 		} else {
 			Collections.addAll(var2, MinecraftServer.getInstance().worlds);
 		}
@@ -236,8 +236,8 @@ public class ah {
 		Predicate var14 = Predicates.and((Iterable) var2);
 		Predicate var15 = Predicates.and(EntityPredicates.a, var14);
 		if (var5 != null) {
-			int var16 = var4.j.size();
-			int var17 = var4.f.size();
+			int var16 = var4.players.size();
+			int var17 = var4.entities.size();
 			boolean var18 = var16 < var17 / 16;
 			AxisAlignedBB var19;
 			if (!var0.containsKey("dx") && !var0.containsKey("dy") && !var0.containsKey("dz")) {
@@ -246,7 +246,7 @@ public class ah {
 					if (var8 && var18 && !var9) {
 						var6.addAll(var4.b(var1, var15));
 					} else {
-						var6.addAll(var4.a(var1, var19, var15));
+						var6.addAll(var4.getEntititesInAABB(var1, var19, var15));
 					}
 				} else if (var3.equals("a")) {
 					var6.addAll(var4.b(var1, var14));
@@ -261,7 +261,7 @@ public class ah {
 					ak var20 = new ak(var19);
 					var6.addAll(var4.b(var1, Predicates.and(var15, var20)));
 				} else {
-					var6.addAll(var4.a(var1, var19, var15));
+					var6.addAll(var4.getEntititesInAABB(var1, var19, var15));
 				}
 			}
 		} else if (var3.equals("a")) {

@@ -15,7 +15,7 @@ public class BlockCocoa extends avb implements atz {
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (!this.e(var1, var2, var3)) {
 			this.f(var1, var2, var3);
-		} else if (var1.s.nextInt(5) == 0) {
+		} else if (var1.random.nextInt(5) == 0) {
 			int var5 = ((Integer) var3.b(a)).intValue();
 			if (var5 < 2) {
 				var1.setBlockAt(var2, var3.a(a, Integer.valueOf(var5 + 1)), 2);
@@ -25,7 +25,7 @@ public class BlockCocoa extends avb implements atz {
 	}
 
 	public boolean e(World var1, Position var2, IBlockState var3) {
-		var2 = var2.a((BlockFace) var3.b(N));
+		var2 = var2.getRelative((BlockFace) var3.b(N));
 		IBlockState var4 = var1.getBlockState(var2);
 		return var4.getBlock() == Blocks.LOG && var4.b(BlockWood.a) == EnumWoodType.d;
 	}
@@ -88,10 +88,10 @@ public class BlockCocoa extends avb implements atz {
 
 	private void f(World var1, Position var2, IBlockState var3) {
 		var1.setBlockAt(var2, Blocks.AIR.getBlockState(), 3);
-		this.b(var1, var2, var3, 0);
+		this.dropNaturally(var1, var2, var3, 0);
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		int var6 = ((Integer) var3.b(a)).intValue();
 		byte var7 = 1;
 		if (var6 >= 2) {
@@ -99,7 +99,7 @@ public class BlockCocoa extends avb implements atz {
 		}
 
 		for (int var8 = 0; var8 < var7; ++var8) {
-			a(var1, var2, new ItemStack(Items.DYE, 1, akv.m.b()));
+			dropItem(var1, var2, new ItemStack(Items.DYE, 1, akv.m.b()));
 		}
 
 	}

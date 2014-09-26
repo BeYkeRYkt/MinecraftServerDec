@@ -1,133 +1,161 @@
 package net.minecraft;
 
-public class InventoryLargeChest implements vy {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-	private String a;
-	private vy b;
-	private vy c;
+import org.bukkit.inventory.InventoryHolder;
 
-	public InventoryLargeChest(String var1, vy var2, vy var3) {
-		this.a = var1;
-		if (var2 == null) {
-			var2 = var3;
+public class InventoryLargeChest implements ILockable {
+
+	private String inventoryName;
+	private ILockable leftChest;
+	private ILockable rightChest;
+	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
+
+	public InventoryLargeChest(String inventoryName, ILockable leftChest, ILockable rightChest) {
+		this.inventoryName = inventoryName;
+
+		if (leftChest == null) {
+			leftChest = rightChest;
 		}
 
-		if (var3 == null) {
-			var3 = var2;
+		if (rightChest == null) {
+			rightChest = leftChest;
 		}
 
-		this.b = var2;
-		this.c = var3;
-		if (var2.q_()) {
-			var3.a(var2.i());
-		} else if (var3.q_()) {
-			var2.a(var3.i());
+		this.leftChest = leftChest;
+		this.rightChest = rightChest;
+		if (leftChest.isLocked()) {
+			rightChest.setLock(leftChest.getLock());
+		} else if (rightChest.isLocked()) {
+			leftChest.setLock(rightChest.getLock());
 		}
 
 	}
 
-	public int n_() {
-		return this.b.n_() + this.c.n_();
+	public int getSize() {
+		return this.leftChest.getSize() + this.rightChest.getSize();
 	}
 
-	public boolean a(IInventory var1) {
-		return this.b == var1 || this.c == var1;
+	public boolean isPartOfInventory(IInventory inventory) {
+		return this.leftChest == inventory || this.rightChest == inventory;
 	}
 
 	public String getName() {
-		return this.b.k_() ? this.b.getName() : (this.c.k_() ? this.c.getName() : this.a);
+		return this.leftChest.hasCustomName() ? this.leftChest.getName() : (this.rightChest.hasCustomName() ? this.rightChest.getName() : this.inventoryName);
 	}
 
-	public boolean k_() {
-		return this.b.k_() || this.c.k_();
+	public boolean hasCustomName() {
+		return this.leftChest.hasCustomName() || this.rightChest.hasCustomName();
 	}
 
 	public IChatBaseComponent getComponentName() {
-		return (IChatBaseComponent) (this.k_() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
+		return (IChatBaseComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
 	}
 
-	public ItemStack a(int var1) {
-		return var1 >= this.b.n_() ? this.c.a(var1 - this.b.n_()) : this.b.a(var1);
+	public ItemStack getItem(int slot) {
+		return slot >= this.leftChest.getSize() ? this.rightChest.getItem(slot - this.leftChest.getSize()) : this.leftChest.getItem(slot);
 	}
 
-	public ItemStack a(int var1, int var2) {
-		return var1 >= this.b.n_() ? this.c.a(var1 - this.b.n_(), var2) : this.b.a(var1, var2);
+	public ItemStack splitStack(int slot, int splitSize) {
+		return slot >= this.leftChest.getSize() ? this.rightChest.splitStack(slot - this.leftChest.getSize(), splitSize) : this.leftChest.splitStack(slot, splitSize);
 	}
 
-	public ItemStack b(int var1) {
-		return var1 >= this.b.n_() ? this.c.b(var1 - this.b.n_()) : this.b.b(var1);
+	public ItemStack splitWithoutUpdate(int splitSize) {
+		return splitSize >= this.leftChest.getSize() ? this.rightChest.splitWithoutUpdate(splitSize - this.leftChest.getSize()) : this.leftChest.splitWithoutUpdate(splitSize);
 	}
 
-	public void a(int var1, ItemStack var2) {
-		if (var1 >= this.b.n_()) {
-			this.c.a(var1 - this.b.n_(), var2);
+	public void setItem(int slot, ItemStack itemStack) {
+		if (slot >= this.leftChest.getSize()) {
+			this.rightChest.setItem(slot - this.leftChest.getSize(), itemStack);
 		} else {
-			this.b.a(var1, var2);
+			this.leftChest.setItem(slot, itemStack);
 		}
-
 	}
 
-	public int p_() {
-		return this.b.p_();
+	public int getMaxStackSize() {
+		return this.leftChest.getMaxStackSize();
 	}
 
 	public void update() {
-		this.b.update();
-		this.c.update();
+		this.leftChest.update();
+		this.rightChest.update();
 	}
 
-	public boolean a(EntityHuman var1) {
-		return this.b.a(var1) && this.c.a(var1);
+	public boolean canInteract(EntityHuman who) {
+		return this.leftChest.canInteract(who) && this.rightChest.canInteract(who);
 	}
 
-	public void b(EntityHuman var1) {
-		this.b.b(var1);
-		this.c.b(var1);
+	public void onContainerOpen(EntityHuman who) {
+		this.leftChest.onContainerOpen(who);
+		this.rightChest.onContainerOpen(who);
+		viewers.add(who);
 	}
 
-	public void c(EntityHuman var1) {
-		this.b.c(var1);
-		this.c.c(var1);
+	public void onContainerClose(EntityHuman who) {
+		this.leftChest.onContainerClose(who);
+		this.rightChest.onContainerClose(who);
+		viewers.remove(who);
 	}
 
-	public boolean b(int var1, ItemStack var2) {
+	public boolean canSuckItemFromInventory(int var1, ItemStack var2) {
 		return true;
 	}
 
-	public int a_(int var1) {
+	public int getProperty(int var1) {
 		return 0;
 	}
 
-	public void b(int var1, int var2) {
+	public void readClientCustomInput(int var1, int var2) {
 	}
 
-	public int g() {
+	public int getPropertiesCount() {
 		return 0;
 	}
 
-	public boolean q_() {
-		return this.b.q_() || this.c.q_();
+	public boolean isLocked() {
+		return this.leftChest.isLocked() || this.rightChest.isLocked();
 	}
 
-	public void a(vx var1) {
-		this.b.a(var1);
-		this.c.a(var1);
+	public void setLock(ContainerLock var1) {
+		this.leftChest.setLock(var1);
+		this.rightChest.setLock(var1);
 	}
 
-	public vx i() {
-		return this.b.i();
+	public ContainerLock getLock() {
+		return this.leftChest.getLock();
 	}
 
-	public String k() {
-		return this.b.k();
+	public String getInventoryType() {
+		return this.leftChest.getInventoryType();
 	}
 
-	public Container a(PlayerInventory var1, EntityHuman var2) {
-		return new ContainerChest(var1, this, var2);
+	public Container getContainer(InventoryPlayer playerInventory, EntityHuman human) {
+		return new ContainerChest(playerInventory, this, human);
 	}
 
-	public void l() {
-		this.b.l();
-		this.c.l();
+	public void clearInventory() {
+		this.leftChest.clearInventory();
+		this.rightChest.clearInventory();
 	}
+
+	@Override
+	public List<EntityHuman> getViewers() {
+		return viewers;
+	}
+
+	@Override
+	public ItemStack[] getItems() {
+		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+		items.addAll(Arrays.asList(leftChest.getItems()));
+		items.addAll(Arrays.asList(rightChest.getItems()));
+		return items.toArray(new ItemStack[items.size()]);
+	}
+
+	@Override
+	public InventoryHolder getHolder() {
+		return null;
+	}
+
 }

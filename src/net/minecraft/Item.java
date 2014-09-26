@@ -87,7 +87,7 @@ public class Item {
 		return this;
 	}
 
-	public int getDurability() {
+	public int getMaxWearout() {
 		return this.durability;
 	}
 
@@ -108,7 +108,7 @@ public class Item {
 		return false;
 	}
 
-	public boolean b(Block var1) {
+	public boolean canDestroySpecialBlock(Block var1) {
 		return false;
 	}
 
@@ -166,8 +166,8 @@ public class Item {
 		return false;
 	}
 
-	public ano e(ItemStack var1) {
-		return ano.a;
+	public EnumAnimation e(ItemStack var1) {
+		return EnumAnimation.NONE;
 	}
 
 	public int d(ItemStack var1) {

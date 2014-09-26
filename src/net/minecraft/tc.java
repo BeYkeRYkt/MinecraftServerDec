@@ -28,7 +28,7 @@ public class tc implements CommandSenderInterface {
 	}
 
 	public void sendChatMessage(IChatBaseComponent var1) {
-		this.b.append(var1.getStrippedMessage());
+		this.b.append(var1.getJsonMessage());
 	}
 
 	public boolean canExecuteCommand(int var1, String var2) {
@@ -43,15 +43,15 @@ public class tc implements CommandSenderInterface {
 		return new Vec3D(0.0D, 0.0D, 0.0D);
 	}
 
-	public World getPrimaryWorld() {
-		return MinecraftServer.getInstance().getPrimaryWorld();
+	public World getWorld() {
+		return MinecraftServer.getInstance().getWorld();
 	}
 
 	public Entity getEntity() {
 		return null;
 	}
 
-	public boolean t_() {
+	public boolean isCommandBlockOuputEnabled() {
 		return true;
 	}
 

@@ -70,7 +70,7 @@ public class ReplaceItemCommand extends AbstractCommand {
 			int var8 = var2.length > var16 ? a(var2[var16++]) : 0;
 			ItemStack var9 = new ItemStack(var6, var7, var8);
 			if (var2.length > var16) {
-				String var10 = a(var1, var2, var16).getStrippedMessage();
+				String var10 = a(var1, var2, var16).getJsonMessage();
 
 				try {
 					var9.setTag(gg.a(var10));
@@ -86,15 +86,15 @@ public class ReplaceItemCommand extends AbstractCommand {
 			if (var3) {
 				var1.a(ag.d, 0);
 				Position var17 = a(var1, var2, 1, false);
-				World var11 = var1.getPrimaryWorld();
+				World var11 = var1.getWorld();
 				TileEntity var12 = var11.getTileEntity(var17);
 				if (var12 == null || !(var12 instanceof IInventory)) {
 					throw new di("commands.replaceitem.noContainer", new Object[] { Integer.valueOf(var17.getX()), Integer.valueOf(var17.getY()), Integer.valueOf(var17.getZ()) });
 				}
 
 				IInventory var13 = (IInventory) var12;
-				if (var5 >= 0 && var5 < var13.n_()) {
-					var13.a(var5, var9);
+				if (var5 >= 0 && var5 < var13.getSize()) {
+					var13.setItem(var5, var9);
 				}
 			} else {
 				Entity var18 = b(var1, var2[1]);

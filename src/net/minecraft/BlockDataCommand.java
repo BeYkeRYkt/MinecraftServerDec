@@ -22,7 +22,7 @@ public class BlockDataCommand extends AbstractCommand {
 		} else {
 			var1.a(ag.b, 0);
 			Position var3 = a(var1, var2, 0, false);
-			World var4 = var1.getPrimaryWorld();
+			World var4 = var1.getWorld();
 			if (!var4.isLoaded(var3)) {
 				throw new di("commands.blockdata.outOfWorld", new Object[0]);
 			} else {
@@ -36,7 +36,7 @@ public class BlockDataCommand extends AbstractCommand {
 
 					NBTCompoundTag var8;
 					try {
-						var8 = gg.a(a(var1, var2, 3).getStrippedMessage());
+						var8 = gg.a(a(var1, var2, 3).getJsonMessage());
 					} catch (gf var10) {
 						throw new di("commands.blockdata.tagError", new Object[] { var10.getMessage() });
 					}

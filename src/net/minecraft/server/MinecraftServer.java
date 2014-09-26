@@ -8,15 +8,15 @@ import com.google.common.collect.Queues;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListenableFutureTask;
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.GameProfileRepository;
-import com.mojang.authlib.minecraft.MinecraftSessionService;
-import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufOutputStream;
-import io.netty.buffer.Unpooled;
-import io.netty.handler.codec.base64.Base64;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.GameProfileRepository;
+import net.minecraft.util.com.mojang.authlib.minecraft.MinecraftSessionService;
+import net.minecraft.util.com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
+import net.minecraft.util.io.netty.buffer.ByteBuf;
+import net.minecraft.util.io.netty.buffer.ByteBufOutputStream;
+import net.minecraft.util.io.netty.buffer.Unpooled;
+import net.minecraft.util.io.netty.handler.codec.base64.Base64;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
@@ -48,6 +48,7 @@ import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldSaveEvent;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginLoadOrder;
 
 import pipebukkit.server.PipeServer;
 import pipebukkit.server.command.PipeServerCommandSender;
@@ -61,7 +62,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	private final Convertable convertable;
 	private final Snooper snooper = new Snooper("server", this, getCurrentMillis());
 	public final File universe;
-	private final List<PacketTickable> o = Lists.newArrayList();
+	private final List<ITickable> o = Lists.newArrayList();
 	private final ICommandHandler commandHandler;
 	public final MethodProfiler profiler = new MethodProfiler();
 	private final ServerConnection serverConnection;
@@ -201,7 +202,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 					var1 += var5;
 					this.lastTickTime = var48;
 
-					if (getPrimaryWorld().f()) {
+					if (getWorld().f()) {
 						this.doTick();
 						var1 = 0L;
 					} else {
@@ -282,7 +283,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 
 				if (this.currentTick % 20 == 0) {
 					this.profiler.a("timeSync");
-					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.getTime(), world.L(), world.getGameRules().b("doDaylightCycle"))), world.worldProvider.getDimensionId());
+					this.playerList.sendPacket((new PacketPlayOutTimeUpdate(world.getTime(), world.getDayTime(), world.getGameRules().isGameRule("doDaylightCycle"))), world.worldProvider.getDimensionId());
 					this.profiler.b();
 				}
 
@@ -320,7 +321,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.profiler.c("tickables");
 
 		for (i = 0; i < this.o.size(); ++i) {
-			((PacketTickable) this.o.get(i)).doTick();
+			((ITickable) this.o.get(i)).doTick();
 		}
 
 		this.profiler.b();
@@ -364,7 +365,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.worlds = new ArrayList<WorldServer>();
 
 		WorldSettings worldSettings = new WorldSettings(seed, this.getServerGameMode(), this.isStructureGenerationEnabled(), this.isHardcore(), levelType);
-		WorldData worldData = new WorldData(worldSettings, levelname);
 
 		for (int i = 0; i < 3; ++i) {
 			byte dimension = 0;
@@ -379,49 +379,49 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			WorldServer worldServer = null;
 			if (i == 0) {
 				IDataManager datamanager = new ServerNBTManager(Bukkit.getWorldContainer(), levelname, true);
-				worldServer = new WorldServer(this, datamanager, worldData, dimension, this.profiler).b();
+				worldServer = new WorldServer(this, datamanager, levelName, worldSettings, dimension, this.profiler).b();
 				worldServer.applyWorldSettings(worldSettings);
 			} else {
-				IDataManager datamanager = new ServerNBTManager(Bukkit.getWorldContainer(), dimension == -1 ? levelname+"_nether" : levelname+"_the_end", true);
-				worldServer = new SecondaryWorldServer(this, datamanager, dimension, this.worlds.get(0), this.profiler).b();
+				String name = dimension == -1 ? levelname+"_nether" : levelname+"_the_end";
+				IDataManager datamanager = new ServerNBTManager(Bukkit.getWorldContainer(), name, true);
+				worldServer = new SecondaryWorldServer(this, datamanager, name, worldSettings, dimension, this.worlds.get(0), this.profiler).b();
 			}
-
-			Bukkit.getPluginManager().callEvent(new WorldInitEvent(worldServer.getBukkitWorld()));
 
 			worldServer.addIWorldAccess(new WorldManager(this, worldServer));
 			worldServer.getWorldData().setGameMode(this.getServerGameMode());
 
 			worlds.add(worldServer);
+			getPipeServer().addWorld(worldServer);
+
+			Bukkit.getPluginManager().callEvent(new WorldInitEvent(worldServer.getBukkitWorld()));
+
+			generateTerrain(worldServer);
+
+			Bukkit.getPluginManager().callEvent(new WorldLoadEvent(worldServer.getBukkitWorld()));
 		}
 
 		this.playerList.setPlayerFileData(this.worlds.toArray(new WorldServer[0]));
 		this.setWorldsDifficulty(this.getDifficulty());
-		this.generateTerrain();
+
+		getPipeServer().enablePlugins(PluginLoadOrder.POSTWORLD);
 	}
 
-	protected void generateTerrain() {
-		for (int level = 0; level < worlds.size(); level++) {
-			logger.info("Preparing start region for level " + level);
-			WorldServer worldServer = this.worlds.get(level);
-			Position spawnPosition = worldServer.getSpawnPosition();
-			long timeA = getCurrentMillis();
-			int chunksLoaded = 0;
-			for (int x = -192; x <= 192 && this.isTicking(); x += 16) {
-				for (int z = -192; z <= 192 && this.isTicking(); z += 16) {
-					long timeB = getCurrentMillis();
-					if (timeB - timeA > 1000L) {
-						this.a_("Preparing spawn area", chunksLoaded * 100 / 625);
-						timeA = timeB;
-					}
-	
-					++chunksLoaded;
-					worldServer.chunkProviderServer.getChunkAt(spawnPosition.getX() + x >> 4, spawnPosition.getZ() + z >> 4);
+	public void generateTerrain(WorldServer worldServer) {
+		logger.info("Preparing start region for level " + worldServer.getWorldData().getLevelName());
+		Position spawnPosition = worldServer.getSpawnPosition();
+		long timeA = getCurrentMillis();
+		int chunksLoaded = 0;
+		for (int x = -192; x <= 192 && this.isTicking(); x += 16) {
+			for (int z = -192; z <= 192 && this.isTicking(); z += 16) {
+				long timeB = getCurrentMillis();
+				if (timeB - timeA > 1000L) {
+					logger.info("Preparing spawn area: " + chunksLoaded * 100 / 625+ "%");
+					timeA = timeB;
 				}
-			}
-		}
 
-		for (WorldServer worldServer : worlds) {
-			Bukkit.getPluginManager().callEvent(new WorldLoadEvent(worldServer.getBukkitWorld()));
+				++chunksLoaded;
+				worldServer.chunkProviderServer.getChunkAt(spawnPosition.getX() + x >> 4, spawnPosition.getZ() + z >> 4);
+			}
 		}
 	}
 
@@ -434,10 +434,6 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	public abstract boolean isHardcore();
 
 	public abstract int getOpPermissionLevel();
-
-	protected void a_(String var1, int var2) {
-		logger.info(var1 + ": " + var2 + "%");
-	}
 
 	protected void saveChunks(boolean silenced) {
 		if (!this.N) {
@@ -558,7 +554,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return true;
 	}
 
-	public void a(PacketTickable var1) {
+	public void a(ITickable var1) {
 		this.o.add(var1);
 	}
 
@@ -703,7 +699,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 	}
 
 	public void sendChatMessage(IChatBaseComponent var1) {
-		logger.info(var1.getStrippedMessage());
+		logger.info(var1.getJsonMessage());
 	}
 
 	public boolean canExecuteCommand(int var1, String var2) {
@@ -773,7 +769,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 			}
 		}
 
-		this.X().e(this.worlds.get(0).getDataManager().g());
+		this.X().e(this.worlds.get(0).getDataManager().getName());
 		this.stopTicking();
 	}
 
@@ -938,7 +934,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return new Vec3D(0.0D, 0.0D, 0.0D);
 	}
 
-	public WorldServer getPrimaryWorld() {
+	public WorldServer getWorld() {
 		return this.worlds.get(0);
 	}
 
@@ -958,7 +954,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.forceGameMode = forceGameMode;
 	}
 
-	public boolean av() {
+	public boolean isForceGameModeEnabled() {
 		return this.forceGameMode;
 	}
 
@@ -1023,8 +1019,8 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		return null;
 	}
 
-	public boolean t_() {
-		return getInstance().worlds.get(0).getGameRules().b("sendCommandFeedback");
+	public boolean isCommandBlockOuputEnabled() {
+		return getInstance().worlds.get(0).getGameRules().isGameRule("sendCommandFeedback");
 	}
 
 	public void a(ag var1, int var2) {

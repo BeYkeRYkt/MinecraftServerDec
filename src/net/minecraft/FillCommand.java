@@ -38,7 +38,7 @@ public class FillCommand extends AbstractCommand {
 			if (var9 > '\u8000') {
 				throw new di("commands.fill.tooManyBlocks", new Object[] { Integer.valueOf(var9), Integer.valueOf('\u8000') });
 			} else if (var7.getY() >= 0 && var8.getY() < 256) {
-				World var10 = var1.getPrimaryWorld();
+				World var10 = var1.getWorld();
 
 				for (int var11 = var7.getZ(); var11 < var8.getZ() + 16; var11 += 16) {
 					for (int var12 = var7.getX(); var12 < var8.getX() + 16; var12 += 16) {
@@ -51,7 +51,7 @@ public class FillCommand extends AbstractCommand {
 				NBTCompoundTag var22 = new NBTCompoundTag();
 				boolean var23 = false;
 				if (var2.length >= 10 && var5.x()) {
-					String var13 = a(var1, var2, 9).getStrippedMessage();
+					String var13 = a(var1, var2, 9).getJsonMessage();
 
 					try {
 						var22 = gg.a(var13);
@@ -105,7 +105,7 @@ public class FillCommand extends AbstractCommand {
 							TileEntity var29 = var10.getTileEntity(var17);
 							if (var29 != null) {
 								if (var29 instanceof IInventory) {
-									((IInventory) var29).l();
+									((IInventory) var29).clearInventory();
 								}
 
 								var10.setBlockAt(var17, Blocks.BARRIER.getBlockState(), var5 == Blocks.BARRIER ? 2 : 4);

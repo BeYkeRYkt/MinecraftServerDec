@@ -17,7 +17,7 @@ public class ItemSnow extends ItemBlock {
 			IBlockState var9 = var3.getBlockState(var4);
 			Block var10 = var9.getBlock();
 			if (var10 != this.block && var5 != BlockFace.UP) {
-				var4 = var4.a(var5);
+				var4 = var4.getRelative(var5);
 				var9 = var3.getBlockState(var4);
 				var10 = var9.getBlock();
 			}

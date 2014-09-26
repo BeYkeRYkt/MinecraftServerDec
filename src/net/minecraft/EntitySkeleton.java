@@ -77,8 +77,8 @@ public class EntitySkeleton extends EntityMonster implements IRangedEntity {
 				ItemStack var4 = this.p(4);
 				if (var4 != null) {
 					if (var4.e()) {
-						var4.setDurability(var4.h() + this.random.nextInt(2));
-						if (var4.h() >= var4.j()) {
+						var4.setWearout(var4.getWearout() + this.random.nextInt(2));
+						if (var4.getWearout() >= var4.getMaxWearout()) {
 							this.b(var4);
 							this.setArmor(4, (ItemStack) null);
 						}
@@ -109,17 +109,17 @@ public class EntitySkeleton extends EntityMonster implements IRangedEntity {
 
 	}
 
-	public void a(DamageSource var1) {
-		super.a(var1);
-		if (var1.i() instanceof EntityArrow && var1.j() instanceof EntityHuman) {
-			EntityHuman var2 = (EntityHuman) var1.j();
+	public void die(DamageSource var1) {
+		super.die(var1);
+		if (var1.i() instanceof EntityArrow && var1.getDamager() instanceof EntityHuman) {
+			EntityHuman var2 = (EntityHuman) var1.getDamager();
 			double var3 = var2.locationX - this.locationX;
 			double var5 = var2.locationZ - this.locationZ;
 			if (var3 * var3 + var5 * var5 >= 2500.0D) {
 				var2.b((Statistic) AchievementList.v);
 			}
-		} else if (var1.j() instanceof EntityCreeper && ((EntityCreeper) var1.j()).n() && ((EntityCreeper) var1.j()).cn()) {
-			((EntityCreeper) var1.j()).co();
+		} else if (var1.getDamager() instanceof EntityCreeper && ((EntityCreeper) var1.getDamager()).n() && ((EntityCreeper) var1.getDamager()).cn()) {
+			((EntityCreeper) var1.getDamager()).co();
 			this.a(new ItemStack(Items.SKULL, 1, this.ck() == 1 ? 1 : 0), 0.0F);
 		}
 
@@ -239,8 +239,8 @@ public class EntitySkeleton extends EntityMonster implements IRangedEntity {
 
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		if (var1.isTagAssignableFrom("SkeletonType", 99)) {
 			byte var2 = var1.getByte("SkeletonType");
 			this.a(var2);
@@ -249,8 +249,8 @@ public class EntitySkeleton extends EntityMonster implements IRangedEntity {
 		this.n();
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("SkeletonType", (byte) this.ck());
 	}
 

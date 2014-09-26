@@ -1,33 +1,36 @@
 package net.minecraft;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-public class TileEntityDispenser extends bdf implements IInventory {
+public class TileEntityDispenser extends TileEntityLockable implements IInventory {
 
-	private static final Random f = new Random();
-	private ItemStack[] g = new ItemStack[9];
-	protected String a;
+	private static final Random random = new Random();
+	private ItemStack[] items = new ItemStack[9];
+	protected String customName;
+	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
-	public int n_() {
+	public int getSize() {
 		return 9;
 	}
 
-	public ItemStack a(int var1) {
-		return this.g[var1];
+	public ItemStack getItem(int var1) {
+		return this.items[var1];
 	}
 
-	public ItemStack a(int var1, int var2) {
-		if (this.g[var1] != null) {
+	public ItemStack splitStack(int var1, int var2) {
+		if (this.items[var1] != null) {
 			ItemStack var3;
-			if (this.g[var1].amount <= var2) {
-				var3 = this.g[var1];
-				this.g[var1] = null;
+			if (this.items[var1].amount <= var2) {
+				var3 = this.items[var1];
+				this.items[var1] = null;
 				this.update();
 				return var3;
 			} else {
-				var3 = this.g[var1].a(var2);
-				if (this.g[var1].amount == 0) {
-					this.g[var1] = null;
+				var3 = this.items[var1].a(var2);
+				if (this.items[var1].amount == 0) {
+					this.items[var1] = null;
 				}
 
 				this.update();
@@ -38,42 +41,42 @@ public class TileEntityDispenser extends bdf implements IInventory {
 		}
 	}
 
-	public ItemStack b(int var1) {
-		if (this.g[var1] != null) {
-			ItemStack var2 = this.g[var1];
-			this.g[var1] = null;
+	public ItemStack splitWithoutUpdate(int var1) {
+		if (this.items[var1] != null) {
+			ItemStack var2 = this.items[var1];
+			this.items[var1] = null;
 			return var2;
 		} else {
 			return null;
 		}
 	}
 
-	public int m() {
-		int var1 = -1;
-		int var2 = 1;
+	public int getRandomSlot() {
+		int randomSlot = -1;
+		int randomI = 1;
 
-		for (int var3 = 0; var3 < this.g.length; ++var3) {
-			if (this.g[var3] != null && f.nextInt(var2++) == 0) {
-				var1 = var3;
+		for (int i = 0; i < this.items.length; ++i) {
+			if (this.items[i] != null && random.nextInt(randomI++) == 0) {
+				randomSlot = i;
 			}
 		}
 
-		return var1;
+		return randomSlot;
 	}
 
-	public void a(int var1, ItemStack var2) {
-		this.g[var1] = var2;
-		if (var2 != null && var2.amount > this.p_()) {
-			var2.amount = this.p_();
+	public void setItem(int var1, ItemStack var2) {
+		this.items[var1] = var2;
+		if (var2 != null && var2.amount > this.getMaxStackSize()) {
+			var2.amount = this.getMaxStackSize();
 		}
 
 		this.update();
 	}
 
 	public int a(ItemStack var1) {
-		for (int var2 = 0; var2 < this.g.length; ++var2) {
-			if (this.g[var2] == null || this.g[var2].getItem() == null) {
-				this.a(var2, var1);
+		for (int var2 = 0; var2 < this.items.length; ++var2) {
+			if (this.items[var2] == null || this.items[var2].getItem() == null) {
+				this.setItem(var2, var1);
 				return var2;
 			}
 		}
@@ -82,32 +85,32 @@ public class TileEntityDispenser extends bdf implements IInventory {
 	}
 
 	public String getName() {
-		return this.k_() ? this.a : "container.dispenser";
+		return this.hasCustomName() ? this.customName : "container.dispenser";
 	}
 
 	public void a(String var1) {
-		this.a = var1;
+		this.customName = var1;
 	}
 
-	public boolean k_() {
-		return this.a != null;
+	public boolean hasCustomName() {
+		return this.customName != null;
 	}
 
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
-		this.g = new ItemStack[this.n_()];
+		this.items = new ItemStack[this.getSize()];
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			int var5 = var4.getByte("Slot") & 255;
-			if (var5 >= 0 && var5 < this.g.length) {
-				this.g[var5] = ItemStack.a(var4);
+			if (var5 >= 0 && var5 < this.items.length) {
+				this.items[var5] = ItemStack.fromNBT(var4);
 			}
 		}
 
 		if (var1.isTagAssignableFrom("CustomName", 8)) {
-			this.a = var1.getString("CustomName");
+			this.customName = var1.getString("CustomName");
 		}
 
 	}
@@ -116,64 +119,76 @@ public class TileEntityDispenser extends bdf implements IInventory {
 		super.write(var1);
 		NBTListTag var2 = new NBTListTag();
 
-		for (int var3 = 0; var3 < this.g.length; ++var3) {
-			if (this.g[var3] != null) {
+		for (int var3 = 0; var3 < this.items.length; ++var3) {
+			if (this.items[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.put("Slot", (byte) var3);
-				this.g[var3].write(var4);
+				this.items[var3].write(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
 
 		var1.put("Items", (NBTTag) var2);
-		if (this.k_()) {
-			var1.put("CustomName", this.a);
+		if (this.hasCustomName()) {
+			var1.put("CustomName", this.customName);
 		}
 
 	}
 
-	public int p_() {
+	public int getMaxStackSize() {
 		return 64;
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean canInteract(EntityHuman var1) {
 		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
-	public void b(EntityHuman var1) {
+	public void onContainerOpen(EntityHuman var1) {
+		viewers.add(var1);
 	}
 
-	public void c(EntityHuman var1) {
+	public void onContainerClose(EntityHuman var1) {
+		viewers.remove(var1);
 	}
 
-	public boolean b(int var1, ItemStack var2) {
+	public boolean canSuckItemFromInventory(int var1, ItemStack var2) {
 		return true;
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:dispenser";
 	}
 
-	public Container a(PlayerInventory var1, EntityHuman var2) {
-		return new aip(var1, this);
+	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
+		return new ContainerDispenser(var1, this);
 	}
 
-	public int a_(int var1) {
+	public int getProperty(int var1) {
 		return 0;
 	}
 
-	public void b(int var1, int var2) {
+	public void readClientCustomInput(int var1, int var2) {
 	}
 
-	public int g() {
+	public int getPropertiesCount() {
 		return 0;
 	}
 
-	public void l() {
-		for (int var1 = 0; var1 < this.g.length; ++var1) {
-			this.g[var1] = null;
+	public void clearInventory() {
+		for (int var1 = 0; var1 < this.items.length; ++var1) {
+			this.items[var1] = null;
 		}
 
+	}
+
+	@Override
+	public List<EntityHuman> getViewers() {
+		return viewers;
+	}
+
+	@Override
+	public ItemStack[] getItems() {
+		return items;
 	}
 
 }

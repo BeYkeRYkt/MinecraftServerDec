@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class BlockFurnace extends atg {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 	private final boolean b;
 	private static boolean M;
 
@@ -15,20 +15,20 @@ public class BlockFurnace extends atg {
 		this.b = var1;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf(Blocks.FURNACE);
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
 	}
 
 	private void e(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
-			Block var4 = var1.getBlockState(var2.c()).getBlock();
-			Block var5 = var1.getBlockState(var2.d()).getBlock();
-			Block var6 = var1.getBlockState(var2.e()).getBlock();
-			Block var7 = var1.getBlockState(var2.f()).getBlock();
+			Block var4 = var1.getBlockState(var2.getNorth()).getBlock();
+			Block var5 = var1.getBlockState(var2.getSouth()).getBlock();
+			Block var6 = var1.getBlockState(var2.getWest()).getBlock();
+			Block var7 = var1.getBlockState(var2.getEast()).getBlock();
 			BlockFace var8 = (BlockFace) var3.b(a);
 			if (var8 == BlockFace.NORTH && var4.m() && !var5.m()) {
 				var8 = BlockFace.SOUTH;
@@ -44,13 +44,13 @@ public class BlockFurnace extends atg {
 		}
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {
 			TileEntity var9 = var1.getTileEntity(var2);
 			if (var9 instanceof TileEntityFurnace) {
-				var4.a((IInventory) ((TileEntityFurnace) var9));
+				var4.openInventory((IInventory) ((TileEntityFurnace) var9));
 			}
 
 			return true;
@@ -71,13 +71,13 @@ public class BlockFurnace extends atg {
 
 		M = false;
 		if (var4 != null) {
-			var4.D();
+			var4.setInvalid();
 			var1.a(var2, var4);
 		}
 
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityFurnace();
 	}
 
@@ -87,16 +87,16 @@ public class BlockFurnace extends atg {
 
 	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
 		var1.setBlockAt(var2, var3.a(a, var4.aO().getOpposite()), 2);
-		if (var5.s()) {
+		if (var5.hasDisplayName()) {
 			TileEntity var6 = var1.getTileEntity(var2);
 			if (var6 instanceof TileEntityFurnace) {
-				((TileEntityFurnace) var6).a(var5.q());
+				((TileEntityFurnace) var6).a(var5.getDisplayName());
 			}
 		}
 
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		if (!M) {
 			TileEntity var4 = var1.getTileEntity(var2);
 			if (var4 instanceof TileEntityFurnace) {
@@ -105,10 +105,10 @@ public class BlockFurnace extends atg {
 			}
 		}
 
-		super.b(var1, var2, var3);
+		super.remove(var1, var2, var3);
 	}
 
-	public boolean N() {
+	public boolean isComplexRedstone() {
 		return true;
 	}
 

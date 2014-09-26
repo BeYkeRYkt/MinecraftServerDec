@@ -23,7 +23,7 @@ public class PacketPlayOutCombatEvent implements Packet<PlayOutPacketListener> {
 			case END_COMBAT: { 
 				this.playerId = tracker.getPlayer().getId();
 				this.entityId = entity == null ? -1 : entity.getId();
-				this.message = tracker.getMessage().getStrippedMessage();
+				this.message = tracker.getMessage().getJsonMessage();
 			}
 			default: {
 				break;

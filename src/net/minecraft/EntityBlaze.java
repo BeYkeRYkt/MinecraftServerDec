@@ -57,7 +57,7 @@ public class EntityBlaze extends EntityMonster {
 			}
 
 			for (int var1 = 0; var1 < 2; ++var1) {
-				this.world.a(Particle.m, this.locationX + (this.random.nextDouble() - 0.5D) * (double) this.height, this.locationY + this.random.nextDouble() * (double) this.width, this.locationZ + (this.random.nextDouble() - 0.5D) * (double) this.height, 0.0D, 0.0D, 0.0D, new int[0]);
+				this.world.addParticle(Particle.m, this.locationX + (this.random.nextDouble() - 0.5D) * (double) this.height, this.locationY + this.random.nextDouble() * (double) this.width, this.locationZ + (this.random.nextDouble() - 0.5D) * (double) this.height, 0.0D, 0.0D, 0.0D, new int[0]);
 			}
 		}
 
@@ -66,7 +66,7 @@ public class EntityBlaze extends EntityMonster {
 
 	protected void E() {
 		if (this.U()) {
-			this.damageEntity(DamageSource.DROWN, 1.0F);
+			this.receiveDamage(DamageSource.DROWN, 1.0F);
 		}
 
 		--this.c;

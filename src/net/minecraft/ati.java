@@ -49,10 +49,10 @@ public abstract class ati extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return World.a((ard) var1, var2.b());
+		return World.a((ard) var1, var2.getDown());
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			var3 = this.a(var1, var2, var3, true);
 			if (this.a) {
@@ -66,22 +66,22 @@ public abstract class ati extends Block {
 		if (!var1.isStatic) {
 			atl var5 = (atl) var3.b(this.l());
 			boolean var6 = false;
-			if (!World.a((ard) var1, var2.b())) {
+			if (!World.a((ard) var1, var2.getDown())) {
 				var6 = true;
 			}
 
-			if (var5 == atl.c && !World.a((ard) var1, var2.f())) {
+			if (var5 == atl.c && !World.a((ard) var1, var2.getEast())) {
 				var6 = true;
-			} else if (var5 == atl.d && !World.a((ard) var1, var2.e())) {
+			} else if (var5 == atl.d && !World.a((ard) var1, var2.getWest())) {
 				var6 = true;
-			} else if (var5 == atl.e && !World.a((ard) var1, var2.c())) {
+			} else if (var5 == atl.e && !World.a((ard) var1, var2.getNorth())) {
 				var6 = true;
-			} else if (var5 == atl.f && !World.a((ard) var1, var2.d())) {
+			} else if (var5 == atl.f && !World.a((ard) var1, var2.getSouth())) {
 				var6 = true;
 			}
 
 			if (var6) {
-				this.b(var1, var2, var3, 0);
+				this.dropNaturally(var1, var2, var3, 0);
 				var1.g(var2);
 			} else {
 				this.b(var1, var2, var3, var4);
@@ -94,22 +94,22 @@ public abstract class ati extends Block {
 	}
 
 	protected IBlockState a(World var1, Position var2, IBlockState var3, boolean var4) {
-		return var1.isStatic ? var3 : (new atk(this, var1, var2, var3)).a(var1.z(var2), var4).b();
+		return var1.isStatic ? var3 : (new atk(this, var1, var2, var3)).a(var1.isBlockIndirectlyPowered(var2), var4).b();
 	}
 
 	public int i() {
 		return 0;
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
-		super.b(var1, var2, var3);
+	public void remove(World var1, Position var2, IBlockState var3) {
+		super.remove(var1, var2, var3);
 		if (((atl) var3.b(this.l())).c()) {
-			var1.c(var2.a(), (Block) this);
+			var1.c(var2.getUp(), (Block) this);
 		}
 
 		if (this.a) {
 			var1.c(var2, (Block) this);
-			var1.c(var2.b(), (Block) this);
+			var1.c(var2.getDown(), (Block) this);
 		}
 
 	}

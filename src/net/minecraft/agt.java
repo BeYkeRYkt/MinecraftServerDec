@@ -19,8 +19,8 @@ class agt implements agw {
 		}
 
 		ItemStack var4 = new ItemStack(Items.EMERALD, var3, 0);
-		ItemStack var5 = new ItemStack(this.a.getItem(), 1, this.a.getDurability());
+		ItemStack var5 = new ItemStack(this.a.getItem(), 1, this.a.getWearout());
 		var5 = aph.a(var2, var5, 5 + var2.nextInt(15));
-		var1.add(new aqc(var4, var5));
+		var1.add(new MerchantRecipe(var4, var5));
 	}
 }

@@ -34,7 +34,7 @@ public abstract class aud extends Block {
 	}
 
 	public boolean a(World var1, Position var2, BlockFace var3) {
-		return var1.getBlockState(var2.a(var3.getOpposite())).getBlock().t();
+		return var1.getBlockState(var2.getRelative(var3.getOpposite())).getBlock().t();
 	}
 
 	public boolean c(World var1, Position var2) {
@@ -43,7 +43,7 @@ public abstract class aud extends Block {
 
 		for (int var5 = 0; var5 < var4; ++var5) {
 			BlockFace var6 = var3[var5];
-			if (var1.getBlockState(var2.a(var6)).getBlock().t()) {
+			if (var1.getBlockState(var2.getRelative(var6)).getBlock().t()) {
 				return true;
 			}
 		}
@@ -52,14 +52,14 @@ public abstract class aud extends Block {
 	}
 
 	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-		return var1.getBlockState(var2.a(var3.getOpposite())).getBlock().t() ? this.getBlockState().a(a, var3).a(b, Boolean.valueOf(false)) : this.getBlockState().a(a, BlockFace.DOWN).a(b, Boolean.valueOf(false));
+		return var1.getBlockState(var2.getRelative(var3.getOpposite())).getBlock().t() ? this.getBlockState().a(a, var3).a(b, Boolean.valueOf(false)) : this.getBlockState().a(a, BlockFace.DOWN).a(b, Boolean.valueOf(false));
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (this.e(var1, var2, var3)) {
 			BlockFace var5 = (BlockFace) var3.b(a);
-			if (!var1.getBlockState(var2.a(var5.getOpposite())).getBlock().t()) {
-				this.b(var1, var2, var3, 0);
+			if (!var1.getBlockState(var2.getRelative(var5.getOpposite())).getBlock().t()) {
+				this.dropNaturally(var1, var2, var3, 0);
 				var1.g(var2);
 			}
 		}
@@ -68,7 +68,7 @@ public abstract class aud extends Block {
 
 	private boolean e(World var1, Position var2, IBlockState var3) {
 		if (!this.c(var1, var2)) {
-			this.b(var1, var2, var3, 0);
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.g(var2);
 			return false;
 		} else {
@@ -110,7 +110,7 @@ public abstract class aud extends Block {
 
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (((Boolean) var3.b(b)).booleanValue()) {
 			return true;
 		} else {
@@ -123,15 +123,15 @@ public abstract class aud extends Block {
 		}
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		if (((Boolean) var3.b(b)).booleanValue()) {
 			this.b(var1, var2, (BlockFace) var3.b(a));
 		}
 
-		super.b(var1, var2, var3);
+		super.remove(var1, var2, var3);
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return ((Boolean) var3.b(b)).booleanValue() ? 15 : 0;
 	}
 
@@ -139,7 +139,7 @@ public abstract class aud extends Block {
 		return !((Boolean) var3.b(b)).booleanValue() ? 0 : (var3.b(a) == var4 ? 15 : 0);
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 
@@ -181,7 +181,7 @@ public abstract class aud extends Block {
 
 	private void f(World var1, Position var2, IBlockState var3) {
 		this.d(var3);
-		List var4 = var1.a(EntityArrow.class, new AxisAlignedBB((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G));
+		List var4 = var1.getEntititesInAABB(EntityArrow.class, new AxisAlignedBB((double) var2.getX() + this.B, (double) var2.getY() + this.C, (double) var2.getZ() + this.D, (double) var2.getX() + this.E, (double) var2.getY() + this.F, (double) var2.getZ() + this.G));
 		boolean var5 = !var4.isEmpty();
 		boolean var6 = ((Boolean) var3.b(b)).booleanValue();
 		if (var5 && !var6) {
@@ -206,7 +206,7 @@ public abstract class aud extends Block {
 
 	private void b(World var1, Position var2, BlockFace var3) {
 		var1.c(var2, (Block) this);
-		var1.c(var2.a(var3.getOpposite()), (Block) this);
+		var1.c(var2.getRelative(var3.getOpposite()), (Block) this);
 	}
 
 	public IBlockState setData(int var1) {

@@ -16,7 +16,7 @@ public class WorldGenNetherPiece1 extends WorldGenNetherPiece {
 
 	protected WorldGenNetherPiece1(Random var1, int var2, int var3) {
 		super(0);
-		this.m = en.a.a(var1);
+		this.m = UniverseDirection.HORIZONTAL.getRandomBlockFace(var1);
 		switch (bjo.a[this.m.ordinal()]) {
 			case 1:
 			case 2:

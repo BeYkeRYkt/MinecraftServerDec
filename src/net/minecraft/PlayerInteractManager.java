@@ -24,11 +24,11 @@ public class PlayerInteractManager {
 		this.worldServer = var1;
 	}
 
-	public void a(EnumGameMode var1) {
-		this.gameMode = var1;
-		var1.setGameModeProperties(this.b.playerProperties);
+	public void setGameMode(EnumGameMode gameMode) {
+		this.gameMode = gameMode;
+		gameMode.setGameModeProperties(this.b.playerProperties);
 		this.b.t();
-		this.b.minecraftserver.getPlayerList().sendPacket((Packet) (new PacketPlayOutListItem(ListItemAction.UPDATE_GAME_MODE, new EntityPlayer[] { this.b })));
+		this.b.minecraftserver.getPlayerList().sendPacket(new PacketPlayOutListItem(ListItemAction.UPDATE_GAME_MODE, new EntityPlayer[] { this.b }));
 	}
 
 	public EnumGameMode getGameMode() {
@@ -48,7 +48,7 @@ public class PlayerInteractManager {
 			this.gameMode = var1;
 		}
 
-		this.a(this.gameMode);
+		this.setGameMode(this.gameMode);
 	}
 
 	public void a() {
@@ -226,16 +226,16 @@ public class PlayerInteractManager {
 			return false;
 		} else {
 			int var4 = var3.amount;
-			int var5 = var3.getDurability();
+			int var5 = var3.getWearout();
 			ItemStack var6 = var3.a(var2, var1);
-			if (var6 == var3 && (var6 == null || var6.amount == var4 && var6.l() <= 0 && var6.getDurability() == var5)) {
+			if (var6 == var3 && (var6 == null || var6.amount == var4 && var6.l() <= 0 && var6.getWearout() == var5)) {
 				return false;
 			} else {
 				var1.playerInventory.contents[var1.playerInventory.itemInHandIndex] = var6;
 				if (this.isCreative()) {
 					var6.amount = var4;
 					if (var6.e()) {
-						var6.setDurability(var5);
+						var6.setWearout(var5);
 					}
 				}
 
@@ -244,7 +244,7 @@ public class PlayerInteractManager {
 				}
 
 				if (!var1.bR()) {
-					((EntityPlayer) var1).a(var1.defaultContainer);
+					((EntityPlayer) var1).sendContainerItems(var1.defaultContainer);
 				}
 
 				return true;
@@ -255,19 +255,19 @@ public class PlayerInteractManager {
 	public boolean interact(EntityHuman var1, World var2, ItemStack var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
 		if (this.gameMode == EnumGameMode.SPECTATOR) {
 			TileEntity var13 = var2.getTileEntity(var4);
-			if (var13 instanceof vy) {
+			if (var13 instanceof ILockable) {
 				Block var14 = var2.getBlockState(var4).getBlock();
-				vy var15 = (vy) var13;
+				ILockable var15 = (ILockable) var13;
 				if (var15 instanceof TileEntityChest && var14 instanceof BlockChest) {
 					var15 = ((BlockChest) var14).d(var2, var4);
 				}
 
 				if (var15 != null) {
-					var1.a((IInventory) var15);
+					var1.openInventory((IInventory) var15);
 					return true;
 				}
 			} else if (var13 instanceof IInventory) {
-				var1.a((IInventory) var13);
+				var1.openInventory((IInventory) var13);
 				return true;
 			}
 
@@ -275,7 +275,7 @@ public class PlayerInteractManager {
 		} else {
 			if (!var1.aw() || var1.getItemInHand() == null) {
 				IBlockState var9 = var2.getBlockState(var4);
-				if (var9.getBlock().a(var2, var4, var9, var1, var5, var6, var7, var8)) {
+				if (var9.getBlock().interact(var2, var4, var9, var1, var5, var6, var7, var8)) {
 					return true;
 				}
 			}
@@ -283,10 +283,10 @@ public class PlayerInteractManager {
 			if (var3 == null) {
 				return false;
 			} else if (this.isCreative()) {
-				int var12 = var3.getDurability();
+				int var12 = var3.getWearout();
 				int var10 = var3.amount;
 				boolean var11 = var3.a(var1, var2, var4, var5, var6, var7, var8);
-				var3.setDurability(var12);
+				var3.setWearout(var12);
 				var3.amount = var10;
 				return var11;
 			} else {

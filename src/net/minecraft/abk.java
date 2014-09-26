@@ -29,7 +29,7 @@ public class abk {
 					return;
 				}
 
-				this.c = this.a.s.nextInt(10) == 0 ? 1 : 2;
+				this.c = this.a.random.nextInt(10) == 0 ? 1 : 2;
 				this.b = false;
 				if (this.c == 2) {
 					return;
@@ -62,7 +62,7 @@ public class abk {
 	}
 
 	private boolean b() {
-		List var1 = this.a.j;
+		List var1 = this.a.players;
 		Iterator var2 = var1.iterator();
 
 		while (var2.hasNext()) {
@@ -77,7 +77,7 @@ public class abk {
 
 					while (true) {
 						if (var7 < 10) {
-							float var8 = this.a.s.nextFloat() * 3.1415927F * 2.0F;
+							float var8 = this.a.random.nextFloat() * 3.1415927F * 2.0F;
 							this.g = var4.getX() + (int) ((double) (MathHelper.b(var8) * var5) * 0.9D);
 							this.h = var4.getY();
 							this.i = var4.getZ() + (int) ((double) (MathHelper.a(var8) * var5) * 0.9D);
@@ -132,7 +132,7 @@ public class abk {
 				return false;
 			}
 
-			var2.setPositionRotation(var1.x, var1.y, var1.z, this.a.s.nextFloat() * 360.0F, 0.0F);
+			var2.setPositionRotation(var1.x, var1.y, var1.z, this.a.random.nextFloat() * 360.0F, 0.0F);
 			this.a.addEntity((Entity) var2);
 			Position var3 = this.f.a();
 			var2.a(var3, this.f.b());
@@ -142,7 +142,7 @@ public class abk {
 
 	private Vec3D a(Position var1) {
 		for (int var2 = 0; var2 < 10; ++var2) {
-			Position var3 = var1.a(this.a.s.nextInt(16) - 8, this.a.s.nextInt(6) - 3, this.a.s.nextInt(16) - 8);
+			Position var3 = var1.a(this.a.random.nextInt(16) - 8, this.a.random.nextInt(6) - 3, this.a.random.nextInt(16) - 8);
 			if (this.f.a(var3) && SpawnerCreature.a(xo.a, this.a, var3)) {
 				return new Vec3D((double) var3.getX(), (double) var3.getY(), (double) var3.getZ());
 			}

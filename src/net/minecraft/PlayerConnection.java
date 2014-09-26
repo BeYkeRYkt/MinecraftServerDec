@@ -3,8 +3,8 @@ package net.minecraft;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.Futures;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
+import net.minecraft.util.io.netty.buffer.ByteBuf;
+import net.minecraft.util.io.netty.buffer.Unpooled;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,8 +21,11 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
-public class PlayerConnection implements PlayInPacketListener, PacketTickable {
+public class PlayerConnection implements PlayInPacketListener, ITickable {
 
 	private static final Logger logger = LogManager.getLogger();
 
@@ -127,7 +130,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 					}
 
 					this.player.onGround = packet.isOnGround();
-					this.player.l();
+					this.player.doTickByPacket();
 					this.player.setLocation(locX, locY, locZ, yaw, pitch);
 					if (this.player.vehicle != null) {
 						this.player.vehicle.al();
@@ -155,7 +158,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 				}
 
 				if (this.player.isSleeping()) {
-					this.player.l();
+					this.player.doTickByPacket();
 					this.player.setLocation(this.lastX, this.lastY, this.lastZ, this.player.yaw, this.player.pitch);
 					worldServer.playerJoinedWorld(this.player);
 					return;
@@ -189,7 +192,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 					pitch = packet.getPitch();
 				}
 
-				this.player.l();
+				this.player.doTickByPacket();
 				this.player.setLocation(this.lastX, this.lastY, this.lastZ, yaw, pitch);
 				if (!this.checkMovement) {
 					return;
@@ -389,7 +392,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 
 		if (update) {
 			this.player.playerConnection.sendPacket(new PacketPlayOutBlockChange(worldServer, position));
-			this.player.playerConnection.sendPacket(new PacketPlayOutBlockChange(worldServer, position.a(blockFace)));
+			this.player.playerConnection.sendPacket(new PacketPlayOutBlockChange(worldServer, position.getRelative(blockFace)));
 		}
 
 		packetItemStack = this.player.playerInventory.getItemInHand();
@@ -399,11 +402,11 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 		}
 
 		if (packetItemStack == null || packetItemStack.l() == 0) {
-			this.player.g = true;
-			this.player.playerInventory.contents[this.player.playerInventory.itemInHandIndex] = ItemStack.b(this.player.playerInventory.contents[this.player.playerInventory.itemInHandIndex]);
+			this.player.updatingSlots = true;
+			this.player.playerInventory.contents[this.player.playerInventory.itemInHandIndex] = ItemStack.getCopy(this.player.playerInventory.contents[this.player.playerInventory.itemInHandIndex]);
 			Slot var8 = this.player.activeContainer.a((IInventory) this.player.playerInventory, this.player.playerInventory.itemInHandIndex);
 			this.player.activeContainer.b();
-			this.player.g = false;
+			this.player.updatingSlots = false;
 			if (!ItemStack.matches(this.player.playerInventory.getItemInHand(), packet.getItem())) {
 				this.sendPacket(new PacketPlayOutSetSlot(this.player.activeContainer.windowId, var8.index, this.player.playerInventory.getItemInHand()));
 			}
@@ -458,19 +461,16 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 	public void handle(PacketPlayInResourcePackStatus packet) {
 	}
 
-	public void handle(IChatBaseComponent packet) {
+	public void handleDisconnect(IChatBaseComponent packet) {
 		logger.info(this.player.getName() + " lost connection: " + packet);
 		this.minecraftserver.requestServerPingRefresh();
-		ChatMessage chatMessage = new ChatMessage("multiplayer.player.left", new Object[] { this.player.getComponentName() });
-		chatMessage.getChatModifier().setColor(EnumChatFormat.YELLOW);
-		this.minecraftserver.getPlayerList().sendMessage(chatMessage);
 		this.player.q();
 		this.minecraftserver.getPlayerList().disconnect(this.player);
 	}
 
 	public void handle(PacketPlayInHeldItemChange packet) {
 		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
-		if (packet.getSlot() >= 0 && packet.getSlot() < PlayerInventory.getHotbarSize()) {
+		if (packet.getSlot() >= 0 && packet.getSlot() < InventoryPlayer.getHotbarSize()) {
 			this.player.playerInventory.itemInHandIndex = packet.getSlot();
 			this.player.updateLastActiveTime();
 		} else {
@@ -480,13 +480,16 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 
 	public void handle(PacketPlayInChatMessage packet) {
 		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		chat(packet.getMessage());
+	}
+
+	public void chat(String message) {
 		if (this.player.getChatFlag() == EnumChatFlag.HIDDEN) {
 			ChatMessage response = new ChatMessage("chat.cannotSend", new Object[0]);
 			response.getChatModifier().setColor(EnumChatFormat.RED);
 			this.sendPacket(new PacketPlayOutChatMessage(response));
 		} else {
 			this.player.updateLastActiveTime();
-			String message = packet.getMessage();
 			message = StringUtils.normalizeSpace(message);
 
 			for (int i = 0; i < message.length(); ++i) {
@@ -497,7 +500,11 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 			}
 
 			if (message.startsWith("/")) {
-				this.handleCommand(message);
+				PlayerCommandPreprocessEvent commandPreProcess = new PlayerCommandPreprocessEvent(player.getBukkitEntity(Player.class), message);
+				Bukkit.getPluginManager().callEvent(commandPreProcess);
+				if (!commandPreProcess.isCancelled()) {
+					MinecraftServer.getInstance().getPipeServer().handleCommand(this.player.getBukkitEntity(Player.class), commandPreProcess.getMessage().substring(1, commandPreProcess.getMessage().length()));
+				}
 			} else {
 				ChatMessage chatMessage = new ChatMessage("chat.type.text", new Object[] { this.player.getComponentName(), message });
 				this.minecraftserver.getPlayerList().sendMessage(chatMessage, false);
@@ -511,9 +518,6 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 		}
 	}
 
-	private void handleCommand(String command) {
-		this.minecraftserver.getCommandHandler().handleCommand(this.player, command);
-	}
 
 	public void handle(PacketPlayInAnimation packet) {
 		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
@@ -554,7 +558,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 			}
 			case OPEN_INVENTORY: {
 				if (this.player.vehicle instanceof EntityHorse) {
-					((EntityHorse) this.player.vehicle).openChest(this.player);
+					((EntityHorse) this.player.vehicle).openHorseInventory(this.player);
 				}
 				break;
 			}
@@ -627,7 +631,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 
 	public void handle(PacketPlayInCloseWindow packet) {
 		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
-		this.player.closeWindow();
+		this.player.removeWindow();
 	}
 
 	public void handle(PacketPlayInClickWindow packet) {
@@ -639,15 +643,15 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 				for (int i = 0; i < this.player.activeContainer.slots.size(); ++i) {
 					items.add(this.player.activeContainer.slots.get(i).getItemStack());
 				}
-				this.player.setContainerData(this.player.activeContainer, items);
+				this.player.sendContainerItems(this.player.activeContainer, items);
 			} else {
 				ItemStack item = this.player.activeContainer.a(packet.getSlot(), packet.getButton(), packet.getMode(), this.player);
 				if (ItemStack.matches(packet.getItem(), item)) {
 					this.player.playerConnection.sendPacket(new PacketPlayOutConfirmTransaction(packet.getWindowId(), packet.getAction(), true));
-					this.player.g = true;
+					this.player.updatingSlots = true;
 					this.player.activeContainer.b();
 					this.player.broadcastCarriedItem();
-					this.player.g = false;
+					this.player.updatingSlots = false;
 				} else {
 					this.intHashMap.a(this.player.activeContainer.windowId, Short.valueOf(packet.getAction()));
 					this.player.playerConnection.sendPacket(new PacketPlayOutConfirmTransaction(packet.getWindowId(), packet.getAction(), false));
@@ -656,7 +660,7 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 					for (int i = 0; i < this.player.activeContainer.slots.size(); ++i) {
 						items.add(this.player.activeContainer.slots.get(i).getItemStack());
 					}
-					this.player.setContainerData(this.player.activeContainer, items);
+					this.player.sendContainerItems(this.player.activeContainer, items);
 				}
 			}
 		}
@@ -692,9 +696,9 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 				}
 			}
 
-			boolean isInventoryClick = packet.getSlot() >= 1 && packet.getSlot() < 36 + PlayerInventory.getHotbarSize();
+			boolean isInventoryClick = packet.getSlot() >= 1 && packet.getSlot() < 36 + InventoryPlayer.getHotbarSize();
 			boolean isValidItemCheck1 = item == null || item.getItem() != null;
-			boolean isValidItemCheck2 = item == null || item.getDurability() >= 0 && item.amount <= 64 && item.amount > 0;
+			boolean isValidItemCheck2 = item == null || item.getWearout() >= 0 && item.amount <= 64 && item.amount > 0;
 			if (isInventoryClick && isValidItemCheck1 && isValidItemCheck2) {
 				if (item == null) {
 					this.player.defaultContainer.setItem(packet.getSlot(), (ItemStack) null);
@@ -894,8 +898,8 @@ public class PlayerConnection implements PlayInPacketListener, PacketTickable {
 					if (slot.hasItem()) {
 						slot.a(1);
 						IInventory inventory = containerBeacon.getInventory();
-						inventory.b(1, i1);
-						inventory.b(2, i2);
+						inventory.readClientCustomInput(1, i1);
+						inventory.readClientCustomInput(2, i2);
 						inventory.update();
 					}
 				} catch (Exception var32) {

@@ -88,10 +88,10 @@ public class MobEffectList {
 			}
 		} else if (this.id == POISON.id) {
 			if (entityLiing.getHealth() > 1.0F) {
-				entityLiing.damageEntity(DamageSource.MAGIC, 1.0F);
+				entityLiing.receiveDamage(DamageSource.MAGIC, 1.0F);
 			}
 		} else if (this.id == WITHER.id) {
-			entityLiing.damageEntity(DamageSource.WITHER, 1.0F);
+			entityLiing.receiveDamage(DamageSource.WITHER, 1.0F);
 		} else if (this.id == HUNGER.id && entityLiing instanceof EntityHuman) {
 			((EntityHuman) entityLiing).a(0.025F * (float) (var2 + 1));
 		} else if (this.id == SATURATION.id && entityLiing instanceof EntityHuman) {
@@ -100,7 +100,7 @@ public class MobEffectList {
 			}
 		} else if ((this.id != HEAL.id || entityLiing.bl()) && (this.id != HARM.id || !entityLiing.bl())) {
 			if (this.id == HARM.id && !entityLiing.bl() || this.id == HEAL.id && entityLiing.bl()) {
-				entityLiing.damageEntity(DamageSource.MAGIC, (float) (6 << var2));
+				entityLiing.receiveDamage(DamageSource.MAGIC, (float) (6 << var2));
 			}
 		} else {
 			entityLiing.g((float) Math.max(4 << var2, 0));
@@ -114,9 +114,9 @@ public class MobEffectList {
 			if (this.id == HARM.id && !var3.bl() || this.id == HEAL.id && var3.bl()) {
 				var7 = (int) (var5 * (double) (6 << var4) + 0.5D);
 				if (var1 == null) {
-					var3.damageEntity(DamageSource.MAGIC, (float) var7);
+					var3.receiveDamage(DamageSource.MAGIC, (float) var7);
 				} else {
-					var3.damageEntity(DamageSource.magic(var1, var2), (float) var7);
+					var3.receiveDamage(DamageSource.magic(var1, var2), (float) var7);
 				}
 			}
 		} else {

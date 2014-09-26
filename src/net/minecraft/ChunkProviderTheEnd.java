@@ -216,7 +216,7 @@ public class ChunkProviderTheEnd implements IChunkProvider {
 	public void getChunkAt(IChunkProvider var1, int var2, int var3) {
 		BlockFalling.instafall = true;
 		Position var4 = new Position(var2 * 16, 0, var3 * 16);
-		this.l.b(var4.a(16, 0, 16)).a(this.l, this.l.s, var4);
+		this.l.b(var4.a(16, 0, 16)).a(this.l, this.l.random, var4);
 		BlockFalling.instafall = false;
 	}
 

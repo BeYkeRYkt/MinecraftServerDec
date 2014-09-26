@@ -21,17 +21,17 @@ public class BlockEnchantmentTable extends atg {
 		return 3;
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityEnchantTable();
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {
 			TileEntity var9 = var1.getTileEntity(var2);
 			if (var9 instanceof TileEntityEnchantTable) {
-				var4.a((vv) ((TileEntityEnchantTable) var9));
+				var4.openTypedInventory((IInventoryHasType) ((TileEntityEnchantTable) var9));
 			}
 
 			return true;
@@ -40,10 +40,10 @@ public class BlockEnchantmentTable extends atg {
 
 	public void a(World var1, Position var2, IBlockState var3, EntityLiving var4, ItemStack var5) {
 		super.a(var1, var2, var3, var4, var5);
-		if (var5.s()) {
+		if (var5.hasDisplayName()) {
 			TileEntity var6 = var1.getTileEntity(var2);
 			if (var6 instanceof TileEntityEnchantTable) {
-				((TileEntityEnchantTable) var6).a(var5.q());
+				((TileEntityEnchantTable) var6).a(var5.getDisplayName());
 			}
 		}
 

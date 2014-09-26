@@ -18,14 +18,14 @@ public class WorldGenTaigaStructure extends WorldGenerator {
 		while (true) {
 			if (var3.getY() > 3) {
 				label47: {
-					if (!var1.d(var3.b())) {
-						Block var4 = var1.getBlockState(var3.b()).getBlock();
+					if (!var1.d(var3.getDown())) {
+						Block var4 = var1.getBlockState(var3.getDown()).getBlock();
 						if (var4 == Blocks.GRASS || var4 == Blocks.DIRT || var4 == Blocks.STONE) {
 							break label47;
 						}
 					}
 
-					var3 = var3.b();
+					var3 = var3.getDown();
 					continue;
 				}
 			}

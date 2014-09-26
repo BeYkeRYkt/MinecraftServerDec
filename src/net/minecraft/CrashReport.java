@@ -1,16 +1,20 @@
 package net.minecraft;
 
 import com.google.common.collect.Lists;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.LogManager;
@@ -18,12 +22,12 @@ import org.apache.logging.log4j.Logger;
 
 public class CrashReport {
 
-	private static final Logger a = LogManager.getLogger();
+	private static final Logger logger = LogManager.getLogger();
 	private final String message;
 	private final Throwable throwable;
-	private final CrashReportSystemDetails d = new CrashReportSystemDetails(this, "System Details");
-	private final List e = Lists.newArrayList();
-	private File f;
+	private final CrashReportSystemDetails systemDetails = new CrashReportSystemDetails(this, "System Details");
+	private final List<CrashReportSystemDetails> details = Lists.newArrayList();
+	private File file;
 	private boolean g = true;
 	private StackTraceElement[] h = new StackTraceElement[0];
 
@@ -34,13 +38,42 @@ public class CrashReport {
 	}
 
 	private void h() {
-		this.d.addDetails("Minecraft Version", (Callable) (new c(this)));
-		this.d.addDetails("Operating System", (Callable) (new d(this)));
-		this.d.addDetails("Java Version", (Callable) (new e(this)));
-		this.d.addDetails("Java VM Version", (Callable) (new f(this)));
-		this.d.addDetails("Memory", (Callable) (new g(this)));
-		this.d.addDetails("JVM Flags", (Callable) (new h(this)));
-		this.d.addDetails("IntCache", (Callable) (new i(this)));
+		this.systemDetails.addDetails("Minecraft Version", "1.8");
+		this.systemDetails.addDetails("Operating System", System.getProperty("os.name") + " (" + System.getProperty("os.arch") + ") version " + System.getProperty("os.version"));
+		this.systemDetails.addDetails("Java Version", System.getProperty("java.version") + ", " + System.getProperty("java.vendor"));
+		this.systemDetails.addDetails("Java VM Version", System.getProperty("java.vm.name") + " (" + System.getProperty("java.vm.info") + "), " + System.getProperty("java.vm.vendor"));
+		this.systemDetails.addDetails("Memory", new Callable<String>(){
+			@Override
+			public String call() throws Exception {
+				Runtime runtime = Runtime.getRuntime();
+				long maxMemory = runtime.maxMemory();
+				long totalMemory = runtime.totalMemory();
+				long freeMemory = runtime.freeMemory();
+				long maxMemoryMB = maxMemory / 1024L / 1024L;
+				long totalMemotyMB = totalMemory / 1024L / 1024L;
+				long freeMemoryMB = freeMemory / 1024L / 1024L;
+				return freeMemory + " bytes (" + freeMemoryMB + " MB) / " + totalMemory + " bytes (" + totalMemotyMB + " MB) up to " + maxMemory + " bytes (" + maxMemoryMB + " MB)";
+			}
+		});
+		this.systemDetails.addDetails("JVM Flags", new Callable<String>() {
+			@Override
+			public String call() throws Exception {
+				RuntimeMXBean mxBean = ManagementFactory.getRuntimeMXBean();
+				List<String> inputArguments = mxBean.getInputArguments();
+				int count = 0;
+				StringBuilder sb = new StringBuilder();
+				for (String inputArgument : inputArguments) {
+					if (inputArgument.startsWith("-X")) {
+						if (count++ > 0) {
+							sb.append(" ");
+						}
+						sb.append(inputArgument);
+					}
+				}
+				return String.format("%d total; %s", count, sb.toString());
+			}
+		});
+		this.systemDetails.addDetails("IntCache", IntCache.getInfo());
 	}
 
 	public String getMessage() {
@@ -51,35 +84,35 @@ public class CrashReport {
 		return this.throwable;
 	}
 
-	public void a(StringBuilder var1) {
-		if ((this.h == null || this.h.length <= 0) && this.e.size() > 0) {
-			this.h = (StackTraceElement[]) ArrayUtils.subarray((Object[]) ((CrashReportSystemDetails) this.e.get(0)).a(), 0, 1);
+	public void addDetails(StringBuilder sb) {
+		if ((this.h == null || this.h.length <= 0) && this.details.size() > 0) {
+			this.h = (StackTraceElement[]) ArrayUtils.subarray((Object[]) ((CrashReportSystemDetails) this.details.get(0)).getStackTrace(), 0, 1);
 		}
 
 		if (this.h != null && this.h.length > 0) {
-			var1.append("-- Head --\n");
-			var1.append("Stacktrace:\n");
+			sb.append("-- Head --\n");
+			sb.append("Stacktrace:\n");
 			StackTraceElement[] var2 = this.h;
 			int var3 = var2.length;
 
 			for (int var4 = 0; var4 < var3; ++var4) {
 				StackTraceElement var5 = var2[var4];
-				var1.append("\t").append("at ").append(var5.toString());
-				var1.append("\n");
+				sb.append("\t").append("at ").append(var5.toString());
+				sb.append("\n");
 			}
 
-			var1.append("\n");
+			sb.append("\n");
 		}
 
-		Iterator var6 = this.e.iterator();
+		Iterator<CrashReportSystemDetails> var6 = this.details.iterator();
 
 		while (var6.hasNext()) {
 			CrashReportSystemDetails var7 = (CrashReportSystemDetails) var6.next();
-			var7.a(var1);
-			var1.append("\n\n");
+			var7.writeDetails(sb);
+			sb.append("\n\n");
 		}
 
-		this.d.a(var1);
+		this.systemDetails.writeDetails(sb);
 	}
 
 	public String d() {
@@ -113,32 +146,32 @@ public class CrashReport {
 		return var4;
 	}
 
-	public String e() {
-		StringBuilder var1 = new StringBuilder();
-		var1.append("---- Minecraft Crash Report ----\n");
-		var1.append("// ");
-		var1.append(getCommentThatNobodyWillReadAnyway());
-		var1.append("\n\n");
-		var1.append("Time: ");
-		var1.append((new SimpleDateFormat()).format(new Date()));
-		var1.append("\n");
-		var1.append("Description: ");
-		var1.append(this.message);
-		var1.append("\n\n");
-		var1.append(this.d());
-		var1.append("\n\nA detailed walkthrough of the error, its code path and all known details is as follows:\n");
+	public String generateReportString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("---- Minecraft Crash Report ----\n");
+		sb.append("// ");
+		sb.append(getCommentThatNobodyWillReadAnyway());
+		sb.append("\n\n");
+		sb.append("Time: ");
+		sb.append((new SimpleDateFormat()).format(new Date()));
+		sb.append("\n");
+		sb.append("Description: ");
+		sb.append(this.message);
+		sb.append("\n\n");
+		sb.append(this.d());
+		sb.append("\n\nA detailed walkthrough of the error, its code path and all known details is as follows:\n");
 
-		for (int var2 = 0; var2 < 87; ++var2) {
-			var1.append("-");
+		for (int i = 0; i < 87; ++i) {
+			sb.append("-");
 		}
 
-		var1.append("\n\n");
-		this.a(var1);
-		return var1.toString();
+		sb.append("\n\n");
+		this.addDetails(sb);
+		return sb.toString();
 	}
 
 	public boolean write(File var1) {
-		if (this.f != null) {
+		if (this.file != null) {
 			return false;
 		} else {
 			if (var1.getParentFile() != null) {
@@ -147,19 +180,19 @@ public class CrashReport {
 
 			try {
 				FileWriter var2 = new FileWriter(var1);
-				var2.write(this.e());
+				var2.write(this.generateReportString());
 				var2.close();
-				this.f = var1;
+				this.file = var1;
 				return true;
 			} catch (Throwable var3) {
-				a.error("Could not save crash report to " + var1, var3);
+				logger.error("Could not save crash report to " + var1, var3);
 				return false;
 			}
 		}
 	}
 
 	public CrashReportSystemDetails g() {
-		return this.d;
+		return this.systemDetails;
 	}
 
 	public CrashReportSystemDetails generateSystemDetails(String moreinfo) {
@@ -185,10 +218,10 @@ public class CrashReport {
 				}
 			}
 
-			this.g = details.a(var6, var7);
-			if (var4 > 0 && !this.e.isEmpty()) {
-				CrashReportSystemDetails var9 = (CrashReportSystemDetails) this.e.get(this.e.size() - 1);
-				var9.b(var4);
+			this.g = details.replaceStackTraceElement(var6, var7);
+			if (var4 > 0 && !this.details.isEmpty()) {
+				CrashReportSystemDetails var9 = (CrashReportSystemDetails) this.details.get(this.details.size() - 1);
+				var9.stripStackTrace(var4);
 			} else if (var5 != null && var5.length >= var4 && 0 <= var8 && var8 < var5.length) {
 				this.h = new StackTraceElement[var8];
 				System.arraycopy(var5, 0, this.h, 0, this.h.length);
@@ -197,7 +230,7 @@ public class CrashReport {
 			}
 		}
 
-		this.e.add(details);
+		this.details.add(details);
 		return details;
 	}
 
@@ -207,7 +240,7 @@ public class CrashReport {
 				"Ouch. That hurt :(", "You\'re mean.", "This is a token for 1 free hug. Redeem at your nearest Mojangsta: [~~HUG~~]", "There are four lights!", "But it works on my machine." };
 
 		try {
-			return comments[(int) (System.nanoTime() % (long) comments.length)];
+			return comments[(int) (System.nanoTime() % comments.length)];
 		} catch (Throwable t) {
 			return "Witty comment unavailable :(";
 		}

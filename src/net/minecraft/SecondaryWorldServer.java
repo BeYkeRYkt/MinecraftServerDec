@@ -6,13 +6,10 @@ public class SecondaryWorldServer extends WorldServer {
 
 	private WorldServer a;
 
-	public SecondaryWorldServer(MinecraftServer var1, IDataManager var2, int var3, WorldServer var4, MethodProfiler var5) {
-		super(var1, var2, new SecondaryWorldData(var4.getWorldData()), var3, var5);
+	public SecondaryWorldServer(MinecraftServer var1, IDataManager var2, String levelName, WorldSettings settings, int var3, WorldServer var4, MethodProfiler var5) {
+		super(var1, var2, levelName, settings, var3, var5);
 		this.a = var4;
 		var4.getWorldBorder().addChangeListener((WorldBorderChangeListener) (new SecodaryWorldServerWorldBorderCahngeListener(this)));
-	}
-
-	protected void a() {
 	}
 
 	public WorldServer b() {
@@ -30,4 +27,5 @@ public class SecondaryWorldServer extends WorldServer {
 
 		return this;
 	}
+
 }

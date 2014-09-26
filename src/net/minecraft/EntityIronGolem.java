@@ -79,7 +79,7 @@ public class EntityIronGolem extends EntityGolem {
 			IBlockState var4 = this.world.getBlockState(new Position(var1, var2, var3));
 			Block var5 = var4.getBlock();
 			if (var5.getMaterial() != Material.AIR) {
-				this.world.a(Particle.L, this.locationX + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, this.getBoundingBox().minY + 0.1D, this.locationZ + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, 4.0D * ((double) this.random.nextFloat() - 0.5D), 0.5D, ((double) this.random.nextFloat() - 0.5D) * 4.0D, new int[] { Block.getStateId(var4) });
+				this.world.addParticle(Particle.L, this.locationX + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, this.getBoundingBox().minY + 0.1D, this.locationZ + ((double) this.random.nextFloat() - 0.5D) * (double) this.height, 4.0D * ((double) this.random.nextFloat() - 0.5D), 0.5D, ((double) this.random.nextFloat() - 0.5D) * 4.0D, new int[] { Block.getStateId(var4) });
 			}
 		}
 
@@ -89,20 +89,20 @@ public class EntityIronGolem extends EntityGolem {
 		return this.cl() && EntityHuman.class.isAssignableFrom(var1) ? false : super.a(var1);
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("PlayerCreated", this.cl());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.l(var1.getBoolean("PlayerCreated"));
 	}
 
 	public boolean r(Entity var1) {
 		this.c = 10;
 		this.world.broadcastEntityEffect((Entity) this, (byte) 4);
-		boolean var2 = var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), (float) (7 + this.random.nextInt(15)));
+		boolean var2 = var1.receiveDamage(DamageSource.mobAttack((EntityLiving) this), (float) (7 + this.random.nextInt(15)));
 		if (var2) {
 			var1.motionY += 0.4000000059604645D;
 			this.a(this, var1);
@@ -167,11 +167,11 @@ public class EntityIronGolem extends EntityGolem {
 
 	}
 
-	public void a(DamageSource var1) {
+	public void die(DamageSource var1) {
 		if (!this.cl() && this.aL != null && this.a != null) {
 			this.a.a(this.aL.getName(), -5);
 		}
 
-		super.a(var1);
+		super.die(var1);
 	}
 }

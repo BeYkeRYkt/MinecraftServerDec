@@ -90,8 +90,8 @@ public class EntityArmorStand extends EntityLiving {
 		}
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		NBTListTag var2 = new NBTListTag();
 
 		for (int var3 = 0; var3 < this.g.length; ++var3) {
@@ -117,13 +117,13 @@ public class EntityArmorStand extends EntityLiving {
 		var1.put("Pose", (NBTTag) this.y());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		if (var1.isTagAssignableFrom("Equipment", 9)) {
 			NBTListTag var2 = var1.getList("Equipment", 10);
 
 			for (int var3 = 0; var3 < this.g.length; ++var3) {
-				this.g[var3] = ItemStack.a(var2.getCompound(var3));
+				this.g[var3] = ItemStack.fromNBT(var2.getCompound(var3));
 			}
 		}
 
@@ -224,7 +224,7 @@ public class EntityArmorStand extends EntityLiving {
 		if (var1 != null && !var1.isEmpty()) {
 			for (int var2 = 0; var2 < var1.size(); ++var2) {
 				Entity var3 = (Entity) var1.get(var2);
-				if (var3 instanceof adx && ((adx) var3).s() == MinecartType.RIDEABLE && this.getDistanceSquared(var3) <= 0.2D) {
+				if (var3 instanceof adx && ((adx) var3).getType() == MinecartType.RIDEABLE && this.getDistanceSquared(var3) <= 0.2D) {
 					var3.i(this);
 				}
 			}
@@ -304,7 +304,7 @@ public class EntityArmorStand extends EntityLiving {
 		if (var3 == null || (this.bg & 1 << var2 + 8) == 0) {
 			if (var3 != null || (this.bg & 1 << var2 + 16) == 0) {
 				int var4 = var1.playerInventory.itemInHandIndex;
-				ItemStack var5 = var1.playerInventory.a(var4);
+				ItemStack var5 = var1.playerInventory.getItem(var4);
 				ItemStack var6;
 				if (var1.playerProperties.instabuild && (var3 == null || var3.getItem() == Item.getItemOf(Blocks.AIR)) && var5 != null) {
 					var6 = var5.getCopy();
@@ -319,18 +319,18 @@ public class EntityArmorStand extends EntityLiving {
 					}
 				} else {
 					this.setArmor(var2, var5);
-					var1.playerInventory.a(var4, var3);
+					var1.playerInventory.setItem(var4, var3);
 				}
 			}
 		}
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
 		if (!this.world.isStatic && !this.h) {
 			if (DamageSource.OUT_OF_WORLD.equals(var1)) {
 				this.die();
 				return false;
-			} else if (this.b(var1)) {
+			} else if (this.ignoresDamageType(var1)) {
 				return false;
 			} else if (var1.c()) {
 				this.C();
@@ -357,7 +357,7 @@ public class EntityArmorStand extends EntityLiving {
 						var1.i().die();
 					}
 
-					if (var1.j() instanceof EntityHuman && !((EntityHuman) var1.j()).playerProperties.maybuild) {
+					if (var1.getDamager() instanceof EntityHuman && !((EntityHuman) var1.getDamager()).playerProperties.maybuild) {
 						return false;
 					} else if (var1.u()) {
 						this.z();
@@ -402,7 +402,7 @@ public class EntityArmorStand extends EntityLiving {
 	}
 
 	private void A() {
-		Block.a(this.world, new Position(this), new ItemStack(Items.ARMOR_STAND));
+		Block.dropItem(this.world, new Position(this), new ItemStack(Items.ARMOR_STAND));
 		this.C();
 	}
 
@@ -410,7 +410,7 @@ public class EntityArmorStand extends EntityLiving {
 		for (int var1 = 0; var1 < this.g.length; ++var1) {
 			if (this.g[var1] != null && this.g[var1].amount > 0) {
 				if (this.g[var1] != null) {
-					Block.a(this.world, (new Position(this)).a(), this.g[var1]);
+					Block.dropItem(this.world, (new Position(this)).getUp(), this.g[var1]);
 				}
 
 				this.g[var1] = null;
@@ -435,8 +435,8 @@ public class EntityArmorStand extends EntityLiving {
 		}
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		fa var1 = this.dataWatcher.h(11);
 		if (!this.bh.equals(var1)) {
 			this.a(var1);

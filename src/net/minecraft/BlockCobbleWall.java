@@ -31,10 +31,10 @@ public class BlockCobbleWall extends Block {
 	}
 
 	public void a(ard var1, Position var2) {
-		boolean var3 = this.e(var1, var2.c());
-		boolean var4 = this.e(var1, var2.d());
-		boolean var5 = this.e(var1, var2.e());
-		boolean var6 = this.e(var1, var2.f());
+		boolean var3 = this.e(var1, var2.getNorth());
+		boolean var4 = this.e(var1, var2.getSouth());
+		boolean var5 = this.e(var1, var2.getWest());
+		boolean var6 = this.e(var1, var2.getEast());
 		float var7 = 0.25F;
 		float var8 = 0.75F;
 		float var9 = 0.25F;
@@ -80,7 +80,7 @@ public class BlockCobbleWall extends Block {
 		return var3 == Blocks.BARRIER ? false : (var3 != this && !(var3 instanceof BlockFenceGate) ? (var3.material.k() && var3.d() ? var3.material != Material.PUMPKIN : false) : true);
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((bby) var1.b(P)).a();
 	}
 
@@ -93,7 +93,7 @@ public class BlockCobbleWall extends Block {
 	}
 
 	public IBlockState a(IBlockState var1, ard var2, Position var3) {
-		return var1.a(a, Boolean.valueOf(!var2.d(var3.a()))).a(b, Boolean.valueOf(this.e(var2, var3.c()))).a(M, Boolean.valueOf(this.e(var2, var3.f()))).a(N, Boolean.valueOf(this.e(var2, var3.d()))).a(O, Boolean.valueOf(this.e(var2, var3.e())));
+		return var1.a(a, Boolean.valueOf(!var2.d(var3.getUp()))).a(b, Boolean.valueOf(this.e(var2, var3.getNorth()))).a(M, Boolean.valueOf(this.e(var2, var3.getEast()))).a(N, Boolean.valueOf(this.e(var2, var3.getSouth()))).a(O, Boolean.valueOf(this.e(var2, var3.getWest())));
 	}
 
 	protected bed e() {

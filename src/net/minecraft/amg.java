@@ -5,7 +5,7 @@ import com.google.common.base.Function;
 final class amg implements Function {
 
 	public String a(ItemStack var1) {
-		return (var1.getDurability() & 1) == 1 ? "wet" : "dry";
+		return (var1.getWearout() & 1) == 1 ? "wet" : "dry";
 	}
 
 	// $FF: synthetic method

@@ -28,7 +28,7 @@ public class BlockWaterLily extends auc {
 
 	public boolean f(World var1, Position var2, IBlockState var3) {
 		if (var2.getY() >= 0 && var2.getY() < 256) {
-			IBlockState var4 = var1.getBlockState(var2.b());
+			IBlockState var4 = var1.getBlockState(var2.getDown());
 			return var4.getBlock().getMaterial() == Material.WATER && ((Integer) var4.b(axl.b)).intValue() == 0;
 		} else {
 			return false;

@@ -12,7 +12,7 @@ class aqx implements Callable {
 	}
 
 	public String a() {
-		return this.a.j.size() + " total; " + this.a.j.toString();
+		return this.a.players.size() + " total; " + this.a.players.toString();
 	}
 
 	// $FF: synthetic method

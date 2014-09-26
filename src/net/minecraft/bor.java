@@ -9,7 +9,7 @@ public class bor extends bpa {
 
 	public int[] a(int var1, int var2, int var3, int var4) {
 		int[] var5 = this.a.a(var1 - 1, var2 - 1, var3 + 2, var4 + 2);
-		int[] var6 = boy.a(var3 * var4);
+		int[] var6 = IntCache.allocate(var3 * var4);
 
 		for (int var7 = 0; var7 < var4; ++var7) {
 			for (int var8 = 0; var8 < var3; ++var8) {

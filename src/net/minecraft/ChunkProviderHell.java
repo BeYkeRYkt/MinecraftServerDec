@@ -352,7 +352,7 @@ public class ChunkProviderHell implements IChunkProvider {
 				return this.B.b();
 			}
 
-			if (this.B.a(this.h, var2) && this.h.getBlockState(var2.b()).getBlock() == Blocks.NETHER_BRICK) {
+			if (this.B.a(this.h, var2) && this.h.getBlockState(var2.getDown()).getBlock() == Blocks.NETHER_BRICK) {
 				return this.B.b();
 			}
 		}

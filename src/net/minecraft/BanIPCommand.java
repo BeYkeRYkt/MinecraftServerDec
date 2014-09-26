@@ -32,14 +32,14 @@ public class BanIPCommand extends AbstractCommand {
 			IChatBaseComponent var3 = var2.length >= 2 ? a(var1, var2, 1) : null;
 			Matcher var4 = a.matcher(var2[0]);
 			if (var4.matches()) {
-				this.a(var1, var2[0], var3 == null ? null : var3.getStrippedMessage());
+				this.a(var1, var2[0], var3 == null ? null : var3.getJsonMessage());
 			} else {
 				EntityPlayer var5 = MinecraftServer.getInstance().getPlayerList().getPlayer(var2[0]);
 				if (var5 == null) {
 					throw new dm("commands.banip.invalid", new Object[0]);
 				}
 
-				this.a(var1, var5.w(), var3 == null ? null : var3.getStrippedMessage());
+				this.a(var1, var5.w(), var3 == null ? null : var3.getJsonMessage());
 			}
 
 		} else {

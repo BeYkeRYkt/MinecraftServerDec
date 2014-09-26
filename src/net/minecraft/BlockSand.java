@@ -8,7 +8,7 @@ public class BlockSand extends BlockFalling {
 		this.setBlockState(this.L.b().a(a, bac.a));
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((bac) var1.b(a)).a();
 	}
 

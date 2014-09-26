@@ -7,6 +7,7 @@ import java.util.concurrent.Callable;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bukkit.inventory.InventoryHolder;
 
 public abstract class TileEntity {
 
@@ -68,26 +69,26 @@ public abstract class TileEntity {
 		register(TileEntityBanner.class, "Banner");
 	}
 	
-	protected World world;
+	protected WorldServer world;
 	protected Position position;
-	protected boolean d;
-	private int h;
-	protected Block e;
+	protected boolean invalid;
+	private int blockData;
+	protected Block block;
 
 	public TileEntity() {
 		this.position = Position.ZERO;
-		this.h = -1;
+		this.blockData = -1;
 	}
 
-	public World getPrimaryWorld() {
+	public WorldServer getWorld() {
 		return this.world;
 	}
 
-	public void a(World var1) {
-		this.world = var1;
+	public void setWorld(WorldServer world) {
+		this.world = world;
 	}
 
-	public boolean t() {
+	public boolean hasWorld() {
 		return this.world != null;
 	}
 
@@ -107,19 +108,19 @@ public abstract class TileEntity {
 		}
 	}
 
-	public int u() {
-		if (this.h == -1) {
+	public int getBlockData() {
+		if (this.blockData == -1) {
 			IBlockState var1 = this.world.getBlockState(this.position);
-			this.h = var1.getBlock().getData(var1);
+			this.blockData = var1.getBlock().getData(var1);
 		}
 
-		return this.h;
+		return this.blockData;
 	}
 
 	public void update() {
 		if (this.world != null) {
-			IBlockState var1 = this.world.getBlockState(this.position);
-			this.h = var1.getBlock().getData(var1);
+			IBlockState blockState = this.world.getBlockState(this.position);
+			this.blockData = blockState.getBlock().getData(blockState);
 			this.world.b(this.position, this);
 			if (this.getBlock() != Blocks.AIR) {
 				this.world.e(this.position, this.getBlock());
@@ -128,59 +129,84 @@ public abstract class TileEntity {
 
 	}
 
-	public Position v() {
+	public Position getPosition() {
 		return this.position;
 	}
 
-	public Block getBlock() {
-		if (this.e == null) {
-			this.e = this.world.getBlockState(this.position).getBlock();
-		}
+	public void setPosition(Position position) {
+		this.position = position;
+	}
 
-		return this.e;
+	public Block getBlock() {
+		if (this.block == null) {
+			this.block = this.world.getBlockState(this.position).getBlock();
+		}
+		return this.block;
 	}
 
 	public Packet<?> getUpdatePacket() {
 		return null;
 	}
 
-	public boolean x() {
-		return this.d;
+	public boolean isInvalid() {
+		return this.invalid;
 	}
 
-	public void y() {
-		this.d = true;
+	public void setValid() {
+		this.invalid = true;
 	}
 
-	public void D() {
-		this.d = false;
+	public void setInvalid() {
+		this.invalid = false;
 	}
 
 	public boolean c(int var1, int var2) {
 		return false;
 	}
 
-	public void E() {
-		this.e = null;
-		this.h = -1;
+	public void removeBlockData() {
+		this.block = null;
+		this.blockData = -1;
 	}
 
-	public void a(CrashReportSystemDetails var1) {
-		var1.addDetails("Name", new Callable<String>() {
+	public void addCrashReportDetails(CrashReportSystemDetails details) {
+		details.addDetails("Name", new Callable<String>() {
 			@Override
 			public String call() throws Exception {
 				return (String) classToName.get(getClass()) + " // " + getClass().getCanonicalName();
 			}
 		});
 		if (this.world != null) {
-			CrashReportSystemDetails.a(var1, this.position, this.getBlock(), this.u());
-			var1.addDetails("Actual block type", (Callable<?>) (new bco(this)));
-			var1.addDetails("Actual block data value", (Callable<?>) (new bcp(this)));
+			CrashReportSystemDetails.addBlockStateInfo(details, this.position, this.getBlock(), this.getBlockData());
+			details.addDetails("Actual block type", new Callable<String>() {
+				@Override
+				public String call() throws Exception {
+					int blockId = Block.getBlockId(world.getBlockState(position).getBlock());
+					return String.format("ID #%d (%s // %s)", new Object[] { blockId, Block.getBlockById(blockId).getName(), Block.getBlockById(blockId).getClass().getCanonicalName() });
+				}
+			});
+			details.addDetails("Actual block data value", new Callable<String>() {
+				@Override
+				public String call() throws Exception {
+					IBlockState blockState = world.getBlockState(position);
+					int data = blockState.getBlock().getData(blockState);
+					if (data < 0) {
+						return "Unknown? (Got " + data + ")";
+					} else {
+						String dataString = String.format("%4s", Integer.toBinaryString(data)).replace(" ", "0");
+						return String.format("%1$d / 0x%1$X / 0b%2$s", data, dataString);
+					}
+				}
+			});
 		}
 	}
 
-	public void a(Position var1) {
-		this.position = var1;
+	public InventoryHolder getHolder() {
+		org.bukkit.block.BlockState bs = world.getBukkitWorld().getBlockAt(position.getX(), position.getY(), position.getZ()).getState();
+		if (bs instanceof InventoryHolder) {
+			return (InventoryHolder) bs;
+		}
+		return null;
 	}
 
 }

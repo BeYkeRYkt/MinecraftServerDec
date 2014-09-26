@@ -35,11 +35,11 @@ public class EntityFireworks extends Entity {
 		this.b = 10 * var9 + this.random.nextInt(6) + this.random.nextInt(7);
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.P = this.locationX;
 		this.Q = this.locationY;
 		this.R = this.locationZ;
-		super.s_();
+		super.doTick();
 		this.motionX *= 1.15D;
 		this.motionZ *= 1.15D;
 		this.motionY += 0.04D;
@@ -71,7 +71,7 @@ public class EntityFireworks extends Entity {
 
 		++this.a;
 		if (this.world.isStatic && this.a % 2 < 2) {
-			this.world.a(Particle.d, this.locationX, this.locationY - 0.3D, this.locationZ, this.random.nextGaussian() * 0.05D, -this.motionY * 0.5D, this.random.nextGaussian() * 0.05D, new int[0]);
+			this.world.addParticle(Particle.d, this.locationX, this.locationY - 0.3D, this.locationZ, this.random.nextGaussian() * 0.05D, -this.motionY * 0.5D, this.random.nextGaussian() * 0.05D, new int[0]);
 		}
 
 		if (!this.world.isStatic && this.a > this.b) {
@@ -81,7 +81,7 @@ public class EntityFireworks extends Entity {
 
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("Life", this.a);
 		var1.put("LifeTime", this.b);
 		ItemStack var2 = this.dataWatcher.f(8);
@@ -93,12 +93,12 @@ public class EntityFireworks extends Entity {
 
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.a = var1.getInt("Life");
 		this.b = var1.getInt("LifeTime");
 		NBTCompoundTag var2 = var1.getCompound("FireworksItem");
 		if (var2 != null) {
-			ItemStack var3 = ItemStack.a(var2);
+			ItemStack var3 = ItemStack.fromNBT(var2);
 			if (var3 != null) {
 				this.dataWatcher.b(8, var3);
 			}

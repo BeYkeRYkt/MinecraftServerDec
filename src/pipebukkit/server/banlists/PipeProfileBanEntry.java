@@ -9,7 +9,7 @@ import net.minecraft.server.MinecraftServer;
 
 import org.bukkit.BanEntry;
 
-import com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 
 public class PipeProfileBanEntry implements BanEntry {
 

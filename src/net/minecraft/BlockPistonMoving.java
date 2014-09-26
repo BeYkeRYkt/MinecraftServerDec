@@ -13,7 +13,7 @@ public class BlockPistonMoving extends atg {
 		this.c(-1.0F);
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return null;
 	}
 
@@ -21,12 +21,12 @@ public class BlockPistonMoving extends atg {
 		return new TileEntityPiston(var0, var1, var2, var3);
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		TileEntity var4 = var1.getTileEntity(var2);
 		if (var4 instanceof TileEntityPiston) {
 			((TileEntityPiston) var4).h();
 		} else {
-			super.b(var1, var2, var3);
+			super.remove(var1, var2, var3);
 		}
 
 	}
@@ -40,7 +40,7 @@ public class BlockPistonMoving extends atg {
 	}
 
 	public void d(World var1, Position var2, IBlockState var3) {
-		Position var4 = var2.a(((BlockFace) var3.b(a)).getOpposite());
+		Position var4 = var2.getRelative(((BlockFace) var3.b(a)).getOpposite());
 		IBlockState var5 = var1.getBlockState(var4);
 		if (var5.getBlock() instanceof BlockPiston && ((Boolean) var5.b(BlockPiston.b)).booleanValue()) {
 			var1.g(var4);
@@ -56,7 +56,7 @@ public class BlockPistonMoving extends atg {
 		return false;
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (!var1.isStatic && var1.getTileEntity(var2) == null) {
 			var1.g(var2);
 			return true;
@@ -65,16 +65,16 @@ public class BlockPistonMoving extends atg {
 		}
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		if (!var1.isStatic) {
 			TileEntityPiston var6 = this.e(var1, var2);
 			if (var6 != null) {
 				IBlockState var7 = var6.b();
-				var7.getBlock().b(var1, var2, var7, 0);
+				var7.getBlock().dropNaturally(var1, var2, var7, 0);
 			}
 		}
 	}

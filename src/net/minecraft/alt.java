@@ -5,7 +5,7 @@ import com.google.common.base.Function;
 final class alt implements Function {
 
 	public String a(ItemStack var1) {
-		return EnumFlowerType.a(EnumFlowerColor.b, var1.getDurability()).d();
+		return EnumFlowerType.a(EnumFlowerColor.b, var1.getWearout()).d();
 	}
 
 	// $FF: synthetic method

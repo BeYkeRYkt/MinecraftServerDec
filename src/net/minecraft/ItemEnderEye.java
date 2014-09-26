@@ -8,7 +8,7 @@ public class ItemEnderEye extends Item {
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
 		IBlockState var9 = var3.getBlockState(var4);
-		if (var2.a(var4.a(var5), var5, var1) && var9.getBlock() == Blocks.END_PORTAL_FRAME && !((Boolean) var9.b(BlockEnderPortalFrame.b)).booleanValue()) {
+		if (var2.a(var4.getRelative(var5), var5, var1) && var9.getBlock() == Blocks.END_PORTAL_FRAME && !((Boolean) var9.b(BlockEnderPortalFrame.b)).booleanValue()) {
 			if (var3.isStatic) {
 				return true;
 			} else {
@@ -23,7 +23,7 @@ public class ItemEnderEye extends Item {
 					double var17 = 0.0D;
 					double var19 = 0.0D;
 					double var21 = 0.0D;
-					var3.a(Particle.l, var11, var13, var15, var17, var19, var21, new int[0]);
+					var3.addParticle(Particle.l, var11, var13, var15, var17, var19, var21, new int[0]);
 				}
 
 				BlockFace var23 = (BlockFace) var9.b(BlockEnderPortalFrame.a);
@@ -34,7 +34,7 @@ public class ItemEnderEye extends Item {
 				BlockFace var26 = var23.e();
 
 				for (int var16 = -2; var16 <= 2; ++var16) {
-					Position var28 = var4.a(var26, var16);
+					Position var28 = var4.getRelative(var26, var16);
 					IBlockState var18 = var3.getBlockState(var28);
 					if (var18.getBlock() == Blocks.END_PORTAL_FRAME) {
 						if (!((Boolean) var18.b(BlockEnderPortalFrame.b)).booleanValue()) {
@@ -51,11 +51,11 @@ public class ItemEnderEye extends Item {
 				}
 
 				if (var14 && var12 == var24 + 2) {
-					Position var27 = var4.a(var23, 4);
+					Position var27 = var4.getRelative(var23, 4);
 
 					int var29;
 					for (var29 = var24; var29 <= var12; ++var29) {
-						Position var30 = var27.a(var26, var29);
+						Position var30 = var27.getRelative(var26, var29);
 						IBlockState var32 = var3.getBlockState(var30);
 						if (var32.getBlock() != Blocks.END_PORTAL_FRAME || !((Boolean) var32.b(BlockEnderPortalFrame.b)).booleanValue()) {
 							var14 = false;
@@ -66,10 +66,10 @@ public class ItemEnderEye extends Item {
 					int var31;
 					Position var33;
 					for (var29 = var24 - 1; var29 <= var12 + 1; var29 += 4) {
-						var27 = var4.a(var26, var29);
+						var27 = var4.getRelative(var26, var29);
 
 						for (var31 = 1; var31 <= 3; ++var31) {
-							var33 = var27.a(var23, var31);
+							var33 = var27.getRelative(var23, var31);
 							IBlockState var20 = var3.getBlockState(var33);
 							if (var20.getBlock() != Blocks.END_PORTAL_FRAME || !((Boolean) var20.b(BlockEnderPortalFrame.b)).booleanValue()) {
 								var14 = false;
@@ -80,10 +80,10 @@ public class ItemEnderEye extends Item {
 
 					if (var14) {
 						for (var29 = var24; var29 <= var12; ++var29) {
-							var27 = var4.a(var26, var29);
+							var27 = var4.getRelative(var26, var29);
 
 							for (var31 = 1; var31 <= 3; ++var31) {
-								var33 = var27.a(var23, var31);
+								var33 = var27.getRelative(var23, var31);
 								var3.setBlockAt(var33, Blocks.END_PORTAL.getBlockState(), 2);
 							}
 						}

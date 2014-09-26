@@ -121,8 +121,8 @@ public class EntityZombie extends EntityMonster {
 				ItemStack var4 = this.p(4);
 				if (var4 != null) {
 					if (var4.e()) {
-						var4.setDurability(var4.h() + this.random.nextInt(2));
-						if (var4.h() >= var4.j()) {
+						var4.setWearout(var4.getWearout() + this.random.nextInt(2));
+						if (var4.getWearout() >= var4.getMaxWearout()) {
 							this.b(var4);
 							this.setArmor(4, (ItemStack) null);
 						}
@@ -144,11 +144,11 @@ public class EntityZombie extends EntityMonster {
 		super.m();
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (super.damageEntity(var1, var2)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (super.receiveDamage(var1, var2)) {
 			EntityLiving var3 = this.u();
-			if (var3 == null && var1.j() instanceof EntityLiving) {
-				var3 = (EntityLiving) var1.j();
+			if (var3 == null && var1.getDamager() instanceof EntityLiving) {
+				var3 = (EntityLiving) var1.getDamager();
 			}
 
 			if (var3 != null && this.world.getDifficulty() == Difficulty.HARD && (double) this.random.nextFloat() < this.a(b).e()) {
@@ -161,9 +161,9 @@ public class EntityZombie extends EntityMonster {
 					int var9 = var4 + MathHelper.a(this.random, 7, 40) * MathHelper.a(this.random, -1, 1);
 					int var10 = var5 + MathHelper.a(this.random, 7, 40) * MathHelper.a(this.random, -1, 1);
 					int var11 = var6 + MathHelper.a(this.random, 7, 40) * MathHelper.a(this.random, -1, 1);
-					if (World.a((ard) this.world, new Position(var9, var10 - 1, var11)) && this.world.l(new Position(var9, var10, var11)) < 10) {
+					if (World.a((ard) this.world, new Position(var9, var10 - 1, var11)) && this.world.getLightLevel(new Position(var9, var10, var11)) < 10) {
 						var7.b((double) var9, (double) var10, (double) var11);
-						if (!this.world.b((double) var9, (double) var10, (double) var11, 7.0D) && this.world.a(var7.getBoundingBox(), (Entity) var7) && this.world.getCubes((Entity) var7, var7.getBoundingBox()).isEmpty() && !this.world.d(var7.getBoundingBox())) {
+						if (!this.world.hasNearbyPlayer((double) var9, (double) var10, (double) var11, 7.0D) && this.world.a(var7.getBoundingBox(), (Entity) var7) && this.world.getCubes((Entity) var7, var7.getBoundingBox()).isEmpty() && !this.world.d(var7.getBoundingBox())) {
 							this.world.addEntity((Entity) var7);
 							var7.d(var3);
 							var7.a(this.world.E(new Position(var7)), (xq) null);
@@ -181,7 +181,7 @@ public class EntityZombie extends EntityMonster {
 		}
 	}
 
-	public void s_() {
+	public void doTick() {
 		if (!this.world.isStatic && this.cn()) {
 			int var1 = this.cp();
 			this.bm -= var1;
@@ -190,7 +190,7 @@ public class EntityZombie extends EntityMonster {
 			}
 		}
 
-		super.s_();
+		super.doTick();
 	}
 
 	public boolean r(Entity var1) {
@@ -256,8 +256,8 @@ public class EntityZombie extends EntityMonster {
 
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		if (this.i_()) {
 			var1.put("IsBaby", true);
 		}
@@ -270,8 +270,8 @@ public class EntityZombie extends EntityMonster {
 		var1.put("CanBreakDoors", this.cl());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		if (var1.getBoolean("IsBaby")) {
 			this.l(true);
 		}
@@ -327,7 +327,7 @@ public class EntityZombie extends EntityMonster {
 		float var3 = var1.c();
 		this.j(this.random.nextFloat() < 0.55F * var3);
 		if (var7 == null) {
-			var7 = new agl(this, this.world.s.nextFloat() < 0.05F, this.world.s.nextFloat() < 0.05F, (agk) null);
+			var7 = new agl(this, this.world.random.nextFloat() < 0.05F, this.world.random.nextFloat() < 0.05F, (agk) null);
 		}
 
 		if (var7 instanceof agl) {
@@ -338,14 +338,14 @@ public class EntityZombie extends EntityMonster {
 
 			if (var4.a) {
 				this.l(true);
-				if ((double) this.world.s.nextFloat() < 0.05D) {
-					List var5 = this.world.a(EntityChicken.class, this.getBoundingBox().grow(5.0D, 3.0D, 5.0D), EntityPredicates.b);
+				if ((double) this.world.random.nextFloat() < 0.05D) {
+					List var5 = this.world.getEntititesInAABB(EntityChicken.class, this.getBoundingBox().grow(5.0D, 3.0D, 5.0D), EntityPredicates.b);
 					if (!var5.isEmpty()) {
 						EntityChicken var6 = (EntityChicken) var5.get(0);
 						var6.l(true);
 						this.mount((Entity) var6);
 					}
-				} else if ((double) this.world.s.nextFloat() < 0.05D) {
+				} else if ((double) this.world.random.nextFloat() < 0.05D) {
 					EntityChicken var10 = new EntityChicken(this.world);
 					var10.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);
 					var10.a(var1, (xq) null);
@@ -384,13 +384,13 @@ public class EntityZombie extends EntityMonster {
 
 	public boolean a(EntityHuman var1) {
 		ItemStack var2 = var1.bY();
-		if (var2 != null && var2.getItem() == Items.GOLDEN_APPLE && var2.getDurability() == 0 && this.cm() && this.a(MobEffectList.WEAKNESS)) {
+		if (var2 != null && var2.getItem() == Items.GOLDEN_APPLE && var2.getWearout() == 0 && this.cm() && this.a(MobEffectList.WEAKNESS)) {
 			if (!var1.playerProperties.instabuild) {
 				--var2.amount;
 			}
 
 			if (var2.amount <= 0) {
-				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
+				var1.playerInventory.setItem(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 
 			if (!this.world.isStatic) {
@@ -480,10 +480,10 @@ public class EntityZombie extends EntityMonster {
 		return super.am() - 0.5D;
 	}
 
-	public void a(DamageSource var1) {
-		super.a(var1);
-		if (var1.j() instanceof EntityCreeper && !(this instanceof EntityPigZombie) && ((EntityCreeper) var1.j()).n() && ((EntityCreeper) var1.j()).cn()) {
-			((EntityCreeper) var1.j()).co();
+	public void die(DamageSource var1) {
+		super.die(var1);
+		if (var1.getDamager() instanceof EntityCreeper && !(this instanceof EntityPigZombie) && ((EntityCreeper) var1.getDamager()).n() && ((EntityCreeper) var1.getDamager()).cn()) {
+			((EntityCreeper) var1.getDamager()).co();
 			this.a(new ItemStack(Items.SKULL, 1, 2), 0.0F);
 		}
 

@@ -29,17 +29,17 @@ class aif extends Slot {
 			var1.a(-this.c.a);
 		}
 
-		ContainerAnvil.a(this.c).a(0, (ItemStack) null);
+		ContainerAnvil.a(this.c).setItem(0, (ItemStack) null);
 		if (ContainerAnvil.b(this.c) > 0) {
-			ItemStack var3 = ContainerAnvil.a(this.c).a(1);
+			ItemStack var3 = ContainerAnvil.a(this.c).getItem(1);
 			if (var3 != null && var3.amount > ContainerAnvil.b(this.c)) {
 				var3.amount -= ContainerAnvil.b(this.c);
-				ContainerAnvil.a(this.c).a(1, var3);
+				ContainerAnvil.a(this.c).setItem(1, var3);
 			} else {
-				ContainerAnvil.a(this.c).a(1, (ItemStack) null);
+				ContainerAnvil.a(this.c).setItem(1, (ItemStack) null);
 			}
 		} else {
-			ContainerAnvil.a(this.c).a(1, (ItemStack) null);
+			ContainerAnvil.a(this.c).setItem(1, (ItemStack) null);
 		}
 
 		this.c.a = 0;
@@ -49,13 +49,13 @@ class aif extends Slot {
 			++var4;
 			if (var4 > 2) {
 				this.a.g(this.b);
-				this.a.b(1020, this.b, 0);
+				this.a.triggerEffect(1020, this.b, 0);
 			} else {
 				this.a.setBlockAt(this.b, var5.a(BlockAnvil.b, Integer.valueOf(var4)), 2);
-				this.a.b(1021, this.b, 0);
+				this.a.triggerEffect(1021, this.b, 0);
 			}
 		} else if (!this.a.isStatic) {
-			this.a.b(1021, this.b, 0);
+			this.a.triggerEffect(1021, this.b, 0);
 		}
 
 	}

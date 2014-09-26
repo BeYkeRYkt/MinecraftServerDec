@@ -42,7 +42,7 @@ public class EntityPotion extends ahr {
 			this.c = new ItemStack(Items.POTION, 1, 0);
 		}
 
-		this.c.setDurability(var1);
+		this.c.setWearout(var1);
 	}
 
 	public int o() {
@@ -50,7 +50,7 @@ public class EntityPotion extends ahr {
 			this.c = new ItemStack(Items.POTION, 1, 0);
 		}
 
-		return this.c.getDurability();
+		return this.c.getWearout();
 	}
 
 	protected void a(MovingObjectPosition var1) {
@@ -58,7 +58,7 @@ public class EntityPotion extends ahr {
 			List var2 = Items.POTION.h(this.c);
 			if (var2 != null && !var2.isEmpty()) {
 				AxisAlignedBB var3 = this.getBoundingBox().grow(4.0D, 2.0D, 4.0D);
-				List var4 = this.world.a(EntityLiving.class, var3);
+				List var4 = this.world.getEntititesInAABB(EntityLiving.class, var3);
 				if (!var4.isEmpty()) {
 					Iterator var5 = var4.iterator();
 
@@ -90,16 +90,16 @@ public class EntityPotion extends ahr {
 				}
 			}
 
-			this.world.b(2002, new Position(this), this.o());
+			this.world.triggerEffect(2002, new Position(this), this.o());
 			this.die();
 		}
 
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		if (var1.isTagAssignableFrom("Potion", 10)) {
-			this.c = ItemStack.a(var1.getCompound("Potion"));
+			this.c = ItemStack.fromNBT(var1.getCompound("Potion"));
 		} else {
 			this.a(var1.getInt("potionValue"));
 		}
@@ -110,8 +110,8 @@ public class EntityPotion extends ahr {
 
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		if (this.c != null) {
 			var1.put("Potion", (NBTTag) this.c.write(new NBTCompoundTag()));
 		}

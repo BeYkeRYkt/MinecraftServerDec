@@ -148,7 +148,7 @@ public class bpy extends bpu {
 						}
 
 						if (var1.world.getBlockState(var16).getBlock() instanceof ati) {
-							if (!(var1.world.getBlockState(var12).getBlock() instanceof ati) && !(var1.world.getBlockState(var12.b()).getBlock() instanceof ati)) {
+							if (!(var1.world.getBlockState(var12).getBlock() instanceof ati) && !(var1.world.getBlockState(var12.getDown()).getBlock() instanceof ati)) {
 								return -3;
 							}
 						} else if (!var17.b(var0, var16) && (!var9 || !(var17 instanceof BlockDoor) || var17.getMaterial() != Material.WOOD)) {

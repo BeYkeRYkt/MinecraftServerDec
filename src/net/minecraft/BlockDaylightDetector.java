@@ -22,7 +22,7 @@ public class BlockDaylightDetector extends atg {
 		this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.375F, 1.0F);
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		return ((Integer) var3.b(a)).intValue();
 	}
 
@@ -46,7 +46,7 @@ public class BlockDaylightDetector extends atg {
 		}
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var4.cm()) {
 			if (var1.isStatic) {
 				return true;
@@ -62,11 +62,11 @@ public class BlockDaylightDetector extends atg {
 				return true;
 			}
 		} else {
-			return super.a(var1, var2, var3, var4, var5, var6, var7, var8);
+			return super.interact(var1, var2, var3, var4, var5, var6, var7, var8);
 		}
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf((Block) Blocks.DAYLIGHT_DETECTOR);
 	}
 
@@ -82,11 +82,11 @@ public class BlockDaylightDetector extends atg {
 		return 3;
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return true;
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityLightDetector();
 	}
 

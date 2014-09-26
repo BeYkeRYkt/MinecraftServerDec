@@ -1,6 +1,6 @@
 package net.minecraft;
 
-public class EntityMinecartChest extends aed {
+public class EntityMinecartChest extends InventoryMinecart {
 
 	public EntityMinecartChest(World var1) {
 		super(var1);
@@ -15,11 +15,11 @@ public class EntityMinecartChest extends aed {
 		this.a(Item.getItemOf((Block) Blocks.CHEST), 1, 0.0F);
 	}
 
-	public int n_() {
+	public int getSize() {
 		return 27;
 	}
 
-	public MinecartType s() {
+	public MinecartType getType() {
 		return MinecartType.CHEST;
 	}
 
@@ -31,11 +31,12 @@ public class EntityMinecartChest extends aed {
 		return 8;
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:chest";
 	}
 
-	public Container a(PlayerInventory var1, EntityHuman var2) {
+	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
 		return new ContainerChest(var1, this, var2);
 	}
+
 }

@@ -19,8 +19,8 @@ public abstract class EntityMonster extends EntityCreature implements IMonster {
 		super.m();
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (!this.world.isStatic && this.world.getDifficulty() == Difficulty.PEACEFUL) {
 			this.die();
 		}
@@ -35,11 +35,11 @@ public abstract class EntityMonster extends EntityCreature implements IMonster {
 		return "game.hostile.swim.splash";
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
-		} else if (super.damageEntity(var1, var2)) {
-			Entity var3 = var1.j();
+		} else if (super.receiveDamage(var1, var2)) {
+			Entity var3 = var1.getDamager();
 			return this.passenger != var3 && this.vehicle != var3 ? true : true;
 		} else {
 			return false;
@@ -66,7 +66,7 @@ public abstract class EntityMonster extends EntityCreature implements IMonster {
 			var3 += aph.a((EntityLiving) this);
 		}
 
-		boolean var4 = var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), var2);
+		boolean var4 = var1.receiveDamage(DamageSource.mobAttack((EntityLiving) this), var2);
 		if (var4) {
 			if (var3 > 0) {
 				var1.g((double) (-MathHelper.a(this.yaw * 3.1415927F / 180.0F) * (float) var3 * 0.5F), 0.1D, (double) (MathHelper.b(this.yaw * 3.1415927F / 180.0F) * (float) var3 * 0.5F));
@@ -94,11 +94,11 @@ public abstract class EntityMonster extends EntityCreature implements IMonster {
 		if (this.world.b(EnumSkyBlock.SKY, var1) > this.random.nextInt(32)) {
 			return false;
 		} else {
-			int var2 = this.world.l(var1);
+			int var2 = this.world.getLightLevel(var1);
 			if (this.world.R()) {
 				int var3 = this.world.ab();
 				this.world.b(10);
-				var2 = this.world.l(var1);
+				var2 = this.world.getLightLevel(var1);
 				this.world.b(var3);
 			}
 

@@ -27,7 +27,7 @@ public abstract class EntityWaterAnimal extends EntityInsentient implements IAni
 	}
 
 	protected int b(EntityHuman var1) {
-		return 1 + this.world.s.nextInt(3);
+		return 1 + this.world.random.nextInt(3);
 	}
 
 	public void K() {
@@ -38,7 +38,7 @@ public abstract class EntityWaterAnimal extends EntityInsentient implements IAni
 			this.h(var1);
 			if (this.getAirTicks() == -20) {
 				this.h(0);
-				this.damageEntity(DamageSource.DROWN, 2.0F);
+				this.receiveDamage(DamageSource.DROWN, 2.0F);
 			}
 		} else {
 			this.h(300);

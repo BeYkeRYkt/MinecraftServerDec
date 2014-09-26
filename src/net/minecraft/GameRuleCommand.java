@@ -27,20 +27,20 @@ public class GameRuleCommand extends AbstractCommand {
 				var1.sendChatMessage(new ChatComponentText(a(var3.getGameRules())));
 				break;
 			case 1:
-				if (!var3.e(var4)) {
+				if (!var3.hasGameRule(var4)) {
 					throw new di("commands.gamerule.norule", new Object[] { var4 });
 				}
 
-				String var6 = var3.a(var4);
+				String var6 = var3.getGameRuleData(var4);
 				var1.sendChatMessage((new ChatComponentText(var4)).a(" = ").a(var6));
-				var1.a(ag.e, var3.c(var4));
+				var1.a(ag.e, var3.getGameRule(var4));
 				break;
 			default:
-				if (var3.a(var4, GameRuleValue.BOOLEAN_VALUE) && !"true".equals(var5) && !"false".equals(var5)) {
+				if (var3.isTypeOf(var4, GameRuleValue.BOOLEAN_VALUE) && !"true".equals(var5) && !"false".equals(var5)) {
 					throw new di("commands.generic.boolean.invalid", new Object[] { var5 });
 				}
 
-				var3.a(var4, var5);
+				var3.setOrAddGameRule(var4, var5);
 				a(var3, var4);
 				a(var1, this, "commands.gamerule.success", new Object[0]);
 		}
@@ -49,7 +49,7 @@ public class GameRuleCommand extends AbstractCommand {
 
 	public static void a(GameRuleRegistry var0, String var1) {
 		if ("reducedDebugInfo".equals(var1)) {
-			int var2 = var0.b(var1) ? 22 : 23;
+			int var2 = var0.isGameRule(var1) ? 22 : 23;
 			Iterator var3 = MinecraftServer.getInstance().getPlayerList().players.iterator();
 
 			while (var3.hasNext()) {
@@ -66,7 +66,7 @@ public class GameRuleCommand extends AbstractCommand {
 		} else {
 			if (var2.length == 2) {
 				GameRuleRegistry var4 = this.d();
-				if (var4.a(var2[0], GameRuleValue.BOOLEAN_VALUE)) {
+				if (var4.isTypeOf(var2[0], GameRuleValue.BOOLEAN_VALUE)) {
 					return a(var2, new String[] { "true", "false" });
 				}
 			}

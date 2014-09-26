@@ -16,17 +16,17 @@ public class ItemBed extends Item {
 			Block var10 = var9.getBlock();
 			boolean var11 = var10.f(var3, var4);
 			if (!var11) {
-				var4 = var4.a();
+				var4 = var4.getUp();
 			}
 
 			int var12 = MathHelper.toFixedPointInt((double) (var2.yaw * 4.0F / 360.0F) + 0.5D) & 3;
 			BlockFace var13 = BlockFace.fromDirection(var12);
-			Position var14 = var4.a(var13);
+			Position var14 = var4.getRelative(var13);
 			boolean var15 = var10.f(var3, var14);
 			boolean var16 = var3.d(var4) || var11;
 			boolean var17 = var3.d(var14) || var15;
 			if (var2.a(var4, var5, var1) && var2.a(var14, var5, var1)) {
-				if (var16 && var17 && World.a((ard) var3, var4.b()) && World.a((ard) var3, var14.b())) {
+				if (var16 && var17 && World.a((ard) var3, var4.getDown()) && World.a((ard) var3, var14.getDown())) {
 					int var18 = var13.toDirection();
 					IBlockState var19 = Blocks.BED.getBlockState().a(BlockBed.b, Boolean.valueOf(false)).a(BlockBed.N, var13).a(BlockBed.a, atq.b);
 					if (var3.setBlockAt(var4, var19, 3)) {

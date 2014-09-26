@@ -2,10 +2,13 @@ package net.minecraft;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import pipebukkit.server.inventory.PipeInventory;
 
 public abstract class Container {
 
@@ -30,7 +33,7 @@ public abstract class Container {
 			throw new IllegalArgumentException("Listener already listening");
 		} else {
 			this.listeners.add(icrafting);
-			icrafting.setContainerData(this, this.getContents());
+			icrafting.sendContainerItems(this, this.getContents());
 			this.b();
 		}
 	}
@@ -54,7 +57,7 @@ public abstract class Container {
 				this.itemStacks.set(var1, var3);
 
 				for (int var4 = 0; var4 < this.listeners.size(); ++var4) {
-					((ICrafting) this.listeners.get(var4)).setContainerData(this, var1, var3);
+					((ICrafting) this.listeners.get(var4)).sendContainerItem(this, var1, var3);
 				}
 			}
 		}
@@ -87,7 +90,7 @@ public abstract class Container {
 
 	public ItemStack a(int var1, int var2, int var3, EntityHuman var4) {
 		ItemStack var5 = null;
-		PlayerInventory var6 = var4.playerInventory;
+		InventoryPlayer var6 = var4.playerInventory;
 		int var9;
 		ItemStack var17;
 		if (var3 == 5) {
@@ -95,7 +98,7 @@ public abstract class Container {
 			this.g = c(var2);
 			if ((var7 != 1 || this.g != 2) && var7 != this.g) {
 				this.d();
-			} else if (var6.p() == null) {
+			} else if (var6.getCarried() == null) {
 				this.d();
 			} else if (this.g == 0) {
 				this.f = b(var2);
@@ -107,18 +110,18 @@ public abstract class Container {
 				}
 			} else if (this.g == 1) {
 				Slot var8 = (Slot) this.slots.get(var1);
-				if (var8 != null && a(var8, var6.p(), true) && var8.a(var6.p()) && var6.p().amount > this.h.size() && this.b(var8)) {
+				if (var8 != null && a(var8, var6.getCarried(), true) && var8.a(var6.getCarried()) && var6.getCarried().amount > this.h.size() && this.b(var8)) {
 					this.h.add(var8);
 				}
 			} else if (this.g == 2) {
 				if (!this.h.isEmpty()) {
-					var17 = var6.p().getCopy();
-					var9 = var6.p().amount;
+					var17 = var6.getCarried().getCopy();
+					var9 = var6.getCarried().amount;
 					Iterator var10 = this.h.iterator();
 
 					while (var10.hasNext()) {
 						Slot var11 = (Slot) var10.next();
-						if (var11 != null && a(var11, var6.p(), true) && var11.a(var6.p()) && var6.p().amount >= this.h.size() && this.b(var11)) {
+						if (var11 != null && a(var11, var6.getCarried(), true) && var11.a(var6.getCarried()) && var6.getCarried().amount >= this.h.size() && this.b(var11)) {
 							ItemStack var12 = var17.getCopy();
 							int var13 = var11.hasItem() ? var11.getItemStack().amount : 0;
 							a(this.h, this.f, var12, var13);
@@ -140,7 +143,7 @@ public abstract class Container {
 						var17 = null;
 					}
 
-					var6.b(var17);
+					var6.setCarried(var17);
 				}
 
 				this.d();
@@ -155,16 +158,16 @@ public abstract class Container {
 			ItemStack var23;
 			if ((var3 == 0 || var3 == 1) && (var2 == 0 || var2 == 1)) {
 				if (var1 == -999) {
-					if (var6.p() != null) {
+					if (var6.getCarried() != null) {
 						if (var2 == 0) {
-							var4.dropItem(var6.p(), true);
-							var6.b((ItemStack) null);
+							var4.dropItem(var6.getCarried(), true);
+							var6.setCarried((ItemStack) null);
 						}
 
 						if (var2 == 1) {
-							var4.dropItem(var6.p().a(1), true);
-							if (var6.p().amount == 0) {
-								var6.b((ItemStack) null);
+							var4.dropItem(var6.getCarried().a(1), true);
+							if (var6.getCarried().amount == 0) {
+								var6.setCarried((ItemStack) null);
 							}
 						}
 					}
@@ -192,7 +195,7 @@ public abstract class Container {
 					var16 = (Slot) this.slots.get(var1);
 					if (var16 != null) {
 						var17 = var16.getItemStack();
-						ItemStack var20 = var6.p();
+						ItemStack var20 = var6.getCarried();
 						if (var17 != null) {
 							var5 = var17.getCopy();
 						}
@@ -209,21 +212,21 @@ public abstract class Container {
 								}
 
 								if (var20.amount == 0) {
-									var6.b((ItemStack) null);
+									var6.setCarried((ItemStack) null);
 								}
 							}
 						} else if (var16.a(var4)) {
 							if (var20 == null) {
 								var21 = var2 == 0 ? var17.amount : (var17.amount + 1) / 2;
 								var23 = var16.a(var21);
-								var6.b(var23);
+								var6.setCarried(var23);
 								if (var17.amount == 0) {
 									var16.d((ItemStack) null);
 								}
 
-								var16.a(var4, var6.p());
+								var16.a(var4, var6.getCarried());
 							} else if (var16.a(var20)) {
-								if (var17.getItem() == var20.getItem() && var17.getDurability() == var20.getDurability() && ItemStack.a(var17, var20)) {
+								if (var17.getItem() == var20.getItem() && var17.getWearout() == var20.getWearout() && ItemStack.isSameNBTTags(var17, var20)) {
 									var21 = var2 == 0 ? var20.amount : 1;
 									if (var21 > var16.b(var20) - var17.amount) {
 										var21 = var16.b(var20) - var17.amount;
@@ -235,15 +238,15 @@ public abstract class Container {
 
 									var20.a(var21);
 									if (var20.amount == 0) {
-										var6.b((ItemStack) null);
+										var6.setCarried((ItemStack) null);
 									}
 
 									var17.amount += var21;
 								} else if (var20.amount <= var16.b(var20)) {
 									var16.d(var20);
-									var6.b(var17);
+									var6.setCarried(var17);
 								}
-							} else if (var17.getItem() == var20.getItem() && var20.getMaxStackSize() > 1 && (!var17.f() || var17.getDurability() == var20.getDurability()) && ItemStack.a(var17, var20)) {
+							} else if (var17.getItem() == var20.getItem() && var20.getMaxStackSize() > 1 && (!var17.f() || var17.getWearout() == var20.getWearout()) && ItemStack.isSameNBTTags(var17, var20)) {
 								var21 = var17.amount;
 								if (var21 > 0 && var21 + var20.amount <= var20.getMaxStackSize()) {
 									var20.amount += var21;
@@ -252,7 +255,7 @@ public abstract class Container {
 										var16.d((ItemStack) null);
 									}
 
-									var16.a(var4, var6.p());
+									var16.a(var4, var6.getCarried());
 								}
 							}
 						}
@@ -263,20 +266,20 @@ public abstract class Container {
 			} else if (var3 == 2 && var2 >= 0 && var2 < 9) {
 				var16 = (Slot) this.slots.get(var1);
 				if (var16.a(var4)) {
-					var17 = var6.a(var2);
+					var17 = var6.getItem(var2);
 					boolean var18 = var17 == null || var16.inventory == var6 && var16.a(var17);
 					var21 = -1;
 					if (!var18) {
-						var21 = var6.j();
+						var21 = var6.getFirstEmptySlot();
 						var18 |= var21 > -1;
 					}
 
 					if (var16.hasItem() && var18) {
 						var23 = var16.getItemStack();
-						var6.a(var2, var23.getCopy());
+						var6.setItem(var2, var23.getCopy());
 						if ((var16.inventory != var6 || !var16.a(var17)) && var17 != null) {
 							if (var21 > -1) {
-								var6.a(var17);
+								var6.pickup(var17);
 								var16.a(var23.amount);
 								var16.d((ItemStack) null);
 								var16.a(var4, var23);
@@ -287,18 +290,18 @@ public abstract class Container {
 							var16.a(var4, var23);
 						}
 					} else if (!var16.hasItem() && var17 != null && var16.a(var17)) {
-						var6.a(var2, (ItemStack) null);
+						var6.setItem(var2, (ItemStack) null);
 						var16.d(var17);
 					}
 				}
-			} else if (var3 == 3 && var4.playerProperties.instabuild && var6.p() == null && var1 >= 0) {
+			} else if (var3 == 3 && var4.playerProperties.instabuild && var6.getCarried() == null && var1 >= 0) {
 				var16 = (Slot) this.slots.get(var1);
 				if (var16 != null && var16.hasItem()) {
 					var17 = var16.getItemStack().getCopy();
 					var17.amount = var17.getMaxStackSize();
-					var6.b(var17);
+					var6.setCarried(var17);
 				}
-			} else if (var3 == 4 && var6.p() == null && var1 >= 0) {
+			} else if (var3 == 4 && var6.getCarried() == null && var1 >= 0) {
 				var16 = (Slot) this.slots.get(var1);
 				if (var16 != null && var16.hasItem() && var16.a(var4)) {
 					var17 = var16.a(var2 == 0 ? 1 : var16.getItemStack().amount);
@@ -307,7 +310,7 @@ public abstract class Container {
 				}
 			} else if (var3 == 6 && var1 >= 0) {
 				var16 = (Slot) this.slots.get(var1);
-				var17 = var6.p();
+				var17 = var6.getCarried();
 				if (var17 != null && (var16 == null || !var16.hasItem() || !var16.a(var4))) {
 					var9 = var2 == 0 ? 0 : this.slots.size() - 1;
 					var21 = var2 == 0 ? 1 : -1;
@@ -345,10 +348,10 @@ public abstract class Container {
 	}
 
 	public void onClose(EntityHuman var1) {
-		PlayerInventory var2 = var1.playerInventory;
-		if (var2.p() != null) {
-			var1.dropItem(var2.p(), false);
-			var2.b((ItemStack) null);
+		InventoryPlayer var2 = var1.playerInventory;
+		if (var2.getCarried() != null) {
+			var1.dropItem(var2.getCarried(), false);
+			var2.setCarried((ItemStack) null);
 		}
 	}
 
@@ -372,7 +375,7 @@ public abstract class Container {
 		}
 	}
 
-	public abstract boolean a(EntityHuman var1);
+	public abstract boolean isContainerValid(EntityHuman var1);
 
 	protected boolean a(ItemStack var1, int var2, int var3, boolean var4) {
 		boolean var5 = false;
@@ -387,7 +390,7 @@ public abstract class Container {
 			while (var1.amount > 0 && (!var4 && var6 < var3 || var4 && var6 >= var2)) {
 				var7 = (Slot) this.slots.get(var6);
 				var8 = var7.getItemStack();
-				if (var8 != null && var8.getItem() == var1.getItem() && (!var1.f() || var1.getDurability() == var8.getDurability()) && ItemStack.a(var1, var8)) {
+				if (var8 != null && var8.getItem() == var1.getItem() && (!var1.f() || var1.getWearout() == var8.getWearout()) && ItemStack.isSameNBTTags(var1, var8)) {
 					int var9 = var8.amount + var1.amount;
 					if (var9 <= var1.getMaxStackSize()) {
 						var1.amount = 0;
@@ -458,7 +461,7 @@ public abstract class Container {
 
 	public static boolean a(Slot var0, ItemStack var1, boolean var2) {
 		boolean var3 = var0 == null || !var0.hasItem();
-		if (var0 != null && var0.hasItem() && var1 != null && var1.a(var0.getItemStack()) && ItemStack.a(var0.getItemStack(), var1)) {
+		if (var0 != null && var0.hasItem() && var1 != null && var1.a(var0.getItemStack()) && ItemStack.isSameNBTTags(var0.getItemStack(), var1)) {
 			int var10002 = var2 ? 0 : var1.amount;
 			var3 |= var0.getItemStack().amount + var10002 <= var1.getMaxStackSize();
 		}
@@ -496,16 +499,19 @@ public abstract class Container {
 			int var1 = 0;
 			float var2 = 0.0F;
 
-			for (int var3 = 0; var3 < var0.n_(); ++var3) {
-				ItemStack var4 = var0.a(var3);
+			for (int var3 = 0; var3 < var0.getSize(); ++var3) {
+				ItemStack var4 = var0.getItem(var3);
 				if (var4 != null) {
-					var2 += (float) var4.amount / (float) Math.min(var0.p_(), var4.getMaxStackSize());
+					var2 += (float) var4.amount / (float) Math.min(var0.getMaxStackSize(), var4.getMaxStackSize());
 					++var1;
 				}
 			}
 
-			var2 /= (float) var0.n_();
+			var2 /= (float) var0.getSize();
 			return MathHelper.d(var2 * 14.0F) + (var1 > 0 ? 1 : 0);
 		}
 	}
+
+	public abstract PipeInventory getPipeInventory();
+
 }

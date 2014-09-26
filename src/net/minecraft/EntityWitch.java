@@ -110,7 +110,7 @@ public class EntityWitch extends EntityMonster implements IRangedEntity {
 
 	protected float c(DamageSource var1, float var2) {
 		var2 = super.c(var1, var2);
-		if (var1.j() == this) {
+		if (var1.getDamager() == this) {
 			var2 = 0.0F;
 		}
 

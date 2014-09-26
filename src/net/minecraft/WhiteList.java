@@ -1,7 +1,7 @@
 package net.minecraft;
 
 import com.google.gson.JsonObject;
-import com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 
 import java.io.File;
 import java.util.Collection;

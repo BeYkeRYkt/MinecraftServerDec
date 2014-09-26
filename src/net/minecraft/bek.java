@@ -1,8 +1,10 @@
 package net.minecraft;
 
 import com.google.common.base.Predicate;
+import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.LoadingCache;
+
 import java.util.Iterator;
 
 public class bek {
@@ -37,7 +39,7 @@ public class bek {
 		return this.d;
 	}
 
-	private bem a(Position var1, BlockFace var2, BlockFace var3, LoadingCache var4) {
+	private bem a(Position var1, BlockFace var2, BlockFace var3, Cache<Object, Object> var4) {
 		for (int var5 = 0; var5 < this.d; ++var5) {
 			for (int var6 = 0; var6 < this.c; ++var6) {
 				for (int var7 = 0; var7 < this.b; ++var7) {
@@ -52,7 +54,7 @@ public class bek {
 	}
 
 	public bem a(World var1, Position var2) {
-		LoadingCache var3 = CacheBuilder.newBuilder().build(new bel(var1));
+		Cache<Object, Object> var3 = CacheBuilder.newBuilder().build(new bel(var1));
 		int var4 = Math.max(Math.max(this.d, this.c), this.b);
 		Iterator var5 = Position.a(var2, var2.a(var4 - 1, var4 - 1, var4 - 1)).iterator();
 

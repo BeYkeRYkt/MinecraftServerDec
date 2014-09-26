@@ -15,7 +15,7 @@ public class ItemHanging extends Item {
 		} else if (var5 == BlockFace.UP) {
 			return false;
 		} else {
-			Position var9 = var4.a(var5);
+			Position var9 = var4.getRelative(var5);
 			if (!var2.a(var9, var5, var1)) {
 				return false;
 			} else {

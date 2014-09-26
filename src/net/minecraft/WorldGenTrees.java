@@ -53,9 +53,9 @@ public class WorldGenTrees extends WorldGenTreeAbstract {
 			if (!var5) {
 				return false;
 			} else {
-				Block var19 = var1.getBlockState(var3.b()).getBlock();
+				Block var19 = var1.getBlockState(var3.getDown()).getBlock();
 				if ((var19 == Blocks.GRASS || var19 == Blocks.DIRT || var19 == Blocks.FARMLAND) && var3.getY() < 256 - var4 - 1) {
-					this.a(var1, var3.b());
+					this.a(var1, var3.getDown());
 					var7 = 3;
 					byte var20 = 0;
 
@@ -85,9 +85,9 @@ public class WorldGenTrees extends WorldGenTreeAbstract {
 					}
 
 					for (var9 = 0; var9 < var4; ++var9) {
-						Block var21 = var1.getBlockState(var3.b(var9)).getBlock();
+						Block var21 = var1.getBlockState(var3.getUp(var9)).getBlock();
 						if (var21.getMaterial() == Material.AIR || var21.getMaterial() == Material.LEAVES || var21.getMaterial() == Material.REPLACEABLE_PLANT) {
-							this.a(var1, var3.b(var9), Blocks.LOG, this.c);
+							this.a(var1, var3.getUp(var9), Blocks.LOG, this.c);
 							if (this.b && var9 > 0) {
 								if (var2.nextInt(3) > 0 && var1.d(var3.a(-1, var9, 0))) {
 									this.a(var1, var3.a(-1, var9, 0), Blocks.VINE, BlockVine.S);
@@ -117,10 +117,10 @@ public class WorldGenTrees extends WorldGenTreeAbstract {
 								for (var13 = var3.getZ() - var11; var13 <= var3.getZ() + var11; ++var13) {
 									Position var23 = new Position(var12, var9, var13);
 									if (var1.getBlockState(var23).getBlock().getMaterial() == Material.LEAVES) {
-										Position var24 = var23.e();
-										var16 = var23.f();
-										Position var25 = var23.c();
-										Position var18 = var23.d();
+										Position var24 = var23.getWest();
+										var16 = var23.getEast();
+										Position var25 = var23.getNorth();
+										Position var18 = var23.getSouth();
 										if (var2.nextInt(4) == 0 && var1.getBlockState(var24).getBlock().getMaterial() == Material.AIR) {
 											this.a(var1, var24, BlockVine.S);
 										}
@@ -168,9 +168,9 @@ public class WorldGenTrees extends WorldGenTreeAbstract {
 		this.a(var1, var2, Blocks.VINE, var3);
 		int var4 = 4;
 
-		for (var2 = var2.b(); var1.getBlockState(var2).getBlock().getMaterial() == Material.AIR && var4 > 0; --var4) {
+		for (var2 = var2.getDown(); var1.getBlockState(var2).getBlock().getMaterial() == Material.AIR && var4 > 0; --var4) {
 			this.a(var1, var2, Blocks.VINE, var3);
-			var2 = var2.b();
+			var2 = var2.getDown();
 		}
 
 	}

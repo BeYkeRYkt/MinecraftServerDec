@@ -22,13 +22,13 @@ public class ayz {
 			this.c = BlockFace.SOUTH;
 		}
 
-		for (Position var4 = var2; var2.getY() > var4.getY() - 21 && var2.getY() > 0 && this.a(var1.getBlockState(var2.b()).getBlock()); var2 = var2.b()) {
+		for (Position var4 = var2; var2.getY() > var4.getY() - 21 && var2.getY() > 0 && this.a(var1.getBlockState(var2.getDown()).getBlock()); var2 = var2.getDown()) {
 			;
 		}
 
 		int var5 = this.a(var2, this.d) - 1;
 		if (var5 >= 0) {
-			this.f = var2.a(this.d, var5);
+			this.f = var2.getRelative(this.d, var5);
 			this.h = this.a(this.f, this.c);
 			if (this.h < 2 || this.h > 21) {
 				this.f = null;
@@ -45,13 +45,13 @@ public class ayz {
 	protected int a(Position var1, BlockFace var2) {
 		int var3;
 		for (var3 = 0; var3 < 22; ++var3) {
-			Position var4 = var1.a(var2, var3);
-			if (!this.a(this.a.getBlockState(var4).getBlock()) || this.a.getBlockState(var4.b()).getBlock() != Blocks.OBSIDIAN) {
+			Position var4 = var1.getRelative(var2, var3);
+			if (!this.a(this.a.getBlockState(var4).getBlock()) || this.a.getBlockState(var4.getDown()).getBlock() != Blocks.OBSIDIAN) {
 				break;
 			}
 		}
 
-		Block var5 = this.a.getBlockState(var1.a(var2, var3)).getBlock();
+		Block var5 = this.a.getBlockState(var1.getRelative(var2, var3)).getBlock();
 		return var5 == Blocks.OBSIDIAN ? var3 : 0;
 	}
 
@@ -59,7 +59,7 @@ public class ayz {
 		int var1;
 		label56: for (this.g = 0; this.g < 21; ++this.g) {
 			for (var1 = 0; var1 < this.h; ++var1) {
-				Position var2 = this.f.a(this.c, var1).b(this.g);
+				Position var2 = this.f.getRelative(this.c, var1).getUp(this.g);
 				Block var3 = this.a.getBlockState(var2).getBlock();
 				if (!this.a(var3)) {
 					break label56;
@@ -70,12 +70,12 @@ public class ayz {
 				}
 
 				if (var1 == 0) {
-					var3 = this.a.getBlockState(var2.a(this.d)).getBlock();
+					var3 = this.a.getBlockState(var2.getRelative(this.d)).getBlock();
 					if (var3 != Blocks.OBSIDIAN) {
 						break label56;
 					}
 				} else if (var1 == this.h - 1) {
-					var3 = this.a.getBlockState(var2.a(this.c)).getBlock();
+					var3 = this.a.getBlockState(var2.getRelative(this.c)).getBlock();
 					if (var3 != Blocks.OBSIDIAN) {
 						break label56;
 					}
@@ -84,7 +84,7 @@ public class ayz {
 		}
 
 		for (var1 = 0; var1 < this.h; ++var1) {
-			if (this.a.getBlockState(this.f.a(this.c, var1).b(this.g)).getBlock() != Blocks.OBSIDIAN) {
+			if (this.a.getBlockState(this.f.getRelative(this.c, var1).getUp(this.g)).getBlock() != Blocks.OBSIDIAN) {
 				this.g = 0;
 				break;
 			}
@@ -110,10 +110,10 @@ public class ayz {
 
 	public void c() {
 		for (int var1 = 0; var1 < this.h; ++var1) {
-			Position var2 = this.f.a(this.c, var1);
+			Position var2 = this.f.getRelative(this.c, var1);
 
 			for (int var3 = 0; var3 < this.g; ++var3) {
-				this.a.setBlockAt(var2.b(var3), Blocks.PORTAL.getBlockState().a(BlockPortal.a, this.b), 2);
+				this.a.setBlockAt(var2.getUp(var3), Blocks.PORTAL.getBlockState().a(BlockPortal.a, this.b), 2);
 			}
 		}
 

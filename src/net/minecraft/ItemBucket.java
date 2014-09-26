@@ -23,7 +23,7 @@ public class ItemBucket extends Item {
 				}
 
 				if (var4) {
-					if (!var3.a(var6.a(var5.face), var5.face, var1)) {
+					if (!var3.a(var6.getRelative(var5.face), var5.face, var1)) {
 						return var1;
 					}
 
@@ -45,7 +45,7 @@ public class ItemBucket extends Item {
 						return new ItemStack(Items.BUCKET);
 					}
 
-					Position var9 = var6.a(var5.face);
+					Position var9 = var6.getRelative(var5.face);
 					if (!var3.a(var9, var5.face, var1)) {
 						return var1;
 					}
@@ -67,7 +67,7 @@ public class ItemBucket extends Item {
 		} else if (--var1.amount <= 0) {
 			return new ItemStack(var3);
 		} else {
-			if (!var2.playerInventory.a(new ItemStack(var3))) {
+			if (!var2.playerInventory.pickup(new ItemStack(var3))) {
 				var2.dropItem(new ItemStack(var3, 1, 0), false);
 			}
 
@@ -88,10 +88,10 @@ public class ItemBucket extends Item {
 					int var5 = var2.getX();
 					int var6 = var2.getY();
 					int var7 = var2.getZ();
-					var1.makeSound((double) ((float) var5 + 0.5F), (double) ((float) var6 + 0.5F), (double) ((float) var7 + 0.5F), "random.fizz", 0.5F, 2.6F + (var1.s.nextFloat() - var1.s.nextFloat()) * 0.8F);
+					var1.makeSound((double) ((float) var5 + 0.5F), (double) ((float) var6 + 0.5F), (double) ((float) var7 + 0.5F), "random.fizz", 0.5F, 2.6F + (var1.random.nextFloat() - var1.random.nextFloat()) * 0.8F);
 
 					for (int var8 = 0; var8 < 8; ++var8) {
-						var1.a(Particle.m, (double) var5 + Math.random(), (double) var6 + Math.random(), (double) var7 + Math.random(), 0.0D, 0.0D, 0.0D, new int[0]);
+						var1.addParticle(Particle.m, (double) var5 + Math.random(), (double) var6 + Math.random(), (double) var7 + Math.random(), 0.0D, 0.0D, 0.0D, new int[0]);
 					}
 				} else {
 					if (!var1.isStatic && var4 && !var3.isLiquid()) {

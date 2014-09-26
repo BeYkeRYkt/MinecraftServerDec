@@ -20,7 +20,7 @@ public class hq {
 			}
 
 			var3 = var2 != null && var5.equals("*") ? new ht(var2.getName(), var4.h()) : new ht(var5, var4.h());
-			((ht) var3).b(var4.e());
+			((ht) var3).b(var4.getComponentVaue());
 		} else if (var1 instanceof hu) {
 			String var7 = ((hu) var1).g();
 			var3 = ah.b(var0, var7);

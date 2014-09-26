@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class BlockEnderChest extends atg {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 
 	protected BlockEnderChest() {
 		super(Material.STONE);
@@ -26,11 +26,11 @@ public class BlockEnderChest extends atg {
 		return 2;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf(Blocks.OBSIDIAN);
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 8;
 	}
 
@@ -46,17 +46,17 @@ public class BlockEnderChest extends atg {
 		var1.setBlockAt(var2, var3.a(a, var4.aO().getOpposite()), 2);
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		InventoryEnderChest var9 = var4.getEnderChest();
 		TileEntity var10 = var1.getTileEntity(var2);
 		if (var9 != null && var10 instanceof TileEntityEnderChest) {
-			if (var1.getBlockState(var2.a()).getBlock().t()) {
+			if (var1.getBlockState(var2.getUp()).getBlock().t()) {
 				return true;
 			} else if (var1.isStatic) {
 				return true;
 			} else {
 				var9.a((TileEntityEnderChest) var10);
-				var4.a((IInventory) var9);
+				var4.openInventory((IInventory) var9);
 				return true;
 			}
 		} else {
@@ -64,7 +64,7 @@ public class BlockEnderChest extends atg {
 		}
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityEnderChest();
 	}
 

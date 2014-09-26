@@ -11,13 +11,13 @@ public class BlockCommand extends atg {
 		this.setBlockState(this.L.b().a(a, Boolean.valueOf(false)));
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityCommand();
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!var1.isStatic) {
-			boolean var5 = var1.z(var2);
+			boolean var5 = var1.isBlockIndirectlyPowered(var2);
 			boolean var6 = ((Boolean) var3.b(a)).booleanValue();
 			if (var5 && !var6) {
 				var1.setBlockAt(var2, var3.a(a, Boolean.valueOf(true)), 4);
@@ -42,12 +42,12 @@ public class BlockCommand extends atg {
 		return 1;
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		TileEntity var9 = var1.getTileEntity(var2);
-		return var9 instanceof TileEntityCommand ? ((TileEntityCommand) var9).getListener().a(var4) : false;
+		return var9 instanceof TileEntityCommand ? ((TileEntityCommand) var9).getListener().canOpen(var4) : false;
 	}
 
-	public boolean N() {
+	public boolean isComplexRedstone() {
 		return true;
 	}
 
@@ -60,18 +60,18 @@ public class BlockCommand extends atg {
 		TileEntity var6 = var1.getTileEntity(var2);
 		if (var6 instanceof TileEntityCommand) {
 			CommandBlockListenerAbstract var7 = ((TileEntityCommand) var6).getListener();
-			if (var5.s()) {
-				var7.setCustomName(var5.q());
+			if (var5.hasDisplayName()) {
+				var7.setCustomName(var5.getDisplayName());
 			}
 
 			if (!var1.isStatic) {
-				var7.setTrackOutput(var1.getGameRules().b("sendCommandFeedback"));
+				var7.setTrackOutput(var1.getGameRules().isGameRule("sendCommandFeedback"));
 			}
 
 		}
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 

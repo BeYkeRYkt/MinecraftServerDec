@@ -16,12 +16,12 @@ public class WorldGenGroundBush extends WorldGenTrees {
 	public boolean b(World var1, Random var2, Position var3) {
 		Block var4;
 		while (((var4 = var1.getBlockState(var3).getBlock()).getMaterial() == Material.AIR || var4.getMaterial() == Material.LEAVES) && var3.getY() > 0) {
-			var3 = var3.b();
+			var3 = var3.getDown();
 		}
 
 		Block var5 = var1.getBlockState(var3).getBlock();
 		if (var5 == Blocks.DIRT || var5 == Blocks.GRASS) {
-			var3 = var3.a();
+			var3 = var3.getUp();
 			this.a(var1, var3, Blocks.LOG, this.b);
 
 			for (int var6 = var3.getY(); var6 <= var3.getY() + 2; ++var6) {

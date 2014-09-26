@@ -1,13 +1,13 @@
 package net.minecraft;
 
 import com.google.common.base.Charsets;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufAllocator;
-import io.netty.buffer.ByteBufInputStream;
-import io.netty.buffer.ByteBufOutputStream;
-import io.netty.buffer.ByteBufProcessor;
-import io.netty.handler.codec.DecoderException;
-import io.netty.handler.codec.EncoderException;
+import net.minecraft.util.io.netty.buffer.ByteBuf;
+import net.minecraft.util.io.netty.buffer.ByteBufAllocator;
+import net.minecraft.util.io.netty.buffer.ByteBufInputStream;
+import net.minecraft.util.io.netty.buffer.ByteBufOutputStream;
+import net.minecraft.util.io.netty.buffer.ByteBufProcessor;
+import net.minecraft.util.io.netty.handler.codec.DecoderException;
+import net.minecraft.util.io.netty.handler.codec.EncoderException;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.io.InputStream;
@@ -161,7 +161,7 @@ public class PacketDataSerializer extends ByteBuf {
 		} else {
 			this.writeShort(Item.getId(item.getItem()));
 			this.writeByte(item.amount);
-			this.writeShort(item.getDurability());
+			this.writeShort(item.getWearout());
 			NBTCompoundTag compund = null;
 			if (item.getItem().usesDurability() || item.getItem().p()) {
 				compund = item.getTag();

@@ -12,7 +12,7 @@ public class StatusListener implements StatusServerboundPacketListener {
 		this.networkManager = networkManager;
 	}
 
-	public void handle(IChatBaseComponent message) {
+	public void handleDisconnect(IChatBaseComponent message) {
 	}
 
 	public void handle(PacketStatusInRequest packet) {

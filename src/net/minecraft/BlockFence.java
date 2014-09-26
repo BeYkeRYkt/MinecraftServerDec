@@ -16,10 +16,10 @@ public class BlockFence extends Block {
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, AxisAlignedBB var4, List var5, Entity var6) {
-		boolean var7 = this.e(var1, var2.c());
-		boolean var8 = this.e(var1, var2.d());
-		boolean var9 = this.e(var1, var2.e());
-		boolean var10 = this.e(var1, var2.f());
+		boolean var7 = this.e(var1, var2.getNorth());
+		boolean var8 = this.e(var1, var2.getSouth());
+		boolean var9 = this.e(var1, var2.getWest());
+		boolean var10 = this.e(var1, var2.getEast());
 		float var11 = 0.375F;
 		float var12 = 0.625F;
 		float var13 = 0.375F;
@@ -64,10 +64,10 @@ public class BlockFence extends Block {
 	}
 
 	public void a(ard var1, Position var2) {
-		boolean var3 = this.e(var1, var2.c());
-		boolean var4 = this.e(var1, var2.d());
-		boolean var5 = this.e(var1, var2.e());
-		boolean var6 = this.e(var1, var2.f());
+		boolean var3 = this.e(var1, var2.getNorth());
+		boolean var4 = this.e(var1, var2.getSouth());
+		boolean var5 = this.e(var1, var2.getWest());
+		boolean var6 = this.e(var1, var2.getEast());
 		float var7 = 0.375F;
 		float var8 = 0.625F;
 		float var9 = 0.375F;
@@ -108,7 +108,7 @@ public class BlockFence extends Block {
 		return var3 == Blocks.BARRIER ? false : ((!(var3 instanceof BlockFence) || var3.material != this.material) && !(var3 instanceof BlockFenceGate) ? (var3.material.k() && var3.d() ? var3.material != Material.PUMPKIN : false) : true);
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		return var1.isStatic ? true : ItemLeash.a(var4, var1, var2);
 	}
 
@@ -117,7 +117,7 @@ public class BlockFence extends Block {
 	}
 
 	public IBlockState a(IBlockState var1, ard var2, Position var3) {
-		return var1.a(a, Boolean.valueOf(this.e(var2, var3.c()))).a(b, Boolean.valueOf(this.e(var2, var3.f()))).a(M, Boolean.valueOf(this.e(var2, var3.d()))).a(N, Boolean.valueOf(this.e(var2, var3.e())));
+		return var1.a(a, Boolean.valueOf(this.e(var2, var3.getNorth()))).a(b, Boolean.valueOf(this.e(var2, var3.getEast()))).a(M, Boolean.valueOf(this.e(var2, var3.getSouth()))).a(N, Boolean.valueOf(this.e(var2, var3.getWest())));
 	}
 
 	protected bed e() {

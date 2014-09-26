@@ -57,7 +57,7 @@ public class PlayerChunkMap {
 
 	}
 
-	public boolean a(int var1, int var2) {
+	public boolean isChunkInUse(int var1, int var2) {
 		long var3 = (long) var1 + 2147483647L | (long) var2 + 2147483647L << 32;
 		return this.d.getEntry(var3) != null;
 	}

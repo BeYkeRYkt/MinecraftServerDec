@@ -3,7 +3,7 @@ package net.minecraft;
 import java.util.Iterator;
 import net.minecraft.server.MinecraftServer;
 
-public abstract class adx extends Entity implements vz {
+public abstract class adx extends Entity implements ICustomNameable {
 
 	private boolean a;
 	private String b;
@@ -80,22 +80,22 @@ public abstract class adx extends Entity implements vz {
 		return (double) this.width * 0.5D - 0.20000000298023224D;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
 		if (!this.world.isStatic && !this.dead) {
-			if (this.b(var1)) {
+			if (this.ignoresDamageType(var1)) {
 				return false;
 			} else {
 				this.k(-this.r());
 				this.j(10);
 				this.ac();
 				this.a(this.p() + var2 * 10.0F);
-				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).playerProperties.instabuild;
+				boolean var3 = var1.getDamager() instanceof EntityHuman && ((EntityHuman) var1.getDamager()).playerProperties.instabuild;
 				if (var3 || this.p() > 40.0F) {
 					if (this.passenger != null) {
 						this.passenger.mount((Entity) null);
 					}
 
-					if (var3 && !this.k_()) {
+					if (var3 && !this.hasCustomName()) {
 						this.die();
 					} else {
 						this.a(var1);
@@ -113,7 +113,7 @@ public abstract class adx extends Entity implements vz {
 		this.die();
 		ItemStack var2 = new ItemStack(Items.MINECART, 1);
 		if (this.b != null) {
-			var2.c(this.b);
+			var2.setDisplayName(this.b);
 		}
 
 		this.a(var2, 0.0F);
@@ -127,7 +127,7 @@ public abstract class adx extends Entity implements vz {
 		super.die();
 	}
 
-	public void s_() {
+	public void doTick() {
 		if (this.q() > 0) {
 			this.j(this.q() - 1);
 		}
@@ -157,7 +157,7 @@ public abstract class adx extends Entity implements vz {
 							var3 = -1;
 						}
 
-						this.c(var3);
+						this.viewCredits(var3);
 					}
 
 					this.ak = false;
@@ -432,15 +432,15 @@ public abstract class adx extends Entity implements vz {
 				this.motionX += this.motionX / var40 * var42;
 				this.motionZ += this.motionZ / var40 * var42;
 			} else if (var9 == atl.b) {
-				if (this.world.getBlockState(var1.e()).getBlock().t()) {
+				if (this.world.getBlockState(var1.getWest()).getBlock().t()) {
 					this.motionX = 0.02D;
-				} else if (this.world.getBlockState(var1.f()).getBlock().t()) {
+				} else if (this.world.getBlockState(var1.getEast()).getBlock().t()) {
 					this.motionX = -0.02D;
 				}
 			} else if (var9 == atl.a) {
-				if (this.world.getBlockState(var1.c()).getBlock().t()) {
+				if (this.world.getBlockState(var1.getNorth()).getBlock().t()) {
 					this.motionZ = 0.02D;
-				} else if (this.world.getBlockState(var1.d()).getBlock().t()) {
+				} else if (this.world.getBlockState(var1.getSouth()).getBlock().t()) {
 					this.motionZ = -0.02D;
 				}
 			}
@@ -521,7 +521,7 @@ public abstract class adx extends Entity implements vz {
 		}
 	}
 
-	protected void a(NBTCompoundTag var1) {
+	protected void readAdditionalData(NBTCompoundTag var1) {
 		if (var1.getBoolean("CustomDisplayTile")) {
 			int var2 = var1.getInt("DisplayData");
 			Block var3;
@@ -550,7 +550,7 @@ public abstract class adx extends Entity implements vz {
 
 	}
 
-	protected void b(NBTCompoundTag var1) {
+	protected void writeAdditionalData(NBTCompoundTag var1) {
 		if (this.x()) {
 			var1.put("CustomDisplayTile", true);
 			IBlockState var2 = this.t();
@@ -570,7 +570,7 @@ public abstract class adx extends Entity implements vz {
 		if (!this.world.isStatic) {
 			if (!var1.T && !this.T) {
 				if (var1 != this.passenger) {
-					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof EntityIronGolem) && this.s() == MinecartType.RIDEABLE && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.passenger == null && var1.vehicle == null) {
+					if (var1 instanceof EntityLiving && !(var1 instanceof EntityHuman) && !(var1 instanceof EntityIronGolem) && this.getType() == MinecartType.RIDEABLE && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.passenger == null && var1.vehicle == null) {
 						var1.mount((Entity) this);
 					}
 
@@ -606,13 +606,13 @@ public abstract class adx extends Entity implements vz {
 
 							double var18 = var1.motionX + this.motionX;
 							double var20 = var1.motionZ + this.motionZ;
-							if (((adx) var1).s() == MinecartType.FURNACE && this.s() != MinecartType.FURNACE) {
+							if (((adx) var1).getType() == MinecartType.FURNACE && this.getType() != MinecartType.FURNACE) {
 								this.motionX *= 0.20000000298023224D;
 								this.motionZ *= 0.20000000298023224D;
 								this.g(var1.motionX - var2, 0.0D, var1.motionZ - var4);
 								var1.motionX *= 0.949999988079071D;
 								var1.motionZ *= 0.949999988079071D;
-							} else if (((adx) var1).s() != MinecartType.FURNACE && this.s() == MinecartType.FURNACE) {
+							} else if (((adx) var1).getType() != MinecartType.FURNACE && this.getType() == MinecartType.FURNACE) {
 								var1.motionX *= 0.20000000298023224D;
 								var1.motionZ *= 0.20000000298023224D;
 								var1.g(this.motionX + var2, 0.0D, this.motionZ + var4);
@@ -663,7 +663,7 @@ public abstract class adx extends Entity implements vz {
 		return this.dataWatcher.c(18);
 	}
 
-	public abstract MinecartType s();
+	public abstract MinecartType getType();
 
 	public IBlockState t() {
 		return !this.x() ? this.u() : Block.getStateById(this.getDataWatcher().c(20));
@@ -707,7 +707,7 @@ public abstract class adx extends Entity implements vz {
 		return this.b != null ? this.b : super.getName();
 	}
 
-	public boolean k_() {
+	public boolean hasCustomName() {
 		return this.b != null;
 	}
 
@@ -716,7 +716,7 @@ public abstract class adx extends Entity implements vz {
 	}
 
 	public IChatBaseComponent getComponentName() {
-		if (this.k_()) {
+		if (this.hasCustomName()) {
 			ChatComponentText var2 = new ChatComponentText(this.b);
 			var2.getChatModifier().a(this.aP());
 			var2.getChatModifier().a(this.getUUID().toString());

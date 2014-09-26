@@ -24,23 +24,23 @@ public class EntityGhast extends xl implements IMonster {
 		return this.a;
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (!this.world.isStatic && this.world.getDifficulty() == Difficulty.PEACEFUL) {
 			this.die();
 		}
 
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
-		} else if ("fireball".equals(var1.p()) && var1.j() instanceof EntityHuman) {
-			super.damageEntity(var1, 1000.0F);
-			((EntityHuman) var1.j()).b((Statistic) AchievementList.z);
+		} else if ("fireball".equals(var1.p()) && var1.getDamager() instanceof EntityHuman) {
+			super.receiveDamage(var1, 1000.0F);
+			((EntityHuman) var1.getDamager()).b((Statistic) AchievementList.z);
 			return true;
 		} else {
-			return super.damageEntity(var1, var2);
+			return super.receiveDamage(var1, var2);
 		}
 	}
 
@@ -99,13 +99,13 @@ public class EntityGhast extends xl implements IMonster {
 		return 1;
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("ExplosionPower", this.a);
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		if (var1.isTagAssignableFrom("ExplosionPower", 99)) {
 			this.a = var1.getInt("ExplosionPower");
 		}

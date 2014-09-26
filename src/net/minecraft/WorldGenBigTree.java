@@ -47,7 +47,7 @@ public class WorldGenBigTree extends WorldGenTreeAbstract {
 		int var2 = this.m.getY() + this.b;
 		int var3 = this.a - this.i;
 		this.j = Lists.newArrayList();
-		this.j.add(new bhe(this.m.b(var3), var2));
+		this.j.add(new bhe(this.m.getUp(var3), var2));
 
 		for (; var3 >= 0; --var3) {
 			float var4 = this.a(var3);
@@ -58,7 +58,7 @@ public class WorldGenBigTree extends WorldGenTreeAbstract {
 					double var10 = var6 * Math.sin(var8) + 0.5D;
 					double var12 = var6 * Math.cos(var8) + 0.5D;
 					Position var14 = this.m.a(var10, (double) (var3 - 1), var12);
-					Position var15 = var14.b(this.i);
+					Position var15 = var14.getUp(this.i);
 					if (this.a(var14, var15) == -1) {
 						int var16 = this.m.getX() - var14.getX();
 						int var17 = this.m.getZ() - var14.getZ();
@@ -115,7 +115,7 @@ public class WorldGenBigTree extends WorldGenTreeAbstract {
 
 	void a(Position var1) {
 		for (int var2 = 0; var2 < this.i; ++var2) {
-			this.a(var1.b(var2), this.b(var2), Blocks.LEAVES);
+			this.a(var1.getUp(var2), this.b(var2), Blocks.LEAVES);
 		}
 
 	}
@@ -174,13 +174,13 @@ public class WorldGenBigTree extends WorldGenTreeAbstract {
 
 	void c() {
 		Position var1 = this.m;
-		Position var2 = this.m.b(this.b);
+		Position var2 = this.m.getUp(this.b);
 		Block var3 = Blocks.LOG;
 		this.a(var1, var2, var3);
 		if (this.g == 2) {
-			this.a(var1.f(), var2.f(), var3);
-			this.a(var1.f().d(), var2.f().d(), var3);
-			this.a(var1.d(), var2.d(), var3);
+			this.a(var1.getEast(), var2.getEast(), var3);
+			this.a(var1.getEast().getSouth(), var2.getEast().getSouth(), var3);
+			this.a(var1.getSouth(), var2.getSouth(), var3);
 		}
 
 	}
@@ -243,11 +243,11 @@ public class WorldGenBigTree extends WorldGenTreeAbstract {
 	}
 
 	private boolean f() {
-		Block var1 = this.l.getBlockState(this.m.b()).getBlock();
+		Block var1 = this.l.getBlockState(this.m.getDown()).getBlock();
 		if (var1 != Blocks.DIRT && var1 != Blocks.GRASS && var1 != Blocks.FARMLAND) {
 			return false;
 		} else {
-			int var2 = this.a(this.m, this.m.b(this.a - 1));
+			int var2 = this.a(this.m, this.m.getUp(this.a - 1));
 			if (var2 == -1) {
 				return true;
 			} else if (var2 < 6) {

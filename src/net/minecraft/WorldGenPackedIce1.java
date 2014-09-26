@@ -14,7 +14,7 @@ public class WorldGenPackedIce1 extends WorldGenerator {
 
 	public boolean b(World var1, Random var2, Position var3) {
 		while (var1.d(var3) && var3.getY() > 2) {
-			var3 = var3.b();
+			var3 = var3.getDown();
 		}
 
 		if (var1.getBlockState(var3).getBlock() != Blocks.SNOW) {

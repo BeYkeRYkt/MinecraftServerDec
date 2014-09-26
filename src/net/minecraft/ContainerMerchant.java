@@ -1,18 +1,21 @@
 package net.minecraft;
 
+import pipebukkit.server.inventory.PipeInventory;
+import pipebukkit.server.inventory.PipeMerchantInventory;
+
 public class ContainerMerchant extends Container {
 
 	private IMerchant a;
-	private aje f;
+	private InventoryMerchant f;
 	private final World g;
 
-	public ContainerMerchant(PlayerInventory var1, IMerchant var2, World var3) {
+	public ContainerMerchant(InventoryPlayer var1, IMerchant var2, World var3) {
 		this.a = var2;
 		this.g = var3;
-		this.f = new aje(var1.d, var2);
+		this.f = new InventoryMerchant(var1.owner, var2);
 		this.addSlot(new Slot(this.f, 0, 36, 53));
 		this.addSlot(new Slot(this.f, 1, 62, 53));
-		this.addSlot((Slot) (new ajg(var1.d, var2, this.f, 2, 120, 53)));
+		this.addSlot((Slot) (new ajg(var1.owner, var2, this.f, 2, 120, 53)));
 
 		int var4;
 		for (var4 = 0; var4 < 3; ++var4) {
@@ -27,7 +30,7 @@ public class ContainerMerchant extends Container {
 
 	}
 
-	public aje e() {
+	public InventoryMerchant e() {
 		return this.f;
 	}
 
@@ -48,7 +51,7 @@ public class ContainerMerchant extends Container {
 		this.f.d(var1);
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean isContainerValid(EntityHuman var1) {
 		return this.a.u_() == var1;
 	}
 
@@ -97,16 +100,21 @@ public class ContainerMerchant extends Container {
 		this.a.a_((EntityHuman) null);
 		super.onClose(var1);
 		if (!this.g.isStatic) {
-			ItemStack var2 = this.f.b(0);
+			ItemStack var2 = this.f.splitWithoutUpdate(0);
 			if (var2 != null) {
 				var1.dropItem(var2, false);
 			}
 
-			var2 = this.f.b(1);
+			var2 = this.f.splitWithoutUpdate(1);
 			if (var2 != null) {
 				var1.dropItem(var2, false);
 			}
 
 		}
+	}
+
+	@Override
+	public PipeInventory getPipeInventory() {
+		return new PipeMerchantInventory(f);
 	}
 }

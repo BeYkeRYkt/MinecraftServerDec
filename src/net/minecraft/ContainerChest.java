@@ -1,19 +1,22 @@
 package net.minecraft;
 
+import pipebukkit.server.inventory.PipeChestInventory;
+import pipebukkit.server.inventory.PipeEnderChestInventory;
+import pipebukkit.server.inventory.PipeInventory;
+
 public class ContainerChest extends Container {
 
-	private IInventory a;
-	private int f;
+	private IInventory inventory;
+	private int rows;
 
 	public ContainerChest(IInventory var1, IInventory var2, EntityHuman var3) {
-		this.a = var2;
-		this.f = var2.n_() / 9;
-		var2.b(var3);
-		int var4 = (this.f - 4) * 18;
-
+		this.inventory = var2;
+		this.rows = var2.getSize() / 9;
+		var2.onContainerOpen(var3);
+		int var4 = (this.rows - 4) * 18;
 		int var5;
 		int var6;
-		for (var5 = 0; var5 < this.f; ++var5) {
+		for (var5 = 0; var5 < this.rows; ++var5) {
 			for (var6 = 0; var6 < 9; ++var6) {
 				this.addSlot(new Slot(var2, var6 + var5 * 9, 8 + var6 * 18, 18 + var5 * 18));
 			}
@@ -31,8 +34,8 @@ public class ContainerChest extends Container {
 
 	}
 
-	public boolean a(EntityHuman var1) {
-		return this.a.a(var1);
+	public boolean isContainerValid(EntityHuman var1) {
+		return this.inventory.canInteract(var1);
 	}
 
 	public ItemStack b(EntityHuman var1, int var2) {
@@ -41,11 +44,11 @@ public class ContainerChest extends Container {
 		if (var4 != null && var4.hasItem()) {
 			ItemStack var5 = var4.getItemStack();
 			var3 = var5.getCopy();
-			if (var2 < this.f * 9) {
-				if (!this.a(var5, this.f * 9, this.slots.size(), true)) {
+			if (var2 < this.rows * 9) {
+				if (!this.a(var5, this.rows * 9, this.slots.size(), true)) {
 					return null;
 				}
-			} else if (!this.a(var5, 0, this.f * 9, false)) {
+			} else if (!this.a(var5, 0, this.rows * 9, false)) {
 				return null;
 			}
 
@@ -61,10 +64,19 @@ public class ContainerChest extends Container {
 
 	public void onClose(EntityHuman var1) {
 		super.onClose(var1);
-		this.a.c(var1);
+		this.inventory.onContainerClose(var1);
 	}
 
-	public IInventory e() {
-		return this.a;
+	public IInventory getInventory() {
+		return this.inventory;
 	}
+
+	@Override
+	public PipeInventory getPipeInventory() {
+		if (inventory instanceof InventoryEnderChest) {
+			return new PipeEnderChestInventory(inventory);
+		}
+		return new PipeChestInventory(inventory);
+	}
+
 }

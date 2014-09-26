@@ -53,13 +53,13 @@ public abstract class WorldGenMegaTreeAbstract extends WorldGenTreeAbstract {
 	}
 
 	private boolean a(Position var1, World var2) {
-		Position var3 = var1.b();
+		Position var3 = var1.getDown();
 		Block var4 = var2.getBlockState(var3).getBlock();
 		if ((var4 == Blocks.GRASS || var4 == Blocks.DIRT) && var1.getY() >= 2) {
 			this.a(var2, var3);
-			this.a(var2, var3.f());
-			this.a(var2, var3.d());
-			this.a(var2, var3.d().f());
+			this.a(var2, var3.getEast());
+			this.a(var2, var3.getSouth());
+			this.a(var2, var3.getSouth().getEast());
 			return true;
 		} else {
 			return false;

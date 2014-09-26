@@ -20,7 +20,7 @@ public abstract class bbf extends BlockStepAbstract {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Item.getItemOf((Block) Blocks.STONE_SLAB);
 	}
 
@@ -33,7 +33,7 @@ public abstract class bbf extends BlockStepAbstract {
 	}
 
 	public Object a(ItemStack var1) {
-		return bbg.a(var1.getDurability() & 7);
+		return bbg.a(var1.getWearout() & 7);
 	}
 
 	public IBlockState setData(int var1) {
@@ -65,7 +65,7 @@ public abstract class bbf extends BlockStepAbstract {
 		return this.j() ? new bed(this, new bex[] { b, M }) : new bed(this, new bex[] { a, M });
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((bbg) var1.b(M)).a();
 	}
 

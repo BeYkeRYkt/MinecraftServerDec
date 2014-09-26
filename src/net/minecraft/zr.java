@@ -39,14 +39,14 @@ public class zr extends zn {
 	}
 
 	protected boolean a(World var1, Position var2) {
-		if (!var1.d(var2.a())) {
+		if (!var1.d(var2.getUp())) {
 			return false;
 		} else {
 			IBlockState var3 = var1.getBlockState(var2);
 			Block var4 = var3.getBlock();
 			if (var4 == Blocks.CHEST) {
 				TileEntity var5 = var1.getTileEntity(var2);
-				if (var5 instanceof TileEntityChest && ((TileEntityChest) var5).l < 1) {
+				if (var5 instanceof TileEntityChest && ((TileEntityChest) var5).getAllViewersCount() < 1) {
 					return true;
 				}
 			} else {

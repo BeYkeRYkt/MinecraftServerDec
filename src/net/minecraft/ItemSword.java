@@ -41,8 +41,8 @@ public class ItemSword extends Item {
 		return true;
 	}
 
-	public ano e(ItemStack var1) {
-		return ano.d;
+	public EnumAnimation e(ItemStack var1) {
+		return EnumAnimation.BLOCK;
 	}
 
 	public int d(ItemStack var1) {
@@ -54,7 +54,7 @@ public class ItemSword extends Item {
 		return var1;
 	}
 
-	public boolean b(Block var1) {
+	public boolean canDestroySpecialBlock(Block var1) {
 		return var1 == Blocks.WEB;
 	}
 

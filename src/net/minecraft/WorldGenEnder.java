@@ -11,7 +11,7 @@ public class WorldGenEnder extends WorldGenerator {
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
-		if (var1.d(var3) && var1.getBlockState(var3.b()).getBlock() == this.a) {
+		if (var1.d(var3) && var1.getBlockState(var3.getDown()).getBlock() == this.a) {
 			int var4 = var2.nextInt(32) + 6;
 			int var5 = var2.nextInt(4) + 1;
 
@@ -44,7 +44,7 @@ public class WorldGenEnder extends WorldGenerator {
 			EntityEnderCrystal var11 = new EntityEnderCrystal(var1);
 			var11.setPositionRotation((double) ((float) var3.getX() + 0.5F), (double) (var3.getY() + var4), (double) ((float) var3.getZ() + 0.5F), var2.nextFloat() * 360.0F, 0.0F);
 			var1.addEntity((Entity) var11);
-			var1.setBlockAt(var3.b(var4), Blocks.BEDROCK.getBlockState(), 2);
+			var1.setBlockAt(var3.getUp(var4), Blocks.BEDROCK.getBlockState(), 2);
 			return true;
 		} else {
 			return false;

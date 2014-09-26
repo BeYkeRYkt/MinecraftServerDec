@@ -1,6 +1,6 @@
 package net.minecraft;
 
-import io.netty.channel.nio.NioEventLoopGroup;
+import net.minecraft.util.io.netty.channel.nio.NioEventLoopGroup;
 
 public abstract class ConnectionNioEventLoopGroup {
 

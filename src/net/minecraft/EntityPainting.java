@@ -33,12 +33,12 @@ public class EntityPainting extends adj {
 		this.a(var3);
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("Motive", this.type.name);
-		super.b(var1);
+		super.writeAdditionalData(var1);
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		String var2 = var1.getString("Motive");
 		PaintingType[] var3 = PaintingType.values();
 		int var4 = var3.length;
@@ -54,7 +54,7 @@ public class EntityPainting extends adj {
 			this.type = PaintingType.a;
 		}
 
-		super.a(var1);
+		super.readAdditionalData(var1);
 	}
 
 	public int l() {
@@ -66,7 +66,7 @@ public class EntityPainting extends adj {
 	}
 
 	public void b(Entity var1) {
-		if (this.world.getGameRules().b("doTileDrops")) {
+		if (this.world.getGameRules().isGameRule("doTileDrops")) {
 			if (var1 instanceof EntityHuman) {
 				EntityHuman var2 = (EntityHuman) var1;
 				if (var2.playerProperties.instabuild) {

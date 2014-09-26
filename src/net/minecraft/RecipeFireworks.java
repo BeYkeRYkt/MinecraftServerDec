@@ -16,8 +16,8 @@ public class RecipeFireworks implements IRecipe {
 		int var7 = 0;
 		int var8 = 0;
 
-		for (int var9 = 0; var9 < var1.n_(); ++var9) {
-			ItemStack var10 = var1.a(var9);
+		for (int var9 = 0; var9 < var1.getSize(); ++var9) {
+			ItemStack var10 = var1.getItem(var9);
 			if (var10 != null) {
 				if (var10.getItem() == Items.GUNPOWDER) {
 					++var4;
@@ -58,8 +58,8 @@ public class RecipeFireworks implements IRecipe {
 					var19 = new NBTCompoundTag();
 					NBTListTag var23 = new NBTListTag();
 
-					for (int var24 = 0; var24 < var1.n_(); ++var24) {
-						ItemStack var26 = var1.a(var24);
+					for (int var24 = 0; var24 < var1.getSize(); ++var24) {
+						ItemStack var26 = var1.getItem(var24);
 						if (var26 != null && var26.getItem() == Items.FIREWORK_CHARGE && var26.hasTag() && var26.getTag().isTagAssignableFrom("Explosion", 10)) {
 							var23.addTag((NBTTag) var26.getTag().getCompound("Explosion"));
 						}
@@ -79,11 +79,11 @@ public class RecipeFireworks implements IRecipe {
 				byte var22 = 0;
 				ArrayList var12 = Lists.newArrayList();
 
-				for (int var13 = 0; var13 < var1.n_(); ++var13) {
-					ItemStack var14 = var1.a(var13);
+				for (int var13 = 0; var13 < var1.getSize(); ++var13) {
+					ItemStack var14 = var1.getItem(var13);
 					if (var14 != null) {
 						if (var14.getItem() == Items.DYE) {
-							var12.add(Integer.valueOf(ItemDye.a[var14.getDurability() & 15]));
+							var12.add(Integer.valueOf(ItemDye.a[var14.getWearout() & 15]));
 						} else if (var14.getItem() == Items.GLOWSTONE_DUST) {
 							var19.put("Flicker", true);
 						} else if (var14.getItem() == Items.DIAMOND) {
@@ -114,11 +114,11 @@ public class RecipeFireworks implements IRecipe {
 			} else if (var4 == 0 && var3 == 0 && var6 == 1 && var5 > 0 && var5 == var7) {
 				ArrayList var15 = Lists.newArrayList();
 
-				for (int var17 = 0; var17 < var1.n_(); ++var17) {
-					ItemStack var11 = var1.a(var17);
+				for (int var17 = 0; var17 < var1.getSize(); ++var17) {
+					ItemStack var11 = var1.getItem(var17);
 					if (var11 != null) {
 						if (var11.getItem() == Items.DYE) {
-							var15.add(Integer.valueOf(ItemDye.a[var11.getDurability() & 15]));
+							var15.add(Integer.valueOf(ItemDye.a[var11.getWearout() & 15]));
 						} else if (var11.getItem() == Items.FIREWORK_CHARGE) {
 							this.a = var11.getCopy();
 							this.a.amount = 1;
@@ -151,7 +151,7 @@ public class RecipeFireworks implements IRecipe {
 		}
 	}
 
-	public ItemStack a(InventoryCrafting var1) {
+	public ItemStack getResult(InventoryCrafting var1) {
 		return this.a.getCopy();
 	}
 
@@ -164,10 +164,10 @@ public class RecipeFireworks implements IRecipe {
 	}
 
 	public ItemStack[] b(InventoryCrafting var1) {
-		ItemStack[] var2 = new ItemStack[var1.n_()];
+		ItemStack[] var2 = new ItemStack[var1.getSize()];
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {
-			ItemStack var4 = var1.a(var3);
+			ItemStack var4 = var1.getItem(var3);
 			if (var4 != null && var4.getItem().r()) {
 				var2[var3] = new ItemStack(var4.getItem().getCraftingResult());
 			}

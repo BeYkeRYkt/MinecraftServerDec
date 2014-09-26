@@ -9,7 +9,7 @@ public class ItemMinecart extends Item {
 		this.maxStackSize = 1;
 		this.b = var1;
 		this.setCreativeModeTab(CreativeModeTab.TRANSPORTATION);
-		BlockDispenser.M.a(this, a);
+		BlockDispenser.registry.a(this, a);
 	}
 
 	public boolean a(ItemStack var1, EntityHuman var2, World var3, Position var4, BlockFace var5, float var6, float var7, float var8) {
@@ -23,8 +23,8 @@ public class ItemMinecart extends Item {
 				}
 
 				adx var13 = adx.a(var3, (double) var4.getX() + 0.5D, (double) var4.getY() + 0.0625D + var11, (double) var4.getZ() + 0.5D, this.b);
-				if (var1.s()) {
-					var13.a(var1.q());
+				if (var1.hasDisplayName()) {
+					var13.a(var1.getDisplayName());
 				}
 
 				var3.addEntity((Entity) var13);

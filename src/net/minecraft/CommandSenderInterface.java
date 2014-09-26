@@ -14,9 +14,9 @@ public interface CommandSenderInterface {
 
 	Vec3D getCenter();
 
-	World getPrimaryWorld();
+	World getWorld();
 
-	boolean t_();
+	boolean isCommandBlockOuputEnabled();
 
 	void a(ag var1, int var2);
 }

@@ -15,7 +15,7 @@ class bfk implements Callable {
 	}
 
 	public String a() {
-		return CrashReportSystemDetails.a(this.a);
+		return CrashReportSystemDetails.getPositionInfo(this.a);
 	}
 
 	// $FF: synthetic method

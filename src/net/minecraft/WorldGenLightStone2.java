@@ -7,7 +7,7 @@ public class WorldGenLightStone2 extends WorldGenerator {
 	public boolean b(World var1, Random var2, Position var3) {
 		if (!var1.d(var3)) {
 			return false;
-		} else if (var1.getBlockState(var3.a()).getBlock() != Blocks.NETHERRACK) {
+		} else if (var1.getBlockState(var3.getUp()).getBlock() != Blocks.NETHERRACK) {
 			return false;
 		} else {
 			var1.setBlockAt(var3, Blocks.GLOWSTONE.getBlockState(), 2);
@@ -21,7 +21,7 @@ public class WorldGenLightStone2 extends WorldGenerator {
 
 					for (int var9 = 0; var9 < var8; ++var9) {
 						BlockFace var10 = var7[var9];
-						if (var1.getBlockState(var5.a(var10)).getBlock() == Blocks.GLOWSTONE) {
+						if (var1.getBlockState(var5.getRelative(var10)).getBlock() == Blocks.GLOWSTONE) {
 							++var6;
 						}
 

@@ -5,7 +5,7 @@ public class MaterialLiquid extends Material {
 	public MaterialLiquid(MaterialMapColor var1) {
 		super(var1);
 		this.i();
-		this.n();
+		this.setBreakPushReaction();
 	}
 
 	public boolean isLiquid() {

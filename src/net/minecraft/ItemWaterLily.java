@@ -17,11 +17,11 @@ public class ItemWaterLily extends ItemWithAuxData {
 					return var1;
 				}
 
-				if (!var3.a(var5.a(var4.face), var4.face, var1)) {
+				if (!var3.a(var5.getRelative(var4.face), var4.face, var1)) {
 					return var1;
 				}
 
-				Position var6 = var5.a();
+				Position var6 = var5.getUp();
 				IBlockState var7 = var2.getBlockState(var5);
 				if (var7.getBlock().getMaterial() == Material.WATER && ((Integer) var7.b(axl.b)).intValue() == 0 && var2.d(var6)) {
 					var2.a(var6, Blocks.WATER_LILY.getBlockState());

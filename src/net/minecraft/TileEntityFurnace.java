@@ -1,36 +1,40 @@
 package net.minecraft;
 
-public class TileEntityFurnace extends bdf implements PacketTickable, we {
+import java.util.ArrayList;
+import java.util.List;
+
+public class TileEntityFurnace extends TileEntityLockable implements ITickable, IWorldInventory {
 
 	private static final int[] a = new int[] { 0 };
 	private static final int[] f = new int[] { 2, 1 };
 	private static final int[] g = new int[] { 1 };
-	private ItemStack[] h = new ItemStack[3];
-	private int i;
-	private int j;
-	private int k;
-	private int l;
-	private String m;
+	private ItemStack[] items = new ItemStack[3];
+	private int burnTime;
+	private int fuel;
+	private int cookTime;
+	private int cookTimeTotal;
+	private String customName;
+	private List<EntityHuman> viewers = new ArrayList<EntityHuman>();
 
-	public int n_() {
-		return this.h.length;
+	public int getSize() {
+		return this.items.length;
 	}
 
-	public ItemStack a(int var1) {
-		return this.h[var1];
+	public ItemStack getItem(int var1) {
+		return this.items[var1];
 	}
 
-	public ItemStack a(int var1, int var2) {
-		if (this.h[var1] != null) {
+	public ItemStack splitStack(int var1, int var2) {
+		if (this.items[var1] != null) {
 			ItemStack var3;
-			if (this.h[var1].amount <= var2) {
-				var3 = this.h[var1];
-				this.h[var1] = null;
+			if (this.items[var1].amount <= var2) {
+				var3 = this.items[var1];
+				this.items[var1] = null;
 				return var3;
 			} else {
-				var3 = this.h[var1].a(var2);
-				if (this.h[var1].amount == 0) {
-					this.h[var1] = null;
+				var3 = this.items[var1].a(var2);
+				if (this.items[var1].amount == 0) {
+					this.items[var1] = null;
 				}
 
 				return var3;
@@ -40,134 +44,134 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 		}
 	}
 
-	public ItemStack b(int var1) {
-		if (this.h[var1] != null) {
-			ItemStack var2 = this.h[var1];
-			this.h[var1] = null;
+	public ItemStack splitWithoutUpdate(int var1) {
+		if (this.items[var1] != null) {
+			ItemStack var2 = this.items[var1];
+			this.items[var1] = null;
 			return var2;
 		} else {
 			return null;
 		}
 	}
 
-	public void a(int var1, ItemStack var2) {
-		boolean var3 = var2 != null && var2.a(this.h[var1]) && ItemStack.a(var2, this.h[var1]);
-		this.h[var1] = var2;
-		if (var2 != null && var2.amount > this.p_()) {
-			var2.amount = this.p_();
+	public void setItem(int var1, ItemStack var2) {
+		boolean var3 = var2 != null && var2.a(this.items[var1]) && ItemStack.isSameNBTTags(var2, this.items[var1]);
+		this.items[var1] = var2;
+		if (var2 != null && var2.amount > this.getMaxStackSize()) {
+			var2.amount = this.getMaxStackSize();
 		}
 
 		if (var1 == 0 && !var3) {
-			this.l = this.a(var2);
-			this.k = 0;
+			this.cookTimeTotal = this.a(var2);
+			this.cookTime = 0;
 			this.update();
 		}
 
 	}
 
 	public String getName() {
-		return this.k_() ? this.m : "container.furnace";
+		return this.hasCustomName() ? this.customName : "container.furnace";
 	}
 
-	public boolean k_() {
-		return this.m != null && this.m.length() > 0;
+	public boolean hasCustomName() {
+		return this.customName != null && this.customName.length() > 0;
 	}
 
 	public void a(String var1) {
-		this.m = var1;
+		this.customName = var1;
 	}
 
 	public void read(NBTCompoundTag var1) {
 		super.read(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
-		this.h = new ItemStack[this.n_()];
+		this.items = new ItemStack[this.getSize()];
 
 		for (int var3 = 0; var3 < var2.getSize(); ++var3) {
 			NBTCompoundTag var4 = var2.getCompound(var3);
 			byte var5 = var4.getByte("Slot");
-			if (var5 >= 0 && var5 < this.h.length) {
-				this.h[var5] = ItemStack.a(var4);
+			if (var5 >= 0 && var5 < this.items.length) {
+				this.items[var5] = ItemStack.fromNBT(var4);
 			}
 		}
 
-		this.i = var1.getShort("BurnTime");
-		this.k = var1.getShort("CookTime");
-		this.l = var1.getShort("CookTimeTotal");
-		this.j = b(this.h[1]);
+		this.burnTime = var1.getShort("BurnTime");
+		this.cookTime = var1.getShort("CookTime");
+		this.cookTimeTotal = var1.getShort("CookTimeTotal");
+		this.fuel = b(this.items[1]);
 		if (var1.isTagAssignableFrom("CustomName", 8)) {
-			this.m = var1.getString("CustomName");
+			this.customName = var1.getString("CustomName");
 		}
 
 	}
 
 	public void write(NBTCompoundTag var1) {
 		super.write(var1);
-		var1.put("BurnTime", (short) this.i);
-		var1.put("CookTime", (short) this.k);
-		var1.put("CookTimeTotal", (short) this.l);
+		var1.put("BurnTime", (short) this.burnTime);
+		var1.put("CookTime", (short) this.cookTime);
+		var1.put("CookTimeTotal", (short) this.cookTimeTotal);
 		NBTListTag var2 = new NBTListTag();
 
-		for (int var3 = 0; var3 < this.h.length; ++var3) {
-			if (this.h[var3] != null) {
+		for (int var3 = 0; var3 < this.items.length; ++var3) {
+			if (this.items[var3] != null) {
 				NBTCompoundTag var4 = new NBTCompoundTag();
 				var4.put("Slot", (byte) var3);
-				this.h[var3].write(var4);
+				this.items[var3].write(var4);
 				var2.addTag((NBTTag) var4);
 			}
 		}
 
 		var1.put("Items", (NBTTag) var2);
-		if (this.k_()) {
-			var1.put("CustomName", this.m);
+		if (this.hasCustomName()) {
+			var1.put("CustomName", this.customName);
 		}
 
 	}
 
-	public int p_() {
+	public int getMaxStackSize() {
 		return 64;
 	}
 
 	public boolean m() {
-		return this.i > 0;
+		return this.burnTime > 0;
 	}
 
 	public void doTick() {
 		boolean var1 = this.m();
 		boolean var2 = false;
 		if (this.m()) {
-			--this.i;
+			--this.burnTime;
 		}
 
 		if (!this.world.isStatic) {
-			if (!this.m() && (this.h[1] == null || this.h[0] == null)) {
-				if (!this.m() && this.k > 0) {
-					this.k = MathHelper.a(this.k - 2, 0, this.l);
+			if (!this.m() && (this.items[1] == null || this.items[0] == null)) {
+				if (!this.m() && this.cookTime > 0) {
+					this.cookTime = MathHelper.a(this.cookTime - 2, 0, this.cookTimeTotal);
 				}
 			} else {
 				if (!this.m() && this.o()) {
-					this.j = this.i = b(this.h[1]);
+					this.fuel = this.burnTime = b(this.items[1]);
 					if (this.m()) {
 						var2 = true;
-						if (this.h[1] != null) {
-							--this.h[1].amount;
-							if (this.h[1].amount == 0) {
-								Item var3 = this.h[1].getItem().getCraftingResult();
-								this.h[1] = var3 != null ? new ItemStack(var3) : null;
+						if (this.items[1] != null) {
+							--this.items[1].amount;
+							if (this.items[1].amount == 0) {
+								Item var3 = this.items[1].getItem().getCraftingResult();
+								this.items[1] = var3 != null ? new ItemStack(var3) : null;
 							}
 						}
 					}
 				}
 
 				if (this.m() && this.o()) {
-					++this.k;
-					if (this.k == this.l) {
-						this.k = 0;
-						this.l = this.a(this.h[0]);
+					++this.cookTime;
+					if (this.cookTime == this.cookTimeTotal) {
+						this.cookTime = 0;
+						this.cookTimeTotal = this.a(this.items[0]);
 						this.n();
 						var2 = true;
 					}
 				} else {
-					this.k = 0;
+					this.cookTime = 0;
 				}
 			}
 
@@ -188,30 +192,30 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 	}
 
 	private boolean o() {
-		if (this.h[0] == null) {
+		if (this.items[0] == null) {
 			return false;
 		} else {
-			ItemStack var1 = RecipesFurnace.getInstance().a(this.h[0]);
-			return var1 == null ? false : (this.h[2] == null ? true : (!this.h[2].a(var1) ? false : (this.h[2].amount < this.p_() && this.h[2].amount < this.h[2].getMaxStackSize() ? true : this.h[2].amount < var1.getMaxStackSize())));
+			ItemStack var1 = RecipesFurnace.getInstance().getSmeltResult(this.items[0]);
+			return var1 == null ? false : (this.items[2] == null ? true : (!this.items[2].a(var1) ? false : (this.items[2].amount < this.getMaxStackSize() && this.items[2].amount < this.items[2].getMaxStackSize() ? true : this.items[2].amount < var1.getMaxStackSize())));
 		}
 	}
 
 	public void n() {
 		if (this.o()) {
-			ItemStack var1 = RecipesFurnace.getInstance().a(this.h[0]);
-			if (this.h[2] == null) {
-				this.h[2] = var1.getCopy();
-			} else if (this.h[2].getItem() == var1.getItem()) {
-				++this.h[2].amount;
+			ItemStack var1 = RecipesFurnace.getInstance().getSmeltResult(this.items[0]);
+			if (this.items[2] == null) {
+				this.items[2] = var1.getCopy();
+			} else if (this.items[2].getItem() == var1.getItem()) {
+				++this.items[2].amount;
 			}
 
-			if (this.h[0].getItem() == Item.getItemOf(Blocks.SPONGE) && this.h[0].getDurability() == 1 && this.h[1] != null && this.h[1].getItem() == Items.BUCKET) {
-				this.h[1] = new ItemStack(Items.WATER_BUCKET);
+			if (this.items[0].getItem() == Item.getItemOf(Blocks.SPONGE) && this.items[0].getWearout() == 1 && this.items[1] != null && this.items[1].getItem() == Items.BUCKET) {
+				this.items[1] = new ItemStack(Items.WATER_BUCKET);
 			}
 
-			--this.h[0].amount;
-			if (this.h[0].amount <= 0) {
-				this.h[0] = null;
+			--this.items[0].amount;
+			if (this.items[0].amount <= 0) {
+				this.items[0] = null;
 			}
 
 		}
@@ -245,18 +249,20 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 		return b(var0) > 0;
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean canInteract(EntityHuman var1) {
 		return this.world.getTileEntity(this.position) != this ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
-	public void b(EntityHuman var1) {
+	public void onContainerOpen(EntityHuman var1) {
+		viewers.add(var1);
 	}
 
-	public void c(EntityHuman var1) {
+	public void onContainerClose(EntityHuman var1) {
+		viewers.remove(var1);
 	}
 
-	public boolean b(int var1, ItemStack var2) {
-		return var1 == 2 ? false : (var1 != 1 ? true : c(var2) || aiu.c_(var2));
+	public boolean canSuckItemFromInventory(int slot, ItemStack itemStack) {
+		return slot == 2 ? false : (slot != 1 ? true : c(itemStack) || aiu.c_(itemStack));
 	}
 
 	public int[] a(BlockFace var1) {
@@ -264,7 +270,7 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 	}
 
 	public boolean a(int var1, ItemStack var2, BlockFace var3) {
-		return this.b(var1, var2);
+		return this.canSuckItemFromInventory(var1, var2);
 	}
 
 	public boolean b(int var1, ItemStack var2, BlockFace var3) {
@@ -278,55 +284,67 @@ public class TileEntityFurnace extends bdf implements PacketTickable, we {
 		return true;
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:furnace";
 	}
 
-	public Container a(PlayerInventory var1, EntityHuman var2) {
-		return new aiv(var1, this);
+	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
+		return new ContainerFurnace(var1, this);
 	}
 
-	public int a_(int var1) {
-		switch (var1) {
+	public int getProperty(int property) {
+		switch (property) {
 			case 0:
-				return this.i;
+				return this.burnTime;
 			case 1:
-				return this.j;
+				return this.fuel;
 			case 2:
-				return this.k;
+				return this.cookTime;
 			case 3:
-				return this.l;
+				return this.cookTimeTotal;
 			default:
 				return 0;
 		}
 	}
 
-	public void b(int var1, int var2) {
-		switch (var1) {
-			case 0:
-				this.i = var2;
-				break;
-			case 1:
-				this.j = var2;
-				break;
-			case 2:
-				this.k = var2;
-				break;
-			case 3:
-				this.l = var2;
-		}
-
+	public void readClientCustomInput(int var1, int var2) {
 	}
 
-	public int g() {
+	public int getPropertiesCount() {
 		return 4;
 	}
 
-	public void l() {
-		for (int var1 = 0; var1 < this.h.length; ++var1) {
-			this.h[var1] = null;
+	public void clearInventory() {
+		for (int var1 = 0; var1 < this.items.length; ++var1) {
+			this.items[var1] = null;
 		}
 
+	}
+
+	@Override
+	public List<EntityHuman> getViewers() {
+		return viewers;
+	}
+
+	@Override
+	public ItemStack[] getItems() {
+		return items;
+	}
+
+	public int getBurnTime() {
+		return burnTime;
+	}
+
+	public int getCookTime() {
+		return cookTime;
+	}
+
+	public void setBurnTime(int burnTime) {
+		this.burnTime = burnTime;
+	}
+
+	public void setCookTime(int cookTime) {
+		this.cookTime = cookTime;
 	}
 
 }

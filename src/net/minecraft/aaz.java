@@ -64,7 +64,7 @@ public abstract class aaz {
 		} else {
 			float var2 = this.i();
 			this.c.B.a("pathfind");
-			Position var3 = (new Position(this.b)).a();
+			Position var3 = (new Position(this.b)).getUp();
 			int var4 = (int) (var2 + 16.0F);
 			arj var5 = new arj(this.c, var3.a(-var4, -var4, -var4), var3.a(var4, var4, var4), 0);
 			bpv var6 = this.j.a((ard) var5, (Entity) this.b, var1, var2);

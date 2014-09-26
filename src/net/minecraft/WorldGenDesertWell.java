@@ -19,7 +19,7 @@ public class WorldGenDesertWell extends WorldGenerator {
 
 	public boolean b(World var1, Random var2, Position var3) {
 		while (var1.d(var3) && var3.getY() > 2) {
-			var3 = var3.b();
+			var3 = var3.getDown();
 		}
 
 		if (!a.a(var1.getBlockState(var3))) {
@@ -44,11 +44,11 @@ public class WorldGenDesertWell extends WorldGenerator {
 			}
 
 			var1.setBlockAt(var3, this.d, 2);
-			Iterator var7 = en.a.iterator();
+			Iterator var7 = UniverseDirection.HORIZONTAL.iterator();
 
 			while (var7.hasNext()) {
 				BlockFace var8 = (BlockFace) var7.next();
-				var1.setBlockAt(var3.a(var8), this.d, 2);
+				var1.setBlockAt(var3.getRelative(var8), this.d, 2);
 			}
 
 			for (var4 = -2; var4 <= 2; ++var4) {

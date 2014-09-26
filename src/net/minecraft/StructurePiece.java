@@ -512,7 +512,7 @@ public abstract class StructurePiece {
 		if (var5.b((fd) var6)) {
 			while (!var1.d(var6) && var6.getY() < 255) {
 				var1.setBlockAt(var6, Blocks.AIR.getBlockState(), 2);
-				var6 = var6.a();
+				var6 = var6.getUp();
 			}
 
 		}

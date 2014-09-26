@@ -6,9 +6,9 @@ public interface IMerchant {
 
 	EntityHuman u_();
 
-	MerchantRecipeList b_(EntityHuman var1);
+	MerchantRecipeList getRecipes(EntityHuman var1);
 
-	void a(aqc var1);
+	void a(MerchantRecipe var1);
 
 	void a_(ItemStack var1);
 

@@ -40,10 +40,10 @@ public class WorldGenAcaciaTree extends WorldGenTreeAbstract {
 			if (!var5) {
 				return false;
 			} else {
-				Block var20 = var1.getBlockState(var3.b()).getBlock();
+				Block var20 = var1.getBlockState(var3.getDown()).getBlock();
 				if ((var20 == Blocks.GRASS || var20 == Blocks.DIRT) && var3.getY() < 256 - var4 - 1) {
-					this.a(var1, var3.b());
-					BlockFace var21 = en.a.a(var2);
+					this.a(var1, var3.getDown());
+					BlockFace var21 = UniverseDirection.HORIZONTAL.getRandomBlockFace(var2);
 					var8 = var4 - var2.nextInt(4) - 1;
 					var9 = 3 - var2.nextInt(3);
 					int var10 = var3.getX();
@@ -78,7 +78,7 @@ public class WorldGenAcaciaTree extends WorldGenTreeAbstract {
 						}
 					}
 
-					var22 = var22.a();
+					var22 = var22.getUp();
 
 					for (var14 = -1; var14 <= 1; ++var14) {
 						for (var24 = -1; var24 <= 1; ++var24) {
@@ -86,13 +86,13 @@ public class WorldGenAcaciaTree extends WorldGenTreeAbstract {
 						}
 					}
 
-					this.b(var1, var22.g(2));
-					this.b(var1, var22.f(2));
-					this.b(var1, var22.e(2));
-					this.b(var1, var22.d(2));
+					this.b(var1, var22.getEast(2));
+					this.b(var1, var22.getWest(2));
+					this.b(var1, var22.getSouth(2));
+					this.b(var1, var22.getNorth(2));
 					var10 = var3.getX();
 					var11 = var3.getZ();
-					BlockFace var23 = en.a.a(var2);
+					BlockFace var23 = UniverseDirection.HORIZONTAL.getRandomBlockFace(var2);
 					if (var23 != var21) {
 						var14 = var8 - var2.nextInt(2) - 1;
 						var24 = 1 + var2.nextInt(3);
@@ -127,7 +127,7 @@ public class WorldGenAcaciaTree extends WorldGenTreeAbstract {
 								}
 							}
 
-							var26 = var26.a();
+							var26 = var26.getUp();
 
 							for (var17 = -1; var17 <= 1; ++var17) {
 								for (var27 = -1; var27 <= 1; ++var27) {

@@ -47,7 +47,7 @@ public class BlockSnow extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		IBlockState var3 = var1.getBlockState(var2.b());
+		IBlockState var3 = var1.getBlockState(var2.getDown());
 		Block var4 = var3.getBlock();
 		return var4 != Blocks.ICE && var4 != Blocks.PACKED_ICE ? (var4.getMaterial() == Material.LEAVES ? true : (var4 == this && ((Integer) var3.b(a)).intValue() == 7 ? true : var4.c() && var4.material.isSolid())) : false;
 	}
@@ -58,7 +58,7 @@ public class BlockSnow extends Block {
 
 	private boolean e(World var1, Position var2, IBlockState var3) {
 		if (!this.c(var1, var2)) {
-			this.b(var1, var2, var3, 0);
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.g(var2);
 			return false;
 		} else {
@@ -67,22 +67,22 @@ public class BlockSnow extends Block {
 	}
 
 	public void a(World var1, EntityHuman var2, Position var3, IBlockState var4, TileEntity var5) {
-		a(var1, var3, new ItemStack(Items.SNOWBALL, ((Integer) var4.b(a)).intValue() + 1, 0));
+		dropItem(var1, var3, new ItemStack(Items.SNOWBALL, ((Integer) var4.b(a)).intValue() + 1, 0));
 		var1.g(var3);
 		var2.b(StatisticList.MINE_BLOCK_COUNT[Block.getBlockId((Block) this)]);
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.SNOWBALL;
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		if (var1.b(EnumSkyBlock.BLOCK, var2) > 11) {
-			this.b(var1, var2, var1.getBlockState(var2), 0);
+			this.dropNaturally(var1, var2, var1.getBlockState(var2), 0);
 			var1.g(var2);
 		}
 

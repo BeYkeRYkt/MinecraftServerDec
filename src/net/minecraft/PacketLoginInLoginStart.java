@@ -1,6 +1,6 @@
 package net.minecraft;
 
-import com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 import java.util.UUID;
 
 public class PacketLoginInLoginStart implements Packet<LoginServerboundPacketListener> {

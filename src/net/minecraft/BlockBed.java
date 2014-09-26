@@ -14,12 +14,12 @@ public class BlockBed extends avb {
 		this.j();
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (var1.isStatic) {
 			return true;
 		} else {
 			if (var3.b(a) != atq.a) {
-				var2 = var2.a((BlockFace) var3.b(N));
+				var2 = var2.getRelative((BlockFace) var3.b(N));
 				var3 = var1.getBlockState(var2);
 				if (var3.getBlock() != this) {
 					return true;
@@ -54,19 +54,19 @@ public class BlockBed extends avb {
 				}
 			} else {
 				var1.g(var2);
-				Position var9 = var2.a(((BlockFace) var3.b(N)).getOpposite());
+				Position var9 = var2.getRelative(((BlockFace) var3.b(N)).getOpposite());
 				if (var1.getBlockState(var9).getBlock() == this) {
 					var1.g(var9);
 				}
 
-				var1.a((Entity) null, (double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, 5.0F, true, true);
+				var1.createExplosion((Entity) null, (double) var2.getX() + 0.5D, (double) var2.getY() + 0.5D, (double) var2.getZ() + 0.5D, 5.0F, true, true);
 				return true;
 			}
 		}
 	}
 
 	private EntityHuman e(World var1, Position var2) {
-		Iterator var3 = var1.j.iterator();
+		Iterator var3 = var1.players.iterator();
 
 		EntityHuman var4;
 		do {
@@ -95,19 +95,19 @@ public class BlockBed extends avb {
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		BlockFace var5 = (BlockFace) var3.b(N);
 		if (var3.b(a) == atq.a) {
-			if (var1.getBlockState(var2.a(var5.getOpposite())).getBlock() != this) {
+			if (var1.getBlockState(var2.getRelative(var5.getOpposite())).getBlock() != this) {
 				var1.g(var2);
 			}
-		} else if (var1.getBlockState(var2.a(var5)).getBlock() != this) {
+		} else if (var1.getBlockState(var2.getRelative(var5)).getBlock() != this) {
 			var1.g(var2);
 			if (!var1.isStatic) {
-				this.b(var1, var2, var3, 0);
+				this.dropNaturally(var1, var2, var3, 0);
 			}
 		}
 
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return var1.b(a) == atq.a ? null : Items.BED;
 	}
 
@@ -145,12 +145,12 @@ public class BlockBed extends avb {
 	}
 
 	protected static boolean d(World var0, Position var1) {
-		return World.a((ard) var0, var1.b()) && !var0.getBlockState(var1).getBlock().getMaterial().isBuildable() && !var0.getBlockState(var1.a()).getBlock().getMaterial().isBuildable();
+		return World.a((ard) var0, var1.getDown()) && !var0.getBlockState(var1).getBlock().getMaterial().isBuildable() && !var0.getBlockState(var1.getUp()).getBlock().getMaterial().isBuildable();
 	}
 
-	public void a(World var1, Position var2, IBlockState var3, float var4, int var5) {
+	public void dropNaturally(World var1, Position var2, IBlockState var3, float var4, int var5) {
 		if (var3.b(a) == atq.b) {
-			super.a(var1, var2, var3, var4, 0);
+			super.dropNaturally(var1, var2, var3, var4, 0);
 		}
 
 	}
@@ -161,7 +161,7 @@ public class BlockBed extends avb {
 
 	public void a(World var1, Position var2, IBlockState var3, EntityHuman var4) {
 		if (var4.playerProperties.instabuild && var3.b(a) == atq.a) {
-			Position var5 = var2.a(((BlockFace) var3.b(N)).getOpposite());
+			Position var5 = var2.getRelative(((BlockFace) var3.b(N)).getOpposite());
 			if (var1.getBlockState(var5).getBlock() == this) {
 				var1.g(var5);
 			}
@@ -176,7 +176,7 @@ public class BlockBed extends avb {
 
 	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		if (var1.b(a) == atq.b) {
-			IBlockState var4 = var2.getBlockState(var3.a((BlockFace) var1.b(N)));
+			IBlockState var4 = var2.getBlockState(var3.getRelative((BlockFace) var1.b(N)));
 			if (var4.getBlock() == this) {
 				var1 = var1.a(b, var4.b(b));
 			}

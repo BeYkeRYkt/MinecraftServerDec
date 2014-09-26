@@ -62,13 +62,13 @@ public class EntityOcelot extends xx {
 	public void e(float var1, float var2) {
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("CatType", this.cr());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.r(var1.getInt("CatType"));
 	}
 
@@ -93,15 +93,15 @@ public class EntityOcelot extends xx {
 	}
 
 	public boolean r(Entity var1) {
-		return var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), 3.0F);
+		return var1.receiveDamage(DamageSource.mobAttack((EntityLiving) this), 3.0F);
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
 			this.bk.a(false);
-			return super.damageEntity(var1, var2);
+			return super.receiveDamage(var1, var2);
 		}
 	}
 
@@ -120,13 +120,13 @@ public class EntityOcelot extends xx {
 			}
 
 			if (var2.amount <= 0) {
-				var1.playerInventory.a(var1.playerInventory.itemInHandIndex, (ItemStack) null);
+				var1.playerInventory.setItem(var1.playerInventory.itemInHandIndex, (ItemStack) null);
 			}
 
 			if (!this.world.isStatic) {
 				if (this.random.nextInt(3) == 0) {
 					this.m(true);
-					this.r(1 + this.world.s.nextInt(3));
+					this.r(1 + this.world.random.nextInt(3));
 					this.b(var1.getUUID().toString());
 					this.l(true);
 					this.bk.a(true);
@@ -180,7 +180,7 @@ public class EntityOcelot extends xx {
 	}
 
 	public boolean bQ() {
-		return this.world.s.nextInt(3) != 0;
+		return this.world.random.nextInt(3) != 0;
 	}
 
 	public boolean bR() {
@@ -190,7 +190,7 @@ public class EntityOcelot extends xx {
 				return false;
 			}
 
-			Block var2 = this.world.getBlockState(var1.b()).getBlock();
+			Block var2 = this.world.getBlockState(var1.getDown()).getBlock();
 			if (var2 == Blocks.GRASS || var2.getMaterial() == Material.LEAVES) {
 				return true;
 			}
@@ -200,7 +200,7 @@ public class EntityOcelot extends xx {
 	}
 
 	public String getName() {
-		return this.k_() ? this.getCustomName() : (this.cj() ? LocaleI18n.get("entity.Cat.name") : super.getName());
+		return this.hasCustomName() ? this.getCustomName() : (this.cj() ? LocaleI18n.get("entity.Cat.name") : super.getName());
 	}
 
 	public void m(boolean var1) {
@@ -221,7 +221,7 @@ public class EntityOcelot extends xx {
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		if (this.world.s.nextInt(7) == 0) {
+		if (this.world.random.nextInt(7) == 0) {
 			for (int var3 = 0; var3 < 2; ++var3) {
 				EntityOcelot var4 = new EntityOcelot(this.world);
 				var4.setPositionRotation(this.locationX, this.locationY, this.locationZ, this.yaw, 0.0F);

@@ -47,8 +47,8 @@ public class EntityCreeper extends EntityMonster {
 		this.dataWatcher.a(18, Byte.valueOf((byte) 0));
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		if (this.dataWatcher.a(17) == 1) {
 			var1.put("powered", true);
 		}
@@ -58,8 +58,8 @@ public class EntityCreeper extends EntityMonster {
 		var1.put("ignited", this.cl());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.dataWatcher.b(17, Byte.valueOf((byte) (var1.getBoolean("powered") ? 1 : 0)));
 		if (var1.isTagAssignableFrom("Fuse", 99)) {
 			this.bk = var1.getShort("Fuse");
@@ -75,7 +75,7 @@ public class EntityCreeper extends EntityMonster {
 
 	}
 
-	public void s_() {
+	public void doTick() {
 		if (this.isAlive()) {
 			this.b = this.c;
 			if (this.cl()) {
@@ -98,7 +98,7 @@ public class EntityCreeper extends EntityMonster {
 			}
 		}
 
-		super.s_();
+		super.doTick();
 	}
 
 	protected String bn() {
@@ -109,15 +109,15 @@ public class EntityCreeper extends EntityMonster {
 		return "mob.creeper.death";
 	}
 
-	public void a(DamageSource var1) {
-		super.a(var1);
-		if (var1.j() instanceof EntitySkeleton) {
+	public void die(DamageSource var1) {
+		super.die(var1);
+		if (var1.getDamager() instanceof EntitySkeleton) {
 			int var2 = Item.getId(Items.RECORD_13);
 			int var3 = Item.getId(Items.RECORD_WAIT);
 			int var4 = var2 + this.random.nextInt(var3 - var2 + 1);
 			this.a(Item.getById(var4), 1);
-		} else if (var1.j() instanceof EntityCreeper && var1.j() != this && ((EntityCreeper) var1.j()).n() && ((EntityCreeper) var1.j()).cn()) {
-			((EntityCreeper) var1.j()).co();
+		} else if (var1.getDamager() instanceof EntityCreeper && var1.getDamager() != this && ((EntityCreeper) var1.getDamager()).n() && ((EntityCreeper) var1.getDamager()).cn()) {
+			((EntityCreeper) var1.getDamager()).co();
 			this.a(new ItemStack(Items.SKULL, 1, 4), 0.0F);
 		}
 
@@ -165,9 +165,9 @@ public class EntityCreeper extends EntityMonster {
 
 	private void cp() {
 		if (!this.world.isStatic) {
-			boolean var1 = this.world.getGameRules().b("mobGriefing");
+			boolean var1 = this.world.getGameRules().isGameRule("mobGriefing");
 			float var2 = this.n() ? 2.0F : 1.0F;
-			this.world.a(this, this.locationX, this.locationY, this.locationZ, (float) this.bl * var2, var1);
+			this.world.createExplosion(this, this.locationX, this.locationY, this.locationZ, (float) this.bl * var2, var1);
 			this.die();
 		}
 
@@ -182,7 +182,7 @@ public class EntityCreeper extends EntityMonster {
 	}
 
 	public boolean cn() {
-		return this.bm < 1 && this.world.getGameRules().b("doMobLoot");
+		return this.bm < 1 && this.world.getGameRules().isGameRule("doMobLoot");
 	}
 
 	public void co() {

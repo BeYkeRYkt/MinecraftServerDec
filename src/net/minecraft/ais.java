@@ -3,9 +3,9 @@ package net.minecraft;
 class ais extends Slot {
 
 	// $FF: synthetic field
-	final aiq a;
+	final ContainerEnchantTable a;
 
-	ais(aiq var1, IInventory var2, int var3, int var4, int var5) {
+	ais(ContainerEnchantTable var1, IInventory var2, int var3, int var4, int var5) {
 		super(var2, var3, var4, var5);
 		this.a = var1;
 	}

@@ -14,15 +14,15 @@ public class BlockPortal extends awt {
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
 		super.b(var1, var2, var3, var4);
-		if (var1.worldProvider.isSleepAllowed() && var1.getGameRules().b("doMobSpawning") && var4.nextInt(2000) < var1.getDifficulty().getId()) {
+		if (var1.worldProvider.isSleepAllowed() && var1.getGameRules().isGameRule("doMobSpawning") && var4.nextInt(2000) < var1.getDifficulty().getId()) {
 			int var5 = var2.getY();
 
 			Position var6;
-			for (var6 = var2; !World.a((ard) var1, var6) && var6.getY() > 0; var6 = var6.b()) {
+			for (var6 = var2; !World.a((ard) var1, var6) && var6.getY() > 0; var6 = var6.getDown()) {
 				;
 			}
 
-			if (var5 > 0 && !var1.getBlockState(var6.a()).getBlock().t()) {
+			if (var5 > 0 && !var1.getBlockState(var6.getUp()).getBlock().t()) {
 				Entity var7 = ItemMonsterEgg.a(var1, 57, (double) var6.getX() + 0.5D, (double) var6.getY() + 1.1D, (double) var6.getZ() + 0.5D);
 				if (var7 != null) {
 					var7.portalCooldown = var7.ar();
@@ -92,7 +92,7 @@ public class BlockPortal extends awt {
 
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 0;
 	}
 

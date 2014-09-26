@@ -27,10 +27,10 @@ public class DefaultGameModeCommand extends GameModeCommand {
 		MinecraftServer var2 = MinecraftServer.getInstance();
 		var2.setServerGameMode(var1);
 		EntityPlayer var4;
-		if (var2.av()) {
+		if (var2.isForceGameModeEnabled()) {
 			for (Iterator var3 = MinecraftServer.getInstance().getPlayerList().players.iterator(); var3.hasNext(); var4.fallDistance = 0.0F) {
 				var4 = (EntityPlayer) var3.next();
-				var4.a(var1);
+				var4.setGameMode(var1);
 			}
 		}
 

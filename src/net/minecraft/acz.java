@@ -15,18 +15,18 @@ public class acz extends Entity {
 	protected void h() {
 	}
 
-	protected void a(NBTCompoundTag var1) {
+	protected void readAdditionalData(NBTCompoundTag var1) {
 	}
 
-	protected void b(NBTCompoundTag var1) {
+	protected void writeAdditionalData(NBTCompoundTag var1) {
 	}
 
 	public boolean ad() {
 		return true;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		return this.b(var1) ? false : this.a.a(this, var1, var2);
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		return this.ignoresDamageType(var1) ? false : this.a.a(this, var1, var2);
 	}
 
 	public boolean k(Entity var1) {

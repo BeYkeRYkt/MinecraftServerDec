@@ -19,7 +19,7 @@ public class za extends PathfinderGoal {
 		if (this.a.l() >= 0) {
 			return false;
 		} else {
-			List var1 = this.a.world.a(this.a.getClass(), this.a.getBoundingBox().grow(8.0D, 4.0D, 8.0D));
+			List var1 = this.a.world.getEntititesInAABB(this.a.getClass(), this.a.getBoundingBox().grow(8.0D, 4.0D, 8.0D));
 			EntityAnimal var2 = null;
 			double var3 = Double.MAX_VALUE;
 			Iterator var5 = var1.iterator();

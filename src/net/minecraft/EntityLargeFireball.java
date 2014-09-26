@@ -15,24 +15,24 @@ public class EntityLargeFireball extends EntityFireball {
 	protected void a(MovingObjectPosition var1) {
 		if (!this.world.isStatic) {
 			if (var1.entity != null) {
-				var1.entity.damageEntity(DamageSource.fireball((EntityFireball) this, this.a), 6.0F);
+				var1.entity.receiveDamage(DamageSource.fireball((EntityFireball) this, this.a), 6.0F);
 				this.a(this.a, var1.entity);
 			}
 
-			boolean var2 = this.world.getGameRules().b("mobGriefing");
-			this.world.a((Entity) null, this.locationX, this.locationY, this.locationZ, (float) this.e, var2, var2);
+			boolean var2 = this.world.getGameRules().isGameRule("mobGriefing");
+			this.world.createExplosion((Entity) null, this.locationX, this.locationY, this.locationZ, (float) this.e, var2, var2);
 			this.die();
 		}
 
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("ExplosionPower", this.e);
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		if (var1.isTagAssignableFrom("ExplosionPower", 99)) {
 			this.e = var1.getInt("ExplosionPower");
 		}

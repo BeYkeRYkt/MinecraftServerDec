@@ -13,7 +13,7 @@ public abstract class axm extends baa {
 		this.a(f);
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		byte var4 = 4;
 		int var5 = var4 + 1;
 		if (var1.a(var2.a(-var5, -var5, -var5), var2.a(var5, var5, var5))) {

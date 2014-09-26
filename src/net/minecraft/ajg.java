@@ -2,12 +2,12 @@ package net.minecraft;
 
 public class ajg extends Slot {
 
-	private final aje a;
+	private final InventoryMerchant a;
 	private EntityHuman b;
 	private int c;
 	private final IMerchant h;
 
-	public ajg(EntityHuman var1, IMerchant var2, aje var3, int var4, int var5, int var6) {
+	public ajg(EntityHuman var1, IMerchant var2, InventoryMerchant var3, int var4, int var5, int var6) {
 		super(var3, var4, var5, var6);
 		this.b = var1;
 		this.h = var2;
@@ -38,10 +38,10 @@ public class ajg extends Slot {
 
 	public void a(EntityHuman var1, ItemStack var2) {
 		this.c(var2);
-		aqc var3 = this.a.i();
+		MerchantRecipe var3 = this.a.getRecipe();
 		if (var3 != null) {
-			ItemStack var4 = this.a.a(0);
-			ItemStack var5 = this.a.a(1);
+			ItemStack var4 = this.a.getItem(0);
+			ItemStack var5 = this.a.getItem(1);
 			if (this.a(var3, var4, var5) || this.a(var3, var5, var4)) {
 				this.h.a(var3);
 				var1.b(StatisticList.G);
@@ -53,14 +53,14 @@ public class ajg extends Slot {
 					var5 = null;
 				}
 
-				this.a.a(0, var4);
-				this.a.a(1, var5);
+				this.a.setItem(0, var4);
+				this.a.setItem(1, var5);
 			}
 		}
 
 	}
 
-	private boolean a(aqc var1, ItemStack var2, ItemStack var3) {
+	private boolean a(MerchantRecipe var1, ItemStack var2, ItemStack var3) {
 		ItemStack var4 = var1.a();
 		ItemStack var5 = var1.b();
 		if (var2 != null && var2.getItem() == var4.getItem()) {

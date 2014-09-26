@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class BlockEnderPortalFrame extends Block {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 	public static final bet b = bet.a("eye");
 
 	public BlockEnderPortalFrame() {
@@ -33,7 +33,7 @@ public class BlockEnderPortalFrame extends Block {
 		this.h();
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return null;
 	}
 
@@ -41,7 +41,7 @@ public class BlockEnderPortalFrame extends Block {
 		return this.getBlockState().a(a, var8.aO().getOpposite()).a(b, Boolean.valueOf(false));
 	}
 
-	public boolean N() {
+	public boolean isComplexRedstone() {
 		return true;
 	}
 

@@ -1,6 +1,6 @@
 package net.minecraft;
 
-import com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 import java.util.UUID;
 
 public class ItemSkull extends Item {
@@ -25,7 +25,7 @@ public class ItemSkull extends Item {
 					return false;
 				}
 
-				var4 = var4.a(var5);
+				var4 = var4.getRelative(var5);
 			}
 
 			if (!var2.a(var4, var5, var1)) {
@@ -43,23 +43,23 @@ public class ItemSkull extends Item {
 					TileEntity var13 = var3.getTileEntity(var4);
 					if (var13 instanceof TileEntitySkull) {
 						TileEntitySkull var14 = (TileEntitySkull) var13;
-						if (var1.getDurability() == 3) {
+						if (var1.getWearout() == 3) {
 							GameProfile var15 = null;
 							if (var1.hasTag()) {
 								NBTCompoundTag var16 = var1.getTag();
 								if (var16.isTagAssignableFrom("SkullOwner", 10)) {
-									var15 = ga.a(var16.getCompound("SkullOwner"));
+									var15 = GameProfileSerializer.deserialize(var16.getCompound("SkullOwner"));
 								} else if (var16.isTagAssignableFrom("SkullOwner", 8) && var16.getString("SkullOwner").length() > 0) {
 									var15 = new GameProfile((UUID) null, var16.getString("SkullOwner"));
 								}
 							}
 
-							var14.a(var15);
+							var14.setGameProfile(var15);
 						} else {
-							var14.a(var1.getDurability());
+							var14.setSkullType(var1.getWearout());
 						}
 
-						var14.b(var12);
+						var14.setRotation(var12);
 						Blocks.SKULL.a(var3, var4, var14);
 					}
 
@@ -76,7 +76,7 @@ public class ItemSkull extends Item {
 	}
 
 	public String getName(ItemStack var1) {
-		int var2 = var1.getDurability();
+		int var2 = var1.getWearout();
 		if (var2 < 0 || var2 >= a.length) {
 			var2 = 0;
 		}
@@ -85,7 +85,7 @@ public class ItemSkull extends Item {
 	}
 
 	public String a(ItemStack var1) {
-		if (var1.getDurability() == 3 && var1.hasTag()) {
+		if (var1.getWearout() == 3 && var1.hasTag()) {
 			if (var1.getTag().isTagAssignableFrom("SkullOwner", 8)) {
 				return LocaleI18n.a("item.skull.player.name", new Object[] { var1.getTag().getString("SkullOwner") });
 			}
@@ -105,8 +105,8 @@ public class ItemSkull extends Item {
 		super.a(var1);
 		if (var1.isTagAssignableFrom("SkullOwner", 8) && var1.getString("SkullOwner").length() > 0) {
 			GameProfile var2 = new GameProfile((UUID) null, var1.getString("SkullOwner"));
-			var2 = TileEntitySkull.b(var2);
-			var1.put("SkullOwner", (NBTTag) ga.a(new NBTCompoundTag(), var2));
+			var2 = TileEntitySkull.fillGameProfile(var2);
+			var1.put("SkullOwner", (NBTTag) GameProfileSerializer.serialize(new NBTCompoundTag(), var2));
 			return true;
 		} else {
 			return false;

@@ -38,15 +38,15 @@ public class BlockTripwire extends Block {
 		return false;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.STRING;
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		boolean var5 = ((Boolean) var3.b(b)).booleanValue();
-		boolean var6 = !World.a((ard) var1, var2.b());
+		boolean var6 = !World.a((ard) var1, var2.getDown());
 		if (var5 != var6) {
-			this.b(var1, var2, var3, 0);
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.g(var2);
 		}
 
@@ -66,13 +66,13 @@ public class BlockTripwire extends Block {
 
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
-		var3 = var3.a(b, Boolean.valueOf(!World.a((ard) var1, var2.b())));
+	public void onPlace(World var1, Position var2, IBlockState var3) {
+		var3 = var3.a(b, Boolean.valueOf(!World.a((ard) var1, var2.getDown())));
 		var1.setBlockAt(var2, var3, 3);
 		this.e(var1, var2, var3);
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3.a(a, Boolean.valueOf(true)));
 	}
 
@@ -96,7 +96,7 @@ public class BlockTripwire extends Block {
 
 			while (true) {
 				if (var8 < 42) {
-					Position var9 = var2.a(var7, var8);
+					Position var9 = var2.getRelative(var7, var8);
 					IBlockState var10 = var1.getBlockState(var9);
 					if (var10.getBlock() == Blocks.TRIPWIRE_HOOK) {
 						if (var10.b(BlockTripwireHook.a) == var7.getOpposite()) {
@@ -164,7 +164,7 @@ public class BlockTripwire extends Block {
 	}
 
 	public static boolean c(ard var0, Position var1, IBlockState var2, BlockFace var3) {
-		Position var4 = var1.a(var3);
+		Position var4 = var1.getRelative(var3);
 		IBlockState var5 = var0.getBlockState(var4);
 		Block var6 = var5.getBlock();
 		if (var6 == Blocks.TRIPWIRE_HOOK) {

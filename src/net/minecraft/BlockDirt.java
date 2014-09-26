@@ -13,7 +13,7 @@ public class BlockDirt extends Block {
 
 	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		if (var1.b(a) == avd.c) {
-			Block var4 = var2.getBlockState(var3.a()).getBlock();
+			Block var4 = var2.getBlockState(var3.getUp()).getBlock();
 			var1 = var1.a(b, Boolean.valueOf(var4 == Blocks.SNOW || var4 == Blocks.SNOW_LAYER));
 		}
 
@@ -37,7 +37,7 @@ public class BlockDirt extends Block {
 		return new bed(this, new bex[] { a, b });
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		avd var2 = (avd) var1.b(a);
 		if (var2 == avd.c) {
 			var2 = avd.a;

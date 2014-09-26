@@ -14,7 +14,7 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.BanList;
 
 import com.google.common.collect.ImmutableSet;
-import com.mojang.authlib.GameProfile;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 
 public class PipeProfileBanList implements BanList {
 

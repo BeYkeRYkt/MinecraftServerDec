@@ -53,21 +53,21 @@ public class EntityEndermite extends EntityMonster {
 		return null;
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.b = var1.getInt("Lifetime");
 		this.c = var1.getBoolean("PlayerSpawned");
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("Lifetime", this.b);
 		var1.put("PlayerSpawned", this.c);
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.aG = this.yaw;
-		super.s_();
+		super.doTick();
 	}
 
 	public boolean n() {
@@ -82,7 +82,7 @@ public class EntityEndermite extends EntityMonster {
 		super.m();
 		if (this.world.isStatic) {
 			for (int var1 = 0; var1 < 2; ++var1) {
-				this.world.a(Particle.y, this.locationX + (this.random.nextDouble() - 0.5D) * (double) this.height, this.locationY + this.random.nextDouble() * (double) this.width, this.locationZ + (this.random.nextDouble() - 0.5D) * (double) this.height, (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D, new int[0]);
+				this.world.addParticle(Particle.y, this.locationX + (this.random.nextDouble() - 0.5D) * (double) this.height, this.locationY + this.random.nextDouble() * (double) this.width, this.locationZ + (this.random.nextDouble() - 0.5D) * (double) this.height, (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D, new int[0]);
 			}
 		} else {
 			if (!this.bY()) {
@@ -102,7 +102,7 @@ public class EntityEndermite extends EntityMonster {
 
 	public boolean bQ() {
 		if (super.bQ()) {
-			EntityHuman var1 = this.world.a(this, 5.0D);
+			EntityHuman var1 = this.world.findNearbyPlayer(this, 5.0D);
 			return var1 == null;
 		} else {
 			return false;

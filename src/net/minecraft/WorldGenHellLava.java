@@ -13,50 +13,50 @@ public class WorldGenHellLava extends WorldGenerator {
 	}
 
 	public boolean b(World var1, Random var2, Position var3) {
-		if (var1.getBlockState(var3.a()).getBlock() != Blocks.NETHERRACK) {
+		if (var1.getBlockState(var3.getUp()).getBlock() != Blocks.NETHERRACK) {
 			return false;
 		} else if (var1.getBlockState(var3).getBlock().getMaterial() != Material.AIR && var1.getBlockState(var3).getBlock() != Blocks.NETHERRACK) {
 			return false;
 		} else {
 			int var4 = 0;
-			if (var1.getBlockState(var3.e()).getBlock() == Blocks.NETHERRACK) {
+			if (var1.getBlockState(var3.getWest()).getBlock() == Blocks.NETHERRACK) {
 				++var4;
 			}
 
-			if (var1.getBlockState(var3.f()).getBlock() == Blocks.NETHERRACK) {
+			if (var1.getBlockState(var3.getEast()).getBlock() == Blocks.NETHERRACK) {
 				++var4;
 			}
 
-			if (var1.getBlockState(var3.c()).getBlock() == Blocks.NETHERRACK) {
+			if (var1.getBlockState(var3.getNorth()).getBlock() == Blocks.NETHERRACK) {
 				++var4;
 			}
 
-			if (var1.getBlockState(var3.d()).getBlock() == Blocks.NETHERRACK) {
+			if (var1.getBlockState(var3.getSouth()).getBlock() == Blocks.NETHERRACK) {
 				++var4;
 			}
 
-			if (var1.getBlockState(var3.b()).getBlock() == Blocks.NETHERRACK) {
+			if (var1.getBlockState(var3.getDown()).getBlock() == Blocks.NETHERRACK) {
 				++var4;
 			}
 
 			int var5 = 0;
-			if (var1.d(var3.e())) {
+			if (var1.d(var3.getWest())) {
 				++var5;
 			}
 
-			if (var1.d(var3.f())) {
+			if (var1.d(var3.getEast())) {
 				++var5;
 			}
 
-			if (var1.d(var3.c())) {
+			if (var1.d(var3.getNorth())) {
 				++var5;
 			}
 
-			if (var1.d(var3.d())) {
+			if (var1.d(var3.getSouth())) {
 				++var5;
 			}
 
-			if (var1.d(var3.b())) {
+			if (var1.d(var3.getDown())) {
 				++var5;
 			}
 

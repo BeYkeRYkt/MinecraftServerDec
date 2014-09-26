@@ -5,11 +5,11 @@ final class DispenseBehaviorFlintAndSteel extends DispenseBehaviorItem {
 	private boolean b = true;
 
 	protected ItemStack b(ISourceBlock var1, ItemStack var2) {
-		World var3 = var1.i();
-		Position var4 = var1.d().a(BlockDispenser.b(var1.f()));
+		World var3 = var1.getWorld();
+		Position var4 = var1.getPosition().getRelative(BlockDispenser.b(var1.getData()));
 		if (var3.d(var4)) {
 			var3.a(var4, Blocks.FIRE.getBlockState());
-			if (var2.a(1, var3.s)) {
+			if (var2.a(1, var3.random)) {
 				var2.amount = 0;
 			}
 		} else if (var3.getBlockState(var4).getBlock() == Blocks.TNT) {
@@ -24,9 +24,9 @@ final class DispenseBehaviorFlintAndSteel extends DispenseBehaviorItem {
 
 	protected void a(ISourceBlock var1) {
 		if (this.b) {
-			var1.i().b(1000, var1.d(), 0);
+			var1.getWorld().triggerEffect(1000, var1.getPosition(), 0);
 		} else {
-			var1.i().b(1001, var1.d(), 0);
+			var1.getWorld().triggerEffect(1001, var1.getPosition(), 0);
 		}
 
 	}

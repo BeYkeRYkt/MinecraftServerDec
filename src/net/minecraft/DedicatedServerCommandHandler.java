@@ -75,7 +75,7 @@ public class DedicatedServerCommandHandler extends AbstractCommandsHandler imple
 	public void a(CommandSenderInterface var1, ICommand var2, int var3, String var4, Object... var5) {
 		boolean var6 = true;
 		MinecraftServer var7 = MinecraftServer.getInstance();
-		if (!var1.t_()) {
+		if (!var1.isCommandBlockOuputEnabled()) {
 			var6 = false;
 		}
 
@@ -93,11 +93,11 @@ public class DedicatedServerCommandHandler extends AbstractCommandsHandler imple
 			}
 		}
 
-		if (var1 != var7 && var7.getPrimaryWorld().getGameRules().b("logAdminCommands")) {
+		if (var1 != var7 && var7.getWorld().getGameRules().isGameRule("logAdminCommands")) {
 			var7.sendChatMessage((IChatBaseComponent) var8);
 		}
 
-		boolean var11 = var7.getPrimaryWorld().getGameRules().b("sendCommandFeedback");
+		boolean var11 = var7.getWorld().getGameRules().isGameRule("sendCommandFeedback");
 		if (var1 instanceof CommandBlockListenerAbstract) {
 			var11 = ((CommandBlockListenerAbstract) var1).isTrackOutputEnabled();
 		}

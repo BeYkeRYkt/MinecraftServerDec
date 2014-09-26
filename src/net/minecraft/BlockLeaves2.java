@@ -11,13 +11,13 @@ public class BlockLeaves2 extends BlockLeaves {
 	}
 
 	protected void a(World var1, Position var2, IBlockState var3, int var4) {
-		if (var3.b(P) == EnumWoodType.f && var1.s.nextInt(var4) == 0) {
-			a(var1, var2, new ItemStack(Items.APPLE, 1, 0));
+		if (var3.b(P) == EnumWoodType.f && var1.random.nextInt(var4) == 0) {
+			dropItem(var1, var2, new ItemStack(Items.APPLE, 1, 0));
 		}
 
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((EnumWoodType) var1.b(P)).a();
 	}
 
@@ -59,7 +59,7 @@ public class BlockLeaves2 extends BlockLeaves {
 	public void a(World var1, EntityHuman var2, Position var3, IBlockState var4, TileEntity var5) {
 		if (!var1.isStatic && var2.bY() != null && var2.bY().getItem() == Items.SHEARS) {
 			var2.b(StatisticList.MINE_BLOCK_COUNT[Block.getBlockId((Block) this)]);
-			a(var1, var3, new ItemStack(Item.getItemOf((Block) this), 1, ((EnumWoodType) var4.b(P)).a() - 4));
+			dropItem(var1, var3, new ItemStack(Item.getItemOf((Block) this), 1, ((EnumWoodType) var4.b(P)).a() - 4));
 		} else {
 			super.a(var1, var2, var3, var4, var5);
 		}

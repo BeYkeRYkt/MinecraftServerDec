@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class BlockLadder extends Block {
 
-	public static final beu a = beu.a("facing", (Predicate) en.a);
+	public static final beu a = beu.a("facing", (Predicate) UniverseDirection.HORIZONTAL);
 
 	protected BlockLadder() {
 		super(Material.ORIENTABLE);
@@ -49,14 +49,14 @@ public class BlockLadder extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return var1.getBlockState(var2.e()).getBlock().t() ? true : (var1.getBlockState(var2.f()).getBlock().t() ? true : (var1.getBlockState(var2.c()).getBlock().t() ? true : var1.getBlockState(var2.d()).getBlock().t()));
+		return var1.getBlockState(var2.getWest()).getBlock().t() ? true : (var1.getBlockState(var2.getEast()).getBlock().t() ? true : (var1.getBlockState(var2.getNorth()).getBlock().t() ? true : var1.getBlockState(var2.getSouth()).getBlock().t()));
 	}
 
 	public IBlockState a(World var1, Position var2, BlockFace var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
 		if (var3.k().c() && this.b(var1, var2, var3)) {
 			return this.getBlockState().a(a, var3);
 		} else {
-			Iterator var9 = en.a.iterator();
+			Iterator var9 = UniverseDirection.HORIZONTAL.iterator();
 
 			BlockFace var10;
 			do {
@@ -74,7 +74,7 @@ public class BlockLadder extends Block {
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		BlockFace var5 = (BlockFace) var3.b(a);
 		if (!this.b(var1, var2, var5)) {
-			this.b(var1, var2, var3, 0);
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.g(var2);
 		}
 
@@ -82,7 +82,7 @@ public class BlockLadder extends Block {
 	}
 
 	protected boolean b(World var1, Position var2, BlockFace var3) {
-		return var1.getBlockState(var2.a(var3.getOpposite())).getBlock().t();
+		return var1.getBlockState(var2.getRelative(var3.getOpposite())).getBlock().t();
 	}
 
 	public IBlockState setData(int var1) {

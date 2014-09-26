@@ -14,7 +14,7 @@ public class BlockFenceGate extends avb {
 
 	public IBlockState a(IBlockState var1, ard var2, Position var3) {
 		el var4 = ((BlockFace) var1.b(N)).k();
-		if (var4 == el.c && (var2.getBlockState(var3.e()).getBlock() == Blocks.COBBLESTONE_WALL || var2.getBlockState(var3.f()).getBlock() == Blocks.COBBLESTONE_WALL) || var4 == el.a && (var2.getBlockState(var3.c()).getBlock() == Blocks.COBBLESTONE_WALL || var2.getBlockState(var3.d()).getBlock() == Blocks.COBBLESTONE_WALL)) {
+		if (var4 == el.c && (var2.getBlockState(var3.getWest()).getBlock() == Blocks.COBBLESTONE_WALL || var2.getBlockState(var3.getEast()).getBlock() == Blocks.COBBLESTONE_WALL) || var4 == el.a && (var2.getBlockState(var3.getNorth()).getBlock() == Blocks.COBBLESTONE_WALL || var2.getBlockState(var3.getSouth()).getBlock() == Blocks.COBBLESTONE_WALL)) {
 			var1 = var1.a(M, Boolean.valueOf(true));
 		}
 
@@ -22,7 +22,7 @@ public class BlockFenceGate extends avb {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return var1.getBlockState(var2.b()).getBlock().getMaterial().isBuildable() ? super.c(var1, var2) : false;
+		return var1.getBlockState(var2.getDown()).getBlock().getMaterial().isBuildable() ? super.c(var1, var2) : false;
 	}
 
 	public AxisAlignedBB a(World var1, Position var2, IBlockState var3) {
@@ -60,7 +60,7 @@ public class BlockFenceGate extends avb {
 		return this.getBlockState().a(N, var8.aO()).a(a, Boolean.valueOf(false)).a(b, Boolean.valueOf(false)).a(M, Boolean.valueOf(false));
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (((Boolean) var3.b(a)).booleanValue()) {
 			var3 = var3.a(a, Boolean.valueOf(false));
 			var1.setBlockAt(var2, var3, 2);
@@ -80,8 +80,8 @@ public class BlockFenceGate extends avb {
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
 		if (!var1.isStatic) {
-			boolean var5 = var1.z(var2);
-			if (var5 || var4.g()) {
+			boolean var5 = var1.isBlockIndirectlyPowered(var2);
+			if (var5 || var4.isTrappedChest()) {
 				if (var5 && !((Boolean) var3.b(a)).booleanValue() && !((Boolean) var3.b(b)).booleanValue()) {
 					var1.setBlockAt(var2, var3.a(a, Boolean.valueOf(true)).a(b, Boolean.valueOf(true)), 2);
 					var1.a((EntityHuman) null, 1003, var2, 0);

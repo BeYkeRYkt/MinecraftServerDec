@@ -2,7 +2,7 @@ package net.minecraft;
 
 import java.util.List;
 
-public class EntityMinecartHopper extends aed implements bdd {
+public class EntityMinecartHopper extends InventoryMinecart implements IHopper {
 
 	private boolean a = true;
 	private int b = -1;
@@ -18,7 +18,7 @@ public class EntityMinecartHopper extends aed implements bdd {
 		this.c = Position.ZERO;
 	}
 
-	public MinecartType s() {
+	public MinecartType getType() {
 		return MinecartType.HOPPER;
 	}
 
@@ -30,13 +30,13 @@ public class EntityMinecartHopper extends aed implements bdd {
 		return 1;
 	}
 
-	public int n_() {
+	public int getSize() {
 		return 5;
 	}
 
 	public boolean e(EntityHuman var1) {
 		if (!this.world.isStatic) {
-			var1.a((IInventory) this);
+			var1.openInventory((IInventory) this);
 		}
 
 		return true;
@@ -58,7 +58,7 @@ public class EntityMinecartHopper extends aed implements bdd {
 		this.a = var1;
 	}
 
-	public World getPrimaryWorld() {
+	public World getWorld() {
 		return this.world;
 	}
 
@@ -74,8 +74,8 @@ public class EntityMinecartHopper extends aed implements bdd {
 		return this.locationZ;
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (!this.world.isStatic && this.isAlive() && this.y()) {
 			Position var1 = new Position(this);
 			if (var1.equals(this.c)) {
@@ -96,10 +96,10 @@ public class EntityMinecartHopper extends aed implements bdd {
 	}
 
 	public boolean D() {
-		if (TileEntityHopper.a((bdd) this)) {
+		if (TileEntityHopper.a((IHopper) this)) {
 			return true;
 		} else {
-			List var1 = this.world.a(EntityItem.class, this.getBoundingBox().grow(0.25D, 0.0D, 0.25D), EntityPredicates.a);
+			List var1 = this.world.getEntititesInAABB(EntityItem.class, this.getBoundingBox().grow(0.25D, 0.0D, 0.25D), EntityPredicates.a);
 			if (var1.size() > 0) {
 				TileEntityHopper.a((IInventory) this, (EntityItem) var1.get(0));
 			}
@@ -113,13 +113,13 @@ public class EntityMinecartHopper extends aed implements bdd {
 		this.a(Item.getItemOf((Block) Blocks.HOPPER), 1, 0.0F);
 	}
 
-	protected void b(NBTCompoundTag var1) {
-		super.b(var1);
+	protected void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("TransferCooldown", this.b);
 	}
 
-	protected void a(NBTCompoundTag var1) {
-		super.a(var1);
+	protected void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.b = var1.getInt("TransferCooldown");
 	}
 
@@ -131,11 +131,12 @@ public class EntityMinecartHopper extends aed implements bdd {
 		return this.b > 0;
 	}
 
-	public String k() {
+	public String getInventoryType() {
 		return "minecraft:hopper";
 	}
 
-	public Container a(PlayerInventory var1, EntityHuman var2) {
-		return new aix(var1, this, var2);
+	public Container getContainer(InventoryPlayer var1, EntityHuman var2) {
+		return new ContainerHopper(var1, this, var2);
 	}
+
 }

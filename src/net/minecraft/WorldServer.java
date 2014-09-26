@@ -19,6 +19,8 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import pipebukkit.server.PipeWorld;
+
 public class WorldServer extends World implements ITaskScheduler {
 
 	private static final Logger logger = LogManager.getLogger();
@@ -40,8 +42,8 @@ public class WorldServer extends World implements ITaskScheduler {
 	private int T;
 	private static final List U = Lists.newArrayList((Object[]) (new StructurePieceTreasure[] { new StructurePieceTreasure(Items.STICK, 0, 1, 3, 10), new StructurePieceTreasure(Item.getItemOf(Blocks.PLANKS), 0, 1, 3, 10), new StructurePieceTreasure(Item.getItemOf(Blocks.LOG), 0, 1, 3, 10), new StructurePieceTreasure(Items.STONE_AXE, 0, 1, 1, 3), new StructurePieceTreasure(Items.WOODEN_AXE, 0, 1, 1, 5), new StructurePieceTreasure(Items.STONE_PICKAXE, 0, 1, 1, 3), new StructurePieceTreasure(Items.WOODEN_PICKAXE, 0, 1, 1, 5), new StructurePieceTreasure(Items.APPLE, 0, 2, 3, 5), new StructurePieceTreasure(Items.BREAD, 0, 2, 3, 3), new StructurePieceTreasure(Item.getItemOf(Blocks.LOG2), 0, 1, 3, 10) }));
 
-	public WorldServer(MinecraftServer minecraftserver, IDataManager dataManager, WorldData worldData, int dimension, MethodProfiler methodProfiler) {
-		super(dataManager, worldData, WorldProvider.getById(dimension), methodProfiler, false);
+	public WorldServer(MinecraftServer minecraftserver, IDataManager dataManager, String levelName, WorldSettings settings, int dimension, MethodProfiler methodProfiler) {
+		super(dataManager, levelName, settings, WorldProvider.getById(dimension), methodProfiler, false);
 		this.minecraftserver = minecraftserver;
 		this.entityTracker = new EntityTracker(this);
 		this.playerChunkMap = new PlayerChunkMap(this);
@@ -96,7 +98,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 		this.worldProvider.m().b();
 		if (this.f()) {
-			if (this.getGameRules().b("doDaylightCycle")) {
+			if (this.getGameRules().isGameRule("doDaylightCycle")) {
 				long var1 = this.worldData.getDayTime() + 24000L;
 				this.worldData.setDayTime(var1 - var1 % 24000L);
 			}
@@ -105,7 +107,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		}
 
 		this.B.a("mobSpawner");
-		if (this.getGameRules().b("doMobSpawning") && this.worldData.getLevelType() != LevelType.DEBUG) {
+		if (this.getGameRules().isGameRule("doMobSpawning") && this.worldData.getLevelType() != LevelType.DEBUG) {
 			this.spawnerCreature.a(this, this.F, this.G, this.worldData.getTime() % 400L == 0L);
 		}
 
@@ -117,7 +119,7 @@ public class WorldServer extends World implements ITaskScheduler {
 		}
 
 		this.worldData.setTime(this.worldData.getTime() + 1L);
-		if (this.getGameRules().b("doDaylightCycle")) {
+		if (this.getGameRules().isGameRule("doDaylightCycle")) {
 			this.worldData.setDayTime(this.worldData.getDayTime() + 1L);
 		}
 
@@ -138,7 +140,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	public BiomeMeta a(EnumCreatureType var1, Position var2) {
 		List var3 = this.getChunkProvider().getMobsFor(var1, var2);
-		return var3 != null && !var3.isEmpty() ? (BiomeMeta) vj.a(this.s, var3) : null;
+		return var3 != null && !var3.isEmpty() ? (BiomeMeta) WeightedRandom.a(this.random, var3) : null;
 	}
 
 	public boolean a(EnumCreatureType var1, BiomeMeta var2, Position var3) {
@@ -148,10 +150,10 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	public void d() {
 		this.O = false;
-		if (!this.j.isEmpty()) {
+		if (!this.players.isEmpty()) {
 			int var1 = 0;
 			int var2 = 0;
-			Iterator var3 = this.j.iterator();
+			Iterator var3 = this.players.iterator();
 
 			while (var3.hasNext()) {
 				EntityHuman var4 = (EntityHuman) var3.next();
@@ -162,14 +164,14 @@ public class WorldServer extends World implements ITaskScheduler {
 				}
 			}
 
-			this.O = var2 > 0 && var2 >= this.j.size() - var1;
+			this.O = var2 > 0 && var2 >= this.players.size() - var1;
 		}
 
 	}
 
 	protected void e() {
 		this.O = false;
-		Iterator var1 = this.j.iterator();
+		Iterator var1 = this.players.iterator();
 
 		while (var1.hasNext()) {
 			EntityHuman var2 = (EntityHuman) var1.next();
@@ -190,7 +192,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	public boolean f() {
 		if (this.O && !this.isStatic) {
-			Iterator var1 = this.j.iterator();
+			Iterator var1 = this.players.iterator();
 
 			EntityHuman var2;
 			do {
@@ -233,7 +235,7 @@ public class WorldServer extends World implements ITaskScheduler {
 				this.B.c("thunder");
 				int var8;
 				Position var9;
-				if (this.s.nextInt(100000) == 0 && this.S() && this.R()) {
+				if (this.random.nextInt(100000) == 0 && this.S() && this.R()) {
 					this.m = this.m * 3 + 1013904223;
 					var8 = this.m >> 2;
 					var9 = this.a(new Position(var5 + (var8 & 15), 0, var6 + (var8 >> 8 & 15)));
@@ -243,11 +245,11 @@ public class WorldServer extends World implements ITaskScheduler {
 				}
 
 				this.B.c("iceandsnow");
-				if (this.s.nextInt(16) == 0) {
+				if (this.random.nextInt(16) == 0) {
 					this.m = this.m * 3 + 1013904223;
 					var8 = this.m >> 2;
 					var9 = this.q(new Position(var5 + (var8 & 15), 0, var6 + (var8 >> 8 & 15)));
-					Position var10 = var9.b();
+					Position var10 = var9.getDown();
 					if (this.w(var10)) {
 						this.a(var10, Blocks.ICE.getBlockState());
 					}
@@ -262,7 +264,7 @@ public class WorldServer extends World implements ITaskScheduler {
 				}
 
 				this.B.c("tickBlocks");
-				var8 = this.getGameRules().c("randomTickSpeed");
+				var8 = this.getGameRules().getGameRule("randomTickSpeed");
 				if (var8 > 0) {
 					ChunkSection[] var23 = var7.getChunkSections();
 					int var24 = var23.length;
@@ -282,7 +284,7 @@ public class WorldServer extends World implements ITaskScheduler {
 								Block var20 = var19.getBlock();
 								if (var20.isTicking()) {
 									++var1;
-									var20.a((World) this, var18, var19, this.s);
+									var20.a((World) this, var18, var19, this.random);
 								}
 							}
 						}
@@ -295,9 +297,9 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	protected Position a(Position var1) {
 		Position var2 = this.q(var1);
-		AxisAlignedBB var3 = (new AxisAlignedBB(var2, new Position(var2.getX(), this.U(), var2.getZ()))).grow(3.0D, 3.0D, 3.0D);
-		List var4 = this.a(EntityLiving.class, var3, new qu(this));
-		return !var4.isEmpty() ? ((EntityLiving) var4.get(this.s.nextInt(var4.size()))).getEntityPosition() : var2;
+		AxisAlignedBB var3 = (new AxisAlignedBB(var2, new Position(var2.getX(), this.getHeight(), var2.getZ()))).grow(3.0D, 3.0D, 3.0D);
+		List var4 = this.getEntititesInAABB(EntityLiving.class, var3, new qu(this));
+		return !var4.isEmpty() ? ((EntityLiving) var4.get(this.random.nextInt(var4.size()))).getEntityPosition() : var2;
 	}
 
 	public boolean a(Position var1, Block var2) {
@@ -318,7 +320,7 @@ public class WorldServer extends World implements ITaskScheduler {
 				if (this.a(var5.position.a(-var6, -var6, -var6), var5.position.a(var6, var6, var6))) {
 					IBlockState var7 = this.getBlockState(var5.position);
 					if (var7.getBlock().getMaterial() != Material.AIR && var7.getBlock() == var5.getBlock()) {
-						var7.getBlock().b((World) this, var5.position, var7, this.s);
+						var7.getBlock().b((World) this, var5.position, var7, this.random);
 					}
 				}
 
@@ -357,7 +359,7 @@ public class WorldServer extends World implements ITaskScheduler {
 	}
 
 	public void i() {
-		if (this.j.isEmpty()) {
+		if (this.players.isEmpty()) {
 			if (this.emptyTime++ >= 1200) {
 				return;
 			}
@@ -410,11 +412,11 @@ public class WorldServer extends World implements ITaskScheduler {
 						IBlockState var6 = this.getBlockState(var4.position);
 						if (var6.getBlock().getMaterial() != Material.AIR && Block.a(var6.getBlock(), var4.getBlock())) {
 							try {
-								var6.getBlock().b((World) this, var4.position, var6, this.s);
+								var6.getBlock().b((World) this, var4.position, var6, this.random);
 							} catch (Throwable var10) {
 								CrashReport var8 = CrashReport.generateCrashReport(var10, "Exception while ticking a block");
 								CrashReportSystemDetails var9 = var8.generateSystemDetails("Block being ticked");
-								net.minecraft.CrashReportSystemDetails.a(var9, var4.position, var6);
+								net.minecraft.CrashReportSystemDetails.addBlockStateInfo(var9, var4.position, var6);
 								throw new ReportedException(var8);
 							}
 						}
@@ -505,7 +507,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 		for (int var8 = 0; var8 < this.h.size(); ++var8) {
 			TileEntity var9 = (TileEntity) this.h.get(var8);
-			Position var10 = var9.v();
+			Position var10 = var9.getPosition();
 			if (var10.getX() >= var1 && var10.getY() >= var2 && var10.getZ() >= var3 && var10.getX() < var4 && var10.getY() < var5 && var10.getZ() < var6) {
 				var7.add(var9);
 			}
@@ -555,19 +557,19 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.worldData.setIsHardcore(false);
 		this.worldData.setDifficulty(Difficulty.PEACEFUL);
 		this.worldData.setDifficultyLocked(true);
-		this.getGameRules().a("doDaylightCycle", "false");
+		this.getGameRules().setOrAddGameRule("doDaylightCycle", "false");
 	}
 
 	private void b(WorldSettings var1) {
 		if (!this.worldProvider.isPrimaryWorld()) {
-			this.worldData.setSpawn(Position.ZERO.b(this.worldProvider.i()));
+			this.worldData.setSpawn(Position.ZERO.getUp(this.worldProvider.i()));
 		} else if (this.worldData.getLevelType() == LevelType.DEBUG) {
-			this.worldData.setSpawn(Position.ZERO.a());
+			this.worldData.setSpawn(Position.ZERO.getUp());
 		} else {
 			this.isLoading = true;
 			WorldChunkManager var2 = this.worldProvider.m();
 			List var3 = var2.a();
-			Random var4 = new Random(this.J());
+			Random var4 = new Random(this.getSeed());
 			Position var5 = var2.a(0, 0, 256, var3, var4);
 			int var6 = 0;
 			int var7 = this.worldProvider.i();
@@ -612,7 +614,7 @@ public class WorldServer extends World implements ITaskScheduler {
 
 			this.chunkProvider.requestChunksSave(var1, var2);
 			for (Chunk chunk : chunkProviderServer.getChunkList()) {
-				if (!this.playerChunkMap.a(chunk.x, chunk.z)) {
+				if (!this.playerChunkMap.isChunkInUse(chunk.x, chunk.z)) {
 					this.chunkProviderServer.queueUnload(chunk.x, chunk.z);
 				}
 			}
@@ -679,27 +681,26 @@ public class WorldServer extends World implements ITaskScheduler {
 		this.getEntityTracker().b(var1, new PacketPlayOutEntityStatus(var1, var2));
 	}
 
-	public Explosion a(Entity var1, double var2, double var4, double var6, float var8, boolean var9, boolean var10) {
-		Explosion var11 = new Explosion(this, var1, var2, var4, var6, var8, var9, var10);
-		var11.a();
-		var11.a(false);
-		if (!var10) {
-			var11.d();
+	public Explosion createExplosion(Entity entity, double x, double y, double z, float power, boolean setFire, boolean breakBlocks) {
+		Explosion explosion = new Explosion(this, entity, x, y, z, power, setFire, breakBlocks);
+		explosion.damageEntities();
+		if (!breakBlocks) {
+			explosion.clearAffectedBlocks();
 		}
+		explosion.destroyBlocks(false);
 
-		Iterator var12 = this.j.iterator();
-
-		while (var12.hasNext()) {
-			EntityHuman var13 = (EntityHuman) var12.next();
-			if (var13.getDistanceSquared(var2, var4, var6) < 4096.0D) {
-				((EntityPlayer) var13).playerConnection.sendPacket((Packet) (new PacketPlayOutExplosion(var2, var4, var6, var8, var11.e(), (Vec3D) var11.b().get(var13))));
+		Iterator<Entity> iterator = this.players.iterator();
+		while (iterator.hasNext()) {
+			EntityHuman human = (EntityHuman) iterator.next();
+			if (human.getDistanceSquared(x, y, z) < 4096.0D) {
+				((EntityPlayer) human).playerConnection.sendPacket(new PacketPlayOutExplosion(x, y, z, power, explosion.getAffectedBlocks(), explosion.getAffectedPlayers().get(human)));
 			}
 		}
 
-		return var11;
+		return explosion;
 	}
 
-	public void c(Position var1, Block var2, int var3, int var4) {
+	public void playBlockAction(Position var1, Block var2, int var3, int var4) {
 		aqk var5 = new aqk(var1, var2, var3, var4);
 		Iterator var6 = this.S[this.T].iterator();
 
@@ -793,8 +794,8 @@ public class WorldServer extends World implements ITaskScheduler {
 	public void a(Particle var1, boolean var2, double var3, double var5, double var7, int var9, double var10, double var12, double var14, double var16, int... var18) {
 		PacketPlayOutParticle var19 = new PacketPlayOutParticle(var1, var2, (float) var3, (float) var5, (float) var7, (float) var10, (float) var12, (float) var14, (float) var16, var9, var18);
 
-		for (int var20 = 0; var20 < this.j.size(); ++var20) {
-			EntityPlayer var21 = (EntityPlayer) this.j.get(var20);
+		for (int var20 = 0; var20 < this.players.size(); ++var20) {
+			EntityPlayer var21 = (EntityPlayer) this.players.get(var20);
 			Position var22 = var21.getEntityPosition();
 			double var23 = var22.c(var3, var5, var7);
 			if (var23 <= 256.0D || var2 && var23 <= 65536.0D) {
@@ -814,6 +815,14 @@ public class WorldServer extends World implements ITaskScheduler {
 
 	public boolean isMainThread() {
 		return this.minecraftserver.isMainThread();
+	}
+
+	private org.bukkit.World bukkitworld;
+	public org.bukkit.World getBukkitWorld() {
+		if (bukkitworld == null) {
+			bukkitworld = new PipeWorld(this);
+		}
+		return bukkitworld;
 	}
 
 }

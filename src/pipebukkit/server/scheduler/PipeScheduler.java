@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.IllegalPluginAccessException;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scheduler.BukkitWorker;
@@ -159,6 +160,21 @@ public class PipeScheduler implements BukkitScheduler {
 	}
 
 	@Override
+	public BukkitTask runTaskAsynchronously(Plugin plugin, BukkitRunnable task) throws IllegalArgumentException {
+		return runTaskAsynchronously(plugin, (Runnable) task);
+	}
+
+	@Override
+	public BukkitTask runTaskLaterAsynchronously(Plugin plugin, BukkitRunnable task, long delay) throws IllegalArgumentException {
+		return runTaskLaterAsynchronously(plugin, (Runnable) task, delay);
+	}
+
+	@Override
+	public BukkitTask runTaskTimerAsynchronously(Plugin plugin, BukkitRunnable task, long delay, long period) throws IllegalArgumentException {
+		return runTaskTimerAsynchronously(plugin, (Runnable) task, delay, period);
+	}
+
+	@Override
 	public int scheduleAsyncDelayedTask(Plugin plugin, Runnable runnable) {
 		return scheduleAsyncDelayedTask(plugin, runnable, 0L);
 	}
@@ -197,6 +213,21 @@ public class PipeScheduler implements BukkitScheduler {
 	}
 
 	@Override
+	public int scheduleSyncDelayedTask(Plugin plugin, BukkitRunnable task) {
+		return scheduleSyncDelayedTask(plugin, (Runnable) task);
+	}
+
+	@Override
+	public int scheduleSyncDelayedTask(Plugin plugin, BukkitRunnable task, long delay) {
+		return scheduleSyncDelayedTask(plugin, (Runnable) task, delay);
+	}
+
+	@Override
+	public int scheduleSyncRepeatingTask(Plugin plugin, BukkitRunnable task, long delay, long period) {
+		return scheduleSyncRepeatingTask(plugin, (Runnable) task, delay, period);
+	}
+
+	@Override
 	public int scheduleSyncDelayedTask(Plugin plugin, Runnable runnable) {
 		return scheduleSyncDelayedTask(plugin, runnable, 0L);
 	}
@@ -209,6 +240,21 @@ public class PipeScheduler implements BukkitScheduler {
 	@Override
 	public int scheduleSyncRepeatingTask(Plugin plugin, Runnable runnable, long delay, long repeat) {
 		return runTaskTimer(plugin, runnable, delay, repeat).getTaskId();
+	}
+
+	@Override
+	public BukkitTask runTask(Plugin plugin, BukkitRunnable task) throws IllegalArgumentException {
+		return runTask(plugin, (Runnable) task);
+	}
+
+	@Override
+	public BukkitTask runTaskLater(Plugin plugin, BukkitRunnable task, long delay) throws IllegalArgumentException {
+		return runTaskLater(plugin, (Runnable) task, delay);
+	}
+
+	@Override
+	public BukkitTask runTaskTimer(Plugin plugin, BukkitRunnable task, long delay, long period) throws IllegalArgumentException {
+		return runTaskTimer(plugin, (Runnable) task, delay, period);
 	}
 
 	@Override

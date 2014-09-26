@@ -169,7 +169,7 @@ public class ChatSerializer implements JsonDeserializer, JsonSerializer {
 				JsonObject var15 = new JsonObject();
 				var15.addProperty("name", var12.g());
 				var15.addProperty("objective", var12.h());
-				var15.addProperty("value", var12.e());
+				var15.addProperty("value", var12.getComponentVaue());
 				var4.add("score", var15);
 			} else {
 				if (!(var1 instanceof hu)) {

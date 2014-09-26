@@ -15,10 +15,10 @@ public class BlockCactus extends Block {
 	}
 
 	public void b(World var1, Position var2, IBlockState var3, Random var4) {
-		Position var5 = var2.a();
+		Position var5 = var2.getUp();
 		if (var1.d(var5)) {
 			int var6;
-			for (var6 = 1; var1.getBlockState(var2.c(var6)).getBlock() == this; ++var6) {
+			for (var6 = 1; var1.getBlockState(var2.getDown(var6)).getBlock() == this; ++var6) {
 				;
 			}
 
@@ -62,21 +62,21 @@ public class BlockCactus extends Block {
 	}
 
 	public boolean d(World var1, Position var2) {
-		Iterator var3 = en.a.iterator();
+		Iterator var3 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var3.hasNext()) {
 			BlockFace var4 = (BlockFace) var3.next();
-			if (var1.getBlockState(var2.a(var4)).getBlock().getMaterial().isBuildable()) {
+			if (var1.getBlockState(var2.getRelative(var4)).getBlock().getMaterial().isBuildable()) {
 				return false;
 			}
 		}
 
-		Block var5 = var1.getBlockState(var2.b()).getBlock();
+		Block var5 = var1.getBlockState(var2.getDown()).getBlock();
 		return var5 == Blocks.CACTUS || var5 == Blocks.SAND;
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Entity var4) {
-		var4.damageEntity(DamageSource.CACTUS, 1.0F);
+		var4.receiveDamage(DamageSource.CACTUS, 1.0F);
 	}
 
 	public IBlockState setData(int var1) {

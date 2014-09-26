@@ -14,7 +14,7 @@ public class EmptyChunk extends Chunk {
 		return var1 == this.x && var2 == this.z;
 	}
 
-	public int b(int var1, int var2) {
+	public int getHighestBlockYAt(int var1, int var2) {
 		return 0;
 	}
 
@@ -33,14 +33,14 @@ public class EmptyChunk extends Chunk {
 		return 0;
 	}
 
-	public int a(EnumSkyBlock var1, Position var2) {
+	public int getBrightness(EnumSkyBlock var1, Position var2) {
 		return var1.lightLevel;
 	}
 
-	public void a(EnumSkyBlock var1, Position var2, int var3) {
+	public void setBrightness(EnumSkyBlock var1, Position var2, int var3) {
 	}
 
-	public int a(Position var1, int var2) {
+	public int getLightLevel(Position var1, int var2) {
 		return 0;
 	}
 
@@ -90,7 +90,7 @@ public class EmptyChunk extends Chunk {
 	}
 
 	public Random a(long var1) {
-		return new Random(this.getWorld().J() + (long) (this.x * this.x * 4987142) + (long) (this.x * 5947611) + (long) (this.z * this.z) * 4392871L + (long) (this.z * 389711) ^ var1);
+		return new Random(this.getWorld().getSeed() + (long) (this.x * this.x * 4987142) + (long) (this.x * 5947611) + (long) (this.z * this.z) * 4392871L + (long) (this.z * 389711) ^ var1);
 	}
 
 	public boolean f() {

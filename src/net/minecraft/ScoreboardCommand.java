@@ -263,7 +263,7 @@ public class ScoreboardCommand extends AbstractCommand {
 			throw new dp("commands.scoreboard.objectives.add.usage", new Object[0]);
 		} else {
 			if (var2.length > var3) {
-				String var8 = a(var1, var2, var3).getStrippedMessage();
+				String var8 = a(var1, var2, var3).getJsonMessage();
 				if (var8.length() > 32) {
 					throw new dl("commands.scoreboard.objectives.add.displayTooLong", new Object[] { var8, Integer.valueOf(32) });
 				}
@@ -292,7 +292,7 @@ public class ScoreboardCommand extends AbstractCommand {
 			throw new dp("commands.scoreboard.teams.add.usage", new Object[0]);
 		} else {
 			if (var2.length > var3) {
-				String var6 = a(var1, var2, var3).getStrippedMessage();
+				String var6 = a(var1, var2, var3).getJsonMessage();
 				if (var6.length() > 32) {
 					throw new dl("commands.scoreboard.teams.add.displayTooLong", new Object[] { var6, Integer.valueOf(32) });
 				}

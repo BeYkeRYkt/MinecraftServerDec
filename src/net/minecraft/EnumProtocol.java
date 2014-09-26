@@ -4,8 +4,8 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Maps;
 
-import gnu.trove.map.TIntObjectMap;
-import gnu.trove.map.hash.TIntObjectHashMap;
+import net.minecraft.util.gnu.trove.map.TIntObjectMap;
+import net.minecraft.util.gnu.trove.map.hash.TIntObjectHashMap;
 
 import java.util.Map;
 import java.util.Map.Entry;

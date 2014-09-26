@@ -13,6 +13,6 @@ class ags implements agw {
 			var6 = 64;
 		}
 
-		var1.add(new aqc(new ItemStack(Items.BOOK), new ItemStack(Items.EMERALD, var6), var5));
+		var1.add(new MerchantRecipe(new ItemStack(Items.BOOK), new ItemStack(Items.EMERALD, var6), var5));
 	}
 }

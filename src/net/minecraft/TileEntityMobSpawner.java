@@ -1,35 +1,36 @@
 package net.minecraft;
 
-public class TileEntityMobSpawner extends TileEntity implements PacketTickable {
+public class TileEntityMobSpawner extends TileEntity implements ITickable {
 
-	private final aqi a = new bdh(this);
+	private final MobSpawnerAbstract spawner = new MobSpawner(this);
 
-	public void read(NBTCompoundTag var1) {
-		super.read(var1);
-		this.a.a(var1);
+	public void read(NBTCompoundTag tag) {
+		super.read(tag);
+		this.spawner.read(tag);
 	}
 
-	public void write(NBTCompoundTag var1) {
-		super.write(var1);
-		this.a.b(var1);
+	public void write(NBTCompoundTag tag) {
+		super.write(tag);
+		this.spawner.write(tag);
 	}
 
 	public void doTick() {
-		this.a.c();
+		this.spawner.doTick();
 	}
 
-	public Packet getUpdatePacket() {
-		NBTCompoundTag var1 = new NBTCompoundTag();
-		this.write(var1);
-		var1.remove("SpawnPotentials");
-		return new PacketPlayOutUpdateBlockEntity(this.position, 1, var1);
+	public Packet<?> getUpdatePacket() {
+		NBTCompoundTag tag = new NBTCompoundTag();
+		this.write(tag);
+		tag.remove("SpawnPotentials");
+		return new PacketPlayOutUpdateBlockEntity(this.position, 1, tag);
 	}
 
 	public boolean c(int var1, int var2) {
-		return this.a.b(var1) ? true : super.c(var1, var2);
+		return this.spawner.b(var1) ? true : super.c(var1, var2);
 	}
 
-	public aqi b() {
-		return this.a;
+	public MobSpawnerAbstract getSpawner() {
+		return this.spawner;
 	}
+
 }

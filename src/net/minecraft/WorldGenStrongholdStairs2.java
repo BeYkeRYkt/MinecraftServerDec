@@ -13,7 +13,7 @@ public class WorldGenStrongholdStairs2 extends WorldGenStrongholdPiece {
 	public WorldGenStrongholdStairs2(int var1, Random var2, int var3, int var4) {
 		super(var1);
 		this.a = true;
-		this.m = en.a.a(var2);
+		this.m = UniverseDirection.HORIZONTAL.getRandomBlockFace(var2);
 		this.d = bml.a;
 		switch (blu.b[this.m.ordinal()]) {
 			case 1:

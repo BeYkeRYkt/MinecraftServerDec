@@ -12,7 +12,7 @@ public class EntityMinecartTNT extends adx {
 		super(var1, var2, var4, var6);
 	}
 
-	public MinecartType s() {
+	public MinecartType getType() {
 		return MinecartType.TNT;
 	}
 
@@ -20,11 +20,11 @@ public class EntityMinecartTNT extends adx {
 		return Blocks.TNT.getBlockState();
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.a > 0) {
 			--this.a;
-			this.world.a(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			this.world.addParticle(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
 		} else if (this.a == 0) {
 			this.b(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		}
@@ -38,7 +38,7 @@ public class EntityMinecartTNT extends adx {
 
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
 		Entity var3 = var1.i();
 		if (var3 instanceof EntityArrow) {
 			EntityArrow var4 = (EntityArrow) var3;
@@ -47,7 +47,7 @@ public class EntityMinecartTNT extends adx {
 			}
 		}
 
-		return super.damageEntity(var1, var2);
+		return super.receiveDamage(var1, var2);
 	}
 
 	public void a(DamageSource var1) {
@@ -70,7 +70,7 @@ public class EntityMinecartTNT extends adx {
 				var3 = 5.0D;
 			}
 
-			this.world.a(this, this.locationX, this.locationY, this.locationZ, (float) (4.0D + this.random.nextDouble() * 1.5D * var3), true);
+			this.world.createExplosion(this, this.locationX, this.locationY, this.locationZ, (float) (4.0D + this.random.nextDouble() * 1.5D * var3), true);
 			this.die();
 		}
 
@@ -108,23 +108,23 @@ public class EntityMinecartTNT extends adx {
 	}
 
 	public float a(Explosion var1, World var2, Position var3, IBlockState var4) {
-		return this.y() && (ati.d(var4) || ati.d(var2, var3.a())) ? 0.0F : super.a(var1, var2, var3, var4);
+		return this.y() && (ati.d(var4) || ati.d(var2, var3.getUp())) ? 0.0F : super.a(var1, var2, var3, var4);
 	}
 
 	public boolean a(Explosion var1, World var2, Position var3, IBlockState var4, float var5) {
-		return this.y() && (ati.d(var4) || ati.d(var2, var3.a())) ? false : super.a(var1, var2, var3, var4, var5);
+		return this.y() && (ati.d(var4) || ati.d(var2, var3.getUp())) ? false : super.a(var1, var2, var3, var4, var5);
 	}
 
-	protected void a(NBTCompoundTag var1) {
-		super.a(var1);
+	protected void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		if (var1.isTagAssignableFrom("TNTFuse", 99)) {
 			this.a = var1.getInt("TNTFuse");
 		}
 
 	}
 
-	protected void b(NBTCompoundTag var1) {
-		super.b(var1);
+	protected void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("TNTFuse", this.a);
 	}
 }

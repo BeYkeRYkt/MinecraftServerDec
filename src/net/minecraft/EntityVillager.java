@@ -21,7 +21,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 	private int careerLevel;
 	private boolean bx;
 	private boolean by;
-	private wa bz;
+	private InventorySubcontainer bz;
 	private static final agw[][][][] bA = new agw[][][][] {
 			{
 					{ { new agr(Items.WHEAT, new agx(18, 22)), new agr(Items.POTATO, new agx(15, 19)), new agr(Items.CARROT, new agx(15, 19)), new agv(Items.BREAD, new agx(-4, -2)) }, { new agr(Item.getItemOf(Blocks.PUMPKIN), new agx(8, 13)), new agv(Items.PUMPKIN_PIE, new agx(-3, -2)) }, { new agr(Item.getItemOf(Blocks.MELON_BLOCK), new agx(7, 12)), new agv(Items.APPLE, new agx(-5, -7)) }, { new agv(Items.COOKIE, new agx(-6, -10)), new agv(Items.CAKE, new agx(1, 1)) } },
@@ -43,7 +43,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 
 	public EntityVillager(World var1, int var2) {
 		super(var1);
-		this.bz = new wa("Items", false, 8);
+		this.bz = new InventorySubcontainer("Items", false, 8);
 		this.setProfession(var2);
 		this.a(0.6F, 1.8F);
 		((aay) this.s()).b(true);
@@ -120,7 +120,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 					Iterator var3 = this.bp.iterator();
 
 					while (var3.hasNext()) {
-						aqc var4 = (aqc) var3.next();
+						MerchantRecipe var4 = (MerchantRecipe) var3.next();
 						if (var4.h()) {
 							var4.a(this.random.nextInt(6) + this.random.nextInt(6) + 2);
 						}
@@ -147,7 +147,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		if (!var3 && this.isAlive() && !this.cm() && !this.i_()) {
 			if (!this.world.isStatic && (this.bp == null || this.bp.size() > 0)) {
 				this.a_(var1);
-				var1.a((IMerchant) this);
+				var1.openMerchantInventory((IMerchant) this);
 			}
 
 			var1.b(StatisticList.F);
@@ -162,8 +162,8 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		this.dataWatcher.a(16, Integer.valueOf(0));
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("Profession", this.cj());
 		var1.put("Riches", this.riches);
 		var1.put("Career", this.career);
@@ -175,8 +175,8 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 
 		NBTListTag var2 = new NBTListTag();
 
-		for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
-			ItemStack var4 = this.bz.a(var3);
+		for (int var3 = 0; var3 < this.bz.getSize(); ++var3) {
+			ItemStack var4 = this.bz.getItem(var3);
 			if (var4 != null) {
 				var2.addTag((NBTTag) var4.write(new NBTCompoundTag()));
 			}
@@ -185,8 +185,8 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		var1.put("Inventory", (NBTTag) var2);
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.setProfession(var1.getInt("Profession"));
 		this.riches = var1.getInt("Riches");
 		this.career = var1.getInt("Career");
@@ -200,7 +200,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		NBTListTag var5 = var1.getList("Inventory", 10);
 
 		for (int var3 = 0; var3 < var5.getSize(); ++var3) {
-			ItemStack var4 = ItemStack.a(var5.getCompound(var3));
+			ItemStack var4 = ItemStack.fromNBT(var5.getCompound(var3));
 			if (var4 != null) {
 				this.bz.a(var4);
 			}
@@ -269,9 +269,9 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 
 	}
 
-	public void a(DamageSource var1) {
+	public void die(DamageSource var1) {
 		if (this.village != null) {
-			Entity var2 = var1.j();
+			Entity var2 = var1.getDamager();
 			if (var2 != null) {
 				if (var2 instanceof EntityHuman) {
 					this.village.a(var2.getName(), -2);
@@ -279,14 +279,14 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 					this.village.h();
 				}
 			} else {
-				EntityHuman var3 = this.world.a(this, 16.0D);
+				EntityHuman var3 = this.world.findNearbyPlayer(this, 16.0D);
 				if (var3 != null) {
 					this.village.h();
 				}
 			}
 		}
 
-		super.a(var1);
+		super.die(var1);
 	}
 
 	public void a_(EntityHuman var1) {
@@ -305,15 +305,15 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		if (!this.willing && var1 && this.cp()) {
 			boolean var2 = false;
 
-			for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
-				ItemStack var4 = this.bz.a(var3);
+			for (int var3 = 0; var3 < this.bz.getSize(); ++var3) {
+				ItemStack var4 = this.bz.getItem(var3);
 				if (var4 != null) {
 					if (var4.getItem() == Items.BREAD && var4.amount >= 3) {
 						var2 = true;
-						this.bz.a(var3, 3);
+						this.bz.splitStack(var3, 3);
 					} else if ((var4.getItem() == Items.POTATO || var4.getItem() == Items.CARROT) && var4.amount >= 12) {
 						var2 = true;
-						this.bz.a(var3, 12);
+						this.bz.splitStack(var3, 12);
 					}
 				}
 
@@ -332,7 +332,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		this.willing = var1;
 	}
 
-	public void a(aqc var1) {
+	public void a(MerchantRecipe var1) {
 		var1.g();
 		this.a_ = -this.w();
 		this.a("mob.villager.yes", this.bA(), this.bB());
@@ -372,7 +372,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 
 	}
 
-	public MerchantRecipeList b_(EntityHuman var1) {
+	public MerchantRecipeList getRecipes(EntityHuman var1) {
 		if (this.bp == null) {
 			this.cu();
 		}
@@ -476,7 +476,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 
 	public xq a(vu var1, xq var2) {
 		var2 = super.a(var1, var2);
-		this.setProfession(this.world.s.nextInt(5));
+		this.setProfession(this.world.random.nextInt(5));
 		this.ct();
 		return var2;
 	}
@@ -505,7 +505,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		}
 	}
 
-	public wa co() {
+	public InventorySubcontainer co() {
 		return this.bz;
 	}
 
@@ -543,8 +543,8 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 	private boolean s(int var1) {
 		boolean var2 = this.cj() == 0;
 
-		for (int var3 = 0; var3 < this.bz.n_(); ++var3) {
-			ItemStack var4 = this.bz.a(var3);
+		for (int var3 = 0; var3 < this.bz.getSize(); ++var3) {
+			ItemStack var4 = this.bz.getItem(var3);
 			if (var4 != null) {
 				if (var4.getItem() == Items.BREAD && var4.amount >= 3 * var1 || var4.getItem() == Items.POTATO && var4.amount >= 12 * var1 || var4.getItem() == Items.CARROT && var4.amount >= 12 * var1) {
 					return true;
@@ -560,8 +560,8 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 	}
 
 	public boolean cs() {
-		for (int var1 = 0; var1 < this.bz.n_(); ++var1) {
-			ItemStack var2 = this.bz.a(var1);
+		for (int var1 = 0; var1 < this.bz.getSize(); ++var1) {
+			ItemStack var2 = this.bz.getItem(var1);
 			if (var2 != null && (var2.getItem() == Items.WHEAT_SEEDS || var2.getItem() == Items.POTATO || var2.getItem() == Items.CARROT)) {
 				return true;
 			}
@@ -575,8 +575,8 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 			return true;
 		} else {
 			int var3 = var1 - 300;
-			if (var3 >= 0 && var3 < this.bz.n_()) {
-				this.bz.a(var3, var2);
+			if (var3 >= 0 && var3 < this.bz.getSize()) {
+				this.bz.setItem(var3, var2);
 				return true;
 			} else {
 				return false;

@@ -15,11 +15,11 @@ public class BlockSponge extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((Boolean) var1.b(a)).booleanValue() ? 1 : 0;
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		this.e(var1, var2, var3);
 	}
 
@@ -31,7 +31,7 @@ public class BlockSponge extends Block {
 	protected void e(World var1, Position var2, IBlockState var3) {
 		if (!((Boolean) var3.b(a)).booleanValue() && this.d(var1, var2)) {
 			var1.setBlockAt(var2, var3.a(a, Boolean.valueOf(true)), 2);
-			var1.b(2001, var2, Block.getBlockId((Block) Blocks.WATER));
+			var1.triggerEffect(2001, var2, Block.getBlockId((Block) Blocks.WATER));
 		}
 
 	}
@@ -52,7 +52,7 @@ public class BlockSponge extends Block {
 
 			for (int var11 = 0; var11 < var10; ++var11) {
 				BlockFace var12 = var9[var11];
-				Position var13 = var7.a(var12);
+				Position var13 = var7.getRelative(var12);
 				if (var1.getBlockState(var13).getBlock().getMaterial() == Material.WATER) {
 					var1.setBlockAt(var13, Blocks.AIR.getBlockState(), 2);
 					var4.add(var13);

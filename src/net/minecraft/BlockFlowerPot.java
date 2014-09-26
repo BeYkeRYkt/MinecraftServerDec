@@ -31,7 +31,7 @@ public class BlockFlowerPot extends atg {
 		return false;
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		ItemStack var9 = var4.playerInventory.getItemInHand();
 		if (var9 != null && var9.getItem() instanceof ItemBlock) {
 			TileEntityFlowerPot var10 = this.d(var1, var2);
@@ -41,14 +41,14 @@ public class BlockFlowerPot extends atg {
 				return false;
 			} else {
 				Block var11 = Block.getBlockByItem(var9.getItem());
-				if (!this.a(var11, var9.getDurability())) {
+				if (!this.a(var11, var9.getWearout())) {
 					return false;
 				} else {
-					var10.a(var9.getItem(), var9.getDurability());
+					var10.a(var9.getItem(), var9.getWearout());
 					var10.update();
 					var1.notify(var2);
 					if (!var4.playerProperties.instabuild && --var9.amount <= 0) {
-						var4.playerInventory.a(var4.playerInventory.itemInHandIndex, (ItemStack) null);
+						var4.playerInventory.setItem(var4.playerInventory.itemInHandIndex, (ItemStack) null);
 					}
 
 					return true;
@@ -69,24 +69,24 @@ public class BlockFlowerPot extends atg {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return super.c(var1, var2) && World.a((ard) var1, var2.b());
+		return super.c(var1, var2) && World.a((ard) var1, var2.getDown());
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, Block var4) {
-		if (!World.a((ard) var1, var2.b())) {
-			this.b(var1, var2, var3, 0);
+		if (!World.a((ard) var1, var2.getDown())) {
+			this.dropNaturally(var1, var2, var3, 0);
 			var1.g(var2);
 		}
 
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		TileEntityFlowerPot var4 = this.d(var1, var2);
 		if (var4 != null && var4.b() != null) {
-			a(var1, var2, new ItemStack(var4.b(), 1, var4.c()));
+			dropItem(var1, var2, new ItemStack(var4.b(), 1, var4.c()));
 		}
 
-		super.b(var1, var2, var3);
+		super.remove(var1, var2, var3);
 	}
 
 	public void a(World var1, Position var2, IBlockState var3, EntityHuman var4) {
@@ -100,7 +100,7 @@ public class BlockFlowerPot extends atg {
 
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.FLOWER_POT;
 	}
 
@@ -109,7 +109,7 @@ public class BlockFlowerPot extends atg {
 		return var3 instanceof TileEntityFlowerPot ? (TileEntityFlowerPot) var3 : null;
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		Object var3 = null;
 		int var4 = 0;
 		switch (var2) {

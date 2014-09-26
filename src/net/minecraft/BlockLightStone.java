@@ -9,15 +9,15 @@ public class BlockLightStone extends Block {
 		this.a(CreativeModeTab.BUILDING_BLOCKS);
 	}
 
-	public int a(int var1, Random var2) {
-		return MathHelper.a(this.a(var2) + var2.nextInt(var1 + 1), 1, 4);
+	public int getDropCount(int var1, Random var2) {
+		return MathHelper.a(this.getDropCount(var2) + var2.nextInt(var1 + 1), 1, 4);
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return 2 + var1.nextInt(3);
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.GLOWSTONE_DUST;
 	}
 

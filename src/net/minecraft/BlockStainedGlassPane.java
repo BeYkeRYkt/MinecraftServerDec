@@ -10,7 +10,7 @@ public class BlockStainedGlassPane extends BlockThin {
 		this.a(CreativeModeTab.DECORATIONS);
 	}
 
-	public int a(IBlockState var1) {
+	public int getItemDropData(IBlockState var1) {
 		return ((akv) var1.b(a)).a();
 	}
 
@@ -26,14 +26,14 @@ public class BlockStainedGlassPane extends BlockThin {
 		return new bed(this, new bex[] { b, M, O, N, a });
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			BlockBeacon.d(var1, var2);
 		}
 
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
+	public void remove(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			BlockBeacon.d(var1, var2);
 		}

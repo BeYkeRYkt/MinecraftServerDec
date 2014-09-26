@@ -175,14 +175,14 @@ public class EntityRabbit extends EntityAnimal {
 		this.a(afs.d).a(0.30000001192092896D);
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("RabbitType", this.cl());
 		var1.put("MoreCarrotTicks", this.bs);
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.r(var1.getInt("RabbitType"));
 		this.bs = var1.getInt("MoreCarrotTicks");
 	}
@@ -206,9 +206,9 @@ public class EntityRabbit extends EntityAnimal {
 	public boolean r(Entity var1) {
 		if (this.cl() == 99) {
 			this.a("mob.attack", 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-			return var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), 8.0F);
+			return var1.receiveDamage(DamageSource.mobAttack((EntityLiving) this), 8.0F);
 		} else {
-			return var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), 3.0F);
+			return var1.receiveDamage(DamageSource.mobAttack((EntityLiving) this), 3.0F);
 		}
 	}
 
@@ -216,8 +216,8 @@ public class EntityRabbit extends EntityAnimal {
 		return this.cl() == 99 ? 8 : super.bq();
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		return this.b(var1) ? false : super.damageEntity(var1, var2);
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		return this.ignoresDamageType(var1) ? false : super.receiveDamage(var1, var2);
 	}
 
 	protected void bp() {
@@ -272,7 +272,7 @@ public class EntityRabbit extends EntityAnimal {
 			this.bg.a(1, new aal(this, false, new Class[0]));
 			this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
 			this.bg.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityWolf.class, true));
-			if (!this.k_()) {
+			if (!this.hasCustomName()) {
 				this.a(LocaleI18n.get("entity.KillerBunny.name"));
 			}
 		}
@@ -308,7 +308,7 @@ public class EntityRabbit extends EntityAnimal {
 	}
 
 	protected void cn() {
-		this.world.a(Particle.M, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, 0.0D, 0.0D, 0.0D, new int[] { Block.getStateId(Blocks.CARROTS.setData(7)) });
+		this.world.addParticle(Particle.M, this.locationX + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, this.locationY + 0.5D + (double) (this.random.nextFloat() * this.width), this.locationZ + (double) (this.random.nextFloat() * this.height * 2.0F) - (double) this.height, 0.0D, 0.0D, 0.0D, new int[] { Block.getStateId(Blocks.CARROTS.setData(7)) });
 		this.bs = 100;
 	}
 

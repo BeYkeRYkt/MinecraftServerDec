@@ -15,7 +15,7 @@ public class bpp extends bpa {
 		int[] var9 = this.a.a(var5, var6, var7, var8);
 		int var10 = var7 - 1 << 1;
 		int var11 = var8 - 1 << 1;
-		int[] var12 = boy.a(var10 * var11);
+		int[] var12 = IntCache.allocate(var10 * var11);
 
 		int var14;
 		for (int var13 = 0; var13 < var8 - 1; ++var13) {
@@ -36,7 +36,7 @@ public class bpp extends bpa {
 			}
 		}
 
-		int[] var20 = boy.a(var3 * var4);
+		int[] var20 = IntCache.allocate(var3 * var4);
 
 		for (var14 = 0; var14 < var4; ++var14) {
 			System.arraycopy(var12, (var14 + (var2 & 1)) * var10 + (var1 & 1), var20, var14 * var3, var3);

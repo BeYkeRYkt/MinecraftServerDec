@@ -1,9 +1,9 @@
 package pipebukkit.server;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufOutputStream;
-import io.netty.buffer.Unpooled;
-import io.netty.handler.codec.base64.Base64;
+import net.minecraft.util.io.netty.buffer.ByteBuf;
+import net.minecraft.util.io.netty.buffer.ByteBufOutputStream;
+import net.minecraft.util.io.netty.buffer.Unpooled;
+import net.minecraft.util.io.netty.handler.codec.base64.Base64;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -21,16 +21,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.WeakHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
+import net.minecraft.CraftingManager;
+import net.minecraft.Difficulty;
 import net.minecraft.EntityPlayer;
 import net.minecraft.EnumGameMode;
+import net.minecraft.ExceptionWorldConflict;
+import net.minecraft.IDataManager;
+import net.minecraft.IRecipe;
 import net.minecraft.JsonListEntry;
+import net.minecraft.LevelType;
+import net.minecraft.RecipesFurnace;
+import net.minecraft.SecondaryWorldServer;
+import net.minecraft.ServerNBTManager;
+import net.minecraft.WorldManager;
 import net.minecraft.WorldNBTStorage;
 import net.minecraft.WorldServer;
+import net.minecraft.WorldSettings;
 import net.minecraft.server.MinecraftServer;
 
 import org.apache.commons.lang.Validate;
@@ -54,12 +66,17 @@ import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.world.WorldInitEvent;
+import org.bukkit.event.world.WorldLoadEvent;
+import org.bukkit.event.world.WorldSaveEvent;
+import org.bukkit.event.world.WorldUnloadEvent;
 import org.bukkit.help.HelpMap;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.map.MapView;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.plugin.Plugin;
@@ -78,6 +95,10 @@ import org.bukkit.util.CachedServerIcon;
 import pipebukkit.server.banlists.PipeIpBanList;
 import pipebukkit.server.banlists.PipeProfileBanList;
 import pipebukkit.server.entity.PipePlayer;
+import pipebukkit.server.inventory.PipeCustomInventory;
+import pipebukkit.server.inventory.PipeRecipes;
+import pipebukkit.server.inventory.RecipeIterator;
+import pipebukkit.server.metadata.BlockMetadataStorage;
 import pipebukkit.server.metadata.EntityMetadataStorage;
 import pipebukkit.server.metadata.PlayerMetadataStorage;
 import pipebukkit.server.scheduler.PipeScheduler;
@@ -88,7 +109,9 @@ import com.avaje.ebean.config.ServerConfig;
 import com.avaje.ebean.config.dbplatform.SQLitePlatform;
 import com.avaje.ebeaninternal.server.lib.sql.TransactionIsolation;
 import com.google.common.base.Charsets;
-import com.mojang.authlib.GameProfile;
+import com.google.common.collect.Lists;
+
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 
 public class PipeServer implements Server {
 
@@ -113,11 +136,12 @@ public class PipeServer implements Server {
 
 	private EntityMetadataStorage entityMetadata = new EntityMetadataStorage();
 	private PlayerMetadataStorage playerMetadata = new PlayerMetadataStorage();
+	private WeakHashMap<World, BlockMetadataStorage> blockStorage = new WeakHashMap<World, BlockMetadataStorage>();
 
 	public PipeServer() {
 		Bukkit.setServer(this);
 
-		players = Collections.unmodifiableList(com.google.common.collect.Lists.transform(MinecraftServer.getInstance().getPlayerList().players, new com.google.common.base.Function<EntityPlayer, Player>() {
+		players = Collections.unmodifiableList(Lists.transform(MinecraftServer.getInstance().getPlayerList().players, new com.google.common.base.Function<EntityPlayer, Player>() {
 			@Override
 			public Player apply(EntityPlayer player) {
 				return player.getBukkitEntity(Player.class);
@@ -145,14 +169,11 @@ public class PipeServer implements Server {
 		enablePlugins(PluginLoadOrder.STARTUP);
 	}
 
-	public void finishWorldsLoading() {
-		for (WorldServer world : MinecraftServer.getInstance().worlds) {
-			worlds.put(world.getWorldData().getLevelName(), new PipeWorld(world));
-		}
-		enablePlugins(PluginLoadOrder.POSTWORLD);
+	public void addWorld(WorldServer worldServer) {
+		worlds.put(worldServer.getBukkitWorld().getName().toLowerCase(), worldServer.getBukkitWorld());
 	}
 
-	private void enablePlugins(PluginLoadOrder order) {
+	public void enablePlugins(PluginLoadOrder order) {
 		for (Plugin plugin : pluginManager.getPlugins()) {
 			if ((!plugin.isEnabled()) && (plugin.getDescription().getLoad() == order)) {
 				pluginManager.enablePlugin(plugin);
@@ -160,7 +181,7 @@ public class PipeServer implements Server {
 		}
 	}
 
-	public boolean handleServerCommand(String commandString) {
+	public boolean handleCommand(CommandSender sender, String commandString) {
 		String[] split = commandString.split("\\s+");
 		String commandName = split[0];
 		String[] args = new String[0];
@@ -169,7 +190,7 @@ public class PipeServer implements Server {
 		}
 		Command command = commandMap.getCommand(commandName);
 		if (command != null) {
-			command.execute(getConsoleSender(), commandName, args);
+			command.execute(sender, commandName, args);
 			return true;
 		}
 		return false;
@@ -181,6 +202,10 @@ public class PipeServer implements Server {
 
 	public PlayerMetadataStorage getPlayerMetadataStorage() {
 		return playerMetadata;
+	}
+
+	public BlockMetadataStorage getBlockMetadataStorage(World world) {
+		return blockStorage.get(world);
 	}
 
 	@Override
@@ -216,32 +241,37 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public boolean addRecipe(Recipe arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addRecipe(Recipe recipe) {
+		return PipeRecipes.addRecipe(recipe);
 	}
 
 	@Override
 	public void clearRecipes() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public Iterator<Recipe> recipeIterator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Recipe> getRecipesFor(ItemStack arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		CraftingManager.getInstance().getRecipes().clear();
+		RecipesFurnace.getInstance().clearRecipes();
 	}
 
 	@Override
 	public void resetRecipes() {
-		// TODO Auto-generated method stub
-		
+		CraftingManager.getInstance().resetRecipes();
+		RecipesFurnace.getInstance().resetRecipes();
+	}
+
+	@Override
+	public Iterator<Recipe> recipeIterator() {
+		return new RecipeIterator();
+	}
+
+	@Override
+	public List<Recipe> getRecipesFor(ItemStack result) {
+		List<Recipe> recipes = new ArrayList<Recipe>();
+		for (IRecipe nmsRecipe : CraftingManager.getInstance().getRecipes()) {
+			Recipe recipe = PipeRecipes.fromNMSRecipe(nmsRecipe);
+			if (recipe.getResult().equals(result)) {
+				recipes.add(recipe);
+			}
+		}
+		return recipes;
 	}
 
 	@Override
@@ -280,45 +310,113 @@ public class PipeServer implements Server {
 	}
 
 	@Override
-	public Inventory createInventory(InventoryHolder arg0, InventoryType arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	public Inventory createInventory(InventoryHolder holder, InventoryType type) {
+		return createInventory(holder, type, type.getDefaultTitle());
 	}
 
 	@Override
-	public Inventory createInventory(InventoryHolder arg0, int arg1) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
+	public Inventory createInventory(InventoryHolder holder, InventoryType type, String title) {
+		return createInventory(holder, type, type.getDefaultSize(), title);
 	}
 
 	@Override
-	public Inventory createInventory(InventoryHolder arg0, InventoryType arg1, String arg2) {
-		// TODO Auto-generated method stub
-		return null;
+	public Inventory createInventory(InventoryHolder holder, int slots) throws IllegalArgumentException {
+		return createInventory(holder, slots, InventoryType.CHEST.getDefaultTitle());
 	}
 
 	@Override
-	public Inventory createInventory(InventoryHolder arg0, int arg1, String arg2) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
+	public Inventory createInventory(InventoryHolder holder, int slots, String title) throws IllegalArgumentException {
+		Validate.isTrue(slots % 9 == 0, "Chests must have a size that is a multiple of 9!");
+		return createInventory(holder, InventoryType.CHEST, slots, title);
+	}
+
+	private Inventory createInventory(InventoryHolder holder, InventoryType type, int slots, String title) {
+		return new PipeCustomInventory(holder, type, slots, title);
 	}
 
 	@Override
 	public World createWorld(WorldCreator creator) {
-		// TODO Auto-generated method stub
-		return null;
+		if (worlds.containsKey(creator.name().toLowerCase())) {
+			return worlds.get(creator.name());
+		}
+
+		LevelType type = LevelType.getByName(creator.type().getName());
+		if (type == null) {
+			type = LevelType.DEFAULT;
+		}
+		WorldSettings worldSettings = new WorldSettings(creator.seed(), MinecraftServer.getInstance().getServerGameMode(), MinecraftServer.getInstance().isStructureGenerationEnabled(), MinecraftServer.getInstance().isHardcore(), type);
+		IDataManager datamanager = new ServerNBTManager(Bukkit.getWorldContainer(), creator.name(), true);
+		int dimension = 1337 + worlds.size();
+
+		WorldServer worldServer = new SecondaryWorldServer(MinecraftServer.getInstance(), datamanager, creator.name(), worldSettings, dimension, MinecraftServer.getInstance().getWorld(), MinecraftServer.getInstance().profiler).b();
+		worldServer.addIWorldAccess(new WorldManager(MinecraftServer.getInstance(), worldServer));
+		worldServer.getWorldData().setGameMode(MinecraftServer.getInstance().getServerGameMode());
+
+		MinecraftServer.getInstance().worlds.add(worldServer);
+		addWorld(worldServer);
+
+		Bukkit.getPluginManager().callEvent(new WorldInitEvent(worldServer.getBukkitWorld()));
+
+		MinecraftServer.getInstance().generateTerrain(worldServer);
+
+		Bukkit.getPluginManager().callEvent(new WorldLoadEvent(worldServer.getBukkitWorld()));
+
+		worldServer.getWorldData().setDifficulty(Difficulty.EASY);
+
+		return worldServer.getBukkitWorld();
 	}
 
 	@Override
-	public boolean unloadWorld(String arg0, boolean arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean unloadWorld(String name, boolean save) {
+		return unloadWorld(getWorld(name), save);
 	}
 
 	@Override
-	public boolean unloadWorld(World arg0, boolean arg1) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean unloadWorld(World world, boolean save) {
+		if (world == null) {
+			return false;
+		}
+
+		if (!(world instanceof PipeWorld)) {
+			return false;
+		}
+
+		PipeWorld pipeworld = (PipeWorld) world;
+
+		if (pipeworld.getHandle().getWorldProvider().getDimensionId() <= 1) {
+			return false;
+		}
+
+		if (!MinecraftServer.getInstance().worlds.contains(pipeworld.getHandle())) {
+			return false;
+		}
+
+		for (Player player : Bukkit.getOnlinePlayers()) {
+			if (player.getWorld() == world) {
+				return false;
+			}
+		}
+
+		WorldUnloadEvent worldUnloadEvent = new WorldUnloadEvent(world);
+		Bukkit.getPluginManager().callEvent(worldUnloadEvent);
+		if (worldUnloadEvent.isCancelled()) {
+			return false;
+		}
+
+		if (save) {
+			try {
+				pipeworld.getHandle().save(true, null);
+				pipeworld.getHandle().saveLevel();
+				getPluginManager().callEvent(new WorldSaveEvent(world));
+			} catch (ExceptionWorldConflict ex) {
+				getLogger().log(Level.SEVERE, null, ex);
+			}
+		}
+
+		worlds.remove(world.getName().toLowerCase());
+		MinecraftServer.getInstance().worlds.remove(pipeworld.getHandle());
+
+		return true;
 	}
 
 	@Override
@@ -431,7 +529,7 @@ public class PipeServer implements Server {
 	@SuppressWarnings("deprecation")
 	@Override
 	public GameMode getDefaultGameMode() {
-		return GameMode.getByValue(MinecraftServer.getInstance().getPrimaryWorld().getWorldData().getGameMode().getId());
+		return GameMode.getByValue(MinecraftServer.getInstance().getWorld().getWorldData().getGameMode().getId());
 	}
 
 	@Override
@@ -510,7 +608,11 @@ public class PipeServer implements Server {
 	@Override
 	public Player getPlayer(UUID uuid) {
 		Validate.notNull(uuid, "UUID cannot be null");
-		return MinecraftServer.getInstance().getPlayerList().getPlayer(uuid).getBukkitEntity(PipePlayer.class);
+		EntityPlayer entityPlayer = MinecraftServer.getInstance().getPlayerList().getPlayer(uuid);
+		if (entityPlayer == null) {
+			return null;
+		}
+		return entityPlayer.getBukkitEntity(PipePlayer.class);
 	}
 
 	@Override
@@ -564,7 +666,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public OfflinePlayer[] getOfflinePlayers() {
-		WorldNBTStorage storage = (WorldNBTStorage) MinecraftServer.getInstance().getPrimaryWorld().getDataManager();
+		WorldNBTStorage storage = (WorldNBTStorage) MinecraftServer.getInstance().getWorld().getDataManager();
 		String[] files = storage.getPlayerDir().list(new FilenameFilter() {
 			@Override
 			public boolean accept(File dir, String name) {
@@ -620,7 +722,7 @@ public class PipeServer implements Server {
 
 	@Override
 	public World getWorld(String name) {
-		return worlds.get(name);
+		return worlds.get(name.toLowerCase());
 	}
 
 	@Override
@@ -701,7 +803,7 @@ public class PipeServer implements Server {
 	@Override
 	public void setDefaultGameMode(GameMode mode) {
 		Validate.notNull(mode, "Mode cannot be null");
-		MinecraftServer.getInstance().getPrimaryWorld().getWorldData().setGameMode(EnumGameMode.getById(mode.getValue()));
+		MinecraftServer.getInstance().getWorld().getWorldData().setGameMode(EnumGameMode.getById(mode.getValue()));
 	}
 
 	@Override

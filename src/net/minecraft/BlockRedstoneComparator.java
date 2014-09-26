@@ -16,7 +16,7 @@ public class BlockRedstoneComparator extends ava implements avs {
 		this.A = true;
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.COMPARATOR;
 	}
 
@@ -66,14 +66,14 @@ public class BlockRedstoneComparator extends ava implements avs {
 	protected int f(World var1, Position var2, IBlockState var3) {
 		int var4 = super.f(var1, var2, var3);
 		BlockFace var5 = (BlockFace) var3.b(N);
-		Position var6 = var2.a(var5);
+		Position var6 = var2.getRelative(var5);
 		Block var7 = var1.getBlockState(var6).getBlock();
-		if (var7.N()) {
+		if (var7.isComplexRedstone()) {
 			var4 = var7.l(var1, var6);
 		} else if (var4 < 15 && var7.t()) {
-			var6 = var6.a(var5);
+			var6 = var6.getRelative(var5);
 			var7 = var1.getBlockState(var6).getBlock();
-			if (var7.N()) {
+			if (var7.isComplexRedstone()) {
 				var4 = var7.l(var1, var6);
 			} else if (var7.getMaterial() == Material.AIR) {
 				EntityItemFrame var8 = this.a(var1, var5, var6);
@@ -87,11 +87,11 @@ public class BlockRedstoneComparator extends ava implements avs {
 	}
 
 	private EntityItemFrame a(World var1, BlockFace var2, Position var3) {
-		List var4 = var1.a(EntityItemFrame.class, new AxisAlignedBB((double) var3.getX(), (double) var3.getY(), (double) var3.getZ(), (double) (var3.getX() + 1), (double) (var3.getY() + 1), (double) (var3.getZ() + 1)), (Predicate) (new auq(this, var2)));
+		List var4 = var1.getEntititesInAABB(EntityItemFrame.class, new AxisAlignedBB((double) var3.getX(), (double) var3.getY(), (double) var3.getZ(), (double) (var3.getX() + 1), (double) (var3.getY() + 1), (double) (var3.getZ() + 1)), (Predicate) (new auq(this, var2)));
 		return var4.size() == 1 ? (EntityItemFrame) var4.get(0) : null;
 	}
 
-	public boolean a(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
+	public boolean interact(World var1, Position var2, IBlockState var3, EntityHuman var4, BlockFace var5, float var6, float var7, float var8) {
 		if (!var4.playerProperties.maybuild) {
 			return false;
 		} else {
@@ -151,13 +151,13 @@ public class BlockRedstoneComparator extends ava implements avs {
 		this.k(var1, var2, var3);
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
-		super.c(var1, var2, var3);
-		var1.a(var2, this.a(var1, 0));
+	public void onPlace(World var1, Position var2, IBlockState var3) {
+		super.onPlace(var1, var2, var3);
+		var1.a(var2, this.getTileEntity(var1, 0));
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
-		super.b(var1, var2, var3);
+	public void remove(World var1, Position var2, IBlockState var3) {
+		super.remove(var1, var2, var3);
 		var1.t(var2);
 		this.h(var1, var2, var3);
 	}
@@ -168,7 +168,7 @@ public class BlockRedstoneComparator extends ava implements avs {
 		return var6 == null ? false : var6.c(var4, var5);
 	}
 
-	public TileEntity a(World var1, int var2) {
+	public TileEntity getTileEntity(World var1, int var2) {
 		return new TileEntityComparator();
 	}
 

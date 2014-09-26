@@ -14,7 +14,7 @@ public class ChatComponentText extends hj {
 		return this.b;
 	}
 
-	public String e() {
+	public String getComponentVaue() {
 		return this.b;
 	}
 

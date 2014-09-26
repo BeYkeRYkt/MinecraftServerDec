@@ -33,11 +33,11 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	private azu c(ard var1, Position var2, BlockFace var3) {
-		Position var4 = var2.a(var3);
-		Block var5 = var1.getBlockState(var2.a(var3)).getBlock();
-		if (!a(var1.getBlockState(var4), var3) && (var5.s() || !d(var1.getBlockState(var4.b())))) {
-			Block var6 = var1.getBlockState(var2.a()).getBlock();
-			return !var6.s() && var5.s() && d(var1.getBlockState(var4.a())) ? azu.a : azu.c;
+		Position var4 = var2.getRelative(var3);
+		Block var5 = var1.getBlockState(var2.getRelative(var3)).getBlock();
+		if (!a(var1.getBlockState(var4), var3) && (var5.s() || !d(var1.getBlockState(var4.getDown())))) {
+			Block var6 = var1.getBlockState(var2.getUp()).getBlock();
+			return !var6.s() && var5.s() && d(var1.getBlockState(var4.getUp())) ? azu.a : azu.c;
 		} else {
 			return azu.b;
 		}
@@ -56,7 +56,7 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	public boolean c(World var1, Position var2) {
-		return World.a((ard) var1, var2.b()) || var1.getBlockState(var2.b()).getBlock() == Blocks.GLOWSTONE;
+		return World.a((ard) var1, var2.getDown()) || var1.getBlockState(var2.getDown()).getBlock() == Blocks.GLOWSTONE;
 	}
 
 	private IBlockState e(World var1, Position var2, IBlockState var3) {
@@ -77,31 +77,31 @@ public class BlockRedstoneWire extends Block {
 		IBlockState var5 = var4;
 		int var6 = ((Integer) var4.b(O)).intValue();
 		byte var7 = 0;
-		int var14 = this.a(var1, var3, var7);
+		int var14 = this.getPower(var1, var3, var7);
 		this.P = false;
-		int var8 = var1.A(var2);
+		int var8 = var1.getHighestNeighborSignal(var2);
 		this.P = true;
 		if (var8 > 0 && var8 > var14 - 1) {
 			var14 = var8;
 		}
 
 		int var9 = 0;
-		Iterator var10 = en.a.iterator();
+		Iterator var10 = UniverseDirection.HORIZONTAL.iterator();
 
 		while (var10.hasNext()) {
 			BlockFace var11 = (BlockFace) var10.next();
-			Position var12 = var2.a(var11);
+			Position var12 = var2.getRelative(var11);
 			boolean var13 = var12.getX() != var3.getX() || var12.getZ() != var3.getZ();
 			if (var13) {
-				var9 = this.a(var1, var12, var9);
+				var9 = this.getPower(var1, var12, var9);
 			}
 
-			if (var1.getBlockState(var12).getBlock().t() && !var1.getBlockState(var2.a()).getBlock().t()) {
+			if (var1.getBlockState(var12).getBlock().t() && !var1.getBlockState(var2.getUp()).getBlock().t()) {
 				if (var13 && var2.getY() >= var3.getY()) {
-					var9 = this.a(var1, var12.a(), var9);
+					var9 = this.getPower(var1, var12.getUp(), var9);
 				}
 			} else if (!var1.getBlockState(var12).getBlock().t() && var13 && var2.getY() <= var3.getY()) {
-				var9 = this.a(var1, var12.b(), var9);
+				var9 = this.getPower(var1, var12.getDown(), var9);
 			}
 		}
 
@@ -129,7 +129,7 @@ public class BlockRedstoneWire extends Block {
 
 			for (int var17 = 0; var17 < var16; ++var17) {
 				BlockFace var18 = var15[var17];
-				this.Q.add(var2.a(var18));
+				this.Q.add(var2.getRelative(var18));
 			}
 		}
 
@@ -144,86 +144,86 @@ public class BlockRedstoneWire extends Block {
 
 			for (int var5 = 0; var5 < var4; ++var5) {
 				BlockFace var6 = var3[var5];
-				var1.c(var2.a(var6), (Block) this);
+				var1.c(var2.getRelative(var6), (Block) this);
 			}
 
 		}
 	}
 
-	public void c(World var1, Position var2, IBlockState var3) {
+	public void onPlace(World var1, Position var2, IBlockState var3) {
 		if (!var1.isStatic) {
 			this.e(var1, var2, var3);
-			Iterator var4 = en.b.iterator();
+			Iterator var4 = UniverseDirection.VERTICAL.iterator();
 
 			BlockFace var5;
 			while (var4.hasNext()) {
 				var5 = (BlockFace) var4.next();
-				var1.c(var2.a(var5), (Block) this);
+				var1.c(var2.getRelative(var5), (Block) this);
 			}
 
-			var4 = en.a.iterator();
+			var4 = UniverseDirection.HORIZONTAL.iterator();
 
 			while (var4.hasNext()) {
 				var5 = (BlockFace) var4.next();
-				this.d(var1, var2.a(var5));
+				this.d(var1, var2.getRelative(var5));
 			}
 
-			var4 = en.a.iterator();
+			var4 = UniverseDirection.HORIZONTAL.iterator();
 
 			while (var4.hasNext()) {
 				var5 = (BlockFace) var4.next();
-				Position var6 = var2.a(var5);
+				Position var6 = var2.getRelative(var5);
 				if (var1.getBlockState(var6).getBlock().t()) {
-					this.d(var1, var6.a());
+					this.d(var1, var6.getUp());
 				} else {
-					this.d(var1, var6.b());
+					this.d(var1, var6.getDown());
 				}
 			}
 
 		}
 	}
 
-	public void b(World var1, Position var2, IBlockState var3) {
-		super.b(var1, var2, var3);
+	public void remove(World var1, Position var2, IBlockState var3) {
+		super.remove(var1, var2, var3);
 		if (!var1.isStatic) {
 			BlockFace[] var4 = BlockFace.values();
 			int var5 = var4.length;
 
 			for (int var6 = 0; var6 < var5; ++var6) {
 				BlockFace var7 = var4[var6];
-				var1.c(var2.a(var7), (Block) this);
+				var1.c(var2.getRelative(var7), (Block) this);
 			}
 
 			this.e(var1, var2, var3);
-			Iterator var8 = en.a.iterator();
+			Iterator var8 = UniverseDirection.HORIZONTAL.iterator();
 
 			BlockFace var9;
 			while (var8.hasNext()) {
 				var9 = (BlockFace) var8.next();
-				this.d(var1, var2.a(var9));
+				this.d(var1, var2.getRelative(var9));
 			}
 
-			var8 = en.a.iterator();
+			var8 = UniverseDirection.HORIZONTAL.iterator();
 
 			while (var8.hasNext()) {
 				var9 = (BlockFace) var8.next();
-				Position var10 = var2.a(var9);
+				Position var10 = var2.getRelative(var9);
 				if (var1.getBlockState(var10).getBlock().t()) {
-					this.d(var1, var10.a());
+					this.d(var1, var10.getUp());
 				} else {
-					this.d(var1, var10.b());
+					this.d(var1, var10.getDown());
 				}
 			}
 
 		}
 	}
 
-	private int a(World var1, Position var2, int var3) {
-		if (var1.getBlockState(var2).getBlock() != this) {
-			return var3;
+	public int getPower(World world, Position position, int minimum) {
+		if (world.getBlockState(position).getBlock() != this) {
+			return minimum;
 		} else {
-			int var4 = ((Integer) var1.getBlockState(var2).b(O)).intValue();
-			return var4 > var3 ? var4 : var3;
+			int power = ((Integer) world.getBlockState(position).b(O)).intValue();
+			return power > minimum ? power : minimum;
 		}
 	}
 
@@ -232,22 +232,22 @@ public class BlockRedstoneWire extends Block {
 			if (this.c(var1, var2)) {
 				this.e(var1, var2, var3);
 			} else {
-				this.b(var1, var2, var3, 0);
+				this.dropNaturally(var1, var2, var3, 0);
 				var1.g(var2);
 			}
 
 		}
 	}
 
-	public Item a(IBlockState var1, Random var2, int var3) {
+	public Item getItemDrop(IBlockState var1, Random var2, int var3) {
 		return Items.REDSTONE;
 	}
 
 	public int b(ard var1, Position var2, IBlockState var3, BlockFace var4) {
-		return !this.P ? 0 : this.a(var1, var2, var3, var4);
+		return !this.P ? 0 : this.getPower(var1, var2, var3, var4);
 	}
 
-	public int a(ard var1, Position var2, IBlockState var3, BlockFace var4) {
+	public int getPower(ard var1, Position var2, IBlockState var3, BlockFace var4) {
 		if (!this.P) {
 			return 0;
 		} else {
@@ -258,7 +258,7 @@ public class BlockRedstoneWire extends Block {
 				return var5;
 			} else {
 				EnumSet var6 = EnumSet.noneOf(BlockFace.class);
-				Iterator var7 = en.a.iterator();
+				Iterator var7 = UniverseDirection.HORIZONTAL.iterator();
 
 				while (var7.hasNext()) {
 					BlockFace var8 = (BlockFace) var7.next();
@@ -279,12 +279,12 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	private boolean d(ard var1, Position var2, BlockFace var3) {
-		Position var4 = var2.a(var3);
+		Position var4 = var2.getRelative(var3);
 		IBlockState var5 = var1.getBlockState(var4);
 		Block var6 = var5.getBlock();
 		boolean var7 = var6.t();
-		boolean var8 = var1.getBlockState(var2.a()).getBlock().t();
-		return !var8 && var7 && e(var1, var4.a()) ? true : (a(var5, var3) ? true : (var6 == Blocks.POWERED_REPEATER && var5.b(ava.N) == var3 ? true : !var7 && e(var1, var4.b())));
+		boolean var8 = var1.getBlockState(var2.getUp()).getBlock().t();
+		return !var8 && var7 && e(var1, var4.getUp()) ? true : (a(var5, var3) ? true : (var6 == Blocks.POWERED_REPEATER && var5.b(ava.N) == var3 ? true : !var7 && e(var1, var4.getDown())));
 	}
 
 	protected static boolean e(ard var0, Position var1) {
@@ -303,11 +303,11 @@ public class BlockRedstoneWire extends Block {
 			BlockFace var3 = (BlockFace) var0.b(BlockRepeater.N);
 			return var3 == var1 || var3.getOpposite() == var1;
 		} else {
-			return var2.g() && var1 != null;
+			return var2.isTrappedChest() && var1 != null;
 		}
 	}
 
-	public boolean g() {
+	public boolean isTrappedChest() {
 		return this.P;
 	}
 

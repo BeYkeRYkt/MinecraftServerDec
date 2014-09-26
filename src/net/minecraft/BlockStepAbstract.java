@@ -61,7 +61,7 @@ public abstract class BlockStepAbstract extends Block {
 		return this.j() ? var9 : (var3 != BlockFace.DOWN && (var3 == BlockFace.UP || (double) var5 <= 0.5D) ? var9 : var9.a(a, awr.a));
 	}
 
-	public int a(Random var1) {
+	public int getDropCount(Random var1) {
 		return this.j() ? 2 : 1;
 	}
 
