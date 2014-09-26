@@ -28,7 +28,7 @@ public class ContainerBeacon extends Container {
 
 	public void addSlotListener(ICrafting icrafting) {
 		super.addSlotListener(icrafting);
-		icrafting.setContainerData(this, this.inventory);
+		icrafting.sendContainerProperties(this, this.inventory);
 	}
 
 	public IInventory getInventory() {

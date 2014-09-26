@@ -206,9 +206,9 @@ public class EntityRabbit extends EntityAnimal {
 	public boolean r(Entity var1) {
 		if (this.cl() == 99) {
 			this.a("mob.attack", 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-			return var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), 8.0F);
+			return var1.receiveDamage(DamageSource.mobAttack((EntityLiving) this), 8.0F);
 		} else {
-			return var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), 3.0F);
+			return var1.receiveDamage(DamageSource.mobAttack((EntityLiving) this), 3.0F);
 		}
 	}
 
@@ -216,8 +216,8 @@ public class EntityRabbit extends EntityAnimal {
 		return this.cl() == 99 ? 8 : super.bq();
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		return this.b(var1) ? false : super.damageEntity(var1, var2);
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		return this.ignoresDamageType(var1) ? false : super.receiveDamage(var1, var2);
 	}
 
 	protected void bp() {

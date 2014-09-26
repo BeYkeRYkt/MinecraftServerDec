@@ -165,7 +165,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.setBoundingBox(new AxisAlignedBB(var1 - (double) var7, var3, var5 - (double) var7, var1 + (double) var7, var3 + (double) var8, var5 + (double) var7));
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.K();
 	}
 
@@ -197,7 +197,7 @@ public abstract class Entity implements CommandSenderInterface {
 							var3 = -1;
 						}
 
-						this.c(var3);
+						this.viewCredits(var3);
 					}
 
 					this.ak = false;
@@ -231,7 +231,7 @@ public abstract class Entity implements CommandSenderInterface {
 				}
 			} else {
 				if (this.fireTicks % 20 == 0) {
-					this.damageEntity(DamageSource.BURN, 1.0F);
+					this.receiveDamage(DamageSource.BURN, 1.0F);
 				}
 
 				--this.fireTicks;
@@ -261,7 +261,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 	protected void M() {
 		if (!this.fireProof) {
-			this.damageEntity(DamageSource.LAVA, 4.0F);
+			this.receiveDamage(DamageSource.LAVA, 4.0F);
 			this.e(15);
 		}
 	}
@@ -649,7 +649,7 @@ public abstract class Entity implements CommandSenderInterface {
 
 	protected void f(int var1) {
 		if (!this.fireProof) {
-			this.damageEntity(DamageSource.FIRE, (float) var1);
+			this.receiveDamage(DamageSource.FIRE, (float) var1);
 		}
 
 	}
@@ -907,8 +907,8 @@ public abstract class Entity implements CommandSenderInterface {
 		this.velocityChanged = true;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
 			this.ac();
@@ -1163,7 +1163,7 @@ public abstract class Entity implements CommandSenderInterface {
 			this.motionX = 0.0D;
 			this.motionY = 0.0D;
 			this.motionZ = 0.0D;
-			this.s_();
+			this.doTick();
 			if (this.vehicle != null) {
 				this.vehicle.al();
 				this.aq += (double) (this.vehicle.yaw - this.vehicle.lastYaw);
@@ -1351,7 +1351,7 @@ public abstract class Entity implements CommandSenderInterface {
 	}
 
 	public void a(EntityLightning var1) {
-		this.damageEntity(DamageSource.LIGHTNING, 5.0F);
+		this.receiveDamage(DamageSource.LIGHTNING, 5.0F);
 		++this.fireTicks;
 		if (this.fireTicks == 0) {
 			this.e(8);
@@ -1468,7 +1468,7 @@ public abstract class Entity implements CommandSenderInterface {
 		return String.format("%s[\'%s\'/%d, l=\'%s\', x=%.2f, y=%.2f, z=%.2f]", new Object[] { this.getClass().getSimpleName(), this.getName(), Integer.valueOf(this.entityId), this.world == null ? "~NULL~" : this.world.getWorldData().getLevelName(), Double.valueOf(this.locationX), Double.valueOf(this.locationY), Double.valueOf(this.locationZ) });
 	}
 
-	public boolean b(DamageSource var1) {
+	public boolean ignoresDamageType(DamageSource var1) {
 		return this.invulnerable && var1 != DamageSource.OUT_OF_WORLD && !var1.u();
 	}
 
@@ -1484,7 +1484,7 @@ public abstract class Entity implements CommandSenderInterface {
 		this.an = var1.an;
 	}
 
-	public void c(int var1) {
+	public void viewCredits(int var1) {
 		if (!this.world.isStatic && !this.dead) {
 			this.world.B.a("changeDimension");
 			MinecraftServer var2 = MinecraftServer.getInstance();

@@ -99,10 +99,10 @@ public class DamageSource {
 	}
 
 	public Entity i() {
-		return this.j();
+		return this.getDamager();
 	}
 
-	public Entity j() {
+	public Entity getDamager() {
 		return null;
 	}
 
@@ -162,7 +162,7 @@ public class DamageSource {
 	}
 
 	public boolean u() {
-		Entity var1 = this.j();
+		Entity var1 = this.getDamager();
 		return var1 instanceof EntityHuman && ((EntityHuman) var1).playerProperties.instabuild;
 	}
 

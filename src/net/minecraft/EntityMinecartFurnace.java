@@ -23,8 +23,8 @@ public class EntityMinecartFurnace extends adx {
 		this.dataWatcher.a(16, new Byte((byte) 0));
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.c > 0) {
 			--this.c;
 		}

@@ -42,15 +42,15 @@ public class EntitySilverfish extends EntityMonster {
 		return "mob.silverfish.kill";
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
 			if (var1 instanceof EntityDamageSource || var1 == DamageSource.MAGIC) {
 				this.b.f();
 			}
 
-			return super.damageEntity(var1, var2);
+			return super.receiveDamage(var1, var2);
 		}
 	}
 
@@ -62,9 +62,9 @@ public class EntitySilverfish extends EntityMonster {
 		return null;
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.aG = this.yaw;
-		super.s_();
+		super.doTick();
 	}
 
 	public float a(Position var1) {

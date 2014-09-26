@@ -24,23 +24,23 @@ public class EntityGhast extends xl implements IMonster {
 		return this.a;
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (!this.world.isStatic && this.world.getDifficulty() == Difficulty.PEACEFUL) {
 			this.die();
 		}
 
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
-		} else if ("fireball".equals(var1.p()) && var1.j() instanceof EntityHuman) {
-			super.damageEntity(var1, 1000.0F);
-			((EntityHuman) var1.j()).b((Statistic) AchievementList.z);
+		} else if ("fireball".equals(var1.p()) && var1.getDamager() instanceof EntityHuman) {
+			super.receiveDamage(var1, 1000.0F);
+			((EntityHuman) var1.getDamager()).b((Statistic) AchievementList.z);
 			return true;
 		} else {
-			return super.damageEntity(var1, var2);
+			return super.receiveDamage(var1, var2);
 		}
 	}
 

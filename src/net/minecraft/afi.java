@@ -53,8 +53,8 @@ class afi extends PathfinderGoal {
 					var2 += 2.0F;
 				}
 
-				var1.damageEntity(DamageSource.magic(this.a, this.a), var2);
-				var1.damageEntity(DamageSource.mobAttack((EntityLiving) this.a), (float) this.a.a(afs.e).e());
+				var1.receiveDamage(DamageSource.magic(this.a, this.a), var2);
+				var1.receiveDamage(DamageSource.mobAttack((EntityLiving) this.a), (float) this.a.a(afs.e).e());
 				this.a.d((EntityLiving) null);
 			} else if (this.b >= 60 && this.b % 20 == 0) {
 				;

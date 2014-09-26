@@ -130,7 +130,7 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 					}
 
 					this.player.onGround = packet.isOnGround();
-					this.player.l();
+					this.player.doTickByPacket();
 					this.player.setLocation(locX, locY, locZ, yaw, pitch);
 					if (this.player.vehicle != null) {
 						this.player.vehicle.al();
@@ -158,7 +158,7 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 				}
 
 				if (this.player.isSleeping()) {
-					this.player.l();
+					this.player.doTickByPacket();
 					this.player.setLocation(this.lastX, this.lastY, this.lastZ, this.player.yaw, this.player.pitch);
 					worldServer.playerJoinedWorld(this.player);
 					return;
@@ -192,7 +192,7 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 					pitch = packet.getPitch();
 				}
 
-				this.player.l();
+				this.player.doTickByPacket();
 				this.player.setLocation(this.lastX, this.lastY, this.lastZ, yaw, pitch);
 				if (!this.checkMovement) {
 					return;
@@ -402,11 +402,11 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 		}
 
 		if (packetItemStack == null || packetItemStack.l() == 0) {
-			this.player.g = true;
+			this.player.updatingSlots = true;
 			this.player.playerInventory.contents[this.player.playerInventory.itemInHandIndex] = ItemStack.getCopy(this.player.playerInventory.contents[this.player.playerInventory.itemInHandIndex]);
 			Slot var8 = this.player.activeContainer.a((IInventory) this.player.playerInventory, this.player.playerInventory.itemInHandIndex);
 			this.player.activeContainer.b();
-			this.player.g = false;
+			this.player.updatingSlots = false;
 			if (!ItemStack.matches(this.player.playerInventory.getItemInHand(), packet.getItem())) {
 				this.sendPacket(new PacketPlayOutSetSlot(this.player.activeContainer.windowId, var8.index, this.player.playerInventory.getItemInHand()));
 			}
@@ -640,15 +640,15 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 				for (int i = 0; i < this.player.activeContainer.slots.size(); ++i) {
 					items.add(this.player.activeContainer.slots.get(i).getItemStack());
 				}
-				this.player.setContainerData(this.player.activeContainer, items);
+				this.player.sendContainerItems(this.player.activeContainer, items);
 			} else {
 				ItemStack item = this.player.activeContainer.a(packet.getSlot(), packet.getButton(), packet.getMode(), this.player);
 				if (ItemStack.matches(packet.getItem(), item)) {
 					this.player.playerConnection.sendPacket(new PacketPlayOutConfirmTransaction(packet.getWindowId(), packet.getAction(), true));
-					this.player.g = true;
+					this.player.updatingSlots = true;
 					this.player.activeContainer.b();
 					this.player.broadcastCarriedItem();
-					this.player.g = false;
+					this.player.updatingSlots = false;
 				} else {
 					this.intHashMap.a(this.player.activeContainer.windowId, Short.valueOf(packet.getAction()));
 					this.player.playerConnection.sendPacket(new PacketPlayOutConfirmTransaction(packet.getWindowId(), packet.getAction(), false));
@@ -657,7 +657,7 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 					for (int i = 0; i < this.player.activeContainer.slots.size(); ++i) {
 						items.add(this.player.activeContainer.slots.get(i).getItemStack());
 					}
-					this.player.setContainerData(this.player.activeContainer, items);
+					this.player.sendContainerItems(this.player.activeContainer, items);
 				}
 			}
 		}

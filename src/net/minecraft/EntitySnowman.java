@@ -26,11 +26,11 @@ public class EntitySnowman extends EntityGolem implements IRangedEntity {
 			int var2 = MathHelper.toFixedPointInt(this.locationY);
 			int var3 = MathHelper.toFixedPointInt(this.locationZ);
 			if (this.U()) {
-				this.damageEntity(DamageSource.DROWN, 1.0F);
+				this.receiveDamage(DamageSource.DROWN, 1.0F);
 			}
 
 			if (this.world.b(new Position(var1, 0, var3)).a(new Position(var1, var2, var3)) > 1.0F) {
-				this.damageEntity(DamageSource.BURN, 1.0F);
+				this.receiveDamage(DamageSource.BURN, 1.0F);
 			}
 
 			for (int var4 = 0; var4 < 4; ++var4) {

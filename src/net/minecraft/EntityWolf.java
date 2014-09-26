@@ -119,8 +119,8 @@ public class EntityWolf extends xx {
 
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		this.bn = this.bm;
 		if (this.cv()) {
 			this.bm += (1.0F - this.bm) * 0.4F;
@@ -169,22 +169,22 @@ public class EntityWolf extends xx {
 		return this.cl() ? 20 : super.bP();
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
-			Entity var3 = var1.j();
+			Entity var3 = var1.getDamager();
 			this.bk.a(false);
 			if (var3 != null && !(var3 instanceof EntityHuman) && !(var3 instanceof EntityArrow)) {
 				var2 = (var2 + 1.0F) / 2.0F;
 			}
 
-			return super.damageEntity(var1, var2);
+			return super.receiveDamage(var1, var2);
 		}
 	}
 
 	public boolean r(Entity var1) {
-		boolean var2 = var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), (float) ((int) this.a(afs.e).e()));
+		boolean var2 = var1.receiveDamage(DamageSource.mobAttack((EntityLiving) this), (float) ((int) this.a(afs.e).e()));
 		if (var2) {
 			this.a((EntityLiving) this, var1);
 		}
@@ -351,7 +351,7 @@ public class EntityWolf extends xx {
 				}
 			}
 
-			return var1 instanceof EntityHuman && var2 instanceof EntityHuman && !((EntityHuman) var2).a((EntityHuman) var1) ? false : !(var1 instanceof EntityHorse) || !((EntityHorse) var1).cm();
+			return var1 instanceof EntityHuman && var2 instanceof EntityHuman && !((EntityHuman) var2).canReveiveDamageFrom((EntityHuman) var1) ? false : !(var1 instanceof EntityHorse) || !((EntityHorse) var1).cm();
 		} else {
 			return false;
 		}

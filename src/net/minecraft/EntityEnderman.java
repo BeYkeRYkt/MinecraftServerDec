@@ -92,7 +92,7 @@ public class EntityEnderman extends EntityMonster {
 
 	protected void E() {
 		if (this.U()) {
-			this.damageEntity(DamageSource.DROWN, 1.0F);
+			this.receiveDamage(DamageSource.DROWN, 1.0F);
 		}
 
 		if (this.cm() && !this.bl && this.random.nextInt(100) == 0) {
@@ -219,17 +219,17 @@ public class EntityEnderman extends EntityMonster {
 		return Block.getStateById(this.dataWatcher.b(16) & '\uffff');
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
-			if (var1.j() == null || !(var1.j() instanceof EntityEndermite)) {
+			if (var1.getDamager() == null || !(var1.getDamager() instanceof EntityEndermite)) {
 				if (!this.world.isStatic) {
 					this.a(true);
 				}
 
-				if (var1 instanceof EntityDamageSource && var1.j() instanceof EntityHuman) {
-					if (var1.j() instanceof EntityPlayer && ((EntityPlayer) var1.j()).playerInteractManager.isCreative()) {
+				if (var1 instanceof EntityDamageSource && var1.getDamager() instanceof EntityHuman) {
+					if (var1.getDamager() instanceof EntityPlayer && ((EntityPlayer) var1.getDamager()).playerInteractManager.isCreative()) {
 						this.a(false);
 					} else {
 						this.bl = true;
@@ -249,7 +249,7 @@ public class EntityEnderman extends EntityMonster {
 				}
 			}
 
-			boolean var3 = super.damageEntity(var1, var2);
+			boolean var3 = super.receiveDamage(var1, var2);
 			if (var1.e() && this.random.nextInt(10) != 0) {
 				this.n();
 			}

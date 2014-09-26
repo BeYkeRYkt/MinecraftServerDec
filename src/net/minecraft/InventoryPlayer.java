@@ -417,7 +417,7 @@ public class InventoryPlayer implements IInventory {
 
 	}
 
-	public void n() {
+	public void dropAllItems() {
 		int var1;
 		for (var1 = 0; var1 < this.contents.length; ++var1) {
 			if (this.contents[var1] != null) {

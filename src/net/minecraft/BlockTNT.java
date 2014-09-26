@@ -73,7 +73,7 @@ public class BlockTNT extends Block {
 		if (!var1.isStatic && var4 instanceof EntityArrow) {
 			EntityArrow var5 = (EntityArrow) var4;
 			if (var5.au()) {
-				this.a(var1, var2, var1.getBlockState(var2).a(a, Boolean.valueOf(true)), var5.c instanceof EntityLiving ? (EntityLiving) var5.c : null);
+				this.a(var1, var2, var1.getBlockState(var2).a(a, Boolean.valueOf(true)), var5.shooter instanceof EntityLiving ? (EntityLiving) var5.shooter : null);
 				var1.g(var2);
 			}
 		}

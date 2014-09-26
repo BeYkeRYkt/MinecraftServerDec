@@ -74,11 +74,11 @@ public abstract class ahr extends Entity implements aho {
 		this.i = 0;
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.P = this.locationX;
 		this.Q = this.locationY;
 		this.R = this.locationZ;
-		super.s_();
+		super.doTick();
 		if (this.b > 0) {
 			--this.b;
 		}

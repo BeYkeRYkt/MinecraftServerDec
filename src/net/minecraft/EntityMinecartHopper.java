@@ -74,8 +74,8 @@ public class EntityMinecartHopper extends InventoryMinecart implements IHopper {
 		return this.locationZ;
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (!this.world.isStatic && this.isAlive() && this.y()) {
 			Position var1 = new Position(this);
 			if (var1.equals(this.c)) {

@@ -36,7 +36,7 @@ public class EntityTNTPrimed extends Entity {
 		return !this.dead;
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.previousX = this.locationX;
 		this.previousY = this.locationY;
 		this.previousZ = this.locationZ;

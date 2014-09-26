@@ -146,8 +146,8 @@ public abstract class EntityInsentient extends EntityLiving {
 
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (!this.world.isStatic) {
 			this.bZ();
 		}

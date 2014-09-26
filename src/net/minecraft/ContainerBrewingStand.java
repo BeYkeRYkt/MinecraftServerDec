@@ -31,7 +31,7 @@ public class ContainerBrewingStand extends Container {
 
 	public void addSlotListener(ICrafting var1) {
 		super.addSlotListener(var1);
-		var1.setContainerData(this, this.inventory);
+		var1.sendContainerProperties(this, this.inventory);
 	}
 
 	public void b() {
@@ -40,7 +40,7 @@ public class ContainerBrewingStand extends Container {
 		for (int var1 = 0; var1 < this.listeners.size(); ++var1) {
 			ICrafting var2 = (ICrafting) this.listeners.get(var1);
 			if (this.g != this.inventory.getProperty(0)) {
-				var2.setContainerData(this, 0, this.inventory.getProperty(0));
+				var2.sendContainerProperty(this, 0, this.inventory.getProperty(0));
 			}
 		}
 

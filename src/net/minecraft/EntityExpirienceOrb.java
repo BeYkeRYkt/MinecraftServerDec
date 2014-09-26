@@ -33,8 +33,8 @@ public class EntityExpirienceOrb extends Entity {
 	protected void h() {
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.c > 0) {
 			--this.c;
 		}
@@ -104,11 +104,11 @@ public class EntityExpirienceOrb extends Entity {
 	}
 
 	protected void f(int var1) {
-		this.damageEntity(DamageSource.FIRE, (float) var1);
+		this.receiveDamage(DamageSource.FIRE, (float) var1);
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
 			this.ac();

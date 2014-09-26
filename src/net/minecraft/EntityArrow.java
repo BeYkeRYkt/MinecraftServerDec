@@ -12,7 +12,7 @@ public class EntityArrow extends Entity implements aho {
 	private boolean isInGround;
 	public int a;
 	public int b;
-	public Entity c;
+	public Entity shooter;
 	private int ap;
 	private int aq;
 	private double ar = 2.0D;
@@ -34,7 +34,7 @@ public class EntityArrow extends Entity implements aho {
 	public EntityArrow(World var1, EntityLiving var2, EntityLiving var3, float var4, float var5) {
 		super(var1);
 		this.j = 10.0D;
-		this.c = var2;
+		this.shooter = var2;
 		if (var2 instanceof EntityHuman) {
 			this.a = 1;
 		}
@@ -58,7 +58,7 @@ public class EntityArrow extends Entity implements aho {
 	public EntityArrow(World var1, EntityLiving var2, float var3) {
 		super(var1);
 		this.j = 10.0D;
-		this.c = var2;
+		this.shooter = var2;
 		if (var2 instanceof EntityHuman) {
 			this.a = 1;
 		}
@@ -99,8 +99,8 @@ public class EntityArrow extends Entity implements aho {
 		this.ap = 0;
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.lastPitch == 0.0F && this.lastYaw == 0.0F) {
 			float var1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.lastYaw = this.yaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / 3.1415927410125732D);
@@ -157,7 +157,7 @@ public class EntityArrow extends Entity implements aho {
 			float var13;
 			for (var11 = 0; var11 < var8.size(); ++var11) {
 				Entity var12 = (Entity) var8.get(var11);
-				if (var12.ad() && (var12 != this.c || this.aq >= 5)) {
+				if (var12.ad() && (var12 != this.shooter || this.aq >= 5)) {
 					var13 = 0.3F;
 					AxisAlignedBB var14 = var12.getBoundingBox().grow((double) var13, (double) var13, (double) var13);
 					MovingObjectPosition var15 = var14.a(var19, var5);
@@ -177,7 +177,7 @@ public class EntityArrow extends Entity implements aho {
 
 			if (var6 != null && var6.entity != null && var6.entity instanceof EntityHuman) {
 				EntityHuman var21 = (EntityHuman) var6.entity;
-				if (var21.playerProperties.invulnerable || this.c instanceof EntityHuman && !((EntityHuman) this.c).a(var21)) {
+				if (var21.playerProperties.invulnerable || this.shooter instanceof EntityHuman && !((EntityHuman) this.shooter).canReveiveDamageFrom(var21)) {
 					var6 = null;
 				}
 			}
@@ -194,17 +194,17 @@ public class EntityArrow extends Entity implements aho {
 					}
 
 					DamageSource var26;
-					if (this.c == null) {
+					if (this.shooter == null) {
 						var26 = DamageSource.arrow(this, this);
 					} else {
-						var26 = DamageSource.arrow(this, this.c);
+						var26 = DamageSource.arrow(this, this.shooter);
 					}
 
 					if (this.au() && !(var6.entity instanceof EntityEnderman)) {
 						var6.entity.e(5);
 					}
 
-					if (var6.entity.damageEntity(var26, (float) var24)) {
+					if (var6.entity.receiveDamage(var26, (float) var24)) {
 						if (var6.entity instanceof EntityLiving) {
 							EntityLiving var27 = (EntityLiving) var6.entity;
 							if (!this.world.isStatic) {
@@ -218,13 +218,13 @@ public class EntityArrow extends Entity implements aho {
 								}
 							}
 
-							if (this.c instanceof EntityLiving) {
-								aph.a(var27, this.c);
-								aph.b((EntityLiving) this.c, var27);
+							if (this.shooter instanceof EntityLiving) {
+								aph.a(var27, this.shooter);
+								aph.b((EntityLiving) this.shooter, var27);
 							}
 
-							if (this.c != null && var6.entity != this.c && var6.entity instanceof EntityHuman && this.c instanceof EntityPlayer) {
-								((EntityPlayer) this.c).playerConnection.sendPacket((Packet) (new PacketPlayOutChangeGameState(6, 0.0F)));
+							if (this.shooter != null && var6.entity != this.shooter && var6.entity instanceof EntityHuman && this.shooter instanceof EntityPlayer) {
+								((EntityPlayer) this.shooter).playerConnection.sendPacket((Packet) (new PacketPlayOutChangeGameState(6, 0.0F)));
 							}
 						}
 

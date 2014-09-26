@@ -78,7 +78,7 @@ public class BlockCauldron extends Block {
 								if (!var4.playerInventory.pickup(var13)) {
 									var1.addEntity((Entity) (new EntityItem(var1, (double) var2.getX() + 0.5D, (double) var2.getY() + 1.5D, (double) var2.getZ() + 0.5D, var13)));
 								} else if (var4 instanceof EntityPlayer) {
-									((EntityPlayer) var4).a(var4.defaultContainer);
+									((EntityPlayer) var4).sendContainerItems(var4.defaultContainer);
 								}
 
 								--var9.amount;
@@ -111,7 +111,7 @@ public class BlockCauldron extends Block {
 								if (!var4.playerInventory.pickup(var13)) {
 									var1.addEntity((Entity) (new EntityItem(var1, (double) var2.getX() + 0.5D, (double) var2.getY() + 1.5D, (double) var2.getZ() + 0.5D, var13)));
 								} else if (var4 instanceof EntityPlayer) {
-									((EntityPlayer) var4).a(var4.defaultContainer);
+									((EntityPlayer) var4).sendContainerItems(var4.defaultContainer);
 								}
 
 								if (!var4.playerProperties.instabuild) {

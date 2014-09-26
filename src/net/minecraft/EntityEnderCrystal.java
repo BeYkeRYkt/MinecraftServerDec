@@ -21,7 +21,7 @@ public class EntityEnderCrystal extends Entity {
 		this.dataWatcher.a(8, Integer.valueOf(this.b));
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.previousX = this.locationX;
 		this.previousY = this.locationY;
 		this.previousZ = this.locationZ;
@@ -46,8 +46,8 @@ public class EntityEnderCrystal extends Entity {
 		return true;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
 			if (!this.dead && !this.world.isStatic) {

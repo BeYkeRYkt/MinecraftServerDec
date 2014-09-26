@@ -234,7 +234,7 @@ public class ContainerAnvil extends Container {
 
 	public void addSlotListener(ICrafting var1) {
 		super.addSlotListener(var1);
-		var1.setContainerData(this, 0, this.a);
+		var1.sendContainerProperty(this, 0, this.a);
 	}
 
 	public void onClose(EntityHuman var1) {

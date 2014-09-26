@@ -325,12 +325,12 @@ public class EntityArmorStand extends EntityLiving {
 		}
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
 		if (!this.world.isStatic && !this.h) {
 			if (DamageSource.OUT_OF_WORLD.equals(var1)) {
 				this.die();
 				return false;
-			} else if (this.b(var1)) {
+			} else if (this.ignoresDamageType(var1)) {
 				return false;
 			} else if (var1.c()) {
 				this.C();
@@ -357,7 +357,7 @@ public class EntityArmorStand extends EntityLiving {
 						var1.i().die();
 					}
 
-					if (var1.j() instanceof EntityHuman && !((EntityHuman) var1.j()).playerProperties.maybuild) {
+					if (var1.getDamager() instanceof EntityHuman && !((EntityHuman) var1.getDamager()).playerProperties.maybuild) {
 						return false;
 					} else if (var1.u()) {
 						this.z();
@@ -435,8 +435,8 @@ public class EntityArmorStand extends EntityLiving {
 		}
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		fa var1 = this.dataWatcher.h(11);
 		if (!this.bh.equals(var1)) {
 			this.a(var1);

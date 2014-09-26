@@ -39,13 +39,13 @@ public class ContainerEnchantTable extends Container {
 
 	public void addSlotListener(ICrafting var1) {
 		super.addSlotListener(var1);
-		var1.setContainerData(this, 0, this.g[0]);
-		var1.setContainerData(this, 1, this.g[1]);
-		var1.setContainerData(this, 2, this.g[2]);
-		var1.setContainerData(this, 3, this.f & -16);
-		var1.setContainerData(this, 4, this.h[0]);
-		var1.setContainerData(this, 5, this.h[1]);
-		var1.setContainerData(this, 6, this.h[2]);
+		var1.sendContainerProperty(this, 0, this.g[0]);
+		var1.sendContainerProperty(this, 1, this.g[1]);
+		var1.sendContainerProperty(this, 2, this.g[2]);
+		var1.sendContainerProperty(this, 3, this.f & -16);
+		var1.sendContainerProperty(this, 4, this.h[0]);
+		var1.sendContainerProperty(this, 5, this.h[1]);
+		var1.sendContainerProperty(this, 6, this.h[2]);
 	}
 
 	public void b() {
@@ -53,13 +53,13 @@ public class ContainerEnchantTable extends Container {
 
 		for (int var1 = 0; var1 < this.listeners.size(); ++var1) {
 			ICrafting var2 = (ICrafting) this.listeners.get(var1);
-			var2.setContainerData(this, 0, this.g[0]);
-			var2.setContainerData(this, 1, this.g[1]);
-			var2.setContainerData(this, 2, this.g[2]);
-			var2.setContainerData(this, 3, this.f & -16);
-			var2.setContainerData(this, 4, this.h[0]);
-			var2.setContainerData(this, 5, this.h[1]);
-			var2.setContainerData(this, 6, this.h[2]);
+			var2.sendContainerProperty(this, 0, this.g[0]);
+			var2.sendContainerProperty(this, 1, this.g[1]);
+			var2.sendContainerProperty(this, 2, this.g[2]);
+			var2.sendContainerProperty(this, 3, this.f & -16);
+			var2.sendContainerProperty(this, 4, this.h[0]);
+			var2.sendContainerProperty(this, 5, this.h[1]);
+			var2.sendContainerProperty(this, 6, this.h[2]);
 		}
 
 	}

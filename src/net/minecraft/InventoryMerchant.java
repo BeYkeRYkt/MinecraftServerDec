@@ -135,7 +135,7 @@ public class InventoryMerchant implements IInventory {
 		if (var1 == null) {
 			this.setItem(2, (ItemStack) null);
 		} else {
-			MerchantRecipeList var3 = this.merchant.b_(this.player);
+			MerchantRecipeList var3 = this.merchant.getRecipes(this.player);
 			if (var3 != null) {
 				MerchantRecipe var4 = var3.a(var1, var2, this.e);
 				if (var4 != null && !var4.h()) {

@@ -58,18 +58,18 @@ public class EntityBoat extends Entity {
 		return (double) this.width * 0.0D - 0.30000001192092896D;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else if (!this.world.isStatic && !this.dead) {
-			if (this.passenger != null && this.passenger == var1.j() && var1 instanceof EntityDamageSourceIndirect) {
+			if (this.passenger != null && this.passenger == var1.getDamager() && var1 instanceof EntityDamageSourceIndirect) {
 				return false;
 			} else {
 				this.b(-this.m());
 				this.a(10);
 				this.a(this.j() + var2 * 10.0F);
 				this.ac();
-				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).playerProperties.instabuild;
+				boolean var3 = var1.getDamager() instanceof EntityHuman && ((EntityHuman) var1.getDamager()).playerProperties.instabuild;
 				if (var3 || this.j() > 40.0F) {
 					if (this.passenger != null) {
 						this.passenger.mount((Entity) this);
@@ -93,8 +93,8 @@ public class EntityBoat extends Entity {
 		return !this.dead;
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.l() > 0) {
 			this.a(this.l() - 1);
 		}

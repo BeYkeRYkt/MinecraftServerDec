@@ -51,11 +51,11 @@ public abstract class EntityFireball extends Entity {
 		this.d = var7 / var9 * 0.1D;
 	}
 
-	public void s_() {
+	public void doTick() {
 		if (!this.world.isStatic && (this.a != null && this.a.dead || !this.world.isLoaded(new Position(this)))) {
 			this.die();
 		} else {
-			super.s_();
+			super.doTick();
 			this.e(1);
 			if (this.i) {
 				if (this.world.getBlockState(new Position(this.e, this.f, this.g)).getBlock() == this.h) {
@@ -205,13 +205,13 @@ public abstract class EntityFireball extends Entity {
 		return 1.0F;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
 			this.ac();
-			if (var1.j() != null) {
-				Vec3D var3 = var1.j().ap();
+			if (var1.getDamager() != null) {
+				Vec3D var3 = var1.getDamager().ap();
 				if (var3 != null) {
 					this.motionX = var3.x;
 					this.motionY = var3.y;
@@ -221,8 +221,8 @@ public abstract class EntityFireball extends Entity {
 					this.d = this.motionZ * 0.1D;
 				}
 
-				if (var1.j() instanceof EntityLiving) {
-					this.a = (EntityLiving) var1.j();
+				if (var1.getDamager() instanceof EntityLiving) {
+					this.a = (EntityLiving) var1.getDamager();
 				}
 
 				return true;

@@ -30,8 +30,8 @@ public class EntityMinecartMobSpawner extends adx {
 		this.a.write(var1);
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		this.a.doTick();
 	}
 }

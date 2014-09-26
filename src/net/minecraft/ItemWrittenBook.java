@@ -38,7 +38,7 @@ public class ItemWrittenBook extends Item {
 			this.a(var1, var3);
 		}
 
-		var3.a(var1);
+		var3.openBook(var1);
 		var3.b(StatisticList.USE_ITEM_COUNT[Item.getId((Item) this)]);
 		return var1;
 	}

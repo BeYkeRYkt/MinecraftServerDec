@@ -20,8 +20,8 @@ public class EntityMinecartTNT extends adx {
 		return Blocks.TNT.getBlockState();
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.a > 0) {
 			--this.a;
 			this.world.addParticle(Particle.l, this.locationX, this.locationY + 0.5D, this.locationZ, 0.0D, 0.0D, 0.0D, new int[0]);
@@ -38,7 +38,7 @@ public class EntityMinecartTNT extends adx {
 
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
 		Entity var3 = var1.i();
 		if (var3 instanceof EntityArrow) {
 			EntityArrow var4 = (EntityArrow) var3;
@@ -47,7 +47,7 @@ public class EntityMinecartTNT extends adx {
 			}
 		}
 
-		return super.damageEntity(var1, var2);
+		return super.receiveDamage(var1, var2);
 	}
 
 	public void a(DamageSource var1) {

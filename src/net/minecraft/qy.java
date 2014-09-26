@@ -357,7 +357,7 @@ public class qy {
 			EntityHuman var8 = ((ado) this.a).b;
 			return new PacketPlayOutSpawnObject(this.a, 90, var8 != null ? var8.getId() : this.a.getId());
 		} else if (this.a instanceof EntityArrow) {
-			Entity var7 = ((EntityArrow) this.a).c;
+			Entity var7 = ((EntityArrow) this.a).shooter;
 			return new PacketPlayOutSpawnObject(this.a, 60, var7 != null ? var7.getId() : this.a.getId());
 		} else if (this.a instanceof EntitySnowball) {
 			return new PacketPlayOutSpawnObject(this.a, 61);

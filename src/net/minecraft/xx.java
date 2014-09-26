@@ -149,12 +149,12 @@ public abstract class xx extends EntityAnimal implements xt {
 		return super.c(var1);
 	}
 
-	public void a(DamageSource var1) {
+	public void die(DamageSource var1) {
 		if (!this.world.isStatic && this.world.getGameRules().isGameRule("showDeathMessages") && this.hasCustomName() && this.cm() instanceof EntityPlayer) {
 			((EntityPlayer) this.cm()).sendChatMessage(this.br().getMessage());
 		}
 
-		super.a(var1);
+		super.die(var1);
 	}
 
 	// $FF: synthetic method

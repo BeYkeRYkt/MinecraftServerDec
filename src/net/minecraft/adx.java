@@ -80,16 +80,16 @@ public abstract class adx extends Entity implements ICustomNameable {
 		return (double) this.width * 0.5D - 0.20000000298023224D;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
 		if (!this.world.isStatic && !this.dead) {
-			if (this.b(var1)) {
+			if (this.ignoresDamageType(var1)) {
 				return false;
 			} else {
 				this.k(-this.r());
 				this.j(10);
 				this.ac();
 				this.a(this.p() + var2 * 10.0F);
-				boolean var3 = var1.j() instanceof EntityHuman && ((EntityHuman) var1.j()).playerProperties.instabuild;
+				boolean var3 = var1.getDamager() instanceof EntityHuman && ((EntityHuman) var1.getDamager()).playerProperties.instabuild;
 				if (var3 || this.p() > 40.0F) {
 					if (this.passenger != null) {
 						this.passenger.mount((Entity) null);
@@ -127,7 +127,7 @@ public abstract class adx extends Entity implements ICustomNameable {
 		super.die();
 	}
 
-	public void s_() {
+	public void doTick() {
 		if (this.q() > 0) {
 			this.j(this.q() - 1);
 		}
@@ -157,7 +157,7 @@ public abstract class adx extends Entity implements ICustomNameable {
 							var3 = -1;
 						}
 
-						this.c(var3);
+						this.viewCredits(var3);
 					}
 
 					this.ak = false;

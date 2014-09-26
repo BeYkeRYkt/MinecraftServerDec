@@ -98,7 +98,7 @@ public abstract class EntityHuman extends EntityLiving {
 		return this.bR() && this.usedItemStack.getItem().e(this.usedItemStack) == EnumAnimation.BLOCK;
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.T = this.isSpectator();
 		if (this.isSpectator()) {
 			this.onGround = false;
@@ -143,7 +143,7 @@ public abstract class EntityHuman extends EntityLiving {
 			}
 		}
 
-		super.s_();
+		super.doTick();
 		if (!this.world.isStatic && this.activeContainer != null && !this.activeContainer.a(this)) {
 			this.closeWindow();
 			this.activeContainer = this.defaultContainer;
@@ -320,7 +320,7 @@ public abstract class EntityHuman extends EntityLiving {
 			}
 
 			if (this.fooddata.c() && this.ticksLived % 10 == 0) {
-				this.fooddata.a(this.fooddata.a() + 1);
+				this.fooddata.a(this.fooddata.getFoodLevel() + 1);
 			}
 		}
 
@@ -391,8 +391,8 @@ public abstract class EntityHuman extends EntityLiving {
 		this.dataWatcher.b(18, Integer.valueOf(var2 + var1));
 	}
 
-	public void a(DamageSource var1) {
-		super.a(var1);
+	public void die(DamageSource var1) {
+		super.die(var1);
 		this.a(0.2F, 0.2F);
 		this.b(this.locationX, this.locationY, this.locationZ);
 		this.motionY = 0.10000000149011612D;
@@ -401,7 +401,7 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 
 		if (!this.world.getGameRules().isGameRule("keepInventory")) {
-			this.playerInventory.n();
+			this.playerInventory.dropAllItems();
 		}
 
 		if (var1 != null) {
@@ -636,8 +636,8 @@ public abstract class EntityHuman extends EntityLiving {
 		}
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else if (this.playerProperties.invulnerable && !var1.g()) {
 			return false;
@@ -667,18 +667,18 @@ public abstract class EntityHuman extends EntityLiving {
 				if (var2 == 0.0F) {
 					return false;
 				} else {
-					Entity var3 = var1.j();
-					if (var3 instanceof EntityArrow && ((EntityArrow) var3).c != null) {
-						var3 = ((EntityArrow) var3).c;
+					Entity var3 = var1.getDamager();
+					if (var3 instanceof EntityArrow && ((EntityArrow) var3).shooter != null) {
+						var3 = ((EntityArrow) var3).shooter;
 					}
 
-					return super.damageEntity(var1, var2);
+					return super.receiveDamage(var1, var2);
 				}
 			}
 		}
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean canReveiveDamageFrom(EntityHuman var1) {
 		ScoreboardTeamBase var2 = this.bN();
 		ScoreboardTeamBase var3 = var1.bN();
 		return var2 == null ? true : (!var2.a(var3) ? true : var2.allowFriendlyFire());
@@ -708,7 +708,7 @@ public abstract class EntityHuman extends EntityLiving {
 	}
 
 	protected void d(DamageSource var1, float var2) {
-		if (!this.b(var1)) {
+		if (!this.ignoresDamageType(var1)) {
 			if (!var1.e() && this.isBlocking() && var2 > 0.0F) {
 				var2 = (1.0F + var2) * 0.5F;
 			}
@@ -737,7 +737,7 @@ public abstract class EntityHuman extends EntityLiving {
 	public void a(CommandBlockListenerAbstract var1) {
 	}
 
-	public void a(IMerchant var1) {
+	public void openMerchantInventory(IMerchant var1) {
 	}
 
 	public void openInventory(IInventory var1) {
@@ -746,10 +746,10 @@ public abstract class EntityHuman extends EntityLiving {
 	public void openHorseInventory(EntityHorse var1, IInventory var2) {
 	}
 
-	public void a(IInventoryHasType var1) {
+	public void openTypedInventory(IInventoryHasType var1) {
 	}
 
-	public void a(ItemStack var1) {
+	public void openBook(ItemStack var1) {
 	}
 
 	public boolean useEntity(Entity var1) {
@@ -838,7 +838,7 @@ public abstract class EntityHuman extends EntityLiving {
 					double var8 = var1.motionX;
 					double var10 = var1.motionY;
 					double var12 = var1.motionZ;
-					boolean var14 = var1.damageEntity(DamageSource.playerAttack(this), var2);
+					boolean var14 = var1.receiveDamage(DamageSource.playerAttack(this), var2);
 					if (var14) {
 						if (var18 > 0) {
 							var1.g((double) (-MathHelper.a(this.yaw * 3.1415927F / 180.0F) * (float) var18 * 0.5F), 0.1D, (double) (MathHelper.b(this.yaw * 3.1415927F / 180.0F) * (float) var18 * 0.5F));

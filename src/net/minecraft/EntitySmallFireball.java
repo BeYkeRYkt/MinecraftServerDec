@@ -21,7 +21,7 @@ public class EntitySmallFireball extends EntityFireball {
 		if (!this.world.isStatic) {
 			boolean var2;
 			if (var1.entity != null) {
-				var2 = var1.entity.damageEntity(DamageSource.fireball((EntityFireball) this, this.a), 5.0F);
+				var2 = var1.entity.receiveDamage(DamageSource.fireball((EntityFireball) this, this.a), 5.0F);
 				if (var2) {
 					this.a(this.a, var1.entity);
 					if (!var1.entity.T()) {
@@ -51,7 +51,7 @@ public class EntitySmallFireball extends EntityFireball {
 		return false;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
 		return false;
 	}
 }

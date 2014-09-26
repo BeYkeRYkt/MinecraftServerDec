@@ -238,9 +238,9 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 		return var2;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		Entity var3 = var1.j();
-		return this.passenger != null && this.passenger.equals(var3) ? false : super.damageEntity(var1, var2);
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		Entity var3 = var1.getDamager();
+		return this.passenger != null && this.passenger.equals(var3) ? false : super.receiveDamage(var1, var2);
 	}
 
 	public int bq() {
@@ -280,9 +280,9 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 
 		int var3 = MathHelper.f((var1 * 0.5F - 3.0F) * var2);
 		if (var3 > 0) {
-			this.damageEntity(DamageSource.FALL, (float) var3);
+			this.receiveDamage(DamageSource.FALL, (float) var3);
 			if (this.passenger != null) {
-				this.passenger.damageEntity(DamageSource.FALL, (float) var3);
+				this.passenger.receiveDamage(DamageSource.FALL, (float) var3);
 			}
 
 			Block var4 = this.world.getBlockState(new Position(this.locationX, this.locationY - 0.2D - (double) this.lastYaw, this.locationZ)).getBlock();
@@ -655,8 +655,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 		this.bk = 1;
 	}
 
-	public void a(DamageSource var1) {
-		super.a(var1);
+	public void die(DamageSource var1) {
+		super.die(var1);
 		if (!this.world.isStatic) {
 			this.cV();
 		}
@@ -693,8 +693,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.world.isStatic && this.dataWatcher.a()) {
 			this.dataWatcher.e();
 			this.da();

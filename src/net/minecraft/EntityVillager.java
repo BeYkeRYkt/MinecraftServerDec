@@ -147,7 +147,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		if (!var3 && this.isAlive() && !this.cm() && !this.i_()) {
 			if (!this.world.isStatic && (this.bp == null || this.bp.size() > 0)) {
 				this.a_(var1);
-				var1.a((IMerchant) this);
+				var1.openMerchantInventory((IMerchant) this);
 			}
 
 			var1.b(StatisticList.F);
@@ -269,9 +269,9 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 
 	}
 
-	public void a(DamageSource var1) {
+	public void die(DamageSource var1) {
 		if (this.village != null) {
-			Entity var2 = var1.j();
+			Entity var2 = var1.getDamager();
 			if (var2 != null) {
 				if (var2 instanceof EntityHuman) {
 					this.village.a(var2.getName(), -2);
@@ -286,7 +286,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 			}
 		}
 
-		super.a(var1);
+		super.die(var1);
 	}
 
 	public void a_(EntityHuman var1) {
@@ -372,7 +372,7 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 
 	}
 
-	public MerchantRecipeList b_(EntityHuman var1) {
+	public MerchantRecipeList getRecipes(EntityHuman var1) {
 		if (this.bp == null) {
 			this.cu();
 		}

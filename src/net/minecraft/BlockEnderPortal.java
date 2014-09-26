@@ -36,7 +36,7 @@ public class BlockEnderPortal extends atg {
 
 	public void a(World var1, Position var2, IBlockState var3, Entity var4) {
 		if (var4.vehicle == null && var4.passenger == null && !var1.isStatic) {
-			var4.c(1);
+			var4.viewCredits(1);
 		}
 
 	}

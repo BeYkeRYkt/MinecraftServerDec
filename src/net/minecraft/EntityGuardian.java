@@ -324,17 +324,17 @@ public class EntityGuardian extends EntityMonster {
 		return (this.random.nextInt(20) == 0 || !this.world.j(new Position(this))) && super.bQ();
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
 		if (!this.n() && !var1.s() && var1.i() instanceof EntityLiving) {
 			EntityLiving var3 = (EntityLiving) var1.i();
 			if (!var1.c()) {
-				var3.damageEntity(DamageSource.thorns((Entity) this), 2.0F);
+				var3.receiveDamage(DamageSource.thorns((Entity) this), 2.0F);
 				var3.a("damage.thorns", 0.5F, 1.0F);
 			}
 		}
 
 		this.bq.f();
-		return super.damageEntity(var1, var2);
+		return super.receiveDamage(var1, var2);
 	}
 
 	public int bP() {

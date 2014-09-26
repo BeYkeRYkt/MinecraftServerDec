@@ -38,7 +38,7 @@ public abstract class EntityWaterAnimal extends EntityInsentient implements IAni
 			this.h(var1);
 			if (this.getAirTicks() == -20) {
 				this.h(0);
-				this.damageEntity(DamageSource.DROWN, 2.0F);
+				this.receiveDamage(DamageSource.DROWN, 2.0F);
 			}
 		} else {
 			this.h(300);

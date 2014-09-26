@@ -35,11 +35,11 @@ public class EntityFireworks extends Entity {
 		this.b = 10 * var9 + this.random.nextInt(6) + this.random.nextInt(7);
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.P = this.locationX;
 		this.Q = this.locationY;
 		this.R = this.locationZ;
-		super.s_();
+		super.doTick();
 		this.motionX *= 1.15D;
 		this.motionZ *= 1.15D;
 		this.motionY += 0.04D;

@@ -47,11 +47,11 @@ public class EntityItem extends Entity {
 		this.getDataWatcher().a(10, 5);
 	}
 
-	public void s_() {
+	public void doTick() {
 		if (this.l() == null) {
 			this.die();
 		} else {
-			super.s_();
+			super.doTick();
 			if (this.d > 0 && this.d != 32767) {
 				--this.d;
 			}
@@ -170,11 +170,11 @@ public class EntityItem extends Entity {
 	}
 
 	protected void f(int var1) {
-		this.damageEntity(DamageSource.FIRE, (float) var1);
+		this.receiveDamage(DamageSource.FIRE, (float) var1);
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else if (this.l() != null && this.l().getItem() == Items.NETHER_STAR && var1.c()) {
 			return false;
@@ -283,8 +283,8 @@ public class EntityItem extends Entity {
 		return false;
 	}
 
-	public void c(int var1) {
-		super.c(var1);
+	public void viewCredits(int var1) {
+		super.viewCredits(var1);
 		if (!this.world.isStatic) {
 			this.w();
 		}

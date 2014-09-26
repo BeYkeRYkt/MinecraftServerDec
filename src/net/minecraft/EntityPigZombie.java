@@ -35,8 +35,8 @@ public class EntityPigZombie extends EntityZombie {
 		this.a(afs.e).a(5.0D);
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 	}
 
 	protected void E() {
@@ -100,16 +100,16 @@ public class EntityPigZombie extends EntityZombie {
 
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
-			Entity var3 = var1.j();
+			Entity var3 = var1.getDamager();
 			if (var3 instanceof EntityHuman) {
 				this.b(var3);
 			}
 
-			return super.damageEntity(var1, var2);
+			return super.receiveDamage(var1, var2);
 		}
 	}
 

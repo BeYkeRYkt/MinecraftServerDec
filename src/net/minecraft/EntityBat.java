@@ -66,8 +66,8 @@ public class EntityBat extends EntityAmbient {
 
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.n()) {
 			this.motionX = this.motionY = this.motionZ = 0.0D;
 			this.locationY = (double) MathHelper.toFixedPointInt(this.locationY) + 1.0D - (double) this.width;
@@ -135,15 +135,15 @@ public class EntityBat extends EntityAmbient {
 		return true;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
 			if (!this.world.isStatic && this.n()) {
 				this.a(false);
 			}
 
-			return super.damageEntity(var1, var2);
+			return super.receiveDamage(var1, var2);
 		}
 	}
 

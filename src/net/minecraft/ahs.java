@@ -16,7 +16,7 @@ public class ahs extends ahr {
 
 	protected void a(MovingObjectPosition var1) {
 		if (var1.entity != null) {
-			var1.entity.damageEntity(DamageSource.projectile((Entity) this, this.n()), 0.0F);
+			var1.entity.receiveDamage(DamageSource.projectile((Entity) this, this.n()), 0.0F);
 		}
 
 		if (!this.world.isStatic && this.random.nextInt(8) == 0) {

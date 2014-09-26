@@ -65,9 +65,9 @@ public class EntityEndermite extends EntityMonster {
 		var1.put("PlayerSpawned", this.c);
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.aG = this.yaw;
-		super.s_();
+		super.doTick();
 	}
 
 	public boolean n() {

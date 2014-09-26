@@ -539,7 +539,7 @@ public abstract class PlayerList {
 	}
 
 	public void f(EntityPlayer var1) {
-		var1.a(var1.defaultContainer);
+		var1.sendContainerItems(var1.defaultContainer);
 		var1.r();
 		var1.playerConnection.sendPacket((Packet) (new PacketPlayOutHeldItemChange(var1.playerInventory.itemInHandIndex)));
 	}

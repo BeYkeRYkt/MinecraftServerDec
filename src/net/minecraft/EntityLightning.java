@@ -30,8 +30,8 @@ public class EntityLightning extends EntityWeather {
 
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.b == 2) {
 			this.world.makeSound(this.locationX, this.locationY, this.locationZ, "ambient.weather.thunder", 10000.0F, 0.8F + this.random.nextFloat() * 0.2F);
 			this.world.makeSound(this.locationX, this.locationY, this.locationZ, "random.explode", 2.0F, 0.5F + this.random.nextFloat() * 0.2F);

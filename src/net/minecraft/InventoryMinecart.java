@@ -94,9 +94,9 @@ public abstract class InventoryMinecart extends adx implements ILockable {
 		return 64;
 	}
 
-	public void c(int var1) {
+	public void viewCredits(int var1) {
 		this.b = false;
-		super.c(var1);
+		super.viewCredits(var1);
 	}
 
 	public void die() {

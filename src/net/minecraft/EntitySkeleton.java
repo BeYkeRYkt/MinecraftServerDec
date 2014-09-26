@@ -109,17 +109,17 @@ public class EntitySkeleton extends EntityMonster implements IRangedEntity {
 
 	}
 
-	public void a(DamageSource var1) {
-		super.a(var1);
-		if (var1.i() instanceof EntityArrow && var1.j() instanceof EntityHuman) {
-			EntityHuman var2 = (EntityHuman) var1.j();
+	public void die(DamageSource var1) {
+		super.die(var1);
+		if (var1.i() instanceof EntityArrow && var1.getDamager() instanceof EntityHuman) {
+			EntityHuman var2 = (EntityHuman) var1.getDamager();
 			double var3 = var2.locationX - this.locationX;
 			double var5 = var2.locationZ - this.locationZ;
 			if (var3 * var3 + var5 * var5 >= 2500.0D) {
 				var2.b((Statistic) AchievementList.v);
 			}
-		} else if (var1.j() instanceof EntityCreeper && ((EntityCreeper) var1.j()).n() && ((EntityCreeper) var1.j()).cn()) {
-			((EntityCreeper) var1.j()).co();
+		} else if (var1.getDamager() instanceof EntityCreeper && ((EntityCreeper) var1.getDamager()).n() && ((EntityCreeper) var1.getDamager()).cn()) {
+			((EntityCreeper) var1.getDamager()).co();
 			this.a(new ItemStack(Items.SKULL, 1, this.ck() == 1 ? 1 : 0), 0.0F);
 		}
 

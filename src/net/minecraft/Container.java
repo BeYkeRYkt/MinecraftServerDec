@@ -33,7 +33,7 @@ public abstract class Container {
 			throw new IllegalArgumentException("Listener already listening");
 		} else {
 			this.listeners.add(icrafting);
-			icrafting.setContainerData(this, this.getContents());
+			icrafting.sendContainerItems(this, this.getContents());
 			this.b();
 		}
 	}
@@ -57,7 +57,7 @@ public abstract class Container {
 				this.itemStacks.set(var1, var3);
 
 				for (int var4 = 0; var4 < this.listeners.size(); ++var4) {
-					((ICrafting) this.listeners.get(var4)).setContainerData(this, var1, var3);
+					((ICrafting) this.listeners.get(var4)).sendContainerItem(this, var1, var3);
 				}
 			}
 		}

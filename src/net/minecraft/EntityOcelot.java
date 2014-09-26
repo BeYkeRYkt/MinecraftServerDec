@@ -93,15 +93,15 @@ public class EntityOcelot extends xx {
 	}
 
 	public boolean r(Entity var1) {
-		return var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), 3.0F);
+		return var1.receiveDamage(DamageSource.mobAttack((EntityLiving) this), 3.0F);
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
 			this.bk.a(false);
-			return super.damageEntity(var1, var2);
+			return super.receiveDamage(var1, var2);
 		}
 	}
 

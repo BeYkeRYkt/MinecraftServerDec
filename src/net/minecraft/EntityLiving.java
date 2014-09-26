@@ -69,7 +69,7 @@ public abstract class EntityLiving extends Entity {
 	private float bm;
 
 	public void setDead() {
-		this.damageEntity(DamageSource.OUT_OF_WORLD, Float.MAX_VALUE);
+		this.receiveDamage(DamageSource.OUT_OF_WORLD, Float.MAX_VALUE);
 	}
 
 	public EntityLiving(World var1) {
@@ -132,11 +132,11 @@ public abstract class EntityLiving extends Entity {
 		boolean var1 = this instanceof EntityHuman;
 		if (this.isAlive()) {
 			if (this.aj()) {
-				this.damageEntity(DamageSource.STUCK, 1.0F);
+				this.receiveDamage(DamageSource.STUCK, 1.0F);
 			} else if (var1 && !this.world.getWorldBorder().isInside(this.getBoundingBox())) {
 				double var2 = this.world.getWorldBorder().getDistance((Entity) this) + this.world.getWorldBorder().getDamageBuffer();
 				if (var2 < 0.0D) {
-					this.damageEntity(DamageSource.STUCK, (float) Math.max(1, MathHelper.toFixedPointInt(-var2 * this.world.getWorldBorder().getDamageAmount())));
+					this.receiveDamage(DamageSource.STUCK, (float) Math.max(1, MathHelper.toFixedPointInt(-var2 * this.world.getWorldBorder().getDamageAmount())));
 				}
 			}
 		}
@@ -159,7 +159,7 @@ public abstract class EntityLiving extends Entity {
 						this.world.addParticle(Particle.e, this.locationX + (double) var4, this.locationY + (double) var5, this.locationZ + (double) var6, this.motionX, this.motionY, this.motionZ, new int[0]);
 					}
 
-					this.damageEntity(DamageSource.DROWN, 2.0F);
+					this.receiveDamage(DamageSource.DROWN, 2.0F);
 				}
 			}
 
@@ -553,8 +553,8 @@ public abstract class EntityLiving extends Entity {
 		this.dataWatcher.b(6, Float.valueOf(MathHelper.a(var1, 0.0F, this.bt())));
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else if (this.world.isStatic) {
 			return false;
@@ -588,7 +588,7 @@ public abstract class EntityLiving extends Entity {
 				}
 
 				this.au = 0.0F;
-				Entity var4 = var1.j();
+				Entity var4 = var1.getDamager();
 				if (var4 != null) {
 					if (var4 instanceof EntityLiving) {
 						this.b((EntityLiving) var4);
@@ -634,7 +634,7 @@ public abstract class EntityLiving extends Entity {
 						this.a(var10, this.bA(), this.bB());
 					}
 
-					this.a(var1);
+					this.die(var1);
 				} else {
 					var10 = this.bn();
 					if (var3 && var10 != null) {
@@ -664,8 +664,8 @@ public abstract class EntityLiving extends Entity {
 
 	}
 
-	public void a(DamageSource var1) {
-		Entity var2 = var1.j();
+	public void die(DamageSource var1) {
+		Entity var2 = var1.getDamager();
 		EntityLiving var3 = this.getKiller();
 		if (this.aU >= 0 && var3 != null) {
 			var3.b(this, this.aU);
@@ -749,7 +749,7 @@ public abstract class EntityLiving extends Entity {
 		int var5 = MathHelper.f((var1 - 3.0F - var4) * var2);
 		if (var5 > 0) {
 			this.a(this.n(var5), 1.0F, 1.0F);
-			this.damageEntity(DamageSource.FALL, (float) var5);
+			this.receiveDamage(DamageSource.FALL, (float) var5);
 			int var6 = MathHelper.toFixedPointInt(this.locationX);
 			int var7 = MathHelper.toFixedPointInt(this.locationY - 0.20000000298023224D);
 			int var8 = MathHelper.toFixedPointInt(this.locationZ);
@@ -830,7 +830,7 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	protected void d(DamageSource var1, float var2) {
-		if (!this.b(var1)) {
+		if (!this.ignoresDamageType(var1)) {
 			var2 = this.b(var1, var2);
 			var2 = this.c(var1, var2);
 			float var3 = var2;
@@ -881,7 +881,7 @@ public abstract class EntityLiving extends Entity {
 	}
 
 	protected void O() {
-		this.damageEntity(DamageSource.OUT_OF_WORLD, 4.0F);
+		this.receiveDamage(DamageSource.OUT_OF_WORLD, 4.0F);
 	}
 
 	protected void bw() {
@@ -1133,8 +1133,8 @@ public abstract class EntityLiving extends Entity {
 		return false;
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (!this.world.isStatic) {
 			int var1 = this.bu();
 			if (var1 > 0) {

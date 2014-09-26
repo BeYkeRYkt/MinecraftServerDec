@@ -22,18 +22,18 @@ public class EntityItemFrame extends adj {
 		return 0.0F;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else if (!var1.c() && this.o() != null) {
 			if (!this.world.isStatic) {
-				this.a(var1.j(), false);
+				this.a(var1.getDamager(), false);
 				this.a((ItemStack) null);
 			}
 
 			return true;
 		} else {
-			return super.damageEntity(var1, var2);
+			return super.receiveDamage(var1, var2);
 		}
 	}
 

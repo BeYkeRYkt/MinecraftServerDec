@@ -204,7 +204,13 @@ public abstract class PipeHumanEntity extends PipeLivingEntity implements HumanE
 	}
 
 	@Override
-	public InventoryView openEnchanting(Location arg0, boolean arg1) {
+	public InventoryView openWorkbench(Location location, boolean force) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public InventoryView openEnchanting(Location location, boolean force) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -222,14 +228,7 @@ public abstract class PipeHumanEntity extends PipeLivingEntity implements HumanE
 	}
 
 	@Override
-	public InventoryView openWorkbench(Location arg0, boolean arg1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean setWindowProperty(Property arg0, int arg1) {
-		// TODO Auto-generated method stub
+	public boolean setWindowProperty(Property property, int value) {
 		return false;
 	}
 

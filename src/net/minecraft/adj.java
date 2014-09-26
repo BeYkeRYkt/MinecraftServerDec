@@ -68,7 +68,7 @@ public abstract class adj extends Entity {
 		return var1 % 32 == 0 ? 0.5D : 0.0D;
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.previousX = this.locationX;
 		this.previousY = this.locationY;
 		this.previousZ = this.locationZ;
@@ -122,21 +122,21 @@ public abstract class adj extends Entity {
 	}
 
 	public boolean l(Entity var1) {
-		return var1 instanceof EntityHuman ? this.damageEntity(DamageSource.playerAttack((EntityHuman) var1), 0.0F) : false;
+		return var1 instanceof EntityHuman ? this.receiveDamage(DamageSource.playerAttack((EntityHuman) var1), 0.0F) : false;
 	}
 
 	public BlockFace aO() {
 		return this.direction;
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
 		} else {
 			if (!this.dead && !this.world.isStatic) {
 				this.die();
 				this.ac();
-				this.b(var1.j());
+				this.b(var1.getDamager());
 			}
 
 			return true;

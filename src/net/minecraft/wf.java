@@ -27,7 +27,7 @@ public class wf {
 	}
 
 	public boolean f() {
-		return this.a.j() instanceof EntityLiving;
+		return this.a.getDamager() instanceof EntityLiving;
 	}
 
 	public String g() {
@@ -35,7 +35,7 @@ public class wf {
 	}
 
 	public IChatBaseComponent h() {
-		return this.a().j() == null ? null : this.a().j().getComponentName();
+		return this.a().getDamager() == null ? null : this.a().getDamager().getComponentName();
 	}
 
 	public float i() {

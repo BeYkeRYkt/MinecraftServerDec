@@ -144,11 +144,11 @@ public class EntityZombie extends EntityMonster {
 		super.m();
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (super.damageEntity(var1, var2)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (super.receiveDamage(var1, var2)) {
 			EntityLiving var3 = this.u();
-			if (var3 == null && var1.j() instanceof EntityLiving) {
-				var3 = (EntityLiving) var1.j();
+			if (var3 == null && var1.getDamager() instanceof EntityLiving) {
+				var3 = (EntityLiving) var1.getDamager();
 			}
 
 			if (var3 != null && this.world.getDifficulty() == Difficulty.HARD && (double) this.random.nextFloat() < this.a(b).e()) {
@@ -181,7 +181,7 @@ public class EntityZombie extends EntityMonster {
 		}
 	}
 
-	public void s_() {
+	public void doTick() {
 		if (!this.world.isStatic && this.cn()) {
 			int var1 = this.cp();
 			this.bm -= var1;
@@ -190,7 +190,7 @@ public class EntityZombie extends EntityMonster {
 			}
 		}
 
-		super.s_();
+		super.doTick();
 	}
 
 	public boolean r(Entity var1) {
@@ -480,10 +480,10 @@ public class EntityZombie extends EntityMonster {
 		return super.am() - 0.5D;
 	}
 
-	public void a(DamageSource var1) {
-		super.a(var1);
-		if (var1.j() instanceof EntityCreeper && !(this instanceof EntityPigZombie) && ((EntityCreeper) var1.j()).n() && ((EntityCreeper) var1.j()).cn()) {
-			((EntityCreeper) var1.j()).co();
+	public void die(DamageSource var1) {
+		super.die(var1);
+		if (var1.getDamager() instanceof EntityCreeper && !(this instanceof EntityPigZombie) && ((EntityCreeper) var1.getDamager()).n() && ((EntityCreeper) var1.getDamager()).cn()) {
+			((EntityCreeper) var1.getDamager()).co();
 			this.a(new ItemStack(Items.SKULL, 1, 2), 0.0F);
 		}
 

@@ -244,7 +244,7 @@ public class PlayerInteractManager {
 				}
 
 				if (!var1.bR()) {
-					((EntityPlayer) var1).a(var1.defaultContainer);
+					((EntityPlayer) var1).sendContainerItems(var1.defaultContainer);
 				}
 
 				return true;

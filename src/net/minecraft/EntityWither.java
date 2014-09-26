@@ -331,10 +331,10 @@ public class EntityWither extends EntityMonster implements IRangedEntity {
 		this.a(0, var1);
 	}
 
-	public boolean damageEntity(DamageSource var1, float var2) {
-		if (this.b(var1)) {
+	public boolean receiveDamage(DamageSource var1, float var2) {
+		if (this.ignoresDamageType(var1)) {
 			return false;
-		} else if (var1 != DamageSource.DROWN && !(var1.j() instanceof EntityWither)) {
+		} else if (var1 != DamageSource.DROWN && !(var1.getDamager() instanceof EntityWither)) {
 			if (this.cj() > 0 && var1 != DamageSource.OUT_OF_WORLD) {
 				return false;
 			} else {
@@ -346,7 +346,7 @@ public class EntityWither extends EntityMonster implements IRangedEntity {
 					}
 				}
 
-				var3 = var1.j();
+				var3 = var1.getDamager();
 				if (var3 != null && !(var3 instanceof EntityHuman) && var3 instanceof EntityLiving && ((EntityLiving) var3).by() == this.by()) {
 					return false;
 				} else {
@@ -358,7 +358,7 @@ public class EntityWither extends EntityMonster implements IRangedEntity {
 						this.bn[var4] += 3;
 					}
 
-					return super.damageEntity(var1, var2);
+					return super.receiveDamage(var1, var2);
 				}
 			}
 		} else {

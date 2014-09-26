@@ -102,7 +102,7 @@ public class Explosion {
 						var20 /= var36;
 						double var37 = (double) this.world.a(var11, var13.getBoundingBox());
 						double var26 = (1.0D - var35) * var37;
-						var13.damageEntity(DamageSource.explosion(this), (float) ((int) ((var26 * var26 + var26) / 2.0D * 8.0D * (double) var30 + 1.0D)));
+						var13.receiveDamage(DamageSource.explosion(this), (float) ((int) ((var26 * var26 + var26) / 2.0D * 8.0D * (double) var30 + 1.0D)));
 						double var28 = EnchantmentProtection.a(var13, var26);
 						var13.motionX += var16 * var28;
 						var13.motionY += var18 * var28;

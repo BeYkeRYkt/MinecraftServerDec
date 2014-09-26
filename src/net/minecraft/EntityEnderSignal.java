@@ -44,11 +44,11 @@ public class EntityEnderSignal extends Entity {
 		this.e = this.random.nextInt(5) > 0;
 	}
 
-	public void s_() {
+	public void doTick() {
 		this.P = this.locationX;
 		this.Q = this.locationY;
 		this.R = this.locationZ;
-		super.s_();
+		super.doTick();
 		this.locationX += this.motionX;
 		this.locationY += this.motionY;
 		this.locationZ += this.motionZ;

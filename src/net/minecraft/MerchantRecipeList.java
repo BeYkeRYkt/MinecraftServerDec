@@ -27,7 +27,7 @@ public class MerchantRecipeList extends ArrayList {
 		}
 	}
 
-	public void a(PacketDataSerializer var1) {
+	public void writeData(PacketDataSerializer var1) {
 		var1.writeByte((byte) (this.size() & 255));
 
 		for (int var2 = 0; var2 < this.size(); ++var2) {

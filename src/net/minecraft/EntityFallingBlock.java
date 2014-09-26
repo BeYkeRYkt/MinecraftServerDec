@@ -44,7 +44,7 @@ public class EntityFallingBlock extends Entity {
 		return !this.dead;
 	}
 
-	public void s_() {
+	public void doTick() {
 		Block var1 = this.d.getBlock();
 		if (var1.getMaterial() == Material.AIR) {
 			this.die();
@@ -128,7 +128,7 @@ public class EntityFallingBlock extends Entity {
 
 				while (var8.hasNext()) {
 					Entity var9 = (Entity) var8.next();
-					var9.damageEntity(var7, (float) Math.min(MathHelper.d((float) var4 * this.h), this.g));
+					var9.receiveDamage(var7, (float) Math.min(MathHelper.d((float) var4 * this.h), this.g));
 				}
 
 				if (var6 && (double) this.random.nextFloat() < 0.05000000074505806D + (double) var4 * 0.05D) {

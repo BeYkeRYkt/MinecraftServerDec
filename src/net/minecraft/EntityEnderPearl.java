@@ -9,7 +9,7 @@ public class EntityEnderPearl extends ahr {
 	protected void a(MovingObjectPosition var1) {
 		EntityLiving var2 = this.n();
 		if (var1.entity != null) {
-			var1.entity.damageEntity(DamageSource.projectile((Entity) this, var2), 0.0F);
+			var1.entity.receiveDamage(DamageSource.projectile((Entity) this, var2), 0.0F);
 		}
 
 		for (int var3 = 0; var3 < 32; ++var3) {
@@ -33,7 +33,7 @@ public class EntityEnderPearl extends ahr {
 
 					var2.updatePosition(this.locationX, this.locationY, this.locationZ);
 					var2.fallDistance = 0.0F;
-					var2.damageEntity(DamageSource.FALL, 5.0F);
+					var2.receiveDamage(DamageSource.FALL, 5.0F);
 				}
 			}
 
@@ -42,12 +42,12 @@ public class EntityEnderPearl extends ahr {
 
 	}
 
-	public void s_() {
+	public void doTick() {
 		EntityLiving var1 = this.n();
 		if (var1 != null && var1 instanceof EntityHuman && !var1.isAlive()) {
 			this.die();
 		} else {
-			super.s_();
+			super.doTick();
 		}
 
 	}

@@ -62,14 +62,14 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 		return "mob.slime." + (this.ck() > 1 ? "big" : "small");
 	}
 
-	public void s_() {
+	public void doTick() {
 		if (!this.world.isStatic && this.world.getDifficulty() == Difficulty.PEACEFUL && this.ck() > 0) {
 			this.dead = true;
 		}
 
 		this.b += (this.a - this.b) * 0.5F;
 		this.c = this.b;
-		super.s_();
+		super.doTick();
 		if (this.onGround && !this.bi) {
 			int var1 = this.ck();
 
@@ -167,7 +167,7 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 
 	protected void e(EntityLiving var1) {
 		int var2 = this.ck();
-		if (this.t(var1) && this.getDistanceSquared(var1) < 0.6D * (double) var2 * 0.6D * (double) var2 && var1.damageEntity(DamageSource.mobAttack((EntityLiving) this), (float) this.ch())) {
+		if (this.t(var1) && this.getDistanceSquared(var1) < 0.6D * (double) var2 * 0.6D * (double) var2 && var1.receiveDamage(DamageSource.mobAttack((EntityLiving) this), (float) this.ch())) {
 			this.a("mob.attack", 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 			this.a(this, var1);
 		}

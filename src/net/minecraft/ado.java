@@ -80,8 +80,8 @@ public class ado extends Entity {
 		this.ar = 0;
 	}
 
-	public void s_() {
-		super.s_();
+	public void doTick() {
+		super.doTick();
 		if (this.ax > 0) {
 			double var28 = this.locationX + (this.ay - this.locationX) / (double) this.ax;
 			double var29 = this.locationY + (this.az - this.locationY) / (double) this.ax;
@@ -174,7 +174,7 @@ public class ado extends Entity {
 
 			if (var3 != null) {
 				if (var3.entity != null) {
-					if (var3.entity.damageEntity(DamageSource.projectile((Entity) this, this.b), 0.0F)) {
+					if (var3.entity.receiveDamage(DamageSource.projectile((Entity) this, this.b), 0.0F)) {
 						this.c = var3.entity;
 					}
 				} else {

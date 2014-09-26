@@ -75,7 +75,7 @@ public class EntityCreeper extends EntityMonster {
 
 	}
 
-	public void s_() {
+	public void doTick() {
 		if (this.isAlive()) {
 			this.b = this.c;
 			if (this.cl()) {
@@ -98,7 +98,7 @@ public class EntityCreeper extends EntityMonster {
 			}
 		}
 
-		super.s_();
+		super.doTick();
 	}
 
 	protected String bn() {
@@ -109,15 +109,15 @@ public class EntityCreeper extends EntityMonster {
 		return "mob.creeper.death";
 	}
 
-	public void a(DamageSource var1) {
-		super.a(var1);
-		if (var1.j() instanceof EntitySkeleton) {
+	public void die(DamageSource var1) {
+		super.die(var1);
+		if (var1.getDamager() instanceof EntitySkeleton) {
 			int var2 = Item.getId(Items.RECORD_13);
 			int var3 = Item.getId(Items.RECORD_WAIT);
 			int var4 = var2 + this.random.nextInt(var3 - var2 + 1);
 			this.a(Item.getById(var4), 1);
-		} else if (var1.j() instanceof EntityCreeper && var1.j() != this && ((EntityCreeper) var1.j()).n() && ((EntityCreeper) var1.j()).cn()) {
-			((EntityCreeper) var1.j()).co();
+		} else if (var1.getDamager() instanceof EntityCreeper && var1.getDamager() != this && ((EntityCreeper) var1.getDamager()).n() && ((EntityCreeper) var1.getDamager()).cn()) {
+			((EntityCreeper) var1.getDamager()).co();
 			this.a(new ItemStack(Items.SKULL, 1, 4), 0.0F);
 		}
 

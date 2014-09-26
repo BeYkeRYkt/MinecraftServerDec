@@ -934,7 +934,7 @@ public abstract class World implements ard {
 
 			try {
 				++var2.ticksLived;
-				var2.s_();
+				var2.doTick();
 			} catch (Throwable var9) {
 				var4 = CrashReport.generateCrashReport(var9, "Ticking entity");
 				var5 = var4.generateSystemDetails("Entity being ticked");
@@ -1117,7 +1117,7 @@ public abstract class World implements ard {
 				if (var1.vehicle != null) {
 					var1.ak();
 				} else {
-					var1.s_();
+					var1.doTick();
 				}
 			}
 

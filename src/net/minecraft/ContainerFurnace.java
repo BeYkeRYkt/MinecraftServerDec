@@ -32,7 +32,7 @@ public class ContainerFurnace extends Container {
 
 	public void addSlotListener(ICrafting var1) {
 		super.addSlotListener(var1);
-		var1.setContainerData(this, this.a);
+		var1.sendContainerProperties(this, this.a);
 	}
 
 	public void b() {
@@ -41,19 +41,19 @@ public class ContainerFurnace extends Container {
 		for (int var1 = 0; var1 < this.listeners.size(); ++var1) {
 			ICrafting var2 = (ICrafting) this.listeners.get(var1);
 			if (this.f != this.a.getProperty(2)) {
-				var2.setContainerData(this, 2, this.a.getProperty(2));
+				var2.sendContainerProperty(this, 2, this.a.getProperty(2));
 			}
 
 			if (this.h != this.a.getProperty(0)) {
-				var2.setContainerData(this, 0, this.a.getProperty(0));
+				var2.sendContainerProperty(this, 0, this.a.getProperty(0));
 			}
 
 			if (this.i != this.a.getProperty(1)) {
-				var2.setContainerData(this, 1, this.a.getProperty(1));
+				var2.sendContainerProperty(this, 1, this.a.getProperty(1));
 			}
 
 			if (this.g != this.a.getProperty(3)) {
-				var2.setContainerData(this, 3, this.a.getProperty(3));
+				var2.sendContainerProperty(this, 3, this.a.getProperty(3));
 			}
 		}
 
