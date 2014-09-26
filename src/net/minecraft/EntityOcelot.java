@@ -62,13 +62,13 @@ public class EntityOcelot extends xx {
 	public void e(float var1, float var2) {
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("CatType", this.cr());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.r(var1.getInt("CatType"));
 	}
 

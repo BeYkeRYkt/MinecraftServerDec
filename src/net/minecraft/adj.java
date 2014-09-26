@@ -159,14 +159,14 @@ public abstract class adj extends Entity {
 
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("Facing", (byte) this.direction.toDirection());
 		var1.put("TileX", this.getPosition().getX());
 		var1.put("TileY", this.getPosition().getY());
 		var1.put("TileZ", this.getPosition().getZ());
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.a = new Position(var1.getInt("TileX"), var1.getInt("TileY"), var1.getInt("TileZ"));
 		BlockFace var2;
 		if (var1.isTagAssignableFrom("Direction", 99)) {

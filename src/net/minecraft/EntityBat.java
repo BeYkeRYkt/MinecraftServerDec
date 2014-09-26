@@ -147,13 +147,13 @@ public class EntityBat extends EntityAmbient {
 		}
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.dataWatcher.b(16, Byte.valueOf(var1.getByte("BatFlags")));
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("BatFlags", this.dataWatcher.a(16));
 	}
 

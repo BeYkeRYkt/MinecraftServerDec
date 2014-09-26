@@ -73,8 +73,8 @@ public class EntityPigZombie extends EntityZombie {
 		return this.world.a(this.getBoundingBox(), (Entity) this) && this.world.getCubes((Entity) this, this.getBoundingBox()).isEmpty() && !this.world.d(this.getBoundingBox());
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("Anger", (short) this.bl);
 		if (this.bn != null) {
 			var1.put("HurtBy", this.bn.toString());
@@ -84,8 +84,8 @@ public class EntityPigZombie extends EntityZombie {
 
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.bl = var1.getShort("Anger");
 		String var2 = var1.getString("HurtBy");
 		if (var2.length() > 0) {

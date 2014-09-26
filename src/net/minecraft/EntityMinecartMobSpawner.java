@@ -20,13 +20,13 @@ public class EntityMinecartMobSpawner extends adx {
 		return Blocks.MOB_SPAWNER.getBlockState();
 	}
 
-	protected void a(NBTCompoundTag var1) {
-		super.a(var1);
+	protected void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.a.read(var1);
 	}
 
-	protected void b(NBTCompoundTag var1) {
-		super.b(var1);
+	protected void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		this.a.write(var1);
 	}
 

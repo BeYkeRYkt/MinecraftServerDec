@@ -68,11 +68,11 @@ public class EntityTNTPrimed extends Entity {
 		this.world.createExplosion(this, this.locationX, this.locationY + (double) (this.width / 2.0F), this.locationZ, var1, true);
 	}
 
-	protected void b(NBTCompoundTag var1) {
+	protected void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("Fuse", (byte) this.a);
 	}
 
-	protected void a(NBTCompoundTag var1) {
+	protected void readAdditionalData(NBTCompoundTag var1) {
 		this.a = var1.getByte("Fuse");
 	}
 

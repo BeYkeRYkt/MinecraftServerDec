@@ -954,7 +954,7 @@ public abstract class MinecraftServer implements CommandSenderInterface, Runnabl
 		this.forceGameMode = forceGameMode;
 	}
 
-	public boolean av() {
+	public boolean isForceGameModeEnabled() {
 		return this.forceGameMode;
 	}
 

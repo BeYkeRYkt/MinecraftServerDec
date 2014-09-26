@@ -300,7 +300,7 @@ public abstract class EntityLiving extends Entity {
 		return this.aO;
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("HealF", this.getHealth());
 		var1.put("Health", (short) ((int) Math.ceil((double) this.getHealth())));
 		var1.put("HurtTime", (short) this.as);
@@ -344,7 +344,7 @@ public abstract class EntityLiving extends Entity {
 
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.l(var1.getFloat("AbsorptionAmount"));
 		if (var1.isTagAssignableFrom("Attributes", 9) && this.world != null && !this.world.isStatic) {
 			afs.a(this.bx(), var1.getList("Attributes", 10));

@@ -96,8 +96,8 @@ public class EntityPotion extends ahr {
 
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		if (var1.isTagAssignableFrom("Potion", 10)) {
 			this.c = ItemStack.fromNBT(var1.getCompound("Potion"));
 		} else {
@@ -110,8 +110,8 @@ public class EntityPotion extends ahr {
 
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		if (this.c != null) {
 			var1.put("Potion", (NBTTag) this.c.write(new NBTCompoundTag()));
 		}

@@ -90,8 +90,8 @@ public class EntityArmorStand extends EntityLiving {
 		}
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		NBTListTag var2 = new NBTListTag();
 
 		for (int var3 = 0; var3 < this.g.length; ++var3) {
@@ -117,8 +117,8 @@ public class EntityArmorStand extends EntityLiving {
 		var1.put("Pose", (NBTTag) this.y());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		if (var1.isTagAssignableFrom("Equipment", 9)) {
 			NBTListTag var2 = var1.getList("Equipment", 10);
 

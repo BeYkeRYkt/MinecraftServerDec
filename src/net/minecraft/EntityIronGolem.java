@@ -89,13 +89,13 @@ public class EntityIronGolem extends EntityGolem {
 		return this.cl() && EntityHuman.class.isAssignableFrom(var1) ? false : super.a(var1);
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("PlayerCreated", this.cl());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.l(var1.getBoolean("PlayerCreated"));
 	}
 

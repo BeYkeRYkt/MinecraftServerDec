@@ -93,7 +93,7 @@ public class LoginListener implements LoginServerboundPacketListener, ITickable 
 		}
 	}
 
-	public void handle(IChatBaseComponent component) {
+	public void handleDisconnect(IChatBaseComponent component) {
 		logger.info(this.getName() + " lost connection: " + component.getJsonMessage());
 	}
 

@@ -573,8 +573,8 @@ public abstract class EntityHuman extends EntityLiving {
 		return this.playerInventory.b(var1);
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.uuid = a(this.gameProfile);
 		NBTListTag var2 = var1.getList("Inventory", 10);
 		this.playerInventory.read(var2);
@@ -609,8 +609,8 @@ public abstract class EntityHuman extends EntityLiving {
 
 	}
 
-	public void b(NBTCompoundTag tag) {
-		super.b(tag);
+	public void writeAdditionalData(NBTCompoundTag tag) {
+		super.writeAdditionalData(tag);
 		tag.put("Inventory", (NBTTag) this.playerInventory.write(new NBTListTag()));
 		tag.put("SelectedItemSlot", this.playerInventory.itemInHandIndex);
 		tag.put("Sleeping", this.isSleeping);

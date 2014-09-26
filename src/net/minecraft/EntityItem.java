@@ -189,7 +189,7 @@ public class EntityItem extends Entity {
 		}
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("Health", (short) ((byte) this.e));
 		var1.put("Age", (short) this.c);
 		var1.put("PickupDelay", (short) this.d);
@@ -207,7 +207,7 @@ public class EntityItem extends Entity {
 
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.e = var1.getShort("Health") & 255;
 		this.c = var1.getShort("Age");
 		if (var1.hasKey("PickupDelay")) {

@@ -53,14 +53,14 @@ public class EntityEndermite extends EntityMonster {
 		return null;
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.b = var1.getInt("Lifetime");
 		this.c = var1.getBoolean("PlayerSpawned");
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("Lifetime", this.b);
 		var1.put("PlayerSpawned", this.c);
 	}

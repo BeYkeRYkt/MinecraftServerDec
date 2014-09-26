@@ -213,9 +213,9 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<PacketLis
 		if (!this.hasChannel() && !this.isConnected() && !this.closed) {
 			this.closed = true;
 			if (this.getDisconnectMessage() != null) {
-				this.getPacketListener().handle(this.getDisconnectMessage());
+				this.getPacketListener().handleDisconnect(this.getDisconnectMessage());
 			} else if (this.getPacketListener() != null) {
-				this.getPacketListener().handle(new ChatComponentText("Disconnected"));
+				this.getPacketListener().handleDisconnect(new ChatComponentText("Disconnected"));
 			}
 		}
 	}

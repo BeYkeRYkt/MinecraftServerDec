@@ -100,14 +100,14 @@ public class EntitySheep extends EntityAnimal {
 		return super.a(var1);
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("Sheared", this.ck());
 		var1.put("Color", (byte) this.cj().a());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.l(var1.getBoolean("Sheared"));
 		this.b(akv.b(var1.getByte("Color")));
 	}

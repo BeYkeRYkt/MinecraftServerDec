@@ -898,8 +898,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 		}
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("EatingHaystack", this.cw());
 		var1.put("ChestedHorse", this.cu());
 		var1.put("HasReproduced", this.cz());
@@ -935,8 +935,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.r(var1.getBoolean("EatingHaystack"));
 		this.n(var1.getBoolean("Bred"));
 		this.o(var1.getBoolean("ChestedHorse"));

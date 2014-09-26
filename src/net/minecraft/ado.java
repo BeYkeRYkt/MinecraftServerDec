@@ -325,7 +325,7 @@ public class ado extends Entity {
 		}
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("xTile", (short) this.g);
 		var1.put("yTile", (short) this.h);
 		var1.put("zTile", (short) this.i);
@@ -335,7 +335,7 @@ public class ado extends Entity {
 		var1.put("inGround", (byte) (this.aq ? 1 : 0));
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.g = var1.getShort("xTile");
 		this.h = var1.getShort("yTile");
 		this.i = var1.getShort("zTile");

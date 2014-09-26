@@ -113,13 +113,13 @@ public class EntityMinecartHopper extends InventoryMinecart implements IHopper {
 		this.a(Item.getItemOf((Block) Blocks.HOPPER), 1, 0.0F);
 	}
 
-	protected void b(NBTCompoundTag var1) {
-		super.b(var1);
+	protected void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("TransferCooldown", this.b);
 	}
 
-	protected void a(NBTCompoundTag var1) {
-		super.a(var1);
+	protected void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.b = var1.getInt("TransferCooldown");
 	}
 

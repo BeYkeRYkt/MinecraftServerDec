@@ -121,13 +121,13 @@ public class EntityExpirienceOrb extends Entity {
 		}
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("Health", (short) ((byte) this.d));
 		var1.put("Age", (short) this.b);
 		var1.put("Value", (short) this.e);
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.d = var1.getShort("Health") & 255;
 		this.b = var1.getShort("Age");
 		this.e = var1.getShort("Value");

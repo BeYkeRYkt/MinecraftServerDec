@@ -42,15 +42,15 @@ public class EntityEnderman extends EntityMonster {
 		this.dataWatcher.a(18, new Byte((byte) 0));
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		IBlockState var2 = this.ck();
 		var1.put("carried", (short) Block.getBlockId(var2.getBlock()));
 		var1.put("carriedData", (short) var2.getBlock().getData(var2));
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		IBlockState var2;
 		if (var1.isTagAssignableFrom("carried", 8)) {
 			var2 = Block.getBlockByName(var1.getString("carried")).setData(var1.getShort("carriedData") & '\uffff');

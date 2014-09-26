@@ -50,13 +50,13 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimal {
 		return this.world.getBlockState(var1.getDown()).getBlock() == Blocks.GRASS ? 10.0F : this.world.o(var1) - 0.5F;
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("InLove", this.bk);
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.bk = var1.getInt("InLove");
 	}
 

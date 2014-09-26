@@ -2,6 +2,6 @@ package net.minecraft;
 
 public interface PacketListener {
 
-	void handle(IChatBaseComponent value);
+	void handleDisconnect(IChatBaseComponent value);
 
 }

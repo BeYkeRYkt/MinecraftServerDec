@@ -33,12 +33,12 @@ public class EntityPainting extends adj {
 		this.a(var3);
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("Motive", this.type.name);
-		super.b(var1);
+		super.writeAdditionalData(var1);
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		String var2 = var1.getString("Motive");
 		PaintingType[] var3 = PaintingType.values();
 		int var4 = var3.length;
@@ -54,7 +54,7 @@ public class EntityPainting extends adj {
 			this.type = PaintingType.a;
 		}
 
-		super.a(var1);
+		super.readAdditionalData(var1);
 	}
 
 	public int l() {

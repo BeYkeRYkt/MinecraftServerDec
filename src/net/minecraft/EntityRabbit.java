@@ -175,14 +175,14 @@ public class EntityRabbit extends EntityAnimal {
 		this.a(afs.d).a(0.30000001192092896D);
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("RabbitType", this.cl());
 		var1.put("MoreCarrotTicks", this.bs);
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.r(var1.getInt("RabbitType"));
 		this.bs = var1.getInt("MoreCarrotTicks");
 	}

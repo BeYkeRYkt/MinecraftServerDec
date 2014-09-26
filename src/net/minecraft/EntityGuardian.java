@@ -42,13 +42,13 @@ public class EntityGuardian extends EntityMonster {
 		this.a(afs.a).a(30.0D);
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.a(var1.getBoolean("Elder"));
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("Elder", this.cl());
 	}
 

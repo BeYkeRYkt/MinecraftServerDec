@@ -37,14 +37,14 @@ public class EntitySlime extends EntityInsentient implements IMonster {
 		return this.dataWatcher.a(16);
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("Size", this.ck() - 1);
 		var1.put("wasOnGround", this.bi);
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		int var2 = var1.getInt("Size");
 		if (var2 < 0) {
 			var2 = 0;

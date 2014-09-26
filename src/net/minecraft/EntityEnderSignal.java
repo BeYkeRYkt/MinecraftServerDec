@@ -117,10 +117,10 @@ public class EntityEnderSignal extends Entity {
 
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 	}
 
 	public float c(float var1) {

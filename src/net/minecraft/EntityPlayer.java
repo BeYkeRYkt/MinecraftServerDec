@@ -51,6 +51,8 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 	public int ping;
 	public boolean viewingCredits;
 
+	private PipePlayer bukkitplayer;
+
 	public EntityPlayer(MinecraftServer var1, WorldServer var2, GameProfile var3, PlayerInteractManager var4) {
 		super(var2, var3);
 		var4.b = this;
@@ -79,23 +81,25 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 			this.b(this.locationX, this.locationY + 1.0D, this.locationZ);
 		}
 
+		bukkitplayer = new PipePlayer(this);
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
-		if (var1.isTagAssignableFrom("playerGameType", 99)) {
-			if (MinecraftServer.getInstance().av()) {
+	public void readAdditionalData(NBTCompoundTag tag) {
+		super.readAdditionalData(tag);
+		if (tag.isTagAssignableFrom("playerGameType", 99)) {
+			if (MinecraftServer.getInstance().isForceGameModeEnabled()) {
 				this.playerInteractManager.setGameMode(MinecraftServer.getInstance().getServerGameMode());
 			} else {
-				this.playerInteractManager.setGameMode(EnumGameMode.getById(var1.getInt("playerGameType")));
+				this.playerInteractManager.setGameMode(EnumGameMode.getById(tag.getInt("playerGameType")));
 			}
 		}
-
+		bukkitplayer.readBukkitData(tag);
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
-		var1.put("playerGameType", this.playerInteractManager.getGameMode().getId());
+	public void writeAdditionalData(NBTCompoundTag tag) {
+		super.writeAdditionalData(tag);
+		tag.put("playerGameType", this.playerInteractManager.getGameMode().getId());
+		bukkitplayer.writeBukkitData(tag);
 	}
 
 	public void a(int var1) {
@@ -852,12 +856,8 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		return null;
 	}
 
-	private Player bukkitplayer;
 	@SuppressWarnings("unchecked")
 	public <T extends org.bukkit.entity.Entity> T getBukkitEntity(Class<T> returnType) {
-		if (bukkitplayer == null) {
-			bukkitplayer = new PipePlayer(this);
-		}
 		return (T) bukkitplayer;
 	}
 

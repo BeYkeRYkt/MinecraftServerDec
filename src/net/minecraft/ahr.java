@@ -195,7 +195,7 @@ public abstract class ahr extends Entity implements aho {
 
 	protected abstract void a(MovingObjectPosition var1);
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("xTile", (short) this.c);
 		var1.put("yTile", (short) this.d);
 		var1.put("zTile", (short) this.e);
@@ -210,7 +210,7 @@ public abstract class ahr extends Entity implements aho {
 		var1.put("ownerName", this.h == null ? "" : this.h);
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.c = var1.getShort("xTile");
 		this.d = var1.getShort("yTile");
 		this.e = var1.getShort("zTile");

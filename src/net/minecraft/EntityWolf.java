@@ -69,14 +69,14 @@ public class EntityWolf extends xx {
 		this.a("mob.wolf.step", 0.15F, 1.0F);
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("Angry", this.ct());
 		var1.put("CollarColor", (byte) this.cu().b());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.o(var1.getBoolean("Angry"));
 		if (var1.isTagAssignableFrom("CollarColor", 99)) {
 			this.a(akv.a(var1.getByte("CollarColor")));

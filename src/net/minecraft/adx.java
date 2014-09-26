@@ -521,7 +521,7 @@ public abstract class adx extends Entity implements ICustomNameable {
 		}
 	}
 
-	protected void a(NBTCompoundTag var1) {
+	protected void readAdditionalData(NBTCompoundTag var1) {
 		if (var1.getBoolean("CustomDisplayTile")) {
 			int var2 = var1.getInt("DisplayData");
 			Block var3;
@@ -550,7 +550,7 @@ public abstract class adx extends Entity implements ICustomNameable {
 
 	}
 
-	protected void b(NBTCompoundTag var1) {
+	protected void writeAdditionalData(NBTCompoundTag var1) {
 		if (this.x()) {
 			var1.put("CustomDisplayTile", true);
 			IBlockState var2 = this.t();

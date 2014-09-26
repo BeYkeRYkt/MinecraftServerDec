@@ -42,7 +42,7 @@ public class HandshakeListener implements HandshakingServerboundPacketListener {
 
 	}
 
-	public void handle(IChatBaseComponent var1) {
+	public void handleDisconnect(IChatBaseComponent var1) {
 	}
 
 }

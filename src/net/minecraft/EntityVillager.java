@@ -162,8 +162,8 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		this.dataWatcher.a(16, Integer.valueOf(0));
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("Profession", this.cj());
 		var1.put("Riches", this.riches);
 		var1.put("Career", this.career);
@@ -185,8 +185,8 @@ public class EntityVillager extends EntityAgeable implements NPC, IMerchant {
 		var1.put("Inventory", (NBTTag) var2);
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.setProfession(var1.getInt("Profession"));
 		this.riches = var1.getInt("Riches");
 		this.career = var1.getInt("Career");

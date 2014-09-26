@@ -17,8 +17,8 @@ public abstract class xx extends EntityAnimal implements xt {
 		this.dataWatcher.a(17, "");
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		if (this.b() == null) {
 			var1.put("OwnerUUID", "");
 		} else {
@@ -28,8 +28,8 @@ public abstract class xx extends EntityAnimal implements xt {
 		var1.put("Sitting", this.cl());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		String var2 = "";
 		if (var1.isTagAssignableFrom("OwnerUUID", 8)) {
 			var2 = var1.getString("OwnerUUID");

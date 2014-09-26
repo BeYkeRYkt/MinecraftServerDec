@@ -239,8 +239,8 @@ public class EntitySkeleton extends EntityMonster implements IRangedEntity {
 
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		if (var1.isTagAssignableFrom("SkeletonType", 99)) {
 			byte var2 = var1.getByte("SkeletonType");
 			this.a(var2);
@@ -249,8 +249,8 @@ public class EntitySkeleton extends EntityMonster implements IRangedEntity {
 		this.n();
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("SkeletonType", (byte) this.ck());
 	}
 

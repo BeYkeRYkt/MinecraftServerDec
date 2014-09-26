@@ -461,7 +461,7 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 	public void handle(PacketPlayInResourcePackStatus packet) {
 	}
 
-	public void handle(IChatBaseComponent packet) {
+	public void handleDisconnect(IChatBaseComponent packet) {
 		logger.info(this.player.getName() + " lost connection: " + packet);
 		this.minecraftserver.requestServerPingRefresh();
 		this.player.q();
@@ -480,13 +480,16 @@ public class PlayerConnection implements PlayInPacketListener, ITickable {
 
 	public void handle(PacketPlayInChatMessage packet) {
 		PacketAsyncToSyncThrower.schedulePacketHandleIfNeeded(packet, this, this.player.getWorldServer());
+		chat(packet.getMessage());
+	}
+
+	public void chat(String message) {
 		if (this.player.getChatFlag() == EnumChatFlag.HIDDEN) {
 			ChatMessage response = new ChatMessage("chat.cannotSend", new Object[0]);
 			response.getChatModifier().setColor(EnumChatFormat.RED);
 			this.sendPacket(new PacketPlayOutChatMessage(response));
 		} else {
 			this.player.updateLastActiveTime();
-			String message = packet.getMessage();
 			message = StringUtils.normalizeSpace(message);
 
 			for (int i = 0; i < message.length(); ++i) {

@@ -991,7 +991,7 @@ public abstract class Entity implements CommandSenderInterface {
 				tag.put("Silent", this.isSilent());
 			}
 
-			this.b(tag);
+			this.writeAdditionalData(tag);
 			if (this.vehicle != null) {
 				NBTCompoundTag var2 = new NBTCompoundTag();
 				if (this.vehicle.c(var2)) {
@@ -1054,7 +1054,7 @@ public abstract class Entity implements CommandSenderInterface {
 			this.g(var1.getBoolean("CustomNameVisible"));
 			this.commandBlockStat.read(var1);
 			this.b(var1.getBoolean("Silent"));
-			this.a(var1);
+			this.readAdditionalData(var1);
 			if (this.af()) {
 				this.b(this.locationX, this.locationY, this.locationZ);
 			}
@@ -1075,9 +1075,9 @@ public abstract class Entity implements CommandSenderInterface {
 		return EntityTypes.getNameByClass(this);
 	}
 
-	protected abstract void a(NBTCompoundTag var1);
+	protected abstract void readAdditionalData(NBTCompoundTag var1);
 
-	protected abstract void b(NBTCompoundTag var1);
+	protected abstract void writeAdditionalData(NBTCompoundTag var1);
 
 	public void ah() {
 	}

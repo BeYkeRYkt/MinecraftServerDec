@@ -256,8 +256,8 @@ public class EntityZombie extends EntityMonster {
 
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		if (this.i_()) {
 			var1.put("IsBaby", true);
 		}
@@ -270,8 +270,8 @@ public class EntityZombie extends EntityMonster {
 		var1.put("CanBreakDoors", this.cl());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		if (var1.getBoolean("IsBaby")) {
 			this.l(true);
 		}

@@ -19,15 +19,15 @@ public class EntityMinecartCommandBlock extends adx {
 		this.getDataWatcher().a(24, "");
 	}
 
-	protected void a(NBTCompoundTag var1) {
-		super.a(var1);
+	protected void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.listener.read(var1);
 		this.getDataWatcher().b(23, this.getListener().getCommand());
 		this.getDataWatcher().b(24, ChatSerializer.toJsonString(this.getListener().getLastOutput()));
 	}
 
-	protected void b(NBTCompoundTag var1) {
-		super.b(var1);
+	protected void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		this.listener.write(var1);
 	}
 

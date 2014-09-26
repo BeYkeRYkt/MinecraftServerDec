@@ -145,7 +145,7 @@ public class EntityFallingBlock extends Entity {
 
 	}
 
-	protected void b(NBTCompoundTag var1) {
+	protected void writeAdditionalData(NBTCompoundTag var1) {
 		Block var2 = this.d != null ? this.d.getBlock() : Blocks.AIR;
 		RegistryObjectName var3 = (RegistryObjectName) Block.BLOCKREGISTRY.c(var2);
 		var1.put("Block", var3 == null ? "" : var3.toString());
@@ -161,7 +161,7 @@ public class EntityFallingBlock extends Entity {
 
 	}
 
-	protected void a(NBTCompoundTag var1) {
+	protected void readAdditionalData(NBTCompoundTag var1) {
 		int var2 = var1.getByte("Data") & 255;
 		if (var1.isTagAssignableFrom("Block", 8)) {
 			this.d = Block.getBlockByName(var1.getString("Block")).setData(var2);

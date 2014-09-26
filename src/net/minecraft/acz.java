@@ -15,10 +15,10 @@ public class acz extends Entity {
 	protected void h() {
 	}
 
-	protected void a(NBTCompoundTag var1) {
+	protected void readAdditionalData(NBTCompoundTag var1) {
 	}
 
-	protected void b(NBTCompoundTag var1) {
+	protected void writeAdditionalData(NBTCompoundTag var1) {
 	}
 
 	public boolean ad() {

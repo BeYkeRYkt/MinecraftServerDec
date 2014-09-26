@@ -107,8 +107,8 @@ public abstract class InventoryMinecart extends adx implements ILockable {
 		super.die();
 	}
 
-	protected void b(NBTCompoundTag var1) {
-		super.b(var1);
+	protected void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		NBTListTag var2 = new NBTListTag();
 
 		for (int var3 = 0; var3 < this.items.length; ++var3) {
@@ -123,8 +123,8 @@ public abstract class InventoryMinecart extends adx implements ILockable {
 		var1.put("Items", (NBTTag) var2);
 	}
 
-	protected void a(NBTCompoundTag var1) {
-		super.a(var1);
+	protected void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		NBTListTag var2 = var1.getList("Items", 10);
 		this.items = new ItemStack[this.getSize()];
 

@@ -81,7 +81,7 @@ public class EntityFireworks extends Entity {
 
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("Life", this.a);
 		var1.put("LifeTime", this.b);
 		ItemStack var2 = this.dataWatcher.f(8);
@@ -93,7 +93,7 @@ public class EntityFireworks extends Entity {
 
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.a = var1.getInt("Life");
 		this.b = var1.getInt("LifeTime");
 		NBTCompoundTag var2 = var1.getCompound("FireworksItem");

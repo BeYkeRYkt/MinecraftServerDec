@@ -182,8 +182,8 @@ public abstract class EntityInsentient extends EntityLiving {
 
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("CanPickUpLoot", this.bX());
 		var1.put("PersistenceRequired", this.bl);
 		NBTListTag var2 = new NBTListTag();
@@ -228,8 +228,8 @@ public abstract class EntityInsentient extends EntityLiving {
 
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		if (var1.isTagAssignableFrom("CanPickUpLoot", 1)) {
 			this.j(var1.getBoolean("CanPickUpLoot"));
 		}

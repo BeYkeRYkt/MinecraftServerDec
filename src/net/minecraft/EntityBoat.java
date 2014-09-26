@@ -301,10 +301,10 @@ public class EntityBoat extends Entity {
 		}
 	}
 
-	protected void b(NBTCompoundTag var1) {
+	protected void writeAdditionalData(NBTCompoundTag var1) {
 	}
 
-	protected void a(NBTCompoundTag var1) {
+	protected void readAdditionalData(NBTCompoundTag var1) {
 	}
 
 	public boolean e(EntityHuman var1) {

@@ -115,16 +115,16 @@ public class EntityMinecartTNT extends adx {
 		return this.y() && (ati.d(var4) || ati.d(var2, var3.getUp())) ? false : super.a(var1, var2, var3, var4, var5);
 	}
 
-	protected void a(NBTCompoundTag var1) {
-		super.a(var1);
+	protected void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		if (var1.isTagAssignableFrom("TNTFuse", 99)) {
 			this.a = var1.getInt("TNTFuse");
 		}
 
 	}
 
-	protected void b(NBTCompoundTag var1) {
-		super.b(var1);
+	protected void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("TNTFuse", this.a);
 	}
 }

@@ -47,8 +47,8 @@ public class EntityCreeper extends EntityMonster {
 		this.dataWatcher.a(18, Byte.valueOf((byte) 0));
 	}
 
-	public void b(NBTCompoundTag var1) {
-		super.b(var1);
+	public void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		if (this.dataWatcher.a(17) == 1) {
 			var1.put("powered", true);
 		}
@@ -58,8 +58,8 @@ public class EntityCreeper extends EntityMonster {
 		var1.put("ignited", this.cl());
 	}
 
-	public void a(NBTCompoundTag var1) {
-		super.a(var1);
+	public void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.dataWatcher.b(17, Byte.valueOf((byte) (var1.getBoolean("powered") ? 1 : 0)));
 		if (var1.isTagAssignableFrom("Fuse", 99)) {
 			this.bk = var1.getShort("Fuse");

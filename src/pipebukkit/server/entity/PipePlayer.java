@@ -1,13 +1,17 @@
 package pipebukkit.server.entity;
 
 import java.net.InetSocketAddress;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
 import net.minecraft.ChatMessage;
 import net.minecraft.EntityPlayer;
-import org.bukkit.Achievement;
+import net.minecraft.NBTCompoundTag;
+import net.minecraft.server.MinecraftServer;
 
+import org.bukkit.Achievement;
+import org.bukkit.BanList.Type;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Instrument;
@@ -31,8 +35,33 @@ import pipebukkit.server.PipeOfflinePlayer;
 @DelegateDeserialization(PipeOfflinePlayer.class)
 public class PipePlayer extends PipeHumanEntity implements Player {
 
+	private boolean hasPlayedBefore;
+	private long firstPlayed;
+	private long lastPlayed;
+
 	public PipePlayer(EntityPlayer nmsPlayer) {
 		super(nmsPlayer);
+	}
+
+	public void readBukkitData(NBTCompoundTag tag) {
+		hasPlayedBefore = true;
+		if (tag.hasKey("bukkit")) {
+			NBTCompoundTag data = tag.getCompound("bukkit");
+			if (data.hasKey("firstPlayed")) {
+				firstPlayed = data.getLong("firstPlayed");
+				lastPlayed = data.getLong("lastPlayed");
+			}
+		}
+	}
+
+	public void writeBukkitData(NBTCompoundTag tag) {
+		if (!tag.hasKey("bukkit")) {
+			tag.put("bukkit", new NBTCompoundTag());
+		}
+		NBTCompoundTag data = tag.getCompound("bukkit");
+		data.put("firstPlayed", getFirstPlayed());
+		data.put("lastPlayed", System.currentTimeMillis());
+		data.put("lastKnownName", getName());		
 	}
 
 	@Override
@@ -87,14 +116,12 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 
 	@Override
 	public long getFirstPlayed() {
-		// TODO Auto-generated method stub
-		return 0;
+		return firstPlayed;
 	}
 
 	@Override
 	public long getLastPlayed() {
-		// TODO Auto-generated method stub
-		return 0;
+		return lastPlayed;
 	}
 
 	@Override
@@ -104,14 +131,12 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 
 	@Override
 	public boolean hasPlayedBefore() {
-		// TODO Auto-generated method stub
-		return false;
+		return hasPlayedBefore;
 	}
 
 	@Override
 	public boolean isBanned() {
-		// TODO Auto-generated method stub
-		return false;
+		return Bukkit.getBanList(Type.NAME).isBanned(getName());
 	}
 
 	@Override
@@ -121,26 +146,32 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 
 	@Override
 	public boolean isWhitelisted() {
-		// TODO Auto-generated method stub
-		return false;
+		return Bukkit.getWhitelistedPlayers().contains(this);
 	}
 
 	@Override
-	public void setBanned(boolean arg0) {
-		// TODO Auto-generated method stub
-		
+	public void setBanned(boolean banned) {
+		if (banned) {
+			Bukkit.getBanList(Type.NAME).addBan(getName(), null, null, null);
+		} else {
+			Bukkit.getBanList(Type.NAME).pardon(getName());
+		}
 	}
 
 	@Override
-	public void setWhitelisted(boolean arg0) {
-		// TODO Auto-generated method stub
-		
+	public void setWhitelisted(boolean whitelisted) {
+		if (whitelisted) {
+			MinecraftServer.getInstance().getPlayerList().addWhitelist(getHandle(EntityPlayer.class).getGameProfile());
+		} else {
+			MinecraftServer.getInstance().getPlayerList().removeWhitelist(getHandle(EntityPlayer.class).getGameProfile());
+		}
 	}
 
 	@Override
 	public Map<String, Object> serialize() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, Object> result = new LinkedHashMap<String, Object>();
+		result.put("name", getName());
+		return result;
 	}
 
 	@Override
@@ -156,69 +187,30 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 	}
 
 	@Override
-	public void awardAchievement(Achievement arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public boolean canSee(Player arg0) {
-		// TODO Auto-generated method stub
-		return false;
+		// TODO
+		return true;
 	}
 
 	@Override
-	public void chat(String arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void decrementStatistic(Statistic arg0) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void decrementStatistic(Statistic arg0, int arg1) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void decrementStatistic(Statistic arg0, Material arg1) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void decrementStatistic(Statistic arg0, EntityType arg1) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void decrementStatistic(Statistic arg0, Material arg1, int arg2) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void decrementStatistic(Statistic arg0, EntityType arg1, int arg2) {
-		// TODO Auto-generated method stub
-		
+	public void chat(String message) {
+		if (getHandle(EntityPlayer.class).playerConnection == null) {
+			return;
+		}
+		getHandle(EntityPlayer.class).playerConnection.chat(message);
 	}
 
 	@Override
 	public InetSocketAddress getAddress() {
-		// TODO Auto-generated method stub
-		return null;
+		if (getHandle(EntityPlayer.class).playerConnection == null) {
+			return null;
+		}
+		return (InetSocketAddress) getHandle(EntityPlayer.class).playerConnection.networkManager.getAddress();
 	}
 
 	@Override
 	public boolean getAllowFlight() {
-		// TODO Auto-generated method stub
-		return false;
+		return getHandle(EntityPlayer.class).playerProperties.mayfly;
 	}
 
 	@Override
@@ -312,24 +304,6 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 	}
 
 	@Override
-	public int getStatistic(Statistic arg0) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getStatistic(Statistic arg0, Material arg1) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getStatistic(Statistic arg0, EntityType arg1) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int getTotalExperience() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -354,49 +328,7 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 	}
 
 	@Override
-	public boolean hasAchievement(Achievement arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public void hidePlayer(Player arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void incrementStatistic(Statistic arg0) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void incrementStatistic(Statistic arg0, int arg1) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void incrementStatistic(Statistic arg0, Material arg1) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void incrementStatistic(Statistic arg0, EntityType arg1) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void incrementStatistic(Statistic arg0, Material arg1, int arg2) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void incrementStatistic(Statistic arg0, EntityType arg1, int arg2) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -487,12 +419,6 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 
 	@Override
 	public void playSound(Location arg0, String arg1, float arg2, float arg3) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeAchievement(Achievement arg0) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -642,12 +568,6 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 	}
 
 	@Override
-	public void setResourcePack(String arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void setSaturation(float arg0) {
 		// TODO Auto-generated method stub
 		
@@ -678,6 +598,106 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 	}
 
 	@Override
+	public void setTotalExperience(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setWalkSpeed(float arg0) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showPlayer(Player arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateInventory() {
+		getHandle(EntityPlayer.class).sendContainerItems(getHandle(EntityPlayer.class).activeContainer);
+	}
+
+	@Override
+	public EntityType getType() {
+		return EntityType.PLAYER;
+	}
+
+	@Override
+	public void awardAchievement(Achievement arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getStatistic(Statistic arg0) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getStatistic(Statistic arg0, Material arg1) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getStatistic(Statistic arg0, EntityType arg1) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void removeAchievement(Achievement arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void decrementStatistic(Statistic arg0) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean hasAchievement(Achievement arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void decrementStatistic(Statistic arg0, int arg1) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void decrementStatistic(Statistic arg0, Material arg1) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void decrementStatistic(Statistic arg0, EntityType arg1) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void decrementStatistic(Statistic arg0, Material arg1, int arg2) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void decrementStatistic(Statistic arg0, EntityType arg1, int arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public void setStatistic(Statistic arg0, int arg1) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		
@@ -702,32 +722,45 @@ public class PipePlayer extends PipeHumanEntity implements Player {
 	}
 
 	@Override
-	public void setTotalExperience(int arg0) {
+	public void setResourcePack(String arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setWalkSpeed(float arg0) throws IllegalArgumentException {
+	public void incrementStatistic(Statistic arg0) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void showPlayer(Player arg0) {
+	public void incrementStatistic(Statistic arg0, int arg1) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateInventory() {
+	public void incrementStatistic(Statistic arg0, Material arg1) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public EntityType getType() {
-		return EntityType.PLAYER;
+	public void incrementStatistic(Statistic arg0, EntityType arg1) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void incrementStatistic(Statistic arg0, Material arg1, int arg2) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void incrementStatistic(Statistic arg0, EntityType arg1, int arg2) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

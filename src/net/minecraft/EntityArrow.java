@@ -319,7 +319,7 @@ public class EntityArrow extends Entity implements aho {
 		}
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("xTile", (short) this.d);
 		var1.put("yTile", (short) this.e);
 		var1.put("zTile", (short) this.f);
@@ -333,7 +333,7 @@ public class EntityArrow extends Entity implements aho {
 		var1.put("damage", this.ar);
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.d = var1.getShort("xTile");
 		this.e = var1.getShort("yTile");
 		this.f = var1.getShort("zTile");

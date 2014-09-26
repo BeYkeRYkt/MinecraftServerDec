@@ -165,7 +165,7 @@ public abstract class EntityFireball extends Entity {
 
 	protected abstract void a(MovingObjectPosition var1);
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		var1.put("xTile", (short) this.e);
 		var1.put("yTile", (short) this.f);
 		var1.put("zTile", (short) this.g);
@@ -175,7 +175,7 @@ public abstract class EntityFireball extends Entity {
 		var1.put("direction", (NBTTag) this.createDoubleListTag(new double[] { this.motionX, this.motionY, this.motionZ }));
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		this.e = var1.getShort("xTile");
 		this.f = var1.getShort("yTile");
 		this.g = var1.getShort("zTile");

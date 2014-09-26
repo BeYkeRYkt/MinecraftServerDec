@@ -123,17 +123,17 @@ public class EntityItemFrame extends adj {
 
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 		if (this.o() != null) {
 			var1.put("Item", (NBTTag) this.o().write(new NBTCompoundTag()));
 			var1.put("ItemRotation", (byte) this.p());
 			var1.put("ItemDropChance", this.c);
 		}
 
-		super.b(var1);
+		super.writeAdditionalData(var1);
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 		NBTCompoundTag var2 = var1.getCompound("Item");
 		if (var2 != null && !var2.isEmpty()) {
 			this.a(ItemStack.fromNBT(var2), false);
@@ -147,7 +147,7 @@ public class EntityItemFrame extends adj {
 			}
 		}
 
-		super.a(var1);
+		super.readAdditionalData(var1);
 	}
 
 	public boolean e(EntityHuman var1) {

@@ -44,10 +44,10 @@ public class EntityLeash extends adj {
 		return false;
 	}
 
-	public void b(NBTCompoundTag var1) {
+	public void writeAdditionalData(NBTCompoundTag var1) {
 	}
 
-	public void a(NBTCompoundTag var1) {
+	public void readAdditionalData(NBTCompoundTag var1) {
 	}
 
 	public boolean e(EntityHuman var1) {

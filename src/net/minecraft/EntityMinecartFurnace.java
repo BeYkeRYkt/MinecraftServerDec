@@ -107,15 +107,15 @@ public class EntityMinecartFurnace extends adx {
 		return true;
 	}
 
-	protected void b(NBTCompoundTag var1) {
-		super.b(var1);
+	protected void writeAdditionalData(NBTCompoundTag var1) {
+		super.writeAdditionalData(var1);
 		var1.put("PushX", this.a);
 		var1.put("PushZ", this.b);
 		var1.put("Fuel", (short) this.c);
 	}
 
-	protected void a(NBTCompoundTag var1) {
-		super.a(var1);
+	protected void readAdditionalData(NBTCompoundTag var1) {
+		super.readAdditionalData(var1);
 		this.a = var1.getDouble("PushX");
 		this.b = var1.getDouble("PushZ");
 		this.c = var1.getShort("Fuel");
