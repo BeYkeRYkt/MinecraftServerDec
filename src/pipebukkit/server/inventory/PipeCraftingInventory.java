@@ -2,9 +2,13 @@ package pipebukkit.server.inventory;
 
 import java.util.List;
 
+import net.minecraft.Container;
 import net.minecraft.EntityHuman;
 import net.minecraft.IChatBaseComponent;
 import net.minecraft.IInventory;
+import net.minecraft.IInventoryHasType;
+import net.minecraft.InventoryPlayer;
+import net.minecraft.InventoryWorkbench;
 
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.CraftingInventory;
@@ -14,8 +18,8 @@ import org.bukkit.inventory.Recipe;
 
 public class PipeCraftingInventory extends PipeInventory implements CraftingInventory {
 
-	public PipeCraftingInventory(IInventory ingridientsInventory, IInventory resultInventory) {
-		super(new MinecraftCraftngInventory(ingridientsInventory, resultInventory));
+	public PipeCraftingInventory(InventoryWorkbench inventoryWorkbench, IInventory ingridientsInventory, IInventory resultInventory) {
+		super(inventoryWorkbench == null ? new MinecraftCraftngInventory(ingridientsInventory, resultInventory) : new MinecraftWorkbenchCraftingInventory(inventoryWorkbench, ingridientsInventory, resultInventory));
 	}
 
 	@Override
@@ -49,6 +53,27 @@ public class PipeCraftingInventory extends PipeInventory implements CraftingInve
 	@Override
 	public InventoryType getType() {
 		return getSize() >= 9 ? InventoryType.WORKBENCH : InventoryType.CRAFTING;
+	}
+
+	private static class MinecraftWorkbenchCraftingInventory extends MinecraftCraftngInventory implements IInventoryHasType {
+
+		private InventoryWorkbench inventoryWorkbench;
+
+		public MinecraftWorkbenchCraftingInventory(InventoryWorkbench inventoryWorkbench, IInventory ingridientsInventory, IInventory resultinventory) {
+			super(ingridientsInventory, resultinventory);
+			this.inventoryWorkbench = inventoryWorkbench;
+		}
+
+		@Override
+		public Container getContainer(InventoryPlayer playerInventory, EntityHuman player) {
+			return inventoryWorkbench.getContainer(playerInventory, player);
+		}
+
+		@Override
+		public String getInventoryType() {
+			return inventoryWorkbench.getInventoryType();
+		}
+		
 	}
 
 	private static class MinecraftCraftngInventory implements IInventory {

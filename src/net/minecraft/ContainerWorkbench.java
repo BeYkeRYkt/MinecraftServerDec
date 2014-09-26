@@ -5,12 +5,14 @@ import pipebukkit.server.inventory.PipeInventory;
 
 public class ContainerWorkbench extends Container {
 
-	public InventoryResult resultInventory = new InventoryResult();
-	public InventoryCrafting craftingInventory;
+	private InventoryWorkbench inventoryWorkbench;
+	private InventoryResult resultInventory = new InventoryResult();
+	private InventoryCrafting craftingInventory;
 	private World world;
 	private Position position;
 
-	public ContainerWorkbench(InventoryPlayer playerInventory, World var2, Position var3) {
+	public ContainerWorkbench(InventoryWorkbench inventoryWorkbench, InventoryPlayer playerInventory, World var2, Position var3) {
+		this.inventoryWorkbench = inventoryWorkbench;
 		this.world = var2;
 		this.position = var3;
 		craftingInventory = new InventoryCrafting(playerInventory.owner, this, 3, 3);
@@ -54,7 +56,7 @@ public class ContainerWorkbench extends Container {
 		}
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean isContainerValid(EntityHuman var1) {
 		return this.world.getBlockState(this.position).getBlock() != Blocks.CRAFTING_TABLE ? false : var1.getDistanceSquared((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
 	}
 
@@ -104,6 +106,7 @@ public class ContainerWorkbench extends Container {
 
 	@Override
 	public PipeInventory getPipeInventory() {
-		return new PipeCraftingInventory(craftingInventory, resultInventory);
+		return new PipeCraftingInventory(inventoryWorkbench, craftingInventory, resultInventory);
 	}
+
 }

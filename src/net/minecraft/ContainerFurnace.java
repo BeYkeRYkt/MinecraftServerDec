@@ -63,7 +63,7 @@ public class ContainerFurnace extends Container {
 		this.g = this.a.getProperty(3);
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean isContainerValid(EntityHuman var1) {
 		return this.a.canInteract(var1);
 	}
 

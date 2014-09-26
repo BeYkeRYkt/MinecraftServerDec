@@ -35,7 +35,7 @@ public class ContainerBeacon extends Container {
 		return this.inventory;
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean isContainerValid(EntityHuman var1) {
 		return this.inventory.canInteract(var1);
 	}
 

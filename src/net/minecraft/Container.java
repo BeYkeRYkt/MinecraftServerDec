@@ -375,7 +375,7 @@ public abstract class Container {
 		}
 	}
 
-	public abstract boolean a(EntityHuman var1);
+	public abstract boolean isContainerValid(EntityHuman var1);
 
 	protected boolean a(ItemStack var1, int var2, int var3, boolean var4) {
 		boolean var5 = false;

@@ -204,7 +204,7 @@ public class ContainerEnchantTable extends Container {
 		}
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean isContainerValid(EntityHuman var1) {
 		return this.i.getBlockState(this.j).getBlock() != Blocks.ENCHANTING_TABLE ? false : var1.getDistanceSquared((double) this.j.getX() + 0.5D, (double) this.j.getY() + 0.5D, (double) this.j.getZ() + 0.5D) <= 64.0D;
 	}
 

@@ -58,7 +58,7 @@ public class PlayerCraftingContainer extends Container {
 		this.resultInventory.setItem(0, (ItemStack) null);
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean isContainerValid(EntityHuman var1) {
 		return true;
 	}
 
@@ -121,7 +121,7 @@ public class PlayerCraftingContainer extends Container {
 
 	@Override
 	public PipeInventory getPipeInventory() {
-		return new PipeCraftingInventory(craftingInventory, resultInventory);
+		return new PipeCraftingInventory(null, craftingInventory, resultInventory);
 	}
 
 }

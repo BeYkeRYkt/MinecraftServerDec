@@ -51,7 +51,7 @@ public class ContainerMerchant extends Container {
 		this.f.d(var1);
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean isContainerValid(EntityHuman var1) {
 		return this.a.u_() == var1;
 	}
 

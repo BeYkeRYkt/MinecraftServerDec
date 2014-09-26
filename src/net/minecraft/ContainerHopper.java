@@ -29,7 +29,7 @@ public class ContainerHopper extends Container {
 
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean isContainerValid(EntityHuman var1) {
 		return this.a.canInteract(var1);
 	}
 

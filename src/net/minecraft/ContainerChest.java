@@ -34,7 +34,7 @@ public class ContainerChest extends Container {
 
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean isContainerValid(EntityHuman var1) {
 		return this.inventory.canInteract(var1);
 	}
 

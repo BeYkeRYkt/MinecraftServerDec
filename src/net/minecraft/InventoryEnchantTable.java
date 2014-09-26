@@ -2,7 +2,7 @@ package net.minecraft;
 
 import org.bukkit.inventory.InventoryHolder;
 
-class InventoryEnchantTable extends InventorySubcontainer {
+class InventoryEnchantTable extends InventorySubcontainer implements IInventoryHasType {
 
 	final ContainerEnchantTable enchantTableContainer;
 	private TileEntityEnchantTable table;
@@ -24,6 +24,16 @@ class InventoryEnchantTable extends InventorySubcontainer {
 	@Override
 	public InventoryHolder getHolder() {
 		return table.getHolder();
+	}
+
+	@Override
+	public Container getContainer(InventoryPlayer playerInventory, EntityHuman player) {
+		return enchantTableContainer;
+	}
+
+	@Override
+	public String getInventoryType() {
+		return table.getInventoryType();
 	}
 
 }

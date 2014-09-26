@@ -1,26 +1,32 @@
 package net.minecraft;
 
-import org.bukkit.entity.HumanEntity;
-import org.bukkit.inventory.InventoryHolder;
+public class InventoryAnvil implements IInventoryHasType {
 
-class InventoryAnvil extends InventorySubcontainer {
+	private final World world;
+	private final Position position;
 
-	private final ContainerAnvil anvilContainer;
-	private EntityHuman player;
-
-	InventoryAnvil(EntityHuman player, ContainerAnvil anvilContainer, String name, boolean hasCustomName, int size) {
-		super(name, hasCustomName, size);
-		this.anvilContainer = anvilContainer;
+	public InventoryAnvil(World var1, Position var2) {
+		this.world = var1;
+		this.position = var2;
 	}
 
-	public void update() {
-		super.update();
-		this.anvilContainer.a(this);
+	public String getName() {
+		return "anvil";
 	}
 
-	@Override
-	public InventoryHolder getHolder() {
-		return player.getBukkitEntity(HumanEntity.class);
+	public boolean hasCustomName() {
+		return false;
 	}
 
+	public IChatBaseComponent getComponentName() {
+		return new ChatMessage(Blocks.ANVIL.getName() + ".name", new Object[0]);
+	}
+
+	public Container getContainer(InventoryPlayer inventory, EntityHuman human) {
+		return new ContainerAnvil(this, inventory, this.world, this.position, human);
+	}
+
+	public String getInventoryType() {
+		return "minecraft:anvil";
+	}
 }

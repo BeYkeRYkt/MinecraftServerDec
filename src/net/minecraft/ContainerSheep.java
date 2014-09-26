@@ -10,7 +10,7 @@ class ContainerSheep extends Container {
 		this.a = var1;
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean isContainerValid(EntityHuman var1) {
 		return false;
 	}
 

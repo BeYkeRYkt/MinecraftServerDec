@@ -18,6 +18,7 @@ import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
 import pipebukkit.server.inventory.PipeEnderChestInventory;
+import pipebukkit.server.inventory.PipeInventory;
 import pipebukkit.server.inventory.PipeInventoryView;
 import pipebukkit.server.inventory.PipeItemStack;
 import pipebukkit.server.inventory.PipePlayerInventory;
@@ -216,15 +217,17 @@ public abstract class PipeHumanEntity extends PipeLivingEntity implements HumanE
 	}
 
 	@Override
-	public InventoryView openInventory(Inventory arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public InventoryView openInventory(Inventory inventory) {
+		if (!(this instanceof PipePlayer)) {
+			return null;
+		}
+		getHandle(EntityPlayer.class).openInventory(((PipeInventory) inventory).getHandle());
+		return getOpenInventory();
 	}
 
 	@Override
-	public void openInventory(InventoryView arg0) {
-		// TODO Auto-generated method stub
-		
+	public void openInventory(InventoryView view) {
+		openInventory(view.getTopInventory());
 	}
 
 	@Override

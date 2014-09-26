@@ -130,7 +130,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
 		}
 
 		this.activeContainer.b();
-		if (!this.world.isStatic && !this.activeContainer.a((EntityHuman) this)) {
+		if (!this.world.isStatic && !this.activeContainer.isContainerValid((EntityHuman) this)) {
 			this.closeWindow();
 			this.activeContainer = this.defaultContainer;
 		}

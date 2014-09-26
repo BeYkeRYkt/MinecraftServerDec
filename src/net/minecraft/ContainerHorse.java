@@ -39,7 +39,7 @@ public class ContainerHorse extends Container {
 
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean isContainerValid(EntityHuman var1) {
 		return this.a.canInteract(var1) && this.f.isAlive() && this.f.g((Entity) var1) < 8.0F;
 	}
 

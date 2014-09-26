@@ -47,7 +47,7 @@ public class ContainerBrewingStand extends Container {
 		this.g = this.inventory.getProperty(0);
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean isContainerValid(EntityHuman var1) {
 		return this.inventory.canInteract(var1);
 	}
 

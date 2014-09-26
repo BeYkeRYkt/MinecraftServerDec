@@ -27,6 +27,10 @@ public abstract class PipeInventory implements Inventory {
 		this.nmsInventory = nmsInventory;
 	}
 
+	public IInventory getHandle() {
+		return nmsInventory;
+	}
+
 	@Override
 	public abstract InventoryType getType();
 

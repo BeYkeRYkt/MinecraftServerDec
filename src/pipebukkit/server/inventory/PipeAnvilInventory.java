@@ -2,9 +2,13 @@ package pipebukkit.server.inventory;
 
 import java.util.List;
 
+import net.minecraft.Container;
 import net.minecraft.EntityHuman;
 import net.minecraft.IChatBaseComponent;
 import net.minecraft.IInventory;
+import net.minecraft.IInventoryHasType;
+import net.minecraft.InventoryAnvil;
+import net.minecraft.InventoryPlayer;
 
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.AnvilInventory;
@@ -12,7 +16,7 @@ import org.bukkit.inventory.InventoryHolder;
 
 public class PipeAnvilInventory extends PipeInventory implements AnvilInventory {
 
-	public PipeAnvilInventory(IInventory ingridientsInventory, IInventory resultInventory) {
+	public PipeAnvilInventory(InventoryAnvil anvil, IInventory ingridientsInventory, IInventory resultInventory) {
 		super(new MinecraftAnvilInventory(ingridientsInventory, resultInventory));
 	}
 
@@ -21,8 +25,9 @@ public class PipeAnvilInventory extends PipeInventory implements AnvilInventory 
 		return InventoryType.ANVIL;
 	}
 
-	private static class MinecraftAnvilInventory implements IInventory {
+	private static class MinecraftAnvilInventory implements IInventory, IInventoryHasType {
 
+		private InventoryAnvil anvil;
 		private IInventory ingridientsInventory;
 		private IInventory resultinventory;
 
@@ -148,6 +153,16 @@ public class PipeAnvilInventory extends PipeInventory implements AnvilInventory 
 		@Override
 		public InventoryHolder getHolder() {
 			return ingridientsInventory.getHolder();
+		}
+
+		@Override
+		public Container getContainer(InventoryPlayer playerInventory, EntityHuman player) {
+			return anvil.getContainer(playerInventory, player);
+		}
+
+		@Override
+		public String getInventoryType() {
+			return anvil.getInventoryType();
 		}
 
 	}

@@ -12,6 +12,7 @@ import pipebukkit.server.inventory.PipeInventory;
 
 public class ContainerAnvil extends Container {
 
+	private InventoryAnvil anvil;
 	private IInventory g = new InventoryResult();
 	private IInventory h;
 	private World i;
@@ -21,8 +22,9 @@ public class ContainerAnvil extends Container {
 	private String l;
 	private final EntityHuman m;
 
-	public ContainerAnvil(InventoryPlayer var1, World var2, Position var3, EntityHuman var4) {
-		h = new InventoryAnvil(var1.owner, this, "Repair", true, 2);
+	public ContainerAnvil(InventoryAnvil anvil, InventoryPlayer var1, World var2, Position var3, EntityHuman var4) {
+		this.anvil = anvil;
+		h = new SubInventoryAnvil(var1.owner, this, "Repair", true, 2);
 		this.j = var3;
 		this.i = var2;
 		this.m = var4;
@@ -250,7 +252,7 @@ public class ContainerAnvil extends Container {
 		}
 	}
 
-	public boolean a(EntityHuman var1) {
+	public boolean isContainerValid(EntityHuman var1) {
 		return this.i.getBlockState(this.j).getBlock() != Blocks.ANVIL ? false : var1.getDistanceSquared((double) this.j.getX() + 0.5D, (double) this.j.getY() + 0.5D, (double) this.j.getZ() + 0.5D) <= 64.0D;
 	}
 
@@ -316,7 +318,7 @@ public class ContainerAnvil extends Container {
 
 	@Override
 	public PipeInventory getPipeInventory() {
-		return new PipeAnvilInventory(h, g);
+		return new PipeAnvilInventory(anvil, h, g);
 	}
 
 }
