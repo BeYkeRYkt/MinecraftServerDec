@@ -109,7 +109,8 @@ public class Door extends MaterialData implements Directional, Openable {
      * @param face the direction
      * @deprecated Does not work (correctly) anymore
      */
-    @Deprecated
+    @SuppressWarnings("incomplete-switch")
+	@Deprecated
     public void setFacingDirection(BlockFace face) {
         byte data = (byte) (getData() & 0x12);
         switch (face) {

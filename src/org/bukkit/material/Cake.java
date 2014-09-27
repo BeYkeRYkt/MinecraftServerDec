@@ -43,7 +43,8 @@ public class Cake extends MaterialData {
      *
      * @return The number of slices eaten
      */
-    public int getSlicesEaten() {
+    @SuppressWarnings("deprecation")
+	public int getSlicesEaten() {
         return getData();
     }
 
@@ -52,7 +53,8 @@ public class Cake extends MaterialData {
      *
      * @return The number of slices remaining
      */
-    public int getSlicesRemaining() {
+    @SuppressWarnings("deprecation")
+	public int getSlicesRemaining() {
         return 6 - getData();
     }
 
@@ -61,7 +63,8 @@ public class Cake extends MaterialData {
      *
      * @param n The number of slices eaten
      */
-    public void setSlicesEaten(int n) {
+    @SuppressWarnings("deprecation")
+	public void setSlicesEaten(int n) {
         if (n < 6) {
             setData((byte) n);
         } // TODO: else destroy the block? Probably not possible though
@@ -72,7 +75,8 @@ public class Cake extends MaterialData {
      *
      * @param n The number of slices remaining
      */
-    public void setSlicesRemaining(int n) {
+    @SuppressWarnings("deprecation")
+	public void setSlicesRemaining(int n) {
         if (n > 6) {
             n = 6;
         }

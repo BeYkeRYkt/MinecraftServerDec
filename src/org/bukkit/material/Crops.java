@@ -52,7 +52,8 @@ public class Crops extends MaterialData {
      *
      * @return CropState of this crop
      */
-    public CropState getState() {
+    @SuppressWarnings("deprecation")
+	public CropState getState() {
         return CropState.getByData(getData());
     }
 
@@ -61,7 +62,8 @@ public class Crops extends MaterialData {
      *
      * @param state New growth state of this crop
      */
-    public void setState(CropState state) {
+    @SuppressWarnings("deprecation")
+	public void setState(CropState state) {
         setData(state.getData());
     }
 

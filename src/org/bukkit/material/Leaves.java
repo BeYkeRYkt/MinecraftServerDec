@@ -52,7 +52,8 @@ public class Leaves extends MaterialData {
      *
      * @return TreeSpecies of this leave
      */
-    public TreeSpecies getSpecies() {
+    @SuppressWarnings("deprecation")
+	public TreeSpecies getSpecies() {
         return TreeSpecies.getByData((byte) (getData() & 3));
     }
 
@@ -61,7 +62,8 @@ public class Leaves extends MaterialData {
      *
      * @param species New species of this leave
      */
-    public void setSpecies(TreeSpecies species) {
+    @SuppressWarnings("deprecation")
+	public void setSpecies(TreeSpecies species) {
         setData(species.getData());
     }
 

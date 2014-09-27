@@ -61,7 +61,8 @@ public class Bed extends MaterialData implements Directional {
      *
      * @return true if this is the head of the bed, false if it is the foot
      */
-    public boolean isHeadOfBed() {
+    @SuppressWarnings("deprecation")
+	public boolean isHeadOfBed() {
         return (getData() & 0x8) == 0x8;
     }
 
@@ -70,7 +71,8 @@ public class Bed extends MaterialData implements Directional {
      *
      * @param isHeadOfBed True to make it the head.
      */
-    public void setHeadOfBed(boolean isHeadOfBed) {
+    @SuppressWarnings("deprecation")
+	public void setHeadOfBed(boolean isHeadOfBed) {
         setData((byte) (isHeadOfBed ? (getData() | 0x8) : (getData() & ~0x8)));
     }
 
@@ -78,7 +80,8 @@ public class Bed extends MaterialData implements Directional {
      * Set which direction the head of the bed is facing. Note that this will
      * only affect one of the two blocks the bed is made of.
      */
-    public void setFacingDirection(BlockFace face) {
+    @SuppressWarnings("deprecation")
+	public void setFacingDirection(BlockFace face) {
         byte data;
 
         switch (face) {
@@ -111,7 +114,8 @@ public class Bed extends MaterialData implements Directional {
      *
      * @return the direction the head of the bed is facing
      */
-    public BlockFace getFacing() {
+    @SuppressWarnings("deprecation")
+	public BlockFace getFacing() {
         byte data = (byte) (getData() & 0x7);
 
         switch (data) {

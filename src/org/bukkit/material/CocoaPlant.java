@@ -52,7 +52,8 @@ public class CocoaPlant extends MaterialData implements Directional, Attachable 
      *
      * @return size
      */
-    public CocoaPlantSize getSize() {
+    @SuppressWarnings("deprecation")
+	public CocoaPlantSize getSize() {
         switch (getData() & 0xC) {
             case 0:
                 return CocoaPlantSize.SMALL;
@@ -68,7 +69,8 @@ public class CocoaPlant extends MaterialData implements Directional, Attachable 
      *
      * @param sz - size of plant
      */
-    public void setSize(CocoaPlantSize sz) {
+    @SuppressWarnings("deprecation")
+	public void setSize(CocoaPlantSize sz) {
         int dat = getData() & 0x3;
         switch (sz) {
             case SMALL:
@@ -87,7 +89,8 @@ public class CocoaPlant extends MaterialData implements Directional, Attachable 
         return getFacing().getOppositeFace();
     }
 
-    public void setFacingDirection(BlockFace face) {
+    @SuppressWarnings("deprecation")
+	public void setFacingDirection(BlockFace face) {
         int dat = getData() & 0xC;
         switch (face) {
             default:
@@ -106,7 +109,8 @@ public class CocoaPlant extends MaterialData implements Directional, Attachable 
         setData((byte) dat);
     }
 
-    public BlockFace getFacing() {
+    @SuppressWarnings("deprecation")
+	public BlockFace getFacing() {
         switch (getData() & 0x3) {
             case 0:
                 return BlockFace.SOUTH;

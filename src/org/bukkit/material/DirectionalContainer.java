@@ -38,7 +38,8 @@ public class DirectionalContainer extends MaterialData implements Directional {
         super(type, data);
     }
 
-    public void setFacingDirection(BlockFace face) {
+    @SuppressWarnings("deprecation")
+	public void setFacingDirection(BlockFace face) {
         byte data;
 
         switch (face) {
@@ -62,7 +63,8 @@ public class DirectionalContainer extends MaterialData implements Directional {
         setData(data);
     }
 
-    public BlockFace getFacing() {
+    @SuppressWarnings("deprecation")
+	public BlockFace getFacing() {
         byte data = getData();
 
         switch (data) {

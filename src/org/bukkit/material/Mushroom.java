@@ -49,14 +49,16 @@ public class Mushroom extends MaterialData {
     /**
      * @return Whether this is a mushroom stem.
      */
-    public boolean isStem() {
+    @SuppressWarnings("deprecation")
+	public boolean isStem() {
         return getData() == SHROOM_STEM;
     }
 
     /**
      * Sets this to be a mushroom stem.
      */
-    public void setStem() {
+    @SuppressWarnings("deprecation")
+	public void setStem() {
         setData((byte) 10);
     }
 
@@ -66,7 +68,8 @@ public class Mushroom extends MaterialData {
      * @param face The face to check.
      * @return True if it is painted.
      */
-    public boolean isFacePainted(BlockFace face) {
+    @SuppressWarnings("deprecation")
+	public boolean isFacePainted(BlockFace face) {
         byte data = getData();
 
         if (data == SHROOM_NONE || data == SHROOM_STEM) {
@@ -98,7 +101,8 @@ public class Mushroom extends MaterialData {
      * @param painted True if you want to paint it, false if you want the
      *     pores to show.
      */
-    public void setFacePainted(BlockFace face, boolean painted) {
+    @SuppressWarnings("deprecation")
+	public void setFacePainted(BlockFace face, boolean painted) {
         if (painted == isFacePainted(face)) {
             return;
         }
@@ -185,7 +189,8 @@ public class Mushroom extends MaterialData {
         return faces;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public String toString() {
         return Material.getMaterial(getItemTypeId()).toString() + (isStem() ? "{STEM}" : getPaintedFaces());
     }

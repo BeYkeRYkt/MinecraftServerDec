@@ -36,7 +36,8 @@ public class Cauldron extends MaterialData {
      *
      * @return True if it is full.
      */
-    public boolean isFull() {
+    @SuppressWarnings("deprecation")
+	public boolean isFull() {
         return getData() >= CAULDRON_FULL;
     }
 
@@ -45,11 +46,13 @@ public class Cauldron extends MaterialData {
      *
      * @return True if it is empty.
      */
-    public boolean isEmpty() {
+    @SuppressWarnings("deprecation")
+	public boolean isEmpty() {
         return getData() <= CAULDRON_EMPTY;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public String toString() {
         return (isEmpty() ? "EMPTY" : (isFull() ? "FULL" : getData() + "/3 FULL")) + " CAULDRON";
     }
