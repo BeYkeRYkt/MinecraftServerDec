@@ -38,7 +38,8 @@ public class PistonExtensionMaterial extends MaterialData implements Attachable 
         super(type, data);
     }
 
-    public void setFacingDirection(BlockFace face) {
+    @SuppressWarnings({ "deprecation", "incomplete-switch" })
+	public void setFacingDirection(BlockFace face) {
         byte data = (byte) (getData() & 0x8);
 
         switch (face) {
@@ -61,7 +62,8 @@ public class PistonExtensionMaterial extends MaterialData implements Attachable 
         setData(data);
     }
 
-    public BlockFace getFacing() {
+    @SuppressWarnings("deprecation")
+	public BlockFace getFacing() {
         byte dir = (byte) (getData() & 7);
 
         switch (dir) {
@@ -87,7 +89,8 @@ public class PistonExtensionMaterial extends MaterialData implements Attachable 
      *
      * @return true if this piston is "sticky", or false
      */
-    public boolean isSticky() {
+    @SuppressWarnings("deprecation")
+	public boolean isSticky() {
         return (getData() & 8) == 8;
     }
 
@@ -96,7 +99,8 @@ public class PistonExtensionMaterial extends MaterialData implements Attachable 
      *
      * @param sticky true if sticky, otherwise false
      */
-    public void setSticky(boolean sticky) {
+    @SuppressWarnings("deprecation")
+	public void setSticky(boolean sticky) {
         setData((byte) (sticky ? (getData() | 0x8) : (getData() & ~0x8)));
     }
 

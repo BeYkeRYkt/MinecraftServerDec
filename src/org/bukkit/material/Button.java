@@ -48,7 +48,8 @@ public class Button extends SimpleAttachableMaterialData implements Redstone {
      *
      * @return true if powered, otherwise false
      */
-    public boolean isPowered() {
+    @SuppressWarnings("deprecation")
+	public boolean isPowered() {
         return (getData() & 0x8) == 0x8;
     }
 
@@ -58,7 +59,8 @@ public class Button extends SimpleAttachableMaterialData implements Redstone {
      * @param bool
      *            whether or not the button is powered
      */
-    public void setPowered(boolean bool) {
+    @SuppressWarnings("deprecation")
+	public void setPowered(boolean bool) {
         setData((byte) (bool ? (getData() | 0x8) : (getData() & ~0x8)));
     }
 
@@ -67,7 +69,8 @@ public class Button extends SimpleAttachableMaterialData implements Redstone {
      *
      * @return BlockFace attached to
      */
-    public BlockFace getAttachedFace() {
+    @SuppressWarnings("deprecation")
+	public BlockFace getAttachedFace() {
         byte data = (byte) (getData() & 0x7);
 
         switch (data) {
@@ -90,7 +93,8 @@ public class Button extends SimpleAttachableMaterialData implements Redstone {
     /**
      * Sets the direction this button is pointing toward
      */
-    public void setFacingDirection(BlockFace face) {
+    @SuppressWarnings({ "deprecation", "incomplete-switch" })
+	public void setFacingDirection(BlockFace face) {
         byte data = (byte) (getData() & 0x8);
 
         switch (face) {

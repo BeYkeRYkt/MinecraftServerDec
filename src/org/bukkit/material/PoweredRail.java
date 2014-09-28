@@ -41,7 +41,8 @@ public class PoweredRail extends ExtendedRails implements Redstone {
         super(type, data);
     }
 
-    public boolean isPowered() {
+    @SuppressWarnings("deprecation")
+	public boolean isPowered() {
         return (getData() & 0x8) == 0x8;
     }
 
@@ -50,7 +51,8 @@ public class PoweredRail extends ExtendedRails implements Redstone {
      *
      * @param isPowered whether or not the rail is powered
      */
-    public void setPowered(boolean isPowered) {
+    @SuppressWarnings("deprecation")
+	public void setPowered(boolean isPowered) {
         setData((byte) (isPowered ? (getData() | 0x8) : (getData() & ~0x8)));
     }
 

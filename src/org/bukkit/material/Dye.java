@@ -47,7 +47,8 @@ public class Dye extends MaterialData implements Colorable {
      *
      * @return DyeColor of this dye
      */
-    public DyeColor getColor() {
+    @SuppressWarnings("deprecation")
+	public DyeColor getColor() {
         return DyeColor.getByDyeData(getData());
     }
 
@@ -56,11 +57,13 @@ public class Dye extends MaterialData implements Colorable {
      *
      * @param color New color of this dye
      */
-    public void setColor(DyeColor color) {
+    @SuppressWarnings("deprecation")
+	public void setColor(DyeColor color) {
         setData(color.getDyeData());
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public String toString() {
         return getColor() + " DYE(" + getData() + ")";
     }
